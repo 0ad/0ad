@@ -22,52 +22,65 @@ package.config["Testing"].target = "ps_test"
 -- Files
 package.files = {
 	-- ps/
-        { sourcesfromdirs("../../ps") },
-        { sourcesfromdirs("../../ps/scripting") },
+	{ sourcesfromdirs("../../ps") },
+	{ sourcesfromdirs("../../ps/scripting") },
 	{ sourcesfromdirs("../../ps/Network") },
+
 	-- simulation/
 	{ sourcesfromdirs("../../simulation") },
-        { sourcesfromdirs("../../simulation/scripting") },
+	{ sourcesfromdirs("../../simulation/scripting") },
+
 	-- lib/
 	{ sourcesfromdirs(
-                "../../lib",
-                "../../lib/sysdep",
-                "../../lib/res") },
+		"../../lib",
+		"../../lib/sysdep",
+		"../../lib/res") },
+
 	-- graphics/
 	{ sourcesfromdirs(
-                "../../graphics") },
-        { sourcesfromdirs( "../../graphics/scripting" ) },
+		"../../graphics") },
+	{ sourcesfromdirs( "../../graphics/scripting" ) },
+
 	-- maths/
 	{ sourcesfromdirs(
-                "../../maths") },
-        { sourcesfromdirs( "../../maths/scripting" ) },
+		"../../maths") },
+	{ sourcesfromdirs( "../../maths/scripting" ) },
+
 	-- renderer/
 	{ sourcesfromdirs(
-                "../../renderer") },
+		"../../renderer") },
+
 	-- gui/
 	{ sourcesfromdirs(
-                "../../gui") },
-        { sourcesfromdirs( "../../gui/scripting" ) },
+		"../../gui") },
+	{ sourcesfromdirs( "../../gui/scripting" ) },
+
 	-- terrain/
 	{ sourcesfromdirs(
-                "../../terrain") },
+		"../../terrain") },
+
 	-- sound/
 	{ sourcesfromdirs(
-                "../../sound") },
+		"../../sound") },
+
 	-- main
 	{ "../../main.cpp" },
+
 	-- scripting
-	{ sourcesfromdirs("../../scripting") }
+	{ sourcesfromdirs("../../scripting") },
+
+	-- i18n
+	{ sourcesfromdirs("../../i18n") }
 }
 
 package.includepaths = {
-	"../../ps", 
-	"../../simulation", 
-	"../../lib", 
-	"../../graphics", 
-	"../../maths", 
-	"../../renderer", 
-	"../../terrain", 
+	"../../ps",
+	"../../simulation",
+	"../../lib",
+	"../../graphics",
+	"../../maths",
+	"../../renderer",
+	"../../terrain",
 	"../.." }
 
 package.libpaths = {

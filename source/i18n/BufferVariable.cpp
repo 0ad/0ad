@@ -1,0 +1,133 @@
+#include "precompiled.h"
+
+#include "BufferVariable.h"
+
+#include "DataTypes.h"
+#include "CLocale.h"
+
+// Hashing functions are currently 32-bit only
+cassert(sizeof(int) == 4);
+cassert(sizeof(double) == 8);
+
+using namespace I18n;
+
+namespace I18n {
+	// These bits don't seem to work without the explicit namespace{}
+
+	BufferVariable* NewBufferVariable(int v) { return new BufferVariable_int(v); }
+	BufferVariable* NewBufferVariable(double v) { return new BufferVariable_double(v); }
+	BufferVariable* NewBufferVariable(const wchar_t* v) { return new BufferVariable_string(v); }
+	BufferVariable* NewBufferVariable(const char* v) { return new BufferVariable_string(v); }
+	BufferVariable* NewBufferVariable(I18n::Name v) { return new BufferVariable_rawstring(v.value); }
+}
+
+StrImW BufferVariable_int::ToString(CLocale*)
+{
+	wchar_t buffer[16];
+	swprintf(buffer, 16, L"%d", value);
+	return buffer;
+}
+u32 BufferVariable_int::Hash()
+{
+	return (u32)value;
+}
+
+
+StrImW BufferVariable_double::ToString(CLocale*)
+{
+	// TODO: Work out how big the buffer should be
+	wchar_t buffer[256];
+	swprintf(buffer, 256, L"%f", value);
+	return buffer;
+}
+u32 BufferVariable_double::Hash()
+{
+	// Add the two four-bytes of the double
+	return *((u32*)&value) + *((u32*)&value + 1);
+}
+
+
+StrImW BufferVariable_string::ToString(CLocale* locale)
+{
+	// Attempt noun translations
+	const Str nouns = L"nouns";
+	const Str wordname (value.str());
+	const CLocale::LookupType* word = locale->LookupWord(nouns, wordname);
+	// Couldn't find; just return the original word
+	if (! word)
+		return value;
+
+	const Str propname = L"singular";
+	Str ret;
+	if (! locale->LookupProperty(word, propname, ret))
+	{
+		delete word;
+		return value;
+	}
+	delete word;
+	return ret.c_str();
+}
+u32 BufferVariable_string::Hash()
+{
+	// Do nothing very clever
+	int hash = 0;
+	const wchar_t* str = value.str();
+	size_t len = wcslen(str);
+	for (size_t i = 0; i < len; ++i)
+		hash += str[i];
+	return hash;
+}
+
+StrImW BufferVariable_rawstring::ToString(CLocale*)
+{
+	return value;
+}
+u32 BufferVariable_rawstring::Hash()
+{
+	int hash = 0;
+	const wchar_t* str = value.str();
+	size_t len = wcslen(str);
+	for (size_t i = 0; i < len; ++i)
+		hash += str[i];
+	return hash;
+}
+
+bool I18n::operator== (BufferVariable& a, BufferVariable& b)
+{
+	if (a.Type != b.Type)
+		return false;
+
+	switch (a.Type)
+	{
+	case vartype_int:
+		return *static_cast<BufferVariable_int*>(&a) == *static_cast<BufferVariable_int*>(&b);
+	case vartype_double:
+		return *static_cast<BufferVariable_double*>(&a) == *static_cast<BufferVariable_double*>(&b);
+	case vartype_string:
+		return *static_cast<BufferVariable_string*>(&a) == *static_cast<BufferVariable_string*>(&b);
+	case vartype_rawstring:
+		return *static_cast<BufferVariable_rawstring*>(&a) == *static_cast<BufferVariable_rawstring*>(&b);
+	}
+	debug_warn("Invalid buffer variable vartype");
+	return false;
+}
+
+bool BufferVariable_int::operator== (BufferVariable_int& a)
+{
+	return a.value == this->value;
+}
+
+bool BufferVariable_double::operator== (BufferVariable_double& a)
+{
+	return a.value == this->value;
+}
+
+bool BufferVariable_string::operator== (BufferVariable_string& a)
+{
+	return a.value == this->value;
+}
+
+bool BufferVariable_rawstring::operator== (BufferVariable_rawstring& a)
+{
+	return a.value == this->value;
+}

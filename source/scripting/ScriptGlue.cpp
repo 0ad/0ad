@@ -14,6 +14,8 @@
 #include "Network/Server.h"
 #include "Network/Client.h"
 
+#include "ps/i18n.h"
+
 #include "scripting/JSInterface_Entity.h"
 #include "scripting/JSInterface_BaseEntity.h"
 #include "scripting/JSInterface_Vector3D.h"
@@ -49,6 +51,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	{"endGame", endGame, 0, 0, 0 },
 	{"joinGame", joinGame, 0, 0, 0 },
 	{"startServer", startServer, 0, 0, 0 },
+	{"loadLanguage", loadLanguage, 1, 0, 0 },
 
 	{"exit", exitProgram, 0, 0, 0 },
 	{"crash", crash, 0, 0, 0 },
@@ -357,6 +360,21 @@ JSBool endGame(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObje
 	return JS_TRUE;
 }
 
+
+JSBool loadLanguage(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* rval)
+{
+	if (argc != 1)
+	{
+		JS_ReportError(cx, "loadLanguage: needs 1 parameter");
+		return JS_FALSE;
+	}
+	CStr lang = g_ScriptingHost.ValueToString(argv[0]);
+	I18n::LoadLanguage(lang);
+
+	return JS_TRUE;
+}
+
+
 extern void kill_mainloop(); // from main.cpp
 
 JSBool exitProgram(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject), unsigned int UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* UNUSEDPARAM(rval))
@@ -368,7 +386,7 @@ JSBool exitProgram(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(global
 JSBool crash(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject), unsigned int UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* UNUSEDPARAM(rval))
 {
 	MICROLOG(L"Crashing at user's request.");
-	uintptr_t ptr = 0xDEADC0DE;
+	uintptr_t ptr = 0xDEADC0DE; // oh dear, might this be an invalid pointer?
 	return *(JSBool*) ptr;
 }
 

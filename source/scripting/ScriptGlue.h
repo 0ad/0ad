@@ -27,13 +27,16 @@ JSBool joinGame(JSContext* context, JSObject* globalObject, unsigned int argc, j
 JSBool startGame(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
 JSBool endGame(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
 
+// Replaces the current language (locale) with a new one
+JSBool loadLanguage(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
+
 // Tells the main loop to stop looping
 JSBool exitProgram(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
 
 // Crashes.
 JSBool crash(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
 
-// Tries to print the amount of remaining video memory
+// Tries to print the amount of remaining video memory. (I don't like starting functions with underscores).
 JSBool js_mem(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
 
 extern JSFunctionSpec ScriptFunctionTable[];

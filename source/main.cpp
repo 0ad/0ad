@@ -56,6 +56,8 @@
 #include "ConfigDB.h"
 #include "CLogger.h"
 
+#include "ps/i18n.h"
+
 #define LOG_CATEGORY "main"
 
 #ifndef NO_GUI
@@ -485,7 +487,9 @@ static void Render()
 	glTranslatef(10.0f, 10.0f, 0.0f);
 
 	glScalef(1.0, -1.0, 1.0);
-	glwprintf( L"%d FPS", fps);
+
+	CStrW fps_display = translate(L"$num FPS") << fps;
+	glwprintf(fps_display);
 
 	oglCheck();
 
@@ -666,6 +670,8 @@ static void psInit()
 	g_Console->m_iFontHeight = unifont_linespacing(g_Font_Console);
 	g_Console->m_iFontOffset = 9;
 
+	I18n::LoadLanguage("pseudogreek");
+
 	loadHotkeys();
 
 #ifndef NO_GUI
@@ -694,6 +700,8 @@ static void psShutdown()
 	CXeromyces::Terminate();
 
 	MusicPlayer.release();
+
+	I18n::Shutdown();
 }
 
 
@@ -705,7 +713,7 @@ static void Shutdown()
 
 	if (g_Game)
 		delete g_Game;
-	
+
 	delete &g_Scheduler;
 
 	delete &g_SessionManager;
