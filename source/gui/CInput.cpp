@@ -356,7 +356,7 @@ void CInput::Draw()
 			scroll = GetScrollBar(0).GetPos();
 		}
 
-		CColor color;
+		CColor color (1.f, 1.f, 1.f, 1.f);
 		GUI<CColor>::GetSetting(this, "textcolor", color);
 
 		glEnable(GL_TEXTURE_2D);
@@ -381,7 +381,7 @@ void CInput::Draw()
 		float ls = (float)font.GetLineSpacing();
 
 		glTranslatef((GLfloat)int(m_CachedActualSize.left), (GLfloat)int(m_CachedActualSize.top+h), bz);
-		glColor4f(1.f, 1.f, 1.f, 1.f);
+		glColor4fv(color.FloatArray());
 		
 		float buffered_y=0.f;
 

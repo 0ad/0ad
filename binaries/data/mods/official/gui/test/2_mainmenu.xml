@@ -20,7 +20,7 @@
 		<object type="image" name="pregame-mainmenu-background-image" sprite="pregame-mainmenu-background" size="0 0 100% 100%" z="100" hidden="false" ghost="true"/>
 
 		<object type="button" name="pregame-mainmenu-sp-button" sprite-over="pregame-mainmenu-spbt" size="52.9296875% 23.95833333% 67.578125% 42.317708333%" z="101" hidden="false"
-			tooltip-style="pregame-mainmenu-tooltip" tooltip="Want to move some Dudes around or test something ? Click here to start a new game on the default map.">
+			tooltip-style="pregame-mainmenu-tooltip" tooltip="Want to move some Dudes around or test something? Click here to start a new game on the default map.">
 			<action on="Press"><![CDATA[
 				GUIObjectUnhide("pregame_subwindow_bkg");
 				GUIObjectUnhide("pregame_sp_mapsel");
@@ -193,7 +193,7 @@
                                 Map Name:
                         </object>
 
-                        <object type="input" name="pregame_sp_mapname" sprite="only-black" absolute="false" size="130 90 290 110" textcolor="0 0 0">
+                        <object type="input" name="pregame_sp_mapname" sprite="only-black" absolute="false" size="130 90 290 110" textcolor="255 255 255">
                                 test01.pmp
                         </object>
 
