@@ -1,4 +1,4 @@
-// $Id: Xeromyces.cpp,v 1.10 2004/07/24 14:03:44 philip Exp $
+// $Id: Xeromyces.cpp,v 1.11 2004/07/29 16:15:49 philip Exp $
 
 #include "precompiled.h"
 
@@ -155,8 +155,7 @@ CXeromyces::~CXeromyces() {
 	if (XMBFileHandle)
 	{
 		// If it was read from a file, close it
-		vfs_unmap(XMBFileHandle);
-		vfs_close(XMBFileHandle);
+		delete XMBFileHandle;
 	}
 	else
 	{
@@ -175,23 +174,16 @@ void CXeromyces::Terminate()
 	}
 }
 
-void CXeromyces::Load(const char* filename)
+PSRETURN CXeromyces::Load(const char* filename)
 {
-	// HACK: This is only done so early because CVFSInputSource
-	// requires XMLTranscode. It would preferably not be done until
-	// we actually need Xerces.
-	if (! XercesLoaded)
-	{
-		XMLPlatformUtils::Initialize();
-		XercesLoaded = 1;
-	}
 
+	// Open the file, so that its checksum can be calculated
 
-	CVFSInputSource source;
-	if (source.OpenFile(filename))
+	CVFSFile file;
+	if (file.Load(filename) != PSRETURN_OK)
 	{
-		LOG(ERROR, "CXeromyces: Failed to load XML file '%s'", filename);
-		throw PSERROR_Xeromyces_XMLOpenFailed();
+		LOG(ERROR, "CXeromyces: XML open of %s failed", filename);
+		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
 	// Start the checksum with a particular seed value, so the XMBs will
@@ -204,9 +196,11 @@ void CXeromyces::Load(const char* filename)
 	u32 EndiannessIndicator = 0x12345678;
 	SeedChecksum = crc32(SeedChecksum, (Bytef*)&EndiannessIndicator, 4);
 	// And finally depend on the actual contents of the XML file
-	unsigned long XMLChecksum = source.CRC32(SeedChecksum);
+	unsigned long XMLChecksum = crc32(SeedChecksum, (Bytef*)file.GetBuffer(), (int)file.GetBufferSize());
+
 
 	// Check whether the XMB file needs to be regenerated:
+
 
 	// Generate the XMB's filename
 	CStr filenameXMB = filename;
@@ -215,11 +209,20 @@ void CXeromyces::Load(const char* filename)
 	// Load the entire file, with the assumption that usually it's
 	// going to be valid and will then be passed to XMBFile().
 	if (vfs_exists(filenameXMB) && ReadXMBFile(filenameXMB, true, XMLChecksum))
-		return;
+		return PSRETURN_OK;
 
 	
 	// XMB isn't up to date with the XML, so rebuild it:
 
+	// Load Xerces if necessary
+	if (! XercesLoaded)
+	{
+		XMLPlatformUtils::Initialize();
+		XercesLoaded = 1;
+	}
+
+	CVFSInputSource source;
+	source.OpenBuffer(filename, file.GetBuffer(), file.GetBufferSize());
 
 	SAX2XMLReader* Parser = XMLReaderFactory::createXMLReader();
 
@@ -250,42 +253,36 @@ void CXeromyces::Load(const char* filename)
 	// Convert the data structures into the XMB format
 	handler.CreateXMB(XMLChecksum);
 
-	// Only fail after having called CreateXMB, because CreateXMB frees all the memory
+	// Only fail after having called CreateXMB, because CreateXMB
+	// frees all the memory that was allocated during parsing.
 	if (errorHandler.getSawErrors())
 	{
 		LOG(ERROR, "CXeromyces: Errors in XML file '%s'", filename);
-		throw PSERROR_Xeromyces_XMLParseError();
+		return PSRETURN_Xeromyces_XMLParseError;
 	}
 
 
 	// Save the file to disk, so it can be loaded quickly next time
 	vfs_store(filenameXMB, handler.buffer.buffer, handler.buffer.length, FILE_NO_AIO);
 
+	// Store the buffer so it can be freed later
 	XMBBuffer = handler.buffer.steal_buffer();
 
+	// Set up the XMBFile
 	Initialise(XMBBuffer);
+
+	return PSRETURN_OK;
 }
 
 bool CXeromyces::ReadXMBFile(const char* filename, bool CheckCRC, unsigned long CRC)
 {
-	Handle file = vfs_open(filename);
-	if (file <= 0)
-	{
-		LOG(ERROR, "CXeromyces: file '%s' couldn't be opened (vfs_open: %lld)", filename, file);
+	CVFSFile* file = new CVFSFile;
+	if (file->Load(filename) != PSRETURN_OK)
 		return false;
-	}
 
-	void* buffer;
-	size_t bufferSize;
-	int err = vfs_map(file, 0, buffer, bufferSize);
-	if (err)
-	{
-		LOG(ERROR, "CXeromyces: file '%s' couldn't be read (vfs_map: %d)", filename, err);
-		vfs_close(file);
-		return false;
-	}
+	const void* buffer = file->GetBuffer();
 
-	assert(bufferSize >= 42 && "Invalid XMB file"); // 42 bytes is the smallest possible XMB. (Well, maybe not quite, but it's a nice number.)
+	assert(file->GetBufferSize() >= 42 && "Invalid XMB file"); // 42 bytes is the smallest possible XMB. (Well, maybe not quite, but it's a nice number.)
 	assert(*(int*)buffer == HeaderMagic && "Invalid XMB file header");
 
 	if (CheckCRC)
@@ -294,8 +291,7 @@ bool CXeromyces::ReadXMBFile(const char* filename, bool CheckCRC, unsigned long 
 		if (CRC != fileCRC)
 		{
 			// Checksums don't match; have to regenerate from the XML
-			vfs_unmap(file);
-			vfs_close(file);
+			delete file;
 			return false;
 		}
 	}

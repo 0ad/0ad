@@ -77,8 +77,8 @@ public:
 	// returns 0 if successful, -1 on failure
 	int OpenFile(const char *path);
 
-	// Calculate the CRC32 checksum of the file's contents
-	unsigned long CRC32(unsigned long seed) { return crc32(seed, (Bytef*)m_pBuffer, (int)m_BufferSize); }
+	// Allow the use of externally-loaded files
+	void OpenBuffer(const char* path, const void* buffer, const size_t buffersize);
 
 	virtual BinInputStream *makeStream() const;
 };

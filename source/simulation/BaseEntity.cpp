@@ -29,14 +29,9 @@ CBaseEntity::~CBaseEntity()
 bool CBaseEntity::loadXML( CStr filename )
 {
 	CXeromyces XeroFile;
-	try
-	{
-		XeroFile.Load(filename);
-	}
-	catch (PSERROR_Xeromyces) {
+	if (XeroFile.Load(filename) != PSRETURN_OK)
 		// Fail
 		return false;
-	}
 
 	// Define all the elements and attributes used in the XML file
 	#define EL(x) int el_##x = XeroFile.getElementID(#x)

@@ -76,6 +76,16 @@ int CVFSInputSource::OpenFile(const char *path)
 	return 0;
 }
 
+void CVFSInputSource::OpenBuffer(const char* path, const void* buffer, const size_t buffersize)
+{
+	m_pBuffer = (void*)buffer; // remove constness; trust people not to mess with the data
+	m_BufferSize = buffersize;
+
+	XMLCh *sysId=XMLString::transcode(path);
+	setSystemId(sysId);
+	XMLString::release(&sysId);
+}
+
 CVFSInputSource::~CVFSInputSource()
 {
 	if (m_hFile > 0)
@@ -87,7 +97,7 @@ CVFSInputSource::~CVFSInputSource()
 
 BinInputStream *CVFSInputSource::makeStream() const
 {
-	if (m_hFile > 0)
+	if (m_pBuffer > 0)
 	{
 		return new BinMemInputStream((XMLByte *)m_pBuffer, (unsigned int)m_BufferSize,
 			BinMemInputStream::BufOpt_Reference);

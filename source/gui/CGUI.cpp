@@ -909,15 +909,9 @@ void CGUI::LoadXMLFile(const string &Filename)
 	m_Errors = 0;
 
 	CXeromyces XeroFile;
-	try
-	{
-		XeroFile.Load(Filename.c_str());
-	}
-	catch (PSERROR_Xeromyces)
-	{
+	if (XeroFile.Load(Filename.c_str()) != PSRETURN_OK)
 		// Fail silently
 		return;
-	}
 
 	XMBElement node = XeroFile.getRoot();
 
@@ -1264,26 +1258,14 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			// If there is a file, open it and use it as the code
 			if (file.Length())
 			{
-				Handle h = vfs_open(file);
-				if (h <= 0)
+				CVFSFile scriptfile;
+				if (scriptfile.Load(file) != PSRETURN_OK)
 				{
-					LOG(ERROR, "Error opening action file '%s': %lld", file.c_str(), h);
+					LOG(ERROR, "Error opening action file '%s'", file.c_str());
 					throw PSERROR_GUI_JSOpenFailed();
 				}
 
-				void* data;
-				size_t len;
-				int err = vfs_map(h, 0, data, len);
-				if (err)
-				{
-					LOG(ERROR, "Error mapping action file '%s': %lld", file.c_str(), err);
-					throw PSERROR_GUI_JSOpenFailed();
-				}
-
-				code = (char*)data;
-
-				vfs_unmap(h);
-				vfs_close(h);
+				code = scriptfile.GetAsString();
 			}
 
 			// Read the inline code (concatenating to the file code, if both are specified)
@@ -1350,27 +1332,15 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile)
 	// If there is a file specified, open and execute it
 	if (file.Length())
 	{
-		Handle h = vfs_open(file);
-		if (h <= 0)
+		CVFSFile scriptfile;
+		if (scriptfile.Load(file) != PSRETURN_OK)
 		{
-			LOG(ERROR, "Error opening script file '%s': %lld", file.c_str(), h);
-			throw PSERROR_GUI_JSOpenFailed();
-		}
-
-		void* data;
-		size_t len;
-		int err = vfs_map(h, 0, data, len);
-		if (err)
-		{
-			LOG(ERROR, "Error mapping script file '%s': %lld", file.c_str(), err);
+			LOG(ERROR, "Error opening script file '%s'", file.c_str());
 			throw PSERROR_GUI_JSOpenFailed();
 		}
 
 		jsval result;
-		JS_EvaluateScript(g_ScriptingHost.getContext(), (JSObject*)m_ScriptObject, (const char*)data, (int)len, file, 1, &result);
-
-		vfs_unmap(h);
-		vfs_close(h);
+		JS_EvaluateScript(g_ScriptingHost.getContext(), (JSObject*)m_ScriptObject, (const char*)scriptfile.GetBuffer(), (int)scriptfile.GetBufferSize(), file, 1, &result);
 	}
 
 	// Execute inline scripts

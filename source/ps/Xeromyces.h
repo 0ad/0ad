@@ -1,4 +1,4 @@
-/* $Id: Xeromyces.h,v 1.5 2004/07/18 11:50:34 philip Exp $
+/* $Id: Xeromyces.h,v 1.6 2004/07/29 16:15:49 philip Exp $
 
   Xeromyces file-loading interface.
   Automatically creates and caches relatively
@@ -16,7 +16,7 @@ ERROR_TYPE(Xeromyces, XMLOpenFailed);
 ERROR_TYPE(Xeromyces, XMLParseError);
 
 #include "ps/XeroXMB.h"
-#include "lib/res/h_mgr.h"
+#include "lib/res/CVFSFile.h"
 
 class CXeromyces : public XMBFile
 {
@@ -25,8 +25,7 @@ public:
 	~CXeromyces();
 
 	// Load from an XML file (with invisible XMB caching).
-	// Throws a PSERROR_Xeromyces upon failure.
-	void Load(const char* filename);
+	PSRETURN Load(const char* filename);
 
 	// Call once when shutting down the program, to unload Xerces.
 	static void Terminate();
@@ -35,7 +34,7 @@ private:
 	bool ReadXMBFile(const char* filename, bool CheckCRC, unsigned long CRC);
 
 	XMBFile* XMB;
-	Handle XMBFileHandle; // if it's being read from disk
+	CVFSFile* XMBFileHandle; // if it's being read from disk
 	char* XMBBuffer; // if it's being read from RAM
 
 	static int XercesLoaded; // for once-only initialisation
