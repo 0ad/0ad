@@ -225,6 +225,8 @@ extern void h_mgr_shutdown(void);
 
 /*
 
+[KEEP IN SYNC WITH WIKI]
+
 introduction
 ------------
 
