@@ -285,7 +285,8 @@ static int set_vmode(int w, int h, int bpp, bool fullscreen)
 }
 
 
-static void WriteScreenshot()
+// use_bmp is for when you simply want high-speed output
+static void WriteScreenshot(bool use_bmp = false)
 {
 	// determine next screenshot number.
 	//
@@ -298,9 +299,14 @@ static void WriteScreenshot()
 	// add 3rd -> it gets number 1, not 3. 
 	// could fix via enumerating all files, but it's not worth it ATM.
 	char fn[VFS_MAX_PATH];
+
+	const char* file_format;
+	if(use_bmp)	file_format = "screenshots/screenshot%04d.bmp";
+	else		file_format = "screenshots/screenshot%04d.png";
+
 	static int next_num = 1;
 	do
-		sprintf(fn, "screenshots/screenshot%04d.png", next_num++);
+		sprintf(fn, file_format, next_num++);
 	while(vfs_exists(fn));
 
 	const int w = g_xres, h = g_yres;
@@ -308,9 +314,9 @@ static void WriteScreenshot()
 	const size_t size = w * h * bpp;
 	void* img = mem_alloc(size);
 
-	glReadPixels(0, 0, w, h, GL_RGB, GL_UNSIGNED_BYTE, img);
+	glReadPixels(0, 0, w, h, use_bmp?GL_BGR:GL_RGB, GL_UNSIGNED_BYTE, img);
 
-	if(tex_write(fn, w, h, bpp, 0, img) < 0)
+	if(tex_write(fn, w, h, bpp, use_bmp?TEX_BGR:0, img) < 0)
 		debug_warn("WriteScreenshot: tex_write failed");
 
 	mem_free(img);
@@ -968,22 +974,75 @@ PREVTSC=CURTSC;
 
 }
 
+// Define MOVIE_RECORD to record your camera motions and run at 30fps,
+// or MOVIE_CREATE to play them back as fast as possible while generating
+// millions of screenshots. (It should be a lot faster if you make
+// WriteScreenshot use BMPs.)
+//#define MOVIE_RECORD
+//#define MOVIE_CREATE
+
+#if defined(MOVIE_RECORD) || defined(MOVIE_CREATE)
+ const int camera_len = 256;
+ struct { float f[16]; } camera_pos[camera_len];
+ int camera_pos_off = 0;
+#endif
 
 static void Frame()
 {
 	MICROLOG(L"In frame");
+
+#if defined(MOVIE_RECORD) || defined(MOVIE_CREATE)
+
+	// Run at precisely 30fps
+	static double last_time;
+	double time = get_time();
+	const float TimeSinceLastFrame = 1.0f/30.0f;
+	ONCE(last_time = time);
+	last_time += TimeSinceLastFrame;
+	while (time-last_time < 0.0)
+		time = get_time();
+	extern CCamera g_Camera;
+
+#ifdef MOVIE_RECORD
+	memcpy(&camera_pos[camera_pos_off++], g_Camera.m_Orientation._data, 16*4);
+	if (camera_pos_off >= camera_len)
+	{
+		FILE* f = fopen("c:\\0adcamera.dat", "wb");
+		fwrite(camera_pos, camera_len, 16*4, f);
+		fclose(f);
+		exit(0);
+	}
+#else // #ifdef MOVIE_RECORD
+	if (camera_pos_off == 0)
+	{
+		FILE* f = fopen("c:\\0adcamera.dat", "rb");
+		fread(camera_pos, camera_len, 16*4, f);
+		fclose(f);
+	}
+	else if (camera_pos_off >= camera_len)
+		exit(0);
+	else
+		WriteScreenshot(true);
+	memcpy(g_Camera.m_Orientation._data, &camera_pos[camera_pos_off++], 16*4);
+#endif // #ifdef MOVIE_RECORD
+
+#else // #if defined(MOVIE_RECORD) || define(MOVIE_CREATE)
+
+	// Non-movie code:
 
 	static double last_time;
 	const double time = get_time();
 	const float TimeSinceLastFrame = (float)(time-last_time);
 	last_time = time;
 	ONCE(return);
-		// first call: set last_time and return
+			// first call: set last_time and return
 	assert(TimeSinceLastFrame >= 0.0f);
 
 	MICROLOG(L"reload files");
 
 	res_reload_changed_files();
+
+#endif // #if defined(MOVIE_RECORD) || define(MOVIE_CREATE)
 
 // TODO: limiter in case simulation can't keep up?
 	const double TICK_TIME = 30e-3;	// [s]
@@ -997,6 +1056,7 @@ static void Frame()
 		do_tick();
 		time0 += TICK_TIME;
 	}
+
 #endif
 
 	MICROLOG(L"input");
@@ -1038,7 +1098,9 @@ static void Frame()
 
 #ifdef _WIN32
 // Define/undefine this as desired:
+//#ifndef NDEBUG
 #  define CUSTOM_EXCEPTION_HANDLER
+//#endif
 #endif
 
 #ifdef CUSTOM_EXCEPTION_HANDLER
