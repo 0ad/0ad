@@ -27,9 +27,9 @@ extern "C" {
 
 
 
-#include "gfx.h"
-#include "os.h"
-#include "cpu.h"
+#include "sysdep/gfx.h"
+#include "sysdep/os.h"
+#include "sysdep/cpu.h"
 
 
 extern void detect();
