@@ -71,7 +71,7 @@ JSBool writeConsole( JSContext* context, JSObject* globalObject, unsigned int ar
 {
 	assert( argc >= 1 );
 	CStr output = g_ScriptingHost.ValueToString( argv[0] );
-	g_Console->InsertMessage( L"%S", (const char*)output );
+	g_Console->InsertMessage( L"%hs", (const char*)output );
 	return( JS_TRUE );
 }
 

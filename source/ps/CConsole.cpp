@@ -216,7 +216,7 @@ void CConsole::DrawHistory(void) {
 				glTranslatef(0.0f, (float)m_iFontHeight, 0.0f);
 
 				glPushMatrix();
-					glwprintf(L"%s", Iter->data());
+					glwprintf(L"%ls", Iter->data());
 				glPopMatrix();
 			}
 
@@ -239,7 +239,7 @@ void CConsole::DrawBuffer(void)
 		if (m_iBufferPos==0) DrawCursor();
 
 		for (int i = 0; i < m_iBufferLength; i++){
-				glwprintf(L"%c", m_szBuffer[i]);
+				glwprintf(L"%lc", m_szBuffer[i]);
 				if (m_iBufferPos-1==i) DrawCursor();
 		}
 	glPopMatrix();
@@ -436,7 +436,7 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 	std::map<std::wstring, fptr>::iterator Iter;
 
 	if (szLine[0] == '\\'){
-		swscanf(szLine, L"\\%s", szCommand);
+		swscanf(szLine, L"\\%ls", szCommand);
 		Trim(szCommand);
 		ToLower(szCommand);
 
@@ -454,13 +454,13 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 			if (!m_mapFuncList.size()) InsertMessage(L"   (none registered)");
 
 			for (Iter = m_mapFuncList.begin(); Iter != m_mapFuncList.end(); Iter++)
-				InsertMessage(L"   \\%s", Iter->first.data());
+				InsertMessage(L"   \\%ls", Iter->first.data());
 
 			InsertMessage(L"");
 		}else{
 			Iter = m_mapFuncList.find(szCommand);
 			if (Iter == m_mapFuncList.end())
-				InsertMessage(L"unknown command <%s>", szCommand);
+				InsertMessage(L"unknown command <%ls>", szCommand);
 			else
 				Iter->second();
 		}
@@ -491,11 +491,11 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 
 		jsval rval = g_ScriptingHost.ExecuteScript( szMBLine + 1 );
 		if( rval )
-			InsertMessage( L"%S", g_ScriptingHost.ValueToString( rval ).c_str() );
+			InsertMessage( L"%hs", g_ScriptingHost.ValueToString( rval ).c_str() );
 
 		delete[] szMBLine;
 	}
-	else InsertMessage(L"<say>: %s", szLine);
+	else InsertMessage(L"<say>: %ls", szLine);
 
 	delete[] szCommand;
 }

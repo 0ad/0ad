@@ -442,7 +442,7 @@ static void Render()
 	// Temp GUI message GeeTODO
 	glLoadIdentity();
 	glTranslatef(10, 60, 0);
-	glwprintf( L"%S", g_GUI.TEMPmessage.c_str() );
+	glwprintf( L"%hs", g_GUI.TEMPmessage.c_str() );
 
 	glLoadIdentity();
 	g_GUI.Draw();
@@ -657,7 +657,7 @@ PREVTSC=TSC;
 	// init SDL
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
 	{
-		swprintf(err_msg, ERR_MSG_SIZE, L"SDL library initialization failed: %s\n", SDL_GetError());
+		swprintf(err_msg, ERR_MSG_SIZE, L"SDL library initialization failed: %hs\n", SDL_GetError());
 		display_startup_error(err_msg);
 	}
 	atexit(SDL_Quit);
@@ -712,7 +712,7 @@ PREVTSC=TSC;
 
 	if(set_vmode(g_xres, g_yres, 32, !windowed) < 0)
 	{
-		swprintf(err_msg, ERR_MSG_SIZE, L"could not set %dx%d graphics mode: %s\n", g_xres, g_yres, SDL_GetError());
+		swprintf(err_msg, ERR_MSG_SIZE, L"could not set %dx%d graphics mode: %hs\n", g_xres, g_yres, SDL_GetError());
 		display_startup_error(err_msg);
 	}
 

@@ -318,10 +318,10 @@ void ScriptingHost::ErrorReporter(JSContext * context, const char * message, JSE
 
 	if (g_Console)
 	{
-		g_Console->InsertMessage( L"%S ( %d )", report->filename, report->lineno );
+		g_Console->InsertMessage( L"%hs ( %d )", report->filename, report->lineno );
 		if( message )
 		{
-			g_Console->InsertMessage( L"%S", message );
+			g_Console->InsertMessage( L"%hs", message );
 		}
 		else
 			g_Console->InsertMessage( L"No error message available" );
