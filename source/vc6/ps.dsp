@@ -263,11 +263,35 @@ SOURCE=..\gui\CGUI.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\gui\CGUIScrollBarStyle.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\CGUIScrollBarStyle.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\CGUIScrollBarVertical.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\CGUIScrollBarVertical.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\gui\CGUISprite.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=..\gui\CGUISprite.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\CText.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\CText.h
 # End Source File
 # Begin Source File
 
@@ -307,19 +331,27 @@ SOURCE=..\gui\IGUIObject.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\gui\IGUIScrollBar.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\IGUIScrollBar.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\IGUIScrollBarOwner.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\IGUIScrollBarOwner.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\gui\IGUISettingsObject.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=..\gui\IGUISettingsObject.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\gui\XercesErrorHandler.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\gui\XercesErrorHandler.h
 # End Source File
 # End Group
 # Begin Group "lib"
@@ -592,6 +624,14 @@ SOURCE=..\ps\Singleton.h
 # Begin Source File
 
 SOURCE=..\ps\Sound.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\XercesErrorHandler.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\XercesErrorHandler.h
 # End Source File
 # End Group
 # Begin Source File
