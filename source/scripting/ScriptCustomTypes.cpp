@@ -42,17 +42,17 @@ JSBool Point2d_Constructor(JSContext* UNUSEDPARAM(cx), JSObject* obj, uintN argc
 
 void SColour::SColourInit( float _r, float _g, float _b, float _a )
 {
-	AddProperty( L"r", &r );
-	AddProperty( L"g", &g );
-	AddProperty( L"b", &b );
-	AddProperty( L"a", &a );
-
 	r = _r; g = _g; b = _b; a = _a;
 }
 
 void SColour::ScriptingInit()
 {
 	AddMethod<jsval, &SColour::ToString>( "toString", 0 );
+	AddClassProperty<float>( L"r", (float IJSObject::*)&SColour::r );
+	AddClassProperty<float>( L"g", (float IJSObject::*)&SColour::g );
+	AddClassProperty<float>( L"b", (float IJSObject::*)&SColour::b );
+	AddClassProperty<float>( L"a", (float IJSObject::*)&SColour::a );
+
 	CJSObject<SColour>::ScriptingInit( "Colour", SColour::Construct, 3 );
 }
 

@@ -54,42 +54,12 @@ HEntity* CEntityManager::getByHandle( u16 index )
 	return( new HEntity( index ) );
 }
 
-std::vector<HEntity>* CEntityManager::matches( EntityPredicate predicate )
-{
-	std::vector<HEntity>* matchlist = new std::vector<HEntity>;
-	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed )
-			if( predicate( m_entities[i].m_entity ) )
-				matchlist->push_back( HEntity( i ) );
-	return( matchlist );
-}
-
-std::vector<HEntity>* CEntityManager::matches( EntityPredicateUD predicate, void* userdata )
+std::vector<HEntity>* CEntityManager::matches( EntityPredicate predicate, void* userdata )
 {
 	std::vector<HEntity>* matchlist = new std::vector<HEntity>;
 	for( int i = 0; i < MAX_HANDLES; i++ )
 		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed )
 			if( predicate( m_entities[i].m_entity, userdata ) )
-				matchlist->push_back( HEntity( i ) );
-	return( matchlist );
-}
-
-std::vector<HEntity>* CEntityManager::matches( EntityPredicate predicate1, EntityPredicate predicate2 )
-{
-	std::vector<HEntity>* matchlist = new std::vector<HEntity>;
-	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed )
-			if( predicate1( m_entities[i].m_entity ) && predicate2( m_entities[i].m_entity ) )
-				matchlist->push_back( HEntity( i ) );
-	return( matchlist );
-}
-
-std::vector<HEntity>* CEntityManager::matches( EntityPredicateUD predicate1, EntityPredicateUD predicate2, void* userdata )
-{
-	std::vector<HEntity>* matchlist = new std::vector<HEntity>;
-	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed )
-			if( predicate1( m_entities[i].m_entity, userdata ) && predicate2( m_entities[i].m_entity, userdata ) )
 				matchlist->push_back( HEntity( i ) );
 	return( matchlist );
 }

@@ -26,6 +26,8 @@
 #endif
 #include "lib/res/cursor.h"
 
+#include "ps/Profile.h"
+#include "ps/ProfileViewer.h"
 #include "ps/Loader.h"
 #include "ps/Font.h"
 #include "ps/CConsole.h"
@@ -489,7 +491,9 @@ static void Render()
 		oglCheck();
 
 		MICROLOG(L"flush frame");
+		PROFILE_START( "flush frame" );
 		g_Renderer.FlushFrame();
+		PROFILE_END( "flush frame" );
 
 		glPushAttrib( GL_ENABLE_BIT );
 		glDisable( GL_LIGHTING );
@@ -498,22 +502,30 @@ static void Render()
 		
 		if( g_EntGraph )
 		{
+			PROFILE( "render entity overlays" );
 			glColor3f( 1.0f, 0.0f, 1.0f );
 
 			MICROLOG(L"render entities");
 			g_EntityManager.renderAll(); // <-- collision outlines, pathing routes
 		}
 
+		PROFILE_START( "render selection" );
 		g_Mouseover.renderSelectionOutlines();
 		g_Selection.renderSelectionOutlines();
-		
+		PROFILE_END( "render selection" );
+
 		glPopAttrib();
 	}
 	else
+	{
+		PROFILE_START( "flush frame" );
 		g_Renderer.FlushFrame();
+		PROFILE_END( "flush frame" );
+	}
 
 	oglCheck();
 
+	PROFILE_START( "render fonts" );
 	MICROLOG(L"render fonts");
 	// overlay mode
 	glPushAttrib(GL_ENABLE_BIT);
@@ -529,13 +541,17 @@ static void Render()
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 
+	PROFILE_END( "render fonts" );
+
 	oglCheck();
 
 #ifndef NO_GUI
 	// Temp GUI message GeeTODO
 	glLoadIdentity();
 	MICROLOG(L"render GUI");
+	PROFILE_START( "render gui" );
 	g_GUI.Draw();
+	PROFILE_END( "render gui" );
 #endif
 
 	oglCheck();
@@ -552,6 +568,7 @@ static void Render()
 	oglCheck();
 
 	{
+		PROFILE( "render console" );
 		glLoadIdentity();
 
 		MICROLOG(L"render console");
@@ -562,8 +579,18 @@ static void Render()
 
 	oglCheck();
 
+
+	// Profile information
+
+	PROFILE_START( "render profiling" );
+	RenderProfile();
+	PROFILE_END( "render profiling" );
+
+	oglCheck();
+
 	if (g_Game && g_Game->IsGameStarted())
 	{
+		PROFILE( "render selection overlays" );
 		g_Mouseover.renderOverlays();
 		g_Selection.renderOverlays();
 	}
@@ -730,7 +757,8 @@ TIMER(InitScripting)
 	CEntity::ScriptingInit();
 	CBaseEntity::ScriptingInit();
 	JSI_Sound::ScriptingInit();
-	
+	CProfileNode::ScriptingInit();
+
 #ifndef NO_GUI
 	JSI_IGUIObject::init();
 	JSI_GUITypes::init();
@@ -744,7 +772,6 @@ TIMER(InitScripting)
 	CDamageType::ScriptingInit();
 	CJSPropertyAccessor<CEntity>::ScriptingInit(); // <-- Doesn't really matter which we use, but we know CJSPropertyAccessor<T> is already being compiled for T = CEntity.
 	CScriptEvent::ScriptingInit();
-	
 
 	g_ScriptingHost.DefineConstant( "ORDER_NONE", -1 );
 	g_ScriptingHost.DefineConstant( "ORDER_GOTO", CEntityOrder::ORDER_GOTO );
@@ -1223,7 +1250,9 @@ TIMER(init_after_InitRenderer);
 
 		in_add_handler(conInputHandler);
 
-		in_add_handler(hotkeyInputHandler); // <- Leave this one until after all the others.
+		in_add_handler(profilehandler);
+
+		in_add_handler(hotkeyInputHandler); 
 
 		// I don't know how much this screws up, but the gui_handler needs
 		//  to be after the hotkey, so that input boxes can be typed in
@@ -1279,7 +1308,10 @@ static void Frame()
 {
 	MICROLOG(L"In frame");
 
+	
+	PROFILE_START( "update music" );
 	MusicPlayer.update();
+	PROFILE_END( "update music" );
 
 	static double last_time;
 	const double time = get_time();
@@ -1289,31 +1321,47 @@ static void Frame()
 			// first call: set last_time and return
 	assert(TimeSinceLastFrame >= 0.0f);
 
+	PROFILE_START( "reload changed files" );
 	MICROLOG(L"reload files");
-	res_reload_changed_files();
+	res_reload_changed_files(); 
+	PROFILE_END( "reload changed files" );
 
+	PROFILE_START( "progressive load" );
 	ProgressiveLoad();
+	PROFILE_END( "progressive load" );
 
+	PROFILE_START( "input" );
 	MICROLOG(L"input");
 	in_get_events();
 	g_SessionManager.Poll();
-	
+	PROFILE_END( "input" );
+
+	PROFILE_START( "gui tick" );
 #ifndef NO_GUI
 	g_GUI.TickObjects();
 #endif
+	PROFILE_END( "gui tick" );
 	
+	PROFILE_START( "game logic" );
 	if (g_Game && g_Game->IsGameStarted())
 	{
+		PROFILE_START( "simulation update" );
 		g_Game->Update(TimeSinceLastFrame);
+		PROFILE_END( "simulation update" );
 
 		if (!g_FixedFrameTiming)
+		{
+			PROFILE( "camera update" );
 			g_Game->GetView()->Update(float(TimeSinceLastFrame));
+		}
 
+		PROFILE_START( "selection and interaction ui" );
 		// TODO Where does GameView end and other things begin?
 		g_Mouseover.update( TimeSinceLastFrame );
 		g_Selection.update();
+		PROFILE_END( "selection and interaction ui" );
 
-
+		PROFILE_START( "sound update" );
 		CCamera* camera = g_Game->GetView()->GetCamera();
 		CMatrix3D& orientation = camera->m_Orientation;
 
@@ -1322,6 +1370,7 @@ static void Frame()
 		float* up  = &orientation._data[4];
 		if(snd_update(pos, dir, up) < 0)
 			debug_out("snd_update failed\n");
+		PROFILE_END( "sound update" );
 	}
 	else
 	{
@@ -1332,7 +1381,11 @@ static void Frame()
 			debug_out("snd_update (pos=0 version) failed\n");
 	}
 
+	PROFILE_END( "game logic" );
+
+	PROFILE_START( "update console" );
 	g_Console->Update(TimeSinceLastFrame);
+	PROFILE_END( "update console" );
 
 	// ugly, but necessary. these are one-shot events, have to be reset.
 
@@ -1349,6 +1402,7 @@ static void Frame()
 	mouseButtons[SDL_BUTTON_WHEELUP] = false;
 	mouseButtons[SDL_BUTTON_WHEELDOWN] = false;
 
+	PROFILE_START( "render" );
 	if(g_active)
 	{
 		MICROLOG(L"render");
@@ -1361,6 +1415,10 @@ static void Frame()
 	else
 		SDL_Delay(10);
 
+	PROFILE_END( "render" );
+
+	g_Profiler.Frame();
+
 	calc_fps();
 	if (g_FixedFrameTiming && frameCount==100) quit=true;
 }
@@ -1371,6 +1429,8 @@ static void Frame()
 
 int main(int argc, char* argv[])
 {
+	new CProfileManager;
+
 	MICROLOG(L"In main");
 
 	MICROLOG(L"Init");
@@ -1392,6 +1452,8 @@ int main(int argc, char* argv[])
 
 	MICROLOG(L"Shutdown");
 	Shutdown();
+
+	delete &g_Profiler;
 
 	exit(0);
 }

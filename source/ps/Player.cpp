@@ -12,8 +12,6 @@ CPlayer::CPlayer(uint playerID):
 	m_Colour(0.7f, 0.7f, 0.7f),
 	m_UpdateCB(0)
 {
-	AddReadOnlyProperty( L"id", &m_PlayerID );
-	AddProperty( L"controlled", (GetFn)&CPlayer::JSI_GetControlledEntities);
 	AddSynchedProperty( L"name", &m_Name );
 	// HACK - since we have to use setColour to update this, we don't want to
 	// expose a colour property. Meanwhile, we want to have a property "colour"
@@ -22,6 +20,7 @@ CPlayer::CPlayer(uint playerID):
 	// to CJSObject's list
 	ISynchedJSProperty *prop=new CSynchedJSProperty<SPlayerColour>(L"colour", &m_Colour, this);
 	m_SynchedProperties[L"colour"]=prop;
+
 }
 
 CPlayer::~CPlayer()
@@ -35,6 +34,14 @@ void CPlayer::ScriptingInit()
 {
 	AddMethod<jsval, &CPlayer::JSI_ToString>( "toString", 0 );
 	AddMethod<jsval, &CPlayer::JSI_SetColour>( "setColour", 1);
+	
+	AddReadOnlyClassProperty( L"id", &CPlayer::m_PlayerID );
+	// MT: Work out how this fits with the Synched stuff...
+
+	// AddClassProperty( L"name", &CPlayer::m_Name );
+	// AddClassProperty( L"colour", &CPlayer::m_Colour );
+	AddClassProperty( L"controlled", (IJSObject::GetFn)JSI_GetControlledEntities );
+
 	CJSObject<CPlayer>::ScriptingInit( "Player" );
 }
 

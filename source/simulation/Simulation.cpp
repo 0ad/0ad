@@ -1,6 +1,7 @@
 #include "precompiled.h"
 
 #include <timer.h>
+#include "Profile.h"
 
 #include "Simulation.h"
 #include "TurnManager.h"
@@ -53,6 +54,7 @@ void CSimulation::Update(double frameTime)
 	
 	if( m_DeltaTime >= 0.0 )
 	{
+		PROFILE( "simulation turn" );
 		// A new simulation frame is required.
 		MICROLOG( L"calculate simulation" );
 		Simulate();
@@ -65,7 +67,9 @@ void CSimulation::Update(double frameTime)
 		}
 	}
 
+	PROFILE_START( "simulation interpolation" );
 	Interpolate(frameTime, ((1000.0*m_DeltaTime) / (float)m_pTurnManager->GetTurnLength()) + 1.0);
+	PROFILE_END( "simulation interpolation" );
 }
 
 void CSimulation::Interpolate(double frameTime, double offset)
@@ -79,11 +83,18 @@ void CSimulation::Interpolate(double frameTime, double offset)
 
 void CSimulation::Simulate()
 {
+	PROFILE_START( "scheduler tick" );
 	g_Scheduler.update(m_pTurnManager->GetTurnLength());
-	g_EntityManager.updateAll( m_pTurnManager->GetTurnLength() );
+	PROFILE_END( "scheduler tick" );
 
+	PROFILE_START( "entity updates" );
+	g_EntityManager.updateAll( m_pTurnManager->GetTurnLength() );
+	PROFILE_END( "entity updates" );
+
+	PROFILE_START( "turn manager update" );
 	m_pTurnManager->NewTurn();
 	m_pTurnManager->IterateBatch(0, TranslateMessage, this);
+	PROFILE_END( "turn manager update" );
 }
 
 uint CSimulation::TranslateMessage(CNetMessage *pMsg, uint clientMask, void *userdata)

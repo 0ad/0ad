@@ -73,7 +73,7 @@ struct CSynchedJSObjectBase
 		CSynchedJSObjectBase *m_Owner;
 		UpdateFn m_Update;
 		
-		virtual void Set(JSContext *cx, jsval value)
+		virtual void Set(JSContext *cx, IJSObject* owner, jsval value)
 		{
 			if (!ReadOnly)
 			{
@@ -85,12 +85,12 @@ struct CSynchedJSObjectBase
 				}
 			}
 		}
-		virtual jsval Get(JSContext *cx)
+		virtual jsval Get(JSContext *cx, IJSObject* owner)
 		{
 			return ToJSVal(*m_Data);
 		}
 		
-		virtual void ImmediateCopy(IJSProperty *other)
+		virtual void ImmediateCopy(IJSObject* CopyFrom, IJSObject* CopyTo, IJSProperty *other)
 		{
 			*m_Data = *( ((CSynchedJSProperty<PropType, ReadOnly>*)other)->m_Data );
 		}

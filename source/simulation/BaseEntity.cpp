@@ -11,20 +11,20 @@
 
 CBaseEntity::CBaseEntity()
 {
+	m_base = NULL;
+
 	AddProperty( L"tag", &m_Tag, false );
-	AddProperty( L"parent", (CBaseEntity**)&m_base, false );
+	AddProperty( L"parent", &m_base, false );
 	AddProperty( L"actions.move.speed", &m_speed );
 	AddProperty( L"actions.move.turningradius", &m_turningRadius );
 	AddProperty( L"actions.attack.range", &m_meleeRange );
 	AddProperty( L"actions.attack.rangemin", &m_meleeRangeMin );
 	AddProperty( L"actor", &m_actorName );
 	AddProperty( L"traits.extant", &m_extant );
-	AddProperty( L"traits.corpse", &m_corpse );
+	AddProperty( L"traits.corpse", &m_corpse );	
 
 	for( int t = 0; t < EVENT_LAST; t++ )
 		AddProperty( EventNames[t], &m_EventHandlers[t] );
-	
-	m_base = NULL;
 
 	// Initialize, make life a little easier on the scriptors
 	m_speed = m_turningRadius = m_meleeRange = m_meleeRangeMin = 0.0f;
@@ -193,7 +193,7 @@ void CBaseEntity::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement&
 	{	
 		if( !Existing->m_Intrinsic )
 			LOG( WARNING, LOG_CATEGORY, "CBaseEntity::XMLAddProperty: %s already defined for %s. Property trees will be merged.", PropertyName.c_str(), m_Tag.c_str() );
-		Existing->Set( JSParseString( Source.getText() ) );
+		Existing->Set( this, JSParseString( Source.getText() ) );
 		Existing->m_Inherited = false;
 	}
 	else
@@ -221,7 +221,7 @@ void CBaseEntity::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement&
 		
 		if( Existing )
 		{
-			Existing->Set( JSParseString( Attribute.Value ) );
+			Existing->Set( this, JSParseString( Attribute.Value ) );
 			Existing->m_Inherited = false;
 		}
 		else
@@ -247,6 +247,7 @@ void CBaseEntity::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement&
 void CBaseEntity::ScriptingInit()
 {
 	AddMethod<jsval, &CBaseEntity::ToString>( "toString", 0 );
+
 	CJSObject<CBaseEntity>::ScriptingInit( "EntityTemplate" );
 }
 

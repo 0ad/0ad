@@ -140,6 +140,13 @@ template<> bool ToPrimitive<bool>( JSContext* cx, jsval v, bool& Storage );
 template<> jsval ToJSVal<bool>( const bool& Native );
 template<> jsval ToJSVal<bool>( bool& Native );
 
+/*
+// char*
+template<> bool ToPrimitive<char*>( JSContext* cx, jsval v, char*& Storage );
+template<> jsval ToJSVal<char*>( const char* Native );
+template<> jsval ToJSVal<char*>( char* Native );
+*/
+
 // CStrW
 template<> bool ToPrimitive<CStrW>( JSContext* cx, jsval v, CStrW& Storage );
 template<> jsval ToJSVal<CStrW>( const CStrW& Native );

@@ -95,7 +95,8 @@ JSPropertySpec ScriptGlobalTable[] =
 	{ "console", GLOBAL_CONSOLE, JSPROP_PERMANENT | JSPROP_READONLY, JSI_Console::getConsole, NULL },
 	{ "entities", 0, JSPROP_PERMANENT | JSPROP_READONLY, GetEntitySet, NULL },
 	{ "players", 0, JSPROP_PERMANENT | JSPROP_READONLY, GetPlayerSet, NULL },
-	{ "localPlayer", 0, JSPROP_PERMANENT | JSPROP_READONLY, GetLocalPlayer, NULL }, 
+	{ "localPlayer", 0, JSPROP_PERMANENT, GetLocalPlayer, SetLocalPlayer },
+	{ "gaiaPlayer", 0, JSPROP_PERMANENT | JSPROP_READONLY, GetGaiaPlayer, NULL },
 	{ 0, 0, 0, 0, 0 },
 };
 
@@ -191,7 +192,7 @@ JSBool GetEntitySet( JSContext* context, JSObject* globalObject, jsval argv, jsv
 	return( JS_TRUE );
 }
 
-JSBool GetPlayerSet( JSContext* cx, JSObject* globalObject, jsval argv, jsval* vp )
+JSBool GetPlayerSet( JSContext* cx, JSObject* globalObject, jsval id, jsval* vp )
 {
 	std::vector<CPlayer*>* players = g_Game->GetPlayers();
 
@@ -200,10 +201,29 @@ JSBool GetPlayerSet( JSContext* cx, JSObject* globalObject, jsval argv, jsval* v
 	return( JS_TRUE );
 }
 
-JSBool GetLocalPlayer( JSContext* cx, JSObject* globalObject, jsval argv, jsval* vp )
+JSBool GetLocalPlayer( JSContext* cx, JSObject* globalObject, jsval id, jsval* vp )
 {
 	*vp = OBJECT_TO_JSVAL( g_Game->GetLocalPlayer()->GetScript() );
+	return( JS_TRUE );
+}
 
+JSBool GetGaiaPlayer( JSContext* cx, JSObject* globalObject, jsval id, jsval* vp )
+{
+	*vp = OBJECT_TO_JSVAL( g_Game->GetPlayer( 0 )->GetScript() );
+	return( JS_TRUE );
+}
+
+JSBool SetLocalPlayer( JSContext* context, JSObject* obj, jsval id, jsval* vp )
+{
+	CPlayer* newLocalPlayer = ToNative<CPlayer>( *vp );
+
+	if( !newLocalPlayer )
+	{
+		JS_ReportError( context, "Not a valid Player." );
+		return( JS_TRUE );
+	}
+
+	g_Game->SetLocalPlayer( newLocalPlayer );
 	return( JS_TRUE );
 }
 

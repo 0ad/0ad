@@ -13,6 +13,7 @@
 */
 class CNetSession: public CMessageSocket
 {
+	friend class CNetClient;
 protected:
 	/*
 		The MessageHandler callback follows the contract of HandleMessage, see

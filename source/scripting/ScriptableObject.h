@@ -41,6 +41,8 @@
 #ifndef SCRIPTABLE_INCLUDED
 #define SCRIPTABLE_INCLUDED
 
+class IJSObject;
+
 class IJSProperty
 {
 public:
@@ -56,15 +58,15 @@ public:
 		m_Intrinsic(true)
 	{}
 
-	virtual jsval Get( JSContext* cx ) = 0;
-	virtual void Set( JSContext* cx, jsval Value ) = 0;
+	virtual jsval Get( JSContext* cx, IJSObject* owner ) = 0;
+	virtual void Set( JSContext* cx, IJSObject* owner, jsval Value ) = 0;
 
 	// Copies the data directly out of a parent property
 	// Warning: Don't use if you're not certain the properties are not of the same type.
-	virtual void ImmediateCopy( IJSProperty* Copy ) = 0;
+	virtual void ImmediateCopy( IJSObject* CopyTo, IJSObject* CopyFrom, IJSProperty* CopyProperty ) = 0;
 
-	jsval Get() { return( Get( g_ScriptingHost.GetContext() ) ); }
-	void Set( jsval Value ) { return( Set( g_ScriptingHost.GetContext(), Value ) ); }
+	jsval Get( IJSObject* owner ) { return( Get( g_ScriptingHost.GetContext(), owner ) ); }
+	void Set( IJSObject* owner, jsval Value ) { return( Set( g_ScriptingHost.GetContext(), owner, Value ) ); }
 
 	virtual ~IJSProperty() {}
 };
@@ -175,7 +177,7 @@ public:
 			Property = Target->HasProperty( Instance->m_PropertyRoot );
 			if( Property )
 			{
-				*rval = Property->Get( cx );
+				*rval = Property->Get( cx, Target );
 				break;
 			}
 			Target = Target->m_Parent;
@@ -199,7 +201,7 @@ public:
 			Property = Target->HasProperty( Instance->m_PropertyRoot );
 			if( Property )
 			{
-				str = JS_ValueToString( cx, Property->Get( cx ) ); 
+				str = JS_ValueToString( cx, Property->Get( cx, Target ) ); 
 				break;
 			}
 			Target = Target->m_Parent;
@@ -228,11 +230,10 @@ template<typename T> JSClass CJSPropertyAccessor<T>::JSI_Class = {
 	NULL, NULL, NULL, NULL 
 };
 
-template<typename T, bool ReadOnly> class CJSProperty : public IJSProperty
-{
-	T* m_Data;
 
-	IJSObject* m_Owner;
+template<typename T, bool ReadOnly> class CJSSharedProperty : public IJSProperty
+{
+	T IJSObject::*m_Data;
 
 	// Function on Owner to call after value is changed
 	IJSObject::NotifyFn m_Update;
@@ -241,32 +242,71 @@ template<typename T, bool ReadOnly> class CJSProperty : public IJSProperty
 	IJSObject::NotifyFn m_Freshen;
 
 public:
-	CJSProperty( T* Data, IJSObject* Owner = NULL, bool AllowsInheritance = false, IJSObject::NotifyFn Update = NULL, IJSObject::NotifyFn Freshen = NULL )
+	CJSSharedProperty( T IJSObject::*Data, bool AllowsInheritance = false, IJSObject::NotifyFn Update = NULL, IJSObject::NotifyFn Freshen = NULL )
 	{
-		assert( !( !Owner && ( Freshen || Update ) ) ); // Bad programmer.
 		m_Data = Data;
-		m_Owner = Owner;
+		m_AllowsInheritance = AllowsInheritance;
+		m_Update = Update;
+		m_Freshen = Freshen;
+		m_Intrinsic = true;
+		m_Inherited = true;
+	}
+	jsval Get( JSContext* cx, IJSObject* owner )
+	{
+		if( m_Freshen ) (owner->*m_Freshen)();
+		return( ToJSVal( owner->*m_Data ) );
+	}
+	void ImmediateCopy( IJSObject* CopyTo, IJSObject* CopyFrom, IJSProperty* CopyProperty )
+	{
+		assert( "Inheritance not supported for CJSSharedProperties" );
+	}
+	void Set( JSContext* cx, IJSObject* owner, jsval Value )
+	{
+		if( !ReadOnly )
+		{
+			if( m_Freshen ) (owner->*m_Freshen)();
+			if( ToPrimitive( cx, Value, owner->*m_Data ) )
+				if( m_Update ) (owner->*m_Update)();
+		}
+	}
+
+};
+
+template<typename T, bool ReadOnly> class CJSProperty : public IJSProperty
+{
+	T* m_Data;
+
+	// Function on Owner to call after value is changed
+	IJSObject::NotifyFn m_Update;
+	
+	// Function on Owner to call before reading or writing the value
+	IJSObject::NotifyFn m_Freshen;
+
+public:
+	CJSProperty( T* Data, bool AllowsInheritance = false, IJSObject::NotifyFn Update = NULL, IJSObject::NotifyFn Freshen = NULL )
+	{
+		m_Data = Data;
 		m_AllowsInheritance = AllowsInheritance;
 		m_Update = Update;
 		m_Freshen = Freshen;
 		m_Intrinsic = true;
 	}
-	jsval Get( JSContext* cx )
+	jsval Get( JSContext* cx, IJSObject* owner )
 	{
-		if( m_Freshen ) (m_Owner->*m_Freshen)();
+		if( m_Freshen ) (owner->*m_Freshen)();
 		return( ToJSVal( *m_Data ) );
 	}
-	void ImmediateCopy( IJSProperty* Copy )
+	void ImmediateCopy( IJSObject* CopyTo, IJSObject* CopyFrom, IJSProperty* CopyProperty )
 	{
-		*m_Data = *( ((CJSProperty<T, ReadOnly>*)Copy)->m_Data );
+		*m_Data = *( ( (CJSProperty*)CopyProperty )->m_Data );
 	}
-	void Set( JSContext* cx, jsval Value )
+	void Set( JSContext* cx, IJSObject* owner, jsval Value )
 	{
 		if( !ReadOnly )
 		{
-			if( m_Freshen ) (m_Owner->*m_Freshen)();
+			if( m_Freshen ) (owner->*m_Freshen)();
 			if( ToPrimitive( cx, Value, *m_Data ) )
-				if( m_Update ) (m_Owner->*m_Update)();
+				if( m_Update ) (owner->*m_Update)();
 		}
 	}
 
@@ -288,6 +328,7 @@ public:
 	{
 		m_JSAccessor = NULL;
 		m_Intrinsic = false;
+		m_Inherited = false;
 	}
 };
 
@@ -322,28 +363,24 @@ public:
 		if( JSVAL_IS_GCTHING( m_Data ) )
 			JS_RemoveRoot( g_ScriptingHost.GetContext(), (void*)&m_Data );
 	}
-	jsval Get( JSContext* cx )
+	jsval Get( JSContext* cx, IJSObject* owner )
 	{
 		return( m_Data );
 	}
-	void Set( JSContext* cx, jsval Value )
+	void Set( JSContext* cx, IJSObject* owner, jsval Value )
 	{
 		Uproot();
 		m_Data = Value;
 		Root();
 	}
-	void ImmediateCopy( IJSProperty* Copy )
+	void ImmediateCopy( IJSObject* CopyTo, IJSObject* CopyFrom, IJSProperty* CopyProperty )
 	{
-		Uproot();
-		m_Data = ((CJSValProperty*)Copy)->m_Data;
-		Root();
+		assert( 0 && "ImmediateCopy called on a CJSValProperty (something's gone wrong with the inheritance on this object)" );
 	}
 };
 
 class CJSFunctionProperty : public IJSProperty
 {
-	IJSObject* m_Owner;
-
 	// Function on Owner to get the value
 	IJSObject::GetFn m_Getter;
 	
@@ -351,28 +388,27 @@ class CJSFunctionProperty : public IJSProperty
 	IJSObject::SetFn m_Setter;
 
 public:
-	CJSFunctionProperty( IJSObject* Owner, IJSObject::GetFn Getter, IJSObject::SetFn Setter )
+	CJSFunctionProperty( IJSObject::GetFn Getter, IJSObject::SetFn Setter )
 	{
 		m_Inherited = false;
 		m_Intrinsic = true;
-		m_Owner = Owner;
 		m_Getter = Getter;
 		m_Setter = Setter;
 		// Must at least be able to read 
-		assert( m_Owner && m_Getter );
+		assert( m_Getter );
 	}
-	jsval Get( JSContext* cx )
+	jsval Get( JSContext* cx, IJSObject* owner )
 	{
-		return( (m_Owner->*m_Getter)() );
+		return( (owner->*m_Getter)() );
 	}
-	void Set( JSContext* cx, jsval Value )
+	void Set( JSContext* cx, IJSObject* owner, jsval Value )
 	{
 		if( m_Setter )
-			(m_Owner->*m_Setter)( Value );
+			(owner->*m_Setter)( Value );
 	}
-	void ImmediateCopy( IJSProperty* Copy )
+	void ImmediateCopy( IJSObject* CopyTo, IJSObject* CopyFrom, IJSProperty* CopyProperty )
 	{
-		assert( 0 && "ImmediateCopy called on a property wrapping getter/setter functions" );
+		assert( 0 && "ImmediateCopy called on a property wrapping getter/setter functions (something's gone wrong with the inheritance for this object)" );
 	}
 };
 
@@ -419,8 +455,10 @@ public:
 			if( prop )
 			{
 				// Already exists
-				prop->Set( cx, *vp );
+				prop->Set( cx, this, *vp );
 				
+				prop->m_Inherited = false;
+
 				// If it's a C++ property, reflect this change in objects that inherit this.
 				if( prop->m_AllowsInheritance && prop->m_Intrinsic )
 				{
@@ -430,11 +468,11 @@ public:
 					{
 						IJSObject* UpdateObj = UpdateSet.back();
 						UpdateSet.pop_back();
-						IJSProperty* UpdateProp = UpdateObj->m_Properties[PropertyName];
+						IJSProperty* UpdateProp = UpdateObj->HasProperty( PropertyName );
 						// Property must exist, also be a C++ property, and not have its value specified.
 						if( UpdateProp && UpdateProp->m_Intrinsic && UpdateProp->m_Inherited )
 						{
-							UpdateProp->Set( cx, *vp );
+							UpdateProp->Set( cx, this, *vp );
 							InheritorsList::iterator it2;
 							for( it2 = UpdateObj->m_Inheritors.begin(); it2 != UpdateObj->m_Inheritors.end(); it2++ )
 								UpdateSet.push_back( *it2 );
@@ -491,7 +529,12 @@ public:
 
 		delete[]( JSI_methods );
 	}
-
+	static void ScriptingShutdown()
+	{
+		PropertyTable::iterator it;
+		for( it = m_SharedProperties.begin(); it != m_SharedProperties.end(); it++ )
+			delete( it->second );
+	}
 	static void DefaultFinalize( JSContext *cx, JSObject *obj )
 	{
 		T* Instance = ToNative<T>( cx, obj );
@@ -541,6 +584,8 @@ public:
 private:
 	static JSPropertySpec JSI_props[];
 	static std::vector<JSFunctionSpec> m_Methods;
+	static PropertyTable m_IntrinsicProperties;
+	
 	
 public:
 	CJSObject()
@@ -587,7 +632,7 @@ public:
 		ReleaseScriptObject();
 	}
 	void SetBase( IJSObject* Parent )
-{
+	{
 		if( m_Parent )
 		{
 			// Remove this from the list of our parent's inheritors
@@ -627,7 +672,21 @@ public:
 			if( cp && cp->m_AllowsInheritance )
 			{
 				assert( cp->m_Intrinsic );
-				it->second->ImmediateCopy( cp );
+				it->second->ImmediateCopy( this, m_Parent, cp );
+			}
+		}
+		// Do the same for the shared properties table, too
+		for( it = m_IntrinsicProperties.begin(); it != m_IntrinsicProperties.end(); it++ )
+		{
+			if( !it->second->m_Inherited )
+				continue;
+			
+			IJSProperty* cp = m_Parent->HasProperty( it->first );
+
+			if( cp && cp->m_AllowsInheritance )
+			{
+				assert( cp->m_Intrinsic );
+				it->second->ImmediateCopy( this, m_Parent, cp );
 			}
 		}
 
@@ -640,10 +699,15 @@ public:
 	IJSProperty* HasProperty( CStrW PropertyName )
 	{
 		PropertyTable::iterator it;
+		it = T::m_IntrinsicProperties.find( PropertyName );
+		if( it != T::m_IntrinsicProperties.end() )
+			return( it->second );
+
 		it = m_Properties.find( PropertyName );
-		if( it == m_Properties.end() )
-			return( NULL );
-		return( it->second );
+		if( it != m_Properties.end() )
+			return( it->second );
+
+		return( NULL );
 	}
 
 	void AddProperty( CStrW PropertyName, jsval Value )
@@ -669,9 +733,9 @@ public:
 	{
 		AddProperty( PropertyName, JSParseString( Value ) );
 	}
-	void AddProperty( CStrW PropertyName, GetFn Getter, SetFn Setter = NULL )
+	static void AddClassProperty( CStrW PropertyName, GetFn Getter, SetFn Setter = NULL )
 	{
-		m_Properties[PropertyName] = new CJSFunctionProperty( this, Getter, Setter );
+		T::m_IntrinsicProperties[PropertyName] = new CJSFunctionProperty( Getter, Setter );
 	}
 	template<typename ReturnType, ReturnType (T::*NativeFunction)( JSContext* cx, uintN argc, jsval* argv )> 
 		static void AddMethod( const char* Name, uintN MinArgs )
@@ -679,13 +743,21 @@ public:
 		JSFunctionSpec FnInfo = { Name, CNativeFunction<T, ReadOnly, ReturnType, NativeFunction>::JSFunction, MinArgs, 0, 0 };
 		T::m_Methods.push_back( FnInfo );
 	}
+	template<typename PropType> static void AddClassProperty( CStrW PropertyName, PropType T::*Native, bool PropAllowInheritance = true, NotifyFn Update = NULL, NotifyFn Refresh = NULL )
+	{
+		T::m_IntrinsicProperties[PropertyName] = new CJSSharedProperty<PropType, ReadOnly>( (PropType IJSObject::*)Native, PropAllowInheritance, Update, Refresh );
+	}
+	template<typename PropType> static void AddReadOnlyClassProperty( CStrW PropertyName, PropType T::*Native, bool PropAllowInheritance = true, NotifyFn Update = NULL, NotifyFn Refresh = NULL )
+	{
+		T::m_IntrinsicProperties[PropertyName] = new CJSSharedProperty<PropType, true>( (PropType IJSObject::*)Native, PropAllowInheritance, Update, Refresh );
+	}
 	template<typename PropType> void AddProperty( CStrW PropertyName, PropType* Native, bool PropAllowInheritance = true, NotifyFn Update = NULL, NotifyFn Refresh = NULL )
 	{
-		m_Properties[PropertyName] = new CJSProperty<PropType, ReadOnly>( Native, this, PropAllowInheritance, Update, Refresh );
+		m_Properties[PropertyName] = new CJSProperty<PropType, ReadOnly>( Native, PropAllowInheritance, Update, Refresh );
 	}
 	template<typename PropType> void AddReadOnlyProperty( CStrW PropertyName, PropType* Native, bool PropAllowInheritance = true, NotifyFn Update = NULL, NotifyFn Refresh = NULL )
 	{
-		m_Properties[PropertyName] = new CJSProperty<PropType, true>( Native, this, PropAllowInheritance, Update, Refresh );
+		m_Properties[PropertyName] = new CJSProperty<PropType, true>( Native, PropAllowInheritance, Update, Refresh );
 	}
 };
 
@@ -703,13 +775,14 @@ template<typename T, bool ReadOnly> JSPropertySpec CJSObject<T, ReadOnly>::JSI_p
 };
 
 template<typename T, bool ReadOnly> std::vector<JSFunctionSpec> CJSObject<T, ReadOnly>::m_Methods;
+template<typename T, bool ReadOnly> typename CJSObject<typename T, ReadOnly>::PropertyTable CJSObject<T, ReadOnly>::m_IntrinsicProperties;
 
 template<typename T, bool ReadOnly> void CJSObject<T, ReadOnly>::GetProperty( JSContext* cx, CStrW PropertyName, jsval* vp )
 {
 	IJSProperty* Property = HasProperty( PropertyName );
 	if( Property && Property->m_Intrinsic )
 	{
-		*vp = Property->Get( cx );
+		*vp = Property->Get( cx, this );
 	}
 	else
 	{

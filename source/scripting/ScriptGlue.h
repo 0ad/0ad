@@ -13,10 +13,13 @@ JSFunc WriteLog;
 // Entity
 JSFunc getEntityByHandle;
 JSFunc getEntityTemplate;
-JSBool GetEntitySet( JSContext* context, JSObject* globalObject, jsval argv, jsval* vp );
+JSBool GetEntitySet( JSContext* context, JSObject* globalObject, jsval id, jsval* vp );
 
 // Player
-JSBool GetPlayerSet( JSContext* context, JSObject* globalObject, jsval argv, jsval* vp );
+JSBool GetPlayerSet( JSContext* context, JSObject* globalObject, jsval id, jsval* vp );
+JSBool GetLocalPlayer( JSContext* context, JSObject* globalObject, jsval id, jsval* vp );
+JSBool SetLocalPlayer( JSContext* context, JSObject* globalObject, jsval id, jsval* vp );
+JSBool GetGaiaPlayer( JSContext* context, JSObject* globalObject, jsval id, jsval* vp );
 JSBool GetLocalPlayer( JSContext* context, JSObject* globalObject, jsval argv, jsval* vp );
 
 // Camera

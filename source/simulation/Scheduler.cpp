@@ -79,7 +79,9 @@ void CScheduler::update(size_t simElapsed)
 		timeFunction.pop();
 		jsval rval;
 		m_abortInterval = false;
+		
 		JS_CallFunction( g_ScriptingHost.getContext(), top.operateOn, top.function, 0, NULL, &rval ); 
+		
 		if( top.isRecurrent && !m_abortInterval )
 			pushInterval( top.delay, top.delay, top.function, top.operateOn );
 	}
@@ -90,6 +92,8 @@ void CScheduler::update(size_t simElapsed)
 			break;
 		frameFunction.pop();
 		jsval rval;
+		
 		JS_CallFunction( g_ScriptingHost.getContext(), top.operateOn, top.function, 0, NULL, &rval ); 
+		
 	}
 }

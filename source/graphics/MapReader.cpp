@@ -191,6 +191,12 @@ void CMapReader::ApplyData()
 //			}
 		}
 
+		// MT: Testing:
+		if( i == 170 )
+		{
+			CStrW tom( "dick, harry" );
+		}
+
 		CUnit* unit = g_UnitMan.CreateUnit(m_ObjectTypes.at(m_Objects[i].m_ObjectIndex), NULL);
 
 		if (unit)

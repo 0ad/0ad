@@ -17,7 +17,9 @@
 #include "Hotkey.h"
 #include "ConfigDB.h"
 #include "Loader.h"
+#include "Profile.h"
 #include "LoaderThunks.h"
+
 
 #include "Quaternion.h"
 #include "Unit.h"
@@ -121,9 +123,13 @@ void CGameView::Render()
 	g_Renderer.SetCamera(m_Camera);
 
 	MICROLOG(L"render terrain");
+	PROFILE_START( "render terrain" );
 	RenderTerrain(m_pWorld->GetTerrain());
+	PROFILE_END( "render terrain" );
 	MICROLOG(L"render models");
+	PROFILE_START( "render models" );
 	RenderModels(m_pWorld->GetUnitManager());
+	PROFILE_END( "render models" );
 }
 
 void CGameView::RenderTerrain(CTerrain *pTerrain)

@@ -118,8 +118,8 @@ struct CMouseoverEntities : public Singleton<CMouseoverEntities>
 	void stopBandbox();
 };
 
-bool isMouseoverType( CEntity* ev );
-bool isOnScreen( CEntity* ev );
+bool isMouseoverType( CEntity* ev, void* userdata );
+bool isOnScreen( CEntity* ev, void* userdata );
 
 int interactInputHandler( const SDL_Event* ev );
 

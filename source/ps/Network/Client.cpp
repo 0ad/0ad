@@ -43,17 +43,6 @@ CNetClient::CNetClient(CGame *pGame, CGameAttributes *pGameAttribs):
 
 	m_pGame->GetSimulation()->SetTurnManager(this);
 	
-	AddProperty(L"onStartGame", &m_OnStartGame);
-	AddProperty(L"onChat", &m_OnChat);
-	AddProperty(L"onConnectComplete", &m_OnConnectComplete);
-	AddProperty(L"onDisconnect", &m_OnDisconnect);
-	AddProperty(L"onClientConnect", &m_OnClientConnect);
-	AddProperty(L"onClientDisconnect", &m_OnClientDisconnect);
-	
-	AddProperty(L"password", &m_Password);
-	AddProperty(L"playerName", &m_Name);
-	AddProperty(L"sessions", &m_JSI_ServerSessions);
-	
 	g_ScriptingHost.SetGlobal("g_NetClient", OBJECT_TO_JSVAL(GetScript()));
 }
 
@@ -66,6 +55,20 @@ void CNetClient::ScriptingInit()
 {
 	AddMethod<bool, &CNetClient::JSI_BeginConnect>("beginConnect", 1);
 
+	
+
+	AddClassProperty(L"onStartGame", &CNetClient::m_OnStartGame);
+	AddClassProperty(L"onChat", &CNetClient::m_OnChat);
+	AddClassProperty(L"onConnectComplete", &CNetClient::m_OnConnectComplete);
+	AddClassProperty(L"onDisconnect", &CNetClient::m_OnDisconnect);
+	AddClassProperty(L"onClientConnect", &CNetClient::m_OnClientConnect);
+	AddClassProperty(L"onClientDisconnect", &CNetClient::m_OnClientDisconnect);
+	
+
+	AddClassProperty(L"password", &CNetClient::m_Password);
+	AddClassProperty<CStrW>(L"playerName", &CNetClient::m_Name);
+	
+	AddClassProperty(L"sessions", &CNetClient::m_JSI_ServerSessions);
 	CJSMap<SessionMap>::ScriptingInit("NetClient_SessionMap");
 	CJSObject<CNetClient>::ScriptingInit("NetClient");
 }

@@ -534,7 +534,8 @@ void CSelectedEntities::contextOrder( bool pushQueue )
 
 
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
-		if( (*it)->acceptsOrder( m_contextOrder, g_Mouseover.m_target ) )
+		if( ( (*it)->GetPlayer() == g_Game->GetLocalPlayer() ) && 
+			( (*it)->acceptsOrder( m_contextOrder, g_Mouseover.m_target ) ) )
 		{
 			contextRandomized = context;
 			do
@@ -605,7 +606,7 @@ void CMouseoverEntities::update( float timestep )
 		std::vector<HEntity>::iterator it;
 		
 		for( it = onscreen->begin(); it < onscreen->end(); it++ )
-			if( (*it)->m_extant )
+			if( (*it)->m_extant && ( (*it)->GetPlayer() == g_Game->GetLocalPlayer() ) )
 				m_mouseover.push_back( SMouseoverFader( *it, m_fademaximum, false ) );
 
 		delete( onscreen );
@@ -632,6 +633,10 @@ void CMouseoverEntities::update( float timestep )
 		for( it = onscreen->begin(); it < onscreen->end(); it++ )
 		{
 			if( !(*it)->m_extant )
+				continue;
+
+			// Can only bandbox units the local player controls.
+			if( (*it)->GetPlayer() != g_Game->GetLocalPlayer() )
 				continue;
 
 			CVector3D worldspace = (*it)->m_graphics_position;
@@ -723,6 +728,23 @@ void CMouseoverEntities::update( float timestep )
 
 void CMouseoverEntities::addSelection()
 {
+	// Rules for shift-click selection:
+
+	// If selecting a non-allied unit, you can only select one. You can't 
+	// select a mix of allied and non-allied units. Therefore:
+	// Forbid shift-click of enemy units unless the selection is empty
+	// Forbid shift-click of allied units if the selection contains one
+	//   or more enemy units.
+
+	if( ( m_mouseover.size() != 0 ) &&
+		( m_mouseover.front().entity->GetPlayer() != g_Game->GetLocalPlayer() ) && 
+		( g_Selection.m_selected.size() != 0 ) )
+		return;
+	
+	if( ( g_Selection.m_selected.size() != 0 ) &&
+		( g_Selection.m_selected.front()->GetPlayer() != g_Game->GetLocalPlayer() ) )
+		return;
+
 	std::vector<SMouseoverFader>::iterator it;
 	for( it = m_mouseover.begin(); it < m_mouseover.end(); it++ )
 		if( it->isActive && !g_Selection.isSelected( it->entity ) )
@@ -745,7 +767,8 @@ void CMouseoverEntities::setSelection()
 
 void CMouseoverEntities::expandAcrossScreen()
 {
-	std::vector<HEntity>* activeset = g_EntityManager.matches( isMouseoverType, isOnScreen );
+	std::vector<HEntity>* activeset = g_EntityManager.matches( 
+		CEntityManager::EntityPredicateLogicalAnd<isMouseoverType,isOnScreen> );
 	m_mouseover.clear();
 	std::vector<HEntity>::iterator it;
 	for( it = activeset->begin(); it < activeset->end(); it++ )
@@ -987,7 +1010,7 @@ int interactInputHandler( const SDL_Event* ev )
 	return( EV_PASS );
 }
 
-bool isOnScreen( CEntity* ev )
+bool isOnScreen( CEntity* ev, void* userdata )
 {
 	CCamera *pCamera=g_Game->GetView()->GetCamera();
 
@@ -1000,7 +1023,7 @@ bool isOnScreen( CEntity* ev )
 		return( frustum.IsBoxVisible( ev->m_graphics_position, CBound() ) );
 }
 
-bool isMouseoverType( CEntity* ev )
+bool isMouseoverType( CEntity* ev, void* userdata )
 {
 	std::vector<SMouseoverFader>::iterator it;
 	for( it = g_Mouseover.m_mouseover.begin(); it < g_Mouseover.m_mouseover.end(); it++ )
@@ -1010,29 +1033,3 @@ bool isMouseoverType( CEntity* ev )
 	}
 	return( false );
 }
-
-/*
-void pushCameraTarget( const CVector3D& target )
-{
-	// Save the current position
-	cameraTargets.push_back( g_Camera.m_Orientation.GetTranslation() );
-	// And set the camera
-	setCameraTarget( target );
-}
-
-void setCameraTarget( const CVector3D& target )
-{
-	// Maintain the same orientation and level of zoom, if we can
-	// (do this by working out the point the camera is looking at, saving
-	//  the difference beteen that position and the camera point, and restoring
-	//  that difference to our new target)
-
-	cameraDelta = target - g_Camera.GetFocus();
-}
-
-void popCameraTarget()
-{
-	cameraDelta = cameraTargets.back() - g_Camera.m_Orientation.GetTranslation();
-	cameraTargets.pop_back();
-}
-*/

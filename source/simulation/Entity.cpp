@@ -2,6 +2,8 @@
 
 #include "precompiled.h"
 
+#include "Profile.h"
+
 #include "Entity.h"
 #include "EntityManager.h"
 #include "BaseEntityCollection.h"
@@ -25,8 +27,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	m_orientation = orientation;
 	m_ahead.x = sin( m_orientation );
 	m_ahead.y = cos( m_orientation );
-	
-	AddProperty( L"template", (CBaseEntity**)&m_base, false, (NotifyFn)&CEntity::loadBase );
+
 	AddProperty( L"actions.move.speed", &m_speed );
 	AddProperty( L"selected", &m_selected, false, (NotifyFn)&CEntity::checkSelection );
 	AddProperty( L"group", &m_grouped, false, (NotifyFn)&CEntity::checkGroup );
@@ -172,6 +173,8 @@ void CEntity::update( size_t timestep )
 	// still needs to be (re-)evaluated; else 'false' to terminate the processing of
 	// this entity in this timestep.
 
+	PROFILE_START( "state processing" );
+
 	while( !m_orderQueue.empty() )
 	{
 		CEntityOrder* current = &m_orderQueue.front();
@@ -180,6 +183,8 @@ void CEntity::update( size_t timestep )
 
 		if( m_transition ) 
 		{
+			PROFILE( "state transition / order" );
+
 			CEntity* target = NULL;
 			if( current->m_data[0].entity )
 				target = &( *( current->m_data[0].entity ) );
@@ -229,8 +234,11 @@ void CEntity::update( size_t timestep )
 		}
 	}
 
+	PROFILE_END( "state processing" );
+
 	if( m_actor )
 	{
+		PROFILE( "animation updates" );
 		if( m_extant )
 		{
 			if( ( m_lastState != -1 ) || !m_actor->GetModel()->GetAnimation() )
@@ -242,6 +250,7 @@ void CEntity::update( size_t timestep )
 
 	if( m_lastState != -1 )
 	{
+		PROFILE( "state transition event" );
 		CEntity* d0;
 		CVector3D d1;
 		CEventOrderTransition evt( m_lastState, -1, d0, d1 );
@@ -313,7 +322,29 @@ void CEntity::dispatch( const CMessage* msg )
 
 bool CEntity::DispatchEvent( CScriptEvent* evt )
 {
-	return( m_EventHandlers[evt->m_TypeCode].DispatchEvent( GetScript(), evt ) );
+	// MT: HACK. And it leaks.
+	static std::map<CStrW, char*> evMap;
+	char* data;
+	std::map<CStrW, char*>::iterator it = evMap.find( evt->m_Type );
+	if( it != evMap.end() )
+	{
+		data = it->second;
+	}
+	else
+	{
+		CStr8 short_string( evt->m_Type );
+		int length = short_string.length();
+		data = new char[length + 9];
+		strcpy( data, "script: " );
+		strcpy( data + 8, short_string.c_str() );
+		data[length + 8] = 0;
+		evMap.insert( std::pair<CStrW, char*>( evt->m_Type, data ) );
+	}
+
+	g_Profiler.StartScript( data );
+	bool rval = m_EventHandlers[evt->m_TypeCode].DispatchEvent( GetScript(), evt );
+	g_Profiler.Stop();
+	return( rval );
 }
 
 void CEntity::clearOrders()
@@ -613,6 +644,10 @@ void CEntity::ScriptingInit()
 	AddMethod<bool, &CEntity::Kill>( "kill", 0 );
 	AddMethod<bool, &CEntity::Damage>( "damage", 1 );
 	AddMethod<bool, &CEntity::IsIdle>( "isIdle", 0 );
+	
+	
+	AddClassProperty( L"template", (CBaseEntity* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
+
 	CJSObject<CEntity>::ScriptingInit( "Entity", Construct, 2 );
 }
 

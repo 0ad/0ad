@@ -28,6 +28,10 @@ ERROR_TYPE(Scripting_DefineType, CreationFailed);
 
 #include <jsapi.h>
 
+#ifndef NDEBUG
+#include <jsdbgapi.h>
+#endif
+
 // Make JS debugging a little easier by automatically naming GC roots
 #ifndef NDEBUG
 // Don't simply #define NAME_ALL_GC_ROOTS, because jsapi.h is horridly broken
@@ -78,7 +82,12 @@ private:
 	std::map < std::string, CustomType >		m_CustomObjectTypes;
 
 	void _CollectGarbage();
-
+#ifndef NDEBUG
+	// A hook to capture script calls
+	static void* jshook_script( JSContext* cx, JSStackFrame* fp, JSBool before, JSBool* ok, void* closure );
+	// A hook to capture function calls
+	static void* jshook_function( JSContext* cx, JSStackFrame* fp, JSBool before, JSBool* ok, void* closure );
+#endif
 public:
 
 	ScriptingHost();

@@ -3,6 +3,7 @@
 #include "ScriptingHost.h"
 #include "ScriptGlue.h"
 #include "CConsole.h"
+#include "Profile.h"
 #include <sstream>
 
 #include "res/res.h"
@@ -52,6 +53,13 @@ ScriptingHost::ScriptingHost() : m_RunTime(NULL), m_Context(NULL), m_GlobalObjec
 	JS_SetErrorReporter(m_Context, ScriptingHost::ErrorReporter);
 
 	m_GlobalObject = JS_NewObject(m_Context, &GlobalClass, NULL, NULL);
+
+#ifndef NDEBUG
+	// Register our script and function handlers - note: docs say they don't like
+	// nulls passed as closures, nor should they return nulls.
+	JS_SetExecuteHook( m_RunTime, jshook_script, this );
+	JS_SetCallHook( m_RunTime, jshook_function, this );
+#endif
 
 	if (m_GlobalObject == NULL)
 		throw PSERROR_Scripting_GlobalObjectCreationFailed();
@@ -379,3 +387,37 @@ void ScriptingHost::_CollectGarbage()
 {
 	JS_GC(m_Context);
 }
+
+#ifndef NDEBUG
+
+void* ScriptingHost::jshook_script( JSContext* cx, JSStackFrame* fp, JSBool before, JSBool* ok, void* closure )
+{
+	if( before )
+	{
+		g_Profiler.StartScript( "script invocation" );
+	}
+	else
+		g_Profiler.Stop();
+
+	return( closure );
+}
+
+void* ScriptingHost::jshook_function( JSContext* cx, JSStackFrame* fp, JSBool before, JSBool* ok, void* closure )
+{
+	JSFunction* fn = JS_GetFrameFunction( cx, fp );
+	if( before )
+	{
+		if( fn )
+		{
+			g_Profiler.StartScript( JS_GetFunctionName( fn ) );
+		}
+		else
+			g_Profiler.StartScript( "function invokation" );
+	}
+	else
+		g_Profiler.Stop();
+
+	return( closure );
+}
+
+#endif

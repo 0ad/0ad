@@ -32,6 +32,7 @@ void CWorld::Initialize(CGameAttributes *pAttribs)
 		mapfilename += (CStr)pAttribs->m_MapFile;
 
 		CMapReader* reader = 0;
+
 		try {
 			reader = new CMapReader;
 			reader->LoadMap(mapfilename, &m_Terrain, &m_UnitManager, &g_LightEnv);

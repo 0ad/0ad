@@ -453,6 +453,7 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	paramData[0] = OBJECT_TO_JSVAL(mouseObj);
 
 	jsval result;
+
 	JSBool ok = JS_CallFunction(g_ScriptingHost.getContext(), jsGuiObject, it->second, 1, paramData, &result);
 	if (!ok)
 	{
