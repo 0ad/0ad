@@ -29,10 +29,12 @@
 #include <algorithm>
 #include <numeric>
 
+#include "wdbg.h"
+
 
 // define to disable time sources (useful for simulating other systems)
-// #define NO_QPC
-// #define NO_TSC
+//#define NO_QPC
+//#define NO_TSC
 
 
 #pragma data_seg(".LIB$WIA")
@@ -142,7 +144,7 @@ static int choose_impl()
 	//   frequency changes are too often and drastic to correct,
 	//   and we don't want to mess with the system power settings.
 	//   => unsafe.
-	if(cpu_caps & TSC && cpu_freq > 0.0)
+	if(ia32_cap(TSC) && cpu_freq > 0.0)
 	{
 		safe = (cpus == 1 && !cpu_speedstep);
 		SAFETY_OVERRIDE(HRT_TSC);
@@ -225,7 +227,6 @@ static int choose_impl()
 		return 0;
 	}
 
-	// no warning here - doesn't inspire confidence in VC dead code removal.
 	debug_warn("hrt_choose_impl: no safe timer found!");
 	hrt_impl = HRT_NONE;
 	hrt_nominal_freq = -1;

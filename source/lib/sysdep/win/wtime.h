@@ -71,8 +71,8 @@ extern int clock_getres(clockid_t clock, struct timespec* res);
 
 
 // HACK: if _WIN32, the HRT makes its final implementation choice
-// in the first calibrate call where cpu_freq and cpu_caps are
-// available. provide a routine that makes the choice when called,
+// in the first calibrate call where cpu_freq is available.
+// provide a routine that makes the choice when called,
 // so app code isn't surprised by a timer change, although the HRT
 // does try to keep the timer continuous.
 extern void wtime_reset_impl();
