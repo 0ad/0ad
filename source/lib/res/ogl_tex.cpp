@@ -2,6 +2,8 @@
 
 #include "ogl.h"
 #include "res.h"
+#include "tex.h"
+#include "ogl_tex.h"
 
 #include "lib.h"
 

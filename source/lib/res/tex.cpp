@@ -20,6 +20,7 @@
 
 #include "lib.h"
 #include "res.h"
+#include "tex.h"
 
 #include <math.h>
 #include <stdlib.h>
