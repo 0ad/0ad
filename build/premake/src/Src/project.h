@@ -60,6 +60,7 @@ typedef struct _Project
 	const char* name;
 	const char* binaries;
 	const char* libraries;
+	const char* debugfiles;
 	const char* path;
 	Package** package;
 	Option** option;

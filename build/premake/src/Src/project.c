@@ -285,6 +285,7 @@ static int finishProject()
 	project->path = getString(getProject(), "path");
 	project->binaries = getString(getProject(), "bindir");
 	project->libraries = getString(getProject(), "libdir");
+	project->debugfiles = getString(getProject(), "debugdir");
 
 	optlist = getArray(-1, "options");
 	project->numOptions = getArraySize(optlist);

@@ -9,17 +9,23 @@ REM Change to the lua project name, this must correspond to the base file name
 REM of the created project files
 SET PROJECT=pyrogenesis
 
-CD premake
-premake --target vs6
-MOVE %PROJECT%.dsw ..\vc6
-MOVE %PROJECT%.dsp ..\vc6
+cd ..\premake
 
-premake --target vs7
-move %PROJECT%.sln ..\vc7
-move %PROJECT%.vcproj ..\vc7
+REM Minor hack to make sure the relative paths are correct:
+mkdir tmp
+copy premake.lua tmp
+cd tmp
 
-premake --target vs2003
-move %PROJECT%.sln ..\vc2003
-move %PROJECT%.vcproj ..\vc2003
+..\premake --target vs6
+move %PROJECT%.dsw ..\..\workspaces\vc6
+move %PROJECT%.dsp ..\..\workspaces\vc6
 
-cd ..
+..\premake --target vs7
+move %PROJECT%.sln    ..\..\workspaces\vc7
+move %PROJECT%.vcproj ..\..\workspaces\vc7
+
+..\premake --target vs2003
+move %PROJECT%.sln    ..\..\workspaces\vc2003
+move %PROJECT%.vcproj ..\..\workspaces\vc2003
+
+cd ..\..\workspaces

@@ -479,7 +479,20 @@ static int writeVcProject(int version, Package* package)
 				writeList(file, config->libPaths, ";", "", "", checkDir, NULL);
 				fprintf(file, "\"\n");
 			fprintf(file, "                GenerateDebugInformation=\"%s\"\n", symbols ? "TRUE" : "FALSE");
-			if (symbols) fprintf(file, "                ProgramDatabaseFile=\"obj\\%s\\%s.pdb\"\n", config->name, getFilename(config->target, 0));
+
+			if (symbols)
+			{
+				if (project->debugfiles)
+				{
+					fprintf(file, "                ProgramDatabaseFile=\"");
+					fprintf(file, reversePath(path, project->debugfiles, WIN32));
+					fprintf(file, "%s.pdb\"\n", getFilename(config->target, 0));
+				}
+				else
+				{
+					fprintf(file, "                ProgramDatabaseFile=\"obj\\%s\\%s.pdb\"\n", config->name, getFilename(config->target, 0));
+				}
+			}
 			fprintf(file, "                SubSystem=\"%d\"\n", subsystem);
 			if (!debug) fprintf(file, "                OptimizeReferences=\"2\"\n");
 			if (!debug) fprintf(file, "                EnableCOMDATFolding=\"2\"\n");

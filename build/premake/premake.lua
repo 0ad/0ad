@@ -4,6 +4,7 @@ dofile("../functions.lua")
 project.name = "pyrogenesis"
 project.bindir = "../../../binaries/system"
 project.libdir = "../../../binaries/system"
+project.debugdir = "../../../binaries/data"
 project.configs = { "Debug", "Release", "Testing" }
 
 -- Start the package part
