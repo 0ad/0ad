@@ -12,6 +12,7 @@ gee@pyro.nu
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
+#include "Prometheus.h"
 
 // Use namespace
 XERCES_CPP_NAMESPACE_USE
@@ -35,7 +36,12 @@ void CXercesErrorHandler::error(const SAXParseException& toCatch)
 		 << ", column " << toCatch.getColumnNumber()
          << "\n   Message: " << StrX(toCatch.getMessage()) << endl;
 
-*/	
+*/
+	LOG(ERROR, "XML Parse Error: %s:%d:%d: %s",
+		XMLString::transcode(toCatch.getSystemId()),
+		toCatch.getLineNumber(),
+		toCatch.getColumnNumber(),
+		XMLString::transcode(toCatch.getMessage()));
 ///	g_nemLog(" Error: %s", XMLString::transcode(toCatch.getMessage()));
 }
 
@@ -52,6 +58,11 @@ void CXercesErrorHandler::fatalError(const SAXParseException& toCatch)
 		 << ", column " << toCatch.getColumnNumber()
          << "\n   Message: " << StrX(toCatch.getMessage()) << endl;
 */
+	LOG(ERROR, "XML Parse Error: %s:%d:%d: %s",
+		XMLString::transcode(toCatch.getSystemId()),
+		toCatch.getLineNumber(),
+		toCatch.getColumnNumber(),
+		XMLString::transcode(toCatch.getMessage()));
 ///	g_nemLog(" Error: %s", XMLString::transcode(toCatch.getMessage()));
 }
 
