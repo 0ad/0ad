@@ -30,14 +30,16 @@
 // archive
 //
 
-// open and return a handle to the zip archive indicated by <fn>
+// open and return a handle to the zip archive indicated by <fn>.
+// somewhat slow - each file is added to an internal index.
 extern Handle zip_archive_open(const char* fn);
 
 // close the archive <ha> and set ha to 0
 extern int zip_archive_close(Handle& ha);
 
-// for all files in archive <ha>: call <cb>, passing <user>
-// and the entries's complete path.
+// successively call <cb> for each valid file in the archive <ha>,
+// passing the complete path and <user>.
+// if it returns a nonzero value, abort and return that, otherwise 0.
 extern int zip_enum(const Handle ha, const FileCB cb, const uintptr_t user);
 
 
@@ -66,14 +68,47 @@ struct ZFile
 	uintptr_t inf_ctx;
 };
 
-// return file information for <fn> in archive <ha>
+// get file status (currently only size).
+// return < 0 on error (output param zeroed).
 extern int zip_stat(Handle ha, const char* fn, struct stat* s);
 
-// open the file <fn> in archive <ha>, and fill *zf with information about it.
+// open file, and fill *zf with information about it.
+// return < 0 on error (output param zeroed). 
 extern int zip_open(Handle ha, const char* fn, ZFile* zf);
 
-// close the file <zf>
+// close file.
 extern int zip_close(ZFile* zf);
+
+
+//
+// asynchronous read
+//
+
+// currently only supported for compressed files to keep things simple.
+// see rationale in source.
+
+// begin transferring <size> bytes, starting at <ofs>. get result
+// with zip_wait_io; when no longer needed, free via zip_discard_io.
+extern int zip_start_io(ZFile* const zf, off_t ofs, size_t size, void* buf, FileIO* io);
+
+// indicates if the IO referenced by <io> has completed.
+// return value: 0 if pending, 1 if complete, < 0 on error.
+extern int zip_io_complete(FileIO io);
+
+// wait until the transfer <io> completes, and return its buffer.
+// output parameters are zeroed on error.
+extern int zip_wait_io(FileIO io, void*& p, size_t& size);
+
+// finished with transfer <io> - free its buffer (returned by zip_wait_io)
+extern int zip_discard_io(FileIO io);
+
+
+//
+// synchronous read
+//
+
+// read from file <zf>, starting at offset <ofs> in the compressed data.
+extern ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void* p, FileIOCB cb = 0, uintptr_t ctx = 0);
 
 
 //
@@ -95,37 +130,6 @@ extern int zip_map(ZFile* zf, void*& p, size_t& size);
 // however, map/unmap calls should be paired so that the archive mapping
 // may be removed when no longer needed.
 extern int zip_unmap(ZFile* zf);
-
-
-//
-// asynchronous read
-//
-
-// currently only supported for compressed files to keep things simple.
-// see rationale in source.
-
-// begin transferring <size> bytes, starting at <ofs>. get result
-// with zip_wait_io; when no longer needed, free via zip_discard_io.
-extern int zip_start_io(ZFile* const zf, off_t ofs, size_t size, void* buf, FileIO* io);
-
-// indicates if the IO referenced by <io> has completed.
-// return value: 0 if pending, 1 if complete, < 0 on error.
-extern int zip_io_complete(FileIO io);
-
-// wait until the transfer <hio> completes, and return its buffer.
-// output parameters are zeroed on error.
-extern int zip_wait_io(FileIO io, void*& p, size_t& size);
-
-// finished with transfer <hio> - free its buffer (returned by vfs_wait_io)
-extern int zip_discard_io(FileIO io);
-
-
-//
-// synchronous read
-//
-
-// read from file <zf>, starting at offset <ofs> in the compressed data.
-extern ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void** p, FileIOCB cb = 0, uintptr_t ctx = 0);
 
 
 #endif	// #ifndef ZIP_H__
