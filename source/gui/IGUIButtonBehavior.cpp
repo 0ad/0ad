@@ -49,6 +49,7 @@ void IGUIButtonBehavior::HandleMessage(const SGUIMessage &Message)
 			m_Pressed = false;
 			// BUTTON WAS CLICKED
 			HandleMessage(GUIM_PRESSED);
+			ScriptEvent("press");
 		}
 	}	break;
 

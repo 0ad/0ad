@@ -1,4 +1,4 @@
-// $Id: JSInterface_IGUIObject.cpp,v 1.2 2004/07/10 21:23:06 philip Exp $
+// $Id: JSInterface_IGUIObject.cpp,v 1.3 2004/07/11 16:21:52 philip Exp $
 
 #include "precompiled.h"
 
@@ -109,7 +109,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 			{
 				CColor colour;
 				GUI<CColor>::GetSetting(e, propName, colour);
-				JSObject* obj = JS_NewObject(cx, &JSI_GUIColour::JSI_class, NULL, NULL);
+				JSObject* obj = JS_NewObject(cx, &JSI_GUIColor::JSI_class, NULL, NULL);
 				jsval r = DOUBLE_TO_JSVAL(JS_NewDouble(cx, colour.r));
 				jsval g = DOUBLE_TO_JSVAL(JS_NewDouble(cx, colour.g));
 				jsval b = DOUBLE_TO_JSVAL(JS_NewDouble(cx, colour.b));
@@ -263,7 +263,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 					{
 						e->SetSetting(propName, JS_GetStringBytes(JS_ValueToString(cx, *vp)) );
 					}
-					else if (JSVAL_IS_OBJECT(*vp) && JS_GetClass(JSVAL_TO_OBJECT(*vp)) == &JSI_GUIColour::JSI_class)
+					else if (JSVAL_IS_OBJECT(*vp) && JS_GetClass(JSVAL_TO_OBJECT(*vp)) == &JSI_GUIColor::JSI_class)
 					{
 						CColor colour;
 						JSObject* obj = JSVAL_TO_OBJECT(*vp);
@@ -278,7 +278,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 					}
 					else
 					{
-						JS_ReportError(cx, "Color only accepts strings or GUIColour objects");
+						JS_ReportError(cx, "Color only accepts strings or GUIColor objects");
 					}
 					break;
 				}

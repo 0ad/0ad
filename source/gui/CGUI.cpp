@@ -67,7 +67,6 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 	{
 		m_MousePos = CPos(ev->motion.x, ev->motion.y);
 
-		// pNearest will after this point at the hovered object, possibly NULL
 		GUI<SGUIMessage>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject, 
 										&IGUIObject::HandleMessage, 
 										SGUIMessage(GUIM_MOUSE_MOTION));
@@ -100,7 +99,10 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 		GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject, 
 										&IGUIObject::ChooseMouseOverAndClosest, 
 										pNearest);
-		
+
+		if (ev->type == SDL_MOUSEMOTION && pNearest)
+			pNearest->ScriptEvent("mousemove");
+
 		// Now we'll call UpdateMouseOver on *all* objects,
 		//  we'll input the one hovered, and they will each
 		//  update their own data and send messages accordingly
@@ -116,26 +118,15 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 				if (pNearest)
 				{
 					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_PRESS_LEFT));
+					pNearest->ScriptEvent("mouseleftpress");
 				}
-
-			{
-				// some temp
-/*				CClientArea ca;
-				bool hidden;
-
-				GUI<CClientArea>::GetSetting(*this, CStr("backdrop43"), CStr("size"), ca);
-			
-				//hidden = !hidden;
-				ca.pixel.right -= 3;
-
-				GUI<CClientArea>::SetSetting(*this, CStr("backdrop43"), CStr("size"), ca);
-*/			}
-			break;
+				break;
 
 			case SDL_BUTTON_WHEELDOWN: // wheel down
 				if (pNearest)
 				{
 					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_WHEEL_DOWN));
+					pNearest->ScriptEvent("mousewheeldown");
 				}
 				break;
 
@@ -143,21 +134,9 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 				if (pNearest)
 				{
 					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_WHEEL_UP));
+					pNearest->ScriptEvent("mousewheelup");
 				}
 				break;
-
-			// TODO Gee: Just temp
-			case SDL_BUTTON_RIGHT:
-			{
-				CClientArea ca;
-				GUI<CClientArea>::GetSetting(*this, CStr("backdrop43"), CStr("size"), ca);
-			
-				//hidden = !hidden;
-				ca.pixel.right -= 3;
-
-				GUI<CClientArea>::SetSetting(*this, CStr("backdrop43"), CStr("size"), ca);
-			}
-			break;
 
 			default:
 				break;
@@ -170,7 +149,10 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 			if (ev->button.button == SDL_BUTTON_LEFT)
 			{
 				if (pNearest)
+				{
 					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_RELEASE_LEFT));
+					pNearest->ScriptEvent("mouseleftrelease");
+				}
 			}
 
 			// Reset all states on all visible objects
@@ -485,6 +467,7 @@ void CGUI::AddObject(IGUIObject* pObject)
 
 		// Loaded
 		GUI<SGUIMessage>::RecurseObject(0, pObject, &IGUIObject::HandleMessage, SGUIMessage(GUIM_LOAD));
+		GUI<CStr>::RecurseObject(0, pObject, &IGUIObject::ScriptEvent, "load");
 	}
 	catch (PS_RESULT e)
 	{
@@ -871,9 +854,14 @@ void CGUI::LoadXMLFile(const string &Filename)
 	m_Errors = 0;
 
 	CXeromyces XeroFile;
-	XeroFile.Load(Filename.c_str());
-
- 	bool ParseFailed = false;
+	try
+	{
+		XeroFile.Load(Filename.c_str());
+	}
+	catch (...) {
+		// Failed
+		return;
+	}
 
 	XMBElement node = XeroFile.getRoot();
 
@@ -922,16 +910,22 @@ void CGUI::LoadXMLFile(const string &Filename)
 
 void CGUI::Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile)
 {
+	int el_script = pFile->getElementID("script");
+
 	// Iterate main children
-	//  they should all be <object> elements
+	//  they should all be <object> or <script> elements
 	XMBElementList children = Element.getChildNodes();
 	for (int i=0; i<children.Count; ++i)
 	{
 		//debug_out("Object %d\n", i);
 		XMBElement child = children.item(i);
 
-		// Read in this whole object into the GUI
-		Xeromyces_ReadObject(child, pFile, m_BaseObject);
+		if (child.getNodeName() == el_script)
+			// Execute the inline script
+			Xeromyces_ReadScript(child, pFile);
+		else
+			// Read in this whole object into the GUI
+			Xeromyces_ReadObject(child, pFile, m_BaseObject);
 	}
 }
 
@@ -1021,6 +1015,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	ATTR(name);
 	ATTR(z);
 	ATTR(on);
+	ATTR(file);
 
 	//
 	//	Read Style and set defaults
@@ -1138,9 +1133,39 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		}
 		else if (element_name == elmt_action)
 		{
+			// Scripted <action> element
+
+			// Check for a 'file' parameter
+			CStr file (Element.getAttributes().getNamedItem(attr_file));
+
+			CStr code;
+
+			// If there is a file, open it and use it as the code
+			if (file.Length())
+			{
+				Handle h = vfs_open(file);
+				if (h <= 0)
+					// TODO: Error handling
+					assert(! "File open failed");
+				else
+				{
+					void* data;
+					size_t len;
+					int err = vfs_map(h, 0, data, len);
+					assert(err == 0);
+
+					code = (char*)data;
+
+					vfs_unmap(h);
+					vfs_close(h);
+				}
+			}
+
+			// Read the inline code (concatenating to the file code, if both are specified)
+			code += (CStr)Element.getText();
+
 			CStr action = (CStr)child.getAttributes().getNamedItem(attr_on);
-			CStr code = (CStr)child.getText();
-			object->RegisterScriptHandler(action, code, this);
+			object->RegisterScriptHandler(action.LowerCase(), code, this);
 		}
 	} 
 
@@ -1189,6 +1214,41 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	{ 
 		ReportParseError(e);
 	}
+}
+
+void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile)
+{
+
+	// Check for a 'file' parameter
+	CStr file (Element.getAttributes().getNamedItem( pFile->getAttributeID("file") ));
+
+	// If there is a file, open and execute it
+	if (file.Length())
+	{
+		Handle h = vfs_open(file);
+		if (h <= 0)
+			// TODO: Error handling
+			assert(! "File open failed");
+		else
+		{
+			void* data;
+			size_t len;
+			int err = vfs_map(h, 0, data, len);
+			assert(err == 0);
+
+			jsval result;
+			JS_EvaluateScript(g_ScriptingHost.getContext(), (JSObject*)m_ScriptObject, (const char*)data, (int)len, file, 0, &result);
+
+			vfs_unmap(h);
+			vfs_close(h);
+		}
+	}
+
+	// Execute inline scripts
+	CStr code (Element.getText());
+
+	jsval result;
+	JS_EvaluateScript(g_ScriptingHost.getContext(), (JSObject*)m_ScriptObject, code.c_str(), (int)code.Length(), "", 0, &result);
 }
 
 void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)

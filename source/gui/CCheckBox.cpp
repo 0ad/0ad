@@ -92,9 +92,6 @@ void CCheckBox::HandleMessage(const SGUIMessage &Message)
 		checked = !checked;
 		GUI<bool>::SetSetting(this, "checked", checked);
 		
-		//GetGUI()->TEMPmessage = "Check box " + string((const TCHAR*)m_Name) + " was " + (m_Settings.m_Checked?"checked":"unchecked");
-
-		ScriptEvent("Press");
 	}	break;
 
 	default:

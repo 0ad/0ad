@@ -12,6 +12,9 @@ JSBool writeConsole( JSContext* context, JSObject* globalObject, unsigned int ar
 JSBool getEntityByHandle( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval );
 JSBool getEntityTemplate( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval );
 
+// Returns the sort-of-global object associated with the current GUI
+JSBool getGUIGlobal(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
+
 // Returns the global object, e.g. for setting global variables.
 JSBool getGlobal(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
 

@@ -197,6 +197,7 @@ void IGUIObject::UpdateMouseOver(IGUIObject * const &pMouseOver)
 		{
 			// It wasn't hovering, so that must mean it just entered
 			HandleMessage(GUIM_MOUSE_ENTER);
+			ScriptEvent("mouseenter");
 		}
 
 		// Either way, set to true
@@ -204,6 +205,7 @@ void IGUIObject::UpdateMouseOver(IGUIObject * const &pMouseOver)
 
 		// call mouse over
 		HandleMessage(GUIM_MOUSE_OVER);
+		ScriptEvent("mouseover");
 	}
 	else // Some other object (or none) is hovered
 	{
@@ -211,6 +213,7 @@ void IGUIObject::UpdateMouseOver(IGUIObject * const &pMouseOver)
 		{
 			m_MouseHovering = false;
 			HandleMessage(GUIM_MOUSE_LEAVE);
+			ScriptEvent("mouseleave");
 		}
 	}
 }
@@ -401,6 +404,7 @@ void IGUIObject::CheckSettingsValidity()
 	{
 		// Send message to itself
 		HandleMessage(GUIM_SETTINGS_UPDATED);
+		ScriptEvent("update");
 	}
 	catch (...)
 	{

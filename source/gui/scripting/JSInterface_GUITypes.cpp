@@ -1,4 +1,4 @@
-// $Id: JSInterface_GUITypes.cpp,v 1.1 2004/07/08 15:19:45 philip Exp $
+// $Id: JSInterface_GUITypes.cpp,v 1.2 2004/07/11 16:21:52 philip Exp $
 
 #include "precompiled.h"
 
@@ -65,11 +65,11 @@ JSBool JSI_GUISize::toString(JSContext* cx, JSObject* obj, uintN argc, jsval* ar
 }
 
 
-/**** GUIColour ****/
+/**** GUIColor ****/
 
 
-JSClass JSI_GUIColour::JSI_class = {
-	"GUIColour", 0,
+JSClass JSI_GUIColor::JSI_class = {
+	"GUIColor", 0,
 		JS_PropertyStub, JS_PropertyStub,
 		JS_PropertyStub, JS_PropertyStub,
 		JS_EnumerateStub, JS_ResolveStub,
@@ -77,7 +77,7 @@ JSClass JSI_GUIColour::JSI_class = {
 		NULL, NULL, NULL, NULL
 };
 
-JSPropertySpec JSI_GUIColour::JSI_props[] = 
+JSPropertySpec JSI_GUIColor::JSI_props[] = 
 {
 	{ "r",	0,	JSPROP_ENUMERATE},
 	{ "g",	1,	JSPROP_ENUMERATE},
@@ -86,13 +86,13 @@ JSPropertySpec JSI_GUIColour::JSI_props[] =
 	{ 0 }
 };
 
-JSFunctionSpec JSI_GUIColour::JSI_methods[] = 
+JSFunctionSpec JSI_GUIColor::JSI_methods[] = 
 {
-	{ "toString", JSI_GUIColour::toString, 0, 0, 0 },
+	{ "toString", JSI_GUIColor::toString, 0, 0, 0 },
 	{ 0 }
 };
 
-JSBool JSI_GUIColour::construct(JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval)
+JSBool JSI_GUIColor::construct(JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval)
 {
 	if (argc == 4)
 	{
@@ -116,7 +116,7 @@ JSBool JSI_GUIColour::construct(JSContext* cx, JSObject* obj, unsigned int argc,
 	return JS_TRUE;
 }
 
-JSBool JSI_GUIColour::toString(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval)
+JSBool JSI_GUIColor::toString(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval)
 {
 	char buffer[256];
 	// Convert to integers, to be compatible with the GUI's string SetSetting
@@ -189,6 +189,6 @@ JSBool JSI_GUIMouse::toString(JSContext* cx, JSObject* obj, uintN argc, jsval* a
 void JSI_GUITypes::init()
 {
 	g_ScriptingHost.DefineCustomObjectType(&JSI_GUISize::JSI_class,   JSI_GUISize::construct,   1, JSI_GUISize::JSI_props,   JSI_GUISize::JSI_methods,   NULL, NULL);
-	g_ScriptingHost.DefineCustomObjectType(&JSI_GUIColour::JSI_class, JSI_GUIColour::construct, 1, JSI_GUIColour::JSI_props, JSI_GUIColour::JSI_methods, NULL, NULL);
+	g_ScriptingHost.DefineCustomObjectType(&JSI_GUIColor::JSI_class, JSI_GUIColor::construct, 1, JSI_GUIColor::JSI_props, JSI_GUIColor::JSI_methods, NULL, NULL);
 	g_ScriptingHost.DefineCustomObjectType(&JSI_GUIMouse::JSI_class,  JSI_GUIMouse::construct,  1, JSI_GUIMouse::JSI_props,  JSI_GUIMouse::JSI_methods,  NULL, NULL);
 }

@@ -30,6 +30,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	{"getEntityTemplate", getEntityTemplate, 1, 0, 0 },
 	{"getGUIObjectByName", JSI_IGUIObject::getByName, 1, 0, 0 },
 	{"getGlobal", getGlobal, 0, 0, 0 },
+	{"getGUIGlobal", getGUIGlobal, 0, 0, 0 },
 	{"exit", exitProgram, 0, 0, 0 },
 	{0, 0, 0, 0, 0}, 
 };
@@ -121,6 +122,12 @@ JSBool getEntityTemplate( JSContext* context, JSObject* globalObject, unsigned i
 	JSObject* baseEntity = JS_NewObject( context, &JSI_BaseEntity::JSI_class, NULL, NULL );
 	JS_SetPrivate( context, baseEntity, v );
 	*rval = OBJECT_TO_JSVAL( baseEntity );
+	return( JS_TRUE );
+}
+
+JSBool getGUIGlobal( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval )
+{
+	*rval = OBJECT_TO_JSVAL( g_GUI.GetScriptObject() );
 	return( JS_TRUE );
 }
 

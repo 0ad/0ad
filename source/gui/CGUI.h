@@ -205,6 +205,13 @@ public:
 	SGUIText GenerateText(const CGUIString &Text, /*const CColor &Color, */
 						  const CStr& Font, const int &Width, const int &BufferZone);
 
+	/**
+	 * Returns the JSObject* associated with the GUI
+	 *
+	 * @return A JSobject* (as a void* to avoid #including all of JS)
+	 */
+	void* GetScriptObject() { return m_ScriptObject; }
+
 private:
 	/**
 	 * Updates the object pointers, needs to be called each
@@ -261,6 +268,8 @@ private:
 		Xeromyces_* functions tree
 		<code>
 		\<objects\> (ReadRootObjects)
+		 |
+		 +-\<script\> (ReadScript)
 		 |
 		 +-\<object\> (ReadObject)
 			|
@@ -366,6 +375,18 @@ private:
 	void Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent);
 
 	/**
+	 * Reads in the element \<script\> (the DOMElement) and executes
+	 * the script's code.
+	 *
+	 * @param Element	The Xeromyces object that represents
+	 *					the sprite-tag.
+	 * @param pFile		The Xeromyces object for the file being read
+	 *
+	 * @see LoadXMLFile()
+	 */
+	void Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile);
+
+	/**
 	 * Reads in the element \<sprite\> (the DOMElement) and stores the
 	 * result in a new CGUISprite.
 	 *
@@ -415,7 +436,6 @@ private:
 	void Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile);
 
 	//@}
-
 
 private:
 

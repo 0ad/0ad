@@ -30,8 +30,6 @@ void CRadioButton::HandleMessage(const SGUIMessage &Message)
 		GUI<bool>::SetSetting(this, "checked", true);
 		
 		//GetGUI()->TEMPmessage = "Check box " + string((const TCHAR*)m_Name) + " was " + (m_Settings.m_Checked?"checked":"unchecked");
-
-		ScriptEvent("Press");
 		break;
 	}
 

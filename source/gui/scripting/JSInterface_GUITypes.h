@@ -1,4 +1,4 @@
-// $Id: JSInterface_GUITypes.h,v 1.1 2004/07/08 15:19:45 philip Exp $
+// $Id: JSInterface_GUITypes.h,v 1.2 2004/07/11 16:21:52 philip Exp $
 
 #include "scripting/ScriptingHost.h"
 
@@ -17,7 +17,7 @@
 	}
 
 GUISTDTYPE(Size)
-GUISTDTYPE(Colour)
+GUISTDTYPE(Color)
 GUISTDTYPE(Mouse)
 
 #undef GUISTDTYPE // avoid unnecessary pollution
