@@ -352,11 +352,11 @@ static int handler(const SDL_Event* ev)
 //			MusicPlayer.play();
 			Handle hs = snd_open(
 				//"audio/music/germanic peace 3.ogg"
-				//"audio/voice/hellenes/citizensoldier/Attack-ZeusSaviourandVictory-Zeus-soter-kai-nike.ogg"
+				"audio/voice/hellenes/citizensoldier/Attack-ZeusSaviourandVictory-Zeus-soter-kai-nike.ogg"
 				//"audio/voice/hellenes/citizensoldier/Stance-HoldYourPosition-Kataschete-ten-taxin.ogg"
 				//"audio/voice/hellenes/citizensoldier/Econ-Chop-Kopto.ogg"
 				//"audio/lead_em.wav"
-				"audio/nike.wav"
+				//"audio/nike.wav"
 				//"audio/nike.ogg"
 				//"audio/1111_Warcraft 2 - Orc Defeat.ogg"
 				);
@@ -1083,7 +1083,11 @@ static void Frame()
 
 		CCamera* camera = g_Game->GetView()->GetCamera();
 		CMatrix3D& orientation = camera->m_Orientation;
-		snd_update(orientation._data);
+
+		float* pos = &orientation._data[12];
+		float* dir = &orientation._data[8];
+		float* up  = &orientation._data[4];
+		snd_update(pos, dir, up);
 	}
 
 
