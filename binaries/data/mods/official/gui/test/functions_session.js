@@ -1,6 +1,6 @@
 function initSession()
 {
-	GUIType="top";
+	GUIType="bottom";
 	GUIStyleName = new Array();
 	GUIStyleSize1 = new Array();
 	GUIStyleSize2 = new Array();
@@ -66,6 +66,10 @@ function getObjectInfo()
 		// Update portrait
 		setPortrait("session_panel_status_portrait", selection[0].traits.id.icon);
 
+		// Update hitpoints
+		getGUIObjectByName("session_panel_status_icon_hp_text").caption = selection[0].traits.health.initial + "/" + selection[0].traits.health.hitpoints;
+		getGUIObjectByName("session_panel_status_icon_hp_bar").caption = ((selection[0].traits.health.initial * 100 ) / selection[0].traits.health.hitpoints);
+
 		// Reveal Status Orb
 		getGUIObjectByName("session_status_orb").hidden = false;
 
@@ -76,7 +80,9 @@ function getObjectInfo()
 			// NOTE: This "if" is an optimisation because the game crawls if this set of processing occurs every frame.
 			// It's quite possible for the player to select another group of the same size and for it to not be recognised.
 			// Best solution would be to base this off a "new entities selected" instead of an on-tick.
-			if (getGUIObjectByName("session_group_pane").hidden == true || selection.length != MultipleEntitiesSelected)
+			if (
+				// getGUIObjectByName("session_group_pane").hidden == true || 
+				selection.length != MultipleEntitiesSelected)
 			{
 
 				// Reveal Group Pane.
@@ -132,6 +138,8 @@ function getObjectInfo()
 						// Reveal and set to display this entity's portrait in the group pane.
 						groupPanePortrait.hidden = false;
 						groupPaneBar.hidden = false;
+						// Set progress bar for hitpoints.
+						groupPaneBar.caption = ((selection[groupPaneLoop-1].traits.health.initial * 100 ) / selection[groupPaneLoop-1].traits.health.hitpoints);
 						setPortrait("session_group_pane_portrait_" + groupPaneLoop, selection[groupPaneLoop-1].traits.id.icon);
 					}
 					// If it's empty, hide its group portrait.

@@ -98,6 +98,23 @@
                 <image backcolor="150 105 180" size="2 0 100%-2 100%" z-level="1" />
         </sprite>
 
+        <sprite name="green-bar">
+                <image backcolor="255 255 255" size="0 1 1 100%-1" />
+                <image backcolor="255 255 255" size="0 0 100%-1 1" />
+                <image backcolor="64 64 64" size="100%-1 0 100% 100%" />
+                <image backcolor="64 64 64" size="0 100%-1 100%-1 100%" />
+                <image backcolor="128 128 128" size="100%-2 1 100%-1 100%-1" />
+                <image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
+                <image backcolor="0 200 0" size="0 0 100% 100%" />
+        </sprite>
+
+        <sprite name="back-bar">
+                <image backcolor="200 200 200" size="0 1 1 100%-1" />
+                <image backcolor="200 200 200" size="0 0 100%-1 1" />
+                <image backcolor="200 200 200" size="100%-1 0 100% 100%" />
+                <image backcolor="200 200 200" size="0 100%-1 100%-1 100%" />
+        </sprite>
+
         <!--
         ==========================================
         PREGAME GUI
