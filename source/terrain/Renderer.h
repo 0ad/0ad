@@ -1,7 +1,6 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include <windows.h>
 #include "ogl.h"
 
 #include "Terrain.H"
@@ -15,7 +14,7 @@ class CRenderer
 		CRenderer();
 		~CRenderer();
 
-		bool Initialize (HWND hwnd, int width, int height, int depth);
+		bool Initialize (int width, int height, int depth);
 		void Shutdown ();
 
 		void RenderTerrain (CTerrain *terrain, CCamera *camera);

@@ -1,5 +1,3 @@
-#include <windows.h>
-
 #include "Matrix3D.H"
 #include "Renderer.H"
 #include "Terrain.H"
@@ -8,9 +6,9 @@
 #include "wsdl.h"
 #include "tex.h"
 
+// TODO: fix scrolling hack - framerate independent, use SDL
+#include "win.h"	// REMOVEME
 
-HWND InitializeGame (HINSTANCE hInstance);
-void DestroyGame();
 
 void InitScene ();
 void InitResources ();
@@ -18,8 +16,6 @@ void RenderScene ();
 
 extern bool keys[256];
 
-
-HWND				GameWindow;
 
 CMatrix3D			g_WorldMat;
 CRenderer			g_Renderer;
@@ -50,7 +46,7 @@ extern int xres, yres;
 
 void terr_init()
 {
-	g_Renderer.Initialize (GameWindow, 1280, 1024, 32);
+	g_Renderer.Initialize (1280, 1024, 32);
 
 	InitResources ();
 	InitScene ();

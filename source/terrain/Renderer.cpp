@@ -23,7 +23,7 @@ CRenderer::~CRenderer ()
 }
 
 	
-bool CRenderer::Initialize (HWND hwnd, int width, int height, int depth)
+bool CRenderer::Initialize (int width, int height, int depth)
 {
 	m_Width = width;
 	m_Height = height;
