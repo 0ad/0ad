@@ -8,6 +8,8 @@
 
 #include "scripting/ScriptingHost.h"
 
+//#include "lib/input.h"
+
 CConsole::CConsole(float X, float Y, float W, float H)
 	: m_fX(X), m_fY(Y), m_fWidth(W), m_fHeight(H)
 {
@@ -287,6 +289,28 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 			m_iBufferLength--;
 			return;
 
+		case SDLK_DELETE:
+			if (IsEmpty() || IsEOB()) return;
+
+			if (m_iBufferPos == m_iBufferLength-1)
+				m_szBuffer[m_iBufferPos] = '\0';
+			else{
+				for(int j=m_iBufferPos; j<m_iBufferLength-1; j++)
+					m_szBuffer[j] = m_szBuffer[j+1]; // move chars to left
+				m_szBuffer[m_iBufferLength-1] = '\0';
+			}
+
+			m_iBufferLength--;
+			return;
+
+		case SDLK_HOME:
+			m_iBufferPos = 0;
+			return;
+
+		case SDLK_END:
+			m_iBufferPos = m_iBufferLength;
+			return;
+
 		case SDLK_LEFT:
 			if (m_iBufferPos) m_iBufferPos--;
 			return;
@@ -346,28 +370,6 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 	}
 }
 
-/* 
-// Don't want to use this any more - all complicated messages
-// should go through the Unicode version.
-void CConsole::InsertMessage(const char* szMessage, ...)
-{
-	va_list args;
-	char* szBuffer = new char[BUFFER_SIZE];
-	wchar_t* szWBuffer = new wchar_t[BUFFER_SIZE];
-
-	va_start(args, szMessage);
-		vsnprintf(szBuffer, BUFFER_SIZE, szMessage, args);
-	va_end(args);
-
-	mbstowcs(szWBuffer, szBuffer, BUFFER_SIZE);
-
-	m_deqMsgHistory.push_front(szWBuffer);
-
-	delete[] szBuffer;
-	delete[] szWBuffer;
-}
-*/
-
 
 void CConsole::InsertMessage(const wchar_t* szMessage, ...)
 {
@@ -376,7 +378,7 @@ void CConsole::InsertMessage(const wchar_t* szMessage, ...)
 
 	va_start(args, szMessage);
 	if (vswprintf(szBuffer, BUFFER_SIZE, szMessage, args) == -1)
-		debug_out("Error printfing console message (buffer size exceeded?");
+		debug_out("Error printfing console message (buffer size exceeded?)\n");
 	va_end(args);
 
 	m_deqMsgHistory.push_front(szBuffer);
