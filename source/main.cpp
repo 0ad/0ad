@@ -1132,11 +1132,10 @@ static void Frame()
 
 
 #ifdef _WIN32
+# ifdef NDEBUG
 // Define/undefine this as desired:
-
-#ifndef NDEBUG
 #  define CUSTOM_EXCEPTION_HANDLER
-#endif
+# endif
 #endif
 
 #ifdef CUSTOM_EXCEPTION_HANDLER
