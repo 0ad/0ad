@@ -4,10 +4,8 @@
 #include "ScriptGlue.h"
 #include "CConsole.h"
 #include <sstream>
-#include <fstream>
-#include <iostream>
 
-#include "res/vfs.h"
+#include "res/res.h"
 
 #ifdef _WIN32
 # include "float.h" // <- MT: Just for _finite(), converting certain strings was causing wierd bugs.
@@ -101,6 +99,9 @@ void ScriptingHost::LoadScriptFromDisk(const std::string & fileName)
 
 	jsval rval; 
 	JSBool ok = JS_EvaluateScript(m_Context, m_GlobalObject, (const char*)script, (unsigned int)script_len, fn, 0, &rval); 
+
+	int err = mem_free(script);
+	assert(err == 0);
 
 	if (ok == JS_FALSE)
 		throw PSERROR_Scripting_LoadFile_EvalErrors();
