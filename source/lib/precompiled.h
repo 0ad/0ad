@@ -4,7 +4,8 @@
 // hence, all files include precompiled.h and then all the headers they'd
 // normally lead => best build performance with or without PCH.
 
-#include "config.h"
+#include "lib/config.h"
+#include "lib/types.h"
 
 #ifdef _MSC_VER
 #pragma warning(disable:4996)	// function is deprecated
@@ -57,6 +58,3 @@
 #endif // HAVE_DEBUGALLOC
 
 #endif // #ifdef HAVE_PCH
-
-// Macros for declaring new exception groups/types
-#include "ps/Errors.h"

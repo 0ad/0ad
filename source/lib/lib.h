@@ -57,11 +57,15 @@ STMT(\
 	}\
 )
 
+// note: UINT_MAX is necessary when testing a Handle value and
+// also returning Handle. the negative value (error return)
+// is guaranteed to fit into an int, but we need to "mask"
+// it to avoid VC cast-to-smaller-type warnings.
 
 #ifdef _WIN32
 #define CHECK_ERR(func)\
 STMT(\
-	int err__ = (int)(func);\
+	int err__ = (int)((func) & UINT_MAX);\
 	if(err__ < 0)\
 	{\
 		assert(0 && "FYI: CHECK_ERR reports that a function failed."\
@@ -72,7 +76,7 @@ STMT(\
 #else
 #define CHECK_ERR(func)\
 STMT(\
-	int err__ = (int)(func);\
+	int err__ = (int)((func) & UINT_MAX);\
 	if(err__ < 0)\
 	{\
 		debug_out("%s:%d: FYI: CHECK_ERR reports that a function failed."\
@@ -230,12 +234,17 @@ enum LibError
 // can't pass code as string, and use s[0]..s[3], because
 // VC6/7 don't realize the macro is constant
 // (it should be useable as a switch{} expression)
+//
+// these casts are ugly but necessary. u32 is required because u8 << 8 == 0;
+// the additional u8 cast ensures each character is treated as unsigned
+// (otherwise, they'd be promoted to signed int before the u32 cast,
+// which would break things).
 #if SDL_BYTE_ORDER == SDL_BIG_ENDIAN
-#define FOURCC(a,b,c,d) ( ((u32)a << 24) | ((u32)b << 16) | \
-	((u32)c << 8 ) | ((u32)d << 0 ) )
+#define FOURCC(a,b,c,d) ( ((u32)(u8)a) << 24 | ((u32)(u8)b) << 16 | \
+     ((u32)(u8)c) << 8  | ((u32)(u8)d) << 0  )
 #else
-#define FOURCC(a,b,c,d) ( ((u32)a << 0 ) | ((u32)b << 8 ) | \
-	((u32)c << 16) | ((u32)d << 24) )
+#define FOURCC(a,b,c,d) ( ((u32)(u8)a) << 0  | ((u32)(u8)b) << 8  | \
+     ((u32)(u8)c) << 16 | ((u32)(u8)d) << 24 )
 #endif
 
 
