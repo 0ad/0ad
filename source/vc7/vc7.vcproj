@@ -117,15 +117,6 @@
 					RelativePath="..\gui\CGUI.cpp">
 				</File>
 				<File
-					RelativePath="..\gui\CGUIButtonBehavior.cpp">
-				</File>
-				<File
-					RelativePath="..\gui\CGUIObject.cpp">
-				</File>
-				<File
-					RelativePath="..\gui\CGUISettingsObject.cpp">
-				</File>
-				<File
 					RelativePath="..\gui\CGUISprite.cpp">
 				</File>
 				<File
@@ -133,6 +124,15 @@
 				</File>
 				<File
 					RelativePath="..\gui\GUIutil.cpp">
+				</File>
+				<File
+					RelativePath="..\gui\IGUIButtonBehavior.cpp">
+				</File>
+				<File
+					RelativePath="..\gui\IGUIObject.cpp">
+				</File>
+				<File
+					RelativePath="..\gui\IGUISettingsObject.cpp">
 				</File>
 				<File
 					RelativePath="..\gui\XercesErrorHandler.cpp">
@@ -267,15 +267,6 @@
 					RelativePath="..\gui\CGUI.h">
 				</File>
 				<File
-					RelativePath="..\gui\CGUIButtonBehavior.h">
-				</File>
-				<File
-					RelativePath="..\gui\CGUIObject.h">
-				</File>
-				<File
-					RelativePath="..\gui\CGUISettingsObject.h">
-				</File>
-				<File
 					RelativePath="..\gui\CGUISprite.h">
 				</File>
 				<File
@@ -286,6 +277,15 @@
 				</File>
 				<File
 					RelativePath="..\gui\GUIutil.h">
+				</File>
+				<File
+					RelativePath="..\gui\IGUIButtonBehavior.h">
+				</File>
+				<File
+					RelativePath="..\gui\IGUIObject.h">
+				</File>
+				<File
+					RelativePath="..\gui\IGUISettingsObject.h">
 				</File>
 				<File
 					RelativePath="..\gui\XercesErrorHandler.h">
