@@ -385,7 +385,7 @@ static void out(const wchar_t* fmt, ...)
 static bool is_string_ptr(u64 addr, size_t stride = 1)
 {
 	// completely bogus on IA32; save ourselves the segfault (slow).
-#ifdef _WIN32
+#ifdef _M_IX86
 	if(addr < 0x10000 || addr > 0xc0000000)
 		return false;
 #endif
@@ -422,6 +422,7 @@ static bool is_string_ptr(u64 addr, size_t stride = 1)
 	}
 	__except(1)
 	{
+		debug_out("^ raised by is_string_ptr; ignore\n");
 		return false;
 	}
 }
@@ -877,14 +878,11 @@ static int dump_data_sym(DWORD data_idx, const u8* p, uint level)
 	if(!SymFromIndexW(hProcess, mod_base, data_idx, sym))
 		return -1;
 
+	// dump_udt does some filtering (it skips symbols that don't have a
+	// defined offset), but we still get some SymTagBaseClass here.
+	// just ignore them. note: dump_sym_cb is the only other call site.
 	if(sym->Tag != SymTagData)
-	{
-		// still happens, even though dump_udt skips symbols that don't have
-		// defined offset values. don't know any other way to prevent this.
-		// (note: dump_sym_cb is the only other call site).
-		debug_out("dump_data_sym: unexpected symbol tag %d\n", sym->Tag);
-		return -1;
-	}
+		return 0;
 
 	// indent
 	for(uint i = 0; i <= level+1; i++)
@@ -952,7 +950,7 @@ static BOOL CALLBACK dump_sym_cb(SYMBOL_INFO* sym, ULONG sym_size, void* ctx)
 	{
 		if(p->locals_active)
 		{
-			out(L"params:\r\n");
+			out(L"    params:\r\n");
 			p->locals_active = false;
 		}
 	}
@@ -960,7 +958,7 @@ static BOOL CALLBACK dump_sym_cb(SYMBOL_INFO* sym, ULONG sym_size, void* ctx)
 	{
 		if(!p->locals_active)
 		{
-			out(L"locals:\r\n ");
+			out(L"    locals:\r\n ");
 			p->locals_active = true;
 		}
 	}
