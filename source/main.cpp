@@ -1288,16 +1288,6 @@ static void Frame()
 }
 
 
-// Choose when to override the standard exception handling behaviour
-// (opening the debugger when available, or crashing when not) with
-// code that generates a crash log/dump.
-#if defined(_WIN32) && ( defined(NDEBUG) || defined(TESTING) )
-# define CUSTOM_EXCEPTION_HANDLER
-#endif
-
-#ifdef CUSTOM_EXCEPTION_HANDLER
-#include <excpt.h>
-#endif
 
 #ifndef SCED
 
@@ -1305,37 +1295,25 @@ int main(int argc, char* argv[])
 {
 	MICROLOG(L"In main");
 
-#ifdef CUSTOM_EXCEPTION_HANDLER
-	__try
-	{
-#endif
-		MICROLOG(L"Init");
-		Init(argc, argv, true);
+	MICROLOG(L"Init");
+	Init(argc, argv, true);
 
-		// Do some limited tests to ensure things aren't broken
+	// Do some limited tests to ensure things aren't broken
 #ifndef NDEBUG
-		{
-		extern void PerformTests();
-		PerformTests();
-		}
-#endif
-
-		while(!quit)
-		{
-			MICROLOG(L"(Simulation) Frame");
-			Frame();
-		}
-
-		//_CrtMemDumpAllObjectsSince(NULL);
-
-		MICROLOG(L"Shutdown");
-		Shutdown();
-#ifdef CUSTOM_EXCEPTION_HANDLER
-	}
-	__except(debug_main_exception_filter(GetExceptionCode(), GetExceptionInformation()))
 	{
+	extern void PerformTests();
+	PerformTests();
 	}
 #endif
+
+	while(!quit)
+	{
+		MICROLOG(L"(Simulation) Frame");
+		Frame();
+	}
+
+	MICROLOG(L"Shutdown");
+	Shutdown();
 
 	exit(0);
 }
