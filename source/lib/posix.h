@@ -31,9 +31,12 @@
 #include <errno.h>
 #include <dirent.h>
 #include <sys/utsname.h>
+#include <sys/socket.h>
 #include <netdb.h>
 #include <netinet/in.h>
+#include <netinet/tcp.h>
 #include <arpa/inet.h>
+#include <sys/ioctl.h>
 
 #define __POSIX_H__		// => rest of header ignored
 
@@ -270,6 +273,8 @@ struct sigevent
     int sigev_notify;			// notification mode
     int sigev_signo;			// signal number
     union sigval sigev_value;	// signal value
+	void (*sigev_notify_function)(union sigval);
+//	pthread_attr_t *sigev_notify_attributes;
 };
 
 
@@ -350,15 +355,32 @@ typedef unsigned short sa_family_t;
 #define SOCK_STREAM 1
 #define SOCK_DGRAM 2
 #define AF_INET 2
+#define PF_INET AF_INET
+#define AF_INET6        23
+#define PF_INET6 AF_INET6
 
 IMP(int, socket, (int, int, int))
 IMP(int, setsockopt, (int, int, int, const void*, socklen_t))
+IMP(int, ioctlsocket, (int, int, const void *))
+IMP(int, shutdown, (int, int))
+IMP(int, closesocket, (int))
+
+#define SOL_SOCKET      0xffff          /* options for socket level */
+#define TCP_NODELAY		0x0001
+
+/* This is the slightly unreadable encoded form of the windows ioctl that sets
+non-blocking mode for a socket */
+#define FIONBIO     0x8004667E
+
+enum {
+	SHUT_RD=0,
+	SHUT_WR=1,
+	SHUT_RDWR=2
+};
 IMP(int, getsockopt, (int, int, int, void*, socklen_t*))
 
 
-
 struct sockaddr;
-
 
 //
 // <netinet/in.h>
@@ -421,6 +443,7 @@ IMP(struct hostent*, gethostbyname, (const char *name))
 //
 
 extern u16_t htons(u16_t hostshort);
+IMP(unsigned long, htonl, (unsigned long hostlong))
 #define ntohs htons
 
 IMP(in_addr_t, inet_addr, (const char*))
@@ -434,9 +457,7 @@ IMP(ssize_t, send, (int, const void*, size_t, int))
 IMP(ssize_t, sendto, (int, const void*, size_t, int, const struct sockaddr*, socklen_t))
 IMP(ssize_t, recvfrom, (int, void*, size_t, int, struct sockaddr*, socklen_t*))
 
- 
 #endif /* _WINSOCKAPI_ */
-
 
 //
 // <poll.h>
@@ -491,10 +512,7 @@ enum
 
 extern int ioctl(int fd, int op, int* data);
 
-#ifndef _WINSOCKAPI_
 #define FIONREAD 0
-#endif
-
 
 extern void _get_console();
 extern void _hide_console();
