@@ -49,7 +49,7 @@ bool I18n::LoadLanguage(const char* name)
 
 	// Open *.lng with LoadStrings
 
-	if (! VFSUtil::FindFiles(dirname, ".lng", files))
+	if (! VFSUtil::FindFiles(dirname, "*.lng", files))
 		return false;
 
 	for (filename = files.begin(); filename != files.end(); ++filename)
@@ -65,7 +65,7 @@ bool I18n::LoadLanguage(const char* name)
 
 	// Open *.wrd with LoadDictionary
 
-	if (! VFSUtil::FindFiles(dirname, ".wrd", files))
+	if (! VFSUtil::FindFiles(dirname, "*.wrd", files))
 		return false;
 
 	for (filename = files.begin(); filename != files.end(); ++filename)
@@ -81,7 +81,7 @@ bool I18n::LoadLanguage(const char* name)
 
 	// Open *.js with LoadFunctions
 
-	if (! VFSUtil::FindFiles(dirname, ".js", files))
+	if (! VFSUtil::FindFiles(dirname, "*.js", files))
 		return false;
 
 	for (filename = files.begin(); filename != files.end(); ++filename)
