@@ -115,6 +115,7 @@ if (OS == "windows") then
 		"/DELAYLOAD:ws2_32.dll",
 		"/DELAYLOAD:version.dll",
 		"/DELAYLOAD:ddraw.dll",
+		"/DELAYLOAD:dsound.dll",
 		"/DELAYLOAD:glu32.dll",
 		"/DELAYLOAD:openal32.dll",
 		"/DELAY:UNLOAD"		-- allow manual unload of delay-loaded DLLs
