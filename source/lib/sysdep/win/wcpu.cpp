@@ -6,6 +6,8 @@
 #include "cpu.h"
 
 
+// helper routine, called by ia32.cpp check_hyperthread
+// not possible with POSIX calls.
 int on_each_cpu(void(*cb)())
 {
 	const HANDLE hProcess = GetCurrentProcess();
@@ -21,15 +23,17 @@ int on_each_cpu(void(*cb)())
 
 	for(DWORD cpu_bit = 1; cpu_bit != 0 && cpu_bit <= process_affinity; cpu_bit *= 2)
 	{
-		// switch to target CPU (if present in affinity bitmap)
+		// check if we can switch to target CPU
 		if(!(process_affinity & cpu_bit))
 			continue;
+		// .. and do so.
 		if(!SetProcessAffinityMask(hProcess, process_affinity))
 		{
 			debug_warn("SetProcessAffinityMask failed");
 			continue;
 		}
-		// .. reschedule, to make sure we switch CPUs
+
+		// reschedule, to make sure we switch CPUs
 		Sleep(0);
 
 		cb();
