@@ -18,12 +18,13 @@
 
 #include <cassert>
 #include <cstdlib>
+#include <cstdio>
 
+#include <winsock2.h>
 #include "posix.h"
 #include "win.h"
 #include "misc.h"
 #include "types.h"
-
 
 // Win32 functions require sector aligned transfers.
 // updated by aio_open; changes don't affect aio_return
@@ -119,14 +120,18 @@ static void cleanup(void)
 	CloseHandle(reqs_mutex);
 }
 
-
-// called by first aio_open
+// called by aio_open and aio_open_winhandle
 static void init()
 {
-	for(int i = 0; i < MAX_REQS; i++)
-		reqs[i].ovl.hEvent = CreateEvent(0,1,0,0);	// manual reset
+	ONCE(
+		for(int i = 0; i < MAX_REQS; i++)
+		{
+			reqs[i].ovl.hEvent = CreateEvent(0,1,0,0);	// manual reset
+			//printf("Req %p [%d]: hEvent %x\n", reqs+i, i, reqs[i].ovl.hEvent);
+		}
 
-	atexit(cleanup);
+		atexit(cleanup);
+	)
 }
 
 
@@ -141,14 +146,9 @@ int aio_close(int fd)
 	return 0;
 }
 
-
-// open fn in async mode; associate with fd (retrieve via aio_h(fd))
-int aio_open(const char* fn, int mode, int fd)
+//NOTE: Requires that the "open" lock is held
+int alloc_handle_entry(int fd)
 {
-LOCK(open)
-
-	ONCE(init())
-
 	// alloc aio_hs entry
 	if((unsigned)fd >= hs_cap)
 	{
@@ -165,6 +165,34 @@ LOCK(open)
 		aio_hs = aio_hs2;
 		hs_cap = hs_cap2;
 	}
+	return 0;
+}
+
+// fd is already opened in async/overlapped mode; add to required internal structures
+int aio_open_winhandle(HANDLE fd)
+{
+	init();
+
+	LOCK(open)
+
+	if (alloc_handle_entry(HANDLE2INT(fd)) == -1)
+		return -1;
+
+	aio_hs[HANDLE2INT(fd)]=fd;
+
+	UNLOCK(open)
+	return 0;
+}
+
+// open fn in async mode; associate with fd (retrieve via aio_h(fd))
+int aio_open(const char* fn, int mode, int fd)
+{
+	init();
+
+LOCK(open)
+
+	if (alloc_handle_entry(fd) == -1)
+		return -1;
 
 UNLOCK(open)
 
@@ -205,7 +233,6 @@ UNLOCK(open)
 	return 0;
 }
 
-
 // called by aio_read, aio_write, and lio_listio
 // cb->aio_lio_opcode specifies desired operation
 static int aio_rw(struct aiocb* cb)
@@ -217,7 +244,10 @@ static int aio_rw(struct aiocb* cb)
 
 	HANDLE h = aio_h(cb->aio_fildes);
 	if(h == INVALID_HANDLE_VALUE)
+	{
+		printf("Invalid handle\n");
 		return -1;
+	}
 
 LOCK(reqs)
 
@@ -226,41 +256,56 @@ LOCK(reqs)
 	if(!r)
 	{
 		UNLOCK(reqs)
+		printf("No Req\n");
 		return -1;
 	}
 	r->cb = cb;
 
 UNLOCK(reqs)
 
+	unsigned long opt=0;
+	int optlen=sizeof(opt);
+
 	// align
 	r->pad = cb->aio_offset % sector_size;		// offset to start of sector
-	const u32 ofs = cb->aio_offset - r->pad;
-	const u32 size = round_up((long)cb->aio_nbytes+r->pad, sector_size);
+	u32 ofs = cb->aio_offset - r->pad;
+	u32 size = round_up((long)cb->aio_nbytes+r->pad, sector_size);
 	void* buf = cb->aio_buf;
 	const size_t _buf = (char*)buf - (char*)0;
-	if(r->pad || _buf % sector_size)
+	if (getsockopt((SOCKET)h, SOL_SOCKET, SO_TYPE, (char *)&opt, &optlen)==-1 &&
+		(WSAGetLastError()==WSAENOTSOCK))
 	{
-		// current align buffer is too small - resize
-		if(r->buf_size < size)
+		if(r->pad || _buf % sector_size)
 		{
-			void* buf2 = realloc(r->buf, size);
-			if(!buf2)
+			// current align buffer is too small - resize
+			if(r->buf_size < size)
+			{
+				void* buf2 = realloc(r->buf, size);
+				if(!buf2)
+					return -1;
+				r->buf = buf2;
+				r->buf_size = size;
+			}
+
+			// unaligned writes are not supported -
+			// we'd have to read padding, then write our data. ugh.
+			if(cb->aio_lio_opcode == LIO_WRITE)
+			{
 				return -1;
-			r->buf = buf2;
-			r->buf_size = size;
+			}
+
+			buf = r->buf;
 		}
-
-		// unaligned writes are not supported -
-		// we'd have to read padding, then write our data. ugh.
-		if(cb->aio_lio_opcode == LIO_WRITE)
-			return -1;
-
-		buf = r->buf;
+	}
+	else
+	{
+		ofs=0;
+		size=cb->aio_nbytes;
 	}
 
 	r->ovl.Offset = ofs;
 	u32 status = (cb->aio_lio_opcode == LIO_READ)?
-		ReadFile(h, buf, size, 0, &r->ovl) : WriteFile(h, buf, size, 0, &r->ovl);
+		ReadFile(h, buf, size, NULL, &r->ovl) : WriteFile(h, buf, size, NULL, &r->ovl);
 
 	if(status || GetLastError() == ERROR_IO_PENDING)
 		return 0;
