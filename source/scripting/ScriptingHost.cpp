@@ -64,8 +64,6 @@ ScriptingHost::ScriptingHost() : m_RunTime(NULL), m_Context(NULL), m_GlobalObjec
 
 	if( JS_DefineProperties( m_Context, m_GlobalObject, ScriptGlobalTable ) == JS_FALSE )
 		throw( std::string( "ScriptingHost: Failed to setup native objects" ) );
-
-	std::cout << "Scripting environment initialized" << std::endl;
 }
 
 ScriptingHost::~ScriptingHost()
