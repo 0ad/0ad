@@ -4,6 +4,7 @@
 
 #include "Prometheus.h"
 #include "sysdep/sysdep.h"
+#include "input.h"
 
 #include "scripting/ScriptingHost.h"
 
@@ -485,11 +486,11 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 
 extern CConsole* g_Console;
 
-bool conInputHandler(const SDL_Event& ev)
+int conInputHandler(const SDL_Event* ev)
 {
-	if(ev.type != SDL_KEYDOWN)
-		return false;
+	if(ev->type != SDL_KEYDOWN)
+		return EV_PASS;
 
-	g_Console->InsertChar(ev.key.keysym.sym, (wchar_t)ev.key.keysym.unicode );
-	return g_Console->IsActive();
+	g_Console->InsertChar(ev->key.keysym.sym, (wchar_t)ev->key.keysym.unicode );
+	return g_Console->IsActive()? EV_HANDLED : EV_PASS;
 }
