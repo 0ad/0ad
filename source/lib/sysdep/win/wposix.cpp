@@ -341,9 +341,10 @@ struct ThreadParam
 
 static unsigned __stdcall thread_start(void* arg)
 {
-	const ThreadParam* param = (const ThreadParam*)arg;
+	ThreadParam* param = (ThreadParam*)arg;
 
 	param->func(param->user_arg);
+	delete param;
 	return 0;
 }
 
@@ -353,8 +354,13 @@ int pthread_create(pthread_t* thread, const void* attr, void*(*func)(void*), voi
 	UNUSED(attr);
 
 	// can't use asm - _beginthreadex might be a func ptr (with DLL CRT)
-	const ThreadParam param = { func, user_arg };
-	*thread = (pthread_t)_beginthreadex(0, 0, thread_start, (void*)&param, 0, 0);
+
+	// Heap Allocate - we can't make sure that the other thread's thread_start
+	// function is run before we exit this stack frame
+	ThreadParam *param = new ThreadParam;
+	param->func=func;
+	param->user_arg=user_arg;
+	*thread = (pthread_t)_beginthreadex(0, 0, thread_start, (void*)param, 0, 0);
 	return 0;
 }
 
