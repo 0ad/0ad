@@ -15,12 +15,6 @@
                 // Play main 0 A.D. theme when the main menu starts.
 		curr_music = newRandomSound("music", "theme");
 		curr_music.loop();
-//		curr_session_playlist_1 = newRandomSound("music", "peace");
-//		curr_session_playlist_1.play();
-//		curr_session_playlist_1.free();
-//		curr_session_playlist_2 = newRandomSound("music", "peace");
-//		curr_session_playlist_2.play();
-//		curr_session_playlist_2.free();
         ]]></action>
 
         <object type="image" name="pregame-mainmenu-background-image" sprite="pregame-mainmenu-background" size="0 0 100% 100%" z="100" hidden="false" />
@@ -32,9 +26,10 @@
                 GUIObjectUnhide("End_Game_Button");
                 GUIObjectHide("pregame_gui");
                 FlipGUI(GUIType);
-		curr_music.free(); // Close main theme when starting game session.
+		// Select session peace track.
 		curr_session_playlist_1 = newRandomSound("music", "peace");
-		curr_session_playlist_1.play();
+		// Fade out main theme and fade in session theme.
+		CrossFade(curr_music, curr_session_playlist_1, 0.0001);
             ]]></action>
             <action on="MouseEnter"><![CDATA[
                 tooltipObject = getGUIObjectByName("pregame-mainmenu-tooltip");

@@ -13,8 +13,15 @@
 // Close "s" and free it from memory (use in conjunction with loop()):
 // s.free();
 
+// Adjust the gain (volume) of a sound (floating point range between 0 (silent) and 1 (max volume)).
+// s.SetGain(value);
+
+// ====================================================================
+
 function newRandomSound(soundType, soundSubType, soundPrePath)
 {
+	// Return a random audio file by category, to be assigned to a handle.
+
 	switch (soundType)
 	{
 		case "music":
@@ -230,3 +237,48 @@ function newRandomSound(soundType, soundSubType, soundPrePath)
 
 	return new Sound(randomSoundPath);
 }
+
+// ====================================================================
+
+function FadeOut (soundHandle, Rate)
+{
+	// Adjust the gain of a sound until it is zero.
+
+	for (fadeLoop = 1; fadeLoop > 0; fadeLoop = fadeLoop - Rate)
+	{
+		soundHandle.setGain(fadeLoop);
+	}
+	
+	return true;
+}
+
+// ====================================================================
+
+function FadeIn (soundHandle, Gain, Rate)
+{
+	// Adjust the gain of a sound from zero up to the given value.
+
+	for (fadeLoop = 0; fadeLoop < Gain; fadeLoop = fadeLoop + Rate)
+	{
+		soundHandle.setGain(fadeLoop);
+	}
+	
+	return true;	
+}
+
+// ====================================================================
+
+function CrossFade (outHandle, inHandle, Rate)
+{
+	// Accepts two sound handles. Fades out the first and fades in the second at the specified rate.
+	// Note that it plays the in and frees the out while it's at it.
+
+	FadeOut(outHandle, Rate);
+	inHandle.play();
+	FadeIn(inHandle, 1, Rate);
+	outHandle.free();
+
+	return true;
+}
+
+// ====================================================================
