@@ -1,3 +1,19 @@
+function initCoord()
+{
+	// Initialise coordinate set for this page.
+	Crd = new Array();
+	Crd.last = 0;
+
+	// Screen percentages.
+	top_screen = 0;
+	left_screen = 0;
+	mid_screen = 50;
+	bottom_screen = 100;
+	right_screen = 100;
+}
+
+// ====================================================================
+
 function AddSizeCoord(objectName, left1, top1, right1, bottom1, rleft1, rtop1, rright1, rbottom1, left2, top2, right2, bottom2, rleft2, rtop2, rright2, rbottom2)
 {
 	// Used to store the two GUI style sizes for an object on creation (specified as coordinates).
@@ -89,90 +105,71 @@ function addSizeArrayXY(objectArray, objectElement, objectX, objectY)
 
 function setSizeArray(objectName, objectArrayElement, rleft, rtop, rright, rbottom)
 {
-	// Use this function as a shortcut to change the size of a GUI control, via an array containing x, y, width and height. 
+	// Use this function as a shortcut to change the size of a GUI control, via an array containing x, y, width, height and 4 relative sizes. 
+	// Alternatively, specify 4 relative sizes to override and use these ones instead.
 
-	switch (rleft)
+	setSizeContainer = new Object();
+
+	// Override with relative parameter if given.
+	if (rleft && rtop && rright && rbottom)
+	{
+		objectArrayElement.rleft = rleft;
+		objectArrayElement.rtop = rtop;
+		objectArrayElement.rright = rright;
+		objectArrayElement.rbottom = rbottom;
+	}
+
+	setSizeContainer.rleft = objectArrayElement.rleft;
+	setSizeContainer.rtop = objectArrayElement.rtop;
+	setSizeContainer.rright = objectArrayElement.rright;
+	setSizeContainer.rbottom = objectArrayElement.rbottom;
+
+	// Define size dimensions.
+	switch (setSizeContainer.rleft)
 	{
 		case left_screen:
-			size_x1 = objectArrayElement.x;
+			setSizeContainer.x1 = objectArrayElement.x;
 		break;
 		case right_screen:
-			size_x1 = -objectArrayElement.x-objectArrayElement.width;
+			setSizeContainer.x1 = -objectArrayElement.x-objectArrayElement.width;
 		break;
 	}
-	switch (rtop)
+	switch (setSizeContainer.rtop)
 	{
 		case top_screen:
-			size_y1 = objectArrayElement.y;
+			setSizeContainer.y1 = objectArrayElement.y;
 		break;
 		case bottom_screen:
-			size_y1 = -objectArrayElement.y-objectArrayElement.height;
+			setSizeContainer.y1 = -objectArrayElement.y-objectArrayElement.height;
 		break;
 	}
-	switch (rright)
+	switch (setSizeContainer.rright)
 	{
 		case left_screen:
-			size_x2 = objectArrayElement.x+objectArrayElement.width;
+			setSizeContainer.x2 = objectArrayElement.x+objectArrayElement.width;
 		break;
 		case right_screen:
-			if (rleft == right_screen)
-				size_x2 = -objectArrayElement.x;
+			if (setSizeContainer.rleft == right_screen)
+				setSizeContainer.x2 = -objectArrayElement.x;
 			else
-				size_x2 = -objectArrayElement.width;				
+				setSizeContainer.x2 = -objectArrayElement.width;				
 		break;
 	}
-	switch (rbottom)
+	switch (setSizeContainer.rbottom)
 	{
 		case top_screen:
-			size_y2 = objectArrayElement.y+objectArrayElement.height;
+			setSizeContainer.y2 = objectArrayElement.y+objectArrayElement.height;
 		break;
 		case bottom_screen:
-			if (rtop == bottom_screen)
-				size_y2 = -objectArrayElement.y;
+			if (setSizeContainer.rtop == bottom_screen)
+				setSizeContainer.y2 = -objectArrayElement.y;
 			else
-				size_y2 = -objectArrayElement.height;
+				setSizeContainer.y2 = -objectArrayElement.height;
 		break;
 	}
 
-	getGUIObjectByName(objectName).size = new GUISize(size_x1, size_y1, size_x2, size_y2, rleft, rtop, rright, rbottom);
-
-/*
-	if (rleft == left_screen && rtop == top_screen && rright == left_screen && rbottom == top_screen)
-		// Object is aligned to top left.
-		getGUIObjectByName(objectName).size = new GUISize(objectArrayElement.x, objectArrayElement.y, objectArrayElement.x+objectArrayElement.width, objectArrayElement.y+objectArrayElement.height, rleft, rtop, rright, rbottom);
-	else
-	if (rleft == left_screen && rtop == bottom_screen && rright == left_screen && rbottom == bottom_screen)
-		// Object is aligned to bottom left.
-		getGUIObjectByName(objectName).size = new GUISize(objectArrayElement.x, -objectArrayElement.y-objectArrayElement.height, objectArrayElement.x+objectArrayElement.width, -objectArrayElement.y, rleft, rtop, rright, rbottom);
-	else
-	if (rleft == right_screen && rtop == top_screen && rright == right_screen && rbottom == top_screen)
-		// Object is aligned to top right.
-		getGUIObjectByName(objectName).size = new GUISize(-objectArrayElement.x-objectArrayElement.width, objectArrayElement.y, -objectArrayElement.x, objectArrayElement.y+objectArrayElement.height, rleft, rtop, rright, rbottom);
-	else
-	if (rleft == right_screen && rtop == bottom_screen && rright == right_screen && rbottom == bottom_screen)
-		// Object is aligned to bottom right.
-		getGUIObjectByName(objectName).size = new GUISize(-objectArrayElement.x-objectArrayElement.width, -objectArrayElement.y-objectArrayElement.height, -objectArrayElement.x, -objectArrayElement.y, rleft, rtop, rright, rbottom);
-	else
-	if (rleft == left_screen && rtop == top_screen && rright == right_screen && rbottom == top_screen)
-		// Object is aligned between left top and right top.
-		getGUIObjectByName(objectName).size = new GUISize(objectArrayElement.x, objectArrayElement.y, -objectArrayElement.width, objectArrayElement.y+objectArrayElement.height, rleft, rtop, rright, rbottom);
-	else
-	if (rleft == left_screen && rtop == top_screen && rright == right_screen && rbottom == bottom_screen)
-		// Object is aligned between left top and right bottom.
-		getGUIObjectByName(objectName).size = new GUISize(objectArrayElement.x, objectArrayElement.y, -objectArrayElement.width, -objectArrayElement.height, rleft, rtop, rright, rbottom);
-	else
-	if (rleft == left_screen && rtop == bottom_screen && rright == right_screen && rbottom == bottom_screen)
-		// Object is aligned between left bottom and right bottom.
-		getGUIObjectByName(objectName).size = new GUISize(objectArrayElement.x, -objectArrayElement.y-objectArrayElement.height, -objectArrayElement.width, objectArrayElement.y, rleft, rtop, rright, rbottom);
-	else
-	if (rleft == left_screen && rtop == top_screen && rright == left_screen && rbottom == bottom_screen)
-		// Object is aligned between left top and left bottom.
-		getGUIObjectByName(objectName).size = new GUISize(objectArrayElement.x, objectArrayElement.y, objectArrayElement.x+objectArrayElement.width, -objectArrayElement.height, rleft, rtop, rright, rbottom);
-	else
-	if (rleft == left_screen && rtop == mid_screen && rright == left_screen && rbottom == mid_screen)
-		// Object is aligned to middle left.
-		getGUIObjectByName(objectName).size = new GUISize(objectArrayElement.x, objectArrayElement.y, objectArrayElement.x+objectArrayElement.width, objectArrayElement.y+objectArrayElement.height, rleft, rtop, rright, rbottom);
-*/
+	// Set appropriate size for dimensions.
+	getGUIObjectByName(objectName).size = new GUISize(setSizeContainer.x1, setSizeContainer.y1, setSizeContainer.x2, setSizeContainer.y2, setSizeContainer.rleft, setSizeContainer.rtop, setSizeContainer.rright, setSizeContainer.rbottom);
 } 
 
 // ====================================================================
@@ -203,7 +200,7 @@ function FlipGUI(NewGUIType)
 
 	if (GUIType != "none")
 	{
-		GUIObjectUnhide("session_gui");
+		GUIObjectUnhide("SESSION_GUI");
 		GUIObjectUnhide("always_on");
 
 		// Seek through all sizes created.
@@ -271,7 +268,7 @@ function FlipGUI(NewGUIType)
 	}
 	else
 	{
-		GUIObjectHide("session_gui");
+		GUIObjectHide("SESSION_GUI");
 		GUIObjectHide("always_on");
 	}
 

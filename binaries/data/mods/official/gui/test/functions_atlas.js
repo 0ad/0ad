@@ -5,17 +5,13 @@
 
 function initAtlas()
 {
-	// Initialise coordinate set for this page.
-	atlasCoord = new Array();
-	atlasCoord_Last = 0;
-
-	// ============================================= GLOBALS =================================================
+	// ============================================ CONSTANTS =================================================
 
 	ATLAS_COUNTER_BOX = new Object();
 	ATLAS_COUNTER_BOX.width = 9;
 	ATLAS_COUNTER_BOX.height = 5;
 
-	// ============================================= SECTIONS ================================================
+	// ============================================= GLOBALS ==================================================
 
 	initAtlasMainScreen();
 	initAtlasSectionMapCreator();
@@ -28,115 +24,120 @@ function initAtlas()
 function initAtlasMainScreen()
 {
 	// Top-left corner piece of main editor frame.
-	ATLAS_MAINBORDER_LT_CORNER 		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		42,
-		42
-	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		0,
-		0
-	);
+	ATLAS_MAINBORDER_LT_CORNER = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= 42; 
+	Crd[Crd.last-1].height	= 42; 
+	Crd[Crd.last-1].x	= 0; 
+	Crd[Crd.last-1].y	= 0; 
 
 	// Top-right corner piece of main editor frame ("Info Selection Box").
-	ATLAS_MAINBORDER_RT_CORNER 		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		203,
-		54
-	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		0,
-		atlasCoord[ATLAS_MAINBORDER_LT_CORNER].y
-	);
+	ATLAS_MAINBORDER_RT_CORNER = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= right_screen;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= 203; 
+	Crd[Crd.last-1].height	= 54; 
+	Crd[Crd.last-1].x	= 0; 
+	Crd[Crd.last-1].y	= Crd[ATLAS_MAINBORDER_LT_CORNER].y;
 
 	// Info window in top-right corner.
-	ATLAS_INFO_WINDOW	 		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_MAINBORDER_RT_CORNER].width-30-6,
-		atlasCoord[ATLAS_MAINBORDER_RT_CORNER].height-9
-	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		3,
-		atlasCoord[ATLAS_MAINBORDER_RT_CORNER].y+3
-	);
+	ATLAS_INFO_WINDOW = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= right_screen;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[ATLAS_MAINBORDER_RT_CORNER].width-30-6;
+	Crd[Crd.last-1].height	= Crd[ATLAS_MAINBORDER_RT_CORNER].height-9;
+	Crd[Crd.last-1].x	= 3;
+	Crd[Crd.last-1].y	= Crd[ATLAS_MAINBORDER_RT_CORNER].y+3;
 
 	// Top menu bar.
-	ATLAS_MAINBORDER_MENU_BKG 		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_MAINBORDER_RT_CORNER].width,
-		19
-	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_MAINBORDER_LT_CORNER].x+atlasCoord[ATLAS_MAINBORDER_LT_CORNER].width,
-		atlasCoord[ATLAS_MAINBORDER_LT_CORNER].y
-	);
+	ATLAS_MAINBORDER_MENU_BKG = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[ATLAS_MAINBORDER_RT_CORNER].width;
+	Crd[Crd.last-1].height	= 19;
+	Crd[Crd.last-1].x	= Crd[ATLAS_MAINBORDER_LT_CORNER].x+Crd[ATLAS_MAINBORDER_LT_CORNER].width;
+	Crd[Crd.last-1].y	= Crd[ATLAS_MAINBORDER_LT_CORNER].y;
 
 	// Menu buttons.	
 	ATLAS_MAINBORDER_MENU_BUTTON = new Object();
 	ATLAS_MAINBORDER_MENU_BUTTON.span = 0;
 	ATLAS_MAINBORDER_MENU_BUTTON.max = 12;
+
 	for (ATLAS_MAINBORDER_MENU_BUTTON.last = 1; ATLAS_MAINBORDER_MENU_BUTTON.last <= ATLAS_MAINBORDER_MENU_BUTTON.max; ATLAS_MAINBORDER_MENU_BUTTON.last++)
 	{
-		ATLAS_MAINBORDER_MENU_BUTTON[ATLAS_MAINBORDER_MENU_BUTTON.last] = atlasCoord_Last;
-		atlasCoord[atlasCoord_Last] = new Object();
-		atlasCoord[atlasCoord_Last].width = 60;
-		atlasCoord[atlasCoord_Last].height = atlasCoord[ATLAS_MAINBORDER_MENU_BKG].height;
+		ATLAS_MAINBORDER_MENU_BUTTON[ATLAS_MAINBORDER_MENU_BUTTON.last] = Crd.last;
+		Crd[Crd.last] = new Object();
+		Crd[Crd.last].width = 60;
+		Crd[Crd.last].height = Crd[ATLAS_MAINBORDER_MENU_BKG].height;
+		Crd[Crd.last].rleft = left_screen;
+		Crd[Crd.last].rtop = top_screen;
+		Crd[Crd.last].rright = left_screen;
+		Crd[Crd.last].rbottom = top_screen;
 
 		if (ATLAS_MAINBORDER_MENU_BUTTON.last == 1)
-			atlasCoord[atlasCoord_Last].x = atlasCoord[ATLAS_MAINBORDER_MENU_BKG].x;
+			Crd[Crd.last].x = Crd[ATLAS_MAINBORDER_MENU_BKG].x;
 		else
-			atlasCoord[atlasCoord_Last].x = atlasCoord[ATLAS_MAINBORDER_MENU_BUTTON[ATLAS_MAINBORDER_MENU_BUTTON.last]-1].x+atlasCoord[atlasCoord_Last].width+ATLAS_MAINBORDER_MENU_BUTTON.span;
+			Crd[Crd.last].x = Crd[ATLAS_MAINBORDER_MENU_BUTTON[ATLAS_MAINBORDER_MENU_BUTTON.last]-1].x+Crd[Crd.last].width+ATLAS_MAINBORDER_MENU_BUTTON.span;
 
-		atlasCoord[atlasCoord_Last].y = atlasCoord[ATLAS_MAINBORDER_MENU_BKG].y;
+		Crd[Crd.last].y = Crd[ATLAS_MAINBORDER_MENU_BKG].y;
 
-		atlasCoord_Last++;
+		Crd.last++;
 	}
 
 	// Top tool bar (1 row).
-	ATLAS_MAINBORDER_TOOLBAR_BKG 		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_MAINBORDER_RT_CORNER].width-atlasCoord[ATLAS_MAINBORDER_LT_CORNER].width,
-		20
-	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_MAINBORDER_LT_CORNER].x,
-		atlasCoord[ATLAS_MAINBORDER_MENU_BKG].y+atlasCoord[ATLAS_MAINBORDER_MENU_BKG].height
-	);
+	ATLAS_MAINBORDER_TOOLBAR_BKG = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[ATLAS_MAINBORDER_RT_CORNER].width-Crd[ATLAS_MAINBORDER_LT_CORNER].width;
+	Crd[Crd.last-1].height	= 20;
+	Crd[Crd.last-1].x	= Crd[ATLAS_MAINBORDER_LT_CORNER].x;
+	Crd[Crd.last-1].y	= Crd[ATLAS_MAINBORDER_MENU_BKG].y+Crd[ATLAS_MAINBORDER_MENU_BKG].height;
 
 	// Top tool bar (max: two rows).
-	ATLAS_MAINBORDER_TOOLBAR_BKG_MAX	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG].width,
-		35
-	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG].x,
-		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG].y
-	);
+	ATLAS_MAINBORDER_TOOLBAR_BKG_MAX = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[ATLAS_MAINBORDER_TOOLBAR_BKG].width;
+	Crd[Crd.last-1].height	= 35;
+	Crd[Crd.last-1].x	= Crd[ATLAS_MAINBORDER_TOOLBAR_BKG].x;
+	Crd[Crd.last-1].y	= Crd[ATLAS_MAINBORDER_TOOLBAR_BKG].y;
 
 	// Fully Minimise arrow on tool bar.
-	ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		12,
-		4
-	); atlasCoord_Last 				= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_MAINBORDER_RT_CORNER].x+atlasCoord[ATLAS_MAINBORDER_RT_CORNER].width+atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].width-15,
-		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG].y+3
-	);
+	ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= right_screen;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= 12;
+	Crd[Crd.last-1].height	= 4;
+	Crd[Crd.last-1].x	= Crd[ATLAS_MAINBORDER_RT_CORNER].x+Crd[ATLAS_MAINBORDER_RT_CORNER].width+Crd[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].width-15;
+	Crd[Crd.last-1].y	= Crd[ATLAS_MAINBORDER_TOOLBAR_BKG].y+3;
 
 	// Minimise arrow on tool bar.
-	ATLAS_MAINBORDER_TOOLBAR_MINIMISE_ARROW	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].width,
-		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].height
-	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].x,
-		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].y+atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG].height-atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].height-1
-	);
+	ATLAS_MAINBORDER_TOOLBAR_MINIMISE_ARROW = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= right_screen;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].width;
+	Crd[Crd.last-1].height	= Crd[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].height;
+	Crd[Crd.last-1].x	= Crd[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].x;
+	Crd[Crd.last-1].y	= Crd[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].y+Crd[ATLAS_MAINBORDER_TOOLBAR_BKG].height-Crd[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].height-1;
 
 	// Fully Maximise arrow on tool bar.
-	ATLAS_MAINBORDER_TOOLBAR_FULLY_MAXIMISE_ARROW	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].width,
-		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].height
-	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].x,
-		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG].y+atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG].height-atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MAXIMISE_ARROW].height-atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MAXIMISE_ARROW].height-1
-	);
+	ATLAS_MAINBORDER_TOOLBAR_FULLY_MAXIMISE_ARROW = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= right_screen;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].width;
+	Crd[Crd.last-1].height	= Crd[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].height;
+	Crd[Crd.last-1].x	= Crd[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].x;
+	Crd[Crd.last-1].y	= Crd[ATLAS_MAINBORDER_TOOLBAR_BKG].y+Crd[ATLAS_MAINBORDER_TOOLBAR_BKG].height-Crd[ATLAS_MAINBORDER_TOOLBAR_FULLY_MAXIMISE_ARROW].height-Crd[ATLAS_MAINBORDER_TOOLBAR_FULLY_MAXIMISE_ARROW].height-1;
 
 	// Maximise arrow on tool bar.
-	ATLAS_MAINBORDER_TOOLBAR_MAXIMISE_ARROW	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].width,
-		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].height
-	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].x,
-		atlasCoord[ATLAS_MAINBORDER_MENU_BKG].y+atlasCoord[ATLAS_MAINBORDER_MENU_BKG].height-atlasCoord[ATLAS_MAINBORDER_TOOLBAR_MAXIMISE_ARROW].height-atlasCoord[ATLAS_MAINBORDER_TOOLBAR_MAXIMISE_ARROW].height-1
-	);
+	ATLAS_MAINBORDER_TOOLBAR_MAXIMISE_ARROW = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= right_screen;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].width;
+	Crd[Crd.last-1].height	= Crd[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].height;
+	Crd[Crd.last-1].x	= Crd[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].x;
+	Crd[Crd.last-1].y	= Crd[ATLAS_MAINBORDER_MENU_BKG].y+Crd[ATLAS_MAINBORDER_MENU_BKG].height-Crd[ATLAS_MAINBORDER_TOOLBAR_MAXIMISE_ARROW].height-Crd[ATLAS_MAINBORDER_TOOLBAR_MAXIMISE_ARROW].height-1;
 
 	// Toolbar buttons.	
 	ATLAS_MAINBORDER_TOOLBAR_BUTTON = new Object();
@@ -144,91 +145,95 @@ function initAtlasMainScreen()
 	ATLAS_MAINBORDER_TOOLBAR_BUTTON.max = 80;
 	for (ATLAS_MAINBORDER_TOOLBAR_BUTTON.last = 1; ATLAS_MAINBORDER_TOOLBAR_BUTTON.last <= ATLAS_MAINBORDER_TOOLBAR_BUTTON.max; ATLAS_MAINBORDER_TOOLBAR_BUTTON.last++)
 	{
-		ATLAS_MAINBORDER_TOOLBAR_BUTTON[ATLAS_MAINBORDER_TOOLBAR_BUTTON.last] = atlasCoord_Last;
-		atlasCoord[atlasCoord_Last] = new Object();
-		atlasCoord[atlasCoord_Last].width = 15;
-		atlasCoord[atlasCoord_Last].height = 15;
+		ATLAS_MAINBORDER_TOOLBAR_BUTTON[ATLAS_MAINBORDER_TOOLBAR_BUTTON.last] = Crd.last;
+		Crd[Crd.last] = new Object();
+		Crd[Crd.last].width = 15;
+		Crd[Crd.last].height = 15;
+		Crd[Crd.last].rleft = left_screen;
+		Crd[Crd.last].rtop = top_screen;
+		Crd[Crd.last].rright = left_screen;
+		Crd[Crd.last].rbottom = top_screen;
 
 		if (ATLAS_MAINBORDER_TOOLBAR_BUTTON.last == 1)
-			atlasCoord[atlasCoord_Last].x = atlasCoord[ATLAS_MAINBORDER_MENU_BKG].x+5+ATLAS_MAINBORDER_TOOLBAR_BUTTON.span;
+			Crd[Crd.last].x = Crd[ATLAS_MAINBORDER_MENU_BKG].x+5+ATLAS_MAINBORDER_TOOLBAR_BUTTON.span;
 		else
-			atlasCoord[atlasCoord_Last].x = atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BUTTON[ATLAS_MAINBORDER_TOOLBAR_BUTTON.last]-1].x+atlasCoord[atlasCoord_Last].width+ATLAS_MAINBORDER_TOOLBAR_BUTTON.span;
+			Crd[Crd.last].x = Crd[ATLAS_MAINBORDER_TOOLBAR_BUTTON[ATLAS_MAINBORDER_TOOLBAR_BUTTON.last]-1].x+Crd[Crd.last].width+ATLAS_MAINBORDER_TOOLBAR_BUTTON.span;
 
 		if (ATLAS_MAINBORDER_TOOLBAR_BUTTON.last == 41)
-			atlasCoord[atlasCoord_Last].x = atlasCoord[ATLAS_MAINBORDER_MENU_BKG].x+5+ATLAS_MAINBORDER_TOOLBAR_BUTTON.span;
+			Crd[Crd.last].x = Crd[ATLAS_MAINBORDER_MENU_BKG].x+5+ATLAS_MAINBORDER_TOOLBAR_BUTTON.span;
 
 		if (ATLAS_MAINBORDER_TOOLBAR_BUTTON.last >= 41)
-			atlasCoord[atlasCoord_Last].y = atlasCoord[ATLAS_MAINBORDER_MENU_BKG].y+atlasCoord[ATLAS_MAINBORDER_MENU_BKG].height+1+atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BUTTON[ATLAS_MAINBORDER_TOOLBAR_BUTTON.last]-1].height;
+			Crd[Crd.last].y = Crd[ATLAS_MAINBORDER_MENU_BKG].y+Crd[ATLAS_MAINBORDER_MENU_BKG].height+1+Crd[ATLAS_MAINBORDER_TOOLBAR_BUTTON[ATLAS_MAINBORDER_TOOLBAR_BUTTON.last]-1].height;
 		else
-			atlasCoord[atlasCoord_Last].y = atlasCoord[ATLAS_MAINBORDER_MENU_BKG].y+atlasCoord[ATLAS_MAINBORDER_MENU_BKG].height+1;
+			Crd[Crd.last].y = Crd[ATLAS_MAINBORDER_MENU_BKG].y+Crd[ATLAS_MAINBORDER_MENU_BKG].height+1;
 
-		atlasCoord_Last++;
+		Crd.last++;
 	}
 
 	// Left-hand selection pane.
-	ATLAS_LEFT_PANE_BKG	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		187,
-		0
-	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_MAINBORDER_LT_CORNER].x,
-		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG].y+atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG].height
-	);
+	ATLAS_LEFT_PANE_BKG = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= 187;
+	Crd[Crd.last-1].height	= 0;
+	Crd[Crd.last-1].x	= Crd[ATLAS_MAINBORDER_LT_CORNER].x;
+	Crd[Crd.last-1].y	= Crd[ATLAS_MAINBORDER_TOOLBAR_BKG].y+Crd[ATLAS_MAINBORDER_TOOLBAR_BKG].height;
 
 	// ============================================= GENERIC BOTTOM SECTION MENU ===============================================
 
 	// Bottom-right Mini Map Background.
-	ATLAS_MINIMAP_BKG	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		182,
-		182
-	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		0,
-		0
-	);
+	ATLAS_MINIMAP_BKG = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= right_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= 182;
+	Crd[Crd.last-1].height	= 182;
+	Crd[Crd.last-1].x	= 0;
+	Crd[Crd.last-1].y	= 0;
 
 	// Bottom-right Mini Map.
-	ATLAS_MINIMAP		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		140,
-		140
-	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		20,
-		20
-	);
+	ATLAS_MINIMAP = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= right_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= 140;
+	Crd[Crd.last-1].height	= 140;
+	Crd[Crd.last-1].x	= 20;
+	Crd[Crd.last-1].y	= 20;
 
 	// Bottom selection pane.
-	ATLAS_BOTTOM_PANE_BKG	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_LEFT_PANE_BKG].x-atlasCoord[ATLAS_LEFT_PANE_BKG].width-atlasCoord[ATLAS_MINIMAP_BKG].x-atlasCoord[ATLAS_MINIMAP_BKG].width+6,
-		148
-	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_LEFT_PANE_BKG].x+atlasCoord[ATLAS_LEFT_PANE_BKG].width-3,
-		atlasCoord[ATLAS_LEFT_PANE_BKG].height
-	);
+	ATLAS_BOTTOM_PANE_BKG = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= Crd[ATLAS_LEFT_PANE_BKG].x-Crd[ATLAS_LEFT_PANE_BKG].width-Crd[ATLAS_MINIMAP_BKG].x-Crd[ATLAS_MINIMAP_BKG].width+6;
+	Crd[Crd.last-1].height	= 148;
+	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_BKG].x+Crd[ATLAS_LEFT_PANE_BKG].width-3;
+	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_BKG].height;
 
 	// Left-Bottom selection pane corner.
-	ATLAS_LB_CORNER		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		20,
-		20
-	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_BOTTOM_PANE_BKG].x,
-		atlasCoord[ATLAS_BOTTOM_PANE_BKG].height-4
-	);
+	ATLAS_LB_CORNER = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= 20;
+	Crd[Crd.last-1].height	= 20;
+	Crd[Crd.last-1].x	= Crd[ATLAS_BOTTOM_PANE_BKG].x;
+	Crd[Crd.last-1].y	= Crd[ATLAS_BOTTOM_PANE_BKG].height-4;
 
 	// Right-Bottom selection pane corner.
-	ATLAS_RB_CORNER		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_MINIMAP_BKG].height-atlasCoord[ATLAS_BOTTOM_PANE_BKG].height+3,
-		atlasCoord[ATLAS_MINIMAP_BKG].height-atlasCoord[ATLAS_BOTTOM_PANE_BKG].height+3
-	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_MINIMAP_BKG].width-2,
-		atlasCoord[ATLAS_LB_CORNER].y
-	);
+	ATLAS_RB_CORNER = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= right_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= Crd[ATLAS_MINIMAP_BKG].height-Crd[ATLAS_BOTTOM_PANE_BKG].height+3;
+	Crd[Crd.last-1].height	= Crd[ATLAS_MINIMAP_BKG].height-Crd[ATLAS_BOTTOM_PANE_BKG].height+3;
+	Crd[Crd.last-1].x	= Crd[ATLAS_MINIMAP_BKG].width-2;
+	Crd[Crd.last-1].y	= Crd[ATLAS_LB_CORNER].y;
 
 	// Atlas tooltip window.
-	ATLAS_TOOLTIP		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_MINIMAP_BKG].width-20,
-		82
-	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_MINIMAP_BKG].x+10,
-		atlasCoord[ATLAS_MINIMAP_BKG].y+atlasCoord[ATLAS_MINIMAP_BKG].height+4
-	);
+	ATLAS_TOOLTIP = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= right_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= Crd[ATLAS_MINIMAP_BKG].width-20;
+	Crd[Crd.last-1].height	= 82;
+	Crd[Crd.last-1].x	= Crd[ATLAS_MINIMAP_BKG].x+10;
+	Crd[Crd.last-1].y	= Crd[ATLAS_MINIMAP_BKG].y+Crd[ATLAS_MINIMAP_BKG].height+4;
 
 	// Setup margins for Bottom Section Menu.
 	ATLAS_BOTTOM_PANE_SECTION = new Object();
@@ -240,31 +245,31 @@ function initAtlasMainScreen()
 	// ============================================= GENERIC LEFT SECTION MENU ===============================================
 
 	// Second heading of section menu.
-	ATLAS_LEFT_PANE_SECTION_HEADING_2		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_LEFT_PANE_BKG].width-2,
-		21+2
-	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_LEFT_PANE_BKG].x,
-		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].y+atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].height+29
-	);
+	ATLAS_LEFT_PANE_SECTION_HEADING_2 = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[ATLAS_LEFT_PANE_BKG].width-2;
+	Crd[Crd.last-1].height	= 21+2;
+	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_BKG].x;
+	Crd[Crd.last-1].y	= Crd[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].y+Crd[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].height+29;
 
 	// Topmost heading of section menu.
-	ATLAS_LEFT_PANE_SECTION_HEADING_1		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_2].width,
-		31
-	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_2].x,
-		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].y+atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].height
-	);
+	ATLAS_LEFT_PANE_SECTION_HEADING_1 = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[ATLAS_LEFT_PANE_SECTION_HEADING_2].width;
+	Crd[Crd.last-1].height	= 31;
+	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_HEADING_2].x;
+	Crd[Crd.last-1].y	= Crd[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].y+Crd[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].height;
 
 	// Third heading of section menu.
-	ATLAS_LEFT_PANE_SECTION_HEADING_3		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_2].width,
-		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_2].height
-	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_2].x,
-		0
-	);
+	ATLAS_LEFT_PANE_SECTION_HEADING_3 = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= mid_screen; 
+	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= mid_screen; 
+	Crd[Crd.last-1].width	= Crd[ATLAS_LEFT_PANE_SECTION_HEADING_2].width;
+	Crd[Crd.last-1].height	= Crd[ATLAS_LEFT_PANE_SECTION_HEADING_2].height;
+	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_HEADING_2].x;
+	Crd[Crd.last-1].y	= 0;
 
 	// Setup margins for Left Section Menu.
 	ATLAS_LEFT_PANE_SECTION = new Object();
@@ -280,7 +285,7 @@ function atlasUpdateInfoWindow()
 {
 	// Refresh content of Info Window.
 
-	getGUIObjectByName("atlas_info_window").caption = "File: something.map\nWorkspace: MyWorkspace\nFPS: " + getFPS();
+	getGUIObjectByName("ATLAS_INFO_WINDOW").caption = "File: something.map\nWorkspace: MyWorkspace\nFPS: " + getFPS();
 }
 
 // ====================================================================
@@ -289,14 +294,14 @@ function atlasFullyMinimiseToolbar()
 {
 	// Hide toolbar.
 
-	GUIObjectHide("atlas_mainborder_toolbar");
-	GUIObjectUnhide("atlas_mainborder_toolbar_maximise_arrow");
-	GUIObjectHide("atlas_mainborder_toolbar_button_row_1");
-	GUIObjectHide("atlas_mainborder_toolbar_button_row_2");
+	GUIObjectHide("ATLAS_MAINBORDER_TOOLBAR");
+	GUIObjectUnhide("ATLAS_MAINBORDER_TOOLBAR_MAXIMISE_ARROW");
+	GUIObjectHide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_1");
+	GUIObjectHide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_2");
 
 	// Set toolbar height.
-	atlasCoord[ATLAS_LEFT_PANE_BKG].y = atlasCoord[ATLAS_MAINBORDER_MENU_BKG].y+atlasCoord[ATLAS_MAINBORDER_MENU_BKG].height;
-	setSizeArray("atlas_left_pane_bkg", atlasCoord[ATLAS_LEFT_PANE_BKG], left_screen, top_screen, left_screen, bottom_screen);
+	Crd[ATLAS_LEFT_PANE_BKG].y = Crd[ATLAS_MAINBORDER_MENU_BKG].y+Crd[ATLAS_MAINBORDER_MENU_BKG].height;
+	setSizeArray("ATLAS_LEFT_PANE_BKG", Crd[ATLAS_LEFT_PANE_BKG]);
 }
 
 // ====================================================================
@@ -305,14 +310,15 @@ function atlasMinimiseToolbar()
 {
 	// Reduce toolbar to one row.
 
-	GUIObjectHide("atlas_mainborder_toolbar_max");
-	GUIObjectUnhide("atlas_mainborder_toolbar");
-	GUIObjectUnhide("atlas_mainborder_toolbar_button_row_1");
-	GUIObjectHide("atlas_mainborder_toolbar_button_row_2");
+	GUIObjectHide("ATLAS_MAINBORDER_TOOLBAR_MAX");
+	GUIObjectUnhide("ATLAS_MAINBORDER_TOOLBAR");
+	GUIObjectUnhide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_1");
+	GUIObjectHide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_2");
 
 	// Set toolbar height.
-	atlasCoord[ATLAS_LEFT_PANE_BKG].y = atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG].y+atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG].height;
-	setSizeArray("atlas_left_pane_bkg", atlasCoord[ATLAS_LEFT_PANE_BKG], left_screen, top_screen, left_screen, bottom_screen);}
+	Crd[ATLAS_LEFT_PANE_BKG].y = Crd[ATLAS_MAINBORDER_TOOLBAR_BKG].y+Crd[ATLAS_MAINBORDER_TOOLBAR_BKG].height;
+	setSizeArray("ATLAS_LEFT_PANE_BKG", Crd[ATLAS_LEFT_PANE_BKG]);
+}
 
 // ====================================================================
 
@@ -320,14 +326,15 @@ function atlasFullyMaximiseToolbar()
 {
 	// Extend toolbar to two rows.
 
-	GUIObjectHide("atlas_mainborder_toolbar");
-	GUIObjectUnhide("atlas_mainborder_toolbar_max");
-	GUIObjectUnhide("atlas_mainborder_toolbar_button_row_1");
-	GUIObjectUnhide("atlas_mainborder_toolbar_button_row_2");
+	GUIObjectHide("ATLAS_MAINBORDER_TOOLBAR");
+	GUIObjectUnhide("ATLAS_MAINBORDER_TOOLBAR_max");
+	GUIObjectUnhide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_1");
+	GUIObjectUnhide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_2");
 
 	// Set toolbar height.
-	atlasCoord[ATLAS_LEFT_PANE_BKG].y = atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].y+atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].height;
-	setSizeArray("atlas_left_pane_bkg", atlasCoord[ATLAS_LEFT_PANE_BKG], left_screen, top_screen, left_screen, bottom_screen);}
+	Crd[ATLAS_LEFT_PANE_BKG].y = Crd[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].y+Crd[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].height;
+	setSizeArray("ATLAS_LEFT_PANE_BKG", Crd[ATLAS_LEFT_PANE_BKG]);
+}
 
 // ====================================================================
 
@@ -335,14 +342,15 @@ function atlasMaximiseToolbar()
 {
 	// Extend toolbar to one row.
 
-	GUIObjectUnhide("atlas_mainborder_toolbar");
-	GUIObjectHide("atlas_mainborder_toolbar_maximise_arrow");
-	GUIObjectUnhide("atlas_mainborder_toolbar_button_row_1");
-	GUIObjectHide("atlas_mainborder_toolbar_button_row_2");
+	GUIObjectUnhide("ATLAS_MAINBORDER_TOOLBAR");
+	GUIObjectHide("ATLAS_MAINBORDER_TOOLBAR_MAXIMISE_ARROW");
+	GUIObjectUnhide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_1");
+	GUIObjectHide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_2");
 
 	// Set toolbar height.
-	atlasCoord[ATLAS_LEFT_PANE_BKG].y = atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG].y+atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG].height;
-	setSizeArray("atlas_left_pane_bkg", atlasCoord[ATLAS_LEFT_PANE_BKG], left_screen, top_screen, left_screen, bottom_screen);}
+	Crd[ATLAS_LEFT_PANE_BKG].y = Crd[ATLAS_MAINBORDER_TOOLBAR_BKG].y+Crd[ATLAS_MAINBORDER_TOOLBAR_BKG].height;
+	setSizeArray("ATLAS_LEFT_PANE_BKG", Crd[ATLAS_LEFT_PANE_BKG]);
+}
 
 // ====================================================================
 
@@ -351,51 +359,51 @@ function atlasOpenSectionMenu(atlasMenuName)
 	// Open the specified Section Menu; only one is open at a time.
 
 	// Clear all section menus to begin.
-	GUIObjectHide("atlas_left_pane_section_map");
-	GUIObjectHide("atlas_left_pane_section_terrain");
-	GUIObjectHide("atlas_bottom_pane_section_terrain");
-	GUIObjectHide("atlas_left_pane_section_object");
-	GUIObjectHide("atlas_bottom_pane_section_object");
+	GUIObjectHide("ATLAS_LEFT_PANE_SECTION_MAP");
+	GUIObjectHide("ATLAS_LEFT_PANE_SECTION_TERRAIN");
+	GUIObjectHide("ATLAS_BOTTOM_PANE_SECTION_TERRAIN");
+	GUIObjectHide("ATLAS_LEFT_PANE_SECTION_OBJECT");
+	GUIObjectHide("ATLAS_BOTTOM_PANE_SECTION_OBJECT");
 
 	switch (atlasMenuName)
 	{
 		case "none":
 			// Hide backgrounds.
-			GUIObjectHide("atlas_left_pane");
-			GUIObjectHide("atlas_bottom_pane");
+			GUIObjectHide("ATLAS_LEFT_PANE");
+			GUIObjectHide("ATLAS_BOTTOM_PANE");
 			// Hide headings.
-			GUIObjectHide("atlas_left_pane_section_heading_1");
-			GUIObjectHide("atlas_left_pane_section_heading_2");
-			GUIObjectHide("atlas_left_pane_section_heading_3");
+			GUIObjectHide("ATLAS_LEFT_PANE_SECTION_HEADING_1");
+			GUIObjectHide("ATLAS_LEFT_PANE_SECTION_HEADING_2");
+			GUIObjectHide("ATLAS_LEFT_PANE_SECTION_HEADING_3");
 		break;
-		case "atlas_left_pane_section_map":
+		case "ATLAS_LEFT_PANE_SECTION_MAP":
 			// Toggle backgrounds.
-			GUIObjectUnhide("atlas_left_pane");
-			GUIObjectHide("atlas_bottom_pane");
+			GUIObjectUnhide("ATLAS_LEFT_PANE");
+			GUIObjectHide("ATLAS_BOTTOM_PANE");
 			// Reveal headings.
-			GUIObjectRenameandReveal("atlas_left_pane_section_heading_1", "Map Creator");
-			GUIObjectRenameandReveal("atlas_left_pane_section_heading_2", "Map Type");
-			GUIObjectRenameandReveal("atlas_left_pane_section_heading_3", "Map Settings");
+			GUIObjectRenameandReveal("ATLAS_LEFT_PANE_SECTION_HEADING_1", "Map Creator");
+			GUIObjectRenameandReveal("ATLAS_LEFT_PANE_SECTION_HEADING_2", "Map Type");
+			GUIObjectRenameandReveal("ATLAS_LEFT_PANE_SECTION_HEADING_3", "Map Settings");
 		break;
-		case "atlas_left_pane_section_terrain":
+		case "ATLAS_LEFT_PANE_SECTION_TERRAIN":
 			// Toggle backgrounds.
-			GUIObjectUnhide("atlas_left_pane");
-			GUIObjectUnhide("atlas_bottom_pane");
-			GUIObjectUnhide("atlas_bottom_pane_section_terrain");
+			GUIObjectUnhide("ATLAS_LEFT_PANE");
+			GUIObjectUnhide("ATLAS_BOTTOM_PANE");
+			GUIObjectUnhide("ATLAS_BOTTOM_PANE_SECTION_TERRAIN");
 			// Reveal headings.
-			GUIObjectRenameandReveal("atlas_left_pane_section_heading_1", "Terrain Editor");
-			GUIObjectRenameandReveal("atlas_left_pane_section_heading_2", "Edit Elevation");
-			GUIObjectHide("atlas_left_pane_section_heading_3");
+			GUIObjectRenameandReveal("ATLAS_LEFT_PANE_SECTION_HEADING_1", "Terrain Editor");
+			GUIObjectRenameandReveal("ATLAS_LEFT_PANE_SECTION_HEADING_2", "Edit Elevation");
+			GUIObjectHide("ATLAS_LEFT_PANE_SECTION_HEADING_3");
 		break;
-		case "atlas_left_pane_section_object":
+		case "ATLAS_LEFT_PANE_SECTION_OBJECT":
 			// Toggle backgrounds.
-			GUIObjectUnhide("atlas_left_pane");
-			GUIObjectUnhide("atlas_bottom_pane");
-			GUIObjectUnhide("atlas_bottom_pane_section_object");
+			GUIObjectUnhide("ATLAS_LEFT_PANE");
+			GUIObjectUnhide("ATLAS_BOTTOM_PANE");
+			GUIObjectUnhide("ATLAS_BOTTOM_PANE_SECTION_OBJECT");
 			// Reveal headings.
-			GUIObjectRenameandReveal("atlas_left_pane_section_heading_1", "Object Editor");
-			GUIObjectRenameandReveal("atlas_left_pane_section_heading_2", "Object List");
-			GUIObjectHide("atlas_left_pane_section_heading_3");
+			GUIObjectRenameandReveal("ATLAS_LEFT_PANE_SECTION_HEADING_1", "Object Editor");
+			GUIObjectRenameandReveal("ATLAS_LEFT_PANE_SECTION_HEADING_2", "Object List");
+			GUIObjectHide("ATLAS_LEFT_PANE_SECTION_HEADING_3");
 		break;
 	}
 

@@ -47,3 +47,15 @@ function parseDelimiterString (parseString, Delimiter)
 }
 
 // ====================================================================
+
+function addArrayElement(Array) 
+{ 
+        // Adds an element to an array, updates its given index, and returns the index of the element. 
+
+        Array[Array.last] = new Object(); 
+        Array.last++; 
+
+        return (Array.last - 1); 
+} 
+
+// ====================================================================

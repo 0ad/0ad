@@ -4,7 +4,7 @@ function startLoadingScreen()
 	g_GameAttributes.numPlayers = 9;
 
         // Switch screens from main menu to loading screen.
-        GUIObjectHide("pregame_gui");
+        GUIObjectHide("PREGAME_GUI");
         GUIObjectUnhide("loading_screen");
         console.write("Loading " + g_GameAttributes.mapFile + " (" + g_GameAttributes.numPlayers + " players) ...");
 
@@ -26,7 +26,7 @@ function loadSession()
         {
                 // Failed to start the game; go back to the main menu. TODO: display an error message.
                 GUIObjectHide("loading_screen");
-                GUIObjectUnhide("pregame_gui");
+                GUIObjectUnhide("PREGAME_GUI");
                 return;
         }
 
@@ -42,7 +42,7 @@ function loadSession()
 
 	// Switch GUI from main menu to game session.
         GUIObjectHide("loading_screen");
-        GUIObjectUnhide("session_gui");
+        GUIObjectUnhide("SESSION_GUI");
 }
 
 // ====================================================================
@@ -86,8 +86,8 @@ function endSession(closeType)
 			CrossFade(curr_session_playlist_1, curr_music, 0.0001);
 
 			// Swap GUIs to display main menu.
-			GUIObjectHide('session_gui');
-			GUIObjectUnhide('pregame_gui');
+			GUIObjectHide('SESSION_GUI');
+			GUIObjectUnhide('PREGAME_GUI');
 		break;
 		case ("exit"):
 			// If the player has chosen to shutdown and immediately return to operating system,

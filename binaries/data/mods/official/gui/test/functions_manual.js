@@ -1,63 +1,65 @@
 function initManual()
 {
-	// ============================================= GLOBALS =================================================
+	// ============================================ CONSTANTS ================================================
 
 	MANUAL = new Object();
 	MANUAL.span = 5;
 
+	// ============================================= GLOBALS =================================================
+
 	// Background of online manual.
-	MANUAL_BKG 		= addSizeArrayWH(sessionCoord, sessionCoord_Last,
-		50,
-		50
-	); sessionCoord_Last 	= addSizeArrayXY(sessionCoord, sessionCoord_Last,
-		50,
-		50
-	);
+	MANUAL_BKG = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= 50; 
+	Crd[Crd.last-1].height	= 50; 
+	Crd[Crd.last-1].x	= 50; 
+	Crd[Crd.last-1].y	= 50; 
 
 	// Online manual portrait.
-	MANUAL_PORTRAIT		= addSizeArrayWH(sessionCoord, sessionCoord_Last,
-		crd_portrait_lrg_width,
-		crd_portrait_lrg_height
-	); sessionCoord_Last 	= addSizeArrayXY(sessionCoord, sessionCoord_Last,
-		sessionCoord[MANUAL_BKG].x+10,
-		sessionCoord[MANUAL_BKG].y+30
-	);
+	MANUAL_PORTRAIT = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= crd_portrait_lrg_width; 
+	Crd[Crd.last-1].height	= crd_portrait_lrg_height; 
+	Crd[Crd.last-1].x	= Crd[MANUAL_BKG].x+10; 
+	Crd[Crd.last-1].y	= Crd[MANUAL_BKG].y+30; 
 
 	// Online manual rollover.
-	MANUAL_ROLLOVER		= addSizeArrayWH(sessionCoord, sessionCoord_Last,
-		60,
-		sessionCoord[MANUAL_PORTRAIT].height
-	); sessionCoord_Last 	= addSizeArrayXY(sessionCoord, sessionCoord_Last,
-		sessionCoord[MANUAL_PORTRAIT].x+sessionCoord[MANUAL_PORTRAIT].width+MANUAL.span,
-		sessionCoord[MANUAL_PORTRAIT].y
-	);
+	MANUAL_ROLLOVER = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= 60; 
+	Crd[Crd.last-1].height	= Crd[MANUAL_PORTRAIT].height;
+	Crd[Crd.last-1].x	= Crd[MANUAL_PORTRAIT].x+Crd[MANUAL_PORTRAIT].width+MANUAL.span;
+	Crd[Crd.last-1].y	= Crd[MANUAL_PORTRAIT].y;
 
 	// Online manual history.
-	MANUAL_HISTORY		= addSizeArrayWH(sessionCoord, sessionCoord_Last,
-		sessionCoord[MANUAL_ROLLOVER].width,
-		sessionCoord[MANUAL_ROLLOVER].height
-	); sessionCoord_Last 	= addSizeArrayXY(sessionCoord, sessionCoord_Last,
-		sessionCoord[MANUAL_PORTRAIT].x,
-		60
-	);
+	MANUAL_HISTORY = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= Crd[MANUAL_ROLLOVER].width;
+	Crd[Crd.last-1].height	= Crd[MANUAL_ROLLOVER].height;
+	Crd[Crd.last-1].x	= Crd[MANUAL_PORTRAIT].x;
+	Crd[Crd.last-1].y	= 60;
 
 	// Online manual text.
-	MANUAL_NAME		= addSizeArrayWH(sessionCoord, sessionCoord_Last,
-		sessionCoord[MANUAL_HISTORY].width,
-		sessionCoord[MANUAL_HISTORY].y+sessionCoord[MANUAL_HISTORY].height+MANUAL.span
-	); sessionCoord_Last 	= addSizeArrayXY(sessionCoord, sessionCoord_Last,
-		sessionCoord[MANUAL_HISTORY].x,
-		sessionCoord[MANUAL_ROLLOVER].y+sessionCoord[MANUAL_ROLLOVER].height+MANUAL.span
-	);
+	MANUAL_NAME = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= Crd[MANUAL_HISTORY].width;
+	Crd[Crd.last-1].height	= Crd[MANUAL_HISTORY].y+Crd[MANUAL_HISTORY].height+MANUAL.span;
+	Crd[Crd.last-1].x	= Crd[MANUAL_HISTORY].x;
+	Crd[Crd.last-1].y	= Crd[MANUAL_ROLLOVER].y+Crd[MANUAL_ROLLOVER].height+MANUAL.span;
 
 	// Online manual exit button.
-	MANUAL_EXIT_BUTTON	= addSizeArrayWH(sessionCoord, sessionCoord_Last,
-		16,
-		16
-	); sessionCoord_Last 	= addSizeArrayXY(sessionCoord, sessionCoord_Last,
-		26,
-		25
-	);
+	MANUAL_EXIT_BUTTON = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= right_screen;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= 16;
+	Crd[Crd.last-1].height	= 16;
+	Crd[Crd.last-1].x	= 26;
+	Crd[Crd.last-1].y	= 25;
 }
 
 // ====================================================================
@@ -65,7 +67,7 @@ function initManual()
 function manualDisplay()
 {
 					// Display heading.
-					ManualBkg = getGUIObjectByName("manual_bkg");
+					ManualBkg = getGUIObjectByName("MANUAL_BKG");
 					ManualBkg.caption = "In-Game Help: ";
 					if (selection[0].traits.id.civ)
 						ManualBkg.caption += selection[0].traits.id.civ + ": ";
@@ -77,18 +79,18 @@ function manualDisplay()
 					// Display portrait.
 					if (selection[0].traits.id.icon)
 					{
-						setPortrait("manual_portrait", selection[0].traits.id.icon, selection[0].traits.id.civ_code, selection[0].traits.id.icon_cell);
+						setPortrait("MANUAL_PORTRAIT", selection[0].traits.id.icon, selection[0].traits.id.civ_code, selection[0].traits.id.icon_cell);
 					}
 
 					// Display rollover text.
 					if (selection[0].traits.id.rollover)
 					{
-						ManualRollover = getGUIObjectByName("manual_rollover");
+						ManualRollover = getGUIObjectByName("MANUAL_ROLLOVER");
 						ManualRollover.caption = selection[0].traits.id.rollover;
 					}
 
 					// Display name(s).
-					ManualRollover = getGUIObjectByName("manual_name");
+					ManualRollover = getGUIObjectByName("MANUAL_NAME");
 					ManualRollover.caption = "";
 					if (selection[0].traits.id.generic)
 						ManualRollover.caption += selection[0].traits.id.generic;
@@ -438,7 +440,7 @@ function manualDisplay()
 					// Display history text.
 					if (selection[0].traits.id.history)
 					{
-						ManualHistory = getGUIObjectByName("manual_history");
+						ManualHistory = getGUIObjectByName("MANUAL_HISTORY");
 						ManualHistory.caption = "History: " + selection[0].traits.id.history;
 					}
 }

@@ -41,27 +41,23 @@ TODO: Make button code work for any number of buttons without extending the code
 
 function initGlobal()
 {
-	// Initialise coordinate set for this page.
-	globalCoord = new Array();
-	globalCoord_Last = 0;
-
 	// Bottom-left product logo; used when taking official screenshots.
-	GLOBAL_WATERMARK_PRODUCT_LOGO 		= addSizeArrayWH(globalCoord, globalCoord_Last,
-		200,
-		98
-	); globalCoord_Last 			= addSizeArrayXY(globalCoord, globalCoord_Last,
-		0,
-		0
-	);
+	GLOBAL_WATERMARK_PRODUCT_LOGO = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= 200; 
+	Crd[Crd.last-1].height	= 98; 
+	Crd[Crd.last-1].x	= 0; 
+	Crd[Crd.last-1].y	= 0; 
 
 	// Bottom-right company logo; used when taking official screenshots.
-	GLOBAL_WATERMARK_COMPANY_LOGO 		= addSizeArrayWH(globalCoord, globalCoord_Last,
-		207,
-		28
-	); globalCoord_Last 			= addSizeArrayXY(globalCoord, globalCoord_Last,
-		0,
-		0
-	);
+	GLOBAL_WATERMARK_COMPANY_LOGO = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= right_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= 207; 
+	Crd[Crd.last-1].height	= 28; 
+	Crd[Crd.last-1].x	= 0; 
+	Crd[Crd.last-1].y	= 0; 
 }
 
 // ====================================================================

@@ -10,7 +10,8 @@ function initGroupPane()
 	crd_grppane_prt_row_bar = new Array();
 	crd_grppane_prt_row.last = 0; 	// Last size added.
 	crd_grppane_prt_row.style = 2; 	// Style length.
-	crd_grppane_prt_last = 0;	// Total group portraits.
+	crd_grppane_prt = new Array();
+	crd_grppane_prt.last = 0;	// Total group portraits.
 
 	// Build table of group pane coordinates.
 	initGroupPaneTable();
@@ -99,7 +100,7 @@ function AddSizeGroupPane(objectName, row, col)
 	SizeCoord[SizeCoord.last].size2 = new GUISize(size_col.left, size_row.top, size_col.right, size_row.bottom, size_col.rleft, size_row.rtop, size_col.rright, size_row.rbottom);
 
 	SizeCoord.last++; // Increment counter for next entry.
-	crd_grppane_prt_last++; // Increment group pane portrait counter.
+	crd_grppane_prt.last++; // Increment group pane portrait counter.
 }
 
 // ====================================================================
@@ -176,7 +177,7 @@ function UpdateGroupPane()
 	}
 */
 	// Display appropriate portraits.						
-	for (groupPaneLoop = 1; groupPaneLoop <= crd_grppane_prt_last; groupPaneLoop++)
+	for (groupPaneLoop = 1; groupPaneLoop <= crd_grppane_prt.last; groupPaneLoop++)
 	{
 		groupPanePortrait = getGUIObjectByName("session_group_pane_portrait_" + groupPaneLoop);
 		groupPaneBar = getGUIObjectByName("session_group_pane_portrait_" + groupPaneLoop + "_bar");

@@ -117,20 +117,12 @@
 	==========================================
 	-->
 
-	<object type="empty" name="watermark" hotkey="screenshot.watermark" size="0 0 100% 100%" z="200" ghost="true" hidden="true">
+	<object type="empty" name="GLOBAL_WATERMARK" hotkey="screenshot.watermark" size="0 0 100% 100%" z="200" ghost="true" hidden="true">
 		<action on="Press"><![CDATA[
-			GUIObjectToggle("watermark");
+			GUIObjectToggle("GLOBAL_WATERMARK");
 		]]></action>
-		<object type="image" name="watermark_product_logo" sprite="watermark_product" hidden="false">
-			<action on="Load"><![CDATA[
-				setSizeArray("watermark_product_logo", globalCoord[GLOBAL_WATERMARK_PRODUCT_LOGO], left_screen, bottom_screen, left_screen, bottom_screen);
-			]]></action>
-		</object>
-		<object type="image" name="watermark_company_logo" sprite="watermark_company" hidden="false">
-			<action on="Load"><![CDATA[
-				setSizeArray("watermark_company_logo", globalCoord[GLOBAL_WATERMARK_COMPANY_LOGO], right_screen, bottom_screen, right_screen, bottom_screen);
-			]]></action>
-		</object>
+		<object type="image" name="GLOBAL_WATERMARK_PRODUCT_LOGO" sprite="watermark_product" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[GLOBAL_WATERMARK_PRODUCT_LOGO]); ]]></action></object>
+		<object type="image" name="GLOBAL_WATERMARK_COMPANY_LOGO" sprite="watermark_company" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[GLOBAL_WATERMARK_COMPANY_LOGO]); ]]></action></object>
 	</object>
 
 </objects>

@@ -10,903 +10,474 @@
 
 <objects>
 
-	<object type="empty" name="atlas_gui" size="0 0 100% 100%" z="1" hidden="true">
+	<object type="empty" name="ATLAS_GUI" size="0 0 100% 100%" z="1" hidden="true">
 
 		<!-- Simply black out the lowest level of the GUI, until such time as we're capable of starting an editor session of a scenario. -->
-		<object type="text" name="atlas_gui_bkg" sprite="black" size="0 0 100% 100%" z="1" ghost="true" hidden="false"/>
-
+		<object type="text" name="ATLAS_GUI_BKG" sprite="black" size="0 0 100% 100%" z="1" ghost="true" hidden="false"/>
+<!--
 		<!-- LEFT SELECTION PANE: Context panel along the left-hand side of the screen. -->
-		<object type="empty" name="atlas_left_pane" size="0 0 100% 100%" z="1" hidden="true">
+		<object type="empty" name="ATLAS_LEFT_PANE" size="0 0 100% 100%" z="1" hidden="true">
 
 			<!-- LEFT SELECTION PANE BACKGROUND -->
-			<object type="text" name="atlas_left_pane_bkg" sprite="atlas_window_rt_border" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeArray("atlas_left_pane_bkg", atlasCoord[ATLAS_LEFT_PANE_BKG], left_screen, top_screen, left_screen, bottom_screen);
-				]]></action>
-			</object>
+			<object type="text" name="ATLAS_LEFT_PANE_BKG" sprite="atlas_window_rt_border" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_BKG]); ]]></action></object>
 			<!-- LEFT SELECTION PANE HEADINGS -->
-			<object type="text" name="atlas_left_pane_section_heading_1" sprite="atlas_border" style="atlas_heading" text_align="left" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeArray("atlas_left_pane_section_heading_1", atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_1], left_screen, top_screen, left_screen, top_screen);
-				]]></action>
-			</object>
-			<object type="text" name="atlas_left_pane_section_heading_2" sprite="atlas_border" style="atlas_sub_heading" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeArray("atlas_left_pane_section_heading_2", atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_2], left_screen, top_screen, left_screen, top_screen);
-				]]></action>
-			</object>
-			<object type="text" name="atlas_left_pane_section_heading_3" sprite="atlas_border" style="atlas_sub_heading" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeArray("atlas_left_pane_section_heading_3", atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3], left_screen, mid_screen, left_screen, mid_screen);
-				]]></action>
-			</object>
+			<object type="text" name="ATLAS_LEFT_PANE_SECTION_HEADING_1" sprite="atlas_border" style="atlas_heading" text_align="left" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_HEADING_1]); ]]></action></object>
+			<object type="text" name="ATLAS_LEFT_PANE_SECTION_HEADING_2" sprite="atlas_border" style="atlas_sub_heading" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_HEADING_2]); ]]></action></object>
+			<object type="text" name="ATLAS_LEFT_PANE_SECTION_HEADING_3" sprite="atlas_border" style="atlas_sub_heading" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_HEADING_3]); ]]></action></object>
 
 			<!-- MAP CREATOR SECTION MENU -->
-			<object type="empty" name="atlas_left_pane_section_map" size="0 0 100% 100%" z="1" hidden="true">
-				<object type="empty" name="atlas_left_pane_section_map_type_size" size="0 0 100% 100%" z="1" hidden="false">
-					<object type="text" name="atlas_left_pane_section_map_size_label" style="atlas_label_text" hidden="false">Size
+			<object type="empty" name="ATLAS_LEFT_PANE_SECTION_MAP" size="0 0 100% 100%" z="1" hidden="true">
+				<object type="empty" name="ATLAS_LEFT_PANE_SECTION_MAP_TYPE_SIZE" size="0 0 100% 100%" z="1" hidden="false">
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_MAP_SIZE_LABEL" style="atlas_label_text" hidden="false">Size<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_LABEL]); ]]></action></object>
+					<object type="input" name="ATLAS_LEFT_PANE_SECTION_MAP_TILE_WIDTH_INPUT_BOX" sprite="atlas_input_box" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_MAP_TILE_WIDTH_INPUT_BOX]); ]]></action>
 						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_map_size_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_LABEL], left_screen, top_screen, left_screen, top_screen);
+							GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_MAP_TILE_WIDTH_INPUT_BOX",200);
 						]]></action>
 					</object>
-					<object type="input" name="atlas_left_pane_section_map_tile_width_input_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_MAP_TILE_X" style="atlas_label_text" hidden="false">X<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_MAP_TILE_X]); ]]></action></object>
+					<object type="input" name="ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX" sprite="atlas_input_box" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX]); ]]></action>
 						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_map_tile_width_input_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_TILE_WIDTH_INPUT_BOX], left_screen, top_screen, left_screen, top_screen);
-							GUIObjectSetCaption("atlas_left_pane_section_map_tile_width_input_box",200);
+							GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX",200);
 						]]></action>
 					</object>
-					<object type="text" name="atlas_left_pane_section_map_tile_x" style="atlas_label_text" hidden="false">X
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_map_tile_x", atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_TILE_X], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
-					<object type="input" name="atlas_left_pane_section_map_tile_height_input_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_map_tile_height_input_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX], left_screen, top_screen, left_screen, top_screen);
-							GUIObjectSetCaption("atlas_left_pane_section_map_tile_height_input_box",200);
-						]]></action>
-					</object>
-					<object type="empty" name="atlas_left_pane_section_map_size_radio" size="0 0 100% 100%" z="1" hidden="false">
-						<object type="button" name="atlas_left_pane_section_map_size_button_small" style="atlas_button" hidden="false">Small
-							<action on="Load"><![CDATA[
-								setSizeArray("atlas_left_pane_section_map_size_button_small", atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_SMALL], left_screen, top_screen, left_screen, top_screen);
-							]]></action>
+					<object type="empty" name="ATLAS_LEFT_PANE_SECTION_MAP_SIZE_RADIO" size="0 0 100% 100%" z="1" hidden="false">
+						<object type="button" name="ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_SMALL" style="atlas_button" hidden="false">Small<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_SMALL]); ]]></action>
 							<action on="Press"><![CDATA[
-								GUIObjectSetCaption("atlas_left_pane_section_map_tile_width_input_box", 100);
-								GUIObjectSetCaption("atlas_left_pane_section_map_tile_height_input_box", 100);
+								GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_MAP_TILE_WIDTH_INPUT_BOX", 100);
+								GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX", 100);
 							]]></action>
 						</object>
-						<object type="button" name="atlas_left_pane_section_map_size_button_medium" style="atlas_button" font="tahoma9" hidden="false">Medium
-							<action on="Load"><![CDATA[
-								setSizeArray("atlas_left_pane_section_map_size_button_medium", atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_MEDIUM], left_screen, top_screen, left_screen, top_screen);
-							]]></action>
+						<object type="button" name="ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_MEDIUM" style="atlas_button" font="tahoma9" hidden="false">Medium<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_MEDIUM]); ]]></action>
 							<action on="Press"><![CDATA[
-								GUIObjectSetCaption("atlas_left_pane_section_map_tile_width_input_box", 200);
-								GUIObjectSetCaption("atlas_left_pane_section_map_tile_height_input_box", 200);
+								GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_MAP_TILE_WIDTH_INPUT_BOX", 200);
+								GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX", 200);
 							]]></action>
 						</object>
-						<object type="button" name="atlas_left_pane_section_map_size_button_large" style="atlas_button" hidden="false">Large
-							<action on="Load"><![CDATA[
-								setSizeArray("atlas_left_pane_section_map_size_button_large", atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_LARGE], left_screen, top_screen, left_screen, top_screen);
-							]]></action>
+						<object type="button" name="ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_LARGE" style="atlas_button" hidden="false">Large<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_LARGE]); ]]></action>
 							<action on="Press"><![CDATA[
-								GUIObjectSetCaption("atlas_left_pane_section_map_tile_width_input_box", 300);
-								GUIObjectSetCaption("atlas_left_pane_section_map_tile_height_input_box", 300);
+								GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_MAP_TILE_WIDTH_INPUT_BOX", 300);
+								GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX", 300);
 							]]></action>
 						</object>
-						<object type="button" name="atlas_left_pane_section_map_size_button_huge" style="atlas_button" hidden="false">Huge
-							<action on="Load"><![CDATA[
-								setSizeArray("atlas_left_pane_section_map_size_button_huge", atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_HUGE], left_screen, top_screen, left_screen, top_screen);
-							]]></action>
+						<object type="button" name="ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_HUGE" style="atlas_button" hidden="false">Huge<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_HUGE]); ]]></action>
 							<action on="Press"><![CDATA[
-								GUIObjectSetCaption("atlas_left_pane_section_map_tile_width_input_box", 400);
-								GUIObjectSetCaption("atlas_left_pane_section_map_tile_height_input_box", 400);
+								GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_MAP_TILE_WIDTH_INPUT_BOX", 400);
+								GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX", 400);
 							]]></action>
 						</object>
 					</object>
-					<object type="text" name="atlas_left_pane_section_map_size_hr" sprite="atlas_hline" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_map_size_hr", atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_HR], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_MAP_SIZE_HR" sprite="atlas_hline" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_HR]); ]]></action></object>
 				</object>
-				<object type="empty" name="atlas_left_pane_section_map_settings" size="0 0 100% 100%" z="1" hidden="false">
-					<object type="text" name="atlas_left_pane_section_map_settings_player_label" style="atlas_label_text" hidden="false">Players
+				<object type="empty" name="ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS" size="0 0 100% 100%" z="1" hidden="false">
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL" style="atlas_label_text" hidden="false">Players<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL]); ]]></action></object>
+					<object type="input" name="ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX" sprite="atlas_input_box" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX]); ]]></action>
 						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_map_settings_player_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL], left_screen, mid_screen, left_screen, mid_screen);
+							GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX", 4);
 						]]></action>
 					</object>
-					<object type="input" name="atlas_left_pane_section_map_settings_player_input_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_map_settings_player_input_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX], left_screen, mid_screen, left_screen, mid_screen);
-							GUIObjectSetCaption("atlas_left_pane_section_map_settings_player_input_box", 4);
-						]]></action>
-					</object>
-					<object type="button" name="atlas_left_pane_section_map_settings_player_input_box_up" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_map_settings_player_input_box_up", atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX_UP], left_screen, mid_screen, left_screen, mid_screen);
-						]]></action>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX_UP" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX_UP]); ]]></action>
 						<action on="Press"><![CDATA[
-							GUIObjectModifyCaption("atlas_left_pane_section_map_settings_player_input_box", 1);
+							GUIObjectModifyCaption("ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX", 1);
 						]]></action>
 					</object>
-					<object type="button" name="atlas_left_pane_section_map_settings_player_input_box_dn" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_map_settings_player_input_box_dn", atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX_DN], left_screen, mid_screen, left_screen, mid_screen);
-						]]></action>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX_DN" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX_DN]); ]]></action>
 						<action on="Press"><![CDATA[
-							GUIObjectModifyCaption("atlas_left_pane_section_map_settings_player_input_box", -1);
+							GUIObjectModifyCaption("ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX", -1);
 						]]></action>
 					</object>
-					<object type="text" name="atlas_left_pane_section_map_settings_settlement_label" style="atlas_label_text" hidden="false">Settlements
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_LABEL" style="atlas_label_text" hidden="false">Settlements<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_LABEL]); ]]></action></object>
+					<object type="input" name="ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX" sprite="atlas_input_box" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX]); ]]></action>
 						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_map_settings_settlement_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_LABEL], left_screen, mid_screen, left_screen, mid_screen);
+							GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX", 2);
 						]]></action>
 					</object>
-					<object type="input" name="atlas_left_pane_section_map_settings_settlement_input_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_map_settings_settlement_input_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX], left_screen, mid_screen, left_screen, mid_screen);
-							GUIObjectSetCaption("atlas_left_pane_section_map_settings_settlement_input_box", 2);
-						]]></action>
-					</object>
-					<object type="button" name="atlas_left_pane_section_map_settings_settlement_input_box_up" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_map_settings_settlement_input_box_up", atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX_UP], left_screen, mid_screen, left_screen, mid_screen);
-						]]></action>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX_UP" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX_UP]); ]]></action>
 						<action on="Press"><![CDATA[
-							GUIObjectModifyCaption("atlas_left_pane_section_map_settings_settlement_input_box", 1);
+							GUIObjectModifyCaption("ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX", 1);
 						]]></action>
 					</object>
-					<object type="button" name="atlas_left_pane_section_map_settings_settlement_input_box_dn" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_map_settings_settlement_input_box_dn", atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX_DN], left_screen, mid_screen, left_screen, mid_screen);
-						]]></action>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX_DN" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX_DN]); ]]></action>
 						<action on="Press"><![CDATA[
-							GUIObjectModifyCaption("atlas_left_pane_section_map_settings_settlement_input_box", -1);
+							GUIObjectModifyCaption("ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX", -1);
 						]]></action>
 					</object>
-					<object type="text" name="atlas_left_pane_section_map_settings_resources_label" style="atlas_label_text" hidden="false">Resources
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_map_settings_resources_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_RESOURCES_LABEL], left_screen, mid_screen, left_screen, mid_screen);
-						]]></action>
-					</object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_RESOURCES_LABEL" style="atlas_label_text" hidden="false">Resources<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_RESOURCES_LABEL]); ]]></action></object>
 <!-- NOTE: Needs to be made a drop-down box when this control becomes available (options Low (.5), Normal (0), High (2) ). -->
-					<object type="input" name="atlas_left_pane_section_map_settings_resources_combo_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
+					<object type="input" name="ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_RESOURCES_COMBO_BOX" sprite="atlas_input_box" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_RESOURCES_COMBO_BOX]); ]]></action>
 						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_map_settings_resources_combo_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_RESOURCES_COMBO_BOX], left_screen, mid_screen, left_screen, mid_screen);
-							GUIObjectSetCaption("atlas_left_pane_section_map_settings_resources_combo_box", "Normal");
+							GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_RESOURCES_COMBO_BOX", "Normal");
 						]]></action>
 					</object>
 				</object>
-				<object type="empty" name="atlas_left_pane_section_map_generate" size="0 0 100% 100%" z="1" hidden="false">
-					<object type="text" name="atlas_left_pane_section_map_generate_terrain_map_label" style="atlas_label_text" hidden="false">Terrain Map
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_map_generate_terrain_map_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_LABEL], left_screen, bottom_screen, left_screen, bottom_screen);
-						]]></action>
-					</object>
-					<object type="input" name="atlas_left_pane_section_map_generate_terrain_map_input_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_map_generate_terrain_map_input_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX], left_screen, bottom_screen, left_screen, bottom_screen);
-						]]></action>
-					</object>
-					<object type="text" name="atlas_left_pane_section_map_generate_height_map_label" style="atlas_label_text" hidden="false">Height Map
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_map_generate_height_map_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_HEIGHT_MAP_LABEL], left_screen, bottom_screen, left_screen, bottom_screen);
-						]]></action>
-					</object>
-					<object type="input" name="atlas_left_pane_section_map_generate_height_map_input_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_map_generate_height_map_input_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_HEIGHT_MAP_INPUT_BOX], left_screen, bottom_screen, left_screen, bottom_screen);
-						]]></action>
-					</object>
-					<object type="text" name="atlas_left_pane_section_map_generate_border" sprite="atlas_border" style="atlas_label_text" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_map_generate_border", atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_BORDER], left_screen, bottom_screen, left_screen, bottom_screen);
-						]]></action>
-					</object>
-					<object type="button" name="atlas_left_pane_section_map_generate_button" sprite="atlas_button" style="atlas_heading" hidden="false">Generate!
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_map_generate_button", atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_BUTTON], left_screen, bottom_screen, left_screen, bottom_screen);
-						]]></action>
-					</object>
+				<object type="empty" name="ATLAS_LEFT_PANE_SECTION_MAP_GENERATE" size="0 0 100% 100%" z="1" hidden="false">
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_LABEL" style="atlas_label_text" hidden="false">Terrain Map<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_LABEL]); ]]></action></object>
+					<object type="input" name="ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX" sprite="atlas_input_box" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX]); ]]></action></object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_GENERATE_HEIGHT_MAP_LABEL" style="atlas_label_text" hidden="false">Height Map<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_GENERATE_HEIGHT_MAP_LABEL]); ]]></action></object>
+					<object type="input" name="ATLAS_LEFT_PANE_SECTION_GENERATE_HEIGHT_MAP_INPUT_BOX" sprite="atlas_input_box" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_GENERATE_HEIGHT_MAP_INPUT_BOX]); ]]></action></object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_GENERATE_BORDER" sprite="atlas_border" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_GENERATE_BORDER]); ]]></action></object>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_GENERATE_BUTTON" sprite="atlas_button" style="atlas_heading" hidden="false">Generate!<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_GENERATE_BUTTON]); ]]></action></object>
 				</object>
 			</object>
 
 			<!-- TERRAIN EDITOR SECTION MENU -->
-			<object type="empty" name="atlas_left_pane_section_terrain" size="0 0 100% 100%" z="1" hidden="true">
-				<object type="empty" name="atlas_left_pane_section_terrain_elevation" size="0 0 100% 100%" z="1" hidden="false">
-					<object type="button" name="atlas_left_pane_section_terrain_elevation_modify_button" style="atlas_button" hidden="false">Modify
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_modify_button", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_MODIFY_BUTTON], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_elevation_smooth_button" style="atlas_button" hidden="false">Smooth
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_smooth_button", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SMOOTH_BUTTON], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_elevation_sample_button" style="atlas_button" hidden="false">Sample
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_sample_button", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SAMPLE_BUTTON], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
-					<object type="text" name="atlas_left_pane_section_terrain_elevation_intensity_label" style="atlas_label_text" hidden="false">Intensity
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_intensity_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_INTENSITY_LABEL], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
+			<object type="empty" name="ATLAS_LEFT_PANE_SECTION_TERRAIN" size="0 0 100% 100%" z="1" hidden="true">
+				<object type="empty" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION" size="0 0 100% 100%" z="1" hidden="false">
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_MODIFY_BUTTON" style="atlas_button" hidden="false">Modify<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_MODIFY_BUTTON]); ]]></action></object>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SMOOTH_BUTTON" style="atlas_button" hidden="false">Smooth<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SMOOTH_BUTTON]); ]]></action></object>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SAMPLE_BUTTON" style="atlas_button" hidden="false">Sample<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SAMPLE_BUTTON]); ]]></action></object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_INTENSITY_LABEL" style="atlas_label_text" hidden="false">Intensity<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_INTENSITY_LABEL]); ]]></action></object>
 <!-- NOTE: This will need to be replaced with a real slider when the control becomes available. -->
-					<object type="text" name="atlas_left_pane_section_terrain_elevation_intensity_slider_bar" sprite="atlas_global_slider_bar_h" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_intensity_slider_bar", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_INTENSITY_SLIDER_BAR], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_elevation_intensity_slider_marker" sprite="atlas_global_slider_marker_h" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_intensity_slider_marker", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_INTENSITY_SLIDER_MARKER], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_elevation_roughen_button" style="atlas_button" hidden="false">Roughen
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_roughen_button", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_ROUGHEN_BUTTON], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
-					<object type="text" name="atlas_left_pane_section_terrain_elevation_style_label" style="atlas_label_text" hidden="false">Style
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_style_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_STYLE_LABEL], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_INTENSITY_SLIDER_BAR" sprite="atlas_global_slider_bar_h" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_INTENSITY_SLIDER_BAR]); ]]></action></object>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_INTENSITY_SLIDER_MARKER" sprite="atlas_global_slider_marker_h" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_INTENSITY_SLIDER_MARKER]); ]]></action></object>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_ROUGHEN_BUTTON" style="atlas_button" hidden="false">Roughen<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_ROUGHEN_BUTTON]); ]]></action></object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_STYLE_LABEL" style="atlas_label_text" hidden="false">Style<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_STYLE_LABEL]); ]]></action></object>
 <!-- NOTE: Needs to be made a drop-down box when this control becomes available. -->
-					<object type="input" name="atlas_left_pane_section_terrain_elevation_style_combo_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
+					<object type="input" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_STYLE_COMBO_BOX" sprite="atlas_input_box" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_STYLE_COMBO_BOX]); ]]></action>
 						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_style_combo_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_STYLE_COMBO_BOX], left_screen, top_screen, left_screen, top_screen);
-							GUIObjectSetCaption("atlas_left_pane_section_terrain_elevation_style_combo_box", "Bumpy");
+							GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_STYLE_COMBO_BOX", "Bumpy");
 						]]></action>
 					</object>
-					<object type="text" name="atlas_left_pane_section_terrain_elevation_power_label" style="atlas_label_text" hidden="false">Power
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_LABEL" style="atlas_label_text" hidden="false">Power<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_LABEL]); ]]></action></object>
+					<object type="input" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX" sprite="atlas_input_box" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX]); ]]></action>
 						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_power_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_LABEL], left_screen, top_screen, left_screen, top_screen);
+							GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX", "2.1");
 						]]></action>
 					</object>
-					<object type="input" name="atlas_left_pane_section_terrain_elevation_power_input_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_power_input_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX], left_screen, top_screen, left_screen, top_screen);
-							GUIObjectSetCaption("atlas_left_pane_section_terrain_elevation_power_input_box", "2.1");
-						]]></action>
-					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_elevation_power_input_box_up" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_power_input_box_up", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX_UP], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX_UP" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX_UP]); ]]></action>
 						<action on="Press"><![CDATA[
-							GUIObjectModifyCaption("atlas_left_pane_section_terrain_elevation_power_input_box", .1, 1);
+							GUIObjectModifyCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX", .1, 1);
 						]]></action>
 					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_elevation_power_input_box_dn" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_power_input_box_dn", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX_DN], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX_DN" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX_DN]); ]]></action>
 						<action on="Press"><![CDATA[
-							GUIObjectModifyCaption("atlas_left_pane_section_terrain_elevation_power_input_box", -.1, 1);
+							GUIObjectModifyCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX", -.1, 1);
 						]]></action>
 					</object>
-					<object type="text" name="atlas_left_pane_section_terrain_elevation_scale_label" style="atlas_label_text" hidden="false">Scale
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_LABEL" style="atlas_label_text" hidden="false">Scale<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_LABEL]); ]]></action></object>
+					<object type="input" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX" sprite="atlas_input_box" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX]); ]]></action>
 						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_scale_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_LABEL], left_screen, top_screen, left_screen, top_screen);
+							GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX", "1.0");
 						]]></action>
 					</object>
-					<object type="input" name="atlas_left_pane_section_terrain_elevation_scale_input_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_scale_input_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX], left_screen, top_screen, left_screen, top_screen);
-							GUIObjectSetCaption("atlas_left_pane_section_terrain_elevation_scale_input_box", "1.0");
-						]]></action>
-					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_elevation_scale_input_box_up" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_scale_input_box_up", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX_UP], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX_UP" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX_UP]); ]]></action>
 						<action on="Press"><![CDATA[
-							GUIObjectModifyCaption("atlas_left_pane_section_terrain_elevation_scale_input_box", .1, 1);
+							GUIObjectModifyCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX", .1, 1);
 						]]></action>
 					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_elevation_scale_input_box_dn" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_scale_input_box_dn", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX_DN], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX_DN" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX_DN]); ]]></action>
 						<action on="Press"><![CDATA[
-							GUIObjectModifyCaption("atlas_left_pane_section_terrain_elevation_scale_input_box", -.1, 1);
+							GUIObjectModifyCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX", -.1, 1);
 						]]></action>
 					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_elevation_increment_button" style="atlas_button" hidden="false">Increment
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_INCREMENT_BUTTON" style="atlas_button" hidden="false">Increment<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_INCREMENT_BUTTON]); ]]></action></object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_LABEL" style="atlas_label_text" hidden="false">Amount<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_LABEL]); ]]></action></object>
+					<object type="input" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX" sprite="atlas_input_box" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX]); ]]></action>
 						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_increment_button", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_INCREMENT_BUTTON], left_screen, top_screen, left_screen, top_screen);
+							GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX", "1.0");
 						]]></action>
 					</object>
-					<object type="text" name="atlas_left_pane_section_terrain_elevation_amount_label" style="atlas_label_text" hidden="false">Amount
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_amount_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_LABEL], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
-					<object type="input" name="atlas_left_pane_section_terrain_elevation_amount_input_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_amount_input_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX], left_screen, top_screen, left_screen, top_screen);
-							GUIObjectSetCaption("atlas_left_pane_section_terrain_elevation_amount_input_box", "1.0");
-						]]></action>
-					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_elevation_amount_input_box_up" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_amount_input_box_up", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX_UP], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX_UP" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX_UP]); ]]></action>
 						<action on="Press"><![CDATA[
-							GUIObjectModifyCaption("atlas_left_pane_section_terrain_elevation_amount_input_box", .1, 1);
+							GUIObjectModifyCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX", .1, 1);
 						]]></action>
 					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_elevation_amount_input_box_dn" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_amount_input_box_dn", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX_DN], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX_DN" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX_DN]); ]]></action>
 						<action on="Press"><![CDATA[
-							GUIObjectModifyCaption("atlas_left_pane_section_terrain_elevation_amount_input_box", -.1, 1);
+							GUIObjectModifyCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX", -.1, 1);
 						]]></action>
 					</object>
-					<object type="text" name="atlas_left_pane_section_terrain_elevation_hr" sprite="atlas_hline" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_elevation_hr", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_HR], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_HR" sprite="atlas_hline" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_HR]); ]]></action></object>
 				</object>
-				<object type="empty" name="atlas_left_pane_section_terrain_cliff" size="0 0 100% 100%" z="1" hidden="false">
-					<object type="text" name="atlas_left_pane_section_terrain_cliff_list" sprite="atlas_window_grey" scrollbar_style="atlas_scrollbar" scrollbar="true" hidden="false">
+				<object type="empty" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF" size="0 0 100% 100%" z="1" hidden="false">
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_LIST" sprite="atlas_window_grey" scrollbar_style="atlas_scrollbar" scrollbar="true" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_LIST]); ]]></action></object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEADING" style="atlas_label_text" hidden="false">Cliff<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEADING]); ]]></action></object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEADING_HR" sprite="atlas_hline" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEADING_HR]); ]]></action></object>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_BUTTON_PLACE" style="atlas_button" hidden="false">Place Cliff<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_BUTTON_PLACE]); ]]></action></object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_LABEL" style="atlas_label_text" text_align="left" hidden="false">Height<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_LABEL]); ]]></action></object>
+					<object type="input" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX" sprite="atlas_input_box" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX]); ]]></action>
 						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_cliff_list", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_LIST], left_screen, top_screen, left_screen, top_screen);
+							GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX", "3.0");
 						]]></action>
 					</object>
-					<object type="text" name="atlas_left_pane_section_terrain_cliff_heading" style="atlas_label_text" hidden="false">Cliff
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_cliff_heading", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEADING], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
-					<object type="text" name="atlas_left_pane_section_terrain_cliff_heading_hr" sprite="atlas_hline" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_cliff_heading_hr", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEADING_HR], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_cliff_button_place" style="atlas_button" hidden="false">Place Cliff
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_cliff_button_place", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_BUTTON_PLACE], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
-					<object type="text" name="atlas_left_pane_section_terrain_cliff_height_label" style="atlas_label_text" text_align="left" hidden="false">Height
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_cliff_height_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_LABEL], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
-					<object type="input" name="atlas_left_pane_section_terrain_cliff_height_input_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_cliff_height_input_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX], left_screen, top_screen, left_screen, top_screen);
-							GUIObjectSetCaption("atlas_left_pane_section_terrain_cliff_height_input_box", "3.0");
-						]]></action>
-					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_cliff_height_input_box_up" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_cliff_height_input_box_up", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX_UP], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX_UP" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX_UP]); ]]></action>
 						<action on="Press"><![CDATA[
-							GUIObjectModifyCaption("atlas_left_pane_section_terrain_cliff_height_input_box", .1, 1);
+							GUIObjectModifyCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX", .1, 1);
 						]]></action>
 					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_cliff_height_input_box_dn" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_cliff_height_input_box_dn", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX_DN], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX_DN" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX_DN]); ]]></action>
 						<action on="Press"><![CDATA[
-							GUIObjectModifyCaption("atlas_left_pane_section_terrain_cliff_height_input_box", -.1, 1);
+							GUIObjectModifyCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX", -.1, 1);
 						]]></action>
 					</object>
-					<object type="text" name="atlas_left_pane_section_terrain_cliff_angle_label" style="atlas_label_text" text_align="left" hidden="false">Angle
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_LABEL" style="atlas_label_text" text_align="left" hidden="false">Angle<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_LABEL]); ]]></action></object>
+					<object type="input" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX" sprite="atlas_input_box" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX]); ]]></action>
 						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_cliff_angle_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_LABEL], left_screen, top_screen, left_screen, top_screen);
+							GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX", "65.0");
 						]]></action>
 					</object>
-					<object type="input" name="atlas_left_pane_section_terrain_cliff_angle_input_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_cliff_angle_input_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX], left_screen, top_screen, left_screen, top_screen);
-							GUIObjectSetCaption("atlas_left_pane_section_terrain_cliff_angle_input_box", "65.0");
-						]]></action>
-					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_cliff_angle_input_box_up" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_cliff_angle_input_box_up", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX_UP], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX_UP" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX_UP]); ]]></action>
 						<action on="Press"><![CDATA[
-							GUIObjectModifyCaption("atlas_left_pane_section_terrain_cliff_angle_input_box", .1, 1);
+							GUIObjectModifyCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX", .1, 1);
 						]]></action>
 					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_cliff_angle_input_box_dn" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_cliff_angle_input_box_dn", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX_DN], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX_DN" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX_DN]); ]]></action>
 						<action on="Press"><![CDATA[
-							GUIObjectModifyCaption("atlas_left_pane_section_terrain_cliff_angle_input_box", -.1, 1);
+							GUIObjectModifyCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX", -.1, 1);
 						]]></action>
 					</object>
-					<object type="text" name="atlas_left_pane_section_terrain_cliff_smooth_label" style="atlas_label_text" text_align="left" hidden="false">Smooth
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_LABEL" style="atlas_label_text" text_align="left" hidden="false">Smooth<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_LABEL]); ]]></action></object>
+					<object type="input" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX" sprite="atlas_input_box" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX]); ]]></action>
 						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_cliff_smooth_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_LABEL], left_screen, top_screen, left_screen, top_screen);
+							GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX", "1.0");
 						]]></action>
 					</object>
-					<object type="input" name="atlas_left_pane_section_terrain_cliff_smooth_input_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_cliff_smooth_input_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX], left_screen, top_screen, left_screen, top_screen);
-							GUIObjectSetCaption("atlas_left_pane_section_terrain_cliff_smooth_input_box", "1.0");
-						]]></action>
-					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_cliff_smooth_input_box_up" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_cliff_smooth_input_box_up", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX_UP], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX_UP" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX_UP]); ]]></action>
 						<action on="Press"><![CDATA[
-							GUIObjectModifyCaption("atlas_left_pane_section_terrain_cliff_smooth_input_box", .1, 1);
+							GUIObjectModifyCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX", .1, 1);
 						]]></action>
 					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_cliff_smooth_input_box_dn" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_cliff_smooth_input_box_dn", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX_DN], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX_DN" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX_DN]); ]]></action>
 						<action on="Press"><![CDATA[
-							GUIObjectModifyCaption("atlas_left_pane_section_terrain_cliff_smooth_input_box", -.1, 1);
+							GUIObjectModifyCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX", -.1, 1);
 						]]></action>
 					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_cliff_button_custom" style="atlas_button" hidden="false">Custom Cliff
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_cliff_button_custom", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_BUTTON_CUSTOM], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
-					<object type="text" name="atlas_left_pane_section_terrain_cliff_hr" sprite="atlas_hline" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_cliff_hr", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HR], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_BUTTON_CUSTOM" style="atlas_button" hidden="false">Custom Cliff<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_BUTTON_CUSTOM]); ]]></action></object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HR" sprite="atlas_hline" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HR]); ]]></action></object>
 				</object>
-				<object type="empty" name="atlas_left_pane_section_terrain_water" size="0 0 100% 100%" z="1" hidden="false">
-					<object type="text" name="atlas_left_pane_section_terrain_water_list" sprite="atlas_window_grey" scrollbar_style="atlas_scrollbar" scrollbar="true" hidden="false">
+				<object type="empty" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER" size="0 0 100% 100%" z="1" hidden="false">
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_LIST" sprite="atlas_window_grey" scrollbar_style="atlas_scrollbar" scrollbar="true" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_LIST]); ]]></action></object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_HEADING" style="atlas_label_text" hidden="false">Water<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_HEADING]); ]]></action></object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_HEADING_HR" sprite="atlas_hline" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_HEADING_HR]); ]]></action></object>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_BUTTON_PLACE" style="atlas_button" hidden="false">Place Water<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_BUTTON_PLACE]); ]]></action></object>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_BUTTON_BEAUTIFY" style="atlas_icon_border" cell_id="12" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_BUTTON_BEAUTIFY]); ]]></action></object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_LABEL" style="atlas_label_text" text_align="left" hidden="false">Depth<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_LABEL]); ]]></action></object>
+					<object type="input" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX" sprite="atlas_input_box" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX]); ]]></action>
 						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_water_list", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_LIST], left_screen, top_screen, left_screen, top_screen);
+							GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX", "4.0");
 						]]></action>
 					</object>
-					<object type="text" name="atlas_left_pane_section_terrain_water_heading" style="atlas_label_text" hidden="false">Water
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_water_heading", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_HEADING], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
-					<object type="text" name="atlas_left_pane_section_terrain_water_heading_hr" sprite="atlas_hline" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_water_heading_hr", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_HEADING_HR], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_water_button_place" style="atlas_button" hidden="false">Place Water
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_water_button_place", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_BUTTON_PLACE], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_water_button_beautify" style="atlas_icon_border" cell_id="12" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_water_button_beautify", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_BUTTON_BEAUTIFY], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
-					<object type="text" name="atlas_left_pane_section_terrain_water_depth_label" style="atlas_label_text" text_align="left" hidden="false">Depth
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_water_depth_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_LABEL], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
-					<object type="input" name="atlas_left_pane_section_terrain_water_depth_input_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_water_depth_input_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX], left_screen, top_screen, left_screen, top_screen);
-							GUIObjectSetCaption("atlas_left_pane_section_terrain_water_depth_input_box", "4.0");
-						]]></action>
-					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_water_depth_input_box_up" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_water_depth_input_box_up", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX_UP], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX_UP" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX_UP]); ]]></action>
 						<action on="Press"><![CDATA[
-							GUIObjectModifyCaption("atlas_left_pane_section_terrain_water_depth_input_box", .1, 1);
+							GUIObjectModifyCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX", .1, 1);
 						]]></action>
 					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_water_depth_input_box_dn" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_water_depth_input_box_dn", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX_DN], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX_DN" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX_DN]); ]]></action>
 						<action on="Press"><![CDATA[
-							GUIObjectModifyCaption("atlas_left_pane_section_terrain_water_depth_input_box", -.1, 1);
+							GUIObjectModifyCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX", -.1, 1);
 						]]></action>
 					</object>
-					<object type="text" name="atlas_left_pane_section_terrain_water_colour_label" style="atlas_label_text" text_align="left" hidden="false">Colour
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_LABEL" style="atlas_label_text" text_align="left" hidden="false">Colour<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_LABEL]); ]]></action></object>
+					<object type="input" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_R_INPUT_BOX" sprite="atlas_input_box" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_R_INPUT_BOX]); ]]></action>
 						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_water_colour_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_LABEL], left_screen, top_screen, left_screen, top_screen);
+							GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_R_INPUT_BOX", "100");
 						]]></action>
 					</object>
-					<object type="input" name="atlas_left_pane_section_terrain_water_colour_r_input_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
+					<object type="input" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_G_INPUT_BOX" sprite="atlas_input_box" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_G_INPUT_BOX]); ]]></action>
 						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_water_colour_r_input_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_R_INPUT_BOX], left_screen, top_screen, left_screen, top_screen);
-							GUIObjectSetCaption("atlas_left_pane_section_terrain_water_colour_r_input_box", "100");
+							GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_G_INPUT_BOX", "255");
 						]]></action>
 					</object>
-					<object type="input" name="atlas_left_pane_section_terrain_water_colour_g_input_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
+					<object type="input" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_B_INPUT_BOX" sprite="atlas_input_box" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_B_INPUT_BOX]); ]]></action>
 						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_water_colour_g_input_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_G_INPUT_BOX], left_screen, top_screen, left_screen, top_screen);
-							GUIObjectSetCaption("atlas_left_pane_section_terrain_water_colour_g_input_box", "255");
+							GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_B_INPUT_BOX", "80");
 						]]></action>
 					</object>
-					<object type="input" name="atlas_left_pane_section_terrain_water_colour_b_input_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_TINT_BOX" style="atlas_indent" text_align="left" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_TINT_BOX]); ]]></action></object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_LABEL" style="atlas_label_text" text_align="left" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_LABEL]); ]]></action>
 						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_water_colour_b_input_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_B_INPUT_BOX], left_screen, top_screen, left_screen, top_screen);
-							GUIObjectSetCaption("atlas_left_pane_section_terrain_water_colour_b_input_box", "80");
+							GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_LABEL","Smooth\nRadius");
 						]]></action>
 					</object>
-					<object type="text" name="atlas_left_pane_section_terrain_water_colour_tint_box" style="atlas_indent" text_align="left" hidden="false">
+					<object type="input" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX" sprite="atlas_input_box" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX]); ]]></action>
 						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_water_colour_tint_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_TINT_BOX], left_screen, top_screen, left_screen, top_screen);
+							GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX", "4.0");
 						]]></action>
 					</object>
-					<object type="text" name="atlas_left_pane_section_terrain_water_smooth_label" style="atlas_label_text" text_align="left" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_water_smooth_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_LABEL], left_screen, top_screen, left_screen, top_screen);
-							GUIObjectSetCaption("atlas_left_pane_section_terrain_water_smooth_label","Smooth\nRadius");
-						]]></action>
-					</object>
-					<object type="input" name="atlas_left_pane_section_terrain_water_smooth_input_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_water_smooth_input_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX], left_screen, top_screen, left_screen, top_screen);
-							GUIObjectSetCaption("atlas_left_pane_section_terrain_water_smooth_input_box", "4.0");
-						]]></action>
-					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_water_smooth_input_box_up" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_water_smooth_input_box_up", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX_UP], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX_UP" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX_UP]); ]]></action>
 						<action on="Press"><![CDATA[
-							GUIObjectModifyCaption("atlas_left_pane_section_terrain_water_smooth_input_box", .1, 1);
+							GUIObjectModifyCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX", .1, 1);
 						]]></action>
 					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_water_smooth_input_box_dn" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_water_smooth_input_box_dn", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX_DN], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX_DN" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX_DN]); ]]></action>
 						<action on="Press"><![CDATA[
-							GUIObjectModifyCaption("atlas_left_pane_section_terrain_water_smooth_input_box", -.1, 1);
+							GUIObjectModifyCaption("ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX", -.1, 1);
 						]]></action>
 					</object>
-					<object type="button" name="atlas_left_pane_section_terrain_water_button_custom" style="atlas_button" hidden="false">Custom Water
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_water_button_custom", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_BUTTON_CUSTOM], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
-					<object type="text" name="atlas_left_pane_section_terrain_water_hr" sprite="atlas_hline" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_terrain_water_hr", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_HR], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_BUTTON_CUSTOM" style="atlas_button" hidden="false">Custom Water<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_BUTTON_CUSTOM]); ]]></action></object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_HR" sprite="atlas_hline" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_HR]); ]]></action></object>
 				</object>
 			</object>
 
 			<!-- OBJECT EDITOR SECTION MENU -->
-			<object type="empty" name="atlas_left_pane_section_object" size="0 0 100% 100%" z="1" hidden="true">
-					<object type="text" name="atlas_left_pane_section_object_category_label" style="atlas_label_text" text_align="left" hidden="false">Category
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_object_category_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_OBJECT_CATEGORY_LABEL], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
+			<object type="empty" name="ATLAS_LEFT_PANE_SECTION_OBJECT" size="0 0 100% 100%" z="1" hidden="true">
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_OBJECT_CATEGORY_LABEL" style="atlas_label_text" text_align="left" hidden="false">Category<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_OBJECT_CATEGORY_LABEL]); ]]></action></object>
 <!-- NOTE: This will need to be replaced with a combobox when the control becomes available. -->
-					<object type="input" name="atlas_left_pane_section_object_category_combo_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
+					<object type="input" name="ATLAS_LEFT_PANE_SECTION_OBJECT_CATEGORY_COMBO_BOX" sprite="atlas_input_box" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_OBJECT_CATEGORY_COMBO_BOX]); ]]></action></object>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_OBJECT_BUTTON_CUSTOM_ACTOR" style="atlas_button" hidden="false">Custom Actor<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_OBJECT_BUTTON_CUSTOM_ACTOR]); ]]></action></object>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_OBJECT_BUTTON_CUSTOM_ENTITY" style="atlas_button" hidden="false">Custom Entity<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_OBJECT_BUTTON_CUSTOM_ENTITY]); ]]></action></object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_BKG" sprite="atlas_window_grey" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_BKG]); ]]></action></object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_PLAYER_LABEL" style="atlas_label_text" text_align="left" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_PLAYER_LABEL]); ]]></action>
 						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_object_category_combo_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_OBJECT_CATEGORY_COMBO_BOX], left_screen, top_screen, left_screen, top_screen);
+							GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_PLAYER_LABEL","Player");
 						]]></action>
 					</object>
-					<object type="button" name="atlas_left_pane_section_object_button_custom_actor" style="atlas_button" hidden="false">Custom Actor
+					<object type="input" name="ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_PLAYER_INPUT_BOX" sprite="atlas_input_box" style="atlas_label_text" text_align="right" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_PLAYER_INPUT_BOX]); ]]></action>
 						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_object_button_custom_actor", atlasCoord[ATLAS_LEFT_PANE_SECTION_OBJECT_BUTTON_CUSTOM_ACTOR], left_screen, top_screen, left_screen, top_screen);
+							GUIObjectSetCaption("ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_PLAYER_INPUT_BOX", "1");
 						]]></action>
 					</object>
-					<object type="button" name="atlas_left_pane_section_object_button_custom_entity" style="atlas_button" hidden="false">Custom Entity
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_object_button_custom_entity", atlasCoord[ATLAS_LEFT_PANE_SECTION_OBJECT_BUTTON_CUSTOM_ENTITY], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
-					<object type="text" name="atlas_left_pane_section_object_list_bkg" sprite="atlas_window_grey" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_object_list_bkg", atlasCoord[ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_BKG], left_screen, top_screen, left_screen, bottom_screen);
-						]]></action>
-					</object>
-					<object type="text" name="atlas_left_pane_section_object_list_player_label" style="atlas_label_text" text_align="left" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_object_list_player_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_PLAYER_LABEL], left_screen, top_screen, left_screen, top_screen);
-							GUIObjectSetCaption("atlas_left_pane_section_object_list_player_label","Player");
-						]]></action>
-					</object>
-					<object type="input" name="atlas_left_pane_section_object_list_player_input_box" sprite="atlas_input_box" style="atlas_label_text" text_align="right" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_object_list_player_input_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_PLAYER_INPUT_BOX], left_screen, top_screen, left_screen, top_screen);
-							GUIObjectSetCaption("atlas_left_pane_section_object_list_player_input_box", "1");
-						]]></action>
-					</object>
-					<object type="button" name="atlas_left_pane_section_object_list_player_input_box_up" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_object_list_player_input_box_up", atlasCoord[ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_PLAYER_INPUT_BOX_UP], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_PLAYER_INPUT_BOX_UP" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_PLAYER_INPUT_BOX_UP]); ]]></action>
 						<action on="Press"><![CDATA[
-							GUIObjectModifyCaption("atlas_left_pane_section_object_list_player_input_box", 1, 0);
+							GUIObjectModifyCaption("ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_PLAYER_INPUT_BOX", 1, 0);
 						]]></action>
 					</object>
-					<object type="button" name="atlas_left_pane_section_object_list_player_input_box_dn" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_object_list_player_input_box_dn", atlasCoord[ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_PLAYER_INPUT_BOX_DN], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
+					<object type="button" name="ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_PLAYER_INPUT_BOX_DN" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_PLAYER_INPUT_BOX_DN]); ]]></action>
 						<action on="Press"><![CDATA[
-							GUIObjectModifyCaption("atlas_left_pane_section_object_list_player_input_box", -1, 0);
+							GUIObjectModifyCaption("ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_PLAYER_INPUT_BOX", -1, 0);
 						]]></action>
 					</object>
-					<object type="text" name="atlas_left_pane_section_object_list_heading" style="atlas_heading" hidden="false">Objects
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_object_list_heading", atlasCoord[ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_HEADING], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
-					<object type="text" name="atlas_left_pane_section_object_list_sort_label" style="atlas_label_text" text_align="left" hidden="false">Sort
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_object_list_sort_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_SORT_LABEL], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_HEADING" style="atlas_heading" hidden="false">Objects<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_HEADING]); ]]></action></object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_SORT_LABEL" style="atlas_label_text" text_align="left" hidden="false">Sort<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_SORT_LABEL]); ]]></action></object>
 <!-- NOTE: This will need to be replaced with a combobox when the control becomes available. -->
-					<object type="input" name="atlas_left_pane_section_object_list_sort_combo_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_object_list_sort_combo_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_SORT_COMBO_BOX], left_screen, top_screen, left_screen, top_screen);
-						]]></action>
-					</object>
-					<object type="text" name="atlas_left_pane_section_object_list" sprite="atlas_window_grey" scrollbar_style="atlas_scrollbar" scrollbar="true" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_left_pane_section_object_list", atlasCoord[ATLAS_LEFT_PANE_SECTION_OBJECT_LIST], left_screen, top_screen, left_screen, bottom_screen);
-						]]></action>
-					</object>
+					<object type="input" name="ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_SORT_COMBO_BOX" sprite="atlas_input_box" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_OBJECT_LIST_SORT_COMBO_BOX]); ]]></action></object>
+					<object type="text" name="ATLAS_LEFT_PANE_SECTION_OBJECT_LIST" sprite="atlas_window_grey" scrollbar_style="atlas_scrollbar" scrollbar="true" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LEFT_PANE_SECTION_OBJECT_LIST]); ]]></action></object>
 			</object>
 		</object>
 	
 		<!-- BOTTOM SELECTION PANE: Context panel along the bottom of the screen. -->
-		<object type="empty" name="atlas_bottom_pane" size="0 0 100% 100%" z="1" hidden="true">
+		<object type="empty" name="ATLAS_BOTTOM_PANE" size="0 0 100% 100%" z="1" hidden="true">
 
 			<!-- BOTTOM SELECTION BACKGROUND -->
-			<object type="text" name="atlas_bottom_pane_bkg" sprite="atlas_window_rt_border" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeArray("atlas_bottom_pane_bkg", atlasCoord[ATLAS_BOTTOM_PANE_BKG], left_screen, bottom_screen, right_screen, bottom_screen);
-				]]></action>
-			</object>
+			<object type="text" name="ATLAS_BOTTOM_PANE_BKG" sprite="atlas_window_rt_border" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_BOTTOM_PANE_BKG]); ]]></action></object>
 
 			<!-- LEFT/BOTTOM SELECTION PANE CORNER -->
-			<object type="text" name="atlas_lb_corner" sprite="atlas_lb_corner" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeArray("atlas_lb_corner", atlasCoord[ATLAS_LB_CORNER], left_screen, bottom_screen, left_screen, bottom_screen);
-				]]></action>
-			</object>
+			<object type="text" name="ATLAS_LB_CORNER" sprite="atlas_lb_corner" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_LB_CORNER]); ]]></action></object>
 
 			<!-- RB: MINIMAP BACKGROUND -->
-			<object type="text" name="atlas_minimap_bkg" sprite="atlas_window_t_border" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeArray("atlas_minimap_bkg", atlasCoord[ATLAS_MINIMAP_BKG], right_screen, bottom_screen, right_screen, bottom_screen);
-				]]></action>
-			</object>
+			<object type="text" name="ATLAS_MINIMAP_BKG" sprite="atlas_window_t_border" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MINIMAP_BKG]); ]]></action></object>
 
 			<!-- RIGHT/BOTTOM SELECTION PANE CORNER -->
-			<object type="text" name="atlas_rb_corner" sprite="atlas_rb_corner_x2" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeArray("atlas_rb_corner", atlasCoord[ATLAS_RB_CORNER], right_screen, bottom_screen, right_screen, bottom_screen);
-				]]></action>
-			</object>
+			<object type="text" name="ATLAS_RB_CORNER" sprite="atlas_rb_corner_x2" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_RB_CORNER]); ]]></action></object>
 
 			<!-- TERRAIN EDITOR BOTTOM PANE -->
-			<object type="empty" name="atlas_bottom_pane_section_terrain" size="0 0 100% 100%" z="1" hidden="false">
-				<object type="empty" name="atlas_bottom_pane_section_terrain_other" size="0 0 100% 100%" z="1" hidden="false">
-					<object type="text" name="atlas_bottom_pane_section_terrain_preview" style="atlas_indent" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_bottom_pane_section_terrain_preview", atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PREVIEW], left_screen, bottom_screen, left_screen, bottom_screen);
-						]]></action>
-					</object>
-					<object type="text" name="atlas_bottom_pane_section_terrain_preview_label" style="atlas_label_text" hidden="false">Terrain Preview
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_bottom_pane_section_terrain_preview_label", atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PREVIEW_LABEL], left_screen, bottom_screen, left_screen, bottom_screen);
-						]]></action>
-					</object>
-					<object type="text" name="atlas_bottom_pane_section_terrain_brush_border_label" style="atlas_label_text" hidden="false">Brush
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_bottom_pane_section_terrain_brush_border_label", atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BORDER_LABEL], left_screen, bottom_screen, left_screen, bottom_screen);
-						]]></action>
-					</object>
-					<object type="text" name="atlas_bottom_pane_section_terrain_brush_border" sprite="atlas_border" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_bottom_pane_section_terrain_brush_border", atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BORDER], left_screen, bottom_screen, left_screen, bottom_screen);
-						]]></action>
-					</object>
+			<object type="empty" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN" size="0 0 100% 100%" z="1" hidden="false">
+				<object type="empty" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_OTHER" size="0 0 100% 100%" z="1" hidden="false">
+					<object type="text" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PREVIEW" style="atlas_indent" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PREVIEW]); ]]></action></object>
+					<object type="text" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PREVIEW_LABEL" style="atlas_label_text" hidden="false">Terrain Preview<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PREVIEW_LABEL]); ]]></action></object>
+					<object type="text" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BORDER_LABEL" style="atlas_label_text" hidden="false">Brush<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BORDER_LABEL]); ]]></action></object>
+					<object type="text" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BORDER" sprite="atlas_border" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BORDER]); ]]></action></object>
 <!-- NOTE: This will need to be replaced with a real slider when the control becomes available. -->
-					<object type="text" name="atlas_bottom_pane_section_terrain_brush_size_slider_bar" sprite="atlas_global_slider_bar_v" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_bottom_pane_section_terrain_brush_size_slider_bar", atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_SIZE_SLIDER_BAR], left_screen, bottom_screen, left_screen, bottom_screen);
-						]]></action>
-					</object>
-					<object type="button" name="atlas_bottom_pane_section_terrain_brush_size_slider_marker" sprite="atlas_global_slider_marker_v" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_bottom_pane_section_terrain_brush_size_slider_marker", atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_SIZE_SLIDER_MARKER], left_screen, bottom_screen, left_screen, bottom_screen);
-						]]></action>
-					</object>
-					<object type="button" name="atlas_bottom_pane_section_terrain_brush_button_1" style="atlas_icon" cell_id="4" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_bottom_pane_section_terrain_brush_button_1", atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_1], left_screen, bottom_screen, left_screen, bottom_screen);
-						]]></action>
-					</object>
-					<object type="button" name="atlas_bottom_pane_section_terrain_brush_button_2" style="atlas_icon" cell_id="5" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_bottom_pane_section_terrain_brush_button_2", atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_2], left_screen, bottom_screen, left_screen, bottom_screen);
-						]]></action>
-					</object>
-					<object type="button" name="atlas_bottom_pane_section_terrain_brush_button_3" style="atlas_icon" cell_id="6" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_bottom_pane_section_terrain_brush_button_3", atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_3], left_screen, bottom_screen, left_screen, bottom_screen);
-						]]></action>
-					</object>
-					<object type="button" name="atlas_bottom_pane_section_terrain_brush_button_4" style="atlas_icon" cell_id="7" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_bottom_pane_section_terrain_brush_button_4", atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_4], left_screen, bottom_screen, left_screen, bottom_screen);
-						]]></action>
-					</object>
-					<object type="button" name="atlas_bottom_pane_section_terrain_brush_button_beautify" style="atlas_icon_border" cell_id="13" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_bottom_pane_section_terrain_brush_button_beautify", atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_BEAUTIFY], left_screen, bottom_screen, left_screen, bottom_screen);
-						]]></action>
-					</object>
+					<object type="text" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_SIZE_SLIDER_BAR" sprite="atlas_global_slider_bar_v" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_SIZE_SLIDER_BAR]); ]]></action></object>
+					<object type="button" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_SIZE_SLIDER_MARKER" sprite="atlas_global_slider_marker_v" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_SIZE_SLIDER_MARKER]); ]]></action></object>
+					<object type="button" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_1" style="atlas_icon" cell_id="4" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_1]); ]]></action></object>
+					<object type="button" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_2" style="atlas_icon" cell_id="5" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_2]); ]]></action></object>
+					<object type="button" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_3" style="atlas_icon" cell_id="6" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_3]); ]]></action></object>
+					<object type="button" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_4" style="atlas_icon" cell_id="7" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_4]); ]]></action></object>
+					<object type="button" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_BEAUTIFY" style="atlas_icon_border" cell_id="13" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_BEAUTIFY]); ]]></action></object>
 				</object>
-				<object type="empty" name="atlas_bottom_pane_section_terrain_palette" size="0 0 100% 100%" z="1" hidden="false">
-					<object type="text" name="atlas_bottom_pane_section_terrain_palette_bkg" sprite="atlas_window_grey" scrollbar_style="atlas_scrollbar" scrollbar="true" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_bottom_pane_section_terrain_palette_bkg", atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_BKG], right_screen, bottom_screen, right_screen, bottom_screen);
-						]]></action>
-					</object>
-					<object type="button" name="atlas_bottom_pane_section_terrain_palette_tab_1" style="atlas_tab" hidden="false">All
-					</object>
-					<object type="button" name="atlas_bottom_pane_section_terrain_palette_tab_2" style="atlas_tab" hidden="false">Grass
-					</object>
-					<object type="button" name="atlas_bottom_pane_section_terrain_palette_tab_3" style="atlas_tab" hidden="false">Dirt
-					</object>
-					<object type="button" name="atlas_bottom_pane_section_terrain_palette_tab_4" style="atlas_tab" hidden="false">Snow
-					</object>
-					<object type="button" name="atlas_bottom_pane_section_terrain_palette_tab_5" style="atlas_tab" hidden="false">Shoreline
-					</object>
-					<object type="button" name="atlas_bottom_pane_section_terrain_palette_tab_6" style="atlas_tab" hidden="false">Forest
-					</object>
-					<object type="button" name="atlas_bottom_pane_section_terrain_palette_tab_7" style="atlas_tab" hidden="false">Road
-					</object>
-					<object type="button" name="atlas_bottom_pane_section_terrain_palette_tab_8" style="atlas_tab" hidden="false">City
-					</object>
-					<object type="button" name="atlas_bottom_pane_section_terrain_palette_tab_9" style="atlas_tab" hidden="false">Sand
+				<object type="empty" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE" size="0 0 100% 100%" z="1" hidden="false">
+					<object type="text" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_BKG" sprite="atlas_window_grey" scrollbar_style="atlas_scrollbar" scrollbar="true" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_BKG]); ]]></action></object>
+					<object type="button" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB_1" style="atlas_tab" hidden="false">All</object>
+					<object type="button" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB_2" style="atlas_tab" hidden="false">Grass</object>
+					<object type="button" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB_3" style="atlas_tab" hidden="false">Dirt</object>
+					<object type="button" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB_4" style="atlas_tab" hidden="false">Snow</object>
+					<object type="button" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB_5" style="atlas_tab" hidden="false">Shoreline</object>
+					<object type="button" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB_6" style="atlas_tab" hidden="false">Forest</object>
+					<object type="button" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB_7" style="atlas_tab" hidden="false">Road</object>
+					<object type="button" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB_8" style="atlas_tab" hidden="false">City</object>
+					<object type="button" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB_9" style="atlas_tab" hidden="false">Sand
 						<action on="Load"><![CDATA[
 							// Seek through ALL menu buttons and set their sizes at once. (So make sure this always goes in the last menu button.)
 							for (ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB.last = 1; ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB.last <= ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB.max; ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB.last++)
-								setSizeArray("atlas_bottom_pane_section_terrain_palette_tab_" + ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB.last, atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB.last]], right_screen, bottom_screen, right_screen, bottom_screen);
+								setSizeArray("ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB_" + ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB.last, Crd[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB.last]]);
 						]]></action>
 					</object>
-					<object type="button" name="atlas_bottom_pane_section_terrain_palette_rt_arrow" sprite="atlas_global_arrow_rt" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Terrain Palette Right Arrow[font=tahoma10]\nClick to display more terrain palette tabs." hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_bottom_pane_section_terrain_palette_rt_arrow", atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_RT_ARROW], right_screen, bottom_screen, right_screen, bottom_screen);
-						]]></action>
+					<object type="button" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_RT_ARROW" sprite="atlas_global_arrow_rt" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Terrain Palette Right Arrow[font=tahoma10]\nClick to display more terrain palette tabs." hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_RT_ARROW]); ]]></action>
 						<action on="Press"><![CDATA[
 						]]></action>
 					</object>
-					<object type="button" name="atlas_bottom_pane_section_terrain_palette_button_custom" style="atlas_button" hidden="false">Custom Terrain
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_bottom_pane_section_terrain_palette_button_custom", atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_BUTTON_CUSTOM], right_screen, bottom_screen, right_screen, bottom_screen);
-						]]></action>
-					</object>
+					<object type="button" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_BUTTON_CUSTOM" style="atlas_button" hidden="false">Custom Terrain<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_BUTTON_CUSTOM]); ]]></action></object>
 				</object>
 			</object>
 
 			<!-- OBJECT EDITOR BOTTOM PANE -->
-			<object type="empty" name="atlas_bottom_pane_section_object" size="0 0 100% 100%" z="1" hidden="true">
-				<object type="empty" name="atlas_bottom_pane_section_object_anim" size="0 0 100% 100%" z="1" hidden="false">
-					<object type="text" name="atlas_bottom_pane_section_object_anim_combo_box_label" style="atlas_label_text" text_align="left" hidden="false">Animation
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_bottom_pane_section_object_anim_combo_box_label", atlasCoord[ATLAS_BOTTOM_PANE_SECTION_OBJECT_ANIM_COMBO_BOX_LABEL], left_screen, bottom_screen, left_screen, bottom_screen);
-						]]></action>
-					</object>
+			<object type="empty" name="ATLAS_BOTTOM_PANE_SECTION_OBJECT" size="0 0 100% 100%" z="1" hidden="true">
+				<object type="empty" name="ATLAS_BOTTOM_PANE_SECTION_OBJECT_ANIM" size="0 0 100% 100%" z="1" hidden="false">
+					<object type="text" name="ATLAS_BOTTOM_PANE_SECTION_OBJECT_ANIM_COMBO_BOX_LABEL" style="atlas_label_text" text_align="left" hidden="false">Animation<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_BOTTOM_PANE_SECTION_OBJECT_ANIM_COMBO_BOX_LABEL]); ]]></action></object>
 <!-- NOTE: This will need to be replaced with a combobox when the control becomes available. -->
-					<object type="input" name="atlas_bottom_pane_section_object_anim_combo_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
+					<object type="input" name="ATLAS_BOTTOM_PANE_SECTION_OBJECT_ANIM_COMBO_BOX" sprite="atlas_input_box" style="atlas_label_text" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_BOTTOM_PANE_SECTION_OBJECT_ANIM_COMBO_BOX]); ]]></action>
 						<action on="Load"><![CDATA[
-							setSizeArray("atlas_bottom_pane_section_object_anim_combo_box", atlasCoord[ATLAS_BOTTOM_PANE_SECTION_OBJECT_ANIM_COMBO_BOX], left_screen, bottom_screen, left_screen, bottom_screen);
-							GUIObjectSetCaption("atlas_bottom_pane_section_object_anim_combo_box", "idle_a");
+							GUIObjectSetCaption("ATLAS_BOTTOM_PANE_SECTION_OBJECT_ANIM_COMBO_BOX", "idle_a");
 						]]></action>
 					</object>
-					<object type="text" name="atlas_bottom_pane_section_object_anim_viewer" style="atlas_indent" hidden="false">
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_bottom_pane_section_object_anim_viewer", atlasCoord[ATLAS_BOTTOM_PANE_SECTION_OBJECT_ANIM_VIEWER], left_screen, bottom_screen, left_screen, bottom_screen);
-						]]></action>
-					</object>
-					<object type="text" name="atlas_bottom_pane_section_object_anim_viewer_label" style="atlas_label_text" hidden="false">Animation Viewer
-						<action on="Load"><![CDATA[
-							setSizeArray("atlas_bottom_pane_section_object_anim_viewer_label", atlasCoord[ATLAS_BOTTOM_PANE_SECTION_OBJECT_ANIM_VIEWER_LABEL], left_screen, bottom_screen, left_screen, bottom_screen);
-						]]></action>
-					</object>
+					<object type="text" name="ATLAS_BOTTOM_PANE_SECTION_OBJECT_ANIM_VIEWER" style="atlas_indent" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_BOTTOM_PANE_SECTION_OBJECT_ANIM_VIEWER]); ]]></action></object>
+					<object type="text" name="ATLAS_BOTTOM_PANE_SECTION_OBJECT_ANIM_VIEWER_LABEL" style="atlas_label_text" hidden="false">Animation Viewer<action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_BOTTOM_PANE_SECTION_OBJECT_ANIM_VIEWER_LABEL]); ]]></action></object>
 				</object>
 			</object>
 		</object>
-
+-->
 		<!-- RB: MINIMAP: Displays whole map. Identical functionality to session map, just a little smaller. -->
 		<!-- Later change this to type minimap, no sprite (doesn't do anything if not in simulation mode). -->
-		<object type="text" name="atlas_minimap" sprite="atlas_window" hidden="false">
-			<action on="Load"><![CDATA[
-				setSizeArray("atlas_minimap", atlasCoord[ATLAS_MINIMAP], right_screen, bottom_screen, right_screen, bottom_screen);
-			]]></action>
-		</object>
+		<object type="text" name="ATLAS_MINIMAP" sprite="atlas_window" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MINIMAP]); ]]></action></object>
 
 		<!-- TOP: MENU -->
-		<object type="empty" name="atlas_mainborder_menu" size="0 0 100% 100%" z="1" hidden="false">
-			<object type="text" name="atlas_mainborder_menu_bkg" sprite="atlas_menubar_bkg" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeArray("atlas_mainborder_menu_bkg", atlasCoord[ATLAS_MAINBORDER_MENU_BKG], left_screen, top_screen, right_screen, top_screen);
-				]]></action>
-			</object>
+		<object type="empty" name="ATLAS_MAINBORDER_MENU" size="0 0 100% 100%" z="1" hidden="false">
+			<object type="text" name="ATLAS_MAINBORDER_MENU_BKG" sprite="atlas_menubar_bkg" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_MENU_BKG]); ]]></action></object>
 <!-- NOTE: These menu buttons will need to have a context menu control when it becomes available. -->
-			<object type="button" name="atlas_mainborder_menu_1" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">File
+			<object type="button" name="ATLAS_MAINBORDER_MENU_1" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">File
 				<action on="Press"><![CDATA[
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_menu_2" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Map
+			<object type="button" name="ATLAS_MAINBORDER_MENU_2" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Map
 				<action on="Press"><![CDATA[
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_menu_3" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Terrain
+			<object type="button" name="ATLAS_MAINBORDER_MENU_3" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Terrain
 				<action on="Press"><![CDATA[
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_menu_4" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Objects
+			<object type="button" name="ATLAS_MAINBORDER_MENU_4" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Objects
 				<action on="Press"><![CDATA[
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_menu_5" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Triggers
+			<object type="button" name="ATLAS_MAINBORDER_MENU_5" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Triggers
 				<action on="Press"><![CDATA[
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_menu_6" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Player
+			<object type="button" name="ATLAS_MAINBORDER_MENU_6" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Player
 				<action on="Press"><![CDATA[
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_menu_7" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Diplomacy
+			<object type="button" name="ATLAS_MAINBORDER_MENU_7" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Diplomacy
 				<action on="Press"><![CDATA[
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_menu_8" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Messages
+			<object type="button" name="ATLAS_MAINBORDER_MENU_8" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Messages
 				<action on="Press"><![CDATA[
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_menu_9" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Playlist
+			<object type="button" name="ATLAS_MAINBORDER_MENU_9" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Playlist
 				<action on="Press"><![CDATA[
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_menu_10" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Cinematics
+			<object type="button" name="ATLAS_MAINBORDER_MENU_10" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Cinematics
 				<action on="Press"><![CDATA[
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_menu_11" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">
+			<object type="button" name="ATLAS_MAINBORDER_MENU_11" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">
 				<action on="Press"><![CDATA[
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_menu_12" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Campaign
+			<object type="button" name="ATLAS_MAINBORDER_MENU_12" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">
 				<action on="Load"><![CDATA[
 					// Seek through ALL menu buttons and set their sizes at once. (So make sure this always goes in the last menu button.)
 					for (ATLAS_MAINBORDER_MENU_BUTTON.last = 1; ATLAS_MAINBORDER_MENU_BUTTON.last <= ATLAS_MAINBORDER_MENU_BUTTON.max; ATLAS_MAINBORDER_MENU_BUTTON.last++)
-						setSizeArray("atlas_mainborder_menu_" + ATLAS_MAINBORDER_MENU_BUTTON.last, atlasCoord[ATLAS_MAINBORDER_MENU_BUTTON[ATLAS_MAINBORDER_MENU_BUTTON.last]], left_screen, top_screen, left_screen, top_screen);
+						setSizeArray("atlas_mainborder_menu_" + ATLAS_MAINBORDER_MENU_BUTTON.last, Crd[ATLAS_MAINBORDER_MENU_BUTTON[ATLAS_MAINBORDER_MENU_BUTTON.last]]);
 				]]></action>
 				<action on="Press"><![CDATA[
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_maximise_arrow" sprite="atlas_global_arrow_dn" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Maximise Arrow[font=tahoma10]\nClick to maximise the toolbar." hidden="true">
-				<action on="Load"><![CDATA[
-					setSizeArray("atlas_mainborder_toolbar_maximise_arrow", atlasCoord[ATLAS_MAINBORDER_TOOLBAR_MAXIMISE_ARROW], right_screen, top_screen, right_screen, top_screen);
-				]]></action>
+			<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_MAXIMISE_ARROW" sprite="atlas_global_arrow_dn" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Maximise Arrow[font=tahoma10]\nClick to maximise the toolbar." hidden="true"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_TOOLBAR_MAXIMISE_ARROW]); ]]></action>
 				<action on="Press"><![CDATA[
 					atlasMaximiseToolbar();
 				]]></action>
@@ -914,24 +485,14 @@
 		</object>
 
 		<!-- TOP: TOOLBAR -->
-		<object type="empty" name="atlas_mainborder_toolbar" size="0 0 100% 100%" z="1" hidden="false">
-			<object type="text" name="atlas_mainborder_toolbar_bkg" sprite="atlas_toolbar_bkg" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeArray("atlas_mainborder_toolbar_bkg", atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG], left_screen, top_screen, right_screen, top_screen);
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_fully_minimise_arrow" sprite="atlas_global_arrow_up" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Fully Minimise Arrow[font=tahoma10]\nClick to fully minimise the toolbar." hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeArray("atlas_mainborder_toolbar_fully_minimise_arrow", atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW], right_screen, top_screen, right_screen, top_screen);
-				]]></action>
+		<object type="empty" name="ATLAS_MAINBORDER_TOOLBAR" size="0 0 100% 100%" z="1" hidden="false">
+			<object type="text" name="ATLAS_MAINBORDER_TOOLBAR_BKG" sprite="atlas_toolbar_bkg" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_TOOLBAR_BKG]); ]]></action></object>
+			<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW" sprite="atlas_global_arrow_up" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Fully Minimise Arrow[font=tahoma10]\nClick to fully minimise the toolbar." hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW]); ]]></action>
 				<action on="Press"><![CDATA[
 					atlasFullyMinimiseToolbar();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_fully_maximise_arrow" sprite="atlas_global_arrow_dn" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Full Maximise Arrow[font=tahoma10]\nClick to fully maximise the toolbar." hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeArray("atlas_mainborder_toolbar_fully_maximise_arrow", atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MAXIMISE_ARROW], right_screen, top_screen, right_screen, top_screen);
-				]]></action>
+			<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_FULLY_MAXIMISE_ARROW" sprite="atlas_global_arrow_dn" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Full Maximise Arrow[font=tahoma10]\nClick to fully maximise the toolbar." hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_TOOLBAR_FULLY_MAXIMISE_ARROW]); ]]></action>
 				<action on="Press"><![CDATA[
 					atlasFullyMaximiseToolbar();
 				]]></action>
@@ -939,396 +500,39 @@
 		</object>
 
 		<!-- TOP: TOOLBAR SECOND ROW -->
-		<object type="empty" name="atlas_mainborder_toolbar_max" size="0 0 100% 100%" z="1" hidden="true">
-			<object type="text" name="atlas_mainborder_toolbar_bkg_max" sprite="atlas_toolbar_bkg" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeArray("atlas_mainborder_toolbar_bkg_max", atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX], left_screen, top_screen, right_screen, top_screen);
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_minimise_arrow" sprite="atlas_global_arrow_up" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Minimise Arrow[font=tahoma10]\nClick to minimise the toolbar." hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeArray("atlas_mainborder_toolbar_minimise_arrow", atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW], right_screen, top_screen, right_screen, top_screen);
-				]]></action>
+		<object type="empty" name="ATLAS_MAINBORDER_TOOLBAR_MAX" size="0 0 100% 100%" z="1" hidden="true">
+			<object type="text" name="ATLAS_MAINBORDER_TOOLBAR_BKG_MAX" sprite="atlas_toolbar_bkg" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX]); ]]></action></object>
+			<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_MINIMISE_ARROW" sprite="atlas_global_arrow_up" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Minimise Arrow[font=tahoma10]\nClick to minimise the toolbar." hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_TOOLBAR_MINIMISE_ARROW]); ]]></action>
 				<action on="Press"><![CDATA[
 					atlasMinimiseToolbar();
 				]]></action>
 			</object>
 		</object>
 
-		<!-- TOP: TOOLBAR BUTTONS: ROW 1 -->
-		<object type="empty" name="atlas_mainborder_toolbar_button_row_1" size="0 0 100% 100%" z="1" hidden="false">
-			<!-- TOP: TOOLBAR: BUTTONS -->
-			<object type="button" name="atlas_mainborder_toolbar_button_1" cell_id="1" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Hide Section Menu[font=tahoma10]\nClick to clear any Section Menus that are open, and reveal more of the screen." hidden="false">
-				<action on="Press"><![CDATA[
-					atlasOpenSectionMenu("none");
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_2" cell_id="2" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Open Map Creator[font=tahoma10]\nConfigure and create a new map from the Map Creator menu." hidden="false">
-				<action on="Press"><![CDATA[
-					atlasOpenSectionMenu("atlas_left_pane_section_map");
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_3" cell_id="3" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Open Terrain Editor[font=tahoma10]\nEdit elevation, and paint terrain, water and cliffs from the Terrain Editor menu." hidden="false">
-				<action on="Press"><![CDATA[
-					atlasOpenSectionMenu("atlas_left_pane_section_terrain");
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_4" cell_id="4" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-					atlasOpenSectionMenu("atlas_left_pane_section_object");
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_5" cell_id="5" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_6" cell_id="6" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_7" cell_id="7" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_8" cell_id="8" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_9" cell_id="9" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_10" cell_id="10" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_11" cell_id="11" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_12" cell_id="12" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_13" cell_id="13" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_14" cell_id="14" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_15" cell_id="15" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_16" cell_id="16" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_17" cell_id="17" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_18" cell_id="18" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_19" cell_id="19" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_20" cell_id="20" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_21" cell_id="21" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_22" cell_id="22" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_23" cell_id="23" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_24" cell_id="24" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_25" cell_id="25" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_26" cell_id="26" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_27" cell_id="27" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_28" cell_id="28" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_29" cell_id="29" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_30" cell_id="30" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_31" cell_id="31" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_32" cell_id="32" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_33" cell_id="33" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_34" cell_id="34" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_35" cell_id="35" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_36" cell_id="36" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_37" cell_id="37" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_38" cell_id="38" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_39" cell_id="39" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_40" cell_id="40" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-		</object>
-
-		<!-- TOP: TOOLBAR BUTTONS: ROW 2 -->
-		<object type="empty" name="atlas_mainborder_toolbar_button_row_2" size="0 0 100% 100%" z="1" hidden="true">
-			<!-- TOP: TOOLBAR: BUTTONS -->
-			<object type="button" name="atlas_mainborder_toolbar_button_41" cell_id="41" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_42" cell_id="42" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_43" cell_id="43" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_44" cell_id="44" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_45" cell_id="45" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_46" cell_id="46" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_47" cell_id="47" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_48" cell_id="48" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_49" cell_id="49" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_50" cell_id="50" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_51" cell_id="51" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_52" cell_id="52" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_53" cell_id="53" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_54" cell_id="54" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_55" cell_id="55" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_56" cell_id="56" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_57" cell_id="57" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_58" cell_id="58" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_59" cell_id="59" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_60" cell_id="60" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_61" cell_id="61" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_62" cell_id="62" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_63" cell_id="63" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_64" cell_id="64" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_65" cell_id="65" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_66" cell_id="66" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_67" cell_id="67" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_68" cell_id="68" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_69" cell_id="69" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_70" cell_id="70" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_71" cell_id="71" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_72" cell_id="72" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_73" cell_id="73" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_74" cell_id="74" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_75" cell_id="75" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_76" cell_id="76" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_77" cell_id="77" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_78" cell_id="78" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_79" cell_id="39" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_80" cell_id="80" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
-				<action on="Load"><![CDATA[
-					// Seek through ALL toolbar buttons and set their sizes at once.
-					for (ATLAS_MAINBORDER_TOOLBAR_BUTTON.last = 1; ATLAS_MAINBORDER_TOOLBAR_BUTTON.last <= ATLAS_MAINBORDER_TOOLBAR_BUTTON.max; ATLAS_MAINBORDER_TOOLBAR_BUTTON.last++)
-						setSizeArray("atlas_mainborder_toolbar_button_" + ATLAS_MAINBORDER_TOOLBAR_BUTTON.last, atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BUTTON[ATLAS_MAINBORDER_TOOLBAR_BUTTON.last]], left_screen, top_screen, left_screen, top_screen);
-				]]></action>
-				<action on="Press"><![CDATA[
-				]]></action>
-			</object>
-		</object>
 
 		<!-- LT: LOGO -->
-		<object type="button" name="atlas_mainborder_lt_corner" sprite="atlas_mainborder_lt_corner" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]0 A.D. Logo[font=tahoma10]\nMmm, nothing like the smell of blatant self-promotion in the morning ... Oh, you can click this to return to the Main Menu too." hidden="false">
-			<action on="Load"><![CDATA[
-				setSizeArray("atlas_mainborder_lt_corner", atlasCoord[ATLAS_MAINBORDER_LT_CORNER], left_screen, top_screen, left_screen, top_screen);
-			]]></action>
+		<object type="button" name="ATLAS_MAINBORDER_LT_CORNER" sprite="atlas_mainborder_lt_corner" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]0 A.D. Logo[font=tahoma10]\nMmm, nothing like the smell of blatant self-promotion in the morning ... Oh, you can click this to return to the Main Menu too." hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_LT_CORNER]); ]]></action>
 			<action on="Press"><![CDATA[
 				// Jason asked for an exit button to be put here, until we're able to exit via the drop-down File menu.
-				GUIObjectUnhide("pregame_gui");
-				GUIObjectHide("atlas_gui");
+				GUIObjectUnhide("PREGAME_GUI");
+				GUIObjectHide("ATLAS_GUI");
 			]]></action>
 		</object>
 
 		<!-- RT: INFO WINDOW: Displays editor information such as FPS and map name. -->
-		<object type="empty" name="atlas_info_window_pane" size="0 0 100% 100%" z="1" hidden="false">
+		<object type="empty" name="ATLAS_INFO_WINDOW_PANE" size="0 0 100% 100%" z="1" hidden="false">
 			<!-- RT: INFO WINDOW BACKGROUND -->
-			<object type="text" name="atlas_mainborder_rt_corner" sprite="atlas_mainborder_rt_corner" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeArray("atlas_mainborder_rt_corner", atlasCoord[ATLAS_MAINBORDER_RT_CORNER], right_screen, top_screen, right_screen, top_screen);
-				]]></action>
-			</object>
+			<object type="text" name="ATLAS_MAINBORDER_RT_CORNER" sprite="atlas_mainborder_rt_corner" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_RT_CORNER]); ]]></action></object>
 			<!-- RT: INFO WINDOW BAR -->
-			<object type="text" name="atlas_info_window" sprite="atlas_window_white" font="tahoma10" textcolor="0 0 0" text_align="left" text_valign="center" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Info Window[font=tahoma10]\nInformation about the current scenario." hidden="false">
+			<object type="text" name="ATLAS_INFO_WINDOW" sprite="atlas_window_white" font="tahoma10" textcolor="0 0 0" text_align="left" text_valign="center" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Info Window[font=tahoma10]\nInformation about the current scenario." hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_INFO_WINDOW]); ]]></action>
 				<action on="Load"><![CDATA[
-					setSizeArray("atlas_info_window", atlasCoord[ATLAS_INFO_WINDOW], right_screen, top_screen, right_screen, top_screen);
 					setInterval(atlasUpdateInfoWindow, 500);
 				]]></action>
 			</object>
 		</object>
 
 		<!-- TOOLTIP WINDOW: Displays current tooltip above the Mini Map. -->
-		<object type="text" name="atlas_tooltip" sprite="atlas_tooltip_background" font="tahoma10" textcolor="0 0 0" z="104" hidden="true" ghost="true">
-			<action on="Load"><![CDATA[
-				setSizeArray("atlas_tooltip", atlasCoord[ATLAS_TOOLTIP], right_screen, bottom_screen, right_screen, bottom_screen);
-			]]></action>
-		</object>
+		<object type="text" name="ATLAS_TOOLTIP" sprite="atlas_tooltip_background" font="tahoma10" textcolor="0 0 0" z="104" hidden="true" ghost="true"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_TOOLTIP]); ]]></action></object>
 	</object>
 
 </objects>

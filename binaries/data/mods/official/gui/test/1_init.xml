@@ -92,11 +92,12 @@
         ]]></script>
 
         <script file="gui/test/functions_session.js"><![CDATA[
-                initSession();
+		initCoord();
 		initGlobal();
                 initPreGame();
-		initAtlas();
+                initSession();
 		initManual();
+		initAtlas();
         ]]></script>
 
 </objects>
