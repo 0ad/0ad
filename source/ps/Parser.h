@@ -182,7 +182,7 @@ protected:
 
 public:
 	// Interface
-	bool ParseString(const CParser& parser, std::string line);
+	bool ParseString(const CParser& parser, const std::string &line);
 
 	// Methods for getting arguments
 	//  it returns success

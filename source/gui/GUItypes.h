@@ -40,7 +40,7 @@ my @types = qw(
 
 #// Extract everything from this file, above the /********/ line
 open IN, $0 or die "Error opening $0: $!";
-my $out = '';
+my $out = "";
 while (<IN>)
 {
 	last if $_ eq "/********/\n";

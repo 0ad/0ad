@@ -26,6 +26,16 @@ COverlay::~COverlay()
 
 /*************************************************************************/
 
+bool CColor::operator == (const CColor &color) const
+{
+	return r==color.r && 
+		   g==color.g &&
+		   b==color.b &&
+		   a==color.a;
+}
+
+/*************************************************************************/
+
 CRect::CRect() : 
 	left(0.f), top(0.f), right(0.f), bottom(0.f) 
 {

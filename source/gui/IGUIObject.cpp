@@ -116,7 +116,7 @@ void IGUIObject::AddToPointersMap(map_pObjects &ObjectMap)
 	// Now actually add this one
 	//  notice we won't add it if it's doesn't have any parent
 	//  (i.e. being the base object)
-	if (m_Name == string())
+	if (m_Name.Length() == 0)
 	{
 		throw PS_NEEDS_NAME;
 	}

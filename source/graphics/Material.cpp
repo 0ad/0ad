@@ -16,6 +16,16 @@ static SMaterialColor IdentityAmbient(0.2f, 0.2f, 0.2f, 1.0f);
 static SMaterialColor IdentitySpecular(0.0f, 0.0f, 0.0f, 1.0f);
 static SMaterialColor IdentityEmissive(0.0f, 0.0f, 0.0f, 1.0f);
 
+bool SMaterialColor::operator ==(const SMaterialColor color)
+{
+	return (
+		r == color.r &&
+		g == color.g &&
+		b == color.b &&
+		a == color.a
+		);
+}
+
 CMaterial::CMaterial()
 	: m_Diffuse(IdentityDiffuse),
     m_Ambient(IdentityAmbient),

@@ -12,6 +12,6 @@ namespace VFSUtil
 	//   - anything else: pattern for name (may include '?' and '*' wildcards)
 	// 'files' is initially cleared, and undefined on failure.
 	// On failure, logs an error and returns false.
-	bool FindFiles(CStr dirname, const char* filter, FileList& files);
+	bool FindFiles(CStr& dirname, const char* filter, FileList& files);
 
 };

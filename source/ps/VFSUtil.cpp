@@ -9,11 +9,11 @@
 using namespace VFSUtil;
 
 // Because I'm lazy, and it saves a few lines of code in other places:
-bool VFSUtil::FindFiles (CStr dirname, const char* filter, FileList& files)
+bool VFSUtil::FindFiles (CStr& dirname, const char* filter, FileList& files)
 {
 	files.clear();
 
-	Handle dir = vfs_open_dir(dirname.c_str());
+	Handle dir = vfs_open_dir(dirname);
 	if (dir <= 0)
 	{
 		LOG(ERROR, LOG_CATEGORY, "Error opening directory '%s' (%lld)", dirname.c_str(), dir);

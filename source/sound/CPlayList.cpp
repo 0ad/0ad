@@ -31,6 +31,7 @@ void CPlayList::load(const char* file)
 
 	const char* playlist = (const char*)p;
 	const char* track;
+	debug_warn("TODO: This code looks quite suspicious");
 	while(sscanf(playlist, "%s\n", &track) == 1)
 		tracks.push_back(track);
 

@@ -306,7 +306,7 @@ FUNC_IMPL_GETARG(GetArgDouble,			GetDouble,			double)
 // CallFunc(4,2)	=> CallFunc, 4, 2
 
 // TODO Gee: Make Parser use CStr.
-bool CParserLine::ParseString(const CParser& Parser, string strLine)
+bool CParserLine::ParseString(const CParser& Parser, const std::string &strLine)
 {
 	// Don't process empty string
 	if (strLine == string())

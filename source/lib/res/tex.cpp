@@ -880,7 +880,7 @@ static int raw_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 	CHECK_ERR(fmt_8_or_24_or_32(t->bpp, t->flags));
 
 	// transforms
-	const int transforms = t->flags;
+	int transforms = t->flags;
 	transforms ^= TEX_BOTTOM_UP;	// RAW is native bottom-up.
 	transforms ^= TEX_BGR;			// RAW is native BGR.
 	transform(t, img, transforms);

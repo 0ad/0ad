@@ -117,7 +117,9 @@ extern int SDL_SetGamma(float r, float g, float b);
 # endif
 #endif
 
-#ifdef _MSC_VER
+// Debug-mode ICC doesn't like the intrinsics, so only use them
+// for MSVC and non-debug ICC.
+#if defined(_MSC_VER) && !( defined(__INTEL_COMPILER) && !defined(NDEBUG) )
 #pragma intrinsic(_byteswap_ushort)
 #pragma intrinsic(_byteswap_ulong)
 #pragma intrinsic(_byteswap_uint64)

@@ -21,7 +21,7 @@ CModelDefPtr CMeshManager::GetMesh(const char *filename)
 		try
 		{
 			CModelDefPtr model (iter->second);
-			LOG(MESSAGE, "mesh", "Loading mesh '%s%' (cached)...", filename);
+			//LOG(MESSAGE, "mesh", "Loading mesh '%s%' (cached)...", filename);
 			return model;
 		}
 		// If the mesh has already been deleted, the weak_ptr -> shared_ptr
@@ -37,7 +37,7 @@ CModelDefPtr CMeshManager::GetMesh(const char *filename)
 		if (!model)
 			return CModelDefPtr();
 
-		LOG(MESSAGE, "mesh", "Loading mesh '%s'...", filename);
+		//LOG(MESSAGE, "mesh", "Loading mesh '%s'...", filename);
 		m_MeshMap[fn] = model;
 		return model;
 	}

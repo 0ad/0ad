@@ -34,15 +34,7 @@ public:
         b = color.b;
         a = color.a;
     }
-    bool operator ==(const SMaterialColor color)
-    {
-        return (
-            r == color.r &&
-            g == color.g &&
-            b == color.b &&
-            a == color.a
-        );
-    }
+    bool operator ==(const SMaterialColor color);
 
     float Sum()
     {

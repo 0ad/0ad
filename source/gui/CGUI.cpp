@@ -524,7 +524,7 @@ void CGUI::UpdateObjects()
 	}
 
 	// Else actually update the real one
-	m_pAllObjects = AllObjects;
+	m_pAllObjects.swap(AllObjects);
 }
 
 bool CGUI::ObjectExists(const CStr& Name) const

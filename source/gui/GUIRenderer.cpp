@@ -371,7 +371,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 
 		CRect ObjectSize = cit->m_Size.GetClientArea(Size);
 
-		if (ObjectSize.GetWidth() == 0 || ObjectSize.GetHeight() == 0)
+		if (ObjectSize.GetWidth() == 0.0 || ObjectSize.GetHeight() == 0.0)
 		{
 			LOG(ERROR, LOG_CATEGORY, "Error drawing sprite '%s': size %dx%d is partly zero", (const char*)SpriteName, (int)ObjectSize.GetWidth(), (int)ObjectSize.GetHeight());
 			continue; // as in, don't continue with this image

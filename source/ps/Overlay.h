@@ -19,13 +19,7 @@ struct CColor
 	CColor() : r(-1.f), g(-1.f), b(-1.f), a(1.f) {}
 	CColor(float cr,float cg,float cb,float ca) : r(cr), g(cg), b(cb), a(ca) {}
 
-	bool operator == (const CColor &color) const
-	{
-		return r==color.r && 
-			   g==color.g &&
-			   b==color.b &&
-			   a==color.a;
-	}
+	bool operator == (const CColor &color) const;
 
 	bool operator != (const CColor &color) const
 	{

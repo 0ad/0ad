@@ -158,7 +158,7 @@ void CObjectManager::LoadObjects(int type)
 			} else {
 				object->m_FileName=dent.name;
 				AddObject(object,type);
-				LOG(NORMAL, LOG_CATEGORY, "CObjectManager::LoadObjects(): %s: XML Loaded", filename.c_str());
+				//LOG(NORMAL, LOG_CATEGORY, "CObjectManager::LoadObjects(): %s: XML Loaded", filename.c_str());
 			}
 		}
 		vfs_close_dir(dir);
