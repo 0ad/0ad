@@ -513,31 +513,25 @@ static int ll_start_io(File* const f, const off_t ofs, size_t size, void* const 
 {
 	CHECK_FILE(f);
 
-	if(size == 0)
-	{
-		debug_warn("ll_start_io: size = 0 - why?");
-		return ERR_INVALID_PARAM;
-	}
+	// sanity checks (caller should have taken care of this)
+	// .. size
+	assert(size != 0 && "ll_start_io: size = 0 - why?");
+	// .. ofs before EOF
+	if(!(f->flags & FILE_WRITE))
+		assert(ofs < f->size);
+	// .. alignment
+	if(ofs % 4096 != 0 || (uintptr_t)p % 4096 != 0)
+		debug_out("ll_start_io: p=%p or ofs=%lu is unaligned", p, ofs);
 
 	const int op = (f->flags & FILE_WRITE)? LIO_WRITE : LIO_READ;
 
-	// cut off at EOF.
-	// avoid min() due to type conversion warnings.
-	const off_t bytes_left = f->size - ofs;
-	if(bytes_left < 0)
-		return ERR_EOF;
-	if((off_t)size > bytes_left)
-		size = (size_t)bytes_left;
-		// guaranteed to fit, since size was > bytes_left
-
-	aiocb* cb = &lcb->cb;
-
 	// send off async read/write request
+	aiocb* cb = &lcb->cb;
 	cb->aio_lio_opcode = op;
 	cb->aio_buf        = p;
 	cb->aio_fildes     = f->fd;
-	cb->aio_offset     = (off_t)ofs;
-	cb->aio_nbytes     = (size_t)size;
+	cb->aio_offset     = ofs;
+	cb->aio_nbytes     = size;
 	return lio_listio(LIO_NOWAIT, &cb, 1, (struct sigevent*)0);
 		// this just issues the I/O - doesn't wait until complete.
 }
@@ -555,7 +549,7 @@ static ssize_t ll_wait_io(ll_cb* const lcb, void*& p)
 
 	// posix has aio_buf as volatile void, and gcc doesn't like to cast it
 	// implicitly
-	p = (void *)cb->aio_buf;
+	p = (void*)cb->aio_buf;
 
 	// return how much was actually transferred,
 	// or -1 if the transfer failed.
@@ -901,7 +895,10 @@ static Handle io_find(const u64 block_id)
 }
 
 
+
+
 ///////////////////////////////////////////////////////////////////////////////
+
 
 
 
@@ -920,6 +917,8 @@ Handle file_start_io(File* const f, const off_t user_ofs, size_t user_size, void
 
 	CHECK_FILE(f);
 
+	const bool is_write = (f->flags & FILE_WRITE) != 0;
+
 	if(user_size == 0)
 	{
 		debug_warn("file_start_io: user_size = 0 - why?");
@@ -927,13 +926,16 @@ Handle file_start_io(File* const f, const off_t user_ofs, size_t user_size, void
 	}
 
 	// cut off at EOF.
-	// avoid min() due to type conversion warnings.
-	const off_t bytes_left = f->size - user_ofs;
-	if(bytes_left < 0)
-		return ERR_EOF;
-	if((off_t)user_size > bytes_left)
-		user_size = (size_t)bytes_left;
-		// guaranteed to fit, since size was > bytes_left
+	if(!is_write)
+	{
+		// avoid min() due to type conversion warnings.
+		const off_t bytes_left = f->size - user_ofs;
+		if(bytes_left < 0)
+			return ERR_EOF;
+		if((off_t)user_size > bytes_left)
+			user_size = (size_t)bytes_left;
+			// guaranteed to fit, since size was > bytes_left
+	}
 
 	u64 block_id = block_make_id(f->fn_hash, user_ofs);
 		// reset to 0 if transferring more than 1 block.
@@ -983,8 +985,11 @@ debug_out("file_start_io: cached! block # = %d\n", block_id & 0xffffffff);
 	void* buf = 0;
 	void* our_buf = 0;
 
-	if(user_p && !padding)
+	// can use the caller's buffer
+	if(user_p && !padding && user_size == size)
 		buf = user_p;
+	// it's unaligned or too small (ll_io wants to read a whole block) -
+	// we have to allocate an align buffer
 	else
 	{
 		if(size == BLOCK_SIZE)
@@ -992,7 +997,7 @@ debug_out("file_start_io: cached! block # = %d\n", block_id & 0xffffffff);
 		// transferring more than one block - doesn't go through cache!
 		else
 		{
-			our_buf = mem_alloc(size, BLOCK_SIZE);
+			our_buf = mem_alloc(size, BLOCK_SIZE, MEM_ZERO);
 			block_id = 0;
 		}
 		if(!our_buf)
@@ -1000,6 +1005,10 @@ debug_out("file_start_io: cached! block # = %d\n", block_id & 0xffffffff);
 			err = ERR_NO_MEM;
 			goto fail;
 		}
+
+		// have to copy over our data into align buffer
+		if(is_write)
+			memcpy(our_buf, user_p, user_size);
 
 		buf = our_buf;
 	}
@@ -1090,6 +1099,11 @@ int file_discard_io(Handle& hio)
 
 
 
+///////////////////////////////////////////////////////////////////////////////
+
+
+
+
 // transfer modes:
 // *p != 0: *p is the source/destination address for the transfer.
 //          (FILE_MEM_READONLY?)
@@ -1112,26 +1126,10 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, raw_size, raw_ofs);
 
 	CHECK_FILE(f);
 
-	const bool is_write = (f->flags == FILE_WRITE);
+	const bool is_write = (f->flags & FILE_WRITE) != 0;
 
-	//
-	// transfer parameters
-	//
-
-	// reading: make sure we don't go beyond EOF
-	if(!is_write)
-	{
-		// cut off at EOF.
-		// avoid min() due to type conversion warnings.
-		off_t bytes_left = f->size - raw_ofs;
-		if(bytes_left < 0)
-			return ERR_EOF;
-		if((off_t)raw_size > bytes_left)
-			raw_size = (size_t)bytes_left;
-			// guaranteed to fit, since size was > bytes_left
-	}
-	// writing: make sure buffer is valid
-	else
+	// sanity checks.
+	if(is_write)
 	{
 		// temp buffer OR supposed to be allocated here: invalid
 		if(!p || !*p)
@@ -1140,6 +1138,12 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, raw_size, raw_ofs);
 			return ERR_INVALID_PARAM;
 		}
 	}
+	// note: file_start_io is responsible for truncating at EOF.
+
+
+	//
+	// transfer parameters
+	//
 
 	const size_t misalign = raw_ofs % BLOCK_SIZE;
 
@@ -1317,6 +1321,17 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, raw_size, raw_ofs);
 	assert(issue_cnt == raw_transferred_cnt && raw_transferred_cnt == raw_size); 
 
 	return (ssize_t)actual_transferred_cnt;
+}
+
+
+int file_uncached_io(File* f, size_t size, void* p)
+{
+	CHECK_FILE(f);
+
+	if(f->flags & FILE_WRITE)
+		return write(f->fd, p, size);
+	else
+		return read(f->fd, p, size);
 }
 
 

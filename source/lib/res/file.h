@@ -143,5 +143,7 @@ typedef ssize_t(*FILE_IO_CB)(uintptr_t ctx, void* p, size_t size);
 extern ssize_t file_io(File* f, off_t ofs, size_t size, void** p,
 	FILE_IO_CB cb = 0, uintptr_t ctx = 0);
 
+extern int file_uncached_io(File* f, size_t size, void* p);
+
 
 #endif	// #ifndef FILE_H
