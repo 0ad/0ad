@@ -55,6 +55,10 @@ class CUnit;
 class CEntity : public CJSObject<CEntity>
 {
 	friend class CEntityManager;
+private:
+	// The player that owns this entity
+	CPlayer* m_player;
+
 public:
 	// Intrinsic properties
 	CBaseEntity* m_base;
@@ -68,9 +72,6 @@ public:
 	float m_meleeRangeMin;
 	bool m_selected;
 	i32 m_grouped;
-
-	// The player that owns this entity
-	CPlayer* m_player;
 
 	// If this unit has been removed from the gameworld but has still
 	// has references.
@@ -148,6 +149,12 @@ public:
 
 	// Process tick.
 	void Tick();
+
+	// Store the player associated with this entity
+	void SetPlayer(CPlayer *pPlayer);
+
+	// Retrieve the player associated with this entitiy
+	CPlayer* GetPlayer() { return m_player; } 
 
 	// Process damage
 	void Damage( CDamageType& damage, CEntity* inflictor = NULL );
