@@ -202,7 +202,7 @@ function UpdateStatusOrb()
 	// Update portrait
 	if (selection[0].traits.id.icon)
 	{
-		if (selection[0].traits.id.icon_cell)
+		if (selection[0].traits.id.icon_cell && selection[0].traits.id.icon_cell != "")
 			setPortrait("session_panel_status_portrait", selection[0].traits.id.icon + "_" + selection[0].traits.id.icon_cell);
 		else
 			setPortrait("session_panel_status_portrait", selection[0].traits.id.icon);

@@ -614,7 +614,7 @@
 			]]></action>
 
 			<!-- STATUS ORB BACKGROUND -->
-                        <object type="button" name="session_panel_status_bg" z="70" ghost="true" hidden="false">
+                        <object type="button" name="session_panel_status_bg" z="69" ghost="true" hidden="false">
 			        <action on="Load"><![CDATA[
 					AddSizeCoord(this.name,
 					crd_status_orb_bkg_x, crd_status_orb_bkg_y, crd_status_orb_bkg_x+crd_status_orb_bkg_width, crd_status_orb_bkg_y+crd_status_orb_bkg_height, left_screen, top_screen, left_screen, top_screen,
