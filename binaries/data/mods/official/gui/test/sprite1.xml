@@ -22,7 +22,16 @@
         <sprite name="wfg_logo_128">
                 <image texture="wfg_logo_128.tga" texture-size="0 0 128 128" size="0 0 128 128" />
         </sprite>
-        
+
+	<!-- Some more temps /Gee -->
+	<sprite name="test">
+		<image size="0 0 100% 100%" backcolor="100 100 250" />
+	</sprite>
+
+	<sprite name="test2">
+		<image size="0 0 100% 100%" backcolor="200 100 050" />
+	</sprite>
+
         <!--
         ==========================================
         PREGAME GUI
@@ -30,11 +39,11 @@
         -->
 
         <sprite name="pregame-mainmenu-background">
-                <image texture="ui_pregame_mainmenu_background.png" texture-size="0 0 100% 133%+4" size="0 0 100% 100%" />
+                <image texture="ui_pregame_mainmenu_background.png" real-texture-placement="0 0 1024 768" size="0 0 100% 100%" />
         </sprite>
 
         <sprite name="pregame-mainmenu-spbt">
-                <image texture="ui_pregame_mainmenu_spbt_over.png" texture-size="0 0 256 256" size="0 0 152 143" />
+    		<image texture="ui_pregame_mainmenu_spbt_over.png" real-texture-placement="1 1 151 142" size="0 0 100% 100%" />
         </sprite>
 
         <!--
