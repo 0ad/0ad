@@ -946,6 +946,15 @@ if(!g_MapFile)
 		}
 	}
 
+	// Check for heap corruption after every allocation. Very, very slowly.
+	// (And it highlights the allocation just after the one you care about,
+	// so you need to run it again and tell it to break on the one before.)
+/*
+	extern void memory_debug_extreme_turbo_plus();
+	memory_debug_extreme_turbo_plus();
+	_CrtSetBreakAlloc(36367);
+//*/
+
 	// Initialize entities
 
 	CMessage init_msg (CMessage::EMSG_INIT);

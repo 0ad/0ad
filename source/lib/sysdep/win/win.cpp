@@ -316,6 +316,11 @@ static inline void pre_main_init()
 	// (w)sdl will take care of it anyway.
 }
 
+// Warning: This makes things rather slow.
+void memory_debug_extreme_turbo_plus()
+{
+	_CrtSetDbgFlag( _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) | _CRTDBG_CHECK_ALWAYS_DF | _CRTDBG_DELAY_FREE_MEM_DF );
+}
 
 extern u64 rdtsc();
 extern u64 PREVTSC;
