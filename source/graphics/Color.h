@@ -11,6 +11,7 @@
 
 #include "Vector3D.h"
 #include "Vector4D.h"
+#include "lib/types.h"
 
 // simple defines for 3 and 4 component floating point colors - just map to 
 // corresponding vector types
