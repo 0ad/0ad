@@ -29,10 +29,15 @@
 //#define NO_ZLIB
 
 #ifndef NO_ZLIB
-#include <zlib.h>
-#ifdef _MSC_VER
-#pragma comment(lib, "zdll.lib")
-#endif
+# define ZLIB_WINAPI
+# include <zlib.h>
+# ifdef _MSC_VER
+#  ifdef NDEBUG
+#   pragma comment(lib, "zlib1.lib")
+#  else
+#   pragma comment(lib, "zlib1d.lib")
+#  endif
+# endif
 #endif
 
 #include <map>

@@ -46,9 +46,13 @@
 #  define _WINDOWS_			// prevent libpng from including windows.h
 #  define WINAPI __stdcall	// .. and define what it needs
 #  define WINAPIV __cdecl
-#  include <libpng10/png.h>
+#  include <libpng13/png.h>
 #  ifdef _MSC_VER
-#   pragma comment(lib, "libpng10.lib")
+#   ifdef NDEBUG
+#    pragma comment(lib, "libpng13.lib")
+#   else
+#    pragma comment(lib, "libpng13d.lib")
+#   endif
 #  endif
 # else	// _WIN32
 #  include <png.h>
@@ -796,7 +800,7 @@ fail:
 		// make sure format is acceptable
 		if(bit_depth != 8)
 			msg = "channel precision != 8 bits";
-		if(color_type & 1)
+		if(color_type & PNG_COLOR_MASK_PALETTE)
 			msg = "color type is invalid (must be direct color)";
 		if(msg)
 			goto fail;
@@ -831,9 +835,9 @@ fail:
 
 	// shared cleanup
 ret:
-//	free(rows);
+	free(rows);
 
-//	png_destroy_read_struct(&png_ptr, &info_ptr, 0);
+	png_destroy_read_struct(&png_ptr, &info_ptr, 0);
 
 	return err;
 }
