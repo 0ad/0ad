@@ -66,12 +66,13 @@ int open(const char* fn, int oflag, ...)
 		va_end(args);
 	}
 
-	WIN_SAVE_LAST_ERROR;
-
+	WIN_SAVE_LAST_ERROR;	// CreateFile
 	int fd = _open(fn, oflag, mode);
-debug_out("open %s = %d\n", fn, fd);
 	WIN_RESTORE_LAST_ERROR;
 
+#ifdef PARANOIA
+debug_out("open %s = %d\n", fn, fd);
+#endif
 
 	// open it for async I/O as well (_open defaults to deny_none sharing)
 	if(fd > 2)
@@ -82,13 +83,21 @@ debug_out("open %s = %d\n", fn, fd);
 			aio_reopen(fd, fn, oflag);
 	}
 
+	// CRT doesn't like more than 255 files open.
+	// warn now, so that we notice why so many are open
+	if(fd > 256)
+		debug_warn("wposix: too many files open (CRT limitation)");
+
 	return fd;
 }
 
 
 int close(int fd)
 {
+#ifdef PARANOIA
 debug_out("close %d\n", fd);
+#endif
+
 	assert(3 <= fd && fd < 256);
 	aio_close(fd);
 	return _close(fd);
