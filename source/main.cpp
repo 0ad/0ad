@@ -12,11 +12,13 @@
 #include "timer.h"
 #include "input.h"
 #include "lib.h"
-#include "posix.h"
 #include "res/res.h"
 #ifdef _M_IX86
 #include "sysdep/ia32.h"
 #endif
+
+#include "ps/CConsole.h"
+
 #include "Config.h"
 #include "MapReader.h"
 #include "Terrain.h"
@@ -37,6 +39,9 @@
 #ifndef NO_GUI
 #include "gui/GUI.h"
 #endif
+
+CConsole* g_Console = 0;
+extern bool conInputHandler(const SDL_Event& ev);
 
 
 
@@ -75,6 +80,15 @@ extern bool terr_handler(const SDL_Event& ev);
 
 extern int allow_reload();
 extern int dir_add_watch(const char* const dir, bool watch_subdirs);
+
+
+
+
+void Testing (void)
+{
+	g_Console->InsertMessage("Testing Function Registration");
+}
+
 
 
 
@@ -183,6 +197,7 @@ static bool handler(const SDL_Event& ev)
 	case SDL_KEYDOWN:
 		c = ev.key.keysym.sym;
 		keys[c] = true;
+
 		switch(c)
 		{
 		case SDLK_ESCAPE:
@@ -349,6 +364,7 @@ static void Render()
 #endif
 
 
+	g_Console->Render();
 
 	// restore
 	glMatrixMode(GL_PROJECTION);
@@ -527,6 +543,8 @@ int main(int argc, char* argv[])
 
 	font = font_load("fonts/verdana.fnt");
 
+	g_Console = new CConsole;
+
 	// create renderer
 	new CRenderer;
 
@@ -587,8 +605,12 @@ if(!g_MapFile)
 	in_add_handler(handler);
 	in_add_handler(terr_handler);
 
+	in_add_handler(conInputHandler);
+
 	// render everything to a blank frame to force renderer to load everything
 	RenderNoCull();
+
+g_Console->RegisterFunc(Testing, "Testing");
 
 
 // fixed timestep main loop
