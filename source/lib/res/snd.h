@@ -19,6 +19,14 @@
 #include "handle.h"
 
 
+// introduction:
+// this module initializes the sound hardware and provides an interface
+// (backed by the resource manager) that allows any number of sounds
+// to be emitted simultaneously; they are also closed automatically.
+// the most "important" sounds are actually played, while the others
+// are discarded (necessary due to limited number of hardware voices).
+
+
 //
 // device enumeration
 //
@@ -107,15 +115,20 @@ extern int snd_play(Handle hs, float priority = 0.0f);
 // change 3d position of the sound source.
 // if relative (default false), (x,y,z) is treated as relative to the
 // listener; otherwise, it is the position in world coordinates.
-// may be called at any time.
+// may be called at any time; fails with invalid handle return if
+// the sound has already been closed (e.g. it never played).
 extern int snd_set_pos(Handle hs, float x, float y, float z, bool relative = false);
 
 // change gain (amplitude modifier) of the sound source.
 // must be non-negative; 1 -> unattenuated, 0.5 -> -6 dB, 0 -> silence.
+// may be called at any time; fails with invalid handle return if
+// the sound has already been closed (e.g. it never played).
 extern int snd_set_gain(Handle hs, float gain);
 
 // enable/disable looping on the sound source.
 // used to implement variable-length sounds (e.g. while building).
+// may be called at any time; fails with invalid handle return if
+// the sound has already been closed (e.g. it never played).
 //
 // notes:
 // - looping sounds are not discarded if they cannot be played for lack of

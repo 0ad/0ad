@@ -1507,7 +1507,8 @@ int snd_play(Handle hs, float static_pri)
 // change 3d position of the sound source.
 // if relative (default false), (x,y,z) is treated as relative to the
 // listener; otherwise, it is the position in world coordinates.
-// may be called at any time.
+// may be called at any time; fails with invalid handle return if
+// the sound has already been closed (e.g. it never played).
 int snd_set_pos(Handle hvs, float x, float y, float z, bool relative)
 {
 	H_DEREF(hvs, VSrc, vs);
@@ -1522,6 +1523,8 @@ int snd_set_pos(Handle hvs, float x, float y, float z, bool relative)
 
 // change gain (amplitude modifier) of the sound source.
 // must be non-negative; 1 -> unattenuated, 0.5 -> -6 dB, 0 -> silence.
+// may be called at any time; fails with invalid handle return if
+// the sound has already been closed (e.g. it never played).
 int snd_set_gain(Handle hvs, float gain)
 {
 	H_DEREF(hvs, VSrc, vs);
@@ -1535,6 +1538,8 @@ int snd_set_gain(Handle hvs, float gain)
 
 // enable/disable looping on the sound source.
 // used to implement variable-length sounds (e.g. while building).
+// may be called at any time; fails with invalid handle return if
+// the sound has already been closed (e.g. it never played).
 //
 // notes:
 // - looping sounds are not discarded if they cannot be played for lack of
