@@ -153,6 +153,9 @@ public:
 	// set camera used for subsequent rendering operations; includes viewport, projection and modelview matrices
 	void SetCamera(CCamera& camera);
 
+	// set the viewport
+	void SetViewport(const SViewPort &);
+
 	// submission of objects for rendering; the passed matrix indicating the transform must be scoped such that it is valid beyond
 	// the call to frame end, as must the object itself
 	void Submit(CPatch* patch);

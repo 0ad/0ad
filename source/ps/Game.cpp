@@ -1,8 +1,35 @@
 #include "precompiled.h"
 
 #include "Game.h"
+#include "CLogger.h"
 
 CGame *g_Game=NULL;
+
+JSBool CGameAttributes::FillFromJS(JSContext *cx, JSObject *obj)
+{
+#define GETVAL(_name) jsval _name=g_ScriptingHost.GetObjectProperty(obj, #_name)
+	GETVAL(mapFile);
+
+#define TOSTRING(_jsval) g_ScriptingHost.ValueToString(_jsval)
+	if (JSVAL_IS_STRING(mapFile))
+		m_MapFile=TOSTRING(mapFile);
+
+	return JS_TRUE;
+}
+
+CGame::CGame():
+	m_World(this),
+	m_Simulation(this),
+	m_GameView(this),
+	m_pLocalPlayer(NULL)
+{
+	debug_out("CGame::CGame(): Game object CREATED");
+}
+
+CGame::~CGame()
+{
+	debug_out("CGame::~CGame(): Game object DESTROYED");
+}
 
 PSRETURN CGame::Initialize(CGameAttributes *pAttribs)
 {

@@ -9,6 +9,7 @@
 #include "EntityManager.h"
 #include "BaseEntityCollection.h"
 #include "Scheduler.h"
+#include "Game.h"
 #include "scripting/JSInterface_Entity.h"
 #include "scripting/JSInterface_BaseEntity.h"
 #include "scripting/JSInterface_Vector3D.h"
@@ -40,6 +41,8 @@ JSFunctionSpec ScriptFunctionTable[] =
 	{"getGlobal", getGlobal, 0, 0, 0 },
 	{"getGUIGlobal", getGUIGlobal, 0, 0, 0 },
 	{"setCursor", setCursor, 0, 0, 0 },
+	{"startGame", startGame, 0, 0, 0 },
+	{"endGame", endGame, 0, 0, 0 },
 	{"exit", exitProgram, 0, 0, 0 },
 	{"crash", crash, 1, 0, 0 },
 	{0, 0, 0, 0, 0}, 
@@ -253,6 +256,31 @@ JSBool setCursor(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalOb
 	return JS_TRUE;
 }
 
+// From main.cpp
+extern void StartGame();
+extern CGameAttributes g_GameAttributes;
+
+JSBool startGame(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* rval)
+{
+	if (argc == 1)
+	{
+		JSObject *obj;
+		if (JS_ConvertArguments(cx, 1, argv, "o", &obj))
+		{
+			g_GameAttributes.FillFromJS(cx, obj);
+		}
+	}
+	StartGame();
+	*rval=BOOLEAN_TO_JSVAL(JS_TRUE);
+	return JS_TRUE;
+}
+
+extern void EndGame();
+JSBool endGame(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject), unsigned int UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* UNUSEDPARAM(rval))
+{
+	EndGame();
+	return JS_TRUE;
+}
 
 extern void kill_mainloop(); // from main.cpp
 

@@ -12,6 +12,7 @@ extern CGame *g_Game;
 extern CConsole* g_Console;
 extern int mouse_x, mouse_y;
 extern bool keys[SDLK_LAST];
+extern bool g_active;
 
 static const float SELECT_DBLCLICK_RATE = 0.5f;
 static const int ORDER_DELAY = 5;
@@ -721,6 +722,9 @@ void CMouseoverEntities::stopBandbox()
 
 int interactInputHandler( const SDL_Event* ev )
 {
+	if (!g_active || !g_Game)
+		return EV_PASS;
+
 	CGameView *pView=g_Game->GetView();
 	CCamera *pCamera=pView->GetCamera();
 	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();

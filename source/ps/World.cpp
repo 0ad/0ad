@@ -10,6 +10,7 @@
 #include "Terrain.h"
 #include "LightEnv.h"
 #include "BaseEntityCollection.h"
+#include "EntityManager.h"
 
 extern CLightEnv g_LightEnv;
 
@@ -26,4 +27,14 @@ void CWorld::Initialize(CGameAttributes *pAttribs)
 		LOG(ERROR, "Failed to load map %s", mapfilename.c_str());
 		throw PSERROR_Game_World_MapLoadFailed();
 	}
+}
+
+CWorld::~CWorld()
+{
+	// The Entity Manager should perhaps be converted into a CWorld member..
+	// But for now, we'll just create and delete the global singleton instance
+	// following the creation and deletion of CWorld.
+	// The reason for not keeping the instance around is that we require a
+	// clean slate for each game start.
+	delete &m_EntityManager;
 }

@@ -30,6 +30,7 @@
 #include "ObjectManager.h"
 #include "SkeletonAnimManager.h"
 #include "Renderer.h"
+#include "LightEnv.h"
 #include "Model.h"
 #include "UnitManager.h"
 
@@ -88,6 +89,8 @@ static bool g_NoPBuffer=true;
 // flag to switch on fixed frame timing (RC: I'm using this for profiling purposes)
 static bool g_FixedFrameTiming=false;
 static bool g_VSync = false;
+
+extern CLightEnv g_LightEnv;
 
 static bool g_EntGraph = false;
 
@@ -362,6 +365,20 @@ static int handler(const SDL_Event* ev)
 	return EV_PASS;
 }
 
+extern void StartGame();
+void RenderNoCull();
+void StartGame()
+{
+	g_Game=new CGame();
+	g_Game->Initialize(&g_GameAttributes);
+}
+
+void EndGame()
+{
+	delete g_Game;
+	g_Game=NULL;
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 // RenderNoCull: render absolutely everything to a blank frame to force renderer
 // to load required assets
@@ -369,7 +386,8 @@ void RenderNoCull()
 {
 	g_Renderer.BeginFrame();
 
-	g_Game->GetView()->RenderNoCull();
+	if (g_Game)
+		g_Game->GetView()->RenderNoCull();
 
 	g_Renderer.FlushFrame();
 	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
@@ -387,28 +405,33 @@ static void Render()
 	// switch on wireframe for terrain if we want it
 	//g_Renderer.SetTerrainRenderMode( SOLID ); // (PT: If this is done here, the W key doesn't work)
 
-	g_Game->GetView()->Render();
-
-	MICROLOG(L"flush frame");
-	g_Renderer.FlushFrame();
-
-	glPushAttrib( GL_ENABLE_BIT );
-	glDisable( GL_LIGHTING );
-	glDisable( GL_TEXTURE_2D );
-	glDisable( GL_DEPTH_TEST );
-	
-	if( g_EntGraph )
+	if (g_Game)
 	{
-		glColor3f( 1.0f, 0.0f, 1.0f );
+		g_Game->GetView()->Render();
 
-		MICROLOG(L"render entities");
-		g_EntityManager.renderAll(); // <-- collision outlines, pathing routes
+		MICROLOG(L"flush frame");
+		g_Renderer.FlushFrame();
+
+		glPushAttrib( GL_ENABLE_BIT );
+		glDisable( GL_LIGHTING );
+		glDisable( GL_TEXTURE_2D );
+		glDisable( GL_DEPTH_TEST );
+		
+		if( g_EntGraph )
+		{
+			glColor3f( 1.0f, 0.0f, 1.0f );
+
+			MICROLOG(L"render entities");
+			g_EntityManager.renderAll(); // <-- collision outlines, pathing routes
+		}
+
+		g_Mouseover.renderSelectionOutlines();
+		g_Selection.renderSelectionOutlines();
+		
+		glPopAttrib();
 	}
-
-	g_Mouseover.renderSelectionOutlines();
-	g_Selection.renderSelectionOutlines();
-
-	glPopAttrib();
+	else
+		g_Renderer.FlushFrame();
 
 	MICROLOG(L"render fonts");
 	// overlay mode
@@ -458,8 +481,11 @@ static void Render()
 	MICROLOG(L"render console");
 	g_Console->Render();
 
-	g_Mouseover.renderOverlays();
-	g_Selection.renderOverlays();
+	if (g_Game)
+	{
+		g_Mouseover.renderOverlays();
+		g_Selection.renderOverlays();
+	}
 
 	// Draw the cursor (or set the Windows cursor, on Windows)
 	cursor_draw(g_CursorName);
@@ -475,6 +501,10 @@ static void Render()
 	g_Renderer.EndFrame();
 }
 
+static void InitDefaultGameAttributes()
+{
+	g_GameAttributes.m_MapFile="test01.pmp";
+}
 
 static void ParseArgs(int argc, char* argv[])
 {
@@ -659,8 +689,9 @@ static void Shutdown()
 {
 	psShutdown(); // Must delete g_GUI before g_ScriptingHost
 
-	delete g_Game;
-
+	if (g_Game)
+		delete g_Game;
+	
 	delete &g_Scheduler;
 
 	delete &g_Mouseover;
@@ -668,7 +699,8 @@ static void Shutdown()
 
 	delete &g_ScriptingHost;
 	delete &g_Pathfinder;
-	delete &g_EntityManager;
+	// Managed by CWorld
+	// delete &g_EntityManager;
 	delete &g_EntityTemplateCollection;
 
 	// destroy actor related stuff
@@ -753,6 +785,8 @@ PREVTSC=TSC;
 	// the profile dir is VFS mounted (or we will do a new SetConfigFile with
 	// a generated profile path)
 	
+	// We init the defaults here; command line options might want to override
+	InitDefaultGameAttributes();
 	ParseArgs(argc, argv);
 
 //g_xres = 800;
@@ -827,22 +861,32 @@ PREVTSC=CURTSC;
 	MICROLOG(L"init renderer");
 	g_Renderer.Open(g_xres,g_yres,g_bpp);
 	
+	// Setup default lighting environment. Since the Renderer accesses the
+	// lighting environment through a pointer, this has to be done before
+	// the first Frame.
+	g_LightEnv.m_SunColor=RGBColor(1,1,1);
+	g_LightEnv.m_Rotation=DEGTORAD(270);
+	g_LightEnv.m_Elevation=DEGTORAD(45);
+	g_LightEnv.m_TerrainAmbientColor=RGBColor(0,0,0);
+	g_LightEnv.m_UnitsAmbientColor=RGBColor(0.4f,0.4f,0.4f);
+	g_Renderer.SetLightEnv(&g_LightEnv);
+
+	// I haven't seen the camera affecting GUI rendering and such, but the
+	// viewport has to be updated according to the video mode
+	SViewPort vp;
+	vp.m_X=0;
+	vp.m_Y=0;
+	vp.m_Width=g_xres;
+	vp.m_Height=g_yres;
+	g_Renderer.SetViewport(vp);
+
 	// This needs to be done after the renderer has loaded all its actors...
 	new CBaseEntityCollection;
-	new CEntityManager;
+	// CEntityManager is managed by CWorld
+	//new CEntityManager;
 	new CPathfindEngine;
 	new CSelectedEntities;
 	new CMouseoverEntities;
-
-	// if no map name specified, load test01.pmp (for convenience during
-	// development. that means loading no map at all is currently impossible.
-	// is that a problem?
-	if(!g_GameAttributes.m_MapFile)
-		g_GameAttributes.m_MapFile = "test01.pmp";
-
-	MICROLOG(L"start game");
-	g_Game=new CGame();
-	g_Game->Initialize(&g_GameAttributes);
 
 	// Check for heap corruption after every allocation. Very, very slowly.
 	// (And it highlights the allocation just after the one you care about,
@@ -988,14 +1032,17 @@ static void Frame()
 
 	in_get_events();
 	
-	g_Game->Update(TimeSinceLastFrame);
-	
-	if (!g_FixedFrameTiming)
-		g_Game->GetView()->Update(float(TimeSinceLastFrame));
+	if (g_Game)
+	{
+		g_Game->Update(TimeSinceLastFrame);
+		
+		if (!g_FixedFrameTiming)
+			g_Game->GetView()->Update(float(TimeSinceLastFrame));
 
-	// TODO Where does GameView end and other things begin?
-	g_Mouseover.update( TimeSinceLastFrame );
-	g_Selection.update();
+		// TODO Where does GameView end and other things begin?
+		g_Mouseover.update( TimeSinceLastFrame );
+		g_Selection.update();
+	}
 
 	g_Console->Update(TimeSinceLastFrame);
 

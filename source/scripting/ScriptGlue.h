@@ -22,6 +22,9 @@ JSBool getGlobal(JSContext* context, JSObject* globalObject, unsigned int argc, 
 
 JSBool setCursor(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
 
+JSBool startGame(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
+JSBool endGame(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
+
 // Tells the main loop to stop looping
 JSBool exitProgram(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
 

@@ -940,10 +940,14 @@ void CRenderer::SetCamera(CCamera& camera)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf(&view._11);
 
-	const SViewPort& vp=camera.GetViewPort();
-	glViewport(vp.m_X,vp.m_Y,vp.m_Width,vp.m_Height);
+	SetViewport(camera.GetViewPort());
 
 	m_Camera=camera;
+}
+
+void CRenderer::SetViewport(const SViewPort &vp)
+{
+	glViewport(vp.m_X,vp.m_Y,vp.m_Width,vp.m_Height);
 }
 
 void CRenderer::Submit(CPatch* patch)

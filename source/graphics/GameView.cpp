@@ -24,8 +24,6 @@
 extern int g_xres, g_yres;
 extern bool g_active;
 
-extern CLightEnv g_LightEnv;
-
 CVector3D cameraBookmarks[10];
 bool bookmarkInUse[10] = { false, false, false, false, false, false, false, false, false, false };
 i8 currentBookmark = -1;
@@ -78,23 +76,19 @@ void CGameView::Initialize(CGameAttributes *pAttribs)
 
 #undef getViewParameter
 
-	// setup default lighting environment
-	g_LightEnv.m_SunColor=RGBColor(1,1,1);
-	g_LightEnv.m_Rotation=DEGTORAD(270);
-	g_LightEnv.m_Elevation=DEGTORAD(45);
-	g_LightEnv.m_TerrainAmbientColor=RGBColor(0,0,0);
-	g_LightEnv.m_UnitsAmbientColor=RGBColor(0.4f,0.4f,0.4f);
-	g_Renderer.SetLightEnv(&g_LightEnv);
-
+	// If we start storing initial camera in the Map/World, change this code to
+	// init from the CWorld member instead of filling in defaults
 	m_Camera.SetProjection (1, 5000, DEGTORAD(20));
 	m_Camera.m_Orientation.SetXRotation(DEGTORAD(30));
 	m_Camera.m_Orientation.RotateY(DEGTORAD(-45));
 	m_Camera.m_Orientation.Translate (100, 150, -100);
+	g_Renderer.SetCamera(m_Camera);
 }
 
 void CGameView::Render()
 {
 	g_Renderer.SetCamera(m_Camera);
+
 	MICROLOG(L"render terrain");
 	RenderTerrain(m_pWorld->GetTerrain());
 	MICROLOG(L"render models");
@@ -506,11 +500,12 @@ void CGameView::PopCameraTarget()
 
 int game_view_handler(const SDL_Event* ev)
 {
-	CGameView *pView=g_Game->GetView();
 	// put any events that must be processed even if inactive here
 
-	if(!g_active)
+	if(!g_active || !g_Game)
 		return EV_PASS;
+
+	CGameView *pView=g_Game->GetView();
 
 	switch(ev->type)
 	{

@@ -151,9 +151,11 @@ JSBool JSI_Selection::toString( JSContext* cx, JSObject* obj, uintN argc, jsval*
 	std::vector<HEntity>* set = (std::vector<HEntity>*)JS_GetPrivate( cx, obj );
 
 	wchar_t buffer[256];
-	_snwprintf( buffer, 256, L"[object EntityCollection: %d entities]", set->size() );
+	int len=swprintf( buffer, 256, L"[object EntityCollection: %d entities]", set->size() );
 	buffer[255] = 0;
-	*rval = STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, buffer ) );
+	if (len < 0 || len > 255) len=255;
+	utf16string u16str(buffer, buffer+len);
+	*rval = STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, u16str.c_str() ) );
 	return( JS_TRUE );
 }
 

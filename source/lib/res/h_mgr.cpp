@@ -106,7 +106,7 @@ static inline Handle handle(const u32 _idx, const u32 tag)
 
 // determines maximum number of references to a resource.
 static const uint REF_BITS  = 8;
-static const u32 REF_MAX = 1ul << REF_BITS;
+static const u32 REF_MAX = (1ul << REF_BITS)-1;
 
 static const uint TYPE_BITS = 8;
 

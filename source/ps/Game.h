@@ -10,19 +10,22 @@ ERROR_GROUP(Game);
 #include "Simulation.h"
 #include "Player.h"
 #include "GameView.h"
+#include "scripting/ScriptingHost.h"
 
-#define PS_MAX_PLAYERS 6
+#include <vector>
 
 class CGameAttributes
 {
 public:
 	inline CGameAttributes():
-		m_MapFile(NULL)
+		m_MapFile()
 	{}
+
+	JSBool FillFromJS(JSContext *cx, JSObject *obj);
 
 	// The VFS path of the mapfile to load or NULL for no map (and to use
 	// default terrain)
-	const char *m_MapFile;
+	CStr m_MapFile;
 };
 
 class CGame
@@ -31,18 +34,12 @@ class CGame
 	CSimulation m_Simulation;
 	CGameView m_GameView;
 	
-	CPlayer *m_Players[PS_MAX_PLAYERS];
+	std::vector<CPlayer *> m_Players;
 	CPlayer *m_pLocalPlayer;
 	
 public:
-	inline CGame():
-		m_World(this),
-		m_Simulation(this),
-		m_GameView(this)
-	{
-		// TODO When are players created?
-		// TODO Probably should at least reset in here though
-	}
+	CGame();
+	~CGame();
 
 	/*
 		Initialize all local state and members for playing a game described by
