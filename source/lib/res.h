@@ -65,12 +65,12 @@ typedef void(*H_DTOR)(void*);
 //// user_size is checked to make sure the user data fits in the handle data space.
 // dtor is associated with type and called when the object is freed.
 // handle data is initialized to 0; optionally, a pointer to it is returned.
-extern Handle h_alloc(u32 key, uint type,/* size_t user_size,*/ H_DTOR dtor = 0, void** puser = 0);
+extern Handle h_alloc(uintptr_t key, uint type,/* size_t user_size,*/ H_DTOR dtor = 0, void** puser = 0);
 extern int h_free(Handle& h, uint type);
 
 // find and return a handle by type and key (typically filename hash)
 // currently O(n).
-extern Handle h_find(u32 key, uint type, void** puser = 0);
+extern Handle h_find(uintptr_t key, uint type, void** puser = 0);
 
 // return a pointer to handle data
 extern void* h_user_data(Handle h, uint type);

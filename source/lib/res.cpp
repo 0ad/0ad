@@ -45,7 +45,7 @@ const int HDATA_USER_SIZE = 20;
 // 32 bytes
 struct HDATA
 {
-	u32 key;
+	uintptr_t key;
 	u32 tag   : HTAG_BITS;
 	u32 type  : HTYPE_BITS;		// handle's type (e.g. texture, sound)
 	u32 refs  : HREF_BITS;
@@ -159,7 +159,7 @@ static void cleanup(void)
 }
 
 
-Handle h_find(const u32 key, uint type, void** puser)
+Handle h_find(const uintptr_t key, uint type, void** puser)
 {
 	int idx;
 	HDATA* hd;
@@ -198,7 +198,7 @@ found:
 }
 
 
-Handle h_alloc(const u32 key, const uint type, /*const size_t user_size,*/ H_DTOR dtor, void** puser)
+Handle h_alloc(const uintptr_t key, const uint type, /*const size_t user_size,*/ H_DTOR dtor, void** puser)
 {
 	ONCE(atexit(cleanup))
 /*

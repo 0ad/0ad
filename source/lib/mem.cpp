@@ -21,7 +21,7 @@ static void heap_free(MEM* m)
 static void* heap_alloc(const size_t size, const int align, MEM* mem)
 {
 	u8* org_p = (u8*)malloc(size+align-1);
-	u8* p = (u8*)round_up((long)org_p, align);
+	u8* p = (u8*)round_up((uintptr_t)org_p, align);
 
 	mem->org_p = org_p;	
 	return p;
@@ -53,7 +53,7 @@ static void* pool_alloc(const size_t size, const uint align, MEM* mem)
 			return 0;
 	}
 
-	size_t ofs = round_up((long)pool+pool_pos, align) - (ulong)pool;
+	ptrdiff_t ofs = (u8*)round_up((uintptr_t)pool+pool_pos, align) - pool;
 	if(ofs+size > POOL_CAP)
 		return 0;
 
@@ -72,13 +72,13 @@ static void* pool_alloc(const size_t size, const uint align, MEM* mem)
 
 static void mmap_free(MEM* m)
 {
-	munmap(m->p, m->size);
+	munmap(m->p, (uint)m->size);
 }
 
 
 static void* mmap_alloc(const size_t size, const int fd, MEM* mem)
 {
-	mem->p = mmap(0, size, PROT_READ, MAP_PRIVATE, fd, 0);
+	mem->p = mmap(0, (uint)size, PROT_READ, MAP_PRIVATE, fd, 0);
 	mem->size = size;
 	mem->fd = fd;
 
@@ -108,7 +108,7 @@ int mem_free(void* p)
 	if(!p)
 		return 1;
 
-	Handle h = h_find((u32)p, H_MEM, 0);
+	Handle h = h_find((uintptr_t)p, H_MEM, 0);
 	if(h)
 		return h_free(h, H_MEM);
 	return -1;
@@ -149,7 +149,7 @@ void* mem_alloc(size_t size, const uint align, const MemType type, const int fd,
 		return 0;
 
 	MEM* pmem;
-	Handle h = h_alloc((u32)p, H_MEM, mem_dtor, (void**)&pmem);
+	Handle h = h_alloc((uintptr_t)p, H_MEM, mem_dtor, (void**)&pmem);
 	if(!h)	// failed to allocate a handle
 	{
 		mem_dtor(&mem);

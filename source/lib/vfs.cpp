@@ -62,7 +62,7 @@ struct PATH
 	char* dir;			// relative to root dir;
 						// points to space at end of this struct
 
-	int num_archives;
+	size_t num_archives;
 	Handle archives[1];
 
 	// space allocated here for archive Handles + dir string
@@ -129,11 +129,11 @@ int vfs_mount(const char* path)
 			archives.push_back(ent->d_name);
 	}
 	closedir(dir);
-	const int num_archives = archives.size();
+	const size_t num_archives = archives.size();
 
 	// alloc search path entry (add to front)
-	const int archives_size = num_archives*sizeof(Handle);
-	const int entry_size = round_up(sizeof(PATH)+archives_size+path_len+1, 32);
+	const size_t archives_size = num_archives*sizeof(Handle);
+	const size_t entry_size = round_up((long)(sizeof(PATH)+archives_size+path_len+1), 32);
 	PATH* entry = (PATH*)mem_alloc(entry_size, 32, MEM_HEAP);
 	if(!entry)
 		return -1;
@@ -146,7 +146,7 @@ int vfs_mount(const char* path)
 	// add archives in alphabetical order
 	std::sort(archives.begin(), archives.end());
 	entry->num_archives = num_archives;
-	for(int i = 0; i < num_archives; i++)
+	for(size_t i = 0; i < num_archives; i++)
 		entry->archives[i] = zip_open(archives[i].c_str());
 
 	return 0;
@@ -163,7 +163,7 @@ int vfs_umount(const char* path)
 		if(!strcmp(entry->dir, path))
 		{
 			// close all archives
-			for(int i = 0; i < entry->num_archives; i++)
+			for(size_t i = 0; i < entry->num_archives; i++)
 				h_free(entry->archives[i], H_ZARCHIVE);
 
 			// remove from list
@@ -204,7 +204,7 @@ static int vfs_foreach_path(int (*func)(const char* path, Handle ha, void* data)
 			return err;
 		
 		// archive
-		for(int i = 0; i < entry->num_archives; i++)
+		for(size_t i = 0; i < entry->num_archives; i++)
 		{
 			err = func(path, entry->archives[i], data);
 			if(err <= 0)
@@ -358,9 +358,9 @@ u32 vfs_start_read(const Handle hf, size_t& ofs, void** buf)
 	if(!vf)
 		return 0;
 
-	ssize_t bytes_left = vf->size - ofs;
-	if(bytes_left < 0)
+	if(ofs >= vf->size)
 		return 0;
+	size_t bytes_left = vf->size - ofs;
 
 // TODO: thread safety
 
@@ -400,15 +400,17 @@ u32 vfs_start_read(const Handle hf, size_t& ofs, void** buf)
 		}
 
 	// align to 64 KB for speed
-	u32 rsize = min(64*KB - (ofs & 0xffff), bytes_left);
+	size_t rsize = 64*KB - (ofs & 0xffff);	// min(~, bytes_left) - avoid warning
+	if(rsize > bytes_left)
+		rsize = bytes_left;
 
-	cb->aio_offset = ofs;
+	cb->aio_offset = (off_t)ofs;
 	cb->aio_nbytes = rsize;
 	aio_read(cb);
 
 	ofs += rsize;
 	if(buf)
-		(int&)*buf += rsize;
+		(size_t&)*buf += rsize;
 
 	return 0;
 }

@@ -22,7 +22,7 @@
 #include "res.h"
 
 // load and return a handle to the font defined in <fn>
-extern u32 font_load(const char* fn);
+extern Handle font_load(const char* fn);
 
 // use the font referenced by h for all subsequent glprintf() calls
 extern int font_bind(Handle h);

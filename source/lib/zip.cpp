@@ -27,6 +27,7 @@
 #include "mem.h"
 #include "vfs.h"
 
+#include <zlib.h>
 #ifdef _MSC_VER
 #pragma comment(lib, "zlib.lib")
 #endif
@@ -47,12 +48,10 @@ struct ZARCHIVE
 	ZFILE* files;
 };
 
-#include <zlib.h>
 
 static const char ecdr_id[] = "PK\5\6";	// End of Central Directory Header identifier
 static const char cdfh_id[] = "PK\1\2";	// Central File Header identifier
 static const char lfh_id[]  = "PK\3\4";	// Local File Header identifier
-
 
 
 
@@ -96,7 +95,9 @@ Handle zip_open(const char* const fn)
 	// (zip comment <= 65535 bytes, sizeof(ECDR) = 22, add some for safety)
 	// if the zip file is < 66000 bytes, scan the whole file
 
-	size_t bytes_left = min(size, 66000);
+	size_t bytes_left = 66000;	// min(66k, size) - avoid stupid warning
+	if(bytes_left > size)
+		bytes_left = size;
 	ecdr = zfile + size - bytes_left;
 
 	while(bytes_left-3 > 0)
@@ -142,7 +143,7 @@ found_ecdr:
 	const u8* cdfh = zfile+cd_ofs;
 	u32* hs = za->fn_hashs;
 	ZFILE* f = za->files;
-	uint i;
+	u16 i;
 	for(i = 0; i < num_files; i++)
 	{
 		// read CDFH
@@ -173,7 +174,7 @@ found_ecdr:
 		f->ucsize = ucsize;
 		f++;
 
-		(int&)cdfh += 46 + fn_len + e_len + c_len;
+		(uintptr_t&)cdfh += 46 + fn_len + e_len + c_len;
 	}
 
 	za->num_files = i;
@@ -197,7 +198,7 @@ ZFILE* zip_lookup(Handle ha, const char* fn)
 
 	// find its File descriptor
 	const u32 fn_hash = fnv_hash(fn, strlen(fn));
-	uint i = za->last_file+1;
+	u16 i = za->last_file+1;
 	if(i >= za->num_files || za->fn_hashs[i] != fn_hash)
 	{
 		for(i = 0; i < za->num_files; i++)
@@ -219,7 +220,7 @@ int zip_stat(Handle ha, const char* fn, struct stat* s)
 	if(!zf)
 		return -1;
 
-	s->st_size = zf->ucsize;
+	s->st_size = (off_t)zf->ucsize;
 	return 0;
 }
 
@@ -249,7 +250,7 @@ void* zip_inflate_start(void* out, size_t out_size)
 		// -MAX_WBITS indicates no zlib header present
 
 	stream->next_out = (Bytef*)out;
-	stream->avail_out = out_size;
+	stream->avail_out = (uInt)out_size;
 	
 	return stream;
 }
@@ -260,7 +261,7 @@ int zip_inflate_process(void* ctx, void* p, size_t size)
 	z_stream* stream = (z_stream*)ctx;
 
 	stream->next_in = (Bytef*)p;
-	stream->avail_in = size;
+	stream->avail_in = (uInt)size;
 	return inflate(stream, 0);
 }
 

@@ -231,5 +231,5 @@ void glprintf(const char* fmt, ...)
 	vsnprintf(buf, sizeof(buf)-1, fmt, args);
 	va_end(args);
 
-	glCallLists(strlen(buf), GL_UNSIGNED_BYTE, buf);
+	glCallLists((GLsizei)strlen(buf), GL_UNSIGNED_BYTE, buf);
 }
