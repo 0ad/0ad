@@ -38,6 +38,10 @@ protected:
 	std::string errorString(int errorcode);
 
 private:
+	bool is_open;
+		// between open() and release(); used to determine
+		// if source is actually valid, for isPlaying check.
+
 	SOggFile memFile;
 	ov_callbacks vorbisCallbacks;
 	OggVorbis_File oggStream;

@@ -100,7 +100,7 @@ CMusicPlayer::CMusicPlayer(void)
 	source = NULL;
 	format = NULL;
 
-	buffers[0] = buffers[1] = ~0;
+	buffers[0] = buffers[1] = 0;
 }
 
 CMusicPlayer::~CMusicPlayer(void)
@@ -201,17 +201,28 @@ void CMusicPlayer::open(char *filename)
 	alSourcei(source,AL_SOURCE_RELATIVE,AL_TRUE);
 	check();
 	//printf("returned from S RELATIVE\n");
+
+	is_open = true;
 }
 
 void CMusicPlayer::release()
 {
+	if(!is_open)
+		return;
+	is_open = false;
+
 	alSourceStop(source);
 	empty();
 	alDeleteSources(1,&source);
 	check();
+	source = 0;
+
 	alDeleteBuffers(1,buffers);
 	check();
+	buffers[0] = buffers[1] = 0;
+
 	ov_clear(&oggStream);
+
 	mem_free(memFile.dataPtr);
 }
 
@@ -223,6 +234,9 @@ bool CMusicPlayer::play()
 	//check if already playing
 	if(isPlaying())
 		return true;
+
+	if(!is_open)
+		debug_warn("play() called before open()");
 
 	//printf("calling stream on first buffer\n");
 	//load data into 1st buffer
@@ -248,8 +262,11 @@ bool CMusicPlayer::play()
 
 bool CMusicPlayer::isPlaying()
 {
-	ALenum state = NULL;
+	// guard against OpenAL using source when it's not initialized
+	if(!is_open)
+		return false;
 
+	ALenum state = NULL;
 	alGetSourcei(source,AL_SOURCE_STATE,&state);
 	check();
 	//printf("returning from isPlaying.\n");
@@ -259,15 +276,18 @@ bool CMusicPlayer::isPlaying()
 
 bool CMusicPlayer::update()
 {
-	int processed;
-	bool active = true;
+	if(!isPlaying())
+		return false;
 
 	//check which buffers have already been played
+	int processed;
 	alGetSourcei(source,AL_BUFFERS_PROCESSED, &processed);
 	//printf("checking() buffers processed\n");
 	check();
 	//printf("check returned\n");
-	
+
+	bool active = true;
+
 	while(processed-- && processed >= 0)
 	{
 		ALuint buffer;
@@ -287,24 +307,26 @@ bool CMusicPlayer::update()
 	return active;
 }
 
+
 void CMusicPlayer::check()
 {
 	int error = alGetError();
-/*
+
 	if(error != AL_NO_ERROR)
 	{
-		std::cout << "OpenAL error " << error << errorString(error) << std::endl;
+		std::string err = errorString(error);
+		std::cout << "OpenAL error: " << err << std::endl;
 		exit(1);
 	}
-*/
 }
+
 
 void CMusicPlayer::empty()
 {
 	int queued;
     alGetSourcei(source,AL_BUFFERS_QUEUED,&queued);
 
-	while(queued--)
+	while(queued-- > 0)
 	{
 		ALuint buffer;
 
@@ -313,40 +335,34 @@ void CMusicPlayer::empty()
 	}
 }
 
+
 bool CMusicPlayer::stream(ALuint buffer)
 {
 	char data[AUDIO_BUFFER_SIZE];
 	int size = 0;
 	int section, ret;
 
-	
-
 	while(size < AUDIO_BUFFER_SIZE)
 	{
 		ret = ov_read(&oggStream, data + size, AUDIO_BUFFER_SIZE - size,0,2,1,&section);
 
+		// success
 		if(ret > 0)
-		{
 			size += ret;
-		}
-		else
+		// error
+		else if(ret < 0)
 		{
-			if(ret < 0)
-			{
-				printf("Error reading from ogg file\n");
-				exit(1);
-			}
-			else
-			{
-				break;
-			}
+			printf("Error reading from ogg file\n");
+			exit(1);
 		}
+		// EOF
+		else
+			break;
 	}
 
+	// nothing was read
 	if(size == 0)
-	{
 		return false;
-	}
 
 	alBufferData(buffer,format,data,size,info->rate);
 	//printf("calling check in stream()\n");
@@ -355,6 +371,7 @@ bool CMusicPlayer::stream(ALuint buffer)
 
 	return true;
 }
+
 
 std::string CMusicPlayer::errorString(int errorcode)
 {
@@ -370,6 +387,16 @@ std::string CMusicPlayer::errorString(int errorcode)
 			return std::string("Invalid Vorbis header.");
         case OV_EFAULT:
 			return std::string("Internal logic fault (bug or heap/stack corruption.");
+		case AL_INVALID_NAME:
+			return "AL_INVALID_NAME";
+		case AL_INVALID_ENUM:
+			return "AL_INVALID_ENUM";
+		case AL_INVALID_VALUE:
+			return "AL_INVALID_VALUE";
+		case AL_INVALID_OPERATION:
+			return "AL_INVALID_OPERATION";
+		case AL_OUT_OF_MEMORY:
+			return "AL_OUT_OF_MEMORY";
         default:
 			return std::string("Unknown Ogg error.");
     }
