@@ -1,4 +1,4 @@
-VC7.1 (2003) workspace, for Intel compiler 7.1
+VC7.0 (2002) workspace (auto-converted from VC7.1)
 
 TODO:
 
@@ -11,7 +11,7 @@ TODO:
   put the DLL in binaries\, put header and lib into compiler dirs
   Note: this is version 1.1.4.8751
 
-- omit GUI folder (not necessary ATM)
+- omit GUI (not necessary ATM) - remove its folder, and define NO_GUI
 OR
 - install Xerces:
   download Xerces binary from http://xml.apache.org/xerces-c/download.cgi ;
