@@ -74,6 +74,24 @@
     ]]></action>
   </object>
  
+  <object type="button" name="Start_Game_Button" sprite="sprite1" sprite-over="sprite1-over" sprite-pressed="sprite1-pressed" size="10%+128 80% 10%+256 80%+20" z="100" textcolor="0 0 0">
+
+    Start game
+
+    <action on="Press">
+      startGame();
+    </action>
+  </object>
+
+  <object type="button" name="End_Game_Button" sprite="sprite1" sprite-over="sprite1-over" sprite-pressed="sprite1-pressed" size="10%+128 80%+22 10%+256 80%+42" z="100" textcolor="0 0 0">
+
+    End game
+
+    <action on="Press">
+      endGame();
+    </action>
+  </object>
+
   <object type="button" name="Dude_Production_Button" sprite="sprite1" sprite-over="sprite1-over" sprite-pressed="sprite1-pressed" size="10% 80% 10%+128 80%+20" z="100" textcolor="0 0 0">
 
     Make dude
