@@ -234,7 +234,8 @@ CStr CStr::Trim(PS_TRIM_MODE Mode)
 		
 		case PS_TRIM_RIGHT:
 		{
-			for (Right = m_String.length()-1; Right >= 0; Right--)
+			Right = m_String.length();
+			while (Right--)
 				if (_istspace(m_String[Right]) == false)
 					break; // end found, trim len-1 to Right+1	inclusive
 		} break;
@@ -245,7 +246,8 @@ CStr CStr::Trim(PS_TRIM_MODE Mode)
 				if (_istspace(m_String[Left]) == false)
 					break; // end found, trim 0 to Left-1 inclusive
 
-			for (Right = m_String.length()-1; Right >= 0; Right--)
+			Right = m_String.length();
+			while (Right--)
 				if (_istspace(m_String[Right]) == false)
 					break; // end found, trim len-1 to Right+1	inclusive
 		} break;
