@@ -5,20 +5,27 @@
 #include <iostream>
 #include <stdio.h>
 
-#include "oal.h"
+//#include "oal.h"
 
+/*
 #include <ogg/ogg.h>
 #include <vorbis/codec.h>
 #include <vorbis/vorbisfile.h>
+*/
 
-#define AUDIO_BUFFER_SIZE (64*1024)
-
+#include "res/res.h"
+/*
 struct SOggFile
 {
 	char *dataPtr;
 	size_t dataSize;
 	size_t dataRead;
 };
+
+const size_t RAW_BUF_SIZE = 32*KB;
+const int NUM_SLOTS = 3;
+
+*/
 
 class CMusicPlayer
 {
@@ -32,7 +39,7 @@ public:
 	bool update();
 
 protected:	
-	bool stream(ALuint buffer);
+//	bool stream(ALuint buffer);
 	void check();
 	void empty();
 	std::string errorString(int errorcode);
@@ -41,14 +48,20 @@ private:
 	bool is_open;
 		// between open() and release(); used to determine
 		// if source is actually valid, for isPlaying check.
-
+/*
 	SOggFile memFile;
-	ov_callbacks vorbisCallbacks;
-	OggVorbis_File oggStream;
-	vorbis_info *info;
-	ALuint buffers[2]; //the 2 buffers, one will be filled whilst the other is being played
-	ALuint source;
-	ALenum format;
+
+	Handle hf;
+/*
+	struct IOSlot
+	{
+		ALuint al_buffer;
+		Handle hio;
+		void* raw_buf;
+	};
+	IOSlot slots[NUM_SLOTS];
+*/
+//	ALuint source;
 };
 
 #endif
