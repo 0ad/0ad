@@ -115,7 +115,7 @@ static int path_append(char* dst, const char* path1, const char* path2)
 	}
 
 	if(total_len+1 > VFS_MAX_PATH)
-		return ERR_VFS_PATH_LENGTH;
+		return ERR_PATH_LENGTH;
 
 	char* p = dst;
 

@@ -62,11 +62,22 @@ enum
 };
 
 
-// convert to/from our portable path representation,
-// e.g. for external libraries that require the real filename.
-// note: also removes/adds current directory.
-extern int file_make_native_path(const char* path, char* n_path);
-extern int file_make_portable_path(const char* n_path, char* path);
+//
+// path conversion functions (native <--> portable),
+// for external libraries that require the real filename.
+//
+// replaces '/' with platform's directory separator and vice versa.
+// verifies path length < PATH_MAX (otherwise return ERR_PATH_LENGTH).
+//
+
+// relative paths (relative to root, established with file_rel_chdir)
+extern int file_make_native_path(const char* const path, char* const n_path);
+extern int file_make_portable_path(const char* const n_path, char* const path);
+
+// as above, but with full native paths (portable paths are always relative).
+// prepends current directory, resp. makes sure it matches the given path.
+extern int file_make_full_native_path(const char* const path, char* const n_full_path);
+extern int file_make_full_portable_path(const char* const n_full_path, char* const path);
 
 
 // set current directory to rel_path, relative to the path to the executable,
@@ -83,12 +94,17 @@ extern int file_make_portable_path(const char* n_path, char* path);
 extern int file_rel_chdir(const char* argv0, const char* rel_path);
 
 
-// called for each entry in a directory.
-// name is the complete path (see below); it's a directory iff size < 0.
+// called by file_enum for each entry in the directory.
+// name doesn't include path! it's a directory <==> size < 0.
+// return non-zero to immediately abort; file_enum will return that value.
 typedef int(*FileCB)(const char* const name, const ssize_t size, const uintptr_t user);
 
-// for all files and dirs in <dir> (but not its subdirs!):
-// call <cb>, passing <user> and the entries's name (not path!)
+// call <cb> for each file and subdirectory in <dir> (alphabetical order),
+// passing <user> and the entry name (not full path!).
+//
+// first builds a list of entries (sorted) and remembers if an error occurred.
+// if <cb> returns non-zero, abort immediately and return that; otherwise,
+// return first error encountered while listing files, or 0 on success.
 extern int file_enum(const char* dir, FileCB cb, uintptr_t user);
 
 // get file status. output param is zeroed on error.

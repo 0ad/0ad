@@ -19,7 +19,7 @@ int res_reload(const char* const fn)
 int res_watch_dir(const char* const path, intptr_t* const watch)
 {
 	char n_path[PATH_MAX];
-	CHECK_ERR(file_make_native_path(path, n_path));
+	CHECK_ERR(file_make_full_native_path(path, n_path));
 	return dir_add_watch(n_path, watch);
 }
 

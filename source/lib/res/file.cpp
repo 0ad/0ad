@@ -60,6 +60,8 @@ const size_t SECTOR_SIZE = 4096;
 //   * requests for part of a block are usually followed by another.
 
 
+
+
 enum Conversion
 {
 	TO_NATIVE,
@@ -68,15 +70,7 @@ enum Conversion
 
 static int convert_path(char* dst, const char* src, Conversion conv = TO_NATIVE)
 {
-	/*
-	// if there's a platform with multiple-character DIR_SEP,
-	// scan through the path and add space for each separator found.
-	const size_t len = strlen(p_path);
-
-	n_path = (const char*)malloc(len * sizeof(char));
-	if(!n_path)
-	return ERR_NO_MEM;
-	*/
+	// DIR_SEP is assumed to be a single character!
 
 	const char* s = src;
 	char* d = dst;
@@ -91,7 +85,7 @@ static int convert_path(char* dst, const char* src, Conversion conv = TO_NATIVE)
 	{
 		len++;
 		if(len >= PATH_MAX)
-			return -1;
+			return ERR_PATH_LENGTH;
 
 		char c = *s++;
 
@@ -112,21 +106,43 @@ static char n_root_dir[PATH_MAX];
 static size_t n_root_dir_len;
 
 
-// return the native equivalent of the given portable path
+// return the native equivalent of the given relative portable path
 // (i.e. convert all '/' to the platform's directory separator)
 // makes sure length < PATH_MAX.
 int file_make_native_path(const char* const path, char* const n_path)
 {
-	strcpy(n_path, n_root_dir);
-	return convert_path(n_path+n_root_dir_len, path, TO_NATIVE);
+	return convert_path(n_path, path, TO_NATIVE);
+}
+
+// return the portable equivalent of the given relative native path
+// (i.e. convert the platform's directory separators to '/')
+// makes sure length < PATH_MAX.
+int file_make_portable_path(const char* const n_path, char* const path)
+{
+	return convert_path(path, n_path, TO_PORTABLE);
 }
 
 
-int file_make_portable_path(const char* const n_path, char* const path)
+// return the native equivalent of the given portable path
+// (i.e. convert all '/' to the platform's directory separator).
+// also prepends current directory => n_full_path is absolute.
+// makes sure length < PATH_MAX.
+int file_make_full_native_path(const char* const path, char* const n_full_path)
 {
-	if(strncmp(n_path, n_root_dir, n_root_dir_len) != 0)
+	strcpy(n_full_path, n_root_dir);
+	return convert_path(n_full_path+n_root_dir_len, path, TO_NATIVE);
+}
+
+// return the portable equivalent of the given relative native path
+// (i.e. convert the platform's directory separators to '/')
+// n_full_path is absolute; if it doesn't match the current dir, fail.
+// (note: portable paths are always relative to file_rel_chdir root).
+// makes sure length < PATH_MAX.
+int file_make_full_portable_path(const char* const n_full_path, char* const path)
+{
+	if(strncmp(n_full_path, n_root_dir, n_root_dir_len) != 0)
 		return -1;
-	return convert_path(path, n_path+n_root_dir_len, TO_PORTABLE);
+	return convert_path(path, n_full_path+n_root_dir_len, TO_PORTABLE);
 }
 
 
@@ -227,13 +243,18 @@ private:
 // pointer to DirEnt: faster sorting, but more allocs.
 typedef std::vector<const DirEnt*> DirEnts;
 typedef DirEnts::const_iterator DirEntIt;
+typedef DirEnts::reverse_iterator DirEntRIt;
 
 static bool dirent_less(const DirEnt* const d1, const DirEnt* const d2)
 	{ return d1->name.compare(d2->name) < 0; }
 
 
-// for all files and dirs in <dir> (but not its subdirs!):
-// call <cb>, passing <user> and the entries's name (not path!)
+// call <cb> for each file and subdirectory in <dir> (alphabetical order),
+// passing <user> and the entry name (not full path!).
+//
+// first builds a list of entries (sorted) and remembers if an error occurred.
+// if <cb> returns non-zero, abort immediately and return that; otherwise,
+// return first error encountered while listing files, or 0 on success.
 //
 // rationale:
 //   this makes file_enum and zip_enum slightly incompatible, since zip_enum
@@ -251,14 +272,14 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 	n_path[PATH_MAX-1] = '\0';
 		// will append filename to this, hence "path".
 		// 0-terminate simplifies filename strncpy below.
-	CHECK_ERR(convert_path(n_path, dir));
+	CHECK_ERR(file_make_native_path(dir, n_path));
 
 	// all entries are enumerated (adding to this container),
 	// std::sort-ed, then all passed to cb.
 	DirEnts dirents;
 
-	int stat_err = 0;
-	int cb_err = 0;
+	int stat_err = 0;	// first error encountered by stat()
+	int cb_err = 0;		// first error returned by cb
 	int ret;
 
 	DIR* const os_dir = opendir(n_path);
@@ -288,7 +309,7 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 		if(ret < 0)
 		{
 			if(stat_err == 0)
-				stat_err = ret;
+				stat_err = ret;	// first error (see decl)
 			continue;
 		}
 
@@ -314,21 +335,24 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 
 	std::sort(dirents.begin(), dirents.end(), dirent_less);
 
-	DirEntIt it;
-	for(it = dirents.begin(); it != dirents.end(); ++it)
+	for(DirEntIt it = dirents.begin(); it != dirents.end(); ++it)
 	{
 		const DirEnt* const ent = *it;
 		const char* name_c = ent->name.c_str();
 		const ssize_t size = ent->size;
 		ret = cb(name_c, size, user);
-		if(ret < 0)
-			if(cb_err == 0)
-				cb_err = ret;
-
-		delete ent;
+		if(ret != 0)
+		{
+			cb_err = ret;	// first error (since we now abort)
+			break;
+		}
 	}
 
-	if(cb_err < 0)
+	// free all memory (can't do in loop above because it can be aborted).
+	for(DirEntRIt rit = dirents.rbegin(); rit != dirents.rend(); ++rit)
+		delete *rit;
+
+	if(cb_err != 0)
 		return cb_err;
 	return stat_err;
 }
