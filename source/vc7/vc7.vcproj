@@ -212,13 +212,13 @@
 					RelativePath="..\lib\time.cpp">
 				</File>
 				<File
-					RelativePath="..\lib\unzip.cpp">
-				</File>
-				<File
 					RelativePath="..\lib\vfs.cpp">
 				</File>
 				<File
 					RelativePath="..\lib\wsdl.cpp">
+				</File>
+				<File
+					RelativePath="..\lib\zip.cpp">
 				</File>
 				<Filter
 					Name="posix"
@@ -233,6 +233,9 @@
 				Filter="">
 				<File
 					RelativePath="..\ps\CStr.cpp">
+				</File>
+				<File
+					RelativePath="..\ps\Config.cpp">
 				</File>
 				<File
 					RelativePath="..\ps\Encryption.cpp">
@@ -335,9 +338,6 @@
 					RelativePath="..\lib\types.h">
 				</File>
 				<File
-					RelativePath="..\lib\unzip.h">
-				</File>
-				<File
 					RelativePath="..\lib\vfs.h">
 				</File>
 				<File
@@ -345,6 +345,9 @@
 				</File>
 				<File
 					RelativePath="..\lib\wsdl.h">
+				</File>
+				<File
+					RelativePath="..\lib\zip.h">
 				</File>
 				<Filter
 					Name="posix"
@@ -362,6 +365,9 @@
 				</File>
 				<File
 					RelativePath="..\ps\CStr.h">
+				</File>
+				<File
+					RelativePath="..\ps\Config.h">
 				</File>
 				<File
 					RelativePath="..\ps\Encryption.h">
