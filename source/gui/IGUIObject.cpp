@@ -57,9 +57,23 @@ int hej=23;
 
 IGUIObject::~IGUIObject()
 {
+// delete() needs to know the type of the variable - never delete a void*
+#define TYPE(t) case GUIST_##t: delete (t*)it->second.m_pSetting; break
 	map<CStr, SGUISetting>::iterator it;
 	for (it = m_Settings.begin(); it != m_Settings.end(); ++it)
-		delete it->second.m_pSetting;
+		switch (it->second.m_Type)
+		{
+			TYPE(bool);
+			TYPE(int);
+			TYPE(float);
+			TYPE(CColor);
+			TYPE(CClientArea);
+			TYPE(CGUIString);
+			TYPE(CStr);
+		default:
+			assert(!"Invalid setting type");
+		}
+#undef TYPE
 }
 
 //-------------------------------------------------------------------
