@@ -10,6 +10,7 @@ gee@pyro.nu
 
 // Types - when including them into the engine.
 #include "CButton.h"
+#include "CImage.h"
 #include "CText.h"
 #include "CCheckBox.h"
 #include "CRadioButton.h"
@@ -80,11 +81,6 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 										&IGUIObject::HandleMessage, 
 										SGUIMessage(GUIM_MOUSE_MOTION));
 	}
-
-	// TODO Gee: temp-stuff
-//	char buf[30];
-//	sprintf(buf, "type = %d", ev->type);
-	//TEMPmessage = buf;
 
 	// Update m_MouseButtons. (BUTTONUP is handled later.)
 	if (ev->type == SDL_MOUSEBUTTONDOWN)
@@ -247,8 +243,7 @@ IGUIObject *CGUI::ConstructObject(const CStr& str)
 		return (*m_ObjectTypes[str])();
 	else
 	{
-		debug_warn("CGUI::ConstructObject error");
-		// TODO Gee: Report in log
+		// Error reporting will be handled with the NULL return.
 		return NULL;
 	}
 }
@@ -260,6 +255,7 @@ void CGUI::Initialize()
 	//  Prometheus though will have all the object types inserted from here.
 	AddObjectType("empty",			&CGUIDummyObject::ConstructObject);
 	AddObjectType("button",			&CButton::ConstructObject);
+	AddObjectType("image",			&CImage::ConstructObject);
 	AddObjectType("text",			&CText::ConstructObject);
 	AddObjectType("checkbox",		&CCheckBox::ConstructObject);
 	AddObjectType("radiobutton",	&CRadioButton::ConstructObject);
@@ -422,19 +418,41 @@ void CGUI::DrawSprite(const CStr& SpriteName,
 			// Get the screen position/size of a single tiling of the texture
 			CRect TexSize = cit->m_TextureSize.GetClientArea(real);
 
-			float TexLeft = (float)(TexSize.left - real.left) / (float)TexSize.GetWidth();
-			float TexRight = TexLeft + (float)real.GetWidth() / (float)TexSize.GetWidth();
+			// Actual texture coordinates we'll send to OGL.
+			CRect TexCoords;
+
+			TexCoords.left = (TexSize.left - real.left) / TexSize.GetWidth();
+			TexCoords.right = TexCoords.left + real.GetWidth() / TexSize.GetWidth();
 
 			// 'Bottom' is actually the top in screen-space (I think),
 			// because the GUI puts (0,0) at the top-left
-			float TexBottom = (float)(TexSize.bottom - real.bottom) / (float)TexSize.GetHeight();
-			float TexTop = TexBottom + (float)real.GetHeight() / (float)TexSize.GetHeight();
+			TexCoords.bottom = (TexSize.bottom - real.bottom) / TexSize.GetHeight();
+			TexCoords.top = TexCoords.bottom + real.GetHeight() / TexSize.GetHeight();
+
+			if (cit->m_TexturePlacementInFile != CRect())
+			{
+				// Save the width/height, because we'll change the values one at a time and need
+				//  to be able to use the unchanged width/height
+				float width = TexCoords.GetWidth(),
+					  height = TexCoords.GetHeight();
+
+				// Get texture width/height
+				int t_w, t_h;
+				tex_info(cit->m_Texture, &t_w, &t_h, NULL, NULL, NULL);
+
+				// notice left done after right, so that left is still unchanged, that is important.
+				TexCoords.right = TexCoords.left + width * cit->m_TexturePlacementInFile.right/(float)t_w;
+				TexCoords.left += width * cit->m_TexturePlacementInFile.left/(float)t_w;
+
+				TexCoords.bottom = TexCoords.top + height * cit->m_TexturePlacementInFile.bottom/(float)t_h;
+				TexCoords.top += height * cit->m_TexturePlacementInFile.top/(float)t_h;
+			}
 
 			glBegin(GL_QUADS);
-			glTexCoord2f(TexRight,	TexBottom);	glVertex3f((float)real.right,	(float)real.bottom,	cit->m_DeltaZ);
-			glTexCoord2f(TexLeft,	TexBottom);	glVertex3f((float)real.left,	(float)real.bottom,	cit->m_DeltaZ);
-			glTexCoord2f(TexLeft,	TexTop);	glVertex3f((float)real.left,	(float)real.top,	cit->m_DeltaZ);
-			glTexCoord2f(TexRight,	TexTop);	glVertex3f((float)real.right,	(float)real.top,	cit->m_DeltaZ);
+			glTexCoord2f(TexCoords.right,	TexCoords.bottom);	glVertex3f(real.right,	real.bottom,	cit->m_DeltaZ);
+			glTexCoord2f(TexCoords.left,	TexCoords.bottom);	glVertex3f(real.left,	real.bottom,	cit->m_DeltaZ);
+			glTexCoord2f(TexCoords.left,	TexCoords.top);		glVertex3f(real.left,	real.top,		cit->m_DeltaZ);
+			glTexCoord2f(TexCoords.right,	TexCoords.top);		glVertex3f(real.right,	real.top,		cit->m_DeltaZ);
 			glEnd();
 
 			glDisable(GL_TEXTURE_2D);
@@ -607,8 +625,6 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 	// Easier to read.
 	bool WordWrapping = (Width != 0);
 
-	size_t TEMP = string.m_Words.size();
-
 	// Go through string word by word
 	for (int i=0; i<(int)string.m_Words.size()-1 && !done; ++i)
 	{
@@ -634,9 +650,6 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 			// Loop left/right
 			for (int j=0; j<2; ++j)
 			{
-				// TEMP
-				int TEMPsize = Feedback.m_Images[j].size();
-
 				for (vector<CStr>::const_iterator it = Feedback.m_Images[j].begin(); 
 					it != Feedback.m_Images[j].end();
 					++it)
@@ -1494,6 +1507,16 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
 			}
 			else image.m_TextureSize = ca;
+		}
+		else
+		if (attr_name == "real-texture-placement")
+		{
+			CRect rect;
+			if (!GUI<CRect>::ParseString(attr_value, rect))
+			{
+				ReportParseError("TODO");
+			}
+			else image.m_TexturePlacementInFile = rect;
 		}
 		else
 		if (attr_name == "z-level")

@@ -69,7 +69,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 			
 			// it's in the end of one word, and the icon 
 			//  should really belong to the beginning of the next one
-			if (_to == to)
+			if (_to == to && to >= 1)
 			{
 				if (GetRawString()[to-1] == ' ' ||
 					GetRawString()[to-1] == '-' ||
@@ -203,7 +203,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 			Feedback.m_Size.cx += size.cx;
 			Feedback.m_Size.cy = max(Feedback.m_Size.cy, size.cy);
 
-			// These are also needed later
+			// These are also ne eded later
 			TextCall.m_Size = size;
 
 			if (TextCall.m_String.Length() >= 1)

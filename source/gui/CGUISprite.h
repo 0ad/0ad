@@ -53,7 +53,7 @@ gee@pyro.nu
  */
 struct SGUIImage
 {
-	SGUIImage() : m_Texture(0), m_Border(false), m_DeltaZ(0.f) {}
+	SGUIImage() : m_Texture(0), m_Border(false), m_DeltaZ(0.f), m_TexturePlacementInFile() {}
 	~SGUIImage() {
 		if (m_Texture)
 			tex_free(m_Texture);
@@ -69,6 +69,7 @@ struct SGUIImage
 		C(Size); C(TextureSize);
 		C(BackColor); C(BorderColor);
 		C(Border); C(DeltaZ);
+		C(TexturePlacementInFile);
 		#undef C
 		// 'Load' the texture (but don't do any work because it's cached)
 		if (m_Texture)
@@ -83,6 +84,11 @@ struct SGUIImage
 
 	// Texture placement
 	CClientArea		m_TextureSize;
+
+	// Because OpenGL wants textures in squares with a power of 2 (64x64, 256x256)
+	//  it's sometimes tediuos to adjust this. So this value simulates which area
+	//  is the real texture
+	CRect			m_TexturePlacementInFile;
 
 	// Color
 	CColor			m_BackColor;

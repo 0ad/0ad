@@ -128,22 +128,13 @@ enum EGUISettingsStruct
 	GUISS_EXTENDED
 };
 
+// Text alignments
+enum EAlign { EAlign_Left, EAlign_Right, EAlign_Center };
+enum EVAlign { EVAlign_Top, EVAlign_Bottom, EVAlign_Center };
+
 // Typedefs
 typedef	std::map<CStr, IGUIObject*> map_pObjects;
 typedef std::vector<IGUIObject*> vector_pObjects;
-
-//	Smaller structs that don't deserve their own files :)
-
-// Icon, you create them in the XML file with root element <setup>
-//  you use them in text owned by different objects... Such as CText.
-struct SGUIIcon
-{
-	// Texture name of icon
-	CStr m_TextureName;
-
-	// Size
-	CSize m_Size;
-};
 
 //--------------------------------------------------------
 //  Error declarations

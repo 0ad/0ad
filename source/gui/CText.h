@@ -42,7 +42,6 @@ class IGUIScrollBar;
  * Text field that just displays static text.
  * 
  * @see IGUIObject
- * @see IGUISettingsObject
  */
 class CText : public IGUIScrollBarOwner, public IGUITextOwner
 {

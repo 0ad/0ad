@@ -11,6 +11,7 @@ gee@pyro.nu
 //--------------------------------------------------------
 //  Error definitions
 //--------------------------------------------------------
+// TODO Gee: (2004-09-01) Keeper? The PS_NAME_ABIGUITY for instance doesn't let the user know which objects.
 DEFINE_ERROR(PS_NAME_TAKEN,			"Reference name is taken");
 DEFINE_ERROR(PS_OBJECT_FAIL,		"Object provided is null");
 DEFINE_ERROR(PS_SETTING_FAIL,		"Setting does not exist");

@@ -23,6 +23,8 @@ CButton::CButton()
 	AddSetting(GUIST_CStr,			"sprite-over");
 	AddSetting(GUIST_CStr,			"sprite-pressed");
 	AddSetting(GUIST_CStr,			"sprite-disabled");
+	AddSetting(GUIST_EAlign,		"text-align");
+	AddSetting(GUIST_EVAlign,		"text-valign");
 	AddSetting(GUIST_CColor,		"textcolor");
 	AddSetting(GUIST_CColor,		"textcolor-over");
 	AddSetting(GUIST_CColor,		"textcolor-pressed");
@@ -55,8 +57,45 @@ void CButton::SetupText()
 	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, m_CachedActualSize.GetWidth(), 0, this);
 
 	// Set position of text
-	//m_TextPos = m_CachedActualSize.CenterPoint() - m_GeneratedTexts[0]->m_Size/2;
+
+	// Check which alignment to use!
+	EAlign align;
+	EVAlign valign;
+	GUI<EAlign>::GetSetting(this, "text-align", align);
+	GUI<EVAlign>::GetSetting(this, "text-valign", valign);
+
 	m_TextPos = m_CachedActualSize.TopLeft();
+
+	switch (align)
+	{
+	case EAlign_Left:
+		m_TextPos.x = m_CachedActualSize.left;
+		break;
+	case EAlign_Center:
+		m_TextPos.x = m_CachedActualSize.CenterPoint().x - m_GeneratedTexts[0]->m_Size.cx/2;
+		break;
+	case EAlign_Right:
+		m_TextPos.x = m_CachedActualSize.right - m_GeneratedTexts[0]->m_Size.cx;
+		break;
+	default:
+		break;
+	}
+
+	switch (valign)
+	{
+	case EVAlign_Top:
+		m_TextPos.y = m_CachedActualSize.top;
+		break;
+	case EVAlign_Center:
+		m_TextPos.y = m_CachedActualSize.CenterPoint().y - m_GeneratedTexts[0]->m_Size.cy/2;
+		break;
+	case EVAlign_Bottom:
+		m_TextPos.y = m_CachedActualSize.bottom - m_GeneratedTexts[0]->m_Size.cy;
+		break;
+	default:
+		break;
+	}
+
 }
 
 void CButton::HandleMessage(const SGUIMessage &Message)

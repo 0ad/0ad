@@ -58,7 +58,26 @@ template <>
 bool __ParseString<CSize>(const CStr& Value, CSize &Output);
 
 template <>
+bool __ParseString<EAlign>(const CStr& Value, EAlign &Output);
+
+template <>
+bool __ParseString<EVAlign>(const CStr& Value, EVAlign &Output);
+
+template <>
 bool __ParseString<CGUIString>(const CStr& Value, CGUIString &Output);
+
+
+// Icon, you create them in the XML file with root element <setup>
+//  you use them in text owned by different objects... Such as CText.
+struct SGUIIcon
+{
+	// Texture name of icon
+	CStr m_TextureName;
+
+	// Size
+	CSize m_Size;
+};
+
 
 /**
  * @author Gustav Larsson
@@ -77,7 +96,7 @@ public:
 	/// Pixel modifiers
 	CRect pixel;
 
-	/// Percent modifiers (I'll let this be integers, I don't think a greater precision is needed)
+	/// Percent modifiers
 	CRect percent;
 
 	/**
@@ -88,9 +107,8 @@ public:
 	/**
 	 * The ClientArea can be set from a string looking like:
 	 *
-	 * @code
 	 * "0 0 100% 100%"
-	 * "50%-10 50%-10 50%+10 50%+10" @endcode
+	 * "50%-10 50%-10 50%+10 50%+10"
 	 * 
 	 * i.e. First percent modifier, then + or - and the pixel modifier.
 	 * Although you can use just the percent or the pixel modifier. Notice

@@ -42,7 +42,8 @@ void IGUITextOwner::HandleMessage(const SGUIMessage &Message)
 		//  change it and disregard this function.
 		if (Message.value == CStr("size") || Message.value == CStr("z") ||
 			Message.value == CStr("absolute") || Message.value == CStr("caption") ||
-			Message.value == CStr("font") || Message.value == CStr("textcolor"))
+			Message.value == CStr("font") || Message.value == CStr("textcolor") ||
+			Message.value == CStr("buffer-zone"))
 		{
 			SetupText();
 		}

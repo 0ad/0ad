@@ -157,6 +157,40 @@ bool __ParseString<CSize>(const CStr& Value, CSize &Output)
 }
 
 template <>
+bool __ParseString<EAlign>(const CStr &Value, EAlign &Output)
+{
+	if (Value == (CStr)"left")
+		Output = EAlign_Left;
+	else
+	if (Value == (CStr)"center")
+		Output = EAlign_Center;
+	else
+	if (Value == (CStr)"right")
+		Output = EAlign_Right;
+	else
+		return false;
+
+	return true;
+}
+
+template <>
+bool __ParseString<EVAlign>(const CStr &Value, EVAlign &Output)
+{
+	if (Value == (CStr)"top")
+		Output = EVAlign_Top;
+	else
+	if (Value == (CStr)"center")
+		Output = EVAlign_Center;
+	else
+	if (Value == (CStr)"bottom")
+		Output = EVAlign_Bottom;
+	else
+		return false;
+
+	return true;
+}
+
+template <>
 bool __ParseString<CGUIString>(const CStr& Value, CGUIString &Output)
 {
 	Output.SetValue(Value);	
@@ -179,16 +213,16 @@ CClientArea::CClientArea(const CStr& Value)
 CRect CClientArea::GetClientArea(const CRect &parent) const
 {
 	// If it's a 0 0 100% 100% we need no calculations
-	if (percent == CRect(0,0,100,100) && pixel == CRect(0,0,0,0))
+	if (percent == CRect(0.f,0.f,100.f,100.f) && pixel == CRect(0.f,0.f,0.f,0.f))
 		return parent;
 
 	CRect client;
 
 	// This should probably be cached and not calculated all the time for every object.
-    client.left =	parent.left + int(float((parent.right-parent.left)*percent.left)/100.f) + pixel.left;
-	client.top =	parent.top + int(float((parent.bottom-parent.top)*percent.top)/100.f) + pixel.top;
-	client.right =	parent.left + int(float((parent.right-parent.left)*percent.right)/100.f) + pixel.right;
-	client.bottom =	parent.top + int(float((parent.bottom-parent.top)*percent.bottom)/100.f) + pixel.bottom;
+    client.left =	parent.left + (parent.right-parent.left)*percent.left/100.f + pixel.left;
+	client.top =	parent.top + (parent.bottom-parent.top)*percent.top/100.f + pixel.top;
+	client.right =	parent.left + (parent.right-parent.left)*percent.right/100.f + pixel.right;
+	client.bottom =	parent.top + (parent.bottom-parent.top)*percent.bottom/100.f + pixel.bottom;
 
 	return client;
 }
@@ -265,7 +299,9 @@ bool CClientArea::SetClientArea(const CStr& Value)
 	// 4 arguments = INVALID
 
   	// Default to 0
-	int values[4][2] = {{0,0},{0,0},{0,0},{0,0}};
+	//int values[4][2] = {{0,0},{0,0},{0,0},{0,0}};
+	int i_values[4] = {0,0,0,0};
+	float f_values[4] = {0.f, 0.f, 0.f, 0.f};
 
 	for (int v=0; v<4; ++v)
 	{
@@ -274,20 +310,20 @@ bool CClientArea::SetClientArea(const CStr& Value)
 			string str;
 			line.GetArgString(arg_start[v], str);
 
-			if (!line.GetArgInt(arg_start[v], values[v][1]))
+			if (!line.GetArgInt(arg_start[v], i_values[v]))
 				return false;
 		}
 		else
 		if (arg_count[v] == 2)
 		{
-			if (!line.GetArgInt(arg_start[v], values[v][0]))
+			if (!line.GetArgFloat(arg_start[v], f_values[v]))
 				return false;
 		}
 		else
 		if (arg_count[v] == 3)
 		{
-			if (!line.GetArgInt(arg_start[v], values[v][0]) ||
-				!line.GetArgInt(arg_start[v]+2, values[v][1]))
+			if (!line.GetArgFloat(arg_start[v], f_values[v]) ||
+				!line.GetArgInt(arg_start[v]+2, i_values[v]))
 				return false;
 
 		}
@@ -295,14 +331,14 @@ bool CClientArea::SetClientArea(const CStr& Value)
 	}
 
 	// Now store the values[][] in the right place
-	pixel.left =		values[0][1];
-	pixel.top =			values[1][1];
-	pixel.right =		values[2][1];
-	pixel.bottom =		values[3][1];
-	percent.left =		values[0][0];
-	percent.top =		values[1][0];
-	percent.right =		values[2][0];
-	percent.bottom =	values[3][0];
+	pixel.left =		i_values[0];
+	pixel.top =			i_values[1];
+	pixel.right =		i_values[2];
+	pixel.bottom =		i_values[3];
+	percent.left =		f_values[0];
+	percent.top =		f_values[1];
+	percent.right =		f_values[2];
+	percent.bottom =	f_values[3];
 	return true;
 }
 

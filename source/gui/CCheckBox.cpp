@@ -31,7 +31,7 @@ CCheckBox::CCheckBox()
 	CColor			m_TextColorDisabled;
 	CColor			m_TextColorOver;
 	CColor			m_TextColorPressed;
-	EValign			m_TextValign;
+	EVAlign			m_TextValign;
 	CStr			m_ToolTip;
 	CStr			m_ToolTipStyle;
 */

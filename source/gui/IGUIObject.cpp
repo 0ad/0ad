@@ -71,6 +71,8 @@ IGUIObject::~IGUIObject()
 			TYPE(CClientArea);
 			TYPE(CGUIString);
 			TYPE(CStr);
+			TYPE(EAlign);
+			TYPE(EVAlign);
 		default:
 			assert(!"Invalid setting type");
 		}
@@ -169,11 +171,11 @@ void IGUIObject::AddSetting(const EGUISettingType &Type, const CStr& Name)
 		CASE_TYPE(CStr)
 		CASE_TYPE(CColor)
 		CASE_TYPE(CGUIString)
+		CASE_TYPE(EAlign)
+		CASE_TYPE(EVAlign)
 
 	default:
-		debug_warn("IGUIObject::AddSetting failed");
-		// TODO Gee: Report in log, type is not recognized. This should be an assert, not in log
-		//  because it's strictly hardcoded error
+		debug_warn("IGUIObject::AddSetting failed, type not recognized!");
 		break;
 	}
 }
@@ -262,6 +264,8 @@ void IGUIObject::SetSetting(const CStr& Setting, const CStr& Value)
 	ADD_TYPE(CColor,		"color")
 	ADD_TYPE(CClientArea,	"client area")
 	ADD_TYPE(CGUIString,	"text")
+	ADD_TYPE(EAlign,		"align")
+	ADD_TYPE(EVAlign,		"valign")
 	else
 	{
 		throw PS_FAIL;
@@ -329,7 +333,7 @@ void IGUIObject::UpdateCachedSize()
 	if (absolute == false && m_pParent)
 		m_CachedActualSize = ca.GetClientArea(m_pParent->m_CachedActualSize);
 	else
-		m_CachedActualSize = ca.GetClientArea(CRect(0, 0, g_xres, g_yres));
+		m_CachedActualSize = ca.GetClientArea(CRect(0.f, 0.f, (float)g_xres, (float)g_yres));
 
 }
 

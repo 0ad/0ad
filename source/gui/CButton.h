@@ -39,7 +39,6 @@ gee@pyro.nu
  * Button
  * 
  * @see IGUIObject
- * @see IGUISettingsObject
  * @see IGUIButtonBehavior
  */
 class CButton : public IGUIButtonBehavior, public IGUITextOwner

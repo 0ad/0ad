@@ -60,11 +60,6 @@ typedef std::map<CStr, SGUISetting> map_Settings;
 //  Declarations
 //--------------------------------------------------------
 
-
-// Text alignments
-enum EAlign { EAlign_Left, EAlign_Right, EAlign_Center };
-enum EValign { EValign_Top, EValign_Bottom, EValign_Center };
-
 /**
  * Setting Type
  * @see SGUISetting
@@ -80,7 +75,9 @@ enum EGUISettingType
 	GUIST_CColor,
 	GUIST_CClientArea,
 	GUIST_CGUIString,
-	GUIST_CStr
+	GUIST_CStr,
+	GUIST_EAlign,
+	GUIST_EVAlign
 };
 
 /**

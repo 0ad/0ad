@@ -100,6 +100,7 @@ void CText::HandleMessage(const SGUIMessage &Message)
 		GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
 
 		// Update scroll-bar
+		// TODO Gee: (2004-09-01) Is this really updated each time it should?
 		if (scrollbar && 
 		    (Message.value == CStr("size") || Message.value == CStr("z") ||
 			 Message.value == CStr("absolute")))
@@ -143,10 +144,6 @@ void CText::HandleMessage(const SGUIMessage &Message)
 
 void CText::Draw() 
 {
-	////////// Gee: janwas, this is just temp to see it
-	glDisable(GL_TEXTURE_2D);
-	//////////
-
 	float bz = GetBufferedZ();
 
 	// First call draw on ScrollBarOwner

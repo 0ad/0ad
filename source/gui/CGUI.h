@@ -81,9 +81,6 @@ public:
 	CGUI();
 	~CGUI();
 
-	// TODO Gee: (MEGA) Extremely temporary.
-	std::string TEMPmessage;
-
 	/**
 	 * Initializes the GUI, needs to be called before the GUI is used
 	 */
