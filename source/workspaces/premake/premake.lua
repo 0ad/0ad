@@ -28,18 +28,27 @@ package.files = {
                 "../../lib",
                 "../../lib/sysdep",
                 "../../lib/res") },
-	-- terrain/
+	-- graphics/
 	{ sourcesfromdirs(
-                "../../terrain") },
+                "../../graphics") },
+	-- maths/
+	{ sourcesfromdirs(
+                "../../maths") },
+	-- renderer/
+	{ sourcesfromdirs(
+                "../../renderer") },
 	-- gui/
 	{ sourcesfromdirs(
                 "../../gui") },
+	-- terrain/
+	{ sourcesfromdirs(
+                "../../terrain") },
 	-- main
         { "../../main.cpp" },
 	-- scripting
 	{ sourcesfromdirs("../../scripting") }
 }
-package.includepaths = { "../../ps", "../../simulation", "../../lib", "../../terrain", "../.." }
+package.includepaths = { "../../ps", "../../simulation", "../../lib", "../../graphics", "../../maths", "../../renderer", "../../terrain", "../.." }
 
 -- Platform Specifics
 if (OS == "windows") then
