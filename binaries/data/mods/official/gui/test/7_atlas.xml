@@ -19,7 +19,7 @@
 		<object type="empty" name="atlas_left_pane" size="0 0 100% 100%" z="1" hidden="false">
 
 			<!-- LEFT SELECTION PANE BACKGROUND -->
-			<object type="text" name="atlas_left_pane_bkg" sprite="atlas_window_rt_border" z="60" hidden="false">
+			<object type="text" name="atlas_left_pane_bkg" sprite="atlas_window_rt_border" hidden="false">
 				<action on="Load"><![CDATA[
 					setSizeArray("atlas_left_pane_bkg", atlasCoord[ATLAS_LEFT_PANE_BKG], left_screen, top_screen, left_screen, bottom_screen);
 				]]></action>
@@ -30,28 +30,28 @@
 		<object type="empty" name="atlas_bottom_pane" size="0 0 100% 100%" z="1" hidden="false">
 
 			<!-- BOTTOM SELECTION BACKGROUND -->
-			<object type="text" name="atlas_bottom_pane_bkg" sprite="atlas_window_rt_border" z="60" hidden="false">
+			<object type="text" name="atlas_bottom_pane_bkg" sprite="atlas_window_rt_border" hidden="false">
 				<action on="Load"><![CDATA[
 					setSizeArray("atlas_bottom_pane_bkg", atlasCoord[ATLAS_BOTTOM_PANE_BKG], left_screen, bottom_screen, right_screen, bottom_screen);
 				]]></action>
 			</object>
 
 			<!-- LEFT/BOTTOM SELECTION PANE CORNER -->
-			<object type="text" name="atlas_lb_corner" sprite="atlas_lb_corner" z="60" hidden="false">
+			<object type="text" name="atlas_lb_corner" sprite="atlas_lb_corner" hidden="false">
 				<action on="Load"><![CDATA[
 					setSizeArray("atlas_lb_corner", atlasCoord[ATLAS_LB_CORNER], left_screen, bottom_screen, left_screen, bottom_screen);
 				]]></action>
 			</object>
 
 			<!-- RB: MINIMAP BACKGROUND -->
-			<object type="text" name="atlas_minimap_bkg" sprite="atlas_window_t_border" z="60" hidden="false">
+			<object type="text" name="atlas_minimap_bkg" sprite="atlas_window_t_border" hidden="false">
 				<action on="Load"><![CDATA[
 					setSizeArray("atlas_minimap_bkg", atlasCoord[ATLAS_MINIMAP_BKG], right_screen, bottom_screen, right_screen, bottom_screen);
 				]]></action>
 			</object>
 
 			<!-- RIGHT/BOTTOM SELECTION PANE CORNER -->
-			<object type="text" name="atlas_rb_corner" sprite="atlas_rb_corner_x2" z="60" hidden="false">
+			<object type="text" name="atlas_rb_corner" sprite="atlas_rb_corner_x2" hidden="false">
 				<action on="Load"><![CDATA[
 					setSizeArray("atlas_rb_corner", atlasCoord[ATLAS_RB_CORNER], right_screen, bottom_screen, right_screen, bottom_screen);
 				]]></action>
@@ -60,7 +60,7 @@
 
 		<!-- RB: MINIMAP: Displays whole map. Identical functionality to session map, just a little smaller. -->
 		<!-- Later change this to type minimap, no sprite (doesn't do anything if not in simulation mode). -->
-		<object type="text" name="atlas_minimap" sprite="atlas_window" z="60" hidden="false">
+		<object type="text" name="atlas_minimap" sprite="atlas_window" hidden="false">
 			<action on="Load"><![CDATA[
 				setSizeArray("atlas_minimap", atlasCoord[ATLAS_MINIMAP], right_screen, bottom_screen, right_screen, bottom_screen);
 			]]></action>
@@ -68,12 +68,65 @@
 
 		<!-- TOP: MENU -->
 		<object type="empty" name="atlas_mainborder_menu" size="0 0 100% 100%" z="1" hidden="false">
-			<object type="text" name="atlas_mainborder_menu_bkg" sprite="atlas_menubar_bkg" z="60" hidden="false">
+			<object type="text" name="atlas_mainborder_menu_bkg" sprite="atlas_menubar_bkg" hidden="false">
 				<action on="Load"><![CDATA[
 					setSizeArray("atlas_mainborder_menu_bkg", atlasCoord[ATLAS_MAINBORDER_MENU_BKG], left_screen, top_screen, right_screen, top_screen);
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_maximise_arrow" sprite="atlas_global_arrow_dn" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Maximise Arrow[font=tahoma10]\nClick to maximise the toolbar." z="60" hidden="true">
+			<object type="button" name="atlas_mainborder_menu_1" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">File
+				<action on="Press"><![CDATA[
+				]]></action>
+			</object>
+			<object type="button" name="atlas_mainborder_menu_2" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Map
+				<action on="Press"><![CDATA[
+				]]></action>
+			</object>
+			<object type="button" name="atlas_mainborder_menu_3" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Terrain
+				<action on="Press"><![CDATA[
+				]]></action>
+			</object>
+			<object type="button" name="atlas_mainborder_menu_4" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Objects
+				<action on="Press"><![CDATA[
+				]]></action>
+			</object>
+			<object type="button" name="atlas_mainborder_menu_5" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Player
+				<action on="Press"><![CDATA[
+				]]></action>
+			</object>
+			<object type="button" name="atlas_mainborder_menu_6" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Diplomacy
+				<action on="Press"><![CDATA[
+				]]></action>
+			</object>
+			<object type="button" name="atlas_mainborder_menu_7" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Messages
+				<action on="Press"><![CDATA[
+				]]></action>
+			</object>
+			<object type="button" name="atlas_mainborder_menu_8" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Playlist
+				<action on="Press"><![CDATA[
+				]]></action>
+			</object>
+			<object type="button" name="atlas_mainborder_menu_9" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Cinematics
+				<action on="Press"><![CDATA[
+				]]></action>
+			</object>
+			<object type="button" name="atlas_mainborder_menu_10" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">
+				<action on="Press"><![CDATA[
+				]]></action>
+			</object>
+			<object type="button" name="atlas_mainborder_menu_11" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">
+				<action on="Press"><![CDATA[
+				]]></action>
+			</object>
+			<object type="button" name="atlas_mainborder_menu_12" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Campaign
+				<action on="Load"><![CDATA[
+					// Seek through ALL menu buttons and set their sizes at once. (So make sure this always goes in the last menu button.)
+					for (ATLAS_MAINBORDER_MENU_BUTTON.last = 1; ATLAS_MAINBORDER_MENU_BUTTON.last <= ATLAS_MAINBORDER_MENU_BUTTON.max; ATLAS_MAINBORDER_MENU_BUTTON.last++)
+						setSizeArray("atlas_mainborder_menu_" + ATLAS_MAINBORDER_MENU_BUTTON.last, atlasCoord[ATLAS_MAINBORDER_MENU_BUTTON[ATLAS_MAINBORDER_MENU_BUTTON.last]], left_screen, top_screen, left_screen, top_screen);
+				]]></action>
+				<action on="Press"><![CDATA[
+				]]></action>
+			</object>
+			<object type="button" name="atlas_mainborder_toolbar_maximise_arrow" sprite="atlas_global_arrow_dn" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Maximise Arrow[font=tahoma10]\nClick to maximise the toolbar." hidden="true">
 				<action on="Load"><![CDATA[
 					setSizeArray("atlas_mainborder_toolbar_maximise_arrow", atlasCoord[ATLAS_MAINBORDER_TOOLBAR_MAXIMISE_ARROW], right_screen, top_screen, right_screen, top_screen);
 				]]></action>
@@ -85,12 +138,12 @@
 
 		<!-- TOP: TOOLBAR -->
 		<object type="empty" name="atlas_mainborder_toolbar" size="0 0 100% 100%" z="1" hidden="false">
-			<object type="text" name="atlas_mainborder_toolbar_bkg" sprite="atlas_toolbar_bkg" z="60" hidden="false">
+			<object type="text" name="atlas_mainborder_toolbar_bkg" sprite="atlas_toolbar_bkg" hidden="false">
 				<action on="Load"><![CDATA[
 					setSizeArray("atlas_mainborder_toolbar_bkg", atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG], left_screen, top_screen, right_screen, top_screen);
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_fully_minimise_arrow" sprite="atlas_global_arrow_up" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Fully Minimise Arrow[font=tahoma10]\nClick to fully minimise the toolbar." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_fully_minimise_arrow" sprite="atlas_global_arrow_up" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Fully Minimise Arrow[font=tahoma10]\nClick to fully minimise the toolbar." hidden="false">
 				<action on="Load"><![CDATA[
 					setSizeArray("atlas_mainborder_toolbar_fully_minimise_arrow", atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW], right_screen, top_screen, right_screen, top_screen);
 				]]></action>
@@ -98,7 +151,7 @@
 					atlasFullyMinimiseToolbar();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_fully_maximise_arrow" sprite="atlas_global_arrow_dn" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Full Maximise Arrow[font=tahoma10]\nClick to fully maximise the toolbar." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_fully_maximise_arrow" sprite="atlas_global_arrow_dn" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Full Maximise Arrow[font=tahoma10]\nClick to fully maximise the toolbar." hidden="false">
 				<action on="Load"><![CDATA[
 					setSizeArray("atlas_mainborder_toolbar_fully_maximise_arrow", atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MAXIMISE_ARROW], right_screen, top_screen, right_screen, top_screen);
 				]]></action>
@@ -110,12 +163,12 @@
 
 		<!-- TOP: TOOLBAR SECOND ROW -->
 		<object type="empty" name="atlas_mainborder_toolbar_max" size="0 0 100% 100%" z="1" hidden="true">
-			<object type="text" name="atlas_mainborder_toolbar_bkg_max" sprite="atlas_toolbar_bkg" z="60" hidden="false">
+			<object type="text" name="atlas_mainborder_toolbar_bkg_max" sprite="atlas_toolbar_bkg" hidden="false">
 				<action on="Load"><![CDATA[
 					setSizeArray("atlas_mainborder_toolbar_bkg_max", atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX], left_screen, top_screen, right_screen, top_screen);
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_minimise_arrow" sprite="atlas_global_arrow_up" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Minimise Arrow[font=tahoma10]\nClick to minimise the toolbar." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_minimise_arrow" sprite="atlas_global_arrow_up" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Minimise Arrow[font=tahoma10]\nClick to minimise the toolbar." hidden="false">
 				<action on="Load"><![CDATA[
 					setSizeArray("atlas_mainborder_toolbar_minimise_arrow", atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW], right_screen, top_screen, right_screen, top_screen);
 				]]></action>
@@ -128,202 +181,202 @@
 		<!-- TOP: TOOLBAR BUTTONS: ROW 1 -->
 		<object type="empty" name="atlas_mainborder_toolbar_button_row_1" size="0 0 100% 100%" z="1" hidden="false">
 			<!-- TOP: TOOLBAR: BUTTONS -->
-			<object type="button" name="atlas_mainborder_toolbar_button_1" cell_id="1" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_1" cell_id="1" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_1();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_2" cell_id="2" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_2" cell_id="2" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_2();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_3" cell_id="3" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_3" cell_id="3" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_3();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_4" cell_id="4" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_4" cell_id="4" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_4();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_5" cell_id="5" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_5" cell_id="5" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_5();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_6" cell_id="6" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_6" cell_id="6" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_6();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_7" cell_id="7" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_7" cell_id="7" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_7();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_8" cell_id="8" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_8" cell_id="8" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_8();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_9" cell_id="9" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_9" cell_id="9" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_9();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_10" cell_id="10" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_10" cell_id="10" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_10();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_11" cell_id="11" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_11" cell_id="11" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_11();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_12" cell_id="12" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_12" cell_id="12" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_12();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_13" cell_id="13" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_13" cell_id="13" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_13();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_14" cell_id="14" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_14" cell_id="14" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_14();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_15" cell_id="15" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_15" cell_id="15" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_15();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_16" cell_id="16" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_16" cell_id="16" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_16();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_17" cell_id="17" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_17" cell_id="17" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_17();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_18" cell_id="18" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_18" cell_id="18" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_18();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_19" cell_id="19" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_19" cell_id="19" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_19();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_20" cell_id="20" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_20" cell_id="20" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_20();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_21" cell_id="21" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_21" cell_id="21" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_21();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_22" cell_id="22" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_22" cell_id="22" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_22();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_23" cell_id="23" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_23" cell_id="23" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_23();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_24" cell_id="24" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_24" cell_id="24" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_24();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_25" cell_id="25" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_25" cell_id="25" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_25();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_26" cell_id="26" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_26" cell_id="26" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_26();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_27" cell_id="27" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_27" cell_id="27" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_27();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_28" cell_id="28" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_28" cell_id="28" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_28();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_29" cell_id="29" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_29" cell_id="29" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_29();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_30" cell_id="30" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_30" cell_id="30" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_30();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_31" cell_id="31" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_31" cell_id="31" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_31();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_32" cell_id="32" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_32" cell_id="32" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_32();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_33" cell_id="33" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_33" cell_id="33" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_33();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_34" cell_id="34" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_34" cell_id="34" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_34();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_35" cell_id="35" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_35" cell_id="35" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_35();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_36" cell_id="36" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_36" cell_id="36" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_36();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_37" cell_id="37" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_37" cell_id="37" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_37();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_38" cell_id="38" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_38" cell_id="38" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_38();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_39" cell_id="39" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_39" cell_id="39" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_39();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_40" cell_id="40" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_40" cell_id="40" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_40();
 				]]></action>
@@ -333,202 +386,202 @@
 		<!-- TOP: TOOLBAR BUTTONS: ROW 2 -->
 		<object type="empty" name="atlas_mainborder_toolbar_button_row_2" size="0 0 100% 100%" z="1" hidden="true">
 			<!-- TOP: TOOLBAR: BUTTONS -->
-			<object type="button" name="atlas_mainborder_toolbar_button_41" cell_id="41" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_41" cell_id="41" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_41();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_42" cell_id="42" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_42" cell_id="42" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_42();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_43" cell_id="43" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_43" cell_id="43" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_43();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_44" cell_id="44" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_44" cell_id="44" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_44();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_45" cell_id="45" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_45" cell_id="45" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_45();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_46" cell_id="46" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_46" cell_id="46" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_46();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_47" cell_id="47" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_47" cell_id="47" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_47();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_48" cell_id="48" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_48" cell_id="48" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_48();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_49" cell_id="49" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_49" cell_id="49" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_49();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_50" cell_id="50" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_50" cell_id="50" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_50();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_51" cell_id="51" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_51" cell_id="51" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_51();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_52" cell_id="52" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_52" cell_id="52" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_52();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_53" cell_id="53" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_53" cell_id="53" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_53();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_54" cell_id="54" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_54" cell_id="54" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_54();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_55" cell_id="55" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_55" cell_id="55" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_55();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_56" cell_id="56" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_56" cell_id="56" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_56();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_57" cell_id="57" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_57" cell_id="57" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_57();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_58" cell_id="58" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_58" cell_id="58" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_58();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_59" cell_id="59" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_59" cell_id="59" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_59();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_60" cell_id="60" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_60" cell_id="60" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_60();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_61" cell_id="61" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_61" cell_id="61" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_61();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_62" cell_id="62" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_62" cell_id="62" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_62();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_63" cell_id="63" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_63" cell_id="63" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_63();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_64" cell_id="64" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_64" cell_id="64" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_64();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_65" cell_id="65" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_65" cell_id="65" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_65();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_66" cell_id="66" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_66" cell_id="66" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_66();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_67" cell_id="67" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_67" cell_id="67" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_67();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_68" cell_id="68" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_68" cell_id="68" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_68();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_69" cell_id="69" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_69" cell_id="69" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_69();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_70" cell_id="70" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_70" cell_id="70" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_70();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_71" cell_id="71" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_71" cell_id="71" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_71();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_72" cell_id="72" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_72" cell_id="72" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_72();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_73" cell_id="73" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_73" cell_id="73" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_73();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_74" cell_id="74" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_74" cell_id="74" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_74();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_75" cell_id="75" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_75" cell_id="75" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_75();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_76" cell_id="76" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_76" cell_id="76" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_76();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_77" cell_id="77" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_77" cell_id="77" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_77();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_78" cell_id="78" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_78" cell_id="78" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_78();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_79" cell_id="39" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_79" cell_id="39" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_79();
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_toolbar_button_80" cell_id="80" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
+			<object type="button" name="atlas_mainborder_toolbar_button_80" cell_id="80" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." hidden="false">
 				<action on="Load"><![CDATA[
 					// Seek through ALL toolbar buttons and set their sizes at once.
 					for (ATLAS_MAINBORDER_TOOLBAR_BUTTON.last = 1; ATLAS_MAINBORDER_TOOLBAR_BUTTON.last <= ATLAS_MAINBORDER_TOOLBAR_BUTTON.max; ATLAS_MAINBORDER_TOOLBAR_BUTTON.last++)
@@ -541,7 +594,7 @@
 		</object>
 
 		<!-- LT: LOGO -->
-		<object type="text" name="atlas_mainborder_lt_corner" sprite="atlas_mainborder_lt_corner" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]0 A.D. Logo[font=tahoma10]\nMmm, nothing like the smell of blatant self-promotion in the morning ..." z="60" hidden="false">
+		<object type="text" name="atlas_mainborder_lt_corner" sprite="atlas_mainborder_lt_corner" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]0 A.D. Logo[font=tahoma10]\nMmm, nothing like the smell of blatant self-promotion in the morning ..." hidden="false">
 			<action on="Load"><![CDATA[
 				setSizeArray("atlas_mainborder_lt_corner", atlasCoord[ATLAS_MAINBORDER_LT_CORNER], left_screen, top_screen, left_screen, top_screen);
 			]]></action>
@@ -550,13 +603,13 @@
 		<!-- RT: INFO WINDOW: Displays editor information such as FPS and map name. -->
 		<object type="empty" name="atlas_info_window_pane" size="0 0 100% 100%" z="1" hidden="false">
 			<!-- RT: INFO WINDOW BACKGROUND -->
-			<object type="text" name="atlas_mainborder_rt_corner" sprite="atlas_mainborder_rt_corner" z="60" hidden="false">
+			<object type="text" name="atlas_mainborder_rt_corner" sprite="atlas_mainborder_rt_corner" hidden="false">
 				<action on="Load"><![CDATA[
 					setSizeArray("atlas_mainborder_rt_corner", atlasCoord[ATLAS_MAINBORDER_RT_CORNER], right_screen, top_screen, right_screen, top_screen);
 				]]></action>
 			</object>
 			<!-- RT: INFO WINDOW BAR -->
-			<object type="text" name="atlas_info_window" sprite="atlas_window_white" font="tahoma10" textcolor="0 0 0" text_align="left" text_valign="center" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Info Window[font=tahoma10]\nInformation about the current scenario." z="60" hidden="false">
+			<object type="text" name="atlas_info_window" sprite="atlas_window_white" font="tahoma10" textcolor="0 0 0" text_align="left" text_valign="center" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Info Window[font=tahoma10]\nInformation about the current scenario." hidden="false">
 				<action on="Load"><![CDATA[
 					setSizeArray("atlas_info_window", atlasCoord[ATLAS_INFO_WINDOW], right_screen, top_screen, right_screen, top_screen);
 					setInterval(atlasUpdateInfoWindow, 500);

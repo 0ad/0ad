@@ -789,13 +789,13 @@
 	<sprite name="atlas_emboss">
 		<!-- Starting with top left corner continuing in a clockwise manner -->
 		<!-- Top border -->
-		<image backcolor="220 223 228" size="0 0 100% 0" />
+		<image backcolor="220 223 228" size="0 0 100% 1" />
 		<!-- Right border -->
-		<image backcolor="109 122 146" size="100% 1 100% 100%" />
+		<image backcolor="109 122 146" size="100%-1 1 100% 100%" />
 		<!-- Bottom border -->
-		<image backcolor="109 122 146" size="1 100% 100% 100%" />
+		<image backcolor="109 122 146" size="1 100%-1 100% 100%" />
 		<!-- Left border -->
-		<image backcolor="220 223 228" size="0 0 0 100%" />
+		<image backcolor="220 223 228" size="0 0 1 100%" />
 		<!-- middle -->
 		<image backcolor="184 190 201" size="1 1 100%-1 100%-1"/>
 	</sprite>

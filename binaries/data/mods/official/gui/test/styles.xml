@@ -79,4 +79,16 @@
 		tooltip_style="session_tooltip"
 		ghost="true"
 	/>
+
+	<!-- Atlas Editor -->
+	<style name="atlas_menu_button"
+		sprite="atlas_menubar_bkg"
+		sprite_over="atlas_emboss"
+		tooltip_style="atlas_tooltip"
+		tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu."
+		textcolor="0 0 0"
+		font="tahoma10"
+		text_align="left"
+		text_valign="center"
+	/>
 </styles>
