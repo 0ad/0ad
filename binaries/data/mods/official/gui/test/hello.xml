@@ -21,9 +21,9 @@
 
     function selected()
     {
-	if( selection.length > 0 )
-	    return( selection[0] );
-	return( null );
+        if( selection.length > 0 )
+            return( selection[0] );
+        return( null );
     }
 
     function updateOrbital()
@@ -95,17 +95,16 @@
 
 <object type="empty" name="pregame_gui" size="0 0 100% 100%" z="1" hidden="false">
 
- <object type="button" name="Start_Game_Button" sprite="sprite1" sprite-over="sprite1-over" sprite-pressed="sprite1-pressed" size="100%-150 2 100%-30 23" z="100" textcolor="0 0 0" hidden="false">
-
-    Start Game
-
+<!-- TEST -->
+ <object type="button" name="pregame-mainmenu-background-image" sprite="pregame-mainmenu-background" size="0 0 100% 100%" z="100" hidden="false" />
+ <object type="button" name="pregame-mainmenu-sp-button" sprite-over="pregame-mainmenu-spbt" size="53% 24% 67% 42%" z="101" hidden="false">
     <action on="Press"><![CDATA[
-      GUIObjectUnhide("session_gui");
-      GUIObjectHide("Start_Game_Button");
-      GUIObjectUnhide("End_Game_Button");
       startGame();
+      GUIObjectUnhide("session_gui");
+      GUIObjectHide("pregame_gui")
+      GUIObjectUnhide("End_Game_Button")
     ]]></action>
-  </object>
+ </object>
 
   <object type="button" name="End_Game_Button" sprite="sprite1" sprite-over="sprite1-over" sprite-pressed="sprite1-pressed" size="100%-150 32 100%-30 53" z="100" textcolor="0 0 0" hidden="true">
 
@@ -199,24 +198,6 @@
   <object type="text" name="resource_population_counter" sprite="resource_counter_long" size="100%-116 5 1 1" z="90" hidden="false"></object>
 
   <object type="text" name="resource_population_text" size="100%-118 -3 1 1" font="prospero16" textcolor="255 255 255" z="100" hidden="false"> 100/150</object>
-
-<!--
-==========================================
- - STATISTIC ICONS -
-==========================================
--->
-
-  <object type="text" name="statistic_attack" sprite="statistic_attack" size="50%+75 100%-110 20 20" z="100" hidden="false"></object>
-
-  <object type="text" name="statistic_hack" sprite="statistic_hack" size="50%+75 100%-75 20 20" z="100" hidden="false"></object>
-
-  <object type="text" name="statistic_pierce" sprite="statistic_pierce" size="50%+75 100%-40 20 20" z="100" hidden="false"></object>
-
-  <object type="text" name="statistic_accuracy" sprite="statistic_accuracy" size="50%+175 100%-110 20 20" z="100" hidden="false"></object>
-
-  <object type="text" name="statistic_los" sprite="statistic_los" size="50%+175 100%-75 20 20" z="100" hidden="false"></object>
-
-  <object type="text" name="statistic_speed" sprite="statistic_speed" size="50%+175 100%-40 20 20" z="100" hidden="false"></object>
 
 <!--
 ==========================================
@@ -359,6 +340,24 @@
  - END BOTTOM PANEL -
 ==========================================
 -->
+
+<!--
+==========================================
+ - STATISTIC ICONS -
+==========================================
+-->
+
+  <object type="text" name="statistic_attack" sprite="statistic_attack" size="50%+75 100%-110 20 20" z="100" hidden="false"></object>
+
+  <object type="text" name="statistic_hack" sprite="statistic_hack" size="50%+75 100%-75 20 20" z="100" hidden="false"></object>
+
+  <object type="text" name="statistic_pierce" sprite="statistic_pierce" size="50%+75 100%-40 20 20" z="100" hidden="false"></object>
+
+  <object type="text" name="statistic_accuracy" sprite="statistic_accuracy" size="50%+175 100%-110 20 20" z="100" hidden="false"></object>
+
+  <object type="text" name="statistic_los" sprite="statistic_los" size="50%+175 100%-75 20 20" z="100" hidden="false"></object>
+
+  <object type="text" name="statistic_speed" sprite="statistic_speed" size="50%+175 100%-40 20 20" z="100" hidden="false"></object>
 
 <!--
 ==========================================

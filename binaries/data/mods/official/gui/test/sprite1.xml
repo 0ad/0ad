@@ -25,6 +25,20 @@
         
         <!--
         ==========================================
+        PREGAME GUI
+        ==========================================
+        -->
+
+        <sprite name="pregame-mainmenu-background">
+                <image texture="ui_pregame_mainmenu_background.png" texture-size="0 0 100% 133%+4" size="0 0 100% 100%" />
+        </sprite>
+
+        <sprite name="pregame-mainmenu-spbt">
+                <image texture="ui_pregame_mainmenu_spbt_over.png" texture-size="0 0 256 256" size="0 0 152 143" />
+        </sprite>
+
+        <!--
+        ==========================================
         BOTTOM PANEL IN SESSION UI
         ==========================================
         -->
@@ -151,32 +165,32 @@
         ==========================================
         -->
 
-	<!-- The Dude -->
+        <!-- The Dude -->
         <sprite name="portrait_unit_dude_lrg">
-		<image texture="ui_portrait_unit_dude_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+                <image texture="ui_portrait_unit_dude_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
         </sprite>
         <sprite name="portrait_unit_dude_sml">
-		<image texture="ui_portrait_unit_dude_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+                <image texture="ui_portrait_unit_dude_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
         </sprite>
         <sprite name="portrait_unit_dude_lrg_over">
-		<image texture="ui_portrait_unit_dude_64_over.png" texture-size="0 0 64 64" size="0 0 64 64" />
+                <image texture="ui_portrait_unit_dude_64_over.png" texture-size="0 0 64 64" size="0 0 64 64" />
         </sprite>
         <sprite name="portrait_unit_dude_sml_over">
-		<image texture="ui_portrait_unit_dude_32_over.png" texture-size="0 0 32 32" size="0 0 32 32" />
+                <image texture="ui_portrait_unit_dude_32_over.png" texture-size="0 0 32 32" size="0 0 32 32" />
         </sprite>
         
-	<!-- The Dudette -->
+        <!-- The Dudette -->
         <sprite name="portrait_unit_dudette_lrg">
-		<image texture="ui_portrait_unit_dudette_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+                <image texture="ui_portrait_unit_dudette_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
         </sprite>
         <sprite name="portrait_unit_dudette_sml">
-		<image texture="ui_portrait_unit_dudette_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+                <image texture="ui_portrait_unit_dudette_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
         </sprite>
         <sprite name="portrait_unit_dudette_lrg_over">
-		<image texture="ui_portrait_unit_dudette_64_over.png" texture-size="0 0 64 64" size="0 0 64 64" />
+                <image texture="ui_portrait_unit_dudette_64_over.png" texture-size="0 0 64 64" size="0 0 64 64" />
         </sprite>
         <sprite name="portrait_unit_dudette_sml_over">
-		<image texture="ui_portrait_unit_dudette_32_over.png" texture-size="0 0 32 32" size="0 0 32 32" />
+                <image texture="ui_portrait_unit_dudette_32_over.png" texture-size="0 0 32 32" size="0 0 32 32" />
         </sprite>
 
         <!--
@@ -185,20 +199,20 @@
         ==========================================
         -->
 
-	<!-- Hellenic Civic Centre -->
+        <!-- Hellenic Civic Centre -->
         <sprite name="portrait_structure_helecc_lrg">
-		<image texture="ui_portrait_structure_helecc_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+                <image texture="ui_portrait_structure_helecc_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
         </sprite>
         <sprite name="portrait_structure_helecc_sml">
-		<image texture="ui_portrait_structure_helecc_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+                <image texture="ui_portrait_structure_helecc_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
         </sprite>
 
-	<!-- Hellenic House -->
+        <!-- Hellenic House -->
         <sprite name="portrait_structure_heleho_lrg">
-		<image texture="ui_portrait_structure_heleho_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+                <image texture="ui_portrait_structure_heleho_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
         </sprite>
         <sprite name="portrait_structure_heleho_sml">
-		<image texture="ui_portrait_structure_heleho_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+                <image texture="ui_portrait_structure_heleho_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
         </sprite>
 
         <!--
@@ -207,28 +221,28 @@
         ==========================================
         -->
 
-	<!-- Axe Tech -->
+        <!-- Axe Tech -->
         <sprite name="portrait_tech_axe_lrg">
-		<image texture="ui_portrait_tech_axe_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+                <image texture="ui_portrait_tech_axe_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
         </sprite>
         <sprite name="portrait_tech_axe_sml">
-		<image texture="ui_portrait_tech_axe_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+                <image texture="ui_portrait_tech_axe_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
         </sprite>
 
-	<!-- Tree Tech -->
+        <!-- Tree Tech -->
         <sprite name="portrait_tech_tree_lrg">
-		<image texture="ui_portrait_tech_tree_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+                <image texture="ui_portrait_tech_tree_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
         </sprite>
         <sprite name="portrait_tech_tree_sml">
-		<image texture="ui_portrait_tech_tree_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+                <image texture="ui_portrait_tech_tree_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
         </sprite>
 
-	<!-- Wood Tech -->
+        <!-- Wood Tech -->
         <sprite name="portrait_tech_wood_lrg">
-		<image texture="ui_portrait_tech_wood_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+                <image texture="ui_portrait_tech_wood_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
         </sprite>
         <sprite name="portrait_tech_wood_sml">
-		<image texture="ui_portrait_tech_wood_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+                <image texture="ui_portrait_tech_wood_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
         </sprite>
 
         <!--
@@ -237,12 +251,12 @@
         ==========================================
         -->
 
-	<!-- Deciduous Tree -->
+        <!-- Deciduous Tree -->
         <sprite name="portrait_flora_deciduotree_lrg">
-		<image texture="ui_portrait_flora_deciduotree_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+                <image texture="ui_portrait_flora_deciduotree_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
         </sprite>
         <sprite name="portrait_flora_deciduotree_sml">
-		<image texture="ui_portrait_flora_deciduotree_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+                <image texture="ui_portrait_flora_deciduotree_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
         </sprite>
 
         <!--
@@ -251,20 +265,20 @@
         ==========================================
         -->
 
-	<!-- Build Action -->
+        <!-- Build Action -->
         <sprite name="portrait_action_build_lrg">
-		<image texture="ui_portrait_action_build_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+                <image texture="ui_portrait_action_build_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
         </sprite>
         <sprite name="portrait_action_build_sml">
-		<image texture="ui_portrait_action_build_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+                <image texture="ui_portrait_action_build_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
         </sprite>
 
-	<!-- Chop Action -->
+        <!-- Chop Action -->
         <sprite name="portrait_action_chop_lrg">
-		<image texture="ui_portrait_action_chop_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+                <image texture="ui_portrait_action_chop_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
         </sprite>
         <sprite name="portrait_action_chop_sml">
-		<image texture="ui_portrait_action_chop_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+                <image texture="ui_portrait_action_chop_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
         </sprite>
 
         <!--
@@ -273,12 +287,12 @@
         ==========================================
         -->
 
-	<!-- Placeholder for Missing Portrait -->
+        <!-- Placeholder for Missing Portrait -->
         <sprite name="portrait_unknown_lrg">
-		<image texture="ui_portrait_unknown_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+                <image texture="ui_portrait_unknown_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
         </sprite>
         <sprite name="portrait_unknown_sml">
-		<image texture="ui_portrait_unknown_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+                <image texture="ui_portrait_unknown_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
         </sprite>
 
         <!--
