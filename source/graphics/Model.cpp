@@ -225,8 +225,8 @@ void CModel::GenerateBoneMatrices()
 	// update transform of boned props 
 	// TODO, RC - ugh, we'll be doing this twice (for boned props, at least) - once here, 
 	// and once again in SetTransform; better to just do it in Update? 
-	for (size_t i=0;i<m_Props.size();i++) {
-		const Prop& prop=m_Props[i];
+	for (size_t j=0;j<m_Props.size();j++) {
+		const Prop& prop=m_Props[j];
 
 		if (prop.m_Point->m_BoneIndex!=0xff) {
 			CMatrix3D proptransform=prop.m_Point->m_Transform;;
