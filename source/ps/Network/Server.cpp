@@ -4,6 +4,7 @@
 
 #include "Network/Server.h"
 #include "Network/Network.h"
+#include "Network/JSEvents.h"
 
 #include "Game.h"
 #include "Player.h"
@@ -60,6 +61,8 @@ CNetServer::CNetServer(CGame *pGame, CGameAttributes *pGameAttribs):
 	AddProperty(L"welcomeMessage", &m_WelcomeMessage);
 	
 	AddProperty(L"port", &m_Port);
+	
+	AddProperty(L"onChat", &m_OnChat);
 
 	m_pGameAttributes->SetUpdateCallback(AttributeUpdate, this);
 	m_pGameAttributes->SetPlayerUpdateCallback(PlayerAttributeUpdate, this);
@@ -325,4 +328,13 @@ void CNetServer::QueueIncomingCommand(CNetMessage *pMsg)
 {
 	LOG(NORMAL, LOG_CAT_NET, "CNetServer::QueueIncomingCommand(): %s.", pMsg->GetString().c_str());
 	QueueMessage(2, pMsg);
+}
+
+void CNetServer::OnChat(CStrW from, CStrW message)
+{
+	if (m_OnChat.Defined())
+	{
+		CChatEvent evt(from, message);
+		m_OnChat.DispatchEvent(GetScript(), &evt);
+	}
 }

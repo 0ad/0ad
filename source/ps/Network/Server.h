@@ -62,6 +62,8 @@ private:
 	
 	int m_Port;
 	
+	CScriptObject m_OnChat;
+	
 	static CGameAttributes::UpdateCallback AttributeUpdate;
 	static CPlayer::UpdateCallback PlayerAttributeUpdate;
 	
@@ -86,6 +88,9 @@ protected:
 	// Queue a command coming in from the wire. The command has been validated
 	// by the caller.
 	void QueueIncomingCommand(CNetMessage *pMsg);
+	
+	// Call the JS callback for incoming chat messages
+	void OnChat(CStrW from, CStrW message);
 	
 	// OVERRIDES FROM CServerSocket
 	virtual void OnAccept(const CSocketAddress &);

@@ -172,8 +172,8 @@ bool CNetServerSession::ChatHandler(CNetMessage *pMsg, CNetSession *pNetSession)
 	{
 		CChatMessage *msg=(CChatMessage *)pMsg;
 		msg->m_Sender=pSession->m_Name;
-		CStrW wstr=msg->m_Message;
-		g_Console->ReceivedChatMessage(pSession->GetName().c_str(), wstr.c_str());
+		g_Console->ReceivedChatMessage(pSession->GetName().c_str(), msg->m_Message.c_str());
+		pSession->m_pServer->OnChat(msg->m_Sender, msg->m_Message);
 		pSession->m_pServer->Broadcast(msg);
 
 		TAKEN(pMsg);

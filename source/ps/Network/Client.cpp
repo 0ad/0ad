@@ -6,6 +6,7 @@
 #include <scripting/JSConversions.h>
 #include <scripting/ScriptableObject.h>
 #include <Network/Client.h>
+#include <Network/JSEvents.h>
 #include <CStr.h>
 #include <CLogger.h>
 #include <CConsole.h>
@@ -15,68 +16,6 @@
 CNetClient *g_NetClient=NULL;
 extern "C" int fps;
 extern CConsole *g_Console;
-
-enum CClientEvents
-{
-	CLIENT_EVENT_START_GAME,
-	CLIENT_EVENT_CHAT,
-	CLIENT_EVENT_CONNECT_COMPLETE,
-	CLIENT_EVENT_DISCONNECT,
-	CLIENT_EVENT_LAST
-};
-
-class CStartGameEvent: public CScriptEvent
-{
-public:
-	CStartGameEvent():
-		CScriptEvent(L"startGame", false, CLIENT_EVENT_START_GAME)
-	{}
-};
-
-class CChatEvent: public CScriptEvent
-{
-	CStrW m_Sender;
-	CStrW m_Message;
-	
-public:
-	CChatEvent(CStrW sender, CStrW message):
-		CScriptEvent(L"chat", false, CLIENT_EVENT_CHAT),
-		m_Sender(sender),
-		m_Message(message)
-	{
-		AddReadOnlyProperty(L"sender", &m_Sender);
-		AddReadOnlyProperty(L"message", &m_Message);
-	}
-};
-
-class CConnectCompleteEvent: public CScriptEvent
-{
-	CStrW m_Message;
-	bool m_Success;
-	
-public:
-	CConnectCompleteEvent(CStrW message, bool success):
-		CScriptEvent(L"connectComplete", false, CLIENT_EVENT_CONNECT_COMPLETE),
-		m_Message(message),
-		m_Success(success)
-	{
-		AddReadOnlyProperty(L"message", &m_Message);
-		AddReadOnlyProperty(L"success", &m_Success);
-	}
-};
-
-class CDisconnectEvent: public CScriptEvent
-{
-	CStrW m_Message;
-	
-public:
-	CDisconnectEvent(CStrW message):
-		CScriptEvent(L"disconnect", false, CLIENT_EVENT_DISCONNECT),
-		m_Message(message)
-	{
-		AddReadOnlyProperty(L"message", &m_Message);
-	}
-};
 
 CNetClient::CNetClient(CGame *pGame, CGameAttributes *pGameAttribs):
 	CNetSession(ConnectHandler),
@@ -98,6 +37,7 @@ CNetClient::CNetClient(CGame *pGame, CGameAttributes *pGameAttribs):
 	AddProperty(L"onStartGame", &m_OnStartGame);
 	AddProperty(L"onChat", &m_OnChat);
 	AddProperty(L"onConnectComplete", &m_OnConnectComplete);
+	AddProperty(L"onDisconnect", &m_OnDisconnect);
 	
 	AddProperty(L"password", &m_Password);
 	AddProperty(L"playerName", &m_Name);
