@@ -3,7 +3,7 @@
 
 
 #include "types.h"
-#include <SDL_keysym.h>
+#include "SDL_keysym.h"
 
 /* allow apps to override window name */
 #ifndef APP_NAME

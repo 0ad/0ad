@@ -32,7 +32,7 @@
 #include "lib.h"
 #include "win_internal.h"
 
-#include <SDL_vkeys.h>
+#include "SDL_vkeys.h"
 
 #include <assert.h>
 #include <stdio.h>
