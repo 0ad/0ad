@@ -87,14 +87,15 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
+
 // path types:
-// fn  : filename only, no path at all.
-// f_* : path intended directly for underlying file layer.
-//       component separator is '/'; no absolute paths, or ':', '\\' allowed.
-// *   : as above, but path within the VFS.
-//       "" is root dir; no absolute path allowed.
+// p_*: posix (e.g. mount object name or for open())
+// v_*: vfs (e.g. mount point)
+// fn : filename only (e.g. from readdir)
+// dir_name: directory only, no path (subdir name)
 //
-// . and .. directory entries aren't supported!
+// all paths must be relative (no leading '/'); components are separated
+// by '/'; no ':', '\\', "." or ".." allowed; root dir is "".
 
 
 // path1 and path2 may be empty, filenames, or full paths.
@@ -221,14 +222,43 @@ struct Loc
 {
 	Handle archive;
 
-	const std::string mount_point;
-	const std::string dir;
+	const std::string v_mount_point;
+	const std::string p_dir;
 
 	uint pri;
 
-	Loc(Handle _archive, const char* _mount_point, const char* _dir, uint _pri)
-		: archive(_archive), mount_point(_mount_point), dir(_dir), pri(_pri) {}
+	Loc(Handle _archive, const char* _v_mount_point, const char* _p_dir, uint _pri)
+		: archive(_archive), v_mount_point(_v_mount_point), p_dir(_p_dir), pri(_pri) {}
 };
+
+
+// case-independent string for comparing file/directory names.
+// modified from GotW #29.
+struct ci_char_traits : public std::char_traits<char>
+	// inherit all the other functions that we don't need to override.
+{
+	static bool eq(char c1, char c2)
+	{ return tolower(c1) == tolower(c2); }
+
+	static bool ne(char c1, char c2)
+	{ return tolower(c1) != tolower(c2); }
+
+	static bool lt( char c1, char c2 )
+	{ return tolower(c1) < tolower(c2); }
+
+	static int compare(const char* s1, const char* s2, size_t n)
+	{ return stricmp(s1, s2); }
+
+	static const char* find(const char* s, int n, char a)
+	{
+		while(n-- > 0 && tolower(*s) != tolower(a))
+			++s;
+		return s;
+	}
+};
+
+typedef std::basic_string<char, ci_char_traits> ci_string;
+
 
 
 // rationale for separate file / subdir containers:
@@ -244,8 +274,8 @@ struct Loc
 //
 // add_* aborts if a subdir or file of the same name already exists.
 
-typedef std::pair<const std::string, const Loc*> FileVal;
-typedef std::map<const std::string, const Loc*> Files;
+typedef std::pair<const ci_string, const Loc*> FileVal;
+typedef std::map<const ci_string, const Loc*> Files;
 typedef Files::iterator FileIt;
 	// notes:
 	// - Loc is allocated and owned by caller (the mount code)
@@ -255,8 +285,8 @@ typedef Files::iterator FileIt;
 	//   revisit if file lookup open is too slow (unlikely).
 
 struct Dir;
-typedef std::pair<const std::string, Dir> SubDir;
-typedef std::map<const std::string, Dir> SubDirs;
+typedef std::pair<const ci_string, Dir> SubDir;
+typedef std::map<const ci_string, Dir> SubDirs;
 typedef SubDirs::iterator SubDirIt;
 
 struct Dir
@@ -265,11 +295,11 @@ struct Dir
 	intptr_t watch;
 #endif
 
-	int add_file(const char* name, const Loc* loc);
-	const Loc* find_file(const char* name);
+	int add_file(const char* fn, const Loc* loc);
+	const Loc* find_file(const char* fn);
 
-	int add_subdir(const char* name);
-	Dir* find_subdir(const char* name);
+	int add_subdir(const char* d_name);
+	Dir* find_subdir(const char* d_name);
 
 	void clearR();
 
@@ -289,40 +319,33 @@ struct Dir
 	Dir()
 	{
 		mounts = 0;
-	}
 
-void dump()
-{
-	FileIt it = files.begin();
-	for(; it != files.end(); ++it)
-		debug_out("%s\n", it->first.c_str());
-}
+#ifndef NO_DIR_WATCH
+		watch = -1;
+#endif
+	}
 };
 
 
-int Dir::add_subdir(const char* const fn)
+int Dir::add_subdir(const char* const dir_name)
 {
-	if(find_file(fn))
+	if(find_file(dir_name))
 	{
 		debug_warn("add_subdir: file of same name already exists");
 		return -1;
 	}
 
-	const std::string fn_s(fn);
-	subdirs[fn_s];
-		// side effect: maps <fn> to a newly constructed Dir()
+	subdirs[dir_name];
+		// side effect: maps <d_dir> to a newly constructed Dir()
 		// non-const => cannot be optimized away.
-
-assert(find_subdir(fn));
 
 	return 0;
 }
 
 
-Dir* Dir::find_subdir(const char* const fn)
+Dir* Dir::find_subdir(const char* const dir_name)
 {
-	const std::string fn_s(fn);
-	SubDirIt it = subdirs.find(fn_s);
+	SubDirIt it = subdirs.find(dir_name);
 	if(it == subdirs.end())
 		return 0;
 	return &it->second;
@@ -337,38 +360,14 @@ int Dir::add_file(const char* const fn, const Loc* const loc)
 		return -1;
 	}
 
-	const std::string fn_s(fn);
-
-	typedef const Loc* Data;
-		// for absolute clarity; the container holds const Loc* objects.
-		// operator[] returns a reference to that.
-		// need this typedef to work around a GCC bug?
-//	Data& old_loc = files[fn_s];
-		// default pointer ctor sets it to 0 =>
-		// if fn wasn't already in the container, old_loc is 0.
-
-	FileVal val = std::make_pair(fn_s, loc);
+	FileVal val = std::make_pair(fn, loc);
 	std::pair<FileIt, bool> ret = files.insert(val);
+	// if fn wasn't already in the list, old_loc = loc
 	FileIt it = ret.first;
-
-assert(!strcmp(it->first.c_str(), fn));
-assert(find_file(fn));
-
 	const Loc*& old_loc = it->second;
+
+	// older Loc is higher priority - keep it
 	if(old_loc->pri > loc->pri)
-		return 1;
-	old_loc = loc;
-	return 0;
-/*
-	if(ret.first)	// insertion made
-	{
-
-	}
-
-
-
-	// old loc exists and is higher priority - keep it.
-	if(old_loc && old_loc->pri > loc->pri)
 		return 1;
 
 	// new loc is greater or equal priority - replace old loc.
@@ -376,14 +375,12 @@ assert(find_file(fn));
 	// patch archives; the one with the "largest" filename trumps the others.
 	old_loc = loc;
 	return 0;
-*/
 }
 
 
 const Loc* Dir::find_file(const char* const fn)
 {
-	const std::string fn_s(fn);
-	FileIt it = files.find(fn_s);
+	FileIt it = files.find(fn);
 	if(it == files.end())
 		return 0;
 	return it->second;
@@ -409,13 +406,14 @@ void Dir::clearR()
 }
 
 
+///////////////////////////////////////////////////////////////////////////////
 
 
 static Dir vfs_root;
 
 
 // tree_lookup flags
-enum
+enum LookupFlags
 {
 	LF_DEFAULT                   = 0,
 
@@ -427,29 +425,34 @@ enum
 	// *loc specifies the new file's loc
 	LF_HAVE_LOC                  = 4,
 
-	LF_LAST                      = 8
+	LF_START_DIR                 = 8,
+
+	LF_LAST                      = 16
 };
 
 
 // starts in VFS root directory (path = "").
 // path may specify a file or directory; it need not end in '/'.
-static int tree_lookup(const char* path, const Loc** const loc = 0, Dir** const dir = 0, uint flags = LF_DEFAULT)
+static int tree_lookup(const char* _c_path, const Loc** const loc = 0, Dir** const dir = 0, uint flags = LF_DEFAULT)
 {
-	CHECK_PATH(path);
+	CHECK_PATH(_c_path);
 	assert(loc != 0 || dir != 0);
 	assert(flags < LF_LAST);
 
-	const bool create_missing_components = !!(flags & LF_CREATE_MISSING_DIRS);
-	const bool create_missing_files      = !!(flags & LF_CREATE_MISSING_FILE);
-	const bool have_loc                  = !!(flags & LF_HAVE_LOC);
+	const bool create_missing_dirs  = !!(flags & LF_CREATE_MISSING_DIRS);
+	const bool create_missing_files = !!(flags & LF_CREATE_MISSING_FILE);
+	const bool start_dir            = !!(flags & LF_START_DIR);
+	const bool have_loc             = !!(flags & LF_HAVE_LOC);
 
 	// copy into (writeable) buffer so we can 'tokenize' path components
 	// by replacing '/' with '\0'. length check done by CHECK_PATH.
-	char buf[VFS_MAX_PATH];
-	strcpy(buf, path);
+	char v_path[VFS_MAX_PATH];
+	strcpy(v_path, _c_path);
 
 	Dir* cur_dir = &vfs_root;
-	const char* cur_component = buf;
+	if(start_dir)
+		cur_dir = *dir;
+	const char* cur_component = v_path;
 
 	// subdirectory traverse logic
 	// valid:
@@ -482,7 +485,7 @@ static int tree_lookup(const char* path, const Loc** const loc = 0, Dir** const 
 			break;
 
 		// create <cur_component> subdir (no-op if it already exists)
-		if(create_missing_components)
+		if(create_missing_dirs)
 			cur_dir->add_subdir(cur_component);
 
 		// switch to <cur_component>
@@ -567,44 +570,71 @@ private:
 // to try to open it as an archive - not good.
 // this restriction also simplifies the code a bit, but if it's a problem,
 // just generate a list of archives here and mount them from the caller.
-static int add_dirent_cb(const char* const path, const uint flags, const ssize_t size, const uintptr_t user)
+static int add_dirent_cb(const char* const n_name, const ssize_t size, const uintptr_t user)
 {
 	UNUSED(size);
 
 	const FileCBParams* const params = (FileCBParams*)user;
-	Dir* const cur_dir       = params->dir;
-	const Loc* const cur_loc = params->loc;
+	Dir* cur_dir = params->dir;
+	const Loc* cur_loc = params->loc;
 
-	int err = 1;
+	// only create missing dirs when n_name is a dir -
+	// it's the only way we can exclude CVS and its children,
+	// lacking n_name full path.
 
+	const Loc** ploc = &cur_loc;
+	Dir** pdir = &cur_dir;
+	uint lf_flags = 0;
+
+	// it's a dir
+	if(size <= 0)
+	{
+        ploc = 0;	// need to treat last component as a dir
+		lf_flags |= LF_CREATE_MISSING_DIRS;
+	}
+	else
+		lf_flags |= LF_CREATE_MISSING_FILE;
+
+	// it's in an archive
+	if(cur_loc->archive > 0)
+	{
+		lf_flags |= LF_HAVE_LOC;
+		lf_flags |= LF_CREATE_MISSING_DIRS;
+			// grrrr, winzip outputs some dir names after entries in that dir
+			// that means the dir hasn't yet been created
+	}
+	// it's normal OS file or dir
+	else
+	{
+		lf_flags |= LF_START_DIR;
+			// n_name is the dirent name only (no complete path),
+			// so we need to start at &cur_dir (set above).
+
+		// don't clutter the tree with CVS dirs.
+		// only applicable if not in archive, since those don't include CVS
+		// and n_name is full (e.g. art/CVS).
+		if(!strcmp(n_name, "CVS"))
+			return 0;
+	}
+
+
+	int err = tree_lookup(n_name, ploc, pdir, lf_flags);
+	if(err < 0)
+		debug_warn("add_dirent_cb: tree_lookup failed");
+
+/*
 	// file or directory in archive
 	if(cur_loc->archive > 0)
 	{
-		if(!size)
-		{
-			if(!strchr(path, '.'))
-				debug_out("empty %s\n", path);
-		}
-		else
-		{
-			const Loc* loc = cur_loc;
-			Dir* dir;
-			if(tree_lookup(path, &loc, &dir, LF_CREATE_MISSING_DIRS|LF_CREATE_MISSING_FILE|LF_HAVE_LOC) < 0)
-				debug_out("failed to add %s\n", path);
-			else
-			{
-				const Loc* loc;
-				assert(tree_lookup(path, &loc) >= 0);
-			}
-		}
+		
 	}
 	// directory (not in archive)
-	else if(flags & LOC_DIR)
+	else if(size < 0)
 	{
 		// leave out CVS dirs in debug builds. this makes possible
 		// user code that relies on a fixed data directory structure.
 #ifndef NDEBUG
-		if(!strcmp(path, "CVS"))
+		if(!strcmp_lower(path, "cvs"))
 			return 0;
 #endif
 		err = cur_dir->add_subdir(path);
@@ -615,34 +645,35 @@ static int add_dirent_cb(const char* const path, const uint flags, const ssize_t
 
 	if(err < 0)
 		return -EEXIST;
+*/
+
+
 	return 0;
 }
 
 
-static int tree_add_dirR(Dir* const dir, const char* const f_path, const Loc* const loc)
+static int tree_add_dirR(Dir* const dir, const char* const p_path, const Loc* const loc)
 {
-	CHECK_PATH(f_path);
-
 	dir->mounts++;
 	dir->loc = loc;
 
 	// add files and subdirs to vdir
 	const FileCBParams params(dir, loc);
-	file_enum(f_path, add_dirent_cb, (uintptr_t)&params);
+	file_enum(p_path, add_dirent_cb, (uintptr_t)&params);
 
 #ifndef NO_DIR_WATCH
-	res_watch_dir(f_path, &dir->watch);
+	res_watch_dir(p_path, &dir->watch);
 #endif
 
 	for(SubDirIt it = dir->subdirs.begin(); it != dir->subdirs.end(); ++it)
 	{
 		Dir* const subdir = &it->second;
-		const char* const subdir_name_c = (it->first).c_str();
+		const char* const d_subdir_name = (it->first).c_str();
 
-		char f_subdir_path[VFS_MAX_PATH];
-		CHECK_ERR(path_append(f_subdir_path, f_path, subdir_name_c));
+		char p_subdir_path[PATH_MAX];
+		CHECK_ERR(path_append(p_subdir_path, p_path, d_subdir_name));
 
-		tree_add_dirR(subdir, f_subdir_path, loc);
+		tree_add_dirR(subdir, p_subdir_path, loc);
 	}
 
 	return 0;
@@ -658,8 +689,8 @@ static int tree_add_loc(Dir* const dir, const Loc* const loc)
 	}
 	else
 	{
-		const char* f_path_c = loc->dir.c_str();
-		return tree_add_dirR(dir, f_path_c, loc);
+		const char* p_path = loc->p_dir.c_str();
+		return tree_add_dirR(dir, p_path, loc);
 	}
 }
 
@@ -689,10 +720,10 @@ struct Mount
 	// it's no big deal - there won't be many mountings.
 
 	// mounting into this VFS directory ("" for root)
-	const std::string mount_point;
+	const std::string v_mount_point;
 
 	// what is being mounted; either directory, or archive filename 
-	const std::string f_name;
+	const std::string p_name;
 
 	uint pri;
 
@@ -703,13 +734,13 @@ struct Mount
 	// 1 associated real dir, so that newly written files may be added.
 	Loc dir_loc;
 	Locs archive_locs;
-		// if f_name is a single archive, this stores its Loc.
+		// if p_name is a single archive, this stores its Loc.
 		// otherwise, there's one Loc for every archive in the directory
 		// (but not its children - see remount()).
 
-	Mount(const char* _mount_point, const char* _f_name, uint _pri)
-		: mount_point(_mount_point), f_name(_f_name), pri(_pri),
-		  dir_loc(0, _mount_point, _f_name, pri), archive_locs() {}
+	Mount(const char* _v_mount_point, const char* _p_name, uint _pri)
+		: v_mount_point(_v_mount_point), p_name(_p_name), pri(_pri),
+		  dir_loc(0, _v_mount_point, _p_name, pri), archive_locs() {}
 };
 
 typedef std::list<Mount> Mounts;
@@ -726,7 +757,7 @@ struct ArchiveCBParams
 {
 	// we need a full path to open the archive, and only receive
 	// the filename, so prepend this (the directory being searched).
-	const char* f_dir;
+	const char* p_dir;
 
 	// priority at which the archive is to be mounted.
 	// specify here, instead of when actually adding the archive,
@@ -740,27 +771,25 @@ struct ArchiveCBParams
 
 // called for each directory entry.
 // add each successfully opened archive to list.
-static int archive_cb(const char* const fn, const uint flags, const ssize_t size, const uintptr_t user)
+static int archive_cb(const char* const fn, const ssize_t size, const uintptr_t user)
 {
-	UNUSED(size);
-
 	// not interested in subdirectories
-	if(flags & LOC_DIR)
+	if(size < 0)
 		return 0;
 
 	const ArchiveCBParams* const params = (ArchiveCBParams*)user;
-	const char* const f_dir  = params->f_dir;
+	const char* const p_dir  = params->p_dir;
 	const uint pri           = params->pri;
 	Locs* const archive_locs = params->archive_locs;
 
 	// get full path (fn is filename only)
-	char f_path[VFS_MAX_PATH];
-	CHECK_ERR(path_append(f_path, f_dir, fn));
+	char p_path[PATH_MAX];
+	CHECK_ERR(path_append(p_path, p_dir, fn));
 
 	// don't check filename extension - archives won't necessarily
 	// be called .zip (example: Quake III .pk3).
 	// just try to open the file.
-	const Handle archive = zip_archive_open(f_path);
+	const Handle archive = zip_archive_open(p_path);
 	if(archive > 0)
 		archive_locs->push_back(Loc(archive, "", "", pri));
 
@@ -776,18 +805,18 @@ static int archive_cb(const char* const fn, const uint flags, const ssize_t size
 // mount list, when invalidating (reloading) the VFS.
 static int remount(Mount& m)
 {
-	const char* mount_point = m.mount_point.c_str();
-	const char* f_name      = m.f_name.c_str();
-	const uint pri          = m.pri;
-	const Loc* dir_loc      = &m.dir_loc;
-	Locs& archive_locs      = m.archive_locs;
+	const char* v_mount_point = m.v_mount_point.c_str();
+	const char* p_name        = m.p_name.c_str();
+	const uint pri            = m.pri;
+	const Loc* dir_loc        = &m.dir_loc;
+	Locs& archive_locs        = m.archive_locs;
 
 	Dir* dir;
-	CHECK_ERR(tree_lookup(mount_point, 0, &dir, LF_CREATE_MISSING_DIRS));
+	CHECK_ERR(tree_lookup(v_mount_point, 0, &dir, LF_CREATE_MISSING_DIRS));
 
 	// check if target is a single Zip archive
 	// (it can't also be a directory - prevented by OS FS)
-	const Handle archive = zip_archive_open(f_name);
+	const Handle archive = zip_archive_open(p_name);
 	if(archive > 0)
 	{
 		archive_locs.push_back(Loc(archive, "", "", pri));
@@ -795,7 +824,7 @@ static int remount(Mount& m)
 		return tree_add_loc(dir, loc);
 	}
 
-	// f_name is a directory (not Zip file - would have been opened above)
+	// p_name is a directory (not Zip file - would have been opened above)
 
 	// add all loose files and subdirectories in subtree
 	// (before adding archives, so that it doesn't try to add subdirs
@@ -803,8 +832,8 @@ static int remount(Mount& m)
 	CHECK_ERR(tree_add_loc(dir, dir_loc));
 
 	// enumerate all archives in dir (but not its subdirs! see above.)
-	ArchiveCBParams params = { f_name, pri, &archive_locs };
-	file_enum(f_name, archive_cb, (uintptr_t)&params);
+	ArchiveCBParams params = { p_name, pri, &archive_locs };
+	file_enum(p_name, archive_cb, (uintptr_t)&params);
 
 	// .. and add them
 	for(LocIt it = archive_locs.begin(); it != archive_locs.end(); ++it)
@@ -879,11 +908,9 @@ static bool is_subpath(const char* s1, const char* s2)
 // if <name> is a directory, all archives in that directory (but not
 // its subdirs - see add_dirent_cb) are also mounted in alphabetical order.
 // name = "." or "./" isn't allowed - see implementation for rationale.
-int vfs_mount(const char* const mount_point, const char* const name, const uint pri)
+int vfs_mount(const char* const v_mount_point, const char* const p_name, const uint pri)
 {
 	ONCE(atexit2(vfs_shutdown));
-
-	CHECK_PATH(name);
 
 	// make sure it's not already mounted, i.e. in mounts.
 	// also prevents mounting a parent directory of a previously mounted
@@ -892,7 +919,7 @@ int vfs_mount(const char* const mount_point, const char* const name, const uint 
 	// from the first mount point - bad.
 	// no matter if it's an archive - still shouldn't be a "subpath".
 	for(MountIt it = mounts.begin(); it != mounts.end(); ++it)
-		if(is_subpath(name, it->f_name.c_str()))
+		if(is_subpath(p_name, it->p_name.c_str()))
 		{
 			debug_warn("vfs_mount: already mounted");
 			return -1;
@@ -901,13 +928,13 @@ int vfs_mount(const char* const mount_point, const char* const name, const uint 
 	// disallow "." because "./" isn't supported on Windows.
 	// it would also create a loophole for the parent dir check above.
 	// "./" and "/." are caught by CHECK_PATH.
-	if(!strcmp(name, "."))
+	if(!strcmp(p_name, "."))
 	{
 		debug_warn("vfs_mount: mounting . not allowed");
 		return -1;
 	}
 
-	mounts.push_back(Mount(mount_point, name, pri));
+	mounts.push_back(Mount(v_mount_point, p_name, pri));
 
 	// actually mount the entry
 	Mount& m = mounts.back();
@@ -932,11 +959,11 @@ int vfs_rebuild()
 
 
 // unmount a previously mounted item, and rebuild the VFS afterwards.
-int vfs_unmount(const char* name)
+int vfs_unmount(const char* p_name)
 {
 	for(MountIt it = mounts.begin(); it != mounts.end(); ++it)
 		// found the corresponding entry
-		if(it->f_name == name)
+		if(it->p_name == p_name)
 		{
 			Mount& m = *it;
 			unmount(m);
@@ -973,8 +1000,8 @@ int vfs_make_vfs_path(const char* const path, char* const vfs_path)
 {
 	for(MountIt it = mounts.begin(); it != mounts.end(); ++it)
 	{
-		const char* remove = it->f_name.c_str();
-		const char* replace = it->mount_point.c_str();
+		const char* remove = it->p_name.c_str();
+		const char* replace = it->v_mount_point.c_str();
 
 		if(path_replace(vfs_path, path, remove, replace) == 0)
 			return 0;
@@ -988,8 +1015,8 @@ static int make_file_path(const char* vfs_path, const Loc* loc, char* const path
 {
 	assert(loc->archive == 0);
 
-	const char* remove = loc->mount_point.c_str();
-	const char* replace = loc->dir.c_str();
+	const char* remove = loc->v_mount_point.c_str();
+	const char* replace = loc->p_dir.c_str();
 	return path_replace(path, vfs_path, remove, replace);
 }
 
@@ -1052,9 +1079,9 @@ static int VDir_reload(VDir* vd, const char* path, Handle)
 // open a directory for reading its entries via vfs_next_dirent.
 // directory contents are cached here; subsequent changes to the dir
 // are not returned by this handle. rationale: see VDir definition.
-Handle vfs_open_dir(const char* const dir)
+Handle vfs_open_dir(const char* const v_dir)
 {
-	return h_alloc(H_VDir, dir, 0);
+	return h_alloc(H_VDir, v_dir, 0);
 }
 
 
@@ -1134,7 +1161,7 @@ int vfs_next_dirent(const Handle hd, vfsDirEnt* ent, const char* const filter)
 		if(ext)
 		{
 			// not filtering, or filter matches extension: match
-			if(!filter || strcmp(ext, filter) == 0)
+			if(!filter || stricmp(ext, filter) == 0)
 				goto have_match;
 		}
 		// file has no extension
@@ -1154,21 +1181,21 @@ have_match:
 
 // return actual path to the specified file:
 // "<real_directory>/fn" or "<archive_name>/fn".
-int vfs_realpath(const char* fn, char* realpath)
+int vfs_realpath(const char* v_path, char* realpath)
 {
 	const Loc* loc;
-	CHECK_ERR(tree_lookup(fn, &loc));
+	CHECK_ERR(tree_lookup(v_path, &loc));
 
 	// file is in normal directory
 	if(loc->archive <= 0)
-		CHECK_ERR(make_file_path(fn, loc, realpath));
+		CHECK_ERR(make_file_path(v_path, loc, realpath));
 	// file is in archive
 	else
 	{
 		const char* archive_fn = h_filename(loc->archive);
 		if(!archive_fn)
 			return -1;
-		CHECK_ERR(path_append(realpath, archive_fn, fn));
+		CHECK_ERR(path_append(realpath, archive_fn, v_path));
 	}
 
 	return 0;
@@ -1177,27 +1204,28 @@ int vfs_realpath(const char* fn, char* realpath)
 
 // does the specified file exist? return false on error.
 // useful because a "file not found" warning is not raised, unlike vfs_stat.
-bool vfs_exists(const char* fn)
+bool vfs_exists(const char* v_fn)
 {
 	const Loc* loc;
-	return (tree_lookup(fn, &loc) == 0);
+	return (tree_lookup(v_fn, &loc) == 0);
 }
 
 
 // return information about the specified file as in stat(2),
 // most notably size. stat buffer is undefined on error.
-int vfs_stat(const char* fn, struct stat* s)
+int vfs_stat(const char* v_fn, struct stat* s)
 {
 	const Loc* loc;
-	CHECK_ERR(tree_lookup(fn, &loc));
+	CHECK_ERR(tree_lookup(v_fn, &loc));
 
+	const char* z_fn = v_fn;	// Zip is case-insensitive as well
 	if(loc->archive > 0)
-		CHECK_ERR(zip_stat(loc->archive, fn, s));
+		CHECK_ERR(zip_stat(loc->archive, z_fn, s));
 	else
 	{
-		char path[PATH_MAX];
-		CHECK_ERR(make_file_path(fn, loc, path));
-		CHECK_ERR(file_stat(path, s));
+		char p_fn[PATH_MAX];
+		CHECK_ERR(make_file_path(v_fn, loc, p_fn));
+		CHECK_ERR(file_stat(p_fn, s));
 	}
 
 	return 0;
@@ -1287,7 +1315,7 @@ static void VFile_dtor(VFile* vf)
 
 
 
-static int VFile_reload(VFile* vf, const char* path, Handle)
+static int VFile_reload(VFile* vf, const char* v_fn, Handle)
 {
 	uint& flags = vf_flags(vf);
 
@@ -1298,14 +1326,21 @@ static int VFile_reload(VFile* vf, const char* path, Handle)
 
 	const Loc* loc;
 	uint lf = (flags & FILE_WRITE)? LF_CREATE_MISSING_FILE : LF_DEFAULT;
-	CHECK_ERR(tree_lookup(path, &loc, 0, lf));
+	int err = tree_lookup(v_fn, &loc, 0, lf);
+	if(err < 0)
+	{
+		// don't CHECK_ERR - this happens often and the dialog is annoying
+		debug_out("tree_lookup failed for %s\n", v_fn);
+		return err;
+	}
+
 
 	// normal file
 	if(loc->archive <= 0)
 	{
-		char f_path[PATH_MAX];
-		CHECK_ERR(make_file_path(path, loc, f_path));
-		CHECK_ERR(file_open(f_path, flags, &vf->f));
+		char p_fn[PATH_MAX];
+		CHECK_ERR(make_file_path(v_fn, loc, p_fn));
+		CHECK_ERR(file_open(p_fn, flags, &vf->f));
 	}
 	// archive
 	else
@@ -1316,7 +1351,7 @@ static int VFile_reload(VFile* vf, const char* path, Handle)
 			return -1;
 		}
 
-		CHECK_ERR(zip_open(loc->archive, path, &vf->zf));
+		CHECK_ERR(zip_open(loc->archive, v_fn, &vf->zf));
 
 		flags |= VF_ZIP;
 	}
@@ -1329,7 +1364,7 @@ static int VFile_reload(VFile* vf, const char* path, Handle)
 
 // open the file for synchronous or asynchronous IO. write access is
 // requested via FILE_WRITE flag, and is not possible for files in archives.
-Handle vfs_open(const char* fn, uint file_flags /* = 0 */)
+Handle vfs_open(const char* v_fn, uint file_flags /* = 0 */)
 {
 	// keeping files open doesn't make sense in most cases (because the
 	// file is used to load resources, which are cached at a higher level).
@@ -1337,11 +1372,11 @@ Handle vfs_open(const char* fn, uint file_flags /* = 0 */)
 	if(file_flags & FILE_CACHE)
 		res_flags = 0;
 
-	Handle h = h_alloc(H_VFile, fn, res_flags, file_flags);
+	Handle h = h_alloc(H_VFile, v_fn, res_flags, file_flags);
 		// pass file flags to init
 
 #ifdef PARANOIA
-debug_out("vfs_open fn=%s %I64x\n", fn, h);
+debug_out("vfs_open fn=%s %I64x\n", v_fn, h);
 #endif
 
 	return h;
@@ -1387,7 +1422,7 @@ debug_out("vfs_io size=%d\n", size);
 
 // load the entire file <fn> into memory; return a handle to the memory
 // and the buffer address/size. output parameters are zeroed on failure.
-Handle vfs_load(const char* const fn, void*& p, size_t& size, uint flags /* default 0 */)
+Handle vfs_load(const char* const v_fn, void*& p, size_t& size, uint flags /* default 0 */)
 {
 #ifdef PARANOIA
 debug_out("vfs_load fn=%s\n", fn);
@@ -1396,7 +1431,7 @@ debug_out("vfs_load fn=%s\n", fn);
 	p = 0;		// vfs_io needs initial 0 value
 	size = 0;	// in case open or deref fails
 
-	Handle hf = vfs_open(fn, flags);
+	Handle hf = vfs_open(v_fn, flags);
 	if(hf <= 0)
 		return hf;	// error code
 	H_DEREF(hf, VFile, vf);
@@ -1467,9 +1502,9 @@ skip_read:
 // caveat: pads file to next max(4kb, sector_size) boundary
 // (due to limitation of Win32 FILE_FLAG_NO_BUFFERING I/O).
 // if that's a problem, specify FILE_NO_AIO when opening.
-int vfs_store(const char* const fn, void* p, const size_t size, uint flags /* default 0 */)
+int vfs_store(const char* const v_fn, void* p, const size_t size, uint flags /* default 0 */)
 {
-	Handle hf = vfs_open(fn, flags|FILE_WRITE);
+	Handle hf = vfs_open(v_fn, flags|FILE_WRITE);
 	if(hf <= 0)
 		return (int)hf;	// error code
 	H_DEREF(hf, VFile, vf);
