@@ -59,7 +59,7 @@ struct TGAHeader {
 	//					  Bit 4: must be 0 (reserved)
 	//					  Bit 5: should be 0 (origin)
 	//					  Bits 6-7: should be 0 (interleaving)
-   unsigned char image_descriptor;
+	unsigned char image_descriptor;
 };
 
 static bool saveTGA(const char* filename,int width,int height,int bpp,unsigned char* data)
@@ -92,7 +92,7 @@ static bool saveTGA(const char* filename,int width,int height,int bpp,unsigned c
 	}
 
 	// return success ..
-    fclose(fp);
+	fclose(fp);
 	return true;
 }
 
@@ -236,12 +236,12 @@ void CRenderer::SetOptionColor(enum Option opt,const RGBAColor& value)
 
 void CRenderer::SetOptionFloat(enum Option opt, float val)
 {
-    switch(opt)
-    {
-    case OPT_LODBIAS:
-        m_Options.m_LodBias = val;
-        break;
-    }
+	switch(opt)
+	{
+	case OPT_LODBIAS:
+		m_Options.m_LodBias = val;
+		break;
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -662,9 +662,9 @@ void CRenderer::RenderShadowMap()
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PRIMARY_COLOR_ARB);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-    
-    // Set the proper LOD bias
-    glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, m_Options.m_LodBias);
+	
+	// Set the proper LOD bias
+	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, m_Options.m_LodBias);
 
 	glColor4fv(m_Options.m_ShadowColor);
 
@@ -806,8 +806,8 @@ void CRenderer::RenderModelSubmissions()
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_CONSTANT);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 
-    // Set the proper LOD bias
-    glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, m_Options.m_LodBias);
+	// Set the proper LOD bias
+	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, m_Options.m_LodBias);
 
 	// setup client states
 	glEnableClientState(GL_VERTEX_ARRAY);
@@ -883,8 +883,8 @@ struct SortModelsByTexture {
 void CRenderer::FlushFrame()
 {
 
-    if(!g_Game || !g_Game->IsGameStarted())
-        return;
+	if(!g_Game || !g_Game->IsGameStarted())
+		return;
 
 	oglCheck();
 
@@ -936,8 +936,8 @@ void CRenderer::FlushFrame()
 // EndFrame: signal frame end; implicitly flushes batched objects
 void CRenderer::EndFrame()
 {
-    if(!g_Game || !g_Game->IsGameStarted())
-        return;
+	if(!g_Game || !g_Game->IsGameStarted())
+		return;
 
 	FlushFrame();
 	g_Renderer.SetTexture(0,0);

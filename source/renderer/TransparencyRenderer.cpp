@@ -82,8 +82,8 @@ void CTransparencyRenderer::Render()
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
 
-    // Set the proper LOD bias
-    glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
+	// Set the proper LOD bias
+	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
 
 	RenderObjectsStreams(STREAM_POS|STREAM_COLOR|STREAM_UV0);
 
@@ -155,7 +155,7 @@ void CTransparencyRenderer::Add(CModel* model)
 	CModelRData* modeldata=(CModelRData*) model->GetRenderData();
 	obj.m_Dist=modeldata->BackToFrontIndexSort(objToCam);
 }
- 
+
 void CTransparencyRenderer::RenderShadows()
 {
 	if (m_Objects.size()==0) return;
@@ -176,8 +176,8 @@ void CTransparencyRenderer::RenderShadows()
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 
-    // Set the proper LOD bias
-    glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
+	// Set the proper LOD bias
+	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
 
 	RenderObjectsStreams(STREAM_POS|STREAM_UV0,MODELFLAG_CASTSHADOWS);
 

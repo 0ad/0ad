@@ -621,8 +621,8 @@ static void ParseArgs(int argc, char* argv[])
 	if ((val=g_ConfigDB.GetValue(CFG_SYSTEM, "shadows")))
 		val->GetBool(g_Shadows);
 
-    if((val = g_ConfigDB.GetValue(CFG_SYSTEM, "lodbias")))
-        val->GetFloat(g_LodBias);
+	if((val = g_ConfigDB.GetValue(CFG_SYSTEM, "lodbias")))
+		val->GetFloat(g_LodBias);
 		
 	LOG(NORMAL, LOG_CATEGORY, "g_x/yres is %dx%d", g_xres, g_yres);
 }
@@ -926,7 +926,7 @@ PREVTSC=CURTSC;
 	g_Renderer.SetOptionBool(CRenderer::OPT_NOVBO,g_NoGLVBO);
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS,g_Shadows);
 	g_Renderer.SetOptionBool(CRenderer::OPT_NOPBUFFER,g_NoPBuffer);
-    g_Renderer.SetOptionFloat(CRenderer::OPT_LODBIAS, g_LodBias);
+	g_Renderer.SetOptionFloat(CRenderer::OPT_LODBIAS, g_LodBias);
 
 	// create terrain related stuff
 	new CTextureManager;
