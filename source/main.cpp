@@ -15,6 +15,8 @@
 #include "vfs.h"
 #include "ia32.h"
 
+#include "ps/cstr.h"
+
 #ifndef NO_GUI
 #include "gui/GUI.h"
 #endif
@@ -81,7 +83,7 @@ static void write_sys_info()
 
 #ifdef _WIN32
 #define MB_ICONEXCLAMATION 0x30
-IMP(u32, MessageBoxA, (void*, const char*, const char*, unsigned int))
+IMP(int, MessageBoxA, (void*, const char*, const char*, unsigned int))
 #endif
 
 // error before GUI is initialized: display message, and quit
@@ -226,6 +228,11 @@ static void do_tick()
 
 int main(int argc, char* argv[])
 {
+CStr mycstr = _T("string");
+if(mycstr == _T("string"))
+exit(1);
+
+
 	// set 24 bit (float) FPU precision for faster divides / sqrts
 #ifdef _M_IX86
 	_control87(_PC_24, _MCW_PC);

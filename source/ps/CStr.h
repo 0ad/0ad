@@ -35,8 +35,6 @@ More Info:
 #include "Prometheus.h"
 #include <string>				// Used for basic string functionality
 #include <iostream>
-#include "win.h"	// REMOVEME
-#include <TCHAR.h>				// TCHAR of course
 #include <cstdlib>
 using namespace std;
 
@@ -48,11 +46,16 @@ using namespace std;
 typedef wstring tstring;
 #define _tcout	wcout
 #define	_tstod	wcstod
+typedef wchar_t TCHAR;
+#define _T(t) L ## t
 #else
 typedef string	tstring;
 #define _tcout	cout
 #define	_tstod	strtod
+typedef char TCHAR;
+#define _T(t) t
 #endif
+
 
 enum PS_TRIM_MODE {PS_TRIM_LEFT, PS_TRIM_RIGHT, PS_TRIM_BOTH};
 
@@ -67,7 +70,7 @@ public:
 	CStr(const CStr &Str);		// Copy Constructor
 	
 	CStr(tstring String);	// Creates CStr from C++ string
-	CStr(LPCTSTR String);	// Creates CStr from C-Style TCHAR string
+	CStr(const TCHAR* String);	// Creates CStr from C-Style TCHAR string
 	CStr(TCHAR Char);		// Creates CStr from a TCHAR
 	CStr(_int Number);		// Creates CStr from a int
 	CStr(_uint Number);		// Creates CStr from a uint
@@ -120,7 +123,7 @@ public:
 
 	// Overload operations
 	CStr &operator=(const CStr &Str);
-	CStr &operator=(LPCTSTR String);
+	CStr &operator=(const TCHAR* String);
 	CStr &operator=(TCHAR Char);
 	CStr &operator=(_int Number);
 	CStr &operator=(_long Number);
@@ -137,7 +140,7 @@ public:
 	_bool operator>=(const CStr &Str) const;
 	CStr &operator+=(CStr &Str);
 	CStr  operator+(CStr &Str);
-	operator LPCTSTR();
+	operator const TCHAR*();
 	TCHAR &operator[](_int n);
 	TCHAR &operator[](_uint n);
 	TCHAR &operator[](_long n);
