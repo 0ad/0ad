@@ -472,83 +472,80 @@ static void Render()
 	g_Renderer.EndFrame();
 }
 
-void ParseArgs(int argc, char* argv[])
+
+static void ParseArgs(int argc, char* argv[])
 {
-	for (int i=1;i<argc;i++) {
-		if (argv[i][0]=='-') {
-			switch (argv[i][1]) {
-				case 'm':
-					if (argv[i][2]=='=') {
-						g_GameAttributes.m_MapFile=argv[i]+3;
-					}
-					break;
-				case 'g':
-					if( argv[i][2] == '=' )
+	for(int i = 1; i < argc; i++)
+	{
+		// this arg isn't an option; skip
+		if(argv[i][0] != '-')
+			continue;
+
+		char* name = argv[i]+1;	// no leading '-'
+
+		// switch first letter of option name
+		switch(argv[i][1])
+		{
+		case 'c':
+			if(strcmp(name, "conf") == 0)
+			{
+				if(argc-i >= 1) // at least one arg left
+				{
+					i++;
+					char* arg = argv[i];
+					char* equ = strchr(arg, '=');
+					if(equ)
 					{
-						g_Gamma = (float)atof( argv[i] + 3 );
-						if( g_Gamma == 0.0f ) g_Gamma = 1.0f;
+						*equ = 0;
+						g_ConfigDB.CreateValue(CFG_SYSTEM, arg)
+							->m_String = (equ+1);
 					}
-					break;
-				case 'e':
-					g_EntGraph = true; break;
-				case 'v':
-					g_ConfigDB.CreateValue(CFG_SYSTEM, "vsync")
-									->m_String="true";
-					break;
-				case 'n':
-					if (strncmp(argv[i]+1,"novbo",5)==0) {
-						g_ConfigDB.CreateValue(CFG_SYSTEM, "novbo")
-									->m_String="true";
-					}
-					else if (strncmp(argv[i]+1,"nopbuffer",9)==0) {
-						g_NoPBuffer=true;
-					}
-					break;
-
-				case 'f':
-					if (strncmp(argv[i]+1,"fixedframe",10)==0) {
-						g_FixedFrameTiming=true;
-					}
-					break;
-
-				case 's':
-					if (strncmp(argv[i]+1,"shadows",7)==0) {
-						g_ConfigDB.CreateValue(CFG_SYSTEM, "shadows")
-									->m_String="true";
-					}
-					break;
-				case 'x':
-					if (strncmp(argv[i], "-xres=", 6)==0) {
-						g_ConfigDB.CreateValue(CFG_SYSTEM, "xres")
-									->m_String=argv[i]+6;
-					}
-					break;
-				case 'y':
-					if (strncmp(argv[i], "-yres=", 6)==0) {
-						g_ConfigDB.CreateValue(CFG_SYSTEM, "yres")
-									->m_String=argv[i]+6;
-					}
-					break;
-				case 'c':
-					if (strcmp(argv[i], "-conf") == 0) {
-						if (argc-i >= 1) // At least one arg left
-						{
-							i++;
-							char *arg=argv[i];
-							char *equ=strchr(arg, '=');
-							if (equ)
-							{
-								*equ=0;
-								g_ConfigDB.CreateValue(CFG_SYSTEM, arg)
-									->m_String=(equ+1);
-							}
-						}
-					}
-					break;
+				}
 			}
-		}
+			break;
+		case 'e':
+			g_EntGraph = true;
+			break;
+		case 'f':
+			if(strncmp(name, "fixedframe", 10) == 0)
+				g_FixedFrameTiming=true;
+			break;
+		case 'g':
+			if(strncmp(name, "g=", 2) == 0)
+			{
+				g_Gamma = (float)atof(argv[i] + 3);
+				if(g_Gamma == 0.0f)
+					g_Gamma = 1.0f;
+			}
+			break;
+		case 'm':
+			if(strncmp(name, "m=", 2) == 0)
+				g_GameAttributes.m_MapFile = argv[i]+3;
+			break;
+		case 'n':
+			if(strncmp(name, "novbo", 5) == 0)
+				g_ConfigDB.CreateValue(CFG_SYSTEM, "novbo")->m_String="true";
+			else if(strncmp(name, "nopbuffer", 9) == 0)
+				g_NoPBuffer = true;
+			break;
+		case 's':
+			if(strncmp(name, "shadows", 7) == 0)
+				g_ConfigDB.CreateValue(CFG_SYSTEM, "shadows")->m_String="true";
+			break;
+		case 'v':
+			g_ConfigDB.CreateValue(CFG_SYSTEM, "vsync")->m_String="true";
+			break;
+		case 'x':
+			if(strncmp(name, "xres=", 6) == 0)
+				g_ConfigDB.CreateValue(CFG_SYSTEM, "xres")->m_String=argv[i]+6;
+			break;
+		case 'y':
+			if(strncmp(name, "yres=", 6) == 0)
+				g_ConfigDB.CreateValue(CFG_SYSTEM, "yres")->m_String=argv[i]+6;
+			break;
+		}	// switch
 	}
-	
+
 	CConfigValue *val;
 	if ((val=g_ConfigDB.GetValue(CFG_SYSTEM, "xres")))
 		val->GetInt(g_xres);
@@ -582,6 +579,7 @@ static void InitScripting()
 	JSI_GUITypes::init();
 	JSI_Vector3D::init();
 }
+
 
 static void InitVfs(char* argv0)
 {
