@@ -1,4 +1,4 @@
-// $Id: XeroXMB.cpp,v 1.8 2004/11/11 07:09:32 markt Exp $
+// $Id$
 
 #include "precompiled.h"
 
@@ -18,8 +18,6 @@ void XMBFile::Initialise(char* FileData)
 	m_Pointer = FileData;
 	int Header = *(int*)m_Pointer; m_Pointer += 4;
 	assert(Header == HeaderMagic && "Invalid XMB header!");
-
-	/*int Checksum = *(int*)m_Pointer;*/ m_Pointer += 4;
 
 	int i;
 

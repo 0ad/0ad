@@ -140,7 +140,7 @@ public:
 	// Non-SAX2 stuff, used for storing the
 	// parsed data and constructing the XMB:
 	
-	void CreateXMB(unsigned long crc);
+	void CreateXMB();
 	membuffer buffer;
 
 private:
@@ -192,39 +192,66 @@ void CXeromyces::Terminate()
 
 PSRETURN CXeromyces::Load(const char* filename)
 {
-	// Open the file, so that its checksum can be calculated
-
-	CVFSFile file;
-	if (file.Load(filename) != PSRETURN_OK)
+	// Make sure the .xml actually exists
+	if (! vfs_exists(filename))
 	{
-		LOG(ERROR, LOG_CATEGORY, "CXeromyces: XML open of %s failed", filename);
+		LOG(ERROR, LOG_CATEGORY, "CXeromyces: Failed to find XML file %s", filename);
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
-	// Start the checksum with a particular seed value, so the XMBs will
-	// be recreated whenever the file format has changed.
-	unsigned long SeedChecksum = crc32(0L, Z_NULL, 0);
-	// Depend on the version of the file format
-	const char* ChecksumID = "version C";
-	SeedChecksum = crc32(SeedChecksum, (Bytef*)ChecksumID, (int)strlen(ChecksumID));
-	// Also depend on the machine's endianness
-	u32 EndiannessIndicator = 0x12345678;
-	SeedChecksum = crc32(SeedChecksum, (Bytef*)&EndiannessIndicator, 4);
-	// And finally depend on the actual contents of the XML file
-	unsigned long XMLChecksum = crc32(SeedChecksum, (Bytef*)file.GetBuffer(), (int)file.GetBufferSize());
+	// Get some data about the .xml file
+	struct stat xmlStat;
+	if (vfs_stat(filename, &xmlStat) < 0)
+	{
+		LOG(ERROR, LOG_CATEGORY, "CXeromyces: Failed to stat XML file %s", filename);
+		return PSRETURN_Xeromyces_XMLOpenFailed;
+	}
 
 
-	// Check whether the XMB file needs to be regenerated:
+	/*
+	XMBs are stored with a unique name, where the name is generated from
+	characteristics of the XML file. If a file already exists with the
+	generated name, it is assumed that that file is a valid conversion of
+	the XML, and so it's loaded. Otherwise, the XMB is created with that
+	filename.
+
+	This means it's never necessary to overwrite existing XMB files; since
+	the XMBs are often in archives, it's not easy to rewrite those files,
+	and it's not possible to switch to using a loose file because the VFS
+	has already decided that file is inside an archive. So each XMB is given
+	a unique name, and old ones are somehow purged.
+	*/
 
 
-	// Generate the XMB's filename
-	CStr filenameXMB = filename;
-	filenameXMB[(int)filenameXMB.Length()-1] = 'b';
+	// Generate the filename for the xmb:
+	//     <xml filename>_<mtime><size><format version>.xmb
+	// with mtime/size as 8-digit hex
 
-	// Load the entire file, with the assumption that usually it's
-	// going to be valid and will then be passed to XMBFile().
-	if (vfs_exists(filenameXMB) && ReadXMBFile(filenameXMB, true, XMLChecksum))
-		return PSRETURN_OK;
+	CStr xmbFilename = filename;
+
+	// Strip the .xml suffix
+	int pos;
+	if ((pos = xmbFilename.FindInsensitive(".xml")) != -1)
+		xmbFilename = xmbFilename.Left(pos);
+
+	const int bufLen = 22;
+	char buf[bufLen+1];
+	if (sprintf(buf, "_%08x%08xA.xmb", xmlStat.st_mtime, xmlStat.st_size) != bufLen)
+	{
+		debug_warn("Failed to create filename (?!)");
+		return PSRETURN_Xeromyces_XMLOpenFailed;
+	}
+	xmbFilename += buf;
+
+
+	// If the file exists, use it
+	if (vfs_exists(xmbFilename))
+	{
+		if (ReadXMBFile(xmbFilename))
+			return PSRETURN_OK;
+		else
+			return PSRETURN_Xeromyces_XMLOpenFailed;
+	}
 
 	
 	// XMB isn't up to date with the XML, so rebuild it:
@@ -236,9 +263,15 @@ PSRETURN CXeromyces::Load(const char* filename)
 		XercesLoaded = 1;
 	}
 
+	// Open the .xml file
 	CVFSInputSource source;
-	source.OpenBuffer(filename, file.GetBuffer(), file.GetBufferSize());
+	if (source.OpenFile(filename) < 0)
+	{
+		LOG(ERROR, LOG_CATEGORY, "CXeromyces: Failed to open XML file %s", filename);
+		return PSRETURN_Xeromyces_XMLOpenFailed;
+	}
 
+	// Set up the Xerces parser
 	SAX2XMLReader* Parser = XMLReaderFactory::createXMLReader();
 
 	// Enable validation
@@ -273,10 +306,10 @@ PSRETURN CXeromyces::Load(const char* filename)
 	}
 
 	// Convert the data structures into the XMB format
-	handler.CreateXMB(XMLChecksum);
+	handler.CreateXMB();
 
 	// Save the file to disk, so it can be loaded quickly next time
-	vfs_store(filenameXMB, handler.buffer.buffer, handler.buffer.length, FILE_NO_AIO);
+	vfs_store(xmbFilename, handler.buffer.buffer, handler.buffer.length, FILE_NO_AIO);
 
 	// Store the buffer so it can be freed later
 	XMBBuffer = handler.buffer.steal_buffer();
@@ -287,7 +320,7 @@ PSRETURN CXeromyces::Load(const char* filename)
 	return PSRETURN_OK;
 }
 
-bool CXeromyces::ReadXMBFile(const char* filename, bool CheckCRC, unsigned long CRC)
+bool CXeromyces::ReadXMBFile(const char* filename)
 {
 	CVFSFile* file = new CVFSFile;
 	if (file->Load(filename) != PSRETURN_OK)
@@ -297,17 +330,6 @@ bool CXeromyces::ReadXMBFile(const char* filename, bool CheckCRC, unsigned long 
 
 	assert(file->GetBufferSize() >= 42 && "Invalid XMB file"); // 42 bytes is the smallest possible XMB. (Well, maybe not quite, but it's a nice number.)
 	assert(*(int*)buffer == HeaderMagic && "Invalid XMB file header");
-
-	if (CheckCRC)
-	{
-		unsigned long fileCRC = *((unsigned long*)buffer + 1); // read the second four-byte number
-		if (CRC != fileCRC)
-		{
-			// Checksums don't match; have to regenerate from the XML
-			delete file;
-			return false;
-		}
-	}
 
 	// Store the Handle so it can be closed later
 	XMBFileHandle = file;
@@ -381,13 +403,10 @@ void XeroHandler::characters(const XMLCh* const chars, const unsigned int UNUSED
 }
 
 
-void XeroHandler::CreateXMB(unsigned long crc)
+void XeroHandler::CreateXMB()
 {
 	// Header
 	buffer.write((void*)HeaderMagicStr, 4);
-
-	// Checksum
-	buffer.write(&crc, 4);
 
 	std::set<std::string>::iterator it;
 	int i;

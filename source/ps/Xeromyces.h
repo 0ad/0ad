@@ -1,4 +1,4 @@
-/* $Id: Xeromyces.h,v 1.7 2004/07/31 11:38:13 janwas Exp $
+/* $Id$
 
   Xeromyces file-loading interface.
   Automatically creates and caches relatively
@@ -31,7 +31,7 @@ public:
 	static void Terminate();
 
 private:
-	bool ReadXMBFile(const char* filename, bool CheckCRC, unsigned long CRC);
+	bool ReadXMBFile(const char* filename);
 
 	XMBFile* XMB;
 	CVFSFile* XMBFileHandle; // if it's being read from disk
