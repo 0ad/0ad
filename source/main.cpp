@@ -88,7 +88,8 @@ static float g_Gamma = 1.0f;
 static const char* g_MapFile=0;
 
 
-static Handle font;
+static Handle g_Font_Console; // for the console
+static Handle g_Font_Misc; // random font for miscellaneous things
 
 
 extern CCamera g_Camera;
@@ -105,7 +106,19 @@ extern int dir_add_watch(const char* const dir, bool watch_subdirs);
 
 void Testing (void)
 {
-	g_Console->InsertMessage("Testing Function Registration");
+	g_Console->InsertMessage(L"Testing Function Registration");
+}
+
+void TestingUnicode (void)
+{
+	// This looks really broken in my IDE's font
+	g_Console->InsertMessage(L"    Ai! laurië lantar lassi súrinen,");
+	g_Console->InsertMessage(L"    yéni únótimë ve rámar aldaron!");
+	g_Console->InsertMessage(L"    Yéni ve lintë yuldar avánier");
+	g_Console->InsertMessage(L"    mi oromardi lissë-miruvóreva");
+	g_Console->InsertMessage(L"    Andúnë pella, Vardo tellumar");
+	g_Console->InsertMessage(L"    nu luini yassen tintilar i eleni");
+	g_Console->InsertMessage(L"    ómaryo airetári-lírinen.");
 }
 
 
@@ -145,15 +158,17 @@ static int write_sys_info()
 	fprintf(f, "%dx%d:%d@%d\n", g_xres, g_yres, g_bpp, g_freq);
 	// .. network name / ips
 	char hostname[100];	// possibly nodename != hostname
-	gethostname(hostname, sizeof(hostname));
-	fprintf(f, "%s\n", hostname);
-	hostent* host = gethostbyname(hostname);
-	if(host)
+	if (gethostname(hostname, sizeof(hostname)) == 0) // make sure it succeeded
 	{
-		struct in_addr** ips = (struct in_addr**)host->h_addr_list;
-		for(int i = 0; ips && ips[i]; i++)
-			fprintf(f, "%s ", inet_ntoa(*ips[i]));
-		fprintf(f, "\n");
+		fprintf(f, "%s\n", hostname);
+		hostent* host = gethostbyname(hostname);
+		if(host)
+		{
+			struct in_addr** ips = (struct in_addr**)host->h_addr_list;
+			for(int i = 0; ips && ips[i]; i++)
+				fprintf(f, "%s ", inet_ntoa(*ips[i]));
+			fprintf(f, "\n");
+		}
 	}
 
 	fclose(f);
@@ -325,7 +340,7 @@ static void Render()
 	g_Renderer.SetCamera(g_Camera);
 
 	// switch on wireframe for terrain if we want it
-	g_Renderer.SetTerrainRenderMode( SOLID );
+	//g_Renderer.SetTerrainRenderMode( SOLID ); // (PT: If this is done here, the W key doesn't work)
 	RenderTerrain();
 	RenderModels();
 	g_Renderer.FlushFrame();
@@ -345,6 +360,7 @@ static void Render()
 
 	// overlay mode
 	glPushAttrib(GL_ENABLE_BIT);
+	glEnable(GL_TEXTURE_2D);
 	glDisable(GL_CULL_FACE);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_BLEND);
@@ -358,28 +374,32 @@ static void Render()
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 
-	// FPS counter
-	glLoadIdentity();
-	glTranslatef(10, 30, 0);
-	font_bind(font);
-	glprintf("%d FPS", fps);
 
-	// view params
+	// Use the GL_ALPHA texture as the alpha channel with a flat colouring
+	glDisable(GL_ALPHA_TEST);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
+	unifont_bind(g_Font_Misc);
+
+	glColor4f(1.0f, 0.8f, 0.0f, 1.0f);
+
 	glLoadIdentity();
-	glTranslatef(10, 90, 0);
-	extern float g_CameraZoom;
-	glprintf("zoom=%.1f", g_CameraZoom);
+	glTranslatef(10.0f, 10.0f, 0.0f);
+
+	glwprintf( L"%d FPS", fps);
 
 #ifndef NO_GUI
 	// Temp GUI message GeeTODO
 	glLoadIdentity();
 	glTranslatef(10, 60, 0);
-	glprintf("%s", g_GUI.TEMPmessage.c_str());
+	glwprintf( L"%S", g_GUI.TEMPmessage.c_str() );
 
 	glLoadIdentity();
 	g_GUI.Draw();
 #endif
 
+	unifont_bind(g_Font_Console);
+	glLoadIdentity();
 	g_Console->Render();
 
 	// restore
@@ -623,9 +643,12 @@ PREVTSC=CURTSC;
 #endif
 
 
-	font = font_load("fonts/verdana.fnt");
+	g_Font_Console = unifont_load("fonts/console");
+	g_Font_Misc = unifont_load("fonts/verdana16");
 
 	g_Console = new CConsole(0, g_yres-600.f, (float)g_xres, 600.f);
+	g_Console->m_iFontHeight = unifont_linespacing(g_Font_Console);
+	g_Console->m_iFontOffset = 9;
 
 	// create renderer
 	new CRenderer;
@@ -714,7 +737,12 @@ if(!g_MapFile)
 		g_Camera.UpdateFrustum();
 	}
 
-g_Console->RegisterFunc(Testing, "Testing");
+	g_Console->RegisterFunc(Testing, L"Testing");
+
+	{
+		wchar_t t[] = { 'T',0xE9,'s','t','i','n','g' , 0 };
+		g_Console->RegisterFunc(TestingUnicode, t);
+	}
 
 #ifdef _MSC_VER
 {
