@@ -1,5 +1,5 @@
 /*
-$Id: unifont.cpp,v 1.1 2004/06/16 15:36:28 philip Exp $
+$Id: unifont.cpp,v 1.2 2004/06/18 18:34:04 philip Exp $
 
 Unicode OpenGL texture font
   
@@ -14,10 +14,11 @@ Unicode OpenGL texture font
 #include "ogl.h"
 
 #include <string>
-#include <strstream>
+#include <sstream>
 #include <map>
 
 #include <stdio.h>
+#include <assert.h>
 
 // This isn't particularly efficient - it can be improved if we
 // (a) care enough, and (b) know about fixed ranges of characters
@@ -65,7 +66,7 @@ static int UniFont_reload(UniFont* f, const char* fn)
 		return (int)err;
 
 	// Get the data in a nicer object
-	std::istrstream FNTStream ((char*)RawFNT, (int)FNTSize);
+	std::istringstream FNTStream (std::string((char*)RawFNT, (int)FNTSize));
 
 	int Version;
 	FNTStream >> Version;
@@ -150,7 +151,7 @@ void glwprintf(const wchar_t* fmt, ...)
 	wchar_t buf[buf_size];
 
 	va_start(args, fmt);
-	if (vsnwprintf(buf, buf_size-1, fmt, args) < 0)
+	if (vswprintf(buf, buf_size-1, fmt, args) < 0)
 		debug_out("glwprintf failed (buffer size exceeded?)");
 	va_end(args);
 
