@@ -27,6 +27,12 @@
 #include "mem.h"
 #include "vfs.h"
 
+// don't include windows.h from zconf!
+// not necessary, causes many conflicts.
+#define _WINDOWS_
+#define WINAPI __stdcall
+#define WINAPIV __cdecl
+					
 #include <zlib.h>
 #ifdef _MSC_VER
 #pragma comment(lib, "zlib.lib")
