@@ -52,7 +52,7 @@ void CConsole::ToLower(wchar_t* szMessage, uint iSize)
 	if (iSize && iSize < L) L = iSize;
 
     for(uint i = 0; i < L; i++)
-		szMessage[i] = tolower(szMessage[i]);
+		szMessage[i] = towlower(szMessage[i]);
 }
 
 
