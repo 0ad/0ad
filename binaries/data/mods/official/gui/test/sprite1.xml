@@ -782,6 +782,28 @@
 		<image backcolor="255 255 255" size="3 3 100%-3 100%-3"/>
 	</sprite>
 
+	<sprite name="atlas_window_grey">
+		<!-- Starting with top left corner continuing in a clockwise manner -->
+		<!-- Top border -->
+		<image backcolor="129 134 142" size="0%-3 0%-3 100%+2 0%+1" />
+		<image backcolor="255 255 255" size="0%-2 0%-2 100%+2 0%+2" />
+		<image backcolor="80 97 127"   size="0%-1 0%-1 100%+1 0%+3" />
+		<!-- Right border -->
+		<image backcolor="80 97 127"   size="100%+2 0%-3 100%+0 100%+3" />
+		<image backcolor="255 255 255" size="100%+2 0%-2 100%+1 100%+2" />
+		<image backcolor="129 134 142" size="100%+1 0%+0 100%+0 100%+1" />
+		<!-- Bottom border -->
+		<image backcolor="80 97 127"   size="0%-2 100%+2 100%+3 100%+3" />
+		<image backcolor="255 255 255" size="0%-2 100%+2 100%+2 100%+1" />
+		<image backcolor="129 134 142" size="0%-1 100%+1 100%+1 100%+0" />
+		<!-- Left border -->
+		<image backcolor="129 134 142" size="0%-3 0%-3 0%-2 100%+3" />
+		<image backcolor="255 255 255" size="0%-2 0%-2 0%-1 100%+2" />
+		<image backcolor="80 97 127"   size="0%-1 0%-1 0%+0 100%+1" />
+		<!-- middle -->
+		<image backcolor="220 223 228" size="0%+0 0%+0 100%+0 100%+0"/>
+	</sprite>
+
 	<sprite name="atlas_input_box">
 		<image backcolor="220 223 228" size="-4 -5 100%+2 100%+1" />
 		<image backcolor="109 122 146" size="-4 -5 100%+1 100%" />
@@ -876,6 +898,25 @@
 		<image backcolor="184 190 201" size="2 2 100%-2 100%-2"/>
 	</sprite>
 
+	<sprite name="atlas_button_lit">
+		<effect add_color="42 42 42 0"/>
+		<!-- Starting with top left corner continuing in a clockwise manner -->
+		<!-- Top border -->
+		<image backcolor="184 190 201" size="0 0 100%-1 1" />
+		<image backcolor="220 223 228" size="1 1 100%-2 2" />
+		<!-- Right border -->
+		<image backcolor="0 0 0" size="100%-1 0 100% 100%" />
+		<image backcolor="109 122 146" size="100%-1 1 100%-2 100%-1" />
+		<!-- Bottom border -->
+		<image backcolor="0 0 0" size="0 100%-1 100% 100%" />
+		<image backcolor="109 122 146" size="1 100%-1 100%-1 100%" />
+		<!-- Left border -->
+		<image backcolor="184 190 201" size="0 0 1 100%-1" />
+		<image backcolor="220 223 228" size="1 1 2 100%-1" />
+		<!-- middle -->
+		<image backcolor="184 190 201" size="2 2 100%-2 100%-2"/>
+	</sprite>
+
 	<sprite name="atlas_bkgcol">
 		<image backcolor="184 190 201" size="0 0 100% 100%"/>
 	</sprite>
@@ -928,8 +969,30 @@
 		<image texture="atlas/atlas_sheet_toolbar_button.png" cell_size="15 15" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
 	</sprite>
 
+	<sprite name="atlas_sheet_dropdown_button">
+		<image texture="atlas/atlas_global_sheet_dropdownbutton" cell_size="9 5" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+	</sprite>
+
 	<sprite name="atlas_sheet_updown_button">
 		<image texture="atlas/atlas_global_sheet_dropdownbutton_updown.png" cell_size="9 5" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+	</sprite>
+
+	<sprite name="atlas_global_button_up">
+		<image texture="atlas/atlas_global_button_up.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+	</sprite>
+
+	<sprite name="atlas_global_button_up_lit">
+		<effect add_color="42 42 42 0"/>
+		<image texture="atlas/atlas_global_button_up.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+	</sprite>
+
+	<sprite name="atlas_global_button_dn">
+		<image texture="atlas/atlas_global_button_dn.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+	</sprite>
+
+	<sprite name="atlas_global_button_dn_lit">
+		<effect add_color="42 42 42 0"/>
+		<image texture="atlas/atlas_global_button_dn.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
 	</sprite>
 
         <sprite name="atlas_global_slider_bar_h">

@@ -211,6 +211,7 @@
 
 			<!-- TERRAIN EDITOR SECTION MENU -->
 			<object type="empty" name="atlas_left_pane_section_terrain" size="0 0 100% 100%" z="1" hidden="true">
+				<!-- TERRAIN EDITOR: EDIT ELEVATION -->
 				<object type="button" name="atlas_left_pane_section_terrain_elevation_modify_button" style="atlas_button" hidden="false">Modify
 					<action on="Load"><![CDATA[
 						setSizeArray("atlas_left_pane_section_terrain_elevation_modify_button", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_MODIFY_BUTTON], left_screen, top_screen, left_screen, top_screen);
@@ -350,6 +351,28 @@
 						setSizeArray("atlas_left_pane_section_terrain_elevation_hr", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_HR], left_screen, top_screen, left_screen, top_screen);
 					]]></action>
 				</object>
+				<!-- TERRAIN EDITOR: CLIFF -->
+				<object type="text" name="atlas_left_pane_section_terrain_cliff_list" sprite="atlas_window_grey" scrollbar_style="atlas_scrollbar" scrollbar="true" hidden="false">
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_cliff_list", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_LIST], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+				</object>
+				<object type="text" name="atlas_left_pane_section_terrain_cliff_hr" sprite="atlas_hline" hidden="false">
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_cliff_hr", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HR], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+				</object>
+				<!-- TERRAIN EDITOR: CLIFF -->
+				<object type="text" name="atlas_left_pane_section_terrain_water_list" sprite="atlas_window_grey" scrollbar_style="atlas_scrollbar" scrollbar="true" hidden="false">
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_water_list", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_LIST], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+				</object>
+				<object type="text" name="atlas_left_pane_section_terrain_water_hr" sprite="atlas_hline" hidden="false">
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_water_hr", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_HR], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+				</object>
 			</object>
 		</object>
 
@@ -417,27 +440,27 @@
 				<action on="Press"><![CDATA[
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_menu_5" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Player
+			<object type="button" name="atlas_mainborder_menu_5" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Triggers
 				<action on="Press"><![CDATA[
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_menu_6" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Diplomacy
+			<object type="button" name="atlas_mainborder_menu_6" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Player
 				<action on="Press"><![CDATA[
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_menu_7" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Messages
+			<object type="button" name="atlas_mainborder_menu_7" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Diplomacy
 				<action on="Press"><![CDATA[
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_menu_8" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Playlist
+			<object type="button" name="atlas_mainborder_menu_8" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Messages
 				<action on="Press"><![CDATA[
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_menu_9" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Cinematics
+			<object type="button" name="atlas_mainborder_menu_9" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Playlist
 				<action on="Press"><![CDATA[
 				]]></action>
 			</object>
-			<object type="button" name="atlas_mainborder_menu_10" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">
+			<object type="button" name="atlas_mainborder_menu_10" style="atlas_menu_button" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">Cinematics
 				<action on="Press"><![CDATA[
 				]]></action>
 			</object>

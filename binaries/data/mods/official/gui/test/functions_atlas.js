@@ -709,6 +709,42 @@ function initAtlas()
 		atlasCoord[ATLAS_LEFT_PANE_BKG].x+ATLAS_LEFT_PANE_SECTION.LMARGIN,
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_INCREMENT_BUTTON].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_INCREMENT_BUTTON].height+ATLAS_LEFT_PANE_SECTION.BMARGIN
 	);
+
+	// List of cliff portraits.
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_LIST		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		75,
+		162
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_HR].x+3,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_HR].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_HR].x+3
+	);
+
+	// Horizontal rule at end of Paint Cliff.
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HR		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_HR].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_HR].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_HR].x,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_LIST].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_LIST].height+ATLAS_LEFT_PANE_SECTION.BMARGIN
+	);
+
+	// List of water portraits.
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_LIST		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_LIST].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_LIST].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_LIST].x,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HR].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HR].x+3
+	);
+
+	// Horizontal rule at end of Paint Water.
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_HR		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HR].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HR].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HR].x,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_LIST].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_LIST].height+ATLAS_LEFT_PANE_SECTION.BMARGIN
+	);
 }
 
 // ====================================================================
