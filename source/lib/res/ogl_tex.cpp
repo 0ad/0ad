@@ -63,6 +63,10 @@ struct Tex
 	// set from user param by tex_upload
 	GLint filter;
 	GLenum int_fmt;
+
+	// flags influencing reload behavior
+	bool is_loaded;
+	bool has_been_uploaded;
 };
 
 H_TYPE_DEFINE(Tex);
@@ -78,24 +82,26 @@ static void Tex_dtor(Tex* t)
 	tex_free(&t->ti);
 
 	glDeleteTextures(1, &t->id);
+
+	// need to clear this so actual reloads (triggered by h_reload)
+	// actually reload.
+	t->is_loaded = false;
 }
 
 
 static int Tex_reload(Tex* t, const char* fn, Handle h)
 {
-	if(t->id)
+	if(t->is_loaded)
 		return 0;
 
 	CHECK_ERR(tex_load(fn, &t->ti));
-
 	CHECK_ERR(get_gl_fmt(&t->ti, &t->fmt));
+	t->is_loaded = true;
 
 	glGenTextures(1, &t->id);
-	// this can't realistically fail, just note that the already_loaded
-	// check above assumes (id > 0) <==> texture is loaded and valid
 
-	// has been uploaded; do so again
-	if(t->int_fmt)
+	// re-upload if necessary
+	if(t->has_been_uploaded)
 		CHECK_ERR(tex_upload(h, t->filter, t->int_fmt));
 
 	return 0;
@@ -381,6 +387,8 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 	}
 
 	mem_free_h(t->ti.hm);
+
+	t->has_been_uploaded = true;
 
 	return 0;
 }
