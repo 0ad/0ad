@@ -52,6 +52,8 @@
 #include "gui/GUI.h"
 #endif
 
+#include "NPFontManager.h"
+
 
 CConsole* g_Console = 0;
 extern int conInputHandler(const SDL_Event* ev);
@@ -414,8 +416,6 @@ static void Render()
 	glDisable(GL_CULL_FACE);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_BLEND);
-	glAlphaFunc(GL_GREATER, 0.5);
-	glEnable(GL_ALPHA_TEST);
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 	glLoadIdentity();
@@ -597,7 +597,6 @@ static void psInit()
 #endif
 }
 
-
 static void psShutdown()
 {
 #ifndef NO_GUI
@@ -614,6 +613,9 @@ static void psShutdown()
 extern u64 PREVTSC;
 int main(int argc, char* argv[])
 {
+
+	// If you ever want to catch a particular allocation:
+	//_CrtSetBreakAlloc(4128);
 
 #ifdef _MSC_VER
 u64 TSC=rdtsc();
@@ -913,6 +915,10 @@ PREVTSC=CURTSC;
 	delete &g_Renderer;
 
 	delete &g_ConfigDB;
+
+	// Not particularly consistent with all the other singletons,
+	// but the GUI currently uses it and so it needs to be unloaded
+	NPFontManager::release();
 
 	exit(0);
 	return 0;
