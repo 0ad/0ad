@@ -430,7 +430,7 @@ void EndGame()
 	else if (g_NetClient)
 	{
 		delete g_NetClient;
-		g_NetServer=NULL;
+		g_NetClient=NULL;
 	}
 
 	delete g_Game;
@@ -1322,14 +1322,9 @@ int main(int argc, char* argv[])
 
 void ScEd_Init()
 {
-	char path[512];
-	::GetModuleFileName(0,path,512);
-
 	g_Quickstart = true;
 
-	char* argv[1];
-	argv[0] = path;
-	Init(1, argv, false);
+	Init(0, NULL, false);
 }
 
 void ScEd_Shutdown()
