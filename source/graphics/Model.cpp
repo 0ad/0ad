@@ -125,6 +125,17 @@ static CVector3D SkinPoint(const CVector3D& pos,const SVertexBlend& blend,
 // CalcBound: calculate the world space bounds of this model
 void CModel::CalcBounds()
 {
+	// Need to calculate the object bounds first, if that hasn't already been done
+	if (! m_Anim)
+		CalcObjectBounds();
+	else
+	{
+		if (m_Anim->m_ObjectBounds.IsEmpty())
+			CalcAnimatedObjectBound(m_Anim->m_AnimDef, m_Anim->m_ObjectBounds);
+		assert(! m_Anim->m_ObjectBounds.IsEmpty()); // (if this happens, it'll be recalculating the bounds every time)
+		m_ObjectBounds = m_Anim->m_ObjectBounds;
+	}
+
 	m_ObjectBounds.Transform(GetTransform(),m_Bounds);
 }
 
@@ -148,13 +159,24 @@ void CModel::CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result)
 {
 	result.SetEmpty();
 
-	CSkeletonAnim dummyanim;
-	dummyanim.m_AnimDef=anim;
-	if (!SetAnimation(&dummyanim)) return;
+	// Set the current animation on which to perform calculations (if it's necessary)
+	if (anim != m_Anim->m_AnimDef)
+	{
+		CSkeletonAnim dummyanim;
+		dummyanim.m_AnimDef=anim;
+		if (!SetAnimation(&dummyanim)) return;
+	}
 
 	int numverts=m_pModelDef->GetNumVertices();
 	SModelVertex* verts=m_pModelDef->GetVertices();
-	
+
+	// Remove any transformations, so that we calculate the bounding box
+	// at the origin. The box is later re-transformed onto the object, without
+	// having to recalculate the size of the box.
+	CMatrix3D transform, oldtransform = GetTransform();
+	transform.SetIdentity();
+	SetTransform(transform);
+
 	// iterate through every frame of the animation
 	for (uint j=0;j<anim->GetNumFrames();j++) {		
 		// extend bounds by vertex positions at the frame
@@ -166,6 +188,8 @@ void CModel::CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result)
 		m_AnimTime+=anim->GetFrameTime();
 		m_BoneMatricesValid=false;
 	}
+
+	SetTransform(oldtransform);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -179,7 +203,8 @@ CSkeletonAnim* CModel::BuildAnimation(const char* filename,float speed)
 	CSkeletonAnim* anim=new CSkeletonAnim;
 	anim->m_AnimDef=def;
 	anim->m_Speed=speed;
-	CalcAnimatedObjectBound(def,anim->m_ObjectBounds);
+	anim->m_ObjectBounds.SetEmpty();
+	InvalidateBounds();
 
 	return anim;
 }
@@ -268,13 +293,15 @@ bool CModel::SetAnimation(CSkeletonAnim* anim, bool once)
 			return false;
 		}
 
-		if (anim->m_AnimDef->GetNumKeys()!=m_pModelDef->GetNumBones()) {
-			// mismatch between models skeleton and animations skeleton
+		if (m_Anim->m_AnimDef->GetNumKeys()!=m_pModelDef->GetNumBones()) {
+			// mismatch between model's skeleton and animation's skeleton
 			return false;
 		}
 
-		// update object bounds to the bounds when given animation applied
-		m_ObjectBounds=m_Anim->m_ObjectBounds;
+		// reset the cached bounds when the animation is changed
+		m_ObjectBounds.SetEmpty();
+		InvalidateBounds();
+
 		// start anim from beginning 
 		m_AnimTime=0; 
 	} 
@@ -348,6 +375,7 @@ void CModel::SetTransform(const CMatrix3D& transform)
 	// call base class to set transform on this object
 	CRenderableObject::SetTransform(transform);
 	m_BoneMatricesValid=false;
+	InvalidateBounds();
 
 	// now set transforms on props
 	const CMatrix3D* bonematrices=GetBoneMatrices();

@@ -42,7 +42,7 @@ void CPatch::Initialize(CTerrain* parent,u32 x,u32 z)
 		}
 	}
 
-	CalcBounds();
+	InvalidateBounds();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

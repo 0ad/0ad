@@ -85,8 +85,6 @@ public:
 	void CalcObjectBounds();
 	// calculate bounds encompassing all vertex positions for given animation 
 	void CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result);
-	// return object space bounds
-	const CBound& GetObjectBounds() const { return m_ObjectBounds; }
 
 	// set transform of this object, and recurse down into props to update their world space transform
 	void SetTransform(const CMatrix3D& transform);
@@ -134,7 +132,8 @@ private:
 	// pointer to the model's raw 3d data
 	CModelDefPtr m_pModelDef;
 	// object space bounds of model - accounts for bounds of all possible animations
-	// that can play on a model
+	// that can play on a model. Not always up-to-date - currently CalcBounds()
+	// updates it when necessary.
 	CBound m_ObjectBounds;
 	// animation currently playing on this model, if any
 	CSkeletonAnim* m_Anim;

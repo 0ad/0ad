@@ -18,22 +18,23 @@
 class CBound
 {
 public:
-    CBound() {}
-    CBound(const CVector3D& min,const CVector3D& max) {
+	CBound() {}
+	CBound(const CVector3D& min,const CVector3D& max) {
 		m_Data[0]=min; m_Data[1]=max;
 	}
-	
+
 	void Transform(const CMatrix3D& m,CBound& result) const;
 
 	CVector3D& operator[](int index) {	return m_Data[index]; }
-    const CVector3D& operator[](int index) const { return m_Data[index]; }
+	const CVector3D& operator[](int index) const { return m_Data[index]; }
 
 	void SetEmpty();
+	bool IsEmpty();
 
 	CBound& operator+=(const CBound& b);
 	CBound& operator+=(const CVector3D& pt);
 
-    bool RayIntersect(const CVector3D& origin,const CVector3D& dir,float& tmin,float& tmax) const;
+	bool RayIntersect(const CVector3D& origin,const CVector3D& dir,float& tmin,float& tmax) const;
 
 	// return the volume of this bounding box
 	float GetVolume() const {
@@ -47,7 +48,7 @@ public:
 	}
 
 private:
-    CVector3D m_Data[2];
+	CVector3D m_Data[2];
 };
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -57,7 +57,11 @@ CTextureEntry* CTextureManager::FindTexture(Handle handle)
 	for (uint k=0;k<m_TerrainTextures.size();k++) {
 		STextureType& ttype=m_TerrainTextures[k];
 		for (uint i=0;i<ttype.m_Textures.size();i++) {
-			if (handle==ttype.m_Textures[i]->GetHandle()) {
+			// Don't bother looking at textures that haven't been loaded yet - since
+			// the caller has given us a Handle to the texture, it must be loaded.
+			// (This matters because GetHandle would load the texture, even though
+			// there's no need to.)
+			if (ttype.m_Textures[i]->IsLoaded() && handle==ttype.m_Textures[i]->GetHandle()) {
 				return ttype.m_Textures[i];
 			}
 		}

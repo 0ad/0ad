@@ -47,7 +47,7 @@ bool sparsePathTree::slice()
 
 		if( len == 0.0f )
 		{
-			// Too wierd. (Heavy traffic, obstacles in positions leading to this degenerate state.
+			// Too weird. (Heavy traffic, obstacles in positions leading to this degenerate state.
 			type = SPF_IMPOSSIBLE;
 			return( true );
 		}

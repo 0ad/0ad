@@ -44,7 +44,7 @@ void CModelRData::Build()
 	// build data
 	BuildVertices();
 	BuildIndices();
-	// force a texture load on models texture
+	// force a texture load on model's texture
 	g_Renderer.LoadTexture(m_Model->GetTexture(),GL_CLAMP_TO_EDGE);
 	// setup model render flags
 	/*if (g_Renderer.IsTextureTransparent(m_Model->GetTexture())) {

@@ -135,9 +135,6 @@ bool CObjectEntry::BuildModel()
 		m_Model->SetFlags(m_Model->GetFlags()|MODELFLAG_CASTSHADOWS);
 	}
 
-	// build world space bounds
-	m_Model->CalcBounds();
-
 	// replace any units using old model to now use new model; also reprop models, if necessary
 	// FIXME, RC - ugh, doesn't recurse correctly through props
 	const std::vector<CUnit*>& units=g_UnitMan.GetUnits();

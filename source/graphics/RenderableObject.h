@@ -42,7 +42,7 @@ class CRenderableObject
 {
 public:
 	// constructor
-	CRenderableObject() : m_RenderData(0) {
+	CRenderableObject() : m_RenderData(0), m_BoundsValid(false) {
 		m_Transform.SetIdentity();
 	}
 	// destructor
@@ -55,8 +55,8 @@ public:
 		m_Transform.GetInverse(m_InvTransform);
 		// normal recalculation likely required on transform change; flag it
 		SetDirty(RENDERDATA_UPDATE_VERTICES);
-		// rebuild world space bounds
-		CalcBounds();
+		// need to rebuild world space bounds
+		InvalidateBounds();
 	}
 	// get object to world space transform
 	const CMatrix3D& GetTransform() const { return m_Transform; }
@@ -71,10 +71,18 @@ public:
 
 	// calculate (and store in m_Bounds) the world space bounds of this object
 	// - must be implemented by all concrete subclasses
-	virtual void CalcBounds() = 0;  
+	virtual void CalcBounds() = 0;
 
 	// return world space bounds of this object
-	const CBound& GetBounds() const { return m_Bounds; }
+	const CBound& GetBounds() {
+		if (! m_BoundsValid) {
+			CalcBounds();
+			m_BoundsValid = true;
+		}
+		return m_Bounds;
+	}
+
+	void InvalidateBounds() { m_BoundsValid = false; }
 
 	// set the object renderdata 
 	// TODO,RC 10/04/04 - need to delete existing renderdata here, or can we
@@ -98,6 +106,10 @@ protected:
 	CMatrix3D m_InvTransform;
 	// object renderdata
 	CRenderData* m_RenderData;
+
+private:
+	// remembers whether m_bounds needs to be recalculated
+	bool m_BoundsValid;
 };
 
 #endif

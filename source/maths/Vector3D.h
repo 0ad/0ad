@@ -22,8 +22,8 @@ class CVector3D
 		float X, Y, Z;
 
 	public:
-		CVector3D () { X = 0.0f; Y = 0.0f; Z = 0.0f; }
-		CVector3D (float x, float y, float z);
+		CVector3D () : X(0.0f), Y(0.0f), Z(0.0f) {}
+		CVector3D (float x, float y, float z) : X(x), Y(y), Z(z) {}
 
 		int operator!() const;
 

@@ -34,6 +34,9 @@ public:
 	// accessor - return texture type
 	int GetType() const { return m_Type; }
 
+	// returns whether this texture-entry has loaded any data yet
+	bool IsLoaded() { return (m_Handle!=-1); }
+
 private:
 	// load texture from file
 	void LoadTexture();

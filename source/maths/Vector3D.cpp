@@ -13,13 +13,6 @@
 
 #include "Vector3D.h"
 
-CVector3D::CVector3D (float x, float y, float z)
-{
-	X = x;
-	Y = y;
-	Z = z;
-}
-
 int CVector3D::operator ! () const 
 {
 	if (X != 0.0f ||
@@ -34,13 +27,7 @@ int CVector3D::operator ! () const
 //vector addition
 CVector3D CVector3D::operator + (const CVector3D &vector) const 
 {
-	CVector3D Temp;
-
-	Temp.X = X + vector.X;
-	Temp.Y = Y + vector.Y;
-	Temp.Z = Z + vector.Z;
-
-	return Temp;
+	return CVector3D(X+vector.X, Y+vector.Y, Z+vector.Z);
 }
 
 //vector addition/assignment
@@ -56,25 +43,13 @@ CVector3D &CVector3D::operator += (const CVector3D &vector)
 //vector subtraction
 CVector3D CVector3D::operator - (const CVector3D &vector) const 
 {
-	CVector3D Temp;
-
-	Temp.X = X - vector.X;
-	Temp.Y = Y - vector.Y;
-	Temp.Z = Z - vector.Z;
-
-	return Temp;
+	return CVector3D(X-vector.X, Y-vector.Y, Z-vector.Z);
 }
 
 //vector negation
 CVector3D CVector3D::operator-() const 
 {
-	CVector3D Temp;
-
-	Temp.X = -X;
-	Temp.Y = -Y;
-	Temp.Z = -Z;
-
-	return Temp;
+	return CVector3D(-X, -Y, -Z);
 }
 //vector subtrcation/assignment
 CVector3D &CVector3D::operator -= (const CVector3D &vector) 
@@ -89,13 +64,7 @@ CVector3D &CVector3D::operator -= (const CVector3D &vector)
 //scalar multiplication
 CVector3D CVector3D::operator * (float value) const 
 {
-	CVector3D Temp;
-
-	Temp.X = X * value;
-	Temp.Y = Y * value;
-	Temp.Z = Z * value;
-
-	return Temp;
+	return CVector3D(X*value, Y*value, Z*value);
 }
 
 //scalar multiplication/assignment

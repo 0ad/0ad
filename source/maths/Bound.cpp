@@ -47,90 +47,98 @@ CBound& CBound::operator+=(const CVector3D& pt)
 // otherwise
 // note: incoming ray direction must be normalised
 bool CBound::RayIntersect(const CVector3D& origin,const CVector3D& dir,
-            float& tmin,float& tmax) const
+			float& tmin,float& tmax) const
 {
 	float t1,t2;
-    float tnear,tfar;
+	float tnear,tfar;
 
-    if (dir[0]==0) {
-        if (origin[0]<m_Data[0][0] || origin[0]>m_Data[1][0])
-	        return false;
-        else {
-            tnear=(float) FLT_MIN;
-            tfar=(float) FLT_MAX;
-        }
-    } else {
-        t1=(m_Data[0][0]-origin[0])/dir[0];
-        t2=(m_Data[1][0]-origin[0])/dir[0];
-
-        if (dir[0]<0) {
-       	    tnear = t2;
-            tfar = t1;
-        } else {
-	    	tnear = t1;
-		    tfar = t2;
-        }
-        
-        if (tfar<0) 
-		    return false;
-    } 
-
-    if (dir[1]==0 && (origin[1]<m_Data[0][1] || origin[1]>m_Data[1][1])) 
-		return false;
-    else {
-		t1=(m_Data[0][1]-origin[1])/dir[1];
-        t2=(m_Data[1][1]-origin[1])/dir[1];
-        
-		if (dir[1]<0) { 
-            if (t2>tnear) 
-			    tnear = t2;
-            if (t1<tfar) 
-			    tfar = t1;
-        } else {
-            if (t1>tnear) 
-		    	tnear = t1;
-            if (t2<tfar) 
-			    tfar = t2;
-        }
-
-        if (tnear>tfar || tfar<0) 
+	if (dir[0]==0) {
+		if (origin[0]<m_Data[0][0] || origin[0]>m_Data[1][0])
 			return false;
-    }
+		else {
+			tnear=(float) -FLT_MAX;
+			tfar=(float) FLT_MAX;
+		}
+	} else {
+		t1=(m_Data[0][0]-origin[0])/dir[0];
+		t2=(m_Data[1][0]-origin[0])/dir[0];
 
-    if (dir[2]==0 && (origin[2]<m_Data[0][2] || origin[2]>m_Data[1][2])) 
-    	return false;
-    else {
-        t1=(m_Data[0][2]-origin[2])/dir[2];
-        t2=(m_Data[1][2]-origin[2])/dir[2];
-        
+		if (dir[0]<0) {
+			tnear = t2;
+			tfar = t1;
+		} else {
+			tnear = t1;
+			tfar = t2;
+		}
+
+		if (tfar<0) 
+			return false;
+	}
+
+	if (dir[1]==0 && (origin[1]<m_Data[0][1] || origin[1]>m_Data[1][1])) 
+		return false;
+	else {
+		t1=(m_Data[0][1]-origin[1])/dir[1];
+		t2=(m_Data[1][1]-origin[1])/dir[1];
+
+		if (dir[1]<0) { 
+			if (t2>tnear) 
+				tnear = t2;
+			if (t1<tfar) 
+				tfar = t1;
+		} else {
+			if (t1>tnear) 
+				tnear = t1;
+			if (t2<tfar) 
+				tfar = t2;
+		}
+
+		if (tnear>tfar || tfar<0) 
+			return false;
+	}
+
+	if (dir[2]==0 && (origin[2]<m_Data[0][2] || origin[2]>m_Data[1][2])) 
+		return false;
+	else {
+		t1=(m_Data[0][2]-origin[2])/dir[2];
+		t2=(m_Data[1][2]-origin[2])/dir[2];
+
 		if (dir[2]<0) { 
-            if (t2>tnear) 
-			    tnear = t2;
-            if (t1<tfar) 
-			    tfar = t1;
-        } else {
-            if (t1>tnear) 
-		    	tnear = t1;
-            if (t2<tfar) 
-			    tfar = t2;
-        }
+			if (t2>tnear) 
+				tnear = t2;
+			if (t1<tfar) 
+				tfar = t1;
+		} else {
+			if (t1>tnear) 
+				tnear = t1;
+			if (t2<tfar) 
+				tfar = t2;
+		}
 
-        if (tnear>tfar || tfar<0) 
-		  return false;
-    }
+		if (tnear>tfar || tfar<0) 
+		return false;
+	}
 
-    tmin=tnear;
-    tmax=tfar;
+	tmin=tnear;
+	tmax=tfar;
 
-    return true;
+	return true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // SetEmpty: initialise this bound as empty
 void CBound::SetEmpty()
 {
-	m_Data[0]=CVector3D(FLT_MAX,FLT_MAX,FLT_MAX);
-	m_Data[1]=CVector3D(FLT_MIN,FLT_MIN,FLT_MIN);
+	m_Data[0]=CVector3D( FLT_MAX, FLT_MAX, FLT_MAX);
+	m_Data[1]=CVector3D(-FLT_MAX,-FLT_MAX,-FLT_MAX);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// IsEmpty: tests whether this bound is empty
+bool CBound::IsEmpty()
+{
+	return (m_Data[0].X ==  FLT_MAX && m_Data[0].Y ==  FLT_MAX && m_Data[0].Z ==  FLT_MAX
+	     && m_Data[1].X == -FLT_MAX && m_Data[1].Y == -FLT_MAX && m_Data[1].Z == -FLT_MAX);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -141,23 +149,23 @@ void CBound::Transform(const CMatrix3D& m,CBound& result) const
 {
 	assert(this!=&result);
 
-    for (int i=0;i<3;++i) {
-        // handle translation 
-        result[0][i]=result[1][i]=m(i,3);
+	for (int i=0;i<3;++i) {
+		// handle translation 
+		result[0][i]=result[1][i]=m(i,3);
 		
-        // Now find the extreme points by considering the product of the 
-        // min and max with each component of matrix  
-        for(int j=0;j<3;j++) {
-            float a=m(j,i)*m_Data[0][j];
-            float b=m(j,i)*m_Data[1][j];
+		// Now find the extreme points by considering the product of the 
+		// min and max with each component of matrix  
+		for(int j=0;j<3;j++) {
+			float a=m(j,i)*m_Data[0][j];
+			float b=m(j,i)*m_Data[1][j];
 
-            if (a<b) {
-                result[0][i]+=a;
-                result[1][i]+=b;
-            } else {
-                result[0][i]+=b;
-                result[1][i]+=a;
-            }
-        }
-    }
+			if (a<b) {
+				result[0][i]+=a;
+				result[1][i]+=b;
+			} else {
+				result[0][i]+=b;
+				result[1][i]+=a;
+			}
+		}
+	}
 }

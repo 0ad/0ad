@@ -326,7 +326,7 @@ void CTerrain::SetHeightMap(u16* heightmap)
 	for (u32 j=0;j<m_MapSizePatches;j++) {
 		for (u32 i=0;i<m_MapSizePatches;i++) {
 			CPatch* patch=GetPatch(i,j);
-			patch->CalcBounds();
+			patch->InvalidateBounds();
 			patch->SetDirty(RENDERDATA_UPDATE_VERTICES);
 		}
 	}
