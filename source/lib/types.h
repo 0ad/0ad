@@ -1,9 +1,9 @@
-// convenience type (shorter defs than stdint uintN_t)
+// convenient type aliases (shorter than uintN_t from stdint.h)
 
 #ifndef __TYPES_H__
 #define __TYPES_H__
 
-#include "posix.h"
+#include "posix_types.h"
 
 // defines instead of typedefs so we can #undef conflicting decls
 
@@ -27,10 +27,8 @@ typedef unsigned int PS_uint;
 
 // the standard only guarantees 16 bits.
 // we use this for memory offsets and ranges, so it better be big enough.
-#ifdef SIZE_MAX		// nested #if to avoid ICC warning if not defined
-# if SIZE_MAX < 32
-#  error "check size_t and SIZE_MAX - too small?"
-# endif
+#if defined(SIZE_MAX) && SIZE_MAX < 32
+# error "check size_t and SIZE_MAX - too small?"
 #endif
 	
 

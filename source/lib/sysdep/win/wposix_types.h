@@ -30,18 +30,9 @@ typedef unsigned long long uint64_t;
 #error "port uint64_t"
 #endif
 
-#ifdef _MSC_VER
-# ifndef _UINTPTR_T_DEFINED
-#  define _UINTPTR_T_DEFINED
-#  define uintptr_t unsigned int
-# endif	// _UINTPTR_T_DEFINED
-# ifndef _INTPTR_T_DEFINED
-#  define _INTPTR_T_DEFINED
-#  define intptr_t signed int
-# endif	// _INTPTR_T_DEFINED
-#else	// _MSC_VER
-# include <stdint.h>
-#endif	// _MSC_VER
+// note: we used to define [u]intptr_t here (if not already done).
+// however, it's not necessary with VC7 and later, and the compiler's
+// definition squelches 'pointer-to-int truncation' warnings, so don't.
 
 
 //
