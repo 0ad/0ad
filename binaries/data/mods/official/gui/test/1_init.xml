@@ -10,8 +10,7 @@
         ==========================================
         -->
 
-        <!-- Generic utilities -->
-        <script file="gui/test/functions_utility.js"><![CDATA[
+        <script file="gui/test/functions_utility_coord.js"><![CDATA[
         ]]></script>
 
         <script file="gui/test/functions_utility_object.js"><![CDATA[
@@ -29,27 +28,49 @@
         <script file="gui/test/functions_utility_music.js"><![CDATA[
         ]]></script>
 
-        <script file="gui/test/functions_test.js"><![CDATA[
+        <script file="gui/test/functions_utility_test.js"><![CDATA[
+        ]]></script>
+
+        <script file="gui/test/functions_utility.js"><![CDATA[
+        ]]></script>
+
+        <script file="gui/test/functions_global.js"><![CDATA[
+        ]]></script>
+
+        <script file="gui/test/functions_pregame_cpn.js"><![CDATA[
+        ]]></script>
+
+        <script file="gui/test/functions_pregame_mp.js"><![CDATA[
+        ]]></script>
+
+        <script file="gui/test/functions_pregame_sp.js"><![CDATA[
+        ]]></script>
+
+        <script file="gui/test/functions_pregame_options.js"><![CDATA[
+        ]]></script>
+
+        <script file="gui/test/functions_pregame_history.js"><![CDATA[
+        ]]></script>
+
+        <script file="gui/test/functions_pregame_load.js"><![CDATA[
         ]]></script>
 
         <script file="gui/test/functions_pregame.js"><![CDATA[
+        ]]></script>
+
+        <script file="gui/test/functions_atlas_map_creator.js"><![CDATA[
+        ]]></script>
+
+        <script file="gui/test/functions_atlas_terrain_editor.js"><![CDATA[
+        ]]></script>
+
+        <script file="gui/test/functions_atlas_object_editor.js"><![CDATA[
         ]]></script>
 
         <script file="gui/test/functions_atlas.js"><![CDATA[
         ]]></script>
 
         <script file="gui/test/functions_manual.js"><![CDATA[
-        ]]></script>
-
-        <script file="gui/test/functions_atlas.js"><![CDATA[
-        ]]></script>
-
-        <!-- Global functions -->
-        <script file="gui/test/functions_global.js"><![CDATA[
-        ]]></script>
-
-        <!-- Game Session GUI -->
-        <script file="gui/test/functions_coord.js"><![CDATA[
         ]]></script>
 
         <script file="gui/test/functions_session_group_pane.js"><![CDATA[
