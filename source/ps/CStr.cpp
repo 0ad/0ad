@@ -198,7 +198,7 @@ CStr CStr::UpperCase() const
 {
 	tstring NewTString = m_String;
 	for (size_t i = 0; i < m_String.length(); i++)
-		NewTString[i] = (TCHAR)_totlower(m_String[i]);
+		NewTString[i] = (TCHAR)_totupper(m_String[i]);
 
 	return CStr(NewTString);
 }
@@ -218,7 +218,7 @@ CStr CStr::UCase() const
 {
 	tstring NewTString = m_String;
 	for (size_t i = 0; i < m_String.length(); i++)
-		NewTString[i] = (TCHAR)_totlower(m_String[i]);
+		NewTString[i] = (TCHAR)_totupper(m_String[i]);
 
 	return CStr(NewTString);
 }

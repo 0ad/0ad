@@ -68,9 +68,10 @@ enum PS_TRIM_MODE {PS_TRIM_LEFT, PS_TRIM_RIGHT, PS_TRIM_BOTH};
 #define _ttoi(a) wcstol(a, NULL, 0)
 #define _ttol(a) wcstol(a, NULL, 0)
 #define _T(t) L ## t
-#define _totlower towlower
 #define _istspace iswspace
 #define _tsnprintf swprintf
+#define _totlower towlower
+#define _totupper towupper
 
 #else
 
@@ -85,6 +86,7 @@ enum PS_TRIM_MODE {PS_TRIM_LEFT, PS_TRIM_RIGHT, PS_TRIM_BOTH};
 #define _istspace isspace
 #define _tsnprintf snprintf
 #define _totlower tolower
+#define _totupper toupper
 
 #endif
 

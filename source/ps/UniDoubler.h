@@ -26,6 +26,7 @@
 #undef _istspace
 #undef _tsnprintf
 #undef _totlower
+#undef _totupper
 
 // Now include the 8-bit version under the name CStr8
 #undef _UNICODE
