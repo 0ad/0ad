@@ -507,10 +507,25 @@ ILboolean GetBlock(ILubyte *Block, ILubyte *Data, ILimage *Image, ILuint XPos, I
 {
 	ILuint x, y, i = 0, Offset;
 
-	for (y = 0; y < 4; y++) {
-		Offset = ((YPos + y) * Image->Width + XPos) * 3;
-		for (x = 0; x < 4*3; x++)
-			Block[i++] = Data[Offset++];
+	if (Image->Height < 4 || Image->Width < 4)
+	{
+		// Slower version, that handles small images correctly
+		for (y = 0; y < 4; y++) {
+			for (x = 0; x < 4; x++) {
+				Offset = ( ((YPos + y) % Image->Height) * Image->Width + ((XPos + x) % Image->Width) ) * 3;
+				Block[i++] = Data[Offset++];
+				Block[i++] = Data[Offset++];
+				Block[i++] = Data[Offset++];
+			}
+		}
+	}
+	else
+	{
+		for (y = 0; y < 4; y++) {
+			Offset = ((YPos + y) * Image->Width + XPos) * 3;
+			for (x = 0; x < 4*3; x++)
+				Block[i++] = Data[Offset++];
+		}
 	}
 
 	return IL_TRUE;
@@ -523,7 +538,9 @@ ILboolean GetAlphaBlock(ILubyte *Block, ILubyte *Data, ILimage *Image, ILuint XP
 
 	for (y = 0; y < 4; y++) {
 		for (x = 0; x < 4; x++) {
-			Offset = (YPos + y) * Image->Width + (XPos + x);
+			// offset = y*w + x, but with % to avoid overflowing the image bounds
+			// (primarily for small (2x2, 1x1) images which don't have a 4x4 block)
+			Offset = ((YPos + y) % Image->Height) * Image->Width + ((XPos + x) % Image->Width);
 			Block[i++] = Data[Offset];
 		}
 	}

@@ -241,20 +241,26 @@ ILboolean iLoadDdsCubemapInternal()
 				return IL_FALSE;
 
 			if (!AllocImage()) {
-				if (CompData)
+				if (CompData) {
 					ifree(CompData);
+					CompData = NULL;
+				}
 				return IL_FALSE;
 			}
 
 			if (!Decompress()) {
-				if (CompData)
+				if (CompData) {
 					ifree(CompData);
+					CompData = NULL;
+				}
 				return IL_FALSE;
 			}
 
 			if (!ReadMipmaps()) {
-				if (CompData)
+				if (CompData) {
 					ifree(CompData);
+					CompData = NULL;
+				}
 				return IL_FALSE;
 			}
 		}
@@ -332,8 +338,10 @@ ILboolean iLoadDdsInternal()
 		return IL_FALSE;
 	}
 
-	if (CompData)
+	if (CompData) {
 		ifree(CompData);
+		CompData = NULL;
+	}
 
 	ilBindImage(ilGetCurName());  // Set to parent image first.
 	return ilFixImage();
@@ -459,6 +467,7 @@ ILboolean ReadData()
 
 		if (iread(CompData, 1, Head.LinearSize) != (ILuint)Head.LinearSize) {
 			ifree(CompData);
+			CompData = NULL;
 			return IL_FALSE;
 		}
 	}
@@ -477,6 +486,7 @@ ILboolean ReadData()
 			for (y = 0; y < Height; y++) {
 				if (iread(Temp, 1, Bps) != Bps) {
 					ifree(CompData);
+					CompData = NULL;
 					return IL_FALSE;
 				}
 				Temp += Bps;
@@ -633,8 +643,9 @@ mip_fail:
 	while (StartImage) {
 		TempImage = StartImage;
 		StartImage = StartImage->Next;
-		ifree(TempImage);
+		ilCloseImage(TempImage);
 	}
+	Image->Next = NULL;
 	return IL_FALSE;
 }
 

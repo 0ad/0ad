@@ -19,7 +19,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="E:\devil\DevIL-1.6.7\include"
+				AdditionalIncludeDirectories="..\..\..\libraries\devil\src\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="0"
@@ -35,7 +35,7 @@
 				AdditionalDependencies="libcd.lib DevIL_DBG.lib DevILU_DBG.lib"
 				OutputFile="$(OutDir)/textureconv.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;E:\devil\DevIL-1.6.7\lib&quot;;&quot;e:\icc81\compiler80\ia32\lib&quot;"
+				AdditionalLibraryDirectories="&quot;..\..\..\libraries\devil\src\lib&quot;"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(OutDir)/textureconv.pdb"
 				SubSystem="0"
@@ -120,6 +120,9 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
+			<File
+				RelativePath=".\crashlog.cpp">
+			</File>
 			<File
 				RelativePath=".\main.cpp">
 			</File>

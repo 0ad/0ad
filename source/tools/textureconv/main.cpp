@@ -12,7 +12,10 @@
 
 #include <tchar.h>
 #include <time.h>
-//#include <crtdbg.h>
+
+#ifndef NDEBUG
+#include <crtdbg.h>
+#endif
 
 #ifdef UNICODE
 #define tstring wstring
@@ -50,8 +53,10 @@ void die(const TCHAR* message)
 
 int tmain(int argc, TCHAR** argv)
 {
-//_CrtSetDbgFlag(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) | _CRTDBG_LEAK_CHECK_DF);
+#ifndef NDEBUG
+_CrtSetDbgFlag(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) | _CRTDBG_LEAK_CHECK_DF | _CRTDBG_CHECK_ALWAYS_DF);
 //_CrtSetBreakAlloc(108);
+#endif
 
 	if (argc <= 1)
 	{
@@ -72,12 +77,15 @@ int tmain(int argc, TCHAR** argv)
 	return 0;
 }
 
-
 void check()
 {
 	ILenum err = ilGetError();
 	if (err != IL_NO_ERROR)
-		die(_T("DevIL error encountered"));
+	{
+		TCHAR buf[256];
+		tsprintf(buf, _T("DevIL error '%04x' encountered"), err);
+		die(buf);
+	}
 }
 
 
