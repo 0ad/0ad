@@ -10,15 +10,17 @@
 #include "scripting/JSInterface_Entity.h"
 #include "scripting/JSInterface_BaseEntity.h"
 #include "scripting/JSInterface_Vector3D.h"
+#include "gui/scripting/JSInterface_IGUIObject.h"
 
 extern CConsole* g_Console;
 
 // Parameters for the table are:
 
-// 1: The name the function will be called as from script
-// 2: The number of aguments this function expects
-// 3: Depreciated, always zero
-// 4: Reserved for future use, always zero
+// 0: The name the function will be called as from script
+// 1: The function which will be called
+// 2: The number of arguments this function expects
+// 3: Flags (deprecated, always zero)
+// 4: Extra (reserved for future use, always zero)
 
 JSFunctionSpec ScriptFunctionTable[] = 
 {
@@ -26,6 +28,8 @@ JSFunctionSpec ScriptFunctionTable[] =
 	{"writeConsole", writeConsole, 1, 0, 0 },
 	{"getEntityByHandle", getEntityByHandle, 1, 0, 0 },
 	{"getEntityTemplate", getEntityTemplate, 1, 0, 0 },
+	{"getGUIObjectByName", JSI_IGUIObject::getByName, 1, 0, 0 },
+	{"getGlobal", getGlobal, 0, 0, 0 },
 	{0, 0, 0, 0, 0}, 
 };
 
@@ -116,6 +120,12 @@ JSBool getEntityTemplate( JSContext* context, JSObject* globalObject, unsigned i
 	JSObject* baseEntity = JS_NewObject( context, &JSI_BaseEntity::JSI_class, NULL, NULL );
 	JS_SetPrivate( context, baseEntity, v );
 	*rval = OBJECT_TO_JSVAL( baseEntity );
+	return( JS_TRUE );
+}
+
+JSBool getGlobal( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval )
+{
+	*rval = OBJECT_TO_JSVAL( globalObject );
 	return( JS_TRUE );
 }
 

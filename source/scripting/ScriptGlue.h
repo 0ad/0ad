@@ -4,11 +4,16 @@
 
 #include "ScriptingHost.h"
 
-JSBool WriteLog(JSContext * context, JSObject * globalObject, unsigned int argc, jsval *argv, jsval *rval);
+// Functions to be called from Javascript:
 
+JSBool WriteLog(JSContext * context, JSObject * globalObject, unsigned int argc, jsval *argv, jsval *rval);
 JSBool writeConsole( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval );
+
 JSBool getEntityByHandle( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval );
 JSBool getEntityTemplate( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval );
+
+// Returns the global object, e.g. for setting global variables.
+JSBool getGlobal( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval );
 
 extern JSFunctionSpec ScriptFunctionTable[];
 
