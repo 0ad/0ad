@@ -147,7 +147,7 @@ void CObjectManager::LoadObjects(int type)
 	
 	if (dir > 0)
 	{
-		while (vfs_next_dirent(dir, &dent, ".xml")==0)
+		while (vfs_next_dirent(dir, &dent, "*.xml")==0)
 		{
 			CObjectEntry* object=new CObjectEntry(type);
 			CStr filename(pathname);

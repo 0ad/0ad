@@ -93,7 +93,7 @@ void CBaseEntityCollection::loadTemplates()
 void CBaseEntityCollection::LoadDirectory( Handle directory, CStr pathname )
 {
 	vfsDirEnt file;
-	while( !vfs_next_dirent( directory, &file, ".xml") )
+	while( !vfs_next_dirent( directory, &file, "*.xml") )
 	{
 		CBaseEntity* newTemplate = new CBaseEntity();
 		if( newTemplate->loadXML( pathname + file.name ) )
