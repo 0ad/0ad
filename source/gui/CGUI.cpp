@@ -464,6 +464,7 @@ void CGUI::DrawSprite(const CStr& SpriteName,
 		}
 		else
 		{
+			// TODO Gee: (2004-09-04) Shouldn't untextured sprites be able to be transparent too?
 			glColor3f(cit->m_BackColor.r, cit->m_BackColor.g, cit->m_BackColor.b);
 
 			CRect real = cit->m_Size.GetClientArea(Rect);
@@ -474,6 +475,17 @@ void CGUI::DrawSprite(const CStr& SpriteName,
 			glVertex3f(real.left,	real.top,		cit->m_DeltaZ);
 			glVertex3f(real.right,	real.top,		cit->m_DeltaZ);
 			glEnd();
+
+			if (cit->m_Border)
+			{
+				glColor3f(cit->m_BorderColor.r, cit->m_BorderColor.g, cit->m_BorderColor.b);
+				glBegin(GL_LINE_LOOP);
+				glVertex3f(real.left,		real.top+1.f,	cit->m_DeltaZ);
+				glVertex3f(real.right-1.f,	real.top+1.f,	cit->m_DeltaZ);
+				glVertex3f(real.right-1.f,	real.bottom,	cit->m_DeltaZ);
+				glVertex3f(real.left,		real.bottom,	cit->m_DeltaZ);
+				glEnd();
+			}
 		}
 	}
 	glPopMatrix();
@@ -914,9 +926,10 @@ void CGUI::DrawText(const SGUIText &Text, const CColor &DefaultColor,
 
 		glPushMatrix();
 
-		glTranslatef((float)pos.x+it->m_Pos.x, (float)pos.y+it->m_Pos.y, (float)z);
+		// TODO Gee: (2004-09-04) Why are font corrupted if inputted float value?
+		glTranslatef((int)(pos.x+it->m_Pos.x), (int)(pos.y+it->m_Pos.y), z);
 		glColor4f(color.r, color.g, color.b, color.a);
-		glwprintf(L"%hs", it->m_String.c_str());
+		glwprintf(it->m_String);
 
 		glPopMatrix();
 
@@ -1273,7 +1286,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		hotkeyRegisterGUIObject( object->GetName(), hotkeyTag );
 // -- MT
 
-	CStr caption = (CStr)Element.getText();
+	CStrW caption = (CStrW)Element.getText();
 	caption.Trim(PS_TRIM_BOTH);
 	if (caption.Length())
 	{
@@ -1557,6 +1570,26 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
 			}
 			else image.m_BackColor = color;
+		}
+		else
+		if (attr_name == "bordercolor")
+		{
+			CColor color;
+			if (!GUI<CColor>::ParseString(attr_value, color))
+			{
+				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
+			}
+			else image.m_BorderColor = color;
+		}
+		else
+		if (attr_name == "border")
+		{
+			bool b;
+			if (!GUI<bool>::ParseString(attr_value, b))
+			{
+				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
+			}
+			else image.m_Border = b;
 		}
 		// We don't need no else when we're using DTDs.
 	}

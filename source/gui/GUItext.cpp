@@ -212,7 +212,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 			Feedback.m_Size.cx += size.cx;
 			Feedback.m_Size.cy = max(Feedback.m_Size.cy, size.cy);
 
-			// These are also ne eded later
+			// These are also needed later
 			TextCall.m_Size = size;
 
 			if (TextCall.m_String.Length() >= 1)
@@ -278,12 +278,12 @@ bool CGUIString::TextChunk::Tag::SetTagType(const CStr& tagtype)
 	return false;
 }
 
-void CGUIString::SetValue(const CStr& str)
+void CGUIString::SetValue(const CStrW& str)
 {
 	// clear
 	m_TextChunks.clear();
 	m_Words.clear();
-	m_RawString = CStr();
+	m_RawString = CStrW();
 
 	// Setup parser
 	// TODO Gee: (2004-08-16) Create and store this parser object somewhere to save loading time.

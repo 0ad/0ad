@@ -7,6 +7,7 @@ gee@pyro.nu
 #include "precompiled.h"
 #include "GUI.h"
 #include "Parser.h"
+#include "i18n.h"
 
 using namespace std;
 
@@ -20,10 +21,10 @@ bool __ParseString(const CStr& Value, T &tOutput)
 template <>
 bool __ParseString<bool>(const CStr& Value, bool &Output)
 {
-	if (Value == CStr(_T("true")))
+	if (Value == (CStr)"true")
 		Output = true;
 	else
-	if (Value == CStr(_T("false")))
+	if (Value == (CStr)"false")
 		Output = false;
 	else 
 		return false;
@@ -193,7 +194,16 @@ bool __ParseString<EVAlign>(const CStr &Value, EVAlign &Output)
 template <>
 bool __ParseString<CGUIString>(const CStr& Value, CGUIString &Output)
 {
-	Output.SetValue(Value);	
+	// Translate the Value and retrieve the locilised string in
+	//  Unicode.
+
+	// TODO Gee: (2004-09-05) This conversion is UGLY, but I couldn't find any built into CStr.
+	//  Although I assume some easier way will be implemented (or is implemented
+	//  and I just don't know about it), so this is ONLY TEMPORARY.
+	std::string str = Value;
+	std::wstring strw(str.begin(), str.end());
+
+	Output.SetValue((CStrW)translate(CStrW(strw)));	
 	return true;
 }
 
@@ -201,7 +211,7 @@ bool __ParseString<CGUIString>(const CStr& Value, CGUIString &Output)
 //  Help Classes/Structs for the GUI implementation
 //--------------------------------------------------------
 
-CClientArea::CClientArea() : pixel(0,0,0,0), percent(0,0,0,0)
+CClientArea::CClientArea() : pixel(0.f,0.f,0.f,0.f), percent(0.f,0.f,0.f,0.f)
 {
 }
 

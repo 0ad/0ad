@@ -39,7 +39,6 @@ IGUIObject::IGUIObject() :
 	AddSetting(GUIST_CStr,			"hotkey" );
 // -- MT
 	AddSetting(GUIST_float,			"z");
-//	AddSetting(GUIST_CGUIString,	"caption");
 	AddSetting(GUIST_bool,			"absolute");
 	AddSetting(GUIST_bool,			"ghost");
 

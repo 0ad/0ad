@@ -87,7 +87,7 @@ struct SGUIText
 		/**
 		 * The string that is suppose to be rendered.
 		 */
-		CStr m_String;
+		CStrW m_String;
 
 		/**
 		 * Use custom color? If true then m_Color is used,
@@ -257,12 +257,12 @@ public:
 	 * Set the value, the string will automatically
 	 * be parsed when set.
 	 */
-	void SetValue(const CStr& str);
+	void SetValue(const CStrW& str);
 
 	/**
 	 * Get String, without tags
 	 */
-	CStr GetRawString() const { return m_RawString; }
+	CStrW GetRawString() const { return m_RawString; }
 
 	/**
 	 * Generate Text Call from specified range. The range
@@ -303,7 +303,7 @@ private:
 	/**
 	 * The full raw string. Stripped of tags.
 	 */
-	CStr m_RawString;
+	CStrW m_RawString;
 };
 
 #endif
