@@ -182,8 +182,6 @@ int tcat_s(tchar* dst, size_t max_dst_chars, const tchar* src)
 }
 
 
-#endif
-
 //////////////////////////////////////////////////////////////////////////////
 //
 // built-in self test
@@ -357,3 +355,5 @@ STMT(                                                                        \
 static int dummy = test();
 
 #endif	// #ifndef NDEBUG
+
+#endif	// #if _MSC_VER < 1400
