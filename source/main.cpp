@@ -763,11 +763,12 @@ static void psInit()
 	g_GUI.LoadXMLFile("gui/test/sprite1.xml");
 
 	// Temporary hack until revised GUI structure is completed.
-	g_GUI.LoadXMLFile("gui/test/1_global.xml");
+	g_GUI.LoadXMLFile("gui/test/1_init.xml");
 	g_GUI.LoadXMLFile("gui/test/2_mainmenu.xml");
 	g_GUI.LoadXMLFile("gui/test/3_session.xml");
 	g_GUI.LoadXMLFile("gui/test/4_manual.xml");
-	g_GUI.LoadXMLFile("gui/test/5_atlas.xml");
+	g_GUI.LoadXMLFile("gui/test/5_atlas.xml")
+	g_GUI.LoadXMLFile("gui/test/6_global.xml");
 
 	g_GUI.LoadXMLFile("gui/test/hello.xml");
 #endif
