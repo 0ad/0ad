@@ -591,126 +591,126 @@
 			]]></action>
 
                         <!-- FOOD icon/background/text-->
-                        <object type="text" name="resource_food" sprite="resource_food" z="70" hidden="false">
+                        <object type="text" name="resource_food" sprite="resource_food" z="70" ghost="true" hidden="false">
 				<action on="Load"><![CDATA[
 					AddSize(this.name,
-					"50%-191 4       100% 100%", 
-					"50%-191 100%-24 100% 100%");
+					"50%-191 0%+4 50%-171 0%+24", 
+					"50%-191 100%-24 50%-171 100%-4");
 				]]></action>
 			</object>
-                        <object type="text" name="resource_food_counter" sprite="resource_counter" z="70" hidden="false">
+                        <object type="text" name="resource_food_counter" sprite="resource_counter" z="70" font="prospero16" textcolor="255 255 255" ghost="true" hidden="false">
 				<action on="Load"><![CDATA[
 					AddSize(this.name,
-					"50%-171 5 100% 100%", 
-					"50%-171 100%-25 100% 100%");
+					"50%-171 0%+5 50%-118 0%+24", 
+					"50%-171 100%-24 50%-118 100%-5");
 				]]></action>
 			</object>
-                        <object type="text" name="resource_food_text" font="prospero16" textcolor="255 255 255" z="70" hidden="false">
+                        <object type="text" name="resource_food_text" font="prospero16" text-align="left" textcolor="255 255 255" z="70" ghost="true" hidden="false">
                                 <action on="Load"><![CDATA[
                                         this.caption = "123,456";
 					AddSize(this.name,
-					"50%-173 0%-3 100% 0%+20", 
-					"50%-173 100%-30 100% 100%");
+					"50%-175 0%+1 50%-118 0%+10", 
+					"50%-175 100%-28 50%-118 100%-4");
                                 ]]></action>
                         </object>
 
                         <!-- WOOD -->
                         <!-- icon/background/text -->
-                        <object type="text" name="resource_wood" sprite="resource_wood" z="70" hidden="false">
+                        <object type="text" name="resource_wood" sprite="resource_wood" z="70" ghost="true" hidden="false">
 				<action on="Load"><![CDATA[
 					AddSize(this.name,
-					"50%-111 4       100% 100%", 
-					"50%-111 100%-24 100% 100%");
+					"50%-111 0%+4 50%-91 0%+24", 
+					"50%-111 100%-24 50%-91 100%-4");
 				]]></action>
 			</object>
-                        <object type="text" name="resource_wood_counter" sprite="resource_counter" z="70" hidden="false">
+                        <object type="text" name="resource_wood_counter" sprite="resource_counter" z="70" ghost="true" hidden="false">
 				<action on="Load"><![CDATA[
 					AddSize(this.name,
-					"50%-91 5 100% 100%", 
-					"50%-91 100%-25 100% 100%");
+					"50%-91 0%+5 50%-38 0%+24", 
+					"50%-91 100%-24 50%-38 100%-5");
 				]]></action>
 			</object>
-                        <object type="text" name="resource_wood_text" font="prospero16" textcolor="255 255 255" z="70" hidden="false">
+                        <object type="text" name="resource_wood_text" font="prospero16" textcolor="255 255 255" z="70" ghost="true" hidden="false">
                                 <action on="Load"><![CDATA[
                                         this.caption = "789,012";
 					AddSize(this.name,
-					"50%-93 0%-3 100% 0%+20", 
-					"50%-93 100%-30 100% 100%");
+					"50%-95 0%+1 50%-42 0%+10", 
+					"50%-95 100%-28 50%-42 100%-4");
                                 ]]></action>
                         </object>
 
                         <!-- STONE -->
                         <!-- icon/background/text -->
-                        <object type="text" name="resource_stone" sprite="resource_stone" z="70" hidden="false">
+                        <object type="text" name="resource_stone" sprite="resource_stone" z="70" ghost="true" hidden="false">
 				<action on="Load"><![CDATA[
 					AddSize(this.name,
-					"50%-31 4       100% 100%", 
-					"50%-31 100%-24 100% 100%");
+					"50%-31 0%+4 50%-11 0%+24", 
+					"50%-31 100%-24 50%-11 100%-4");
 				]]></action>
 			</object>
-                        <object type="text" name="resource_stone_counter" sprite="resource_counter" z="70" hidden="false">
+                        <object type="text" name="resource_stone_counter" sprite="resource_counter" z="70" ghost="true" hidden="false">
 				<action on="Load"><![CDATA[
 					AddSize(this.name,
-					"50%-11 5 100% 100%", 
-					"50%-11 100%-25 100% 100%");
+					"50%-11 0%+5 50%+42 0%+24", 
+					"50%-11 100%-24 50%+42 100%-5");
 				]]></action>
 			</object>
-                        <object type="text" name="resource_stone_text" font="prospero16" textcolor="255 255 255" z="70" hidden="false">
+                        <object type="text" name="resource_stone_text" font="prospero16" textcolor="255 255 255" z="70" ghost="true" hidden="false">
                                 <action on="Load"><![CDATA[
                                         this.caption = "345,678";
 					AddSize(this.name,
-					"50%-13 0%-3 100% 0%+20", 
-					"50%-13 100%-30 100% 100%");
+					"50%-13 0%+1 50%+40 0%+10", 
+					"50%-13 100%-28 50%+40 100%-4");
                                 ]]></action>
                         </object>
 
                         <!-- ORE -->
                         <!-- icon/background/text -->
-                        <object type="text" name="resource_ore" sprite="resource_ore" z="70" hidden="false">
+                        <object type="text" name="resource_ore" sprite="resource_ore" z="70" ghost="true" hidden="false">
 				<action on="Load"><![CDATA[
 					AddSize(this.name,
-					"50%+49 4       100% 100%", 
-					"50%+49 100%-24 100% 100%");
+					"50%+49 0%+4 50%-29 0%+24", 
+					"50%+49 100%-24 50%-29 100%-4");
 				]]></action>
 			</object>
-                        <object type="text" name="resource_ore_counter" sprite="resource_counter" z="70" hidden="false">
+                        <object type="text" name="resource_ore_counter" sprite="resource_counter" z="70" ghost="true" hidden="false">
 				<action on="Load"><![CDATA[
 					AddSize(this.name,
-					"50%+69 5 100% 100%", 
-					"50%+69 100%-25 100% 100%");
+					"50%+69 0%+5 50%+122 0%+24", 
+					"50%+69 100%-24 50%+122 100%-5");
 				]]></action>
 			</object>
-                        <object type="text" name="resource_ore_text" font="prospero16" textcolor="255 255 255" z="70" hidden="false">
+                        <object type="text" name="resource_ore_text" font="prospero16" textcolor="255 255 255" z="70" ghost="true" hidden="false">
                                 <action on="Load"><![CDATA[
                                         this.caption = "910,123";
 					AddSize(this.name,
-					"50%+67 0%-3 100% 0%+20", 
-					"50%+67 100%-30 100% 100%");
+					"50%+67 0%+1 50%+120 0%+24", 
+					"50%+67 100%-28 50%+120 100%-4");
                                 ]]></action>
                         </object>
 
                         <!-- POPULATION -->
                         <!-- icon/background/text -->
-                        <object type="text" name="resource_population" sprite="resource_population" z="70" hidden="false">
+                        <object type="text" name="resource_population" sprite="resource_population" z="70" ghost="true" hidden="false">
 				<action on="Load"><![CDATA[
 					AddSize(this.name,
-					"50%+129 4       100% 100%", 
-					"50%+129 100%-24 100% 100%");
+					"50%+129 0%+4 50%+149 0%+24", 
+					"50%+129 100%-24 50%+149 100%-4");
 				]]></action>
 			</object>
-                        <object type="text" name="resource_population_counter" sprite="resource_counter_long" z="70" hidden="false">
+                        <object type="text" name="resource_population_counter" sprite="resource_counter_long" z="70" ghost="true" hidden="false">
 				<action on="Load"><![CDATA[
 					AddSize(this.name,
-					"50%+149 5 100% 100%", 
-					"50%+149 100%-25 100% 100%");
+					"50%+149 0%+5 50%+202 0%+24", 
+					"50%+149 100%-24 50%+202 100%-5");
 				]]></action>
 			</object>
-                        <object type="text" name="resource_population_text" font="prospero16" textcolor="255 255 255" z="70" hidden="false">
+                        <object type="text" name="resource_population_text" font="prospero16" textcolor="255 255 255" z="70" ghost="true" hidden="false">
                                 <action on="Load"><![CDATA[
                                         this.caption = "100/150";
 					AddSize(this.name,
-					"50%+147 0%-3 100% 0%+20", 
-					"50%+147 100%-30 100% 100%");
+					"50%+147 0%+1 50%+200 0%+24", 
+					"50%+147 100%-28 50%+200 100%-4");
                                 ]]></action>
                         </object>
 
@@ -723,11 +723,11 @@
 				GUIObjectToggle("session_map_orb");
 			]]></action>
 
-			<object type="text" name="session_panel_minimap_bg" sprite="session_panel_minimap_bg" z="60" hidden="false">
+			<object type="text" name="session_panel_minimap_bg" sprite="session_panel_minimap_bg" z="60" ghost="true" hidden="false">
 				<action on="Load"><![CDATA[
 					AddSize(this.name,
-					"100%-174 2 100% 100%", 
-					"100%-174 100%-174 100% 100%");
+					"100%-174 0%+2 100% 0%+176", 
+					"100%-174 100%-174 100% 100%-176");
 				]]></action>
 			</object>
 
@@ -742,58 +742,58 @@
                         <object type="button" name="session_panel_minimap_segleft1" sprite="session_panel_minimap_segleft1" z="60" hidden="false">
 				<action on="Load"><![CDATA[
 					AddSize(this.name,
-					"100%-206 2 100% 100%", 
-					"100%-206 100%-175 100% 100%");
+					"100%-206 0%+2 100%-174 0%+38", 
+					"100%-206 100%-175 100%-174 100%-129");
 				]]></action>
 			</object>
                         <object type="button" name="session_panel_minimap_segleft2" sprite="session_panel_minimap_segleft2" z="60" hidden="false">
 				<action on="Load"><![CDATA[
 					AddSize(this.name,
-					"100%-214 45 100% 100%", 
-					"100%-214 100%-131 100% 100%");
+					"100%-214 0%+45 100%-174 0%+89", 
+					"100%-214 100%-131 100%-174 100%-87");
 				]]></action>
 			</object>
                         <object type="button" name="session_panel_minimap_segleft3" sprite="session_panel_minimap_segleft3" z="60" hidden="false">
 				<action on="Load"><![CDATA[
 					AddSize(this.name,
-					"100%-214 86 100% 100%", 
-					"100%-214 100%-90 100% 100%");
+					"100%-214 0%+86 100%-174 0%+130", 
+					"100%-214 100%-90 100%-174 100%-46");
 				]]></action>
 			</object>
                         <object type="button" name="session_panel_minimap_segleft4" sprite="session_panel_minimap_segleft4" z="60" hidden="false">
 				<action on="Load"><![CDATA[
 					AddSize(this.name,
-					"100%-206 127 100% 100%", 
-					"100%-206 100%-48 100% 100%");
+					"100%-206 0%+127 100%-174 0%+163", 
+					"100%-206 100%-48 100%-174 100%-12");
 				]]></action>
 			</object>
 
                         <object type="button" name="session_panel_minimap_segbottom4" sprite="session_panel_minimap_segbottom4" z="60" hidden="false">
 				<action on="Load"><![CDATA[
 					AddSize(this.name,
-					"100%-46 173 100% 100%", 
-					"100%-46 100%-205 100% 100%");
+					"100%-46 0%+173 100%-2 0%+213", 
+					"100%-46 100%-205 100%-2 100%-165");
 				]]></action>
 			</object>
                         <object type="button" name="session_panel_minimap_segbottom3" sprite="session_panel_minimap_segbottom3" z="60" hidden="false">
 				<action on="Load"><![CDATA[
 					AddSize(this.name,
-					"100%-88 173 100% 100%", 
-					"100%-88 100%-213 100% 100%");
+					"100%-88 0%+173 100%-42 0%+213", 
+					"100%-88 100%-213 100%-42 100%");
 				]]></action>
 			</object>
                         <object type="button" name="session_panel_minimap_segbottom2" sprite="session_panel_minimap_segbottom2" z="60" hidden="false">
 				<action on="Load"><![CDATA[
 					AddSize(this.name,
-					"100%-130 173 100% 100%", 
-					"100%-130 100%-213 100% 100%");
+					"100%-130 0%+173 100%-84 0%+213", 
+					"100%-130 100%-213 100%-84 100%");
 				]]></action>
 			</object>
                         <object type="button" name="session_panel_minimap_segbottom1" sprite="session_panel_minimap_segbottom1" z="60" hidden="false">
 				<action on="Load"><![CDATA[
 					AddSize(this.name,
-					"100%-174 173 100% 100%", 
-					"100%-174 100%-205 100% 100%");
+					"100%-174 0%+173 100%-130 0%+213", 
+					"100%-174 100%-205 100%-130 100%-165");
 				]]></action>
 			</object>
 
@@ -1110,7 +1110,7 @@
                 -->
 
                 <!-- FPS COUNTER -->
-                <object type="text" name="FPS_Counter" z="100" hotkey="fps.toggle" textcolor="200 200 0" font="verdana16" hidden="false">
+                <object type="text" name="FPS_Counter" z="100" hotkey="fps.toggle" textcolor="200 200 0" font="verdana16" ghost="true" hidden="false">
                         <action on="Load"><![CDATA[
 				AddSize("FPS_Counter",
 				"18 100%-35 200 100%", 
