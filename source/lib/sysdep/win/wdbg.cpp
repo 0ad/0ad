@@ -612,7 +612,7 @@ static void set_exception_handler()
 
 
 
-int wdbg_show_assert_dlg(char* file, int line, char* expr)
+int debug_assert_failed(const char* file, int line, const char* expr)
 {
 	ONCE(dbg_init());
 

@@ -17,9 +17,15 @@ extern "C" {
 
 extern void display_msg(const char* caption, const char* msg);
 extern void wdisplay_msg(const wchar_t* caption, const wchar_t* msg);
-extern void debug_out(const char* fmt, ...);
 
+extern void debug_out(const char* fmt, ...);
 extern void debug_break();
+
+
+// assert with stack trace (including variable / parameter types and values)
+// shown in a dialog, which offers
+//   continue, break, suppress (ignore this assert), and exit
+extern int debug_assert_failed(const char* file, int line, const char* expr);
 
 extern void check_heap();
 
