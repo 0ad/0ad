@@ -101,7 +101,8 @@ void CPatchRData::BuildBlends()
 				}
 			}
 			if (neighbourTextures.size()>0) {
-				u32 count=neighbourTextures.size();
+//				u32 count=neighbourTextures.size();
+// janwas fixing warnings: not used?
 				// sort textures from lowest to highest priority
 				std::sort(neighbourTextures.begin(),neighbourTextures.end());
 
@@ -476,7 +477,7 @@ void CPatchRData::RenderStreams(u32 streamflags)
 	if (streamflags & STREAM_UV0) glTexCoordPointer(2,GL_FLOAT,sizeof(SBaseVertex),base+offsetof(SBaseVertex,m_UVs));
 	
 	// render all base splats at once
-	glDrawElements(GL_QUADS,m_Indices.size(),GL_UNSIGNED_SHORT,&m_Indices[0]);
+	glDrawElements(GL_QUADS,(GLsizei)m_Indices.size(),GL_UNSIGNED_SHORT,&m_Indices[0]);
 
 	// bump stats
 	g_Renderer.m_Stats.m_DrawCalls++;

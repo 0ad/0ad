@@ -7,15 +7,9 @@
 #include "ObjectManager.h"
 #include "Prometheus.h"
 
-#include "time.h"
 #include "sdl.h"
 #include "res/tex.h"
 #include "detect.h"
-
-#include <malloc.h>
-
-// TODO: fix scrolling hack - framerate independent, use SDL
-//#include "win.h"	// REMOVEME
 
 void InitScene ();
 void InitResources ();

@@ -67,7 +67,7 @@ void CFileUnpacker::Read(const char* filename,const char magicstr[4])
 // UnpackRaw: unpack given number of bytes from the input stream into the given array
 //	- throws CFileEOFError if the end of the data stream is reached before the given 
 // number of bytes have been read
-void CFileUnpacker::UnpackRaw(void* rawdata,u32 rawdatalen)
+void CFileUnpacker::UnpackRaw(void* rawdata,size_t rawdatalen)
 {
 	// got enough data to unpack?
 	if (m_UnpackPos+rawdatalen<=m_Data.size()) {

@@ -21,7 +21,12 @@
 #include "CStr.h"
 #include "Vector3D.h"
 
+#pragma warning(push)
+#pragma warning(disable:4996)
+
 #include <hash_map>
+
+#pragma warning(pop)
 
 class CGenericProperty
 {

@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "EntityHandles.h"
 #include "EntityManager.h"
 
