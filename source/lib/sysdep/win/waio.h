@@ -1,6 +1,6 @@
 // POSIX asynchronous I/O for Win32
 //
-// Copyright (c) 2003 Jan Wassenberg
+// Copyright (c) 2003-2005 Jan Wassenberg
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -16,14 +16,17 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
-// included by lib.h
+// included by wposix.h and waio.cpp
 
-// Note: for maximum efficiency, transfer buffers, offsets, and lengths
-// should be sector aligned (otherwise, buffer is copied).
-
+#ifndef WAIO_H__
+#define WAIO_H__
 
 #include "lib/types.h"
 #include "wposix_types.h"
+
+
+// Note: for maximum efficiency, transfer buffers, offsets, and lengths
+// should be sector aligned (otherwise, buffer is copied).
 
 
 //
@@ -91,3 +94,5 @@ extern int aio_reopen(int fd, const char* fn, int oflag, ...);
 
 // allocate and return a file descriptor 
 extern int aio_assign_handle(uintptr_t handle);
+
+#endif	// #ifndef WAIO_H__

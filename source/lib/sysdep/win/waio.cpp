@@ -19,6 +19,7 @@
 #include "precompiled.h"
 
 #include "lib.h"
+#include "waio.h"
 #include "win_internal.h"
 
 #include <assert.h>

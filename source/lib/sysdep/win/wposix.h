@@ -29,10 +29,10 @@
 #include <stddef.h>
 
 // split out of this module.
-// (actually included later, because they depend on some of our defs
 #include "waio.h"
 #include "wsock.h"
 #include "wtime.h"
+#include "wpthread.h"
 
 
 #ifdef __cplusplus
@@ -288,68 +288,6 @@ struct termios
 
 extern int tcgetattr(int fd, struct termios* termios_p);
 extern int tcsetattr(int fd, int optional_actions, const struct termios* termios_p);
-
-
-//
-// <sched.h>
-//
-
-struct sched_param
-{
-	int sched_priority;
-};
-
-enum
-{
-	SCHED_RR,
-	SCHED_FIFO,
-	SCHED_OTHER
-};
-
-#define sched_get_priority_max(policy) +2
-#define sched_get_priority_min(policy) -2
-	// changing will break pthread_setschedparam
-
-
-//
-// <pthread.h>
-//
-
-typedef unsigned int pthread_t;
-
-extern pthread_t pthread_self(void);
-extern int pthread_getschedparam(pthread_t thread, int* policy, struct sched_param* param);
-extern int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param* param);
-
-extern int pthread_create(pthread_t* thread, const void* attr, void*(*func)(void*), void* arg);
-extern void pthread_cancel(pthread_t thread);
-extern void pthread_join(pthread_t thread, void** value_ptr);
-
-typedef void* pthread_mutex_t;	// pointer to critical section
-typedef void pthread_mutexattr_t;
-
-extern pthread_mutex_t pthread_mutex_initializer(void);
-#define PTHREAD_MUTEX_INITIALIZER pthread_mutex_initializer()
-
-extern int pthread_mutex_init(pthread_mutex_t*, const pthread_mutexattr_t*);
-extern int pthread_mutex_destroy(pthread_mutex_t*);
-
-extern int pthread_mutex_lock(pthread_mutex_t*);
-extern int pthread_mutex_trylock(pthread_mutex_t*);
-extern int pthread_mutex_unlock(pthread_mutex_t*);
-extern int pthread_mutex_timedlock(pthread_mutex_t*, const struct timespec*);
-
-
-//
-// <semaphore.h>
-//
-
-typedef uintptr_t sem_t;
-
-extern int sem_init(sem_t*, int pshared, unsigned value);
-extern int sem_post(sem_t*);
-extern int sem_wait(sem_t*);
-extern int sem_destroy(sem_t*);
 
 
 //
