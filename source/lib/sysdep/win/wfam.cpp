@@ -84,6 +84,10 @@ struct Watch
 	DWORD last_action;	// FILE_ACTION_* codes or 0
 	DWORD last_ticks;	// timestamp via GetTickCount
 
+	DWORD dummy_nbytes;
+		// storage for RDC lpBytesReturned, to avoid BoundsChecker warning
+		// (dox are unclear on whether the pointer must be valid).
+
 	OVERLAPPED ovl;
 		// fields aren't used.
 		// overlapped I/O completation notification is via IOCP.
@@ -205,17 +209,6 @@ static int alloc_watch(FAMConnection* const fc, const FAMRequest* const fr, Watc
 }
 
 
-static int free_watch(FAMConnection* const fc, const FAMRequest* const fr, Watch*& w)
-{
-	GET_APP_STATE(fc, state);
-	Watches& watches = state->watches;
-
-	watches.erase(fr->reqnum);
-	w = 0;
-	return 0;
-}
-
-
 static int find_watch(FAMConnection* const fc, const FAMRequest* const fr, Watch*& w)
 {
 	GET_APP_STATE(fc, state);
@@ -230,6 +223,20 @@ static int find_watch(FAMConnection* const fc, const FAMRequest* const fr, Watch
 #define GET_WATCH(fc, fr, watch_ptr_var)\
 	Watch* watch_ptr_var;\
 	CHECK_ERR(find_watch(fc, fr, watch_ptr_var))
+
+
+static int free_watch(FAMConnection* const fc, const FAMRequest* const fr, Watch*& w)
+{
+	GET_APP_STATE(fc, state);
+	Watches& watches = state->watches;
+	WatchIt it = watches.find(fr->reqnum);
+	if(it == watches.end())
+		return -1;
+	delete it->second;
+	watches.erase(it);
+	w = 0;
+	return 0;
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -459,7 +466,7 @@ static int get_packet(FAMConnection* fc)
 						 FILE_NOTIFY_CHANGE_CREATION;
 	const DWORD buf_size = sizeof(w->change_buf);
 	memset(&w->ovl, 0, sizeof(w->ovl));
-	BOOL ret = ReadDirectoryChangesW(w->hDir, w->change_buf, buf_size, FALSE, filter, 0, &w->ovl, 0);
+	BOOL ret = ReadDirectoryChangesW(w->hDir, w->change_buf, buf_size, FALSE, filter, &w->dummy_nbytes, &w->ovl, 0);
 	if(!ret)
 		debug_warn("ReadDirectoryChangesW failed");
 
