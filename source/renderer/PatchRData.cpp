@@ -581,28 +581,32 @@ void CPatchRData::RenderBaseSplats()
 	MICROLOG(L"base splat textures");
 	glActiveTexture(GL_TEXTURE0);
 	glClientActiveTexture(GL_TEXTURE0);
+	oglCheck();
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+	oglCheck();
 
+	// Set alpha to 1.0
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_ZERO);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_ONE_MINUS_SRC_ALPHA);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_CONSTANT);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+	float one[4] = { 1.f, 1.f, 1.f, 1.f };
+	glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, one);
+	oglCheck();
 
 #if 1
 	// submit base batches for each patch to the vertex buffer
-	MICROLOG(L"submitting %d patches", m_Patches.size());
 	for (i=0;i<m_Patches.size();++i) {
-		MICROLOG(L"%d", i);
 		CPatchRData* patchdata=(CPatchRData*) m_Patches[i]->GetRenderData();
 		patchdata->SubmitBaseBatches();
 	}
+	oglCheck();
 
 	// render base passes for each patch
-	MICROLOG(L"get buffer list");
 	const std::list<CVertexBuffer*>& buffers=g_VBMan.GetBufferList();
 	std::list<CVertexBuffer*>::const_iterator iter;
 	for (iter=buffers.begin();iter!=buffers.end();++iter) {
