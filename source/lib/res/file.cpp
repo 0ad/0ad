@@ -511,7 +511,9 @@ ssize_t ll_wait_io(ll_cb* lcb, void*& p)
 	while(aio_error(cb) == EINPROGRESS)
 		aio_suspend(&cb, 1, NULL);
 
-	p = cb->aio_buf;
+	// posix has aio_buf as volatile void, and gcc doesn't like to cast it
+	// implicitly
+	p = (void *)cb->aio_buf;
 
 	// return how much was actually transferred,
 	// or -1 if the transfer failed.

@@ -57,7 +57,7 @@ double get_time()
 		gettimeofday(&start, 0);
 
 	gettimeofday(&cur, 0);
-	t = (cur.tv_sec - start.tv_sec) + (cur.tv_nsec - start.tv_nsec)*1e-6;
+	t = (cur.tv_sec - start.tv_sec) + (cur.tv_usec - start.tv_usec)*1e-6;
 
 #else
 

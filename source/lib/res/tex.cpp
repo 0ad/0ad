@@ -39,9 +39,13 @@
 #define WINAPIV __cdecl
 
 #ifndef NO_PNG
-# include <libpng10/png.h>
-# ifdef _MSC_VER
-#  pragma comment(lib, "libpng10.lib")
+# ifdef _WIN32
+#  include <libpng10/png.h>
+# else
+#  include <png.h>
+#  ifdef _MSC_VER
+#   pragma comment(lib, "libpng10.lib")
+#  endif
 # endif
 #endif
 
@@ -126,7 +130,7 @@ DDSURFACEDESC2;
 static inline bool dds_valid(const u8* ptr, size_t size)
 {
 	UNUSED(size)	// only need first 4 chars
-
+	
 	return *(u32*)ptr == FOURCC('D','D','S',' ');
 }
 

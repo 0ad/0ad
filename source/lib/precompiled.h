@@ -25,3 +25,5 @@
 #pragma warning(disable:4996)	// function is deprecated
 #pragma warning(disable:4786)	// identifier truncated to 255 chars
 #endif
+
+#include "config.h"

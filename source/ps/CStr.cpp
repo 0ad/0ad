@@ -83,7 +83,7 @@ int CStr::ToInt() const
 
 unsigned int CStr::ToUInt() const
 {
-	return unsigned int(_ttoi(m_String.c_str()));
+	return uint(_ttoi(m_String.c_str()));
 }
 
 long CStr::ToLong() const
@@ -93,7 +93,7 @@ long CStr::ToLong() const
 
 unsigned long CStr::ToULong() const
 {
-	return unsigned long(_ttol(m_String.c_str()));
+	return ulong(_ttol(m_String.c_str()));
 }
 
 
