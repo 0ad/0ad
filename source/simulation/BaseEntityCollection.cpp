@@ -3,34 +3,39 @@
 #include "BaseEntityCollection.h"
 #include "ObjectManager.h"
 #include "Model.h"
-#include "io.h"
 
 void CBaseEntityCollection::loadTemplates()
 {
-	_finddata_t file;
-	intptr_t handle;
-
-	CStr pathname = "mods/official/entities/templates/";
-	CStr filespec = pathname + "*.xml";
+	Handle handle;
+	vfsDirEnt dent;
 	
-	handle = _findfirst( filespec, &file );
-    if( handle != -1 )
-	{	
-		do
+	CStr pathname = "mods/official/entities/templates/";
+	handle=vfs_open_dir("entities/templates/");
+	if (handle > 0)
+	{
+		while (vfs_next_dirent(handle, &dent, ".xml"))
 		{
 			CBaseEntity newTemplate;
-			if( newTemplate.loadXML( pathname + file.name ) )
+			if( newTemplate.loadXML( pathname + dent.name ) )
+			{
 				addTemplate( newTemplate );
+				LOG(NORMAL, "CBaseEntityCollection::loadTemplates(): Loaded template \"%s%s\"", pathname.c_str(), dent.name);
+			}
+			else
+				LOG(ERROR, "CBaseEntityCollection::loadTemplates(): Couldn't load template \"%s%s\"", pathname.c_str(), dent.name);
+
 		}
-		while( !_findnext( handle, &file ) );
-
-        _findclose(handle);
+		vfs_close_dir(handle);
 	}
-
+	else
+	{
+		LOG(ERROR, "CBaseEntityCollection::loadTemplates(): Failed to enumerate entity template directory\n");
+		return;
+	}
+	
 	// He's so annoyingly slow...
 	CBaseEntity* dude = getTemplate( "Prometheus Dude" );
 	dude->m_speed *= 10.0f;
-
 }
 
 void CBaseEntityCollection::addTemplate( CBaseEntity& temp )
