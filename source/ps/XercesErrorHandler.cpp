@@ -1,5 +1,5 @@
 /*
-Xerces Error Handler for Prometheus (and the GUI)
+Xerces Error Handler for Pyrogenesis (and the GUI)
 by Gustav Larsson
 gee@pyro.nu
 */
@@ -14,7 +14,7 @@ gee@pyro.nu
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
-#include "Prometheus.h"
+#include "Pyrogenesis.h"
 #include "CLogger.h"
 
 #define LOG_CATEGORY "xml"

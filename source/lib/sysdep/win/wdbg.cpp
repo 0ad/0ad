@@ -718,7 +718,7 @@ static void set_exception_handler()
 
 // Split this into a separate function because destructors and __try don't mix
 void i18n_display_fatal_msg(const wchar_t* errortext) {
-	CStrW title = translate(L"Prometheus Failure");
+	CStrW title = translate(L"Pyrogenesis Failure");
 	CStrW message = translate(L"A fatal error has occurred: $msg. Please report this to http://bugs.wildfiregames.com/ and attach the crashlog.txt and crashlog.dmp files from your 'data' folder.") << I18n::Raw(errortext);
 	wdisplay_msg(title.c_str(), message.c_str());
 }
@@ -845,7 +845,7 @@ int debug_main_exception_filter(unsigned int UNUSEDPARAM(code), PEXCEPTION_POINT
 		swprintf(message, 1024, L"A fatal error has occurred: %ls.\nPlease report this to http://bugs.wildfiregames.com/ and attach the crashlog.txt and crashlog.dmp files from your 'data' folder.", errortext);
 		message[1023] = 0;
 
-		wdisplay_msg(L"Prometheus failure", message);
+		wdisplay_msg(L"Pyrogenesis failure", message);
 	}
 
 
@@ -855,7 +855,7 @@ int debug_main_exception_filter(unsigned int UNUSEDPARAM(code), PEXCEPTION_POINT
 	}
 	__except (EXCEPTION_EXECUTE_HANDLER)
 	{
-		wdisplay_msg(L"Prometheus failure", L"Error generating crash log.");
+		wdisplay_msg(L"Pyrogenesis failure", L"Error generating crash log.");
 	}
 
 	__try
@@ -867,7 +867,7 @@ int debug_main_exception_filter(unsigned int UNUSEDPARAM(code), PEXCEPTION_POINT
 	}
 	__except (EXCEPTION_EXECUTE_HANDLER)
 	{
-		wdisplay_msg(L"Prometheus failure", L"Error generating crash dump.");
+		wdisplay_msg(L"Pyrogenesis failure", L"Error generating crash dump.");
 	}
 
 	// Disable memory-leak reporting, because it's going to

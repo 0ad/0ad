@@ -13,7 +13,7 @@
 #include "HFTracer.h"
 #include "TextureManager.h"
 #include "ObjectManager.h"
-#include "Prometheus.h"
+#include "Pyrogenesis.h"
 #include "Hotkey.h"
 #include "ConfigDB.h"
 

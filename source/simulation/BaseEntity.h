@@ -5,7 +5,7 @@
 // Entity Templates
 //
 // Usage: These templates are used as the default values for entity properties.
-//        Due to Prometheus' data-inheritance model for these properties,
+//        Due to Pyrogenesis' data-inheritance model for these properties,
 //			 templates specify a base-template, then override only those properties
 //			 in that template that need to change.
 //        Similarly, entities need only specify properties they possess that are

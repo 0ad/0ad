@@ -50,7 +50,7 @@ enum PS_TRIM_MODE { PS_TRIM_LEFT, PS_TRIM_RIGHT, PS_TRIM_BOTH };
 #if !defined(CSTR_H) || defined(IN_UNIDOUBLER)
 #define CSTR_H
 
-#include "Prometheus.h"
+#include "Pyrogenesis.h"
 #include <string>				// Used for basic string functionality
 #include <iostream>
 #include "ps/utf16string.h"

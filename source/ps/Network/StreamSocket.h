@@ -2,7 +2,7 @@
 #define _StreamSocket_H
 
 #include "types.h"
-#include "Prometheus.h"
+#include "Pyrogenesis.h"
 #include "Network.h"
 #include "SocketBase.h"
 

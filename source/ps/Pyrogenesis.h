@@ -1,13 +1,13 @@
 /*
-Prometheus.h
+Pyrogenesis.h
 by Raj Sharma
 rsharma@uiuc.edu
 
 Standard declarations which are included in all projects.
 */
 
-#ifndef PROMETHEUS_H
-#define PROMETHEUS_H
+#ifndef PYROGENESIS_H
+#define PYROGENESIS_H
 
 
 typedef const char * PS_RESULT;

@@ -33,7 +33,7 @@
 #ifndef _ps_ConfigDB_H
 #define _ps_ConfigDB_H
 
-#include "Prometheus.h"
+#include "Pyrogenesis.h"
 #include "Parser.h"
 #include "CStr.h"
 #include "Singleton.h"

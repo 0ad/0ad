@@ -16,7 +16,7 @@ There may be a better way to do this but this looks alright to me.
 */
 
 
-#include "Prometheus.h"
+#include "Pyrogenesis.h"
 
 #ifndef ENCRYPTION_H
 #define ENCRYPTION_H

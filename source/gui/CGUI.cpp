@@ -27,7 +27,7 @@ gee@pyro.nu
 #include "ps/Xeromyces.h"
 #include "ps/Font.h"
 
-#include "Prometheus.h"
+#include "Pyrogenesis.h"
 #include "input.h"
 #include "OverlayText.h"
 // TODO Gee: Whatever include CRect/CPos/CSize
@@ -296,7 +296,7 @@ void CGUI::Initialize()
 {
 	// Add base types!
 	//  You can also add types outside the GUI to extend the flexibility of the GUI.
-	//  Prometheus though will have all the object types inserted from here.
+	//  Pyrogenesis though will have all the object types inserted from here.
 	AddObjectType("empty",			&CGUIDummyObject::ConstructObject);
 	AddObjectType("button",			&CButton::ConstructObject);
 	AddObjectType("image",			&CImage::ConstructObject);

@@ -33,7 +33,7 @@ gee@pyro.nu
 #include <vector>
 #include <stddef.h>
 
-#include "Prometheus.h"
+#include "Pyrogenesis.h"
 #include "CStr.h"
 #include "types.h"
 #include "ogl.h"

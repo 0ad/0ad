@@ -1,7 +1,7 @@
 // JSInterface_Entity.h
 //
 // 
-// A JavaScript class representing a Prometheus CVector3D object.
+// A JavaScript class representing a Pyrogenesis CVector3D object.
 //
 // Usage: Used when manipulating objects of class 'Vector3D' in JavaScript.
 //

@@ -1,5 +1,5 @@
 /*
-Xerces Error Handler for Prometheus (and the GUI)
+Xerces Error Handler for Pyrogenesis (and the GUI)
 by Gustav Larsson
 gee@pyro.nu
 
@@ -7,7 +7,7 @@ gee@pyro.nu
 
 	This is a class that that will let us output
 	 Xerces C++ Parser errors in our own Log
-	 or whatever, fit to Prometheus and foremost
+	 or whatever, fit to Pyrogenesis and foremost
 	 the GUI.
 
 --More info--
@@ -28,7 +28,7 @@ gee@pyro.nu
  * @author Gustav Larsson
  *
  * Adapter function that catches Xerces Reading Exceptions
- * and lets us output them in Prometheus CLogFile.
+ * and lets us output them in Pyrogenesis CLogFile.
  *
  * Used for all Xerces C++ Parser reading.
  *

@@ -1,6 +1,6 @@
 #include "precompiled.h"
 
-#include "Prometheus.h"
+#include "Pyrogenesis.h"
 #include "Parser.h"
 #include "ConfigDB.h"
 #include "CLogger.h"

@@ -4,7 +4,7 @@
 #include "CConsole.h"
 #include "CLogger.h"
 
-#include "Prometheus.h"
+#include "Pyrogenesis.h"
 #include "sysdep/sysdep.h"
 #include "input.h"
 #include "Hotkey.h"
