@@ -30,7 +30,7 @@ namespace PlayerArray_JS
 		{
 			for (size_t i=pInstance->m_Players.size();i<=index;i++)
 			{
-				CPlayer *pNewPlayer=new CPlayer((int)i);
+				CPlayer *pNewPlayer=new CPlayer((uint)i);
 				pNewPlayer->SetUpdateCallback(pInstance->m_PlayerUpdateCB, pInstance->m_PlayerUpdateCBData);
 				pInstance->m_Players.push_back(pNewPlayer);
 			}

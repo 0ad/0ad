@@ -290,7 +290,7 @@ struct ci_char_traits : public std::char_traits<char>
 	{ return tolower(c1) < tolower(c2); }
 
 	static int compare(const char* s1, const char* s2, size_t n)
-	{ return stricmp(s1, s2); }
+	{ return strnicmp(s1, s2, n); }
 
 	static const char* find(const char* s, int n, char a)
 	{
@@ -322,6 +322,10 @@ struct TLoc
 		archive = _archive;
 		pri = _pri;
 	}
+
+	// no copy ctor, since some members are const
+private:
+	TLoc& operator=(const TLoc&);
 };
 
 
@@ -369,12 +373,15 @@ struct TFile
 	{
 		loc = _loc;
 
+		mtime = 0;
+		size = 0;
 		if(s)
-			mtime = s->st_mtime, size = s->st_size;
-		else
-			mtime = 0, size = 0;
+		{
+			mtime = s->st_mtime;
+			size  = s->st_size;
+		}
 
-		pri        = _loc->pri;
+		pri        = (u16)_loc->pri;
 		in_archive = _loc->archive > 0;
 
 		exact_fn = 0;	// safety
@@ -597,7 +604,7 @@ enum TreeLookupFlags
 static int tree_lookup_dir(const char* path, TDir** pdir, uint flags = 0, char* exact_path = 0)
 {
 	CHECK_PATH(path);
-	assert((flags & ~(LF_CREATE_MISSING|LF_START_DIR)) == 0);
+	assert( (flags & ~(LF_CREATE_MISSING|LF_START_DIR)) == 0 );
 		// no undefined bits set
 	// can't check if path ends in '/' here - we're called via tree_lookup.
 
@@ -1128,7 +1135,8 @@ int vfs_mount(const char* v_mount_point, const char* p_real_path, int flags, uin
 		return -1;
 	}
 
-	mounts.push_back(Mount(v_mount_point, p_real_path, flags, pri));
+	const Mount& new_mount = Mount(v_mount_point, p_real_path, flags, pri);
+	mounts.push_back(new_mount);
 
 	// actually mount the entry
 	Mount& m = mounts.back();
@@ -1579,7 +1587,8 @@ ssize_t vfs_size(Handle hf)
 
 // open the file for synchronous or asynchronous IO. write access is
 // requested via FILE_WRITE flag, and is not possible for files in archives.
-Handle vfs_open(const char* v_fn, uint file_flags /* = 0 */)
+// file_flags: default 0
+Handle vfs_open(const char* v_fn, uint file_flags)
 {
 	// keeping files open doesn't make sense in most cases (because the
 	// file is used to load resources, which are cached at a higher level).
@@ -1670,7 +1679,7 @@ static double dt;
 static double totaldata;
 void dump()
 {
-	debug_out("TOTAL TIME IN VFS_IO: %f\nthroughput: %f MB/s\n\n", dt, totaldata/dt/1e6);
+	debug_out("TOTAL TIME IN VFS_IO: %f\nthroughput: %f MiB/s\n\n", dt, totaldata/dt/1e6);
 }
 
 static ssize_t vfs_timed_io(const Handle hf, const size_t size, void** p, FileIOCB cb = 0, uintptr_t ctx = 0)
@@ -1736,7 +1745,7 @@ debug_out("vfs_load v_fn=%s\n", v_fn);
 	// (if we allow File to alloc, have to make sure the Handle references
 	// the actual data address, not that of the padding).
 	{
-		const size_t BLOCK_SIZE = 64*KB;
+		const size_t BLOCK_SIZE = 64*KiB;
 		p = mem_alloc(size, BLOCK_SIZE, 0, &hm);
 		if(!p)
 			goto ret;
@@ -1832,8 +1841,11 @@ static void IO_dtor(IO* io)
 // doesn't look possible without controlling the AIO implementation:
 // when we cancel, we can't prevent the app from calling
 // aio_result, which would terminate the read.
-static int IO_reload(IO* io, const char*, Handle)
+static int IO_reload(IO* io, const char* fn, Handle h)
 {
+	UNUSED(io);
+	UNUSED(fn);
+	UNUSED(h);
 	return 0;
 }
 
