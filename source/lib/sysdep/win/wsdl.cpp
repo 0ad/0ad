@@ -380,7 +380,7 @@ return_char:
 	{
 		last_app_active = app_active;
 	
-		ev->type = SDL_ACTIVE;
+		ev->type = SDL_ACTIVEEVENT;
 		ev->active.state = SDL_APPACTIVE;
 		ev->active.gain = (u8)app_active;
 		return 1;
