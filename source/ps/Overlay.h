@@ -35,11 +35,13 @@ struct CColor
 	float r, g, b, a;
 };
 
+// yuck - MFC already defines CRect/CSize classes ...
+#define CRect PS_CRect
+#define CSize PS_CSize
+
 class CPos;
 class CSize;
 
-// yuck - MFC already defines a CRect class...
-#define CRect PS_CRect
 
 /**
  * @author Gustav Larsson
@@ -211,7 +213,7 @@ public:
 //--------------------------------------------------------
 //  Includes / Compiler directives
 //--------------------------------------------------------
-#include "terrain/Texture.h"
+#include "Texture.h"
 
 
 //--------------------------------------------------------
