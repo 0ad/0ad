@@ -94,7 +94,10 @@ extern int file_rel_chdir(const char* argv0, const char* rel_path);
 
 typedef int(*FileCB)(const char* const name, const uint flags, const ssize_t size, const uintptr_t user);
 
-// not recursive - only the files in <dir>!
+// we give the callback the directory-entry-name only - not the
+// absolute path, nor <dir> prepended.
+//
+// not recursive - returns only the ents in <dir> itself!
 extern int file_enum(const char* dir, FileCB cb, uintptr_t user);
 
 extern int file_stat(const char* path, struct stat*);

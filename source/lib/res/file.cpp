@@ -38,6 +38,10 @@
 const size_t BLOCK_SIZE_LOG2 = 16;		// 2**16 = 64 KB
 const size_t BLOCK_SIZE = 1ul << BLOCK_SIZE_LOG2;
 
+const size_t SECTOR_SIZE = 4096;
+	// reasonable guess. if too small, aio will do alignment.
+
+
 
 // rationale for aio, instead of only using mmap:
 // - parallelism: instead of just waiting for the transfer to complete,
@@ -236,10 +240,13 @@ static bool dirent_less(const DirEnt* const d1, const DirEnt* const d2)
 	{ return d1->name.compare(d2->name) < 0; }
 
 // we give the callback the directory-entry-name only - not the
-// absolute path, nor <dir> prepended. rationale: some users don't need it,
-// and would need to strip it. there are not enough users requiring it to
-// justify that. this routine does actually generate the absolute path
-// for use with stat, but in native form - can't use that.
+// absolute path, nor <dir> prepended.
+// rationale: some users don't need it,
+//   and would need to strip it. there are not enough users requiring it to
+//   justify that. this routine does actually generate the absolute path
+//   for use with stat, but in native form - can't use that.
+//
+// not recursive - returns only the ents in <dir> itself!
 int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 {
 	char n_path[PATH_MAX+1];
@@ -609,13 +616,11 @@ debug_out("file_start_io hio=%I64x ofs=%d size=%d\n", hio, user_ofs, user_size);
 
 		// optimization: pad to eliminate a memcpy if unaligned
 		ofs = user_ofs;
-		const size_t sector_size = 4096;
-			// reasonable guess. if too small, aio will do alignment.
-		padding = ofs % sector_size;
+		padding = ofs % SECTOR_SIZE;
 		ofs -= (off_t)padding;
-		size = round_up(padding + user_size, sector_size);
+		size = round_up(padding + user_size, SECTOR_SIZE);
 
-		buf = mem_alloc(size, sector_size);
+		buf = mem_alloc(size, SECTOR_SIZE);
 		if(!buf)
 			return ERR_NO_MEM;
 	}
@@ -755,6 +760,7 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, raw_size, raw_ofs);
 	}
 
 
+	// FIXME: currently doesn't handle caller requesting we alloc buffer
 	if(f->flags & FILE_NO_AIO)
 	{
 		lseek(f->fd, raw_ofs, SEEK_SET);
