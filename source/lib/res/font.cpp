@@ -173,7 +173,7 @@ static int Font_reload(Font* f, const char* fn)
 	// load glyph texture
 	const Handle ht = tex_load(tex_filename);
 	if(ht <= 0)
-		return ht;
+		return (int)ht;
 	tex_upload(ht);
 
 	const int tex_dim = 256;

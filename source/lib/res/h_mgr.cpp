@@ -134,7 +134,9 @@ static i32 last_in_use = -1;	// don't search unused entries
 // get an array entry (array is non-contiguous).
 // fails (returns 0) if idx is out of bounds, or if accessing a new page
 // for the first time, and there's not enough memory to allocate it.
-// used by h_alloc to find a free entry.
+// used by h_data, and alloc_idx to find a free entry.
+// beware of conflict with h_data_any_type:
+//   our i32 param silently converts to its Handle (= i64) param.
 static HDATA* h_data(const i32 idx)
 {
 	// don't compare against last_in_use - this is called before allocating
@@ -156,15 +158,18 @@ static HDATA* h_data(const i32 idx)
 
 
 
-int hdataseq=0;
+int h_data_tag = 0;
 
 // get HDATA for the given handle. verifies the handle
 // isn't invalid or an error code, and checks the tag field.
-// used by functions callable for any handle type, e.g. h_filename.
-static HDATA* h_data(const Handle h)
+// used by the few functions callable for any handle type, e.g. h_filename.
+static HDATA* h_data_any_type(const Handle h)
 {
-hdataseq++;
-_heapchk();
+	h_data_tag++;
+
+#ifdef PARANOIA
+	check_heap();
+#endif
 
 	// invalid, or an error code
 	if(h <= 0)
@@ -193,7 +198,7 @@ _heapchk();
 // used by most functions accessing handle data.
 static HDATA* h_data(const Handle h, const H_Type type)
 {
-	HDATA* hd = h_data(h);
+	HDATA* hd = h_data_any_type(h);
 	if(!hd)
 		return 0;
 
@@ -440,27 +445,15 @@ void* h_user_data(const Handle h, const H_Type type)
 	return hd? hd->user : 0;
 }
 
+
 const char* h_filename(const Handle h)
 {
-	HDATA* hd = h_data(h);
+	HDATA* hd = h_data_any_type(h);
+		// don't require type check: should be useable for any handle,
+		// even if the caller doesn't know its type.
 	return hd? hd->fn : 0;
 }
 
-/*
-// some resource types are heavyweight and reused between files (e.g. VRead).
-// this reassigns dst's (of type <type>) associated file to that of src.
-int h_reassign(const Handle dst, const H_Type dst_type, const Handle src)
-{
-	HDATA* hd_dst = h_data(dst, dst_type);
-	HDATA* hd_src = h_data(src);
-	if(!hd_dst || !hd_src)
-		return -1;
-
-	hd_dst->fn = hd_src->fn;
-	hd_dst->key = hd_src->key;
-	return 0;
-}
-*/
 
 int h_reload(const char* fn)
 {

@@ -10,6 +10,8 @@ extern "C" {
 extern void display_msg(const wchar_t* caption, const wchar_t* msg);
 extern void debug_out(const char* fmt, ...);
 
+extern void check_heap();
+
 #ifdef __cplusplus
 }
 #endif

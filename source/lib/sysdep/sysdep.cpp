@@ -23,4 +23,9 @@ void debug_out(const char* fmt, ...)
 	va_end(args);
 }
 
+
+void check_heap()
+{
+}
+
 #endif	// #ifndef _WIN32

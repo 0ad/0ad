@@ -30,6 +30,13 @@
 // (they're more convenient)
 //
 
+
+void check_heap()
+{
+	_heapchk();
+}
+
+
 void display_msg(const wchar_t* caption, const wchar_t* msg)
 {
 	MessageBoxW(0, msg, caption, MB_ICONEXCLAMATION);
