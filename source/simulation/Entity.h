@@ -151,7 +151,7 @@ public:
 	void Tick();
 
 	// Store the player associated with this entity
-	inline void SetPlayer(CPlayer *pPlayer);
+	void SetPlayer(CPlayer *pPlayer);
 
 	// Retrieve the player associated with this entity
 	inline CPlayer* GetPlayer() { return m_player; } 

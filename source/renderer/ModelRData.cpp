@@ -78,13 +78,6 @@ void CModelRData::BuildIndices()
 	}
 }
 
-
-
-
-
-
-
-
 static SColor4ub ConvertColor(const RGBColor& src)
 {
 	SColor4ub result;
