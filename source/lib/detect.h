@@ -35,7 +35,7 @@ extern void get_cpu_info();
 
 
 
-const size_t SND_CARD_LEN = 32;
+const size_t SND_CARD_LEN = 64;
 extern char snd_card[SND_CARD_LEN];
 
 const size_t SND_DRV_VER_LEN = 128;
