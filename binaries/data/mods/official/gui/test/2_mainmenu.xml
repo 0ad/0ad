@@ -22,8 +22,8 @@
 		<object type="button" name="pregame-mainmenu-sp-button" sprite-over="pregame-mainmenu-spbt" size="52.9296875% 23.95833333% 67.578125% 42.317708333%" z="101" hidden="false"
 			tooltip-style="pregame-mainmenu-tooltip" tooltip="Want to move some Dudes around or test something ? Click here to start a new game on the default map.">
 			<action on="Press"><![CDATA[
-						GUIObjectUnhide("pregame_subwindow_bkg");
-						GUIObjectUnhide("pregame_sp_mapsel");
+				GUIObjectUnhide("pregame_subwindow_bkg");
+				GUIObjectUnhide("pregame_sp_mapsel");
 			]]></action>
 		</object>
 
@@ -35,9 +35,11 @@
 			]]></action>
 		</object>
 
-		<object type="button" name="pregame-mainmenu-ed-button" sprite-over="pregame-mainmenu-edbt" size="44.00% 61.50% 62.45% 83.55%" z="101" hidden="false"
+		<object type="button" name="pregame-mainmenu-ed-button" sprite-over="pregame-mainmenu-edbt" size="44.00% 61.50% 63.75% 83.55%" z="101" hidden="false"
 			tooltip-style="pregame-mainmenu-tooltip" tooltip="Come forth and witness a totally non-functioning Editor, a mere shadow of its potential self!">
 			<action on="Press"><![CDATA[
+				GUIObjectHide("pregame_gui");
+				GUIObjectUnhide("atlas_gui");
 			]]></action>
 		</object>
 
@@ -74,7 +76,7 @@
 
 	<object type="empty" name="pregame_subwindows" size="0 0 100% 100%" z="1" hidden="false">
 
-		<object type="image" name="pregame_subwindow_bkg" sprite="pregame-mainmenu-tooltip-background" size="0 0 100% 100%" z="105" hidden="true"/>
+		<object type="image" name="pregame_subwindow_bkg" sprite="translucent-background" size="0 0 100% 100%" z="105" hidden="true"/>
 
 			<object type="button" name="pregame_mp_ip" sprite="0ad_window" z="106" hidden="true">
 				<action on="Load"><![CDATA[
@@ -100,7 +102,7 @@
 
 			<object type="text" name="pregame_ip_infotext">
 				<action on="Load"><![CDATA[
-					getGUIObjectByName("pregame_ip_infotext").caption = "You can start a multiplayer game by Direct-IP connect from here. Either \n- enter a map name and click 'Host Game' to host a game or \n- enter an IP and click 'Join Game' to join a game on the IP entered.";
+					getGUIObjectByName("pregame_ip_infotext").caption = "You can start a multiplayer game by Direct-IP connect from here. Either \n- enter a map name and click 'Host Game' to host a game or \n- enter an IP and click 'Join Game' to join a game on the entered IP.";
 					setSizeCoord("pregame_ip_infotext",        crd_pregame_iphost_bkg_x, crd_pregame_iphost_bkg_y, crd_pregame_iphost_bkg_x+crd_pregame_iphost_bkg_width, crd_pregame_iphost_bkg_y+crd_pregame_iphost_bkg_height, mid_screen, mid_screen, mid_screen, mid_screen);
 				]]></action>
 			</object>
@@ -184,7 +186,7 @@
                         </object>
 
                         <object type="text" name="pregame_sp_infotext" absolute="false" size="10 10 290 60">
-                                Type the name of the map you want to start the game at into the box. The name is realtive to /data/mods/official/maps/scenarios/.
+                                Type the name of the map you want to start into the box. The name is relative to /data/mods/official/maps/scenarios/.
                         </object>
 
                         <object type="text" name="pregame_sp_mapname_txt" absolute="false" textcolor="0 0 0" size="10 90 120 110">

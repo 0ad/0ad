@@ -20,7 +20,7 @@
 			}
 		]]></action>
 
-        	<object type="text" name="manual_bkg" sprite="tooltip-background" size="50%-200 0%+50 50%+200 100%-50" font="prospero16" textcolor="255 255 255" z="100" hidden="false" ghost="true">
+        	<object type="text" name="manual_bkg" sprite="translucent-background" size="50%-200 0%+50 50%+200 100%-50" font="prospero16" textcolor="255 255 255" z="100" hidden="false" ghost="true">
 			<action on="Tick"><![CDATA[
 				if (selection.length && !( getGUIObjectByName( "manual_gui" ).hidden ))
 				{
@@ -31,11 +31,11 @@
 
    	    	<object type="button" name="manual_portrait" style="portrait" size="50%-192 0%+80 50%-128 0%+144" z="100" ghost="true"/>
 
-		<object type="text" name="manual_name" sprite="tooltip-background" size="50%-195 0%+149 50%+195 100%-205" font="prospero14" textcolor="255 255 255" z="100" ghost="true"/>
+		<object type="text" name="manual_name" sprite="translucent-background" size="50%-195 0%+149 50%+195 100%-205" font="prospero14" textcolor="255 255 255" z="100" ghost="true"/>
 
 		<!-- Gee needs to implement text clipping, so long text doesn't get clipped to these scroll windows yet. Scroll bars also don't block world input yet. -->
-		<object type="text" name="manual_rollover" scrollbar="true" scrollbar-style="manual_scrollbar" sprite="tooltip-background" size="50%-126 0%+80 50%+195 0%+144" font="prospero16" textcolor="255 255 255" z="100" ghost="false"/>
-   	    	<object type="text" name="manual_history" scrollbar="true" scrollbar-style="manual_scrollbar" sprite="tooltip-background" size="50%-195 100%-200 50%+195 100%-55" font="prospero16" textcolor="255 255 255" z="100" ghost="false"/>
+		<object type="text" name="manual_rollover" scrollbar="true" scrollbar-style="manual_scrollbar" sprite="translucent-background" size="50%-126 0%+80 50%+195 0%+144" font="prospero16" textcolor="255 255 255" z="100" ghost="false"/>
+   	    	<object type="text" name="manual_history" scrollbar="true" scrollbar-style="manual_scrollbar" sprite="translucent-background" size="50%-195 100%-200 50%+195 100%-55" font="prospero16" textcolor="255 255 255" z="100" ghost="false"/>
 
 		<object type="button" name="manual_exit_button" sprite="exit_sprite" sprite-over="exit_sprite-over" size="50%+184 0%+50 50%+200 0%+66" ghost="false" z="100" hidden="false">
 			<action on="Press"><![CDATA[

@@ -35,6 +35,9 @@
         <script file="gui/test/functions_pregame.js"><![CDATA[
         ]]></script>
 
+        <script file="gui/test/functions_atlas.js"><![CDATA[
+        ]]></script>
+
         <script file="gui/test/functions_manual.js"><![CDATA[
         ]]></script>
 
@@ -70,6 +73,7 @@
         <script file="gui/test/functions_session.js"><![CDATA[
 		initCoord();
                 initPreGame();
+		initAtlas();
                 initSession();
         ]]></script>
 

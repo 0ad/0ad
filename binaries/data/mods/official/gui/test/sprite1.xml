@@ -185,6 +185,10 @@
                 <image texture="global/ui_gen_titlebar-right.png" real-texture-placement="0 0 64 32" size="95%-64 0%-10 100%+0 0%+22" />
 	</sprite>
 
+        <sprite name="translucent-background">
+                <image backcolor="0 0 0 85" size="0 0 100% 100%"/>
+        </sprite>
+
         <!--
         ==========================================
         GENERIC ICONS
@@ -255,7 +259,17 @@
 
         <!--
         ==========================================
-        PREGAME GUI
+        PREGAME GUI - BACKCOLOR SPRITES
+        ==========================================
+        -->
+
+        <sprite name="pregame-mainmenu-tooltip-background">
+                <image backcolor="0 0 0 85" size="0 0 100% 100%"/>
+        </sprite>
+
+        <!--
+        ==========================================
+        PREGAME GUI - TEXTURE SPRITES
         ==========================================
         -->
 
@@ -282,14 +296,6 @@
         <sprite name="pregame-mainmenu-edbt">
                 <image texture="pregame/ui_pregame_mainmenu_edbt_over.png" real-texture-placement="1 1 203 161" size="0 0 100% 100%" />
         </sprite>
-        
-        <sprite name="pregame-mainmenu-tooltip-background">
-                <image backcolor="0 0 0 85" size="0 0 100% 100%"/>
-        </sprite>
-
-        <sprite name="session-tooltip-background">
-                <image backcolor="255 255 255" size="0 0 100% 100%" border="true" bordercolor="0 0 0"/>
-        </sprite>
 
         <!--
         ==========================================
@@ -300,12 +306,16 @@
         <sprite name="black_bkg">
                 <image texture="black_bkg_16x16.png" texture-size="0 0 16 16" size="0 0 100% 100%" />
         </sprite>
-
+        
         <!--
         ==========================================
-        SESSION GUI
+        SESSION GUI - BACKCOLOR SPRITES
         ==========================================
         -->
+
+        <sprite name="session-tooltip-background">
+                <image backcolor="255 255 255" size="0 0 100% 100%" border="true" bordercolor="0 0 0"/>
+        </sprite>
 
                 <!--
                 ==========================================
