@@ -397,7 +397,7 @@ JSBool startGame(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned in
 	else if (!g_Game)
 	{
 		g_Game=new CGame();
-        g_Game->StartGame(&g_GameAttributes);
+		g_Game->StartGame(&g_GameAttributes);
 	}
 	*rval=BOOLEAN_TO_JSVAL(JS_TRUE);
 	return JS_TRUE;
