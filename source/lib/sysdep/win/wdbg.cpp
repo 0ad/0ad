@@ -630,7 +630,7 @@ static long CALLBACK except_filter(EXCEPTION_POINTERS* except)
 
 
 	int pos = swprintf(buf, 1000, L"Exception %hs at %hs!%08lX\r\n", except_str, module, addr-base);
-	walk_stack(0, buf+pos);
+	walk_stack(0, buf+pos, except->ContextRecord);
 
 	dialog(EXCEPTION);
 
