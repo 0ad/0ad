@@ -147,6 +147,7 @@ void CMusicPlayer::open(char *filename)
 	size_t sizeOfFile;
 	if(vfs_load(filename, p, sizeOfFile) <= 0)
 		return;
+	// TODO maybe: Free the mem handle returned by vfs_load (using mem_free_h) ??
 
 	memFile.dataPtr = (char*)p;
 	memFile.dataRead = 0;

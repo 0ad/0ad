@@ -1,5 +1,5 @@
 /*
-$Id: unifont.cpp,v 1.10 2004/07/24 14:03:25 philip Exp $
+$Id: unifont.cpp,v 1.11 2004/07/29 16:11:33 philip Exp $
 
 Unicode OpenGL texture font
   
@@ -66,13 +66,16 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSEDPARAM(h))
 	size_t FNTSize;
 	std::string FilenameFnt = FilenameBase+".fnt";  
 	const char* fnt_fn = FilenameFnt.c_str();   
-	Handle err = vfs_load(fnt_fn, RawFNT, FNTSize);
+	Handle fh = vfs_load(fnt_fn, RawFNT, FNTSize);
 
-	if (err <= 0)
-		return (int)err;
+	if (fh <= 0)
+		return (int)fh;
 
 	// Get the data in a nicer object
 	std::istringstream FNTStream (std::string((char*)RawFNT, (int)FNTSize));
+
+	// Unload the file
+	mem_free_h(fh);
 
 	int Version;
 	FNTStream >> Version;

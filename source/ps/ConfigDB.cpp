@@ -6,6 +6,7 @@
 #include "CLogger.h"
 #include "res/vfs.h"
 #include "res/file.h"
+#include "res/mem.h"
 #include "scripting/ScriptingHost.h"
 #include "types.h"
 
@@ -321,7 +322,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	// Close the correct file handle
 	if (m_UseVFS[ns])
 	{
-		vfs_close(fh);
+		mem_free_h(fh);
 	}
 	else
 	{
