@@ -61,7 +61,10 @@ public:
 	SMaterialColor GetSpecular();
 	SMaterialColor GetEmissive();
 	float GetSpecularPower() { return m_SpecularPower; }
+
 	bool UsesAlpha() { return m_Alpha; }
+	// Determines whether or not the model goes into the PlayerRenderer
+	bool IsPlayer() { return m_bPlayer; } // John M. Mena
 
     void SetTexture(const CStr &texture);
     void SetVertexProgram(const CStr &prog);
@@ -72,6 +75,9 @@ public:
 	void SetEmissive(const SMaterialColor &color);
     void SetSpecularPower(float power);
     void SetUsesAlpha(bool flag);
+	// Sets the player flag which is used to
+	// place the model in the player renderer
+	void SetIsPlayer(bool flag);
 
     void operator =(const CMaterial &material);
     bool operator ==(const CMaterial &material);
@@ -96,6 +102,9 @@ protected:
 
 	// Alpha required flag
 	bool m_Alpha;
+
+	// Player required flag for PlayerRenderer : John M. Mena
+	bool m_bPlayer;
 };
 
 extern CMaterial NullMaterial;

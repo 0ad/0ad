@@ -87,33 +87,36 @@ CGameAttributes::CGameAttributes():
 	
 	AddProperty(L"players", (GetFn)&CGameAttributes::JSGetPlayers);
 
-	m_Players.resize(8);
-	for (int i=0;i<8;i++)
+	m_Players.resize(9);
+	for (int i=0;i<9;i++)
 		m_Players[i]=new CPlayer(i);
 		
 	m_Players[0]->SetName(L"Gaia");
-	m_Players[0]->SetColour(SPlayerColour(1.0f, 0.0f, 0.0f));
+	m_Players[0]->SetColour(SPlayerColour(1.0f, 1.0f, 1.0f));
 
-	m_Players[1]->SetName(L"Acumen");
-	m_Players[1]->SetColour(SPlayerColour(0.0f, 1.0f, 0.0f));
+	m_Players[1]->SetName(L"Sally Jessie Rapheal");
+	m_Players[1]->SetColour(SPlayerColour(1.0f, 0.0f, 0.0f));
 
-	m_Players[2]->SetName(L"Boco the Insignificant");
-	m_Players[2]->SetColour(SPlayerColour(0.0f, 0.0f, 1.0f));
+	m_Players[2]->SetName(L"Acumen");
+	m_Players[2]->SetColour(SPlayerColour(0.0f, 1.0f, 0.0f));
 
-	m_Players[3]->SetName(L"NoMonkey the Magnificent");
-	m_Players[3]->SetColour(SPlayerColour(1.0f, 1.0f, 0.0f));
+	m_Players[3]->SetName(L"Boco the Insignificant");
+	m_Players[3]->SetColour(SPlayerColour(0.0f, 0.0f, 1.0f));
 
-	m_Players[4]->SetName(L"Wijit");
-	m_Players[4]->SetColour(SPlayerColour(1.0f, 0.0f, 1.0f));
+	m_Players[4]->SetName(L"NoMonkey the Magnificent");
+	m_Players[4]->SetColour(SPlayerColour(1.0f, 1.0f, 0.0f));
 
-	m_Players[5]->SetName(L"Ykkrosh");
-	m_Players[5]->SetColour(SPlayerColour(0.0f, 1.0f, 1.0f));
+	m_Players[5]->SetName(L"Wijit");
+	m_Players[5]->SetColour(SPlayerColour(1.0f, 0.0f, 1.0f));
 
-	m_Players[6]->SetName(L"Code Monkey");
-	m_Players[6]->SetColour(SPlayerColour(1.0f, 0.5f, 1.0f));
+	m_Players[6]->SetName(L"Ykkrosh");
+	m_Players[6]->SetColour(SPlayerColour(0.0f, 1.0f, 1.0f));
 
-	m_Players[7]->SetName(L"Ykkrosh");
-	m_Players[7]->SetColour(SPlayerColour(1.0f, 0.8f, 0.5f));
+	m_Players[7]->SetName(L"Code Monkey");
+	m_Players[7]->SetColour(SPlayerColour(1.0f, 0.5f, 1.0f));
+
+	m_Players[8]->SetName(L"Ykkrosh");
+	m_Players[8]->SetColour(SPlayerColour(1.0f, 0.8f, 0.5f));
 }
 
 CGameAttributes::~CGameAttributes()

@@ -301,5 +301,4 @@ void CMapReader::ReadXML(const char* filename)
 			debug_warn("Invalid XML data - DTD shouldn't allow this");
 		}
 	}
-
 }

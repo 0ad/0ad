@@ -50,10 +50,14 @@ void CModelRData::Build()
 	/*if (g_Renderer.IsTextureTransparent(m_Model->GetTexture())) {
 		m_Flags|=MODELRDATA_FLAG_TRANSPARENT;
 	}*/
-	if(m_Model->GetPlayerID() + 1) // Add one because the default value is -1
+	if(m_Model->GetMaterial().IsPlayer())
+	{
 		m_Flags |= MODELRDATA_FLAG_PLAYERCOLOR;
+	}
     else if(m_Model->GetMaterial().UsesAlpha())
+	{
         m_Flags |= MODELRDATA_FLAG_TRANSPARENT;
+	}
 }
 
 void CModelRData::BuildIndices()

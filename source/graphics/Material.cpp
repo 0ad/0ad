@@ -32,7 +32,8 @@ CMaterial::CMaterial()
     m_Specular(IdentitySpecular),
     m_Emissive(IdentityEmissive),
 	m_SpecularPower(0.0f),
-	m_Alpha(false)
+	m_Alpha(false),
+	m_bPlayer(false)
 {
     ComputeHash();
 }
@@ -55,6 +56,7 @@ void CMaterial::operator =(const CMaterial &material)
 
     m_SpecularPower = material.m_SpecularPower;
     m_Alpha = material.m_Alpha;
+	m_bPlayer = material.m_bPlayer;
     ComputeHash();
 }
 
@@ -67,7 +69,8 @@ bool CMaterial::operator ==(const CMaterial &material)
         m_Specular == material.m_Specular &&
         m_Emissive == material.m_Emissive &&
         m_SpecularPower == material.m_SpecularPower &&
-        m_Alpha == material.m_Alpha
+        m_Alpha == material.m_Alpha &&
+		m_bPlayer == material.m_bPlayer
     );
 }
 
@@ -158,6 +161,12 @@ void CMaterial::SetUsesAlpha(bool flag)
 {
     m_Alpha = flag;
     ComputeHash();
+}
+
+void CMaterial::SetIsPlayer(bool flag)
+{
+	m_bPlayer = flag;
+	ComputeHash();
 }
 
 void CMaterial::ComputeHash()

@@ -252,7 +252,12 @@ CMaterial &CMaterialManager::LoadMaterial(const char *file)
             else if(token == el_alpha)
             {
                 temp = (CStr)attrs.getNamedItem(at_usage);
-                material->SetUsesAlpha(ParseUsage(temp));
+
+				// Determine whether the alpha is used for basic transparency or player color
+				if (temp == CStr("playercolor"))
+					material->SetIsPlayer(true);
+				else
+					material->SetUsesAlpha(ParseUsage(temp));
             }
 		}
 

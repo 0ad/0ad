@@ -2,12 +2,21 @@
 
 #include "gui/MiniMap.h"
 #include "ps/Game.h"
+#include "CConsole.h"
 
 #include "ogl.h"
 #include "renderer/Renderer.h"
 #include "graphics/TextureEntry.h"
 #include "graphics/TextureManager.h"
 #include "graphics/Unit.h"
+#include "graphics/Camera.h"
+
+
+#include "Bound.h"
+#include "Model.h"
+
+extern CConsole* g_Console;
+extern int g_mouse_x, g_mouse_y;
 
 static unsigned int ScaleColor(unsigned int color,float x)
 {
@@ -81,7 +90,7 @@ void CMiniMap::Draw()
         glDisable(GL_DEPTH_TEST);
         glEnable(GL_POINT_SMOOTH);
         glDisable(GL_TEXTURE_2D);
-        glPointSize(2.5f);
+        glPointSize(3.0f);
 		// REMOVED: glColor3f(1.0f, 1.0f, 1.0f);
         glBegin(GL_POINTS);
         for(; iter != units.end(); iter++)
@@ -101,8 +110,34 @@ void CMiniMap::Draw()
                 glVertex3f(x + pos.y, y + pos.x, GetBufferedZ());
             }
         }
+
         glEnd();
+
+
+		// render view rect : John M. Mena
+		CCamera &g_Camera=*g_Game->GetView()->GetCamera();
+		CVector3D pos3D = g_Camera.GetWorldCoordinates();
+		pos = GetMapSpaceCoords(pos3D);
+
+		// Restrict the drawing to the map
+		glScissor((int)m_CachedActualSize.left, 0, (int)m_CachedActualSize.right, (int)m_CachedActualSize.GetHeight());
+		glEnable(GL_SCISSOR_TEST);
+
+		glLineWidth(2);
+		glColor3f(1.0f,0.3f,0.3f);
+
+		// Draw the viewing rectangle
+		glBegin(GL_LINE_LOOP);
+		glVertex2f(x + pos.y - 10, y + pos.x - 10);
+		glVertex2f(x + pos.y + 10, y + pos.x - 10);
+		glVertex2f(x + pos.y + 10, y + pos.x + 10);
+		glVertex2f(x + pos.y - 10, y + pos.x + 10);
+		glEnd();
+
+		glDisable(GL_SCISSOR_TEST);
+
         glPointSize(1.0f);
+		glLineWidth(1.0f);
         glEnable(GL_TEXTURE_2D);
         glDisable(GL_POINT_SMOOTH);
         glEnable(GL_DEPTH_TEST);

@@ -21,7 +21,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Constructor
 CModel::CModel() 
-	: m_Flags(0), m_PlayerID(-1), m_Anim(0), m_AnimTime(0), 
+	: m_Flags(0), m_PlayerID(3), m_Anim(0), m_AnimTime(0), 
 	m_BoneMatrices(0), m_InvBoneMatrices(0), m_BoneMatricesValid(false)
 {
 }
