@@ -64,6 +64,11 @@ public:
 
 private:
 	CEntity( CBaseEntity* base, CVector3D position, float orientation );
+
+	bool processGotoNoPathing( CEntityOrder* current, float timestep );
+	bool processGoto( CEntityOrder* current, float timestep );
+	bool processPatrol( CEntityOrder* current, float timestep );
+
 public:
 
 	// Handle-to-self.
@@ -75,8 +80,6 @@ public:
 	float getExactGroundLevel( float x, float y );
 	void snapToGround();
 	void pushOrder( CEntityOrder& order );
-	HEntity getCollisionObject();
-	HEntity getCollisionObject( float x, float y );
 };
 
 #endif

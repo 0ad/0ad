@@ -7,9 +7,6 @@
 // Usage: Nothing yet.
 //        These properties will be accessed via functions in CEntity/CBaseEntity
 //
-// Inefficiency warning.
-// Will move frequently accessed properties (position, name, etc.) to native C++ primitives.
-// Just playing around with this idea, will probably keep it for at least some of the more exotic and/or user-defined properties.
 
 // TODO: Fix the silent failures of the conversion functions: need to work out what to do in these cases.
 
@@ -39,6 +36,8 @@ public:
 	enum EPropTypes
 	{
 		PROP_INTRINSIC = 256,
+		PROP_TYPELOCKED = 512,
+		PROP_STRIPFLAGS = 255,
 		PROP_INTEGER = 0,
 		PROP_FLOAT,
 		PROP_STRING,
@@ -49,8 +48,8 @@ public:
 		PROP_STRING_INTRINSIC = PROP_STRING | PROP_INTRINSIC,
 		PROP_VECTOR_INTRINSIC = PROP_VECTOR | PROP_INTRINSIC
 	};
-private:
 	EPropTypes m_type;
+private:
 	union
 	{
 		i32 m_integer;
@@ -63,6 +62,10 @@ private:
 	};
 public:
 	CGenericProperty(); // Create an integer property containing 0.
+	~CGenericProperty();
+	void releaseData();
+
+	/*
 	CGenericProperty( i32 value ); // Create an integer property with a given value.
 	CGenericProperty( i32* value );  // Create an integer property that points to the given variable.
 	CGenericProperty( float value ); // Create a floating-point property with a given value.
@@ -72,12 +75,55 @@ public:
 	CGenericProperty( CVector3D& value ); // Create a vector object property that's initialized to a copy of the given vector.
 	CGenericProperty( CVector3D* value ); // Create a vector object property that points to the given variable.
 	CGenericProperty( void* value ); // Create a general property that points to the given value.
-	~CGenericProperty();
+	*/
+
+	// Associator functions: Links the property with the specified engine variable.
+	void associate( i32* value ); 
+	void associate( float* value ); 
+	void associate( CStr* value );
+	void associate( CVector3D* value );
+	
+	// Getter functions: Attempts to convert the property to the given type.
 	operator i32(); // Convert to an integer if possible (integer, float, some strings), otherwise returns 0.
 	operator float(); // Convert to a float if possible (integer, float, some strings), otherwise returns 0.0f.
 	operator CStr(); // Convert to a string if possible (all except generic pointer), otherwise returns CStr().
 	operator CVector3D(); // If this property is a vector, returns that vector, otherwise returns CVector3D().
 	operator void*(); // If this property is a generic pointer, returns that pointer, otherwise returns NULL.
+
+	// Setter functions: If this is a typelocked property, attempts to convert the given data
+	//					 into the appropriate type, otherwise setting the associated value to 0, 0.0f, CStr() or CVector3D().
+	//					 If this property is typeloose, converts this property into one of the same type
+	//					 as the given value, then stores that value in this property.
+	CGenericProperty& operator=( i32 value );
+	CGenericProperty& operator=( float value );
+	CGenericProperty& operator=( CStr& value );
+	CGenericProperty& operator=( CVector3D& value );
+	CGenericProperty& operator=( void* value ); // Be careful with this one. A lot of things will cast to void*.
+
+	// Typelock functions. Use these when you want to make sure the property has the given type.
+	void typelock( EPropTypes type );
+	void typeloose();
+
+private:
+	// resolve-as functions. References the data, whereever it is.
+	i32& asInteger();
+	float& asFloat();
+	CStr& asString();
+	CVector3D& asVector();
+
+	// to functions. Convert whatever this is now to the chosen type.
+	i32 toInteger();
+	float toFloat();
+	CStr toString();
+	CVector3D toVector();
+	void* toVoid();
+
+	// from functions. Convert the given value to whatever type this is now.
+	void fromInteger( i32 value );
+	void fromFloat( float value );
+	void fromString( CStr& value );
+	void fromVector( CVector3D& value );
+	void fromVoid( void* value );
 };
 
 #endif

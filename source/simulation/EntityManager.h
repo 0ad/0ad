@@ -11,6 +11,9 @@
 //        Perform updates on all world entities by g_EntityManager.updateAll( timestep )
 //		  Dispatch an identical message to all world entities by g_EntityManager.dispatchAll( message_pointer )
 //		  Get an STL vector container of all entities with a certain property with g_EntityManager.matches( predicate )
+//        or just get all entities with g_EntityManager.getActive().
+//        
+//        Those last two functions - caller has responsibility for deleting the collection when you're done with it.
 
 #ifndef ENTITY_MANAGER_INCLUDED
 #define ENTITY_MANAGER_INCLUDED
