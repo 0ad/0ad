@@ -95,11 +95,18 @@ static CVector3D SkinPoint(const CVector3D& pos,const SVertexBlend& blend,
 static CVector3D SkinPoint(const CVector3D& pos,const SVertexBlend& blend,
 						   const CMatrix3D* bonestates)
 {
-	CVector3D result(0,0,0);
-	for (int i=0;i<SVertexBlend::SIZE && blend.m_Bone[i]!=0xff;i++) {
-		const CMatrix3D& m=bonestates[blend.m_Bone[i]];
+	CVector3D result,tmp;
 
-		CVector3D tmp=m.Transform(pos);
+	// must have at least one valid bone if we're using SkinPoint
+	assert(blend.m_Bone[0]!=0xff);
+
+	const CMatrix3D& m=bonestates[blend.m_Bone[0]];
+	m.Transform(pos,result);
+	result*=blend.m_Weight[0];
+
+	for (int i=1;i<SVertexBlend::SIZE && blend.m_Bone[i]!=0xff;i++) {
+		const CMatrix3D& m=bonestates[blend.m_Bone[i]];
+		m.Transform(pos,tmp);
 		result+=tmp*blend.m_Weight[i];
 	}
 
@@ -211,9 +218,8 @@ void CModel::GenerateBoneMatrices()
 
 	const CMatrix3D& transform=GetTransform();
 	for (int i=0;i<m_pModelDef->GetNumBones();i++) {
-		CMatrix3D m=m_BoneMatrices[i];
-		m.Concatenate(transform);
-		m.GetInverse(m_InvBoneMatrices[i]);
+		m_BoneMatrices[i].Concatenate(transform);
+		m_BoneMatrices[i].GetInverse(m_InvBoneMatrices[i]);
 	}
 
 	// update transform of boned props 
@@ -226,8 +232,9 @@ void CModel::GenerateBoneMatrices()
 			CMatrix3D proptransform=prop.m_Point->m_Transform;;
 			if (prop.m_Point->m_BoneIndex!=0xff) {
 				proptransform.Concatenate(m_BoneMatrices[prop.m_Point->m_BoneIndex]);
-			}			
-			proptransform.Concatenate(transform);
+			} else {			
+				proptransform.Concatenate(transform);
+			}
 			prop.m_Model->SetTransform(proptransform);
 		} 			
 	}
@@ -331,8 +338,9 @@ void CModel::SetTransform(const CMatrix3D& transform)
 		CMatrix3D proptransform=prop.m_Point->m_Transform;;
 		if (prop.m_Point->m_BoneIndex!=0xff) {
 			proptransform.Concatenate(m_BoneMatrices[prop.m_Point->m_BoneIndex]);
-		}			
-		proptransform.Concatenate(transform);
+		} else {
+			proptransform.Concatenate(transform);
+		}
 		prop.m_Model->SetTransform(proptransform);
 	}
 }
