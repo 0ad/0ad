@@ -1,5 +1,5 @@
 /*
-$Id: unifont.cpp,v 1.6 2004/07/12 20:08:34 philip Exp $
+$Id: unifont.cpp,v 1.7 2004/07/13 21:13:10 janwas Exp $
 
 Unicode OpenGL texture font
   
@@ -60,7 +60,9 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle h)
 
 	void* RawFNT;
 	size_t FNTSize;
-	Handle err = vfs_load((FilenameBase+".fnt").c_str(), RawFNT, FNTSize);
+	std::string FilenameFnt = FilenameBase+".fnt";  
+	const char* fnt_fn = FilenameFnt.c_str();   
+	Handle err = vfs_load(fnt_fn, RawFNT, FNTSize);
 
 	if (err <= 0)
 		return (int)err;
@@ -107,7 +109,9 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle h)
 	}
 
 	// Load glyph texture
-	const Handle ht = tex_load((FilenameBase+".tga").c_str());
+	std::string FilenameTex = FilenameBase+".tga";  
+	const char* tex_fn = FilenameTex.c_str();   
+	const Handle ht = tex_load(tex_fn);
 	if (ht <= 0)
 		return (int)ht;
 
