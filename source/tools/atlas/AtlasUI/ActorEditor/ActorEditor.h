@@ -9,7 +9,7 @@ public:
 
 protected:
 	void Import(AtObj& in);
-	void Export(AtObj& out);
+	AtObj Export();
 
 private:
 	ActorEditorListCtrl* m_ActorEditorListCtrl;

@@ -80,8 +80,7 @@ void FieldEditCtrl_Dialog::StartEdit(wxWindow* parent, wxRect WXUNUSED(rect), lo
 
 	if (ret == wxID_OK)
 	{
-		AtObj out;
-		dialog->Export(out);
+		AtObj out (dialog->Export());
 
 		AtlasWindowCommandProc::GetFromParentFrame(parent)->Submit(
 			new EditCommand_Dialog(editCtrl, row, col, out)

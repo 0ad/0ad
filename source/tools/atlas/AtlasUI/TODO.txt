@@ -1,23 +1,54 @@
-* Copy and paste
+* Sort this list
 
-* s/PropListEditor/PropListEditor/
-
-* Rearrange directory structure
+===
 
 * Don't hardcode "actor" in XML files (urgh)
 
-* Document lots
-
 * Make import undoable
+
+* Combo boxes for prop/anim names, loaded from file
+
+* Right click to edit
+
+===
+
+* Better input controls (=> export nicely, support undo, etc)
+
+* Copy and paste
+
+* Browse for meshes/actors/etc.
+
+* Save on exit
+
+* Help (tooltips, etc)
+
+===
+
+* Window size memory
+
+* Column width memory
+
+* Allow reset memory
+
+* Input validation?
+
+* Browse for meshes/actors/etc, with mods
+
+* Customised AtObj->string conversion
+
+* Import/export filter, for validation(?) and for handling attributes
+
+* Undo in text-editing boxes
+
+* AtlasObjectXML error handling
+
+* Use standard wxWidgets 2.5.4 release
+
+===
+
+
+* Document lots
 
 * wxListItemAttr* OnGetItemAttr(long item) >>>const<<< - wx documentation??
 
 * Better widths
-
-* Combo boxes for prop/anim names, loaded from file
-
-* Input validation?
-
-* Better input controls (=> export nicely, support undo, etc)
-
-* Handle undo correctly after importing

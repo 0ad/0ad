@@ -45,8 +45,10 @@ void ActorEditorListCtrl::Import(AtObj& in)
 	UpdateDisplay();
 }
 
-void ActorEditorListCtrl::Export(AtObj& out)
+AtObj ActorEditorListCtrl::Export()
 {
+	AtObj out;
+
 	AtObj group;
 
 	for (size_t i = 0; i < m_ListData.size(); ++i)
@@ -66,6 +68,8 @@ void ActorEditorListCtrl::Export(AtObj& out)
 
 	if (! group.isNull())
 		out.add("group", group);
+
+	return out;
 }
 
 wxListItemAttr* ActorEditorListCtrl::OnGetItemAttr(long item) const

@@ -7,7 +7,7 @@ class IAtlasExporter // and also importer, but I can't think of a nice concise n
 {
 public:
 	virtual void Import(AtObj& in)=0;
-	virtual void Export(AtObj& out)=0;
+	virtual AtObj Export()=0;
 };
 
 #endif // IATLASEXPORTER_H__

@@ -26,9 +26,9 @@ void PropListEditor::Import(AtObj& in)
 	m_MainListBox->Import(in);
 }
 
-void PropListEditor::Export(AtObj& out)
+AtObj PropListEditor::Export()
 {
-	m_MainListBox->Export(out);
+	return m_MainListBox->Export();
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -49,8 +49,10 @@ void PropListEditorListCtrl::Import(AtObj& in)
 	UpdateDisplay();
 }
 
-void PropListEditorListCtrl::Export(AtObj& out)
+AtObj PropListEditorListCtrl::Export()
 {
+	AtObj out;
 	for (size_t i = 0; i < m_ListData.size(); ++i)
 		out.add("prop", m_ListData[i]);
+	return out;
 }

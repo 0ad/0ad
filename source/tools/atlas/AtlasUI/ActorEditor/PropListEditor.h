@@ -16,7 +16,7 @@ public:
 
 protected:
 	void Import(AtObj& in);
-	void Export(AtObj& out);
+	AtObj Export();
 
 private:
 	PropListEditorListCtrl* m_MainListBox;
@@ -34,5 +34,5 @@ public:
 	void OnUpdate(wxCommandEvent& event);
 
 	void Import(AtObj& in);
-	void Export(AtObj& out);
+	AtObj Export();
 };

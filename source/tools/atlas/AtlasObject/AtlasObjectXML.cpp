@@ -21,7 +21,7 @@ XERCES_CPP_NAMESPACE_USE
 
 static AtSmartPtr<AtNode> ConvertNode(DOMElement* element);
 
-void AtlasObject::LoadFromXML(AtObj& obj, const wchar_t* filename)
+AtObj AtlasObject::LoadFromXML(const wchar_t* filename)
 {
 	// TODO: Convert wchar_t* to XMLCh* when running under GCC
 	assert(sizeof(wchar_t) == sizeof(XMLCh));
@@ -39,16 +39,24 @@ void AtlasObject::LoadFromXML(AtObj& obj, const wchar_t* filename)
 	if (parser->getErrorCount() != 0)
 	{
 		assert(! "Error while loading XML - invalid XML data?");
-		return;
+		return AtObj();
 	}
 
 	DOMDocument* doc = parser->getDocument();
 	DOMElement* root = doc->getDocumentElement();
 
+	AtObj obj;
 	obj.p = ConvertNode(root);
+
+	AtObj rootObj;
+	char* rootName = XMLString::transcode(root->getNodeName());
+	rootObj.set(rootName, obj);
+	XMLString::release(&rootName);
 
 	// TODO: Initialise/terminate properly
 //	XMLPlatformUtils::Terminate();
+
+	return rootObj;
 }
 
 // Convert from a DOMElement to an AtNode
@@ -70,16 +78,14 @@ static AtSmartPtr<AtNode> ConvertNode(DOMElement* element)
 
 			// Use its name for the AtNode key
 			char* name = XMLString::transcode(node->getNodeName());
-			const std::string namestr (name);
 
 			// Recursively convert the sub-element, and add it into this node
-			AtNode::child_pairtype n (
-				namestr, ConvertNode((DOMElement*)node)
-			);
-			obj->children.insert(n);
+			obj->children.insert(AtNode::child_pairtype(
+				name, ConvertNode((DOMElement*)node)
+			));
 
 			// Free memory
-			XMLString::release(&name);
+			XMLString::release((char**)&name);
 		}
 		else if (type == DOMNode::TEXT_NODE)
 		{
@@ -127,7 +133,7 @@ static DOMNode* BuildDOM(DOMDocument* doc, const XMLCh* name, AtNode::Ptr p)
 	return node;
 }
 
-void AtlasObject::SaveToXML(AtObj& obj, const wchar_t* filename)
+bool AtlasObject::SaveToXML(AtObj& obj, const wchar_t* filename)
 {
 	// TODO: Convert wchar_t* to XMLCh* when running under GCC
 	assert(sizeof(wchar_t) == sizeof(XMLCh));
@@ -136,9 +142,9 @@ void AtlasObject::SaveToXML(AtObj& obj, const wchar_t* filename)
 	XMLPlatformUtils::Initialize();
 
 	// Why does it take so much work just to create a DOMWriter? :-(
-	XMLCh tempStr[100];
-	XMLString::transcode("LS", tempStr, 99);
-	DOMImplementation* impl = DOMImplementationRegistry::getDOMImplementation(tempStr);
+	XMLCh domFeatures[100];
+	XMLString::transcode("LS", domFeatures, 99); // maybe "LS" means "load/save", but I really don't know
+	DOMImplementation* impl = DOMImplementationRegistry::getDOMImplementation(domFeatures);
 	DOMWriter* writer = ((DOMImplementationLS*)impl)->createDOMWriter();
 
 	if (writer->canSetFeature(XMLUni::fgDOMWRTDiscardDefaultContent, true))
@@ -147,11 +153,23 @@ void AtlasObject::SaveToXML(AtObj& obj, const wchar_t* filename)
 	if (writer->canSetFeature(XMLUni::fgDOMWRTFormatPrettyPrint, true))
 		writer->setFeature(XMLUni::fgDOMWRTFormatPrettyPrint, true);
 
-	DOMDocument* doc = impl->createDocument();
-	doc->appendChild(BuildDOM(doc, L"actor", obj.p)); // TODO: this is stupid
+
+	// Find the root element of the object:
+
+	if (obj.p->children.size() != 1)
+	{
+		assert(! "SaveToXML: root must only have one child");
+		return false;
+	}
+	XMLCh rootName[255];
+	XMLString::transcode(obj.p->children.begin()->first.c_str(), rootName, 255);
+	AtNode::Ptr firstChild (obj.p->children.begin()->second);
 
 	try
 	{
+		DOMDocument* doc = impl->createDocument();
+		doc->appendChild(BuildDOM(doc, rootName, firstChild));
+
 		XMLFormatTarget* FormatTarget = new LocalFileFormatTarget((XMLCh*)filename);
 		writer->writeNode(FormatTarget, *doc);
 		delete FormatTarget;
@@ -160,18 +178,20 @@ void AtlasObject::SaveToXML(AtObj& obj, const wchar_t* filename)
 		char* message = XMLString::transcode(e.getMessage());
 		assert(! "XML exception - maybe failed while writing the file");
 		XMLString::release(&message);
-		XMLPlatformUtils::Terminate();
-		return;
+//		XMLPlatformUtils::Terminate();
+		return false;
 	}
 	catch (const DOMException& e) {
 		char* message = XMLString::transcode(e.msg);
 		assert(! "DOM exception");
 		XMLString::release(&message);
-		XMLPlatformUtils::Terminate();
-		return;
+//		XMLPlatformUtils::Terminate();
+		return false;
 	}
 
 	writer->release();
 
 //	XMLPlatformUtils::Terminate();
+
+	return true;
 }

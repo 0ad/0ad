@@ -26,9 +26,9 @@ void AnimListEditor::Import(AtObj& in)
 	m_MainListBox->Import(in);
 }
 
-void AnimListEditor::Export(AtObj& out)
+AtObj AnimListEditor::Export()
 {
-	m_MainListBox->Export(out);
+	return m_MainListBox->Export();
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -50,8 +50,10 @@ void AnimListEditorListCtrl::Import(AtObj& in)
 	UpdateDisplay();
 }
 
-void AnimListEditorListCtrl::Export(AtObj& out)
+AtObj AnimListEditorListCtrl::Export()
 {
+	AtObj out;
 	for (size_t i = 0; i < m_ListData.size(); ++i)
 		out.add("animation", m_ListData[i]);
+	return out;
 }

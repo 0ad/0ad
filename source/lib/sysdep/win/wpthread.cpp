@@ -308,7 +308,7 @@ int sem_timedwait(sem_t* sem, const struct timespec* abs_timeout)
 
 	HANDLE h = sem_t_to_HANDLE(sem);
 	DWORD ret = WaitForSingleObject(h, timeout_ms);
-	// succesfully decremented semaphore; bail.
+	// successfully decremented semaphore; bail.
 	if(ret == WAIT_OBJECT_0)
 		return 0;
 

@@ -201,7 +201,7 @@ void CObjectManager::LoadObjectsIn(CStr& pathname)
 		else
 		{
 			m_ObjectTypes[0].m_ObjectNameToFilename[objectName] = *it;
-			debug_out("%s -> %s\n", objectName.c_str(), it->c_str());
+//			debug_out("%s -> %s\n", objectName.c_str(), it->c_str());
 		}
 	}
 

@@ -132,8 +132,8 @@ public:
 // Miscellaneous utility functions:
 namespace AtlasObject
 {
-	void LoadFromXML(AtObj& obj, const wchar_t* filename);
-	void SaveToXML(AtObj& obj, const wchar_t* filename);
+	AtObj LoadFromXML(const wchar_t* filename);
+	bool SaveToXML(AtObj& obj, const wchar_t* filename);
 };
 
 #endif // ATLASOBJECT_H__

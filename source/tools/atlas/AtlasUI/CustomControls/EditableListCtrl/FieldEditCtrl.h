@@ -32,4 +32,3 @@ protected:
 private:
 	wxString m_DialogType;
 };
-

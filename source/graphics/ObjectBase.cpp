@@ -164,10 +164,9 @@ bool CObjectBase::Load(const char* filename)
 
 		XERO_ITER_EL(root, child)
 		{
-			int element_name = child.getNodeName();
-			CStr element_value (child.getText());
+			int child_name = child.getNodeName();
 
-			if (element_name == el_group)
+			if (child_name == el_group)
 			{
 				m_Variants.resize(m_Variants.size()+1);
 
@@ -246,7 +245,7 @@ bool CObjectBase::Load(const char* filename)
 					m_Variants.pop_back();
 				}
 			}
-			else if (element_name == el_material)
+			else if (child_name == el_material)
 			{
 				m_Material = child.getText();
 			}

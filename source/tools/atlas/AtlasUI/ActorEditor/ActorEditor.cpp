@@ -67,22 +67,33 @@ ActorEditor::ActorEditor(wxWindow* parent)
 
 void ActorEditor::Import(AtObj& in)
 {
-	m_ActorEditorListCtrl->Import(in);
+	if (! in["actor"].defined())
+	{
+		// TODO: report error
+		return;
+	}
 
-	if (in["castshadow"].defined())
+	AtObj actor (in["actor"]);
+	m_ActorEditorListCtrl->Import(actor);
+
+	if (actor["castshadow"].defined())
 		m_CastShadows->SetValue(true);
 	else
 		m_CastShadows->SetValue(false);
 
-	m_Material->SetValue(in["material"]);
+	m_Material->SetValue(actor["material"]);
 }
 
-void ActorEditor::Export(AtObj& out)
+AtObj ActorEditor::Export()
 {
-	m_ActorEditorListCtrl->Export(out);
+	AtObj actor (m_ActorEditorListCtrl->Export());
 
 	if (m_CastShadows->IsChecked())
-		out.set("castshadow", L"true");
+		actor.set("castshadow", L"true");
 
-	out.set("material", m_Material->GetValue().c_str());
+	actor.set("material", m_Material->GetValue().c_str());
+
+	AtObj out;
+	out.set("actor", actor);
+	return out;
 }

@@ -140,8 +140,8 @@ void AtObj::set(const char* key, const wchar_t* value)
 
 bool AtObj::hasContent() const
 {
-	if (! p)
-		return true;
+	if (!p)
+		return false;
 
 	return p->hasContent();
 }

@@ -17,7 +17,7 @@ public:
 
 private:
 	void Import(AtObj& in);
-	void Export(AtObj& out);
+	AtObj Export();
 
 	wxListItemAttr m_ListItemAttr_Model[2];
 	wxListItemAttr m_ListItemAttr_Texture[2];

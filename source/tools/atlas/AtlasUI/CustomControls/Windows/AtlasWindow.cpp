@@ -82,8 +82,7 @@ void AtlasWindow::OnImport(wxCommandEvent& WXUNUSED(event))
 
 	wxString filename = dlg.GetPath();
 
-	AtObj file;
-	AtlasObject::LoadFromXML(file, filename.c_str());
+	AtObj file (AtlasObject::LoadFromXML(filename.c_str()));
 
 	Import(file);
 
@@ -99,8 +98,7 @@ void AtlasWindow::OnExport(wxCommandEvent& WXUNUSED(event))
 
 	wxString filename = dlg.GetPath();
 
-	AtObj file;
-	Export(file);
+	AtObj file (Export());
 
 	AtlasObject::SaveToXML(file, filename.c_str());
 
