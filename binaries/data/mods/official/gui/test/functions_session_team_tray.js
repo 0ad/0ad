@@ -54,3 +54,30 @@ function initTeamTray()
 	crd_team_tray_9_x = crd_team_tray_1_x;
 	crd_team_tray_9_y = crd_team_tray_8_y+crd_team_tray_9_height;
 }
+
+// ====================================================================
+
+function UpdateTeamTray()
+{
+	// Enable a Team Tray icon if its group has been created.
+	if (groups[1].length > 0) getGUIObjectByName("session_team_tray_1").hidden = false;
+	else getGUIObjectByName("session_team_tray_1").hidden = true;
+	if (groups[2].length > 0) getGUIObjectByName("session_team_tray_2").hidden = false;
+	else getGUIObjectByName("session_team_tray_2").hidden = true;
+	if (groups[3].length > 0) getGUIObjectByName("session_team_tray_3").hidden = false;
+	else getGUIObjectByName("session_team_tray_3").hidden = true;
+	if (groups[4].length > 0) getGUIObjectByName("session_team_tray_4").hidden = false;
+	else getGUIObjectByName("session_team_tray_4").hidden = true;
+	if (groups[5].length > 0) getGUIObjectByName("session_team_tray_5").hidden = false;
+	else getGUIObjectByName("session_team_tray_5").hidden = true;
+	if (groups[6].length > 0) getGUIObjectByName("session_team_tray_6").hidden = false;
+	else getGUIObjectByName("session_team_tray_6").hidden = true;
+	if (groups[7].length > 0) getGUIObjectByName("session_team_tray_7").hidden = false;
+	else getGUIObjectByName("session_team_tray_7").hidden = true;
+	if (groups[8].length > 0) getGUIObjectByName("session_team_tray_8").hidden = false;
+	else getGUIObjectByName("session_team_tray_8").hidden = true;
+	if (groups[9].length > 0) getGUIObjectByName("session_team_tray_9").hidden = false;
+	else getGUIObjectByName("session_team_tray_9").hidden = true;
+}
+
+// ====================================================================

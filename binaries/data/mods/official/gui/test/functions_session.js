@@ -80,6 +80,9 @@ function getObjectInfo()
 
 	// Modify any resources given/taken (later, we need to base this on a resource-changing event).
 	UpdateResourcePool();
+
+	// Update Team Tray (later, we need to base this on the player creating a group).
+	UpdateTeamTray();
 }
 
 // ====================================================================
