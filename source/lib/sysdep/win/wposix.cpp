@@ -192,15 +192,17 @@ struct _DIR
 };
 
 
+static const DWORD hs = FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM;
+
 DIR* opendir(const char* name)
 {
 	DWORD fa = GetFileAttributes(name);
-	if(fa == INVALID_FILE_ATTRIBUTES || !(fa & FILE_ATTRIBUTE_DIRECTORY))
+	if((fa == INVALID_FILE_ATTRIBUTES) ||   // GetFileAttributes failed
+	   !(fa & FILE_ATTRIBUTE_DIRECTORY) ||  // not a directory
+	   (fa & hs))                           // hidden or system dir
 		return 0;
 
-	size_t size = round_up(sizeof(_DIR), 32);
-		// be nice to allocator.
-	_DIR* d = (_DIR*)calloc(size, 1);
+	_DIR* d = (_DIR*)calloc(sizeof(_DIR), 1);
 
 	char path[MAX_PATH+1];
 	strncpy(path, name, MAX_PATH-2);
@@ -217,6 +219,7 @@ struct dirent* readdir(DIR* dir)
 
 	DWORD last_err = GetLastError();
 
+again:
 	if(d->not_first)
 		if(!FindNextFile(d->handle, &d->fd))
 		{
@@ -228,6 +231,10 @@ struct dirent* readdir(DIR* dir)
 			return 0;
 		}
 	d->not_first = true;
+
+	// hidden or system entry - don't return it.
+	if(d->fd.dwFileAttributes & hs)
+		goto again;
 
 	d->ent.d_ino = 0;
 	d->ent.d_name = &d->fd.cFileName[0];
@@ -337,15 +344,21 @@ struct ThreadParam
 {
 	void*(*func)(void*);
 	void* user_arg;
+	ThreadParam(void*(*_func)(void*), void* _user_arg)
+		: func(_func), user_arg(_user_arg) {}
 };
 
-static unsigned __stdcall thread_start(void* arg)
-{
-	ThreadParam* param = (ThreadParam*)arg;
 
-	param->func(param->user_arg);
-	delete param;
-	return 0;
+// trampoline to switch calling convention.
+// param points to a heap-allocated ThreadParam (see pthread_create).
+static unsigned __stdcall thread_start(void* param)
+{
+	ThreadParam* f = (ThreadParam*)param;
+	void*(*func)(void*) = f->func;
+	void* user_arg      = f->user_arg;
+	delete f;
+
+	return (unsigned)func(user_arg);
 }
 
 
@@ -353,17 +366,14 @@ int pthread_create(pthread_t* thread, const void* attr, void*(*func)(void*), voi
 {
 	UNUSED(attr);
 
-	// can't use asm - _beginthreadex might be a func ptr (with DLL CRT)
-
-	// Heap Allocate - we can't make sure that the other thread's thread_start
-	// function is run before we exit this stack frame
-	ThreadParam *param = new ThreadParam;
-	param->func=func;
-	param->user_arg=user_arg;
+	// notes:
+	// - don't call via asm: _beginthreadex might be a func ptr (if DLL CRT).
+	// - don't stack-allocate param: thread_start might not be called
+	//   in the new thread before we exit this stack frame.
+	ThreadParam* param = new ThreadParam(func, user_arg);
 	*thread = (pthread_t)_beginthreadex(0, 0, thread_start, (void*)param, 0, 0);
 	return 0;
 }
-
 
 
 // DeleteCriticalSection currently doesn't complain if we double-free

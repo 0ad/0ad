@@ -431,6 +431,7 @@ int get_cur_processor_id()
 
 // set cpu_smp if there's more than 1 physical CPU -
 // need to know this for wtime's TSC safety check.
+// called on each CPU by on_each_cpu.
 static void check_smp()
 {
 	assert(cpus > 0 && "must know # CPUs (call OS-specific detect first)");
