@@ -46,10 +46,10 @@ class CSocketInternal
 {
 public:
 	socket_t m_fd;
-	SocketAddress m_RemoteAddr;
+	CSocketAddress m_RemoteAddr;
 
 	socket_t m_AcceptFd;
-	SocketAddress m_AcceptAddr;
+	CSocketAddress m_AcceptAddr;
 	
 	// Bitwise OR of all operations to listen for.
 	// See READ and WRITE
