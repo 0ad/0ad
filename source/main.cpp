@@ -347,15 +347,18 @@ static int handler(const SDL_Event* ev)
 			{
 //			MusicPlayer.open("audio/music/germanic peace 3.ogg");
 //			MusicPlayer.play();
-			Handle hs = sound_open(
+			Handle hs = snd_open(
 				//"audio/music/germanic peace 3.ogg"
-				"audio/voice/hellenes/citizensoldier/Attack-ZeusSaviourandVictory-Zeus-soter-kai-nike.ogg"
+				//"audio/voice/hellenes/citizensoldier/Attack-ZeusSaviourandVictory-Zeus-soter-kai-nike.ogg"
 				//"audio/voice/hellenes/citizensoldier/Stance-HoldYourPosition-Kataschete-ten-taxin.ogg"
 				//"audio/voice/hellenes/citizensoldier/Econ-Chop-Kopto.ogg"
-				//"audio/voice/hellenes/citizensoldier/lead_em.wav"
+				//"audio/lead_em.wav"
+				//"audio/nike.wav"
+				"audio/nike.ogg"
+				//"audio/1111_Warcraft 2 - Orc Defeat.ogg"
 				);
 				
-			sound_play(hs);
+			snd_play(hs);
 			}
 			break;
 
@@ -1022,7 +1025,7 @@ static void Frame()
 	MICROLOG(L"In frame");
 
 	MusicPlayer.update();
-	snd_update();
+	snd_update(0,0,0);
 
 	static double last_time;
 	const double time = get_time();
