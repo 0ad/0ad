@@ -1,8 +1,11 @@
 #include "Matrix3D.h"
 #include "Renderer.h"
 #include "Terrain.h"
+#include "Camera.h"
+#include "LightEnv.h"
 #include "../ps/Prometheus.h"
 
+#include "detect.h"
 #include "time.h"
 #include "wsdl.h"
 #include "tex.h"
@@ -21,6 +24,7 @@ CMatrix3D			g_WorldMat;
 CRenderer			g_Renderer;
 CTerrain			g_Terrain;
 CCamera				g_Camera;
+CLightEnv			g_LightEnv;
 
 int					SelPX, SelPY, SelTX, SelTY;
 int					g_BaseTexCounter = 0;
@@ -44,11 +48,16 @@ int mouse_x=50, mouse_y=50;
 
 void terr_init()
 {
-#ifdef WIDEASPECT
-	g_Renderer.Initialize( 1440, 900, 32 );
-#else
-	g_Renderer.Initialize (1600, 1200, 32);
-#endif
+	int xres,yres;
+	get_cur_resolution(xres,yres);
+	g_Renderer.Open(xres,yres,32);
+
+	SViewPort vp;
+	vp.m_X=0;
+	vp.m_Y=0;
+	vp.m_Width=xres;
+	vp.m_Height=yres;
+	g_Camera.SetViewPort(&vp);
 
 	InitResources ();
 	InitScene ();
@@ -56,7 +65,9 @@ void terr_init()
 
 void terr_update()
 {
-g_FrameCounter++;
+	// start new frame
+	g_Renderer.BeginFrame();
+	g_Renderer.SetCamera(g_Camera);
 
 	/////////////////////////////////////////////
 		/*POINT MousePos;
@@ -92,11 +103,26 @@ g_FrameCounter++;
 /////////////////////////////////////////////
 
 
-	g_Renderer.RenderTerrain (&g_Terrain, &g_Camera);
-	g_Renderer.RenderTileOutline (&(g_Terrain.m_Patches[SelPY][SelPX].m_MiniPatches[SelTY][SelTX]));
+	CFrustum frustum=g_Camera.GetFustum();
 
+	// iterate through patches; cull everything not visible
+	for (int j=0; j<NUM_PATCHES_PER_SIDE; j++)
+	{
+		for (int i=0; i<NUM_PATCHES_PER_SIDE; i++)
+		{
+			if (frustum.IsBoxVisible (CVector3D(0,0,0),g_Terrain.m_Patches[j][i].m_Bounds)) {
+				g_Renderer.Submit(&g_Terrain.m_Patches[j][i]);
+			}
+		}
+	}
 
+	// flush the frame to force terrain to be renderered before overlays
+	g_Renderer.FlushFrame();
 
+		//	g_Renderer.RenderTileOutline (&(g_Terrain.m_Patches[SelPY][SelPX].m_MiniPatches[SelTY][SelTX]));
+
+	// mark end of frame
+	g_Renderer.EndFrame();
 }
 
 
@@ -116,8 +142,12 @@ bool terr_handler(const SDL_Event& ev)
 	case SDL_KEYDOWN:
 		switch(ev.key.keysym.sym)
 		{
-		case 'W':
-			g_WireFrame = !g_WireFrame;
+		case 'W': 
+			if (g_Renderer.GetTerrainMode()==CRenderer::WIREFRAME) {
+				g_Renderer.SetTerrainMode(CRenderer::FILL);
+			} else {
+				g_Renderer.SetTerrainMode(CRenderer::WIREFRAME);
+			}
 			break;
 
 		case 'H':
@@ -236,7 +266,13 @@ bool terr_handler(const SDL_Event& ev)
 
 void InitScene ()
 {
-	g_Terrain.Initalize ("terrain.raw");
+	// setup default lighting environment
+	g_LightEnv.m_SunColor=RGBColor(0.75f,0.70f,0.65f);
+	g_LightEnv.m_Rotation=270;
+	g_LightEnv.m_Elevation=DEGTORAD(30);
+	g_LightEnv.m_TerrainAmbientColor=RGBColor(0.0f,0.0f,0.0f);
+
+	g_Terrain.Load("terrain.raw");
 
 	for (int pj=0; pj<NUM_PATCHES_PER_SIDE; pj++)
 	{
@@ -253,6 +289,9 @@ void InitScene ()
 			}
 		}
 	}
+
+	// calculate terrain lighting
+	g_Terrain.CalcLighting(g_LightEnv);
 
 	g_Camera.SetProjection (1, 1000, DEGTORAD(20));
 	g_Camera.m_Orientation.SetXRotation(DEGTORAD(30));
