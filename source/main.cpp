@@ -22,7 +22,7 @@
 
 u32 game_ticks;
 
-bool keys[256];
+bool keys[SDLK_LAST];
 
 #include <cmath>
 
