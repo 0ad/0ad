@@ -252,8 +252,7 @@ extern int close(int);
 _CRTIMP int access(const char*, int);
 
 extern int chdir(const char*);
-#define getcwd _getcwd
-_CRTIMP char* getcwd(char*, size_t);
+extern char* getcwd(char*, size_t);
 
 // user tests if available via #ifdef; can't use enum.
 #define _SC_PAGESIZE      1

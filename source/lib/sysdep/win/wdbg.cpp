@@ -264,7 +264,7 @@ static int walk_stack(int (*cb)(STACKFRAME64*, void*), void* ctx, CONTEXT* threa
 // ~500µs
 int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
 {
-	int ret = -1;
+	int successes = 0;
 
 	lock();
 
@@ -272,28 +272,33 @@ int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int*
 	const DWORD64 addr = (DWORD64)ptr_of_interest;
 
 	// get symbol name
+	sym_name[0] = '\0';
 	SYMBOL_INFO_PACKAGE sp;
 	SYMBOL_INFO* sym = &sp.si;
 	sym->SizeOfStruct = sizeof(sp.si);
 	sym->MaxNameLen = MAX_SYM_NAME;
-	if(!SymFromAddr(hProcess, addr, 0, sym))
-		goto fail;
-	sprintf(sym_name, "%s", sym->Name);
-
-	// get source file + line number
-	IMAGEHLP_LINE64 line_info = { sizeof(IMAGEHLP_LINE64) };
-	DWORD displacement; // unused but required by SymGetLineFromAddr64!
-	if(!SymGetLineFromAddr64(hProcess, addr, &displacement, &line_info))
-		goto fail;
-	sprintf(file, "%s", line_info.FileName);
-	*line = line_info.LineNumber;
-
-	ret = 0;
+	if(SymFromAddr(hProcess, addr, 0, sym))
+	{
+		sprintf(sym_name, "%s", sym->Name);
+		successes++;
 	}
 
-fail:
+	// get source file + line number
+	file[0] = '\0';
+	*line = 0;
+	IMAGEHLP_LINE64 line_info = { sizeof(IMAGEHLP_LINE64) };
+	DWORD displacement; // unused but required by SymGetLineFromAddr64!
+	if(SymGetLineFromAddr64(hProcess, addr, &displacement, &line_info))
+	{
+		sprintf(file, "%s", line_info.FileName);
+		*line = line_info.LineNumber;
+		successes++;
+	}
+
+	}
+
 	unlock();
-	return ret;
+	return (successes == 0)? -1 : 0;
 }
 
 
@@ -1298,7 +1303,7 @@ static long CALLBACK except_filter(EXCEPTION_POINTERS* except)
 
 static void set_exception_handler()
 {
-	prev_except_filter = SetUnhandledExceptionFilter(exception_filter);
+	prev_except_filter = SetUnhandledExceptionFilter(except_filter);
 }
 
 #else

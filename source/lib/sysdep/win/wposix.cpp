@@ -222,6 +222,12 @@ int stat(const char* fn, struct stat* s)
 //
 //////////////////////////////////////////////////////////////////////////////
 
+#undef getcwd
+
+char* getcwd(char* buf, size_t buf_size)
+{
+	return _getcwd(buf, buf_size);
+}
 
 char* realpath(const char* fn, char* path)
 {
