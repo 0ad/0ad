@@ -30,6 +30,11 @@
 #include <numeric>
 
 
+// define to disable time sources (useful for simulating other systems)
+// #define NO_QPC
+// #define NO_TSC
+
+
 #pragma data_seg(".LIB$WIA")
 WIN_REGISTER_FUNC(wtime_init);
 #pragma data_seg(".LIB$WTA")
@@ -211,7 +216,9 @@ static int choose_impl()
 	//
 	// GTC
 	//
-	if(1)
+	safe = true;
+	SAFETY_OVERRIDE(HRT_GTC);
+	if(safe)
 	{
 		hrt_impl = HRT_GTC;
 		hrt_nominal_freq = 1000;
