@@ -264,7 +264,12 @@ bool CModel::SetAnimation(CSkeletonAnim* anim)
 void CModel::AddProp(SPropPoint* point,CModel* model)
 {
 	// position model according to prop point position
-	model->SetTransform(point->m_Transform);
+	CMatrix3D proptransform=point->m_Transform;;
+	if (m_BoneMatrices && point->m_BoneIndex!=0xff) {
+		proptransform.Concatenate(m_BoneMatrices[point->m_BoneIndex]);
+	}			
+	proptransform.Concatenate(m_Transform);
+	model->SetTransform(proptransform);
 
 	// check if we're already using this point, and replace
 	// model on it if so

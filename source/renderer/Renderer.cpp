@@ -108,7 +108,7 @@ CRenderer::CRenderer ()
 	m_ShadowMap=0;
 	m_Options.m_NoVBO=false;
 	m_Options.m_NoPBuffer=false;
-	m_Options.m_Shadows=true;
+	m_Options.m_Shadows=false;
 	m_Options.m_ShadowColor=RGBColor(0.4f,0.4f,0.4f);
 }
 
@@ -836,8 +836,6 @@ void CRenderer::RenderPatches()
 // RenderModelsStreams: recurse down given model rendering given streams on each model						   
 void CRenderer::RenderModelsStreams(u32 streamflags)
 {
-	glMatrixMode(GL_MODELVIEW);
-
 	for (uint i=0;i<m_Models.size();++i) {
 		CModel* model=m_Models[i];
 		// push transform onto stack
