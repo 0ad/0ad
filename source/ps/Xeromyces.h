@@ -1,4 +1,4 @@
-/* $Id: Xeromyces.h,v 1.6 2004/07/29 16:15:49 philip Exp $
+/* $Id: Xeromyces.h,v 1.7 2004/07/31 11:38:13 janwas Exp $
 
   Xeromyces file-loading interface.
   Automatically creates and caches relatively
@@ -16,7 +16,7 @@ ERROR_TYPE(Xeromyces, XMLOpenFailed);
 ERROR_TYPE(Xeromyces, XMLParseError);
 
 #include "ps/XeroXMB.h"
-#include "lib/res/CVFSFile.h"
+#include "CVFSFile.h"
 
 class CXeromyces : public XMBFile
 {

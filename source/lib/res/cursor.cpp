@@ -12,7 +12,7 @@
 #include "lib/res/ogl_tex.h"
 #include "lib/res/vfs.h"
 #include "lib/ogl.h"
-#include "lib/res/CVFSFile.h"
+#include "CVFSFile.h"
 
 
 // Slightly hacky resource-loading code, but it doesn't
@@ -183,7 +183,7 @@ void cursor_draw(const char* name)
 #include "lib/res/ogl_tex.h"
 #include "lib/res/vfs.h"
 #include "lib/ogl.h"
-#include "lib/res/CVFSFile.h"
+#include "CVFSFile.h"
 
 extern int mouse_x, mouse_y;
 
