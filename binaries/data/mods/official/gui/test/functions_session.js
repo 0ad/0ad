@@ -67,8 +67,8 @@ function getObjectInfo()
 		setPortrait("session_panel_status_portrait", selection[0].traits.id.icon);
 
 		// Update hitpoints
-		getGUIObjectByName("session_panel_status_icon_hp_text").caption = selection[0].traits.health.initial + "/" + selection[0].traits.health.hitpoints;
-		getGUIObjectByName("session_panel_status_icon_hp_bar").caption = ((selection[0].traits.health.initial * 100 ) / selection[0].traits.health.hitpoints);
+		getGUIObjectByName("session_panel_status_icon_hp_text").caption = selection[0].traits.health.hpcurr + "/" + selection[0].traits.health.hitpoints;
+		getGUIObjectByName("session_panel_status_icon_hp_bar").caption = ((selection[0].traits.health.hpcurr * 100 ) / selection[0].traits.health.hitpoints);
 
 		// Reveal Status Orb
 		getGUIObjectByName("session_status_orb").hidden = false;
@@ -139,7 +139,7 @@ function getObjectInfo()
 						groupPanePortrait.hidden = false;
 						groupPaneBar.hidden = false;
 						// Set progress bar for hitpoints.
-						groupPaneBar.caption = ((selection[groupPaneLoop-1].traits.health.initial * 100 ) / selection[groupPaneLoop-1].traits.health.hitpoints);
+						groupPaneBar.caption = ((selection[groupPaneLoop-1].traits.health.hpcurr * 100 ) / selection[groupPaneLoop-1].traits.health.hitpoints);
 						setPortrait("session_group_pane_portrait_" + groupPaneLoop, selection[groupPaneLoop-1].traits.id.icon);
 					}
 					// If it's empty, hide its group portrait.
