@@ -24,21 +24,6 @@ FUNC(void, glClientActiveTexture, (int))
 // EXT_swap_control
 FUNC(int, wglSwapIntervalEXT, (int))
 
-// NV_vertex_array
-FUNC(void, glVertexArrayRangeNV, (int, void*))
-FUNC(void, glFlushVertexArrayRangeNV, ())
-FUNC(void*, wglAllocateMemoryNV, (int, float, float, float))
-FUNC(void, wglFreeMemoryNV, (void*))
-
-// NV_fence
-FUNC(void, glGenFencesNV, (int, unsigned int*))
-FUNC(void, glDeleteFencesNV, (int, const unsigned int*))
-FUNC(void, glSetFenceNV, (unsigned int, int))
-FUNC(int, glTestFenceNV, (unsigned int))
-FUNC(void, glFinishFenceNV, (unsigned int))
-FUNC(int, glIsFenceNV, (unsigned int))
-FUNC(void, glGetFenceivNV, (unsigned int, int, int*))
-
 // ARB_vertex_array_object
 FUNC(void, glBindBufferARB, (int target, GLuint buffer))
 FUNC(void, glDeleteBuffersARB, (GLsizei n, const GLuint* buffers))
