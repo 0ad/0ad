@@ -108,12 +108,16 @@ extern int zip_unmap(ZFile* zf);
 // with zip_wait_io; when no longer needed, free via zip_discard_io.
 extern int zip_start_io(ZFile* const zf, off_t ofs, size_t size, void* buf, FileIO* io);
 
+// indicates if the IO referenced by <io> has completed.
+// return value: 0 if pending, 1 if complete, < 0 on error.
+extern int zip_io_complete(FileIO io);
+
 // wait until the transfer <hio> completes, and return its buffer.
 // output parameters are zeroed on error.
-extern int zip_wait_io(FileIO* io, void*& p, size_t& size);
+extern int zip_wait_io(FileIO io, void*& p, size_t& size);
 
 // finished with transfer <hio> - free its buffer (returned by vfs_wait_io)
-extern int zip_discard_io(FileIO* io);
+extern int zip_discard_io(FileIO io);
 
 
 //

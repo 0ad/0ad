@@ -719,7 +719,7 @@ int inf_set_dest(uintptr_t ctx, void* out, size_t out_size)
 
 // unzip into output buffer. returns bytes written
 // (may be 0, if not enough data is passed in), or < 0 on error.
-ssize_t inf_inflate(uintptr_t ctx, void* in, size_t in_size)
+ssize_t inf_inflate(uintptr_t ctx, bool compressed, void* in, size_t in_size)
 {
 #ifdef NO_ZLIB
 	return -1;
@@ -732,7 +732,21 @@ ssize_t inf_inflate(uintptr_t ctx, void* in, size_t in_size)
 
 	stream->avail_in = (uInt)in_size;
 	stream->next_in = (Byte*)in;
-	int err = inflate(stream, Z_SYNC_FLUSH);
+
+	int err = 0;
+
+	if(compressed)
+		err = inflate(stream, Z_SYNC_FLUSH);
+	else
+	{
+		memcpy(stream->next_out, stream->next_in, stream->avail_in);
+		stream->avail_out -= stream->avail_in;
+		stream->avail_in = 0;
+		stream->next_in += stream->avail_in;
+		stream->next_out += stream->avail_in;
+		stream->total_in += stream->avail_in;
+		stream->total_out += stream->avail_in;
+	}
 
 	// check+return how much actual data was read
 	//
@@ -922,7 +936,7 @@ int zip_open(const Handle ha, const char* fn, ZFile* zf)
 	zf->csize    = loc.csize;
 
 	zf->ha       = ha;
-	zf->inf_ctx = inf_init_ctx();
+	zf->inf_ctx  = inf_init_ctx();
 }
 
 invalid_zf:
@@ -952,6 +966,7 @@ int zip_close(ZFile* zf)
 struct IOCBParams
 {
 	uintptr_t inf_ctx;
+	bool compressed;
 
 	FileIOCB user_cb;
 	uintptr_t user_ctx;
@@ -962,7 +977,7 @@ static ssize_t io_cb(uintptr_t ctx, void* buf, size_t size)
 {
 	IOCBParams* p = (IOCBParams*)ctx;
 
-	ssize_t ret = inf_inflate(p->inf_ctx, buf, size);
+	ssize_t ret = inf_inflate(p->inf_ctx, p->compressed, buf, size);
 
 	if(p->user_cb)
 		return p->user_cb(p->user_ctx, buf, size);
@@ -970,12 +985,15 @@ static ssize_t io_cb(uintptr_t ctx, void* buf, size_t size)
 	return ret;
 }
 
+#include "timer.h"
 
 // note: we go to a bit of trouble to make sure the buffer we allocated
 // (if p == 0) is freed when the read fails.
 ssize_t zip_read(ZFile* zf, off_t raw_ofs, size_t size, void** p, FileIOCB cb, uintptr_t ctx)
 {
 	CHECK_ZFILE(zf);
+
+	const bool compressed = zfile_compressed(zf);
 
 	ssize_t err = -1;
 	ssize_t raw_bytes_read;
@@ -988,8 +1006,8 @@ ssize_t zip_read(ZFile* zf, off_t raw_ofs, size_t size, void** p, FileIOCB cb, u
 
 	// not compressed - just pass it on to file_io
 	// (avoid the Zip inflate start/finish stuff below)
-	if(!zfile_compressed(zf))
-		return file_io(&za->f, ofs, size, p);
+//	if(!compressed)
+//		return file_io(&za->f, ofs, size, p);
 			// no need to set last_raw_ofs - only checked if compressed.
 
 	// compressed
@@ -1035,12 +1053,38 @@ fail:
 		return err;
 	}
 
-	const IOCBParams params = { zf->inf_ctx, cb, ctx };
+/*
+static bool once = false;
+if(!once)
+{
+
+once=true;
+uintptr_t xctx = inf_init_ctx();
+size_t xsize = za->f.size;
+void* xbuf=mem_alloc(xsize, 65536);
+inf_set_dest(xctx, xbuf, xsize);
+const IOCBParams xparams = { xctx, false, 0, 0 };
+double t1 = get_time();
+file_io(&za->f,0, xsize, 0, io_cb, (uintptr_t)&xparams);
+double t2 = get_time();
+debug_out("\n\ntime to load whole archive %f\nthroughput %f MB/s\n", t2-t1, xsize / (t2-t1) / 1e6);
+mem_free(xbuf);
+}
+*/
+
+	const IOCBParams params = { zf->inf_ctx, compressed, cb, ctx };
 
 	// read blocks from the archive's file starting at ofs and pass them to
 	// inf_inflate, until all compressed data has been read, or it indicates
 	// the desired output amount has been reached.
-	const size_t raw_size = zf->csize;
+	size_t raw_size = zf->csize;
+
+// we set csize to 0 to indicate the file isn't compressed.
+// see zfile_compressed implementation.
+if(!compressed)
+raw_size = zf->ucsize;
+
+
 	raw_bytes_read = file_io(&za->f, ofs, raw_size, (void**)0, io_cb, (uintptr_t)&params);
 
 	zf->last_raw_ofs = raw_ofs + (off_t)raw_bytes_read;
@@ -1064,7 +1108,7 @@ fail:
 
 // rationale for not supporting aio for compressed files:
 // would complicate things considerably (could no longer just
-// return the file I/O handle, since we have to decompress in wait_io),
+// return the file I/O context, since we have to decompress in wait_io),
 // yet it isn't really useful - aio is used to stream music,
 // which is already compressed.
 
@@ -1085,16 +1129,24 @@ int zip_start_io(ZFile* const zf, off_t ofs, size_t size, void* buf, FileIO* io)
 }
 
 
+// indicates if the IO referenced by <io> has completed.
+// return value: 0 if pending, 1 if complete, < 0 on error.
+inline int zip_io_complete(FileIO io)
+{
+	return file_io_complete(io);
+}
+
+
 // wait until the transfer <hio> completes, and return its buffer.
 // output parameters are zeroed on error.
-inline int zip_wait_io(FileIO* io, void*& p, size_t& size)
+inline int zip_wait_io(FileIO io, void*& p, size_t& size)
 {
 	return file_wait_io(io, p, size);
 }
 
 
 // finished with transfer <hio> - free its buffer (returned by vfs_wait_io)
-inline int zip_discard_io(FileIO* io)
+inline int zip_discard_io(FileIO io)
 {
 	return file_discard_io(io);
 }
