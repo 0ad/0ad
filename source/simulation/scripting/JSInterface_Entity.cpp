@@ -136,8 +136,10 @@ JSBool JSI_Entity::toString( JSContext* cx, JSObject* obj, uintN argc, jsval* ar
 	HEntity* e = (HEntity*)JS_GetPrivate( cx, obj );
 
 	wchar_t buffer[256];
-	_snwprintf( buffer, 256, L"[object Entity: \"%ls\" (%ls)]", (const wchar_t*)(*e)->m_name, (const wchar_t*)(*e)->m_base->m_name );
+	swprintf( buffer, 256, L"[object Entity: \"%ls\" (%ls)]", (*e)->m_name.c_str(), (*e)->m_base->m_name.c_str() );
 	buffer[255] = 0;
-	*rval = STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, buffer ) );
+	utf16_t utfbuf[256];
+	std::copy(buffer, buffer+256, utfbuf);
+	*rval = STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, utfbuf ) );
 	return( JS_TRUE );
 }

@@ -115,7 +115,7 @@ void CBoundObjectProperty<CStrW>::set( const jsval value )
 
 jsval CBoundObjectProperty<CStrW>::tojsval()
 {
-	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( g_ScriptingHost.getContext(), m_String.c_str() ) ) );
+	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( g_ScriptingHost.getContext(), utf16().c_str() ) ) );
 }
 
 CBoundObjectProperty<CVector3D>::CBoundObjectProperty()
