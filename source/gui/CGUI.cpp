@@ -980,7 +980,7 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 	IGUIObject *object = NULL;
 
 	// Well first of all we need to determine the type
-	CStr type = XMLTranscode( pElement->getAttribute( L"type" ) );
+	CStr type = XMLTranscode( pElement->getAttribute( (XMLCh*)L"type" ) );
 
 	// Construct object from specified type
 	//  henceforth, we need to do a rollback before aborting.
@@ -1003,7 +1003,7 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 	//
 	//	Always load default (if it's available) first!
 	//
-	CStr argStyle = XMLTranscode( pElement->getAttribute( L"style" ) );
+	CStr argStyle = XMLTranscode( pElement->getAttribute( (XMLCh*)L"style" ) );
 
 	if (m_Styles.count(CStr("default")) == 1)
 		object->LoadStyle(*this, CStr("default"));
@@ -1193,7 +1193,7 @@ void CGUI::Xerces_ReadSprite(DOMElement *pElement)
 	//
 
 	// Get name, we know it exists because of DTD requirements
-	name = XMLTranscode( pElement->getAttribute( L"name" )  );
+	name = XMLTranscode( pElement->getAttribute( (XMLCh*)L"name" )  );
 
 	//
 	//	Read Children (the images)
