@@ -3,9 +3,44 @@
 #include "GUIRenderer.h"
 
 #include "lib/ogl.h"
+#include "lib/res/h_mgr.h"
 
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "gui"
+
+using namespace GUIRenderer;
+
+// Copyable texture Handle, for use in STL containers where the Handle should
+// be freed when it's finished with.
+
+Handle_rfcnt_tex::Handle_rfcnt_tex()
+: h(0)
+{
+}
+
+Handle_rfcnt_tex::Handle_rfcnt_tex(Handle h_)
+: h(h_)
+{
+}
+
+Handle_rfcnt_tex::Handle_rfcnt_tex(const Handle_rfcnt_tex& that)
+{
+	h = that.h;
+	if (h) h_add_ref(h);
+}
+
+Handle_rfcnt_tex::~Handle_rfcnt_tex()
+{
+	if (h) tex_free(h);
+}
+
+Handle_rfcnt_tex& Handle_rfcnt_tex::operator=(Handle h_)
+{
+	h = h_;
+	return *this;
+}
+
+// Functions to perform drawing-related actions:
 
 void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect &Size, std::map<CStr, CGUISprite> &Sprites)
 {
@@ -42,17 +77,17 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 				return;
 			}
 
-			Call.m_TexHandle = h;
-
-			int err = tex_upload(Call.m_TexHandle);
+			int err = tex_upload(h);
 			if (err < 0)
 			{
 				LOG(ERROR, LOG_CATEGORY, "Error uploading texture '%s': %d", (const char*)cit->m_TextureName, err);
 				return;
 			}
 
+			Call.m_TexHandle = h;
+
 			int fmt, t_w, t_h;
-			tex_info(Call.m_TexHandle, &t_w, &t_h, &fmt, NULL, NULL);
+			tex_info(h, &t_w, &t_h, &fmt, NULL, NULL);
 			Call.m_EnableBlending = (fmt == GL_RGBA || fmt == GL_BGRA);
 
 			CRect real = cit->m_Size.GetClientArea(Size);
@@ -121,14 +156,14 @@ void GUIRenderer::Draw(DrawCalls &Calls)
 			glDisable(GL_BLEND);
 		}
 
-		if (cit->m_TexHandle)
+		if (cit->m_TexHandle.h)
 		{
 			// TODO: Handle the GL state in a nicer way
 
 			glEnable(GL_TEXTURE_2D);
 			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 
-			tex_bind(cit->m_TexHandle);
+			tex_bind(cit->m_TexHandle.h);
 
 			glBegin(GL_QUADS);
 

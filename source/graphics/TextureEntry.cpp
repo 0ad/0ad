@@ -10,9 +10,17 @@
 
 /////////////////////////////////////////////////////////////////////////////////////
 // CTextureEntry constructor
-CTextureEntry::CTextureEntry(const char* name,int type)	
-	: m_Name(name), m_Bitmap(0), m_Handle(0xffffffff), m_BaseColor(0), m_Type(type), m_BaseColorValid(false) 
+CTextureEntry::CTextureEntry(const char* name,int type)
+	: m_Name(name), m_Bitmap(0), m_Handle(-1), m_BaseColor(0), m_Type(type), m_BaseColorValid(false) 
 {
+}
+
+/////////////////////////////////////////////////////////////////////////////////////
+// CTextureEntry destructor
+CTextureEntry::~CTextureEntry()
+{
+	if (m_Handle > 0)
+		tex_free(m_Handle);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////

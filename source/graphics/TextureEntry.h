@@ -11,6 +11,7 @@ class CTextureEntry
 {
 public:
 	CTextureEntry(const char* name,int type);
+	~CTextureEntry();
 
 	// accessor - return texture name
 	const char* GetName() const { return (const char*) m_Name; }
@@ -22,7 +23,7 @@ public:
 
 	// accessor - get texture handle
 	Handle GetHandle() { 
-		if (m_Handle==0xffffffff) LoadTexture();
+		if (m_Handle==-1) LoadTexture();
 		return m_Handle; 
 	}
 	// accessor - get mipmap color

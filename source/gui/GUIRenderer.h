@@ -8,9 +8,19 @@
 
 namespace GUIRenderer
 {
+	struct Handle_rfcnt_tex
+	{
+		Handle h;
+		Handle_rfcnt_tex();
+		Handle_rfcnt_tex(Handle h_);
+		Handle_rfcnt_tex(const Handle_rfcnt_tex& that);
+		~Handle_rfcnt_tex();
+		Handle_rfcnt_tex& operator=(Handle h_);
+	};
+
 	struct SDrawCall
 	{
-		Handle m_TexHandle;
+		Handle_rfcnt_tex m_TexHandle;
 
 		bool m_EnableBlending;
 

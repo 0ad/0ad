@@ -995,25 +995,17 @@ void CRenderer::Submit(COverlay* overlay)
 void CRenderer::RenderPatchSubmissions()
 {
 	// switch on required client states 
-	MICROLOG(L"enable vertex array");
 	glEnableClientState(GL_VERTEX_ARRAY);
-	MICROLOG(L"enable color array");
 	glEnableClientState(GL_COLOR_ARRAY);
-	MICROLOG(L"enable tex coord array");
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	
 	// render everything 
-	MICROLOG(L"render base splats");
 	CPatchRData::RenderBaseSplats();
-	MICROLOG(L"render blend splats");
 	CPatchRData::RenderBlendSplats();
 
 	// switch off all client states
-	MICROLOG(L"disable tex coord array");
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	MICROLOG(L"disable color array");
 	glDisableClientState(GL_COLOR_ARRAY);
-	MICROLOG(L"disable vertex array");
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
@@ -1023,16 +1015,18 @@ void CRenderer::RenderPatchSubmissions()
 // LoadTexture: try and load the given texture; set clamp/repeat flags on texture object if necessary
 bool CRenderer::LoadTexture(CTexture* texture,u32 wrapflags)
 {
+	const Handle errorhandle = -1;
+
 	Handle h=texture->GetHandle();
 	if (h) {
 		// already tried to load this texture, nothing to do here - just return success according
 		// to whether this is a valid handle or not
-		return h==0xffffffff ? true : false;
+		return h==errorhandle ? true : false;
 	} else {
 		h=tex_load(texture->GetName());
 		if (h <= 0) {
 			LOG(ERROR, LOG_CATEGORY, "LoadTexture failed on \"%s\"",(const char*) texture->GetName());
-			texture->SetHandle(0xffffffff);
+			texture->SetHandle(errorhandle);
 			return false;
 		} else {
 			int tw,th;
@@ -1041,8 +1035,9 @@ bool CRenderer::LoadTexture(CTexture* texture,u32 wrapflags)
 			tw&=(tw-1);
 			th&=(th-1);
 			if (tw || th) {
-				texture->SetHandle(0xffffffff);
 				LOG(ERROR, LOG_CATEGORY, "LoadTexture failed on \"%s\" : not a power of 2 texture",(const char*) texture->GetName());
+				tex_free(h);
+				texture->SetHandle(errorhandle);
 				return false;
 			} else {
 				BindTexture(0,tex_id(h));

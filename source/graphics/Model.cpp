@@ -16,6 +16,7 @@
 #include "SkeletonAnimDef.h"
 #include "SkeletonAnimManager.h"
 #include "MeshManager.h"
+#include "lib/res/ogl_tex.h"
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Constructor
@@ -43,6 +44,10 @@ void CModel::ReleaseData()
 	}
 	m_Props.clear();
 	m_pModelDef = CModelDefPtr();
+
+	Handle h = m_Texture.GetHandle();
+	tex_free(h);
+	m_Texture.SetHandle(0);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
