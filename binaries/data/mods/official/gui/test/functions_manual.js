@@ -5,16 +5,16 @@ function manualDisplay()
 					ManualBkg.caption = "In-Game Help: ";
 					if (selection[0].traits.id.civ)
 						ManualBkg.caption += selection[0].traits.id.civ + ": ";
-//					if (selection[0].traits.id.generic)
-//						ManualBkg.caption += selection[0].traits.id.generic + ": ";
 					if (selection[0].traits.id.specific)
 						ManualBkg.caption += selection[0].traits.id.specific;
 
 					// Display portrait.
 					if (selection[0].traits.id.icon)
 					{
-						ManualPortrait = getGUIObjectByName("manual_portrait");
-						setPortrait("manual_portrait", selection[0].traits.id.icon);
+						if (selection[0].traits.id.icon_cell && selection[0].traits.id.icon_cell != "")
+							setPortrait("manual_portrait", selection[0].traits.id.icon + "_" + selection[0].traits.id.icon_cell);
+						else
+							setPortrait("manual_portrait", selection[0].traits.id.icon);
 					}
 
 					// Display rollover text.
@@ -60,23 +60,26 @@ function manualDisplay()
 					if (selection[0].traits.up && selection[0].traits.up.curr && selection[0].traits.up.req)
 						ManualRollover.caption += "XP: " + selection[0].traits.up.curr + "/" + selection[0].traits.up.req + "\n";
 
-					// Display UP on death.
-					if (selection[0].traits.loot.up)
-						ManualRollover.caption += "UP: " + selection[0].traits.loot.up + "\n";
-
-					// Display loot.
-					if (selection[0].traits.loot.food || selection[0].traits.loot.wood || selection[0].traits.loot.stone || selection[0].traits.loot.ore)
+					if (selection[0].traits.loot)
 					{
-						ManualRollover.caption += "Loot: ";
-						if (selection[0].traits.loot.food)
-							ManualRollover.caption += selection[0].traits.loot.food + " Food ";
-						if (selection[0].traits.loot.wood)
-							ManualRollover.caption += selection[0].traits.loot.wood + " Wood ";
-						if (selection[0].traits.loot.stone)
-							ManualRollover.caption += selection[0].traits.loot.stone + " Stone ";
-						if (selection[0].traits.loot.ore)
-							ManualRollover.caption += selection[0].traits.loot.ore + " Ore ";
-						ManualRollover.caption += "\n";
+						// Display UP on death.
+						if (selection[0].traits.loot.up)
+							ManualRollover.caption += "UP: " + selection[0].traits.loot.up + "\n";
+	
+						// Display loot.
+						if (selection[0].traits.loot.food || selection[0].traits.loot.wood || selection[0].traits.loot.stone || selection[0].traits.loot.ore)
+						{
+							ManualRollover.caption += "Loot: ";
+							if (selection[0].traits.loot.food)
+								ManualRollover.caption += selection[0].traits.loot.food + " Food ";
+							if (selection[0].traits.loot.wood)
+								ManualRollover.caption += selection[0].traits.loot.wood + " Wood ";
+							if (selection[0].traits.loot.stone)
+								ManualRollover.caption += selection[0].traits.loot.stone + " Stone ";
+							if (selection[0].traits.loot.ore)
+								ManualRollover.caption += selection[0].traits.loot.ore + " Ore ";
+							ManualRollover.caption += "\n";
+						}
 					}
 
 					// Armour.

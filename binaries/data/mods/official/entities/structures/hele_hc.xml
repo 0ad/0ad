@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="hele_hc" Parent="hc">
+	<Traits>
+		<Id
+			civ_code="hele"
+			civ="Hellenes"
+			internal_only="false"
+			icon="sheet_hele"
+
+			specific="Anaktoron"
+			history="The Hellenes built marvelous temples in order to honour their polytheistic pantheon. While all gods were venerated, a specific patron deity was supposed to watch over each polis."
+		/>
+	</Traits>
+	<Actor>Hellenes Health Centre</Actor>
+</Entity>

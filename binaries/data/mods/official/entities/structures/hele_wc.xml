@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="hele_wc" Parent="wc">
+	<Traits>
+		<Id
+			civ_code="hele"
+			civ="Hellenes"
+			internal_only="false"
+			icon="sheet_hele"
+
+			specific="Teichos"
+			history="All Hellenic cities were surrounded by stone walls for protection against enemy raids. Some of these fortifications, like the Athenian Long Walls, for example, were massive structures."
+		/>
+	</Traits>
+	<Actor>Hellenes Wall Section</Actor>
+</Entity>

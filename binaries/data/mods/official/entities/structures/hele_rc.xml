@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="hele_rc" Parent="rc">
+	<Traits>
+		<Id
+			civ_code="hele"
+			civ="Hellenes"
+			internal_only="false"
+			icon="sheet_hele"
+
+			specific="Anakeion"
+			history="Resources and building materials were kept in warehouses."
+		/>
+	</Traits>
+	<Actor>Hellenes Resource Centre</Actor>
+</Entity>

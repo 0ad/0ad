@@ -623,7 +623,7 @@
 			</object>
 
 			<!-- PLAYER / CIV NAME HEADING -->
-			<object type="text" name="session_panel_status_heading" font="verdana10" textcolor="200 200 200" text-align="center" ghost="true" z="70" hidden="false">Acumen [icon=bullet_icon] Pre-Imperial Romans
+			<object type="text" name="session_panel_status_heading" font="verdana10" textcolor="200 200 200" text-align="center" ghost="true" z="70" hidden="false">
 			        <action on="Load"><![CDATA[
 					AddSizeCoord(this.name,
 					crd_status_orb_heading_x, crd_status_orb_heading_y, crd_status_orb_heading_x+crd_status_orb_heading_width, crd_status_orb_heading_y+crd_status_orb_heading_height, left_screen, top_screen, left_screen, top_screen,

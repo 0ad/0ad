@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="hele_fc" Parent="fc">
+	<Traits>
+		<Id
+			civ_code="hele"
+			civ="Hellenes"
+			internal_only="false"
+			icon="sheet_hele"
+
+			specific="Sitobolion"
+			history="Grain wasn't plentiful in Hellas, which is why it was carefully stored in granaries, some of it being reserved for times of siege."
+		/>
+	</Traits>
+	<Actor>Hellenes Farm Centre</Actor>
+</Entity>

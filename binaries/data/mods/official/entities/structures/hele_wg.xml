@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="hele_wg" Parent="wg">
+	<Traits>
+		<Id
+			civ_code="hele"
+			civ="Hellenes"
+			internal_only="false"
+			icon="sheet_hele"
+
+			specific="Gate"
+			history="(Insert History Here)"
+		/>
+	</Traits>
+	<Actor>Hellenes Wall Section</Actor>
+</Entity>
