@@ -2,15 +2,7 @@
 #include "ObjectManager.h"
 #include "CStr.h"
 
-// xerces XML stuff
-#include <xercesc/dom/DOM.hpp>
-#include <xercesc/parsers/XercesDOMParser.hpp>
-#include <xercesc/framework/LocalFileInputSource.hpp>
-#include <xercesc/util/XMLString.hpp>
-#include <xercesc/util/PlatformUtils.hpp>
-
-// Gee's custom error handler
-#include "ps/XercesErrorHandler.h"
+#include "XML.h"
 
 // automatically use namespace ..
 XERCES_CPP_NAMESPACE_USE
@@ -59,15 +51,22 @@ bool CBaseEntity::loadXML( CStr filename )
 		// Set customized error handler
 		CXercesErrorHandler *errorHandler = new CXercesErrorHandler();
 		parser->setErrorHandler(errorHandler);
+		
+		CVFSEntityResolver *entityResolver = new CVFSEntityResolver(filename);
+		parser->setEntityResolver(entityResolver);
 
 		// Get main node
-		LocalFileInputSource source( XMLString::transcode(filename) );
+		CVFSInputSource source;
+		parseOK=source.OpenFile(filename)==0;
+		
+		if (parseOK)
+		{
+			// Parse file
+			parser->parse(source);
 
-		// Parse file
-		parser->parse(source);
-
-		// Check how many errors
-		parseOK = parser->getErrorCount() == 0;
+			// Check how many errors
+			parseOK = parser->getErrorCount() == 0;
+		}
 
 		if (parseOK) {
 			// parsed successfully - grab our data
@@ -75,7 +74,7 @@ bool CBaseEntity::loadXML( CStr filename )
 			DOMElement *element = doc->getDocumentElement(); 
 
 			// root_name should be Object
-			CStr root_name = XMLString::transcode( element->getNodeName() );
+			CStr root_name = XMLTranscode( element->getNodeName() );
 
 			// should have at least 3 children - Name, ModelName and TextureName
 			DOMNodeList *children = element->getChildNodes();
@@ -151,8 +150,9 @@ bool CBaseEntity::loadXML( CStr filename )
 			}
 
 		}
-		delete errorHandler;
 		delete parser;
+		delete errorHandler;
+		delete entityResolver;
 	}
 	XMLPlatformUtils::Terminate();
 

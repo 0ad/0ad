@@ -10,8 +10,8 @@ void CBaseEntityCollection::loadTemplates()
 	Handle handle;
 	vfsDirEnt dent;
 	
-	CStr pathname = "mods/official/entities/templates/";
-	handle=vfs_open_dir("entities/templates/");
+	CStr pathname = "entities/templates/";
+	handle=vfs_open_dir(pathname.c_str());
 	if (handle > 0)
 	{
 		while (vfs_next_dirent(handle, &dent, ".xml") == 0)
