@@ -5,7 +5,6 @@ gee@pyro.nu
 */
 
 #include "precompiled.h"
-#undef new // if it was redefined for leak detection, since xerces doesn't like it
 
 #include "GUI.h"
 
@@ -15,27 +14,34 @@ gee@pyro.nu
 #include "CCheckBox.h"
 #include "CRadioButton.h"
 
-#include "XML.h"
-//#include <xercesc/dom/DOM.hpp>
-//#include <xercesc/parsers/XercesDOMParser.hpp>
-//#include <xercesc/framework/LocalFileInputSource.hpp>
-//#include <xercesc/util/XMLString.hpp>
-//#include <xercesc/util/PlatformUtils.hpp>
+#include "ps/Xeromyces.h"
 
-#include "XercesErrorHandler.h"
 #include "Prometheus.h"
 #include "input.h"
 #include "OverlayText.h"
 // TODO Gee: Whatever include CRect/CPos/CSize
 #include "Overlay.h"
 
+#include "scripting/ScriptingHost.h"
+
 #include <string>
 #include <assert.h>
 #include <stdarg.h>
 
 // namespaces used
-XERCES_CPP_NAMESPACE_USE
+//XERCES_CPP_NAMESPACE_USE
 using namespace std;
+
+#include "sysdep/ia32.h"
+#include "ps/CLogger.h"
+#define XERO_TIME
+
+// Class for global JavaScript object
+JSClass GUIClass = {
+	"GUIClass", 0,
+	JS_PropertyStub, JS_PropertyStub, JS_PropertyStub, JS_PropertyStub,
+	JS_EnumerateStub, JS_ResolveStub, JS_ConvertStub, JS_FinalizeStub,
+};
 
 
 extern int g_xres, g_yres;
@@ -74,10 +80,12 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 //	sprintf(buf, "type = %d", ev->type);
 	//TEMPmessage = buf;
 
+	// Update m_MouseButtons. (BUTTONUP is handled later.)
 	if (ev->type == SDL_MOUSEBUTTONDOWN)
 	{
-	//	sprintf(buf, "button = %d", ev->button.button);
-		//TEMPmessage = buf;
+		// (0,1,2) = (LMB,RMB,MMB)
+		if (ev->button.button < 3)
+			m_MouseButtons |= (1 << ev->button.button);
 	}
 
 // JW: (pre|post)process omitted; what're they for? why would we need any special button_released handling?
@@ -191,16 +199,31 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 	}
 */
 
+	// BUTTONUP's effect on m_MouseButtons is handled after
+	// everything else, so that e.g. 'press' handlers (activated
+	// on button up) see which mouse button had been pressed.
+	if (ev->type == SDL_MOUSEBUTTONUP)
+	{
+		// (0,1,2) = (LMB,RMB,MMB)
+		if (ev->button.button < 3)
+			m_MouseButtons &= ~(1 << ev->button.button);
+	}
+
 	return EV_PASS;
 }
 
 //-------------------------------------------------------------------
 //  Constructor / Destructor
 //-------------------------------------------------------------------
-CGUI::CGUI() : m_InternalNameNumber(0)
+CGUI::CGUI() : m_InternalNameNumber(0), m_MouseButtons(0)
 {
 	m_BaseObject = new CGUIDummyObject;
 	m_BaseObject->SetGUI(this);
+
+	// Construct the parent object for all GUI JavaScript things
+	m_ScriptObject = (void*)JS_NewObject(g_ScriptingHost.getContext(), &GUIClass, NULL, NULL);
+	assert(m_ScriptObject != NULL); // How should it handle errors?
+	JS_AddRoot(g_ScriptingHost.getContext(), &m_ScriptObject);
 
 	// This will make this invisible, not add
 	//m_BaseObject->SetName(BASE_OBJECT_NAME);
@@ -210,6 +233,11 @@ CGUI::~CGUI()
 {
 	if (m_BaseObject)
 		delete m_BaseObject;
+
+	if (m_ScriptObject)
+		// Let it be garbage-collected
+		JS_RemoveRoot(g_ScriptingHost.getContext(), &m_ScriptObject);
+
 }
 
 //-------------------------------------------------------------------
@@ -307,6 +335,10 @@ void CGUI::Process()
 
 void CGUI::Draw()
 {
+	// Clear the depth buffer, so the GUI is
+	// drawn on top of everything else
+	glClear(GL_DEPTH_BUFFER_BIT);
+
 	glPushMatrix();
 	glLoadIdentity();
 
@@ -461,6 +493,16 @@ bool CGUI::ObjectExists(const CStr& Name) const
 {
 	return m_pAllObjects.count(Name) != 0;
 }
+
+IGUIObject* CGUI::FindObjectByName(const CStr& Name) const
+{
+	map_pObjects::const_iterator it = m_pAllObjects.find(Name);
+	if (it == m_pAllObjects.end())
+		return NULL;
+	else
+		return it->second;
+}
+
 
 // private struct used only in GenerateText(...)
 struct SGenerateTextImage
@@ -804,198 +846,157 @@ void CGUI::LoadXMLFile(const string &Filename)
 	//  we can later check if this has increased
 	m_Errors = 0;
 
-	// Initialize XML library
-	XMLPlatformUtils::Initialize();
+	CXeromyces XeroFile;
+	XeroFile.Load(Filename.c_str());
+
+ 	bool ParseFailed = false;
+
+	XMBElement node = XeroFile.getRoot();
+
+	// Check root element's (node) name so we know what kind of
+	//  data we'll be expecting
+	std::wstring root_name = XeroFile.getElementString(node.getNodeName());
+
+	if (root_name == L"objects")
 	{
-		// Create parser instance
-		XercesDOMParser *parser = new XercesDOMParser();
+		Xeromyces_ReadRootObjects(node, &XeroFile);
 
- 		bool ParseFailed = false;
-
-		if (parser)
-		{
-			// Setup parser
-			parser->setValidationScheme(XercesDOMParser::Val_Auto);
-			parser->setDoNamespaces(false);
-			parser->setDoSchema(false);
-			parser->setCreateEntityReferenceNodes(false);
-
-			// Set cosutomized error handler
-			CXercesErrorHandler *errorHandler = new CXercesErrorHandler();
-			parser->setErrorHandler(errorHandler);
-			
-	///		g_nemLog("*** Xerces XML Parsing Errors");
-
-			// Get main node
-			XMLCh *fname=XMLString::transcode(Filename.c_str());
-			LocalFileInputSource source(fname);
-			XMLString::release(&fname);
-
-			// parse
-			parser->parse(source);
-
-			// Check how many errors
-			ParseFailed = parser->getErrorCount() != 0;
-			
-			// Parse Failed?
-			if (!ParseFailed)
-			{
-				DOMDocument *doc = parser->getDocument();
-				DOMElement *node = doc->getDocumentElement();
-
-				// Check root element's (node) name so we know what kind of
-				//  data we'll be expecting
-				CStr root_name = XMLTranscode( node->getNodeName() );
-
-				if (root_name == CStr("objects"))
-				{
-					Xerces_ReadRootObjects(node);
-
-					// Re-cache all values so these gets cached too.
-					//UpdateResolution();
-				}
-				else
-				if (root_name == CStr("sprites"))
-				{
-					Xerces_ReadRootSprites(node);
-				}
-				else
-				if (root_name == CStr("styles"))
-				{
-					Xerces_ReadRootStyles(node);
-				}
-				else
-				if (root_name == CStr("setup"))
-				{
-					Xerces_ReadRootSetup(node);
-				}
-				else
-				{
-					// TODO Gee: Output in log
-				}
-
-			}
-		}
-
-		// Now report if any other errors occured
-		if (m_Errors > 0)
-		{
-	///		g_console.submit("echo GUI Tree Creation Reports %d errors", m_Errors);
-		}
-
-		delete parser->getErrorHandler();
-		delete parser;
+		// Re-cache all values so these gets cached too.
+		//UpdateResolution();
 	}
-	XMLPlatformUtils::Terminate();
+	else
+	if (root_name == L"sprites")
+	{
+		Xeromyces_ReadRootSprites(node, &XeroFile);
+	}
+	else
+	if (root_name == L"styles")
+	{
+		Xeromyces_ReadRootStyles(node, &XeroFile);
+	}
+	else
+	if (root_name == L"setup")
+	{
+		Xeromyces_ReadRootSetup(node, &XeroFile);
+	}
+	else
+	{
+		// TODO Gee: Output in log
+	}
+
+	// Now report if any other errors occured
+	if (m_Errors > 0)
+	{
+///		g_console.submit("echo GUI Tree Creation Reports %d errors", m_Errors);
+	}
+
 }
 
 //===================================================================
-//	XML Reading Xerces Specific Sub-Routines
+//	XML Reading Xeromyces Specific Sub-Routines
 //===================================================================
 
-void CGUI::Xerces_ReadRootObjects(DOMElement *pElement)
+void CGUI::Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile)
 {
 	// Iterate main children
 	//  they should all be <object> elements
-	DOMNodeList *children = pElement->getChildNodes();
-	for (u16 i=0; i<children->getLength(); ++i)
+	XMBElementList children = Element.getChildNodes();
+	for (int i=0; i<children.Count; ++i)
 	{
-		DOMNode *child = children->item(i);
+		//debug_out("Object %d\n", i);
+		XMBElement child = children.item(i);
 
-		if (child->getNodeType() == DOMNode::ELEMENT_NODE)
-		{
-			// Read in this whole object into the GUI
-			DOMElement *element = (DOMElement*)child;
-			Xerces_ReadObject(element, m_BaseObject);
-		}
+		// Read in this whole object into the GUI
+		Xeromyces_ReadObject(child, pFile, m_BaseObject);
 	}
 }
 
-void CGUI::Xerces_ReadRootSprites(DOMElement *pElement)
+void CGUI::Xeromyces_ReadRootSprites(XMBElement Element, CXeromyces* pFile)
 {
 	// Iterate main children
 	//  they should all be <sprite> elements
-	DOMNodeList *children = pElement->getChildNodes();
-	for (u16 i=0; i<children->getLength(); ++i)
+	XMBElementList children = Element.getChildNodes();
+	for (int i=0; i<children.Count; ++i)
 	{
-		DOMNode *child = children->item(i);
+		XMBElement child = children.item(i);
 
-		if (child->getNodeType() == DOMNode::ELEMENT_NODE)
-		{
-			// Read in this whole object into the GUI
-			DOMElement *element = (DOMElement*)child;
-			Xerces_ReadSprite(element);
-		}
+		// Read in this whole object into the GUI
+		Xeromyces_ReadSprite(child, pFile);
 	}
 }
 
-void CGUI::Xerces_ReadRootStyles(DOMElement *pElement)
+void CGUI::Xeromyces_ReadRootStyles(XMBElement Element, CXeromyces* pFile)
 {
 	// Iterate main children
 	//  they should all be <styles> elements
-	DOMNodeList *children = pElement->getChildNodes();
-	for (u16 i=0; i<children->getLength(); ++i)
+	XMBElementList children = Element.getChildNodes();
+	for (int i=0; i<children.Count; ++i)
 	{
-		DOMNode *child = children->item(i);
+		XMBElement child = children.item(i);
 
-		if (child->getNodeType() == DOMNode::ELEMENT_NODE)
-		{
-			// Read in this whole object into the GUI
-			DOMElement *element = (DOMElement*)child;
-			Xerces_ReadStyle(element);
-		}
+		// Read in this whole object into the GUI
+		Xeromyces_ReadStyle(child, pFile);
 	}
 }
 
-void CGUI::Xerces_ReadRootSetup(DOMElement *pElement)
+void CGUI::Xeromyces_ReadRootSetup(XMBElement Element, CXeromyces* pFile)
 {
 	// Iterate main children
 	//  they should all be <icon>, <scrollbar> or <tooltip>.
-	DOMNodeList *children = pElement->getChildNodes();
-	for (u16 i=0; i<children->getLength(); ++i)
+	XMBElementList children = Element.getChildNodes();
+	for (int i=0; i<children.Count; ++i)
 	{
-		DOMNode *child = children->item(i);
+		XMBElement child = children.item(i);
 
-		if (child->getNodeType() == DOMNode::ELEMENT_NODE)
+		// Read in this whole object into the GUI
+
+		std::wstring name = pFile->getElementString(child.getNodeName());
+
+		if (name == L"scrollbar")
 		{
-			// Read in this whole object into the GUI
-			DOMElement *element = (DOMElement*)child;
-
-			CStr name = XMLTranscode( element->getNodeName() );
-
-			if (name == CStr("scrollbar"))
-			{
-				Xerces_ReadScrollBarStyle(element);
-			}
-			// No need for else, we're using DTD.
+			Xeromyces_ReadScrollBarStyle(child, pFile);
 		}
+		// No need for else, we're using DTD.
 	}
 }
 
-void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
+void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent)
 {
-	assert(pParent && pElement);
-	u16 i;
+	assert(pParent);
+	int i;
 
 	// Our object we are going to create
 	IGUIObject *object = NULL;
 
+	XMBAttributeList attributes = Element.getAttributes();
+
 	// Well first of all we need to determine the type
-	CStr type = XMLTranscode( pElement->getAttribute( (XMLCh*)L"type" ) );
+	std::wstring type = attributes.getNamedItem( pFile->getAttributeID(L"type") );
 
 	// Construct object from specified type
 	//  henceforth, we need to do a rollback before aborting.
 	//  i.e. releasing this object
-	object = ConstructObject(type);
+	object = ConstructObject(tocstr(type));
 
 	if (!object)
 	{
 		// Report error that object was unsuccessfully loaded
-		ReportParseError(CStr("Unrecognized type: ") + type);
+		ReportParseError(CStr("Unrecognized type: ") + tocstr(type));
 
 		delete object;
 		return;
 	}
+
+	// Cache some IDs for element attribute names, to avoid string comparisons
+	#define ELMT(x) int elmt_##x = pFile->getElementID(L#x)
+	#define ATTR(x) int attr_##x = pFile->getAttributeID(L#x)
+	ELMT(object);
+	ELMT(action);
+	ATTR(style);
+	ATTR(type);
+	ATTR(name);
+	ATTR(z);
+	ATTR(on);
 
 	//
 	//	Read Style and set defaults
@@ -1004,7 +1005,7 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 	//
 	//	Always load default (if it's available) first!
 	//
-	CStr argStyle = XMLTranscode( pElement->getAttribute( (XMLCh*)L"style" ) );
+	CStr argStyle = tocstr(attributes.getNamedItem(attr_style));
 
 	if (m_Styles.count(CStr("default")) == 1)
 		object->LoadStyle(*this, CStr("default"));
@@ -1028,41 +1029,38 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 	bool ManuallySetZ = false; // if z has been manually set, this turn true
 
 	// Now we can iterate all attributes and store
-	DOMNamedNodeMap *attributes = pElement->getAttributes();
-	for (i=0; i<attributes->getLength(); ++i)
+	for (i=0; i<attributes.Count; ++i)
 	{
-		DOMAttr *attr = (DOMAttr*)attributes->item(i);
-		CStr attr_name = XMLTranscode( attr->getName() );
-		CStr attr_value = XMLTranscode( attr->getValue() );
+		XMBAttribute attr = attributes.item(i);
 
 		// If value is "null", then it is equivalent as never being entered
-		if (attr_value == CStr("null"))
+		if (attr.Value == L"null")
 			continue;
 
 		// Ignore "type" and "style", we've already checked it
-		if (attr_name == CStr("type") || attr_name == CStr("style") )
+		if (attr.Name == attr_type || attr.Name == attr_style )
 			continue;
 
 		// Also the name needs some special attention
-		if (attr_name == CStr("name"))
+		if (attr.Name == attr_name)
 		{
-			object->SetName(attr_value);
+			object->SetName(tocstr(attr.Value));
 			NameSet = true;
 			continue;
 		}
 
-		if (attr_name == CStr("z"))
+		if (attr.Name == attr_z)
 			ManuallySetZ = true;
 
 		// Try setting the value
 		try
 		{
-			object->SetSetting(attr_name, attr_value);
+			object->SetSetting(tocstr(pFile->getAttributeString(attr.Name)), tocstr(attr.Value));
 		}
 		catch (PS_RESULT e)
 		{
 			UNUSED(e);
-			ReportParseError(CStr("Can't set \"") + attr_name + CStr("\" to \"") + attr_value + CStr("\""));
+			ReportParseError(CStr("Can't set \"") + tocstr(pFile->getAttributeString(attr.Name)) + CStr("\" to \"") + tocstr(attr.Value) + CStr("\""));
 
 			// This is not a fatal error
 		}
@@ -1075,63 +1073,50 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 		++m_InternalNameNumber;
 	}
 
+
+	CStr caption = tocstr(Element.getText());
+	caption.Trim(PS_TRIM_BOTH);
+	if (caption.Length())
+	{
+		try
+		{
+			// Set the setting caption to this
+			object->SetSetting("caption", caption);
+		}
+		catch (...)
+		{
+			// There is no harm if the object didn't have a "caption"
+		}
+	}
+
+
 	//
 	//	Read Children
 	//
 
 	// Iterate children
-	DOMNodeList *children = pElement->getChildNodes();
+	XMBElementList children = Element.getChildNodes();
 
-	for (i=0; i<children->getLength(); ++i)
+	for (i=0; i<children.Count; ++i)
 	{
 		// Get node
-		DOMNode *child = children->item(i);
+		XMBElement child = children.item(i);
 
-		// Check type (it's probably text or element)
-		
-		// A child element
-		if (child->getNodeType() == DOMNode::ELEMENT_NODE)
+		// Check what name the elements got
+		int element_name = child.getNodeName();
+
+		if (element_name == elmt_object)
 		{
-			// Check what name the elements got
-			CStr element_name = XMLTranscode( child->getNodeName() );
+			// TODO Gee: REPORT ERROR
 
-			if (element_name == CStr("object"))
-			{
-				// First get element and not node
-				DOMElement *element = (DOMElement*)child;
-
-				// TODO Gee: REPORT ERROR
-
-				// Call this function on the child
-				Xerces_ReadObject(element, object);
-			}
+			// Call this function on the child
+			Xeromyces_ReadObject(child, pFile, object);
 		}
-		else 
-		if (child->getNodeType() == DOMNode::TEXT_NODE)
+		else if (element_name == elmt_action)
 		{
-			CStr caption = XMLTranscode( child->getNodeValue() );
-
-			caption = caption.Trim(PS_TRIM_BOTH);
-
-			if (caption.Length())
-			{
-				// Text is only okay if it's the first element i.e. <object>caption ... </object>
-				if (i==0)
-				{
-
-					try
-					{
-						// Set the setting caption to this
-						object->SetSetting("caption", caption);
-					}
-					catch (...)
-					{
-						// There is no harm if the object didn't have a "caption"
-					}
-				}
-				else 
-					debug_warn("Text is only okay if it's the first element i.e. <object>caption ... </object>");
-			}
+			CStr action = tocstr(child.getAttributes().getNamedItem(attr_on));
+			CStr code = tocstr(child.getText());
+			object->RegisterScriptHandler(action, code, this);
 		}
 	} 
 
@@ -1182,10 +1167,8 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 	}
 }
 
-void CGUI::Xerces_ReadSprite(DOMElement *pElement)
+void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 {
-	assert(pElement);
-
 	// Sprite object we're adding
 	CGUISprite sprite;
 	
@@ -1197,33 +1180,24 @@ void CGUI::Xerces_ReadSprite(DOMElement *pElement)
 	//
 
 	// Get name, we know it exists because of DTD requirements
-	name = XMLTranscode( pElement->getAttribute( (XMLCh*)L"name" )  );
+	name = tocstr( Element.getAttributes().getNamedItem( pFile->getAttributeID(L"name") ) );
 
 	//
 	//	Read Children (the images)
 	//
 
 	// Iterate children
-	DOMNodeList *children = pElement->getChildNodes();
+	XMBElementList children = Element.getChildNodes();
 
-	for (u16 i=0; i<children->getLength(); ++i)
+	for (int i=0; i<children.Count; ++i)
 	{
 		// Get node
-		DOMNode *child = children->item(i);
+		XMBElement child = children.item(i);
 
-		// Check type (it's probably text or element)
-		
-		// A child element
-		if (child->getNodeType() == DOMNode::ELEMENT_NODE)
-		{
-			// All Elements will be of type "image" by DTD law
+		// All Elements will be of type "image" by DTD law
 
-			// First get element and not node
-			DOMElement *element = (DOMElement*)child;
-
-			// Call this function on the child
-			Xerces_ReadImage(element, sprite);
-		}
+		// Call this function on the child
+		Xeromyces_ReadImage(child, pFile, sprite);
 	}
 
 	//
@@ -1233,9 +1207,8 @@ void CGUI::Xerces_ReadSprite(DOMElement *pElement)
 	m_Sprites[name] = sprite;
 }
 
-void CGUI::Xerces_ReadImage(DOMElement *pElement, CGUISprite &parent)
+void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite &parent)
 {
-	assert(pElement);
 
 	// Image object we're adding
 	SGUIImage image;
@@ -1247,20 +1220,20 @@ void CGUI::Xerces_ReadImage(DOMElement *pElement, CGUISprite &parent)
 	//
 
 	// Now we can iterate all attributes and store
-	DOMNamedNodeMap *attributes = pElement->getAttributes();
-	for (u16 i=0; i<attributes->getLength(); ++i)
+	XMBAttributeList attributes = Element.getAttributes();
+	for (int i=0; i<attributes.Count; ++i)
 	{
-		DOMAttr *attr = (DOMAttr*)attributes->item(i);
-		CStr attr_name = XMLTranscode( attr->getName() );
-		CStr attr_value(XMLTranscode( attr->getValue() ));
+		XMBAttribute attr = attributes.item(i);
+		std::wstring attr_name = pFile->getAttributeString(attr.Name);
+		CStr attr_value = tocstr( attr.Value );
 
 		// This is the only attribute we want
-		if (attr_name == CStr("texture"))
+		if (attr_name == L"texture")
 		{
 			image.m_Texture = attr_value;
 		}
 		else
-		if (attr_name == CStr("size"))
+		if (attr_name == L"size")
 		{
 			CClientArea ca;
 			if (!GUI<CClientArea>::ParseString(attr_value, ca))
@@ -1270,7 +1243,7 @@ void CGUI::Xerces_ReadImage(DOMElement *pElement, CGUISprite &parent)
 			else image.m_Size = ca;
 		}
 		else
-		if (attr_name == CStr("z-level"))
+		if (attr_name == L"z-level")
 		{
 			int z_level;
 			if (!GUI<int>::ParseString(attr_value, z_level))
@@ -1280,7 +1253,7 @@ void CGUI::Xerces_ReadImage(DOMElement *pElement, CGUISprite &parent)
 			else image.m_DeltaZ = (float)z_level/100.f;
 		}
 		else
-		if (attr_name == CStr("backcolor"))
+		if (attr_name == L"backcolor")
 		{
 			CColor color;
 			if (!GUI<CColor>::ParseString(attr_value, color))
@@ -1304,10 +1277,8 @@ void CGUI::Xerces_ReadImage(DOMElement *pElement, CGUISprite &parent)
 	parent.AddImage(image);	
 }
 
-void CGUI::Xerces_ReadStyle(DOMElement *pElement)
+void CGUI::Xeromyces_ReadStyle(XMBElement Element, CXeromyces* pFile)
 {
-	assert(pElement);
-
 	// style object we're adding
 	SGUIStyle style;
 	CStr name;
@@ -1317,19 +1288,19 @@ void CGUI::Xerces_ReadStyle(DOMElement *pElement)
 	//
 
 	// Now we can iterate all attributes and store
-	DOMNamedNodeMap *attributes = pElement->getAttributes();
-	for (u16 i=0; i<attributes->getLength(); ++i)
+	XMBAttributeList attributes = Element.getAttributes();
+	for (int i=0; i<attributes.Count; ++i)
 	{
-		DOMAttr *attr = (DOMAttr*)attributes->item(i);
-		CStr attr_name = XMLTranscode( attr->getName() );
-		CStr attr_value = XMLTranscode( attr->getValue() );
+		XMBAttribute attr = attributes.item(i);
+		std::wstring attr_name = pFile->getAttributeString(attr.Name);
+		CStr attr_value = tocstr( attr.Value );
 
 		// The "name" setting is actually the name of the style
 		//  and not a new default
-		if (attr_name == CStr("name"))
+		if (attr_name == L"name")
 			name = attr_value;
 		else
-			style.m_SettingsDefaults[attr_name] = attr_value;
+			style.m_SettingsDefaults[tocstr(attr_name)] = attr_value;
 	}
 
 	//
@@ -1339,10 +1310,8 @@ void CGUI::Xerces_ReadStyle(DOMElement *pElement)
 	m_Styles[name] = style;
 }
 
-void CGUI::Xerces_ReadScrollBarStyle(DOMElement *pElement)
+void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 {
-	assert(pElement);
-
 	// style object we're adding
 	SGUIScrollBarStyle scrollbar;
 	CStr name;
@@ -1352,20 +1321,20 @@ void CGUI::Xerces_ReadScrollBarStyle(DOMElement *pElement)
 	//
 
 	// Now we can iterate all attributes and store
-	DOMNamedNodeMap *attributes = pElement->getAttributes();
-	for (u16 i=0; i<attributes->getLength(); ++i)
+	XMBAttributeList attributes = Element.getAttributes();
+	for (int i=0; i<attributes.Count; ++i)
 	{
-		DOMAttr *attr = (DOMAttr*)attributes->item(i);
-		CStr attr_name = XMLTranscode( attr->getName() );
-		CStr attr_value = XMLTranscode( attr->getValue() );
+		XMBAttribute attr = attributes.item(i);
+		std::wstring attr_name = pFile->getAttributeString(attr.Name);
+		CStr attr_value = tocstr( attr.Value );
 
 		if (attr_value == CStr("null"))
 			continue;
 
-		if (attr_name == CStr("name"))
+		if (attr_name == L"name")
 			name = attr_value;
 		else
-		if (attr_name == CStr("width"))
+		if (attr_name == L"width")
 		{
 			int i;
 			if (!GUI<int>::ParseString(attr_value, i))
@@ -1375,7 +1344,7 @@ void CGUI::Xerces_ReadScrollBarStyle(DOMElement *pElement)
 			scrollbar.m_Width = i;
 		}
 		else
-		if (attr_name == CStr("minimum-bar-size"))
+		if (attr_name == L"minimum-bar-size")
 		{
 			int i;
 			if (!GUI<int>::ParseString(attr_value, i))
@@ -1385,40 +1354,40 @@ void CGUI::Xerces_ReadScrollBarStyle(DOMElement *pElement)
 			scrollbar.m_MinimumBarSize = i;
 		}
 		else
-		if (attr_name == CStr("sprite-button-top"))
+		if (attr_name == L"sprite-button-top")
 			scrollbar.m_SpriteButtonTop = attr_value;
 		else
-		if (attr_name == CStr("sprite-button-top-pressed"))
+		if (attr_name == L"sprite-button-top-pressed")
 			scrollbar.m_SpriteButtonTopPressed = attr_value;
 		else
-		if (attr_name == CStr("sprite-button-top-disabled"))
+		if (attr_name == L"sprite-button-top-disabled")
 			scrollbar.m_SpriteButtonTopDisabled = attr_value;
 		else
-		if (attr_name == CStr("sprite-button-top-over"))
+		if (attr_name == L"sprite-button-top-over")
 			scrollbar.m_SpriteButtonTopOver = attr_value;
 		else
-		if (attr_name == CStr("sprite-button-bottom"))
+		if (attr_name == L"sprite-button-bottom")
 			scrollbar.m_SpriteButtonBottom = attr_value;
 		else
-		if (attr_name == CStr("sprite-button-bottom-pressed"))
+		if (attr_name == L"sprite-button-bottom-pressed")
 			scrollbar.m_SpriteButtonBottomPressed = attr_value;
 		else
-		if (attr_name == CStr("sprite-button-bottom-disabled"))
+		if (attr_name == L"sprite-button-bottom-disabled")
 			scrollbar.m_SpriteButtonBottomDisabled = attr_value;
 		else
-		if (attr_name == CStr("sprite-button-bottom-over"))
+		if (attr_name == L"sprite-button-bottom-over")
 			scrollbar.m_SpriteButtonBottomOver = attr_value;
 		else
-		if (attr_name == CStr("sprite-back-vertical"))
+		if (attr_name == L"sprite-back-vertical")
 			scrollbar.m_SpriteBackVertical = attr_value;
 		else
-		if (attr_name == CStr("sprite-bar-vertical"))
+		if (attr_name == L"sprite-bar-vertical")
 			scrollbar.m_SpriteBarVertical = attr_value;
 		else
-		if (attr_name == CStr("sprite-bar-vertical-over"))
+		if (attr_name == L"sprite-bar-vertical-over")
 			scrollbar.m_SpriteBarVerticalOver = attr_value;
 		else
-		if (attr_name == CStr("sprite-bar-vertical-pressed"))
+		if (attr_name == L"sprite-bar-vertical-pressed")
 			scrollbar.m_SpriteBarVerticalPressed = attr_value;
 
 /*

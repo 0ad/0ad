@@ -71,22 +71,48 @@ void CButton::HandleMessage(const SGUIMessage &Message)
 		break;
 
 	case GUIM_MOUSE_OVER:
+		ScriptEvent("MouseOver");
 		break;
 
 	case GUIM_MOUSE_ENTER:
+		ScriptEvent("MouseEnter");
 		break;
 
 	case GUIM_MOUSE_LEAVE:
+		ScriptEvent("MouseLeave");
 		break;
 
 	case GUIM_MOUSE_PRESS_LEFT:
+		ScriptEvent("MouseLeftPress");
 		break;
 
 	case GUIM_MOUSE_RELEASE_LEFT:
+		ScriptEvent("MouseLeftRelease");
+		break;
+
+	case GUIM_MOUSE_DOWN_LEFT:
+		ScriptEvent("MouseLeftDown");
+		break;
+
+	case GUIM_MOUSE_PRESS_RIGHT:
+		ScriptEvent("MouseRightPress");
+		break;
+
+	case GUIM_MOUSE_RELEASE_RIGHT:
+		ScriptEvent("MouseRightRelease");
+		break;
+
+	case GUIM_MOUSE_DOWN_RIGHT:
+		ScriptEvent("MouseRightDown");
 		break;
 
 	case GUIM_PRESSED:
 		GetGUI()->TEMPmessage = "Button " + string((const TCHAR*)m_Name) + " was pressed!";
+		ScriptEvent("Press");
+		break;
+
+	case GUIM_LOAD:
+		ScriptEvent("Load");
 		break;
 
 	default:

@@ -10,7 +10,7 @@
 #include "scripting/JSInterface_Entity.h"
 #include "scripting/JSInterface_BaseEntity.h"
 #include "scripting/JSInterface_Vector3D.h"
-//#include "gui/scripting/JSInterface_IGUIObject.h"
+#include "gui/scripting/JSInterface_IGUIObject.h"
 
 extern CConsole* g_Console;
 
@@ -28,7 +28,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	{"writeConsole", writeConsole, 1, 0, 0 },
 	{"getEntityByHandle", getEntityByHandle, 1, 0, 0 },
 	{"getEntityTemplate", getEntityTemplate, 1, 0, 0 },
-//	{"getGUIObjectByName", JSI_IGUIObject::getByName, 1, 0, 0 },
+	{"getGUIObjectByName", JSI_IGUIObject::getByName, 1, 0, 0 },
 	{"getGlobal", getGlobal, 0, 0, 0 },
 	{0, 0, 0, 0, 0}, 
 };

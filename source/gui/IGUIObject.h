@@ -35,6 +35,8 @@ gee@pyro.nu
 #include <string>
 #include <vector>
 
+#include "gui/scripting/JSInterface_IGUIObject.h"
+
 struct SGUISetting;
 struct SGUIStyle;
 class CGUI;
@@ -132,10 +134,13 @@ class IGUIObject
 	friend class CInternalCGUIAccessorBase;
 	friend class IGUIScrollBar;
 
+	// Allow getProperty to access things like GetParent()
+	friend JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval* vp);
+
 public:
 	IGUIObject();
 	virtual ~IGUIObject();
-	
+
 	/**
 	 * Checks if mouse is hovering this object.
      * The mouse position is cached in CGUI.
@@ -255,6 +260,24 @@ public:
 	 */
 	void SetSetting(const CStr& Setting, const CStr& Value);
 
+	/**
+	 * Retrieves the type of a named setting.
+	 *
+	 * @param Setting Setting by name
+	 * @param Type Stores an EGUISettingType
+	 * @return PS_RESULT (PS_OK if successful)
+	 */
+	PS_RESULT GetSettingType(const CStr& Setting, EGUISettingType &Type) const;
+
+	/**
+	 * Set the script handler for a particular object-specific action
+	 *
+	 * @param Action Name of action
+	 * @param Code Javascript code to execute when the action occurs
+	 * @param pGUI GUI instance to associate the script with
+	 */
+	void RegisterScriptHandler(const CStr& Action, const CStr& Code, CGUI* pGUI);
+
 	//@}
 protected:
 	//--------------------------------------------------------
@@ -373,6 +396,19 @@ protected:
 	 * cached to avoid slow calculations in real time.
 	 */
 	CRect m_CachedActualSize;
+
+	/**
+	 * Execute the script for a particular action.
+	 * Does nothing if no script has been registered for that action.
+	 *
+	 * @param Action Name of action
+	 */
+	void ScriptEvent(const CStr& Action);
+
+	/**
+	 * Internal storage for registered script handlers.
+	 */
+	std::map<CStr, void*> m_ScriptHandlers;
 
 	//@}
 private:

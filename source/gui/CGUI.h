@@ -21,15 +21,11 @@ gee@pyro.nu
 //  Includes / Compiler directives
 //--------------------------------------------------------
 #include "GUI.h"
-#include "XML.h"
-//#include <xercesc/dom/DOM.hpp>
-//#include <xercesc/util/XMLString.hpp>
-//#include <xercesc/util/PlatformUtils.hpp>
 
 #include "Singleton.h"
 #include "input.h"	// JW: grr, classes suck in this case :P
 
-class XERCES_CPP_NAMESPACE::DOMElement;
+#include "Xeromyces.h"
 
 extern int gui_handler(const SDL_Event* ev);
 
@@ -153,6 +149,16 @@ public:
 	 */
 	bool ObjectExists(const CStr& Name) const;
 
+
+	/**
+	 * Returns the GUI object with the desired name, or NULL
+	 * if no match is found,
+	 *
+	 * @param Name String name of object
+	 * @return Matching object, or NULL
+	 */
+	IGUIObject* FindObjectByName(const CStr& Name) const;
+
 	/**
 	 * The GUI needs to have all object types inputted and
 	 * their constructors. Also it needs to associate a type
@@ -241,7 +247,7 @@ private:
 	IGUIObject *ConstructObject(const CStr& str);
 
 	//--------------------------------------------------------
-	/** @name XML Reading Xerces C++ specific subroutines
+	/** @name XML Reading Xeromyces specific subroutines
 	 *
 	 * These does not throw!
 	 * Because when reading in XML files, it won't be fatal
@@ -252,7 +258,7 @@ private:
 	//--------------------------------------------------------
 
 	/**
-		Xerces_* functions tree
+		Xeromyces_* functions tree
 		<code>
 		\<objects\> (ReadRootObjects)
 		 |
@@ -294,42 +300,46 @@ private:
 	/**
 	 * Reads in the root element \<objects\> (the DOMElement).
 	 *
-	 * @param pElement	The Xerces C++ Parser object that represents
+	 * @param Element	The Xeromyces object that represents
 	 *					the objects-tag.
+	 * @param pFile		The Xeromyces object for the file being read
 	 *
 	 * @see LoadXMLFile()
 	 */
-	void Xerces_ReadRootObjects(XERCES_CPP_NAMESPACE::DOMElement *pElement);
+	void Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile);
 
 	/**
 	 * Reads in the root element \<sprites\> (the DOMElement).
 	 *
-	 * @param pElement	The Xerces C++ Parser object that represents
+	 * @param Element	The Xeromyces object that represents
 	 *					the sprites-tag.
+	 * @param pFile		The Xeromyces object for the file being read
 	 *
 	 * @see LoadXMLFile()
 	 */
-	void Xerces_ReadRootSprites(XERCES_CPP_NAMESPACE::DOMElement *pElement);
+	void Xeromyces_ReadRootSprites(XMBElement Element, CXeromyces* pFile);
 
 	/**
 	 * Reads in the root element \<styles\> (the DOMElement).
 	 *
-	 * @param pElement	The Xerces C++ Parser object that represents
-	 *					the sprites-tag.
+	 * @param Element	The Xeromyces object that represents
+	 *					the styles-tag.
+	 * @param pFile		The Xeromyces object for the file being read
 	 *
 	 * @see LoadXMLFile()
 	 */
-	void Xerces_ReadRootStyles(XERCES_CPP_NAMESPACE::DOMElement *pElement);
+	void Xeromyces_ReadRootStyles(XMBElement Element, CXeromyces* pFile);
 
 	/**
 	 * Reads in the root element \<setup\> (the DOMElement).
 	 *
-	 * @param pElement	The Xerces C++ Parser object that represents
+	 * @param Element	The Xeromyces object that represents
 	 *					the setup-tag.
+	 * @param pFile		The Xeromyces object for the file being read
 	 *
 	 * @see LoadXMLFile()
 	 */
-	void Xerces_ReadRootSetup(XERCES_CPP_NAMESPACE::DOMElement *pElement);
+	void Xeromyces_ReadRootSetup(XMBElement Element, CXeromyces* pFile);
 
 	// Read Subs
 
@@ -346,60 +356,66 @@ private:
 	 *
 	 * Reads in the root element \<sprites\> (the DOMElement).
 	 *
-	 * @param pElement	The Xerces C++ Parser object that represents
+	 * @param Element	The Xeromyces object that represents
 	 *					the object-tag.
+	 * @param pFile		The Xeromyces object for the file being read
 	 * @param pParent	Parent to add this object as child in.
 	 *
 	 * @see LoadXMLFile()
 	 */
-	void Xerces_ReadObject(XERCES_CPP_NAMESPACE::DOMElement *, IGUIObject *pParent);
+	void Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent);
 
 	/**
 	 * Reads in the element \<sprite\> (the DOMElement) and stores the
 	 * result in a new CGUISprite.
 	 *
-	 * @param pElement	The Xerces C++ Parser object that represents
+	 * @param Element	The Xeromyces object that represents
 	 *					the sprite-tag.
+	 * @param pFile		The Xeromyces object for the file being read
 	 *
 	 * @see LoadXMLFile()
 	 */
-	void Xerces_ReadSprite(XERCES_CPP_NAMESPACE::DOMElement *pElement);
+	void Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile);
 
 	/**
 	 * Reads in the element \<image\> (the DOMElement) and stores the
 	 * result within the CGUISprite.
 	 *
-	 * @param pElement	The Xerces C++ Parser object that represents
+	 * @param Element	The Xeromyces object that represents
 	 *					the image-tag.
+	 * @param pFile		The Xeromyces object for the file being read
 	 * @param parent	Parent sprite.
 	 *
 	 * @see LoadXMLFile()
 	 */
-	void Xerces_ReadImage(XERCES_CPP_NAMESPACE::DOMElement *pElement, CGUISprite &parent);
+	void Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite &parent);
 
 	/**
 	 * Reads in the element \<style\> (the DOMElement) and stores the
 	 * result in m_Styles.
 	 *
-	 * @param pElement	The Xerces C++ Parser object that represents
-	 *					the sprite-tag.
+	 * @param Element	The Xeromyces object that represents
+	 *					the style-tag.
+	 * @param pFile		The Xeromyces object for the file being read
 	 *
 	 * @see LoadXMLFile()
 	 */
-	void Xerces_ReadStyle(XERCES_CPP_NAMESPACE::DOMElement *pElement);
+	void Xeromyces_ReadStyle(XMBElement Element, CXeromyces* pFile);
 
 	/**
 	 * Reads in the element \<scrollbar\> (the DOMElement) and stores the
 	 * result in m_ScrollBarStyles.
 	 *
-	 * @param pElement	The Xerces C++ Parser object that represents
+	 * @param Element	The Xeromyces object that represents
 	 *					the scrollbar-tag.
+	 * @param pFile		The Xeromyces object for the file being read
 	 *
 	 * @see LoadXMLFile()
 	 */
-	void Xerces_ReadScrollBarStyle(XERCES_CPP_NAMESPACE::DOMElement *pElement);
+	void Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile);
 
 	//@}
+
 
 private:
 
@@ -411,11 +427,25 @@ private:
 	//@{
 
 	/**
+	 * An JSObject* under which all GUI JavaScript things will
+	 * be created, so that they can be garbage-collected
+	 * when the GUI shuts down. (Stored as void* to avoid
+	 * to avoid pulling in all the JS headers)
+	 */
+	void* m_ScriptObject;
+
+	/**
 	 * don't want to pass this around with the 
 	 * ChooseMouseOverAndClosest broadcast -
 	 * we'd need to pack this and pNearest in a struct
 	 */
 	CPos m_MousePos;
+
+	/**
+	 * Indicates which buttons are pressed (bit 0 = LMB,
+	 * bit 1 = RMB, bit 2 = MMB)
+	 */
+	unsigned int m_MouseButtons;
 
 	/// Used when reading in XML files
 	// TODO Gee: Used?

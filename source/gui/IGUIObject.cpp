@@ -12,6 +12,9 @@ gee@pyro.nu
 #include <assert.h>
 /////
 
+#include "gui/scripting/JSInterface_IGUIObject.h"
+#include "gui/scripting/JSInterface_GUITypes.h"
+
 extern int g_xres, g_yres;
 
 using namespace std;
@@ -245,6 +248,20 @@ void IGUIObject::SetSetting(const CStr& Setting, const CStr& Value)
 	}
 }
 
+PS_RESULT IGUIObject::GetSettingType(const CStr& Setting, EGUISettingType &Type) const
+{
+	if (!SettingExists(Setting))
+		return PS_SETTING_FAIL;
+
+	if (m_Settings.find(Setting) == m_Settings.end())
+		return PS_FAIL;
+
+	Type = m_Settings.find(Setting)->second.m_Type;
+
+	return PS_OK;
+}
+
+
 void IGUIObject::ChooseMouseOverAndClosest(IGUIObject* &pObject)
 {
 	if (MouseOver())
@@ -374,4 +391,57 @@ void IGUIObject::CheckSettingsValidity()
 	catch (...)
 	{
 	}
+}
+
+void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGUI* pGUI)
+{
+	const int paramCount = 1;
+	const char* paramNames[paramCount] = { "mouse" };
+
+	JSFunction* func = JS_CompileFunction(g_ScriptingHost.getContext(), (JSObject*)pGUI->m_ScriptObject, "", paramCount, paramNames, (const char*)Code, Code.Length(), "GUI script", 0);
+	m_ScriptHandlers[Action] = func;
+}
+
+void IGUIObject::ScriptEvent(const CStr& Action)
+{
+	map<CStr, void*>::iterator it = m_ScriptHandlers.find(Action);
+	if (it == m_ScriptHandlers.end())
+		return;
+
+	// PRIVATE_TO_JSVAL assumes two-byte alignment,
+	// so make sure that's always true
+	assert(! ((jsval)this & JSVAL_INT));
+
+	// The IGUIObject needs to be stored inside the script's object
+	jsval guiObject = PRIVATE_TO_JSVAL(this);
+
+	// Make a 'this', allowing access to the IGUIObject
+	JSObject* jsGuiObject = JS_ConstructObjectWithArguments(g_ScriptingHost.getContext(), &JSI_IGUIObject::JSI_class, NULL, (JSObject*)m_pGUI->m_ScriptObject, 1, &guiObject);
+
+	// Prevent it from being garbage-collected before
+	// it's passed into the function
+	JS_AddRoot(g_ScriptingHost.getContext(), &jsGuiObject);
+
+
+	// Set up the 'mouse' parameter
+	jsval mouseParams[3];
+	mouseParams[0] = INT_TO_JSVAL(m_pGUI->m_MousePos.x);
+	mouseParams[1] = INT_TO_JSVAL(m_pGUI->m_MousePos.y);
+	mouseParams[2] = INT_TO_JSVAL(m_pGUI->m_MouseButtons);
+	JSObject* mouseObj = JS_ConstructObjectWithArguments(g_ScriptingHost.getContext(), &JSI_GUIMouse::JSI_class, NULL, (JSObject*)m_pGUI->m_ScriptObject, 3, mouseParams);
+	assert(mouseObj); // need better error handling
+
+	// Don't garbage collect the mouse
+	JS_AddRoot(g_ScriptingHost.getContext(), &mouseObj);
+
+	const int paramCount = 1;
+	jsval paramData[paramCount];
+	paramData[0] = OBJECT_TO_JSVAL(mouseObj);
+
+	jsval result;
+	JSBool ok = JS_CallFunction(g_ScriptingHost.getContext(), jsGuiObject, (JSFunction*)((*it).second), 1, paramData, &result);
+
+	// Allow the temporary parameters to be collected
+	JS_RemoveRoot(g_ScriptingHost.getContext(), &mouseObj);
+	JS_RemoveRoot(g_ScriptingHost.getContext(), &jsGuiObject);
 }

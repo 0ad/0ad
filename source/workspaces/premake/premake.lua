@@ -44,6 +44,7 @@ package.files = {
 	-- gui/
 	{ sourcesfromdirs(
                 "../../gui") },
+        { sourcesfromdirs( "../../gui/scripting" ) },
 	-- terrain/
 	{ sourcesfromdirs(
                 "../../terrain") },
