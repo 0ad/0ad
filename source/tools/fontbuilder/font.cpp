@@ -1,6 +1,8 @@
-// $Id: font.cpp,v 1.1 2004/06/17 19:32:04 philip Exp $
+// $Id: font.cpp,v 1.2 2004/06/19 12:56:09 philip Exp $
 
 #include "stdafx.h"
+
+#include "wx/wx.h"
 
 #include "font.h"
 #include <math.h>

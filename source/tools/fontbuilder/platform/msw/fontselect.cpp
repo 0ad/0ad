@@ -1,8 +1,14 @@
-// $Id: fontselect.cpp,v 1.1 2004/06/17 19:32:04 philip Exp $
+// $Id: fontselect.cpp,v 1.2 2004/06/19 12:56:09 philip Exp $
 
 #include "stdafx.h"
 
 #include "../fontselect.h"
+
+#include "wx/sizer.h"
+#include "wx/listbox.h"
+#include "wx/stattext.h"
+#include "wx/button.h"
+#include "wx/regex.h"
 
 #include "wx/msw/registry.h"
 

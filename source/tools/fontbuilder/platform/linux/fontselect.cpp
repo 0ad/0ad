@@ -1,4 +1,12 @@
-// $Id: fontselect.cpp,v 1.2 2004/06/18 22:50:34 philip Exp $
+// $Id: fontselect.cpp,v 1.3 2004/06/19 12:56:09 philip Exp $
+
+/************
+
+  This attempt at completely separating the platform-dependent
+  parts failed. Need to think about it more carefully in the
+  future.
+
+  ************/
 
 #include "stdafx.h"
 

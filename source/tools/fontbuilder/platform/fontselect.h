@@ -1,4 +1,6 @@
-// $Id: fontselect.h,v 1.3 2004/06/18 22:50:34 philip Exp $
+// $Id: fontselect.h,v 1.4 2004/06/19 12:56:09 philip Exp $
+
+#include "wx/dialog.h"
 
 #ifdef _WIN32
 class FontSelectorDialog : public wxDialog

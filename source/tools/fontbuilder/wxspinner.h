@@ -1,4 +1,6 @@
-// $Id: wxspinner.h,v 1.1 2004/06/17 19:32:04 philip Exp $
+// $Id: wxspinner.h,v 1.2 2004/06/19 12:56:09 philip Exp $
+
+#include "wx/spinctrl.h"
 
 class StyleSpinCtrl : public wxSpinCtrl
 {

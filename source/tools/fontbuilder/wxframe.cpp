@@ -1,6 +1,21 @@
-// $Id: wxframe.cpp,v 1.3 2004/06/18 22:52:34 philip Exp $
+// $Id: wxframe.cpp,v 1.4 2004/06/19 12:56:09 philip Exp $
 
 #include "stdafx.h"
+
+#include "wx/menu.h"
+#include "wx/config.h"
+#include "wx/sizer.h"
+#include "wx/stattext.h"
+#include "wx/button.h"
+#include "wx/textctrl.h"
+#include "wx/filedlg.h"
+#include "wx/msgdlg.h"
+#include "wx/image.h"
+#include "wx/wxexpr.h"
+#include "wx/log.h"
+#include "wx/filename.h"
+#include "wx/progdlg.h"
+#include "wx/dcbuffer.h"
 
 #include "wxframe.h"
 #include "wxconfig.h"
@@ -12,6 +27,8 @@
 #include "font.h"
 #include "packer.h"
 #include "filemanip.h"
+
+#include "version.h"
 
 bool Changes = false;
 
@@ -247,18 +264,22 @@ void MainFrame::LoadSettings(wxString& filename)
 	Settings->GetAttributeValue(wxT("Tracking"),	t); TrackingCtrl->SetValue(t);
 	Settings->GetAttributeValue(wxT("Leading"),		t); LeadingCtrl->SetValue(t);
 
-	wxString PreviewTextUTF;
-	Settings->GetAttributeValue(wxT("PreviewText"), PreviewTextUTF);
 
-	// Unpleasant conversion from UTF8 (pretending to be UTF16) into UTF16:
-	char* buffer = new char[PreviewTextUTF.length()+1];
-	for (size_t i=0; i<PreviewTextUTF.length(); ++i)
-		buffer[i] = (char)PreviewTextUTF.GetChar(i);
-	buffer[PreviewTextUTF.length()] = 0;
-	wxString PreviewText (buffer, wxConvUTF8);
-	delete[] buffer;
+	// Convert back to UTF16 from hex, because wxExpr doesn't like non-ASCII
 
+	wxString PreviewTextHex;
+	Settings->GetAttributeValue(wxT("PreviewText"), PreviewTextHex);
+
+	wxString PreviewText;
+	for (size_t i=0; i<PreviewTextHex.Length(); i += 4)
+	{
+		wchar_t b[5];
+		memcpy(b, &PreviewTextHex[i], sizeof(wchar_t)*4);
+		b[4] = 0;
+		PreviewText += (wxChar)wcstoul(b, NULL, 16);
+	}
 	PreviewTextCtrl->SetValue(PreviewText);
+
 
 	Changes = false;
 }
@@ -287,9 +308,17 @@ void MainFrame::SaveSettings(wxString& filename)
 	Settings->AddAttributeValue(wxT("Tracking"),	(long)TrackingCtrl->GetValidValue());
 	Settings->AddAttributeValue(wxT("Leading"),		(long)LeadingCtrl->GetValidValue());
 
-	// Convert into UTF8 and pretend it's ASCII, because wxExprDatabase doesn't like Unicode
-	wxCharBuffer PreviewTextUTF = PreviewTextCtrl->GetValue().mb_str(wxConvUTF8);
-	Settings->AddAttributeValueString(wxT("PreviewText"), wxString::FromAscii(PreviewTextUTF));
+	// Convert UTF16 to hex, because wxExpr doesn't like non-ASCII
+	wxString PreviewText = PreviewTextCtrl->GetValue();
+	wxString PreviewTextHex;
+	for (size_t i=0; i<PreviewText.Length(); ++i)
+	{
+		wchar_t b[5];
+		swprintf(b, wxT("%04x"), PreviewText[i]);
+		PreviewTextHex += wxString(b, 4);
+	}
+	Settings->AddAttributeValueString(wxT("PreviewText"), PreviewTextHex);
+
 
 	db.Append(Settings);
 

@@ -1,9 +1,13 @@
-// $Id: wxapp.cpp,v 1.2 2004/06/18 22:05:58 philip Exp $
+// $Id: wxapp.cpp,v 1.3 2004/06/19 12:56:09 philip Exp $
 
 #include "stdafx.h"
 
+#include "wx/app.h"
+
 #include "wxframe.h"
 #include "wxconfig.h"
+
+#include "version.h"
 
 class FontBuilderApp : public wxApp
 {

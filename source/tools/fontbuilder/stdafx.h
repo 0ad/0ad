@@ -1,6 +1,12 @@
-// $Id: stdafx.h,v 1.3 2004/06/18 22:50:34 philip Exp $
+// $Id: stdafx.h,v 1.4 2004/06/19 12:56:09 philip Exp $
 
 // Precompiled headers
+
+#ifdef _WIN32
+# define HAVE_PCH
+#endif
+
+#ifdef HAVE_PCH
 
 // Exclude rarely-used stuff from Windows headers
 #define WIN32_LEAN_AND_MEAN
@@ -48,8 +54,6 @@
  #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
 
-const wxString version = wxT("v0.9");
-
 // Don't care about copy constructors / assignment operators
 #pragma warning (disable: 4511 4512)
 
@@ -57,3 +61,7 @@ const wxString version = wxT("v0.9");
 // Disable some of the excessively pedantic warnings again
 #pragma warning (disable: 193 373 444 981 383 1418)
 #endif
+
+#endif // HAVE_PCH
+
+#include "wx/defs.h"

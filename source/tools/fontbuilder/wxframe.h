@@ -1,4 +1,9 @@
-// $Id: wxframe.h,v 1.1 2004/06/17 19:32:04 philip Exp $
+// $Id: wxframe.h,v 1.2 2004/06/19 12:56:09 philip Exp $
+
+#include "wx/panel.h"
+#include "wx/bitmap.h"
+#include "wx/frame.h"
+#include "wx/docview.h"
 
 class BitmapPanel : public wxPanel
 {

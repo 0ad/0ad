@@ -1,8 +1,10 @@
-// $Id: packer.cpp,v 1.1 2004/06/17 19:32:04 philip Exp $
+// $Id: packer.cpp,v 1.2 2004/06/19 12:56:09 philip Exp $
 
 #include "stdafx.h"
 
 #include "packer.h"
+
+#include "wx/log.h"
 
 #include <list>
 #include <vector>
