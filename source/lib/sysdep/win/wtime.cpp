@@ -1,5 +1,5 @@
 // Windows-specific high resolution timer
-// Copyright (c) 2003 Jan Wassenberg
+// Copyright (c) 2004 Jan Wassenberg
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -17,7 +17,6 @@
 
 #include "precompiled.h"
 
-#include "hrt.h"
 #include "lib.h"
 #include "adts.h"
 #include "sysdep/ia32.h"
@@ -26,7 +25,9 @@
 #include "win_internal.h"
 
 // we no longer use TGT, due to issues on Win9x; GTC is just as good.
-// still need the header for the event timer (triggers periodic recalibration)
+// (don't want to accelerate the tick rate, because performance will suffer).
+// still need the header for the event timer (triggers periodic recalibration).
+// don't bother trying to avoid dependency on winmm - FMOD pulls it in anyway.
 #include <mmsystem.h>
 	// not included by win_internal due to its WIN32_LEAN_AND_MEAN define
 #ifdef _MSC_VER
@@ -40,7 +41,47 @@ static double hrt_freq = -1.0;
 // used to rebase the hrt tick values to 0
 static i64 hrt_origin = 0;
 
+
+// possible high resolution timers, in order of preference.
+// see source for timer properties + problems.
+// used as index into hrt_overrides.
+enum HRTImpl
+{
+	// CPU timestamp counter
+	HRT_TSC,
+
+	// Windows QueryPerformanceCounter
+	HRT_QPC,
+
+	// Windows GetTickCount
+	HRT_GTC,
+
+	// there will always be a valid timer in use.
+	// this is only used with hrt_override_impl.
+	HRT_NONE,
+
+	HRT_NUM_IMPLS
+};
+
 static HRTImpl hrt_impl = HRT_NONE;
+
+// while we do our best to work around timer problems or avoid them if unsafe,
+// future requirements and problems may be different:
+// allow the user or app to override our decisions (via hrt_override_impl)
+enum HRTOverride
+{
+	// allow use of this implementation if available,
+	// and we can work around its problems
+	//
+	// HACK: give it value 0 for easier static data initialization
+	HRT_DEFAULT = 0,
+
+	// override our 'safe to use' recommendation
+	// set by hrt_override_impl (via command line arg or console function)
+	HRT_DISABLE,
+	HRT_FORCE
+};
+
 static HRTOverride overrides[HRT_NUM_IMPLS];
 	// HRTImpl enums as index
 	// HACK: no init needed - static data is zeroed (= HRT_DEFAULT)
@@ -262,81 +303,53 @@ static void reset_impl_lk()
 }
 
 
-// multiple entry points, can't use ONCE.
-static bool initialized;
-
 static void init_calibration_thread();
 
-// call iff !initialized. lock must be held.
-static void init_lk()
+static void hrt_init()
 {
+lock();
+
+	static bool initialized = false;
 	assert(!initialized && "init_lk called more than once!");
+	initialized = true;
 
 	reset_impl_lk();
 	init_calibration_thread();
 
-	initialized = true;
+unlock();
 }
 
 
 // return ticks since first call.
-i64 hrt_ticks()
+static i64 hrt_ticks()
 {
-	lock();
-
-	// ugly, but it'll fall-through in common case.
-	if(!initialized)
-		goto init;
-
-ready:
-	{	// VC6 goto fix
+lock();
 	i64 t = ticks_lk();
-
-	unlock();
-
+unlock();
 	return t;
-	}
-
-// reached from first call if init_lk hasn't been called yet. lock is held.
-init:
-	init_lk();
-	goto ready;
 }
 
 
 // return seconds since first call.
-double hrt_time()
+static double hrt_time()
 {
-	lock();
-
-	// ugly, but it'll fall-through in common case.
-	if(!initialized)
-		goto init;
-
-ready:
-	{	// VC6 goto fix
+	// don't implement with hrt_ticks - hrt_freq may
+	// change, invalidating ticks_lk.
+lock();
 	double t = ticks_lk() / hrt_freq;
-
-	unlock();
-
+unlock();
 	return t;
-	}
-
-// reached from first call if init_lk hasn't been called yet. lock is held.
-init:
-	init_lk();
-	goto ready;
 }
 
 
 // return seconds between start and end timestamps (returned by hrt_ticks).
 // negative if end comes before start.
-double hrt_delta_s(i64 start, i64 end)
+static double hrt_delta_s(i64 start, i64 end)
 {
 	// paranoia: reading double may not be atomic.
-	lock();
+lock();
 	double freq = hrt_freq;
-	unlock();
+unlock();
 
 	assert(freq != -1.0 && "hrt_delta_s called before hrt_ticks");
 	return (end - start) / freq;
@@ -348,12 +361,9 @@ double hrt_delta_s(i64 start, i64 end)
 // implementation only changes after hrt_override_impl.
 //
 // may be called before first hrt_ticks / hrt_time, so do init here also.
-void hrt_query_impl(HRTImpl& impl, i64& nominal_freq)
+static void hrt_query_impl(HRTImpl& impl, i64& nominal_freq)
 {
 lock();
-
-	if(!initialized)
-		init_lk();
 
 	impl = hrt_impl;
 	nominal_freq = hrt_nominal_freq;
@@ -369,7 +379,7 @@ unlock();
 // the timer may jump after doing so.
 // call with HRT_DEFAULT, HRT_NONE to re-evaluate implementation choice
 // after system info becomes available.
-int hrt_override_impl(HRTOverride ovr, HRTImpl impl)
+static int hrt_override_impl(HRTOverride ovr, HRTImpl impl)
 {
 	if((ovr != HRT_DISABLE && ovr != HRT_FORCE && ovr != HRT_DEFAULT) ||
 	   (impl != HRT_TSC && impl != HRT_QPC && impl != HRT_GTC && impl != HRT_NONE))
@@ -389,15 +399,20 @@ unlock();
 }
 
 
+//////////////////////////////////////////////////////////////////////////////
+//
+// calibration
+//
+//////////////////////////////////////////////////////////////////////////////
 
 
 // 'safe' millisecond timer, used to measure HRT freq
 static long ms_time()
 {
 #ifdef _WIN32
-	return (long)timeGetTime();
+	return (long)GetTickCount();
 #else
-	return (long)clock();
+	return (long)(clock() * 1000.0 / CLOCKS_PER_SEC);
 #endif
 }
 
@@ -494,4 +509,172 @@ static void init_calibration_thread()
 	// TODO: port thread. it's no big deal, but the timer should work without.
 
 #endif
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// wtime wrapper: emulates POSIX functions
+//
+//////////////////////////////////////////////////////////////////////////////
+
+
+static const long _1e6 = 1000000;
+static const i64 _1e9 = 1000000000;
+
+// return nanoseconds since posix epoch as reported by system time
+// only 10 or 15 ms resolution!
+static i64 st_time_ns()
+{
+	union
+	{
+		FILETIME ft;
+		i64 i;
+	}
+	t;
+	GetSystemTimeAsFileTime(&t.ft);
+	// Windows system time is hectonanoseconds since Jan. 1, 1601
+	return (t.i - 0x019DB1DED53E8000) * 100;
+}
+
+
+// return nanoseconds since posix epoch as reported by HRT
+static i64 hrt_time_ns()
+{
+	// use as starting value, because HRT origin is unspecified
+	static i64 hrt_start;
+	static i64 st_start;
+
+	if(!st_start)
+	{
+		hrt_start = hrt_ticks();
+		st_start = st_time_ns();
+	}
+
+	const double delta_s = hrt_delta_s(hrt_start, hrt_ticks());
+	const i64 ns = st_start + (i64)(delta_s * _1e9);
+	return ns;
+}
+
+
+
+
+WIN_REGISTER_MODULE(wtime);
+
+static int wtime_init()
+{
+	hrt_init();
+
+	// first call latches start time
+	hrt_time_ns();
+
+	return 0;
+}
+
+static int wtime_shutdown()
+{
+	return 0;
+}
+
+void wtime_reset_impl()
+{
+	hrt_override_impl(HRT_DEFAULT, HRT_NONE);
+}
+
+
+
+
+static void sleep_ns(i64 ns)
+{
+	DWORD ms = DWORD(ns / _1e6);
+	if(ms != 0)
+		Sleep(ms);
+	else
+	{
+		i64 t0 = hrt_ticks(), t1;
+		do
+			t1 = hrt_ticks();
+		while(hrt_delta_s(t0, t1) * _1e9 < ns);
+	}
+}
+
+
+int clock_gettime(clockid_t clock, struct timespec* t)
+{
+#ifndef NDEBUG
+	if(clock != CLOCK_REALTIME || !t)
+	{
+		debug_warn("clock_gettime: invalid clock or t param");
+		return -1;
+	}
+#endif
+
+	const i64 ns = hrt_time_ns();
+	t->tv_sec  = (time_t)(ns / _1e9);
+	t->tv_nsec = (long)  (ns % _1e9);
+	return 0;
+}
+
+
+int clock_getres(clockid_t clock, struct timespec* res)
+{
+#ifndef NDEBUG
+	if(clock != CLOCK_REALTIME || !res)
+	{
+		debug_warn("clock_getres: invalid clock or res param");
+		return -1;
+	}
+#endif
+
+	HRTImpl impl;
+	i64 nominal_freq;
+	hrt_query_impl(impl, nominal_freq);
+
+	res->tv_sec  = 0;
+	res->tv_nsec = (long)(1e9 / nominal_freq);
+	return 0;
+}
+
+
+int nanosleep(const struct timespec* rqtp, struct timespec* /* rmtp */)
+{
+	i64 ns = rqtp->tv_sec;	// make sure we don't overflow
+	ns *= _1e9;
+	ns += rqtp->tv_nsec;
+	sleep_ns(ns);
+	return 0;
+}
+
+
+int gettimeofday(struct timeval* tv, void* tzp)
+{
+	UNUSED(tzp);
+
+#ifndef NDEBUG
+	if(!tv)
+	{
+		debug_warn("gettimeofday: invalid t param");
+		return -1;
+	}
+#endif
+
+	const long us = (long)(hrt_time_ns() / 1000);
+	tv->tv_sec  = (time_t)     (us / _1e6);
+	tv->tv_usec = (suseconds_t)(us % _1e6);
+	return 0;
+}
+
+
+uint sleep(uint sec)
+{
+	Sleep(sec * 1000);
+	return sec;
+}
+
+
+int usleep(useconds_t us)
+{
+	// can't overflow, because us < 1e6
+	sleep_ns(us * 1000);
+	return 0;
 }
