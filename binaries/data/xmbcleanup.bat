@@ -1,3 +1,4 @@
 @echo off
-cd ..\..\build\bin
-..\xmbcleanup\xmbcleanup.exe
+cd ..\..\build\xmbcleanup
+set PATH=..\bin
+xmbcleanup.exe
