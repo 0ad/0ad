@@ -358,7 +358,10 @@ static unsigned __stdcall thread_start(void* param)
 	void* user_arg      = f->user_arg;
 	delete f;
 
-	return (unsigned)func(user_arg);
+	// workaround for stupid "void* -> unsigned cast" warning
+	union { void* p; unsigned u; } v;
+	v.p = func(user_arg);
+	return v.u;
 }
 
 
