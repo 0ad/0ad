@@ -122,7 +122,7 @@ JSBool JSI_Vector3D::construct( JSContext* cx, JSObject* obj, uintN argc, jsval*
 
 void JSI_Vector3D::finalize( JSContext* cx, JSObject* obj )
 {
-	delete( JS_GetPrivate( cx, obj ) );
+	delete( (Vector3D_Info*)JS_GetPrivate( cx, obj ) );
 }
 
 JSBool JSI_Vector3D::toString( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
