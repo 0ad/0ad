@@ -201,7 +201,10 @@ extern int h_reload(const char* fn);
 
 extern int res_cur_scope;
 
-
+// disable caching and allow the handle to actually be freed when refcount
+// is at 0. used when cached resources must be closed before exit,
+// e.g. sounds when reinitializing OpenAL (due to changed settings).
+extern int h_allow_free(Handle h, H_Type type);
 
 extern void h_mgr_shutdown();
 

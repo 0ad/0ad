@@ -716,6 +716,15 @@ Handle h_find(H_Type type, uintptr_t key)
 }
 
 
+int h_allow_free(Handle h, H_Type type)
+{
+	HDATA* hd = h_data(h, type);
+	if(!hd)
+		return ERR_INVALID_HANDLE;
+	hd->keep_open = 0;
+	return 0;
+}
+
 
 
 int res_cur_scope;
