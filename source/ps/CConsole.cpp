@@ -334,11 +334,26 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 			return;
 
 		case SDLK_HOME:
-			m_iBufferPos = 0;
+			if (keys[SDLK_RCTRL] || keys[SDLK_LCTRL])
+			{
+				int linesShown = (int)m_fHeight/m_iFontHeight - 4;
+				m_iMsgHistPos = clamp((int)m_deqMsgHistory.size() - linesShown, 1, (int)m_deqMsgHistory.size());
+			}
+			else
+			{
+				m_iBufferPos = 0;
+			}
 			return;
 
 		case SDLK_END:
-			m_iBufferPos = m_iBufferLength;
+			if (keys[SDLK_RCTRL] || keys[SDLK_LCTRL])
+			{
+				m_iMsgHistPos = 1;
+			}
+			else
+			{
+				m_iBufferPos = m_iBufferLength;
+			}
 			return;
 
 		case SDLK_LEFT:
