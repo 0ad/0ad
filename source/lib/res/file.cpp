@@ -653,6 +653,22 @@ debug_out("file_start_io hio=%I64x ofs=%d size=%d\n", hio, user_ofs, user_size);
 }
 
 
+// indicates if the IO referenced by <hio> has completed.
+// return value: 0 if pending, 1 if complete, < 0 on error.
+int file_io_complete(const Handle hio)
+{
+	H_DEREF(hio, IO, io);
+	int ret = aio_error(io->cb);
+	if(ret == EINPROGRESS)
+		return 0;
+	if(ret == 0)
+		return 1;
+	
+	debug_warn("file_io_complete: unexpected aio_error return");
+	return -1;
+}
+
+
 int file_wait_io(const Handle hio, void*& p, size_t& size)
 {
 #ifdef PARANOIA
@@ -784,7 +800,7 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 	else
 	{
 		alloc_buf = true;
-		// data_buf will be set from padded_buf
+		// data_buf will be set from actual_buf
 	}
 
 
@@ -902,7 +918,7 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 				// waiting for all pending transfers to complete.
 
 			issue_cnt += issue_size;
-			if(issue_cnt >= data_size)
+			if(issue_cnt >= actual_size)
 				all_issued = true;
 
 			// store IO in ring buffer
@@ -923,17 +939,31 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 			if(ret < 0)
 				err = (ssize_t)ret;
 
+				// first time; skip past padding
+				void* data = block;
+				if(raw_transferred_cnt == 0)
+				{
+					(char*&)data += lead_padding;
+					size -= lead_padding;
+				}
+
+				// don't include trailing padding
+				if(raw_transferred_cnt + size > data_size)
+					size = data_size - raw_transferred_cnt;
+
 			//// if size comes out short, we must be at EOF
 
 			raw_transferred_cnt += size;
 
 			if(cb && !(err <= 0))
 			{
-				ssize_t ret = cb(ctx, block, size);
-				// if negative: processing failed; if 0, callback is finished.
-				// either way, loop will now terminate after waiting for all
+				ssize_t ret = cb(ctx, data, size);
+				// if negative: processing failed.
+				// loop will now terminate after waiting for all
 				// pending transfers to complete.
-				if(ret <= 0)
+				// note: don't abort if = 0: zip callback may not actually
+				// output anything if passed very little data.
+				if(ret < 0)
 					err = ret;
 				else
 					actual_transferred_cnt += ret;
@@ -966,7 +996,7 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 	if(p)
 		*p = data_buf;
 
-	assert(/*issue_cnt == raw_transferred_cnt &&*/ raw_transferred_cnt == data_size); 
+	assert(issue_cnt >= raw_transferred_cnt && raw_transferred_cnt >= data_size); 
 
 	return (ssize_t)actual_transferred_cnt;
 }

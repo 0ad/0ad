@@ -137,6 +137,11 @@ extern int file_unmap(File* f);
 //
 
 extern Handle file_start_io(File* f, off_t ofs, size_t size, void* buf);
+
+// indicates if the IO referenced by <hio> has completed.
+// return value: 0 if pending, 1 if complete, < 0 on error.
+extern int file_io_complete(Handle hio);
+
 extern int file_wait_io(const Handle hio, void*& p, size_t& size);
 extern int file_discard_io(Handle& hio);
 
