@@ -1,7 +1,9 @@
 #ifndef SYSDEP_H__
 #define SYSDEP_H__
 
+#ifdef _WIN32
 #include "win/win.h"
+#endif
 
 #ifdef __cplusplus
 extern "C" {
