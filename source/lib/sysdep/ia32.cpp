@@ -524,10 +524,7 @@ void ia32_get_cpu_info()
 	check_speedstep();
 	on_each_cpu(check_smp);
 
-for(int i = 0; i < 10; i++){
 	measure_cpu_freq();
-debug_out("%f\n", cpu_freq);
-}
 
 	// HACK: if _WIN32, the HRT makes its final implementation choice
 	// in the first calibrate call where cpu info is available.
