@@ -18,11 +18,11 @@ namespace std {
 #include <string>
 #include "types.h"
 
-typedef uint16_t utf16_t;
-typedef std::basic_string<utf16_t> utf16string;
-typedef std::basic_stringstream<utf16_t> utf16stringstream;
-
 namespace std {
+	typedef uint16_t utf16_t;
+	typedef std::basic_string<utf16_t> utf16string;
+	typedef std::basic_stringstream<utf16_t> utf16stringstream;
+
 	template<>
 	struct char_traits<utf16_t>
 	{
