@@ -26,10 +26,8 @@ bool VFSUtil::FindFiles (CStr dirname, const char* filter, FileList& files)
 	{
 		files.push_back(dirname+"/"+entry.name);
 	}
-	// Can't tell the difference between end-of-directory and invalid filter;
-	// assume that err == -1 just means there are no files left (and err != -1
-	// means some other error)
-	if (err != -1)
+
+	if (err != ERR_VFS_DIR_END)
 	{
 		LOG(ERROR, LOG_CATEGORY, "Error reading files from directory '%s' (%d)", dirname.c_str(), err);
 		return false;
