@@ -649,10 +649,10 @@ fp_freeaddrinfo_t freeaddrinfo;
 These are included in the linux C libraries, and in newer platform SDK's, so
 should only be needed in VC++6 or earlier.
 */
-#if _MSC_VER <= 1200 /* VC++6 or earlier */
+//#if _MSC_VER <= 1200 /* VC++6 or earlier */
 const struct in6_addr in6addr_any=IN6ADDR_ANY_INIT;        /* :: */
 const struct in6_addr in6addr_loopback=IN6ADDR_LOOPBACK_INIT;   /* ::1 */
-#endif
+//#endif
 /*
 void entry(void)
 {

@@ -472,11 +472,22 @@ static int aio_rw(struct aiocb* cb)
 
 	r->ovl.Internal = r->ovl.InternalHigh = 0;
 
-#if _MSC_VER >= 1300
-	r->ovl.Pointer = (void*)ofs;
-#else
-	r->ovl.Offset = ofs;
-#endif
+//#if _MSC_VER >= 1300
+//	r->ovl.Pointer = (void*)ofs;
+//#else
+//	r->ovl.Offset = ofs;
+//#endif
+
+// a bit tricky: this should work even if size_t grows to 64 bits.
+//
+// we don't use OVERLAPPED.Pointer because it's not defined in
+// previous platform sdk versions, and i can't figure out how
+// determine the sdk version installed. can't just check for the
+// vc6/vc7 compiler - vc6 with the old sdk may have been upgraded
+// to the vc7.1 compiler.
+//
+// this assumes little endian, but we're windows-specific here anyway.
+*(size_t*)&r->ovl.Offset = ofs;
 
 assert(cb->aio_buf != 0);
 

@@ -180,19 +180,32 @@ uintptr_t round_up(uintptr_t val, uintptr_t multiple)
 }
 
 
+//u16 addusw(u16 x, u16 y)
+//{
+//	u32 t = x;
+//	return (u16)MIN(t+y, 0xffff);
+//}
+//
+//
+//u16 subusw(u16 x, u16 y)
+//{
+//	long t = x;
+//	return MAX(t-y, 0);
+//}
+
+
 u16 addusw(u16 x, u16 y)
 {
-	u32 t = x;
-	return (u16)MIN(t+y, 0xffff);
+u32 t = x;
+return (u16)MIN(t+y, 0xffff);
 }
 
 
 u16 subusw(u16 x, u16 y)
 {
-	long t = x;
-	return MAX(t-y, 0);
+long t = x;
+return (u16)(MAX(t-y, 0));
 }
-
 
 
 // provide fminf for non-C99 compilers

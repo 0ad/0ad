@@ -294,12 +294,20 @@ void InitScene ()
 	}
 
 	// get default texture to apply to terrain
+//	CTextureEntry* texture=0;
+//	if (g_TexMan.m_TerrainTextures.size()>0) {
+//		if (g_TexMan.m_TerrainTextures[0].m_Textures.size()) {
+//			texture=g_TexMan.m_TerrainTextures[0].m_Textures[0];
+//		}
+//	}
+
 	CTextureEntry* texture=0;
-	if (g_TexMan.m_TerrainTextures.size()>0) {
-		if (g_TexMan.m_TerrainTextures[0].m_Textures.size()) {
-			texture=g_TexMan.m_TerrainTextures[0].m_Textures[0];
-		}
-	}
+for (uint ii=0;ii<g_TexMan.m_TerrainTextures.size();ii++) {  
+    if (g_TexMan.m_TerrainTextures[ii].m_Textures.size()) {
+        texture=g_TexMan.m_TerrainTextures[ii].m_Textures[0];
+        break;
+    }
+}
 
 	// cover entire terrain with default texture
 	u32 patchesPerSide=g_Terrain.GetPatchesPerSide();
