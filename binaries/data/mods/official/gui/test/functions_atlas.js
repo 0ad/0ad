@@ -262,7 +262,7 @@ function initAtlas()
 
 	// Height input box for map size.
 	ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		30,
+		58,
 		14
 	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_2].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_2].width-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX].width-ATLAS_LEFT_PANE_SECTION.RMARGIN,
@@ -496,6 +496,40 @@ function initAtlas()
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_BORDER].x+ATLAS_LEFT_PANE_SECTION_GENERATE_SPAN,
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_BORDER].y+ATLAS_LEFT_PANE_SECTION_GENERATE_SPAN
 	);
+
+	// ============================================= TERRAIN EDITOR SECTION MENU ===============================================
+
+	// ============================================= TERRAIN EDITOR: EDIT ELEVATION ===============================================
+
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_BUTTON_SPAN = 10;
+
+	// Modify button.
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_MODIFY_BUTTON		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		50,
+		15
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_2].x+ATLAS_LEFT_PANE_SECTION.LMARGIN,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_2].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_2].height+ATLAS_LEFT_PANE_SECTION.TMARGIN
+	);
+
+	// Smooth button.
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SMOOTH_BUTTON		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_MODIFY_BUTTON].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_MODIFY_BUTTON].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_MODIFY_BUTTON].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_MODIFY_BUTTON].width+ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_BUTTON_SPAN,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_MODIFY_BUTTON].y
+	);
+
+	// Sample button.
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SAMPLE_BUTTON		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_MODIFY_BUTTON].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_MODIFY_BUTTON].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SMOOTH_BUTTON].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SMOOTH_BUTTON].width+ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_BUTTON_SPAN,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_MODIFY_BUTTON].y
+	);
+
 }
 
 // ====================================================================
@@ -615,4 +649,3 @@ function atlasOpenSectionMenu(atlasMenuName)
 }
 
 // ====================================================================
-
