@@ -29,6 +29,19 @@
 		sprite-button-top-pressed="scroll"
 	/>
 
+	<scrollbar name="manual_scrollbar" width="12" minimum-bar-size="4" alwaysshown="false"
+		sprite-button-top="sprite2"
+		sprite-button-top-over="scroll"
+		sprite-button-bottom="sprite2"
+		sprite-button-bottom-over="scroll"
+		sprite-back-vertical="grey"
+		sprite-bar-vertical="sprite2"
+		sprite-bar-vertical-over="scroll"
+		sprite-bar-vertical-pressed="sprite2-pressed"
+		sprite-button-bottom-pressed="sprite2-pressed"
+		sprite-button-top-pressed="sprite2-pressed"
+	/>
+
 	<icon name="smiley" texture="test2" size="16 16" />
 
 <!-- Commented out until tooltips are implemented as documented.

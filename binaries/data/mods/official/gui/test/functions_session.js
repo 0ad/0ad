@@ -55,20 +55,25 @@ function getObjectInfo()
 
 		// Hide Group Pane.
 		getGUIObjectByName("session_group_pane").hidden = true;
+
+		getGlobal().MultipleEntitiesSelected = 0;
 	}
 	else			// If at least one entity selected,
 	{
 		// Store globals for entity information.
-//		EntityName = selection[0].traits.id.generic;
 //		strString = "" + selection[0].position;
 //		EntityPos = strString.substring(20,strString.length-3);
 
 		// Update portrait
-		setPortrait("session_panel_status_portrait", selection[0].traits.id.icon);
+		if (selection[0].traits.id.icon)
+			setPortrait("session_panel_status_portrait", selection[0].traits.id.icon);
 
 		// Update hitpoints
-		getGUIObjectByName("session_panel_status_icon_hp_text").caption = selection[0].traits.health.hpcurr + "/" + selection[0].traits.health.hitpoints;
-		getGUIObjectByName("session_panel_status_icon_hp_bar").caption = ((selection[0].traits.health.hpcurr * 100 ) / selection[0].traits.health.hitpoints);
+		if (selection[0].traits.health.curr & selection[0].traits.health.hitpoints)
+		{
+			getGUIObjectByName("session_panel_status_icon_hp_text").caption = Math.round(selection[0].traits.health.curr) + "/" + Math.round(selection[0].traits.health.hitpoints);
+			getGUIObjectByName("session_panel_status_icon_hp_bar").caption = ((Math.round(selection[0].traits.health.curr) * 100 ) / Math.round(selection[0].traits.health.hitpoints));
+		}
 
 		// Reveal Status Orb
 		getGUIObjectByName("session_status_orb").hidden = false;
@@ -139,8 +144,10 @@ function getObjectInfo()
 						groupPanePortrait.hidden = false;
 						groupPaneBar.hidden = false;
 						// Set progress bar for hitpoints.
-						groupPaneBar.caption = ((selection[groupPaneLoop-1].traits.health.hpcurr * 100 ) / selection[groupPaneLoop-1].traits.health.hitpoints);
-						setPortrait("session_group_pane_portrait_" + groupPaneLoop, selection[groupPaneLoop-1].traits.id.icon);
+						if (selection[groupPaneLoop-1].traits.health.curr && selection[groupPaneLoop-1].traits.health.hitpoints)
+							groupPaneBar.caption = ((Math.round(selection[groupPaneLoop-1].traits.health.curr) * 100 ) / Math.round(selection[groupPaneLoop-1].traits.health.hitpoints));
+						if (selection[groupPaneLoop-1].traits.id.icon)
+							setPortrait("session_group_pane_portrait_" + groupPaneLoop, selection[groupPaneLoop-1].traits.id.icon);
 					}
 					// If it's empty, hide its group portrait.
 					else
@@ -151,12 +158,12 @@ function getObjectInfo()
 
 				}
 
-		                MultipleEntitiesSelected = selection.length;
+		                getGlobal().MultipleEntitiesSelected = selection.length;
 			}
 	        } 
 		else
 		{
-	                MultipleEntitiesSelected = 0;
+	                getGlobal().MultipleEntitiesSelected = 0;
 
 			// Hide Group Pane.
 			getGUIObjectByName("session_group_pane").hidden = true;
