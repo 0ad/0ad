@@ -4,10 +4,8 @@
 #include <cstring>
 #include <cstdlib>
 #include <cmath>
+#include <stdarg.h>
 
-// Alan: For some reason if this gets included after anything else some
-// compile time errors get thrown up todo with javascript internal typedefs
-#include "scripting/ScriptingHost.h"
 
 #include "sdl.h"
 #include "ogl.h"
@@ -16,9 +14,8 @@
 #include "input.h"
 #include "lib.h"
 #include "res/res.h"
-#include "res/file.h"
 #ifdef _M_IX86
-#include "sysdep/ia32.h"
+#include "sysdep/ia32.h"	// _control87
 #endif
 
 #include "ps/CConsole.h"
@@ -33,12 +30,14 @@
 #include "Model.h"
 #include "UnitManager.h"
 
+
 #include "BaseEntityCollection.h"
 #include "Entity.h"
 #include "EntityHandles.h"
 #include "EntityManager.h"
 #include "PathfindEngine.h"
 
+#include "scripting/ScriptingHost.h"
 #include "scripting/JSInterface_Entity.h"
 #include "scripting/JSInterface_BaseEntity.h"
 #include "scripting/JSInterface_Vector3D.h"
@@ -69,6 +68,7 @@ bool mouseButtons[5];
 int g_xres, g_yres;
 int g_bpp;
 int g_freq;
+bool g_active = true;
 
 
 // flag to disable extended GL extensions until fix found - specifically, crashes
@@ -102,6 +102,91 @@ extern int terr_handler(const SDL_Event* ev);
 
 extern int allow_reload();
 extern int dir_add_watch(const char* const dir, bool watch_subdirs);
+
+
+
+
+
+extern void sle(int);
+
+
+
+static size_t frameCount=0;
+static bool quit = false;	// break out of main loop
+
+
+
+
+
+
+
+const wchar_t* HardcodedErrorString(int err)
+{
+#define E(sym) case sym: return L#sym;
+
+	switch(err)
+	{
+	E(ERR_NO_MEM)
+	E(ERR_FILE_NOT_FOUND)
+	E(ERR_INVALID_HANDLE)
+	E(ERR_INVALID_PARAM)
+	E(ERR_EOF)
+	E(ERR_PATH_NOT_FOUND)
+	E(ERR_VFS_PATH_LENGTH)
+	default:
+		return 0;
+	}
+}
+
+const wchar_t* ErrorString(int err)
+{
+	// language file not available (yet)
+	if(1)
+		return HardcodedErrorString(err);
+
+	// TODO: load from language file
+}
+
+static int write_sys_info();
+
+
+
+
+// TODO: load from language file
+// these will need to be variables; better to make an index into string table
+// (as with errors)? if it's a string, what happens if lang file load failed?
+#define STR_UNHANDLED_EXCEPTION L"unhandled exception"
+#define STR_SDL_INIT_FAILED     L"SDL library initialization failed: %hs\n"
+#define STR_SET_VMODE_FAILED    L"could not set %dx%d graphics mode: %hs\n"
+#define STR_OGL_EXT_MISSING     L"required ARB_multitexture or ARB_texture_env_combine extension not available"
+#define STR_MAP_LOAD_FAILED     L"Failed to load map %hs\n"
+
+
+static void Die(int err, const wchar_t* fmt, ...)
+{
+	va_list args;
+	va_start(args, fmt);
+	wchar_t buf[1000];
+	vswprintf(buf, 1000, fmt, args);
+	va_end(args);
+
+	const wchar_t* err_string = ErrorString(err);
+	if(err_string)
+	{
+		wcscat(buf, L" (");	wcscat(buf, err_string); wcscat(buf, L")\n");
+	}
+
+	wdisplay_msg(L"0ad", buf);
+
+	write_sys_info();
+
+	exit(EXIT_FAILURE);
+}
+
+
+
+
+
 
 
 
@@ -159,7 +244,9 @@ static int write_sys_info()
 	fprintf(f, "%s\n", gfx_drv_ver);
 	fprintf(f, "%dx%d:%d@%d\n", g_xres, g_yres, g_bpp, g_freq);
 	// .. network name / ips
-	char hostname[100];	// possibly nodename != hostname
+	//    note: can't use un.nodename because it is for an
+	//    "implementation-defined communications network".
+	char hostname[128];
 	if (gethostname(hostname, sizeof(hostname)) == 0) // make sure it succeeded
 	{
 		fprintf(f, "%s\n", hostname);
@@ -178,27 +265,6 @@ static int write_sys_info()
 }
 
 
-// error before GUI is initialized: display message, and quit
-// TODO: localization
-static void display_startup_error(const wchar_t* msg)
-{
-	const wchar_t* caption = L"0ad startup problem";
-
-	write_sys_info();
-	wdisplay_msg(caption, msg);
-	exit(1);
-}
-
-// error before GUI is initialized: display message, and quit
-// TODO: localization
-static void display_startup_error(const char* msg)
-{
-	const char* caption = "0ad startup problem";
-
-	write_sys_info();
-	display_msg(caption, msg);
-	exit(1);
-}
 
 
 static int set_vmode(int w, int h, int bpp, bool fullscreen)
@@ -216,6 +282,9 @@ static int set_vmode(int w, int h, int bpp, bool fullscreen)
 #endif
 
 	oglInit();	// required after each mode change
+
+	if(SDL_SetGamma(g_Gamma, g_Gamma, g_Gamma) < 0)
+		debug_warn("SDL_SetGamma failed");
 
 	return 0;
 }
@@ -253,8 +322,6 @@ static void WriteScreenshot()
 }
 
 
-bool active = true;
-static bool quit = false;	// break out of main loop
 
 // HACK: Let code from other files (i.e. the scripting system) quit
 void kill_mainloop()
@@ -269,7 +336,7 @@ static int handler(const SDL_Event* ev)
 	switch(ev->type)
 	{
 	case SDL_ACTIVEEVENT:
-		active = ev->active.gain != 0;
+		g_active = ev->active.gain != 0;
 		break;
 
 	case SDL_KEYDOWN:
@@ -577,6 +644,40 @@ void ParseArgs(int argc, char* argv[])
 
 
 
+static void InitScripting()
+{
+	// Create the scripting host.  This needs to be done before the GUI is created.
+	new ScriptingHost;
+
+	// Register the JavaScript interfaces with the runtime
+	JSI_Entity::init();
+	JSI_BaseEntity::init();
+	JSI_IGUIObject::init();
+	JSI_GUITypes::init();
+	JSI_Vector3D::init();
+}
+
+static void InitVfs(char* argv0)
+{
+	// set current directory to "$game_dir/data".
+	// this is necessary because it is otherwise unknown,
+	// especially if run from a shortcut / symlink.
+	//
+	// "../data" is relative to the executable (in "$game_dir/system").
+	//
+	// rationale for data/ being root: untrusted scripts must not be
+	// allowed to overwrite critical game (or worse, OS) files.
+	// the VFS prevents any accesses to files above this directory.
+	int err = file_rel_chdir(argv0, "../data");
+	if(err < 0)
+		throw err;
+//		display_startup_error(L"error setting current directory.\n"\
+//			L"argv[0] is probably incorrect. please start the game via command-line.");
+
+	vfs_mount("", "mods/official", 0);
+	vfs_mount("screenshots", "screenshots", 0);
+}
+
 static void psInit()
 {
 	g_Font_Console = unifont_load("fonts/console");
@@ -610,9 +711,42 @@ static void psShutdown()
 	CXeromyces::Terminate();
 }
 
+
 extern u64 PREVTSC;
-int main(int argc, char* argv[])
+
+
+static void Shutdown()
 {
+	psShutdown(); // Must delete g_GUI before g_ScriptingHost
+
+	delete &g_ScriptingHost;
+	delete &g_Pathfinder;
+	delete &g_EntityManager;
+	delete &g_EntityTemplateCollection;
+
+	// destroy actor related stuff
+	delete &g_UnitMan;
+	delete &g_ObjMan;
+	delete &g_SkelAnimMan;
+
+	// destroy terrain related stuff
+	delete &g_TexMan;
+
+	// destroy renderer
+	delete &g_Renderer;
+
+	delete &g_ConfigDB;
+
+	// Not particularly consistent with all the other singletons,
+	// but the GUI currently uses it and so it needs to be unloaded
+	NPFontManager::release();
+}
+
+
+static void Init(int argc, char* argv[])
+{
+sle(1134);
+
 
 	// If you ever want to catch a particular allocation:
 	//_CrtSetBreakAlloc(4128);
@@ -627,9 +761,6 @@ PREVTSC=TSC;
 #endif
 
 
-	const int ERR_MSG_SIZE = 1000;
-	wchar_t err_msg[ERR_MSG_SIZE];
-
 	lib_init();
 
 	// set 24 bit (float) FPU precision for faster divides / sqrts
@@ -642,24 +773,13 @@ PREVTSC=TSC;
 	// and fonts are set later in psInit())
 	g_Console = new CConsole();
 
-	// Create the scripting host.  This needs to be done before the GUI is created.
-	new ScriptingHost;
-
-	// Register the JavaScript interfaces with the runtime
-	JSI_Entity::init();
-	JSI_BaseEntity::init();
-	JSI_IGUIObject::init();
-	JSI_GUITypes::init();
-	JSI_Vector3D::init();
-
 	detect();
+
+	InitVfs(argv[0]);
 
 	// init SDL
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
-	{
-		swprintf(err_msg, ERR_MSG_SIZE, L"SDL library initialization failed: %hs\n", SDL_GetError());
-		display_startup_error(err_msg);
-	}
+		Die(0, STR_SDL_INIT_FAILED, SDL_GetError());
 	atexit(SDL_Quit);
 	SDL_EnableUNICODE(1);
 
@@ -667,23 +787,9 @@ PREVTSC=TSC;
 	// (command line params may override these)
 	get_cur_vmode(&g_xres, &g_yres, &g_bpp, &g_freq);
 
-	// set current directory to "$game_dir/data".
-	// this is necessary because it is otherwise unknown,
-	// especially if run from a shortcut / symlink.
-	//
-	// "../data" is relative to the executable (in "$game_dir/system").
-	//
-	// rationale for data/ being root: untrusted scripts must not be
-	// allowed to overwrite critical game (or worse, OS) files.
-	// the VFS prevents any accesses to files above this directory.
-	int err = file_rel_chdir(argv[0], "../data");
-	if(err < 0)
-	{
-		swprintf(err_msg, ERR_MSG_SIZE, L"error setting current directory.\n"\
-			L"argv[0] is probably incorrect. please start the game via command-line.");
-		display_startup_error(err_msg);
-	}
-	
+
+	InitScripting();	// before GUI
+
 	new CConfigDB;
 	g_ConfigDB.SetConfigFile(CFG_SYSTEM, false, "config/system.cfg");
 	g_ConfigDB.Reload(CFG_SYSTEM);
@@ -710,17 +816,16 @@ PREVTSC=TSC;
 	bool windowed=false;
 	if (val) val->GetBool(windowed);
 
-	if(set_vmode(g_xres, g_yres, 32, !windowed) < 0)
-	{
-		swprintf(err_msg, ERR_MSG_SIZE, L"could not set %dx%d graphics mode: %hs\n", g_xres, g_yres, SDL_GetError());
-		display_startup_error(err_msg);
-	}
-
-
 	write_sys_info();
 
+sle(11340106);
+
+
+	if(set_vmode(g_xres, g_yres, 32, !windowed) < 0)
+		Die(0, STR_SET_VMODE_FAILED, g_xres, g_yres, SDL_GetError());
+
 	if(!oglExtAvail("GL_ARB_multitexture") || !oglExtAvail("GL_ARB_texture_env_combine"))
-		display_startup_error(L"required ARB_multitexture or ARB_texture_env_combine extension not available");
+		Die(0, STR_OGL_EXT_MISSING);
 
 	// enable/disable VSync
 	// note: "GL_EXT_SWAP_CONTROL" is "historical" according to dox.
@@ -728,20 +833,13 @@ PREVTSC=TSC;
 		wglSwapIntervalEXT(g_VSync? 1 : 0);
 
 
-	if(SDL_SetGamma(g_Gamma, g_Gamma, g_Gamma) < 0)
-	{
-		debug_warn("SDL_SetGamma failed");
-	}
 
-
-	vfs_mount("", "mods/official", 0);
-	vfs_mount("screenshots", "screenshots", 0);
 
 #ifdef _MSC_VER
 u64 CURTSC=rdtsc();
 debug_out(
 "----------------------------------------\n"\
-"VFS ready (elapsed = %f ms)\n"\
+"low-level ready (elapsed = %f ms)\n"\
 "----------------------------------------\n", (CURTSC-PREVTSC)/2e9*1e3);
 PREVTSC=CURTSC;
 #endif
@@ -793,9 +891,7 @@ if(!g_MapFile)
 			CMapReader reader;
 			reader.LoadMap(mapfilename);
 		} catch (...) {
-			char errmsg[256];
-			sprintf(errmsg, "Failed to load map %s\n", mapfilename.c_str());
-			display_startup_error(errmsg);
+			Die(0, STR_MAP_LOAD_FAILED, mapfilename.c_str());
 		}
 	}
 
@@ -815,7 +911,6 @@ if(!g_MapFile)
 	// render everything to a blank frame to force renderer to load everything
 	RenderNoCull();
 
-	size_t frameCount=0;
 	if (g_FixedFrameTiming) {
 #if 0		// TOPDOWN
 		g_Camera.SetProjection(1.0f,10000.0f,DEGTORAD(90));
@@ -849,85 +944,87 @@ PREVTSC=CURTSC;
 }
 #endif
 
+}
 
-// fixed timestep main loop
-	const double TICK_TIME = 30e-3;	// [s]
-	double time0 = get_time();
 
-	while(!quit)
-	{
-		res_reload_changed_files();
+static void Frame()
+{
+	static double last_time;
+	const double time = get_time();
+	const float TimeSinceLastFrame = (float)(time-last_time);
+	last_time = time;
+	ONCE(return);
+		// first call: set last_time and return
+	assert(TimeSinceLastFrame >= 0.0f);
+
+
+
+	res_reload_changed_files();
 
 
 // TODO: limiter in case simulation can't keep up?
+	const double TICK_TIME = 30e-3;	// [s]
 #if 0
-		double time1 = get_time();
-		while((time1-time0) > TICK_TIME)
-		{
-			game_ticks++;
+	double time1 = get_time();
+	while((time1-time0) > TICK_TIME)
+	{
+		game_ticks++;
 
-			in_get_events();
-			do_tick();
-			time0 += TICK_TIME;
-		}
+		in_get_events();
+		do_tick();
+		time0 += TICK_TIME;
+	}
 #endif
 
-		double time1 = get_time();
+	// ugly, but necessary. these are one-shot events, have to be reset.
+	mouseButtons[SDL_BUTTON_WHEELUP] = false;
+	mouseButtons[SDL_BUTTON_WHEELDOWN] = false;
+	in_get_events();
 
-		// ugly, but necessary. these are one-shot events, have to be reset.
-		mouseButtons[SDL_BUTTON_WHEELUP] = false;
-		mouseButtons[SDL_BUTTON_WHEELDOWN] = false;
-		in_get_events();
+	if(TimeSinceLastFrame > 0.0f)
+	{
+		UpdateWorld(TimeSinceLastFrame);
+		if (!g_FixedFrameTiming)
+			terr_update(float(TimeSinceLastFrame));
+		g_Console->Update(TimeSinceLastFrame);
+	}
 
-		float TimeSinceLastFrame = (float)(time1-time0);
-		assert(TimeSinceLastFrame >= 0.0f);
-		if(TimeSinceLastFrame > 0.0f)
-		{
-			UpdateWorld(TimeSinceLastFrame);
-			if (!g_FixedFrameTiming)
-				terr_update(float(TimeSinceLastFrame));
-			g_Console->Update(TimeSinceLastFrame);
-		}
+	if(g_active)
+	{
+		Render();
+		SDL_GL_SwapBuffers();
+	}
+	// inactive; relinquish CPU for a little while
+	// don't use SDL_WaitEvent: don't want the main loop to freeze until app focus is restored
+	else
+		SDL_Delay(10);
 
-		if(active)
-		{
-			Render();
-			SDL_GL_SwapBuffers();
-		}
-		// inactive; relinquish CPU for a little while
-		// don't use SDL_WaitEvent: don't want the main loop to freeze until app focus is restored
-		else
-			SDL_Delay(10);
+	calc_fps();
+	frameCount++;
+	if (g_FixedFrameTiming && frameCount==100) quit=true;
+}
 
-		calc_fps();
-		time0=time1;
-		frameCount++;
-		if (g_FixedFrameTiming && frameCount==100) quit=true;
-	}	// main loop, while(!quit)
 
-	psShutdown(); // Must delete g_GUI before g_ScriptingHost
 
-	delete &g_ScriptingHost;
-	delete &g_Pathfinder;
-	delete &g_EntityManager;
-	delete &g_EntityTemplateCollection;
+int main(int argc, char* argv[])
+{
+	try
+	{
+		Init(argc, argv);
 
-	// destroy actor related stuff
-	delete &g_UnitMan;
-	delete &g_ObjMan;
-	delete &g_SkelAnimMan;
+		while(!quit)
+			Frame();
 
-	// destroy terrain related stuff
-	delete &g_TexMan;
-
-	// destroy renderer
-	delete &g_Renderer;
-
-	delete &g_ConfigDB;
-
-	// Not particularly consistent with all the other singletons,
-	// but the GUI currently uses it and so it needs to be unloaded
-	NPFontManager::release();
+		Shutdown();
+	}
+	catch(...)
+	{
+// debug build: let debugger display it (more convenient)
+#ifndef NDEBUG
+		throw;
+#endif
+		Die(0, STR_UNHANDLED_EXCEPTION);
+	}
 
 	exit(0);
 	return 0;
