@@ -11,6 +11,10 @@
 #pragma warning(disable:4786)	// identifier truncated to 255 chars
 #endif
 
+// HACK: Allow compilation on VC2005. (RingBuf doesn't like
+// iterator debugging - a better solution would be to fix that.)
+#define _HAS_ITERATOR_DEBUGGING 0
+
 #ifdef HAVE_PCH
 
 #include <string.h>
