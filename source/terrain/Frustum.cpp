@@ -35,7 +35,7 @@ void CFrustum::SetNumPlanes (int num)
 		m_NumPlanes	= 0;
 }
 
-bool CFrustum::IsPointVisible (const CVector3D &point)
+bool CFrustum::IsPointVisible (const CVector3D &point) const
 {
 	PLANESIDE Side;
 
@@ -50,7 +50,7 @@ bool CFrustum::IsPointVisible (const CVector3D &point)
 	return true;
 }
 
-bool CFrustum::IsSphereVisible (const CVector3D &center, float radius)
+bool CFrustum::IsSphereVisible (const CVector3D &center, float radius) const
 {
 	for (int i=0; i<m_NumPlanes; i++)
 	{
@@ -70,15 +70,15 @@ bool CFrustum::IsSphereVisible (const CVector3D &center, float radius)
 }
 
 
-bool CFrustum::IsBoxVisible (const CVector3D &position, SBoundingBox &bounds)
+bool CFrustum::IsBoxVisible (const CVector3D &position,const CBound &bounds) const
 {
 	//basically for every plane we calculate the furthust point
 	//in the box to that plane. If that point is beyond the plane
 	//then the box is not visible
 	CVector3D FarPoint;
 	PLANESIDE Side;
-	CVector3D Min = position+bounds.m_BoxMin;
-	CVector3D Max = position+bounds.m_BoxMax;
+	CVector3D Min = position+bounds[0];
+	CVector3D Max = position+bounds[1];
 
 	for (int i=0; i<m_NumPlanes; i++)
 	{

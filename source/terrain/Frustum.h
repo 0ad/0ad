@@ -1,6 +1,6 @@
 //***********************************************************
 //
-// Name:		Frustum.h
+// Name:		Frustum.H
 // Last Update: 24/2/02
 // Author:		Poya Manouchehri
 //
@@ -17,16 +17,11 @@
 #define FRUSTUM_H
 
 #include "Plane.h"
+#include "Bound.h"
 
 //10 planes should be enough
 #define MAX_NUM_FRUSTUM_PLANES		(10)
 
-
-struct SBoundingBox
-{
-	CVector3D m_BoxMin;
-	CVector3D m_BoxMax;
-};
 
 class CFrustum
 {
@@ -41,9 +36,9 @@ class CFrustum
 
 		//The following methods return true if the shape is
 		//partially or completely in front of the frustum planes
-		bool IsPointVisible (const CVector3D &point);
-		bool IsSphereVisible (const CVector3D &center, float radius);
-		bool IsBoxVisible (const CVector3D &position, SBoundingBox &bounds);
+		bool IsPointVisible (const CVector3D &point) const;
+		bool IsSphereVisible (const CVector3D &center, float radius) const;
+		bool IsBoxVisible (const CVector3D &position,const CBound &bounds) const;
 
 	public:
 		//make the planes public for ease of use
