@@ -707,7 +707,20 @@ int interactInputHandler( const SDL_Event* ev )
 			{
 				if( hotkeys[HOTKEY_CAMERA_BOOKMARK_SAVE] )
 				{
-					cameraBookmarks[id] = g_Camera.m_Orientation.GetTranslation() + g_Camera.m_Orientation.GetIn() * 160.0f;
+					// Attempt to track the ground we're looking at
+					CHFTracer tracer( g_Terrain.GetHeightMap(), g_Terrain.GetVerticesPerSide(), CELL_SIZE, HEIGHT_SCALE ); int x, z;
+					CVector3D origin, dir, delta, currentTarget;
+					origin = g_Camera.m_Orientation.GetTranslation();
+					dir = g_Camera.m_Orientation.GetIn();
+					if( tracer.RayIntersect( origin, dir, x, z, currentTarget ) )
+					{					
+						cameraBookmarks[id] = currentTarget;
+					}
+					else
+					{
+						// Placing a bookmark off the map? If you say so, guv'nor.
+						cameraBookmarks[id] = g_Camera.m_Orientation.GetTranslation() + g_Camera.m_Orientation.GetIn() * 160.0f;
+					}
 					bookmarkInUse[id] = true;
 				}
 				else if( hotkeys[HOTKEY_CAMERA_BOOKMARK_SNAP] )
@@ -853,14 +866,29 @@ bool isMouseoverType( CEntity* ev )
 
 void pushCameraTarget( const CVector3D& target )
 {
+	// Save the current position
 	cameraTargets.push_back( g_Camera.m_Orientation.GetTranslation() );
+	// And set the camera
 	setCameraTarget( target );
 }
 
 void setCameraTarget( const CVector3D& target )
 {
-	CVector3D cameraForward = g_Camera.m_Orientation.GetIn();
-	cameraDelta = ( target - ( cameraForward * 160.0f ) ) - g_Camera.m_Orientation.GetTranslation();
+	// Maintain the same orientation and level of zoom, if we can
+	// (do this by working out the point the camera is looking at, saving
+	//  the difference beteen that position and the camera point, and restoring
+	//  that difference to our new target)
+
+	CHFTracer tracer( g_Terrain.GetHeightMap(), g_Terrain.GetVerticesPerSide(), CELL_SIZE, HEIGHT_SCALE ); int x, z;
+	CVector3D origin, dir, currentTarget;
+	origin = g_Camera.m_Orientation.GetTranslation();
+	dir = g_Camera.m_Orientation.GetIn();
+	if( tracer.RayIntersect( origin, dir, x, z, currentTarget ) )
+	{
+		cameraDelta = target - currentTarget;
+	}
+	else
+		cameraDelta = ( target - dir * 160.0f ) - origin;
 }
 
 void popCameraTarget()

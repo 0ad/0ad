@@ -150,6 +150,19 @@ bool CHFTracer::RayIntersect(CVector3D& origin,CVector3D& dir,int& x,int& z,CVec
 				return true;
 			}
 		} 
+		else
+		{
+			// Degenerate case: y close to zero
+			// catch travelling off the map
+			if( ( cx < 0 ) && ( sx < 0 ) )
+				return( false );
+			if( ( cx >= m_MapSize ) && ( sx > 0 ) )
+				return( false );
+			if( ( cz < 0 ) && ( sz < 0 ) )
+				return( false );
+			if( ( cz >= m_MapSize ) && ( sz > 0 ) )
+				return( false );
+		}
 
 		// get coords of current cell
 		fcx=traversalPt.X*invCellSize;
