@@ -129,6 +129,17 @@
 		text_valign="center"
 	/>
 
+	<style name="atlas_input"
+		tooltip_style="atlas_tooltip"
+		tooltip=""
+		textcolor="0 0 0"
+		textcolor_selected="255 255 255"
+		font="tahoma10"
+		buffer_zone="3"
+		sprite="atlas_input_box"
+		sprite_selectarea="GeeTemp_selected"
+	/>
+
 	<style name="atlas_button"
 		sprite="atlas_emboss"
 		sprite_over="atlas_indent"

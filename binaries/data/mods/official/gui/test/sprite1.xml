@@ -818,13 +818,26 @@
                 <image backcolor="220 223 228" size="0%+0 0%+0 100%+0 100%+0"/>
         </sprite>
 
+	<!-- Note from Gee
+		The size of the typing area of an input box, must be 0% 0% 100% 100%,
+		so that the selection-rectangles hides properly. That means the 'border'
+		should be placed outside... But not too far outside as it was here.
+		Adjusting so the text fits nicely is done with buffer_zone
+
+		Sorry for this, because the boxes has obviously become smaller, and
+		some things doesn't look right anymore. But it's the way it has to
+		be to look good in the end. Also the input-controls with attached
+		increment and decrement buttons, I can make that a built in type, 
+		so don't bother adjusting all those.
+	-->
+
         <sprite name="atlas_input_box">
-                <image backcolor="220 223 228" size="-4 -5 100%+2 100%+1" />
-                <image backcolor="109 122 146" size="-4 -5 100%+1 100%" />
-                <image backcolor="184 190 201" size="-3 -4 100%+1 100%" />
-                <image backcolor="0 0 0"       size="-3 -4 100%   100%-1" />
+                <image backcolor="220 223 228" size="-2 -2 100%+2 100%+2" />
+                <image backcolor="109 122 146" size="-2 -2 100%+1 100%+1" />
+                <image backcolor="184 190 201" size="-1 -1 100%+1 100%+1" />
+                <image backcolor="0 0 0"       size="-1 -1 100%   100%" />
                 <!-- middle -->
-                <image backcolor="220 223 228" size="-2 -3 100%   100%-1"/>
+                <image backcolor="220 223 228" size="0 0 100%   100%"/>
         </sprite>
 
         <sprite name="atlas_emboss">
