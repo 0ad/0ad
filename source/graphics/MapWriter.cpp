@@ -102,7 +102,7 @@ void CMapWriter::EnumTerrainTextures(std::vector<CStr>& textures,
 			// uh-oh, this shouldn't happen; set texturename to empty string
 			texturename="";
 		} else {
-			texturename=texentry->m_Name;
+			texturename=texentry->GetName();
 		}
 		textures.push_back(texturename);
 	}
