@@ -187,6 +187,7 @@ private:
 
 struct XMBAttribute
 {
+	XMBAttribute() {}
 	XMBAttribute(int name, utf16string value)
 		: Name(name), Value(value) {};
 

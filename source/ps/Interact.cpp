@@ -992,7 +992,12 @@ bool isOnScreen( CEntity* ev )
 	CCamera *pCamera=g_Game->GetView()->GetCamera();
 
 	CFrustum frustum = pCamera->GetFrustum();
-	return( frustum.IsBoxVisible( CVector3D(), ev->m_actor->GetModel()->GetBounds() ) );
+
+	if( ev->m_actor )
+		return( frustum.IsBoxVisible( CVector3D(), ev->m_actor->GetModel()->GetBounds() ) );
+	else
+		// If there's no actor, just treat the entity as a point
+		return( frustum.IsBoxVisible( ev->m_graphics_position, CBound() ) );
 }
 
 bool isMouseoverType( CEntity* ev )

@@ -18,6 +18,22 @@
 
 #define LOG_CATEGORY "graphics"
 
+
+
+
+struct Variant
+{
+	CStr m_VariantName;
+	int m_Frequency;
+	CStr m_ModelFilename;
+	CStr m_TextureFilename;
+
+	std::vector<CObjectEntry::Anim> m_Anims;
+	std::vector<CObjectEntry::Prop> m_Props;
+};
+
+
+
 CObjectEntry::CObjectEntry(int type) : m_Model(0), m_Type(type)
 {
 	m_IdleAnim=0;
@@ -183,106 +199,264 @@ bool CObjectEntry::Load(const char* filename)
 	if (XeroFile.Load(filename) != PSRETURN_OK)
 		return false;
 
-	// Define all the elements and attributes used in the XML file
-	#define EL(x) int el_##x = XeroFile.getElementID(#x)
-	#define AT(x) int at_##x = XeroFile.getAttributeID(#x)
-	EL(name);
-	EL(modelname);
-	EL(texturename);
-    EL(material);
-	EL(animations);
-	EL(props);
-	EL(properties);
-	AT(attachpoint);
-	AT(model);
-	AT(name);
-	AT(file);
-	AT(speed);
-	AT(autoflatten);
-	AT(castshadows);
-	#undef AT
-	#undef EL
-
 	XMBElement root = XeroFile.getRoot();
 
-	XMBElementList children = root.getChildNodes();
+	if (root.getNodeName() == XeroFile.getElementID("object"))
+	{
+		//// Old-format actor file ////
 
-	for (int i = 0; i < children.Count; ++i) {
+		// Define all the elements and attributes used in the XML file
+		#define EL(x) int el_##x = XeroFile.getElementID(#x)
+		#define AT(x) int at_##x = XeroFile.getAttributeID(#x)
+		EL(name);
+		EL(modelname);
+		EL(texturename);
+		EL(material);
+		EL(animations);
+		EL(props);
+		EL(properties);
+		AT(attachpoint);
+		AT(model);
+		AT(name);
+		AT(file);
+		AT(speed);
+		AT(autoflatten);
+		AT(castshadows);
+		#undef AT
+		#undef EL
 
-		XMBElement child = children.item(i);
-
-		int element_name = child.getNodeName();
-		CStr element_value (child.getText());
-
-		if (element_name == el_name)
-			m_Name=element_value;
-
-		else if (element_name == el_modelname)
-			m_ModelName=element_value;
-
-		else if (element_name == el_texturename)
-			m_TextureName=element_value;
-
-        else if(element_name == el_material)
-            m_Material = element_value;
-
-		else if (element_name == el_properties) {
-
-			XMBAttributeList attributes=child.getAttributes();
-			for (int j = 0; j < attributes.Count; ++j) {
-				XMBAttribute attrib=attributes.item(j);
-
-				int attrib_name = attrib.Name;
-
-				if (attrib_name == at_autoflatten) {
-					CStr str (attrib.Value);
-					m_Properties.m_AutoFlatten=str.ToInt() ? true : false;
-
-				} else if (attrib_name == at_castshadows) {
-					CStr str = (attrib.Value);
-					m_Properties.m_CastShadows=str.ToInt() ? true : false;
-				} 
-			}
-		}
-
-		else if (element_name == el_animations)
+		XERO_ITER_EL(root, child)
 		{
-			XMBElementList animations=child.getChildNodes();
+			int element_name = child.getNodeName();
+			CStr element_value (child.getText());
 
-			for (int j = 0; j < animations.Count; ++j) {
-				XMBElement anim_element = animations.item(j);
-				XMBAttributeList attributes=anim_element.getAttributes();
-				if (attributes.Count) {
-					Anim anim;
+			if (element_name == el_name)
+				m_Name=element_value;
 
-					anim.m_AnimName = attributes.getNamedItem(at_name);
-					anim.m_FileName = attributes.getNamedItem(at_file);
-					CStr speedstr = attributes.getNamedItem(at_speed);
+			else if (element_name == el_modelname)
+				m_ModelName=element_value;
 
-					anim.m_Speed=float(speedstr.ToInt())/100.0f;
-					if (anim.m_Speed<=0.0) anim.m_Speed=1.0f;
+			else if (element_name == el_texturename)
+				m_TextureName=element_value;
 
-					m_Animations.push_back(anim);
+			else if(element_name == el_material)
+				m_Material = element_value;
+
+			else if (element_name == el_properties)
+			{
+
+				XERO_ITER_ATTR(child, attrib)
+				{
+					int attrib_name = attrib.Name;
+
+					if (attrib_name == at_autoflatten)
+					{
+						CStr str (attrib.Value);
+						m_Properties.m_AutoFlatten=str.ToInt() ? true : false;
+					}
+					else if (attrib_name == at_castshadows)
+					{
+						CStr str = (attrib.Value);
+						m_Properties.m_CastShadows=str.ToInt() ? true : false;
+					} 
+				}
+			}
+
+			else if (element_name == el_animations)
+			{
+				XERO_ITER_EL(child, anim_element)
+				{
+					XMBAttributeList attributes = anim_element.getAttributes();
+
+					if (attributes.Count)
+					{
+						Anim anim;
+
+						anim.m_AnimName = attributes.getNamedItem(at_name);
+						anim.m_FileName = attributes.getNamedItem(at_file);
+						CStr speedstr = attributes.getNamedItem(at_speed);
+
+						anim.m_Speed=float(speedstr.ToInt())/100.0f;
+						if (anim.m_Speed<=0.0) anim.m_Speed=1.0f;
+
+						m_Animations.push_back(anim);
+					}
+				}
+			}
+			else if (element_name == el_props)
+			{
+				XERO_ITER_EL(child, prop_element)
+				{
+
+					XMBAttributeList attributes = prop_element.getAttributes();
+					if (attributes.Count)
+					{
+						Prop prop;
+
+						prop.m_PropPointName = attributes.getNamedItem(at_attachpoint);
+						prop.m_ModelName = attributes.getNamedItem(at_model);
+
+						m_Props.push_back(prop);
+					}
 				}
 			}
 		}
-		else if (element_name == el_props)
+
+	}
+	else if (root.getNodeName() == XeroFile.getElementID("actor"))
+	{
+		//// New-format actor file ////
+
+		// Use the filename for the model's name
+		m_Name = CStr(filename).AfterLast("/").BeforeLast(".xml");
+
+		// Define all the elements used in the XML file
+		#define EL(x) int el_##x = XeroFile.getElementID(#x)
+		EL(castshadow);
+		EL(material);
+		EL(group);
+		EL(variant);
+		EL(animations);
+		EL(animation);
+		EL(file);
+		EL(name);
+		EL(speed);
+		EL(props);
+		EL(prop);
+		EL(attachpoint);
+		EL(model);
+		EL(frequency);
+		EL(mesh);
+		EL(texture);
+		#undef EL
+
+		std::vector< std::vector<Variant> > actorVariants;
+
+		XERO_ITER_EL(root, child)
 		{
-			XMBElementList props=child.getChildNodes();
+			int element_name = child.getNodeName();
+			CStr element_value (child.getText());
 
-			for (int j = 0; j < props.Count; ++j) {
-				XMBElement prop_element = props.item(j);
-				XMBAttributeList attributes=prop_element.getAttributes();
-				if (attributes.Count) {
-					Prop prop;
+			if (element_name == el_group)
+			{
+				actorVariants.resize(actorVariants.size()+1);
 
-					prop.m_PropPointName = attributes.getNamedItem(at_attachpoint);
-					prop.m_ModelName = attributes.getNamedItem(at_model);
+				XERO_ITER_EL(child, variant)
+				{
+					actorVariants.back().resize(actorVariants.back().size()+1);
 
-					m_Props.push_back(prop);
+					XERO_ITER_EL(variant, option)
+					{
+						int option_name = option.getNodeName();
+
+						if (option_name == el_name)
+							actorVariants.back().back().m_VariantName = option.getText();
+
+						else if (option_name == el_frequency)
+							actorVariants.back().back().m_Frequency = CStr(option.getText()).ToInt();
+
+						else if (option_name == el_mesh)
+							actorVariants.back().back().m_ModelFilename = option.getText();
+
+						else if (option_name == el_texture)
+							actorVariants.back().back().m_TextureFilename = option.getText();
+
+						else if (option_name == el_animations)
+						{
+							XERO_ITER_EL(option, anim_element)
+							{
+								Anim anim;
+
+								XERO_ITER_EL(anim_element, ae)
+								{
+									int ae_name = ae.getNodeName();
+									if (ae_name == el_name)
+										anim.m_AnimName = ae.getText();
+									else if (ae_name == el_file)
+										anim.m_FileName = ae.getText();
+									else if (ae_name == el_speed)
+									{
+										anim.m_Speed = CStr(ae.getText()).ToInt() / 100.f;
+										if (anim.m_Speed <= 0.0) anim.m_Speed = 1.0f;
+									}
+									else
+										; // unrecognised element
+								}
+								actorVariants.back().back().m_Anims.push_back(anim);
+							}
+
+						}
+						else if (option_name == el_props)
+						{
+							XERO_ITER_EL(option, prop_element)
+							{
+								Prop prop;
+
+								XERO_ITER_EL(prop_element, pe)
+								{
+									int pe_name = pe.getNodeName();
+									if (pe_name == el_attachpoint)
+										prop.m_PropPointName = pe.getText();
+									else if (pe_name == el_model)
+										prop.m_ModelName = pe.getText();
+									else
+										; // unrecognised element
+								}
+								actorVariants.back().back().m_Props.push_back(prop);
+							}
+						}
+						else
+							; // unrecognised element
+					}
 				}
 			}
+			else if (element_name == el_material)
+			{
+				m_Material = child.getText();
+			}
+			else
+				; // unrecognised element
 		}
+
+		// Fill in this actor with the appropriate variant choices:
+
+		CStr chosenTexture;
+		CStr chosenModel;
+		std::map<CStr, Prop> chosenProps;
+		std::map<CStr, Anim> chosenAnims;
+
+		for (std::vector<std::vector<Variant> >::iterator grp = actorVariants.begin();
+			grp != actorVariants.end();
+			++grp)
+		{
+			// TODO: choose correctly
+			Variant& var ((*grp)[0]);
+
+			if (var.m_TextureFilename.Length())
+				chosenTexture = var.m_TextureFilename;
+
+			if (var.m_ModelFilename.Length())
+				chosenModel = var.m_ModelFilename;
+
+			for (std::vector<Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
+				chosenProps[it->m_PropPointName] = *it;
+
+			for (std::vector<Anim>::iterator it = var.m_Anims.begin(); it != var.m_Anims.end(); ++it)
+				chosenAnims[it->m_AnimName] = *it;
+		}
+
+		m_TextureName = chosenTexture;
+		m_ModelName = chosenModel;
+
+		for (std::map<CStr, Prop>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
+			m_Props.push_back(it->second);
+
+		for (std::map<CStr, Anim>::iterator it = chosenAnims.begin(); it != chosenAnims.end(); ++it)
+			m_Animations.push_back(it->second);
+	}
+	else
+	{
+		LOG(ERROR, LOG_CATEGORY, "Invalid actor format (unrecognised root element '%s')", XeroFile.getElementString(root.getNodeName()));
 	}
 
 	return true;

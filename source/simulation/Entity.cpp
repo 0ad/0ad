@@ -87,17 +87,21 @@ void CEntity::loadBase()
 	{
 		g_UnitMan.RemoveUnit( m_actor );
 		delete( m_actor );
+		m_actor = NULL;
 	}
 	if( m_bounds )
 	{
 		delete( m_bounds );
+		m_bounds = NULL;
 	}
 
-	m_actor = new CUnit( m_base->m_actorObject, m_base->m_actorObject->m_Model->Clone(), this );
+	if( m_base->m_actorObject )
+		m_actor = new CUnit( m_base->m_actorObject, m_base->m_actorObject->m_Model->Clone(), this );
 
 	// Register the actor with the renderer.
 
-	g_UnitMan.AddUnit( m_actor );
+	if( m_actor )
+		g_UnitMan.AddUnit( m_actor );
 
 	// Set up our instance data
 
@@ -135,10 +139,11 @@ void CEntity::kill()
 
 void CEntity::SetPlayer(CPlayer *pPlayer)
 {
-	m_player=pPlayer;
+	m_player = pPlayer;
 
 	// Store the ID of the player in the associated model
-	m_actor->GetModel()->SetPlayerID( m_player->GetPlayerID() );
+	if( m_actor )
+		m_actor->GetModel()->SetPlayerID( m_player->GetPlayerID() );
 }
 
 void CEntity::updateActorTransforms()
@@ -153,7 +158,8 @@ void CEntity::updateActorTransforms()
 	m._31 = s;		m._32 = 0.0f;	m._33 = -c;		m._34 = m_graphics_position.Z;
 	m._41 = 0.0f;	m._42 = 0.0f;	m._43 = 0.0f;	m._44 = 1.0f;
 
-	m_actor->GetModel()->SetTransform( m );
+	if( m_actor )
+		m_actor->GetModel()->SetTransform( m );
 }
 
 void CEntity::snapToGround()
@@ -228,13 +234,16 @@ void CEntity::update( size_t timestep )
 		}
 	}
 
-	if( m_extant )
+	if( m_actor )
 	{
-		if( ( m_lastState != -1 ) || !m_actor->GetModel()->GetAnimation() )
-			m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_IdleAnim );
+		if( m_extant )
+		{
+			if( ( m_lastState != -1 ) || !m_actor->GetModel()->GetAnimation() )
+				m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_IdleAnim );
+		}
+		else if( !m_actor->GetModel()->GetAnimation() )
+			m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_CorpseAnim );
 	}
-	else if( !m_actor->GetModel()->GetAnimation() )
-		m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_CorpseAnim );
 
 	if( m_lastState != -1 )
 	{
@@ -816,7 +825,8 @@ bool CEntity::Kill( JSContext* cx, uintN argc, jsval* argv )
 
 	clearOrders();
 
-	m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_DeathAnim, true );
+	if( m_actor )
+		m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_DeathAnim, true );
 
 	return( true );
 }

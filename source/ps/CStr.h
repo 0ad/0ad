@@ -175,7 +175,15 @@ public:
 
 	// Retrieve the substring of the last n characters
 	CStr Right(size_t len) const;
+
+	// Retrieve the substring following the last occurrence of Str
+	// (or the whole string if it doesn't contain Str)
+	CStr AfterLast(const CStr& Str) const;
 	
+	// Retrieve the substring preceding the last occurrence of Str
+	// (or the whole string if it doesn't contain Str)
+	CStr BeforeLast(const CStr& Str) const;
+
 	// Remove all occurrences of some character or substring 
 	void Remove(const CStr& Str);
 

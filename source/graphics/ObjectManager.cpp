@@ -35,6 +35,8 @@ CObjectEntry* CObjectManager::FindObject(const char* objectname)
 		}
 	}
 
+	LOG(ERROR, LOG_CATEGORY, "CObjectManager::FindObject(): Cannot find object '%s'", objectname);
+
 	return 0;
 }
 

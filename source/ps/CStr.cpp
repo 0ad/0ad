@@ -222,6 +222,28 @@ CStr CStr::Right(size_t len) const
 	return substr(length()-len, len);
 }
 
+// Retrieve the substring following the last occurrence of Str
+// (or the whole string if it doesn't contain Str)
+CStr CStr::AfterLast(const CStr& Str) const
+{
+	long pos = ReverseFind(Str);
+	if (pos == -1)
+		return *this;
+	else
+		return substr(pos + Str.length());
+}
+
+// Retrieve the substring preceding the last occurrence of Str
+// (or the whole string if it doesn't contain Str)
+CStr CStr::BeforeLast(const CStr& Str) const
+{
+	long pos = ReverseFind(Str);
+	if (pos == -1)
+		return *this;
+	else
+		return substr(0, pos);
+}
+
 // Remove all occurrences of some character or substring 
 void CStr::Remove(const CStr& Str)
 {

@@ -74,7 +74,7 @@ bool CFrustum::IsSphereVisible (const CVector3D &center, float radius) const
 
 bool CFrustum::IsBoxVisible (const CVector3D &position,const CBound &bounds) const
 {
-	//basically for every plane we calculate the furthust point
+	//basically for every plane we calculate the furthest point
 	//in the box to that plane. If that point is beyond the plane
 	//then the box is not visible
 	CVector3D FarPoint;

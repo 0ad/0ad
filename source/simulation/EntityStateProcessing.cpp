@@ -279,7 +279,7 @@ bool CEntity::processAttackMelee( CEntityOrder* current, size_t timestep_millis 
 		return( true );
 	}
 
-	if( m_transition )
+	if( m_transition && m_actor )
 	{
 		m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_WalkAnim );
 		// Animation desync
@@ -302,13 +302,16 @@ bool CEntity::processAttackMeleeNoPathing( CEntityOrder* current, size_t timeste
 		return( false );
 	}
 
-	// Still playing attack animation? Suspend processing.
-	if( m_actor->GetModel()->GetAnimation() == m_actor->GetObject()->m_MeleeAnim )
-		return( false );
+	if( m_actor )
+	{
+		// Still playing attack animation? Suspend processing.
+		if( m_actor->GetModel()->GetAnimation() == m_actor->GetObject()->m_MeleeAnim )
+			return( false );
 
-	// Just transitioned? No animation? (=> melee just finished) Play walk.
-	if( m_transition || !m_actor->GetModel()->GetAnimation() )
-		m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_WalkAnim );
+		// Just transitioned? No animation? (=> melee just finished) Play walk.
+		if( m_transition || !m_actor->GetModel()->GetAnimation() )
+			m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_WalkAnim );
+	}
 
 	CVector2D delta = current->m_data[0].entity->m_position - m_position;
 
@@ -391,7 +394,7 @@ bool CEntity::processAttackMeleeNoPathing( CEntityOrder* current, size_t timeste
 
 	CEventAttack AttackEvent( current->m_data[0].entity );
 
-	if( DispatchEvent( &AttackEvent ) )
+	if( DispatchEvent( &AttackEvent ) && m_actor )
 		m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_MeleeAnim, true );
 
 	return( false );
@@ -409,7 +412,7 @@ bool CEntity::processGoto( CEntityOrder* current, size_t timestep_millis )
 	if( ( path_to - pos ).length() < 0.1f ) 
 		return( false );
 
-	if( m_transition )
+	if( m_transition && m_actor )
 	{
 		m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_WalkAnim );
 		// Animation desync
