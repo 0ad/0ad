@@ -124,14 +124,14 @@ bool CGUI::HandleEvent(const SDL_Event& ev)
 */			}
 			break;
 
-			case 3: // wheel down
+			case SDL_BUTTON_WHEELDOWN: // wheel down
 				if (pNearest)
 				{
 					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_WHEEL_DOWN));
 				}
 				break;
 
-			case 4: // wheel up
+			case SDL_BUTTON_WHEELUP: // wheel up
 				if (pNearest)
 				{
 					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_WHEEL_UP));
