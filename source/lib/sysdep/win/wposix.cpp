@@ -44,12 +44,8 @@ static HANDLE mk_handle(intptr_t i)
 //
 //////////////////////////////////////////////////////////////////////////////
 
-/*
-extern int aio_open(const char*, int, int);
-extern int aio_close(int);
-*/
 
-int open(const char* fn, int mode, ...)
+int open(const char* fn, int oflag, ...)
 {
 	bool is_com_port = strncmp(fn, "/dev/tty", 8) == 0;
 
@@ -61,15 +57,24 @@ int open(const char* fn, int mode, ...)
 		fn = port;
 	}
 
-	int fd = _open(fn, mode);
+	mode_t mode = 0;
+	if(oflag & O_CREAT)
+	{
+		va_list args;
+		va_start(args, oflag);
+		mode = va_arg(args, mode_t);
+		va_end(args);
+	}
+
+	int fd = _open(fn, oflag, mode);
 
 	// open it for async I/O as well (_open defaults to deny_none sharing)
 	if(fd > 2)
 	{
 		// .. unless it's a COM port. don't currently need aio access for those;
-		// also, aio_open's CreateFile reports access denied when trying to open.
+		// also, aio_reopen's CreateFile reports access denied when trying to open.
 		if(!is_com_port)
-			aio_open(fn, mode, fd);
+			aio_reopen(fd, fn, oflag);
 	}
 
 	return fd;
