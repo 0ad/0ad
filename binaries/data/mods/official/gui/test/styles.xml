@@ -39,6 +39,26 @@
 		ghost="false"
 	/>
 
+	<style name="session_object"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+	/>
+
+	<style name="session_ghost_object"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_ghost_heading_object"
+		font="verdana10"
+		textcolor="200 200 200"
+		text_align="center"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
 	<!-- Empty entity portrait. -->
 	<style name="portrait"
 		sprite="ui_portrait_default_square"
@@ -46,6 +66,8 @@
 		sprite_disabled="ui_portrait_default_square_grey"
 		text_align="right"
 		textcolor="255 255 255"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
 	/>
 
 	<style name="action"
@@ -54,6 +76,8 @@
 		sprite_disabled="ui_portrait_default_circle_grey"
 		text_align="right"
 		textcolor="255 255 255"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
 	/>
 
 	<!-- Entity progress bar. -->
@@ -61,24 +85,32 @@
 		sprite_background=""
 		sprite_bar="green_bar"
 		ghost="true"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
 	/>
 
 	<style name="up_bar"
 		sprite_background=""
 		sprite_bar="yellow_bar"
 		ghost="true"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
 	/>
 
 	<style name="blue_bar"
 		sprite_background=""
 		sprite_bar="blue_bar"
 		ghost="true"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
 	/>
 
 	<style name="blue_bar_outlined"
 		sprite_background="only_black_border"
 		sprite_bar="blue_bar_outlined"
 		ghost="true"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
 	/>
 
 	<!-- Atlas Editor -->

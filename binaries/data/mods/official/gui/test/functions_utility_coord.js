@@ -103,7 +103,7 @@ function addSizeArrayXY(objectArray, objectElement, objectX, objectY)
 
 // ====================================================================
 
-function setSizeArray(objectName, objectArrayElement, rleft, rtop, rright, rbottom)
+function calcSizeArray(objectName, objectArrayElement, rleft, rtop, rright, rbottom)
 {
 	// Use this function as a shortcut to change the size of a GUI control, via an array containing x, y, width, height and 4 relative sizes. 
 	// Alternatively, specify 4 relative sizes to override and use these ones instead.
@@ -180,9 +180,71 @@ function setSizeArray(objectName, objectArrayElement, rleft, rtop, rright, rbott
 		break;
 	}
 
+	return new GUISize(setSizeContainer.x1, setSizeContainer.y1, setSizeContainer.x2, setSizeContainer.y2, setSizeContainer.rleft, setSizeContainer.rtop, setSizeContainer.rright, setSizeContainer.rbottom);
+}
+
+// ====================================================================
+
+function setSizeArray(objectName, objectArrayElement, rleft, rtop, rright, rbottom)
+{
 	// Set appropriate size for dimensions.
-	getGUIObjectByName(objectName).size = new GUISize(setSizeContainer.x1, setSizeContainer.y1, setSizeContainer.x2, setSizeContainer.y2, setSizeContainer.rleft, setSizeContainer.rtop, setSizeContainer.rright, setSizeContainer.rbottom);
+	getGUIObjectByName(objectName).size = calcSizeArray(objectName, objectArrayElement, rleft, rtop, rright, rbottom);
 } 
+
+// ====================================================================
+
+function addSizeCoordArray(objectName, objectArrayElement, objectArrayElement_Flp)
+{
+	// Used to store the two GUI style sizes for an object on creation (specified as coordinates).
+	// Used later by FlipGUI() to switch the objects to a new set of positions.
+	// This uses the revised coordinate system, so it handles the flipping internally.
+	// If an optional secondary coordinate object is specified by parameter, it will
+	// use the values in this object for the flipped version, rather than automatically
+	// generating a top-down flip.
+
+	SizeCoord[SizeCoord.last] = new Object();
+	SizeCoord[SizeCoord.last].name = objectName;
+
+	// Determine relatives for the second size.
+	addSizeContainer = new Object();
+	if (objectArrayElement_Flp) // Specify new flipped coordinates from object.
+	{
+		addSizeContainer.rleft = objectArrayElement_Flp.rleft;
+		addSizeContainer.rtop = objectArrayElement_Flp.rtop;
+		addSizeContainer.rright = objectArrayElement_Flp.rright;
+		addSizeContainer.rbottom = objectArrayElement_Flp.rbottom;
+		addSizeContainer.width = objectArrayElement_Flp.width;
+		addSizeContainer.height = objectArrayElement_Flp.height;
+		addSizeContainer.x = objectArrayElement_Flp.x;
+		addSizeContainer.y = objectArrayElement_Flp.y;
+	}
+	else // Generate flipped version automatically.
+	{
+		addSizeContainer.rleft = objectArrayElement.rleft;
+		addSizeContainer.rtop = 100-objectArrayElement.rtop;
+		addSizeContainer.rright = objectArrayElement.rright;
+		addSizeContainer.rbottom = 100-objectArrayElement.rbottom;
+
+		if (addSizeContainer.rtop <= 0) addSizeContainer.rtop = 0;
+		if (addSizeContainer.rbottom <= 0) addSizeContainer.rbottom = 0;
+		if (addSizeContainer.rtop >= 100) addSizeContainer.rtop = 100;
+		if (addSizeContainer.rbottom >= 100) addSizeContainer.rbottom = 100;
+
+		addSizeContainer.x = objectArrayElement.x;
+		addSizeContainer.y = objectArrayElement.y;
+		addSizeContainer.width = objectArrayElement.width;
+		addSizeContainer.height = objectArrayElement.height;
+
+		if (addSizeContainer.rtop == 100 && objectArrayElement.y < 0) addSizeContainer.y = objectArrayElement.y*-1;
+		if (addSizeContainer.rbottom == 100 && objectArrayElement.y < 0) addSizeContainer.y = objectArrayElement.y*-1;
+	}
+
+	// Assign the two sizes to array for retrieval when needed.
+	SizeCoord[SizeCoord.last].size1 = calcSizeArray(objectName, objectArrayElement);
+	SizeCoord[SizeCoord.last].size2 = calcSizeArray(objectName, addSizeContainer);
+
+	SizeCoord.last++; // Increment counter for next entry.
+}
 
 // ====================================================================
 
