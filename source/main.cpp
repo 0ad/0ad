@@ -107,6 +107,8 @@ static bool g_FixedFrameTiming=false;
 static bool g_VSync = false;
 static float g_LodBias = 0.0f;
 
+static bool g_Quickstart=false;
+
 extern CLightEnv g_LightEnv;
 
 static bool g_EntGraph = false;
@@ -156,8 +158,6 @@ const wchar_t* ErrorString(int err)
 	// TODO: load from language file
 }
 
-static int write_sys_info();
-
 
 ERROR_GROUP(System);
 ERROR_TYPE(System, SDLInitFailed);
@@ -205,9 +205,16 @@ static std::string SplitExts(const char *exts)
     return ret;
 }
 
-static int write_sys_info()
+static int WriteSysInfo()
 {
+double t1 = get_time();
 	get_gfx_info();
+	get_cpu_info();
+	get_snd_info();
+	get_mem_status();
+double t2 = get_time();
+debug_out("INT TIME %g\n\n", t2-t1);
+
 
 	struct utsname un;
 	uname(&un);
@@ -218,6 +225,7 @@ static int write_sys_info()
 
 	// .. OS
 	fprintf(f, "%s %s (%s)\n", un.sysname, un.release, un.version);
+
 	// .. CPU
 	fprintf(f, "%s, %s", un.machine, cpu_type);
 	if(cpus > 1)
@@ -231,15 +239,19 @@ static int write_sys_info()
 	}
 	else
 		fprintf(f, "\n");
+
 	// .. memory
 	fprintf(f, "%lu MB RAM; %lu MB free\n", tot_mem/MB, avl_mem/MB);
+
 	// .. graphics card
 	fprintf(f, "%s\n", gfx_card);
 	fprintf(f, "%s\n", gfx_drv_ver);
-
 	fprintf(f, "%dx%d:%d@%d\n", g_xres, g_yres, g_bpp, g_freq);
-
     fprintf(f, "OpenGL: %s\n", glGetString(GL_VERSION));
+
+	// .. sound card
+	fprintf(f, "%s\n", snd_card);
+	fprintf(f, "%s\n", snd_drv_ver);
 
 	// .. network name / ips
 	//    note: can't use un.nodename because it is for an
@@ -653,6 +665,10 @@ static void ParseArgs(int argc, char* argv[])
 			else if(strncmp(name, "nopbuffer", 9) == 0)
 				g_NoPBuffer = true;
 			break;
+		case 'q':
+			if(strncmp(name, "quickstart", 10) == 0)
+				g_Quickstart = true;
+			break;
 		case 's':
 			if(strncmp(name, "shadows", 7) == 0)
 				g_ConfigDB.CreateValue(CFG_COMMAND, "shadows")->m_String="true";
@@ -895,9 +911,6 @@ PREVTSC=TSC;
 	// and fonts are set later in psInit())
 	g_Console = new CConsole();
 
-	MICROLOG(L"detect");
-	detect();
-
 	MICROLOG(L"init sdl");
 	// init SDL
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
@@ -956,7 +969,8 @@ sle(11340106);
 	}
 	SDL_WM_SetCaption("0 A.D.", "0 A.D.");
 
-	write_sys_info();
+	if(!g_Quickstart)
+		WriteSysInfo();
 
 	if(!oglExtAvail("GL_ARB_multitexture") || !oglExtAvail("GL_ARB_texture_env_combine") ||
 		!glActiveTexture)	// prevent crashing later if multitexture support is falsely
