@@ -8,4 +8,16 @@
 			icon_cell="33"
 		/>
 	</Traits>
+	<Actions>
+		<Gather
+			food="true"
+			food.meat="2"
+			food.fruit="2"
+			food.grain="2"
+			food.fish="2"
+		/>
+		<Repair
+			rate="0.5"
+		/>
+	</Actions>
 </Entity>

@@ -78,7 +78,9 @@ function initStatusOrb()
 	crd_status_orb_stat3_y = crd_status_orb_stat2_y+crd_status_orb_stat2_height;
 
 	// Command Button 1.
-	command_sub_max = 12;	// Maximum number of entries in command button list.
+	command_sub_max = 12;	// Maximum number of entries in a command button list.
+	command_list_max = 5;	// The maximum number of command button lists.
+	command_max = 13;	// Maximum number of command buttons.
 	crd_status_orb_command_1_width = crd_portrait_sml_width;
 	crd_status_orb_command_1_height = crd_portrait_sml_height;
 	crd_status_orb_command_1_x = 0;
@@ -397,6 +399,78 @@ function initStatusOrb()
 	crd_status_orb_command_5_x = crd_status_orb_command_4_x+crd_status_orb_command_4_width+crd_status_orb_command_span;
 	crd_status_orb_command_5_y = crd_status_orb_command_4_y;
 
+	// Command Button 5_1.
+	crd_status_orb_command_5_1_width = crd_status_orb_command_5_width;
+	crd_status_orb_command_5_1_height = crd_status_orb_command_5_height;
+	crd_status_orb_command_5_1_x = crd_status_orb_command_5_x;
+	crd_status_orb_command_5_1_y = crd_status_orb_command_5_y+crd_status_orb_command_5_height+crd_status_orb_command_span;
+
+	// Command Button 5_2.
+	crd_status_orb_command_5_2_width = crd_status_orb_command_5_width;
+	crd_status_orb_command_5_2_height = crd_status_orb_command_5_height;
+	crd_status_orb_command_5_2_x = crd_status_orb_command_5_x;
+	crd_status_orb_command_5_2_y = crd_status_orb_command_5_1_y+crd_status_orb_command_5_1_height+crd_status_orb_command_span;
+
+	// Command Button 5_3.
+	crd_status_orb_command_5_3_width = crd_status_orb_command_5_width;
+	crd_status_orb_command_5_3_height = crd_status_orb_command_5_height;
+	crd_status_orb_command_5_3_x = crd_status_orb_command_5_x;
+	crd_status_orb_command_5_3_y = crd_status_orb_command_5_2_y+crd_status_orb_command_5_2_height+crd_status_orb_command_span;
+
+	// Command Button 5_4.
+	crd_status_orb_command_5_4_width = crd_status_orb_command_5_width;
+	crd_status_orb_command_5_4_height = crd_status_orb_command_5_height;
+	crd_status_orb_command_5_4_x = crd_status_orb_command_5_x;
+	crd_status_orb_command_5_4_y = crd_status_orb_command_5_3_y+crd_status_orb_command_5_3_height+crd_status_orb_command_span;
+
+	// Command Button 5_5.
+	crd_status_orb_command_5_5_width = crd_status_orb_command_5_width;
+	crd_status_orb_command_5_5_height = crd_status_orb_command_5_height;
+	crd_status_orb_command_5_5_x = crd_status_orb_command_5_x;
+	crd_status_orb_command_5_5_y = crd_status_orb_command_5_4_y+crd_status_orb_command_5_4_height+crd_status_orb_command_span;
+
+	// Command Button 5_6.
+	crd_status_orb_command_5_6_width = crd_status_orb_command_5_width;
+	crd_status_orb_command_5_6_height = crd_status_orb_command_5_height;
+	crd_status_orb_command_5_6_x = crd_status_orb_command_5_x;
+	crd_status_orb_command_5_6_y = crd_status_orb_command_5_5_y+crd_status_orb_command_5_5_height+crd_status_orb_command_span;
+
+	// Command Button 5_7.
+	crd_status_orb_command_5_7_width = crd_status_orb_command_5_width;
+	crd_status_orb_command_5_7_height = crd_status_orb_command_5_height;
+	crd_status_orb_command_5_7_x = crd_status_orb_command_5_x;
+	crd_status_orb_command_5_7_y = crd_status_orb_command_5_6_y+crd_status_orb_command_5_6_height+crd_status_orb_command_span;
+
+	// Command Button 5_8.
+	crd_status_orb_command_5_8_width = crd_status_orb_command_5_width;
+	crd_status_orb_command_5_8_height = crd_status_orb_command_5_height;
+	crd_status_orb_command_5_8_x = crd_status_orb_command_5_x;
+	crd_status_orb_command_5_8_y = crd_status_orb_command_5_7_y+crd_status_orb_command_5_7_height+crd_status_orb_command_span;
+
+	// Command Button 5_9.
+	crd_status_orb_command_5_9_width = crd_status_orb_command_5_width;
+	crd_status_orb_command_5_9_height = crd_status_orb_command_5_height;
+	crd_status_orb_command_5_9_x = crd_status_orb_command_5_x;
+	crd_status_orb_command_5_9_y = crd_status_orb_command_5_8_y+crd_status_orb_command_5_8_height+crd_status_orb_command_span;
+
+	// Command Button 5_10.
+	crd_status_orb_command_5_10_width = crd_status_orb_command_5_width;
+	crd_status_orb_command_5_10_height = crd_status_orb_command_5_height;
+	crd_status_orb_command_5_10_x = crd_status_orb_command_5_x;
+	crd_status_orb_command_5_10_y = crd_status_orb_command_5_9_y+crd_status_orb_command_5_9_height+crd_status_orb_command_span;
+
+	// Command Button 5_11.
+	crd_status_orb_command_5_11_width = crd_status_orb_command_5_width;
+	crd_status_orb_command_5_11_height = crd_status_orb_command_5_height;
+	crd_status_orb_command_5_11_x = crd_status_orb_command_5_x;
+	crd_status_orb_command_5_11_y = crd_status_orb_command_5_10_y+crd_status_orb_command_5_10_height+crd_status_orb_command_span;
+
+	// Command Button 5_12.
+	crd_status_orb_command_5_12_width = crd_status_orb_command_5_width;
+	crd_status_orb_command_5_12_height = crd_status_orb_command_5_height;
+	crd_status_orb_command_5_12_x = crd_status_orb_command_5_x;
+	crd_status_orb_command_5_12_y = crd_status_orb_command_5_11_y+crd_status_orb_command_5_11_height+crd_status_orb_command_span;
+
 	// Command Button 6.
 	crd_status_orb_command_6_width = crd_status_orb_command_1_width;
 	crd_status_orb_command_6_height = crd_status_orb_command_1_height;
@@ -496,22 +570,75 @@ function UpdateList(listIcon, listCol)
 						setPortrait("session_panel_status_command_pri_" + listCol + "_" + createLoop, getEntityTemplate(listArray[createLoop-1]).traits.id.icon + "_" + getEntityTemplate(listArray[createLoop-1]).traits.id.icon_cell);
 					else
 						setPortrait("session_panel_status_command_pri_" + listCol + "_" + createLoop, getEntityTemplate(listArray[createLoop-1]).traits.id.icon);
-					getGUIObjectByName("session_panel_status_command_pri_" + listCol + "_" + createLoop).hidden = false;
+					GUIObjectUnhide("session_panel_status_command_pri_" + listCol + "_" + createLoop);
 				}
 				else
-					getGUIObjectByName("session_panel_status_command_pri_" + listCol + "_" + createLoop).hidden = true;
+					GUIObjectHide("session_panel_status_command_pri_" + listCol + "_" + createLoop);
 			}
 
 			return listArray;
 		}
 	}
 	else
-	{
-		// Hide the whole column.
-		GUIObjectHide("session_panel_status_command_pri_" + listCol);
-		GUIObjectHide("session_panel_status_command_pri_" + listCol + "_group");
-
 		return 0;
+}
+
+// ====================================================================
+
+function UpdateCommand(listIcon, listCol)
+{
+	// Similar to UpdateList, but without the list.
+	// Updates a particular command button with a particular action.
+
+	if (
+            (listIcon == "action_attack" && selection[0].actions.attack)
+         || (listIcon == "action_patrol" && selection[0].actions.patrol)
+         || (listIcon == "action_repair" && selection[0].actions.repair)
+         || (listIcon == "action_gather_food" && selection[0].actions.gather && selection[0].actions.gather.food)
+         || (listIcon == "action_gather_wood" && selection[0].actions.gather && selection[0].actions.gather.wood)
+         || (listIcon == "action_gather_stone" && selection[0].actions.gather && selection[0].actions.gather.stone)
+         || (listIcon == "action_gather_ore" && selection[0].actions.gather && selection[0].actions.gather.ore)
+           )
+	{	
+		setPortrait("session_panel_status_command_pri_" + listCol, listIcon);
+		GUIObjectUnhide("session_panel_status_command_pri_" + listCol);
+
+		return (listCol-1);
+	}
+	else
+		return (listCol);
+}
+
+// ====================================================================
+
+function UpdateCommandButtons()
+{
+	// Update train/research/build lists.
+	listCounter	= 1; 
+	unitArray 	= UpdateList("tab_train", listCounter); 	if (unitArray != "0")		 listCounter++;
+	structcivArray 	= UpdateList("tab_buildciv", listCounter);	if (structcivArray != "0")	 listCounter++;
+	structmilArray 	= UpdateList("tab_buildmil", listCounter);	if (structmilArray != "0")	 listCounter++;
+	techArray 	= UpdateList("tab_research", listCounter);	if (techArray != "0")		 listCounter++;
+	formationArray 	= UpdateList("tab_formation", listCounter);	if (formationArray != "0")	 listCounter++;
+	behaviourArray 	= UpdateList("tab_behaviour", listCounter);	if (behaviourArray != "0")	 listCounter++;
+
+	// Update commands.
+	commandCounter = command_max;
+	commandCounter = UpdateCommand("action_attack", commandCounter);
+	commandCounter = UpdateCommand("action_patrol", commandCounter);
+	commandCounter = UpdateCommand("action_repair", commandCounter);
+	commandCounter = UpdateCommand("action_gather_food", commandCounter);
+	commandCounter = UpdateCommand("action_gather_wood", commandCounter);
+	commandCounter = UpdateCommand("action_gather_stone", commandCounter);
+	commandCounter = UpdateCommand("action_gather_ore", commandCounter);
+
+	// Clear remaining buttons between them.
+	for (commandClearLoop = listCounter; commandClearLoop <= commandCounter; commandClearLoop++)
+	{
+		GUIObjectHide("session_panel_status_command_pri_" + commandClearLoop);
+		// If this slot could possibly contain a list, hide that too.
+		if (commandClearLoop <= command_list_max)
+			GUIObjectHide("session_panel_status_command_pri_" + commandClearLoop + "_group");
 	}
 }
 
@@ -660,10 +787,7 @@ function UpdateStatusOrb()
 	// Reveal Status Orb
 	getGUIObjectByName("session_status_orb").hidden = false;
 
-	// Update train/research/build lists.
-	unitArray 	= UpdateList("tab_train", 1);
-	structcivArray 	= UpdateList("tab_buildciv", 2);
-	structmilArray 	= UpdateList("tab_buildmil", 3);
-	techArray 	= UpdateList("tab_research", 4);
+	// Update Command Buttons.
+	UpdateCommandButtons();
 }
 

@@ -398,7 +398,7 @@
                 </sprite>
 
                 <sprite name="statistic_range">
-                        <image texture="ui_icon_statistic_accuracy_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
+                        <image texture="ui_icon_statistic_range_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="statistic_speed">
@@ -475,6 +475,100 @@
                 </sprite>
                 <sprite name="ui_portrait_tab_behaviour_64-grey">
                         <image texture="ui_portrait_tab_behaviour_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+
+                <!--
+                ==========================================
+                ACTION PORTRAITS
+                ==========================================
+                -->
+
+                <!-- Attack Action portrait. -->
+                <sprite name="ui_portrait_action_attack_64">
+                        <image texture="ui_portrait_action_attack_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_action_attack_64-lit">
+                        <image texture="ui_portrait_action_attack_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_tab_action_attack_64-grey">
+                        <image texture="ui_portrait_action_attack_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+
+                <!-- Build Action portrait. -->
+                <sprite name="ui_portrait_action_build_64">
+                        <image texture="ui_portrait_action_attack_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_action_build_64-lit">
+                        <image texture="ui_portrait_action_attack_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_tab_action_build_64-grey">
+                        <image texture="ui_portrait_action_attack_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+
+                <!-- Gather Food Action portrait. -->
+                <sprite name="ui_portrait_action_gather_food_64">
+                        <image texture="ui_portrait_action_gather_food_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_action_gather_food_64-lit">
+                        <image texture="ui_portrait_action_gather_food_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_tab_action_gather_food_64-grey">
+                        <image texture="ui_portrait_action_gather_food_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+
+                <!-- Gather Ore Action portrait. -->
+                <sprite name="ui_portrait_action_gather_ore_64">
+                        <image texture="ui_portrait_action_gather_ore_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_action_gather_ore_64-lit">
+                        <image texture="ui_portrait_action_gather_ore_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_tab_action_gather_ore_64-grey">
+                        <image texture="ui_portrait_action_gather_ore_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+
+                <!-- Gather Stone Action portrait. -->
+                <sprite name="ui_portrait_action_gather_stone_64">
+                        <image texture="ui_portrait_action_gather_stone_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_action_gather_stone_64-lit">
+                        <image texture="ui_portrait_action_gather_stone_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_tab_action_gather_stone_64-grey">
+                        <image texture="ui_portrait_action_gather_stone_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+
+                <!-- Gather Wood Action portrait. -->
+                <sprite name="ui_portrait_action_gather_wood_64">
+                        <image texture="ui_portrait_action_gather_wood_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_action_gather_wood_64-lit">
+                        <image texture="ui_portrait_action_gather_wood_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_tab_action_gather_wood_64-grey">
+                        <image texture="ui_portrait_action_gather_wood_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+
+                <!-- Patrol Action portrait. -->
+                <sprite name="ui_portrait_action_patrol_64">
+                        <image texture="ui_portrait_action_patrol_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_action_patrol_64-lit">
+                        <image texture="ui_portrait_action_patrol_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_tab_action_patrol_64-grey">
+                        <image texture="ui_portrait_action_patrol_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+
+                <!-- Repair Action portrait. -->
+                <sprite name="ui_portrait_action_repair_64">
+                        <image texture="ui_portrait_action_repair_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_action_repair_64-lit">
+                        <image texture="ui_portrait_action_repair_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_tab_action_repair_64-grey">
+                        <image texture="ui_portrait_action_repair_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
 
                 <!--

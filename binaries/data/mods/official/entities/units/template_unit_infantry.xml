@@ -27,4 +27,19 @@
 			req="600"
 		/>
 	</Traits>
+	<Actions>
+		<Gather
+			food="true"
+			food.meat="1"
+			food.fruit="1"
+			food.grain="1"
+			food.fish="1"
+			wood="1"
+			stone="1"
+			ore="1"
+		/>
+		<Repair
+			rate="1"
+		/>
+	</Actions>
 </Entity>

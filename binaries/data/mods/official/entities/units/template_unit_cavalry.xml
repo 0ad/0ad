@@ -29,6 +29,10 @@
 	</Traits>
 	<Footprint Radius="1.5"/>
 	<Actions>
+		<Gather
+			food="true"
+			food.meat="2"
+		/>
 		<Move
 			speed="8.0"
 			turningRadius="1.0"
