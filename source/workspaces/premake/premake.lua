@@ -82,6 +82,7 @@ else -- Non-Windows, = Unix
 		"GL", "GLU", "X11",
 		"SDL", "png",
 		"fmod-3.70",
+		"fam",
 		-- Utilities
 		"xerces-c", "z", "rt"
 	}
