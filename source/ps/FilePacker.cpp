@@ -9,45 +9,45 @@
 #include "precompiled.h"
 
 #include "FilePacker.h"
-#include <stdio.h>
+
+#include <stdio.h>	// VFS_REPLACE: remove
+#include <string.h>
+#include "lib/res/vfs.h"
 
  
 ////////////////////////////////////////////////////////////////////////////////////////
 // CFilePacker constructor
-CFilePacker::CFilePacker() 
+// rationale for passing in version + signature here: see header
+CFilePacker::CFilePacker(u32 version, const char magicstr[4]) 
 {
+	// put header in our data array.
+	// (size will be updated on every Pack*() call)
+	m_Data.resize(12);
+	u8* header = (u8*)&m_Data[0];
+	strncpy((char*)(header+0), magicstr, 4);
+	*(u32*)(header+4) = version;
+	*(u32*)(header+8) = 0;	// datasize
+	// FIXME m_Version: Byte order? -- Simon
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
-// Write: write out any packed data to file, using given version and magic bits
-void CFilePacker::Write(const char* filename,u32 version,const char magicstr[4])
+// Write: write out to file all packed data added so far
+void CFilePacker::Write(const char* filename)
 {
+/*
+VFS_REPLACE: this is the entire function body
+	// write out all data (including header)
+	if(vfs_store(filename, &m_Data[0], m_Data.size()) < 0)
+		throw CFileWriteError();
+*/
+
 	FILE* fp=fopen(filename,"wb");
 	if (!fp) {
 		throw CFileOpenError();
 	}
 
-	// write magic bits
-	if (fwrite(magicstr,sizeof(char)*4,1,fp)!=1) {
-		fclose(fp);
-		throw CFileWriteError();
-	}
-
-	// write version
-	if (fwrite(&version,sizeof(version),1,fp)!=1) {
-		fclose(fp);
-		throw CFileWriteError();
-	}
-
-	// get size of data
-	u32 datasize=(u32)m_Data.size();
-	if (fwrite(&datasize,sizeof(datasize),1,fp)!=1) {
-		fclose(fp);
-		throw CFileWriteError();
-	}
-
-	// write out one big chunk of data
-	if (fwrite(&m_Data[0],datasize,1,fp)!=1) {
+	// write out one big chunk of data (includes header)
+	if (fwrite(&m_Data[0],m_Data.size(),1,fp)!=1) {
 		fclose(fp);
 		throw CFileWriteError();
 	}
@@ -65,6 +65,7 @@ void CFilePacker::PackRaw(const void* rawdata,u32 rawdatalen)
 	m_Data.resize(m_Data.size()+rawdatalen);
 	memcpy(&m_Data[start],rawdata,rawdatalen);
 	
+	*(u32*)&m_Data[8] += rawdatalen;	// FIXME byte order?
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
