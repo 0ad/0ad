@@ -33,9 +33,18 @@
 
 	<!-- Empty entity portrait. -->
 	<style name="portrait"
-		sprite="ui_portrait_default_64"
-		sprite-over="ui_portrait_default_64-lit"
-		sprite-disabled="ui_portrait_default_64-grey"
+		sprite="ui_portrait_default_square"
+		sprite-over="ui_portrait_default_square-lit"
+		sprite-disabled="ui_portrait_default_square-grey"
+		tooltip-style="session-tooltip" 
+		text-align="right"
+		textcolor="255 255 255"
+	/>
+
+	<style name="action"
+		sprite="ui_portrait_default_circle"
+		sprite-over="ui_portrait_default_circle-lit"
+		sprite-disabled="ui_portrait_default_circle-grey"
 		tooltip-style="session-tooltip" 
 		text-align="right"
 		textcolor="255 255 255"

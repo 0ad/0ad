@@ -22,6 +22,9 @@ function initCoord()
 	// Small icons (eg Movement Rate, Food).
 	crd_mini_icon_width = 20;
 	crd_mini_icon_height = crd_mini_icon_width;
+
+	// Define cell reference constants for icon sheets.
+	initCellReference();
 }
 
 // ====================================================================

@@ -337,11 +337,11 @@
                 ==========================================
                 -->
 
-                       <sprite name="session_panel_status_bg-top">
+                <sprite name="session_panel_status_bg-top">
                         <image texture="ui_session_panel_status_bg-top.png" texture-size="0 0 256 256" size="0 0 100% 100%" />
                 </sprite>
 
-                       <sprite name="session_panel_status_bg-bottom">
+                <sprite name="session_panel_status_bg-bottom">
                         <image texture="ui_session_panel_status_bg-bottom.png" texture-size="0 0 256 256" size="0 0 100% 100%" />
                 </sprite>
 
@@ -406,230 +406,56 @@
 
                 <!--
                 ==========================================
-                STATISTIC ICONS
+                STATISTIC ICONS - SHEETS
                 ==========================================
                 -->
 
-                <sprite name="statistic_hp">
-                        <image texture="ui_icon_statistic_hp_128.png" texture-size="0 0 128 128" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="statistic_rank1">
-                        <image texture="ui_icon_statistic_rank1_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="statistic_rank2">
-                        <image texture="ui_icon_statistic_rank2_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="statistic_rank3">
-                        <image texture="ui_icon_statistic_rank3_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="statistic_garrison">
-                        <image texture="ui_icon_statistic_garrison_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="statistic_accuracy">
-                        <image texture="ui_icon_statistic_accuracy_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="statistic_armour">
-                        <image texture="ui_icon_statistic_armour_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="statistic_attack">
-                        <image texture="ui_icon_statistic_attack_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="statistic_crush">
-                        <image texture="ui_icon_statistic_crush_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="statistic_hack">
-                        <image texture="ui_icon_statistic_hack_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="statistic_los">
-                        <image texture="ui_icon_statistic_los_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="statistic_pierce">
-                        <image texture="ui_icon_statistic_pierce_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="statistic_range">
-                        <image texture="ui_icon_statistic_range_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="statistic_speed">
-                        <image texture="ui_icon_statistic_speed_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
+                <sprite name="ui_icon_sheet_statistic">
+                        <image texture="ui_icon_sheet_statistic.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
                 <!--
                 ==========================================
-                TAB PORTRAITS
+                BACKDROP SINGLE PORTRAITS
                 ==========================================
                 -->
 
-                <!-- Unit List (Train) portrait. -->
-                <sprite name="ui_portrait_tab_train_64">
-                        <image texture="ui_portrait_tab_train_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                <!-- Default (empty) portrait (circular). -->
+                <sprite name="ui_portrait_default_circle">
+                        <image texture="ui_portrait_default_circle.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
-                <sprite name="ui_portrait_tab_train_64-lit">
-                        <image texture="ui_portrait_tab_train_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                <sprite name="ui_portrait_default_circle-lit">
+                        <image texture="ui_portrait_default_circle-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
-                <sprite name="ui_portrait_tab_train_64-grey">
-                        <image texture="ui_portrait_tab_train_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-
-                <!-- Structure List (Build Civil) portrait. -->
-                <sprite name="ui_portrait_tab_buildciv_64">
-                        <image texture="ui_portrait_tab_buildciv_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_tab_buildciv_64-lit">
-                        <image texture="ui_portrait_tab_buildciv_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_tab_buildciv_64-grey">
-                        <image texture="ui_portrait_tab_buildciv_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                <sprite name="ui_portrait_default_circle-grey">
+                        <image texture="ui_portrait_default_circle-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
 
-                <!-- Structure List (Build Military) portrait. -->
-                <sprite name="ui_portrait_tab_buildmil_64">
-                        <image texture="ui_portrait_tab_buildmil_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                <!-- Default (empty) portrait (square). -->
+                <sprite name="ui_portrait_default_square">
+                        <image texture="ui_portrait_default_square.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
-                <sprite name="ui_portrait_tab_buildmil_64-lit">
-                        <image texture="ui_portrait_tab_buildmil_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                <sprite name="ui_portrait_default_square-lit">
+                        <image texture="ui_portrait_default_square-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
-                <sprite name="ui_portrait_tab_buildmil_64-grey">
-                        <image texture="ui_portrait_tab_buildmil_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-
-                <!-- Tech List (Research) portrait. -->
-                <sprite name="ui_portrait_tab_research_64">
-                        <image texture="ui_portrait_tab_research_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_tab_research_64-lit">
-                        <image texture="ui_portrait_tab_research_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_tab_research_64-grey">
-                        <image texture="ui_portrait_tab_research_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-
-                <!-- Formation portrait. -->
-                <sprite name="ui_portrait_tab_formation_64">
-                        <image texture="ui_portrait_tab_formation_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_tab_formation_64-lit">
-                        <image texture="ui_portrait_tab_formation_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_tab_formation_64-grey">
-                        <image texture="ui_portrait_tab_formation_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-
-                <!-- Behaviour portrait. -->
-                <sprite name="ui_portrait_tab_behaviour_64">
-                        <image texture="ui_portrait_tab_behaviour_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_tab_behaviour_64-lit">
-                        <image texture="ui_portrait_tab_behaviour_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_tab_behaviour_64-grey">
-                        <image texture="ui_portrait_tab_behaviour_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                <sprite name="ui_portrait_default_square-grey">
+                        <image texture="ui_portrait_default_square-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
 
                 <!--
                 ==========================================
-                ACTION PORTRAITS
+                ACTION SHEET PORTRAITS - COMMANDS, TABS, STANCES, FORMATIONS, ETC
                 ==========================================
                 -->
 
-                <!-- Attack Action portrait. -->
-                <sprite name="ui_portrait_action_attack_64">
-                        <image texture="ui_portrait_action_attack_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                <sprite name="ui_portrait_sheet_action">
+                        <image texture="ui_portrait_sheet_action.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
-                <sprite name="ui_portrait_action_attack_64-lit">
-                        <image texture="ui_portrait_action_attack_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                <sprite name="ui_portrait_sheet_action-lit">
+                        <image texture="ui_portrait_sheet_action-lit.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
-                <sprite name="ui_portrait_tab_action_attack_64-grey">
-                        <image texture="ui_portrait_action_attack_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-
-                <!-- Build Action portrait. -->
-                <sprite name="ui_portrait_action_build_64">
-                        <image texture="ui_portrait_action_attack_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_action_build_64-lit">
-                        <image texture="ui_portrait_action_attack_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_tab_action_build_64-grey">
-                        <image texture="ui_portrait_action_attack_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-
-                <!-- Gather Food Action portrait. -->
-                <sprite name="ui_portrait_action_gather_food_64">
-                        <image texture="ui_portrait_action_gather_food_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_action_gather_food_64-lit">
-                        <image texture="ui_portrait_action_gather_food_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_tab_action_gather_food_64-grey">
-                        <image texture="ui_portrait_action_gather_food_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-
-                <!-- Gather Ore Action portrait. -->
-                <sprite name="ui_portrait_action_gather_ore_64">
-                        <image texture="ui_portrait_action_gather_ore_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_action_gather_ore_64-lit">
-                        <image texture="ui_portrait_action_gather_ore_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_tab_action_gather_ore_64-grey">
-                        <image texture="ui_portrait_action_gather_ore_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-
-                <!-- Gather Stone Action portrait. -->
-                <sprite name="ui_portrait_action_gather_stone_64">
-                        <image texture="ui_portrait_action_gather_stone_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_action_gather_stone_64-lit">
-                        <image texture="ui_portrait_action_gather_stone_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_tab_action_gather_stone_64-grey">
-                        <image texture="ui_portrait_action_gather_stone_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-
-                <!-- Gather Wood Action portrait. -->
-                <sprite name="ui_portrait_action_gather_wood_64">
-                        <image texture="ui_portrait_action_gather_wood_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_action_gather_wood_64-lit">
-                        <image texture="ui_portrait_action_gather_wood_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_tab_action_gather_wood_64-grey">
-                        <image texture="ui_portrait_action_gather_wood_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-
-                <!-- Patrol Action portrait. -->
-                <sprite name="ui_portrait_action_patrol_64">
-                        <image texture="ui_portrait_action_patrol_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_action_patrol_64-lit">
-                        <image texture="ui_portrait_action_patrol_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_tab_action_patrol_64-grey">
-                        <image texture="ui_portrait_action_patrol_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-
-                <!-- Repair Action portrait. -->
-                <sprite name="ui_portrait_action_repair_64">
-                        <image texture="ui_portrait_action_repair_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_action_repair_64-lit">
-                        <image texture="ui_portrait_action_repair_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_tab_action_repair_64-grey">
-                        <image texture="ui_portrait_action_repair_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                <sprite name="ui_portrait_sheet_action-grey">
+                        <image texture="ui_portrait_sheet_action-grey.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
                 <!--
@@ -638,70 +464,37 @@
                 ==========================================
                 -->
 
-                <!-- Default (empty) portrait. -->
-                <sprite name="ui_portrait_default_64">
-                        <image texture="ui_portrait_default_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_default_64-lit">
-                        <image texture="ui_portrait_default_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_default_64-grey">
-                        <image texture="ui_portrait_default_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-
                 <!-- Pyrogenesis Dude portrait. -->
-                <sprite name="ui_portrait_unit_dude_64">
-                        <image texture="ui_portrait_unit_dude_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                <sprite name="ui_portrait_unit_dude">
+                        <image texture="ui_portrait_unit_dude.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
-                <sprite name="ui_portrait_unit_dude_64-lit">
-                        <image texture="ui_portrait_unit_dude_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                <sprite name="ui_portrait_unit_dude-lit">
+                        <image texture="ui_portrait_unit_dude-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
-                <sprite name="ui_portrait_unit_dude_64-grey">
-                        <image texture="ui_portrait_unit_dude_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                <sprite name="ui_portrait_unit_dude-grey">
+                        <image texture="ui_portrait_unit_dude-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
 
                 <!-- Pyrogenesis Dudette portrait. -->
-                <sprite name="ui_portrait_unit_dudette_64">
-                        <image texture="ui_portrait_unit_dudette_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                <sprite name="ui_portrait_unit_dudette">
+                        <image texture="ui_portrait_unit_dudette.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
-                <sprite name="ui_portrait_unit_dudette_64-lit">
-                        <image texture="ui_portrait_unit_dudette_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                <sprite name="ui_portrait_unit_dudette-lit">
+                        <image texture="ui_portrait_unit_dudette-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
-                <sprite name="ui_portrait_unit_dudette_64-grey">
-                        <image texture="ui_portrait_unit_dudette_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-
-                <!-- Pyrogenesis Cavalry Dude portrait. -->
-                <sprite name="ui_portrait_unit_cavalrydude_64">
-                        <image texture="ui_portrait_unit_cavalrydude_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_unit_cavalrydude_64-lit">
-                        <image texture="ui_portrait_unit_cavalrydude_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_unit_cavalrydude_64-grey">
-                        <image texture="ui_portrait_unit_cavalrydude_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                <sprite name="ui_portrait_unit_dudette-grey">
+                        <image texture="ui_portrait_unit_dudette-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
 
                 <!-- Deciduous Tree portrait. -->
-                <sprite name="ui_portrait_flora_deciduotree_64">
-                        <image texture="ui_portrait_flora_deciduotree_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                <sprite name="ui_portrait_flora_deciduotree">
+                        <image texture="ui_portrait_flora_deciduotree.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
-                <sprite name="ui_portrait_flora_deciduotree_64-lit">
-                        <image texture="ui_portrait_flora_deciduotree_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                <sprite name="ui_portrait_flora_deciduotree-lit">
+                        <image texture="ui_portrait_flora_deciduotree-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
-                <sprite name="ui_portrait_flora_deciduotree_64-grey">
-                        <image texture="ui_portrait_flora_deciduotree_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-
-                <!-- Structure: Hellenic House portrait. -->
-                <sprite name="ui_portrait_structure_heleho_64">
-                        <image texture="ui_portrait_structure_heleho_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_structure_heleho_64-lit">
-                        <image texture="ui_portrait_structure_heleho_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_structure_heleho_64-grey">
-                        <image texture="ui_portrait_structure_heleho_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                <sprite name="ui_portrait_flora_deciduotree-grey">
+                        <image texture="ui_portrait_flora_deciduotree-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
 
                 <!--
@@ -710,14 +503,14 @@
                 ==========================================
                 -->
 
-                <sprite name="ui_portrait_sheet_celt_64">
-                        <image texture="ui_portrait_sheet_celt_64.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                <sprite name="ui_portrait_sheet_civ_celt">
+                        <image texture="ui_portrait_sheet_civ_celt.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
-                <sprite name="ui_portrait_sheet_celt_64-grey">
-                        <image texture="ui_portrait_sheet_celt_64-grey.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                <sprite name="ui_portrait_sheet_civ_celt-grey">
+                        <image texture="ui_portrait_sheet_civ_celt-grey.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
-                <sprite name="ui_portrait_sheet_celt_64-lit">
-                        <image texture="ui_portrait_sheet_celt_64-lit.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                <sprite name="ui_portrait_sheet_civ_celt-lit">
+                        <image texture="ui_portrait_sheet_civ_celt-lit.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
                 <!--
@@ -726,14 +519,14 @@
                 ==========================================
                 -->
 
-                <sprite name="ui_portrait_sheet_hele_64">
-                        <image texture="ui_portrait_sheet_hele_64.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                <sprite name="ui_portrait_sheet_civ_hele">
+                        <image texture="ui_portrait_sheet_civ_hele.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
-                <sprite name="ui_portrait_sheet_hele_64-grey">
-                        <image texture="ui_portrait_sheet_hele_64-grey.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                <sprite name="ui_portrait_sheet_civ_hele-grey">
+                        <image texture="ui_portrait_sheet_civ_hele-grey.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
-                <sprite name="ui_portrait_sheet_hele_64-lit">
-                        <image texture="ui_portrait_sheet_hele_64-lit.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                <sprite name="ui_portrait_sheet_civ_hele-lit">
+                        <image texture="ui_portrait_sheet_civ_hele-lit.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
                 <!--
@@ -742,14 +535,14 @@
                 ==========================================
                 -->
 
-                <sprite name="ui_portrait_sheet_iber_64">
-                        <image texture="ui_portrait_sheet_iber_64.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                <sprite name="ui_portrait_sheet_civ_iber">
+                        <image texture="ui_portrait_sheet_civ_iber.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
-                <sprite name="ui_portrait_sheet_iber_64-grey">
-                        <image texture="ui_portrait_sheet_iber_64-grey.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                <sprite name="ui_portrait_sheet_civ_iber-grey">
+                        <image texture="ui_portrait_sheet_civ_iber-grey.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
-                <sprite name="ui_portrait_sheet_iber_64-lit">
-                        <image texture="ui_portrait_sheet_iber_64-lit.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                <sprite name="ui_portrait_sheet_civ_iber-lit">
+                        <image texture="ui_portrait_sheet_civ_iber-lit.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
                 <!--
@@ -758,14 +551,14 @@
                 ==========================================
                 -->
 
-                <sprite name="ui_portrait_sheet_kart_64">
-                        <image texture="ui_portrait_sheet_kart_64.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                <sprite name="ui_portrait_sheet_civ_kart">
+                        <image texture="ui_portrait_sheet_civ_kart.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
-                <sprite name="ui_portrait_sheet_kart_64-grey">
-                        <image texture="ui_portrait_sheet_kart_64-grey.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                <sprite name="ui_portrait_sheet_civ_kart-grey">
+                        <image texture="ui_portrait_sheet_civ_kart-grey.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
-                <sprite name="ui_portrait_sheet_kart_64-lit">
-                        <image texture="ui_portrait_sheet_kart_64-lit.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                <sprite name="ui_portrait_sheet_civ_kart-lit">
+                        <image texture="ui_portrait_sheet_civ_kart-lit.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
                 <!--
@@ -774,14 +567,14 @@
                 ==========================================
                 -->
 
-                <sprite name="ui_portrait_sheet_pers_64">
-                        <image texture="ui_portrait_sheet_pers_64.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                <sprite name="ui_portrait_sheet_civ_pers">
+                        <image texture="ui_portrait_sheet_civ_pers.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
-                <sprite name="ui_portrait_sheet_pers_64-grey">
-                        <image texture="ui_portrait_sheet_pers_64-grey.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                <sprite name="ui_portrait_sheet_civ_pers-grey">
+                        <image texture="ui_portrait_sheet_civ_pers-grey.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
-                <sprite name="ui_portrait_sheet_pers_64-lit">
-                        <image texture="ui_portrait_sheet_pers_64-lit.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                <sprite name="ui_portrait_sheet_civ_pers-lit">
+                        <image texture="ui_portrait_sheet_civ_pers-lit.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
                 <!--
@@ -790,14 +583,14 @@
                 ==========================================
                 -->
 
-                <sprite name="ui_portrait_sheet_rome_64">
-                        <image texture="ui_portrait_sheet_rome_64.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                <sprite name="ui_portrait_sheet_civ_rome">
+                        <image texture="ui_portrait_sheet_civ_rome.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
-                <sprite name="ui_portrait_sheet_rome_64-grey">
-                        <image texture="ui_portrait_sheet_rome_64-grey.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                <sprite name="ui_portrait_sheet_civ_rome-grey">
+                        <image texture="ui_portrait_sheet_civ_rome-grey.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
-                <sprite name="ui_portrait_sheet_rome_64-lit">
-                        <image texture="ui_portrait_sheet_rome_64-lit.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                <sprite name="ui_portrait_sheet_civ_rome-lit">
+                        <image texture="ui_portrait_sheet_civ_rome-lit.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
         <!--

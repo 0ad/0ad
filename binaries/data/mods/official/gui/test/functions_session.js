@@ -10,6 +10,72 @@ function initSession()
 
 // ====================================================================
 
+function initCellReference()
+{
+	// Define cell reference constants for icon sheets.
+
+	// icon_sheet_statistic
+	stat_accuracy 			= 0;
+	stat_attack 			= 1;
+	stat_armour 			= 2;
+	stat_los 			= 3;
+	stat_speed 			= 4;
+	stat_range 			= 5;
+	stat_hack 			= 6;
+	stat_pierce 			= 7;
+	stat_crush 			= 8;
+	stat_rank1 			= 9;
+	stat_rank2 			= 10;
+	stat_rank3 			= 11;
+	stat_garrison 			= 12;
+	stat_heart 			= 13;
+
+	// portrait_sheet_action
+		// generic actions
+	action_empty			= 0;
+	action_attack			= 1;
+	action_patrol			= 2;
+	action_stop			= 3;
+	action_gather_food		= 4;
+	action_gather_wood		= 5;
+	action_gather_stone		= 6;
+	action_gather_ore		= 7;
+	action_rally			= 8;
+	action_repair			= 9;
+	action_heal			= 10;
+	action_scout			= 11;
+	action_townbell			= 12;
+	action_lock			= 13;
+	action_unlock			= 14;
+		// formation actions
+	action_formation_box		= 23;
+	action_formation_column_c	= 24;
+	action_formation_column_o	= 25;
+	action_formation_line_c		= 26;
+	action_formation_line_o		= 27;
+	action_formation_phalanx	= 28;
+	action_formation_skirmish	= 29;
+	action_formation_testudo	= 30;
+	action_formation_wedge		= 31;
+		// stance actions
+	action_stance_aggress		= 39;
+	action_stance_avoid		= 40;
+	action_stance_defend		= 41;
+	action_stance_hold		= 42;
+	action_stance_stand		= 43;
+		// tab actions
+	action_tab_command		= 48;
+	action_tab_train		= 49;
+	action_tab_buildciv		= 50;
+	action_tab_buildmil		= 51;
+	action_tab_research		= 52;
+	action_tab_formation		= 53;
+	action_tab_stance		= 54;
+	action_tab_barter		= 55;
+}
+
+// ====================================================================
+
 function startLoadingScreen()
 {
 	// Setup loading screen.
@@ -51,16 +117,16 @@ function setPortrait(objectName, portraitString, portraitCell)
 	// Use this function as a shortcut to change a portrait object to a different portrait image. 
 
 	// Accepts an object and specifies its default, rollover (lit) and disabled (grey) sprites.
-	// Sprite Format: "ui_portrait_"portraitString"_64"
-	// Sprite Format: "ui_portrait_"portraitString"_64""-lit"
-	// Sprite Format: "ui_portrait_"portraitString"_64""-grey"
+	// Sprite Format: "ui_portrait_"portraitString
+	// Sprite Format: "ui_portrait_"portraitString"-lit"
+	// Sprite Format: "ui_portrait_"portraitString"-grey"
 	// Note: Make sure the file follows this naming convention or bad things could happen.
 
         // Get GUI object
         GUIObject = getGUIObjectByName(objectName);
 
 	// Set the three portraits.
-	GUIObject.sprite = "ui_portrait_" + portraitString + "_64";
+	GUIObject.sprite = "ui_portrait_" + portraitString;
 	// Note we need to use a special syntax here (object["param"] instead of object.param because dashes aren't actually in JS's variable-naming conventions.
 	GUIObject["sprite-over"] = GUIObject.sprite + "-lit";
 	GUIObject["sprite-disabled"] = GUIObject.sprite + "-grey";

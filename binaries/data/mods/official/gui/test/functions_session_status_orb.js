@@ -583,19 +583,19 @@ function UpdateList(listIcon, listCol)
 		listName = "";
 		switch (listIcon)
 		{
-			case "tab_train":
+			case action_tab_train:
 				if (selection[0].actions.create.list.unit)
 					listName = selection[0].actions.create.list.unit.toString();
 			break;
-			case "tab_buildciv":
+			case action_tab_buildciv:
 				if (selection[0].actions.create.list.structciv)
 					listName = selection[0].actions.create.list.structciv.toString();
 			break;
-			case "tab_buildmil":
+			case action_tab_buildmil:
 				if (selection[0].actions.create.list.structmil)
 					listName = selection[0].actions.create.list.structmil.toString();
 			break;
-			case "tab_research":
+			case action_tab_research:
 				if (selection[0].actions.create.list.tech)
 					listName = selection[0].actions.create.list.tech.toString();
 			break;
@@ -607,7 +607,7 @@ function UpdateList(listIcon, listCol)
 		if (listName != "")
 		{
 			// Enable tab portrait.
-			setPortrait("session_panel_status_command_pri_" + listCol, listIcon);
+			setPortrait("session_panel_status_command_pri_" + listCol, "sheet_action", listIcon);
 			GUIObjectUnhide("session_panel_status_command_pri_" + listCol);
 
 			// Extract entity list into an array.
@@ -643,16 +643,16 @@ function UpdateCommand(listIcon, listCol)
 	// Updates a particular command button with a particular action.
 
 	if (
-            (listIcon == "action_attack" && selection[0].actions.attack)
-         || (listIcon == "action_patrol" && selection[0].actions.patrol)
-         || (listIcon == "action_repair" && selection[0].actions.repair)
-         || (listIcon == "action_gather_food" && selection[0].actions.gather && selection[0].actions.gather.food)
-         || (listIcon == "action_gather_wood" && selection[0].actions.gather && selection[0].actions.gather.wood)
-         || (listIcon == "action_gather_stone" && selection[0].actions.gather && selection[0].actions.gather.stone)
-         || (listIcon == "action_gather_ore" && selection[0].actions.gather && selection[0].actions.gather.ore)
+            (listIcon == action_attack && selection[0].actions.attack)
+         || (listIcon == action_patrol && selection[0].actions.patrol)
+         || (listIcon == action_repair && selection[0].actions.repair)
+         || (listIcon == action_gather_food && selection[0].actions.gather && selection[0].actions.gather.food)
+         || (listIcon == action_gather_wood && selection[0].actions.gather && selection[0].actions.gather.wood)
+         || (listIcon == action_gather_stone && selection[0].actions.gather && selection[0].actions.gather.stone)
+         || (listIcon == action_gather_ore && selection[0].actions.gather && selection[0].actions.gather.ore)
            )
 	{	
-		setPortrait("session_panel_status_command_pri_" + listCol, listIcon);
+		setPortrait("session_panel_status_command_pri_" + listCol, "sheet_action", listIcon);
 		GUIObjectUnhide("session_panel_status_command_pri_" + listCol);
 
 		return (listCol-1);
@@ -667,22 +667,22 @@ function UpdateCommandButtons()
 {
 	// Update train/research/build lists.
 	listCounter	= 1; 
-	unitArray 	= UpdateList("tab_train", listCounter); 	if (unitArray != 0)		 listCounter++;
-	structcivArray 	= UpdateList("tab_buildciv", listCounter);	if (structcivArray != 0)	 listCounter++;
-	structmilArray 	= UpdateList("tab_buildmil", listCounter);	if (structmilArray != 0)	 listCounter++;
-	techArray 	= UpdateList("tab_research", listCounter);	if (techArray != 0)		 listCounter++;
-	formationArray 	= UpdateList("tab_formation", listCounter);	if (formationArray != 0)	 listCounter++;
-	behaviourArray 	= UpdateList("tab_behaviour", listCounter);	if (behaviourArray != 0)	 listCounter++;
+	unitArray 	= UpdateList(action_tab_train, listCounter); 		if (unitArray != 0)	 listCounter++;
+	structcivArray 	= UpdateList(action_tab_buildciv, listCounter);		if (structcivArray != 0) listCounter++;
+	structmilArray 	= UpdateList(action_tab_buildmil, listCounter);		if (structmilArray != 0) listCounter++;
+	techArray 	= UpdateList(action_tab_research, listCounter);		if (techArray != 0)	 listCounter++;
+	formationArray 	= UpdateList(action_tab_formation, listCounter);	if (formationArray != 0) listCounter++;
+	stanceArray 	= UpdateList(action_tab_stance, listCounter);		if (stanceArray != 0)	 listCounter++;
 
 	// Update commands.
 	commandCounter = command_max;
-	commandCounter = UpdateCommand("action_attack", commandCounter);
-	commandCounter = UpdateCommand("action_patrol", commandCounter);
-	commandCounter = UpdateCommand("action_repair", commandCounter);
-	commandCounter = UpdateCommand("action_gather_food", commandCounter);
-	commandCounter = UpdateCommand("action_gather_wood", commandCounter);
-	commandCounter = UpdateCommand("action_gather_stone", commandCounter);
-	commandCounter = UpdateCommand("action_gather_ore", commandCounter);
+	commandCounter = UpdateCommand(action_attack, commandCounter);
+	commandCounter = UpdateCommand(action_patrol, commandCounter);
+	commandCounter = UpdateCommand(action_repair, commandCounter);
+	commandCounter = UpdateCommand(action_gather_food, commandCounter);
+	commandCounter = UpdateCommand(action_gather_wood, commandCounter);
+	commandCounter = UpdateCommand(action_gather_stone, commandCounter);
+	commandCounter = UpdateCommand(action_gather_ore, commandCounter);
 
 	// Clear remaining buttons between them.
 	for (commandClearLoop = listCounter; commandClearLoop <= commandCounter; commandClearLoop++)
@@ -740,12 +740,14 @@ function UpdateStatusOrb()
 	}
 
 	// Update rank.
+	GUIObject = getGUIObjectByName("session_panel_status_icon_rank");
 	if (selection[0].traits.up.rank > 1)
 	{
-		getGUIObjectByName("session_panel_status_icon_rank").sprite = "statistic_rank" + (selection[0].traits.up.rank-1);
+		GUIObject.sprite = "ui_icon_sheet_statistic";
+		GUIObject["icon-id"] = stat_rank1 + (selection[0].traits.up.rank-2);
 	}
 	else
-		getGUIObjectByName("session_panel_status_icon_rank").sprite = "";
+		GUIObject.sprite = "";
 
 	// Update hitpoints
 	if (selection[0].traits.health.curr && selection[0].traits.health.max)
