@@ -1008,7 +1008,7 @@ bool CRenderer::LoadTexture(CTexture* texture,u32 wrapflags)
 	if (h) {
 		// already tried to load this texture, nothing to do here - just return success according
 		// to whether this is a valid handle or not
-		return h==0xfffffff ? true : false;
+		return h==0xffffffff ? true : false;
 	} else {
 		h=tex_load(texture->GetName());
 		if (!h) {
