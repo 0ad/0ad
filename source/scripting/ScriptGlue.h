@@ -44,6 +44,7 @@ JSFunc loadLanguage;
 JSFunc getLanguageID;
 
 JSFunc getFPS;
+JSFunc v3dist;
 
 // Returns a string that says when ScriptGlue.cpp was last recompiled
 JSFunc buildTime;

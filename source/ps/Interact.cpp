@@ -75,7 +75,7 @@ void CSelectedEntities::renderOverlays()
 	{
 		if( (*it)->m_grouped != -1 )
 		{
-			assert( (*it)->m_bounds );
+			if( !(*it)->m_bounds ) continue;
 			
 			glLoadIdentity();
 			float x, y;
@@ -99,7 +99,7 @@ void CSelectedEntities::renderOverlays()
 		std::vector<HEntity>::iterator it;
 		for( it = m_groups[m_group_highlight].begin(); it < m_groups[m_group_highlight].end(); it++ )
 		{
-			assert( (*it)->m_bounds );
+			if( !(*it)->m_bounds ) continue;
 			
 			glLoadIdentity();
 			float x, y;
@@ -799,7 +799,7 @@ void CMouseoverEntities::renderOverlays()
 	{
 		if( it->entity->m_grouped != -1 )
 		{
-			assert( it->entity->m_bounds );
+			if( !it->entity->m_bounds ) continue;
 			glPushMatrix();
 			glEnable( GL_TEXTURE_2D );
 			glLoadIdentity();

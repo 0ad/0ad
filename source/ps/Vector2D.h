@@ -24,6 +24,10 @@ public:
 	{
 		x = v3.X; y = v3.Z;
 	}
+	inline operator CVector3D() const
+	{
+		return( CVector3D( x, 0, y ) );
+	}
 	static inline float dot( const CVector2D& u, const CVector2D& v )
 	{
 		return( u.x * v.x + u.y * v.y );

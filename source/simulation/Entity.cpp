@@ -165,7 +165,30 @@ void CEntity::update( size_t timestep )
 		CEntityOrder* current = &m_orderQueue.front();
 
 		m_transition = ( current->m_type != m_lastState );
-		m_lastState = current->m_type;
+
+		if( m_transition ) 
+		{
+			CEntity* target = NULL;
+			if( current->m_data[0].entity )
+				target = &( *( current->m_data[0].entity ) );
+			
+			CVector3D worldPosition = (CVector3D)current->m_data[0].location;
+
+			CEventOrderTransition evt( m_lastState, current->m_type, target, worldPosition );
+
+			if( !DispatchEvent( &evt ) )
+			{
+				m_orderQueue.pop_front();
+				continue;
+			}
+			else if( target )
+			{
+				current->m_data[0].location = worldPosition;
+				current->m_data[0].entity = target->me;
+			}
+
+			m_lastState = current->m_type;
+		}
 
 		switch( current->m_type )
 		{
@@ -194,12 +217,21 @@ void CEntity::update( size_t timestep )
 		}
 	}
 
-	if( ( m_lastState != -1 ) || !m_actor->GetModel()->GetAnimation() )
+	if( m_extant )
 	{
-		if( m_extant )
+		if( ( m_lastState != -1 ) || !m_actor->GetModel()->GetAnimation() )
 			m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_IdleAnim );
-		else
-			m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_CorpseAnim );
+	}
+	else if( !m_actor->GetModel()->GetAnimation() )
+		m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_CorpseAnim );
+
+	if( m_lastState != -1 )
+	{
+		CEntity* d0;
+		CVector3D d1;
+		CEventOrderTransition evt( m_lastState, -1, d0, d1 );
+		DispatchEvent( &evt );
+
 		m_lastState = -1;
 	}
 }
@@ -750,6 +782,15 @@ bool CEntity::Kill( JSContext* cx, uintN argc, jsval* argv )
 	{
 		m_base = corpse;
 		SetBase( m_base );
+	}
+
+	if( m_extant )
+	{
+		if( m_bounds )
+			delete( m_bounds );
+		m_bounds = NULL;
+
+		m_extant = false;
 	}
 	
 	g_Selection.removeAll( me );

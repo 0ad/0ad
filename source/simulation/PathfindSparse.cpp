@@ -239,7 +239,7 @@ void pathSparse( HEntity entity, CVector2D destination )
 	// Sanity check:
 	if( source.length() < 0.01f ) return;
 
-	sparsePathTree sparseEngine( source, destination, entity, getContainingObject( destination ), 3 );
+	sparsePathTree sparseEngine( source, destination, entity, getContainingObject( destination ), SPF_RECURSION_DEPTH );
 	while( sparseEngine.type & sparsePathTree::SPF_OPEN ) sparseEngine.slice();
 
 	// assert( sparseEngine.type & sparsePathTree::SPF_SOLVED ); // Shouldn't be any impossible cases yet.

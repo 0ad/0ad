@@ -18,6 +18,7 @@ enum EEventType
 	EVENT_DAMAGE,
 	EVENT_TARGET_CHANGED,
 	EVENT_PREPARE_ORDER,
+	EVENT_ORDER_TRANSITION,
 	EVENT_LAST,
 };
 
@@ -28,7 +29,8 @@ static const wchar_t* EventNames[] =
 	/* EVENT_ATTACK */ L"onAttack", /* This unit is the one doing the attacking... */
 	/* EVENT_DAMAGE */ L"onTakesDamage",
 	/* EVENT_TARGET_CHANGED */ L"onTargetChanged", /* If this unit is selected and the mouseover object changes */
-	/* EVENT_PREPARE_ORDER */ L"onPrepareOrder" /* To check if a unit can execute a given order */
+	/* EVENT_PREPARE_ORDER */ L"onPrepareOrder", /* To check if a unit can execute a given order */
+	/* EVENT_ORDER_TRANSITION */ L"onOrderTransition" /* When we change orders (sometimes...) */
 };
 
 class CEventInitialize : public CScriptEvent
@@ -72,6 +74,16 @@ class CEventPrepareOrder : public CScriptEvent
 	int m_orderType;
 public:
 	CEventPrepareOrder( CEntity* target, int orderType );
+};
+
+class CEventOrderTransition : public CScriptEvent
+{
+	int m_orderPrevious;
+	int m_orderCurrent;
+	CEntity** m_target;
+	CVector3D* m_worldPosition;
+public:
+	CEventOrderTransition( int orderPrevious, int orderCurrent, CEntity*& target, CVector3D& worldPosition );
 };
 
 #endif

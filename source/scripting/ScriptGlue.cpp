@@ -25,6 +25,7 @@
 #include "scripting/JSInterface_Selection.h"
 #include "scripting/JSInterface_Camera.h"
 #include "scripting/JSInterface_Console.h"
+#include "scripting/JSConversions.h"
 
 extern CConsole* g_Console;
 
@@ -57,6 +58,8 @@ JSFunctionSpec ScriptFunctionTable[] =
 	{"getLanguageID", getLanguageID, 0, 0, 0 },
 	{"getFPS", getFPS, 0, 0, 0 },
 	{"buildTime", buildTime, 0, 0, 0 },
+
+	{"v3dist", v3dist, 2, 0, 0 },
 
 	{"exit", exitProgram, 0, 0, 0 },
 	{"crash", crash, 0, 0, 0 },
@@ -259,6 +262,15 @@ JSBool cancelInterval( JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(gl
 	return( JS_TRUE );
 }
 
+JSBool v3dist( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
+{
+	assert( argc >= 2 );
+	CVector3D* a = ToNative<CVector3D>( argv[0] );
+	CVector3D* b = ToNative<CVector3D>( argv[1] );
+	float dist = ( *a - *b ).GetLength();
+	*rval = ToJSVal( dist );
+	return( JS_TRUE );
+}
 
 JSBool forceGC( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
 {

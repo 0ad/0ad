@@ -31,3 +31,15 @@ CEventPrepareOrder::CEventPrepareOrder( CEntity* target, int orderType ) : CScri
 	AddReadOnlyProperty( L"target", &m_target );
 	AddReadOnlyProperty( L"orderType", &m_orderType );
 }
+
+CEventOrderTransition::CEventOrderTransition( int orderPrevious, int orderCurrent, CEntity*& target, CVector3D& worldPosition ) : CScriptEvent( L"orderTransition", true, EVENT_ORDER_TRANSITION )
+{
+	m_orderPrevious = orderPrevious;
+	m_orderCurrent = orderCurrent;
+	m_target = &target;
+	m_worldPosition = &worldPosition;
+	AddReadOnlyProperty( L"orderPrevious", &m_orderPrevious );
+	AddProperty( L"orderCurrent", &m_orderCurrent );
+	AddProperty( L"target", m_target );
+	AddProperty( L"position", m_worldPosition );
+}

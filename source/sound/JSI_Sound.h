@@ -8,6 +8,10 @@
 #include "scripting/ScriptableObject.h"
 #include "lib/res/handle.h"
 
+// ....
+#undef free
+// ....
+
 class JSI_Sound : public CJSObject<JSI_Sound>
 {
 public:
@@ -35,6 +39,10 @@ public:
 	// Script-bound functions
 
 	jsval ToString( JSContext* cx, uintN argc, jsval* argv );
+	bool Play( JSContext* cx, uintN argc, jsval* argv ) { play(); return( true ); }
+	bool Loop( JSContext* cx, uintN argc, jsval* argv ) { loop(); return( true ); }
+	bool Free( JSContext* cx, uintN argc, jsval* argv ) { free(); return( true ); }
+	static JSBool Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval );
 
 	static void ScriptingInit();
 };

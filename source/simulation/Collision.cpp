@@ -10,7 +10,7 @@ CBoundingObject* getContainingObject( const CVector2D& point )
 
 	for( it = entities->begin(); it != entities->end(); it++ )
 	{
-		assert( (*it)->m_bounds );
+		if( !(*it)->m_bounds ) continue;
 		if( (*it)->m_bounds->contains( point ) )
 		{
 			CBoundingObject* bounds = (*it)->m_bounds;
@@ -30,7 +30,7 @@ CBoundingObject* getCollisionObject( CBoundingObject* bounds )
 
 	for( it = entities->begin(); it != entities->end(); it++ )
 	{
-		assert( (*it)->m_bounds );
+		if( !(*it)->m_bounds ) continue;
 		if( (*it)->m_bounds == bounds ) continue;
 		if( bounds->intersects( (*it)->m_bounds ) )
 		{
@@ -46,14 +46,18 @@ CBoundingObject* getCollisionObject( CBoundingObject* bounds )
 
 HEntity getCollisionObject( CEntity* entity )
 {
+#ifndef NDEBUG
 	assert( entity->m_bounds ); 
+#else
+	if( !entity->m_bounds ) return( HEntity() );
+#endif
 
 	std::vector<HEntity>* entities = g_EntityManager.getExtant();
 	std::vector<HEntity>::iterator it;
 
 	for( it = entities->begin(); it != entities->end(); it++ )
 	{
-		assert( (*it)->m_bounds );
+		if( !(*it)->m_bounds ) continue;
 		if( (*it)->m_bounds == entity->m_bounds ) continue;
 		if( entity->m_bounds->intersects( (*it)->m_bounds ) )
 		{
@@ -91,7 +95,7 @@ bool getRayIntersection( const CVector2D& source, const CVector2D& forward, cons
 
 	for( it = entities->begin(); it != entities->end(); it++ )
 	{
-		assert( (*it)->m_bounds );
+		if( !(*it)->m_bounds ) continue;
 		if( (*it)->m_bounds == destinationCollisionObject ) continue;
 	
 		// TODO MT: Replace this with something based on whether the unit is actually moving.
