@@ -22,3 +22,12 @@ binaries/: The built binaries - called "prometheus"
 source/linux/deps/: Automatically generated dependency information for all
 	source files
 source/linux/o/: Object files
+
+Makefile Targets:
+
+all (default): build the prometheus executable
+prof: build the prometheus.prof executable (instrumented version with call-counting)
+clean: Remove all object, depend, and executable files
+
+run: build prometheus and run it (from the binaries directory)
+runProf: build prometheus.prof and run it

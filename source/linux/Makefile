@@ -43,12 +43,23 @@ LIB_OBJS=$(patsubst %.cpp, $(OBJDIR)/%.o, $(LIB_SOURCES))
 
 DEP_SOURCES=$(PS_SOURCES) $(PS_NET_SOURCES) $(GUI_SOURCES) $(LIB_SOURCES) $(TERR_SOURCES)
 
-.PHONY: clean all Makefile MPT
+.PHONY: clean all MPT run runMPT prof runProf
 
 all: .banner $(BINDIR)/prometheus
 
+prof: $(BINDIR)/prometheus.prof
+
 clean:
 	rm -fr deps o
+
+run: $(BINDIR)/prometheus
+	pushd $(BINDIR); ./prometheus; popd
+
+runProf: $(BINDIR)/prometheus-prof
+	pushd $(BINDIR); ./prometheus.prof; popd
+
+runMPT: $(BINDIR)/MessagePassingTest
+	pushd $(BINDIR); ./MessagePassingTest; popd
 
 include $(patsubst %, $(DEPDIR)/%.d, $(DEP_SOURCES))
 
@@ -73,14 +84,30 @@ $(BINDIR)/MessagePassingTest: \
 
 MPT: $(BINDIR)/MessagePassingTest
 
-$(BINDIR)/prometheus: $(OBJDIR)/main.o $(PS_OBJS) $(LIB_OBJS) $(GUI_OBJS) $(TERR_OBJS)
+prometheus_OBJS=$(OBJDIR)/main.o \
+		$(PS_OBJS) \
+		$(PS_NET_OBJS) \
+		$(LIB_OBJS) \
+		$(GUI_OBJS) \
+		$(TERR_OBJS)
+
+$(BINDIR)/prometheus: $(prometheus_OBJS)
 	@mkdir -p $(dir $@)
 	$(CXX) $(LDFLAGS) -o $@ $^
+
+$(BINDIR)/prometheus.prof: $(patsubst %.o, %.prof.o, $(prometheus_OBJS))
+	@mkdir -p $(dir $@)
+	$(CXX) $(LDFLAGS) -pg -o $@ $^
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	@mkdir -p $(dir $@)
 	@echo : $@
 	@$(CXX) $(CPPFLAGS) $(CFLAGS) $(CXXFLAGS) -c -o $@ $<
+
+$(OBJDIR)/%.prof.o: $(SRCDIR)/%.cpp
+	@mkdir -p $(dir $@)
+	@echo : $@
+	@$(CXX) $(CPPFLAGS) $(CFLAGS) $(CXXFLAGS) -pg -c -o $@ $<
 
 $(SRCDIR)/%.ii: $(SRCDIR)/%.cpp
 	@echo Generating preprocessed file $(notdir $<).ii
