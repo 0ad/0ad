@@ -14,11 +14,11 @@ int res_reload(const char* const fn)
 }
 
 
-// path: portable and relative, must add current directory and convert to native
-// better to use a cached string from rel_chdir - secure
 int res_watch_dir(const char* const path, intptr_t* const watch)
 {
-	return dir_add_watch(path, watch);
+	char n_path[PATH_MAX];
+	CHECK_ERR(file_make_native_path(path, n_path));
+	return dir_add_watch(n_path, watch);
 }
 
 
