@@ -21,6 +21,8 @@ JSBool getGUIGlobal(JSContext* context, JSObject* globalObject, unsigned int arg
 // Returns the global object, e.g. for setting global variables.
 JSBool getGlobal(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
 
+JSBool setCursor(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
+
 // Tells the main loop to stop looping
 JSBool exitProgram(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
 

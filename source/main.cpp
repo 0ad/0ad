@@ -100,7 +100,7 @@ extern CCamera g_Camera;
 
 static CMusicPlayer MusicPlayer;
 
-
+CStr g_CursorName = "test";
 
 extern void terr_init();
 extern void terr_update(float time);
@@ -466,7 +466,7 @@ static void Render()
 	g_Selection.renderOverlays();
 
 	// Draw the cursor (or set the Windows cursor, on Windows)
-	cursor_draw("test");
+	cursor_draw(g_CursorName);
 
 	// restore
 	glMatrixMode(GL_PROJECTION);

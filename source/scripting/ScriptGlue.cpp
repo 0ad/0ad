@@ -37,8 +37,9 @@ JSFunctionSpec ScriptFunctionTable[] =
 	{"getGUIObjectByName", JSI_IGUIObject::getByName, 1, 0, 0 },
 	{"getGlobal", getGlobal, 0, 0, 0 },
 	{"getGUIGlobal", getGUIGlobal, 0, 0, 0 },
+	{"setCursor", setCursor, 0, 0, 0 },
 	{"exit", exitProgram, 0, 0, 0 },
-	{"crash", crash, 0, 0, 0 },
+	{"crash", crash, 1, 0, 0 },
 	{0, 0, 0, 0, 0}, 
 };
 
@@ -243,6 +244,19 @@ JSBool getGlobal( JSContext* UNUSEDPARAM(context), JSObject* globalObject, unsig
 {
 	*rval = OBJECT_TO_JSVAL( globalObject );
 	return( JS_TRUE );
+}
+
+
+extern CStr g_CursorName; // from main.cpp
+JSBool setCursor(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* UNUSEDPARAM(rval))
+{
+	if (argc != 1)
+	{
+		assert(! "Invalid parameter count to setCursor");
+		return JS_FALSE;
+	}
+	g_CursorName = g_ScriptingHost.ValueToString(argv[0]);
+	return JS_TRUE;
 }
 
 
