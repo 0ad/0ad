@@ -239,7 +239,10 @@ void CEntity::update( float timestep )
 				m_orderQueue.pop_front();
 				m_orderQueue.push_front( pathfind_solution );
 				if( m_actor->m_Model->GetAnimation() != m_actor->m_Object->m_WalkAnim )
+				{
 					m_actor->m_Model->SetAnimation( m_actor->m_Object->m_WalkAnim );
+					m_actor->m_Model->Update( ( rand() * 1000.0f ) / 1000.0f );
+				}
 				break;
 			}
 		case CEntityOrder::ORDER_PATROL:

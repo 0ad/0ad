@@ -481,7 +481,7 @@ int main(int argc, char* argv[])
 #endif
 
 
-	font = font_load("fonts/verdana18.fnt");
+	font = font_load("fonts/verdana.fnt");
 
 	// set renderer options from command line options - NOVBO must be set before opening the renderer
 	g_Renderer.SetOption(CRenderer::OPT_NOVBO,g_NoGLVBO);
