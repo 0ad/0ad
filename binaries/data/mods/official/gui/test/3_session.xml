@@ -807,48 +807,71 @@
 			]]></action>
 
 			<!-- STATUS ORB BACKGROUND -->
-                        <object type="text" name="session_panel_status_bg" sprite="session_panel_status_bg-top" z="60" hidden="false">
+                        <object type="button" name="session_panel_status_bg" sprite="session_panel_status_bg-top" textcolor="255 255 255" text-align="left" text-valign="top" ghost="true" hidden="false">
 			        <action on="Load"><![CDATA[
 					AddSize(this.name,
 					"0% 0% 0%+184 0%+184", 
 					"0% 100%-184 0%+184 100%");
 				]]></action>
 			</object>
+
 			<!-- SELECTED UNIT LARGE PORTRAIT -->
-			<object type="button" name="session_panel_status_portrait" style="portrait" z="70" hidden="false">
+			<object type="button" name="session_panel_status_portrait" style="portrait" hidden="false">
 			        <action on="Load"><![CDATA[
 					AddSize(this.name,
-					"0%+55 0%+55 119 119", 
-					"0%+55 100%-129 119 100%-65");
+					"0%+4 0%+116 0%+68 0%+180", 
+					"0%+4 100%-180 0%+68 100%-116");
 					setPortrait(this.name, "unit_dude");
 				]]></action>
 			</object>
 
-			<!-- STATUS ORB STATISTICS AND ICONS (Experience, Hitpoints, Supply, Garrison) -->
-                        <object type="button" name="session_panel_status_icon_exp" sprite="statistic_rank3" textcolor="255 255 0" text-align="center" text-valign="bottom" z="60" hidden="false">
+			<!-- RANK ICON -->
+                        <object type="button" name="session_panel_status_icon_rank" sprite="statistic_rank2" ghost="true" hidden="false">
                                 <action on="Load"><![CDATA[
-					AddSize("session_panel_status_icon_exp",
-					"0%+75 0%+10 0%+90 0%+47", 
-					"0%+75 100%-172 0%+90 100%-135");
-                                        getGUIObjectByName("session_panel_status_icon_exp").caption = "200/200";
+					AddSize("session_panel_status_icon_rank",
+					"0%+50 0%+44 0%+70 0%+47", 
+					"0%+50 100%-180 0%+70 100%-160");
                                 ]]></action>
                         </object>
 
-			<object type="progressbar" name="session_panel_status_icon_hp_bar" style="group_portrait_bar" sprite-background="back-bar" z="60" hidden="false">
+			<!-- HITPOINTS BAR -->
+			<object type="progressbar" name="session_panel_status_icon_hp_bar" style="group_portrait_bar" sprite-background="back-bar" ghost="true" hidden="false">
                                 <action on="Load"><![CDATA[
 					AddSize("session_panel_status_icon_hp_bar",
-					"0%+55 0%+147 0%+119 0%+160", 
-					"0%+55 100%-33 0%+119 100%-20");
+					"0%+6 0%+147 0%+66 0%+160", 
+					"0%+6 100%-114 0%+66 100%-108");
                                 ]]></action>
 			</object>
-                        <object type="button" name="session_panel_status_icon_hp_text" textcolor="100 100 100" text-align="center" text-valign="bottom" z="60" hidden="false">
+
+			<!-- EXPERIENCE BAR -->
+			<object type="progressbar" name="session_panel_status_icon_exp_bar" style="up_bar" sprite-background="back-bar" ghost="true" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_panel_status_icon_exp_bar",
+					"0%+6 0%+147 0%+66 0%+160", 
+					"0%+6 100%-106 0%+66 100%-98");
+                                ]]></action>
+			</object>
+
+			<!-- HITPOINTS TEXT -->
+                        <object type="button" name="session_panel_status_icon_hp_text" font="verdana10" textcolor="0 255 0" text-align="center" text-valign="bottom" ghost="true" hidden="false">
                                 <action on="Load"><![CDATA[
 					AddSize("session_panel_status_icon_hp_text",
-					"0%+55 0%+148 0%+119 0%+161", 
-					"0%+75 100%-56 0%+90 100%-19");
+					"0%+46 0%+148 0%+146 0%+161", 
+					"0%+46 100%-110 0%+146 100%-104");
                                 ]]></action>
                         </object>
-                        <object type="button" name="session_panel_status_icon_hp" sprite="statistic_hp" z="60" hidden="false">
+
+			<!-- EXPERIENCE TEXT -->
+                        <object type="button" name="session_panel_status_icon_exp_text" font="verdana10" textcolor="255 255 0" text-align="center" text-valign="bottom" ghost="true" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_panel_status_icon_exp_text",
+					"0%+46 0%+148 0%+146 0%+161", 
+					"0%+46 100%-102 0%+146 100%-94");
+					getGUIObjectByName("session_panel_status_icon_exp_text").caption = "100/200";
+                                ]]></action>
+                        </object>
+
+                        <object type="button" name="session_panel_status_icon_hp" sprite="statistic_hp" ghost="true" hidden="true">
                                 <action on="Load"><![CDATA[
 					AddSize("session_panel_status_icon_hp",
 					"0%+75 0%+125 0%+95 0%+145", 
@@ -856,7 +879,32 @@
                                 ]]></action>
                         </object>
 
-                        <object type="button" name="session_panel_status_icon_supply" sprite="resource_food" textcolor="252 148 78" text-align="center" text-valign="center" z="60" hidden="false">
+			<!-- NAME TEXT -->
+			<object type="text" name="session_panel_status_name1" font="verdana10" textcolor="200 200 200" ghost="true" hidden="false">
+			        <action on="Load"><![CDATA[
+					AddSize("session_panel_status_name1",
+					"0%+2 0%+4 0%+254 0%+27", 
+					"0%+2 100%-60 0%+254 100%-37");
+				]]></action>
+			</object>
+
+			<object type="text" name="session_panel_status_name2" font="verdana12" textcolor="255 255 255" ghost="true" hidden="false">
+			        <action on="Load"><![CDATA[
+					AddSize("session_panel_status_name2",
+					"0%+2 0%+19 0%+254 0%+42", 
+					"0%+2 100%-45 0%+254 100%-22");
+				]]></action>
+			</object>
+			<object type="text" name="session_panel_status_name3" font="verdana10" textcolor="200 200 200" ghost="true" hidden="false">
+			        <action on="Load"><![CDATA[
+					AddSize("session_panel_status_name3",
+					"0%+2 0%+34 0%+254 0%+59", 
+					"0%+2 100%-28 0%+254 100%-17");
+				]]></action>
+			</object>
+
+			<!-- STATUS ORB STATISTICS AND ICONS (Experience, Hitpoints, Supply, Garrison) -->
+                        <object type="button" name="session_panel_status_icon_supply" sprite="resource_food" textcolor="252 148 78" text-align="center" text-valign="center" ghost="true" hidden="false">
                                 <action on="Load"><![CDATA[
 					AddSize("session_panel_status_icon_supply",
 					"0%+135 0%+65 0%+150 0%+130", 
@@ -864,40 +912,40 @@
                                         getGUIObjectByName("session_panel_status_icon_supply").caption = "1575";
                                 ]]></action>
                         </object>
-                        <object type="button" name="session_panel_status_icon_garrison" sprite="statistic_garrison" textcolor="100 100 255" text-align="center" text-valign="center" z="60" hidden="false">
+                        <object type="button" name="session_panel_status_icon_garrison" sprite="statistic_garrison" textcolor="100 100 255" text-align="center" text-valign="center" ghost="true" hidden="false">
                                 <action on="Load"><![CDATA[
 					AddSize("session_panel_status_icon_garrison",
-					"0%+20 0%+65 0%+35 0%+130", 
-					"0%+20 100%-110 0%+35 100%-45");
+					"0%+126 0%+65 0%+141 0%+130", 
+					"0%+126 100%-160 0%+141 100%-95");
                                         getGUIObjectByName("session_panel_status_icon_garrison").caption = "23/30";
                                 ]]></action>
                         </object>
 
 			<!-- PRIMARY COMMAND BUTTONS (arcs the Status Orb) -->
-			<object type="button" name="session_panel_status_command_pri_1" style="portrait" z="60" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_1" style="portrait" textcolor="255 255 255" z="60" hidden="false">1
                                 <action on="Load"><![CDATA[
 					AddSize("session_panel_status_command_pri_1",
-					"0 160 32 193", 
-					"0 100%-193 32 100%-160");
+					"0 184 32 216", 
+					"0 100%-216 32 100%-184");
                                 ]]></action>
 			</object>
-			<object type="button" name="session_panel_status_command_pri_2" style="portrait" z="60" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_2" style="portrait" textcolor="255 255 255" z="60" hidden="false">2
                                 <action on="Load"><![CDATA[
 					AddSize("session_panel_status_command_pri_2",
-					"30 175 62 207", 
-					"30 100%-207 62 100%-175");
+					"32 184 64 216", 
+					"32 100%-216 64 100%-184");
                                 ]]></action>
 			</object>
 
-			<object type="button" name="session_panel_status_command_pri_3" style="portrait" z="60" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_3" style="portrait" textcolor="255 255 255" z="60" hidden="false">3
                                 <action on="Load"><![CDATA[
 					AddSize("session_panel_status_command_pri_3",
-					"63 184 95 216", 
-					"63 100%-216 95 100%-184");
+					"65 184 97 216", 
+					"65 100%-216 97 100%-184");
                                 ]]></action>
 			</object>
 
-			<object type="button" name="session_panel_status_command_pri_4" style="portrait" z="60" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_4" style="portrait" textcolor="255 255 255" z="60" hidden="false">4
                                 <action on="Load"><![CDATA[
 					AddSize("session_panel_status_command_pri_4",
 					"97 180 129 212", 
@@ -905,7 +953,7 @@
                                 ]]></action>
 			</object>
 
-			<object type="button" name="session_panel_status_command_pri_5" style="portrait" z="60" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_5" style="portrait" textcolor="255 255 255" z="60" hidden="false">5
                                 <action on="Load"><![CDATA[
 					AddSize("session_panel_status_command_pri_5",
 					"128 168 160 200", 
@@ -913,7 +961,7 @@
                                 ]]></action>
 			</object>
 
-			<object type="button" name="session_panel_status_command_pri_6" style="portrait" z="60" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_6" style="portrait" textcolor="255 255 255" z="60" hidden="false">6
                                 <action on="Load"><![CDATA[
 					AddSize("session_panel_status_command_pri_6",
 					"154 148 186 180", 
@@ -921,7 +969,7 @@
                                 ]]></action>
 			</object>
 
-			<object type="button" name="session_panel_status_command_pri_7" style="portrait" z="60" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_7" style="portrait" textcolor="255 255 255" z="60" hidden="false">7
                                 <action on="Load"><![CDATA[
 					AddSize("session_panel_status_command_pri_7",
 					"172 121 204 153", 
@@ -929,7 +977,7 @@
                                 ]]></action>
 			</object>
 
-			<object type="button" name="session_panel_status_command_pri_8" style="portrait" z="60" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_8" style="portrait" textcolor="255 255 255" z="60" hidden="false">8
                                 <action on="Load"><![CDATA[
 					AddSize("session_panel_status_command_pri_8",
 					"184 90 216 122", 
@@ -937,7 +985,7 @@
                                 ]]></action>
 			</object>
 
-			<object type="button" name="session_panel_status_command_pri_9" style="portrait" z="60" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_9" style="portrait" textcolor="255 255 255" z="60" hidden="false">9
                                 <action on="Load"><![CDATA[
 					AddSize("session_panel_status_command_pri_9",
 					"183 57 215 89", 
@@ -945,7 +993,7 @@
                                 ]]></action>
 			</object>
 
-			<object type="button" name="session_panel_status_command_pri_10" style="portrait" z="60" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_10" style="portrait" textcolor="255 255 255" z="60" hidden="false">10
                                 <action on="Load"><![CDATA[
 					AddSize("session_panel_status_command_pri_10",
 					"171 26 203 58", 
@@ -953,7 +1001,7 @@
                                 ]]></action>
 			</object>
 
-			<object type="button" name="session_panel_status_command_pri_11" style="portrait" z="60" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_11" style="portrait" textcolor="255 255 255" z="60" hidden="false">11
                                 <action on="Load"><![CDATA[
 					AddSize("session_panel_status_command_pri_11",
 					"150 0 182 32", 

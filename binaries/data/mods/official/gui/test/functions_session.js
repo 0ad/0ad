@@ -64,6 +64,41 @@ function getObjectInfo()
 //		strString = "" + selection[0].position;
 //		EntityPos = strString.substring(20,strString.length-3);
 
+
+		// Update name text.
+		// Personal name.
+		if (selection[0].traits.id.personal && selection[0].traits.id.personal != "")
+		{
+			GUIObject = getGUIObjectByName("session_panel_status_name1");
+			GUIObject.caption = selection[0].traits.id.personal + "\n";
+		}
+		else{
+			GUIObject = getGUIObjectByName("session_panel_status_name1");
+		}
+		// Generic name.
+		if (selection[0].traits.id.generic)
+		{
+			GUIObject = getGUIObjectByName("session_panel_status_name2");
+			GUIObject.caption = selection[0].traits.id.generic + "\n";
+		}
+		else{
+			GUIObject = getGUIObjectByName("session_panel_status_name2");
+			GUIObject.caption = "";
+		}
+		// Specific/ranked name.
+		if (selection[0].traits.id.ranked)
+		{
+			GUIObject = getGUIObjectByName("session_panel_status_name3");
+			GUIObject.caption = selection[0].traits.id.ranked + "\n";
+		}
+		else{
+			if (selection[0].traits.id.specific)
+			{
+				GUIObject = getGUIObjectByName("session_panel_status_name3");
+				GUIObject.caption = selection[0].traits.id.specific + "\n";
+			}
+		}
+
 		// Update portrait
 		if (selection[0].traits.id.icon)
 			setPortrait("session_panel_status_portrait", selection[0].traits.id.icon);
