@@ -104,14 +104,16 @@ __asm
 long cpu_caps = 0;
 long cpu_ext_caps = 0;
 
-int tsc_is_safe = -1;
 
-
-static char cpu_vendor[13];
-static int family, model;	// used to detect cpu_type
+enum CpuVendor { UNKNOWN, INTEL, AMD };
+static CpuVendor cpu_vendor = UNKNOWN;
+static char cpu_vendor_str[13];
+static int family, model, ext_family;	// used to detect cpu_type
 
 static int have_brand_string = 0;
 	// int instead of bool for easier setting from asm
+
+static bool hyperthreading_supported;
 
 
 // optimized for size
@@ -134,7 +136,7 @@ __asm
 ; get vendor string
 	xor			eax, eax
 	cpuid
-	mov			edi, offset cpu_vendor
+	mov			edi, offset cpu_vendor_str
 	xchg		eax, ebx
 	stosd
 	xchg		eax, edx
@@ -148,13 +150,15 @@ __asm
 	pop			eax
 	cpuid
 	mov			[cpu_caps], edx
-	mov			edx, eax
+	movzx		edx, al
 	shr			edx, 4
+	mov			[model], edx					; eax[7:4]
+	movzx		edx, ah
 	and			edx, 0x0f
-	mov			[model], edx
-	shr			eax, 8
+	mov			[family], edx					; eax[11:8]
+	shr			eax, 20
 	and			eax, 0x0f
-	mov			[family], eax
+	mov			[ext_family], eax				; eax[23:20]
 
 ; make sure CPUID ext functions are supported
 	mov			esi, 0x80000000
@@ -198,16 +202,12 @@ no_cpuid:
 
 	popad
 	ret
-}
-}
+}	// __asm
+}	// cpuid()
 
 
-void ia32_get_cpu_info()
+static void get_cpu_type()
 {
-	cpuid();
-	if(cpu_caps == 0)	// cpuid not supported - can't do the rest
-		return;
-
 	// fall back to manual detect of CPU type if it didn't supply
 	// a brand string, or if the brand string is useless (i.e. "Unknown").
 	if(!have_brand_string || strncmp(cpu_type, "Unknow", 6) == 0)
@@ -218,8 +218,7 @@ void ia32_get_cpu_info()
 		// "Unknow[n] CPU Type" on CPUs the BIOS doesn't recognize.
 		// in that case, we ignore the brand string and detect manually.
 	{
-		// AMD
-		if(!strcmp(cpu_vendor, "AuthenticAMD"))
+		if(cpu_vendor == AMD)
 		{
 			// everything else is either too old, or should have a brand string.
 			if(family == 6)
@@ -233,12 +232,11 @@ void ia32_get_cpu_info()
 					if(cpu_ext_caps & EXT_MP_CAPABLE)
 						strcpy(cpu_type, "AMD Athlon MP");
 					else
-                        strcpy(cpu_type, "AMD Athlon XP");
+						strcpy(cpu_type, "AMD Athlon XP");
 				}
 			}
 		}
-		// Intel
-		else if(!strcmp(cpu_vendor, "GenuineIntel"))
+		else if(cpu_vendor == INTEL)
 		{
 			// everything else is either too old, or should have a brand string.
 			if(family == 6)
@@ -263,28 +261,27 @@ void ia32_get_cpu_info()
 
 		// remove 2x (R) and CPU freq from P4 string
 		float freq;
-			// the indicated frequency isn't necessarily correct - the CPU may be
-			// overclocked. need to pass a variable though, since scanf returns
-			// the number of fields actually stored.
+		// the indicated frequency isn't necessarily correct - the CPU may be
+		// overclocked. need to pass a variable though, since scanf returns
+		// the number of fields actually stored.
 		if(sscanf(cpu_type, " Intel(R) Pentium(R) 4 CPU %fGHz", &freq) == 1)
 			strcpy(cpu_type, "Intel Pentium 4");
 	}
+}
 
 
-	//
-	// measure CPU frequency
-	//
-
-	// .. get old policy and priority
+static void measure_cpu_freq()
+{
+	// get old policy and priority
 	int old_policy;
 	static sched_param old_param;
 	pthread_getschedparam(pthread_self(), &old_policy, &old_param);
-	// .. set max priority
+	// set max priority
 	static sched_param max_param;
 	max_param.sched_priority = sched_get_priority_max(SCHED_RR);
 	pthread_setschedparam(pthread_self(), SCHED_RR, &max_param);
 
-	// calculate CPU frequency.
+	// measure CPU frequency.
 	// balance measuring time (~ 10 ms) and accuracy (< 1 0/00 error -
 	// ok for using the TSC as a time reference)
 	if(cpu_caps & TSC)	// needed to calculate freq; bogomips are a WAG
@@ -292,13 +289,13 @@ void ia32_get_cpu_info()
 		// stabilize CPUID for timing (first few calls take longer)
 		__asm cpuid __asm cpuid __asm cpuid
 
-		u64 c0, c1;
+			u64 c0, c1;
 
 		std::vector<double> samples;
-		int num_samples = 20;
+		int num_samples = 16;
 		// if clock is low-res, do less samples so it doesn't take too long
 		if(timer_res() >= 1e-3)
-			num_samples = 10;
+			num_samples = 8;
 
 		int i;
 		for(i = 0; i < num_samples; i++)
@@ -329,7 +326,7 @@ again:
 			// .. freq = (delta_clocks) / (delta_seconds);
 			//    cpuid/rdtsc/timer overhead is negligible
 			double freq = (i64)(c1-c0) / ds;
-				// VC6 can't convert u64 -> double, and we don't need full range
+			// VC6 can't convert u64 -> double, and we don't need full range
 
 			samples.push_back(freq);
 		}
@@ -356,6 +353,71 @@ again:
 
 	// restore previous policy and priority
 	pthread_setschedparam(pthread_self(), old_policy, &old_param);
+}
+
+
+int get_cur_processor_id()
+{
+	int apic_id;
+	__asm {
+	push		1
+	pop			eax
+	cpuid
+	shr			ebx, 24
+	mov			[apic_id], ebx					; ebx[31:24]
+	}
+
+	return apic_id;
+}
+
+
+static void check_hyperthread()
+{
+	assert(cpus > 0 && "must know # CPUs (call OS-specific detect first)");
+
+	cpu_smp = 0;
+
+	// we don't check if it's Intel and P4 or above - HT may be supported
+	// on other CPUs in future. haven't come across a processor that
+	// incorrectly sets the HT feature bit.
+
+	if(!(cpu_caps & HT))
+		return;
+
+	// get number of logical CPUs per package
+	int log_cpus_per_package;
+	__asm {
+	push		1
+	pop			eax
+	cpuid
+	shr			ebx, 16
+	and			ebx, 0xff
+	mov			log_cpus_per_package, ebx		; ebx[23:16]
+	}
+
+	// early out, don't have to go through on_each_cpu
+	if(log_cpus_per_package >= cpus)
+		return;
+
+	cpu_smp = 1;
+}
+
+
+void ia32_get_cpu_info()
+{
+	cpuid();
+	if(cpu_caps == 0)	// cpuid not supported - can't do the rest
+		return;
+
+	// (for easier comparison)
+	if(!strcmp(cpu_vendor_str, "AuthenticAMD"))
+		cpu_vendor = AMD;
+	else if(!strcmp(cpu_vendor_str, "GenuineIntel"))
+		cpu_vendor = INTEL;
+
+	get_cpu_type();
+	measure_cpu_freq();
+	check_hyperthread();
 }
 
 #endif	// #ifndef _M_IX86

@@ -46,7 +46,8 @@ enum
 	CMOV = BIT(15),
 	MMX  = BIT(23),
 	SSE  = BIT(25),
-	SSE2 = BIT(26)
+	SSE2 = BIT(26),
+	HT   = BIT(28)
 };
 
 extern long cpu_caps;
@@ -57,8 +58,6 @@ extern long cpu_caps;
 #define EXT_3DNOW      BIT(31)
 
 extern long cpu_ext_caps;
-
-extern int tsc_is_safe;
 
 
 extern void ia32_get_cpu_info();
