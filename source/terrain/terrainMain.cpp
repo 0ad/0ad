@@ -7,8 +7,8 @@
 
 #include "detect.h"
 #include "time.h"
-#include "wsdl.h"
-#include "tex.h"
+#include "sdl.h"
+#include "res/res.h"
 
 // TODO: fix scrolling hack - framerate independent, use SDL
 //#include "win.h"	// REMOVEME

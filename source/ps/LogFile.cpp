@@ -1,7 +1,9 @@
 // last modified Thursday, May 08, 2003
 
 #include "LogFile.h"
-#include "misc.h"
+#include "lib.h"
+
+#include <sstream>
 
 //-------------------------------------------------
 //Add a hyperlink to Link.
@@ -328,10 +330,14 @@ string CLogFile::Line(const PS_DISPLAY_SETTINGS &options)
 	{
 		lineText = options.file;
 
-		char temp[8];
-		_itoa(options.line, temp, 10);
+		// jw: replaced _itoa. sprintf would be good here :P
+		std::string str_line;
+		std::stringstream ss;
+		ss << options.line;
+		ss >> str_line;
+
 		lineText += ", Line ";
-		lineText += temp;
+		lineText += str_line;
 		lineText += ": ";
 	}
 

@@ -53,7 +53,6 @@ TDD at http://forums.wildfiregames.com/0ad
 #include "CStr.h"
 #include "LogFile.h"
 #include "posix.h"
-#include "zip.h"
 #include "misc.h"
 
 #include <vector>

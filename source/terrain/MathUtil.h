@@ -17,8 +17,7 @@
 #define DEGTORAD(a)					((a) * (PI/180.0f))
 #define RADTODEG(a)					((a) * (180.0f/PI))
 #define SQR(x)						((x) * (x))
-#define MAX(a,b)					((a < b) ? (b) : (a))
-#define MIN(a,b)					((a < b) ? (a) : (b))
+
 #define MAX3(a,b,c)					( MAX (MAX(a,b), c) )
 #define ABS(a)						((a > 0) ? (a) : (-a))
 

@@ -14,8 +14,7 @@
 //
 //***********************************************************
 
-#include "tex.h"
-#include "mem.h"
+#include "res/res.h"
 
 #include "Terrain.h"
 #include "LightEnv.h"
@@ -38,16 +37,13 @@ CTerrain::~CTerrain ()
 
 bool CTerrain::Load(char *filename)
 {
-	TEX tex;
-	Handle h = tex_load(filename, &tex);
-	if(!h)
+	Handle ht = tex_load(filename);
+	if(!ht)
 		return false;
+    void* p;
+	tex_info(ht, 0, 0, &p);
 
-	Handle hm = tex.hm;
-	MEM* mem = (MEM*)h_user_data(hm, H_MEM);
-	const u8* data = (const u8*)mem->p;
-
-	return InitFromHeightmap(data);
+	return InitFromHeightmap((const u8*)p);
 }
 
 bool CTerrain::InitFromHeightmap(const u8* data)

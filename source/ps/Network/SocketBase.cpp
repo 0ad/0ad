@@ -1,7 +1,7 @@
 #include "SocketBase.h"
 #include "NetworkInternal.h"
 
-#include "misc.h"
+#include "lib.h"
 #include "CStr.h"
 
 #include <errno.h>
@@ -663,6 +663,8 @@ void CSocketBase::SendWaitLoopUpdate()
 // Windows WindowProc for async event notification
 #ifdef _WIN32
 
+
+
 void WaitLoop_SocketUpdateProc(int fd, int error, uint event)
 {
 	pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
@@ -713,7 +715,7 @@ LRESULT WINAPI WaitLoop_WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lP
 			int event=LOWORD(lParam);
 			int error=HIWORD(lParam);
 			
-			WaitLoop_SocketUpdateProc(wParam, error, event);
+			WaitLoop_SocketUpdateProc((int)wParam, error, event);
 			return FALSE;
 		}
 		default:

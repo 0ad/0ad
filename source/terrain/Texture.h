@@ -12,7 +12,7 @@
 #ifndef _TEXTURE_H
 #define _TEXTURE_H
 
-#include "res.h"
+#include "res/res.h"
 #include "CStr.h"
 
 class CTexture

@@ -21,7 +21,7 @@
 
 #include "types.h"
 #include "ogl.h"
-#include "tex.h"
+#include "res/res.h"
 
 #define		RENDER_STAGE_BASE		(1)
 #define		RENDER_STAGE_TRANS		(2)
@@ -79,7 +79,7 @@ void CRenderer::BeginFrame()
 // force rendering of any batched objects
 void CRenderer::FlushFrame()
 {	
-	int i;
+	unsigned i;
 
 	// render base terrain
 	if (m_TerrainMode==WIREFRAME) {

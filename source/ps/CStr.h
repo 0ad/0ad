@@ -173,7 +173,7 @@ public:
 	TCHAR &operator[](_ulong n);
 
 	// Serialization functions
-	virtual uint GetSerializedLength() const;
+	virtual size_t GetSerializedLength() const;
 	virtual u8 *Serialize(u8 *buffer) const;
 	virtual const u8 *Deserialize(const u8 *buffer, const u8 *bufferend);
 	

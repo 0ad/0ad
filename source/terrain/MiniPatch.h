@@ -1,7 +1,7 @@
 #ifndef MINIPATCH_H
 #define MINIPATCH_H
 
-#include "res.h"
+#include "res/res.h"
 #include "Color.h"
 #include "Vector3D.h"
 

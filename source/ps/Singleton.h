@@ -34,8 +34,8 @@ class Singleton
 
          //use a cunning trick to get the singleton pointing to the start of
          //the whole, rather than the start of the Singleton part of the object
-         int offset = (int)(T*)1 - (int)(Singleton<T>*)(T*)1;
-         ms_singleton = (T*)((int)this + offset);
+         uintptr_t offset = (uintptr_t)(T*)1 - (uintptr_t)(Singleton<T>*)(T*)1;
+         ms_singleton = (T*)((uintptr_t)this + offset);
       }
 
       ~Singleton()

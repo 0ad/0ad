@@ -117,7 +117,7 @@ CStr CStr::GetSubstring(_long start, _long len)
 //Search the string for another string 
 _long CStr::Find(const CStr &Str)
 {
-	_long Pos = m_String.find(Str.m_String, 0);
+	_long Pos = (_long)m_String.find(Str.m_String, 0);
 
 	if (Pos != tstring::npos)
 		return Pos;
@@ -127,7 +127,7 @@ _long CStr::Find(const CStr &Str)
 
 _long CStr::ReverseFind(const CStr &Str)
 {
-	_long Pos = m_String.rfind(Str.m_String, m_String.length() );
+	_long Pos = (_long)m_String.rfind(Str.m_String, m_String.length() );
 
 	if (Pos != tstring::npos)
 		return Pos;
@@ -398,14 +398,14 @@ ostream &operator<<(ostream &os, CStr &Str)
 	return os;
 }
 
-uint CStr::GetSerializedLength() const
+size_t CStr::GetSerializedLength() const
 {
 	return m_String.length()+1;
 }
 
 u8 *CStr::Serialize(u8 *buffer) const
 {
-	uint length=m_String.length();
+	size_t length=m_String.length();
 	memcpy(buffer, m_String.c_str(), length+1);
 	return buffer+length+1;
 }

@@ -2,7 +2,7 @@
 #define _Serialization_H
 
 #include "types.h"
-#include "misc.h"
+#include "lib.h"
 
 #define Serialize_int_1(_pos, _val) \
 	STMT( *((_pos)++) = _val&0xff; )

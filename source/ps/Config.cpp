@@ -4,7 +4,7 @@
 // TODO: Optimizations, when we've decided what needs to be done.
 
 #include "Config.h"
-#include "vfs.h"
+#include "res/res.h"
 
 using namespace std;
 

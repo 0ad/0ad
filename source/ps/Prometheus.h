@@ -9,7 +9,7 @@ Standard declarations which are included in all projects.
 #ifndef PROMETHEUS_H
 #define PROMETHEUS_H
 
-#pragma warning (disable : 4786)
+#pragma warning (disable : 4786)	// VC6 template warning spew
 #pragma warning (disable : 4291)
 
 #include <stdio.h>

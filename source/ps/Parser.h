@@ -195,7 +195,7 @@ public:
 	_bool GetArgDouble			(const _int& arg, double &ret);
 
 	// Get Argument count
-	_int GetArgCount() const { return m_Arguments.size(); }
+	size_t GetArgCount() const { return m_Arguments.size(); }
 };
 
 // CParser
