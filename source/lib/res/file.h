@@ -66,6 +66,10 @@ enum FILE_CB_FLAGS
 };
 
 
+extern int file_make_native_path(const char* path, char* n_path);
+extern int file_make_portable_path(const char* n_path, char* path);
+
+
 // set current directory to rel_path, relative to the path to the executable,
 // which is taken from argv0.
 //

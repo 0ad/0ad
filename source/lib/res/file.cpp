@@ -29,17 +29,17 @@
 #include <vector>
 #include <algorithm>
 
+
 // block := power-of-two sized chunk of a file.
 // all transfers are expanded to naturally aligned, whole blocks
 // (this makes caching parts of files feasible; it is also much faster
 // for some aio implementations, e.g. wposix).
-
 const size_t BLOCK_SIZE_LOG2 = 16;		// 2**16 = 64 KB
 const size_t BLOCK_SIZE = 1ul << BLOCK_SIZE_LOG2;
 
 
 // rationale for aio, instead of only using mmap:
-// - parallel: instead of just waiting for the transfer to complete,
+// - parallelism: instead of just waiting for the transfer to complete,
 //   other work can be done in the meantime.
 //   example: decompressing from a Zip archive is practically free,
 //   because we inflate one block while reading the next.
@@ -55,25 +55,20 @@ const size_t BLOCK_SIZE = 1ul << BLOCK_SIZE_LOG2;
 //   * requests for part of a block are usually followed by another.
 
 
-
-
-// return the native equivalent of the given portable path
-// (i.e. convert all '/' to the platform's directory separator)
-// makes sure length < PATH_MAX.
-static int mk_native_path(const char* const path, char* const n_path)
+enum Conversion
 {
-/*
-	// if there's a platform with multiple-character DIR_SEP,
-	// scan through the path and add space for each separator found.
-	const size_t len = strlen(p_path);
+	TO_NATIVE,
+	TO_PORTABLE
+};
 
-	n_path = (const char*)malloc(len * sizeof(char));
-	if(!n_path)
-		return ERR_NO_MEM;
-*/
+static int convert_path(const char* src, char* dst, Conversion conv = TO_NATIVE)
+{
+	const char* s = src;
+	char* d = dst;
 
-	const char* portable = path;
-	char* native = (char*)n_path;
+	char from = DIR_SEP, to = '/';
+	if(conv == TO_NATIVE)
+		from = '/', to = DIR_SEP;
 
 	size_t len = 0;
 
@@ -83,20 +78,22 @@ static int mk_native_path(const char* const path, char* const n_path)
 		if(len >= PATH_MAX)
 			return -1;
 
-		char c = *portable++;
+		char c = *s++;
 
-		if(c == '/')
-			c = DIR_SEP;
+		if(c == from)
+			c = to;
 
-		*native++ = c;
+		*d++ = c;
 
+		// end of string - done
 		if(c == '\0')
-			break;
+			return 0;
 	}
-
-	return 0;
 }
 
+
+static char n_root_dir[PATH_MAX];
+static size_t n_root_dir_len;
 
 // set current directory to rel_path, relative to the path to the executable,
 // which is taken from argv0.
@@ -128,10 +125,10 @@ int file_rel_chdir(const char* argv0, const char* const rel_path)
 
 	{
 
-	// Win32-specific: if started via batch file, argv0 might not end
-	// with ".exe". access and realpath require the filename with extension,
-	// so append it if not there. we don't get the full path either in that
-	// case, but realpath takes care of it.
+	// Win32-specific: append ".exe" if necessary.
+	// (required for access and realpath; not necessarily there if started
+	// via batch file. in that case, we don't get the full path either,
+	// but realpath takes care of it).
 #ifdef _WIN32
 	char fixed_argv0[PATH_MAX];
 	if(!strchr(argv0, '.'))
@@ -143,13 +140,11 @@ int file_rel_chdir(const char* argv0, const char* const rel_path)
 #endif
 
 	// get full path to executable
+	char n_path[PATH_MAX];
 	if(access(argv0, X_OK) < 0)
 		goto fail;
-	char n_path[PATH_MAX+1];
-	n_path[PATH_MAX] = '\0';
 	if(!realpath(argv0, n_path))
 		goto fail;
-	const size_t n_path_len = strlen(n_path);
 
 	// strip executable name and append rel_path
 	char* fn = strrchr(n_path, DIR_SEP);
@@ -158,11 +153,19 @@ int file_rel_chdir(const char* argv0, const char* const rel_path)
 		msg = "realpath returned an invalid path?";
 		goto fail;
 	}
-	char* pos = fn+1;	// will overwrite executable name
-	CHECK_ERR(mk_native_path(rel_path, pos));
+	CHECK_ERR(convert_path(rel_path, fn+1));
 
 	if(chdir(n_path) < 0)
 		goto fail;
+
+	// get actual root dir - previous n_path may include ..
+	// (slight optimization, speeds up path lookup)
+	if(getcwd(n_root_dir, sizeof(n_root_dir)) < 0)
+		goto fail;
+	n_root_dir_len = strlen(n_root_dir)+1;	// +1 for trailing DIR_SEP
+	n_root_dir[n_root_dir_len-1] = DIR_SEP;
+		// append to simplify code that uses n_root_dir
+		// already 0-terminated, since it's static
 
 	return 0;
 
@@ -173,7 +176,6 @@ fail:
 	if(msg)
 	{
 		debug_out("file_rel_chdir: %s\n", msg);
-printf("%s\n", msg);
 		return -1;
 	}
 
@@ -181,7 +183,35 @@ printf("%s\n", msg);
 }
 
 
+// return the native equivalent of the given portable path
+// (i.e. convert all '/' to the platform's directory separator)
+// makes sure length < PATH_MAX.
+int file_make_native_path(const char* const path, char* const n_path)
+{
+/*
+	// if there's a platform with multiple-character DIR_SEP,
+	// scan through the path and add space for each separator found.
+	const size_t len = strlen(p_path);
 
+	n_path = (const char*)malloc(len * sizeof(char));
+	if(!n_path)
+		return ERR_NO_MEM;
+*/
+
+	const char* portable = path;
+	char* native = (char*)n_path;
+
+	strcpy(n_path, n_root_dir);
+	return convert_path(path, n_path+n_root_dir_len, TO_NATIVE);
+}
+
+
+int file_make_portable_path(const char* const n_path, char* const path)
+{
+	if(strncmp(n_path, n_root_dir, n_root_dir_len) != 0)
+		return -1;
+	return convert_path(n_path+n_root_dir_len, path, TO_PORTABLE);
+}
 
 
 
@@ -214,7 +244,7 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 	n_path[PATH_MAX] = '\0';
 		// will append filename to this, hence "path".
 		// 0-terminate simplifies filename strncpy below.
-	CHECK_ERR(mk_native_path(dir, n_path));
+	CHECK_ERR(convert_path(dir, n_path));
 
 	// all entries are enumerated (adding to this container),
 	// std::sort-ed, then all passed to cb.
@@ -304,7 +334,7 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 int file_stat(const char* const path, struct stat* const s)
 {
 	char n_path[PATH_MAX+1];
-	CHECK_ERR(mk_native_path(path, n_path));
+	CHECK_ERR(convert_path(path, n_path));
 
 	return stat(n_path, s);
 }
@@ -396,7 +426,7 @@ int file_open(const char* const p_fn, const uint flags, File* const f)
 	memset(f, 0, sizeof(File));
 
 	char n_fn[PATH_MAX];
-	CHECK_ERR(mk_native_path(p_fn, n_fn));
+	CHECK_ERR(convert_path(p_fn, n_fn));
 
 	if(!f)
 		goto invalid_f;
