@@ -16,26 +16,26 @@ $binaries := directory containing system/ and data/ .
 Instructions:
 
 - OpenGL extensions:
-  download http://www.wildfiregames/com/~code/libraries/glext.h
+  download http://www.wildfiregames.com/~code/libraries/glext.h
   ... and put it in $GL.
-  download http://www.wildfiregames/com/~code/libraries/wglext.h
+  download http://www.wildfiregames.com/~code/libraries/wglext.h
   ... and put it in $GL.
 
 - ZLib (v1.2.1): [resource decompression]
-  download http://www.wildfiregames/com/~code/libraries/zlib121.zip.
+  download http://www.wildfiregames.com/~code/libraries/zlib121.zip.
   ... extract contents of include/ into $include, and .lib files into $lib.
 
 - libpng (v1.0.15): [PNG texture loading]
-  download http://www.wildfiregames/com/~code/libraries/libpng10.zip.
+  download http://www.wildfiregames.com/~code/libraries/libpng10.zip.
   ... extract contents of include/ into $include, and .lib files into $lib.
 
 - Xerces: [XML parsing for GUI and entity]
-  download http://www.wildfiregames/com/~code/libraries/xerces-c_2_5_0-lib.zip
-  download http://www.wildfiregames/com/~code/libraries/xerces-c_2_5_0-include.zip
+  download http://www.wildfiregames.com/~code/libraries/xerces-c_2_5_0-lib.zip
+  download http://www.wildfiregames.com/~code/libraries/xerces-c_2_5_0-include.zip
   ... extract contents of include/ into $include, and .lib files into $lib.
 
 - SpiderMonkey: [javascript]
-  download http://www.wildfiregames/com/~code/libraries/javascript-sdk.zip.
+  download http://www.wildfiregames.com/~code/libraries/javascript-sdk.zip.
   ... extract contents of include/ into $include, and .lib files into $lib.
 
 - FMOD: [sound]
