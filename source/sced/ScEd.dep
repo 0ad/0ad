@@ -1,0 +1,989 @@
+# Microsoft Developer Studio Generated Dependency File, included by ScEd.mak
+
+.\ColorButton.cpp : \
+	"..\lib\misc.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	".\ColorButton.h"\
+	".\ScEd.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\DirectionButton.cpp : \
+	"..\lib\misc.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	"..\Terrain\MathUtil.h"\
+	".\DirectionButton.h"\
+	".\ScEd.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\ElevationButton.cpp : \
+	"..\lib\misc.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	"..\Terrain\MathUtil.h"\
+	".\ElevationButton.h"\
+	".\ScEd.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\ElevToolsDlgBar.cpp : \
+	"..\lib\misc.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\lib\res.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	".\BrushTool.h"\
+	".\ElevToolsDlgBar.h"\
+	".\RaiseElevationTool.h"\
+	".\SmoothElevationTool.h"\
+	".\StdAfx.h"\
+	".\Tool.h"\
+	".\ToolManager.h"\
+	".\UIGlobals.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\ImageListCtrl.cpp : \
+	"..\lib\misc.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	".\ImageListCtrl.h"\
+	".\ScEd.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\LightSettingsDlg.cpp : \
+	"..\lib\misc.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\lib\res.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	"..\Terrain\Bound.h"\
+	"..\Terrain\Camera.h"\
+	"..\Terrain\Color.h"\
+	"..\Terrain\Frustum.h"\
+	"..\Terrain\LightEnv.h"\
+	"..\Terrain\MathUtil.h"\
+	"..\Terrain\Matrix3D.h"\
+	"..\Terrain\MiniPatch.h"\
+	"..\Terrain\Patch.h"\
+	"..\Terrain\Plane.h"\
+	"..\Terrain\RenderableObject.h"\
+	"..\Terrain\Terrain.h"\
+	"..\Terrain\TerrGlobals.h"\
+	"..\Terrain\Vector3D.h"\
+	"..\Terrain\Vector4D.h"\
+	".\ColorButton.h"\
+	".\DirectionButton.h"\
+	".\ElevationButton.h"\
+	".\LightSettingsDlg.h"\
+	".\ScEd.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\MainFrm.cpp : \
+	"..\lib\glext_funcs.h"\
+	"..\lib\mem.h"\
+	"..\lib\misc.h"\
+	"..\lib\ogl.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\lib\res.h"\
+	"..\lib\tex.h"\
+	"..\lib\vfs.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	"..\Terrain\Bound.h"\
+	"..\Terrain\Camera.h"\
+	"..\Terrain\Color.h"\
+	"..\Terrain\Frustum.h"\
+	"..\Terrain\LightEnv.h"\
+	"..\Terrain\MathUtil.h"\
+	"..\Terrain\Matrix3D.h"\
+	"..\Terrain\MiniPatch.h"\
+	"..\Terrain\ModelDef.h"\
+	"..\Terrain\ModelFile.h"\
+	"..\Terrain\Patch.h"\
+	"..\Terrain\PatchRData.h"\
+	"..\Terrain\Plane.h"\
+	"..\Terrain\RenderableObject.h"\
+	"..\Terrain\Renderer.h"\
+	"..\Terrain\SHCoeffs.h"\
+	"..\Terrain\Terrain.h"\
+	"..\Terrain\TerrGlobals.h"\
+	"..\Terrain\Vector3D.h"\
+	"..\Terrain\Vector4D.h"\
+	".\BrushTool.h"\
+	".\ColorButton.h"\
+	".\CommandManager.h"\
+	".\DirectionButton.h"\
+	".\EditorData.h"\
+	".\ElevationButton.h"\
+	".\ElevToolsDlgBar.h"\
+	".\InfoBox.h"\
+	".\LightSettingsDlg.h"\
+	".\MainFrm.h"\
+	".\MapSizeDlg.h"\
+	".\MiniMap.h"\
+	".\ObjectEntry.h"\
+	".\OptionsDlg.h"\
+	".\PaintObjectTool.h"\
+	".\PaintTextureTool.h"\
+	".\RaiseElevationTool.h"\
+	".\ScEd.h"\
+	".\ScEdView.h"\
+	".\SMDConverter.h"\
+	".\StdAfx.h"\
+	".\TexToolsDlgBar.h"\
+	".\TextureEntry.h"\
+	".\Tool.h"\
+	".\ToolManager.h"\
+	".\UIGlobals.h"\
+	".\UnitPropertiesDlgBar.h"\
+	".\UnitToolsDlgBar.h"\
+	{$(INCLUDE)}"GL\glext.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\MapSizeDlg.cpp : \
+	"..\lib\misc.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	".\MapSizeDlg.h"\
+	".\ScEd.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\OptionsDlg.cpp : \
+	"..\lib\misc.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	".\OptionsDlg.h"\
+	".\ScEd.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\ScEd.cpp : \
+	"..\lib\misc.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\lib\res.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	"..\Terrain\Bound.h"\
+	"..\Terrain\MathUtil.h"\
+	"..\Terrain\Vector3D.h"\
+	".\ElevToolsDlgBar.h"\
+	".\MainFrm.h"\
+	".\ObjectEntry.h"\
+	".\ScEd.h"\
+	".\ScEdDoc.h"\
+	".\ScEdView.h"\
+	".\StdAfx.h"\
+	".\TexToolsDlgBar.h"\
+	".\TextureEntry.h"\
+	".\UIGlobals.h"\
+	".\UnitPropertiesDlgBar.h"\
+	".\UnitToolsDlgBar.h"\
+	".\WebLinkButton.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\ScEd.rc : \
+	".\res\0ad_logo.bmp"\
+	".\res\ico00001.ico"\
+	".\res\ico00002.ico"\
+	".\res\icon1.ico"\
+	".\res\ScEd.ico"\
+	".\res\ScEd.rc2"\
+	".\res\ScEdDoc.ico"\
+	".\res\Toolbar.bmp"\
+	
+
+.\ScEdDoc.cpp : \
+	"..\lib\misc.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	".\ScEd.h"\
+	".\ScEdDoc.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\ScEdView.cpp : \
+	"..\lib\glext_funcs.h"\
+	"..\lib\misc.h"\
+	"..\lib\ogl.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\lib\res.h"\
+	"..\lib\vfs.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	"..\Terrain\Bound.h"\
+	"..\Terrain\Camera.h"\
+	"..\Terrain\Color.h"\
+	"..\Terrain\Frustum.h"\
+	"..\Terrain\LightEnv.h"\
+	"..\Terrain\MathUtil.h"\
+	"..\Terrain\Matrix3D.h"\
+	"..\Terrain\MiniPatch.h"\
+	"..\Terrain\Patch.h"\
+	"..\Terrain\PatchRData.h"\
+	"..\Terrain\Plane.h"\
+	"..\Terrain\RenderableObject.h"\
+	"..\Terrain\Renderer.h"\
+	"..\Terrain\SHCoeffs.h"\
+	"..\Terrain\Terrain.h"\
+	"..\Terrain\TerrGlobals.h"\
+	"..\Terrain\Vector3D.h"\
+	"..\Terrain\Vector4D.h"\
+	".\BrushTool.h"\
+	".\EditorData.h"\
+	".\InfoBox.h"\
+	".\MiniMap.h"\
+	".\PaintTextureTool.h"\
+	".\ScEd.h"\
+	".\ScEdDoc.h"\
+	".\ScEdView.h"\
+	".\StdAfx.h"\
+	".\Tool.h"\
+	".\ToolManager.h"\
+	{$(INCLUDE)}"GL\glext.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\SimpleEdit.cpp : \
+	"..\lib\misc.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	".\ScEd.h"\
+	".\SimpleEdit.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\TexToolsDlgBar.cpp : \
+	"..\lib\glext_funcs.h"\
+	"..\lib\misc.h"\
+	"..\lib\ogl.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\lib\res.h"\
+	"..\lib\tex.h"\
+	"..\lib\vfs.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	".\BrushTool.h"\
+	".\PaintTextureTool.h"\
+	".\StdAfx.h"\
+	".\TexToolsDlgBar.h"\
+	".\TextureEntry.h"\
+	".\TextureManager.h"\
+	".\Tool.h"\
+	{$(INCLUDE)}"GL\glext.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\UIGlobals.cpp : \
+	"..\lib\misc.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\lib\res.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	"..\Terrain\Bound.h"\
+	"..\Terrain\MathUtil.h"\
+	"..\Terrain\Vector3D.h"\
+	".\ElevToolsDlgBar.h"\
+	".\MainFrm.h"\
+	".\ObjectEntry.h"\
+	".\ScEdView.h"\
+	".\StdAfx.h"\
+	".\TexToolsDlgBar.h"\
+	".\TextureEntry.h"\
+	".\UIGlobals.h"\
+	".\UnitPropertiesDlgBar.h"\
+	".\UnitToolsDlgBar.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\UnitPropertiesDlgBar.cpp : \
+	"..\lib\glext_funcs.h"\
+	"..\lib\misc.h"\
+	"..\lib\ogl.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\lib\res.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	"..\Terrain\Bound.h"\
+	"..\Terrain\Camera.h"\
+	"..\Terrain\Color.h"\
+	"..\Terrain\Frustum.h"\
+	"..\Terrain\LightEnv.h"\
+	"..\Terrain\MathUtil.h"\
+	"..\Terrain\Matrix3D.h"\
+	"..\Terrain\MiniPatch.h"\
+	"..\Terrain\Patch.h"\
+	"..\Terrain\PatchRData.h"\
+	"..\Terrain\Plane.h"\
+	"..\Terrain\RenderableObject.h"\
+	"..\Terrain\Renderer.h"\
+	"..\Terrain\SHCoeffs.h"\
+	"..\Terrain\Terrain.h"\
+	"..\Terrain\TerrGlobals.h"\
+	"..\Terrain\Vector3D.h"\
+	"..\Terrain\Vector4D.h"\
+	".\BrushTool.h"\
+	".\EditorData.h"\
+	".\ElevToolsDlgBar.h"\
+	".\InfoBox.h"\
+	".\MainFrm.h"\
+	".\MiniMap.h"\
+	".\ObjectEntry.h"\
+	".\ObjectManager.h"\
+	".\PaintTextureTool.h"\
+	".\StdAfx.h"\
+	".\TexToolsDlgBar.h"\
+	".\TextureEntry.h"\
+	".\Tool.h"\
+	".\UIGlobals.h"\
+	".\UnitPropertiesDlgBar.h"\
+	".\UnitToolsDlgBar.h"\
+	{$(INCLUDE)}"GL\glext.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\UnitToolsDlgBar.cpp : \
+	"..\lib\misc.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\lib\res.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	"..\Terrain\Bound.h"\
+	"..\Terrain\MathUtil.h"\
+	"..\Terrain\Vector3D.h"\
+	".\ElevToolsDlgBar.h"\
+	".\MainFrm.h"\
+	".\ObjectEntry.h"\
+	".\ObjectManager.h"\
+	".\SimpleEdit.h"\
+	".\StdAfx.h"\
+	".\TexToolsDlgBar.h"\
+	".\TextureEntry.h"\
+	".\UnitPropertiesDlgBar.h"\
+	".\UnitToolsDlgBar.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\WebLinkButton.cpp : \
+	"..\lib\misc.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	".\ScEd.h"\
+	".\StdAfx.h"\
+	".\WebLinkButton.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\AlterElevationCommand.cpp : \
+	"..\lib\res.h"\
+	"..\Terrain\Bound.h"\
+	"..\Terrain\Camera.h"\
+	"..\Terrain\Color.h"\
+	"..\Terrain\Frustum.h"\
+	"..\Terrain\LightEnv.h"\
+	"..\Terrain\MathUtil.h"\
+	"..\Terrain\Matrix3D.h"\
+	"..\Terrain\MiniPatch.h"\
+	"..\Terrain\Patch.h"\
+	"..\Terrain\Plane.h"\
+	"..\Terrain\RenderableObject.h"\
+	"..\Terrain\SHCoeffs.h"\
+	"..\Terrain\Terrain.h"\
+	"..\Terrain\TerrGlobals.h"\
+	"..\Terrain\Vector3D.h"\
+	"..\Terrain\Vector4D.h"\
+	".\AlterElevationCommand.h"\
+	".\Array2D.h"\
+	".\Command.h"\
+	".\MiniMap.h"\
+	".\UIGlobals.h"\
+	
+
+.\PaintObjectCommand.cpp : \
+	"..\Terrain\MathUtil.h"\
+	"..\Terrain\Matrix3D.h"\
+	"..\Terrain\Vector3D.h"\
+	"..\Terrain\Vector4D.h"\
+	".\Command.h"\
+	".\PaintObjectCommand.h"\
+	".\UIGlobals.h"\
+	".\Unit.h"\
+	".\UnitManager.h"\
+	
+
+.\PaintTextureCommand.cpp : \
+	"..\lib\misc.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\lib\res.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	"..\Terrain\Bound.h"\
+	"..\Terrain\Camera.h"\
+	"..\Terrain\Frustum.h"\
+	"..\Terrain\MathUtil.h"\
+	"..\Terrain\Matrix3D.h"\
+	"..\Terrain\MiniPatch.h"\
+	"..\Terrain\Patch.h"\
+	"..\Terrain\Plane.h"\
+	"..\Terrain\RenderableObject.h"\
+	"..\Terrain\Terrain.h"\
+	"..\Terrain\TerrGlobals.h"\
+	"..\Terrain\Vector3D.h"\
+	"..\Terrain\Vector4D.h"\
+	".\Array2D.h"\
+	".\Command.h"\
+	".\MiniMap.h"\
+	".\PaintTextureCommand.h"\
+	".\TextureEntry.h"\
+	".\UIGlobals.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\RaiseElevationCommand.cpp : \
+	"..\lib\res.h"\
+	"..\Terrain\Bound.h"\
+	"..\Terrain\Camera.h"\
+	"..\Terrain\Frustum.h"\
+	"..\Terrain\MathUtil.h"\
+	"..\Terrain\Matrix3D.h"\
+	"..\Terrain\MiniPatch.h"\
+	"..\Terrain\Patch.h"\
+	"..\Terrain\Plane.h"\
+	"..\Terrain\RenderableObject.h"\
+	"..\Terrain\Terrain.h"\
+	"..\Terrain\TerrGlobals.h"\
+	"..\Terrain\Vector3D.h"\
+	"..\Terrain\Vector4D.h"\
+	".\AlterElevationCommand.h"\
+	".\Array2D.h"\
+	".\Command.h"\
+	".\RaiseElevationCommand.h"\
+	
+
+.\SmoothElevationCommand.cpp : \
+	"..\lib\res.h"\
+	"..\Terrain\Bound.h"\
+	"..\Terrain\Camera.h"\
+	"..\Terrain\Frustum.h"\
+	"..\Terrain\MathUtil.h"\
+	"..\Terrain\Matrix3D.h"\
+	"..\Terrain\MiniPatch.h"\
+	"..\Terrain\Patch.h"\
+	"..\Terrain\Plane.h"\
+	"..\Terrain\RenderableObject.h"\
+	"..\Terrain\Terrain.h"\
+	"..\Terrain\TerrGlobals.h"\
+	"..\Terrain\Vector3D.h"\
+	"..\Terrain\Vector4D.h"\
+	".\AlterElevationCommand.h"\
+	".\Array2D.h"\
+	".\Command.h"\
+	".\SmoothElevationCommand.h"\
+	
+
+.\BrushTool.cpp : \
+	"..\lib\glext_funcs.h"\
+	"..\lib\misc.h"\
+	"..\lib\ogl.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\lib\res.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	"..\Terrain\Bound.h"\
+	"..\Terrain\Camera.h"\
+	"..\Terrain\Frustum.h"\
+	"..\Terrain\MathUtil.h"\
+	"..\Terrain\Matrix3D.h"\
+	"..\Terrain\MiniPatch.h"\
+	"..\Terrain\Patch.h"\
+	"..\Terrain\Plane.h"\
+	"..\Terrain\RenderableObject.h"\
+	"..\Terrain\Terrain.h"\
+	"..\Terrain\TerrGlobals.h"\
+	"..\Terrain\Vector3D.h"\
+	"..\Terrain\Vector4D.h"\
+	".\BrushTool.h"\
+	".\HFTracer.h"\
+	".\TextureEntry.h"\
+	".\TextureManager.h"\
+	".\Tool.h"\
+	".\UIGlobals.h"\
+	{$(INCLUDE)}"GL\glext.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\PaintObjectTool.cpp : \
+	"..\lib\glext_funcs.h"\
+	"..\lib\misc.h"\
+	"..\lib\ogl.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\lib\res.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	"..\Terrain\Bound.h"\
+	"..\Terrain\Camera.h"\
+	"..\Terrain\Color.h"\
+	"..\Terrain\Frustum.h"\
+	"..\Terrain\MathUtil.h"\
+	"..\Terrain\Matrix3D.h"\
+	"..\Terrain\MiniPatch.h"\
+	"..\Terrain\Patch.h"\
+	"..\Terrain\PatchRData.h"\
+	"..\Terrain\Plane.h"\
+	"..\Terrain\RenderableObject.h"\
+	"..\Terrain\Renderer.h"\
+	"..\Terrain\SHCoeffs.h"\
+	"..\Terrain\Terrain.h"\
+	"..\Terrain\TerrGlobals.h"\
+	"..\Terrain\Vector3D.h"\
+	"..\Terrain\Vector4D.h"\
+	".\BrushTool.h"\
+	".\Command.h"\
+	".\CommandManager.h"\
+	".\ObjectEntry.h"\
+	".\ObjectManager.h"\
+	".\PaintObjectCommand.h"\
+	".\PaintObjectTool.h"\
+	".\Tool.h"\
+	{$(INCLUDE)}"GL\glext.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\PaintTextureTool.cpp : \
+	"..\lib\misc.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\lib\res.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	".\Array2D.h"\
+	".\BrushTool.h"\
+	".\Command.h"\
+	".\CommandManager.h"\
+	".\PaintTextureCommand.h"\
+	".\PaintTextureTool.h"\
+	".\TextureEntry.h"\
+	".\Tool.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\RaiseElevationTool.cpp : \
+	"..\lib\res.h"\
+	".\AlterElevationCommand.h"\
+	".\Array2D.h"\
+	".\BrushTool.h"\
+	".\Command.h"\
+	".\CommandManager.h"\
+	".\RaiseElevationCommand.h"\
+	".\RaiseElevationTool.h"\
+	".\Tool.h"\
+	
+
+.\SmoothElevationTool.cpp : \
+	"..\lib\res.h"\
+	".\AlterElevationCommand.h"\
+	".\Array2D.h"\
+	".\BrushTool.h"\
+	".\Command.h"\
+	".\CommandManager.h"\
+	".\SmoothElevationCommand.h"\
+	".\SmoothElevationTool.h"\
+	".\Tool.h"\
+	
+
+.\CommandManager.cpp : \
+	".\Command.h"\
+	".\CommandManager.h"\
+	
+
+.\EditorData.cpp : \
+	"..\lib\glext_funcs.h"\
+	"..\lib\misc.h"\
+	"..\lib\ogl.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\lib\res.h"\
+	"..\lib\tex.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	"..\Terrain\Bound.h"\
+	"..\Terrain\Camera.h"\
+	"..\Terrain\Color.h"\
+	"..\Terrain\Frustum.h"\
+	"..\Terrain\LightEnv.h"\
+	"..\Terrain\MathUtil.h"\
+	"..\Terrain\Matrix3D.h"\
+	"..\Terrain\MiniPatch.h"\
+	"..\Terrain\Patch.h"\
+	"..\Terrain\PatchRData.h"\
+	"..\Terrain\Plane.h"\
+	"..\Terrain\RenderableObject.h"\
+	"..\Terrain\Renderer.h"\
+	"..\Terrain\SHCoeffs.h"\
+	"..\Terrain\Terrain.h"\
+	"..\Terrain\TerrGlobals.h"\
+	"..\Terrain\Vector3D.h"\
+	"..\Terrain\Vector4D.h"\
+	".\BrushTool.h"\
+	".\EditorData.h"\
+	".\InfoBox.h"\
+	".\MiniMap.h"\
+	".\ObjectEntry.h"\
+	".\ObjectManager.h"\
+	".\PaintTextureTool.h"\
+	".\TextureEntry.h"\
+	".\TextureManager.h"\
+	".\Tool.h"\
+	".\ToolManager.h"\
+	".\UIGlobals.h"\
+	".\Unit.h"\
+	".\UnitManager.h"\
+	{$(INCLUDE)}"GL\glext.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\InfoBox.cpp : \
+	"..\lib\glext_funcs.h"\
+	"..\lib\misc.h"\
+	"..\lib\ogl.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\lib\res.h"\
+	"..\ps\CStr.h"\
+	"..\ps\NPFont.h"\
+	"..\ps\NPFontManager.h"\
+	"..\ps\Overlay.h"\
+	"..\ps\OverlayText.h"\
+	"..\ps\Prometheus.h"\
+	"..\Terrain\Bound.h"\
+	"..\Terrain\Camera.h"\
+	"..\Terrain\Color.h"\
+	"..\Terrain\Frustum.h"\
+	"..\Terrain\MathUtil.h"\
+	"..\Terrain\Matrix3D.h"\
+	"..\Terrain\MiniPatch.h"\
+	"..\Terrain\Patch.h"\
+	"..\Terrain\PatchRData.h"\
+	"..\Terrain\Plane.h"\
+	"..\Terrain\RenderableObject.h"\
+	"..\Terrain\Renderer.h"\
+	"..\Terrain\SHCoeffs.h"\
+	"..\Terrain\Terrain.h"\
+	"..\Terrain\TerrGlobals.h"\
+	"..\Terrain\Texture.h"\
+	"..\Terrain\Vector3D.h"\
+	"..\Terrain\Vector4D.h"\
+	".\InfoBox.h"\
+	".\UIGlobals.h"\
+	{$(INCLUDE)}"GL\glext.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\MiniMap.cpp : \
+	"..\lib\glext_funcs.h"\
+	"..\lib\misc.h"\
+	"..\lib\ogl.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\lib\res.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	"..\Terrain\Bound.h"\
+	"..\Terrain\Camera.h"\
+	"..\Terrain\Frustum.h"\
+	"..\Terrain\MathUtil.h"\
+	"..\Terrain\Matrix3D.h"\
+	"..\Terrain\MiniPatch.h"\
+	"..\Terrain\Patch.h"\
+	"..\Terrain\Plane.h"\
+	"..\Terrain\RenderableObject.h"\
+	"..\Terrain\Terrain.h"\
+	"..\Terrain\TerrGlobals.h"\
+	"..\Terrain\Vector3D.h"\
+	"..\Terrain\Vector4D.h"\
+	".\MiniMap.h"\
+	".\TextureEntry.h"\
+	".\TextureManager.h"\
+	".\UIGlobals.h"\
+	{$(INCLUDE)}"GL\glext.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\ObjectEntry.cpp : \
+	"..\lib\misc.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\lib\res.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	"..\ps\XercesErrorHandler.h"\
+	"..\Terrain\Bound.h"\
+	"..\Terrain\MathUtil.h"\
+	"..\Terrain\Matrix3D.h"\
+	"..\Terrain\Model.h"\
+	"..\Terrain\ModelDef.h"\
+	"..\Terrain\ModelFile.h"\
+	"..\Terrain\Texture.h"\
+	"..\Terrain\Vector3D.h"\
+	"..\Terrain\Vector4D.h"\
+	".\ObjectEntry.h"\
+	".\ObjectManager.h"\
+	".\UIGlobals.h"\
+	".\Unit.h"\
+	".\UnitManager.h"\
+	{$(INCLUDE)}"unistd.h"\
+	{$(INCLUDE)}"xercesc\dom\DOM.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMAttr.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMBuilder.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMCDATASection.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMCharacterData.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMComment.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMConfiguration.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMDocument.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMDocumentFragment.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMDocumentRange.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMDocumentTraversal.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMDocumentType.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMElement.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMEntity.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMEntityReference.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMEntityResolver.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMError.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMErrorHandler.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMException.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMImplementation.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMImplementationLS.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMImplementationRegistry.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMImplementationSource.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMInputSource.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMLocator.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMNamedNodeMap.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMNode.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMNodeFilter.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMNodeIterator.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMNodeList.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMNotation.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMProcessingInstruction.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMRange.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMRangeException.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMText.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMTreeWalker.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMTypeInfo.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMUserDataHandler.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMWriter.hpp"\
+	{$(INCLUDE)}"xercesc\dom\DOMWriterFilter.hpp"\
+	{$(INCLUDE)}"xercesc\framework\LocalFileInputSource.hpp"\
+	{$(INCLUDE)}"xercesc\framework\MemoryManager.hpp"\
+	{$(INCLUDE)}"xercesc\framework\XMLAttDef.hpp"\
+	{$(INCLUDE)}"xercesc\framework\XMLAttDefList.hpp"\
+	{$(INCLUDE)}"xercesc\framework\XMLAttr.hpp"\
+	{$(INCLUDE)}"xercesc\framework\XMLBuffer.hpp"\
+	{$(INCLUDE)}"xercesc\framework\XMLBufferMgr.hpp"\
+	{$(INCLUDE)}"xercesc\framework\XMLContentModel.hpp"\
+	{$(INCLUDE)}"xercesc\framework\XMLDocumentHandler.hpp"\
+	{$(INCLUDE)}"xercesc\framework\XMLElementDecl.hpp"\
+	{$(INCLUDE)}"xercesc\framework\XMLEntityDecl.hpp"\
+	{$(INCLUDE)}"xercesc\framework\XMLEntityHandler.hpp"\
+	{$(INCLUDE)}"xercesc\framework\XMLErrorReporter.hpp"\
+	{$(INCLUDE)}"xercesc\framework\XMLFormatter.hpp"\
+	{$(INCLUDE)}"xercesc\framework\XMLNotationDecl.hpp"\
+	{$(INCLUDE)}"xercesc\parsers\AbstractDOMParser.hpp"\
+	{$(INCLUDE)}"xercesc\parsers\XercesDOMParser.hpp"\
+	{$(INCLUDE)}"xercesc\sax\ErrorHandler.hpp"\
+	{$(INCLUDE)}"xercesc\sax\InputSource.hpp"\
+	{$(INCLUDE)}"xercesc\util\ArrayIndexOutOfBoundsException.hpp"\
+	{$(INCLUDE)}"xercesc\util\AutoSense.hpp"\
+	{$(INCLUDE)}"xercesc\util\BaseRefVectorOf.c"\
+	{$(INCLUDE)}"xercesc\util\BaseRefVectorOf.hpp"\
+	{$(INCLUDE)}"xercesc\util\Compilers\BorlandCDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Compilers\CodeWarriorDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Compilers\CSetDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Compilers\DECCXXDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Compilers\GCCDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Compilers\HPCCDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Compilers\IBMVAOS2Defs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Compilers\IBMVAW32Defs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Compilers\MIPSproDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Compilers\MVSCPPDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Compilers\OS400SetDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Compilers\PTXCCDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Compilers\QCCDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Compilers\SCOCCDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Compilers\SunCCDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Compilers\SunKaiDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Compilers\TandemCCDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Compilers\VCPPDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\EmptyStackException.hpp"\
+	{$(INCLUDE)}"xercesc\util\HashBase.hpp"\
+	{$(INCLUDE)}"xercesc\util\HashXMLCh.hpp"\
+	{$(INCLUDE)}"xercesc\util\IllegalArgumentException.hpp"\
+	{$(INCLUDE)}"xercesc\util\NoSuchElementException.hpp"\
+	{$(INCLUDE)}"xercesc\util\NullPointerException.hpp"\
+	{$(INCLUDE)}"xercesc\util\PanicHandler.hpp"\
+	{$(INCLUDE)}"xercesc\util\Platforms\AIX\AIXDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Platforms\BeOS\BeOSDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Platforms\HPUX\HPUXDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Platforms\Linux\LinuxDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Platforms\MacOS\MacOSDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Platforms\OS2\OS2Defs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Platforms\OS390\OS390Defs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Platforms\PTX\PTXDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Platforms\Solaris\SolarisDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Platforms\Tandem\TandemDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\Platforms\Win32\Win32Defs.hpp"\
+	{$(INCLUDE)}"xercesc\util\PlatformUtils.hpp"\
+	{$(INCLUDE)}"xercesc\util\QName.hpp"\
+	{$(INCLUDE)}"xercesc\util\RefHashTableOf.c"\
+	{$(INCLUDE)}"xercesc\util\RefHashTableOf.hpp"\
+	{$(INCLUDE)}"xercesc\util\RefVectorOf.c"\
+	{$(INCLUDE)}"xercesc\util\RefVectorOf.hpp"\
+	{$(INCLUDE)}"xercesc\util\RuntimeException.hpp"\
+	{$(INCLUDE)}"xercesc\util\SecurityManager.hpp"\
+	{$(INCLUDE)}"xercesc\util\ValueStackOf.c"\
+	{$(INCLUDE)}"xercesc\util\ValueStackOf.hpp"\
+	{$(INCLUDE)}"xercesc\util\ValueVectorOf.c"\
+	{$(INCLUDE)}"xercesc\util\ValueVectorOf.hpp"\
+	{$(INCLUDE)}"xercesc\util\XercesDefs.hpp"\
+	{$(INCLUDE)}"xercesc\util\XercesVersion.hpp"\
+	{$(INCLUDE)}"xercesc\util\XMemory.hpp"\
+	{$(INCLUDE)}"xercesc\util\XMLEnumerator.hpp"\
+	{$(INCLUDE)}"xercesc\util\XMLException.hpp"\
+	{$(INCLUDE)}"xercesc\util\XMLExceptMsgs.hpp"\
+	{$(INCLUDE)}"xercesc\util\XMLString.hpp"\
+	{$(INCLUDE)}"xercesc\util\XMLUni.hpp"\
+	{$(INCLUDE)}"xercesc\util\XMLUniDefs.hpp"\
+	{$(INCLUDE)}"xercesc\validators\DTD\DocTypeHandler.hpp"\
+	{$(INCLUDE)}"xercesc\validators\DTD\DTDAttDef.hpp"\
+	{$(INCLUDE)}"xercesc\validators\DTD\DTDElementDecl.hpp"\
+	{$(INCLUDE)}"xercesc\validators\DTD\DTDEntityDecl.hpp"\
+	
+
+.\ObjectManager.cpp : \
+	"..\lib\misc.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	"..\Terrain\Bound.h"\
+	"..\Terrain\MathUtil.h"\
+	"..\Terrain\Vector3D.h"\
+	".\ObjectEntry.h"\
+	".\ObjectManager.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\SMDConverter.cpp : \
+	"..\Terrain\MathUtil.h"\
+	"..\Terrain\Matrix3D.h"\
+	"..\Terrain\ModelDef.h"\
+	"..\Terrain\Vector3D.h"\
+	"..\Terrain\Vector4D.h"\
+	".\SMDConverter.h"\
+	
+
+.\TextureManager.cpp : \
+	"..\lib\glext_funcs.h"\
+	"..\lib\misc.h"\
+	"..\lib\ogl.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\lib\res.h"\
+	"..\lib\tex.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	".\TextureEntry.h"\
+	".\TextureManager.h"\
+	{$(INCLUDE)}"GL\glext.h"\
+	{$(INCLUDE)}"unistd.h"\
+	
+
+.\ToolManager.cpp : \
+	".\Tool.h"\
+	".\ToolManager.h"\
+	
+
+.\UnitManager.cpp : \
+	"..\Terrain\MathUtil.h"\
+	"..\Terrain\Matrix3D.h"\
+	"..\Terrain\Vector3D.h"\
+	"..\Terrain\Vector4D.h"\
+	".\Unit.h"\
+	".\UnitManager.h"\
+	
+
+.\HFTracer.cpp : \
+	"..\lib\res.h"\
+	"..\Terrain\Bound.h"\
+	"..\Terrain\Camera.h"\
+	"..\Terrain\Frustum.h"\
+	"..\Terrain\MathUtil.h"\
+	"..\Terrain\Matrix3D.h"\
+	"..\Terrain\MiniPatch.h"\
+	"..\Terrain\Patch.h"\
+	"..\Terrain\Plane.h"\
+	"..\Terrain\RenderableObject.h"\
+	"..\Terrain\Terrain.h"\
+	"..\Terrain\TerrGlobals.h"\
+	"..\Terrain\Triangle.h"\
+	"..\Terrain\Vector3D.h"\
+	"..\Terrain\Vector4D.h"\
+	".\HFTracer.h"\
+	
+
+.\StdAfx.cpp : \
+	"..\lib\misc.h"\
+	"..\lib\posix.h"\
+	"..\lib\posix\aio.h"\
+	"..\ps\CStr.h"\
+	"..\ps\Prometheus.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"unistd.h"\
+	

@@ -1,0 +1,18 @@
+#ifndef _UIGLOBALS_H
+#define _UIGLOBALS_H
+
+///////////////////////////////////////////////////////////////////////////////
+// UIGlobals.h: miscellaneous functions for interface the editor to "UI" 
+// elements 
+///////////////////////////////////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////////////////////////////////
+// 
+// GetVersionString: fill version string into given buffer
+extern void GetVersionString(char* buf);
+// ErrorBox: show an error message box with given string
+extern void ErrorBox(const char* errstr);
+
+
+#endif
