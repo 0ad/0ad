@@ -22,6 +22,11 @@ for (@files) {
   }
 }
 
+# Add "PSERROR_Error_InvalidError", so that an error to throw when being
+# told to throw an error that doesn't exist exists.
+$topgroups{Error} = 1;
+$types{'Error~InvalidError'} = 1;
+
 open my $out, '>', 'ps/Errors.cpp' or die "Error opening ps/Errors.cpp ($!)";
 
 print $out <<'.';
@@ -161,6 +166,22 @@ for (sort keys %types) {
 print $out <<".";
 \t}
 \treturn L"Unrecognised error";
+}
+
+void ThrowError(PSRETURN code)
+{
+\tswitch (code)
+\t{
+.
+
+for (sort keys %types) {
+  (my $name = $_) =~ s/~/_/;
+  print $out qq{\tcase 0x}.unpack('H*',$types{$_}).qq{: throw PSERROR_$name();\n};
+}
+
+print $out <<".";
+\t}
+\tthrow PSERROR_Error_InvalidError(); // Hmm...
 }
 .
 
