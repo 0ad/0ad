@@ -927,60 +927,6 @@ inline void SDL_Delay(Uint32 ms)
 
 
 
-void* SDL_GL_GetProcAddress(const char* name)
-{
-	return wglGetProcAddress(name);
-}
-
-
-SDL_sem* SDL_CreateSemaphore(int cnt)
-{
-	return (SDL_sem*)CreateSemaphore(0, cnt, 0x7fffffff, 0);
-}
-
-inline void SDL_DestroySemaphore(SDL_sem* sem)
-{
-	CloseHandle((HANDLE)sem);
-}
-
-int SDL_SemPost(SDL_sem* sem)
-{
-	return ReleaseSemaphore((HANDLE)sem, 1, 0);
-}
-
-int SDL_SemWait(SDL_sem* sem)
-{
-	return WaitForSingleObject(sem, INFINITE);
-}
-
-// users don't need to allocate SDL_Thread variables, so type = void
-// API returns SDL_Thread*, which is the HANDLE value itself.
-union pthread_sdl
-{
-	pthread_t p;
-	SDL_Thread* s;
-};
-
-SDL_Thread* SDL_CreateThread(int(*func)(void*), void* param)
-{
-	pthread_sdl u;
-	if(pthread_create(&u.p, 0, (void*(*)(void*))func, param) < 0)
-		return 0;
-	return u.s;
-}
-
-
-int SDL_KillThread(SDL_Thread* thread)
-{
-	pthread_sdl u;
-	u.s = thread;
-	pthread_cancel(u.p);
-	return 0;
-}
-
-
-
-
 inline int SDL_WarpMouse(int x, int y)
 {
 	return SetCursorPos(x, y);
@@ -1002,6 +948,92 @@ int SDL_ShowCursor(int toggle)
 	}
 	return cursor_visible;
 }
+
+
+
+
+void* SDL_GL_GetProcAddress(const char* name)
+{
+	return wglGetProcAddress(name);
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+//
+// semaphores
+//
+
+// note: implementing these in terms of pthread sem_t doesn't help;
+// this wrapper is very close to the Win32 routines.
+
+union HANDLE_sem
+{
+	HANDLE h;
+	SDL_sem* s;
+};
+
+SDL_sem* SDL_CreateSemaphore(int cnt)
+{
+	HANDLE_sem u;
+	u.h = CreateSemaphore(0, cnt, 0x7fffffff, 0);
+	return u.s;
+}
+
+inline void SDL_DestroySemaphore(SDL_sem* sem)
+{
+	HANDLE_sem u;
+	u.s = sem;
+	CloseHandle(u.h);
+}
+
+int SDL_SemPost(SDL_sem* sem)
+{
+	HANDLE_sem u;
+	u.s = sem;
+	return ReleaseSemaphore(u.h, 1, 0);
+}
+
+int SDL_SemWait(SDL_sem* sem)
+{
+	HANDLE_sem u;
+	u.s = sem;
+	return WaitForSingleObject(u.h, INFINITE);
+}
+
+
+//
+// threads
+//
+
+
+// users don't need to allocate SDL_Thread variables, so type = void
+// API returns SDL_Thread*, which is the HANDLE value itself.
+union pthread_sdl
+{
+	pthread_t p;
+	SDL_Thread* s;
+};
+
+SDL_Thread* SDL_CreateThread(int(*func)(void*), void* param)
+{
+	pthread_sdl u;
+	if(pthread_create(&u.p, 0, (void*(*)(void*))func, param) < 0)
+		return 0;
+	return u.s;
+}
+
+int SDL_KillThread(SDL_Thread* thread)
+{
+	pthread_sdl u;
+	u.s = thread;
+	pthread_cancel(u.p);
+	return 0;
+}
+
+
+
 
 
 

@@ -110,8 +110,13 @@ int pthread_create(pthread_t* thread, const void* attr, void*(*func)(void*), voi
 {
 	UNUSED(attr);
 
-	// note: don't stack-allocate param: thread_start might not be called
-	//       in the new thread before we exit this stack frame.
+	// notes:
+	// - don't stack-allocate param: thread_start might not be called
+	//   in the new thread before we exit this stack frame.
+	// - _beginthreadex has more overhead and no value added vs. CreateThread,
+	//   but the following problem is documented: when using the
+	//   statically-linked CRT, ExitThread leaks memory when CreateThread is
+	//   used instead of _beginthread(..ex also?).
 	ThreadParam* param = new ThreadParam(func, user_arg);
 	*thread = (pthread_t)_beginthreadex(0, 0, thread_start, (void*)param, 0, 0);
 	return 0;
