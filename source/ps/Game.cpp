@@ -139,6 +139,9 @@ CGame::CGame():
 
 CGame::~CGame()
 {
+	for (size_t i=0; i<m_Players.size(); ++i)
+		delete m_Players[i];
+
 	debug_out("CGame::~CGame(): Game object DESTROYED\n");
 }
 
@@ -146,6 +149,10 @@ PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 {
 	try
 	{
+		// Free old memory
+		for (size_t i=0; i<m_Players.size(); ++i)
+			delete m_Players[i];
+
 		m_NumPlayers=pAttribs->GetValue("numPlayers").ToUInt();
 		m_Players.resize(m_NumPlayers);
 		for (uint i=0;i<m_NumPlayers;i++)
