@@ -143,6 +143,9 @@
 				Name="terrain"
 				Filter="">
 				<File
+					RelativePath="..\terrain\Bound.cpp">
+				</File>
+				<File
 					RelativePath="..\terrain\Camera.cpp">
 				</File>
 				<File
@@ -155,13 +158,28 @@
 					RelativePath="..\terrain\MiniPatch.cpp">
 				</File>
 				<File
+					RelativePath="..\terrain\Model.cpp">
+				</File>
+				<File
+					RelativePath="..\terrain\ModelDef.cpp">
+				</File>
+				<File
+					RelativePath="..\terrain\ModelFile.cpp">
+				</File>
+				<File
 					RelativePath="..\terrain\Patch.cpp">
 				</File>
 				<File
 					RelativePath="..\terrain\Plane.cpp">
 				</File>
 				<File
+					RelativePath="..\terrain\Quaternion.cpp">
+				</File>
+				<File
 					RelativePath="..\terrain\Renderer.cpp">
+				</File>
+				<File
+					RelativePath="..\terrain\SHCoeffs.cpp">
 				</File>
 				<File
 					RelativePath="..\terrain\Terrain.cpp">
@@ -314,6 +332,72 @@
 			<Filter
 				Name="terrain"
 				Filter="">
+				<File
+					RelativePath="..\terrain\Bound.h">
+				</File>
+				<File
+					RelativePath="..\terrain\Camera.h">
+				</File>
+				<File
+					RelativePath="..\terrain\Color.h">
+				</File>
+				<File
+					RelativePath="..\terrain\Frustum.h">
+				</File>
+				<File
+					RelativePath="..\terrain\LightEnv.h">
+				</File>
+				<File
+					RelativePath="..\terrain\MathUtil.h">
+				</File>
+				<File
+					RelativePath="..\terrain\Matrix3D.h">
+				</File>
+				<File
+					RelativePath="..\terrain\MiniPatch.h">
+				</File>
+				<File
+					RelativePath="..\terrain\Model.h">
+				</File>
+				<File
+					RelativePath="..\terrain\ModelDef.h">
+				</File>
+				<File
+					RelativePath="..\terrain\ModelFile.h">
+				</File>
+				<File
+					RelativePath="..\terrain\Patch.h">
+				</File>
+				<File
+					RelativePath="..\terrain\Plane.h">
+				</File>
+				<File
+					RelativePath="..\terrain\Quaternion.h">
+				</File>
+				<File
+					RelativePath="..\terrain\Renderer.h">
+				</File>
+				<File
+					RelativePath="..\terrain\SHCoeffs.h">
+				</File>
+				<File
+					RelativePath="..\terrain\TerrGlobals.h">
+				</File>
+				<File
+					RelativePath="..\terrain\Terrain.h">
+				</File>
+				<File
+					RelativePath="..\terrain\Texture.h">
+				</File>
+				<File
+					RelativePath="..\terrain\Types.h">
+				</File>
+				<File
+					RelativePath="..\terrain\Vector3D.h">
+				</File>
+				<File
+					RelativePath="..\terrain\Vector4D.h">
+				</File>
 			</Filter>
 			<Filter
 				Name="lib"
