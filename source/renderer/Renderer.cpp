@@ -26,6 +26,7 @@
 #include "Texture.h"
 #include "LightEnv.h"
 #include "CLogger.h"
+#include "ps/Game.h"
 
 #include "Model.h"
 #include "ModelDef.h"
@@ -251,6 +252,9 @@ const RGBAColor& CRenderer::GetOptionColor(enum Option opt) const
 // BeginFrame: signal frame start
 void CRenderer::BeginFrame()
 {
+    if(!g_Game || !g_Game->IsGameStarted())
+        return;
+
 	// bump frame counter
 	m_FrameCounter++;
 
@@ -880,6 +884,9 @@ void CRenderer::FlushFrame()
 	// sort all the models by texture
 //	std::sort(m_Models.begin(),m_Models.end(),SortModelsByTexture());
 
+    if(!g_Game || !g_Game->IsGameStarted())
+        return;
+
 	oglCheck();
 
 	// sort all the transparent stuff
@@ -930,6 +937,9 @@ void CRenderer::FlushFrame()
 // EndFrame: signal frame end; implicitly flushes batched objects
 void CRenderer::EndFrame()
 {
+    if(!g_Game || !g_Game->IsGameStarted())
+        return;
+
 	FlushFrame();
 	g_Renderer.SetTexture(0,0);
 
