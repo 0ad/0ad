@@ -119,7 +119,7 @@ if (OS == "windows") then
 	
 	tinsert(package.buildflags, { "no-main" })
 	package.config["Testing"].buildoptions = {
-		"/Zi"
+		" /Zi"
 	}
 	
 	package.pchHeader = "precompiled.h"
