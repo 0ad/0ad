@@ -102,10 +102,10 @@ else -- Non-Windows, = Unix
 		-- OpenGL and X-Windows
 		"GL", "GLU", "X11",
 		"SDL", "png",
-		"fmod-3.70",
+		"fmod-3.73",
 		"fam",
 		-- Utilities
-		"xerces-c", "z", "rt"
+		"xerces-c", "z", "rt", "js"
 	}
 	tinsert(package.libpaths, { "/usr/X11R6/lib" } )
 	-- Defines
@@ -115,7 +115,5 @@ else -- Non-Windows, = Unix
 	tinsert(package.includepaths, { "/usr/X11R6/include/X11" } )
 	
 	-- Build Flags
-	package.buildoptions = { "`pkg-config mozilla-js --cflags`" }
-	package.linkoptions = { "`pkg-config mozilla-js --libs`" }
 	package.config["Debug"].buildoptions = { "-ggdb" }
 end
