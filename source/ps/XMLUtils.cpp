@@ -21,7 +21,7 @@
 #  ifndef NDEBUG
 #   pragma comment(lib, "xerces-c_2D-static.lib")
 #  else
-#   pragma comment(lib, "xerces-c_2-static.lib")
+#   pragma comment(lib, "xerces-c_2D-static.lib")
 #  endif	// NDEBUG
 # else		// XERCES_STATIC_LIB
 #  ifndef NDEBUG
