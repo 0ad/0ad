@@ -277,6 +277,8 @@
                                         GUIObjectHide("pregame_subwindow_bkg");
                                         GUIObjectHide("pregame_sp_mapsel");
                                         g_GameAttributes.mapFile = mapName;
+										// Set up a bunch of players so we can see them pretty colors :P
+										setupSPPlayers();
                                         startLoadingScreen();
                                 ]]></action>
                         </object>

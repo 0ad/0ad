@@ -1,8 +1,18 @@
+// HACK: This replaces the old numPlayers hack to set up a bunch of sample
+// players in SP games to show off some player colours and fights
+function setupSPPlayers()
+{
+	// The first player is by default allocated to the local player in SP, so
+	// adding 7 players means that we'll have 8 players in total
+	for (i=0;i<7;i++)
+	{
+		g_GameAttributes.slots[i+1].assignLocal();
+		console.write("Slot "+(i+1)+" is assigned: "+g_GameAttributes.slots[i+1].assignment);
+	}
+}
+
 function startLoadingScreen()
 {
-// HACK: Added to increase number of players from its default 2, until we have a session creation screen.
-//        g_GameAttributes.numPlayers = 9;
-
         // Switch screens from main menu to loading screen.
         GUIObjectHide("PREGAME_GUI");
         GUIObjectUnhide("loading_screen");
