@@ -1,5 +1,5 @@
 /*
-$Id: unifont.cpp,v 1.16 2004/09/06 02:24:05 gee Exp $
+$Id: unifont.cpp,v 1.17 2004/09/06 03:21:56 gee Exp $
 
 Unicode OpenGL texture font
   
@@ -248,36 +248,6 @@ void glwprintf(const wchar_t* fmt, ...)
 	glCallLists((GLsizei)len, sizeof(wchar_t)==4 ? GL_INT : GL_UNSIGNED_SHORT, buf);
 }
 
-#if 0 // Replaced by the unicode version, this can be removed /Gee
-int unifont_stringsize(const Handle h, const char* text, int& width, int& height)
-{
-	H_DEREF(h, UniFont, f);
-
-	width = 0;
-	height = f->Height;
-
-	size_t len = strlen(text);
-
-	for (size_t i = 0; i < len; ++i)
-	{
-		glyphmap_size::iterator it = f->glyphs_size->find((wchar_t)text[i]);
-
-		if (it == f->glyphs_size->end())
-			it = f->glyphs_size->find(0xFFFD); // Use the missing glyph symbol
-
-		if (it == f->glyphs_size->end()) // Missing the missing glyph symbol - give up
-		{
-			debug_warn("Missing the missing glyph in a unifont!\n");
-			return 0;
-		}
-
-		width += it->second; // Add the character's advance distance
-	}
-
-	return 0;
-}
-#endif
-
 int unifont_stringsize(const Handle h, const wchar_t* text, int& width, int& height)
 {
 	H_DEREF(h, UniFont, f);
@@ -303,8 +273,5 @@ int unifont_stringsize(const Handle h, const wchar_t* text, int& width, int& hei
 		width += it->second; // Add the character's advance distance
 	}
 
-	LOG_ONCE(ERROR, LOG_CATEGORY, "%d %d", width, height);
-
 	return 0;
 }
-// -- GL
