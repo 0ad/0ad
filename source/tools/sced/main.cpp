@@ -1,3 +1,5 @@
+// TODO: Combine this with the main game's main.cpp
+
 #include "precompiled.h"
 #include "ui/StdAfx.h"
 #undef ERROR

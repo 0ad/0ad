@@ -929,7 +929,7 @@ static int SndData_reload(SndData* sd, const char* fn, Handle hsd)
 		if(ogg_supported == -1)
 			ogg_supported = alIsExtensionPresent((ALubyte*)"AL_EXT_vorbis")? 1 : 0;
 		if(!ogg_supported)
-			return ERR_NO_SYS
+			return ERR_NO_SYS;
 
 		sd->al_fmt  = AL_FORMAT_VORBIS_EXT;
 		sd->al_freq = 0;

@@ -38,8 +38,8 @@ static CStr MakeRelativeFileName(const char* fname)
 	} else {
 		result=ptr+strlen("mods\\official\\");
 	}
-	int len=result.Length();
-	for (int i=0;i<len;i++) {
+	size_t len=result.Length();
+	for (size_t i=0;i<len;i++) {
 		if (result[i]=='\\') result[i]='/';
 	}
 	return result;
@@ -109,12 +109,13 @@ void CUnitPropertiesDlgBar::OnButtonBack()
 	// save current object (if we've got one) before going back
 	if (m_Object) {
 
-		CStr filename("data/mods/official/art/actors/");
+		CStr filename("art/actors/");
 		filename+=g_ObjMan.m_ObjectTypes[m_Object->m_Type].m_Name;
 		filename+="/";
 		filename+=m_Object->m_Name;
 		filename+=".xml";
-		m_Object->Save((const char*) filename);
+		if (! m_Object->Save((const char*) filename))
+			::MessageBox(0,"Error saving actor file","Error",MB_OK|MB_TASKMODAL);
 
 		// and rebuild the model
 		UpdateEditorData();

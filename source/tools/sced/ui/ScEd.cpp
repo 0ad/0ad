@@ -121,7 +121,7 @@ BOOL CScEdApp::InitInstance_()
 	((CMainFrame*)m_pMainWnd)->SetTitle();
 
 	// The one and only window has been initialized, so show and update it.
-	m_pMainWnd->ShowWindow(SW_SHOWMAXIMIZED);
+	m_pMainWnd->SetWindowPos(&m_pMainWnd->wndTop, 0, 0, 800, 600, SWP_SHOWWINDOW);
 	m_pMainWnd->UpdateWindow();
 
 	return TRUE;
