@@ -250,6 +250,8 @@ int win_get_gfx_info()
 #define MMNOMMIO        // Multimedia file I/O support
 #define MMNOMMSYSTEM    // General MMSYSTEM functions
 #include <MMSystem.h>
+
+#define DIRECTSOUND_VERSION 0x0500
 #include <dsound.h>
 
 
@@ -297,28 +299,30 @@ static void add_drv(const char* module)
 
 int win_get_snd_info()
 {
-	DirectSoundEnumerate((LPDSENUMCALLBACK)ds_enum, (void*)0);
+	if(DirectSoundEnumerate((LPDSENUMCALLBACK)ds_enum, (void*)0) != DS_OK)
+		debug_warn("DirectSoundEnumerate failed");
 
 	// find all DLLs related to OpenAL and retrieve their versions.
 	// (search system dir for *oal.dll and *OpenAL*,
 	// which is also how the router finds implementations).
 	add_drv(ds_drv_name);
 	DIR* dir = opendir(win_sys_dir);
-	if(dir)
+	if(!dir)
 	{
-		while(dirent* ent = readdir(dir))
-		{
-			const char* fn = ent->d_name;
-			const size_t len = strlen(fn);
-
-			const bool oal = len > 7 && !stricmp(fn+len-7, "oal.dll");
-			const bool openal = strstr(fn, "OpenAL") != 0;
-			if(oal || openal)
-				add_drv(fn);
-		}
-
-		closedir(dir);
+		assert(0);
+		return -1;
 	}
+	while(dirent* ent = readdir(dir))
+	{
+		const char* fn = ent->d_name;
+		const size_t len = strlen(fn);
+
+		const bool oal = len > 7 && !stricmp(fn+len-7, "oal.dll");
+		const bool openal = strstr(fn, "OpenAL") != 0;
+		if(oal || openal)
+			add_drv(fn);
+	}
+	closedir(dir);
 
 	return 0;
 }
