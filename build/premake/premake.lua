@@ -1,4 +1,4 @@
-dofile("functions.lua")
+dofile("../functions.lua")
 
 -- Set up the Project
 project.name = "pyrogenesis"
@@ -19,58 +19,70 @@ package.config["Debug"].target = "ps_dbg"
 package.config["Release"].target = "ps"
 package.config["Testing"].target = "ps_test"
 
+sourceroot = "../../../source/"
+librariesroot = "../../../libraries/"
+
 -- Files
 package.files = {
-	sourcesfromdirs(
+	sourcesfromdirs(sourceroot,
+				
+		"ps",
+		"ps/scripting",
+		"ps/Network",
 
-		"../../ps",
-		"../../ps/scripting",
-		"../../ps/Network",
+		"simulation",
+		"simulation/scripting",
 
-		"../../simulation",
-		"../../simulation/scripting",
+		"lib",
+		"lib/sysdep",
+		"lib/res",
 
-		"../../lib",
-		"../../lib/sysdep",
-		"../../lib/res",
+		"graphics",
+		"graphics/scripting",
 
-		"../../graphics",
-		"../../graphics/scripting",
+		"maths",
+		"maths/scripting",
 
-		"../../maths",
-		"../../maths/scripting",
+		"renderer",
 
-		"../../renderer",
+		"gui",
+		"gui/scripting",
 
-		"../../gui",
-		"../../gui/scripting",
+		"terrain",
 
-		"../../terrain",
+		"sound",
 
-		"../../sound",
+		"scripting",
 
-		"../../scripting",
+		"i18n",
 
-		"../../i18n",
-
-		"../../tests"
+		"tests"
 	),
 
-	"../../main.cpp"
+	sourceroot.."main.cpp"
 }
 
-package.includepaths = {
-	"../../ps",
-	"../../simulation",
-	"../../lib",
-	"../../graphics",
-	"../../maths",
-	"../../renderer",
-	"../../terrain",
-	"../.."
+
+include_dirs = {
+	"ps",
+	"simulation",
+	"lib",
+	"graphics",
+	"maths",
+	"renderer",
+	"terrain",
+	""
 }
+
+package.includepaths = {}
+
+foreach(include_dirs, function (i,v)
+	tinsert(package.includepaths, sourceroot .. v)
+end)
+
 
 package.libpaths = {}
+
 
 package.buildflags = { "no-rtti" }
 
@@ -96,16 +108,16 @@ if (OS == "windows") then
 		"vorbis"
 	}
 
-	-- Add '../../../libraries/<libraryname>/lib' and '/include' to the includepaths and libpaths
+	-- Add '<libraries root>/<libraryname>/lib' and '/include' to the includepaths and libpaths
 	foreach(external_libraries, function (i,v)
-		tinsert(package.includepaths,	"../../../libraries/" .. v .. "/include")
-		tinsert(package.libpaths,		"../../../libraries/" .. v .. "/lib")
+		tinsert(package.includepaths,	librariesroot..v.."/include")
+		tinsert(package.libpaths,		librariesroot..v.."/lib")
 	end)
 
 	-- Libraries
 	package.links = { "opengl32" }
-	tinsert(package.files, sourcesfromdirs("../../lib/sysdep/win"))
-	tinsert(package.files, {"../../lib/sysdep/win/assert_dlg.rc"})
+	tinsert(package.files, sourcesfromdirs(sourceroot, "lib/sysdep/win"))
+	tinsert(package.files, {sourceroot.."lib/sysdep/win/assert_dlg.rc"})
 
 	package.linkoptions = { "/ENTRY:entry",
 		"/DELAYLOAD:opengl32.dll",
@@ -143,7 +155,7 @@ if (OS == "windows") then
 
 else -- Non-Windows, = Unix
 
-	tinsert(package.files, sourcesfromdirs("../../lib/sysdep/unix"))
+	tinsert(package.files, sourcesfromdirs(sourceroot.."lib/sysdep/unix"))
 
 	-- Libraries
 	package.links = {
