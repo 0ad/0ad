@@ -648,6 +648,7 @@ void CSocketBase::RunWaitLoop()
 						(res == 0 && nRead == 0))
 					{
 						printf("RunWaitLoop:ioctl: Connection broken [%d:%s]\n", errno, strerror(errno));
+						pSock->SetOpMask(0);
 						pSock->m_State=SS_UNCONNECTED;
 						if (errno)
 							pSock->m_Error=GetPS_RESULT(errno);
