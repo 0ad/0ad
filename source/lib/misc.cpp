@@ -211,6 +211,22 @@ long round(double x)
 	return (long)(x + 0.5);
 }
 
+
+// input in [0, 1); convert to u8 range
+u8 fp_to_u8(double in)
+{
+	if(!(0 <= in && in < 1.0))
+	{
+		debug_warn("clampf not in [0,1)");
+		return 255;
+	}
+
+	int l = round(in * 255.0);
+	assert((unsigned int)l <= 255);
+	return (u8)l;
+}
+
+
 // input in [0, 1); convert to u16 range
 u16 fp_to_u16(double in)
 {

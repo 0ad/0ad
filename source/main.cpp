@@ -94,7 +94,7 @@ static int write_sys_info()
 	fprintf(f, "%lu MB RAM; %lu MB free\n", tot_mem/MB, avl_mem/MB);
 	// .. graphics card
 	fprintf(f, "%s\n", gfx_card);
-	fprintf(f, "%s\n", gfx_drv);
+	fprintf(f, "%s\n", gfx_drv_ver);
 	// .. network name / ips
 	char hostname[100];	// possibly nodename != hostname
 	gethostname(hostname, sizeof(hostname));
@@ -480,7 +480,7 @@ if(argc < 2)
 #endif
 
 
-	font = font_load("verdana.fnt");
+	font = font_load("fonts/verdana.fnt");
 
 	// set renderer options from command line options - NOVBO must be set before opening the renderer
 	g_Renderer.SetOption(CRenderer::OPT_NOVBO,g_NoGLVBO);

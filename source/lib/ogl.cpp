@@ -1,5 +1,6 @@
 #include "precompiled.h"
 
+#include "lib.h"
 #include "sdl.h"
 #include "ogl.h"
 #include "detect.h"
@@ -77,10 +78,46 @@ bool tex_compression_avail;		// S3TC / DXT{1,3,5}
 int video_mem;					// [MB]; approximate
 
 
+// gfx_card and gfx_drv_ver are unchanged on failure.
+int ogl_get_gfx_info()
+{
+	const char* vendor   = (const char*)glGetString(GL_VENDOR);
+	const char* renderer = (const char*)glGetString(GL_RENDERER);
+	const char* version  = (const char*)glGetString(GL_VERSION);
+
+	// can fail if OpenGL not yet initialized,
+	// or if called between glBegin and glEnd.
+	if(!vendor || !renderer || !version)
+		return -1;
+
+	strncpy(gfx_card, vendor, sizeof(gfx_card)-1);
+
+	// reduce string to "ATI" or "NVIDIA"
+	if(!strcmp(gfx_card, "ATI Technologies Inc."))
+		gfx_card[3] = 0;
+	if(!strcmp(gfx_card, "NVIDIA Corporation"))
+		gfx_card[6] = 0;
+
+	strcat(gfx_card, renderer);
+		// don't bother cutting off the crap at the end.
+		// too risky, and too many different strings.
+
+	snprintf(gfx_drv_ver, sizeof(gfx_drv_ver), "OpenGL %s", version);
+		// add "OpenGL" to differentiate this from the real driver version
+		// (returned by platform-specific detect routines).
+
+	return 0;
+}
+
+
 // call after each video mode change
 void oglInit()
 {
 	exts = (const char*)glGetString(GL_EXTENSIONS);
+	if(!exts)
+	{
+		debug_warn("oglInit called before OpenGL is ready for use");
+	}
 
 	// import functions
 #define FUNC(ret, name, params) *(void**)&name = SDL_GL_GetProcAddress(#name);
@@ -100,23 +137,4 @@ void oglInit()
 
 	video_mem = (SDL_GetVideoInfo()->video_mem) / 1048576;	// [MB]
 	// TODO: add sizeof(FB)?
-
-	// get graphics card name
-	// .. don't overwrite if e.g. get_gfx_card already called
-	if(!strcmp(gfx_card, "Unknown"))
-	{
-		char* v = (char*)glGetString(GL_VENDOR);
-		if(v)
-			strncpy(gfx_card, v, sizeof(gfx_card));
-
-		// reduce string to "ATI" or "NVIDIA"
-		if(!strcmp(gfx_card, "ATI Technologies Inc."))
-			gfx_card[3] = 0;
-		if(!strcmp(gfx_card, "NVIDIA Corporation"))
-			gfx_card[6] = 0;
-
-		char* r = (char*)glGetString(GL_RENDERER);
-		if(r)
-			strcat(gfx_card, r);
-	}
 }

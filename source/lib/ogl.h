@@ -92,8 +92,17 @@ extern bool oglExtAvail(const char* ext);
 // print all OpenGL errors
 extern void oglPrintErrors();
 
-// call before using any of the above, and after each mode change
+// call before using any of the above, and after each mode change.
+//
+// fails if OpenGL not ready for use.
 extern void oglInit();
+
+// set detect.cpp gfx_card[] and gfx_drv_ver[].
+// (called by detect.cpp get_gfx_info()).
+// 
+// fails if OpenGL not ready for use.
+// gfx_card and gfx_drv_ver are unchanged on failure.
+extern int ogl_get_gfx_info();
 
 
 #ifdef __cplusplus

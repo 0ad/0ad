@@ -29,8 +29,6 @@
 // powrprof is loaded manually - we only need 1 function.
 #endif
 
-#include "Tlhelp32.h"
-
 
 // EnumDisplayDevices is not available on Win95 or NT.
 // try to import it manually here; return -1 if not available.
@@ -83,8 +81,11 @@ int get_monitor_size(int& width_mm, int& height_mm)
 }
 
 
-int win_get_gfx_card()
+static int win_get_gfx_card()
 {
+	if(gfx_card[0] != '\0')
+		return -1;
+
 	// make sure EnumDisplayDevices is available (as pEnumDisplayDevicesA)
 	if(import_EnumDisplayDevices() < 0)
 		return -1;
@@ -98,13 +99,15 @@ int win_get_gfx_card()
 }
 
 
-/*
-get ogl client DLL name
-	enum loaded dlls
-		ogl must be running; ambiguous (need to eliminate MCD and opengl32.dll)
-	*/
-// no .dll appended
+// get the name of the OpenGL driver DLL (used to determine driver version).
 //
+// the current implementation doens't
+// doesn't require OpenGL to be initialized, but 
+//
+// an alternative would be to enumerate all DLLs loaded into the process,
+// and check for a glBegin export. this requires OpenGL to be initialized,
+// though - the DLLs aren't loaded at startup. it'd also be a bit of work
+// to sort out MCD, ICD, and opengl32.dll.
 static int get_ogl_drv_name(char* const ogl_drv_name, const size_t max_name_len)
 {
 	int ret = -1;
@@ -121,9 +124,16 @@ static int get_ogl_drv_name(char* const ogl_drv_name, const size_t max_name_len)
 		HKEY hkClass;
 		if(RegOpenKeyEx(hkOglDrivers, key_name, 0, KEY_QUERY_VALUE, &hkClass) == 0)
 		{
-			DWORD size = (DWORD)max_name_len;
+			DWORD size = (DWORD)max_name_len-5;	// -5 for ".dll"
 			if(RegQueryValueEx(hkClass, "Dll", 0, 0, (LPBYTE)ogl_drv_name, &size) == 0)
+			{
+				// add .dll to filename, if necessary
+				char* ext = strrchr(ogl_drv_name, '.');
+				if(!ext || stricmp(ext, ".dll") != 0)
+					strcat(ogl_drv_name, ".dll");
+
 				ret = 0;	// success
+			}
 
 			RegCloseKey(hkClass);
 		}
@@ -137,11 +147,14 @@ static int get_ogl_drv_name(char* const ogl_drv_name, const size_t max_name_len)
 
 // split out so we can return on failure, instead of goto
 // method: http://www.opengl.org/discussion_boards/ubb/Forum3/HTML/009679.html
-int win_get_gfx_drv()
+int win_get_gfx_drv_ver()
 {
+	if(gfx_drv_ver[0] != '\0')
+		return -1;
 
-/* want ogl icd, instead of 2d driver */
-
+	// note: getting the 2d driver name can be done with EnumDisplaySettings,
+	// but we want the actual OpenGL driver. see discussion linked above;
+	// the summary is, 2d driver version may differ from the OpenGL driver.
 	char ogl_drv_name[MAX_PATH];
 	CHECK_ERR(get_ogl_drv_name(ogl_drv_name, sizeof(ogl_drv_name)));
 
@@ -171,7 +184,7 @@ int win_get_gfx_drv()
 			uint ver_len;
 			if(VerQueryValue(buf, subblock, (void**)&ver, &ver_len))
 			{
-				strncpy(gfx_drv, ver, sizeof(gfx_drv)-1);
+				strncpy(gfx_drv_ver, ver, sizeof(gfx_drv_ver)-1);
 				ret = 0;	// success
 			}
 		}
@@ -179,6 +192,13 @@ int win_get_gfx_drv()
 	free(buf);
 
 	return ret;
+}
+
+int win_get_gfx_info()
+{
+	win_get_gfx_card();
+	win_get_gfx_drv_ver();
+	return 0;
 }
 
 

@@ -25,14 +25,17 @@
 #include "lib.h"
 #include "detect.h"
 #include "timer.h"
+
 #ifdef _M_IX86
-# include "sysdep/ia32.h"
+extern void ia32_get_cpu_info();
 #endif
 
-
-extern int win_get_gfx_card();
-extern int win_get_gfx_drv();
+#ifdef _WIN32
+extern int win_get_gfx_info();
 extern int win_get_cpu_info();
+#endif
+
+extern "C" int ogl_get_gfx_info();
 
 //
 // memory
@@ -72,18 +75,30 @@ void get_mem_status()
 // graphics card
 //
 
-char gfx_card[64] = "unknown";
-char gfx_drv[128] = "unknown";
+char gfx_card[64] = "";
+char gfx_drv_ver[64] = "";
 
 
 // attempt to detect graphics card without OpenGL (in case ogl init fails,
 // or we want more detailed info). gfx_card[] is unchanged on failure.
 void get_gfx_info()
 {
+	int ret = -1;
+
+	// try platform-specific versions first: they return more
+	// detailed information, and don't require OpenGL to be ready.
+
 #ifdef _WIN32
-	win_get_gfx_card();
-	win_get_gfx_drv();
+	ret = win_get_gfx_info();
 #endif
+
+	// success; done.
+	if(ret == 0)
+		return;
+
+	// the OpenGL version should always work, unless OpenGL isn't ready for use,
+	// or we were called between glBegin and glEnd.
+	ogl_get_gfx_info();
 }
 
 
@@ -91,7 +106,7 @@ void get_gfx_info()
 // CPU
 //
 
-char cpu_type[64] = "unknown";	// processor brand string is 48 chars
+char cpu_type[64] = "";	// processor brand string is 48 chars
 double cpu_freq = 0.f;
 
 // -1 if detect not yet called, or cannot be determined

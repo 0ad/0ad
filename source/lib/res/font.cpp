@@ -144,14 +144,28 @@ static int Font_reload(Font* f, const char* fn)
 	int pos;	// current position in the file
 	const char* p = (const char*)file;
 
+	// font texture filename: need to prepend the path to the font definition
+	// file, because the texture is opened separately and the two are usually
+	// not in a root dir.
+	char tex_path[PATH_MAX];
+	strncpy(tex_path, fn, sizeof(tex_path));
+	char* slash = strrchr(tex_path, '/');
+	char* tex_filename;
+	// .. they are in a mount point, no path
+	if(!slash)
+		tex_filename = tex_path;
+	// .. overwrite font definition filename
+	else
+		tex_filename = slash+1;
+
 	// read header
-	char tex_filename[PATH_MAX];
 	int x_stride, y_stride;	// glyph spacing in texture
 	if(sscanf(p, "%s\n%d %d\n%n", tex_filename, &x_stride, &y_stride, &pos) != 3)
 	{
 		debug_out("Font_reload: \"%s\": header is invalid", fn);
 		return -1;
 	}
+
 
 	// read glyph widths
 	int adv[128];
@@ -168,7 +182,7 @@ static int Font_reload(Font* f, const char* fn)
 	mem_free(file);
 
 	// load glyph texture
-	const Handle ht = tex_load(tex_filename);
+	const Handle ht = tex_load(tex_path);
 	if(ht <= 0)
 		return (int)ht;
 	tex_upload(ht);
