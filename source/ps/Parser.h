@@ -18,7 +18,7 @@ will exist, and it's up to the system to figure out which one acquired.
 
 --More Info--
 
-	TODO: Write URL of documentation
+	http://forums.wildfiregames.com/0ad/index.php?showtopic=134
 
 */
 

@@ -1,6 +1,6 @@
 // last modified Thursday, May 08, 2003
 
-#include "parser.h"
+#include "Parser.h"
 
 #pragma warning(disable:4786)
 using namespace std;
@@ -8,10 +8,6 @@ using namespace std;
 //-------------------------------------------------
 // Macros
 //-------------------------------------------------
-
-#if 1
-# define for if(false); else for
-#endif // MSVC
 
 #define REGULAR_MAX_LENGTH			10
 #define START_DYNAMIC				'<'
@@ -1010,6 +1006,3 @@ _bool CParser::InputTaskType(const string& strName, const string& strSyntax)
 
 	return !Error;
 }
-
-/* End of PARSER.CPP
-******************************************************************************/
