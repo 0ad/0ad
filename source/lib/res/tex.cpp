@@ -147,7 +147,7 @@ static int dds_load(const char* fn, const u8* p, size_t size, Tex* t)
 	else
 	{
 		const u32 sd_size   = read_le32(&surf->dwSize);
-		const u32 sd_flags  = read_le32(&surf->dwSize);
+		const u32 sd_flags  = read_le32(&surf->dwFlags);
 		const u32 h         = read_le32(&surf->dwHeight);
 		const u32 w         = read_le32(&surf->dwWidth);
 		const u32 img_size  = read_le32(&surf->dwLinearSize);
@@ -218,7 +218,7 @@ static int dds_load(const char* fn, const u8* p, size_t size, Tex* t)
 
 	if(err)
 	{
-		printf("dds_load: %s: %s\n", fn, err);
+		debug_out("dds_load: %s: %s\n", fn, err);
 		return -1;
 	}
 
@@ -289,7 +289,7 @@ static int tga_load(const char* fn, const u8* ptr, size_t size, Tex* t)
 
 		if(fmt == ~0)
 			err = "invalid format or bpp";
-		if(desc & 0x18)
+		if(desc & 0x30)
 			err = "image is not bottom-up and left-to-right";
 		if(size < hdr_size + img_size)
 			err = "size < image size";
@@ -303,7 +303,7 @@ static int tga_load(const char* fn, const u8* ptr, size_t size, Tex* t)
 
 	if(err)
 	{
-		printf("tga_load: %s: %s\n", fn, err);
+		debug_out("tga_load: %s: %s\n", fn, err);
 		return -1;
 	}
 
@@ -395,7 +395,7 @@ static int bmp_load(const char* fn, const u8* ptr, size_t size, Tex* t)
 
 	if(err)
 	{
-		printf("bmp_load: %s: %s\n", fn, err);
+		debug_out("bmp_load: %s: %s\n", fn, err);
 		return -1;
 	}
 
@@ -448,7 +448,7 @@ static int raw_load(const char* fn, const u8* ptr, size_t size, Tex* t)
 		return 0;
 	}
 
-	printf("raw_load: %s: %s\n", fn, "no matching format found");
+	debug_out("raw_load: %s: %s\n", fn, "no matching format found");
 	return -1;
 }
 
@@ -508,7 +508,7 @@ static int png_load(const char* fn, const u8* ptr, size_t size, Tex* t)
 	if(setjmp(png_jmpbuf(png_ptr)))
 	{
 fail:
-		printf("png_load: %s: %s\n", fn, err? err : "");
+		debug_out("png_load: %s: %s\n", fn, err? err : "");
 		png_destroy_read_struct(&png_ptr, &info_ptr, 0);
 		return -1;
 	}
@@ -618,7 +618,7 @@ static int jp2_load(const char* fn, const u8* ptr, size_t size, Tex* t)
 		err = "channel precision != 8";
 
 fail:
-		printf("jp2_load: %s: %s\n", fn, err);
+		debug_out("jp2_load: %s: %s\n", fn, err);
 // TODO: destroy image
 		return -1;
 	}
@@ -760,11 +760,17 @@ int tex_bind(const Handle h)
 		glBindTexture(GL_TEXTURE_2D, 0);
 		return ERR_INVALID_HANDLE;
 	}
-	else
+
+#ifndef NDEBUG
+	if(!glIsTexture(t->id))
 	{
-		glBindTexture(GL_TEXTURE_2D, t->id);
-		return 0;
+		assert(0 && "tex_bind: Tex.id is not a valid texture");
+		return -1;
 	}
+#endif
+
+	glBindTexture(GL_TEXTURE_2D, t->id);
+	return 0;
 }
 
 
@@ -775,34 +781,75 @@ int tex_upload(const Handle ht, int filter, int int_fmt)
 {
 	H_DEREF(ht, Tex, t);
 
+	// data we will take from Tex
+	GLsizei w;
+	GLsizei h;
+	GLenum fmt;
+	void* tex_data;
+	u32 bpp;	// not used directly in gl calls
+
+	const char* err = 0;
+
+	// pointer to texture data
+	size_t tex_file_size;
+	void* tex_file = mem_get_ptr(t->hm, &tex_file_size);
+	if(!tex_file)
+		err = "texture file not loaded";
+	// possible causes: texture file header is invalid,
+	// or file wasn't loaded completely.
+	if(t->ofs > tex_file_size)
+		err = "offset to texture data exceeds file size";
+	tex_data = (char*)tex_file + t->ofs;
+
+	// width, height
+	w = (GLsizei)t->w;
+	h = (GLsizei)t->h;
+	// if w or h is 0, texture file probably not loaded successfully.
+	if(w == 0 || h == 0)
+		err = "width or height is 0 - texture probably not loaded successfully";
 	// greater than max supported tex dimension?
 	// no-op if oglInit not yet called
-	if(t->w > (uint)max_tex_size || t->h > (uint)max_tex_size)
-	{
-		assert(!"tex_upload: image dimensions exceed OpenGL implementation limit");
-		return 0;
-	}
-
+	if(w > (GLsizei)max_tex_size || h > (GLsizei)max_tex_size)
+		err = "texture dimensions exceed OpenGL implementation limit";
 	// both NV_texture_rectangle and subtexture require work for the client
 	// (changing tex coords) => we'll just disallow non-power of 2 textures.
 	// TODO: ARB_texture_non_power_of_two
-	if(!is_pow2(t->w) || !is_pow2(t->h))
+	if(!is_pow2(w) || !is_pow2(h))
+		err = "width or height is not a power-of-2";
+
+	// texel format
+	fmt = (GLenum)t->fmt;
+	if(!fmt)
+		err = "texel format is 0";
+	// can't really check against a list of valid formats - loaders
+	// may define their own. not necessary anyway - if non-0, assume
+	// loader knows what it's doing, and that the format is valid.
+
+	// bits per pixel
+	bpp = t->bpp;
+	// half-hearted sanity check: must be divisible by 4.
+	// don't bother checking all values.
+	if(bpp % 4 || bpp > 32)
+		err = "invalid bpp? should be one of {4,8,16,24,32}";
+
+	if(err)
 	{
-		assert(!"tex_upload: image is not power-of-2");
-		return 0;
+		const char* fn = h_filename(ht);
+		if(!fn)
+		{
+			fn = "(could not determine filename)";
+			assert(0);
+		}
+		debug_out("tex_upload: %s: %s\n", fn, err);
+		assert(0 && "tex_upload failed");
+		return -1;
 	}
 
-	tex_bind(ht);
-
-	// get pointer to image data
-	size_t size;
-	void* p = mem_get_ptr(t->hm, &size);
-	if(!p)
-	{
-		assert(0 && "tex_upload: mem object is a NULL pointer");
-		return 0;
-	}
-	const u8* img = (const u8*)p + t->ofs;
+	int ret = tex_bind(ht);
+	// we know ht is valid (H_DEREF above), but tex_bind can
+	// fail in debug builds if Tex.id isn't a valid texture name
+	if(ret < 0)
+		return ret;
 
 	// set filter
 	if(!filter)
@@ -814,34 +861,71 @@ int tex_upload(const Handle ht, int filter, int int_fmt)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, mag);
 
 
-	const bool has_alpha = t->fmt == GL_RGBA || t->fmt == GL_BGRA || t->fmt == GL_LUMINANCE_ALPHA || t->fmt == GL_ALPHA;
+	const bool has_alpha = fmt == GL_RGBA || fmt == GL_BGRA || fmt == GL_LUMINANCE_ALPHA || fmt == GL_ALPHA;
 
 	// S3TC compressed
-	if(t->fmt >= GL_COMPRESSED_RGB_S3TC_DXT1_EXT &&
-	   t->fmt <= GL_COMPRESSED_RGBA_S3TC_DXT5_EXT)
+	if(fmt >= GL_COMPRESSED_RGB_S3TC_DXT1_EXT &&
+	   fmt <= GL_COMPRESSED_RGBA_S3TC_DXT5_EXT)
 	{
-		const int img_size = t->w * t->h * t->bpp / 8;
-		assert(4+sizeof(DDSURFACEDESC2)+img_size == size && "tex_upload: dds file size mismatch");
-		glCompressedTexImage2DARB(GL_TEXTURE_2D, 0, t->fmt, t->w, t->h, 0, img_size, img);
+		const int tex_size = w * h * bpp / 8;
+		assert(4+sizeof(DDSURFACEDESC2)+tex_size == tex_file_size && "tex_upload: dds file size mismatch");
+		glCompressedTexImage2DARB(GL_TEXTURE_2D, 0, fmt, w, h, 0, tex_size, tex_data);
 	}
 	// normal
 	else
 	{
-		// calc internal fmt from format and global bpp, if not passed as a param
+		// internal fmt not explicitly requested. choose one based
+		// on texture format and the global quality setting tex_bpp.
+		// we could just let the driver choose, but it's good to allow
+		// the user to control the actual texture size (for tweaking).
 		if(!int_fmt)
 		{
-			if(t->bpp == 32)
-				int_fmt = (tex_bpp == 32)? GL_RGBA8 : GL_RGBA4;
-			else if(t->bpp == 24)
-				int_fmt = (tex_bpp == 32)? GL_RGB8 : GL_RGB5;
-			else if(t->bpp == 16)
-				int_fmt = (tex_bpp == 32)? GL_LUMINANCE8_ALPHA8 : GL_LUMINANCE4_ALPHA4;
-			else if(t->fmt == GL_ALPHA)
-				int_fmt = (tex_bpp == 32)? GL_ALPHA8 : GL_ALPHA4;
-			else if(t->fmt == GL_LUMINANCE)
-				int_fmt = (tex_bpp == 32)? GL_LUMINANCE8 : GL_LUMINANCE4;
+			// high quality, 32 bit textures (8 bits per component)
+			if(tex_bpp == 32)
+			{
+				switch(fmt)
+				{
+				case GL_RGBA:
+					int_fmt = GL_RGBA8;
+					break;
+				case GL_RGB:
+					int_fmt = GL_RGB8;
+					break;
+				case GL_LUMINANCE_ALPHA:
+					int_fmt = GL_LUMINANCE8_ALPHA8;
+					break;
+				case GL_ALPHA:
+					int_fmt = GL_ALPHA8;
+					break;
+				case GL_LUMINANCE:
+					int_fmt = GL_LUMINANCE8;
+					break;
+				}
+			}
+			// low quality, 16 bit textures (4 bits per component)
 			else
-				return -1;
+			{
+				switch(fmt)
+				{
+				case GL_RGBA:
+					int_fmt = GL_RGBA4;
+					break;
+				case GL_RGB:
+					int_fmt = GL_RGB4;
+					break;
+				case GL_LUMINANCE_ALPHA:
+					int_fmt = GL_LUMINANCE4_ALPHA4;
+					break;
+				case GL_ALPHA:
+					int_fmt = GL_ALPHA4;
+					break;
+				case GL_LUMINANCE:
+					int_fmt = GL_LUMINANCE4;
+					break;
+				}
+			}
+
+			// failed to choose an internal format
 		}
 
 		// check if SGIS_generate_mipmap is available (once)
@@ -851,14 +935,14 @@ int tex_upload(const Handle ht, int filter, int int_fmt)
 
 		// manual mipmap gen via GLU (box filter)
 		if(mipmap && !sgm_avl)
-			gluBuild2DMipmaps(GL_TEXTURE_2D, int_fmt, t->w, t->h, t->fmt, GL_UNSIGNED_BYTE, img);
+			gluBuild2DMipmaps(GL_TEXTURE_2D, int_fmt, t->w, t->h, t->fmt, GL_UNSIGNED_BYTE, tex_data);
 		// auto mipmap gen, or no mipmap
 		else
 		{
 			if(mipmap)
 				glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP_SGIS, GL_TRUE);
 
-			glTexImage2D(GL_TEXTURE_2D, 0, int_fmt, t->w, t->h, 0, t->fmt, GL_UNSIGNED_BYTE, img);
+			glTexImage2D(GL_TEXTURE_2D, 0, int_fmt, t->w, t->h, 0, t->fmt, GL_UNSIGNED_BYTE, tex_data);
 		}
 	}
 
