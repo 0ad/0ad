@@ -24,8 +24,8 @@
 #ifndef CCONSOLE_H
 #define CCONSOLE_H
 
-#define BUFFER_SIZE 256 // for text being typed into the console
-#define MESSAGE_SIZE 1024 // for messages being printed into the console
+#define CONSOLE_BUFFER_SIZE 256 // for text being typed into the console
+#define CONSOLE_MESSAGE_SIZE 1024 // for messages being printed into the console
 
 typedef void(*fptr)(void);
 
@@ -67,7 +67,7 @@ private:
 
 	bool IsEOB(void) {return (m_iBufferPos == m_iBufferLength);}; //Is end of Buffer?
 	bool IsBOB(void) {return (m_iBufferPos == 0);}; //Is beginning of Buffer?
-	bool IsFull(void) {return (m_iBufferLength == BUFFER_SIZE);};
+	bool IsFull(void) {return (m_iBufferLength == CONSOLE_BUFFER_SIZE);};
 	bool IsEmpty(void) {return (m_iBufferLength == 0);};
 
 	void InsertBuffer(void){InsertMessage(L"%ls", m_szBuffer);};

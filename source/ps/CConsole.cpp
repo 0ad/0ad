@@ -19,7 +19,7 @@ CConsole::CConsole()
 
 	m_fVisibleFrac = 0.0f;
 
-	m_szBuffer = new wchar_t[BUFFER_SIZE];
+	m_szBuffer = new wchar_t[CONSOLE_BUFFER_SIZE];
 	FlushBuffer();
 
 	m_iMsgHistPos = 1;
@@ -63,7 +63,7 @@ void CConsole::SetVisible( bool visible )
 void CConsole::FlushBuffer(void)
 {
 	/* Clear the buffer and set the cursor and length to 0 */
-	memset(m_szBuffer, '\0', sizeof(wchar_t) * BUFFER_SIZE);
+	memset(m_szBuffer, '\0', sizeof(wchar_t) * CONSOLE_BUFFER_SIZE);
 	m_iBufferPos = m_iBufferLength = 0;
 }
 
@@ -113,15 +113,14 @@ void CConsole::RegisterFunc(fptr F, const wchar_t* szName)
 {
 	// need to allocate a copy - szName may be a const string literal
 	// (we'll change it - stripping out spaces and converting to lowercase).
-	wchar_t* copy = new wchar_t[BUFFER_SIZE];
-	copy[BUFFER_SIZE-1] = '\0';
-	wcsncpy(copy, szName, BUFFER_SIZE-1);
+	wchar_t copy[CONSOLE_BUFFER_SIZE];
+	copy[CONSOLE_BUFFER_SIZE-1] = '\0';
+	wcsncpy(copy, szName, CONSOLE_BUFFER_SIZE-1);
 
 	Trim(copy);
 	ToLower(copy);
 
 	m_mapFuncList.insert(std::pair<std::wstring, fptr>(copy, F));
-	delete[] copy;
 }
 
 
@@ -181,33 +180,28 @@ void CConsole::DrawWindow(void)
 		glColor4f(0.0f, 0.0f, 0.5f, 0.6f);
 		glBegin(GL_QUADS);
 			glVertex2f(0.0f,		0.0f);
-			glVertex2f(m_fWidth,	0.0f);
-			glVertex2f(m_fWidth,	m_fHeight);
-			glVertex2f(0.0f,		m_fHeight);
+			glVertex2f(m_fWidth-1.0f,	0.0f);
+			glVertex2f(m_fWidth-1.0f,	m_fHeight-1.0f);
+			glVertex2f(0.0f,		m_fHeight-1.0f);
 		glEnd();
 
 		/* Draw Border */
 		/* Set the color to a translucent yellow */
 		glColor4f(0.5f, 0.5f, 0.0f, 0.6f);
-		glBegin(GL_LINES);
+		glBegin(GL_LINE_LOOP);
 			glVertex2f(0.0f,		0.0f);
-			glVertex2f(m_fWidth,	0.0f);
+			glVertex2f(m_fWidth-1.0f,	0.0f);
+			glVertex2f(m_fWidth-1.0f,	m_fHeight-1.0f);
+			glVertex2f(0.0f,		m_fHeight-1.0f);
+		glEnd();
 
-			glVertex2f(m_fWidth,	0.0f);
-			glVertex2f(m_fWidth,	m_fHeight);
-
-			glVertex2f(m_fWidth,	m_fHeight);
-			glVertex2f(0.0f,		m_fHeight);
-
-			glVertex2f(0.0f,		m_fHeight);
-			glVertex2f(0.0f,		0.0f);
-
-			if (m_fHeight > m_iFontHeight + 4)
-			{
+		if (m_fHeight > m_iFontHeight + 4)
+		{
+			glBegin(GL_LINES);
 				glVertex2f(0.0f,		(GLfloat)(m_iFontHeight + 4));
 				glVertex2f(m_fWidth,	(GLfloat)(m_iFontHeight + 4));
-			}
-		glEnd();
+			glEnd();
+		}
 	glPopMatrix();
 
 	glEnable(GL_TEXTURE_2D);
@@ -229,7 +223,7 @@ void CConsole::DrawHistory(void) {
 
 		for (Iter = m_deqMsgHistory.begin();
 			 Iter != m_deqMsgHistory.end()
-				 && (((i - m_iMsgHistPos + 1) * m_iFontHeight) < (m_fHeight - m_iFontHeight));
+				 && (((i - m_iMsgHistPos + 1) * m_iFontHeight) < m_fHeight);
 			 Iter++)
 		{
 			if (i >= m_iMsgHistPos){
@@ -401,15 +395,15 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 void CConsole::InsertMessage(const wchar_t* szMessage, ...)
 {
 	va_list args;
-	wchar_t* szBuffer = new wchar_t[MESSAGE_SIZE];
+	wchar_t szBuffer[CONSOLE_MESSAGE_SIZE];
 
 	va_start(args, szMessage);
-	if (vswprintf(szBuffer, MESSAGE_SIZE, szMessage, args) == -1)
+	if (vswprintf(szBuffer, CONSOLE_MESSAGE_SIZE, szMessage, args) == -1)
 	{
 		debug_out("Error printfing console message (buffer size exceeded?)\n");
 
 		// Make it obvious that the text was trimmed (assuming it was)
-		wcscpy(szBuffer+MESSAGE_SIZE-4, L"...");
+		wcscpy(szBuffer+CONSOLE_MESSAGE_SIZE-4, L"...");
 	}
 	va_end(args);
 
@@ -422,8 +416,6 @@ void CConsole::InsertMessage(const wchar_t* szMessage, ...)
 		lineStart = lineEnd+1;
 	}
 	m_deqMsgHistory.push_front(std::wstring(lineStart));
-
-	delete[] szBuffer;
 }
 
 const wchar_t* CConsole::GetBuffer()
@@ -435,18 +427,16 @@ const wchar_t* CConsole::GetBuffer()
 void CConsole::SetBuffer(const wchar_t* szMessage, ...)
 {
 	va_list args;
-	wchar_t* szBuffer = new wchar_t[BUFFER_SIZE];
+	wchar_t szBuffer[CONSOLE_BUFFER_SIZE];
 
 	va_start(args, szMessage);
-		vswprintf(szBuffer, BUFFER_SIZE, szMessage, args);
+		vswprintf(szBuffer, CONSOLE_BUFFER_SIZE, szMessage, args);
 	va_end(args);
 
 	FlushBuffer();
 
-	wcsncpy(m_szBuffer, szMessage, BUFFER_SIZE);
+	wcsncpy(m_szBuffer, szMessage, CONSOLE_BUFFER_SIZE);
 	m_iBufferLength = m_iBufferPos = (int)wcslen(m_szBuffer);
-
-	delete[] szBuffer;
 }
 
 
@@ -454,12 +444,12 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 	if (szLine == NULL) return;
 	if (wcslen(szLine) <= 0) return;
 	
-	assert(wcslen(szLine) < BUFFER_SIZE);
+	assert(wcslen(szLine) < CONSOLE_BUFFER_SIZE);
 
 	m_deqBufHistory.push_front(szLine);
 
-	wchar_t* szCommand = new wchar_t[BUFFER_SIZE];
-	memset(szCommand, '\0', sizeof(wchar_t) * BUFFER_SIZE);
+	wchar_t szCommand[CONSOLE_BUFFER_SIZE];
+	memset(szCommand, '\0', sizeof(wchar_t) * CONSOLE_BUFFER_SIZE);
 
 	std::map<std::wstring, fptr>::iterator Iter;
 
@@ -506,23 +496,12 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 	{
 		// Process it as JavaScript and display the result
 
-		/*
-		// Convert Unicode to 8-bit sort-of-ASCII
-		size_t len = wcstombs(NULL, szLine, 0);
-		assert(len != (size_t)-1 && "Cannot convert unicode->multibyte");
-		char* szMBLine = new char[len+1];
-		wcstombs(szMBLine, szLine, len+1);
-		*/
-
 		jsval rval = g_ScriptingHost.ExecuteScript( CStr16( szLine + 1 ) );
 		if( rval )
 			InsertMessage( L"%hs", g_ScriptingHost.ValueToString( rval ).c_str() );
-
-		// delete[] szMBLine;
 	}
-	else InsertMessage(L"<say>: %ls", szLine);
-
-	delete[] szCommand;
+	else
+		InsertMessage(L"<say>: %ls", szLine);
 }
 
 
