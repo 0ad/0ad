@@ -858,7 +858,9 @@ sle(11340106);
 
 	write_sys_info();
 
-	if(!oglExtAvail("GL_ARB_multitexture") || !oglExtAvail("GL_ARB_texture_env_combine"))
+	if(!oglExtAvail("GL_ARB_multitexture") || !oglExtAvail("GL_ARB_texture_env_combine") ||
+		!glActiveTexture)	// prevent crashing later if multitexture support is falsely
+							// advertised (janwas 2004-08-25, for bug #18)
 	{
 		LOG(ERROR, LOG_CATEGORY, "Required ARB_multitexture or ARB_texture_env_combine extension not available");
 		throw PSERROR_System_RequiredExtensionsMissing();
