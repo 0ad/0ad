@@ -6,6 +6,7 @@ FUNC(void, glMultiTexCoord2f, (int, float, float))
 
 #ifndef REAL_GL_1_3
 FUNC(void, glActiveTexture, (int))
+FUNC(void, glClientActiveTexture, (int))
 #endif
 
 // EXT_swap_control
