@@ -43,8 +43,8 @@
 #define WINAPIV __cdecl
 
 #ifndef NO_PNG
-#include <png.h>
-#pragma comment(lib, "libpng.lib")
+#include <libpng10/png.h>
+#pragma comment(lib, "libpng10.lib")
 #endif
 
 

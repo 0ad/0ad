@@ -21,9 +21,13 @@
 #include "lib.h"
 #include "res.h"
 
+//#define NO_ZLIB
+
+#ifndef NO_ZLIB
 #include <zlib.h>
 #ifdef _MSC_VER
-#pragma comment(lib, "zlib.lib")
+#pragma comment(lib, "zdll.lib")
+#endif
 #endif
 
 #include <map>
@@ -609,6 +613,9 @@ int zip_enum(const Handle ha, const ZipFileCB cb, const uintptr_t user)
 
 uintptr_t inf_init_ctx()
 {
+#ifdef NO_ZLIB
+	return 0;
+#else
 	// allocate ZLib stream
 	z_stream* stream = (z_stream*)mem_alloc(round_up(sizeof(z_stream), 32), 32, MEM_ZERO);
 	if(inflateInit2(stream, -MAX_WBITS) != Z_OK)
@@ -616,11 +623,15 @@ uintptr_t inf_init_ctx()
 		return 0;
 
 	return (uintptr_t)stream;
+#endif
 }
 
 
 int inf_start_read(uintptr_t ctx, void* out, size_t out_size)
 {
+#ifdef NO_ZLIB
+	return -1;
+#else
 	if(!ctx)
 		return ERR_INVALID_PARAM;
 	z_stream* stream = (z_stream*)ctx;
@@ -633,11 +644,15 @@ int inf_start_read(uintptr_t ctx, void* out, size_t out_size)
 	stream->next_out  = (Byte*)out;
 	stream->avail_out = (uInt)out_size;
 	return 0;
+#endif
 }
 
 
 ssize_t inf_inflate(uintptr_t ctx, void* in, size_t in_size)
 {
+#ifdef NO_ZLIB
+	return -1;
+#else
 	if(!ctx)
 		return ERR_INVALID_PARAM;
 	z_stream* stream = (z_stream*)ctx;
@@ -660,11 +675,15 @@ ssize_t inf_inflate(uintptr_t ctx, void* in, size_t in_size)
 		// it isn't treated as 'bytes read', i.e. > 0.
 
 	return nread;
+#endif
 }
 
 
 int inf_finish_read(uintptr_t ctx)
 {
+#ifdef NO_ZLIB
+	return -1;
+#else
 	if(!ctx)
 		return ERR_INVALID_PARAM;
 	z_stream* stream = (z_stream*)ctx;
@@ -678,13 +697,16 @@ int inf_finish_read(uintptr_t ctx)
 
 	stream->next_in  = 0;
 	stream->next_out = 0;
-
 	return 0;
+#endif
 }
 
 
 int inf_free_ctx(uintptr_t ctx)
 {
+#ifdef NO_ZLIB
+	return -1;
+#else
 	if(!ctx)
 		return ERR_INVALID_PARAM;
 	z_stream* stream = (z_stream*)ctx;
@@ -694,6 +716,7 @@ int inf_free_ctx(uintptr_t ctx)
 	inflateEnd(stream);
 	mem_free(stream);
 	return 0;
+#endif
 }
 
 

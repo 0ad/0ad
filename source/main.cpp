@@ -397,15 +397,6 @@ int main(int argc, char* argv[])
 		display_startup_error(err_msg);
 	}
 
-
-// default to loading map for convenience during development
-// override by passing any parameter.
-	if(argc < 2)
-	{
-		argc = 2;
-		argv[1] = "-m=test01.pmp";
-	}
-
 	ParseArgs(argc, argv);
 
 
@@ -495,6 +486,15 @@ int main(int argc, char* argv[])
 	new CEntityManager;
 
 	g_EntityTemplateCollection.loadTemplates();
+
+
+
+
+// if no map name specified, load test01.pmp (for convenience during
+// development. that means loading no map at all is currently impossible.
+// is that a problem?
+if(!g_MapFile)
+	g_MapFile = "test01.pmp";
 
 
 	// load a map if we were given one
