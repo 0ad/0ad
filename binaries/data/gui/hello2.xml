@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no" ?>
 
-<!DOCTYPE objects SYSTEM "objects.dtd">
+<!DOCTYPE objects SYSTEM "gui.dtd">
 
 <objects>
+
+	<object
+		name="backdrop"
+		type="text"
+		sprite="sprite1-disabled"
+		size="200 150 320 700"
+		scrollbar-style="sb"
+		z="100"
+	/>
+
+	<object
+		name="backdrop2"
+		type="text"
+		sprite="sprite1-disabled"
+		size="600 300 920 500"
+		scrollbar-style="sb"
+		z="100"
+	/>
 
 	<object 
 		name="Child1" 
@@ -19,14 +37,16 @@
 		style="button" 
 		size="10 10 140 40" 
 		z="200" 
-	/>
+	>
+
+	</object>
 
 	<object 
 		name="Child3" 
 		type="button"
 		style="button"
 		size="150 10 280 40" 
-		z="200" 
+		z="200"
 	/>
 
 	<object 

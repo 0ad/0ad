@@ -70,6 +70,7 @@ struct SGUIStyle
 class CGUI : public Singleton<CGUI>
 {
 	friend class IGUIObject;
+	friend class IGUIScrollBarOwner;
 	friend class CInternalCGUIAccessorBase;
 
 private:
@@ -80,7 +81,7 @@ public:
 	CGUI();
 	~CGUI();
 
-	// TEMP TEMP GeeTODO
+	// TODO Gee: (MEGA) Extremely temporary.
 	std::string TEMPmessage;
 
 	/**
@@ -145,8 +146,10 @@ public:
 	 * their constructors. Also it needs to associate a type
 	 * by a string name of the type.
 	 * 
-	 * To add a type:\n
+	 * To add a type:
+	 * @code
 	 * AddObjectType("button", &CButton::ConstructObject);
+	 * @endcode
 	 *
 	 * @param str Reference name of object type
 	 * @param pFunc Pointer of function ConstuctObject() in the object
@@ -288,6 +291,16 @@ private:
 	 */
 	void Xerces_ReadRootStyles(XERCES_CPP_NAMESPACE::DOMElement *pElement);
 
+	/**
+	 * Reads in the root element \<setup\> (the DOMElement).
+	 *
+	 * @param pElement	The Xerces C++ Parser object that represents
+	 *					the setup-tag.
+	 *
+	 * @see LoadXMLFile()
+	 */
+	void Xerces_ReadRootSetup(XERCES_CPP_NAMESPACE::DOMElement *pElement);
+
 	// Read Subs
 
 	/**
@@ -345,6 +358,17 @@ private:
 	 */
 	void Xerces_ReadStyle(XERCES_CPP_NAMESPACE::DOMElement *pElement);
 
+	/**
+	 * Reads in the element \<scrollbar\> (the DOMElement) and stores the
+	 * result in m_ScrollBarStyles.
+	 *
+	 * @param pElement	The Xerces C++ Parser object that represents
+	 *					the scrollbar-tag.
+	 *
+	 * @see LoadXMLFile()
+	 */
+	void Xerces_ReadScrollBarStyle(XERCES_CPP_NAMESPACE::DOMElement *pElement);
+
 	//@}
 
 private:
@@ -374,7 +398,7 @@ private:
 
 	/**
 	 * Base Object, all its children are considered parentless
-	 * because this is no real object per se.
+	 * because this is not a real object per se.
 	 */
 	IGUIObject* m_BaseObject;
 
@@ -405,6 +429,9 @@ private:
 
 	/// Styles
 	std::map<CStr, SGUIStyle> m_Styles;
+
+	/// Scroll-bar styles
+	std::map<CStr, SGUIScrollBarStyle> m_ScrollBarStyles;
 
 	//@}
 };

@@ -210,6 +210,8 @@ public:
 			//RecurseObject(0, pObject, IGUIObject::ResetStates);
 		}
 
+		pObject->HandleMessage(SGUIMessage(GUIM_SETTINGS_UPDATED, Setting));
+
 		return PS_OK;
 	}
 
@@ -290,7 +292,7 @@ public:
 
 		delete [] mem;
 
-		// Undefined type - GeeTODO, maybe report in log
+		// TODO Gee: Undefined type - maybe report in log
 		return true;
 	}
 
@@ -332,9 +334,18 @@ private:
 		if (typeid(T) == typeid(float))
 		{
 			float _Value = Value.ToFloat();
-			// GeeTODO Okay float value!?
+			// TODO Gee: Okay float value!?
 			Memory = malloc(sizeof(float));
 			memcpy(Memory, (const void*)&_Value, sizeof(float));
+			return true;
+		}
+		else
+		if (typeid(T) == typeid(int))
+		{
+			int _Value = Value.ToInt();
+			// TODO Gee: Okay float value!?
+			Memory = malloc(sizeof(int));
+			memcpy(Memory, (const void*)&_Value, sizeof(int));
 			return true;
 		}
 		else
@@ -399,7 +410,7 @@ private:
 			line.ParseString(parser, str);
 			if (!line.m_ParseOK)
 			{
-				// Parsing failed GeeTODO
+				// TODO Gee: Parsing failed
 				return false;
 			}
 			float values[4];
@@ -408,14 +419,14 @@ private:
 			{
 				if (!line.GetArgFloat(i, values[i]))
 				{
-					// Parsing failed GeeTODO
+					// TODO Gee: Parsing failed
 					return false;
 				}
 			}
 
 			// Finally the rectangle values
 			CColor _Value;
-			// GeeTODO, done better when CColor is sweeter
+			// TODO Gee: Done better when CColor is sweeter
 			_Value.r = values[0]/255.f;
 			_Value.g = values[1]/255.f;
 			_Value.b = values[2]/255.f;
@@ -426,7 +437,7 @@ private:
 			return true;
 		}
 
-		// Undefined type - GeeTODO, maybe report in log
+		// TODO Gee: Undefined type - maybe report in log
 		return false;
 	}
 
@@ -463,6 +474,7 @@ private:
 	*/
 	static void RecurseObject(const int &RR, IGUIObject *pObject, void_Object_pFunction_argT pFunc, const T &Argument)
 	{
+		// TODO Gee: Don't run this for the base object.
 		if (CheckIfRestricted(RR, pObject))
 			return;
 
@@ -507,7 +519,7 @@ private:
 			return;
 
 		(pObject->*pFunc)();
-		
+
 		// Iterate children
 		vector_pObjects::iterator it;
 		for (it = pObject->ChildrenItBegin(); it != pObject->ChildrenItEnd(); ++it)
@@ -537,6 +549,11 @@ private:
 		if (RR & GUIRR_DISABLED)
 		{
 			if (pObject->GetBaseSettings().m_Enabled)
+				return true;
+		}
+		if (RR & GUIRR_GHOST)
+		{
+			if (pObject->GetBaseSettings().m_Ghost)
 				return true;
 		}
 

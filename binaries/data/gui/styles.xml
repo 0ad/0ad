@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<!DOCTYPE styles SYSTEM "styles.dtd">
+<!DOCTYPE styles SYSTEM "gui.dtd">
 
 <styles>
+	<!-- The default values -->
+	<style name="default"
+		hidden="false"
+		enabled="true"
+		z="0"
+		absolute="true"
+	/>
+
 	<style name="button"
 		sprite="sprite1" 
 		sprite-over="sprite1-over"
  		sprite-pressed="sprite1-pressed"
 		sprite2="hejsan"
+		sprite-disabled="sprite1-disabled"
 	/>
 </styles>

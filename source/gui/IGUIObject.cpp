@@ -32,11 +32,10 @@ IGUIObject::IGUIObject() :
 	m_pParent(NULL),
 	m_MouseHovering(false)
 {
-	// Default values of base settings !
-	m_BaseSettings.m_Enabled =		true;
+	// TODO Gee: Remove this when base object is excluded from the recursion routines.
 	m_BaseSettings.m_Hidden =		false;
-	m_BaseSettings.m_Style =		"null";
-	m_BaseSettings.m_Z =			0.f;
+	m_BaseSettings.m_Ghost =		false;
+	m_BaseSettings.m_Enabled =		true;
 	m_BaseSettings.m_Absolute =		true;
 
 	// Static! Only done once
@@ -134,6 +133,7 @@ void IGUIObject::SetupBaseSettingsInfo(map_Settings &SettingsInfo)
 	GUI_ADD_OFFSET_GENERIC(SettingsInfo, GUISS_BASE, SGUIBaseSettings, m_Z,			"float",		"z")
 	GUI_ADD_OFFSET_GENERIC(SettingsInfo, GUISS_BASE, SGUIBaseSettings, m_Caption,	"string",		"caption")
 	GUI_ADD_OFFSET_GENERIC(SettingsInfo, GUISS_BASE, SGUIBaseSettings, m_Absolute,	"bool",			"absolute")
+	GUI_ADD_OFFSET_GENERIC(SettingsInfo, GUISS_BASE, SGUIBaseSettings, m_Ghost,		"bool",			"ghost")
 }
 
 bool IGUIObject::MouseOver()
@@ -264,7 +264,7 @@ void IGUIObject::ChooseMouseOverAndClosest(IGUIObject* &pObject)
 		}
 
 		// Or if it's closer
-		if (GetBaseSettings().m_Z >= pObject->GetBaseSettings().m_Z)
+		if (GetBufferedZ() >= pObject->GetBufferedZ())
 		{
 			pObject = this;
 			return;
@@ -272,7 +272,7 @@ void IGUIObject::ChooseMouseOverAndClosest(IGUIObject* &pObject)
 	}
 }
 
-IGUIObject *IGUIObject::GetParent()
+IGUIObject *IGUIObject::GetParent() const
 {
 	// Important, we're not using GetParent() for these
 	//  checks, that could screw it up
@@ -293,7 +293,7 @@ void * IGUIObject::GetStructPointer(const EGUISettingsStruct &SettingsStruct) co
 		return (void*)&m_BaseSettings;
 
 	default:
-		// GeeTODO report error
+		// TODO Gee: report error
 		return NULL;
 	}
 }
@@ -309,7 +309,53 @@ void IGUIObject::UpdateCachedSize()
 		m_CachedActualSize = m_BaseSettings.m_Size.GetClientArea( CRect(0, 0, g_xres, g_yres) );
 }
 
-// GeeTODO keep this function and all???
+void IGUIObject::LoadStyle(CGUI &GUIinstance, const CStr &StyleName)
+{
+	// Fetch style
+	if (GUIinstance.m_Styles.count(StyleName)==1)
+	{
+		LoadStyle(GUIinstance.m_Styles[StyleName]);
+	}
+	else
+		;// TODO Gee: report error
+}
+
+void IGUIObject::LoadStyle(const SGUIStyle &Style)
+{
+	// Iterate settings, it won't be able to set them all probably, but that doesn't matter
+	std::map<CStr, CStr>::const_iterator cit;
+	for (cit = Style.m_SettingsDefaults.begin(); cit != Style.m_SettingsDefaults.end(); ++cit)
+	{
+		// Try set setting in object
+		try
+		{
+			SetSetting(cit->first, cit->second);
+		}
+		// It doesn't matter if it fail, it's not suppose to be able to set every setting.
+		//  since it's generic.
+		catch (PS_RESULT e) 
+		{
+			// was ist das?
+			e;
+		}
+	}
+}
+
+float IGUIObject::GetBufferedZ() const
+{
+	if (GetBaseSettings().m_Absolute)
+		return GetBaseSettings().m_Z;
+	else
+	{
+		if (GetParent())
+			return GetParent()->GetBufferedZ() + GetBaseSettings().m_Z;
+		else
+			// TODO Gee: Error, no object should be relative with a parent!
+			return GetBaseSettings().m_Z;
+	}
+}
+
+// TODO Gee: keep this function and all???
 void IGUIObject::CheckSettingsValidity()
 {
 	// If we hide an object, reset many of its parts

@@ -36,6 +36,7 @@ gee@pyro.nu
 #include <vector>
 
 struct SGUISetting;
+struct SGUIStyle;
 class CGUI;
 
 //--------------------------------------------------------
@@ -84,13 +85,14 @@ struct SGUISetting
  */
 struct SGUIBaseSettings
 {
-	bool			m_Hidden;
-	bool			m_Enabled;
 	bool			m_Absolute;
+	CStr			m_Caption;	// Is usually set within an XML element and not in the attributes
+	bool			m_Enabled;
+	bool			m_Ghost;
+	bool			m_Hidden;
 	CClientArea		m_Size;
 	CStr			m_Style;
 	float			m_Z;
-	CStr			m_Caption;	// Is usually set within an XML element and not in the attributes
 };
 
 //////////////////////////////////////////////////////////
@@ -105,6 +107,7 @@ class IGUIObject
 {
 	friend class CGUI;
 	friend class CInternalCGUIAccessorBase;
+	friend class IGUIScrollBar;
 #ifndef _MSC_VER
 	template <class T>
 #endif
@@ -219,7 +222,7 @@ public:
 	 * This is not private since there should be no harm in
 	 * checking validity.
 	 *
-	 * @throws GeeTODO not quite settled yet.
+	 * @throws TODO not quite settled yet.
 	 */
 	void CheckSettingsValidity();
 
@@ -258,7 +261,7 @@ protected:
 
 	/**
 	 * Calls Destroy on all children, and deallocates all memory.
-	 * BIG TODO Should it destroy it's children?
+	 * MEGA TODO Should it destroy it's children?
 	 */
 	virtual void Destroy();
 	
@@ -266,9 +269,9 @@ protected:
      * This function is called with different messages
 	 * for instance when the mouse enters the object.
 	 *
-	 * @param Message EGUIMessage
+	 * @param Message GUI Message
 	 */
-	virtual void HandleMessage(const EGUIMessage &Message)=0;
+	virtual void HandleMessage(const SGUIMessage &Message)=0;
 
 	/**
 	 * Draws the object.
@@ -279,6 +282,30 @@ protected:
 	 *			disrupt the whole GUI drawing.
 	 */
 	virtual void Draw()=0;
+
+	/**
+	 * Loads a style.
+	 *
+	 * @param GUIinstance Reference to the GUI
+	 * @param StyleName Style by name
+	 */
+	void LoadStyle(CGUI &GUIinstance, const CStr &StyleName);
+
+	/**
+	 * Loads a style.
+	 *
+	 * @param Style The style object.
+	 */
+	void LoadStyle(const SGUIStyle &Style);
+
+	/**
+	 * Returns not the Z value, but the actual buffered Z value, i.e. if it's
+	 * defined relative, then it will check its parent's Z value and add
+	 * the relativity.
+	 *
+	 * @return Actual Z value on the screen.
+	 */
+	float GetBufferedZ() const;
 
 	// This is done internally
 	CGUI *GetGUI() { return m_pGUI; }
@@ -302,7 +329,12 @@ protected:
 	 *
 	 * @return Pointer to parent
 	 */
-	IGUIObject *GetParent();
+	IGUIObject *GetParent() const;
+
+	/**
+	 * Same as reference, but returns a const
+	 */
+//	IGUIObject const *GetParent() const;
 
 	/**
 	 * You input the setting struct you want, and it will return a pointer to
@@ -362,7 +394,8 @@ protected:
 	/// Name of object
 	CStr									m_Name;
 
-	/// Constructed on the heap, will be destroyed along with the the object TODO Really?
+	/// Constructed on the heap, will be destroyed along with the the object
+	// TODO Gee: really the above?
 	vector_pObjects							m_Children;
 
 	/// Pointer to parent
@@ -412,7 +445,7 @@ private:
  */
 class CGUIDummyObject : public IGUIObject
 {
-	virtual void HandleMessage(const EGUIMessage &Message) {}
+	virtual void HandleMessage(const SGUIMessage &Message) {}
 	virtual void Draw() {}
 };
 

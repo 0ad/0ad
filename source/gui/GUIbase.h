@@ -35,9 +35,7 @@ class IGUIObject;
 // Global CGUI
 #define g_GUI CGUI::GetSingleton()
 
-// Temp
-#define CInput		nemInput
-
+// Object settings setups
 #define GUI_ADD_OFFSET_GENERIC(si, guiss, _struct, var, type, str)				\
 	si[CStr(str)].m_Offset = offsetof(_struct, var);	\
 	si[CStr(str)].m_SettingsStruct = guiss;		\
@@ -64,11 +62,11 @@ public:																	\
 //--------------------------------------------------------
 /** 
  * @enum EGUIMessage
- * Message send to IGUIObject::HandleMessage() in order
- * to give life to Objects manually with
- * a derived HandleMessage().
+ * Message types
+ *
+ * @see SGUIMessage
  */
-enum EGUIMessage
+enum EGUIMessageType
 {
 	GUIM_PREPROCESS,		// questionable
 	GUIM_POSTPROCESS,		// questionable
@@ -81,8 +79,34 @@ enum EGUIMessage
 	GUIM_MOUSE_DOWN_RIGHT,
 	GUIM_MOUSE_RELEASE_LEFT,
 	GUIM_MOUSE_RELEASE_RIGHT,
-	GUIM_SETTINGS_UPDATED,
-	GUIM_PRESSED
+	GUIM_MOUSE_WHEEL_UP,
+	GUIM_MOUSE_WHEEL_DOWN,
+	GUIM_SETTINGS_UPDATED,	// SGUIMessage.m_Value = name of setting
+	GUIM_PRESSED,
+	GUIM_MOUSE_MOTION
+};
+
+/**
+ * Message send to IGUIObject::HandleMessage() in order
+ * to give life to Objects manually with
+ * a derived HandleMessage().
+ */
+struct SGUIMessage
+{
+	SGUIMessage() {}
+	SGUIMessage(const EGUIMessageType &_type) : type(_type) {}
+	SGUIMessage(const EGUIMessageType &_type, const CStr &_value) : type(_type), value(_value) {}
+	~SGUIMessage() {}
+
+	/**
+	 * Describes what the message regards
+	 */
+	EGUIMessageType type;
+
+	/**
+	 * Optional data
+	 */
+	CStr value;
 };
 
 /**
@@ -94,13 +118,17 @@ enum EGUIMessage
  */
 enum
 {
-	GUIRR_HIDDEN=1,
-	GUIRR_DISABLED=2
+	GUIRR_HIDDEN		= 0x00000001,
+	GUIRR_DISABLED		= 0x00000010,
+	GUIRR_GHOST			= 0x00000100
 };
 
 /**
  * @enum EGUISettingsStruct
- * TODO comment
+ * 
+ * Stored in SGUISetting, tells us in which struct
+ * the setting is located, that way we can query
+ * for the structs address.
  */
 enum EGUISettingsStruct
 {

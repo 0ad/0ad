@@ -1,11 +1,11 @@
 /*
-GUI Object - Button
+GUI Object - Text [field]
 by Gustav Larsson
 gee@pyro.nu
 
 --Overview--
 
-	GUI Object representing a simple button
+	GUI Object representing a text field
 
 --More info--
 
@@ -13,13 +13,16 @@ gee@pyro.nu
 
 */
 
-#ifndef CButton_H
-#define CButton_H
+#ifndef CText_H
+#define CText_H
 
 //--------------------------------------------------------
 //  Includes / Compiler directives
 //--------------------------------------------------------
 #include "GUI.h"
+
+// TODO Gee: Remove
+class IGUIScrollBar;
 
 //--------------------------------------------------------
 //  Macros
@@ -34,23 +37,19 @@ gee@pyro.nu
 //--------------------------------------------------------
 
 /**
- * Button Settings
+ * Text Settings
  */
-struct SButtonSettings
+struct STextSettings
 {
 	CStr			m_Font;
 	CStr			m_Sprite;
-	CStr			m_SpriteDisabled;
-	CStr			m_SpriteOver;
-	CStr			m_SpritePressed;
 	EAlign			m_TextAlign;
 	CColor			m_TextColor;
-	CColor			m_TextColorDisabled;
-	CColor			m_TextColorOver;
-	CColor			m_TextColorPressed;
 	EValign			m_TextValign;
 	CStr			m_ToolTip;
 	CStr			m_ToolTipStyle;
+	bool			m_ScrollBar;
+	CStr			m_ScrollBarStyle;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -58,29 +57,28 @@ struct SButtonSettings
 /**
  * @author Gustav Larsson
  *
- * Button
+ * Text field that just displays static text.
  * 
  * @see IGUIObject
  * @see IGUISettingsObject
- * @see IGUIButtonBehavior
- * @see SButtonSettings
+ * @see STextSettings
  */
-class CButton : public IGUISettingsObject<SButtonSettings>, public IGUIButtonBehavior
+class CText : public IGUISettingsObject<STextSettings>, public IGUIScrollBarOwner
 {
-	GUI_OBJECT(CButton)
+	GUI_OBJECT(CText)
 
 public:
-	CButton();
-	virtual ~CButton();
+	CText();
+	virtual ~CText();
 
 	/**
 	 * Since we're doing multiple inheritance, this is to avoid error message
 	 *
 	 * @return Settings infos
 	 */
-	virtual map_Settings GetSettingsInfo() const { return IGUISettingsObject<SButtonSettings>::m_SettingsInfo; }
+	virtual map_Settings GetSettingsInfo() const { return IGUISettingsObject<STextSettings>::m_SettingsInfo; }
 
-	virtual void ResetStates() { IGUIButtonBehavior::ResetStates(); }
+	virtual void ResetStates() { IGUIScrollBarOwner::ResetStates(); }
 
 	/**
 	 * Handle Messages
@@ -90,9 +88,12 @@ public:
 	virtual void HandleMessage(const SGUIMessage &Message);
 
 	/**
-	 * Draws the Button
+	 * Draws the Text
 	 */
 	virtual void Draw();
+
+	// TODO Gee: Temp!
+	//CGUIScrollBar m_ScrollBar;
 };
 
 #endif

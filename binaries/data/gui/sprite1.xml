@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<!DOCTYPE sprites SYSTEM "sprites.dtd">
+<!DOCTYPE sprites SYSTEM "gui.dtd">
 
 <sprites>
 	<sprite name="sprite1">
@@ -44,6 +44,21 @@
 		<!-- middle -->
 		<image backcolor="176 37 37" size="2 2 100%-2 100%-2" />
 	</sprite>
+
+	<sprite name="sprite1-disabled">
+		<image backcolor="128 0 128" size="0 0 100% 100%" />
+	</sprite>
+
+
+	<sprite name="grey">
+		<image backcolor="128 128 128" size="0 0 100% 100%" />
+	</sprite>
+
+
+	<sprite name="blue">
+		<image backcolor="128 0 0" size="0 0 100% 100%" />
+	</sprite>
+
 
 	<sprite name="sprite2">
 		<!-- Starting with top left corner continuing in a counter-clockwise manner -->

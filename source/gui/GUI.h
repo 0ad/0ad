@@ -31,7 +31,7 @@ gee@pyro.nu
  *	q [ label="Questions?"];
  *  c [ label="Comments?"];
  *  s [ label="Suggestions?"];
- *	email [label="E-mail Me" URL="mailto:slimgee@bredband.net"];
+ *	email [label="E-mail Me" URL="mailto:gee@pyro.nu"];
  *	q -> email;
  *	c -> email;
  *	s -> email;
@@ -69,7 +69,11 @@ gee@pyro.nu
 #include "IGUIObject.h"
 #include "IGUISettingsObject.h"
 #include "IGUIButtonBehavior.h"
+#include "IGUIScrollBarOwner.h"
+#include "IGUIScrollBar.h"
+#include "CGUIScrollBarVertical.h"
 #include "CButton.h"
+#include "CText.h"
 #include "CGUISprite.h"
 #include "CGUI.h"
 

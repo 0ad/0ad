@@ -1,5 +1,5 @@
 /*
-GUI Object - Button
+GUI Object Base - Button Behavior
 by Gustav Larsson
 gee@pyro.nu
 
@@ -55,7 +55,7 @@ public:
 	/**
 	 * @see IGUIObject#HandleMessage()
 	 */
-	virtual void HandleMessage(const EGUIMessage &Message);
+	virtual void HandleMessage(const SGUIMessage &Message);
 
 protected:
 	virtual void ResetStates()

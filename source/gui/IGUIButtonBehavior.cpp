@@ -20,9 +20,9 @@ IGUIButtonBehavior::~IGUIButtonBehavior()
 {
 }
 
-void IGUIButtonBehavior::HandleMessage(const EGUIMessage &Message)
+void IGUIButtonBehavior::HandleMessage(const SGUIMessage &Message)
 {
-	switch (Message)
+	switch (Message.type)
 	{
 	case GUIM_PREPROCESS:
 		m_Pressed = false;
@@ -46,10 +46,16 @@ void IGUIButtonBehavior::HandleMessage(const EGUIMessage &Message)
 		break;
 */
 	case GUIM_MOUSE_PRESS_LEFT:
+		if (!GetBaseSettings().m_Enabled)
+			break;
+
 		m_Pressed = true;
 		break;
 
 	case GUIM_MOUSE_RELEASE_LEFT:
+		if (!GetBaseSettings().m_Enabled)
+			break;
+
 		if (m_Pressed)
 		{
 			m_Pressed = false;

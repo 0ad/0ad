@@ -1,5 +1,5 @@
 /*
-Object with settings
+GUI Object Base - Setting Extension
 by Gustav Larsson
 gee@pyro.nu
 
@@ -118,7 +118,7 @@ protected:
 			return (void*)&m_Settings;
 
 		default:
-			// GeeTODO report error
+			// TODO Gee: Report error
 			return NULL;
 		}
 	}

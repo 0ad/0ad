@@ -7,7 +7,7 @@ gee@pyro.nu
 //#include "stdafx."
 #include "GUI.h"
 
-// temp GeeTODO
+// TODO Gee: font.h is temporary.
 #include "font.h"
 #include "ogl.h"
 
@@ -22,7 +22,7 @@ DECLARE_SETTINGS_INFO(SButtonSettings)
 CButton::CButton()
 {
 	// Settings defaults !
-	m_Settings.m_Disabled =				false;
+/*	m_Settings.m_Disabled =				false;
 	m_Settings.m_Font =					"null";
 	m_Settings.m_Sprite =				"null";
 	m_Settings.m_SpriteDisabled =		"null";
@@ -36,7 +36,7 @@ CButton::CButton()
 	m_Settings.m_TextValign =			EValign_Center;
 	m_Settings.m_ToolTip =				"null";
 	m_Settings.m_ToolTipStyle =			"null";
-
+*/
 
 	// Static! Only done once
 	if (m_SettingsInfo.empty())
@@ -44,9 +44,10 @@ CButton::CButton()
 		// Setup the base ones too
 		SetupBaseSettingsInfo(m_SettingsInfo);
 
-		GUI_ADD_OFFSET_EXT(SButtonSettings, m_Sprite,		"string",		"sprite")
-		GUI_ADD_OFFSET_EXT(SButtonSettings, m_SpriteOver,	"string",		"sprite-over")
-		GUI_ADD_OFFSET_EXT(SButtonSettings, m_SpritePressed,"string",		"sprite-pressed")
+		GUI_ADD_OFFSET_EXT(SButtonSettings, m_Sprite,			"string",		"sprite")
+		GUI_ADD_OFFSET_EXT(SButtonSettings, m_SpriteOver,		"string",		"sprite-over")
+		GUI_ADD_OFFSET_EXT(SButtonSettings, m_SpritePressed,	"string",		"sprite-pressed")
+		GUI_ADD_OFFSET_EXT(SButtonSettings, m_SpriteDisabled,	"string",		"sprite-disabled")
 	}
 }
 
@@ -54,12 +55,12 @@ CButton::~CButton()
 {
 }
 
-void CButton::HandleMessage(const EGUIMessage &Message)
+void CButton::HandleMessage(const SGUIMessage &Message)
 {
 	// Important
 	IGUIButtonBehavior::HandleMessage(Message);
 
-	switch (Message)
+	switch (Message.type)
 	{
 	case GUIM_PREPROCESS:
 		break;
@@ -91,7 +92,7 @@ void CButton::HandleMessage(const EGUIMessage &Message)
 	}
 }
 
-void CButton::Draw()
+void CButton::Draw() 
 {
 	////////// Gee: janwas, this is just temp to see it
 	glDisable(GL_TEXTURE_2D);
@@ -99,12 +100,29 @@ void CButton::Draw()
 
 	if (GetGUI())
 	{
-		if (m_Pressed && m_Settings.m_SpritePressed != CStr("null"))
-			GetGUI()->DrawSprite(m_Settings.m_SpritePressed, GetBaseSettings().m_Z, m_CachedActualSize);
+		bool useBase = false;
+
+		if (!GetBaseSettings().m_Enabled)
+		{
+			if (m_Settings.m_SpriteDisabled != CStr("null"))
+				GetGUI()->DrawSprite(m_Settings.m_SpriteDisabled, GetBufferedZ(), m_CachedActualSize);
+			else
+				useBase = true;
+		}
 		else
-		if (m_MouseHovering && !m_Pressed && m_Settings.m_SpriteOver != CStr("null"))
-			GetGUI()->DrawSprite(m_Settings.m_SpriteOver, GetBaseSettings().m_Z, m_CachedActualSize);
-		else
-			GetGUI()->DrawSprite(m_Settings.m_Sprite, GetBaseSettings().m_Z, m_CachedActualSize);
+		if (m_MouseHovering)
+		{
+			if (m_Pressed && m_Settings.m_SpritePressed != CStr("null"))
+				GetGUI()->DrawSprite(m_Settings.m_SpritePressed, GetBufferedZ(), m_CachedActualSize);
+			else
+			if (!m_Pressed && m_Settings.m_SpriteOver != CStr("null"))
+				GetGUI()->DrawSprite(m_Settings.m_SpriteOver, GetBufferedZ(), m_CachedActualSize);
+			else
+				useBase = true;
+		}
+		else useBase = true;
+
+		if (useBase)
+			GetGUI()->DrawSprite(m_Settings.m_Sprite, GetBufferedZ(), m_CachedActualSize);
 	}
 }
