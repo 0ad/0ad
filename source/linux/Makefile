@@ -4,7 +4,10 @@ SRCDIR=..
 DEPDIR=deps
 
 INCLUDES=-I$(SRCDIR) -I$(SRCDIR)/ps -I$(SRCDIR)/lib -I. -I/usr/include/X11
-DEFINES=-D__STDC_VERSION__=199901L -DDEBUG_LOCKS -DHAVE_X_WINDOWS
+# -UDEBUG_LOCKS: Change -U to -D to add printfs in the Lock/Unlock methods of all ThreadUtil.h functions
+# -UDEBUG_REFCNT: Change to -D to add printfs in reference counting functions
+DEFINES=-D__STDC_VERSION__=199901L -UDEBUG_LOCKS -UDEBUG_REFCNT -DHAVE_X \
+	-DHAVE_CLOCK_GETTIME -DHAVE_GETTIMEOFDAY
 
 CPPFLAGS=$(INCLUDES) $(DEFINES)
 CXXFLAGS=-O3 -mcpu=athlon-4 -march=pentium-mmx -ffast-math \
@@ -12,7 +15,7 @@ CXXFLAGS=-O3 -mcpu=athlon-4 -march=pentium-mmx -ffast-math \
 	-fstrict-aliasing -mmmx \
 	-g3
 LD_DIRS=-L/usr/X11R6/lib
-LD_LIBS=-lX11 -lrt -lGL -lglut -lSDL -lz -lxerces-c 
+LD_LIBS=-lX11 -lrt -lGL -lglut -lSDL -lz -lxerces-c -lpng
 LDFLAGS=-g3 -z combreloc $(LD_DIRS) $(LD_LIBS)
 
 PS_SOURCES=$(addprefix ps/, Encryption.cpp CStr.cpp Config.cpp LogFile.cpp \
@@ -34,11 +37,14 @@ TERR_SOURCES=$(addprefix terrain/, Camera.cpp Frustum.cpp Matrix3D.cpp \
 	terrainMain.cpp SHCoeffs.cpp Bound.cpp Quaternion.cpp)
 TERR_OBJS=$(patsubst %.cpp, $(OBJDIR)/%.o, $(TERR_SOURCES))
 
-LIB_BASE_SOURCES=$(addprefix lib/, detect.cpp mem.cpp\
-	misc.cpp ogl.cpp res.cpp time.cpp vfs.cpp \
-	zip.cpp)
+LIB_BASE_SOURCES=$(addprefix lib/, detect.cpp adts.cpp \
+	misc.cpp ogl.cpp lib.cpp\
+	sysdep/x.cpp sysdep/sysdep.cpp)
 LIB_BASE_OBJS=$(patsubst %.cpp, $(OBJDIR)/%.o, $(LIB_BASE_SOURCES))
-LIB_EXT_SOURCES=$(addprefix lib/, tex.cpp font.cpp input.cpp)
+
+LIB_EXT_SOURCES=$(addprefix lib/, input.cpp res/file.cpp \
+	res/font.cpp res/h_mgr.cpp res/mem.cpp res/res.cpp res/tex.cpp \
+	res/vfs.cpp res/zip.cpp sysdep/x.cpp timer.cpp)
 LIB_EXT_OBJS=$(patsubst %.cpp, $(OBJDIR)/%.o, $(LIB_EXT_SOURCES))
 
 LIB_SOURCES=$(LIB_BASE_SOURCES) $(LIB_EXT_SOURCES)
@@ -115,3 +121,29 @@ $(OBJDIR)/%.prof.o: $(SRCDIR)/%.cpp
 $(SRCDIR)/%.ii: $(SRCDIR)/%.cpp
 	@echo Generating preprocessed file $(notdir $<).ii
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -E -o $(notdir $<).ii $<
+
+winexport:
+# Make a copy of <path>/source in <path>/winexport
+	mkdir -p ../../winexport
+	cp -r ../../source/* ../../winexport/
+	pushd ../../winexport; \
+		rm -fr linux/o; \
+		rm -fr linux/deps; \
+		unix2dos `find -type f`; \
+	popd
+
+winimport:
+	pushd ../../winimport; \
+		cp -r * ../source; \
+		rm -fr vc6/Debug; \
+		rm -fr vc7/Debug; \
+	popd; \
+	pushd ..; \
+		dos2unix `find -type f`; \
+	popd
+# TODO actual case conversion...
+	pushd ..; \
+	for a in `find -type d; do \
+		mv $a/cvs $a/CVS; \
+	done; \
+	popd
