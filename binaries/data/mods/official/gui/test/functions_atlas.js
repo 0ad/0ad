@@ -9,6 +9,8 @@ function initAtlas()
 	atlasCoord = new Array();
 	atlasCoord_Last = 0;
 
+	// ============================================= MAIN SCREEN ===============================================
+
 	// Top-left corner piece of main editor frame.
 	ATLAS_MAINBORDER_LT_CORNER 		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
 		42,
@@ -208,6 +210,26 @@ function initAtlas()
 	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
 		atlasCoord[ATLAS_MINIMAP_BKG].x+10,
 		atlasCoord[ATLAS_MINIMAP_BKG].y+atlasCoord[ATLAS_MINIMAP_BKG].height+4
+	);
+
+	// ============================================= CREATE MAP SECTION ===============================================
+
+	// Second heading of Create Map section menu.
+	ATLAS_LEFT_PANE_SECTION_MAP_HEADING_2		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_BKG].width-2,
+		21+2
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_BKG].x,
+		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].y+atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].height+29
+	);
+
+	// Topmost heading of Create Map section menu.
+	ATLAS_LEFT_PANE_SECTION_MAP_HEADING_1		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_HEADING_2].width,
+		31
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_HEADING_2].x,
+		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].y+atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].height
 	);
 }
 

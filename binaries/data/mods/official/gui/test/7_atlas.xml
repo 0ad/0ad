@@ -24,6 +24,20 @@
 					setSizeArray("atlas_left_pane_bkg", atlasCoord[ATLAS_LEFT_PANE_BKG], left_screen, top_screen, left_screen, bottom_screen);
 				]]></action>
 			</object>
+
+			<!-- CREATE MAP SECTION MENU -->
+			<object type="empty" name="atlas_left_pane_section_map" size="0 0 100% 100%" z="1" hidden="false">
+				<object type="text" name="atlas_left_pane_section_map_heading_1" sprite="atlas_border" style="atlas_heading" text_align="left" hidden="false">Map Creation
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_map_heading_1", atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_HEADING_1], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+				</object>
+				<object type="text" name="atlas_left_pane_section_map_heading_2" sprite="atlas_border" style="atlas_sub_heading" hidden="false">Map Type
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_map_heading_2", atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_HEADING_2], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+				</object>
+			</object>
 		</object>
 
 		<!-- BOTTOM SELECTION PANE: Context panel along the bottom of the screen. -->
