@@ -418,8 +418,8 @@ void CSelectedEntities::contextOrder( bool pushQueue )
 	{
 		CGotoCommand *msg=new CGotoCommand();
 		msg->m_Entity=m_selected[0]->me;
-		msg->m_TargetX=g_Mouseover.m_worldposition.x;
-		msg->m_TargetY=g_Mouseover.m_worldposition.y;
+		msg->m_TargetX=(u32)g_Mouseover.m_worldposition.x;
+		msg->m_TargetY=(u32)g_Mouseover.m_worldposition.y;
 		g_Game->GetSimulation()->QueueLocalCommand(msg);
 		break;
 	}

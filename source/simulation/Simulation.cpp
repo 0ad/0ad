@@ -84,8 +84,8 @@ uint CSimulation::TranslateMessage(CNetMessage *pMsg, uint clientMask, void *use
 	case NMT_GotoCommand:
 		CGotoCommand *msg=(CGotoCommand *)pMsg;
 		entOrder.m_type=CEntityOrder::ORDER_GOTO;
-		entOrder.m_data[0].location.x=msg->m_TargetX;
-		entOrder.m_data[0].location.y=msg->m_TargetY;
+		entOrder.m_data[0].location.x=(float)msg->m_TargetX;
+		entOrder.m_data[0].location.y=(float)msg->m_TargetY;
 		CEntity *ent=msg->m_Entity;
 		ent->dispatch(new CMessageOrder(entOrder));
 		break;
