@@ -1273,9 +1273,15 @@ static int VFile_reload(VFile* vf, const char* path, Handle)
 
 // open the file for synchronous or asynchronous IO. write access is
 // requested via FILE_WRITE flag, and is not possible for files in archives.
-Handle vfs_open(const char* fn, uint flags /* = 0 */)
+Handle vfs_open(const char* fn, uint file_flags /* = 0 */)
 {
-	Handle h = h_alloc(H_VFile, fn, 0, flags);
+	// do not cache handles for file writes
+	// (avoids h_reload reloading it, thereby wiping out the file contents)
+	uint res_flags = 0;
+	if(file_flags & FILE_WRITE)
+		res_flags = RES_TEMP;
+
+	Handle h = h_alloc(H_VFile, fn, res_flags, file_flags);
 		// pass file flags to init
 
 #ifdef PARANOIA
