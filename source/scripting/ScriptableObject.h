@@ -74,7 +74,7 @@ template<typename T> class CJSPropertyAccessor
 {
 	T* m_Owner;
 	CStrW m_PropertyRoot;
-	friend class CJSObject;
+	template<typename Q> friend class CJSObject;
 
 public:
 	CJSPropertyAccessor( T* Owner, CStrW PropertyRoot )
@@ -201,7 +201,7 @@ public:
 
 class CJSValProperty : public IJSProperty
 {
-	friend class CJSObject;
+	template<typename Q> friend class CJSObject;
 
 	jsval m_Data;
 	JSObject* m_JSAccessor;
@@ -266,7 +266,6 @@ public:
 
 template<typename T> class CJSObject : public IJSObject
 {
-	friend class CNativeFunction;
 	JSObject* m_JS;
 public:
 
