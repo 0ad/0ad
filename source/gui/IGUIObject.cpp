@@ -135,7 +135,7 @@ void IGUIObject::Destroy()
 		m_Settings[Name].m_pSetting = new type();	\
 		break;
 
-void IGUIObject::AddSetting(const EGUISettingType &Type, const CStr &Name)
+void IGUIObject::AddSetting(const EGUISettingType &Type, const CStr& Name)
 {
 	// Is name already taken?
 	if (m_Settings.count(Name) >= 1)
@@ -201,7 +201,7 @@ void IGUIObject::UpdateMouseOver(IGUIObject * const &pMouseOver)
 	}
 }
 
-bool IGUIObject::SettingExists(const CStr &Setting) const
+bool IGUIObject::SettingExists(const CStr& Setting) const
 {
 	// Because GetOffsets will direct dynamically defined
 	//  classes with polymorifsm to respective ms_SettingsInfo
@@ -222,7 +222,7 @@ bool IGUIObject::SettingExists(const CStr &Setting) const
 		GUI<type>::SetSetting(this, Setting, _Value);	\
 	}
 
-void IGUIObject::SetSetting(const CStr &Setting, const CStr &Value)
+void IGUIObject::SetSetting(const CStr& Setting, const CStr& Value)
 {
 	if (!SettingExists(Setting))
 	{
@@ -299,7 +299,7 @@ void IGUIObject::UpdateCachedSize()
 
 }
 
-void IGUIObject::LoadStyle(CGUI &GUIinstance, const CStr &StyleName)
+void IGUIObject::LoadStyle(CGUI &GUIinstance, const CStr& StyleName)
 {
 	// Fetch style
 	if (GUIinstance.m_Styles.count(StyleName)==1)

@@ -108,7 +108,7 @@ public:
 	 * @param Rect Position and Size
 	 * @param Clipping The sprite shouldn't be drawn outside this rectangle
 	 */
-	void DrawSprite(const CStr &SpriteName, const float &Z, 
+	void DrawSprite(const CStr& SpriteName, const float &Z, 
 					const CRect &Rect, const CRect &Clipping=CRect());
 
 	/**
@@ -151,7 +151,7 @@ public:
 	 * @param Name String name of object
 	 * @return true if object exists
 	 */
-	bool ObjectExists(const CStr &Name) const;
+	bool ObjectExists(const CStr& Name) const;
 
 	/**
 	 * The GUI needs to have all object types inputted and
@@ -168,7 +168,7 @@ public:
 	 *
 	 * @see CGUI#ConstructObject()
 	 */
-	void AddObjectType(const CStr &str, ConstructObjectFunction pFunc) { m_ObjectTypes[str] = pFunc; }
+	void AddObjectType(const CStr& str, ConstructObjectFunction pFunc) { m_ObjectTypes[str] = pFunc; }
 
 	/**
 	 * Update Resolution, should be called every time the resolution
@@ -197,7 +197,7 @@ public:
 	 * @param BufferZone space between text and edge, and space between text and images.
 	 */
 	SGUIText GenerateText(const CGUIString &Text, /*const CColor &Color, */
-						  const CStr &Font, const int &Width, const int &BufferZone);
+						  const CStr& Font, const int &Width, const int &BufferZone);
 
 private:
 	/**
@@ -228,7 +228,7 @@ private:
 	 *
 	 * @param str Error message
 	 */
-	void ReportParseError(const CStr &str, ...);
+	void ReportParseError(const CStr& str, ...);
 
 	/**
 	 * You input the name of the object type, and let's
@@ -238,7 +238,7 @@ private:
 	 * @param str Name of object type
 	 * @return Newly constructed IGUIObject (but constructed as a subclass)
 	 */
-	IGUIObject *ConstructObject(const CStr &str);
+	IGUIObject *ConstructObject(const CStr& str);
 
 	//--------------------------------------------------------
 	/** @name XML Reading Xerces C++ specific subroutines

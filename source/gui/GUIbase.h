@@ -84,7 +84,7 @@ struct SGUIMessage
 {
 	SGUIMessage() {}
 	SGUIMessage(const EGUIMessageType &_type) : type(_type) {}
-	SGUIMessage(const EGUIMessageType &_type, const CStr &_value) : type(_type), value(_value) {}
+	SGUIMessage(const EGUIMessageType &_type, const CStr& _value) : type(_type), value(_value) {}
 	~SGUIMessage() {}
 
 	/**

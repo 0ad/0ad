@@ -93,10 +93,10 @@ CColor IGUIButtonBehavior::ChooseColor()
 
 void IGUIButtonBehavior::DrawButton(const CRect &rect,
 									const float &z,
-									const CStr &sprite,
-									const CStr &sprite_over,
-									const CStr &sprite_pressed,
-									const CStr &sprite_disabled)
+									const CStr& sprite,
+									const CStr& sprite_over,
+									const CStr& sprite_pressed,
+									const CStr& sprite_disabled)
 {
 	if (GetGUI())
 	{

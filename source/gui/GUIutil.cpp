@@ -11,14 +11,14 @@ gee@pyro.nu
 using namespace std;
 
 template <typename T>
-bool __ParseString(const CStr &Value, T &tOutput)
+bool __ParseString(const CStr& Value, T &tOutput)
 {
 	// TODO Gee: Unsupported, report error/warning
 	return false;
 }
 
 template <>
-bool __ParseString<bool>(const CStr &Value, bool &Output)
+bool __ParseString<bool>(const CStr& Value, bool &Output)
 {
 	if (Value == CStr(_T("true")))
 		Output = true;
@@ -32,21 +32,21 @@ bool __ParseString<bool>(const CStr &Value, bool &Output)
 }
 
 template <>
-bool __ParseString<int>(const CStr &Value, int &Output)
+bool __ParseString<int>(const CStr& Value, int &Output)
 {
 	Output = Value.ToInt();
 	return true;
 }
 
 template <>
-bool __ParseString<float>(const CStr &Value, float &Output)
+bool __ParseString<float>(const CStr& Value, float &Output)
 {
 	Output = Value.ToFloat();
 	return true;
 }
 
 template <>
-bool __ParseString<CRect>(const CStr &Value, CRect &Output)
+bool __ParseString<CRect>(const CStr& Value, CRect &Output)
 {
 	// Use the parser to parse the values
 	CParser parser;
@@ -77,13 +77,13 @@ bool __ParseString<CRect>(const CStr &Value, CRect &Output)
 }
 
 template <>
-bool __ParseString<CClientArea>(const CStr &Value, CClientArea &Output)
+bool __ParseString<CClientArea>(const CStr& Value, CClientArea &Output)
 {
 	return Output.SetClientArea(Value);
 }
 
 template <>
-bool __ParseString<CColor>(const CStr &Value, CColor &Output)
+bool __ParseString<CColor>(const CStr& Value, CColor &Output)
 {
 	// Use the parser to parse the values
 	CParser parser;
@@ -118,7 +118,7 @@ bool __ParseString<CColor>(const CStr &Value, CColor &Output)
 }
 
 template <>
-bool __ParseString<CGUIString>(const CStr &Value, CGUIString &Output)
+bool __ParseString<CGUIString>(const CStr& Value, CGUIString &Output)
 {
 	const char * buf = Value;
 
@@ -134,7 +134,7 @@ CClientArea::CClientArea() : pixel(0,0,0,0), percent(0,0,0,0)
 {
 }
 
-CClientArea::CClientArea(const CStr &Value)
+CClientArea::CClientArea(const CStr& Value)
 {
 	SetClientArea(Value);
 }
@@ -156,7 +156,7 @@ CRect CClientArea::GetClientArea(const CRect &parent) const
 	return client;
 }
 
-bool CClientArea::SetClientArea(const CStr &Value)
+bool CClientArea::SetClientArea(const CStr& Value)
 {
 	// Get value in STL string format
 	string _Value = (const TCHAR*)Value;
@@ -272,7 +272,7 @@ bool CClientArea::SetClientArea(const CStr &Value)
 //--------------------------------------------------------
 //  Utilities implementation
 //--------------------------------------------------------
-IGUIObject * CInternalCGUIAccessorBase::GetObjectPointer(CGUI &GUIinstance, const CStr &Object)
+IGUIObject * CInternalCGUIAccessorBase::GetObjectPointer(CGUI &GUIinstance, const CStr& Object)
 {
 //	if (!GUIinstance.ObjectExists(Object))
 //		return NULL;
@@ -280,7 +280,7 @@ IGUIObject * CInternalCGUIAccessorBase::GetObjectPointer(CGUI &GUIinstance, cons
 	return GUIinstance.m_pAllObjects.find(Object)->second;
 }
 
-const IGUIObject * CInternalCGUIAccessorBase::GetObjectPointer(const CGUI &GUIinstance, const CStr &Object)
+const IGUIObject * CInternalCGUIAccessorBase::GetObjectPointer(const CGUI &GUIinstance, const CStr& Object)
 {
 //	if (!GUIinstance.ObjectExists(Object))
 //		return NULL;

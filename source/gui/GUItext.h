@@ -187,7 +187,7 @@ public:
 			 * @param tagtype TagType by string, like 'IMG' for [IMG]
 			 * @return True if m_TagType was set.
 			 */
-			bool SetTagType(const CStr &tagtype);
+			bool SetTagType(const CStr& tagtype);
 
 			/**
 			 * In [B=Hello][/B]
@@ -255,7 +255,7 @@ public:
 	 * Set the value, the string will automatically
 	 * be parsed when set.
 	 */
-	void SetValue(const CStr &str);
+	void SetValue(const CStr& str);
 
 	/**
 	 * Get String, without tags
@@ -277,7 +277,7 @@ public:
 	 * @param to to chacter n.
 	 */
 	void GenerateTextCall(SFeedback &Feedback,
-						  const CStr &DefaultFont, /*const CColor &DefaultColor,*/
+						  const CStr& DefaultFont, /*const CColor &DefaultColor,*/
 						  const int &from, const int &to) const;
 
 	/**

@@ -159,7 +159,7 @@ public:
 	CStr GetName() const { return m_Name; }
 
 	/// Get object name
-	void SetName(const CStr &Name) { m_Name = Name; }
+	void SetName(const CStr& Name) { m_Name = Name; }
 
 	/**
 	 * Adds object and its children to the map, it's name being the
@@ -213,7 +213,7 @@ public:
 	 * @param Setting setting name
 	 * @return True if settings exist.
 	 */
-	bool SettingExists(const CStr &Setting) const;
+	bool SettingExists(const CStr& Setting) const;
 	
 	/**
 	 * All sizes are relative to resolution, and the calculation
@@ -253,7 +253,7 @@ public:
 	 *
 	 * @throws PS_RESULT
 	 */
-	void SetSetting(const CStr &Setting, const CStr &Value);
+	void SetSetting(const CStr& Setting, const CStr& Value);
 
 	//@}
 protected:
@@ -275,7 +275,7 @@ protected:
 	 * @param Type Setting type
 	 * @param Name Setting reference name
 	 */
-	void AddSetting(const EGUISettingType &Type, const CStr &Name);
+	void AddSetting(const EGUISettingType &Type, const CStr& Name);
 
 	/**
 	 * Calls Destroy on all children, and deallocates all memory.
@@ -307,7 +307,7 @@ protected:
 	 * @param GUIinstance Reference to the GUI
 	 * @param StyleName Style by name
 	 */
-	void LoadStyle(CGUI &GUIinstance, const CStr &StyleName);
+	void LoadStyle(CGUI &GUIinstance, const CStr& StyleName);
 
 	/**
 	 * Loads a style.

@@ -30,7 +30,7 @@ void CGUIString::SFeedback::Reset()
 }
 
 void CGUIString::GenerateTextCall(SFeedback &Feedback,
-								  const CStr &DefaultFont, /*const CColor &DefaultColor,*/
+								  const CStr& DefaultFont, /*const CColor &DefaultColor,*/
 								  const int &from, const int &to) const
 {
 	// Reset width and height, because they will be determined with incrementation
@@ -159,7 +159,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 	}
 }
 
-bool CGUIString::TextChunk::Tag::SetTagType(const CStr &tagtype)
+bool CGUIString::TextChunk::Tag::SetTagType(const CStr& tagtype)
 {
 	CStr _tagtype = tagtype.UpperCase();	
 
@@ -208,7 +208,7 @@ bool CGUIString::TextChunk::Tag::SetTagType(const CStr &tagtype)
 	return false;
 }
 
-void CGUIString::SetValue(const CStr &str)
+void CGUIString::SetValue(const CStr& str)
 {
 	// clear
 	m_TextChunks.clear();

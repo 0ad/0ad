@@ -34,28 +34,28 @@ class CClientArea;
 class CGUIString;
 
 template <typename T>
-bool __ParseString(const CStr &Value, T &tOutput);
+bool __ParseString(const CStr& Value, T &tOutput);
 
 template <>
-bool __ParseString<bool>(const CStr &Value, bool &Output);
+bool __ParseString<bool>(const CStr& Value, bool &Output);
 
 template <>
-bool __ParseString<int>(const CStr &Value, int &Output);
+bool __ParseString<int>(const CStr& Value, int &Output);
 
 template <>
-bool __ParseString<float>(const CStr &Value, float &Output);
+bool __ParseString<float>(const CStr& Value, float &Output);
 
 template <>
-bool __ParseString<CRect>(const CStr &Value, CRect &Output);
+bool __ParseString<CRect>(const CStr& Value, CRect &Output);
 
 template <>
-bool __ParseString<CClientArea>(const CStr &Value, CClientArea &Output);
+bool __ParseString<CClientArea>(const CStr& Value, CClientArea &Output);
 
 template <>
-bool __ParseString<CColor>(const CStr &Value, CColor &Output);
+bool __ParseString<CColor>(const CStr& Value, CColor &Output);
 
 template <>
-bool __ParseString<CGUIString>(const CStr &Value, CGUIString &Output);
+bool __ParseString<CGUIString>(const CStr& Value, CGUIString &Output);
 
 /**
  * @author Gustav Larsson
@@ -69,7 +69,7 @@ class CClientArea
 {
 public:
 	CClientArea();
-	CClientArea(const CStr &Value);
+	CClientArea(const CStr& Value);
 
 	/// Pixel modifiers
 	CRect pixel;
@@ -97,7 +97,7 @@ public:
 	 * @return true if success, false if failure. If false then the client area
 	 *			will be unchanged.
 	 */
-	bool SetClientArea(const CStr &Value);
+	bool SetClientArea(const CStr& Value);
 };
 
 //--------------------------------------------------------
@@ -119,10 +119,10 @@ class CInternalCGUIAccessorBase
 {
 protected:
 	/// Get object pointer
-	static IGUIObject * GetObjectPointer(CGUI &GUIinstance, const CStr &Object);
+	static IGUIObject * GetObjectPointer(CGUI &GUIinstance, const CStr& Object);
 	
 	/// const version
-	static const IGUIObject * GetObjectPointer(const CGUI &GUIinstance, const CStr &Object);
+	static const IGUIObject * GetObjectPointer(const CGUI &GUIinstance, const CStr& Object);
 
 	/// Wrapper for ResetStates
 	static void QueryResetting(IGUIObject *pObject);
@@ -156,7 +156,7 @@ public:
 	 * @param Setting Setting by name
 	 * @param Value Stores value here, note type T!
 	 */
-	static PS_RESULT GetSetting(const IGUIObject *pObject, const CStr &Setting, T &Value)
+	static PS_RESULT GetSetting(const IGUIObject *pObject, const CStr& Setting, T &Value)
 	{
 		if (pObject == NULL)
 			return PS_OBJECT_FAIL;
@@ -183,7 +183,7 @@ public:
 	 * @param Setting Setting by name
 	 * @param Value Sets value to this, note type T!
 	 */
-	static PS_RESULT SetSetting(IGUIObject *pObject, const CStr &Setting, const T &Value)
+	static PS_RESULT SetSetting(IGUIObject *pObject, const CStr& Setting, const T &Value)
 	{
 		if (pObject == NULL)
 			return PS_OBJECT_FAIL;
@@ -222,8 +222,8 @@ public:
 	 * Can safely be removed.
 	 */
 	static PS_RESULT GetSetting(
-		const CStr &Object, 
-		const CStr &Setting, T &Value)
+		const CStr& Object, 
+		const CStr& Setting, T &Value)
 	{
 		return GetSetting(g_GUI, Object, Setting, Value);
 	}
@@ -238,8 +238,8 @@ public:
 	 * @param Value Stores value here, note type T!
 	 */
 	static PS_RESULT GetSetting(
-		const CGUI &GUIinstance, const CStr &Object, 
-		const CStr &Setting, T &Value)
+		const CGUI &GUIinstance, const CStr& Object, 
+		const CStr& Setting, T &Value)
 	{
 		if (!GUIinstance.ObjectExists(Object))
 			return PS_OBJECT_FAIL;
@@ -256,7 +256,7 @@ public:
 	 * Can safely be removed.
 	 */
 	static PS_RESULT SetSetting(
-		const CStr &Object, const CStr &Setting, const T &Value)
+		const CStr& Object, const CStr& Setting, const T &Value)
 	{
 		return SetSetting(g_GUI, Object, Setting, Value);		
 	}
@@ -275,8 +275,8 @@ public:
 	 * @param Value Sets value to this, note type T!
 	 */
 	static PS_RESULT SetSetting(
-		CGUI &GUIinstance, const CStr &Object, 
-		const CStr &Setting, const T &Value)
+		CGUI &GUIinstance, const CStr& Object, 
+		const CStr& Setting, const T &Value)
 	{
 		if (!GUIinstance.ObjectExists(Object))
 			return PS_OBJECT_FAIL;
@@ -300,7 +300,7 @@ public:
 	 * @param sec Secondary sprite if Primary should fail
 	 * @return Resulting string
 	 */
-	static CStr FallBackSprite(const CStr &prim, const CStr &sec)
+	static CStr FallBackSprite(const CStr& prim, const CStr& sec)
 	{
 		// CStr() == empty string, null
 		return ((prim!=CStr())?(prim):(sec));
@@ -333,7 +333,7 @@ public:
 	 *
 	 * @see _mem_ParseString()
 	 */
-	static bool ParseString(const CStr &Value, T &tOutput)
+	static bool ParseString(const CStr& Value, T &tOutput)
 	{
 		return __ParseString<T>(Value, tOutput);
 	}

@@ -215,7 +215,7 @@ CGUI::~CGUI()
 //-------------------------------------------------------------------
 //  Functions
 //-------------------------------------------------------------------
-IGUIObject *CGUI::ConstructObject(const CStr &str)
+IGUIObject *CGUI::ConstructObject(const CStr& str)
 {
 	if (m_ObjectTypes.count(str) > 0)
 		return (*m_ObjectTypes[str])();
@@ -332,7 +332,7 @@ void CGUI::Draw()
 	glPopMatrix();
 }
 
-void CGUI::DrawSprite(const CStr &SpriteName, 
+void CGUI::DrawSprite(const CStr& SpriteName, 
 					  const float &Z, 
 					  const CRect &Rect, 
 					  const CRect &Clipping)
@@ -457,7 +457,7 @@ void CGUI::UpdateObjects()
 	m_pAllObjects = AllObjects;
 }
 
-bool CGUI::ObjectExists(const CStr &Name) const
+bool CGUI::ObjectExists(const CStr& Name) const
 {
 	return m_pAllObjects.count(Name) != 0;
 }
@@ -473,7 +473,7 @@ struct SGenerateTextImage
 	// TODO Gee: CRect => CPoint ?
 	void SetupSpriteCall(const bool &Left, SGUIText::SSpriteCall &SpriteCall, 
 						 const int &width, const int &y,
-						 const CSize &Size, const CStr &TextureName, 
+						 const CSize &Size, const CStr& TextureName, 
 						 const int &BufferZone)
 	{
 		// TODO Gee: Temp hardcoded values
@@ -500,7 +500,7 @@ struct SGenerateTextImage
 };
 
 SGUIText CGUI::GenerateText(const CGUIString &string, /*const CColor &Color, */
-							const CStr &Font, const int &Width, const int &BufferZone)
+							const CStr& Font, const int &Width, const int &BufferZone)
 {
 	SGUIText Text; // object we're generating
 	
@@ -771,7 +771,7 @@ void CGUI::DrawText(const SGUIText &Text, const CColor &DefaultColor,
 	}
 }
 
-void CGUI::ReportParseError(const CStr &str, ...)
+void CGUI::ReportParseError(const CStr& str, ...)
 {
 	// Print header
 	if (m_Errors==0)

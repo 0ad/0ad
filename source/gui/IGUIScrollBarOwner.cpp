@@ -50,7 +50,7 @@ void SetGUI(CGUI * const &pGUI)
 	scrollbar->SetGUI(m_pGUI);
 }
 */
-const SGUIScrollBarStyle * IGUIScrollBarOwner::GetScrollBarStyle(const CStr &style) const
+const SGUIScrollBarStyle * IGUIScrollBarOwner::GetScrollBarStyle(const CStr& style) const
 {
 	if (!GetGUI())
 	{

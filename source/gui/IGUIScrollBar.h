@@ -282,7 +282,7 @@ public:
 	 * Set Scroll bar style string
 	 * @param style String with scroll bar style reference name
 	 */
-	void SetScrollBarStyle(const CStr &style) { m_ScrollBarStyle = style; }
+	void SetScrollBarStyle(const CStr& style) { m_ScrollBarStyle = style; }
 
 	/**
 	 * Get style used by the scrollbar
