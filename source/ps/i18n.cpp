@@ -9,7 +9,10 @@
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "i18n"
 
+// Yay, global variables. (The user only ever wants to be using one language
+// at a time, so this is sufficient)
 I18n::CLocale_interface* g_CurrentLocale = NULL;
+std::string g_CurrentLocaleName;
 
 bool I18n::LoadLanguage(const char* name)
 {
@@ -24,6 +27,7 @@ bool I18n::LoadLanguage(const char* name)
 		assert(locale_ptr);
 		delete g_CurrentLocale;
 		g_CurrentLocale = locale_ptr;
+		g_CurrentLocaleName = "";
 		return true;
 	}
 
@@ -103,7 +107,15 @@ bool I18n::LoadLanguage(const char* name)
 	// Store the new CLocale*, and stop the auto_ptr from deleting it
 	g_CurrentLocale = locale.release();
 
+	// Remember the name
+	g_CurrentLocaleName = name;
+
 	return true;
+}
+
+const char* I18n::CurrentLanguageName()
+{
+	return g_CurrentLocaleName.c_str();
 }
 
 void I18n::Shutdown()

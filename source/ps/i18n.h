@@ -7,5 +7,6 @@ extern I18n::CLocale_interface* g_CurrentLocale;
 namespace I18n
 {
 	bool LoadLanguage(const char* name);
+	const char* CurrentLanguageName();
 	void Shutdown();
 }

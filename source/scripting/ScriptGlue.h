@@ -4,43 +4,50 @@
 
 #include "ScriptingHost.h"
 
+typedef JSBool JSFunc(JSContext* /*context*/, JSObject* /*globalObject*/, unsigned int /*argc*/, jsval* /*argv*/, jsval* /*rval*/);
+
 // Functions to be called from Javascript:
 
-JSBool WriteLog(JSContext * context, JSObject * globalObject, unsigned int argc, jsval *argv, jsval *rval);
+JSFunc WriteLog;
 
-JSBool getEntityByHandle( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval );
-JSBool getEntityTemplate( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval );
-JSBool setTimeout( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval );
-JSBool setInterval( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval );
-JSBool cancelInterval( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval );
+JSFunc getEntityByHandle;
+JSFunc getEntityTemplate;
+JSFunc setTimeout;
+JSFunc setInterval;
+JSFunc cancelInterval;
 
 // Returns the sort-of-global object associated with the current GUI
-JSBool getGUIGlobal(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
+JSFunc getGUIGlobal;
 
 // Returns the global object, e.g. for setting global variables.
-JSBool getGlobal(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
+JSFunc getGlobal;
 
-JSBool setCursor(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
+JSFunc setCursor;
 
-JSBool startServer(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
-JSBool joinGame(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
-JSBool startGame(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
-JSBool endGame(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
+JSFunc startServer;
+JSFunc joinGame;
+JSFunc startGame;
+JSFunc endGame;
 
 // Replaces the current language (locale) with a new one
-JSBool loadLanguage(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
+JSFunc loadLanguage;
+
+// Returns the current language's name, in the same form as passed to loadLanguage
+JSFunc getLanguageID;
+
+JSFunc getFPS;
 
 // Returns a string that says when ScriptGlue.cpp was last recompiled
-JSBool buildTime(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
+JSFunc buildTime;
 
 // Tells the main loop to stop looping
-JSBool exitProgram(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
+JSFunc exitProgram;
 
 // Crashes.
-JSBool crash(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
+JSFunc crash;
 
 // Tries to print the amount of remaining video memory. (I don't like starting functions with underscores).
-JSBool js_mem(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
+JSFunc js_mem;
 
 extern JSFunctionSpec ScriptFunctionTable[];
 extern JSPropertySpec ScriptGlobalTable[];

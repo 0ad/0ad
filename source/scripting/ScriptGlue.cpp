@@ -52,6 +52,8 @@ JSFunctionSpec ScriptFunctionTable[] =
 	{"joinGame", joinGame, 0, 0, 0 },
 	{"startServer", startServer, 0, 0, 0 },
 	{"loadLanguage", loadLanguage, 1, 0, 0 },
+	{"getLanguageID", getLanguageID, 0, 0, 0 },
+	{"getFPS", getFPS, 0, 0, 0 },
 	{"buildTime", buildTime, 0, 0, 0 },
 
 	{"exit", exitProgram, 0, 0, 0 },
@@ -372,6 +374,25 @@ JSBool loadLanguage(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned
 	CStr lang = g_ScriptingHost.ValueToString(argv[0]);
 	I18n::LoadLanguage(lang);
 
+	return JS_TRUE;
+}
+
+JSBool getLanguageID(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned int UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* rval)
+{
+	JSString* s = JS_NewStringCopyZ(cx, I18n::CurrentLanguageName());
+	if (!s)
+	{
+		JS_ReportError(cx, "Error creating string");
+		return JS_FALSE;
+	}
+	*rval = STRING_TO_JSVAL(s);
+	return JS_TRUE;
+}
+
+extern "C" extern int fps;
+JSBool getFPS(JSContext* UNUSEDPARAM(cx), JSObject* UNUSEDPARAM(globalObject), unsigned int UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* rval)
+{
+	*rval = INT_TO_JSVAL(fps);
 	return JS_TRUE;
 }
 
