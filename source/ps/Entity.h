@@ -29,7 +29,7 @@ TDD at http://forums.wildfiregames.com/0ad
 
 #include "assert.h"
 #include "stdio.h"
-#include "singleton.h"
+#include "Singleton.h"
 #include "Event.h"
 
 // Handle defines
@@ -50,8 +50,8 @@ class HEntityWeak;
 
 class HEntityWeak
 {
-	friend CHandlePool;
-	friend HEntity;
+	friend class CHandlePool;
+	friend class HEntity;
 private:
 	unsigned short index;
 	HEntityWeak( unsigned short index );
@@ -66,7 +66,7 @@ public:
 
 class CEntity
 {
-	friend CHandlePool;
+	friend class CHandlePool;
 private:
 	HEntityWeak Handle;		// Reference to self, to include in messages, etc.
 							// Weak handle isn't refcounted, but is as soon
@@ -81,9 +81,9 @@ public:
 
 class CHandle
 {
-	friend CHandlePool;
-	friend HEntity;
-	friend HEntityWeak;
+	friend class CHandlePool;
+	friend class HEntity;
+	friend class HEntityWeak;
 private:
 	CEntity* ptr;
 	unsigned short refcount;
@@ -96,8 +96,8 @@ private:
 
 class HEntity
 {
-	friend CHandlePool;
-	friend HEntityWeak;
+	friend class CHandlePool;
+	friend class HEntityWeak;
 private:
 	unsigned short index;
 	HEntity( unsigned short index );
@@ -120,8 +120,8 @@ public:
 
 class CHandlePool : public Singleton<CHandlePool>
 {
-	friend HEntity;
-	friend HEntityWeak;
+	friend class HEntity;
+	friend class HEntityWeak;
 private:
 	unsigned short FreeHandle;
 	CHandle Pool[MAX_HANDLES];
