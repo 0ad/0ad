@@ -41,9 +41,6 @@
 # define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
 #endif
 
-#define ZLIB_WINAPI
-#include "zlib.h" // for crc32
-
 #include "lib/res/handle.h"
 #include "lib.h"
 #include "XercesErrorHandler.h"

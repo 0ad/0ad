@@ -1,4 +1,4 @@
-// $Id: Xeromyces.cpp,v 1.15 2004/09/22 11:51:43 philip Exp $
+// $Id: Xeromyces.cpp,v 1.16 2004/11/22 00:19:08 janwas Exp $
 
 #include "precompiled.h"
 
@@ -11,6 +11,9 @@
 #include "ps/Xeromyces.h"
 #include "ps/CLogger.h"
 #include "lib/res/vfs.h"
+
+#define ZLIB_DLL
+#include "zlib.h" // for crc32
 
 #define LOG_CATEGORY "xml"
 
