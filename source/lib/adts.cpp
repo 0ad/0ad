@@ -1,6 +1,7 @@
+#include "precompiled.h"
+
 #include "adts.h"
 
-#include <cassert>
 
 template<class T, int max_items> class DynArray
 {

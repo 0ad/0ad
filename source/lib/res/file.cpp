@@ -17,18 +17,14 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
+#include "precompiled.h"
+
 #include "lib.h"
 #include "file.h"
 #include "h_mgr.h"
 #include "mem.h"
 #include "detect.h"
 #include "adts.h"
-
-#include <cassert>
-
-#include <vector>
-#include <functional>
-#include <algorithm>
 
 
 // block := power-of-two sized chunk of a file.
@@ -110,7 +106,7 @@ int file_set_root_dir(const char* argv0, const char* root_dir)
 	static bool already_attempted;
 	if(already_attempted)
 	{
-		assert(0 && "vfs_set_root called more than once");
+		debug_warn("vfs_set_root called more than once");
 		return -1;
 	}
 	already_attempted = true;
@@ -166,7 +162,7 @@ typedef DirEnts::iterator DirEntsIt;
 static bool dirent_less(DirEnt& d1, DirEnt& d2)
 	{ return d1.name.compare(d2.name) < 0; }
 
-int file_enum_dirents(const char* dir, DirEntCB cb, uintptr_t user)
+int file_enum(const char* dir, FileCB cb, uintptr_t user)
 {
 	char n_path[PATH_MAX+1];
 	n_path[PATH_MAX] = '\0';
@@ -321,7 +317,7 @@ static int file_validate(const uint line, File* const f)
 	// failed somewhere - err is the error code,
 	// or -1 if not set specifically above.
 	debug_out("file_validate at line %d failed: %s\n", line, msg);
-	assert(0 && "file_validate failed");
+	debug_warn("file_validate failed");
 	return err;
 }
 
@@ -336,7 +332,7 @@ do\
 while(0);
 
 
-int file_open(const char* p_fn, int flags, File* f)
+int file_open(const char* p_fn, uint flags, File* f)
 {
 	memset(f, 0, sizeof(File));
 
@@ -422,12 +418,12 @@ int ll_start_io(File* f, size_t ofs, size_t size, void* p, ll_cb* lcb)
 
 	if(size == 0)
 	{
-		assert(0 && "ll_start_io: size = 0 - why?");
+		debug_warn("ll_start_io: size = 0 - why?");
 		return ERR_INVALID_PARAM;
 	}
 	if(ofs >= f->size)
 	{
-		assert(0 && "ll_start_io: ofs beyond f->size");
+		debug_warn("ll_start_io: ofs beyond f->size");
 		return -1;
 	}
 
@@ -537,7 +533,7 @@ static void* block_alloc(const u64 id)
 		for(size_t i = 0; i < num_blocks; i++)
 		{
 			if(c.grow(p) < 0)
-				assert(0 && "block_alloc: Cache::grow failed!");
+				debug_warn("block_alloc: Cache::grow failed!");
 				// currently can't fail.
 			p = (char*)p + BLOCK_SIZE;
 		}
@@ -551,7 +547,7 @@ static void* block_alloc(const u64 id)
 	void* block = *entry;
 
 	if(c.lock(id, true) < 0)
-		assert(0 && "block_alloc: Cache::lock failed!");
+		debug_warn("block_alloc: Cache::lock failed!");
 		// can't happen: only cause is tag not found, but we successfully
 		// added it above. if it did fail, that'd be bad: we leak the block,
 		// and/or the buffer may be displaced while in use. hence, assert.
@@ -747,7 +743,7 @@ static int io_free(Handle hio)
 
 	if(io->pending)
 	{
-		assert(0 && "io_free: IO pending");
+		debug_warn("io_free: IO pending");
 		return -1;
 	}
 
@@ -783,7 +779,7 @@ struct FindBlock : public std::binary_function<Handle, u64, bool>
 		IO* io = (IO*)h_user_data(hio, H_IO);
 		if(!io)
 		{
-			assert(0 && "invalid handle in all_ios list!");
+			debug_warn("invalid handle in all_ios list!");
 			return false;
 		}
 		return io->block_id == block_id;
@@ -823,12 +819,12 @@ Handle file_start_io(File* f, size_t user_ofs, size_t user_size, void* user_p)
 
 	if(user_size == 0)
 	{
-		assert(0 && "file_start_io: user_size = 0 - why?");
+		debug_warn("file_start_io: user_size = 0 - why?");
 		return ERR_INVALID_PARAM;
 	}
 	if(user_ofs >= f->size)
 	{
-		assert(0 && "file_start_io: user_ofs beyond f->size");
+		debug_warn("file_start_io: user_ofs beyond f->size");
 		return -1;
 	}
 
@@ -1026,7 +1022,7 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, raw_size, raw_ofs);
 		// temp buffer OR supposed to be allocated here: invalid
 		if(!p || !*p)
 		{
-			assert(0 && "file_io: write to file from 0 buffer");
+			debug_warn("file_io: write to file from 0 buffer");
 			return ERR_INVALID_PARAM;
 		}
 	}

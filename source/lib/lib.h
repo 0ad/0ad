@@ -108,6 +108,9 @@ enum LibError
 
 
 
+#define debug_warn(str) assert(0 && (str))
+
+
 
 
 // converts 4 character string to u32 for easy comparison

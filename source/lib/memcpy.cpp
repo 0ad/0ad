@@ -4,6 +4,8 @@
  * src and len must be multiples of CHUNK_SIZE.
  */
 
+#include "precompiled.h"
+
 #if _MSC_VER >= 0x1300
 
 void memcpy_nt(void* dst, void* src, int len)

@@ -16,9 +16,7 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
-#include <cassert>
-#include <cstdlib>
-#include <cstdio>
+#include "precompiled.h"
 
 #include <io.h>
 
@@ -128,12 +126,12 @@ int aio_h_set(int fd, HANDLE h)
 	{
 		if(aio_hs[fd] != INVALID_HANDLE_VALUE)
 		{
-			assert("AioHandles::set: handle already set!");
+			debug_warn("AioHandles::set: handle already set!");
 			goto fail;
 		}
 		if(!is_valid_file_handle(h))
 		{
-			assert("AioHandles::set: setting invalid handle");
+			debug_warn("AioHandles::set: setting invalid handle");
 			goto fail;
 		}
 	}
@@ -145,7 +143,7 @@ int aio_h_set(int fd, HANDLE h)
 
 fail:
 	win_unlock(WAIO_CS);
-	assert(0 && "aio_h_set failed");
+	debug_warn("aio_h_set failed");
 	return -1;
 }
 
@@ -307,14 +305,14 @@ int aio_assign_handle(uintptr_t handle)
 	HANDLE h = CreateEvent(0,0,0,0);
 	if(h == INVALID_HANDLE_VALUE)
 	{
-		assert(0 && "aio_assign_handle failed");
+		debug_warn("aio_assign_handle failed");
 		return -1;
 	}
 
 	int fd = _open_osfhandle((intptr_t)h, 0);
 	if(fd < 0)
 	{
-		assert(0 && "aio_assign_handle failed");
+		debug_warn("aio_assign_handle failed");
 		return fd;
 	}
 
@@ -347,13 +345,13 @@ WIN_ONCE(init());	// TODO: need to do this elsewhere in case other routines call
 	HANDLE h = CreateFile(fn, access, share, 0, create, flags, 0);
 	if(h == INVALID_HANDLE_VALUE)
 	{
-		assert(0 && "aio_open failed");
+		debug_warn("aio_open failed");
 		return -1;
 	}
 
 	if(aio_h_set(fd, h) < 0)
 	{
-		assert(0 && "aio_open failed");
+		debug_warn("aio_open failed");
 		CloseHandle(h);
 		return -1;
 	}
@@ -368,7 +366,7 @@ int aio_close(int fd)
 	HANDLE h = aio_h_get(fd);
 	if(h == INVALID_HANDLE_VALUE)	// out of bounds or already closed
 	{
-		assert(0 && "aio_close failed");
+		debug_warn("aio_close failed");
 		return -1;
 	}
 
@@ -407,21 +405,21 @@ debug_out("aio_rw cb=%p\n", cb);
 	HANDLE h = aio_h_get(cb->aio_fildes);
 	if(h == INVALID_HANDLE_VALUE)
 	{
-		assert(0 && "aio_rw: associated handle is invalid");
+		debug_warn("aio_rw: associated handle is invalid");
 		return -EINVAL;
 	}
 
 	if(cb->req_)
 	{
 		// SUSv3 says this has undefined results; we fail the attempt.
-		assert(0 && "aio_rw: aiocb is already in use");
+		debug_warn("aio_rw: aiocb is already in use");
 		return -1;
 	}
 
 	Req* r = req_alloc(cb);
 	if(!r)
 	{
-		assert(0 && "aio_rw: cannot allocate a Req (too many concurrent IOs)");
+		debug_warn("aio_rw: cannot allocate a Req (too many concurrent IOs)");
 		return -1;
 	}
 

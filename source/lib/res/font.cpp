@@ -18,10 +18,7 @@
  *   http://www.stud.uni-karlsruhe.de/~urkt/
  */
 
-#include <string.h>
-#include <stdio.h>
-#include <stdarg.h>
-#include <stdlib.h>
+#include "precompiled.h"
 
 #include "lib.h"
 #include "mem.h"

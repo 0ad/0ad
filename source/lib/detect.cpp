@@ -20,16 +20,15 @@
 // large platform-specific routines (e.g. CPU or gfx card info)
 // are split out of here.
 
-#include <cstdio>
-#include <cstring>
-#include <cstdlib>
+#include "precompiled.h"
 
 #include "lib.h"
 #include "detect.h"
+#include "timer.h"
 #ifdef _M_IX86
 # include "sysdep/ia32.h"
 #endif
-#include "timer.h"
+
 
 extern int win_get_gfx_card();
 extern int win_get_gfx_drv();

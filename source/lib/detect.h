@@ -32,7 +32,7 @@ extern int get_cur_resolution(int& xres, int& yres);
 
 // useful for determining aspect ratio. not called by detect().
 // if we fail, outputs are unchanged (assumed initialized to defaults)
-extern int get_monitor_size(int& width_cm, int& height_cm);
+extern int get_monitor_size(int& width_mm, int& height_mm);
 
 
 

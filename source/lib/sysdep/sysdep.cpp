@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdarg.h>
-#include <wchar.h>
+#include "precompiled.h"
 
 #include "sysdep.h"
 

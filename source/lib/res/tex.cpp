@@ -18,11 +18,7 @@
 
 // supported formats: DDS, TGA, PNG, JP2, BMP, RAW
 
-
-#include <cassert>
-#include <cmath>
-#include <cstdio>
-#include <cstring>
+#include "precompiled.h"
 
 #include "lib.h"
 #include "vfs.h"
@@ -491,7 +487,8 @@ static inline bool png_valid(const u8* ptr, size_t size)
 // requirement: direct color
 static int png_load(const char* fn, const u8* ptr, size_t size, Tex* t)
 {
-	const char* err = 0;
+	const char* msg = 0;
+	int err = -1;
 
 	// allocate PNG structures
 	png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
@@ -500,18 +497,21 @@ static int png_load(const char* fn, const u8* ptr, size_t size, Tex* t)
 	png_infop info_ptr = png_create_info_struct(png_ptr);
 	if(!info_ptr)
 	{
-		png_destroy_read_struct(&png_ptr, 0, 0);
-		return ERR_NO_MEM;
+		err = ERR_NO_MEM;
+		goto fail;
 	}
 
 	// setup error handling
 	if(setjmp(png_jmpbuf(png_ptr)))
 	{
 fail:
-		debug_out("png_load: %s: %s\n", fn, err? err : "");
-		png_destroy_read_struct(&png_ptr, &info_ptr, 0);
-		return -1;
+		debug_out("png_load: %s: %s\n", fn, msg? msg : "unknown");
+		goto ret;
 	}
+
+	u8** rows;
+
+	{
 
 	MemRange mr = { ptr, size };
 	png_set_read_fn(png_ptr, &mr, png_read_fn);
@@ -529,15 +529,17 @@ fail:
 	const u32 ofs = 0;	// libpng returns decoded image data; no header
 
 	if(prec != 8)
-		err = "channel precision != 8 bits";
+		msg = "channel precision != 8 bits";
 	if(fmt == ~0)
-		err = "color type is invalid (must be direct color)";
-	if(err)
+		msg = "color type is invalid (must be direct color)";
+	if(msg)
+	{
+		err = -1;
 		goto fail;
+	}
 
 	// allocate mem for image - rows point into buffer (sequential)
-	// .. (rows is freed in png_destroy_read_struct)
-	u8** rows = (u8**)png_malloc(png_ptr, (h+1)*sizeof(void*));
+	rows = (u8**)malloc((h+1)*sizeof(void*));
 	if(!rows)
 		goto fail;
 	size_t img_size = pitch * (h+1);
@@ -554,8 +556,8 @@ fail:
 
 	png_read_image(png_ptr, rows);
 
-	png_read_end(png_ptr, 0);
-	png_destroy_read_struct(&png_ptr, &info_ptr, 0);
+	png_read_end(png_ptr, info_ptr);
+	
 
 	mem_free_h(t->hm);
 
@@ -564,9 +566,18 @@ fail:
 	t->fmt = fmt;
 	t->bpp = bpp;
 	t->ofs = ofs;
-	t->hm = img_hm;
+	t->hm  = img_hm;
 
-	return 0;
+	err = 0;
+
+	}
+
+	// shared cleanup
+ret:
+	free(rows);
+	png_destroy_read_struct(&png_ptr, &info_ptr, 0);
+
+	return err;
 }
 
 #endif
@@ -765,7 +776,7 @@ int tex_bind(const Handle h)
 #ifndef NDEBUG
 	if(!t->id)
 	{
-		assert(0 && "tex_bind: Tex.id is not a valid texture");
+		debug_warn("tex_bind: Tex.id is not a valid texture");
 		return -1;
 	}
 #endif
@@ -842,7 +853,7 @@ int tex_upload(const Handle ht, int filter, int int_fmt)
 			assert(0);
 		}
 		debug_out("tex_upload: %s: %s\n", fn, err);
-		assert(0 && "tex_upload failed");
+		debug_warn("tex_upload failed");
 		return -1;
 	}
 

@@ -25,7 +25,7 @@
 
 #define VFS_MAX_PATH 256	// includes trailing '\0'
 
-extern int vfs_mount(const char* vfs_path, const char* name, uint pri);
+extern int vfs_mount(const char* vfs_mount_point, const char* name, uint pri);
 extern int vfs_umount(const char* name);
 
 extern int vfs_stat(const char* fn, struct stat*);
@@ -33,10 +33,10 @@ extern int vfs_realpath(const char* fn, char* realpath);
 
 extern Handle vfs_load(const char* fn, void*& p, size_t& size);
 
-extern Handle vfs_open(const char* fn, int flags = 0);
+extern Handle vfs_open(const char* fn, uint flags = 0);
 extern int vfs_close(Handle& h);
 
-extern Handle vfs_map(Handle hf, int flags, void*& p, size_t& size);
+extern Handle vfs_map(Handle hf, uint flags, void*& p, size_t& size);
 
 
 

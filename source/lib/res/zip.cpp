@@ -16,9 +16,7 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
-#include <cassert>
-#include <cstring>
-#include <cstdlib>
+#include "precompiled.h"
 
 #include "lib.h"
 #include "res.h"
@@ -68,7 +66,7 @@ static int zip_find_ecdr(const void* const file, const size_t size, const u8*& e
 
 	if(size < ECDR_SIZE)
 	{
-		assert(0 && "zip_find_ecdr: size is way too small");
+		debug_warn("zip_find_ecdr: size is way too small");
 		return -1;
 	}
 	const u8* ecdr = (const u8*)file + size - ECDR_SIZE;
@@ -118,7 +116,7 @@ static int zip_verify_lfh(const void* const file, const size_t lfh_ofs, const si
 
 	if(*(u32*)lfh != *(u32*)lfh_id)
 	{
-		assert(0 && "LFH corrupt! (signature doesn't match)");
+		debug_warn("LFH corrupt! (signature doesn't match)");
 		return -1;
 	}
 
@@ -129,7 +127,7 @@ static int zip_verify_lfh(const void* const file, const size_t lfh_ofs, const si
 
 	if(file_ofs != lfh_file_ofs)
 	{
-		assert(0 && "warning: CDFH and LFH data differ! normal builds will"\
+		debug_warn("warning: CDFH and LFH data differ! normal builds will"\
 			        "return incorrect file offsets. check Zip file!");
 		return -1;
 	}
@@ -149,7 +147,7 @@ static int zip_read_cdfh(const u8*& cdfh, const char*& fn, size_t& fn_len, ZFile
 
 	if(*(u32*)cdfh != *(u32*)cdfh_id)
 	{
-		assert(0 && "CDFH corrupt! (signature doesn't match)");
+		debug_warn("CDFH corrupt! (signature doesn't match)");
 		goto skip_file;
 	}
 
@@ -167,7 +165,7 @@ static int zip_read_cdfh(const u8*& cdfh, const char*& fn, size_t& fn_len, ZFile
 	// compression method: neither deflated nor stored
 	if(method & ~8)
 	{
-		assert(0 && "warning: unknown compression method");
+		debug_warn("warning: unknown compression method");
 		goto skip_file;
 	}
 
@@ -443,7 +441,7 @@ static int lookup_get_file_info(LookupInfo* const li, const i32 idx, const char*
 {
 	if(idx < 0 || idx >= li->num_files-1)
 	{
-		assert(0 && "lookup_get_file_info: index out of bounds");
+		debug_warn("lookup_get_file_info: index out of bounds");
 		return -1;
 	}
 
@@ -557,7 +555,7 @@ int zip_archive_close(Handle& ha)
 
 // would be nice to pass along a key (allowing for O(1) lookup in archive),
 // but then the callback is no longer compatible to file / vfs enum files.
-int zip_enum_files(const Handle ha, const ZipFileCB cb, const uintptr_t user)
+int zip_enum(const Handle ha, const ZipFileCB cb, const uintptr_t user)
 {
 	H_DEREF(ha, ZArchive, za);
 
@@ -592,7 +590,7 @@ int inf_start_read(uintptr_t ctx, void* out, size_t out_size)
 
 	if(stream->next_out || stream->avail_out)
 	{
-		assert(0 && "zip_start_read: ctx already in use!");
+		debug_warn("zip_start_read: ctx already in use!");
 		return -1;
 	}
 	stream->next_out  = (Byte*)out;
@@ -636,7 +634,7 @@ int inf_finish_read(uintptr_t ctx)
 
 	if(stream->avail_in || stream->avail_out)
 	{
-		assert("zip_finish_read: input or input buffer has space remaining");
+		debug_warn("zip_finish_read: input or input buffer has space remaining");
 		stream->avail_in = stream->avail_out = 0;
 		return -1;
 	}
@@ -703,7 +701,7 @@ static int zfile_validate(uint line, ZFile* zf)
 	// failed somewhere - err is the error code,
 	// or -1 if not set specifically above.
 	debug_out("zfile_validate at line %d failed: %s\n", line, msg);
-	assert(0 && "zfile_validate failed");
+	debug_warn("zfile_validate failed");
 	return err;
 }
 
@@ -841,7 +839,7 @@ ssize_t zip_read(ZFile* zf, size_t raw_ofs, size_t size, void*& p)
 	// problem: partial reads 
 	if(raw_ofs != zf->last_raw_ofs)
 	{
-		assert(0 && "zip_read: compressed read offset is non-continuous");
+		debug_warn("zip_read: compressed read offset is non-continuous");
 		return -1;
 	}
 
@@ -893,7 +891,7 @@ int zip_map(ZFile* zf, void*& p, size_t& size)
 	// doesn't really make sense to map compressed files, so disallow it.
 	if(is_compressed(zf))
 	{
-		assert(0 && "mapping a compressed file from archive. why?");
+		debug_warn("mapping a compressed file from archive. why?");
 		return -1;
 	}
 

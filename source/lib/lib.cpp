@@ -14,11 +14,10 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
+#include "precompiled.h"
+
 #include "types.h"
 #include "lib.h"
-
-#include <cassert>
-#include <cstdlib>
 
 
 // more powerful atexit, with 0 or 1 parameters.
@@ -37,7 +36,7 @@
 // - call atexit (our exit handler would be called before its handler,
 //   so we may have shut down something important already).
 
-const int MAX_EXIT_FUNCS = 8;
+const int MAX_EXIT_FUNCS = 32;
 
 
 static struct ExitFunc
@@ -74,7 +73,7 @@ static void call_exit_funcs(void)
 			break;
 #endif
 		default:
-			assert(0 && "call_exit_funcs: invalid calling convention in ExitFunc!");
+			debug_warn("call_exit_funcs: invalid calling convention in ExitFunc!");
 		}
 		p++;
 	}
@@ -86,7 +85,7 @@ int atexit2(void* func, uintptr_t arg, CallConvention cc)
 {
 	if(num_exit_funcs >= MAX_EXIT_FUNCS)
 	{
-		assert("atexit2: too many functions registered. increase MAX_EXIT_FUNCS");
+		debug_warn("atexit2: too many functions registered. increase MAX_EXIT_FUNCS");
 		return -1;
 	}
 	ExitFunc* p = &exit_funcs[num_exit_funcs++];

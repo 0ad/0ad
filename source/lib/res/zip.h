@@ -57,7 +57,7 @@ enum ZIP_CB_FLAGS
 };
 
 typedef int(*ZipFileCB)(const char* const fn, const uint flags, const ssize_t size, const uintptr_t user);
-extern int zip_enum_files(const Handle ha, const ZipFileCB cb, const uintptr_t user);
+extern int zip_enum(const Handle ha, const ZipFileCB cb, const uintptr_t user);
 
 //
 // file

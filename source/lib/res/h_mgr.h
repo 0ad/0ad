@@ -248,7 +248,7 @@ guide to defining and using resources
    struct Res1
    {
        void* data1;	// data loaded from file
-       int flags;	// set when resource is created
+       uint flags;	// set when resource is created
    };
 
 3) build its vtbl:

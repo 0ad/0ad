@@ -18,8 +18,7 @@
  *   http://www.stud.uni-karlsruhe.de/~urkt/
  */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "precompiled.h"
 
 #include "input.h"
 

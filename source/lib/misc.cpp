@@ -16,11 +16,7 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
-
-#include <cassert>
-#include <cstdlib>
-#include <cmath>
-#include <string.h>
+#include "precompiled.h"
 
 #include "lib.h"
 #include "misc.h"

@@ -15,7 +15,7 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
-#include <cmath>
+#include "precompiled.h"
 
 #include "timer.h"
 #include "types.h"

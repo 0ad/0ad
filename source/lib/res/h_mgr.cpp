@@ -16,11 +16,7 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
-#include <cassert>
-#include <cstdlib>
-#include <cstring>
-#include <cstdio>
-#include <climits>
+#include "precompiled.h"
 
 #include "lib.h"
 #include "misc.h"
@@ -377,17 +373,17 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 	// verify type
 	if(!type)
 	{
-		assert(0 && "h_alloc: type param is 0");
+		debug_warn("h_alloc: type param is 0");
 		return 0;
 	}
 	if(type->user_size > HDATA_USER_SIZE)
 	{
-		assert(0 && "h_alloc: type's user data is too large for HDATA");
+		debug_warn("h_alloc: type's user data is too large for HDATA");
 		return 0;
 	}
 	if(type->name == 0)
 	{
-		assert(0 && "h_alloc: type's name field is 0");
+		debug_warn("h_alloc: type's name field is 0");
 		return 0;
 	}
 
@@ -414,7 +410,7 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 			hd = h_data(h, type);
 			if(hd->refs == REF_MAX)
 			{
-				assert(0 && "h_alloc: too many references to a handle - increase REF_BITS");
+				debug_warn("h_alloc: too many references to a handle - increase REF_BITS");
 				return 0;
 			}
 			hd->refs++;
@@ -431,7 +427,7 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 	static u32 tag;
 	if(++tag >= TAG_MASK)
 	{
-		assert(0 && "h_alloc: tag overflow - allocations are no longer unique."\
+		debug_warn("h_alloc: tag overflow - allocations are no longer unique."\
 		            "may not notice stale handle reuse. increase TAG_BITS.");
 		tag = 1;
 	}
@@ -485,7 +481,7 @@ int h_reload(const char* fn)
 {
 	if(!fn)
 	{
-		assert(0 && "h_reload: fn = 0");
+		debug_warn("h_reload: fn = 0");
 		return ERR_INVALID_PARAM;
 	}
 

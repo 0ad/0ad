@@ -1,7 +1,6 @@
 // malloc layer for less fragmentation, alignment, and automatic release
 
-#include <cstdlib>
-#include <cassert>
+#include "precompiled.h"
 
 #include "lib.h"
 #include "types.h"
@@ -71,7 +70,7 @@ static void* pool_alloc(const size_t size, const uint align, uintptr_t& ctx, MEM
 
 	if(ofs+size > POOL_CAP)
 	{
-		assert(0 && "pool_alloc: not enough memory in pool");
+		debug_warn("pool_alloc: not enough memory in pool");
 		return 0;
 	}
 
@@ -102,7 +101,7 @@ static PtrToH& get_ptr_to_h()
 	if(!_ptr_to_h)
 	{
 		if(has_shutdown)
-			assert("mem.cpp: ptr -> handle lookup used after module shutdown");
+			debug_warn("mem.cpp: ptr -> handle lookup used after module shutdown");
 			// crash + burn
 
 		_ptr_to_h = new PtrToH;
@@ -131,7 +130,7 @@ static Handle remove_alloc(void* p)
 	PtrToH::iterator it = ptr_to_h.find(p);
 	if(it == ptr_to_h.end())
 	{
-		assert("remove_alloc: pointer not in map");
+		debug_warn("remove_alloc: pointer not in map");
 		return 0;
 	}
 
@@ -213,7 +212,7 @@ Handle mem_assign(void* p, size_t size, uint flags /* = 0 */, MEM_DTOR dtor /* =
 
 	if(!p || !size)
 	{
-		assert(0 && "mem_assign: invalid p or size");
+		debug_warn("mem_assign: invalid p or size");
 		return 0;
 	}
 
@@ -240,7 +239,7 @@ void* mem_alloc(size_t size, const uint align, uint flags, Handle* phm)
 
 	if(size == 0)
 	{
-		assert(0 && "mem_alloc: why is size = 0?");
+		debug_warn("mem_alloc: why is size = 0?");
 		size = 1;
 	}
 

@@ -1,11 +1,10 @@
 #ifndef ADTS_H__
 #define ADTS_H__
 
+#include "precompiled.h"
 
 #include "lib.h"
 
-#include <list>
-#include <map>
 
 #include <cassert>
 
@@ -135,7 +134,7 @@ public:
 	{
 		if(find_line(id))
 		{
-			assert(0 && "assign: id already in cache!");
+			debug_warn("assign: id already in cache!");
 			return 0;
 		}
 
@@ -150,7 +149,7 @@ public:
 
 		// all are locked and cannot be displaced.
 		// caller should grow() enough lines so that this never happens.
-		assert(0 && "assign: all lines locked - grow() more lines");
+		debug_warn("assign: all lines locked - grow() more lines");
 		return 0;
 
 	have_line:
@@ -170,7 +169,7 @@ public:
 		// invalid: id 0 denotes not-yet-associated lines
 		if(id == 0)
 		{
-			assert(0 && "retrieve: id 0 not allowed");
+			debug_warn("retrieve: id 0 not allowed");
 			return 0;
 		}
 		Line* l = find_line(id);
@@ -264,7 +263,7 @@ public:
 
 		if(!res.second)
 		{
-			assert(0 && "add: already in container");
+			debug_warn("add: already in container");
 			return 0;
 		}
 

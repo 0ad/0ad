@@ -15,11 +15,7 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
-#include <cmath>
-#include <cassert>
-#include <cstdlib>
-
-#include <numeric>
+#include "precompiled.h"
 
 #include "hrt.h"
 #include "lib.h"
@@ -171,7 +167,7 @@ static void choose_impl()
 	}
 
 	// no warning here - doesn't inspire confidence in VC dead code removal.
-	assert(0 && "hrt_choose_impl: no safe timer found!");
+	debug_warn("hrt_choose_impl: no safe timer found!");
 	hrt_impl = HRT_NONE;
 	hrt_nominal_freq = -1;
 	return;
@@ -214,7 +210,7 @@ static i64 ticks_lk()
 	// add further timers here.
 
 	default:
-		assert(0 && "hrt_ticks: invalid impl");
+		debug_warn("hrt_ticks: invalid impl");
 		// fall through
 
 	case HRT_NONE:
@@ -375,7 +371,7 @@ int hrt_override_impl(HRTOverride ovr, HRTImpl impl)
 	if((ovr != HRT_DISABLE && ovr != HRT_FORCE && ovr != HRT_DEFAULT) ||
 	   (impl != HRT_TSC && impl != HRT_QPC && impl != HRT_TGT && impl != HRT_NONE))
 	{
-		assert(0 && "hrt_override: invalid ovr or impl param");
+		debug_warn("hrt_override: invalid ovr or impl param");
 		return -1;
 	}
 

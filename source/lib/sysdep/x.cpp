@@ -15,6 +15,8 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
+#include "precompiled.h"
+
 #ifdef HAVE_X
 
 #include <Xlib.h>
@@ -38,7 +40,7 @@ int get_cur_resolution(int& xres, int& yres)
 
 // useful for determining aspect ratio. not called by detect().
 // if we fail, outputs are unchanged (assumed initialized to defaults)
-int get_monitor_size(int& width_cm, int& height_cm)
+int get_monitor_size(int& width_mm, int& height_mm)
 {
 	return -1;
 }

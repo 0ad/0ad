@@ -1,6 +1,4 @@
-#include <cassert>
-#include <cstring>
-#include <cstdio>
+#include "precompiled.h"
 
 #include "sdl.h"
 #include "ogl.h"

@@ -66,13 +66,13 @@ enum FILE_CB_FLAGS
 extern int file_set_root_dir(const char* argv0, const char* root);
 
 
-typedef int(*DirEntCB)(const char* name, uint flags, ssize_t size, uintptr_t user);
+typedef int(*FileCB)(const char* name, uint flags, ssize_t size, uintptr_t user);
 
-extern int file_enum_dirents(const char* dir, DirEntCB cb, uintptr_t user);
+extern int file_enum(const char* dir, FileCB cb, uintptr_t user);
 
 extern int file_stat(const char* path, struct stat*);
 
-extern int file_open(const char* fn, int flags, File* f);
+extern int file_open(const char* fn, uint flags, File* f);
 extern int file_close(File* f);
 
 extern int file_map(File* f, void*& p, size_t& size);

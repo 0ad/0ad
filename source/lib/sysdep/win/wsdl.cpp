@@ -17,10 +17,14 @@
  *   Jan.Wassenberg@stud.uni-karlsruhe.de
  *   http://www.stud.uni-karlsruhe.de/~urkt/
  */
+ 
+// TODO: should use GetMessage when not active to reduce CPU load.
+// where to do this?
+// - force the app to check for SDL's activation messages, and call
+//   sdl-wait-message?
+// - do it here, just make SDL_PollEvent block until message received?
 
-#include <cstdio>
-#include <cstdlib>
-#include <cassert>
+#include "precompiled.h"
 
 #include <process.h>
 
@@ -28,6 +32,7 @@
 #include "lib.h"
 #include "win_internal.h"
 #include "misc.h"
+
 #include <SDL_vkeys.h>
 
 #ifdef _MSC_VER
@@ -70,12 +75,6 @@ static LRESULT CALLBACK wndproc(HWND hWnd, unsigned int uMsg, WPARAM wParam, LPA
 	case WM_ERASEBKGND:
 		return 0;
 
-	// prevent screensaver / monitor power off
-	case WM_SYSCOMMAND:
-		if(wParam == SC_SCREENSAVE || wParam == SC_MONITORPOWER)
-			return 0;
-		break;
-
 	case WM_ACTIVATE:
 		app_active = (wParam & 0xffff) != 0;
 
@@ -90,6 +89,26 @@ static LRESULT CALLBACK wndproc(HWND hWnd, unsigned int uMsg, WPARAM wParam, LPA
 
 	case WM_CLOSE:
 		exit(0);
+
+	// prevent moving, sizing, screensaver, and power-off in fullscreen mode
+	case WM_SYSCOMMAND:
+		switch(wParam)
+		{
+			case SC_MOVE:
+			case SC_SIZE:
+			case SC_MAXIMIZE:
+			case SC_MONITORPOWER:
+				if(fullscreen)
+					return 1;
+		}
+		break;
+
+		
+	// prevent selecting menu in fullscreen mode
+	case WM_NCHITTEST:
+		if(fullscreen)
+			return HTCLIENT;
+		// else: fall through to DefWindowProc
 	}
 
 	return DefWindowProc(hWnd, uMsg, wParam, lParam);
@@ -123,16 +142,8 @@ static void init_vkmap(SDLKey (&VK_keymap)[256])
 	VK_keymap[VK_OEM_MINUS] = SDLK_MINUS;
 	VK_keymap[VK_OEM_PERIOD] = SDLK_PERIOD;
 	VK_keymap[VK_OEM_2] = SDLK_SLASH;
-	VK_keymap[VK_0] = SDLK_0;
-	VK_keymap[VK_1] = SDLK_1;
-	VK_keymap[VK_2] = SDLK_2;
-	VK_keymap[VK_3] = SDLK_3;
-	VK_keymap[VK_4] = SDLK_4;
-	VK_keymap[VK_5] = SDLK_5;
-	VK_keymap[VK_6] = SDLK_6;
-	VK_keymap[VK_7] = SDLK_7;
-	VK_keymap[VK_8] = SDLK_8;
-	VK_keymap[VK_9] = SDLK_9;
+	for(i = 0; i < 10; i++)
+		VK_keymap[VK_0+i] = (SDLKey)(SDLK_0+i);
 	VK_keymap[VK_OEM_1] = SDLK_SEMICOLON;
 	VK_keymap[VK_OEM_PLUS] = SDLK_EQUALS;
 	VK_keymap[VK_OEM_4] = SDLK_LEFTBRACKET;
@@ -140,44 +151,15 @@ static void init_vkmap(SDLKey (&VK_keymap)[256])
 	VK_keymap[VK_OEM_6] = SDLK_RIGHTBRACKET;
 	VK_keymap[VK_OEM_3] = SDLK_BACKQUOTE;
 	VK_keymap[VK_OEM_8] = SDLK_BACKQUOTE;
-	VK_keymap[VK_A] = SDLK_a;
-	VK_keymap[VK_B] = SDLK_b;
-	VK_keymap[VK_C] = SDLK_c;
-	VK_keymap[VK_D] = SDLK_d;
-	VK_keymap[VK_E] = SDLK_e;
-	VK_keymap[VK_F] = SDLK_f;
-	VK_keymap[VK_G] = SDLK_g;
-	VK_keymap[VK_H] = SDLK_h;
-	VK_keymap[VK_I] = SDLK_i;
-	VK_keymap[VK_J] = SDLK_j;
-	VK_keymap[VK_K] = SDLK_k;
-	VK_keymap[VK_L] = SDLK_l;
-	VK_keymap[VK_M] = SDLK_m;
-	VK_keymap[VK_N] = SDLK_n;
-	VK_keymap[VK_O] = SDLK_o;
-	VK_keymap[VK_P] = SDLK_p;
-	VK_keymap[VK_Q] = SDLK_q;
-	VK_keymap[VK_R] = SDLK_r;
-	VK_keymap[VK_S] = SDLK_s;
-	VK_keymap[VK_T] = SDLK_t;
-	VK_keymap[VK_U] = SDLK_u;
-	VK_keymap[VK_V] = SDLK_v;
-	VK_keymap[VK_W] = SDLK_w;
-	VK_keymap[VK_X] = SDLK_x;
-	VK_keymap[VK_Y] = SDLK_y;
-	VK_keymap[VK_Z] = SDLK_z;
+
+	for(i = 0; i < 26; i++)
+		VK_keymap[VK_A+i] = (SDLKey)(SDLK_a+i);
+
 	VK_keymap[VK_DELETE] = SDLK_DELETE;
 
-	VK_keymap[VK_NUMPAD0] = SDLK_KP0;
-	VK_keymap[VK_NUMPAD1] = SDLK_KP1;
-	VK_keymap[VK_NUMPAD2] = SDLK_KP2;
-	VK_keymap[VK_NUMPAD3] = SDLK_KP3;
-	VK_keymap[VK_NUMPAD4] = SDLK_KP4;
-	VK_keymap[VK_NUMPAD5] = SDLK_KP5;
-	VK_keymap[VK_NUMPAD6] = SDLK_KP6;
-	VK_keymap[VK_NUMPAD7] = SDLK_KP7;
-	VK_keymap[VK_NUMPAD8] = SDLK_KP8;
-	VK_keymap[VK_NUMPAD9] = SDLK_KP9;
+	for(i = 0; i < 10; i++)
+		VK_keymap[VK_NUMPAD0+i] = (SDLKey)(SDLK_KP0+i);
+
 	VK_keymap[VK_DECIMAL] = SDLK_KP_PERIOD;
 	VK_keymap[VK_DIVIDE] = SDLK_KP_DIVIDE;
 	VK_keymap[VK_MULTIPLY] = SDLK_KP_MULTIPLY;
@@ -194,21 +176,8 @@ static void init_vkmap(SDLKey (&VK_keymap)[256])
 	VK_keymap[VK_PRIOR] = SDLK_PAGEUP;
 	VK_keymap[VK_NEXT] = SDLK_PAGEDOWN;
 
-	VK_keymap[VK_F1] = SDLK_F1;
-	VK_keymap[VK_F2] = SDLK_F2;
-	VK_keymap[VK_F3] = SDLK_F3;
-	VK_keymap[VK_F4] = SDLK_F4;
-	VK_keymap[VK_F5] = SDLK_F5;
-	VK_keymap[VK_F6] = SDLK_F6;
-	VK_keymap[VK_F7] = SDLK_F7;
-	VK_keymap[VK_F8] = SDLK_F8;
-	VK_keymap[VK_F9] = SDLK_F9;
-	VK_keymap[VK_F10] = SDLK_F10;
-	VK_keymap[VK_F11] = SDLK_F11;
-	VK_keymap[VK_F12] = SDLK_F12;
-	VK_keymap[VK_F13] = SDLK_F13;
-	VK_keymap[VK_F14] = SDLK_F14;
-	VK_keymap[VK_F15] = SDLK_F15;
+	for(i = 0; i < 12; i++)
+		VK_keymap[VK_F1+i] = (SDLKey)(SDLK_F1+i);
 
 	VK_keymap[VK_NUMLOCK] = SDLK_NUMLOCK;
 	VK_keymap[VK_CAPITAL] = SDLK_CAPSLOCK;
@@ -275,7 +244,7 @@ return_char:
 			return 1;
 		}
 		else
-			assert(0 && "SDL_PollEvent: next_char_idx invalid");
+			debug_warn("SDL_PollEvent: next_char_idx invalid");
 	}
 
 

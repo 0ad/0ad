@@ -18,10 +18,7 @@
 
 // collection of hacks :P
 
-#include <cassert>
-#include <cstdlib>
-#include <cmath>
-#include <cstdio>
+#include "precompiled.h"
 
 #include <process.h>
 
@@ -305,7 +302,11 @@ int pthread_create(pthread_t* /* thread */, const void* /* attr */, void*(*func)
 
 pthread_mutex_t pthread_mutex_initializer()
 {
-	return CreateMutex(0, 0, 0);
+	HANDLE h = CreateMutex(0, 0, 0);
+	if(h == INVALID_HANDLE_VALUE)
+		return 0;
+	atexit2(CloseHandle, (uintptr_t)h, CC_STDCALL_1);
+	return h;
 }
 
 int pthread_mutex_init(pthread_mutex_t* m, const pthread_mutexattr_t*)
@@ -313,7 +314,7 @@ int pthread_mutex_init(pthread_mutex_t* m, const pthread_mutexattr_t*)
 	if(!m)
 		return -1;
 	*m = pthread_mutex_initializer();
-	return 0;
+	return *m? 0 : -1;
 }
 
 int pthread_mutex_lock(pthread_mutex_t* m)
@@ -464,7 +465,7 @@ int clock_gettime(clockid_t clock, struct timespec* t)
 #ifndef NDEBUG
 	if(clock != CLOCK_REALTIME || !t)
 	{
-		assert(0 && "clock_gettime: invalid clock or t param");
+		debug_warn("clock_gettime: invalid clock or t param");
 		return -1;
 	}
 #endif
@@ -481,7 +482,7 @@ int clock_getres(clockid_t clock, struct timespec* res)
 #ifndef NDEBUG
 	if(clock != CLOCK_REALTIME || !res)
 	{
-		assert(0 && "clock_getres: invalid clock or res param");
+		debug_warn("clock_getres: invalid clock or res param");
 		return -1;
 	}
 #endif
@@ -510,7 +511,7 @@ int gettimeofday(struct timeval* tv, void* tzp)
 #ifndef NDEBUG
 	if(!tv)
 	{
-		assert(0 && "gettimeofday: invalid t param");
+		debug_warn("gettimeofday: invalid t param");
 		return -1;
 	}
 #endif
@@ -625,14 +626,18 @@ long sysconf(int name)
 		if(!page_size)
 			sysconf(_SC_PAGESIZE);	// sets page_size
 
-		MEMORYSTATUS ms;
-		GlobalMemoryStatus(&ms);
+		{
+		MEMORYSTATUSEX ms = { sizeof(ms) };
+		GlobalMemoryStatusEx(&ms);
 		if(name == _SC_PHYS_PAGES)
-			return (long)(round_up(ms.dwTotalPhys, 2*MB) / page_size);
-				// this is 528 KB less than it should be on Win2k and WinXP.
-				// is it DOS low mem? mem command shows more free, though.
-		else
-			return (long)(ms.dwAvailPhys / page_size);
+			return (long)(round_up((uintptr_t)ms.ullTotalPhys, 2*MB) / page_size);
+				// Richter, "Programming Applications for Windows":
+				// reported value doesn't include non-paged pool reserved
+				// during boot; it's not considered available to kernel.
+				// it's 528 KB on my 512 MB machine (WinXP and Win2k).
+ 		else
+			return (long)(ms.ullAvailPhys / page_size);
+		}
 
 	default:
 		return -1;

@@ -16,8 +16,7 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "precompiled.h"
 
 #include "detect.h"
 #include "lib.h"
@@ -31,8 +30,8 @@
 #endif
 
 
-// EnumDisplayDevices (used in get_monitor_size and win_get_gfx_card)
-// is not available on Win95 or NT. try to import it manually here.
+// EnumDisplayDevices is not available on Win95 or NT.
+// try to import it manually here; return -1 if not available.
 // note: FreeLibrary at exit avoids BoundsChecker resource leak warnings.
 static BOOL (WINAPI *pEnumDisplayDevicesA)(void*, DWORD, void*, DWORD);
 static int import_EnumDisplayDevices()
@@ -68,113 +67,15 @@ int get_cur_resolution(int& xres, int& yres)
 
 // useful for determining aspect ratio. not called by detect().
 // if we fail, outputs are unchanged (assumed initialized to defaults)
-int get_monitor_size(int& width_cm, int& height_cm)
+int get_monitor_size(int& width_mm, int& height_mm)
 {
-	DISPLAY_DEVICE adapter = { sizeof(DISPLAY_DEVICE) };
-	DISPLAY_DEVICE monitor = { sizeof(DISPLAY_DEVICE) };
-		// need to be distinct (EnumDisplayDevices requirement)
+	HDC dc = GetDC(0);	// dc for entire screen
 
-	LONG err;
-	char key_name[256];
-	DWORD key_name_len;
-	DWORD key_type;
+	 width_mm = GetDeviceCaps(dc, HORZSIZE);
+	height_mm = GetDeviceCaps(dc, VERTSIZE);
 
-	bool found = false;
-
-
-	// make sure EnumDisplayDevices is available (as pEnumDisplayDevicesA)
-	CHECK_ERR(import_EnumDisplayDevices());
-
-	HKEY hkDisplay;
-	if(RegOpenKeyEx(HKEY_LOCAL_MACHINE, "SYSTEM\\CurrentControlSet\\Enum\\Display", 0, KEY_READ, &hkDisplay) != 0)
-		return -1;
-
-	// we only look at the first monitor of the first display adapter
-	// attached to the desktop, assumed to be the primary monitor.
-
-	// for each display adapter
-	for(int adapter_idx = 0; !found; adapter_idx++)
-	{
-		// get display adapter
-		if(!pEnumDisplayDevicesA(0, adapter_idx, &adapter, 0))
-			break;
-		if(!(adapter.StateFlags & DISPLAY_DEVICE_ATTACHED_TO_DESKTOP))
-			continue;
-
-		// get its associated monitor;
-		// will search for its DeviceID in the registry
-		if(!pEnumDisplayDevicesA(adapter.DeviceName, 0, &monitor, 0))
-			continue;
-
-		// for each class in registry
-		for(int class_idx = 0; !found; class_idx++)
-		{
-			// open next key
-			HKEY hkClass;
-			key_name_len = sizeof(key_name);
-			if(RegEnumKeyEx(hkDisplay, class_idx, key_name, &key_name_len, 0, 0, 0, 0) != 0)
-				break;
-			if(RegOpenKeyEx(hkDisplay, key_name, 0, KEY_READ, &hkClass) != 0)
-				break;
-
-			// for each device in registry
-			for(int dev_idx = 0; !found; dev_idx++)
-			{
-				// open next key
-				HKEY hkDev;
-				key_name_len = sizeof(key_name);
-				if(RegEnumKeyEx(hkClass, dev_idx, key_name, &key_name_len, 0, 0, 0, 0) != 0)
-					break;
-				if(RegOpenKeyEx(hkClass, key_name, 0, KEY_READ, &hkDev) != 0)
-					break;
-
-				// build dev_id: (%s\\%s, HardwareID, Driver)
-				// example: "Monitor\NEC6604\{4D36E96E-E325-11CE-BFC1-08002BE10318}\0001"
-				// will compare this against monitor.DeviceID
-				char dev_id[256];
-				DWORD dev_id_len = sizeof(dev_id);
-				err = RegQueryValueEx(hkDev, "HardwareID", 0, &key_type, (BYTE*)dev_id, &dev_id_len);
-				if(err != 0 || (key_type != REG_MULTI_SZ && key_type != REG_SZ))
-					goto skip_dev;
-				char* p = (char*)dev_id + strlen((const char*)dev_id);
-				*p++ = '\\';
-				dev_id_len = sizeof(dev_id) - dev_id_len;
-				err = RegQueryValueEx(hkDev, "Driver", 0, &key_type, (BYTE*)p, &dev_id_len);
-				if(err != 0 || (key_type != REG_MULTI_SZ && key_type != REG_SZ))
-					goto skip_dev;
-
-				// this (hkDev) is not the monitor you're looking for..
-				if(strcmp(monitor.DeviceID, (const char*)dev_id) != 0)
-					goto skip_dev;
-
-				HKEY hkDevParams;
-				if(RegOpenKeyEx(hkDev, "Device Parameters", 0, KEY_READ, &hkDevParams) != 0)
-					goto skip_dev;
-
-				// read EDID
-				BYTE edid[256];
-				DWORD edid_len = sizeof(edid);
-				if(RegQueryValueEx(hkDevParams, "EDID", 0, &key_type, edid, &edid_len) == 0)
-				{
-					 width_cm = edid[21];
-					height_cm = edid[22];
-					found = true;
-						// break out of all loops; all keys will be closed
-				}
-
-				RegCloseKey(hkDevParams);
-
-			skip_dev:
-				RegCloseKey(hkDev);
-			}
-
-			RegCloseKey(hkClass);
-		}
-	}
-
-	RegCloseKey(hkDisplay);
-
-	return found? 0 : -1;
+	ReleaseDC(0, dc);
+	return 0;
 }
 
 
@@ -184,8 +85,7 @@ int win_get_gfx_card()
 	if(import_EnumDisplayDevices() < 0)
 		return -1;
 
-	DISPLAY_DEVICEA dev;
-	dev.cb = sizeof(dev);
+	DISPLAY_DEVICEA dev = { sizeof(dev) };
 	if(!pEnumDisplayDevicesA(0, 0, &dev, 0))
 		return -1;
 
@@ -199,9 +99,12 @@ int win_get_gfx_card()
 int win_get_gfx_drv()
 {
 	// get driver DLL name
-	static DEVMODE dm;	// note: dmDriverVersion is something else
+	DEVMODEA dm;
+		// note: dmDriverVersion is not what we're looking for
+	memset(&dm, 0, sizeof(dm));
 	dm.dmSize = sizeof(dm);
-	if(!EnumDisplaySettings(0, ENUM_CURRENT_SETTINGS, &dm))
+		// note: dmSize isn't the first member!
+	if(!EnumDisplaySettingsA(0, ENUM_CURRENT_SETTINGS, &dm))
 		return -1;
 	char drv_name[CCHDEVICENAME+5];	// we add ".dll"
 	strcpy(drv_name, (const char*)dm.dmDeviceName);

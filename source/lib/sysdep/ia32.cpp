@@ -15,16 +15,9 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
+#include "precompiled.h"
+
 #ifdef _M_IX86
-
-#include <cstring>
-#include <cstdio>		// sscanf
-#include <cmath>
-#include <cassert>
-#include <time.h>
-
-#include <vector>
-#include <algorithm>
 
 #include "ia32.h"
 #include "lib.h"

@@ -15,12 +15,10 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
+#include "precompiled.h"
+
 #include "lib.h"
 #include "win_internal.h"
-
-#include <stdlib.h>	// __argc
-#include <cstdio>
-#include <cassert>
 
 #include <crtdbg.h>	// malloc debug
 #include <malloc.h>
@@ -133,6 +131,10 @@ static void at_exit(void)
 {
 	for(int i = 0; i < NUM_CS; i++)
 		DeleteCriticalSection(&cs[i]);
+
+	// redirected to stdout.txt in pre_main_init;
+	// close to avoid BoundsChecker warning.
+	fclose(stdout);
 }
 
 
@@ -162,7 +164,7 @@ static inline void pre_main_init()
 
 	atexit(at_exit);
 
-	// SDL will do this as well. no matter.
+	// real SDL will do this as well. no matter.
 	// ignore BoundsChecker warning here.
 	freopen("stdout.txt", "wt", stdout);
 }
