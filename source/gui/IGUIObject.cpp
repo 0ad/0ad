@@ -416,7 +416,10 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 	const int paramCount = 1;
 	const char* paramNames[paramCount] = { "mouse" };
 
-	JSFunction* func = JS_CompileFunction(g_ScriptingHost.getContext(), (JSObject*)pGUI->m_ScriptObject, "", paramCount, paramNames, (const char*)Code, Code.Length(), "GUI script", 0);
+	// Location to report errors from
+	CStr CodeName = GetName()+" "+Action;
+
+	JSFunction* func = JS_CompileFunction(g_ScriptingHost.getContext(), (JSObject*)pGUI->m_ScriptObject, NULL, paramCount, paramNames, (const char*)Code, Code.Length(), CodeName, 0);
 	m_ScriptHandlers[Action] = func;
 }
 

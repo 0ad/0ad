@@ -1,4 +1,4 @@
-// $Id: JSInterface_IGUIObject.cpp,v 1.3 2004/07/11 16:21:52 philip Exp $
+// $Id: JSInterface_IGUIObject.cpp,v 1.4 2004/07/11 18:18:27 philip Exp $
 
 #include "precompiled.h"
 
@@ -126,16 +126,17 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 			{
 				CClientArea area;
 				GUI<CClientArea>::GetSetting(e, propName, area);
-				CRect size = area.pixel;
 				JSObject* obj = JS_NewObject(cx, &JSI_GUISize::JSI_class, NULL, NULL);
-				jsval left   = INT_TO_JSVAL(size.left);
-				jsval top    = INT_TO_JSVAL(size.top);
-				jsval right  = INT_TO_JSVAL(size.right);
-				jsval bottom = INT_TO_JSVAL(size.bottom);
-				JS_SetProperty(cx, obj, "left",   &left);
-				JS_SetProperty(cx, obj, "top",    &top);
-				JS_SetProperty(cx, obj, "right",  &right);
-				JS_SetProperty(cx, obj, "bottom", &bottom);
+				#define P(x, y, z) jsval z = INT_TO_JSVAL(area.x.y); JS_SetProperty(cx, obj, #z, &z)
+				P(pixel, left,		left);
+				P(pixel, top,		top);
+				P(pixel, right,		right);
+				P(pixel, bottom,	bottom);
+				P(percent, left,	rleft);
+				P(percent, top,		rtop);
+				P(percent, right,	rright);
+				P(percent, bottom,	rbottom);
+				#undef P
 				*vp = OBJECT_TO_JSVAL(obj);
 				break;
 			}

@@ -1,8 +1,9 @@
-// $Id: JSInterface_GUITypes.cpp,v 1.2 2004/07/11 16:21:52 philip Exp $
+// $Id: JSInterface_GUITypes.cpp,v 1.3 2004/07/11 18:18:27 philip Exp $
 
 #include "precompiled.h"
 
 #include "JSInterface_GUITypes.h"
+#include "CStr.h"
 
 /**** GUISize ****/
 
@@ -17,10 +18,14 @@ JSClass JSI_GUISize::JSI_class = {
 
 JSPropertySpec JSI_GUISize::JSI_props[] = 
 {
-	{ "left",	0,	JSPROP_ENUMERATE},
-	{ "top",	1,	JSPROP_ENUMERATE},
-	{ "right",	2,	JSPROP_ENUMERATE},
-	{ "bottom",	3,	JSPROP_ENUMERATE},
+	{ "left",		0,	JSPROP_ENUMERATE},
+	{ "top",		1,	JSPROP_ENUMERATE},
+	{ "right",		2,	JSPROP_ENUMERATE},
+	{ "bottom",		3,	JSPROP_ENUMERATE},
+	{ "rleft",		4,	JSPROP_ENUMERATE},
+	{ "rtop",		5,	JSPROP_ENUMERATE},
+	{ "rright",		6,	JSPROP_ENUMERATE},
+	{ "rbottom",	7,	JSPROP_ENUMERATE},
 	{ 0 }
 };
 
@@ -32,12 +37,28 @@ JSFunctionSpec JSI_GUISize::JSI_methods[] =
 
 JSBool JSI_GUISize::construct(JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval)
 {
-	if (argc == 4)
+	if (argc == 8)
 	{
-		JS_SetProperty(cx, obj, "left",   &argv[0]);
-		JS_SetProperty(cx, obj, "top",    &argv[1]);
-		JS_SetProperty(cx, obj, "right",  &argv[2]);
-		JS_SetProperty(cx, obj, "bottom", &argv[3]);
+		JS_SetProperty(cx, obj, "left",		&argv[0]);
+		JS_SetProperty(cx, obj, "top",		&argv[1]);
+		JS_SetProperty(cx, obj, "right",	&argv[2]);
+		JS_SetProperty(cx, obj, "bottom",	&argv[3]);
+		JS_SetProperty(cx, obj, "rleft",	&argv[4]);
+		JS_SetProperty(cx, obj, "rtop",		&argv[5]);
+		JS_SetProperty(cx, obj, "rright",	&argv[6]);
+		JS_SetProperty(cx, obj, "rbottom",	&argv[7]);
+	}
+	else if (argc == 4)
+	{
+		jsval zero = JSVAL_ZERO;
+		JS_SetProperty(cx, obj, "left",		&argv[0]);
+		JS_SetProperty(cx, obj, "top",		&argv[1]);
+		JS_SetProperty(cx, obj, "right",	&argv[2]);
+		JS_SetProperty(cx, obj, "bottom",	&argv[3]);
+		JS_SetProperty(cx, obj, "rleft",	&zero);
+		JS_SetProperty(cx, obj, "rtop",		&zero);
+		JS_SetProperty(cx, obj, "rright",	&zero);
+		JS_SetProperty(cx, obj, "rbottom",	&zero);
 	}
 	else
 	{
@@ -46,19 +67,36 @@ JSBool JSI_GUISize::construct(JSContext* cx, JSObject* obj, unsigned int argc, j
 		JS_SetProperty(cx, obj, "top",		&zero);
 		JS_SetProperty(cx, obj, "right",	&zero);
 		JS_SetProperty(cx, obj, "bottom",	&zero);
+		JS_SetProperty(cx, obj, "rleft",	&zero);
+		JS_SetProperty(cx, obj, "rtop",		&zero);
+		JS_SetProperty(cx, obj, "rright",	&zero);
+		JS_SetProperty(cx, obj, "rbottom",	&zero);
 	}
 
 	return JS_TRUE;
 }
 
+// Produces "10", "-10", "50%", "50%-10", "50%+10", etc
+CStr ToPercentString(int pix, int per)
+{
+	if (per == 0)
+		return CStr(pix);
+	else
+		return CStr(per)+CStr("%")+( pix == 0 ? CStr() : pix > 0 ? CStr("+")+CStr(pix) : CStr(pix) );
+}
+
 JSBool JSI_GUISize::toString(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval)
 {
 	char buffer[256];
-	snprintf(buffer, 256, "%i %i %i %i",
-		JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "left"	)),
-		JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "top"	)),
-		JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "right"	)),
-		JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "bottom")) );
+	snprintf(buffer, 256, "%s %s %s %s",
+		ToPercentString(JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "left"		)),
+						JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "rleft"		))).c_str(),
+		ToPercentString(JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "top"		)),
+						JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "rtop"		))).c_str(),
+		ToPercentString(JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "right"		)),
+						JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "rright"	))).c_str(),
+		ToPercentString(JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "bottom"	)),
+						JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "rbottom"	))).c_str() );
 
 	*rval = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, buffer));
 	return JS_TRUE;
@@ -188,7 +226,7 @@ JSBool JSI_GUIMouse::toString(JSContext* cx, JSObject* obj, uintN argc, jsval* a
 // Initialise all the types at once:
 void JSI_GUITypes::init()
 {
-	g_ScriptingHost.DefineCustomObjectType(&JSI_GUISize::JSI_class,   JSI_GUISize::construct,   1, JSI_GUISize::JSI_props,   JSI_GUISize::JSI_methods,   NULL, NULL);
+	g_ScriptingHost.DefineCustomObjectType(&JSI_GUISize::JSI_class,  JSI_GUISize::construct,  1, JSI_GUISize::JSI_props,  JSI_GUISize::JSI_methods,  NULL, NULL);
 	g_ScriptingHost.DefineCustomObjectType(&JSI_GUIColor::JSI_class, JSI_GUIColor::construct, 1, JSI_GUIColor::JSI_props, JSI_GUIColor::JSI_methods, NULL, NULL);
-	g_ScriptingHost.DefineCustomObjectType(&JSI_GUIMouse::JSI_class,  JSI_GUIMouse::construct,  1, JSI_GUIMouse::JSI_props,  JSI_GUIMouse::JSI_methods,  NULL, NULL);
+	g_ScriptingHost.DefineCustomObjectType(&JSI_GUIMouse::JSI_class, JSI_GUIMouse::construct, 1, JSI_GUIMouse::JSI_props, JSI_GUIMouse::JSI_methods, NULL, NULL);
 }

@@ -1053,7 +1053,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		XMBAttribute attr = attributes.item(i);
 
 		// If value is "null", then it is equivalent as never being entered
-		if ((CStr8)attr.Value == (CStr8)"null")
+		if ((CStr)attr.Value == (CStr)"null")
 			continue;
 
 		// Ignore "type" and "style", we've already checked it
@@ -1136,7 +1136,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			// Scripted <action> element
 
 			// Check for a 'file' parameter
-			CStr file (Element.getAttributes().getNamedItem(attr_file));
+			CStr file (child.getAttributes().getNamedItem(attr_file));
 
 			CStr code;
 
@@ -1162,7 +1162,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			}
 
 			// Read the inline code (concatenating to the file code, if both are specified)
-			code += (CStr)Element.getText();
+			code += (CStr)child.getText();
 
 			CStr action = (CStr)child.getAttributes().getNamedItem(attr_on);
 			object->RegisterScriptHandler(action.LowerCase(), code, this);
@@ -1222,7 +1222,7 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile)
 	// Check for a 'file' parameter
 	CStr file (Element.getAttributes().getNamedItem( pFile->getAttributeID("file") ));
 
-	// If there is a file, open and execute it
+	// If there is a file specified, open and execute it
 	if (file.Length())
 	{
 		Handle h = vfs_open(file);
@@ -1237,7 +1237,7 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile)
 			assert(err == 0);
 
 			jsval result;
-			JS_EvaluateScript(g_ScriptingHost.getContext(), (JSObject*)m_ScriptObject, (const char*)data, (int)len, file, 0, &result);
+			JS_EvaluateScript(g_ScriptingHost.getContext(), (JSObject*)m_ScriptObject, (const char*)data, (int)len, file, 1, &result);
 
 			vfs_unmap(h);
 			vfs_close(h);
@@ -1248,7 +1248,7 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile)
 	CStr code (Element.getText());
 
 	jsval result;
-	JS_EvaluateScript(g_ScriptingHost.getContext(), (JSObject*)m_ScriptObject, code.c_str(), (int)code.Length(), "", 0, &result);
+	JS_EvaluateScript(g_ScriptingHost.getContext(), (JSObject*)m_ScriptObject, code.c_str(), (int)code.Length(), "", 1, &result);
 }
 
 void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
