@@ -21,6 +21,8 @@ public:
 
     void WritePPInfo(FILE *file);
 #ifdef BUILD_CG
+    CGprofile GetVPProfile() { return m_VPProfile; }
+    CGprofile GetFPProfile() { return m_FPProfile; }
     CGcontext GetContext() { return m_Context; }
 #endif
 private:

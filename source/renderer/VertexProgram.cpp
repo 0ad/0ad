@@ -3,6 +3,9 @@
 #include "res/mem.h"
 #include "renderer/VertexProgram.h"
 #include "graphics/ProgramManager.h"
+#include "renderer/Renderer.h"
+#include "maths/Vector3D.h"
+#include "graphics/LightEnv.h"
 #include "CLogger.h"
 
 #define LOG_CATEGORY "shaders"
@@ -35,12 +38,8 @@ void CVertexProgram::Bind()
     if(!IsValid())
         return;
 
-    CGparameter param = cgGetFirstParameter(m_Program, CG_PROGRAM);
-    while(param)
-    {
-        PushParameter(param);
-        param = cgGetNextParameter(param);
-    }
+    EnumParameters(CG_GLOBAL);
+    EnumParameters(CG_PROGRAM);
 
     if(!cgGLIsProgramLoaded(m_Program))
         cgGLLoadProgram(m_Program);
@@ -53,7 +52,7 @@ void CVertexProgram::Load(const char *file)
 {
 #ifdef BUILD_CG
     m_Program = NULL;
-    if(!file || !vfs_exists(file))
+    if(!file || !vfs_exists(file) || g_ProgramManager.GetVPProfile() == CG_PROFILE_UNKNOWN)
         return;
 
     void *data;
@@ -72,7 +71,7 @@ void CVertexProgram::Load(const char *file)
         g_ProgramManager.GetContext(),
         CG_SOURCE,
         src.c_str(),
-        CG_PROFILE_ARBVP1,
+        g_ProgramManager.GetVPProfile(),
         "main",
         NULL
     );
@@ -85,6 +84,16 @@ void CVertexProgram::Load(const char *file)
 }
 
 #ifdef BUILD_CG
+
+void CVertexProgram::EnumParameters(CGenum ns)
+{
+    CGparameter param = cgGetFirstParameter(m_Program, ns);
+    while(param)
+    {
+        PushParameter(param);
+        param = cgGetNextParameter(param);
+    }
+}
 
 void CVertexProgram::PushParameter(CGparameter param)
 {
@@ -99,6 +108,18 @@ void CVertexProgram::PushParameter(CGparameter param)
         cgGLSetStateMatrixParameter(param, CG_GL_PROJECTION_MATRIX, CG_GL_MATRIX_IDENTITY);
     else if(name == "Texture")
         cgGLSetStateMatrixParameter(param, CG_GL_TEXTURE_MATRIX, CG_GL_MATRIX_IDENTITY);
+    else if(name == "SunDir")
+    {
+        cgGLSetParameterPointer(
+            param, sizeof(CVector3D), GL_FLOAT, sizeof(float), &g_Renderer.GetLightEnv().m_SunDir.X
+        );
+    }
+    else if(name == "SunColor")
+    {
+        cgGLSetParameterPointer(
+            param, sizeof(CVector3D), GL_FLOAT, sizeof(float), &g_Renderer.GetLightEnv().m_SunColor.X
+        );
+    }
     else
         LOG(WARNING, LOG_CATEGORY, "CVertexShader::LoadShader: Unknown parameter name: %s", name.c_str());
 }

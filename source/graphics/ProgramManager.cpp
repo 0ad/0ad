@@ -1,6 +1,9 @@
 #include "precompiled.h"
 #include "graphics/ProgramManager.h"
 
+#define SAFE_DELETE(x) \
+    if((x)) { delete (x); (x) = NULL; }
+
 CProgramManager::CProgramManager()
 {
 #ifdef BUILD_CG
@@ -31,7 +34,9 @@ CVertexProgram *CProgramManager::FindVertexProgram(const char *file)
         if(prog && prog->IsValid())
             m_VertexProgs[std::string(file)] = prog;
         else
-            prog = NULL;
+        {
+            SAFE_DELETE(prog);
+        }
     }
 
     return prog;

@@ -54,6 +54,7 @@ void CMapReader::UnpackLightEnv(CFileUnpacker& unpacker)
 	unpacker.UnpackRaw(&m_LightEnv.m_Rotation,sizeof(m_LightEnv.m_Rotation));
 	unpacker.UnpackRaw(&m_LightEnv.m_TerrainAmbientColor,sizeof(m_LightEnv.m_TerrainAmbientColor));
 	unpacker.UnpackRaw(&m_LightEnv.m_UnitsAmbientColor,sizeof(m_LightEnv.m_UnitsAmbientColor));
+    m_LightEnv.CalculateSunDirection();
 }
 
 // UnpackObjects: unpack world objects from input stream

@@ -276,11 +276,8 @@ void CRenderer::BeginFrame()
 	m_SHCoeffsTerrain.Clear();
 
 	if (m_LightEnv) {
-		CVector3D dirlight;
-		m_LightEnv->GetSunDirection(dirlight);
-
-		m_SHCoeffsUnits.AddDirectionalLight(dirlight,m_LightEnv->m_SunColor);
-		m_SHCoeffsTerrain.AddDirectionalLight(dirlight,m_LightEnv->m_SunColor);
+		m_SHCoeffsUnits.AddDirectionalLight(m_LightEnv->m_SunDir, m_LightEnv->m_SunColor);
+		m_SHCoeffsTerrain.AddDirectionalLight(m_LightEnv->m_SunDir, m_LightEnv->m_SunColor);
 
 		m_SHCoeffsUnits.AddAmbientLight(m_LightEnv->m_UnitsAmbientColor);
 		m_SHCoeffsTerrain.AddAmbientLight(m_LightEnv->m_TerrainAmbientColor);
@@ -377,15 +374,11 @@ void CRenderer::CalcShadowMatrices()
 	bounds.GetCentre(centre);
 
 	// get sunlight direction
-	CVector3D lightdir;
-	// ??? RC using matrix rotation to get sun direction?
-	m_LightEnv->GetSunDirection(lightdir);
-
 	// ??? RC more optimal light placement?
-	CVector3D lightpos=centre-(lightdir*1000);
+	CVector3D lightpos=centre-(m_LightEnv->m_SunDir * 1000);
 
 	// make light transformation matrix
-	ConstructLightTransform(lightpos,lightdir,m_LightTransform);
+	ConstructLightTransform(lightpos,m_LightEnv->m_SunDir,m_LightTransform);
 
 	// transform shadow bounds to light space, calculate near and far bounds
 	CVector3D vp[8];

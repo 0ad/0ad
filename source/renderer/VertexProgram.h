@@ -26,6 +26,7 @@ private:
     void Bind();
     void Load(const char *file);
 #ifdef BUILD_CG
+    void EnumParameters(CGenum ns);
     void PushParameter(CGparameter param);
     CGprogram m_Program;
 #endif

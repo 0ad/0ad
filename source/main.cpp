@@ -1000,8 +1000,8 @@ PREVTSC=CURTSC;
 	// lighting environment through a pointer, this has to be done before
 	// the first Frame.
 	g_LightEnv.m_SunColor=RGBColor(1,1,1);
-	g_LightEnv.m_Rotation=DEGTORAD(270);
-	g_LightEnv.m_Elevation=DEGTORAD(45);
+	g_LightEnv.SetRotation(DEGTORAD(270));
+	g_LightEnv.SetElevation(DEGTORAD(45));
 	g_LightEnv.m_TerrainAmbientColor=RGBColor(0,0,0);
 	g_LightEnv.m_UnitsAmbientColor=RGBColor(0.4f,0.4f,0.4f);
 	g_Renderer.SetLightEnv(&g_LightEnv);

@@ -186,6 +186,8 @@ CMaterial &CMaterialManager::LoadMaterial(const char *file)
 	#define EL(x) int el_##x = xeroFile.getElementID(#x)
 	#define AT(x) int at_##x = xeroFile.getAttributeID(#x)
 	EL(texture);
+    EL(vertexprogram);
+    EL(fragmentprogram);
 	
 	EL(colors);
 	AT(diffuse);
@@ -218,6 +220,16 @@ CMaterial &CMaterialManager::LoadMaterial(const char *file)
                 CStr value(node.getText());
                 material->SetTexture(value);
             
+            }
+            else if(token == el_vertexprogram)
+            {
+                CStr value(node.getText());
+                material->SetVertexProgram(value);
+            }
+            else if(token == el_fragmentprogram)
+            {
+                CStr value(node.getText());
+                material->SetFragmentProgram(value);
             }
 			else if(token == el_colors)
 			{

@@ -14,12 +14,14 @@
 #include "SkeletonAnim.h"
 #include "SkeletonAnimDef.h"
 #include "SkeletonAnimManager.h"
+#include "ProgramManager.h"
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Constructor
 CModel::CModel() 
 	: m_pModelDef(0), m_Flags(0), m_Anim(0), m_AnimTime(0), 
-	m_BoneMatrices(0), m_InvBoneMatrices(0), m_BoneMatricesValid(false)
+	m_BoneMatrices(0), m_InvBoneMatrices(0), m_BoneMatricesValid(false),
+    m_VertexProgram(0)
 {
 }
 
@@ -346,4 +348,14 @@ void CModel::SetTransform(const CMatrix3D& transform)
 		}
 		prop.m_Model->SetTransform(proptransform);
 	}
+}
+
+void CModel::SetMaterial(const CMaterial &material)
+{
+    m_Material = material;
+    if(m_Material.GetTexture().Trim(PS_TRIM_BOTH).Length() > 0)
+    {
+    }
+    if(m_Material.GetVertexProgram().Trim(PS_TRIM_BOTH).Length() > 0)
+        m_VertexProgram = g_ProgramManager.FindVertexProgram(m_Material.GetVertexProgram().Trim(PS_TRIM_BOTH).c_str());
 }

@@ -61,10 +61,10 @@ bool CMaterial::operator ==(const CMaterial &material)
 
 void CMaterial::Bind()
 {
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, &m_Diffuse.data[0]);
-    glMaterialfv(GL_FRONT, GL_AMBIENT, &m_Ambient.data[0]);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, &m_Specular.data[0]);
-    glMaterialfv(GL_FRONT, GL_EMISSION, &m_Emissive.data[0]);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, &m_Diffuse.r);
+    glMaterialfv(GL_FRONT, GL_AMBIENT, &m_Ambient.r);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, &m_Specular.r);
+    glMaterialfv(GL_FRONT, GL_EMISSION, &m_Emissive.r);
     glMaterialf(GL_FRONT, GL_SHININESS, m_SpecularPower);
 
     oglCheck();
@@ -97,6 +97,18 @@ SMaterialColor CMaterial::GetEmissive()
 void CMaterial::SetTexture(const CStr &texture)
 {
     m_Texture = texture;
+    ComputeHash();
+}
+
+void CMaterial::SetVertexProgram(const CStr &prog)
+{
+    m_VertexProgram = prog;
+    ComputeHash();
+}
+
+void CMaterial::SetFragmentProgram(const CStr &prog)
+{
+    m_FragmentProgram = prog;
     ComputeHash();
 }
 
@@ -144,5 +156,7 @@ void CMaterial::ComputeHash()
         m_Specular.Sum() +
         m_Emissive.Sum() +
         m_SpecularPower +
-        (float)m_Texture.GetHashCode();
+        (float)m_Texture.GetHashCode() +
+        (float)m_VertexProgram.GetHashCode() +
+        (float)m_FragmentProgram.GetHashCode();
 }

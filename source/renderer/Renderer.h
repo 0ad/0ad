@@ -213,6 +213,8 @@ public:
 	// return stats accumulated for current frame
 	const Stats& GetStats() { return m_Stats; }
 
+    // return the current light environment
+    const CLightEnv &GetLightEnv() { return *m_LightEnv; }
 protected:
 	friend class CVertexBuffer;
 	friend class CPatchRData;

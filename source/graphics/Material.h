@@ -6,6 +6,11 @@
 struct SMaterialColor
 {
 public:
+    float r;
+    float g;
+    float b;
+    float a;
+
     SMaterialColor() { r = 0.0f; g = 0.0f; b = 0.0f; a = 1.0f; }
     SMaterialColor(float _r, float _g, float _b, float _a)
     {
@@ -20,19 +25,7 @@ public:
         g = color.g;
         b = color.b;
         a = color.a;
-    } 
-
-	union
-	{
-		struct
-		{
-			float r;
-			float g;
-			float b;
-			float a;
-		};
-		float data[4];
-	};
+    }
 
     void operator =(const SMaterialColor color)
     {
@@ -69,6 +62,8 @@ public:
     float GetHash() { return m_Hash; }
 
 	CStr GetTexture() { return m_Texture; }
+    CStr GetVertexProgram() { return m_VertexProgram; }
+    CStr GetFragmentProgram() { return m_FragmentProgram; }
 	SMaterialColor GetDiffuse();
 	SMaterialColor GetAmbient();
 	SMaterialColor GetSpecular();
@@ -77,6 +72,8 @@ public:
 	bool UsesAlpha() { return m_Alpha; }
 
     void SetTexture(const CStr &texture);
+    void SetVertexProgram(const CStr &prog);
+    void SetFragmentProgram(const CStr &prog);
 	void SetDiffuse(const SMaterialColor &color);
 	void SetAmbient(const SMaterialColor &color);
 	void SetSpecular(const SMaterialColor &color);
@@ -100,6 +97,10 @@ protected:
 
 	// Path to the materials texture
 	CStr m_Texture;
+
+    // Paths to vertex/fragment programs
+    CStr m_VertexProgram;
+    CStr m_FragmentProgram;
 
 	// Alpha required flag
 	bool m_Alpha;

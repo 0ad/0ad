@@ -16,6 +16,7 @@
 #include "RenderableObject.h"
 #include "SkeletonAnim.h"
 #include "Material.h"
+#include "renderer/VertexProgram.h"
 
 #define MODELFLAG_CASTSHADOWS		(1<<0)
 
@@ -51,7 +52,7 @@ public:
 	// set the model's texture
 	void SetTexture(const CTexture& tex) { m_Texture=tex; }
     // set the model's material
-    void SetMaterial(const CMaterial &material) { m_Material = material; }
+    void SetMaterial(const CMaterial &material);
 	// get the model's texture
 	CTexture* GetTexture() { return &m_Texture; }
     // get the models material
@@ -121,6 +122,8 @@ private:
 	u32 m_Flags;
 	// texture used by model
 	CTexture m_Texture;
+    // vertex program
+    CVertexProgram *m_VertexProgram;
     // model's material
     CMaterial m_Material;
 	// pointer to the model's raw 3d data
