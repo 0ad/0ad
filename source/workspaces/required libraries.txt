@@ -40,3 +40,8 @@ TODO:
   http://www.wildfiregames/com/~code/libraries/xerces-c_2_5_0-include.zip
   http://www.wildfiregames/com/~code/libraries/xerces-c_2_5_0.dll
   extract into the appropriate directories as explained above.
+
+- SpiderMonkey: [required for javascript]
+  download javascript-sdk.zip.
+  extract contents of include/ into $include,
+  and .lib files into $lib.
