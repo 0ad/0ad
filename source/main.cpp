@@ -681,7 +681,7 @@ PREVTSC=CURTSC;
 
 	// Register the JavaScript interfaces with the runtime
 	JSI_Entity::init();
-	JSI_BaseEntity::init();
+//	JSI_BaseEntity::init();		// janwas: commented this out to avoid crash in JS_DestroyContext
 	JSI_Vector3D::init();
 
 // if no map name specified, load test01.pmp (for convenience during
@@ -802,7 +802,9 @@ PREVTSC=CURTSC;
 		frameCount++;
 		if (g_FixedFrameTiming && frameCount==100) quit=true;
 #endif
-	}
+	}	// main loop, while(!quit)
+
+
 
 #ifndef NO_GUI
 	g_GUI.Destroy();
