@@ -415,8 +415,10 @@ void CInternalCGUIAccessorBase::HandleMessage(IGUIObject *pObject, const SGUIMes
 		template<> void CheckType<T>(const IGUIObject* obj, const CStr& setting) {	\
 			if (((IGUIObject*)obj)->m_Settings[setting].m_Type != GUIST_##T)	\
 			{	\
-				debug_warn("EXCESSIVELY FATAL ERROR: Inconsistent types in GUI");	\
-				throw "EXCESSIVELY FATAL ERROR: Inconsistent types in GUI";	/* TODO: better reporting */ \
+				/* Abort now, to avoid corrupting everything by invalidly \
+					casting pointers */ \
+				debug_warn("FATAL ERROR: Inconsistent types in GUI");	\
+				throw "FATAL ERROR: Inconsistent types in GUI";	/* TODO: better reporting */ \
 			}	\
 		}
 	#include "GUItypes.h"

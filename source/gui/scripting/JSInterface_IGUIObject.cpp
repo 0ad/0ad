@@ -16,7 +16,7 @@ JSClass JSI_IGUIObject::JSI_class = {
 	JSI_IGUIObject::getProperty, JSI_IGUIObject::setProperty,
 	JS_EnumerateStub, JS_ResolveStub,
 	JS_ConvertStub, JS_FinalizeStub,
-	NULL, NULL, NULL, NULL 
+	NULL, NULL, NULL, JSI_IGUIObject::construct
 };
 
 JSPropertySpec JSI_IGUIObject::JSI_props[] = 

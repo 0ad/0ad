@@ -83,11 +83,6 @@ ScriptingHost::~ScriptingHost()
 	JS_ShutDown();
 }
 
-JSContext* ScriptingHost::getContext()
-{
-	return( m_Context );
-}
-
 void ScriptingHost::LoadScriptFromDisk(const std::string & fileName)
 {
 	const char* fn = fileName.c_str();

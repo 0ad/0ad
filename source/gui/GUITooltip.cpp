@@ -37,7 +37,7 @@
 
 	SHOWING
 	< Start displaying the tooltip
-	* If the mouse leaves the object, check whether it has a tooltip
+	* If the mouse leaves the object, check whether the new object has a tooltip
 	  and switch to 'SHOWING' or 'COOLING'
 
 	COOLING  (since I can't think of a better name)
@@ -88,22 +88,27 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, CPos pos, CStr& style, CGUI* gui)
 		LOG_ONCE(ERROR, "gui", "Cannot find tooltip object named '%s'", (const char*)style);
 		return;
 	}
+	// Unhide the object
 	GUI<bool>::SetSetting(tooltipobj, "hidden", false);
 
 	assert(obj);
 
 	// These shouldn't fail:
 
+	// Retrieve object's 'tooltip' setting
 	CStr text;
 	if (GUI<CStr>::GetSetting(obj, "tooltip", text) != PS_OK)
 		debug_warn("Failed to retrieve tooltip text");
 
+	// Set tooltip's caption
 	if (tooltipobj->SetSetting("caption", text) != PS_OK)
 		debug_warn("Failed to set tooltip caption");
 
+	// Store mouse position inside the tooltip
 	if (GUI<CPos>::SetSetting(tooltipobj, "_mousepos", pos) != PS_OK)
 		debug_warn("Failed to set tooltip mouse position");
 
+	// Make the tooltip object regenerate its text
 	tooltipobj->HandleMessage(SGUIMessage(GUIM_SETTINGS_UPDATED, "caption"));
 }
 
@@ -116,6 +121,20 @@ static void HideTooltip(CStr& style, CGUI* gui)
 		return;
 	}
 	GUI<bool>::SetSetting(tooltipobj, "hidden", true);
+}
+
+static int GetTooltipTime(CStr& style, CGUI* gui)
+{
+	int time = 500; // default value (in msec)
+
+	IGUIObject* tooltipobj = gui->FindObjectByName(style);
+	if (! tooltipobj)
+	{
+		LOG_ONCE(ERROR, "gui", "Cannot find tooltip object named '%s'", (const char*)style);
+		return time;
+	}
+	GUI<int>::GetSetting(tooltipobj, "time", time);
+	return time;
 }
 
 void GUITooltip::Update(IGUIObject* Nearest, CPos MousePos, CGUI* GUI)
@@ -178,12 +197,14 @@ void GUITooltip::Update(IGUIObject* Nearest, CPos MousePos, CGUI* GUI)
 		break;
 	}
 
+	// Handle state-entry code
+
 	if (nextstate != -1)
 	{
 		switch (nextstate)
 		{
 		case ST_STATIONARY_TOOLTIP:
-			m_Time = now + 0.5/* TODO: tooltip time */;
+			m_Time = now + (double)GetTooltipTime(*style, GUI) / 1000.;
 			break;
 
 		case ST_SHOWING:

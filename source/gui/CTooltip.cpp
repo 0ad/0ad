@@ -9,7 +9,7 @@ CTooltip::CTooltip()
 	AddSetting(GUIST_CGUIString,			"caption");
 	AddSetting(GUIST_CStr,					"font");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
-	AddSetting(GUIST_float,					"time");
+	AddSetting(GUIST_int,					"time");
 	AddSetting(GUIST_CColor,				"textcolor");
 	AddSetting(GUIST_int,					"maxwidth");
 	AddSetting(GUIST_CPos,					"pos");
@@ -17,7 +17,7 @@ CTooltip::CTooltip()
 
 	AddSetting(GUIST_CPos,					"_mousepos");
 
-	GUI<float>::SetSetting(this, "time", 0.5f);
+	GUI<int>::SetSetting(this, "time", 500);
 	GUI<EVAlign>::SetSetting(this, "anchor", EVAlign_Bottom);
 
 	// Set up a blank piece of text, to be replaced with a more

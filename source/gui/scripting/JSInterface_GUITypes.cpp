@@ -1,4 +1,4 @@
-// $Id: JSInterface_GUITypes.cpp,v 1.6 2004/09/03 14:12:43 philip Exp $
+// $Id$
 
 #include "precompiled.h"
 
@@ -13,7 +13,7 @@ JSClass JSI_GUISize::JSI_class = {
 		JS_PropertyStub, JS_PropertyStub,
 		JS_EnumerateStub, JS_ResolveStub,
 		JS_ConvertStub, JS_FinalizeStub,
-		NULL, NULL, NULL, NULL
+		NULL, NULL, NULL, JSI_GUISize::construct
 };
 
 JSPropertySpec JSI_GUISize::JSI_props[] = 
@@ -121,7 +121,7 @@ JSClass JSI_GUIColor::JSI_class = {
 		JS_PropertyStub, JS_PropertyStub,
 		JS_EnumerateStub, JS_ResolveStub,
 		JS_ConvertStub, JS_FinalizeStub,
-		NULL, NULL, NULL, NULL
+		NULL, NULL, NULL, JSI_GUIColor::construct
 };
 
 JSPropertySpec JSI_GUIColor::JSI_props[] = 
@@ -185,7 +185,7 @@ JSClass JSI_GUIMouse::JSI_class = {
 		JS_PropertyStub, JS_PropertyStub,
 		JS_EnumerateStub, JS_ResolveStub,
 		JS_ConvertStub, JS_FinalizeStub,
-		NULL, NULL, NULL, NULL
+		NULL, NULL, NULL, JSI_GUIMouse::construct
 };
 
 JSPropertySpec JSI_GUIMouse::JSI_props[] = 

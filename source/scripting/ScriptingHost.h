@@ -82,9 +82,9 @@ public:
 	
 	// Helpers:
 
-	JSContext* getContext();
-	inline JSContext *GetContext()
-	{	return getContext(); }
+	// TODO: Remove one of these
+	inline JSContext *getContext() { return m_Context; }
+	inline JSContext *GetContext() { return m_Context; }
 
 	void LoadScriptFromDisk(const std::string & fileName);
 
