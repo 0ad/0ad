@@ -27,10 +27,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// these are all delay-loaded - they're not needed if these
+// routines are never called (to return system info).
 #ifdef _MSC_VER
-#pragma comment(lib, "version.lib")
-#pragma comment(lib, "advapi32.lib")
-// powrprof is loaded manually - we only need 1 function.
+#pragma comment(lib, "version.lib")		// DLL version
+#pragma comment(lib, "advapi32.lib")	// registry
+#pragma comment(lib, "dsound.lib")		// sound card name
 #endif
 
 
@@ -53,7 +55,7 @@ static int import_EnumDisplayDevices()
 }
 
 
-// useful for choosing a video mode. not called by detect().
+// useful for choosing a video mode.
 // if we fail, outputs are unchanged (assumed initialized to defaults)
 int get_cur_vmode(int* xres, int* yres, int* bpp, int* freq)
 {
@@ -82,7 +84,7 @@ int get_cur_vmode(int* xres, int* yres, int* bpp, int* freq)
 }
 
 
-// useful for determining aspect ratio. not called by detect().
+// useful for determining aspect ratio.
 // if we fail, outputs are unchanged (assumed initialized to defaults)
 int get_monitor_size(int& width_mm, int& height_mm)
 {
@@ -109,12 +111,13 @@ static int win_get_gfx_card()
 	if(!pEnumDisplayDevicesA(0, 0, &dev, 0))
 		return -1;
 
-	strncpy(gfx_card, (const char*)dev.DeviceString, sizeof(gfx_card)-1);
+	strncpy(gfx_card, (const char*)dev.DeviceString, GFX_CARD_LEN-1);
 	return 0;
 }
 
 
 // get the name of the OpenGL driver DLL (used to determine driver version).
+// see: http://www.opengl.org/discussion_boards/ubb/Forum3/HTML/009679.html
 // implementation doesn't currently require OpenGL to be ready for use.
 //
 // an alternative would be to enumerate all DLLs loaded into the process,
@@ -162,35 +165,24 @@ static int get_ogl_drv_name(char* const ogl_drv_name, const size_t max_name_len)
 }
 
 
-// split out so we can return on failure, instead of goto
-// method: http://www.opengl.org/discussion_boards/ubb/Forum3/HTML/009679.html
-int win_get_gfx_drv_ver()
+static int get_ver(const char* module, char* out_ver, size_t out_ver_len)
 {
-	if(gfx_drv_ver[0] != '\0')
-		return -1;
-
-	// note: getting the 2d driver name can be done with EnumDisplaySettings,
-	// but we want the actual OpenGL driver. see discussion linked above;
-	// the summary is, 2d driver version may differ from the OpenGL driver.
-	char ogl_drv_name[MAX_PATH];
-	CHECK_ERR(get_ogl_drv_name(ogl_drv_name, sizeof(ogl_drv_name)));
-
-
 	WIN_SAVE_LAST_ERROR;	// GetFileVersion*, Ver*
 
-	// don't want to return 0 on success - we'd need to duplicate free(buf).
-	// instead, set this variable and return that.
-	int ret = -1;
-
-	// read the DLL's version info
+	// allocate as much mem as required
 	DWORD unused;
-	const DWORD ver_size = GetFileVersionInfoSize(ogl_drv_name, &unused);
+	const DWORD ver_size = GetFileVersionInfoSize(module, &unused);
 	if(!ver_size)
 		return -1;
 	void* const buf = malloc(ver_size);
 	if(!buf)
-		return -1;
-	if(GetFileVersionInfo(ogl_drv_name, 0, ver_size, buf))
+		return ERR_NO_MEM;
+
+	// from here on, we set and later return this variable -
+	// can't return directly, since we've allocated memory.
+	int ret = -1;
+
+	if(GetFileVersionInfo(module, 0, ver_size, buf))
 	{
 		u16* lang;	// -> 16 bit language ID, 16 bit codepage
 		uint lang_len;
@@ -199,11 +191,11 @@ int win_get_gfx_drv_ver()
 		{
 			char subblock[64];
 			sprintf(subblock, "\\StringFileInfo\\%04X%04X\\FileVersion", lang[0], lang[1]);
-			const char* ver;
-			uint ver_len;
-			if(VerQueryValue(buf, subblock, (void**)&ver, &ver_len))
+			const char* in_ver;
+			uint in_ver_len;
+			if(VerQueryValue(buf, subblock, (void**)&in_ver, &in_ver_len))
 			{
-				strncpy(gfx_drv_ver, ver, sizeof(gfx_drv_ver)-1);
+				strncpy(out_ver, in_ver, out_ver_len);
 				ret = 0;	// success
 			}
 		}
@@ -215,10 +207,118 @@ int win_get_gfx_drv_ver()
 	return ret;
 }
 
+
+int win_get_gfx_drv_ver()
+{
+	if(gfx_drv_ver[0] != '\0')
+		return -1;
+
+	// note: getting the 2d driver name can be done with EnumDisplaySettings,
+	// but we want the actual OpenGL driver. see discussion linked above;
+	// the summary is, 2d driver version may differ from the OpenGL driver.
+	char ogl_drv_name[MAX_PATH];
+	CHECK_ERR(get_ogl_drv_name(ogl_drv_name, sizeof(ogl_drv_name)));
+	CHECK_ERR(get_ver(ogl_drv_name, gfx_drv_ver, GFX_DRV_VER_LEN));
+	return 0;
+}
+
+
 int win_get_gfx_info()
 {
-	win_get_gfx_card();
+	win_get_gfx_card(); 
 	win_get_gfx_drv_ver();
 	return 0;
 }
 
+
+
+
+// note: OpenAL alGetString is worthless: it only returns OpenAL API version
+// and renderer (e.g. "Software").
+
+
+// mmsystem.h is necessary for dsound.h; we cut out unnecessary junk
+#define MMNODRV         // Installable driver support
+#define MMNOSOUND       // Sound support
+//#define MMNOWAVE      // Waveform support
+#define MMNOMIDI        // MIDI support
+#define MMNOAUX         // Auxiliary audio support
+#define MMNOMIXER       // Mixer support
+#define MMNOTIMER       // Timer support
+#define MMNOJOY         // Joystick support
+#define MMNOMCI         // MCI support
+#define MMNOMMIO        // Multimedia file I/O support
+#define MMNOMMSYSTEM    // General MMSYSTEM functions
+#include <MMSystem.h>
+#include <dsound.h>
+
+
+static char ds_drv_name[MAX_PATH+1];
+
+static bool CALLBACK ds_enum(GUID* guid, PCSTR description, PCSTR module, void* ctx)
+{
+	// skip if description == "Primary Sound Driver"
+	if(module[0] == '\0')
+		return true;	// continue calling
+
+	// stick with the first "driver name" (sound card) we get;
+	// in case there are several, we assume this is the one we want.
+
+	strncpy(snd_card, description, SND_CARD_LEN-1);
+
+	// .. DirectSound driver is in "$system\drivers\";
+	//    save its path for version check later.
+	snprintf(ds_drv_name, MAX_PATH, "%s\\drivers\\%s", win_sys_dir, module);
+
+	return false;	// stop calling
+}
+
+static char* snd_drv_ver_pos = snd_drv_ver;
+
+// module: complete path or filename only (if on default library search path)
+static void add_drv(const char* module)
+{
+	char ver[32];
+	if(get_ver(module, ver, sizeof(ver)) < 0)
+		strcpy(ver, "unknown version");
+
+	const char* module_fn = strrchr(module, '\\');
+	if(!module_fn)
+		module_fn = module;
+	else
+		module_fn++;
+
+	// not first time: prepend comma
+	if(snd_drv_ver_pos != snd_drv_ver)
+		snd_drv_ver_pos += sprintf(snd_drv_ver_pos, ", ");
+	snd_drv_ver_pos += sprintf(snd_drv_ver_pos, "%s (%s)", module_fn, ver);
+}
+
+
+int win_get_snd_info()
+{
+	DirectSoundEnumerate((LPDSENUMCALLBACK)ds_enum, (void*)0);
+
+	// find all DLLs related to OpenAL and retrieve their versions.
+	// (search system dir for *oal.dll and *OpenAL*,
+	// which is also how the router finds implementations).
+	add_drv(ds_drv_name);
+	DIR* dir = opendir(win_sys_dir);
+	if(dir)
+	{
+		while(dirent* ent = readdir(dir))
+		{
+			const char* fn = ent->d_name;
+			const size_t len = strlen(fn);
+
+			const bool oal = len > 7 && !stricmp(fn+len-7, "oal.dll");
+			const bool openal = strstr(fn, "OpenAL") != 0;
+			if(oal || openal)
+				add_drv(fn);
+		}
+
+		closedir(dir);
+	}
+
+	return 0;
+}
