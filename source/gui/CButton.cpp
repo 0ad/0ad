@@ -8,7 +8,7 @@ gee@pyro.nu
 #include "GUI.h"
 
 // TODO Gee: font.h is temporary.
-#include "font.h"
+#include "res/res.h"
 #include "ogl.h"
 
 using namespace std;
