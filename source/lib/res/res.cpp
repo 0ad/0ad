@@ -12,6 +12,7 @@
 
 int res_reload(const char* fn)
 {
+	vfs_rebuild();
 	return h_reload(fn);
 }
 
@@ -35,9 +36,6 @@ int res_cancel_watch(const intptr_t watch)
 // to take place here, we don't require everything to be thread-safe.
 int res_reload_changed_files()
 {
-	static double last_time;
-	static char last_fn[VFS_MAX_PATH];
-
 	char n_path[PATH_MAX];
 	while(dir_get_changed_file(n_path) == 0)
 	{
@@ -65,15 +63,19 @@ int res_reload_changed_files()
 		if(!ext)	// dir changed
 			continue;
 		// .. and reloads for the same file within a small timeframe.
+		static double last_time;
+		static char last_fn[VFS_MAX_PATH];
 		double cur_time = get_time();
 		if(cur_time - last_time < 50e-3 && !strcmp(last_fn, fn))
 			continue;
+		strcpy(last_fn, fn);
 
 debug_out("res_reload %s\n\n", fn);
 		res_reload(fn);
 
+		// only update after reloading, so that long load times
+		// (or delay induced by debugging) don't trigger another reload.
 		last_time = get_time();
-		strcpy(last_fn, fn);
 	}
 
 	return 0;
