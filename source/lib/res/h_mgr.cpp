@@ -593,16 +593,12 @@ skip_alloc:
 	hd->refs = 1;
 	if(scope != RES_TEMP)
 		hd->keep_open = 1;
+	hd->fn = 0;
 	// .. filename is valid - store in hd
 	// note: if the original fn param was a key, it was reset to 0 above.
 	if(fn)
-	{
-		const size_t fn_len = strlen(fn);
-		hd->fn = (const char*)malloc(fn_len+1);
-		strcpy((char*)hd->fn, fn);
-	}
-	else
-		hd->fn = 0;
+		hd->fn = strdup(fn);
+		
 
 	H_VTbl* vtbl = type;
 

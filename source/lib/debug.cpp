@@ -38,6 +38,7 @@ static char* string_buf_pos;
 
 
 // used in simplify_stl_name.
+// TODO: check strcpy safety
 #define REPLACE(what, with)\
 	else if(!strncmp(src, (what), sizeof(what)-1))\
 	{\

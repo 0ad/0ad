@@ -276,6 +276,9 @@ static Vendor vendor = UNKNOWN;
 
 static void get_cpu_type()
 {
+	// note: cpu_type is guaranteed to hold 48+1 chars, since that's the
+	// length of the CPU brand string. strcpy(cpu_type, literal) is safe.
+
 	// fall back to manual detect of CPU type if it didn't supply
 	// a brand string, or if the brand string is useless (i.e. "Unknown").
 	if(!have_brand_string || strncmp(cpu_type, "Unknow", 6) == 0)
@@ -292,15 +295,15 @@ static void get_cpu_type()
 			if(family == 6)
 			{
 				if(model == 3 || model == 7)
-					strcpy(cpu_type, "AMD Duron");
+					strcpy(cpu_type, "AMD Duron");	// safe
 				else if(model <= 5)
-					strcpy(cpu_type, "AMD Athlon");
+					strcpy(cpu_type, "AMD Athlon");	// safe
 				else
 				{
 					if(ia32_cap(MP))
-						strcpy(cpu_type, "AMD Athlon MP");
+						strcpy(cpu_type, "AMD Athlon MP");	// safe
 					else
-						strcpy(cpu_type, "AMD Athlon XP");
+						strcpy(cpu_type, "AMD Athlon XP");	// safe
 				}
 			}
 		}
@@ -310,13 +313,13 @@ static void get_cpu_type()
 			if(family == 6)
 			{
 				if(model == 1)
-					strcpy(cpu_type, "Intel Pentium Pro");
+					strcpy(cpu_type, "Intel Pentium Pro");	// safe
 				else if(model == 3 || model == 5)
-					strcpy(cpu_type, "Intel Pentium II");
+					strcpy(cpu_type, "Intel Pentium II");	// safe
 				else if(model == 6)
-					strcpy(cpu_type, "Intel Celeron");
+					strcpy(cpu_type, "Intel Celeron");		// safe
 				else
-					strcpy(cpu_type, "Intel Pentium III");
+					strcpy(cpu_type, "Intel Pentium III");	// safe
 			}
 		}
 	}
@@ -333,7 +336,7 @@ static void get_cpu_type()
 		// overclocked. need to pass a variable though, since scanf returns
 		// the number of fields actually stored.
 		if(sscanf(cpu_type, " Intel(R) Pentium(R) 4 CPU %fGHz", &freq) == 1)
-			strcpy(cpu_type, "Intel Pentium 4");
+			strcpy(cpu_type, "Intel Pentium 4");	// safe
 	}
 }
 

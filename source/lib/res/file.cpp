@@ -161,7 +161,7 @@ int file_make_portable_path(const char* n_path, char* path)
 // makes sure length < PATH_MAX.
 int file_make_full_native_path(const char* path, char* n_full_path)
 {
-	strcpy(n_full_path, n_root_dir);
+	strcpy_s(n_full_path, PATH_MAX, n_root_dir);
 	return convert_path(n_full_path+n_root_dir_len, path, TO_NATIVE);
 }
 
@@ -345,7 +345,7 @@ int file_enum(const char* dir, const FileCB cb, const uintptr_t user)
 	{
 		const char* fn = os_ent->d_name;
 
-		strncpy(fn_start, fn, PATH_MAX-n_path_len-1);
+		strncpy(fn_start, fn, PATH_MAX-n_path_len-1);	// safe
 			// need path for stat (we only have filename ATM).
 			// this is actually minimally faster than changing directory!
 			// BTW, direct strcpy is faster than path_append -

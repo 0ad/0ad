@@ -1237,7 +1237,7 @@ char* mmgr_strdup_dbg(const char* s, const char* file, int line, const char* fun
 	char* copy = (char*)mmgr_malloc_dbg(size, file,line,func);
 	if(!copy)
 		return 0;
-	strcpy(copy, s);
+	strcpy(copy, s);	// safe
 	return copy;
 }
 

@@ -125,7 +125,7 @@ InputSource *CVFSEntityResolver::resolveEntity(const XMLCh *const UNUSEDPARAM(pu
 		// We know that we have a relative path here:
 		// - Remove the file name
 		// - If we have a ../ components - remove them and remove one component
-		// off the end of the document path for each ../ component
+		//   off the end of the document path for each ../ component
 		// - prefix of document path + suffix of input path => the VFS path
 
 		// Remove the file name

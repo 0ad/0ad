@@ -386,6 +386,7 @@ static int get_packet()
 }
 
 
+// fn must hold at least PATH_MAX chars.
 int dir_get_changed_file(char* fn)
 {
 	// queue one or more events, or return 1 if none pending.
@@ -396,7 +397,7 @@ int dir_get_changed_file(char* fn)
 		return ERR_AGAIN;
 
 	const std::string& fn_s = pending_events.front();
-	strcpy(fn, fn_s.c_str());
+	strcpy_s(fn, PATH_MAX, fn_s.c_str());
 	pending_events.pop_front();
 
 	return 0;

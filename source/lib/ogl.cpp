@@ -120,7 +120,7 @@ int ogl_get_gfx_info()
 	if(!vendor || !renderer || !version)
 		return -1;
 
-	strncpy(gfx_card, vendor, sizeof(gfx_card)-1);
+	strcpy_s(gfx_card, sizeof(gfx_card), vendor);
 
 	// reduce string to "ATI" or "NVIDIA"
 	if(!strcmp(gfx_card, "ATI Technologies Inc."))
@@ -128,7 +128,7 @@ int ogl_get_gfx_info()
 	if(!strcmp(gfx_card, "NVIDIA Corporation"))
 		gfx_card[6] = 0;
 
-	strcat(gfx_card, renderer);
+	strcat_s(gfx_card, sizeof(gfx_card), renderer);
 		// don't bother cutting off the crap at the end.
 		// too risky, and too many different strings.
 

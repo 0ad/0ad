@@ -160,7 +160,7 @@ void CLogger::Log(ELogMethod method, const char* category, const char *fmt, ...)
 	if (vsnprintf2(buffer, sizeof(buffer)-1, fmt, argp) == -1)
 	{
 		// Buffer too small - ensure the string is nicely terminated
-		strcpy(buffer+sizeof(buffer)-4, "...");
+		strcpy(buffer+sizeof(buffer)-4, "...");	// safe
 	}
 	va_end(argp);
 
@@ -179,7 +179,7 @@ void CLogger::LogOnce(ELogMethod method, const char* category, const char *fmt, 
 	if (vsnprintf2(buffer, sizeof(buffer), fmt, argp) == -1)
 	{
 		// Buffer too small - ensure the string is nicely terminated
-		strcpy(buffer+sizeof(buffer)-4, "...");
+		strcpy(buffer+sizeof(buffer)-4, "...");	// safe
 	}
 	va_end(argp);
 
@@ -202,7 +202,7 @@ void CLogger::QuickLog(const char *fmt, ...)
 	int count = 0;
 
 	//Start a new paragraph in HTML
-	strcpy(buffer,"<P>");
+	strcpy(buffer,"<P>");	// safe
 
 	va_start(argp, fmt);
 	char *bufend=strchr(buffer, 0);

@@ -189,7 +189,7 @@ ok:
 // convenience function
 static inline void path_copy(char* dst, const char* src)
 {
-	strncpy(dst, src, VFS_MAX_PATH);
+	strcpy_s(dst, VFS_MAX_PATH, src);
 }
 
 
@@ -215,11 +215,11 @@ static int path_append(char* dst, const char* path1, const char* path2)
 	if(total_len+1 > VFS_MAX_PATH)
 		return ERR_PATH_LENGTH;
 
-	strcpy(dst, path1);
+	strcpy(dst, path1);	// safe
 	dst += len1;
 	if(need_separator)
 		*dst++ = '/';
-	strcpy(dst, path2);
+	strcpy(dst, path2);	// safe
 	return 0;
 }
 
@@ -592,9 +592,9 @@ enum TreeLookupFlags
 //   added to the VFS.
 // if <flags> & LF_START_DIR, traversal starts at *pdir
 //   (used when looking up paths relative to a mount point).
-// if <exact_path> != 0, it receives a copy of <path> with
-//   the exact case of each component as returned by the OS
-//   (useful for calling external case-sensitive code).
+// if <exact_path> != 0, it receives a copy of <path> with the exact
+//   case of each component as returned by the OS (useful for calling
+//   external case-sensitive code). must hold at least VFS_MAX_PATH chars.
 //
 // <path> can be to a file or dir (in which case it must end in '/',
 // to make sure the last component is treated as a directory).
@@ -618,7 +618,7 @@ static int tree_lookup_dir(const char* path, TDir** pdir, uint flags = 0, char* 
 	// copy into (writeable) buffer so we can 'tokenize' path components
 	// by replacing '/' with '\0'. length check done by CHECK_PATH.
 	char v_path[VFS_MAX_PATH];
-	strcpy(v_path, path);
+	strcpy_s(v_path, sizeof(v_path), path);
 	char* cur_component = v_path;
 
 	TDir* cur_dir = start_dir? *pdir : &vfs_root;
@@ -659,9 +659,9 @@ static int tree_lookup_dir(const char* path, TDir** pdir, uint flags = 0, char* 
 // if <flags> & LF_CREATE_MISSING, the file is added to VFS unless
 //   a higher-priority file of the same name already exists
 //   (used by VFile_reload when opening for writing).
-// if <exact_path> != 0, it receives a copy of <path> with
-//   the exact case of each component as returned by the OS
-//   (useful for calling external case-sensitive code).
+// if <exact_path> != 0, it receives a copy of <path> with the exact
+//   case of each component as returned by the OS (useful for calling
+//   external case-sensitive code). must hold at least VFS_MAX_PATH chars.
 //
 // return 0 on success, or a negative error code
 // (in which case output params are undefined).
@@ -702,7 +702,7 @@ static int tree_lookup(const char* path, TFile** pfile, uint flags = 0, char* ex
 		return ERR_FILE_NOT_FOUND;
 
 	if(exact_path)
-		strcat(exact_path, file->exact_fn);
+		strcat_s(exact_path, PATH_MAX, file->exact_fn);
 
 	*pfile = file;
 	return 0;

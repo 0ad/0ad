@@ -123,7 +123,8 @@ static void al_check(const char* caller = "(unknown)")
 ///////////////////////////////////////////////////////////////////////////////
 
 static const char* alc_dev_name = 0;
-	// default: use OpenAL default device.
+	// default (0): use OpenAL default device.
+	// note: that's why this needs to be a pointer instead of an array.
 
 
 // tell OpenAL to use the specified device in future.
@@ -154,7 +155,7 @@ int snd_dev_set(const char* alc_new_dev_name)
 		// store name (need to copy it, since alc_init is called later,
 		// and it must then still be valid)
 		static char buf[32];
-		strncpy(buf, alc_new_dev_name, 32-1);
+		strcpy_s(buf, sizeof(buf), alc_new_dev_name);
 		alc_dev_name = buf;
 	}
 	// requesting default device

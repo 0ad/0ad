@@ -20,7 +20,6 @@
 
 #include "lib.h"
 #include "posix.h"	// SIZE_MAX
-#include "timer.h"
 
 #include <string.h>
 
@@ -77,7 +76,7 @@
 size_t tlen_s(const tchar* str, size_t max_len)
 {
 	// note: we can't bail - what would the return value be?
-	assert(str != 0);
+	assert2(str != 0);
 
 	size_t len;
 	for(len = 0; len < max_len; len++)

@@ -99,7 +99,7 @@ static int get_ver(const char* module, char* out_ver, size_t out_ver_len)
 			uint in_ver_len;
 			if(VerQueryValue(buf, subblock, (void**)&in_ver, &in_ver_len))
 			{
-				strncpy(out_ver, in_ver, out_ver_len);
+				strcpy_s(out_ver, out_ver_len, in_ver);
 				ret = 0;	// success
 			}
 		}
@@ -215,7 +215,7 @@ static int get_ogl_drv_name(char* ogl_drv_name, const size_t max_name_len)
 				// add .dll to filename, if not already there
 				char* ext = strrchr(ogl_drv_name, '.');
 				if(!ext || stricmp(ext, ".dll") != 0)
-					strcat(ogl_drv_name, ".dll");
+					strcat_s(ogl_drv_name, sizeof(ogl_drv_name), ".dll");
 
 				ret = 0;	// success
 			}
@@ -241,7 +241,7 @@ static int win_get_gfx_card()
 		DISPLAY_DEVICEA dev = { sizeof(dev) };
 		if(pEnumDisplayDevicesA(0, 0, &dev, 0))
 		{
-			strncpy(gfx_card, (const char*)dev.DeviceString, GFX_CARD_LEN-1);
+			strcpy_s(gfx_card, sizeof(gfx_card), (const char*)dev.DeviceString);
 			return 0;
 		}
 	}
@@ -305,7 +305,7 @@ static void list_add_dll(const char* dll_path)
 	// read file version.
 	char dll_ver[32];
 	if(get_ver(dll_path, dll_ver, sizeof(dll_ver)) < 0)
-		strcpy(dll_ver, "unknown version");
+		strcpy_s(dll_ver, sizeof(dll_ver), "unknown version");
 
 	// extract filename component for "already added" check.
 	const char* slash = strrchr(dll_path, '\\');
@@ -333,7 +333,7 @@ static void list_add_dll(const char* dll_path)
 // list_check_dir (more efficient, less memory use than copying).
 struct PathInfo
 {
-	const char* path;
+	const char* path;	// PATH_MAX
 	char* end;
 	size_t remaining;
 };
@@ -345,7 +345,7 @@ static int check_if_oal_dll(const char* fn, const struct stat* s, const uintptr_
 	UNUSED(s);
 
 	PathInfo* pi = (PathInfo*)user;
-	strncpy(pi->end, fn, pi->remaining);
+	strncpy(pi->end, fn, pi->remaining);	// safe
 
 	const size_t len = strlen(fn);
 	const bool oal = len >= 7 && !stricmp(fn+len-7, "oal.dll");
@@ -402,7 +402,7 @@ static BOOL CALLBACK ds_enum(void* guid, const char* description, const char* mo
 	// stick with the first "driver name" (sound card) we get;
 	// in case there are several, we assume this is the one we want.
 
-	strncpy(snd_card, description, SND_CARD_LEN-1);
+	strcpy_s(snd_card, sizeof(snd_card), description);
 
 	// store DirectSound driver name for version check later
 	// (it's in "win_sys_dir\drivers\").

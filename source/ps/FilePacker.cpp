@@ -24,7 +24,7 @@ CFilePacker::CFilePacker(u32 version, const char magicstr[4])
 	// (size will be updated on every Pack*() call)
 	m_Data.resize(12);
 	u8* header = (u8*)&m_Data[0];
-	strncpy((char*)(header+0), magicstr, 4);
+	strncpy((char*)(header+0), magicstr, 4);	// not 0-terminated => no _s
 	*(u32*)(header+4) = version;
 	*(u32*)(header+8) = 0;	// datasize
 	// FIXME m_Version: Byte order? -- Simon

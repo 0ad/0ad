@@ -290,8 +290,7 @@ DIR* opendir(const char* path)
 
 	// note: "path\\dir" only returns information about that directory;
 	// trailing slashes aren't allowed. we have to append "\\*" to find files.
-	strncpy(d->path, path, MAX_PATH-2);
-	strcat(d->path, "\\*");
+	snprintf(d->path, sizeof(d->path)-1, "%s\\*", path);
 
 	return d;
 }
@@ -339,7 +338,7 @@ have_entry:
 	// this entry has passed all checks; return information about it.
 	// .. d_ino zero-initialized by opendir
 	// .. POSIX requires d_name to be an array, so we copy there.
-	strncpy(d->ent.d_name, d->fd.cFileName, PATH_MAX);
+	strcpy_s(d->ent.d_name, sizeof(d->ent.d_name), d->fd.cFileName);
 	return &d->ent;
 }
 
@@ -573,7 +572,7 @@ int uname(struct utsname* un)
 			else if(!strcmp(vs, " A"))
 				release = "SE";
 		}
-		strcpy(un->release, release);
+		strcpy(un->release, release);	// safe
 	}
 
 	// version
@@ -593,9 +592,9 @@ int uname(struct utsname* un)
 	static SYSTEM_INFO si;
 	GetSystemInfo(&si);
 	if(si.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64)
-		strcpy(un->machine, "AMD64");
+		strcpy(un->machine, "AMD64");	// safe
 	else
-		strcpy(un->machine, "IA-32");
+		strcpy(un->machine, "IA-32");	// safe
 
 	return 0;
 }
