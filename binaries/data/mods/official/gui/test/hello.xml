@@ -94,7 +94,7 @@
     Start Game
 
     <action on="Press"><![CDATA[
-      <!-- startGame(); -->
+      startGame();
       GUIObjectUnhide("session_gui");
       GUIObjectHide("Start_Game_Button")
       GUIObjectUnhide("End_Game_Button")
@@ -106,7 +106,7 @@
     End Game
 
     <action on="Press"><![CDATA[
-      <!-- endGame(); -->
+      endGame();
       GUIObjectHide("session_gui");
       GUIObjectHide("End_Game_Button")
       GUIObjectUnhide("Start_Game_Button")
