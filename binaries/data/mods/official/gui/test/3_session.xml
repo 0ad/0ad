@@ -730,6 +730,14 @@
 				]]></action>
 			</object>
 
+			<object type="text" name="session_panel_status_attack" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
+			        <action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_status_orb_attack_x, crd_status_orb_attack_y, crd_status_orb_attack_x+crd_status_orb_attack_width, crd_status_orb_attack_y+crd_status_orb_attack_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_attack_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_attack_y, crd_status_orb_attack_x+crd_status_orb_attack_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_attack_y+crd_status_orb_attack_height, left_screen, bottom_screen, left_screen, bottom_screen);
+				]]></action>
+			</object>
+
 			<object type="text" name="session_panel_status_armour" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
 			        <action on="Load"><![CDATA[
 					AddSizeCoord(this.name,
