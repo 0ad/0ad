@@ -1,5 +1,5 @@
 /*
-$Id: unifont.cpp,v 1.4 2004/06/25 22:19:19 janwas Exp $
+$Id: unifont.cpp,v 1.5 2004/07/11 20:29:34 olsner Exp $
 
 Unicode OpenGL texture font
   
@@ -185,5 +185,5 @@ void glwprintf(const wchar_t* fmt, ...)
 		return;
 
 	// Execute all the display lists
-	glCallLists((GLsizei)len, GL_UNSIGNED_SHORT, buf);
+	glCallLists((GLsizei)len, sizeof(wchar_t)==4?GL_INT:GL_UNSIGNED_SHORT, buf);
 }
