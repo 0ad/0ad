@@ -174,7 +174,7 @@ u64 fnv_hash64(const void* buf, const size_t len)
 		while(*p)
 		{
 			h ^= *p++;
-			h *= 0x100000001B3;
+			h *= 0x100000001B3ull;
 		}
 	}
 	else
@@ -183,7 +183,7 @@ u64 fnv_hash64(const void* buf, const size_t len)
 		while(bytes_left != 0)
 		{
 			h ^= *p++;
-			h *= 0x100000001B3;
+			h *= 0x100000001B3ull;
 
 			bytes_left--;
 		}
@@ -281,11 +281,6 @@ float fminf(float a, float b)
 
 
 
-long round(double x)
-{
-	return (long)(x + 0.5);
-}
-
 
 // input in [0, 1); convert to u8 range
 u8 fp_to_u8(double in)
@@ -340,7 +335,8 @@ void base32(const int len, const u8* in, u8* out)
 		*out++ = tbl[c];
 	}
 }
-/*
+
+
 #ifndef _WIN32
 
 char *_itoa(int value, char *out, int radix)
@@ -389,6 +385,3 @@ char *_ltoa(long val, char *out, int radix)
 }
 
 #endif
-*/
-
-
