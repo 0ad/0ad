@@ -11,6 +11,8 @@ gee@pyro.nu
 #include "OverlayText.h"
 #include <algorithm>
 
+#include "ps/Font.h"
+
 // TODO Gee: Remove, just for temp-output
 #include <fstream>
 
@@ -132,16 +134,12 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 				}
 			}
 
+			// Calculate the size of the font
 			CSize size;
+			CFont font (TextCall.m_Font);
+			font.CalculateStringSize(TextCall.m_String, size.cx, size.cy);
 
-			//COverlayText txt(0, 0, 0, TextCall.m_Font, TextCall.m_String, TextCall.m_Color);
-  			// TODO Gee: Ask Rich to change to (size);
-			//txt.GetOutputStringSize((int&)size.cx, (int&)size.cy);
-			Handle font = unifont_load(TextCall.m_Font);
-			unifont_stringsize(font, TextCall.m_String.c_str(), size.cx, size.cy);
-			unifont_unload(font);
-
-			// append width, and make maximum height the height.
+			// Append width, and make maximum height the height.
 			Feedback.m_Size.cx += size.cx;
 			Feedback.m_Size.cy = max(Feedback.m_Size.cy, size.cy);
 

@@ -69,7 +69,7 @@ void CCheckBox::SetupText()
 	//GUI<CGUIString>::GetSetting(this, "square-side", square_side);
 
 	// TODO Gee: Establish buffer zones
-	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, CStr("palatino12"), m_CachedActualSize.GetWidth()-20, 0);
+	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, CStr("default"), m_CachedActualSize.GetWidth()-20, 0);
 
 	// Set position of text
 	// TODO Gee: Big TODO

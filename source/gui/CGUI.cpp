@@ -15,6 +15,7 @@ gee@pyro.nu
 #include "CRadioButton.h"
 
 #include "ps/Xeromyces.h"
+#include "ps/Font.h"
 
 #include "Prometheus.h"
 #include "input.h"
@@ -847,7 +848,7 @@ void CGUI::DrawText(const SGUIText &Text, const CColor &DefaultColor,
 
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
-	Handle font = 0;
+	CFont* font = NULL;
 	CStr LastFontName;
 
 	for (vector<SGUIText::STextCall>::const_iterator it = Text.m_TextCalls.begin(); 
@@ -860,10 +861,9 @@ void CGUI::DrawText(const SGUIText &Text, const CColor &DefaultColor,
 		// Switch fonts when necessary, but remember the last one used
 		if (it->m_Font != LastFontName)
 		{
-			if (font)
-				unifont_unload(font);
-			font = unifont_load(it->m_Font);
-			unifont_bind(font);
+			delete font;
+			font = new CFont(it->m_Font);
+			font->Bind();
 			LastFontName = it->m_Font;
 		}
 
@@ -879,8 +879,7 @@ void CGUI::DrawText(const SGUIText &Text, const CColor &DefaultColor,
 
 	}
 
-	if (font)
-		unifont_unload(font);
+	delete font;
 
 	for (vector<SGUIText::SSpriteCall>::const_iterator it=Text.m_SpriteCalls.begin(); 
 		 it!=Text.m_SpriteCalls.end(); 

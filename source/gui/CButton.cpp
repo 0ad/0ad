@@ -46,7 +46,7 @@ void CButton::SetupText()
 	CStr font;
 	if (GUI<CStr>::GetSetting(this, "font", font) != PS_OK || font.Length()==0)
 		// Use the default if none is specified
-		font = "palatino12";
+		font = "default";
 
 	CGUIString caption;
 	GUI<CGUIString>::GetSetting(this, "caption", caption);

@@ -19,6 +19,8 @@
 #endif
 #include "lib/res/cursor.h"
 
+#include "ps/Font.h"
+
 #include "ps/CConsole.h"
 
 #include "ps/Game.h"
@@ -103,9 +105,6 @@ static float g_Gamma = 1.0f;
 
 CGameAttributes g_GameAttributes;
 extern int game_view_handler(const SDL_Event* ev);
-
-static Handle g_Font_Console; // for the console
-static Handle g_Font_Misc; // random font for miscellaneous things
 
 static CMusicPlayer MusicPlayer;
 
@@ -459,9 +458,11 @@ static void Render()
 	// Temp GUI message GeeTODO
 	glLoadIdentity();
 	glTranslatef(10, 60, 0);
-	unifont_bind(g_Font_Misc);
-	glwprintf( L"%hs", g_GUI.TEMPmessage.c_str() );
-
+	{
+		CFont font("misc");
+		font.Bind();
+		glwprintf( L"%hs", g_GUI.TEMPmessage.c_str() );
+	}
 	oglCheck();
 
 	glLoadIdentity();
@@ -479,8 +480,6 @@ static void Render()
 
 	oglCheck();
 
-	unifont_bind(g_Font_Misc);
-
 	glColor4f(1.0f, 0.8f, 0.0f, 1.0f);
 
 	glLoadIdentity();
@@ -489,14 +488,22 @@ static void Render()
 	glScalef(1.0, -1.0, 1.0);
 
 	CStrW fps_display = translate(L"$num FPS") << fps;
-	glwprintf(fps_display);
+	{
+		CFont font("misc");
+		font.Bind();
+		glwprintf(fps_display);
+	}
 
 	oglCheck();
 
-	unifont_bind(g_Font_Console);
-	glLoadIdentity();
-	MICROLOG(L"render console");
-	g_Console->Render();
+	{
+		glLoadIdentity();
+
+		MICROLOG(L"render console");
+		CFont font("console");
+		font.Bind();
+		g_Console->Render();
+	}
 
 	oglCheck();
 
@@ -663,14 +670,16 @@ static void InitVfs(char* argv0)
 
 static void psInit()
 {
-	g_Font_Console = unifont_load("console");
-	g_Font_Misc = unifont_load("verdana16");
-
 	g_Console->SetSize(0, g_yres-600.f, (float)g_xres, 600.f);
-	g_Console->m_iFontHeight = unifont_linespacing(g_Font_Console);
-	g_Console->m_iFontOffset = 9;
+	{
+		// Calculate and store the line spacing
+		CFont font("console");
+		g_Console->m_iFontHeight = font.GetLineSpacing();
+		// Offset by an arbitrary amount, to make it fit more nicely
+		g_Console->m_iFontOffset = 9;
+	}
 
-	I18n::LoadLanguage("pseudogreek");
+	I18n::LoadLanguage("english");
 
 	loadHotkeys();
 
@@ -690,9 +699,6 @@ static void psShutdown()
 	g_GUI.Destroy();
 	delete &g_GUI;
 #endif
-
-	unifont_unload(g_Font_Misc);
-	unifont_unload(g_Font_Console);
 
 	delete g_Console;
 
