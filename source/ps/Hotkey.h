@@ -102,4 +102,6 @@ void initKeyNameMap();
 CStr getKeyName( int keycode );
 int getKeyCode( CStr keyname );
 
+bool keyRespondsTo( int hotkey, int sdlkey );
+
 extern bool hotkeys[HOTKEY_LAST];

@@ -478,3 +478,15 @@ int hotkeyInputHandler( const SDL_Event* ev )
 	}
 	return( EV_PASS );
 }
+
+
+// Returns true if the specified HOTKEY_* responds to the specified SDLK_*
+// (mainly for the screenshot system to know whether it needs to override
+// the printscreen screen). Ignores modifier keys.
+bool keyRespondsTo( int hotkey, int sdlkey )
+{
+	for (KeyMapping::iterator it = hotkeyMap[sdlkey].begin(); it != hotkeyMap[sdlkey].end(); ++it)
+		if (it->mapsTo == hotkey)
+			return true;
+	return false;
+}

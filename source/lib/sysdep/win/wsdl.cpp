@@ -35,6 +35,7 @@
 #include "win_internal.h"
 
 #include "SDL_vkeys.h"
+#include "ps/Hotkey.h"
 
 #include <assert.h>
 #include <stdio.h>
@@ -446,14 +447,19 @@ LRESULT CALLBACK keyboard_ll_hook(int nCode, WPARAM wParam, LPARAM lParam)
 		// replace Windows PrintScreen handler
 		if(vk == VK_SNAPSHOT)
 		{
-			// send to wndproc
-			UINT msg = (UINT)wParam;
-			PostMessage(hWnd, msg, vk, 0);
-				// specify hWnd to be safe.
-				// if window not yet created, it's INVALID_HANDLE_VALUE.
+			// check whether PrintScreen should be taking screenshots -- if
+			// not, allow the standard Windows clipboard to work
+			if(keyRespondsTo(HOTKEY_SCREENSHOT, SDLK_PRINT))
+			{
+				// send to wndproc
+				UINT msg = (UINT)wParam;
+				PostMessage(hWnd, msg, vk, 0);
+					// specify hWnd to be safe.
+					// if window not yet created, it's INVALID_HANDLE_VALUE.
 
-			// don't pass it on to other handlers
-			return 1;
+				// don't pass it on to other handlers
+				return 1;
+			}
 		}
 	}
 
