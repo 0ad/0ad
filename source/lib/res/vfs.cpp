@@ -1367,12 +1367,19 @@ debug_out("vfs_load fn=%s\n", fn);
 	{	// VC6 goto fix
 	ssize_t nread = vfs_io(hf, size, &p);
 	if(nread > 0)
+	{
 		hm = mem_assign(p, size);
+		if(flags & FILE_CACHE)
+		{
+			vf->hm = hm;
+			// add ref to hm for VFile
+		}
 	}
 
 skip_read:
 
 	vfs_close(hf);
+		// if FILE_CACHE, it's kept open
 
 	// if we fail, make sure these are set to 0
 	// (they may have been assigned values above)
