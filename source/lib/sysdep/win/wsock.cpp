@@ -45,6 +45,7 @@ WIN_REGISTER_MODULE(wsock);
 
 static int wsock_init()
 {
+/*
 	char d[1024];
 	CHECK_ERR(WSAStartup(0x0002, d));	// want 2.0
 
@@ -56,7 +57,7 @@ static int wsock_init()
 		// make sure the reference is released so BoundsChecker
 		// doesn't complain. it won't actually be unloaded anyway -
 		// there is at least one other reference.
-
+*/
 	return 0;
 }
 
@@ -77,51 +78,17 @@ uint16_t htons(uint16_t s)
 
 
 
-
-
-
-#pragma comment(lib, "delayimp.lib")
-
 #include <delayimp.h>
 
-FARPROC WINAPI MSJCheezyDelayLoadHook(unsigned dliNotify, PDelayLoadInfo pdli )
+static FARPROC WINAPI delay_load_hook(unsigned dliNotify, PDelayLoadInfo pdli)
 {
-    // Display which type of notification it is
-    switch( dliNotify )
-    {
-        case dliStartProcessing:
-            printf( "dliStartProcessing      " );
-            break;
-            
-        case dliNotePreLoadLibrary:
-            printf( "dliNotePreLoadLibrary   " );
-            break;
-            
-        case dliNotePreGetProcAddress:
-            printf( "dliNotePreGetProcAddress" );
-            break;
-            
-        case dliNoteEndProcessing:
-            printf( "dliNoteEndProcessing    " );
-            break;          
-    }
+	if(dliNotify == dliNoteEndProcessing && !strncmp(pdli->szDll, "ws2_32", 6))
+	{
+		char d[1024];
+		WSAStartup(0x0002, d);	// want 2.0
+	}
 
-    // Display the DLL name and the HMODULE
-    printf( " %s(%08P) -> ", pdli->szDll, pdli->hmodCur );
-
-    // Display the API ordinal or API name, as appropriate
-    if ( pdli->dlp.fImportByName )
-        printf( " %s", pdli->dlp.szProcName );
-    else
-        printf( " ordinal:%u", pdli->dlp.dwOrdinal );
-
-    printf( "\n" );
-    
-    return 0;   // Make sure __delayLoadHelper doesn't think we did something!
+	return 0;
 }
 
-//
-// Override the standard definition of __pfnDliNotifyHook that's part of
-// DELAYHLP.LIB
-//
-PfnDliHook __pfnDliNotifyHook = MSJCheezyDelayLoadHook;
+ExternC PfnDliHook __pfnDliNotifyHook2 = delay_load_hook;
