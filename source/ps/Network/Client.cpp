@@ -11,7 +11,7 @@
 #define LOG_CAT_NET "net"
 
 CNetClient *g_NetClient=NULL;
-extern int fps;
+extern "C" int fps;
 extern CConsole *g_Console;
 
 enum CClientEvents

@@ -142,7 +142,6 @@ template <> void XMLWriter_File::ElementAttribute<CStr>(const char* name, CStr& 
 	}
 }
 
-#ifdef __GNUC__
 // (Simon) Since GCC refuses to pass temporaries through non-const reference, 
 // define this wrapper function to convert [ugly] a const CStr to a non-const
 template <>
@@ -150,7 +149,6 @@ inline void XMLWriter_File::ElementAttribute<const CStr>(const char *name, const
 {
 	ElementAttribute(name, (CStr &)value, newelement);
 }
-#endif
 
 // Attribute/setting value-to-string template specialisations:
 
