@@ -4,6 +4,8 @@
 #include "BaseEntityCollection.h"
 #include "scripting/JSInterface_BaseEntity.h"
 
+#undef new // to avoid confusing warnings
+
 void CProperty::associate( IPropertyOwner* owner, const CStr& name )
 {
 	m_owner = owner;
