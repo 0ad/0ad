@@ -1,5 +1,8 @@
 #include "precompiled.h"
 
+#include <string.h>
+
+
 #ifdef _WIN32
 
 // From win.cpp (so we don't need all the Windows headers in here)

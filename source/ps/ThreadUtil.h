@@ -170,11 +170,14 @@ public:
 	inline CLocker()
 	{}
 
+	/*
+	GCC doesn't take these... I don't understand what the problem is! // Simon
+	
 	inline CLocker(const _T &arg): _T(arg)
 	{}
 	
 	inline CLocker(_T &arg): _T(arg)
-	{}
+	{}*/
 };
 
 #endif

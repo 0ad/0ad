@@ -1156,7 +1156,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		if (pFile->getAttributeString(attr.Name).substr(0, 6) == "sprite")
 		{
 			// Check whether it's a special stretched one
-			std::string SpriteName = CStr8(attr.Value);
+			std::string SpriteName = CStr8(attr.Value).c_str();
 			if (SpriteName.substr(0, 10) == "stretched:" &&
 				m_Sprites.find(SpriteName) == m_Sprites.end() )
 			{
@@ -1267,7 +1267,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 				Handle h = vfs_open(file);
 				if (h <= 0)
 				{
-					LOG(ERROR, "Error opening action file '%s': %lld", file, h);
+					LOG(ERROR, "Error opening action file '%s': %lld", file.c_str(), h);
 					throw PSERROR_GUI_JSOpenFailed();
 				}
 
@@ -1276,7 +1276,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 				int err = vfs_map(h, 0, data, len);
 				if (err)
 				{
-					LOG(ERROR, "Error mapping action file '%s': %lld", file, err);
+					LOG(ERROR, "Error mapping action file '%s': %lld", file.c_str(), err);
 					throw PSERROR_GUI_JSOpenFailed();
 				}
 
@@ -1353,7 +1353,7 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile)
 		Handle h = vfs_open(file);
 		if (h <= 0)
 		{
-			LOG(ERROR, "Error opening script file '%s': %lld", file, h);
+			LOG(ERROR, "Error opening script file '%s': %lld", file.c_str(), h);
 			throw PSERROR_GUI_JSOpenFailed();
 		}
 
@@ -1362,7 +1362,7 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile)
 		int err = vfs_map(h, 0, data, len);
 		if (err)
 		{
-			LOG(ERROR, "Error mapping script file '%s': %lld", file, err);
+			LOG(ERROR, "Error mapping script file '%s': %lld", file.c_str(), err);
 			throw PSERROR_GUI_JSOpenFailed();
 		}
 
