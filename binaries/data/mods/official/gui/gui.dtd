@@ -30,6 +30,7 @@
  "buffer-zone				CDATA #IMPLIED
   checked				%bool; #IMPLIED
   font					CDATA #IMPLIED
+  fov-wedge-color			CDATA #IMPLIED
   hotkey				CDATA #IMPLIED
   input-initvalue-destroyed-at-focus	%bool; #IMPLIED
   rectcolor-selected			CDATA #IMPLIED
@@ -37,6 +38,8 @@
   scrollbar-style			CDATA #IMPLIED
   sprite				CDATA #IMPLIED
   sprite2				CDATA #IMPLIED
+  sprite-bar				CDATA #IMPLIED
+  sprite-background			CDATA #IMPLIED
   sprite-disabled			CDATA #IMPLIED
   sprite2-disabled			CDATA #IMPLIED
   sprite-over				CDATA #IMPLIED
