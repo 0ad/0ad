@@ -31,6 +31,14 @@
 #include <xercesc/sax/EntityResolver.hpp>
 #include <xercesc/util/BinMemInputStream.hpp>
 
+#include <xercesc/sax/SAXParseException.hpp>
+#include <xercesc/util/XercesDefs.hpp>
+#include <xercesc/sax/ErrorHandler.hpp>
+
+#include <xercesc/framework/LocalFileInputSource.hpp>
+
+
+
 #include "res/h_mgr.h"
 #include "lib.h"
 #include "XercesErrorHandler.h"

@@ -13,11 +13,12 @@ gee@pyro.nu
 #include "CCheckBox.h"
 #include "CRadioButton.h"
 
-#include <xercesc/dom/DOM.hpp>
-#include <xercesc/parsers/XercesDOMParser.hpp>
-#include <xercesc/framework/LocalFileInputSource.hpp>
-#include <xercesc/util/XMLString.hpp>
-#include <xercesc/util/PlatformUtils.hpp>
+#include "XML.h"
+//#include <xercesc/dom/DOM.hpp>
+//#include <xercesc/parsers/XercesDOMParser.hpp>
+//#include <xercesc/framework/LocalFileInputSource.hpp>
+//#include <xercesc/util/XMLString.hpp>
+//#include <xercesc/util/PlatformUtils.hpp>
 
 #include "XercesErrorHandler.h"
 #include "Prometheus.h"

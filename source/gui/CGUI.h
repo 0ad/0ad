@@ -21,9 +21,10 @@ gee@pyro.nu
 //  Includes / Compiler directives
 //--------------------------------------------------------
 #include "GUI.h"
-#include <xercesc/dom/DOM.hpp>
-#include <xercesc/util/XMLString.hpp>
-#include <xercesc/util/PlatformUtils.hpp>
+#include "XML.h"
+//#include <xercesc/dom/DOM.hpp>
+//#include <xercesc/util/XMLString.hpp>
+//#include <xercesc/util/PlatformUtils.hpp>
 
 #include "Singleton.h"
 #include "input.h"	// JW: grr, classes suck in this case :P

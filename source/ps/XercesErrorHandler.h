@@ -20,8 +20,12 @@ gee@pyro.nu
 #ifndef XercesErrorHandler_H
 #define XercesErrorHandler_H
 
-#include <xercesc/util/XercesDefs.hpp>
-#include <xercesc/sax/ErrorHandler.hpp>
+#include "XML.h"
+
+//#include <xercesc/util/XercesDefs.hpp>
+//#include <xercesc/sax/ErrorHandler.hpp>
+
+
 #include <iostream>
 
 /**

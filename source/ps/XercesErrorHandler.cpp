@@ -10,7 +10,7 @@ gee@pyro.nu
 
 #include "precompiled.h"
 
-#include <xercesc/sax/SAXParseException.hpp>
+//#include <xercesc/sax/SAXParseException.hpp>
 #include "XercesErrorHandler.h"
 #include <iostream>
 #include <stdlib.h>
