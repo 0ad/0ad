@@ -31,7 +31,7 @@
 
 #ifdef _MSC_VER
 # define HAVE_ASM
-//# define HAVE_PCH
+# define HAVE_PCH
 #endif
 
 #ifdef OS_UNIX
