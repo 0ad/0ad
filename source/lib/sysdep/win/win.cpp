@@ -57,6 +57,12 @@ void wdisplay_msg(const wchar_t* caption, const wchar_t* msg)
 }
 
 
+void win_debug_break()
+{
+	DebugBreak();
+}
+
+
 
 // need to shoehorn printf-style variable params into
 // the OutputDebugString call.

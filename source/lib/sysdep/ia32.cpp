@@ -101,6 +101,12 @@ __asm
 }
 
 
+void ia32_debug_break()
+{
+	__asm int 3
+}
+
+
 //
 // data returned by cpuid()
 // each function using this data must call cpuid (no-op if already called)

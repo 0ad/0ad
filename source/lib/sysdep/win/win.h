@@ -19,4 +19,7 @@
 #define WINAPI __stdcall
 #define WINAPIV __cdecl
 
+
+extern "C" void win_debug_break();
+
 #endif	// #ifndef __WIN_H__

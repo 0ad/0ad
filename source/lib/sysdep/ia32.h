@@ -39,6 +39,10 @@ extern u64 rdtsc();
 
 extern uint _control87(uint new_cw, uint mask);
 
+extern void ia32_debug_break();
+
+
+
 // CPU caps (128 bits)
 // do not change the order! (breaks cpuid())
 enum CpuCap
