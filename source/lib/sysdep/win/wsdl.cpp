@@ -23,6 +23,8 @@
 // - force the app to check for SDL's activation messages, and call
 //   sdl-wait-message?
 // - do it here, just make SDL_PollEvent block until message received?
+// - have the app use another free-the-cpu method, since it controls the main loop.
+//   this is what's currently happening.
 
 #include "precompiled.h"
 
@@ -51,20 +53,27 @@ WIN_REGISTER_FUNC(wsdl_shutdown);
 #pragma data_seg()
 
 
-/* state */
-static bool app_active;		/* is window active & on top?
-							   if not, msg loop should yield */
-	// responsibility for yielding lies with SDL apps -
+static bool app_active;
+	// window is active and visible.
+	// used to send SDL_ACTIVEEVENT messages and in the msgproc.
+	// note: responsibility for yielding lies with SDL apps -
 	// they control the main loop.
 
-static bool fullscreen;		/* in fullscreen mode?
-							   if so, restore mode when app is deactivated */
+static bool fullscreen;
+	// in fullscreen mode, i.e. not windowed.
+	// video mode must be restored when app is deactivated.
 
 static bool is_shutdown;
+	// the app is shutting down.
+	// if set, ignore further Windows messages for clean shutdown.
+
 
 static HINSTANCE hInst = 0;
+	// app instance.
+	// returned by GetModuleHandle and used in kbd hook and window creation. 
 
-static HWND hWnd = (HWND)INVALID_HANDLE_VALUE;		/* make available to the app for ShowWindow calls, etc.? */
+static HWND hWnd = (HWND)INVALID_HANDLE_VALUE;
+	// make available to the app for ShowWindow calls, etc.?
 
 static DEVMODE dm;			/* current video mode */
 static HDC hDC;
