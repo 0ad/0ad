@@ -609,6 +609,16 @@ PREVTSC=TSC;
 
 	vfs_mount("", "mods/official/", 0);
 
+#ifdef _MSC_VER
+u64 CURTSC=rdtsc();
+debug_out(
+"----------------------------------------\n"\
+"VFS ready (elapsed = %f ms)\n"\
+"----------------------------------------\n", (CURTSC-PREVTSC)/2e9*1e3);
+PREVTSC=CURTSC;
+#endif
+
+
 #ifndef NO_GUI
 	// GUI uses VFS, so this must come after VFS init.
 	g_GUI.Initialize();
@@ -712,12 +722,14 @@ if(!g_MapFile)
 g_Console->RegisterFunc(Testing, "Testing");
 
 #ifdef _MSC_VER
+{
 u64 CURTSC=rdtsc();
 debug_out(
 "----------------------------------------\n"\
 "READY (elapsed = %f ms)\n"\
 "----------------------------------------\n", (CURTSC-PREVTSC)/2e9*1e3);
 PREVTSC=CURTSC;
+}
 #endif
 
 
@@ -771,7 +783,7 @@ PREVTSC=CURTSC;
 
 #ifndef NO_GUI
 	g_GUI.Destroy();
-	delete CGUI::GetSingletonPtr();
+	delete &g_GUI;
 #endif
 
 	delete g_Console;
@@ -781,15 +793,15 @@ PREVTSC=CURTSC;
 	delete &g_EntityTemplateCollection;
 
 	// destroy actor related stuff
-	delete CUnitManager::GetSingletonPtr();
-	delete CObjectManager::GetSingletonPtr();
-	delete CSkeletonAnimManager::GetSingletonPtr();
+	delete &g_UnitMan;
+	delete &g_ObjMan;
+	delete &g_SkelAnimMan;
 
 	// destroy terrain related stuff
-	delete CTextureManager::GetSingletonPtr();
+	delete &g_TexMan;
 
 	// destroy renderer
-	delete CRenderer::GetSingletonPtr();
+	delete &g_Renderer;
 	
 	// close down Xerces
 	XMLPlatformUtils::Terminate();
