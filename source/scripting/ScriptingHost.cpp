@@ -137,7 +137,9 @@ jsval ScriptingHost::ExecuteScript( const CStr16& script, const CStr16& calledFr
 	char* asciiName = new char[len + 1];
 	wcstombs( asciiName, calledFrom, len + 1 );
 
-	JSBool ok = JS_EvaluateUCScript(m_Context, contextObject ? contextObject : m_GlobalObject, script, (int)script.Length(), asciiName, 0, &rval); 
+	const wchar_t *pscript=script.c_str();
+	utf16string u16script=utf16string(pscript, pscript+script.Length());
+	JSBool ok = JS_EvaluateUCScript(m_Context, contextObject ? contextObject : m_GlobalObject, u16script.c_str(), (int)u16script.size(), asciiName, 0, &rval); 
 
 	delete( asciiName );
 
