@@ -15,7 +15,7 @@
 #ifdef _WIN32
 #include "lib/sysdep/win/printf.h"
 #else
-#define vsnprint2 vsnprint
+#define vsnprintf2 vsnprintf
 #endif
 
 #ifdef __cplusplus
