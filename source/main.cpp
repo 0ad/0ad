@@ -600,6 +600,8 @@ PREVTSC=TSC;
 	_control87(_PC_24, _MCW_PC);
 #endif
 
+	// Create the scripting host.  This needs to be done before the GUI is created.
+	new ScriptingHost;
 
 	detect();
 
@@ -646,9 +648,6 @@ PREVTSC=TSC;
 	// a generated profile path)
 	
 	ParseArgs(argc, argv);
-
-	// Create the scripting host.  This needs to be done before the GUI is created.
-	new ScriptingHost;
 
 	// GUI is notified in set_vmode, so this must come before that.
 #ifndef NO_GUI
