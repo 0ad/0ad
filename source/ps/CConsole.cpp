@@ -8,8 +8,6 @@
 
 #include "scripting/ScriptingHost.h"
 
-//#include "lib/input.h"
-
 CConsole::CConsole(float X, float Y, float W, float H)
 	: m_fX(X), m_fY(Y), m_fWidth(W), m_fHeight(H)
 {
@@ -25,7 +23,7 @@ CConsole::CConsole(float X, float Y, float W, float H)
 	m_iMsgHistPos = 1;
 
 	InsertMessage(L"[ 0 A.D. Console v0.11 ]   type \"\\info\" for help");
-	InsertMessage(L"\0");
+	InsertMessage(L"");
 }
 
 
@@ -77,7 +75,7 @@ void CConsole::Trim(wchar_t* szMessage, const wchar_t cChar, uint iSize)
 
 	// move everything <ofs> chars left, replacing leading cChar chars
 	L -= ofs;
-	memmove(szMessage, szMessage+ofs, L);
+	memmove(szMessage, szMessage+ofs, L*sizeof(wchar_t));
 
 	for(ssize_t i = (ssize_t)L; i >= 0; i--)
 	{
@@ -132,7 +130,7 @@ void CConsole::Update(const float DeltaTime)
 //Render Manager.
 void CConsole::Render()
 {
-	if (!m_bVisible) return;
+	if (! (m_bVisible || m_bToggle) ) return;
 
 	// animation: slide in from top of screen
 	const float MaxY = m_fHeight;
@@ -424,14 +422,14 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 		ToLower(szCommand);
 
 		if (!wcscmp(szCommand, L"info")){
-			InsertMessage(L"\0");
+			InsertMessage(L"");
 			InsertMessage(L"[Information]");
 			InsertMessage(L"   -View commands \"\\commands\"");
 			InsertMessage(L"   -Call command \"\\<command>\"");
 			InsertMessage(L"   -Say \"<string>\"");
-			InsertMessage(L"\0");
+			InsertMessage(L"");
 		}else if (!wcscmp(szCommand, L"commands")){
-			InsertMessage(L"\0");
+			InsertMessage(L"");
 			InsertMessage(L"[Commands]");
 
 			if (!m_mapFuncList.size()) InsertMessage(L"   (none registered)");
@@ -439,7 +437,7 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 			for (Iter = m_mapFuncList.begin(); Iter != m_mapFuncList.end(); Iter++)
 				InsertMessage(L"   \\%s", Iter->first.data());
 
-			InsertMessage(L"\0");
+			InsertMessage(L"");
 		}else{
 			Iter = m_mapFuncList.find(szCommand);
 			if (Iter == m_mapFuncList.end())
