@@ -83,7 +83,8 @@ static inline u32 h_idx(const Handle h)
 static inline u32 h_tag(const Handle h)
 { return (u32)((h >> TAG_SHIFT) & TAG_MASK); }
 
-// build a handle from index and tag
+// build a handle from index and tag.
+// can't fail.
 static inline Handle handle(const u32 _idx, const u32 tag)
 {
 	const u32 idx = _idx+1;
@@ -92,7 +93,9 @@ static inline Handle handle(const u32 _idx, const u32 tag)
 	// *_SHIFT may be larger than its field's type.
 	Handle h_idx = idx & IDX_MASK; h_idx <<= IDX_SHIFT;
 	Handle h_tag = tag & TAG_MASK; h_tag <<= TAG_SHIFT;
-	return h_idx | h_tag;
+	Handle h = h_idx | h_tag;
+	assert(h > 0);
+	return h;
 }
 
 
@@ -127,8 +130,13 @@ struct HDATA
 
 	u32 tag  : TAG_BITS;
 
+	// smaller bitfields combined into 1
 	u32 refs : REF_BITS;
 	u32 type_idx : TYPE_BITS;
+	u32 keep_open : 1;
+		// regardless of refs, do not actually release the resource
+		// (i.e. call dtor) when the handle is h_free-d.
+		// set by h_alloc; reset on exit and by housekeeping.
 
 	H_Type type;
 
@@ -250,9 +258,8 @@ void h_mgr_shutdown(void)
 			// better than an additional h_free(i32 idx) version though.
 			Handle h = handle(i, hd->tag);
 
-			// HACK: must actually free the handles, regardless
-			// of current refcount. so, quick'n dirty solution: set it to 1.
-			hd->refs = 1;
+			// disable caching; we need to release the resource now.
+			hd->keep_open = 0;
 
 			h_free(h, hd->type);
 		}
@@ -342,16 +349,15 @@ int h_free(Handle& h, H_Type type)
 	if(!hd)
 		return ERR_INVALID_HANDLE;
 
-	// have valid refcount (don't decrement if already 0)
+	// only decrement if refcount not already 0.
 	if(hd->refs > 0)
-	{
 		hd->refs--;
-		// not the last reference
-		if(hd->refs > 0)
-			return 0;
-	}
 
-	// TODO: keep this handle open (cache)
+	// still references open or caching requests it stays - do not release.
+	if(hd->refs > 0 || hd->keep_open)
+		return 0;
+
+	// actually release the resource (call dtor, free control block).
 
 	// h_alloc makes sure type != 0; if we get here, it still is
 	H_VTbl* vtbl = hd->type;
@@ -372,33 +378,48 @@ int h_free(Handle& h, H_Type type)
 }
 
 
+static int type_validate(H_Type type)
+{
+	int err = ERR_INVALID_PARAM;
+
+	if(!type)
+	{
+		debug_warn("h_alloc: type is 0");
+		goto fail;
+	}
+	if(type->user_size > HDATA_USER_SIZE)
+	{
+		debug_warn("h_alloc: type's user data is too large for HDATA");
+		goto fail;
+	}
+	if(type->name == 0)
+	{
+		debug_warn("h_alloc: type's name field is 0");
+		goto fail;
+	}
+
+	// success
+	err = 0;
+
+fail:
+	return err;
+}
+
+
 // any further params are passed to type's init routine
 Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 {
 	ONCE(atexit2(h_mgr_shutdown));
 
-	Handle err;
+	CHECK_ERR(type_validate(type));
 
+	Handle h = 0;
 	i32 idx;
 	HDATA* hd;
 
-	// verify type
-	if(!type)
-	{
-		debug_warn("h_alloc: type param is 0");
-		return 0;
-	}
-	if(type->user_size > HDATA_USER_SIZE)
-	{
-		debug_warn("h_alloc: type's user data is too large for HDATA");
-		return 0;
-	}
-	if(type->name == 0)
-	{
-		debug_warn("h_alloc: type's name field is 0");
-		return 0;
-	}
+	const uint scope = flags & RES_SCOPE_MASK;
 
+	// get key (either hash of filename, or fn param)
 	uintptr_t key = 0;
 	// not backed by file; fn is the key
 	if(flags & RES_KEY)
@@ -415,7 +436,7 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 	if(key)
 	{
 		// object already loaded?
-		Handle h = h_find(type, key);
+		h = h_find(type, key);
 		if(h > 0)
 		{
 			hd = h_data(h, type);
@@ -426,55 +447,76 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 			}
 			hd->refs++;
 
-			return h;
+			// adding reference; already in-use
+			if(hd->refs > 1)
+			{
+				debug_warn("adding reference to handle (undermines tag security check)");
+				return h;
+			}
+
+			// we re-activated a cached resource. will reset tag below, then bail.
 		}
 	}
 
-	err = alloc_idx(idx, hd);
-	if(err < 0)
-		return err;
-
+	// generate next tag value.
+	// don't want to do this before the add-reference exit,
+	// so as not to waste tags for often allocated handles.
 	static u32 tag;
 	if(++tag >= TAG_MASK)
 	{
 		debug_warn("h_alloc: tag overflow - allocations are no longer unique."\
-		            "may not notice stale handle reuse. increase TAG_BITS.");
+			"may not notice stale handle reuse. increase TAG_BITS.");
 		tag = 1;
 	}
 
-	hd->key = key;
-	hd->tag = tag;
+	// we are reactivating a closed but cached handle.
+	// need to reset tag, so that copies of the previous
+	// handle can no longer access the resource.
+	// (we don't need to reset the tag in h_free, because
+	// use before this fails due to refs > 0 check in h_user_data).
+	if(h > 0)
+	{
+		hd->tag = tag;
+		return h;
+	}
+
+	CHECK_ERR(alloc_idx(idx, hd));
+
+	// one-time init
+	hd->tag  = tag;
+	hd->key  = key;
 	hd->type = type;
 	hd->refs = 1;
-	Handle h = handle(idx, tag);
-
-// regular filename
-hd->fn = 0;
-if(!(flags & RES_KEY))
-{
+	if(scope != RES_TEMP)
+		hd->keep_open = 1;
+	// .. filename is valid - store in hd
+	// note: if the original fn param was a key, it was reset to 0 above.
 	if(fn)
 	{
 		const size_t fn_len = strlen(fn);
 		hd->fn = (const char*)malloc(fn_len+1);
 		strcpy((char*)hd->fn, fn);
 	}
-}
+	else
+		hd->fn = 0;
 
-
+	h = handle(idx, tag);
+		// can't fail.
 
 	H_VTbl* vtbl = type;
 
+	// init
 	va_list args;
 	va_start(args, flags);
-
 	if(vtbl->init)
 		vtbl->init(hd->user, args);
-
 	va_end(args);
 
+	// reload
 	if(vtbl->reload)
 	{
 		// catch exception to simplify reload funcs - let them use new()
+		int err;
 		try
 		{
 			err = vtbl->reload(hd->user, fn, h);
@@ -487,7 +529,7 @@ if(!(flags & RES_KEY))
 		if(err < 0)
 		{
 			h_free(h, type);
-			return err;
+			return (Handle)err;
 		}
 	}
 
