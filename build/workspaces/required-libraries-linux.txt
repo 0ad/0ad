@@ -42,13 +42,8 @@ $binaries := directory containing system/ and data/
 	You are free to copy the binaries under bin/ into your path as well, but it
 	won't be neccessary to build the engine.
 
-- FMOD: [sound]
-  download http://www.wildfiregames.com/~code/libraries/linux/fmodapi373linux.tar.gz
-  ... unpack archive
-  ... copy libfmod373linux/api/libfmod-3.73.so to $lib
-  ... run ldconfig (if you don't, the library might not be found at runtime)
-  ... copy libfmod373linux/api/inc/* to $include
-
+- OpenAL: [sound]
+  <No instructions here yet>
 
 These libraries should have packages available for your distribution. You will
 need to get the corresponding -dev or -devel package for each library.
