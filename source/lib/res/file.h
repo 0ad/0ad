@@ -47,14 +47,17 @@ struct File
 
 enum
 {
-	// open for writing
-	FILE_WRITE        = 1,
+	// write-only access; otherwise, read only
+	FILE_WRITE        = 0x01,
 
-	FILE_MEM_READONLY = 2,
+	// buffers returned may be read-only (allows some caching optimizations)
+	FILE_MEM_READONLY = 0x02,
 
-	// do not cache any part of the file
-	// (e.g. if caching on a higher level)
-	FILE_NO_CACHE     = 4
+	// don't cache the whole file, e.g. if kept in memory elsewhere anyway.
+	FILE_NOCACHE      = 0x04,
+
+	// random access hint
+	FILE_RANDOM       = 0x08 	
 };
 
 
