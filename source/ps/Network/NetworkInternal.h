@@ -87,7 +87,10 @@ public:
 
 	inline CSocketInternal():
 		m_fd(-1),
-		m_pConnectHost(NULL), m_ConnectPort(-1)
+		m_AcceptFd(-1),
+		m_Ops(0),
+		m_pConnectHost(NULL),
+		m_ConnectPort(-1)
 	{
 	}
 };
