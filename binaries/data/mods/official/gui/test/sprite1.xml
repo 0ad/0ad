@@ -698,23 +698,52 @@
 	<sprite name="atlas_window">
 		<!-- Starting with top left corner continuing in a clockwise manner -->
 		<!-- Top border -->
-		<image backcolor="129 134 142" size="0%+0 0%+0 100%-1 0%+0" />
-		<image backcolor="255 255 255" size="0%+1 0%+1 100%-1 0%+1" />
-		<image backcolor="80 97 127" size="2 0%+2 100%-2 0%+2" />
+		<image backcolor="129 134 142" size="0%+0 0%+0 100%-1 0%+1" />
+		<image backcolor="255 255 255" size="0%+1 0%+1 100%-1 0%+2" />
+		<image backcolor="80 97 127" size="2 0%+2 100%-2 0%+3" />
 		<!-- Right border -->
-		<image backcolor="80 97 127" size="100% 0%+0 100% 100%" />
-		<image backcolor="255 255 255" size="100%-1 0%+1 100%-1 100%-1" />
-		<image backcolor="129 134 142" size="100%-2 0%+3 100%-2 100%-2" />
+		<image backcolor="80 97 127" size="100%-1 0%+0 100% 100%" />
+		<image backcolor="255 255 255" size="100%-1 0%+1 100%-2 100%-1" />
+		<image backcolor="129 134 142" size="100%-2 0%+3 100%-3 100%-2" />
 		<!-- Bottom border -->
-		<image backcolor="80 97 127" size="0%+1 100% 100% 100%" />
-		<image backcolor="255 255 255" size="0%+1 100%-1 100%-1 100%-1" />
-		<image backcolor="129 134 142" size="0%+2 100%-2 100%-2 100%-2" />
+		<image backcolor="80 97 127" size="0%+1 100%-1 100% 100%" />
+		<image backcolor="255 255 255" size="0%+1 100%-1 100%-1 100%-2" />
+		<image backcolor="129 134 142" size="0%+2 100%-2 100%-2 100%-3" />
 		<!-- Left border -->
-		<image backcolor="129 134 142" size="0%+0 0%+0 0%+0 100%" />
-		<image backcolor="255 255 255" size="0%+1 0%+1 0%+1 100%-1" />
-		<image backcolor="80 97 127" size="0%+2 0%+2 0%+2 100%-3" />
+		<image backcolor="129 134 142" size="0%+0 0%+0 0%+1 100%" />
+		<image backcolor="255 255 255" size="0%+1 0%+1 0%+2 100%-1" />
+		<image backcolor="80 97 127" size="0%+2 0%+2 0%+3 100%-3" />
 		<!-- middle -->
 		<image backcolor="184 190 201" size="3 3 100%-3 100%-3"/>
+	</sprite>
+
+	<sprite name="atlas_window_rt_border">
+		<!-- Starting with top left corner continuing in a clockwise manner -->
+		<!-- Top border -->
+		<image backcolor="129 134 142" size="0%+0 0%+0 100%-1 0%+1" />
+		<image backcolor="255 255 255" size="0%+1 0%+1 100%-1 0%+2" />
+		<image backcolor="80 97 127" size="2 0%+2 100%-2 0%+3" />
+		<!-- Right border -->
+		<image backcolor="80 97 127" size="100%-1 0%+0 100% 100%" />
+		<image backcolor="255 255 255" size="100%-1 0%+1 100%-2 100%-1" />
+		<image backcolor="129 134 142" size="100%-2 0%+3 100%-3 100%-2" />
+		<!-- Bottom border -->
+		<!-- Left border -->
+		<!-- middle -->
+		<image backcolor="184 190 201" size="0 3 100%-3 100%"/>
+	</sprite>
+
+	<sprite name="atlas_window_t_border">
+		<!-- Starting with top left corner continuing in a clockwise manner -->
+		<!-- Top border -->
+		<image backcolor="129 134 142" size="0%+0 0%+0 100%-1 0%+1" />
+		<image backcolor="255 255 255" size="0%+1 0%+1 100%-1 0%+2" />
+		<image backcolor="80 97 127" size="2 0%+2 100%-2 0%+3" />
+		<!-- Right border -->
+		<!-- Bottom border -->
+		<!-- Left border -->
+		<!-- middle -->
+		<image backcolor="184 190 201" size="0 3 100% 100%"/>
 	</sprite>
 
 	<sprite name="atlas_input_box">
@@ -775,47 +804,47 @@
 
 	<sprite name="atlas_toolbar_bkg">
 		<image backcolor="184 190 201" size="0 0 100% 100%-3" />
-		<image backcolor="109 122 146" size="0 100%-2 100% 100%-2" />
-		<image backcolor="220 223 228" size="0 100%-1 100% 100%-1" />
-		<image backcolor="147 152 161" size="0 100% 100% 100%" />
+		<image backcolor="109 122 146" size="0 100%-2 100% 100%-1" />
+		<image backcolor="220 223 228" size="0 100% 100% 100%-1" />
+		<image backcolor="147 152 161" size="0 100%-1 100% 100%" />
 	</sprite>
 
 	<sprite name="atlas_menubar_bkg">
 		<image backcolor="184 190 201" size="0 0 100% 100%-1" />
-		<image backcolor="0 0 0" size="0 100% 100% 100%" />
+		<image backcolor="0 0 0" size="0 100%-1 100% 100%" />
 	</sprite>
 
 	<sprite name="atlas_border">
 		<!-- Starting with top left corner continuing in a clockwise manner -->
 		<!-- Top border -->
-		<image backcolor="109 122 146" size="1 0 100%-1 0" />
-		<image backcolor="220 223 228" size="1 1 100%-3 1" />
-		<image backcolor="184 190 201" size="100%-2 1 100%-2 1" />
+		<image backcolor="109 122 146" size="1 0 100%-1 1" />
+		<image backcolor="220 223 228" size="1 1 100%-3 2" />
+		<image backcolor="184 190 201" size="100%-1 1 100%-2 2" />
 		<!-- Right border -->
-		<image backcolor="220 223 228" size="100% 0 100% 100%" />
-		<image backcolor="109 122 146" size="100%-1 0 100%-1 100%-1" />
+		<image backcolor="220 223 228" size="100%-1 0 100% 100%" />
+		<image backcolor="109 122 146" size="100%-1 0 100%-2 100%-1" />
 		<!-- Bottom border -->
-		<image backcolor="220 223 228" size="0% 100% 100% 100%" />
-		<image backcolor="109 122 146" size="0% 100%-1 100% 100%-1" />
+		<image backcolor="220 223 228" size="0% 100%-1 100% 100%" />
+		<image backcolor="109 122 146" size="0% 100%-1 100% 100%-2" />
 		<!-- Left border -->
-		<image backcolor="109 122 146" size="0 1 0 100%-2" />
-		<image backcolor="220 223 228" size="1 1 1 100%-2" />
+		<image backcolor="109 122 146" size="0 1 1 100%-2" />
+		<image backcolor="220 223 228" size="1 1 2 100%-2" />
 	</sprite>
 
 	<sprite name="atlas_button">
 		<!-- Starting with top left corner continuing in a clockwise manner -->
 		<!-- Top border -->
-		<image backcolor="184 190 201" size="0 0 100%-1 0" />
-		<image backcolor="220 223 228" size="1 1 100%-2 1" />
+		<image backcolor="184 190 201" size="0 0 100%-1 1" />
+		<image backcolor="220 223 228" size="1 1 100%-2 2" />
 		<!-- Right border -->
-		<image backcolor="0 0 0" size="100% 0 100% 100%" />
-		<image backcolor="109 122 146" size="100%-1 1 100%-1 100%-1" />
+		<image backcolor="0 0 0" size="100%-1 0 100% 100%" />
+		<image backcolor="109 122 146" size="100%-1 1 100%-2 100%-1" />
 		<!-- Bottom border -->
-		<image backcolor="0 0 0" size="0 100% 100% 100%" />
-		<image backcolor="109 122 146" size="1 100%-1 100%-1 100%-1" />
+		<image backcolor="0 0 0" size="0 100%-1 100% 100%" />
+		<image backcolor="109 122 146" size="1 100%-1 100%-1 100%" />
 		<!-- Left border -->
-		<image backcolor="184 190 201" size="0 0 0 100%-1" />
-		<image backcolor="220 223 228" size="1 1 1 100%-1" />
+		<image backcolor="184 190 201" size="0 0 1 100%-1" />
+		<image backcolor="220 223 228" size="1 1 2 100%-1" />
 		<!-- middle -->
 		<image backcolor="184 190 201" size="2 2 100%-2 100%-2"/>
 	</sprite>
@@ -823,6 +852,10 @@
 	<sprite name="atlas_bkgcol">
 		<image backcolor="184 190 201" size="0 0 100% 100%"/>
 	</sprite>
+
+        <sprite name="atlas_tooltip_background">
+                <image backcolor="255 255 255 95" size="0 0 100% 100%"/>
+        </sprite>
 
         <!--
         ==========================================
@@ -836,6 +869,16 @@
 
         <sprite name="atlas_mainborder_rt_corner">
                 <image texture="atlas/atlas_mainborder_rt_corner.png" texture-size="0 0 256 64" size="0 0 100% 100%"/>
+        </sprite>
+
+        <sprite name="atlas_lb_corner">
+                <image texture="atlas/atlas_global_corner_lb.png" texture-size="0 0 32 32" size="0 0 100% 100%"/>
+        </sprite>
+
+        <sprite name="atlas_rb_corner_x2">
+                <image texture="atlas/atlas_global_corner_rb_x2.png" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+		<image backcolor="184 190 201" size="0 100%-1 100% 100%"/>
+		<image backcolor="184 190 201" size="100%-1 0 100% 100%"/>
         </sprite>
 
         <!--

@@ -15,22 +15,73 @@
 		<!-- Simply black out the lowest level of the GUI, until such time as we're capable of starting an editor session of a scenario. -->
 		<object type="text" name="atlas_gui_bkg" sprite="black" size="0 0 100% 100%" z="1" ghost="true" hidden="false"/>
 
+		<!-- LEFT SELECTION PANE -->
+		<object type="empty" name="atlas_left_pane" size="0 0 100% 100%" z="1" hidden="false">
+
+			<!-- LEFT SELECTION PANE BACKGROUND -->
+			<object type="text" name="atlas_left_pane_bkg" sprite="atlas_window_rt_border" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					setSizeCoord("atlas_left_pane_bkg", crd_atlas_left_pane_bkg_x, crd_atlas_left_pane_bkg_y, crd_atlas_left_pane_bkg_x+crd_atlas_left_pane_bkg_width, -crd_atlas_left_pane_bkg_height, left_screen, top_screen, left_screen, bottom_screen);
+				]]></action>
+			</object>
+		</object>
+
+		<!-- BOTTOM SELECTION PANE -->
+		<object type="empty" name="atlas_bottom_pane" size="0 0 100% 100%" z="1" hidden="false">
+
+			<!-- BOTTOM SELECTION BACKGROUND -->
+			<object type="text" name="atlas_bottom_pane_bkg" sprite="atlas_window_rt_border" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					setSizeCoord("atlas_bottom_pane_bkg", crd_atlas_bottom_pane_bkg_x, -crd_atlas_bottom_pane_bkg_y-crd_atlas_bottom_pane_bkg_height, crd_atlas_bottom_pane_bkg_x+crd_atlas_bottom_pane_bkg_width, 0, left_screen, bottom_screen, right_screen, bottom_screen);
+				]]></action>
+			</object>
+
+			<!-- LEFT/BOTTOM SELECTION PANE CORNER -->
+			<object type="text" name="atlas_lb_corner" sprite="atlas_lb_corner" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					setSizeCoord("atlas_lb_corner", crd_atlas_lb_corner_x, -crd_atlas_lb_corner_y-crd_atlas_lb_corner_height, crd_atlas_lb_corner_x+crd_atlas_lb_corner_width, -crd_atlas_lb_corner_y, left_screen, bottom_screen, left_screen, bottom_screen);
+				]]></action>
+			</object>
+
+			<!-- RB: MINIMAP BACKGROUND -->
+			<object type="text" name="atlas_minimap_bkg" sprite="atlas_window_t_border" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					setSizeCoord("atlas_minimap_bkg", -crd_atlas_minimap_bkg_x-crd_atlas_minimap_bkg_width, -crd_atlas_minimap_bkg_y-crd_atlas_minimap_bkg_height, -crd_atlas_minimap_bkg_x, -crd_atlas_minimap_bkg_y, right_screen, bottom_screen, right_screen, bottom_screen);
+				]]></action>
+			</object>
+
+			<!-- RIGHT/BOTTOM SELECTION PANE CORNER -->
+			<object type="text" name="atlas_rb_corner" sprite="atlas_rb_corner_x2" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					setSizeCoord("atlas_rb_corner", -crd_atlas_rb_corner_x-crd_atlas_rb_corner_width, -crd_atlas_rb_corner_y-crd_atlas_rb_corner_height, -crd_atlas_rb_corner_x, -crd_atlas_rb_corner_y, right_screen, bottom_screen, right_screen, bottom_screen);
+				]]></action>
+			</object>
+		</object>
+
+		<!-- RB: MINIMAP -->
+		<!-- Later change this to type minimap, no sprite (doesn't do anything if not in simulation mode). -->
+		<object type="text" name="atlas_minimap" sprite="atlas_window" z="60" hidden="false">
+			<action on="Load"><![CDATA[
+				setSizeCoord("atlas_minimap", -crd_atlas_minimap_x-crd_atlas_minimap_width, -crd_atlas_minimap_y-crd_atlas_minimap_height, -crd_atlas_minimap_x, -crd_atlas_minimap_y, right_screen, bottom_screen, right_screen, bottom_screen);
+			]]></action>
+		</object>
+
 		<!-- TOP: MENU -->
-		<object type="button" name="atlas_mainborder_menu_bkg" sprite="atlas_menubar_bkg" z="60" hidden="false">
+		<object type="text" name="atlas_mainborder_menu_bkg" sprite="atlas_menubar_bkg" z="60" hidden="false">
 			<action on="Load"><![CDATA[
 				setSizeCoord("atlas_mainborder_menu_bkg", crd_atlas_mainborder_menu_bkg_x, crd_atlas_mainborder_menu_bkg_y, -crd_atlas_mainborder_menu_bkg_width, crd_atlas_mainborder_menu_bkg_y+crd_atlas_mainborder_menu_bkg_height, left_screen, top_screen, right_screen, top_screen);
 			]]></action>
 		</object>
 
 		<!-- TOP: TOOLBAR -->
-		<object type="button" name="atlas_mainborder_toolbar_bkg" sprite="atlas_toolbar_bkg" z="60" hidden="false">
+		<object type="text" name="atlas_mainborder_toolbar_bkg" sprite="atlas_toolbar_bkg" z="60" hidden="false">
 			<action on="Load"><![CDATA[
 				setSizeCoord("atlas_mainborder_toolbar_bkg", crd_atlas_mainborder_toolbar_bkg_x, crd_atlas_mainborder_toolbar_bkg_y, -crd_atlas_mainborder_toolbar_bkg_width, crd_atlas_mainborder_toolbar_bkg_y+crd_atlas_mainborder_toolbar_bkg_height, left_screen, top_screen, right_screen, top_screen);
 			]]></action>
 		</object>
 		
 		<!-- LT: LOGO -->
-		<object type="text" name="atlas_mainborder_lt_corner" sprite="atlas_mainborder_lt_corner" z="60" hidden="false">
+		<object type="text" name="atlas_mainborder_lt_corner" sprite="atlas_mainborder_lt_corner" tooltip-style="atlas_tooltip" tooltip="Mmm, nothing like the smell of blatant self-promotion in the morning ..." z="60" hidden="false">
 			<action on="Load"><![CDATA[
 				setSizeCoord("atlas_mainborder_lt_corner", crd_atlas_mainborder_lt_corner_x, crd_atlas_mainborder_lt_corner_y, crd_atlas_mainborder_lt_corner_x+crd_atlas_mainborder_lt_corner_width, crd_atlas_mainborder_lt_corner_y+crd_atlas_mainborder_lt_corner_height, left_screen, top_screen, left_screen, top_screen);
 			]]></action>
@@ -43,16 +94,10 @@
 			]]></action>
 		</object>
 
-		<!-- RB: MINIMAP -->
-		<object type="button" name="atlas_minimap_bkg" sprite="atlas_border" z="60" hidden="false">
+		<!-- TOOLTIP WINDOW -->
+		<object type="text" name="atlas_tooltip" sprite="atlas_tooltip_background" font="tahoma10" textcolor="0 0 0" z="104" hidden="true" ghost="true">
 			<action on="Load"><![CDATA[
-				setSizeCoord("atlas_minimap_bkg", -crd_atlas_minimap_bkg_x-crd_atlas_minimap_bkg_width, -crd_atlas_minimap_bkg_y-crd_atlas_minimap_bkg_height, -crd_atlas_minimap_bkg_x, -crd_atlas_minimap_bkg_y, right_screen, bottom_screen, right_screen, bottom_screen);
-			]]></action>
-		</object>
-		<!-- Later change this to type minimap, no sprite (doesn't do anything if not in simulation mode). -->
-		<object type="button" name="atlas_minimap" sprite="grey" z="60" hidden="false">
-			<action on="Load"><![CDATA[
-				setSizeCoord("atlas_minimap", -crd_atlas_minimap_x-crd_atlas_minimap_width, -crd_atlas_minimap_y-crd_atlas_minimap_height, -crd_atlas_minimap_x, -crd_atlas_minimap_y, right_screen, bottom_screen, right_screen, bottom_screen);
+				setSizeCoord("atlas_tooltip", -crd_atlas_tooltip_x-crd_atlas_tooltip_width, -crd_atlas_tooltip_y-crd_atlas_tooltip_height, -crd_atlas_tooltip_x, -crd_atlas_tooltip_y, right_screen, bottom_screen, right_screen, bottom_screen);
 			]]></action>
 		</object>
 	</object>

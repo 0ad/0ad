@@ -25,13 +25,19 @@ function initAtlas()
 
 	// Top tool bar.
 	crd_atlas_mainborder_toolbar_bkg_width = crd_atlas_mainborder_rt_corner_width-crd_atlas_mainborder_lt_corner_width;
-	crd_atlas_mainborder_toolbar_bkg_height = 22;
+	crd_atlas_mainborder_toolbar_bkg_height = 20;
 	crd_atlas_mainborder_toolbar_bkg_x = crd_atlas_mainborder_lt_corner_x;
 	crd_atlas_mainborder_toolbar_bkg_y = crd_atlas_mainborder_menu_bkg_y+crd_atlas_mainborder_menu_bkg_height;
 
+	// Left-hand selection pane.
+	crd_atlas_left_pane_bkg_width = 187;
+	crd_atlas_left_pane_bkg_height = crd_atlas_mainborder_toolbar_bkg_y-crd_atlas_mainborder_toolbar_bkg_height;
+	crd_atlas_left_pane_bkg_x = crd_atlas_mainborder_lt_corner_x;
+	crd_atlas_left_pane_bkg_y = crd_atlas_mainborder_toolbar_bkg_y+crd_atlas_mainborder_toolbar_bkg_height;
+
 	// Bottom-right Mini Map Background.
-	crd_atlas_minimap_bkg_width = 180;
-	crd_atlas_minimap_bkg_height = 180;
+	crd_atlas_minimap_bkg_width = 182;
+	crd_atlas_minimap_bkg_height = 182;
 	crd_atlas_minimap_bkg_x = 0;
 	crd_atlas_minimap_bkg_y = 0;
 
@@ -40,6 +46,30 @@ function initAtlas()
 	crd_atlas_minimap_height = 140;
 	crd_atlas_minimap_x = 20;
 	crd_atlas_minimap_y = 20;
+
+	// Bottom selection pane.
+	crd_atlas_bottom_pane_bkg_width = crd_atlas_left_pane_bkg_x-crd_atlas_left_pane_bkg_width-crd_atlas_minimap_bkg_x-crd_atlas_minimap_bkg_width+6;
+	crd_atlas_bottom_pane_bkg_height = 148;
+	crd_atlas_bottom_pane_bkg_x = crd_atlas_left_pane_bkg_x+crd_atlas_left_pane_bkg_width-3;
+	crd_atlas_bottom_pane_bkg_y = crd_atlas_left_pane_bkg_height;
+
+	// Left-Bottom selection pane corner.
+	crd_atlas_lb_corner_width = 20;
+	crd_atlas_lb_corner_height = 20;
+	crd_atlas_lb_corner_x = crd_atlas_left_pane_bkg_x+crd_atlas_left_pane_bkg_width-3;
+	crd_atlas_lb_corner_y = crd_atlas_bottom_pane_bkg_height-4;
+
+	// Right-Bottom selection pane corner.
+	crd_atlas_rb_corner_width = (crd_atlas_minimap_bkg_height-crd_atlas_bottom_pane_bkg_height)+3;
+	crd_atlas_rb_corner_height = crd_atlas_rb_corner_width;
+	crd_atlas_rb_corner_x = crd_atlas_minimap_bkg_width-2;
+	crd_atlas_rb_corner_y = crd_atlas_bottom_pane_bkg_height-4;
+
+	// Atlas tooltip window.
+	crd_atlas_tooltip_width = crd_atlas_minimap_bkg_width-20;
+	crd_atlas_tooltip_height = 82;
+	crd_atlas_tooltip_x = crd_atlas_minimap_bkg_x+10;
+	crd_atlas_tooltip_y = crd_atlas_minimap_bkg_y+crd_atlas_minimap_bkg_height+4;
 }
 
 // ====================================================================
