@@ -1,7 +1,5 @@
 #include "ObjectManager.h"
-#include <io.h>
 #include <algorithm>
-
 
 CObjectManager::CObjectManager() : m_SelectedObject(0)
 {
@@ -88,64 +86,48 @@ void CObjectManager::LoadObjects()
 
 void CObjectManager::BuildObjectTypes()
 {
-	struct _finddata_t file;
-	long handle;
-	
-	// Find first matching directory in terrain\textures
-    if ((handle=_findfirst("mods\\official\\art\\actors\\*",&file))!=-1) {
-		
-		if ((file.attrib & _A_SUBDIR) && file.name[0]!='.') {
-			AddObjectType(file.name);
+	Handle dir=vfs_open_dir("art/actors/");
+	vfsDirEnt dent;
+	if (dir > 0)
+	{
+		// Iterate subdirs
+		while (vfs_next_dirent(dir, &dent, "/")==0)
+		{
+			AddObjectType(dent.name);
 		}
-
-		// Find the rest of the matching files
-        while( _findnext(handle,&file)==0) {
-			if ((file.attrib & _A_SUBDIR) && file.name[0]!='.') {
-				AddObjectType(file.name);
-			}
-		}
-
-        _findclose(handle);
+		vfs_close_dir(dir);
 	}
+	else
+		LOG(ERROR, "CObjectManager::BuildObjectTypes(): Unable to open dir art/actors/");
 }
 
 void CObjectManager::LoadObjects(int type)
 {
-	struct _finddata_t file;
-	long handle;
+	CStr pathname("art/actors/");
+	pathname += m_ObjectTypes[type].m_Name;
+	pathname += "/";
 
-	// build pathname
-	CStr pathname("mods\\official\\art\\actors\\");
-	pathname+=m_ObjectTypes[type].m_Name;
-	pathname+="\\";
+	Handle dir=vfs_open_dir(pathname.c_str());
+	vfsDirEnt dent;
 	
-	CStr findname(pathname);
-	findname+="*.xml";
-
-	// Find first matching file in directory for this terrain type
-    if ((handle=_findfirst((const char*) findname,&file))!=-1) {
-		
-		CObjectEntry* object=new CObjectEntry(type);
-		CStr filename(pathname);
-		filename+=file.name;
-		if (!object->Load((const char*) filename)) {
-			delete object;
-		} else {
-			AddObject(object,type);
-		}
-
-		// Find the rest of the matching files
-        while( _findnext(handle,&file)==0) {
+	if (dir > 0)
+	{
+		while (vfs_next_dirent(dir, &dent, ".xml")==0)
+		{
 			CObjectEntry* object=new CObjectEntry(type);
-			CStr filename(pathname);
-			filename+=file.name;
+			CStr filename("mods/official/");
+			filename+=pathname;
+			filename+=dent.name;
 			if (!object->Load((const char*) filename)) {
+				LOG(ERROR, "CObjectManager::LoadObjects(): %s: XML Load failed\n", filename.c_str());
 				delete object;
 			} else {
 				AddObject(object,type);
+				LOG(NORMAL, "CObjectManager::LoadObjects(): %s: XML Loaded\n", filename.c_str());
 			}
 		}
-
-        _findclose(handle);
+		vfs_close_dir(dir);
 	}
+	else
+		LOG(ERROR, "CObjectManager::LoadObjects(): Unable to open dir %s.\n", pathname.c_str());
 }
