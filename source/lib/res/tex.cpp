@@ -147,6 +147,85 @@ t
 }
 
 
+// write header and image out to file <fn>.
+// pixels are BGR-flipped if desired. bpp can be 8, 24, or 32.
+// note: if bpp=32, alpha is assumed to be the last component.
+static int write_img(const char* fn, const void* hdr, size_t hdr_size, const void* img, size_t img_size,
+					 bool flip_bgr, int bpp)
+{
+	const size_t file_size = hdr_size + img_size;
+	u8* file = (u8*)mem_alloc(file_size);
+	if(!file)
+		return ERR_NO_MEM;
+
+	memcpy(file, hdr, hdr_size);
+
+	// fast: no conversion necessary
+	if(!flip_bgr || bpp == 8)
+		memcpy((char*)file+hdr_size, img, img_size);
+	// slow: convert each pixel
+	else
+	{
+		size_t pixels_left = img_size / (bpp / 8);
+		u8* dst = (u8*)file+hdr_size;
+		const u8* src = (const u8*)img;
+
+		if(bpp == 24)
+			while(pixels_left--)
+			{
+				dst[0] = src[2];
+				dst[1] = src[1];
+				dst[2] = src[0];
+				dst += 3;
+				src += 3;
+			}
+		else
+			while(pixels_left--)
+			{
+				dst[0] = src[2];
+				dst[1] = src[1];
+				dst[2] = src[0];
+				dst[3] = src[3];
+				dst += 4;
+				src += 4;
+			}
+	}
+
+	CHECK_ERR(vfs_store(fn, file, file_size, FILE_NO_AIO));
+	mem_free(file);
+	return 0;
+}
+
+
+static int fmt_8_or_24_or_32(int bpp, int flags)
+{
+	const bool alpha = (flags & TEX_ALPHA) != 0;
+	const bool gray  = (flags & TEX_GRAY ) != 0;
+	const bool dxt   = (flags & TEX_DXT  ) != 0;
+
+	if(dxt)
+		return ERR_TEX_FMT_INVALID;
+
+	// if gray,
+	if(gray)
+	{
+		// and 8bpp / no alpha, it's ok.
+		if(bpp == 8 && !alpha)
+			return 0;
+
+		// .. otherwise, it's invalid
+		return ERR_TEX_FMT_INVALID;
+	}
+	// it's not gray.
+
+	if(bpp == 24 && !alpha)
+		return 0;
+	if(bpp == 32 && !alpha)
+		return 0;
+
+	return ERR_TEX_FMT_INVALID;
+}
+
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -234,7 +313,7 @@ static int dds_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 		err = "header not completely read";
 fail:
 		debug_out("dds_decode: %s: %s\n", fn, err);
-		return -1;
+		return ERR_CORRUPTED;
 	}
 
 	const u32 sd_size   = read_le32(&surf->dwSize);
@@ -314,7 +393,7 @@ fail:
 
 static int dds_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 {
-	return -1;
+	return ERR_NOT_IMPLEMENTED;
 }
 
 #endif
@@ -334,7 +413,7 @@ static int dds_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 enum TgaImgType
 {
 	TGA_TRUE_COLOR = 2,		// uncompressed 24 or 32 bit direct RGB
-	TGA_GRAY  = 3			// uncompressed 8 bit direct grayscale
+	TGA_GRAY       = 3		// uncompressed 8 bit direct grayscale
 };
 
 enum TgaImgDesc
@@ -407,7 +486,7 @@ static int tga_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 		err = "header not completely read";
 fail:
 		debug_out("tga_decode: %s: %s\n", fn, err);
-		return -1;
+		return ERR_CORRUPTED;
 	}
 
 	const u8 type = hdr->img_type;
@@ -455,7 +534,22 @@ fail:
 
 static int tga_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 {
-	return -1;
+	CHECK_ERR(fmt_8_or_24_or_32(t->bpp, t->flags));
+
+	TgaHeader hdr =
+	{
+		0,				// no image identifier present
+		0,				// no color map present
+		(t->flags & TEX_GRAY)? TGA_GRAY : TGA_TRUE_COLOR,
+		{0,0,0,0,0},	// unused (color map)
+		0, 0,			// unused (origin)
+		t->w,
+		t->h,
+		t->bpp,
+		0				// image descriptor (TgaImgDesc)
+	};
+	const bool flip_bgr = !(t->flags & TEX_BGR);	// TGA is native BGR
+	return write_img(fn, &hdr, sizeof(hdr), img, img_size, flip_bgr, t->bpp);
 }
 
 #endif
@@ -471,16 +565,23 @@ static int tga_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 
 #pragma pack(push, 1)
 
-struct BITMAPFILEHEADER
+struct BmpHeader
 { 
+	//
+	// BITMAPFILEHEADER
+	//
+
 	u16 bfType;			// "BM"
 	u32 bfSize;			// of file
-	u32 reserved;
+	u16 bfReserved1;
+	u16 bfReserved2;
 	u32 bfOffBits;		// offset to image data
-};
 
-struct BITMAPINFOHEADER
-{
+
+	//
+	// BITMAPINFOHEADER
+	//
+
 	u32 biSize;
 	long biWidth;
 	long biHeight;
@@ -489,7 +590,7 @@ struct BITMAPINFOHEADER
 	u32 biCompression;
 	u32 biSizeImage;
 
-	// unused; zeroed when writing
+	// the following are unused and zeroed when writing:
 	long biXPelsPerMeter;
 	long biYPelsPerMeter;
 	u32 biClrUsed;
@@ -498,14 +599,14 @@ struct BITMAPINFOHEADER
 
 #pragma pack(pop)
 
-#define BI_RGB 0		// bih->biCompression
+#define BI_RGB 0		// biCompression
 
 
 static inline bool bmp_fmt(u8* p, size_t size)
 {
 	UNUSED(size)
 
-	// check header signature (BITMAPFILEHEADER.bfType == "BM"?).
+	// check header signature (bfType == "BM"?).
 	// we compare single bytes to be endian-safe.
 	return p[0] == 'B' && p[1] == 'M';
 }
@@ -522,7 +623,7 @@ static int bmp_decode(TexInfo* t, const char* fn, u8* in, size_t file_size)
 {
 	const char* err = 0;
 
-	const size_t hdr_size = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);
+	const size_t hdr_size = sizeof(BmpHeader);
 
 	// make sure we can access all header fields
 	if(file_size < hdr_size)
@@ -530,20 +631,18 @@ static int bmp_decode(TexInfo* t, const char* fn, u8* in, size_t file_size)
 		err = "header not completely read";
 fail:
 		debug_out("bmp_decode: %s: %s\n", fn, err);
-		return -1;
+		return ERR_CORRUPTED;
 	}
 
-	const BITMAPFILEHEADER* bfh = (const BITMAPFILEHEADER*)in;
-	const BITMAPINFOHEADER* bih = (const BITMAPINFOHEADER*)(in+sizeof(BITMAPFILEHEADER));
+	const BmpHeader* hdr = (const BmpHeader*)in;
+	const long w       = (long)read_le32(&hdr->biWidth);
+	const long h_      = (long)read_le32(&hdr->biHeight);
+	const u16 bpp      = read_le16(&hdr->biBitCount);
+	const u32 compress = read_le32(&hdr->biCompression);
+	const u32 ofs      = read_le32(&hdr->bfOffBits);
 
-	const long w       = (long)read_le32(&bih->biWidth);
-	      long h       = (long)read_le32(&bih->biHeight);
-	const u16 bpp      = read_le16(&bih->biBitCount);
-	const u32 compress = read_le32(&bih->biCompression);
-	const u32 ofs      = read_le32(&bfh->bfOffBits);
-
-	const bool top_down = (h < 0);
-	h = abs(h);
+	const bool top_down = (h_ < 0);
+	const long h = abs(h_);
 
 	const size_t pitch = w * bpp/8;
 	const size_t img_size = h * pitch;
@@ -562,14 +661,13 @@ fail:
 		err = "invalid bpp (not direct color)";
 	if(file_size < ofs+img_size)
 		err = "image not completely read";
-
 	if(err)
 		goto fail;
 
-	t->ofs = ofs;
-	t->w   = w;
-	t->h   = h;
-	t->bpp = bpp;
+	t->ofs   = ofs;
+	t->w     = w;
+	t->h     = h;
+	t->bpp   = bpp;
 	t->flags = flags;
 
 	return 0;
@@ -578,43 +676,32 @@ fail:
 
 static int bmp_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 {
-	int flags = t->flags;
-	if((flags & TEX_DXT) || !(flags & TEX_BGR))
-	{
-		debug_warn("bmp: can't encode");
-		return -1;
-	}
+	CHECK_ERR(fmt_8_or_24_or_32(t->bpp, t->flags));
 
-	const size_t hdr_size = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);
-
+	const size_t hdr_size = sizeof(BmpHeader);
 	const size_t file_size = hdr_size + img_size;
-	u8* file = (u8*)mem_alloc(hdr_size + img_size);
-	if(!file)
-		return -1;
 
-	BITMAPFILEHEADER* bfh = (BITMAPFILEHEADER*)file;
-	bfh->bfType    = 0x4d42;	// 'B','M'
-	bfh->bfSize    = (u32)file_size;
-	bfh->reserved  = 0;
-	bfh->bfOffBits = hdr_size;
+	const BmpHeader hdr =
+	{
+		// BITMAPFILEHEADER
+		0x4d42,				// bfType = 'B','M'
+		(u32)file_size,		// bfSize
+		0, 0,				// bfReserved1,2
+		hdr_size,			// bfOffBits
 
-	BITMAPINFOHEADER* bih = (BITMAPINFOHEADER*)(file+sizeof(BITMAPFILEHEADER));
-	bih->biSize          = sizeof(BITMAPINFOHEADER);
-	bih->biWidth         = t->w;
-	bih->biHeight        = t->h;
-	bih->biPlanes        = 1;
-	bih->biBitCount      = t->bpp;
-	bih->biCompression   = BI_RGB;
-	bih->biSizeImage     = (u32)img_size;
-	bih->biXPelsPerMeter = 0;
-	bih->biYPelsPerMeter = 0;
-	bih->biClrUsed       = 0;
-	bih->biClrImportant  = 0;
+		// BITMAPINFOHEADER
+		40,					// biSize = sizeof(BITMAPINFOHEADER)
+		t->w,
+		t->h,
+		1,					// biPlanes
+		t->bpp,
+		BI_RGB,				// biCompression
+		(u32)img_size,		// biSizeImage
+		0, 0, 0, 0			// unused (bi?PelsPerMeter, biClr*)
+	};
 
-	memcpy(file+hdr_size, img, img_size);
-	vfs_store(fn, file, file_size, FILE_NO_AIO);
-	mem_free(file);
-	return 0;
+	const bool flip_bgr = !(t->flags & TEX_BGR);	// BMP is native BGR
+	return write_img(fn, &hdr, sizeof(hdr), img, img_size, flip_bgr, t->bpp);
 }
 
 #endif
@@ -676,7 +763,10 @@ static int raw_decode(TexInfo* t, const char* fn, u8* in, size_t file_size)
 
 static int raw_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 {
-	return -1;
+	CHECK_ERR(fmt_8_or_24_or_32(t->bpp, t->flags));
+
+	const bool flip_bgr = !(t->flags & TEX_BGR);	// RAW is native BGR
+	return write_img(fn, 0, 0, img, img_size, flip_bgr, t->bpp);
 }
 
 #endif
@@ -1036,7 +1126,7 @@ fail:
 
 static int jp2_encode(TexInfo* t, const char* fn, const u8* img, size_t img_size)
 {
-	return -1;
+	return ERR_NOT_IMPLEMENTED;
 }
 
 #endif
@@ -1090,7 +1180,7 @@ int tex_load(const char* const fn, TexInfo* t)
 	if(size < 4)
 	{
 		mem_free_h(hm);
-		return -1;
+		return ERR_CORRUPTED;
 	}
 	t->hm = hm;
 
@@ -1146,10 +1236,10 @@ int tex_write(const char* fn, int w, int h, int bpp, int flags, void* img)
 	for(int i = 0; i < num_codecs; i++, c++)
 		if(c->is_ext(ext))
 		{
-			c->encode(&t, fn, (u8*)img, img_size);
+			CHECK_ERR(c->encode(&t, fn, (u8*)img, img_size));
 			return 0;
 		}
 
 	// no codec found
-	return -1;
+	return ERR_UNKNOWN_FORMAT;
 }
