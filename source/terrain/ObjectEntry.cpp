@@ -62,16 +62,27 @@ bool CObjectEntry::BuildModel()
 
 	m_Model->SetTexture(CTexture((const char*) texturefilename));
 
+	// animations?
 	if (m_Animations.size()) {
-		if (m_Animations[0].m_FileName.Length()>0) {
-			CStr animfilename("mods\\official\\");
-			animfilename+=m_Animations[0].m_FileName;	
-			
-			try {
-				CSkeletonAnim* anim=CSkeletonAnim::Load((const char*) animfilename);
-				m_Model->SetAnimation(anim);
-			} catch (...) {
-				m_Model->SetAnimation(0);
+		// yes; iterate through and load each one
+		for (uint i=0;i<m_Animations.size();i++) {
+			if (m_Animations[i].m_FileName.Length()>0) {
+				CStr animfilename("mods\\official\\");
+				animfilename+=m_Animations[i].m_FileName;	
+				
+				try {
+					m_Animations[i].m_AnimData=CSkeletonAnim::Load((const char*) animfilename);
+				} catch (...) {
+					m_Animations[i].m_AnimData=0;
+				}
+			}
+		}
+		
+		// set the first valid animation found as current
+		for (uint i=0;i<m_Animations.size();i++) {
+			if (m_Animations[i].m_AnimData) {
+				m_Model->SetAnimation(m_Animations[i].m_AnimData);
+				break;
 			}
 		}
 	}

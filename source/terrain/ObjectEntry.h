@@ -2,6 +2,7 @@
 #define _OBJECTENTRY_H
 
 class CModel;
+class CSkeletonAnim;
 
 #include <vector>
 #include "CStr.h"
@@ -14,6 +15,7 @@ public:
 	struct Anim {
 		CStr m_AnimName;
 		CStr m_FileName;
+		CSkeletonAnim* m_AnimData;
 	};
 
 public:
@@ -31,7 +33,7 @@ public:
 	CStr m_TextureName;
 	// model name
 	CStr m_ModelName;
-	// animation name
+	// list of valid animations for this object
 	std::vector<Anim> m_Animations;
 	// object space bounds of model
 //	CBound m_Bound;
