@@ -75,33 +75,33 @@ CStr::~CStr()
 }
 
 
-_int CStr::ToInt()
+_int CStr::ToInt() const
 {
 	return _ttoi(m_String.c_str());
 }
 
-_uint CStr::ToUInt()
+_uint CStr::ToUInt() const
 {
 	return _uint(_ttoi(m_String.c_str()));
 }
 
-_long CStr::ToLong()
+_long CStr::ToLong() const
 {
 	return _ttol(m_String.c_str());
 }
 
-_ulong CStr::ToULong()
+_ulong CStr::ToULong() const
 {
 	return _ulong(_ttol(m_String.c_str()));
 }
 
 
-_float CStr::ToFloat()
+_float CStr::ToFloat() const
 {
 	return _tstod(m_String.c_str(), NULL);
 }
 
-_double	CStr::ToDouble()
+_double	CStr::ToDouble() const
 {
 	return _tstod(m_String.c_str(), NULL);
 }

@@ -102,12 +102,12 @@ public:
 	~CStr();				// Destructor
 
 	// Conversions
-	_int	ToInt();
-	_uint	ToUInt();
-	_long	ToLong();
-	_ulong	ToULong();
-	_float	ToFloat();
-	_double	ToDouble();
+	_int	ToInt() const;
+	_uint	ToUInt() const;
+	_long	ToLong() const;
+	_ulong	ToULong() const;
+	_float	ToFloat() const;
+	_double	ToDouble() const;
 
 	_long Length(){return m_String.length();}
 	// Retrieves the substring within the string 
