@@ -14,8 +14,8 @@ extern int res_reload(const char* fn);
 // (wfam limitation)
 
 
-extern int res_watch_dir(const char* const path, uintptr_t* const watch);
+extern int res_watch_dir(const char* const path, intptr_t* const watch);
 
-extern int res_cancel_watch(const uintptr_t watch);
+extern int res_cancel_watch(const intptr_t watch);
 
 extern int res_reload_changed_files();

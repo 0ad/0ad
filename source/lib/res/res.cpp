@@ -25,12 +25,12 @@ static bool initialized;
 
 // path: portable and relative, must add current directory and convert to native
 // better to use a cached string from rel_chdir - secure
-int res_watch_dir(const char* const path, uintptr_t* const watch)
+int res_watch_dir(const char* const path, intptr_t* const watch)
 {
 	if(!initialized)
 	{
 		CHECK_ERR(FAMOpen2(&fc, "lib_res"));
-		atexit2((void *)FAMClose, (uintptr_t)&fc);
+		atexit2((void*)FAMClose, (uintptr_t)&fc);
 		initialized = true;
 	}
 
@@ -39,14 +39,18 @@ int res_watch_dir(const char* const path, uintptr_t* const watch)
 
 	FAMRequest req;
 	if(FAMMonitorDirectory(&fc, n_full_path, &req, (void*)0) < 0)
-		return -1;	// no way of getting error?
+	{
+		*watch = -1;
+		debug_warn("res_watch_dir failed!");
+		return -1;	// no way of getting error code?
+	}
 
-	*watch = req.reqnum;
+	*watch = (intptr_t)req.reqnum;
 	return 0;
 }
 
 
-int res_cancel_watch(const uint watch)
+int res_cancel_watch(const intptr_t watch)
 {
 	if(!initialized)
 	{
@@ -55,7 +59,7 @@ int res_cancel_watch(const uint watch)
 	}
 
 	FAMRequest req;
-	req.reqnum = watch;
+	req.reqnum = (int)watch;
 	return FAMCancelMonitor(&fc, &req);
 }
 
