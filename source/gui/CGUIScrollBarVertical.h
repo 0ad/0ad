@@ -62,7 +62,7 @@ public:
 	virtual void HandleMessage(const SGUIMessage &Message);
 
 	/**
-	 * Set m_Pos with mouse_x/y input, i.e. when draggin.
+	 * Set m_Pos with g_mouse_x/y input, i.e. when draggin.
 	 */
 	virtual void SetPosFromMousePos(const CPos &mouse);
 

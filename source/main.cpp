@@ -94,7 +94,7 @@ extern int conInputHandler(const SDL_Event* ev);
 
 bool keys[SDLK_LAST];
 bool mouseButtons[5];
-int mouse_x=50, mouse_y=50;
+int g_mouse_x=50, g_mouse_y=50;
 
 int g_xres, g_yres;
 int g_bpp;
@@ -232,7 +232,7 @@ debug_out("SYS DETECT TIME %g\n\n", t2-t1);
 		fprintf(f, "\n");
 
 	// .. memory
-	fprintf(f, "%lu MB RAM; %lu MB free\n", tot_mem/MB, avl_mem/MB);
+	fprintf(f, "%lu MB RAM; %lu MB free\n", tot_mem/MiB, avl_mem/MiB);
 
 	// .. graphics card
 	fprintf(f, "%s\n", gfx_card);
@@ -356,8 +356,8 @@ static int handler(const SDL_Event* ev)
 		break;
 
 	case SDL_MOUSEMOTION:
-		mouse_x = ev->motion.x;
-		mouse_y = ev->motion.y;
+		g_mouse_x = ev->motion.x;
+		g_mouse_y = ev->motion.y;
 		break;
 
 	case SDL_KEYDOWN:

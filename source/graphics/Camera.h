@@ -16,7 +16,7 @@
 #include "Frustum.h"
 #include "Matrix3D.h"
 
-extern int mouse_x, mouse_y;
+extern int g_mouse_x, g_mouse_y;
 
 //view port
 struct SViewPort
@@ -67,7 +67,7 @@ class CCamera
 // BuildCameraRay: as previous, using global mouse position
 		void BuildCameraRay( CVector3D& origin, CVector3D& dir )
 		{
-			BuildCameraRay( mouse_x, mouse_y, origin, dir );
+			BuildCameraRay( g_mouse_x, g_mouse_y, origin, dir );
 		}
 
 // General helpers that seem to fit here
@@ -77,7 +77,7 @@ class CCamera
 
 // Get the point on the terrain corresponding to pixel (px,py) (or the mouse coordinates)
 		CVector3D GetWorldCoordinates( int px, int py );
-		CVector3D GetWorldCoordinates() { return( GetWorldCoordinates( mouse_x, mouse_y ) ); }
+		CVector3D GetWorldCoordinates() { return( GetWorldCoordinates( g_mouse_x, g_mouse_y ) ); }
 // Get the point on the terrain the camera is pointing towards
 		CVector3D GetFocus();
 

@@ -251,10 +251,10 @@ void CGameView::Update(float DeltaTime)
 	// Calculate mouse movement
 	static int mouse_last_x = 0;
 	static int mouse_last_y = 0;
-	int mouse_dx = mouse_x - mouse_last_x;
-	int mouse_dy = mouse_y - mouse_last_y;
-	mouse_last_x = mouse_x;
-	mouse_last_y = mouse_y;
+	int mouse_dx = g_mouse_x - mouse_last_x;
+	int mouse_dy = g_mouse_y - mouse_last_y;
+	mouse_last_x = g_mouse_x;
+	mouse_last_y = g_mouse_y;
 
 	// Miscellaneous vectors
 	CVector3D forwards = m_Camera.m_Orientation.GetIn();
@@ -409,14 +409,14 @@ void CGameView::Update(float DeltaTime)
 
 	if( !hotkeys[HOTKEY_CAMERA_ROTATE] && !hotkeys[HOTKEY_CAMERA_ROTATE_ABOUT_TARGET] )
 	{
-		if (mouse_x >= g_xres-2 && mouse_x < g_xres)
+		if (g_mouse_x >= g_xres-2 && g_mouse_x < g_xres)
 			m_Camera.m_Orientation.Translate(rightwards * (m_ViewScrollSpeed * DeltaTime));
-		else if (mouse_x <= 3 && mouse_x >= 0)
+		else if (g_mouse_x <= 3 && g_mouse_x >= 0)
 			m_Camera.m_Orientation.Translate(-rightwards * (m_ViewScrollSpeed * DeltaTime));
 
-		if (mouse_y >= g_yres-2 && mouse_y < g_yres)
+		if (g_mouse_y >= g_yres-2 && g_mouse_y < g_yres)
 			m_Camera.m_Orientation.Translate(-forwards_horizontal * (m_ViewScrollSpeed * DeltaTime));
-		else if (mouse_y <= 3 && mouse_y >= 0)
+		else if (g_mouse_y <= 3 && g_mouse_y >= 0)
 			m_Camera.m_Orientation.Translate(forwards_horizontal * (m_ViewScrollSpeed * DeltaTime));
 	}
 
@@ -479,18 +479,18 @@ Just commented out to make it more obvious it's not in use.
 		m_Camera.m_Orientation.Translate(position*-1);
 
 		// Sideways rotation
-		m_Camera.m_Orientation.RotateY(m_ViewRotateSpeed*(float)(mouse_x-mouse_last_x));
+		m_Camera.m_Orientation.RotateY(m_ViewRotateSpeed*(float)(g_mouse_x-mouse_last_x));
 
 		// Up/down rotation
 		CQuaternion temp;
-		temp.FromAxisAngle(rightwards, m_ViewRotateSpeed*(float)(mouse_y-mouse_last_y));
+		temp.FromAxisAngle(rightwards, m_ViewRotateSpeed*(float)(g_mouse_y-mouse_last_y));
 		m_Camera.m_Orientation.Rotate(temp);
 
 		// Retranslate back to the right position
 		m_Camera.m_Orientation.Translate(position);
 	}
-	mouse_last_x = mouse_x;
-	mouse_last_y = mouse_y;
+	mouse_last_x = g_mouse_x;
+	mouse_last_y = g_mouse_y;
 
 	// Calculate the necessary vectors for movement
 
@@ -500,14 +500,14 @@ Just commented out to make it more obvious it's not in use.
 
 	// Move when desirable
 
-	if (mouse_x >= g_xres-2)
+	if (g_mouse_x >= g_xres-2)
 		m_Camera.m_Orientation.Translate(rightwards);
-	else if (mouse_x <= 3)
+	else if (g_mouse_x <= 3)
 		m_Camera.m_Orientation.Translate(-rightwards);
 
-	if (mouse_y >= g_yres-2)
+	if (g_mouse_y >= g_yres-2)
 		m_Camera.m_Orientation.Translate(forwards_horizontal);
-	else if (mouse_y <= 3)
+	else if (g_mouse_y <= 3)
 		m_Camera.m_Orientation.Translate(-forwards_horizontal);
 
 	// Smoothed height-changing (move a certain percentage towards the desired height every frame)
@@ -529,14 +529,14 @@ Just commented out to make it more obvious it's not in use.
 	const CVector3D Right(dx,0, dx);
 	const CVector3D Up   (dx,0,-dx);
 
-	if (mouse_x >= g_xres-2)
+	if (g_mouse_x >= g_xres-2)
 		m_Camera.m_Orientation.Translate(Right);
-	if (mouse_x <= 3)
+	if (g_mouse_x <= 3)
 		m_Camera.m_Orientation.Translate(Right*-1);
 
-	if (mouse_y >= g_yres-2)
+	if (g_mouse_y >= g_yres-2)
 		m_Camera.m_Orientation.Translate(Up);
-	if (mouse_y <= 3)
+	if (g_mouse_y <= 3)
 		m_Camera.m_Orientation.Translate(Up*-1);
 
 	/*
