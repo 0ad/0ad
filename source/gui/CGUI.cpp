@@ -218,7 +218,7 @@ CGUI::CGUI() : m_InternalNameNumber(0), m_MouseButtons(0)
 	m_BaseObject->SetGUI(this);
 
 	// Construct the parent object for all GUI JavaScript things
-	m_ScriptObject = (void*)JS_NewObject(g_ScriptingHost.getContext(), &GUIClass, NULL, NULL);
+	m_ScriptObject = JS_NewObject(g_ScriptingHost.getContext(), &GUIClass, NULL, NULL);
 	assert(m_ScriptObject != NULL); // How should it handle errors?
 	JS_AddRoot(g_ScriptingHost.getContext(), &m_ScriptObject);
 
@@ -234,7 +234,6 @@ CGUI::~CGUI()
 	if (m_ScriptObject)
 		// Let it be garbage-collected
 		JS_RemoveRoot(g_ScriptingHost.getContext(), &m_ScriptObject);
-
 }
 
 //-------------------------------------------------------------------
@@ -1403,7 +1402,7 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile)
 		}
 
 		jsval result;
-		JS_EvaluateScript(g_ScriptingHost.getContext(), (JSObject*)m_ScriptObject, (const char*)scriptfile.GetBuffer(), (int)scriptfile.GetBufferSize(), file, 1, &result);
+		JS_EvaluateScript(g_ScriptingHost.getContext(), m_ScriptObject, (const char*)scriptfile.GetBuffer(), (int)scriptfile.GetBufferSize(), file, 1, &result);
 	}
 
 	// Execute inline scripts
@@ -1413,7 +1412,7 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile)
 	{
 		jsval result;
 		// TODO: Report the filename
-		JS_EvaluateScript(g_ScriptingHost.getContext(), (JSObject*)m_ScriptObject, code.c_str(), (int)code.Length(), "Some XML file", Element.getLineNumber(), &result);
+		JS_EvaluateScript(g_ScriptingHost.getContext(), m_ScriptObject, code.c_str(), (int)code.Length(), "Some XML file", Element.getLineNumber(), &result);
 	}
 }
 

@@ -59,6 +59,8 @@ struct SGUIStyle
 	std::map<CStr, CStr> m_SettingsDefaults;
 };
 
+struct JSObject; // The GUI stores a JSObject*, so needs to know that JSObject exists
+
 /**
  * @author Gustav Larsson
  *
@@ -217,9 +219,9 @@ public:
 	/**
 	 * Returns the JSObject* associated with the GUI
 	 *
-	 * @return A JSobject* (as a void* to avoid #including all of JS)
+	 * @return The relevant JS object
 	 */
-	void* GetScriptObject() { return m_ScriptObject; }
+	JSObject* GetScriptObject() { return m_ScriptObject; }
 
 	/**
 	 * Check if an icon exists
@@ -477,10 +479,9 @@ private:
 	/**
 	 * An JSObject* under which all GUI JavaScript things will
 	 * be created, so that they can be garbage-collected
-	 * when the GUI shuts down. (Stored as void* to avoid
-	 * to avoid pulling in all the JS headers)
+	 * when the GUI shuts down.
 	 */
-	void* m_ScriptObject;
+	JSObject* m_ScriptObject;
 
 	/**
 	 * don't want to pass this around with the 

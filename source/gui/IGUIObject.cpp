@@ -432,7 +432,7 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 	// Location to report errors from
 	CStr CodeName = GetName()+" "+Action;
 
-	JSFunction* func = JS_CompileFunction(g_ScriptingHost.getContext(), (JSObject*)pGUI->m_ScriptObject, NULL, paramCount, paramNames, (const char*)Code, Code.Length(), CodeName, 0);
+	JSFunction* func = JS_CompileFunction(g_ScriptingHost.getContext(), pGUI->m_ScriptObject, NULL, paramCount, paramNames, (const char*)Code, Code.Length(), CodeName, 0);
 	m_ScriptHandlers[Action] = func;
 }
 
@@ -450,7 +450,7 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	jsval guiObject = PRIVATE_TO_JSVAL(this);
 
 	// Make a 'this', allowing access to the IGUIObject
-	JSObject* jsGuiObject = JS_ConstructObjectWithArguments(g_ScriptingHost.getContext(), &JSI_IGUIObject::JSI_class, NULL, (JSObject*)m_pGUI->m_ScriptObject, 1, &guiObject);
+	JSObject* jsGuiObject = JS_ConstructObjectWithArguments(g_ScriptingHost.getContext(), &JSI_IGUIObject::JSI_class, NULL, m_pGUI->m_ScriptObject, 1, &guiObject);
 
 	// Prevent it from being garbage-collected before
 	// it's passed into the function
@@ -462,7 +462,7 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	mouseParams[0] = INT_TO_JSVAL(m_pGUI->m_MousePos.x);
 	mouseParams[1] = INT_TO_JSVAL(m_pGUI->m_MousePos.y);
 	mouseParams[2] = INT_TO_JSVAL(m_pGUI->m_MouseButtons);
-	JSObject* mouseObj = JS_ConstructObjectWithArguments(g_ScriptingHost.getContext(), &JSI_GUIMouse::JSI_class, NULL, (JSObject*)m_pGUI->m_ScriptObject, 3, mouseParams);
+	JSObject* mouseObj = JS_ConstructObjectWithArguments(g_ScriptingHost.getContext(), &JSI_GUIMouse::JSI_class, NULL, m_pGUI->m_ScriptObject, 3, mouseParams);
 	assert(mouseObj); // need better error handling
 
 	// Don't garbage collect the mouse
