@@ -78,6 +78,8 @@ ScriptingHost::~ScriptingHost()
 		JS_DestroyRuntime(m_RunTime);
 		m_RunTime = NULL;
 	}
+
+	JS_ShutDown();
 }
 
 JSContext* ScriptingHost::getContext()
