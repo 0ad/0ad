@@ -77,10 +77,10 @@ public:
 	bool UsesAlpha() { return m_Alpha; }
 
     void SetTexture(const CStr &texture);
-	void SetDiffuse(SMaterialColor &color);
-	void SetAmbient(SMaterialColor &color);
-	void SetSpecular(SMaterialColor &color);
-	void SetEmissive(SMaterialColor &color);
+	void SetDiffuse(const SMaterialColor &color);
+	void SetAmbient(const SMaterialColor &color);
+	void SetSpecular(const SMaterialColor &color);
+	void SetEmissive(const SMaterialColor &color);
     void SetSpecularPower(float power);
     void SetUsesAlpha(bool flag);
 

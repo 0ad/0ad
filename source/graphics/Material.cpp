@@ -100,25 +100,25 @@ void CMaterial::SetTexture(const CStr &texture)
     ComputeHash();
 }
 
-void CMaterial::SetDiffuse(SMaterialColor &color)
+void CMaterial::SetDiffuse(const SMaterialColor &color)
 {
 	m_Diffuse = color;
     ComputeHash();
 }
 
-void CMaterial::SetAmbient(SMaterialColor &color)
+void CMaterial::SetAmbient(const SMaterialColor &color)
 {
 	m_Ambient = color;
     ComputeHash();
 }
 
-void CMaterial::SetSpecular(SMaterialColor &color)
+void CMaterial::SetSpecular(const SMaterialColor &color)
 {
 	m_Specular = color;
     ComputeHash();
 }
 
-void CMaterial::SetEmissive(SMaterialColor &color)
+void CMaterial::SetEmissive(const SMaterialColor &color)
 {
 	m_Emissive = color;
     ComputeHash();

@@ -70,7 +70,7 @@ void CTurnManager::SendBatch(uint batch)
 		SendMessage(it->m_pMessage, it->m_ClientMask);
 		++it;
 	}
-	SendMessage(new CEndCommandBatch(), -1);
+	SendMessage(new CEndCommandBatch(), (uint)-1);
 }
 
 void CTurnManager::SendMessage(CNetMessage *pMsg, uint clientMask)
