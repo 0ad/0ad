@@ -5,10 +5,12 @@
 #include "EditableListCtrlCommands.h"
 #include "ListCtrlValidator.h"
 #include "QuickTextCtrl.h"
+#include "QuickComboBox.h"
 #include "AtlasDialog.h"
 #include "EditableListCtrl.h"
 #include "AtlasObject/AtlasObject.h"
 #include "AtlasObject/AtlasObjectText.h"
+#include "Datafile.h"
 
 #include <string>
 
@@ -17,6 +19,25 @@
 void FieldEditCtrl_Text::StartEdit(wxWindow* parent, wxRect rect, long row, int col)
 {
 	new QuickTextCtrl(parent, rect, ListCtrlValidator((EditableListCtrl*)parent, row, col));
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+FieldEditCtrl_List::FieldEditCtrl_List(const char* listType)
+	: m_ListType(listType)
+{
+}
+
+void FieldEditCtrl_List::StartEdit(wxWindow* parent, wxRect rect, long row, int col)
+{
+	wxArrayString choices;
+	
+	AtObj list (Datafile::ReadList(m_ListType));
+	AtIter items (list["item"]);
+	for (AtIter it = items; it.defined(); ++it)
+		 choices.Add(it);
+
+	new QuickComboBox(parent, rect, choices, ListCtrlValidator((EditableListCtrl*)parent, row, col));
 }
 
 //////////////////////////////////////////////////////////////////////////

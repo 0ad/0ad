@@ -37,7 +37,7 @@ AnimListEditorListCtrl::AnimListEditorListCtrl(wxWindow* parent)
 : DraggableListCtrl(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize,
 					wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_SINGLE_SEL)
 {
-	AddColumnType(_("Anim name"), 100, "name",  new FieldEditCtrl_Text());
+	AddColumnType(_("Anim name"), 100, "name",  new FieldEditCtrl_List("animations"));
 	AddColumnType(_("File"),	  200, "file",  new FieldEditCtrl_Text());
 	AddColumnType(_("Speed"),	  50,  "speed", new FieldEditCtrl_Text());
 }

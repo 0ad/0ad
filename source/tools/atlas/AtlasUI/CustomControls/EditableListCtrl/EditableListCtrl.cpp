@@ -48,10 +48,10 @@ void EditableListCtrl::AddColumnType(const wxString& title, int width, const cha
 
 void EditableListCtrl::OnMouseEvent(wxMouseEvent& event)
 {
-	// Double-clicking on a cell lets the user edit it. The editing method
-	// depends on what column the cell is in.
+	// Double-clicking/right-clicking on a cell lets the user edit it.
+	// The editing method depends on what column the cell is in.
 
-	if (event.LeftDClick())
+	if (event.LeftDClick() || event.RightDown())
 	{
 		// Work out what cell was clicked on:
 
@@ -224,8 +224,13 @@ wxString EditableListCtrl::OnGetItemText(long item, long column) const
 
 wxListItemAttr* EditableListCtrl::OnGetItemAttr(long item) const
 {
+	// Make the last two rows white
+	if (item >= (long)m_ListData.size())
+		return const_cast<wxListItemAttr*>(&m_ListItemAttr[0]);
+
 	// Make the background colours of rows alternate
-	return const_cast<wxListItemAttr*>(&m_ListItemAttr[item%2]);
+	else
+		return const_cast<wxListItemAttr*>(&m_ListItemAttr[item%2]);
 }
 
 void EditableListCtrl::Import(AtObj& in)
@@ -242,4 +247,5 @@ AtObj EditableListCtrl::Export()
 
 BEGIN_EVENT_TABLE(EditableListCtrl, wxListCtrl)
 	EVT_LEFT_DCLICK(EditableListCtrl::OnMouseEvent)
+	EVT_RIGHT_DOWN(EditableListCtrl::OnMouseEvent)
 END_EVENT_TABLE()

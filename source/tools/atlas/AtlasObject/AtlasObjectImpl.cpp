@@ -80,6 +80,9 @@ bool AtIter::hasContent() const
 	if (p == NULL)
 		return false;
 
+	if (! p->iter->second)
+		return false;
+
 	return p->iter->second->hasContent();
 }
 

@@ -37,7 +37,7 @@ PropListEditorListCtrl::PropListEditorListCtrl(wxWindow* parent)
 : DraggableListCtrl(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize,
 					wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_SINGLE_SEL)
 {
-	AddColumnType(_("Attachment point"), 100, "attachpoint", new FieldEditCtrl_Text());
+	AddColumnType(_("Attachment point"), 100, "attachpoint", new FieldEditCtrl_List("attachpoints"));
 	AddColumnType(_("Prop model"),		 200, "model",       new FieldEditCtrl_Text());
 }
 

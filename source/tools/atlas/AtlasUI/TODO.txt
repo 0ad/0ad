@@ -1,6 +1,3 @@
-* Combo boxes for prop/anim names, loaded from file
-
-* Right click to edit
 
 ===
 
@@ -13,6 +10,8 @@
 * Save on exit
 
 * Help (tooltips, etc)
+
+* More efficient Datafile::ReadList (don't read from disk every time)
 
 ===
 
@@ -37,6 +36,8 @@
 * AtlasObjectXML error handling
 
 * Use standard wxWidgets 2.5.4 release
+
+* Fix Escape in combo boxes inside dialogs
 
 ===
 

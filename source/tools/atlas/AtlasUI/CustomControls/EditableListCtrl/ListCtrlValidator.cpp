@@ -27,20 +27,39 @@ wxObject* ListCtrlValidator::Clone() const
 
 bool ListCtrlValidator::TransferToWindow()
 {
-	wxTextCtrl* textCtrl = wxDynamicCast(GetWindow(), wxTextCtrl);
 
 	wxString text (m_listCtrl->GetCellString(m_Row, m_Col));
 
-	textCtrl->SetValue(text);
+	wxTextCtrl* textCtrl; wxComboBox* comboBox; // one of these will be the right object
+
+	if (NULL != (textCtrl = wxDynamicCast(GetWindow(), wxTextCtrl)))
+		textCtrl->SetValue(text);
+	else if (NULL != (comboBox = wxDynamicCast(GetWindow(), wxComboBox)))
+		comboBox->SetValue(text);
+	else
+	{
+		wxLogError(L"Internal error: ListCtrlValidator::TransferToWindow: invalid window");
+		return false;
+	}
 
 	return true;
 }
 
 bool ListCtrlValidator::TransferFromWindow()
 {
-	wxTextCtrl* textCtrl = wxDynamicCast(GetWindow(), wxTextCtrl);
+	wxString newText;
+	
+	wxTextCtrl* textCtrl; wxComboBox* comboBox; // one of these will be the right object
 
-	wxString newText = textCtrl->GetValue();
+	if (NULL != (textCtrl = wxDynamicCast(GetWindow(), wxTextCtrl)))
+		newText = textCtrl->GetValue();
+	else if (NULL != (comboBox = wxDynamicCast(GetWindow(), wxComboBox)))
+		newText = comboBox->GetValue();
+	else
+	{
+		wxLogError(L"Internal error: ListCtrlValidator::TransferFromWindow: invalid window");
+		return false;
+	}
 	
 	AtlasWindowCommandProc::GetFromParentFrame(m_listCtrl)->Submit(
 		new EditCommand_Text(m_listCtrl, m_Row, m_Col, newText)

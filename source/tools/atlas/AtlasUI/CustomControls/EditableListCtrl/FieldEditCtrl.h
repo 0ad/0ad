@@ -21,6 +21,21 @@ protected:
 
 //////////////////////////////////////////////////////////////////////////
 
+class FieldEditCtrl_List : public FieldEditCtrl
+{
+public:
+	// listType must remain valid at least until StartEdit has been called
+	FieldEditCtrl_List(const char* listType);
+
+protected:
+	void StartEdit(wxWindow* parent, wxRect rect, long row, int col);
+
+private:
+	const char* m_ListType;
+};
+
+//////////////////////////////////////////////////////////////////////////
+
 class FieldEditCtrl_Dialog : public FieldEditCtrl
 {
 public:

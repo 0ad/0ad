@@ -91,5 +91,5 @@ wxListItemAttr* ActorEditorListCtrl::OnGetItemAttr(long item) const
 			return const_cast<wxListItemAttr*>(&m_ListItemAttr_Prop[item%2]);
 	}
 
-	return const_cast<wxListItemAttr*>(&m_ListItemAttr[item%2]);
+	return DraggableListCtrl::OnGetItemAttr(item);
 }

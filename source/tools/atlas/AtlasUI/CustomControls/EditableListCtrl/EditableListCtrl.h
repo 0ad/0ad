@@ -66,9 +66,10 @@ private:
 	void TrimBlankEnds();
 
 	wxString OnGetItemText(long item, long column) const;
-	wxListItemAttr* OnGetItemAttr(long item) const;
 
 protected:
+
+	wxListItemAttr* OnGetItemAttr(long item) const;
 
 	virtual void DoImport(AtObj&)=0;
 	virtual AtObj DoExport()=0;
