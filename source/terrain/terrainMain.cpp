@@ -31,6 +31,7 @@ int					g_TransTexCounter = 0;
 int					g_TickCounter = 0;
 double				g_LastTime;
 
+static float g_CameraZoom = 10;
 
 const int NUM_ALPHA_MAPS = 13;
 const float ViewScrollSpeed = 60;
@@ -90,6 +91,8 @@ please put this code out of its misery :)
 */
 
 	float fov = g_Camera.GetFOV();
+
+#if 0
 	const float d_key = DEGTORAD(10.0f) * DeltaTime;
 	const float d_wheel = DEGTORAD( 50.0f ) * DeltaTime;
 	const float fov_max = DEGTORAD( 60.0f );
@@ -113,11 +116,34 @@ please put this code out of its misery :)
 		if( fov < fov_min )
 			fov = fov_min;
 	}
-
-
 	ViewFOV = fov;
+	g_Camera.SetProjection(1, 5000, fov);
+#else
+	// RC - added ScEd style zoom in and out (actually moving camera, rather than fudging fov)	
+	float dir=0;
+	if (mouseButtons[SDL_BUTTON_WHEELUP]) dir=-1;
+	else if (mouseButtons[SDL_BUTTON_WHEELDOWN]) dir=1;	
 
-	g_Camera.SetProjection(1, 1000, fov);
+	float factor=dir*dir;
+	if (factor) {
+		if (dir<0) factor=-factor;
+		CVector3D forward=g_Camera.m_Orientation.GetIn();
+
+		// check we're not going to zoom into the terrain, or too far out into space
+		float h=g_Camera.m_Orientation.GetTranslation().Y+forward.Y*factor*g_CameraZoom;
+		float minh=65536*HEIGHT_SCALE*1.05f;
+		
+		if (h<minh || h>1500) {
+			// yup, we will; don't move anywhere (do clamped move instead, at some point)
+		} else {
+			// do a full move
+			g_CameraZoom-=(factor)*0.1f;
+			if (g_CameraZoom<0.01f) g_CameraZoom=0.01f;
+			g_Camera.m_Orientation.Translate(forward*(factor*g_CameraZoom));
+		}
+	}
+#endif
+
 	g_Camera.UpdateFrustum ();
 }
 
@@ -149,7 +175,7 @@ bool terr_handler(const SDL_Event& ev)
 
 		case 'H':
 			// quick hack to return camera home, for screenshots (after alt+tabbing)
-			g_Camera.SetProjection (1, 1000, DEGTORAD(20));
+			g_Camera.SetProjection (1, 5000, DEGTORAD(20));
 			g_Camera.m_Orientation.SetXRotation(DEGTORAD(30));
 			g_Camera.m_Orientation.RotateY(DEGTORAD(-45));
 			g_Camera.m_Orientation.Translate (100, 150, -100);
@@ -224,7 +250,7 @@ void InitScene ()
 		}
 	}
 
-	g_Camera.SetProjection (1, 1000, DEGTORAD(20));
+	g_Camera.SetProjection (1, 5000, DEGTORAD(20));
 	g_Camera.m_Orientation.SetXRotation(DEGTORAD(30));
 	g_Camera.m_Orientation.RotateY(DEGTORAD(-45));
 
