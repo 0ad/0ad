@@ -225,7 +225,8 @@ PSRETURN CXeromyces::Load(const char* filename)
 
 	// Generate the filename for the xmb:
 	//     <xml filename>_<mtime><size><format version>.xmb
-	// with mtime/size as 8-digit hex
+	// with mtime/size as 8-digit hex, where mtime's lowest bit is
+	// zeroed because zip files only have 2 second resolution.
 
 	CStr xmbFilename = filename;
 
@@ -236,7 +237,7 @@ PSRETURN CXeromyces::Load(const char* filename)
 
 	const int bufLen = 22;
 	char buf[bufLen+1];
-	if (sprintf(buf, "_%08x%08xA.xmb", xmlStat.st_mtime, xmlStat.st_size) != bufLen)
+	if (sprintf(buf, "_%08x%08xA.xmb", (int)xmlStat.st_mtime & ~1, (int)xmlStat.st_size) != bufLen)
 	{
 		debug_warn("Failed to create filename (?!)");
 		return PSRETURN_Xeromyces_XMLOpenFailed;
