@@ -16,7 +16,6 @@
 #include "RenderableObject.h"
 #include "SkeletonAnim.h"
 #include "Material.h"
-#include "renderer/VertexProgram.h"
 
 #define MODELFLAG_CASTSHADOWS		(1<<0)
 
@@ -122,8 +121,6 @@ private:
 	u32 m_Flags;
 	// texture used by model
 	CTexture m_Texture;
-    // vertex program
-    CVertexProgram *m_VertexProgram;
     // model's material
     CMaterial m_Material;
 	// pointer to the model's raw 3d data
