@@ -84,10 +84,10 @@ package.includepaths = {
 	"../../maths",
 	"../../renderer",
 	"../../terrain",
-	"../.." }
+	"../.."
+}
 
-package.libpaths = {
-	}
+package.libpaths = {}
 
 package.buildflags = { "no-rtti" }
 
@@ -102,11 +102,30 @@ package.config["Debug"].buildflags = { "with-symbols" }
 
 -- Platform Specifics
 if (OS == "windows") then
+
+	-- Directories under 'libraries', each containing 'lib' and 'include':
+	external_libraries = {
+		"misc",
+		"libpng",
+		"zlib",
+		"openal",
+		"spidermonkey",
+		"xerces",
+		"vorbis"
+	}
+
+	-- Add '../../../libraries/<libraryname>/lib' and '/include' to the includepaths and libpaths
+	foreach(external_libraries, function (i,v)
+		tinsert(package.includepaths,	"../../../libraries/" .. v .. "/include")
+		tinsert(package.libpaths,		"../../../libraries/" .. v .. "/lib")
+	end)
+
 	-- Libraries
 	package.links = { "opengl32" }
 --	package.defines = { "XERCES_STATIC_LIB" }
 	tinsert(package.files, sourcesfromdirs("../../lib/sysdep/win"))
 	tinsert(package.files, {"../../lib/sysdep/win/assert_dlg.rc"})
+
 	package.linkoptions = { "/ENTRY:entry",
 		"/DELAYLOAD:opengl32.dll",
 		"/DELAYLOAD:advapi32.dll",
@@ -120,13 +139,14 @@ if (OS == "windows") then
 		"/DELAYLOAD:openal32.dll",
 		"/DELAY:UNLOAD"		-- allow manual unload of delay-loaded DLLs
 	}
+
 	package.config["Debug"].linkoptions = {
 		"/DELAYLOAD:js32d.dll",
 		"/DELAYLOAD:zlib1d.dll",
 		"/DELAYLOAD:libpng13d.dll",
 	}
 	
-	-- Testing uses Debug DLL's
+	-- 'Testing' uses 'Debug' DLL's
 	package.config["Testing"].linkoptions = package.config["Debug"].linkoptions
 	
 	package.config["Release"].linkoptions = {
