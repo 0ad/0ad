@@ -21,6 +21,8 @@
 #include "precompiled.h"
 
 #include "input.h"
+#include "sdl.h"
+#include "lib.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -28,14 +30,17 @@
 
 #define MAX_HANDLERS 4
 
-static IN_HANDLER handler_stack[MAX_HANDLERS];
+static EventHandler handler_stack[MAX_HANDLERS];
 static int handler_stack_top = 0;
 
 
-int in_add_handler(IN_HANDLER handler)
+int _in_add_handler(EventHandler handler)
 {
 	if(handler_stack_top >= MAX_HANDLERS || !handler)
+	{
+		debug_warn("in_add_handler");
 		return -1;
+	}
 
 	handler_stack[handler_stack_top++] = handler;
 
@@ -44,11 +49,21 @@ int in_add_handler(IN_HANDLER handler)
 
 
 /* send event to each handler (newest first) until one returns true */
-static void dispatch_event(const SDL_Event& event)
+static void dispatch_event(const SDL_Event* event)
 {
 	for(int i = handler_stack_top-1; i >= 0; i--)
-		if(handler_stack[i](event))
+	{
+		int ret = handler_stack[i](event);
+		// .. done, return
+		if(ret == EV_HANDLED)
 			return;
+		// .. next handler
+		else if(ret == EV_PASS)
+			continue;
+		// .. invalid return value
+		else
+			debug_warn("dispatch_event: invalid handler return value");
+	}
 }
 
 
@@ -145,7 +160,7 @@ exit(0x73c07d);
 }
 		next_event_time += time_adjust;			
 
-		dispatch_event(event);	
+		dispatch_event(&event);	
 	}
 
 	/* get new events */
@@ -161,6 +176,6 @@ exit(0x73c07d);
 			if(event.type == SDL_KEYDOWN)
 				in_stop();
 
-		dispatch_event(event);
+		dispatch_event(&event);
 	}
 }

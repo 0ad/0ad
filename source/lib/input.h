@@ -22,25 +22,34 @@
 #define __INPUT_H__
 
 
-#include "sdl.h"
-#include "types.h"
-
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 
-extern u32 game_ticks;
+// event handler return value defs (int).
+// don't require an enum type - simplifies user function decl;
+// the dispatcher makes sure each return value is correct.
+enum
+{
+	// pass the event to the next handler in the chain
+	EV_PASS = 4,
 
+	// we've handled it; no other handlers will receive this event.
+	EV_HANDLED = 2
+};
 
-typedef bool (*IN_HANDLER)(const SDL_Event& event);
+// declare functions to take SDL_Event*; in_add_handler converts to void*
+// (avoids header dependency on SDL)
+typedef int (*EventHandler)(const void* sdl_event);
+
 
 /*
  * register an input handler, which will receive all subsequent events first.
  * events are passed to other handlers if handler returns false.
  */
-extern int in_add_handler(IN_HANDLER handler);
+extern int _in_add_handler(EventHandler handler);
+#define in_add_handler(h) _in_add_handler((EventHandler)h)
 
 extern void in_get_events();
 
