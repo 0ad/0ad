@@ -1,3 +1,20 @@
+function initStatusOrb()
+{
+	// Status Orb background.
+	crd_status_orb_bkg_x = 0;
+	crd_status_orb_bkg_y = 0;
+	crd_status_orb_bkg_width = 184;
+	crd_status_orb_bkg_height = crd_status_orb_bkg_width;
+
+	// Status Orb large portrait.
+	crd_status_orb_portrait_x = 5;
+	crd_status_orb_portrait_y = 5;
+	crd_status_orb_portrait_width = crd_portrait_lrg_width;
+	crd_status_orb_portrait_height = crd_status_orb_portrait_width;
+}
+
+// ====================================================================
+
 function UpdateStatusOrb()
 {
 	// Update name text.
@@ -42,6 +59,14 @@ function UpdateStatusOrb()
 		else
 			setPortrait("session_panel_status_portrait", selection[0].traits.id.icon);
 	}
+
+	// Update rank.
+	if (selection[0].traits.id.rank > 1)
+	{
+		getGUIObjectByName("session_panel_status_icon_rank").sprite = "statistic_rank" + (selection[0].traits.id.rank-1);
+	}
+	else
+		getGUIObjectByName("session_panel_status_icon_rank").sprite = "";
 
 	// Update hitpoints
 	if (selection[0].traits.health.curr & selection[0].traits.health.hitpoints)

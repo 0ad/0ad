@@ -11,6 +11,10 @@
   -->
 
     <object type="empty" name="pregame_gui" size="0 0 100% 100%" z="1" hidden="false">
+	<action on="Load"><![CDATA[
+		// Play main 0 A.D. theme when the main menu starts.
+		curr_music = new Sound("audio/music/menu_track.ogg"); curr_music.loop();
+        ]]></action>
 
         <object type="image" name="pregame-mainmenu-background-image" sprite="pregame-mainmenu-background" size="0 0 100% 100%" z="100" hidden="false" />
 
@@ -20,6 +24,7 @@
                 GUIObjectUnhide("session_gui");
                 GUIObjectHide("pregame_gui");
                 FlipGUI(GUIType);
+		curr_music.free(); // Close main theme when starting game session.
             ]]></action>
             <action on="MouseEnter"><![CDATA[
                 tooltipObject = getGUIObjectByName("pregame-mainmenu-tooltip");

@@ -633,21 +633,20 @@
 			]]></action>
 
 			<!-- STATUS ORB BACKGROUND -->
-                        <object type="button" name="session_panel_status_bg" sprite="session_panel_status_bg-top" textcolor="255 255 255" text-align="left" text-valign="top" z="70" ghost="true" hidden="false">
+                        <object type="button" name="session_panel_status_bg" z="70" ghost="true" hidden="false">
 			        <action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"0% 0% 0%+184 0%+184", 
-					"0% 100%-184 0%+184 100%");
+					AddSizeCoord(this.name,
+					crd_status_orb_bkg_x, crd_status_orb_bkg_y, crd_status_orb_bkg_x+crd_status_orb_bkg_width, crd_status_orb_bkg_y+crd_status_orb_bkg_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_bkg_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height, crd_status_orb_bkg_x+crd_status_orb_bkg_width, -crd_status_orb_bkg_y, left_screen, bottom_screen, left_screen, bottom_screen);
 				]]></action>
 			</object>
 
 			<!-- SELECTED UNIT LARGE PORTRAIT -->
 			<object type="button" name="session_panel_status_portrait" style="portrait" z="70" hidden="false">
 			        <action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"0%+4 0%+116 0%+68 0%+180", 
-					"0%+4 100%-180 0%+68 100%-116");
-					setPortrait(this.name, "unit_dude");
+					AddSizeCoord(this.name,
+					crd_status_orb_portrait_x, crd_status_orb_portrait_y, crd_status_orb_portrait_x+crd_status_orb_portrait_width, crd_status_orb_portrait_y+crd_status_orb_portrait_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_portrait_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_portrait_y, crd_status_orb_portrait_x+crd_status_orb_portrait_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_portrait_y+crd_status_orb_portrait_height, left_screen, bottom_screen, left_screen, bottom_screen);
 				]]></action>
 			</object>
 
@@ -989,8 +988,6 @@
                 - HIDDEN (HOTKEY ONLY) -
                 ==========================================
                 -->
-
-
 
                 <!--
                 ==========================================

@@ -14,8 +14,10 @@ function initCoord()
 
 	// Screen percentages.
 	top_screen = 0;
+	left_screen = 0;
 	mid_screen = 50;
 	bottom_screen = 100;
+	right_screen = 100;
 
 	// Small icons (eg Movement Rate, Food).
 	crd_mini_icon_width = 20;
@@ -97,7 +99,7 @@ function FlipGUI(NewGUIType)
 		GUIObjectUnhide("always_on");
 
 		// Seek through all sizes created.
-		for (FlipGUILoop = 0; FlipGUILoop < SizeCoord.last-1; FlipGUILoop++)
+		for (FlipGUILoop = 0; FlipGUILoop <= SizeCoord.last-1; FlipGUILoop++)
 		{
 			// Set each object to the other size.
 			switch (GUIType)

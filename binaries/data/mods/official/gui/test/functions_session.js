@@ -3,6 +3,7 @@ function initSession()
 	initCoord();
 	initGroupPane();
 	initResourcePool();
+	initStatusOrb();
 }
 
 // ====================================================================

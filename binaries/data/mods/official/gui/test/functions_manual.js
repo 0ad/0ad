@@ -52,6 +52,10 @@ function manualDisplay()
 					if (selection[0].traits.health.curr && selection[0].traits.health.hitpoints && selection[0].traits.health)
 						ManualRollover.caption += "Hitpoints: " + selection[0].traits.health.curr + "/" + selection[0].traits.health.hitpoints + "\n";
 
+					// Display rank.
+					if (selection[0].traits.id.rank)
+						ManualRollover.caption += "Rank: " + selection[0].traits.id.rank + "\n";
+
 					// Armour.
 					if (selection[0].traits.armour)
 					{
@@ -129,6 +133,8 @@ function manualDisplay()
 					// Icon.
 					if (selection[0].traits.id.icon)
 					ManualRollover.caption += "Icon: " + selection[0].traits.id.icon + "\n";
+					if (selection[0].traits.id.icon_cell)
+					ManualRollover.caption += "Icon_Cell: " + selection[0].traits.id.icon_cell + "\n";
 
 					// Version.
 					if (selection[0].traits.id.version)
