@@ -75,6 +75,8 @@ struct ZLoc
 	off_t csize;	// = 0 if not compressed
 	off_t ucsize;
 
+	time_t mtime;
+
 	// why csize?
 	// file I/O may be N-buffered, so it's good to know when the raw data
 	// stops, or else we potentially overshoot by N-1 blocks.
@@ -187,6 +189,71 @@ static int z_verify_lfh(const void* const file, const off_t lfh_ofs, const off_t
 #endif	// #ifdef PARANOIA
 
 
+//
+// date conversion from DOS to Unix
+//
+///////////////////////////////////////////////////////////////////////////////
+
+static inline uint is_leap_year(uint year)
+{
+	if(year % 4 != 0)
+		return 0;
+	return (year % 100 != 0 || year % 400 == 0)? 1 : 0;
+}
+
+
+static uint bits(uint num, uint lo_idx, uint hi_idx)
+{
+	uint result = num;
+	result >>= lo_idx;
+	const uint count = (hi_idx - lo_idx)+1;
+	// number of bits to return
+	result &= (1u << count)-1;
+	return result;
+}
+
+
+static time_t convert_dos_date(u16 fatdate, u16 fattime)
+{
+	time_t result = 0;
+
+	uint second = bits(fattime, 0,4) * 2;
+	uint minute = bits(fattime, 5,10);	// 0..59
+	uint hour   = bits(fattime, 11,15);	// 0..23
+	uint day    = bits(fatdate, 0,4);	// of month; 1..31
+	uint month  = bits(fatdate, 5,8);	// 1..12
+	uint year   = bits(fatdate, 9,15) + 1980;
+
+	if(second >= 60 || minute >= 60 || hour >= 24 || !day || day > 31 || !month || month > 12)
+	{
+		debug_warn("convert_dos_date: not normalized");
+		return 0;
+	}
+
+	// add days in previous years
+	for(uint y = 1970; y < year; y++)
+	{
+		result += 365;
+		if(is_leap_year(y))
+			result++;
+	}
+
+	// add days in previous months
+	static uint days_in_month[12] = { 31, 0, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	days_in_month[1] = is_leap_year(year)? 29 : 28;
+	for(uint m = 1; m < month; m++)
+		result += days_in_month[m-1];
+
+	result += day-1;	// total days since 1970
+	result *= 86400;	// now seconds
+	result += hour*3600 + minute*60 + second;	// total seconds since 1970
+	return result;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+
+
 // if cdfh is valid and describes a file, extract its name, offset and size
 // for use in z_enum_files (passes it to lookup).
 // return -1 on error (output params invalid), or 0 on success.
@@ -209,6 +276,8 @@ static int z_extract_cdfh(const u8* cdfh, const ssize_t bytes_left, const char*&
 
 	// extract fields from CDFH
 	const u8 method = cdfh[10];
+	const u16 fattime = read_le16(cdfh+12);
+	const u16 fatdate = read_le16(cdfh+14);
 	const u32 csize_  = read_le32(cdfh+20);
 	const u32 ucsize_ = read_le32(cdfh+24);
 	const u16 fn_len_ = read_le16(cdfh+28);
@@ -250,6 +319,7 @@ static int z_extract_cdfh(const u8* cdfh, const ssize_t bytes_left, const char*&
 	loc->csize  = (off_t)(method? csize_ : 0);
 		// if not compressed, csize = 0 (see zfile_compressed)
 	loc->ucsize = (off_t)ucsize_;
+	loc->mtime  = convert_dos_date(fatdate, fattime);
 
 	return 0;
 }
@@ -929,7 +999,7 @@ static inline bool zfile_compressed(ZFile* zf)
 
 
 
-// get file status (currently only size). output param is zeroed on error.
+// get file status (size, mtime). output param is zeroed on error.
 int zip_stat(Handle ha, const char* fn, struct stat* s)
 {
 	// zero output param in case we fail below.
@@ -941,7 +1011,8 @@ int zip_stat(Handle ha, const char* fn, struct stat* s)
 	ZLoc loc;
 	CHECK_ERR(lookup_get_file_info(li, fn, &loc));
 
-	s->st_size = loc.ucsize;
+	s->st_size  = loc.ucsize;
+	s->st_mtime = loc.mtime;
 	return 0;
 }
 

@@ -108,7 +108,7 @@ extern int vfs_realpath(const char* fn, char* realpath);
 // useful because a "file not found" warning is not raised, unlike vfs_stat.
 extern bool vfs_exists(const char* fn);
 
-// get file status (currently only size). output param is zeroed on error.
+// get file status (size, mtime). output param is zeroed on error.
 extern int vfs_stat(const char* fn, struct stat*);
 
 // return the size of an already opened file, or a negative error code.
@@ -212,5 +212,7 @@ extern int vfs_map(Handle hf, uint flags, void*& p, size_t& size);
 // may be removed when no longer needed.
 extern int vfs_unmap(Handle hf);
 
+
+extern void vfs_enable_file_listing(bool want_enabled);
 
 #endif	// #ifndef __VFS_H__

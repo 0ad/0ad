@@ -68,7 +68,7 @@ struct ZFile
 	uintptr_t inf_ctx;
 };
 
-// get file status (currently only size). output param is zeroed on error.
+// get file status (size, mtime). output param is zeroed on error.
 extern int zip_stat(Handle ha, const char* fn, struct stat* s);
 
 // open file, and fill *zf with information about it.

@@ -557,15 +557,15 @@ private:
 	FileCBParams& operator=(const FileCBParams&);
 };
 
-// called for each OS dir ent.
+// called for each dirent in OS dirs or archives.
 // add each file and directory to the VFS dir.
 //
 // note:
 // we don't mount archives here for performance reasons.
 // that means archives in subdirectories of mount points aren't added!
 // rationale: can't determine if file is an archive via extension -
-// they might be called .pk3 or whatnot. for every file in the tree, we'd have
-// to try to open it as an archive - not good.
+// they might be called .pk3 or whatnot. for every file in the tree,
+// we'd have to try to open it as an archive - not good.
 // this restriction also simplifies the code a bit, but if it's a problem,
 // just generate a list of archives here and mount them from the caller.
 static int add_dirent_cb(const char* const n_name, const ssize_t size, const uintptr_t user)
@@ -616,6 +616,7 @@ static int tree_add_dirR(Dir* const dir, const char* const p_path, const Loc* co
 	res_watch_dir(p_path, &dir->watch);
 #endif
 
+	// recurse over all subdirs
 	for(SubDirIt it = dir->subdirs.begin(); it != dir->subdirs.end(); ++it)
 	{
 		Dir* const subdir = &it->second;
@@ -663,7 +664,7 @@ struct Mount
 	// mounting into this VFS directory ("" for root)
 	const std::string v_mount_point;
 
-	// directory being mounted
+	// name of directory being mounted
 	const std::string p_dir;
 
 	uint pri;
@@ -1146,7 +1147,7 @@ bool vfs_exists(const char* v_fn)
 }
 
 
-// get file status (currently only size). output param is zeroed on error.
+// get file status (size, mtime). output param is zeroed on error.
 int vfs_stat(const char* v_fn, struct stat* s)
 {
 	const Loc* loc;
@@ -1171,6 +1172,66 @@ int vfs_stat(const char* v_fn, struct stat* s)
 // file
 //
 ///////////////////////////////////////////////////////////////////////////////
+
+
+// logging
+
+static int file_listing_enabled;
+	// tristate; -1 = already shut down
+
+static FILE* file_list;
+
+
+static void file_listing_shutdown()
+{
+	fclose(file_list);
+	file_listing_enabled = -1;
+}
+
+
+static void file_listing_add(const char* v_fn)
+{
+	// we've already shut down - complain.
+	if(file_listing_enabled == -1)
+	{
+		debug_warn("file_listing_add: called after file_listing_shutdown atexit");
+		return;
+	}
+
+	// listing disabled.
+	if(file_listing_enabled == 0)
+		return;
+
+	if(!file_list)
+	{
+		ONCE(atexit(file_listing_shutdown));
+			// ONCE necessary to prevent multiple atexits if fopen fails.
+
+		file_list = fopen("../logs/filelist.txt", "w");
+		if(!file_list)
+			return;
+	}
+
+	fputs(v_fn, file_list);
+	fputc('\n', file_list);
+}
+
+
+void vfs_enable_file_listing(bool want_enabled)
+{
+	// already shut down - don't allow enabling
+	if(file_listing_enabled == -1 && want_enabled)
+	{
+		debug_warn("vfs_enable_file_listing: enabling after shutdown");
+		return;
+	}
+
+	file_listing_enabled = (int)want_enabled;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+
 
 
 enum
@@ -1257,6 +1318,8 @@ static int VFile_reload(VFile* vf, const char* v_fn, Handle)
 	// reload order (e.g. if resource opens a file) is unspecified.
 	if(flags & VF_OPEN)
 		return 0;
+
+	file_listing_add(v_fn);
 
 	const Loc* loc;
 	uint lf = (flags & FILE_WRITE)? LF_CREATE_MISSING : LF_DEFAULT;
