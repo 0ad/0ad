@@ -2,6 +2,8 @@
 
 #include "EditableListCtrl.h"
 
+#include "AtlasWindowCommandProc.h"
+#include "EditableListCtrlCommands.h"
 #include "FieldEditCtrl.h"
 #include "AtlasObject/AtlasObject.h"
 #include "AtlasObject/AtlasObjectText.h"
@@ -224,6 +226,17 @@ wxListItemAttr* EditableListCtrl::OnGetItemAttr(long item) const
 {
 	// Make the background colours of rows alternate
 	return const_cast<wxListItemAttr*>(&m_ListItemAttr[item%2]);
+}
+
+void EditableListCtrl::Import(AtObj& in)
+{
+	AtlasWindowCommandProc* commandProc = AtlasWindowCommandProc::GetFromParentFrame(this);
+	commandProc->Submit(new ImportCommand(this, in));
+}
+
+AtObj EditableListCtrl::Export()
+{
+	return DoExport();
 }
 
 

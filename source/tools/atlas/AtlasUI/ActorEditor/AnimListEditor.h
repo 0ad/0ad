@@ -24,7 +24,7 @@ private:
 
 //////////////////////////////////////////////////////////////////////////
 
-class AnimListEditorListCtrl : public DraggableListCtrl, public IAtlasExporter
+class AnimListEditorListCtrl : public DraggableListCtrl
 {
 	friend class AnimListEditor;
 
@@ -33,6 +33,6 @@ public:
 
 	void OnUpdate(wxCommandEvent& event);
 
-	void Import(AtObj& in);
-	AtObj Export();
+	void DoImport(AtObj& in);
+	AtObj DoExport();
 };

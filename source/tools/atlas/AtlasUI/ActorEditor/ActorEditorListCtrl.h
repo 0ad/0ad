@@ -4,7 +4,7 @@
 
 class ActorEditor;
 
-class ActorEditorListCtrl : public DraggableListCtrl, public IAtlasExporter
+class ActorEditorListCtrl : public DraggableListCtrl
 {
 	friend class ActorEditor;
 
@@ -16,8 +16,8 @@ public:
 	wxListItemAttr* OnGetItemAttr(long item) const;
 
 private:
-	void Import(AtObj& in);
-	AtObj Export();
+	void DoImport(AtObj& in);
+	AtObj DoExport();
 
 	wxListItemAttr m_ListItemAttr_Model[2];
 	wxListItemAttr m_ListItemAttr_Texture[2];

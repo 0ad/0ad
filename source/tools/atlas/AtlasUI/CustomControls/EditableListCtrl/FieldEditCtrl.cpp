@@ -2,6 +2,7 @@
 
 #include "FieldEditCtrl.h"
 
+#include "EditableListCtrlCommands.h"
 #include "ListCtrlValidator.h"
 #include "QuickTextCtrl.h"
 #include "AtlasDialog.h"
@@ -11,53 +12,14 @@
 
 #include <string>
 
+//////////////////////////////////////////////////////////////////////////
+
 void FieldEditCtrl_Text::StartEdit(wxWindow* parent, wxRect rect, long row, int col)
 {
 	new QuickTextCtrl(parent, rect, ListCtrlValidator((EditableListCtrl*)parent, row, col));
 }
 
 //////////////////////////////////////////////////////////////////////////
-
-class EditCommand_Dialog : public wxCommand
-{
-public:
-	EditCommand_Dialog(EditableListCtrl* ctrl, long row, int col, AtObj& newData)
-		: wxCommand(true, _("Edit")), m_Ctrl(ctrl), m_Row(row), m_Col(col), m_NewData(newData)
-	{
-	}
-
-	bool Do()
-	{
-		m_Ctrl->CloneListData(m_OldData);
-
-		m_Ctrl->MakeSizeAtLeast(m_Row+1);
-
-		m_Ctrl->SetCellObject(m_Row, m_Col, m_NewData);
-
-		m_Ctrl->UpdateDisplay();
-		m_Ctrl->SetSelection(m_Row);
-
-		return true;
-	}
-
-	bool Undo()
-	{
-		m_Ctrl->SetListData(m_OldData);
-
-		m_Ctrl->UpdateDisplay();
-		m_Ctrl->SetSelection(m_Row);
-
-		return true;
-	}
-
-private:
-	EditableListCtrl* m_Ctrl;
-	long m_Row;
-	int m_Col;
-	AtObj m_NewData;
-	std::vector<AtObj> m_OldData;
-
-};
 
 FieldEditCtrl_Dialog::FieldEditCtrl_Dialog(wxString dialogType)
 	: m_DialogType(dialogType)

@@ -1,14 +1,12 @@
 #include "AtlasWindowCommand.h"
 
-#include "wx/arrstr.h"
 #include "AtlasObject/AtlasObject.h"
-//#include "RefcntPtr.h"
 
 class DraggableListCtrl;
 
 class DragCommand : public AtlasWindowCommand
 {
-	DECLARE_CLASS(DragCommand)
+	DECLARE_CLASS(DragCommand);
 
 public:
 	DragCommand(DraggableListCtrl* ctrl, long src, long tgt);
@@ -25,8 +23,10 @@ private:
 };
 
 
-class DeleteCommand : public wxCommand
+class DeleteCommand : public AtlasWindowCommand
 {
+	DECLARE_CLASS(DeleteCommand);
+
 public:
 	DeleteCommand(DraggableListCtrl* ctrl, long itemID);
 	bool Do();
@@ -34,8 +34,6 @@ public:
 
 private:
 	DraggableListCtrl* m_Ctrl;
-	//wxArrayString m_Texts;
 	long m_ItemID;
-	//RefcntPtr<AtObj> m_ItemData;
 	std::vector<AtObj> m_OldData;
 };

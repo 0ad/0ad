@@ -29,7 +29,7 @@ ActorEditorListCtrl::ActorEditorListCtrl(wxWindow* parent)
 	AddColumnType(_("Props"),		250, "props",		new FieldEditCtrl_Dialog(_T("PropListEditor")));
 }
 
-void ActorEditorListCtrl::Import(AtObj& in)
+void ActorEditorListCtrl::DoImport(AtObj& in)
 {
 	DeleteData();
 
@@ -45,7 +45,7 @@ void ActorEditorListCtrl::Import(AtObj& in)
 	UpdateDisplay();
 }
 
-AtObj ActorEditorListCtrl::Export()
+AtObj ActorEditorListCtrl::DoExport()
 {
 	AtObj out;
 

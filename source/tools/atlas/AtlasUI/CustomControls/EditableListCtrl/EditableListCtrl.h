@@ -4,16 +4,19 @@
 #include "wx/listctrl.h"
 #include "wx/arrstr.h"
 
+#include "IAtlasExporter.h"
+
 #include <vector>
 
 class FieldEditCtrl;
 class AtObj;
 class AtIter;
 
-class EditableListCtrl : public wxListCtrl
+class EditableListCtrl : public wxListCtrl, public IAtlasExporter
 {
 	friend class DeleteCommand;
 	friend class DragCommand;
+	friend class ImportCommand;
 
 public:
 	EditableListCtrl(wxWindow *parent,
@@ -53,6 +56,9 @@ public:
 
 	void DeleteData();
 
+	void Import(AtObj&);
+	AtObj Export();
+
 private:
 	int GetColumnAtPosition(wxPoint& pos);
 	void GetCellRect(long row, int col, wxRect& rect);
@@ -63,6 +69,9 @@ private:
 	wxListItemAttr* OnGetItemAttr(long item) const;
 
 protected:
+
+	virtual void DoImport(AtObj&)=0;
+	virtual AtObj DoExport()=0;
 
 	std::vector<AtObj> m_ListData;
 

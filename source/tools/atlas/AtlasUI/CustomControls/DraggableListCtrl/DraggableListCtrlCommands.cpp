@@ -5,6 +5,8 @@
 #include "DraggableListCtrl.h"
 #include "EditableListCtrl.h"
 
+//////////////////////////////////////////////////////////////////////////
+
 IMPLEMENT_CLASS(DragCommand, AtlasWindowCommand);
 
 DragCommand::DragCommand(DraggableListCtrl* ctrl, long src, long tgt)
@@ -72,10 +74,12 @@ bool DragCommand::Merge(AtlasWindowCommand* command)
 	return true;
 }
 
+//////////////////////////////////////////////////////////////////////////
 
+IMPLEMENT_CLASS(DeleteCommand, AtlasWindowCommand);
 
 DeleteCommand::DeleteCommand(DraggableListCtrl* ctrl, long itemID)
-	: wxCommand(true, _("Delete")), m_Ctrl(ctrl), m_ItemID(itemID)
+	: AtlasWindowCommand(true, _("Delete")), m_Ctrl(ctrl), m_ItemID(itemID)
 {
 }
 

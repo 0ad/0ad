@@ -41,7 +41,7 @@ PropListEditorListCtrl::PropListEditorListCtrl(wxWindow* parent)
 	AddColumnType(_("Prop model"),		 200, "model",       new FieldEditCtrl_Text());
 }
 
-void PropListEditorListCtrl::Import(AtObj& in)
+void PropListEditorListCtrl::DoImport(AtObj& in)
 {
 	for (AtIter prop = in["prop"]; prop.defined(); ++prop)
 		AddRow(prop);
@@ -49,7 +49,7 @@ void PropListEditorListCtrl::Import(AtObj& in)
 	UpdateDisplay();
 }
 
-AtObj PropListEditorListCtrl::Export()
+AtObj PropListEditorListCtrl::DoExport()
 {
 	AtObj out;
 	for (size_t i = 0; i < m_ListData.size(); ++i)

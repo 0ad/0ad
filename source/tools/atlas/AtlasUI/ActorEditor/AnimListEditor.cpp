@@ -42,7 +42,7 @@ AnimListEditorListCtrl::AnimListEditorListCtrl(wxWindow* parent)
 	AddColumnType(_("Speed"),	  50,  "speed", new FieldEditCtrl_Text());
 }
 
-void AnimListEditorListCtrl::Import(AtObj& in)
+void AnimListEditorListCtrl::DoImport(AtObj& in)
 {
 	for (AtIter prop = in["animation"]; prop.defined(); ++prop)
 		AddRow(prop);
@@ -50,7 +50,7 @@ void AnimListEditorListCtrl::Import(AtObj& in)
 	UpdateDisplay();
 }
 
-AtObj AnimListEditorListCtrl::Export()
+AtObj AnimListEditorListCtrl::DoExport()
 {
 	AtObj out;
 	for (size_t i = 0; i < m_ListData.size(); ++i)
