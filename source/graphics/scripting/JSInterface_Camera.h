@@ -40,7 +40,7 @@ namespace JSI_Camera
 		Camera_Info( const CVector3D& _position );
 		Camera_Info( const CVector3D& _position, const CVector3D& _orientation );
 		Camera_Info( const CVector3D& _position, const CVector3D& _orientation, const CVector3D& _up );
-		Camera_Info( CCamera* copy );
+		Camera_Info( CCamera* _copy );
 		void update();
 	};
 	extern JSClass JSI_class;
