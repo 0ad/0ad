@@ -58,7 +58,9 @@ void CButton::SetupText()
 	CGUIString caption;
 	GUI<CGUIString>::GetSetting(this, "caption", caption);
 
-	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, m_CachedActualSize.GetWidth(), 0, this);
+	float buffer_zone=0.f;
+	GUI<float>::GetSetting(this, "buffer-zone", buffer_zone);
+	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, m_CachedActualSize.GetWidth(), buffer_zone, this);
 
 	CalculateTextPosition(m_CachedActualSize, m_TextPos, *m_GeneratedTexts[0]);
 }

@@ -120,6 +120,9 @@ static void ShowTooltip(IGUIObject* obj, CPos pos, CStr& style, CGUI* gui)
 	if (GUI<CStr>::GetSetting(obj, "tooltip", text) != PS_OK)
 		debug_warn("Failed to retrieve tooltip text"); // shouldn't fail
 
+	// Do some minimal processing ("\n" -> newline, etc)
+	text.Replace("\\n", "\n"); // TODO: Allow tooltip="\\n" etc
+
 	// Set tooltip's caption
 	if (usedobj->SetSetting("caption", text) != PS_OK)
 		debug_warn("Failed to set tooltip caption"); // shouldn't fail
