@@ -25,6 +25,12 @@ extern void debug_break();
 // assert with stack trace (including variable / parameter types and values)
 // shown in a dialog, which offers
 //   continue, break, suppress (ignore this assert), and exit
+/*
+ * return values:
+ *   0 - continue
+ *   1 - suppress
+ *   2 - break
+ */
 extern int debug_assert_failed(const char* file, int line, const char* expr);
 
 extern void check_heap();
