@@ -49,7 +49,7 @@
 // *: the add_watch code would need to iterate through subdirs and watch
 //    each one, because the monitor API (e.g. FAM) may only be able to
 //    watch single directories, instead of a whole subdirectory tree.
-#undef NO_DIR_WATCH
+#define NO_DIR_WATCH
 
 
 // rationale for no forcibly-close support:
@@ -1398,10 +1398,19 @@ debug_out("vfs_io size=%d\n", size);
 }
 
 
+#include "timer.h"
+static double dt;
+void dump()
+{
+	debug_out("TOTAL TIME IN VFS_IO:\n\n%f\n\n", dt);
+}
+
 // load the entire file <fn> into memory; return a handle to the memory
 // and the buffer address/size. output parameters are zeroed on failure.
 Handle vfs_load(const char* const v_fn, void*& p, size_t& size, uint flags /* default 0 */)
 {
+ONCE(atexit(dump));
+
 #ifdef PARANOIA
 debug_out("vfs_load fn=%s\n", fn);
 #endif
@@ -1434,7 +1443,10 @@ debug_out("vfs_load fn=%s\n", fn);
 	}
 
 	{	// VC6 goto fix
+double t1=get_time();
 	ssize_t nread = vfs_io(hf, size, &p);
+double t2=get_time();
+dt += t2-t1;
 	if(nread > 0)
 	{
 		// one case where we need the handle return value is Tex.hm;
@@ -1545,19 +1557,55 @@ int vfs_unmap(const Handle hf)
 ///////////////////////////////////////////////////////////////////////////////
 
 
-// note: VFS and zip return the file I/O handle.
-// there's no way for zip to do any extra processing, but that's unnecessary
-// because aio is currently only supported for uncompressed files.
+struct IO
+{
+	FileIO fio;
+};
+
+H_TYPE_DEFINE(IO);
+
+
+// don't support forcibly closing files => don't need to keep track of
+// all IOs pending for each file. too much work, little benefit.
+
+
+static void IO_init(IO*, va_list)
+{
+}
+
+static void IO_dtor(IO* io)
+{
+	file_discard_io(&io->fio);
+}
+
+
+// we don't support transparent read resume after file invalidation.
+// if the file has changed, we'd risk returning inconsistent data.
+// doesn't look possible without controlling the AIO implementation:
+// when we cancel, we can't prevent the app from calling
+// aio_result, which would terminate the read.
+static int IO_reload(IO* io, const char*, Handle)
+{
+	// IO was pending - see above.
+	if(io->fio.cb->aio_buf)
+		return -1;
+
+	// ok
+	return 0;
+}
 
 
 // begin transferring <size> bytes, starting at <ofs>. get result
 // with vfs_wait_io; when no longer needed, free via vfs_discard_io.
 Handle vfs_start_io(Handle hf, off_t ofs, size_t size, void* buf)
 {
+	Handle hio = h_alloc(H_IO, 0);
+	H_DEREF(hio, IO, io);
+
 	H_DEREF(hf, VFile, vf);
 	if(vf_flags(vf) & VF_ZIP)
-		return zip_start_io(&vf->zf, ofs, size, buf);
-	return file_start_io(&vf->f, ofs, size, buf);
+		return zip_start_io(&vf->zf, ofs, size, buf, &io->fio);
+	return file_start_io(&vf->f, ofs, size, buf, &io->fio);
 }
 
 
@@ -1565,12 +1613,13 @@ Handle vfs_start_io(Handle hf, off_t ofs, size_t size, void* buf)
 // output parameters are zeroed on error.
 inline int vfs_wait_io(Handle hio, void*& p, size_t& size)
 {
-	return file_wait_io(hio, p, size);
+	H_DEREF(hio, IO, io);
+	return file_wait_io(&io->fio, p, size);
 }
 
 
 // finished with transfer <hio> - free its buffer (returned by vfs_wait_io)
 inline int vfs_discard_io(Handle& hio)
 {
-	return file_discard_io(hio);
+	return h_free(hio, H_IO);
 }
