@@ -366,11 +366,14 @@ static int al_init()
 
 static void al_shutdown()
 {
-	al_src_shutdown();
-	al_buf_shutdown();
-	alc_shutdown();
+	if(al_initialized)
+	{
+		al_src_shutdown();
+		al_buf_shutdown();
+		alc_shutdown();
 
-	al_initialized = false;
+		al_initialized = false;
+	}
 }
 
 
