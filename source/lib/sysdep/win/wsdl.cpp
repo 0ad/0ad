@@ -50,6 +50,8 @@ static bool app_active;		/* is window active & on top?
 static bool fullscreen;		/* in fullscreen mode?
 							   if so, restore mode when app is deactivated */
 
+static bool is_shutdown;
+
 HWND hWnd = 0;				/* available to the app for ShowWindow calls, etc. */
 
 static DEVMODE dm;			/* current video mode */
@@ -70,6 +72,9 @@ static void gamma_swap(bool restore_org);
  */
 static LRESULT CALLBACK wndproc(HWND hWnd, unsigned int uMsg, WPARAM wParam, LPARAM lParam)
 {
+	if(is_shutdown)
+		return DefWindowProc(hWnd, uMsg, wParam, lParam);
+
 	switch(uMsg)
 	{
 	case WM_PAINT:
@@ -394,9 +399,35 @@ static int wsdl_init()
 
 static int wsdl_shutdown()
 {
+	is_shutdown = true;
+
 	// redirected to stdout.txt in SDL_Init;
 	// close to avoid BoundsChecker warning.
 	fclose(stdout);
+
+	gamma_swap(true);
+
+	if(hDC != INVALID_HANDLE_VALUE)
+	{
+		ReleaseDC(hWnd, hDC);
+		hDC = (HDC)INVALID_HANDLE_VALUE;
+	}
+
+	if(hWnd != INVALID_HANDLE_VALUE)
+	{
+		DestroyWindow(hWnd);
+		hWnd = (HWND)INVALID_HANDLE_VALUE;
+	}
+
+	if(hGLRC != INVALID_HANDLE_VALUE)
+	{
+		wglMakeCurrent(0, 0);
+		wglDeleteContext(hGLRC);
+		ChangeDisplaySettings(0, 0);
+
+		hGLRC = (HGLRC)INVALID_HANDLE_VALUE;
+	}
+
 	return 0;
 }
 
@@ -407,7 +438,7 @@ int SDL_Init(Uint32 flags)
 }
 
 
-
+#include "ogl.h"
 
 /*
  * set video mode wxh:bpp if necessary.
@@ -477,6 +508,11 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 		PFD_MAIN_PLANE,
 		0, 0, 0, 0
 	};
+
+	// GDI pixel format functions apparently require opengl to be loaded
+	// (may not have been done yet, if delay-loaded). call a gl function
+	// (no-op) to make sure.
+	glGetError();
 
 	int pf = ChoosePixelFormat(hDC, &pfd);
 	if(!SetPixelFormat(hDC, pf, &pfd))
@@ -602,28 +638,6 @@ u64 SDL_Swap64(const u64 x)
 
 void SDL_Quit()
 {
-	gamma_swap(true);
-
-	if(hDC != INVALID_HANDLE_VALUE)
-	{
-		ReleaseDC(hWnd, hDC);
-		hDC = (HDC)INVALID_HANDLE_VALUE;
-	}
-
-	if(hWnd != INVALID_HANDLE_VALUE)
-	{
-		DestroyWindow(hWnd);
-		hWnd = (HWND)INVALID_HANDLE_VALUE;
-	}
-
-	if(hGLRC != INVALID_HANDLE_VALUE)
-	{
-		wglMakeCurrent(0, 0);
-		wglDeleteContext(hGLRC);
-		ChangeDisplaySettings(0, 0);
-
-		hGLRC = (HGLRC)INVALID_HANDLE_VALUE;
-	}
 }
 
 
