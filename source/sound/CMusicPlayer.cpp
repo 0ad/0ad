@@ -1,6 +1,8 @@
 #include "precompiled.h"
 
 #include "CMusicPlayer.h"
+#include <CLogger.h>
+#include <sstream>
 
 #ifdef _MSC_VER
 # ifndef NDEBUG
@@ -97,8 +99,8 @@ long VorbisTell(void *datasource)
 CMusicPlayer::CMusicPlayer(void)
 {
 	info = NULL;
-	source = NULL;
-	format = NULL;
+	source = 0;
+	format = 0;
 
 	buffers[0] = buffers[1] = 0;
 }
@@ -111,7 +113,7 @@ CMusicPlayer::~CMusicPlayer(void)
 void CMusicPlayer::open(char *filename)
 {
 	int ret = 0;
-	format = NULL;
+	format = 0;
 	info = NULL;
 
 /*
@@ -146,7 +148,12 @@ void CMusicPlayer::open(char *filename)
 	void* p;
 	size_t sizeOfFile;
 	if(vfs_load(filename, p, sizeOfFile) <= 0)
+	{
+		LOG(ERROR, "CMusicPlayer::open(): vfs_load for %s failed!\n", filename);
 		return;
+	}
+	else
+		LOG(NORMAL, "CMusicPlayer::open(): file %s loaded successfully\n", filename);
 	// TODO maybe: Free the mem handle returned by vfs_load (using mem_free_h) ??
 
 	memFile.dataPtr = (char*)p;
@@ -267,7 +274,7 @@ bool CMusicPlayer::isPlaying()
 	if(!is_open)
 		return false;
 
-	ALenum state = NULL;
+	ALenum state = 0;
 	alGetSourcei(source,AL_SOURCE_STATE,&state);
 	check();
 	//printf("returning from isPlaying.\n");
@@ -353,7 +360,7 @@ bool CMusicPlayer::stream(ALuint buffer)
 		// error
 		else if(ret < 0)
 		{
-			printf("Error reading from ogg file\n");
+			printf("Error reading from ogg file: %s\n", errorString(ret).c_str());
 			exit(1);
 		}
 		// EOF
@@ -388,6 +395,8 @@ std::string CMusicPlayer::errorString(int errorcode)
 			return std::string("Invalid Vorbis header.");
         case OV_EFAULT:
 			return std::string("Internal logic fault (bug or heap/stack corruption.");
+		case OV_EINVAL:
+			return std::string("Invalid argument passed to Vorbis function");
 		case AL_INVALID_NAME:
 			return "AL_INVALID_NAME";
 		case AL_INVALID_ENUM:
@@ -399,6 +408,8 @@ std::string CMusicPlayer::errorString(int errorcode)
 		case AL_OUT_OF_MEMORY:
 			return "AL_OUT_OF_MEMORY";
         default:
-			return std::string("Unknown Ogg error.");
+			std::stringstream str;
+			str << "Unknown Ogg error (code "<< errorcode << ")";
+			return str.str();
     }
 }
