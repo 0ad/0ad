@@ -53,6 +53,8 @@ public:
 
 	bool SetGain( JSContext* cx, uintN argc, jsval* argv );
 
+	bool SetPitch( JSContext* cx, uintN argc, jsval* argv );
+
 	bool SetPosition( JSContext* cx, uintN argc, jsval* argv );
 
 	static JSBool Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval );

@@ -1148,7 +1148,8 @@ struct VSrc
 
 	// AL source properties (set via snd_set*)
 	ALfloat pos[3];
-	ALfloat gain;
+	ALfloat gain;	// [0,1]
+	ALfloat pitch;	// (0,1]
 	ALboolean loop;
 	ALboolean relative;
 
@@ -1272,6 +1273,7 @@ static void vsrc_latch(VSrc* vs)
 	alSourcefv(vs->al_src, AL_POSITION,        vs->pos);
 	alSourcei (vs->al_src, AL_SOURCE_RELATIVE, vs->relative);
 	alSourcef (vs->al_src, AL_GAIN,            vs->gain);
+	alSourcef (vs->al_src, AL_PITCH,           vs->pitch);
 	alSourcei (vs->al_src, AL_LOOPING,         vs->loop);
 	al_check("vsrc_latch");
 }
@@ -1468,6 +1470,8 @@ static int VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
 
 	// note: vs->gain can legitimately be > 1.0 - don't clamp.
 
+	vs->pitch = 1.0f;
+
 	vs->hvs = hvs;
 		// needed so we can snd_free ourselves when done playing.
 
@@ -1562,7 +1566,29 @@ int snd_set_gain(Handle hvs, float gain)
 {
 	H_DEREF(hvs, VSrc, vs);
 
+	if(!(0.0f <= gain && gain <= 1.0f))
+		return -1;
+
 	vs->gain = gain;
+
+	vsrc_latch(vs);
+	return 0;
+}
+
+
+// change pitch shift of the sound source.
+// 1.0 means no change; each reduction by 50% equals a pitch shift of
+// -12 semitones (one octave). zero is invalid.
+// may be called at any time; fails with invalid handle return if
+// the sound has already been closed (e.g. it never played).
+int snd_set_pitch(Handle hvs, float pitch)
+{
+	H_DEREF(hvs, VSrc, vs);
+
+	if(!(0.0f < pitch && pitch <= 1.0f))
+		return -1;
+
+	vs->pitch = pitch;
 
 	vsrc_latch(vs);
 	return 0;

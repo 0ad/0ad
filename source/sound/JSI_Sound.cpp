@@ -31,6 +31,17 @@ bool JSI_Sound::SetGain( JSContext* cx, uintN argc, jsval* argv )
 	return true;
 }
 
+bool JSI_Sound::SetPitch( JSContext* cx, uintN argc, jsval* argv )
+{
+	assert( argc >= 1 );
+	float pitch;
+	if( !ToPrimitive<float>( cx, argv[0], pitch) )
+		return false;
+
+	snd_set_pitch(m_Handle, pitch);
+	return true;
+}
+
 bool JSI_Sound::SetPosition( JSContext* cx, uintN argc, jsval* argv )
 {
 	assert( argc >= 1 );
@@ -82,6 +93,7 @@ void JSI_Sound::ScriptingInit()
 	AddMethod<bool, &JSI_Sound::Loop>( "loop", 0 );
 	AddMethod<bool, &JSI_Sound::Free>( "free", 0 );
 	AddMethod<bool, &JSI_Sound::SetGain>( "setGain", 0 );
+	AddMethod<bool, &JSI_Sound::SetPitch>( "setPitch", 0 );
 	AddMethod<bool, &JSI_Sound::SetPosition>( "setPosition", 0 );
 
 	CJSObject<JSI_Sound>::ScriptingInit( "Sound", &JSI_Sound::Construct, 1 );

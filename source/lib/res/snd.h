@@ -159,6 +159,13 @@ extern int snd_set_pos(Handle hs, float x, float y, float z, bool relative = fal
 // the sound has already been closed (e.g. it never played).
 extern int snd_set_gain(Handle hs, float gain);
 
+// change pitch shift of the sound source.
+// 1.0 means no change; each reduction by 50% equals a pitch shift of
+// -12 semitones (one octave). zero is invalid.
+// may be called at any time; fails with invalid handle return if
+// the sound has already been closed (e.g. it never played).
+extern int snd_set_pitch(Handle hs, float pitch);
+
 // enable/disable looping on the sound source.
 // used to implement variable-length sounds (e.g. while building).
 // may be called at any time; fails with invalid handle return if
