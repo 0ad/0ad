@@ -25,6 +25,8 @@
 
 #include "sysdep/sysdep.h"
 
+#include "sdl.h"	// for endian stuff
+
 
 // tell STL not to generate exceptions, if compiling without exceptions
 // (usually done for performance reasons).
@@ -143,7 +145,7 @@ enum LibError
 // can't pass code as string, and use s[0]..s[3], because
 // VC6/7 don't realize the macro is constant
 // (it should be useable as a switch{} expression)
-#if __BYTE_ORDER == __BIG_ENDIAN
+#if SDL_BYTE_ORDER == SDL_BIG_ENDIAN
 #define FOURCC(a,b,c,d) ( ((u32)a << 24) | ((u32)b << 16) | \
 	((u32)c << 8 ) | ((u32)d << 0 ) )
 #else
