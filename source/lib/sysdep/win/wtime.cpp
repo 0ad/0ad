@@ -57,6 +57,8 @@ WIN_REGISTER_FUNC(wtime_shutdown);
 // in case a time source turns out to have a serious problem.
 
 
+// (default values for HRT_NONE impl)
+
 // initial measurement of the time source's tick rate. not necessarily
 // correct (e.g. when using TSC; cpu_freq isn't exact).
 static i64 hrt_nominal_freq = -1;
@@ -257,7 +259,7 @@ static int choose_impl()
 }
 
 
-// return ticks (unspecified start time). lock must be held.
+// return ticks (unspecified start point). lock must be held.
 //
 // split to allow calling from reset_impl_lk without recursive locking.
 // (not a problem, but avoids a BoundsChecker warning)
@@ -297,12 +299,15 @@ static i64 ticks_lk()
 }
 
 
-// return seconds since first call. lock must be held.
+// return seconds since init. lock must be held.
 //
 // split to allow calling from calibrate without recursive locking.
 // (not a problem, but avoids a BoundsChecker warning)
 static double time_lk()
 {
+	assert(hrt_cur_freq > 0);
+	assert(hrt_cal_ticks > 0);
+
 	// elapsed ticks and time since last calibration
 	const i64 delta_ticks = ticks_lk() - hrt_cal_ticks;
 	const double delta_time = delta_ticks / hrt_cur_freq;
@@ -332,14 +337,17 @@ static double time_lk()
 static int reset_impl_lk()
 {
 	HRTImpl old_impl = hrt_impl;
-	double old_time = 0.0;
-		// if first time: starts the timer at 0
 
-	// in case we are going to switch implementation below:
-	// get current time before switching impl, so we can continue from that time on.
-	// not first call => hrt_cur_freq is valid => time_lk works
-	if(hrt_cur_freq > 0.0)
-		old_time = time_lk();
+	// if changing implementation: get time at which to continue
+	// (when switching, we set everything calibrate() would output)
+	double old_time;
+	// .. first call; hrt_cur_freq not initialized; can't call time_lk.
+	//    setting to 0 will start the timer at 0.
+	if(hrt_cur_freq <= 0.0)
+		old_time = 0.0;
+	// .. timer has been initialized; use current reported time.
+	else
+		old_time = time_lk();		
 
 	CHECK_ERR(choose_impl());
 	assert(hrt_impl != HRT_NONE && hrt_nominal_freq > 0);
@@ -367,7 +375,7 @@ unlock();
 }
 
 
-// return seconds since first call.
+// return seconds since init.
 static double hrt_time()
 {
 	double t;
@@ -388,7 +396,7 @@ lock();
 	double freq = hrt_cur_freq;
 unlock();
 
-	assert(freq != -1.0 && "hrt_delta_s called before hrt_ticks");
+	assert(freq != -1.0 && "hrt_delta_s: hrt_cur_freq not set");
 	return (end - start) / freq;
 }
 
@@ -462,6 +470,8 @@ static long safe_time()
 // lock must be held.
 static void calibrate_lk()
 {
+	assert(hrt_cal_ticks > 0);
+
 	// we're called from a WinMM event or after thread wakeup,
 	// so the timer has just been updated.
 	// no need to determine tick / compensate.
@@ -503,6 +513,8 @@ static void calibrate_lk()
 
 		hrt_cur_freq = (double)hrt_nominal_freq;
 	}
+
+	assert(hrt_cur_freq > 0);
 }
 
 
@@ -606,10 +618,14 @@ static i64 st_time_ns()
 }
 
 
-// return nanoseconds since posix epoch as reported by HRT
-static i64 hrt_time_ns()
+// return nanoseconds since posix epoch as reported by HRT.
+// we get system time at init and add HRT elapsed time.
+static i64 time_ns()
 {
-	// use as starting value, because HRT origin is unspecified
+	// we don't really need to get the HRT start time (it starts at 0,
+	// and will be slightly higher when we get here; doesn't matter if the
+	// time returned is a few ms off the real system time). do so anyway,
+	// because we have to get the starting ST value anyway.
 	static double hrt_start_time;
 	static i64 st_start;
 
@@ -631,8 +647,8 @@ static int wtime_init()
 {
 	hrt_init();
 
-	// first call latches start time
-	hrt_time_ns();
+	// first call latches start times
+	time_ns();
 
 	return 0;
 }
@@ -675,7 +691,7 @@ int clock_gettime(clockid_t clock, struct timespec* t)
 	}
 #endif
 
-	const i64 ns = hrt_time_ns();
+	const i64 ns = time_ns();
 	t->tv_sec  = (time_t)(ns / _1e9);
 	t->tv_nsec = (long)  (ns % _1e9);
 	return 0;
@@ -724,7 +740,7 @@ int gettimeofday(struct timeval* tv, void* tzp)
 	}
 #endif
 
-	const long us = (long)(hrt_time_ns() / 1000);
+	const long us = (long)(time_ns() / 1000);
 	tv->tv_sec  = (time_t)     (us / _1e6);
 	tv->tv_usec = (suseconds_t)(us % _1e6);
 	return 0;
