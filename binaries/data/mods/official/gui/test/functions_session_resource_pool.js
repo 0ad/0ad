@@ -52,16 +52,16 @@ function GiveResources(resourceName, resourceQty)
 	switch (resourceName)
 	{
 		case "Food":
-			player.resource.food += resourceQty;
+			localPlayer.resource.food += resourceQty;
 		break;
 		case "Wood":
-			player.resource.wood += resourceQty;
+			localPlayer.resource.wood += resourceQty;
 		break;
 		case "Stone":
-			player.resource.stone += resourceQty;
+			localPlayer.resource.stone += resourceQty;
 		break;
 		case "Ore":
-			player.resource.ore += resourceQty;
+			localPlayer.resource.ore += resourceQty;
 		break;
 		default:
 		break;
@@ -74,9 +74,9 @@ function GiveResources(resourceName, resourceQty)
 
 function UpdateResourcePool()
 {
-	getGUIObjectByName("SN_RESOURCE_COUNTER_FOOD").caption = player.resource.food;
-	getGUIObjectByName("SN_RESOURCE_COUNTER_WOOD").caption = player.resource.wood;
-	getGUIObjectByName("SN_RESOURCE_COUNTER_STONE").caption = player.resource.stone;
-	getGUIObjectByName("SN_RESOURCE_COUNTER_ORE").caption = player.resource.ore;
-	getGUIObjectByName("SN_RESOURCE_COUNTER_POPULATION").caption = player.resource.pop.curr  + "/" + player.resource.pop.housing;
+	getGUIObjectByName("SN_RESOURCE_COUNTER_FOOD").caption = localPlayer.resource.food;
+	getGUIObjectByName("SN_RESOURCE_COUNTER_WOOD").caption = localPlayer.resource.wood;
+	getGUIObjectByName("SN_RESOURCE_COUNTER_STONE").caption = localPlayer.resource.stone;
+	getGUIObjectByName("SN_RESOURCE_COUNTER_ORE").caption = localPlayer.resource.ore;
+	getGUIObjectByName("SN_RESOURCE_COUNTER_POPULATION").caption = localPlayer.resource.pop.curr  + "/" + localPlayer.resource.pop.housing;
 }

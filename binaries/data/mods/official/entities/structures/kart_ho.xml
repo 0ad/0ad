@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity Tag="kart_ho_1" Parent="ho">
+<Entity Tag="kart_ho" Parent="ho">
 	<Traits>
 		<Id
 			civ_code="kart"
@@ -11,5 +11,5 @@
 			history="Housing was generally built of ‘adobe’ or sandstone then plastered with stucco. Flat roofs predominate, few windows, arched doorways in evidence, kind of a blend of Achaemenian and Mediterranean styles with some tiled roofs. In the biggest cities, especially Carthage and such as Utica, housing was in flat-roofed structures rising as high as 6 and 7 stories (two-storied would be sufficient)."
 		/>
 	</Traits>
-	<Actor>structures/kart_ho_a.xml</Actor>
+	<Actor>structures/kart_ho.xml</Actor>
 </Entity>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity Tag="pers_ho_1" Parent="ho">
+<Entity Tag="pers_ho" Parent="ho">
 	<Traits>
 		<Id
 			civ_code="pers"
@@ -11,5 +11,5 @@
 			history="Apart from the Great King and his close relatives, the satraps resided in splendid spacious residences, which included palaces, pavilions and gardens."
 		/>
 	</Traits>
-	<Actor>structures/pers_ho_a.xml</Actor>
+	<Actor>structures/pers_ho.xml</Actor>
 </Entity>

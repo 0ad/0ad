@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity Tag="rome_ho_1" Parent="ho">
+<Entity Tag="rome_ho" Parent="ho">
 	<Traits>
 		<Id
 			civ_code="rome"
@@ -11,5 +11,5 @@
 			history="The early Atrium initially included one big room with a fireplace in the middle. A garden by the house was later included under Hellenistic influence."
 		/>
 	</Traits>
-	<Actor>structures/rome_ho_a.xml</Actor>
+	<Actor>structures/rome_ho.xml</Actor>
 </Entity>

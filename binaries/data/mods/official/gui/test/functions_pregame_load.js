@@ -104,15 +104,15 @@ function setupSession()
         // For example, create the resource types.
         // Initialise Resource Pools by attaching them to the Player object.
         // (CPlayer code takes care of giving a copy to each player.)
-        player = new Object(); // I shouldn't need to do this. Need to find the existing Player to add these to.
-        player.resource = new Object();
-        player.resource.food = 0;
-        player.resource.wood = 0;
-        player.resource.stone = 0;
-        player.resource.ore = 0;
-        player.resource.pop = new Object();
-        player.resource.pop.curr = 0;
-        player.resource.pop.housing = 0;
+//        player = new Object(); // I shouldn't need to do this. Need to find the existing Player to add these to.
+        localPlayer.resource = new Object();
+        localPlayer.resource.food = 0;
+        localPlayer.resource.wood = 0;
+        localPlayer.resource.stone = 0;
+        localPlayer.resource.ore = 0;
+        localPlayer.resource.pop = new Object();
+        localPlayer.resource.pop.curr = 0;
+        localPlayer.resource.pop.housing = 0;
 
         // Start refreshing the session controls.
         setInterval( getObjectInfo, 1, 1000 );
