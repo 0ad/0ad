@@ -36,7 +36,7 @@ void debug_out(const char* fmt, ...)
 }
 
 
-void check_heap()
+inline void check_heap()
 {
 }
 
@@ -59,11 +59,13 @@ void debug_break()
 }
 
 
+const int MICROLOG_SIZE = 16384;
 wchar_t MicroBuffer[MICROLOG_SIZE];
 int MicroBuffer_off = 0;
 
 void debug_microlog(const wchar_t *fmt, ...)
 {
+#ifndef NDEBUG
 	va_list argp;
 	wchar_t buffer[512];
 
@@ -84,6 +86,7 @@ void debug_microlog(const wchar_t *fmt, ...)
 	}
 	memcpy(&MicroBuffer[MicroBuffer_off], buffer, sizeof(wchar_t)*len);
 	MicroBuffer_off += len;
+#endif
 }
 
 

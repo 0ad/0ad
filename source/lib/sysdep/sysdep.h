@@ -3,6 +3,8 @@
 
 #include "config.h"
 
+#include "sysdep/debug.h"
+
 #ifdef _WIN32
 #include "win/win.h"
 #include "win/wdbg.h"
@@ -18,33 +20,6 @@ extern "C" {
 extern void display_msg(const char* caption, const char* msg);
 extern void wdisplay_msg(const wchar_t* caption, const wchar_t* msg);
 
-extern void debug_out(const char* fmt, ...);
-extern void debug_break();
-
-
-// assert with stack trace (including variable / parameter types and values)
-// shown in a dialog, which offers
-//   continue, break, suppress (ignore this assert), and exit
-/*
-* return values:
-*   0 - continue
-*   1 - suppress
-*   2 - break
-*/
-
-extern int debug_assert_failed(const char* source_file, int line, const char* expr);
-
-extern int debug_write_crashlog(const char* file, wchar_t* header, void* context);
-
-
-// Small fast(ish) log for recording the events leading up to a crash:
-#define MICROLOG debug_microlog
-//#define MICROLOG (void)
-
-const int MICROLOG_SIZE = 16384;
-void debug_microlog(const wchar_t *fmt, ...);
-
-extern void check_heap();
 
 extern int clipboard_set(const wchar_t* text);
 extern wchar_t* clipboard_get();
