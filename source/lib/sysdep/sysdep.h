@@ -26,6 +26,10 @@ extern float fminf(float a, float b);
 extern float fmaxf(float a, float b);
 #endif
 
+#ifndef _MSC_VER
+#define stricmp strcasecmp
+#define strnicmp strncasecmp
+#endif
 
 #ifdef __cplusplus
 }
