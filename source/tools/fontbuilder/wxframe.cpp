@@ -1,4 +1,4 @@
-// $Id: wxframe.cpp,v 1.5 2004/06/19 13:46:11 philip Exp $
+// $Id: wxframe.cpp,v 1.6 2004/07/16 15:32:34 philip Exp $
 
 #include "stdafx.h"
 
@@ -16,6 +16,7 @@
 #include "wx/filename.h"
 #include "wx/progdlg.h"
 #include "wx/dcbuffer.h"
+#include "wx/checkbox.h"
 
 #include "wxframe.h"
 #include "wxconfig.h"
@@ -54,7 +55,8 @@ enum
 	ID_Style_Boldness,
 	ID_Style_Italicness,
 	ID_Style_Tracking,
-	ID_Style_Leading
+	ID_Style_Leading,
+	ID_Style_Hinting
 };
 
 BEGIN_EVENT_TABLE(MainFrame, wxFrame)
@@ -160,6 +162,9 @@ MainFrame::MainFrame(const wxString& title, const wxPoint& pos, const wxSize& si
 	StyleSizer->Add(new wxStaticText(Panel, -1, wxT("Leading:")), 0, wxALIGN_RIGHT | wxLEFT | wxRIGHT, 2);
 	StyleSizer->Add(new StyleSpinCtrl(Panel, ID_Style_Leading, -256, 256, 0), 0, wxGROW | wxLEFT | wxRIGHT, 2);
 
+	StyleSizer->Add(new wxStaticText(Panel, -1, wxT("Alt. hinting:")), 0, wxALIGN_RIGHT | wxLEFT | wxRIGHT, 2);
+	StyleSizer->Add(new wxCheckBox(Panel, ID_Style_Hinting, wxT("")), 0, wxGROW | wxLEFT | wxRIGHT, 2);
+
 	ControlSizer->Add(StyleSizer, 0, wxLEFT | wxRIGHT | wxALIGN_CENTER, 8);
 
 	wxBoxSizer* GenerateSizer = new wxBoxSizer(wxVERTICAL);
@@ -239,6 +244,7 @@ void MainFrame::LoadSettings(wxString& filename)
 	StyleSpinCtrl* SizeCtrl			= (StyleSpinCtrl*)wxWindow::FindWindowById(ID_Style_Size);
 	StyleSpinCtrl* TrackingCtrl		= (StyleSpinCtrl*)wxWindow::FindWindowById(ID_Style_Tracking);
 	StyleSpinCtrl* LeadingCtrl		= (StyleSpinCtrl*)wxWindow::FindWindowById(ID_Style_Leading);
+	wxCheckBox* HintingCtrl			= (wxCheckBox*)wxWindow::FindWindowById(ID_Style_Hinting);
 	wxButton* FontSelect0 = (wxButton*)wxWindow::FindWindowById(ID_FontSelect0);
 	wxButton* FontSelect1 = (wxButton*)wxWindow::FindWindowById(ID_FontSelect1);
 	wxButton* CharSelect = (wxButton*)wxWindow::FindWindowById(ID_CharSelect);
@@ -263,6 +269,7 @@ void MainFrame::LoadSettings(wxString& filename)
 	Settings->GetAttributeValue(wxT("Size"),		t); SizeCtrl->SetValue(t);
 	Settings->GetAttributeValue(wxT("Tracking"),	t); TrackingCtrl->SetValue(t);
 	Settings->GetAttributeValue(wxT("Leading"),		t); LeadingCtrl->SetValue(t);
+	Settings->GetAttributeValue(wxT("Hinting"),		t); HintingCtrl->SetValue(t);
 
 
 	// Convert back to UTF16 from hex, because wxExpr doesn't like non-ASCII
@@ -294,6 +301,7 @@ void MainFrame::SaveSettings(wxString& filename)
 	StyleSpinCtrl* SizeCtrl			= (StyleSpinCtrl*)wxWindow::FindWindowById(ID_Style_Size);
 	StyleSpinCtrl* TrackingCtrl		= (StyleSpinCtrl*)wxWindow::FindWindowById(ID_Style_Tracking);
 	StyleSpinCtrl* LeadingCtrl		= (StyleSpinCtrl*)wxWindow::FindWindowById(ID_Style_Leading);
+	wxCheckBox* HintingCtrl			= (wxCheckBox*)wxWindow::FindWindowById(ID_Style_Hinting);
 
 	wxExpr *Settings = new wxExpr(wxT("Settings"));
 	Settings->AddAttributeValueString(wxT("FontName0"),		FontName0);
@@ -307,6 +315,7 @@ void MainFrame::SaveSettings(wxString& filename)
 	Settings->AddAttributeValue(wxT("Size"),		(long)SizeCtrl->GetValidValue());
 	Settings->AddAttributeValue(wxT("Tracking"),	(long)TrackingCtrl->GetValidValue());
 	Settings->AddAttributeValue(wxT("Leading"),		(long)LeadingCtrl->GetValidValue());
+	Settings->AddAttributeValue(wxT("Hinting"),		(long)HintingCtrl->GetValue());
 
 	// Convert UTF16 to hex, because wxExpr doesn't like non-ASCII
 	wxString PreviewText = PreviewTextCtrl->GetValue();
@@ -397,6 +406,7 @@ void MainFrame::GeneratePreview()
 	StyleSpinCtrl* SizeCtrl			= (StyleSpinCtrl*)wxWindow::FindWindowById(ID_Style_Size);
 	StyleSpinCtrl* TrackingCtrl		= (StyleSpinCtrl*)wxWindow::FindWindowById(ID_Style_Tracking);
 	StyleSpinCtrl* LeadingCtrl		= (StyleSpinCtrl*)wxWindow::FindWindowById(ID_Style_Leading);
+	wxCheckBox* HintingCtrl			= (wxCheckBox*)wxWindow::FindWindowById(ID_Style_Hinting);
 
 	try
 	{
@@ -404,7 +414,8 @@ void MainFrame::GeneratePreview()
 		FontRenderer Font(
 			FontFilename0.ToAscii(),
 			FontFilename1.ToAscii(),
-			SizeCtrl->GetValidValue() );
+			SizeCtrl->GetValidValue(),
+			HintingCtrl->GetValue() );
 
 		Font.Boldness = BoldnessCtrl->GetValidValue();
 		Font.Italicness = 5 * ItalicnessCtrl->GetValidValue();
@@ -473,6 +484,7 @@ void MainFrame::GenerateTexture(wxString TextureFilename, wxString FontDefnFilen
 	StyleSpinCtrl* SizeCtrl			= (StyleSpinCtrl*)wxWindow::FindWindowById(ID_Style_Size);
 	StyleSpinCtrl* TrackingCtrl		= (StyleSpinCtrl*)wxWindow::FindWindowById(ID_Style_Tracking);
 	StyleSpinCtrl* LeadingCtrl		= (StyleSpinCtrl*)wxWindow::FindWindowById(ID_Style_Leading);
+	wxCheckBox* HintingCtrl			= (wxCheckBox*)wxWindow::FindWindowById(ID_Style_Hinting);
 
 
 	// Work out what characters need to be included in the texture
@@ -503,7 +515,8 @@ void MainFrame::GenerateTexture(wxString TextureFilename, wxString FontDefnFilen
 		FontRenderer Font(
 			FontFilename0.ToAscii(),
 			FontFilename1.ToAscii(),
-			SizeCtrl->GetValidValue() );
+			SizeCtrl->GetValidValue(),
+			HintingCtrl->GetValue() );
 
 		Font.Boldness = BoldnessCtrl->GetValidValue();
 		Font.Italicness = 5 * ItalicnessCtrl->GetValidValue();

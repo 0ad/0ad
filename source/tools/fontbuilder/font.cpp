@@ -1,13 +1,14 @@
-// $Id: font.cpp,v 1.2 2004/06/19 12:56:09 philip Exp $
+// $Id: font.cpp,v 1.3 2004/07/16 15:32:34 philip Exp $
 
 #include "stdafx.h"
 
 #include "wx/wx.h"
 
 #include "font.h"
+#include "freetype/ttunpat.h"
 #include <math.h>
 
-FontRenderer::FontRenderer(const char* filename0, const char* filename1, int ptsize)
+FontRenderer::FontRenderer(const char* filename0, const char* filename1, int ptsize, bool unpatented_hinting)
 {
 	int error;
 	
@@ -24,9 +25,33 @@ FontRenderer::FontRenderer(const char* filename0, const char* filename1, int pts
 		throw "Error initialising FreeType";
 	}
 
+	FT_Parameter openparam = { FT_PARAM_TAG_UNPATENTED_HINTING, NULL };
+
+	FT_Open_Args args0 = {
+		FT_OPEN_PATHNAME | (unpatented_hinting ? FT_OPEN_PARAMS : 0),
+		NULL, NULL,
+		(FT_String*)filename0,
+		NULL, NULL,
+		1, &openparam
+	};
+	FT_Open_Args args1 = {
+		FT_OPEN_PATHNAME | (unpatented_hinting ? FT_OPEN_PARAMS : 0),
+		NULL, NULL,
+		(FT_String*)filename1,
+		NULL, NULL,
+		1, &openparam
+	};
+/*
 	error = FT_New_Face(
 		FontLibrary0,
 		filename0,
+		0, // index of face inside font file
+		&FontFace0
+	);
+*/
+	error = FT_Open_Face(
+		FontLibrary0,
+		&args0,
 		0, // index of face inside font file
 		&FontFace0
 	);
@@ -37,9 +62,17 @@ FontRenderer::FontRenderer(const char* filename0, const char* filename1, int pts
 		throw "Error loading primary font";
 	}
 
+/*
 	error = FT_New_Face(
 		FontLibrary1,
 		filename1,
+		0, // index of face inside font file
+		&FontFace1
+	);
+*/
+	error = FT_Open_Face(
+		FontLibrary1,
+		&args1,
 		0, // index of face inside font file
 		&FontFace1
 	);

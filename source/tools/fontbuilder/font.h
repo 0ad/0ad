@@ -1,4 +1,4 @@
-// $Id: font.h,v 1.1 2004/06/17 19:32:04 philip Exp $
+// $Id: font.h,v 1.2 2004/07/16 15:32:34 philip Exp $
 
 #ifndef _FONT_H_
 #define _FONT_H_
@@ -32,7 +32,7 @@ public:
 	// Two fonts are required - a primary (0) font which will be used first,
 	// and a secondary (1) font for filling in missing glyphs.
 	// (The secondary font should usually be Arial Unicode MS).
-	FontRenderer(const char* filename0, const char* filename1, int ptsize);
+	FontRenderer(const char* filename0, const char* filename1, int ptsize, bool unpatented_hinting);
 
 	~FontRenderer();
 	

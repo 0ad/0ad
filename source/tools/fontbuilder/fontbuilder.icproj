@@ -36,7 +36,7 @@
 					RuntimeLibrary="2"
 					BufferSecurityCheck="0"
 					ForceConformanceInForLoopScope="1"
-					OpenMPDirectives="1"/>
+					OpenMPDirectives="0"/>
 			</Tool>
 		</Configuration>
 	</Configurations>
@@ -164,6 +164,13 @@
 				Name="Release|Win32"/>
 		</File>
 		<File 
+			RelativePath=".\version.h">
+			<FileConfiguration 
+				Name="Debug|Win32"/>
+			<FileConfiguration 
+				Name="Release|Win32"/>
+		</File>
+		<File 
 			RelativePath=".\wxconfig.h">
 			<FileConfiguration 
 				Name="Debug|Win32"/>
@@ -186,13 +193,6 @@
 		</File>
 		<File 
 			RelativePath=".\platform\fontselect.h">
-			<FileConfiguration 
-				Name="Debug|Win32"/>
-			<FileConfiguration 
-				Name="Release|Win32"/>
-		</File>
-		<File 
-			RelativePath=".\version.h">
 			<FileConfiguration 
 				Name="Debug|Win32"/>
 			<FileConfiguration 

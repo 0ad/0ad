@@ -1,9 +1,11 @@
-// $Id: stdafx.h,v 1.5 2004/06/19 13:46:11 philip Exp $
+// $Id: stdafx.h,v 1.6 2004/07/16 15:32:34 philip Exp $
 
 // Precompiled headers
 
 #ifdef _WIN32
-# define HAVE_PCH
+# ifndef NDEBUG
+#  define HAVE_PCH
+# endif
 #endif
 
 #ifdef HAVE_PCH
@@ -57,11 +59,11 @@
 // Don't care about copy constructors / assignment operators
 #pragma warning (disable: 4511 4512)
 
+#endif // HAVE_PCH
+
 #ifdef __INTEL_COMPILER
 // Disable some of the excessively pedantic warnings again
 #pragma warning (disable: 193 373 444 981 383 1418)
 #endif
-
-#endif // HAVE_PCH
 
 #include "wx/defs.h"

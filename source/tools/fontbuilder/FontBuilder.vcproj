@@ -94,7 +94,7 @@
 				BufferSecurityCheck="FALSE"
 				EnableEnhancedInstructionSet="0"
 				ForceConformanceInForLoopScope="TRUE"
-				UsePrecompiledHeader="3"
+				UsePrecompiledHeader="0"
 				WarningLevel="4"
 				Detect64BitPortabilityProblems="FALSE"
 				DebugInformationFormat="3"/>
@@ -177,7 +177,7 @@
 					Name="Release|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="1"/>
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -212,7 +212,8 @@
 								ObjectFile="$(IntDir)/$(InputName)1.obj"/>
 						</FileConfiguration>
 						<FileConfiguration
-							Name="Release|Win32">
+							Name="Release|Win32"
+							ExcludedFromBuild="TRUE">
 							<Tool
 								Name="VCCLCompilerTool"
 								ObjectFile="$(IntDir)/$(InputName)1.obj"/>
