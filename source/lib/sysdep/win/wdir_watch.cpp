@@ -272,7 +272,7 @@ static int extract_events(Watch* w)
 
 		// convert filename from Windows BSTR
 		// (can't use wcstombs - FileName isn't 0-terminated)
-		std::string fn;
+		std::string fn = w->dir_name;
 		for(int i = 0; i < (int)fni->FileNameLength/2; i++)
 			fn += (char)fni->FileName[i];
 
