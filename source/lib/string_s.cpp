@@ -25,10 +25,6 @@
 #include <string.h>
 
 
-// these are already shipped with VC2005
-#if _MSC_VER < 1400
-
-
 // written against http://std.dkuug.dk/jtc1/sc22/wg14/www/docs/n1031.pdf .
 // optimized for size - e.g. strcpy calls strncpy with n = SIZE_MAX.
 
@@ -63,10 +59,15 @@
 #define ENFORCE(condition, retval) STMT(\
 	if(!(condition))                    \
 	{                                   \
-		/*assert2(condition);*/             \
+		assert2(condition);             \
 		return retval;                  \
 	}                                   \
 )
+
+
+// skip the functions on VC2005 (already provided there), but not our
+// self-test and the t* defines (needed for test).
+#if _MSC_VER < 1400
 
 
 // return length [in characters] of a string, not including the trailing
@@ -98,10 +99,10 @@ int tncpy_s(tchar* dst, size_t max_dst_chars, const tchar* src, size_t max_src_c
 {
 	// the MS implementation returns EINVAL and allows dst = 0 if
 	// max_dst_chars = max_src_chars = 0. no mention of this in
-	// NG1031 3.6.2.1.1, so don't emulate that behavior.
+	// 3.6.2.1.1, so don't emulate that behavior.
 	ENFORCE(dst != 0, EINVAL);
 	ENFORCE(max_dst_chars != 0, ERANGE);
-	*dst = '\0';
+	*dst = '\0';	// in case src ENFORCE is triggered
 	ENFORCE(src != 0, EINVAL);
 
 	// copy string until null character encountered or limit reached.
@@ -109,16 +110,15 @@ int tncpy_s(tchar* dst, size_t max_dst_chars, const tchar* src, size_t max_src_c
 	// speed (due to well-predicted jumps; we don't bother unrolling).
 	tchar* p = dst;
 	size_t chars_left = MIN(max_dst_chars, max_src_chars);
-copy_loop:
-	if(chars_left == 0)
-		goto hit_limit;
-	if((*p++ = *src++) == '\0')
-		return 0;
-	chars_left--;
-	goto copy_loop;
+	while(chars_left != 0)
+	{
+		// success: reached end of string normally.
+		if((*p++ = *src++) == '\0')
+			return 0;
+		chars_left--;
+	}
 
-hit_limit:
-	// which limit was responsible?
+	// which limit did we hit?
 	// .. dest, and last character wasn't null: overflow.
 	if(max_dst_chars <= max_src_chars)
 	{
@@ -352,7 +352,7 @@ STMT(                                                                        \
 	return 0;
 }
 
-static int dummy = test();
+//static int dummy = test();
 
 #endif	// #ifndef NDEBUG
 
