@@ -276,7 +276,7 @@ int Dir::add_subdir(const char* const fn)
 {
 	if(find_file(fn) || find_subdir(fn))
 	{
-		debug_warn("dir_add: file or subdirectory of same name already exists");
+		debug_warn("add_subdir: file or subdirectory of same name already exists");
 		return -1;
 	}
 
@@ -302,22 +302,27 @@ int Dir::add_file(const char* const fn, const FileLoc* const loc)
 {
 	if(find_subdir(fn))
 	{
-		debug_warn("dir_add: file of same name already exists");
+		debug_warn("add_file: file of same name already exists");
 		return -1;
 	}
 
-	// default pointer ctor sets it to 0 =>
-	// if fn wasn't already in the container, old_loc is 0.
+	const std::string fn_s(fn);
+
 	typedef const FileLoc* Data;
 		// for absolute clarity; the container holds const FileLoc* objects.
 		// operator[] returns a reference to that.
 		// need this typedef to work around a GCC bug?
-	const std::string fn_s(fn);
 	Data& old_loc = files[fn_s];
+		// default pointer ctor sets it to 0 =>
+		// if fn wasn't already in the container, old_loc is 0.
+
 	// old loc exists and is higher priority - keep it.
 	if(old_loc && old_loc->pri > loc->pri)
 		return 1;
 
+	// new loc is greater or equal priority - replace old loc.
+	// note: need to also replace if priority is the same, to allow multiple
+	// patch archives; the one with the "largest" filename trumps the others.
 	old_loc = loc;
 	return 0;
 }
