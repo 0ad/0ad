@@ -1,7 +1,7 @@
 /***************************************************************************************
 	AUTHOR:			John M. Mena
 	EMAIL:			JohnMMena@hotmail.com
-	FILE:			CConsole.h
+	FILE:			PlayerRenderer.cpp
 	CREATED:		1/23/05
 	COMPLETED:		NULL
 
@@ -124,8 +124,6 @@ void CPlayerRenderer::Render()
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
 
-
-	//TODO: Wireframe correctly for players
 	if (g_Renderer.m_ModelRenderMode==WIREFRAME) {
 		// switch wireframe off again
 		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
