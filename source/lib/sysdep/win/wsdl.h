@@ -74,6 +74,7 @@ extern void* SDL_GL_GetProcAddress(const char*);
 extern void SDL_GL_SwapBuffers();
 
 extern u32 SDL_GetTicks();
+extern void __stdcall SDL_Delay(u32 ms);
 
 extern SDL_sem* SDL_CreateSemaphore(int cnt);
 extern void __stdcall SDL_DestroySemaphore(SDL_sem*);
@@ -177,6 +178,14 @@ typedef struct
 }
 SDL_MouseButtonEvent;
 
+// SDL_ActiveEvent.state
+enum
+{
+	SDL_APPACTIVE     = 1,
+	SDL_APPMOUSEFOCUS = 2,
+	SDL_APPINPUTFOCUS = 4
+};
+
 typedef struct
 {
 	u8 gain;
@@ -210,6 +219,7 @@ SDL_Event;
 
 
 extern int SDL_EnableUNICODE(int enable);
+extern int SDL_WaitEvent(SDL_Event*);
 extern int SDL_PollEvent(SDL_Event* ev);
 
 extern void SDL_WM_SetCaption(const char *title, const char *icon);

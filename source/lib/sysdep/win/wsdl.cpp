@@ -54,6 +54,9 @@ WIN_REGISTER_FUNC(wsdl_shutdown);
 /* state */
 static bool app_active;		/* is window active & on top?
 							   if not, msg loop should yield */
+	// responsibility for yielding lies with SDL apps -
+	// they control the main loop.
+
 static bool fullscreen;		/* in fullscreen mode?
 							   if so, restore mode when app is deactivated */
 
@@ -97,7 +100,7 @@ static LRESULT CALLBACK wndproc(HWND hWnd, unsigned int uMsg, WPARAM wParam, LPA
 		app_active = (wParam & 0xffff) != 0;
 
 		gamma_swap(!app_active);
-
+debug_out("active=%d\n", app_active);
 		if(fullscreen)
 		{
 			if(app_active)
@@ -234,12 +237,10 @@ inline SDLKey vkmap(int vk)
 	return VK_SDLKMap[vk];
 }
 
+
 // note: keysym.unicode is only returned for SDL_KEYDOWN, and is otherwise 0.
 int SDL_PollEvent(SDL_Event* ev)
 {
-	if(!ev)
-		return -1;
-
 	//
 	// buffer for unicode support / dead char
 	//
@@ -334,12 +335,6 @@ return_char:
 			ev->key.keysym.unicode = 0;
 			return 1;
 
-		case WM_ACTIVATE:
-			ev->type = SDL_ACTIVE;
-			ev->active.gain = app_active;
-			ev->active.state = 0;
-			return 1;
-
 		case WM_MOUSEWHEEL:
 			sdl_btn = (msg.wParam & BIT(31))? SDL_BUTTON_WHEELUP : SDL_BUTTON_WHEELDOWN;
 			break;	// event filled in mouse code below
@@ -371,6 +366,21 @@ return_char:
 		ev->type = SDL_MOUSEMOTION;
 		ev->motion.x = mouse_x = (u16)p.x;
 		ev->motion.y = mouse_y = (u16)p.y;
+		return 1;
+	}
+
+	// app activate
+	// WM_ACTIVATE is only sent to the wndproc, apparently,
+	// so we have to poll here.
+	static bool last_app_active = true;
+		// true => suppress first event (as documented by SDL)
+	if(app_active != last_app_active)
+	{
+		last_app_active = app_active;
+	
+		ev->type = SDL_ACTIVE;
+		ev->active.state = SDL_APPACTIVE;
+		ev->active.gain = (u8)app_active;
 		return 1;
 	}
 
@@ -713,6 +723,13 @@ __declspec(naked) u32 SDL_GetTicks()
 {
 __asm jmp	dword ptr [GetTickCount]
 }
+
+
+__declspec(naked) void __stdcall SDL_Delay(Uint32 ms)
+{
+__asm jmp	dword ptr [Sleep]
+}
+
 
 
 void* SDL_GL_GetProcAddress(const char* name)
