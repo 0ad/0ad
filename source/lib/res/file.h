@@ -63,14 +63,6 @@ enum
 };
 
 
-// keep in sync with zip.cpp and vfs.cpp *_CB_FLAGS!
-enum FILE_CB_FLAGS
-{
-	// location
-	LOC_DIR = BIT(0)
-};
-
-
 // convert to/from our portable path representation,
 // e.g. for external libraries that require the real filename.
 // note: also removes/adds current directory.
@@ -92,12 +84,12 @@ extern int file_make_portable_path(const char* n_path, char* path);
 extern int file_rel_chdir(const char* argv0, const char* rel_path);
 
 
-typedef int(*FileCB)(const char* const name, const uint flags, const ssize_t size, const uintptr_t user);
+// called for each entry in a directory.
+// name is the complete path (see below); it's a directory iff size < 0.
+typedef int(*FileCB)(const char* const name, const ssize_t size, const uintptr_t user);
 
-// we give the callback the directory-entry-name only - not the
-// absolute path, nor <dir> prepended.
-//
-// not recursive - returns only the ents in <dir> itself!
+// for all files and dirs in <dir> (but not its subdirs!):
+// call <cb>, passing <user> and the entries's name (not path!)
 extern int file_enum(const char* dir, FileCB cb, uintptr_t user);
 
 extern int file_stat(const char* path, struct stat*);

@@ -216,11 +216,10 @@ fail:
 struct DirEnt
 {
 	const std::string name;
-	const uint flags;
 	const off_t size;
 
-	DirEnt(const char* const _name, const uint _flags, const off_t _size)
-		: name(_name), flags(_flags), size(_size) {}
+	DirEnt(const char* const _name, const off_t _size)
+		: name(_name), size(_size) {}
 
 private:
 	DirEnt& operator=(const DirEnt&);
@@ -233,18 +232,24 @@ typedef DirEnts::const_iterator DirEntIt;
 static bool dirent_less(const DirEnt* const d1, const DirEnt* const d2)
 	{ return d1->name.compare(d2->name) < 0; }
 
-// we give the callback the directory-entry-name only - not the
-// absolute path, nor <dir> prepended.
-// rationale: some users don't need it,
-//   and would need to strip it. there are not enough users requiring it to
-//   justify that. this routine does actually generate the absolute path
-//   for use with stat, but in native form - can't use that.
+
+// for all files and dirs in <dir> (but not its subdirs!):
+// call <cb>, passing <user> and the entries's name (not path!)
 //
-// not recursive - returns only the ents in <dir> itself!
+// rationale:
+//   this makes file_enum and zip_enum slightly incompatible, since zip_enum
+//   returns the full path. that's necessary because VFS add_dirent_cb
+//   has no other way of determining what VFS dir a Zip file is in,
+//   since zip_enum enumerates all files in the archive (not only those
+//   in a given dir). no big deal though, since add_dirent_cb has to
+//   special-case Zip files anyway.
+//   the advantage here is simplicity, and sparing callbacks the trouble
+//   of converting from/to native path (we just give 'em the dirent name).
 int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 {
-	char n_path[PATH_MAX+1];
-	n_path[PATH_MAX] = '\0';
+	// full path for stat
+	char n_path[PATH_MAX];
+	n_path[PATH_MAX-1] = '\0';
 		// will append filename to this, hence "path".
 		// 0-terminate simplifies filename strncpy below.
 	CHECK_ERR(convert_path(n_path, dir));
@@ -271,7 +276,7 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 	{
 		const char* fn = os_ent->d_name;
 
-		strncpy(fn_start, fn, PATH_MAX-n_path_len);
+		strncpy(fn_start, fn, PATH_MAX-n_path_len-1);
 			// stat needs the full path. this is easier than changing
 			// directory every time, and should be fast enough.
 			// BTW, direct strcpy is faster than path_append -
@@ -288,7 +293,6 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 			continue;
 		}
 
-		uint flags = 0;
 		off_t size = s.st_size;
 
 		// dir
@@ -298,14 +302,13 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 			if(fn[0] == '.' && (fn[1] == '\0' || (fn[1] == '.' && fn[2] == '\0')))
 				continue;
 
-			flags |= LOC_DIR;
 			size = -1;
 		}
 		// skip if neither dir nor file
 		else if(!S_ISREG(s.st_mode))
 			continue;
 
-		const DirEnt* const ent = new DirEnt(fn, flags, size);
+		const DirEnt* const ent = new DirEnt(fn, size);
 		dirents.push_back(ent);
 	}
 	closedir(os_dir);
@@ -317,9 +320,8 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 	{
 		const DirEnt* const ent = *it;
 		const char* name_c = ent->name.c_str();
-		const uint flags   = ent->flags;
 		const ssize_t size = ent->size;
-		ret = cb(name_c, flags, size, user);
+		ret = cb(name_c, size, user);
 		if(ret < 0)
 			if(cb_err == 0)
 				cb_err = ret;
@@ -939,17 +941,17 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 			if(ret < 0)
 				err = (ssize_t)ret;
 
-				// first time; skip past padding
-				void* data = block;
-				if(raw_transferred_cnt == 0)
-				{
-					(char*&)data += lead_padding;
-					size -= lead_padding;
-				}
+						// first time; skip past padding
+						void* data = block;
+						if(raw_transferred_cnt == 0)
+						{
+							(char*&)data += lead_padding;
+							size -= lead_padding;
+						}
 
-				// don't include trailing padding
-				if(raw_transferred_cnt + size > data_size)
-					size = data_size - raw_transferred_cnt;
+						// don't include trailing padding
+						if(raw_transferred_cnt + size > data_size)
+							size = data_size - raw_transferred_cnt;
 
 			//// if size comes out short, we must be at EOF
 
