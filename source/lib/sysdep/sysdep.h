@@ -26,12 +26,16 @@ extern void debug_break();
 // shown in a dialog, which offers
 //   continue, break, suppress (ignore this assert), and exit
 /*
- * return values:
- *   0 - continue
- *   1 - suppress
- *   2 - break
- */
-extern int debug_assert_failed(const char* file, int line, const char* expr);
+* return values:
+*   0 - continue
+*   1 - suppress
+*   2 - break
+*/
+
+extern int debug_assert_failed(const char* source_file, int line, const char* expr);
+
+extern int debug_write_crashlog(const char* file);
+
 
 extern void check_heap();
 

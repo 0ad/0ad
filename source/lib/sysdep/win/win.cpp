@@ -321,8 +321,10 @@ extern u64 rdtsc();
 extern u64 PREVTSC;
 u64 PREVTSC;
 
+
 int entry()
 {
+
 #ifdef _MSC_VER
 u64 TSC=rdtsc();
 debug_out(

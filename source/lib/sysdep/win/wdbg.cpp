@@ -611,10 +611,15 @@ static void set_exception_handler()
 }
 
 
+static void init()
+{
+	ONCE(dbg_init());
+}
+
 
 int debug_assert_failed(const char* file, int line, const char* expr)
 {
-	ONCE(dbg_init());
+	init();
 
 	int pos = swprintf(buf, 1000, L"Assertion failed in %hs, line %d: %hs\r\n", file, line, expr);
 	walk_stack(2, buf+pos);
@@ -635,3 +640,59 @@ static int wdbg_init()
 #pragma data_seg(".LIB$WIB")	// first
 WIN_REGISTER_FUNC(wdbg_init);
 #pragma data_seg()
+
+
+// from http://www.codeproject.com/debug/XCrashReportPt3.asp
+static void DumpMiniDump(HANDLE hFile, PEXCEPTION_POINTERS excpInfo)
+{
+/*
+	if (excpInfo == NULL) 
+	{
+		// Generate exception to get proper context in dump
+		__try 
+		{
+			OutputDebugString("RaiseException for MinidumpWriteDump\n");
+			RaiseException(EXCEPTION_BREAKPOINT, 0, 0, NULL);
+		} 
+		__except(DumpMiniDump(hFile, GetExceptionInformation()), EXCEPTION_CONTINUE_EXECUTION) 
+		{
+		}
+	}
+	else
+	{*/
+		MINIDUMP_EXCEPTION_INFORMATION eInfo;
+		eInfo.ThreadId = GetCurrentThreadId();
+		eInfo.ExceptionPointers = excpInfo;
+		eInfo.ClientPointers = FALSE;
+
+		// note:  MiniDumpWithIndirectlyReferencedMemory does not work on Win98
+		_MiniDumpWriteDump(
+			GetCurrentProcess(),
+			GetCurrentProcessId(),
+			hFile,
+			MiniDumpNormal,
+			excpInfo ? &eInfo : NULL,
+			NULL,
+			NULL);
+//	}
+}
+
+int debug_write_crashlog(const char* file)
+{
+	init();
+
+	int len = swprintf(buf, 1000, L"Undefined state reached.\r\n");
+	walk_stack(2, buf+len);
+
+	FILE* f = fopen(file, "w");
+	fwrite(buf, pos-buf, 2, f);
+	fclose(f);
+
+	char dmp_file[MAX_PATH];
+	strcpy(dmp_file, file);
+	strcat(dmp_file, ".mdmp");
+	HANDLE hFile = CreateFile(dmp_file, GENERIC_WRITE, FILE_SHARE_WRITE, 0, CREATE_ALWAYS, 0, 0);
+	DumpMiniDump(hFile, 0);
+
+	return 0;
+}

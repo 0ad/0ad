@@ -155,14 +155,14 @@ static int write_sys_info();
 // TODO: load from language file
 // these will need to be variables; better to make an index into string table
 // (as with errors)? if it's a string, what happens if lang file load failed?
-#define STR_UNHANDLED_EXCEPTION L"unhandled exception"
+#define STR_UNHANDLED_EXCEPTION L"unhandled exception. crash log has been written; please report at bugs.wildfiregames.com"
 #define STR_SDL_INIT_FAILED     L"SDL library initialization failed: %hs\n"
 #define STR_SET_VMODE_FAILED    L"could not set %dx%d graphics mode: %hs\n"
 #define STR_OGL_EXT_MISSING     L"required ARB_multitexture or ARB_texture_env_combine extension not available"
 #define STR_MAP_LOAD_FAILED     L"Failed to load map %hs\n"
 
 
-static void Die(int err, const wchar_t* fmt, ...)
+void Die(int err, const wchar_t* fmt, ...)
 {
 	va_list args;
 	va_start(args, fmt);
@@ -179,6 +179,7 @@ static void Die(int err, const wchar_t* fmt, ...)
 	wdisplay_msg(L"0ad", buf);
 
 	write_sys_info();
+	debug_write_crashlog("crashlog.txt");
 
 	exit(EXIT_FAILURE);
 }
