@@ -4,6 +4,12 @@
 
 <sprites>
 
+        <!--
+        ==========================================
+        TEMPORARY IMAGES
+        ==========================================
+        -->
+
         <!-- Exit Button -->
         <sprite name="exit_sprite">
                 <image texture="exit_button_16.png" texture-size="0 0 16 16" size="0 0 100% 100%" />
@@ -56,22 +62,225 @@
         </sprite>
         
         <sprite name="icon_command">
-                <image texture="ui_session_panel_tabs_command_bt.png" texture-size="0 0 32 32" size="0 0 32 32" />
+                <image texture="ui_session_panel_tabs_command_bt_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
         </sprite>
         
         <sprite name="icon_buildcivil">
-                <image texture="ui_session_panel_tabs_buildcivil_bt.png" texture-size="0 0 32 32" size="0 0 32 32" />
+                <image texture="ui_session_panel_tabs_buildcivil_bt_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
         </sprite>
 
         <sprite name="icon_buildmil">
-                <image texture="ui_session_panel_tabs_buildmil_bt.png" texture-size="0 0 32 32" size="0 0 32 32" />
+                <image texture="ui_session_panel_tabs_buildmil_bt_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
         </sprite>
         
         <sprite name="icon_formations">
-                <image texture="ui_session_panel_tabs_formations_bt.png" texture-size="0 0 32 32" size="0 0 32 32" />
+                <image texture="ui_session_panel_tabs_formations_bt_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+        </sprite>
+
+        <sprite name="icon_research">
+                <image texture="ui_session_panel_tabs_research_bt_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+        </sprite>
+
+        <!--
+        ==========================================
+        RESOURCE ICONS
+        ==========================================
+        -->
+
+        <sprite name="resource_food">
+                <image texture="ui_icon_resource_food_16.png" texture-size="0 0 16 16" size="0 0 16 16" />
+        </sprite>
+
+        <sprite name="resource_wood">
+                <image texture="ui_icon_resource_wood_16.png" texture-size="0 0 16 16" size="0 0 16 16" />
+        </sprite>
+
+        <sprite name="resource_stone">
+                <image texture="ui_icon_resource_stone_16.png" texture-size="0 0 16 16" size="0 0 16 16" />
+        </sprite>
+
+        <sprite name="resource_ore">
+                <image texture="ui_icon_resource_ore_16.png" texture-size="0 0 16 16" size="0 0 16 16" />
+        </sprite>
+
+        <sprite name="resource_population">
+                <image texture="ui_icon_resource_population_16.png" texture-size="0 0 16 16" size="0 0 16 16" />
+        </sprite>
+
+        <!--
+        ==========================================
+        STATISTIC ICONS
+        ==========================================
+        -->
+
+        <sprite name="statistic_attack">
+                <image texture="ui_icon_statistic_attack_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+        </sprite>
+
+        <sprite name="statistic_accuracy">
+                <image texture="ui_icon_statistic_accuracy_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+        </sprite>
+
+        <sprite name="statistic_los">
+                <image texture="ui_icon_statistic_los_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+        </sprite>
+
+        <sprite name="statistic_pierce">
+                <image texture="ui_icon_statistic_pierce_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+        </sprite>
+
+        <sprite name="statistic_hack">
+                <image texture="ui_icon_statistic_hack_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+        </sprite>
+
+        <sprite name="statistic_speed">
+                <image texture="ui_icon_statistic_speed_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+        </sprite>
+
+        <!--
+        ==========================================
+        UNIT PORTRAIT ICONS
+        ==========================================
+        -->
+
+	<!-- The Dude -->
+        <sprite name="portrait_unit_dude_lrg">
+		<image texture="ui_portrait_unit_dude_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+        </sprite>
+        <sprite name="portrait_unit_dude_sml">
+		<image texture="ui_portrait_unit_dude_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+        </sprite>
+        <sprite name="portrait_unit_dude_lrg_over">
+		<image texture="ui_portrait_unit_dude_64_over.png" texture-size="0 0 64 64" size="0 0 64 64" />
+        </sprite>
+        <sprite name="portrait_unit_dude_sml_over">
+		<image texture="ui_portrait_unit_dude_32_over.png" texture-size="0 0 32 32" size="0 0 32 32" />
         </sprite>
         
-        <!-- Generic buttons -->
+	<!-- The Dudette -->
+        <sprite name="portrait_unit_dudette_lrg">
+		<image texture="ui_portrait_unit_dudette_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+        </sprite>
+        <sprite name="portrait_unit_dudette_sml">
+		<image texture="ui_portrait_unit_dudette_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+        </sprite>
+
+	<!-- The Dudette -->
+        <sprite name="portrait_unit_dudette_lrg">
+		<image texture="ui_portrait_unit_dudette_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+        </sprite>
+        <sprite name="portrait_unit_dudette_sml">
+		<image texture="ui_portrait_unit_dudette_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+        </sprite>
+
+        <!--
+        ==========================================
+        STRUCTURE PORTRAIT ICONS
+        ==========================================
+        -->
+
+	<!-- Hellenic Civic Centre -->
+        <sprite name="portrait_structure_helecc_lrg">
+		<image texture="ui_portrait_structure_helecc_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+        </sprite>
+        <sprite name="portrait_structure_helecc_sml">
+		<image texture="ui_portrait_structure_helecc_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+        </sprite>
+
+	<!-- Hellenic House -->
+        <sprite name="portrait_structure_heleho_lrg">
+		<image texture="ui_portrait_structure_heleho_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+        </sprite>
+        <sprite name="portrait_structure_heleho_sml">
+		<image texture="ui_portrait_structure_heleho_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+        </sprite>
+
+        <!--
+        ==========================================
+        TECH PORTRAIT ICONS
+        ==========================================
+        -->
+
+	<!-- Axe Tech -->
+        <sprite name="portrait_tech_axe_lrg">
+		<image texture="ui_portrait_tech_axe_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+        </sprite>
+        <sprite name="portrait_tech_axe_sml">
+		<image texture="ui_portrait_tech_axe_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+        </sprite>
+
+	<!-- Tree Tech -->
+        <sprite name="portrait_tech_tree_lrg">
+		<image texture="ui_portrait_tech_tree_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+        </sprite>
+        <sprite name="portrait_tech_tree_sml">
+		<image texture="ui_portrait_tech_tree_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+        </sprite>
+
+	<!-- Wood Tech -->
+        <sprite name="portrait_tech_wood_lrg">
+		<image texture="ui_portrait_tech_wood_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+        </sprite>
+        <sprite name="portrait_tech_wood_sml">
+		<image texture="ui_portrait_tech_wood_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+        </sprite>
+
+        <!--
+        ==========================================
+        FLORA PORTRAIT ICONS
+        ==========================================
+        -->
+
+	<!-- Deciduous Tree -->
+        <sprite name="portrait_flora_deciduotree_lrg">
+		<image texture="ui_portrait_flora_deciduotree_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+        </sprite>
+        <sprite name="portrait_flora_deciduotree_sml">
+		<image texture="ui_portrait_flora_deciduotree_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+        </sprite>
+
+        <!--
+        ==========================================
+        ACTION PORTRAIT ICONS
+        ==========================================
+        -->
+
+	<!-- Build Action -->
+        <sprite name="portrait_action_build_lrg">
+		<image texture="ui_portrait_action_build_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+        </sprite>
+        <sprite name="portrait_action_build_sml">
+		<image texture="ui_portrait_action_build_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+        </sprite>
+
+	<!-- Chop Action -->
+        <sprite name="portrait_action_chop_lrg">
+		<image texture="ui_portrait_action_chop_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+        </sprite>
+        <sprite name="portrait_action_chop_sml">
+		<image texture="ui_portrait_action_chop_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+        </sprite>
+
+        <!--
+        ==========================================
+        MISCELLANEOUS PORTRAIT ICONS
+        ==========================================
+        -->
+
+	<!-- Placeholder for Missing Portrait -->
+        <sprite name="portrait_unknown_lrg">
+		<image texture="ui_portrait_unknown_64.png" texture-size="0 0 64 64" size="0 0 64 64" />
+        </sprite>
+        <sprite name="portrait_unknown_sml">
+		<image texture="ui_portrait_unknown_32.png" texture-size="0 0 32 32" size="0 0 32 32" />
+        </sprite>
+
+        <!--
+        ==========================================
+        GENERIC BUTTONS
+        ==========================================
+        -->
+
         <sprite name="sprite1">
                 <!-- Starting with top left corner continuing in a clockwise manner -->
                 <image backcolor="255 255 255" size="0 1 1 100%-1" />
@@ -158,28 +367,6 @@
         <sprite name="scroll-bar">
                 <!--<image backcolor="128 128 128" size="0 0 100% 100%" />-->
                 <image backcolor="150 105 180" size="2 0 100%-2 100%" z-level="1" />
-        </sprite>
-
-        <!--
-        ==========================================
-        PORTRAIT ICONS
-        ==========================================
-        -->
-
-        <sprite name="portrait_unit_dude">
-		<image texture="ui_portrait_unit_dude.png" texture-size="0 0 64 64" size="0 0 64 64" />
-        </sprite>
-
-        <sprite name="portrait_unit_dude_sml">
-		<image texture="ui_portrait_unit_dude_sml.png" texture-size="0 0 32 32" size="0 0 32 32" />
-        </sprite>
-
-        <sprite name="portrait_unit_dude_over">
-		<image texture="ui_portrait_unit_dude_over.png" texture-size="0 0 64 64" size="0 0 64 64" />
-        </sprite>
-
-        <sprite name="portrait_unit_dude_sml_over">
-		<image texture="ui_portrait_unit_dude_sml_over.png" texture-size="0 0 32 32" size="0 0 32 32" />
         </sprite>
 
 </sprites>
