@@ -313,7 +313,7 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 				while (current != m_CharacterPositions.end())
 				{
 					if (m_iBufferPos >= current->m_ListStart &&
-						m_iBufferPos <= current->m_ListStart+current->m_ListOfX.size())
+						m_iBufferPos <= current->m_ListStart+(int)current->m_ListOfX.size())
 						break;
 					
 					++current;
@@ -361,7 +361,7 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 				while (current != m_CharacterPositions.end())
 				{
 					if (m_iBufferPos >= current->m_ListStart &&
-						m_iBufferPos <= current->m_ListStart+current->m_ListOfX.size())
+						m_iBufferPos <= current->m_ListStart+(int)current->m_ListOfX.size())
 						break;
 					
 					++current;
@@ -421,7 +421,7 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 				// check max length
 				int max_length;
 				GUI<int>::GetSetting(this, "max_length", max_length);
-				if (max_length != 0 && pCaption->Length() >= max_length)
+				if (max_length != 0 && (int)pCaption->Length() >= max_length)
 					break;
 
 				m_WantedX=0.f;
@@ -663,8 +663,6 @@ void CInput::Draw()
 			scroll = GetScrollBar(0).GetPos();
 		}
 
-		CFont *font=NULL;
-
 		glEnable(GL_TEXTURE_2D);
 		glDisable(GL_CULL_FACE);
 
@@ -674,8 +672,8 @@ void CInput::Draw()
 
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
-		font = new CFont(font_name);
-		font->Bind();
+		CFont font(font_name);
+		font.Bind();
 
 		glPushMatrix();
 
@@ -695,8 +693,8 @@ void CInput::Draw()
 		}
 
 		// Get the height of this font.
-		float h = (float)font->GetHeight();
-		float ls = (float)font->GetLineSpacing();
+		float h = (float)font.GetHeight();
+		float ls = (float)font.GetLineSpacing();
 
 		// Set the Z to somewhat more, so we can draw a selected area between the
 		//  the control and the text.
@@ -763,7 +761,7 @@ void CInput::Draw()
 				}
 
 				// We might as well use 'i' here to iterate, because we need it
-				for (int i=0; i < it->m_ListOfX.size()+2; ++i)
+				for (size_t i=0; i < it->m_ListOfX.size()+2; ++i)
 				{
 					if (it->m_ListStart + i == VirtualFrom)
 					{
@@ -790,7 +788,7 @@ void CInput::Draw()
 							if (it->m_ListStart + i != VirtualFrom)
 							{
 								// and actually add a white space! yes, this is done in any common input
-								x_pointer += (float)font->GetCharacterWidth(wchar_t(' '));
+								x_pointer += (float)font.GetCharacterWidth(L' ');
 							}
 							// TODO: Make sure x_pointer isn't sticking out of the edge!
 						}
@@ -848,7 +846,7 @@ void CInput::Draw()
 					}
 
 					if (i < it->m_ListOfX.size())
-                        x_pointer += (float)font->GetCharacterWidth((*pCaption)[it->m_ListStart + i]);
+                        x_pointer += (float)font.GetCharacterWidth((*pCaption)[it->m_ListStart + i]);
 				}
 
 				if (done)
@@ -893,7 +891,7 @@ void CInput::Draw()
 					glTranslatef(-(float)(int)m_HorizontalScroll, 0.f, 0.f);
 
 				// We might as well use 'i' here, because we need it
-				for (int i=0; i < it->m_ListOfX.size()+1; ++i)
+				for (size_t i=0; i < it->m_ListOfX.size()+1; ++i)
 				{
 					if (!multiline && i < it->m_ListOfX.size())
 					{
@@ -928,8 +926,8 @@ void CInput::Draw()
 
 					// Drawing selected area
 					if (SelectingText() && 
-						it->m_ListStart + i >= VirtualFrom &&
-						it->m_ListStart + i < VirtualTo &&
+						it->m_ListStart + (int)i >= VirtualFrom &&
+						it->m_ListStart + (int)i < VirtualTo &&
 						using_selected_color == false)
 					{
 						using_selected_color = true;
@@ -966,8 +964,6 @@ void CInput::Draw()
 		glPopMatrix();
 
 		glDisable(GL_TEXTURE_2D);
-
-		delete font;
 	}
 }
 
@@ -996,10 +992,9 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 	int to;
 
 	if (to_before == -1)
-		to = caption.Length();
+		to = (int)caption.Length();
 
-	CFont *font=NULL;
-	font = new CFont(font_name);
+	CFont font(font_name);
 
 	list<SRow>::iterator current_line;
 
@@ -1072,7 +1067,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 				if (destroy_row_to != m_CharacterPositions.end())
 				{
 					check_point_row_start = destroy_row_to->m_ListStart;
-					check_point_row_end = check_point_row_start + destroy_row_to->m_ListOfX.size();
+					check_point_row_end = check_point_row_start + (int)destroy_row_to->m_ListOfX.size();
 					if (destroy_row_to->m_ListOfX.empty())
 						++check_point_row_end;
 				}
@@ -1111,7 +1106,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 		if (destroy_row_to != m_CharacterPositions.end())
             to = destroy_row_to->m_ListStart; // notice it will iterate [from, to), so it will never reach to.
 		else
-			to = caption.Length();
+			to = (int)caption.Length();
 
 
 		// Setup the first row
@@ -1161,7 +1156,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 
 	for (int i=from; i<to; ++i)
 	{
-		if (caption[i] == wchar_t('\n') && multiline)
+		if (caption[i] == L'\n' && multiline)
 		{
 			if (i==to-1 && to != caption.Length())
 				break; // it will be added outside
@@ -1180,11 +1175,11 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 		}
 		else
 		{
-			if (caption[i] == wchar_t(' ')/* || TODO Gee (2004-10-13): the '-' disappears, fix.
-				caption[i] == wchar_t('-')*/)
+			if (caption[i] == L' '/* || TODO Gee (2004-10-13): the '-' disappears, fix.
+				caption[i] == L'-'*/)
 				last_word_started = i+1;
 
-			x_pos += (float)font->GetCharacterWidth(caption[i]);
+			x_pos += (float)font.GetCharacterWidth(caption[i]);
 
 			if (x_pos >= GetTextAreaWidth() && multiline)
 			{
@@ -1279,7 +1274,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 						if (destroy_row_to != m_CharacterPositions.end())
 						{
 							check_point_row_start = destroy_row_to->m_ListStart;
-							check_point_row_end = check_point_row_start + destroy_row_to->m_ListOfX.size();
+							check_point_row_end = check_point_row_start + (int)destroy_row_to->m_ListOfX.size();
 							if (destroy_row_to->m_ListOfX.empty())
 								++check_point_row_end;
 						}
@@ -1316,7 +1311,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 				if (destroy_row_to != m_CharacterPositions.end())
 					to = destroy_row_to->m_ListStart; // notice it will iterate [from, to[, so it will never reach to.
 				else
-					to = caption.Length();
+					to = (int)caption.Length();
 
 
 				// Set current line, new rows will be added before current_line, so
@@ -1357,11 +1352,9 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 	// Update scollbar
 	if (scrollbar)
 	{
-		GetScrollBar(0).SetScrollRange( m_CharacterPositions.size() * font->GetLineSpacing() + buffer_zone*2.f );
+		GetScrollBar(0).SetScrollRange( m_CharacterPositions.size() * font.GetLineSpacing() + buffer_zone*2.f );
 		GetScrollBar(0).SetScrollSpace( m_CachedActualSize.GetHeight() );
 	}
-	
-	delete font;
 }
 
 int CInput::GetMouseHoveringTextPosition()
@@ -1398,12 +1391,10 @@ int CInput::GetMouseHoveringTextPosition()
 		CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
 
 		// Now get the height of the font.
-		CFont *font=NULL;
 						// TODO: Get the real font
-		font = new CFont(font_name);
-		float spacing = font->GetLineSpacing();
-		float height = font->GetHeight();
-		delete font;
+		CFont font(font_name);
+		float spacing = (float)font.GetLineSpacing();
+		float height = (float)font.GetHeight();
 
 		// Change mouse position relative to text.
 		mouse -= m_CachedActualSize.TopLeft();
@@ -1417,8 +1408,8 @@ int CInput::GetMouseHoveringTextPosition()
 		if (row < 0)
 			row = 0;
 
-		if (row > m_CharacterPositions.size()-1)
-			row = m_CharacterPositions.size()-1;
+		if (row > (int)m_CharacterPositions.size()-1)
+			row = (int)m_CharacterPositions.size()-1;
 
 		// TODO Gee (2004-11-21): Okay, I need a 'list' for some reasons, but I would really like to
 		//  be able to get the specific element here. This is hopefully a temporary hack.
@@ -1548,12 +1539,10 @@ void CInput::UpdateAutoScroll()
 		scroll = GetScrollBar(0).GetPos();
 		
 		// Now get the height of the font.
-		CFont *font=NULL;
 						// TODO: Get the real font
-		font = new CFont(font_name);
-		float spacing = font->GetLineSpacing();
-		//float height = font->GetHeight();
-		delete font;
+		CFont font(font_name);
+		float spacing = (float)font.GetLineSpacing();
+		//float height = font.GetHeight();
 
 		// TODO Gee (2004-11-21): Okay, I need a 'list' for some reasons, but I would really like to
 		//  be able to get the specific element here. This is hopefully a temporary hack.
@@ -1596,7 +1585,7 @@ void CInput::UpdateAutoScroll()
 		{
 
 			// Get position of m_iBufferPos
-			if (m_CharacterPositions.begin()->m_ListOfX.size() >= m_iBufferPos &&
+			if ((int)m_CharacterPositions.begin()->m_ListOfX.size() >= m_iBufferPos &&
 				m_iBufferPos != 0)
 				x_position = m_CharacterPositions.begin()->m_ListOfX[m_iBufferPos-1];
 
