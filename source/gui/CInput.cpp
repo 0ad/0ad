@@ -199,7 +199,7 @@ void CInput::HandleMessage(const SGUIMessage &Message)
 		// Update scroll-bar
 		// TODO Gee: (2004-09-01) Is this really updated each time it should?
 		if (scrollbar && 
-		    (Message.value == CStr("size") || Message.value == CStr("z") ||
+			(Message.value == CStr("size") || Message.value == CStr("z") ||
 			 Message.value == CStr("absolute")))
 		{
 			
@@ -242,8 +242,8 @@ void CInput::HandleMessage(const SGUIMessage &Message)
 		CFont *font=NULL;
 		font = new CFont("Console");
 
-		float spacing = font->GetLineSpacing();
-		float height = font->GetHeight();
+		float spacing = (float)font->GetLineSpacing();
+		float height = (float)font->GetHeight();
 
 		// Change mouse position relative to text.
 		//  Include scrolling.
@@ -253,15 +253,14 @@ void CInput::HandleMessage(const SGUIMessage &Message)
 		//	m_iBufferPos = pCaption->Length();
 		int row = (int)(mouse.y / spacing);//m_CharachterPositions.size()
 
-		if (row > m_CharacterPositions.size()-1)
-			row = m_CharacterPositions.size()-1;
+		if (row > (int)m_CharacterPositions.size()-1)
+			row = (int)m_CharacterPositions.size()-1;
 
 		// TODO Gee (2004-11-21): Okay, I need a 'list' for some reasons, but I would really
 		//  be able to get the specific element here. This is hopefully a temporary hack.
 
 		list<SRow>::iterator current = m_CharacterPositions.begin();
-		for (int i=0; i<row; ++i)
-			++current;
+		advance(current, row);
 
 		//m_iBufferPos = m_CharacterPositions.get.m_ListStart;
 		m_iBufferPos = current->m_ListStart;
@@ -385,9 +384,6 @@ void CInput::Draw()
 		glTranslatef((GLfloat)int(m_CachedActualSize.left), (GLfloat)int(m_CachedActualSize.top+h), bz);
 		glColor4f(1.f, 1.f, 1.f, 1.f);
 		
-		// U+FE33: PRESENTATION FORM FOR VERTICAL LOW LINE
-		// (sort of like a | which is aligned to the left of most characters)
-
 		float buffered_y=0.f;
 
 		for (list<SRow>::const_iterator it = m_CharacterPositions.begin();
@@ -399,10 +395,12 @@ void CInput::Draw()
 
 			glPushMatrix();
 			// We might as well use 'i' here, because we need it
-			for (int i=0; i < it->m_ListOfX.size(); ++i)
+			for (int i=0; i < (int)it->m_ListOfX.size(); ++i)
 			{
 				if (it->m_ListStart + i == m_iBufferPos)
 				{
+					// U+FE33: PRESENTATION FORM FOR VERTICAL LOW LINE
+					// (sort of like a | which is aligned to the left of most characters)
 					glPushMatrix();
 					glwprintf(L"%lc", 0xFE33);
 					glPopMatrix();
@@ -442,7 +440,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 	int to;
 
 	if (to_before == -1)
-		to = caption.Length();
+		to = (int)caption.Length();
 
 	CFont *font=NULL;
 	font = new CFont("Console");
@@ -511,7 +509,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 				if (destroy_row_to != m_CharacterPositions.end())
 				{
 					check_point_row_start = destroy_row_to->m_ListStart;
-					check_point_row_end = check_point_row_start + destroy_row_to->m_ListOfX.size();
+					check_point_row_end = check_point_row_start + (int)destroy_row_to->m_ListOfX.size();
 					if (destroy_row_to->m_ListOfX.empty())
 						++check_point_row_end;
 				}
@@ -531,7 +529,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 
 		if (destroy_row_to == list<SRow>::iterator())
 		{
-            destroy_row_to = m_CharacterPositions.end();
+			destroy_row_to = m_CharacterPositions.end();
 			check_point_row_start = -1;
 		}
 
@@ -540,9 +538,9 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 		from = destroy_row_from->m_ListStart;
 		
 		if (destroy_row_to != m_CharacterPositions.end())
-            to = destroy_row_to->m_ListStart; // notice it will iterate [from, to), so it will never reach to.
+			to = destroy_row_to->m_ListStart; // notice it will iterate [from, to), so it will never reach to.
 		else
-			to = caption.Length();
+			to = (int)caption.Length();
 
 
 		// Setup the first row
@@ -749,7 +747,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 							if (destroy_row_to != m_CharacterPositions.end())
 							{
 								check_point_row_start = destroy_row_to->m_ListStart;
-								check_point_row_end = check_point_row_start + destroy_row_to->m_ListOfX.size();
+								check_point_row_end = check_point_row_start + (int)destroy_row_to->m_ListOfX.size();
 								if (destroy_row_to->m_ListOfX.empty())
 									++check_point_row_end;
 
@@ -784,7 +782,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 					if (destroy_row_to != m_CharacterPositions.end())
 						to = destroy_row_to->m_ListStart; // notice it will iterate [from, to[, so it will never reach to.
 					else
-						to = caption.Length();
+						to = (int)caption.Length();
 
 
 					//LOG(ERROR, LOG_CATEGORY, "Point 3 %d", to);
@@ -816,7 +814,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 					}
 					else
 					{
-              			check_point_row_start = -1; // just one more row, which is the last, we don't need this anymore
+						check_point_row_start = -1; // just one more row, which is the last, we don't need this anymore
 						to = caption.Length();
 					}*/
 
