@@ -36,6 +36,22 @@
 #include <algorithm>
 #include <numeric>
 
+
+#include <xercesc/dom/DOM.hpp>
+#include <xercesc/parsers/XercesDOMParser.hpp>
+#include <xercesc/util/XMLString.hpp>
+#include <xercesc/util/PlatformUtils.hpp>
+
+#include <xercesc/sax/InputSource.hpp>
+#include <xercesc/sax/EntityResolver.hpp>
+#include <xercesc/util/BinMemInputStream.hpp>
+
+#include <xercesc/sax/SAXParseException.hpp>
+#include <xercesc/util/XercesDefs.hpp>
+#include <xercesc/sax/ErrorHandler.hpp>
+
+#include <xercesc/framework/LocalFileInputSource.hpp>
+
 #endif
 
 
