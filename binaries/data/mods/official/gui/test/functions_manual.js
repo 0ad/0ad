@@ -137,6 +137,13 @@ function manualDisplay()
 							ManualRollover.caption += "TurnRadius: " + selection[0].actions.move.turningradius + "\n";
 					}
 
+					// Vision.
+					if (selection[0].traits.vision)
+					{
+						if (selection[0].traits.vision.los)
+							ManualRollover.caption += "LOS: " + selection[0].traits.vision.los + "\n";
+					}
+
 					// Classes.
 					if (selection[0].traits.id.class1)
 						ManualRollover.caption += "Class1: " + selection[0].traits.id.class1 + "\n";

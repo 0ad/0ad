@@ -20,10 +20,10 @@ function initGroupPane()
 
 function initGroupPaneTable()
 {
-	AddGroupPaneRow(0, 32, 		100, -70);	// Row 0
-	AddGroupPaneRow(0, 78, 		100, -110);	// Row 1
-	AddGroupPaneRow(0, 124,		100, -156);	// Row 2
-//	AddGroupPaneRow(0, 170,		100, -202);	// Row 3
+	AddGroupPaneRow(0, 24, 		100, -62);	// Row 0
+	AddGroupPaneRow(0, 70, 		100, -102);	// Row 1
+	AddGroupPaneRow(0, 116,		100, -148);	// Row 2
+	AddGroupPaneRow(0, 162,		100, -194);	// Row 3
 	AddGroupPaneCol(50, -16, 	50, -16);	// Col 0
 	AddGroupPaneCol(50, -52, 	50, -52);	// Col 1
 	AddGroupPaneCol(50, 20, 	50, 20);	// Col 2
@@ -35,10 +35,8 @@ function initGroupPaneTable()
 	AddGroupPaneCol(50, 128, 	50, 128);	// Col 8
 	AddGroupPaneCol(50, -196, 	50, -196);	// Col 9
 	AddGroupPaneCol(50, 164, 	50, 164);	// Col 10
-	AddGroupPaneCol(50, -232, 	50, -232);	// Col 11
-	AddGroupPaneCol(50, 200, 	50, 200);	// Col 12
-	AddGroupPaneCol(50, -268, 	50, -268);	// Col 13
-	AddGroupPaneCol(50, 236, 	50, 236);	// Col 14
+	AddGroupPaneCol(50, 200, 	50, 200);	// Col 11
+	AddGroupPaneCol(50, 236, 	50, 236);	// Col 12
 }
 
 // ====================================================================
@@ -126,28 +124,41 @@ function UpdateGroupPane()
 	getGUIObjectByName("session_group_pane").hidden = false;
 
 	// Set size of Group Pane background.
-	if (selection.length <= 15)
+	if (selection.length <= 13)
 	{
 		switch (GUIType)
 		{
 			case "top":
-				setSize("session_group_pane_bg", "0%+20 0% 100%-20 0%+86");
+				setSize("session_group_pane_bg", "50%-215 0% 50%+285 0%+86");
 			break;
 			case "bottom":
-				setSize("session_group_pane_bg", "0%+20 100%-86 100%-20 100%");
+				setSize("session_group_pane_bg", "50%-215 100%-86 50%+285 100%");
 			break;
 		}
 	}
 	else
-	if (selection.length > 15 && selection.length <= 30)
+	if (selection.length > 13 && selection.length <= 26)
 	{
 		switch (GUIType)
 		{
 			case "top":
-				setSize("session_group_pane_bg", "0%+20 0% 100%-20 0%+127");
+				setSize("session_group_pane_bg", "50%-215 0% 50%+285 0%+127");
 			break;
 			case "bottom":
-				setSize("session_group_pane_bg", "0%+20 100%-127 100%-20 100%");
+				setSize("session_group_pane_bg", "50%-215 100%-127 50%+285 100%");
+			break;
+		}
+	}
+	else
+	if (selection.length > 26 && selection.length <= 39)
+	{
+		switch (GUIType)
+		{
+			case "top":
+				setSize("session_group_pane_bg", "50%-215 0% 50%+285 0%+168");
+			break;
+			case "bottom":
+				setSize("session_group_pane_bg", "50%-215 100%-168 50%+285 100%");
 			break;
 		}
 	}
@@ -156,10 +167,10 @@ function UpdateGroupPane()
 		switch (GUIType)
 		{
 			case "top":
-				setSize("session_group_pane_bg", "0%+20 0% 100%-20 0%+168");
+				setSize("session_group_pane_bg", "50%-215 0% 50%+285 0%+209");
 			break;
 			case "bottom":
-				setSize("session_group_pane_bg", "0%+20 100%-168 100%-20 100%");
+				setSize("session_group_pane_bg", "50%-215 100%-209 50%+285 100%");
 			break;
 		}
 	}

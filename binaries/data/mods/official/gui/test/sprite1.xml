@@ -277,11 +277,11 @@
                 -->
 
                        <sprite name="session_panel_status_bg-top">
-                        <image texture="ui_session_panel_status_bg-top.png" texture-size="0 0 256 256" size="0 0 184 184" />
+                        <image texture="ui_session_panel_status_bg-top.png" texture-size="0 0 256 256" size="0 0 100% 100%" />
                 </sprite>
 
                        <sprite name="session_panel_status_bg-bottom">
-                        <image texture="ui_session_panel_status_bg-bottom.png" texture-size="0 0 256 256" size="0 0 184 184" />
+                        <image texture="ui_session_panel_status_bg-bottom.png" texture-size="0 0 256 256" size="0 0 100% 100%" />
                 </sprite>
 
                 <!--
@@ -516,6 +516,10 @@
 
         <sprite name="0ad_icon">
                 <image texture="global/ui_gen_0ad-icon-black.png" size="0 0 100% 100%" texture-size="0 0 16 16" />
+        </sprite>
+
+        <sprite name="bullet_icon">
+                <image texture="global/ui_gen_bullet-icon.png" size="0 0 100% 100%" texture-size="0 0 8 8" />
         </sprite>
 
         <!--
