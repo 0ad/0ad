@@ -154,6 +154,7 @@ bool CObjectEntry::Load(const char* filename)
 	EL(name);
 	EL(modelname);
 	EL(texturename);
+    EL(material);
 	EL(animations);
 	EL(props);
 	AT(attachpoint);
@@ -183,6 +184,9 @@ bool CObjectEntry::Load(const char* filename)
 
 		else if (element_name == el_texturename)
 			m_TextureName=element_value;
+
+        else if(element_name == el_material)
+            m_Material = element_value;
 
 		else if (element_name == el_animations)
 		{
@@ -244,6 +248,8 @@ bool CObjectEntry::Save(const char* filename)
 	fprintf(fp,"\t<Name>%s</Name>\n",(const char*) m_Name);
 	fprintf(fp,"\t<ModelName>%s</ModelName>\n",(const char*) m_ModelName);
 	fprintf(fp,"\t<TextureName>%s</TextureName>\n",(const char*) m_TextureName);
+    if(m_Material.Trim(PS_TRIM_BOTH).Length())
+        fprintf(fp,"\t<Material>%s</Material>\n", (const char*)m_Material);
 	if (m_Animations.size()>0) {
 		fprintf(fp,"\t<Animations>\n");
 		for (uint i=0;i<m_Animations.size();i++) {

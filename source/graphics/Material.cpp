@@ -5,11 +5,14 @@
 #define SAFE_DELETE(x) \
 	if((x)) { delete (x); (x) = NULL; }
 
+CMaterial NullMaterial;
+CMaterial IdentityMaterial;
+
 // Values as taken straight from the Blue Book (god bless the Blue Book)
-static SMaterialColor IdentityDiffuse = { 0.8f, 0.8f, 0.8f, 1.0f };
-static SMaterialColor IdentityAmbient = { 0.2f, 0.2f, 0.2f, 1.0f };
-static SMaterialColor IdentitySpecular = { 0.0f, 0.0f, 0.0f, 1.0f };
-static SMaterialColor IdentityEmissive = { 0.0f, 0.0f, 0.0f, 1.0f };
+static SMaterialColor IdentityDiffuse(0.8f, 0.8f, 0.8f, 1.0f);
+static SMaterialColor IdentityAmbient(0.2f, 0.2f, 0.2f, 1.0f);
+static SMaterialColor IdentitySpecular(0.0f, 0.0f, 0.0f, 1.0f);
+static SMaterialColor IdentityEmissive(0.0f, 0.0f, 0.0f, 1.0f);
 
 static SMaterialColor *CopyColor(SMaterialColor *color)
 {
@@ -36,7 +39,7 @@ CMaterial::CMaterial()
 	m_SourceBlend(GL_NONE),
 	m_DestBlend(GL_NONE),
 	m_AlphaFunc(GL_NONE),
-	m_AlphaClamp(0.0f),
+	m_AlphaClamp(1.0f),
 	m_Alpha(false)
 {
 }

@@ -62,6 +62,8 @@ public:
 	CModel* m_Model;
 	// type of object; index into object managers types array
 	int m_Type;
+    // the material file
+    CStr m_Material;
 };
 
 

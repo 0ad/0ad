@@ -6,6 +6,15 @@
 struct SMaterialColor
 {
 public:
+    SMaterialColor() { r = 0.0f; g = 0.0f; b = 0.0f; a = 1.0f; }
+    SMaterialColor(float _r, float _g, float _b, float _a)
+    {
+        r = _r;
+        g = _g;
+        b = _b;
+        a = _a;
+    }
+
 	union
 	{
 		struct 
@@ -73,5 +82,8 @@ protected:
 	// Alpha required flag
 	bool m_Alpha;
 };
+
+extern CMaterial NullMaterial;
+extern CMaterial IdentityMaterial;
 
 #endif

@@ -1,10 +1,20 @@
 #include "precompiled.h"
 #include "ogl.h"
 #include "Xeromyces.h"
-#include "MaterialReader.h"
+#include "MaterialManager.h"
 
 #define SAFE_DELETE(x) \
     if((x)) { delete (x); (x) = NULL; }
+
+static float ClampFloat(float value, float min, float max)
+{
+    if(value < min)
+        return min;
+    else if(value > max)
+        return max;
+
+    return value;
+}
 
 static SMaterialColor ParseColor(CStr colorStr)
 {
@@ -17,7 +27,7 @@ static SMaterialColor ParseColor(CStr colorStr)
     while(colorStr.Length())
     {
         if(pos == -1)
-            pos = colorStr.Length();
+            pos = (long)colorStr.Length();
 
         tmp = colorStr.GetSubstring(0, pos);
         colorStr = colorStr.GetSubstring(pos, colorStr.Length() - pos);
@@ -39,6 +49,7 @@ static SMaterialColor ParseColor(CStr colorStr)
             }
         }
 
+        value = ClampFloat(value, 0.0f, 1.0f);
         switch(idx)
         {
         case 0:
@@ -140,29 +151,34 @@ static GLenum ParseBlendFunc(CStr temp)
     return GL_NONE;
 }
 
-static float ClampFloat(float value, float min, float max)
-{
-    if(value < min)
-        return min;
-    else if(value > max)
-        return max;
-
-    return value;
-}
-
-CMaterialReader::CMaterialReader()
+CMaterialManager::CMaterialManager()
 {
 }
 
-CMaterialReader::~CMaterialReader()
+CMaterialManager::~CMaterialManager()
 {
+    std::map<std::string, CMaterial *>::iterator iter;
+    for(iter = m_Materials.begin(); iter != m_Materials.end(); iter++)
+    {
+        if((*iter).second)
+            delete (*iter).second;
+    }
+
+    m_Materials.clear();
 }
 
-CMaterial *CMaterialReader::LoadMaterial(const char *file)
+CMaterial &CMaterialManager::LoadMaterial(const char *file)
 {
+    std::map<std::string, CMaterial *>::iterator iter;
+    if((iter = m_Materials.find(std::string(file))) != m_Materials.end())
+    {
+        if((*iter).second)
+            return *(*iter).second;
+    }
+
 	CXeromyces xeroFile;
-	if (xeroFile.Load(file) != PSRETURN_OK)
-		return NULL;
+	if(xeroFile.Load(file) != PSRETURN_OK)
+        return NullMaterial;
 
 	#define EL(x) int el_##x = xeroFile.getElementID(#x)
 	#define AT(x) int at_##x = xeroFile.getAttributeID(#x)
@@ -245,6 +261,8 @@ CMaterial *CMaterialReader::LoadMaterial(const char *file)
                 material->SetDestBlend(ParseBlendFunc(temp));
             }
 		}
+
+        m_Materials[std::string(file)] = material;
 	}
     catch(...)
     {
@@ -252,5 +270,5 @@ CMaterial *CMaterialReader::LoadMaterial(const char *file)
         throw;
     }
 
-    return material;
+    return *material;
 }
