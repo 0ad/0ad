@@ -54,7 +54,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
-# ADD LINK32 nafxcw.lib pslib.lib opengl32.lib glu32.lib ws2_32.lib version.lib xerces-c_2.lib /nologo /entry:"entry" /subsystem:windows /map /machine:I386 /out:"D:\0ad\binaries\system\ScEd.exe" /libpath:"..\libs" /fixed:no
+# ADD LINK32 nafxcw.lib opengl32.lib glu32.lib ws2_32.lib version.lib xerces-c_2.lib /nologo /entry:"entry" /subsystem:windows /map /machine:I386 /out:"D:\0ad\binaries\system\ScEd.exe" /libpath:"..\libs" /fixed:no
 # SUBTRACT LINK32 /pdb:none /debug
 
 !ELSEIF  "$(CFG)" == "ScEd - Win32 Debug"

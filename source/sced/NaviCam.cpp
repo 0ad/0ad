@@ -1,22 +1,8 @@
-#include "stdafx.h"
 #include "NaviCam.h"
 #include "EditorData.h"
 #include <stdarg.h>
 
 CNaviCam g_NaviCam;
-
-static void DbgText(char* str, ...)
-{
-	char buf[1024];
-
-	va_list args;      
-	va_start(args, str);     
-	vsprintf(buf, str, args);     
-	va_end(args); 
-
-	OutputDebugString(buf);
-}
-
 
 ///////////////////////////////////////////////////////////////////////////////
 // CNaviCam constructor

@@ -206,12 +206,12 @@ bool CScEdView::SetupPixelFormat(HDC dc)
 		PFD_TYPE_RGBA,					// RGBA type
 		bpp==16 ? 16 : 24,				// 16/24 bit color depth
 		0, 0, 0, 0, 0, 0,				// color bits ignored
-		bpp==16 ? 0 : 8,				// 16/24 bit color depth
+		bpp==16 ? 0 : 8,				// alpha bits
 		0,								// shift bit ignored
 		0,								// no accumulation buffer
 		0, 0, 0, 0, 					// accum bits ignored
 		24,								// 24-bit z-buffer	
-		8,								// 8-bit stencil buffer
+		0,								// 8-bit stencil buffer
 		0,								// no auxiliary buffer
 		PFD_MAIN_PLANE,					// main layer
 		0,								// reserved
