@@ -103,17 +103,7 @@ struct CMouseoverEntities : public Singleton<CMouseoverEntities>
 bool isMouseoverType( CEntity* ev );
 bool isOnScreen( CEntity* ev );
 
-void pushCameraTarget( const CVector3D& target );
-void setCameraTarget( const CVector3D& target );
-void popCameraTarget();
-
 int interactInputHandler( const SDL_Event* ev );
-
-extern std::vector<CVector3D> cameraTargets;
-extern CVector3D cameraBookmarks[10];
-extern bool bookmarkInUse[10];
-extern u8 currentBookmark;
-extern CVector3D cameraDelta;
 
 #define g_Selection CSelectedEntities::GetSingleton()
 #define g_Mouseover CMouseoverEntities::GetSingleton()

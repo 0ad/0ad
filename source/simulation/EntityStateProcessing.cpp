@@ -9,7 +9,7 @@
 #include "PathfindEngine.h"
 #include "Terrain.h"
 
-extern CTerrain g_Terrain;
+#include "Game.h"
 
 bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_millis )
 {
@@ -192,7 +192,7 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 	}
 
 	// Will we step off the map?
-	if( !g_Terrain.isOnMap( m_position.X, m_position.Z ) )
+	if( !g_Game->GetWorld()->GetTerrain()->isOnMap( m_position.X, m_position.Z ) )
 	{
 		// Yes. That's not a particularly good idea, either.
 		

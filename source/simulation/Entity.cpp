@@ -14,7 +14,7 @@
 #include "Collision.h"
 #include "PathfindEngine.h"
 
-extern CCamera g_Camera;
+#include "Game.h"
 
 CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 {
@@ -155,7 +155,9 @@ void CEntity::updateActorTransforms()
 
 void CEntity::snapToGround()
 {
-	m_graphics_position.Y = g_Terrain.getExactGroundLevel( m_graphics_position.X, m_graphics_position.Z );
+	CTerrain *pTerrain = g_Game->GetWorld()->GetTerrain();
+	
+	m_graphics_position.Y = pTerrain->getExactGroundLevel( m_graphics_position.X, m_graphics_position.Z );
 }
 
 void CEntity::update( size_t timestep )
@@ -340,6 +342,8 @@ void CEntity::interpolate( float relativeoffset )
 
 void CEntity::render()
 {	
+	CTerrain *pTerrain = g_Game->GetWorld()->GetTerrain();
+	
 	if( !m_orderQueue.empty() )
 	{
 		std::deque<CEntityOrder>::iterator it;
@@ -384,11 +388,11 @@ void CEntity::render()
 				glEnd();
 				glBegin( GL_LINES );
 				glColor3f( 1.0f, 0.0f, 0.0f );
-				glVertex3f( x0 + fwd.x * r.distance, g_Terrain.getExactGroundLevel( x0 + fwd.x * r.distance, y0 + fwd.y * r.distance ) + 0.25f, y0 + fwd.y * r.distance );
-				glVertex3f( r.position.x, g_Terrain.getExactGroundLevel( r.position.x, r.position.y ) + 0.25f, r.position.y );
+				glVertex3f( x0 + fwd.x * r.distance, pTerrain->getExactGroundLevel( x0 + fwd.x * r.distance, y0 + fwd.y * r.distance ) + 0.25f, y0 + fwd.y * r.distance );
+				glVertex3f( r.position.x, pTerrain->getExactGroundLevel( r.position.x, r.position.y ) + 0.25f, r.position.y );
 				glEnd();
 				glBegin( GL_LINE_STRIP );
-				glVertex3f( x0, g_Terrain.getExactGroundLevel( x0, y0 ), y0 );
+				glVertex3f( x0, pTerrain->getExactGroundLevel( x0, y0 ), y0 );
 			}
 			switch( it->m_type )
 			{
@@ -405,7 +409,7 @@ void CEntity::render()
 				continue;
 			}
 			
-			glVertex3f( x, g_Terrain.getExactGroundLevel( x, y ) + 0.25f, y );
+			glVertex3f( x, pTerrain->getExactGroundLevel( x, y ) + 0.25f, y );
 		}
 
 		glEnd();
@@ -414,11 +418,13 @@ void CEntity::render()
 	
 	glColor3f( 1.0f, 1.0f, 1.0f );
 	if( getCollisionObject( this ) ) glColor3f( 0.5f, 0.5f, 1.0f );
-	m_bounds->render( g_Terrain.getExactGroundLevel( m_position.X, m_position.Z ) + 0.25f ); //m_position.Y + 0.25f );
+	m_bounds->render( pTerrain->getExactGroundLevel( m_position.X, m_position.Z ) + 0.25f ); //m_position.Y + 0.25f );
 }
 
 void CEntity::renderSelectionOutline( float alpha )
 {
+	CTerrain *pTerrain = g_Game->GetWorld()->GetTerrain();
+	
 	if( !m_bounds ) return;
 
 	glColor4f( 1.0f, 1.0f, 1.0f, alpha );
@@ -439,7 +445,7 @@ void CEntity::renderSelectionOutline( float alpha )
 			float x = pos.X + radius * sin( ang );
 			float y = pos.Z + radius * cos( ang );
 #ifdef SELECTION_TERRAIN_CONFORMANCE
-			glVertex3f( x, g_Terrain.getExactGroundLevel( x, y ) + 0.25f, y );
+			glVertex3f( x, pTerrain->getExactGroundLevel( x, y ) + 0.25f, y );
 #else
 			glVertex3f( x, pos.Y + 0.25f, y );
 #endif
@@ -463,29 +469,29 @@ void CEntity::renderSelectionOutline( float alpha )
 		for( int i = SELECTION_BOX_POINTS; i > -SELECTION_BOX_POINTS; i-- )
 		{
 			p = q + u * h + v * ( w * (float)i / (float)SELECTION_BOX_POINTS );
-			glVertex3f( p.x, g_Terrain.getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+			glVertex3f( p.x, pTerrain->getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
 		}
 
 		for( int i = SELECTION_BOX_POINTS; i > -SELECTION_BOX_POINTS; i-- )
 		{
 			p = q + u * ( h * (float)i / (float)SELECTION_BOX_POINTS ) - v * w;
-			glVertex3f( p.x, g_Terrain.getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+			glVertex3f( p.x, pTerrain->getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
 		}
 
 		for( int i = -SELECTION_BOX_POINTS; i < SELECTION_BOX_POINTS; i++ )
 		{
 			p = q - u * h + v * ( w * (float)i / (float)SELECTION_BOX_POINTS );
-			glVertex3f( p.x, g_Terrain.getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+			glVertex3f( p.x, pTerrain->getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
 		}
 
 		for( int i = -SELECTION_BOX_POINTS; i < SELECTION_BOX_POINTS; i++ )
 		{
 			p = q + u * ( h * (float)i / (float)SELECTION_BOX_POINTS ) + v * w;
-			glVertex3f( p.x, g_Terrain.getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+			glVertex3f( p.x, pTerrain->getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
 		}
 #else
 			p = q + u * h + v * w;
-			glVertex3f( p.x, g_Terrain.getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+			glVertex3f( p.x, pTerrain->getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
 
 			p = q + u * h - v * w;
 			glVertex3f( p.x, getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );

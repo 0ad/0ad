@@ -91,20 +91,14 @@ static bool g_EntGraph = false;
 static float g_Gamma = 1.0f;
 
 CGameAttributes g_GameAttributes;
-CGame *g_Game=NULL;
+extern int game_view_handler(const SDL_Event* ev);
 
 static Handle g_Font_Console; // for the console
 static Handle g_Font_Misc; // random font for miscellaneous things
 
-extern CCamera g_Camera;
-
 static CMusicPlayer MusicPlayer;
 
 CStr g_CursorName = "test";
-
-extern void terr_init();
-extern void terr_update(float time);
-extern int terr_handler(const SDL_Event* ev);
 
 extern int allow_reload();
 extern int dir_add_watch(const char* const dir, bool watch_subdirs);
@@ -371,8 +365,7 @@ static int handler(const SDL_Event* ev)
 void RenderNoCull()
 {
 	g_Renderer.BeginFrame();
-	g_Renderer.SetCamera(g_Camera);
-	
+
 	g_Game->GetView()->RenderNoCull();
 
 	g_Renderer.FlushFrame();
@@ -387,13 +380,13 @@ static void Render()
 
 	// start new frame
 	g_Renderer.BeginFrame();
-	g_Renderer.SetCamera(g_Camera);
 
 	// switch on wireframe for terrain if we want it
 	//g_Renderer.SetTerrainRenderMode( SOLID ); // (PT: If this is done here, the W key doesn't work)
 
-	g_Game->Render();
+	g_Game->GetView()->Render();
 
+	MICROLOG(L"flush frame");
 	g_Renderer.FlushFrame();
 
 	glPushAttrib( GL_ENABLE_BIT );
@@ -681,7 +674,6 @@ static void Shutdown()
 
 	// destroy terrain related stuff
 	delete &g_TexMan;
-	delete &g_Terrain;
 
 	// destroy renderer
 	delete &g_Renderer;
@@ -831,20 +823,12 @@ PREVTSC=CURTSC;
 	MICROLOG(L"init renderer");
 	g_Renderer.Open(g_xres,g_yres,g_bpp);
 	
-	g_Terrain_ptr = new CTerrain;
-
-	// terr_init loads a bunch of resources as well as setting up the terrain
-	terr_init();
-
-
 	// This needs to be done after the renderer has loaded all its actors...
 	new CBaseEntityCollection;
 	new CEntityManager;
 	new CPathfindEngine;
 	new CSelectedEntities;
 	new CMouseoverEntities;
-
-	g_EntityTemplateCollection.loadTemplates();
 
 	// if no map name specified, load test01.pmp (for convenience during
 	// development. that means loading no map at all is currently impossible.
@@ -867,11 +851,8 @@ PREVTSC=CURTSC;
 
 	// Initialize entities
 
-	CMessage init_msg (CMessage::EMSG_INIT);
-	g_EntityManager.dispatchAll(&init_msg);
-
 	in_add_handler(handler);
-	in_add_handler(terr_handler);
+	in_add_handler(game_view_handler);
 
 	in_add_handler(interactInputHandler);
 
@@ -888,6 +869,7 @@ PREVTSC=CURTSC;
 	RenderNoCull();
 
 	if (g_FixedFrameTiming) {
+		CCamera &g_Camera=*g_Game->GetView()->GetCamera();
 #if 0		// TOPDOWN
 		g_Camera.SetProjection(1.0f,10000.0f,DEGTORAD(90));
 		g_Camera.m_Orientation.SetIdentity();
@@ -1005,8 +987,9 @@ static void Frame()
 	g_Game->Update(TimeSinceLastFrame);
 	
 	if (!g_FixedFrameTiming)
-		terr_update(float(TimeSinceLastFrame));
+		g_Game->GetView()->Update(float(TimeSinceLastFrame));
 
+	// TODO Where does GameView end and other things begin?
 	g_Mouseover.update( TimeSinceLastFrame );
 	g_Selection.update();
 

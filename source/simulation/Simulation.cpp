@@ -16,7 +16,10 @@ CSimulation::CSimulation(CGame *pGame):
 {}
 
 void CSimulation::Initialize(CGameAttributes *pAttribs)
-{}
+{
+	CMessage init_msg (CMessage::EMSG_INIT);
+	g_EntityManager.dispatchAll(&init_msg);
+}
 
 void CSimulation::Update(double frameTime)
 {

@@ -1,22 +1,40 @@
 #ifndef _GameView_H
 #define _GameView_H
 
+#include "Camera.h"
+#include "Vector3D.h"
+
 class CGame;
 class CGameAttributes;
 class CWorld;
 class CTerrain;
 class CUnitManager;
 class CModel;
-class CCamera;
-
-extern CCamera g_Camera;
 
 class CGameView
 {
 	CGame *m_pGame;
 	CWorld *m_pWorld;
-	CCamera *m_pCamera;
+	CCamera m_Camera;
 	
+	////////////////////////////////////////
+	// Settings
+	float m_ViewScrollSpeed;
+	float m_ViewRotateSensitivity;
+	float m_ViewRotateAboutTargetSensitivity;
+	float m_ViewDragSensitivity;
+	float m_ViewZoomSensitivityWheel;
+	float m_ViewZoomSensitivity;
+	float m_ViewZoomSmoothness; // 0.0 = instantaneous zooming, 1.0 = so slow it never moves
+	float m_ViewSnapSmoothness; // Just the same.
+
+	////////////////////////////////////////
+	// Camera Controls State
+	CVector3D m_CameraDelta;
+	CVector3D m_CameraPivot;
+	//float m_CameraZoom;
+	std::vector<CVector3D> m_CameraTargets;
+
 	// RenderTerrain: iterate through all terrain patches and submit all patches
 	// in viewing frustum to the renderer
 	void RenderTerrain(CTerrain *pTerrain);
@@ -28,22 +46,37 @@ class CGameView
 	// SubmitModelRecursive: recurse down given model, submitting it and all its
 	// descendents to the renderer
 	void SubmitModelRecursive(CModel *pModel);
+	
+	// InitResources(): Load all graphics resources (textures, actor objects and
+	// alpha maps) required by the game
+	void InitResources();
 public:
 	CGameView(CGame *pGame);
 	
 	void Initialize(CGameAttributes *pGameAttributes);
 	
-	/*
-		Render the World
-	*/
+	// Update: Update all the view information (i.e. rotate camera, scroll, 
+	// whatever). This will *not* change any World information - only the
+	// *presentation*
+	void Update(float DeltaTime);
+	
+	// Render: Render the World
 	void Render();
 	
 	// RenderNoCull: render absolutely everything to a blank frame to force
 	// renderer to load required assets
 	void RenderNoCull();
 	
+	// Camera Control Functions (used by input handler)
+	void ResetCamera();
+	void RotateAboutTarget();
+	
+	void PushCameraTarget( const CVector3D& target );
+	void SetCameraTarget( const CVector3D& target );
+	void PopCameraTarget();
+	
 	inline CCamera *GetCamera()
-	{	return m_pCamera; }
+	{	return &m_Camera; }
 };
 
 #endif

@@ -10,6 +10,7 @@
 #define _HFTRACER_H
 
 class CVector3D;
+class CTerrain;
 
 #include "res/res.h"
 
@@ -19,7 +20,7 @@ class CHFTracer
 {
 public:
 	// constructor; setup data
-	CHFTracer(const u16* hf,u32 mapsize,float cellsize,float heightscale);
+	CHFTracer(CTerrain *pTerrain);
 
 	// intersect ray with this heightfield; return true if intersection 
 	// occurs (and fill in grid coordinates and point of intersection), or false otherwise
@@ -35,6 +36,8 @@ private:
 	// test if ray intersects either of the triangles in the given 
 	bool CellIntersect(int cx,int cz,CVector3D& origin,CVector3D& dir,float& dist) const;
 	
+	// The terrain we're operating on
+	CTerrain *m_pTerrain;
 	// the heightfield were tracing
 	const u16* m_Heightfield;
 	// size of the heightfield

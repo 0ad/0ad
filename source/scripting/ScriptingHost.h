@@ -12,6 +12,8 @@
 # endif
 #endif
 
+#include "Errors.h"
+
 ERROR_GROUP(Scripting);
 ERROR_TYPE(Scripting, RuntimeCreationFailed);
 ERROR_TYPE(Scripting, ContextCreationFailed);

@@ -7,6 +7,9 @@
 #include "FileUnpacker.h"
 
 class CObjectEntry;
+class CTerrain;
+class CUnitManager;
+class CLightEnv;
 
 class CMapReader : public CMapIO
 {
@@ -14,7 +17,7 @@ public:
 	// constructor
 	CMapReader();
 	// LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
-	void LoadMap(const char* filename);
+	void LoadMap(const char* filename, CTerrain *pTerrain, CUnitManager *pUnitMan, CLightEnv *pLightEnv);
 
 private:
 	// UnpackMap: unpack the given data from the raw data stream into local variables
@@ -27,7 +30,7 @@ private:
 	void UnpackLightEnv(CFileUnpacker& unpacker);
 
 	// ApplyData: take all the input data, and rebuild the scene from it
-	void ApplyData(CFileUnpacker& unpacker);
+	void ApplyData(CFileUnpacker& unpacker, CTerrain *pTerrain, CUnitManager *pUnitMan, CLightEnv *pLightEnv);
 
 	// size of map 
 	u32 m_MapSize;

@@ -47,23 +47,22 @@ public:
 	/*
 		Initialize all local state and members for playing a game described by
 		the attribute class.
+		
+		Return: 0 on OK - a PSRETURN code otherwise
 	*/
-	void Initialize(CGameAttributes *pGameAttributes);
+	PSRETURN Initialize(CGameAttributes *pGameAttributes);
 	
 	/*
 		Perform all per-frame updates
 	*/
 	void Update(double deltaTime);
 	
-	/*
-		Render the game
-	*/
-	void Render();
-	
 	inline CWorld *GetWorld()
 	{	return &m_World; }
 	inline CGameView *GetView()
 	{	return &m_GameView; }
 };
+
+extern CGame *g_Game;
 
 #endif

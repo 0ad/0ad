@@ -2,6 +2,7 @@
 
 #include "PathfindSparse.h"
 #include "Terrain.h"
+#include "Game.h"
 
 int SPF_RECURSION_DEPTH = 10;
 
@@ -28,6 +29,8 @@ sparsePathTree::~sparsePathTree()
 
 bool sparsePathTree::slice()
 {
+	CTerrain *pTerrain = g_Game->GetWorld()->GetTerrain();
+	
 	if( type == SPF_OPEN_UNVISITED )
 	{
 		if( !recursionDepth )
@@ -104,14 +107,14 @@ bool sparsePathTree::slice()
 		// Let me know.
 
 		// Check that the subwaypoints are on the map...
-		if( !g_Terrain.isOnMap( left ) )
+		if( !pTerrain->isOnMap( left ) )
 		{
 			// Shut that path down
 			leftPre->type = SPF_IMPOSSIBLE;
 			leftPost->type = SPF_IMPOSSIBLE;
 		}
 
-		if( !g_Terrain.isOnMap( right ) )
+		if( !pTerrain->isOnMap( right ) )
 		{
 			// Shut that path down
 			rightPre->type = SPF_IMPOSSIBLE;

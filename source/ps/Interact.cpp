@@ -6,14 +6,19 @@
 #include "HFTracer.h"
 #include "Hotkey.h"
 #include "timer.h"
+#include "Game.h"
 
-extern CCamera g_Camera;
+extern CGame *g_Game;
 extern CConsole* g_Console;
 extern int mouse_x, mouse_y;
 extern bool keys[SDLK_LAST];
 
 static const float SELECT_DBLCLICK_RATE = 0.5f;
 static const int ORDER_DELAY = 5;
+
+CVector3D cameraBookmarks[10];
+bool bookmarkInUse[10] = { false, false, false, false, false, false, false, false, false, false };
+u8 currentBookmark = 255;
 
 void CSelectedEntities::addSelection( CEntity* entity )
 {
@@ -60,6 +65,9 @@ void CSelectedEntities::renderSelectionOutlines()
 
 void CSelectedEntities::renderOverlays()
 {
+	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
+	CCamera *pCamera=g_Game->GetView()->GetCamera();
+
 	glPushMatrix();
 	glEnable( GL_TEXTURE_2D );
 	std::vector<CEntity*>::iterator it;
@@ -71,11 +79,11 @@ void CSelectedEntities::renderOverlays()
 			
 			glLoadIdentity();
 			float x, y;
-			CVector3D labelpos = (*it)->m_graphics_position - g_Camera.m_Orientation.GetLeft() * (*it)->m_bounds->m_radius;
+			CVector3D labelpos = (*it)->m_graphics_position - pCamera->m_Orientation.GetLeft() * (*it)->m_bounds->m_radius;
 #ifdef SELECTION_TERRAIN_CONFORMANCE
-			labelpos.Y = g_Terrain.getExactGroundLevel( labelpos.X, labelpos.Z );
+			labelpos.Y = pTerrain->getExactGroundLevel( labelpos.X, labelpos.Z );
 #endif
-			g_Camera.GetScreenCoordinates( labelpos, x, y );
+			pCamera->GetScreenCoordinates( labelpos, x, y );
 			glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
 			glTranslatef( x, g_Renderer.GetHeight() - y, 0.0f );
 			glScalef( 1.0f, -1.0f, 1.0f );
@@ -95,11 +103,11 @@ void CSelectedEntities::renderOverlays()
 			
 			glLoadIdentity();
 			float x, y;
-			CVector3D labelpos = (*it)->m_graphics_position - g_Camera.m_Orientation.GetLeft() * (*it)->m_bounds->m_radius;
+			CVector3D labelpos = (*it)->m_graphics_position - pCamera->m_Orientation.GetLeft() * (*it)->m_bounds->m_radius;
 #ifdef SELECTION_TERRAIN_CONFORMANCE
-			labelpos.Y = g_Terrain.getExactGroundLevel( labelpos.X, labelpos.Z );
+			labelpos.Y = pTerrain->getExactGroundLevel( labelpos.X, labelpos.Z );
 #endif
-			g_Camera.GetScreenCoordinates( labelpos, x, y );
+			pCamera->GetScreenCoordinates( labelpos, x, y );
 			glColor4f( 1.0f, 1.0f, 1.0f, 0.5f );
 			glTranslatef( x, g_Renderer.GetHeight() - y, 0.0f );
 			glScalef( 1.0f, -1.0f, 1.0f );
@@ -275,13 +283,13 @@ void CSelectedEntities::highlightGroup( u8 groupid )
 	if( !getGroupCount( groupid ) )
 		return;
 	m_group_highlight = groupid;
-	pushCameraTarget( getGroupPosition( groupid ) );
+	g_Game->GetView()->PushCameraTarget( getGroupPosition( groupid ) );
 }
 
 void CSelectedEntities::highlightNone()
 {
 	if( m_group_highlight != 255 )
-		popCameraTarget();
+		g_Game->GetView()->PopCameraTarget();
 	m_group_highlight = 255;
 }
 
@@ -312,7 +320,7 @@ void CSelectedEntities::update()
 		m_contextOrder = -1;
 	}
 	if( ( m_group_highlight != 255 ) && getGroupCount( m_group_highlight ) )
-		setCameraTarget( getGroupPosition( m_group_highlight ) );
+		g_Game->GetView()->SetCameraTarget( getGroupPosition( m_group_highlight ) );
 }
 
 void CSelectedEntities::setContext( int contextOrder )
@@ -369,18 +377,21 @@ bool CSelectedEntities::isContextValid( int contextOrder )
 
 void CSelectedEntities::contextOrder( bool pushQueue )
 {
+	CCamera *pCamera=g_Game->GetView()->GetCamera();
+	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
+
 	std::vector<CEntity*>::iterator it;
 	CEntityOrder context, contextRandomized;
 	(int&)context.m_type = m_contextOrder;
 	CVector3D origin, dir;
-	g_Camera.BuildCameraRay( origin, dir );
+	pCamera->BuildCameraRay( origin, dir );
 
 	switch( m_contextOrder )
 	{
 	case CEntityOrder::ORDER_GOTO:
 	case CEntityOrder::ORDER_PATROL:
 		{
-		CHFTracer maptracer( g_Terrain.GetHeightMap(), g_Terrain.GetVerticesPerSide(), (float)CELL_SIZE, HEIGHT_SCALE );
+		CHFTracer maptracer( pTerrain );
 		int x, y; CVector3D ipt;
 		maptracer.RayIntersect( origin, dir, x, y, ipt );
 		context.m_data[0].location.x = ipt.X;
@@ -423,8 +434,11 @@ void CSelectedEntities::contextOrder( bool pushQueue )
 
 void CMouseoverEntities::update( float timestep )
 {
+	CCamera *pCamera=g_Game->GetView()->GetCamera();
+	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
+
 	CVector3D origin, dir;
-	g_Camera.BuildCameraRay( origin, dir );
+	pCamera->BuildCameraRay( origin, dir );
 
 	CUnit* hit = g_UnitMan.PickUnit( origin, dir );
 
@@ -473,7 +487,7 @@ void CMouseoverEntities::update( float timestep )
 
 			float x, y;
 
-			g_Camera.GetScreenCoordinates( worldspace, x, y );
+			pCamera->GetScreenCoordinates( worldspace, x, y );
 
 			bool inBox;
 			if( m_x1 < m_x2 )
@@ -616,6 +630,9 @@ void CMouseoverEntities::renderSelectionOutlines()
 
 void CMouseoverEntities::renderOverlays()
 {
+	CCamera *pCamera=g_Game->GetView()->GetCamera();
+	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
+
 	glLoadIdentity();
 	glDisable( GL_TEXTURE_2D );
 	if( m_bandbox )
@@ -642,11 +659,11 @@ void CMouseoverEntities::renderOverlays()
 			glEnable( GL_TEXTURE_2D );
 			glLoadIdentity();
 			float x, y;
-			CVector3D labelpos = it->entity->m_graphics_position - g_Camera.m_Orientation.GetLeft() * it->entity->m_bounds->m_radius;
+			CVector3D labelpos = it->entity->m_graphics_position - pCamera->m_Orientation.GetLeft() * it->entity->m_bounds->m_radius;
 #ifdef SELECTION_TERRAIN_CONFORMANCE
-			labelpos.Y = g_Terrain.getExactGroundLevel( labelpos.X, labelpos.Z );
+			labelpos.Y = pTerrain->getExactGroundLevel( labelpos.X, labelpos.Z );
 #endif
-			g_Camera.GetScreenCoordinates( labelpos, x, y );
+			pCamera->GetScreenCoordinates( labelpos, x, y );
 			glColor4f( 1.0f, 1.0f, 1.0f, it->fade );
 			glTranslatef( x, g_Renderer.GetHeight() - y, 0.0f );
 			glScalef( 1.0f, -1.0f, 1.0f );
@@ -670,7 +687,10 @@ void CMouseoverEntities::stopBandbox()
 
 int interactInputHandler( const SDL_Event* ev )
 {
-	
+	CGameView *pView=g_Game->GetView();
+	CCamera *pCamera=pView->GetCamera();
+	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
+
 	static float lastclicktime = 0.0f;
 	static CEntity* lastclickobject = NULL;
 	static u8 clicks = 0;
@@ -688,7 +708,7 @@ int interactInputHandler( const SDL_Event* ev )
 			break;
 		case HOTKEY_SELECTION_SNAP:
 			if( g_Selection.m_selected.size() )
-				setCameraTarget( g_Selection.getSelectionPosition() );
+				pView->SetCameraTarget( g_Selection.getSelectionPosition() );
 			break;
 		case HOTKEY_CONTEXTORDER_NEXT:
 			g_Selection.nextContext();
@@ -697,7 +717,7 @@ int interactInputHandler( const SDL_Event* ev )
 			g_Selection.previousContext();
 			break;
 		default:
-			if( ( ev->user.code >= HOTKEY_SELECTION_GROUP_0 ) && ( ev->key.keysym.sym <= HOTKEY_SELECTION_GROUP_19 ) )
+			if( ( ev->user.code >= HOTKEY_SELECTION_GROUP_0 ) && ( ev->user.code <= HOTKEY_SELECTION_GROUP_19 ) )
 			{
 				// The above test limits it to 20 groups, so don't worry about overflowing
 				u8 id = (u8)( ev->user.code - HOTKEY_SELECTION_GROUP_0 );
@@ -718,7 +738,7 @@ int interactInputHandler( const SDL_Event* ev )
 				{
 					if( ( g_Selection.m_group == id ) && g_Selection.getGroupCount( id ) )
 					{
-						setCameraTarget( g_Selection.getGroupPosition( id ) );
+						pView->SetCameraTarget( g_Selection.getGroupPosition( id ) );
 					}
 					else
 						g_Selection.loadGroup( id );
@@ -732,10 +752,11 @@ int interactInputHandler( const SDL_Event* ev )
 				if( hotkeys[HOTKEY_CAMERA_BOOKMARK_SAVE] )
 				{
 					// Attempt to track the ground we're looking at
-					CHFTracer tracer( g_Terrain.GetHeightMap(), g_Terrain.GetVerticesPerSide(), (float)CELL_SIZE, (float)HEIGHT_SCALE ); int x, z;
+					CHFTracer tracer( pTerrain );
+					int x, z;
 					CVector3D origin, dir, delta, currentTarget;
-					origin = g_Camera.m_Orientation.GetTranslation();
-					dir = g_Camera.m_Orientation.GetIn();
+					origin = pCamera->m_Orientation.GetTranslation();
+					dir = pCamera->m_Orientation.GetIn();
 					if( tracer.RayIntersect( origin, dir, x, z, currentTarget ) )
 					{					
 						cameraBookmarks[id] = currentTarget;
@@ -743,7 +764,7 @@ int interactInputHandler( const SDL_Event* ev )
 					else
 					{
 						// Placing a bookmark off the map? If you say so, guv'nor.
-						cameraBookmarks[id] = g_Camera.m_Orientation.GetTranslation() + g_Camera.m_Orientation.GetIn() * 160.0f;
+						cameraBookmarks[id] = pCamera->m_Orientation.GetTranslation() + pCamera->m_Orientation.GetIn() * 160.0f;
 					}
 					bookmarkInUse[id] = true;
 				}
@@ -751,14 +772,14 @@ int interactInputHandler( const SDL_Event* ev )
 				{
 					if( bookmarkInUse[id] && ( currentBookmark == 255 ) )
 					{
-						pushCameraTarget( cameraBookmarks[id] );
+						pView->PushCameraTarget( cameraBookmarks[id] );
 						currentBookmark = id;
 					}
 				}
 				else
 				{
 					if( bookmarkInUse[id] )
-						setCameraTarget( cameraBookmarks[id] );
+						pView->SetCameraTarget( cameraBookmarks[id] );
 				}
 				return( EV_HANDLED );
 			}
@@ -774,7 +795,7 @@ int interactInputHandler( const SDL_Event* ev )
 			break;
 		case HOTKEY_CAMERA_BOOKMARK_SNAP:
 			if( currentBookmark != 255 )
-				popCameraTarget();
+				pView->PopCameraTarget();
 			currentBookmark = 255;
 			break;
 		case HOTKEY_HIGHLIGHTALL:
@@ -855,7 +876,9 @@ int interactInputHandler( const SDL_Event* ev )
 
 bool isOnScreen( CEntity* ev )
 {
-	CFrustum frustum = g_Camera.GetFrustum();
+	CCamera *pCamera=g_Game->GetView()->GetCamera();
+
+	CFrustum frustum = pCamera->GetFrustum();
 	return( frustum.IsBoxVisible( CVector3D(), ev->m_actor->GetModel()->GetBounds() ) );
 }
 
@@ -868,37 +891,4 @@ bool isMouseoverType( CEntity* ev )
 			return( true );
 	}
 	return( false );
-}
-
-void pushCameraTarget( const CVector3D& target )
-{
-	// Save the current position
-	cameraTargets.push_back( g_Camera.m_Orientation.GetTranslation() );
-	// And set the camera
-	setCameraTarget( target );
-}
-
-void setCameraTarget( const CVector3D& target )
-{
-	// Maintain the same orientation and level of zoom, if we can
-	// (do this by working out the point the camera is looking at, saving
-	//  the difference beteen that position and the camera point, and restoring
-	//  that difference to our new target)
-
-	CHFTracer tracer( g_Terrain.GetHeightMap(), g_Terrain.GetVerticesPerSide(), (float)CELL_SIZE, (float)HEIGHT_SCALE ); int x, z;
-	CVector3D origin, dir, currentTarget;
-	origin = g_Camera.m_Orientation.GetTranslation();
-	dir = g_Camera.m_Orientation.GetIn();
-	if( tracer.RayIntersect( origin, dir, x, z, currentTarget ) )
-	{
-		cameraDelta = target - currentTarget;
-	}
-	else
-		cameraDelta = ( target - dir * 160.0f ) - origin;
-}
-
-void popCameraTarget()
-{
-	cameraDelta = cameraTargets.back() - g_Camera.m_Orientation.GetTranslation();
-	cameraTargets.pop_back();
 }

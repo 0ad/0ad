@@ -9,9 +9,6 @@
 #include "LightEnv.h"
 #include "TextureManager.h"
 
-extern CTerrain g_Terrain;
-extern CLightEnv g_LightEnv;
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // CMapWriter constructor: nothing to do at the minute
 CMapWriter::CMapWriter()
@@ -20,12 +17,12 @@ CMapWriter::CMapWriter()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // SaveMap: try to save the current map to the given file
-void CMapWriter::SaveMap(const char* filename)
+void CMapWriter::SaveMap(const char* filename, CTerrain *pTerrain, CLightEnv *pLightEnv, CUnitManager *pUnitMan)
 {
 	CFilePacker packer;
 
 	// build necessary data
-	PackMap(packer);
+	PackMap(packer, pTerrain, pLightEnv, pUnitMan);
 
 	// write it out
 	packer.Write(filename,FILE_VERSION,"PSMP");
@@ -62,23 +59,24 @@ static u16 GetObjectIndex(const CObjectEntry* object,const std::vector<CObjectEn
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // EnumTerrainTextures: build lists of textures used by map, and tile descriptions for 
 // each tile on the terrain
-void CMapWriter::EnumTerrainTextures(std::vector<CStr>& textures,
+void CMapWriter::EnumTerrainTextures(CTerrain *pTerrain,
+									 std::vector<CStr>& textures,
 									 std::vector<STileDesc>& tiles)
 {
 	// the list of all handles in use
 	std::vector<Handle> handles;
 	
 	// resize tile array to required size
-	tiles.resize(SQR(g_Terrain.GetVerticesPerSide()-1));
+	tiles.resize(SQR(pTerrain->GetVerticesPerSide()-1));
 	STileDesc* tileptr=&tiles[0];
 
 	// now iterate through all the tiles
-	u32 mapsize=g_Terrain.GetPatchesPerSide();
+	u32 mapsize=pTerrain->GetPatchesPerSide();
 	for (u32 j=0;j<mapsize;j++) {
 		for (u32 i=0;i<mapsize;i++) {
 			for (u32 m=0;m<PATCH_SIZE;m++) {
 				for (u32 k=0;k<PATCH_SIZE;k++) {
-					CMiniPatch& mp=g_Terrain.GetPatch(i,j)->m_MiniPatches[m][k];
+					CMiniPatch& mp=pTerrain->GetPatch(i,j)->m_MiniPatches[m][k];
 					u16 index=u16(GetHandleIndex(mp.Tex1,handles));
 					if (index==0xffff) {
 						index=(u16)handles.size();
@@ -111,13 +109,14 @@ void CMapWriter::EnumTerrainTextures(std::vector<CStr>& textures,
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // EnumObjects: build lists of object types used by map, and object descriptions for 
 // each object in the world
-void CMapWriter::EnumObjects(std::vector<CStr>& objectTypes,std::vector<SObjectDesc>& objects)
+void CMapWriter::EnumObjects(CUnitManager *pUnitMan,
+	std::vector<CStr>& objectTypes, std::vector<SObjectDesc>& objects)
 {
 	// the list of all object entries in use
 	std::vector<CObjectEntry*> objectsInUse;
 	
 	// resize object array to required size
-	const std::vector<CUnit*>& units=g_UnitMan.GetUnits();
+	const std::vector<CUnit*>& units=pUnitMan->GetUnits();
 	objects.resize(units.size());
 	SObjectDesc* objptr=&objects[0];
 
@@ -144,29 +143,29 @@ void CMapWriter::EnumObjects(std::vector<CStr>& objectTypes,std::vector<SObjectD
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // PackMap: pack the current world into a raw data stream
-void CMapWriter::PackMap(CFilePacker& packer)
+void CMapWriter::PackMap(CFilePacker& packer, CTerrain *pTerrain, CLightEnv *pLightEnv, CUnitManager *pUnitMan)
 {
 	// now pack everything up
-	PackTerrain(packer);
-	PackObjects(packer);
-	PackLightEnv(packer);
+	PackTerrain(packer, pTerrain);
+	PackObjects(packer, pUnitMan);
+	PackLightEnv(packer, pLightEnv);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // PackLightEnv: pack lighting parameters onto the end of the output data stream
-void CMapWriter::PackLightEnv(CFilePacker& packer)
+void CMapWriter::PackLightEnv(CFilePacker& packer, CLightEnv *pLightEnv)
 {
-	packer.PackRaw(&g_LightEnv.m_SunColor,sizeof(g_LightEnv.m_SunColor));
-	packer.PackRaw(&g_LightEnv.m_Elevation,sizeof(g_LightEnv.m_Elevation));
-	packer.PackRaw(&g_LightEnv.m_Rotation,sizeof(g_LightEnv.m_Rotation));
-	packer.PackRaw(&g_LightEnv.m_TerrainAmbientColor,sizeof(g_LightEnv.m_TerrainAmbientColor));
-	packer.PackRaw(&g_LightEnv.m_UnitsAmbientColor,sizeof(g_LightEnv.m_UnitsAmbientColor));
+	packer.PackRaw(&pLightEnv->m_SunColor,sizeof(pLightEnv->m_SunColor));
+	packer.PackRaw(&pLightEnv->m_Elevation,sizeof(pLightEnv->m_Elevation));
+	packer.PackRaw(&pLightEnv->m_Rotation,sizeof(pLightEnv->m_Rotation));
+	packer.PackRaw(&pLightEnv->m_TerrainAmbientColor,sizeof(pLightEnv->m_TerrainAmbientColor));
+	packer.PackRaw(&pLightEnv->m_UnitsAmbientColor,sizeof(pLightEnv->m_UnitsAmbientColor));
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // PackObjects: pack world objects onto the end of the output data stream
 //		- data: list of objects types used by map, list of object descriptions
-void CMapWriter::PackObjects(CFilePacker& packer)
+void CMapWriter::PackObjects(CFilePacker& packer, CUnitManager *pUnitMan)
 {
 	// the list of object types used by map
 	std::vector<CStr> objectTypes;
@@ -174,7 +173,7 @@ void CMapWriter::PackObjects(CFilePacker& packer)
 	std::vector<SObjectDesc> objects;
 	
 	// build lists by scanning through the world
-	EnumObjects(objectTypes,objects);
+	EnumObjects(pUnitMan, objectTypes, objects);
 
 	// pack object types
 	u32 numObjTypes=(u32)objectTypes.size();
@@ -192,14 +191,14 @@ void CMapWriter::PackObjects(CFilePacker& packer)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // PackTerrain: pack the terrain onto the end of the output data stream
 //		- data: map size, heightmap, list of textures used by map, texture tile assignments
-void CMapWriter::PackTerrain(CFilePacker& packer)
+void CMapWriter::PackTerrain(CFilePacker& packer, CTerrain *pTerrain)
 {
 	// pack map size
-	u32 mapsize=g_Terrain.GetPatchesPerSide();
+	u32 mapsize=pTerrain->GetPatchesPerSide();
 	packer.PackRaw(&mapsize,sizeof(mapsize));	
 	
 	// pack heightmap
-	packer.PackRaw(g_Terrain.GetHeightMap(),sizeof(u16)*SQR(g_Terrain.GetVerticesPerSide()));	
+	packer.PackRaw(pTerrain->GetHeightMap(),sizeof(u16)*SQR(pTerrain->GetVerticesPerSide()));	
 
 	// the list of textures used by map
 	std::vector<CStr> terrainTextures;
@@ -207,7 +206,7 @@ void CMapWriter::PackTerrain(CFilePacker& packer)
 	std::vector<STileDesc> tiles;
 	
 	// build lists by scanning through the terrain
-	EnumTerrainTextures(terrainTextures,tiles);
+	EnumTerrainTextures(pTerrain, terrainTextures, tiles);
 	
 	// pack texture names
 	u32 numTextures=(u32)terrainTextures.size();

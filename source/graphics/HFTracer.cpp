@@ -13,13 +13,14 @@
 #include "Bound.h"
 #include "Vector3D.h"
 
-extern CTerrain g_Terrain;
-
 ///////////////////////////////////////////////////////////////////////////////
 // CHFTracer constructor
-CHFTracer::CHFTracer(const u16* hf,u32 mapsize,float cellsize,float heightscale)
-	: m_Heightfield(hf), m_MapSize(mapsize), m_CellSize(cellsize), 
-	m_HeightScale(heightscale)
+CHFTracer::CHFTracer(CTerrain *pTerrain):
+	m_pTerrain(pTerrain),
+	m_Heightfield(m_pTerrain->GetHeightMap()),
+	m_MapSize(m_pTerrain->GetVerticesPerSide()),
+	m_CellSize(CELL_SIZE), 
+	m_HeightScale(HEIGHT_SCALE)
 {
 } 
 
@@ -82,10 +83,10 @@ bool CHFTracer::CellIntersect(int cx,int cz,CVector3D& origin,CVector3D& dir,flo
 
 	// get vertices for this cell
 	CVector3D vpos[4];
-	g_Terrain.CalcPosition(cx,cz,vpos[0]);
-	g_Terrain.CalcPosition(cx+1,cz,vpos[1]);
-	g_Terrain.CalcPosition(cx+1,cz+1,vpos[2]);
-	g_Terrain.CalcPosition(cx,cz+1,vpos[3]);
+	m_pTerrain->CalcPosition(cx,cz,vpos[0]);
+	m_pTerrain->CalcPosition(cx+1,cz,vpos[1]);
+	m_pTerrain->CalcPosition(cx+1,cz+1,vpos[2]);
+	m_pTerrain->CalcPosition(cx,cz+1,vpos[3]);
 
 	dist=1.0e30f;
 	if (RayTriIntersect(vpos[0],vpos[1],vpos[2],origin,dir,dist)) {

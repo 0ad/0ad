@@ -2,16 +2,21 @@
 
 #include "Game.h"
 
-void CGame::Initialize(CGameAttributes *pAttribs)
-{
-	m_World.Initialize(pAttribs);
-	m_Simulation.Initialize(pAttribs);
-	m_GameView.Initialize(pAttribs);
-}
+CGame *g_Game=NULL;
 
-void CGame::Render()
+PSRETURN CGame::Initialize(CGameAttributes *pAttribs)
 {
-	m_GameView.Render();
+	try
+	{
+		m_World.Initialize(pAttribs);
+		m_Simulation.Initialize(pAttribs);
+		m_GameView.Initialize(pAttribs);
+	}
+	catch (PSERROR_Game e)
+	{
+		return e.code;
+	}
+	return 0;
 }
 
 void CGame::Update(double deltaTime)

@@ -12,18 +12,13 @@
 #include "Terrain.h"
 #include "TextureManager.h"
 
-extern CTerrain g_Terrain;
-extern CLightEnv g_LightEnv;
-
-
-
 // CMapReader constructor: nothing to do at the minute
 CMapReader::CMapReader()
 {
 }
 
 // LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
-void CMapReader::LoadMap(const char* filename)
+void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain, CUnitManager *pUnitMan, CLightEnv *pLightEnv)
 {
 	CFileUnpacker unpacker;
 	unpacker.Read(filename,"PSMP");
@@ -37,7 +32,7 @@ void CMapReader::LoadMap(const char* filename)
 	UnpackMap(unpacker);
 
 	// finally, apply data to the world
-	ApplyData(unpacker);
+	ApplyData(unpacker, pTerrain, pUnitMan, pLightEnv);
 }
 
 // UnpackMap: unpack the given data from the raw data stream into local variables
@@ -122,10 +117,10 @@ void CMapReader::UnpackTerrain(CFileUnpacker& unpacker)
 }
 
 // ApplyData: take all the input data, and rebuild the scene from it
-void CMapReader::ApplyData(CFileUnpacker& unpacker)
+void CMapReader::ApplyData(CFileUnpacker& unpacker, CTerrain *pTerrain, CUnitManager *pUnitMan, CLightEnv *pLightEnv)
 {
 	// initialise the terrain 
-	g_Terrain.Initialize(m_MapSize,&m_Heightmap[0]);	
+	pTerrain->Initialize(m_MapSize,&m_Heightmap[0]);	
 
 	// setup the textures on the minipatches
 	STileDesc* tileptr=&m_Tiles[0];
@@ -133,7 +128,7 @@ void CMapReader::ApplyData(CFileUnpacker& unpacker)
 		for (u32 i=0;i<m_MapSize;i++) {
 			for (u32 m=0;m<PATCH_SIZE;m++) {
 				for (u32 k=0;k<PATCH_SIZE;k++) {
-					CMiniPatch& mp=g_Terrain.GetPatch(i,j)->m_MiniPatches[m][k];
+					CMiniPatch& mp=pTerrain->GetPatch(i,j)->m_MiniPatches[m][k];
 					
 					mp.Tex1=m_TerrainTextures[tileptr->m_Tex1Index];
 					mp.Tex1Priority=tileptr->m_Priority;
@@ -145,7 +140,7 @@ void CMapReader::ApplyData(CFileUnpacker& unpacker)
 	}
 
 	// empty out existing units
-	g_UnitMan.DeleteAll();
+	pUnitMan->DeleteAll();
 	
 	// add new objects
 	for (u32 i=0;i<m_Objects.size();i++) {
@@ -155,6 +150,7 @@ void CMapReader::ApplyData(CFileUnpacker& unpacker)
 			// Not an ideal solution; we'll have to figure out a map format that can define entities seperately or somesuch.
 
 			CBaseEntity* templateObject = g_EntityTemplateCollection.getTemplateByActor( objentry );
+			
 			if( templateObject )
 			{
 				CVector3D orient = ((CMatrix3D*)m_Objects[i].m_Transform)->GetIn();
@@ -171,13 +167,13 @@ void CMapReader::ApplyData(CFileUnpacker& unpacker)
 				unit->GetModel()->SetTransform(transform);
 				
 				// add this unit to list of units stored in unit manager
-				g_UnitMan.AddUnit(unit);
+				pUnitMan->AddUnit(unit);
 			}
 		}
 	}
 
 	if (unpacker.GetVersion()>=2) {
 		// copy over the lighting parameters
-		g_LightEnv=m_LightEnv;
+		*pLightEnv=m_LightEnv;
 	}
 }

@@ -1,14 +1,11 @@
 #ifndef _ps_World_H
 #define _ps_World_H
 
+#include "Terrain.h"
+#include "UnitManager.h"
+
 class CGame;
 class CGameAttributes;
-
-class CTerrain;
-extern CTerrain* g_Terrain_ptr;
-#define g_Terrain (*g_Terrain_ptr)
-
-#include "UnitManager.h"
 
 class CWorld
 {
@@ -17,13 +14,13 @@ class CWorld
 	// These both point to the respective g_* globals - the plan is to remove
 	// the globals and move them into CWorld members as soon as all code has
 	// been converted
-	CTerrain *m_pTerrain;
-	CUnitManager *m_pUnitManager;
+	CTerrain m_Terrain;
+	CUnitManager &m_UnitManager;
 public:
 	inline CWorld(CGame *pGame):
 		m_pGame(pGame),
-		m_pTerrain(&g_Terrain),
-		m_pUnitManager(&g_UnitMan)
+		m_Terrain(),
+		m_UnitManager(g_UnitMan)
 	{}
 
 	/*
@@ -32,9 +29,9 @@ public:
 	void Initialize(CGameAttributes *pGameAttributes);
 	
 	inline CTerrain *GetTerrain()
-	{	return m_pTerrain; }
+	{	return &m_Terrain; }
 	inline CUnitManager *GetUnitManager()
-	{	return m_pUnitManager; }
+	{	return &m_UnitManager; }
 };
 
 #include "Game.h"
