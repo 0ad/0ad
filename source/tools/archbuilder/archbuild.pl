@@ -357,23 +357,26 @@ sub create_archive {
 
 	for my $file (@$files) {
 
+		my ($member, $filename, $size);
+		
 		if ($file->[1]->archive) {
-
-			$zip->addMember($file->[1]->location) or die "Error adding zipped file $file->[0] to zip";
-
+			$member = $file->[1]->location;
+			$filename = $member->fileName();
+			$size = sub { $member->uncompressedSize() };
 		} else {
-
-			my $member = Archive::Zip::Member->newFromFile($file->[1]->location) or die "Error adding file $file->[0] to zip";
-			$member->fileName($file->[0]);
-
-			if (should_compress($file->[1]->location)) {
-				$member->desiredCompressionMethod(Archive::Zip::COMPRESSION_DEFLATED);
-			} else {
-				$member->desiredCompressionMethod(Archive::Zip::COMPRESSION_STORED);
-			}
-
-			$zip->addMember($member);
+			$member = Archive::Zip::Member->newFromFile($file->[1]->location) or die "Error adding file $file->[0] to zip";
+			$filename = $file->[1]->location;
+			$member->fileName($file->[0]); # set the internal non-absolute filename
+			$size = sub { (stat $filename)[7] };
 		}
+
+		if (should_compress($filename, $size)) {
+			$member->desiredCompressionMethod(Archive::Zip::COMPRESSION_DEFLATED);
+		} else {
+			$member->desiredCompressionMethod(Archive::Zip::COMPRESSION_STORED);
+		}
+
+		$zip->addMember($member);
 	}
 
 	my $err = $zip->overwriteAs($filename); $err == Archive::Zip::AZ_OK or die "Error saving zip file $filename ($err)";
@@ -395,8 +398,8 @@ sub get_opt {
 }
 
 sub should_compress {
-	my ($filename) = @_;
-	return 0 if $filename =~ /\.(ogg|png)$/i; # don't compress things that are already compressed
-	return 0 if (stat $filename)[7] < 8192; # don't compress small files
+	my ($filename, $size) = @_;
+	return 0 if $filename =~ /\.(ogg|png)$/i; # don't compress things that are already compressed quite well
+#	return 0 if $size->() < 8192; # if we don't want to compress small files
 	return 1;
 }
