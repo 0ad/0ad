@@ -510,9 +510,8 @@ int file_close(File* const f)
 struct IO
 {
 	aiocb* cb;
-		// large (144 bytes) on Linux
-		// small enough ATM to store here. if not (=> assert triggered),
-		// allocate in IO_init (currently don't do so to reduce allocations).
+		// large (144 bytes) on Linux; cannot store here.
+		// allocated in IO_init.
 
 	size_t padding;
 	size_t user_size;
