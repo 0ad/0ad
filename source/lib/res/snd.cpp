@@ -968,23 +968,22 @@ std::vector<u8> data;
 data.reserve(500000);
 if(file_type == FT_OGG)
 {
-sd->o = ogg_create();
-ogg_give_raw(sd->o, file, file_size);
-ogg_open(sd->o, sd->al_fmt, sd->al_freq);
-size_t datasize=0;
-size_t bytes_read;
-do
-{
-const size_t bufsize = 32*KB;
-char buf[bufsize];
-bytes_read = ogg_read(sd->o, buf, bufsize);
-data.resize(data.size() + bytes_read);
-for(size_t i = 0; i < bytes_read; i++) data[datasize+i] = buf[i];
-datasize += bytes_read;
-}
-while(bytes_read > 0);
-al_data = &data[0];
-al_size = (ALsizei)datasize;
+ sd->o = ogg_create();
+ ogg_give_raw(sd->o, file, file_size);
+ ogg_open(sd->o, sd->al_fmt, sd->al_freq);
+ size_t datasize=0;
+ size_t bytes_read;
+ do
+ {
+  const size_t bufsize = 32*KB;
+  char buf[bufsize];
+  bytes_read = ogg_read(sd->o, buf, bufsize);
+  data.insert(data.end(), &buf[0], &buf[bytes_read]);
+  datasize += bytes_read;
+ }
+ while(bytes_read > 0);
+ al_data = &data[0];
+ al_size = (ALsizei)datasize;
 }
 #endif
 
