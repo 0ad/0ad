@@ -193,6 +193,8 @@ static int alloc_watch(FAMConnection* const fc, const FAMRequest* const fr, Watc
 	Watches& watches = state->watches;
 
 	SAFE_NEW(Watch, w);
+	if(!w)
+		return ERR_NO_MEM;
 	watches[fr->reqnum] = w;
 	_w = w;
 	return 0;
@@ -235,6 +237,8 @@ static int free_watch(FAMConnection* const fc, const FAMRequest* const fr, Watch
 int FAMOpen2(FAMConnection* const fc, const char* const app_name)
 {
 	SAFE_NEW(AppState, state);
+	if(!state)
+		return ERR_NO_MEM;
 	state->app_name = app_name;
 
 	fc->internal = state;
