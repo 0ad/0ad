@@ -1,4 +1,4 @@
-// $Id: Xeromyces.cpp,v 1.14 2004/09/06 11:18:47 philip Exp $
+// $Id: Xeromyces.cpp,v 1.15 2004/09/22 11:51:43 philip Exp $
 
 #include "precompiled.h"
 
@@ -489,7 +489,9 @@ void XeroHandler::OutputElement(XMLElement* el)
 
 	// Output attributes
 
-	for (int i = 0; i < AttrCount; ++i)
+	int i;
+
+	for (i = 0; i < AttrCount; ++i)
 	{
 		int AttrName = AttributeID[el->attrs[i]->name];
 		buffer.write(&AttrName, 4);
@@ -507,7 +509,7 @@ void XeroHandler::OutputElement(XMLElement* el)
 	buffer.write(&ChildrenOffset, 4, Pos_ChildrenOffset);
 
 	// Output all child nodes
-	for (int i = 0; i < ChildCount; ++i)
+	for (i = 0; i < ChildCount; ++i)
 		OutputElement(el->childs[i]);
 
 	// Go back and fill in the length
@@ -520,10 +522,12 @@ void XeroHandler::OutputElement(XMLElement* el)
 
 void XeroHandler::DeallocateElement(XMLElement* el)
 {
-	for (size_t i = 0; i < el->attrs.size(); ++i)
+	size_t i;
+
+	for (i = 0; i < el->attrs.size(); ++i)
 		delete el->attrs[i];
 
-	for (size_t i = 0; i < el->childs.size(); ++i)
+	for (i = 0; i < el->childs.size(); ++i)
 		DeallocateElement(el->childs[i]);
 
 	delete el;
