@@ -17,13 +17,13 @@
 		<Animation name="Build" file="art/animation/biped/dudebuild.psa" speed="150"> </Animation>
 		<Animation name="Chop" file="art/animation/biped/dudechop.psa" speed="150"> </Animation>
 		<Animation name="Death" file="art/animation/biped/dudedeath_sword.psa" speed="200"> </Animation>
-		<Animation name="Decay" file="art/animation/biped/dudedecay_sword.psa" speed="1"> </Animation>
+		<Animation name="Decay" file="art/animation/biped/dudedecay_sword.psa" speed="0"> </Animation>
 		<Animation name="Attack" file="art/animation/biped/dudeattack.psa" speed="300"> </Animation>
 		<Animation name="Attack1" file="art/animation/biped/dudeattack1.psa" speed="300"> </Animation>
 	</Animations>
 	<Props>
 		<Prop attachpoint="PropHead" model="Dude Head"> </Prop>
-		<Prop attachpoint="PropShield" model="Shield Roman Large 4"> </Prop>
+		<Prop attachpoint="PropShield" model="Shield Roman Small 8"> </Prop>
 		<Prop attachpoint="PropRHand" model="Gladus D"> </Prop>
 	</Props>
 </Object>
