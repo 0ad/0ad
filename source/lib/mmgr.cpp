@@ -103,7 +103,7 @@ static bool random_fill = true;
 static const size_t padding_size  = 256 * sizeof(ulong);
 // normal settings
 #else
-static uint options = MMGR_FILL;	// required for unused memory tracking
+static uint options = 0;
 static bool random_fill = false;
 static const size_t padding_size = 1 * sizeof(ulong);
 #endif
@@ -810,8 +810,14 @@ bool mmgr_is_valid_ptr(const void* p)
 
 static bool alloc_is_valid(const Alloc* a)
 {
-	if(padding_is_intact(a))
-		return true;
+	try
+	{
+		if(padding_is_intact(a))
+			return true;
+	}
+	catch(...)
+	{
+	}
 
 	// this allocation has been over/underrun, i.e. modified outside the
 	// allocation's memory range.
@@ -865,8 +871,10 @@ static bool validate_all()
 bool mmgr_are_all_valid()
 {
 	lock();
-	debug_check_heap();
+	// do our check first, because it fails more cleanly
+	// (=> better chance to see where it happened in the debugger)
 	bool all_valid = validate_all();
+	debug_check_heap();
 	unlock();
 	return all_valid;
 }
