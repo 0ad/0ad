@@ -59,7 +59,7 @@ bool oglExtAvail(const char* ext)
 
 void oglPrintErrors()
 {
-#define E(e) case e: printf("%s\n", #e); break;
+#define E(e) case e: debug_out("%s\n", #e); break;
 
 	for(;;)
 		switch(glGetError())
