@@ -22,7 +22,32 @@
 // should be sector aligned (otherwise, buffer is copied).
 
 
-#include "types.h"
+#include "lib/types.h"
+#include "wposix_types.h"
+
+
+//
+// <signal.h>
+//
+
+union sigval
+{
+	int sival_int;				// Integer signal value.
+	void* sival_ptr;			// Pointer signal value.
+};
+
+struct sigevent
+{
+	int sigev_notify;			// notification mode
+	int sigev_signo;			// signal number
+	union sigval sigev_value;	// signal value
+	void(*sigev_notify_function)(union sigval);
+};
+
+
+//
+// <aio.h>
+//
 
 struct aiocb
 {
