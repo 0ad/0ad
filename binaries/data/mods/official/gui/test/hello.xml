@@ -89,7 +89,7 @@
 
 <!--
 ==========================================
- - START/END GAME BUTTONS -
+ - MAIN MENU -
 ==========================================
 -->
 
@@ -189,7 +189,7 @@
 ==========================================
 -->
 
-  <object type="button" name="Dude_Production_Button_random" hotkey="dudemachine.random" sprite="sprite1" sprite-over="sprite1-over" sprite-pressed="sprite1-pressed" size="100%-288 32 100%-160 53" z="100" textcolor="0 0 0">
+  <object type="button" name="Dude_Production_Button_random" hotkey="dudemachine.random" sprite="sprite1" sprite-over="sprite1-over" sprite-pressed="sprite1-pressed" size="100%-288 32 100%-160 53" z="100" textcolor="0 0 0" text-align="center" text-valign="center">
 
     Make random dude
 
@@ -247,17 +247,23 @@
 ==========================================
 -->
 
-  <object type="button" name="phase_banner" sprite="sprite1-over" size="50%-50 2 50%+50 23" z="50" textcolor="0 0 0">___Village_
+  <object type="button" name="phase_banner" sprite="white-border" size="50%-50 2 50%+50 23" z="50" textcolor="255 255 255" text-align="center" text-valign="center">Village
     <action on="Press"><![CDATA[
       ObjectPhaseBanner = getGUIObjectByName("phase_banner");
-      if (ObjectPhaseBanner.caption == "___Village_")
-           ObjectPhaseBanner.caption = "___Town____"
-      else
-      if (ObjectPhaseBanner.caption == "___Town____")
-           ObjectPhaseBanner.caption = "____City___"
-      else
-      if (ObjectPhaseBanner.caption == "____City___")
-           ObjectPhaseBanner.caption = "___Village_"
+	switch (ObjectPhaseBanner.caption)
+	{
+		case ("Village"):
+			ObjectPhaseBanner.caption = "Town";
+		break;
+		case ("Town"):
+			ObjectPhaseBanner.caption = "City";
+		break;
+		case ("City"):
+			ObjectPhaseBanner.caption = "Village";
+		break;
+		default:
+		break;
+	}
     ]]></action>
   </object>
 
@@ -379,12 +385,6 @@
 
 <!--
 ==========================================
- - END BOTTOM PANEL -
-==========================================
--->
-
-<!--
-==========================================
  - STATISTIC ICONS -
 ==========================================
 -->
@@ -400,6 +400,17 @@
   <object type="text" name="statistic_los" sprite="statistic_los" size="50%+175 100%-75 20 20" z="100" hidden="false"></object>
 
   <object type="text" name="statistic_speed" sprite="statistic_speed" size="50%+175 100%-40 20 20" z="100" hidden="false"></object>
+
+<!--
+==========================================
+ - FPS COUNTER -
+==========================================
+-->
+  <object type="button" name="FPS_Counter" size="18 100%-35 100 100%" z="100" hotkey="hotkey.fps.toggle" textcolor="200 200 0" font="verdana16" hidden="false">
+    <action on="Load"><![CDATA[
+	setInterval(UpdateFPSCounter, 50);
+    ]]></action>
+  </object>
 
 <!--
 ==========================================
@@ -441,11 +452,11 @@
     ]]></action>
   </object>
 
-  <object type="button" sprite="sprite1" size="710 32 726 48" z="200" hotkey="orbital.toggle" font="prospero14">V
+  <object type="button" name="arena-button" sprite="sprite1" size="710 32 726 48" z="200" hotkey="orbital.toggle" font="prospero14" text-align="center" text-valign="center">v
     <action on="Press"><![CDATA[
       var arena = getGUIObjectByName('arena');
       arena.hidden = !arena.hidden;
-      this.caption = arena.hidden ? "V" : "^";
+      this.caption = arena.hidden ? 'v' : '^';
     ]]></action>
   </object>
 

@@ -76,16 +76,28 @@ function GUIUpdateObjectInfo() {
 
                 } else {
 
-			// Update portrait (temporary if/else statement until entity icons are implemented).
-			if (selection[0].name == "Prometheus Dude") ObjectPortrait.sprite="portrait_unit_dude_lrg";
-			else
-			if (selection[0].name == "Prometheus Dudette") ObjectPortrait.sprite="portrait_unit_dudette_lrg";
-			else
-			if (selection[0].name == "Deciduous Tree 1" || selection[0].name == "Deciduous Tree 2") ObjectPortrait.sprite="portrait_flora_deciduotree_lrg";
-			else
-			if (selection[0].name == "House") ObjectPortrait.sprite="portrait_structure_heleho_lrg";
-			else
-				ObjectPortrait.sprite="portrait_unknown_lrg";
+			// Update portrait (temporary switch statement until entity icons are implemented).
+			switch (selection[0].name)
+			{
+				case ("Prometheus Dude"):
+					ObjectPortrait.sprite="portrait_unit_dude_lrg";
+				break;
+				case ("Prometheus Dudette"):
+					ObjectPortrait.sprite="portrait_unit_dudette_lrg";
+				break;
+				case ("Deciduous Tree 1"):
+				case ("Deciduous Tree 2"):
+					ObjectPortrait.sprite="portrait_flora_deciduotree_lrg";
+				break;
+				case ("House"):
+					ObjectPortrait.sprite="portrait_structure_heleho_lrg";
+				break;
+				default:
+					ObjectPortrait.sprite="portrait_unknown_lrg";
+				break;
+
+			}
+
 			ObjectPortrait.hidden = false;
 
 			// Turn on statistic icons.
@@ -113,4 +125,9 @@ function GUIUpdateObjectInfo() {
         
         }
         
+}
+
+function UpdateFPSCounter()
+{
+	getGUIObjectByName('FPS_Counter').caption = "FPS: " + getFPS();
 }
