@@ -6,6 +6,6 @@
 
 JSBool WriteLog(JSContext * context, JSObject * globalObject, unsigned int argc, jsval *argv, jsval *rval);
 
-JSFunctionSpec ScriptFunctionTable[];
+extern JSFunctionSpec ScriptFunctionTable[];
 
 #endif
