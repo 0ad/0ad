@@ -115,7 +115,11 @@ function setuppackage (projectname)
 	
 	package.libpaths = {}
 	
-	package.buildflags = { }
+	if (OS == "windows") then
+		package.buildflags = { "no-rtti" }
+	else
+		package.buildflags = { }
+	end
 	
 	package.config["Testing"].buildflags = { "with-symbols", "no-runtime-checks", "no-edit-and-continue" }
 	package.config["Testing"].defines = { "TESTING" }
