@@ -20,6 +20,7 @@
 class CPathfindEngine : public Singleton<CPathfindEngine>
 {
 public:
+	CPathfindEngine();
 	void requestPath( HEntity entity, const CVector2D& destination );
 };
 

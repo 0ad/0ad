@@ -72,10 +72,8 @@ void CSelectedEntities::renderOverlays()
 			glLoadIdentity();
 			float x, y;
 			CVector3D labelpos = (*it)->m_graphics_position - g_Camera.m_Orientation.GetLeft() * (*it)->m_bounds->m_radius;
-			labelpos.X += (*it)->m_bounds->m_offset.x;
-			labelpos.Z += (*it)->m_bounds->m_offset.y;
 #ifdef SELECTION_TERRAIN_CONFORMANCE
-			labelpos.Y = (*it)->getExactGroundLevel( labelpos.X, labelpos.Z );
+			labelpos.Y = g_Terrain.getExactGroundLevel( labelpos.X, labelpos.Z );
 #endif
 			g_Camera.GetScreenCoordinates( labelpos, x, y );
 			glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
@@ -98,10 +96,8 @@ void CSelectedEntities::renderOverlays()
 			glLoadIdentity();
 			float x, y;
 			CVector3D labelpos = (*it)->m_graphics_position - g_Camera.m_Orientation.GetLeft() * (*it)->m_bounds->m_radius;
-			labelpos.X += (*it)->m_bounds->m_offset.x;
-			labelpos.Z += (*it)->m_bounds->m_offset.y;
 #ifdef SELECTION_TERRAIN_CONFORMANCE
-			labelpos.Y = (*it)->getExactGroundLevel( labelpos.X, labelpos.Z );
+			labelpos.Y = g_Terrain.getExactGroundLevel( labelpos.X, labelpos.Z );
 #endif
 			g_Camera.GetScreenCoordinates( labelpos, x, y );
 			glColor4f( 1.0f, 1.0f, 1.0f, 0.5f );
@@ -178,11 +174,7 @@ CVector3D CSelectedEntities::getSelectionPosition()
 	CVector3D avg;
 	std::vector<CEntity*>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
-	{
 		avg += (*it)->m_graphics_position;
-		avg.X += (*it)->m_bounds->m_offset.x;
-		avg.Z += (*it)->m_bounds->m_offset.y;
-	}
 	return( avg * ( 1.0f / m_selected.size() ) );
 }
 
@@ -303,11 +295,7 @@ CVector3D CSelectedEntities::getGroupPosition( u8 groupid )
 	CVector3D avg;
 	std::vector<CEntity*>::iterator it;
 	for( it = m_groups[groupid].begin(); it < m_groups[groupid].end(); it++ )
-	{
 		avg += (*it)->m_graphics_position;
-		avg.X += (*it)->m_bounds->m_offset.x;
-		avg.Z += (*it)->m_bounds->m_offset.y;
-	}
 	return( avg * ( 1.0f / m_groups[groupid].size() ) );
 }
 
@@ -382,7 +370,7 @@ bool CSelectedEntities::isContextValid( int contextOrder )
 void CSelectedEntities::contextOrder( bool pushQueue )
 {
 	std::vector<CEntity*>::iterator it;
-	CEntityOrder context;
+	CEntityOrder context, contextRandomized;
 	(int&)context.m_type = m_contextOrder;
 	CVector3D origin, dir;
 	g_Camera.BuildCameraRay( origin, dir );
@@ -404,9 +392,32 @@ void CSelectedEntities::contextOrder( bool pushQueue )
 		break;
 	}
 
+	// Location randomizer, for group orders...
+	// Having the group turn up at the destination with /some/ sort of cohesion is good
+	// but tasking them all to the exact same point will leave them brawling for it
+	// at the other end (it shouldn't, but the PASAP pathfinder is too simplistic)
+	
+	// Task them all to a point within a radius of the target, radius depends upon
+	// the number of units in the group.
+
+	float radius = 2.0f * sqrt( (float)m_selected.size() ); // A decent enough approximation
+	float _t, _x, _y;
+
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
 		if( (*it)->acceptsOrder( m_contextOrder, g_Mouseover.m_target ) )
-			g_Scheduler.pushFrame( ORDER_DELAY, (*it)->me, new CMessageOrder( context, pushQueue ) );
+		{
+			contextRandomized = context;
+			do
+			{
+				_x = (float)( rand() % 20000 ) / 10000.0f - 1.0f;
+				_y = (float)( rand() % 20000 ) / 10000.0f - 1.0f;
+			}
+			while( ( _x * _x ) + ( _y * _y ) > 1.0f );
+
+			contextRandomized.m_data[0].location.x += _x * radius;
+			contextRandomized.m_data[0].location.y += _y * radius;
+			g_Scheduler.pushFrame( ORDER_DELAY, (*it)->me, new CMessageOrder( contextRandomized, pushQueue ) );
+		}
 	
 }
 
@@ -459,8 +470,6 @@ void CMouseoverEntities::update( float timestep )
 		for( it = onscreen->begin(); it < onscreen->end(); it++ )
 		{
 			CVector3D worldspace = (*it)->m_graphics_position;
-			worldspace.X += (*it)->m_bounds->m_offset.x;
-			worldspace.Z += (*it)->m_bounds->m_offset.y;
 
 			float x, y;
 
@@ -634,10 +643,8 @@ void CMouseoverEntities::renderOverlays()
 			glLoadIdentity();
 			float x, y;
 			CVector3D labelpos = it->entity->m_graphics_position - g_Camera.m_Orientation.GetLeft() * it->entity->m_bounds->m_radius;
-			labelpos.X += it->entity->m_bounds->m_offset.x;
-			labelpos.Z += it->entity->m_bounds->m_offset.y;
 #ifdef SELECTION_TERRAIN_CONFORMANCE
-			labelpos.Y = it->entity->getExactGroundLevel( labelpos.X, labelpos.Z );
+			labelpos.Y = g_Terrain.getExactGroundLevel( labelpos.X, labelpos.Z );
 #endif
 			g_Camera.GetScreenCoordinates( labelpos, x, y );
 			glColor4f( 1.0f, 1.0f, 1.0f, it->fade );
@@ -672,15 +679,28 @@ int interactInputHandler( const SDL_Event* ev )
 	static bool button_down = false;
 
 	switch( ev->type )
-	{
-	case SDL_KEYDOWN:
-		if( ( ev->key.keysym.sym >= SDLK_0 ) && ( ev->key.keysym.sym <= SDLK_9 ) )
+	{	
+	case SDL_HOTKEYDOWN:
+		switch( ev->user.code )
 		{
-			u8 id = ev->key.keysym.sym - SDLK_0;
-			// This competes with the camera bookmarks for the top-row number keys
-			// Find out which this is, and act accordingly
-			if( !hotkeys[HOTKEY_CAMERA_BOOKMARK_MODIFIER] )
+		case HOTKEY_HIGHLIGHTALL:
+			g_Mouseover.m_viewall = true;
+			break;
+		case HOTKEY_SELECTION_SNAP:
+			if( g_Selection.m_selected.size() )
+				setCameraTarget( g_Selection.getSelectionPosition() );
+			break;
+		case HOTKEY_CONTEXTORDER_NEXT:
+			g_Selection.nextContext();
+			break;
+		case HOTKEY_CONTEXTORDER_PREVIOUS:
+			g_Selection.previousContext();
+			break;
+		default:
+			if( ( ev->user.code >= HOTKEY_SELECTION_GROUP_0 ) && ( ev->key.keysym.sym <= HOTKEY_SELECTION_GROUP_19 ) )
 			{
+				u8 id = ev->user.code - HOTKEY_SELECTION_GROUP_0;
+				
 				if( hotkeys[HOTKEY_SELECTION_GROUP_ADD] )
 				{
 					g_Selection.addGroup( id );
@@ -702,13 +722,15 @@ int interactInputHandler( const SDL_Event* ev )
 					else
 						g_Selection.loadGroup( id );
 				}
+				return( EV_HANDLED );
 			}
-			else
+			else if( ( ev->user.code >= HOTKEY_CAMERA_BOOKMARK_0 ) && ( ev->user.code <= HOTKEY_CAMERA_BOOKMARK_9 ) )
 			{
+				u8 id = ev->user.code - HOTKEY_CAMERA_BOOKMARK_0;
 				if( hotkeys[HOTKEY_CAMERA_BOOKMARK_SAVE] )
 				{
 					// Attempt to track the ground we're looking at
-					CHFTracer tracer( g_Terrain.GetHeightMap(), g_Terrain.GetVerticesPerSide(), CELL_SIZE, HEIGHT_SCALE ); int x, z;
+					CHFTracer tracer( g_Terrain.GetHeightMap(), g_Terrain.GetVerticesPerSide(), (float)CELL_SIZE, (float)HEIGHT_SCALE ); int x, z;
 					CVector3D origin, dir, delta, currentTarget;
 					origin = g_Camera.m_Orientation.GetTranslation();
 					dir = g_Camera.m_Orientation.GetIn();
@@ -736,26 +758,8 @@ int interactInputHandler( const SDL_Event* ev )
 					if( bookmarkInUse[id] )
 						setCameraTarget( cameraBookmarks[id] );
 				}
+				return( EV_HANDLED );
 			}
-		}
-		break;
-	case SDL_HOTKEYDOWN:
-		switch( ev->user.code )
-		{
-		case HOTKEY_HIGHLIGHTALL:
-			g_Mouseover.m_viewall = true;
-			break;
-		case HOTKEY_SELECTION_SNAP:
-			if( g_Selection.m_selected.size() )
-				setCameraTarget( g_Selection.getSelectionPosition() );
-			break;
-		case HOTKEY_CONTEXTORDER_NEXT:
-			g_Selection.nextContext();
-			break;
-		case HOTKEY_CONTEXTORDER_PREVIOUS:
-			g_Selection.previousContext();
-			break;
-		default:
 			return( EV_PASS );
 		}
 		return( EV_HANDLED );
@@ -879,7 +883,7 @@ void setCameraTarget( const CVector3D& target )
 	//  the difference beteen that position and the camera point, and restoring
 	//  that difference to our new target)
 
-	CHFTracer tracer( g_Terrain.GetHeightMap(), g_Terrain.GetVerticesPerSide(), CELL_SIZE, HEIGHT_SCALE ); int x, z;
+	CHFTracer tracer( g_Terrain.GetHeightMap(), g_Terrain.GetVerticesPerSide(), (float)CELL_SIZE, (float)HEIGHT_SCALE ); int x, z;
 	CVector3D origin, dir, currentTarget;
 	origin = g_Camera.m_Orientation.GetTranslation();
 	dir = g_Camera.m_Orientation.GetIn();

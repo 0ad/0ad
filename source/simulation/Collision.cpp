@@ -23,6 +23,27 @@ CBoundingObject* getContainingObject( const CVector2D& point )
 	return( NULL );
 }
 
+CBoundingObject* getCollisionObject( CBoundingObject* bounds )
+{
+	std::vector<HEntity>* entities = g_EntityManager.getExtant();
+	std::vector<HEntity>::iterator it;
+
+	for( it = entities->begin(); it != entities->end(); it++ )
+	{
+		assert( (*it)->m_bounds );
+		if( (*it)->m_bounds == bounds ) continue;
+		if( bounds->intersects( (*it)->m_bounds ) )
+		{
+			CBoundingObject* obj = (*it)->m_bounds;
+			delete( entities );
+			return( obj );
+		}
+	}
+
+	delete( entities );
+	return( NULL );
+}
+
 HEntity getCollisionObject( CEntity* entity )
 {
 	assert( entity->m_bounds ); 

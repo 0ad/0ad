@@ -150,6 +150,27 @@ CMiniPatch* CTerrain::GetTile(int32_t x,int32_t z)
 	return &patch->m_MiniPatches[z%PATCH_SIZE][x%PATCH_SIZE];
 }
 
+float CTerrain::getExactGroundLevel( float x, float y ) const
+{
+	x /= (float)CELL_SIZE;
+	y /= (float)CELL_SIZE;
+
+	int xi = (int)floor( x );
+	int yi = (int)floor( y );
+	float xf = x - (float)xi;
+	float yf = y - (float)yi;
+
+	assert( isOnMap( x, y ) );
+
+	if( !isOnMap( x, y ) )
+		return 0.0f;
+
+	float h00 = m_Heightmap[yi*m_MapSize + xi];
+	float h01 = m_Heightmap[yi*m_MapSize + xi + m_MapSize];
+	float h10 = m_Heightmap[yi*m_MapSize + xi + 1];
+	float h11 = m_Heightmap[yi*m_MapSize + xi + m_MapSize + 1];
+	return( HEIGHT_SCALE * ( ( 1 - yf ) * ( ( 1 - xf ) * h00 + xf * h10 ) + yf * ( ( 1 - xf ) * h01 + xf * h11 ) ) );
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // Resize: resize this terrain to the given size (in patches per side)

@@ -12,6 +12,7 @@
 
 #include "Patch.h"
 #include "Vector3D.h"
+#include "Vector2D.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // CTerrain: main terrain class; contains the heightmap describing elevation
@@ -28,6 +29,17 @@ public:
 	u32 GetVerticesPerSide() { return m_MapSize; }
 	// return number of patches along edge of the terrain
 	u32 GetPatchesPerSide() { return m_MapSizePatches; }
+
+	inline bool isOnMap( float x, float y ) const 
+	{
+		return( ( x >= 0.0f ) && ( x <= (float)m_MapSize ) && ( y >= 0.0f ) && ( y <= (float)m_MapSize ) );
+	}
+	inline bool isOnMap( const CVector2D& v ) const
+	{
+		return( ( v.x >= 0.0f ) && ( v.x <= (float)m_MapSize ) && ( v.y >= 0.0f ) && ( v.y <= (float)m_MapSize ) );
+	}
+	float getExactGroundLevel( float x, float y ) const ;
+	inline float getExactGroundLevel( const CVector2D& v ) const { return( getExactGroundLevel( v.x, v.y ) ); }
 
 	// resize this terrain such that each side has given number of patches
 	void Resize(u32 size);

@@ -40,6 +40,7 @@ public:
 	CBoundingCircle* m_bound_circle;
 	CBoundingBox* m_bound_box;
 	CBoundingObject::EBoundingType m_bound_type;
+	CVector2D m_graphicsOffset;
 
 	CProperty_float m_speed;
 	CProperty_float m_turningRadius;

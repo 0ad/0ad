@@ -48,7 +48,7 @@ bool CBaseEntity::loadXML( CStr filename )
 	EL(turningradius);
 	EL(size);
 	EL(footprint);
-	EL(boundsoffset);
+	EL(graphicsoffset);
 	AT(radius);
 	AT(width);
 	AT(height);
@@ -103,21 +103,13 @@ bool CBaseEntity::loadXML( CStr filename )
 			m_bound_box->setDimensions( width.ToFloat(), height.ToFloat() );
 			m_bound_type = CBoundingObject::BOUND_OABB;
 		}
-		else if (ChildName == el_boundsoffset)
+		else if (ChildName == el_graphicsoffset)
 		{
 			CStr x (Child.getAttributes().getNamedItem(at_x));
 			CStr y (Child.getAttributes().getNamedItem(at_y));
 
-			if( !m_bound_circle )
-				m_bound_circle = new CBoundingCircle();
-			if( !m_bound_box )
-				m_bound_box = new CBoundingBox();
-
-			m_bound_circle->m_offset.x = x.ToFloat();
-			m_bound_circle->m_offset.y = y.ToFloat();
-			m_bound_box->m_offset.x = x.ToFloat();
-			m_bound_box->m_offset.y = y.ToFloat();
-
+			m_graphicsOffset.x = x.ToFloat();
+			m_graphicsOffset.y = y.ToFloat();
 		}
 	}		
 

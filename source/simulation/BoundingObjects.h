@@ -18,7 +18,7 @@ class CBoundingCircle;
 class CBoundingObject
 {
 public:
-	CBoundingObject() { m_offset.x = 0; m_offset.y = 0; }
+	CBoundingObject() {}
 	enum EBoundingType
 	{
 		BOUND_CIRCLE,
@@ -26,7 +26,6 @@ public:
 	};
 	EBoundingType m_type;
 	CVector2D m_pos;
-	CVector2D m_offset;
 	float m_radius;
 	void setPosition( float x, float y );
 	bool intersects( CBoundingObject* obj );

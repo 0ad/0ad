@@ -40,7 +40,6 @@ CBoundingCircle::CBoundingCircle( float x, float y, float radius )
 CBoundingCircle::CBoundingCircle( float x, float y, CBoundingCircle* copy )
 {
 	m_type = BOUND_CIRCLE;
-	m_offset = copy->m_offset;
  	setPosition( x, y );
 	setRadius( copy->m_radius );
 }
@@ -48,7 +47,6 @@ CBoundingCircle::CBoundingCircle( float x, float y, CBoundingCircle* copy )
 void CBoundingObject::setPosition( float x, float y )
 {
 	m_pos.x = x; m_pos.y = y;
-	m_pos += m_offset;
 }
 
 void CBoundingCircle::setRadius( float radius )
@@ -95,7 +93,6 @@ CBoundingBox::CBoundingBox( float x, float y, const CVector2D& u, float width, f
 CBoundingBox::CBoundingBox( float x, float y, const CVector2D& u, CBoundingBox* copy )
 {
 	m_type = BOUND_OABB;
-	m_offset = copy->m_offset;
 	setPosition( x, y );
 	setDimensions( copy->getWidth(), copy->getHeight() );
 	setOrientation( u ); 
@@ -112,7 +109,6 @@ CBoundingBox::CBoundingBox( float x, float y, float orientation, float width, fl
 CBoundingBox::CBoundingBox( float x, float y, float orientation, CBoundingBox* copy )
 {
 	m_type = BOUND_OABB;
-	m_offset = copy->m_offset;
 	setPosition( x, y );
 	setDimensions( copy->getWidth(), copy->getHeight() );
 	setOrientation( orientation ); 

@@ -20,7 +20,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 {
 	m_position = position;
 	m_orientation = orientation;
-
+	
 	m_ahead.x = sin( m_orientation );
 	m_ahead.y = cos( m_orientation );
 	
@@ -41,8 +41,18 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	m_base = base;
 	
 	loadBase();
+
+	// Nasty hackish correction for models that are off-centre.
+	// Bad artist. No cookie.
+
+	m_position.X += m_graphicsOffset.x;
+	m_position.Z += m_graphicsOffset.y;
+	if( m_bounds )
+		m_bounds->setPosition( m_position.X, m_position.Z );
 	
-	// We can now freely admit that this exists.
+	m_position_previous = m_position;
+	m_orientation_previous = m_orientation;
+
 	m_extant = true;
 	m_extant_mirror = true;
 
@@ -88,6 +98,8 @@ void CEntity::loadBase()
 	m_base->m_inheritors.push_back( this );
 	rebuild();
 
+	m_graphicsOffset = m_base->m_graphicsOffset;
+
 	if( m_base->m_bound_type == CBoundingObject::BOUND_CIRCLE )
 	{
  		m_bounds = new CBoundingCircle( m_position.X, m_position.Z, m_base->m_bound_circle );
@@ -96,6 +108,9 @@ void CEntity::loadBase()
 	{
 		m_bounds = new CBoundingBox( m_position.X, m_position.Z, m_ahead, m_base->m_bound_box );
 	}
+
+
+
 }
 
 void CEntity::kill()
@@ -130,65 +145,17 @@ void CEntity::updateActorTransforms()
 	float s = sin( m_graphics_orientation );
 	float c = cos( m_graphics_orientation );
 
-	m._11 = -c;		m._12 = 0.0f;	m._13 = -s;		m._14 = m_graphics_position.X;
+	m._11 = -c;		m._12 = 0.0f;	m._13 = -s;		m._14 = m_graphics_position.X - m_graphicsOffset.x;
 	m._21 = 0.0f;	m._22 = 1.0f;	m._23 = 0.0f;	m._24 = m_graphics_position.Y;
-	m._31 = s;		m._32 = 0.0f;	m._33 = -c;		m._34 = m_graphics_position.Z;
+	m._31 = s;		m._32 = 0.0f;	m._33 = -c;		m._34 = m_graphics_position.Z - m_graphicsOffset.y;
 	m._41 = 0.0f;	m._42 = 0.0f;	m._43 = 0.0f;	m._44 = 1.0f;
 
 	m_actor->GetModel()->SetTransform( m );
 }
 
-float CEntity::getExactGroundLevel( float x, float y )
-{
-	x /= 4.0f;
-	y /= 4.0f;
-
-	int xi = (int)floor( x );
-	int yi = (int)floor( y );
-	float xf = x - (float)xi;
-	float yf = y - (float)yi;
-
-	u16* heightmap = g_Terrain.GetHeightMap();
-	unsigned long mapsize = g_Terrain.GetVerticesPerSide();
-
-	assert( ( xi >= 0 ) && ( xi < (int)mapsize ) && ( yi >= 0 ) && ( yi < (int)mapsize ) );
-
-	// In non-debug builds, do something nicer than crashing
-	if (! ( ( xi >= 0 ) && ( xi < (int)mapsize ) && ( yi >= 0 ) && ( yi < (int)mapsize ) ) )
-	{
-		return 0.0f;
-	}
-
-	float h00 = heightmap[yi*mapsize + xi];
-	float h01 = heightmap[yi*mapsize + xi + mapsize];
-	float h10 = heightmap[yi*mapsize + xi + 1];
-	float h11 = heightmap[yi*mapsize + xi + mapsize + 1];
-
-	/*
-	if( xf < ( 1.0f - yf ) )
-	{
-		return( HEIGHT_SCALE * ( ( 1 - xf - yf ) * h00 + xf * h10 + yf * h01 ) );
-	}
-	else
-		return( HEIGHT_SCALE * ( ( xf + yf - 1 ) * h11 + ( 1 - xf ) * h01 + ( 1 - yf ) * h10 ) );
-	*/
-
-	/*
-	if( xf > yf ) 
-	{
-		return( HEIGHT_SCALE * ( ( 1 - xf ) * h00 + ( xf - yf ) * h10 + yf * h11 ) );
-	}
-	else
-		return( HEIGHT_SCALE * ( ( 1 - yf ) * h00 + ( yf - xf ) * h01 + xf * h11 ) );
-	*/
-
-	return( HEIGHT_SCALE * ( ( 1 - yf ) * ( ( 1 - xf ) * h00 + xf * h10 ) + yf * ( ( 1 - xf ) * h01 + xf * h11 ) ) );
-
-}
-
 void CEntity::snapToGround()
 {
-	m_graphics_position.Y = getExactGroundLevel( m_graphics_position.X, m_graphics_position.Z );
+	m_graphics_position.Y = g_Terrain.getExactGroundLevel( m_graphics_position.X, m_graphics_position.Z );
 }
 
 void CEntity::update( float timestep )
@@ -417,11 +384,11 @@ void CEntity::render()
 				glEnd();
 				glBegin( GL_LINES );
 				glColor3f( 1.0f, 0.0f, 0.0f );
-				glVertex3f( x0 + fwd.x * r.distance, getExactGroundLevel( x0 + fwd.x * r.distance, y0 + fwd.y * r.distance ) + 0.25f, y0 + fwd.y * r.distance );
-				glVertex3f( r.position.x, getExactGroundLevel( r.position.x, r.position.y ) + 0.25f, r.position.y );
+				glVertex3f( x0 + fwd.x * r.distance, g_Terrain.getExactGroundLevel( x0 + fwd.x * r.distance, y0 + fwd.y * r.distance ) + 0.25f, y0 + fwd.y * r.distance );
+				glVertex3f( r.position.x, g_Terrain.getExactGroundLevel( r.position.x, r.position.y ) + 0.25f, r.position.y );
 				glEnd();
 				glBegin( GL_LINE_STRIP );
-				glVertex3f( x0, getExactGroundLevel( x0, y0 ), y0 );
+				glVertex3f( x0, g_Terrain.getExactGroundLevel( x0, y0 ), y0 );
 			}
 			switch( it->m_type )
 			{
@@ -438,7 +405,7 @@ void CEntity::render()
 				continue;
 			}
 			
-			glVertex3f( x, getExactGroundLevel( x, y ) + 0.25f, y );
+			glVertex3f( x, g_Terrain.getExactGroundLevel( x, y ) + 0.25f, y );
 		}
 
 		glEnd();
@@ -447,7 +414,7 @@ void CEntity::render()
 	
 	glColor3f( 1.0f, 1.0f, 1.0f );
 	if( getCollisionObject( this ) ) glColor3f( 0.5f, 0.5f, 1.0f );
-	m_bounds->render( getExactGroundLevel( m_position.X, m_position.Z ) + 0.25f ); //m_position.Y + 0.25f );
+	m_bounds->render( g_Terrain.getExactGroundLevel( m_position.X, m_position.Z ) + 0.25f ); //m_position.Y + 0.25f );
 }
 
 void CEntity::renderSelectionOutline( float alpha )
@@ -455,12 +422,11 @@ void CEntity::renderSelectionOutline( float alpha )
 	if( !m_bounds ) return;
 
 	glColor4f( 1.0f, 1.0f, 1.0f, alpha );
+	if( getCollisionObject( this ) ) glColor4f( 1.0f, 0.5f, 0.5f, alpha );
 	
 	glBegin( GL_LINE_LOOP );
 
 	CVector3D pos = m_graphics_position;
-	pos.X += m_bounds->m_offset.x;
-	pos.Z += m_bounds->m_offset.y;
 
 	switch( m_bounds->m_type )
 	{
@@ -473,7 +439,7 @@ void CEntity::renderSelectionOutline( float alpha )
 			float x = pos.X + radius * sin( ang );
 			float y = pos.Z + radius * cos( ang );
 #ifdef SELECTION_TERRAIN_CONFORMANCE
-			glVertex3f( x, getExactGroundLevel( x, y ) + 0.25f, y );
+			glVertex3f( x, g_Terrain.getExactGroundLevel( x, y ) + 0.25f, y );
 #else
 			glVertex3f( x, pos.Y + 0.25f, y );
 #endif
@@ -497,29 +463,29 @@ void CEntity::renderSelectionOutline( float alpha )
 		for( int i = SELECTION_BOX_POINTS; i > -SELECTION_BOX_POINTS; i-- )
 		{
 			p = q + u * h + v * ( w * (float)i / (float)SELECTION_BOX_POINTS );
-			glVertex3f( p.x, getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+			glVertex3f( p.x, g_Terrain.getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
 		}
 
 		for( int i = SELECTION_BOX_POINTS; i > -SELECTION_BOX_POINTS; i-- )
 		{
 			p = q + u * ( h * (float)i / (float)SELECTION_BOX_POINTS ) - v * w;
-			glVertex3f( p.x, getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+			glVertex3f( p.x, g_Terrain.getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
 		}
 
 		for( int i = -SELECTION_BOX_POINTS; i < SELECTION_BOX_POINTS; i++ )
 		{
 			p = q - u * h + v * ( w * (float)i / (float)SELECTION_BOX_POINTS );
-			glVertex3f( p.x, getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+			glVertex3f( p.x, g_Terrain.getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
 		}
 
 		for( int i = -SELECTION_BOX_POINTS; i < SELECTION_BOX_POINTS; i++ )
 		{
 			p = q + u * ( h * (float)i / (float)SELECTION_BOX_POINTS ) + v * w;
-			glVertex3f( p.x, getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+			glVertex3f( p.x, g_Terrain.getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
 		}
 #else
 			p = q + u * h + v * w;
-			glVertex3f( p.x, getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+			glVertex3f( p.x, g_Terrain.getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
 
 			p = q + u * h - v * w;
 			glVertex3f( p.x, getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );

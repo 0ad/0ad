@@ -106,7 +106,7 @@ JSBool JSI_Selection::isValidContextOrder( JSContext* context, JSObject* obj, un
 
 JSBool JSI_Selection::getContextOrder( JSContext* context, JSObject* obj, jsval id, jsval* vp )
 {
-	*vp = g_Selection.m_contextOrder;
+	*vp = INT_TO_JSVAL( g_Selection.m_contextOrder );
 	return( JS_TRUE );
 }
  

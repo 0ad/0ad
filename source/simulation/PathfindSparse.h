@@ -38,6 +38,7 @@ struct sparsePathTree
 		SPF_OPEN = 4,
 		SPF_SOLVED = 2
 	} type;
+	int recursionDepth;
 	HEntity entity;
 	CBoundingObject* destinationCollisionObject;
 	CVector2D from;
@@ -59,11 +60,13 @@ struct sparsePathTree
 		sparsePathTree* subtrees[4];
 	};
 	unsigned short nextSubtree;
-	sparsePathTree( const CVector2D& from, const CVector2D& to, HEntity entity, CBoundingObject* destinationCollisionObject );
+	sparsePathTree( const CVector2D& from, const CVector2D& to, HEntity entity, CBoundingObject* destinationCollisionObject, int _recursionDepth );
 	~sparsePathTree();
 	bool slice();
 	void pushResults( std::vector<CVector2D>& nodelist );
 };
+
+extern int SPF_RECURSION_DEPTH;
 
 void nodeSmooth( HEntity entity, std::vector<CVector2D>& nodelist );
 void pathSparse( HEntity entity, CVector2D destination );

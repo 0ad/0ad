@@ -47,7 +47,10 @@ bool HEntity::operator ==( const HEntity& test ) const
 void HEntity::addRef()
 {
 	if( m_handle != INVALID_HANDLE )
+	{
+		assert( m_handle < 4096 );
 		g_EntityManager.m_entities[m_handle].m_refcount++;
+	}
 }
 
 void HEntity::decRef()

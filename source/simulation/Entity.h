@@ -61,11 +61,12 @@ public:
 	u8 m_grouped;
 	CProperty_i32 m_grouped_mirror;
 
-
 	//-- Interpolated property
 	CVector3D m_position;
 	CVector3D m_position_previous;
 	CProperty_CVector3D m_graphics_position;
+
+	CVector2D m_graphicsOffset;
 
 	CBoundingObject* m_bounds;
 	float m_targetorientation;
@@ -98,7 +99,6 @@ public:
 	void kill();
 
 	void interpolate( float relativeoffset );
-	float getExactGroundLevel( float x, float y );
 	void snapToGround();
 	void updateActorTransforms();
 	void render();

@@ -1,10 +1,14 @@
 #include "precompiled.h"
 
 #include "PathfindSparse.h"
+#include "Terrain.h"
 
-sparsePathTree::sparsePathTree( const CVector2D& _from, const CVector2D& _to, HEntity _entity, CBoundingObject* _destinationCollisionObject )
+int SPF_RECURSION_DEPTH = 10;
+
+sparsePathTree::sparsePathTree( const CVector2D& _from, const CVector2D& _to, HEntity _entity, CBoundingObject* _destinationCollisionObject, int _recursionDepth )
 {
 	from = _from; to = _to;
+	recursionDepth = _recursionDepth;
 
 	entity = _entity; destinationCollisionObject = _destinationCollisionObject;
 	leftPre = NULL; leftPost = NULL;
@@ -26,6 +30,13 @@ bool sparsePathTree::slice()
 {
 	if( type == SPF_OPEN_UNVISITED )
 	{
+		if( !recursionDepth )
+		{
+			// Too deep.
+			type = SPF_IMPOSSIBLE;
+			return( true );
+		}
+
 		rayIntersectionResults r;
 
 		CVector2D forward = to - from;
@@ -75,21 +86,44 @@ bool sparsePathTree::slice()
 		if( r.closestApproach < 0 )
 			favourLeft = true;
 	
+		
 		// First we path to the left...
 		
-		leftPre = new sparsePathTree( from, left, entity, destinationCollisionObject );
-		leftPost = new sparsePathTree( left, to, entity, destinationCollisionObject );
+		leftPre = new sparsePathTree( from, left, entity, destinationCollisionObject, recursionDepth - 1 );
+		leftPost = new sparsePathTree( left, to, entity, destinationCollisionObject, recursionDepth - 1 );
 
 		// Then we path to the right...
 
-		rightPre = new sparsePathTree( from, right, entity, destinationCollisionObject );
-		rightPost = new sparsePathTree( right, to, entity, destinationCollisionObject );
+		rightPre = new sparsePathTree( from, right, entity, destinationCollisionObject, recursionDepth - 1 );
+		rightPost = new sparsePathTree( right, to, entity, destinationCollisionObject, recursionDepth - 1 );
 
 		// If anybody reaches this point and is thinking:
 		//
 		// "Let's Do The Time-Warp Agaaaain!"
 		//
 		// Let me know.
+
+		// Check that the subwaypoints are on the map...
+		if( !g_Terrain.isOnMap( left ) )
+		{
+			// Shut that path down
+			leftPre->type = SPF_IMPOSSIBLE;
+			leftPost->type = SPF_IMPOSSIBLE;
+		}
+
+		if( !g_Terrain.isOnMap( right ) )
+		{
+			// Shut that path down
+			rightPre->type = SPF_IMPOSSIBLE;
+			rightPost->type = SPF_IMPOSSIBLE;
+		}
+
+		if( ( leftPre->type == SPF_IMPOSSIBLE ) && ( rightPre->type == SPF_IMPOSSIBLE ) )
+		{
+			// It's unlikely, but I suppose it /might/ happen
+			type = SPF_IMPOSSIBLE;
+			return( true );
+		}
 
 		type = SPF_OPEN_PROCESSING;
 
@@ -193,10 +227,10 @@ void pathSparse( HEntity entity, CVector2D destination )
 	// Sanity check:
 	if( source.length() < 0.01f ) return;
 
-	sparsePathTree sparseEngine( source, destination, entity, getContainingObject( destination ) );
+	sparsePathTree sparseEngine( source, destination, entity, getContainingObject( destination ), SPF_RECURSION_DEPTH );
 	while( sparseEngine.type & sparsePathTree::SPF_OPEN ) sparseEngine.slice();
 
-	assert( sparseEngine.type & sparsePathTree::SPF_SOLVED ); // Shouldn't be any impossible cases yet.
+	// assert( sparseEngine.type & sparsePathTree::SPF_SOLVED ); // Shouldn't be any impossible cases yet.
 
 	if( sparseEngine.type & sparsePathTree::SPF_SOLVED )
 	{

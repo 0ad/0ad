@@ -57,12 +57,41 @@ static SHotkeyInfo hotkeyInfo[] =
 	{ HOTKEY_CAMERA_PAN_RIGHT, "camera.pan.right", SDLK_RIGHT, 0 },
 	{ HOTKEY_CAMERA_PAN_FORWARD, "camera.pan.forward", SDLK_UP, 0 },
 	{ HOTKEY_CAMERA_PAN_BACKWARD, "camera.pan.backward", SDLK_DOWN, 0 },
-	{ HOTKEY_CAMERA_BOOKMARK_MODIFIER, "camera.bookmark.modifier", 0, 0 },
+	{ HOTKEY_CAMERA_BOOKMARK_0, "camera.bookmark.0", SDLK_F5, 0, },
+	{ HOTKEY_CAMERA_BOOKMARK_1, "camera.bookmark.1", SDLK_F6, 0, },
+	{ HOTKEY_CAMERA_BOOKMARK_2, "camera.bookmark.2", SDLK_F7, 0, },
+	{ HOTKEY_CAMERA_BOOKMARK_3, "camera.bookmark.3", SDLK_F8, 0, },
+	{ HOTKEY_CAMERA_BOOKMARK_4, "camera.bookmark.4", 0, 0, },
+	{ HOTKEY_CAMERA_BOOKMARK_5, "camera.bookmark.5", 0, 0, },
+	{ HOTKEY_CAMERA_BOOKMARK_6, "camera.bookmark.6", 0, 0, },
+	{ HOTKEY_CAMERA_BOOKMARK_7, "camera.bookmark.7", 0, 0, },
+	{ HOTKEY_CAMERA_BOOKMARK_8, "camera.bookmark.8", 0, 0, },
+	{ HOTKEY_CAMERA_BOOKMARK_9, "camera.bookmark.9", 0, 0, },
 	{ HOTKEY_CAMERA_BOOKMARK_SAVE, "camera.bookmark.save", 0, 0 },
 	{ HOTKEY_CAMERA_BOOKMARK_SNAP, "camera.bookmark.snap", 0, 0 },
 	{ HOTKEY_CONSOLE_TOGGLE, "console.toggle", SDLK_F1, 0 },
 	{ HOTKEY_SELECTION_ADD, "selection.add", SDLK_LSHIFT, SDLK_RSHIFT },
 	{ HOTKEY_SELECTION_REMOVE, "selection.remove", SDLK_LCTRL, SDLK_RCTRL },
+	{ HOTKEY_SELECTION_GROUP_0, "selection.group.0", SDLK_0, 0, },
+	{ HOTKEY_SELECTION_GROUP_1, "selection.group.1", SDLK_1, 0, },
+	{ HOTKEY_SELECTION_GROUP_2, "selection.group.2", SDLK_2, 0, },
+	{ HOTKEY_SELECTION_GROUP_3, "selection.group.3", SDLK_3, 0, },
+	{ HOTKEY_SELECTION_GROUP_4, "selection.group.4", SDLK_4, 0, },
+	{ HOTKEY_SELECTION_GROUP_5, "selection.group.5", SDLK_5, 0, },
+	{ HOTKEY_SELECTION_GROUP_6, "selection.group.6", SDLK_6, 0, },
+	{ HOTKEY_SELECTION_GROUP_7, "selection.group.7", SDLK_7, 0, },
+	{ HOTKEY_SELECTION_GROUP_8, "selection.group.8", SDLK_8, 0, },
+	{ HOTKEY_SELECTION_GROUP_9, "selection.group.9", SDLK_9, 0, },
+	{ HOTKEY_SELECTION_GROUP_10, "selection.group.10", 0, 0, },
+	{ HOTKEY_SELECTION_GROUP_11, "selection.group.11", 0, 0, },
+	{ HOTKEY_SELECTION_GROUP_12, "selection.group.12", 0, 0, },
+	{ HOTKEY_SELECTION_GROUP_13, "selection.group.13", 0, 0, },
+	{ HOTKEY_SELECTION_GROUP_14, "selection.group.14", 0, 0, },
+	{ HOTKEY_SELECTION_GROUP_15, "selection.group.15", 0, 0, },
+	{ HOTKEY_SELECTION_GROUP_16, "selection.group.16", 0, 0, },
+	{ HOTKEY_SELECTION_GROUP_17, "selection.group.17", 0, 0, },
+	{ HOTKEY_SELECTION_GROUP_18, "selection.group.18", 0, 0, },
+	{ HOTKEY_SELECTION_GROUP_19, "selection.group.19", 0, 0, },
 	{ HOTKEY_SELECTION_GROUP_ADD, "selection.group.add", SDLK_LSHIFT, SDLK_RSHIFT },
 	{ HOTKEY_SELECTION_GROUP_SAVE, "selection.group.save", SDLK_LCTRL, SDLK_RCTRL },
 	{ HOTKEY_SELECTION_GROUP_SNAP, "selection.group.snap", SDLK_LALT, SDLK_RALT },
@@ -228,9 +257,22 @@ int hotkeyInputHandler( const SDL_Event* ev )
 
 	SDL_Event hotkeyNotification;
 
+	// Here's an interesting bit:
+	// If you have an event bound to, say, 'F', and another to, say, 'Ctrl+F', pressing
+	// 'F' while control is down will fire off both.
+
+	// To avoid this, set the modifier keys for /all/ events this key would trigger
+	// (Ctrl, for example, is both group-save and bookmark-save)
+	// but only send a HotkeyDown event for the event whos bindings most precisely
+	// match the conditions (i.e. the event with the highest number of auxiliary
+	// keys, providing they're all down)
+
 	if( ( ev->type == SDL_KEYDOWN ) || ( ev->type == SDL_MOUSEBUTTONDOWN ) )
 	{
 		// SDL-events bit
+		
+		int closestMap = -1, closestMapMatch;
+
 		for( it = hotkeyMap[keycode].begin(); it < hotkeyMap[keycode].end(); it++ )
 		{			
 			// Check to see if all auxiliary keys are down
@@ -253,10 +295,19 @@ int hotkeyInputHandler( const SDL_Event* ev )
 			if( accept )
 			{
 				hotkeys[it->mapsTo] = true;
-				hotkeyNotification.type = SDL_HOTKEYDOWN;
-				hotkeyNotification.user.code = it->mapsTo;
-				SDL_PushEvent( &hotkeyNotification );
+				if( ( closestMap == -1 ) || ( it->requires.size() > closestMapMatch ) )
+				{
+					closestMap = it->mapsTo;
+					closestMapMatch = it->requires.size();
+				}
 			}
+		}
+
+		if( closestMap != -1 )
+		{
+			hotkeyNotification.type = SDL_HOTKEYDOWN;
+			hotkeyNotification.user.code = closestMap;
+			SDL_PushEvent( &hotkeyNotification );
 		}
 		// GUI bit... could do with some optimization later.
 		for( itGUI = hotkeyMapGUI[keycode].begin(); itGUI != hotkeyMapGUI[keycode].end(); itGUI++ )

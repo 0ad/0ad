@@ -156,11 +156,11 @@ bool CHFTracer::RayIntersect(CVector3D& origin,CVector3D& dir,int& x,int& z,CVec
 			// catch travelling off the map
 			if( ( cx < 0 ) && ( sx < 0 ) )
 				return( false );
-			if( ( cx >= m_MapSize ) && ( sx > 0 ) )
+			if( ( cx >= (int)m_MapSize ) && ( sx > 0 ) )
 				return( false );
 			if( ( cz < 0 ) && ( sz < 0 ) )
 				return( false );
-			if( ( cz >= m_MapSize ) && ( sz > 0 ) )
+			if( ( cz >= (int)m_MapSize ) && ( sz > 0 ) )
 				return( false );
 		}
 

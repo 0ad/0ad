@@ -7,6 +7,9 @@
 
 #include "Collision.h"
 #include "PathfindEngine.h"
+#include "Terrain.h"
+
+extern CTerrain g_Terrain;
 
 bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 {
@@ -43,6 +46,7 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 		// making the paths we calculate useless.
 		// It's also painful trying to watch two entities resolve their
 		// collision when they're both bound by turning constraints.
+
 		m_ahead = delta / len;
 		m_orientation = atan2( m_ahead.x, m_ahead.y );
 	}
@@ -84,42 +88,75 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 
 	delta = m_ahead * scale;
 
+	// What would happen if we moved forward a little?
+
 	m_position.X += delta.x;
 	m_position.Z += delta.y;
+
 	m_bounds->setPosition( m_position.X, m_position.Z );
 
 	HEntity collide = getCollisionObject( this );
 	
 	if( collide )
 	{	
-		// Hit something. Is it our destination?
+		// We'd hit something. Let's not.
+		m_position.X -= delta.x;
+		m_position.Z -= delta.y;
+		m_bounds->m_pos -= delta;
+
+		// Is it too late to avoid the collision?
+
+		if( collide->m_bounds->intersects( m_bounds ) )
+		{
+			// Yes. Oh dear. That can't be good.
+			// This really shouldn't happen in the current build.
+
+			assert( false && "Overlapping objects" );
+
+			// Erm... do nothing?
+			
+			return( false );
+		}
+
+		// No. Is our destination within the obstacle?
 		if( collide->m_bounds->contains( current->m_data[0].location ) )
 		{
+			// Yes? All well and good, then. Stop here.	
 			m_orderQueue.pop_front();
 			return( false );
 		}
 		
-		// No? Take a step back.
-		m_position.X -= delta.x;
-		m_position.Z -= delta.y;
+		// No. Are we nearing our destination, do we wish to stop there, and is it obstructed?
 
-		m_bounds->setPosition( m_position.X, m_position.Z );
-
-		// Are we still hitting it?
-		if( collide->m_bounds->intersects( m_bounds ) )
+		if( ( m_orderQueue.size() == 1 ) && ( len <= 10.0f ) )
 		{
-			// Oh dear. Most likely explanation is that this unit was created
-			// within the bounding area of another entity.
-			// Try a little boost of speed, to help resolve the situation more quickly.
+			CBoundingCircle destinationObs( current->m_data[0].location.x, current->m_data[0].location.y, m_bounds->m_radius );
+			if( getCollisionObject( &destinationObs ) )
+			{
+				// Yes. (Chances are a bunch of units were tasked to the same destination)
+				// Here's a wierd idea: (I hope it works)
+				// Spiral round the destination until a free point is found.
+				float r = 0.0f, theta = 0.0f, delta;
+				float interval = destinationObs.m_radius;
+				float _x = current->m_data[0].location.x, _y = current->m_data[0].location.y;
+				
+				while( true )
+				{
+					delta = interval / r;
+					theta += delta;
+					r += ( interval * delta ) / ( 2 * PI );
+					destinationObs.setPosition( _x + r * cosf( theta ), _y + r * sinf( theta ) );
+					if( !getCollisionObject( &destinationObs ) ) break;
+				}
+				
+				// Reset our destination
+				current->m_data[0].location.x = _x;
+				current->m_data[0].location.y = _y;
 
-			// This really shouldn't happen in the current build.
-
-			m_position.X += delta.x * 2.0f;
-			m_position.Z += delta.y * 2.0f;
-			m_bounds->setPosition( m_position.X, m_position.Z );
-			return( false );
+				return( false );
+			}
 		}
-		
+
 		// No? Path around it.
 			
 		CEntityOrder avoidance;
@@ -127,6 +164,9 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 		CVector2D right;
 		right.x = m_ahead.y; right.y = -m_ahead.x;
 		CVector2D avoidancePosition;
+
+		// Which is the shortest diversion, going left or right?
+		// (Weight a little towards the right, to stop both units dodging the same way)
 
 		if( ( collide->m_bounds->m_pos - m_bounds->m_pos ).dot( right ) < 1 )
 		{
@@ -139,6 +179,8 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 			avoidancePosition = collide->m_bounds->m_pos - right * ( collide->m_bounds->m_radius + m_bounds->m_radius * 2.5f );
 		}
 
+		// Create a short path representing this detour
+
 		avoidance.m_data[0].location = avoidancePosition;
 		if( current->m_type == CEntityOrder::ORDER_GOTO_COLLISION )
 			m_orderQueue.pop_front();
@@ -146,6 +188,27 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 		return( false );
 
 	}
+
+	// Will we step off the map?
+	if( !g_Terrain.isOnMap( m_position.X, m_position.Z ) )
+	{
+		// Yes. That's not a particularly good idea, either.
+		
+		m_position.X -= delta.x;
+		m_position.Z -= delta.y;
+		m_bounds->setPosition( m_position.X, m_position.Z );
+
+		// All things being equal, we should only get here while on a collision path
+		// (No destination could be off the map)
+
+		assert( current->m_type == CEntityOrder::ORDER_GOTO_COLLISION );
+
+		// Just stop here, repath if necessary.
+
+		m_orderQueue.pop_front();
+	}
+
+	// No. I suppose it's OK to go there, then. *disappointed*
 
 	return( false );
 }
@@ -155,13 +218,19 @@ bool CEntity::processGoto( CEntityOrder* current, float timestep )
 	CVector2D pos( m_position.X, m_position.Z );
 	CVector2D path_to = current->m_data[0].location;
 	m_orderQueue.pop_front();
+
+	// Let's just check we're going somewhere...
 	if( ( path_to - pos ).length() < 0.1f ) 
 		return( false );
+
 	if( m_actor->GetModel()->GetAnimation() != m_actor->GetObject()->m_WalkAnim )
 	{
 		m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_WalkAnim );
 		m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
 	}
+
+	// The pathfinder will push its result back into this unit's queue.
+
 	g_Pathfinder.requestPath( me, path_to );
 	return( true );
 }
@@ -170,6 +239,11 @@ bool CEntity::processPatrol( CEntityOrder* current, float timestep )
 {
 	CEntityOrder this_segment;
 	CEntityOrder repeat_patrol;
+
+	// Duplicate the patrol order, push one copy onto the start of our order queue
+	// (that's the path we'll be taking next) and one copy onto the end of the
+	// queue (to keep us patrolling)
+
 	this_segment.m_type = CEntityOrder::ORDER_GOTO;
 	this_segment.m_data[0] = current->m_data[0];
 	repeat_patrol.m_type = CEntityOrder::ORDER_PATROL;
