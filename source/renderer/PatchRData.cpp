@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <set>
 #include <algorithm>
-#include "res/tex.h"
+#include "res/ogl_tex.h"
 #include "Renderer.h"
 #include "PatchRData.h"
 #include "AlphaMapCalculator.h"

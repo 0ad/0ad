@@ -10,7 +10,7 @@
 #define _VERTEXBUFFER_H
 
 #include "lib.h"
-#include "res/tex.h"
+#include "res/ogl_tex.h"
 
 #include <list>
 #include <vector>

@@ -2,7 +2,7 @@
 
 #include <assert.h>
 #include <algorithm>
-#include "res/tex.h"
+#include "res/ogl_tex.h"
 #include "Renderer.h"
 #include "TransparencyRenderer.h"
 #include "ModelRData.h"

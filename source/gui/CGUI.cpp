@@ -6,6 +6,12 @@ gee@pyro.nu
 
 #include "precompiled.h"
 
+#include <string>
+#include <assert.h>
+#include <stdarg.h>
+
+#include "lib/res/unifont.h"
+
 #include "GUI.h"
 
 // Types - when including them into the engine.
@@ -26,10 +32,6 @@ gee@pyro.nu
 
 #include "scripting/ScriptingHost.h"
 #include "Hotkey.h"
-
-#include <string>
-#include <assert.h>
-#include <stdarg.h>
 
 // namespaces used
 using namespace std;

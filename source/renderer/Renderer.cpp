@@ -32,7 +32,7 @@
 
 #include "ogl.h"
 #include "res/mem.h"
-#include "res/tex.h"
+#include "res/ogl_tex.h"
 
 #define LOG_CATEGORY "graphics"
 
