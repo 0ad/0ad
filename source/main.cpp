@@ -353,13 +353,7 @@ static int handler(const SDL_Event* ev)
 //			MusicPlayer.play();
 			Handle hs = snd_open(
 				//"audio/music/germanic peace 3.ogg"
-				"audio/voice/hellenes/citizensoldier/Attack-ZeusSaviourandVictory-Zeus-soter-kai-nike.ogg"
-				//"audio/voice/hellenes/citizensoldier/Stance-HoldYourPosition-Kataschete-ten-taxin.ogg"
-				//"audio/voice/hellenes/citizensoldier/Econ-Chop-Kopto.ogg"
-				//"audio/lead_em.wav"
-				//"audio/nike.wav"
-				//"audio/nike.ogg"
-				//"audio/1111_Warcraft 2 - Orc Defeat.ogg"
+				"audio/voice/hellenes/soldier/Attack-ZeusSaviourandVictory.ogg"
 				);
 				
 
