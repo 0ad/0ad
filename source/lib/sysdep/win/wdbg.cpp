@@ -587,8 +587,8 @@ static long CALLBACK except_filter(EXCEPTION_POINTERS* except)
 	uintptr_t addr = (uintptr_t)except_record->ExceptionAddress;
 
 	DWORD code = except_record->ExceptionCode;
-	char* except_str = 0;
-#define X(e) case EXCEPTION_##e: except_str = #e;
+	char* except_str = "(unknown)";
+#define X(e) case EXCEPTION_##e: except_str = #e; break;
 	switch(code)
 	{
 		X(ACCESS_VIOLATION)
