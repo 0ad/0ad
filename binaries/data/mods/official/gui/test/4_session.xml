@@ -23,8 +23,9 @@
 			<action on="Press"><![CDATA[
 				GUIObjectToggle("session_group_pane");
 			]]></action>
-
+<!--
 			<object type="text" name="session_group_pane_bg" sprite="sprite1" z="60" ghost="true" hidden="false"/>
+-->
 
 			<!-- First row. -->
 			<object type="button" name="session_group_pane_portrait_1" style="portrait" z="60" hidden="false">1

@@ -122,7 +122,7 @@ function UpdateGroupPane()
 {
 	// Reveal Group Pane.
 	getGUIObjectByName("session_group_pane").hidden = false;
-
+/*
 	// Set size of Group Pane background.
 	if (selection.length <= 13)
 	{
@@ -174,7 +174,7 @@ function UpdateGroupPane()
 			break;
 		}
 	}
-
+*/
 	// Display appropriate portraits.						
 	for (groupPaneLoop = 1; groupPaneLoop <= crd_grppane_prt_last; groupPaneLoop++)
 	{
