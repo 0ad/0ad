@@ -475,7 +475,7 @@ debug_out("aio_rw cb=%p\n", cb);
 
 	size_t ofs = 0;
 	size_t size = cb->aio_nbytes;
-	void* buf = cb->aio_buf;
+	void* buf = (void*)cb->aio_buf;	// from volatile void*
 
 	// check if h is a socket
 #define SOL_SOCKET 0xffff
@@ -639,7 +639,7 @@ debug_out("aio_return cb=%p\n", cb);
 	// read wasn't aligned - need to copy to user's buffer
 	const size_t _buf = (char*)cb->aio_buf - (char*)0;
 	if(r->pad || _buf % sector_size)
-		memcpy(cb->aio_buf, (u8*)r->buf + r->pad, cb->aio_nbytes);
+		memcpy((void*)cb->aio_buf, (u8*)r->buf + r->pad, cb->aio_nbytes);
 
 	// TODO: this copies data back into original buffer from align buffer
 	// when writing from unaligned buffer. unnecessarily slow.

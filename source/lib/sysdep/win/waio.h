@@ -28,7 +28,7 @@ struct aiocb
 {
 	int             aio_fildes;     // File descriptor.
 	off_t           aio_offset;     // File offset.
-	void*           aio_buf;        // Location of buffer.
+	volatile void*  aio_buf;        // Location of buffer.
 	size_t          aio_nbytes;     // Length of transfer.
 	int             aio_reqprio;    // Request priority offset.
 	struct sigevent aio_sigevent;   // Signal number and value.
