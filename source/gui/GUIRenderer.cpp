@@ -44,44 +44,173 @@ const DrawCalls& DrawCalls::operator=(const DrawCalls&)
 
 
 
-// Implementations of graphical effects
+// Implementations of graphical effects:
+
+
+const int TexScale1[3] = { 1, 1, 1 };
+const int TexScale2[3] = { 2, 2, 2 };
+const int TexScale4[3] = { 4, 4, 4 };
 
 class Effect_AddColor : public IGLState
 {
+	// Uses GL_COMBINE and GL_ADD/GL_SUBTRACT/GL_ADD_SIGNED, to allow
+	// addition/subtraction of colors.
+
 public:
-	Effect_AddColor(CColor c) : m_Color(c) {}
+	Effect_AddColor(CColor c)
+	{
+		// If everything's in [0,1], use GL_ADD
+#define RANGE(lo,hi) c.r >= lo && c.r <= hi && c.g >= lo && c.g <= hi && c.b >= lo && c.b <= hi && c.a >= lo && c.a <= hi
+		if (RANGE(0.f, 1.f))
+		{
+			m_Color = c;
+			m_Method = ADD_NORMAL;
+		}
+		// If it's in [-1, 0] use GL_SUBTRACT
+		else if (RANGE(-1.f, 0.f))
+		{
+			m_Color = CColor(-c.r, -c.g, -c.b, -c.a);
+			m_Method = ADD_SUBTRACT;
+		}
+		// If it's in [-0.5, 0.5] use GL_ADD_SIGNED
+		else if (RANGE(-0.5f, 0.5f))
+		{
+			m_Color = CColor(c.r+0.5f, c.g+0.5f, c.b+0.5f, c.a+0.5f);
+			m_Method = ADD_SIGNED;
+		}
+		// Otherwise, complain.
+		else
+		{
+			LOG(WARNING, "gui", "add-color effect has some components >127 and some <127 - colours will be clamped");
+			m_Color = CColor(c.r+0.5f, c.g+0.5f, c.b+0.5f, c.a+0.5f);
+			m_Method = ADD_SIGNED;
+		}
+	}
+
 	~Effect_AddColor() {}
+
 	void Set(Handle tex)
 	{
-		glColor4fv(m_Color.FloatArray());
 		glEnable(GL_TEXTURE_2D);
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_ADD);
+
+		glColor4fv(m_Color.FloatArray());
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+
+		if (m_Method == ADD_NORMAL)
+		{
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_ADD);
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_ADD);
+		}
+		else
+		if (m_Method == ADD_SUBTRACT)
+		{
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_SUBTRACT);
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_SUBTRACT);
+		}
+		else // if (m_Method == ADD_SIGNED)
+		{
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_ADD_SIGNED);
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_ADD_SIGNED);
+		}
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_TEXTURE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB, GL_SRC_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_TEXTURE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB, GL_SRC_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_ALPHA, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_ALPHA, GL_SRC_ALPHA);
+
 		tex_bind(tex);
 	}
+
 	void Unset()
 	{
 	}
+
 private:
 	CColor m_Color;
+	enum { ADD_NORMAL, ADD_SUBTRACT, ADD_SIGNED, ADD_SIGNED_DOUBLED } m_Method;
 };
 
 class Effect_MultiplyColor : public IGLState
 {
+	// Uses GL_MODULATE to do the multiplication; but since all colours are
+	// clamped to the range [0,1], it uses GL_RGB_SCALE to allow images to be
+	// multiplied by [0,4]. Alpha is assumed to always be [0,1].
 public:
-	Effect_MultiplyColor(CColor c) : m_Color(c) {}
+	Effect_MultiplyColor(CColor c)
+	{
+		if (c.r <= 1.f && c.g <= 1.f && c.b <= 1.f)
+		{
+			m_Color = c;
+			m_Scale = 1;
+		}
+		else if (c.r <= 2.f && c.g <= 2.f && c.b <= 2.f)
+		{
+			m_Color = CColor(c.r/2.f, c.g/2.f, c.b/2.f, c.a);
+			m_Scale = 2;
+		}
+		else
+		{
+			if (c.r <= 4.f && c.g <= 4.f && c.b <= 4.f)
+				;
+			else
+				// Oops - trying to multiply by >4
+				LOG(WARNING, "gui", "multiply-color effect has a component >1020 - colours will be clamped");
+
+			m_Color = CColor(c.r/4.f, c.g/4.f, c.b/4.f, c.a);
+			m_Scale = 4;
+		}
+	}
 	~Effect_MultiplyColor() {}
 	void Set(Handle tex)
 	{
-		glColor4fv(m_Color.FloatArray());
 		glEnable(GL_TEXTURE_2D);
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
+		glColor4fv(m_Color.FloatArray());
+
+		if (m_Scale == 1)
+		{
+			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+		}
+		else
+		{
+			// Duplicate the effect of GL_MODULATE, but using GL_COMBINE
+			// so that GL_RGB_SCALE will work.
+			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_MODULATE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_MODULATE);
+			
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_TEXTURE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB, GL_SRC_COLOR);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_TEXTURE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
+
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB, GL_PREVIOUS);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB, GL_SRC_COLOR);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_ALPHA, GL_PREVIOUS);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_ALPHA, GL_SRC_ALPHA);
+
+			if (m_Scale == 2)
+				glTexEnviv(GL_TEXTURE_ENV, GL_RGB_SCALE, TexScale2);
+			else if (m_Scale == 4)
+				glTexEnviv(GL_TEXTURE_ENV, GL_RGB_SCALE, TexScale4);
+		}
+
 		tex_bind(tex);
 	}
 	void Unset()
 	{
+		if (m_Scale != 1)
+			glTexEnviv(GL_TEXTURE_ENV, GL_RGB_SCALE, TexScale1);
 	}
 private:
 	CColor m_Color;
+	int m_Scale;
 };
 
 #define X(n) (n##f/2.0f + 0.5f)
@@ -336,17 +465,29 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 		if (cit->m_Effects)
 		{
 			if (cit->m_Effects->m_AddColor != CColor())
+			{
 				Call.m_Effects = new Effect_AddColor(cit->m_Effects->m_AddColor);
-			
+				// Always enable blending if something's being subtracted from
+				// the alpha channel
+				if (cit->m_Effects->m_AddColor.a < 0.f)
+					Call.m_EnableBlending = true;
+			}
 			else if (cit->m_Effects->m_MultiplyColor != CColor())
+			{
 				Call.m_Effects = new Effect_MultiplyColor(cit->m_Effects->m_MultiplyColor);
-
+				// Always enable blending if the alpha channel is being multiplied
+				if (cit->m_Effects->m_AddColor.a != 1.f)
+					Call.m_EnableBlending = true;
+			}
 			else if (cit->m_Effects->m_Greyscale)
+			{
 				Call.m_Effects = new Effect_Greyscale;
-
-			else
-				/* Slight confusion - why no effects? */
+			}
+			else /* Slight confusion - why no effects? */
+			{
 				Call.m_Effects = NULL;
+			}
+
 		}
 		else
 		{

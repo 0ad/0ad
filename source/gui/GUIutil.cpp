@@ -79,9 +79,9 @@ template <>
 bool __ParseString<CColor>(const CStr& Value, CColor &Output)
 {
 	// Use the parser to parse the values
-	CParser& parser (CParserCache::Get("_$value_$value_$value_[$value_]"));
+	CParser& parser (CParserCache::Get("_[-$arg(_minus)]$value_[-$arg(_minus)]$value_[-$arg(_minus)]$value_[[-$arg(_minus)]$value_]"));
 
-	string str = (const TCHAR*)Value;
+	string str = Value;
 
 	CParserLine line;
 	line.ParseString(parser, str);
