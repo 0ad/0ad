@@ -55,6 +55,7 @@ STMT(\
 )
 
 
+#ifdef _WIN32
 #define CHECK_ERR(func)\
 STMT(\
 	int err = (int)(func);\
@@ -65,7 +66,18 @@ STMT(\
 		return err;\
 	}\
 )
-
+#else
+#define CHECK_ERR(func)\
+STMT(\
+	int err = (int)(func);\
+	if(err < 0)\
+	{\
+		debug_out("%s:%d: FYI: CHECK_ERR reports that a function failed."\
+		            "feel free to ignore or suppress this warning.", __FILE__, __LINE__);\
+		return err;\
+	}\
+)
+#endif
 
 enum LibError
 {
@@ -131,7 +143,7 @@ enum LibError
 // can't pass code as string, and use s[0]..s[3], because
 // VC6/7 don't realize the macro is constant
 // (it should be useable as a switch{} expression)
-#ifdef BIG_ENDIAN
+#if __BYTE_ORDER == __BIG_ENDIAN
 #define FOURCC(a,b,c,d) ( ((u32)a << 24) | ((u32)b << 16) | \
 	((u32)c << 8 ) | ((u32)d << 0 ) )
 #else
@@ -185,6 +197,10 @@ extern int atexit2(void* func, uintptr_t arg, CallConvention cc = CC_CDECL_1);
 
 // no parameters, cdecl (CC_CDECL_0)
 extern int atexit2(void* func);
+inline int atexit2(void (*func)())
+{
+	atexit2((void *)func);
+}
 
 
 
@@ -226,7 +242,7 @@ extern u16 subusw(u16 x, u16 y);
 
 static inline u16 read_le16(const void* p)
 {
-#ifdef BIG_ENDIAN
+#if __BYTE_ORDER == __BIG_ENDIAN
 	const u8* _p = (const u8*)p;
 	return (u16)_p[0] | (u16)_p[1] << 8;
 #else
@@ -237,7 +253,7 @@ static inline u16 read_le16(const void* p)
 
 static inline u32 read_le32(const void* p)
 {
-#ifdef BIG_ENDIAN
+#if __BYTE_ORDER == __BIG_ENDIAN
 	u32 t = 0;
 	for(int i = 0; i < 4; i++)
 	{
@@ -269,7 +285,6 @@ extern float fminf(float, float);
 
 
 
-extern long round(double);
 extern u16 fp_to_u16(double in);
 
 // big endian!

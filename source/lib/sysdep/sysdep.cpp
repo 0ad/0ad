@@ -16,7 +16,7 @@ void display_msg(const char* caption, const char* msg)
 
 void wdisplay_msg(const wchar_t* caption, const wchar_t* msg)
 {
-	fwprintf(stderr, L"%ws: %ws\n", caption, msg);
+	fwprintf(stderr, L"%ls: %ls\n", caption, msg);
 }
 
 
@@ -36,3 +36,12 @@ void check_heap()
 }
 
 #endif	// #ifndef _WIN32
+
+#ifdef _MSC_VER
+
+double round(double x)
+{
+	return (long)(x + 0.5);
+}
+
+#endif

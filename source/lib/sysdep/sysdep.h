@@ -15,6 +15,10 @@ extern void debug_out(const char* fmt, ...);
 
 extern void check_heap();
 
+#ifdef _MSC_VER
+extern double round(double);
+#endif
+
 #ifdef __cplusplus
 }
 #endif
