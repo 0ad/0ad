@@ -131,6 +131,8 @@ else -- Non-Windows, = Unix
 		"GL", "GLU", "X11",
 		"SDL", "png",
 		"fam",
+		-- Audio
+		"openal", "vorbisfile", 
 		-- Utilities
 		"xerces-c", "z", "rt", "js"
 	}
