@@ -55,7 +55,8 @@ if (OS == "windows") then
 	-- Libraries
 	package.links = {
 		"opengl32",
-		"glu32"
+		"glu32",
+		"fmodvc"
 	}
         tinsert(package.files, sourcesfromdirs("../../lib/sysdep/win"))
 	package.linkoptions = { "/ENTRY:entry" }
