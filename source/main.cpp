@@ -503,6 +503,7 @@ static void Render()
 	// Temp GUI message GeeTODO
 	glLoadIdentity();
 	glTranslatef(10, 60, 0);
+	unifont_bind(g_Font_Misc);
 	glwprintf( L"%hs", g_GUI.TEMPmessage.c_str() );
 
 	glLoadIdentity();
@@ -756,7 +757,6 @@ static void Shutdown()
 	// but the GUI currently uses it and so it needs to be unloaded
 	NPFontManager::release();
 }
-
 
 static void Init(int argc, char* argv[])
 {
