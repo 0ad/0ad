@@ -161,9 +161,6 @@ static int path_validate(const uint line, const char* const path)
 			msg = "contains '..', '/.', './', or '//'";
 			goto fail;
 		}
-		}
-		else
-			last_was_dot = false;
 
 		// disallow OS-specific dir separators
 		if(c == '\\' || c == ':')
@@ -737,7 +734,18 @@ int vfs_mount(const char* const vfs_mount_point, const char* const name, const u
 	ONCE(atexit2(vfs_shutdown));
 
 	const size_t name_len = strlen(name);
-	const std::string name_s(name);
+
+// PROBLEM! rejects valid (but stupid) paths
+
+// aa/bbb/cccc
+// aa/bbb/cccc/		NO
+// aa/bbb/cccc/d	NO
+// aa/bbb/c 		YES
+// aa/bbb/d			YES
+// aa/bbb
+
+// mods/offical
+// mods/of
 
 	// make sure it's not already mounted, i.e. in mounts.
 	// also prevents mounting a parent directory of a previously mounted
@@ -745,8 +753,8 @@ int vfs_mount(const char* const vfs_mount_point, const char* const name, const u
 	// $install/data/mods/official - mods/official would also be accessible
 	// from the first mount point - bad.
 	for(MountIt it = mounts.begin(); it != mounts.end(); ++it)
-	{
-		const size_t cmp_len = min(it->f_name.length(), name_len);
+///	{
+		const size_t cmp_len = MIN(it->f_name.length(), name_len);
 		if(strncmp(name, it->f_name.c_str(), cmp_len) == 0)
 		{
 			debug_warn("vfs_mount: already mounted");
@@ -758,7 +766,7 @@ int vfs_mount(const char* const vfs_mount_point, const char* const name, const u
 	// disallow "." because "./" isn't supported on Windows.
 	// it would also create a loophole for the parent dir check above.
 	// "./" and "/." are caught by CHECK_PATH.
-	if(name_s == ".")
+	if(!strcmp(name, "."))
 	{
 		debug_warn("vfs_mount: mounting . not allowed");
 		return -1;
