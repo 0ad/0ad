@@ -176,7 +176,7 @@ void CLogger::LogOnce(ELogMethod method, const char* category, const char *fmt, 
 	memset(buffer,0,sizeof(buffer));
 
 	va_start(argp, fmt);
-	if (vsnprintf2(buffer, sizeof(buffer)-1, fmt, argp) == -1)
+	if (vsnprintf2(buffer, sizeof(buffer), fmt, argp) == -1)
 	{
 		// Buffer too small - ensure the string is nicely terminated
 		strcpy(buffer+sizeof(buffer)-4, "...");
@@ -205,11 +205,13 @@ void CLogger::QuickLog(const char *fmt, ...)
 	strcpy(buffer,"<P>");
 
 	va_start(argp, fmt);
-	vsnprintf(strchr(buffer, 0), sizeof(buffer), fmt, argp);
+	char *bufend=strchr(buffer, 0);
+	vsnprintf(bufend, buffer+sizeof(buffer)-bufend, fmt, argp);
 	va_end(argp);
 
-	//add some html formatting
-	strcat(buffer,"</P>");
+	//add some html formatting, making sure not to overrun the buffer
+	bufend=strchr(buffer, 0);
+	strncpy(bufend, "</P>", buffer+sizeof(buffer)-bufend);
 	
 	if((m_CurrentPosition - m_MemoryLogBuffer + strlen(buffer) + 1) >= MEMORY_BUFFER_SIZE)
 	{
