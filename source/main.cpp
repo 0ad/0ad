@@ -755,7 +755,7 @@ TIMER(InitScripting)
 }
 
 
-static void InitVfs(char* argv0)
+static void InitVfs(const char* argv0)
 {
 TIMER(InitVfs)
 	// set current directory to "$game_dir/data".
@@ -1015,13 +1015,10 @@ static void Init(int argc, char* argv[], bool setup_gfx = true)
 u64 TSC=rdtsc();
 debug_out(
 "----------------------------------------\n"\
-"MAIN (elapsed = %f ms)\n"\
-"----------------------------------------\n", (TSC-PREVTSC)/2e9*1e3);
+"MAIN\n"\
+"----------------------------------------\n");
 PREVTSC=TSC;
 #endif
-
-	MICROLOG(L"init lib");
-	lib_init();
 
 	// Call LoadLanguage(NULL) to initialise the I18n system, but
 	// without loading an actual language file - translate() will
@@ -1041,7 +1038,9 @@ PREVTSC=TSC;
 	// and will mess up the error reporting if anything
 	// crashes before the working directory is set.
 	MICROLOG(L"init vfs");
-	InitVfs(argc?argv[0]:NULL);
+	const char* argv0 = argc? argv[0] : NULL;
+		// TODO FIXME: why? document the need for this
+	InitVfs(argv0);
 
 	// Set up the console early, so that debugging
 	// messages can be logged to it. (The console's size
