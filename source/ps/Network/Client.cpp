@@ -104,7 +104,7 @@ bool CNetClient::AuthenticateHandler(CNetMessage *pMsg, CNetSession *pSession)
 			CResult *msg=(CResult *)pMsg;
 			if (msg->m_Code != NRC_OK)
 			{
-				LOG(ERROR, LOG_CAT_NET, "CNetClient::AuthenticateHandler(): Authentication failed: %ls", msg->m_Message);
+				LOG(ERROR, LOG_CAT_NET, "CNetClient::AuthenticateHandler(): Authentication failed: %ls", msg->m_Message.c_str());
 			}
 			else
 				LOG(NORMAL, LOG_CAT_NET, "CNetClient::AuthenticateHandler(): Authenticated!");
