@@ -19,6 +19,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="..\ps;..\lib"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -252,6 +253,25 @@
 				<File
 					RelativePath="..\ps\Prometheus.cpp">
 				</File>
+				<Filter
+					Name="Network"
+					Filter="">
+					<File
+						RelativePath="..\ps\Network\NetMessage.cpp">
+					</File>
+					<File
+						RelativePath="..\ps\Network\Network.cpp">
+					</File>
+					<File
+						RelativePath="..\ps\Network\ServerSocket.cpp">
+					</File>
+					<File
+						RelativePath="..\ps\Network\SocketBase.cpp">
+					</File>
+					<File
+						RelativePath="..\ps\Network\StreamSocket.cpp">
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 		<Filter
@@ -393,6 +413,37 @@
 				<File
 					RelativePath="..\ps\Sound.h">
 				</File>
+				<File
+					RelativePath="..\ps\ThreadUtil.h">
+				</File>
+				<Filter
+					Name="Network"
+					Filter="">
+					<File
+						RelativePath="..\ps\Network\AllNetMessages.h">
+					</File>
+					<File
+						RelativePath="..\ps\Network\NMTCreator.h">
+					</File>
+					<File
+						RelativePath="..\ps\Network\NetMessage.h">
+					</File>
+					<File
+						RelativePath="..\ps\Network\Network.h">
+					</File>
+					<File
+						RelativePath="..\ps\Network\NetworkInternal.h">
+					</File>
+					<File
+						RelativePath="..\ps\Network\Serialization.h">
+					</File>
+					<File
+						RelativePath="..\ps\Network\SocketBase.h">
+					</File>
+					<File
+						RelativePath="..\ps\Network\StreamSocket.h">
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 		<Filter
