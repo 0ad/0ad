@@ -293,6 +293,8 @@ FUNC_IMPL_GETARG(GetArgDouble,			GetDouble,			_double)
 // ex:
 // variable = 5		=> variable, =, 5
 // CallFunc(4,2)	=> CallFunc, 4, 2
+
+// TODO Gee: Make Parser use CStr.
 bool CParserLine::ParseString(const CParser& Parser, string strLine)
 {
 	// Don't process empty string
