@@ -234,7 +234,7 @@ static void WriteScreenshot()
 	char fn[VFS_MAX_PATH];
 	static int next_num = 1;
 	do
-		sprintf(fn, "screenshot%04d.png", next_num++);
+		sprintf(fn, "screenshots/screenshot%04d.png", next_num++);
 	while(vfs_exists(fn));
 
 	const int w = g_xres, h = g_yres;
