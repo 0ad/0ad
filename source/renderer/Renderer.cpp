@@ -1200,6 +1200,9 @@ bool CRenderer::LoadAlphaMaps(const char* fnames[])
 		m_AlphaMapCoords[i].v1=1.0f;
 	}
 
+	for (i=0;i<NumAlphaMaps;i++)
+		tex_free(textures[i]);
+
 	glGenTextures(1,(GLuint*) &m_CompositeAlphaMap);
 	BindTexture(0,m_CompositeAlphaMap);
 	glTexImage2D(GL_TEXTURE_2D,0,GL_INTENSITY,texsize,base,0,GL_RGB,GL_UNSIGNED_BYTE,data);
@@ -1212,4 +1215,11 @@ bool CRenderer::LoadAlphaMaps(const char* fnames[])
 	delete[] data;
 
 	return true;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UnloadAlphaMaps: frees the resources allocates by LoadAlphaMaps
+void CRenderer::UnloadAlphaMaps()
+{
+	glDeleteTextures(1, (GLuint*) &m_CompositeAlphaMap);
 }

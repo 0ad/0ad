@@ -52,8 +52,13 @@ class CGameView
 	// InitResources(): Load all graphics resources (textures, actor objects and
 	// alpha maps) required by the game
 	void InitResources();
+
+	// UnloadResources(): Unload all graphics resources loaded by InitResources
+	void UnloadResources();
+
 public:
 	CGameView(CGame *pGame);
+	~CGameView();
 	
 	void Initialize(CGameAttributes *pGameAttributes);
 	

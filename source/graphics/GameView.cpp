@@ -65,6 +65,11 @@ CGameView::CGameView(CGame *pGame):
 	InitResources();
 }
 
+CGameView::~CGameView()
+{
+	UnloadResources();
+}
+
 void CGameView::Initialize(CGameAttributes *pAttribs)
 {
 	CConfigValue* cfg;
@@ -182,6 +187,16 @@ void CGameView::InitResources()
 
 	g_Renderer.LoadAlphaMaps(fns);
 }
+
+void CGameView::UnloadResources()
+{
+	// Should probably do something like:
+	//   g_TexMan.UnloadTerrainTextures();
+	//   g_ObjMan.UnloadObjects();
+
+	g_Renderer.UnloadAlphaMaps();
+}
+
 
 void CGameView::ResetCamera()
 {

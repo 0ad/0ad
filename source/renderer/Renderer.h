@@ -209,6 +209,8 @@ public:
 	// load the default set of alphamaps; return false if any alphamap fails to load, true otherwise
 	bool LoadAlphaMaps(const char* fnames[]);
 
+	void UnloadAlphaMaps();
+
 	// return stats accumulated for current frame
 	const Stats& GetStats() { return m_Stats; }
 
