@@ -59,6 +59,7 @@ inline int get_executable_name(char* n_path, size_t buf_size)
 
 static int CALLBACK browse_cb(HWND hWnd, unsigned int msg, LPARAM lParam, LPARAM ldata)
 {
+	UNUSED(lParam);
 	if(msg == BFFM_INITIALIZED)
 	{
 		const char* cur_dir = (const char*)ldata;
@@ -71,6 +72,7 @@ static int CALLBACK browse_cb(HWND hWnd, unsigned int msg, LPARAM lParam, LPARAM
 
 int pick_directory(char* path, size_t buf_size)
 {
+	assert(buf_size >= PATH_MAX);
 	IMalloc* p_malloc;
 	SHGetMalloc(&p_malloc);
 
@@ -151,7 +153,10 @@ wchar_t* clipboard_get()
 {
 	wchar_t* ret = 0;
 
-	if(!OpenClipboard(0))
+	const HWND new_owner = 0;
+		// MSDN: passing 0 requests the current task be granted ownership;
+		// there's no need to pass our window handle.
+	if(!OpenClipboard(new_owner))
 		return 0;
 
 	// Windows NT/2000+ auto convert UNICODETEXT <-> TEXT
@@ -194,7 +199,7 @@ int clipboard_free(wchar_t* copy)
 
 
 // init and shutdown mechanism: register a function to be called at
-// pre-main init or shutdown.
+// pre-libc init, pre-main init or shutdown.
 //
 // each module has the linker add a pointer to its init or shutdown
 // function to a table (at a user-defined position).
@@ -212,8 +217,8 @@ int clipboard_free(wchar_t* copy)
 //   things happen. also, no way to determine how long init takes.
 //
 // the "segment name" determines when and in what order the functions are
-// called: "LIB$W{type}{group}", where {type} is either I for
-// (pre-main) initializers, or T for terminators (last of the atexit handlers).
+// called: "LIB$W{type}{group}", where {type} is C for pre-libc init,
+// I for pre-main init, or T for terminators (last of the atexit handlers).
 // {group} is [B, Y]; groups are called in alphabetical order, but
 // call order within the group itself is unspecified.
 //
@@ -230,10 +235,14 @@ typedef int(*_PIFV)(void);
 // pointers to start and end of function tables.
 // note: COFF throws out empty segments, so we have to put in one value
 // (zero, because call_func_tbl has to ignore NULL entries anyway).
+#pragma data_seg(".LIB$WCA")
+_PIFV pre_libc_begin[] = { 0 };
+#pragma data_seg(".LIB$WCZ")
+_PIFV pre_libc_end[] = { 0 };
 #pragma data_seg(".LIB$WIA")
-_PIFV init_begin[] = { 0 };
+_PIFV pre_main_begin[] = { 0 };
 #pragma data_seg(".LIB$WIZ")
-_PIFV init_end[] = { 0 };
+_PIFV pre_main_end[] = { 0 };
 #pragma data_seg(".LIB$WTA")
 _PIFV shutdown_begin[] = { 0 };
 #pragma data_seg(".LIB$WTZ")
@@ -263,17 +272,37 @@ static void call_func_tbl(_PIFV* begin, _PIFV* end)
 
 
 static CRITICAL_SECTION cs[NUM_CS];
+static bool cs_valid;
 
 void win_lock(uint idx)
 {
 	assert(idx < NUM_CS && "win_lock: invalid critical section index");
-	EnterCriticalSection(&cs[idx]);
+	if(cs_valid)
+		EnterCriticalSection(&cs[idx]);
 }
 
 void win_unlock(uint idx)
 {
 	assert(idx < NUM_CS && "win_unlock: invalid critical section index");
-	LeaveCriticalSection(&cs[idx]);
+	if(cs_valid)
+		LeaveCriticalSection(&cs[idx]);
+}
+
+static void cs_init()
+{
+	for(int i = 0; i < NUM_CS; i++)
+		InitializeCriticalSection(&cs[i]);
+
+	cs_valid = true;
+}
+
+static void cs_shutdown()
+{
+	cs_valid = false;
+
+	for(int i = 0; i < NUM_CS; i++)
+		DeleteCriticalSection(&cs[i]);
+	memset(cs, 0, sizeof(cs));
 }
 
 
@@ -292,16 +321,14 @@ static void at_exit(void)
 {
 	call_func_tbl(shutdown_begin, shutdown_end);
 
-	for(int i = 0; i < NUM_CS; i++)
-		DeleteCriticalSection(&cs[i]);
+	cs_shutdown();
 }
 
 
 // be very careful to avoid non-stateless libc functions!
 static inline void pre_libc_init()
 {
-	for(int i = 0; i < NUM_CS; i++)
-		InitializeCriticalSection(&cs[i]);
+	cs_init();
 
 	GetSystemDirectory(win_sys_dir, sizeof(win_sys_dir));
 
@@ -312,6 +339,7 @@ static inline void pre_libc_init()
 			*slash = '\0';
 	}
 
+	call_func_tbl(pre_libc_begin, pre_libc_end);
 }
 
 static inline void pre_main_init()
@@ -328,7 +356,7 @@ static inline void pre_main_init()
 	_CrtSetDbgFlag(flags);
 #endif // HAVE_DEBUGALLOC
 
-	call_func_tbl(init_begin, init_end);
+	call_func_tbl(pre_main_begin, pre_main_end);
 
 	atexit(at_exit);
 

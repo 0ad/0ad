@@ -20,6 +20,6 @@
 #define WINAPIV __cdecl
 
 
-extern "C" void win_debug_break();
+extern "C" void win_debug_break(void);
 
 #endif	// #ifndef __WIN_H__
