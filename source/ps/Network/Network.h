@@ -188,13 +188,51 @@ public:
 	 * @see CSocketBase::Accept()
 	 * @see CSocketBase::Reject()
 	 */
-	virtual void OnAccept(const SocketAddress &)=0;
+	virtual void OnAccept(const CSocketAddress &)=0;
+};
+
+class CNetErrorMessage: public CNetMessage
+{
+public:
+	PS_RESULT m_Error;
+	ESocketState m_State;
+
+	inline CNetErrorMessage():
+		CNetMessage(NMT_ERROR)
+	{}
+
+	inline CNetErrorMessage(PS_RESULT error, ESocketState state):
+		CNetMessage(NMT_ERROR),
+		m_Error(error),
+		m_State(state)
+	{}
+
+	virtual CStr GetString() const;
+};
+
+struct CCloseRequestMessage: public CNetMessage
+{
+	inline CCloseRequestMessage(): CNetMessage(NMT_CLOSE_REQUEST)
+	{}
+
+	virtual CStr GetString() const;
+};
+
+struct CConnectCompleteMessage: public CNetMessage
+{
+	inline CConnectCompleteMessage(): CNetMessage(NMT_CONNECT_COMPLETE)
+	{}
+
+	virtual CStr GetString() const;
 };
 
 /**
  * Implements a Message Pipe over an Async IO stream socket.
+ *
+ * All methods that this class exposes are thread safe and may be called from
+ * any thread.
  */
-class CMessageSocket: public CStreamSocket, public IMessagePipeEnd
+class CMessageSocket: protected CStreamSocket, public IMessagePipeEnd
 {
 	bool m_IsWriting;
 	u8 *m_pWrBuffer;
@@ -214,6 +252,8 @@ class CMessageSocket: public CStreamSocket, public IMessagePipeEnd
 protected:
 	virtual void ReadComplete(PS_RESULT);
 	virtual void WriteComplete(PS_RESULT);
+	virtual void OnClose(PS_RESULT);
+	virtual void ConnectComplete(PS_RESULT);
 	
 public:
 	CMessageSocket(CSocketInternal *pInt);
@@ -221,14 +261,13 @@ public:
 
 	virtual ~CMessageSocket();
 
-	/**
-	 * Beware! If you subclass and override this method, you must call this
-	 * implementation from the subclass
-	 */
-	virtual void ConnectComplete(PS_RESULT errorCode);
-	
 	virtual void Push(CNetMessage *);
 	virtual CNetMessage *TryPop();
+
+	/**
+	 * See CStreamSocket::BeginConnect.
+	 */
+	PS_RESULT BeginConnect(const char *address, int port);
 };
 
 #endif
