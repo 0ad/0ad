@@ -155,6 +155,11 @@ public:
 	long Find(const TCHAR &tchar) const;
 	long Find(const int &start, const TCHAR &tchar) const;
 
+	// Case-insensitive versions of Find
+	long FindInsensitive(const CStr& Str) const;
+	long FindInsensitive(const TCHAR &tchar) const;
+	long FindInsensitive(const int &start, const TCHAR &tchar) const;
+
 	// You can also do a "ReverseFind" - i.e. search starting from the end 
 	long ReverseFind(const CStr& Str) const;
 

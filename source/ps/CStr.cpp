@@ -119,6 +119,11 @@ long CStr::Find(const int &start, const TCHAR &tchar) const
 	return -1;
 }
 
+long CStr::FindInsensitive(const int &start, const TCHAR &tchar) const { return LCase().Find(start, _totlower(tchar)); }
+long CStr::FindInsensitive(const TCHAR &tchar) const { return LCase().Find(_totlower(tchar)); }
+long CStr::FindInsensitive(const CStr& Str) const { return LCase().Find(Str.LCase()); }
+
+
 long CStr::ReverseFind(const CStr& Str) const
 {
 	size_t Pos = rfind(Str, length() );
