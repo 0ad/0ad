@@ -1,6 +1,7 @@
 #include "precompiled.h"
 
 #include "Network.h"
+#include "CLogger.h"
 
 CServerSocket::~CServerSocket()
 {
@@ -15,8 +16,12 @@ void CServerSocket::OnRead()
 	{
 		OnAccept(remoteAddr);
 	}
-	// All errors are non-critical, so no need to do anything special besides
-	// not calling OnAccept
+	else
+	{
+		// All errors are non-critical, so no need to do anything special besides
+		// not calling OnAccept [ shouldn't be, that is ;-) ]
+		LOG(NORMAL, LOG_CAT_NET, "CServerSocket::OnRead(): PreAccept returned an error: %s", res);
+	}
 }
 
 void CServerSocket::OnWrite()

@@ -219,17 +219,19 @@ bool CNetServerSession::InGameHandler(CNetMessage *pMsg, CNetSession *pNetSessio
 
 	if (ChatHandler(pMsg, pNetSession))
 		return true;
-
-	switch (pMsg->GetType())
+		
+	if (pMsg->GetType() >= NMT_COMMAND_FIRST && pMsg->GetType() <= NMT_COMMAND_LAST)
 	{
-	/* All Command Messages (i.e. simulation turn synchronized messages) */
-	case NMT_GotoCommand:
+		// All Command Messages (i.e. simulation turn synchronized messages)
 		//pSession->m_pPlayer->ValidateCommand(pMsg);
 		pSession->m_pServer->QueueIncomingCommand(pMsg);
 		TAKEN(pMsg);
+	}
 
+	switch (pMsg->GetType())
+	{
 	case NMT_EndCommandBatch:
-		// TODO Update client timing information here.
+		// TODO Update client timing information and recalculate turn length
 		HANDLED(pMsg);
 
 	default:
@@ -237,6 +239,7 @@ bool CNetServerSession::InGameHandler(CNetMessage *pMsg, CNetSession *pNetSessio
 	}
 }
 
+// TODO Replace with next generation CNetServer JS Interface
 CNetServerAttributes::CNetServerAttributes()
 {
 	AddValue("serverPlayerName", L"Noname Server Player");
@@ -255,6 +258,9 @@ CNetServer::CNetServer(CNetServerAttributes *pServerAttribs, CGame *pGame, CGame
 	m_NumPlayers=m_pGameAttributes->GetValue("numPlayers").ToUInt();
 
 	m_pGame->GetSimulation()->SetTurnManager(this);
+	// Set an incredibly long turn length - less command batch spam that way
+	for (int i=0;i<3;i++)
+		CTurnManager::SetTurnLength(i, 3000);
 }
 
 PS_RESULT CNetServer::Bind(const CSocketAddress &address)
@@ -327,7 +333,7 @@ void CNetServer::AttributeUpdate(CStr name, CStrW newValue, void *userdata)
 	CSetGameConfig *pMsg=new CSetGameConfig;
 	pMsg->m_Values.resize(1);
 	pMsg->m_Values[0].m_Name=name;
-	pMsg->m_Values[1].m_Value=newValue;
+	pMsg->m_Values[0].m_Value=newValue;
 
 	pServer->Broadcast(pMsg);
 }
@@ -368,6 +374,8 @@ int CNetServer::StartGame()
 	// TODO Check for the case where we haven't yet filled all player slots
 	// CGame expects to have numPlayer players when it starts the game...
 
+	Broadcast(new CStartGame());
+
 	if (m_pGame->StartGame(m_pGameAttributes) != PSRETURN_OK)
 		return -1;
 	else
@@ -383,7 +391,6 @@ int CNetServer::StartGame()
 			CTurnManager::SetClientPipe(i, m_PlayerSessions[i]);
 		}
 		m_ServerState=NSS_InGame;
-		Broadcast(new CStartGame());
 
 		vector<CNetServerSession*>::iterator it=m_Sessions.begin();
 		while (it != m_Sessions.end())

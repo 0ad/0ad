@@ -61,8 +61,6 @@ CGameView::CGameView(CGame *pGame):
 	m_Camera.m_Orientation.RotateY(DEGTORAD(-45));
 	m_Camera.m_Orientation.Translate (100, 150, -100);
 	g_Renderer.SetCamera(m_Camera);
-
-	InitResources();
 }
 
 CGameView::~CGameView()
@@ -93,6 +91,8 @@ void CGameView::Initialize(CGameAttributes *pAttribs)
 	if( ( m_ViewSnapSmoothness < 0.0f ) || ( m_ViewSnapSmoothness > 1.0f ) ) m_ViewSnapSmoothness = 0.02f;
 
 #undef getViewParameter
+
+	InitResources();
 }
 
 void CGameView::Render()

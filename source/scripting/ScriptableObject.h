@@ -370,12 +370,12 @@ public:
 
 // Wrapper around native functions that are attached to CJSObjects
 
-template<typename T, typename RType, RType (T::*NativeFunction)( JSContext* cx, uintN argc, jsval* argv )> class CNativeFunction
+template<typename T, bool ReadOnly, typename RType, RType (T::*NativeFunction)( JSContext* cx, uintN argc, jsval* argv )> class CNativeFunction
 {
 public:
 	static JSBool JSFunction( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 	{
-		T* Native = ToNative<T>( cx, obj );
+		T* Native = (T*)ToNative< CJSObject<T, ReadOnly> >( cx, obj );
 		if( !Native )
 			return( JS_TRUE );
 
@@ -446,7 +446,7 @@ public:
 	// 
 	static JSBool JSGetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
 	{
-		CJSObject<T, ReadOnly>* Instance = ToNative<T>( cx, obj );
+		CJSObject<T, ReadOnly>* Instance = ToNative< CJSObject<T, ReadOnly> >( cx, obj );
 		if( !Instance )
 			return( JS_TRUE );
 
@@ -458,7 +458,7 @@ public:
 	}
 	static JSBool JSSetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
 	{
-		CJSObject<T, ReadOnly>* Instance = ToNative<T>( cx, obj );
+		CJSObject<T, ReadOnly>* Instance = ToNative< CJSObject<T, ReadOnly> >( cx, obj );
 		if( !Instance )
 			return( JS_TRUE );
 
@@ -667,7 +667,7 @@ public:
 	template<typename ReturnType, ReturnType (T::*NativeFunction)( JSContext* cx, uintN argc, jsval* argv )> 
 		static void AddMethod( const char* Name, uintN MinArgs )
 	{
-		JSFunctionSpec FnInfo = { Name, CNativeFunction<T, ReturnType, NativeFunction>::JSFunction, MinArgs, 0, 0 };
+		JSFunctionSpec FnInfo = { Name, CNativeFunction<T, ReadOnly, ReturnType, NativeFunction>::JSFunction, MinArgs, 0, 0 };
 		T::m_Methods.push_back( FnInfo );
 	}
 	template<typename PropType> void AddProperty( CStrW PropertyName, PropType* Native, bool PropAllowInheritance = true, NotifyFn Update = NULL, NotifyFn Refresh = NULL )

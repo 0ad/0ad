@@ -70,7 +70,9 @@ void CTurnManager::SendBatch(uint batch)
 		SendMessage(it->m_pMessage, it->m_ClientMask);
 		++it;
 	}
-	SendMessage(new CEndCommandBatch(), (uint)-1);
+	CEndCommandBatch *pMsg=new CEndCommandBatch();
+	pMsg->m_TurnLength=m_Batches[batch].m_TurnLength;
+	SendMessage(pMsg, (uint)-1);
 }
 
 void CTurnManager::SendMessage(CNetMessage *pMsg, uint clientMask)
@@ -93,6 +95,11 @@ void CTurnManager::QueueMessage(uint batch, CNetMessage *pMsg)
 void CTurnManager::SetClientPipe(uint client, IMessagePipeEnd *pipe)
 {
 	m_Clients[client].m_Pipe=pipe;
+}
+
+void CTurnManager::SetTurnLength(uint batch, uint turnLength)
+{
+	m_Batches[batch].m_TurnLength=turnLength;
 }
 
 uint CTurnManager::GetTurnLength()

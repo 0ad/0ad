@@ -172,15 +172,18 @@ int snd_dev_set(const char* alc_new_dev_name)
 }
 
 
-static ALCcontext* alc_ctx;
-static ALCdevice* alc_dev;
+static ALCcontext* alc_ctx=NULL;
+static ALCdevice* alc_dev=NULL;
 
 
 static void alc_shutdown()
 {
-	alcMakeContextCurrent(0);
-	alcDestroyContext(alc_ctx);
-	alcCloseDevice(alc_dev);
+	if (alc_ctx && alc_dev)
+	{
+		alcMakeContextCurrent(0);
+		alcDestroyContext(alc_ctx);
+		alcCloseDevice(alc_dev);
+	}
 }
 
 
@@ -461,9 +464,10 @@ static int al_init()
 	// only take action on first call, OR when re-initializing.
 	if(al_initialized)
 		return 0;
-	al_initialized = true;
 
 	CHECK_ERR(alc_init());
+
+	al_initialized = true;
 
 	// these can't fail:
 	al_src_init();

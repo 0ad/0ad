@@ -44,7 +44,7 @@ enum ENetMessageType
 	/* Pre-Game State */
 	NMT_PlayerConnect,
 	NMT_SetGameConfig,
-	NMT_SelectCiv,
+	NMT_SetPlayerConfig,
 	NMT_FilesRequired,
 	NMT_FileRequest,
 	NMT_FileChunk,
@@ -57,8 +57,6 @@ enum ENetMessageType
 	NMT_GotoCommand=NMT_COMMAND_FIRST,
 	NMT_COMMAND_LAST=NMT_GotoCommand,
 	/* Post-Game State */
-
-	/* Game event messages */
 
 	/**
 	 * One higher than the highest value of any message type
@@ -151,6 +149,14 @@ START_NMT_CLASS_(SetGameConfig)
 	NMT_END_ARRAY()
 END_NMT_CLASS()
 
+START_NMT_CLASS_(SetPlayerConfig)
+	NMT_FIELD_INT(m_PlayerID, u32, 2)
+	NMT_START_ARRAY(m_Values)
+		NMT_FIELD(CStr, m_Name)
+		NMT_FIELD(CStrW, m_Value)
+	NMT_END_ARRAY()
+END_NMT_CLASS()
+
 START_NMT_CLASS_(PlayerConnect)
 	NMT_START_ARRAY(m_Players)
 		NMT_FIELD_INT(m_PlayerID, u32, 2)
@@ -183,8 +189,6 @@ START_NMT_CLASS_(AddWaypoint)
 	NMT_FIELD(HEntity, m_Entity)
 	NMT_FIELD_MAPPOS(m_Target)
 END_NMY_CLASS()*/
-
-// #include "../EventTypes.h"
 
 END_NMTS()
 

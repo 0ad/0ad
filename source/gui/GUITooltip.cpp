@@ -58,7 +58,7 @@ enum
 };
 
 GUITooltip::GUITooltip()
-: m_State(ST_IN_MOTION), m_PreviousObject(NULL), m_PreviousTooltipName(NULL)
+: m_State(ST_IN_MOTION), m_PreviousObject(NULL), m_PreviousTooltipName()
 {
 }
 
@@ -89,7 +89,7 @@ static bool GetTooltip(IGUIObject* obj, CStr &style)
 	return false;
 }
 
-static void ShowTooltip(IGUIObject* obj, CPos pos, CStr& style, CGUI* gui)
+void ShowTooltip(IGUIObject* obj, CPos pos, CStr& style, CGUI* gui)
 {
 	assert(obj);
 
@@ -144,7 +144,7 @@ static void ShowTooltip(IGUIObject* obj, CPos pos, CStr& style, CGUI* gui)
 	usedobj->HandleMessage(SGUIMessage(GUIM_SETTINGS_UPDATED, "caption"));
 }
 
-static void HideTooltip(CStr& style, CGUI* gui)
+void HideTooltip(CStr& style, CGUI* gui)
 {
 	IGUIObject* tooltipobj = gui->FindObjectByName("__tooltip_"+style);
 	if (! tooltipobj)

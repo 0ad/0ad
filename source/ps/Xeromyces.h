@@ -11,7 +11,7 @@
 #ifndef _XEROMYCES_H_
 #define _XEROMYCES_H_
 
-#include "ps/errors.h"
+#include "ps/Errors.h"
 ERROR_GROUP(Xeromyces);
 ERROR_TYPE(Xeromyces, XMLOpenFailed);
 ERROR_TYPE(Xeromyces, XMLParseError);

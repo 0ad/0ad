@@ -26,7 +26,10 @@ public:
 	void SetJSVal( jsval v );
 	void Compile( CStrW FileNameTag, CStrW FunctionBody );
 
-	inline bool Defined();
+	inline bool Defined()
+	{
+		return( Function != NULL );
+	}
 
 	// JSObject wrapping the function if it's defined, NULL if it isn't.
 	JSObject* GetFunctionObject();

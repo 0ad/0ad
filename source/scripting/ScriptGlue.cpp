@@ -60,6 +60,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	{"startGame", startGame, 0, 0, 0 },
 	{"endGame", endGame, 0, 0, 0 },
 	{"joinGame", joinGame, 0, 0, 0 },
+	{"createClient", createClient, 0, 0, 0 },
 	{"startServer", startServer, 0, 0, 0 },
 	{"loadLanguage", loadLanguage, 1, 0, 0 },
 	{"getLanguageID", getLanguageID, 0, 0, 0 },
@@ -327,6 +328,7 @@ JSBool startServer(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned 
 	}
 	if (argc == 1)
 	{
+		LOG(MESSAGE, LOG_CAT_NET, "startServer: Server port is %d\n", g_ScriptingHost.ValueToInt(argv[0]));
 		listenAddress=CSocketAddress(g_ScriptingHost.ValueToInt(argv[0]), IPv4);
 	}
 
@@ -335,7 +337,7 @@ JSBool startServer(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned 
 	PS_RESULT res=g_NetServer->Bind(listenAddress);
 	if (res != PS_OK)
 	{
-		LOG(ERROR, "startServer: Bind error: %s", res);
+		LOG(ERROR, LOG_CAT_NET, "startServer: Bind error: %s", res);
 		*rval = BOOLEAN_TO_JSVAL(JS_FALSE);
 		return JS_TRUE;
 	}
@@ -347,13 +349,27 @@ JSBool startServer(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned 
 // More from main.cpp
 extern void StartGame();
 
+JSBool createClient(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* rval)
+{
+	if (g_Game)
+	{
+		return JS_FALSE;
+	}
+
+	g_Game=new CGame();
+	g_NetClient=new CNetClient(g_Game, &g_GameAttributes);
+	
+	*rval=OBJECT_TO_JSVAL(g_NetClient->GetScript());
+	return JS_TRUE;
+}
+
 JSBool joinGame(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* rval)
 {
 	CStrW username;
 	CStr password;
 	CStr connectHostName;
 	int connectPort=PS_DEFAULT_PORT;
-	if (argc >= 2) // One arg; hostname and default port
+	if (argc >= 2) // Two args; name, hostname and default port
 	{
 		username=g_ScriptingHost.ValueToUCString(argv[0]);
 		password="";
@@ -378,7 +394,7 @@ JSBool joinGame(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned int
 	PS_RESULT res=g_NetClient->BeginConnect(connectHostName.c_str(), connectPort);
 	if (res != PS_OK)
 	{
-		LOG(ERROR, "joinGame: BeginConnect error: %s", res);
+		LOG(ERROR, LOG_CAT_NET, "joinGame: BeginConnect error: %s", res);
 		*rval=BOOLEAN_TO_JSVAL(JS_FALSE);
 	}
 	else
@@ -392,13 +408,14 @@ JSBool startGame(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned in
 	{
 		return JS_FALSE;
 	}
+	// Hosted MP Game
 	if (g_NetServer)
 		g_NetServer->StartGame();
-	else if (g_NetClient) // startGame is invalid on joined games; do nothing and return false
+	// Joined MP Game: startGame is invalid - do nothing
+	else if (g_NetClient)
 	{
-		*rval=BOOLEAN_TO_JSVAL(JS_FALSE);
-		return JS_TRUE;
 	}
+	// Start an SP Game Session
 	else if (!g_Game)
 	{
 		g_Game=new CGame();

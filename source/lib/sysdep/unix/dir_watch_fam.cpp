@@ -58,11 +58,14 @@ int dir_get_changed_file(char* fn)
 	while(FAMPending(&fc) > 0)
 		if(FAMNextEvent(&fc, &e) >= 0)
 		{
-			char n_path[PATH_MAX];
-			const char* dir = dirs[e.fr.reqnum].c_str();
-			snprintf(n_path, PATH_MAX, "%s%c%s", dir, DIR_SEP, e.filename);
-			CHECK_ERR(file_make_portable_path(n_path, fn));
-			return 0;
+			if (e.code == FAMChanged || e.code == FAMCreated || e.code == FAMDeleted)
+			{
+				char n_path[PATH_MAX];
+				const char* dir = dirs[e.fr.reqnum].c_str();
+				snprintf(n_path, PATH_MAX, "%s%c%s", dir, DIR_SEP, e.filename);
+				CHECK_ERR(file_make_portable_path(n_path, fn));
+				return 0;
+			}
 		}
 
 	return 1;

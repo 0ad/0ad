@@ -180,7 +180,7 @@ void CMessageSocket::StartWriteNextMessage()
 		delete pMsg;
 
 		// Start Write Operation
-		printf("CMessageSocket::StartWriteNextMessage(): Writing an MT %d, length %u (%u)\n", hdr.m_MsgType, hdr.m_MsgLength+HEADER_LENGTH, hdr.m_MsgLength);
+		//printf("CMessageSocket::StartWriteNextMessage(): Writing an MT %d, length %u (%u)\n", hdr.m_MsgType, hdr.m_MsgLength+HEADER_LENGTH, hdr.m_MsgLength);
 		PS_RESULT res=Write(m_pWrBuffer, hdr.m_MsgLength+HEADER_LENGTH);
 		if (res != PS_OK)
 		{
@@ -234,7 +234,7 @@ void CMessageSocket::StartReadHeader()
 			m_pRdBuffer=(u8 *)malloc(m_RdBufferSize);
 	}
 	m_ReadingData=false;
-	printf("CMessageSocket::StartReadHeader(): Trying to read %u\n", HEADER_LENGTH);
+	//printf("CMessageSocket::StartReadHeader(): Trying to read %u\n", HEADER_LENGTH);
 	PS_RESULT res=Read(m_pRdBuffer, HEADER_LENGTH);
 	if (res != PS_OK)
 	{
@@ -260,7 +260,7 @@ void CMessageSocket::StartReadMessage()
 			m_pRdBuffer=(u8 *)malloc(m_RdBufferSize);
 	}
 	m_ReadingData=true;
-	printf("CMessageSocket::StartReadMessage(): Got type %d, trying to read %u\n", hdr.m_MsgType, hdr.m_MsgLength);
+	//printf("CMessageSocket::StartReadMessage(): Got type %d, trying to read %u\n", hdr.m_MsgType, hdr.m_MsgLength);
 
 	if (hdr.m_MsgLength == 0)
 	{
@@ -298,6 +298,16 @@ void CMessageSocket::ReadComplete(PS_RESULT ec)
 		{
 			OnMessage(pMsg);
 		}
+		else
+		{
+			printf("CMessageSocket::ReadComplete(): Deserialization failed! (type %d, length %d)\n", hdr.m_MsgType, hdr.m_MsgLength);
+			printf("Data: {\n");
+			for (int i=HEADER_LENGTH;i<hdr.m_MsgLength+HEADER_LENGTH;i++)
+			{
+				printf("\t0x%x [%c]\n", m_pRdBuffer[i], isalnum(m_pRdBuffer[i])?m_pRdBuffer[i]:'.');
+			}
+			printf("};\n");
+		}
 		StartReadHeader();
 	}
 }
@@ -306,6 +316,7 @@ void CMessageSocket::OnMessage(CNetMessage *pMsg)
 {
 	m_InQ.Lock();
 	m_InQ.push_back(pMsg);
+	printf("CMessageSocket::OnMessage(): %s\n", pMsg->GetString().c_str());
 	printf("CMessageSocket::OnMessage(): Queue size now %u\n", m_InQ.size());
 	m_InQ.Unlock();
 }

@@ -1373,7 +1373,8 @@ fail:
 		goto ret;
 	}
 
-
+// "jump to label crosses initialization" - B'ah
+{
 	jpeg_create_decompress(&cinfo);
 
 	jpeg_mem_src(&cinfo, file, file_size);
@@ -1476,6 +1477,7 @@ fail:
 
 	err = 0;
 
+}
 	// shared cleanup
 ret:
 	free(rows);
@@ -1529,7 +1531,8 @@ fail:
 		goto ret;
 	}
 
-
+// "jump to label crosses initialization" - B'ah
+{
 	jpeg_create_compress(&cinfo);
 
 ///	jpeg_vfs_dest(&cinfo, file, file_size);
@@ -1589,6 +1592,7 @@ fail:
 
 	err = 0;
 
+}
 	// shared cleanup
 ret:
 	free(rows);

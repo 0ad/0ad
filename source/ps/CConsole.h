@@ -29,8 +29,6 @@
 
 typedef void(*fptr)(void);
 
-class CNetSession;
-
 class CConsole
 {
 private:

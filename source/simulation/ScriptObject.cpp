@@ -40,11 +40,6 @@ void CScriptObject::SetJSVal( jsval v )
 	}
 }
 
-bool CScriptObject::Defined()
-{
-	return( Function != NULL );
-}
-
 JSObject* CScriptObject::GetFunctionObject()
 {
 	if( Function )

@@ -33,6 +33,7 @@ JSFunc setCursor;
 
 JSFunc GetGameObject;
 JSFunc startServer;
+JSFunc createClient;
 JSFunc joinGame;
 JSFunc startGame;
 JSFunc endGame;

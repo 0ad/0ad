@@ -28,7 +28,7 @@ DrawCalls::DrawCalls()
 DrawCalls::~DrawCalls()
 {
 	clear();
-	std::vector<SDrawCall>::~vector();
+//	std::vector<SDrawCall>::~vector();
 }
 
 // Never copy anything (to avoid losing track of who owns various pointers):

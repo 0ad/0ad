@@ -1,5 +1,8 @@
 #include "precompiled.h"
 
+#include <scripting/DOMEvent.h>
+#include <scripting/JSConversions.h>
+#include <scripting/ScriptableObject.h>
 #include <Network/Client.h>
 #include <CStr.h>
 #include <CLogger.h>
@@ -8,7 +11,54 @@
 #define LOG_CAT_NET "net"
 
 CNetClient *g_NetClient=NULL;
+extern int fps;
 extern CConsole *g_Console;
+
+enum CClientEvents
+{
+	CLIENT_EVENT_START_GAME,
+	CLIENT_EVENT_CHAT,
+	CLIENT_EVENT_CONNECT,
+	CLIENT_EVENT_LAST
+};
+
+class CStartGameEvent: public CScriptEvent
+{
+public:
+	CStartGameEvent():
+		CScriptEvent(L"startGame", false, CLIENT_EVENT_START_GAME)
+	{}
+};
+
+class CChatEvent: public CScriptEvent
+{
+	CStrW m_Sender;
+	CStrW m_Message;
+public:
+	CChatEvent(CStrW sender, CStrW message):
+		CScriptEvent(L"chat", false, CLIENT_EVENT_CHAT),
+		m_Sender(sender),
+		m_Message(message)
+	{
+		AddReadOnlyProperty(L"sender", &m_Sender);
+		AddReadOnlyProperty(L"message", &m_Message);
+	}
+};
+
+class CConnectEvent: public CScriptEvent
+{
+	CStrW m_Message;
+	bool m_Success;
+public:
+	CConnectEvent(CStrW message, bool success):
+		CScriptEvent(L"connect", false, CLIENT_EVENT_CONNECT),
+		m_Message(message),
+		m_Success(success)
+	{
+		AddReadOnlyProperty(L"message", &m_Message);
+		AddReadOnlyProperty(L"success", &m_Success);
+	}
+};
 
 CNetClient::CNetClient(CGame *pGame, CGameAttributes *pGameAttribs):
 	CNetSession(ConnectHandler),
@@ -17,6 +67,50 @@ CNetClient::CNetClient(CGame *pGame, CGameAttributes *pGameAttribs):
 	m_pGameAttributes(pGameAttribs)
 {
 	m_pGame->GetSimulation()->SetTurnManager(this);
+	
+	AddProperty(L"onStartGame", &m_OnStartGame);
+	AddProperty(L"onChat", &m_OnChat);
+	AddProperty(L"onConnect", &m_OnConnect);
+	
+	AddProperty(L"password", &m_Password);
+	AddProperty(L"playerName", &m_Name);
+	
+	g_ScriptingHost.SetGlobal("g_NetClient", OBJECT_TO_JSVAL(GetScript()));
+}
+
+CNetClient::~CNetClient()
+{
+	g_ScriptingHost.SetGlobal("g_NetClient", JSVAL_NULL);
+}
+
+void CNetClient::ScriptingInit()
+{
+	AddMethod<bool, &CNetClient::JSI_BeginConnect>("beginConnect", 1);
+
+	CJSObject<CNetClient>::ScriptingInit("NetClient");
+}
+
+bool CNetClient::JSI_BeginConnect(JSContext *cx, uintN argc, jsval *argv)
+{
+	CStr connectHostName;
+	uint connectPort=PS_DEFAULT_PORT;
+	if (argc >= 1)
+	{
+		connectHostName=g_ScriptingHost.ValueToString(argv[0]);
+	}
+	if (argc >= 2)
+	{
+		connectPort=g_ScriptingHost.ValueToInt(argv[1]);
+	}
+	
+	PS_RESULT res=BeginConnect(connectHostName.c_str(), connectPort);
+	if (res != PS_OK)
+	{
+		LOG(ERROR, LOG_CAT_NET, "CNetClient::JSI_Connect(): BeginConnect error: %s", res);
+		return false;
+	}
+	else
+		return true;
 }
 
 /* TEMPLATE FOR MESSAGE HANDLERS:
@@ -43,16 +137,27 @@ bool CNetClient::<X>Handler(CNetMessage *pMsg, CNetSession *pSession)
 bool CNetClient::ConnectHandler(CNetMessage *pMsg, CNetSession *pSession)
 {
 	CNetClient *pClient=(CNetClient *)pSession;
+
 	LOG(NORMAL, LOG_CAT_NET, "CNetClient::ConnectHandler(): %s.", pMsg->GetString().c_str());
 	switch (pMsg->GetType())
 	{
 	case NMT_CONNECT_COMPLETE:
 		pClient->m_pMessageHandler=HandshakeHandler;
+		if (pClient->m_OnConnect.Defined())
+		{
+			CConnectEvent evt=CConnectEvent(CStr(PS_OK), true);
+			pClient->m_OnConnect.DispatchEvent(pClient->GetScript(), &evt);
+		}
 		break;
 	case NMT_ERROR:
 	{
 		CNetErrorMessage *msg=(CNetErrorMessage *)pMsg;
 		LOG(ERROR, LOG_CAT_NET, "CNetClient::ConnectHandler(): Connect Failed: %s", msg->m_Error);
+		if (pClient->m_OnConnect.Defined())
+		{
+			CConnectEvent evt=CConnectEvent(CStr(msg->m_Error), false);
+			pClient->m_OnConnect.DispatchEvent(pClient->GetScript(), &evt);
+		}
 		break;
 	}
 	default:
@@ -170,6 +275,9 @@ bool CNetClient::InGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 	switch (msgType)
 	{
 	case NMT_EndCommandBatch:
+		CEndCommandBatch *msg=(CEndCommandBatch *)pMsg;
+		pClient->SetTurnLength(1, msg->m_TurnLength);
+	
 		// FIXME When the command batch has ended, we should start accepting
 		// commands for the next turn. This will be accomplished by calling
 		// NewTurn. *BUT* we shouldn't prematurely proceed game simulation
@@ -199,6 +307,11 @@ bool CNetClient::ChatHandler(CNetMessage *pMsg, CNetSession *pSession)
 	{
 		CChatMessage *msg=(CChatMessage *)pMsg;
 		g_Console->ReceivedChatMessage(msg->m_Sender, msg->m_Message);
+		if (pClient->m_OnChat.Defined())
+		{
+			CChatEvent evt(msg->m_Sender, msg->m_Message);
+			pClient->m_OnChat.DispatchEvent(pClient->GetScript(), &evt);
+		}
 		HANDLED(pMsg);
 	}
 	}
@@ -209,6 +322,12 @@ void CNetClient::StartGame()
 {
 	m_pMessageHandler=InGameHandler;
 	m_pGame->StartGame(m_pGameAttributes);
+	
+	if (m_OnStartGame.Defined())
+	{
+		CStartGameEvent evt;
+		m_OnStartGame.DispatchEvent(GetScript(), &evt);
+	}
 }
 
 void CNetClient::NewTurn()
@@ -216,7 +335,9 @@ void CNetClient::NewTurn()
 	RotateBatches();
 	ClearBatch(2);
 
-	Push(new CEndCommandBatch());
+	CEndCommandBatch *pMsg=new CEndCommandBatch();
+	pMsg->m_TurnLength=1000/fps;
+	Push(pMsg);
 }
 
 void CNetClient::QueueLocalCommand(CNetMessage *pMsg)

@@ -85,7 +85,7 @@
 
 #include "Network/SessionManager.h"
 #include "Network/Server.h"
-
+#include "Network/Client.h"
 
 CConsole* g_Console = 0;
 extern int conInputHandler(const SDL_Event* ev);
@@ -730,6 +730,8 @@ TIMER(InitScripting)
 
 	JSI_Camera::init();
 	JSI_Console::init();
+	
+	CNetClient::ScriptingInit();
 }
 
 

@@ -361,12 +361,6 @@ size_t CStr::GetHashCode() const
 		// it is truncated here on 32-bit systems; why go 64 bit at all?
 }
 
-uint CStr::GetSerializedLength() const
-{
-	return uint(length()*2 + 2);
-}
-
-
 #ifdef _UNICODE
 /*
 	CStrW is always serialized to/from UTF-16
@@ -398,6 +392,12 @@ const u8 *CStrW::Deserialize(const u8 *buffer, const u8 *bufferend)
 
 	return (const u8 *)(strend+1);
 }
+
+uint CStr::GetSerializedLength() const
+{
+	return uint(length()*2 + 2);
+}
+
 #else
 /*
 	CStr8 is always serialized to/from ASCII (or whatever 8-bit codepage stored
@@ -424,6 +424,12 @@ const u8 *CStr8::Deserialize(const u8 *buffer, const u8 *bufferend)
 
 	return strend+1;
 }
+
+uint CStr::GetSerializedLength() const
+{
+	return uint(length() + 1);
+}
+
 #endif // _UNICODE
 
 #endif // CStr_CPP_FIRST

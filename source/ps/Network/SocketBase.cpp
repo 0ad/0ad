@@ -451,7 +451,14 @@ PS_RESULT CSocketBase::PreAccept(CSocketAddress &addr)
 	if (fd != -1)
 		return PS_OK;
 	else
-		return GetPS_RESULT(Network_LastError);
+	{
+		PS_RESULT res=GetPS_RESULT(Network_LastError);
+		// GetPS_RESULT considers some errors non-failures
+		if (res == PS_OK)
+			return PS_FAIL;
+		else
+			return res;
+	}
 }
 
 CSocketInternal *CSocketBase::Accept()

@@ -19,6 +19,7 @@ public:
 	// mask, it should return oldMask unchanged.
 	typedef uint (BatchIteratorFunc)(CNetMessage *pMsg, uint oldMask, void *userdata);
 
+	// FIXME Should be in CNetServer instead
 	struct SClientTimingData
 	{
 		// The maximum latency observed from this client
@@ -54,6 +55,7 @@ private:
 
 	struct SClient
 	{
+		// FIXME Move to CNetServer
 		SClientTimingData m_TimingData;
 		IMessagePipeEnd *m_Pipe;
 	};
@@ -73,7 +75,9 @@ protected:
 	void ClearBatch(uint batch);
 
 	void SetClientPipe(uint client, IMessagePipeEnd *pipe);
-	void UpdateTimingData(uint client, uint fps, uint currentLatency);
+	// FIXME Should be in CNetServer instead [and implemented]
+	// void UpdateTimingData(uint client, uint fps, uint currentLatency);
+	void SetTurnLength(uint batch, uint turnLength);
 
 	void SendMessage(CNetMessage *pMsg, uint clientMask);
 
