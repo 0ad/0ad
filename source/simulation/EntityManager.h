@@ -29,8 +29,8 @@
 
 class CEntityManager : public Singleton<CEntityManager>
 {
-friend HEntity;
-friend CHandle;
+friend class HEntity;
+friend class CHandle;
 	CHandle m_entities[MAX_HANDLES];
 	std::vector<HEntity> m_reaper;
 	int m_nextalloc;
@@ -55,3 +55,4 @@ public:
 };
 
 #endif
+

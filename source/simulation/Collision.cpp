@@ -41,7 +41,7 @@ HEntity getCollisionObject( CEntity* entity )
 	}
 
 	delete( entities );
-	return( HEntity() );
+	return HEntity();
 }
 
 HEntity getCollisionObject( CEntity* entity, float x, float y )

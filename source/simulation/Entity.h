@@ -49,7 +49,7 @@ class CEntityManager;
 
 class CEntity
 {
-	friend CEntityManager;
+	friend class CEntityManager;
 private:
 	// Intrinsic properties
 public:

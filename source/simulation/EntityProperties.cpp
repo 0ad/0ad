@@ -299,11 +299,11 @@ CStr CGenericProperty::toString()
 			return( CStr( buffer ) );
 		}
 	case PROP_PTR:
-		return( CStr() );
+		return CStr();
 	default:
 		assert( 0 && "Invalid property type" );
 	}
-	return( CStr() );
+	return CStr();
 }
 
 CVector3D CGenericProperty::toVector()
@@ -316,11 +316,11 @@ CVector3D CGenericProperty::toVector()
 	case PROP_FLOAT:
 	case PROP_STRING:
 	case PROP_PTR:
-		return( CVector3D() );
+		return CVector3D();
 	default:
 		assert( 0 && "Invalid property type" );
 	}
-	return( CVector3D() );
+	return CVector3D();
 }
 
 void* CGenericProperty::toVoid()
@@ -551,7 +551,7 @@ CGenericProperty::operator CStr&()
 	case PROP_FLOAT_INTRINSIC:
 		return( CStr( *m_floatptr ) );
 	default:
-		return( CStr() );
+		return CStr();
 	}
 }
 
@@ -562,7 +562,7 @@ CGenericProperty::operator CVector3D()
 	case PROP_VECTOR:
 		return( *m_vector );
 	default:
-		return( CVector3D() );
+		return CVector3D();
 	}
 }
 

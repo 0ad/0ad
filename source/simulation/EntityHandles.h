@@ -37,7 +37,7 @@ public:
 
 class HEntity
 {
-	friend CEntityManager;
+	friend class CEntityManager;
 	u16 m_handle;
 	void addRef();
 	void decRef();
