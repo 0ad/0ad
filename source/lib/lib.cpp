@@ -22,7 +22,8 @@
 #include "sdl.h"	// endian functions
 
 #include <assert.h>
-
+#include <stdlib.h>
+#include <string.h>
 
 // more powerful atexit, with 0 or 1 parameters.
 // callable before libc initialized, frees up the real atexit table,
@@ -306,7 +307,7 @@ u16 fp_to_u16(double in)
 
 
 
-inline u16 read_le16(const void* p)
+u16 read_le16(const void* p)
 {
 #if SDL_BYTE_ORDER == SDL_BIG_ENDIAN
 	const u8* _p = (const u8*)p;
@@ -317,7 +318,7 @@ inline u16 read_le16(const void* p)
 }
 
 
-inline u32 read_le32(const void* p)
+u32 read_le32(const void* p)
 {
 #if SDL_BYTE_ORDER == SDL_BIG_ENDIAN
 	return SDL_Swap32(*(u32*)p);
