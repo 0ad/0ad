@@ -7,6 +7,8 @@
 #include <fstream>
 #include <iostream>
 
+#include "res/vfs.h"
+
 #ifdef _WIN32
 # include "float.h" // <- MT: Just for _finite(), converting certain strings was causing wierd bugs.
 # define finite _finite
@@ -90,25 +92,17 @@ JSContext* ScriptingHost::getContext()
 
 void ScriptingHost::LoadScriptFromDisk(const std::string & fileName)
 {
-	std::string script;
-	std::string line;
+	const char* fn = fileName.c_str();
 
-	std::ifstream scriptFile(fileName.c_str());
-
-	if (scriptFile.is_open() == false)
+	void* script;
+	size_t script_len;
+	if(vfs_load(fn, script, script_len) <= 0)	// ERRTODO: translate/pass it on
 		throw PSERROR_Scripting_LoadFile_OpenFailed();
 
-	while (scriptFile.eof() == false)
-	{
-		std::getline(scriptFile, line);
-		script += line;
-		script += '\n';
-	}
-
 	jsval rval; 
-	JSBool ok = JS_EvaluateScript(m_Context, m_GlobalObject, script.c_str(), (unsigned int)script.length(), fileName.c_str(), 0, &rval); 
+	JSBool ok = JS_EvaluateScript(m_Context, m_GlobalObject, (const char*)script, (unsigned int)script_len, fn, 0, &rval); 
 
-    if (ok == JS_FALSE)
+	if (ok == JS_FALSE)
 		throw PSERROR_Scripting_LoadFile_EvalErrors();
 }
 
