@@ -221,16 +221,15 @@ ok:
 struct Loc
 {
 	Handle archive;
-	std::string dir;
+
+	const std::string mount_point;
+	const std::string dir;
+
 	uint pri;
 
-	Loc() {}
-	Loc(Handle _archive, const char* _dir, uint _pri)
-		: archive(_archive), dir(_dir), pri(_pri) {}
+	Loc(Handle _archive, const char* _mount_point, const char* _dir, uint _pri)
+		: archive(_archive), mount_point(_mount_point), dir(_dir), pri(_pri) {}
 };
-
-
-static const Loc* const LOC_NOT_INIT = (const Loc*)-1;
 
 
 // rationale for separate file / subdir containers:
@@ -618,11 +617,16 @@ typedef Locs::iterator LocIt;
 
 struct Mount
 {
+	// note: we basically duplicate the mount information in dir_loc.
+	// this is because it's needed in Mount when remounting, but also
+	// in Loc when adding files. accessing everything via Loc is ugly.
+	// it's no big deal - there won't be many mountings.
+
 	// mounting into this VFS directory ("" for root)
-	std::string mount_point;
+	const std::string mount_point;
 
 	// what is being mounted; either directory, or archive filename 
-	std::string f_name;
+	const std::string f_name;
 
 	uint pri;
 
@@ -637,10 +641,9 @@ struct Mount
 		// otherwise, there's one Loc for every archive in the directory
 		// (but not its children - see remount()).
 
-	Mount() {}
 	Mount(const char* _mount_point, const char* _f_name, uint _pri)
 		: mount_point(_mount_point), f_name(_f_name), pri(_pri),
-		dir_loc(0, _f_name, 0), archive_locs() {}
+		  dir_loc(0, _mount_point, _f_name, pri), archive_locs() {}
 };
 
 typedef std::list<Mount> Mounts;
@@ -693,7 +696,7 @@ static int archive_cb(const char* const fn, const uint flags, const ssize_t size
 	// just try to open the file.
 	const Handle archive = zip_archive_open(f_path);
 	if(archive > 0)
-		archive_locs->push_back(Loc(archive, "", pri));
+		archive_locs->push_back(Loc(archive, "", "", pri));
 
 	// only add archive to list; don't add its files into the VFS yet,
 	// to simplify debugging (we see which files are in which archive)
@@ -707,11 +710,11 @@ static int archive_cb(const char* const fn, const uint flags, const ssize_t size
 // mount list, when invalidating (reloading) the VFS.
 static int remount(Mount& m)
 {
-	const char* const mount_point = m.mount_point.c_str();
-	const char* const f_name = m.f_name.c_str();
-	const uint pri           = m.pri;
-	const Loc& dir_loc       = m.dir_loc;
-	Locs& archive_locs       = m.archive_locs;
+	const char* mount_point = m.mount_point.c_str();
+	const char* f_name      = m.f_name.c_str();
+	const uint pri          = m.pri;
+	const Loc* dir_loc      = &m.dir_loc;
+	Locs& archive_locs      = m.archive_locs;
 
 	Dir* dir;
 	CHECK_ERR(tree_lookup(mount_point, 0, &dir, LF_CREATE_MISSING_DIRS));
@@ -721,7 +724,7 @@ static int remount(Mount& m)
 	const Handle archive = zip_archive_open(f_name);
 	if(archive > 0)
 	{
-		archive_locs.push_back(Loc(archive, "", pri));
+		archive_locs.push_back(Loc(archive, "", "", pri));
 		const Loc* loc = &archive_locs.front();
 		return tree_add_loc(dir, loc);
 	}
@@ -741,7 +744,7 @@ static int remount(Mount& m)
 	}
 
 	// add all loose files and subdirectories in subtree
-	CHECK_ERR(tree_add_loc(dir, &dir_loc));
+	CHECK_ERR(tree_add_loc(dir, dir_loc));
 
 	return 0;
 }
@@ -808,7 +811,7 @@ static bool is_subpath(const char* s1, const char* s2)
 // if <name> is a directory, all archives in that directory (but not
 // its subdirs - see add_dirent_cb) are also mounted in alphabetical order.
 // name = "." or "./" isn't allowed - see implementation for rationale.
-int vfs_mount(const char* const vfs_mount_point, const char* const name, const uint pri)
+int vfs_mount(const char* const mount_point, const char* const name, const uint pri)
 {
 	ONCE(atexit2(vfs_shutdown));
 
@@ -836,7 +839,7 @@ int vfs_mount(const char* const vfs_mount_point, const char* const name, const u
 		return -1;
 	}
 
-	mounts.push_back(Mount(vfs_mount_point, name, pri));
+	mounts.push_back(Mount(mount_point, name, pri));
 
 	// actually mount the entry
 	Mount& m = mounts.back();
@@ -878,22 +881,43 @@ int vfs_unmount(const char* name)
 }
 
 
-int vfs_get_path(const char* const path, char* const vfs_path)
+
+
+static int path_replace(char* dst, const char* src, const char* remove, const char* replace)
+{
+	// remove doesn't match start of <src>
+	const size_t remove_len = strlen(remove);
+	if(strncmp(src, remove, remove_len) != 0)
+		return -1;
+
+	// prepend replace.
+	CHECK_ERR(path_append(dst, replace, src+remove_len));
+	return 0;
+}
+
+
+int vfs_make_vfs_path(const char* const path, char* const vfs_path)
 {
 	for(MountIt it = mounts.begin(); it != mounts.end(); ++it)
 	{
-		const char* dir_name = it->f_name.c_str();
-		const size_t len = strlen(dir_name);
-		if(!strncmp(dir_name, path, len))
-		{
-			const char* fn = path+len;
-			const char* mount_point = it->mount_point.c_str();
-			CHECK_ERR(path_append(vfs_path, mount_point, fn));
+		const char* remove = it->f_name.c_str();
+		const char* replace = it->mount_point.c_str();
+
+		if(path_replace(vfs_path, path, remove, replace) == 0)
 			return 0;
-		}
 	}
 
 	return -1;
+}
+
+
+static int make_file_path(const char* vfs_path, const Loc* loc, char* const path)
+{
+	assert(loc->archive == 0);
+
+	const char* remove = loc->mount_point.c_str();
+	const char* replace = loc->dir.c_str();
+	return path_replace(path, vfs_path, remove, replace);
 }
 
 
@@ -944,9 +968,9 @@ static int VDir_reload(VDir* vd, const char* path, Handle)
 
 	// rationale for copying the dir's data: see VDir definition
 	// note: bad_alloc exception handled by h_alloc.
-	vd->subdirs = new SubDirs(dir->subdirs);
+	vd->subdirs   = new SubDirs(dir->subdirs);
 	vd->subdir_it = vd->subdirs->begin();
-	vd->files = new Files(dir->files);
+	vd->files   = new Files(dir->files);
 	vd->file_it = vd->files->begin();
 	return 0;
 }
@@ -1057,26 +1081,23 @@ have_match:
 
 // return actual path to the specified file:
 // "<real_directory>/fn" or "<archive_name>/fn".
-int vfs_realpath(const char* fn, char* full_path)
+int vfs_realpath(const char* fn, char* realpath)
 {
 	const Loc* loc;
 	CHECK_ERR(tree_lookup(fn, &loc));
 
-	const char* dir;
-
 	// file is in normal directory
 	if(loc->archive <= 0)
-		dir = loc->dir.c_str();
+		CHECK_ERR(make_file_path(fn, loc, realpath));
 	// file is in archive
 	else
 	{
-		// "dir" is the archive filename
-		dir = h_filename(loc->archive);
-		if(!dir)
+		const char* archive_fn = h_filename(loc->archive);
+		if(!archive_fn)
 			return -1;
+		CHECK_ERR(path_append(realpath, archive_fn, fn));
 	}
 
-	CHECK_ERR(path_append(full_path, dir, fn));
 	return 0;
 }
 
@@ -1098,14 +1119,15 @@ int vfs_stat(const char* fn, struct stat* s)
 	CHECK_ERR(tree_lookup(fn, &loc));
 
 	if(loc->archive > 0)
-		return zip_stat(loc->archive, fn, s);
+		CHECK_ERR(zip_stat(loc->archive, fn, s));
 	else
 	{
-		// similar to realpath, but don't bother splitting it out.
-		char path[VFS_MAX_PATH];
-		path_append(path, loc->dir.c_str(), fn);
-		return file_stat(path, s);
+		char path[PATH_MAX];
+		CHECK_ERR(make_file_path(fn, loc, path));
+		CHECK_ERR(file_stat(path, s));
 	}
+
+	return 0;
 }
 
 
@@ -1150,7 +1172,6 @@ H_TYPE_DEFINE(VFile);
 // and VFile was exceeding HDATA_USER_SIZE. flags and size (required
 // in File as well as VFile) are now moved into the union.
 // use the functions below to insulate against change a bit.
-
 
 static off_t& vf_size(VFile* vf)
 {
@@ -1210,8 +1231,7 @@ static int VFile_reload(VFile* vf, const char* path, Handle)
 	if(loc->archive <= 0)
 	{
 		char f_path[PATH_MAX];
-		const char* dir = loc->dir.c_str();
-		CHECK_ERR(path_append(f_path, dir, path));
+		CHECK_ERR(make_file_path(path, loc, f_path));
 		CHECK_ERR(file_open(f_path, flags, &vf->f));
 	}
 	// archive
@@ -1286,31 +1306,6 @@ debug_out("vfs_io size=%d\n", size);
 }
 
 
-// try to transfer the next <size> bytes to/from the given file.
-// (read or write access was chosen at file-open time).
-// return bytes of actual data transferred, or a negative error code.
-ssize_t vfs_uncached_io(const Handle hf, const size_t size, void** p)
-{
-#ifdef PARANOIA
-	debug_out("vfs_uncached_io size=%d\n", size);
-#endif
-
-	H_DEREF(hf, VFile, vf);
-
-	off_t ofs = vf->ofs;
-	vf->ofs += (off_t)size;
-
-	// (vfs_open makes sure it's not opened for writing if zip)
-	if(vf_flags(vf) & VF_ZIP)
-		return zip_read(&vf->zf, ofs, size, p);
-
-	// normal file:
-	// let file_io alloc the buffer if the caller didn't (i.e. p = 0),
-	// because it knows about alignment / padding requirements
-	return file_uncached_io(&vf->f, ofs, size, *p);
-}
-
-
 // load the entire file <fn> into memory; return a handle to the memory
 // and the buffer address/size. output parameters are zeroed on failure.
 Handle vfs_load(const char* const fn, void*& p, size_t& size)
@@ -1367,28 +1362,14 @@ skip_read:
 
 // caveat: pads file to next max(4kb, sector_size) boundary
 // (due to limitation of Win32 FILE_FLAG_NO_BUFFERING I/O).
-// if that's a problem, use vfs_uncached_store instead.
-int vfs_store(const char* const fn, void* p, const size_t size)
+// if that's a problem, specify FILE_NO_AIO when opening.
+int vfs_store(const char* const fn, void* p, const size_t size, uint flags)
 {
-	Handle hf = vfs_open(fn, FILE_WRITE);
+	Handle hf = vfs_open(fn, flags|FILE_WRITE);
 	if(hf <= 0)
 		return (int)hf;	// error code
 	H_DEREF(hf, VFile, vf);
 	const int ret = vfs_io(hf, size, &p);
-	vfs_close(hf);
-	return ret;
-}
-
-
-// plain file write. exactly size bytes are written (as opposed to
-// vfs_store's padding problem), but this bypasses the file cache.
-int vfs_uncached_store(const char* const fn, void* p, const size_t size)
-{
-	Handle hf = vfs_open(fn, FILE_WRITE);
-	if(hf <= 0)
-		return (int)hf;	// error code
-	H_DEREF(hf, VFile, vf);
-	const int ret = file_uncached_io(&vf->f, 0, size, p);
 	vfs_close(hf);
 	return ret;
 }

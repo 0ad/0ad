@@ -58,7 +58,8 @@ extern int vfs_rebuild();
 // unmount a previously mounted item, and rebuild the VFS afterwards.
 extern int vfs_unmount(const char* name);
 
-extern int vfs_get_path(const char* path, char* vfs_path);
+extern int vfs_make_vfs_path(const char* path, char* vfs_path);
+extern int vfs_make_real_path(const char* vfs_path, char* path);
 
 
 //
@@ -166,19 +167,11 @@ extern int vfs_discard_io(Handle& hio);
 // TODO: buffer types
 extern ssize_t vfs_io(Handle hf, size_t size, void** p);
 
-// try to transfer the next <size> bytes to/from the given file.
-// (read or write access was chosen at file-open time).
-// return bytes of actual data transferred, or a negative error code.
-extern ssize_t vfs_uncached_io(const Handle hf, const size_t size, void** p);
-
-
 // load the entire file <fn> into memory; return a memory handle to the
 // buffer and its address/size. output parameters are zeroed on failure.
 extern Handle vfs_load(const char* fn, void*& p, size_t& size);
 
-extern int vfs_store(const char* fn, void* p, size_t size);
-
-extern int vfs_uncached_store(const char* const fn, void* p, const size_t size);
+extern int vfs_store(const char* fn, void* p, size_t size, uint flags = 0);
 
 
 #endif	// #ifndef __VFS_H__

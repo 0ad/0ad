@@ -84,7 +84,7 @@ int res_reload_changed_files()
 		char path[PATH_MAX];
 		char vfs_path[VFS_MAX_PATH];
 		CHECK_ERR(file_make_portable_path(e.filename, path));
-		CHECK_ERR(vfs_get_path(path, vfs_path));
+		CHECK_ERR(vfs_make_vfs_path(path, vfs_path));
 
 		const char* fn = vfs_path;
 
