@@ -35,6 +35,7 @@
 //#define NO_TSC
 
 
+// automatic module init (before main) and shutdown (before termination)
 #pragma data_seg(".LIB$WIA")
 WIN_REGISTER_FUNC(wtime_init);
 #pragma data_seg(".LIB$WTA")
@@ -127,12 +128,13 @@ static int choose_impl()
 	//
 	// issues:
 	// - multiprocessor systems: may be inconsistent across CPUs.
-	//   could fix by keeping per-CPU timer state, but we'd need
-	//   GetCurrentProcessorNumber (only available on Win Server 2003).
-	//   spinning off a thread with set CPU affinity is too slow
-	//   (we may have to wait until the next timeslice).
 	//   we could discard really bad values, but that's still inaccurate.
-	//   => unsafe.
+	//   having a high-priority thread with set CPU affinity read the TSC
+	//   might work, but would be rather slow. could fix the problem by
+	//   keeping per-CPU timer state (freq and delta). we'd use the APIC ID
+	//   (cpuid, function 1) or GetCurrentProcessorNumber (only available
+	//   on Win Server 2003) to determine the CPU. however, this is
+	//   too much work for little benefit ATM, so call it unsafe.
 	// - deep sleep modes: TSC may not be advanced.
 	//   not a problem though, because if the TSC is disabled, the CPU
 	//   isn't doing any other work, either.
@@ -306,14 +308,20 @@ static int reset_impl_lk()
 			// don't call hrt_time to avoid recursive lock.
 
 	CHECK_ERR(choose_impl());
-	// post: hrt_impl != HRT_NONE, hrt_nominal_freq > 0
+	assert(hrt_impl != HRT_NONE && hrt_nominal_freq > 0);
 
 	hrt_freq = (double)hrt_nominal_freq;
 
 	// if impl has changed, re-base tick counter.
 	// want it 0-based, but it must not go backwards WRT previous reading.
 	if(old_impl != hrt_impl)
+	{
+		// have to clear hrt_origin before it's used by ticks_lk.
+		// thanks to Andre Loker for reporting this bug.
+		hrt_origin = 0;
+
 		hrt_origin = ticks_lk() - (i64)(old_time * hrt_freq);
+	}
 
 	return 0;
 }
@@ -435,9 +443,8 @@ lock();
 	hrt_cal_time = hrt_cur;
 	ms_cal_time = ms_cur;
 
-	// we're called from a WinMM event, so the timer has just been updated.
-	// no need to determine tick / compensate.
-
+//	// we're called from a WinMM event, so the timer has just been updated.
+//	// no need to determine tick / compensate.
 //	double dt = ms_ds;	// actual elapsed time since last calibration
 //	double hrt_err = ms_ds - hrt_ds;
 //	double hrt_abs_err = fabs(hrt_err);
