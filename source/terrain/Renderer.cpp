@@ -87,7 +87,7 @@ void CRenderer::FlushFrame()
 	for (int i=0;i<m_TerrainPatches.size();++i) {
 		RenderPatchBase(m_TerrainPatches[i].m_Object);
 	}
-	for (i=0;i<m_TerrainPatches.size();++i) {
+	for (int i=0;i<m_TerrainPatches.size();++i) {
 		RenderPatchTrans(m_TerrainPatches[i].m_Object);
 	}
 
@@ -96,7 +96,7 @@ void CRenderer::FlushFrame()
 	}
 
 	// render models
-	for (i=0;i<m_Models.size();++i) {
+	for (int i=0;i<m_Models.size();++i) {
 		RenderModel(m_Models[i]);
 	}
 

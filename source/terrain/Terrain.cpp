@@ -70,7 +70,7 @@ bool CTerrain::InitFromHeightmap(const u8* data)
 		}
 	}
 
-	for (j=0; j<NUM_PATCHES_PER_SIDE; j++)
+	for (int j=0; j<NUM_PATCHES_PER_SIDE; j++)
 	{
 		for (int i=0; i<NUM_PATCHES_PER_SIDE; i++)
 		{
