@@ -13,7 +13,7 @@
 //
 //***********************************************************
 
-#include "Frustum.H"
+#include "Frustum.h"
 
 CFrustum::CFrustum ()
 {

@@ -1,6 +1,6 @@
 //***********************************************************
 //
-// Name:		Patch.H
+// Name:		Patch.h
 // Last Update: 23/2/02
 // Author:		Poya Manouchehri
 //
@@ -12,10 +12,10 @@
 #ifndef PATCH_H
 #define PATCH_H
 
-#include "Matrix3D.H"
-#include "Camera.H"
-#include "TerrGlobals.H"
-#include "MiniPatch.H"
+#include "Matrix3D.h"
+#include "Camera.h"
+#include "TerrGlobals.h"
+#include "MiniPatch.h"
 
 class CPatch
 {

@@ -1,6 +1,6 @@
 //***********************************************************
 //
-// Name:		Plane.H
+// Name:		Plane.h
 // Last Update:	17/2/02
 // Author:		Poya Manouchehri
 //
@@ -14,7 +14,7 @@
 #ifndef PLANE_H
 #define PLANE_H
 
-#include "Vector3D.H"
+#include "Vector3D.h"
 
 enum PLANESIDE
 {

@@ -1,6 +1,6 @@
 //***********************************************************
 //
-// Name:		MathUtil.H
+// Name:		MathUtil.h
 // Last Update:	28/1/02
 // Author:		Poya Manouchehri
 //

@@ -1,6 +1,6 @@
 //***********************************************************
 //
-// Name:		Terrain.H
+// Name:		Terrain.h
 // Last Update: 23/2/02
 // Author:		Poya Manouchehri
 //
@@ -19,8 +19,8 @@
 
 #include <stdio.h>
 
-#include "Patch.H"
-#include "Vector3D.H"
+#include "Patch.h"
+#include "Vector3D.h"
 
 extern bool g_HillShading;
 

@@ -1,6 +1,6 @@
-#include "Matrix3D.H"
-#include "Renderer.H"
-#include "Terrain.H"
+#include "Matrix3D.h"
+#include "Renderer.h"
+#include "Terrain.h"
 #include "../ps/Prometheus.h"
 
 #include "time.h"

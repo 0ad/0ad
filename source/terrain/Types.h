@@ -1,6 +1,6 @@
 //***********************************************************
 //
-// Name:		Types.H
+// Name:		Types.h
 // Last Update:	25/1/02
 // Author:		Poya Manouchehri
 //

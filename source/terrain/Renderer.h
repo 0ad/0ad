@@ -3,7 +3,7 @@
 
 #include "ogl.h"
 
-#include "Terrain.H"
+#include "Terrain.h"
 
 extern bool g_WireFrame;
 extern unsigned int g_FrameCounter;

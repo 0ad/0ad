@@ -1,6 +1,6 @@
-#include "Renderer.H"
-#include "Matrix3D.H"
-#include "Camera.H"
+#include "Renderer.h"
+#include "Matrix3D.h"
+#include "Camera.h"
 
 #include "types.h"
 #include "ogl.h"

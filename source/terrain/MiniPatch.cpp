@@ -1,4 +1,4 @@
-#include "MiniPatch.H"
+#include "MiniPatch.h"
 
 CMiniPatch::CMiniPatch()
 {

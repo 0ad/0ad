@@ -1,7 +1,7 @@
 #ifndef MINIPATCH_H
 #define MINIPATCH_H
 
-#include "Vector3D.H"
+#include "Vector3D.h"
 #include "res.h"
 
 struct STerrainVertex

@@ -9,7 +9,7 @@
 //
 //***********************************************************
 
-#include "Matrix3D.H"
+#include "Matrix3D.h"
 
 CMatrix3D::CMatrix3D ()
 {

@@ -1,6 +1,6 @@
 //***********************************************************
 //
-// Name:		Vector3D.H
+// Name:		Vector3D.h
 // Last Update:	28/1/02
 // Author:		Poya Manouchehri
 //
@@ -13,8 +13,8 @@
 #define VECTOR3D_H
 
 #include <math.h>
-#include "MathUtil.H"
-#include "Types.H"
+#include "MathUtil.h"
+#include "Types.h"
 
 class CVector3D
 {

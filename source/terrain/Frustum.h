@@ -1,6 +1,6 @@
 //***********************************************************
 //
-// Name:		Frustum.H
+// Name:		Frustum.h
 // Last Update: 24/2/02
 // Author:		Poya Manouchehri
 //
@@ -16,7 +16,7 @@
 #ifndef FRUSTUM_H
 #define FRUSTUM_H
 
-#include "Plane.H"
+#include "Plane.h"
 
 //10 planes should be enough
 #define MAX_NUM_FRUSTUM_PLANES		(10)

@@ -1,6 +1,6 @@
 //***********************************************************
 //
-// Name:		TerrGlobals.H
+// Name:		TerrGlobals.h
 // Last Update: 27/2/02
 // Author:		Poya Manouchehri
 //

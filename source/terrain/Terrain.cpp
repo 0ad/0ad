@@ -14,7 +14,7 @@
 //
 //***********************************************************
 
-#include "Terrain.H"
+#include "Terrain.h"
 #include "tex.h"
 #include "mem.h"
 

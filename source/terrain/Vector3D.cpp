@@ -9,7 +9,7 @@
 //
 //***********************************************************
 
-#include "Vector3D.H"
+#include "Vector3D.h"
 
 CVector3D::CVector3D ()
 {

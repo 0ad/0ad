@@ -1,6 +1,6 @@
 //***********************************************************
 //
-// Name:		Matrix3D.H
+// Name:		Matrix3D.h
 // Last Update:	31/1/02
 // Author:		Poya Manouchehri
 //
@@ -14,7 +14,7 @@
 
 #include <math.h>
 
-#include "Vector3D.H"
+#include "Vector3D.h"
 
 class CMatrix3D
 {

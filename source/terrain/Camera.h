@@ -1,6 +1,6 @@
 //***********************************************************
 //
-// Name:		Camera.H
+// Name:		Camera.h
 // Last Update: 24/2/02
 // Author:		Poya Manouchehri
 //
@@ -13,8 +13,8 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "Frustum.H"
-#include "Matrix3D.H"
+#include "Frustum.h"
+#include "Matrix3D.h"
 
 //view port
 struct SViewPort
