@@ -56,6 +56,9 @@
 #include "gui/GUI.h"
 #endif
 
+#include "sound/CMusicPlayer.h"
+
+
 CConsole* g_Console = 0;
 extern int conInputHandler(const SDL_Event* ev);
 
@@ -94,6 +97,10 @@ static Handle g_Font_Console; // for the console
 static Handle g_Font_Misc; // random font for miscellaneous things
 
 extern CCamera g_Camera;
+
+static CMusicPlayer MusicPlayer;
+
+
 
 extern void terr_init();
 extern void terr_update(float time);
@@ -323,6 +330,11 @@ static int handler(const SDL_Event* ev)
 
 		case HOTKEY_SCREENSHOT:
 			WriteScreenshot();
+			break;
+
+		case HOTKEY_PLAYMUSIC:
+			MusicPlayer.open("audio/music/germanic peace 3.ogg");
+			MusicPlayer.play();
 			break;
 
 		default:
@@ -619,8 +631,9 @@ static void psInit()
 	g_GUI.LoadXMLFile("gui/test/styles.xml");
 	g_GUI.LoadXMLFile("gui/test/hello.xml");
 	g_GUI.LoadXMLFile("gui/test/sprite1.xml");
-
 #endif
+
+	oal_Init();
 }
 
 static void psShutdown()
@@ -637,6 +650,9 @@ static void psShutdown()
 
 	// close down Xerces if it was loaded
 	CXeromyces::Terminate();
+
+	MusicPlayer.release();
+	oal_Shutdown();
 }
 
 
@@ -672,10 +688,6 @@ static void Shutdown()
 
 static void Init(int argc, char* argv[])
 {
-#ifdef _WIN32
-sle(1134);
-#endif
-
 	MICROLOG(L"In init");
 
 	// If you ever want to catch a particular allocation:
@@ -767,6 +779,7 @@ sle(11340106);
 		LOG(ERROR, "Could not set %dx%d graphics mode: %s", g_xres, g_yres, SDL_GetError());
 		throw PSERROR_System_VmodeFailed();
 	}
+	SDL_WM_SetCaption("0 A.D.", "0 A.D.");
 
 	write_sys_info();
 
@@ -920,6 +933,8 @@ PREVTSC=CURTSC;
 static void Frame()
 {
 	MICROLOG(L"In frame");
+
+	MusicPlayer.update();
 
 #if defined(MOVIE_RECORD) || defined(MOVIE_CREATE)
 
