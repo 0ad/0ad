@@ -43,7 +43,7 @@ static int import_EnumDisplayDevices()
 	{
 		static HMODULE hUser32Dll = LoadLibrary("user32.dll");
 		*(void**)&pEnumDisplayDevicesA = GetProcAddress(hUser32Dll, "EnumDisplayDevicesA");
-		FreeLibrary(hUser32Dll);
+//		FreeLibrary(hUser32Dll);
 			// make sure the reference is released so BoundsChecker
 			// doesn't complain. it won't actually be unloaded anyway -
 			// there is at least one other reference.
