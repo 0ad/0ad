@@ -101,7 +101,7 @@ public:
 	
 	inline CPlayer *GetPlayer(uint idx)
 	{
-		if (idx >= 0 && idx < m_NumPlayers)
+		if (idx >= 0 && idx <= m_NumPlayers)
 			return m_Players[idx];
 		else
 		{
