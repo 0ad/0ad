@@ -61,6 +61,38 @@ const size_t SECTOR_SIZE = 4096;
 
 
 
+// is s2 a subpath of s1, or vice versa? used by VFS and wdir_watch.
+// works for portable and native paths.
+bool file_is_subpath(const char* s1, const char* s2)
+{
+	// make sure s1 is the shorter string
+	if(strlen(s1) > strlen(s2))
+		std::swap(s1, s2);
+
+	int c1 = 0, last_c1, c2;
+	for(;;)
+	{
+		last_c1 = c1;
+		c1 = *s1++, c2 = *s2++;
+
+		// end of s1 reached:
+		if(c1 == '\0')
+		{
+			// s1 matched s2 up until:
+			if((c2 == '\0') ||	// its end (i.e. they're equal length)
+			   (c2 == '/' || c2 == DIR_SEP) ||	// start of next component
+			   (last_c1 == '/' || last_c1 == DIR_SEP))	// ", but both have a trailing slash
+				// => is subpath
+				return true;
+		}
+
+		// mismatch => is not subpath
+		if(c1 != c2)
+			return false;
+	}
+}
+
+
 
 enum Conversion
 {

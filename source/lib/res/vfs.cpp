@@ -1070,37 +1070,6 @@ static inline void remount_all()
 	{ std::for_each(mounts.begin(), mounts.end(), remount); }
 
 
-// is s2 a subpath of s1, or vice versa?
-// used by vfs_mount.
-static bool is_subpath(const char* s1, const char* s2)
-{
-	// make sure s1 is the shorter string
-	if(strlen(s1) > strlen(s2))
-		std::swap(s1, s2);
-
-	int c1 = 0, last_c1, c2;
-	for(;;)
-	{
-		last_c1 = c1;
-		c1 = *s1++, c2 = *s2++;
-
-		// end of s1 reached:
-		if(c1 == '\0')
-		{
-			// s1 matched s2 up until:
-			if(c2 == '\0' ||	// its end (i.e. they're equal length)
-			   c2 == '/'  ||	// start of next component
-			   last_c1 == '/')	// ", but both have a trailing slash
-				// => is subpath
-				return true;
-		}
-
-		// mismatch => is not subpath
-		if(c1 != c2)
-			return false;
-	}
-}
-
 
 // mount <p_real_path> into the VFS at <vfs_mount_point>,
 //   which is created if it does not yet exist.
@@ -1120,7 +1089,7 @@ int vfs_mount(const char* v_mount_point, const char* p_real_path, int flags, uin
 	// from the first mount point - bad.
 	// no matter if it's an archive - still shouldn't be a "subpath".
 	for(MountIt it = mounts.begin(); it != mounts.end(); ++it)
-		if(is_subpath(p_real_path, it->p_real_path.c_str()))
+		if(file_is_subpath(p_real_path, it->p_real_path.c_str()))
 		{
 			debug_warn("vfs_mount: already mounted");
 			return -1;

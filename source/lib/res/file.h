@@ -64,6 +64,11 @@ enum
 };
 
 
+// is s2 a subpath of s1, or vice versa? used by VFS and wdir_watch.
+// works for portable and native paths.
+extern bool file_is_subpath(const char* s1, const char* s2);
+
+
 //
 // path conversion functions (native <--> portable),
 // for external libraries that require the real filename.
