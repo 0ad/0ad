@@ -406,8 +406,6 @@ static int lookup_add_file_cb(const uintptr_t user, const i32 idx, const char* c
 		char* end = (char*)ent->fn + fn_len-1;
 		if(*end != '/')
 			end++;
-		else
-			end = end;
 		*end = '\0';
 
 		ent->loc = *loc;
