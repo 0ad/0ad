@@ -143,7 +143,7 @@ jsval ScriptingHost::ExecuteScript(const std::string & script)
 
 	JSBool ok = JS_EvaluateScript(m_Context, m_GlobalObject, script.c_str(), (int)script.length(), "Console", 0, &rval); 
 
-	if( !ok ) return( NULL );
+	if (!ok) return JSVAL_NULL;
 
 	return rval;
 }
