@@ -450,6 +450,10 @@ int file_open(const char* const p_fn, const uint flags, File* const f)
 		size = s.st_size;
 	}
 
+#ifdef _WIN32
+	oflag |= O_BINARY;
+#endif
+
 	int fd = open(n_fn, oflag, S_IRWXO);
 	if(fd < 0)
 		return -1;
