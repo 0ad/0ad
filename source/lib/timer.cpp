@@ -19,6 +19,7 @@
 
 #include "lib.h"
 #include "timer.h"
+#include "sysdep/sysdep.h"
 
 #ifdef _WIN32
 #include "sysdep/win/hrt.h"
@@ -155,7 +156,7 @@ void calc_fps()
 	// update fps counter if update threshold is exceeded
 	const float avg_fps = fps_sum / H;
 	const float d_avg = avg_fps-fps;
-	const float max_diff = __min( 5.f, 0.05f * fps ); //fminf(5.f, 0.05f*fps);
+	const float max_diff = fminf(5.f, 0.05f*fps);
 
 	if((trend > 0 && (avg_fps > fps || d_avg < -4.f)) ||	// going up, or large drop
 	   (trend < 0 && (avg_fps < fps || d_avg >  4.f)) ||	// going down, or large raise
