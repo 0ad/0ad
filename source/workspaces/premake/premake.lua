@@ -66,13 +66,21 @@ package.libpaths = {}
 -- Platform Specifics
 if (OS == "windows") then
 	-- Libraries
-	package.links = {
-		"opengl32",
-		"glu32",
-		"fmodvc"
-	}
+	package.links = { "opengl32" }
+--	package.defines = { "XERCES_STATIC_LIB" }
 	tinsert(package.files, sourcesfromdirs("../../lib/sysdep/win"))
-	package.linkoptions = { "/ENTRY:entry" }
+	package.linkoptions = { "/ENTRY:entry", "/DELAYLOAD:opengl32.dll",
+"/DELAYLOAD:advapi32.dll",
+"/DELAYLOAD:gdi32.dll",
+"/DELAYLOAD:user32.dll",
+"/DELAYLOAD:ws2_32.dll",
+"/DELAYLOAD:fmod.dll",
+"/DELAYLOAD:version.dll",
+"/DELAYLOAD:ddraw.dll",
+"/DELAYLOAD:libpng10.dll",
+"/DELAYLOAD:zlib1.dll",
+"/DELAYLOAD:js32.dll",
+"/DELAYLOAD:glu32.dll" }
 	package.linkflags = { "static-runtime" }
 	package.buildflags = { "no-main" }
 	package.pchHeader = "precompiled.h"
