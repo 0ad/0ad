@@ -128,6 +128,19 @@ void CLogger::WriteWarning(const char *message, int interestedness)
 	m_MainLog.flush();
 }
 
+// Sends the message to the appropriate piece of code
+void CLogger::LogUsingMethod(ELogMethod method, const char* category, const char* message)
+{
+	if(method == NORMAL)
+		WriteMessage(message, Interestedness(category));
+	else if(method == ERROR)
+		WriteError(message, Interestedness(category));
+	else if(method == WARNING)
+		WriteWarning(message, Interestedness(category));
+	else
+		WriteMessage(message, Interestedness(category));
+}
+
 void CLogger::Log(ELogMethod method, const char* category, const char *fmt, ...)
 {
 	va_list argp;
@@ -139,15 +152,32 @@ void CLogger::Log(ELogMethod method, const char* category, const char *fmt, ...)
 	vsnprintf2(buffer, sizeof(buffer), fmt, argp);
 	va_end(argp);
 
-	if(method == NORMAL)
-		WriteMessage(buffer, Interestedness(category));
-	else if(method == ERROR)
-		WriteError(buffer, Interestedness(category));
-	else if(method == WARNING)
-		WriteWarning(buffer, Interestedness(category));
-	else
-		WriteMessage(buffer, Interestedness(category));
+	LogUsingMethod(method, category, buffer);
 }
+
+
+void CLogger::LogOnce(ELogMethod method, const char* category, const char *fmt, ...)
+{
+	va_list argp;
+	char buffer[512];
+
+	memset(buffer,0,sizeof(buffer));
+
+	va_start(argp, fmt);
+	vsnprintf2(buffer, sizeof(buffer), fmt, argp);
+	va_end(argp);
+
+	std::string message (buffer);
+
+	// If this message has already been logged, ignore it
+	if (m_LoggedOnce.find(message) != m_LoggedOnce.end())
+		return;
+
+	// If not, mark it as having been logged and then log it
+	m_LoggedOnce.insert(message);
+	LogUsingMethod(method, category, buffer);
+}
+
 
 void CLogger::QuickLog(const char *fmt, ...)
 {

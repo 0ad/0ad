@@ -6,8 +6,10 @@
 #include <stdarg.h>
 #include <string>
 #include <vector>
+#include <set>
 
 #define LOG (CLogger::GetInstance()->Log)
+#define LOG_ONCE (CLogger::GetInstance()->LogOnce)
 
 enum ELogMethod
 {
@@ -32,6 +34,8 @@ public:
 	
 	//Function to log stuff to file
 	void Log(ELogMethod method, const char* category, const char *fmt, ...);
+	//Similar to Log, but only outputs each message once no matter how many times it's called
+	void LogOnce(ELogMethod method, const char* category, const char *fmt, ...);
 	
 	//Function to log stuff to memory buffer
 	void QuickLog(const char *fmt, ...);
@@ -41,6 +45,8 @@ private:
 	CLogger();
 	CLogger(const CLogger& init);
 	CLogger& operator=(const CLogger& rhs);
+
+	void LogUsingMethod(ELogMethod method, const char* category, const char* message);
 
 	//the three filestreams
 	std::ofstream m_MainLog;
@@ -60,6 +66,9 @@ private:
 	char *m_MemoryLogBuffer;
 	//this holds the next available place to write to.
 	char *m_CurrentPosition;
+
+	// Used to remember LogOnce messages
+	std::set<std::string> m_LoggedOnce;
 };
 
 #endif
