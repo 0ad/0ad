@@ -5,6 +5,8 @@ gee@pyro.nu
 */
 
 #include "precompiled.h"
+#undef new // if it was redefined for leak detection, since xerces doesn't like it
+
 #include "GUI.h"
 
 // Types - when including them into the engine.

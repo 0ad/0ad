@@ -1,6 +1,7 @@
 // modified from VC7 DelayHlp.cpp and DelayImp.h
 
 #include "precompiled.h"
+#undef new // because it conflicts with some other uses of new
 
 #include "win_internal.h"
 

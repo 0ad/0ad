@@ -1,4 +1,5 @@
 #include "precompiled.h"
+#undef new // if it was redefined for leak detection, since xerces doesn't like it
 
 #include "BaseEntity.h"
 #include "ObjectManager.h"
