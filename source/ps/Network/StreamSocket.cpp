@@ -16,9 +16,9 @@ void *CStreamSocket_ConnectThread(void *data)
 {
 	CStreamSocket *pSock=(CStreamSocket *)data;
 	PS_RESULT res=PS_OK;
-	SocketAddress addr;
+	CSocketAddress addr;
 
-	res=SocketAddress::Resolve(pSock->m_pConnectHost, pSock->m_ConnectPort, addr);
+	res=CSocketAddress::Resolve(pSock->m_pConnectHost, pSock->m_ConnectPort, addr);
 	if (res == PS_OK)
 	{
 		pSock->Initialize();
@@ -26,11 +26,14 @@ void *CStreamSocket_ConnectThread(void *data)
 		res=pSock->Connect(addr);
 	}
 	
-	pSock->SetNonBlocking(true);
+	if (res == PS_OK)
+	{
+		pSock->SetNonBlocking(true);
 	
-	// This should call the right callbacks, so that you get the expected
-	// results if you call Read or Write before the connect actually is complete
-	pSock->SetOpMask((pSock->m_WriteContext.m_Valid?CSocketBase::WRITE:0)|CSocketBase::READ);
+		// This should call the right callbacks, so that you get the expected
+		// results if you call Read or Write before the connect actually is complete
+		pSock->SetOpMask((pSock->m_WriteContext.m_Valid?CSocketBase::WRITE:0)|CSocketBase::READ);
+	}
 	
 	pSock->ConnectComplete(res);
 
@@ -93,29 +96,10 @@ PS_RESULT CStreamSocket::Write(void *buf, uint len)
 	return PS_OK;
 }
 
-void CStreamSocket::Close()
-{
-	//TODO Define
-}
-
-/*PS_RESULT CStreamSocket::GetRemoteAddress(u8 (&address)[4], int &port)
-{
-	PS_RESULT res=GetStatus();
-
-	if (res == PS_OK)
-		CServerSocket::GetRemoteAddress(m_pInternal, address, port);
-
-	return res;
-}*/
-
 #define MakeDefaultCallback(_nm) void CStreamSocket::_nm(PS_RESULT error) \
 	{ printf("CStreamSocket::"#_nm"(): %s\n", error); }
 
-void CStreamSocket::OnClose(PS_RESULT error)
-{
-	printf("CStreamSocket::OnClose(): %s\n", error);
-}
-
+MakeDefaultCallback(OnClose)
 MakeDefaultCallback(ConnectComplete)
 MakeDefaultCallback(ReadComplete)
 MakeDefaultCallback(WriteComplete)
@@ -128,7 +112,10 @@ void CStreamSocket::OnWrite()
 		return;
 	}
 	uint bytes=0;
-	PS_RESULT res=CSocketBase::Write(((char *)m_WriteContext.m_pBuffer)+m_WriteContext.m_Completed, m_WriteContext.m_Length-m_WriteContext.m_Completed, &bytes);
+	PS_RESULT res=CSocketBase::Write(
+		((char *)m_WriteContext.m_pBuffer)+m_WriteContext.m_Completed,
+		m_WriteContext.m_Length-m_WriteContext.m_Completed,
+		&bytes);
 	if (res != PS_OK)
 	{
 		WriteComplete(res);
@@ -156,7 +143,8 @@ void CStreamSocket::OnRead()
 		((char *)m_ReadContext.m_pBuffer)+m_ReadContext.m_Completed,
 		m_ReadContext.m_Length-m_ReadContext.m_Completed,
 		&bytes);
-	printf("CStreamSocket::OnRead(): %s, %u bytes read of %u\n", res, bytes, m_ReadContext.m_Length-m_ReadContext.m_Completed);
+	printf("CStreamSocket::OnRead(): %s, %u bytes read of %u\n", res, bytes,
+		m_ReadContext.m_Length-m_ReadContext.m_Completed);
 	if (res != PS_OK)
 	{
 		ReadComplete(res);

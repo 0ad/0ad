@@ -12,7 +12,7 @@
  */
 class CStreamSocket: public CSocketBase
 {
-	pthread_mutex_t m_Mutex;
+	CMutex m_Mutex;
 	char *m_pConnectHost;
 	int m_ConnectPort;
 	
@@ -52,22 +52,22 @@ public:
 	CStreamSocket();
 
 	/**
-	 * The Lock function locks a mutex stored in the CSocket object. None of
-	 * the CSocket methods actually use the mutex, it is just there as a
-	 * convenience for the user.
+	 * The Lock function locks a mutex stored in the CStreamSocket object. None
+	 * of the CStreamSocket methods actually use the mutex, it is just there as
+	 * a convenience for the user.
 	 */
 	void Lock();
 	/**
-	 * The Unlock function unlocks a mutex stored in the CSocket object. None
-	 * of the CSocket methods actually use the mutex, it is just there as a
+	 * The Unlock function unlocks a mutex stored in the CStreamSocket object.
+	 * None of the CSocket methods actually use the mutex, it is just there as a
 	 * convenience for the user.
 	 */
 	void Unlock();
 	
 	/**
 	 * Begin a connect operation to the specified host and port. The connect
-	 * attempt and name resolution is done in the background and the OnConnect
-	 * callback is called when the connect is complete (or failed)
+	 * operation and name resolution is performed in the background and the
+	 * ConnectComplete callback is called when the connect is complete/failed
 	 *
 	 * Note that a PS_OK return only means that the connect operation has been
 	 * initiated, not that it is successful.
@@ -79,16 +79,6 @@ public:
 	 */
 	PS_RESULT BeginConnect(const char *hostname, int port);
 
-	/**
-	 * Close the socket. No more data can be sent over the socket, but any data
-	 * pending from the remote host will still be received, and the OnRead
-	 * callback called (if the socket's op mask has the READ bit set). Note
-	 * that the socket isn't actually closed until the remote end calls
-	 * Close on the corresponding remote socket, upon which the OnClose
-	 * callback is called.
-	 */
-	void Close();
-	
 	/**
 	 * Start a read operation. The function call will return immediately and
 	 * complete the I/O in the background. OnRead() will be called when it is
@@ -123,19 +113,7 @@ public:
 	 */	
 	PS_RESULT Write(void *buf, uint len);
 	
-	/**
-	 * Get the address of the remote host connected to this socket.
-	 *
-	 * Inputs
-	 *	address	The IP address of the remote host, in written order
-	 *	port	The remote port number, in local byte order
-	 *
-	 * Returns
-	 *	PS_OK	The remote address was successfully retrieved
-	 *	CONNECTION_BROKEN	The socket is not connected
-	 */	
-	//PS_RESULT GetRemoteAddress(u8 (&address)[4], int &port);
-
+	// The default implementation of these methods are no-ops
 	virtual void ConnectComplete(PS_RESULT errorCode);
 	virtual void ReadComplete(PS_RESULT errorCode);
 	virtual void WriteComplete(PS_RESULT errorCode);
