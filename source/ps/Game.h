@@ -99,6 +99,7 @@ public:
 	inline void SetLocalPlayer(CPlayer *pLocalPlayer)
 	{	m_pLocalPlayer=pLocalPlayer; }
 	
+/*
 	inline CPlayer *GetPlayer(uint idx)
 	{
 		if (idx >= 0 && idx <= m_NumPlayers)
@@ -109,6 +110,11 @@ public:
 			return m_Players[0];
 		}
 	}
+*/
+	// PT: No longer inline, because it does too much error checking. When
+	// everything stops trying to access players before they're loaded, feel
+	// free to put the inline version back.
+	CPlayer *GetPlayer(uint idx);
 
 	inline std::vector<CPlayer*>* GetPlayers()
 	{	return( &m_Players ); }
