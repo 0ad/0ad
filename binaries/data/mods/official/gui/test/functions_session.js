@@ -139,8 +139,6 @@ function setPortrait(objectName, portraitString, portraitSuffix, portraitCell)
                 setPortraitGUIObject.cell_id = portraitCell;
 	else
 		setPortraitGUIObject.cell_id = "";
-
-console.write(objectName + " : " + setPortraitGUIObject.sprite + " : " + setPortraitGUIObject.cell_id);
 }
 
 // ====================================================================

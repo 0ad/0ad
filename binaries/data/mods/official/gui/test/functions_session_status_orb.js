@@ -614,18 +614,18 @@ function UpdateList(listIcon, listCol)
 			listArray = parseDelimiterString(listName, ";", listName.length);
 
 			// Populate appropriate command buttons.
-			for (createLoop = 1; createLoop <= command_sub_max; createLoop++)
+			for (createLoop = 0; createLoop < command_sub_max; createLoop++)
 			{
-				if (createLoop < listArray.length+1)
+				if (createLoop < listArray.length)
 				{
 					// Get name of entity to display in list.
-					UpdateListEntityName = selection[0].traits.id.civ_code + "_" + listArray[createLoop-1];
+					UpdateListEntityName = selection[0].traits.id.civ_code + "_" + listArray[createLoop];
 
-					setPortrait("session_panel_status_command_pri_" + listCol + "_" + createLoop, getEntityTemplate(UpdateListEntityName).traits.id.icon, selection[0].traits.id.civ_code, getEntityTemplate(UpdateListEntityName).traits.id.icon_cell);
-					GUIObjectUnhide("session_panel_status_command_pri_" + listCol + "_" + createLoop);
+					setPortrait("session_panel_status_command_pri_" + listCol + "_" + parseInt(createLoop+1), getEntityTemplate(UpdateListEntityName).traits.id.icon, selection[0].traits.id.civ_code, getEntityTemplate(UpdateListEntityName).traits.id.icon_cell);
+					GUIObjectUnhide("session_panel_status_command_pri_" + listCol + "_" + parseInt(createLoop+1));
 				}
 				else
-					GUIObjectHide("session_panel_status_command_pri_" + listCol + "_" + createLoop);
+					GUIObjectHide("session_panel_status_command_pri_" + listCol + "_" + parseInt(createLoop+1));
 			}
 
 			return listArray;

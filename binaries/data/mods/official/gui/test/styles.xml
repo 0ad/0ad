@@ -37,7 +37,6 @@
 		sprite="ui_portrait_default_square"
 		sprite_over="ui_portrait_default_square_lit"
 		sprite_disabled="ui_portrait_default_square_grey"
-		tooltip_style="session_tooltip"
 		text_align="right"
 		textcolor="255 255 255"
 	/>
@@ -46,7 +45,6 @@
 		sprite="ui_portrait_default_circle"
 		sprite_over="ui_portrait_default_circle_lit"
 		sprite_disabled="ui_portrait_default_circle_grey"
-		tooltip_style="session_tooltip"
 		text_align="right"
 		textcolor="255 255 255"
 	/>
@@ -55,28 +53,24 @@
 	<style name="group_portrait_bar"
 		sprite_background=""
 		sprite_bar="green_bar"
-		tooltip_style="session_tooltip"
 		ghost="true"
 	/>
 
 	<style name="up_bar"
 		sprite_background=""
 		sprite_bar="yellow_bar"
-		tooltip_style="session_tooltip"
 		ghost="true"
 	/>
 
 	<style name="blue_bar"
 		sprite_background=""
 		sprite_bar="blue_bar"
-		tooltip_style="session_tooltip"
 		ghost="true"
 	/>
 
 	<style name="blue_bar_outlined"
 		sprite_background="only_black_border"
 		sprite_bar="blue_bar_outlined"
-		tooltip_style="session_tooltip"
 		ghost="true"
 	/>
 
