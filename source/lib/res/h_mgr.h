@@ -201,10 +201,13 @@ extern int h_reload(const char* fn);
 
 extern int res_cur_scope;
 
-// disable caching and allow the handle to actually be freed when refcount
-// is at 0. used when cached resources must be closed before exit,
-// e.g. sounds when reinitializing OpenAL (due to changed settings).
-extern int h_allow_free(Handle h, H_Type type);
+// force the resource to be freed immediately, even if cached.
+// tag is not checked - this allows the first Handle returned
+// (whose tag will change after being 'freed', but remaining in memory)
+// to later close the object.
+// this is used when reinitializing the sound engine -
+// at that point, all (cached) OpenAL resources must be freed.
+extern int h_force_free(Handle h, H_Type type);
 
 extern void h_mgr_shutdown();
 

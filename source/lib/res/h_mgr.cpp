@@ -165,17 +165,19 @@ static i32 last_in_use = -1;	// don't search unused entries
 // all handles passed in go through h_data(Handle, Type)
 
 
-// get an array entry (array is non-contiguous).
+// get a (possibly new) array entry; array is non-contiguous.
 //
 // fails (returns 0) if idx is out of bounds, or if accessing a new page
 // for the first time, and there's not enough memory to allocate it.
 //
 // also used by h_data, and alloc_idx to find a free entry.
-//
-// beware of conflict with h_data_any_type:
-//   our i32 param silently converts to its Handle (= i64) param.
-static HDATA* h_data(const i32 idx)
+static HDATA* h_data_from_idx(const i32 idx)
 {
+	// makes things *crawl*!
+#ifdef PARANOIA
+	debug_check_heap();
+#endif
+
 	// don't compare against last_in_use - this is called before allocating
 	// new entries, and to check if the next (but possibly not yet valid)
 	// entry is free. tag check protects against using unallocated entries.
@@ -195,26 +197,26 @@ static HDATA* h_data(const i32 idx)
 }
 
 
-// get HDATA for the given handle. verifies the handle
-// isn't invalid or an error code, and checks the tag field.
-// used by the few functions callable for any handle type, e.g. h_filename.
-static HDATA* h_data_any_type(const Handle h)
+// get HDATA for the given handle.
+// only uses (and checks) the index field.
+// used by h_force_close (which must work regardless of tag).
+static inline HDATA* h_data_no_tag(const Handle h)
 {
-#ifdef PARANOIA
-	debug_check_heap();
-#endif
-
-	// invalid, or an error code
-	if(h <= 0)
+	i32 idx = (i32)h_idx(h);
+	// need to verify it's in range - h_data_from_idx can only verify that
+	// it's < maximum allowable index.
+	if(0 > idx || idx > last_in_use)
 		return 0;
+	return h_data_from_idx(idx);
+}
 
-	i32 idx = h_idx(h);
-	// this function is only called for existing handles.
-	// they'd also fail the tag check below, but bail out here
-	// already to avoid needlessly allocating that entry's page.
-	if(idx > last_in_use)
-		return 0;
-	HDATA* hd = h_data(idx);
+
+// get HDATA for the given handle.
+// also verifies the tag field.
+// used by functions callable for any handle type, e.g. h_filename.
+static inline HDATA* h_data_tag(const Handle h)
+{
+	HDATA* hd = h_data_no_tag(h);
 	if(!hd)
 		return 0;
 
@@ -227,14 +229,12 @@ static HDATA* h_data_any_type(const Handle h)
 }
 
 
-// get HDATA for the given handle, also checking handle type.
+// get HDATA for the given handle.
+// also verifies the type.
 // used by most functions accessing handle data.
-static HDATA* h_data(const Handle h, const H_Type type)
+static HDATA* h_data_tag_type(const Handle h, const H_Type type)
 {
-	if(h <= 0)
-		return 0;
-
-	HDATA* hd = h_data_any_type(h);
+	HDATA* hd = h_data_tag(h);
 	if(!hd)
 		return 0;
 
@@ -249,44 +249,6 @@ static HDATA* h_data(const Handle h, const H_Type type)
 
 
 
-void h_mgr_shutdown()
-{
-	// close open handles
-	for(i32 i = 0; i <= last_in_use; i++)
-	{
-		HDATA* hd = h_data(i);
-		// can't fail - i is in bounds by definition, and
-		// each HDATA entry has already been allocated.
-		if(!hd)
-		{
-			debug_warn("h_mgr_shutdown: h_data failed - why?!");
-			continue;
-		}
-
-		// it's already been freed; don't free again so that this
-		// doesn't look like an error.
-		if(!hd->tag)
-			continue;
-
-		// somewhat messy, but this only happens on cleanup.
-		// better than an additional h_free(i32 idx) version though.
-		Handle h = handle(i, hd->tag);
-
-		// disable caching; we need to release the resource now.
-		hd->keep_open = 0;
-		hd->refs = 0;
-
-		h_free(h, hd->type);
-	}
-
-	// free HDATA array
-	for(uint j = 0; j < num_pages; j++)
-	{
-		free(pages[j]);
-		pages[j] = 0;
-	}
-}
-
 
 
 
@@ -298,7 +260,7 @@ static int alloc_idx(i32& idx, HDATA*& hd)
 	if(first_free != -1)
 	{
 		idx = first_free;
-		hd = h_data(idx);
+		hd = h_data_from_idx(idx);
 	}
 	// need to look for a free entry, or alloc another
 	else
@@ -306,7 +268,7 @@ static int alloc_idx(i32& idx, HDATA*& hd)
 		// look for an unused entry
 		for(idx = 0; idx <= last_in_use; idx++)
 		{
-			hd = h_data(idx);
+			hd = h_data_from_idx(idx);
 			assert(hd);	// can't fail - idx is valid
 
 			// found one - done
@@ -321,7 +283,7 @@ static int alloc_idx(i32& idx, HDATA*& hd)
 			return -1;
 		}
 		idx = last_in_use+1;	// just incrementing idx would start it at 1
-		hd = h_data(idx);
+		hd = h_data_from_idx(idx);
 		if(!hd)
 			return ERR_NO_MEM;
 			// can't fail for any other reason - idx is checked above.
@@ -334,7 +296,7 @@ have_idx:;
 	}
 
 	// check if next entry is free
-	HDATA* hd2 = h_data(idx+1);
+	HDATA* hd2 = h_data_from_idx(idx+1);
 	if(hd2 && hd2->tag == 0)
 		first_free = idx+1;
 	else
@@ -379,7 +341,7 @@ static Handle find_key(uintptr_t key, H_Type type, bool remove = false)
 	for(It it = range.first; it != range.second; ++it)
 	{
 		i32 idx = it->second;
-		HDATA* hd = h_data(idx);
+		HDATA* hd = h_data_from_idx(idx);
 		// found match
 		if(hd && hd->type == type && hd->key == key)
 		{
@@ -412,20 +374,11 @@ static void remove_key(uintptr_t key, H_Type type)
 
 
 
-int h_free(Handle& h, H_Type type)
+// currently cannot fail.
+static int h_free_idx(i32 idx, HDATA* hd)
 {
-	HDATA* hd = h_data(h, type);
-	i32 idx = h_idx(h);
+	// debug_out("free %s %s\n", type->name, hd->fn);
 
-	h = 0;
-		// wipe out the handle, to prevent reuse.
-		// TODO: should we do this after checking if valid?
-		// (would help debugging, but handle wouldn't always be reset)
-	if(!hd)
-		return ERR_INVALID_HANDLE;
-
-// debug_out("free %s %s\n", type->name, hd->fn);
-	
 	// only decrement if refcount not already 0.
 	if(hd->refs > 0)
 		hd->refs--;
@@ -445,7 +398,7 @@ int h_free(Handle& h, H_Type type)
 		vtbl->dtor(hd->user);
 
 	if(hd->key && !hd->unique)
-		remove_key(hd->key, type);
+		remove_key(hd->key, hd->type);
 
 	free((void*)hd->fn);
 
@@ -455,6 +408,58 @@ int h_free(Handle& h, H_Type type)
 
 	return 0;
 }
+
+
+int h_free(Handle& h, H_Type type)
+{
+	i32 idx = h_idx(h);
+	HDATA* hd = h_data_tag_type(h, type);
+
+	// wipe out the handle, to prevent reuse.
+	h = 0;
+
+	if(!hd)
+		return ERR_INVALID_HANDLE;
+	return h_free_idx(idx, hd);
+}
+
+
+
+void h_mgr_shutdown()
+{
+	// close open handles
+	for(i32 i = 0; i <= last_in_use; i++)
+	{
+		HDATA* hd = h_data_from_idx(i);
+		// can't fail - i is in bounds by definition, and
+		// each HDATA entry has already been allocated.
+		if(!hd)
+		{
+			debug_warn("h_mgr_shutdown: h_data_from_idx failed - why?!");
+			continue;
+		}
+
+		// it's already been freed; don't free again so that this
+		// doesn't look like an error.
+		if(!hd->tag)
+			continue;
+
+		// disable caching; we need to release the resource now.
+		hd->keep_open = 0;
+		hd->refs = 0;
+
+		h_free_idx(i, hd);	// currently cannot fail
+	}
+
+	// free HDATA array
+	for(uint j = 0; j < num_pages; j++)
+	{
+		free(pages[j]);
+		pages[j] = 0;
+	}
+}
+
+
 
 
 static int type_validate(H_Type type)
@@ -522,7 +527,7 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 		h = h_find(type, key);
 		if(h > 0)
 		{
-			hd = h_data(h, type);
+			hd = h_data_tag_type(h, type);
 			if(hd->refs == REF_MAX)
 			{
 				debug_warn("h_alloc: too many references to a handle - increase REF_BITS");
@@ -639,7 +644,7 @@ skip_alloc:
 
 void* h_user_data(const Handle h, const H_Type type)
 {
-	HDATA* hd = h_data(h, type);
+	HDATA* hd = h_data_tag_type(h, type);
 	if(!hd)
 		return 0;
 
@@ -656,7 +661,7 @@ void* h_user_data(const Handle h, const H_Type type)
 
 const char* h_filename(const Handle h)
 {
-	HDATA* hd = h_data_any_type(h);
+	HDATA* hd = h_data_tag(h);
 		// don't require type check: should be useable for any handle,
 		// even if the caller doesn't know its type.
 	return hd? hd->fn : 0;
@@ -680,7 +685,7 @@ int h_reload(const char* fn)
 	// whose original data would leak).
 	for(i = 0; i <= last_in_use; i++)
 	{
-		HDATA* hd = h_data(i);
+		HDATA* hd = h_data_from_idx(i);
 		if(hd && hd->key == key)
 			hd->type->dtor(hd->user);
 	}
@@ -691,7 +696,7 @@ int h_reload(const char* fn)
 	// TODO: what if too slow to iterate through all handles?
 	for(i = 0; i <= last_in_use; i++)
 	{
-		HDATA* hd = h_data(i);
+		HDATA* hd = h_data_from_idx(i);
 		if(!hd || hd->key != key)
 			continue;
 
@@ -716,13 +721,22 @@ Handle h_find(H_Type type, uintptr_t key)
 }
 
 
-int h_allow_free(Handle h, H_Type type)
+
+// force the resource to be freed immediately, even if cached.
+// tag is not checked - this allows the first Handle returned
+// (whose tag will change after being 'freed', but remaining in memory)
+// to later close the object.
+// this is used when reinitializing the sound engine -
+// at that point, all (cached) OpenAL resources must be freed.
+int h_force_free(Handle h, H_Type type)
 {
-	HDATA* hd = h_data(h, type);
-	if(!hd)
+	// require valid index; ignore tag; type checked below.
+	HDATA* hd = h_data_no_tag(h);
+	if(!hd || hd->type != type)
 		return ERR_INVALID_HANDLE;
+	u32 idx = h_idx(h);
 	hd->keep_open = 0;
-	return 0;
+	return h_free_idx(idx, hd);
 }
 
 
