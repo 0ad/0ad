@@ -1,4 +1,4 @@
-// $Id: Xeromyces.cpp,v 1.13 2004/08/15 20:57:31 philip Exp $
+// $Id: Xeromyces.cpp,v 1.14 2004/09/06 11:18:47 philip Exp $
 
 #include "precompiled.h"
 
@@ -520,7 +520,11 @@ void XeroHandler::OutputElement(XMLElement* el)
 
 void XeroHandler::DeallocateElement(XMLElement* el)
 {
+	for (size_t i = 0; i < el->attrs.size(); ++i)
+		delete el->attrs[i];
+
 	for (size_t i = 0; i < el->childs.size(); ++i)
 		DeallocateElement(el->childs[i]);
+
 	delete el;
 }
