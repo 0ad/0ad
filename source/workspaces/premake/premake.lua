@@ -50,6 +50,9 @@ package.files = {
 	-- terrain/
 	{ sourcesfromdirs(
                 "../../terrain") },
+	-- sound/
+	{ sourcesfromdirs(
+                "../../sound") },
 	-- main
 	{ "../../main.cpp" },
 	-- scripting
