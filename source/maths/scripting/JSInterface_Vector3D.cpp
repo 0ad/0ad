@@ -99,7 +99,7 @@ JSBool JSI_Vector3D::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval*
 	if( vectorInfo->owner && vectorInfo->updateFn ) ( (vectorInfo->owner)->*(vectorInfo->updateFn) )();
 
 	return( JS_TRUE );
-	return( JS_FALSE );
+	return( JS_FALSE );	// janwas: which one is it? :)
 }
 
 JSBool JSI_Vector3D::construct( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )

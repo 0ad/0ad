@@ -141,10 +141,10 @@ enum LibError
 
 // more descriptive error message, but may cause a struct redefinition
 // warning if used from the same line in different files.
-#define cassert(expr) struct UID__ { int CASSERT_FAILURE: (expr); };
+#define cassert(expr) struct UID__ { int CASSERT_FAILURE: (expr); }
 
 // less helpful error message, but redefinition doesn't trigger warnings.
-#define cassert2(expr) extern char CASSERT_FAILURE[1][(expr)];
+#define cassert2(expr) extern char CASSERT_FAILURE[1][(expr)]
 
 // note: alternative method in C++: specialize a struct only for true;
 // using it will raise 'incomplete type' errors if instantiated with false.

@@ -17,4 +17,4 @@ struct DllLoadNotify
 };
 
 #define WDLL_LOAD_NOTIFY(dll_name, func)\
-	static DllLoadNotify func##_NOTIFY(dll_name, func);
+	static DllLoadNotify func##_NOTIFY(dll_name, func)

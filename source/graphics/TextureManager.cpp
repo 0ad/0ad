@@ -9,7 +9,7 @@
 #include "CLogger.h"
 
 
-const char* SupportedTextureFormats[] = { ".png", ".dds", ".tga", ".bmp" };
+static const char* SupportedTextureFormats[] = { ".png", ".dds", ".tga", ".bmp" };
 
 
 

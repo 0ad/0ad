@@ -26,6 +26,6 @@ namespace JSI_Entity
 	JSBool construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval );
 	void finalize( JSContext* cx, JSObject* obj );
     void init();
-};
+}
 
 #endif

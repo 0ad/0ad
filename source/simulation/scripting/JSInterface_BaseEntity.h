@@ -25,6 +25,6 @@ namespace JSI_BaseEntity
     JSBool setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
 	void finalize( JSContext* cx, JSObject* obj );
     void init();
-};
+}
 
 #endif

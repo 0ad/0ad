@@ -30,7 +30,6 @@ CLightEnv			g_LightEnv;
 
 float g_CameraZoom = 10;
 
-const int NUM_ALPHA_MAPS = 13;
 const float ViewScrollSpeed = 60;
 const float ViewRotateSensitivity = 0.002f;
 const float ViewDragSensitivity = 0.5f;

@@ -34,7 +34,7 @@ typedef struct ImgDelayDescr {
 typedef const ImgDelayDescr *   PCImgDelayDescr;
 
 enum DLAttr {                   // Delay Load Attributes
-	dlattrRva = 0x1,                // RVAs are used instead of pointers
+	dlattrRva = 0x1                // RVAs are used instead of pointers
 	// Having this set indicates a VC7.0
 	// and above delay load descriptor.
 };
@@ -54,7 +54,7 @@ enum {
 	//  returning a valid HMODULE
 	dliFailGetProc,                 // failed to get proc address, fix it by
 	//  returning a valid FARPROC
-	dliNoteEndProcessing,           // called after all processing is done, no
+	dliNoteEndProcessing           // called after all processing is done, no
 	//  no bypass possible at this point except
 	//  by longjmp()/throw()/RaiseException.
 };

@@ -73,7 +73,7 @@ BasicType;
 // can't skip the dbghelp.h function prototypes, so we need to
 // name the function pointers differently (prepend _). Grr.
 //
-#define FUNC(ret, name, params) ret (WINAPI *_##name) params;
+#define FUNC(ret, name, params) static ret (WINAPI *_##name) params;
 #include "dbghelp_funcs.h"
 #undef FUNC
 
