@@ -259,7 +259,7 @@ int ScriptingHost::ValueToInt(const jsval value)
 
 	JSBool ok = JS_ValueToInt32(m_Context, value, &i);
 
-	if (ok == JS_FALSE)
+	if (!ok)
 		throw PSERROR_Scripting_ConversionFailed();
 
 	return i;
@@ -271,7 +271,7 @@ bool ScriptingHost::ValueToBool(const jsval value)
 
 	JSBool ok = JS_ValueToBoolean(m_Context, value, &b);
 
-	if (ok == JS_FALSE)
+	if (!ok)
 		throw PSERROR_Scripting_ConversionFailed();
 
 	return b == JS_TRUE;
@@ -283,11 +283,7 @@ std::string ScriptingHost::ValueToString(const jsval value)
 	if (string == NULL)
 		throw PSERROR_Scripting_ConversionFailed();
 
-	char* bytes = JS_GetStringBytes(string);
-	if (bytes == NULL)
-		throw PSERROR_Scripting_ConversionFailed();
-
-	return std::string(bytes);
+	return std::string(JS_GetStringBytes(string), JS_GetStringLength(string));
 }
 
 CStrW ScriptingHost::ValueToUCString( const jsval value )
@@ -296,11 +292,7 @@ CStrW ScriptingHost::ValueToUCString( const jsval value )
 	if (string == NULL)
 		throw PSERROR_Scripting_ConversionFailed();
 
-	jschar* chars = JS_GetStringChars(string);
-	if (chars == NULL)
-		throw PSERROR_Scripting_ConversionFailed();
-
-	return CStrW(chars);
+	return CStrW(JS_GetStringChars(string), JS_GetStringLength(string));
 }
 
 jsval ScriptingHost::UCStringToValue(const utf16string &str)
