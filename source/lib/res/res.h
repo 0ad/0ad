@@ -5,3 +5,5 @@
 #include "res/font.h"
 #include "res/file.h"
 #include "res/zip.h"
+
+extern int res_reload(const char* fn);

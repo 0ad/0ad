@@ -71,8 +71,9 @@
 // path types:
 // fn  : filename only, no path at all.
 // f_* : path intended directly for underlying file layer.
-//       component separator is '/'; no ':' or '\\' allowed.
+//       component separator is '/'; no absolute paths, or ':', '\\' allowed.
 // *   : as above, but path within the VFS.
+//       "" is root dir; no absolute path allowed.
 
 
 // path1 and path2 may be empty, filenames, or full paths.
@@ -321,15 +322,17 @@ enum LookupFlags
 };
 
 
-static int tree_lookup(const char* vfs_path, const Loc** const loc = 0, VDir** const dir = 0, LookupFlags flags = LF_DEFAULT)
+// starts in VFS root directory (path = "").
+// path doesn't need to, and shouldn't, start with '/'.
+static int tree_lookup(const char* path, const Loc** const loc = 0, VDir** const dir = 0, LookupFlags flags = LF_DEFAULT)
 {
-	CHECK_PATH(vfs_path);
+	CHECK_PATH(path);
 
 	// copy into (writeable) buffer so we can 'tokenize' path components
 	// by replacing '/' with '\0'.
 	// note: CHECK_PATH does length checking
 	char buf[VFS_MAX_PATH];
-	strcpy(buf, vfs_path);
+	strcpy(buf, path);
 	const char* cur_component = buf;
 
 	const bool create_missing_components = flags & LF_CREATE_MISSING_COMPONENTS;
@@ -713,12 +716,6 @@ int vfs_unmount(const char* name)
 // (not this module's job). Instead, we include all archives in one path entry;
 // the game keeps track of what path(s) it mounted for a mod,
 // and unmounts those when needed.
-
-
-int vfs_reload(const char* fn)
-{
-	return h_reload(fn);
-}
 
 
 int vfs_realpath(const char* fn, char* full_path)

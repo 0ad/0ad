@@ -44,7 +44,6 @@ extern int vfs_close(Handle& h);
 extern Handle vfs_map(Handle hf, uint flags, void*& p, size_t& size);
 
 
-extern int vfs_reload(const char* fn);
 extern int vfs_rebuild();
 
 

@@ -59,7 +59,8 @@ struct Tex
 	Handle hm;			// H_MEM handle to loaded file
 	uint id;
 
-bool uploaded;
+	int filter;
+	int int_fmt;
 };
 
 H_TYPE_DEFINE(Tex)
@@ -689,120 +690,9 @@ static void Tex_dtor(Tex* t)
 }
 
 
-// HACK HACK
-static int tex_upload_t(Tex* t, int filter, int int_fmt);
 
-// TEX output param is invalid if function fails
-static int Tex_reload(Tex* t, const char* fn)
+static int tex_upload(Tex* t, const char* const fn)
 {
-	printf("Tex_reload for %s.\n", fn);
-	// load file
-	void* _p = 0;
-	size_t size;
-	Handle hm = vfs_load(fn, _p, size);
-	if(hm <= 0)
-		return (int)hm;
-	// guarantee *_valid routines 4 header bytes
-	if(size < 4)
-	{
-		mem_free_h(hm);
-		return -1;
-	}
-	t->hm = hm;
-
-	int err = -1;
-
-	// more convenient to pass loaders u8 - less casting
-	const u8* p = (const u8*)_p;
-
-#ifndef NO_DDS
-	if(dds_valid(p, size))
-		err = dds_load(fn, p, size, t); else
-#endif
-#ifndef NO_PNG
-	if(png_valid(p, size))
-		err = png_load(fn, p, size, t); else
-#endif
-#ifndef NO_JP2
-	if(jp2_valid(p, size))
-		err = jp2_load(fn, p, size, t); else
-#endif
-#ifndef NO_BMP
-	if(bmp_valid(p, size))
-		err = bmp_load(fn, p, size, t); else
-#endif
-#ifndef NO_TGA
-	if(tga_valid(p, size))
-		err = tga_load(fn, p, size, t); else
-#endif
-#ifndef NO_RAW
-	if(raw_valid(p, size))
-		err = raw_load(fn, p, size, t); else
-#endif
-	;	// make sure else chain is ended
-
-	if(err < 0)
-	{
-		mem_free_h(hm);
-		return err;
-	}
-
-	// loaders weren't able to determine type
-	if(t->fmt == FMT_UNKNOWN)
-	{
-		assert(t->bpp == 8);
-		t->fmt = GL_ALPHA;
-		// TODO: check file name, go to 32 bit if wrong
-	}
-
-
-	uint id;
-	glGenTextures(1, &id);
-	t->id = id;
-	// this can't realistically fail, just note that the already_loaded
-	// check above assumes (id > 0) <==> texture is loaded and valid
-
-if(t->uploaded)
-tex_upload_t(t, 0,0);
-
-	return 0;
-}
-
-
-Handle tex_load(const char* const fn, int scope)
-{
-	return h_alloc(H_Tex, fn, scope);
-}
-
-
-int tex_bind(const Handle h)
-{
-	Tex* t = H_USER_DATA(h, Tex);
-	if(!t)
-	{
-		glBindTexture(GL_TEXTURE_2D, 0);
-		return ERR_INVALID_HANDLE;
-	}
-
-#ifndef NDEBUG
-	if(!t->id)
-	{
-		debug_warn("tex_bind: Tex.id is not a valid texture");
-		return -1;
-	}
-#endif
-
-	glBindTexture(GL_TEXTURE_2D, t->id);
-	return 0;
-}
-
-
-int tex_filter = GL_LINEAR;
-uint tex_bpp = 32;				// 16 or 32
-
-static int tex_upload_t(Tex* t, int filter, int int_fmt)
-{
-t->uploaded = true;
 
 	// data we will take from Tex
 	GLsizei w;
@@ -810,6 +700,8 @@ t->uploaded = true;
 	GLenum fmt;
 	void* tex_data;
 	u32 bpp;	// not used directly in gl calls
+	int filter;
+	int int_fmt;
 
 	const char* err = 0;
 
@@ -855,16 +747,13 @@ t->uploaded = true;
 	if(bpp % 4 || bpp > 32)
 		err = "invalid bpp? should be one of {4,8,16,24,32}";
 
+	// upload parameters, set by tex_upload(Handle), or 0
+	filter  = t->filter;
+	int_fmt = t->int_fmt;
+
 	if(err)
 	{
-/*		const char* fn = h_filename(ht);
-		if(!fn)
-		{
-			fn = "(could not determine filename)";
-			assert(0);
-		}
 		debug_out("tex_upload: %s: %s\n", fn, err);
-*/
 		debug_warn("tex_upload failed");
 		return -1;
 	}
@@ -987,13 +876,135 @@ glBindTexture(GL_TEXTURE_2D, t->id);
 
 	mem_free_h(t->hm);
 
+	t->filter = filter;
+	t->int_fmt = int_fmt;
+
 	return 0;
 }
+
+// TEX output param is invalid if function fails
+static int Tex_reload(Tex* t, const char* fn)
+{
+	printf("Tex_reload for %s.\n", fn);
+	// load file
+	void* _p = 0;
+	size_t size;
+	Handle hm = vfs_load(fn, _p, size);
+	if(hm <= 0)
+		return (int)hm;
+	// guarantee *_valid routines 4 header bytes
+	if(size < 4)
+	{
+		mem_free_h(hm);
+		return -1;
+	}
+	t->hm = hm;
+
+	int err = -1;
+
+	// more convenient to pass loaders u8 - less casting
+	const u8* p = (const u8*)_p;
+
+#ifndef NO_DDS
+	if(dds_valid(p, size))
+		err = dds_load(fn, p, size, t); else
+#endif
+#ifndef NO_PNG
+	if(png_valid(p, size))
+		err = png_load(fn, p, size, t); else
+#endif
+#ifndef NO_JP2
+	if(jp2_valid(p, size))
+		err = jp2_load(fn, p, size, t); else
+#endif
+#ifndef NO_BMP
+	if(bmp_valid(p, size))
+		err = bmp_load(fn, p, size, t); else
+#endif
+#ifndef NO_TGA
+	if(tga_valid(p, size))
+		err = tga_load(fn, p, size, t); else
+#endif
+#ifndef NO_RAW
+	if(raw_valid(p, size))
+		err = raw_load(fn, p, size, t); else
+#endif
+	;	// make sure else chain is ended
+
+	if(err < 0)
+	{
+		mem_free_h(hm);
+		return err;
+	}
+
+	// loaders weren't able to determine type
+	if(t->fmt == FMT_UNKNOWN)
+	{
+		assert(t->bpp == 8);
+		t->fmt = GL_ALPHA;
+		// TODO: check file name, go to 32 bit if wrong
+	}
+
+
+	uint id;
+	glGenTextures(1, &id);
+	t->id = id;
+	// this can't realistically fail, just note that the already_loaded
+	// check above assumes (id > 0) <==> texture is loaded and valid
+
+	// was already uploaded once
+	if(t->int_fmt)
+		tex_upload(t, fn);
+
+	return 0;
+}
+
+
+Handle tex_load(const char* const fn, int scope)
+{
+	return h_alloc(H_Tex, fn, scope);
+}
+
+
+int tex_bind(const Handle h)
+{
+	Tex* t = H_USER_DATA(h, Tex);
+	if(!t)
+	{
+		glBindTexture(GL_TEXTURE_2D, 0);
+		return ERR_INVALID_HANDLE;
+	}
+
+#ifndef NDEBUG
+	if(!t->id)
+	{
+		debug_warn("tex_bind: Tex.id is not a valid texture");
+		return -1;
+	}
+#endif
+
+	glBindTexture(GL_TEXTURE_2D, t->id);
+	return 0;
+}
+
+
+int tex_filter = GL_LINEAR;
+uint tex_bpp = 32;				// 16 or 32
 
 int tex_upload(const Handle ht, int filter, int int_fmt)
 {
 	H_DEREF(ht, Tex, t);
-	return tex_upload_t(t, filter, int_fmt);
+	t->filter  = filter;
+	t->int_fmt = int_fmt;
+
+	const char* fn = h_filename(ht);
+	if(!fn)
+	{
+		fn = "(could not determine filename)";
+		debug_warn("tex_upload(Handle): h_filename failed");
+	}
+
+	return tex_upload(t, fn);
 }
 
 
@@ -1003,7 +1014,7 @@ int tex_free(Handle& ht)
 }
 
 
-int tex_info(Handle ht, int* w, int* h, int *fmt, int *bpp, void** p)
+int tex_info(Handle ht, int* w, int* h, int* fmt, int* bpp, void** p)
 {
 	H_DEREF(ht, Tex, t);
 
@@ -1011,9 +1022,9 @@ int tex_info(Handle ht, int* w, int* h, int *fmt, int *bpp, void** p)
 		*w = t->w;
 	if(h)
 		*h = t->h;
-	if (fmt)
+	if(fmt)
 		*fmt = t->fmt;
-	if (bpp)
+	if(bpp)
 		*bpp = t->bpp;
 	if(p)
 		*p = mem_get_ptr(t->hm);

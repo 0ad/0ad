@@ -128,7 +128,7 @@ static bool handler(const SDL_Event& ev)
 
 		case '1':
 		case SDLK_F1:
-			vfs_reload("art/textures/terrain/types/grass/Base1.tga");
+			res_reload("art/textures/terrain/types/grass/Base1.tga");
 			break;
 		}
 		break;

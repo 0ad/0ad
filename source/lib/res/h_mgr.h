@@ -310,11 +310,16 @@ guide to defining and using resources
    negative error code otherwise. if this fails, the resource is freed
    (=> dtor is called!).
 
+   note that any subsequent changes to the resource state must be
+   stored in the control block and 'replayed' when reloading.
+   example: when uploading a texture, store the upload parameters
+   (filter, internal format); when reloading, upload again accordingly.
+
    --
 
    dtor:
    frees all data allocated by init and reload. called after h_free,
-   or at exit. control block is zeroed afterwards.
+   or at exit. control block will be zeroed afterwards.
 
    static void Type_dtor (Res1* r);
    {
