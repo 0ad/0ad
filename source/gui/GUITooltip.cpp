@@ -69,25 +69,23 @@ static bool GetTooltip(IGUIObject* obj, CStr &style)
 	if (obj && obj->SettingExists("tooltip_style")
 		&& GUI<CStr>::GetSetting(obj, "tooltip_style", style) == PS_OK)
 	{
-		if (style.Length() == 0)
+		CStr text;
+		if (GUI<CStr>::GetSetting(obj, "tooltip", text) == PS_OK)
 		{
-			// If there's no style, there's probably no tooltip
-
-			CStr text;
-			if (GUI<CStr>::GetSetting(obj, "tooltip", text) == PS_OK && text.Length())
-			{
-				// There is a tooltip, so just use the default style;
-				style = "default";
-				return true;
-			}
-			else
+			if (text.Length() == 0)
 			{
 				// No tooltip
 				return false;
 			}
+
+			if (style.Length() == 0)
+				// Text, but no style - use default
+				style = "default";
+
+			return true;
 		}
-		return true;
 	}
+	// Failed while retrieving tooltip_style or tooltip
 	return false;
 }
 
