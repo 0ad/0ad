@@ -13,7 +13,7 @@
 #define _TEXTURE_H
 
 #include "res.h"
-#include "..\ps\CStr.h"
+#include "CStr.h"
 
 class CTexture
 {
