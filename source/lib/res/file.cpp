@@ -188,12 +188,13 @@ struct DirEnt
 {
 	const std::string name;
 	const uint flags;
-	const ssize_t size;
+	const off_t size;
 
-	DirEnt(const char* const _name, const uint _flags, const ssize_t _size)
+	DirEnt(const char* const _name, const uint _flags, const off_t _size)
 		: name(_name), flags(_flags), size(_size) {}
 };
 
+// pointer to DirEnt: faster sorting, but more allocs.
 typedef std::vector<const DirEnt*> DirEnts;
 typedef DirEnts::const_iterator DirEntIt;
 
@@ -253,7 +254,7 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 		}
 
 		uint flags = 0;
-		ssize_t size = s.st_size;
+		off_t size = s.st_size;
 
 		// dir
 		if(s.st_mode & S_IFDIR)
@@ -399,7 +400,7 @@ int file_open(const char* p_fn, uint flags, File* f)
 
 {
 	// don't stat if opening for writing - the file may not exist yet
-	size_t size = 0;
+	off_t size = 0;
 
 	int mode = O_RDONLY;
 	if(flags & FILE_WRITE)
@@ -466,7 +467,7 @@ struct ll_cb
 };
 
 
-int ll_start_io(File* f, size_t ofs, size_t size, void* p, ll_cb* lcb)
+int ll_start_io(File* f, off_t ofs, size_t size, void* p, ll_cb* lcb)
 {
 	CHECK_FILE(f)
 
@@ -481,12 +482,14 @@ int ll_start_io(File* f, size_t ofs, size_t size, void* p, ll_cb* lcb)
 		return -1;
 	}
 
-	size_t bytes_left = f->size - ofs;	// > 0
+	off_t bytes_left = f->size - ofs;	// > 0
 	int op = (f->flags & FILE_WRITE)? LIO_WRITE : LIO_READ;
 
-	// don't read beyond EOF
-	if(size > bytes_left)		// avoid min() - it wants int
-		size = bytes_left;
+	// cut off at EOF.
+	// avoid min() due to type conversion warnings.
+	if((off_t)size > bytes_left)
+		size = (size_t)bytes_left;
+		// guaranteed to fit, since size was > bytes_left
 
 	aiocb* cb = &lcb->cb;
 
@@ -495,7 +498,7 @@ int ll_start_io(File* f, size_t ofs, size_t size, void* p, ll_cb* lcb)
 	cb->aio_buf        = p;
 	cb->aio_fildes     = f->fd;
 	cb->aio_offset     = (off_t)ofs;
-	cb->aio_nbytes     = size;
+	cb->aio_nbytes     = (size_t)size;
 	return lio_listio(LIO_NOWAIT, &cb, 1, (struct sigevent*)0);
 		// this just issues the I/O - doesn't wait until complete.
 }
@@ -536,7 +539,7 @@ static Cache<void*> c;
 
 // create an id for use with the Cache that uniquely identifies
 // the block from the file <fn_hash> containing <ofs>.
-static u64 block_make_id(const u32 fn_hash, const size_t ofs)
+static u64 block_make_id(const u32 fn_hash, const off_t ofs)
 {
 	// id format: filename hash | block number
 	//            63         32   31         0
@@ -684,7 +687,7 @@ struct IO
 		// so we don't allocate a new cb every file_start_io.
 
 	void* user_p;
-	size_t user_ofs;
+	off_t user_ofs;
 	size_t user_size;
 
 	int cached  : 1;
@@ -700,8 +703,8 @@ H_TYPE_DEFINE(IO)
 
 static void IO_init(IO* io, va_list args)
 {
-	size_t size = round_up(sizeof(struct ll_cb), 16);
-	io->cb = (ll_cb*)mem_alloc(size, 16, MEM_ZERO);
+	const size_t cb_size = round_up(sizeof(struct ll_cb), 16);
+	io->cb = (ll_cb*)mem_alloc(cb_size, 16, MEM_ZERO);
 }
 
 static void IO_dtor(IO* io)
@@ -867,7 +870,7 @@ static Handle io_find(u64 block_id)
 // pads the request up to BLOCK_SIZE, and stores the original parameters in IO.
 // transfers of more than 1 block (including padding) are allowed, but do not
 // go through the cache. don't see any case where that's necessary, though.
-Handle file_start_io(File* f, size_t user_ofs, size_t user_size, void* user_p)
+Handle file_start_io(File* f, off_t user_ofs, size_t user_size, void* user_p)
 {
 	int err;
 
@@ -884,12 +887,13 @@ Handle file_start_io(File* f, size_t user_ofs, size_t user_size, void* user_p)
 		return -1;
 	}
 
-	const size_t bytes_left = f->size - user_ofs;	// > 0
+	const off_t bytes_left = f->size - user_ofs;	// > 0
 	int op = (f->flags & FILE_WRITE)? LIO_WRITE : LIO_READ;
 
 	// don't read beyond EOF
-	if(user_size > bytes_left)		// avoid min() - it wants int
-		user_size = bytes_left;
+	if((off_t)user_size > bytes_left)		// avoid min() - it wants int
+		user_size = (size_t)bytes_left;
+			// guaranteed to fit in user_size, since user_size > bytes_left
 
 
 	u64 block_id = block_make_id(f->fn_hash, user_ofs);
@@ -919,9 +923,9 @@ debug_out("file_start_io hio=%I64x ofs=%d size=%d\n", hio, user_ofs, user_size);
 	// a zip archive may contain one last file in the block.
 	// if not, no loss - the buffer will be LRU, and reused.
 
-	size_t ofs = user_ofs;
+	off_t ofs = user_ofs;
 	size_t padding = ofs % BLOCK_SIZE;
-	ofs -= padding;
+	ofs -= (off_t)padding;
 	size_t size = round_up(padding + user_size, BLOCK_SIZE);
 
 
@@ -1060,7 +1064,7 @@ int file_discard_io(Handle& hio)
 //
 // return (positive) number of raw bytes transferred if successful;
 // otherwise, an error code.
-ssize_t file_io(File* const f, const size_t raw_ofs, size_t raw_size, void** const p,
+ssize_t file_io(File* const f, const off_t raw_ofs, size_t raw_size, void** const p,
 	const FILE_IO_CB cb, const uintptr_t ctx) // optional
 {
 #ifdef PARANOIA
@@ -1078,9 +1082,14 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, raw_size, raw_ofs);
 	// reading: make sure we don't go beyond EOF
 	if(!is_write)
 	{
-		if(raw_ofs >= f->size)
+		// cut off at EOF.
+		// avoid min() due to type conversion warnings.
+		off_t bytes_left = f->size - raw_ofs;
+		if(bytes_left < 0)
 			return ERR_EOF;
-		raw_size = MIN(f->size - raw_ofs, raw_size);
+        if((off_t)raw_size > bytes_left)
+			raw_size = (size_t)bytes_left;
+			// guaranteed to fit, since size was > bytes_left
 	}
 	// writing: make sure buffer is valid
 	else
@@ -1098,7 +1107,7 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, raw_size, raw_ofs);
 	// actual transfer start offset
 	// not aligned! aio takes care of initial unalignment;
 	// next read will be aligned, because we read up to the next block.
-	const size_t start_ofs = raw_ofs;
+	const off_t start_ofs = raw_ofs;
 
 
 	void* buf = 0;				// I/O source or sink; assume temp buffer
@@ -1187,7 +1196,7 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, raw_size, raw_ofs);
 		{
 			// calculate issue_size:
 			// at most, transfer up to the next block boundary.
-			size_t issue_ofs = start_ofs + issue_cnt;
+			off_t issue_ofs = (off_t)(start_ofs + issue_cnt);
 			const size_t left_in_block = BLOCK_SIZE - (issue_ofs % BLOCK_SIZE);
 			const size_t total_left = raw_size - issue_cnt;
 			size_t issue_size = MIN(left_in_block, total_left);

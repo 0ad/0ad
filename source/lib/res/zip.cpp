@@ -46,9 +46,9 @@
 // convenience container for location / size of file in archive.
 struct ZFileLoc
 {
-	size_t ofs;
-	size_t csize;	// = 0 if not compressed
-	size_t ucsize;
+	off_t ofs;
+	off_t csize;	// = 0 if not compressed
+	off_t ucsize;
 
 	// why csize?
 	// file I/O may be N-buffered, so it's good to know when the raw data
@@ -108,7 +108,7 @@ static int zip_find_ecdr(const void* const file, const size_t size, const u8*& e
 		if(*(u32*)ecdr == *(u32*)&ecdr_id)
 			goto found_ecdr;
 
-		// check next 4 bytes (non aligned!!)
+		// check next 4 bytes (unaligned!!)
 		ecdr++;
 		bytes_left--;
 	}
@@ -127,7 +127,7 @@ found_ecdr:
 
 // make sure the LFH fields match those passed (from the CDFH).
 // only used in PARANOIA builds - costs time when opening archives.
-static int zip_verify_lfh(const void* const file, const size_t lfh_ofs, const size_t file_ofs)
+static int zip_verify_lfh(const void* const file, const off_t lfh_ofs, const off_t file_ofs)
 {
 	const char lfh_id[] = "PK\3\4";	// signature
 	const size_t LFH_SIZE = 30;
@@ -145,7 +145,7 @@ static int zip_verify_lfh(const void* const file, const size_t lfh_ofs, const si
 	const u16 lfh_fn_len = read_le16(lfh+26);
 	const u16 lfh_e_len  = read_le16(lfh+28);
 
-	const size_t lfh_file_ofs = lfh_ofs + LFH_SIZE + lfh_fn_len + lfh_e_len;
+	const off_t lfh_file_ofs = lfh_ofs + LFH_SIZE + lfh_fn_len + lfh_e_len;
 
 	if(file_ofs != lfh_file_ofs)
 	{
@@ -196,9 +196,9 @@ static int zip_read_cdfh(const u8*& cdfh, const char*& fn, size_t& fn_len, ZFile
 	fn     = fn_;
 	fn_len = fn_len_;
 
-	loc->ofs    = lfh_ofs + LFH_SIZE + fn_len_ + e_len;
-	loc->csize  = csize_;
-	loc->ucsize = ucsize_;
+	loc->ofs    = (off_t)(lfh_ofs + LFH_SIZE + fn_len_ + e_len);
+	loc->csize  = (off_t)csize_;
+	loc->ucsize = (off_t)ucsize_;
 
 	// performance issue: want to avoid seeking between LFHs and central dir.
 	// would be safer to calculate file offset from the LFH, since its
@@ -856,7 +856,7 @@ int zip_stat(Handle ha, const char* fn, struct stat* s)
 	lookup_get_file_info(li, idx, fn2, &loc);
 		// can't fail - returned valid index above
 
-	s->st_size = (off_t)loc.ucsize;
+	s->st_size = loc.ucsize;
 	return 0;
 }
 
@@ -874,7 +874,7 @@ static inline bool is_compressed(ZFile* zf)
 
 // note: we go to a bit of trouble to make sure the buffer we allocated
 // (if p == 0) is freed when the read fails.
-ssize_t zip_read(ZFile* zf, size_t raw_ofs, size_t size, void*& p)
+ssize_t zip_read(ZFile* zf, off_t raw_ofs, size_t size, void*& p)
 {
 	CHECK_ZFILE(zf)
 
@@ -885,7 +885,7 @@ ssize_t zip_read(ZFile* zf, size_t raw_ofs, size_t size, void*& p)
 	if(!za)
 		return ERR_INVALID_HANDLE;
 
-	const size_t ofs = zf->ofs + raw_ofs;
+	const off_t ofs = zf->ofs + raw_ofs;
 
 	// not compressed - just pass it on to file_io
 	// (avoid the Zip inflate start/finish stuff below)
@@ -946,7 +946,7 @@ fail:
 }
 
 
-int zip_map(ZFile* zf, void*& p, size_t& size)
+int zip_map(ZFile* const zf, void*& p, size_t& size)
 {
 	CHECK_ZFILE(zf)
 
@@ -958,5 +958,17 @@ int zip_map(ZFile* zf, void*& p, size_t& size)
 	}
 
 	H_DEREF(zf->ha, ZArchive, za)
+	// increase refs
+
 	return file_map(&za->f, p, size);
+}
+
+
+int zip_unmap(ZFile* const zf)
+{
+	CHECK_ZFILE(zf)
+	H_DEREF(zf->ha, ZArchive, za)
+	// decrement refs
+	// unmap archive if 0
+	return 0;
 }

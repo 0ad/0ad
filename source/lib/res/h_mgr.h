@@ -94,31 +94,37 @@ struct H_VTbl
 
 typedef H_VTbl* H_Type;
 
-#define H_TYPE_DEFINE(t)\
+#define H_TYPE_DEFINE(type)\
 	/* forward decls */\
-	static void t##_init(t*, va_list);\
-	static int t##_reload(t*, const char*);\
-	static void t##_dtor(t*);\
-	static H_VTbl V_##t =\
+	static void type##_init(type*, va_list);\
+	static int type##_reload(type*, const char*);\
+	static void type##_dtor(type*);\
+	static H_VTbl V_##type =\
 	{\
-		(void(*)(void*, va_list))t##_init,\
-		(int(*)(void*, const char*))t##_reload,\
-		(void(*)(void*))t##_dtor,\
-		sizeof(t),	/* control block size */\
-		#t			/* name */\
+		(void(*)(void*, va_list))type##_init,\
+		(int(*)(void*, const char*))type##_reload,\
+		(void(*)(void*))type##_dtor,\
+		sizeof(type),	/* control block size */\
+		#type			/* name */\
 	};\
-	static H_Type H_##t = &V_##t;
+	static H_Type H_##type = &V_##type;
 
 	// note: we cast to void* pointers so the functions can be declared to
 	// take the control block pointers, instead of requiring a cast in each.
 	// the forward decls ensure the function signatures are correct.
 
 
-// <type>* <var> = H_USER_DATA(<h_var>, <type>)
-#define H_USER_DATA(h, type) (type*)h_user_data(h, H_##type);
+// convenience macro for h_user_data:
+// casts its return value to the control block type.
+// use if H_DEREF's returning a negative error code isn't acceptable.
+#define H_USER_DATA(h, type) (type*)h_user_data(h, H_##type)
 
+// even more convenient wrapper for h_user_data:
+// declares a pointer (<var>), assigns it H_USER_DATA, and has
+// the user's function return a negative error code on failure.
 #define H_DEREF(h, type, var)\
-	type* const var = (type*)h_user_data(h, H_##type);\
+	/* don't use STMT - var decl must be visible to "caller" */\
+	type* const var = H_USER_DATA(h, type);\
 	if(!var)\
 		return ERR_INVALID_HANDLE;
 
@@ -173,7 +179,9 @@ extern int h_free(Handle& h, H_Type type);
 // currently O(n).
 extern Handle h_find(H_Type type, uintptr_t key);
 
-// return a pointer to handle data, or 0 on error
+// returns a void* pointer to the control block of the resource <h>,
+// or 0 on error (i.e. h is invalid or of the wrong type).
+// prefer using H_DEREF or H_USER_DATA.
 extern void* h_user_data(Handle h, H_Type type);
 
 extern const char* h_filename(Handle h);

@@ -34,7 +34,7 @@ struct File
 	// it is accessed by VFS and must be the same for both (union).
 	// dirty, but necessary because VFile is pushing the HDATA size limit.
 	int flags;
-	size_t size;
+	off_t size;
 
 	u32 fn_hash;
 
@@ -91,7 +91,7 @@ extern int file_close(File* f);
 extern int file_map(File* f, void*& p, size_t& size);
 extern int file_unmap(File* f);
 
-extern Handle file_start_io(File* f, size_t ofs, size_t size, void* buf);
+extern Handle file_start_io(File* f, off_t ofs, size_t size, void* buf);
 extern int file_wait_io(const Handle hio, void*& p, size_t& size);
 extern int file_discard_io(Handle& hio);
 
@@ -103,7 +103,7 @@ extern int file_discard_io(Handle& hio);
 // > 0: bytes output (not used ATM; useful for statistics) - continue.
 typedef ssize_t(*FILE_IO_CB)(uintptr_t ctx, void* p, size_t size);
 
-extern ssize_t file_io(File* f, size_t ofs, size_t size, void** p,
+extern ssize_t file_io(File* f, off_t ofs, size_t size, void** p,
 	FILE_IO_CB cb = 0, uintptr_t ctx = 0);
 
 

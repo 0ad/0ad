@@ -955,7 +955,7 @@ H_TYPE_DEFINE(VFile)
 // use the functions below to insulate against change a bit.
 
 
-static size_t& vf_size(VFile* vf)
+static off_t& vf_size(VFile* vf)
 {
 	assert(offsetof(struct File, size) == offsetof(struct ZFile, ucsize));
 	return vf->f.size;
@@ -1061,7 +1061,7 @@ debug_out("vfs_close %I64x\n", h);
 }
 
 
-ssize_t vfs_io(Handle hf, size_t ofs, size_t size, void*& p)
+ssize_t vfs_io(Handle hf, off_t ofs, size_t size, void*& p)
 {
 #ifdef PARANOIA
 debug_out("vfs_io ofs=%d size=%d\n", ofs, size);
@@ -1146,20 +1146,24 @@ int vfs_store(const char* fn, void* p, size_t size)
 
 
 
-Handle vfs_map(const char* fn, uint flags, void*& p, size_t& size)
+int vfs_map(const Handle hf, uint flags, void*& p, size_t& size)
 {
-	Handle hf = vfs_open(fn, flags);
 	H_DEREF(hf, VFile, vf);
-	CHECK_ERR(file_map(&vf->f, p, size));
-MEM_DTOR dtor = 0;
-uintptr_t ctx = 0;
-	return mem_assign(p, size, 0, dtor, ctx);
+
+	if(vf_flags(vf) & VF_ZIP)
+		CHECK_ERR(zip_map(&vf->zf, p, size));
+	else
+		CHECK_ERR(file_map(&vf->f, p, size));
+	return 0;
 }
 
 
-int vfs_unmap(Handle& hm)
+int vfs_unmap(Handle hf)
 {
-	return -1;
-//	return h_free(hm, H_MMap);
+	H_DEREF(hf, VFile, vf);
+	if(vf_flags(vf) & VF_ZIP)
+		CHECK_ERR(zip_unmap(&vf->zf));
+	else
+		CHECK_ERR(file_unmap(&vf->f));
+	return 0;
 }
-

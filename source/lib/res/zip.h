@@ -77,9 +77,9 @@ struct ZFile
 	size_t ucsize;
 		// size of logical file
 
-	size_t ofs;
-	size_t csize;
-	size_t last_raw_ofs;
+	off_t ofs;
+	off_t csize;
+	off_t last_raw_ofs;
 
 	Handle ha;
 	uintptr_t read_ctx;
@@ -96,30 +96,10 @@ extern int zip_close(ZFile* zf);
 
 
 extern int zip_map(ZFile* zf, void*& p, size_t& size);
+extern int zip_unmap(ZFile* zf);
 
-extern ssize_t zip_read(ZFile* zf, size_t ofs, size_t size, void*& p);
-
-
-//--------
-
-// read from file <hz>, starting at offset <ofs> in the compressed data
-// (typically only used if the file is known to be stored).
-// p == 0: allocate, read into, and return the output buffer
-// p != 0: read into given output buffer, return handle to it
-//         if file is compressed, size must be >= uncompressed file size
-// size: no input value, unless specifying an output buffer (p != 0)
-//       out: 
-
-
-
-
-//extern void* zip_mmap(
-
-
-
-
-
-
+// read from file <zf>, starting at offset <ofs> in the compressed data
+extern ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void*& p);
 
 
 #endif	// #ifndef __ZIP_H__

@@ -41,7 +41,8 @@ extern Handle vfs_load(const char* fn, void*& p, size_t& size);
 extern Handle vfs_open(const char* fn, uint flags = 0);
 extern int vfs_close(Handle& h);
 
-extern Handle vfs_map(Handle hf, uint flags, void*& p, size_t& size);
+extern int vfs_map(Handle hf, uint flags, void*& p, size_t& size);
+extern int vfs_unmap(Handle hf);
 
 
 struct vfsDirEnt
@@ -70,11 +71,11 @@ extern int vfs_rebuild();
 // async read interface
 //
 
-extern Handle vfs_start_read(const Handle hf, size_t ofs, size_t& advance, void* buf);
+extern Handle vfs_start_read(const Handle hf, off_t ofs, size_t& advance, void* buf);
 extern int vfs_wait_read(Handle hr, void*& p, size_t& size);
 extern int vfs_discard_read(Handle& hr);
 
-extern ssize_t vfs_io(Handle hf, size_t ofs, size_t size, void*& p);
+extern ssize_t vfs_io(Handle hf, off_t ofs, size_t size, void*& p);
 
 
 // keep in sync with File flags!
