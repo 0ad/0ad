@@ -7,9 +7,14 @@
 			civ="Celts"
 			internal_only="false"
 
-			specific="(Name)"
-			history="(Insert History Here)"
+			specific="Caer"
+			history=" This would be the center of the town. It would be a ‘great hall’ where the clan leader resided. All political matters were probably performed inside such a structure."
 		/>
 	</Traits>
+	<Actions>
+		<Create
+			list.unit="isw_b;ijv_b;cjv_b;fem"
+		/>
+	</Actions>
 	<Actor>Celt Civil Center</Actor>
 </Entity>
