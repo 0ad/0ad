@@ -741,7 +741,6 @@ static void psShutdown()
 
 extern u64 PREVTSC;
 
-
 static void Shutdown()
 {
 	psShutdown(); // Must delete g_GUI before g_ScriptingHost
@@ -1165,12 +1164,13 @@ static void Frame()
 }
 
 
-#ifdef _WIN32
-# ifdef NDEBUG
-// Define/undefine this as desired:
-#  define CUSTOM_EXCEPTION_HANDLER
-# endif
+// Choose when to override the standard exception handling (i.e. opening
+// the debugger when available, or crashing when not) with one that
+// generates the crash log/dump.
+#if defined(_WIN32) && ( defined(NDEBUG) || defined(TESTING) )
+# define CUSTOM_EXCEPTION_HANDLER
 #endif
+
 
 #ifdef CUSTOM_EXCEPTION_HANDLER
 #include <excpt.h>
