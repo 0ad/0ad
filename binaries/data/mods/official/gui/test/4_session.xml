@@ -702,21 +702,89 @@
                                 ]]></action>
                         </object>
 
-			<!-- ATTACK STATS -->
-			<object type="text" name="session_panel_status_stat2" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
+			<!-- STATS -->
+			<object type="text" name="session_panel_status_stat1_1" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
 			        <action on="Load"><![CDATA[
 					AddSizeCoord(this.name,
-					crd_status_orb_stat2_x, crd_status_orb_stat2_y, crd_status_orb_stat2_x+crd_status_orb_stat2_width, crd_status_orb_stat2_y+crd_status_orb_stat2_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_stat2_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat2_y, crd_status_orb_stat2_x+crd_status_orb_stat2_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat2_y+crd_status_orb_stat2_height, left_screen, bottom_screen, left_screen, bottom_screen);
+					crd_status_orb_stat1_1_x, crd_status_orb_stat1_1_y, crd_status_orb_stat1_1_x+crd_status_orb_stat1_1_width, crd_status_orb_stat1_1_y+crd_status_orb_stat1_1_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_stat1_1_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat1_1_y, crd_status_orb_stat1_1_x+crd_status_orb_stat1_1_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat1_1_y+crd_status_orb_stat1_1_height, left_screen, bottom_screen, left_screen, bottom_screen);
 				]]></action>
 			</object>
-
-			<!-- ARMOUR STATS -->
-			<object type="text" name="session_panel_status_stat3" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
+			<object type="text" name="session_panel_status_stat2_1" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
 			        <action on="Load"><![CDATA[
 					AddSizeCoord(this.name,
-					crd_status_orb_stat3_x, crd_status_orb_stat3_y, crd_status_orb_stat3_x+crd_status_orb_stat3_width, crd_status_orb_stat3_y+crd_status_orb_stat3_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_stat3_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat3_y, crd_status_orb_stat3_x+crd_status_orb_stat3_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat3_y+crd_status_orb_stat3_height, left_screen, bottom_screen, left_screen, bottom_screen);
+					crd_status_orb_stat2_1_x, crd_status_orb_stat2_1_y, crd_status_orb_stat2_1_x+crd_status_orb_stat2_1_width, crd_status_orb_stat2_1_y+crd_status_orb_stat2_1_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_stat2_1_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat2_1_y, crd_status_orb_stat2_1_x+crd_status_orb_stat2_1_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat2_1_y+crd_status_orb_stat2_1_height, left_screen, bottom_screen, left_screen, bottom_screen);
+				]]></action>
+			</object>
+			<object type="text" name="session_panel_status_stat3_1" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
+			        <action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_status_orb_stat3_1_x, crd_status_orb_stat3_1_y, crd_status_orb_stat3_1_x+crd_status_orb_stat3_1_width, crd_status_orb_stat3_1_y+crd_status_orb_stat3_1_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_stat3_1_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat3_1_y, crd_status_orb_stat3_1_x+crd_status_orb_stat3_1_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat3_1_y+crd_status_orb_stat3_1_height, left_screen, bottom_screen, left_screen, bottom_screen);
+				]]></action>
+			</object>
+			<object type="text" name="session_panel_status_stat4_1" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
+			        <action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_status_orb_stat4_1_x, crd_status_orb_stat4_1_y, crd_status_orb_stat4_1_x+crd_status_orb_stat4_1_width, crd_status_orb_stat4_1_y+crd_status_orb_stat4_1_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_stat4_1_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat4_1_y, crd_status_orb_stat4_1_x+crd_status_orb_stat4_1_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat4_1_y+crd_status_orb_stat4_1_height, left_screen, bottom_screen, left_screen, bottom_screen);
+				]]></action>
+			</object>
+			<object type="text" name="session_panel_status_stat5_1" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
+			        <action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_status_orb_stat5_1_x, crd_status_orb_stat5_1_y, crd_status_orb_stat5_1_x+crd_status_orb_stat5_1_width, crd_status_orb_stat5_1_y+crd_status_orb_stat5_1_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_stat5_1_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat5_1_y, crd_status_orb_stat5_1_x+crd_status_orb_stat5_1_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat5_1_y+crd_status_orb_stat5_1_height, left_screen, bottom_screen, left_screen, bottom_screen);
+				]]></action>
+			</object>
+			<object type="text" name="session_panel_status_stat6_1" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
+			        <action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_status_orb_stat6_1_x, crd_status_orb_stat6_1_y, crd_status_orb_stat6_1_x+crd_status_orb_stat6_1_width, crd_status_orb_stat6_1_y+crd_status_orb_stat6_1_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_stat6_1_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat6_1_y, crd_status_orb_stat6_1_x+crd_status_orb_stat6_1_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat6_1_y+crd_status_orb_stat6_1_height, left_screen, bottom_screen, left_screen, bottom_screen);
+				]]></action>
+			</object>
+			<object type="text" name="session_panel_status_stat1_2" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
+			        <action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_status_orb_stat1_2_x, crd_status_orb_stat1_2_y, crd_status_orb_stat1_2_x+crd_status_orb_stat1_2_width, crd_status_orb_stat1_2_y+crd_status_orb_stat1_2_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_stat1_2_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat1_2_y, crd_status_orb_stat1_2_x+crd_status_orb_stat1_2_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat1_2_y+crd_status_orb_stat1_2_height, left_screen, bottom_screen, left_screen, bottom_screen);
+				]]></action>
+			</object>
+			<object type="text" name="session_panel_status_stat2_2" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
+			        <action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_status_orb_stat2_2_x, crd_status_orb_stat2_2_y, crd_status_orb_stat2_2_x+crd_status_orb_stat2_2_width, crd_status_orb_stat2_2_y+crd_status_orb_stat2_2_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_stat2_2_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat2_2_y, crd_status_orb_stat2_2_x+crd_status_orb_stat2_2_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat2_2_y+crd_status_orb_stat2_2_height, left_screen, bottom_screen, left_screen, bottom_screen);
+				]]></action>
+			</object>
+			<object type="text" name="session_panel_status_stat3_2" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
+			        <action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_status_orb_stat3_2_x, crd_status_orb_stat3_2_y, crd_status_orb_stat3_2_x+crd_status_orb_stat3_2_width, crd_status_orb_stat3_2_y+crd_status_orb_stat3_2_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_stat3_2_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat3_2_y, crd_status_orb_stat3_2_x+crd_status_orb_stat3_2_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat3_2_y+crd_status_orb_stat3_2_height, left_screen, bottom_screen, left_screen, bottom_screen);
+				]]></action>
+			</object>
+			<object type="text" name="session_panel_status_stat4_2" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
+			        <action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_status_orb_stat4_2_x, crd_status_orb_stat4_2_y, crd_status_orb_stat4_2_x+crd_status_orb_stat4_2_width, crd_status_orb_stat4_2_y+crd_status_orb_stat4_2_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_stat4_2_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat4_2_y, crd_status_orb_stat4_2_x+crd_status_orb_stat4_2_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat4_2_y+crd_status_orb_stat4_2_height, left_screen, bottom_screen, left_screen, bottom_screen);
+				]]></action>
+			</object>
+			<object type="text" name="session_panel_status_stat5_2" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
+			        <action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_status_orb_stat5_2_x, crd_status_orb_stat5_2_y, crd_status_orb_stat5_2_x+crd_status_orb_stat5_2_width, crd_status_orb_stat5_2_y+crd_status_orb_stat5_2_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_stat5_2_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat5_2_y, crd_status_orb_stat5_2_x+crd_status_orb_stat5_2_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat5_2_y+crd_status_orb_stat5_2_height, left_screen, bottom_screen, left_screen, bottom_screen);
+				]]></action>
+			</object>
+			<object type="text" name="session_panel_status_stat6_2" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
+			        <action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_status_orb_stat6_2_x, crd_status_orb_stat6_2_y, crd_status_orb_stat6_2_x+crd_status_orb_stat6_2_width, crd_status_orb_stat6_2_y+crd_status_orb_stat6_2_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_stat6_2_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat6_2_y, crd_status_orb_stat6_2_x+crd_status_orb_stat6_2_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat6_2_y+crd_status_orb_stat6_2_height, left_screen, bottom_screen, left_screen, bottom_screen);
 				]]></action>
 			</object>
 
