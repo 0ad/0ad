@@ -292,13 +292,13 @@ double ScriptingHost::ValueToDouble(const jsval value)
 
 void ScriptingHost::ErrorReporter(JSContext * context, const char * message, JSErrorReport * report)
 {
-	g_Console->InsertMessage( "%s ( %d )", report->filename, report->lineno );
+	g_Console->InsertMessage( L"%S ( %d )", report->filename, report->lineno );
 	if( message )
 	{
-		g_Console->InsertMessage( message );
+		g_Console->InsertMessage( L"%S", message );
 	}
 	else
-		g_Console->InsertMessage( "No error message available" );
+		g_Console->InsertMessage( L"No error message available" );
 
 	if (report->filename != NULL)
 	{
