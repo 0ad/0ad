@@ -2,6 +2,7 @@
 
 #include "sysdep.h"
 #include <memory.h>
+#include <stdarg.h>
 
 // portable debug output routines. Win32 offers better versions, which
 // override these.
@@ -10,7 +11,6 @@
 
 #include <stdio.h>
 #include <wchar.h>
-#include <stdarg.h>
 
 // portable output routines (win.cpp overrides these)
 
