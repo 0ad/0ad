@@ -30,13 +30,20 @@
 #endif
 
 
+// useful for choosing a video mode. not called by detect().
+// if we fail, don't change the outputs (assumed initialized to defaults)
 void get_cur_resolution(int& xres, int& yres)
 {
-	static DEVMODE dm;
+	DEVMODEA dm;
+	memset(&dm, 0, sizeof(dm));
 	dm.dmSize = sizeof(dm);
-	EnumDisplaySettings(0, ENUM_CURRENT_SETTINGS, &dm);
-	xres = dm.dmPelsWidth;
-	yres = dm.dmPelsHeight;
+	// dm.dmDriverExtra already set to 0 by memset
+
+	if(EnumDisplaySettingsA(0, ENUM_CURRENT_SETTINGS, &dm))
+	{
+		xres = dm.dmPelsWidth;
+		yres = dm.dmPelsHeight;
+	}
 }
 
 

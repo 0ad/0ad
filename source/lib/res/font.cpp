@@ -138,19 +138,19 @@ static int Font_reload(Font* f, const char* fn)
 	Handle err = vfs_load(fn, tmp_file, file_size);
 	if(err <= 0)
 		return (int)err;
-	void* p = mem_alloc(file_size + 1);
-	if(!p)
+	void* file = mem_alloc(file_size + 1);
+	if(!file)
 		return ERR_NO_MEM;
-	memcpy(p, tmp_file, file_size);
-	((char*)p)[file_size] = 0;	// 0-terminate for sscanf
+	memcpy(file, tmp_file, file_size);
+	((char*)file)[file_size] = 0;	// 0-terminate for sscanf
 
 	int pos;	// current position in the file
-	const char* file = (const char*)p;
+	const char* p = (const char*)file;
 
 	// read header
 	char tex_filename[PATH_MAX];
 	int x_stride, y_stride;	// glyph spacing in texture
-	if(sscanf(file, "%s\n%d %d\n%n", tex_filename, &x_stride, &y_stride, &pos) != 3)
+	if(sscanf(p, "%s\n%d %d\n%n", tex_filename, &x_stride, &y_stride, &pos) != 3)
 	{
 		debug_out("Font_reload: \"%s\": header is invalid", fn);
 		return -1;
@@ -160,15 +160,15 @@ static int Font_reload(Font* f, const char* fn)
 	int adv[128];
 	for(int i = 32; i < 128; i++)
 	{
-		file += pos;
-		if(sscanf(file, "%d %n", &adv[i], &pos) != 1)
+		p += pos;
+		if(sscanf(p, "%d %n", &adv[i], &pos) != 1)
 		{
 			debug_out("Font_reload: \"%s\": glyph width array is invalid", fn);
 			return -1;
 		}
 	}
 
-	mem_free(p);
+	mem_free(file);
 
 	// load glyph texture
 	const Handle ht = tex_load(tex_filename);

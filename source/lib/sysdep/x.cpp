@@ -20,15 +20,12 @@
 #include <Xlib.h>
 
 // useful for choosing a video mode. not called by detect().
+// if we fail, don't change the outputs (assumed initialized to defaults)
 void get_cur_resolution(int& xres, int& yres)
 {
-	Display* disp = XOpenDisplay(NULL);
+	Display* disp = XOpenDisplay(0);
 	if(!disp)
-	{
-		xres = 1024;
-		yres = 768;
 		return;
-	}
 
 	int screen = XDefaultScreen(disp);
 	xres = XDisplayWidth (disp, screen);

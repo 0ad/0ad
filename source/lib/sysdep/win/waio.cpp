@@ -30,7 +30,7 @@
 
 //////////////////////////////////////////////////////////////////////////////
 //
-//
+// AioHandles
 //
 //////////////////////////////////////////////////////////////////////////////
 
@@ -54,8 +54,6 @@ private:
 	uint size;
 };
 
-static AioHandles* aio_hs;
-
 
 AioHandles::~AioHandles()
 {
@@ -76,6 +74,14 @@ AioHandles::~AioHandles()
 }
 
 
+bool is_valid_file_handle(HANDLE h)
+{
+	SetLastError(0);
+	bool valid = (GetFileSize(h, 0) != INVALID_FILE_SIZE);
+	assert(valid);
+	return valid;
+}
+
 // get async capable handle to file <fd>
 HANDLE AioHandles::get(int fd)
 {
@@ -85,6 +91,11 @@ HANDLE AioHandles::get(int fd)
 
 	if((unsigned)fd < size)
 		h = hs[fd];
+	else
+		assert(0);
+
+	if(!is_valid_file_handle(h))
+		return INVALID_HANDLE_VALUE;
 
 	win_unlock(WAIO_CS);
 
@@ -110,10 +121,20 @@ int AioHandles::set(int fd, HANDLE h)
 		size = size2;
 	}
 
-	if(hs[fd] != INVALID_HANDLE_VALUE)
+	if(h == INVALID_HANDLE_VALUE)
+		;
+	else
 	{
-		assert("set_aio_h: handle already set!");
-		goto fail;
+		if(hs[fd] != INVALID_HANDLE_VALUE)
+		{
+			assert("AioHandles::set: handle already set!");
+			goto fail;
+		}
+		if(!is_valid_file_handle(h))
+		{
+			assert("AioHandles::set: setting invalid handle");
+			goto fail;
+		}
 	}
 
 	hs[fd] = h;
@@ -123,79 +144,14 @@ int AioHandles::set(int fd, HANDLE h)
 
 fail:
 	win_unlock(WAIO_CS);
+	assert(0 && "AioHandles::set failed");
 	return -1;
-}
-
-
-int aio_assign_handle(uintptr_t handle)
-{
-	// 
-	// CRT stores osfhandle. if we pass an invalid handle (say, 0),
-	// we get an exception when closing the handle if debugging.
-	// events can be created relatively quickly (~1800 clocks = 1µs),
-	// and are also freed with CloseHandle, so just pass that.
-	HANDLE h = CreateEvent(0,0,0,0);
-	if(h == INVALID_HANDLE_VALUE)
-		return -1;
-
-	int fd = _open_osfhandle((intptr_t)h, 0);
-	if(fd < 0)
-		return fd;
-
-	return aio_hs->set(fd, (HANDLE)handle);
-}
-
-static void init();
-
-// open fn in async mode; associate with fd (retrieve via aio_h(fd))
-int aio_open(const char* fn, int mode, int fd)
-{
-WIN_ONCE(init());	// TODO: need to do this elsewhere in case other routines called first?
-
-	// interpret mode
-	DWORD access = GENERIC_READ;	// assume O_RDONLY
-	DWORD share = 0;
-	if(mode & O_WRONLY)
-		access = GENERIC_WRITE;
-	else if(mode & O_RDWR)
-		access = GENERIC_READ|GENERIC_WRITE;
-	else
-		share = FILE_SHARE_READ;
-	DWORD create = OPEN_EXISTING;
-	if(mode & O_CREAT)
-		create = (mode & O_EXCL)? CREATE_NEW : CREATE_ALWAYS;
-	DWORD flags = FILE_FLAG_OVERLAPPED|FILE_FLAG_NO_BUFFERING|FILE_FLAG_SEQUENTIAL_SCAN;
-
-	// open file
-	HANDLE h = CreateFile(fn, access, share, 0, create, flags, 0);
-	if(h == INVALID_HANDLE_VALUE)
-		return -1;
-
-	if(aio_hs->set(fd, h) < 0)
-	{
-		CloseHandle(h);
-		return -1;
-	}
-
-	return 0;
-}
-
-
-int aio_close(int fd)
-{
-	HANDLE h = aio_hs->get(fd);
-	if(h == INVALID_HANDLE_VALUE)	// out of bounds or already closed
-		return -1;
-
-	CloseHandle(h);
-	aio_hs->set(fd, INVALID_HANDLE_VALUE);
-	return 0;
 }
 
 
 //////////////////////////////////////////////////////////////////////////////
 //
-//
+// Req
 //
 //////////////////////////////////////////////////////////////////////////////
 
@@ -206,7 +162,7 @@ struct Req
 	aiocb* cb;
 
 	OVERLAPPED ovl;
-		// hEvent signals when transfer complete
+	// hEvent signals when transfer complete
 
 	// read into a separate align buffer if necessary
 	// (note: unaligned writes aren't supported. see aio_rw)
@@ -269,6 +225,7 @@ Req* Reqs::find(const aiocb* cb)
 		if(r->cb == cb)
 			return r;
 
+	assert(0 && "Reqs::find failed");
 	return 0;
 }
 
@@ -292,17 +249,27 @@ Req* Reqs::alloc(const aiocb* cb)
 	return r;
 }
 
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// init / cleanup
+//
+//////////////////////////////////////////////////////////////////////////////
+
+static AioHandles* aio_hs;
+static Reqs* reqs;
+
+
 // Win32 functions require sector aligned transfers.
 // max of all drives' size is checked in init().
 static size_t sector_size = 4096;	// minimum: one page
 
-//////////////////////////////////////////////////////////////////////////////
-//
-//
-//
-//////////////////////////////////////////////////////////////////////////////
 
-static Reqs* reqs;
+static void cleanup(void)
+{
+	delete aio_hs;
+	delete reqs;
+}
 
 
 // caller ensures this is not re-entered!
@@ -310,6 +277,8 @@ static void init()
 {
 	reqs = new Reqs;
 	aio_hs = new AioHandles;
+
+	atexit(cleanup);
 
 	// Win32 requires transfers to be sector aligned.
 	// find maximum of all drive's sector sizes, then use that.
@@ -339,6 +308,92 @@ static void init()
 }
 
 
+
+
+int aio_assign_handle(uintptr_t handle)
+{
+	// 
+	// CRT stores osfhandle. if we pass an invalid handle (say, 0),
+	// we get an exception when closing the handle if debugging.
+	// events can be created relatively quickly (~1800 clocks = 1µs),
+	// and are also freed with CloseHandle, so just pass that.
+	HANDLE h = CreateEvent(0,0,0,0);
+	if(h == INVALID_HANDLE_VALUE)
+	{
+		assert(0 && "aio_assign_handle failed");
+		return -1;
+	}
+
+	int fd = _open_osfhandle((intptr_t)h, 0);
+	if(fd < 0)
+	{
+		assert(0 && "aio_assign_handle failed");
+		return fd;
+	}
+
+	return aio_hs->set(fd, (HANDLE)handle);
+}
+
+
+
+
+// open fn in async mode; associate with fd (retrieve via aio_h(fd))
+int aio_open(const char* fn, int mode, int fd)
+{
+WIN_ONCE(init());	// TODO: need to do this elsewhere in case other routines called first?
+
+	// interpret mode
+	DWORD access = GENERIC_READ;	// assume O_RDONLY
+	DWORD share = 0;
+	if(mode & O_WRONLY)
+		access = GENERIC_WRITE;
+	else if(mode & O_RDWR)
+		access = GENERIC_READ|GENERIC_WRITE;
+	else
+		share = FILE_SHARE_READ;
+	DWORD create = OPEN_EXISTING;
+	if(mode & O_CREAT)
+		create = (mode & O_EXCL)? CREATE_NEW : CREATE_ALWAYS;
+	DWORD flags = FILE_FLAG_OVERLAPPED|FILE_FLAG_NO_BUFFERING|FILE_FLAG_SEQUENTIAL_SCAN;
+
+	// open file
+	HANDLE h = CreateFile(fn, access, share, 0, create, flags, 0);
+	if(h == INVALID_HANDLE_VALUE)
+	{
+		assert(0 && "aio_open failed");
+		return -1;
+	}
+
+	if(aio_hs->set(fd, h) < 0)
+	{
+		assert(0 && "aio_open failed");
+		CloseHandle(h);
+		return -1;
+	}
+
+	return 0;
+}
+
+
+int aio_close(int fd)
+{
+	HANDLE h = aio_hs->get(fd);
+	if(h == INVALID_HANDLE_VALUE)	// out of bounds or already closed
+	{
+		assert(0 && "aio_close failed");
+		return -1;
+	}
+
+	SetLastError(0);
+	if(!CloseHandle(h))
+		assert(0);
+	aio_hs->set(fd, INVALID_HANDLE_VALUE);
+	return 0;
+}
+
+
+
+
 // called by aio_read, aio_write, and lio_listio
 // cb->aio_lio_opcode specifies desired operation
 //
@@ -347,9 +402,15 @@ static void init()
 static int aio_rw(struct aiocb* cb)
 {
 	if(!cb)
+	{
+		assert(0);
 		return -EINVAL;
+	}
 	if(cb->aio_lio_opcode == LIO_NOP)
+	{
+		assert(0);
 		return 0;
+	}
 
 	HANDLE h = aio_hs->get(cb->aio_fildes);
 	if(h == INVALID_HANDLE_VALUE)
@@ -360,7 +421,10 @@ static int aio_rw(struct aiocb* cb)
 
 	Req* r = reqs->alloc(cb);
 	if(!r)
+	{
+		assert(0);
 		return -1;
+	}
 
 	size_t ofs = 0;
 	size_t size = cb->aio_nbytes;
@@ -406,6 +470,8 @@ static int aio_rw(struct aiocb* cb)
 		}
 	}
 
+	r->ovl.Internal = r->ovl.InternalHigh = 0;
+
 #if _MSC_VER >= 1300
 	r->ovl.Pointer = (void*)ofs;
 #else
@@ -413,6 +479,8 @@ static int aio_rw(struct aiocb* cb)
 #endif
 
 assert(cb->aio_buf != 0);
+
+	SetLastError(0);
 
 	DWORD size32 = (DWORD)(size & 0xffffffff);
 ResetEvent(r->ovl.hEvent);
@@ -443,11 +511,20 @@ int lio_listio(int mode, struct aiocb* const cbs[], int n, struct sigevent* se)
 {
 	UNUSED(se)
 
+	int err = 0;
+
 	for(int i = 0; i < n; i++)
-		aio_rw(cbs[i]);		// aio_rw checks for 0 param
+	{
+		int ret = aio_rw(cbs[i]);		// aio_rw checks for 0 param
+		if(ret < 0)
+			err = ret;
+	}
+
+	if(err < 0)
+		return err;
 
 	if(mode == LIO_WAIT)
-		aio_suspend(cbs, n, 0);
+		return aio_suspend(cbs, n, 0);
 
 	return 0;
 }

@@ -1,4 +1,4 @@
-// handle based caching resource manager
+// handle manager
 //
 // Copyright (c) 2003 Jan Wassenberg
 //
@@ -16,8 +16,8 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
-#ifndef __RES_H__
-#define __RES_H__
+#ifndef H_MGR_H__
+#define H_MGR_H__
 
 #ifdef __cplusplus
 extern "C" {
@@ -71,14 +71,14 @@ but- has to handle variable params, a bit ugly
 // - class (difficult to compare type, handle manager needs to know of all users)
 //
 // checked in h_alloc:
-// - user_size must fit in what res.cpp is offering (currently 44 bytes)
+// - user_size must fit in what the handle manager provides
 // - name must not be 0
 //
 // init: user data is initially zeroed
-// dtor: user data is zeroed automatically afterwards
+// dtor: user data is zeroed afterwards
 // reload: if this resource type is opened by another resource's reload,
 // our reload routine MUST check if already opened! This is relevant when
-// a file is invalidated: if e.g. a sound object opens a file, the handle
+// a file is reloaded: if e.g. a sound object opens a file, the handle
 // manager calls the reload routines for the 2 handles in unspecified order.
 // ensuring the order would require a tag field that can't overflow -
 // not really guaranteed with 32-bit handles. it'd also be more work
@@ -96,17 +96,24 @@ struct H_VTbl
 typedef H_VTbl* H_Type;
 
 #define H_TYPE_DEFINE(t)\
-static void t##_init(t*, va_list);\
-static int t##_reload(t*, const char*);\
-static void t##_dtor(t*);\
-static H_VTbl V_##t = {\
-	(void(*)(void*, va_list))t##_init,\
-	(int(*)(void*, const char*))t##_reload,\
-	(void(*)(void*))t##_dtor,\
-	sizeof(t),\
-	#t\
-};\
-static H_Type H_##t = &V_##t;
+	/* forward decls */\
+	static void t##_init(t*, va_list);\
+	static int t##_reload(t*, const char*);\
+	static void t##_dtor(t*);\
+	static H_VTbl V_##t =\
+	{\
+		(void(*)(void*, va_list))t##_init,\
+		(int(*)(void*, const char*))t##_reload,\
+		(void(*)(void*))t##_dtor,\
+		sizeof(t),	/* control block size */\
+		#t			/* name */\
+	};\
+	static H_Type H_##t = &V_##t;
+
+	// note: we cast to void* pointers so the functions can be declared to
+	// take the control block pointers, instead of requiring a cast in each.
+	// the forward decls ensure the function signatures are correct.
+
 
 // <type>* <var> = H_USER_DATA(<h_var>, <type>)
 #define H_USER_DATA(h, type) (type*)h_user_data(h, H_##type);
@@ -185,4 +192,4 @@ extern int res_cur_scope;
 #endif
 
 
-#endif	// #ifndef __RES_H__
+#endif	// #ifndef H_MGR_H__

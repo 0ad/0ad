@@ -728,8 +728,7 @@ ssize_t file_io(File* const f, const size_t raw_ofs, size_t raw_size, void** con
 	{
 		if(raw_ofs >= f->size)
 			return ERR_EOF;
-		size_t bytes_left = f->size - raw_ofs;	// > 0
-		size_t max_size = MIN(bytes_left, raw_size);
+		raw_size = MIN(f->size - raw_ofs, raw_size);
 	}
 	// writing: make sure buffer is valid
 	else

@@ -577,7 +577,7 @@ Handle vfs_load(const char* fn, void*& p, size_t& size)
 
 	size = vf->size;
 	{	// VC6 goto fix
-	size_t nread = vfs_io(hf, 0, size, p);
+	ssize_t nread = vfs_io(hf, 0, size, p);
 	if(nread > 0)
 		hm = mem_assign(p, size);
 	}

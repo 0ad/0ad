@@ -82,7 +82,7 @@ ssize_t zip_inflate(uintptr_t ctx, void* in, size_t in_size)
 	size_t avail_out = stream->avail_out;
 	assert(avail_out <= prev_avail_out);
 		// make sure output buffer size didn't magically increase
-	size_t nread = prev_avail_out - avail_out;
+	ssize_t nread = (ssize_t)(prev_avail_out - avail_out);
 	if(!nread)
 		return (err < 0)? err : 0;
 		// try to pass along the ZLib error code, but make sure

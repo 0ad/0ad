@@ -1,4 +1,4 @@
-// handle-based resource manager 
+// handle manager
 //
 // Copyright (c) 2003 Jan Wassenberg
 //
@@ -33,28 +33,50 @@
 // handle
 //
 
-// TODO: explain handle scheme, how it solves problems
+// handles are an indirection layer between client code and resources.
+// they allow an important check not possible with a direct pointer:
+// guaranteeing the handle references a given resource /instance/.
+//
+// problem: code C1 allocates a resource, and receives a pointer p to its
+// control block. C1 passes p on to C2, and later frees it.
+// now other code allocates a resource, and happens to reuse the free slot
+// pointed to by p (also possible if simply allocating from the heap).
+// when C2 accesses p, the pointer is valid, but we cannot tell that
+// it is referring to a resource that had already been freed. big trouble.
+//
+// solution: each allocation receives a unique tag (a global counter that
+// is large enough to never overflow). Handles include this tag, as well
+// as a reference (array index) to the control block, which isn't directly
+// accessible. when dereferencing the handle, we check if the handle's tag
+// matches the copy stored in the control block. this protects against stale
+// handle reuse, double-free, and accidentally referencing other resources.
+//
+// type: each handle has an associated type. these must be checked to prevent
+// using textures as sounds, for example. with the manual vtbl scheme,
+// this type is actually a pointer to the resource object's vtbl, and is
+// set up via H_TYPE_DEFINE. see header for rationale. this means that
+// types are private to the module that declared the handle; knowledge
+// of the type ensures the caller actually declared, and owns the resource.
 
 // 0 = invalid handle value
 // < 0 is an error code (we assume < 0 <==> MSB is set - 
 //     true for 1s and 2s complement and sign-magnitude systems)
-//
-// tag = 1-based; index = 0-based
-//
-// shift value = # bits between LSB and field LSB.
-// may be larger than the field type - only shift Handle vars!
 
 // fields:
-// - allows checking if the resource has been freed
-//   determines maximum unambiguous resource allocs
+// (shift value = # bits between LSB and field LSB.
+//  may be larger than the field type - only shift Handle vars!)
+
+// - tag (1-based) ensures the handle references a certain resource instance.
+//   (field width determines maximum unambiguous resource allocs)
 #define TAG_BITS 32
 const uint TAG_SHIFT = 0;
-const Handle TAG_MASK = (((Handle)1) << TAG_BITS) - 1;
-// - index into data array
-//   determines maximum (currently open) handles
+const u32 TAG_MASK = 0xffffffff;	// safer than (1 << 32) - 1
+
+// - index (0-based) points to control block in our array.
+//   (field width determines maximum currently open handles)
 #define IDX_BITS 16
 const uint IDX_SHIFT = 32;
-const u32 IDX_MASK = (((Handle)1) << IDX_BITS) - 1;
+const i32 IDX_MASK = (1l << IDX_BITS) - 1;
 
 cassert(IDX_BITS + TAG_BITS <= sizeof(Handle)*CHAR_BIT);
 
@@ -156,17 +178,11 @@ static HDATA* h_data(const i32 idx)
 }
 
 
-
-
-int h_data_tag = 0;
-
 // get HDATA for the given handle. verifies the handle
 // isn't invalid or an error code, and checks the tag field.
 // used by the few functions callable for any handle type, e.g. h_filename.
 static HDATA* h_data_any_type(const Handle h)
 {
-	h_data_tag++;
-
 #ifdef PARANOIA
 	check_heap();
 #endif
@@ -222,7 +238,7 @@ static void cleanup(void)
 		if(hd)
 		{
 			// somewhat messy, but this only happens on cleanup.
-			// better, i think, than an additional h_free(i32 idx) version.
+			// better than an additional h_free(i32 idx) version though.
 			Handle h = handle(i, hd->tag);
 			h_free(h, hd->type);
 		}
@@ -239,15 +255,10 @@ static void cleanup(void)
 
 
 
-static int alloc_idx(i32* pidx, HDATA** phd)
+// idx and hd are undefined if we fail.
+// called by h_alloc only.
+static int alloc_idx(i32& idx, HDATA*& hd)
 {
-	assert(pidx && phd && "alloc_idx: invalid param");
-	*pidx = 0;
-	*phd = 0;
-
-	i32 idx;
-	HDATA* hd;
-
 	// we already know the first free entry
 	if(first_free != -1)
 	{
@@ -297,8 +308,6 @@ have_idx:;
 	if(idx > last_in_use)
 		last_in_use = idx;
 
-	*pidx = idx;
-	*phd = hd;
 	return 0;
 }
 
@@ -319,9 +328,14 @@ int h_free(Handle& h, H_Type type)
 	if(!hd)
 		return ERR_INVALID_HANDLE;
 
-	// not the last reference
-	if(--hd->refs)
-		return 0;
+	// have valid refcount (don't decrement if alread 0)
+	if(hd->refs > 0)
+	{
+		hd->refs--;
+		// not the last reference
+		if(hd->refs > 0)
+			return 0;
+	}
 
 	// TODO: keep this handle open (cache)
 
@@ -345,7 +359,9 @@ int h_free(Handle& h, H_Type type)
 // any further params are passed to type's init routine
 Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 {
-//	ONCE(atexit(cleanup))
+	ONCE(atexit(cleanup))
+
+	Handle err;
 
 	i32 idx;
 	HDATA* hd;
@@ -400,13 +416,15 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 */
 	}
 
-	if(alloc_idx(&idx, &hd) < 0)
-		return 0;
+	err = alloc_idx(idx, hd);
+	if(err < 0)
+		return err;
 
 	static u32 tag;
 	if(++tag >= TAG_MASK)
 	{
-		assert(!"h_alloc: tag overflow - may not notice stale handle reuse (increase TAG_BITS)");
+		assert(0 && "h_alloc: tag overflow - allocations are no longer unique."\
+		            "may not notice stale handle reuse. increase TAG_BITS.");
 		tag = 1;
 	}
 
@@ -427,11 +445,11 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 
 	if(vtbl->reload)
 	{
-		int err = vtbl->reload(hd->user, fn);
+		err = vtbl->reload(hd->user, fn);
 		if(err < 0)
 		{
 			h_free(h, type);
-			return 0;
+			return err;
 		}
 	}
 

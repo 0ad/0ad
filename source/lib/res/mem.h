@@ -24,7 +24,6 @@ extern void* mem_alloc(size_t size, uint align = 1, uint flags = 0, Handle* ph =
 #define mem_free(p) mem_free_p((void*&)p)
 extern int mem_free_p(void*& p);
 
-// faster than mem_free(void*) - no scan of open handles for the pointer
 extern int mem_free_h(Handle& hm);
 
 // create a H_MEM handle of type MEM_USER,
