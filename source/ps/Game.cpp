@@ -23,12 +23,12 @@ CGame::CGame():
 	m_GameView(this),
 	m_pLocalPlayer(NULL)
 {
-	debug_out("CGame::CGame(): Game object CREATED");
+	debug_out("CGame::CGame(): Game object CREATED\n");
 }
 
 CGame::~CGame()
 {
-	debug_out("CGame::~CGame(): Game object DESTROYED");
+	debug_out("CGame::~CGame(): Game object DESTROYED\n");
 }
 
 PSRETURN CGame::Initialize(CGameAttributes *pAttribs)
