@@ -925,7 +925,7 @@ TIMER(InitRenderer)
 	g_Renderer.SetViewport(vp);
 }
 
-extern u64 PREVTSC;
+u64 PREVTSC;
 
 static void Shutdown()
 {

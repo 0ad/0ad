@@ -12,8 +12,11 @@
 #include "unix/unix.h"
 #endif
 
+
+// vsnprintf2: handles positional parameters and %lld.
+// already available on *nix, emulated on Win32.
 #ifdef _WIN32
-#include "lib/sysdep/win/printf.h"
+extern int vsnprintf2(char* buffer, size_t count, const char* format, va_list argptr);
 #else
 #define vsnprintf2 vsnprintf
 #endif

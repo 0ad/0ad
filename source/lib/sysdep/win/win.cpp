@@ -28,7 +28,6 @@
 #include <malloc.h>
 #include <shlobj.h>	// pick_dir
 
-extern HWND hWnd;
 
 void sle(int x)
 {
@@ -120,7 +119,10 @@ int clipboard_set(const wchar_t* text)
 {
 	int err = -1;
 
-	if(!OpenClipboard( hWnd ))
+	const HWND new_owner = 0;
+		// MSDN: passing 0 requests the current task be granted ownership;
+		// there's no need to pass our window handle.
+	if(!OpenClipboard(new_owner))
 		return err;
 	EmptyClipboard();
 
@@ -365,6 +367,7 @@ static inline void pre_main_init()
 	// (w)sdl will take care of it anyway.
 }
 
+#ifdef HAVE_DEBUGALLOC
 // Enable heap corruption checking after every allocation. Has the same
 // effect as PARANOIA in pre_main_init, but lets you switch it on anywhere
 // so that you can skip checking the whole of the initialisation code.
@@ -376,23 +379,10 @@ void memory_debug_extreme_turbo_plus()
 {
 	_CrtSetDbgFlag( _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) | _CRTDBG_CHECK_ALWAYS_DF | _CRTDBG_DELAY_FREE_MEM_DF );
 }
-
-extern u64 rdtsc();
-extern u64 PREVTSC;
-u64 PREVTSC;
-
+#endif
 
 int entry()
 {
-#ifdef _MSC_VER
-u64 TSC=rdtsc();
-debug_out(
-"----------------------------------------\n"\
-"ENTRY\n"\
-"----------------------------------------\n");
-PREVTSC=TSC;
-#endif
-
 	pre_libc_init();
 	return WinMainCRTStartup();	// calls _cinit, and then WinMain
 }
