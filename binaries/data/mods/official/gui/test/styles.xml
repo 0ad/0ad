@@ -103,4 +103,25 @@
 		text_align="center"
 		text_valign="center"
 	/>
+
+	<style name="atlas_label_text"
+		tooltip_style="atlas_tooltip"
+		tooltip=""
+		textcolor="0 0 0"
+		font="tahoma10"
+		text_align="center"
+		text_valign="center"
+	/>
+
+	<style name="atlas_button"
+		sprite="atlas_emboss"
+		sprite_over="atlas_indent"
+		sprite_pressed="atlas_indent"
+		tooltip_style="atlas_tooltip"
+		tooltip="[font=tahoma10b]Button[font=tahoma10]\nClick to do something."
+		textcolor="0 0 0"
+		font="tahoma10"
+		text_align="center"
+		text_valign="center"
+	/>
 </styles>

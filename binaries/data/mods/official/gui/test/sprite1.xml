@@ -783,21 +783,12 @@
 	</sprite>
 
 	<sprite name="atlas_input_box">
-		<!-- Starting with top left corner continuing in a clockwise manner -->
-		<!-- Top border -->
-		<image backcolor="109 122 146" size="0 0 100%-1 0" />
-		<image backcolor="0 0 0" size="0 1 100%-2 1" />
-		<!-- Right border -->
-		<image backcolor="220 223 228" size="100% 0 100% 100%" />
-		<image backcolor="184 190 201" size="100%-1 1 100%-1 100%-1" />
-		<!-- Bottom border -->
-		<image backcolor="220 223 228" size="0 100% 100% 100%" />
-		<image backcolor="184 190 201" size="1 100%-1 100%-1 100%-1" />
-		<!-- Left border -->
-		<image backcolor="109 122 146" size="0 0 0 100%-1" />
-		<image backcolor="0 0 0" size="1 1 1 100%-2" />
+		<image backcolor="220 223 228" size="-4 -5 100%+2 100%+1" />
+		<image backcolor="109 122 146" size="-4 -5 100%+1 100%" />
+		<image backcolor="184 190 201" size="-3 -4 100%+1 100%" />
+		<image backcolor="0 0 0"       size="-3 -4 100%   100%-1" />
 		<!-- middle -->
-		<image backcolor="220 223 228" size="2 2 100%-2 100%-2"/>
+		<image backcolor="220 223 228" size="-2 -3 100%   100%-1"/>
 	</sprite>
 
 	<sprite name="atlas_emboss">
@@ -817,25 +808,25 @@
 	<sprite name="atlas_indent">
 		<!-- Starting with top left corner continuing in a clockwise manner -->
 		<!-- Top border -->
-		<image backcolor="109 122 146" size="0 0 100%-1 0" />
+		<image backcolor="109 122 146" size="0 0 100%-1 1" />
 		<!-- Right border -->
-		<image backcolor="220 223 228" size="100% 0 100% 100%" />
+		<image backcolor="220 223 228" size="100%-1 0 100% 100%" />
 		<!-- Bottom border -->
-		<image backcolor="220 223 228" size="0 100% 100% 100%" />
+		<image backcolor="220 223 228" size="0 100%-1 100% 100%" />
 		<!-- Left border -->
-		<image backcolor="109 122 146" size="0 0 0 100%-1" />
+		<image backcolor="109 122 146" size="0 0 1 100%-1" />
 		<!-- middle -->
 		<image backcolor="220 223 228" size="1 1 100%-1 100%-1"/>
 	</sprite>
 
 	<sprite name="atlas_hline">
-		<image backcolor="109 122 146" size="0% 0 100% 0" />
-		<image backcolor="220 223 228" size="0% 1 100% 1" />
+		<image backcolor="109 122 146" size="0% 0 100% 1" />
+		<image backcolor="220 223 228" size="0% 1 100% 2" />
 	</sprite>
 
 	<sprite name="atlas_vline">
-		<image backcolor="109 122 146" size="0 0 0 100%" />
-		<image backcolor="220 223 228" size="1 0 1 100%" />
+		<image backcolor="109 122 146" size="0 0 1 100%" />
+		<image backcolor="220 223 228" size="1 0 2 100%" />
 	</sprite>
 
 	<sprite name="atlas_toolbar_bkg">
@@ -935,6 +926,10 @@
 
 	<sprite name="atlas_sheet_toolbar_button">
 		<image texture="atlas/atlas_sheet_toolbar_button.png" cell_size="15 15" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+	</sprite>
+
+	<sprite name="atlas_sheet_updown_button">
+		<image texture="atlas/atlas_global_sheet_dropdownbutton_updown.png" cell_size="9 5" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
 	</sprite>
 
         <!--

@@ -9,6 +9,12 @@ function initAtlas()
 	atlasCoord = new Array();
 	atlasCoord_Last = 0;
 
+	// =============================================   GLOBALS =================================================
+
+	ATLAS_COUNTER_BOX = new Object();
+	ATLAS_COUNTER_BOX.width = 9;
+	ATLAS_COUNTER_BOX.height = 5;
+
 	// ============================================= MAIN SCREEN ===============================================
 
 	// Top-left corner piece of main editor frame.
@@ -212,10 +218,10 @@ function initAtlas()
 		atlasCoord[ATLAS_MINIMAP_BKG].y+atlasCoord[ATLAS_MINIMAP_BKG].height+4
 	);
 
-	// ============================================= CREATE MAP SECTION ===============================================
+	// ============================================= GENERIC LEFT SECTION MENU ===============================================
 
-	// Second heading of Create Map section menu.
-	ATLAS_LEFT_PANE_SECTION_MAP_HEADING_2		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+	// Second heading of section menu.
+	ATLAS_LEFT_PANE_SECTION_HEADING_2		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
 		atlasCoord[ATLAS_LEFT_PANE_BKG].width-2,
 		21+2
 	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
@@ -223,13 +229,252 @@ function initAtlas()
 		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].y+atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].height+29
 	);
 
-	// Topmost heading of Create Map section menu.
-	ATLAS_LEFT_PANE_SECTION_MAP_HEADING_1		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_HEADING_2].width,
+	// Topmost heading of section menu.
+	ATLAS_LEFT_PANE_SECTION_HEADING_1		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_2].width,
 		31
 	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_HEADING_2].x,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_2].x,
 		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].y+atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].height
+	);
+
+	// Third heading of section menu.
+	ATLAS_LEFT_PANE_SECTION_HEADING_3		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_2].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_2].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_2].x,
+		0
+	);
+
+	// Setup margins for Left Section Menu.
+	ATLAS_LEFT_PANE_SECTION = new Object();
+	ATLAS_LEFT_PANE_SECTION.LMARGIN = 7;
+	ATLAS_LEFT_PANE_SECTION.RMARGIN = 10;
+	ATLAS_LEFT_PANE_SECTION.TMARGIN = 10;
+	ATLAS_LEFT_PANE_SECTION.BMARGIN = 10;
+
+	// ============================================= MAP CREATOR SECTION MENU ===============================================
+
+	// ============================================= MAP CREATOR: MAP TYPE ===============================================
+
+	// ============================================= MAP CREATOR: MAP TYPE: MAP SIZE ===============================================
+
+	// Height input box for map size.
+	ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		30,
+		14
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_2].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_2].width-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX].width-ATLAS_LEFT_PANE_SECTION.RMARGIN,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_2].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_2].height+ATLAS_LEFT_PANE_SECTION.TMARGIN+ATLAS_LEFT_PANE_SECTION.TMARGIN
+	);
+
+	// "X" between map size input boxes.
+	ATLAS_LEFT_PANE_SECTION_MAP_TILE_X				= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		20,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX].x-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_TILE_X].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX].y
+	);
+
+	// Width input box for map size.
+	ATLAS_LEFT_PANE_SECTION_MAP_TILE_WIDTH_INPUT_BOX		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_TILE_X].x-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX].y
+	);
+
+	// "Size:" label.
+	ATLAS_LEFT_PANE_SECTION_MAP_SIZE_LABEL		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		32,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_TILE_WIDTH_INPUT_BOX].x-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_LABEL].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX].y
+	);
+
+	ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_SPAN = 3;
+
+	// "Huge" map size button.
+	ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_HUGE	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		40,
+		20
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_2].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_2].width-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_HUGE].width-ATLAS_LEFT_PANE_SECTION.RMARGIN+2,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_TILE_HEIGHT_INPUT_BOX].height+ATLAS_LEFT_PANE_SECTION.TMARGIN
+	);
+
+	// "Large" map size button.
+	ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_LARGE	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_HUGE].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_HUGE].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_HUGE].x-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_HUGE].width-ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_SPAN,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_HUGE].y
+	);
+
+	// "Medium" map size button.
+	ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_MEDIUM	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_HUGE].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_HUGE].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_LARGE].x-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_LARGE].width-ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_SPAN,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_HUGE].y
+	);
+
+	// "Small" map size button.
+	ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_SMALL	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_HUGE].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_HUGE].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_MEDIUM].x-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_MEDIUM].width-ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_SPAN,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_HUGE].y
+	);
+
+	// Horizontal rule at end of Map Size settings.
+	ATLAS_LEFT_PANE_SECTION_MAP_SIZE_HR		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_BKG].width-ATLAS_LEFT_PANE_SECTION.LMARGIN-ATLAS_LEFT_PANE_SECTION.RMARGIN,
+		2
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_BKG].x+ATLAS_LEFT_PANE_SECTION.LMARGIN,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_HUGE].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SIZE_BUTTON_HUGE].height+ATLAS_LEFT_PANE_SECTION.BMARGIN
+	);
+
+	// ============================================= MAP CREATOR: MAP TYPE: RANDOM MAP ===============================================
+
+	// ============================================= MAP CREATOR: MAP SETTINGS ===============================================
+
+	// "Players:" label for Map Settings.
+	ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		40,
+		15
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3].x+ATLAS_LEFT_PANE_SECTION.LMARGIN,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3].height+ATLAS_LEFT_PANE_SECTION.TMARGIN
+	);
+
+	// Players "counter" input box for Map Settings.
+	ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		32,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL].y
+	);
+
+	// Players up button for "counter" input box for Map Settings.
+	ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX_UP	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		ATLAS_COUNTER_BOX.width,
+		ATLAS_COUNTER_BOX.height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX].width-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX_UP].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX].y
+	);
+
+	// Players down button for "counter" input box for Map Settings.
+	ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX_DN	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		ATLAS_COUNTER_BOX.width,
+		ATLAS_COUNTER_BOX.height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX].width-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX_UP].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX].height-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX_DN].height
+	);
+
+	// Settlements "counter" input box for Map Settings.
+	ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3].width-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX].width-ATLAS_LEFT_PANE_SECTION.RMARGIN,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX].y
+	);
+
+	// Settlements up button for "counter" input box for Map Settings.
+	ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX_UP	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		ATLAS_COUNTER_BOX.width,
+		ATLAS_COUNTER_BOX.height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX].width-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX_UP].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX].y
+	);
+
+	// Settlements down button for "counter" input box for Map Settings.
+	ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX_DN	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		ATLAS_COUNTER_BOX.width,
+		ATLAS_COUNTER_BOX.height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX].width-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX_UP].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX].height-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX_DN].height
+	);
+
+	// "Settlements" label for Map Settings.
+	ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_LABEL		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		62,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX].x-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_LABEL].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX].y
+	);
+
+	// "Resources:" label for Map Settings.
+	ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_RESOURCES_LABEL		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		40,
+		15
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL].x+ATLAS_LEFT_PANE_SECTION.LMARGIN,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL].height+ATLAS_LEFT_PANE_SECTION.TMARGIN
+	);
+
+	// Resources "drop-down" box for Map Settings.
+	ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_RESOURCES_COMBO_BOX	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		32,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_RESOURCES_LABEL].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_RESOURCES_LABEL].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_RESOURCES_LABEL].y
+	);
+
+	// ============================================= MAP CREATOR: MAP SETTINGS: TERRITORIES ===============================================
+
+	// ============================================= MAP CREATOR: GENERATE ===============================================
+
+	// Terrain Map input box.
+	ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3].width-ATLAS_LEFT_PANE_SECTION.LMARGIN-ATLAS_LEFT_PANE_SECTION.RMARGIN,
+		20
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3].x+ATLAS_LEFT_PANE_SECTION.LMARGIN,
+		-ATLAS_LEFT_PANE_SECTION.BMARGIN-atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX].height
+	);
+
+	// "Terrain Map:" label.
+	ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_LABEL		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		32,
+		20
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3].x+ATLAS_LEFT_PANE_SECTION.LMARGIN,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3].height+ATLAS_LEFT_PANE_SECTION.TMARGIN
+	);
+
+	// Height Map input box.
+	ATLAS_LEFT_PANE_SECTION_GENERATE_HEIGHT_MAP_INPUT_BOX		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX].x,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX].y-atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX].height-atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_LABEL].height
+	);
+
+	// "Height Map:" label.
+	ATLAS_LEFT_PANE_SECTION_GENERATE_HEIGHT_MAP_LABEL		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_LABEL].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_LABEL].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_LABEL].x,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_LABEL].y-atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_LABEL].height
 	);
 }
 
