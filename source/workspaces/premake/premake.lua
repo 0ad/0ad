@@ -71,6 +71,9 @@ package.files = {
 
 	-- i18n
 	{ sourcesfromdirs("../../i18n") }
+
+	-- tests
+	{ sourcesfromdirs("../../tests") }
 }
 
 package.includepaths = {
