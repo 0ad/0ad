@@ -40,11 +40,15 @@
 
 
 // we add/cancel directory watches from the VFS mount code for convenience -
-// it iterates through all subdirectories anyway (the watch code would need
-// to do this, because FAM can't monitor a directory subtree) and provides
-// storage for the FAM request number.
-// define to disable that - removes request number from struct Dir,
+// it iterates through all subdirectories anyway (*) and provides storage for
+// a key to identify the watch (obviates separate Dir -> watch mapping).
+//
+// define this to strip out that code - removes .watch from struct Dir,
 // and calls to res_watch_dir / res_cancel_watch.
+//
+// *: the add_watch code would need to iterate through subdirs and watch
+//    each one, because the monitor API (e.g. FAM) may only be able to
+//    watch single directories, instead of a whole subdirectory tree.
 #undef NO_DIR_WATCH
 
 
@@ -256,7 +260,7 @@ typedef SubDirs::iterator SubDirIt;
 struct Dir
 {
 #ifndef NO_DIR_WATCH
-	uint watch_reqnum;
+	uintptr_t watch;
 #endif
 
 	int add_file(const char* name, const FileLoc* loc);
@@ -351,7 +355,7 @@ void Dir::clearR()
 	files.clear();
 
 #ifndef NO_DIR_WATCH
-	res_cancel_watch(watch_reqnum);
+	res_cancel_watch(watch);
 #endif
 }
 
@@ -524,7 +528,7 @@ static int tree_add_dirR(Dir* const dir, const char* const f_path, const FileLoc
 	file_enum(f_path, add_dirent_cb, (uintptr_t)&params);
 
 #ifndef NO_DIR_WATCH
-	res_watch_dir(f_path, &dir->watch_reqnum);
+	res_watch_dir(f_path, &dir->watch);
 #endif
 
 	for(SubDirIt it = dir->subdirs.begin(); it != dir->subdirs.end(); ++it)

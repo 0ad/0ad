@@ -25,7 +25,7 @@ static bool initialized;
 
 // path: portable and relative, must add current directory and convert to native
 // better to use a cached string from rel_chdir - secure
-int res_watch_dir(const char* const path, uint* const reqnum)
+int res_watch_dir(const char* const path, uintptr_t* const watch)
 {
 	if(!initialized)
 	{
@@ -41,12 +41,12 @@ int res_watch_dir(const char* const path, uint* const reqnum)
 	if(FAMMonitorDirectory(&fc, n_full_path, &req, (void*)0) < 0)
 		return -1;	// no way of getting error?
 
-	*reqnum = req.reqnum;
+	*watch = req.reqnum;
 	return 0;
 }
 
 
-int res_cancel_watch(const uint reqnum)
+int res_cancel_watch(const uint watch)
 {
 	if(!initialized)
 	{
@@ -55,7 +55,7 @@ int res_cancel_watch(const uint reqnum)
 	}
 
 	FAMRequest req;
-	req.reqnum = reqnum;
+	req.reqnum = watch;
 	return FAMCancelMonitor(&fc, &req);
 }
 
