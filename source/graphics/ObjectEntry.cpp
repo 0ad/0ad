@@ -42,17 +42,15 @@ bool CObjectEntry::BuildModel()
 	// remember the old model so we can replace any models using it later on
 	CModelDef* oldmodel=m_Model ? m_Model->GetModelDef() : 0;
 
-	// build filename
-	CStr modelfilename("mods/official/");
-	modelfilename+=m_ModelName;
-
 	// try and create a model
 	CModelDef* modeldef;
 
+	const char* modelfilename = m_ModelName.c_str();
+
 	try {
-		modeldef=CModelDef::Load((const char*) modelfilename);
+		modeldef=CModelDef::Load(modelfilename);
 	} catch (...) {
-		LOG(ERROR, "CObjectEntry::BuildModel(): Model %s failed to load", modelfilename.c_str());
+		LOG(ERROR, "CObjectEntry::BuildModel(): Model %s failed to load", modelfilename);
 		return false;
 	}
 
@@ -69,9 +67,8 @@ bool CObjectEntry::BuildModel()
 	{
 		if( m_Animations[t].m_FileName.Length() > 0 )
 		{
-			CStr animfilename( "mods/official/" );
-			animfilename += m_Animations[t].m_FileName;
-			m_Animations[t].m_AnimData = m_Model->BuildAnimation((const char*) animfilename,m_Animations[t].m_Speed);
+			const char* animfilename = m_Animations[t].m_FileName.c_str();
+			m_Animations[t].m_AnimData = m_Model->BuildAnimation(animfilename,m_Animations[t].m_Speed);
 
 			if( m_Animations[t].m_AnimName.LowerCase() == CStr( "idle" ) )
 				m_IdleAnim = m_Animations[t].m_AnimData;
@@ -105,7 +102,7 @@ bool CObjectEntry::BuildModel()
 				}
 			}
 		} else {
-			LOG(ERROR,"Failed to matching prop point called \"%s\" in model \"%s\"", (const char*)prop.m_PropPointName, (const char*)modelfilename);
+			LOG(ERROR,"Failed to matching prop point called \"%s\" in model \"%s\"", (const char*)prop.m_PropPointName, modelfilename);
 		}
 	}
 

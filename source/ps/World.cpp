@@ -18,7 +18,7 @@ void CWorld::Initialize(CGameAttributes *pAttribs)
 {
 	g_EntityTemplateCollection.loadTemplates();
 
-	CStr mapfilename("mods/official/maps/scenarios/");
+	CStr mapfilename("maps/scenarios/");
 	mapfilename+=pAttribs->m_MapFile;
 	try {
 		CMapReader reader;
