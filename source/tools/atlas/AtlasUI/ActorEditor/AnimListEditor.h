@@ -1,7 +1,6 @@
 #include "AtlasDialog.h"
 
 #include "DraggableListCtrl.h"
-#include "IAtlasExporter.h"
 
 class AnimListEditorListCtrl;
 
@@ -15,8 +14,8 @@ public:
 	AnimListEditor();
 
 protected:
-	void Import(AtObj& in);
-	AtObj Export();
+	AtObj FreezeData();
+	void ThawData(AtObj& in);
 
 private:
 	AnimListEditorListCtrl* m_MainListBox;

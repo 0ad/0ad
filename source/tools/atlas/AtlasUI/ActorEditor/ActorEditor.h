@@ -8,8 +8,11 @@ public:
 	ActorEditor(wxWindow* parent);
 
 protected:
-	void Import(AtObj& in);
-	AtObj Export();
+	AtObj FreezeData();
+	void ThawData(AtObj& in);
+
+	AtObj ExportData();
+	void ImportData(AtObj& in);
 
 private:
 	ActorEditorListCtrl* m_ActorEditorListCtrl;

@@ -1,13 +1,13 @@
 #include "AtlasWindowCommandProc.h"
 
-#include "IAtlasExporter.h"
+#include "IAtlasSerialiser.h"
 
 #include "wx/filename.h"
 #include "wx/docview.h"
 
 class AtObj;
 
-class AtlasWindow : public wxFrame, public IAtlasExporter
+class AtlasWindow : public wxFrame, public IAtlasSerialiser
 {
 	friend class AtlasWindowCommandProc;
 

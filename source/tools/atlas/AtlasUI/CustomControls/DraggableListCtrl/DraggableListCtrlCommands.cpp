@@ -62,15 +62,15 @@ bool DragCommand::Undo()
 
 bool DragCommand::Merge(AtlasWindowCommand* command)
 {
-	DragCommand* nextCommand = wxDynamicCast(command, DragCommand);
+	DragCommand* previousCommand = wxDynamicCast(command, DragCommand);
 
-	if (! nextCommand)
+	if (! previousCommand)
 		return false;
 
-	if (nextCommand->m_Src != m_Tgt)
+	if (m_Src != previousCommand->m_Tgt)
 		return false;
 
-	m_Tgt = nextCommand->m_Tgt;
+	previousCommand->m_Tgt = m_Tgt;
 	return true;
 }
 

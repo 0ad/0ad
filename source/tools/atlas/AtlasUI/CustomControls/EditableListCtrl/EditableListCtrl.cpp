@@ -233,16 +233,35 @@ wxListItemAttr* EditableListCtrl::OnGetItemAttr(long item) const
 		return const_cast<wxListItemAttr*>(&m_ListItemAttr[item%2]);
 }
 
-void EditableListCtrl::Import(AtObj& in)
+void EditableListCtrl::ImportData(AtObj& in)
 {
-	AtlasWindowCommandProc* commandProc = AtlasWindowCommandProc::GetFromParentFrame(this);
-	commandProc->Submit(new ImportCommand(this, in));
+	//AtlasWindowCommandProc* commandProc = AtlasWindowCommandProc::GetFromParentFrame(this);
+	//commandProc->Submit(new ImportCommand(this, in));
+	return DoImport(in);
 }
 
-AtObj EditableListCtrl::Export()
+AtObj EditableListCtrl::ExportData()
 {
 	return DoExport();
 }
+
+
+void EditableListCtrl::ThawData(AtObj& in)
+{
+	m_ListData.clear();
+	for (AtIter it = in["item"]; it.defined(); ++it)
+		m_ListData.push_back(it);
+	UpdateDisplay();
+}
+
+AtObj EditableListCtrl::FreezeData()
+{
+	AtObj out;
+	for (std::vector<AtObj>::iterator it = m_ListData.begin(); it != m_ListData.end(); ++it)
+		out.add("item", *it);
+	return out;
+}
+
 
 
 BEGIN_EVENT_TABLE(EditableListCtrl, wxListCtrl)

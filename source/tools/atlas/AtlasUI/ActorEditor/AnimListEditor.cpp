@@ -21,14 +21,14 @@ AnimListEditor::AnimListEditor()
 	m_MainPanel->SetSizer(sizer);
 }
 
-void AnimListEditor::Import(AtObj& in)
+void AnimListEditor::ThawData(AtObj& in)
 {
-	m_MainListBox->Import(in);
+	m_MainListBox->ThawData(in);
 }
 
-AtObj AnimListEditor::Export()
+AtObj AnimListEditor::FreezeData()
 {
-	return m_MainListBox->Export();
+	return m_MainListBox->FreezeData();
 }
 
 //////////////////////////////////////////////////////////////////////////

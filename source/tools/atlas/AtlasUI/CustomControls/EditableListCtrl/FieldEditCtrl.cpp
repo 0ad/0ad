@@ -59,13 +59,13 @@ void FieldEditCtrl_Dialog::StartEdit(wxWindow* parent, wxRect WXUNUSED(rect), lo
 	EditableListCtrl* editCtrl = (EditableListCtrl*)parent;
 
 	AtObj in (editCtrl->GetCellObject(row, col));
-	dialog->Import(in);
+	dialog->ThawData(in);
 
 	int ret = dialog->ShowModal();
 
 	if (ret == wxID_OK)
 	{
-		AtObj out (dialog->Export());
+		AtObj out (dialog->FreezeData());
 
 		AtlasWindowCommandProc::GetFromParentFrame(parent)->Submit(
 			new EditCommand_Dialog(editCtrl, row, col, out)

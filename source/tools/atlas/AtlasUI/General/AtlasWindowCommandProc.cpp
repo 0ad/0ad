@@ -47,7 +47,7 @@ bool AtlasWindowCommandProc::Submit(wxCommand *command, bool storeIt)
 		
 		if (currentCommand && previousCommand
 			&& !previousCommand->m_Finalized
-			&& previousCommand->Merge(currentCommand))
+			&& currentCommand->Merge(previousCommand))
 		{
 			delete command;
 		}

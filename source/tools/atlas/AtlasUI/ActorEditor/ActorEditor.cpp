@@ -61,7 +61,36 @@ ActorEditor::ActorEditor(wxWindow* parent)
 }
 
 
-void ActorEditor::Import(AtObj& in)
+void ActorEditor::ThawData(AtObj& in)
+{
+	AtObj actor (in["actor"]);
+	m_ActorEditorListCtrl->ThawData(actor);
+
+	if (actor["castshadow"].defined())
+		m_CastShadows->SetValue(true);
+	else
+		m_CastShadows->SetValue(false);
+
+	m_Material->SetValue(actor["material"]);
+}
+
+AtObj ActorEditor::FreezeData()
+{
+	AtObj actor (m_ActorEditorListCtrl->FreezeData());
+
+	if (m_CastShadows->IsChecked())
+		actor.set("castshadow", L"");
+
+	if (m_Material->GetValue().length())
+		actor.set("material", m_Material->GetValue().c_str());
+
+	AtObj out;
+	out.set("actor", actor);
+	return out;
+}
+
+
+void ActorEditor::ImportData(AtObj& in)
 {
 	if (! in.defined())
 	{
@@ -209,7 +238,7 @@ void ActorEditor::Import(AtObj& in)
 	}
 
 	AtObj actor (in["actor"]);
-	m_ActorEditorListCtrl->Import(actor);
+	m_ActorEditorListCtrl->ImportData(actor);
 
 	if (actor["castshadow"].defined())
 		m_CastShadows->SetValue(true);
@@ -219,10 +248,10 @@ void ActorEditor::Import(AtObj& in)
 	m_Material->SetValue(actor["material"]);
 }
 
-AtObj ActorEditor::Export()
+AtObj ActorEditor::ExportData()
 {
 	// Export the group/variant/etc data
-	AtObj actor (m_ActorEditorListCtrl->Export());
+	AtObj actor (m_ActorEditorListCtrl->ExportData());
 
 	actor.set("@version", L"1");
 

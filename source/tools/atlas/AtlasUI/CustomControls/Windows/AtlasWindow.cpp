@@ -3,6 +3,7 @@
 #include "AtlasWindow.h"
 
 #include "AtlasObject/AtlasObject.h"
+#include "AtlasWindowCommand.h"
 
 #include "wx/artprov.h"
 #include "wx/config.h"
@@ -180,7 +181,12 @@ void AtlasWindow::OnRedo(wxCommandEvent& WXUNUSED(event))
 void AtlasWindow::OnNew(wxCommandEvent& WXUNUSED(event))
 {
 	AtObj blank;
-	Import(blank);
+
+	AtlasWindowCommandProc* commandProc = AtlasWindowCommandProc::GetFromParentFrame(this);
+	commandProc->Submit(new AtlasCommand_Begin(_("New file"), this));
+	ImportData(blank);
+	commandProc->Submit(new AtlasCommand_End());
+
 	SetCurrentFilename();
 }
 
@@ -251,7 +257,7 @@ bool AtlasWindow::SaveChanges(bool forceSaveAs)
 		return false;
 	}
 
-	AtObj file (Export());
+	AtObj file (ExportData());
 	// TODO: Make sure it succeeded. Back up .xml file in case it didn't.
 
 	AtlasObject::SaveToXML(file, GetCurrentFilename().GetFullPath());
@@ -264,7 +270,10 @@ bool AtlasWindow::OpenFile(wxString filename)
 	AtObj file (AtlasObject::LoadFromXML(filename));
 	// TODO: Make sure it succeeded.
 
-	Import(file);
+	AtlasWindowCommandProc* commandProc = AtlasWindowCommandProc::GetFromParentFrame(this);
+	commandProc->Submit(new AtlasCommand_Begin(_("Open file"), this));
+	ImportData(file);
+	commandProc->Submit(new AtlasCommand_End());
 
 	m_FileHistory.AddFileToHistory(filename);
 	SetCurrentFilename(filename);

@@ -1,7 +1,6 @@
 #include "AtlasDialog.h"
 
 #include "DraggableListCtrl.h"
-#include "IAtlasExporter.h"
 
 class PropListEditorListCtrl;
 
@@ -15,8 +14,8 @@ public:
 	PropListEditor();
 
 protected:
-	void Import(AtObj& in);
-	AtObj Export();
+	AtObj FreezeData();
+	void ThawData(AtObj& in);
 
 private:
 	PropListEditorListCtrl* m_MainListBox;

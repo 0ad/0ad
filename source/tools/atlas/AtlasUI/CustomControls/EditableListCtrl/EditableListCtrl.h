@@ -3,7 +3,7 @@
 
 #include "wx/listctrl.h"
 
-#include "IAtlasExporter.h"
+#include "IAtlasSerialiser.h"
 
 #include <vector>
 
@@ -11,7 +11,7 @@ class FieldEditCtrl;
 class AtObj;
 class AtIter;
 
-class EditableListCtrl : public wxListCtrl, public IAtlasExporter
+class EditableListCtrl : public wxListCtrl, public IAtlasSerialiser
 {
 	friend class DeleteCommand;
 	friend class DragCommand;
@@ -55,8 +55,12 @@ public:
 
 	void DeleteData();
 
-	void Import(AtObj&);
-	AtObj Export();
+
+	AtObj FreezeData();
+	void ThawData(AtObj& in);
+
+	AtObj ExportData();
+	void ImportData(AtObj& in);
 
 private:
 	int GetColumnAtPosition(wxPoint& pos);

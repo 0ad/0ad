@@ -1,11 +1,11 @@
 #include "wx/dialog.h"
 
 #include "AtlasWindowCommandProc.h"
-#include "IAtlasExporter.h"
+#include "IAtlasSerialiser.h"
 
 class FieldEditCtrl_Dialog;
 
-class AtlasDialog : public wxDialog, public IAtlasExporter
+class AtlasDialog : public wxDialog, public IAtlasSerialiser
 {
 	friend class FieldEditCtrl_Dialog;
 	friend class AtlasWindowCommandProc;

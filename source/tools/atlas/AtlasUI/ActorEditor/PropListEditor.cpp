@@ -21,14 +21,14 @@ PropListEditor::PropListEditor()
 	m_MainPanel->SetSizer(sizer);
 }
 
-void PropListEditor::Import(AtObj& in)
+void PropListEditor::ThawData(AtObj& in)
 {
-	m_MainListBox->Import(in);
+	m_MainListBox->ThawData(in);
 }
 
-AtObj PropListEditor::Export()
+AtObj PropListEditor::FreezeData()
 {
-	return m_MainListBox->Export();
+	return m_MainListBox->FreezeData();
 }
 
 //////////////////////////////////////////////////////////////////////////

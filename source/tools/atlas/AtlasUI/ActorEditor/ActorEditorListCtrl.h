@@ -1,7 +1,5 @@
 #include "DraggableListCtrl.h"
 
-#include "IAtlasExporter.h"
-
 class ActorEditor;
 
 class ActorEditorListCtrl : public DraggableListCtrl

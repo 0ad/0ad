@@ -14,7 +14,7 @@ public:
 	bool Undo();
 
 private:
-	bool Merge(AtlasWindowCommand* command);
+	bool Merge(AtlasWindowCommand* previousCommand);
 
 	DraggableListCtrl* m_Ctrl;
 	long m_Src, m_Tgt;
