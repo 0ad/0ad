@@ -13,6 +13,7 @@ class CStrW;
 class CScriptObject;
 class CObjectEntry;
 class CVector3D;
+class CPlayer;
 
 // -----
 //
@@ -104,6 +105,10 @@ template<> jsval ToJSVal<CObjectEntry>( CObjectEntry*& Native );
 // HEntity
 template<> HEntity* ToNative<HEntity>( JSContext* cx, JSObject* obj );
 template<> JSObject* ToScript<HEntity>( HEntity* Native );
+
+// CPlayer*
+template<> bool ToPrimitive<CPlayer*>( JSContext* cx, jsval v, CPlayer*& Storage );
+template<> JSObject* ToScript<CPlayer*>( CPlayer** Native );
 
 // CScriptObject
 template<> bool ToPrimitive<CScriptObject>( JSContext* cx, jsval v, CScriptObject& Storage );

@@ -1,6 +1,7 @@
 #include "precompiled.h"
 
 #include "ScriptingHost.h"
+#include "ScriptCustomTypes.h"
 
 // POINT2D
 
@@ -37,3 +38,51 @@ JSBool Point2d_Constructor(JSContext* UNUSEDPARAM(cx), JSObject* obj, uintN argc
 	return JS_TRUE;
 }
 
+// Colour
+
+void SColour::SColourInit( float _r, float _g, float _b, float _a )
+{
+	AddProperty( L"r", &r );
+	AddProperty( L"g", &g );
+	AddProperty( L"b", &b );
+	AddProperty( L"a", &a );
+
+	r = _r; g = _g; b = _b; a = _a;
+}
+
+void SColour::ScriptingInit()
+{
+	AddMethod<jsval, &SColour::ToString>( "toString", 0 );
+	CJSObject<SColour>::ScriptingInit( "Colour", SColour::Construct, 3 );
+}
+
+jsval SColour::ToString( JSContext* cx, uintN argc, jsval* argv )
+{
+	wchar_t buffer[256];
+	
+	swprintf( buffer, 256, L"[object Colour: ( %f, %f, %f, %f )]", r, g, b, a );
+	buffer[255] = 0;
+
+	utf16string str16(buffer, buffer+wcslen(buffer));
+
+	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, buffer ) ) );
+}
+
+
+JSBool SColour::Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
+{
+	assert( argc >= 3 );
+	float alpha = 1.0;
+	if( argc >= 4 ) alpha = ToPrimitive<float>( argv[3] );
+
+	SColour* col = new SColour( ToPrimitive<float>( argv[0] ),
+								ToPrimitive<float>( argv[1] ),
+								ToPrimitive<float>( argv[2] ),
+								alpha );
+
+	col->m_EngineOwned = false;
+
+	*rval = OBJECT_TO_JSVAL( col->GetScript() );
+
+	return( JS_TRUE );
+}
