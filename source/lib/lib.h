@@ -60,23 +60,23 @@ STMT(\
 #ifdef _WIN32
 #define CHECK_ERR(func)\
 STMT(\
-	int err = (int)(func);\
-	if(err < 0)\
+	int err__ = (int)(func);\
+	if(err__ < 0)\
 	{\
 		assert(0 && "FYI: CHECK_ERR reports that a function failed."\
 		            "feel free to ignore or suppress this warning.");\
-		return err;\
+		return err__;\
 	}\
 )
 #else
 #define CHECK_ERR(func)\
 STMT(\
-	int err = (int)(func);\
-	if(err < 0)\
+	int err__ = (int)(func);\
+	if(err__ < 0)\
 	{\
 		debug_out("%s:%d: FYI: CHECK_ERR reports that a function failed."\
 		            "feel free to ignore or suppress this warning.\n", __FILE__, __LINE__);\
-		return err;\
+		return err__;\
 	}\
 )
 #endif
