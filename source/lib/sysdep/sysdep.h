@@ -26,6 +26,9 @@ extern wchar_t* clipboard_get();
 extern int clipboard_free(wchar_t* copy);
 
 
+extern int get_executable_name(char* n_path, size_t buf_size);
+
+
 #ifdef _MSC_VER
 extern double round(double);
 #endif

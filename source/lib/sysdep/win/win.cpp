@@ -36,7 +36,7 @@ void sle(int x)
 
 
 //
-// these override the portable stdio versions in sysdep.cpp
+// these override the portable versions in sysdep.cpp
 // (they're more convenient)
 //
 
@@ -47,6 +47,12 @@ inline void check_heap()
 }
 
 
+inline int get_executable_name(char* n_path, size_t buf_size)
+{
+	DWORD nbytes = GetModuleFileName(0, n_path, (DWORD)buf_size);
+	return nbytes? 0 : -1;
+}
+
 
 void display_msg(const char* caption, const char* msg)
 {
@@ -56,57 +62,6 @@ void display_msg(const char* caption, const char* msg)
 void wdisplay_msg(const wchar_t* caption, const wchar_t* msg)
 {
 	MessageBoxW(0, msg, caption, MB_ICONEXCLAMATION);
-}
-
-
-void win_debug_break()
-{
-	DebugBreak();
-}
-
-
-
-// need to shoehorn printf-style variable params into
-// the OutputDebugString call.
-// - don't want to split into multiple calls - would add newlines to output.
-// - fixing Win32 _vsnprintf to return # characters that would be written,
-//   as required by C99, looks difficult and unnecessary. if any other code
-//   needs that, implement GNU vasprintf.
-// - fixed size buffers aren't nice, but much simpler than vasprintf-style
-//   allocate+expand_until_it_fits. these calls are for quick debug output,
-//   not loads of data, anyway.
-
-
-static const int MAX_CNT = 512;
-	// max output size of 1 call of (w)debug_out (including \0)
-
-
-
-void debug_out(const char* fmt, ...)
-{
-	char buf[MAX_CNT];
-	buf[MAX_CNT-1] = '\0';
-
-	va_list ap;
-	va_start(ap, fmt);
-	vsnprintf(buf, MAX_CNT-1, fmt, ap);
-	va_end(ap);
-
-	OutputDebugString(buf);
-}
-
-
-void wdebug_out(const wchar_t* fmt, ...)
-{
-	wchar_t buf[MAX_CNT];
-	buf[MAX_CNT-1] = L'\0';
-
-	va_list ap;
-	va_start(ap, fmt);
-	vsnwprintf(buf, MAX_CNT-1, fmt, ap);
-	va_end(ap);
-
-	OutputDebugStringW(buf);
 }
 
 
