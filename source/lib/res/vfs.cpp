@@ -175,7 +175,7 @@ static int path_validate(const uint line, const char* const path)
 	// failed somewhere - err is the error code,
 	// or -1 if not set specifically above.
 fail:
-	debug_out("path_validate at line %d failed: %s", err);
+	debug_out("path_validate at line %d failed: %s (error code %d)", line, msg, err);
 	debug_warn("path_validate failed");
 	return err;
 
@@ -684,11 +684,9 @@ static int remount(Mount& m)
 		tree_add_loc(dir, loc);
 	}
 
-	err = tree_add_loc(dir, &dir_loc);
-	if(err < 0)
-		err = err;
+	CHECK_ERR(tree_add_loc(dir, &dir_loc));
 
-return 0;
+	return 0;
 }
 
 
