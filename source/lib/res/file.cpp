@@ -508,7 +508,8 @@ int file_close(File* const f)
 
 struct IO
 {
-	aiocb cb;
+	aiocb* cb;
+		// large (144 bytes) on Linux
 		// small enough ATM to store here. if not (=> assert triggered),
 		// allocate in IO_init (currently don't do so to reduce allocations).
 
@@ -525,12 +526,14 @@ H_TYPE_DEFINE(IO);
 // all IOs pending for each file. too much work, little benefit.
 
 
-static void IO_init(IO*, va_list)
+static void IO_init(IO* io, va_list)
 {
+	io->cb = (aiocb*)mem_alloc(sizeof(aiocb), 32, MEM_ZERO);
 }
 
-static void IO_dtor(IO*)
+static void IO_dtor(IO* io)
 {
+	mem_free(io->cb);
 }
 
 
@@ -541,8 +544,16 @@ static void IO_dtor(IO*)
 // aio_result, which would terminate the read.
 static int IO_reload(IO* io, const char*, Handle)
 {
-	return (io->cb.aio_buf == 0)? 0 : -1;
-		// if != 0, IO was pending - see above.
+	// failed to allocate in init
+	if(!io->cb)
+		return -1;
+
+	// IO was pending - see above.
+	if(io->cb->aio_buf)
+		return -1;
+
+	// ok
+	return 0;
 }
 
 
@@ -622,7 +633,7 @@ debug_out("file_start_io hio=%I64x ofs=%d size=%d\n", hio, user_ofs, user_size);
 	const int op = (f->flags & FILE_WRITE)? LIO_WRITE : LIO_READ;
 
 	// send off async read/write request
-	aiocb* cb = &io->cb;
+	aiocb* cb = io->cb;
 	cb->aio_lio_opcode = op;
 	cb->aio_buf        = buf;
 	cb->aio_fildes     = f->fd;
@@ -655,7 +666,7 @@ debug_out("file_wait_io: hio=%I64x\n", hio);
 	size = 0;
 
 	H_DEREF(hio, IO, io);
-	aiocb* cb = &io->cb;
+	aiocb* cb = io->cb;
 
 	// wait for transfer to complete.
 	const aiocb** cbs = (const aiocb**)&cb;	// pass in an "array"
@@ -676,7 +687,7 @@ debug_out("file_wait_io: hio=%I64x\n", hio);
 int file_discard_io(Handle& hio)
 {
 	H_DEREF(hio, IO, io);
-	aiocb* cb = &io->cb;
+	aiocb* cb = io->cb;
 
 	if(io->our_buf)
 		mem_free(cb->aio_buf);
