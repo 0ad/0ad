@@ -192,15 +192,22 @@ int CLogger::Interestedness(const char* category)
 	// easy run-time alteration of interest levels (and shouldn't be particularly
 	// slow)
 
+	// Category unspecified: use a high interest level to encourage
+	// people to categorise their errors
+	if (category == NULL)
+		return 2;
+
 	// If the config DB hasn't been loaded, assume the default
 	if (! g_ConfigDB.IsInitialised())
 		return 1;
 
 	CConfigValue* v = g_ConfigDB.GetValue(CFG_SYSTEM, CStr("loginterest.")+category);
+	// If the value is unspecified, also use the default
 	if (!v)
 		return 1;
 
 	int level;
+	// Something failed, so the default value might be a good alternative
 	if (! v->GetInt(level))
 		return 1;
 
