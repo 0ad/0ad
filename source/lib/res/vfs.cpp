@@ -204,10 +204,9 @@ static int path_append(char* dst, const char* path1, const char* path2)
 	size_t total_len = len1 + len2 + 1;	// includes '\0'
 
 	// check if we need to add '/' between path1 and path2
-	bool need_separator = false;
-	const bool first_no_slash = (len1 == 0) || (path1[len1-1] != '/');
 	// note: the second can't start with '/' (not allowed by path_validate)
-	if(first_no_slash)
+	bool need_separator = false;
+	if(len1 != 0 && path1[len1-1] != '/')
 	{
 		total_len++;	// for '/'
 		need_separator = true;
@@ -597,6 +596,10 @@ static int tree_lookup_dir(const char* path, TDir** pdir, uint flags = 0, char* 
 	CHECK_PATH(path);
 	assert(!(flags & ~LF_CREATE_MISSING));	// no undefined bits set
 	// can't check if path ends in '/' here - we're called via tree_lookup.
+
+	// path contains no directory, return "" (root dir).
+	if(exact_path)
+		exact_path[0] = '\0';
 
 	const bool create_missing = !!(flags & LF_CREATE_MISSING);
 

@@ -25,6 +25,7 @@
 #include "win_internal.h"
 
 #include <math.h>
+#include <process.h>	// _beginthreadex
 
 #include <algorithm>
 #include <numeric>
@@ -48,8 +49,7 @@ WIN_REGISTER_FUNC(wtime_shutdown);
 // rationale:
 // we no longer use TGT, due to issues on Win9x; GTC is just as good.
 // (don't want to accelerate the tick rate, because performance will suffer).
-// avoid dependency on WinMM (event timer) to shorten startup time;
-// fmod pulls it in, but it's delay-loaded.
+// avoid dependency on WinMM (event timer) to shorten startup time.
 //
 // we go to the trouble of allowing switching time sources at runtime
 // (=> have to be careful to keep the timer continuous) because we want
@@ -318,7 +318,7 @@ static i64 ticks_lk()
 // (not a problem, but avoids a BoundsChecker warning)
 static double time_lk()
 {
-	assert(hrt_cur_freq > 0);
+	assert(hrt_cur_freq > 0.0);
 	assert(hrt_cal_ticks > 0);
 
 	// elapsed ticks and time since last calibration
@@ -528,7 +528,7 @@ static void calibrate_lk()
 		hrt_cur_freq = hrt_nominal_freq;
 	}
 
-	assert(hrt_cur_freq > 0);
+	assert(hrt_cur_freq > 0.0);
 }
 
 
@@ -612,23 +612,71 @@ unlock();
 //
 //////////////////////////////////////////////////////////////////////////////
 
+// NT system time and FILETIME are hectonanoseconds since Jan. 1, 1601 UTC.
+// SYSTEMTIME is a struct containing month, year, etc.
 
 static const long _1e6 = 1000000;
-static const i64 _1e9 = 1000000000;
+static const long _1e7 = 10000000;
+static const i64  _1e9 = 1000000000;
+
+
+//
+// FILETIME -> time_t routines; used by wposix filetime_to_time_t wrapper.
+//
+
+// hectonanoseconds between Windows and POSIX epoch
+static const i64 posix_epoch_hns = 0x019DB1DED53E8000;
+
+// convert UTC FILETIME to seconds-since-1970 UTC:
+// we just have to subtract POSIX epoch and scale down to units of seconds.
+//
+// note: RtlTimeToSecondsSince1970 isn't officially documented,
+// so don't use that.
+time_t utc_filetime_to_time_t(FILETIME* ft)
+{
+	i64 hns = *(i64*)ft;
+	i64 s = (hns - posix_epoch_hns) / _1e7;
+	return (time_t)(s & 0xffffffff);
+}
+
+
+// convert local FILETIME (includes timezone bias and possibly DST bias)
+// to seconds-since-1970 UTC.
+//
+// note: splitting into month, year etc. is inefficient,
+//   but much easier than determining whether ft lies in DST,
+//   and ourselves adding the appropriate bias.
+//
+// called for FAT file times; see wposix filetime_to_time_t.
+time_t local_filetime_to_time_t(FILETIME* ft)
+{
+	SYSTEMTIME st;
+	FileTimeToSystemTime(ft, &st);
+
+	struct tm t;
+	t.tm_sec   = st.wSecond;
+    t.tm_min   = st.wMinute;
+    t.tm_hour  = st.wHour;
+    t.tm_mday  = st.wDay;
+    t.tm_mon   = st.wMonth-1;
+    t.tm_year  = st.wYear-1900;
+	t.tm_isdst = -1;
+		// let the CRT determine whether this local time
+		// falls under DST by the US rules.
+    return mktime(&t);
+}
+
+
+
 
 // return nanoseconds since posix epoch as reported by system time
 // only 10 or 15 ms resolution!
 static i64 st_time_ns()
 {
-	union
-	{
-		FILETIME ft;
-		i64 i;
-	}
-	t;
-	GetSystemTimeAsFileTime(&t.ft);
-	// Windows system time is hectonanoseconds since Jan. 1, 1601
-	return (t.i - 0x019DB1DED53E8000) * 100;
+	FILETIME ft;
+	GetSystemTimeAsFileTime(&ft);
+	i64 hns = *(i64*)&ft;
+	return (hns - posix_epoch_hns) * 100;
 }
 
 
@@ -655,8 +703,6 @@ static i64 time_ns()
 }
 
 
-
-
 static int wtime_init()
 {
 	hrt_init();
@@ -667,13 +713,9 @@ static int wtime_init()
 	return 0;
 }
 
+
 static int wtime_shutdown()
 {
-	static bool already_shutdown = false;
-	if (already_shutdown)
-		return -1;
-
-	already_shutdown = true;
 	return hrt_shutdown();
 }
 
@@ -712,7 +754,7 @@ int clock_gettime(clockid_t clock, struct timespec* t)
 	assert(clock == CLOCK_REALTIME);
 
 	const i64 ns = time_ns();
-	t->tv_sec  = (time_t)(ns / _1e9);
+	t->tv_sec  = (time_t)((ns / _1e9) & 0xffffffff);
 	t->tv_nsec = (long)  (ns % _1e9);
 	return 0;
 }

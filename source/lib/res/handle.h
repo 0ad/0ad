@@ -1,3 +1,8 @@
+#ifndef HANDLE_H__
+#define HANDLE_H__
+
+#include "types.h"
+
 // define type Handle. split out of h_mgr.h to reduce dependencies.
 
 // 0 = invalid handle value; < 0 is an error code.
@@ -7,3 +12,5 @@
 // not a lot.
 typedef i64 Handle;
 #define HANDLE_DEFINED
+
+#endif	// #ifndef HANDLE_H__
