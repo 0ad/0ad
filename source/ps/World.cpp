@@ -18,7 +18,8 @@ CLightEnv g_LightEnv;
 
 void CWorld::Initialize(CGameAttributes *pAttribs)
 {
-	g_EntityTemplateCollection.loadTemplates();
+	// TODO: Find a better way of handling these global things
+	ONCE(g_EntityTemplateCollection.loadTemplates());
 
 	// Load the map, if one was specified
 	if (pAttribs->m_MapFile.Length())
