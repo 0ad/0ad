@@ -29,7 +29,7 @@
 #endif
 
 
-#pragma data_seg(".LIB$WTA")
+#pragma data_seg(".LIB$WTB")
 WIN_REGISTER_FUNC(wsock_shutdown);
 #pragma data_seg()
 

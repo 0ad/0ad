@@ -47,9 +47,9 @@
 #endif
 
 
-#pragma data_seg(".LIB$WIA")
+#pragma data_seg(".LIB$WIB")
 WIN_REGISTER_FUNC(wsdl_init);
-#pragma data_seg(".LIB$WTA")
+#pragma data_seg(".LIB$WTD")
 WIN_REGISTER_FUNC(wsdl_shutdown);
 #pragma data_seg()
 

@@ -36,9 +36,9 @@
 
 
 // automatic module init (before main) and shutdown (before termination)
-#pragma data_seg(".LIB$WIA")
+#pragma data_seg(".LIB$WIB")
 WIN_REGISTER_FUNC(wtime_init);
-#pragma data_seg(".LIB$WTA")
+#pragma data_seg(".LIB$WTB")
 WIN_REGISTER_FUNC(wtime_shutdown);
 #pragma data_seg()
 
