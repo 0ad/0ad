@@ -105,7 +105,7 @@ void CMessageSocket::StartWriteNextMessage()
 		hdr.m_MsgLength=pMsg->GetSerializedLength();
 
 		// Allocate buffer space
-		if (uint(hdr.m_MsgLength+HEADER_LENGTH) > m_WrBufferSize)
+		if ((uint)(hdr.m_MsgLength+HEADER_LENGTH) > m_WrBufferSize)
 		{
 			m_WrBufferSize = (hdr.m_MsgLength+HEADER_LENGTH);
 			m_WrBufferSize += m_WrBufferSize % 256;
@@ -124,7 +124,7 @@ void CMessageSocket::StartWriteNextMessage()
 		delete pMsg;
 
 		// Start Write Operation
-		printf("CMessageSocket::StartWriteNextMessage(): Writing an MT %d, length %u\n", hdr.m_MsgType, hdr.m_MsgLength+HEADER_LENGTH);
+		printf("CMessageSocket::StartWriteNextMessage(): Writing an MT %d, length %u (%u)\n", hdr.m_MsgType, hdr.m_MsgLength+HEADER_LENGTH, hdr.m_MsgLength);
 		PS_RESULT res=Write(m_pWrBuffer, hdr.m_MsgLength+HEADER_LENGTH);
 		if (res != PS_OK)
 			printf("CMessageSocket::StartWriteNextMessage(): %s\n", res); // Queue Error Message
