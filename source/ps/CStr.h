@@ -182,7 +182,7 @@ public:
 	TCHAR &operator[](long n);
 	TCHAR &operator[](unsigned long n);
 
-	inline const TCHAR *c_str()
+	inline const TCHAR *c_str() const
 	{	return m_String.c_str(); }
 	
 	size_t GetHashCode() const;
