@@ -1,4 +1,4 @@
-// $Id: Xeromyces.cpp,v 1.6 2004/07/11 16:05:10 philip Exp $
+// $Id: Xeromyces.cpp,v 1.7 2004/07/12 15:49:31 philip Exp $
 
 #include "precompiled.h"
 
@@ -6,6 +6,7 @@
 #include <set>
 #include <map>
 #include <stack>
+#include <algorithm>
 
 #include "ps/Xeromyces.h"
 #include "ps/CLogger.h"
@@ -101,6 +102,7 @@ typedef struct {
 
 typedef struct XMLElement {
 	std::string name;
+	int linenum;
 	utf16string text;
 	std::vector<XMLElement*> childs;
 	std::vector<XMLAttribute*> attrs;
@@ -115,6 +117,13 @@ public:
 	virtual void startElement(const XMLCh* const uri, const XMLCh* const localname, const XMLCh* const qname, const Attributes& attrs);
 	virtual void endElement(const XMLCh* const uri, const XMLCh* const localname, const XMLCh* const qname);
 	virtual void characters(const XMLCh* const chars, const unsigned int length);
+	
+	const Locator* m_locator;
+
+	virtual void setDocumentLocator(const Locator* const locator)
+	{
+		m_locator = locator;
+	}
 
 	// Non-SAX2 stuff, used for storing the
 	// parsed data and constructing the XMB:
@@ -190,7 +199,7 @@ void CXeromyces::Load(const char* filename)
 	// Start the checksum with a particular seed value, so the XMBs will
 	// be recreated whenever the version/etc string has been changed, so
 	// the string can be changed whenever the file format's changed.
-	const char* ChecksumID = "version B";
+	const char* ChecksumID = "version C";
 	unsigned long XMLChecksum = source.CRC32( crc32( crc32(0L, Z_NULL, 0), (Bytef*)ChecksumID, (int)strlen(ChecksumID) ) );
 
 	// Check whether the XMB file needs to be regenerated:
@@ -199,23 +208,9 @@ void CXeromyces::Load(const char* filename)
 	CStr filenameXMB = filename;
 	filenameXMB[(int)filenameXMB.Length()-1] = 'b';
 
-	// HACK: Check whether the XMB exists (in a rather unpleasant way)
-	char path[VFS_MAX_PATH];
-	vfs_realpath(filename, path); // can't get the XMB's VFS path because it doesn't exist
-	path[strlen(path)-1] = 'b';
-	bool fileExists = false;
-	{
-		FILE* f = fopen(path, "r");
-		if (f) 
-		{
-			fileExists = true;
-			fclose(f);
-		}
-	}
-
 	// Load the entire file, with the assumption that usually it's
 	// going to be valid and will then be passed to XMBFile().
-	if (fileExists && ReadXMBFile(filenameXMB.c_str(), true, XMLChecksum))
+	if (vfs_exists(filenameXMB) && ReadXMBFile(filenameXMB, true, XMLChecksum))
 		return;
 
 	
@@ -286,7 +281,7 @@ bool CXeromyces::ReadXMBFile(const char* filename, bool CheckCRC, unsigned long 
 		return false;
 	}
 
-	assert(bufferSize >= 42 && "Invalid XMB file"); // 42 bytes is the smallest possible XMB.   (Well, okay, 50 bytes is the smallest, but it was 42 the first time I counted, and 42 is a much nicer number.)
+	assert(bufferSize >= 42 && "Invalid XMB file"); // 42 bytes is the smallest possible XMB. (Well, maybe not quite, but it's a nice number.)
 	assert(*(int*)buffer == HeaderMagic && "Invalid XMB file header");
 
 	if (CheckCRC)
@@ -322,18 +317,6 @@ void XeroHandler::endDocument()
 {
 }
 
-/*
-std::wstring lowercase(const XMLCh *a)
-{
-	std::wstring b;
-	uint len=XMLString::stringLen(a);
-	b.resize(len);
-	for (uint i = 0; i < len; ++i)
-		b[i] = towlower(a[i]);
-	return b;
-}
-*/
-
 // Silently clobbers non-ASCII characters
 std::string lowercase_ascii(const XMLCh *a)
 {
@@ -353,6 +336,7 @@ void XeroHandler::startElement(const XMLCh* const uri, const XMLCh* const localn
 	// Create a new element
 	XMLElement* e = new XMLElement;
 	e->name = elementName;
+	e->linenum = m_locator->getLineNumber();
 
 	// Store all the attributes in the new element
 	for (unsigned int i = 0; i < attrs.getLength(); ++i)
@@ -447,21 +431,50 @@ void XeroHandler::OutputElement(XMLElement* el)
 	int Pos_ChildrenOffset = buffer.tell();
 	buffer.write("????", 4);
 
-	// Trim excess whitespace
-	std::wstring whitespaceW = L" \t\r\n";
-	utf16string whitespace (whitespaceW.begin(), whitespaceW.end());
+
+	// Trim excess whitespace in the entity's text, while counting
+	// the number of newlines trimmed (so that JS error reporting
+	// can give the correct line number)
+
+	std::string whitespaceA = " \t\r\n";
+	utf16string whitespace (whitespaceA.begin(), whitespaceA.end());
+
+	// Find the start of the non-whitespace section
 	size_t first = el->text.find_first_not_of(whitespace);
-	if (first == -1) // entirely whitespace
+
+	if (first == el->text.npos)
+		// Entirely whitespace - easy to handle
 		el->text = utf16string();
+
 	else
 	{
+		// Count the number of \n being cut off,
+		// and add them to the line number
+		utf16string trimmed (el->text.begin(), el->text.begin()+first);
+		el->linenum += (int)std::count(trimmed.begin(), trimmed.end(), (utf16_t)'\n');
+
+		// Find the end of the non-whitespace section,
+		// and trim off everything else
 		size_t last = el->text.find_last_not_of(whitespace);
 		el->text = el->text.substr(first, 1+last-first);
 	}
+
 	// Output text, prefixed by length in bytes
-	int TextLen = 2*((int)el->text.length()+1);
-	buffer.write(&TextLen, 4);
-	buffer.write((void*)el->text.c_str(), TextLen);
+	if (el->text.length() == 0)
+	{
+		// No text; don't write much
+		buffer.write("\0\0\0\0", 4);
+	}
+	else
+	{
+		// Write length and line number and null-terminated text
+		int NodeLen = 4 + 2*((int)el->text.length()+1);
+		buffer.write(&NodeLen, 4);
+		buffer.write(&el->linenum, 4);
+		buffer.write((void*)el->text.c_str(), NodeLen-4);
+	}
+
+	// Output attributes
 
 	for (int i = 0; i < AttrCount; ++i)
 	{
@@ -480,6 +493,7 @@ void XeroHandler::OutputElement(XMLElement* el)
 	int ChildrenOffset = buffer.tell() - (Pos_ChildrenOffset+4);
 	buffer.write(&ChildrenOffset, 4, Pos_ChildrenOffset);
 
+	// Output all child nodes
 	for (int i = 0; i < ChildCount; ++i)
 		OutputElement(el->childs[i]);
 

@@ -1,4 +1,4 @@
-/* $Id: XeroXMB.h,v 1.4 2004/07/11 11:51:10 philip Exp $
+/* $Id: XeroXMB.h,v 1.5 2004/07/12 15:49:31 philip Exp $
 
 	Xeromyces - XMB reading library
 
@@ -53,7 +53,7 @@ XMB_Node {
 12)	int ChildCount;
 
 16)	int ChildrenOffset; // == sizeof(Text)+sizeof(Attributes)
-20)	ZStrW Text;
+20)	XMB_Text Text;
 	XMB_Attribute Attributes[];
 	XMB_Node Children[];
 
@@ -64,14 +64,21 @@ XMB_Attribute {
 	ZStrW Value;
 }
 
-XMB_ZStrA {
+ZStrA {
 	int Length; // in bytes
 	char* Text; // null-terminated ASCII
 }
 
-XMB_ZStrW {
+ZStrW {
 	int Length; // in bytes
-	char* Text; // null-terminated UTF16
+	char16* Text; // null-terminated UTF16
+}
+
+XMB_Text {
+20)	int Length; // 0 if there's no text, else 4+sizeof(Text) in bytes including terminator
+	// If Length != 0:
+24)	int LineNumber; // for e.g. debugging scripts
+28)	char16* Text; // null-terminated UTF16
 }
 
 
@@ -152,6 +159,7 @@ public:
 	XMBElementList getChildNodes();
 	XMBAttributeList getAttributes();
 	utf16string getText();
+	int getLineNumber();
 
 private:
 	// Pointer to the start of the node

@@ -1247,8 +1247,12 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile)
 	// Execute inline scripts
 	CStr code (Element.getText());
 
-	jsval result;
-	JS_EvaluateScript(g_ScriptingHost.getContext(), (JSObject*)m_ScriptObject, code.c_str(), (int)code.Length(), "", 1, &result);
+	if (code.Length())
+	{
+		jsval result;
+		// TODO: Report the filename
+		JS_EvaluateScript(g_ScriptingHost.getContext(), (JSObject*)m_ScriptObject, code.c_str(), (int)code.Length(), "Some XML file", Element.getLineNumber(), &result);
+	}
 }
 
 void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)

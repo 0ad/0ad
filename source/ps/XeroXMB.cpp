@@ -1,4 +1,4 @@
-// $Id: XeroXMB.cpp,v 1.4 2004/07/11 11:51:10 philip Exp $
+// $Id: XeroXMB.cpp,v 1.5 2004/07/12 15:49:31 philip Exp $
 
 #include "precompiled.h"
 
@@ -10,8 +10,6 @@
 
 const int HeaderMagic = 0x30424D58; // = "XMB0" (little-endian)
 const char* HeaderMagicStr = "XMB0";
-
-typedef utf16string::value_type char16;
 
 // Warning: May contain traces of pointer abuse
 
@@ -164,9 +162,21 @@ XMBAttributeList XMBElement::getAttributes()
 
 utf16string XMBElement::getText()
 {
-	return utf16string((char16*)(m_Pointer + 24));
+	// Return empty string if there's no text
+	if (*(int*)(m_Pointer + 20) == 0)
+		return utf16string();
+	else
+		return utf16string((utf16_t*)(m_Pointer + 28));
 }
 
+int XMBElement::getLineNumber()
+{
+	// Make sure there actually *was* some text to record the line of
+	if (*(int*)(m_Pointer + 20) == 0)
+		return -1;
+	else
+		return *(int*)(m_Pointer + 24);
+}
 
 XMBElement XMBElementList::item(const int id)
 {
@@ -203,7 +213,7 @@ utf16string XMBAttributeList::getNamedItem(const int AttributeName)
 	for (int i = 0; i < Count; ++i)
 	{
 		if (*(int*)Pos == AttributeName)
-			return utf16string((char16*)(Pos+8));
+			return utf16string((utf16_t*)(Pos+8));
 		Pos += 8 + *(int*)(Pos+4); // Skip over the string
 	}
 
@@ -235,5 +245,5 @@ XMBAttribute XMBAttributeList::item(const int id)
 	m_LastItemID = id;
 	m_LastPointer = Pos;
 
-	return XMBAttribute(*(int*)Pos, utf16string( (char16*)(Pos+8) ));
+	return XMBAttribute(*(int*)Pos, utf16string( (utf16_t*)(Pos+8) ));
 }
