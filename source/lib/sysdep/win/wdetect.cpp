@@ -309,7 +309,11 @@ static void list_add_dll(const char* dll_path)
 
 	// get filename for "already added" check.
 	const char* dll_fn = strrchr(dll_path, '\\')+1;
-	assert(dll_fn != (const char*)1);	// fires if dll_path was a filename
+	if(dll_fn != (const char*)1)	// fires if dll_path was a filename
+	{
+		debug_warn("list_add_dll: invalid path");
+		return;
+	}
 
 	// make sure it hasn't been added yet.
 	if(dlls_already_added.find(dll_fn) != dlls_already_added.end())
@@ -404,9 +408,17 @@ static BOOL CALLBACK ds_enum(void* guid, const char* description, const char* mo
 
 int win_get_snd_info()
 {
+	// make sure this is set to something sensible when
+	// DSEnumerate doesn't find anything
+	ds_drv_name[0] = '\0';
+
 	// get sound card name
 	if(DirectSoundEnumerateA((LPDSENUMCALLBACKA)ds_enum, (void*)0) != DS_OK)
 		debug_warn("DirectSoundEnumerate failed");
+
+	// check for the case where there's no sound card
+	if (strlen(ds_drv_name) == 0)
+		return 0;
 
 	// find all DLLs related to OpenAL, retrieve their versions,
 	// and store in snd_drv_ver string.
