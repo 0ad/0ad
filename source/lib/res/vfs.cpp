@@ -49,7 +49,7 @@
 // *: the add_watch code would need to iterate through subdirs and watch
 //    each one, because the monitor API (e.g. FAM) may only be able to
 //    watch single directories, instead of a whole subdirectory tree.
-#define NO_DIR_WATCH
+//#define NO_DIR_WATCH
 
 
 // rationale for no forcibly-close support:
@@ -1295,6 +1295,14 @@ static int VFile_reload(VFile* vf, const char* v_fn, Handle)
 }
 
 
+// return the size of an already opened file, or a negative error code.
+ssize_t vfs_size(Handle hf)
+{
+	H_DEREF(hf, VFile, vf);
+	return vf_size(vf);
+}
+
+
 // open the file for synchronous or asynchronous IO. write access is
 // requested via FILE_WRITE flag, and is not possible for files in archives.
 Handle vfs_open(const char* v_fn, uint file_flags /* = 0 */)
@@ -1391,27 +1399,42 @@ void dump()
 	debug_out("TOTAL TIME IN VFS_IO: %f\nthroughput: %f MB/s\n\n", dt, totaldata/dt/1e6);
 }
 
+static ssize_t vfs_timed_io(const Handle hf, const size_t size, void** p, FileIOCB cb = 0, uintptr_t ctx = 0)
+{
+	ONCE(atexit(dump));
+
+	double t1=get_time();
+	totaldata += size;
+
+	ssize_t nread = vfs_io(hf, size, p, cb, ctx);
+
+	double t2=get_time();
+	if(t2-t1 < 1.0)
+		dt += t2-t1;
+
+	return nread;
+}
+
+
 // load the entire file <fn> into memory; return a handle to the memory
 // and the buffer address/size. output parameters are zeroed on failure.
 // in addition to the regular file cache, the entire buffer is kept in memory
 // if flags & FILE_CACHE.
+//
+// note: we need the Handle return value for Tex.hm - the data pointer
+// must be protected against being accidentally free-d in that case.
 Handle vfs_load(const char* const v_fn, void*& p, size_t& size, uint flags /* default 0 */)
 {
-ONCE(atexit(dump));
-
 #ifdef PARANOIA
 debug_out("vfs_load fn=%s\n", fn);
 #endif
 
-	p = 0;		// vfs_io needs initial 0 value
-	size = 0;	// in case open or deref fails
+	p = 0; size = 0;	// zeroed in case vfs_open or H_DEREF fails
 
 	Handle hf = vfs_open(v_fn, flags);
-	if(hf <= 0)
-		return hf;	// error code
 	H_DEREF(hf, VFile, vf);
 
-	Handle hm = 0;
+	Handle hm = 0;	// return value - handle to memory or error code
 	size = vf_size(vf);
 
 	// already read into mem - return existing mem handle
@@ -1423,51 +1446,36 @@ debug_out("vfs_load fn=%s\n", fn);
 		{
 			assert(vf_size(vf) == (off_t)size && "vfs_load: mismatch between File and Mem size");
 			hm = vf->hm;
-			goto skip_read;
+			goto ret;
 		}
 		else
 			debug_warn("vfs_load: invalid MEM attached to vfile (0 pointer)");
 			// happens if someone frees the pointer. not an error!
 	}
 
-	{	// VC6 goto fix
-double t1=get_time();
-totaldata += size;
-	ssize_t nread = vfs_io(hf, size, &p);
-double t2=get_time();
-if(t2-t1 > 1.0)
-;
-else
-dt += t2-t1;
-	if(nread > 0)
+	// allocate memory. does expose implementation details of File
+	// (padding), but it greatly simplifies returning the Handle
+	// (if we allow File to alloc, have to make sure the Handle references
+	// the actual data address, not that of the padding).
+	const size_t BLOCK_SIZE = 64*KB;
+	p = mem_alloc(size, BLOCK_SIZE, 0, &hm);
+	if(!p)
+		goto ret;
+
+	ssize_t nread = vfs_timed_io(hf, size, &p);
+	// failed
+	if(nread < 0)
 	{
-		// one case where we need the handle return value is Tex.hm;
-		// we can't have the pointer freed behind our back there.
-		// if someone calls mem_get_ptr or mem_size, it must return the
-		// real memory range (p+size), disregarding padding added by File.
-		// hence, mem_assign finds the actual allocation to which p belongs
-		// (not necessarily starting at p); we mem_assign_user a subrange.
-		hm = mem_assign(p, size);
-		assert(hm > 0);
-		if(mem_assign_user(hm, p, size) < 0)
-			debug_warn("vfs_load: mem_assign_user failed");
-
-		// sanity check: handle returns correct info
-#ifndef NDEBUG
-		size_t test_size;
-		void* test_p = mem_get_ptr(hm, &test_size);
-		assert(test_p == p && test_size == size);
-#endif
-
+		mem_free_h(hm);
+		hm = nread;	// error code
+	}
+	else
+	{
 		if(flags & FILE_CACHE)
-		{
 			vf->hm = hm;
-			// add ref to hm for VFile
-		}
-	}
 	}
 
-skip_read:
+ret:
 
 	vfs_close(hf);
 		// if FILE_CACHE, it's kept open
@@ -1505,7 +1513,14 @@ int vfs_store(const char* const v_fn, void* p, const size_t size, uint flags /* 
 
 struct IO
 {
-	FileIO io;
+	union
+	{
+		FileIO fio;
+		ZipIO zio;
+	};
+
+	bool is_zip;	// necessary if we have separate File and Zip IO structures
+		// default is false, since control block is 0-initialized
 };
 
 H_TYPE_DEFINE(IO);
@@ -1521,7 +1536,10 @@ static void IO_init(IO*, va_list)
 
 static void IO_dtor(IO* io)
 {
-	file_discard_io(io->io);
+	if(io->is_zip)
+		zip_discard_io(&io->zio);
+	else
+		file_discard_io(&io->fio);
 }
 
 
@@ -1545,8 +1563,11 @@ Handle vfs_start_io(Handle hf, off_t ofs, size_t size, void* buf)
 
 	H_DEREF(hf, VFile, vf);
 	if(vf_flags(vf) & VF_ZIP)
-		return zip_start_io(&vf->zf, ofs, size, buf, &io->io);
-	return file_start_io(&vf->f, ofs, size, buf, &io->io);
+	{
+		io->is_zip = true;
+		return zip_start_io(&vf->zf, ofs, size, buf, &io->zio);
+	}
+	return file_start_io(&vf->f, ofs, size, buf, &io->fio);
 }
 
 
@@ -1555,7 +1576,10 @@ Handle vfs_start_io(Handle hf, off_t ofs, size_t size, void* buf)
 inline int vfs_io_complete(Handle hio)
 {
 	H_DEREF(hio, IO, io);
-	return file_io_complete(io->io);
+	if(io->is_zip)
+		return zip_io_complete(&io->zio);
+	else
+		return file_io_complete(&io->fio);
 }
 
 
@@ -1564,7 +1588,10 @@ inline int vfs_io_complete(Handle hio)
 inline int vfs_wait_io(Handle hio, void*& p, size_t& size)
 {
 	H_DEREF(hio, IO, io);
-	return file_wait_io(io->io, p, size);
+	if(io->is_zip)
+		return zip_wait_io(&io->zio, p, size);
+	else
+		return file_wait_io(&io->fio, p, size);
 }
 
 

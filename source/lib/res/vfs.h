@@ -111,6 +111,9 @@ extern bool vfs_exists(const char* fn);
 // get file status (currently only size). output param is zeroed on error.
 extern int vfs_stat(const char* fn, struct stat*);
 
+// return the size of an already opened file, or a negative error code.
+extern ssize_t vfs_size(Handle hf);
+
 // open the file for synchronous or asynchronous IO. write access is
 // requested via FILE_WRITE flag, and is not possible for files in archives.
 // flags defined in file.h
@@ -130,6 +133,10 @@ extern int vfs_close(Handle& h);
 // begin transferring <size> bytes, starting at <ofs>. get result
 // with vfs_wait_read; when no longer needed, free via vfs_discard_io.
 extern Handle vfs_start_io(Handle hf, off_t ofs, size_t size, void* buf);
+
+// indicates if the given IO has completed.
+// return value: 0 if pending, 1 if complete, < 0 on error.
+extern int vfs_io_complete(Handle hio);
 
 // wait until the transfer <hio> completes, and return its buffer.
 // output parameters are zeroed on error.
