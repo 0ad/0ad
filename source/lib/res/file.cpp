@@ -444,6 +444,12 @@ int file_close(File* const f)
 {
 	CHECK_FILE(f);
 
+	// make sure the mapping is actually freed,
+	// regardless of how many references remain.
+	if(f->map_refs > 1)
+		f->map_refs = 1;
+	file_unmap(f);
+
 	// (check fd to avoid BoundsChecker warning about invalid close() param)
 	if(f->fd != -1)
 	{
@@ -1344,13 +1350,18 @@ int file_unmap(File* const f)
 {
 	CHECK_FILE(f);
 
-	void* const p = f->mapping;
-	f->mapping = 0;
-	// don't reset size - the file is still open.
-
-	// not currently mapped
-	if(!p)
+	// file is not currently mapped
+	if(f->map_refs == 0)
 		return -1;
 
-	return munmap(p, (uint)f->size);
+	// still more than one reference remaining - done.
+	if(--f->map_refs > 0)
+		return 0;
+
+	// no more references: remove the mapping
+	void* const p = f->mapping;
+	f->mapping = 0;
+	// don't clear f->size - the file is still open.
+
+	return munmap(p, f->size);
 }
