@@ -36,11 +36,13 @@ int res_reload_changed_files()
 	static double last_time;
 	static char last_fn[VFS_MAX_PATH];
 
-	char path[PATH_MAX];
-	while(dir_get_changed_file(path) == 0)
+	char n_path[PATH_MAX];
+	while(dir_get_changed_file(n_path) == 0)
 	{
+		char p_path[PATH_MAX];
+		CHECK_ERR(file_make_portable_path(n_path, p_path));
 		char vfs_path[VFS_MAX_PATH];
-		CHECK_ERR(vfs_make_vfs_path(path, vfs_path));
+		CHECK_ERR(vfs_make_vfs_path(p_path, vfs_path));
 
 		const char* fn = vfs_path;
 
