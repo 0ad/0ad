@@ -353,8 +353,6 @@ void CGUI::DrawSprite(const CStr& SpriteName,
 	if (SpriteName == CStr())
 		return;
 
-	const char * buf = SpriteName;
-
 	bool DoClipping = (Clipping != CRect());
 	CGUISprite Sprite;
 
@@ -904,8 +902,8 @@ void CGUI::LoadXMLFile(const string &Filename)
 	{
 		XeroFile.Load(Filename.c_str());
 	}
-	catch (PSERROR_Xeromyces& err) {
-		UNUSED(err);
+	catch (PSERROR_Xeromyces)
+	{
 		// Fail silently
 		return;
 	}
@@ -916,31 +914,40 @@ void CGUI::LoadXMLFile(const string &Filename)
 	//  data we'll be expecting
 	std::string root_name = XeroFile.getElementString(node.getNodeName());
 
-	if (root_name == "objects")
+	try
 	{
-		Xeromyces_ReadRootObjects(node, &XeroFile);
 
-		// Re-cache all values so these gets cached too.
-		//UpdateResolution();
+		if (root_name == "objects")
+		{
+			Xeromyces_ReadRootObjects(node, &XeroFile);
+
+			// Re-cache all values so these gets cached too.
+			//UpdateResolution();
+		}
+		else
+		if (root_name == "sprites")
+		{
+			Xeromyces_ReadRootSprites(node, &XeroFile);
+		}
+		else
+		if (root_name == "styles")
+		{
+			Xeromyces_ReadRootStyles(node, &XeroFile);
+		}
+		else
+		if (root_name == "setup")
+		{
+			Xeromyces_ReadRootSetup(node, &XeroFile);
+		}
+		else
+		{
+			// TODO Gee: Output in log
+		}
 	}
-	else
-	if (root_name == "sprites")
+	catch (PSERROR_GUI)
 	{
-		Xeromyces_ReadRootSprites(node, &XeroFile);
-	}
-	else
-	if (root_name == "styles")
-	{
-		Xeromyces_ReadRootStyles(node, &XeroFile);
-	}
-	else
-	if (root_name == "setup")
-	{
-		Xeromyces_ReadRootSetup(node, &XeroFile);
-	}
-	else
-	{
-		// TODO Gee: Output in log
+		LOG(ERROR, "Errors loading GUI file %s", Filename.c_str());
+		return;
 	}
 
 	// Now report if any other errors occured
@@ -1104,7 +1111,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			continue;
 
 		// Ignore "type" and "style", we've already checked it
-		if (attr.Name == attr_type || attr.Name == attr_style )
+		if (attr.Name == attr_type || attr.Name == attr_style)
 			continue;
 
 		// Also the name needs some special attention
@@ -1117,6 +1124,44 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 
 		if (attr.Name == attr_z)
 			ManuallySetZ = true;
+
+		
+		// Generate "stretched:filename" sprites.
+		//
+		// Check whether it's actually one of the many sprite... parameters.
+		if (pFile->getAttributeString(attr.Name).substr(0, 6) == "sprite")
+		{
+			// Check whether it's a special stretched one
+			std::string SpriteName = CStr8(attr.Value);
+			if (SpriteName.substr(0, 10) == "stretched:" &&
+				m_Sprites.find(SpriteName) == m_Sprites.end() )
+			{
+
+				CGUISprite sprite;
+				SGUIImage image;
+
+				CStr DefaultSize ("0 0 100% 100%");
+				image.m_TextureSize = CClientArea(DefaultSize);
+				image.m_Size = CClientArea(DefaultSize);
+
+				std::string TexFilename = "art/textures/ui/";
+				TexFilename += SpriteName.substr(10);
+
+				image.m_TextureName = TexFilename;
+				Handle tex = tex_load(TexFilename.c_str());
+				if (tex <= 0)
+				{
+					LOG(ERROR, "Error opening texture '%s': %lld", TexFilename.c_str(), tex);
+					throw PSERROR_GUI_TextureLoadFailed();
+				}
+				image.m_Texture = tex;
+				// TODO: more error handling
+				tex_upload(tex);
+
+				sprite.AddImage(image);	
+				m_Sprites[SpriteName] = sprite;
+			}
+		}
 
 		// Try setting the value
 		try
@@ -1192,20 +1237,24 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			{
 				Handle h = vfs_open(file);
 				if (h <= 0)
-					// TODO: Error handling
-					assert(! "File open failed");
-				else
 				{
-					void* data;
-					size_t len;
-					int err = vfs_map(h, 0, data, len);
-					assert(err == 0);
-
-					code = (char*)data;
-
-					vfs_unmap(h);
-					vfs_close(h);
+					LOG(ERROR, "Error opening action file '%s': %lld", file, h);
+					throw PSERROR_GUI_JSOpenFailed();
 				}
+
+				void* data;
+				size_t len;
+				int err = vfs_map(h, 0, data, len);
+				if (err)
+				{
+					LOG(ERROR, "Error mapping action file '%s': %lld", file, err);
+					throw PSERROR_GUI_JSOpenFailed();
+				}
+
+				code = (char*)data;
+
+				vfs_unmap(h);
+				vfs_close(h);
 			}
 
 			// Read the inline code (concatenating to the file code, if both are specified)
@@ -1274,21 +1323,25 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile)
 	{
 		Handle h = vfs_open(file);
 		if (h <= 0)
-			// TODO: Error handling
-			assert(! "File open failed");
-		else
 		{
-			void* data;
-			size_t len;
-			int err = vfs_map(h, 0, data, len);
-			assert(err == 0);
-
-			jsval result;
-			JS_EvaluateScript(g_ScriptingHost.getContext(), (JSObject*)m_ScriptObject, (const char*)data, (int)len, file, 1, &result);
-
-			vfs_unmap(h);
-			vfs_close(h);
+			LOG(ERROR, "Error opening script file '%s': %lld", file, h);
+			throw PSERROR_GUI_JSOpenFailed();
 		}
+
+		void* data;
+		size_t len;
+		int err = vfs_map(h, 0, data, len);
+		if (err)
+		{
+			LOG(ERROR, "Error mapping script file '%s': %lld", file, err);
+			throw PSERROR_GUI_JSOpenFailed();
+		}
+
+		jsval result;
+		JS_EvaluateScript(g_ScriptingHost.getContext(), (JSObject*)m_ScriptObject, (const char*)data, (int)len, file, 1, &result);
+
+		vfs_unmap(h);
+		vfs_close(h);
 	}
 
 	// Execute inline scripts
@@ -1376,8 +1429,8 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			Handle tex = tex_load(TexFilename.c_str());
 			if (tex <= 0)
 			{
-				// TODO: Error
-				assert(! "Failed to load texture");
+				LOG(ERROR, "Error opening texture '%s': %lld", TexFilename.c_str(), tex);
+				throw PSERROR_GUI_TextureLoadFailed();
 			}
 			image.m_Texture = tex;
 			tex_upload(tex);

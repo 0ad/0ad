@@ -669,7 +669,19 @@ static int wtime_init()
 
 static int wtime_shutdown()
 {
+	static bool already_shutdown = false;
+	if (already_shutdown)
+		return -1;
+
+	already_shutdown = true;
 	return hrt_shutdown();
+}
+
+// Called by the crash code to kill the thread,
+// because it disrupts debugging.
+void abort_timer()
+{    
+	wtime_shutdown();
 }
 
 void wtime_reset_impl()

@@ -1,4 +1,4 @@
-// $Id: JSInterface_IGUIObject.cpp,v 1.5 2004/07/12 15:52:53 philip Exp $
+// $Id: JSInterface_IGUIObject.cpp,v 1.6 2004/07/17 17:05:10 philip Exp $
 
 #include "precompiled.h"
 
@@ -71,8 +71,8 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 		EGUISettingType Type;
 		if (e->GetSettingType(propName, Type) != PS_OK)
 		{
-			// Possibly a function, but they should have been individually
-			// handled above, so complain about it
+			// Potentially a function, but they should have been
+			// individually handled above, so complain about it
 			JS_ReportError(cx, "Invalid GUIObject property '%s'", propName.c_str());
 			return JS_FALSE;
 		}
@@ -128,6 +128,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				CClientArea area;
 				GUI<CClientArea>::GetSetting(e, propName, area);
 				JSObject* obj = JS_NewObject(cx, &JSI_GUISize::JSI_class, NULL, NULL);
+
 				#define P(x, y, z) jsval z = INT_TO_JSVAL(area.x.y); JS_SetProperty(cx, obj, #z, &z)
 					P(pixel,	left,	left);
 					P(pixel,	top,	top);
@@ -138,6 +139,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 					P(percent,	right,	rright);
 					P(percent,	bottom,	rbottom);
 				#undef P
+
 				*vp = OBJECT_TO_JSVAL(obj);
 				break;
 			}

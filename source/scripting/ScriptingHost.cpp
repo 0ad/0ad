@@ -41,36 +41,26 @@ ScriptingHost::ScriptingHost() : m_RunTime(NULL), m_Context(NULL), m_GlobalObjec
 {
     m_RunTime = JS_NewRuntime(RUNTIME_MEMORY_ALLOWANCE);
 
-    if (m_RunTime == NULL)
-	{
-		throw (std::string("ScriptingHost: Failed to create JavaScript runtime"));
-	}
+	if (m_RunTime == NULL)
+		throw PSERROR_Scripting_RuntimeCreationFailed();
 
     m_Context = JS_NewContext(m_RunTime, STACK_CHUNK_SIZE);
 
-    if (m_Context == NULL)
-	{
-		throw (std::string("ScriptingHost: Failed to create JavaScript context"));
-	}
+	if (m_Context == NULL)
+		throw PSERROR_Scripting_ContextCreationFailed();
 
 	JS_SetErrorReporter(m_Context, ScriptingHost::ErrorReporter);
 
 	m_GlobalObject = JS_NewObject(m_Context, &GlobalClass, NULL, NULL);
 
 	if (m_GlobalObject == NULL)
-	{
-		throw (std::string("ScriptingHost: Failed to create global object"));
-	}
+		throw PSERROR_Scripting_GlobalObjectCreationFailed();
 
 	if (JS_InitStandardClasses(m_Context, m_GlobalObject) == JSVAL_FALSE)
-	{
-		throw (std::string("ScriptingHost: Failed to init standard classes"));
-	}
+		throw PSERROR_Scripting_StandardClassSetupFailed();
 
 	if (JS_DefineFunctions(m_Context, m_GlobalObject, ScriptFunctionTable) == JS_FALSE)
-	{
-		throw (std::string("ScriptingHost: Failed to setup native functions"));
-	}
+		throw PSERROR_Scripting_NativeFunctionSetupFailed();
 
 	std::cout << "Scripting environment initialized" << std::endl;
 }
@@ -103,9 +93,7 @@ void ScriptingHost::LoadScriptFromDisk(const std::string & fileName)
 	std::ifstream scriptFile(fileName.c_str());
 
 	if (scriptFile.is_open() == false)
-	{
-		throw (std::string("Could not open file: ") + fileName);
-	}
+		throw PSERROR_Scripting_LoadFile_OpenFailed();
 
 	while (scriptFile.eof() == false)
 	{
@@ -118,9 +106,7 @@ void ScriptingHost::LoadScriptFromDisk(const std::string & fileName)
 	JSBool ok = JS_EvaluateScript(m_Context, m_GlobalObject, script.c_str(), (unsigned int)script.length(), fileName.c_str(), 0, &rval); 
 
     if (ok == JS_FALSE)
-	{
-		throw (std::string("Error loading script from disk: ") + fileName);
-	}
+		throw PSERROR_Scripting_LoadFile_EvalErrors();
 }
 
 jsval ScriptingHost::CallFunction(const std::string & functionName, jsval * params, int numParams)
@@ -130,9 +116,7 @@ jsval ScriptingHost::CallFunction(const std::string & functionName, jsval * para
 	JSBool ok = JS_CallFunctionName(m_Context, m_GlobalObject, functionName.c_str(), numParams, params, &result);
 
 	if (ok == JS_FALSE)
-	{
-		throw (std::string("Failure whilst calling script funtion: ") + functionName);
-	}
+		throw PSERROR_Scripting_CallFunctionFailed();
 
 	return result;
 }
@@ -153,9 +137,7 @@ void ScriptingHost::RegisterFunction(const std::string & functionName, JSNative 
 	JSFunction * func = JS_DefineFunction(m_Context, m_GlobalObject, functionName.c_str(), function, numArgs, 0);
 
 	if (func == NULL)
-	{
-		throw (std::string("Could not register function ") + functionName);
-	}
+		throw PSERROR_Scripting_RegisterFunctionFailed();
 }
 
 void ScriptingHost::DefineConstant(const std::string & name, int value)
@@ -167,9 +149,7 @@ void ScriptingHost::DefineConstant(const std::string & name, int value)
 									NULL, NULL, JSPROP_READONLY);
 
 	if (ok == JS_FALSE)
-	{
-		throw (std::string("Could not create constant"));
-	}
+		throw PSERROR_Scripting_DefineConstantFailed();
 }
 
 void ScriptingHost::DefineConstant(const std::string & name, double value)
@@ -190,9 +170,7 @@ void ScriptingHost::DefineConstant(const std::string & name, double value)
 	JSBool ok = JS_DefineConstDoubles(m_Context, m_GlobalObject, spec);
 
 	if (ok == JS_FALSE)
-	{
-		throw (std::string("Could not create constant"));
-	}
+		throw PSERROR_Scripting_DefineConstantFailed();
 }
 
 void ScriptingHost::DefineCustomObjectType(JSClass *clasp, JSNative constructor, uintN minArgs, JSPropertySpec *ps, JSFunctionSpec *fs, JSPropertySpec *static_ps, JSFunctionSpec *static_fs)
@@ -202,7 +180,7 @@ void ScriptingHost::DefineCustomObjectType(JSClass *clasp, JSNative constructor,
 	if (m_CustomObjectTypes.find(typeName) != m_CustomObjectTypes.end())
 	{
 		// This type already exists
-		throw std::string("Type already exists");
+		throw PSERROR_Scripting_DefineType_AlreadyExists();
 	}
 
 	JSObject * obj = JS_InitClass(	m_Context, m_GlobalObject, 0, 
@@ -222,7 +200,7 @@ void ScriptingHost::DefineCustomObjectType(JSClass *clasp, JSNative constructor,
 	}
 	else
 	{
-		throw std::string("Type creation failed");
+		throw PSERROR_Scripting_DefineType_CreationFailed();
 	}
 }
 
@@ -231,9 +209,7 @@ JSObject * ScriptingHost::CreateCustomObject(const std::string & typeName)
 	std::map < std::string, CustomType > ::iterator it = m_CustomObjectTypes.find(typeName);
 
 	if (it == m_CustomObjectTypes.end())
-	{
-		throw std::string("Tried to create a type that doesn't exist");
-	}
+		throw PSERROR_Scripting_TypeDoesNotExist();
 
 	return JS_ConstructObject(m_Context, (*it).second.m_Class, (*it).second.m_Object, NULL);
 
@@ -270,9 +246,7 @@ int ScriptingHost::ValueToInt(const jsval value)
 	JSBool ok = JS_ValueToInt32(m_Context, value, &i);
 
 	if (ok == JS_FALSE)
-	{
-		throw (std::string("Convert to int failed"));
-	}
+		throw PSERROR_Scripting_ConversionFailed();
 
 	return i;
 }
@@ -284,9 +258,7 @@ bool ScriptingHost::ValueToBool(const jsval value)
 	JSBool ok = JS_ValueToBoolean(m_Context, value, &b);
 
 	if (ok == JS_FALSE)
-	{
-		throw (std::string("Convert to bool failed"));
-	}
+		throw PSERROR_Scripting_ConversionFailed();
 
 	return b == JS_TRUE;
 }
@@ -295,7 +267,11 @@ std::string ScriptingHost::ValueToString(const jsval value)
 {
 	JSString * string = JS_ValueToString(m_Context, value);
 
-	return std::string(JS_GetStringBytes(string));
+	char * bytes = JS_GetStringBytes(string);
+	if (bytes == NULL)
+		throw PSERROR_Scripting_ConversionFailed();
+
+	return std::string(bytes);
 }
 
 double ScriptingHost::ValueToDouble(const jsval value)
@@ -305,9 +281,7 @@ double ScriptingHost::ValueToDouble(const jsval value)
 	JSBool ok = JS_ValueToNumber(m_Context, value, &d);
 
 	if (ok == JS_FALSE || !finite( d ) )
-	{
-		throw (std::string("Convert to double failed"));
-	}
+		throw PSERROR_Scripting_ConversionFailed();
 
 	return d;
 }

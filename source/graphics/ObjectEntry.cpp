@@ -150,7 +150,7 @@ bool CObjectEntry::Load(const char* filename)
 	{
 		XeroFile.Load(filename);
 	}
-	catch (...)
+	catch (PSERROR_Xeromyces)
 	{
 		return false;
 	}

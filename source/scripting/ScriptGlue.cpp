@@ -85,7 +85,7 @@ JSBool getEntityByHandle( JSContext* context, JSObject* globalObject, unsigned i
 	{
 		handle = g_ScriptingHost.ValueToInt( argv[0] );
 	}
-	catch( ... )
+	catch( PSERROR_Scripting_ConversionFailed )
 	{
 		*rval = JSVAL_NULL;
 		return( JS_TRUE );
@@ -110,7 +110,7 @@ JSBool getEntityTemplate( JSContext* context, JSObject* globalObject, unsigned i
 	{
 		templateName = g_ScriptingHost.ValueToString( argv[0] );
 	}
-	catch( ... )
+	catch( PSERROR_Scripting_ConversionFailed )
 	{
 		*rval = JSVAL_NULL;
 		return( JS_TRUE );

@@ -81,12 +81,17 @@ static void DumpMiniDump(HANDLE hFile, PEXCEPTION_POINTERS excpInfo);
 static HANDLE hProcess;
 static uintptr_t mod_base;
 
-static wchar_t buf[64000];		/* buffer for stack trace */
+const int bufsize = 64000;
+static wchar_t buf[bufsize];	/* buffer for stack trace */
 static wchar_t* pos;			/* current pos in buf */
 
 
 static void out(wchar_t* fmt, ...)
 {
+	// Don't overflow the buffer
+	if (pos-buf+1000 > bufsize)
+		return;
+
 	va_list args;
 	va_start(args, fmt);
 	pos += vswprintf(pos, 1000, fmt, args);
@@ -209,6 +214,8 @@ static void print_var(u32 type_idx, uint level, u64 addr)
 		out(L"{ ");
 	}
 
+	u32 totalelements = elements;
+
 next_element:
 
 	/* zero extend to 64 bit (little endian) */
@@ -244,8 +251,13 @@ next_element:
 		addr += len;	/* add stride */
 		elements--;
 
-		if(elements == 0)
+		/* don't display too many elements of huge arrays */
+		if (totalelements-elements > 32)
+			out(L" ... }");
+		
+		else if(elements == 0)
 			out(L" }");
+
 		else
 		{
 			out(L", ");
@@ -264,15 +276,31 @@ static void dump_sym(u32 type_idx, uint level, u64 addr)
 	WCHAR* type_name;
 	if(_SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_SYMNAME, &type_name))
 	{
-		/* HACK: ignore things that look like member functions */
+		/* ignore things that look like member functions, because
+		   there's no point in outputting them */
 		if (wcsstr(type_name, L"::"))
+		{
+			LocalFree(type_name);
 			return;
+		}
 
 		/* indent */
 		for(uint i = 0; i < level+2; i++)
 			out(L"  ");
 
 		out(L"%ls ", type_name);
+
+		/* exclude some specific variable types, because
+		   they just fill the stack trace with rubbish */
+		if (!wcscmp(type_name, L"JSType")
+		 || !wcscmp(type_name, L"JSVersion")
+			)
+		{
+			LocalFree(type_name);
+			out(L"\r\n");
+			return;
+		}
+
 		LocalFree(type_name);
 	}
 
@@ -378,7 +406,7 @@ static void walk_stack(int skip, wchar_t* out_buf, CONTEXT* override_context = N
 	bool type_avail = _SymFromAddr != 0;
 
 	pos = out_buf;
-	out(L"\r\nCall stack:\r\n");
+	out(L"\r\nCall stack:\r\n\r\n");
 
 	if(!type_avail)
 		out(L"warning: older dbghelp.dll loaded; no type information available.\r\n");
@@ -623,28 +651,53 @@ static void set_exception_handler()
 // the crash log more useful, and takes the responsibility of
 // suiciding away from main.cpp.
 
+void abort_timer(); // from wtime.cpp
+
 int debug_main_exception_filter(unsigned int code, struct _EXCEPTION_POINTERS *ep)
 {
+	// If something crashes after we've already crashed (i.e. when shutting
+	// down everything), don't bother logging it, because the first crash
+	// is the most important one to fix.
+	static bool already_crashed = false;
+	if (already_crashed)
+	{
+		return EXCEPTION_EXECUTE_HANDLER;
+	}
+	already_crashed = true;
+
+	// The timer thread sometimes dies from EXCEPTION_PRIV_INSTRUCTION
+	// when debugging this exception handler code (which gets quite
+	// annoying), so kill it before it gets a chance.
+	__try
+	{
+		abort_timer();
+	}
+	__except (EXCEPTION_EXECUTE_HANDLER)
+	{
+	}
+
 	const wchar_t* error = NULL;
 
 	// C++ exceptions put a pointer to the exception object
 	// into ExceptionInformation[1] -- so see if it looks like
 	// a PSERROR*, and use the relevant message if it is.
-	try
+	__try
 	{
 		if (ep->ExceptionRecord->NumberParameters == 3)
 		{
 			PSERROR* err = (PSERROR*) ep->ExceptionRecord->ExceptionInformation[1];
-			if (err->magic == 0x50534552)
+			if (err->magic == 0x45725221)
 			{
 				int code = err->code;
 				error = GetErrorString(code);
 			}
 		}
 	}
-	catch (...) {
+	__except (EXCEPTION_EXECUTE_HANDLER)
+	{
 		// Presumably it wasn't a PSERROR and resulted in
-		// accessing some invalid pointers.
+		// accessing invalid memory locations.
+		error = NULL;
 	}
 
 	// Try getting nice names for other types of error:
@@ -666,7 +719,7 @@ int debug_main_exception_filter(unsigned int code, struct _EXCEPTION_POINTERS *e
 		case EXCEPTION_FLT_UNDERFLOW:			error = L"Float Underflow"; break;
 		case EXCEPTION_INT_DIVIDE_BY_ZERO:		error = L"Integer Divide By Zero"; break;
 		case EXCEPTION_INT_OVERFLOW:			error = L"Integer Overflow"; break;
-		case EXCEPTION_PRIV_INSTRUCTION:		error = L"Private Instruction"; break;
+		case EXCEPTION_PRIV_INSTRUCTION:		error = L"Privileged Instruction"; break;
 		case EXCEPTION_IN_PAGE_ERROR:			error = L"In Page Error"; break;
 		case EXCEPTION_ILLEGAL_INSTRUCTION:		error = L"Illegal Instruction"; break;
 		case EXCEPTION_NONCONTINUABLE_EXCEPTION:error = L"Noncontinuable Exception"; break;
@@ -697,12 +750,25 @@ int debug_main_exception_filter(unsigned int code, struct _EXCEPTION_POINTERS *e
 
 	wdisplay_msg(L"0 A.D. failure", message);
 
-	debug_write_crashlog("crashlog.txt", errortext, ep->ContextRecord);
+	__try
+	{
+		debug_write_crashlog("crashlog.txt", errortext, ep->ContextRecord);
+	}
+	__except (EXCEPTION_EXECUTE_HANDLER)
+	{
+		wdisplay_msg(L"0 A.D. failure", L"Error generating crash log.");
+	}
 
-
-	HANDLE hFile = CreateFile("crashlog.dmp", GENERIC_WRITE, FILE_SHARE_WRITE, 0, CREATE_ALWAYS, 0, 0);
-	DumpMiniDump(hFile, ep);
-	CloseHandle(hFile);
+	__try
+	{
+		HANDLE hFile = CreateFile("crashlog.dmp", GENERIC_WRITE, FILE_SHARE_WRITE, 0, CREATE_ALWAYS, 0, 0);
+		DumpMiniDump(hFile, ep);
+		CloseHandle(hFile);
+	}
+	__except (EXCEPTION_EXECUTE_HANDLER)
+	{
+		wdisplay_msg(L"0 A.D. failure", L"Error generating crash dump.");
+	}
 
 	// Disable memory-leak reporting, because it's going to
 	// leak like an upside-down bucket when it crashes.
@@ -783,7 +849,7 @@ static void DumpMiniDump(HANDLE hFile, PEXCEPTION_POINTERS excpInfo)
 //	}
 }
 
-// From sysdep.h
+// Imported from sysdep.cpp
 extern wchar_t MicroBuffer[];
 extern int MicroBuffer_off;
 
@@ -808,7 +874,7 @@ int debug_write_crashlog(const char* file, wchar_t* header, void* context)
 	}
 	fwrite(buf, pos-buf, 2, f);
 	
-	const wchar_t* footer = L"\r\n\r\nLast known activity:\r\n\r\n";
+	const wchar_t* footer = L"\r\n====================================\r\n\r\nLast known activity:\r\n\r\n";
 	fwrite(footer, wcslen(footer), sizeof(wchar_t), f);
 	fwrite(MicroBuffer, MicroBuffer_off, sizeof(wchar_t), f);
 	fclose(f);

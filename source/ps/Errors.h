@@ -6,8 +6,9 @@
 class PSERROR
 {
 public:
-	int magic; // = 0x50534552, so the exception handler can recognise that it's a PSERROR
-	int code;
+	int magic;	// = 0x45725221, so the exception handler can recognise
+				// that it's a PSERROR and not some other random object.
+	int code; // unique (but arbitrary) code, for translation tables etc
 };
 
 #define ERROR_GROUP(a,b) class a##_##b : public a {}

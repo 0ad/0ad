@@ -33,8 +33,8 @@ bool CBaseEntity::loadXML( CStr filename )
 	{
 		XeroFile.Load(filename);
 	}
-	catch (...)
-	{
+	catch (PSERROR_Xeromyces) {
+		// Fail
 		return false;
 	}
 

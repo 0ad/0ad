@@ -98,7 +98,7 @@ JSBool JSI_Vector3D::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval*
 		case component_z: vectorData->Z = (float)g_ScriptingHost.ValueToDouble( *vp ); break;
 		}
 	}
-	catch (...)
+	catch (PSERROR_Scripting_ConversionFailed)
 	{
 		JS_ReportError(cx, "Invalid parameter value for Vector3D");
 		return( JS_FALSE );
@@ -126,7 +126,7 @@ JSBool JSI_Vector3D::construct( JSContext* cx, JSObject* obj, uintN argc, jsval*
 			JS_SetPrivate( cx, obj, new Vector3D_Info( x, y, z ) );
 			return( JS_TRUE );
 		}
-		catch (...)
+		catch (PSERROR_Scripting_ConversionFailed)
 		{
 			// Invalid input (i.e. can't be coerced into doubles) - fail
 			JS_ReportError( cx, "Invalid parameters to Vector3D constructor" );

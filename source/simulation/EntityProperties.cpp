@@ -54,7 +54,7 @@ void CProperty_i32::set( jsval value )
 	{
 		*modifier = (float)g_ScriptingHost.ValueToInt( value );
 	}
-	catch( ... )
+	catch( PSERROR_Scripting_ConversionFailed )
 	{
 		*modifier = 0;
 	}
@@ -116,7 +116,7 @@ void CProperty_float::set( const jsval value )
 	{
 		*modifier = (float)g_ScriptingHost.ValueToDouble( value );
 	}
-	catch( ... )
+	catch( PSERROR_Scripting_ConversionFailed )
 	{
 		*modifier = 0.0f;
 	}
@@ -218,7 +218,7 @@ void CProperty_CStr::set( jsval value )
 	{
 		*modifier = g_ScriptingHost.ValueToString( value );
 	}
-	catch( ... )
+	catch( PSERROR_Scripting_ConversionFailed )
 	{
 		*modifier = CStr();
 		m_String.clear();

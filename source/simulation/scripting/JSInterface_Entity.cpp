@@ -79,7 +79,7 @@ JSBool JSI_Entity::construct( JSContext* cx, JSObject* obj, unsigned int argc, j
 		{
 			templateName = g_ScriptingHost.ValueToString( argv[0] );
 		}
-		catch( ... )
+		catch( PSERROR_Scripting_ConversionFailed )
 		{
 			*rval = JSVAL_NULL;
 			return( JS_TRUE );
@@ -100,7 +100,7 @@ JSBool JSI_Entity::construct( JSContext* cx, JSObject* obj, unsigned int argc, j
 		{
 			orientation = (float)g_ScriptingHost.ValueToDouble( argv[2] );
 		}
-		catch( ... )
+		catch( PSERROR_Scripting_ConversionFailed )
 		{
 			orientation = 0.0f;
 		}

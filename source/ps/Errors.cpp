@@ -5,20 +5,76 @@
 
 // Slightly hacky section to redeclare things that are declared
 // elsewhere - trust the compiler to handle them identically
+class PSERROR_GUI : public PSERROR {};
+class PSERROR_Scripting : public PSERROR {};
+class PSERROR_Scripting_DefineType : public PSERROR_Scripting {};
+class PSERROR_Scripting_LoadFile : public PSERROR_Scripting {};
 class PSERROR_Xeromyces : public PSERROR {};
+
+class PSERROR_GUI_JSOpenFailed : public PSERROR_GUI { public: PSERROR_GUI_JSOpenFailed(); };
+class PSERROR_GUI_TextureLoadFailed : public PSERROR_GUI { public: PSERROR_GUI_TextureLoadFailed(); };
+class PSERROR_Scripting_CallFunctionFailed : public PSERROR_Scripting { public: PSERROR_Scripting_CallFunctionFailed(); };
+class PSERROR_Scripting_ContextCreationFailed : public PSERROR_Scripting { public: PSERROR_Scripting_ContextCreationFailed(); };
+class PSERROR_Scripting_ConversionFailed : public PSERROR_Scripting { public: PSERROR_Scripting_ConversionFailed(); };
+class PSERROR_Scripting_CreateObjectFailed : public PSERROR_Scripting { public: PSERROR_Scripting_CreateObjectFailed(); };
+class PSERROR_Scripting_DefineConstantFailed : public PSERROR_Scripting { public: PSERROR_Scripting_DefineConstantFailed(); };
+class PSERROR_Scripting_DefineType_AlreadyExists : public PSERROR_Scripting_DefineType { public: PSERROR_Scripting_DefineType_AlreadyExists(); };
+class PSERROR_Scripting_DefineType_CreationFailed : public PSERROR_Scripting_DefineType { public: PSERROR_Scripting_DefineType_CreationFailed(); };
+class PSERROR_Scripting_GlobalObjectCreationFailed : public PSERROR_Scripting { public: PSERROR_Scripting_GlobalObjectCreationFailed(); };
+class PSERROR_Scripting_LoadFile_EvalErrors : public PSERROR_Scripting_LoadFile { public: PSERROR_Scripting_LoadFile_EvalErrors(); };
+class PSERROR_Scripting_LoadFile_OpenFailed : public PSERROR_Scripting_LoadFile { public: PSERROR_Scripting_LoadFile_OpenFailed(); };
+class PSERROR_Scripting_NativeFunctionSetupFailed : public PSERROR_Scripting { public: PSERROR_Scripting_NativeFunctionSetupFailed(); };
+class PSERROR_Scripting_RegisterFunctionFailed : public PSERROR_Scripting { public: PSERROR_Scripting_RegisterFunctionFailed(); };
+class PSERROR_Scripting_RuntimeCreationFailed : public PSERROR_Scripting { public: PSERROR_Scripting_RuntimeCreationFailed(); };
+class PSERROR_Scripting_StandardClassSetupFailed : public PSERROR_Scripting { public: PSERROR_Scripting_StandardClassSetupFailed(); };
+class PSERROR_Scripting_TypeDoesNotExist : public PSERROR_Scripting { public: PSERROR_Scripting_TypeDoesNotExist(); };
 class PSERROR_Xeromyces_XMLOpenFailed : public PSERROR_Xeromyces { public: PSERROR_Xeromyces_XMLOpenFailed(); };
 class PSERROR_Xeromyces_XMLParseError : public PSERROR_Xeromyces { public: PSERROR_Xeromyces_XMLParseError(); };
 
 // The relevant bits of this file:
-PSERROR_Xeromyces_XMLOpenFailed::PSERROR_Xeromyces_XMLOpenFailed() { magic=0x50534552; code=0; }
-PSERROR_Xeromyces_XMLParseError::PSERROR_Xeromyces_XMLParseError() { magic=0x50534552; code=1; }
+PSERROR_GUI_JSOpenFailed::PSERROR_GUI_JSOpenFailed() { magic=0x45725221; code=0; }
+PSERROR_GUI_TextureLoadFailed::PSERROR_GUI_TextureLoadFailed() { magic=0x45725221; code=1; }
+PSERROR_Scripting_DefineType_AlreadyExists::PSERROR_Scripting_DefineType_AlreadyExists() { magic=0x45725221; code=2; }
+PSERROR_Scripting_DefineType_CreationFailed::PSERROR_Scripting_DefineType_CreationFailed() { magic=0x45725221; code=3; }
+PSERROR_Scripting_LoadFile_EvalErrors::PSERROR_Scripting_LoadFile_EvalErrors() { magic=0x45725221; code=4; }
+PSERROR_Scripting_LoadFile_OpenFailed::PSERROR_Scripting_LoadFile_OpenFailed() { magic=0x45725221; code=5; }
+PSERROR_Scripting_CallFunctionFailed::PSERROR_Scripting_CallFunctionFailed() { magic=0x45725221; code=6; }
+PSERROR_Scripting_ContextCreationFailed::PSERROR_Scripting_ContextCreationFailed() { magic=0x45725221; code=7; }
+PSERROR_Scripting_ConversionFailed::PSERROR_Scripting_ConversionFailed() { magic=0x45725221; code=8; }
+PSERROR_Scripting_CreateObjectFailed::PSERROR_Scripting_CreateObjectFailed() { magic=0x45725221; code=9; }
+PSERROR_Scripting_DefineConstantFailed::PSERROR_Scripting_DefineConstantFailed() { magic=0x45725221; code=10; }
+PSERROR_Scripting_GlobalObjectCreationFailed::PSERROR_Scripting_GlobalObjectCreationFailed() { magic=0x45725221; code=11; }
+PSERROR_Scripting_NativeFunctionSetupFailed::PSERROR_Scripting_NativeFunctionSetupFailed() { magic=0x45725221; code=12; }
+PSERROR_Scripting_RegisterFunctionFailed::PSERROR_Scripting_RegisterFunctionFailed() { magic=0x45725221; code=13; }
+PSERROR_Scripting_RuntimeCreationFailed::PSERROR_Scripting_RuntimeCreationFailed() { magic=0x45725221; code=14; }
+PSERROR_Scripting_StandardClassSetupFailed::PSERROR_Scripting_StandardClassSetupFailed() { magic=0x45725221; code=15; }
+PSERROR_Scripting_TypeDoesNotExist::PSERROR_Scripting_TypeDoesNotExist() { magic=0x45725221; code=16; }
+PSERROR_Xeromyces_XMLOpenFailed::PSERROR_Xeromyces_XMLOpenFailed() { magic=0x45725221; code=17; }
+PSERROR_Xeromyces_XMLParseError::PSERROR_Xeromyces_XMLParseError() { magic=0x45725221; code=18; }
 
 const wchar_t* GetErrorString(int code)
 {
 	switch (code)
 	{
-	case 0: return L"Xeromyces_XMLOpenFailed"; break;
-	case 1: return L"Xeromyces_XMLParseError"; break;
+	case 0: return L"GUI_JSOpenFailed"; break;
+	case 1: return L"GUI_TextureLoadFailed"; break;
+	case 2: return L"Scripting_DefineType_AlreadyExists"; break;
+	case 3: return L"Scripting_DefineType_CreationFailed"; break;
+	case 4: return L"Scripting_LoadFile_EvalErrors"; break;
+	case 5: return L"Scripting_LoadFile_OpenFailed"; break;
+	case 6: return L"Scripting_CallFunctionFailed"; break;
+	case 7: return L"Scripting_ContextCreationFailed"; break;
+	case 8: return L"Scripting_ConversionFailed"; break;
+	case 9: return L"Scripting_CreateObjectFailed"; break;
+	case 10: return L"Scripting_DefineConstantFailed"; break;
+	case 11: return L"Scripting_GlobalObjectCreationFailed"; break;
+	case 12: return L"Scripting_NativeFunctionSetupFailed"; break;
+	case 13: return L"Scripting_RegisterFunctionFailed"; break;
+	case 14: return L"Scripting_RuntimeCreationFailed"; break;
+	case 15: return L"Scripting_StandardClassSetupFailed"; break;
+	case 16: return L"Scripting_TypeDoesNotExist"; break;
+	case 17: return L"Xeromyces_XMLOpenFailed"; break;
+	case 18: return L"Xeromyces_XMLParseError"; break;
 	}
 	return L"Unrecognised error";
 }

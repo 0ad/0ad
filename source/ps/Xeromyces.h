@@ -1,4 +1,4 @@
-/* $Id: Xeromyces.h,v 1.3 2004/07/15 19:08:28 philip Exp $
+/* $Id: Xeromyces.h,v 1.4 2004/07/17 17:06:21 philip Exp $
 
   Xeromyces file-loading interface.
   Automatically creates and caches relatively
@@ -25,12 +25,11 @@ public:
 	~CXeromyces();
 
 	// Load from an XML file (with invisible XMB caching).
-	// Throws a const char* if stuff breaks.
+	// Throws a PSERROR_Xeromyces upon failure.
 	void Load(const char* filename);
 
-	// Call once when shutting down the program.
+	// Call once when shutting down the program, to unload Xerces.
 	static void Terminate();
-
 
 private:
 	bool ReadXMBFile(const char* filename, bool CheckCRC, unsigned long CRC);

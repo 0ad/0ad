@@ -31,13 +31,15 @@ print $out <<'.';
 // elsewhere - trust the compiler to handle them identically
 .
 
-for (sort keys %groups) {
-  my ($base, $name) = split /~/;
+for (sort { $a->[1] cmp $b->[1] } map [$_, do{(my $c=$_)=~s/~/_/;$c} ], keys %groups) {
+  my ($base, $name) = split /~/, $_->[0];
   print $out "class ${base}_$name : public $base {};\n";
 }
 
-for (sort keys %types) {
-  my ($base, $name) = split /~/;
+print $out "\n";
+
+for (sort { $a->[1] cmp $b->[1] } map [$_, do{(my $c=$_)=~s/~/_/;$c} ], keys %types) {
+  my ($base, $name) = split /~/, $_->[0];
   print $out "class ${base}_$name : public $base { public: ${base}_$name(); };\n";
 }
 
@@ -47,7 +49,7 @@ print $out "\n// The relevant bits of this file:\n";
 
 for (sort keys %types) {
   my ($base, $name) = split /~/;
-  print $out "${base}_${name}::${base}_${name}() { magic=0x50534552; code=$types{$_}; }\n";
+  print $out "${base}_${name}::${base}_${name}() { magic=0x45725221; code=$types{$_}; }\n";
 }
 
 print $out <<".";

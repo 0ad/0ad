@@ -17,6 +17,10 @@ gee@pyro.nu
 #ifndef CGUI_H
 #define CGUI_H
 
+ERROR_GROUP(PSERROR, GUI);
+ERROR_TYPE(PSERROR_GUI, JSOpenFailed);
+ERROR_TYPE(PSERROR_GUI, TextureLoadFailed);
+
 //--------------------------------------------------------
 //  Includes / Compiler directives
 //--------------------------------------------------------
