@@ -114,6 +114,9 @@ void calc_fps()
 		cur_fps = 1.0f / (float)(t-last_t);	// = 1 / elapsed time
 	last_t = t;
 
+	if (cur_fps > 1e+6) // Avoid undesirable infinities if some frames
+		return;			// were rendered in no time
+
 	// calculate fps activity over 3 frames (used below to prevent fluctuation)
 	// -1: decreasing, +1: increasing, 0: neither or fluctuating
 	float h1 = fps_hist[(head-1)%H];	// last frame's cur_fps
