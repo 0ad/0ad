@@ -1028,7 +1028,7 @@ bool CRenderer::LoadTexture(CTexture* texture,u32 wrapflags)
 		return h==0xffffffff ? true : false;
 	} else {
 		h=tex_load(texture->GetName());
-		if (!h) {
+		if (h <= 0) {
 			LOG(ERROR, LOG_CATEGORY, "LoadTexture failed on \"%s\"",(const char*) texture->GetName());
 			texture->SetHandle(0xffffffff);
 			return false;
