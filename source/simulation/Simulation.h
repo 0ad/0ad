@@ -1,6 +1,8 @@
 #ifndef _Simulation_H
 #define _Simulation_H
 
+#include "lib/types.h"
+
 class CGame;
 class CGameAttributes;
 class CWorld;

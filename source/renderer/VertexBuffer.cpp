@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "precompiled.h"
+#include "ps/errors.h"
 #include "ogl.h"
 #include "Renderer.h"
 #include "VertexBuffer.h"

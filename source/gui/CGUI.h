@@ -17,6 +17,7 @@ gee@pyro.nu
 #ifndef CGUI_H
 #define CGUI_H
 
+#include "ps/errors.h"
 ERROR_GROUP(GUI);
 ERROR_TYPE(GUI, JSOpenFailed);
 

@@ -2,7 +2,7 @@
 
 #include "CStr.h"
 #include "CLogger.h"
-#include "Errors.h"
+#include "ps/Errors.h"
 
 #include "World.h"
 #include "MapReader.h"

@@ -1,6 +1,7 @@
 #include "precompiled.h"
 
 #include "StringConvert.h"
+#include "lib/types.h"
 
 #include <assert.h>
 

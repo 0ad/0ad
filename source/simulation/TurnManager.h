@@ -5,6 +5,8 @@
 //#include "Network/Network.h"
 #include <vector>
 
+#include "lib/types.h"
+
 class CGameRecord;
 class CNetMessage;
 class IMessagePipeEnd;

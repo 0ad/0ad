@@ -2,7 +2,7 @@
 
 #include "precompiled.h"
 
-#include "Errors.h"
+#include "ps/Errors.h"
 
 class PSERROR_CVFSFile : public PSERROR {};
 class PSERROR_Error : public PSERROR {};

@@ -3,7 +3,7 @@
 
 // Kludge: Our included headers might want to subgroup the Game group, so do it
 // here, before including the other guys
-#include "Errors.h"
+#include "ps/Errors.h"
 ERROR_GROUP(Game);
 
 #include "World.h"

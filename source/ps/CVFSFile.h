@@ -3,6 +3,8 @@
 #include "lib/res/handle.h"
 #include "ps/CStr.h"
 
+#include "ps/errors.h"
+
 ERROR_GROUP(CVFSFile);
 ERROR_TYPE(CVFSFile, LoadFailed);
 ERROR_TYPE(CVFSFile, AlreadyLoaded);

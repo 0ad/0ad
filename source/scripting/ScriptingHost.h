@@ -2,7 +2,7 @@
 #ifndef _SCRIPTINGHOST_H_
 #define _SCRIPTINGHOST_H_
 
-#include "Errors.h"
+#include "ps/Errors.h"
 
 ERROR_GROUP(Scripting);
 ERROR_TYPE(Scripting, RuntimeCreationFailed);
