@@ -1,13 +1,23 @@
-// $Id: fontselect.cpp,v 1.1 2004/06/18 22:05:58 philip Exp $
+// $Id: fontselect.cpp,v 1.2 2004/06/18 22:50:34 philip Exp $
 
 #include "stdafx.h"
 
 #include "../fontselect.h"
 
+BEGIN_EVENT_TABLE(FontSelectorDialog, wxFileDialog)
+//	EVT_INIT_DIALOG(FontSelectorDialog::OnInit)
+END_EVENT_TABLE()
+
 FontSelectorDialog::FontSelectorDialog(wxWindow* parent)
-: wxDialog(parent, -1, wxString(wxT("Font selector")), wxDefaultPosition, wxSize(400, 200), wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
+//: wxFileDialog(parent, wxT("Font selector"), wxEmptyString, wxEmptyString, wxOPEN | wxHIDE_READONLY)
+: wxFileDialog(parent, wxT("Select a font file"), wxEmptyString, wxEmptyString, wxT("TTF files (*.ttf)|*.ttf|All files (*.*)|*.*"), wxOPEN | wxHIDE_READONLY)
 {
-	wxFileDialog Dlg (this, wxT("Select a font file"), wxEmptyString, wxEmptyString, wxT("TTF files (*.ttf)|*.ttf|All files (*.*)|*.*"), wxOPEN | wxHIDE_READONLY)
+}
+
+/*
+void FontSelectorDialog::OnDestroy(wxInitDialogEvent& WXUNUSED(event))
+{
+	wxFileDialog Dlg (this, wxT("Select a font file"), wxEmptyString, wxEmptyString, wxT("TTF files (*.ttf)|*.ttf|All files (*.*)|*.*"), wxOPEN | wxHIDE_READONLY);
 	if (Dlg.ShowModal() == wxID_OK)
 	{
 		FontName = Dlg.GetFilename();
@@ -18,6 +28,13 @@ FontSelectorDialog::FontSelectorDialog(wxWindow* parent)
 	{
 		EndModal(wxID_CANCEL);
 	}
+}
+*/
+
+FontSelectorDialog::~FontSelectorDialog()
+{
+	FontName = GetFilename();
+	FontFilename = GetPath();
 }
 
 void FontSelectorDialog::DefaultFonts(wxString& Name0, wxString& Filename0, wxString& Name1, wxString& Filename1)

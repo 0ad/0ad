@@ -1,4 +1,4 @@
-// $Id: wxframe.cpp,v 1.1 2004/06/17 19:32:04 philip Exp $
+// $Id: wxframe.cpp,v 1.2 2004/06/18 22:50:34 philip Exp $
 
 #include "stdafx.h"
 
@@ -212,6 +212,7 @@ void MainFrame::OnClose(wxCloseEvent& event)
 
 void MainFrame::LoadSettings(wxString& filename)
 {
+/*
 	wxExprDatabase db;
 
 	db.Read(filename);
@@ -261,10 +262,12 @@ void MainFrame::LoadSettings(wxString& filename)
 	PreviewTextCtrl->SetValue(PreviewText);
 
 	Changes = false;
+*/
 }
 
 void MainFrame::SaveSettings(wxString& filename)
 {
+/*
 	wxExprDatabase db;
 
 	wxTextCtrl* PreviewTextCtrl		= (wxTextCtrl*)wxWindow::FindWindowById(ID_PreviewText);
@@ -296,6 +299,7 @@ void MainFrame::SaveSettings(wxString& filename)
 	db.Write(filename);
 
 	Changes = false;
+*/
 }
 
 
@@ -533,6 +537,7 @@ void MainFrame::GenerateTexture(wxString TextureFilename, wxString FontDefnFilen
 
 void MainFrame::OnFontSelect0(wxCommandEvent& event)
 {
+#ifdef _WIN32
 	FontSelectorDialog Dlg(this);
 	if (Dlg.ShowModal() == wxID_OK)
 	{
@@ -540,10 +545,20 @@ void MainFrame::OnFontSelect0(wxCommandEvent& event)
 		FontName0 = Dlg.FontName;
 		((wxButton*)event.GetEventObject()) -> SetLabel(FontName0);
 	}
+#else
+	wxFileDialog Dlg (this, wxT("Select a font file"), wxEmptyString, wxEmptyString, wxT("TTF files (*.ttf)|*.ttf|All files (*.*)|*.*"), wxOPEN | wxHIDE_READONLY);
+	if (Dlg.ShowModal() == wxID_OK)
+	{
+		FontFilename0 = Dlg.GetPath();
+		FontName0 = Dlg.GetFilename();
+		((wxButton*)event.GetEventObject()) -> SetLabel(FontName0);
+	}
+#endif
 }
 
 void MainFrame::OnFontSelect1(wxCommandEvent& event)
 {
+#ifdef _WIN32
 	FontSelectorDialog Dlg(this);
 	if (Dlg.ShowModal() == wxID_OK)
 	{
@@ -551,6 +566,15 @@ void MainFrame::OnFontSelect1(wxCommandEvent& event)
 		FontName1 = Dlg.FontName;
 		((wxButton*)event.GetEventObject()) -> SetLabel(FontName1);
 	}
+#else
+	wxFileDialog Dlg (this, wxT("Select a font file"), wxEmptyString, wxEmptyString, wxT("TTF files (*.ttf)|*.ttf|All files (*.*)|*.*"), wxOPEN | wxHIDE_READONLY);
+	if (Dlg.ShowModal() == wxID_OK)
+	{
+		FontFilename1 = Dlg.GetPath();
+		FontName1 = Dlg.GetFilename();
+		((wxButton*)event.GetEventObject()) -> SetLabel(FontName1);
+	}
+#endif
 }
 
 void MainFrame::OnCharSelect(wxCommandEvent& event)

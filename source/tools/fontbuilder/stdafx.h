@@ -1,4 +1,4 @@
-// $Id: stdafx.h,v 1.2 2004/06/18 22:05:58 philip Exp $
+// $Id: stdafx.h,v 1.3 2004/06/18 22:50:34 philip Exp $
 
 // Precompiled headers
 
@@ -16,6 +16,10 @@
 
 // Include relevant wx headers
 #include "wx/wxprec.h"
+#include "wx/wx.h"
+#include "wx/menu.h"
+#include "wx/filedlg.h"
+#include "wx/button.h"
 #include "wx/image.h"
 #include "wx/spinctrl.h"
 #include "wx/regex.h"
@@ -27,6 +31,7 @@
 #include "wx/config.h"
 #include "wx/filename.h"
 #include "wx/config.h"
+#include "wx/log.h"
 
 #pragma warning (pop)
 
