@@ -44,11 +44,22 @@ package.files = {
 	{ sourcesfromdirs(
                 "../../terrain") },
 	-- main
-        { "../../main.cpp" },
+	{ "../../main.cpp" },
 	-- scripting
 	{ sourcesfromdirs("../../scripting") }
 }
-package.includepaths = { "../../ps", "../../simulation", "../../lib", "../../graphics", "../../maths", "../../renderer", "../../terrain", "../.." }
+
+package.includepaths = {
+	"../../ps", 
+	"../../simulation", 
+	"../../lib", 
+	"../../graphics", 
+	"../../maths", 
+	"../../renderer", 
+	"../../terrain", 
+	"../.." }
+
+package.libpaths = {}
 
 -- Platform Specifics
 if (OS == "windows") then
@@ -58,14 +69,29 @@ if (OS == "windows") then
 		"glu32",
 		"fmodvc"
 	}
-        tinsert(package.files, sourcesfromdirs("../../lib/sysdep/win"))
+	tinsert(package.files, sourcesfromdirs("../../lib/sysdep/win"))
 	package.linkoptions = { "/ENTRY:entry" }
 	package.linkflags = { "static-runtime" }
 	package.buildflags = { "no-main" }
 else -- Non-Windows, = Unix
 	-- Libraries
-	package.links = { "GL", "GLU", "X" }
+	package.links = {
+		-- OpenGL and X-Windows
+		"GL", "GLU", "X11",
+		"SDL", "png",
+		"fmod-3.70",
+		-- Utilities
+		"xerces-c", "z", "rt"
+	}
+	tinsert(package.libpaths, { "/usr/X11R6/lib" } )
 	-- Defines
-	package.defines = { "HAVE_X" }
+	package.defines = {
+		"__STDC_VERSION__=199901L" }
+	-- Includes
+	tinsert(package.includepaths, { "/usr/X11R6/include/X11" } )
+	
+	-- Build Flags
+	package.buildoptions = { "`pkg-config mozilla-js --cflags`" }
+	package.linkoptions = { "`pkg-config mozilla-js --libs`" }
+	package.config["Debug"].buildoptions = { "-ggdb" }
 end
-
