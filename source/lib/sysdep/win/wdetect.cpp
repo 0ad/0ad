@@ -176,6 +176,8 @@ int win_get_gfx_drv_ver()
 	CHECK_ERR(get_ogl_drv_name(ogl_drv_name, sizeof(ogl_drv_name)));
 
 
+	WIN_SAVE_LAST_ERROR;	// GetFileVersion*, Ver*
+
 	// don't want to return 0 on success - we'd need to duplicate free(buf).
 	// instead, set this variable and return that.
 	int ret = -1;
@@ -207,6 +209,8 @@ int win_get_gfx_drv_ver()
 		}
 	}
 	free(buf);
+
+	WIN_RESTORE_LAST_ERROR;
 
 	return ret;
 }

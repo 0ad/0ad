@@ -262,6 +262,10 @@ static int get_packet(FAMConnection* fc);
 
 int FAMMonitorDirectory(FAMConnection* const fc, const char* const _dir, FAMRequest* const fr, void* const user_data)
 {
+	int err = -1;
+	WIN_SAVE_LAST_ERROR;	// Create*
+
+	{
 	const std::string dir(_dir);
 
 	GET_APP_STATE(fc, state);
@@ -272,14 +276,14 @@ int FAMMonitorDirectory(FAMConnection* const fc, const char* const _dir, FAMRequ
 	// make sure dir is not already being watched
 	for(WatchIt it = watches.begin(); it != watches.end(); ++it)
 		if(dir == it->second->dir_name)
-			return -1;
+			goto fail;
 
 	// open handle to directory
 	const DWORD share = FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE;
 	const DWORD flags = FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED;
 	const HANDLE hDir = CreateFile(_dir, FILE_LIST_DIRECTORY, share, 0, OPEN_EXISTING, flags, 0);
 	if(hDir == INVALID_HANDLE_VALUE)
-		return -1;
+		goto fail;
 
 	// assign a new (unique) request number. don't do this earlier - prevents
 	// DOS via wasting reqnums due to invalid directory parameters.
@@ -287,7 +291,8 @@ int FAMMonitorDirectory(FAMConnection* const fc, const char* const _dir, FAMRequ
 	if(last_reqnum == INT_MAX)
 	{
 		debug_warn("FAMMonitorDirectory: request numbers are no longer unique");
-		return -1;
+		CloseHandle(hDir);
+		goto fail;
 	}
 	const int reqnum = ++last_reqnum;
 	fr->reqnum = reqnum;
@@ -300,9 +305,8 @@ int FAMMonitorDirectory(FAMConnection* const fc, const char* const _dir, FAMRequ
 	hIOCP = CreateIoCompletionPort(hDir, hIOCP, key, 0);
 	if(hIOCP == 0 || hIOCP == INVALID_HANDLE_VALUE)
 	{
-fail:
 		CloseHandle(hDir);
-		return -1;
+		goto fail;
 	}
 
 	// create Watch and associate with FAM structs
@@ -324,8 +328,13 @@ fail:
 	// instead of only at the next call to FAMPending.
 	PostQueuedCompletionStatus(hIOCP, 0, key, 0);
 	get_packet(fc);
+	}
 
-	return 0;
+	err = 0;
+
+fail:
+	WIN_RESTORE_LAST_ERROR;
+	return err;
 }
 
 

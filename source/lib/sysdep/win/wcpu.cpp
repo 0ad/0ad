@@ -50,6 +50,8 @@ int on_each_cpu(void(*cb)())
 
 static void check_speedstep()
 {
+	WIN_SAVE_LAST_ERROR;
+
 	// CallNtPowerInformation
 	// (manual import because it's not supported on Win95)
 	NTSTATUS (WINAPI *pCNPI)(POWER_INFORMATION_LEVEL, PVOID, ULONG, PVOID, ULONG) = 0;
@@ -108,6 +110,8 @@ static void check_speedstep()
 		// ia32 code will get a second crack at it.
 		cpu_speedstep = (is_laptop)? 1 : 0;
 	}
+
+	WIN_RESTORE_LAST_ERROR;
 }
 
 

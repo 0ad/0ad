@@ -79,7 +79,6 @@ static void aio_h_cleanup()
 
 static bool is_valid_file_handle(const HANDLE h)
 {
-	SetLastError(0);
 	bool valid = (GetFileSize(h, 0) != INVALID_FILE_SIZE);
 	assert(valid);
 	return valid;
@@ -380,7 +379,9 @@ int aio_reopen(int fd, const char* fn, int oflag, ...)
 
 	// open file
 	DWORD flags = FILE_FLAG_OVERLAPPED|FILE_FLAG_NO_BUFFERING|FILE_FLAG_SEQUENTIAL_SCAN;
+	WIN_SAVE_LAST_ERROR;	// CreateFile
 	HANDLE h = CreateFile(fn, access, share, 0, create, flags, 0);
+	WIN_RESTORE_LAST_ERROR;
 	if(h == INVALID_HANDLE_VALUE)
 	{
 fail:
@@ -411,7 +412,6 @@ int aio_close(int fd)
 		return -1;
 	}
 
-	SetLastError(0);
 	if(!CloseHandle(h))
 		assert(0);
 	aio_h_set(fd, INVALID_HANDLE_VALUE);
@@ -436,6 +436,8 @@ static int aio_rw(struct aiocb* cb)
 #ifdef PARANOIA
 debug_out("aio_rw cb=%p\n", cb);
 #endif
+
+	WIN_SAVE_LAST_ERROR;
 
 	const bool is_write = cb->aio_lio_opcode == LIO_WRITE;
 
@@ -481,9 +483,7 @@ debug_out("aio_rw cb=%p\n", cb);
 	unsigned long opt = 0;
 	socklen_t optlen = sizeof(opt);
 	int sock = (int)(intptr_t)h;
-	DWORD last_err = GetLastError();
 	bool is_sock = getsockopt(sock, SOL_SOCKET, SO_TYPE, &opt, &optlen) != -1;
-	SetLastError(last_err);
 
 	// socket: no alignment calculation necessary
 	if(is_sock)
@@ -537,22 +537,25 @@ debug_out("aio_rw cb=%p\n", cb);
 	// this assumes little endian, but we're windows-specific here anyway.
 	*(size_t*)&r->ovl.Offset = ofs;
 
-
-assert(cb->aio_buf != 0);
-
-	SetLastError(0);
-
+	assert(cb->aio_buf != 0);
 	DWORD size32 = (DWORD)(size & 0xffffffff);
-ResetEvent(r->ovl.hEvent);
-	BOOL ok = (cb->aio_lio_opcode == LIO_READ)?
-		ReadFile(h, buf, size32, 0, &r->ovl) : WriteFile(h, buf, size32, 0, &r->ovl);
 
+	ResetEvent(r->ovl.hEvent);
+
+	BOOL ok;
+	if(cb->aio_lio_opcode == LIO_READ)
+		ok =  ReadFile(h, buf, size32, 0, &r->ovl);
+	else
+		ok = WriteFile(h, buf, size32, 0, &r->ovl);
+
+	// "pending" isn't an error
 	if(GetLastError() == ERROR_IO_PENDING)
 	{
-		// clear annoying error
 		SetLastError(0);
 		ok = true;
 	}
+
+	WIN_RESTORE_LAST_ERROR;
 
 	return ok? 0 : -1;
 }

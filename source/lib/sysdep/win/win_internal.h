@@ -316,4 +316,8 @@ extern void win_unlock(uint idx);
 #define WIN_REGISTER_FUNC(func) static int func(); static int(*p##func)(void) = func
 
 
+#define WIN_SAVE_LAST_ERROR DWORD last_err__ = GetLastError();
+#define WIN_RESTORE_LAST_ERROR STMT(if(last_err__ != 0 && GetLastError() == 0) SetLastError(last_err__););
+
+
 #endif	// #ifndef WIN_INTERNAL_H

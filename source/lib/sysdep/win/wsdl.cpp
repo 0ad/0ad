@@ -542,6 +542,9 @@ void SDL_Quit()
  */
 int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 {
+	int ret = 0;	// assume failure
+	WIN_SAVE_LAST_ERROR;	// OpenGL and GDI
+
 	fullscreen = (flags & SDL_FULLSCREEN) != 0;
 
 	/* get current mode settings */
@@ -610,16 +613,20 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 
 	int pf = ChoosePixelFormat(hDC, &pfd);
 	if(!SetPixelFormat(hDC, pf, &pfd))
-		return 0;
+		goto fail;
 
 	hGLRC = wglCreateContext(hDC);
 	if(!hGLRC)
-		return 0;
+		goto fail;
 
 	if(!wglMakeCurrent(hDC, hGLRC))
-		return 0;
+		goto fail;
 
-	return 1;
+	ret = 1;
+
+fail:
+	WIN_RESTORE_LAST_ERROR;
+	return ret;
 }
 
 
@@ -760,9 +767,9 @@ SDL_VideoInfo* SDL_GetVideoInfo()
 
 #ifdef DDRAW
 
-	static bool init;
-	if(!init)
-	{
+	WIN_SAVE_LAST_ERROR;	// DirectDraw
+
+	ONCE({
 		IDirectDraw* dd = 0;
 		HRESULT hr = DirectDrawCreate(0, &dd, 0);
 		if(SUCCEEDED(hr) && dd != 0)
@@ -774,9 +781,9 @@ SDL_VideoInfo* SDL_GetVideoInfo()
 				video_info.video_mem = caps.dwVidMemTotal;
 			dd->Release();
 		}
+	});
 
-		init = true;
-	}
+	WIN_RESTORE_LAST_ERROR;
 
 #endif
 

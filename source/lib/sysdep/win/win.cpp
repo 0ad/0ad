@@ -28,6 +28,12 @@
 #include <malloc.h>
 
 
+void sle(int x)
+{
+	SetLastError((DWORD)x);
+}
+
+
 //
 // these override the portable stdio versions in sysdep.cpp
 // (they're more convenient)

@@ -66,7 +66,12 @@ int open(const char* fn, int oflag, ...)
 		va_end(args);
 	}
 
+	WIN_SAVE_LAST_ERROR;
+
 	int fd = _open(fn, oflag, mode);
+
+	WIN_RESTORE_LAST_ERROR;
+
 
 	// open it for async I/O as well (_open defaults to deny_none sharing)
 	if(fd > 2)
@@ -200,9 +205,18 @@ struct dirent* readdir(DIR* dir)
 {
 	_DIR* d = (_DIR*)dir;
 
+	DWORD last_err = GetLastError();
+
 	if(d->not_first)
 		if(!FindNextFile(d->handle, &d->fd))
+		{
+			// don't pass on the "error"
+			if(GetLastError() == ERROR_NO_MORE_FILES)
+				SetLastError(last_err);
+			else
+				debug_warn("FindNextFile failed");
 			return 0;
+		}
 	d->not_first = true;
 
 	d->ent.d_ino = 0;
@@ -396,6 +410,8 @@ int pthread_mutex_destroy(pthread_mutex_t* m)
 
 void* mmap(void* start, size_t len, int prot, int flags, int fd, off_t offset)
 {
+	WIN_SAVE_LAST_ERROR;
+
 	if(!(flags & MAP_FIXED))
 		start = 0;
 
@@ -434,13 +450,16 @@ void* mmap(void* start, size_t len, int prot, int flags, int fd, off_t offset)
 	if(!ptr || (flags & MAP_FIXED && ptr != start))
 		return MAP_FAILED;
 
+	WIN_RESTORE_LAST_ERROR;
+
 	return ptr;
 }
 
 
 int munmap(void* start, size_t /* len */)
 {
-	return UnmapViewOfFile(start) - 1;	/* 0: success; -1: fail */
+	BOOL ok = UnmapViewOfFile(start);
+	return ok? 0 : -1;
 }
 
 
@@ -494,7 +513,13 @@ int uname(struct utsname* un)
 
 	// node name
 	DWORD buf_size = sizeof(un->nodename);
-	GetComputerName(un->nodename, &buf_size);
+	DWORD last_err = GetLastError();
+	BOOL ok = GetComputerName(un->nodename, &buf_size);
+	// GetComputerName sets last error even on success - suppress.
+	if(ok)
+		SetLastError(last_err);
+	else
+		debug_warn("GetComputerName failed");
 
 	// hardware type
 	static SYSTEM_INFO si;
