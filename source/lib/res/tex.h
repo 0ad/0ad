@@ -29,7 +29,7 @@ extern Handle tex_load(const char* const fn, int scope = 0);
 
 extern int tex_bind(Handle ht);
 
-extern int tex_info(Handle ht, int* w, int* h, void** p);
+extern int tex_info(Handle ht, int* w, int* h, int *fmt, int *bpp, void** p);
 
 extern int tex_filter;	// GL values; default: GL_LINEAR
 extern uint tex_bpp;	// 16 or 32; default: 32

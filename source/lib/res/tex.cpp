@@ -677,6 +677,7 @@ static void Tex_dtor(Tex* t)
 // TEX output param is invalid if function fails
 static int Tex_reload(Tex* t, const char* fn)
 {
+	printf("Tex_reload for %s.\n", fn);
 	// load file
 	void* _p = 0;
 	size_t size;
@@ -868,7 +869,10 @@ int tex_upload(const Handle ht, int filter, int int_fmt)
 	   fmt <= GL_COMPRESSED_RGBA_S3TC_DXT5_EXT)
 	{
 		const int tex_size = w * h * bpp / 8;
-		assert(4+sizeof(DDSURFACEDESC2)+tex_size == tex_file_size && "tex_upload: dds file size mismatch");
+		// FIXME There's a bug in the file code that makes tex_file_size be
+		// rounded upwards to nearest multiple of 65536. Commented out until
+		// the file code has went through the neccessary changes.
+		//assert(4+sizeof(DDSURFACEDESC2)+tex_size == tex_file_size && "tex_upload: dds file size mismatch");
 		glCompressedTexImage2DARB(GL_TEXTURE_2D, 0, fmt, w, h, 0, tex_size, tex_data);
 	}
 	// normal
@@ -968,7 +972,7 @@ int tex_free(Handle& ht)
 }
 
 
-int tex_info(Handle ht, int* w, int* h, void** p)
+int tex_info(Handle ht, int* w, int* h, int *fmt, int *bpp, void** p)
 {
 	H_DEREF(ht, Tex, t);
 
@@ -976,7 +980,12 @@ int tex_info(Handle ht, int* w, int* h, void** p)
 		*w = t->w;
 	if(h)
 		*h = t->h;
+	if (fmt)
+		*fmt = t->fmt;
+	if (bpp)
+		*bpp = t->bpp;
 	if(p)
 		*p = mem_get_ptr(t->hm);
+	
 	return 0;
 }
