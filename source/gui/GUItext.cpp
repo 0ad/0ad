@@ -236,7 +236,7 @@ void CGUIString::SetValue(const CStr &str)
 			if (from != m_RawString.Length())
 			{
 				CurrentTextChunk.m_From = from;
-				CurrentTextChunk.m_To = m_RawString.Length();
+				CurrentTextChunk.m_To = (int)m_RawString.Length();
 				m_TextChunks.push_back(CurrentTextChunk);
 			}
 
@@ -401,11 +401,11 @@ void CGUIString::SetValue(const CStr &str)
 
 	ofstream fout("output1.txt");
 
-	for (int i=0; i<m_TextChunks.size(); ++i)	
+	for (int i=0; i<(int)m_TextChunks.size(); ++i)	
 	{
 		fout << "{\"";
 		fout << m_TextChunks[i].m_From << " " << m_TextChunks[i].m_To << "\",";
-		for (int j=0; j<m_TextChunks[i].m_Tags.size(); ++j)
+		for (int j=0; j<(int)m_TextChunks[i].m_Tags.size(); ++j)
 		{
 			fout << "(" << m_TextChunks[i].m_Tags[j].m_TagType << " " << m_TextChunks[i].m_Tags[j].m_TagValue << ")";
 		}
@@ -422,7 +422,7 @@ void CGUIString::SetValue(const CStr &str)
 	//  those cases.
 	// We'll sort later.
 	m_Words.push_back(0);
-	m_Words.push_back(m_RawString.Length());
+	m_Words.push_back((int)m_RawString.Length());
 
 	// Space: ' '
 	for (position=0, curpos=0;;position = curpos+1)

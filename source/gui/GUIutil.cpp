@@ -100,7 +100,7 @@ bool __ParseString<CColor>(const CStr &Value, CColor &Output)
 	}
 	float values[4];
 	values[3] = 255.f; // default
-	for (int i=0; i<line.GetArgCount(); ++i)
+	for (int i=0; i<(int)line.GetArgCount(); ++i)
 	{
 		if (!line.GetArgFloat(i, values[i]))
 		{
@@ -193,7 +193,7 @@ bool CClientArea::SetClientArea(const CStr &Value)
 	int arg_start[4] = {0,0,0,0}; // location of first argument, [0] is alwasy 0
 
 	// Divide into the four piles (delimiter is an argument named "delim")
-	for (int i=0, valuenr=0; i<line.GetArgCount(); ++i)
+	for (int i=0, valuenr=0; i<(int)line.GetArgCount(); ++i)
 	{
 		string str;
 		line.GetArgString(i, str);
@@ -212,7 +212,7 @@ bool CClientArea::SetClientArea(const CStr &Value)
 					arg_count[valuenr] = arg_start[valuenr+1] - arg_start[valuenr] - 1;
 				}
 				else
-					arg_count[3] = line.GetArgCount() - arg_start[valuenr] - 1;
+					arg_count[3] = (int)line.GetArgCount() - arg_start[valuenr] - 1;
 			}
 
 			++valuenr;

@@ -105,7 +105,7 @@ void IGUIScrollBar::HandleMessage(const SGUIMessage &Message)
 			{
 				m_BarPressed = true;
 				m_BarPressedAtPos = mouse;
-				m_PosWhenPressed = m_Pos;
+				m_PosWhenPressed = (float)m_Pos;
 			}
 			else
 			// if button-minus is pressed

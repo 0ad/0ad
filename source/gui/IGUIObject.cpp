@@ -323,6 +323,7 @@ void IGUIObject::LoadStyle(const SGUIStyle &Style)
 		//  since it's generic.
 		catch (PS_RESULT e) 
 		{
+			UNUSED(e);
 			// TODO Gee: was ist das?
 		}
 	}

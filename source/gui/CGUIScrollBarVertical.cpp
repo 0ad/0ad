@@ -22,7 +22,7 @@ void CGUIScrollBarVertical::SetPosFromMousePos(const CPos &mouse)
 	if (!GetStyle())
 		return;
 
-	m_Pos = (m_PosWhenPressed + (float)m_ScrollRange*((float)mouse.y-m_BarPressedAtPos.y)/(m_Length-GetStyle()->m_Width*2));
+	m_Pos = (int)(m_PosWhenPressed + (float)m_ScrollRange*((float)mouse.y-m_BarPressedAtPos.y)/(m_Length-GetStyle()->m_Width*2));
 }
 
 void CGUIScrollBarVertical::Draw()

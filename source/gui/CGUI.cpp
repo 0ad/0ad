@@ -177,6 +177,7 @@ bool CGUI::HandleEvent(const SDL_Event& ev)
 	}
 	catch (PS_RESULT e)
 	{
+		UNUSED(e);
 		// TODO Gee: Handle
 	}
 // JW: what's the difference between mPress and mDown? what's the code below responsible for?
@@ -308,7 +309,7 @@ void CGUI::Draw()
 
 	// Adapt (origio) to being in top left corner and down
 	//  just like the mouse position
-	glTranslatef(0.0f, g_yres, -1000.0f);
+	glTranslatef(0.0f, (GLfloat)g_yres, -1000.0f);
 	glScalef(1.0f, -1.f, 1.0f);
 
 	try
@@ -319,6 +320,7 @@ void CGUI::Draw()
 	}
 	catch (PS_RESULT e)
 	{
+		UNUSED(e);
 		glPopMatrix();
 
 		// TODO Gee: Report error.
@@ -391,6 +393,7 @@ void CGUI::Destroy()
 		}
 		catch (PS_RESULT e)
 		{
+			UNUSED(e);
 			// TODO Gee: Handle
 		}
 		
@@ -453,11 +456,11 @@ void CGUI::UpdateObjects()
 
 bool CGUI::ObjectExists(const CStr &Name) const
 {
-	return m_pAllObjects.count(Name);
+	return m_pAllObjects.count(Name) != 0;
 }
 
 // private struct used only in GenerateText(...)
-static struct SGenerateTextImage
+struct SGenerateTextImage
 {
 	int m_YFrom,		// The images starting location in Y
 		m_YTo,			// The images end location in Y
@@ -514,7 +517,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string, /*const CColor &Color, */
 	bool WordWrapping = (Width != 0);
 
 	// Go through string word by word
-	for (int i=0; i<string.m_Words.size()-1 && !done; ++i)
+	for (int i=0; i<(int)string.m_Words.size()-1 && !done; ++i)
 	{
 		// Pre-process each line one time, so we know which floating images
 		//  will be added for that line.
@@ -1056,6 +1059,7 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 		}
 		catch (PS_RESULT e)
 		{
+			UNUSED(e);
 			ReportParseError(CStr("Can't set \"") + attr_name + CStr("\" to \"") + attr_value + CStr("\""));
 
 			// This is not a fatal error
