@@ -70,6 +70,7 @@ if (OS == "windows") then
 	-- Libraries
 	package.links = { "opengl32" }
 --	package.defines = { "XERCES_STATIC_LIB" }
+	package.config["Release"].defines = { "NDEBUG" }
 	tinsert(package.files, sourcesfromdirs("../../lib/sysdep/win"))
 	package.linkoptions = { "/ENTRY:entry",
 "/DELAYLOAD:opengl32.dll",
@@ -82,9 +83,14 @@ if (OS == "windows") then
 "/DELAYLOAD:ddraw.dll",
 "/DELAYLOAD:libpng10.dll",
 "/DELAYLOAD:zlib1.dll",
-"/DELAYLOAD:js32.dll",
 "/DELAYLOAD:glu32.dll",
 "/DELAY:UNLOAD"		-- allow manual unload of delay-loaded DLLs
+}
+	package.config["Debug"].linkoptions = {
+"/DELAYLOAD:js32d.dll",
+}
+	package.config["Release"].linkoptions = {
+"/DELAYLOAD:js32.dll",
 }
 	package.buildflags = { "no-main" }
 	package.pchHeader = "precompiled.h"
