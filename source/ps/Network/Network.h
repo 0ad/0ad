@@ -254,6 +254,8 @@ protected:
 	virtual void WriteComplete(PS_RESULT);
 	virtual void OnClose(PS_RESULT);
 	virtual void ConnectComplete(PS_RESULT);
+
+	virtual void OnMessage(CNetMessage *pMsg);
 	
 public:
 	CMessageSocket(CSocketInternal *pInt);

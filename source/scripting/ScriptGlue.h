@@ -22,6 +22,8 @@ JSBool getGlobal(JSContext* context, JSObject* globalObject, unsigned int argc, 
 
 JSBool setCursor(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
 
+JSBool startServer(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
+JSBool joinGame(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
 JSBool startGame(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
 JSBool endGame(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
 

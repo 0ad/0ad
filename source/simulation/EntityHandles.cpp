@@ -2,6 +2,7 @@
 
 #include "EntityHandles.h"
 #include "EntityManager.h"
+#include "CStr.h"
 
 CHandle::CHandle()
 {
@@ -82,3 +83,29 @@ CEntity& HEntity::operator*() const
 	return( *g_EntityManager.m_entities[m_handle].m_entity );
 }
 
+uint HEntity::GetSerializedLength() const
+{
+	return 2;
+}
+
+u8 *HEntity::Serialize(u8 *buffer) const
+{
+	Serialize_int_2(buffer, m_handle);
+	return buffer+2;
+}
+
+const u8 *HEntity::Deserialize(const u8 *buffer, const u8 *end)
+{
+	Deserialize_int_2(buffer, m_handle);
+	// We can't let addRef assert just because someone sent us bogus data
+	if (m_handle < 4096 && m_handle != INVALID_HANDLE)
+		addRef();
+	return buffer+2;
+}
+
+HEntity::operator CStr() const
+{
+	char buf[16];
+	sprintf(buf, "Entity#%04x", m_handle);
+	return CStr(buf);
+}

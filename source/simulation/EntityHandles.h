@@ -21,11 +21,13 @@
 #define ENTITY_HANDLE_INCLUDED
 
 #include "types.h"
+#include "Network/Serialization.h"
 
 #define INVALID_HANDLE 65535
 
 class CEntity;
 class CEntityManager;
+class CStr8;
 
 class CHandle
 {
@@ -53,6 +55,11 @@ public:
 	operator bool() const { return( m_handle != INVALID_HANDLE ); }
 	operator CEntity*() const;
 	~HEntity();
+
+	uint GetSerializedLength() const;
+	u8 *Serialize(u8 *buffer) const;
+	const u8 *Deserialize(const u8 *buffer, const u8 *end);
+	operator CStr8() const;
 };
 
 #endif

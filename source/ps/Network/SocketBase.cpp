@@ -455,6 +455,8 @@ CSocketInternal *CSocketBase::Accept()
 		CSocketInternal *pInt=new CSocketInternal();
 		pInt->m_fd=m_pInternal->m_AcceptFd;
 		pInt->m_RemoteAddr=m_pInternal->m_AcceptAddr;
+
+		m_pInternal->m_AcceptFd=-1;
 		return pInt;
 	}
 	else

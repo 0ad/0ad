@@ -93,11 +93,28 @@ enum PS_TRIM_MODE {PS_TRIM_LEFT, PS_TRIM_RIGHT, PS_TRIM_BOTH};
 // CStr class, the mother of all strings
 class CStr: public ISerializable
 {
+#ifdef _UNICODE
+	friend class CStr8;
+#endif
 public:
 
 	// CONSTRUCTORS
 	CStr();					// Default constructor
 	CStr(const CStr& Str);		// Copy Constructor
+
+// Transparent CStrW/8 conversion. Note that CStr8 will provide both
+// definitions since CStrW is defined first - would otherwise result in a
+// circular dependency
+#ifndef _UNICODE
+	inline CStr8(const CStrW &wideStr):
+		m_String(wideStr.m_String.begin(), wideStr.m_String.end())
+	{}
+
+	inline operator CStrW ()
+	{
+		return CStrW(std::wstring(m_String.begin(), m_String.end()));
+	}
+#endif
 	
 	CStr(std::tstring String);	// Creates CStr from C++ string
 #if !(defined(_MSC_VER) && defined(_UNICODE))

@@ -475,7 +475,12 @@ uint CStr::GetSerializedLength() const
 	return uint(m_String.length()*2 + 2);
 }
 
-u8 *CStr::Serialize(u8 *buffer) const
+#ifdef _UNICODE
+/*
+	CStrW is always serialized to/from UTF-16
+*/
+
+u8 *CStrW::Serialize(u8 *buffer) const
 {
 	size_t length=m_String.length();
 	size_t i=0;
@@ -485,7 +490,7 @@ u8 *CStr::Serialize(u8 *buffer) const
 	return buffer+length*2+2;
 }
 
-const u8 *CStr::Deserialize(const u8 *buffer, const u8 *bufferend)
+const u8 *CStrW::Deserialize(const u8 *buffer, const u8 *bufferend)
 {
 	const u16 *strend=(const u16 *)buffer;
 	while ((const u8 *)strend < bufferend && *strend) strend++;
@@ -499,5 +504,32 @@ const u8 *CStr::Deserialize(const u8 *buffer, const u8 *bufferend)
 
 	return (const u8 *)(strend+1);
 }
+#else
+/*
+	CStr8 is always serialized to/from ASCII (or whatever 8-bit codepage stored
+	in the CStr)
+*/
+
+u8 *CStr8::Serialize(u8 *buffer) const
+{
+	size_t length=m_String.length();
+	size_t i=0;
+	for (i=0;i<length;i++)
+		buffer[i]=m_String[i];
+	buffer[i]=0;
+	return buffer+length+1;
+}
+
+const u8 *CStr8::Deserialize(const u8 *buffer, const u8 *bufferend)
+{
+	const u8 *strend=buffer;
+	while (strend < bufferend && *strend) strend++;
+	if (strend >= bufferend) return NULL;
+
+	m_String=std::string(buffer, strend);
+
+	return strend+1;
+}
+#endif
 
 #endif

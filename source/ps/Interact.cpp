@@ -7,8 +7,8 @@
 #include "Hotkey.h"
 #include "timer.h"
 #include "Game.h"
+#include "Network/NetMessage.h"
 
-extern CGame *g_Game;
 extern CConsole* g_Console;
 extern int mouse_x, mouse_y;
 extern bool keys[SDLK_LAST];
@@ -412,11 +412,17 @@ void CSelectedEntities::contextOrder( bool pushQueue )
 
 	switch( m_contextOrder )
 	{
+// PATROL order: temporatily disabled until we define the network command for it
+//	case CEntityOrder::ORDER_PATROL:
 	case CEntityOrder::ORDER_GOTO:
-	case CEntityOrder::ORDER_PATROL:
-		context.m_data[0].location = g_Mouseover.m_worldposition;
+	{
+		CGotoCommand *msg=new CGotoCommand();
+		msg->m_Entity=m_selected[0]->me;
+		msg->m_TargetX=g_Mouseover.m_worldposition.x;
+		msg->m_TargetY=g_Mouseover.m_worldposition.y;
+		g_Game->GetSimulation()->QueueLocalCommand(msg);
 		break;
-	
+	}
 	default:
 		break;
 	}
@@ -429,6 +435,19 @@ void CSelectedEntities::contextOrder( bool pushQueue )
 	// Task them all to a point within a radius of the target, radius depends upon
 	// the number of units in the group.
 
+	/* (Simon)
+	Hmm. Disabled in the makeshift transition to Command Message Queueing...
+
+	Ideally, we'd create a Group with the selected entities, then queue a
+	command with the Group ID as performing entity, with the center as the
+	target, then let the location randomization be done in the
+	net command=>ent. order translator (for now, CSimulation::TranslateMessage)
+
+	Unless this is a problem that'll only be around until we make the real
+	pathfinder?
+	*/
+
+	/*	
 	float radius = 2.0f * sqrt( (float)m_selected.size() - 1 ); // A decent enough approximation
 
 	float _x, _y;
@@ -461,7 +480,7 @@ void CSelectedEntities::contextOrder( bool pushQueue )
 
 			g_Scheduler.pushFrame( ORDER_DELAY, (*it)->me, new CMessageOrder( contextRandomized, pushQueue ) );
 		}
-	
+	*/
 }
 
 void CMouseoverEntities::update( float timestep )

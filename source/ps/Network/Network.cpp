@@ -4,11 +4,15 @@
 #include "Serialization.h"
 #include <errno.h>
 
+#include <CLogger.h>
+
 DEFINE_ERROR(CONFLICTING_OP_IN_PROGRESS, "A conflicting operation is already in progress");
 
 #define ALIGN_UP(_n, _block) (_n+_block-(_n%_block))
 #define BUFFER_BLOCK 4096
 #define BUFFER_SIZE(_n) ALIGN_UP(_n, BUFFER_BLOCK)
+
+#define LOG_CAT_NET "net"
 
 /**
  * The SNetHeader will always be stored in host-order
@@ -98,6 +102,8 @@ CStr CCloseRequestMessage::GetString() const
 
 void CMessageSocket::Push(CNetMessage *msg)
 {
+	printf("CMessageSocket::Push(): %s", msg->GetString().c_str());
+
 	m_OutQ.Lock();
 	m_OutQ.push_back(msg);
 	m_OutQ.Unlock();
@@ -144,7 +150,7 @@ void CMessageSocket::StartWriteNextMessage()
 			}
 			else if (pMsg->GetType() < 0)
 			{
-				printf("CMessageSocket::StartWriteNextMessage(): Warning: non-network message\n");
+				LOG(WARNING, LOG_CAT_NET, "CMessageSocket::StartWriteNextMessage(): Non-network message");
 				delete pMsg;
 				pMsg=NULL;
 			}
@@ -243,6 +249,7 @@ void CMessageSocket::StartReadMessage()
 {
 	SNetHeader hdr;
 	hdr.Deserialize(m_pRdBuffer);
+
 	uint reqBufSize=HEADER_LENGTH+hdr.m_MsgLength;
 	if (m_RdBufferSize < reqBufSize)
 	{
@@ -254,13 +261,21 @@ void CMessageSocket::StartReadMessage()
 	}
 	m_ReadingData=true;
 	printf("CMessageSocket::StartReadMessage(): Got type %d, trying to read %u\n", hdr.m_MsgType, hdr.m_MsgLength);
-	PS_RESULT res=Read(m_pRdBuffer+HEADER_LENGTH, hdr.m_MsgLength);
-	if (res != PS_OK)
+
+	if (hdr.m_MsgLength == 0)
 	{
-		printf("CMessageSocket::StartReadMessage(): %s\n", res);
-		// Queue an error message
-		CScopeLock scopeLock(m_InQ);
-		m_InQ.push_back(new CNetErrorMessage(res, GetState()));
+		ReadComplete(PS_OK);
+	}
+	else
+	{
+		PS_RESULT res=Read(m_pRdBuffer+HEADER_LENGTH, hdr.m_MsgLength);
+		if (res != PS_OK)
+		{
+			printf("CMessageSocket::StartReadMessage(): %s\n", res);
+			// Queue an error message
+			CScopeLock scopeLock(m_InQ);
+			m_InQ.push_back(new CNetErrorMessage(res, GetState()));
+		}
 	}
 }
 
@@ -281,13 +296,18 @@ void CMessageSocket::ReadComplete(PS_RESULT ec)
 		CNetMessage *pMsg=CNetMessage::DeserializeMessage((ENetMessageType)hdr.m_MsgType, m_pRdBuffer+HEADER_LENGTH, hdr.m_MsgLength);
 		if (pMsg)
 		{
-			m_InQ.Lock();
-			m_InQ.push_back(pMsg);
-			printf("CMessageSocket::ReadComplete() has pushed, queue size %u\n", m_InQ.size());
-			m_InQ.Unlock();
+			OnMessage(pMsg);
 		}
 		StartReadHeader();
 	}
+}
+
+void CMessageSocket::OnMessage(CNetMessage *pMsg)
+{
+	m_InQ.Lock();
+	m_InQ.push_back(pMsg);
+	printf("CMessageSocket::OnMessage(): Queue size now %u\n", m_InQ.size());
+	m_InQ.Unlock();
 }
 
 void CMessageSocket::ConnectComplete(PS_RESULT ec)

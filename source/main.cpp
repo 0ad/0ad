@@ -63,7 +63,8 @@
 #endif
 
 #include "sound/CMusicPlayer.h"
-
+#include "Network/SessionManager.h"
+#include "Network/Server.h"
 
 CConsole* g_Console = 0;
 extern int conInputHandler(const SDL_Event* ev);
@@ -367,14 +368,6 @@ static int handler(const SDL_Event* ev)
 	return EV_PASS;
 }
 
-extern void StartGame();
-void RenderNoCull();
-void StartGame()
-{
-	g_Game=new CGame();
-	g_Game->Initialize(&g_GameAttributes);
-}
-
 void EndGame()
 {
 	delete g_Game;
@@ -529,7 +522,7 @@ static void Render()
 
 static void InitDefaultGameAttributes()
 {
-	g_GameAttributes.m_MapFile="test01.pmp";
+	g_GameAttributes.SetValue("mapFile", L"test01.pmp");
 }
 
 static void ParseArgs(int argc, char* argv[])
@@ -579,7 +572,7 @@ static void ParseArgs(int argc, char* argv[])
 			break;
 		case 'm':
 			if(strncmp(name, "m=", 2) == 0)
-				g_GameAttributes.m_MapFile = argv[i]+3;
+				g_GameAttributes.SetValue("mapFile", CStr(argv[i]+3));
 			break;
 		case 'n':
 			if(strncmp(name, "novbo", 5) == 0)
@@ -714,6 +707,8 @@ static void Shutdown()
 		delete g_Game;
 	
 	delete &g_Scheduler;
+
+	delete &g_SessionManager;
 
 	delete &g_Mouseover;
 	delete &g_Selection;
@@ -909,6 +904,12 @@ PREVTSC=CURTSC;
 	new CSelectedEntities;
 	new CMouseoverEntities;
 
+	new CSessionManager;
+
+	// Register a few Game/Network JS globals
+	g_ScriptingHost.SetGlobal("g_NetServerAttributes", OBJECT_TO_JSVAL(g_NetServerAttributes.GetJSObject()));
+	g_ScriptingHost.SetGlobal("g_GameAttributes", OBJECT_TO_JSVAL(g_GameAttributes.GetJSObject()));
+
 	// Check for heap corruption after every allocation. Very, very slowly.
 	// (And it highlights the allocation just after the one you care about,
 	// so you need to run it again and tell it to break on the one before.)
@@ -1052,6 +1053,7 @@ static void Frame()
 	MICROLOG(L"input");
 
 	in_get_events();
+	g_SessionManager.Poll();
 	
 	if (g_Game)
 	{

@@ -39,18 +39,22 @@ enum ENetMessageType
 	/* Authentication State */
 	NMT_Authenticate,
 	/* Common Messages, state 3-5 */
-	NMT_Chat,
+	NMT_ChatMessage,
 	/* Pre-Game State */
 	NMT_PlayerConnect,
+	NMT_SetGameConfig,
 	NMT_SelectCiv,
 	NMT_FilesRequired,
 	NMT_FileRequest,
 	NMT_FileChunk,
 	NMT_FileChunkAck,
 	NMT_FileProgress,
+	NMT_StartGame,
 	/* In-Game State */
-	NMT_StartCommandBatch,
 	NMT_EndCommandBatch,
+	NMT_COMMAND_FIRST,
+	NMT_GotoCommand=NMT_COMMAND_FIRST,
+	NMT_COMMAND_LAST=NMT_GotoCommand,
 	/* Post-Game State */
 
 	/* Game event messages */
@@ -84,6 +88,19 @@ enum ENetResultCodes
 // 1.1.1.1
 #define PS_PROTOCOL_VERSION 0x01010101
 
+// 0x5073 = decimal 20595
+// The "symbolism" is that the two bytes of the port number in network byte
+// order is 'P' 's'
+#define PS_DEFAULT_PORT 0x5073
+
+// Chat Recipient Constants
+enum
+{
+	PS_CHAT_RCP_ENEMIES=0xfffd,
+	PS_CHAT_RCP_ALLIES=0xfffe,
+	PS_CHAT_RCP_ALL=0xffff,
+};
+
 #endif // #ifndef _AllNetMessage_H
 
 #ifdef CREATING_NMT
@@ -108,30 +125,51 @@ END_NMT_CLASS()
 START_NMT_CLASS_(ServerHandshakeResponse)
 	NMT_FIELD_INT(m_UseProtocolVersion, u32, 4)
 	NMT_FIELD_INT(m_Flags, u32, 4)
-	NMT_FIELD(CStr, m_Message)
+	NMT_FIELD(CStrW, m_Message)
 END_NMT_CLASS()
 
 START_NMT_CLASS_(Result)
 	NMT_FIELD_INT(m_Code, u32, 4)
-	NMT_FIELD(CStr, m_Message)
+	NMT_FIELD(CStrW, m_Message)
 END_NMT_CLASS()
 
 START_NMT_CLASS_(Authenticate)
-	NMT_FIELD(CStr, m_Nick)
+	NMT_FIELD(CStrW, m_Name)
 	//NMT_FIELD(CPasswordHash, m_Password)
 	NMT_FIELD(CStr, m_Password)
 END_NMT_CLASS()
 
-START_NMT_CLASS_(Chat)
+START_NMT_CLASS_(ChatMessage)
+	NMT_FIELD(CStrW, m_Sender)
 	NMT_FIELD_INT(m_Recipient, u32, 2)
-	NMT_FIELD(CStr, m_Message)
+	NMT_FIELD(CStrW, m_Message)
+END_NMT_CLASS()
+
+START_NMT_CLASS_(SetGameConfig)
+	NMT_START_ARRAY(m_Values)
+		NMT_FIELD(CStr, m_Name)
+		NMT_FIELD(CStrW, m_Value)
+	NMT_END_ARRAY()
 END_NMT_CLASS()
 
 START_NMT_CLASS_(PlayerConnect)
 	NMT_START_ARRAY(m_Players)
 		NMT_FIELD_INT(m_PlayerID, u32, 2)
-		NMT_FIELD(CStr, m_Nick)
+		NMT_FIELD(CStrW, m_Nick)
 	NMT_END_ARRAY()
+END_NMT_CLASS()
+
+START_NMT_CLASS_(StartGame)
+END_NMT_CLASS()
+
+START_NMT_CLASS_(EndCommandBatch)
+	NMT_FIELD_INT(m_TurnLength, u32, 2)
+END_NMT_CLASS()
+
+START_NMT_CLASS_(GotoCommand)
+	NMT_FIELD(HEntity, m_Entity)
+	NMT_FIELD_INT(m_TargetX, u32, 2)
+	NMT_FIELD_INT(m_TargetY, u32, 2)
 END_NMT_CLASS()
 
 // #include "../EventTypes.h"

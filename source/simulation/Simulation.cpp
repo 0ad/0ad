@@ -3,20 +3,32 @@
 #include <timer.h>
 
 #include "Simulation.h"
+#include "TurnManager.h"
 #include "Game.h"
 #include "EntityManager.h"
 #include "Scheduler.h"
+#include "Network/NetMessage.h"
+#include "CLogger.h"
 
 #include "gui/CGUI.h"
 
 CSimulation::CSimulation(CGame *pGame):
 	m_pGame(pGame),
 	m_pWorld(pGame->GetWorld()),
+	m_pTurnManager((g_SinglePlayerTurnManager=new CSinglePlayerTurnManager())),
 	m_DeltaTime(0)
 {}
 
+CSimulation::~CSimulation()
+{
+	delete g_SinglePlayerTurnManager;
+	g_SinglePlayerTurnManager=NULL;
+}
+
 void CSimulation::Initialize(CGameAttributes *pAttribs)
 {
+	m_pTurnManager->Initialize(m_pGame->GetNumPlayers());
+
 	CMessage init_msg (CMessage::EMSG_INIT);
 	g_EntityManager.dispatchAll(&init_msg);
 }
@@ -24,13 +36,13 @@ void CSimulation::Initialize(CGameAttributes *pAttribs)
 void CSimulation::Update(double frameTime)
 {
 	m_DeltaTime += frameTime;
-
+	
 	if( m_DeltaTime >= 0.0 )
 	{
 		// A new simulation frame is required.
 		MICROLOG( L"calculate simulation" );
 		Simulate();
-		m_DeltaTime -= (m_SimUpdateInterval/1000.0);
+		m_DeltaTime -= (m_pTurnManager->GetTurnLength()/1000.0);
 		if( m_DeltaTime >= 0.0 )
 		{
 			// The desired sim frame rate can't be achieved. Settle for process & render
@@ -40,7 +52,7 @@ void CSimulation::Update(double frameTime)
 		}
 	}
 
-	Interpolate(frameTime, ((1000.0*m_DeltaTime) / (float)m_SimUpdateInterval) + 1.0);
+	Interpolate(frameTime, ((1000.0*m_DeltaTime) / (float)m_pTurnManager->GetTurnLength()) + 1.0);
 }
 
 void CSimulation::Interpolate(double frameTime, double offset)
@@ -55,6 +67,42 @@ void CSimulation::Interpolate(double frameTime, double offset)
 void CSimulation::Simulate()
 {
 	g_GUI.TickObjects();
-	g_Scheduler.update(m_SimUpdateInterval);
-	g_EntityManager.updateAll( m_SimUpdateInterval );
+	g_Scheduler.update(m_pTurnManager->GetTurnLength());
+	g_EntityManager.updateAll( m_pTurnManager->GetTurnLength() );
+
+	m_pTurnManager->NewTurn();
+	m_pTurnManager->IterateBatch(0, TranslateMessage, this);
+}
+
+uint CSimulation::TranslateMessage(CNetMessage *pMsg, uint clientMask, void *userdata)
+{
+	CSimulation *pSimulation=(CSimulation *)userdata;
+
+	CEntityOrder entOrder;
+	switch (pMsg->GetType())
+	{
+	case NMT_GotoCommand:
+		CGotoCommand *msg=(CGotoCommand *)pMsg;
+		entOrder.m_type=CEntityOrder::ORDER_GOTO;
+		entOrder.m_data[0].location.x=msg->m_TargetX;
+		entOrder.m_data[0].location.y=msg->m_TargetY;
+		CEntity *ent=msg->m_Entity;
+		ent->dispatch(new CMessageOrder(entOrder));
+		break;
+	}
+
+	return clientMask;
+}
+
+uint CSimulation::GetMessageMask(CNetMessage *pMsg, uint oldMask, void *userdata)
+{
+	CSimulation *pSimulation=(CSimulation *)userdata;
+	// Pending a complete visibility/minimal-update implementation, we'll
+	// simply select the first 32 connected clients ;-)
+	return 0xffffffff;
+}
+
+void CSimulation::QueueLocalCommand(CNetMessage *pMsg)
+{
+	m_pTurnManager->QueueLocalCommand(pMsg);
 }

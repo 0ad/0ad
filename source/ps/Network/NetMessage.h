@@ -46,6 +46,11 @@ public:
 	{ return GetString(); }
 
 	/**
+	 * Copy the message
+	 */
+	virtual CNetMessage *Copy() const;
+
+	/**
 	 * Deserialize a net message, using the globally registered deserializers.
 	 *
 	 * @param type The NetMessageType of the message

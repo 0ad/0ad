@@ -2,12 +2,16 @@
 #include <wctype.h>
 
 #include "CConsole.h"
+#include "CLogger.h"
 
 #include "Prometheus.h"
 #include "sysdep/sysdep.h"
 #include "input.h"
 #include "Hotkey.h"
 #include "scripting/ScriptingHost.h"
+
+#include "Network/Client.h"
+#include "Network/Server.h"
 
 extern bool keys[SDLK_LAST];
 
@@ -501,9 +505,30 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 			InsertMessage( L"%hs", g_ScriptingHost.ValueToString( rval ).c_str() );
 	}
 	else
-		InsertMessage(L"<say>: %ls", szLine);
+		SendChatMessage(szLine);
 }
 
+void CConsole::SendChatMessage(const wchar_t *szMessage)
+{
+	if (g_NetClient || g_NetServer)
+	{
+		CChatMessage *msg=new CChatMessage();
+		msg->m_Recipient = PS_CHAT_RCP_ALL;
+		msg->m_Message = szMessage;
+		if (g_NetClient)
+			g_NetClient->Push(msg);
+		else
+		{
+			msg->m_Sender=g_NetServer->GetServerPlayerName();
+			g_NetServer->Broadcast(msg);
+		}
+	}
+}
+
+void CConsole::ReceivedChatMessage(const wchar_t *szSender, const wchar_t *szMessage)
+{
+	InsertMessage(L"%ls: %ls", szSender, szMessage);
+}
 
 #include "sdl.h"
 

@@ -29,6 +29,8 @@
 
 typedef void(*fptr)(void);
 
+class CNetSession;
+
 class CConsole
 {
 private:
@@ -88,6 +90,9 @@ public:
 
     void InsertMessage(const wchar_t* szMessage, ...);
 	void InsertChar(const int szChar, const wchar_t cooked);
+
+	void SendChatMessage(const wchar_t *szMessage);
+	void ReceivedChatMessage(const wchar_t *pSender, const wchar_t *szMessage);
 
 	void SetBuffer(const wchar_t* szMessage, ...);
 

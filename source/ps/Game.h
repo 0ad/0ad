@@ -10,22 +10,32 @@ ERROR_GROUP(Game);
 #include "Simulation.h"
 #include "Player.h"
 #include "GameView.h"
-#include "scripting/ScriptingHost.h"
+
+#include "AttributeMap.h"
 
 #include <vector>
 
-class CGameAttributes
+class CGameAttributes: public CAttributeMap
 {
+protected:
+	virtual void CreateJSObject();
+	virtual JSBool GetJSProperty(jsval id, jsval *ret);
+
 public:
-	inline CGameAttributes():
-		m_MapFile()
-	{}
+	CGameAttributes();
+	virtual ~CGameAttributes();
 
-	JSBool FillFromJS(JSContext *cx, JSObject *obj);
+	// NOTE: Public only for JS interface
+	class CPlayerAttributes: public CAttributeMap
+	{
+	protected:
+		virtual void CreateJSObject();
+	public:
+		CPlayerAttributes();
+	};
 
-	// The VFS path of the mapfile to load or NULL for no map (and to use
-	// default terrain)
-	CStr m_MapFile;
+	JSObject *m_PlayerArrayJS;
+	std::vector <CPlayerAttributes *> m_PlayerAttribs;
 };
 
 class CGame
@@ -36,6 +46,7 @@ class CGame
 	
 	std::vector<CPlayer *> m_Players;
 	CPlayer *m_pLocalPlayer;
+	uint m_NumPlayers;
 	
 public:
 	CGame();
@@ -43,21 +54,29 @@ public:
 
 	/*
 		Initialize all local state and members for playing a game described by
-		the attribute class.
-		
+		the attribute class, and start the game.
+
 		Return: 0 on OK - a PSRETURN code otherwise
 	*/
-	PSRETURN Initialize(CGameAttributes *pGameAttributes);
+	PSRETURN StartGame(CGameAttributes *pGameAttributes);
 	
 	/*
 		Perform all per-frame updates
 	*/
 	void Update(double deltaTime);
 	
+	inline CPlayer *GetLocalPlayer()
+	{	return m_pLocalPlayer; }
+
+	inline uint GetNumPlayers()
+	{	return m_NumPlayers; }
+
 	inline CWorld *GetWorld()
 	{	return &m_World; }
 	inline CGameView *GetView()
 	{	return &m_GameView; }
+	inline CSimulation *GetSimulation()
+	{	return &m_Simulation; }
 };
 
 extern CGame *g_Game;

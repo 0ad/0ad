@@ -48,6 +48,10 @@ struct _nm: public CNetMessage \
 	virtual u8 *Serialize(u8 *buffer) const; \
 	virtual const u8 *Deserialize(const u8 *pos, const u8 *end); \
 	virtual CStr GetString() const; \
+	virtual CNetMessage *Copy() const \
+	{ \
+		return new _nm(*this); \
+	} \
 	inline operator CStr () const \
 	{ return GetString(); }
 
