@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "CMusicPlayer.h"
 
 size_t VorbisRead(void *ptr, size_t byteSize, size_t sizeToRead, void *datasource)
@@ -297,15 +299,15 @@ void CMusicPlayer::empty()
 
 bool CMusicPlayer::stream(ALuint buffer)
 {
-	char data[BUFFER_SIZE];
+	char data[AUDIO_BUFFER_SIZE];
 	int size = 0;
 	int section, ret;
 
 	
 
-	while(size < BUFFER_SIZE)
+	while(size < AUDIO_BUFFER_SIZE)
 	{
-		ret = ov_read(&oggStream, data + size, BUFFER_SIZE - size,0,2,1,&section);
+		ret = ov_read(&oggStream, data + size, AUDIO_BUFFER_SIZE - size,0,2,1,&section);
 
 		if(ret > 0)
 		{

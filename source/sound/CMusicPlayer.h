@@ -11,7 +11,7 @@
 #include <vorbis/codec.h>
 #include <vorbis/vorbisfile.h>
 
-#define BUFFER_SIZE (64*1024)
+#define AUDIO_BUFFER_SIZE (64*1024)
 
 struct SOggFile
 {

@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "CPlayList.h"
 #include <iostream>
 
