@@ -16,6 +16,11 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
+// note: try to avoid redefining CRT functions - if building against the
+// DLL CRT, the declarations will be incompatible. adding _CRTIMP to the decl
+// is a last resort (e.g. if the regular CRT headers would conflict).
+
+
 #ifndef __WPOSIX_H__
 #define __WPOSIX_H__
 
@@ -307,8 +312,6 @@ extern int pthread_mutex_timedlock(pthread_mutex_t*, const struct timespec*);
 // <time.h>
 //
 
-typedef long time_t;
-
 typedef enum
 {
 	CLOCK_REALTIME
@@ -328,8 +331,6 @@ struct timespec
 	time_t tv_sec;
 	long   tv_nsec;
 };
-
-extern time_t time(time_t*);
 
 extern int gettimeofday(struct timeval* tv, void* tzp);
 

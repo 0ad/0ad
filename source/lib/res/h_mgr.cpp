@@ -30,34 +30,30 @@
 // TODO: h_find - required for caching
 
 
+
+
+
+
+
+// rationale
+//
+// why fixed size control blocks, instead of just allocating dynamically?
+// it is expected that resources be created and freed often. this way is
+// much nicer to the memory manager. defining control blocks larger than
+// the alloted space is caught by h_alloc (made possible by the vtbl builder
+// storing control block size). it is also efficient to have all CBs in an
+// more or less contiguous array (see below).
+//
+// why a manager, instead of a simple pool allocator?
+// we need a central list of resources for freeing at exit, checking if a
+// resource has already been loaded (for caching), and when reloading.
+// may as well keep them in an array, rather than add a list and index.
+
+
+
 //
 // handle
 //
-
-// handles are an indirection layer between client code and resources.
-// they allow an important check not possible with a direct pointer:
-// guaranteeing the handle references a given resource /instance/.
-//
-// problem: code C1 allocates a resource, and receives a pointer p to its
-// control block. C1 passes p on to C2, and later frees it.
-// now other code allocates a resource, and happens to reuse the free slot
-// pointed to by p (also possible if simply allocating from the heap).
-// when C2 accesses p, the pointer is valid, but we cannot tell that
-// it is referring to a resource that had already been freed. big trouble.
-//
-// solution: each allocation receives a unique tag (a global counter that
-// is large enough to never overflow). Handles include this tag, as well
-// as a reference (array index) to the control block, which isn't directly
-// accessible. when dereferencing the handle, we check if the handle's tag
-// matches the copy stored in the control block. this protects against stale
-// handle reuse, double-free, and accidentally referencing other resources.
-//
-// type: each handle has an associated type. these must be checked to prevent
-// using textures as sounds, for example. with the manual vtbl scheme,
-// this type is actually a pointer to the resource object's vtbl, and is
-// set up via H_TYPE_DEFINE. see header for rationale. this means that
-// types are private to the module that declared the handle; knowledge
-// of the type ensures the caller actually declared, and owns the resource.
 
 // 0 = invalid handle value
 // < 0 is an error code (we assume < 0 <==> MSB is set - 
@@ -499,17 +495,21 @@ int h_reload(const char* fn)
 	int ret = 0;
 
 	// now reload all affected handles
-	// TODO: if too slow
+	// TODO: what if too slow to iterate through all handles?
 	for(i = 0; i <= last_in_use; i++)
 	{
 		HDATA* hd = h_data(i);
-		if(!hd)
+		if(!hd || hd->key != key)
 			continue;
 
 		int err = hd->type->reload(hd->user, hd->fn);
 		// don't stop if an error is encountered - try to reload them all.
 		if(err < 0)
+		{
+			Handle h = handle(i, hd->tag);
+			h_free(h, hd->type);
 			ret = err;
+		}
 	}
 
 	return ret;
