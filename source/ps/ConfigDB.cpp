@@ -6,6 +6,8 @@
 #include "CLogger.h"
 #include "res/vfs.h"
 #include "res/file.h"
+#include "scripting/ScriptingHost.h"
+#include "types.h"
 
 using namespace std;
 
@@ -13,6 +15,120 @@ typedef map <CStr, CConfigValue> TConfigMap;
 TConfigMap CConfigDB::m_Map[CFG_LAST];
 CStr CConfigDB::m_ConfigFile[CFG_LAST];
 bool CConfigDB::m_UseVFS[CFG_LAST];
+
+namespace ConfigNamespace_JS
+{
+	JSBool GetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
+	{
+		EConfigNamespace cfgNs=(EConfigNamespace)(int)JS_GetPrivate(cx, obj);
+		if (cfgNs < 0 || cfgNs >= CFG_LAST)
+			return JS_FALSE;
+
+		CStr propName = g_ScriptingHost.ValueToString(id);
+		CConfigValue *val=g_ConfigDB.GetValue(cfgNs, propName);
+		if (val)
+		{
+			JSString *js_str=JS_NewStringCopyN(cx, val->m_String.c_str(), val->m_String.size());
+			*vp = STRING_TO_JSVAL(js_str);
+		}
+		else
+			*vp = JSVAL_NULL;
+		return JS_TRUE;
+	}
+
+	JSBool SetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
+	{
+		EConfigNamespace cfgNs=(EConfigNamespace)(int)JS_GetPrivate(cx, obj);
+		if (cfgNs < 0 || cfgNs >= CFG_LAST)
+			return JS_FALSE;
+
+		CStr propName = g_ScriptingHost.ValueToString(id);
+		CConfigValue *val=g_ConfigDB.CreateValue(cfgNs, propName);
+		char *str;
+		if (JS_ConvertArguments(cx, 1, vp, "s", &str))
+		{
+			val->m_String=str;
+			return JS_TRUE;
+		}
+		else
+			return JS_FALSE;
+	}
+
+	JSClass Class = {
+		"ConfigNamespace", 0,
+		JS_PropertyStub, JS_PropertyStub,
+		GetProperty, SetProperty,
+		JS_EnumerateStub, JS_ResolveStub,
+		JS_ConvertStub, JS_FinalizeStub
+	};
+
+	JSBool Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
+	{
+		if (argc != 0)
+			return JS_FALSE;
+
+		JSObject *newObj=JS_NewObject(cx, &Class, NULL, NULL);
+		*rval=OBJECT_TO_JSVAL(newObj);
+		return JS_TRUE;
+	}
+
+	void SetNamespace(JSContext *cx, JSObject *obj, EConfigNamespace cfgNs)
+	{
+		JS_SetPrivate(cx, obj, (void *)cfgNs);
+	}
+};
+
+namespace ConfigDB_JS
+{
+	JSClass Class = {
+		"ConfigDB", 0,
+		JS_PropertyStub, JS_PropertyStub,
+		JS_PropertyStub, JS_PropertyStub,
+		JS_EnumerateStub, JS_ResolveStub,
+		JS_ConvertStub, JS_FinalizeStub
+	};
+
+	JSPropertySpec Props[] = {
+		{0}
+	};
+
+	JSFunctionSpec Funcs[] = {
+		{0}
+	};
+
+	JSBool Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
+	{
+		if (argc != 0)
+			return JS_FALSE;
+
+		JSObject *newObj=JS_NewObject(cx, &Class, NULL, NULL);
+		*rval=OBJECT_TO_JSVAL(newObj);
+
+		int flags=JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT;
+#define cfg_ns(_propname, _enum) STMT (\
+	JSObject *nsobj=g_ScriptingHost.CreateCustomObject("ConfigNamespace"); \
+	assert(nsobj); \
+	ConfigNamespace_JS::SetNamespace(cx, nsobj, _enum); \
+	assert(JS_DefineProperty(cx, newObj, _propname, OBJECT_TO_JSVAL(nsobj), NULL, NULL, flags)); )
+
+		cfg_ns("system", CFG_SYSTEM);
+		cfg_ns("user", CFG_USER);
+		cfg_ns("mod", CFG_MOD);
+
+#undef cfg_ns
+
+		return JS_TRUE;
+	}
+
+};
+
+CConfigDB::CConfigDB()
+{
+	g_ScriptingHost.DefineCustomObjectType(&ConfigDB_JS::Class, ConfigDB_JS::Construct, 0, ConfigDB_JS::Props, ConfigDB_JS::Funcs, NULL, NULL);
+	g_ScriptingHost.DefineCustomObjectType(&ConfigNamespace_JS::Class, ConfigNamespace_JS::Construct, 0, NULL, NULL, NULL, NULL);
+	JSObject *js_ConfigDB=g_ScriptingHost.CreateCustomObject("ConfigDB");
+	g_ScriptingHost.SetGlobal("g_ConfigDB", OBJECT_TO_JSVAL(js_ConfigDB));
+}
 
 CConfigValue *CConfigDB::GetValue(EConfigNamespace ns, CStr name)
 {
@@ -49,8 +165,8 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	// Set up CParser
 	CParser parser;
 	CParserLine parserLine;
-	parser.InputTaskType("Assignment", "_$ident_=_[-$arg(_minus)]_$value_[;$rest]");
-	parser.InputTaskType("Comment", "_;$rest");
+	parser.InputTaskType("Assignment", "_$ident_=_[-$arg(_minus)]_$value_[[;]$rest]");
+	parser.InputTaskType("CommentOrBlank", "_[;[$rest]]");
 
 	void *buffer;
 	uint buflen;
@@ -68,7 +184,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	}
 	else
 	{
-		if (file_open(m_ConfigFile[ns].c_str(), 0, &f)!=0)
+		if (file_open(m_ConfigFile[ns], 0, &f)!=0)
 		{
 			LOG(ERROR, "file_open for \"%s\" failed", m_ConfigFile[ns].c_str());
 			return false;
@@ -96,12 +212,13 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 		if (*(lend-1) == '\r') lend--;
 
 		// Send line to parser
-		parserLine.ParseString(parser, std::string(pos, lend));
+		bool parseOk=parserLine.ParseString(parser, std::string(pos, lend));
 		// Get name and value from parser
 		string name;
 		string value;
 		
-		if (parserLine.GetArgCount()>=2 &&
+		if (parseOk &&
+			parserLine.GetArgCount()>=2 &&
 			parserLine.GetArgString(0, name) &&
 			parserLine.GetArgString(1, value))
 		{

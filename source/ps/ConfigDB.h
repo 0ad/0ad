@@ -4,6 +4,20 @@
 	TDD		:	http://forums.wildfiregames.com/0ad/index.php?showtopic=1125
 	AUTHOR	:	Simon Brenner <simon@wildfiregames.com>, <simon.brenner@home.se>
 	OVERVIEW:
+
+	JavaScript:
+		All the javascript interfaces are provided through the global object
+		g_ConfigDB.
+
+		g_ConfigDB Properties:
+		system:
+			All CFG_SYSTEM values are linked to properties of this object.
+			a=g_ConfigDB.system.foo; is equivalent to C++ code
+			g_ConfigDB.GetValue(CFG_SYSTEM, "foo");
+		mod: Ditto, but linked to CFG_MOD
+		user: Ditto, but linked to CFG_USER
+
+		g_ConfigDB Functions: None so far
 */
 
 #ifndef _ps_ConfigDB_H
@@ -32,6 +46,10 @@ class CConfigDB: public Singleton<CConfigDB>
 	static bool m_UseVFS[];
 
 public:
+	// NOTE: Construct the Singleton Object *after* JavaScript init, so that
+	// the JS interface can be registered.
+	CConfigDB();
+
 	// GetValue()
 	// Attempt to find a config variable with the given name in the specified
 	// namespace.
@@ -72,8 +90,6 @@ public:
 	// WriteFile()
 	// Write the current state of the specified config namespace to the file
 	// specified by 'path'
-	// 
-	// This function can also 
 	void WriteFile(EConfigNamespace ns, bool useVFS, CStr path);
 };
 
