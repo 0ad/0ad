@@ -148,6 +148,8 @@ enum LibError
 #define UNUSEDPARAM(param)
 
 
+#define ARRAY_SIZE(name) (sizeof(name) / sizeof(name[0]))
+
 
 //
 // compile-time assert, especially useful for testing sizeof().
