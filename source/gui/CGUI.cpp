@@ -385,19 +385,22 @@ void CGUI::DrawSprite(const CStr& SpriteName,
 
 			CRect real = cit->m_Size.GetClientArea(Rect);
 
-			// Get the size of a single tiling of the texture
+			// Get the screen position/size of a single tiling of the texture
 			CRect TexSize = cit->m_TextureSize.GetClientArea(real);
 
-			float TexLeft = -(float)TexSize.left / (float)TexSize.GetWidth();
-			float TexTop = (float)TexSize.top / (float)TexSize.GetHeight();
+			float TexLeft = (float)(TexSize.left - real.left) / (float)TexSize.GetWidth();
 			float TexRight = TexLeft + (float)real.GetWidth() / (float)TexSize.GetWidth();
-			float TexBottom = TexTop + (float)real.GetHeight() / (float)TexSize.GetHeight();
+
+			// 'Bottom' is actually the top in screen-space (I think),
+			// because the GUI puts (0,0) at the top-left
+			float TexBottom = (float)(TexSize.bottom - real.bottom) / (float)TexSize.GetHeight();
+			float TexTop = TexBottom + (float)real.GetHeight() / (float)TexSize.GetHeight();
 
 			glBegin(GL_QUADS);
-			glTexCoord2f(TexRight,	TexTop);	glVertex3f((float)real.right,	(float)real.bottom,	cit->m_DeltaZ);
-			glTexCoord2f(TexLeft,	TexTop);	glVertex3f((float)real.left,	(float)real.bottom,	cit->m_DeltaZ);
-			glTexCoord2f(TexLeft,	TexBottom);	glVertex3f((float)real.left,	(float)real.top,	cit->m_DeltaZ);
-			glTexCoord2f(TexRight,	TexBottom);	glVertex3f((float)real.right,	(float)real.top,	cit->m_DeltaZ);
+			glTexCoord2f(TexRight,	TexBottom);	glVertex3f((float)real.right,	(float)real.bottom,	cit->m_DeltaZ);
+			glTexCoord2f(TexLeft,	TexBottom);	glVertex3f((float)real.left,	(float)real.bottom,	cit->m_DeltaZ);
+			glTexCoord2f(TexLeft,	TexTop);	glVertex3f((float)real.left,	(float)real.top,	cit->m_DeltaZ);
+			glTexCoord2f(TexRight,	TexTop);	glVertex3f((float)real.right,	(float)real.top,	cit->m_DeltaZ);
 			glEnd();
 
 			glDisable(GL_TEXTURE_2D);
