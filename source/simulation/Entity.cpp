@@ -101,25 +101,21 @@ void CEntity::loadBase()
 void CEntity::kill()
 {
 	g_Selection.removeAll( this );
+
 	if( m_bounds ) delete( m_bounds );
-	m_actor = NULL;
 	m_bounds = NULL;
 
 	m_extant = false;
 	m_extant_mirror = false;
 	
-	return; // TODO: Help! Wierd heap corruption error I've not been able to fix
-			// but stopping entities being deallocated supresses it.
-			// Have a hunch it's to do with deallocating actors that haven't
-			// had renderdata set up yet.
-
 	if( m_actor )
 	{
 		g_UnitMan.RemoveUnit( m_actor );
 		delete( m_actor );
+		m_actor = NULL;
 	}
 
-	me = HEntity();
+	me = HEntity(); // will deallocate the entity, assuming nobody else has a reference to it
 }
 
 bool isWaypoint( CEntity* e )
