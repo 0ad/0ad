@@ -46,12 +46,13 @@ void CButton::SetupText()
 	CStr font;
 	if (GUI<CStr>::GetSetting(this, "font", font) != PS_OK || font.Length()==0)
 		// Use the default if none is specified
+		// TODO Gee: (2004-08-14) Default should not be hard-coded, but be in styles!
 		font = "default";
 
 	CGUIString caption;
 	GUI<CGUIString>::GetSetting(this, "caption", caption);
 
-	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, m_CachedActualSize.GetWidth(), 0);
+	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, m_CachedActualSize.GetWidth(), 0, this);
 
 	// Set position of text
 	//m_TextPos = m_CachedActualSize.CenterPoint() - m_GeneratedTexts[0]->m_Size/2;

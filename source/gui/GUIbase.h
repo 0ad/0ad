@@ -22,11 +22,14 @@ gee@pyro.nu
 //  Includes / Compiler directives
 //--------------------------------------------------------
 
+// I would like to just forward declare CSize, but it doesn't
+//  seem to be defined anywhere in the predefined header.
+#include "Overlay.h"
+
 //--------------------------------------------------------
 //  Forward declarations
 //--------------------------------------------------------
 class IGUIObject;
-
 
 //--------------------------------------------------------
 //  Macros
@@ -128,6 +131,19 @@ enum EGUISettingsStruct
 // Typedefs
 typedef	std::map<CStr, IGUIObject*> map_pObjects;
 typedef std::vector<IGUIObject*> vector_pObjects;
+
+//	Smaller structs that don't deserve their own files :)
+
+// Icon, you create them in the XML file with root element <setup>
+//  you use them in text owned by different objects... Such as CText.
+struct SGUIIcon
+{
+	// Texture name of icon
+	CStr m_TextureName;
+
+	// Size
+	CSize m_Size;
+};
 
 //--------------------------------------------------------
 //  Error declarations

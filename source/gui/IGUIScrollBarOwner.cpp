@@ -43,13 +43,7 @@ void IGUIScrollBarOwner::AddScrollBar(IGUIScrollBar * scrollbar)
 	scrollbar->SetGUI(GetGUI());
 	m_ScrollBars.push_back(scrollbar);
 }
-/*
-void SetGUI(CGUI * const &pGUI)
-{
-	m_pGUI = pGUI;
-	scrollbar->SetGUI(m_pGUI);
-}
-*/
+
 const SGUIScrollBarStyle * IGUIScrollBarOwner::GetScrollBarStyle(const CStr& style) const
 {
 	if (!GetGUI())

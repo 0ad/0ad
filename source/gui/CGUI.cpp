@@ -383,8 +383,8 @@ void CGUI::DrawSprite(const CStr& SpriteName,
 	// Fetch real sprite from name
 	if (m_Sprites.count(SpriteName) == 0)
 	{
-		debug_warn("CGUI::DrawSprite error");
-		// TODO Gee: Report error
+		LOG(ERROR, LOG_CATEGORY, "Trying to use a sprite that doesn't exist (\"%s\").", SpriteName.c_str());
+		// TODO Gee: (2004-08-31) This will be called continuously when it happens.
 		return;
 	}
 	else Sprite = m_Sprites[SpriteName];
@@ -483,6 +483,7 @@ void CGUI::Destroy()
 	// Clear all
 	m_pAllObjects.clear();
 	m_Sprites.clear();
+	m_Icons.clear();
 }
 
 void CGUI::UpdateResolution()
@@ -587,8 +588,9 @@ struct SGenerateTextImage
 	}
 };
 
-SGUIText CGUI::GenerateText(const CGUIString &string, /*const CColor &Color, */
-							const CStr& Font, const int &Width, const int &BufferZone)
+SGUIText CGUI::GenerateText(const CGUIString &string,
+							const CStr& Font, const int &Width, const int &BufferZone, 
+							const IGUIObject *pObject)
 {
 	SGUIText Text; // object we're generating
 	
@@ -607,6 +609,8 @@ SGUIText CGUI::GenerateText(const CGUIString &string, /*const CColor &Color, */
 	// Easier to read.
 	bool WordWrapping = (Width != 0);
 
+	size_t TEMP = string.m_Words.size();
+
 	// Go through string word by word
 	for (int i=0; i<(int)string.m_Words.size()-1 && !done; ++i)
 	{
@@ -620,7 +624,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string, /*const CColor &Color, */
 		int prelim_line_height=0;
 
 		// Width and height of all text calls generated.
-		string.GenerateTextCall(Feedback, Font, /*CColor(),*/
+		string.GenerateTextCall(Feedback, Font,
 								string.m_Words[i], string.m_Words[i+1]);
 
 		// Loop through our images queues, to see if images has been added.
@@ -632,8 +636,11 @@ SGUIText CGUI::GenerateText(const CGUIString &string, /*const CColor &Color, */
 			// Loop left/right
 			for (int j=0; j<2; ++j)
 			{
+				// TEMP
+				int TEMPsize = Feedback.m_Images[j].size();
+
 				for (vector<CStr>::const_iterator it = Feedback.m_Images[j].begin(); 
-					it != Feedback.m_Images[j].end(); 
+					it != Feedback.m_Images[j].end();
 					++it)
 				{
 					SGUIText::SSpriteCall SpriteCall;
@@ -647,9 +654,11 @@ SGUIText CGUI::GenerateText(const CGUIString &string, /*const CColor &Color, */
 					else
 						_y = y; 
 
-					// TODO Gee: CSize temp
-					CSize size; size.cx = 100; size.cy = 100;
-					Image.SetupSpriteCall((j==CGUIString::SFeedback::Left), SpriteCall, Width, _y, size, CStr("white-border"), BufferZone);
+					// Get Size from Icon database
+					SGUIIcon icon = GetIcon(*it);
+
+					CSize size = icon.m_Size;
+					Image.SetupSpriteCall((j==CGUIString::SFeedback::Left), SpriteCall, Width, _y, size, icon.m_TextureName, BufferZone);
 
 					// Check if image is the lowest thing.
 					Text.m_Size.cy = max(Text.m_Size.cy, Image.m_YTo);
@@ -668,7 +677,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string, /*const CColor &Color, */
 		// If Width is 0, then there's no word-wrapping, disable NewLine.
 		if ((WordWrapping && (x > Width-BufferZone || Feedback.m_NewLine)) || i == (int)string.m_Words.size()-2)
 		{
-			// Change from to i, but first keep a copy of its value.
+			// Change 'from' to 'i', but first keep a copy of its value.
 			int temp_from = from;
 			from = i;
 
@@ -678,7 +687,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string, /*const CColor &Color, */
 			width_range[From] = BufferZone;
 			width_range[To] = Width - BufferZone;
 
-			// Floating images are only appicable if word-wrapping is enabled.
+			// Floating images are only applicable if word-wrapping is enabled.
 			if (WordWrapping)
 			{
 				// Decide width of the line. We need to iterate our floating images.
@@ -730,7 +739,10 @@ SGUIText CGUI::GenerateText(const CGUIString &string, /*const CColor &Color, */
 				//  another.
 				CGUIString::SFeedback Feedback2;
 
-				string.GenerateTextCall(Feedback2, Font, /*CColor(),*/
+				// Don't attach object, it'll suppress the errors
+				//  we want them to be reported in the final GenerateTextCall()
+				//  so that we don't get duplicates.
+				string.GenerateTextCall(Feedback2, Font,
 										string.m_Words[j], string.m_Words[j+1]);
 
 				// Append X value.
@@ -755,12 +767,13 @@ SGUIText CGUI::GenerateText(const CGUIString &string, /*const CColor &Color, */
 			for (int j=temp_from; j<=i; ++j)
 			{
 				// We don't want to use Feedback now, so we'll have to use
-				//  another.
+				//  another one.
 				CGUIString::SFeedback Feedback2;
 
 				// Defaults
-				string.GenerateTextCall(Feedback2, Font, /*Color, */
-										string.m_Words[j], string.m_Words[j+1]);
+				string.GenerateTextCall(Feedback2, Font,
+										string.m_Words[j], string.m_Words[j+1], 
+										pObject);
 
 				// Iterate all and set X/Y values
 				// Since X values are not set, we need to make an internal
@@ -777,8 +790,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string, /*const CColor &Color, */
 
 					if (it->m_pSpriteCall)
 					{
-						it->m_pSpriteCall->m_Area = 
-							it->m_pSpriteCall->m_Area + it->m_Pos;
+						it->m_pSpriteCall->m_Area += it->m_Pos - CSize(0,it->m_pSpriteCall->m_Area.GetHeight());
 					}
 				}
 
@@ -787,14 +799,18 @@ SGUIText CGUI::GenerateText(const CGUIString &string, /*const CColor &Color, */
 
 				Text.m_Size.cx = max(Text.m_Size.cx, x+BufferZone);
 
-				// The first word overrides the width limit, that we
-				//  do in those cases, are just draw that word even
+				// The first word overrides the width limit, what we
+				//  do, in those cases, are just drawing that word even
 				//  though it'll extend the object.
 				if (WordWrapping) // only if word-wrapping is applicable
 				{
 					if (Feedback2.m_NewLine)
 					{
 						from = j+1;
+
+						// Sprite call can exist within only a newline segment,
+						//  therefore we need this.
+						Text.m_SpriteCalls.insert(Text.m_SpriteCalls.end(), Feedback2.m_SpriteCalls.begin(), Feedback2.m_SpriteCalls.end());
 						break;
 					}
 					else
@@ -818,7 +834,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string, /*const CColor &Color, */
 				if (j == (int)string.m_Words.size()-2)
 					done = true;
 			}
-		
+
 			// Reset X
 			x = 0;
 
@@ -855,6 +871,7 @@ void CGUI::DrawText(const SGUIText &Text, const CColor &DefaultColor,
 		 it != Text.m_TextCalls.end(); 
 		 ++it)
 	{
+		// If this is just a placeholder for a sprite call, continue
 		if (it->m_pSpriteCall)
 			continue;
 
@@ -881,7 +898,7 @@ void CGUI::DrawText(const SGUIText &Text, const CColor &DefaultColor,
 
 	delete font;
 
-	for (vector<SGUIText::SSpriteCall>::const_iterator it=Text.m_SpriteCalls.begin(); 
+	for (list<SGUIText::SSpriteCall>::const_iterator it=Text.m_SpriteCalls.begin(); 
 		 it!=Text.m_SpriteCalls.end(); 
 		 ++it)
 	{
@@ -889,8 +906,16 @@ void CGUI::DrawText(const SGUIText &Text, const CColor &DefaultColor,
 	}
 }
 
-void CGUI::ReportParseError(const CStr& str)
+void CGUI::ReportParseError(const char *str, ...)
 {
+	va_list argp;
+	char buffer[512];
+	memset(buffer,0,sizeof(buffer));
+	
+	va_start(argp, str);
+	vsnprintf2(buffer, sizeof(buffer), str, argp);
+	va_end(argp);
+
 	// Print header
 	if (m_Errors==0)
 	{
@@ -900,7 +925,7 @@ void CGUI::ReportParseError(const CStr& str)
 	// Important, set ParseError to true
 	++m_Errors;
 
-	LOG(ERROR, LOG_CATEGORY, str);
+	LOG(ERROR, LOG_CATEGORY, buffer);
 }
 
 /**
@@ -1038,6 +1063,11 @@ void CGUI::Xeromyces_ReadRootSetup(XMBElement Element, CXeromyces* pFile)
 		{
 			Xeromyces_ReadScrollBarStyle(child, pFile);
 		}
+		else
+		if (name == "icon")
+		{
+			Xeromyces_ReadIcon(child, pFile);
+		}
 		// No need for else, we're using DTD.
 	}
 }
@@ -1064,8 +1094,6 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	{
 		// Report error that object was unsuccessfully loaded
 		ReportParseError(CStr("Unrecognized type: ") + CStr(type));
-
-		delete object;
 		return;
 	}
 
@@ -1101,8 +1129,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		// additional check
 		if (m_Styles.count(argStyle) == 0)
 		{
-			debug_warn("CGUI::Xeromyces_ReadObject error");
-			// TODO Gee: Error
+			ReportParseError("Trying to use style '%s' that doesn't exist.", argStyle.c_str());
 		}
 		else object->LoadStyle(*this, argStyle);
 	}
@@ -1411,6 +1438,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 	// Image object we're adding
 	SGUIImage image;
 	
+	// TODO Gee: (2004-08-30) This is not how to set defaults.
 	CStr DefaultTextureSize = "0 0 100% 100%";
 	image.m_TextureSize = CClientArea(DefaultTextureSize);
 	
@@ -1438,6 +1466,8 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			Handle tex = tex_load(TexFilename.c_str());
 			if (tex <= 0)
 			{
+				// Don't use ReportParseError, because this is not a *parsing* error
+				//  and has ultimately nothing to do with the actual sprite we're reading.
 				LOG(ERROR, LOG_CATEGORY, "Error opening texture '%s': %lld", TexFilename.c_str(), tex);
 			}
 			else
@@ -1453,8 +1483,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			CClientArea ca;
 			if (!GUI<CClientArea>::ParseString(attr_value, ca))
 			{
-				debug_warn("CGUI::Xeromyces_ReadImage error");
-				// TODO Gee: Error
+				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
 			}
 			else image.m_Size = ca;
 		}
@@ -1464,8 +1493,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			CClientArea ca;
 			if (!GUI<CClientArea>::ParseString(attr_value, ca))
 			{
-				debug_warn("CGUI::Xeromyces_ReadImage error");
-				// TODO Gee: Error
+				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
 			}
 			else image.m_TextureSize = ca;
 		}
@@ -1475,8 +1503,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			int z_level;
 			if (!GUI<int>::ParseString(attr_value, z_level))
 			{
-				debug_warn("CGUI::Xeromyces_ReadImage error");
-				// TODO Gee: Error
+				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
 			}
 			else image.m_DeltaZ = (float)z_level/100.f;
 		}
@@ -1486,18 +1513,11 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			CColor color;
 			if (!GUI<CColor>::ParseString(attr_value, color))
 			{
-				debug_warn("CGUI::Xeromyces_ReadImage error");
-				// TODO Gee: Error
+				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
 			}
 			else image.m_BackColor = color;
 		}
-		else
-		{
-			debug_warn("CGUI::Xeromyces_ReadImage error");
-			// TODO Gee: Log
-			//g_console.submit("echo Error attribute " + attr_name + " is not expected in <image>");
-			return;
-		}
+		// We don't need no else when we're using DTDs.
 	}
 
 	//
@@ -1569,7 +1589,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 			int i;
 			if (!GUI<int>::ParseString(attr_value, i))
 			{
-				// TODO Gee: Report in log file
+				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
 			}
 			scrollbar.m_Width = i;
 		}
@@ -1579,7 +1599,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 			int i;
 			if (!GUI<int>::ParseString(attr_value, i))
 			{
-				// TODO Gee: Report in log file
+				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
 			}
 			scrollbar.m_MinimumBarSize = i;
 		}
@@ -1619,33 +1639,6 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 		else
 		if (attr_name == "sprite-bar-vertical-pressed")
 			scrollbar.m_SpriteBarVerticalPressed = attr_value;
-
-/*
-	CStr m_SpriteButtonTop;
-	CStr m_SpriteButtonTopPressed;
-	CStr m_SpriteButtonTopDisabled;
-
-	CStr m_SpriteButtonBottom;
-	CStr m_SpriteButtonBottomPressed;
-	CStr m_SpriteButtonBottomDisabled;
-
-	CStr m_SpriteScrollBackHorizontal;
-	CStr m_SpriteScrollBarHorizontal;
-
-
-	CStr m_SpriteButtonLeft;
-	CStr m_SpriteButtonLeftPressed;
-	CStr m_SpriteButtonLeftDisabled;
-
-	CStr m_SpriteButtonRight;
-	CStr m_SpriteButtonRightPressed;
-	CStr m_SpriteButtonRightDisabled;
-
-	CStr m_SpriteScrollBackVertical;
-	CStr m_SpriteScrollBarVertical;
-
-*/
-
 	}
 
 	//
@@ -1653,4 +1646,40 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 	//
 
 	m_ScrollBarStyles[name] = scrollbar;
+}
+
+void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
+{
+	// Icon we're adding
+	SGUIIcon icon;
+	CStr name;
+
+	XMBAttributeList attributes = Element.getAttributes();
+	for (int i=0; i<attributes.Count; ++i)
+	{
+		XMBAttribute attr = attributes.item(i);
+		std::string attr_name = pFile->getAttributeString(attr.Name);
+		CStr attr_value (attr.Value);
+
+		if (attr_value == CStr("null"))
+			continue;
+
+		if (attr_name == "name")
+			name = attr_value;
+		else
+		if (attr_name == "texture")
+			icon.m_TextureName = attr_value;
+		else
+		if (attr_name == "size")
+		{
+			CSize size;
+			if (!GUI<CSize>::ParseString(attr_value, size))
+			{
+				ReportParseError("Error parsing '%s' (\"%s\") when reading and <icon>.", attr_name.c_str(), attr_value.c_str());
+			}
+			icon.m_Size = size;
+		}
+	}
+
+	m_Icons[name] = icon;
 }

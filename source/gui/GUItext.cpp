@@ -7,14 +7,14 @@ gee@pyro.nu
 #include "precompiled.h"
 
 #include "GUI.h"
+#include "CLogger.h"
 #include "Parser.h"
 #include "OverlayText.h"
 #include <algorithm>
 
-#include "ps/Font.h"
+#define LOG_CATEGORY "gui"
 
-// TODO Gee: Remove, just for temp-output
-#include <fstream>
+#include "ps/Font.h"
 
 using namespace std;
 
@@ -32,8 +32,9 @@ void CGUIString::SFeedback::Reset()
 }
 
 void CGUIString::GenerateTextCall(SFeedback &Feedback,
-								  const CStr& DefaultFont, /*const CColor &DefaultColor,*/
-								  const int &from, const int &to) const
+								  const CStr& DefaultFont,
+								  const int &from, const int &to, 
+								  const IGUIObject *pObject) const
 {
 	// Reset width and height, because they will be determined with incrementation
 	//  or comparisons.
@@ -44,6 +45,10 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 	vector<TextChunk>::const_iterator itTextChunk;
 	for (itTextChunk=m_TextChunks.begin(); itTextChunk!=m_TextChunks.end(); ++itTextChunk)
 	{
+		// - GL - Temp
+		TextChunk tc = *itTextChunk;
+		// -- GL
+
 		// Get the area that is overlapped by both the TextChunk and
 		//  by the from/to inputted.
 		int _from, _to;
@@ -51,58 +56,106 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 		_to = min(to, itTextChunk->m_To);
 		
 		// If from is larger than to, than they are not overlapping
-		if (_to == _from && itTextChunk->m_From == itTextChunk->m_To && _from > from)
+		if (_to == _from && itTextChunk->m_From == itTextChunk->m_To)
 		{
 			// These should never be able to have more than one tag.
 			assert(itTextChunk->m_Tags.size()==1);
 
+			// Now do second check
+			//  because icons and images are placed on exactly one position
+			//  in the words-list, it can be counted twice if placed on an
+			//  edge. But there is always only one logical preference that
+			//  we want. This check filters the unwanted.
+			
+			// it's in the end of one word, and the icon 
+			//  should really belong to the beginning of the next one
+			if (_to == to)
+			{
+				if (GetRawString()[to-1] == ' ' ||
+					GetRawString()[to-1] == '-' ||
+					GetRawString()[to-1] == '\n')
+					continue;
+			}
+			// This string is just a break
+			if (_from == from && from >= 1)
+			{
+				if (GetRawString()[from] == '\n' && 
+					GetRawString()[from-1] != '\n' && 
+					GetRawString()[from-1] != ' ' &&
+					GetRawString()[from-1] != '-')
+					continue;
+			}
+
 			// Single tags
 			if (itTextChunk->m_Tags[0].m_TagType == CGUIString::TextChunk::Tag::TAG_IMGLEFT)
 			{
-				//if (_from > from)
+				// Only add the image if the icon exists.
+				if (g_GUI.IconExists(itTextChunk->m_Tags[0].m_TagValue))
+				{
 					Feedback.m_Images[SFeedback::Left].push_back(itTextChunk->m_Tags[0].m_TagValue);
+				}
+				else if (pObject)
+				{
+					LOG(ERROR, LOG_CATEGORY, "Trying to use an [imgleft]-tag with an undefined icon (\"%s\").", itTextChunk->m_Tags[0].m_TagValue.c_str());
+				}
 			}
 			else
 			if (itTextChunk->m_Tags[0].m_TagType == CGUIString::TextChunk::Tag::TAG_IMGRIGHT)
 			{
-				//if (_from > from)
+				// Only add the image if the icon exists.
+				if (g_GUI.IconExists(itTextChunk->m_Tags[0].m_TagValue))
+				{
 					Feedback.m_Images[SFeedback::Right].push_back(itTextChunk->m_Tags[0].m_TagValue);
+				}
+				else if (pObject)
+				{
+					LOG(ERROR, LOG_CATEGORY, "Trying to use an [imgright]-tag with an undefined icon (\"%s\").", itTextChunk->m_Tags[0].m_TagValue.c_str());
+				}
 			}
 			else
 			if (itTextChunk->m_Tags[0].m_TagType == CGUIString::TextChunk::Tag::TAG_ICON)
 			{
-				//if (_from <= from)continue;;
-				// We'll need to setup a text-call that will point
-				//  to the icon, this is to be able to iterate
-				//  through the text-calls without having to
-				//  complex the structure ultimately for nothing more.
-				SGUIText::STextCall TextCall;
+				// Only add the image if the icon exists.
+				if (g_GUI.IconExists(itTextChunk->m_Tags[0].m_TagValue))
+				{
+					// We'll need to setup a text-call that will point
+					//  to the icon, this is to be able to iterate
+					//  through the text-calls without having to
+					//  complex the structure virtually for nothing more.
+					SGUIText::STextCall TextCall;
 
-				// Also add it to the sprites being rendered.
-				SGUIText::SSpriteCall SpriteCall;
+					// Also add it to the sprites being rendered.
+					SGUIText::SSpriteCall SpriteCall;
 
-				CSize size(20,20);
-				// Query size of icon
-				// TODO Gee: Temp
+					// Get Icon from icon database in g_GUI
+                    SGUIIcon icon = g_GUI.GetIcon(itTextChunk->m_Tags[0].m_TagValue);
 
-				// append width, and make maximum height the height.
-				Feedback.m_Size.cx += size.cx;
-				Feedback.m_Size.cy = max(Feedback.m_Size.cy, size.cy);
+					CSize size = icon.m_Size;
 
-				// These are also needed later
-				TextCall.m_Size = size;
-				SpriteCall.m_Area = size;
+					// append width, and make maximum height the height.
+					Feedback.m_Size.cx += size.cx;
+					Feedback.m_Size.cy = max(Feedback.m_Size.cy, size.cy);
 
-				SpriteCall.m_TextureName = CStr("scroll");
+					// These are also needed later
+					TextCall.m_Size = size;
+					SpriteCall.m_Area = size;
 
-				// Add sprite call
-				Feedback.m_SpriteCalls.push_back(SpriteCall);
+					// TODO Gee: (2004-08-16) Eventually shouldn't be hardcoded
+					SpriteCall.m_TextureName = icon.m_TextureName;
 
-				// Finalize text call
-				TextCall.m_pSpriteCall = &Feedback.m_SpriteCalls.back();
+					// Add sprite call
+					Feedback.m_SpriteCalls.push_back(SpriteCall);
 
-				// Add text call
-				Feedback.m_TextCalls.push_back(TextCall);
+					// Finalize text call
+					TextCall.m_pSpriteCall = &Feedback.m_SpriteCalls.back();
+
+					// Add text call
+					Feedback.m_TextCalls.push_back(TextCall);
+				}
+				else if (pObject)
+				{
+					LOG(ERROR, LOG_CATEGORY, "Trying to use an [icon]-tag with an undefined icon (\"%s\").", itTextChunk->m_Tags[0].m_TagValue.c_str());
+				}
 			}
 		}
 		else
@@ -125,11 +178,18 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 				{
 					// Set custom color
 					TextCall.m_UseCustomColor = true;
-					GUI<CColor>::ParseString(it2->m_TagValue, TextCall.m_Color);
+					
+					// Try parsing the color string
+					if (!GUI<CColor>::ParseString(it2->m_TagValue, TextCall.m_Color))
+					{
+						if (pObject)
+							LOG(ERROR, LOG_CATEGORY, "Error parsing the value of a [color]-tag in GUI text when reading object \"%s\".", pObject->GetPresentableName().c_str());
+					}
 				}
 				else
 				if (it2->m_TagType == CGUIString::TextChunk::Tag::TAG_FONT)
 				{
+					// TODO Gee: (2004-08-15) Check if Font exists?
 					TextCall.m_Font = it2->m_TagValue;
 				}
 			}
@@ -217,12 +277,13 @@ void CGUIString::SetValue(const CStr& str)
 	m_RawString = CStr();
 
 	// Setup parser
+	// TODO Gee: (2004-08-16) Create and store this parser object somewhere to save loading time.
 	CParser Parser;
 	Parser.InputTaskType("start", "$ident[_=_$value]");
 	Parser.InputTaskType("end", "/$ident");
 
 	long position = 0;
-	long from=0;			// the position in the raw string where the last tag ended
+	long from=0;		// the position in the raw string where the last tag ended
 	long from_nonraw=0;	// like from only in position of the REAL string, with tags.
 	long curpos = 0;
 
@@ -402,26 +463,6 @@ void CGUIString::SetValue(const CStr& str)
 		}
 	}
 
-#if 1
-
-	ofstream fout("output1.txt");
-
-	for (int i=0; i<(int)m_TextChunks.size(); ++i)	
-	{
-		fout << "{\"";
-		fout << m_TextChunks[i].m_From << " " << m_TextChunks[i].m_To << "\",";
-		for (int j=0; j<(int)m_TextChunks[i].m_Tags.size(); ++j)
-		{
-			fout << "(" << m_TextChunks[i].m_Tags[j].m_TagType << " " << m_TextChunks[i].m_Tags[j].m_TagValue << ")";
-		}
-		fout << "}\n";
-	}
-
-	fout.close();
-
-#endif
-
-
 	// Add a delimiter at start and at end, it helps when
 	//  processing later, because we don't have make exceptions for
 	//  those cases.
@@ -473,19 +514,38 @@ void CGUIString::SetValue(const CStr& str)
 
 	sort(m_Words.begin(), m_Words.end());
 
-	// Remove duplicates
-	vector<int>::iterator it;
-	int last_word = -1;
-	for (it = m_Words.begin(); it != m_Words.end(); )
+	// Remove duplicates (only if larger than 2)
+	if (m_Words.size() > 2)
 	{
-		if (last_word == *it)
+		vector<int>::iterator it;
+		int last_word = -1;
+		for (it = m_Words.begin(); it != m_Words.end(); )
 		{
-			it = m_Words.erase(it);
-		}
-		else
-		{
-			last_word = *it;
-			++it;
+			if (last_word == *it)
+			{
+				it = m_Words.erase(it);
+			}
+			else
+			{
+				last_word = *it;
+				++it;
+			}
 		}
 	}
+
+#if 1
+	for (int i=0; i<(int)m_Words.size(); ++i)
+	{
+		LOG(NORMAL, LOG_CATEGORY, "m_Words[%d] = %d", i, m_Words[i]);
+	}
+
+	for (int i=0; i<(int)m_TextChunks.size(); ++i)
+	{
+		LOG(NORMAL, LOG_CATEGORY, "m_TextChunk[%d] = [%d,%d]", i, m_TextChunks[i].m_From, m_TextChunks[i].m_To);
+		for (int j=0; j<(int)m_TextChunks[i].m_Tags.size(); ++j)
+		{
+			LOG(NORMAL, LOG_CATEGORY, "--Tag: %d \"%s\"", (int)m_TextChunks[i].m_Tags[j].m_TagType, m_TextChunks[i].m_Tags[j].m_TagValue.c_str());
+		}
+	}
+#endif
 }

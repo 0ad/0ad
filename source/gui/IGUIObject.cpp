@@ -172,7 +172,8 @@ void IGUIObject::AddSetting(const EGUISettingType &Type, const CStr& Name)
 
 	default:
 		debug_warn("IGUIObject::AddSetting failed");
-		// TODO Gee: Report in log, type is not recognized.
+		// TODO Gee: Report in log, type is not recognized. This should be an assert, not in log
+		//  because it's strictly hardcoded error
 		break;
 	}
 }
@@ -477,4 +478,17 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	// Allow the temporary parameters to be garbage-collected
 	JS_RemoveRoot(g_ScriptingHost.getContext(), &mouseObj);
 	JS_RemoveRoot(g_ScriptingHost.getContext(), &jsGuiObject);
+}
+
+CStr IGUIObject::GetPresentableName() const
+{
+	// __internal(), must be at least 13 letters to be able to be
+	//  an internal name
+	if (m_Name.Length() <= 12)
+		return m_Name;
+
+	if (m_Name.GetSubstring(0, 10) == CStr("__internal"))
+		return CStr("[unnamed object]");
+	else
+		return m_Name;
 }

@@ -204,14 +204,18 @@ public:
 	 * Done through the CGUI since it can communicate with 
 	 *
 	 * @param Text Text to generate SGUIText object from
-	 * @param Color Default color
 	 * @param Font Default font, notice both Default color and defult font
 	 *		  can be changed by tags.
 	 * @param Width Width, 0 if no word-wrapping.
 	 * @param BufferZone space between text and edge, and space between text and images.
+	 *
+	 * pObject is *only* if error parsing fails, and we need to be able to output
+	 * which object the error occured in to aid the user. The parameter is completely
+	 * optional.
 	 */
-	SGUIText GenerateText(const CGUIString &Text, /*const CColor &Color, */
-						  const CStr& Font, const int &Width, const int &BufferZone);
+	SGUIText GenerateText(const CGUIString &Text,
+						  const CStr& Font, const int &Width, const int &BufferZone,
+						  const IGUIObject *pObject=NULL);
 
 	/**
 	 * Returns the JSObject* associated with the GUI
@@ -219,6 +223,16 @@ public:
 	 * @return A JSobject* (as a void* to avoid #including all of JS)
 	 */
 	void* GetScriptObject() { return m_ScriptObject; }
+
+	/**
+	 * Check if an icon exists
+	 */
+	bool IconExists(const CStr &str) const { return (m_Icons.count(str) != 0); }
+
+	/**
+	 * Get Icon (a copy, can never be changed)
+	 */
+	SGUIIcon GetIcon(const CStr &str) const { return m_Icons.find(str)->second; }
 
 private:
 	/**
@@ -249,7 +263,7 @@ private:
 	 *
 	 * @param str Error message
 	 */
-	void ReportParseError(const CStr& str);
+	void ReportParseError(const char *str, ...);
 
 	/**
 	 * You input the name of the object type, and let's
@@ -274,41 +288,38 @@ private:
 
 	/**
 		Xeromyces_* functions tree
-		<code>
-		\<objects\> (ReadRootObjects)
+		<objects> (ReadRootObjects)
 		 |
-		 +-\<script\> (ReadScript)
+		 +-<script> (ReadScript)
 		 |
-		 +-\<object\> (ReadObject)
+		 +-<object> (ReadObject)
 			|
-			+-\<action\>
+			+-<action>
 			|
 			+-Optional Type Extensions (IGUIObject::ReadExtendedElement) TODO
 			|
 			+-«object» *recursive*
 
 
-		\<styles\> (ReadRootStyles)
+		<styles> (ReadRootStyles)
 		 |
-		 +-\<style\> (ReadStyle)
+		 +-<style> (ReadStyle)
 
 
-		\<sprites\> (ReadRootSprites)
+		<sprites> (ReadRootSprites)
 		 |
-		 +-\<sprite\> (ReadSprite)
+		 +-<sprite> (ReadSprite)
 			|
-			+-\<image\> (ReadImage)
+			+-<image> (ReadImage)
 
 
-		\<setup>\ (ReadRootSetup)
+		<setup> (ReadRootSetup)
 		 |
-		 +-\<tooltip>\ (ReadToolTip)
+		 +-<tooltip> (ReadToolTip)
 		 |
-		 +-\<scrollbar>\ (ReadScrollBar)
+		 +-<scrollbar> (ReadScrollBar)
 		 |
-		 +-\<icon>\ (ReadIcon)
-
-		</code>
+		 +-<icon> (ReadIcon)
 	*/
 	//@{
 
@@ -337,7 +348,7 @@ private:
 	void Xeromyces_ReadRootSprites(XMBElement Element, CXeromyces* pFile);
 
 	/**
-	 * Reads in the root element \<styles\> (the DOMElement).
+	 * Reads in the root element <styles> (the DOMElement).
 	 *
 	 * @param Element	The Xeromyces object that represents
 	 *					the styles-tag.
@@ -363,15 +374,15 @@ private:
 	/**
 	 * Notice! Recursive function!
 	 *
-	 * Read in an \<object\> (the DOMElement) and stores it
+	 * Read in an <object> (the XMBElement) and stores it
 	 * as a child in the pParent.
 	 *
 	 * It will also check the object's children and call this function
 	 * on them too. Also it will call all other functions that reads
-	 * in other stuff that can be found within an object. Such as a
-	 * \<action\> will call Xerces_ReadAction (TODO, real funcion?).
+	 * in other stuff that can be found within an object. Check the
+	 * tree in the beginning of this class' Xeromyces_* section.
 	 *
-	 * Reads in the root element \<sprites\> (the DOMElement).
+	 * Reads in the root element <sprites> (the DOMElement).
 	 *
 	 * @param Element	The Xeromyces object that represents
 	 *					the object-tag.
@@ -383,7 +394,7 @@ private:
 	void Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent);
 
 	/**
-	 * Reads in the element \<script\> (the DOMElement) and executes
+	 * Reads in the element <script> (the XMBElement) and executes
 	 * the script's code.
 	 *
 	 * @param Element	The Xeromyces object that represents
@@ -395,7 +406,7 @@ private:
 	void Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile);
 
 	/**
-	 * Reads in the element \<sprite\> (the DOMElement) and stores the
+	 * Reads in the element <sprite> (the XMBElement) and stores the
 	 * result in a new CGUISprite.
 	 *
 	 * @param Element	The Xeromyces object that represents
@@ -407,7 +418,7 @@ private:
 	void Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile);
 
 	/**
-	 * Reads in the element \<image\> (the DOMElement) and stores the
+	 * Reads in the element <image> (the XMBElement) and stores the
 	 * result within the CGUISprite.
 	 *
 	 * @param Element	The Xeromyces object that represents
@@ -420,7 +431,7 @@ private:
 	void Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite &parent);
 
 	/**
-	 * Reads in the element \<style\> (the DOMElement) and stores the
+	 * Reads in the element <style> (the XMBElement) and stores the
 	 * result in m_Styles.
 	 *
 	 * @param Element	The Xeromyces object that represents
@@ -432,7 +443,7 @@ private:
 	void Xeromyces_ReadStyle(XMBElement Element, CXeromyces* pFile);
 
 	/**
-	 * Reads in the element \<scrollbar\> (the DOMElement) and stores the
+	 * Reads in the element <scrollbar> (the XMBElement) and stores the
 	 * result in m_ScrollBarStyles.
 	 *
 	 * @param Element	The Xeromyces object that represents
@@ -442,6 +453,18 @@ private:
 	 * @see LoadXMLFile()
 	 */
 	void Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile);
+
+	/**
+	 * Reads in the element <icon> (the XMBElement) and stores the
+	 * result in m_Icons.
+	 *
+	 * @param Element	The Xeromyces object that represents
+	 *					the scrollbar-tag.
+	 * @param pFile		The Xeromyces object for the file being read
+	 *
+	 * @see LoadXMLFile()
+	 */
+	void Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile);
 
 	//@}
 
@@ -515,22 +538,21 @@ private:
 	 */
 	std::map<CStr, ConstructObjectFunction>	m_ObjectTypes;
 
-	//@}
 	//--------------------------------------------------------
-	/** @name Databases */
+	//	Databases
 	//--------------------------------------------------------
-	//@{
 
-	/// Sprites
+	// Sprites
 	std::map<CStr, CGUISprite> m_Sprites;
 
-	/// Styles
+	// Styles
 	std::map<CStr, SGUIStyle> m_Styles;
 
-	/// Scroll-bar styles
+	// Scroll-bar styles
 	std::map<CStr, SGUIScrollBarStyle> m_ScrollBarStyles;
 
-	//@}
+	// Icons
+	std::map<CStr, SGUIIcon> m_Icons;
 };
 
 #endif

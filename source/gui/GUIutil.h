@@ -55,6 +55,9 @@ template <>
 bool __ParseString<CColor>(const CStr& Value, CColor &Output);
 
 template <>
+bool __ParseString<CSize>(const CStr& Value, CSize &Output);
+
+template <>
 bool __ParseString<CGUIString>(const CStr& Value, CGUIString &Output);
 
 /**

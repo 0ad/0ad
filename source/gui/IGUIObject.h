@@ -166,6 +166,10 @@ public:
 	/// Get object name
 	void SetName(const CStr& Name) { m_Name = Name; }
 
+	// Get Presentable name.
+	//  Will change all internally set names to something like "<unnamed object>"
+	CStr GetPresentableName() const;
+
 	/**
 	 * Adds object and its children to the map, it's name being the
 	 * first part, and the second being itself.

@@ -36,7 +36,7 @@ gee@pyro.nu
  * individual calls saying it want that color on the
  * text.
  *
- * For instance (this is not the syntax):
+ * For instance:
  * "Hello [b]there[/b] bunny!"
  *
  * That without word-wrapping would mean 3 components.
@@ -113,7 +113,7 @@ struct SGUIText
 		/**
 		 * *IF* an icon, than this is not NULL.
 		 */
-		SSpriteCall *m_pSpriteCall;
+		std::list<SSpriteCall>::pointer m_pSpriteCall;
 	};
 
 	/**
@@ -125,7 +125,8 @@ struct SGUIText
 	 * List of sprites, or "icons" that should be rendered
 	 * along with the text.
 	 */
-	std::vector<SSpriteCall> m_SpriteCalls;
+	std::list<SSpriteCall> m_SpriteCalls; // list for consistant mem addresses
+										  // so that we can point to elements.
 
 	/**
 	 * Width and height of the whole output, used when setting up
@@ -238,7 +239,8 @@ public:
 		 * Text and Sprite Calls.
 		 */
 		std::vector<SGUIText::STextCall> m_TextCalls;
-		std::vector<SGUIText::SSpriteCall> m_SpriteCalls;
+		std::list<SGUIText::SSpriteCall> m_SpriteCalls; // list for consistent mem addresses
+														//  so that we can point to elements.
 
 		/**
 		 * Width and Height *feedback*
@@ -272,13 +274,18 @@ public:
 	 *
 	 * @param Feedback contains all info that is generated.
 	 * @param DefaultFont Default Font
-	 * @param DefaultColor Default Color
 	 * @param from From character n,
 	 * @param to to chacter n.
+	 * 
+	 * pObject Only for Error outputting, optional! If NULL
+	 * then no Errors will be reported! Useful when you need
+	 * to make several GenerateTextCall in different phases,
+	 * it avoids duplicates.
 	 */
 	void GenerateTextCall(SFeedback &Feedback,
-						  const CStr& DefaultFont, /*const CColor &DefaultColor,*/
-						  const int &from, const int &to) const;
+						  const CStr& DefaultFont,
+						  const int &from, const int &to,
+						  const IGUIObject *pObject=NULL) const;
 
 	/**
 	 * Words

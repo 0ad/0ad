@@ -38,7 +38,7 @@ void IGUITextOwner::HandleMessage(const SGUIMessage &Message)
 	case GUIM_SETTINGS_UPDATED:
 		// Everything that can change the visual appearance.
 		//  it is assumed that the text of the object will be dependent on
-		//  these. But that is not certain, but one will have to manually
+		//  these. Although that is not certain, but one will have to manually
 		//  change it and disregard this function.
 		if (Message.value == CStr("size") || Message.value == CStr("z") ||
 			Message.value == CStr("absolute") || Message.value == CStr("caption") ||
@@ -61,9 +61,8 @@ void IGUITextOwner::Draw(const int &index, const CColor &color, const CPos &pos,
 						 const float &z, const CRect &UNUSEDPARAM(clipping))
 {
 	if (index < 0 || index >= (int)m_GeneratedTexts.size())
-		// janwas fixed bug here; was i < 0 && i >= size - impossible.
 	{
-		// TODO Gee: Warning
+		debug_warn("Trying to draw a Text Index within a IGUITextOwner that doesn't exist");
 		return;
 	}
 

@@ -104,7 +104,7 @@ bool __ParseString<CColor>(const CStr& Value, CColor &Output)
 	{
 		if (!line.GetArgFloat(i, values[i]))
 		{
-			// TODO Gee: Parsing failed
+			// Parsing failed
 			return false;
 		}
 	}
@@ -113,6 +113,45 @@ bool __ParseString<CColor>(const CStr& Value, CColor &Output)
 	Output.g = values[1]/255.f;
 	Output.b = values[2]/255.f;
 	Output.a = values[3]/255.f;
+	
+	return true;
+}
+
+template <>
+bool __ParseString<CSize>(const CStr& Value, CSize &Output)
+{
+	// Use the parser to parse the values
+	CParser parser;
+	parser.InputTaskType("", "_$value_$value_");
+
+	string str = (const TCHAR*)Value;
+
+	CParserLine line;
+	line.ParseString(parser, str);
+	if (!line.m_ParseOK)
+	{
+		// Parsing failed
+		return false;
+	}
+
+	int x, y;
+
+	// x
+	if (!line.GetArgInt(0, x))
+	{
+		// TODO Gee: Parsing failed
+		return false;
+	}
+
+	// y
+	if (!line.GetArgInt(1, y))
+	{
+		// TODO Gee: Parsing failed
+		return false;
+	}
+
+	Output.cx = x;
+	Output.cy = y;
 	
 	return true;
 }
