@@ -96,6 +96,11 @@ public:
 	void Process();
 
 	/**
+	 * Sends a "Tick" event to every object
+	 */
+	void TickObjects();
+
+	/**
 	 * Displays the whole GUI
 	 */
 	void Draw();

@@ -200,6 +200,13 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 	return EV_PASS;
 }
 
+void CGUI::TickObjects()
+{
+	CStr action = "tick";
+	GUI<CStr>::RecurseObject(0, m_BaseObject, 
+							&IGUIObject::ScriptEvent, action);
+}
+
 //-------------------------------------------------------------------
 //  Constructor / Destructor
 //-------------------------------------------------------------------
