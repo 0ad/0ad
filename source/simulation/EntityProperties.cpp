@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "EntityProperties.h"
 
 #include <cassert>

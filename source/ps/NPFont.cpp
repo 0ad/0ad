@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "NPFont.h"
 #include "Renderer.h"
 

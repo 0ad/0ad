@@ -338,11 +338,11 @@ again:
 
 		// HACK: if _WIN32, the HRT makes its final implementation choice
 		// in the first calibrate call where cpu_freq and cpu_caps are
-		// available. call it here (via get_time) to have that happen now,
+		// available. call wtime_reset_impl here to have that happen now,
 		// so app code isn't surprised by a timer change, although the HRT
 		// does try to keep the timer continuous.
 #ifdef _WIN32
-		hrt_override_impl(HRT_DEFAULT, HRT_NONE);
+		wtime_reset_impl();
 #endif
 	}
 	// else: TSC not available, can't measure

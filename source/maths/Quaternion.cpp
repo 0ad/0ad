@@ -6,6 +6,8 @@
  *
  ************************************************************/
 
+#include "precompiled.h"
+
 #include "Quaternion.h"
 
 const float EPSILON=0.0001f;

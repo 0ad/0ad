@@ -1,3 +1,4 @@
+#include "precompiled.h"
 
 #include "ScriptingHost.h"
 #include "ScriptGlue.h"

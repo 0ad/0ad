@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "NPFontManager.h"
 #include "NPFont.h"
 

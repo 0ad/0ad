@@ -4,6 +4,8 @@ by Gustav Larsson
 gee@pyro.nu
 */
 
+#include "precompiled.h"
+
 #include "GUI.h"
 #include "Parser.h"
 #include "OverlayText.h"

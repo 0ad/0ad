@@ -24,6 +24,8 @@
 |
 ==================================================================*/
 
+#include "precompiled.h"
+
 #include "Particle.h"
 #include "timer.h"
 #include "ogl.h"

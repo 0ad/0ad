@@ -4,7 +4,7 @@ by Gustav Larsson
 gee@pyro.nu
 */
 
-//#include "stdafx."
+#include "precompiled.h"
 #include "GUI.h"
 
 // Types - when including them into the engine.
@@ -34,9 +34,6 @@ gee@pyro.nu
 XERCES_CPP_NAMESPACE_USE
 using namespace std;
 
-#ifdef _MSC_VER
-#pragma comment(lib, "xerces-c_2.lib")
-#endif
 
 extern int g_xres, g_yres;
 

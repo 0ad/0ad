@@ -1,14 +1,24 @@
+#include "precompiled.h"
+
 #include "pbuffer.h"
 
 #ifdef _WIN32
+
+// janwas: wgl-specific crap is in sysdep/win/wgl.h;
+// function pointers are imported automagically
+
+/*
 #include <windows.h>
 #include <gl/gl.h>
 #include <gl/glext.h>
-#include <gl/wglext.h>
+*/
+
+#include "ogl.h"
 
 static HDC lastDC;
 static HGLRC lastGLRC; 
 
+/*
 static bool GotExts=false;
 static PFNWGLCREATEPBUFFERARBPROC wglCreatePbufferARB=0;
 static PFNWGLGETPBUFFERDCARBPROC wglGetPbufferDCARB=0;
@@ -18,6 +28,7 @@ static PFNWGLQUERYPBUFFERARBPROC wglQueryPbufferARB=0;
 static PFNWGLGETPIXELFORMATATTRIBIVARBPROC wglGetPixelFormatAttribivARB=0;
 static PFNWGLGETPIXELFORMATATTRIBFVARBPROC wglGetPixelFormatAttribfvARB=0;
 static PFNWGLCHOOSEPIXELFORMATARBPROC wglChoosePixelFormatARB=0;
+*/
 
 class PBuffer
 {
@@ -75,6 +86,7 @@ void PBuffer::close()
       }
 }
 
+/*
 static void GetExts()
 {
 	wglCreatePbufferARB=(PFNWGLCREATEPBUFFERARBPROC) wglGetProcAddress("wglCreatePbufferARB");
@@ -87,15 +99,18 @@ static void GetExts()
 	wglChoosePixelFormatARB=(PFNWGLCHOOSEPIXELFORMATARBPROC) wglGetProcAddress("wglChoosePixelFormatARB");
 	GotExts=true;
 }
+*/
 
 // This function actually does the creation of the p-buffer.
 // It can only be called once a window has already been created.
 bool PBuffer::init(int width,int height,int doublebuffer,int colorbits,int depthbits,int stencilbits,
 				   int rendertextureformat,int rendertexturetarget,int havemipmaps)
 {
+/*
 	if (!GotExts) {
 		GetExts();
 	}
+*/
 
 	// store requested parameters
 	_width=width;

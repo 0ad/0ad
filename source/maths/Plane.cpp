@@ -11,6 +11,8 @@
 //
 //***********************************************************
 
+#include "precompiled.h"
+
 #include "Plane.h"
 
 CPlane::CPlane ()

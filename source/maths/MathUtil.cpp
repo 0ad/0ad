@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #if 0
 // last modified Thursday, May 08, 2003
 

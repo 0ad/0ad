@@ -13,6 +13,8 @@
 //
 //***********************************************************
 
+#include "precompiled.h"
+
 #include "Frustum.h"
 
 CFrustum::CFrustum ()

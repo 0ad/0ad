@@ -1,5 +1,7 @@
 // last modified Thursday, May 08, 2003
 
+#include "precompiled.h"
+
 #if 0
 
 #include "LogFile.h"

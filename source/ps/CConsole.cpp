@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "CConsole.h"
 
 #include "prometheus.h"

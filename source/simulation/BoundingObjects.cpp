@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "BoundingObjects.h"
 #include "ogl.h"
 #include "MathUtil.h"

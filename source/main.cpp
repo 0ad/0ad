@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include <cstdio>
 #include <cstring>
 #include <cstdlib>

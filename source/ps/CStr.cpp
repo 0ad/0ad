@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "CStr.h"
 #include "Network/Serialization.h"
 #include <cassert>

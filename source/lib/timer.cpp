@@ -19,11 +19,6 @@
 
 #include "lib.h"
 #include "timer.h"
-#include "sysdep/sysdep.h"
-
-#ifdef _WIN32
-#include "sysdep/win/hrt.h"
-#endif
 
 
 // wrapper over gettimeofday, instead of emulating it for Windows,
@@ -34,11 +29,7 @@ double get_time()
 {
 	double t;
 
-#ifdef _WIN32
-
-	t = hrt_time();
-
-#elif defined(HAVE_CLOCK_GETTIME)
+#ifdef HAVE_CLOCK_GETTIME
 
 	static struct timespec start;
 	struct timespec ts;
@@ -77,14 +68,7 @@ double get_time()
 
 double timer_res()
 {
-#ifdef _WIN32
-
-	HRTImpl impl;
-	i64 nominal_freq;
-	hrt_query_impl(impl, nominal_freq);
-	return 1.0 / nominal_freq;
-
-#elif defined(HAVE_CLOCK_GETTIME)
+#ifdef HAVE_CLOCK_GETTIME
 
 	struct timespec res;
 	clock_getres(CLOCK_REALTIME, &res);

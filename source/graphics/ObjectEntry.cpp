@@ -1,15 +1,15 @@
+#include "precompiled.h"
+
 #include "ObjectEntry.h"
 #include "ObjectManager.h"
 #include "Model.h"
 #include "ModelDef.h"
+#include "CLogger.h"
 
 #include "UnitManager.h"
 
 #include "XML.h"
 
-#ifdef _MSC_VER
-#pragma comment(lib, "xerces-c_2.lib")
-#endif
 
 // automatically use namespace ..
 XERCES_CPP_NAMESPACE_USE

@@ -4,8 +4,7 @@ by Gustav Larsson
 gee@pyro.nu
 */
 
-///// janwas: remove stdafx.h completely?
-//#include "stdafx.h"
+#include "precompiled.h"
 #include "GUI.h"
 
 

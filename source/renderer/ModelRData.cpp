@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include <assert.h>
 #include <algorithm>
 #include "res/tex.h"

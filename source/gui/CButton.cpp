@@ -4,7 +4,7 @@ by Gustav Larsson
 gee@pyro.nu
 */
 
-//#include "stdafx."
+#include "precompiled.h"
 #include "GUI.h"
 #include "CButton.h"
 

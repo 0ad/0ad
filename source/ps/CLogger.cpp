@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "CLogger.h"
 #include "lib.h"
 

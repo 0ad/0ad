@@ -4,7 +4,7 @@ by Gustav Larsson
 gee@pyro.nu
 */
 
-//#include "stdafx.h"
+#include "precompiled.h"
 #include "GUI.h"
 #include "Parser.h"
 

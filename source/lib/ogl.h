@@ -5,25 +5,14 @@
 extern "C" {
 #endif
 
+#ifdef _WIN32
+#include "sysdep/win/wgl.h"
+#endif
+
+
 //
 // OpenGL header
 //
-
-#ifdef _WIN32
-
-#ifndef WINGDIAPI
-#define WINGDIAPI __declspec(dllimport)
-#endif
-#ifndef CALLBACK
-#define CALLBACK __stdcall
-#endif
-#ifndef APIENTRY
-#define APIENTRY __stdcall
-#endif
-
-typedef unsigned short wchar_t;	// for glu.h
-
-#endif	// #ifndef _WIN32
 
 #ifdef __APPLE__
 # include <OpenGL/gl.h>
@@ -52,6 +41,7 @@ typedef unsigned short wchar_t;	// for glu.h
 # include <OpenGL/glext.h>
 #else
 # include <GL/glext.h>
+# include <GL/wglext.h>
 #endif
 
 #define GL_TEXTURE_IMAGE_SIZE_ARB 0x86A0

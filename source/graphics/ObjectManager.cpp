@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "ObjectManager.h"
 #include <algorithm>
 #include "CLogger.h"

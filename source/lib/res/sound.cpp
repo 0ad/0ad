@@ -6,6 +6,8 @@
 * Contents:			implementation of sound fx resource functions
 */
 
+#include "precompiled.h"
+
 #include <stdio.h>
 #include <fmod.h>
 

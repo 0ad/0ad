@@ -1,5 +1,7 @@
 // Entity state-machine processing code.
 
+#include "precompiled.h"
+
 #include "Entity.h"
 #include "Model.h"
 

@@ -1,3 +1,11 @@
+//#include <GL/glext.h>
+//#include <GL/wglext.h>
+
+typedef void* HDC;
+typedef void* HGLRC;
+typedef void* HPBUFFERARB;
+
+
 // were these defined as real functions in gl.h already?
 
 #ifndef REAL_GL_1_2
@@ -41,7 +49,23 @@ FUNC(bool, glUnmapBufferARB, (int target))
 FUNC(void, glGetBufferParameterivARB, (int target, int pname, int* params))
 FUNC(void, glGetBufferPointervARB, (int target, int pname, void** params))
 
+// ARB_pbuffer
+FUNC(HPBUFFERARB, wglCreatePbufferARB, (HDC, int, int, int, const int*))
+FUNC(HDC, wglGetPbufferDCARB, (HPBUFFERARB))
+FUNC(int, wglReleasePbufferDCARB, (HPBUFFERARB, HDC))
+FUNC(int, wglDestroyPbufferARB, (HPBUFFERARB))
+FUNC(int, wglQueryPbufferARB, (HPBUFFERARB, int, int*))
 
+// ARB_pixel_format
+FUNC(int, wglGetPixelFormatAttribivARB, (HDC, int, int, unsigned int, const int*, int*))
+FUNC(int, wglGetPixelFormatAttribfvARB, (HDC, int, int, unsigned int, const int*, float*))
+FUNC(int, wglChoosePixelFormatARB, (HDC, const int *, const float*, unsigned int, int*, unsigned int*))
 
-FUNC(void, glCompressedTexImage2DARB, (int, int, int, unsigned int, unsigned int, int, unsigned int, const void*))
-FUNC(void, glCompressedTexSubImage2DARB, (int, int, int, int, unsigned int, int, int, unsigned int, const void*))
+// ARB_texture_compression
+FUNC(void, glCompressedTexImage3DARB, (GLenum, GLint, GLenum, GLsizei, GLsizei, GLsizei, GLint, GLsizei, const GLvoid*))
+FUNC(void, glCompressedTexImage2DARB, (GLenum, GLint, GLenum, GLsizei, GLsizei, GLint, GLsizei, const GLvoid*))
+FUNC(void, glCompressedTexImage1DARB, (GLenum, GLint, GLenum, GLsizei, GLint, GLsizei, const GLvoid*))
+FUNC(void, glCompressedTexSubImage3DARB, (GLenum, GLint, GLint, GLint, GLint, GLsizei, GLsizei, GLsizei, GLenum, GLsizei, const GLvoid*))
+FUNC(void, glCompressedTexSubImage2DARB, (GLenum, GLint, GLint, GLint, GLsizei, GLsizei, GLenum, GLsizei, const GLvoid*))
+FUNC(void, glCompressedTexSubImage1DARB, (GLenum, GLint, GLint, GLsizei, GLenum, GLsizei, const GLvoid*))
+FUNC(void, glGetCompressedTexImageARB, (GLenum, GLint, GLvoid*))

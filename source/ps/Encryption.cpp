@@ -1,5 +1,7 @@
 // last modified Friday, May 09, 2003
 
+#include "precompiled.h"
+
 #include "Encryption.h"
 
 //--------------------------------------------------------------------

@@ -4,6 +4,8 @@ by Rich Cross
 rich@0ad.wildfiregames.com
 */
 
+#include "precompiled.h"
+
 #include "OverlayText.h"
 #include "NPFont.h"
 #include "NPFontManager.h"

@@ -1,5 +1,7 @@
 // Last modified: May 15 2004, Mark Thompson (mark@wildfiregames.com)
 
+#include "precompiled.h"
+
 #include "BaseEntityCollection.h"
 #include "ObjectManager.h"
 #include "Model.h"

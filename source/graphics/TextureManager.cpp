@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include <algorithm>
 
 #include "TextureManager.h"

@@ -10,6 +10,8 @@
 //
 //***********************************************************
 
+#include "precompiled.h"
+
 #include "Camera.h"
 
 CCamera::CCamera ()

@@ -9,6 +9,8 @@
 //	lighting
 //----------------------------------------------------------------
 
+#include "precompiled.h"
+
 #include "SHCoeffs.h"
 
 CSHCoeffs::CSHCoeffs()

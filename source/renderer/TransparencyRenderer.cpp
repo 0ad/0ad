@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include <algorithm>
 #include "Renderer.h"
 #include "TransparencyRenderer.h"

@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "PathfindEngine.h"
 #include "PathfindSparse.h"
 

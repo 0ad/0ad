@@ -7,6 +7,9 @@ gee@pyro.nu
 // ---------------------------------------------------------------------------
 //  Includes
 // ---------------------------------------------------------------------------
+
+#include "precompiled.h"
+
 #include <xercesc/sax/SAXParseException.hpp>
 #include "XercesErrorHandler.h"
 #include <iostream>

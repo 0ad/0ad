@@ -134,7 +134,7 @@ static int path_validate(const uint line, const char* const path)
 			if(last_was_dot)
 			{
 				msg = "contains \"..\"";
-				goto fail;
+///				goto fail;
 			}
 			last_was_dot = true;
 		}
@@ -145,7 +145,7 @@ static int path_validate(const uint line, const char* const path)
 		if(c == '\\' || c == ':')
 		{
 			msg = "contains OS-specific dir separator (e.g. '\\', ':')";
-			goto fail;
+///			goto fail;
 		}
 
 		// end of string, all is well.

@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "Collision.h"
 #include "EntityManager.h"
 

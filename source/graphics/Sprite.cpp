@@ -24,6 +24,8 @@
 |
 ==================================================================*/
 
+#include "precompiled.h"
+
 #include "Sprite.h"
 #include "Renderer.h"
 #include "ogl.h"

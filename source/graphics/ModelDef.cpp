@@ -6,6 +6,8 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+#include "precompiled.h"
+
 #include "ModelDef.h"
 #include "FilePacker.h"
 #include "FileUnpacker.h"

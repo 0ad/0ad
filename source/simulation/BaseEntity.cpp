@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "BaseEntity.h"
 #include "ObjectManager.h"
 #include "CStr.h"

@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "PathfindSparse.h"
 
 sparsePathTree::sparsePathTree( const CVector2D& _from, const CVector2D& _to, HEntity _entity, CBoundingObject* _destinationCollisionObject )

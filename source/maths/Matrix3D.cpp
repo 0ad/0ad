@@ -9,6 +9,7 @@
 //
 //***********************************************************
 
+#include "precompiled.h"
 
 #include "Matrix3D.h"
 #include "Quaternion.h"

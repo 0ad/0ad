@@ -3,6 +3,8 @@
 // TODO: A few changes from VFS -> CFile usage if required.
 // TODO: Optimizations, when we've decided what needs to be done.
 
+#include "precompiled.h"
+
 #if 0
 
 #include "Config.h"

@@ -26,6 +26,8 @@
 |
 ==================================================================*/
 
+#include "precompiled.h"
+
 #include "ParticleEmitter.h"
 #include "timer.h"
 #include "ogl.h"
