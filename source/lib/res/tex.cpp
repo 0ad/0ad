@@ -62,11 +62,16 @@
 
 struct Codec
 {
-	// size is at least 4.
-	bool(*is_fmt)(const u8* p, size_t size);
+	// pointers aren't const, because the textures
+	// may have to be flipped (in-place).
+
+	// size is guaranteed to be >= 4.
+	// (usually enough to compare the header's "magic" field;
+	// anyway, no legitimate file will be smaller)
+	bool(*is_fmt)(u8* p, size_t size);
 	bool(*is_ext)(const char* ext);
-	int(*decode)(TexInfo* t, const char* fn, const u8* file, size_t file_size);
-	int(*encode)(TexInfo* t, const char* fn, const u8* img, size_t img_size);
+	int(*decode)(TexInfo* t, const char* fn, u8* file, size_t file_size);
+	int(*encode)(TexInfo* t, const char* fn, u8* img, size_t img_size);
 
 	// no get_output_size() function and central mem alloc / file write,
 	// because codecs that write via external lib or output compressed files
@@ -74,6 +79,68 @@ struct Codec
 
 	const char* name;
 };
+
+
+
+void flip_tex_rows(void* tex, size_t pitch, size_t h)
+{
+	return;
+
+	size_t line = 0;	// counter
+	char* src;
+	char* dst;
+
+	// L1 cache is typically A2 => swapping in-place with a line buffer
+	// leads to thrashing. if the whole texture fits in L1, we allocate
+	// a copy and transfer directly.
+
+// document why can't return new buffer (refs, user assumes buffer addr unchanged)
+
+	size_t size = pitch * h;
+	void* clone_buf = mem_alloc(size, 32*KB);
+	memcpy(clone_buf, tex, size);
+	src = (char*)clone_buf + (h-1)*pitch;
+	dst = (char*)tex;
+	for(; line < h; line++)
+	{
+		memcpy(dst, src, pitch);
+		src -= pitch;
+		dst += pitch;
+	}
+
+/*
+	// rationale: allocate second buffer vs 
+	we'll allocate 
+	// forget memory usage
+
+	char* line1 = (char*)tex;
+	char* line2 = line1 + pitch*(h-1);
+
+	void* buf = mem_alloc(pitch, 4096);
+
+	for(size_t line = 0; line < h/2; line++)
+	{
+		memcpy(buf, line1, pitch);		l1, buf		-+
+		memcpy(line1, line2);			l1, l2		+-
+		memcpy(line2, buf);				buf, l2     -+
+
+		line1 += pitch;
+		line2 += pitch;
+	}
+
+t
+
+3		grab start+line put IN buf
+2		copy last-line to start+line
+1		
+
+1
+2
+3*/
+
+
+}
+
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -84,6 +151,8 @@ struct Codec
 
 #ifndef NO_DDS
 
+
+// NOTE: the convention is bottom-up for DDS, but there's no way to tell.
 
 // defs modified from ddraw header
 
@@ -133,7 +202,7 @@ DDSURFACEDESC2;
 #pragma pack(pop)
 
 
-static inline bool dds_fmt(const u8* ptr, size_t size)
+static inline bool dds_fmt(u8* ptr, size_t size)
 {
 	UNUSED(size)	// only need first 4 chars
 	
@@ -147,7 +216,7 @@ static inline bool dds_ext(const char* const ext)
 }
 
 
-static int dds_decode(TexInfo* t, const char* fn, const u8* file, size_t file_size)
+static int dds_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 {
 	const char* err = 0;
 
@@ -197,15 +266,15 @@ fail:
 	{
 	case FOURCC('D','X','T','1'):
 		bpp = 4;
-		flags |= 1;
+		flags |= 1;	// bits in TEX_DXT mask indicate format
 		break;
 	case FOURCC('D','X','T','3'):
 		bpp = 8;
-		flags |= 3;
+		flags |= 3;	// "
 		break;
 	case FOURCC('D','X','T','5'):
 		bpp = 8;
-		flags |= 5;
+		flags |= 5;	// "
 		break;
 	}
 
@@ -238,7 +307,7 @@ fail:
 }
 
 
-static int dds_encode(TexInfo* t, const char* fn, const u8* img, size_t img_size)
+static int dds_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 {
 	return -1;
 }
@@ -254,12 +323,62 @@ static int dds_encode(TexInfo* t, const char* fn, const u8* img, size_t img_size
 
 #ifndef NO_TGA
 
-static inline bool tga_fmt(const u8* ptr, size_t size)
-{
-	UNUSED(size)
 
-	// no color map; uncompressed grayscale or true color
-	return (ptr[1] == 0 && (ptr[2] == 2 || ptr[2] == 3));
+#pragma pack(push, 1)
+
+enum TgaImgType
+{
+	TGA_TRUE_COLOR = 2,		// uncompressed 24 or 32 bit direct RGB
+	TGA_GRAY  = 3			// uncompressed 8 bit direct grayscale
+};
+
+enum TgaImgDesc
+{
+	TGA_RIGHT_TO_LEFT = BIT(4),
+	TGA_TOP_DOWN      = BIT(5)
+};
+
+typedef struct
+{
+	u8 img_id_len;			// 0 - no image identifier present
+	u8 color_map_type;		// 0 - no color map present
+	u8 img_type;			// see TgaImgType
+	u8 color_map[5];		// unused
+
+	u16 x_origin;			// unused
+	u16 y_origin;			// unused
+
+	u16 w;
+	u16 h;
+	u8 bpp;					// bits per pixel
+
+	u8 img_desc;
+}
+TgaHeader;
+
+// TGA file: header [img id] [color map] image data
+
+
+#pragma pack(pop)
+
+
+// the first TGA header doesn't have a magic field;
+// we can only check if the first 4 bytes are valid
+static inline bool tga_fmt(u8* ptr, size_t size)
+{
+	UNUSED(size);
+
+	TgaHeader* hdr = (TgaHeader*)ptr;
+
+	// not direct color
+	if(hdr->color_map_type != 0)
+		return false;
+
+	// wrong color type (not uncompressed grayscale or RGB)
+	if(hdr->img_type != TGA_TRUE_COLOR && hdr->img_type != TGA_GRAY)
+		return false;
+
+	return true;
 }
 
 
@@ -270,12 +389,12 @@ static inline bool tga_ext(const char* const ext)
 
 
 // requirements: uncompressed, direct color, bottom up
-static int tga_decode(TexInfo* t, const char* fn, const u8* file, size_t file_size)
+static int tga_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 {
 	const char* err = 0;
 
-	const u8 img_id_len = file[0];
-	const size_t hdr_size = 18+img_id_len;
+	TgaHeader* hdr = (TgaHeader*)file;
+	const size_t hdr_size = 18 + hdr->img_id_len;
 
 	// make sure we can access all header fields
 	if(file_size < hdr_size)
@@ -286,26 +405,33 @@ fail:
 		return -1;
 	}
 
-	const u8 type = file[2];
-	const u16 w   = read_le16(file+12);
-	const u16 h   = read_le16(file+14);
-	const u8 bpp  = file[16];
-	const u8 desc = file[17];
+	const u8 type = hdr->img_type;
+	const u16 w   = read_le16(&hdr->w);
+	const u16 h   = read_le16(&hdr->h);
+	const u8 bpp  = hdr->bpp;
+	const u8 desc = hdr->img_desc;
 
 	const u8 alpha_bits = desc & 0x0f;
-	const size_t img_size = (ulong)w * h * bpp / 8;
+
+	const size_t pitch = w *  bpp/8;
+	const size_t img_size = h * pitch;
+	void* img = file + hdr_size;
+
+	if(desc & TGA_TOP_DOWN)
+		flip_tex_rows(img, pitch, h);
 
 	int flags = 0;
-
 	if(alpha_bits != 0)
 		flags |= TEX_ALPHA;
-
-	// true color
-	if(type == 2)
+	if(type == TGA_TRUE_COLOR)
 		flags |= TEX_BGR;
 
-	if(desc & 0x30)
-		err = "image is not bottom-up and left-to-right";
+	// storing right-to-left is just stupid;
+	// we're not going to bother converting it.
+	if(desc & TGA_RIGHT_TO_LEFT)
+		err = "image is stored right-to-left";
+	if(bpp != 8 && bpp != 16 && bpp != 24 && bpp != 32)
+		err = "invalid bpp";
 	if(file_size < hdr_size + img_size)
 		err = "size < image size";
 
@@ -322,7 +448,7 @@ fail:
 }
 
 
-static int tga_encode(TexInfo* t, const char* fn, const u8* img, size_t img_size)
+static int tga_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 {
 	return -1;
 }
@@ -370,7 +496,7 @@ struct BITMAPINFOHEADER
 #define BI_RGB 0		// bih->biCompression
 
 
-static inline bool bmp_fmt(const u8* p, size_t size)
+static inline bool bmp_fmt(u8* p, size_t size)
 {
 	UNUSED(size)
 
@@ -386,7 +512,7 @@ static inline bool bmp_ext(const char* const ext)
 
 
 // requirements: uncompressed, direct color, bottom up
-static int bmp_decode(TexInfo* t, const char* fn, const u8* in, size_t file_size)
+static int bmp_decode(TexInfo* t, const char* fn, u8* in, size_t file_size)
 {
 	const char* err = 0;
 
@@ -404,24 +530,30 @@ fail:
 	const BITMAPFILEHEADER* bfh = (const BITMAPFILEHEADER*)in;
 	const BITMAPINFOHEADER* bih = (const BITMAPINFOHEADER*)(in+sizeof(BITMAPFILEHEADER));
 
-	const long w       = read_le32(&bih->biWidth);
-	const long h       = read_le32(&bih->biHeight);
+	const long w       = (long)read_le32(&bih->biWidth);
+	      long h       = (long)read_le32(&bih->biHeight);
 	const u16 bpp      = read_le16(&bih->biBitCount);
 	const u32 compress = read_le32(&bih->biCompression);
 	const u32 ofs      = read_le32(&bfh->bfOffBits);
 
-	const size_t img_size = w * h * bpp/8;
+	const bool top_down = (h < 0);
+	h = abs(h);
+
+	const size_t pitch = w * bpp/8;
+	const size_t img_size = h * pitch;
+	void* img = in + ofs;
+
+	if(top_down)
+		flip_tex_rows(img, pitch, h);
 
 	int flags = TEX_BGR;
 	if(bpp == 32)
 		flags |= TEX_ALPHA;
 
-	if(h < 0)
-		err = "top-down";
 	if(compress != BI_RGB)
 		err = "compressed";
-	if(bpp < 24)
-		err = "not direct color";
+	if(bpp != 24 && bpp != 32)
+		err = "invalid bpp (not direct color)";
 	if(file_size < ofs+img_size)
 		err = "image not completely read";
 
@@ -438,7 +570,7 @@ fail:
 }
 
 
-static int bmp_encode(TexInfo* t, const char* fn, const u8* img, size_t img_size)
+static int bmp_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 {
 	int flags = t->flags;
 	if((flags & TEX_DXT) || !(flags & TEX_BGR))
@@ -490,7 +622,9 @@ static int bmp_encode(TexInfo* t, const char* fn, const u8* img, size_t img_size
 
 #ifndef NO_RAW
 
-static inline bool raw_fmt(const u8* p, size_t size)
+// assume bottom-up
+
+static inline bool raw_fmt(u8* p, size_t size)
 {
 	UNUSED(p)
 	UNUSED(size)
@@ -505,7 +639,7 @@ static inline bool raw_ext(const char* const ext)
 }
 
 
-static int raw_decode(TexInfo* t, const char* fn, const u8* in, size_t file_size)
+static int raw_decode(TexInfo* t, const char* fn, u8* in, size_t file_size)
 {
 	UNUSED(in);
 
@@ -534,7 +668,7 @@ static int raw_decode(TexInfo* t, const char* fn, const u8* in, size_t file_size
 }
 
 
-static int raw_encode(TexInfo* t, const char* fn, const u8* img, size_t img_size)
+static int raw_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 {
 	return -1;
 }
@@ -551,7 +685,7 @@ static int raw_encode(TexInfo* t, const char* fn, const u8* img, size_t img_size
 #ifndef NO_PNG
 
 
-static inline bool png_fmt(const u8* ptr, size_t size)
+static inline bool png_fmt(u8* ptr, size_t size)
 {
 	return png_sig_cmp((u8*)ptr, 0, MIN(size, 8)) == 0;
 }
@@ -567,26 +701,20 @@ static inline bool png_ext(const char* const ext)
 // libpng read/write interface differences (grr). we at least split
 // out alloc_rows, though.
 
-// allocate and set up rows to point into image buffer
-static int alloc_rows(const u8* img, size_t h, size_t pitch, bool inverted, const u8*** rows)
+// allocate and set up rows to point into image buffer.
+// invert, because libpng stores as top-down and our convention is bottom-up.
+static int alloc_rows(u8* img, size_t h, size_t pitch, png_bytepp& rows)
 {
-	*rows = (const u8**)malloc(h * sizeof(void*));
-	if(!*rows)
+	rows = (png_bytepp)malloc(h * sizeof(void*));
+	if(!rows)
 		return -ENOMEM;
-	const u8* pos = img;
-	size_t i;
-	if(inverted)
-		for(i = 0; i < h; i++)
-		{
-			(*rows)[h-1-i] = pos;
-			pos += pitch;
-		}
-	else
-		for(i = 0; i < h; i++)
-		{
-			(*rows)[i] = pos;
-			pos += pitch;
-		}
+
+	png_bytep pos = img + pitch*h;
+	for(size_t i = 0; i < h; i++)
+	{
+		pos -= pitch;
+		rows[i] = pos;
+	}
 
 	return 0;
 }
@@ -617,17 +745,19 @@ static void png_read(png_struct* const png_ptr, u8* const data, const png_size_t
 
 
 // limitation: palette images aren't supported
-static int png_decode(TexInfo* t, const char* fn, const u8* file, size_t file_size)
+static int png_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 {
 	const char* msg = 0;
 	int err = -1;
 
-	// freed when ret is reached.
+	// freed when ret is reached:
 	png_structp png_ptr = 0;
 	png_infop info_ptr = 0;
-	const u8** rows = 0;
-	// freed when fail is reached
-	const u8* img = 0;
+	png_bytepp rows = 0;
+
+	// freed when fail is reached:
+	u8* img = 0;
+
 
 	// allocate PNG structures; use default stderr and longjmp error handlers
 	png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
@@ -659,6 +789,10 @@ fail:
 		const size_t pitch = png_get_rowbytes(png_ptr, info_ptr);
 		const u32 bpp = (u32)(pitch / w * 8);
 
+		int flags = 0;
+		if(bpp == 32)
+			flags |= TEX_ALPHA;
+
 		// make sure format is acceptable
 		if(bit_depth != 8)
 			msg = "channel precision != 8 bits";
@@ -671,14 +805,17 @@ fail:
 		Handle img_hm;
 			// cannot free old t->hm until after png_read_end,
 			// but need to set to this handle afterwards => need tmp var.
-		img = (const u8*)mem_alloc(img_size, 64*KB, 0, &img_hm);
+		img = (u8*)mem_alloc(img_size, 64*KB, 0, &img_hm);
 		if(!img)
 			goto fail;
 
-		CHECK_ERR(alloc_rows(img, h, pitch, false, &rows));
+		// rows are flipped
+		CHECK_ERR(alloc_rows(img, h, pitch, rows));
 
-		png_read_image(png_ptr, (png_bytepp)rows);
+		png_read_image(png_ptr, rows);
 		png_read_end(png_ptr, info_ptr);
+
+		assert(f.p == file && f.size == file_size && f.pos == f.size);
 
 		// store image info
 		mem_free_h(t->hm);
@@ -687,16 +824,16 @@ fail:
 		t->w     = w;
 		t->h     = h;
 		t->bpp   = bpp;
-		t->flags = (bpp == 24)? 0 : TEX_ALPHA;
+		t->flags = flags;
 
 		err = 0;
 	}
 
 	// shared cleanup
 ret:
-	free(rows);
+//	free(rows);
 
-	png_destroy_read_struct(&png_ptr, &info_ptr, 0);
+//	png_destroy_read_struct(&png_ptr, &info_ptr, 0);
 
 	return err;
 }
@@ -713,7 +850,7 @@ static void png_write(png_struct* const png_ptr, u8* const data, const png_size_
 
 
 // limitation: palette images aren't supported
-static int png_encode(TexInfo* t, const char* fn, const u8* img, size_t img_size)
+static int png_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 {
 	const char* msg = 0;
 	int err = -1;
@@ -721,7 +858,7 @@ static int png_encode(TexInfo* t, const char* fn, const u8* img, size_t img_size
 	// freed when ret is reached.
 	png_structp png_ptr = 0;
 	png_infop info_ptr = 0;
-	const u8** rows = 0; 
+	png_bytepp rows = 0; 
 	Handle hf = 0;
 
 	// allocate PNG structures; use default stderr and longjmp error handlers
@@ -773,7 +910,7 @@ fail:
 			PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
 		png_write_info(png_ptr, info_ptr);
 	
-		CHECK_ERR(alloc_rows(img, h, pitch, true, &rows));
+		CHECK_ERR(alloc_rows(img, h, pitch, rows));
 
 		png_write_image(png_ptr, (png_bytepp)rows);
 		png_write_end(png_ptr, info_ptr);
@@ -805,7 +942,7 @@ ret:
 
 #ifndef NO_JP2
 
-static inline bool jp2_fmt(const u8* p, size_t size)
+static inline bool jp2_fmt(u8* p, size_t size)
 {
 	ONCE(jas_init());
 
@@ -820,7 +957,7 @@ static inline bool jp2_ext(const char* const ext)
 }
 
 
-static int jp2_decode(TexInfo* t, const char* fn, const u8* file, size_t file_size)
+static int jp2_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 {
 	const char* err = 0;
 
@@ -950,8 +1087,9 @@ int tex_load(const char* const fn, TexInfo* t)
 	int err = -1;
 		// initial value, in case no codec is found
 
-	const u8* p = (const u8*)_p;
-		// more convenient to pass loaders u8 - less casting
+	u8* p = (u8*)_p;
+		// more convenient to pass loaders u8 - less casting.
+		// not const, because image may have to be flipped (in-place).
 
 	// find codec that understands the data, and decode
 	Codec* c = codecs;
