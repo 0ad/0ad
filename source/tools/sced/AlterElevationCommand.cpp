@@ -1,5 +1,7 @@
+#include "precompiled.h"
+
 #include "AlterElevationCommand.h"
-#include "UIGlobals.h"
+#include "ui/UIGlobals.h"
 #include "MiniMap.h"
 #include "Terrain.h"
 

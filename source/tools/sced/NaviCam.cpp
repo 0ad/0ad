@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "NaviCam.h"
 #include "EditorData.h"
 #include <stdarg.h>

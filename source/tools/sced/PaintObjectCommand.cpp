@@ -1,7 +1,10 @@
+#include "precompiled.h"
+
 #include "PaintObjectCommand.h"
 #include "UnitManager.h"
 #include "ObjectEntry.h"
 #include "Model.h"
+#include "Unit.h"
 
 #include "BaseEntity.h"
 #include "BaseEntityCollection.h"

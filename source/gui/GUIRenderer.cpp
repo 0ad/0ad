@@ -419,8 +419,9 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 
 			// "real-texture-placement" overrides everything
 			if (cit->m_TexturePlacementInFile != CRect())
+			{
 				BlockTex = cit->m_TexturePlacementInFile;
-
+			}
 			// Check whether this sprite has "cell-size" set
 			else if (cit->m_CellSize != CSize())
 			{
@@ -430,7 +431,6 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 				BlockTex = CRect(cit->m_CellSize.cx*col, cit->m_CellSize.cy*row,
 								 cit->m_CellSize.cx*(col+1), cit->m_CellSize.cy*(row+1));
 			}
-
 			// Use the whole texture
 			else
 				BlockTex = CRect(0, 0, TexWidth, TexHeight);

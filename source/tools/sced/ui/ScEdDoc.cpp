@@ -1,6 +1,7 @@
 // ScEdDoc.cpp : implementation of the CScEdDoc class
 //
 
+#include "precompiled.h"
 #include "stdafx.h"
 #include "ScEd.h"
 

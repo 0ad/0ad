@@ -1,6 +1,7 @@
 // MainFrm.cpp : implementation of the CMainFrame class
 //
 
+#include "precompiled.h"
 #include "stdafx.h"
 
 #define _IGNORE_WGL_H_
@@ -22,6 +23,7 @@
 #include "UnitManager.h"
 #include "ObjectManager.h"
 #include "TextureManager.h"
+#include "ModelDef.h"
 #include "UIGlobals.h"
 #include "MainFrm.h"
 #include "OptionsPropSheet.h"
@@ -563,7 +565,7 @@ void CMainFrame::OnFileSaveMap()
 
 		CMapWriter writer;
 		try {
-			writer.SaveMap(savename);
+			writer.SaveMap(savename, &g_Terrain, &g_LightEnv, &g_UnitMan);
 
 			CStr filetitle=savedlg.m_ofn.lpstrFileTitle;
 			int index=filetitle.ReverseFind(CStr("."));
@@ -603,7 +605,7 @@ void CMainFrame::OnFileLoadMap()
 		
 		CMapReader reader;
 		try {
-			reader.LoadMap(loadname);
+			reader.LoadMap(loadname, &g_Terrain, &g_UnitMan, &g_LightEnv);
 
 			CStr filetitle=loaddlg.m_ofn.lpstrFileTitle;
 			int index=filetitle.ReverseFind(CStr("."));

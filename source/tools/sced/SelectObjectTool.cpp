@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "CommandManager.h"
 #include "Unit.h"
 #include "Model.h"

@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "CommandManager.h"
 #include "RaiseElevationTool.h"
 #include "RaiseElevationCommand.h"

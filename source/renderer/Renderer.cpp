@@ -262,8 +262,10 @@ const RGBAColor& CRenderer::GetOptionColor(enum Option opt) const
 // BeginFrame: signal frame start
 void CRenderer::BeginFrame()
 {
+#ifndef SCED
 	if(!g_Game || !g_Game->IsGameStarted())
 		return;
+#endif
 
 	// bump frame counter
 	m_FrameCounter++;
@@ -875,9 +877,10 @@ struct SortModelsByTexture {
 // FlushFrame: force rendering of any batched objects
 void CRenderer::FlushFrame()
 {
-
+#ifndef SCED
 	if(!g_Game || !g_Game->IsGameStarted())
 		return;
+#endif
 
 	oglCheck();
 
@@ -929,8 +932,10 @@ void CRenderer::FlushFrame()
 // EndFrame: signal frame end; implicitly flushes batched objects
 void CRenderer::EndFrame()
 {
+#ifndef SCED
 	if(!g_Game || !g_Game->IsGameStarted())
 		return;
+#endif
 
 	FlushFrame();
 	g_Renderer.SetTexture(0,0);

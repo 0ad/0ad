@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "timer.h"
 #include "CommandManager.h"
 #include "ObjectEntry.h"

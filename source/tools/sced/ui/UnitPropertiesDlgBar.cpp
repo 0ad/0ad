@@ -1,3 +1,4 @@
+#include "precompiled.h"
 #include "stdafx.h"
 #define _IGNORE_WGL_H_
 #include "UserConfig.h"
@@ -193,15 +194,15 @@ void CUnitPropertiesDlgBar::UpdateEditorData()
 	
 	CWnd* name=GetDlgItem(IDC_EDIT_NAME);
 	name->GetWindowText(str);
-	m_Object->m_Name=str;
+	m_Object->m_Name=(const char*)str;
 	
 	CWnd* model=GetDlgItem(IDC_EDIT_MODEL);
 	model->GetWindowText(str);
-	m_Object->m_ModelName=str;
+	m_Object->m_ModelName=(const char*)str;
 
 	CWnd* texture=GetDlgItem(IDC_EDIT_TEXTURE);
 	texture->GetWindowText(str);
-	m_Object->m_TextureName=str;
+	m_Object->m_TextureName=(const char*)str;
 
 	CWnd* animation=GetDlgItem(IDC_EDIT_ANIMATION);
 	animation->GetWindowText(str);
@@ -209,7 +210,7 @@ void CUnitPropertiesDlgBar::UpdateEditorData()
 		m_Object->m_Animations.resize(1);
 		m_Object->m_Animations[0].m_AnimName="Idle";
 	}
-	m_Object->m_Animations[0].m_FileName=str;
+	m_Object->m_Animations[0].m_FileName=(const char*)str;
 
 	std::vector<CUnit*> animupdatelist;
 	const std::vector<CUnit*>& units=g_UnitMan.GetUnits();

@@ -1,6 +1,7 @@
 // ScEdView.cpp : implementation of the CScEdView class
 //
 
+#include "precompiled.h"
 #include "stdafx.h"
 #define _IGNORE_WGL_H_
 #include "ScEd.h"
@@ -118,6 +119,10 @@ BOOL CScEdView::OnEraseBkgnd(CDC* pDC)
 
 int CScEdView::OnCreate(LPCREATESTRUCT lpCreateStruct) 
 {
+	// make sure the delay-loaded OpenGL has been loaded before calling
+	// any graphical functions
+	glGetError();
+
 	// base initialisation first
 	if (CView::OnCreate(lpCreateStruct) == -1)
 		return -1;
@@ -145,17 +150,8 @@ int CScEdView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	}
 
 
-	// initialise VFS paths
-	char path[256];
-	::GetModuleFileName(0,path,256);
-	file_rel_chdir(path, "../data");
-	vfs_mount("", "mods/official", 0);	
-	
-	// create renderer related stuff
-	new CRenderer;
-
-	// start up the renderer
-	g_Renderer.Open(0,0,::GetDeviceCaps(dc,BITSPIXEL));
+	extern void ScEd_Init();
+	ScEd_Init();
 
 	// initialise document data
 	if (!g_EditorData.Init()) return -1;
@@ -170,16 +166,16 @@ void CScEdView::OnDestroy()
 {
 	// close down editor resources
 	g_EditorData.Terminate();
-	
-	// destroy renderer related stuff
-	delete CRenderer::GetSingletonPtr();
 
+	extern void ScEd_Shutdown();
+	ScEd_Shutdown();
+	
 	// release rendering context
 	if (m_hGLRC) {
 		wglMakeCurrent(0,0);
 		wglDeleteContext(m_hGLRC);
 		m_hGLRC=0;
-    }	
+	}
 
 	// base destruction
 	CView::OnDestroy();

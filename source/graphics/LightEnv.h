@@ -20,6 +20,9 @@
 
 class CMapWriter;
 class CMapReader;
+class CEditorData;
+class CMainFrame;
+class CLightSettingsDlg;
 
 ///////////////////////////////////////////////////////////////////////////////
 // CLightEnv: description of a lighting environment - contains all the 
@@ -28,7 +31,10 @@ class CLightEnv
 {
 friend class CMapWriter;
 friend class CMapReader;
-// wierd accessor order to preserve memory layout of the class
+friend class CEditorData;
+friend class CMainFrame;
+friend class CLightSettingsDlg;
+// weird accessor order to preserve memory layout of the class
 public:
 	RGBColor m_SunColor;
 private:

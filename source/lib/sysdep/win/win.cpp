@@ -276,7 +276,6 @@ static inline void pre_libc_init()
 
 }
 
-
 static inline void pre_main_init()
 {
 #ifdef HAVE_DEBUGALLOC
@@ -333,8 +332,17 @@ PREVTSC=TSC;
 }
 
 
+#ifdef SCED
+void sced_init()
+{
+	pre_main_init();
+}
+#endif
+
+#ifndef SCED
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
 	pre_main_init();
 	return main(__argc, __argv);
 }
+#endif

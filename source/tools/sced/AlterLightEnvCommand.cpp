@@ -1,7 +1,10 @@
+#include "precompiled.h"
+
 #include "AlterLightEnvCommand.h"
 #include "UnitManager.h"
 #include "ObjectManager.h"
 #include "Model.h"
+#include "Unit.h"
 #include "Terrain.h"
 
 extern CTerrain g_Terrain;

@@ -3,7 +3,7 @@ REM Create Visual Studio Workspaces on Windows
 
 mkdir vc6
 mkdir vc7
-mkdir vc2003
+mkdir vc2003b
 
 REM Change to the lua project name, this must correspond to the base file name
 REM of the created project files
@@ -16,16 +16,18 @@ mkdir tmp
 copy premake.lua tmp
 cd tmp
 
+REM Just copy *.sln/etc indiscriminately, because it might include both pyrogenesis.sln and sced.sln (or might not)
+
 ..\premake --target vs6
-move %PROJECT%.dsw ..\..\workspaces\vc6
-move %PROJECT%.dsp ..\..\workspaces\vc6
+move *.dsw ..\..\workspaces\vc6
+move *.dsp ..\..\workspaces\vc6
 
 ..\premake --target vs7
-move %PROJECT%.sln    ..\..\workspaces\vc7
-move %PROJECT%.vcproj ..\..\workspaces\vc7
+move *.sln    ..\..\workspaces\vc7
+move *.vcproj ..\..\workspaces\vc7
 
 ..\premake --target vs2003
-move %PROJECT%.sln    ..\..\workspaces\vc2003
-move %PROJECT%.vcproj ..\..\workspaces\vc2003
+move *.sln    ..\..\workspaces\vc2003b
+move *.vcproj ..\..\workspaces\vc2003b
 
 cd ..\..\workspaces

@@ -1,7 +1,14 @@
-function sourcesfromdirs(root, ...)
+function sourcesfromdirs(root, dirs)
 	local res = {}
-	for i=1, getn(arg) do
-		res[i]=matchfiles(root..arg[i].."/*.cpp", root..arg[i].."/*.h")
+	for i=1, getn(dirs) do
+		local files = matchfiles(root..dirs[i].."/*.cpp", root..dirs[i].."/*.h")
+		tconcat(res, files)
 	end
 	return res
+end
+
+function tconcat(table, values)
+	for i=1, getn(values) do
+		tinsert(table, values[i])
+	end
 end

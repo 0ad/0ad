@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "UserConfig.h"
 #include <assert.h>
 

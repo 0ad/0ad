@@ -1,5 +1,6 @@
+#include "precompiled.h"
 #include "MiniMap.h"
-#include "UIGlobals.h"
+#include "ui/UIGlobals.h"
 #include "TextureManager.h"
 #include "Terrain.h"
 #include "Renderer.h"

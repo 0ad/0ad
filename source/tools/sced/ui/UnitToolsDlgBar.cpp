@@ -1,3 +1,4 @@
+#include "precompiled.h"
 #include "stdafx.h"
 #include "MainFrm.h"
 #include "SimpleEdit.h"
@@ -132,7 +133,7 @@ void CUnitToolsDlgBar::OnButtonAdd()
 
 			// now enter edit mode
 			CObjectEntry* obj=new CObjectEntry(GetCurrentObjectType());
-			obj->m_Name=name;
+			obj->m_Name=(const char*)name;
 			g_ObjMan.AddObject(obj,GetCurrentObjectType());
 
 			CMainFrame* mainfrm=(CMainFrame*) AfxGetMainWnd();

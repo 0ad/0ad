@@ -1,5 +1,7 @@
+#include "precompiled.h"
+
 #include "InfoBox.h"
-#include "UIGlobals.h"
+#include "ui/UIGlobals.h"
 #include "types.h"
 #include "ogl.h"
 #include "timer.h"
@@ -13,7 +15,7 @@ static const char* DefaultFontName="mods/official/fonts/verdana18.fnt";
 
 CInfoBox::CInfoBox() : m_Font(0), m_Visible(false)
 {
-	m_LastFPSTime=get_time();
+	m_LastFPSTime=0;
 	m_Stats.Reset();	
 }
 

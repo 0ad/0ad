@@ -35,11 +35,11 @@ OutDir=.\Release
 
 !IF "$(RECURSE)" == "0" 
 
-ALL : "..\..\binaries\ScEd.exe" "$(OUTDIR)\ScEd.pch"
+ALL : "..\..\..\binaries\ScEd.exe" "$(OUTDIR)\ScEd.pch"
 
 !ELSE 
 
-ALL : "pslib - Win32 Release" "..\..\binaries\ScEd.exe" "$(OUTDIR)\ScEd.pch"
+ALL : "pslib - Win32 Release" "..\..\..\binaries\ScEd.exe" "$(OUTDIR)\ScEd.pch"
 
 !ENDIF 
 
@@ -93,13 +93,13 @@ CLEAN :
 	-@erase "$(INTDIR)\vc60.pdb"
 	-@erase "$(INTDIR)\WebLinkButton.obj"
 	-@erase "$(OUTDIR)\ScEd.pdb"
-	-@erase "..\..\binaries\ScEd.exe"
+	-@erase "..\..\..\binaries\ScEd.exe"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
 CPP=cl.exe
-CPP_PROJ=/nologo /G5 /MT /W3 /GX /Zi /O2 /Ob0 /I "..\\" /I "..\lib" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_PROJ=/nologo /G5 /MT /W3 /GX /Zi /O2 /Ob0 /I "..\..\\" /I "..\..\lib" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 .c{$(INTDIR)}.obj::
    $(CPP) @<<
@@ -140,7 +140,7 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)\ScEd.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=nafxcw.lib pslib.lib opengl32.lib glu32.lib ws2_32.lib version.lib xerces-c_2.lib /nologo /entry:"entry" /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\ScEd.pdb" /debug /machine:I386 /out:"D:\0ad\binaries\ScEd.exe" /libpath:"..\libs" /fixed:no 
+LINK32_FLAGS=nafxcw.lib pslib.lib opengl32.lib glu32.lib ws2_32.lib version.lib xerces-c_2.lib /nologo /entry:"entry" /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\ScEd.pdb" /debug /machine:I386 /out:"D:\0ad\binaries\ScEd.exe" /libpath:"..\..\libs" /fixed:no 
 LINK32_OBJS= \
 	"$(INTDIR)\ColorButton.obj" \
 	"$(INTDIR)\DirectionButton.obj" \
@@ -184,7 +184,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\StdAfx.obj" \
 	"$(INTDIR)\ScEd.res"
 
-"..\..\binaries\ScEd.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
+"..\..\..\binaries\ScEd.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
@@ -199,11 +199,11 @@ OutDir=.\Debug
 
 !IF "$(RECURSE)" == "0" 
 
-ALL : "..\..\binaries\ScEd_d.exe" "$(OUTDIR)\ScEd.pch"
+ALL : "..\..\..\binaries\ScEd_d.exe" "$(OUTDIR)\ScEd.pch"
 
 !ELSE 
 
-ALL : "pslib - Win32 Debug" "..\..\binaries\ScEd_d.exe" "$(OUTDIR)\ScEd.pch"
+ALL : "pslib - Win32 Debug" "..\..\..\binaries\ScEd_d.exe" "$(OUTDIR)\ScEd.pch"
 
 !ENDIF 
 
@@ -257,14 +257,14 @@ CLEAN :
 	-@erase "$(INTDIR)\vc60.pdb"
 	-@erase "$(INTDIR)\WebLinkButton.obj"
 	-@erase "$(OUTDIR)\ScEd_d.pdb"
-	-@erase "..\..\binaries\ScEd_d.exe"
-	-@erase "..\..\binaries\ScEd_d.ilk"
+	-@erase "..\..\..\binaries\ScEd_d.exe"
+	-@erase "..\..\..\binaries\ScEd_d.ilk"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
 CPP=cl.exe
-CPP_PROJ=/nologo /G6 /MTd /W3 /Gm /Gi /GX /ZI /Od /I "..\\" /I "..\lib" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
+CPP_PROJ=/nologo /G6 /MTd /W3 /Gm /Gi /GX /ZI /Od /I "..\..\\" /I "..\..\lib" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
 
 .c{$(INTDIR)}.obj::
    $(CPP) @<<
@@ -305,7 +305,7 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)\ScEd.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=nafxcwd.lib pslib_d.lib opengl32.lib glu32.lib ws2_32.lib version.lib xerces-c_2D.lib /nologo /entry:"entry" /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\ScEd_d.pdb" /debug /machine:I386 /out:"D:\0ad\binaries\ScEd_d.exe" /pdbtype:sept /libpath:"..\libs" 
+LINK32_FLAGS=nafxcwd.lib pslib_d.lib opengl32.lib glu32.lib ws2_32.lib version.lib xerces-c_2D.lib /nologo /entry:"entry" /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\ScEd_d.pdb" /debug /machine:I386 /out:"D:\0ad\binaries\ScEd_d.exe" /pdbtype:sept /libpath:"..\..\libs" 
 LINK32_OBJS= \
 	"$(INTDIR)\ColorButton.obj" \
 	"$(INTDIR)\DirectionButton.obj" \
@@ -349,7 +349,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\StdAfx.obj" \
 	"$(INTDIR)\ScEd.res"
 
-"..\..\binaries\ScEd_d.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
+"..\..\..\binaries\ScEd_d.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
@@ -573,22 +573,22 @@ SOURCE=.\HFTracer.cpp
 "pslib - Win32 Release" : 
    cd "\0ad\fw\pslib"
    NMAKE /f pslib.mak
-   cd "..\ScEd"
+   cd "..\..\ScEd"
 
 "pslib - Win32 ReleaseCLEAN" : 
    cd "\0ad\fw\pslib"
-   cd "..\ScEd"
+   cd "..\..\ScEd"
 
 !ELSEIF  "$(CFG)" == "ScEd - Win32 Debug"
 
 "pslib - Win32 Debug" : 
    cd "\0ad\fw\pslib"
    NMAKE /f pslib.mak
-   cd "..\ScEd"
+   cd "..\..\ScEd"
 
 "pslib - Win32 DebugCLEAN" : 
    cd "\0ad\fw\pslib"
-   cd "..\ScEd"
+   cd "..\..\ScEd"
 
 !ENDIF 
 
@@ -596,7 +596,7 @@ SOURCE=.\StdAfx.cpp
 
 !IF  "$(CFG)" == "ScEd - Win32 Release"
 
-CPP_SWITCHES=/nologo /G5 /MT /W3 /GX /Zi /O2 /Ob0 /I "..\\" /I "..\lib" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"$(INTDIR)\ScEd.pch" /Yc"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /G5 /MT /W3 /GX /Zi /O2 /Ob0 /I "..\..\\" /I "..\..\lib" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"$(INTDIR)\ScEd.pch" /Yc"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\StdAfx.obj"	"$(INTDIR)\ScEd.pch" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -606,7 +606,7 @@ CPP_SWITCHES=/nologo /G5 /MT /W3 /GX /Zi /O2 /Ob0 /I "..\\" /I "..\lib" /D "WIN3
 
 !ELSEIF  "$(CFG)" == "ScEd - Win32 Debug"
 
-CPP_SWITCHES=/nologo /G6 /MTd /W3 /Gm /Gi /GX /ZI /Od /I "..\\" /I "..\lib" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"$(INTDIR)\ScEd.pch" /Yc"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
+CPP_SWITCHES=/nologo /G6 /MTd /W3 /Gm /Gi /GX /ZI /Od /I "..\..\\" /I "..\..\lib" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"$(INTDIR)\ScEd.pch" /Yc"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
 
 "$(INTDIR)\StdAfx.obj"	"$(INTDIR)\ScEd.pch" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<

@@ -7,26 +7,44 @@ project.libdir = "../../../binaries/system"
 project.debugdir = "../../../binaries/data"
 project.configs = { "Debug", "Release", "Testing" }
 
--- Start the package part
-package = newpackage()
-package.name = "pyrogenesis"
--- Windowed executable on windows, "exe" on all other platforms
-package.kind = "winexe"
-package.language = "c++"
+function setuppackage (projectname)
 
--- Package target for debug and release build
--- On Windows, ".exe" is added on the end, on unices the name is used directly
-package.config["Debug"].target = "ps_dbg"
-package.config["Release"].target = "ps"
-package.config["Testing"].target = "ps_test"
+	-- Start the package part
+	package = newpackage()
 
-sourceroot = "../../../source/"
-librariesroot = "../../../libraries/"
+	if (projectname == "sced") then
+		package.name = "sced"
+		exename = "sced"
+		objdirprefix = "ScEd_"
+	else
+		package.name = "pyrogenesis"
+		exename = "ps"
+		objdirprefix = ""
+	end
 
--- Files
-package.files = {
-	sourcesfromdirs(sourceroot,
-				
+	-- Windowed executable on windows, "exe" on all other platforms
+	package.kind = "winexe"
+	package.language = "c++"
+	
+	-- Package target for debug and release build
+	-- On Windows, ".exe" is added on the end, on unices the name is used directly
+	package.config["Debug"].target = exename.."_dbg"
+	package.config["Release"].target = exename
+	package.config["Testing"].target = exename.."_test"
+
+	-- TODO: Implement objdir in Premake
+	package.config["Debug"].objdir = objdirprefix.."Debug"
+	package.config["Release"].objdir  = objdirprefix.."Release"
+	package.config["Testing"].objdir = objdirprefix.."Testing"
+
+	
+	sourceroot = "../../../source/"
+	librariesroot = "../../../libraries/"
+
+	
+	source_dirs = {}
+	
+	tconcat(source_dirs, {
 		"ps",
 		"ps/scripting",
 		"ps/Network",
@@ -44,11 +62,15 @@ package.files = {
 		"maths",
 		"maths/scripting",
 
-		"renderer",
-
+		"renderer"
+	})
+	
+	if (projectname ~= "sced") then tconcat(source_dirs, {
 		"gui",
-		"gui/scripting",
+		"gui/scripting"
+	}) end
 
+	tconcat(source_dirs, {
 		"terrain",
 
 		"sound",
@@ -58,122 +80,149 @@ package.files = {
 		"i18n",
 
 		"tests"
-	),
+	})
+	
+	if (projectname == "sced") then tconcat(source_dirs, {
+		"tools/sced",
+		"tools/sced/ui"
+	}) end
 
-	sourceroot.."main.cpp"
-}
+	package.files = sourcesfromdirs(sourceroot, source_dirs)
+	
+	if (projectname ~= "sced") then
+		tinsert(package.files, sourceroot.."main.cpp")
+	end
 
-
-include_dirs = {
-	"ps",
-	"simulation",
-	"lib",
-	"graphics",
-	"maths",
-	"renderer",
-	"terrain",
-	""
-}
-
-package.includepaths = {}
-
-foreach(include_dirs, function (i,v)
-	tinsert(package.includepaths, sourceroot .. v)
-end)
-
-
-package.libpaths = {}
-
-
-package.buildflags = { "no-rtti" }
-
-package.config["Testing"].buildflags = { "with-symbols", "no-runtime-checks", "no-edit-and-continue" }
-package.config["Testing"].defines = { "TESTING" }
-
-package.config["Release"].defines = { "NDEBUG" }
-
--- Docs says that premake does this automatically - it doesn't (at least not for GCC/Linux)
-package.config["Debug"].buildflags = { "with-symbols", "no-edit-and-continue" }
-
--- Platform Specifics
-if (OS == "windows") then
-
-	-- Directories under 'libraries', each containing 'lib' and 'include':
-	external_libraries = {
-		"misc",
-		"libpng",
-		"zlib",
-		"openal",
-		"spidermonkey",
-		"xerces",
-		"vorbis",
-		"boost"
+	
+	include_dirs = {
+		"ps",
+		"simulation",
+		"lib",
+		"graphics",
+		"maths",
+		"renderer",
+		"terrain",
+		""
 	}
-
-	-- Add '<libraries root>/<libraryname>/lib' and '/include' to the includepaths and libpaths
-	foreach(external_libraries, function (i,v)
-		tinsert(package.includepaths,	librariesroot..v.."/include")
-		tinsert(package.libpaths,		librariesroot..v.."/lib")
+	
+	if (projectname == "sced") then
+		tinsert(include_dirs, "tools/sced")
+	end
+	
+	package.includepaths = {}
+	
+	foreach(include_dirs, function (i,v)
+		tinsert(package.includepaths, sourceroot .. v)
 	end)
-
-	-- Libraries
-	package.links = { "opengl32" }
-	tinsert(package.files, sourcesfromdirs(sourceroot, "lib/sysdep/win"))
-	tinsert(package.files, {sourceroot.."lib/sysdep/win/assert_dlg.rc"})
-
-	package.linkoptions = { "/ENTRY:entry",
-		"/DELAYLOAD:opengl32.dll",
-		"/DELAYLOAD:advapi32.dll",
-		"/DELAYLOAD:gdi32.dll",
-		"/DELAYLOAD:user32.dll",
-		"/DELAYLOAD:ws2_32.dll",
-		"/DELAYLOAD:version.dll",
-		"/DELAYLOAD:ddraw.dll",
-		"/DELAYLOAD:dsound.dll",
-		"/DELAYLOAD:glu32.dll",
-		"/DELAYLOAD:openal32.dll",
-		"/DELAY:UNLOAD"		-- allow manual unload of delay-loaded DLLs
-	}
-
-	package.config["Debug"].linkoptions = {
-		"/DELAYLOAD:js32d.dll",
-		"/DELAYLOAD:zlib1d.dll",
-		"/DELAYLOAD:libpng13d.dll",
-	}
 	
-	-- 'Testing' uses 'Debug' DLL's
-	package.config["Testing"].linkoptions = package.config["Debug"].linkoptions
 	
-	package.config["Release"].linkoptions = {
-		"/DELAYLOAD:js32.dll",
-		"/DELAYLOAD:zlib1.dll",
-		"/DELAYLOAD:libpng13.dll",
-	}
+	package.libpaths = {}
 	
-	tinsert(package.buildflags, { "no-main" })
 	
-	package.pchHeader = "precompiled.h"
-	package.pchSource = "precompiled.cpp"
-
-else -- Non-Windows, = Unix
-
-	tinsert(package.files, sourcesfromdirs(sourceroot, "lib/sysdep/unix"))
-
-	-- Libraries
-	package.links = {
-		-- OpenGL and X-Windows
-		"GL", "GLU", "X11",
-		"SDL", "png",
-		"fam",
-		-- Audio
-		"openal", "vorbisfile", 
-		-- Utilities
-		"xerces-c", "z", "rt", "js"
-	}
-	tinsert(package.libpaths, { "/usr/X11R6/lib" } )
-	-- Defines
-	package.defines = {
-		"__STDC_VERSION__=199901L" }
-	-- Includes
-	tinsert(package.includepaths, { "/usr/X11R6/include/X11" } )
+	package.buildflags = { "no-rtti" }
+	
+	package.config["Testing"].buildflags = { "with-symbols", "no-runtime-checks", "no-edit-and-continue" }
+	package.config["Testing"].defines = { "TESTING" }
+	
+	package.config["Release"].defines = { "NDEBUG" }
+	
+	-- Docs says that premake does this automatically - it doesn't (at least not for GCC/Linux)
+	package.config["Debug"].buildflags = { "with-symbols", "no-edit-and-continue" }
+	
+	
+	if (projectname == "sced") then
+		tinsert(package.defines, "SCED")
+		tinsert(package.defines, "_AFXDLL")
+		tinsert(package.defines, "NO_GUI")
+	end
+	
+	-- Platform Specifics
+	if (OS == "windows") then
+	
+		-- Directories under 'libraries', each containing 'lib' and 'include':
+		external_libraries = {
+			"misc",
+			"libpng",
+			"zlib",
+			"openal",
+			"spidermonkey",
+			"xerces",
+			"vorbis",
+			"boost"
+		}
+	
+		-- Add '<libraries root>/<libraryname>/lib' and '/include' to the includepaths and libpaths
+		foreach(external_libraries, function (i,v)
+			tinsert(package.includepaths,	librariesroot..v.."/include")
+			tinsert(package.libpaths,		librariesroot..v.."/lib")
+		end)
+	
+		-- Libraries
+		package.links = { "opengl32" }
+		tinsert(package.files, sourcesfromdirs(sourceroot, {"lib/sysdep/win"}))
+		tinsert(package.files, {sourceroot.."lib/sysdep/win/assert_dlg.rc"})
+		
+		if (projectname == "sced") then
+			tinsert(package.files, {sourceroot.."tools/sced/ui/ScEd.rc"})
+		end
+	
+		package.linkoptions = { "/ENTRY:entry",
+			"/DELAYLOAD:opengl32.dll",
+			"/DELAYLOAD:advapi32.dll",
+			"/DELAYLOAD:gdi32.dll",
+			"/DELAYLOAD:user32.dll",
+			"/DELAYLOAD:ws2_32.dll",
+			"/DELAYLOAD:version.dll",
+			"/DELAYLOAD:ddraw.dll",
+			"/DELAYLOAD:dsound.dll",
+			"/DELAYLOAD:glu32.dll",
+			"/DELAYLOAD:openal32.dll",
+			"/DELAY:UNLOAD"		-- allow manual unload of delay-loaded DLLs
+		}
+	
+		package.config["Debug"].linkoptions = {
+			"/DELAYLOAD:js32d.dll",
+			"/DELAYLOAD:zlib1d.dll",
+			"/DELAYLOAD:libpng13d.dll",
+		}
+		
+		-- 'Testing' uses 'Debug' DLL's
+		package.config["Testing"].linkoptions = package.config["Debug"].linkoptions
+		
+		package.config["Release"].linkoptions = {
+			"/DELAYLOAD:js32.dll",
+			"/DELAYLOAD:zlib1.dll",
+			"/DELAYLOAD:libpng13.dll",
+		}
+		
+		tinsert(package.buildflags, { "no-main" })
+		
+		package.pchHeader = "precompiled.h"
+		package.pchSource = "precompiled.cpp"
+	
+	else -- Non-Windows, = Unix
+	
+		tinsert(package.files, sourcesfromdirs(sourceroot, {"lib/sysdep/unix"}))
+	
+		-- Libraries
+		package.links = {
+			-- OpenGL and X-Windows
+			"GL", "GLU", "X11",
+			"SDL", "png",
+			"fam",
+			-- Audio
+			"openal", "vorbisfile", 
+			-- Utilities
+			"xerces-c", "z", "rt", "js"
+		}
+		tinsert(package.libpaths, { "/usr/X11R6/lib" } )
+		-- Defines
+		package.defines = {
+			"__STDC_VERSION__=199901L" }
+		-- Includes
+		tinsert(package.includepaths, { "/usr/X11R6/include/X11" } )
+	end
 end
+
+setuppackage("pyrogenesis")
+-- setuppackage("sced")

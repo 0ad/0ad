@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "RaiseElevationCommand.h"
 #include "Terrain.h"
 

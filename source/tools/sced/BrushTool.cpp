@@ -1,5 +1,7 @@
+#include "precompiled.h"
+
 #include "BrushTool.h"
-#include "UIGlobals.h"
+#include "ui/UIGlobals.h"
 #include "HFTracer.h"
 #include "NaviCam.h"
 #include "TextureManager.h"
@@ -133,7 +135,7 @@ void CBrushTool::OnMouseMove(unsigned int flags,int px,int py)
 
 	// intersect with terrain 
 	CVector3D ipt;
-	CHFTracer hftracer(g_Terrain.GetHeightMap(),g_Terrain.GetVerticesPerSide(),float(CELL_SIZE),HEIGHT_SCALE);
+	CHFTracer hftracer(&g_Terrain);
 	if (hftracer.RayIntersect(rayorigin,raydir,m_SelectionCentre[0],m_SelectionCentre[1],m_SelectionPoint)) {
 		// drag trigger supported?
 		if (SupportDragTrigger()) {

@@ -1,3 +1,4 @@
+#include "precompiled.h"
 #include "stdafx.h"
 #define _IGNORE_WGL_H_
 #include "TexToolsDlgBar.h"

@@ -1,11 +1,14 @@
+#include "precompiled.h"
+
 #include "EditorData.h"
-#include "UIGlobals.h"
+#include "ui/UIGlobals.h"
 #include "ToolManager.h"
 #include "ObjectManager.h"
 #include "UnitManager.h"
 #include "TextureManager.h"
 #include "Model.h"
 #include "SkeletonAnimManager.h"
+#include "Unit.h"
 
 #include "ogl.h"
 #include "res/tex.h"
@@ -15,6 +18,8 @@
 #include "Entity.h"
 #include "EntityHandles.h"
 #include "EntityManager.h"
+#include "ConfigDB.h"
+#include "Scheduler.h"
 
 #include "XML.h"
 
@@ -22,7 +27,7 @@ const int NUM_ALPHA_MAPS = 14;
 Handle AlphaMaps[NUM_ALPHA_MAPS];
 
 CTerrain			g_Terrain;
-CLightEnv			g_LightEnv;
+extern CLightEnv	g_LightEnv;
 CMiniMap			g_MiniMap;
 CEditorData			g_EditorData;
 
@@ -50,7 +55,7 @@ bool CEditorData::InitScene()
 	g_Renderer.SetLightEnv(&g_LightEnv);
 
 	// load the default
-	if (!LoadTerrain("terrain.raw")) return false;
+	if (!LoadTerrain("temp/terrain.png")) return false;
 	
 	// get default texture to apply to terrain
 	CTextureEntry* texture=0;
@@ -182,29 +187,29 @@ void CEditorData::InitResources()
 // InitSingletons: create and initialise required singletons
 void CEditorData::InitSingletons()
 {
-	// create terrain related stuff
-	new CTextureManager;
-
-	// create actor related stuff
-	new CSkeletonAnimManager;
-	new CObjectManager;
-	new CUnitManager;
-
-	// create entity related stuff 
-	new CBaseEntityCollection;
-	new CEntityManager;
-	g_EntityTemplateCollection.loadTemplates();
+//	// create terrain related stuff
+//	new CTextureManager;
+//
+//	// create actor related stuff
+//	new CSkeletonAnimManager;
+//	new CObjectManager;
+//	new CUnitManager;
+//
+//	// create entity related stuff 
+//	new CBaseEntityCollection;
+//	new CEntityManager;
+//	g_EntityTemplateCollection.loadTemplates();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 // Init: perform one time initialisation of the editor
 bool CEditorData::Init()
 {
-	// start up Xerces
-	XMLPlatformUtils::Initialize();
-
-	// create and initialise singletons
-	InitSingletons();
+//	// start up Xerces
+//	XMLPlatformUtils::Initialize();
+//
+//	// create and initialise singletons
+//	InitSingletons();
 
 	// load default textures
 	InitResources();
@@ -225,20 +230,20 @@ bool CEditorData::Init()
 // Terminate: close down the editor (destroy singletons in reverse order to construction)
 void CEditorData::Terminate()
 {
-	// destroy entity related stuff 
-	delete CEntityManager::GetSingletonPtr();
-	delete CBaseEntityCollection::GetSingletonPtr();
-
-	// destroy actor related stuff
-	delete CUnitManager::GetSingletonPtr();
-	delete CObjectManager::GetSingletonPtr();
-	delete CSkeletonAnimManager::GetSingletonPtr();
-
-	// destroy terrain related stuff
-	delete CTextureManager::GetSingletonPtr();
+//	// destroy entity related stuff 
+//	delete CEntityManager::GetSingletonPtr();
+//	delete CBaseEntityCollection::GetSingletonPtr();
+//
+//	// destroy actor related stuff
+//	delete CUnitManager::GetSingletonPtr();
+//	delete CObjectManager::GetSingletonPtr();
+//	delete CSkeletonAnimManager::GetSingletonPtr();
+//
+//	// destroy terrain related stuff
+//	delete CTextureManager::GetSingletonPtr();
 
 	// close down Xerces
-	XMLPlatformUtils::Terminate();
+//	XMLPlatformUtils::Terminate();
 }
 
 void CEditorData::InitCamera() 
@@ -332,7 +337,7 @@ void CEditorData::OnCameraChanged()
 
 void CEditorData::RenderTerrain()
 {
-	CFrustum frustum=g_NaviCam.GetCamera().GetFustum();
+	CFrustum frustum=g_NaviCam.GetCamera().GetFrustum();
 	u32 patchesPerSide=g_Terrain.GetPatchesPerSide();
 	for (uint j=0; j<patchesPerSide; j++) {
 		for (uint i=0; i<patchesPerSide; i++) {
@@ -408,7 +413,7 @@ void CEditorData::RenderNoCull()
 
 void CEditorData::RenderModels()
 {
-	CFrustum frustum=g_NaviCam.GetCamera().GetFustum();
+	CFrustum frustum=g_NaviCam.GetCamera().GetFrustum();
 
 	const std::vector<CUnit*>& units=g_UnitMan.GetUnits();
 	uint i;
@@ -495,7 +500,7 @@ void CEditorData::RenderObEdGrid()
 void CEditorData::OnDraw()
 {	
 	if (m_Mode==SCENARIO_EDIT || m_Mode==TEST_MODE) {
-		g_Renderer.SetClearColor(0);
+		g_Renderer.SetClearColor(0x00000000);
 		g_Renderer.BeginFrame();
 
 		// setup camera
@@ -649,7 +654,7 @@ void CEditorData::UpdateWorld(float time)
 void CEditorData::StartTestMode()
 {	
 	// initialise entities
-	g_EntityManager.dispatchAll( &CMessage( CMessage::EMSG_INIT ) );
+	g_EntityManager.InitializeAll();
 }
 
 void CEditorData::StopTestMode()

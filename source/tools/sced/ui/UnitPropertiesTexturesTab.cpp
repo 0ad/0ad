@@ -1,6 +1,7 @@
 // UnitPropertiesTexturesTab.cpp : implementation file
 //
 
+#include "precompiled.h"
 #include "stdafx.h"
 #include "ScEd.h"
 #include "UnitPropertiesTexturesTab.h"

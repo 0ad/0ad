@@ -6,6 +6,8 @@
 #if !defined(AFX_STDAFX_H__806A78B8_0008_491A_9FB6_5FF892838693__INCLUDED_)
 #define AFX_STDAFX_H__806A78B8_0008_491A_9FB6_5FF892838693__INCLUDED_
 
+#undef new // as defined by precompiled.h
+
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000
@@ -14,7 +16,7 @@
 
 #define _SIZE_T_DEFINED
 #include "posix.h"
-#include "CStr.h"
+//#include "CStr.h"
 
 #undef _WINDOWS_
 #undef UNUSED

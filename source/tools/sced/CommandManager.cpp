@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "Command.h"
 #include "CommandManager.h"
 

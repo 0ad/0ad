@@ -1,6 +1,7 @@
 // ScEd.cpp : Defines the class behaviors for the application.
 //
 
+#include "precompiled.h"
 #include "stdafx.h"
 #include "ScEd.h"
 
@@ -47,8 +48,8 @@ CScEdApp theApp;
 
 BOOL CScEdApp::InitInstance()
 {
-	extern void pre_main_init();
-	pre_main_init();
+	extern void sced_init();
+	sced_init();
 
 	AfxEnableControlContainer();
 
@@ -174,10 +175,11 @@ BOOL CAboutDlg::OnInitDialog()
 
 int CScEdApp::Run() 
 {
+	MSG msg;
 	// acquire and dispatch messages until a WM_QUIT message is received
 	while (1) {
 		// process windows messages
-		while (::PeekMessage(&m_msgCur, NULL, NULL, NULL, PM_NOREMOVE)) {
+		while (::PeekMessage(&msg, NULL, NULL, NULL, PM_NOREMOVE)) {
 			// pump message, but quit on WM_QUIT
 			if (!PumpMessage())
 				return ExitInstance();

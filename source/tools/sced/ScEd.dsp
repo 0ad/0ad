@@ -43,7 +43,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /G6 /MT /W3 /GR- /GX /Zi /O2 /Ob2 /I "..\\" /I "..\lib" /I "..\ps" /I "..\simulation" /I "..\maths" /I "..\graphics" /I "..\renderer" /I ".\\" /I ".\ui" /D "NDEBUG" /D "_MBCS" /D "_WINDOWS" /D "WIN32" /D "_NO_WINMAIN_" /D "_WGL_H_INCLUDED" /FD /c
+# ADD CPP /nologo /G6 /MT /W3 /GR- /GX /Zi /O2 /Ob2 /I "..\..\\" /I "..\..\lib" /I "..\..\ps" /I "..\..\simulation" /I "..\..\maths" /I "..\..\graphics" /I "..\..\renderer" /I ".\\" /I ".\ui" /D "NDEBUG" /D "_MBCS" /D "_WINDOWS" /D "WIN32" /D "_NO_WINMAIN_" /D "_WGL_H_INCLUDED" /FD /c
 # SUBTRACT CPP /YX /Yc /Yu
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
@@ -54,7 +54,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
-# ADD LINK32 nafxcw.lib opengl32.lib glu32.lib ws2_32.lib version.lib xerces-c_2.lib /nologo /entry:"entry" /subsystem:windows /map /debug /machine:I386 /out:"D:\0ad\binaries\system\ScEd.exe" /libpath:"..\libs" /fixed:no
+# ADD LINK32 nafxcw.lib opengl32.lib glu32.lib ws2_32.lib version.lib xerces-c_2.lib /nologo /entry:"entry" /subsystem:windows /map /debug /machine:I386 /out:"D:\0ad\binaries\system\ScEd.exe" /libpath:"..\..\libs" /fixed:no
 # SUBTRACT LINK32 /pdb:none
 
 !ELSEIF  "$(CFG)" == "ScEd - Win32 Debug"
@@ -71,7 +71,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /GZ /c
-# ADD CPP /nologo /G5 /MTd /W3 /Gm /Gi /GX /Zi /Od /I "..\\" /I "..\lib" /I "..\ps" /I "..\simulation" /I "..\maths" /I "..\graphics" /I "..\renderer" /I ".\\" /I ".\ui" /D "_DEBUG" /D "_MBCS" /D "_WINDOWS" /D "WIN32" /D "_NO_WINMAIN_" /D "_WGL_H_INCLUDED" /FD /GZ /c
+# ADD CPP /nologo /G5 /MTd /W3 /Gm /Gi /GX /Zi /Od /I "..\..\\" /I "..\..\lib" /I "..\..\ps" /I "..\..\simulation" /I "..\..\maths" /I "..\..\graphics" /I "..\..\renderer" /I ".\\" /I ".\ui" /D "_DEBUG" /D "_MBCS" /D "_WINDOWS" /D "WIN32" /D "_NO_WINMAIN_" /D "_WGL_H_INCLUDED" /FD /GZ /c
 # SUBTRACT CPP /YX /Yc /Yu
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
@@ -82,7 +82,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 nafxcwd.lib opengl32.lib glu32.lib ws2_32.lib version.lib xerces-c_2D.lib /nologo /entry:"entry" /subsystem:windows /incremental:no /map /debug /machine:I386 /out:"D:\0ad\binaries\system\ScEd_d.exe" /libpath:"..\libs" /fixed:no
+# ADD LINK32 nafxcwd.lib opengl32.lib glu32.lib ws2_32.lib version.lib xerces-c_2D.lib /nologo /entry:"entry" /subsystem:windows /incremental:no /map /debug /machine:I386 /out:"D:\0ad\binaries\system\ScEd_d.exe" /libpath:"..\..\libs" /fixed:no
 # SUBTRACT LINK32 /pdb:none
 
 !ENDIF 
@@ -99,67 +99,67 @@ LINK32=link.exe
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\lib\res\file.cpp
+SOURCE=..\..\lib\res\file.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\res\file.h
+SOURCE=..\..\lib\res\file.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\res\font.cpp
+SOURCE=..\..\lib\res\font.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\res\font.h
+SOURCE=..\..\lib\res\font.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\res\h_mgr.cpp
+SOURCE=..\..\lib\res\h_mgr.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\res\h_mgr.h
+SOURCE=..\..\lib\res\h_mgr.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\res\mem.cpp
+SOURCE=..\..\lib\res\mem.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\res\mem.h
+SOURCE=..\..\lib\res\mem.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\res\res.cpp
+SOURCE=..\..\lib\res\res.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\res\res.h
+SOURCE=..\..\lib\res\res.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\res\tex.cpp
+SOURCE=..\..\lib\res\tex.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\res\tex.h
+SOURCE=..\..\lib\res\tex.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\res\vfs.cpp
+SOURCE=..\..\lib\res\vfs.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\res\vfs.h
+SOURCE=..\..\lib\res\vfs.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\res\zip.cpp
+SOURCE=..\..\lib\res\zip.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\res\zip.h
+SOURCE=..\..\lib\res\zip.h
 # End Source File
 # End Group
 # Begin Group "sysdep"
@@ -170,173 +170,173 @@ SOURCE=..\lib\res\zip.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\lib\sysdep\win\waio.cpp
+SOURCE=..\..\lib\sysdep\win\waio.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\sysdep\win\waio.h
+SOURCE=..\..\lib\sysdep\win\waio.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\sysdep\win\wdetect.cpp
+SOURCE=..\..\lib\sysdep\win\wdetect.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\sysdep\win\wfam.cpp
+SOURCE=..\..\lib\sysdep\win\wfam.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\sysdep\win\wfam.h
+SOURCE=..\..\lib\sysdep\win\wfam.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\sysdep\win\wgl.h
+SOURCE=..\..\lib\sysdep\win\wgl.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\sysdep\win\win.cpp
+SOURCE=..\..\lib\sysdep\win\win.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\sysdep\win\win.h
+SOURCE=..\..\lib\sysdep\win\win.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\sysdep\win\win_internal.h
+SOURCE=..\..\lib\sysdep\win\win_internal.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\sysdep\win\wposix.cpp
+SOURCE=..\..\lib\sysdep\win\wposix.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\sysdep\win\wposix.h
+SOURCE=..\..\lib\sysdep\win\wposix.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\sysdep\win\wsdl.cpp
+SOURCE=..\..\lib\sysdep\win\wsdl.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\sysdep\win\wsdl.h
+SOURCE=..\..\lib\sysdep\win\wsdl.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\sysdep\win\wsock.cpp
+SOURCE=..\..\lib\sysdep\win\wsock.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\sysdep\win\wsock.h
+SOURCE=..\..\lib\sysdep\win\wsock.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\sysdep\win\wtime.cpp
+SOURCE=..\..\lib\sysdep\win\wtime.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\sysdep\win\wtime.h
-# End Source File
-# End Group
-# Begin Source File
-
-SOURCE=..\lib\sysdep\ia32.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\lib\sysdep\ia32.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\lib\sysdep\sysdep.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\lib\sysdep\sysdep.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\lib\sysdep\x.cpp
+SOURCE=..\..\lib\sysdep\win\wtime.h
 # End Source File
 # End Group
 # Begin Source File
 
-SOURCE=..\lib\adts.cpp
+SOURCE=..\..\lib\sysdep\ia32.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\adts.h
+SOURCE=..\..\lib\sysdep\ia32.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\config.h
+SOURCE=..\..\lib\sysdep\sysdep.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\detect.cpp
+SOURCE=..\..\lib\sysdep\sysdep.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\detect.h
+SOURCE=..\..\lib\sysdep\x.cpp
+# End Source File
+# End Group
+# Begin Source File
+
+SOURCE=..\..\lib\adts.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\glext_funcs.h
+SOURCE=..\..\lib\adts.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\lib.cpp
+SOURCE=..\..\lib\config.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\lib.h
+SOURCE=..\..\lib\detect.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\memcpy.cpp
+SOURCE=..\..\lib\detect.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\ogl.cpp
+SOURCE=..\..\lib\glext_funcs.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\ogl.h
+SOURCE=..\..\lib\lib.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\posix.h
+SOURCE=..\..\lib\lib.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\precompiled.cpp
+SOURCE=..\..\lib\memcpy.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\precompiled.h
+SOURCE=..\..\lib\ogl.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\sdl.h
+SOURCE=..\..\lib\ogl.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\SDL_keysym.h
+SOURCE=..\..\lib\posix.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\SDL_vkeys.h
+SOURCE=..\..\lib\precompiled.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\timer.cpp
+SOURCE=..\..\lib\precompiled.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\timer.h
+SOURCE=..\..\lib\sdl.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\types.h
+SOURCE=..\..\lib\SDL_keysym.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\lib\SDL_vkeys.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\lib\timer.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\lib\timer.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\lib\types.h
 # End Source File
 # End Group
 # Begin Group "simulation"
@@ -344,95 +344,95 @@ SOURCE=..\lib\types.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\simulation\BaseEntity.cpp
+SOURCE=..\..\simulation\BaseEntity.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\simulation\BaseEntity.h
+SOURCE=..\..\simulation\BaseEntity.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\simulation\BaseEntityCollection.cpp
+SOURCE=..\..\simulation\BaseEntityCollection.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\simulation\BaseEntityCollection.h
+SOURCE=..\..\simulation\BaseEntityCollection.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\simulation\BoundingObjects.cpp
+SOURCE=..\..\simulation\BoundingObjects.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\simulation\BoundingObjects.h
+SOURCE=..\..\simulation\BoundingObjects.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\simulation\Collision.cpp
+SOURCE=..\..\simulation\Collision.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\simulation\Collision.h
+SOURCE=..\..\simulation\Collision.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\simulation\Entity.cpp
+SOURCE=..\..\simulation\Entity.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\simulation\Entity.h
+SOURCE=..\..\simulation\Entity.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\simulation\EntityHandles.cpp
+SOURCE=..\..\simulation\EntityHandles.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\simulation\EntityHandles.h
+SOURCE=..\..\simulation\EntityHandles.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\simulation\EntityManager.cpp
+SOURCE=..\..\simulation\EntityManager.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\simulation\EntityManager.h
+SOURCE=..\..\simulation\EntityManager.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\simulation\EntityMessage.h
+SOURCE=..\..\simulation\EntityMessage.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\simulation\EntityOrders.h
+SOURCE=..\..\simulation\EntityOrders.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\simulation\EntityProperties.cpp
+SOURCE=..\..\simulation\EntityProperties.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\simulation\EntityProperties.h
+SOURCE=..\..\simulation\EntityProperties.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\simulation\EntityStateProcessing.cpp
+SOURCE=..\..\simulation\EntityStateProcessing.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\simulation\PathfindEngine.cpp
+SOURCE=..\..\simulation\PathfindEngine.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\simulation\PathfindEngine.h
+SOURCE=..\..\simulation\PathfindEngine.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\simulation\PathfindSparse.cpp
+SOURCE=..\..\simulation\PathfindSparse.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\simulation\PathfindSparse.h
+SOURCE=..\..\simulation\PathfindSparse.h
 # End Source File
 # End Group
 # Begin Group "graphics"
@@ -440,191 +440,191 @@ SOURCE=..\simulation\PathfindSparse.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\graphics\Camera.cpp
+SOURCE=..\..\graphics\Camera.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\Camera.h
+SOURCE=..\..\graphics\Camera.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\Color.h
+SOURCE=..\..\graphics\Color.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\Frustum.cpp
+SOURCE=..\..\graphics\Frustum.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\Frustum.h
+SOURCE=..\..\graphics\Frustum.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\HFTracer.cpp
+SOURCE=..\..\graphics\HFTracer.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\HFTracer.h
+SOURCE=..\..\graphics\HFTracer.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\LightEnv.h
+SOURCE=..\..\graphics\LightEnv.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\MapIO.h
+SOURCE=..\..\graphics\MapIO.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\MapReader.cpp
+SOURCE=..\..\graphics\MapReader.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\MapReader.h
+SOURCE=..\..\graphics\MapReader.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\MapWriter.cpp
+SOURCE=..\..\graphics\MapWriter.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\MapWriter.h
+SOURCE=..\..\graphics\MapWriter.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\MiniPatch.cpp
+SOURCE=..\..\graphics\MiniPatch.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\MiniPatch.h
+SOURCE=..\..\graphics\MiniPatch.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\Model.cpp
+SOURCE=..\..\graphics\Model.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\Model.h
+SOURCE=..\..\graphics\Model.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\ModelDef.cpp
+SOURCE=..\..\graphics\ModelDef.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\ModelDef.h
+SOURCE=..\..\graphics\ModelDef.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\ObjectEntry.cpp
+SOURCE=..\..\graphics\ObjectEntry.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\ObjectEntry.h
+SOURCE=..\..\graphics\ObjectEntry.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\ObjectManager.cpp
+SOURCE=..\..\graphics\ObjectManager.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\ObjectManager.h
+SOURCE=..\..\graphics\ObjectManager.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\Particle.cpp
+SOURCE=..\..\graphics\Particle.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\Particle.h
+SOURCE=..\..\graphics\Particle.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\ParticleEmitter.cpp
+SOURCE=..\..\graphics\ParticleEmitter.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\ParticleEmitter.h
+SOURCE=..\..\graphics\ParticleEmitter.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\Patch.cpp
+SOURCE=..\..\graphics\Patch.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\Patch.h
+SOURCE=..\..\graphics\Patch.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\RenderableObject.h
+SOURCE=..\..\graphics\RenderableObject.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\SkeletonAnim.h
+SOURCE=..\..\graphics\SkeletonAnim.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\SkeletonAnimDef.cpp
+SOURCE=..\..\graphics\SkeletonAnimDef.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\SkeletonAnimDef.h
+SOURCE=..\..\graphics\SkeletonAnimDef.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\SkeletonAnimManager.cpp
+SOURCE=..\..\graphics\SkeletonAnimManager.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\SkeletonAnimManager.h
+SOURCE=..\..\graphics\SkeletonAnimManager.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\Sprite.cpp
+SOURCE=..\..\graphics\Sprite.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\Sprite.h
+SOURCE=..\..\graphics\Sprite.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\Terrain.cpp
+SOURCE=..\..\graphics\Terrain.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\Terrain.h
+SOURCE=..\..\graphics\Terrain.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\Texture.h
+SOURCE=..\..\graphics\Texture.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\TextureEntry.cpp
+SOURCE=..\..\graphics\TextureEntry.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\TextureEntry.h
+SOURCE=..\..\graphics\TextureEntry.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\TextureManager.cpp
+SOURCE=..\..\graphics\TextureManager.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\TextureManager.h
+SOURCE=..\..\graphics\TextureManager.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\Unit.h
+SOURCE=..\..\graphics\Unit.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\UnitManager.cpp
+SOURCE=..\..\graphics\UnitManager.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\graphics\UnitManager.h
+SOURCE=..\..\graphics\UnitManager.h
 # End Source File
 # End Group
 # Begin Group "maths"
@@ -632,55 +632,55 @@ SOURCE=..\graphics\UnitManager.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\maths\Bound.cpp
+SOURCE=..\..\maths\Bound.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\maths\Bound.h
+SOURCE=..\..\maths\Bound.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\maths\MathUtil.cpp
+SOURCE=..\..\maths\MathUtil.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\maths\MathUtil.h
+SOURCE=..\..\maths\MathUtil.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\maths\Matrix3D.cpp
+SOURCE=..\..\maths\Matrix3D.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\maths\Matrix3D.h
+SOURCE=..\..\maths\Matrix3D.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\maths\Plane.cpp
+SOURCE=..\..\maths\Plane.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\maths\Plane.h
+SOURCE=..\..\maths\Plane.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\maths\Quaternion.cpp
+SOURCE=..\..\maths\Quaternion.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\maths\Quaternion.h
+SOURCE=..\..\maths\Quaternion.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\maths\Vector3D.cpp
+SOURCE=..\..\maths\Vector3D.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\maths\Vector3D.h
+SOURCE=..\..\maths\Vector3D.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\maths\Vector4D.h
+SOURCE=..\..\maths\Vector4D.h
 # End Source File
 # End Group
 # Begin Group "renderer"
@@ -688,71 +688,71 @@ SOURCE=..\maths\Vector4D.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\renderer\AlphaMapCalculator.cpp
+SOURCE=..\..\renderer\AlphaMapCalculator.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\renderer\AlphaMapCalculator.h
+SOURCE=..\..\renderer\AlphaMapCalculator.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\renderer\BlendShapes.h
+SOURCE=..\..\renderer\BlendShapes.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\renderer\ModelRData.cpp
+SOURCE=..\..\renderer\ModelRData.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\renderer\ModelRData.h
+SOURCE=..\..\renderer\ModelRData.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\renderer\PatchRData.cpp
+SOURCE=..\..\renderer\PatchRData.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\renderer\PatchRData.h
+SOURCE=..\..\renderer\PatchRData.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\renderer\Renderer.cpp
+SOURCE=..\..\renderer\Renderer.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\renderer\Renderer.h
+SOURCE=..\..\renderer\Renderer.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\renderer\SHCoeffs.cpp
+SOURCE=..\..\renderer\SHCoeffs.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\renderer\SHCoeffs.h
+SOURCE=..\..\renderer\SHCoeffs.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\renderer\TransparencyRenderer.cpp
+SOURCE=..\..\renderer\TransparencyRenderer.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\renderer\TransparencyRenderer.h
+SOURCE=..\..\renderer\TransparencyRenderer.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\renderer\VertexBuffer.cpp
+SOURCE=..\..\renderer\VertexBuffer.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\renderer\VertexBuffer.h
+SOURCE=..\..\renderer\VertexBuffer.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\renderer\VertexBufferManager.cpp
+SOURCE=..\..\renderer\VertexBufferManager.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\renderer\VertexBufferManager.h
+SOURCE=..\..\renderer\VertexBufferManager.h
 # End Source File
 # End Group
 # Begin Group "sced"
@@ -1263,11 +1263,11 @@ SOURCE=.\UserConfig.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\..\binaries\changes.txt
+SOURCE=..\..\..\binaries\changes.txt
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\binaries\readme.txt
+SOURCE=..\..\..\binaries\readme.txt
 # End Source File
 # End Group
 # End Group
@@ -1276,151 +1276,151 @@ SOURCE=..\..\binaries\readme.txt
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\ps\CLogger.cpp
+SOURCE=..\..\ps\CLogger.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\CLogger.h
+SOURCE=..\..\ps\CLogger.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\Config.cpp
+SOURCE=..\..\ps\Config.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\Config.h
+SOURCE=..\..\ps\Config.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\CStr.cpp
+SOURCE=..\..\ps\CStr.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\CStr.h
+SOURCE=..\..\ps\CStr.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\Encryption.cpp
+SOURCE=..\..\ps\Encryption.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\Encryption.h
+SOURCE=..\..\ps\Encryption.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\Error.h
+SOURCE=..\..\ps\Error.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\FilePacker.cpp
+SOURCE=..\..\ps\FilePacker.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\FilePacker.h
+SOURCE=..\..\ps\FilePacker.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\FileUnpacker.cpp
+SOURCE=..\..\ps\FileUnpacker.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\FileUnpacker.h
+SOURCE=..\..\ps\FileUnpacker.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\LogFile.cpp
+SOURCE=..\..\ps\LogFile.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\LogFile.h
+SOURCE=..\..\ps\LogFile.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\NPFont.cpp
+SOURCE=..\..\ps\NPFont.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\NPFont.h
+SOURCE=..\..\ps\NPFont.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\NPFontManager.cpp
+SOURCE=..\..\ps\NPFontManager.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\NPFontManager.h
+SOURCE=..\..\ps\NPFontManager.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\Overlay.cpp
+SOURCE=..\..\ps\Overlay.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\Overlay.h
+SOURCE=..\..\ps\Overlay.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\OverlayText.cpp
+SOURCE=..\..\ps\OverlayText.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\OverlayText.h
+SOURCE=..\..\ps\OverlayText.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\Parser.cpp
+SOURCE=..\..\ps\Parser.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\Parser.h
+SOURCE=..\..\ps\Parser.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\Prometheus.cpp
+SOURCE=..\..\ps\Pyrogenesis.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\Prometheus.h
+SOURCE=..\..\ps\Pyrogenesis.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\rc_array.h
+SOURCE=..\..\ps\rc_array.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\rc_vector.h
+SOURCE=..\..\ps\rc_vector.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\Singleton.h
+SOURCE=..\..\ps\Singleton.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\Sound.h
+SOURCE=..\..\ps\Sound.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\ThreadUtil.h
+SOURCE=..\..\ps\ThreadUtil.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\Vector2D.h
+SOURCE=..\..\ps\Vector2D.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\XercesErrorHandler.cpp
+SOURCE=..\..\ps\XercesErrorHandler.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\XercesErrorHandler.h
+SOURCE=..\..\ps\XercesErrorHandler.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\XML.h
+SOURCE=..\..\ps\XML.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\ps\XMLUtils.cpp
+SOURCE=..\..\ps\XMLUtils.cpp
 # End Source File
 # End Group
 # End Target

@@ -1,3 +1,4 @@
+#include "precompiled.h"
 #include "stdafx.h"
 #include "UIGlobals.h"
 

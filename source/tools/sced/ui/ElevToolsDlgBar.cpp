@@ -1,3 +1,4 @@
+#include "precompiled.h"
 #include <assert.h>
 #include "stdafx.h"
 #include "ToolManager.h"

@@ -1,6 +1,7 @@
 // DirectionButton.cpp : implementation file
 //
 
+#include "precompiled.h"
 #include <math.h>
 #include "stdafx.h"
 #include "ScEd.h"

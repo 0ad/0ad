@@ -19,6 +19,9 @@ glwprintf(L"Hello world");
 
 */
 
+// MFC has nicked all the good names :-(
+#define CFont PS_CFont
+
 class CFont
 {
 public:

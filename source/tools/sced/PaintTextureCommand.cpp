@@ -1,5 +1,7 @@
+#include "precompiled.h"
+
 #include "PaintTextureCommand.h"
-#include "UIGlobals.h"
+#include "ui/UIGlobals.h"
 #include "MiniMap.h"
 #include "textureEntry.h"
 #include "Terrain.h"

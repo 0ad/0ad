@@ -1,11 +1,11 @@
 # Microsoft Developer Studio Generated Dependency File, included by ScEd.mak
 
 .\ColorButton.cpp : \
-	"..\lib\misc.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
 	".\ColorButton.h"\
 	".\ScEd.h"\
 	".\StdAfx.h"\
@@ -13,12 +13,12 @@
 	
 
 .\DirectionButton.cpp : \
-	"..\lib\misc.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
-	"..\Terrain\MathUtil.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
+	"..\..\Terrain\MathUtil.h"\
 	".\DirectionButton.h"\
 	".\ScEd.h"\
 	".\StdAfx.h"\
@@ -26,12 +26,12 @@
 	
 
 .\ElevationButton.cpp : \
-	"..\lib\misc.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
-	"..\Terrain\MathUtil.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
+	"..\..\Terrain\MathUtil.h"\
 	".\ElevationButton.h"\
 	".\ScEd.h"\
 	".\StdAfx.h"\
@@ -39,12 +39,12 @@
 	
 
 .\ElevToolsDlgBar.cpp : \
-	"..\lib\misc.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\lib\res.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\lib\res.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
 	".\BrushTool.h"\
 	".\ElevToolsDlgBar.h"\
 	".\RaiseElevationTool.h"\
@@ -57,11 +57,11 @@
 	
 
 .\ImageListCtrl.cpp : \
-	"..\lib\misc.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
 	".\ImageListCtrl.h"\
 	".\ScEd.h"\
 	".\StdAfx.h"\
@@ -69,27 +69,27 @@
 	
 
 .\LightSettingsDlg.cpp : \
-	"..\lib\misc.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\lib\res.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
-	"..\Terrain\Bound.h"\
-	"..\Terrain\Camera.h"\
-	"..\Terrain\Color.h"\
-	"..\Terrain\Frustum.h"\
-	"..\Terrain\LightEnv.h"\
-	"..\Terrain\MathUtil.h"\
-	"..\Terrain\Matrix3D.h"\
-	"..\Terrain\MiniPatch.h"\
-	"..\Terrain\Patch.h"\
-	"..\Terrain\Plane.h"\
-	"..\Terrain\RenderableObject.h"\
-	"..\Terrain\Terrain.h"\
-	"..\Terrain\TerrGlobals.h"\
-	"..\Terrain\Vector3D.h"\
-	"..\Terrain\Vector4D.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\lib\res.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
+	"..\..\Terrain\Bound.h"\
+	"..\..\Terrain\Camera.h"\
+	"..\..\Terrain\Color.h"\
+	"..\..\Terrain\Frustum.h"\
+	"..\..\Terrain\LightEnv.h"\
+	"..\..\Terrain\MathUtil.h"\
+	"..\..\Terrain\Matrix3D.h"\
+	"..\..\Terrain\MiniPatch.h"\
+	"..\..\Terrain\Patch.h"\
+	"..\..\Terrain\Plane.h"\
+	"..\..\Terrain\RenderableObject.h"\
+	"..\..\Terrain\Terrain.h"\
+	"..\..\Terrain\TerrGlobals.h"\
+	"..\..\Terrain\Vector3D.h"\
+	"..\..\Terrain\Vector4D.h"\
 	".\ColorButton.h"\
 	".\DirectionButton.h"\
 	".\ElevationButton.h"\
@@ -100,37 +100,37 @@
 	
 
 .\MainFrm.cpp : \
-	"..\lib\glext_funcs.h"\
-	"..\lib\mem.h"\
-	"..\lib\misc.h"\
-	"..\lib\ogl.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\lib\res.h"\
-	"..\lib\tex.h"\
-	"..\lib\vfs.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
-	"..\Terrain\Bound.h"\
-	"..\Terrain\Camera.h"\
-	"..\Terrain\Color.h"\
-	"..\Terrain\Frustum.h"\
-	"..\Terrain\LightEnv.h"\
-	"..\Terrain\MathUtil.h"\
-	"..\Terrain\Matrix3D.h"\
-	"..\Terrain\MiniPatch.h"\
-	"..\Terrain\ModelDef.h"\
-	"..\Terrain\ModelFile.h"\
-	"..\Terrain\Patch.h"\
-	"..\Terrain\PatchRData.h"\
-	"..\Terrain\Plane.h"\
-	"..\Terrain\RenderableObject.h"\
-	"..\Terrain\Renderer.h"\
-	"..\Terrain\SHCoeffs.h"\
-	"..\Terrain\Terrain.h"\
-	"..\Terrain\TerrGlobals.h"\
-	"..\Terrain\Vector3D.h"\
-	"..\Terrain\Vector4D.h"\
+	"..\..\lib\glext_funcs.h"\
+	"..\..\lib\mem.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\ogl.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\lib\res.h"\
+	"..\..\lib\tex.h"\
+	"..\..\lib\vfs.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
+	"..\..\Terrain\Bound.h"\
+	"..\..\Terrain\Camera.h"\
+	"..\..\Terrain\Color.h"\
+	"..\..\Terrain\Frustum.h"\
+	"..\..\Terrain\LightEnv.h"\
+	"..\..\Terrain\MathUtil.h"\
+	"..\..\Terrain\Matrix3D.h"\
+	"..\..\Terrain\MiniPatch.h"\
+	"..\..\Terrain\ModelDef.h"\
+	"..\..\Terrain\ModelFile.h"\
+	"..\..\Terrain\Patch.h"\
+	"..\..\Terrain\PatchRData.h"\
+	"..\..\Terrain\Plane.h"\
+	"..\..\Terrain\RenderableObject.h"\
+	"..\..\Terrain\Renderer.h"\
+	"..\..\Terrain\SHCoeffs.h"\
+	"..\..\Terrain\Terrain.h"\
+	"..\..\Terrain\TerrGlobals.h"\
+	"..\..\Terrain\Vector3D.h"\
+	"..\..\Terrain\Vector4D.h"\
 	".\BrushTool.h"\
 	".\ColorButton.h"\
 	".\CommandManager.h"\
@@ -164,11 +164,11 @@
 	
 
 .\MapSizeDlg.cpp : \
-	"..\lib\misc.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
 	".\MapSizeDlg.h"\
 	".\ScEd.h"\
 	".\StdAfx.h"\
@@ -176,11 +176,11 @@
 	
 
 .\OptionsDlg.cpp : \
-	"..\lib\misc.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
 	".\OptionsDlg.h"\
 	".\ScEd.h"\
 	".\StdAfx.h"\
@@ -188,15 +188,15 @@
 	
 
 .\ScEd.cpp : \
-	"..\lib\misc.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\lib\res.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
-	"..\Terrain\Bound.h"\
-	"..\Terrain\MathUtil.h"\
-	"..\Terrain\Vector3D.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\lib\res.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
+	"..\..\Terrain\Bound.h"\
+	"..\..\Terrain\MathUtil.h"\
+	"..\..\Terrain\Vector3D.h"\
 	".\ElevToolsDlgBar.h"\
 	".\MainFrm.h"\
 	".\ObjectEntry.h"\
@@ -225,11 +225,11 @@
 	
 
 .\ScEdDoc.cpp : \
-	"..\lib\misc.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
 	".\ScEd.h"\
 	".\ScEdDoc.h"\
 	".\StdAfx.h"\
@@ -237,33 +237,33 @@
 	
 
 .\ScEdView.cpp : \
-	"..\lib\glext_funcs.h"\
-	"..\lib\misc.h"\
-	"..\lib\ogl.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\lib\res.h"\
-	"..\lib\vfs.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
-	"..\Terrain\Bound.h"\
-	"..\Terrain\Camera.h"\
-	"..\Terrain\Color.h"\
-	"..\Terrain\Frustum.h"\
-	"..\Terrain\LightEnv.h"\
-	"..\Terrain\MathUtil.h"\
-	"..\Terrain\Matrix3D.h"\
-	"..\Terrain\MiniPatch.h"\
-	"..\Terrain\Patch.h"\
-	"..\Terrain\PatchRData.h"\
-	"..\Terrain\Plane.h"\
-	"..\Terrain\RenderableObject.h"\
-	"..\Terrain\Renderer.h"\
-	"..\Terrain\SHCoeffs.h"\
-	"..\Terrain\Terrain.h"\
-	"..\Terrain\TerrGlobals.h"\
-	"..\Terrain\Vector3D.h"\
-	"..\Terrain\Vector4D.h"\
+	"..\..\lib\glext_funcs.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\ogl.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\lib\res.h"\
+	"..\..\lib\vfs.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
+	"..\..\Terrain\Bound.h"\
+	"..\..\Terrain\Camera.h"\
+	"..\..\Terrain\Color.h"\
+	"..\..\Terrain\Frustum.h"\
+	"..\..\Terrain\LightEnv.h"\
+	"..\..\Terrain\MathUtil.h"\
+	"..\..\Terrain\Matrix3D.h"\
+	"..\..\Terrain\MiniPatch.h"\
+	"..\..\Terrain\Patch.h"\
+	"..\..\Terrain\PatchRData.h"\
+	"..\..\Terrain\Plane.h"\
+	"..\..\Terrain\RenderableObject.h"\
+	"..\..\Terrain\Renderer.h"\
+	"..\..\Terrain\SHCoeffs.h"\
+	"..\..\Terrain\Terrain.h"\
+	"..\..\Terrain\TerrGlobals.h"\
+	"..\..\Terrain\Vector3D.h"\
+	"..\..\Terrain\Vector4D.h"\
 	".\BrushTool.h"\
 	".\EditorData.h"\
 	".\InfoBox.h"\
@@ -280,11 +280,11 @@
 	
 
 .\SimpleEdit.cpp : \
-	"..\lib\misc.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
 	".\ScEd.h"\
 	".\SimpleEdit.h"\
 	".\StdAfx.h"\
@@ -292,16 +292,16 @@
 	
 
 .\TexToolsDlgBar.cpp : \
-	"..\lib\glext_funcs.h"\
-	"..\lib\misc.h"\
-	"..\lib\ogl.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\lib\res.h"\
-	"..\lib\tex.h"\
-	"..\lib\vfs.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
+	"..\..\lib\glext_funcs.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\ogl.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\lib\res.h"\
+	"..\..\lib\tex.h"\
+	"..\..\lib\vfs.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
 	".\BrushTool.h"\
 	".\PaintTextureTool.h"\
 	".\StdAfx.h"\
@@ -314,15 +314,15 @@
 	
 
 .\UIGlobals.cpp : \
-	"..\lib\misc.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\lib\res.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
-	"..\Terrain\Bound.h"\
-	"..\Terrain\MathUtil.h"\
-	"..\Terrain\Vector3D.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\lib\res.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
+	"..\..\Terrain\Bound.h"\
+	"..\..\Terrain\MathUtil.h"\
+	"..\..\Terrain\Vector3D.h"\
 	".\ElevToolsDlgBar.h"\
 	".\MainFrm.h"\
 	".\ObjectEntry.h"\
@@ -337,32 +337,32 @@
 	
 
 .\UnitPropertiesDlgBar.cpp : \
-	"..\lib\glext_funcs.h"\
-	"..\lib\misc.h"\
-	"..\lib\ogl.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\lib\res.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
-	"..\Terrain\Bound.h"\
-	"..\Terrain\Camera.h"\
-	"..\Terrain\Color.h"\
-	"..\Terrain\Frustum.h"\
-	"..\Terrain\LightEnv.h"\
-	"..\Terrain\MathUtil.h"\
-	"..\Terrain\Matrix3D.h"\
-	"..\Terrain\MiniPatch.h"\
-	"..\Terrain\Patch.h"\
-	"..\Terrain\PatchRData.h"\
-	"..\Terrain\Plane.h"\
-	"..\Terrain\RenderableObject.h"\
-	"..\Terrain\Renderer.h"\
-	"..\Terrain\SHCoeffs.h"\
-	"..\Terrain\Terrain.h"\
-	"..\Terrain\TerrGlobals.h"\
-	"..\Terrain\Vector3D.h"\
-	"..\Terrain\Vector4D.h"\
+	"..\..\lib\glext_funcs.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\ogl.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\lib\res.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
+	"..\..\Terrain\Bound.h"\
+	"..\..\Terrain\Camera.h"\
+	"..\..\Terrain\Color.h"\
+	"..\..\Terrain\Frustum.h"\
+	"..\..\Terrain\LightEnv.h"\
+	"..\..\Terrain\MathUtil.h"\
+	"..\..\Terrain\Matrix3D.h"\
+	"..\..\Terrain\MiniPatch.h"\
+	"..\..\Terrain\Patch.h"\
+	"..\..\Terrain\PatchRData.h"\
+	"..\..\Terrain\Plane.h"\
+	"..\..\Terrain\RenderableObject.h"\
+	"..\..\Terrain\Renderer.h"\
+	"..\..\Terrain\SHCoeffs.h"\
+	"..\..\Terrain\Terrain.h"\
+	"..\..\Terrain\TerrGlobals.h"\
+	"..\..\Terrain\Vector3D.h"\
+	"..\..\Terrain\Vector4D.h"\
 	".\BrushTool.h"\
 	".\EditorData.h"\
 	".\ElevToolsDlgBar.h"\
@@ -384,15 +384,15 @@
 	
 
 .\UnitToolsDlgBar.cpp : \
-	"..\lib\misc.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\lib\res.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
-	"..\Terrain\Bound.h"\
-	"..\Terrain\MathUtil.h"\
-	"..\Terrain\Vector3D.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\lib\res.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
+	"..\..\Terrain\Bound.h"\
+	"..\..\Terrain\MathUtil.h"\
+	"..\..\Terrain\Vector3D.h"\
 	".\ElevToolsDlgBar.h"\
 	".\MainFrm.h"\
 	".\ObjectEntry.h"\
@@ -407,11 +407,11 @@
 	
 
 .\WebLinkButton.cpp : \
-	"..\lib\misc.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
 	".\ScEd.h"\
 	".\StdAfx.h"\
 	".\WebLinkButton.h"\
@@ -419,23 +419,23 @@
 	
 
 .\AlterElevationCommand.cpp : \
-	"..\lib\res.h"\
-	"..\Terrain\Bound.h"\
-	"..\Terrain\Camera.h"\
-	"..\Terrain\Color.h"\
-	"..\Terrain\Frustum.h"\
-	"..\Terrain\LightEnv.h"\
-	"..\Terrain\MathUtil.h"\
-	"..\Terrain\Matrix3D.h"\
-	"..\Terrain\MiniPatch.h"\
-	"..\Terrain\Patch.h"\
-	"..\Terrain\Plane.h"\
-	"..\Terrain\RenderableObject.h"\
-	"..\Terrain\SHCoeffs.h"\
-	"..\Terrain\Terrain.h"\
-	"..\Terrain\TerrGlobals.h"\
-	"..\Terrain\Vector3D.h"\
-	"..\Terrain\Vector4D.h"\
+	"..\..\lib\res.h"\
+	"..\..\Terrain\Bound.h"\
+	"..\..\Terrain\Camera.h"\
+	"..\..\Terrain\Color.h"\
+	"..\..\Terrain\Frustum.h"\
+	"..\..\Terrain\LightEnv.h"\
+	"..\..\Terrain\MathUtil.h"\
+	"..\..\Terrain\Matrix3D.h"\
+	"..\..\Terrain\MiniPatch.h"\
+	"..\..\Terrain\Patch.h"\
+	"..\..\Terrain\Plane.h"\
+	"..\..\Terrain\RenderableObject.h"\
+	"..\..\Terrain\SHCoeffs.h"\
+	"..\..\Terrain\Terrain.h"\
+	"..\..\Terrain\TerrGlobals.h"\
+	"..\..\Terrain\Vector3D.h"\
+	"..\..\Terrain\Vector4D.h"\
 	".\AlterElevationCommand.h"\
 	".\Array2D.h"\
 	".\Command.h"\
@@ -444,10 +444,10 @@
 	
 
 .\PaintObjectCommand.cpp : \
-	"..\Terrain\MathUtil.h"\
-	"..\Terrain\Matrix3D.h"\
-	"..\Terrain\Vector3D.h"\
-	"..\Terrain\Vector4D.h"\
+	"..\..\Terrain\MathUtil.h"\
+	"..\..\Terrain\Matrix3D.h"\
+	"..\..\Terrain\Vector3D.h"\
+	"..\..\Terrain\Vector4D.h"\
 	".\Command.h"\
 	".\PaintObjectCommand.h"\
 	".\UIGlobals.h"\
@@ -456,25 +456,25 @@
 	
 
 .\PaintTextureCommand.cpp : \
-	"..\lib\misc.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\lib\res.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
-	"..\Terrain\Bound.h"\
-	"..\Terrain\Camera.h"\
-	"..\Terrain\Frustum.h"\
-	"..\Terrain\MathUtil.h"\
-	"..\Terrain\Matrix3D.h"\
-	"..\Terrain\MiniPatch.h"\
-	"..\Terrain\Patch.h"\
-	"..\Terrain\Plane.h"\
-	"..\Terrain\RenderableObject.h"\
-	"..\Terrain\Terrain.h"\
-	"..\Terrain\TerrGlobals.h"\
-	"..\Terrain\Vector3D.h"\
-	"..\Terrain\Vector4D.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\lib\res.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
+	"..\..\Terrain\Bound.h"\
+	"..\..\Terrain\Camera.h"\
+	"..\..\Terrain\Frustum.h"\
+	"..\..\Terrain\MathUtil.h"\
+	"..\..\Terrain\Matrix3D.h"\
+	"..\..\Terrain\MiniPatch.h"\
+	"..\..\Terrain\Patch.h"\
+	"..\..\Terrain\Plane.h"\
+	"..\..\Terrain\RenderableObject.h"\
+	"..\..\Terrain\Terrain.h"\
+	"..\..\Terrain\TerrGlobals.h"\
+	"..\..\Terrain\Vector3D.h"\
+	"..\..\Terrain\Vector4D.h"\
 	".\Array2D.h"\
 	".\Command.h"\
 	".\MiniMap.h"\
@@ -485,20 +485,20 @@
 	
 
 .\RaiseElevationCommand.cpp : \
-	"..\lib\res.h"\
-	"..\Terrain\Bound.h"\
-	"..\Terrain\Camera.h"\
-	"..\Terrain\Frustum.h"\
-	"..\Terrain\MathUtil.h"\
-	"..\Terrain\Matrix3D.h"\
-	"..\Terrain\MiniPatch.h"\
-	"..\Terrain\Patch.h"\
-	"..\Terrain\Plane.h"\
-	"..\Terrain\RenderableObject.h"\
-	"..\Terrain\Terrain.h"\
-	"..\Terrain\TerrGlobals.h"\
-	"..\Terrain\Vector3D.h"\
-	"..\Terrain\Vector4D.h"\
+	"..\..\lib\res.h"\
+	"..\..\Terrain\Bound.h"\
+	"..\..\Terrain\Camera.h"\
+	"..\..\Terrain\Frustum.h"\
+	"..\..\Terrain\MathUtil.h"\
+	"..\..\Terrain\Matrix3D.h"\
+	"..\..\Terrain\MiniPatch.h"\
+	"..\..\Terrain\Patch.h"\
+	"..\..\Terrain\Plane.h"\
+	"..\..\Terrain\RenderableObject.h"\
+	"..\..\Terrain\Terrain.h"\
+	"..\..\Terrain\TerrGlobals.h"\
+	"..\..\Terrain\Vector3D.h"\
+	"..\..\Terrain\Vector4D.h"\
 	".\AlterElevationCommand.h"\
 	".\Array2D.h"\
 	".\Command.h"\
@@ -506,20 +506,20 @@
 	
 
 .\SmoothElevationCommand.cpp : \
-	"..\lib\res.h"\
-	"..\Terrain\Bound.h"\
-	"..\Terrain\Camera.h"\
-	"..\Terrain\Frustum.h"\
-	"..\Terrain\MathUtil.h"\
-	"..\Terrain\Matrix3D.h"\
-	"..\Terrain\MiniPatch.h"\
-	"..\Terrain\Patch.h"\
-	"..\Terrain\Plane.h"\
-	"..\Terrain\RenderableObject.h"\
-	"..\Terrain\Terrain.h"\
-	"..\Terrain\TerrGlobals.h"\
-	"..\Terrain\Vector3D.h"\
-	"..\Terrain\Vector4D.h"\
+	"..\..\lib\res.h"\
+	"..\..\Terrain\Bound.h"\
+	"..\..\Terrain\Camera.h"\
+	"..\..\Terrain\Frustum.h"\
+	"..\..\Terrain\MathUtil.h"\
+	"..\..\Terrain\Matrix3D.h"\
+	"..\..\Terrain\MiniPatch.h"\
+	"..\..\Terrain\Patch.h"\
+	"..\..\Terrain\Plane.h"\
+	"..\..\Terrain\RenderableObject.h"\
+	"..\..\Terrain\Terrain.h"\
+	"..\..\Terrain\TerrGlobals.h"\
+	"..\..\Terrain\Vector3D.h"\
+	"..\..\Terrain\Vector4D.h"\
 	".\AlterElevationCommand.h"\
 	".\Array2D.h"\
 	".\Command.h"\
@@ -527,27 +527,27 @@
 	
 
 .\BrushTool.cpp : \
-	"..\lib\glext_funcs.h"\
-	"..\lib\misc.h"\
-	"..\lib\ogl.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\lib\res.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
-	"..\Terrain\Bound.h"\
-	"..\Terrain\Camera.h"\
-	"..\Terrain\Frustum.h"\
-	"..\Terrain\MathUtil.h"\
-	"..\Terrain\Matrix3D.h"\
-	"..\Terrain\MiniPatch.h"\
-	"..\Terrain\Patch.h"\
-	"..\Terrain\Plane.h"\
-	"..\Terrain\RenderableObject.h"\
-	"..\Terrain\Terrain.h"\
-	"..\Terrain\TerrGlobals.h"\
-	"..\Terrain\Vector3D.h"\
-	"..\Terrain\Vector4D.h"\
+	"..\..\lib\glext_funcs.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\ogl.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\lib\res.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
+	"..\..\Terrain\Bound.h"\
+	"..\..\Terrain\Camera.h"\
+	"..\..\Terrain\Frustum.h"\
+	"..\..\Terrain\MathUtil.h"\
+	"..\..\Terrain\Matrix3D.h"\
+	"..\..\Terrain\MiniPatch.h"\
+	"..\..\Terrain\Patch.h"\
+	"..\..\Terrain\Plane.h"\
+	"..\..\Terrain\RenderableObject.h"\
+	"..\..\Terrain\Terrain.h"\
+	"..\..\Terrain\TerrGlobals.h"\
+	"..\..\Terrain\Vector3D.h"\
+	"..\..\Terrain\Vector4D.h"\
 	".\BrushTool.h"\
 	".\HFTracer.h"\
 	".\TextureEntry.h"\
@@ -559,31 +559,31 @@
 	
 
 .\PaintObjectTool.cpp : \
-	"..\lib\glext_funcs.h"\
-	"..\lib\misc.h"\
-	"..\lib\ogl.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\lib\res.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
-	"..\Terrain\Bound.h"\
-	"..\Terrain\Camera.h"\
-	"..\Terrain\Color.h"\
-	"..\Terrain\Frustum.h"\
-	"..\Terrain\MathUtil.h"\
-	"..\Terrain\Matrix3D.h"\
-	"..\Terrain\MiniPatch.h"\
-	"..\Terrain\Patch.h"\
-	"..\Terrain\PatchRData.h"\
-	"..\Terrain\Plane.h"\
-	"..\Terrain\RenderableObject.h"\
-	"..\Terrain\Renderer.h"\
-	"..\Terrain\SHCoeffs.h"\
-	"..\Terrain\Terrain.h"\
-	"..\Terrain\TerrGlobals.h"\
-	"..\Terrain\Vector3D.h"\
-	"..\Terrain\Vector4D.h"\
+	"..\..\lib\glext_funcs.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\ogl.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\lib\res.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
+	"..\..\Terrain\Bound.h"\
+	"..\..\Terrain\Camera.h"\
+	"..\..\Terrain\Color.h"\
+	"..\..\Terrain\Frustum.h"\
+	"..\..\Terrain\MathUtil.h"\
+	"..\..\Terrain\Matrix3D.h"\
+	"..\..\Terrain\MiniPatch.h"\
+	"..\..\Terrain\Patch.h"\
+	"..\..\Terrain\PatchRData.h"\
+	"..\..\Terrain\Plane.h"\
+	"..\..\Terrain\RenderableObject.h"\
+	"..\..\Terrain\Renderer.h"\
+	"..\..\Terrain\SHCoeffs.h"\
+	"..\..\Terrain\Terrain.h"\
+	"..\..\Terrain\TerrGlobals.h"\
+	"..\..\Terrain\Vector3D.h"\
+	"..\..\Terrain\Vector4D.h"\
 	".\BrushTool.h"\
 	".\Command.h"\
 	".\CommandManager.h"\
@@ -597,12 +597,12 @@
 	
 
 .\PaintTextureTool.cpp : \
-	"..\lib\misc.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\lib\res.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\lib\res.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
 	".\Array2D.h"\
 	".\BrushTool.h"\
 	".\Command.h"\
@@ -615,7 +615,7 @@
 	
 
 .\RaiseElevationTool.cpp : \
-	"..\lib\res.h"\
+	"..\..\lib\res.h"\
 	".\AlterElevationCommand.h"\
 	".\Array2D.h"\
 	".\BrushTool.h"\
@@ -627,7 +627,7 @@
 	
 
 .\SmoothElevationTool.cpp : \
-	"..\lib\res.h"\
+	"..\..\lib\res.h"\
 	".\AlterElevationCommand.h"\
 	".\Array2D.h"\
 	".\BrushTool.h"\
@@ -644,33 +644,33 @@
 	
 
 .\EditorData.cpp : \
-	"..\lib\glext_funcs.h"\
-	"..\lib\misc.h"\
-	"..\lib\ogl.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\lib\res.h"\
-	"..\lib\tex.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
-	"..\Terrain\Bound.h"\
-	"..\Terrain\Camera.h"\
-	"..\Terrain\Color.h"\
-	"..\Terrain\Frustum.h"\
-	"..\Terrain\LightEnv.h"\
-	"..\Terrain\MathUtil.h"\
-	"..\Terrain\Matrix3D.h"\
-	"..\Terrain\MiniPatch.h"\
-	"..\Terrain\Patch.h"\
-	"..\Terrain\PatchRData.h"\
-	"..\Terrain\Plane.h"\
-	"..\Terrain\RenderableObject.h"\
-	"..\Terrain\Renderer.h"\
-	"..\Terrain\SHCoeffs.h"\
-	"..\Terrain\Terrain.h"\
-	"..\Terrain\TerrGlobals.h"\
-	"..\Terrain\Vector3D.h"\
-	"..\Terrain\Vector4D.h"\
+	"..\..\lib\glext_funcs.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\ogl.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\lib\res.h"\
+	"..\..\lib\tex.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
+	"..\..\Terrain\Bound.h"\
+	"..\..\Terrain\Camera.h"\
+	"..\..\Terrain\Color.h"\
+	"..\..\Terrain\Frustum.h"\
+	"..\..\Terrain\LightEnv.h"\
+	"..\..\Terrain\MathUtil.h"\
+	"..\..\Terrain\Matrix3D.h"\
+	"..\..\Terrain\MiniPatch.h"\
+	"..\..\Terrain\Patch.h"\
+	"..\..\Terrain\PatchRData.h"\
+	"..\..\Terrain\Plane.h"\
+	"..\..\Terrain\RenderableObject.h"\
+	"..\..\Terrain\Renderer.h"\
+	"..\..\Terrain\SHCoeffs.h"\
+	"..\..\Terrain\Terrain.h"\
+	"..\..\Terrain\TerrGlobals.h"\
+	"..\..\Terrain\Vector3D.h"\
+	"..\..\Terrain\Vector4D.h"\
 	".\BrushTool.h"\
 	".\EditorData.h"\
 	".\InfoBox.h"\
@@ -690,36 +690,36 @@
 	
 
 .\InfoBox.cpp : \
-	"..\lib\glext_funcs.h"\
-	"..\lib\misc.h"\
-	"..\lib\ogl.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\lib\res.h"\
-	"..\ps\CStr.h"\
-	"..\ps\NPFont.h"\
-	"..\ps\NPFontManager.h"\
-	"..\ps\Overlay.h"\
-	"..\ps\OverlayText.h"\
-	"..\ps\Prometheus.h"\
-	"..\Terrain\Bound.h"\
-	"..\Terrain\Camera.h"\
-	"..\Terrain\Color.h"\
-	"..\Terrain\Frustum.h"\
-	"..\Terrain\MathUtil.h"\
-	"..\Terrain\Matrix3D.h"\
-	"..\Terrain\MiniPatch.h"\
-	"..\Terrain\Patch.h"\
-	"..\Terrain\PatchRData.h"\
-	"..\Terrain\Plane.h"\
-	"..\Terrain\RenderableObject.h"\
-	"..\Terrain\Renderer.h"\
-	"..\Terrain\SHCoeffs.h"\
-	"..\Terrain\Terrain.h"\
-	"..\Terrain\TerrGlobals.h"\
-	"..\Terrain\Texture.h"\
-	"..\Terrain\Vector3D.h"\
-	"..\Terrain\Vector4D.h"\
+	"..\..\lib\glext_funcs.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\ogl.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\lib\res.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\NPFont.h"\
+	"..\..\ps\NPFontManager.h"\
+	"..\..\ps\Overlay.h"\
+	"..\..\ps\OverlayText.h"\
+	"..\..\ps\Pyrogenesis.h"\
+	"..\..\Terrain\Bound.h"\
+	"..\..\Terrain\Camera.h"\
+	"..\..\Terrain\Color.h"\
+	"..\..\Terrain\Frustum.h"\
+	"..\..\Terrain\MathUtil.h"\
+	"..\..\Terrain\Matrix3D.h"\
+	"..\..\Terrain\MiniPatch.h"\
+	"..\..\Terrain\Patch.h"\
+	"..\..\Terrain\PatchRData.h"\
+	"..\..\Terrain\Plane.h"\
+	"..\..\Terrain\RenderableObject.h"\
+	"..\..\Terrain\Renderer.h"\
+	"..\..\Terrain\SHCoeffs.h"\
+	"..\..\Terrain\Terrain.h"\
+	"..\..\Terrain\TerrGlobals.h"\
+	"..\..\Terrain\Texture.h"\
+	"..\..\Terrain\Vector3D.h"\
+	"..\..\Terrain\Vector4D.h"\
 	".\InfoBox.h"\
 	".\UIGlobals.h"\
 	{$(INCLUDE)}"GL\glext.h"\
@@ -727,27 +727,27 @@
 	
 
 .\MiniMap.cpp : \
-	"..\lib\glext_funcs.h"\
-	"..\lib\misc.h"\
-	"..\lib\ogl.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\lib\res.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
-	"..\Terrain\Bound.h"\
-	"..\Terrain\Camera.h"\
-	"..\Terrain\Frustum.h"\
-	"..\Terrain\MathUtil.h"\
-	"..\Terrain\Matrix3D.h"\
-	"..\Terrain\MiniPatch.h"\
-	"..\Terrain\Patch.h"\
-	"..\Terrain\Plane.h"\
-	"..\Terrain\RenderableObject.h"\
-	"..\Terrain\Terrain.h"\
-	"..\Terrain\TerrGlobals.h"\
-	"..\Terrain\Vector3D.h"\
-	"..\Terrain\Vector4D.h"\
+	"..\..\lib\glext_funcs.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\ogl.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\lib\res.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
+	"..\..\Terrain\Bound.h"\
+	"..\..\Terrain\Camera.h"\
+	"..\..\Terrain\Frustum.h"\
+	"..\..\Terrain\MathUtil.h"\
+	"..\..\Terrain\Matrix3D.h"\
+	"..\..\Terrain\MiniPatch.h"\
+	"..\..\Terrain\Patch.h"\
+	"..\..\Terrain\Plane.h"\
+	"..\..\Terrain\RenderableObject.h"\
+	"..\..\Terrain\Terrain.h"\
+	"..\..\Terrain\TerrGlobals.h"\
+	"..\..\Terrain\Vector3D.h"\
+	"..\..\Terrain\Vector4D.h"\
 	".\MiniMap.h"\
 	".\TextureEntry.h"\
 	".\TextureManager.h"\
@@ -757,22 +757,22 @@
 	
 
 .\ObjectEntry.cpp : \
-	"..\lib\misc.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\lib\res.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
-	"..\ps\XercesErrorHandler.h"\
-	"..\Terrain\Bound.h"\
-	"..\Terrain\MathUtil.h"\
-	"..\Terrain\Matrix3D.h"\
-	"..\Terrain\Model.h"\
-	"..\Terrain\ModelDef.h"\
-	"..\Terrain\ModelFile.h"\
-	"..\Terrain\Texture.h"\
-	"..\Terrain\Vector3D.h"\
-	"..\Terrain\Vector4D.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\lib\res.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
+	"..\..\ps\XercesErrorHandler.h"\
+	"..\..\Terrain\Bound.h"\
+	"..\..\Terrain\MathUtil.h"\
+	"..\..\Terrain\Matrix3D.h"\
+	"..\..\Terrain\Model.h"\
+	"..\..\Terrain\ModelDef.h"\
+	"..\..\Terrain\ModelFile.h"\
+	"..\..\Terrain\Texture.h"\
+	"..\..\Terrain\Vector3D.h"\
+	"..\..\Terrain\Vector4D.h"\
 	".\ObjectEntry.h"\
 	".\ObjectManager.h"\
 	".\UIGlobals.h"\
@@ -906,14 +906,14 @@
 	
 
 .\ObjectManager.cpp : \
-	"..\lib\misc.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
-	"..\Terrain\Bound.h"\
-	"..\Terrain\MathUtil.h"\
-	"..\Terrain\Vector3D.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
+	"..\..\Terrain\Bound.h"\
+	"..\..\Terrain\MathUtil.h"\
+	"..\..\Terrain\Vector3D.h"\
 	".\ObjectEntry.h"\
 	".\ObjectManager.h"\
 	".\StdAfx.h"\
@@ -921,24 +921,24 @@
 	
 
 .\SMDConverter.cpp : \
-	"..\Terrain\MathUtil.h"\
-	"..\Terrain\Matrix3D.h"\
-	"..\Terrain\ModelDef.h"\
-	"..\Terrain\Vector3D.h"\
-	"..\Terrain\Vector4D.h"\
+	"..\..\Terrain\MathUtil.h"\
+	"..\..\Terrain\Matrix3D.h"\
+	"..\..\Terrain\ModelDef.h"\
+	"..\..\Terrain\Vector3D.h"\
+	"..\..\Terrain\Vector4D.h"\
 	".\SMDConverter.h"\
 	
 
 .\TextureManager.cpp : \
-	"..\lib\glext_funcs.h"\
-	"..\lib\misc.h"\
-	"..\lib\ogl.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\lib\res.h"\
-	"..\lib\tex.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
+	"..\..\lib\glext_funcs.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\ogl.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\lib\res.h"\
+	"..\..\lib\tex.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
 	".\TextureEntry.h"\
 	".\TextureManager.h"\
 	{$(INCLUDE)}"GL\glext.h"\
@@ -951,39 +951,39 @@
 	
 
 .\UnitManager.cpp : \
-	"..\Terrain\MathUtil.h"\
-	"..\Terrain\Matrix3D.h"\
-	"..\Terrain\Vector3D.h"\
-	"..\Terrain\Vector4D.h"\
+	"..\..\Terrain\MathUtil.h"\
+	"..\..\Terrain\Matrix3D.h"\
+	"..\..\Terrain\Vector3D.h"\
+	"..\..\Terrain\Vector4D.h"\
 	".\Unit.h"\
 	".\UnitManager.h"\
 	
 
 .\HFTracer.cpp : \
-	"..\lib\res.h"\
-	"..\Terrain\Bound.h"\
-	"..\Terrain\Camera.h"\
-	"..\Terrain\Frustum.h"\
-	"..\Terrain\MathUtil.h"\
-	"..\Terrain\Matrix3D.h"\
-	"..\Terrain\MiniPatch.h"\
-	"..\Terrain\Patch.h"\
-	"..\Terrain\Plane.h"\
-	"..\Terrain\RenderableObject.h"\
-	"..\Terrain\Terrain.h"\
-	"..\Terrain\TerrGlobals.h"\
-	"..\Terrain\Triangle.h"\
-	"..\Terrain\Vector3D.h"\
-	"..\Terrain\Vector4D.h"\
+	"..\..\lib\res.h"\
+	"..\..\Terrain\Bound.h"\
+	"..\..\Terrain\Camera.h"\
+	"..\..\Terrain\Frustum.h"\
+	"..\..\Terrain\MathUtil.h"\
+	"..\..\Terrain\Matrix3D.h"\
+	"..\..\Terrain\MiniPatch.h"\
+	"..\..\Terrain\Patch.h"\
+	"..\..\Terrain\Plane.h"\
+	"..\..\Terrain\RenderableObject.h"\
+	"..\..\Terrain\Terrain.h"\
+	"..\..\Terrain\TerrGlobals.h"\
+	"..\..\Terrain\Triangle.h"\
+	"..\..\Terrain\Vector3D.h"\
+	"..\..\Terrain\Vector4D.h"\
 	".\HFTracer.h"\
 	
 
 .\StdAfx.cpp : \
-	"..\lib\misc.h"\
-	"..\lib\posix.h"\
-	"..\lib\posix\aio.h"\
-	"..\ps\CStr.h"\
-	"..\ps\Prometheus.h"\
+	"..\..\lib\misc.h"\
+	"..\..\lib\posix.h"\
+	"..\..\lib\posix\aio.h"\
+	"..\..\ps\CStr.h"\
+	"..\..\ps\Pyrogenesis.h"\
 	".\StdAfx.h"\
 	{$(INCLUDE)}"unistd.h"\
 	
