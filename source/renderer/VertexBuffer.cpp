@@ -49,6 +49,11 @@ CVertexBuffer::~CVertexBuffer()
 	} else if (m_SysMem) {
 		delete[] m_SysMem;
 	}
+
+	// janwas 2004-06-14: release freelist
+	typedef std::list<VBChunk*>::iterator Iter;
+	for(Iter iter=m_FreeList.begin();iter!=m_FreeList.end();++iter)
+		delete *iter;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
