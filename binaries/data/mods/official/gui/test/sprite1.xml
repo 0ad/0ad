@@ -903,6 +903,22 @@
 		<image backcolor="184 190 201" size="100%-1 0 100% 100%"/>
         </sprite>
 
+        <sprite name="atlas_global_arrow_up">
+                <image texture="atlas/atlas_global_arrow_up.png" texture-size="0 0 8 4" size="0 0 100% 100%"/>
+        </sprite>
+
+        <sprite name="atlas_global_arrow_dn">
+                <image texture="atlas/atlas_global_arrow_dn.png" texture-size="0 0 8 4" size="0 0 100% 100%"/>
+        </sprite>
+
+        <sprite name="atlas_global_arrow_lt">
+                <image texture="atlas/atlas_global_arrow_lt.png" texture-size="0 0 4 8" size="0 0 100% 100%"/>
+        </sprite>
+
+        <sprite name="atlas_global_arrow_rt">
+                <image texture="atlas/atlas_global_arrow_rt.png" texture-size="0 0 4 8" size="0 0 100% 100%"/>
+        </sprite>
+
         <!--
         ==========================================
         TEMPORARY IMAGES

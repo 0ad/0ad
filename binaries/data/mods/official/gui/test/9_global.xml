@@ -24,6 +24,27 @@
 	                ]]></action>		
 		</object>
 
+		<!--
+		==========================================
+		- DEBUG -
+		==========================================
+		-->
+
+		<!-- FPS COUNTER -->
+		<object type="text" name="FPS_Counter" z="100" hotkey="fps.toggle" textcolor="100 100 0" font="verdana16" ghost="true" hidden="true">
+			<action on="Load"><![CDATA[
+				AddSizeString("FPS_Counter",
+				"18 100%-35 200 100%", 
+				"18 0%      200 0%+35");
+			]]></action>
+			<action on="Press"><![CDATA[
+				GUIObjectToggle("FPS_Counter");
+			]]></action>
+			<action on="Tick"><![CDATA[
+				UpdateFPSCounter(mouse);
+			]]></action>
+		</object>
+
                 <!--
                 ==========================================
                  - MESSAGE BOX -

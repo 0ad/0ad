@@ -74,14 +74,22 @@
 		</object>
 
 		<!-- TOP: TOOLBAR -->
-		<object type="text" name="atlas_mainborder_toolbar_bkg" sprite="atlas_toolbar_bkg" z="60" hidden="false">
-			<action on="Load"><![CDATA[
-				setSizeCoord("atlas_mainborder_toolbar_bkg", crd_atlas_mainborder_toolbar_bkg_x, crd_atlas_mainborder_toolbar_bkg_y, -crd_atlas_mainborder_toolbar_bkg_width, crd_atlas_mainborder_toolbar_bkg_y+crd_atlas_mainborder_toolbar_bkg_height, left_screen, top_screen, right_screen, top_screen);
-			]]></action>
+		<object type="empty" name="atlas_mainborder_toolbar" size="0 0 100% 100%" z="1" hidden="false">
+			<object type="text" name="atlas_mainborder_toolbar_bkg" sprite="atlas_toolbar_bkg" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					setSizeCoord("atlas_mainborder_toolbar_bkg", crd_atlas_mainborder_toolbar_bkg_x, crd_atlas_mainborder_toolbar_bkg_y, crd_atlas_mainborder_toolbar_bkg_width, crd_atlas_mainborder_toolbar_bkg_y+crd_atlas_mainborder_toolbar_bkg_height, left_screen, top_screen, right_screen, top_screen);
+				]]></action>
+			</object>
+			<object type="button" name="atlas_mainborder_toolbar_minimise_arrow" sprite="atlas_mainborder_lt_corner" tooltip-style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Minimise Arrow[font=tahoma10]\nClick to minimise the toolbar." z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					setSizeCoord("atlas_mainborder_toolbar_minimise_arrow", -crd_atlas_mainborder_toolbar_minimise_arrow_x-crd_atlas_mainborder_toolbar_minimise_arrow_width, -crd_atlas_mainborder_toolbar_minimise_arrow_y-crd_atlas_mainborder_toolbar_minimise_arrow_height, -crd_atlas_mainborder_toolbar_minimise_arrow_x, -crd_atlas_mainborder_toolbar_minimise_arrow_y, right_screen, top_screen, right_screen, top_screen);
+console.write(crd_atlas_mainborder_toolbar_minimise_arrow_x + ":" + crd_atlas_mainborder_toolbar_minimise_arrow_y + ":" + crd_atlas_mainborder_toolbar_minimise_arrow_width + ":" + crd_atlas_mainborder_toolbar_minimise_arrow_height);
+				]]></action>
+			</object>
 		</object>
 		
 		<!-- LT: LOGO -->
-		<object type="text" name="atlas_mainborder_lt_corner" sprite="atlas_mainborder_lt_corner" tooltip-style="atlas_tooltip" tooltip="Mmm, nothing like the smell of blatant self-promotion in the morning ..." z="60" hidden="false">
+		<object type="text" name="atlas_mainborder_lt_corner" sprite="atlas_mainborder_lt_corner" tooltip-style="atlas_tooltip" tooltip="[font=tahoma10b]0 A.D. Logo[font=tahoma10]\nMmm, nothing like the smell of blatant self-promotion in the morning ..." z="60" hidden="false">
 			<action on="Load"><![CDATA[
 				setSizeCoord("atlas_mainborder_lt_corner", crd_atlas_mainborder_lt_corner_x, crd_atlas_mainborder_lt_corner_y, crd_atlas_mainborder_lt_corner_x+crd_atlas_mainborder_lt_corner_width, crd_atlas_mainborder_lt_corner_y+crd_atlas_mainborder_lt_corner_height, left_screen, top_screen, left_screen, top_screen);
 			]]></action>
@@ -96,7 +104,7 @@
 				]]></action>
 			</object>
 			<!-- RT: INFO WINDOW BAR -->
-			<object type="button" name="atlas_info_window" sprite="atlas_window_white" font="tahoma10" textcolor="0 0 0" text-align="left" text-valign="center" tooltip-style="atlas_tooltip" tooltip="Information about the current scenario." z="60" hidden="false">
+			<object type="text" name="atlas_info_window" sprite="atlas_window_white" font="tahoma10" textcolor="0 0 0" text-align="left" text-valign="center" tooltip-style="atlas_tooltip" tooltip="[font=tahoma10b]Info Window[font=tahoma10]\nInformation about the current scenario." z="60" hidden="false">
 				<action on="Load"><![CDATA[
 					setSizeCoord("atlas_info_window", crd_atlas_info_window_x, crd_atlas_info_window_y, crd_atlas_info_window_x+crd_atlas_info_window_width, crd_atlas_info_window_y+crd_atlas_info_window_height, right_screen, top_screen, right_screen, top_screen);
 					setInterval(atlasUpdateInfoWindow, 500);

@@ -35,6 +35,12 @@ function initAtlas()
 	crd_atlas_mainborder_toolbar_bkg_x = crd_atlas_mainborder_lt_corner_x;
 	crd_atlas_mainborder_toolbar_bkg_y = crd_atlas_mainborder_menu_bkg_y+crd_atlas_mainborder_menu_bkg_height;
 
+	// Minimise arrow on tool bar.
+	crd_atlas_mainborder_toolbar_minimise_arrow_width = 8;
+	crd_atlas_mainborder_toolbar_minimise_arrow_height = 4;
+	crd_atlas_mainborder_toolbar_minimise_arrow_x = (-crd_atlas_mainborder_rt_corner_x)+crd_atlas_mainborder_toolbar_minimise_arrow_width;
+	crd_atlas_mainborder_toolbar_minimise_arrow_y = crd_atlas_mainborder_toolbar_bkg_y;
+
 	// Left-hand selection pane.
 	crd_atlas_left_pane_bkg_width = 187;
 	crd_atlas_left_pane_bkg_height = crd_atlas_mainborder_toolbar_bkg_y-crd_atlas_mainborder_toolbar_bkg_height;
