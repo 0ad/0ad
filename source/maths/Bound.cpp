@@ -31,12 +31,12 @@ CBound& CBound::operator+=(const CBound& b)
 // operator+=: extend this bound to include given point
 CBound& CBound::operator+=(const CVector3D& pt)
 {
-	for (int i=0;i<3;++i) {
-		if (pt[i]<m_Data[0][i])
-			m_Data[0][i]=pt[i];
-		else if (pt[i]>m_Data[1][i])
-			m_Data[1][i]=pt[i];
-	}
+#define CMPT(c) if (pt.c < m_Data[0].c) m_Data[0].c = pt.c; \
+           else if (pt.c > m_Data[1].c) m_Data[1].c = pt.c
+	CMPT(X);
+	CMPT(Y);
+	CMPT(Z);
+#undef CMPT
 
 	return *this;
 }

@@ -45,89 +45,27 @@ CMatrix3D::CMatrix3D(float a11,float a12,float a13,float a14,float a21,float a22
 //Matrix multiplication
 CMatrix3D CMatrix3D::operator*(const CMatrix3D& matrix) const
 {
-	CMatrix3D Temp;
+	return CMatrix3D(
+		_11*matrix._11 + _12*matrix._21 + _13*matrix._31 + _14*matrix._41,
+		_11*matrix._12 + _12*matrix._22 + _13*matrix._32 + _14*matrix._42,
+		_11*matrix._13 + _12*matrix._23 + _13*matrix._33 + _14*matrix._43,
+		_11*matrix._14 + _12*matrix._24 + _13*matrix._34 + _14*matrix._44,
 
-	Temp._11 = _11*matrix._11 +
-			   _12*matrix._21 +
-			   _13*matrix._31 +
-			   _14*matrix._41;
+		_21*matrix._11 + _22*matrix._21 + _23*matrix._31 + _24*matrix._41,
+		_21*matrix._12 + _22*matrix._22 + _23*matrix._32 + _24*matrix._42,
+		_21*matrix._13 + _22*matrix._23 + _23*matrix._33 + _24*matrix._43,
+		_21*matrix._14 + _22*matrix._24 + _23*matrix._34 + _24*matrix._44,
 
-	Temp._12 = _11*matrix._12 +
-			   _12*matrix._22 +
-			   _13*matrix._32 +
-			   _14*matrix._42;
+		_31*matrix._11 + _32*matrix._21 + _33*matrix._31 + _34*matrix._41,
+		_31*matrix._12 + _32*matrix._22 + _33*matrix._32 + _34*matrix._42,
+		_31*matrix._13 + _32*matrix._23 + _33*matrix._33 + _34*matrix._43,
+		_31*matrix._14 + _32*matrix._24 + _33*matrix._34 + _34*matrix._44,
 
-	Temp._13 = _11*matrix._13 +
-			   _12*matrix._23 +
-			   _13*matrix._33 +
-			   _14*matrix._43;
-
-	Temp._14 = _11*matrix._14 +
-			   _12*matrix._24 +
-			   _13*matrix._34 +
-			   _14*matrix._44;
-
-	Temp._21 = _21*matrix._11 +
-			   _22*matrix._21 +
-			   _23*matrix._31 +
-			   _24*matrix._41;
-
-	Temp._22 = _21*matrix._12 +
-			   _22*matrix._22 +
-			   _23*matrix._32 +
-			   _24*matrix._42;
-	
-	Temp._23 = _21*matrix._13 +
-			   _22*matrix._23 +
-			   _23*matrix._33 +
-			   _24*matrix._43;
-
-	Temp._24 = _21*matrix._14 +
-			   _22*matrix._24 +
-			   _23*matrix._34 +
-			   _24*matrix._44;
-
-	Temp._31 = _31*matrix._11 +
-			   _32*matrix._21 +
-			   _33*matrix._31 +
-			   _34*matrix._41;
-
-	Temp._32 = _31*matrix._12 +
-			   _32*matrix._22 +
-			   _33*matrix._32 +
-			   _34*matrix._42;
-
-	Temp._33 = _31*matrix._13 +
-			   _32*matrix._23 +
-			   _33*matrix._33 +
-			   _34*matrix._43;
-
-	Temp._34 = _31*matrix._14 +
-			   _32*matrix._24 +
-			   _33*matrix._34 +
-			   _34*matrix._44;
-
-	Temp._41 = _41*matrix._11 +
-			   _42*matrix._21 +
-			   _43*matrix._31 +
-			   _44*matrix._41;
-
-	Temp._42 = _41*matrix._12 +
-			   _42*matrix._22 +
-			   _43*matrix._32 +
-			   _44*matrix._42;
-
-	Temp._43 = _41*matrix._13 +
-			   _42*matrix._23 +
-			   _43*matrix._33 +
-			   _44*matrix._43;
-
-	Temp._44 = _41*matrix._14 +
-			   _42*matrix._24 +
-			   _43*matrix._34 +
-			   _44*matrix._44;
-
-	return Temp;
+		_41*matrix._11 + _42*matrix._21 + _43*matrix._31 + _44*matrix._41,
+		_41*matrix._12 + _42*matrix._22 + _43*matrix._32 + _44*matrix._42,
+		_41*matrix._13 + _42*matrix._23 + _43*matrix._33 + _44*matrix._43,
+		_41*matrix._14 + _42*matrix._24 + _43*matrix._34 + _44*matrix._44
+	);
 }
 
 //Matrix multiplication/assignment
