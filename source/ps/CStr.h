@@ -52,9 +52,8 @@ enum PS_TRIM_MODE {PS_TRIM_LEFT, PS_TRIM_RIGHT, PS_TRIM_BOTH};
 #include "Prometheus.h"
 #include <string>				// Used for basic string functionality
 #include <iostream>
+#include "ps/utf16string.h"
 
-#include "posix.h"
-#include "lib.h"
 #include "Network/Serialization.h"
 
 #include <cstdlib>
@@ -99,6 +98,9 @@ public:
 	CStr(const CStr& Str);		// Copy Constructor
 	
 	CStr(std::tstring String);	// Creates CStr from C++ string
+#if !(defined(_MSC_VER) && defined(_UNICODE))
+	CStr(std::utf16string String);	// Creates CStr from UTF16 string, potentially losing data in UTF16->ASCII conversions
+#endif
 	CStr(const TCHAR* String);	// Creates CStr from C-Style TCHAR string
 	CStr(TCHAR Char);		// Creates CStr from a TCHAR
 	CStr(int Number);		// Creates CStr from a int
@@ -214,4 +216,10 @@ public:
 // overloaded operator for ostreams
 std::ostream &operator<<(std::ostream &os, CStr& Str);
 
+#endif
+
+// Hacks to make VAssist happy:
+#ifdef PLEASE_DO_NOT_EVER_DEFINE_THIS
+class CStrW : public CStr;
+class CStr8 : public CStr;
 #endif

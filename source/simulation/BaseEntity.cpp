@@ -71,25 +71,25 @@ bool CBaseEntity::loadXML( CStr filename )
 
 		if (ChildName == el_name)
 		{
-			m_name = tocstr(Child.getText());
+			m_name = (CStr)Child.getText();
 		}
 		else if (ChildName == el_actor) 
 		{
-			m_actorObject = g_ObjMan.FindObject( tocstr(Child.getText()) );
+			m_actorObject = g_ObjMan.FindObject( (CStr)Child.getText() );
 		}
 		else if (ChildName == el_speed)
 		{
-			m_speed = CStr16(Child.getText()).ToFloat();
+			m_speed = CStr(Child.getText()).ToFloat();
 		}
 		else if (ChildName == el_turningradius)
 		{
-			m_turningRadius = CStr16(Child.getText()).ToFloat();
+			m_turningRadius = CStr(Child.getText()).ToFloat();
 		}
 		else if (ChildName == el_size)
 		{
 			if( !m_bound_circle )
 				m_bound_circle = new CBoundingCircle();
-			CStr16 radius = Child.getAttributes().getNamedItem(at_radius);
+			CStr radius (Child.getAttributes().getNamedItem(at_radius));
 			m_bound_circle->setRadius( radius.ToFloat() );
 			m_bound_type = CBoundingObject::BOUND_CIRCLE;
 		}
@@ -97,16 +97,16 @@ bool CBaseEntity::loadXML( CStr filename )
 		{
 			if( !m_bound_box )
 				m_bound_box = new CBoundingBox();
-			CStr16 width = Child.getAttributes().getNamedItem(at_width);
-			CStr16 height = Child.getAttributes().getNamedItem(at_height);
+			CStr width (Child.getAttributes().getNamedItem(at_width));
+			CStr height (Child.getAttributes().getNamedItem(at_height));
 
 			m_bound_box->setDimensions( width.ToFloat(), height.ToFloat() );
 			m_bound_type = CBoundingObject::BOUND_OABB;
 		}
 		else if (ChildName == el_boundsoffset)
 		{
-			CStr16 x = Child.getAttributes().getNamedItem(at_x);
-			CStr16 y = Child.getAttributes().getNamedItem(at_y);
+			CStr x (Child.getAttributes().getNamedItem(at_x));
+			CStr y (Child.getAttributes().getNamedItem(at_y));
 
 			if( !m_bound_circle )
 				m_bound_circle = new CBoundingCircle();

@@ -1,4 +1,4 @@
-/* $Id: XeroXMB.h,v 1.2 2004/07/10 20:33:00 philip Exp $
+/* $Id: XeroXMB.h,v 1.3 2004/07/10 20:55:55 philip Exp $
 
 	Xeromyces - XMB reading library
 
@@ -210,10 +210,5 @@ private:
 	int m_LastItemID;
 	char* m_LastPointer;
 };
-
-
-
-#include "ps/CStr.h"
-CStr tocstr(std::utf16string s);
 
 #endif // _XEROXMB_H_

@@ -38,6 +38,13 @@ CStr::CStr(tstring String)
 	m_String = String;
 }
 
+#if !(defined(_MSC_VER) && defined(_UNICODE))
+CStr::CStr(std::utf16string String)
+{
+	m_String = tstring(String.begin(), String.end());
+}
+#endif
+
 CStr::CStr(TCHAR Char)
 {
 	// Creates CStr from a TCHAR

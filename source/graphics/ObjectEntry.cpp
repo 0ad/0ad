@@ -180,7 +180,7 @@ bool CObjectEntry::Load(const char* filename)
 		XMBElement child = children.item(i);
 
 		int element_name = child.getNodeName();
-		CStr element_value=tocstr(child.getText());
+		CStr element_value (child.getText());
 
 		if (element_name == el_name)
 			m_Name=element_value;
@@ -201,9 +201,9 @@ bool CObjectEntry::Load(const char* filename)
 				if (attributes.Count) {
 					Anim anim;
 
-					anim.m_AnimName=tocstr(attributes.getNamedItem(at_name));
-					anim.m_FileName=tocstr(attributes.getNamedItem(at_file));
-					CStr16 speedstr=attributes.getNamedItem(at_speed);
+					anim.m_AnimName = (CStr)attributes.getNamedItem(at_name);
+					anim.m_FileName = (CStr)attributes.getNamedItem(at_file);
+					CStr speedstr = (CStr)attributes.getNamedItem(at_speed);
 
 					anim.m_Speed=float(speedstr.ToInt())/100.0f;
 					if (anim.m_Speed<=0.0) anim.m_Speed=1.0f;
@@ -222,8 +222,8 @@ bool CObjectEntry::Load(const char* filename)
 				if (attributes.Count) {
 					Prop prop;
 
-					prop.m_PropPointName=tocstr(attributes.getNamedItem(at_attachpoint));
-					prop.m_ModelName=tocstr(attributes.getNamedItem(at_model));
+					prop.m_PropPointName = (CStr)attributes.getNamedItem(at_attachpoint);
+					prop.m_ModelName = (CStr)attributes.getNamedItem(at_model);
 
 					m_Props.push_back(prop);
 				}

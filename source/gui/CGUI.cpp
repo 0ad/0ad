@@ -997,17 +997,17 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	XMBAttributeList attributes = Element.getAttributes();
 
 	// Well first of all we need to determine the type
-	std::wstring type = attributes.getNamedItem( pFile->getAttributeID("type") );
+	std::utf16string type = attributes.getNamedItem( pFile->getAttributeID("type") );
 
 	// Construct object from specified type
 	//  henceforth, we need to do a rollback before aborting.
 	//  i.e. releasing this object
-	object = ConstructObject(tocstr(type));
+	object = ConstructObject((CStr)type);
 
 	if (!object)
 	{
 		// Report error that object was unsuccessfully loaded
-		ReportParseError(CStr("Unrecognized type: ") + tocstr(type));
+		ReportParseError(CStr("Unrecognized type: ") + CStr(type));
 
 		delete object;
 		return;
@@ -1031,7 +1031,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	//
 	//	Always load default (if it's available) first!
 	//
-	CStr argStyle = tocstr(attributes.getNamedItem(attr_style));
+	CStr argStyle = (CStr)attributes.getNamedItem(attr_style);
 
 	if (m_Styles.count(CStr("default")) == 1)
 		object->LoadStyle(*this, CStr("default"));
@@ -1060,7 +1060,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		XMBAttribute attr = attributes.item(i);
 
 		// If value is "null", then it is equivalent as never being entered
-		if (attr.Value == L"null")
+		if ((CStr8)attr.Value == (CStr8)"null")
 			continue;
 
 		// Ignore "type" and "style", we've already checked it
@@ -1070,7 +1070,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		// Also the name needs some special attention
 		if (attr.Name == attr_name)
 		{
-			object->SetName(tocstr(attr.Value));
+			object->SetName((CStr)attr.Value);
 			NameSet = true;
 			continue;
 		}
@@ -1081,12 +1081,12 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		// Try setting the value
 		try
 		{
-			object->SetSetting(pFile->getAttributeString(attr.Name), tocstr(attr.Value));
+			object->SetSetting(pFile->getAttributeString(attr.Name), (CStr)attr.Value);
 		}
 		catch (PS_RESULT e)
 		{
 			UNUSED(e);
-			ReportParseError(CStr("Can't set \"") + pFile->getAttributeString(attr.Name) + CStr("\" to \"") + tocstr(attr.Value) + CStr("\""));
+			ReportParseError(CStr("Can't set \"") + pFile->getAttributeString(attr.Name) + CStr("\" to \"") + (CStr)attr.Value + CStr("\""));
 
 			// This is not a fatal error
 		}
@@ -1100,7 +1100,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	}
 
 
-	CStr caption = tocstr(Element.getText());
+	CStr caption = (CStr)Element.getText();
 	caption.Trim(PS_TRIM_BOTH);
 	if (caption.Length())
 	{
@@ -1140,8 +1140,8 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		}
 		else if (element_name == elmt_action)
 		{
-			CStr action = tocstr(child.getAttributes().getNamedItem(attr_on));
-			CStr code = tocstr(child.getText());
+			CStr action = (CStr)child.getAttributes().getNamedItem(attr_on);
+			CStr code = (CStr)child.getText();
 			object->RegisterScriptHandler(action, code, this);
 		}
 	} 
@@ -1206,7 +1206,7 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 	//
 
 	// Get name, we know it exists because of DTD requirements
-	name = tocstr( Element.getAttributes().getNamedItem( pFile->getAttributeID("name") ) );
+	name = (CStr) Element.getAttributes().getNamedItem( pFile->getAttributeID("name") );
 
 	//
 	//	Read Children (the images)
@@ -1251,7 +1251,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 	{
 		XMBAttribute attr = attributes.item(i);
 		std::string attr_name = pFile->getAttributeString(attr.Name);
-		CStr attr_value = tocstr( attr.Value );
+		CStr attr_value (attr.Value);
 
 		// This is the only attribute we want
 		if (attr_name == "texture")
@@ -1319,7 +1319,7 @@ void CGUI::Xeromyces_ReadStyle(XMBElement Element, CXeromyces* pFile)
 	{
 		XMBAttribute attr = attributes.item(i);
 		std::string attr_name = pFile->getAttributeString(attr.Name);
-		CStr attr_value = tocstr( attr.Value );
+		CStr attr_value (attr.Value);
 
 		// The "name" setting is actually the name of the style
 		//  and not a new default
@@ -1352,7 +1352,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 	{
 		XMBAttribute attr = attributes.item(i);
 		std::string attr_name = pFile->getAttributeString(attr.Name);
-		CStr attr_value = tocstr( attr.Value );
+		CStr attr_value (attr.Value);
 
 		if (attr_value == CStr("null"))
 			continue;

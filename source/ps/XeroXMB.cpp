@@ -1,4 +1,4 @@
-// $Id: XeroXMB.cpp,v 1.2 2004/07/10 20:33:00 philip Exp $
+// $Id: XeroXMB.cpp,v 1.3 2004/07/10 20:55:55 philip Exp $
 
 #include "precompiled.h"
 
@@ -236,19 +236,4 @@ XMBAttribute XMBAttributeList::item(const int id)
 	m_LastPointer = Pos;
 
 	return XMBAttribute(*(int*)Pos, std::utf16string( (char16*)(Pos+8) ));
-}
-
-
-
-// Temporary hackiness. (Could CStr do automatic conversions?)
-CStr tocstr(std::utf16string s)
-{
-	size_t len = s.size();
-	char* s2 = new char[len+1];
-	const char16* s1 = s.c_str();
-	for (size_t i=0; i<=len; ++i)
-		s2[i] = (char)s1[i];
-	CStr r(s2);
-	delete s2;
-	return r;
 }
