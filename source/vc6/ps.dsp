@@ -95,6 +95,14 @@ LINK32=link.exe
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=..\terrain\Bound.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\terrain\Bound.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\terrain\Camera.cpp
 # End Source File
 # Begin Source File
@@ -108,6 +116,10 @@ SOURCE=..\terrain\Frustum.cpp
 # Begin Source File
 
 SOURCE=..\terrain\Frustum.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\terrain\LightEnv.h
 # End Source File
 # Begin Source File
 
@@ -131,6 +143,30 @@ SOURCE=..\terrain\MiniPatch.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\terrain\Model.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\terrain\Model.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\terrain\ModelDef.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\terrain\ModelDef.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\terrain\ModelFile.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\terrain\ModelFile.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\terrain\Patch.cpp
 # End Source File
 # Begin Source File
@@ -147,11 +183,27 @@ SOURCE=..\terrain\Plane.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\terrain\Quaternion.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\terrain\Quaternion.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\terrain\Renderer.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=..\terrain\Renderer.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\terrain\SHCoeffs.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\terrain\SHCoeffs.h
 # End Source File
 # Begin Source File
 
@@ -171,6 +223,10 @@ SOURCE=..\terrain\TerrGlobals.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\terrain\Texture.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\terrain\Types.h
 # End Source File
 # Begin Source File
@@ -180,6 +236,10 @@ SOURCE=..\terrain\Vector3D.cpp
 # Begin Source File
 
 SOURCE=..\terrain\Vector3D.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\terrain\Vector4D.h
 # End Source File
 # End Group
 # Begin Group "gui"
