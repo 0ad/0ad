@@ -692,7 +692,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string, /*const CColor &Color, */
 						union_from = max(y, it->m_YFrom);
 						union_to = min(y+prelim_line_height, it->m_YTo);
 						
-						// The union is not ø
+						// The union is not empty
 						if (union_to > union_from)
 						{
 							if (j == From)
@@ -761,7 +761,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string, /*const CColor &Color, */
 				vector<SGUIText::STextCall>::iterator it;
 				for (it = Feedback2.m_TextCalls.begin(); it != Feedback2.m_TextCalls.end(); ++it)
 				{
-					it->m_Pos = CPos(x + x_pointer, y + line_height - it->m_Size.cy);
+					it->m_Pos = CPos(x + x_pointer, y);
 
 					x_pointer += it->m_Size.cx;
 

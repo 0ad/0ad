@@ -44,11 +44,14 @@ void CButton::SetupText()
 	assert(m_GeneratedTexts.size()>=1);
 
 	CStr font;
+	if (GUI<CStr>::GetSetting(this, "font", font) != PS_OK || font.Length()==0)
+		// Use the default if none is specified
+		font = "palatino12";
+
 	CGUIString caption;
 	GUI<CGUIString>::GetSetting(this, "caption", caption);
 
-	//*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, CStr("palatino12"), 0, 0);
-	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, CStr("palatino12"), m_CachedActualSize.GetWidth(), 0);
+	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, m_CachedActualSize.GetWidth(), 0);
 
 	// Set position of text
 	//m_TextPos = m_CachedActualSize.CenterPoint() - m_GeneratedTexts[0]->m_Size/2;
