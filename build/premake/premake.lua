@@ -149,7 +149,7 @@ function setuppackage (projectname)
 			"xerces",
 			"vorbis",
 			"boost",
-			"libjpg"	-- static lib; no need for a delayload entry
+			"libjpg"
 		}
 	
 		-- Add '<libraries root>/<libraryname>/lib' and '/include' to the includepaths and libpaths
@@ -185,6 +185,7 @@ function setuppackage (projectname)
 			"/DELAYLOAD:js32d.dll",
 			"/DELAYLOAD:zlib1d.dll",
 			"/DELAYLOAD:libpng13d.dll",
+			"/DELAYLOAD:jpeg-6bd.dll",
 		}
 		
 		-- 'Testing' uses 'Debug' DLL's
@@ -194,6 +195,7 @@ function setuppackage (projectname)
 			"/DELAYLOAD:js32.dll",
 			"/DELAYLOAD:zlib1.dll",
 			"/DELAYLOAD:libpng13.dll",
+			"/DELAYLOAD:jpeg-6b.dll",
 		}
 		
 		tinsert(package.buildflags, { "no-main" })
