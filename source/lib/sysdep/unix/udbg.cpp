@@ -26,7 +26,7 @@ void unix_debug_break()
 /*
 Start the debugger and tell it to attach to the current process/thread
 */
-int unix_launch_debugger()
+static int launch_debugger()
 {
 	pid_t orgpid=getpid();
 	pid_t ret=fork();
@@ -84,7 +84,7 @@ int debug_assert_failed(const char *file, int line, const char *expr)
 			case 'b':
 				return 2;
 			case 'd':
-				return unix_launch_debugger();
+				return launch_debugger();
 			case 'c':
 				return 0;
 			case 's':
