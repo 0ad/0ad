@@ -20,6 +20,12 @@ function startLoadingScreen()
 	GUIObjectUnhide("loading_screen");
 	console.write("Loading " + g_GameAttributes.mapFile + " (" + g_GameAttributes.numPlayers + " players) ...");
 
+	getGUIObjectByName("loading_screen_titlebar-text").caption = "Loading Scenario ...";
+	getGUIObjectByName("loading_screen_progress_bar_text").caption = "... Reticulating splines ...";
+	getGUIObjectByName("loading_screen_progress_bar").caption = 80;
+	getGUIObjectByName("loading_screen_text").caption = "LOADING " + g_GameAttributes.mapFile + " ...\nPlease wait ...\n(Yes, we know the progress bar doesn't do diddly squat right now)\nJust keep waiting ...\nIt'll get there ...\nAlmost done ...\nTrust me!";
+	getGUIObjectByName("loading_screen_tip").caption = "Wise man once say ...\nHe who thinks slow, he act in haste, be rash and quick and foolish. But he that thinks too much, acts too slowly. The stupid always win, Commandersan. Remember that. You are tiny grasshopper.";
+
 	// Begin game session.
 	setTimeout( loadSession(), 0 );
 }

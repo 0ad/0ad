@@ -33,35 +33,16 @@
 		<object type="image" name="loading_screen_titlebar-left" size="15% 0 15%+64 32" sprite="message_box-titlebar-left" absolute="false" z="164" hidden="false"/>
 		<object type="image" name="loading_screen_titlebar-middle" size="15%+64 0 85%-64 32" sprite="message_box-titlebar-middle" absolute="false" z="164" hidden="false"/>
 		<object type="image" name="loading_screen_titlebar-right" size="85%-64 0 85% 32" sprite="message_box-titlebar-right" absolute="false" z="164" hidden="false"/>
-		<object type="button" name="loading_screen_titlebar-text" size="15%+54 4 85%-54 32" absolute="false" font="prospero18" z="165" text-align="center" text-valign="center" hidden="false">
-			<action on="Load"><![CDATA[
-				this.caption = "Loading Scenario ..."
-			]]></action>
-		</object>
+		<object type="button" name="loading_screen_titlebar-text" size="15%+54 4 85%-54 32" absolute="false" font="prospero18" z="165" text-align="center" text-valign="center" hidden="false"/>
 
 		<!-- progress bar -->
-		<object type="button" name="loading_screen_progress_bar_text" size="0%+32 100%-205 100%-32 100%-185" font="tahoma14" textcolor="0 0 0" text-align="center" text-valign="center" z="165" hidden="false">
-			<action on="Load"><![CDATA[
-				this.caption = "... Reticulating splines ...";
-			]]></action>
-		</object>
-		<object type="progressbar" name="loading_screen_progress_bar" style="blue_bar_outlined" size="0%+32 100%-185 100%-32 100%-160" z="165" hidden="false">
-			<action on="Load"><![CDATA[
-				this.caption = 80;
-			]]></action>
-		</object>
+		<object type="button" name="loading_screen_progress_bar_text" size="0%+32 100%-205 100%-32 100%-185" font="tahoma14" textcolor="0 0 0" text-align="center" text-valign="center" z="165" hidden="false"/>
+		<object type="progressbar" name="loading_screen_progress_bar" style="blue_bar_outlined" size="0%+32 100%-185 100%-32 100%-160" z="165" hidden="false"/>
                         
 		<!-- text -->
-		<object type="text" name="loading_screen_text" size="32 40 100%-32 100%-100" absolute="false" font="prospero18" z="165" hidden="false">
-			<action on="Load"><![CDATA[
-				this.caption = "LOADING ...\nPlease wait ...\n(Yes, we know the progress bar doesn't do diddly squat right now)\nJust keep waiting ...\nIt'll get there ...\nAlmost done ...\nTrust me!"
-			]]></action>
-		</object>
-		<object type="button" name="loading_screen_tip" sprite="only-white-border" size="32 100%-150 100%-32 100%-32" font="tahoma18" text-valign="center" textcolor="0 0 0" z="165" hidden="false">
-			<action on="Load"><![CDATA[
-				this.caption = "Wise man once say ...\nHe who thinks slow, he act in haste, be rash and quick and foolish. But he that thinks too much, acts too slowly. The stupid always win, Commandersan. Remember that. You are tiny grasshopper."
-			]]></action>
-		</object>
+		<object type="text" name="loading_screen_text" size="32 40 100%-32 100%-100" absolute="false" font="prospero18" z="165" hidden="false"/>
+
+		<object type="button" name="loading_screen_tip" sprite="only-white-border" size="32 100%-150 100%-32 100%-32" font="tahoma18" text-valign="center" textcolor="0 0 0" z="165" hidden="false"/>
 	</object>
 
 </objects>

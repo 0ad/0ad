@@ -9,6 +9,7 @@
 -->
 
 <objects>
+
         <object type="empty" name="session_gui" hotkey="flipgui.toggle" size="0 0 100% 100%" z="1" hidden="true">
 		<action on="Load"><![CDATA[
 		        setInterval( getObjectInfo, 1, 1000 );

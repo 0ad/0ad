@@ -181,4 +181,5 @@ function FlipGUI(NewGUIType)
 	}
 
 	writeConsole("GUI flipped to " + GUIType + ".");
+
 }
