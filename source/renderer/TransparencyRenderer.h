@@ -37,7 +37,7 @@ public:
 
 private:
 	// render given streams on all objects
-	void RenderObjectsStreams(u32 streamflags);
+	void RenderObjectsStreams(u32 streamflags,u32 mflags=0);
 	// list of transparent objects to render
 	std::vector<SObject> m_Objects;
 };

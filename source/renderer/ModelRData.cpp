@@ -77,12 +77,12 @@ void CModelRData::BuildIndices()
 	}
 }
 
-inline int clamp(int x,int min,int max)
-{
-	if (x<min) return min;
-	else if (x>max) return max;
-	else return x;
-}
+
+
+
+
+
+
 
 static SColor4ub ConvertColor(const RGBColor& src)
 {
@@ -297,14 +297,17 @@ void CModelRData::SubmitBatches()
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 // RenderModels: render all submitted models; assumes necessary client states already enabled,
 // and texture environment already setup as required
-void CModelRData::RenderModels(u32 streamflags)
+void CModelRData::RenderModels(u32 streamflags,u32 flags)
 {
 	uint i;
 #if 1
 	// submit batches for each model to the vertex buffer
 	for (i=0;i<m_Models.size();++i) {
-		CModelRData* modeldata=(CModelRData*) m_Models[i]->GetRenderData();
-		modeldata->SubmitBatches();
+		u32 mflags=m_Models[i]->GetFlags();
+		if (!flags || (m_Models[i]->GetFlags()&flags)) {
+			CModelRData* modeldata=(CModelRData*) m_Models[i]->GetRenderData();
+			modeldata->SubmitBatches();
+		}
 	}
 
 	// step through all accumulated batches
@@ -342,8 +345,10 @@ void CModelRData::RenderModels(u32 streamflags)
 	g_VBMan.ClearBatchIndices();
 #else 
 	for (i=0;i<m_Models.size();++i) {
-		CModelRData* modeldata=(CModelRData*) m_Models[i]->GetRenderData();
-		modeldata->RenderStreams(streamflags);
+		if (!flags || (m_Models[i]->GetFlags()&flags)) {
+			CModelRData* modeldata=(CModelRData*) m_Models[i]->GetRenderData();
+			modeldata->RenderStreams(streamflags);
+		}
 	}
 #endif
 }

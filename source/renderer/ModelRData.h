@@ -33,7 +33,7 @@ public:
 	static void ClearSubmissions() { m_Models.clear(); }
 
 	// render all submitted models
-	static void RenderModels(u32 streamflags);
+	static void RenderModels(u32 streamflags,u32 flags=0);
 
 private:
 	// build this renderdata object

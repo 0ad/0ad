@@ -173,7 +173,7 @@ void CTransparencyRenderer::RenderShadows()
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 
-	RenderObjectsStreams(STREAM_POS|STREAM_UV0);
+	RenderObjectsStreams(STREAM_POS|STREAM_UV0,MODELFLAG_CASTSHADOWS);
 
 	glDepthMask(1);
 	glDisable(GL_BLEND);
@@ -184,10 +184,12 @@ void CTransparencyRenderer::RenderShadows()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // RenderObjectsStreams: render given streams on all objects
-void CTransparencyRenderer::RenderObjectsStreams(u32 streamflags)
+void CTransparencyRenderer::RenderObjectsStreams(u32 streamflags,u32 mflags)
 {
 	for (uint i=0;i<m_Objects.size();++i) {
-		CModelRData* modeldata=(CModelRData*) m_Objects[i].m_Model->GetRenderData();
-		modeldata->RenderStreams(streamflags);
+		if (!mflags || (m_Objects[i].m_Model->GetFlags() & mflags)) {
+			CModelRData* modeldata=(CModelRData*) m_Objects[i].m_Model->GetRenderData();
+			modeldata->RenderStreams(streamflags);
+		}
 	}
 }

@@ -34,6 +34,10 @@ public:
 	static void RenderBaseSplats();
 	// render the blend pass of all patches
 	static void RenderBlendSplats();
+	// render the outlines of all patches
+	static void RenderOutlines();
+	// render given streams of all patches; don't fiddle with renderstate
+	static void RenderStreamsAll(u32 streamflags);
 	// apply given shadow map to all terrain patches
 	static void ApplyShadowMap(GLuint handle);
 

@@ -658,7 +658,7 @@ void CRenderer::RenderShadowMap()
 	glDisable(GL_CULL_FACE);
 
 	// render models
-	CModelRData::RenderModels(STREAM_POS);
+	CModelRData::RenderModels(STREAM_POS,MODELFLAG_CASTSHADOWS);
 
 	// call on the transparency renderer to render all the transparent stuff
 	g_TransparencyRenderer.RenderShadows();
@@ -739,8 +739,6 @@ void CRenderer::RenderPatches()
 		MICROLOG(L"wireframe off");
 		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 	} else if (m_TerrainRenderMode==EDGED_FACES) {
-/*
-		// TODO, RC - fix this
 		// edged faces: need to make a second pass over the data:
 		// first switch on wireframe
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
@@ -756,26 +754,14 @@ void CRenderer::RenderPatches()
 
 		// .. and some client states
 		glEnableClientState(GL_VERTEX_ARRAY);
-
-		uint i;
-
-		// render each patch in wireframe
-		for (i=0;i<m_TerrainPatches.size();++i) {
-			CPatch* patch=m_TerrainPatches[i];
-			CPatchRData* patchdata=(CPatchRData*) patch->GetRenderData();
-			patchdata->RenderStreams(STREAM_POS);
-		}
+		CPatchRData::RenderStreamsAll(STREAM_POS);
 
 		// set color for outline
 		glColor3f(0,0,1);
 		glLineWidth(4.0f);
 
 		// render outline of each patch
-		for (i=0;i<m_TerrainPatches.size();++i) {
-			CPatch* patch=m_TerrainPatches[i];
-			CPatchRData* patchdata=(CPatchRData*) patch->GetRenderData();
-			patchdata->RenderOutline();
-		}
+		CPatchRData::RenderOutlines();
 
 		// .. and switch off the client states
 		glDisableClientState(GL_VERTEX_ARRAY);
@@ -786,7 +772,6 @@ void CRenderer::RenderPatches()
 
 		// restore fill mode, and we're done
 		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
-*/
 	}
 }
 
@@ -881,8 +866,6 @@ struct SortModelsByTexture {
 // FlushFrame: force rendering of any batched objects
 void CRenderer::FlushFrame()
 {
-	// sort all the models by texture
-//	std::sort(m_Models.begin(),m_Models.end(),SortModelsByTexture());
 
     if(!g_Game || !g_Game->IsGameStarted())
         return;
@@ -981,7 +964,7 @@ void CRenderer::Submit(CPatch* patch)
 
 void CRenderer::Submit(CModel* model)
 {
-	if (1 /*ThisModelCastsShadows*/) {
+	if (model->GetFlags() & MODELFLAG_CASTSHADOWS) {
 		m_ShadowBound+=model->GetBounds();
 	}
 

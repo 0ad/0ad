@@ -25,12 +25,12 @@ const int BlendOffsets[8][2] = {
 	{  1, -1 }
 };
 
-inline int clamp(int x,int min,int max)
-{
-	if (x<min) return min;
-	else if (x>max) return max;
-	else return x;
-}
+
+
+
+
+
+
 
 static SColor4ub ConvertColor(const RGBColor& src)
 {
@@ -259,34 +259,37 @@ void CPatchRData::BuildBlends()
 	if (m_VBBlends) {
 		// release existing vertex buffer chunk
 		g_VBMan.Release(m_VBBlends);
+		m_VBBlends=0;
 	}
-	m_VBBlends=g_VBMan.Allocate(sizeof(SBlendVertex),m_BlendVertices.size(),false);
-	m_VBBlends->m_Owner->UpdateChunkVertices(m_VBBlends,&m_BlendVertices[0]);
-
-	// now build outgoing splats
-	m_BlendSplats.resize(splatTextures.size());
-	int splatCount=0;
-
-	assert(m_VBBlends->m_Index < 65536);
-	unsigned short base = (unsigned short)m_VBBlends->m_Index;
-	std::set<Handle>::iterator iter=splatTextures.begin();
-	for (;iter!=splatTextures.end();++iter) {
-		Handle tex=*iter;
-
-		SSplat& splat=m_BlendSplats[splatCount];
-		splat.m_IndexStart=(u32)m_BlendIndices.size();
-		splat.m_Texture=tex;
-
-		for (uint k=0;k<(uint)splats.size();k++) {
-			if (splats[k].m_Texture==tex) {
-				m_BlendIndices.push_back(splats[k].m_Indices[0]+base);
-				m_BlendIndices.push_back(splats[k].m_Indices[1]+base);
-				m_BlendIndices.push_back(splats[k].m_Indices[2]+base);
-				m_BlendIndices.push_back(splats[k].m_Indices[3]+base);
-				splat.m_IndexCount+=4;
+	if (m_BlendVertices.size())  {
+		m_VBBlends=g_VBMan.Allocate(sizeof(SBlendVertex),m_BlendVertices.size(),false);
+		m_VBBlends->m_Owner->UpdateChunkVertices(m_VBBlends,&m_BlendVertices[0]);
+	
+		// now build outgoing splats
+		m_BlendSplats.resize(splatTextures.size());
+		int splatCount=0;
+	
+		assert(m_VBBlends->m_Index < 65536);
+		unsigned short base = (unsigned short)m_VBBlends->m_Index;
+		std::set<Handle>::iterator iter=splatTextures.begin();
+		for (;iter!=splatTextures.end();++iter) {
+			Handle tex=*iter;
+	
+			SSplat& splat=m_BlendSplats[splatCount];
+			splat.m_IndexStart=(u32)m_BlendIndices.size();
+			splat.m_Texture=tex;
+	
+			for (uint k=0;k<(uint)splats.size();k++) {
+				if (splats[k].m_Texture==tex) {
+					m_BlendIndices.push_back(splats[k].m_Indices[0]+base);
+					m_BlendIndices.push_back(splats[k].m_Indices[1]+base);
+					m_BlendIndices.push_back(splats[k].m_Indices[2]+base);
+					m_BlendIndices.push_back(splats[k].m_Indices[3]+base);
+					splat.m_IndexCount+=4;
+				}
 			}
+			splatCount++;
 		}
-		splatCount++;
 	}
 }
 
@@ -300,6 +303,7 @@ void CPatchRData::BuildIndices()
 
 	// release existing indices and bins
 	m_Indices.clear();
+	m_ShadowMapIndices.clear();
 	m_Splats.clear();
 
 	// build grid of textures on this patch and boundaries of adjacent patches
@@ -446,8 +450,11 @@ void CPatchRData::RenderStreams(u32 streamflags)
 
 	// setup data pointers
 	glVertexPointer(3,GL_FLOAT,sizeof(SBaseVertex),base+offsetof(SBaseVertex,m_Position));
-	if (streamflags & STREAM_UV0) glTexCoordPointer(2,GL_FLOAT,sizeof(SBaseVertex),base+offsetof(SBaseVertex,m_UVs));
-	else if (streamflags & STREAM_POSTOUV0) glTexCoordPointer(3,GL_FLOAT,sizeof(SBaseVertex),base+offsetof(SBaseVertex,m_Position));
+	if (streamflags & STREAM_UV0) {
+		glTexCoordPointer(2,GL_FLOAT,sizeof(SBaseVertex),base+offsetof(SBaseVertex,m_UVs));
+	} else if (streamflags & STREAM_POSTOUV0) {
+		glTexCoordPointer(3,GL_FLOAT,sizeof(SBaseVertex),base+offsetof(SBaseVertex,m_Position));
+	}
 	
 	// render all base splats at once
 	glDrawElements(GL_QUADS,(GLsizei)m_Indices.size(),GL_UNSIGNED_SHORT,&m_Indices[0]);
@@ -489,26 +496,52 @@ void CPatchRData::RenderBlends()
 	}
 }
 
+void CPatchRData::RenderOutlines()
+{
+	for (uint i=0;i<m_Patches.size();++i) {
+		CPatchRData* patchdata=(CPatchRData*) m_Patches[i]->GetRenderData();
+		patchdata->RenderOutline();
+	}
+}
+
+void CPatchRData::RenderStreamsAll(u32 streamflags)
+{
+	for (uint i=0;i<m_Patches.size();++i) {
+		CPatchRData* patchdata=(CPatchRData*) m_Patches[i]->GetRenderData();
+		patchdata->RenderStreams(streamflags);
+	}
+}
+
 void CPatchRData::RenderOutline()
 {
-	// TODO, RC - fixme, only works for PATCH_SIZE = 16
-	const u16 EdgeIndices[PATCH_SIZE*4] = {
-		  1,   2,   3,   4,   5,   6,   7,   8,   9,  10,  11,  12,  13,  14,  15,  16,
-		 33,  50,  67,  84, 101, 118, 135, 152, 169, 186, 203, 220, 237, 254, 271, 288, 
-		287, 286, 285, 284, 283, 282, 281, 280, 279, 278, 277, 276, 275, 274, 273, 272, 
-		255, 238, 221, 204, 187, 170, 153, 136, 119, 102,  85,  68,  51,  34,  17,   0
-	};
-
+	uint i;
+	uint vsize=PATCH_SIZE+1;
 	u8* base=m_VBBase->m_Owner->Bind();
 
-	// setup data pointers
-	glVertexPointer(3,GL_FLOAT,sizeof(SBaseVertex),base+offsetof(SBaseVertex,m_Position));
-	// render outline as line loop
-	u32 numIndices=sizeof(EdgeIndices)/sizeof(u16);
-	glDrawElements(GL_LINE_LOOP,numIndices,GL_UNSIGNED_SHORT,EdgeIndices);
-
-	g_Renderer.m_Stats.m_DrawCalls++;
-	g_Renderer.m_Stats.m_TerrainTris+=numIndices/2;
+	glBegin(GL_LINES);
+	for (i=0;i<PATCH_SIZE;i++) {
+		glVertex3fv(&m_Vertices[i].m_Position.X);
+		glVertex3fv(&m_Vertices[i+1].m_Position.X);
+	}
+	glEnd();
+	glBegin(GL_LINES);
+	for (i=0;i<PATCH_SIZE;i++) {
+		glVertex3fv(&m_Vertices[PATCH_SIZE+(i*(PATCH_SIZE+1))].m_Position.X);
+		glVertex3fv(&m_Vertices[PATCH_SIZE+((i+1)*(PATCH_SIZE+1))].m_Position.X);
+	}
+	glEnd();
+	glBegin(GL_LINES);
+	for (i=1;i<PATCH_SIZE;i++) {
+		glVertex3fv(&m_Vertices[(vsize*vsize)-i].m_Position.X);
+		glVertex3fv(&m_Vertices[(vsize*vsize)-(i+1)].m_Position.X);
+	}
+	glEnd();
+	glBegin(GL_LINES);
+	for (i=1;i<PATCH_SIZE;i++) {
+		glVertex3fv(&m_Vertices[(vsize*(vsize-1))-(i*vsize)].m_Position.X);
+		glVertex3fv(&m_Vertices[(vsize*(vsize-1))-((i+1)*vsize)].m_Position.X);
+	}
+	glEnd();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -547,6 +580,7 @@ void CPatchRData::RenderBaseSplats()
 	// set up texture environment for base pass
 	MICROLOG(L"base splat textures");
 	glActiveTexture(GL_TEXTURE0);
+	glClientActiveTexture(GL_TEXTURE0);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
@@ -698,7 +732,7 @@ void CPatchRData::RenderBlendSplats()
 	g_VBMan.ClearBatchIndices();
 #else
 	// render blend passes for each patch
-	for (i=0;i<m_TerrainPatches.size();++i) {
+	for (i=0;i<m_Patches.size();++i) {
 		CPatchRData* patchdata=(CPatchRData*) m_Patches[i]->GetRenderData();
 		patchdata->RenderBlends();
 	}
@@ -746,9 +780,6 @@ void CPatchRData::Submit(CPatch* patch)
 void CPatchRData::ApplyShadowMap(GLuint shadowmaphandle)
 {
 	uint i;
-
-//	glEnable(GL_ALPHA_TEST);
-//	glAlphaFunc(GL_GREATER,0.0f);
 
 	g_Renderer.BindTexture(0,shadowmaphandle);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
@@ -809,8 +840,6 @@ void CPatchRData::ApplyShadowMap(GLuint shadowmaphandle)
 		patchdata->RenderStreams(STREAM_POS|STREAM_POSTOUV0);
 	}
 #endif
-
-	glDisable(GL_ALPHA_TEST);
 
 	glDisable(GL_BLEND);
 	glDisableClientState(GL_VERTEX_ARRAY);
