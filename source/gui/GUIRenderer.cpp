@@ -25,6 +25,12 @@ DrawCalls::DrawCalls()
 {
 }
 
+DrawCalls::~DrawCalls()
+{
+	clear();
+	std::vector<SDrawCall>::~vector();
+}
+
 // Never copy anything (to avoid losing track of who owns various pointers):
 
 DrawCalls::DrawCalls(const DrawCalls&)
@@ -36,11 +42,6 @@ const DrawCalls& DrawCalls::operator=(const DrawCalls&)
 	return *this;
 }
 
-DrawCalls::~DrawCalls()
-{
-	clear();
-	std::vector<SDrawCall>::~vector();
-}
 
 
 // Implementations of graphical effects
@@ -197,14 +198,30 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 	{
 		// Sprite not found. Check whether this a special sprite:
 		//     stretched:filename.ext
-		//     filename.ext
+		//     <currently that's the only one>
 		// and if so, try to create it as a new sprite.
+		if (SpriteName.substr(0, 10) == "stretched:")
+		{
+			SGUIImage Image;
+			Image.m_TextureName = "art/textures/ui/" + SpriteName.substr(10);
+			CClientArea ca("0 0 100% 100%");
+			Image.m_Size = ca;
+			Image.m_TextureSize = ca;
 
-		// TODO: Implement this.
+			CGUISprite Sprite;
+			Sprite.AddImage(Image);
 
-		// Otherwise, just complain and give up:
-		LOG(ERROR, LOG_CATEGORY, "Trying to use a sprite that doesn't exist (\"%s\").", (const char*)SpriteName);
-		return;
+			Sprites[SpriteName] = Sprite;
+			
+			it = Sprites.find(SpriteName);
+			assert(it != Sprites.end()); // The insertion above shouldn't fail
+		}
+		else
+		{
+			// Otherwise, just complain and give up:
+			LOG(ERROR, LOG_CATEGORY, "Trying to use a sprite that doesn't exist (\"%s\").", (const char*)SpriteName);
+			return;
+		}
 	}
 
     Calls.reserve(it->second.m_Images.size());
