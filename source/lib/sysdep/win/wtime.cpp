@@ -32,13 +32,8 @@
 
 // we no longer use TGT, due to issues on Win9x; GTC is just as good.
 // (don't want to accelerate the tick rate, because performance will suffer).
-// still need the header for the event timer (triggers periodic recalibration).
-// don't bother trying to avoid dependency on winmm - FMOD pulls it in anyway.
-#include <mmsystem.h>
-	// not included by win_internal due to its WIN32_LEAN_AND_MEAN define
-#ifdef _MSC_VER
-#pragma comment(lib, "winmm.lib")
-#endif
+// avoid dependency on WinMM (event timer) to shorten startup time;
+// fmod pulls it in, but it's delay-loaded.
 
 
 // ticks per second; average of last few values measured in calibrate()
@@ -105,7 +100,7 @@ static i64 hrt_nominal_freq = -1;
 // in case there are unforeseen problems with one of them.
 // order of preference (due to resolution and speed): TSC, QPC, GTC.
 // split out of reset_impl so we can just return when impl is chosen.
-static void choose_impl()
+static int choose_impl()
 {
 	bool safe;
 #define SAFETY_OVERRIDE(impl)\
@@ -143,7 +138,7 @@ static void choose_impl()
 		{
 			hrt_impl = HRT_TSC;
 			hrt_nominal_freq = (i64)cpu_freq;
-			return;
+			return 0;
 		}
 	}
 #endif	// TSC
@@ -201,7 +196,7 @@ static void choose_impl()
 		{
 			hrt_impl = HRT_QPC;
 			hrt_nominal_freq = qpc_freq;
-			return;
+			return 0;
 		}
 	}
 #endif	// QPC
@@ -213,14 +208,14 @@ static void choose_impl()
 	{
 		hrt_impl = HRT_GTC;
 		hrt_nominal_freq = 1000;
-		return;
+		return 0;
 	}
 
 	// no warning here - doesn't inspire confidence in VC dead code removal.
 	debug_warn("hrt_choose_impl: no safe timer found!");
 	hrt_impl = HRT_NONE;
 	hrt_nominal_freq = -1;
-	return;
+	return -1;
 }
 
 
@@ -287,7 +282,7 @@ static i64 ticks_lk()
 //
 // don't want to saddle timer module with the problem of initializing
 // us on first call - it wouldn't otherwise need to be thread-safe.
-static void reset_impl_lk()
+static int reset_impl_lk()
 {
 	HRTImpl old_impl = hrt_impl;
 	double old_time = 0.0;
@@ -297,7 +292,7 @@ static void reset_impl_lk()
 		old_time = ticks_lk() / hrt_freq;
 			// don't call hrt_time to avoid recursive lock.
 
-	choose_impl();
+	CHECK_ERR(choose_impl());
 	// post: hrt_impl != HRT_NONE, hrt_nominal_freq > 0
 
 	hrt_freq = (double)hrt_nominal_freq;
@@ -306,23 +301,8 @@ static void reset_impl_lk()
 	// want it 0-based, but it must not go backwards WRT previous reading.
 	if(old_impl != hrt_impl)
 		hrt_origin = ticks_lk() - (i64)(old_time * hrt_freq);
-}
 
-
-static void init_calibration_thread();
-
-static void hrt_init()
-{
-lock();
-
-	static bool initialized = false;
-	assert(!initialized && "init_lk called more than once!");
-	initialized = true;
-
-	reset_impl_lk();
-	init_calibration_thread();
-
-unlock();
+	return 0;
 }
 
 
@@ -472,49 +452,72 @@ unlock();
 }
 
 
-#ifdef _WIN32
-
-// setup calibration thread
+// calibration thread
 // note: winmm event is better than a thread or just checking elapsed time
 // in hrt_ticks, because it's called right after GTC is updated;
 // otherwise, we may be in the middle of a tick.
+// however, we want to avoid dependency on WinMM to shorten startup time.
+// hence, start a thread.
 
-static UINT mm_event;
+static HANDLE hThread;
+static HANDLE hExitEvent;
 
-// keep calibrate() portable, don't need args anyway
-static void CALLBACK trampoline(UINT uTimerID, UINT uMsg, DWORD_PTR dwUser, DWORD_PTR dw1, DWORD_PTR dw2)
+#include <process.h>
+
+static unsigned __stdcall calibration_thread(void* data)
 {
-	UNUSED(uTimerID);
-	UNUSED(uMsg);
-	UNUSED(dwUser);
-	UNUSED(dw1);
-	UNUSED(dw2);
+	for(;;)
+	{
+		if(WaitForSingleObject(hExitEvent, 1000) != WAIT_TIMEOUT)
+			break;
 
-	calibrate();
+		calibrate();
+	}
+
+	CloseHandle(hExitEvent);
+	return 0;
 }
 
-#endif
 
-
-static void init_calibration_thread()
+static inline int init_calibration_thread()
 {
-#ifdef _WIN32
+	hExitEvent = CreateEvent(0, 0, 0, 0);
+	hThread = (HANDLE)_beginthreadex(0, 0, calibration_thread, 0, 0, 0);
+	return 0;
+}
 
-	// choosing resolution of winmm timer. don't want to increase the
-	// system clock interrupt rate (=> higher system load),
-	// so set res to current tick rate.
-	DWORD adj, incr;
-	BOOL adj_disabled;
-	GetSystemTimeAdjustment(&adj, &incr, &adj_disabled);
-	DWORD res = adj / 10000;
-	mm_event = timeSetEvent(1000, res, trampoline, 0, TIME_PERIODIC);
-	atexit2(timeKillEvent, mm_event, CC_STDCALL_1);
 
-#else
+static inline int shutdown_calibration_thread()
+{
+	SetEvent(hExitEvent);
+	if(WaitForSingleObject(hThread, 250) != WAIT_OBJECT_0)
+		TerminateThread(hThread, 0);
+	CloseHandle(hThread);
+	return 0;
+}
 
-	// TODO: port thread. it's no big deal, but the timer should work without.
 
-#endif
+
+
+static int hrt_init()
+{
+lock();
+
+	reset_impl_lk();
+	int err = init_calibration_thread();
+
+unlock();
+	return err;
+}
+
+static int hrt_shutdown()
+{
+lock();
+
+	int err = shutdown_calibration_thread();
+
+unlock();
+	return err;
 }
 
 
@@ -579,7 +582,7 @@ static int wtime_init()
 
 static int wtime_shutdown()
 {
-	return 0;
+	return hrt_shutdown();
 }
 
 void wtime_reset_impl()
