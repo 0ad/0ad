@@ -20,6 +20,7 @@ using namespace std;
 //-------------------------------------------------------------------
 CText::CText()
 {
+	AddSetting(GUIST_int,			"buffer-zone");
 	AddSetting(GUIST_CGUIString,	"caption");
 	AddSetting(GUIST_CStr,			"font");
 	AddSetting(GUIST_bool,			"scrollbar");
@@ -73,7 +74,10 @@ void CText::SetupText()
 	if (scrollbar && GetScrollBar(0).GetStyle())
 		width -= GetScrollBar(0).GetStyle()->m_Width;
 
-	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, width, 4, this);
+
+    int buffer_zone=0;
+	GUI<int>::GetSetting(this, "buffer-zone", buffer_zone);
+	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, width, buffer_zone, this);
 
 	// Setup scrollbar
 	if (scrollbar)

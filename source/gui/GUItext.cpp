@@ -533,7 +533,7 @@ void CGUIString::SetValue(const CStr& str)
 		}
 	}
 
-#if 1
+#if 0
 	for (int i=0; i<(int)m_Words.size(); ++i)
 	{
 		LOG(NORMAL, LOG_CATEGORY, "m_Words[%d] = %d", i, m_Words[i]);
