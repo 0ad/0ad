@@ -28,7 +28,7 @@ int res_watch_dir(const char* const path, uint* const reqnum)
 	if(!initialized)
 	{
 		CHECK_ERR(FAMOpen2(&fc, "lib_res"));
-		atexit2(FAMClose, (uintptr_t)&fc);
+		atexit2((void *)FAMClose, (uintptr_t)&fc);
 		initialized = true;
 	}
 
