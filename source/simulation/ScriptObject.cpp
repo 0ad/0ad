@@ -69,13 +69,14 @@ bool CScriptObject::Run( JSObject* Context )
 	return( g_ScriptingHost.ValueToBool( Temp ) );
 }
 
-// Treat this as an event handler and dispatch an event to it.
-void CScriptObject::DispatchEvent( JSObject* Context, CScriptEvent* evt )
+// Treat this as an event handler and dispatch an event to it. Return !evt->m_cancelled, as a convenience.
+bool CScriptObject::DispatchEvent( JSObject* Context, CScriptEvent* evt )
 {
 	jsval Temp;
 	jsval EventObject = OBJECT_TO_JSVAL( evt->GetScript() );
 	if( Function )
 		JS_CallFunction( g_ScriptingHost.GetContext(), Context, Function, 1, &EventObject, &Temp );
+	return( !evt->m_Cancelled );
 }
 
 void CScriptObject::Compile( CStrW FileNameTag, CStrW FunctionBody )

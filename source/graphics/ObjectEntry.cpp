@@ -19,6 +19,7 @@ CObjectEntry::CObjectEntry(int type) : m_Model(0), m_Type(type)
 	m_IdleAnim=0;
 	m_WalkAnim=0;
 	m_DeathAnim=0;
+	m_CorpseAnim=0;
 	m_MeleeAnim=0;
 	m_RangedAnim=0;
 	m_Properties.m_CastShadows=true;
@@ -84,6 +85,12 @@ bool CObjectEntry::BuildModel()
 				m_IdleAnim = m_Animations[t].m_AnimData;
 			if( m_Animations[t].m_AnimName.LowerCase() == CStr( "walk" ) )
 				m_WalkAnim = m_Animations[t].m_AnimData;
+			if( m_Animations[t].m_AnimName.LowerCase() == CStr( "attack" ) )
+				m_MeleeAnim = m_Animations[t].m_AnimData;
+			if( m_Animations[t].m_AnimName.LowerCase() == CStr( "death" ) )
+				m_DeathAnim = m_Animations[t].m_AnimData;
+			if( m_Animations[t].m_AnimName.LowerCase() == CStr( "decay" ) )
+				m_CorpseAnim = m_Animations[t].m_AnimData;
 		}
 		else
 		{

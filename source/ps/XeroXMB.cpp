@@ -1,4 +1,4 @@
-// $Id: XeroXMB.cpp,v 1.7 2004/10/07 20:49:25 philip Exp $
+// $Id: XeroXMB.cpp,v 1.8 2004/11/11 07:09:32 markt Exp $
 
 #include "precompiled.h"
 
@@ -198,7 +198,7 @@ XMBElement XMBElementList::item(const int id)
 			Pos += *(int*)Pos;
 	}
 	// Cache information about this node
-	m_LastItemID = id;
+    m_LastItemID = id;
 	m_LastPointer = Pos;
 
 	return XMBElement(Pos);
@@ -245,5 +245,5 @@ XMBAttribute XMBAttributeList::item(const int id)
 	m_LastItemID = id;
 	m_LastPointer = Pos;
 
-	return XMBAttribute(*(int*)Pos, utf16string( (utf16_t*)(Pos+8) ));
+ 	return XMBAttribute(*(int*)Pos, utf16string( (utf16_t*)(Pos+8) ));
 }

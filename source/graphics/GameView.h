@@ -21,7 +21,9 @@ class CGameView
 	// Settings
 	float m_ViewScrollSpeed;
 	float m_ViewRotateSensitivity;
+	float m_ViewRotateSensitivityKeyboard;
 	float m_ViewRotateAboutTargetSensitivity;
+	float m_ViewRotateAboutTargetSensitivityKeyboard;
 	float m_ViewDragSensitivity;
 	float m_ViewZoomSensitivityWheel;
 	float m_ViewZoomSensitivity;

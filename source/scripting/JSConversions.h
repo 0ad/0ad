@@ -22,6 +22,12 @@ class CVector3D;
 
 template<typename T> T* ToNative( JSContext* cx, JSObject* obj )
 {
+#ifndef NDEBUG
+	if( OBJECT_TO_JSVAL( obj ) == JSVAL_NULL )
+		return( NULL );
+	assert( JS_GetClass( obj ) == &T::JSI_class );
+	return( (T*)JS_GetPrivate( cx, obj ) );
+#endif
 	return( (T*)JS_GetInstancePrivate( cx, obj, &T::JSI_class, NULL ) );
 }
 
@@ -46,12 +52,33 @@ template<typename T> bool ToPrimitive( JSContext* cx, jsval v, T& Storage )
 	return( true );
 }
 
+// Handle pointer-to-objects sensibly (by automatically dereferencing them one level)
+template<typename T> bool ToPrimitive( JSContext* cx, jsval v, T*& Storage )
+{
+	T* Native = ToNative<T>( v );
+	if( !Native ) return( false );
+	Storage = Native;
+	return( true );
+}
+
+/*
+template<typename T> JSObject* ToScript( T** Native )
+{
+	return( ToScript( *Native ) );
+}
+*/
+
 template<typename T> inline T ToPrimitive( JSContext* cx, jsval v ) { T Temp; ToPrimitive( cx, v, Temp ); return( Temp ); }
-template<typename T> inline T ToPrimitive( jsval v ) { return( ToPrimitive( g_ScriptingHost.GetContext(), v ) ); }
+template<typename T> inline T ToPrimitive( jsval v ) { return( ToPrimitive<T>( g_ScriptingHost.GetContext(), v ) ); }
 
 template<typename T> jsval ToJSVal( T& Native )
 {
 	return( OBJECT_TO_JSVAL( ToScript<T>( &Native ) ) );
+}
+
+template<typename T> jsval ToJSVal( T*& Native )
+{
+	return( OBJECT_TO_JSVAL( ToScript<T>( Native ) ) );
 }
 
 template<typename T> jsval ToJSVal( const T& Native );
@@ -71,8 +98,8 @@ template<> bool ToPrimitive<CBaseEntity*>( JSContext* cx, jsval v, CBaseEntity*&
 template<> JSObject* ToScript<CBaseEntity*>( CBaseEntity** Native );
 
 // CObjectEntry
-template<> bool ToPrimitive<CObjectEntry*>( JSContext* cx, jsval v, CObjectEntry*& Storage );
-template<> jsval ToJSVal<CObjectEntry*>( CObjectEntry*& Native );
+template<> bool ToPrimitive<CObjectEntry>( JSContext* cx, jsval v, CObjectEntry*& Storage );
+template<> jsval ToJSVal<CObjectEntry>( CObjectEntry*& Native );
 
 // HEntity
 template<> HEntity* ToNative<HEntity>( JSContext* cx, JSObject* obj );
@@ -82,10 +109,15 @@ template<> JSObject* ToScript<HEntity>( HEntity* Native );
 template<> bool ToPrimitive<CScriptObject>( JSContext* cx, jsval v, CScriptObject& Storage );
 template<> jsval ToJSVal<CScriptObject>( CScriptObject& Native );
 
-// i32
-template<> bool ToPrimitive<int>( JSContext* cx, jsval v, i32& Storage );
-template<> jsval ToJSVal<int>( const i32& Native );
-template<> jsval ToJSVal<int>( i32& Native );
+// int
+template<> bool ToPrimitive<int>( JSContext* cx, jsval v, int& Storage );
+template<> jsval ToJSVal<int>( const int& Native );
+template<> jsval ToJSVal<int>( int& Native );
+
+// uint
+template<> bool ToPrimitive<uint>( JSContext* cx, jsval v, uint& Storage );
+template<> jsval ToJSVal<uint>( const uint& Native );
+template<> jsval ToJSVal<uint>( uint& Native );
 
 // double
 template<> bool ToPrimitive<double>( JSContext* cx, jsval v, double& Storage );

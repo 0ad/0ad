@@ -21,7 +21,9 @@ void CWorld::Initialize(CGameAttributes *pAttribs)
 	g_EntityTemplateCollection.loadTemplates();
 
 	CStr mapfilename("maps/scenarios/");
-	mapfilename += (CStr)pAttribs->GetValue("mapFile");
+
+	mapfilename += (CStr)pAttribs->GetValue( "mapFile" );
+
 	try {
 		CMapReader reader;
 		reader.LoadMap(mapfilename, &m_Terrain, &m_UnitManager, &g_LightEnv);

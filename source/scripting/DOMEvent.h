@@ -22,7 +22,7 @@ public:
 	// Target (currently unused)
 	// EventTarget* m_Target;
 
-	// Listening object currently being processed (currentky unused)
+	// Listening object currently being processed (currently unused)
 	// EventTarget* m_CurrentTarget;
 
 	// Phase type (currently unused)

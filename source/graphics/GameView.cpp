@@ -34,7 +34,9 @@ CGameView::CGameView(CGame *pGame):
 	m_Camera(),
 	m_ViewScrollSpeed(60),
 	m_ViewRotateSensitivity(0.002f),
+	m_ViewRotateSensitivityKeyboard(1.0f),
 	m_ViewRotateAboutTargetSensitivity(0.010f),
+	m_ViewRotateAboutTargetSensitivityKeyboard(2.0f),
 	m_ViewDragSensitivity(0.5f),
 	m_ViewZoomSensitivityWheel(16.0f),
 	m_ViewZoomSensitivity(256.0f),
@@ -69,7 +71,9 @@ void CGameView::Initialize(CGameAttributes *pAttribs)
 
 	getViewParameter( "view.scroll.speed", m_ViewScrollSpeed );
 	getViewParameter( "view.rotate.speed", m_ViewRotateSensitivity );
+	getViewParameter( "view.rotate.keyboard.speed", m_ViewRotateSensitivityKeyboard );
 	getViewParameter( "view.rotate.abouttarget.speed", m_ViewRotateAboutTargetSensitivity );
+	getViewParameter( "view.rotate.keyboard.abouttarget.speed", m_ViewRotateAboutTargetSensitivityKeyboard );
 	getViewParameter( "view.drag.speed", m_ViewDragSensitivity );
 	getViewParameter( "view.zoom.speed", m_ViewZoomSensitivity );
 	getViewParameter( "view.zoom.wheel.speed", m_ViewZoomSensitivityWheel );
@@ -243,7 +247,7 @@ void CGameView::Update(float DeltaTime)
 	forwards_horizontal.Y = 0.0f;
 	forwards_horizontal.Normalize();
 
-	if( hotkeys[HOTKEY_CAMERA_ROTATE] )
+	if( hotkeys[HOTKEY_CAMERA_ROTATE] || hotkeys[HOTKEY_CAMERA_ROTATE_KEYBOARD] )
 	{
 		// Ctrl + middle-drag or left-and-right-drag to rotate view
 
@@ -252,11 +256,36 @@ void CGameView::Update(float DeltaTime)
 		m_Camera.m_Orientation.Translate(position*-1);
 
 		// Sideways rotation
-		m_Camera.m_Orientation.RotateY(m_ViewRotateSensitivity * (float)(mouse_dx));
+		
+		float rightways = 0.0f;
+		if( hotkeys[HOTKEY_CAMERA_ROTATE] )
+			rightways = (float)mouse_dx * m_ViewRotateSensitivity;
+		if( hotkeys[HOTKEY_CAMERA_ROTATE_KEYBOARD] )
+		{
+			if( hotkeys[HOTKEY_CAMERA_LEFT] )
+				rightways -= m_ViewRotateSensitivityKeyboard * DeltaTime;
+			if( hotkeys[HOTKEY_CAMERA_RIGHT] )
+				rightways += m_ViewRotateSensitivityKeyboard * DeltaTime;
+		}
+
+		m_Camera.m_Orientation.RotateY( rightways );
 
 		// Up/down rotation
+
+		float upways = 0.0f;
+		if( hotkeys[HOTKEY_CAMERA_ROTATE] )
+			upways = (float)mouse_dy * m_ViewRotateSensitivity;
+		if( hotkeys[HOTKEY_CAMERA_ROTATE_KEYBOARD] )
+		{
+			if( hotkeys[HOTKEY_CAMERA_UP] )
+				upways -= m_ViewRotateSensitivityKeyboard * DeltaTime;
+			if( hotkeys[HOTKEY_CAMERA_DOWN] )
+				upways += m_ViewRotateSensitivityKeyboard * DeltaTime;
+		}
+
 		CQuaternion temp;
-		temp.FromAxisAngle(rightwards, m_ViewRotateSensitivity * (float)(mouse_dy));
+		temp.FromAxisAngle(rightwards, upways);
+		
 		m_Camera.m_Orientation.Rotate(temp);
 
 		// Retranslate back to the right position
@@ -270,11 +299,16 @@ void CGameView::Update(float DeltaTime)
 		
 		CQuaternion rotateH, rotateV; CMatrix3D rotateM;
 
-		// Side-to-side rotation
-		rotateH.FromAxisAngle( upwards, m_ViewRotateAboutTargetSensitivity * (float)mouse_dx );
+		// Sideways rotation
+		
+		float rightways = (float)mouse_dx * m_ViewRotateAboutTargetSensitivity;
+		
+		rotateH.FromAxisAngle( upwards, rightways );
 
-		// Up-down rotation
-		rotateV.FromAxisAngle( rightwards, m_ViewRotateAboutTargetSensitivity * (float)mouse_dy );
+		// Up/down rotation
+
+		float upways = (float)mouse_dy * m_ViewRotateAboutTargetSensitivity;
+		rotateV.FromAxisAngle( rightwards, upways );
 
 		rotateH *= rotateV;
 		rotateH.ToMatrix( rotateM );
@@ -293,6 +327,55 @@ void CGameView::Update(float DeltaTime)
 
 			// Move the camera back to where it belongs
 			m_Camera.m_Orientation.Translate( m_CameraPivot + delta );
+		}
+		
+	}
+	else if( hotkeys[HOTKEY_CAMERA_ROTATE_ABOUT_TARGET_KEYBOARD] )
+	{
+		// Split up because the keyboard controls use the centre of the screen, not the mouse position.
+		CVector3D origin = m_Camera.m_Orientation.GetTranslation();
+		CVector3D pivot = m_Camera.GetFocus();
+		CVector3D delta = origin - pivot;
+		
+		CQuaternion rotateH, rotateV; CMatrix3D rotateM;
+
+		// Sideways rotation
+		
+		float rightways = 0.0f;
+		if( hotkeys[HOTKEY_CAMERA_LEFT] )
+			rightways -= m_ViewRotateAboutTargetSensitivityKeyboard * DeltaTime;
+		if( hotkeys[HOTKEY_CAMERA_RIGHT] )
+			rightways += m_ViewRotateAboutTargetSensitivityKeyboard * DeltaTime;
+		
+		rotateH.FromAxisAngle( upwards, rightways );
+
+		// Up/down rotation
+
+		float upways = 0.0f;
+		if( hotkeys[HOTKEY_CAMERA_UP] )
+			upways -= m_ViewRotateAboutTargetSensitivityKeyboard * DeltaTime;
+		if( hotkeys[HOTKEY_CAMERA_DOWN] )
+			upways += m_ViewRotateAboutTargetSensitivityKeyboard * DeltaTime;
+		
+		rotateV.FromAxisAngle( rightwards, upways );
+
+		rotateH *= rotateV;
+		rotateH.ToMatrix( rotateM );
+
+		delta = rotateM.Rotate( delta );
+
+		// Lock the inclination to a rather arbitrary values (for the sake of graphical decency)
+
+		float scan = sqrt( delta.X * delta.X + delta.Z * delta.Z ) / delta.Y;
+		if( ( scan >= 0.5f ) ) 
+		{
+			// Move the camera to the origin (in preparation for rotation )
+			m_Camera.m_Orientation.Translate( origin * -1.0f );
+
+			m_Camera.m_Orientation.Rotate( rotateH );
+
+			// Move the camera back to where it belongs
+			m_Camera.m_Orientation.Translate( pivot + delta );
 		}
 		
 	}
@@ -321,15 +404,18 @@ void CGameView::Update(float DeltaTime)
 
 	// Keyboard movement (added to mouse movement, so you can go faster if you want)
 
-	if( hotkeys[HOTKEY_CAMERA_PAN_RIGHT] )
-		m_Camera.m_Orientation.Translate(rightwards * (m_ViewScrollSpeed * DeltaTime));
-	if( hotkeys[HOTKEY_CAMERA_PAN_LEFT] )
-		m_Camera.m_Orientation.Translate(-rightwards * (m_ViewScrollSpeed * DeltaTime));
+	if( hotkeys[HOTKEY_CAMERA_PAN_KEYBOARD] )
+	{
+		if( hotkeys[HOTKEY_CAMERA_RIGHT] )
+			m_Camera.m_Orientation.Translate(rightwards * (m_ViewScrollSpeed * DeltaTime));
+		if( hotkeys[HOTKEY_CAMERA_LEFT] )
+			m_Camera.m_Orientation.Translate(-rightwards * (m_ViewScrollSpeed * DeltaTime));
 
-	if( hotkeys[HOTKEY_CAMERA_PAN_BACKWARD] )
-		m_Camera.m_Orientation.Translate(-forwards_horizontal * (m_ViewScrollSpeed * DeltaTime));
-	if( hotkeys[HOTKEY_CAMERA_PAN_FORWARD] )
-		m_Camera.m_Orientation.Translate(forwards_horizontal * (m_ViewScrollSpeed * DeltaTime));
+		if( hotkeys[HOTKEY_CAMERA_DOWN] )
+			m_Camera.m_Orientation.Translate(-forwards_horizontal * (m_ViewScrollSpeed * DeltaTime));
+		if( hotkeys[HOTKEY_CAMERA_UP] )
+			m_Camera.m_Orientation.Translate(forwards_horizontal * (m_ViewScrollSpeed * DeltaTime));
+	}
 
 	// Smoothed zooming (move a certain percentage towards the desired zoom distance every frame)
 

@@ -22,10 +22,18 @@
 
 struct CSelectedEntities : public Singleton<CSelectedEntities>
 {
-	CSelectedEntities() { clearSelection(); m_group = -1; m_group_highlight = -1; m_contextOrder = -1; }
+	CSelectedEntities()
+	{
+		clearSelection();
+		m_group = -1;
+		m_group_highlight = -1;
+		m_contextOrder = -1;
+		m_selectionChanged = true;
+	}
 	std::vector<HEntity> m_selected;
 	std::vector<HEntity> m_groups[MAX_GROUPS];
 	i8 m_group, m_group_highlight;
+	bool m_selectionChanged;
 	int m_contextOrder;
 
 	void addSelection( HEntity entity );
@@ -75,6 +83,8 @@ struct CMouseoverEntities : public Singleton<CMouseoverEntities>
 	float m_fademaximum;
 	CVector2D m_worldposition;
 	HEntity m_target;
+	HEntity m_lastTarget;
+	bool m_targetChanged;
 
 	bool m_bandbox, m_viewall;
 	u16 m_x1, m_y1, m_x2, m_y2;
@@ -87,7 +97,7 @@ struct CMouseoverEntities : public Singleton<CMouseoverEntities>
 		m_fadeoutrate = 2.0f;
 		m_fademaximum = 0.5f;
 		m_mouseover.clear();
-		m_target;
+		m_targetChanged = true;
 	}
 	std::vector<SMouseoverFader> m_mouseover;
 	void update( float timestep );

@@ -15,7 +15,11 @@ CBaseEntity::CBaseEntity()
 	AddProperty( L"parent", (CBaseEntity**)&m_base, false );
 	AddProperty( L"actions.move.speed", &m_speed );
 	AddProperty( L"actions.move.turningradius", &m_turningRadius );
+	AddProperty( L"actions.attack.range", &m_meleeRange );
+	AddProperty( L"actions.attack.rangemin", &m_meleeRangeMin );
 	AddProperty( L"actor", &m_actorObject );
+	AddProperty( L"traits.extant", &m_extant );
+	AddProperty( L"traits.corpse", &m_corpse );
 
 	for( int t = 0; t < EVENT_LAST; t++ )
 		AddProperty( EventNames[t], &m_EventHandlers[t] );
@@ -23,6 +27,11 @@ CBaseEntity::CBaseEntity()
 	m_base = NULL;
 
 	m_actorObject = NULL;
+
+	// Initialize, make life a little easier on the scriptors
+	m_speed = m_turningRadius = m_meleeRange = m_meleeRangeMin = 0.0f;
+	m_extant = true; m_corpse = NULL;
+
 	m_bound_type = CBoundingObject::BOUND_NONE;
 	m_bound_circle = NULL;
 	m_bound_box = NULL;
@@ -244,8 +253,8 @@ void CBaseEntity::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement&
 
 void CBaseEntity::ScriptingInit()
 {
-	AddMethod<jsval, &CBaseEntity::ToString>( "toString", 0 );
-	CJSObject<CBaseEntity, true>::ScriptingInit( "EntityTemplate" );
+	AddMethod<jsval, ToString>( "toString", 0 );
+	CJSObject<CBaseEntity>::ScriptingInit( "EntityTemplate" );
 }
 
 // Script-bound functions

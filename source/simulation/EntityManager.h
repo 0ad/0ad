@@ -46,7 +46,8 @@ public:
 	HEntity* getByHandle( u16 index );
 	void updateAll( size_t timestep );
 	void interpolateAll( float relativeoffset );
-	void dispatchAll( CMessage* msg );
+	void InitializeAll();
+	void TickAll();
 	void renderAll();
 	std::vector<HEntity>* matches( EntityPredicate predicate );
 	std::vector<HEntity>* matches( EntityPredicate predicate1, EntityPredicate predicate2 );

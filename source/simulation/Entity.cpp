@@ -29,11 +29,13 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	AddProperty( L"actions.move.speed", &m_speed );
 	AddProperty( L"selected", &m_selected, false, (NotifyFn)&CEntity::checkSelection );
 	AddProperty( L"group", &m_grouped, false, (NotifyFn)&CEntity::checkGroup );
-	AddProperty( L"extant", &m_extant, false, (NotifyFn)&CEntity::checkExtant );
+	AddProperty( L"traits.extant", &m_extant );
+	AddProperty( L"traits.corpse", &m_corpse );
 	AddProperty( L"actions.move.turningradius", &m_turningRadius );
+	AddProperty( L"actions.attack.range", &m_meleeRange );
+	AddProperty( L"actions.attack.rangemin", &m_meleeRangeMin );
 	AddProperty( L"position", &m_graphics_position, false, (NotifyFn)&CEntity::teleport );
 	AddProperty( L"orientation", &m_graphics_orientation, false, (NotifyFn)&CEntity::reorient );
-
 	
 	for( int t = 0; t < EVENT_LAST; t++ )
 		AddProperty( EventNames[t], &m_EventHandlers[t] );
@@ -42,7 +44,8 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	m_actor = NULL;
 	m_bounds = NULL;
 
-	m_moving = false;
+	m_lastState = -1;
+	m_transition = true;
 
 	m_base = base;
 	
@@ -57,8 +60,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	m_graphics_position = m_position;
 	m_graphics_orientation = m_orientation;
 
-	m_extant = true;
-	m_extant_mirror = true;
+	m_destroyed = false;
 
 	m_selected = false;
 
@@ -114,9 +116,9 @@ void CEntity::kill()
 	if( m_bounds ) delete( m_bounds );
 	m_bounds = NULL;
 
-	m_extant = false;
-	m_extant_mirror = false;
-	
+	m_destroyed = true;
+	Shutdown();
+
 	if( m_actor )
 	{
 		g_UnitMan.RemoveUnit( m_actor );
@@ -154,9 +156,16 @@ void CEntity::update( size_t timestep )
 	m_position_previous = m_position;
 	m_orientation_previous = m_orientation;
 
+	// The process[...] functions return 'true' if the order at the top of the stack
+	// still needs to be (re-)evaluated; else 'false' to terminate the processing of
+	// this entity in this timestep.
+
 	while( !m_orderQueue.empty() )
 	{
 		CEntityOrder* current = &m_orderQueue.front();
+
+		m_transition = ( current->m_type != m_lastState );
+		m_lastState = current->m_type;
 
 		switch( current->m_type )
 		{
@@ -165,24 +174,55 @@ void CEntity::update( size_t timestep )
 		case CEntityOrder::ORDER_GOTO_SMOOTHED:
 			if( processGotoNoPathing( current, timestep ) ) break;
 			return;
+		case CEntityOrder::ORDER_ATTACK_MELEE:
+			if( processAttackMeleeNoPathing( current, timestep ) ) break;
+			return;
+		case CEntityOrder::ORDER_ATTACK_MELEE_NOPATHING:
+			if( processAttackMeleeNoPathing( current, timestep ) ) break;
+			return;
 		case CEntityOrder::ORDER_GOTO:
 			if( processGoto( current, timestep ) ) break;
 			return;
 		case CEntityOrder::ORDER_PATROL:
 			if( processPatrol( current, timestep ) ) break;
 			return;
+		case CEntityOrder::ORDER_PATH_END_MARKER:
+			m_orderQueue.pop_front();
+			break;
 		default:
 			assert( 0 && "Invalid entity order" );
 		}
 	}
 
-	if( m_moving )
+	if( ( m_lastState != -1 ) || !m_actor->GetModel()->GetAnimation() )
 	{
-		m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_IdleAnim );
-		m_moving = false;
+		if( m_extant )
+			m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_IdleAnim );
+		else
+			m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_CorpseAnim );
+		m_lastState = -1;
 	}
 }
 
+void CEntity::Initialize()
+{
+	CEventInitialize evt;
+	DispatchEvent( &evt );
+}
+
+void CEntity::Tick()
+{
+	CEventTick evt;
+	DispatchEvent( &evt );
+}
+
+void CEntity::Damage( CDamageType& damage, CEntity* inflictor )
+{
+	CEventDamage evt( inflictor, &damage );
+	DispatchEvent( &evt );
+}
+
+/*
 void CEntity::dispatch( const CMessage* msg )
 {
 	
@@ -197,7 +237,9 @@ void CEntity::dispatch( const CMessage* msg )
 	case CMessage::EMSG_INIT:
 	{
 		CEventInitialize Init;
-		DispatchEvent( &Init );
+		if( !DispatchEvent( &Init ) )
+			break;
+
 		if( m_base->m_Tag == CStrW( L"Prometheus Dude" ) )
 		{
 			if( getCollisionObject( this ) )
@@ -206,23 +248,6 @@ void CEntity::dispatch( const CMessage* msg )
 				kill();
 				return;
 			}
-			/*
-			std::vector<HEntity>* waypoints = g_EntityManager.matches( isWaypoint );
-			while( !waypoints->empty() )
-			{
-				CEntityOrder patrol;
-				size_t id = rand() % waypoints->size();
-				std::vector<HEntity>::iterator it = waypoints->begin();
-				it += id;
-				HEntity waypoint = *it;
-				patrol.m_type = CEntityOrder::ORDER_PATROL;
-				patrol.m_data[0].location.x = waypoint->m_position.X;
-				patrol.m_data[0].location.y = waypoint->m_position.Z;
-				pushOrder( patrol );
-				waypoints->erase( it );
-			}
-			delete( waypoints );
-			*/
 		}
 		break;
 	}
@@ -233,13 +258,15 @@ void CEntity::dispatch( const CMessage* msg )
 			clearOrders();
 		pushOrder( m->order );
 		break;
+	case CMessage::EMSG_DAMAGE:
+		CEntityOrder* o;
 	}
 }
+*/
 
 bool CEntity::DispatchEvent( CScriptEvent* evt )
 {
-	m_EventHandlers[evt->m_TypeCode].DispatchEvent( GetScript(), evt );
-	return( false );
+	return( m_EventHandlers[evt->m_TypeCode].DispatchEvent( GetScript(), evt ) );
 }
 
 void CEntity::clearOrders()
@@ -252,16 +279,30 @@ void CEntity::pushOrder( CEntityOrder& order )
 	m_orderQueue.push_back( order );
 }
 
+int CEntity::defaultOrder( CEntity* orderTarget )
+{
+	CEventTargetChanged evt( orderTarget );
+	DispatchEvent( &evt );
+	return( evt.m_defaultAction );
+}
+
 bool CEntity::acceptsOrder( int orderType, CEntity* orderTarget )
 {
+	CEventPrepareOrder evt( orderTarget, orderType );
+	return( DispatchEvent( &evt ) );
+
+	/*
 	// Hardcoding...
 	switch( orderType )
 	{
 	case CEntityOrder::ORDER_GOTO:
 	case CEntityOrder::ORDER_PATROL:
 		return( m_speed > 0.0f );
+	case CEntityOrder::ORDER_ATTACK_MELEE:
+		return( orderTarget && ( m_meleeRange > 0.0f ) );
 	}
 	return( false );
+	*/
 }
 
 void CEntity::repath()
@@ -316,13 +357,6 @@ void CEntity::checkGroup()
 	g_Selection.changeGroup( me, -1 ); // Ungroup
 	if( ( m_grouped >= 0 ) && ( m_grouped < MAX_GROUPS ) )
 		g_Selection.changeGroup( me, m_grouped );		
-}
-
-void CEntity::checkExtant()
-{
-	if( m_extant && !( (bool)m_extant_mirror ) )
-		kill();
-	// Sorry. Dead stuff stays dead.
 }
 
 void CEntity::interpolate( float relativeoffset )
@@ -521,10 +555,13 @@ void CEntity::renderSelectionOutline( float alpha )
 
 void CEntity::ScriptingInit()
 {
-	AddMethod<jsval, &CEntity::ToString>( "toString", 0 );
-	AddMethod<bool, &CEntity::OrderSingle>( "order", 1 );
-	AddMethod<bool, &CEntity::OrderQueued>( "orderQueued", 1 );
-	CJSObject<CEntity, true>::ScriptingInit( "Entity", Construct, 2 );
+	AddMethod<jsval, ToString>( "toString", 0 );
+	AddMethod<bool, OrderSingle>( "order", 1 );
+	AddMethod<bool, OrderQueued>( "orderQueued", 1 );
+	AddMethod<bool, Kill>( "kill", 0 );
+	AddMethod<bool, Damage>( "damage", 1 );
+	AddMethod<bool, IsIdle>( "isIdle", 0 );
+	CJSObject<CEntity>::ScriptingInit( "Entity", Construct, 2 );
 }
 
 // Script constructor
@@ -582,8 +619,7 @@ JSBool CEntity::Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsva
 
 	HEntity handle = g_EntityManager.create( baseEntity, position, orientation );
 
-	CMessage message( CMessage::EMSG_INIT );
-	handle->dispatch( &message );
+	handle->Initialize();
 
 	*rval = ToJSVal<CEntity>( *handle );
 	return( JS_TRUE );
@@ -640,11 +676,87 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 			JS_ReportError( cx, "Invalid location" );
 			return( false );
 		}
-		g_Scheduler.pushFrame( ORDER_DELAY, me, new CMessageOrder( newOrder, Queued ) );
-		return( true );
+		break;
+	case CEntityOrder::ORDER_ATTACK_MELEE:
+		if( argc < 1 )
+		{
+			JS_ReportError( cx, "Too few parameters" );
+			return( false );
+		}
+		CEntity* target;
+		target = ToNative<CEntity>( argv[1] );
+		if( !target )
+		{
+			JS_ReportError( cx, "Invalid target" );
+			return( false );
+		}
+		newOrder.m_data[0].entity = target->me;
+		break;
 	default:
 		JS_ReportError( cx, "Invalid order type" );
 		return( false );
 	}
+
+	if( !Queued )
+		clearOrders();
+	pushOrder( newOrder );
+
+	return( true );
 }
 
+bool CEntity::Damage( JSContext* cx, uintN argc, jsval* argv )
+{
+	CEntity* inflictor = NULL;
+
+	if( argc >= 4 )
+		inflictor = ToNative<CEntity>( argv[3] );
+
+	if( argc >= 3 )
+	{
+		Damage( CDamageType( ToPrimitive<float>( argv[0] ), ToPrimitive<float>( argv[1] ), ToPrimitive<float>( argv[2] ) ), inflictor );
+		return( true );
+	}
+	
+	if( argc >= 2 )
+		inflictor = ToNative<CEntity>( argv[1] );
+
+	// If it's a DamageType, use that. Otherwise, see if it's a float, if so, use
+	// that as the 'typeless' unblockable damage type.
+
+	CDamageType* dmg = ToNative<CDamageType>( argv[0] );
+
+	if( !dmg )
+	{
+		float dmgN;
+		if( !ToPrimitive<float>( cx, argv[0], dmgN ) )
+			return( false );
+
+		Damage(	CDamageType( dmgN ), inflictor );
+		return( true );	
+	}
+
+	Damage( *dmg, inflictor );
+	return( true );
+}
+
+bool CEntity::Kill( JSContext* cx, uintN argc, jsval* argv )
+{
+	// Change this entity's template to the corpse entity - but note
+	// we don't fiddle with the actors or bounding information that we 
+	// usually do when changing templates.
+
+	CBaseEntity* corpse = g_EntityTemplateCollection.getTemplate( m_corpse );
+	if( corpse )
+	{
+		m_base = corpse;
+		SetBase( m_base );
+	}
+	
+	g_Selection.removeAll( me );
+
+	clearOrders();
+
+	m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_DeathAnim, true );
+
+	return( true );
+}

@@ -13,6 +13,7 @@ extern CConsole* g_Console;
 extern int mouse_x, mouse_y;
 extern bool keys[SDLK_LAST];
 extern bool g_active;
+extern CStr g_CursorName;
 
 static const float SELECT_DBLCLICK_RATE = 0.5f;
 const int ORDER_DELAY = 5;
@@ -23,6 +24,7 @@ void CSelectedEntities::addSelection( HEntity entity )
 	assert( !isSelected( entity ) );
 	m_selected.push_back( entity );
 	entity->m_selected = true;
+	m_selectionChanged = true;
 }
 
 void CSelectedEntities::removeSelection( HEntity entity )
@@ -36,6 +38,7 @@ void CSelectedEntities::removeSelection( HEntity entity )
 		if( (*it) == entity ) 
 		{
 			m_selected.erase( it );
+			m_selectionChanged = true;
 			break;
 		}
 	}
@@ -126,6 +129,9 @@ void CSelectedEntities::renderOverlays()
 	case CEntityOrder::ORDER_PATROL:
 		glwprintf( L"Patrol to" );
 		break;
+	case CEntityOrder::ORDER_ATTACK_MELEE:
+		glwprintf( L"Attack" );
+		break;
 	}
 
 	glDisable( GL_TEXTURE_2D );
@@ -146,6 +152,7 @@ void CSelectedEntities::clearSelection()
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
 		(*it)->m_selected = false;
 	m_selected.clear();
+	m_selectionChanged = true;
 }
 
 void CSelectedEntities::removeAll( HEntity entity )
@@ -158,6 +165,7 @@ void CSelectedEntities::removeAll( HEntity entity )
 		if( (*it) == entity ) 
 		{
 			m_selected.erase( it );
+			m_selectionChanged = true;
 			break;
 		}
 	}
@@ -168,6 +176,7 @@ void CSelectedEntities::removeAll( HEntity entity )
 			if( (*it) == entity ) 
 			{
 				m_groups[group].erase( it );
+				m_selectionChanged = true;
 				break;
 			}
 		}
@@ -242,12 +251,18 @@ void CSelectedEntities::addToGroup( i8 groupid, HEntity entity )
 
 void CSelectedEntities::loadGroup( i8 groupid )
 {
+	if( m_group == groupid )
+		return;
+
 	clearSelection();
 	m_selected = m_groups[groupid];
+
 	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
 		(*it)->m_selected = true;
 	m_group = groupid;
+
+	m_selectionChanged = true;
 }
 
 void CSelectedEntities::addGroup( i8 groupid )
@@ -329,6 +344,52 @@ CVector3D CSelectedEntities::getGroupPosition( i8 groupid )
 
 void CSelectedEntities::update()
 {
+	if( m_selectionChanged || g_Mouseover.m_targetChanged )
+	{
+		// Can't order anything off the map
+		if( !g_Game->GetWorld()->GetTerrain()->isOnMap( g_Mouseover.m_worldposition ) )
+		{
+			m_contextOrder = -1;
+			return;
+		}
+
+		// Quick count to see which is the modal default order.
+
+		int defaultPoll[CEntityOrder::ORDER_LAST];
+		int t, vote;
+		for( t = 0; t < CEntityOrder::ORDER_LAST; t++ )
+			defaultPoll[t] = 0;
+
+		std::vector<HEntity>::iterator it;
+		for( it = m_selected.begin(); it < m_selected.end(); it++ )
+		{
+			vote = (*it)->defaultOrder( g_Mouseover.m_target );
+			if( ( vote >= 0 ) && ( vote < CEntityOrder::ORDER_LAST ) )
+				defaultPoll[vote]++;
+		}
+
+		vote = -1;
+		for( t = 0; t < CEntityOrder::ORDER_LAST; t++ )
+		{
+			if( ( vote == -1 ) || ( defaultPoll[t] > defaultPoll[vote] ) )
+				vote = t;
+		}
+
+		m_contextOrder = vote;
+		switch( m_contextOrder )
+		{
+		case CEntityOrder::ORDER_ATTACK_MELEE:
+			g_CursorName = "action-attack";
+			break;
+		default:
+			g_CursorName = "arrow-default";
+			break;
+		}
+
+		m_selectionChanged = false;
+		g_Mouseover.m_targetChanged = false;
+	}
+	/*
 	if( !isContextValid( m_contextOrder ) )
 	{
 		// This order isn't valid for the current selection and/or target.
@@ -339,6 +400,7 @@ void CSelectedEntities::update()
 			}
 		m_contextOrder = -1;
 	}
+	*/
 
 	if( ( m_group_highlight != -1 ) && getGroupCount( m_group_highlight ) )
 		g_Game->GetView()->SetCameraTarget( getGroupPosition( m_group_highlight ) );
@@ -413,15 +475,31 @@ void CSelectedEntities::contextOrder( bool pushQueue )
 	switch( m_contextOrder )
 	{
 // PATROL order: temporatily disabled until we define the network command for it
-//	case CEntityOrder::ORDER_PATROL:
+	case CEntityOrder::ORDER_PATROL:
 	case CEntityOrder::ORDER_GOTO:
 	{
+		context.m_data[0].location = g_Mouseover.m_worldposition;
+		break;
+/*		
 		CGotoCommand *msg=new CGotoCommand();
 		msg->m_Entity=m_selected[0]->me;
 		msg->m_TargetX=(u32)g_Mouseover.m_worldposition.x;
 		msg->m_TargetY=(u32)g_Mouseover.m_worldposition.y;
 		g_Game->GetSimulation()->QueueLocalCommand(msg);
 		break;
+*/
+	}
+	case CEntityOrder::ORDER_ATTACK_MELEE:
+	{
+		context.m_data[0].entity = g_Mouseover.m_target;
+		for( it = m_selected.begin(); it < m_selected.end(); it++ )
+			if( (*it)->acceptsOrder( m_contextOrder, g_Mouseover.m_target ) )
+			{
+				if( !pushQueue )
+					(*it)->clearOrders();
+				(*it)->pushOrder( context );
+			}
+		return;
 	}
 	default:
 		break;
@@ -447,8 +525,7 @@ void CSelectedEntities::contextOrder( bool pushQueue )
 	pathfinder?
 	*/
 
-	/*	
-	float radius = 2.0f * sqrt( (float)m_selected.size() - 1 ); // A decent enough approximation
+	float radius = 2.0f * sqrt( (float)m_selected.size() - 1 ); 
 
 	float _x, _y;
 
@@ -478,9 +555,12 @@ void CSelectedEntities::contextOrder( bool pushQueue )
 			if( contextRandomized.m_data[0].location.y >= mapsize )
 				contextRandomized.m_data[0].location.y = mapsize;
 
-			g_Scheduler.pushFrame( ORDER_DELAY, (*it)->me, new CMessageOrder( contextRandomized, pushQueue ) );
+			if( !pushQueue )
+				(*it)->clearOrders();
+			
+			(*it)->pushOrder( contextRandomized );
 		}
-	*/
+
 }
 
 void CMouseoverEntities::update( float timestep )
@@ -495,12 +575,18 @@ void CMouseoverEntities::update( float timestep )
 	
 	m_worldposition = pCamera->GetWorldCoordinates();
 
-	if( hit && hit->GetEntity() )
+	if( hit && hit->GetEntity() && hit->GetEntity()->m_extant )
 	{
 		m_target = hit->GetEntity()->me;
 	}
 	else
 		m_target = HEntity();
+
+	if( m_target != m_lastTarget )
+	{
+		m_targetChanged = true;
+		m_lastTarget = m_target;
+	}
 
 	if( m_viewall )
 	{
@@ -515,7 +601,8 @@ void CMouseoverEntities::update( float timestep )
 		std::vector<HEntity>::iterator it;
 		
 		for( it = onscreen->begin(); it < onscreen->end(); it++ )
-			m_mouseover.push_back( SMouseoverFader( *it, m_fademaximum, false ) );
+			if( (*it)->m_extant )
+				m_mouseover.push_back( SMouseoverFader( *it, m_fademaximum, false ) );
 
 		delete( onscreen );
 	}
@@ -540,6 +627,9 @@ void CMouseoverEntities::update( float timestep )
 
 		for( it = onscreen->begin(); it < onscreen->end(); it++ )
 		{
+			if( !(*it)->m_extant )
+				continue;
+
 			CVector3D worldspace = (*it)->m_graphics_position;
 
 			float x, y;
@@ -655,9 +745,8 @@ void CMouseoverEntities::expandAcrossScreen()
 	m_mouseover.clear();
 	std::vector<HEntity>::iterator it;
 	for( it = activeset->begin(); it < activeset->end(); it++ )
-	{
-		m_mouseover.push_back( SMouseoverFader( *it ) );
-	}
+		if( (*it)->m_extant )
+			m_mouseover.push_back( SMouseoverFader( *it ) );
 	delete( activeset );
 }
 
@@ -667,9 +756,8 @@ void CMouseoverEntities::expandAcrossWorld()
 	m_mouseover.clear();
 	std::vector<HEntity>::iterator it;
 	for( it = activeset->begin(); it < activeset->end(); it++ )
-	{
-		m_mouseover.push_back( SMouseoverFader( *it ) );
-	}
+		if( (*it)->m_extant )
+			m_mouseover.push_back( SMouseoverFader( *it ) );
 	delete( activeset );
 }
 

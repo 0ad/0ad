@@ -53,7 +53,8 @@ public:
 	void operator=( const HEntity& copy );
 	bool operator==( const HEntity& test ) const;
 	bool operator!=( const HEntity& test ) const { return( !operator==( test ) ); }
-	operator bool() const { return( m_handle != INVALID_HANDLE ); }
+	operator bool() const;
+	bool operator!() const;
 	operator CEntity*() const;
 	~HEntity();
 

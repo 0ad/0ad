@@ -48,22 +48,46 @@ void CBaseEntityCollection::loadTemplates()
 
 	// Fix up parent links in the templates.
 	
-	std::vector<CBaseEntity*>::iterator it;
-	for( it = m_templates.begin(); it != m_templates.end(); it++ )
+	std::vector<CBaseEntity*>::iterator it, it_done;
+	std::vector<CBaseEntity*> done;
+
+	// TODO: MT: Circular references check.
+
+	while( done.size() < m_templates.size() )
 	{
-		if( !( (*it)->m_Base_Name.Length() ) )
-			continue;
-
-		CBaseEntity* Base = getTemplate( (*it)->m_Base_Name );
-		if( Base )
+		for( it = m_templates.begin(); it != m_templates.end(); it++ )
 		{
-			(*it)->m_base = Base;
-			(*it)->loadBase();
-		}
-		else
-			LOG( WARNING, LOG_CATEGORY, "Parent template %s does not exist in template %s", CStr8( (*it)->m_Base_Name ).c_str(), CStr8( (*it)->m_Tag ).c_str() );
-	}
+			if( !( (*it)->m_Base_Name.Length() ) )
+			{
+				done.push_back( *it );
+				continue;
+			}
 
+			CBaseEntity* Base = getTemplate( (*it)->m_Base_Name );
+			if( Base )
+			{
+				// Check whether it's been loaded yet.
+				for( it_done = done.begin(); it_done != done.end(); it_done++ )
+				{
+					if( *it_done == Base )
+					{
+						(*it)->m_base = Base;
+						(*it)->loadBase();
+						Base = NULL;
+						break;
+					}
+				}
+				if( !Base )
+				{
+					// Done
+					done.push_back( *it );
+					continue;
+				}
+			}
+			else
+				LOG( WARNING, LOG_CATEGORY, "Parent template %s does not exist in template %s", CStr8( (*it)->m_Base_Name ).c_str(), CStr8( (*it)->m_Tag ).c_str() );
+		}
+	}
 }
 
 void CBaseEntityCollection::LoadDirectory( Handle directory, CStr pathname )

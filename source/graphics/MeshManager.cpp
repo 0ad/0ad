@@ -43,14 +43,29 @@ CModelDef *CMeshManager::GetMesh(const char *filename)
     }
 }
 
-int CMeshManager::ReleaseMesh(CModelDef *mesh)
+int CMeshManager::ReleaseMesh(CModelDef* mesh)
 {
     if(!mesh)
         return 0;
 
-    mesh_map::iterator iter = m_MeshMap.find(mesh->m_Hash);
-    if(iter == m_MeshMap.end())
-        return 0;
+	// FIXME: Someone sort this out. I'm tired.
+	// Looks like it might be a multiple delete; not sure best way
+	// to resolve it. MT.
+
+	mesh_map::iterator iter;
+
+	try
+	{
+		iter = m_MeshMap.find(mesh->m_Hash);
+	}
+	catch( ... )
+	{
+		debug_out( "FIXME: Do something with %s(%d)", __FILE__, __LINE__ );
+		return( 0 );
+	}
+
+	if(iter == m_MeshMap.end())
+		return 0;
 
     mesh->m_RefCount--;
     if(mesh->m_RefCount <= 0)

@@ -1196,9 +1196,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	ATTR(style);
 	ATTR(type);
 	ATTR(name);
-// MT - temp tag
 	ATTR(hotkey);
-// -- MT
 	ATTR(z);
 	ATTR(on);
 	ATTR(file);
@@ -1233,9 +1231,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	bool NameSet = false;
 	bool ManuallySetZ = false; // if z has been manually set, this turn true
 
-// MT - temp tag
 	CStr hotkeyTag;
-// -- MT
 
 	// Now we can iterate all attributes and store
 	for (i=0; i<attributes.Count; ++i)
@@ -1258,11 +1254,9 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			continue;
 		}
 
-// MT - temp tag
 		// Wire up the hotkey tag, if it has one
 		if (attr.Name == attr_hotkey)
 			hotkeyTag = attr.Value;
-// -- MT
 
 		if (attr.Name == attr_z)
 			ManuallySetZ = true;
@@ -1327,11 +1321,9 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		++m_InternalNameNumber;
 	}
 
-// MT - temp tag
 	// Attempt to register the hotkey tag, if one was provided
 	if( hotkeyTag.Length() )
 		hotkeyRegisterGUIObject( object->GetName(), hotkeyTag );
-// -- MT
 
 	CStrW caption (Element.getText());
 	if (caption.Length())

@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "CStr.h"
+#include "scripting/JSSerialization.h"
 
 enum ENetMessageType
 {

@@ -39,7 +39,7 @@ public:
 	bool Run( JSObject* Context );
 
 	// Treat this as an event handler and dispatch an event to it.
-	void DispatchEvent( JSObject* Context, CScriptEvent* evt );
+	bool DispatchEvent( JSObject* Context, CScriptEvent* evt );
 };
 
 #endif

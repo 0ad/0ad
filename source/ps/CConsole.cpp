@@ -13,6 +13,8 @@
 #include "Network/Client.h"
 #include "Network/Server.h"
 
+#include "Interact.h"
+
 extern bool keys[SDLK_LAST];
 
 CConsole::CConsole()
@@ -497,14 +499,24 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 	{
 		// Process it as JavaScript
 
-		g_ScriptingHost.ExecuteScript( CStrW( szLine + 1 ) );
+		// (Cheating) run it as the first selected entity, if there is one.
+		JSObject* RunAs = NULL;
+		if( g_Selection.m_selected.size() )
+			RunAs = g_Selection.m_selected[0]->GetScript();
+
+		g_ScriptingHost.ExecuteScript( CStrW( szLine + 1 ), L"Console", RunAs );
 
 	}
 	else if (szLine[0] == '?')
 	{
 		// Process it as JavaScript and display the result
 
-		jsval rval = g_ScriptingHost.ExecuteScript( CStrW( szLine + 1 ) );
+		// (Cheating) run it as the first selected entity, if there is one.
+		JSObject* RunAs = NULL;
+		if( g_Selection.m_selected.size() )
+			RunAs = g_Selection.m_selected[0]->GetScript();
+
+		jsval rval = g_ScriptingHost.ExecuteScript( CStrW( szLine + 1 ), L"Console", RunAs );
 		if (rval)
 		{
 			try {

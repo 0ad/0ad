@@ -5,6 +5,7 @@
 size_t simulationTime;
 size_t frameCount;
 
+/*
 void CScheduler::pushTime( size_t delay, const HEntity& destination, const CMessage* message )
 {
 	timeMessage.push( SDispatchObjectMessage( destination, simulationTime + delay, message ) );
@@ -14,6 +15,7 @@ void CScheduler::pushFrame( size_t delay, const HEntity& destination, const CMes
 {
 	frameMessage.push( SDispatchObjectMessage( destination, frameCount + delay, message ) );
 }
+*/
 
 void CScheduler::pushTime( size_t delay, const CStrW& fragment, JSObject* operateOn )
 {
@@ -47,27 +49,6 @@ void CScheduler::pushInterval( size_t first, size_t interval, JSFunction* functi
 
 void CScheduler::update(size_t simElapsed)
 {
-	simulationTime += simElapsed;
-	frameCount++;
-
-	while( !timeMessage.empty() )
-	{
-		SDispatchObjectMessage top = timeMessage.top();
-		if( top.deliveryTime > simulationTime )
-			break;
-		timeMessage.pop();
-		top.destination->dispatch( top.message );
-		delete( top.message );
-	}
-	while( !frameMessage.empty() )
-	{
-		SDispatchObjectMessage top = frameMessage.top();
-		if( top.deliveryTime > frameCount )
-			break;
-		frameMessage.pop();
-		top.destination->dispatch( top.message );
-		delete( top.message );
-	}
 	while( !timeScript.empty() )
 	{
 		SDispatchObjectScript top = timeScript.top();

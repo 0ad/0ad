@@ -554,7 +554,7 @@ static void Render()
 
 static void InitDefaultGameAttributes()
 {
-	g_GameAttributes.SetValue("mapFile", L"test01.pmp");
+	g_GameAttributes.SetValue( "mapFile", L"combattest.pmp" );
 }
 
 
@@ -644,7 +644,7 @@ static void ParseArgs(int argc, char* argv[])
 			break;
 		case 'm':
 			if(strncmp(name, "m=", 2) == 0)
-				g_GameAttributes.SetValue("mapFile", CStr(argv[i]+3));
+				g_GameAttributes.SetValue( "mapFile", CStr( argv[i] + 3 ) );
 			break;
 		case 'n':
 			if(strncmp(name, "novbo", 5) == 0)
@@ -689,15 +689,21 @@ static void InitScripting()
 
 	// Register the JavaScript interfaces with the runtime
 	CEntity::ScriptingInit();
-
 	CBaseEntity::ScriptingInit();
 	
 	JSI_IGUIObject::init();
 	JSI_GUITypes::init();
 	JSI_Vector3D::init();
 	EntityCollection::Init( "EntityCollection" );
+	// PlayerCollection::Init( "PlayerCollection" );
+	CDamageType::ScriptingInit();
 	CJSPropertyAccessor<CEntity>::ScriptingInit(); // <-- Doesn't really matter which we use, but we know CJSPropertyAccessor<T> is already being compiled for T = CEntity.
 	CScriptEvent::ScriptingInit();
+
+	g_ScriptingHost.DefineConstant( "ORDER_NONE", -1 );
+	g_ScriptingHost.DefineConstant( "ORDER_GOTO", CEntityOrder::ORDER_GOTO );
+	g_ScriptingHost.DefineConstant( "ORDER_PATROL", CEntityOrder::ORDER_PATROL );
+	g_ScriptingHost.DefineConstant( "ORDER_ATTACK", CEntityOrder::ORDER_ATTACK_MELEE );
 
 	JSI_Camera::init();
 	JSI_Console::init();
@@ -794,6 +800,9 @@ extern u64 PREVTSC;
 static void Shutdown()
 {
 	psShutdown(); // Must delete g_GUI before g_ScriptingHost
+
+	// Release script references to the globals before ScriptingHost shuts down
+	// g_GameAttributes.ReleaseScriptObject();
 
 	if (g_Game)
 		delete g_Game;
@@ -1036,8 +1045,6 @@ PREVTSC=CURTSC;
 	_CrtSetBreakAlloc(36367);
 //*/
 
-	// Initialize entities
-
 	in_add_handler(handler);
 	in_add_handler(game_view_handler);
 
@@ -1186,9 +1193,9 @@ static void Frame()
 // Choose when to override the standard exception handling behaviour
 // (opening the debugger when available, or crashing when not) with
 // code that generates a crash log/dump.
-#if defined(_WIN32) && ( defined(NDEBUG) || defined(TESTING) )
-# define CUSTOM_EXCEPTION_HANDLER
-#endif
+//#if defined(_WIN32) && ( defined(NDEBUG) || defined(TESTING) )
+// # define CUSTOM_EXCEPTION_HANDLER
+// #endif
 
 #ifdef CUSTOM_EXCEPTION_HANDLER
 #include <excpt.h>

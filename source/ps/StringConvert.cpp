@@ -33,6 +33,8 @@ JSString* StringConvert::wstring_to_jsstring(JSContext* cx, const std::wstring& 
 JSString* StringConvert::wchars_to_jsstring(JSContext* cx, const wchar_t* chars)
 {
 	size_t len = wcslen(chars);
+	if( !len )
+		return( JSVAL_TO_STRING( JS_GetEmptyStringValue( cx ) ) );
 	jschar* data = (jschar*)JS_malloc(cx, len*sizeof(jschar));
 	if (!data)
 		return NULL;

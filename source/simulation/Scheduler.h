@@ -30,6 +30,7 @@ struct SDispatchObject
 	}
 };
 
+/*
 struct SDispatchObjectMessage : public SDispatchObject
 {
 	HEntity destination;
@@ -40,6 +41,7 @@ struct SDispatchObjectMessage : public SDispatchObject
 		: SDispatchObject( _deliveryTime, recurrence ), destination( _destination ), message( _message ) {}
 	
 };
+*/
 
 struct SDispatchObjectScript : public SDispatchObject
 {
@@ -63,14 +65,17 @@ struct SDispatchObjectFunction : public SDispatchObject
 
 struct CScheduler : public Singleton<CScheduler>
 {
-	std::priority_queue<SDispatchObjectMessage> timeMessage, frameMessage;
+	// std::priority_queue<SDispatchObjectMessage> timeMessage, frameMessage;
 	std::priority_queue<SDispatchObjectScript> timeScript, frameScript;
 	std::priority_queue<SDispatchObjectFunction> timeFunction, frameFunction;
 
 	bool m_abortInterval;
 
+	/*
 	void pushTime( size_t delay, const HEntity& destination, const CMessage* message );
 	void pushFrame( size_t delay, const HEntity& destination, const CMessage* message );
+	*/
+
 	void pushTime( size_t delay, const CStrW& fragment, JSObject* operateOn = NULL );
 	void pushFrame( size_t delay, const CStrW& fragment, JSObject* operateOn = NULL );
 	void pushInterval( size_t first, size_t interval, const CStrW& fragment, JSObject* operateOn = NULL );

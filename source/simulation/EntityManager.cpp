@@ -54,7 +54,7 @@ std::vector<HEntity>* CEntityManager::matches( EntityPredicate predicate )
 {
 	std::vector<HEntity>* matchlist = new std::vector<HEntity>;
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( m_entities[i].m_refcount && m_entities[i].m_entity->m_extant )
+		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed )
 			if( predicate( m_entities[i].m_entity ) )
 				matchlist->push_back( HEntity( i ) );
 	return( matchlist );
@@ -64,7 +64,7 @@ std::vector<HEntity>* CEntityManager::matches( EntityPredicate predicate1, Entit
 {
 	std::vector<HEntity>* matchlist = new std::vector<HEntity>;
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( m_entities[i].m_refcount && m_entities[i].m_entity->m_extant )
+		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed )
 			if( predicate1( m_entities[i].m_entity ) && predicate2( m_entities[i].m_entity ) )
 				matchlist->push_back( HEntity( i ) );
 	return( matchlist );
@@ -74,16 +74,32 @@ std::vector<HEntity>* CEntityManager::getExtant()
 {
 	std::vector<HEntity>* activelist = new std::vector<HEntity>;
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( m_entities[i].m_refcount && m_entities[i].m_entity->m_extant )
+		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed )
 			activelist->push_back( HEntity( i ) );
 	return( activelist );
 }
 
+/*
 void CEntityManager::dispatchAll( CMessage* msg )
 {
 	for( int i = 0; i < MAX_HANDLES; i++ )
 		if( m_entities[i].m_refcount && m_entities[i].m_entity->m_extant )
 			m_entities[i].m_entity->dispatch( msg );
+}
+*/
+
+void CEntityManager::InitializeAll()
+{
+	for( int i = 0; i < MAX_HANDLES; i++ )
+		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed )
+			m_entities[i].m_entity->Initialize();
+}
+
+void CEntityManager::TickAll()
+{
+	for( int i = 0; i < MAX_HANDLES; i++ )
+		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed )
+			m_entities[i].m_entity->Tick();
 }
 
 void CEntityManager::updateAll( size_t timestep )
@@ -93,25 +109,24 @@ void CEntityManager::updateAll( size_t timestep )
 		delete( *it );
 	m_reaper.clear();
 
-	CMessage Tick_msg( CMessage::EMSG_TICK );
-	dispatchAll( &Tick_msg );
+	TickAll();
 
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( m_entities[i].m_refcount && m_entities[i].m_entity->m_extant )
+		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed )
 			m_entities[i].m_entity->update( timestep );
 }
 
 void CEntityManager::interpolateAll( float relativeoffset )
 {
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( m_entities[i].m_refcount && m_entities[i].m_entity->m_extant )
+		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed )
 			m_entities[i].m_entity->interpolate( relativeoffset );
 }
 
 void CEntityManager::renderAll()
 {
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( m_entities[i].m_refcount && m_entities[i].m_entity->m_extant )
+		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed )
 			m_entities[i].m_entity->render();
 }
 

@@ -3,6 +3,7 @@
 #include "Hotkey.h"
 #include "input.h"
 #include "ConfigDB.h"
+#include "CLogger.h"
 #include "CConsole.h"
 #include "CStr.h"
 
@@ -16,6 +17,7 @@ bool unified[5];
 struct SHotkeyMapping
 {
 	int mapsTo;
+	bool negation;
 	std::vector<int> requires;
 };
 
@@ -66,12 +68,15 @@ static SHotkeyInfo hotkeyInfo[] =
 	{ HOTKEY_CAMERA_ZOOM_WHEEL_IN, "camera.zoom.wheel.in", MOUSE_WHEELUP, 0 },
 	{ HOTKEY_CAMERA_ZOOM_WHEEL_OUT, "camera.zoom.wheel.out", MOUSE_WHEELDOWN, 0 },
 	{ HOTKEY_CAMERA_ROTATE, "camera.rotate", 0, 0 },
+	{ HOTKEY_CAMERA_ROTATE_KEYBOARD, "camera.rotate.keyboard", 0, 0 },
 	{ HOTKEY_CAMERA_ROTATE_ABOUT_TARGET, "camera.rotate.abouttarget", 0, 0 },
+	{ HOTKEY_CAMERA_ROTATE_ABOUT_TARGET_KEYBOARD, "camera.rotate.abouttarget.keyboard", 0, 0 },
 	{ HOTKEY_CAMERA_PAN, "camera.pan", MOUSE_MIDDLE, 0 },
-	{ HOTKEY_CAMERA_PAN_LEFT, "camera.pan.left", SDLK_LEFT, 0 },
-	{ HOTKEY_CAMERA_PAN_RIGHT, "camera.pan.right", SDLK_RIGHT, 0 },
-	{ HOTKEY_CAMERA_PAN_FORWARD, "camera.pan.forward", SDLK_UP, 0 },
-	{ HOTKEY_CAMERA_PAN_BACKWARD, "camera.pan.backward", SDLK_DOWN, 0 },
+	{ HOTKEY_CAMERA_PAN_KEYBOARD, "camera.pan.keyboard", 0, 0 },
+	{ HOTKEY_CAMERA_LEFT, "camera.left", SDLK_LEFT, 0 },
+	{ HOTKEY_CAMERA_RIGHT, "camera.right", SDLK_RIGHT, 0 },
+	{ HOTKEY_CAMERA_UP, "camera.up", SDLK_UP, 0 },
+	{ HOTKEY_CAMERA_DOWN, "camera.down", SDLK_DOWN, 0 },
 	{ HOTKEY_CAMERA_BOOKMARK_0, "camera.bookmark.0", SDLK_F5, 0, },
 	{ HOTKEY_CAMERA_BOOKMARK_1, "camera.bookmark.1", SDLK_F6, 0, },
 	{ HOTKEY_CAMERA_BOOKMARK_2, "camera.bookmark.2", SDLK_F7, 0, },
@@ -128,6 +133,7 @@ static SHotkeyInfo hotkeyInfo[] =
 struct SHotkeyMappingGUI
 {
 	CStr mapsTo;
+	bool negation;
 	std::vector<int> requires;
 };
 
@@ -153,7 +159,7 @@ void setBindings( const CStr& hotkeyName, int integerMapping = -1 )
 		
 		CConfigValueSet::iterator it;
 		CParser multikeyParser;
-		multikeyParser.InputTaskType( "multikey", "<_$value_+_>_$value" );
+		multikeyParser.InputTaskType( "multikey", "<[!$arg(_negate)][~$arg(_negate)]$value_+_>_[!$arg(_negate)][~$arg(_negate)]$value" );
 
 		// Iterate through the bindings for this event...
 
@@ -169,15 +175,39 @@ void setBindings( const CStr& hotkeyName, int integerMapping = -1 )
 
 				// Iterate through multiple-key bindings (e.g. Ctrl+I)
 
+				bool negateNext = false;
+
 				for( size_t t = 0; t < multikeyIdentifier.GetArgCount(); t++ )
 				{
 					
 					if( multikeyIdentifier.GetArgString( (int)t, hotkey ) )
 					{
-						mapping = getKeyCode( hotkey );		// Attempt decode as key name
+						if( hotkey == "_negate" )
+						{
+							negateNext = true;
+							continue;
+						}
+
+						// Attempt decode as key name
+						mapping = getKeyCode( hotkey );	
+
+						// Attempt to decode as a negation of a keyname
+						// Yes, it's going a bit far, perhaps.
+						// Too powerful for most uses, probably.
+						// However, it got some hardcoding out of the engine.
+						// Thus it makes me happy.
+						
 						if( !mapping )
 							if( !it->GetInt( mapping ) )	// Attempt decode as key code
+							{
+								LOG( WARNING, "hotkey", "Couldn't map '%s'", hotkey.c_str() );
 								continue;
+							}
+
+						if( negateNext ) mapping |= HOTKEY_NEGATION_FLAG;
+
+						negateNext = false;
+
 						keyCombination.push_back( mapping );
 					}
 				}
@@ -190,10 +220,12 @@ void setBindings( const CStr& hotkeyName, int integerMapping = -1 )
 				for( itKey = keyCombination.begin(); itKey != keyCombination.end(); itKey++ )
 				{
 					bindName.mapsTo = hotkeyName;
+					bindName.negation = (bool)( *itKey & HOTKEY_NEGATION_FLAG );
 					bindName.requires.clear();
 					if( integerMapping != -1 )
 					{
 						bindCode.mapsTo = integerMapping;
+						bindCode.negation = (bool)( *itKey & HOTKEY_NEGATION_FLAG );
 						bindCode.requires.clear();
 					}
 					for( itKey2 = keyCombination.begin(); itKey2 != keyCombination.end(); itKey2++ )
@@ -207,9 +239,9 @@ void setBindings( const CStr& hotkeyName, int integerMapping = -1 )
 						}
 					}
 
-					hotkeyMapGUI[*itKey].push_back( bindName );
+					hotkeyMapGUI[*itKey & ~HOTKEY_NEGATION_FLAG].push_back( bindName );
 					if( integerMapping != -1 )
-						hotkeyMap[*itKey].push_back( bindCode );
+						hotkeyMap[*itKey & ~HOTKEY_NEGATION_FLAG].push_back( bindCode );
 				}
 			}
 		}
@@ -221,6 +253,8 @@ void setBindings( const CStr& hotkeyName, int integerMapping = -1 )
 		bind[1].mapsTo = integerMapping;
 		bind[0].requires.clear();
 		bind[1].requires.clear();
+		bind[0].negation = false;
+		bind[1].negation = false;
 		hotkeyMap[ hotkeyInfo[integerMapping].defaultmapping1 ].push_back( bind[0] );
 		if( hotkeyInfo[integerMapping].defaultmapping2 )
 			hotkeyMap[ hotkeyInfo[integerMapping].defaultmapping2 ].push_back( bind[1] );
@@ -230,9 +264,35 @@ void loadHotkeys()
 {
 	initKeyNameMap();
 
-	for( int i = 0; i < HOTKEY_LAST; i++ )
+	int i;
+
+	for( i = 0; i < HOTKEY_LAST; i++ )
 		setBindings( hotkeyInfo[i].name, i );
 	
+	// Set up the state of the hotkeys given no key is down.
+	// i.e. find those hotkeys triggered by all negations.
+
+	std::vector<SHotkeyMapping>::iterator it;
+	std::vector<int>::iterator j;
+	bool allNegated;
+
+	for( i = 1; i < HK_MAX_KEYCODES; i++ )
+	{
+		for( it = hotkeyMap[i].begin(); it != hotkeyMap[i].end(); it++ )
+		{
+			if( !it->negation )
+				continue;
+
+			allNegated = true;
+
+			for( j = it->requires.begin(); j != it->requires.end(); j++ )
+				if( !( *j & HOTKEY_NEGATION_FLAG ) )
+					allNegated = false;
+				
+			if( allNegated )
+				hotkeys[it->mapsTo] = true;
+		}
+	}
 }
 
 void hotkeyRegisterGUIObject( const CStr& objName, const CStr& hotkeyName )
@@ -329,153 +389,180 @@ int hotkeyInputHandler( const SDL_Event* ev )
 	// matching the conditions (i.e. the event with the highest number of auxiliary
 	// keys, providing they're all down)
 
-	if( ( ev->type == SDL_KEYDOWN ) || ( ev->type == SDL_MOUSEBUTTONDOWN ) )
-	{
-		// SDL-events bit
+	bool typeKeyDown = ( ev->type == SDL_KEYDOWN ) || ( ev->type == SDL_MOUSEBUTTONDOWN );
+	
+	// -- KEYDOWN SECTION -- 
+
+	// SDL-events bit
+
+	unsigned int closestMap;
+	size_t closestMapMatch = 0;
+
+	for( it = hotkeyMap[keycode].begin(); it < hotkeyMap[keycode].end(); it++ )
+	{			
+		// If a key has been pressed, and this event triggers on it's release, skip it.
+		// Similarly, if the key's been released and the event triggers on a keypress, skip it.
+		if( it->negation == typeKeyDown )
+			continue;
+
+		// Check to see if all auxiliary keys are down
 		
-		unsigned int closestMap;
-		size_t closestMapMatch = 0;
+		std::vector<int>::iterator itKey;
+		bool accept = true;
+		isCapturable = true;
 
-		for( it = hotkeyMap[keycode].begin(); it < hotkeyMap[keycode].end(); it++ )
-		{			
-			// Check to see if all auxiliary keys are down
-			
-			std::vector<int>::iterator itKey;
-			bool accept = true;
-			isCapturable = true;
-
-			for( itKey = it->requires.begin(); itKey != it->requires.end(); itKey++ )
-			{
-				if( *itKey < SDLK_LAST )
-				{
-					if( !keys[*itKey] ) accept = false;
-				}
-				else if( *itKey < UNIFIED_SHIFT )
-				{
-					if( !mouseButtons[(*itKey)-SDLK_LAST] ) accept = false;
-				}
-				else
-					if( !unified[(*itKey)-UNIFIED_SHIFT] ) accept = false;
-
-				// If this event requires a multiple keypress (with the exception
-				// of shift+key combinations) the console won't inhibit it.
-				if( ( *itKey != SDLK_RSHIFT ) && ( *itKey != SDLK_LSHIFT ) )
-					isCapturable = false;
-			}
-
-			if( it->mapsTo == HOTKEY_CONSOLE_TOGGLE ) isCapturable = false; // Because that would be silly.
-
-			if( accept && !( isCapturable && consoleCapture ) )
-			{
-				hotkeys[it->mapsTo] = true;
-				if( it->requires.size() >= closestMapMatch )
-				{
-					// Only if it's a more precise match, and it either isn't capturable or the console won't capture it.
-					closestMap = it->mapsTo;
-					closestMapMatch = it->requires.size() + 1;
-				}
-			}
-		}
-
-		if( closestMapMatch )
+		for( itKey = it->requires.begin(); itKey != it->requires.end(); itKey++ )
 		{
-			hotkeyNotification.type = SDL_HOTKEYDOWN;
-			hotkeyNotification.user.code = closestMap;
-			SDL_PushEvent( &hotkeyNotification );
-		}
-		// GUI bit... could do with some optimization later.
+			int keyCode = *itKey & ~HOTKEY_NEGATION_FLAG; // Clear the negation-modifier bit
+			bool rqdState = !( *itKey & HOTKEY_NEGATION_FLAG );
 
-		CStr closestMapName = -1;
-		closestMapMatch = 0;
+			// assert( !rqdState );
 
-		for( itGUI = hotkeyMapGUI[keycode].begin(); itGUI != hotkeyMapGUI[keycode].end(); itGUI++ )
-		{			
-			// Check to see if all auxiliary keys are down
-
-			std::vector<int>::iterator itKey;
-			bool accept = true;
-			isCapturable = true;
-
-			for( itKey = itGUI->requires.begin(); itKey != itGUI->requires.end(); itKey++ )
+			if( keyCode < SDLK_LAST )
 			{
-				if( *itKey < SDLK_LAST )
-				{
-					if( !keys[*itKey] ) accept = false;
-				}
-				else if( *itKey < UNIFIED_SHIFT )
-				{
-					if( !mouseButtons[(*itKey)-SDLK_LAST] ) accept = false;
-				}
-				else
-					if( !unified[(*itKey)-UNIFIED_SHIFT] ) accept = false;
-
-				// If this event requires a multiple keypress (with the exception
-				// of shift+key combinations) the console won't inhibit it.
-				if( ( *itKey != SDLK_RSHIFT ) && ( *itKey != SDLK_LSHIFT ) )
-					isCapturable = false;
+				if( keys[keyCode] != rqdState ) accept = false;
 			}
-
-			if( accept && !( isCapturable && consoleCapture ) )
+			else if( *itKey < UNIFIED_SHIFT )
 			{
-				if( itGUI->requires.size() >= closestMapMatch )
-				{
-					closestMapName = itGUI->mapsTo;
-					closestMapMatch = itGUI->requires.size() + 1;
-				}
+				if( mouseButtons[keyCode-SDLK_LAST] != rqdState ) accept = false;
 			}
-		}
-		// GUI-objects bit
-		// This fragment is an obvious candidate for rewriting when speed becomes an issue.
+			else
+				if( unified[keyCode-UNIFIED_SHIFT] != rqdState ) accept = false;
 
-		if( closestMapMatch )
+			// If this event requires a multiple keypress (with the exception
+			// of shift+key combinations) the console won't inhibit it.
+			if( rqdState && ( *itKey != SDLK_RSHIFT ) && ( *itKey != SDLK_LSHIFT ) )
+				isCapturable = false;
+		}
+
+		if( it->mapsTo == HOTKEY_CONSOLE_TOGGLE ) isCapturable = false; // Because that would be silly.
+
+		if( accept && !( isCapturable && consoleCapture ) )
 		{
-			GUIHotkeyMap::iterator map_it;
-			GUIObjectList::iterator obj_it;
-			map_it = guiHotkeyMap.find( closestMapName );
-			if( map_it != guiHotkeyMap.end() )
+			hotkeys[it->mapsTo] = true;
+			if( it->requires.size() >= closestMapMatch )
 			{
-				GUIObjectList& targets = map_it->second;
-				for( obj_it = targets.begin(); obj_it != targets.end(); obj_it++ )
-				{
-					hotkeyNotification.type = SDL_GUIHOTKEYPRESS;
-					hotkeyNotification.user.code = (intptr_t)&(*obj_it);
-					SDL_PushEvent( &hotkeyNotification );
-				}
-			}	
+				// Only if it's a more precise match, and it either isn't capturable or the console won't capture it.
+				closestMap = it->mapsTo;
+				closestMapMatch = it->requires.size() + 1;
+			}
 		}
 	}
-	else
+
+	if( closestMapMatch )
 	{
-		for( it = hotkeyMap[keycode].begin(); it < hotkeyMap[keycode].end(); it++ )
+		hotkeyNotification.type = SDL_HOTKEYDOWN;
+		hotkeyNotification.user.code = closestMap;
+		SDL_PushEvent( &hotkeyNotification );
+	}
+	// GUI bit... could do with some optimization later.
+
+	CStr closestMapName = -1;
+	closestMapMatch = 0;
+
+	for( itGUI = hotkeyMapGUI[keycode].begin(); itGUI != hotkeyMapGUI[keycode].end(); itGUI++ )
+	{	
+		// If a key has been pressed, and this event triggers on it's release, skip it.
+		// Similarly, if the key's been released and the event triggers on a keypress, skip it.
+		if( itGUI->negation == typeKeyDown )
+			continue;
+
+		// Check to see if all auxiliary keys are down
+
+		std::vector<int>::iterator itKey;
+		bool accept = true;
+		isCapturable = true;
+
+		for( itKey = itGUI->requires.begin(); itKey != itGUI->requires.end(); itKey++ )
 		{
-			// Check to see if all auxiliary keys are down
+			int keyCode = *itKey & ~HOTKEY_NEGATION_FLAG; // Clear the negation-modifier bit
+			bool rqdState = !( *itKey & HOTKEY_NEGATION_FLAG );
 
-			std::vector<int>::iterator itKey;
-			bool accept = true;
-
-			for( itKey = it->requires.begin(); itKey != it->requires.end(); itKey++ )
+			if( keyCode < SDLK_LAST )
 			{
-				if( *itKey < SDLK_LAST )
-				{
-					if( !keys[*itKey] ) accept = false;
-				}
-				else if( *itKey < UNIFIED_SHIFT )
-				{
-					if( !mouseButtons[(*itKey)-SDLK_LAST] ) accept = false;
-				}
-				else
-					if( !unified[(*itKey)-UNIFIED_SHIFT] ) accept = false;
+				if( keys[keyCode] != rqdState ) accept = false;
 			}
-
-			if( accept )
+			else if( *itKey < UNIFIED_SHIFT )
 			{
-				hotkeys[it->mapsTo] = false;
-				hotkeyNotification.type = SDL_HOTKEYUP;
-				hotkeyNotification.user.code = it->mapsTo;
+				if( mouseButtons[keyCode-SDLK_LAST] != rqdState ) accept = false;
+			}
+			else
+				if( unified[keyCode-UNIFIED_SHIFT] != rqdState ) accept = false;
+
+			// If this event requires a multiple keypress (with the exception
+			// of shift+key combinations) the console won't inhibit it.
+			if( rqdState && ( *itKey != SDLK_RSHIFT ) && ( *itKey != SDLK_LSHIFT ) )
+				isCapturable = false;
+		}
+
+		if( accept && !( isCapturable && consoleCapture ) )
+		{
+			if( itGUI->requires.size() >= closestMapMatch )
+			{
+				closestMapName = itGUI->mapsTo;
+				closestMapMatch = itGUI->requires.size() + 1;
+			}
+		}
+	}
+	// GUI-objects bit
+	// This fragment is an obvious candidate for rewriting when speed becomes an issue.
+
+	if( closestMapMatch )
+	{
+		GUIHotkeyMap::iterator map_it;
+		GUIObjectList::iterator obj_it;
+		map_it = guiHotkeyMap.find( closestMapName );
+		if( map_it != guiHotkeyMap.end() )
+		{
+			GUIObjectList& targets = map_it->second;
+			for( obj_it = targets.begin(); obj_it != targets.end(); obj_it++ )
+			{
+				hotkeyNotification.type = SDL_GUIHOTKEYPRESS;
+				hotkeyNotification.user.code = (intptr_t)&(*obj_it);
 				SDL_PushEvent( &hotkeyNotification );
 			}
+		}	
+	}
+
+	// -- KEYUP SECTION --
+
+	for( it = hotkeyMap[keycode].begin(); it < hotkeyMap[keycode].end(); it++ )
+	{
+		// If it's a keydown event, won't cause HotKeyUps in anything that doesn't
+		// use this key negated => skip them
+		// If it's a keyup event, won't cause HotKeyUps in anything that does use
+		// this key negated => skip them too.
+		if( it->negation != typeKeyDown )
+			continue;
+
+		// Check to see if all auxiliary keys are down
+
+		std::vector<int>::iterator itKey;
+		bool accept = true;
+
+		for( itKey = it->requires.begin(); itKey != it->requires.end(); itKey++ )
+		{
+			if( *itKey < SDLK_LAST )
+			{
+				if( !keys[*itKey] ) accept = false;
+			}
+			else if( *itKey < UNIFIED_SHIFT )
+			{
+				if( !mouseButtons[(*itKey)-SDLK_LAST] ) accept = false;
+			}
+			else
+				if( !unified[(*itKey)-UNIFIED_SHIFT] ) accept = false;
+		}
+
+		if( accept )
+		{
+			hotkeys[it->mapsTo] = false;
+			hotkeyNotification.type = SDL_HOTKEYUP;
+			hotkeyNotification.user.code = it->mapsTo;
+			SDL_PushEvent( &hotkeyNotification );
 		}
 	}
+
 	return( EV_PASS );
 }
 

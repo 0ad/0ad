@@ -33,9 +33,9 @@ template<> JSObject* ToScript<CBaseEntity*>( CBaseEntity** Native )
 	return( ToScript<CBaseEntity>( *Native ) );
 }
 
-// CObjectEntry*
+// CObjectEntry
 
-template<> bool ToPrimitive<CObjectEntry*>( JSContext* cx, jsval v, CObjectEntry*& Storage )
+template<> bool ToPrimitive<CObjectEntry>( JSContext* cx, jsval v, CObjectEntry*& Storage )
 {
 	CStrW ActorName;
 	if( !ToPrimitive<CStrW>( cx, v, ActorName ) )
@@ -44,7 +44,7 @@ template<> bool ToPrimitive<CObjectEntry*>( JSContext* cx, jsval v, CObjectEntry
 	return( true );
 }
 
-template<> jsval ToJSVal<CObjectEntry*>( CObjectEntry*& Native )
+template<> jsval ToJSVal<CObjectEntry>( CObjectEntry*& Native )
 {
 	if( !Native )
 		return( ToJSVal<CStrW>( CStrW( L"[No actor]" ) ) );
@@ -80,23 +80,50 @@ template<> bool ToPrimitive<CScriptObject>( JSContext* cx, jsval v, CScriptObjec
 	return( true );
 }
 
-// i32
+// int
 
-template<> jsval ToJSVal<i32>( const i32& Native )
+template<> jsval ToJSVal<int>( const int& Native )
 {
 	return( INT_TO_JSVAL( Native ) );
 }
 
-template<> jsval ToJSVal<i32>( i32& Native )
+template<> jsval ToJSVal<int>( int& Native )
 {
 	return( INT_TO_JSVAL( Native ) );
 }
 
-template<> bool ToPrimitive<i32>( JSContext* cx, jsval v, i32& Storage )
+template<> bool ToPrimitive<int>( JSContext* cx, jsval v, int& Storage )
 {
 	try
 	{
 		Storage = g_ScriptingHost.ValueToInt( v );
+	}
+	catch( PSERROR_Scripting_ConversionFailed )
+	{
+		return( false );
+	}
+	return( true );
+}
+
+// uint
+
+template<> jsval ToJSVal<uint>( const uint& Native )
+{
+	return( INT_TO_JSVAL( Native ) );
+}
+
+template<> jsval ToJSVal<uint>( uint& Native )
+{
+	return( INT_TO_JSVAL( Native ) );
+}
+
+template<> bool ToPrimitive<uint>( JSContext* cx, jsval v, uint& Storage )
+{
+	try
+	{
+		int t = g_ScriptingHost.ValueToInt( v );
+		if( t < 0 ) return( false );
+		Storage = t;
 	}
 	catch( PSERROR_Scripting_ConversionFailed )
 	{

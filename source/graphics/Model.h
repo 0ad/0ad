@@ -18,6 +18,7 @@
 #include "Material.h"
 
 #define MODELFLAG_CASTSHADOWS		(1<<0)
+#define MODELFLAG_NOLOOPANIMATION	(1<<1)
 
 ///////////////////////////////////////////////////////////////////////////////
 // CModel: basically, a mesh object - holds the texturing and skinning 
@@ -58,7 +59,7 @@ public:
     CMaterial &GetMaterial() { return m_Material; }
 
 	// set the given animation as the current animation on this model
-	bool SetAnimation(CSkeletonAnim* anim); 
+	bool SetAnimation(CSkeletonAnim* anim, bool once = false); 
 	// get the currently playing animation, if any
 	CSkeletonAnim* GetAnimation() { return m_Anim; }
 

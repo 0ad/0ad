@@ -45,6 +45,24 @@ bool HEntity::operator ==( const HEntity& test ) const
 	return( m_handle == test.m_handle );
 }
 
+HEntity::operator bool() const
+{ 
+	if( m_handle == INVALID_HANDLE )
+		return( false );
+	
+	assert( g_EntityManager.m_entities[m_handle].m_refcount );
+	return( !g_EntityManager.m_entities[m_handle].m_entity->m_destroyed );
+}
+
+bool HEntity::operator!() const
+{
+	if( m_handle == INVALID_HANDLE )
+		return( true );
+	
+	assert( g_EntityManager.m_entities[m_handle].m_refcount );
+	return( g_EntityManager.m_entities[m_handle].m_entity->m_destroyed );
+}
+
 void HEntity::addRef()
 {
 	if( m_handle != INVALID_HANDLE )

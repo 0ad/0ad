@@ -31,6 +31,7 @@ JSFunc getGlobal;
 
 JSFunc setCursor;
 
+JSFunc GetGameObject;
 JSFunc startServer;
 JSFunc joinGame;
 JSFunc startGame;

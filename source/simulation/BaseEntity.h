@@ -27,7 +27,7 @@
 #include "ScriptObject.h"
 #include "Xeromyces.h"
 
-class CBaseEntity : public CJSObject<CBaseEntity, true>
+class CBaseEntity : public CJSObject<CBaseEntity>
 {
 public:
 	CBaseEntity();
@@ -40,10 +40,14 @@ public:
 	// Base stats
 
 	CBaseEntity* m_base;
+	CStrW m_corpse;
+	bool m_extant;
+
 	CStrW m_Base_Name; // <- We don't guarantee the order XML files will be loaded in, so we'll store the name of the
 					   //    parent entity referenced, then, after all files are loaded, attempt to match names to objects.
 
 	CObjectEntry* m_actorObject;
+	
 
 	CStrW m_Tag;
 	CBoundingCircle* m_bound_circle;
@@ -51,6 +55,9 @@ public:
 	CBoundingObject::EBoundingType m_bound_type;
 
 	float m_speed;
+	float m_meleeRange;
+	float m_meleeRangeMin;
+
 	float m_turningRadius;
 	CScriptObject m_EventHandlers[EVENT_LAST];
 

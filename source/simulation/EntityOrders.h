@@ -23,6 +23,10 @@
 //											order queue after it's executed. In this way, the entity will
 //											circle round a list of patrol points.
 //											Create this order when a standard patrol order is required.
+//					  ORDER_ATTACK_MELEE:	Move towards target entity; start bashing it when close enough.
+//											If we collide with something (=> line-of-sight tracking no longer
+//											sufficient) spawns a ORDER_GOTO to target's location and pushes it
+//											immediately in front of this order.
 //
 //		  Entities which exhaust all orders from their queue go to idle status; there is no specific order
 //			  type for this status.
@@ -52,6 +56,9 @@ public:
 		ORDER_GOTO_COLLISION,	
 		ORDER_GOTO,
 		ORDER_PATROL,
+		ORDER_ATTACK_MELEE,
+		ORDER_ATTACK_MELEE_NOPATHING,
+		ORDER_PATH_END_MARKER,
 		ORDER_LAST
 	} m_type;
 	SOrderData m_data[ORDER_MAX_DATA];

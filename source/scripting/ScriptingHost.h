@@ -31,7 +31,7 @@ ERROR_TYPE(Scripting_DefineType, CreationFailed);
 // Make JS debugging a little easier by automatically naming GC roots
 #ifndef NDEBUG
 // Don't simply #define NAME_ALL_GC_ROOTS, because jsapi.h is horridly broken
-# define JS_AddRoot(cx, rp) JS_AddNamedRoot((cx), (rp), __FILE__)
+# define JS_AddRoot(cx, rp) JS_AddNamedRoot((cx), (rp), __FILE__ )
 #endif
 
 #include <string>

@@ -15,7 +15,7 @@ public:
     ~CMeshManager();
 
     CModelDef *GetMesh(const char *filename);
-    int ReleaseMesh(CModelDef *mesh);
+    int ReleaseMesh(CModelDef* mesh);
 private:
     mesh_map m_MeshMap;
 };

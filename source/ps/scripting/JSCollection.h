@@ -158,7 +158,7 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::G
 		return( JS_TRUE );
 	}
 
-	*vp = ToJSVal<T>( set->at( index ) );
+	*vp = ToJSVal( set->at( index ) );
 	
 	return( JS_TRUE );
 }
@@ -276,7 +276,7 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::S
 	int i = 0;
 
 	for( it = Set->begin(); it != Set->end(); it++ )
-		if( Predicate.Run( ToScript<T>( &( *it ) ) ) )
+		if( Predicate.Run( ToScript( (T*)&( *it ) ) ) )
 			CollectionData->m_Data->push_back( *it );
 
 	*rval = OBJECT_TO_JSVAL( Collection );

@@ -17,11 +17,18 @@
 
 #define g_Pathfinder CPathfindEngine::GetSingleton()
 
+enum EPathType
+{
+	PF_STANDARD,
+	PF_ATTACK_MELEE,
+};
+
 class CPathfindEngine : public Singleton<CPathfindEngine>
 {
 public:
 	CPathfindEngine();
 	void requestPath( HEntity entity, const CVector2D& destination );
+	void requestMeleeAttackPath( HEntity entity, HEntity target );
 };
 
 #endif

@@ -68,7 +68,7 @@ struct sparsePathTree
 
 extern int SPF_RECURSION_DEPTH;
 
-void nodeSmooth( HEntity entity, std::vector<CVector2D>& nodelist );
+void nodePostProcess( HEntity entity, std::vector<CVector2D>& nodelist );
 void pathSparse( HEntity entity, CVector2D destination );
 bool pathSparseRecursive( HEntity entity, CVector2D from, CVector2D to, CBoundingObject* destinationCollisionObject );
 

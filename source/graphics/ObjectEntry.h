@@ -59,6 +59,8 @@ public:
 	CSkeletonAnim* m_DeathAnim;
 	CSkeletonAnim* m_MeleeAnim;
 	CSkeletonAnim* m_RangedAnim;
+	CSkeletonAnim* m_CorpseAnim;
+
 	CSkeletonAnim* GetNamedAnimation( CStr animationName );
 	// list of props attached to object
 	std::vector<Prop> m_Props;

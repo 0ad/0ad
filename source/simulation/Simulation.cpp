@@ -32,8 +32,7 @@ void CSimulation::Initialize(CGameAttributes *pAttribs)
 {
 	m_pTurnManager->Initialize(m_pGame->GetNumPlayers());
 
-	CMessage init_msg (CMessage::EMSG_INIT);
-	g_EntityManager.dispatchAll(&init_msg);
+	g_EntityManager.InitializeAll();
 }
 
 void CSimulation::Update(double frameTime)
@@ -89,7 +88,7 @@ uint CSimulation::TranslateMessage(CNetMessage *pMsg, uint clientMask, void *use
 		entOrder.m_data[0].location.x=(float)msg->m_TargetX;
 		entOrder.m_data[0].location.y=(float)msg->m_TargetY;
 		CEntity *ent=msg->m_Entity;
-		ent->dispatch(new CMessageOrder(entOrder));
+		ent->pushOrder( entOrder );
 		break;
 	}
 

@@ -94,7 +94,9 @@ bool getRayIntersection( const CVector2D& source, const CVector2D& forward, cons
 		assert( (*it)->m_bounds );
 		if( (*it)->m_bounds == destinationCollisionObject ) continue;
 	
-		if( (*it)->m_moving ) continue;
+		// TODO MT: Replace this with something based on whether the unit is actually moving.
+		if( (*it)->m_orderQueue.size() ) continue;
+
 		CBoundingObject* obj = (*it)->m_bounds;
 		delta = obj->m_pos - source;
 		closestApproach = delta.dot( right );

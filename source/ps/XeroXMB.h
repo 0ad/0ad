@@ -1,4 +1,4 @@
-/* $Id: XeroXMB.h,v 1.6 2004/10/07 20:49:25 philip Exp $
+/* $Id: XeroXMB.h,v 1.7 2004/11/11 07:09:32 markt Exp $
 
 	Xeromyces - XMB reading library
 
@@ -200,7 +200,7 @@ class XMBAttributeList
 {
 public:
 	XMBAttributeList(char* offset, int count)
-		: Count(count), m_Pointer(offset) {};
+		: Count(count), m_Pointer(offset), m_LastItemID( -2 ) {};
 
 	// Get the attribute value directly (unlike Xerces)
 	utf16string getNamedItem(const int AttributeName) const;

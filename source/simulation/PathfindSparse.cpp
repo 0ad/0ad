@@ -45,7 +45,12 @@ bool sparsePathTree::slice()
 		CVector2D forward = to - from;
 		float len = forward.length();
 
-		assert( len != 0.0f );
+		if( len == 0.0f )
+		{
+			// Too wierd. (Heavy traffic, obstacles in positions leading to this degenerate state.
+			type = SPF_IMPOSSIBLE;
+			return( true );
+		}
 
 		forward /= len;
 		CVector2D v_right = CVector2D( forward.y, -forward.x );
@@ -82,6 +87,7 @@ bool sparsePathTree::slice()
 			float length = delta.length();
 
 			float offsetDistance = ( turningRadius * length / sqrt( length * length - turningRadius * turningRadius ) );
+			
 			left = r.position - v_right * offsetDistance;
 			right = r.position + v_right * offsetDistance;
 		}
@@ -189,12 +195,15 @@ void sparsePathTree::pushResults( std::vector<CVector2D>& nodelist )
 	}
 }		
 
-void nodeSmooth( HEntity entity, std::vector<CVector2D>& nodelist )
+void nodePostProcess( HEntity entity, std::vector<CVector2D>& nodelist )
 {
 	std::vector<CVector2D>::iterator it;
 	CVector2D next = nodelist.front();
 
 	CEntityOrder node;
+	node.m_type = CEntityOrder::ORDER_PATH_END_MARKER;
+	entity->m_orderQueue.push_front( node );
+
 	node.m_type = CEntityOrder::ORDER_GOTO_SMOOTHED;
 	node.m_data[0].location = next;
 
@@ -230,7 +239,7 @@ void pathSparse( HEntity entity, CVector2D destination )
 	// Sanity check:
 	if( source.length() < 0.01f ) return;
 
-	sparsePathTree sparseEngine( source, destination, entity, getContainingObject( destination ), SPF_RECURSION_DEPTH );
+	sparsePathTree sparseEngine( source, destination, entity, getContainingObject( destination ), 3 );
 	while( sparseEngine.type & sparsePathTree::SPF_OPEN ) sparseEngine.slice();
 
 	// assert( sparseEngine.type & sparsePathTree::SPF_SOLVED ); // Shouldn't be any impossible cases yet.
@@ -239,7 +248,7 @@ void pathSparse( HEntity entity, CVector2D destination )
 	{
 		sparseEngine.pushResults( pathnodes );
 		pathnodes.push_back( source );
-		nodeSmooth( entity, pathnodes );
+		nodePostProcess( entity, pathnodes );
 	}
 	else
 	{

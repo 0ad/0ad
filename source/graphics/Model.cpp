@@ -195,6 +195,8 @@ void CModel::Update(float time)
 		
 		float duration=m_Anim->m_AnimDef->GetDuration();
 		if (m_AnimTime>duration) {
+			if( m_Flags & MODELFLAG_NOLOOPANIMATION )
+				SetAnimation( NULL );
 			m_AnimTime=(float) fmod(m_AnimTime,duration);
 		}
 		
@@ -248,10 +250,14 @@ void CModel::GenerateBoneMatrices()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // SetAnimation: set the given animation as the current animation on this model;
 // return false on error, else true
-bool CModel::SetAnimation(CSkeletonAnim* anim)
+bool CModel::SetAnimation(CSkeletonAnim* anim, bool once)
 {
 	m_Anim=anim;
 	if (m_Anim) {
+		m_Flags &= ~MODELFLAG_NOLOOPANIMATION;
+		if( once )
+			m_Flags |= MODELFLAG_NOLOOPANIMATION;
+
 		if (!m_BoneMatrices) {
 			// not boned, can't animate
 			return false;

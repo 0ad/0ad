@@ -14,7 +14,7 @@
 enum ELogMethod
 {
 	NORMAL,
-	MESSAGE=NORMAL,
+	MESSAGE = NORMAL,
 	ERROR,
 	WARNING
 };

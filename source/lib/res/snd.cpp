@@ -52,7 +52,6 @@
 # pragma comment(lib, "alut.lib")	// alutLoadWAVMemory
 #endif
 
-
 // components:
 // - alc*: OpenAL context
 //   readies OpenAL for use; allows specifying the device.
@@ -80,7 +79,6 @@
 //   owns source properties and queue, references SndData.
 // - vm*: voice management
 //   grants the most currently 'important' sounds a hardware voice.
-
 
 static bool al_initialized = false;
 	// indicates OpenAL is ready for use. checked by other components
