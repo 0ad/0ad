@@ -61,6 +61,7 @@ typedef enum
 }
 BasicType;
 
+static void DumpMiniDump(HANDLE hFile, PEXCEPTION_POINTERS excpInfo);
 
 // function pointers
 //
@@ -98,7 +99,6 @@ static void dbg_cleanup(void)
 {
 	_SymCleanup(hProcess);
 }
-
 
 static void dbg_init()
 {
@@ -261,19 +261,27 @@ next_element:
 /* print sym name; if not a basic type, recurse for each child */
 static void dump_sym(u32 type_idx, uint level, u64 addr)
 {
-	u32 num_children = 0;
-	_SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_CHILDRENCOUNT, &num_children);
-
 	/* print type name / member name */
 	WCHAR* type_name;
 	if(_SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_SYMNAME, &type_name))
 	{
+		/* HACK: ignore things that look like member functions */
+		if (wcsstr(type_name, L"::"))
+			return;
+
+		/* indent */
+		for(uint i = 0; i < level+2; i++)
+			out(L"  ");
+
 		out(L"%ls ", type_name);
 		LocalFree(type_name);
 	}
 
+	u32 num_children = 0;
+
 	/* built-in type? yes - show its value, terminate recursion */
-	if(!num_children)
+	if (! _SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_CHILDRENCOUNT, &num_children)
+		|| num_children == 0)
 	{
 		print_var(type_idx, level, addr);
 		return;
@@ -296,10 +304,6 @@ static void dump_sym(u32 type_idx, uint level, u64 addr)
 	for(uint child_idx = 0; child_idx < num_children; child_idx++)
 	{
 		u32 child_id = children->ChildId[child_idx];
-
-		/* indent */
-		for(uint i = 0; i < level+3; i++)
-			out(L"  ");
 
 		u32 member_ofs;
 		_SymGetTypeInfo(hProcess, mod_base, child_id, TI_GET_OFFSET, &member_ofs);
@@ -368,7 +372,7 @@ static BOOL CALLBACK sym_callback(SYMBOL_INFO* sym, ULONG /* SymbolSize */, void
  * most recent <skip> stack frames will be skipped
  * (we don't want to show e.g. GetThreadContext / this call)
  */
-static void walk_stack(int skip, wchar_t* out_buf)
+static void walk_stack(int skip, wchar_t* out_buf, CONTEXT* override_context = NULL)
 {
 	dbg_init();
 
@@ -383,9 +387,16 @@ static void walk_stack(int skip, wchar_t* out_buf)
 	HANDLE hThread = GetCurrentThread();
 
 	CONTEXT context;
-	memset(&context, 0, sizeof(context));
-	context.ContextFlags = CONTEXT_FULL;
-	GetThreadContext(hThread, &context);
+	if(override_context)
+	{
+		memcpy(&context, override_context, sizeof(CONTEXT));
+	}
+	else
+	{
+		memset(&context, 0, sizeof(context));
+		context.ContextFlags = CONTEXT_FULL;
+		GetThreadContext(hThread, &context);
+	}
 
 	STACKFRAME64 frame;
 	memset(&frame, 0, sizeof(frame));
@@ -413,7 +424,7 @@ static void walk_stack(int skip, wchar_t* out_buf)
 	IMAGEHLP_LINE64 line = { sizeof(IMAGEHLP_LINE64) };
 	IMAGEHLP_STACK_FRAME imghlp_frame;
 
-    for(;;)
+	for(;;)
     {
         if(!_StackWalk64(machine, hProcess, hThread, &frame, &context, 0, _SymFunctionTableAccess64, _SymGetModuleBase64, 0))
             break;
@@ -452,7 +463,6 @@ static void walk_stack(int skip, wchar_t* out_buf)
 
 		out(L"\r\n");
     }
-	
 }
 
 
@@ -544,7 +554,6 @@ static int dialog(DLG_TYPE type)
 
 static PTOP_LEVEL_EXCEPTION_FILTER prev_except_filter;
 
-
 static long CALLBACK except_filter(EXCEPTION_POINTERS* except)
 {
 	PEXCEPTION_RECORD except_record = except->ExceptionRecord;
@@ -609,6 +618,104 @@ static void set_exception_handler()
 {
 	prev_except_filter = SetUnhandledExceptionFilter(except_filter);
 }
+
+
+// PT: Alternate version of the exception handler, which makes
+// the crash log more useful, and takes the responsibility of
+// suiciding away from main.cpp.
+
+int debug_main_exception_filter(unsigned int code, struct _EXCEPTION_POINTERS *ep)
+{
+	const wchar_t* error = NULL;
+
+	// C++ exceptions put a pointer to the exception object
+	// into ExceptionInformation[1] -- so see if it looks like
+	// a PSERROR*, and use the relevant message if it is.
+	try
+	{
+		if (ep->ExceptionRecord->NumberParameters == 3)
+		{
+			PSERROR* err = (PSERROR*) ep->ExceptionRecord->ExceptionInformation[1];
+			if (err->magic == 0x50534552)
+			{
+				int code = err->code;
+				error = GetErrorString(code);
+			}
+		}
+	}
+	catch (...) {
+		// Presumably it wasn't a PSERROR and resulted in
+		// accessing some invalid pointers.
+	}
+
+	// Try getting nice names for other types of error:
+	if (! error)
+	{
+		switch (ep->ExceptionRecord->ExceptionCode)
+		{
+		case EXCEPTION_ACCESS_VIOLATION:		error = L"Access Violation"; break;
+		case EXCEPTION_DATATYPE_MISALIGNMENT:	error = L"Datatype Misalignment"; break;
+		case EXCEPTION_BREAKPOINT:				error = L"Breakpoint"; break;
+		case EXCEPTION_SINGLE_STEP:				error = L"Single Step"; break;
+		case EXCEPTION_ARRAY_BOUNDS_EXCEEDED:	error = L"Array Bounds Exceeded"; break;
+		case EXCEPTION_FLT_DENORMAL_OPERAND:	error = L"Float Denormal Operand"; break;
+		case EXCEPTION_FLT_DIVIDE_BY_ZERO:		error = L"Float Divide By Zero"; break;
+		case EXCEPTION_FLT_INEXACT_RESULT:		error = L"Float Inexact Result"; break;
+		case EXCEPTION_FLT_INVALID_OPERATION:	error = L"Float Invalid Operation"; break;
+		case EXCEPTION_FLT_OVERFLOW:			error = L"Float Overflow"; break;
+		case EXCEPTION_FLT_STACK_CHECK:			error = L"Float Stack Check"; break;
+		case EXCEPTION_FLT_UNDERFLOW:			error = L"Float Underflow"; break;
+		case EXCEPTION_INT_DIVIDE_BY_ZERO:		error = L"Integer Divide By Zero"; break;
+		case EXCEPTION_INT_OVERFLOW:			error = L"Integer Overflow"; break;
+		case EXCEPTION_PRIV_INSTRUCTION:		error = L"Private Instruction"; break;
+		case EXCEPTION_IN_PAGE_ERROR:			error = L"In Page Error"; break;
+		case EXCEPTION_ILLEGAL_INSTRUCTION:		error = L"Illegal Instruction"; break;
+		case EXCEPTION_NONCONTINUABLE_EXCEPTION:error = L"Noncontinuable Exception"; break;
+		case EXCEPTION_STACK_OVERFLOW:			error = L"Stack Overflow"; break;
+		case EXCEPTION_INVALID_DISPOSITION:		error = L"Invalid Disposition"; break;
+		case EXCEPTION_GUARD_PAGE:				error = L"Guard Page"; break;
+		case EXCEPTION_INVALID_HANDLE:			error = L"Invalid Handle"; break;
+		default: error = L"[unknown exception]";
+		}
+	}
+
+	wchar_t* errortext = (wchar_t*) error;
+
+	// Handle access violations specially, because we can see
+	// whether and where they were reading/writing.
+	if (ep->ExceptionRecord->ExceptionCode == EXCEPTION_ACCESS_VIOLATION)
+	{
+		errortext = new wchar_t[256];
+		if (ep->ExceptionRecord->ExceptionInformation[0])
+			swprintf(errortext, 256, L"Access violation writing 0x%08X", ep->ExceptionRecord->ExceptionInformation[1]);
+		else
+			swprintf(errortext, 256, L"Access violation reading 0x%08X", ep->ExceptionRecord->ExceptionInformation[1]);
+	}
+
+	wchar_t message[1024];
+	swprintf(message, 1024, L"A fatal error has occurred: %ls.\nPlease report this to http://bugs.wildfiregames.com/ and attach the crashlog.txt and crashlog.dmp files from your 'data' folder.", errortext);
+	message[1023] = 0;
+
+	wdisplay_msg(L"0 A.D. failure", message);
+
+	debug_write_crashlog("crashlog.txt", errortext, ep->ContextRecord);
+
+
+	HANDLE hFile = CreateFile("crashlog.dmp", GENERIC_WRITE, FILE_SHARE_WRITE, 0, CREATE_ALWAYS, 0, 0);
+	DumpMiniDump(hFile, ep);
+	CloseHandle(hFile);
+
+	// Disable memory-leak reporting, because it's going to
+	// leak like an upside-down bucket when it crashes.
+#ifdef HAVE_DEBUGALLOC
+	_CrtSetDbgFlag( _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & ~_CRTDBG_LEAK_CHECK_DF );
+#endif
+
+	exit(EXIT_FAILURE);
+	return EXCEPTION_EXECUTE_HANDLER;
+}
+
+
 
 
 static void init()
@@ -677,24 +784,36 @@ static void DumpMiniDump(HANDLE hFile, PEXCEPTION_POINTERS excpInfo)
 //	}
 }
 
-int debug_write_crashlog(const char* file)
+const int MICROLOG_SIZE = 16384;
+int MicroBuffer_size = MICROLOG_SIZE;
+wchar_t MicroBuffer[MICROLOG_SIZE];
+int MicroBuffer_off = 0;
+
+int debug_write_crashlog(const char* file, wchar_t* header, void* context)
 {
 	init();
 
 	int len = swprintf(buf, 1000, L"Undefined state reached.\r\n");
-	walk_stack(2, buf+len);
+
+	if (context)
+		walk_stack(0, buf+len, (CONTEXT*)context);
+	else
+		walk_stack(2, buf+len);
 
 	FILE* f = fopen(file, "wb");
 	int BOM = 0xFEFF;
 	fwrite(&BOM, 2, 1, f);
+	if (header)
+	{
+		fwrite(header, wcslen(header), sizeof(wchar_t), f);
+		fwrite(L"\r\n\r\n", 4, sizeof(wchar_t), f);
+	}
 	fwrite(buf, pos-buf, 2, f);
+	
+	const wchar_t* footer = L"\r\n\r\nLast known activity:\r\n\r\n";
+	fwrite(footer, wcslen(footer), sizeof(wchar_t), f);
+	fwrite(MicroBuffer, MicroBuffer_off, sizeof(wchar_t), f);
 	fclose(f);
-
-	char dmp_file[MAX_PATH];
-	strcpy(dmp_file, file);
-	strcat(dmp_file, ".mdmp");
-	HANDLE hFile = CreateFile(dmp_file, GENERIC_WRITE, FILE_SHARE_WRITE, 0, CREATE_ALWAYS, 0, 0);
-	DumpMiniDump(hFile, 0);
 
 	return 0;
 }

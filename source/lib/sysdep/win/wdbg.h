@@ -3,6 +3,8 @@
 
 #include "win.h"
 
+int debug_main_exception_filter(unsigned int code, struct _EXCEPTION_POINTERS *ep);
+
 #ifdef __cplusplus
 extern "C" {
 #endif

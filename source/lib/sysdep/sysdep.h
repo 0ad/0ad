@@ -34,7 +34,7 @@ extern void debug_break();
 
 extern int debug_assert_failed(const char* source_file, int line, const char* expr);
 
-extern int debug_write_crashlog(const char* file);
+extern int debug_write_crashlog(const char* file, wchar_t* header, void* context);
 
 
 extern void check_heap();

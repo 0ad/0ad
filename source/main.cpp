@@ -155,7 +155,6 @@ static int write_sys_info();
 // TODO: load from language file
 // these will need to be variables; better to make an index into string table
 // (as with errors)? if it's a string, what happens if lang file load failed?
-#define STR_UNHANDLED_EXCEPTION L"unhandled exception. crash log has been written; please report at bugs.wildfiregames.com"
 #define STR_SDL_INIT_FAILED     L"SDL library initialization failed: %hs\n"
 #define STR_SET_VMODE_FAILED    L"could not set %dx%d graphics mode: %hs\n"
 #define STR_OGL_EXT_MISSING     L"required ARB_multitexture or ARB_texture_env_combine extension not available"
@@ -179,16 +178,11 @@ void Die(int err, const wchar_t* fmt, ...)
 	wdisplay_msg(L"0ad", buf);
 
 	write_sys_info();
-	debug_write_crashlog("crashlog.txt");
+
+	debug_write_crashlog("crashlog.txt", NULL, NULL);
 
 	exit(EXIT_FAILURE);
 }
-
-
-
-
-
-
 
 
 
@@ -455,14 +449,19 @@ void RenderNoCull()
 
 static void Render()
 {
+	MICROLOG(L"begin frame");
+
 	// start new frame
 	g_Renderer.BeginFrame();
 	g_Renderer.SetCamera(g_Camera);
 
 	// switch on wireframe for terrain if we want it
 	//g_Renderer.SetTerrainRenderMode( SOLID ); // (PT: If this is done here, the W key doesn't work)
+	MICROLOG(L"render terrain");
 	RenderTerrain();
+	MICROLOG(L"render models");
 	RenderModels();
+	MICROLOG(L"flush frame");
 	g_Renderer.FlushFrame();
 
 	if( g_EntGraph )
@@ -473,11 +472,13 @@ static void Render()
 		glDisable( GL_DEPTH_TEST );
 		glColor3f( 1.0f, 0.0f, 1.0f );
 
+		MICROLOG(L"render entities");
 		g_EntityManager.renderAll(); // <-- collision outlines, pathing routes
 
 		glPopAttrib();
 	}
 
+	MICROLOG(L"render fonts");
 	// overlay mode
 	glPushAttrib(GL_ENABLE_BIT);
 	glEnable(GL_TEXTURE_2D);
@@ -514,11 +515,13 @@ static void Render()
 	glwprintf( L"%hs", g_GUI.TEMPmessage.c_str() );
 
 	glLoadIdentity();
+	MICROLOG(L"render GUI");
 	g_GUI.Draw();
 #endif
 
 	unifont_bind(g_Font_Console);
 	glLoadIdentity();
+	MICROLOG(L"render console");
 	g_Console->Render();
 
 	// restore
@@ -528,6 +531,7 @@ static void Render()
 	glPopMatrix();
 	glPopAttrib();
 
+	MICROLOG(L"end frame");
 	g_Renderer.EndFrame();
 }
 
@@ -753,6 +757,8 @@ static void Init(int argc, char* argv[])
 sle(1134);
 #endif
 
+	MICROLOG(L"In init");
+
 	// If you ever want to catch a particular allocation:
 	//_CrtSetBreakAlloc(4128);
 
@@ -766,6 +772,7 @@ PREVTSC=TSC;
 #endif
 
 
+	MICROLOG(L"init lib");
 	lib_init();
 
 	// set 24 bit (float) FPU precision for faster divides / sqrts
@@ -778,10 +785,13 @@ PREVTSC=TSC;
 	// and fonts are set later in psInit())
 	g_Console = new CConsole();
 
+	MICROLOG(L"detect");
 	detect();
 
+	MICROLOG(L"init vfs");
 	InitVfs(argv[0]);
 
+	MICROLOG(L"init sdl");
 	// init SDL
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
 		Die(0, STR_SDL_INIT_FAILED, SDL_GetError());
@@ -792,9 +802,10 @@ PREVTSC=TSC;
 	// (command line params may override these)
 	get_cur_vmode(&g_xres, &g_yres, &g_bpp, &g_freq);
 
-
+	MICROLOG(L"init scripting");
 	InitScripting();	// before GUI
 	
+	MICROLOG(L"init config");
 	new CConfigDB;
 	g_ConfigDB.SetConfigFile(CFG_SYSTEM, false, "config/system.cfg");
 	g_ConfigDB.Reload(CFG_SYSTEM);
@@ -827,6 +838,8 @@ PREVTSC=TSC;
 sle(11340106);
 #endif
 
+	MICROLOG(L"set vmode");
+
 	if(set_vmode(g_xres, g_yres, 32, !windowed) < 0)
 		Die(0, STR_SET_VMODE_FAILED, g_xres, g_yres, SDL_GetError());
 
@@ -850,7 +863,7 @@ debug_out(
 PREVTSC=CURTSC;
 #endif
 
-
+	MICROLOG(L"init ps");
 	psInit();
 
 	// create renderer
@@ -869,6 +882,7 @@ PREVTSC=CURTSC;
 	new CObjectManager;
 	new CUnitManager;
 
+	MICROLOG(L"init renderer");
 	g_Renderer.Open(g_xres,g_yres,g_bpp);
 
 	// terr_init loads a bunch of resources as well as setting up the terrain
@@ -888,6 +902,7 @@ PREVTSC=CURTSC;
 if(!g_MapFile)
 	g_MapFile = "test01.pmp";
 
+	MICROLOG(L"init map");
 
 	// load a map if we were given one
 	if (g_MapFile) {
@@ -914,6 +929,7 @@ if(!g_MapFile)
 
 	in_add_handler(conInputHandler);
 
+	MICROLOG(L"render blank");
 	// render everything to a blank frame to force renderer to load everything
 	RenderNoCull();
 
@@ -955,6 +971,8 @@ PREVTSC=CURTSC;
 
 static void Frame()
 {
+	MICROLOG(L"In frame");
+
 	static double last_time;
 	const double time = get_time();
 	const float TimeSinceLastFrame = (float)(time-last_time);
@@ -962,6 +980,8 @@ static void Frame()
 	ONCE(return);
 		// first call: set last_time and return
 	assert(TimeSinceLastFrame >= 0.0f);
+
+	MICROLOG(L"reload files");
 
 	res_reload_changed_files();
 
@@ -979,6 +999,8 @@ static void Frame()
 	}
 #endif
 
+	MICROLOG(L"input");
+
 	// ugly, but necessary. these are one-shot events, have to be reset.
 	mouseButtons[SDL_BUTTON_WHEELUP] = false;
 	mouseButtons[SDL_BUTTON_WHEELDOWN] = false;
@@ -986,6 +1008,8 @@ static void Frame()
 
 	if(TimeSinceLastFrame > 0.0f)
 	{
+		MICROLOG(L"update world");
+
 		UpdateWorld(TimeSinceLastFrame);
 		if (!g_FixedFrameTiming)
 			terr_update(float(TimeSinceLastFrame));
@@ -994,8 +1018,11 @@ static void Frame()
 
 	if(g_active)
 	{
+		MICROLOG(L"render");
 		Render();
+		MICROLOG(L"swap buffers");
 		SDL_GL_SwapBuffers();
+		MICROLOG(L"finished render");
 	}
 	// inactive; relinquish CPU for a little while
 	// don't use SDL_WaitEvent: don't want the main loop to freeze until app focus is restored
@@ -1007,25 +1034,41 @@ static void Frame()
 	if (g_FixedFrameTiming && frameCount==100) quit=true;
 }
 
+
+#ifdef _WIN32
+// Define/undefine this as desired:
+#  define CUSTOM_EXCEPTION_HANDLER
+#endif
+
+#ifdef CUSTOM_EXCEPTION_HANDLER
+#include <excpt.h>
+#endif
+
 int main(int argc, char* argv[])
 {
-	try
+	MICROLOG(L"In main");
+
+#ifdef CUSTOM_EXCEPTION_HANDLER
+	__try
 	{
+#endif
+		MICROLOG(L"Init");
 		Init(argc, argv);
 
 		while(!quit)
+		{
+			MICROLOG(L"Frame");
 			Frame();
+		}
 
+		MICROLOG(L"Shutdown");
 		Shutdown();
+#ifdef CUSTOM_EXCEPTION_HANDLER
 	}
-	catch(...)
+	__except(debug_main_exception_filter(GetExceptionCode(), GetExceptionInformation()))
 	{
-// debug build: let debugger display it (more convenient)
-#ifndef NDEBUG
-		throw;
-#endif
-		Die(0, STR_UNHANDLED_EXCEPTION);
 	}
+#endif
 
 	exit(0);
 	return 0;
