@@ -887,12 +887,17 @@ static void VDir_dtor(VDir* vd)
 
 static int VDir_reload(VDir* vd, const char* path)
 {
-	// check if actually reloaded, and why it happened?
+	if(vd->subdirs)
+	{
+		debug_warn("VDir_reload called when already loaded - why?");
+		return 0;
+	}
 
 	Dir* dir;
 	CHECK_ERR(tree_lookup(path, 0, &dir));
 
-	// rationale for copy: see VDir definition
+	// rationale for copying the dir's data: see VDir definition
+	// note: bad_alloc exception handled by h_alloc.
 	vd->subdirs = new SubDirs(dir->subdirs);
 	vd->subdir_it = vd->subdirs->begin();
 	vd->files = new Files(dir->files);
