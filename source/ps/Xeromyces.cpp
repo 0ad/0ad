@@ -1,4 +1,4 @@
-// $Id: Xeromyces.cpp,v 1.8 2004/07/15 19:08:28 philip Exp $
+// $Id: Xeromyces.cpp,v 1.9 2004/07/23 19:03:40 philip Exp $
 
 #include "precompiled.h"
 
@@ -195,10 +195,16 @@ void CXeromyces::Load(const char* filename)
 	}
 
 	// Start the checksum with a particular seed value, so the XMBs will
-	// be recreated whenever the version/etc string has been changed, so
-	// the string can be changed whenever the file format's changed.
+	// be recreated whenever the file format has changed.
+	unsigned long SeedChecksum = crc32(0L, Z_NULL, 0);
+	// Depend on the version of the file format
 	const char* ChecksumID = "version C";
-	unsigned long XMLChecksum = source.CRC32( crc32( crc32(0L, Z_NULL, 0), (Bytef*)ChecksumID, (int)strlen(ChecksumID) ) );
+	SeedChecksum = crc32(SeedChecksum, (Bytef*)ChecksumID, (int)strlen(ChecksumID));
+	// Also depend on the machine's endianness
+	u32 EndiannessIndicator = 0x12345678;
+	SeedChecksum = crc32(SeedChecksum, (Bytef*)&EndiannessIndicator, 4);
+	// And finally depend on the actual contents of the XML file
+	unsigned long XMLChecksum = source.CRC32(SeedChecksum);
 
 	// Check whether the XMB file needs to be regenerated:
 
