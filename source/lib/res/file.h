@@ -146,7 +146,7 @@ extern int file_discard_io(FileIO io);
 // >= 0: bytes output; continue.
 typedef ssize_t(*FileIOCB)(uintptr_t ctx, void* p, size_t size);
 
-extern ssize_t file_io(File* f, off_t ofs, size_t size, void** p, FileIOCB cb = 0, uintptr_t ctx = 0);
+extern ssize_t file_io(File* f, off_t ofs, size_t size, void* buf, FileIOCB cb = 0, uintptr_t ctx = 0);
 
 
 #endif	// #ifndef FILE_H

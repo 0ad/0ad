@@ -835,7 +835,7 @@ skip_issue:
 
 
 
-ssize_t file_io(File* const f, const off_t data_ofs, size_t data_size, void** const p,
+ssize_t file_io(File* const f, const off_t data_ofs, size_t data_size, void* const data_buf,
 	const FileIOCB cb, const uintptr_t ctx) // optional
 {
 #ifdef PARANOIA
@@ -846,9 +846,6 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 
 	const bool is_write = !!(f->flags & FILE_WRITE);
 	const bool no_aio = !!(f->flags & FILE_NO_AIO);
-
-	void* data_buf = 0;	// I/O source or sink buffer
-
 
 	// when reading:
 	if(!is_write)
@@ -861,46 +858,21 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 	}
 
 
-	//
-	// set buffer options
-	//
-
-	enum { TEMP, USER, ALLOC } buf_type;
-
-	// .. temp buffer
-	if(!p)
-		buf_type = TEMP;
-	// .. user-specified buffer (=> no align)
-	else if(*p)
-	{
-		buf_type = USER;
-		data_buf = *p;
-	}
-	// .. we allocate the buffer
-	else
-	{
-		buf_type = ALLOC;
-		// data_buf will be set from actual_buf
-	}
-
+	bool temp = (data_buf == 0);
 
 	// sanity checks:
 	// .. temp blocks requested AND
 	//    (not reading OR using lowio OR no callback)
-	if(buf_type == TEMP && (is_write || no_aio || !cb))
+	if(temp && (is_write || no_aio || !cb))
 	{
-invalid:
 		debug_warn("file_io: invalid parameter");
 		return ERR_INVALID_PARAM;
 	}
-	// .. write, but no buffer passed in.
-	if(is_write && buf_type != USER)
-		goto invalid;
 
 
 	// only align if we allocate the buffer and in AIO mode
-	const bool do_align = buf_type != USER && !no_aio;
-	const bool cache = buf_type == TEMP;
+	const bool do_align = temp;
+	const bool cache = temp;
 
 
 	//
@@ -925,14 +897,6 @@ invalid:
 	{
 		actual_ofs -= (off_t)ofs_misalign;
 		actual_size = round_up(ofs_misalign + data_size, BLOCK_SIZE);
-	}
-
-	if(buf_type == ALLOC)
-	{
-		actual_buf = mem_alloc(actual_size, BLOCK_SIZE);
-		if(!actual_buf)
-			return ERR_NO_MEM;
-		data_buf = (char*)actual_buf + lead_padding;
 	}
 
 	// warn in debug build if buffer and offset don't match
@@ -989,7 +953,7 @@ invalid:
 
 			off_t issue_ofs = (off_t)(actual_ofs + issue_cnt);
 
-			void* buf = (buf_type == TEMP)? 0 : (char*)actual_buf + issue_cnt;
+			void* buf = (temp)? 0 : (char*)actual_buf + issue_cnt;
 			ssize_t issued = block_issue(f, slot, issue_ofs, buf);
 			if(issued < 0)
 				err = issued;
@@ -1039,7 +1003,7 @@ invalid:
 
 // we have useable data from a previous temp buffer,
 // but it needs to be copied into the user's buffer
-if(from_cache && buf_type != TEMP)
+if(from_cache && !temp)
 	memcpy((char*)data_buf+raw_transferred_cnt, data, size);
 
 
@@ -1067,7 +1031,7 @@ if(from_cache && buf_type != TEMP)
 			if(!from_cache)
 				file_discard_io(slot->io);
 
-			if(buf_type == TEMP)
+			if(temp)
 			{
 				// adding is allowed and we didn't take this from the cache already: add
 				if(!slot->cached_block)
@@ -1081,20 +1045,7 @@ if(from_cache && buf_type != TEMP)
 
 	// failed (0 means callback reports it's finished)
 	if(err < 0)
-	{
-		// user didn't specify output buffer - free what we allocated,
-		// and clear p (value-return param)
-		if(buf_type == ALLOC)
-		{
-			mem_free(actual_buf);
-			*p = 0;
-				// alloc_buf => p != 0
-		}
 		return err;
-	}
-
-	if(p)
-		*p = data_buf;
 
 	assert(issue_cnt >= raw_transferred_cnt && raw_transferred_cnt >= data_size); 
 

@@ -1343,14 +1343,28 @@ debug_out("vfs_io size=%d\n", size);
 	off_t ofs = vf->ofs;
 	vf->ofs += (off_t)size;
 
+	void* buf = 0;	// assume temp buffer (p == 0)
+	if(p)
+		// user-specified buffer
+		if(*p)
+			buf = *p;
+		// we allocate
+		else
+		{
+			buf = mem_alloc(round_up(size, 4096), 4096);
+			if(!buf)
+				return ERR_NO_MEM;
+			*p = buf;
+		}
+
 	// (vfs_open makes sure it's not opened for writing if zip)
 	if(vf_flags(vf) & VF_ZIP)
-		return zip_read(&vf->zf, ofs, size, p, cb, ctx);
+		return zip_read(&vf->zf, ofs, size, buf, cb, ctx);
 
 	// normal file:
 	// let file_io alloc the buffer if the caller didn't (i.e. p = 0),
 	// because it knows about alignment / padding requirements
-	return file_io(&vf->f, ofs, size, p, cb, ctx);
+	return file_io(&vf->f, ofs, size, buf, cb, ctx);
 }
 
 
