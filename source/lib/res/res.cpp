@@ -19,7 +19,7 @@ int res_reload(const char* const fn)
 
 
 static FAMConnection fc;
-static bool initialized;
+static bool initialized=false;
 
 
 

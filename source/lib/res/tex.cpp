@@ -25,6 +25,8 @@
 #include <stdlib.h>
 #include <assert.h>
 
+#include <algorithm>
+
 // supported formats:
 //#define NO_DDS
 //#define NO_TGA

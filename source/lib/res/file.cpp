@@ -56,7 +56,7 @@ const size_t BLOCK_SIZE = 1ul << BLOCK_SIZE_LOG2;
 //   * requests for part of a block are usually followed by another.
 
 
-static enum Conversion
+enum Conversion
 {
 	TO_NATIVE,
 	TO_PORTABLE
@@ -455,7 +455,7 @@ int file_open(const char* const p_fn, const uint flags, File* const f)
 	oflag |= O_BINARY;
 #endif
 
-	int fd = open(n_fn, oflag, S_IRWXO);
+	int fd = open(n_fn, oflag, S_IRWXO|S_IRWXU|S_IRWXG);
 	if(fd < 0)
 		return -1;
 
