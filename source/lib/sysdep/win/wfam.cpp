@@ -17,7 +17,9 @@
 
 #include "precompiled.h"
 
-#include "wfam.h"
+// TODO Jan: Where is this file?
+//#include "wfam.h"
+
 #include "win_internal.h"
 
 #if 0

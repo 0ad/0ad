@@ -33,7 +33,7 @@ bool CParserValue::func_name(type &ret)					\
 #define FUNC_IMPL_GETARG(func_name, get_name, type)		\
 bool CParserLine::func_name(const int & arg, type &ret)	\
 {														\
-	if (GetArgCount() <= arg)							\
+	if (GetArgCount() <= (unsigned int)arg)							\
 		return false;									\
 	return m_Arguments[arg].get_name(ret);				\
 }
@@ -115,7 +115,7 @@ bool CParserValue::GetDouble(_double &ret)
 {
 	// locals
 	_double			TempRet = 0.0;
-	int			Size = m_String.size();
+	int			Size = (int)m_String.size();
 	int			i;
 	bool			AtLeastOne = false;		// Checked if at least one of the loops
 										//  run, otherwise "." would parse OK
@@ -129,7 +129,7 @@ bool CParserValue::GetDouble(_double &ret)
 	}
 	
 	// find decimal position
-	DecimalPos = m_String.find(".");
+	DecimalPos = (int)m_String.find(".");
 	if (DecimalPos == string::npos)	
 		DecimalPos = Size;
 
@@ -326,7 +326,7 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 	// Divide string into smaller vectors, seperators are unusual signs
 	// * * * *
 
-	for (i=0; i<strLine.size(); ++i)
+	for (i=0; i<(int)strLine.size(); ++i)
 	{
 		// Check if we're trying to use some kind of type
 		if (!Extract)
@@ -343,7 +343,7 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 			if (strLine[i] == '\"')
 			{
 				// Extract a string, search for another "
-				int pos = strLine.find("\"", i+1);
+				int pos = (int)strLine.find("\"", i+1);
 
 				// If matching can't be found,
 				//  the parsing will fail!
@@ -524,7 +524,7 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 					// --- New node is set!
 
 					// Make sure they are large enough
-					if (LastValidProgress.size() < Lane+1)
+					if ((int)LastValidProgress.size() < Lane+1)
 					{
 						LastValidProgress.resize(Lane+1);
 						LastValidMatch.resize(Lane+1);
@@ -534,7 +534,7 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 					// Store last valid progress
 					LastValidProgress[Lane] = Progress;
 					LastValidMatch[Lane] = Match;
-					LastValidArgCount[Lane] = m_Arguments.size();
+					LastValidArgCount[Lane] = (int)m_Arguments.size();
 
 					++Lane;
 
@@ -562,7 +562,7 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 					{
 						// Find blank space if any!
 						//  and jump to the next non-blankspace
-						if (Progress < Segments.size())
+						if (Progress < (int)Segments.size())
 						{	
 							// Skip blankspaces AND tabs!
 							while (Segments[Progress].size()==1 &&
@@ -572,7 +572,7 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 								++Progress;
 
 								// Check length
-								if (Progress >= Segments.size())
+								if (Progress >= (int)Segments.size())
 								{
 									break;
 								}
@@ -582,7 +582,7 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 					else
 					// CHECK LETTER IF IT'S CORRECT
 					{
-						if (Progress < Segments.size())
+						if (Progress < (int)Segments.size())
 						{
 							// This should be 1-Letter long
 							if (Segments[Progress].size() != 1)
@@ -618,7 +618,7 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 						//  that invalidates the match
 
 						// String end?
-						if (Progress >= Segments.size())
+						if (Progress >= (int)Segments.size())
 						{
 							Match = false;
 						}
@@ -679,7 +679,7 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 								// Reset, probably is but still
 								value.m_String = string();
 
-								for (i=Progress; i<Segments.size(); ++i)
+								for (i=Progress; i<(int)Segments.size(); ++i)
 								{
 									value.m_String += Segments[i];
 
@@ -814,7 +814,7 @@ bool CParser::InputTaskType(const string& strName, const string& strSyntax)
 
 	// Loop through the string and construct nodes in the binary tree
 	//  when applicable
-	for (i=0; i<strSyntax.size(); ++i)
+	for (i=0; i<(int)strSyntax.size(); ++i)
 	{
 		// Extract is a variable that is true when we want to extract
 		//  parts that is longer than one character.
@@ -987,7 +987,7 @@ bool CParser::InputTaskType(const string& strName, const string& strSyntax)
 					CurNode->m_String = strSyntax.substr(ExtractPos+4, Pos-(ExtractPos+4));
 
 					// Now update position
-					i = Pos;
+					i = (int)Pos;
 				}
 				else
 				{

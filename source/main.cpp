@@ -339,7 +339,13 @@ void ParseArgs(int argc, char* argv[])
 						g_MapFile=argv[i]+3;
 					}
 					break;
-
+				case 'g':
+					if( argv[i][2] == '=' )
+					{
+						g_Gamma = (float)atof( argv[i] + 3 );
+						if( g_Gamma == 0.0f ) g_Gamma = 1.0f;
+					}
+					break;
 				case 'n':
 					if (strncmp(argv[i]+1,"novbo",5)==0) {
 						g_NoGLVBO=true;
@@ -548,6 +554,10 @@ in_add_handler(terr_handler);
 		time0=time1;
 #endif
 	}
+
+	// TODO MT: Move this to atexit() code? Capture original gamma ramp at initialization and restore it?
+
+	SDL_SetGamma( 1.0f, 1.0f, 1.0f );
 
 #ifndef NO_GUI
 	g_GUI.Destroy();
