@@ -38,9 +38,13 @@ Instructions:
   download http://www.wildfiregames.com/~code/libraries/javascript-sdk.zip.
   ... extract contents of include/ into $include, and .lib files into $lib.
 
-- FMOD: [sound]
-  download http://www.wildfiregames.com/~code/libraries/fmodapi372win.zip
-  ... extract contents of include/ into $include, and .lib files into $lib 
+- OpenAL: [sound]
+  download http://www.wildfiregames.com/~code/libraries/openal.zip
+  ... extract contents of include/ into $include, and contents of lib/ into $lib
+
+- Vorbis: [OGG decode. temporary - will be replaced by OpenAL's OGG library]
+  download http://www.wildfiregames.com/~code/libraries/vorbis.zip
+  ... extract contents of include/ into $include, and contents of lib/ into $lib
 
 - dbghelp: [debug PDB symbol access]
   download http://www.wildfiregames.com/~code/libraries/DbgHelp.h
