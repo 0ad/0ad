@@ -5,7 +5,7 @@
 #include "lib.h"
 #include "win_internal.h"
 
-#include "cpu.h"
+#include "sysdep/cpu.h"
 
 
 // not possible with POSIX calls.

@@ -1,6 +1,6 @@
 #include "precompiled.h"
 
-#include "lib/res/CVFSFile.h"
+#include "CVFSFile.h"
 
 #include "lib/res/mem.h"
 #include "lib/res/vfs.h"
