@@ -124,7 +124,7 @@ void cursor_draw(const char* name)
 	BITMAPINFOHEADER dibheader = {
 		sizeof(BITMAPINFOHEADER), // biSize
 			w,	// biWidth
-			-h,	// biHeight (negative for top-down)
+			h,	// biHeight (positive means bottom-up)
 			1,	// biPlanes
 			32,	// biBitCount
 			BI_RGB,	// biCompression
@@ -201,10 +201,10 @@ struct Cursor {
 		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 
 		glBegin(GL_QUADS);
-			glTexCoord2i(0, 0); glVertex2i( x-hotspotx,   y+hotspoty   );
-			glTexCoord2i(1, 0); glVertex2i( x-hotspotx+w, y+hotspoty   );
-			glTexCoord2i(1, 1); glVertex2i( x-hotspotx+w, y+hotspoty-h );
-			glTexCoord2i(0, 1); glVertex2i( x-hotspotx,   y+hotspoty-h );
+			glTexCoord2i(0, 1); glVertex2i( x-hotspotx,   y+hotspoty   );
+			glTexCoord2i(1, 1); glVertex2i( x-hotspotx+w, y+hotspoty   );
+			glTexCoord2i(1, 0); glVertex2i( x-hotspotx+w, y+hotspoty-h );
+			glTexCoord2i(0, 0); glVertex2i( x-hotspotx,   y+hotspoty-h );
 		glEnd();
 	}
 };
