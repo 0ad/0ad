@@ -378,11 +378,15 @@ int closedir(DIR* d_)
 static HANDLE std_h[2] = { (HANDLE)((char*)0 + 3), (HANDLE)((char*)0 + 7) };
 
 
-__declspec(naked) void _get_console()
-{ __asm	jmp		dword ptr [AllocConsole] }
+void _get_console()
+{
+	AllocConsole();
+}
 
-__declspec(naked) void _hide_console()
-{ __asm jmp		dword ptr [FreeConsole] }
+void _hide_console()
+{
+	FreeConsole();
+}
 
 
 int tcgetattr(int fd, struct termios* termios_p)
