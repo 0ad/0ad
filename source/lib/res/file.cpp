@@ -501,210 +501,6 @@ int file_close(File* const f)
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// low level IO
-// thin wrapper over aio; no alignment or caching
-//
-///////////////////////////////////////////////////////////////////////////////
-
-
-struct ll_cb
-{
-	aiocb cb;
-};
-
-
-static int ll_start_io(File* const f, const off_t ofs, size_t size, void* const p, ll_cb* const lcb)
-{
-	CHECK_FILE(f);
-
-	// sanity checks (caller should have taken care of this)
-	// .. size
-	assert(size != 0 && "ll_start_io: size = 0 - why?");
-	// .. ofs before EOF
-	if(!(f->flags & FILE_WRITE))
-		assert(ofs < f->size);
-	// .. alignment
-	if(ofs % 4096 != 0 || (uintptr_t)p % 4096 != 0)
-		debug_out("ll_start_io: p=%p or ofs=%lu is unaligned", p, ofs);
-
-	const int op = (f->flags & FILE_WRITE)? LIO_WRITE : LIO_READ;
-
-	// send off async read/write request
-	aiocb* cb = &lcb->cb;
-	cb->aio_lio_opcode = op;
-	cb->aio_buf        = p;
-	cb->aio_fildes     = f->fd;
-	cb->aio_offset     = ofs;
-	cb->aio_nbytes     = size;
-	return lio_listio(LIO_NOWAIT, &cb, 1, (struct sigevent*)0);
-		// this just issues the I/O - doesn't wait until complete.
-}
-
-
-// as a convenience, return a pointer to the transfer buffer
-// (rather than expose the ll_cb internals)
-static ssize_t ll_wait_io(ll_cb* const lcb, void*& p)
-{
-	aiocb* cb = &lcb->cb;
-
-	// wait for transfer to complete.
-	while(aio_error(cb) == EINPROGRESS)
-		aio_suspend(&cb, 1, NULL);
-
-	// posix has aio_buf as volatile void, and gcc doesn't like to cast it
-	// implicitly
-	p = (void*)cb->aio_buf;
-
-	// return how much was actually transferred,
-	// or -1 if the transfer failed.
-	return aio_return(cb);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////
-//
-// block cache
-//
-///////////////////////////////////////////////////////////////////////////////
-
-
-static Cache<void*> c;
-	// don't need a Block struct as cache data -
-	// it stores its associated ID, and does refcounting
-	// with lock().
-
-
-// create an id for use with the Cache that uniquely identifies
-// the block from the file <fn_hash> containing <ofs>.
-static u64 block_make_id(const u32 fn_hash, const off_t ofs)
-{
-	// id format: filename hash | block number
-	//            63         32   31         0
-	//
-	// we assume the hash (currently: FNV) is unique for all filenames.
-	// chance of a collision is tiny, and a build tool will ensure
-	// filenames in the VFS archives are safe.
-	//
-	// block_num will always fit in 32 bits (assuming maximum file size
-	// = 2^32 * BLOCK_SIZE = 2^48 -- plenty); we check this, but don't
-	// include a workaround. we could return 0, and the caller would have
-	// to allocate their own buffer, but don't bother.
-
-	// make sure block_num fits in 32 bits
-	const size_t block_num = ofs / BLOCK_SIZE;
-	assert(block_num <= 0xffffffff);
-
-	u64 id = fn_hash;	// careful, don't shift a u32 32 bits left
-	id <<= 32;
-	id |= block_num;
-	return id;
-}
-
-
-// 
-static void* block_alloc(const u64 id)
-{
-	// initialize cache, if not done already.
-	static bool cache_initialized;
-	if(!cache_initialized)
-	{
-		get_mem_status();
-		// TODO: calculate size
-		const size_t num_blocks = 16;
-
-		// evil: waste some mem (up to one block) to make sure the first block
-		// isn't at the start of the allocation, so that users can't
-		// mem_free() it. do this by manually aligning the pool.
-		//
-		// allocator will free the whole thing at exit.
-		void* const pool = mem_alloc((num_blocks+1) * BLOCK_SIZE);
-		if(!pool)
-			return 0;
-
-		const uintptr_t start = round_up((uintptr_t)pool + 1, BLOCK_SIZE);
-			// +1 => if already block-aligned, add a whole block!
-
-		// add all blocks to cache
-		void* p = (void*)start;
-		for(size_t i = 0; i < num_blocks; i++)
-		{
-			if(c.grow(p) < 0)
-				debug_warn("block_alloc: Cache::grow failed!");
-				// currently can't fail.
-			p = (char*)p + BLOCK_SIZE;
-		}
-
-		cache_initialized = true;
-	}
-
-	void** const entry = c.assign(id);
-	if(!entry)
-		return 0;
-	void* const block = *entry;
-
-	if(c.lock(id, true) < 0)
-		debug_warn("block_alloc: Cache::lock failed!");
-		// can't happen: only cause is tag not found, but we successfully
-		// added it above. if it did fail, that'd be bad: we leak the block,
-		// and/or the buffer may be displaced while in use. hence, assert.
-	
-	return block;
-}
-
-
-// modifying cached blocks is not supported.
-// we could allocate a new buffer and update the cache to point to that,
-// but that'd fragment our memory pool.
-// instead, add a copy on write call, if necessary.
-
-
-static int block_retrieve(const u64 id, void*& p)
-{
-	void** const entry = c.retrieve(id);
-	if(entry)
-	{
-		p = *entry;
-		c.lock(id, true);	// add reference
-		return 0;
-	}
-	else
-	{
-		p = 0;
-		return -1;
-	}
-
-	// important note:
-	// for the purposes of starting the IO, we can regard blocks whose read
-	// is still pending it as cached. when getting the IO results,
-	// we'll have to wait on the actual IO for that block.
-	//
-	// don't want to require IOs to be completed in order of issue:
-	// that'd mean only 1 caller can read from file at a time.
-	// would obviate associating id with IO, but is overly restrictive.
-}
-
-
-static int block_discard(const u64 id)
-{
-	return c.lock(id, false);
-}
-
-
-int file_free_buf(void*& p)
-{
-	const uintptr_t _p = (uintptr_t)p;
-	void* const actual_p = (void*)(_p - (_p % BLOCK_SIZE));	// round down
-
-	return mem_free(actual_p);
-
-	// remove from cache?
-
-	// check if in use?
-}
-
-
-///////////////////////////////////////////////////////////////////////////////
-//
 // async I/O
 //
 ///////////////////////////////////////////////////////////////////////////////
@@ -712,23 +508,14 @@ int file_free_buf(void*& p)
 
 struct IO
 {
-	u64 block_id;
-		// transferring via cache (=> BLOCK_SIZE aligned) iff != 0
+	aiocb cb;
+		// small enough ATM to store here. if not (=> assert triggered),
+		// allocate in IO_init (currently don't do so to reduce allocations).
 
-	void* block;
-		// valid because cache line is locked
-		// (rug can't be pulled out from under us)
-
-	ll_cb* cb;
-		// this is too big to store here. IOs are reused,
-		// so we don't allocate a new cb every file_start_io.
-
-	void* user_p;
-	off_t user_ofs;
+	size_t padding;
 	size_t user_size;
 
-	int cached  : 1;
-	int pending : 1;
+	int our_buf : 1;
 };
 
 H_TYPE_DEFINE(IO);
@@ -738,178 +525,27 @@ H_TYPE_DEFINE(IO);
 // all IOs pending for each file. too much work, little benefit.
 
 
-static void IO_init(IO* io, va_list args)
+static void IO_init(IO*, va_list)
 {
-	UNUSED(args);
-
-	const size_t cb_size = round_up(sizeof(struct ll_cb), 16);
-	io->cb = (ll_cb*)mem_alloc(cb_size, 16, MEM_ZERO);
 }
 
-static void IO_dtor(IO* io)
+static void IO_dtor(IO*)
 {
-	mem_free(io->cb);
 }
 
-
-// TODO: prevent reload if already open, i.e. IO pending
 
 // we don't support transparent read resume after file invalidation.
 // if the file has changed, we'd risk returning inconsistent data.
-// i don't think it's possible anyway, without controlling the AIO
-// implementation: when we cancel, we can't prevent the app from calling
+// doesn't look possible without controlling the AIO implementation:
+// when we cancel, we can't prevent the app from calling
 // aio_result, which would terminate the read.
-static int IO_reload(IO* io, const char* fn, Handle h)
+static int IO_reload(IO* io, const char*, Handle)
 {
-	UNUSED(fn);
-	UNUSED(h);
-
-	return io->cb? 0 : ERR_NO_MEM;
+	return (io->cb.aio_buf == 0)? 0 : -1;
+		// if != 0, IO was pending - see above.
 }
 
 
-///////////////////////////////////////////////////////////////////////////////
-
-
-// extra layer on top of h_alloc, so we can reuse IOs
-//
-// (avoids allocating the cb every IO => less heap fragmentation)
-//
-// don't worry about reassigning IOs to their associated file -
-// they don't need to be reloaded, since the VFS refuses reload
-// requests for files with pending IO.
-
-typedef std::vector<Handle> IOList;
-
-// accessed MRU for better cache locality
-static IOList free_ios;
-
-// list of all IOs allocated.
-// used to find active IO, given id (see below).
-// also used to free all IOs before the handle manager
-// cleans up at exit, so they aren't seen as resource leaks.
-
-static IOList all_ios;
-
-struct Free
-{
-	void operator()(Handle h)
-	{
-		h_free(h, H_IO);
-	}
-};
-
-// free all allocated IOs, so they aren't seen as resource leaks.
-static void io_shutdown(void)
-{
-	std::for_each(all_ios.begin(), all_ios.end(), Free());
-}
-
-
-static Handle io_alloc()
-{
-	ONCE(atexit(io_shutdown));
-/*
-	// grab from freelist
-	if(!free_ios.empty())
-	{
-		Handle h = free_ios.back();
-		free_ios.pop_back();
-
-		// note:
-		// we don't check if the freelist contains valid handles.
-		// that "can't happen", and if it does, it'll be caught
-		// by the handle dereference in file_start_io.
-		// 
-		// no one else can actually free an IO - that would require
-		// its handle type, which is private to this module.
-		// the free_io call just adds it to the freelist;
-		// all allocated IOs are destroyed in io_cleanup at exit.
-
-		return h;
-	}
-*/
-	// allocate a new IO
-	Handle h = h_alloc(H_IO, 0);
-	// .. it's valid - store in list.
-	if(h > 0)
-		all_ios.push_back(h);
-	return h;
-}
-
-
-static int io_free(const Handle hio)
-{
-	H_DEREF(hio, IO, io);
-
-	if(io->pending)
-	{
-		debug_warn("io_free: IO pending");
-		return -1;
-	}
-
-	// clear the other IO fields, just to be sure.
-	// (but don't memset the whole thing - that'd trash the cb pointer!)
-	io->block_id  = 0;
-	io->block     = 0;
-	io->cached    = 0;
-	io->user_ofs  = 0;
-	io->user_size = 0;
-	io->user_p    = 0;
-	memset(io->cb, 0, sizeof(ll_cb));
-
-	// TODO: complain if buffer not yet freed?
-
-	// we know hio is valid, since we successfully dereferenced above.
-	free_ios.push_back(hio);
-	return 0;
-}
-
-
-// need to find IO, given id, to make sure a block
-// that is marked cached has actually been read.
-// it is expected that there only be a few allocated IOs,
-// so it's ok to search this list every cache hit.
-// adding to the cache data structure would be messier.
-
-struct FindBlock : public std::binary_function<Handle, u64, bool>
-{
-	bool operator()(const Handle hio, const u64 block_id) const
-	{
-		// can't use H_DEREF - we return bool
-		IO* io = (IO*)h_user_data(hio, H_IO);
-		if(!io)
-		{
-			debug_warn("invalid handle in all_ios list!");
-			return false;
-		}
-		return io->block_id == block_id;
-	}
-};
-
-static Handle io_find(const u64 block_id)
-{
-	IOList::const_iterator it;
-	it = std::find_if(all_ios.begin(), all_ios.end(), std::bind2nd(FindBlock(), block_id));
-	// not found
-	if(it == all_ios.end())
-		return 0;
-
-	return *it;
-}
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////
-
-
-
-
-// rationale for extra alignment / copy layer, even though aio takes care of it:
-// aio would pad to its minimum read alignment, copy over, and be done;
-// in our case, if something is unaligned, a request for the remainder of the
-// block is likely to follow, so we want to cache the whole block.
 
 
 // pads the request up to BLOCK_SIZE, and stores the original parameters in IO.
@@ -941,90 +577,66 @@ Handle file_start_io(File* const f, const off_t user_ofs, size_t user_size, void
 			// guaranteed to fit, since size was > bytes_left
 	}
 
-	u64 block_id = block_make_id(f->fn_hash, user_ofs);
-		// reset to 0 if transferring more than 1 block.
-
-	// allocate IO slot
-	Handle hio = io_alloc();
-	H_DEREF(hio, IO, io);
-	io->block_id  = block_id;
-	io->user_p    = user_p;
-	io->user_ofs  = user_ofs;
-	io->user_size = user_size;
-		// notes: io->cached, io->pending and io->block are already zeroed;
-		// cb will receive the actual IO request (aligned offset and size).
 
 #ifdef PARANOIA
 debug_out("file_start_io hio=%I64x ofs=%d size=%d\n", hio, user_ofs, user_size);
 #endif
 
-	// aio already safely handles unaligned buffers or offsets.
-	// when reading zip files, we don't want to repeat a read
-	// if a block contains the end of one file and start of the next
-	// (speed concern).
-	// therefore, we align and round up to whole blocks.
-	//
-	// note: cache even if this is the last block before EOF:
-	// a zip archive may contain one last file in the block.
-	// if not, no loss - the buffer will be LRU, and reused.
-
+	size_t padding = 0;
+	size_t size = user_size;
+	void* buf = user_p;
 	off_t ofs = user_ofs;
-	const size_t padding = ofs % BLOCK_SIZE;
-	ofs -= (off_t)padding;
-	const size_t size = round_up(padding + user_size, BLOCK_SIZE);
 
-
-
-	// if already cached, we're done
-	if(size == BLOCK_SIZE && block_retrieve(block_id, io->block) == 0)
+	// we're supposed to allocate the buffer
+	if(!user_p)
 	{
-#ifdef PARANOIA
-debug_out("file_start_io: cached! block # = %d\n", block_id & 0xffffffff);
-#endif
-		io->cached = 1;
-		return hio;
-	}
-
-
-	void* buf = 0;
-	void* our_buf = 0;
-
-	// can use the caller's buffer
-	if(user_p && !padding && user_size == size)
-		buf = user_p;
-	// it's unaligned or too small (ll_io wants to read a whole block) -
-	// we have to allocate an align buffer
-	else
-	{
-		if(size == BLOCK_SIZE)
-			our_buf = io->block = block_alloc(block_id);
-		// transferring more than one block - doesn't go through cache!
-		else
-		{
-			our_buf = mem_alloc(size, BLOCK_SIZE, MEM_ZERO);
-			block_id = 0;
-		}
-		if(!our_buf)
-		{
-			err = ERR_NO_MEM;
-			goto fail;
-		}
-
-		// have to copy over our data into align buffer
 		if(is_write)
-			memcpy(our_buf, user_p, user_size);
+		{
+			debug_warn("file_start_io: writing but buffer = 0");
+			return ERR_INVALID_PARAM;
+		}
 
-		buf = our_buf;
+		// optimization: pad to eliminate a memcpy if unaligned
+		ofs = user_ofs;
+		const size_t sector_size = 4096;
+			// reasonable guess. if too small, aio will do alignment.
+		padding = ofs % sector_size;
+		ofs -= (off_t)padding;
+		size = round_up(padding + user_size, sector_size);
+
+		buf = mem_alloc(size, sector_size);
+		if(!buf)
+			return ERR_NO_MEM;
 	}
 
-	err = ll_start_io(f, ofs, size, buf, io->cb);
+	// allocate IO slot
+	Handle hio = h_alloc(H_IO, 0);
+	H_DEREF(hio, IO, io);
+	io->padding   = padding;
+	io->user_size = user_size;
+	io->our_buf   = (user_p == 0);
+		// note: cb will hold the actual IO request
+		// (possibly aligned offset and size).
+
+
+	const int op = (f->flags & FILE_WRITE)? LIO_WRITE : LIO_READ;
+
+	// send off async read/write request
+	aiocb* cb = &io->cb;
+	cb->aio_lio_opcode = op;
+	cb->aio_buf        = buf;
+	cb->aio_fildes     = f->fd;
+	cb->aio_offset     = ofs;
+	cb->aio_nbytes     = size;
+	err = lio_listio(LIO_NOWAIT, &cb, 1, (struct sigevent*)0);
+		// this just issues the I/O - doesn't wait until complete.
+
 
 	if(err < 0)
 	{
-fail:
 		file_discard_io(hio);
-		if(size != BLOCK_SIZE)
-			file_free_buf(our_buf);
+		if(!user_p)
+			mem_free(buf);
 		return err;
 	}
 
@@ -1038,65 +650,38 @@ int file_wait_io(const Handle hio, void*& p, size_t& size)
 debug_out("file_wait_io: hio=%I64x\n", hio);
 #endif
 
-	int ret = 0;
-
+	// zero output params in case something (e.g. H_DEREF) fails.
 	p = 0;
 	size = 0;
 
 	H_DEREF(hio, IO, io);
-	ll_cb* cb = io->cb;
+	aiocb* cb = &io->cb;
 
+	// wait for transfer to complete.
+	const aiocb** cbs = (const aiocb**)&cb;	// pass in an "array"
+	while(aio_error(cb) == EINPROGRESS)
+		aio_suspend(cbs, 1, NULL);
+
+	// query number of bytes transferred (-1 if the transfer failed)
+	const ssize_t bytes_transferred = aio_return(cb);
+	if(bytes_transferred < (ssize_t)io->user_size)
+		return -1;
+
+	p = (void*)cb->aio_buf;	// cast from volatile void*
 	size = io->user_size;
-
-	void* transfer_buf = 0;
-	ssize_t bytes_transferred;
-
-	// block's tag is in cache. need to check if its read is still pending.
-	if(io->cached)
-	{
-		Handle cache_hio = io_find(io->block_id);
-		// was already finished - don't wait
-		if(cache_hio <= 0)
-			goto skip_wait;
-
-		// not finished yet; will wait for it below, as with uncached reads.
-		H_DEREF(cache_hio, IO, cache_io);
-			// can't fail, since io_find has to dereference each handle.
-		cb = cache_io->cb;
-	}
-
-	bytes_transferred = ll_wait_io(cb, transfer_buf);
-
-skip_wait:
-
-	if(io->block)
-	{
-		size_t padding = io->user_ofs % BLOCK_SIZE;
-		void* src = (char*)io->block + padding;
-
-		// copy over into user's buffer
-		if(io->user_p)
-		{
-			p = io->user_p;
-			memcpy(p, src, io->user_size);
-		}
-		// return pointer to cache block
-		else
-			p = src;
-	}
-	// we had read directly into target buffer
-	else
-		p = transfer_buf;
-
-	return ret;
+	return 0;
 }
 
 
 int file_discard_io(Handle& hio)
 {
 	H_DEREF(hio, IO, io);
-	block_discard(io->block_id);
-	io_free(hio);
+	aiocb* cb = &io->cb;
+
+	if(io->our_buf)
+		mem_free(cb->aio_buf);
+
+	h_free(hio, H_IO);
 	return 0;
 }
 
@@ -1132,24 +717,8 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, raw_size, raw_ofs);
 
 	const bool is_write = (f->flags & FILE_WRITE) != 0;
 
-	if(f->flags & FILE_NO_AIO)
-	{
-		// cut off at EOF if reading
-		if(!is_write)
-		{
-			const ssize_t bytes_left = f->size - raw_ofs;
-			if(bytes_left < 0)
-				return -1;
-			raw_size = MIN(raw_size, (size_t)bytes_left);
-		}
-
-		lseek(f->fd, raw_ofs, SEEK_SET);
-
-		return is_write? write(f->fd, *p, raw_size) : read(f->fd, *p, raw_size);
-	}
-
-
-	// sanity checks.
+	// sanity checks
+	// .. for writes
 	if(is_write)
 	{
 		// temp buffer OR supposed to be allocated here: invalid
@@ -1159,7 +728,23 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, raw_size, raw_ofs);
 			return ERR_INVALID_PARAM;
 		}
 	}
-	// note: file_start_io is responsible for truncating at EOF.
+	// .. for reads
+	else
+	{
+		// cut off at EOF
+		const ssize_t bytes_left = f->size - raw_ofs;
+		if(bytes_left < 0)
+			return -1;
+		raw_size = MIN(raw_size, (size_t)bytes_left);
+	}
+
+
+	if(f->flags & FILE_NO_AIO)
+	{
+		lseek(f->fd, raw_ofs, SEEK_SET);
+
+		return is_write? write(f->fd, *p, raw_size) : read(f->fd, *p, raw_size);
+	}
 
 
 	//
