@@ -148,7 +148,8 @@ function setuppackage (projectname)
 			"spidermonkey",
 			"xerces",
 			"vorbis",
-			"boost"
+			"boost",
+			"libjpg"	-- static lib; no need for a delayload entry
 		}
 	
 		-- Add '<libraries root>/<libraryname>/lib' and '/include' to the includepaths and libpaths
