@@ -15,6 +15,13 @@
       writeConsole("Dude created at " + DudeSpawnPoint + "; " + ++dudes + " Dudes created this way." );
     }
 
+    function selected()
+    {
+	if( selection.length > 0 )
+	    return( selection[0] );
+	return( null );
+    }
+
     function updateOrbital()
     {
       if( !getGUIObjectByName( 'arena' ).hidden )
