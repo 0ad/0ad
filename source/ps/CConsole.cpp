@@ -10,18 +10,19 @@
 CConsole::CConsole(float X, float Y, float W, float H)
 	: m_fX(X), m_fY(Y), m_fWidth(W), m_fHeight(H)
 {
+
 	m_bToggle = false;
 	m_bVisible = false;
 
 	m_fVisibleFrac = 0.0f;
 
-	m_szBuffer = new char[BUFFER_SIZE];
+	m_szBuffer = new wchar_t[BUFFER_SIZE];
 	FlushBuffer();
 
 	m_iMsgHistPos = 1;
 
-	InsertMessage("[ 0 A.D. Console v0.11 ]   type \"\\info\" for help");
-	InsertMessage("\0");
+	InsertMessage(L"[ 0 A.D. Console v0.11 ]   type \"\\info\" for help");
+	InsertMessage(L"\0");
 }
 
 
@@ -37,15 +38,14 @@ CConsole::~CConsole()
 void CConsole::FlushBuffer(void)
 {
 	/* Clear the buffer and set the cursor and length to 0 */
-	memset(m_szBuffer, '\0', sizeof(char) * BUFFER_SIZE);
+	memset(m_szBuffer, '\0', sizeof(wchar_t) * BUFFER_SIZE);
 	m_iBufferPos = m_iBufferLength = 0;
 }
 
 
-// returns ptr to allocated mem!
-void CConsole::ToLower(char* szMessage, uint iSize)
+void CConsole::ToLower(wchar_t* szMessage, uint iSize)
 {
-	uint L = (uint)strlen(szMessage);
+	uint L = (uint)wcslen(szMessage);
 
 	if (L <= 0) return;
 
@@ -56,19 +56,19 @@ void CConsole::ToLower(char* szMessage, uint iSize)
 }
 
 
-void CConsole::Trim(char* szMessage, const char cChar, uint iSize)
+void CConsole::Trim(wchar_t* szMessage, const wchar_t cChar, uint iSize)
 {
-	size_t L = strlen(szMessage);
+	size_t L = wcslen(szMessage);
 	if(!L)
 		return;
 
 	if (iSize && iSize < L) L = iSize;
 
-	char szChar[2] = { cChar, 0 };
+	wchar_t szChar[2] = { cChar, 0 };
 
 	/* Find the first point at which szChar does not */
 	/* exist in the message */
-	size_t ofs = strspn(szMessage, szChar);
+	size_t ofs = wcsspn(szMessage, szChar);
 	if(ofs == 0)	// no leading <cChar> chars - we're done
 		return;
 
@@ -84,18 +84,19 @@ void CConsole::Trim(char* szMessage, const char cChar, uint iSize)
 }
 
 
-void CConsole::RegisterFunc(fptr F, const char* szName)
+void CConsole::RegisterFunc(fptr F, const wchar_t* szName)
 {
 	// need to allocate a copy - szName may be a const string literal
 	// (we'll change it - stripping out spaces and converting to lowercase).
-	char* copy = new char[BUFFER_SIZE];
+	wchar_t* copy = new wchar_t[BUFFER_SIZE];
 	copy[BUFFER_SIZE-1] = '\0';
-	strncpy(copy, szName, BUFFER_SIZE-1);
+	wcsncpy(copy, szName, BUFFER_SIZE-1);
 
 	Trim(copy);
 	ToLower(copy);
 
-	m_mapFuncList.insert(std::pair<char*, fptr>(copy, F));
+	m_mapFuncList.insert(std::pair<std::wstring, fptr>(copy, F));
+	delete[] copy;
 }
 
 void CConsole::Update(const float DeltaTime)
@@ -175,10 +176,10 @@ void CConsole::DrawWindow(void)
 			glVertex2f(0.0f,		m_fHeight);
 			glVertex2f(0.0f,		0.0f);
 
-			if (m_fHeight > FONT_HEIGHT + 4)
+			if (m_fHeight > m_iFontHeight + 4)
 			{
-				glVertex2f(0.0f,		FONT_HEIGHT + 4);
-				glVertex2f(m_fWidth,	FONT_HEIGHT + 4);
+				glVertex2f(0.0f,		(GLfloat)(m_iFontHeight + 4));
+				glVertex2f(m_fWidth,	(GLfloat)(m_iFontHeight + 4));
 			}
 		glEnd();
 	glPopMatrix();
@@ -190,22 +191,22 @@ void CConsole::DrawWindow(void)
 void CConsole::DrawHistory(void) {
 	int i = 1;
 	
-	std::deque<std::string>::iterator Iter; //History iterator
+	std::deque<std::wstring>::iterator Iter; //History iterator
 
 	glPushMatrix();
 		glColor3f(1.0f, 1.0f, 1.0f); //Set color of text
-		glTranslatef(9.0f, 0.0f, 0.0f); //move away from the border
+		glTranslatef(9.0f, (float)m_iFontOffset, 0.0f); //move away from the border
 
 		for (Iter = m_deqMsgHistory.begin();
 			 Iter != m_deqMsgHistory.end()
-				 && (((i - m_iMsgHistPos + 1) * FONT_HEIGHT) < (m_fHeight - FONT_HEIGHT));
+				 && (((i - m_iMsgHistPos + 1) * m_iFontHeight) < (m_fHeight - m_iFontHeight));
 			 Iter++)
 		{
 			if (i >= m_iMsgHistPos){
-				glTranslatef(0.0f, FONT_HEIGHT, 0.0f);
+				glTranslatef(0.0f, (float)m_iFontHeight, 0.0f);
 
 				glPushMatrix();
-					glprintf("%s", Iter->data());
+					glwprintf(L"%s", Iter->data());
 				glPopMatrix();
 			}
 
@@ -217,18 +218,18 @@ void CConsole::DrawHistory(void) {
 //Renders the buffer to the screen.
 void CConsole::DrawBuffer(void)
 {
-	if (m_fHeight < FONT_HEIGHT) return;
+	if (m_fHeight < m_iFontHeight) return;
 
 	glPushMatrix();
 		glColor3f(1.0f, 1.0f, 0.0f);
-		glTranslatef(2.0f, 0.0f, 0);
-		glprintf("]");
+		glTranslatef(2.0f, (float)m_iFontOffset, 0);
+		glwprintf(L"]");
 
 		glColor3f(1.0f, 1.0f, 1.0f);
 		if (m_iBufferPos==0) DrawCursor();
 
 		for (int i = 0; i < m_iBufferLength; i++){
-				glprintf("%c", m_szBuffer[i]);
+				glwprintf(L"%c", m_szBuffer[i]);
 				if (m_iBufferPos-1==i) DrawCursor();
 		}
 	glPopMatrix();
@@ -238,7 +239,7 @@ void CConsole::DrawBuffer(void)
 void CConsole::DrawCursor(void)
 {
 	glPushMatrix();
-		glprintf("_");
+		glwprintf(L"_");
 	glPopMatrix();
 }
 
@@ -278,7 +279,7 @@ void CConsole::InsertChar(const int szChar, const int cooked )
 			else{
                 for(int j=m_iBufferPos-1; j<m_iBufferLength-1; j++)
 					m_szBuffer[j] = m_szBuffer[j+1]; // move chars to left
-					m_szBuffer[m_iBufferLength-1] = '\0';
+				m_szBuffer[m_iBufferLength-1] = '\0';
             }
 
 			m_iBufferPos--;
@@ -323,8 +324,10 @@ void CConsole::InsertChar(const int szChar, const int cooked )
 
 		default: //Insert a character
 			if (IsFull()) return;
-			if( cooked >= 255 ) return;
-			if (!isprint( cooked )) return;
+			if (cooked == 0) return;
+			// Don't do these because the console now likes Unicode:
+			//if( cooked >= 255 ) return;
+			//if (!isprint( cooked )) return;
 
 			if (IsEOB()) //are we at the end of the buffer?
 				m_szBuffer[m_iBufferPos] = cooked; //cat char onto end
@@ -342,90 +345,137 @@ void CConsole::InsertChar(const int szChar, const int cooked )
 	}
 }
 
-
+/* 
+// Don't want to use this any more - all complicated messages
+// should go through the Unicode version.
 void CConsole::InsertMessage(const char* szMessage, ...)
 {
 	va_list args;
 	char* szBuffer = new char[BUFFER_SIZE];
+	wchar_t* szWBuffer = new wchar_t[BUFFER_SIZE];
 
 	va_start(args, szMessage);
 		vsnprintf(szBuffer, BUFFER_SIZE, szMessage, args);
 	va_end(args);
 
+	mbstowcs(szWBuffer, szBuffer, BUFFER_SIZE);
+
+	m_deqMsgHistory.push_front(szWBuffer);
+
+	delete[] szBuffer;
+	delete[] szWBuffer;
+}
+*/
+
+
+void CConsole::InsertMessage(const wchar_t* szMessage, ...)
+{
+	va_list args;
+	wchar_t* szBuffer = new wchar_t[BUFFER_SIZE];
+
+	va_start(args, szMessage);
+	if (vsnwprintf(szBuffer, BUFFER_SIZE, szMessage, args) == -1)
+		debug_out("Error printfing console message (buffer size exceeded?");
+	va_end(args);
+
 	m_deqMsgHistory.push_front(szBuffer);
+
+	delete[] szBuffer;
 }
 
 
-void CConsole::SetBuffer(const char* szMessage, ...)
+void CConsole::SetBuffer(const wchar_t* szMessage, ...)
 {
 	va_list args;
-	char* szBuffer = new char[BUFFER_SIZE];
+	wchar_t* szBuffer = new wchar_t[BUFFER_SIZE];
 
 	va_start(args, szMessage);
-		vsnprintf(szBuffer, BUFFER_SIZE, szMessage, args);
+		vsnwprintf(szBuffer, BUFFER_SIZE, szMessage, args);
 	va_end(args);
 
 	FlushBuffer();
 
-	strncpy(m_szBuffer, szMessage, BUFFER_SIZE);
-	m_iBufferLength = m_iBufferPos = (int)strlen(m_szBuffer);
+	wcsncpy(m_szBuffer, szMessage, BUFFER_SIZE);
+	m_iBufferLength = m_iBufferPos = (int)wcslen(m_szBuffer);
+
+	delete[] szBuffer;
 }
 
 
-void CConsole::ProcessBuffer(const char* szLine){
+void CConsole::ProcessBuffer(const wchar_t* szLine){
 	if (szLine == NULL) return;
-	if (strlen(szLine) <= 0) return;
+	if (wcslen(szLine) <= 0) return;
+	
+	assert(wcslen(szLine) < BUFFER_SIZE);
 
 	m_deqBufHistory.push_front(szLine);
 
-	char* szCommand = new char[BUFFER_SIZE];
-    memset(szCommand, '\0', BUFFER_SIZE);
+	wchar_t* szCommand = new wchar_t[BUFFER_SIZE];
+    memset(szCommand, '\0', sizeof(wchar_t) * BUFFER_SIZE);
 
-	std::map<std::string, fptr>::iterator Iter;
+	std::map<std::wstring, fptr>::iterator Iter;
 
 	if (szLine[0] == '\\'){
-		sscanf(szLine, "\\%s", szCommand);
+		swscanf(szLine, L"\\%s", szCommand);
 		Trim(szCommand);
 		ToLower(szCommand);
 
-		if (!strcmp(szCommand, "info")){
-			InsertMessage("\0");
-			InsertMessage("[Information]");
-			InsertMessage("   -View commands \"\\commands\"");
-			InsertMessage("   -Call command \"\\<command>\"");
-			InsertMessage("   -Say \"<string>\"");
-			InsertMessage("\0");
-		}else if (!strcmp(szCommand, "commands")){
-			InsertMessage("\0");
-			InsertMessage("[Commands]");
+		if (!wcscmp(szCommand, L"info")){
+			InsertMessage(L"\0");
+			InsertMessage(L"[Information]");
+			InsertMessage(L"   -View commands \"\\commands\"");
+			InsertMessage(L"   -Call command \"\\<command>\"");
+			InsertMessage(L"   -Say \"<string>\"");
+			InsertMessage(L"\0");
+		}else if (!wcscmp(szCommand, L"commands")){
+			InsertMessage(L"\0");
+			InsertMessage(L"[Commands]");
 
-			if (!m_mapFuncList.size()) InsertMessage("   (none registered)");
+			if (!m_mapFuncList.size()) InsertMessage(L"   (none registered)");
 
 			for (Iter = m_mapFuncList.begin(); Iter != m_mapFuncList.end(); Iter++)
-				InsertMessage("   \\%s", Iter->first.data());
+				InsertMessage(L"   \\%s", Iter->first.data());
 
-			InsertMessage("\0");
+			InsertMessage(L"\0");
 		}else{
-			try{
-				m_mapFuncList.find(szCommand)->second();
-			}catch(...){
-				InsertMessage("unknown command <%s>", szCommand);
-			}
+			Iter = m_mapFuncList.find(szCommand);
+			if (Iter == m_mapFuncList.end())
+				InsertMessage(L"unknown command <%s>", szCommand);
+			else
+				Iter->second();
 		}
 	}
 	else if( szLine[0] == ':' )
 	{
 		// Process it as JavaScript
-		g_ScriptingHost.ExecuteScript( szLine + 1 );
+
+		// Convert Unicode to 8-bit sort-of-ASCII
+		size_t len = wcstombs(NULL, szLine, 0);
+		assert(len != (size_t)-1 && "Cannot convert unicode->multibyte");
+		char* szMBLine = new char[len+1];
+		wcstombs(szMBLine, szLine, len+1);
+
+		g_ScriptingHost.ExecuteScript( szMBLine + 1 );
+
+		delete[] szMBLine;
 	}
 	else if( szLine[0] == '?' )
 	{
 		// Process it as JavaScript and display the result
-		jsval rval = g_ScriptingHost.ExecuteScript( szLine + 1 );
+
+		// Convert Unicode to 8-bit sort-of-ASCII
+		size_t len = wcstombs(NULL, szLine, 0);
+		assert(len != (size_t)-1 && "Cannot convert unicode->multibyte");
+		char* szMBLine = new char[len+1];
+		wcstombs(szMBLine, szLine, len+1);
+
+		jsval rval = g_ScriptingHost.ExecuteScript( szMBLine + 1 );
 		if( rval )
-			InsertMessage( g_ScriptingHost.ValueToString( rval ).c_str() );
+			InsertMessage( L"%S", g_ScriptingHost.ValueToString( rval ).c_str() );
+
+		delete[] szMBLine;
 	}
-	else InsertMessage("<say>: %s", szLine);
+	else InsertMessage(L"<say>: %s", szLine);
 
 	delete[] szCommand;
 }
