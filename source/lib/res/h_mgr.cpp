@@ -75,12 +75,16 @@ cassert(IDX_BITS + TAG_BITS <= sizeof(Handle)*CHAR_BIT);
 // return the handle's index field (always non-negative).
 // no error checking!
 static inline u32 h_idx(const Handle h)
-{ return (u32)((h >> IDX_SHIFT) & IDX_MASK) - 1; }
+{
+	return (u32)((h >> IDX_SHIFT) & IDX_MASK) - 1;
+}
 
 // return the handle's tag field.
 // no error checking!
 static inline u32 h_tag(const Handle h)
-{ return (u32)((h >> TAG_SHIFT) & TAG_MASK); }
+{
+	return (u32)((h >> TAG_SHIFT) & TAG_MASK);
+}
 
 // build a handle from index and tag.
 // can't fail.

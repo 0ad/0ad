@@ -294,7 +294,9 @@ typedef DirEnts::const_iterator DirEntCIt;
 typedef DirEnts::reverse_iterator DirEntRIt;
 
 static bool dirent_less(const DirEnt* d1, const DirEnt* d2)
-	{ return d1->name.compare(d2->name) < 0; }
+{
+	return d1->name.compare(d2->name) < 0;
+}
 
 
 // call <cb> for each file and subdirectory in <dir> (alphabetical order),

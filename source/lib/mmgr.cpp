@@ -224,8 +224,14 @@ struct Alloc
 	uint break_on_free : 1;
 	uint break_on_realloc : 1;
 
-	void* user_p() const { return (char*)p + padding_size; }
-	size_t user_size() const { return size - padding_size*2; }
+	void* user_p() const
+	{
+		return (char*)p + padding_size;
+	}
+	size_t user_size() const
+	{
+		return size - padding_size*2;
+	}
 };
 
 

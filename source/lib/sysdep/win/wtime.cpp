@@ -140,8 +140,14 @@ static const long _1e7 = 10000000;
 static const i64  _1e9 = 1000000000;
 
 
-static inline void lock(void) { win_lock(HRT_CS); }
-static inline void unlock(void) { win_unlock(HRT_CS); }
+static inline void lock(void)
+{
+	win_lock(HRT_CS);
+}
+static inline void unlock(void)
+{
+	win_unlock(HRT_CS);
+}
 
 
 // decide upon a HRT implementation, checking if we can work around

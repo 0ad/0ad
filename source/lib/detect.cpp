@@ -23,6 +23,7 @@
 #include "precompiled.h"
 
 #include "lib.h"
+#include "posix.h"
 #include "detect.h"
 #include "timer.h"
 
