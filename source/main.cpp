@@ -170,19 +170,6 @@ void Testing (void)
 	g_Console->InsertMessage(L"Testing Function Registration");
 }
 
-void TestingUnicode (void)
-{
-	// This looks really broken in my IDE's font
-	g_Console->InsertMessage(L"    Ai! laurië lantar lassi súrinen,");
-	g_Console->InsertMessage(L"    yéni únótimë ve rámar aldaron!");
-	g_Console->InsertMessage(L"    Yéni ve lintë yuldar avánier");
-	g_Console->InsertMessage(L"    mi oromardi lissë-miruvóreva");
-	g_Console->InsertMessage(L"    Andúnë pella, Vardo tellumar");
-	g_Console->InsertMessage(L"    nu luini yassen tintilar i eleni");
-	g_Console->InsertMessage(L"    ómaryo airetári-lírinen.");
-}
-
-
 static std::string SplitExts(const char *exts)
 {
 	std::string str = exts;
@@ -1101,11 +1088,6 @@ PREVTSC=CURTSC;
 	}
 
 	g_Console->RegisterFunc(Testing, L"Testing");
-
-	{
-		wchar_t t[] = { 'T',0xE9,'s','t','i','n','g' , 0 };
-		g_Console->RegisterFunc(TestingUnicode, t);
-	}
 
 #ifdef _MSC_VER
 {
