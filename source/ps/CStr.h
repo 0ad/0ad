@@ -35,10 +35,6 @@ More Info:
 #ifndef CSTR_H_FIRST
 #define CSTR_H_FIRST
 
-// DEFINES/ENUMS
-#define CONVERSION_BUFFER_SIZE		32
-#define FLOAT_CONVERSION			_T("%.6f")
-
 enum PS_TRIM_MODE {PS_TRIM_LEFT, PS_TRIM_RIGHT, PS_TRIM_BOTH};
 
 #ifndef IN_UNIDOUBLER
@@ -64,34 +60,30 @@ enum PS_TRIM_MODE {PS_TRIM_LEFT, PS_TRIM_RIGHT, PS_TRIM_BOTH};
 #ifdef  _UNICODE
 
 #define tstring wstring
+#define tstringstream wstringstream
 #define _tcout	wcout
 #define	_tstod	wcstod
 #define TCHAR wchar_t
 #define _ttoi _wtoi
 #define _ttol _wtol
-#define _itot _itow
-#define _ultot _itow
 #define _T(t) L ## t
 #define _totlower towlower
 #define _istspace iswspace
 #define _tsnprintf swprintf
-#define _ltot _ltow
 
 #else
 
+#define tstringstream stringstream
 #define tstring string
 #define _tcout	cout
 #define	_tstod	strtod
 #define _ttoi atoi
 #define _ttol atol
-#define _itot _itoa
 #define TCHAR char
 #define _T(t) t
 #define _istspace isspace
 #define _tsnprintf snprintf
 #define _totlower tolower
-#define _ultot _ultoa
-#define _ltot _ltoa
 
 #endif
 
@@ -102,7 +94,7 @@ public:
 
 	// CONSTRUCTORS
 	CStr();					// Default constructor
-	CStr(const CStr &Str);		// Copy Constructor
+	CStr(const CStr& Str);		// Copy Constructor
 	
 	CStr(std::tstring String);	// Creates CStr from C++ string
 	CStr(const TCHAR* String);	// Creates CStr from C-Style TCHAR string
@@ -128,7 +120,7 @@ public:
 	CStr GetSubstring(size_t start, size_t len) const;
 
 	//Search the string for another string 
-	long Find(const CStr &Str) const;
+	long Find(const CStr& Str) const;
 
 	//Search the string for another string 
 	long Find(const TCHAR &tchar) const;
@@ -137,7 +129,7 @@ public:
 	long Find(const int &start, const TCHAR &tchar) const;
 
 	//You can also do a "ReverseFind"- i.e. search starting from the end 
-	long ReverseFind(const CStr &Str) const;
+	long ReverseFind(const CStr& Str) const;
 
 	// Lowercase and uppercase 
 	CStr LowerCase() const;
@@ -154,33 +146,33 @@ public:
 	CStr Right(long len) const;
 	
 	//Remove all occurences of some character or substring 
-	void Remove(const CStr &Str);
+	void Remove(const CStr& Str);
 
 	//Replace all occurences of some substring by another 
-	void Replace(const CStr &StrToReplace, const CStr &ReplaceWith);
+	void Replace(const CStr& StrToReplace, const CStr& ReplaceWith);
 
 	// Returns a trimed string, removes whitespace from the left/right/both
 	CStr Trim(PS_TRIM_MODE Mode);
 
 	// Overload operations
-	CStr &operator=(const CStr &Str);
-	CStr &operator=(const TCHAR* String);
-	CStr &operator=(TCHAR Char);
-	CStr &operator=(int Number);
-	CStr &operator=(long Number);
-	CStr &operator=(unsigned int Number);
-	CStr &operator=(unsigned long Number);
-	CStr &operator=(float Number);
-	CStr &operator=(double Number);
+	CStr& operator=(const CStr& Str);
+	CStr& operator=(const TCHAR* String);
+	CStr& operator=(TCHAR Char);
+	CStr& operator=(int Number);
+	CStr& operator=(long Number);
+	CStr& operator=(unsigned int Number);
+	CStr& operator=(unsigned long Number);
+	CStr& operator=(float Number);
+	CStr& operator=(double Number);
 
-	bool operator==(const CStr &Str) const;
-	bool operator!=(const CStr &Str) const;
-	bool operator<(const CStr &Str) const;
-	bool operator<=(const CStr &Str) const;
-	bool operator>(const CStr &Str) const;
-	bool operator>=(const CStr &Str) const;
-	CStr &operator+=(const CStr &Str);
-	CStr  operator+(const CStr &Str);
+	bool operator==(const CStr& Str) const;
+	bool operator!=(const CStr& Str) const;
+	bool operator<(const CStr& Str) const;
+	bool operator<=(const CStr& Str) const;
+	bool operator>(const CStr& Str) const;
+	bool operator>=(const CStr& Str) const;
+	CStr& operator+=(const CStr& Str);
+	CStr  operator+(const CStr& Str);
 	operator const TCHAR*();
 	operator const TCHAR*() const; // Gee, I've added this, Maybe the one above should be removed?
 	TCHAR &operator[](int n);
@@ -200,7 +192,6 @@ public:
 	
 protected:
 	std::tstring m_String;
-	TCHAR m_ConversionBuffer[CONVERSION_BUFFER_SIZE];
 };
 
 class CStr_hash_compare
@@ -219,6 +210,6 @@ public:
 };
 
 // overloaded operator for ostreams
-std::ostream &operator<<(std::ostream &os, CStr &Str);
+std::ostream &operator<<(std::ostream &os, CStr& Str);
 
 #endif

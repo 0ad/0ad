@@ -14,18 +14,16 @@
 
 // Undef all the Conversion Macros
 #undef tstring
+#undef tstringstream
 #undef _tcout
 #undef	_tstod
 #undef _ttoi
 #undef _ttol
-#undef _itot
 #undef TCHAR
 #undef _T
 #undef _istspace
 #undef _tsnprintf
 #undef _totlower
-#undef _ultot
-#undef _ltot
 
 // Now include the 8-bit version under the name CStr8
 #undef _UNICODE

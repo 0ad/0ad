@@ -14,12 +14,14 @@
 #include "CStr.h"
 using namespace std;
 
+#include <sstream>
+
 CStr::CStr()
 {
 	// Default Constructor
 }
 
-CStr::CStr(const CStr &Str)
+CStr::CStr(const CStr& Str)
 {
 	// Copy Constructor
 	m_String = Str.m_String;
@@ -44,43 +46,47 @@ CStr::CStr(TCHAR Char)
 
 CStr::CStr(int Number)
 {
-	// Creates CStr from a int
-	m_String = _itot(Number, m_ConversionBuffer, 10);
+	std::tstringstream ss;
+	ss << Number;
+	ss >> m_String;
 }
 
 CStr::CStr(unsigned int Number)
 {
-	// Creates CStr from a uint
-	m_String = _ultot(Number, m_ConversionBuffer, 10);
+	std::tstringstream ss;
+	ss << Number;
+	ss >> m_String;
 }
 
 
 CStr::CStr(long Number)
 {
-	// Creates CStr from a long 
-	m_String = _ltot(Number, m_ConversionBuffer, 10);
+	std::tstringstream ss;
+	ss << Number;
+	ss >> m_String;
 }
 
 
 CStr::CStr(unsigned long Number)
 {
-	// Creates CStr from a ulong 
-	m_String = _ultot(Number, m_ConversionBuffer, 10);
+	std::tstringstream ss;
+	ss << Number;
+	ss >> m_String;
 }
 
 
 CStr::CStr(float Number)
 {
-	// Creates CStr from a float
-	_tsnprintf(m_ConversionBuffer, CONVERSION_BUFFER_SIZE, FLOAT_CONVERSION, Number);
-	m_String = m_ConversionBuffer;
+	std::tstringstream ss;
+	ss << Number;
+	ss >> m_String;
 }
 
 CStr::CStr(double Number)
 {
-	// Creates CStr from a double
-	_tsnprintf(m_ConversionBuffer, CONVERSION_BUFFER_SIZE, FLOAT_CONVERSION, Number);
-	m_String = m_ConversionBuffer;
+	std::tstringstream ss;
+	ss << Number;
+	ss >> m_String;
 }
 
 CStr::~CStr()
@@ -128,7 +134,7 @@ CStr CStr::GetSubstring(size_t start, size_t len) const
 
 
 //Search the string for another string 
-long CStr::Find(const CStr &Str) const
+long CStr::Find(const CStr& Str) const
 {
 	long Pos = (long)m_String.find(Str.m_String, 0);
 
@@ -160,7 +166,7 @@ long CStr::Find(const int &start, const TCHAR &tchar) const
 	return -1;
 }
 
-long CStr::ReverseFind(const CStr &Str) const
+long CStr::ReverseFind(const CStr& Str) const
 {
 	long Pos = (long)m_String.rfind(Str.m_String, m_String.length() );
 
@@ -223,7 +229,7 @@ CStr CStr::Right(long len) const
 }
 
 //Remove all occurences of some character or substring 
-void CStr::Remove(const CStr &Str)
+void CStr::Remove(const CStr& Str)
 {
 	size_t FoundAt = 0;
 	while (FoundAt != tstring::npos)
@@ -236,7 +242,7 @@ void CStr::Remove(const CStr &Str)
 }
 
 //Replace all occurences of some substring by another 
-void CStr::Replace(const CStr &ToReplace, const CStr &ReplaceWith)
+void CStr::Replace(const CStr& ToReplace, const CStr& ReplaceWith)
 {
 	size_t Pos = 0;
 	
@@ -293,100 +299,114 @@ CStr CStr::Trim(PS_TRIM_MODE Mode)
 }
 
 // Overload operations
-CStr &CStr::operator=(const CStr &Str)
+CStr& CStr::operator=(const CStr& Str)
 {
 	m_String = Str.m_String;
 	return *this;
 }
 
-CStr &CStr::operator=(const TCHAR* String)
+CStr& CStr::operator=(const TCHAR* String)
 {
 	m_String = String;
 	return *this;
 }
 
-CStr &CStr::operator=(TCHAR Char)
+CStr& CStr::operator=(TCHAR Char)
 {
 	m_String = Char;
 	return *this;
 }
 
-CStr &CStr::operator=(int Number)
+CStr& CStr::operator=(int Number)
 {
-	m_String = _itot(Number, m_ConversionBuffer, 10);
+	std::tstringstream ss;
+	ss << Number;
+	ss >> m_String;
+
 	return *this;
 }
 
-CStr &CStr::operator=(long Number)
+CStr& CStr::operator=(long Number)
 {
-	m_String = _ltot(Number, m_ConversionBuffer, 10);
+	std::tstringstream ss;
+	ss << Number;
+	ss >> m_String;
+
 	return *this;
 }
 
-CStr &CStr::operator=(unsigned int Number)
+CStr& CStr::operator=(unsigned int Number)
 {
-	m_String = _ultot(Number, m_ConversionBuffer, 10);
+	std::tstringstream ss;
+	ss << Number;
+	ss >> m_String;
+
 	return *this;
 }
 
-CStr &CStr::operator=(unsigned long Number)
+CStr& CStr::operator=(unsigned long Number)
 {
-	m_String = _ultot(Number, m_ConversionBuffer, 10);
+	std::tstringstream ss;
+	ss << Number;
+	ss >> m_String;
+
 	return *this;
 }
 
 
-CStr &CStr::operator=(float Number)
+CStr& CStr::operator=(float Number)
 {
-	_tsnprintf(m_ConversionBuffer, CONVERSION_BUFFER_SIZE, FLOAT_CONVERSION, Number);
-	m_String = m_ConversionBuffer;
+	std::tstringstream ss;
+	ss << Number;
+	ss >> m_String;
 	return *this;
 }
 
-CStr &CStr::operator=(double Number)
+CStr& CStr::operator=(double Number)
 {
-	_tsnprintf(m_ConversionBuffer, CONVERSION_BUFFER_SIZE, FLOAT_CONVERSION, Number);
-	m_String = m_ConversionBuffer;
+	std::tstringstream ss;
+	ss << Number;
+	ss >> m_String;
 	return *this;
 }
 
-bool CStr::operator==(const CStr &Str) const
+bool CStr::operator==(const CStr& Str) const
 {
 	return (m_String == Str.m_String);
 }
 
-bool CStr::operator!=(const CStr &Str) const
+bool CStr::operator!=(const CStr& Str) const
 {
 	return (m_String != Str.m_String);
 }
 
-bool CStr::operator<(const CStr &Str) const
+bool CStr::operator<(const CStr& Str) const
 {
 	return (m_String < Str.m_String);
 }
 
-bool CStr::operator<=(const CStr &Str) const
+bool CStr::operator<=(const CStr& Str) const
 {
 	return (m_String <= Str.m_String);
 }
 
-bool CStr::operator>(const CStr &Str) const
+bool CStr::operator>(const CStr& Str) const
 {
 	return (m_String > Str.m_String);
 }
 
-bool CStr::operator>=(const CStr &Str) const
+bool CStr::operator>=(const CStr& Str) const
 {
 	return (m_String >= Str.m_String);
 }
 
-CStr &CStr::operator+=(const CStr &Str)
+CStr& CStr::operator+=(const CStr& Str)
 {
 	m_String += Str.m_String;
 	return *this;
 }
 
-CStr CStr::operator+(const CStr &Str)
+CStr CStr::operator+(const CStr& Str)
 {
 	CStr NewStr(*this);
 	NewStr.m_String += Str.m_String;
@@ -427,7 +447,7 @@ TCHAR &CStr::operator[](unsigned long n)
 	return m_String[n];
 }
 
-ostream &operator<<(ostream &os, CStr &Str)
+ostream &operator<<(ostream &os, CStr& Str)
 {
 	os << (const TCHAR*)Str;
 	return os;
