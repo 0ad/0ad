@@ -58,7 +58,7 @@ private:
 	bool IsFull(void) {return (m_iBufferLength == BUFFER_SIZE);};
 	bool IsEmpty(void) {return (m_iBufferLength == 0);};
 
-	void InsertBuffer(void){InsertMessage(m_szBuffer);};
+	void InsertBuffer(void){InsertMessage(L"%ls", m_szBuffer);};
     void ProcessBuffer(const wchar_t* szLine);
 
 public:

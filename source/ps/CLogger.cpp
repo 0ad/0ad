@@ -89,7 +89,7 @@ CLogger::~CLogger ()
 void CLogger::WriteMessage(const char *message)
 {
 #ifdef CONSOLE_DEBUG
-	g_Console->InsertMessage(L"LOG: %hs", message);
+	if (g_Console) g_Console->InsertMessage(L"LOG: %hs", message);
 #endif
 	m_NumberOfMessages++;
 	m_MainLog << "<P>" << message << "</P>";
@@ -101,7 +101,7 @@ void CLogger::WriteMessage(const char *message)
 void CLogger::WriteError(const char *message)
 {
 #ifdef CONSOLE_DEBUG
-	g_Console->InsertMessage(L"ERROR: %hs", message);
+	if (g_Console) g_Console->InsertMessage(L"ERROR: %hs", message);
 #endif
 	debug_out("ERROR: %s\n", message);
 	m_NumberOfErrors++;
@@ -112,7 +112,7 @@ void CLogger::WriteError(const char *message)
 void CLogger::WriteWarning(const char *message)
 {
 #ifdef CONSOLE_DEBUG
-	g_Console->InsertMessage(L"WARNING: %hs", message);
+	if (g_Console) g_Console->InsertMessage(L"WARNING: %hs", message);
 #endif
 	m_NumberOfWarnings++;
 	m_MainLog << "<P class=\"warning\">WARNING: "<< message << "</P>\n";
