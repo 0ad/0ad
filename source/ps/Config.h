@@ -108,8 +108,8 @@ public:
 	//Attach or detach a logfile class.
 	void Attach( CLogFile* LogFile );
 private:
-	vector<SConfigData> m_FileList;
-	vector<SConfigData>::iterator i;
+	std::vector<SConfigData> m_FileList;
+	std::vector<SConfigData>::iterator i;
 	CLogFile* m_LogFile;
 };
 

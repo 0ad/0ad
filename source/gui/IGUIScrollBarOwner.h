@@ -89,7 +89,7 @@ protected:
 	 * Predominately you will only have one, but you can have
 	 * as many as you like.
 	 */
-	vector<IGUIScrollBar*> m_ScrollBars;
+	std::vector<IGUIScrollBar*> m_ScrollBars;
 };
 
 #endif
