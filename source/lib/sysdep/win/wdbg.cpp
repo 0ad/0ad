@@ -825,16 +825,24 @@ int debug_main_exception_filter(unsigned int UNUSEDPARAM(code), PEXCEPTION_POINT
 			swprintf(errortext, 256, L"Access violation reading 0x%08X", ep->ExceptionRecord->ExceptionInformation[1]);
 	}
 
+	bool localised_successfully = false;
 #ifdef LOCALISED_TEXT
 
 	// In case this is called before/after the i18n system is
 	// alive, make sure it's actually a valid pointer
 	if (g_CurrentLocale)
 	{
-		i18n_display_fatal_msg(errortext);
+		__try
+		{
+			i18n_display_fatal_msg(errortext);
+			localised_successfully = true;
+		}
+		__except (EXCEPTION_EXECUTE_HANDLER)
+		{
+		}
 	}
-	else
 #endif // LOCALISED_TEXT
+	if (!localised_successfully)
 	{
 		wchar_t message[1024];
 		swprintf(message, 1024, L"A fatal error has occurred: %ls.\nPlease report this to http://bugs.wildfiregames.com/ and attach the crashlog.txt and crashlog.dmp files from your 'data' folder.", errortext);
