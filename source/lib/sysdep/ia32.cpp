@@ -135,11 +135,18 @@ enum Regs
 	EDX
 };
 
+enum MiscCpuCapBits
+{
+	// AMD PowerNow! flags (returned in edx by CPUID 0x80000007)
+	POWERNOW_FREQ_ID_CTRL = 2
+};
+
 static bool cpuid(u32 func, u32* regs)
 {
 	if(func > max_ext_func)
 		return false;
 
+	// (optimized for size)
 __asm
 {
 	mov			eax, [func]
@@ -498,14 +505,16 @@ static void check_smp()
 
 static void check_speedstep()
 {
-	if(vendor == INTEL && ia32_cap(EST))
-		cpu_speedstep = 1;
-
-	if(vendor == AMD)
+	if(vendor == INTEL)
+	{
+		if(ia32_cap(EST))
+			cpu_speedstep = 1;
+	}
+	else if(vendor == AMD)
 	{
 		u32 regs[4];
 		if(cpuid(0x80000007, regs))
-			if(regs[EDX] & 2)	// frequency ID control
+			if(regs[EDX] & POWERNOW_FREQ_ID_CTRL)
 				cpu_speedstep = 1;
 	}
 }
