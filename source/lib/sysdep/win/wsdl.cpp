@@ -35,8 +35,9 @@
 #include "win_internal.h"
 
 #include "SDL_vkeys.h"
-#include "ps/Hotkey.h"
+/*/*#include "ps/Hotkey.h"*/
 
+#include <process.h>	// _beginthreadex
 #include <assert.h>
 #include <stdio.h>
 #include <math.h>
@@ -81,7 +82,7 @@ static DEVMODE dm;			/* current video mode */
 static HDC hDC;
 static HGLRC hGLRC;
 
-static int z_depth = 24;	/* depth buffer size; set via SDL_GL_SetAttribute */
+static int depth_bits = 24;	/* depth buffer size; set via SDL_GL_SetAttribute */
 
 static u16 mouse_x, mouse_y;
 
@@ -250,6 +251,13 @@ inline SDLKey vkmap(int vk)
 	return VK_SDLKMap[vk];
 }
 
+
+int SDL_WaitEvent(SDL_Event* ev)
+{
+	assert(ev == 0 && "can't store event, since wsdl doesn't have a real queue");
+	WaitMessage();
+	return 0;
+}
 
 // note: keysym.unicode is only returned for SDL_KEYDOWN, and is otherwise 0.
 int SDL_PollEvent(SDL_Event* ev)
@@ -421,7 +429,7 @@ int SDL_PushEvent(SDL_Event* ev)
 int SDL_GL_SetAttribute(SDL_GLattr attr, int value)
 {
 	if(attr == SDL_GL_DEPTH_SIZE)
-		z_depth = value;
+		depth_bits = value;
 
 	return 0;
 }
@@ -437,8 +445,6 @@ int SDL_GL_SetAttribute(SDL_GLattr attr, int value)
 
 static HHOOK hKeyboard_LL_Hook = (HHOOK)0;
 
-extern bool g_active;
-
 LRESULT CALLBACK keyboard_ll_hook(int nCode, WPARAM wParam, LPARAM lParam)
 {
 	if(nCode == HC_ACTION)
@@ -451,7 +457,7 @@ LRESULT CALLBACK keyboard_ll_hook(int nCode, WPARAM wParam, LPARAM lParam)
 		{
 			// check whether PrintScreen should be taking screenshots -- if
 			// not, allow the standard Windows clipboard to work
-			if(keyRespondsTo(HOTKEY_SCREENSHOT, SDLK_PRINT) && g_active)
+			if(/*/*keyRespondsTo(HOTKEY_SCREENSHOT, SDLK_PRINT) &&*/ app_active)
 			{
 				// send to wndproc
 				UINT msg = (UINT)wParam;
@@ -584,7 +590,8 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 	fullscreen = (flags & SDL_FULLSCREEN) != 0;
 
 	/* get current mode settings */
-	dm.dmSize = sizeof(DEVMODE);
+	memset(&dm, 0, sizeof(dm));
+	dm.dmSize = sizeof(dm);
 	EnumDisplaySettings(0, ENUM_CURRENT_SETTINGS, &dm);
 	int cur_w = dm.dmPelsWidth, cur_h = dm.dmPelsHeight;
 
@@ -614,8 +621,8 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 	 */
 
 	/* register window class */
-	static WNDCLASS wc;
-	wc.style = CS_OWNDC;
+	WNDCLASS wc;
+	memset(&wc, 0, sizeof(wc));
 	wc.lpfnWndProc = wndproc;
 	wc.lpszClassName = "ogl";
 	wc.hInstance = hInst;
@@ -627,19 +634,38 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 
 	hDC = GetDC(hWnd);
 
-	/* set pixel format */
-	static PIXELFORMATDESCRIPTOR pfd =
+
+	//
+	// pixel format
+	//
+
+	const DWORD dwFlags = PFD_SUPPORT_OPENGL|PFD_DRAW_TO_WINDOW|PFD_DOUBLEBUFFER;
+	BYTE cColorBits = (BYTE)bpp;
+	BYTE cAlphaBits = 0;
+	if(bpp == 32)
+	{
+		cColorBits = 24;
+		cAlphaBits = 8;
+	}
+	const BYTE cAccumBits   = 0;
+	const BYTE cDepthBits   = (BYTE)depth_bits;
+	const BYTE cStencilBits = 0;
+	const BYTE cAuxBuffers  = 0;
+
+	PIXELFORMATDESCRIPTOR pfd =
 	{
 		sizeof(PIXELFORMATDESCRIPTOR),
-		1,
-		PFD_SUPPORT_OPENGL|PFD_DRAW_TO_WINDOW|PFD_DOUBLEBUFFER,
+		1,								// version
+		dwFlags,
 		PFD_TYPE_RGBA,
-		(BYTE)bpp,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		(BYTE)z_depth,
-		0, 0,
+		cColorBits,	0, 0, 0, 0, 0, 0,	// c*Bits, c*Shift are unused
+		cAlphaBits, 0,					// cAlphaShift is unused
+		cAccumBits,	0, 0, 0, 0,			// cAccum*Bits are unused
+		cDepthBits,
+		cStencilBits,
+		cAuxBuffers,
 		PFD_MAIN_PLANE,
-		0, 0, 0, 0
+		0, 0, 0, 0						// bReserved, dw*Mask are unused
 	};
 
 	// GDI pixel format functions apparently require opengl to be loaded
@@ -680,13 +706,14 @@ static u16 org_ramp[3][256];
 static u16 cur_ramp[3][256];
 
 
+// ramp: 8.8 fixed point
 static int calc_gamma_ramp(float gamma, u16* ramp)
 {
+	// assume identity if invalid
 	if(gamma <= 0.0f)
-		return ERR_INVALID_PARAM;
+		gamma = 1.0f;
 
-	// identity
-	// (special-case it to make sure we get exact values)
+	// identity: special-case to make sure we get exact values
 	if(gamma == 1.0f)
 	{
 		for(u16 i = 0; i < 256; i++)
@@ -698,9 +725,10 @@ static int calc_gamma_ramp(float gamma, u16* ramp)
 	for(int i = 0; i < 256; i++)
 	{
 		const double frac = i / 256.0;
-			// make sure pow arg types are unambiguous
+			// don't add 1/256 - this isn't time-critical and
+			// accuracy is more important.
+			// need a temp variable to disambiguate pow() argument type.
 		ramp[i] = fp_to_u16(pow(frac, inv_gamma));
-			// 8.8 fixed point
 	}
 
 	return 0;
@@ -717,8 +745,11 @@ static void gamma_swap(bool restore_org)
 }
 
 
+// note: any component gamma = 0 is assumed to be identity.
 int SDL_SetGamma(float r, float g, float b)
 {
+	// if we haven't successfully changed gamma yet,
+	// get current ramp so we can later restore it.
 	if(!gamma_changed)
 		if(!GetDeviceGammaRamp(hDC, org_ramp))
 			return -1;
@@ -866,16 +897,15 @@ SDL_Surface* SDL_GetVideoSurface()
 	return 0;
 }
 
-__declspec(naked) u32 SDL_GetTicks()
+inline u32 SDL_GetTicks()
 {
-__asm jmp	dword ptr [GetTickCount]
+	return GetTickCount();
 }
 
 
-__declspec(naked) void __stdcall SDL_Delay(Uint32 ms)
+inline void SDL_Delay(Uint32 ms)
 {
-	UNUSED(ms);
-__asm jmp	dword ptr [Sleep]
+	Sleep(ms);
 }
 
 
@@ -891,14 +921,14 @@ SDL_sem* SDL_CreateSemaphore(int cnt)
 	return (SDL_sem*)CreateSemaphore(0, cnt, 0x7fffffff, 0);
 }
 
-void __stdcall SDL_DestroySemaphore(SDL_sem*)
+inline void SDL_DestroySemaphore(SDL_sem* sem)
 {
-__asm jmp	dword ptr [CloseHandle]
+	CloseHandle((HANDLE)sem);
 }
 
 int SDL_SemPost(SDL_sem* sem)
 {
-	return ReleaseSemaphore(sem, 1, 0);
+	return ReleaseSemaphore((HANDLE)sem, 1, 0);
 }
 
 int SDL_SemWait(SDL_sem* sem)
@@ -906,21 +936,37 @@ int SDL_SemWait(SDL_sem* sem)
 	return WaitForSingleObject(sem, INFINITE);
 }
 
+// users don't need to allocate SDL_Thread variables, so type = void
+// API returns SDL_Thread*, which is the HANDLE value itself.
+union pthread_sdl
+{
+	pthread_t p;
+	SDL_Thread* s;
+};
+
 SDL_Thread* SDL_CreateThread(int(*func)(void*), void* param)
 {
-	return (SDL_Thread*)_beginthread((void(*)(void*))func, 0, param);
+	pthread_sdl u;
+	if(pthread_create(&u.p, 0, (void*(*)(void*))func, param) < 0)
+		return 0;
+	return u.s;
 }
 
 
 int SDL_KillThread(SDL_Thread* thread)
 {
-	return TerminateThread(thread, 0);
+	pthread_sdl u;
+	u.s = thread;
+	pthread_cancel(u.p);
+	return 0;
 }
 
 
-__declspec(naked) int __stdcall SDL_WarpMouse(int, int)
+
+
+inline int SDL_WarpMouse(int x, int y)
 {
-__asm jmp	dword ptr [SetCursorPos]
+	return SetCursorPos(x, y);
 }
 
 
@@ -980,8 +1026,8 @@ void glutMouseFunc(void (*func)(int, int, int, int))
 
 void glutInit(int* argc, char* argv[])
 {
-	UNUSED(argc)
-	UNUSED(argv)
+	UNUSED(argc);
+	UNUSED(argv);
 
 	SDL_Init(0);
 	atexit(SDL_Quit);

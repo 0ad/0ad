@@ -74,17 +74,17 @@ extern void* SDL_GL_GetProcAddress(const char*);
 extern void SDL_GL_SwapBuffers();
 
 extern u32 SDL_GetTicks();
-extern void __stdcall SDL_Delay(u32 ms);
+extern void SDL_Delay(u32 ms);
 
 extern SDL_sem* SDL_CreateSemaphore(int cnt);
-extern void __stdcall SDL_DestroySemaphore(SDL_sem*);
+extern void SDL_DestroySemaphore(SDL_sem*);
 extern int SDL_SemPost(SDL_sem*);
 extern int SDL_SemWait(SDL_sem* sem);
 
 extern SDL_Thread* SDL_CreateThread(int(*)(void*), void*);
 extern int SDL_KillThread(SDL_Thread*);
 
-extern int __stdcall SDL_WarpMouse(int, int);
+extern int SDL_WarpMouse(int, int);
 
 
 extern int SDL_SetGamma(float r, float g, float b);
