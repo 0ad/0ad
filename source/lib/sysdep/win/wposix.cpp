@@ -48,15 +48,15 @@ int open(const char* fn, int oflag, ...)
 	const bool is_com_port = strncmp(fn, "/dev/tty", 8) == 0;
 		// also used later, before aio_reopen
 
-	// "/dev/tty?" => "COM?"
+	// translate "/dev/tty%d" to "COM%d"
 	if(is_com_port)
 	{
-		char port[] = "COM ";
-		// Windows only supports COM1..COM4.
-		char c = fn[8]+1;
-		if(!('1' <= c && c <= '4'))
+		char port[] = "COM1";
+		const char digit = fn[8]+1;
+		// PCs only support COM1..COM4.
+		if(!('1' <= digit && digit <= '4'))
 			return -1;
-		port[3] = (char)(fn[8]+1);
+		port[3] = digit;
 		fn = port;
 	}
 
@@ -77,18 +77,26 @@ int open(const char* fn, int oflag, ...)
 debug_out("open %s = %d\n", fn, fd);
 #endif
 
-	// open it for async I/O as well (_open defaults to deny_none sharing):
-	// if not stdin/stdout/stderr and
-	if(fd > 2)
-	{
-		// not a COM port. don't currently need aio access for those;
-		// also, aio_reopen's CreateFile reports access denied when trying to open.
-		if(!is_com_port)
-			aio_reopen(fd, fn, oflag);
-	}
+	// cases when we don't want to open a second AIO-capable handle:
+	// .. stdin/stdout/stderr
+	if(fd <= 2)
+		goto no_aio;
+	// .. COM port - we don't currently need AIO access for those, and
+	//    aio_reopen's CreateFile would fail with "access denied".
+	if(is_com_port)
+		goto no_aio;
+	// .. caller is requesting we skip it (see file_open)
+	if(oflag & O_NO_AIO_NP)
+		goto no_aio;
+
+	// none of the above apply; now re-open the file.
+	// note: this is possible because _open defaults to DENY_NONE sharing.
+	aio_reopen(fd, fn, oflag);
+
+no_aio:
 
 	// CRT doesn't like more than 255 files open.
-	// warn now, so that we notice why so many are open
+	// warn now, so that we notice why so many are open.
 #ifndef NDEBUG
 	if(fd > 256)
 		debug_warn("wposix: too many files open (CRT limitation)");
@@ -105,7 +113,13 @@ debug_out("close %d\n", fd);
 #endif
 
 	assert(3 <= fd && fd < 256);
+
+	// note: there's no good way to notify us that <fd> wasn't opened for
+	// AIO, so we could skip aio_close. storing a bit in the fd is evil and
+	// a fd -> info map is redundant (waio already has one).
+	// therefore, we require aio_close to fail gracefully.
 	aio_close(fd);
+
 	return _close(fd);
 }
 

@@ -1,5 +1,5 @@
 // POSIX definitions
-// Copyright (c) 2002-5 Jan Wassenberg
+// Copyright (c) 2002-2005 Jan Wassenberg
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as

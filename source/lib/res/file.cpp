@@ -529,18 +529,36 @@ int file_open(const char* p_fn, const uint flags, File* f)
 	int oflag = O_RDONLY;
 	if(flags & FILE_WRITE)
 		oflag = O_WRONLY | O_CREAT;
+	// read access requested
 	else
 	{
+		// get file size
 		struct stat s;
 		if(stat(n_fn, &s) < 0)
 			return ERR_FILE_NOT_FOUND;
+		size = s.st_size;
+
+		// note: despite increased overhead, the AIO read method is still
+		// significantly faster, even with small files.
+		// we therefore don't automatically disable AIO.
+		// notes:
+		// - up to 32KB can be read by one SCSI request.
+		// - flags are stored below and will influence file_io.
+//		if(size <= 32*KiB)
+//			flags |= FILE_NO_AIO;
+
+		// make sure <n_fn> is a regular file
 		if(!S_ISREG(s.st_mode))
 			return ERR_NOT_FILE;
-		size = s.st_size;
 	}
 
 #ifdef _WIN32
 	oflag |= O_BINARY;
+
+	// if AIO is disabled (at user's behest or because the file is small),
+	// so inform wposix.
+	if(flags & FILE_NO_AIO)
+		oflag |= O_NO_AIO_NP;
 #endif
 
 	int fd = open(n_fn, oflag, S_IRWXO|S_IRWXU|S_IRWXG);

@@ -227,6 +227,11 @@ extern int munmap(void* start, size_t len);
 #define O_EXCL         0x0400  // open only if file doesn't already exist
 #define O_BINARY       0x8000  // file mode is binary (untranslated)
 
+#define O_NO_AIO_NP    0x20000
+	// wposix-specific: do not open a separate AIO-capable handle.
+	// this is used for small files where AIO overhead isn't worth it,
+	// thus speeding up loading and reducing resource usage.
+
 #define O_NONBLOCK     0x1000000
 
 // redefinition error here => io.h is getting included somewhere.

@@ -87,9 +87,28 @@ static void aio_h_cleanup()
 
 static bool is_valid_file_handle(const HANDLE h)
 {
-	bool valid = (GetFileSize(h, 0) != INVALID_FILE_SIZE);
-	assert(valid);
+	const bool valid = (GetFileSize(h, 0) != INVALID_FILE_SIZE);
+	if(!valid)
+		debug_warn("waio: invalid file handle");
 	return valid;
+}
+
+
+// return true iff an aio-capable HANDLE has been attached to <fd>.
+// used by aio_close.
+static bool aio_h_is_set(const int fd)
+{
+	bool is_set = false;
+
+	lock();
+
+	if(0 <= fd && fd < aio_hs_size)
+		if(aio_hs[fd] != INVALID_HANDLE_VALUE)
+			is_set = true;
+
+	unlock();
+
+	return is_set;
 }
 
 
@@ -108,7 +127,7 @@ static HANDLE aio_h_get(const int fd)
 	}
 	else
 		debug_warn("aio_h_get: fd's aio handle not set");
-		// h already INVALID_HANDLE_VALUE
+		// h is already INVALID_HANDLE_VALUE
 
 	unlock();
 
@@ -213,8 +232,13 @@ fail:
 
 int aio_close(int fd)
 {
+	// early out for files that were never re-opened for AIO.
+	if(!aio_h_is_set(fd))
+		return -1;
+
 	HANDLE h = aio_h_get(fd);
-	if(h == INVALID_HANDLE_VALUE)	// out of bounds or already closed
+	// out of bounds or already closed
+	if(h == INVALID_HANDLE_VALUE)
 		goto fail;
 
 	if(!CloseHandle(h))
