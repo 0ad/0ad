@@ -32,13 +32,13 @@ public:
 	// render all deferred objects 
 	void Render();
 	// render shadows from all deferred objects 
-	void RenderShadows();
+	//void RenderShadows();
 	// empty object list
 	void Clear();
 
 private:
 	// render given streams on all objects
-	void RenderObjectsStreams(u32 streamflags,u32 mflags=0);
+	//void RenderObjectsStreams(u32 streamflags,u32 mflags=0);
 	// list of transparent objects to render
 	std::vector<SObject> m_Objects;
 };

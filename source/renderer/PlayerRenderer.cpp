@@ -17,8 +17,14 @@
 #include "Model.h"
 #include "Game.h"
 
+#include "CConsole.h"
+
+extern CConsole *g_Console;
 
 CPlayerRenderer g_PlayerRenderer;
+
+
+//TODO: Clean up code!
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,73 +49,116 @@ void CPlayerRenderer::Render()
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 	} 
 
-	// set up texture environment for base pass - modulate texture and primary color
-	glActiveTexture(GL_TEXTURE0);
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+	//TODO: Possibly remove render states from the loop that don't need to be
+	//      initialized for each model.  Also, possibly combine the loops.
 
-	// Set the proper LOD bias
-	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS,  g_Renderer.m_Options.m_LodBias);
+	for (uint i=0;i<m_Objects.size();++i) {
+		if (!0 || (m_Objects[i].m_Model->GetFlags() & 0)) {
+			CModelRData* modeldata=(CModelRData*) m_Objects[i].m_Model->GetRenderData();
 
-	// Render two passes: first, render the unit as normal. Second,
-	// render it again but modulated with the player-colour, using
-	// the alpha channel as a mask.
-	//
-	// Assume the alpha channel is 1-bit, so there's no need for blending.
-	//
-	// This probably ought to be done in a single pass on hardware that
-	// supports register combiners / fragment programs / etc.
+			// Get the models player ID
+			PS_uint playerid = m_Objects[i].m_Model->GetPlayerID();
 
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
+			// Get the player color
+			const SPlayerColour& colour = g_Game->GetPlayer( playerid )->GetColour();
+			float color[] = { colour.r, colour.g, colour.b, colour.a };
 
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_CONSTANT);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+			// set up texture environment for base pass - modulate texture and primary color
+			glActiveTexture(GL_TEXTURE0);
+			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
 
-	glDisable(GL_ALPHA_TEST);
+			// Set the proper LOD bias
+			glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS,  g_Renderer.m_Options.m_LodBias);
+
+			// Render two passes: first, render the unit as normal. Second,
+			// render it again but modulated with the player-colour, using
+			// the alpha channel as a mask.
+			//
+			// Assume the alpha channel is 1-bit, so there's no need for blending.
+			//
+			// This probably ought to be done in a single pass on hardware that
+			// supports register combiners / fragment programs / etc.
+
+			glEnableClientState(GL_VERTEX_ARRAY);
+			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+			glEnableClientState(GL_COLOR_ARRAY);
+
+			// Set the texture environment color the player color
+			glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, color);
+
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_CONSTANT);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+
+			glDisable(GL_ALPHA_TEST);
+
+			// Render the model
+			modeldata->RenderStreams(STREAM_POS|STREAM_COLOR|STREAM_UV0, true);
+		}
+	}
+
 
 	// Render first pass
-	RenderObjectsStreams(STREAM_POS|STREAM_COLOR|STREAM_UV0);
+	//RenderObjectsStreams(STREAM_POS|STREAM_COLOR|STREAM_UV0);
 
-	// Set up second pass: first texture unit carries on doing texture*lighting,
-	// but passes alpha through inverted; the second texture unit modulates
-	// with the player colour.
+	for (uint i=0;i<m_Objects.size();++i) {
+		if (!0 || (m_Objects[i].m_Model->GetFlags() & 0)) {
+			CModelRData* modeldata=(CModelRData*) m_Objects[i].m_Model->GetRenderData();
 
-	glActiveTexture(GL_TEXTURE0);
+			// Get the models player ID
+			PS_uint playerid = m_Objects[i].m_Model->GetPlayerID();
 
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_ONE_MINUS_SRC_ALPHA);
+			// Get the player color
+			const SPlayerColour& colour = g_Game->GetPlayer( playerid )->GetColour();
+			float color[] = { colour.r, colour.g, colour.b, colour.a };
 
-	glActiveTexture(GL_TEXTURE1);
+			// Set up second pass: first texture unit carries on doing texture*lighting,
+			// but passes alpha through inverted; the second texture unit modulates
+			// with the player colour.
 
-	glEnable(GL_TEXTURE_2D);
+			glActiveTexture(GL_TEXTURE0);
 
-	// t1 = t0 * playercolor
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_CONSTANT);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_ONE_MINUS_SRC_ALPHA);
 
-	// Continue passing through alpha from texture
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+			glActiveTexture(GL_TEXTURE1);
 
-	// Only render high-alpha parts
-	glEnable(GL_ALPHA_TEST);
-	glAlphaFunc(GL_GREATER,0.5f);
+			glEnable(GL_TEXTURE_2D);
+
+			// t1 = t0 * playercolor
+			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_CONSTANT);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+
+			// Set the texture environment color the player color
+			glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, color);
+
+			// Continue passing through alpha from texture
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+
+
+			// Only render high-alpha parts
+			glEnable(GL_ALPHA_TEST);
+			glAlphaFunc(GL_GREATER,0.5f);
+
+			// Render the model
+			modeldata->RenderStreams(STREAM_POS|STREAM_COLOR|STREAM_UV0, true);
+		}
+	}
 
 	// Render second pass
-	RenderObjectsStreams(STREAM_POS|STREAM_COLOR|STREAM_UV0);
+	//RenderObjectsStreams(STREAM_POS|STREAM_COLOR|STREAM_UV0);
 
 	// Restore states
 	glActiveTexture(GL_TEXTURE1);
@@ -220,24 +269,24 @@ void CPlayerRenderer::Add(CModel* model)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // RenderObjectsStreams: render given streams on all objects
-void CPlayerRenderer::RenderObjectsStreams(u32 streamflags,u32 mflags)
-{
-	for (uint i=0;i<m_Objects.size();++i) {
-		if (!mflags || (m_Objects[i].m_Model->GetFlags() & mflags)) {
-			CModelRData* modeldata=(CModelRData*) m_Objects[i].m_Model->GetRenderData();
-
-			// Get the models player ID
-			PS_uint playerid = m_Objects[i].m_Model->GetPlayerID();
-
-			// Get the player color
-			const SPlayerColour& colour = g_Game->GetPlayer( playerid )->GetColour();
-			float color[] = { colour.r, colour.g, colour.b, colour.a };
-
-			// Set the texture environment color the player color
-			glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, color);
-
-			// Render the model
-			modeldata->RenderStreams(streamflags, true);
-		}
-	}
-}
+//void CPlayerRenderer::RenderObjectsStreams(u32 streamflags,u32 mflags)
+//{
+//	for (uint i=0;i<m_Objects.size();++i) {
+//		if (!mflags || (m_Objects[i].m_Model->GetFlags() & mflags)) {
+//			CModelRData* modeldata=(CModelRData*) m_Objects[i].m_Model->GetRenderData();
+//
+//			// Get the models player ID
+//			PS_uint playerid = m_Objects[i].m_Model->GetPlayerID();
+//
+//			// Get the player color
+//			const SPlayerColour& colour = g_Game->GetPlayer( playerid )->GetColour();
+//			float color[] = { colour.r, colour.g, colour.b, colour.a };
+//
+//			// Set the texture environment color the player color
+//			glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, color);
+//
+//			// Render the model
+//			modeldata->RenderStreams(streamflags, true);
+//		}
+//	}
+//}

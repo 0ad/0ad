@@ -333,12 +333,8 @@ void CModelRData::RenderModels(u32 streamflags,u32 flags)
 				const CVertexBuffer::Batch* batch=batches[i];
 				if (batch->m_IndexData.size()>0) {
 					if (streamflags & STREAM_UV0) 
-					{
-						// TODO: If not doing player-colours, only bind this to
-						// the first texture unit
 						g_Renderer.BindTexture(0,tex_id(batch->m_Texture));
-						//g_Renderer.BindTexture(1,tex_id(batch->m_Texture));
-					}
+
 					for (uint j=0;j<batch->m_IndexData.size();j++) {
 						glDrawElements(GL_TRIANGLES,(GLsizei)batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);
 						g_Renderer.m_Stats.m_DrawCalls++;

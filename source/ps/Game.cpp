@@ -87,8 +87,8 @@ CGameAttributes::CGameAttributes():
 	
 	AddProperty(L"players", (GetFn)&CGameAttributes::JSGetPlayers);
 
-	m_Players.resize(3);
-	for (int i=0;i<3;i++)
+	m_Players.resize(4);
+	for (int i=0;i<4;i++)
 		m_Players[i]=new CPlayer(i);
 		
 	m_Players[0]->SetName(L"Gaia");
@@ -99,6 +99,9 @@ CGameAttributes::CGameAttributes():
 
 	m_Players[2]->SetName(L"Boco the Insignificant");
 	m_Players[2]->SetColour(SPlayerColour(0.0f, 0.0f, 1.0f));
+
+	m_Players[3]->SetName(L"NoMonkey");
+	m_Players[3]->SetColour(SPlayerColour(0.5f, 0.0f, 1.0f));
 }
 
 CGameAttributes::~CGameAttributes()
