@@ -129,14 +129,14 @@ static int path_validate(const uint line, const char* const path)
 	const char* msg = 0;	// error occurred <==> != 0
 	int err = -1;			// pass error code to caller
 
+	int c = 0, last_c;
+
 	// disallow absolute path for safety, in case of *nix systems.
 	if(path[0] == '/')
 	{
 		msg = "absolute path";
 		goto fail;
 	}
-
-	int c = 0, last_c;
 
 	// scan each char in path string; count length.
 	for(;;)
