@@ -879,9 +879,10 @@ static int dump_data_sym(DWORD data_idx, const u8* p, uint level)
 
 	if(sym->Tag != SymTagData)
 	{
-		// shouldn't happen; dump_udt skips symbols that don't have defined
-		// offset values. dump_sym_cb is the only other call site.
-		assert(0 && "unexpected symbol tag in dump_data_sym");
+		// still happens, even though dump_udt skips symbols that don't have
+		// defined offset values. don't know any other way to prevent this.
+		// (note: dump_sym_cb is the only other call site).
+		debug_out("dump_data_sym: unexpected symbol tag %d\n", sym->Tag);
 		return -1;
 	}
 
