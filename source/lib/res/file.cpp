@@ -28,7 +28,7 @@
 
 #include <vector>
 #include <algorithm>
-
+#include <string>
 
 // block := power-of-two sized chunk of a file.
 // all transfers are expanded to naturally aligned, whole blocks
@@ -1345,6 +1345,8 @@ int file_map(File* const f, void*& p, size_t& size)
 
 	CHECK_FILE(f);
 
+	const int prot = (f->flags & FILE_WRITE)? PROT_WRITE : PROT_READ;
+
 	// already mapped - increase refcount and return previous mapping.
 	if(f->mapping)
 	{
@@ -1358,7 +1360,6 @@ int file_map(File* const f, void*& p, size_t& size)
 		goto have_mapping;
 	}
 
-	const int prot = (f->flags & FILE_WRITE)? PROT_WRITE : PROT_READ;
 	f->mapping = mmap((void*)0, f->size, prot, MAP_PRIVATE, f->fd, (off_t)0);
 	if(!f->mapping)
 		return ERR_NO_MEM;
