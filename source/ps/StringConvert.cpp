@@ -41,6 +41,11 @@ JSString* StringConvert::wchars_to_jsstring(JSContext* cx, const wchar_t* chars)
 	return JS_NewUCString(cx, data, len);
 }
 
+void StringConvert::jsstring_to_wstring(JSString* str, std::wstring& result)
+{
+	jschars_to_wstring(JS_GetStringChars(str), JS_GetStringLength(str), result);
+}
+
 void StringConvert::jschars_to_wstring(const jschar* chars, size_t len, std::wstring& result)
 {
 	assert(result.empty());
