@@ -457,19 +457,23 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 
 	std::map<std::wstring, fptr>::iterator Iter;
 
-	if (szLine[0] == '\\'){
+	if (szLine[0] == '\\')
+	{
 		swscanf(szLine, L"\\%ls", szCommand);
 		Trim(szCommand);
 		ToLower(szCommand);
 
-		if (!wcscmp(szCommand, L"info")){
+		if (!wcscmp(szCommand, L"info"))
+		{
 			InsertMessage(L"");
 			InsertMessage(L"[Information]");
 			InsertMessage(L"   -View commands \"\\commands\"");
 			InsertMessage(L"   -Call command \"\\<command>\"");
 			InsertMessage(L"   -Say \"<string>\"");
 			InsertMessage(L"");
-		}else if (!wcscmp(szCommand, L"commands")){
+		}
+		else if (!wcscmp(szCommand, L"commands"))
+		{
 			InsertMessage(L"");
 			InsertMessage(L"[Commands]");
 
@@ -479,7 +483,9 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 				InsertMessage(L"   \\%ls", Iter->first.data());
 
 			InsertMessage(L"");
-		}else{
+		}
+		else
+		{
 			Iter = m_mapFuncList.find(szCommand);
 			if (Iter == m_mapFuncList.end())
 				InsertMessage(L"unknown command <%ls>", szCommand);
@@ -487,22 +493,26 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 				Iter->second();
 		}
 	}
-	else if( szLine[0] == ':' )
+	else if (szLine[0] == ':')
 	{
 		// Process it as JavaScript
 
-		// Convert Unicode to 8-bit sort-of-ASCII
-		
 		g_ScriptingHost.ExecuteScript( CStr16( szLine + 1 ) );
 
 	}
-	else if( szLine[0] == '?' )
+	else if (szLine[0] == '?')
 	{
 		// Process it as JavaScript and display the result
 
 		jsval rval = g_ScriptingHost.ExecuteScript( CStr16( szLine + 1 ) );
-		if( rval )
-			InsertMessage( L"%hs", g_ScriptingHost.ValueToString( rval ).c_str() );
+		if (rval)
+		{
+			try {
+				InsertMessage( L"%ls", g_ScriptingHost.ValueToUCString( rval ).c_str() );
+			} catch (PSERROR_Scripting_ConversionFailed) {
+				InsertMessage( L"%hs", "<error converting return value to string>" );
+			}
+		}
 	}
 	else
 		SendChatMessage(szLine);

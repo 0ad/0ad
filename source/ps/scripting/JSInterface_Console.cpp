@@ -85,18 +85,18 @@ JSBool JSI_Console::getConsole( JSContext* cx, JSObject* obj, jsval id, jsval* v
 JSBool JSI_Console::writeConsole( JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* UNUSEDPARAM(rval) )
 {
 	assert( argc >= 1 );
-	CStr output;
+	CStrW output;
 	for( unsigned int i = 0; i < argc; i++ )
 	{
 		try
 		{
-			CStr arg = g_ScriptingHost.ValueToString( argv[0] );
+			CStrW arg = g_ScriptingHost.ValueToUCString( argv[0] );
 			output += arg;
 		}
 		catch( PSERROR_Scripting_ConversionFailed )
 		{
 		}
 	}
-	g_Console->InsertMessage( L"%hs", (const char*)output );
+	g_Console->InsertMessage( L"%ls", output.c_str() );
 	return( JS_TRUE );
 }
