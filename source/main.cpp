@@ -15,9 +15,9 @@
 #include "vfs.h"
 #include "ia32.h"
 
-///// janwas I added this
+#ifndef NO_GUI
 #include "gui/GUI.h"
-/////
+#endif
 
 
 u32 game_ticks;
@@ -118,6 +118,8 @@ static int set_vmode(int w, int h, int bpp)
 }
 
 
+// break out of main loop
+static bool quit = false;
 
 static bool handler(const SDL_Event& ev)
 {
@@ -131,7 +133,8 @@ static bool handler(const SDL_Event& ev)
 		switch(c)
 		{
 		case SDLK_ESCAPE:
-			exit(0);
+			quit = true;
+			break;
 		}
 		break;
 
@@ -200,10 +203,10 @@ const float x = 600.0f, y = 512.0f;
 
 	glprintf("%d FPS", fps);
 
-	////// janwas
+#ifndef NO_GUI
 	glLoadIdentity();
 	g_GUI.Draw();
-	//////
+#endif
 
 
 	// restore
@@ -229,13 +232,6 @@ int main(int argc, char* argv[])
 #endif
 
 	detect();
-
-	///// janwas: place this wherever
-	new CGUI; // we should have a place for all singleton news
-	g_GUI.Initialize();
-	g_GUI.LoadXMLFile("hello.xml");
-	//g_GUI.LoadXMLFile("sprite1.xml");
-	/////
 
 	// init SDL
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
@@ -273,10 +269,26 @@ glEnable (GL_DEPTH_TEST);
 
 	glEnable(GL_TEXTURE_2D);
 
+
+
+// TODO: all loading should go through the VFS; for now, we allow normal access
+// this has to come before VFS init, as it changes the current dir
+#ifndef NO_GUI
+	new CGUI; // we should have a place for all singleton news
+	g_GUI.Initialize();
+	g_GUI.LoadXMLFile("hello.xml");
+	//g_GUI.LoadXMLFile("sprite1.xml");
+#endif
+
+
 	vfs_set_root(argv[0], "data");
 //	tex = tex_load("0adlogo2.bmp");
 //	tex_upload(tex);
 	font = font_load("verdana.fnt");
+
+
+
+
 
 terr_init();
 
@@ -287,7 +299,7 @@ in_add_handler(terr_handler);
 	const double TICK_TIME = 30e-3;	// [s]
 	double time0 = get_time();
 
-	for(;;)
+	while(!quit)
 	{
 // TODO: limiter in case simulation can't keep up?
 		double time1 = get_time();
@@ -305,10 +317,10 @@ in_add_handler(terr_handler);
 		calc_fps();
 	}
 
-	///// Janwas place this wherever
+#ifndef NO_GUI
 	g_GUI.Destroy();
 	delete CGUI::GetSingletonPtr(); // again, we should have all singleton deletes somewhere
-	/////
+#endif
 
 	return 0;
 }

@@ -235,15 +235,23 @@ SOURCE=..\gui\CGUISprite.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\gui\GUI.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=..\gui\GUI.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\gui\guimain.cpp
+SOURCE=..\gui\GUIbase.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\GUIbase.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\GUIutil.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\GUIutil.h
 # End Source File
 # Begin Source File
 
