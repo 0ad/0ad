@@ -54,7 +54,10 @@ public:
 	TNode* add(const char* fn);
 	TNode* find(const char* fn);
 
-	size_t size() { return num_entries; }
+	size_t size()
+	{
+		return num_entries;
+	}
 
 	class iterator;
 	iterator begin() const;
@@ -88,7 +91,7 @@ public:
 	void init();
 	TNode* find(const char* fn, TNodeType desired_type);
 	TNode* add(const char* fn, TNodeType new_type);
-	TDir* add_dir(const char* path, const TMountPoint* mount_point_);
+	int mount(const char* path, const TMountPoint*, bool watch);
 	int lookup(const char* path, uint flags, TNode** pnode, char* exact_path);
 	void clearR();
 	void displayR(int indent_level);
@@ -187,42 +190,70 @@ void node_free_all()
 class TChildren::iterator
 {
 public:
-	typedef std::random_access_iterator_tag iterator_category;
+	typedef std::forward_iterator_tag iterator_category;
 	typedef TNode* T;
 	typedef T value_type;
 	typedef ptrdiff_t difference_type;
-	typedef const TNode** pointer;
-	typedef const TNode*& reference;
+	typedef const T* pointer;
+	typedef const T& reference;
 
 	iterator()
-		{}
-	iterator(T* pos_) : pos(pos_)
-		{}
-	T& operator[](int idx) const
-		{ return pos[idx]; }
+	{
+	}
+	iterator(T* pos_, T* end_) : pos(pos_), end(end_)
+	{
+	}
 	T& operator*() const
-		{ return *pos; }
-	const T* operator->() const
-		{ return &**this; }
+	{
+		return *pos;
+	}
 	iterator& operator++()	// pre
-		{ ++pos; return (*this); }
-	iterator operator++(int)	// post
-		{ iterator tmp =  *this; ++*this; return tmp; }
+	{
+		do
+			pos++;
+		while(pos != end && *pos == 0);
+		return (*this);
+	}
 	bool operator==(const iterator& rhs) const
-		{ return pos == rhs.pos; }
-	bool operator!=(const iterator& rhs) const
-		{ return !(*this == rhs); }
+	{
+		return pos == rhs.pos;
+	}
 	bool operator<(const iterator& rhs) const
-		{ return (pos < rhs.pos); }
+	{
+		return (pos < rhs.pos);
+	}
+
+	// derived
+	const T* operator->() const
+	{
+		return &**this;
+	}
+	bool operator!=(const iterator& rhs) const
+	{
+		return !(*this == rhs);
+	}
+	iterator operator++(int)	// post
+	{
+		iterator tmp =  *this; ++*this; return tmp;
+	}
 
 protected:
 	T* pos;
+	T* end;
+		// only used when incrementing (avoid going beyond end of table)
 };
 
 TChildren::iterator TChildren::begin() const
-{ return iterator(tbl); }
+{
+	TNode** pos = tbl;
+	while(pos != tbl+max_entries && *pos == 0)
+		pos++;
+	return iterator(pos, tbl+max_entries);
+}
 TChildren::iterator TChildren::end() const
-{ return iterator(tbl+max_entries);	}
+{
+	return iterator(tbl+max_entries, 0);
+}
 
 
 void TChildren::init()
@@ -236,7 +267,6 @@ void TChildren::init()
 
 void TChildren::clear()
 {
-memset(tbl, 0, max_entries*sizeof(TNode*));
 	free(tbl);
 	tbl = 0;
 	num_entries = max_entries = 0;
@@ -353,9 +383,12 @@ TNode* TDir::find(const char* fn, TNodeType desired_type)
 }
 
 
-TNode* TDir::add(const char* fn, TNodeType new_type)
+TNode* TDir::add(const char* name, TNodeType new_type)
 {
-	TNode* node = children.add(fn);
+	if(!path_component_valid(name))
+		return 0;
+
+	TNode* node = children.add(name);
 	if(!node)
 		return 0;
 	// already initialized
@@ -376,30 +409,21 @@ TNode* TDir::add(const char* fn, TNodeType new_type)
 
 
 // note: full VFS path is needed for the dir watch.
-TDir* TDir::add_dir(const char* path, const TMountPoint* mp)
+int TDir::mount(const char* path, const TMountPoint* mp, bool watch)
 {
-	const char* subdir_name = strrchr(path, '/');
-	if(!subdir_name++)
-		return 0;
-
-	TNode* node = add(subdir_name, N_DIR);
-	if(!node)
-		return 0;
-	TDir* subdir = &node->u.dir;
-
 	// more than one real dir mounted into VFS dir
 	// (=> can't create files for writing here)
-	if(subdir->mount_point)
-		subdir->mount_point = (TMountPoint*)-1;
+	if(mount_point)
+		mount_point = (TMountPoint*)-1;
 	else
-		subdir->mount_point = mp;
+		mount_point = mp;
 
 #ifndef NO_DIR_WATCH
-	int ret = res_watch_dir(path, &subdir->watch);
-	assert(ret == 0);
+	if(watch)
+		CHECK_ERR(res_watch_dir(path, &this->watch));
 #endif
 
-	return subdir;
+	return 0;
 }
 
 
@@ -500,7 +524,7 @@ void TDir::clearR()
 	for(TChildIt it = children.begin(); it != children.end(); ++it)
 	{
 		TNode* node = *it;
-		if(node && node->type == N_DIR)
+		if(node->type == N_DIR)
 			node->u.dir.clearR();
 	}
 
@@ -602,9 +626,17 @@ TFile* tree_add_file(TDir* dir, const char* name)
 }
 
 
-TDir* tree_add_dir(TDir* dir, const char* path, const TMountPoint* mount_point)
+TDir* tree_add_dir(TDir* dir, const char* name)
 {
-	return dir->add_dir(path, mount_point);
+	TNode* node = dir->add(name, N_DIR);
+	return node? &node->u.dir: 0;
+}
+
+
+
+int tree_mount(TDir* dir, const char* path, const TMountPoint* mount_point, bool watch)
+{
+	return dir->mount(path, mount_point, watch);
 }
 
 
@@ -648,7 +680,7 @@ struct NodeLatch
 
 	static bool ci_less(const TNode* n1, const TNode* n2)
 	{
-		return stricmp(n1->exact_name, n2->exact_name) <= 0;
+		return stricmp(n1->exact_name, n2->exact_name) < 0;
 	}
 
 	NodeLatch(TChildren& c)
@@ -656,17 +688,14 @@ struct NodeLatch
 		i = 0;
 
 		v.reserve(c.size());
-		// don't std::copy because c contains a lot of NULL entries
-		// (which we must not return); this way is easier than having the
-		// iterator strip them.
-		for(TChildIt it = c.begin(); it != c.end(); ++it)
-			if(*it)
-				v.push_back(*it);
-
+		std::copy(c.begin(), c.end(), std::back_inserter(v));
 		std::sort(v.begin(), v.end(), ci_less);
 	}
 
-	bool empty() const { return i == v.size(); }
+	bool empty() const
+	{
+		return i == v.size();
+	}
 
 	const TNode* get_next()
 	{
@@ -686,7 +715,7 @@ int tree_open_dir(const char* path_slash, void** latch)
 }
 
 
-int tree_next_dirent(void* latch_, const char* filter, TDirent* dirent)
+int tree_next_dirent(void* latch_, const char* filter, vfsDirEnt* dirent)
 {
 	bool want_dir = true;
 	if(filter)

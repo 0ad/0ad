@@ -92,6 +92,32 @@ ok:
 #define CHECK_PATH(path) CHECK_ERR(path_validate(__LINE__, path))
 
 
+bool path_component_valid(const char* name)
+{
+	// disallow empty strings
+	if(*name == '\0')
+		return false;
+
+	int c = 0;
+	for(;;)
+	{
+		int last_c = c;
+		c = *name++;
+
+		// disallow '..' (would allow escaping the VFS root dir sandbox)
+		if(c == '.' && last_c == '.')
+			return false;
+
+		// disallow dir separators
+		if(c == '\\' || c == ':' || c == '/')
+			return false;
+
+		if(c == '\0')
+			return true;
+	}
+}
+
+
 // convenience function
 inline void path_copy(char* dst, const char* src)
 {
@@ -128,6 +154,7 @@ int path_append(char* dst, const char* path1, const char* path2)
 	strcpy(dst, path2);	// safe
 	return 0;
 }
+
 
 // strip <remove> from the start of <src>, prepend <replace>,
 // and write to <dst>.

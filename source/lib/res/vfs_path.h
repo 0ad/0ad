@@ -10,6 +10,8 @@ extern int path_validate(const uint line, const char* path);
 
 #define CHECK_PATH(path) CHECK_ERR(path_validate(__LINE__, path))
 
+extern bool path_component_valid(const char* name);
+
 // convenience function
 extern void path_copy(char* dst, const char* src);
 

@@ -355,7 +355,7 @@ static int dirent_cb(const char* name, const struct stat* s, uintptr_t user)
 
 		char new_path[VFS_MAX_PATH];
 		CHECK_ERR(path_append(new_path, p_path, name));
-		TDir* new_dir = tree_add_dir(dir, new_path, mount_point);
+		TDir* new_dir = tree_add_dir(dir, name);
 		dir_queue->push_back(DirAndPath(new_dir, new_path));
 		return 0;
 	}
@@ -396,13 +396,18 @@ static int dirent_cb(const char* name, const struct stat* s, uintptr_t user)
 static int populate_dir(TDir* dir_, const char* p_path_, const TMountPoint* mount_point, bool recursive, TMountPoints* archives)
 {
 	DirQueue dir_queue;
-	dir_queue.push_back(DirAndPath(dir_, p_path_));
 	DirQueue* const pdir_queue = recursive? &dir_queue : 0;
+
+	// kickoff (less efficient than goto, but c_str reference requires
+	// pop to come at end of loop => this is easiest)
+	dir_queue.push_back(DirAndPath(dir_, p_path_));
 
 	do
 	{
-		TDir* dir          = dir_queue.front().dir;
+		TDir* const dir    = dir_queue.front().dir;
 		const char* p_path = dir_queue.front().path.c_str();
+		
+		tree_mount(dir, p_path, mount_point);
 
 		// add files and subdirs to this dir;
 		// also adds the contents of archives if archives != 0.
@@ -493,8 +498,8 @@ static int remount(Mount& m)
 	const char* p_real_path   = m.p_real_path.c_str();
 	const int flags           = m.flags;
 	const uint pri            = m.pri;
-	TMountPoint* mount_point             = &m.mount_point;
-	TMountPoints& archives       = m.archives;
+	TMountPoint* mount_point  = &m.mount_point;
+	TMountPoints& archives    = m.archives;
 
 	// callers have a tendency to forget required trailing '/';
 	// complain if it's not there, unless path = "" (root dir).
@@ -528,10 +533,14 @@ static int unmount(Mount& m)
 
 // trivial, but used by vfs_shutdown and vfs_rebuild
 static inline void unmount_all(void)
-	{ std::for_each(mounts.begin(), mounts.end(), unmount); }
+{
+	std::for_each(mounts.begin(), mounts.end(), unmount);
+}
 
 static inline void remount_all()
-	{ std::for_each(mounts.begin(), mounts.end(), remount); }
+{
+	std::for_each(mounts.begin(), mounts.end(), remount);
+}
 
 
 
@@ -568,14 +577,9 @@ int vfs_mount(const char* v_mount_point, const char* p_real_path, int flags, uin
 		return -1;
 	}
 
-	CHECK_PATH(v_mount_point);
-
-	const Mount& new_mount = Mount(v_mount_point, p_real_path, flags, pri);
-	mounts.push_back(new_mount);
-
 	// actually mount the entry
-	Mount& m = mounts.back();
-	return remount(m);
+	mounts.push_back(Mount(v_mount_point, p_real_path, flags, pri));
+	return remount(mounts.back());
 }
 
 
@@ -653,12 +657,18 @@ static int make_file_path(char* path, const char* vfs_path, const TMountPoint* m
 
 struct VDir
 {
-	// we need to cache the complete contents of the directory:
+	// xxx we need to cache the complete contents of the directory:
 	// if we reference the real directory and it changes,
 	// the c_str pointers may become invalid, and some files
 	// may be returned out of order / not at all.
 	// we copy the directory's subdirectory and file containers.
 	void* latch;
+
+	// safety check
+#ifndef NDEBUG
+	const char* filter;
+	bool filter_latched;
+#endif
 };
 
 H_TYPE_DEFINE(VDir);
@@ -710,31 +720,44 @@ int vfs_close_dir(Handle& hd)
 	return h_free(hd, H_VDir);
 }
 
-// make sure we can assign directly from TDirent to vfsDirEnt
-// (more efficient)
-cassert(offsetof(vfsDirEnt, name)  == offsetof(TDirent, name));
-cassert(offsetof(vfsDirEnt, size)  == offsetof(TDirent, size));
-cassert(offsetof(vfsDirEnt, mtime) == offsetof(TDirent, mtime));
 
 // retrieve the next dir entry (in alphabetical order) matching <filter>.
 // return 0 on success, ERR_DIR_END if no matching entry was found,
 // or a negative error code on failure.
 // filter values:
-// - 0: any file;
-// - "/": any subdirectory
-// - anything else: pattern for name (may include '?' and '*' wildcards)
+// - 0: anything;
+// - "/": any subdirectory;
+// - "/|<pattern>": any subdirectory, or as below with <pattern>;
+// - <pattern>: any file whose name matches; ? and * wildcards are allowed.
 //
-// xxx rationale: the filename is currently stored internally as
-// std::string (=> less manual memory allocation). we don't want to
-// return a reference, because that would break C compatibility.
-// we're trying to avoid fixed-size buffers, so that is out as well.
-// finally, allocating a copy is not so good because it has to be
-// freed by the user (won't happen). returning a volatile pointer
-// to the string itself via c_str is the only remaining option.
+// note that the directory entries are only scanned once; after the
+// end is reached (-> ERR_DIR_END returned), no further entries can
+// be retrieved, even if filter changes (which shouldn't happen - see impl).
+//
+// rationale for returning a pointer to the name string: we're trying to
+// avoid arbitrary name length limits, so fixed-size buffers are out.
+// allocating a copy isn't good because it has to be freed by the user
+// (won't happen). that leaves a (const!) pointer to the internal storage.
 int vfs_next_dirent(const Handle hd, vfsDirEnt* ent, const char* filter)
 {
 	H_DEREF(hd, VDir, vd);
-	return tree_next_dirent(vd->latch, filter, (TDirent*)ent);
+
+	// warn if scanning the directory twice with different filters
+	// (this used to work with dir/file because they were stored separately).
+	// it is imaginable that someone will want to change it, but until
+	// there's a good reason, leave this check in. note: only comparing
+	// pointers isn't 100% certain, but it's safe enough and easy.
+#ifndef NDEBUG
+	if(!vd->filter_latched)
+	{
+		vd->filter = filter;
+		vd->filter_latched = true;
+	}
+	if(vd->filter != filter)
+		debug_warn("vfs_next_dirent: filter has changed for this directory. are you scanning it twice?");
+#endif
+
+	return tree_next_dirent(vd->latch, filter, ent);
 }
 
 

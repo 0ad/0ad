@@ -1,3 +1,26 @@
+// virtual file system: tree of files and directories
+//
+// Copyright (c) 2005 Jan Wassenberg
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License as
+// published by the Free Software Foundation; either version 2 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// General Public License for more details.
+//
+// Contact info:
+//   Jan.Wassenberg@stud.uni-karlsruhe.de
+//   http://www.stud.uni-karlsruhe.de/~urkt/
+
+#ifndef VFS_TREE_H__
+#define VFS_TREE_H__
+
+#include "vfs.h"	// vfsDirEnt
+
 struct TMountPoint;
 
 class TDir;
@@ -26,13 +49,6 @@ struct TFile
 	}
 };
 
-// keep in sync with vfs.h vfsDirEnt!
-struct TDirent
-{
-	const char* name;
-	off_t size;
-	time_t mtime;
-};
 
 enum TreeLookupFlags
 {
@@ -47,7 +63,9 @@ extern void tree_clear();
 extern void tree_display();
 
 extern TFile* tree_add_file(TDir* dir, const char* name);
-extern TDir* tree_add_dir(TDir* parent, const char* path, const TMountPoint*);
+extern TDir * tree_add_dir (TDir* dir, const char* name);
+
+extern int tree_mount(TDir* dir, const char* path, const TMountPoint*, bool watch = true);
 
 
 // starting at VFS root, traverse <path> and pass back information
@@ -83,5 +101,7 @@ extern int tree_lookup_dir(const char* path, TDir** pdir, uint flags = 0, char* 
 extern int tree_lookup(const char* path, TFile** pfile, uint flags = 0, char* exact_path = 0);
 
 extern int tree_open_dir(const char* path_slash, void** latch);
-extern int tree_next_dirent(void* latch_, const char* filter, TDirent* dirent);
+extern int tree_next_dirent(void* latch_, const char* filter, vfsDirEnt* dirent);
 extern int tree_close_dir(void* latch_);
+
+#endif	// #ifndef VFS_TREE_H__

@@ -118,8 +118,18 @@ extern int vfs_close_dir(Handle& hd);
 // or a negative error code on failure.
 // filter values:
 // - 0: anything;
-// - "/": any subdirectory
-// - anything else: pattern for name (may include '?' and '*' wildcards)
+// - "/": any subdirectory;
+// - "/|<pattern>": any subdirectory, or as below with <pattern>;
+// - <pattern>: any file whose name matches; ? and * wildcards are allowed.
+//
+// note that the directory entries are only scanned once; after the
+// end is reached (-> ERR_DIR_END returned), no further entries can
+// be retrieved, even if filter changes (which shouldn't happen - see impl).
+//
+// rationale for returning a pointer to the name string: we're trying to
+// avoid arbitrary name length limits, so fixed-size buffers are out.
+// allocating a copy isn't good because it has to be freed by the user
+// (won't happen). that leaves a (const!) pointer to the internal storage.
 extern int vfs_next_dirent(Handle hd, vfsDirEnt* ent, const char* filter = 0);
 
 
