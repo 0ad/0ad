@@ -577,7 +577,8 @@ static int add_dirent_cb(const char* const path, const uint flags, const ssize_t
 
 	int err = 1;
 
-	if(flags & LOC_ZIP)
+	// file or directory in archive
+	if(cur_loc->archive > 0)
 	{
 		if(!size)
 		{
@@ -597,7 +598,7 @@ static int add_dirent_cb(const char* const path, const uint flags, const ssize_t
 			}
 		}
 	}
-	// directory
+	// directory (not in archive)
 	else if(flags & LOC_DIR)
 	{
 		// leave out CVS dirs in debug builds. this makes possible
@@ -608,7 +609,7 @@ static int add_dirent_cb(const char* const path, const uint flags, const ssize_t
 #endif
 		err = cur_dir->add_subdir(path);
 	}
-	// file
+	// file (not in archive)
 	else
 		err = cur_dir->add_file(path, cur_loc);
 
