@@ -2,6 +2,7 @@
 
 #ifndef REAL_GL_1_2
 FUNC(void, glMultiTexCoord2f, (int, float, float))
+FUNC(void, glDrawRangeElements,(GLenum,GLuint,GLuint,GLsizei,GLenum,GLvoid*))
 #endif
 
 #ifndef REAL_GL_1_3
