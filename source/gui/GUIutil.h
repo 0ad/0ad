@@ -123,6 +123,9 @@ protected:
 	
 	/// const version
 	static const IGUIObject * GetObjectPointer(const CGUI &GUIinstance, const CStr &Object);
+
+	/// Wrapper for ResetStates
+	static void QueryResetting(IGUIObject *pObject);
 };
 
 
@@ -141,6 +144,7 @@ class GUI : public CInternalCGUIAccessorBase
 	// Private functions further ahead
 	friend class CGUI;
 	friend class IGUIObject;
+	friend class CInternalCGUIAccessorBase;
 
 public:
 	/**
@@ -200,7 +204,8 @@ public:
 		if (Setting == CStr(_T("hidden")))
 		{
 			// Hiding an object requires us to reset it and all children
-			RecurseObject(0, pObject, IGUIObject::ResetStates);
+			QueryResetting(pObject);
+			//RecurseObject(0, pObject, IGUIObject::ResetStates);
 		}
 
 		return PS_OK;

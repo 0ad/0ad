@@ -105,6 +105,7 @@ class IGUIObject
 {
 	friend class CGUI;
 
+	friend class CInternalCGUIAccessorBase;
 #ifndef _MSC_VER
 	template <class T>
 #endif

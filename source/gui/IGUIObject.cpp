@@ -136,14 +136,10 @@ bool IGUIObject::MouseOver()
 	u16 mouse_x = GetMouseX(),
 		mouse_y = GetMouseY();
 
-	//CRect ca = m_BaseSettings.m_Size.GetClientArea(CRect(0,0,g_xres,g_yres));
-	CRect ca = m_CachedActualSize;
-
-
-	return (mouse_x >= ca.left &&
-			mouse_x <= ca.right &&
-			mouse_y >= ca.top &&
-			mouse_y <= ca.bottom);
+	return (mouse_x >= m_CachedActualSize.left &&
+			mouse_x <= m_CachedActualSize.right &&
+			mouse_y >= m_CachedActualSize.top &&
+			mouse_y <= m_CachedActualSize.bottom);
 }
 
 u16 IGUIObject::GetMouseX() const

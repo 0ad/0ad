@@ -81,6 +81,8 @@ public:
 	 */
 	virtual map_Settings GetSettingsInfo() const { return IGUISettingsObject<SButtonSettings>::m_SettingsInfo; }
 
+	virtual void ResetStates() { IGUIButtonBehavior::ResetStates(); }
+
 	/**
 	 * Handle Messages
 	 *

@@ -55,7 +55,7 @@ bool CClientArea::SetClientArea(const CStr &Value)
 	//  (200) (percent) (100) <== percent PLUS pixel
 	//  (200) (percent) (-100) <== percent MINUS pixel
 	//  (200) (percent) (100) (-100) <== Both PLUS and MINUS are used, INVALID
-	string one_value = "_$value[$arg(percent)%_[+_$value]_[-_$arg(_minus)$value]_]";
+	string one_value = "_[-_$arg(_minus)]$value[$arg(percent)%_[+_$value]_[-_$arg(_minus)$value]_]";
 	string four_values = one_value + "$arg(delim)" + 
 						 one_value + "$arg(delim)" + 
 						 one_value + "$arg(delim)" + 
@@ -166,4 +166,9 @@ const IGUIObject * CInternalCGUIAccessorBase::GetObjectPointer(const CGUI &GUIin
 //		return NULL;
 
 	return GUIinstance.m_pAllObjects.find(Object)->second;
+}
+
+void CInternalCGUIAccessorBase::QueryResetting(IGUIObject *pObject)
+{
+	GUI<>::RecurseObject(0, pObject, IGUIObject::ResetStates);
 }
