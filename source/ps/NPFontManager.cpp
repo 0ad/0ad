@@ -2,6 +2,7 @@
 #include "NPFont.h"
 
 #include <algorithm>
+#include <cassert>
 
 // the sole instance of the NPFontManager
 NPFontManager* NPFontManager::_instance=0;

@@ -188,7 +188,7 @@ static inline void pre_main_init()
 #ifdef PARANOIA
 	// force malloc et al to check the heap every call.
 	// slower, but reports errors closer to where they occur.
-	int flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
+	uint flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
 	flags |= _CRTDBG_CHECK_ALWAYS_DF | _CRTDBG_DELAY_FREE_MEM_DF;
 	_CrtSetDbgFlag(flags);
 #endif

@@ -1,6 +1,8 @@
 #include <cstdio>
 #include <cstring>
 #include <cstdlib>
+#include <cmath>
+
 
 // Alan: For some reason if this gets included after anything else some 
 // compile time errors get thrown up todo with javascript internal typedefs
@@ -50,7 +52,11 @@ u32 game_ticks;
 bool keys[SDLK_LAST];
 bool mouseButtons[5];
 
-#include <cmath>
+// Globals
+int g_xres, g_yres;
+int g_bpp;
+int g_freq;
+
 
 // flag to disable extended GL extensions until fix found - specifically, crashes
 // using VBOs on laptop Radeon cards
@@ -526,7 +532,7 @@ int main(int argc, char* argv[])
 	}
 
 
-	new CConfig;
+///	new CConfig;
 
 //	vfs_mount("gui", "gui", 0);
 	vfs_mount("", "mods/official/", 0);
@@ -561,8 +567,9 @@ int main(int argc, char* argv[])
 	new CObjectManager;
 	new CUnitManager;
 
-	// terr_init actually opens the renderer and loads a bunch of resources as well as setting up
-	// the terrain
+	g_Renderer.Open(g_xres,g_yres,g_bpp);
+
+	// terr_init loads a bunch of resources as well as setting up the terrain
 	terr_init();
 
 
@@ -617,7 +624,7 @@ g_Console->RegisterFunc(Testing, "Testing");
 	const double TICK_TIME = 30e-3;	// [s]
 	double time0 = get_time();
 
-	g_Config.Update();
+//	g_Config.Update();
 	while(!quit)
 	{
 		//g_Config.Update();
@@ -664,11 +671,11 @@ g_Console->RegisterFunc(Testing, "Testing");
 
 #ifndef NO_GUI
 	g_GUI.Destroy();
-	delete CGUI::GetSingletonPtr(); // again, we should have all singleton deletes somewhere
+	delete CGUI::GetSingletonPtr();
 #endif
 
 	delete &g_ScriptingHost;
-	delete &g_Config;
+///	delete &g_Config;
 	delete &g_Pathfinder;
 	delete &g_EntityManager;
 	delete &g_EntityTemplateCollection;

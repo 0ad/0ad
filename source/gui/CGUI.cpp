@@ -38,6 +38,8 @@ using namespace std;
 #pragma comment(lib, "xerces-c_2.lib")
 #endif
 
+extern int g_xres, g_yres;
+
 // TODO Gee: how to draw overlays?
 void render(COverlayText* overlaytext)
 {

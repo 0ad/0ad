@@ -5,6 +5,8 @@
 #include "win/win.h"
 #endif
 
+#include "config.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -18,6 +20,12 @@ extern void check_heap();
 #ifdef _MSC_VER
 extern double round(double);
 #endif
+
+#ifndef HAVE_C99
+extern float fminf(float a, float b);
+extern float fmaxf(float a, float b);
+#endif
+
 
 #ifdef __cplusplus
 }

@@ -1,5 +1,7 @@
 #include "EntityProperties.h"
 
+#include <cassert>
+
 CGenericProperty::CGenericProperty()
 {
 	m_type = PROP_INTEGER;

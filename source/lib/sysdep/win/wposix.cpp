@@ -369,7 +369,7 @@ int pthread_mutex_destroy(pthread_mutex_t* m)
 //////////////////////////////////////////////////////////////////////////////
 
 
-void* mmap(void* start, unsigned int len, int prot, int flags, int fd, long offset)
+void* mmap(void* start, size_t len, int prot, int flags, int fd, off_t offset)
 {
 	if(!(flags & MAP_FIXED))
 		start = 0;
@@ -413,7 +413,7 @@ void* mmap(void* start, unsigned int len, int prot, int flags, int fd, long offs
 }
 
 
-int munmap(void* start, unsigned int /* len */)
+int munmap(void* start, size_t /* len */)
 {
 	return UnmapViewOfFile(start) - 1;	/* 0: success; -1: fail */
 }

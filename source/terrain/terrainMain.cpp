@@ -39,10 +39,10 @@ float ViewFOV;
 
 int mouse_x=50, mouse_y=50;
 
+extern int g_xres, g_yres;
+
 void terr_init()
 {
-	g_Renderer.Open(g_xres,g_yres,g_bpp);
-
 	SViewPort vp;
 	vp.m_X=0;
 	vp.m_Y=0;

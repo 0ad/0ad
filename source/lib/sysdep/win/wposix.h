@@ -192,8 +192,8 @@ extern int closedir(DIR*);
 
 #define MAP_FAILED 0
 
-extern void* mmap(void* start, unsigned int len, int prot, int flags, int fd, long offset);
-extern int munmap(void* start, unsigned int len);
+extern void* mmap(void* start, size_t len, int prot, int flags, int fd, off_t offset);
+extern int munmap(void* start, size_t len);
 
 
 //

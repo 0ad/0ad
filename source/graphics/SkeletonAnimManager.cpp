@@ -8,6 +8,7 @@
 
 #include "res/res.h"
 #include "Model.h"
+#include "CLogger.h"
 #include "SkeletonAnimManager.h"
 #include <algorithm>
 

@@ -27,6 +27,20 @@
 const int NullPtr = 0;
 
 
+
+// Setup error interface
+#define IsError() GError.ErrorMechanism_Error()
+#define ClearError() GError.ErrorMechanism_ClearError()
+#define TestError(TError)  GError.ErrorMechanism_TestError(TError)
+
+#define SetError_Short(w,x) GError.ErrorMechanism_SetError(w,x,__FILE__,__LINE__)
+#define SetError_Long(w,x,y,z) GError.ErrorMechanism_SetError(w,x,y,z)
+
+#define GetError() GError.ErrorMechanism_GetError()
+
+
+
+
 /****************************************************************************/
 //                        USER DEFINED TYPES                                //
 /****************************************************************************/

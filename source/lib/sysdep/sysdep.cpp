@@ -45,3 +45,18 @@ double round(double x)
 }
 
 #endif
+
+
+#ifndef HAVE_C99
+
+float fminf(float a, float b)
+{
+	return (a < b)? a : b;
+}
+
+float fmaxf(float a, float b)
+{
+	return (a > b)? a : b;
+}
+
+#endif

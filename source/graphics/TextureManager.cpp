@@ -1,12 +1,11 @@
+#include <algorithm>
 
 #include "TextureManager.h"
 #include "lib.h"
 #include "ogl.h"
 #include "res/tex.h"
-#ifdef _WIN32
-#include <io.h>
-#endif
-#include <algorithm>
+#include "CLogger.h"
+
 
 const char* SupportedTextureFormats[] = { ".png", ".dds", ".tga", ".bmp" };
 

@@ -3,6 +3,8 @@
 // TODO: A few changes from VFS -> CFile usage if required.
 // TODO: Optimizations, when we've decided what needs to be done.
 
+#if 0
+
 #include "Config.h"
 #include "res/res.h"
 
@@ -311,3 +313,5 @@ void CConfig::Attach( CLogFile* LogFile )
 {
 	m_LogFile = LogFile;
 }
+
+#endif

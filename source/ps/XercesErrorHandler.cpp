@@ -13,6 +13,7 @@ gee@pyro.nu
 #include <stdlib.h>
 #include <string.h>
 #include "Prometheus.h"
+#include "CLogger.h"
 
 // Use namespace
 XERCES_CPP_NAMESPACE_USE

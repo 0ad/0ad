@@ -170,10 +170,10 @@ namespace MathUtil
 	// PURPOSE: Wraps num between lowerBound and upperBound.
 	//
 	template <typename T>
-	PS_RESULT Wrap(T *num,const T &lowerBound, const T &upperBound)
+	int Wrap(T *num,const T &lowerBound, const T &upperBound)
 	{
 		if(lowerBound >= upperBound)
-			return ERRONEOUS_BOUND_ERROR;
+			return -1;
 		else
 		{
 			// translate to range 0 to n-1, find the modulus, then
@@ -182,7 +182,7 @@ namespace MathUtil
 			num = SignedModulus( num, Abs(upperBound - lowerBound) );
 			num += lowerBound;
 		}
-		return PS_OK;
+		return 0;
 	}
 
 

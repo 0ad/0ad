@@ -3,6 +3,7 @@
 #include "BaseEntityCollection.h"
 #include "ObjectManager.h"
 #include "Model.h"
+#include "CLogger.h"
 
 void CBaseEntityCollection::loadTemplates()
 {

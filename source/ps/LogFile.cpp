@@ -1,5 +1,7 @@
 // last modified Thursday, May 08, 2003
 
+#if 0
+
 #include "LogFile.h"
 #include "lib.h"
 
@@ -360,3 +362,5 @@ string CLogFile::Date(const PS_DISPLAY_SETTINGS &options)
 
 	return dateText;	
 }
+
+#endif

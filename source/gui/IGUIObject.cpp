@@ -12,6 +12,8 @@ gee@pyro.nu
 #include <assert.h>
 /////
 
+extern int g_xres, g_yres;
+
 using namespace std;
 
 //-------------------------------------------------------------------

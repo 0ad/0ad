@@ -11,6 +11,7 @@ Usage:	Create a CWindow object, call Create, call Run.
 		OnActivate() or OnPaint().
 */
 
+#if 0
 
 -----support pan, volume, and crossfading
 
@@ -159,5 +160,8 @@ PS_RESULT CSound::Resume()
 {
 	return PS_OK;
 }
+
+#endif
+
 
 #endif

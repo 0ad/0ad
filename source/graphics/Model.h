@@ -9,6 +9,8 @@
 #ifndef _MODEL_H
 #define _MODEL_H
 
+#include <vector>
+
 #include "Texture.h"
 #include "ModelDef.h"
 #include "RenderableObject.h"

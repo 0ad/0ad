@@ -1,5 +1,6 @@
 #include "ObjectManager.h"
 #include <algorithm>
+#include "CLogger.h"
 
 CObjectManager::CObjectManager() : m_SelectedObject(0)
 {
