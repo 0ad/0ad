@@ -134,9 +134,12 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 
 			CSize size;
 
-			COverlayText txt(0, 0, 0, TextCall.m_Font, TextCall.m_String, TextCall.m_Color);
+			//COverlayText txt(0, 0, 0, TextCall.m_Font, TextCall.m_String, TextCall.m_Color);
   			// TODO Gee: Ask Rich to change to (size);
-			txt.GetOutputStringSize((int&)size.cx, (int&)size.cy);
+			//txt.GetOutputStringSize((int&)size.cx, (int&)size.cy);
+			Handle font = unifont_load(TextCall.m_Font);
+			unifont_stringsize(font, TextCall.m_String.c_str(), size.cx, size.cy);
+			unifont_unload(font);
 
 			// append width, and make maximum height the height.
 			Feedback.m_Size.cx += size.cx;
@@ -285,9 +288,9 @@ void CGUIString::SetValue(const CStr& str)
 					{
 						// The tag
 						TextChunk::Tag tag;
-						CStr Str_TagType;
+						std::string Str_TagType;
 
-						Line.GetArgString(0, (std::string &)Str_TagType);
+						Line.GetArgString(0, Str_TagType);
 
 						if (!tag.SetTagType(Str_TagType))
 						{
@@ -351,9 +354,9 @@ void CGUIString::SetValue(const CStr& str)
 					{
 						// The tag
 						TextChunk::Tag tag;
-						CStr Str_TagType;
+						std::string Str_TagType;
 
-						Line.GetArgString(0, (std::string &)Str_TagType);
+						Line.GetArgString(0, Str_TagType);
 
 						if (!tag.SetTagType(Str_TagType))
 						{

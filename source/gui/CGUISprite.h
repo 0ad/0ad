@@ -54,10 +54,25 @@ gee@pyro.nu
 struct SGUIImage
 {
 	SGUIImage() : m_Texture(0), m_Border(false), m_DeltaZ(0.f) {}
-	~SGUIImage()
-	{
+	~SGUIImage() {
 		if (m_Texture)
 			tex_free(m_Texture);
+	}
+
+	// Copy constructor, which increments the refcount of the texture.
+	// Slightly inefficient, but makes sure things get destructed
+	// at the right times.
+	SGUIImage(const SGUIImage& s)
+	{
+		#define C(x) m_##x = s.m_##x
+		C(TextureName); C(Texture);
+		C(Size); C(TextureSize);
+		C(BackColor); C(BorderColor);
+		C(Border); C(DeltaZ);
+		#undef C
+		// 'Load' the texture (but don't do any work because it's cached)
+		if (m_Texture)
+			tex_load(m_TextureName);
 	}
 
 	CStr			m_TextureName;

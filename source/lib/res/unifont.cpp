@@ -1,5 +1,5 @@
 /*
-$Id: unifont.cpp,v 1.7 2004/07/13 21:13:10 janwas Exp $
+$Id: unifont.cpp,v 1.8 2004/07/13 22:47:20 philip Exp $
 
 Unicode OpenGL texture font
   
@@ -23,14 +23,17 @@ Unicode OpenGL texture font
 // This isn't particularly efficient - it can be improved if we
 // (a) care enough, and (b) know about fixed ranges of characters
 // that the fonts usually contain
-typedef std::map<wchar_t, unsigned short> glyphmap;
+typedef std::map<wchar_t, unsigned short> glyphmap_id;
+// Store the size separately, because it's used separately
+typedef std::map<wchar_t, int> glyphmap_size;
 
-glyphmap* BoundGlyphs = NULL;
+glyphmap_id* BoundGlyphs = NULL;
 
 struct UniFont
 {
 	Handle ht; // handle to font texture
-	glyphmap* glyphs;
+	glyphmap_id* glyphs_id;
+	glyphmap_size* glyphs_size;
 	uint ListBase;
 	int LineSpacing;
 };
@@ -39,24 +42,25 @@ H_TYPE_DEFINE(UniFont);
 
 static void UniFont_init(UniFont* f, va_list args)
 {
-	f->glyphs = new glyphmap;
+	f->glyphs_id = new glyphmap_id;
+	f->glyphs_size = new glyphmap_size;
 }
 
 static void UniFont_dtor(UniFont* f)
 {
 	tex_free(f->ht);
-	glDeleteLists(f->ListBase, (GLsizei)f->glyphs->size());
-	f->glyphs->clear();
-	delete f->glyphs;
+	glDeleteLists(f->ListBase, (GLsizei)f->glyphs_id->size());
+	delete f->glyphs_id;
+	delete f->glyphs_size;
 }
 
 
 static int UniFont_reload(UniFont* f, const char* fn, Handle h)
 {
-	// fn is the base filename, like "fonts/console"
-	// The font definition file is fn+".fnt" and the texture is fn+".tga"
+	// fn is the base filename, like "console"
+	// The font definition file is "fonts/"+fn+".fnt" and the texture is "fonts/"+fn+".tga"
 
-	std::string FilenameBase = fn;
+	std::string FilenameBase = "fonts/"; FilenameBase += fn;
 
 	void* RawFNT;
 	size_t FNTSize;
@@ -97,15 +101,16 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle h)
 
 		glNewList(f->ListBase+i, GL_COMPILE);
 			glBegin(GL_QUADS);
-				glTexCoord2f(u,   v);	glVertex2i(OffsetX,       OffsetY);
-				glTexCoord2f(u+w, v);	glVertex2i(OffsetX+Width, OffsetY);
-				glTexCoord2f(u+w, v-h);	glVertex2i(OffsetX+Width, OffsetY-Height);
-				glTexCoord2f(u,   v-h);	glVertex2i(OffsetX,       OffsetY-Height);
+				glTexCoord2f(u,   v);	glVertex2i(OffsetX,       -OffsetY);
+				glTexCoord2f(u+w, v);	glVertex2i(OffsetX+Width, -OffsetY);
+				glTexCoord2f(u+w, v-h);	glVertex2i(OffsetX+Width, -OffsetY+Height);
+				glTexCoord2f(u,   v-h);	glVertex2i(OffsetX,       -OffsetY+Height);
 			glEnd();
 			glTranslatef((GLfloat)Advance, 0, 0);
 		glEndList();
 
-		(*f->glyphs)[(wchar_t)Codepoint] = i;
+		(*f->glyphs_id)[(wchar_t)Codepoint] = i;
+		(*f->glyphs_size)[(wchar_t)Codepoint] = Advance;
 	}
 
 	// Load glyph texture
@@ -140,7 +145,7 @@ int unifont_bind(const Handle h)
 
 	tex_bind(f->ht);
 	glListBase(f->ListBase);
-	BoundGlyphs = f->glyphs;
+	BoundGlyphs = f->glyphs_id;
 
 	return 0;
 }
@@ -175,7 +180,7 @@ void glwprintf(const wchar_t* fmt, ...)
 	// Replace every wchar_t with the display list offset for the appropriate glyph
 	for (size_t i = 0; i < len; ++i)
 	{
-		glyphmap::iterator it = BoundGlyphs->find(buf[i]);
+		glyphmap_id::iterator it = BoundGlyphs->find(buf[i]);
 
 		if (it == BoundGlyphs->end())
 			it = BoundGlyphs->find(0xFFFD); // Use the missing glyph symbol
@@ -195,4 +200,33 @@ void glwprintf(const wchar_t* fmt, ...)
 
 	// Execute all the display lists
 	glCallLists((GLsizei)len, sizeof(wchar_t)==4?GL_INT:GL_UNSIGNED_SHORT, buf);
+}
+
+
+int unifont_stringsize(const Handle h, const char* text, int& width, int& height)
+{
+	H_DEREF(h, UniFont, f);
+
+	width = 0;
+	height = f->LineSpacing;
+
+	size_t len = strlen(text);
+
+	for (size_t i = 0; i < len; ++i)
+	{
+		glyphmap_size::iterator it = f->glyphs_size->find((wchar_t)text[i]);
+
+		if (it == f->glyphs_size->end())
+			it = f->glyphs_size->find(0xFFFD); // Use the missing glyph symbol
+
+		if (it == f->glyphs_size->end()) // Missing the missing glyph symbol - give up
+		{
+			debug_out("Missing the missing glyph in a unifont!\n");
+			return 0;
+		}
+
+		width += (*it).second; // Add the character's advance distance
+	}
+
+	return 0;
 }

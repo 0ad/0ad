@@ -50,10 +50,12 @@ void CButton::SetupText()
 	CGUIString caption;
 	GUI<CGUIString>::GetSetting(this, "caption", caption);
 
-	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, CStr("verdana12.fnt"), 0, 0);
+	//*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, CStr("palatino12"), 0, 0);
+	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, CStr("palatino12"), m_CachedActualSize.GetWidth(), 0);
 
 	// Set position of text
-	m_TextPos = m_CachedActualSize.CenterPoint() - m_GeneratedTexts[0]->m_Size/2;
+	//m_TextPos = m_CachedActualSize.CenterPoint() - m_GeneratedTexts[0]->m_Size/2;
+	m_TextPos = m_CachedActualSize.TopLeft();
 }
 
 void CButton::HandleMessage(const SGUIMessage &Message)

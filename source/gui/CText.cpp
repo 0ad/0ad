@@ -65,7 +65,7 @@ void CText::SetupText()
 	if (scrollbar && GetScrollBar(0).GetStyle())
 		width -= GetScrollBar(0).GetStyle()->m_Width;
 
-	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, /*color,*/ CStr("verdana12.fnt"), width, 4);
+	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, /*color,*/ CStr("palatino12"), width, 4);
 
 	// Setup scrollbar
 	if (scrollbar)

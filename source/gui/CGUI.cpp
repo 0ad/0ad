@@ -367,57 +367,55 @@ void CGUI::DrawSprite(const CStr& SpriteName,
 	else Sprite = m_Sprites[SpriteName];
 
 	glPushMatrix();
-		glTranslatef(0.0f, 0.0f, Z);
+	glTranslatef(0.0f, 0.0f, Z);
 
-		// Iterate all images and request them being drawn be the
-		//  CRenderer
-		std::vector<SGUIImage>::const_iterator cit;
-		for (cit=Sprite.m_Images.begin(); cit!=Sprite.m_Images.end(); ++cit)
+	// Iterate all images and request them being drawn be the
+	//  CRenderer
+	std::vector<SGUIImage>::const_iterator cit;
+	for (cit=Sprite.m_Images.begin(); cit!=Sprite.m_Images.end(); ++cit)
+	{
+		if (cit->m_Texture)
 		{
-			if (cit->m_Texture)
-			{
-				// HACK: Please ignore all this texture code
-				glEnable(GL_TEXTURE_2D);
-				glDisable(GL_COLOR);
-				glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-				// Urgh
-				Handle x = tex_load(cit->m_TextureName);
-				assert(x>0);
-				tex_upload(x);
-				tex_bind(x);
-				glColor3f(1.0f, 1.0f, 1.0f);
-			}
-			else
-			{
-				glColor3f(cit->m_BackColor.r , cit->m_BackColor.g, cit->m_BackColor.b);
-			}
+			glEnable(GL_TEXTURE_2D);
+			glDisable(GL_COLOR);
+			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+
+			tex_bind(cit->m_Texture);
+			//glColor3f(1.0f, 1.0f, 1.0f);
 
 			CRect real = cit->m_Size.GetClientArea(Rect);
 
-			glPushMatrix();
-			glTranslatef(0.f, 0.f, cit->m_DeltaZ);
+			// Get the size of a single tiling of the texture
+			CRect TexSize = cit->m_TextureSize.GetClientArea(real);
 
-			//glColor3f((float)real.right/1000.f, 0.5f, 0.5f);
+			float TexLeft = -(float)TexSize.left / (float)TexSize.GetWidth();
+			float TexTop = (float)TexSize.top / (float)TexSize.GetHeight();
+			float TexRight = TexLeft + (float)real.GetWidth() / (float)TexSize.GetWidth();
+			float TexBottom = TexTop + (float)real.GetHeight() / (float)TexSize.GetHeight();
 
-			// Do this
 			glBegin(GL_QUADS);
-				//glTexCoord2i(0, 1);
-				glVertex2i(real.right,	real.bottom);
-				//glTexCoord2i(1, 1);
-				glVertex2i(real.left,	real.bottom);
-				//glTexCoord2i(1, 0);
-				glVertex2i(real.left,	real.top);	
-				//glTexCoord2i(0, 0);
-				glVertex2i(real.right,	real.top);	
+			glTexCoord2f(TexRight,	TexTop);	glVertex3f((float)real.right,	(float)real.bottom,	cit->m_DeltaZ);
+			glTexCoord2f(TexLeft,	TexTop);	glVertex3f((float)real.left,	(float)real.bottom,	cit->m_DeltaZ);
+			glTexCoord2f(TexLeft,	TexBottom);	glVertex3f((float)real.left,	(float)real.top,	cit->m_DeltaZ);
+			glTexCoord2f(TexRight,	TexBottom);	glVertex3f((float)real.right,	(float)real.top,	cit->m_DeltaZ);
 			glEnd();
 
-			glPopMatrix();
-
-			if (cit->m_Texture)
-			{
-				glDisable(GL_TEXTURE_2D);
-			}
+			glDisable(GL_TEXTURE_2D);
 		}
+		else
+		{
+			glColor3f(cit->m_BackColor.r, cit->m_BackColor.g, cit->m_BackColor.b);
+
+			CRect real = cit->m_Size.GetClientArea(Rect);
+
+			glBegin(GL_QUADS);
+			glVertex3f((float)real.right,	(float)real.bottom,	cit->m_DeltaZ);
+			glVertex3f((float)real.left,	(float)real.bottom,	cit->m_DeltaZ);
+			glVertex3f((float)real.left,	(float)real.top,	cit->m_DeltaZ);
+			glVertex3f((float)real.right,	(float)real.top,	cit->m_DeltaZ);
+			glEnd();
+		}
+	}
 	glPopMatrix();
 }
 
@@ -709,6 +707,8 @@ SGUIText CGUI::GenerateText(const CGUIString &string, /*const CColor &Color, */
 
 			// Reset x once more
 			x = width_range[From];
+			// Move down, because font drawing starts from the baseline
+			y += line_height;
 
 			// Do the real processing now
 			for (int j=temp_from; j<=i; ++j)
@@ -778,9 +778,8 @@ SGUIText CGUI::GenerateText(const CGUIString &string, /*const CColor &Color, */
 					done = true;
 			}
 		
-			// Reset X, and append Y.
+			// Reset X
 			x = 0;
-			y += line_height;
 
 			// Update height of all
 			Text.m_Size.cy = max(Text.m_Size.cy, y+BufferZone);
@@ -799,18 +798,49 @@ SGUIText CGUI::GenerateText(const CGUIString &string, /*const CColor &Color, */
 void CGUI::DrawText(const SGUIText &Text, const CColor &DefaultColor, 
 					const CPos &pos, const float &z)
 {
-	for (vector<SGUIText::STextCall>::const_iterator it=Text.m_TextCalls.begin(); 
-		 it!=Text.m_TextCalls.end(); 
+	glEnable(GL_TEXTURE_2D);
+	glDisable(GL_CULL_FACE);
+
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
+	glDisable(GL_ALPHA_TEST);
+
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
+	Handle font = 0;
+	CStr LastFontName;
+
+	for (vector<SGUIText::STextCall>::const_iterator it = Text.m_TextCalls.begin(); 
+		 it != Text.m_TextCalls.end(); 
 		 ++it)
 	{
 		if (it->m_pSpriteCall)
 			continue;
 
-		COverlayText txt((float)pos.x+it->m_Pos.x, (float)pos.y+it->m_Pos.y, 
-						 (int)z, it->m_Font, it->m_String, 
-						 (it->m_UseCustomColor?it->m_Color:DefaultColor));
-		render(&txt);
+		// Switch fonts when necessary, but remember the last one used
+		if (it->m_Font != LastFontName)
+		{
+			if (font)
+				unifont_unload(font);
+			font = unifont_load(it->m_Font);
+			unifont_bind(font);
+			LastFontName = it->m_Font;
+		}
+
+		CColor color = it->m_UseCustomColor ? it->m_Color : DefaultColor;
+
+		glPushMatrix();
+
+		glTranslatef((float)pos.x+it->m_Pos.x, (float)pos.y+it->m_Pos.y, (float)z);
+		glColor4f(color.r, color.g, color.b, color.a);
+		glwprintf(L"%hs", it->m_String.c_str());
+
+		glPopMatrix();
+
 	}
+
+	if (font)
+		unifont_unload(font);
 
 	for (vector<SGUIText::SSpriteCall>::const_iterator it=Text.m_SpriteCalls.begin(); 
 		 it!=Text.m_SpriteCalls.end(); 
@@ -1102,7 +1132,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			// Set the setting caption to this
 			object->SetSetting("caption", caption);
 		}
-		catch (...)
+		catch (PS_RESULT)
 		{
 			// There is no harm if the object didn't have a "caption"
 		}
@@ -1301,6 +1331,9 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 	// Image object we're adding
 	SGUIImage image;
 	
+	CStr DefaultTextureSize = "0 0 100% 100%";
+	image.m_TextureSize = CClientArea(DefaultTextureSize);
+	
 	// TODO Gee: Setup defaults here (or maybe they are in the SGUIImage ctor)
 
 	//
@@ -1318,7 +1351,19 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		// This is the only attribute we want
 		if (attr_name == "texture")
 		{
-			image.m_TextureName = attr_value;
+			// Load the texture from disk now, because now's as good a time as any
+			std::string TexFilename = "art/textures/ui/";
+			TexFilename += attr_value;
+
+			image.m_TextureName = TexFilename;
+			Handle tex = tex_load(TexFilename.c_str());
+			if (tex <= 0)
+			{
+				// TODO: Error
+				assert(! "Failed to load texture");
+			}
+			image.m_Texture = tex;
+			tex_upload(tex);
 		}
 		else
 		if (attr_name == "size")
@@ -1329,6 +1374,16 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 				// TODO Gee: Error
 			}
 			else image.m_Size = ca;
+		}
+		else
+		if (attr_name == "texture-size")
+		{
+			CClientArea ca;
+			if (!GUI<CClientArea>::ParseString(attr_value, ca))
+			{
+				// TODO Gee: Error
+			}
+			else image.m_TextureSize = ca;
 		}
 		else
 		if (attr_name == "z-level")
