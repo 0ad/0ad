@@ -81,7 +81,7 @@ CLogger::~CLogger ()
 
 
 	//Add end marker to logs in memory
-	m_CurrentPosition = '\0';
+	*m_CurrentPosition = '\0';
 
 	m_MemoryLog << html_header0 << "Memory log" << html_header1;
 	m_MemoryLog << "<P>Memory Log started with capacity of " << \
