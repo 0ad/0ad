@@ -927,7 +927,7 @@ void CGUI::DrawText(const SGUIText &Text, const CColor &DefaultColor,
 		glPushMatrix();
 
 		// TODO Gee: (2004-09-04) Why are font corrupted if inputted float value?
-		glTranslatef((int)(pos.x+it->m_Pos.x), (int)(pos.y+it->m_Pos.y), z);
+		glTranslatef((GLfloat)int(pos.x+it->m_Pos.x), (GLfloat)int(pos.y+it->m_Pos.y), z);
 		glColor4f(color.r, color.g, color.b, color.a);
 		glwprintf(it->m_String);
 
