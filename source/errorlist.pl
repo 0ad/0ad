@@ -169,6 +169,6 @@ sub cpp_files {
   opendir my $d, $_[0] or die "Error opening directory '$_[0]' ($!)";
   my @f = readdir $d;
   my @files = map "$_[0]/$_", grep /\.(?:cpp|h)$/, @f;
-  push @files, cpp_files("$_[0]/$_") for grep { /^[a-z0-9]+$/ and -d "$_[0]/$_" } @f;
+  push @files, cpp_files("$_[0]/$_") for grep { /^[a-zA-Z0-9]+$/ and -d "$_[0]/$_" } @f;
   return @files;
 }
