@@ -2,6 +2,10 @@
 #include <cstring>
 #include <cstdlib>
 
+// Alan: For some reason if this gets included after anything else some 
+// compile time errors get thrown up todo with javascript internal typedefs
+#include "scripting/ScriptingHost.h"
+
 #include "sdl.h"
 #include "ogl.h"
 #include "detect.h"
@@ -24,6 +28,7 @@
 #include "Entity.h"
 #include "EntityHandles.h"
 #include "EntityManager.h"
+
 
 #ifndef NO_GUI
 #include "gui/GUI.h"
@@ -433,6 +438,8 @@ int main(int argc, char* argv[])
 	ParseArgs(argc, argv);
 
 
+	// Create the scripting host.  This needs to be done before the GUI is created.
+	new ScriptingHost;
 
 	// GUI is notified in set_vmode, so this must come before that.
 #ifndef NO_GUI
@@ -597,6 +604,7 @@ if(!g_MapFile)
 	delete CGUI::GetSingletonPtr(); // again, we should have all singleton deletes somewhere
 #endif
 
+	delete &g_ScriptingHost;
 	delete &g_Config;
 	delete &g_EntityManager;
 	delete &g_EntityTemplateCollection;
