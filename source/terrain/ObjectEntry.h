@@ -13,7 +13,8 @@ class CObjectEntry
 public:
 	struct Anim {
 		CStr m_AnimName;
-		CStr m_FileName;		CSkeletonAnim* m_AnimData; //Pending
+		CStr m_FileName;
+	CSkeletonAnim* m_AnimData; //Pending
 	};
 
 public:
@@ -32,7 +33,13 @@ public:
 	// model name
 	CStr m_ModelName;
 	// animations
-	std::vector<Anim> m_Animations;	CSkeletonAnim* m_IdleAnim;	CSkeletonAnim* m_WalkAnim;	CSkeletonAnim* m_DeathAnim;	CSkeletonAnim* m_MeleeAnim;	CSkeletonAnim* m_RangedAnim;	CSkeletonAnim* GetNamedAnimation( CStr animationName );
+	std::vector<Anim> m_Animations;
+CSkeletonAnim* m_IdleAnim;
+CSkeletonAnim* m_WalkAnim;
+CSkeletonAnim* m_DeathAnim;
+CSkeletonAnim* m_MeleeAnim;
+CSkeletonAnim* m_RangedAnim;
+CSkeletonAnim* GetNamedAnimation( CStr animationName );
 	// object space bounds of model
 //	CBound m_Bound;
 	// corresponding model 
