@@ -471,8 +471,6 @@ if(argc < 2)
 
 	g_EntityManager.dispatchAll( &CMessage( CMessage::EMSG_INIT ) );
 
-	PASAPScenario();
-
 #ifndef NO_GUI
 	in_add_handler(gui_handler);
 #endif
