@@ -583,7 +583,23 @@ SOURCE=..\ps\Encryption.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\Entity.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\Entity.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\ps\Error.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\Event.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\Event.h
 # End Source File
 # Begin Source File
 

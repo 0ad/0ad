@@ -40,8 +40,8 @@ TDD at http://forums.wildfiregames.com/0ad
 
 */
 
-#ifndef Config_H
-#define Config_H
+#ifndef CONFIG_INCLUDED
+#define CONFIG_INCLUDED
 
 //--------------------------------------------------------
 //  Includes / Compiler directives
