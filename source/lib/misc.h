@@ -27,7 +27,7 @@
 
 
 #ifdef __cplusplus
-}
+
 #endif
 
 #endif	// #ifndef __MISC_H__
