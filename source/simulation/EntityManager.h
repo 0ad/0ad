@@ -22,6 +22,7 @@
 #include "Singleton.h"
 #include "Entity.h"
 #include "EntityHandles.h"
+#include "EntityPredicate.h"
 #include "EntityMessage.h"
 
 #define MAX_HANDLES 4096
@@ -38,28 +39,39 @@ friend class CHandle;
 	static bool m_extant;
 	void destroy( u16 handle );
 public:
-	typedef bool (*EntityPredicate)( CEntity* target );
-	typedef bool (*EntityPredicateUD)( CEntity* target, void* userdata );
-
+	
 	CEntityManager();
 	~CEntityManager();
+
 	HEntity create( CBaseEntity* base, CVector3D position, float orientation );
 	HEntity create( CStrW templatename, CVector3D position, float orientation );
+
 	HEntity* getByHandle( u16 index );
+
 	void updateAll( size_t timestep );
 	void interpolateAll( float relativeoffset );
 	void InitializeAll();
 	void TickAll();
 	void renderAll();
-	std::vector<HEntity>* matches( EntityPredicate predicate );
-	std::vector<HEntity>* matches( EntityPredicateUD predicate, void* userdata );
-	std::vector<HEntity>* matches( EntityPredicate predicate1, EntityPredicate predicate2 );
-	std::vector<HEntity>* matches( EntityPredicateUD predicate1, EntityPredicateUD predicate2, void* userdata );
+
+	// Predicate functions
+	typedef bool (*EntityPredicate)( CEntity* target, void* userdata );
+
+	template<EntityPredicate left, EntityPredicate right> static bool EntityPredicateLogicalOr( CEntity* target, void* userdata )
+	{	return( left( target, userdata ) || right( target, userdata ) ); }
+	template<EntityPredicate left, EntityPredicate right> static bool EntityPredicateLogicalAnd( CEntity* target, void* userdata )
+	{	return( left( target, userdata ) && right( target, userdata ) ); }
+	template<EntityPredicate operand> static bool EntityPredicateLogicalNot( CEntity* target, void* userdata )
+	{	return( !operand( target, userdata ) );	}
+
+	std::vector<HEntity>* matches( EntityPredicate predicate, void* userdata = NULL );
 	std::vector<HEntity>* getExtant();
 	static inline bool extant()	// True if the singleton is actively maintaining handles. When false, system is shutting down, handles are quietly dumped.
 	{
 		return( m_extant );
 	}
+	
+	
 };
 
 #endif
