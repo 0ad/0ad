@@ -72,53 +72,14 @@ void terr_update(const float DeltaTime)
 		g_Camera.m_Orientation.Translate(Up*-1);
 
 
-/*
-	const float s30 = sin(DEGTORAD(30.0f));
-	const float c30 = cos(DEGTORAD(30.0f));
-	const float s45 = sin(DEGTORAD(45.0f));
-	const float c45 = cos(DEGTORAD(45.0f));
-	const float s60 = sin(DEGTORAD(60.0f));
-	const float c60 = cos(DEGTORAD(60.0f));
-
-	const CVector3D viewer_back(c30*c45, s45, -s30*c45);
-
-janwas: grr, plotted the zoom vector on paper twice, but it appears
-to be completely wrong. sticking with the FOV hack for now.
-if anyone sees what's wrong, or knows how to correctly implement zoom,
-please put this code out of its misery :)
-
-*/
-
-	float fov = g_Camera.GetFOV();
-
-#if 0
-	const float d_key = DEGTORAD(10.0f) * DeltaTime;
-	const float d_wheel = DEGTORAD( 50.0f ) * DeltaTime;
-	const float fov_max = DEGTORAD( 60.0f );
-	const float fov_min = DEGTORAD( 10.0f );
-
-	if(keys[SDLK_KP_MINUS])
-		if (fov < fov_max)
-			fov += d_key;
-	if(keys[SDLK_KP_PLUS])
-		if (fov-d_key > fov_min)
-			fov -= d_key;
-	if( mouseButtons[SDL_BUTTON_WHEELUP] )
-	{
-		fov += d_wheel;
-		if( fov > fov_max )
-			fov = fov_max;
-	}
-	if( mouseButtons[SDL_BUTTON_WHEELDOWN] )
-	{
-		fov -= d_wheel;
-		if( fov < fov_min )
-			fov = fov_min;
-	}
-	ViewFOV = fov;
-	g_Camera.SetProjection(1, 5000, fov);
-#else
+	/*
+	janwas: grr, plotted the zoom vector on paper twice, but it appears
+	to be completely wrong. sticking with the FOV hack for now.
+	if anyone sees what's wrong, or knows how to correctly implement zoom,
+	please put this code out of its misery :)
+	*/
 	// RC - added ScEd style zoom in and out (actually moving camera, rather than fudging fov)	
+
 	float dir=0;
 	if (mouseButtons[SDL_BUTTON_WHEELUP]) dir=-1;
 	else if (mouseButtons[SDL_BUTTON_WHEELDOWN]) dir=1;	
@@ -141,7 +102,6 @@ please put this code out of its misery :)
 			g_Camera.m_Orientation.Translate(forward*(factor*g_CameraZoom));
 		}
 	}
-#endif
 
 	g_Camera.UpdateFrustum ();
 }
