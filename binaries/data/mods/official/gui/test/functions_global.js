@@ -33,6 +33,9 @@
 //              Objects (like the message box) at runtime.
 // *******************************************
 
+/*
+TODO: Make button code work for any number of buttons without extending the code each time! ((arrays | nested variables) & calculating sizes)
+*/
 
 function messageBox(mbWidth, mbHeight, mbMessage, mbTitle, mbMode, mbButtonCaptions, mbButtonsCode) {
 
@@ -42,7 +45,8 @@ function messageBox(mbWidth, mbHeight, mbMessage, mbTitle, mbMode, mbButtonCapti
         
         mbButton1Obj = getGUIObjectByName("mb_button1");
         mbButton2Obj = getGUIObjectByName("mb_button2");
-        
+        mbButton3Obj = getGUIObjectByName("mb_button3");
+
         // Calculate size
         mbLRDiff = mbWidth / 2;     // Message box left/right difference from 50% of screen
         mbUDDiff = mbHeight / 2;    // Message box up/down difference from 50% of screen
@@ -81,6 +85,7 @@ function messageBox(mbWidth, mbHeight, mbMessage, mbTitle, mbMode, mbButtonCapti
                         mbButton1Obj.size = "30% 100%-80 70% 100%-50";
                         mbButton1Obj.hidden = false;
                         mbButton2Obj.hidden = true;
+                        mbButton3Obj.hidden = true;
                 break;
                 case 2:
                         // Two Buttons
@@ -90,6 +95,19 @@ function messageBox(mbWidth, mbHeight, mbMessage, mbTitle, mbMode, mbButtonCapti
                         mbButton2Obj.size = "55% 100%-80 90% 100%-50";
                         mbButton1Obj.hidden = false;
                         mbButton2Obj.hidden = false;
+                        mbButton3Obj.hidden = true;
+                break;
+                case 3:
+                        // Three Buttons
+                        mbButton1Obj.caption = mbButtonCaptions[0];
+                        mbButton2Obj.caption = mbButtonCaptions[1];
+                        mbButton3Obj.caption = mbButtonCaptions[2];
+                        mbButton1Obj.size = "10% 100%-80 30% 100%-50";
+                        mbButton2Obj.size = "40% 100%-80 60% 100%-50";
+                        mbButton3Obj.size = "70% 100%-80 90% 100%-50";
+                        mbButton1Obj.hidden = false;
+                        mbButton2Obj.hidden = false;
+                        mbButton3Obj.hidden = false;
                 break;
         }
 
@@ -99,14 +117,7 @@ function messageBox(mbWidth, mbHeight, mbMessage, mbTitle, mbMode, mbButtonCapti
         // Testing
         getGUIGlobal().mbButton1Code = mbButtonsCode[0];
         getGUIGlobal().mbButton2Code = mbButtonsCode[1];
-
-        //getGUIGlobal().test = 0;
-        // Wait for return value
-        //do {
-        //        delay(100);
-        //} while (getGUIGlobal().test == 0)
-        
-        //return getGUIGlobal().test;
+        getGUIGlobal().mbButton3Code = mbButtonsCode[2];
 
 }
 
