@@ -696,7 +696,7 @@ uintptr_t inf_init_ctx()
 
 
 // we will later provide data that is to be unzipped into <out>.
-int inf_start_read(uintptr_t ctx, void* out, size_t out_size)
+int inf_set_dest(uintptr_t ctx, void* out, size_t out_size)
 {
 #ifdef NO_ZLIB
 	return -1;
@@ -707,7 +707,7 @@ int inf_start_read(uintptr_t ctx, void* out, size_t out_size)
 
 	if(stream->next_out || stream->avail_out)
 	{
-		debug_warn("zip_start_read: ctx already in use!");
+		debug_warn("zip_set_dest: ctx already in use!");
 		return -1;
 	}
 	stream->next_out  = (Byte*)out;
@@ -732,7 +732,6 @@ ssize_t inf_inflate(uintptr_t ctx, void* in, size_t in_size)
 
 	stream->avail_in = (uInt)in_size;
 	stream->next_in = (Byte*)in;
-
 	int err = inflate(stream, Z_SYNC_FLUSH);
 
 	// check+return how much actual data was read
@@ -755,7 +754,9 @@ ssize_t inf_inflate(uintptr_t ctx, void* in, size_t in_size)
 
 
 // unzip complete; all input and output data should have been consumed.
-int inf_finish_read(uintptr_t ctx)
+// do not release the ctx yet: the user may be reading a file in chunks,
+// calling inf_finish after each.
+int inf_finish(uintptr_t ctx)
 {
 #ifdef NO_ZLIB
 	return -1;
@@ -766,7 +767,7 @@ int inf_finish_read(uintptr_t ctx)
 
 	if(stream->avail_in || stream->avail_out)
 	{
-		debug_warn("zip_finish_read: input or output buffer has space remaining");
+		debug_warn("zip_finish: input or output buffer has space remaining");
 		stream->avail_in = stream->avail_out = 0;
 		return -1;
 	}
@@ -1021,7 +1022,7 @@ ssize_t zip_read(ZFile* zf, off_t raw_ofs, size_t size, void** p, FileIOCB cb, u
 		*p = buf;
 	}
 
-	err = (ssize_t)inf_start_read(zf->inf_ctx, buf, size);
+	err = (ssize_t)inf_set_dest(zf->inf_ctx, buf, size);
 	if(err < 0)
 	{
 fail:
@@ -1044,7 +1045,7 @@ fail:
 
 	zf->last_raw_ofs = raw_ofs + (off_t)raw_bytes_read;
 
-	err = inf_finish_read(zf->inf_ctx);
+	err = inf_finish(zf->inf_ctx);
 	if(err < 0)
 		goto fail;
 
