@@ -941,6 +941,8 @@ fail:
 	const size_t raw_size = zf->csize;
 	raw_bytes_read = file_io(&za->f, ofs, raw_size, (void**)0, inf_inflate, zf->read_ctx);
 
+	zf->last_raw_ofs = raw_ofs + (off_t)raw_bytes_read;
+
 	err = inf_finish_read(zf->read_ctx);
 	if(err < 0)
 		goto fail;
@@ -1003,3 +1005,91 @@ int zip_unmap(ZFile* const zf)
 	H_DEREF(zf->ha, ZArchive, za)
 	return file_unmap(&za->f);
 }
+
+
+
+
+
+
+
+
+
+
+/*
+
+
+// note: we go to a bit of trouble to make sure the buffer we allocated
+// (if p == 0) is freed when the read fails.
+ssize_t zip_read(ZFile* zf, off_t raw_ofs, size_t size, void*& p)
+{
+	CHECK_ZFILE(zf)
+
+	ssize_t err = -1;
+	ssize_t raw_bytes_read;
+
+	ZArchive* za = H_USER_DATA(zf->ha, ZArchive);
+	if(!za)
+		return ERR_INVALID_HANDLE;
+
+	const off_t ofs = zf->ofs + raw_ofs;
+
+	// not compressed - just pass it on to file_io
+	// (avoid the Zip inflate start/finish stuff below)
+	if(!is_compressed(zf))
+		return file_io(&za->f, ofs, size, &p);
+			// no need to set last_raw_ofs - only checked if compressed.
+
+	// compressed
+
+	// make sure we continue where we left off
+	// (compressed data must be read in one stream / sequence)
+	//
+	// problem: partial reads 
+	if(raw_ofs != zf->last_raw_ofs)
+	{
+		debug_warn("zip_read: compressed read offset is non-continuous");
+		return -1;
+	}
+
+	void* our_buf = 0;		// buffer we allocated (if necessary)
+	if(!p)
+	{
+		p = our_buf = mem_alloc(size);
+		if(!p)
+			return ERR_NO_MEM;
+	}
+
+	err = (ssize_t)inf_start_read(zf->read_ctx, p, size);
+	if(err < 0)
+	{
+fail:
+		// we allocated it, so free it now
+		if(our_buf)
+		{
+			mem_free(our_buf);
+			p = 0;
+		}
+		return err;
+	}
+
+	// read blocks from the archive's file starting at ofs and pass them to
+	// zip_inflate, until all compressed data has been read, or it indicates
+	// the desired output amount has been reached.
+	const size_t raw_size = zf->csize;
+	raw_bytes_read = file_io(&za->f, ofs, raw_size, (void**)0, inf_inflate, zf->read_ctx);
+
+	zf->last_raw_ofs = raw_ofs + (off_t)raw_bytes_read;
+
+	err = inf_finish_read(zf->read_ctx);
+	if(err < 0)
+		goto fail;
+
+	err = raw_bytes_read;
+
+	// failed - make sure buffer is freed
+	if(err <= 0)
+		goto fail;
+
+	return err;
+}
+*/
