@@ -69,6 +69,19 @@ function setSize(objectName, sizeString)
 
 // ====================================================================
 
+function setSizeCoord(objectName, left, top, right, bottom, rleft, rtop, rright, rbottom)
+{
+	// Use this function as a shortcut to change the size of a GUI control, specifying individual coordinates. 
+
+        // Get GUI object
+        GUIObject = getGUIObjectByName(objectName);
+
+	// Set size
+	GUIObject.size = new GUISize(left, top, right, bottom, rleft, rtop, rright, rbottom);
+} 
+
+// ====================================================================
+
 function FlipGUI(NewGUIType)
 {
 	// Sets the GUI coordinates and graphics so that the panel is either at the top or bottom of the screen.

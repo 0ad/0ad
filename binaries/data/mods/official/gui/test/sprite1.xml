@@ -159,6 +159,28 @@
                 <image backcolor="0 0 0" size="100% 0 100%+1 100%" />
         </sprite>
 
+	<!-- Standard 0 A.D.-style framed window -->
+        <sprite name="0ad_window">
+                <!-- middle -->
+                <image texture="global/ui_gen_background_paper.png" texture-size="0 0 128 128" size="0%-10 0%-10 100%+10 100%+10" />
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+		<image texture="global/ui_gen_border-corner-15px.png" real-texture-placement="0 0 15 15" size="0%-25 0%-25 0%-10 0%-10" />
+		<image texture="global/ui_gen_border-top-20px.png" texture-size="0 0 128 32" size="0%-10 0%-25 100%+10 0%+7" />
+		<image texture="global/ui_gen_border-corner-15px.png" real-texture-placement="0 0 15 15" size="100%+10 0%-25 100%+25 0%-10" />
+		<image texture="global/ui_gen_border-right-20px.png" texture-size="0 0 32 128" size="100%-6 0%-10 100%+26 100%+10" />
+		<image texture="global/ui_gen_border-corner-15px.png" real-texture-placement="0 0 15 15" size="100%+10 100%+10 100%+25 100%+25" />
+		<image texture="global/ui_gen_border-bottom-20px.png" texture-size="0 0 128 32" size="0%-10 100%-7 100%+10 100%+25" />
+		<image texture="global/ui_gen_border-corner-15px.png" real-texture-placement="0 0 15 15" size="0%-25 100%+10 0%-10 100%+25" />
+		<image texture="global/ui_gen_border-left-20px.png" texture-size="0 0 32 128" size="0%-25 0%-10 0%+7 100%+10" />
+        </sprite>
+
+	<!-- Standard 0 A.D.-style window's title bar -->
+        <sprite name="0ad_window_title">
+                <image texture="global/ui_gen_titlebar-left.png" real-texture-placement="0 0 64 32" size="0%+0 0%-10 5%+64 0%+22" />
+                <image texture="global/ui_gen_titlebar-middle.png" real-texture-placement="0 0 64 32" size="5%+64 0%-10 95%-64 0%+22" />
+                <image texture="global/ui_gen_titlebar-right.png" real-texture-placement="0 0 64 32" size="95%-64 0%-10 100%+0 0%+22" />
+	</sprite>
+
         <!--
         ==========================================
         PREGAME GUI

@@ -1506,7 +1506,7 @@
 		        <object type="empty" name="session_gui_subwindow_ingame_menu" size="0 0 100% 100%" z="1" hidden="true">
 	
 				<!-- Background -->
-		        	<object type="image" name="subwindow_ingame_menu_bkg" sprite="message_box-gen-background" z="100" hidden="false" ghost="true">
+		        	<object type="image" name="subwindow_ingame_menu_bkg" sprite="0ad_window" z="100" hidden="false" ghost="true">
 	                                <action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_ingame_menu_bkg_x, crd_ingame_menu_bkg_y, crd_ingame_menu_bkg_x+crd_ingame_menu_bkg_width, crd_ingame_menu_bkg_y+crd_ingame_menu_bkg_height, mid_screen, mid_screen, mid_screen, mid_screen,
@@ -1514,68 +1514,6 @@
 	                                ]]></action>
 				</object>
 
-		                <!-- top -->
-				<object type="image" name="subwindow_ingame_menu_border_corner_lt" sprite="message_box-corner" z="161" ghost="true" hidden="false">
-	                                <action on="Load"><![CDATA[
-						AddSizeCoord(this.name,
-						crd_ingame_menu_border_corner_lt_x, crd_ingame_menu_border_corner_lt_y, crd_ingame_menu_border_corner_lt_x+crd_ingame_menu_border_corner_lt_width, crd_ingame_menu_border_corner_lt_y+crd_ingame_menu_border_corner_lt_height, mid_screen, mid_screen, mid_screen, mid_screen,
-						crd_ingame_menu_border_corner_lt_x, crd_ingame_menu_border_corner_lt_y, crd_ingame_menu_border_corner_lt_x+crd_ingame_menu_border_corner_lt_width, crd_ingame_menu_border_corner_lt_y+crd_ingame_menu_border_corner_lt_height, mid_screen, mid_screen, mid_screen, mid_screen);
-	                                ]]></action>
-				</object>
-				<object type="image" name="subwindow_ingame_menu_border_top" sprite="message_box-border-top" z="161" ghost="true" hidden="false">
-	                                <action on="Load"><![CDATA[
-						AddSizeCoord(this.name,
-						crd_ingame_menu_border_top_x, crd_ingame_menu_border_top_y, crd_ingame_menu_border_top_x+crd_ingame_menu_border_top_width, crd_ingame_menu_border_top_y+crd_ingame_menu_border_top_height, mid_screen, mid_screen, mid_screen, mid_screen,
-						crd_ingame_menu_border_top_x, crd_ingame_menu_border_top_y, crd_ingame_menu_border_top_x+crd_ingame_menu_border_top_width, crd_ingame_menu_border_top_y+crd_ingame_menu_border_top_height, mid_screen, mid_screen, mid_screen, mid_screen);
-	                                ]]></action>
-				</object>
-				<object type="image" name="subwindow_ingame_menu_border_corner_rt" sprite="message_box-corner" z="161" ghost="true" hidden="false">
-	                                <action on="Load"><![CDATA[
-						AddSizeCoord(this.name,
-						crd_ingame_menu_border_corner_rt_x, crd_ingame_menu_border_corner_rt_y, crd_ingame_menu_border_corner_rt_x+crd_ingame_menu_border_corner_rt_width, crd_ingame_menu_border_corner_rt_y+crd_ingame_menu_border_corner_rt_height, mid_screen, mid_screen, mid_screen, mid_screen,
-						crd_ingame_menu_border_corner_rt_x, crd_ingame_menu_border_corner_rt_y, crd_ingame_menu_border_corner_rt_x+crd_ingame_menu_border_corner_rt_width, crd_ingame_menu_border_corner_rt_y+crd_ingame_menu_border_corner_rt_height, mid_screen, mid_screen, mid_screen, mid_screen);
-	                                ]]></action>
-				</object>
-
-				<!-- left/right -->
-				<object type="image" name="subwindow_ingame_menu_border_left" sprite="message_box-border-left" z="162"  hidden="false">
-	                                <action on="Load"><![CDATA[
-						AddSizeCoord(this.name,
-						crd_ingame_menu_border_left_x, crd_ingame_menu_border_left_y, crd_ingame_menu_border_left_x+crd_ingame_menu_border_left_width, crd_ingame_menu_border_left_y+crd_ingame_menu_border_left_height, mid_screen, mid_screen, mid_screen, mid_screen,
-						crd_ingame_menu_border_left_x, crd_ingame_menu_border_left_y, crd_ingame_menu_border_left_x+crd_ingame_menu_border_left_width, crd_ingame_menu_border_left_y+crd_ingame_menu_border_left_height, mid_screen, mid_screen, mid_screen, mid_screen);
-	                                ]]></action>
-				</object>
-				<object type="image" name="subwindow_ingame_menu_border_right" sprite="message_box-border-right" z="161"  hidden="false">
-	                                <action on="Load"><![CDATA[
-						AddSizeCoord(this.name,
-						crd_ingame_menu_border_right_x, crd_ingame_menu_border_right_y, crd_ingame_menu_border_right_x+crd_ingame_menu_border_right_width, crd_ingame_menu_border_right_y+crd_ingame_menu_border_right_height, mid_screen, mid_screen, mid_screen, mid_screen,
-						crd_ingame_menu_border_right_x, crd_ingame_menu_border_right_y, crd_ingame_menu_border_right_x+crd_ingame_menu_border_right_width, crd_ingame_menu_border_right_y+crd_ingame_menu_border_right_height, mid_screen, mid_screen, mid_screen, mid_screen);
-	                                ]]></action>
-				</object>
-                        
-				<!-- bottom -->
-				<object type="image" name="subwindow_ingame_menu_border_corner_lb" sprite="message_box-corner" absolute="false" z="161" hidden="false">
-	                                <action on="Load"><![CDATA[
-						AddSizeCoord(this.name,
-						crd_ingame_menu_border_corner_lb_x, crd_ingame_menu_border_corner_lb_y, crd_ingame_menu_border_corner_lb_x+crd_ingame_menu_border_corner_lb_width, crd_ingame_menu_border_corner_lb_y+crd_ingame_menu_border_corner_lb_height, mid_screen, mid_screen, mid_screen, mid_screen,
-						crd_ingame_menu_border_corner_lb_x, crd_ingame_menu_border_corner_lb_y, crd_ingame_menu_border_corner_lb_x+crd_ingame_menu_border_corner_lb_width, crd_ingame_menu_border_corner_lb_y+crd_ingame_menu_border_corner_lb_height, mid_screen, mid_screen, mid_screen, mid_screen);
-	                                ]]></action>
-				</object>
-				<object type="image" name="subwindow_ingame_menu_border_bottom" sprite="message_box-border-bottom" absolute="false" z="162" hidden="false">
-	                                <action on="Load"><![CDATA[
-						AddSizeCoord(this.name,
-						crd_ingame_menu_border_bottom_x, crd_ingame_menu_border_bottom_y, crd_ingame_menu_border_bottom_x+crd_ingame_menu_border_bottom_width, crd_ingame_menu_border_bottom_y+crd_ingame_menu_border_bottom_height, mid_screen, mid_screen, mid_screen, mid_screen,
-						crd_ingame_menu_border_bottom_x, crd_ingame_menu_border_bottom_y, crd_ingame_menu_border_bottom_x+crd_ingame_menu_border_bottom_width, crd_ingame_menu_border_bottom_y+crd_ingame_menu_border_bottom_height, mid_screen, mid_screen, mid_screen, mid_screen);
-	                                ]]></action>
-				</object>
-				<object type="image" name="subwindow_ingame_menu_border_corner_rb" sprite="message_box-corner" absolute="false" z="161" hidden="false">
-	                                <action on="Load"><![CDATA[
-						AddSizeCoord(this.name,
-						crd_ingame_menu_border_corner_rb_x, crd_ingame_menu_border_corner_rb_y, crd_ingame_menu_border_corner_rb_x+crd_ingame_menu_border_corner_rb_width, crd_ingame_menu_border_corner_rb_y+crd_ingame_menu_border_corner_rb_height, mid_screen, mid_screen, mid_screen, mid_screen,
-						crd_ingame_menu_border_corner_rb_x, crd_ingame_menu_border_corner_rb_y, crd_ingame_menu_border_corner_rb_x+crd_ingame_menu_border_corner_rb_width, crd_ingame_menu_border_corner_rb_y+crd_ingame_menu_border_corner_rb_height, mid_screen, mid_screen, mid_screen, mid_screen);
-	                                ]]></action>
-				</object>
-	
 				<!-- End Game button -->
 				<object type="button" name="subwindow_ingame_menu_End_Game_Button" sprite="message_box-button-normal" sprite-over="message_box-button-over" hotkey="endgame" text-align="center" text-valign="center" z="170" hidden="false">
 	                                <action on="Load"><![CDATA[
