@@ -35,8 +35,8 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 	// Skip some things which are known to be functions rather than properties.
 	// ("constructor" *must* be here, else it'll try to GetSettingType before
 	// the private IGUIObject* has been set (and thus crash). The others are
-	// just for efficiency, and to allow correct reporting of attempts to access
-	// nonexistent properties.)
+	// partly for efficiency, and also to allow correct reporting of attempts to
+	// access nonexistent properties.)
 	if (propName == "constructor" ||
 		propName == "prototype"   ||
 		propName == "toString"    ||
@@ -73,11 +73,16 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 	// Handle all other properties
 	else
 	{
+		// Allow e.g. "cell_id" as a synonym for "cell-id", because
+		// object.cell_id is nicer than object["cell-id"] (and object.cell-id
+		// is a syntax error)
+		propName.Replace("_", "-");
+
+
+		// Retrieve the setting's type (and make sure it actually exists)
 		EGUISettingType Type;
 		if (e->GetSettingType(propName, Type) != PS_OK)
 		{
-			// Potentially a function, but they should have been
-			// individually handled above, so complain about it
 			JS_ReportError(cx, "Invalid GUIObject property '%s'", propName.c_str());
 			return JS_FALSE;
 		}
@@ -216,6 +221,13 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 		return JS_TRUE;
 	}
 
+	// Allow e.g. "cell_id" as a synonym for "cell-id", because
+	// object.cell_id is nicer than object["cell-id"] (and object.cell-id
+	// is a syntax error)
+	propName.Replace("_", "-");
+
+
+	// Retrieve the setting's type (and make sure it actually exists)
 	EGUISettingType Type;
 	if (e->GetSettingType(propName, Type) != PS_OK)
 	{
