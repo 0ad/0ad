@@ -20,9 +20,6 @@
 #ifndef FILE_H
 #define FILE_H
 
-#include "h_mgr.h"
-#include "lib.h"
-
 
 struct File
 {
@@ -59,7 +56,9 @@ enum
 	// random access hint
 //	FILE_RANDOM       = 0x08,
 
-	FILE_NO_AIO       = 0x10
+	FILE_NO_AIO       = 0x10,
+
+	FILE_CACHE_BLOCK  = 0x20
 };
 
 
@@ -128,14 +127,33 @@ extern int file_unmap(File* f);
 // async IO
 //
 
-extern Handle file_start_io(File* f, off_t ofs, size_t size, void* buf);
+struct FileIO
+{
+	u64 block_id;
+		// set by file_start_io when in block-cache mode, otherwise 0.
 
-// indicates if the IO referenced by <hio> has completed.
+	aiocb* cb;
+		// large (144 bytes) on Linux; cannot store here.
+		// allocated in file_start_io.
+
+	size_t padding;
+	size_t user_size;
+
+	bool our_buf;
+	bool from_cache;
+	bool given_to_cache;
+	bool return_called;
+};
+
+extern int file_start_io(File* f, off_t ofs, size_t size, void* buf, FileIO* io);
+
+// indicates if the given IO has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
-extern int file_io_complete(Handle hio);
+extern int file_io_complete(FileIO* io);
 
-extern int file_wait_io(const Handle hio, void*& p, size_t& size);
-extern int file_discard_io(Handle& hio);
+extern int file_wait_io(FileIO* io, void*& p, size_t& size);
+
+extern int file_discard_io(FileIO* io);
 
 
 
