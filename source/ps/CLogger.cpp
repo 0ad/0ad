@@ -60,14 +60,22 @@ CLogger::~CLogger ()
 	sprintf(buffer," with %d message(s), %d error(s) and %d warning(s).", \
 						m_NumberOfMessages,m_NumberOfErrors,m_NumberOfWarnings);
 
+	time_t t = time(NULL);
+	struct tm* now = localtime(&t);
+	const char* months[] = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+	CStr currentDate = CStr(months[now->tm_mon]) + " " + CStr(now->tm_mday) + " " + CStr(1900+now->tm_year);
+	char currentTime[10];
+	sprintf(currentTime, "%02d:%02d:%02d", now->tm_hour, now->tm_min, now->tm_sec);
+
 	//Write closing text
-	m_MainLog << "<P>Engine exited successfully on " << __DATE__;
-	m_MainLog << " at " << __TIME__ << buffer << "</P>\n";
+
+	m_MainLog << "<P>Engine exited successfully on " << currentDate;
+	m_MainLog << " at " << currentTime << buffer << "</P>\n";
 	m_MainLog << html_footer;
 	m_MainLog.close ();
 	
-	m_InterestingLog << "<P>Engine exited successfully on " << __DATE__;
-	m_InterestingLog << " at " << __TIME__ << buffer << "</P>\n";
+	m_InterestingLog << "<P>Engine exited successfully on " << currentDate;
+	m_InterestingLog << " at " << currentTime << buffer << "</P>\n";
 	m_InterestingLog << html_footer;
 	m_InterestingLog.close ();
 
