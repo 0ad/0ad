@@ -16,5 +16,16 @@
 			type.unit.group.citizensoldier="true"
 			type.unit.group.worker="true"
 		/>
+		<Transform
+			upreq="600"
+			upcurr="0"
+		/>
+		<Loot
+			up="10"
+			food="1"
+			wood="1"
+			stone="1"
+			ore="1"
+		/>
 	</Traits>
 </Entity>
