@@ -41,7 +41,7 @@ inline void check_heap()
 }
 
 
-inline int get_executable_name(char* /*n_path*/, size_t /*buf_size*/)
+int get_executable_name(char* /*n_path*/, size_t /*buf_size*/)
 {
 	return -ENOSYS;
 }
