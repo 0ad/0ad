@@ -23,25 +23,26 @@ public:
 	JSI_Sound(const CStr& Filename);
 	~JSI_Sound();
 
+	// Script-bound functions
+
+	jsval ToString( JSContext* cx, uintN argc, jsval* argv );
+
 	// start playing the sound (one-shot).
 	// it will automatically be freed when done.
-	void play();
+	bool Play( JSContext* cx, uintN argc, jsval* argv );
 
 	// request the sound be played until free() is called. returns immediately.
-	void loop();
+	bool Loop( JSContext* cx, uintN argc, jsval* argv );
 
 	// stop sound if currently playing and free resources.
 	// doesn't need to be called unless played via loop() -
 	// sounds are freed automatically when done playing.
-	void free();
+	bool Free( JSContext* cx, uintN argc, jsval* argv );
 
+	bool SetGain( JSContext* cx, uintN argc, jsval* argv );
 
-	// Script-bound functions
+	bool SetPosition( JSContext* cx, uintN argc, jsval* argv );
 
-	jsval ToString( JSContext* cx, uintN argc, jsval* argv );
-	bool Play( JSContext* cx, uintN argc, jsval* argv ) { play(); return( true ); }
-	bool Loop( JSContext* cx, uintN argc, jsval* argv ) { loop(); return( true ); }
-	bool Free( JSContext* cx, uintN argc, jsval* argv ) { free(); return( true ); }
 	static JSBool Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval );
 
 	static void ScriptingInit();

@@ -1,5 +1,6 @@
 #include "precompiled.h"
 #include "JSI_Sound.h"
+#include "Vector3D.h"
 
 #include "lib/res/snd.h"
 #include "lib/res/h_mgr.h"	// h_filename
@@ -15,30 +16,59 @@ JSI_Sound::JSI_Sound( const CStr& Filename )
 
 JSI_Sound::~JSI_Sound()
 {
-	this->free();
+	this->Free(0, 0, 0);
 }
 
+
+bool JSI_Sound::SetGain( JSContext* cx, uintN argc, jsval* argv )
+{
+	assert( argc >= 1 );
+	float gain;
+	if( !ToPrimitive<float>( cx, argv[0], gain) )
+		return false;
+
+	snd_set_gain(m_Handle, gain);
+	return true;
+}
+
+bool JSI_Sound::SetPosition( JSContext* cx, uintN argc, jsval* argv )
+{
+	assert( argc >= 1 );
+	CVector3D pos;
+	// absolute world coords
+	if( ToPrimitive<CVector3D>( cx, argv[0], pos ) )
+		snd_set_pos(m_Handle, pos[0], pos[1], pos[2]);
+	// relative, 0 offset - right on top of the listener
+	// (we don't need displacement from the listener, e.g. always behind)
+	else
+		snd_set_pos(m_Handle, 0,0,0, true);
+
+	return true;
+}
 
 // start playing the sound (one-shot).
 // it will automatically be freed when done.
-void JSI_Sound::play()
+bool JSI_Sound::Play( JSContext* cx, uintN argc, jsval* argv )
 {
 	snd_play(m_Handle);
+	return true;
 }
 
 // request the sound be played until free() is called. returns immediately.
-void JSI_Sound::loop()
+bool JSI_Sound::Loop( JSContext* cx, uintN argc, jsval* argv )
 {
 	snd_set_loop(m_Handle, true);
 	snd_play(m_Handle);
+	return true;
 }
 
 // stop sound if currently playing and free resources.
 // doesn't need to be called unless played via loop() -
 // sounds are freed automatically when done playing.
-void JSI_Sound::free()
+bool JSI_Sound::Free( JSContext* cx, uintN argc, jsval* argv )
 {
 	snd_free(m_Handle);	// resets it to 0
+	return true;
 }
 
 
@@ -51,6 +81,8 @@ void JSI_Sound::ScriptingInit()
 	AddMethod<bool, &JSI_Sound::Play>( "play", 0 );
 	AddMethod<bool, &JSI_Sound::Loop>( "loop", 0 );
 	AddMethod<bool, &JSI_Sound::Free>( "free", 0 );
+	AddMethod<bool, &JSI_Sound::SetGain>( "setGain", 0 );
+	AddMethod<bool, &JSI_Sound::SetPosition>( "setPosition", 0 );
 
 	CJSObject<JSI_Sound>::ScriptingInit( "Sound", &JSI_Sound::Construct, 1 );
 }
