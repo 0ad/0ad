@@ -15,33 +15,55 @@
 			// Toggle manual if something selected.
 			if (selection.length)
 			{
-				ManualGUI = getGUIObjectByName("manual_gui");
-				ManualGUI.hidden = !ManualGUI.hidden;
+				GUIObjectToggle("manual_gui");
+				GUIObjectToggle("session_gui");
 			}
 		]]></action>
 
-        	<object type="text" name="manual_bkg" sprite="translucent_background" size="50%-200 0%+50 50%+200 100%-50" font="prospero16" textcolor="255 255 255" z="100" hidden="false" ghost="true">
+        	<object type="text" name="manual_bkg" sprite="0ad_window" font="prospero16" textcolor="0 0 0" z="100" hidden="false" ghost="true">
+			<action on="Load"><![CDATA[
+				setSizeArray("manual_bkg", sessionCoord[MANUAL_BKG], left_screen, top_screen, right_screen, bottom_screen);
+			]]></action>
 			<action on="Tick"><![CDATA[
 				if (selection.length && !( getGUIObjectByName( "manual_gui" ).hidden ))
-				{
 					manualDisplay();
-				}
 			]]></action>
 		</object>
 
-   	    	<object type="button" name="manual_portrait" style="portrait" size="50%-192 0%+80 50%-128 0%+144" z="100" ghost="true"/>
+   	    	<object type="button" name="manual_portrait" style="portrait" z="100" ghost="true">
+			<action on="Load"><![CDATA[
+				setSizeArray("manual_portrait", sessionCoord[MANUAL_PORTRAIT], left_screen, top_screen, left_screen, top_screen);
+			]]></action>
+		</object>
 
-		<object type="text" name="manual_name" sprite="translucent_background" size="50%-195 0%+149 50%+195 100%-205" font="prospero14" textcolor="255 255 255" z="100" ghost="true"/>
+<!-- Gee needs to implement text clipping, so long text doesn't get clipped to these scroll windows yet. Scroll bars also don't block world input yet. -->
+		<object type="text" name="manual_rollover" scrollbar="true" scrollbar_style="manual_scrollbar" sprite="0ad_indent" font="trebuchet12" textcolor="0 0 0" z="100" ghost="false">
+			<action on="Load"><![CDATA[
+				setSizeArray("manual_rollover", sessionCoord[MANUAL_ROLLOVER], left_screen, top_screen, right_screen, top_screen);
+			]]></action>
+		</object>
 
-		<!-- Gee needs to implement text clipping, so long text doesn't get clipped to these scroll windows yet. Scroll bars also don't block world input yet. -->
-		<object type="text" name="manual_rollover" scrollbar="true" scrollbar_style="manual_scrollbar" sprite="translucent_background" size="50%-126 0%+80 50%+195 0%+144" font="prospero16" textcolor="255 255 255" z="100" ghost="false"/>
-   	    	<object type="text" name="manual_history" scrollbar="true" scrollbar_style="manual_scrollbar" sprite="translucent_background" size="50%-195 100%-200 50%+195 100%-55" font="prospero16" textcolor="255 255 255" z="100" ghost="false"/>
+		<object type="text" name="manual_name" sprite="0ad_indent" font="trebuchet14" textcolor="0 0 0" z="100" ghost="true">
+			<action on="Load"><![CDATA[
+				setSizeArray("manual_name", sessionCoord[MANUAL_NAME], left_screen, top_screen, right_screen, bottom_screen);
+			]]></action>
+		</object>
 
-		<object type="button" name="manual_exit_button" sprite="exit_sprite" sprite_over="exit_sprite_over" size="50%+184 0%+50 50%+200 0%+66" ghost="false" z="100" hidden="false">
+<!-- Gee needs to implement text clipping, so long text doesn't get clipped to these scroll windows yet. Scroll bars also don't block world input yet. -->
+   	    	<object type="text" name="manual_history" scrollbar="true" scrollbar_style="manual_scrollbar" sprite="0ad_indent" font="trebuchet12" textcolor="0 0 0" z="100" ghost="false">
+			<action on="Load"><![CDATA[
+				setSizeArray("manual_history", sessionCoord[MANUAL_HISTORY], left_screen, bottom_screen, right_screen, bottom_screen);
+			]]></action>
+		</object>
+
+		<object type="button" name="manual_exit_button" sprite="exit_sprite" sprite_over="exit_sprite_over" ghost="false" z="100" hidden="false">
+			<action on="Load"><![CDATA[
+				setSizeArray("manual_exit_button", sessionCoord[MANUAL_EXIT_BUTTON], right_screen, top_screen, right_screen, top_screen);
+			]]></action>
 			<action on="Press"><![CDATA[
 				// Close manual.
-				ManualGUI = getGUIObjectByName("manual_gui");
-				ManualGUI.hidden = true;
+				GUIObjectHide("manual_gui");
+				GUIObjectUnhide("session_gui");
 			]]></action>
 		</object>
 	</object>

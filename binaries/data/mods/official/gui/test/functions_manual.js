@@ -1,3 +1,67 @@
+function initManual()
+{
+	// ============================================= GLOBALS =================================================
+
+	MANUAL = new Object();
+	MANUAL.span = 5;
+
+	// Background of online manual.
+	MANUAL_BKG 		= addSizeArrayWH(sessionCoord, sessionCoord_Last,
+		50,
+		50
+	); sessionCoord_Last 	= addSizeArrayXY(sessionCoord, sessionCoord_Last,
+		50,
+		50
+	);
+
+	// Online manual portrait.
+	MANUAL_PORTRAIT		= addSizeArrayWH(sessionCoord, sessionCoord_Last,
+		crd_portrait_lrg_width,
+		crd_portrait_lrg_height
+	); sessionCoord_Last 	= addSizeArrayXY(sessionCoord, sessionCoord_Last,
+		sessionCoord[MANUAL_BKG].x+10,
+		sessionCoord[MANUAL_BKG].y+30
+	);
+
+	// Online manual rollover.
+	MANUAL_ROLLOVER		= addSizeArrayWH(sessionCoord, sessionCoord_Last,
+		60,
+		sessionCoord[MANUAL_PORTRAIT].height
+	); sessionCoord_Last 	= addSizeArrayXY(sessionCoord, sessionCoord_Last,
+		sessionCoord[MANUAL_PORTRAIT].x+sessionCoord[MANUAL_PORTRAIT].width+MANUAL.span,
+		sessionCoord[MANUAL_PORTRAIT].y
+	);
+
+	// Online manual history.
+	MANUAL_HISTORY		= addSizeArrayWH(sessionCoord, sessionCoord_Last,
+		sessionCoord[MANUAL_ROLLOVER].width,
+		sessionCoord[MANUAL_ROLLOVER].height
+	); sessionCoord_Last 	= addSizeArrayXY(sessionCoord, sessionCoord_Last,
+		sessionCoord[MANUAL_PORTRAIT].x,
+		60
+	);
+
+	// Online manual text.
+	MANUAL_NAME		= addSizeArrayWH(sessionCoord, sessionCoord_Last,
+		sessionCoord[MANUAL_HISTORY].width,
+		sessionCoord[MANUAL_HISTORY].y+sessionCoord[MANUAL_HISTORY].height+MANUAL.span
+	); sessionCoord_Last 	= addSizeArrayXY(sessionCoord, sessionCoord_Last,
+		sessionCoord[MANUAL_HISTORY].x,
+		sessionCoord[MANUAL_ROLLOVER].y+sessionCoord[MANUAL_ROLLOVER].height+MANUAL.span
+	);
+
+	// Online manual exit button.
+	MANUAL_EXIT_BUTTON	= addSizeArrayWH(sessionCoord, sessionCoord_Last,
+		16,
+		16
+	); sessionCoord_Last 	= addSizeArrayXY(sessionCoord, sessionCoord_Last,
+		26,
+		25
+	);
+}
+
+// ====================================================================
+
 function manualDisplay()
 {
 					// Display heading.
@@ -5,6 +69,8 @@ function manualDisplay()
 					ManualBkg.caption = "In-Game Help: ";
 					if (selection[0].traits.id.civ)
 						ManualBkg.caption += selection[0].traits.id.civ + ": ";
+					if (selection[0].traits.id.generic)
+						ManualBkg.caption += selection[0].traits.id.generic + ": ";
 					if (selection[0].traits.id.specific)
 						ManualBkg.caption += selection[0].traits.id.specific;
 

@@ -33,15 +33,16 @@ function loadSession()
 	// Create resource pools for each player, etc.
 	setupSession();        
 
-	// Switch GUI from main menu to game session.
-        GUIObjectHide("loading_screen");
-        GUIObjectUnhide("session_gui");
         FlipGUI(GUIType);
 
         // Select session peace track.
         curr_session_playlist_1 = newRandomSound("music", "peace");
         // Fade out main theme and fade in session theme.
         CrossFade(curr_music, curr_session_playlist_1, 0.0001);
+
+	// Switch GUI from main menu to game session.
+        GUIObjectHide("loading_screen");
+        GUIObjectUnhide("session_gui");
 }
 
 // ====================================================================
