@@ -79,10 +79,10 @@
                         <object type="image" name="mb_titlebar-left" size="15% 0 15%+64 32" sprite="message_box-titlebar-left" absolute="false" z="164" />
                         <object type="image" name="mb_titlebar-middle" size="15%+64 0 85%-64 32" sprite="message_box-titlebar-middle" absolute="false" z="164" />
                         <object type="image" name="mb_titlebar-right" size="85%-64 0 85% 32" sprite="message_box-titlebar-right" absolute="false" z="164" />
-                        <object type="text" name="mb_titlebar-text" size="15%+54 4 85%-54 32" absolute="false" font="prospero18" z="165">mbTitle</object>
+                        <object type="button" name="mb_titlebar-text" size="15%+54 4 85%-54 32" absolute="false" font="prospero18" z="165" text-align="center" text-valign="center">mbTitle</object>
                         
                         <!-- text -->
-                        <object type="text" name="mb_text" size="32 40 100%-32 100%-100" absolute="false" font="prospero18" z="165" ghost="true" text-align="center">
+                        <object type="text" name="mb_text" size="32 40 100%-32 100%-100" absolute="false" font="prospero18" z="165" ghost="true">
                                 mbMessage
                         </object>
                         
