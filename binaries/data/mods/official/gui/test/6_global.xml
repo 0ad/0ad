@@ -18,7 +18,9 @@
                 <object type="button" name="exit_button" sprite="exit_sprite" sprite-over="exit_sprite-over" size="100%-18 2 100%-2 18" z="1000" hidden="false">
                         <action on="Press"><![CDATA[
                                 btCaptions = new Array("Yes, let me out!", "Nooooo!");
-                                btCode = new Array("curr_music.free(); exit();", "GUIObjectHide('mb_main');");
+                                //btCode = new Array("curr_music.free(); exit();", "GUIObjectHide('mb_main');");
+                                // Button stopped working after "curr_music.free();" got inserted. Commented it out - Malte, 15 Nov
+                                btCode = new Array("exit();", "GUIObjectHide('mb_main');");
                                 messageBox(400, 200, "Do you really want to quit [icon=0ad_icon] A.D.? This will cause a sudden return to reality.", "Confirmation", 0, btCaptions, btCode);
                         ]]></action>
 
