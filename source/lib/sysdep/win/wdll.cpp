@@ -195,7 +195,7 @@ struct ULI : public UnloadInfo
 
 	~ULI() { Unlink();	}
 
-	void* operator new(size_t cb) {	return ::LocalAlloc(LPTR, cb); }
+	void* operator_new(size_t cb) {	return ::LocalAlloc(LPTR, cb); }
 	void operator delete(void* pv) { ::LocalFree(pv); }
 
 	void Unlink()
@@ -214,6 +214,7 @@ struct ULI : public UnloadInfo
 		__puiHead = this;
 	}
 };
+
 
 // For our own internal use, we convert to the old
 // format for convenience.

@@ -30,7 +30,7 @@
 #define unlock() win_unlock(WAIO_CS)
 
 
-#pragma data_seg(".LIB$WIC")
+#pragma data_seg(".LIB$WCC")
 WIN_REGISTER_FUNC(waio_init);
 #pragma data_seg(".LIB$WTX")
 WIN_REGISTER_FUNC(waio_shutdown);
