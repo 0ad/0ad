@@ -1,0 +1,48 @@
+The codepit with all required files is accessed via SCP:
+host = wildfiregames.com
+port = 22
+user = code
+pass = ae3934hjf
+
+$install := directory where the compiler is installed.
+$lib := directory where the compiler looks for lib files;
+  typically = $install/lib .
+$include := the same for header files (= $install/include).
+$GL := directory containing OpenGL headers.
+  VC6: $install/GL;
+  VC7: $install/PlatformSDK/Include/GL.
+$binaries := directory containing system/ and data/ .
+
+
+TODO:
+
+- OpenGL extensions:
+  download glext.h and put it in $GL.
+  download wglext.h and put it in $GL.
+
+- ZLib (v1.2.1)
+  download zlib121.zip.
+  extract contents of include/ into $include,
+  .lib files into $lib, and .DLLs into $binaries.
+
+- libpng (v1.0.15)
+  download libpng10.zip.
+  extract contents of include/ into $include,
+  .lib files into $lib, and .DLLs into $binaries.
+
+- Xerces: [required if compiling GUI]
+  download xerces-c_2_5_0-windows_nt-msvc_60.zip.
+  extract contents of include/ into $include,
+  .lib files into $lib, and .DLLs into $binaries.
+
+  to reduce download size, you can instead grab the following
+  archives, which leave out everything we don't need:
+  http://www.wildfiregames/com/~code/libraries/xerces-c_2_5_0-lib.zip
+  http://www.wildfiregames/com/~code/libraries/xerces-c_2_5_0-include.zip
+  http://www.wildfiregames/com/~code/libraries/xerces-c_2_5_0.dll
+  extract into the appropriate directories as explained above.
+
+- SpiderMonkey: [required for javascript]
+  download javascript-sdk.zip.
+  extract contents of include/ into $include,
+  and .lib files into $lib.
