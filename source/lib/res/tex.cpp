@@ -1027,11 +1027,13 @@ int tex_id(const Handle h)
 int tex_filter = GL_LINEAR;
 uint tex_bpp = 32;				// 16 or 32
 
-int tex_upload(const Handle ht, int filter, int int_fmt)
+int tex_upload(const Handle ht, int filter, int int_fmt, int fmt)
 {
 	H_DEREF(ht, Tex, t);
 	t->filter  = filter;
 	t->int_fmt = int_fmt;
+	if (fmt)
+		t->fmt = fmt;
 
 	const char* fn = h_filename(ht);
 	if(!fn)
