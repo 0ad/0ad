@@ -11,7 +11,7 @@ CStr::CStr(const CStr &Str)
 	m_String = Str.m_String;
 }
 
-CStr::CStr(LPCTSTR String)
+CStr::CStr(const TCHAR* String)
 {
 	// Creates CStr from C-Style TCHAR string
 	m_String = String;
@@ -58,14 +58,14 @@ CStr::CStr(_ulong Number)
 CStr::CStr(_float Number)
 {
 	// Creates CStr from a float
-	_stprintf(m_ConversionBuffer, FLOAT_CONVERSION, Number);
+	_tsprintf(m_ConversionBuffer, FLOAT_CONVERSION, Number);
 	m_String = m_ConversionBuffer;
 }
 
 CStr::CStr(_double Number)
 {
 	// Creates CStr from a double
-	_stprintf(m_ConversionBuffer, FLOAT_CONVERSION, Number);
+	_tsprintf(m_ConversionBuffer, FLOAT_CONVERSION, Number);
 	m_String = m_ConversionBuffer;
 }
 
@@ -261,7 +261,7 @@ CStr &CStr::operator=(const CStr &Str)
 	return *this;
 }
 
-CStr &CStr::operator=(LPCTSTR String)
+CStr &CStr::operator=(const TCHAR* String)
 {
 	m_String = String;
 	return *this;
@@ -300,14 +300,14 @@ CStr &CStr::operator=(_ulong Number)
 
 CStr &CStr::operator=(_float Number)
 {
-	_stprintf(m_ConversionBuffer, FLOAT_CONVERSION, Number);
+	_tsprintf(m_ConversionBuffer, FLOAT_CONVERSION, Number);
 	m_String = m_ConversionBuffer;
 	return *this;
 }
 
 CStr &CStr::operator=(_double Number)
 {
-	_stprintf(m_ConversionBuffer, FLOAT_CONVERSION, Number);
+	_tsprintf(m_ConversionBuffer, FLOAT_CONVERSION, Number);
 	m_String = m_ConversionBuffer;
 	return *this;
 }
@@ -355,7 +355,7 @@ CStr CStr::operator+(CStr &Str)
 	return NewStr;
 }
 
-CStr::operator LPCTSTR()
+CStr::operator const TCHAR*()
 {
 	return m_String.c_str();
 }
@@ -386,6 +386,6 @@ TCHAR &CStr::operator[](_ulong n)
 
 ostream &operator<<(ostream &os, CStr &Str)
 {
-	os << (LPCTSTR)Str;
+	os << (const TCHAR*)Str;
 	return os;
 }

@@ -47,13 +47,34 @@ typedef wstring tstring;
 #define _tcout	wcout
 #define	_tstod	wcstod
 typedef wchar_t TCHAR;
+#define _ttoi _wtoi
+#define _ttol _wtol
+#define _itot _itow
+#define _ultot _itow
 #define _T(t) L ## t
+
+#define _totlower towlower
+#define _istspace iswspace
+#define _tsprintf wsprintf
+#define _ultot _ultow
+#define _ltot _ltow
+
 #else
+
 typedef string	tstring;
 #define _tcout	cout
 #define	_tstod	strtod
+#define _ttoi atoi
+#define _ttol atol
+#define _itot _itoa
 typedef char TCHAR;
 #define _T(t) t
+#define _istspace isspace
+#define _tsprintf sprintf
+#define _totlower tolower
+#define _ultot _ultoa
+#define _ltot _ltoa
+
 #endif
 
 
