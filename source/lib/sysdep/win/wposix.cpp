@@ -365,57 +365,82 @@ int pthread_create(pthread_t* thread, const void* attr, void*(*func)(void*), voi
 }
 
 
+
+// DeleteCriticalSection currently doesn't complain if we double-free
+// (e.g. user calls destroy() and static initializer atexit runs),
+// and dox are ambiguous.
+/*
+struct CS
+{
+	CRITICAL_SECTION cs;
+	CS()
+	{
+		InitializeCriticalSection(&cs);
+	}
+	~CS()
+	{
+		DeleteCriticalSection(&cs);
+	}
+};*/
+
+cassert(sizeof(CRITICAL_SECTION) == sizeof(pthread_mutex_t));
+/*
+static std::list<CS> mutexes;
+
+static void destroy_mutexes()
+{
+	mutexes.clear();
+}
+*/
+
 pthread_mutex_t pthread_mutex_initializer()
 {
-	HANDLE h = CreateMutex(0, 0, 0);
-	if(h == INVALID_HANDLE_VALUE)
-		return 0;
-	// app is responsible for freeing via pthread_destroy_mutex!
-	return h;
-}
-
-int pthread_mutex_init(pthread_mutex_t* m, const pthread_mutexattr_t*)
-{
-	if(!m)
-		return -1;
-	*m = pthread_mutex_initializer();
-	return *m? 0 : -1;
-}
-
-int pthread_mutex_lock(pthread_mutex_t* m)
-{
-	return WaitForSingleObject(*m, INFINITE) == WAIT_OBJECT_0? 0 : -1;
-}
-
-int pthread_mutex_trylock(pthread_mutex_t* m)
-{
-	return WaitForSingleObject(*m, 0) == WAIT_OBJECT_0? 0 : -1;
-}
-
-int pthread_mutex_unlock(pthread_mutex_t* m)
-{
-	return ReleaseMutex(*m)? 0 : -1;
-}
-
-int pthread_mutex_timedlock(pthread_mutex_t* m, const struct timespec* abs_timeout)
-{
-	DWORD ms_timeout = 0;
-	if(abs_timeout)
-	{
-		struct timespec cur_ts;
-		clock_gettime(CLOCK_REALTIME, &cur_ts);
-		ms_timeout = DWORD((cur_ts.tv_sec  - abs_timeout->tv_sec ) * 1000 +
-		                   (cur_ts.tv_nsec - abs_timeout->tv_nsec) / 1000000);
-	}
-
-	return WaitForSingleObject(*m, ms_timeout) == WAIT_OBJECT_0? 0 : -1;
+	CRITICAL_SECTION cs;
+	InitializeCriticalSection(&cs);
+	return *(pthread_mutex_t*)&cs;
 }
 
 int pthread_mutex_destroy(pthread_mutex_t* m)
 {
-	CloseHandle(*m);
+	DeleteCriticalSection((CRITICAL_SECTION*)m);
+	return 0;
+/*
+	CS* cs = (CS*)m;
+	mutexes.erase(cs);
+	delete cs;
+	return 0;
+*/
+}
+
+int pthread_mutex_init(pthread_mutex_t* m, const pthread_mutexattr_t*)
+{
+	InitializeCriticalSection((CRITICAL_SECTION*)m);
 	return 0;
 }
+
+int pthread_mutex_lock(pthread_mutex_t* m)
+{
+	EnterCriticalSection((CRITICAL_SECTION*)m);
+	return 0;
+}
+
+int pthread_mutex_trylock(pthread_mutex_t* m)
+{
+	BOOL got_it = TryEnterCriticalSection((CRITICAL_SECTION*)m);
+	return got_it? 0 : -1;
+}
+
+int pthread_mutex_unlock(pthread_mutex_t* m)
+{
+	LeaveCriticalSection((CRITICAL_SECTION*)m);
+	return 0;
+}
+
+int pthread_mutex_timedlock(pthread_mutex_t* m, const struct timespec* abs_timeout)
+{
+	return -ENOSYS;
+}
+
 
 //////////////////////////////////////////////////////////////////////////////
 //

@@ -367,7 +367,12 @@ extern int pthread_getschedparam(pthread_t thread, int* policy, struct sched_par
 extern int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param* param);
 extern int pthread_create(pthread_t* thread, const void* attr, void*(*func)(void*), void* arg);
 
-typedef void* pthread_mutex_t;
+//typedef void* pthread_mutex_t;
+typedef struct
+{
+	char opaque[24];
+}
+pthread_mutex_t;
 typedef void pthread_mutexattr_t;
 
 extern pthread_mutex_t pthread_mutex_initializer();
