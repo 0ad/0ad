@@ -1,14 +1,77 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<!DOCTYPE sprites SYSTEM "..\gui.dtd">
+<!DOCTYPE sprites SYSTEM "../gui.dtd">
 
 <sprites>
+
+        <!-- Exit Button -->
         <sprite name="exit_sprite">
-                <image backcolor="255 255 255" size="0 0 100% 100%" />
-                <image backcolor="0 0 0" size="50% 2 50%+2 100%-1" />
-                <image backcolor="0 0 0" size="2 50% 100%-1 50%+2" />
+                <image texture="exit_button_16.png" texture-size="0 0 16 16" size="0 0 100% 100%" />
+        </sprite>
+        <sprite name="exit_sprite-over">
+                <image texture="exit_button_16-over.png" texture-size="0 0 16 16" size="0 0 100% 100%" />
+        </sprite>
+        
+        <!-- WFG logo -->
+        <sprite name="wfg_logo_128">
+                <image texture="wfg_logo_128.tga" texture-size="0 0 128 128" size="0 0 128 128" />
+        </sprite>
+        
+        <!--
+        ==========================================
+        BOTTOM PANEL IN SESSION UI
+        ==========================================
+        -->
+        
+        <sprite name="session_panel_bg_left">
+                <image texture="ui_session_panel_bg_left.png" texture-size="0 0 512 512" size="0 0 258 161" />
+        </sprite>
+        
+        <sprite name="session_panel_minimap_bg">
+                <image texture="ui_session_panel_minimap_bg.png" texture-size="0 0 256 256" size="0 0 256 256" />
         </sprite>
 
+        <sprite name="session_panel_minimap_dummy">
+                <image texture="ui_session_panel_minimap_dummy.png" texture-size="0 0 256 256" size="0 0 256 256" />
+        </sprite>
+
+        <sprite name="session_panel_bg_middle">
+                <image texture="ui_session_panel_bg_middle.png" texture-size="0 0 1024 1024" size="0 0 531 161" />
+        </sprite>
+        
+        <sprite name="session_panel_bg_right">
+                <image texture="ui_session_panel_bg_right.png" texture-size="0 0 256 256" size="0 0 241 161" />
+        </sprite>
+        
+        <sprite name="session_panel_tabs_bg1">
+                <image texture="ui_session_panel_tabs_bg1.png" texture-size="0 0 256 256" size="0 0 59 145" />
+        </sprite>
+
+        <sprite name="session_panel_tabs_bg2">
+                <image texture="ui_session_panel_tabs_bg2.png" texture-size="0 0 256 256" size="0 0 190 145" />
+        </sprite>
+        
+        <sprite name="session_panel_tabs_activetabbg">
+                <image texture="ui_session_panel_tabs_activetabbg.png" texture-size="0 0 64 64" size="0 0 40 40" />
+        </sprite>
+        
+        <sprite name="icon_command">
+                <image texture="ui_session_panel_tabs_command_bt.png" texture-size="0 0 32 32" size="0 0 32 32" />
+        </sprite>
+        
+        <sprite name="icon_buildcivil">
+                <image texture="ui_session_panel_tabs_buildcivil_bt.png" texture-size="0 0 32 32" size="0 0 32 32" />
+        </sprite>
+
+        <sprite name="icon_buildmil">
+                <image texture="ui_session_panel_tabs_buildmil_bt.png" texture-size="0 0 32 32" size="0 0 32 32" />
+        </sprite>
+        
+        <sprite name="icon_formations">
+                <image texture="ui_session_panel_tabs_formations_bt.png" texture-size="0 0 32 32" size="0 0 32 32" />
+        </sprite>
+        
+        <!-- Generic buttons -->
         <sprite name="sprite1">
                 <!-- Starting with top left corner continuing in a clockwise manner -->
                 <image backcolor="255 255 255" size="0 1 1 100%-1" />
@@ -96,4 +159,27 @@
                 <!--<image backcolor="128 128 128" size="0 0 100% 100%" />-->
                 <image backcolor="150 105 180" size="2 0 100%-2 100%" z-level="1" />
         </sprite>
+
+        <!--
+        ==========================================
+        PORTRAIT ICONS
+        ==========================================
+        -->
+
+        <sprite name="portrait_unit_dude">
+		<image texture="ui_portrait_unit_dude.png" texture-size="0 0 64 64" size="0 0 64 64" />
+        </sprite>
+
+        <sprite name="portrait_unit_dude_sml">
+		<image texture="ui_portrait_unit_dude_sml.png" texture-size="0 0 32 32" size="0 0 32 32" />
+        </sprite>
+
+        <sprite name="portrait_unit_dude_over">
+		<image texture="ui_portrait_unit_dude_over.png" texture-size="0 0 64 64" size="0 0 64 64" />
+        </sprite>
+
+        <sprite name="portrait_unit_dude_sml_over">
+		<image texture="ui_portrait_unit_dude_sml_over.png" texture-size="0 0 32 32" size="0 0 32 32" />
+        </sprite>
+
 </sprites>
