@@ -176,6 +176,7 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 	catch (PS_RESULT e)
 	{
 		UNUSED(e);
+		debug_warn("CGUI::HandleEvent error");
 		// TODO Gee: Handle
 	}
 // JW: what's the difference between mPress and mDown? what's the code below responsible for?
@@ -244,6 +245,7 @@ IGUIObject *CGUI::ConstructObject(const CStr& str)
 		return (*m_ObjectTypes[str])();
 	else
 	{
+		debug_warn("CGUI::ConstructObject error");
 		// TODO Gee: Report in log
 		return NULL;
 	}
@@ -354,6 +356,7 @@ void CGUI::Draw()
 		glPopMatrix();
 
 		// TODO Gee: Report error.
+		debug_warn("CGUI::Draw error");
 		return;
 	}
 	glPopMatrix();
@@ -376,6 +379,7 @@ void CGUI::DrawSprite(const CStr& SpriteName,
 	// Fetch real sprite from name
 	if (m_Sprites.count(SpriteName) == 0)
 	{
+		debug_warn("CGUI::DrawSprite error");
 		// TODO Gee: Report error
 		return;
 	}
@@ -465,6 +469,7 @@ void CGUI::Destroy()
 		catch (PS_RESULT e)
 		{
 			UNUSED(e);
+			debug_warn("CGUI::Destroy error");
 			// TODO Gee: Handle
 		}
 		
@@ -943,6 +948,7 @@ void CGUI::LoadXMLFile(const string &Filename)
 		}
 		else
 		{
+			debug_warn("CGUI::LoadXMLFile error");
 			// TODO Gee: Output in log
 		}
 	}
@@ -1093,6 +1099,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		// additional check
 		if (m_Styles.count(argStyle) == 0)
 		{
+			debug_warn("CGUI::Xeromyces_ReadObject error");
 			// TODO Gee: Error
 		}
 		else object->LoadStyle(*this, argStyle);
@@ -1238,6 +1245,9 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 
 		if (element_name == elmt_object)
 		{
+			//debug_warn("CGUI::Xeromyces_ReadObject error");
+				// janwas: this happens but looks to be handled
+
 			// TODO Gee: REPORT ERROR
 
 			// Call this function on the child
@@ -1281,6 +1291,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		// Set it automatically to 10 plus its parents
 		if (pParent==NULL)
 		{
+			debug_warn("CGUI::Xeromyces_ReadObject error");
 			// TODO Gee: Report error
 		}
 		else
@@ -1437,6 +1448,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			CClientArea ca;
 			if (!GUI<CClientArea>::ParseString(attr_value, ca))
 			{
+				debug_warn("CGUI::Xeromyces_ReadImage error");
 				// TODO Gee: Error
 			}
 			else image.m_Size = ca;
@@ -1447,6 +1459,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			CClientArea ca;
 			if (!GUI<CClientArea>::ParseString(attr_value, ca))
 			{
+				debug_warn("CGUI::Xeromyces_ReadImage error");
 				// TODO Gee: Error
 			}
 			else image.m_TextureSize = ca;
@@ -1457,6 +1470,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			int z_level;
 			if (!GUI<int>::ParseString(attr_value, z_level))
 			{
+				debug_warn("CGUI::Xeromyces_ReadImage error");
 				// TODO Gee: Error
 			}
 			else image.m_DeltaZ = (float)z_level/100.f;
@@ -1467,12 +1481,14 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			CColor color;
 			if (!GUI<CColor>::ParseString(attr_value, color))
 			{
+				debug_warn("CGUI::Xeromyces_ReadImage error");
 				// TODO Gee: Error
 			}
 			else image.m_BackColor = color;
 		}
 		else
 		{
+			debug_warn("CGUI::Xeromyces_ReadImage error");
 			// TODO Gee: Log
 			//g_console.submit("echo Error attribute " + attr_name + " is not expected in <image>");
 			return;

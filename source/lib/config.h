@@ -1,12 +1,35 @@
-#if defined(_WIN32)
+//
+// OS
+//
+
+// Windows
+#if defined(_WIN32) || defined(WIN32)
 # define OS_WIN
-#elif defined(linux)
+// Linux
+#elif defined(linux) || defined(__linux) || defined(__linux__)
 # define OS_LINUX
 # define OS_UNIX
-#elif defined(macintosh)
-# define OS_MACOS
-#elif defined(__APPLE__)  && defined(__MACH__)
+// Mac OS X
+#elif defined(MAC_OS_X
 # define OS_MACOSX
+# define OS_UNIX
+// Mac OS 9 or below
+#elif defined(macintosh) || defined(__APPLE__) || defined(__APPLE_CC__)
+# define OS_MACOS
+// BSD
+#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+# define OS_BSD
+// Solaris
+#elif defined(SOLARIS)
+# define OS_SOLARIS
+// BeOS
+#elif defined(__BEOS__)
+# define OS_BEOS
+// Amiga
+#elif defined(__amigaos__)
+# define OS_AMIGA
+// Unix-based
+#elif defined(unix) || defined(__unix) || defined(_XOPEN_SOURCE) || defined(_POSIX_SOURCE)
 # define OS_UNIX
 #else
 # error "unknown OS - add define here"
@@ -39,7 +62,7 @@
 #endif
 
 #if defined(_MSC_VER) && defined(HAVE_PCH) && !( defined(NDEBUG) || defined(TESTING) )
-# define HAVE_DEBUGALLOC
+//# define HAVE_DEBUGALLOC
 #endif
 
 #ifdef OS_UNIX
