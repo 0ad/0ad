@@ -23,8 +23,6 @@
 
 u32 game_ticks;
 
-int xres = 800, yres = 600;
-
 bool keys[256];
 
 #include <cmath>
@@ -109,7 +107,7 @@ static int set_vmode(int w, int h, int bpp)
 		return -1;
 
 	glViewport(0, 0, w, h);
-
+	
 	oglInit();	// required after each mode change
 
 	return 0;
@@ -151,7 +149,7 @@ static void render()
 // TODO: not needed with 100% draw coverage
 	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
-terr_update();
+	terr_update();
 
 glColor3f(1.0f, 1.0f, 1.0f);
 
@@ -165,14 +163,10 @@ glColor3f(1.0f, 1.0f, 1.0f);
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 	glLoadIdentity();
-#ifndef NO_GUI
-	////// janwas: I changed to some more for the GUI, we can talk about how to set this up
-	glOrtho(0., xres, 0., yres, -1000., 1.);
-	//////
-#else
-	// (MT) Above line hides the frame counter behind the terrain.
-	glOrtho( 0., xres, 0., yres, -1., 1. );
-#endif
+
+	/// Gee: It doesn't hide the FPS anymore
+	glOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.f, 1000.f);
+
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 
@@ -210,7 +204,6 @@ const float x = 600.0f, y = 512.0f;
 	g_GUI.Draw();
 #endif
 
-
 	// restore
 	glMatrixMode(GL_PROJECTION);
 	glPopMatrix();
@@ -240,23 +233,24 @@ int main(int argc, char* argv[])
 		snprintf(buf, sizeof(buf), "SDL library initialization failed: %s\n", SDL_GetError());
 		display_startup_error(buf);
 	}
+	// Gee @ Janwas - I left his uncommented
 	atexit(SDL_Quit);
 
 	// preferred video mode = current desktop settings
 	// (command line params may override these)
-	get_cur_resolution(xres, yres);
+	get_cur_resolution(g_xres, g_yres);
 
 	for(int a = 1; a < argc; a++)
 		if(!strncmp(argv[a], "xres", 4))
-			xres = atoi(argv[a]+4);
+			g_xres = atoi(argv[a]+4);
 		else if(!strncmp(argv[a], "yres", 4))
-			yres = atoi(argv[a]+4);
+			g_yres = atoi(argv[a]+4);
 		// TODO: other command line options
 
-	if(set_vmode(xres, yres, 32) < 0)
+	if(set_vmode(g_xres, g_yres, 32) < 0)
 	{
 		char buf[1000];
-		snprintf(buf, sizeof(buf), "could not set %dx%d graphics mode: %s\n", xres, yres, SDL_GetError());
+		snprintf(buf, sizeof(buf), "could not set %dx%d graphics mode: %s\n", g_xres, g_yres, SDL_GetError());
 		display_startup_error(buf);
 	}
 
@@ -271,16 +265,16 @@ glEnable (GL_DEPTH_TEST);
 
 	new CConfig;
 
-// TODO: all loading should go through the VFS; for now, we allow normal access
-// this has to come before VFS init, as it changes the current dir
+	vfs_set_root(argv[0], "data");
+
+// Gee @ Janwas - I've moved this down here now, so the GUI data will be placed in the correct place
+//  it works perfectly btw.
 #ifndef NO_GUI
 	new CGUI; // we should have a place for all singleton news
 	g_GUI.Initialize();
-	g_GUI.LoadXMLFile("hello.xml");
+	g_GUI.LoadXMLFile("gui/hello.xml");
 	//g_GUI.LoadXMLFile("sprite1.xml");
 #endif
-
-	vfs_set_root(argv[0], "data");
 
 //	tex = tex_load("0adlogo2.bmp");
 //	tex_upload(tex);
@@ -292,6 +286,10 @@ glEnable (GL_DEPTH_TEST);
 
 terr_init();
 
+// Gee @ Janwas - Added the gui_handler
+#ifndef NO_GUI
+	in_add_handler(gui_handler);
+#endif
 in_add_handler(handler);
 in_add_handler(terr_handler);
 
