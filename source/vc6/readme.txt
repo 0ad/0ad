@@ -15,7 +15,7 @@ TODO:
 OR
 - install Xerces:
   download Xerces binary from http://xml.apache.org/xerces-c/download.cgi ;
-  put the DLL in binaries\, add the include dir to the compiler's include path
+  put the DLL in binaries\, put include\ contents into compiler dir
 
 
 NOTE: important workspace settings (already set)
