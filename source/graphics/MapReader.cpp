@@ -149,7 +149,7 @@ void CMapReader::ApplyData(CFileUnpacker& unpacker, CTerrain *pTerrain, CUnitMan
 		CObjectEntry* objentry=m_ObjectTypes[m_Objects[i].m_ObjectIndex];
 		if (objentry && objentry->m_Model) {
 			// Hijack the standard actor instantiation for actors that correspond to entities.
-			// Not an ideal solution; we'll have to figure out a map format that can define entities seperately or somesuch.
+			// Not an ideal solution; we'll have to figure out a map format that can define entities separately or somesuch.
 
 			CBaseEntity* templateObject = g_EntityTemplateCollection.getTemplateByActor( objentry );
 			
