@@ -258,13 +258,8 @@ void InitScene ()
 
 void InitResources()
 {
-#ifndef _WIN32
-	g_TexMan.AddTextureType("grass");
-	g_TexMan.AddTexture("Base1.tga", 0);
-#else
 	g_TexMan.LoadTerrainTextures();
 	g_ObjMan.LoadObjects();
-#endif
 
 	const char* fns[CRenderer::NumAlphaMaps] = {
 		"art/textures/terrain/alphamaps/special/blendcircle.png",
