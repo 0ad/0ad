@@ -22,6 +22,8 @@
 #include "Patch.h"
 #include "Vector3D.h"
 
+class CLightEnv;
+
 extern bool g_HillShading;
 
 class CTerrain
@@ -30,7 +32,8 @@ class CTerrain
 		CTerrain ();
 		~CTerrain ();
 
-		bool Initalize (char *filename);
+		bool Load(char *filename);
+		bool InitFromHeightmap(const u8* data);
 
 //	protected:
 		//the patches currently loaded
@@ -39,7 +42,8 @@ class CTerrain
 
 
 //	protected:
-		void CalcLighting();
+		void CalcNormals();
+		void CalcLighting(const CLightEnv& env);
 		void SetNeighbors();
 };
 
