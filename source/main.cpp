@@ -601,7 +601,7 @@ static void LoadGlobals()
 		val->GetBool(g_NoGLVBO);
 	if ((val=g_ConfigDB.GetValue(CFG_USER, "shadows")))
 		val->GetBool(g_Shadows);
-		
+
 	LOG(NORMAL, LOG_CATEGORY, "g_x/yres is %dx%d", g_xres, g_yres);
 	LOG(NORMAL, LOG_CATEGORY, "Active profile is %s", g_ActiveProfile.c_str());
 }
@@ -1211,9 +1211,9 @@ static void Frame()
 // Choose when to override the standard exception handling behaviour
 // (opening the debugger when available, or crashing when not) with
 // code that generates a crash log/dump.
-//#if defined(_WIN32) && ( defined(NDEBUG) || defined(TESTING) )
-// # define CUSTOM_EXCEPTION_HANDLER
-// #endif
+#if defined(_WIN32) && ( defined(NDEBUG) || defined(TESTING) )
+# define CUSTOM_EXCEPTION_HANDLER
+#endif
 
 #ifdef CUSTOM_EXCEPTION_HANDLER
 #include <excpt.h>
@@ -1230,8 +1230,11 @@ int main(int argc, char* argv[])
 		MICROLOG(L"Init");
 		Init(argc, argv);
 
+		// Do some limited tests to ensure things aren't broken
+#ifndef NDEBUG
 		extern void PerformTests();
 		PerformTests();
+#endif
 
 		while(!quit)
 		{
