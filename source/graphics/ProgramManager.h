@@ -1,16 +1,17 @@
-#ifndef __H_SHADERMANAGER_H__
-#define __H_SHADERMANAGER_H__
-
-#if _MSC_VER < 1300
-#   include <map>
-#   define hash_map map
-#else
-#   include <hash_map>
-#endif
+#ifndef __H_PROGRAMMANAGER_H__
+#define __H_PROGRAMMANAGER_H__
 
 #include <string>
 #include "Singleton.h"
 #include "renderer/VertexProgram.h"
+
+#if (_MSC_VER < 1300) || (_MSC_VER > 1310)
+#   include <map>
+typedef std::map<std::string, CVertexProgram *> pp_map;
+#else
+#   include <hash_map>
+typedef std::hash_map<std::string, CVertexProgram *> pp_map;
+#endif
 
 #define g_ProgramManager CProgramManager::GetSingleton()
 
@@ -32,7 +33,7 @@ private:
 #ifdef BUILD_CG
     void FindPPVersion();
 #endif
-    std::hash_map<std::string, CVertexProgram*> m_VertexProgs;
+    pp_map m_VertexProgs;
 #ifdef BUILD_CG
     CGcontext m_Context;
     CGprofile m_VPProfile;

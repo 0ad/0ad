@@ -21,7 +21,7 @@ CProgramManager::~CProgramManager()
 CVertexProgram *CProgramManager::FindVertexProgram(const char *file)
 {
     CVertexProgram *prog = NULL;
-    std::hash_map<std::string, CVertexProgram *>::iterator iter;
+    pp_map::iterator iter;
 
     if((iter = m_VertexProgs.find(std::string(file))) != m_VertexProgs.end())
         return (CVertexProgram *)(*iter).second;
