@@ -31,6 +31,8 @@
 #define _UINTPTR_T_DEFINED
 #define uintptr_t u32
 #endif	// _UINTPTR_T_DEFINED
+#else
+#include <stdint.h>
 #endif	// _MSC_VER
 
 

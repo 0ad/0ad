@@ -37,8 +37,8 @@ typedef unsigned short wchar_t;	// for glu.h
 
 // if gl.h provides real prototypes for 1.2 / 1.3 functions,
 // exclude the corresponding function pointers in glext_funcs.h
-#ifdef GL_VERSION_1_2_1
-#define REAL_GL_1_2_1
+#ifdef GL_VERSION_1_2
+#define REAL_GL_1_2
 #endif
 #ifdef GL_VERSION_1_3
 #define REAL_GL_1_3

@@ -440,7 +440,7 @@ int vfs_finish_read(const u32 slot, void*& p, size_t& size)
 
 	s->tag = 0;		// free this slot
 
-	p = cb->aio_buf;
+	p = (void *)cb->aio_buf;
 	size = bytes_read;
 
 	return (bytes_read > 0)? 0 : -1;

@@ -1,6 +1,6 @@
 // were these defined as real functions in gl.h already?
 
-#ifndef REAL_GL_1_2_1
+#ifndef REAL_GL_1_2
 FUNC(void, glMultiTexCoord2f, (int, float, float))
 #endif
 
