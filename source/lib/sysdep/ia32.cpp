@@ -262,11 +262,11 @@ void ia32_get_cpu_info()
 			memmove(cpu_type+10, cpu_type+14, 34);
 
 		// remove 2x (R) and CPU freq from P4 string
-		float a;
+		float freq;
 			// the indicated frequency isn't necessarily correct - the CPU may be
 			// overclocked. need to pass a variable though, since scanf returns
 			// the number of fields actually stored.
-		if(sscanf(cpu_type, " Intel(R) Pentium(R) 4 CPU %fGHz", &a) == 1)
+		if(sscanf(cpu_type, " Intel(R) Pentium(R) 4 CPU %fGHz", &freq) == 1)
 			strcpy(cpu_type, "Intel Pentium 4");
 	}
 
@@ -335,7 +335,6 @@ again:
 		}
 
 		std::sort(samples.begin(), samples.end());
-//		double median = samples[num_samples/2];
 
 		// median filter (remove upper and lower 25% and average the rest)
 		double sum = 0.0;
