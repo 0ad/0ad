@@ -12,17 +12,18 @@ CVFSFile::CVFSFile() : m_Handle(0) {}
 
 CVFSFile::~CVFSFile()
 {
-	// I hope this is the right way to delete the handle returned by
-	// vfs_load... C++ destructors would be far less ambiguous ;-)
 	if (m_Handle)
 		mem_free_h(m_Handle);
 }
 
-PSRETURN CVFSFile::Load(const char* filename, uint flags /* default 0 */)
+PSRETURN CVFSFile::Load(const char* filename, uint flags /* = 0 */)
 {
-	assert(!m_Handle && "Mustn't open files twice");
 	if (m_Handle)
-		throw PSERROR_CVFSFile_AlreadyLoaded();
+	{
+		// Load should never be called more than once, so complain
+		debug_warn("Mustn't open files twice");
+		return PSRETURN_CVFSFile_AlreadyLoaded;
+	}
 
 	m_Handle = vfs_load(filename, m_Buffer, m_BufferSize, flags);
 	if (m_Handle <= 0)
@@ -36,7 +37,7 @@ PSRETURN CVFSFile::Load(const char* filename, uint flags /* default 0 */)
 
 const void* CVFSFile::GetBuffer() const
 {
-	// Die in a very obvious way, to avoid problems caused by
+	// Die in a very obvious way, to avoid subtle problems caused by
 	// accidentally forgetting to check that the open succeeded
 	if (!m_Handle)
 	{
@@ -54,13 +55,5 @@ const size_t CVFSFile::GetBufferSize() const
 
 CStr CVFSFile::GetAsString() const
 {
-	// Die in a very obvious way, to avoid subtle problems caused by
-	// accidentally forgetting to check that the open succeeded
-	if (!m_Handle)
-	{
-		debug_warn("GetBuffer() called with no file loaded");
-		throw PSERROR_CVFSFile_InvalidBufferAccess();
-	}
-
-	return std::string((char*)m_Buffer, m_BufferSize);
+	return std::string((char*)GetBuffer(), GetBufferSize());
 }
