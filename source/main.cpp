@@ -13,48 +13,89 @@
 #include "res.h"
 #include "tex.h"
 #include "vfs.h"
+#include "ia32.h"
+
+///// janwas I added this
+#include "gui/GUI.h"
+/////
+
 
 u32 game_ticks;
 
 int xres = 800, yres = 600;
 
-u32 font;
-u32 tex;
+bool keys[256];
+
+#include <cmath>
 
 
-// error in SDL before OpenGL initialized;
-// display error message, and quit
-// TODO: localization
 
-enum SDLError
+static Handle font;
+static Handle tex;
+
+
+extern void terr_init();
+extern void terr_update();
+extern bool terr_handler(const SDL_Event& ev);
+
+
+static void write_sys_info()
 {
-	INIT,
-	VMODE
-};
+	get_gfx_card();
+
+	struct utsname un;
+	uname(&un);
+	freopen("stdout.txt", "w", stdout);
+	// .. OS
+	printf("%s %s (%s)\n", un.sysname, un.release, un.version);
+	// .. CPU
+	printf("%s, %s", un.machine, cpu_type);
+	if(cpu_freq != 0.0f)
+	{
+		if(cpu_freq < 1e9)
+			printf(", %.2f MHz\n", cpu_freq*1e-6);
+		else
+			printf(", %.2f GHz\n", cpu_freq*1e-9);
+	}
+	else
+		printf("\n");
+	// .. memory
+	printf("%lu MB RAM; %lu MB free\n", tot_mem/MB, avl_mem/MB);
+	// .. graphics card
+	printf("%s\n", gfx_card);
+	// .. network name / ips
+	char hostname[100];	// possibly nodename != hostname
+	gethostname(hostname, sizeof(hostname));
+	printf("%s\n", hostname);
+	hostent* h = gethostbyname(hostname);
+	if(h)
+	{
+		struct in_addr** ips = (struct in_addr**)h->h_addr_list;
+		for(int i = 0; ips && ips[i]; i++)
+			printf("%s ", inet_ntoa(*ips[i]));
+		printf("\n");
+	}
+	fflush(stdout);
+}
+
 
 #ifdef _WIN32
-extern "C" {
 #define MB_ICONEXCLAMATION 0x30
-__declspec(dllimport) unsigned long __stdcall MessageBoxA(void*, const char*, const char*, unsigned int);
-}
+IMP(u32, MessageBoxA, (void*, const char*, const char*, unsigned int))
 #endif
 
-static void sdl_error(SDLError err)
+// error before GUI is initialized: display message, and quit
+// TODO: localization
+static void display_startup_error(const char* msg)
 {
-	char msg[1000] = "Problem while setting up OpenGL.\n"\
-	                 "Details: ";
-	char* pos = msg + strlen(msg);
-	int rem = sizeof(msg)-1 - (pos-msg);	// space remaining in buffer
-
-	if(err == INIT)
-		snprintf(pos, rem, "SDL library initialization failed (%s)\n", SDL_GetError());
-	else if(err == VMODE)
-		snprintf(pos, rem, "could not set %dx%d graphics mode (%s)\n", xres, yres, SDL_GetError());
+	const char* caption = "0ad startup problem";
 
 	fprintf(stderr, msg);
 
+	write_sys_info();
+
 #ifdef _WIN32
-	MessageBoxA(0, msg, "0ad", MB_ICONEXCLAMATION);
+	MessageBoxA(0, msg, caption, MB_ICONEXCLAMATION);
 #endif
 
 	exit(1);
@@ -77,7 +118,6 @@ static int set_vmode(int w, int h, int bpp)
 }
 
 
-static bool keys[256];
 
 static bool handler(const SDL_Event& ev)
 {
@@ -108,7 +148,11 @@ static bool handler(const SDL_Event& ev)
 static void render()
 {
 // TODO: not needed with 100% draw coverage
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+
+terr_update();
+
+glColor3f(1.0f, 1.0f, 1.0f);
 
 	// overlay mode
 	glPushAttrib(GL_ENABLE_BIT);
@@ -125,7 +169,7 @@ static void render()
 	glPushMatrix();
 
 	// logo
-	glLoadIdentity();
+/*	glLoadIdentity();
 	glTranslatef(50, 100, 0);
 	tex_bind(tex);
 	glBegin(GL_QUADS);
@@ -137,12 +181,28 @@ const float x = 600.0f, y = 512.0f;
 	glTexCoord2f(u, v); glVertex2f(x, y);
 	glTexCoord2f(0, v); glVertex2f(0, y);
 	glEnd();
-
+*/
+/*	glDisable(GL_TEXTURE_2D);
+	glLoadIdentity();
+	glBegin(GL_QUADS);
+		glVertex2i(0, 0);
+		glVertex2i(111, 0);
+		glVertex2i(111, 111);
+		glVertex2i(0, 111);
+	glEnd();
+*/
 	// FPS counter
 	glLoadIdentity();
 	glTranslatef(10, 30, 0);
 	font_bind(font);
+
 	glprintf("%d FPS", fps);
+
+	////// janwas
+	glLoadIdentity();
+	g_GUI.Draw();
+	//////
+
 
 	// restore
 	glMatrixMode(GL_PROJECTION);
@@ -156,9 +216,10 @@ const float x = 600.0f, y = 512.0f;
 static void do_tick()
 {
 }
+ 
 
 
-void main(int argc, char* argv[])
+int main(int argc, char* argv[])
 {
 	// set 24 bit (float) FPU precision for faster divides / sqrts
 #ifdef _M_IX86
@@ -167,44 +228,20 @@ void main(int argc, char* argv[])
 
 	detect();
 
-	// output system information
-	struct utsname un;
-	uname(&un);
-	freopen("stdout.txt", "w", stdout);
-	// .. OS
-	printf("%s %s (%s)\n", un.sysname, un.release, un.version);
-	// .. CPU
-	printf("%s, %s", un.machine, cpu_type);
-	if(cpu_freq != 0.0f)
-	{
-		if(cpu_freq < 1e9)
-			printf(", %.2f MHz\n", cpu_freq*1e-6);
-		else
-			printf(", %.2f GHz\n", cpu_freq*1e-9);
-	}
-	else
-		printf("\n");
-	// .. memory
-	printf("%lu MB RAM; %lu MB free\n", tot_mem/MB, avl_mem/MB);
-	// .. graphics card
-	printf("%s\n", gfx_card);
-	// .. network name / ips
-	printf("%s\n", un.nodename);
-	char hostname[100];	// possibly nodename != hostname
-	gethostname(hostname, sizeof(hostname));
-	hostent* h = gethostbyname(hostname);
-	if(h)
-	{
-		struct in_addr** ips = (struct in_addr**)h->h_addr_list;
-		for(int i = 0; ips && ips[i]; i++)
-			printf("%s ", inet_ntoa(*ips[i]));
-		printf("\n");
-	}
-	fflush(stdout);
+	///// janwas: place this wherever
+	g_GUI.Initialize();
+
+	g_GUI.LoadXMLFile("hello.xml");
+	//g_GUI.LoadXMLFile("sprite1.xml");
+	/////
 
 	// init SDL
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
-		sdl_error(INIT);
+	{
+		char buf[1000];
+		snprintf(buf, sizeof(buf), "SDL library initialization failed: %s\n", SDL_GetError());
+		display_startup_error(buf);
+	}
 	atexit(SDL_Quit);
 
 	// preferred video mode = current desktop settings
@@ -219,27 +256,35 @@ void main(int argc, char* argv[])
 		// TODO: other command line options
 
 	if(set_vmode(xres, yres, 32) < 0)
-		sdl_error(VMODE);
+	{
+		char buf[1000];
+		snprintf(buf, sizeof(buf), "could not set %dx%d graphics mode: %s\n", xres, yres, SDL_GetError());
+		display_startup_error(buf);
+	}
 
-	// call again - needs OpenGL to be initialized on non-Win32 systems
-#ifndef _WIN32
-	get_gfx_card();
-#endif
+	write_sys_info();
+
+if(!oglExtAvail("GL_ARB_multitexture") || !oglExtAvail("GL_ARB_texture_env_combine"))
+	exit(1);
+glEnable (GL_CULL_FACE);
+glEnable (GL_DEPTH_TEST);
 
 	glEnable(GL_TEXTURE_2D);
 
-	vfs_add_search_path("data");
-	tex = tex_load("0adlogo1.bmp");
-	tex_upload(tex);
+	vfs_set_root(argv[0], "data");
+//	tex = tex_load("0adlogo2.bmp");
+//	tex_upload(tex);
 	font = font_load("verdana.fnt");
 
+terr_init();
 
 in_add_handler(handler);
-
+in_add_handler(terr_handler);
 
 // fixed timestep main loop
 	const double TICK_TIME = 30e-3;	// [s]
 	double time0 = get_time();
+
 	for(;;)
 	{
 // TODO: limiter in case simulation can't keep up?
@@ -257,4 +302,10 @@ in_add_handler(handler);
 
 		calc_fps();
 	}
+
+	///// Janwas place this wherever
+	g_GUI.Destroy();
+	/////
+
+	return 0;
 }
