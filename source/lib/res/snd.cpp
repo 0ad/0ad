@@ -1098,17 +1098,14 @@ enum VSrcFlags
 	// SndData has reported EOF. will close down after last buffer completes.
 	VS_EOF       = 1,
 
-	// indicates the VSrc is being closed. 
-	VS_CLOSING   = 2,
-
 	// tell SndData to open the sound as a stream.
 	// require caller to pass this explicitly, so they're aware
 	// of the limitation that there can only be 1 instance of those.
-	VS_IS_STREAM = 4,
+	VS_IS_STREAM = 2,
 
 	// fn passed to VSrc_reload is the actual sound file name,
 	// not a definition file.
-	VS_NO_DEF    = 8
+	VS_NO_DEF    = 4
 };
 
 struct VSrc
@@ -1255,14 +1252,12 @@ static void vsrc_latch(VSrc* vs)
 }
 
 
-static int vsrc_update(VSrc* vs)
+// return number removed.
+static int vsrc_deque_finished_bufs(VSrc* vs)
 {
-	int num_processed, num_queued;
+	int num_processed;
 	alGetSourcei(vs->al_src, AL_BUFFERS_PROCESSED, &num_processed);
-	alGetSourcei(vs->al_src, AL_BUFFERS_QUEUED, &num_queued);
-	al_check("vsrc_update alGetSourcei");
 
-	// remove already processed buffers from queue.
 	for(int i = 0; i < num_processed; i++)
 	{
 		ALuint al_buf;
@@ -1270,9 +1265,18 @@ static int vsrc_update(VSrc* vs)
 		snd_data_buf_free(vs->hsd, al_buf);
 	}
 
-	// closing the source; we just wanted to deque buffers - bail.
-	if(vs->flags & VS_CLOSING)
-		return 0;
+	al_check("vsrc_deque_finished_bufs");
+	return num_processed;
+}
+
+
+static int vsrc_update(VSrc* vs)
+{
+	int num_queued;
+	alGetSourcei(vs->al_src, AL_BUFFERS_QUEUED, &num_queued);
+	al_check("vsrc_update alGetSourcei");
+
+	int num_processed = vsrc_deque_finished_bufs(vs);
 
 	if(vs->flags & VS_EOF)
 	{
@@ -1360,11 +1364,10 @@ static int vsrc_reclaim(VSrc* vs)
 
 	alSourceStop(vs->al_src);
 	al_check("src_stop");
-	// (note: all queued buffers are now considered 'processed')
+		// (note: all queued buffers are now considered 'processed')
 
-	// deque and free all buffers in queue
-	// (there may be some left if we were closed abruptly).
-	vsrc_update(vs);
+	// deque and free remaining buffers (if sound was closed abruptly).
+	vsrc_deque_finished_bufs(vs);
 
 	al_src_free(vs->al_src);
 	return 0;
@@ -1485,7 +1488,7 @@ int snd_free(Handle& hvs)
 // or in the case of looped sounds, later.
 // priority (min 0 .. max 1, default 0) indicates which sounds are
 // considered more important; this is attenuated by distance to the
-// listener (see snd_update)
+// listener (see snd_update).
 int snd_play(Handle hs, float static_pri)
 {
 	H_DEREF(hs, VSrc, vs);

@@ -41,15 +41,22 @@ extern const char* snd_dev_next();
 // sound system setup
 //
 
-// tell OpenAL to use the specified device (0 for default) in future.
-// if OpenAL hasn't been initialized yet, we only remember the device
-// name, which will be set when oal_init is later called; otherwise,
-// OpenAL is reinitialized to use the desired device.
-// (this is to speed up the common case of retrieving a device name from
-// config files and setting it; OpenAL doesn't have to be loaded until
-// sounds are actually played).
-// return 0 to indicate success, or the status returned while initializing
-// OpenAL.
+// tell OpenAL to use the specified device in future.
+// name = 0 reverts to OpenAL's default choice, which will also
+// be used if this routine is never called.
+//
+// the device name is typically taken from a config file at init-time;
+// the snd_dev* enumeration routines below are used to present a list
+// of choices to the user in the options screen.
+//
+// if OpenAL hasn't yet been initialized (i.e. no sounds have been opened),
+//   this just stores the device name for use when init does occur.
+//   note: we can't check now if it's invalid (if so, init will fail).
+// otherwise, we shut OpenAL down (thereby stopping all sounds) and
+// re-initialize with the new device. that's fairly time-consuming,
+// so preferably call this routine before sounds are loaded.
+//
+// return 0 on success, or the status returned by OpenAL re-init.
 extern int snd_dev_set(const char* alc_new_dev_name);
 
 // set maximum number of voices to play simultaneously,
@@ -72,18 +79,18 @@ extern int snd_set_master_gain(float gain);
 // 
 // is_stream (default false) forces the sound to be opened as a stream:
 // opening is faster, it won't be kept in memory, but only one instance
-// can be open at a time.
+// of the sound file, and 2 streams total, are allowed at a time.
 extern Handle snd_open_def(const char* def_fn, bool stream = false);
 
-// open and return a handle to the sound <snd_fn>.
+// open and return a handle to the sound file <snd_fn>.
 // gain is set to the default, and may be changed via snd_set_gain.
 //
 // is_stream (default false) forces the sound to be opened as a stream:
 // opening is faster, it won't be kept in memory, but only one instance
-// can be open at a time.
+// of the sound file, and 2 streams total, are allowed at a time.
 extern Handle snd_open(const char* snd_fn, bool stream = false);
 
-// close the sound <hvs> and set hvs to 0. if it was playing,
+// close the sound <hs> and set hs to 0. if it was playing,
 // it will be stopped. sounds are closed automatically when done
 // playing; this is provided for completeness only.
 extern int snd_free(Handle& hs);
@@ -94,7 +101,7 @@ extern int snd_free(Handle& hs);
 // or in the case of looped sounds, later.
 // priority (min 0 .. max 1, default 0) indicates which sounds are
 // considered more important; this is attenuated by distance to the
-// listener (see snd_update)
+// listener (see snd_update).
 extern int snd_play(Handle hs, float priority = 0.0f);
 
 // change 3d position of the sound source.
