@@ -143,7 +143,7 @@ _bool CParserValue::GetDouble(_double &ret)
 		// Check if a digit is found
 		if (m_String[i] >= '0' && m_String[i] <= '9')
 		{
-			TempRet += (m_String[i]-'0')*pow(10,(DecimalPos-i-1));
+			TempRet += (m_String[i]-'0')*pow(double(10),(DecimalPos-i-1));
 		}
 		else
 		{
@@ -162,7 +162,7 @@ _bool CParserValue::GetDouble(_double &ret)
 		// Check if a digit is found
 		if (m_String[i] >= '0' && m_String[i] <= '9')
 		{
-			TempRet += (m_String[i]-'0')*pow(10,DecimalPos-i);
+			TempRet += (m_String[i]-'0')*pow(double(10),DecimalPos-i);
 		}
 		// It will accept and ending f, like 1.0f
 		else if (!(i==Size-1 && m_String[i] == 'f'))

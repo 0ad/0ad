@@ -342,13 +342,13 @@ _bool CStr::operator>=(const CStr &Str) const
 	return (m_String >= Str.m_String);
 }
 
-CStr &CStr::operator+=(CStr &Str)
+CStr &CStr::operator+=(const CStr &Str)
 {
 	m_String += Str.m_String;
 	return *this;
 }
 
-CStr CStr::operator+(CStr &Str)
+CStr CStr::operator+(const CStr &Str)
 {
 	CStr NewStr(*this);
 	NewStr.m_String += Str.m_String;

@@ -38,6 +38,7 @@ More Info:
 #include <iostream>
 
 #include "posix.h"
+#include "misc.h"
 
 #include <cstdlib>
 using namespace std;
@@ -161,8 +162,8 @@ public:
 	_bool operator<=(const CStr &Str) const;
 	_bool operator>(const CStr &Str) const;
 	_bool operator>=(const CStr &Str) const;
-	CStr &operator+=(CStr &Str);
-	CStr  operator+(CStr &Str);
+	CStr &operator+=(const CStr &Str);
+	CStr  operator+(const CStr &Str);
 	operator const TCHAR*();
 	operator const TCHAR*() const; // Gee, I've added this, Maybe the one above should be removed?
 	TCHAR &operator[](_int n);

@@ -1,6 +1,7 @@
 // last modified Thursday, May 08, 2003
 
 #include "LogFile.h"
+#include "misc.h"
 
 //-------------------------------------------------
 //Add a hyperlink to Link.
@@ -328,7 +329,7 @@ string CLogFile::Line(const PS_DISPLAY_SETTINGS &options)
 		lineText = options.file;
 
 		char temp[8];
-		itoa(options.line, temp, 10);
+		_itoa(options.line, temp, 10);
 		lineText += ", Line ";
 		lineText += temp;
 		lineText += ": ";
