@@ -176,7 +176,7 @@ void InitScene ()
 		while (p16p < p16+(w*h))
 			*p16p++ = (*p++) << 8;
 
-		g_Terrain.Resize(20);
+		g_Terrain.Resize(w/PATCH_SIZE);
 		g_Terrain.SetHeightMap(p16);
 
 		delete[] p16;
@@ -201,9 +201,9 @@ void InitScene ()
 			
 			CPatch* patch=g_Terrain.GetPatch(pi,pj);
 			
-			for (int j=0;j<16;j++) {
-				for (int i=0;i<16;i++) {
-					patch->m_MiniPatches[j][i].Tex1=texture ? texture->m_Handle :0;
+			for (int j=0;j<PATCH_SIZE;j++) {
+				for (int i=0;i<PATCH_SIZE;i++) {
+					patch->m_MiniPatches[j][i].Tex1=texture ? texture->GetHandle() :0;
 				}
 			}
 		}
