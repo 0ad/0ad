@@ -10,7 +10,9 @@
 #elif defined(linux) || defined(__linux) || defined(__linux__)
 # define OS_LINUX
 # define OS_UNIX
-# define XP_UNIX
+# ifndef XP_UNIX
+#  define XP_UNIX
+# endif
 // Mac OS X
 #elif defined(MAC_OS_X
 # define OS_MACOSX
