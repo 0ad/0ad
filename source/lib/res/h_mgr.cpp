@@ -246,6 +246,11 @@ static void cleanup(void)
 			// somewhat messy, but this only happens on cleanup.
 			// better than an additional h_free(i32 idx) version though.
 			Handle h = handle(i, hd->tag);
+
+			// HACK: must actually free the handles, regardless
+			// of current refcount. so, quick'n dirty solution: set it to 0.
+			hd->refs = 0;
+
 			h_free(h, hd->type);
 		}
 	}
