@@ -350,7 +350,6 @@ static int tree_lookup(const char* path, const FileLoc** const loc = 0, Dir** co
 
 	Dir* cur_dir = &vfs_root;
 	const char* cur_component = buf;
-	bool is_last_component = false;
 
 	// subdirectory traverse logic
 	// valid:
@@ -373,29 +372,26 @@ static int tree_lookup(const char* path, const FileLoc** const loc = 0, Dir** co
 		char* slash = strchr(cur_component, '/');
 		if(slash)
 			*slash = 0;
-		// allow root dir ("") and trailing '/' if looking up a dir
+
+		// early outs:
+		// .. last component and it's a filename
+		if(slash == 0 && loc != 0)
+			break;
+		// .. root dir ("") or trailing '/' in dir name
 		if(*cur_component == '\0' && loc == 0)
 			break;
-		is_last_component = (slash == 0);
 
 		// create <cur_component> subdir (no-op if it already exists)
 		if(create_missing_components)
 			cur_dir->add_subdir(cur_component);
 
 		// switch to <cur_component>
-		Dir* subdir = cur_dir->find_subdir(cur_component);
-		if(!subdir)
-		{
-			// this last component is a filename.
-			if(is_last_component && loc != 0)
-				break;
-			// otherwise, we had an (invalid) subdir name - fail.
+		cur_dir = cur_dir->find_subdir(cur_component);
+		if(!cur_dir)
 			return -ENOENT;
-		}
-		cur_dir = subdir; // don't assign if invalid - need cur_dir below.
 
 		// next component
-		if(is_last_component)
+		if(!slash)	// done, no more components left
 			break;
 		cur_component = slash+1;
 	}
