@@ -1,4 +1,4 @@
-#include "SocketBase.h"
+#include "Network.h"
 #include "NetworkInternal.h"
 
 #include "lib.h"
@@ -13,8 +13,7 @@ DEFINE_ERROR(CONNECT_TIMEOUT, "The connection attempt timed out");
 DEFINE_ERROR(CONNECT_REFUSED, "The connection attempt was refused");
 DEFINE_ERROR(NO_ROUTE_TO_HOST, "No route to host");
 DEFINE_ERROR(CONNECTION_BROKEN, "The connection has been closed");
-DEFINE_ERROR(CONNECT_IN_PROGRESS, "The connection attempt has started, but is not yet complete");
-// The conditions that may cause this errors are at least as obscure as the message
+DEFINE_ERROR(CONNECT_IN_PROGRESS, "The connect attempt has started, but is not yet complete");
 DEFINE_ERROR(PORT_IN_USE, "The port is already in use by another process");
 DEFINE_ERROR(INVALID_PORT, "The port specified is either invalid, or forbidden by system or firewall policy");
 DEFINE_ERROR(INVALID_PROTOCOL, "The socket type or protocol is not supported by the operating system. Make sure that the TCP/IP protocol is installed and activated");
@@ -40,7 +39,7 @@ PS_RESULT GetPS_RESULT(int error)
 	}
 }
 
-SocketAddress::SocketAddress(int port, SocketProtocol proto)
+CSocketAddress::CSocketAddress(int port, ESocketProtocol proto)
 {
 	memset(&m_Union, 0, sizeof(m_Union));
 	switch (proto)
@@ -58,7 +57,7 @@ SocketAddress::SocketAddress(int port, SocketProtocol proto)
 	}
 }
 
-PS_RESULT SocketAddress::Resolve(const char *name, int port, SocketAddress &addr)
+PS_RESULT CSocketAddress::Resolve(const char *name, int port, CSocketAddress &addr)
 {
 	if ((getaddrinfo) != NULL)
 	{
@@ -104,7 +103,7 @@ PS_RESULT SocketAddress::Resolve(const char *name, int port, SocketAddress &addr
 	}
 }
 
-CStr SocketAddress::GetString() const
+CStr CSocketAddress::GetString() const
 {
 	char convBuf[NI_MAXHOST];
 	if ((getnameinfo) != NULL)
@@ -133,7 +132,7 @@ CStr SocketAddress::GetString() const
 		return CStr();
 }
 
-int SocketAddress::GetPort() const
+int CSocketAddress::GetPort() const
 {
 	switch (m_Union.m_Family)
 	{
@@ -190,7 +189,7 @@ void *WaitLoopThreadMain(void *)
 	return NULL;
 }
 
-PS_RESULT CSocketBase::Initialize(SocketProtocol proto)
+PS_RESULT CSocketBase::Initialize(ESocketProtocol proto)
 {
 	ONCE(
 		pthread_create(&g_SocketSetInternal.m_Thread, NULL, WaitLoopThreadMain, NULL);
@@ -213,12 +212,18 @@ PS_RESULT CSocketBase::Initialize(SocketProtocol proto)
 	return PS_OK;
 }
 
+void CSocketBase::Close()
+{
+	shutdown(m_pInternal->m_fd, SHUT_WR);
+	m_State=SS_CLOSED_LOCALLY;
+}
+
 void CSocketBase::Destroy()
 {
 	if (m_pInternal->m_fd == -1)
 		m_State=SS_UNCONNECTED;
 	// Disconnect the socket, if it is still connected
-	if (m_State == SS_CONNECTED)
+	if (m_State == SS_CONNECTED || m_State == SS_CLOSED_LOCALLY)
 	{
 		// This makes the other end receive a RST, but since
 		// we've had no chance to close cleanly and the socket must
@@ -228,6 +233,7 @@ void CSocketBase::Destroy()
 	}
 	// Destroy the socket
 	closesocket(m_pInternal->m_fd);
+	m_pInternal->m_fd=-1;
 }
 
 void CSocketBase::SetNonBlocking(bool nonblocking)
@@ -309,7 +315,8 @@ PS_RESULT CSocketBase::Write(void *buf, uint len, uint *bytesWritten)
 	if (res < 0)
 	{
 		*bytesWritten=0;
-		switch (Network_LastError)
+		int err=Network_LastError;
+		switch (err)
 		{
 		case EWOULDBLOCK:
 			return PS_OK;
@@ -322,8 +329,8 @@ PS_RESULT CSocketBase::Write(void *buf, uint len, uint *bytesWritten)
 		case ETIMEDOUT:
 		case EHOSTUNREACH:*/
 		default:
-			Network_GetErrorString(Network_LastError, errbuf, sizeof(errbuf));
-			printf("Write error %s [%d]\n", errbuf, Network_LastError);
+			Network_GetErrorString(err, errbuf, sizeof(errbuf));
+			printf("Write error %s [%d]\n", errbuf, err);
 			m_State=SS_UNCONNECTED;
 			return CONNECTION_BROKEN;
 		}
@@ -333,7 +340,7 @@ PS_RESULT CSocketBase::Write(void *buf, uint len, uint *bytesWritten)
 	return PS_OK;
 }
 
-PS_RESULT CSocketBase::Connect(const SocketAddress &addr)
+PS_RESULT CSocketBase::Connect(const CSocketAddress &addr)
 {
 	int res=connect(m_pInternal->m_fd, (struct sockaddr *)&addr, sizeof(addr));
 
@@ -357,7 +364,7 @@ PS_RESULT CSocketBase::Connect(const SocketAddress &addr)
 	return m_Error;
 }
 
-PS_RESULT CSocketBase::Bind(const SocketAddress &address)
+PS_RESULT CSocketBase::Bind(const CSocketAddress &address)
 {
 	char errBuf[256];
 	int res;
@@ -404,7 +411,7 @@ PS_RESULT CSocketBase::Bind(const SocketAddress &address)
 	return PS_OK;
 }
 
-PS_RESULT CSocketBase::PreAccept(SocketAddress &addr)
+PS_RESULT CSocketBase::PreAccept(CSocketAddress &addr)
 {
 	socklen_t addrLen=sizeof(addr.m_Union);
 	int fd=accept(m_pInternal->m_fd, (struct sockaddr *)&addr.m_Union, &addrLen);
@@ -432,7 +439,7 @@ CSocketInternal *CSocketBase::Accept()
 void CSocketBase::Reject()
 {
 	shutdown(m_pInternal->m_AcceptFd, SHUT_RDWR);
-	close(m_pInternal->m_AcceptFd);
+	closesocket(m_pInternal->m_AcceptFd);
 }
 
 // UNIX select loop
@@ -700,6 +707,7 @@ void WaitLoop_SocketUpdateProc(int fd, int error, uint event)
 	case FD_CLOSE:
 		// If FD_CLOSE and error, OnClose has already been called above
 		// with the appropriate PS_RESULT
+		pSock->m_State=SS_UNCONNECTED;
 		pSock->OnClose(PS_OK);
 		break;
 	}
@@ -715,7 +723,7 @@ LRESULT WINAPI WaitLoop_WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lP
 			int event=LOWORD(lParam);
 			int error=HIWORD(lParam);
 			
-			WaitLoop_SocketUpdateProc((int)wParam, error, event);
+			WaitLoop_SocketUpdateProc((int)wParam, error?error-WSABASEERR:0, event);
 			return FALSE;
 		}
 		default:

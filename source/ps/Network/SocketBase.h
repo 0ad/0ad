@@ -39,10 +39,12 @@ class CSocketInternal;
  */
 // Modifiers Note: Each value in the enum should correspond to a sockaddr_*
 // struct and a PF_* value
-enum SocketProtocol
+enum ESocketProtocol
 {
 	// This should be a value that's invalid for most socket functions, so that
 	// you don't accidentally use an UNSPEC SocketAddress
+	// PF_UNSPEC does not work, since it is accepted by many implementations as
+	// a "default" protocol family - whatever that may be
 	UNSPEC=((sa_family_t)-1),
 	IPv4=PF_INET,
 	IPv6=PF_INET6,
@@ -51,12 +53,12 @@ enum SocketProtocol
 
 /**
  * A protocol-independent representation of a socket address. All protocols
- * in the SocketProtocol enum should have a corresponding member in this union.
+ * in the ESocketProtocol enum should have a corresponding member in this union.
  */
 // Modifiers Note: Each member must contain a first field, compatible with the
-// sin_family field of sockaddr_in. The field contains the SocketProtocol value
+// sin_family field of sockaddr_in. The field contains the ESocketProtocol value
 // for the address, and it is returned by GetProtocol()
-struct SocketAddress
+struct CSocketAddress
 {
 	union
 	{
@@ -65,12 +67,12 @@ struct SocketAddress
 		sockaddr_in6 m_IPv6;
 	} m_Union;
 
-	inline SocketProtocol GetProtocol() const
+	inline ESocketProtocol GetProtocol() const
 	{
-		return (SocketProtocol)m_Union.m_Family;
+		return (ESocketProtocol)m_Union.m_Family;
 	}
 
-	inline SocketAddress()
+	inline CSocketAddress()
 	{
 		memset(&m_Union, 0, sizeof(m_Union));
 		m_Union.m_Family=UNSPEC;
@@ -83,7 +85,7 @@ struct SocketAddress
 	 * @param port The port number, in local byte order
 	 * @param proto The protocol to use; default IPv4
 	 */
-	explicit SocketAddress(int port, SocketProtocol proto=IPv4);
+	explicit CSocketAddress(int port, ESocketProtocol proto=IPv4);
 
 	/**
 	 * Create an address from a numerical IPv4 address and port, port in local
@@ -93,7 +95,7 @@ struct SocketAddress
 	 * @param address An IPv4 address as a byte array (in written order)
 	 * @param port A port number (0-65535) in local byte order.
 	 */
-	SocketAddress(u8 address[4], int port);
+	CSocketAddress(u8 address[4], int port);
 
 	/**
 	 * Resolve the name using the system name resolution service (i.e. DNS) and
@@ -110,7 +112,7 @@ struct SocketAddress
 	 * @retval PS_OK The hostname was successfully retrieved
 	 * @retval NO_SUCH_HOST The hostname was not found
 	 */
-	static PS_RESULT Resolve(const char *name, int port, SocketAddress &addr);
+	static PS_RESULT Resolve(const char *name, int port, CSocketAddress &addr);
 
 	/**
 	 * Returns the string representation of the address, i.e. the IP (v4 or v6)
@@ -127,11 +129,11 @@ struct SocketAddress
 };
 
 /**
- * An enumeration of the three socket states
+ * An enumeration of socket states
  *
  * @see CSocketBase::GetState()
  */
-enum SocketState
+enum ESocketState
 {
 	/**
 	 * The socket is unconnected. Use GetError() to see if it is due to a
@@ -150,7 +152,13 @@ enum SocketState
 	/**
 	 * The socket is connected. The error state will be set to PS_OK.
 	 */
-	SS_CONNECTED
+	SS_CONNECTED,
+	/**
+	 * The connection has been closed on this end, but the other end might have
+	 * sent data that we haven't received yet. The error state will be set to
+	 * PS_OK.
+	 */
+	SS_CLOSED_LOCALLY
 };
 
 /**
@@ -160,16 +168,16 @@ enum SocketState
  * classes
  *
  * Any CSocket subclass that can be Accept:ed by a CServerSocket should
- * provide a constructor that takes a CSocketInternal pointer, and follows
- * the semantics of the CSocket::CSocket(CSocketInternal *) constructor
+ * provide a constructor that takes a CSocketInternal pointer, and hands it to
+ * the base class constructor.
  */
 class CSocketBase
 {
 private:
 	CSocketInternal *m_pInternal;
-	SocketState m_State;
+	ESocketState m_State;
 	PS_RESULT m_Error;
-	SocketProtocol m_Proto;
+	ESocketProtocol m_Proto;
 	bool m_NonBlocking;
 
 	/**
@@ -220,7 +228,7 @@ protected:
 	/**
 	 * Initialize a CSocketBase from a CSocketInternal pointer. Use in OnAccept
 	 * callbacks to create an object of your subclass. This constructor should
-	 * be overloaded protected by any subclass that may be Accept:ed.
+	 * be overloaded by any subclass that may be Accept:ed.
 	 */
 	CSocketBase(CSocketInternal *pInt);
 	virtual ~CSocketBase();
@@ -276,7 +284,7 @@ public:
 	 * Returns the protocol set by Initialize. All SocketAddresses used with
 	 * the socket must have the same SocketProtocol
 	 */
-	inline SocketProtocol GetProtocol() const
+	inline ESocketProtocol GetProtocol() const
 	{ return m_Proto; }
 
 	/**
@@ -286,9 +294,19 @@ public:
 	void Destroy();
 
 	/**
+	 * Close the socket. No more data can be sent over the socket, but any data
+	 * pending from the remote host will still be received, and the OnRead
+	 * callback called (if the socket's op mask has the READ bit set). Note
+	 * that the socket isn't actually closed until the remote end calls
+	 * Close on the corresponding remote socket, upon which the OnClose
+	 * callback is called with a status code of PS_OK.
+	 */
+	void Close();
+
+	/**
 	 * Create the OS socket for the specified protocol type.
 	 */
-	PS_RESULT Initialize(SocketProtocol proto=IPv4);
+	PS_RESULT Initialize(ESocketProtocol proto=IPv4);
 
 	/**
 	 * Connect the socket to the specified address. The socket must be
@@ -297,7 +315,7 @@ public:
 	 * @param addr The address to connect to
 	 * @see SocketAddress::Resolve
 	 */
-	PS_RESULT Connect(const SocketAddress &addr);
+	PS_RESULT Connect(const CSocketAddress &addr);
 
 	/** @name Functions for Server Sockets */
 	//@{
@@ -310,7 +328,7 @@ public:
 	 * @param addr The address to bind to
 	 * @see SocketAddress::SocketAddress(int,SocketProtocol)
 	 */
-	PS_RESULT Bind(const SocketAddress &addr);
+	PS_RESULT Bind(const CSocketAddress &addr);
 
 	/**
 	 * Store the address of the next incoming connection in the SocketAddress
@@ -323,7 +341,7 @@ public:
 	 * @see Accept(SocketAddress&)
 	 * @see Reject()
 	 */
-	PS_RESULT PreAccept(SocketAddress &addr);
+	PS_RESULT PreAccept(CSocketAddress &addr);
 
 	/**
 	 * Accept the next incoming connection. You must construct a suitable
@@ -378,7 +396,7 @@ public:
 	 * @see SocketState
 	 * @see GetError()
 	 */
-	inline SocketState GetState() const
+	inline ESocketState GetState() const
 	{ return m_State; }
 
 	/**
@@ -391,7 +409,7 @@ public:
 	 * 
 	 * @return A reference to the socket address
 	 */
-	const SocketAddress &GetRemoteAddress();
+	const CSocketAddress &GetRemoteAddress();
 
 	//@}
 	/** @name Stream I/O */
