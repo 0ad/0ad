@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity>
-	<Name>House</Name>
+<Entity Tag="House">
+	<Traits>
+		<Id
+			generic="House"
+			internal_only="false"
+			icon="portrait_structure_heleho_lrg"
+			version="0.1 pasap2"
+		/>
+	</Traits>
+	<Actions>
+		<Move
+			speed="0"
+			turningRadius="20.0"
+		/> 
+	</Actions>
 	<Actor>Greek House</Actor>
-	<Speed>0</Speed>
-	<TurningRadius>20.0</TurningRadius>
-	<Footprint Width="12.0" Height="12.0" />
+	<Footprint Width="12.0" Height="12.0"/>
 </Entity>

@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity>
-	<Name>Deciduous Tree 2</Name>
+<Entity Tag="Deciduous Tree 2">
+	<Traits>
+		<Id
+			generic="Deciduous Tree 2"
+			internal_only="false"
+			icon="portrait_flora_deciduotree_lrg"
+			version="0.1 pasap2"
+		/>
+	</Traits>
+	<Actions>
+		<Move
+			speed="0"
+			turningRadius="0"
+		/>
+	</Actions>
 	<Actor>Deciduous 2</Actor>
-	<Speed>0</Speed>
-	<TurningRadius>0.0</TurningRadius>
-	<Size Radius="1.0"/>
-	<GraphicsOffset x="0" y="0" />
-	<EventHandlers>
-		<Initialize>scripts/pasap/initdude</Initialize>
-		<Update>scripts/pasap/tick</Update>
-	</EventHandlers>
+	<Footprint Radius="1.0"/>
 </Entity>
