@@ -163,6 +163,60 @@ int ioctl(int fd, int op, int* data)
 
 
 
+//
+// determine file system type on the current drive -
+// needed to work around incorrect FAT time translation.
+//
+
+static enum Filesystem
+{
+	FS_INVALID,	// detect_filesystem() not yet called
+	FS_FAT,		// FAT12, FAT16, or FAT32
+	FS_NTFS,	// (most common)
+	FS_UNKNOWN	// newer FS we don't know about
+}
+filesystem;
+
+
+// rationale: the previous method of checking every path was way too slow
+// (taking ~800ms total during init). instead, we only determine the FS once.
+// this is quite a bit easier than intercepting chdir() calls and/or
+// caching FS type per drive letter, but not foolproof.
+//
+// if some data files are on a different volume that is set up as FAT,
+// the workaround below won't be triggered (=> timestamps may be off by
+// 1 hour when DST is in effect). oh well, that is not a supported.
+//
+// the common case (everything is on a single NTFS volume) is more important
+// and must run without penalty.
+
+
+// called from the first filetime_to_time_t() call, not win.cpp init;
+// this means we can rely on the current directory having been set to
+// the app's directory (and therefore its appendant volume - see above).
+static void detect_filesystem()
+{
+	char root_path[MAX_PATH] = "c:\\";	// default in case GCD fails
+	DWORD gcd_ret = GetCurrentDirectory(sizeof(root_path), root_path);
+	assert2(gcd_ret != 0);
+		// if this fails, no problem - we have the default from above.
+	root_path[3] = '\0';	// cut off after "c:\"
+
+	char fs_name[32];
+	BOOL ret = GetVolumeInformation(root_path, 0,0,0,0,0, fs_name, sizeof(fs_name));
+	assert2(ret != 0);
+		// if this fails, no problem - we really only care if fs is FAT,
+		// and will assume that's not the case (since fs_name != "FAT").
+
+	filesystem = FS_UNKNOWN;
+
+	if(!strncmp(fs_name, "FAT", 3))	// e.g. FAT32
+		filesystem = FS_FAT;
+	else if(!strcmp(fs_name, "NTFS"))
+		filesystem = FS_NTFS;
+}
+
+
 // from wtime
 extern time_t local_filetime_to_time_t(FILETIME* ft);
 extern time_t utc_filetime_to_time_t(FILETIME* ft);
@@ -170,32 +224,18 @@ extern time_t utc_filetime_to_time_t(FILETIME* ft);
 // convert Windows FILETIME to POSIX time_t (seconds-since-1970 UTC);
 // used by stat and readdir_stat_np for st_mtime.
 //
-// path is used to determine the file system that recorded the time
-// (workaround for a documented Windows bug in converting FAT file times)
-//
-// note: complicated because we need to ensure the time returned is correct:
-// VFS mount logic considers files 'equal' if mtime and size are the same.
-static time_t filetime_to_time_t(FILETIME* ft, const char* path)
+// works around a documented Windows bug in converting FAT file times
+// (correct results are desired since VFS mount logic considers
+// files 'equal' if their mtime and size are the same).
+static time_t filetime_to_time_t(FILETIME* ft)
 {
-	// determine file system on volume containing path:
-	// .. assume relative path
-	const char* root = 0;
-	char drive_str[] = "?:\\";
-	// .. it's an absolute path
-	if(isalpha(path[0]) && path[1] == ':' && path[2] == '\\')
-	{
-		drive_str[0] = path[0];	// drive letter
-		root = drive_str;
-	}
-	char fs_name[16] = { 0 };
-	GetVolumeInformation(root, 0,0,0,0,0, fs_name, sizeof(fs_name));
-		// if this fails, fs_name != "FAT" => special-case is skipped.
+	ONCE(detect_filesystem());
 
 	// the FAT file system stores local file times, while
 	// NTFS records UTC. Windows does convert automatically,
 	// but uses the current DST settings. (boo!)
 	// we go back to local time, and convert properly.
-	if(!strncmp(fs_name, "FAT", 3))	// e.g. FAT32
+	if(filesystem == FS_FAT)
 	{
 		FILETIME local_ft;
 		FileTimeToLocalFileTime(ft, &local_ft);
@@ -215,7 +255,7 @@ int stat(const char* fn, struct stat* s)
 	if(!GetFileAttributesEx(fn, GetFileExInfoStandard, &fad))
 		return -1;
 
-	s->st_mtime = fad.ftLastAccessTime
+	s->st_mtime = filetime_to_time_t(fad.ftLastAccessTime)
 
 	// dir
 	if(fad.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
@@ -369,7 +409,7 @@ int readdir_stat_np(DIR* d_, struct stat* s)
 	memset(s, 0, sizeof(struct stat));
 	s->st_size  = (off_t)((((u64)d->fd.nFileSizeHigh) << 32) | d->fd.nFileSizeLow);
 	s->st_mode  = (d->fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)? S_IFDIR : S_IFREG;
-	s->st_mtime = filetime_to_time_t(&d->fd.ftLastWriteTime, d->path);
+	s->st_mtime = filetime_to_time_t(&d->fd.ftLastWriteTime);
 	return 0;
 }
 
