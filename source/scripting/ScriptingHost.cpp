@@ -126,7 +126,7 @@ jsval ScriptingHost::CallFunction(const std::string & functionName, jsval * para
 	return result;
 }
 
-jsval ScriptingHost::ExecuteScript( const CStr16& script, const CStr16& calledFrom, JSObject* contextObject )
+jsval ScriptingHost::ExecuteScript(const CStrW& script, const CStrW& calledFrom, JSObject* contextObject )
 {
 	jsval rval; 
 
@@ -229,6 +229,8 @@ JSObject * ScriptingHost::CreateCustomObject(const std::string & typeName)
 
 }
 
+
+
 void ScriptingHost::SetObjectProperty(JSObject * object, const std::string & propertyName, jsval value)
 {
 	JS_SetProperty(m_Context, object, propertyName.c_str(), &value);
@@ -240,6 +242,34 @@ jsval ScriptingHost::GetObjectProperty( JSObject* object, const std::string& pro
 	JS_GetProperty( m_Context, object, propertyName.c_str(), &vp );
 	return( vp );
 }
+
+
+
+void ScriptingHost::SetObjectProperty_Double(JSObject* object, const char* propertyName, double value)
+{
+	jsdouble* d = JS_NewDouble(m_Context, value);
+	if (! d)
+		throw PSERROR_Scripting_ConversionFailed();
+
+	jsval v = DOUBLE_TO_JSVAL(d);
+
+	if (! JS_SetProperty(m_Context, object, propertyName, &v))
+		throw PSERROR_Scripting_ConversionFailed();
+}
+
+double ScriptingHost::GetObjectProperty_Double(JSObject* object, const char* propertyName)
+{
+	jsval v;
+	double d;
+
+	if (! JS_GetProperty(m_Context, object, propertyName, &v))
+		throw PSERROR_Scripting_ConversionFailed();
+	if (! JS_ValueToNumber(m_Context, v, &d))
+		throw PSERROR_Scripting_ConversionFailed();
+	return d;
+}
+
+
 
 void ScriptingHost::SetGlobal(const std::string &globalName, jsval value)
 {

@@ -84,7 +84,7 @@ public:
 
 	jsval CallFunction(const std::string & functionName, jsval * params, int numParams);
 
-	jsval ScriptingHost::ExecuteScript( const CStr16& script, const CStr16& calledFrom = CStr16( L"Console" ), JSObject* contextObject = NULL );
+	jsval ScriptingHost::ExecuteScript(const CStrW& script, const CStrW& calledFrom = CStrW( L"Console" ), JSObject* contextObject = NULL );
 
 	void RegisterFunction(const std::string & functionName, JSNative function, int numArgs);
 
@@ -97,6 +97,9 @@ public:
 
 	void  SetObjectProperty(JSObject * object, const std::string & propertyName, jsval value);
 	jsval GetObjectProperty(JSObject * object, const std::string & propertyName);
+
+	void   SetObjectProperty_Double(JSObject* object, const char* propertyName, double value);
+	double GetObjectProperty_Double(JSObject* object, const char* propertyName);
 
 	void SetGlobal(const std::string& globalName, jsval value);
 	jsval GetGlobal(const std::string& globalName);
