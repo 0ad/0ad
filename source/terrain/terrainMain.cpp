@@ -63,9 +63,12 @@ void terr_init()
 void terr_update(const float DeltaTime)
 {
 
-#define CAMERASTYLE 2 // 0 = old style, 1 = relatively new style, 2 = newer style
+#define CAMERASTYLE 2 // 0 = old style, 1 = relatively new style, 2 = newest style
 
 #if CAMERASTYLE == 2
+
+	// This could be rewritten much more reliably, so it doesn't e.g. accidentally tilt
+	// the camera, assuming we know exactly what limits the camera should have.
 
 
 	// Calculate mouse movement
@@ -86,35 +89,32 @@ void terr_update(const float DeltaTime)
 	forwards_horizontal.Y = 0.0f;
 	forwards_horizontal.Normalize();
 
-	if (mouseButtons[SDL_BUTTON_MIDDLE])
+	if ((mouseButtons[SDL_BUTTON_MIDDLE] && (keys[SDLK_LCTRL] || keys[SDLK_RCTRL]))
+	 || (mouseButtons[SDL_BUTTON_LEFT] && mouseButtons[SDL_BUTTON_RIGHT]) )
 	{
-		if (keys[SDLK_LCTRL] || keys[SDLK_RCTRL])
-		{
-			// Ctrl + middle-drag to rotate view
+		// Ctrl + middle-drag or left-and-right-drag to rotate view
 
-			// Untranslate the camera, so it rotates around the correct point
-			CVector3D position = g_Camera.m_Orientation.GetTranslation();
-			g_Camera.m_Orientation.Translate(position*-1);
+		// Untranslate the camera, so it rotates around the correct point
+		CVector3D position = g_Camera.m_Orientation.GetTranslation();
+		g_Camera.m_Orientation.Translate(position*-1);
 
-			// Sideways rotation
-			g_Camera.m_Orientation.RotateY(ViewRotateSensitivity * (float)(mouse_dx));
+		// Sideways rotation
+		g_Camera.m_Orientation.RotateY(ViewRotateSensitivity * (float)(mouse_dx));
 
-			// Up/down rotation
-			CQuaternion temp;
-			temp.FromAxisAngle(rightwards, ViewRotateSensitivity * (float)(mouse_dy));
-			g_Camera.m_Orientation.Rotate(temp);
+		// Up/down rotation
+		CQuaternion temp;
+		temp.FromAxisAngle(rightwards, ViewRotateSensitivity * (float)(mouse_dy));
+		g_Camera.m_Orientation.Rotate(temp);
 
-			// Retranslate back to the right position
-			g_Camera.m_Orientation.Translate(position);
+		// Retranslate back to the right position
+		g_Camera.m_Orientation.Translate(position);
 
-		}
-		else
-		{
-			// Middle-drag to pan
-
-			g_Camera.m_Orientation.Translate(rightwards * (ViewDragSensitivity * mouse_dx));
-			g_Camera.m_Orientation.Translate(forwards_horizontal * (-ViewDragSensitivity * mouse_dy));
-		}
+	}
+	else if (mouseButtons[SDL_BUTTON_MIDDLE])
+	{
+		// Middle-drag to pan
+		g_Camera.m_Orientation.Translate(rightwards * (ViewDragSensitivity * mouse_dx));
+		g_Camera.m_Orientation.Translate(forwards_horizontal * (-ViewDragSensitivity * mouse_dy));
 	}
 
 	// Mouse movement
@@ -152,9 +152,9 @@ void terr_update(const float DeltaTime)
 	else if (mouseButtons[SDL_BUTTON_WHEELDOWN])
 		zoom_delta += ViewZoomSensitivityWheel;
 
-	if (keys[SDLK_MINUS])
+	if (keys[SDLK_MINUS] || keys[SDLK_KP_MINUS])
 		zoom_delta -= ViewZoomSensitivityKey*DeltaTime;
-	else if (keys[SDLK_EQUALS])
+	else if (keys[SDLK_EQUALS] || keys[SDLK_PLUS] || keys[SDLK_KP_PLUS])
 		zoom_delta += ViewZoomSensitivityKey*DeltaTime;
 
 	if (zoom_delta)
@@ -297,7 +297,7 @@ bool terr_handler(const SDL_Event& ev)
 	case SDL_KEYDOWN:
 		switch(ev.key.keysym.sym)
 		{
-		case 'W':
+		case SDLK_w:
 			if (g_Renderer.GetTerrainRenderMode()==WIREFRAME) {
 				g_Renderer.SetTerrainRenderMode(SOLID);
 			} else {
@@ -305,7 +305,7 @@ bool terr_handler(const SDL_Event& ev)
 			}
 			break;
 
-		case 'H':
+		case SDLK_h:
 			// quick hack to return camera home, for screenshots (after alt+tabbing)
 			g_Camera.SetProjection (1, 5000, DEGTORAD(20));
 			g_Camera.m_Orientation.SetXRotation(DEGTORAD(30));
