@@ -9,13 +9,11 @@
 #include <fam.h>
 
 static FAMConnection fc;
-static bool initialized;
+static bool initialized=false;
 
 static std::map<intptr_t, std::string> dirs;
 
-// path: portable and relative, must add current directory and convert to native
-// better to use a cached string from rel_chdir - secure
-int dir_add_watch(const char* const path, intptr_t* const watch)
+int dir_add_watch(const char* const n_full_path, intptr_t* const watch)
 {
 	if(!initialized)
 	{
@@ -23,9 +21,6 @@ int dir_add_watch(const char* const path, intptr_t* const watch)
 		atexit2((void*)FAMClose, (uintptr_t)&fc);
 		initialized = true;
 	}
-
-	char n_full_path[PATH_MAX];
-	CHECK_ERR(file_make_native_path(path, n_full_path));
 
 	FAMRequest req;
 	if(FAMMonitorDirectory(&fc, n_full_path, &req, (void*)0) < 0)
