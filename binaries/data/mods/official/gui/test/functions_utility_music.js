@@ -12,3 +12,51 @@
 
 // Close "s" and free it from memory (use in conjunction with loop()):
 // s.free();
+
+function newRandomSound(soundType, soundSubType)
+{
+	switch (soundType)
+	{
+		case "music":
+			randomSoundPath = "audio/music/"
+			switch (soundSubType)
+			{
+				case "peace":
+					// Get a random number within the sound's range.
+					// (Later we'll need to change this to an array selection of filenames.)
+					randomSound = getRandom(1, 4);
+
+					switch (randomSound)
+					{
+						case 1:
+							randomFileName = "germanic_peace_1.ogg"
+						break;
+						case 2:
+							randomFileName = "germanic_peace_2.ogg"
+						break;
+						case 3:
+							randomFileName = "germanic_peace_3.ogg"
+						break;
+						case 4:
+							randomFileName = "roman_peace_1.ogg"
+						break;
+					}
+				break;
+				case "theme":
+					randomFileName = "menu_track.ogg"
+				break;
+				default:
+				break;
+			}
+		break;
+		default:
+		break;
+	}
+	
+	// Build path to random audio file.
+	randomSoundPath += randomFileName;
+
+	console.write("Playing " + randomSoundPath + " ...");
+
+	return new Sound(randomSoundPath);
+}
