@@ -14,6 +14,7 @@
 #include "input.h"
 #include "lib.h"
 #include "res/res.h"
+#include "res/tex.h"
 #ifdef _M_IX86
 #include "sysdep/ia32.h"	// _control87
 #endif
@@ -67,8 +68,28 @@
 #endif
 
 #include "sound/CMusicPlayer.h"
+#include "lib/res/snd.h"
+
 #include "Network/SessionManager.h"
 #include "Network/Server.h"
+
+
+
+int cstr_seq = 0;
+const char* a1="default";
+const char* a2="const CStr&";
+const char* a3="const TCHAR*";
+const char* a4="const TCHAR*, size_t";
+const char* a5="a5";
+const char* a6="a6";
+const char* a7="a7";
+const char* a8="a8";
+const char* a9="a9";
+const char* a10="a10";
+const char* a11="a11";
+const char* a12="a12";
+const char* a13="a13";
+
 
 CConsole* g_Console = 0;
 extern int conInputHandler(const SDL_Event* ev);
@@ -337,8 +358,12 @@ static int handler(const SDL_Event* ev)
 			break;
 
 		case HOTKEY_PLAYMUSIC:
-			MusicPlayer.open("audio/music/germanic peace 3.ogg");
-			MusicPlayer.play();
+			{
+//			MusicPlayer.open("audio/music/germanic peace 3.ogg");
+//			MusicPlayer.play();
+			Handle hs = sound_open("audio/voice/hellenes/citizensoldier/Attack-ZeusSaviourandVictory-Zeus-soter-kai-nike.ogg");
+			sound_play(hs);
+			}
 			break;
 
 		default:
@@ -996,6 +1021,7 @@ static void Frame()
 	MICROLOG(L"In frame");
 
 	MusicPlayer.update();
+	snd_update();
 
 	static double last_time;
 	const double time = get_time();
