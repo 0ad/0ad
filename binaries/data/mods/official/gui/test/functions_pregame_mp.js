@@ -42,7 +42,7 @@ function initMPSessionHost(playerName, mapName)
         }
 
         server.onChat=function (event) {
-                messageBox(400, 200, event.message, "Chat Message", 2, new Array(), new Array());
+                messageBox(400, 200, event.sender+" says: "+event.message, "Chat Message", 2, new Array(), new Array());
         };
 
         GUIObjectHide("pregame_mp_ip");
@@ -51,7 +51,7 @@ function initMPSessionHost(playerName, mapName)
         // Need "waiting for more players to join and start game" code here
 
         btCaptions = new Array("OK");
-        btCode = new Array("startGame();");
+        btCode = new Array("startLoadingScreen();");
         messageBox(400, 200, "Waiting for clients to join - Click OK to start the game.", "Ready", 0, btCaptions, btCode);
 }
 
@@ -69,7 +69,7 @@ function initMPSessionClient(playerName, serverIP)
         };
         
         client.onChat=function (event) {
-                messageBox(400, 200, event.message, "Chat Message", 2, new Array(), new Array());
+                messageBox(400, 200, event.sender+" says: "+event.message, "Chat Message", 2, new Array(), new Array());
         };
         
         client.onConnectComplete=function (event) {
