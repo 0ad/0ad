@@ -681,8 +681,6 @@ static void psInit()
 	g_GUI.LoadXMLFile("gui/test/hello.xml");
 	g_GUI.LoadXMLFile("gui/test/sprite1.xml");
 #endif
-
-	oal_Init();
 }
 
 static void psShutdown()
@@ -701,7 +699,6 @@ static void psShutdown()
 	CXeromyces::Terminate();
 
 	MusicPlayer.release();
-	oal_Shutdown();
 }
 
 
