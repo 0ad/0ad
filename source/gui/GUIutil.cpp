@@ -466,21 +466,21 @@ PS_RESULT GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting, const T &
 	//
 
 	// If setting was "size", we need to re-cache itself and all children
-	if (Setting == CStr("size"))
+	if (Setting == "size")
 	{
 		RecurseObject(0, pObject, &IGUIObject::UpdateCachedSize);
 	}
 	else
-		if (Setting == CStr("hidden"))
-		{
-			// Hiding an object requires us to reset it and all children
-			QueryResetting(pObject);
-			//RecurseObject(0, pObject, IGUIObject::ResetStates);
-		}
+	if (Setting == "hidden")
+	{
+		// Hiding an object requires us to reset it and all children
+		QueryResetting(pObject);
+		//RecurseObject(0, pObject, IGUIObject::ResetStates);
+	}
 
-		HandleMessage(pObject, SGUIMessage(GUIM_SETTINGS_UPDATED, Setting));
+	HandleMessage(pObject, SGUIMessage(GUIM_SETTINGS_UPDATED, Setting));
 
-		return PS_OK;
+	return PS_OK;
 }
 
 // Instantiate templated functions:

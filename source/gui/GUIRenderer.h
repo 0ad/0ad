@@ -10,23 +10,23 @@ struct SGUIImageEffects;
 
 namespace GUIRenderer
 {
-	struct Handle_rfcnt_tex
+	class IGLState
 	{
-		Handle h;
-		Handle_rfcnt_tex();
-		Handle_rfcnt_tex(Handle h_);
-		Handle_rfcnt_tex(const Handle_rfcnt_tex& that);
-		~Handle_rfcnt_tex();
-		Handle_rfcnt_tex& operator=(Handle h_);
+	public:
+		virtual ~IGLState() {};
+		virtual void Set(Handle tex)=0;
+		virtual void Unset()=0;
 	};
 
 	struct SDrawCall
 	{
-		Handle_rfcnt_tex m_TexHandle;
+		SDrawCall() : m_TexHandle(0), m_Effects(NULL) {}
+
+		Handle m_TexHandle;
 
 		bool m_EnableBlending;
 
-		SGUIImageEffects* m_Effects;
+		IGLState* m_Effects;
 
 		CRect m_Vertices;
 		CRect m_TexCoords;
@@ -36,7 +36,15 @@ namespace GUIRenderer
 		CColor m_BackColor;
 	};
 
-	typedef std::vector<SDrawCall> DrawCalls;
+	class DrawCalls : public std::vector<SDrawCall>
+	{
+	public:
+		void clear();
+		DrawCalls();
+		DrawCalls(const DrawCalls&);
+		const DrawCalls& DrawCalls::operator=(const DrawCalls&);
+		~DrawCalls();
+	};
 }
 
 #include "gui/CGUISprite.h"

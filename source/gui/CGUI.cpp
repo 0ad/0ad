@@ -1569,8 +1569,16 @@ void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImag
 		} \
 		else
 
+#define BOOL(xml, mem) \
+		if (attr_name == xml) \
+		{ \
+			effects.m_##mem = true; \
+		} \
+		else
+
 		COLOR("add-color", AddColor)
 		COLOR("multiply-color", MultiplyColor)
+		BOOL("grayscale", Greyscale)
 
 		{
 			debug_warn("Oops"); // DTD shouldn't allow this

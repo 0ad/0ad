@@ -49,8 +49,10 @@ gee@pyro.nu
 
 struct SGUIImageEffects
 {
+	SGUIImageEffects() : m_Greyscale(false) {}
 	CColor m_AddColor;
 	CColor m_MultiplyColor;
+	bool m_Greyscale;
 };
 
 
@@ -141,6 +143,7 @@ class CGUISpriteInstance
 public:
 	CGUISpriteInstance();
 	CGUISpriteInstance(CStr SpriteName);
+	CGUISpriteInstance(const CGUISpriteInstance &Sprite);
 	CGUISpriteInstance &operator=(CStr SpriteName);
 	void Draw(CRect Size, int CellID, std::map<CStr, CGUISprite> &Sprites);
 	void Invalidate();
