@@ -1,20 +1,19 @@
-The codepit with all required files is accessed via SCP:
-host = wildfiregames.com
-port = 22
-user = code
-pass = ae3934hjf
+These libraries must be installed in order to compile.
+
+
+Definitions:
 
 $install := directory where the compiler is installed.
 $lib := directory where the compiler looks for lib files;
   typically = $install/lib .
 $include := the same for header files (= $install/include).
 $GL := directory containing OpenGL headers.
-  VC6: $install/GL;
+  VC6: $install/Include/GL;
   VC7: $install/PlatformSDK/Include/GL.
 $binaries := directory containing system/ and data/ .
 
 
-TODO:
+Instructions:
 
 - OpenGL extensions:
   download http://www.wildfiregames/com/~code/libraries/glext.h
@@ -22,23 +21,30 @@ TODO:
   download http://www.wildfiregames/com/~code/libraries/wglext.h
   ... and put it in $GL.
 
-- ZLib (v1.2.1)
+- ZLib (v1.2.1): [resource decompression]
   download http://www.wildfiregames/com/~code/libraries/zlib121.zip.
   ... extract contents of include/ into $include, and .lib files into $lib.
 
-- libpng (v1.0.15)
+- libpng (v1.0.15): [PNG texture loading]
   download http://www.wildfiregames/com/~code/libraries/libpng10.zip.
   ... extract contents of include/ into $include, and .lib files into $lib.
 
-- Xerces: [required if compiling GUI]
+- Xerces: [XML parsing for GUI and entity]
   download http://www.wildfiregames/com/~code/libraries/xerces-c_2_5_0-lib.zip
   download http://www.wildfiregames/com/~code/libraries/xerces-c_2_5_0-include.zip
   ... extract contents of include/ into $include, and .lib files into $lib.
 
-- SpiderMonkey: [required for javascript]
+- SpiderMonkey: [javascript]
   download http://www.wildfiregames/com/~code/libraries/javascript-sdk.zip.
   ... extract contents of include/ into $include, and .lib files into $lib.
 
-- FMOD: [required for sound]
+- FMOD: [sound]
   download http://www.wildfiregames.com/~code/libraries/fmodapi372win.zip
   ... extract contents of include/ into $include, and .lib files into $lib 
+
+
+Note: these libraries are stored in the codepit; access via SCP:
+host = wildfiregames.com
+port = 22
+user = code
+pass = ae3934hjf
