@@ -214,13 +214,17 @@ void CConsole::DrawHistory(void) {
 		glColor3f(1.0f, 1.0f, 1.0f); //Set color of text
 		glTranslatef(9.0f, (float)m_iFontOffset, 0.0f); //move away from the border
 
+		// Draw the text upside-down, because it's aligned with
+		// the GUI (which uses the top-left as (0,0))
+		glScalef(1.0f, -1.0f, 1.0f);
+
 		for (Iter = m_deqMsgHistory.begin();
 			 Iter != m_deqMsgHistory.end()
 				 && (((i - m_iMsgHistPos + 1) * m_iFontHeight) < (m_fHeight - m_iFontHeight));
 			 Iter++)
 		{
 			if (i >= m_iMsgHistPos){
-				glTranslatef(0.0f, (float)m_iFontHeight, 0.0f);
+				glTranslatef(0.0f, -(float)m_iFontHeight, 0.0f);
 
 				glPushMatrix();
 					glwprintf(L"%ls", Iter->data());
@@ -240,6 +244,8 @@ void CConsole::DrawBuffer(void)
 	glPushMatrix();
 		glColor3f(1.0f, 1.0f, 0.0f);
 		glTranslatef(2.0f, (float)m_iFontOffset, 0);
+		glScalef(1.0f, -1.0f, 1.0f);
+
 		glwprintf(L"]");
 
 		glColor3f(1.0f, 1.0f, 1.0f);
