@@ -11,7 +11,7 @@ extern int get_cur_vmode(int* xres, int* yres, int* bpp, int* freq);
 extern int get_monitor_size(int& width_mm, int& height_mm);
 
 
-const size_t GFX_CARD_LEN = 32;
+const size_t GFX_CARD_LEN = 128;
 extern char gfx_card[GFX_CARD_LEN];		// default: ""
 const size_t GFX_DRV_VER_LEN = 16;
 extern char gfx_drv_ver[GFX_DRV_VER_LEN];	// default: ""
