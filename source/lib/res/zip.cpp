@@ -39,6 +39,8 @@
 #include "res.h"
 #include "byte_order.h"
 
+#include "timer.h"
+
 #include <map>
 
 #include <assert.h>
@@ -803,6 +805,13 @@ int inf_set_dest(uintptr_t _ctx, void* out, size_t out_size)
 #endif
 }
 
+static double total_inf_time;
+
+static void dump()
+{
+	debug_out("TOTAL INFLATE TIME: %g\n", total_inf_time);
+}
+
 
 // unzip into output buffer. returns bytes written
 // (may be 0, if not enough data is passed in), or < 0 on error.
@@ -811,6 +820,10 @@ ssize_t inf_inflate(uintptr_t _ctx, void* in, size_t in_size, bool free_in_buf =
 #ifdef NO_ZLIB
 	return -1;
 #else
+
+ONCE(atexit(dump));
+double t0 = get_time();
+
 	InfCtx* ctx = (InfCtx*)_ctx;
 	z_stream* zs = &ctx->zs;
 
@@ -843,6 +856,9 @@ ssize_t inf_inflate(uintptr_t _ctx, void* in, size_t in_size, bool free_in_buf =
 		zs->total_in += size;
 		zs->total_out += size;
 	}
+
+double t1 = get_time();
+total_inf_time += t1-t0;
 
 	// check+return how much actual data was read
 	//
