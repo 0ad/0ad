@@ -45,6 +45,13 @@ void CConsole::SetSize(float X, float Y, float W, float H)
 }
 
 
+void CConsole::ToggleVisible()
+{
+	m_bToggle = true;
+	m_bVisible = !m_bVisible;
+}
+
+
 void CConsole::FlushBuffer(void)
 {
 	/* Clear the buffer and set the cursor and length to 0 */
@@ -258,13 +265,6 @@ void CConsole::DrawCursor(void)
 void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 {
 	static int iHistoryPos = -1;
-
-	if (szChar == SDLK_F1)
-	{
-		m_bToggle = true;
-		m_bVisible = !m_bVisible;
-		return;
-	}
 
 	if (!m_bVisible) return;
 
@@ -510,6 +510,33 @@ int conInputHandler(const SDL_Event* ev)
 	if(ev->type != SDL_KEYDOWN)
 		return EV_PASS;
 
-	g_Console->InsertChar(ev->key.keysym.sym, (wchar_t)ev->key.keysym.unicode );
-	return g_Console->IsActive()? EV_HANDLED : EV_PASS;
+	SDLKey sym = ev->key.keysym.sym;
+assert2(0);
+	// toggle
+	if(sym == SDLK_F1)
+	{
+		g_Console->ToggleVisible();
+		return EV_HANDLED;
+			// bail, because we'd fall under if(sym) .. else below
+	}
+
+	if(!g_Console->IsActive())
+		return EV_PASS;
+
+	// paste from clipboard
+	if(sym == SDLK_INSERT)
+	{
+		wchar_t* text = clipboard_get();
+		if(text)
+		{
+			for(wchar_t* c = text; *c; c++)
+				g_Console->InsertChar(0, *c);
+
+			clipboard_free(text);
+		}
+	}
+	else
+		g_Console->InsertChar(sym, (wchar_t)ev->key.keysym.unicode );
+
+	return EV_HANDLED;
 }

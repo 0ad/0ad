@@ -67,6 +67,8 @@ public:
 
 	void SetSize(float X = 300, float Y = 0, float W = 800, float H = 600);
 
+	void ToggleVisible();
+
 	void Update(float DeltaTime);
 
     void Render();
