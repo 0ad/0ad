@@ -874,7 +874,7 @@ int debug_main_exception_filter(unsigned int UNUSEDPARAM(code), PEXCEPTION_POINT
 	// leak like a bucket with a missing bottom when it crashes.
 #ifdef HAVE_DEBUGALLOC
 	uint flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
-	_CrtSetDbgFlag(flags  & ~_CRTDBG_LEAK_CHECK_DF);
+	_CrtSetDbgFlag(flags & ~_CRTDBG_LEAK_CHECK_DF);
 #endif
 
 	exit(EXIT_FAILURE);

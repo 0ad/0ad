@@ -43,10 +43,38 @@ CScEdApp::CScEdApp()
 
 CScEdApp theApp;
 
+// Choose when to override the standard exception handling behaviour
+// (opening the debugger when available, or crashing when not) with
+// code that generates a crash log/dump.
+#if defined(_WIN32) && ( defined(NDEBUG) || defined(TESTING) )
+# define CUSTOM_EXCEPTION_HANDLER
+#endif
+
+#ifdef CUSTOM_EXCEPTION_HANDLER
+#include <excpt.h>
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // CScEdApp initialization
 
+// Exception-handling wrapper
 BOOL CScEdApp::InitInstance()
+{
+#ifdef CUSTOM_EXCEPTION_HANDLER
+	__try
+	{
+#endif
+		return InitInstance_();
+#ifdef CUSTOM_EXCEPTION_HANDLER
+	}
+	__except(debug_main_exception_filter(GetExceptionCode(), GetExceptionInformation()))
+	{
+	}
+	return FALSE;
+#endif
+}
+
+BOOL CScEdApp::InitInstance_()
 {
 	extern void sced_init();
 	sced_init();
@@ -173,7 +201,23 @@ BOOL CAboutDlg::OnInitDialog()
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-int CScEdApp::Run() 
+int CScEdApp::Run()
+{
+#ifdef CUSTOM_EXCEPTION_HANDLER
+	__try
+	{
+#endif
+		return Run_();
+#ifdef CUSTOM_EXCEPTION_HANDLER
+	}
+	__except(debug_main_exception_filter(GetExceptionCode(), GetExceptionInformation()))
+	{
+	}
+	return -1;
+#endif
+}
+
+int CScEdApp::Run_()
 {
 	MSG msg;
 	// acquire and dispatch messages until a WM_QUIT message is received
@@ -197,26 +241,3 @@ int CScEdApp::Run()
 	// shouldn't get here
 	return 0;
 }
-
-#if 0
-int AFXAPI AfxWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
-	LPTSTR lpCmdLine, int nCmdShow);
-
-extern void pre_main_init();
-
-int main(int argc, char *argv[])
-{
-	pre_main_init();
-	lib_init();
-	
-	// set 24 bit (float) FPU precision for faster divides / sqrts
-#ifdef _M_IX86
-	_control87(_PC_24, _MCW_PC);
-#endif
-
-	detect();
-	
-	AfxInitialize();
-	return AfxWinMain(::GetModuleHandle(NULL), NULL, ::GetCommandLine(), 0);
-}
-#endif
