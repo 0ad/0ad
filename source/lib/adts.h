@@ -12,8 +12,8 @@
 struct BIT_BUF
 {
 	ulong buf;
-	ulong cur;	/* bit to be appended (toggled by add()) */
-	ulong len;	/* |buf| [bits] */
+	ulong cur;	// bit to be appended (toggled by add())
+	ulong len;	// |buf| [bits]
 
 	void reset()
 	{
@@ -22,7 +22,7 @@ struct BIT_BUF
 		len = 0;
 	}
 
-	/* toggle current bit if desired, and add to buffer (new bit is LSB) */
+	// toggle current bit if desired, and add to buffer (new bit is LSB)
 	void add(ulong toggle)
 	{
 		cur ^= toggle;
@@ -31,7 +31,7 @@ struct BIT_BUF
 		len++;
 	}
 
-	/* extract LS n bits */
+	// extract LS n bits
 	uint extract(ulong n)
 	{
 		ulong i = buf & ((1ul << n) - 1);
@@ -248,7 +248,7 @@ private:
 
 // from VFS, not currently needed
 
-/*
+#if 0
 template<class T> class StringMap
 {
 public:
@@ -386,7 +386,7 @@ private:
 	typedef typename Map::iterator MapIt;
 	Map map;
 };
-*/
+#endif // #if 0
 
 
 

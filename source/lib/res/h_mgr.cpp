@@ -186,7 +186,7 @@ static HDATA* h_data_from_idx(const i32 idx)
 	HDATA*& page = pages[idx / hdata_per_page];
 	if(!page)
 	{
-		page = (HDATA*)calloc(PAGE_SIZE, 1);
+		page = (HDATA*)calloc(1, PAGE_SIZE);
 		if(!page)
 			return 0;
 	}
@@ -371,7 +371,6 @@ static void remove_key(uintptr_t key, H_Type type)
 	Handle ret = find_key(key, type, true);
 	assert(ret > 0);
 }
-
 
 
 // currently cannot fail.

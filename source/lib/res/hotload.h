@@ -10,4 +10,4 @@ extern int res_watch_dir(const char* path, intptr_t* watch);
 
 extern int res_cancel_watch(const intptr_t watch);
 
-extern int res_reload_changed_files();
+extern int res_reload_changed_files(void);

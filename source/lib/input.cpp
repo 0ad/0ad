@@ -48,7 +48,7 @@ int _in_add_handler(EventHandler handler)
 }
 
 
-/* send event to each handler (newest first) until one returns true */
+// send event to each handler (newest first) until one returns true
 static void dispatch_event(const SDL_Event* event)
 {
 	for(int i = handler_stack_top-1; i >= 0; i--)
@@ -70,7 +70,7 @@ static void dispatch_event(const SDL_Event* event)
 
 static enum
 {
-	INIT,		/* first call to in_record() or in_playback(): register cleanup routine */
+	INIT,		// first call to in_record() or in_playback(): register cleanup routine
 	IDLE,
 	RECORD,
 	PLAYBACK
@@ -148,10 +148,8 @@ void in_get_events()
 	{
 		fread(&event, sizeof(SDL_Event), 1, f);
 
-		/*
-		 * do this before dispatch_event(),
-		 * in case a handler calls in_stop() (setting f to 0)
-		 */
+		// do this before dispatch_event(),
+		// in case a handler calls in_stop() (setting f to 0)
 		if(!fread(&next_event_time, sizeof(u32), 1, f))
 {
 			in_stop();
@@ -163,7 +161,7 @@ exit(0x73c07d);
 		dispatch_event(&event);	
 	}
 
-	/* get new events */
+	// get new events
 	while(SDL_PollEvent(&event))
 	{
 		if(state == RECORD)

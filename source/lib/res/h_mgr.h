@@ -217,7 +217,7 @@ extern int h_force_free(Handle h, H_Type type);
 // user load the resource; refcounting is done under the hood.
 extern void h_add_ref(Handle h);
 
-extern void h_mgr_shutdown();
+extern void h_mgr_shutdown(void);
 
 
 #endif	// #ifndef H_MGR_H__

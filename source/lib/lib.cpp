@@ -49,8 +49,7 @@ static struct ExitFunc
 	void* func;
 	uintptr_t arg;
 	CallConvention cc;
-}
-exit_funcs[MAX_EXIT_FUNCS];
+} exit_funcs[MAX_EXIT_FUNCS];
 static int num_exit_funcs;
 
 
@@ -114,7 +113,7 @@ int atexit2(void* func)
 // call from main as early as possible.
 void lib_init()
 {
-	atexit(call_exit_funcs);
+	(void)atexit(call_exit_funcs);
 }
 
 
@@ -131,7 +130,7 @@ void lib_init()
 // otherwise, hash <len> bytes of buf.
 u32 fnv_hash(const void* buf, const size_t len)
 {
-	u32 h = 0x811c9dc5;
+	u32 h = 0x811c9dc5u;
 		// give distinct values for different length 0 buffers.
 		// value taken from FNV; it has no special significance.
 
@@ -143,7 +142,7 @@ u32 fnv_hash(const void* buf, const size_t len)
 		while(*p)
 		{
 			h ^= *p++;
-			h *= 0x01000193;
+			h *= 0x01000193u;
 		}
 	}
 	else
@@ -152,7 +151,7 @@ u32 fnv_hash(const void* buf, const size_t len)
 		while(bytes_left != 0)
 		{
 			h ^= *p++;
-			h *= 0x01000193;
+			h *= 0x01000193u;
 
 			bytes_left--;
 		}
@@ -202,7 +201,7 @@ u64 fnv_hash64(const void* buf, const size_t len)
 
 bool is_pow2(const long n)
 {
-	return (n != 0) && !(n & (n-1));
+	return (n != 0l) && !(n & (n-1l));
 }
 
 
@@ -219,9 +218,9 @@ int ilog2(const int n)
 		or		eax, -1			// return value
 		lea		edx, [ecx-1]
 		test	ecx, edx		// power of 2?
-		jnz		$ret
+		jnz		skip
 		bsf		eax, ecx
-	$ret:
+	skip:
 		mov		[n], eax
 	}
 
@@ -249,7 +248,7 @@ uint log2(uint x)
 	while(bit < x)
 	{
 		l++;
-		bit *= 2;
+		bit += bit;
 	}
 
 	return l;
@@ -258,15 +257,19 @@ uint log2(uint x)
 
 int ilog2(const float x)
 {
-	u32 i = (u32&)x;
-	u32 exp = (i >> 23) & 0xff;
-	return (int)exp - 127;
+	const u32 i = (u32&)x;
+	u32 biased_exp = (i >> 23) & 0xff;
+	return (int)biased_exp - 127;
 }
 
 
 uintptr_t round_up(const uintptr_t n, const uintptr_t multiple)
 {
-	assert(multiple != 0);
+	if(multiple == 0)	// paranoid divide-by-zero
+	{
+		assert(0);
+		return n;
+	}
 	const uintptr_t padded = n + multiple-1;
 	const uintptr_t remainder = padded % multiple;
 	const uintptr_t result = padded - remainder;
@@ -278,7 +281,7 @@ uintptr_t round_up(const uintptr_t n, const uintptr_t multiple)
 u16 addusw(u16 x, u16 y)
 {
 	u32 t = x;
-	return (u16)MIN(t+y, 0xffff);
+	return (u16)MIN(t+y, 0xffffu);
 }
 
 
@@ -292,14 +295,14 @@ u16 subusw(u16 x, u16 y)
 // input in [0, 1); convert to u8 range
 u8 fp_to_u8(double in)
 {
-	if(!(0 <= in && in < 1.0))
+	if(!(0.0 <= in && in < 1.0))
 	{
 		debug_warn("clampf not in [0,1)");
 		return 255;
 	}
 
 	int l = (int)(in * 255.0);
-	assert((unsigned int)l <= 255);
+	assert((unsigned int)l <= 255u);
 	return (u8)l;
 }
 
@@ -307,14 +310,14 @@ u8 fp_to_u8(double in)
 // input in [0, 1); convert to u16 range
 u16 fp_to_u16(double in)
 {
-	if(!(0 <= in && in < 1.0))
+	if(!(0.0 <= in && in < 1.0))
 	{
 		debug_warn("clampf not in [0,1)");
 		return 65535;
 	}
 
 	long l = (long)(in * 65535.0);
-	assert((unsigned long)l <= 65535);
+	assert((unsigned long)l <= 65535u);
 	return (u16)l;
 }
 
@@ -402,7 +405,7 @@ int match_wildcard(const char* s, const char* w)
 	// s2 is advanced until match.
 	// initially 0 - we abort on mismatch before the first '*'.
 	const char* s2 = 0;
-	const char* w2;
+	const char* w2 = 0;
 
 	while(*s)
 	{

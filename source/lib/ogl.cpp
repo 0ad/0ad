@@ -73,6 +73,7 @@ void oglCheck()
 			E(GL_STACK_OVERFLOW)
 			E(GL_STACK_UNDERFLOW)
 			E(GL_OUT_OF_MEMORY)
+		default:;
 		}
 		#undef E
 		debug_break();
@@ -87,15 +88,15 @@ void oglPrintErrors()
 	for(;;)
 		switch(glGetError())
 		{
-		case GL_NO_ERROR:
-			return;
+			E(GL_INVALID_ENUM)
+			E(GL_INVALID_VALUE)
+			E(GL_INVALID_OPERATION)
+			E(GL_STACK_OVERFLOW)
+			E(GL_STACK_UNDERFLOW)
+			E(GL_OUT_OF_MEMORY)
 
-E(GL_INVALID_ENUM)
-E(GL_INVALID_VALUE)
-E(GL_INVALID_OPERATION)
-E(GL_STACK_OVERFLOW)
-E(GL_STACK_UNDERFLOW)
-E(GL_OUT_OF_MEMORY)
+		default:
+			return;
 		}
 }
 
@@ -104,7 +105,7 @@ int max_tex_size;				// [pixels]
 int tex_units;
 int max_VAR_elements = -1;		// GF2: 64K; GF3: 1M
 bool tex_compression_avail;		// S3TC / DXT{1,3,5}
-int video_mem;					// [MB]; approximate
+int video_mem;					// [MiB]; approximate
 
 
 // gfx_card and gfx_drv_ver are unchanged on failure.
@@ -171,6 +172,6 @@ void oglInit()
 	tex_compression_avail = oglExtAvail("GL_ARB_texture_compression") &&
 						   (oglExtAvail("GL_EXT_texture_compression_s3tc") || oglExtAvail("GL_S3_s3tc"));
 
-	video_mem = (SDL_GetVideoInfo()->video_mem) / 1048576;	// [MB]
+	video_mem = (SDL_GetVideoInfo()->video_mem) / 1048576;	// [MiB]
 	// TODO: add sizeof(FB)?
 }

@@ -1,24 +1,26 @@
-// $Id: unifont.h,v 1.9 2004/11/24 23:47:48 gee Exp $
+// $Id$
 
 #ifndef __UNIFONT_H__
 #define __UNIFONT_H__
 
-#include "handle.h"
+#include <stdarg.h>	// va_list
 
+#include "handle.h"
 
 // Load and return a handle to the font defined
 // in fn+".fnt" with texture fn+".tga"
-Handle unifont_load(const char* fn, int scope = 0);
+extern Handle unifont_load(const char* fn, int scope = 0);
 
 // Release a handle to a previously loaded font
-int unifont_unload(Handle& h);
+extern int unifont_unload(Handle& h);
 
 // Use the font referenced by h for all subsequent glwprintf() calls.
 // Must be called before any glwprintf().
-int unifont_bind(Handle h);
+extern int unifont_bind(Handle h);
 
 // Output text at current OpenGL modelview pos.
-void glwprintf(const wchar_t* fmt, ...);
+extern void glvwprintf(const wchar_t* fmt, va_list args);
+extern void glwprintf(const wchar_t* fmt, ...);
 
 /*
   glwprintf assumes an environment roughly like:

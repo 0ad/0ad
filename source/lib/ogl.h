@@ -84,17 +84,17 @@ extern int max_tex_size;				// [pixels]
 extern int tex_units;
 extern int max_VAR_elements;			// GF2: 64K; GF3: 1M
 extern bool tex_compression_avail;		// S3TC / DXT{1,3,5}
-extern int video_mem;					// [MB]; approximate
+extern int video_mem;					// [MiB]; approximate
 
 
 // check if the extension <ext> is supported by the OpenGL implementation
 extern bool oglExtAvail(const char* ext);
 
 // print all OpenGL errors
-extern void oglPrintErrors();
+extern void oglPrintErrors(void);
 
 #ifdef OGL_CHECKS
-extern void oglCheck();
+extern void oglCheck(void);
 #else
 # define oglCheck()
 #endif
@@ -102,18 +102,18 @@ extern void oglCheck();
 // call before using any of the above, and after each mode change.
 //
 // fails if OpenGL not ready for use.
-extern void oglInit();
+extern void oglInit(void);
 
 // set detect.cpp gfx_card[] and gfx_drv_ver[].
 // (called by detect.cpp get_gfx_info()).
 // 
 // fails if OpenGL not ready for use.
 // gfx_card and gfx_drv_ver are unchanged on failure.
-extern int ogl_get_gfx_info();
+extern int ogl_get_gfx_info(void);
 
 // return a NULL-terminated string (of unlimited length) containing
 // a space-separated list of supported extensions.
-extern const char* oglExtList();
+extern const char* oglExtList(void);
 
 #ifdef __cplusplus
 }

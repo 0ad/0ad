@@ -251,8 +251,9 @@ enum LibError
 
 
 
-const size_t KB = 1ul << 10;
-const size_t MB = 1ul << 20;
+const size_t KiB = 1ul << 10;
+const size_t MiB = 1ul << 20;
+const size_t GiB = 1ul << 30;
 
 
 #ifdef _WIN32
@@ -268,7 +269,7 @@ const size_t MB = 1ul << 20;
 
 
 // call from main as early as possible.
-extern void lib_init();
+extern void lib_init(void);
 
 
 enum CallConvention	// number of parameters and convention
@@ -316,18 +317,6 @@ extern u64 fnv_hash64(const void* buf, const size_t len);
 // hash (currently FNV) of a filename
 typedef u32 FnHash;
 
-
-#ifndef min
-inline int min(int a, int b)
-{
-	return (a < b)? a : b;
-}
-
-inline int max(int a, int b)
-{
-	return (a > b)? a : b;
-}
-#endif
 
 extern u16 addusw(u16 x, u16 y);
 extern u16 subusw(u16 x, u16 y);

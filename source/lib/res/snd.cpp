@@ -576,7 +576,7 @@ static const int MAX_STREAMS = 2;
 // maximum IOs queued per stream.
 static const int MAX_IOS = 4;
 
-static const size_t STREAM_BUF_SIZE = 32*KB;
+static const size_t STREAM_BUF_SIZE = 32*KiB;
 
 
 //
@@ -607,7 +607,7 @@ static void io_buf_free(void* p)
 static void io_buf_init()
 {
 	// allocate 1 big aligned block for all buffers.
-	io_bufs = mem_alloc(TOTAL_BUF_SIZE, 4*KB);
+	io_bufs = mem_alloc(TOTAL_BUF_SIZE, 4*KiB);
 	// .. failed; io_buf_alloc calls will return 0
 	if(!io_bufs)
 		return;
@@ -990,7 +990,7 @@ if(file_type == FT_OGG)
  size_t bytes_read;
  do
  {
-  const size_t bufsize = 32*KB;
+  const size_t bufsize = 32*KiB;
   char buf[bufsize];
   bytes_read = ogg_read(sd->o, buf, bufsize);
   data.insert(data.end(), &buf[0], &buf[bytes_read]);
@@ -1654,7 +1654,7 @@ static int vm_update()
 	// partition list; the first al_src_cap will be granted a source
 	// (if they don't have one already), after reclaiming all sources from
 	// the remainder of the VSrc list entries.
-	uint first_unimportant = min((uint)vsrcs.size(), al_src_cap); 
+	uint first_unimportant = MIN((uint)vsrcs.size(), al_src_cap); 
 	list_foreach(reclaim, first_unimportant, 0);
 	list_foreach(grant, 0, first_unimportant);
 

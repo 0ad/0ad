@@ -35,7 +35,7 @@
 // all transfers are expanded to naturally aligned, whole blocks
 // (this makes caching parts of files feasible; it is also much faster
 // for some aio implementations, e.g. wposix).
-const size_t BLOCK_SIZE_LOG2 = 16;		// 2**16 = 64 KB
+const size_t BLOCK_SIZE_LOG2 = 16;		// 2**16 = 64 KiB
 const size_t BLOCK_SIZE = 1ul << BLOCK_SIZE_LOG2;
 
 const size_t SECTOR_SIZE = 4096;
@@ -963,7 +963,7 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 
 
 	//
-	// now we read the file in 64 KB chunks, N-buffered.
+	// now we read the file in 64 KiB chunks, N-buffered.
 	// if reading from Zip, inflate while reading the next block.
 	//
 

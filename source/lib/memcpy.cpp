@@ -1,8 +1,6 @@
-/*
- * block prefetch memcpy for large, uncached arrays
- *
- * src and len must be multiples of CHUNK_SIZE.
- */
+// block prefetch memcpy for large, uncached arrays
+//
+// src and len must be multiples of CHUNK_SIZE.
 
 #include "precompiled.h"
 #include "config.h"

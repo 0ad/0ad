@@ -51,11 +51,11 @@ typedef int (*EventHandler)(const void* sdl_event);
 extern int _in_add_handler(EventHandler handler);
 #define in_add_handler(h) _in_add_handler((EventHandler)h)
 
-extern void in_get_events();
+extern void in_get_events(void);
 
 extern int in_record(const char* fn);
 extern int in_playback(const char* fn);
-extern void in_stop();
+extern void in_stop(void);
 
 
 #ifdef __cplusplus
