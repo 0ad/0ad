@@ -34,6 +34,8 @@
   hotkey				CDATA #IMPLIED
   cell_id				CDATA #IMPLIED
   input_initvalue_destroyed_at_focus	%bool; #IMPLIED
+  max_length				CDATA #IMPLIED
+  multiline				%bool; #IMPLIED
   rectcolor_selected			CDATA #IMPLIED
   scrollbar				%bool; #IMPLIED
   scrollbar_style			CDATA #IMPLIED
@@ -47,6 +49,7 @@
   sprite2_over				CDATA #IMPLIED
   sprite_pressed			CDATA #IMPLIED
   sprite2_pressed			CDATA #IMPLIED
+  sprite_selectarea			CDATA #IMPLIED
   square_side				CDATA #IMPLIED
   textcolor				CDATA #IMPLIED
   textcolor_disabled			CDATA #IMPLIED
