@@ -14,7 +14,11 @@
 # define finite __finite // PT: Need to use _finite in MSVC, __finite in gcc
 #endif
 
-#pragma comment (lib, "js32.lib")
+#ifdef NDEBUG
+# pragma comment (lib, "js32.lib")
+#else
+# pragma comment (lib, "js32d.lib")
+#endif
 
 extern CConsole* g_Console;
 
@@ -310,6 +314,8 @@ double ScriptingHost::ValueToDouble(const jsval value)
 
 void ScriptingHost::ErrorReporter(JSContext * context, const char * message, JSErrorReport * report)
 {
+	debug_out("%s(%d) : %s\n", report->filename, report->lineno, message);
+
 	if (g_Console)
 	{
 		g_Console->InsertMessage( L"%S ( %d )", report->filename, report->lineno );

@@ -3,7 +3,7 @@
 #define _SCRIPTINGHOST_H_
 
 #ifdef _WIN32
-#define XP_WIN
+# define XP_WIN
 #endif
 
 #include <jsapi.h>
@@ -69,8 +69,8 @@ public:
 
 	JSObject * CreateCustomObject(const std::string & typeName);
 
-	void SetObjectProperty(JSObject * object, const std::string & propertyName, jsval value);
-	jsval GetObjectProperty( JSObject* object, const std::string& propertyName );
+	void  SetObjectProperty(JSObject * object, const std::string & propertyName, jsval value);
+	jsval GetObjectProperty(JSObject * object, const std::string & propertyName);
 
 	void SetGlobal(const std::string& globalName, jsval value);
 	jsval GetGlobal(const std::string& globalName);
