@@ -495,8 +495,6 @@ fail:
 // any further params are passed to type's init routine
 Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 {
-//	ONCE(atexit2(h_mgr_shutdown));
-
 	CHECK_ERR(type_validate(type));
 
 	Handle h = 0;
@@ -695,7 +693,7 @@ int h_reload(const char* fn)
 	int ret = 0;
 
 	// now reload all affected handles
-	// TODO: what if too slow to iterate through all handles?
+	// TODO: what if iterating through all handles is too slow?
 	for(i = 0; i <= last_in_use; i++)
 	{
 		HDATA* hd = h_data_from_idx(i);
@@ -709,7 +707,8 @@ int h_reload(const char* fn)
 		if(err < 0)
 		{
 			h_free(h, hd->type);
-			ret = err;
+			if(ret == 0)	// don't overwrite first error
+				ret = err;
 		}
 	}
 
