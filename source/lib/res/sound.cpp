@@ -56,14 +56,17 @@ static void Sound_dtor(Sound* s)
 
 Handle sound_load(const char* filename)
 {
+#ifdef _WIN32
 	ONCE(
 		FSOUND_Init(44100, 32, 0);
-#ifdef _WIN32
 		atexit2(FSOUND_Close, 0, CC_STDCALL_0);
-#else
-//		atexit2(FSOUND_Close, 0, CC_CDECL_0); // PT: Doesn't compile
-#endif
 	);
+#else
+	ONCE(
+		FSOUND_Init(44100, 32, 0);
+		atexit2(FSOUND_Close, 0, CC_CDECL_0); // PT: Doesn't compile
+	);
+#endif
 
 	return h_alloc(H_Sound,filename,0,0);
 }
