@@ -322,10 +322,9 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 		if(ret < 0)
 			if(cb_err == 0)
 				cb_err = ret;
-	}
 
-	for(it = dirents.begin(); it != dirents.end(); ++it)
-		delete *it;
+		delete ent;
+	}
 
 	if(cb_err < 0)
 		return cb_err;
