@@ -13,8 +13,9 @@
 #include "timer.h"
 #include "input.h"
 #include "lib.h"
-#include "res/res.h"
-#include "res/tex.h"
+#include "lib/res/res.h"
+#include "lib/res/tex.h"
+#include "lib/res/hotload.h"
 #ifdef _M_IX86
 #include "sysdep/ia32.h"	// _control87
 #endif
