@@ -1368,7 +1368,24 @@ debug_out("vfs_load fn=%s\n", fn);
 	ssize_t nread = vfs_io(hf, size, &p);
 	if(nread > 0)
 	{
+		// one case where we need the handle return value is Tex.hm;
+		// we can't have the pointer freed behind our back there.
+		// if someone calls mem_get_ptr or mem_size, it must return the
+		// real memory range (p+size), disregarding padding added by File.
+		// hence, mem_assign finds the actual allocation to which p belongs
+		// (not necessarily starting at p); we mem_assign_user a subrange.
 		hm = mem_assign(p, size);
+		assert(hm > 0);
+		if(mem_assign_user(hm, p, size) < 0)
+			debug_warn("vfs_load: mem_assign_user failed");
+
+		// sanity check: handle returns correct info
+#ifndef NDEBUG
+		size_t test_size;
+		void* test_p = mem_get_ptr(hm, &test_size);
+		assert(test_p == p && test_size == size);
+#endif
+
 		if(flags & FILE_CACHE)
 		{
 			vf->hm = hm;
