@@ -234,6 +234,7 @@ extern int access(const char*, int);
 
 extern int chdir(const char*);
 #define getcwd _getcwd
+extern char* getcwd(char*, int);
 
 // user tests if available via #ifdef; can't use enum.
 #define _SC_PAGESIZE      1
