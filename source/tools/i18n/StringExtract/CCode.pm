@@ -5,15 +5,19 @@ package StringExtract::CCode;
 
 use StringExtract::Utils;
 
-use Regexp::Common qw(delimited comment);
+use Regexp::Common qw(delimited);
 
 our $data = {
 
 	file_roots => [
 		'source',
 	],
-	# TO DO:
-	# Limit the extent of the search, so it doesn't check e.g. the i18n test system
+
+	file_roots_ignore => [
+		'source/workspaces',
+		'source/i18n/tests',
+		'source/tools',
+	],
 
 	file_types => qr/\.(?:cpp|h)$/i,
 
@@ -21,14 +25,15 @@ our $data = {
 };
 
 sub extract {
-	my ($data) = @_;
+	my ($data, $text) = @_;
 
-	$data =~ s/$RE{comment}{'C++'}//g;
+	$text = StringExtract::Utils::strip_comments($text, 'C++');
 
 	my @strings;
 
-	while ($data =~ /translate\s*\(\s*L\s*($RE{delimited}{-delim=>'"'})\s*\)/g) {
+	while ($text =~ /translate\s*\(\s*L\s*($RE{delimited}{-delim=>'"'})\s*\)/g) {
 		my $str = $1;
+
 		# Remove surrounding quotes
 		$str =~ s/^"(.*)"$/$1/;
 		# Translate \" sequences
@@ -38,7 +43,9 @@ sub extract {
 		# and \\
 		$str =~ s/\\\\/\\/g;
 
-		push @strings, [ $1, "C++ code" ];
+		(my $filename = $data->{filename}) =~ s~.*?source/~~; # make the filenames a bit neater
+
+		push @strings, [ "phrase:".$str, "C++ $filename:".(1+StringExtract::Utils::count_newlines(substr $text, 0, pos $text)) ];
 	}
 
 	return @strings;

@@ -5,7 +5,7 @@ package StringExtract::JSCode;
 
 use StringExtract::Utils;
 
-use Regexp::Common qw(delimited comment);
+use Regexp::Common qw(delimited);
 
 our $data = {
 
@@ -19,13 +19,15 @@ our $data = {
 };
 
 sub extract {
-	my ($data) = @_;
+	my ($data, $text) = @_;
 
-	$data =~ s/$RE{comment}{Java}//g;
+	return unless defined $text;
+
+	$text = StringExtract::Utils::strip_comments($text, 'Java');
 
 	my @strings;
 
-	while ($data =~ /translate\s*\(\s*($RE{delimited}{-delim=>'"'})/g) {
+	while ($text =~ /translate\s*\(\s*($RE{delimited}{-delim=>'"'})/g) {
 		my $str = $1;
 		# Remove surrounding quotes
 		$str =~ s/^"(.*)"$/$1/;
@@ -36,7 +38,7 @@ sub extract {
 		# and \\
 		$str =~ s/\\\\/\\/g;
 
-		push @strings, [ $1, "GUI script" ];
+		push @strings, [ "phrase:".$1, "GUI script" ];
 	}
 
 	return @strings;

@@ -28,17 +28,17 @@ sub extract {
 	# Entities
 	if ($root eq 'entity') {
 
-		push @strings, map [ $_->{content}, "Entity name" ], @{$elements{name}};
+		push @strings, map [ "noun:".$_->{content}, "Entity name" ], @{$elements{name}};
 
 	# Actors
 	} elsif ($root eq 'object') {
 
-		push @strings, map [ $_->{content}, "Actor name" ], @{$elements{name}};
+		push @strings, map [ "noun:".$_->{content}, "Actor name" ], @{$elements{name}};
 
 	# GUI objects
 	} elsif ($root eq 'objects') {
 
-		recursive_extract_guiobject(\@strings, [\%elements]);#$elements{object});
+		recursive_extract_guiobject(\@strings, [\%elements]);
 
 	# GUI setup
 	} elsif ($root eq 'setup') {
@@ -53,7 +53,7 @@ sub extract {
 		# Do nothing
 
 	} else {
-		die "Unrecognised XML file type '$root'";
+		warn "Unrecognised XML file type '$root' - ignoring";
 	}
 	return @strings;
 
@@ -62,8 +62,8 @@ sub extract {
 sub recursive_extract_guiobject {
 	my ($strings, $elements) = @_;
 	for my $element (@$elements) {
-		push @$strings, [ $element->{tooltip}, "GUI tooltip" ] if defined $element->{tooltip};
-		push @$strings, [ $element->{content}, "GUI text"    ] if defined $element->{content};
+		push @$strings, [ "phrase:".$element->{tooltip}, "GUI tooltip" ] if defined $element->{tooltip};
+		push @$strings, [ "phrase:".$element->{content}, "GUI text"    ] if defined $element->{content};
 
 		if ($element->{script}) {
 			push @$strings, StringExtract::JSCode::extract($_->{content}) for @{$element->{script}};
