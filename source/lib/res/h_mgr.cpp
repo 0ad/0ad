@@ -467,7 +467,16 @@ if(!(flags & RES_KEY))
 
 	if(vtbl->reload)
 	{
-		err = vtbl->reload(hd->user, fn);
+		// catch exception to simplify reload funcs - let them use new()
+		try
+		{
+			err = vtbl->reload(hd->user, fn);
+		}
+		catch(std::bad_alloc)
+		{
+			err = ERR_NO_MEM;
+		}
+
 		if(err < 0)
 		{
 			h_free(h, type);
