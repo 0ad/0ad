@@ -39,10 +39,11 @@ void sle(int x)
 //
 
 
-void check_heap()
+inline void check_heap()
 {
 	_heapchk();
 }
+
 
 
 void display_msg(const char* caption, const char* msg)
