@@ -73,6 +73,7 @@ if (OS == "windows") then
 --	package.defines = { "XERCES_STATIC_LIB" }
 	package.config["Release"].defines = { "NDEBUG" }
 	tinsert(package.files, sourcesfromdirs("../../lib/sysdep/win"))
+	tinsert(package.files, {"../../lib/sysdep/win/assert_dlg.rc"})
 	package.linkoptions = { "/ENTRY:entry",
 "/DELAYLOAD:opengl32.dll",
 "/DELAYLOAD:advapi32.dll",
