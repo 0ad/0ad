@@ -7,17 +7,16 @@
 
 #include "res/vfs.h"
 
-
 #ifdef _MSC_VER
 # ifdef XERCES_STATIC_LIB
 #  ifndef NDEBUG
-#   pragma comment(lib, "xerces-c_2-static.lib")
+#   pragma comment(lib, "xerces-c_2D-static.lib")
 #  else
 #   pragma comment(lib, "xerces-c_2-static.lib")
 #  endif	// NDEBUG
 # else
 #  ifndef NDEBUG
-#   pragma comment(lib, "xerces-c_2.lib")
+#   pragma comment(lib, "xerces-c_2D.lib")
 #  else
 #   pragma comment(lib, "xerces-c_2.lib")
 #  endif	// NDEBUG
