@@ -186,7 +186,13 @@ struct Req
 };
 
 
-// TODO: explain links between Req and cb
+// an aiocb is used to pass the request from caller to aio,
+// and serves as a "token" identifying the IO - its address is unique.
+// Req holds some state needed for the Windows AIO calls (OVERLAPPED).
+//
+// cb -> req (e.g. in aio_return) is accomplished by searching reqs
+// for the given cb (no problem since MAX_REQS is small).
+// req -> cb via Req.cb pointer.
 
 
 const int MAX_REQS = 16;
@@ -221,34 +227,40 @@ static void req_init()
 }
 
 
-static Req* req_alloc(aiocb* cb)
+// return first Req with given cb field
+// (may be 0; useful if searching for a free Req)
+static Req* req_find(const aiocb* cb)
 {
 	Req* r = reqs;
 	for(int i = 0; i < MAX_REQS; i++, r++)
-		if(r->cb == 0)
-		{
-			r->cb = cb;
-			cb->req_ = r;
+		if(r->cb == cb)
+			goto found;
+
+	r = 0;	// not found
+found:
+
+#ifdef PARANOIA
+debug_out("req_find  cb=%p r=%p\n", cb, r);
+#endif
+
+	return r;
+}
+
+
+static Req* req_alloc(aiocb* cb)
+{
+	assert(cb);
+
+	// first free Req, or 0
+	Req* r = req_find(0);
+	if(r)
+		r->cb = cb;
 
 #ifdef PARANOIA
 debug_out("req_alloc cb=%p r=%p\n", cb, r);
 #endif
 
-			return r;
-		}
-
-
-	return 0;
-}
-
-
-static Req* req_find(const aiocb* cb)
-{
-#ifdef PARANOIA
-debug_out("req_find  cb=%p r=%p\n", cb, cb->req_);
-#endif
-
-	return (Req*)cb->req_;
+	return r;
 }
 
 
@@ -258,13 +270,7 @@ static int req_free(Req* r)
 debug_out("req_free  cb=%p r=%p\n", r->cb, r);
 #endif
 
-	if(r->cb == 0)
-	{
-		assert(0);
-		return -1;
-	}
-
-	r->cb->req_ = 0;
+	assert(r->cb != 0 && "req_free: not currently in use");
 	r->cb = 0;
 	return 0;
 }
@@ -439,18 +445,11 @@ debug_out("aio_rw cb=%p\n", cb);
 
 	WIN_SAVE_LAST_ERROR;
 
-	const bool is_write = cb->aio_lio_opcode == LIO_WRITE;
-
-	if(!cb)
-	{
-		assert(0);
-		return -EINVAL;
-	}
-	if(cb->aio_lio_opcode == LIO_NOP)
-	{
-		assert(0);
+	// no-op from lio_listio
+	if(!cb || cb->aio_lio_opcode == LIO_NOP)
 		return 0;
-	}
+
+	const bool is_write = cb->aio_lio_opcode == LIO_WRITE;
 
 	HANDLE h = aio_h_get(cb->aio_fildes);
 	if(h == INVALID_HANDLE_VALUE)
@@ -459,7 +458,7 @@ debug_out("aio_rw cb=%p\n", cb);
 		return -EINVAL;
 	}
 
-	if(cb->req_)
+	if(req_find(cb))
 	{
 		// SUSv3 says this has undefined results; we fail the attempt.
 		debug_warn("aio_rw: aiocb is already in use");
@@ -628,7 +627,10 @@ debug_out("aio_return cb=%p\n", cb);
 
 	Req* const r = req_find(cb);
 	if(!r)
+	{
+		debug_warn("aio_return: cb not found (already called aio_return?)");
 		return -1;
+	}
 
 	assert(r->ovl.Internal == 0 && "aio_return with transfer in progress");
 

@@ -33,9 +33,6 @@ struct aiocb
 	int             aio_reqprio;    // Request priority offset.
 	struct sigevent aio_sigevent;   // Signal number and value.
 	int             aio_lio_opcode; // Operation to be performed.
-
-	// internal
-	void* req_;	// != 0 <==> cb in use
 };
 
 enum
