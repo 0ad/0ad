@@ -33,3 +33,17 @@ W				switch terrain to wireframe
 H				reset camera
 F1				open/close console
 
+LMB				select unit
+LMB-drag			bandbox units
+LMB-doubleclick			select all units of this type on screen
+LMB-tripleclick			select all units of this type on map
+shift+mouse select		add to selection
+ctrl+mouse select		remove from selection
+#=(1...0)			select group #, pressing again centres view
+shift+#				add group # to selection
+ctrl+#				save selection as group #
+alt+# (hold down)		snap view to group # (while alt is held down)
+o				show selection circle for all units on screen
+HOME				centre view on selection
+RMB				issue order to selected units
+
