@@ -5,8 +5,6 @@
 #include <cstdlib>
 #include <cmath>
 
-#include <fmod.h>
-
 // Alan: For some reason if this gets included after anything else some
 // compile time errors get thrown up todo with javascript internal typedefs
 #include "scripting/ScriptingHost.h"
@@ -787,7 +785,7 @@ PREVTSC=CURTSC;
 #endif
 
 	delete g_Console;
-	delete &g_ScriptingHost;
+//	delete &g_ScriptingHost;
 	delete &g_Pathfinder;
 	delete &g_EntityManager;
 	delete &g_EntityTemplateCollection;
@@ -802,12 +800,11 @@ PREVTSC=CURTSC;
 
 	// destroy renderer
 	delete &g_Renderer;
-	
+
+	delete &g_ConfigDB;
+
 	// close down Xerces
 	XMLPlatformUtils::Terminate();
-
-	//shut down FMOD - needs adding to the atexit calls above
-	FSOUND_Close();
 
 	exit(0);
 	return 0;
