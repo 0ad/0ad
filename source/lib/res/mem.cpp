@@ -12,18 +12,17 @@
 #include <map>
 
 
-
 struct Mem
 {
-	// what is reported by mem_get_ptr / mem_size
-	void* user_p;
-	size_t user_size;
+	// initially what mem_alloc returns; can be changed via mem_assign_user
+	void* p;
+	size_t size;
 
-	// actual allocation params (set by allocator)
+	// unaligned mem from allocator
 	void* raw_p;
 	size_t raw_size;
-	uintptr_t ctx;
 
+	uintptr_t ctx;
 	MEM_DTOR dtor;	// this allows user-specified dtors.
 };
 
@@ -53,12 +52,11 @@ static int Mem_reload(Mem* /*m*/, const char* /*fn*/, Handle /*h*/)
 
 //////////////////////////////////////////////////////////////////////////////
 
-// "raw_*":  memory requested from allocator (+ padding for alignment
-//           requested by mem_alloc)
-// "user_*": same as raw, until someones changes it via {?}
+// "*": aligned memory returned by allocator.
+// "user_*": same as above, until someones changes it via mem_assign_user
 
 // allocator interface:
-// alloc: return at least raw_size bytes of memory (alignment done by caller)
+// alloc: return at least size bytes of memory (alignment done by caller)
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -188,7 +186,7 @@ static Handle find_alloc(void* target_p)
 			if(m)
 			{
 				// found it within this mem range.
-				if(target_p <= (char*)m->raw_p + m->raw_size)
+				if(target_p <= (char*)m->p + m->size)
 					return hm;
 			}
 		}
@@ -247,30 +245,30 @@ int mem_free_h(Handle& hm)
 }
 
 
-Handle mem_assign(void* raw_p, size_t raw_size, uint flags /* = 0 */, MEM_DTOR dtor /* = 0 */, uintptr_t ctx /* = 0 */)
+Handle mem_assign(void* p, size_t size, uint flags, void* raw_p, size_t raw_size, MEM_DTOR dtor, uintptr_t ctx)
 {
 	// we've already allocated that pointer - returns its handle
-	Handle hm = find_alloc(raw_p);
+	Handle hm = find_alloc(p);
 	if(hm > 0)
 		return hm;
 
-	if(!raw_p || !raw_size)
+	if(!p || !size)
 	{
 		debug_warn("mem_assign: invalid p or size");
 		return 0;
 	}
 
-	hm = h_alloc(H_Mem, (const char*)raw_p, flags | RES_KEY);
+	hm = h_alloc(H_Mem, (const char*)p, flags | RES_KEY);
 	if(!hm)
 		return 0;
 
-	set_alloc(raw_p, hm);
+	set_alloc(p, hm);
 
 	H_DEREF(hm, Mem, m);
+	m->p         = p;
+	m->size      = size;
 	m->raw_p     = raw_p;
 	m->raw_size  = raw_size;
-	m->user_p    = raw_p;
-	m->user_size = raw_size;
 	m->dtor      = dtor;
 	m->ctx       = ctx;
 
@@ -282,26 +280,18 @@ int mem_assign_user(Handle hm, void* user_p, size_t user_size)
 {
 	H_DEREF(hm, Mem, m);
 
-	// make sure it's not already been assigned
-	// (doesn't make sense, probably logic error)
-	if(m->user_p != m->raw_p || m->user_size != m->raw_size)
-	{
-		debug_warn("mem_assign_user: already user_assign-ed");
-		return -1;
-	}
-
 	// security check: must be a subset of the existing buffer
 	// (otherwise, could reference other buffers / cause mischief)
-	char* raw_end  = (char*)m->raw_p  + m->raw_size;
-	char* user_end = (char*)m->user_p + m->user_size;
-	if(user_p < m->raw_p || user_end > raw_end)
+	char* end  = (char*)m->p + m->size;
+	char* user_end = (char*)user_p + user_size;
+	if(user_p < m->p || user_end > end)
 	{
 		debug_warn("mem_assign_user: user buffer not contained in real buffer");
 		return -EINVAL;
 	}
 
-	m->user_p = user_p;
-	m->user_size = user_size;
+	m->p = user_p;
+	m->size = user_size;
 	return 0;
 }
 
@@ -324,9 +314,10 @@ void* mem_alloc(size_t size, const size_t align, uint flags, Handle* phm)
 			flags = res_cur_scope;
 		// otherwise, assume global scope
 
-	size_t raw_size = (size_t)round_up(size, align);
 
 	void* raw_p;
+	const size_t raw_size = size + align-1;
+
 	uintptr_t ctx;
 	MEM_DTOR dtor;
 
@@ -343,11 +334,13 @@ void* mem_alloc(size_t size, const size_t align, uint flags, Handle* phm)
 
 	if(!raw_p)
 		return 0;
+	void* p = (void*)round_up((uintptr_t)raw_p, align);
 
-	Handle hm = mem_assign(raw_p, raw_size, flags, dtor, ctx);
+
+	Handle hm = mem_assign(p, size, flags, raw_p, raw_size, dtor, ctx);
 	if(!hm)			// failed to allocate a handle
 	{
-		dtor(raw_p, raw_size, ctx);
+		dtor(p, size, ctx);
 		return 0;
 	}
 
@@ -361,9 +354,9 @@ void* mem_alloc(size_t size, const size_t align, uint flags, Handle* phm)
 		*phm = hm;
 
 	if(flags & MEM_ZERO)
-		memset(raw_p, 0, raw_size);
+		memset(p, 0, size);
 
-	return raw_p;
+	return p;
 }
 
 
@@ -377,11 +370,11 @@ void* mem_get_ptr(Handle hm, size_t* user_size /* = 0 */)
 		return 0;
 	}
 
-	assert((!m->user_p || m->user_size) && "mem_get_ptr: mem corrupted (p valid =/=> size > 0)");
+	assert((!m->p || m->size) && "mem_get_ptr: mem corrupted (p valid =/=> size > 0)");
 
 	if(user_size)
-		*user_size = m->user_size;
-	return m->user_p;
+		*user_size = m->size;
+	return m->p;
 }
 
 
@@ -389,5 +382,5 @@ ssize_t mem_size(void* p)
 {
 	Handle hm = find_alloc(p);
 	H_DEREF(hm, Mem, m);
-	return (ssize_t)m->user_size;
+	return (ssize_t)m->size;
 }
