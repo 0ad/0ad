@@ -681,40 +681,6 @@ static void ParseArgs(int argc, char* argv[])
 }
 
 
-
-
-
-class ScopedTimer
-{
-	double t0;
-	const std::string name;
-
-public:
-	ScopedTimer(const char* _name)
-		: name(_name)
-	{
-		t0 = get_time();
-	}
-	~ScopedTimer()
-	{
-		double t1 = get_time();
-		double dt = t1-t0;
-
-		// assume microseconds
-		double scale = 1e6;
-		char unit = 'µ';
-		if(dt > 1.0)
-			scale = 1, unit = ' ';
-		// milli
-		else if(dt > 1e-3)
-			scale = 1e3, unit = 'm';
-
-		debug_out("TIMER %s: %g %cs\n", name.c_str(), dt*scale, unit);
-	}
-};
-
-#define TIMER(name) ScopedTimer name(#name);
-
 static void InitScripting()
 {
 TIMER(InitScripting)
@@ -763,12 +729,13 @@ TIMER(InitVfs)
 	int err = file_rel_chdir(argv0, "../data");
 	if(err < 0)
 		throw err;
+
 //		display_startup_error(L"error setting current directory.\n"\
 //			L"argv[0] is probably incorrect. please start the game via command-line.");
 
 	vfs_mount("", "mods/official", 0);
 	vfs_mount("screenshots/", "screenshots", 0);
-	vfs_mount("profiles/", "profiles", 0 );
+	vfs_mount("profiles/", "profiles", 0);
 
 	// don't try vfs_display yet: SDL_Init hasn't yet redirected stdout
 }
@@ -1308,7 +1275,6 @@ int main(int argc, char* argv[])
 		// Do some limited tests to ensure things aren't broken
 #ifndef NDEBUG
 		{
-			ScopedTimer c("PerformTests");
 		extern void PerformTests();
 		PerformTests();
 		}

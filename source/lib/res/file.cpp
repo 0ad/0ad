@@ -260,6 +260,24 @@ static bool dirent_less(const DirEnt* const d1, const DirEnt* const d2)
 	{ return d1->name.compare(d2->name) < 0; }
 
 
+
+
+#include "timer.h"
+static double totstat;
+static double totpush;
+static double totclose;
+void dump2(void)
+{
+	debug_out("TOTAL TIME %g ms\n\n", totstat*1e3);
+	debug_out("TOTAL TIME %g ms\n\n", totpush*1e3);
+	debug_out("TOTAL TIME %g ms\n\n", totclose*1e3);
+}
+
+
+
+
+
+
 // call <cb> for each file and subdirectory in <dir> (alphabetical order),
 // passing the entry name (not full path!), stat info, and <user>.
 //
@@ -278,6 +296,8 @@ static bool dirent_less(const DirEnt* const d1, const DirEnt* const d2)
 //   of converting from/to native path (we just give 'em the dirent name).
 int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 {
+double t0,t1;
+
 	// full path for stat
 	char n_path[PATH_MAX];
 	n_path[PATH_MAX-1] = '\0';
@@ -293,6 +313,7 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 	int cb_err = 0;		// first error returned by cb
 	int ret;
 
+	// [16.6ms]
 	DIR* const os_dir = opendir(n_path);
 	if(!os_dir)
 		return ERR_PATH_NOT_FOUND;
@@ -309,13 +330,24 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 
 		strncpy(fn_start, fn, PATH_MAX-n_path_len-1);
 			// need path for stat (we only have filename ATM).
-			// this is easier than changing directory every time,
-			// and should be fast enough.
+			// this is actually minimally faster than changing directory!
 			// BTW, direct strcpy is faster than path_append -
 			// we save a strlen every iteration.
 
+
+		// HACK on wposix: readdir already returns stat info
+		// (shaves several hundred ms off of startup)
+		mode_t mode;
+		off_t size;
+		time_t mtime;
+#ifdef _WIN32
+		mode = os_ent->mode;
+		size = os_ent->size;
+		mtime = os_ent->mtime;
+#else
 		// no need to go through file_stat -
 		// we already have the native path.
+		// [290ms]
 		struct stat s;
 		ret = stat(n_path, &s);
 		if(ret < 0)
@@ -324,22 +356,35 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 				stat_err = ret;	// first error (see decl)
 			continue;
 		}
+		mode = s.st_mode;
+		size = s.st_size;
+		mtime = s.st_mtime;
+#endif
 
 		// dir
-		if(S_ISDIR(s.st_mode))
+		if(S_ISDIR(mode))
 		{
 			// skip . and ..
 			if(fn[0] == '.' && (fn[1] == '\0' || (fn[1] == '.' && fn[2] == '\0')))
 				continue;
 		}
 		// skip if neither dir nor file
-		else if(!S_ISREG(s.st_mode))
+		else if(!S_ISREG(mode))
 			continue;
 
-		dirents.push_back(new DirEnt(fn, s.st_mode, s.st_size, s.st_mtime));
+		// [21ms]
+		dirents.push_back(new DirEnt(fn, mode, size, mtime));
 	}
+
+	// [2.5ms]
 	closedir(os_dir);
 
+
+
+ONCE(atexit(dump2));
+
+
+	// [5.8ms]
 	std::sort(dirents.begin(), dirents.end(), dirent_less);
 
 	struct stat s;
@@ -359,7 +404,9 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 		}
 	}
 
+
 	// free all memory (can't do in loop above because it can be aborted).
+	// [10.4ms]
 	for(DirEntRIt rit = dirents.rbegin(); rit != dirents.rend(); ++rit)
 		delete *rit;
 

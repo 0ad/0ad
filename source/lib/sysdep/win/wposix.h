@@ -209,6 +209,11 @@ struct dirent
 {
 	ino_t d_ino;
 	char* d_name;
+
+	//
+	mode_t mode;
+	off_t size;
+	time_t mtime;
 };
 
 extern DIR* opendir(const char* name);
@@ -287,7 +292,7 @@ _CRTIMP int access(const char*, int);
 
 extern int chdir(const char*);
 #define getcwd _getcwd
-_CRTIMP char* getcwd(char*, int);
+_CRTIMP char* getcwd(char*, size_t);
 
 // user tests if available via #ifdef; can't use enum.
 #define _SC_PAGESIZE      1

@@ -244,11 +244,31 @@ again:
 	d->not_first = true;
 
 	// hidden or system entry - don't return it.
-	if(d->fd.dwFileAttributes & hs)
+	DWORD attr = d->fd.dwFileAttributes;
+	if(attr & hs)
 		goto again;
 
 	d->ent.d_ino = 0;
 	d->ent.d_name = &d->fd.cFileName[0];
+
+	// non-standard fields - what stat returns.
+	// add them to speed up file_enum (Win32 specific, though)
+
+	d->ent.size = (off_t)((((u64)d->fd.nFileSizeHigh) << 32) | d->fd.nFileSizeLow);
+	d->ent.mode = (attr & FILE_ATTRIBUTE_DIRECTORY)? S_IFDIR : S_IFREG;
+
+	SYSTEMTIME st = { 0 };
+	FileTimeToSystemTime(&d->fd.ftLastWriteTime, &st);
+	tm t;
+	t.tm_sec   = st.wSecond;
+	t.tm_min   = st.wMinute;
+	t.tm_hour  = st.wHour;
+	t.tm_mday  = st.wDay;
+	t.tm_mon   = st.wMonth-1;
+	t.tm_year  = st.wYear-1900;
+	t.tm_isdst = -1;	// unknown; let CRT decide
+	d->ent.mtime = mktime(&t);
+
 	return &d->ent;
 }
 

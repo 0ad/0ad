@@ -39,6 +39,43 @@ extern int fps;
 extern void calc_fps();
 
 
+
+
+
+#include <string>
+
+class ScopedTimer
+{
+	double t0;
+	const std::string name;
+
+public:
+	ScopedTimer(const char* _name)
+		: name(_name)
+	{
+		t0 = get_time();
+	}
+	~ScopedTimer()
+	{
+		double t1 = get_time();
+		double dt = t1-t0;
+
+		// assume microseconds
+		double scale = 1e6;
+		char unit = 'µ';
+		if(dt > 1.0)
+			scale = 1, unit = ' ';
+		// milli
+		else if(dt > 1e-3)
+			scale = 1e3, unit = 'm';
+
+		printf("TIMER %s: %g %cs\n", name.c_str(), dt*scale, unit);
+	}
+};
+
+#define TIMER(name) ScopedTimer name(#name);
+
+
 #ifdef __cplusplus
 }
 #endif

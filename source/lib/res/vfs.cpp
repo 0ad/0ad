@@ -25,6 +25,7 @@
 #include "file.h"
 #include "adts.h"
 #include "hotload.h"	// see NO_DIR_WATCH
+#include "timer.h"
 
 #include <string.h>
 
@@ -423,7 +424,7 @@ struct TDir
 	TDir* find_subdir(const char* d_name);
 	void clearR();
 	void displayR(int indent_level = 0);
-	int TDir::addR(const char* p_path, const TLoc* dir_loc, TLocs* archive_locs = 0);
+	int addR(const char* p_path, const TLoc* dir_loc, TLocs* archive_locs = 0);
 };
 
 
@@ -688,70 +689,140 @@ static int tree_lookup(const char* path, TFile** pfile, uint flags = 0, char* ex
 
 //////////////////////////////////////////////////////////////////////////////
 
-// passed to add_dirent_cb
-struct FileCBParams
-{
-	// tree dir into which the dirent is to be added
-	TDir* const dir;
 
-	// .. specifying this location
-	const TLoc* const cur_loc;
-
-	// if the dirent is an archive, its TLoc is added here.
-	TLocs* const archive_locs;
-
-	FileCBParams(TDir* _dir, const TLoc* _cur_loc, TLocs* _archive_locs = 0)
-		: dir(_dir), cur_loc(_cur_loc), archive_locs(_archive_locs) {}
-
-	// no copy ctor, since members are const
-private:
-	FileCBParams& operator=(const FileCBParams&);
-};
-
-
-// we're adding <new_file>, but <old_file> (same name) already exists.
-// decide which is more important; return 1 iff <old_file> is to be replaced.
+// attempt to add <fn> to <dir>, storing its status <s> and location <loc>.
+// overrides previously existing files of the same name if the new one
+// is more important, determined via priority and file location.
+// called by zip_cb and dirent_cb.
 //
 // note: if "priority" is the same, replace!
 // this makes sure mods/patches etc. actually replace files.
 //
 // called by add_dirent_cb.
-static int should_replace(TFile* old_file, TFile* new_file)
+//
+// [total time 27ms, with ~2000 files and up-to-date archive]
+static int add_file(TDir* dir, const char* fn, const struct stat* s, const TLoc* loc)
 {
+	int ret = dir->add_file(fn, loc, s);
+	CHECK_ERR(ret);
+	// wasn't in dir yet - it's added and we're done.
+	if(ret == 0)
+		return 0;
+
+	const TFile new_file(loc, s);
+		// note: cleaner but slower than accessing stat members,
+		// and directly assigning TFile fields when overriding.
+	TFile& old_file = *dir->find_file(fn);
+		// since add_file failed, find_file must succeed
+ 
 	// older is higher priority - keep.
-	if(old_file->pri > new_file->pri)
+	if(old_file.pri > new_file.pri)
 		return 0;
 
 	// assume they're the same if size and last-modified time match.
-	bool is_same = (old_file->size == new_file->size);
-	is_same &= fabs(difftime(old_file->mtime, new_file->mtime)) <= 2.0;
+	bool is_same = (old_file.size == new_file.size) &&
+		fabs(difftime(old_file.mtime, new_file.mtime)) <= 2.0;
 		// (FAT timestamp has 2 second resolution)
 
-	// strategy:
-	// s = "is same", oa = "old is in archive", na = "new is in archive"
-	// s oa na result
-	// ----------------
-	// 0 0  0  replace
-	// 0 0  0  replace
-	// 0 1  0  replace
-	// 0 1  1  replace
-	// 1 0  0  replace
-	// 1 0  1  replace
-	// 1 1  0  keep
-	// 1 1  1  replace
-	//
-	// in english: always replace, unless both are the same,
+	// strategy: always replace, unless both are the same,
 	// old is archived (fast), and new is loose (slow).
-	if(is_same && old_file->in_archive && !new_file->in_archive)
+	if(is_same && old_file.in_archive && !new_file.in_archive)
 		return 0;
-	return 1;
+
+	old_file = new_file;
+	return 0;
 }
 
 
-// either called by:
-// - add_dirent_cb's zip_enum for each file in archive, or
-// - TDir::addR's file_enum for each entry in a real directory
-// when mounting.
+// passed through dirent_cb's zip_enum to zip_cb
+struct ZipCBParams
+{
+	// archive's location; assigned to all files added from here
+	const TLoc* const loc;
+
+	// storage for directory lookup optimization (see below).
+	// held across one zip_enum's zip_cb calls.
+	char last_path[VFS_MAX_PATH];
+	size_t last_path_len;
+	TDir* last_dir;
+
+	ZipCBParams(const TLoc* _loc)
+		: loc(_loc)
+	{
+		last_path[0] = '\0';
+		last_path_len = 0;
+		last_dir = 0;
+	}
+
+	// no copy ctor, since some members are const
+private:
+	ZipCBParams& operator=(const ZipCBParams&);
+};
+
+// called by dirent_cb's zip_enum for each file in the archive.
+// we get the full path, since that's what is stored in Zip archives.
+//
+// [total time 21ms, with ~2000 file's (includes add_file cost)]
+static int zip_cb(const char* path, const struct stat* s, uintptr_t user)
+{
+	ZipCBParams* const params = (ZipCBParams*)user;
+	const TLoc* loc        = params->loc;
+	char* last_path        = params->last_path;
+	size_t& last_path_len  = params->last_path_len;
+	TDir*& last_dir        = params->last_dir;
+
+	// extract file name (needed for add_file)
+	const char* fn = path;
+	const char* slash = strrchr(path, '/');
+	if(slash)
+		fn = slash+1;
+	// else: file is in archive's root dir, and fn = path
+
+	// into which directory should the file be inserted?
+	// naive approach: tree_lookup_dir the path (slow!)
+	// optimization: store the last file's path; if it's the same,
+	//   use the directory we looked up last time (much faster!)
+	TDir* dir = last_dir;
+	const size_t path_len = fn-path;
+	// .. last != current: need to do lookup
+	if(path_len != last_path_len ||
+	   strnicmp(path, last_path, path_len) != 0)
+	{
+		CHECK_ERR(tree_lookup_dir(path, &dir, LF_CREATE_MISSING));
+			// we have to create them if missing, since we can't rely on the
+			// archiver placing directories before subdirs or files that
+			// reference them (WinZip doesn't).
+
+		strncpy(last_path, path, VFS_MAX_PATH);
+		last_path_len = path_len;
+		last_dir = dir;
+	}
+
+	return add_file(dir, fn, s, loc);
+}
+
+
+// passed through TDir::addR's file_enum to dirent_cb
+struct DirentCBParams
+{
+	// tree dir into which the dirent is to be added
+	TDir* const dir;
+
+	// real dir's location; assigned to all files added from this mounting
+	const TLoc* const loc;
+
+	// if the dirent is an archive, its TLoc is added here.
+	TLocs* const archive_locs;
+
+	DirentCBParams(TDir* _dir, const TLoc* _loc, TLocs* _archive_locs)
+		: dir(_dir), loc(_loc), archive_locs(_archive_locs) {}
+
+	// no copy ctor, since members are const
+private:
+	DirentCBParams& operator=(const DirentCBParams&);
+};
+
+// called by TDir::addR's file_enum for each entry in a real directory.
 //
 // if called for a real directory, it is added to VFS.
 // else if called for a loose file that is a valid archive (*),
@@ -762,76 +833,51 @@ static int should_replace(TFile* old_file, TFile* new_file)
 // i.e. passed in by tree_add_dir. to determine if a file is an archive,
 // we have to open it and read the header, which is slow.
 // can't just check extension, because it might not be .zip (e.g. Quake3 .pk3).
-static int add_dirent_cb(const char* const n_name, const struct stat* s, const uintptr_t user)
+//
+// [total time 61ms, with ~2000 files (includes zip_cb and add_file cost)]
+static int dirent_cb(const char* name, const struct stat* s, uintptr_t user)
 {
-	const FileCBParams* const params = (FileCBParams*)user;
-	TDir* cur_dir       = params->dir;
-	const TLoc* cur_loc = params->cur_loc;
+	const DirentCBParams* params = (const DirentCBParams*)user;
+	TDir* dir           = params->dir;
+	const TLoc* loc     = params->loc;
 	TLocs* archive_locs = params->archive_locs;
 		// = 0 <==> this is the directory being added by tree_add_dir
 
-	// loose (i.e. not in archive) directory: add it.
-	// note: when called by zip_enum, we only get files in the archive.
+	// directory: add it.
 	if(S_ISDIR(s->st_mode))
-		return cur_dir->add_subdir(n_name);
+		return dir->add_subdir(name);
 
-	const char* fn = n_name;
-		// we get full path for files in archive; will strip below.
-
-	// loose file
-	if(cur_loc->archive <= 0)
+	// caller is requesting we look for archives
+	// (only happens in tree_add_dir's dir, not subdirectories. see below)
+	if(archive_locs)
 	{
-		// at first level of nesting (i.e. dir being mounted): test if file
-		// is an archive; if so, mount it (we only do this at the first
-		// nesting level to avoid testing every single file - slow)
-		if(archive_locs)
+		char path[PATH_MAX];
+		path_append(path, loc->p_real_path.c_str(), name);
+			// HACK: only works for tree_add_dir's dir
+
+		// note: don't bother checking extension -
+		// archives won't necessarily be called .zip (e.g. Quake III .pk3).
+		// we just try and open the file.
+		Handle archive = zip_archive_open(path);
+		if(archive > 0)
 		{
-			char path[PATH_MAX];
-			path_append(path, cur_loc->p_real_path.c_str(), n_name);
-			// don't bother checking extension - archives won't
-			// necessarily be called .zip (e.g. Quake III .pk3).
-			Handle archive = zip_archive_open(path);
-			if(archive > 0)
-			{
-				archive_locs->push_back(TLoc(archive, "", "", cur_loc->pri));
-				FileCBParams params(cur_dir, &archive_locs->back());
-				zip_enum(archive, add_dirent_cb, (uintptr_t)&params);
-				return 0;
-					// don't add as a file
-			}
+			archive_locs->push_back(TLoc(archive, "", "", loc->pri));
+			const TLoc* archive_loc = &archive_locs->back();
+
+			ZipCBParams params(archive_loc);
+			return zip_enum(archive, zip_cb, (uintptr_t)&params);
+				// bail, so that the archive file isn't added below.
 		}
 	}
-	// archived file
-	else
-	{
-		// look up directory in archive from full pathname.
-		CHECK_ERR(tree_lookup_dir(n_name, &cur_dir, LF_CREATE_MISSING));
-			// we have to create them if missing, since we can't rely on the
-			// archiver placing directories before subdirs or files that
-			// reference them (WinZip doesn't).
 
-		// get filename only (no path) for TDir::add_file.
-		const char* slash = strrchr(n_name, '/');
-		if(slash)
-			fn = slash+1;
-	}
-
-
-	int ret = cur_dir->add_file(fn, cur_loc, s);
-	// wasn't in dir yet - it's added and we're done.
-	if(ret == 0)
-		return 0;
-
-	// replace old file with newer one?
-	TFile new_file(cur_loc, s);
-	TFile* old_file = cur_dir->find_file(fn);
-	if(should_replace(old_file, &new_file) == 1)
-		*old_file = new_file;
-
-	return 0;
+	return add_file(dir, name, s, loc);
 }
 
 
+// add the directory <p_path>, its files, and all subdirectories
+// (recursively) to the tree, marking location as <dir_loc>.
+// if archive_locs != 0, all archives found in this directory
+// (but not subdirs! see below) are opened and their TLoc stored there.
 int TDir::addR(const char* p_path, const TLoc* dir_loc, TLocs* archive_locs)
 {
 	// more than one real dir mounted into VFS dir
@@ -846,8 +892,8 @@ int TDir::addR(const char* p_path, const TLoc* dir_loc, TLocs* archive_locs)
 #endif
 
 	// add files and subdirs to vdir
-	const FileCBParams params(this, dir_loc, archive_locs);
-	file_enum(p_path, add_dirent_cb, (uintptr_t)&params);
+	const DirentCBParams params(this, dir_loc, archive_locs);
+	file_enum(p_path, dirent_cb, (uintptr_t)&params);
 
 	// recurse over all subdirs
 	for(TDirIt it = subdirs.begin(); it != subdirs.end(); ++it)
@@ -864,7 +910,10 @@ int TDir::addR(const char* p_path, const TLoc* dir_loc, TLocs* archive_locs)
 		char p_subdir_path[PATH_MAX];
 		CHECK_ERR(path_append(p_subdir_path, p_path, d_subdir_name));
 
-		subdir->addR(p_subdir_path, dir_loc, 0);
+		subdir->addR(p_subdir_path, dir_loc, (TLocs*)0);
+			// note: archive_locs = 0 means we won't search for archives
+			// in subdirectories (slow!). this is currently required by
+			// the dirent_cb implementation anyway; see above.
 	}
 
 	return 0;
@@ -932,6 +981,8 @@ static Mounts mounts;
 // be able to mount without changing the mount list.
 static int remount(Mount& m)
 {
+TIMER(remount);
+
 	const char* v_mount_point = m.v_mount_point.c_str();
 	const char* p_real_path   = m.p_real_path.c_str();
 	const uint pri            = m.pri;
