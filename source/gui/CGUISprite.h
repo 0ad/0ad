@@ -53,19 +53,18 @@ struct SGUIImage
 {
 	CStr			m_Texture;
 
-	// Placement modifiers
-	int				m_Pixel[4];
-	float			m_Percent[4];
+	// Image placement
+	CClientArea		m_Size;
 
-	// Texture modifiers
-	int				m_TexturePixel[4];
-	float			m_TexturePercent[4];
+	// Texture placement
+	CClientArea		m_TextureSize;
 
-	//CColor		m_BackColor;
-	//CColor		m_BorderColor;
+	// Color
+	CColor			m_BackColor;
+	CColor			m_BorderColor;
 
-//	int16			m_BorderSize;
-	bool			m_Border;		// I've decided to have only the 1 pixel available
+	// 0 or 1 pixel border is the only option
+	bool			m_Border;
 };
 
 /**
@@ -74,9 +73,16 @@ struct SGUIImage
  * The GUI sprite, is actually several real sprites (images)
  * like a collage. View the section <sprites> in the GUI
  * TDD for more information.
+ *
+ * Drawing routine is located in CGUI
+ *
+ * @see CGUI#DrawSprite
  */
 class CGUISprite
 {
+	// For CGUI::DrawSprite()
+	friend class CGUI;
+
 public:
 	CGUISprite() {}
 	virtual ~CGUISprite() {}
@@ -89,7 +95,7 @@ public:
 	 * @param clipping		The clipping rectangle, things should only 
 	 *						be drawn within these perimeters.
 	 */
-	void Draw(const float &z, const CRect &rect, const CRect &clipping);
+	//void Draw(const float &z, const CRect &rect, const CRect &clipping);
 
 	/**
 	 * Adds an image to the sprite collage.
@@ -100,7 +106,7 @@ public:
 
 private:
 	/// List of images
-	std::vector<SGUIImage>			m_Images;
+	std::vector<SGUIImage> m_Images;
 };
 
 #endif

@@ -6,7 +6,7 @@ gee@pyro.nu
 
 //#include "stdafx.h"
 #include "GUI.h"
-#include "../ps/Parser.h"
+#include "Parser.h"
 
 using namespace std;
 
@@ -23,8 +23,12 @@ CClientArea::CClientArea(const CStr &Value)
 	SetClientArea(Value);
 }
 
-CRect CClientArea::GetClientArea(const CRect &parent)
+CRect CClientArea::GetClientArea(const CRect &parent) const
 {
+	// If it's a 0 0 100% 100% we need no calculations
+	if (percent == CRect(0,0,100,100) && pixel == CRect(0,0,0,0))
+		return parent;
+
 	CRect client;
 
 	// This should probably be cached and not calculated all the time for every object.
@@ -170,5 +174,5 @@ const IGUIObject * CInternalCGUIAccessorBase::GetObjectPointer(const CGUI &GUIin
 
 void CInternalCGUIAccessorBase::QueryResetting(IGUIObject *pObject)
 {
-	GUI<>::RecurseObject(0, pObject, IGUIObject::ResetStates);
+	GUI<>::RecurseObject(0, pObject, &IGUIObject::ResetStates);
 }

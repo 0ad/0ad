@@ -37,14 +37,17 @@ class IGUIObject;
 
 // Temp
 #define CInput		nemInput
-//#define CStr		std::string
 
-// Example
-//  GUI_ADD_OFFSET(CButton, SButtonSettings, m_Settings, "frozen", m_Frozen);
-//
-#define GUI_ADD_OFFSET(_class, _struct, name, type, str, var) \
-	m_SettingsInfo[str].m_Offset = offsetof(_class, name) + offsetof(_struct, var);	\
-	m_SettingsInfo[str].m_Type = type;
+#define GUI_ADD_OFFSET_GENERIC(si, guiss, _struct, var, type, str)				\
+	si[CStr(str)].m_Offset = offsetof(_struct, var);	\
+	si[CStr(str)].m_SettingsStruct = guiss;		\
+	si[CStr(str)].m_Type = CStr(type);
+
+#define GUI_ADD_OFFSET_BASE(_struct, var, type, str) \
+		GUI_ADD_OFFSET_GENERIC(m_SettingsInfo, GUISS_BASE, _struct, var, type, str)
+
+#define GUI_ADD_OFFSET_EXT(_struct, var, type, str) \
+		GUI_ADD_OFFSET_GENERIC(m_SettingsInfo, GUISS_EXTENDED, _struct, var, type, str)
 
 // Declares the static variable in IGUISettingsObject<>
 #define DECLARE_SETTINGS_INFO(_struct) \
@@ -93,6 +96,16 @@ enum
 {
 	GUIRR_HIDDEN=1,
 	GUIRR_DISABLED=2
+};
+
+/**
+ * @enum EGUISettingsStruct
+ * TODO comment
+ */
+enum EGUISettingsStruct
+{
+	GUISS_BASE,
+	GUISS_EXTENDED
 };
 
 // Typedefs

@@ -25,8 +25,7 @@ gee@pyro.nu
 #include <xercesc/util/XMLString.hpp>
 #include <xercesc/util/PlatformUtils.hpp>
 
-///// janwas: yeah I don't know how the including etiquette is really
-#include "../ps/Singleton.h"
+#include "Singleton.h"
 #include "input.h"	// JW: grr, classes suck in this case :P
 
 class XERCES_CPP_NAMESPACE::DOMElement;
@@ -48,6 +47,17 @@ extern bool gui_handler(const SDL_Event& ev);
 //--------------------------------------------------------
 //  Declarations
 //--------------------------------------------------------
+
+/**
+ * @author Gustav Larsson
+ *
+ * Contains a list of values for new defaults to objects.
+ */
+struct SGUIStyle
+{
+	// A list of defualts for 
+	std::map<CStr, CStr> m_SettingsDefaults;
+};
 
 /**
  * @author Gustav Larsson
@@ -87,7 +97,18 @@ public:
 	 * Displays the whole GUI
 	 */
 	void Draw();
-	
+
+	/**
+	 * Draw GUI Sprite, cooperates with CRenderer.
+	 *
+	 * @param SpriteName By name! The GUI will fetch the real object itself.
+	 * @param Z Drawing order, depth value
+	 * @param Rect Position and Size
+	 * @param Clipping The sprite shouldn't be drawn outside this rectangle
+	 */
+	void DrawSprite(const CStr &SpriteName, const float &Z, 
+					const CRect &Rect, const CRect &Clipping=CRect(0,0,0,0));
+
 	/**
 	 * Clean up, call this to clean up all memory allocated
 	 * within the GUI.
@@ -103,6 +124,9 @@ public:
 
 	/**
 	 * Load a GUI XML file into the GUI.
+	 *
+	 * <b>VERY IMPORTANT!</b> All \<styles\>-files must be read before
+	 * everything else!
 	 *
 	 * @param Filename Name of file
 	 */
@@ -254,6 +278,16 @@ private:
 	 */
 	void Xerces_ReadRootSprites(XERCES_CPP_NAMESPACE::DOMElement *pElement);
 
+	/**
+	 * Reads in the root element \<styles\> (the DOMElement).
+	 *
+	 * @param pElement	The Xerces C++ Parser object that represents
+	 *					the sprites-tag.
+	 *
+	 * @see LoadXMLFile()
+	 */
+	void Xerces_ReadRootStyles(XERCES_CPP_NAMESPACE::DOMElement *pElement);
+
 	// Read Subs
 
 	/**
@@ -299,6 +333,17 @@ private:
 	 * @see LoadXMLFile()
 	 */
 	void Xerces_ReadImage(XERCES_CPP_NAMESPACE::DOMElement *pElement, CGUISprite &parent);
+
+	/**
+	 * Reads in the element \<style\> (the DOMElement) and stores the
+	 * result in m_Styles.
+	 *
+	 * @param pElement	The Xerces C++ Parser object that represents
+	 *					the sprite-tag.
+	 *
+	 * @see LoadXMLFile()
+	 */
+	void Xerces_ReadStyle(XERCES_CPP_NAMESPACE::DOMElement *pElement);
 
 	//@}
 
@@ -351,11 +396,15 @@ private:
 
 	//@}
 	//--------------------------------------------------------
-	/** @name Sprites */
+	/** @name Databases */
 	//--------------------------------------------------------
 	//@{
 
+	/// Sprites
 	std::map<CStr, CGUISprite> m_Sprites;
+
+	/// Styles
+	std::map<CStr, SGUIStyle> m_Styles;
 
 	//@}
 };

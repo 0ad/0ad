@@ -22,6 +22,7 @@ gee@pyro.nu
 //  Includes / Compiler directives
 //--------------------------------------------------------
 #include "GUI.h"
+#include "Parser.h"
 
 //--------------------------------------------------------
 //  Help Classes/Structs for the GUI
@@ -51,6 +52,12 @@ struct CRect
 	}
 };
 
+// TEMP
+struct CColor
+{
+	float r, g, b, a;
+};
+
 /**
  * @author Gustav Larsson
  *
@@ -74,7 +81,7 @@ public:
 	/**
 	 * Get client area rectangle when the parent is given
 	 */
-	CRect GetClientArea(const CRect &parent);
+	CRect GetClientArea(const CRect &parent) const;
 
 	/**
 	 * The ClientArea can be set from a string looking like:
@@ -92,13 +99,6 @@ public:
 	 *			will be unchanged.
 	 */
 	bool SetClientArea(const CStr &Value);
-};
-
-
-// TEMP
-struct CColor
-{
-	float r, g, b, a;
 };
 
 //--------------------------------------------------------
@@ -163,7 +163,9 @@ public:
 			return PS_SETTING_FAIL;
 
 		// Set value
-		Value = *(T*)((size_t)pObject+pObject->GetSettingsInfo()[Setting].m_Offset);
+		Value = 
+			*(T*)((size_t)pObject->GetStructPointer(pObject->GetSettingsInfo()[Setting].m_SettingsStruct) +
+				  pObject->GetSettingsInfo()[Setting].m_Offset);
 
 		return PS_OK;
 	}
@@ -187,8 +189,8 @@ public:
 			return PS_SETTING_FAIL;
 
 		// Set value
-		// This better be the correct adress
-		*(T*)((size_t)pObject+pObject->GetSettingsInfo()[Setting].m_Offset) = Value;
+		*(T*)((size_t)pObject->GetStructPointer(pObject->GetSettingsInfo()[Setting].m_SettingsStruct) +
+			   pObject->GetSettingsInfo()[Setting].m_Offset) = Value;
 
 		
 		//
@@ -198,7 +200,7 @@ public:
 		// If setting was "size", we need to re-cache itself and all children
 		if (Setting == CStr(_T("size")))
 		{
-			RecurseObject(0, pObject, IGUIObject::UpdateCachedSize);
+			RecurseObject(0, pObject, &IGUIObject::UpdateCachedSize);
 		}
 		else
 		if (Setting == CStr(_T("hidden")))
@@ -261,85 +263,173 @@ public:
 		return SetSetting(pObject, Setting, Value);
 	}
 
-	//--------------------------------------------------------
-	//  This function returns the C++ structure of the
-	//	 inputted string. For instance if you input 
-	//	 "0 0 10 10" and request a CRect, it will give you
-	//	 a CRect(0,0,10,10).
-	//	This function is widely used within the GUI.
-	//  Input:
-	//    String					The Value in string format
-	//	Return:
-	//	  Returns the value in the structure T.						
-	//--------------------------------------------------------
-/*	static T GetStringValue(const CStr &String)
+		
+	/**
+	 * Sets a value by setting and object name using a real 
+	 * datatype as input.
+	 *
+	 * This is just a wrapper for _mem_ParseString() which really
+	 * works the magic.
+	 *
+	 * @param Type type in string, like "float" or "client area"
+	 * @param Value The value in string form, like "0 0 100% 100%"
+	 * @param tOutput Parsed value of type T
+	 * @return True at success.
+	 *
+	 * @see _mem_ParseString()
+	 */
+	static bool ParseString(const CStr &Value, T &tOutput)
 	{
-		if (typeid(T) == typeid(int))
-		{
-			return atoi(String.c_str());
-		}
+		void *mem = NULL;
 
-		if (typeid(T) == typeid(float) ||
-			typeid(T) == typeid(double))
-		{
-			return atof(String.c_str());
-		}
+		if (!_mem_ParseString(Value, mem))
+			return false;
+	
+		// Copy from memory
+		tOutput = *(T*)mem;
 
-		if (typeid(T) == typeid(CRect))
-		{
-			(CRect)return CRect();
-		}
+		delete [] mem;
 
-		if (typeid(T) == typeid(CColor))
-		{
-			return CColor();
-		}
-
-		switch(typeid(T))
-		{
-		case typeid(int):
-			return atoi(String);
-
-		case typeid(float):
-		case typeid(double):
-			return atof(String);
-
-		case typeid(CRect):
-			return CRect(0,0,0,0);
-
-		case typeid(CColor):
-			return CColor(0,0,0,0);
-
-		default:
-			// Repport error unrecognized
-			return T();
-		}
-
-		// If this function is called T is unrecognized
-		
-		// TODO repport error
-		
-		return T();
+		// Undefined type - GeeTODO, maybe report in log
+		return true;
 	}
-*/
-/*
-	static T<int> GetStringValue(const CStr &String)
-	{
-		return atoi(String.c_str());
-	}
-*/
-	// int
-/*	static int GetStringValue(const CStr &String)
-	{
-		// If this function is called T is unrecognized
-		
-		// TODO repport error
-		
-		return 10;
-	}
-*/
 
 private:
+	/**
+	 * Input a value in string form, and it will output the result in
+	 * Memory with type T.
+	 *
+	 * @param Type type in string, like "float" or "client area"
+	 * @param Value The value in string form, like "0 0 100% 100%"
+	 * @param Memory Should be NULL, will be constructed within the function.
+	 * @return True at success.
+	 */
+	static bool _mem_ParseString(const CStr &Value, void *&Memory)
+	{
+/*		if (typeid(T) == typeid(CStr))
+		{
+			tOutput = Value;
+			return true;
+		}
+		else
+*/		if (typeid(T) == typeid(bool))
+		{
+			bool _Value;
+
+			if (Value == CStr(_T("true")))
+				_Value = true;
+			else
+			if (Value == CStr(_T("false")))
+				_Value = false;
+			else 
+				return false;
+
+			Memory = malloc(sizeof(bool));
+			memcpy(Memory, (const void*)&_Value, sizeof(bool));
+			return true;
+		}
+		else
+		if (typeid(T) == typeid(float))
+		{
+			float _Value = Value.ToFloat();
+			// GeeTODO Okay float value!?
+			Memory = malloc(sizeof(float));
+			memcpy(Memory, (const void*)&_Value, sizeof(float));
+			return true;
+		}
+		else
+		if (typeid(T) == typeid(CRect))
+		{
+			// Use the parser to parse the values
+			CParser parser;
+			parser.InputTaskType("", "_$value_$value_$value_$value_");
+
+			string str = (const TCHAR*)Value;
+
+			CParserLine line;
+			line.ParseString(parser, str);
+			if (!line.m_ParseOK)
+			{
+				// Parsing failed
+				return false;
+			}
+			int values[4];
+			for (int i=0; i<4; ++i)
+			{
+				if (!line.GetArgInt(i, values[i]))
+				{
+					// Parsing failed
+					return false;
+				}
+			}
+
+			// Finally the rectangle values
+			CRect _Value(values[0], values[1], values[2], values[3]);
+			
+			Memory = malloc(sizeof(CRect));
+			memcpy(Memory, (const void*)&_Value, sizeof(CRect));
+			return true;
+		}
+		else
+		if (typeid(T) == typeid(CClientArea))
+		{
+			// Get Client Area
+			CClientArea _Value;
+
+			// Check if valid!
+			if (!_Value.SetClientArea(Value))
+			{
+				return false;
+			}
+
+			Memory = malloc(sizeof(CClientArea));
+			memcpy(Memory, (const void*)&_Value, sizeof(CClientArea));
+			return true;
+		}
+		else
+		if (typeid(T) == typeid(CColor))
+		{
+			// Use the parser to parse the values
+			CParser parser;
+			parser.InputTaskType("", "_$value_$value_$value_[$value_]");
+
+			string str = (const TCHAR*)Value;
+
+			CParserLine line;
+			line.ParseString(parser, str);
+			if (!line.m_ParseOK)
+			{
+				// Parsing failed GeeTODO
+				return false;
+			}
+			float values[4];
+			values[3] = 255.f; // default
+			for (int i=0; i<line.GetArgCount(); ++i)
+			{
+				if (!line.GetArgFloat(i, values[i]))
+				{
+					// Parsing failed GeeTODO
+					return false;
+				}
+			}
+
+			// Finally the rectangle values
+			CColor _Value;
+			// GeeTODO, done better when CColor is sweeter
+			_Value.r = values[0]/255.f;
+			_Value.g = values[1]/255.f;
+			_Value.b = values[2]/255.f;
+			_Value.a = values[3]/255.f;
+			
+			Memory = malloc(sizeof(CColor));
+			memcpy(Memory, (const void*)&_Value, sizeof(CColor));
+			return true;
+		}
+
+		// Undefined type - GeeTODO, maybe report in log
+		return false;
+	}
+
 	// templated typedef of function pointer
 	typedef void (IGUIObject::*void_Object_pFunction_argT)(const T &arg);
 	typedef void (IGUIObject::*void_Object_pFunction_argRefT)(T &arg);

@@ -70,8 +70,9 @@ enum EValign { EValign_Top, EValign_Bottom, EValign_Center };
  */
 struct SGUISetting
 {
-	size_t			m_Offset;		// The offset from IGUIObject to the variable (not from SGUIBaseSettings or similar)
-	CStr			m_Type;			// "string" or maybe "int"
+	size_t				m_Offset;		// The offset from IGUIObject to the variable (not from SGUIBaseSettings or similar)
+	EGUISettingsStruct	m_SettingsStruct;
+	CStr				m_Type;			// "string" or maybe "int"
 };
 
 /**
@@ -103,7 +104,6 @@ struct SGUIBaseSettings
 class IGUIObject
 {
 	friend class CGUI;
-
 	friend class CInternalCGUIAccessorBase;
 #ifndef _MSC_VER
 	template <class T>
@@ -237,6 +237,8 @@ public:
 	 *
 	 * @param Setting Setting by name
 	 * @param Value Value to set to
+	 *
+	 * @throws PS_RESULT
 	 */
 	void SetSetting(const CStr &Setting, const CStr &Value);
 
@@ -302,6 +304,14 @@ protected:
 	 */
 	IGUIObject *GetParent();
 
+	/**
+	 * You input the setting struct you want, and it will return a pointer to
+	 * the struct.
+	 *
+	 * @param SettingsStruct tells us which pointer ot return
+	 */
+	virtual void *GetStructPointer(const EGUISettingsStruct &SettingsStruct) const;
+
 	// Get cached mouse x/y from CGUI
 	u16 GetMouseX() const;
 	u16 GetMouseY() const;
@@ -360,6 +370,18 @@ protected:
 
 	/// Base settings
 	SGUIBaseSettings						m_BaseSettings;
+
+	/**
+	 * This is an array of true or false, each element is associated with
+	 * a string representing a setting. Number of elements is equal to
+	 * number of settings.
+	 *
+	 * A true means the setting has been manually set in the file when
+	 * read. This is important to know because I don't want to force
+	 * the user to include its <styles>-XML-files first, so somehow
+	 * the GUI needs to know which settings were set, and which is meant
+	 * to 
+	 */
 
 	// More variables
 

@@ -101,6 +101,28 @@ public:
 	}
 
 protected:
+	/**
+	 * You input the setting struct you want, and it will return a pointer to
+	 * the struct.
+	 *
+	 * @param SettingsStruct tells us which pointer to return
+	 */
+	virtual void *GetStructPointer(const EGUISettingsStruct &SettingsStruct) const
+	{
+		switch (SettingsStruct)
+		{
+		case GUISS_BASE:
+			return (void*)&m_BaseSettings;
+
+		case GUISS_EXTENDED:
+			return (void*)&m_Settings;
+
+		default:
+			// GeeTODO report error
+			return NULL;
+		}
+	}
+
 	/// Settings struct
 	SETTINGS								m_Settings;
 

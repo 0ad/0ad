@@ -8,7 +8,7 @@ gee@pyro.nu
 #include "GUI.h"
 
 ///// janwas: again, including etiquette?
-#include "../ps/Parser.h"
+#include "Parser.h"
 #include <assert.h>
 /////
 
@@ -20,10 +20,10 @@ map_Settings IGUIObject::m_SettingsInfo;
 //-------------------------------------------------------------------
 //  Implementation Macros
 //-------------------------------------------------------------------
-#define _GUI_ADD_OFFSET(type, str, var) \
+/*#define _GUI_ADD_OFFSET(type, str, var) \
 	SettingsInfo[str].m_Offset = offsetof(IGUIObject, m_BaseSettings) + offsetof(SGUIBaseSettings,var); \
 	SettingsInfo[str].m_Type = type;
-
+*/
 //-------------------------------------------------------------------
 //  Constructor / Destructor
 //-------------------------------------------------------------------
@@ -119,13 +119,21 @@ void IGUIObject::Destroy()
 
 void IGUIObject::SetupBaseSettingsInfo(map_Settings &SettingsInfo)
 {
-	_GUI_ADD_OFFSET("bool",			"enabled",		m_Enabled)
+/*	_GUI_ADD_OFFSET("bool",			"enabled",		m_Enabled)
 	_GUI_ADD_OFFSET("bool",			"hidden",		m_Hidden)
 	_GUI_ADD_OFFSET("client area",	"size",			m_Size)
 	_GUI_ADD_OFFSET("string",		"style",		m_Style)
 	_GUI_ADD_OFFSET("float",		"z",			m_Z)
 	_GUI_ADD_OFFSET("string",		"caption",		m_Caption)
 	_GUI_ADD_OFFSET("bool",			"absolute",		m_Absolute)
+*/
+	GUI_ADD_OFFSET_GENERIC(SettingsInfo, GUISS_BASE, SGUIBaseSettings, m_Enabled,	"bool",			"enabled")
+	GUI_ADD_OFFSET_GENERIC(SettingsInfo, GUISS_BASE, SGUIBaseSettings, m_Hidden,	"bool",			"hidden")
+	GUI_ADD_OFFSET_GENERIC(SettingsInfo, GUISS_BASE, SGUIBaseSettings, m_Size,		"client area",	"size")
+	GUI_ADD_OFFSET_GENERIC(SettingsInfo, GUISS_BASE, SGUIBaseSettings, m_Style,		"string",		"style")
+	GUI_ADD_OFFSET_GENERIC(SettingsInfo, GUISS_BASE, SGUIBaseSettings, m_Z,			"float",		"z")
+	GUI_ADD_OFFSET_GENERIC(SettingsInfo, GUISS_BASE, SGUIBaseSettings, m_Caption,	"string",		"caption")
+	GUI_ADD_OFFSET_GENERIC(SettingsInfo, GUISS_BASE, SGUIBaseSettings, m_Absolute,	"bool",			"absolute")
 }
 
 bool IGUIObject::MouseOver()
@@ -200,74 +208,43 @@ void IGUIObject::SetSetting(const CStr &Setting, const CStr &Value)
 
 	if (set.m_Type == CStr(_T("string")))
 	{
-		GUI<CStr>::SetSetting(this, Setting, Value);
+        GUI<CStr>::SetSetting(this, Setting, Value);
 	}
 	else
 	if (set.m_Type == CStr(_T("bool")))
 	{
-		bool bValue;
-
-		if (Value == CStr(_T("true")))
-			bValue = true;
-		else
-		if (Value == CStr(_T("false")))
-			bValue = false;
-		else 
+		bool _Value;
+		if (!GUI<bool>::ParseString(Value, _Value))
 			throw PS_FAIL;
 
-		GUI<bool>::SetSetting(this, Setting, bValue);
+		GUI<bool>::SetSetting(this, Setting, _Value);
 	}
 	else
 	if (set.m_Type == CStr(_T("float")))
 	{
-		// GeeTODO Okay float value!?
-		GUI<float>::SetSetting(this, Setting, Value.ToFloat() );
+		float _Value;
+		if (!GUI<float>::ParseString(Value, _Value))
+			throw PS_FAIL;
+
+		GUI<float>::SetSetting(this, Setting, _Value);
 	}
 	else
 	if (set.m_Type == CStr(_T("rect")))
 	{
-		// Use the parser to parse the values
-		CParser parser;
-		parser.InputTaskType("", "_$value_$value_$value_$value_");
-
-		// GeeTODO  string really?
-		string str = (const TCHAR*)Value;
-
-		CParserLine line;
-		line.ParseString(parser, str);
-		if (!line.m_ParseOK)
-		{
-			// ERROR!
+		CRect _Value;
+		if (!GUI<CRect>::ParseString(Value, _Value))
 			throw PS_FAIL;
-		}
-		int values[4];
-		for (int i=0; i<4; ++i)
-		{
-			if (!line.GetArgInt(i, values[i]))
-			{
-				// ERROR!
-				throw PS_FAIL;
-			}
-		}
 
-		// Finally the rectangle values
-		CRect rect(values[0], values[1], values[2], values[3]);
-		GUI<CRect>::SetSetting(this, Setting, rect);
+		GUI<CRect>::SetSetting(this, Setting, _Value);
 	}
 	else
 	if (set.m_Type == CStr(_T("client area")))
 	{
-		// Get Client Area
-		CClientArea ca;
+		CClientArea _Value;
+		if (!GUI<CClientArea>::ParseString(Value, _Value))
+			throw PS_FAIL;
 
-		if (!ca.SetClientArea(Value))
-		{
-			// GeeTODO REPORT
-		}
-
-		// Check if valid!
-
-		GUI<CClientArea>::SetSetting(this, Setting, ca);
+		GUI<CClientArea>::SetSetting(this, Setting, _Value);
 	}
 	else
 	{
@@ -306,6 +283,19 @@ IGUIObject *IGUIObject::GetParent()
 	}
 
 	return m_pParent;
+}
+
+void * IGUIObject::GetStructPointer(const EGUISettingsStruct &SettingsStruct) const
+{
+	switch (SettingsStruct)
+	{
+	case GUISS_BASE:
+		return (void*)&m_BaseSettings;
+
+	default:
+		// GeeTODO report error
+		return NULL;
+	}
 }
 
 void IGUIObject::UpdateCachedSize()

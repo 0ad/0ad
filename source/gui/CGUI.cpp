@@ -17,7 +17,7 @@ gee@pyro.nu
 #include <xercesc/util/PlatformUtils.hpp>
 
 #include "XercesErrorHandler.h"
-#include "../ps/Prometheus.h"
+#include "Prometheus.h"
 #include "input.h"
 
 // namespaces used
@@ -70,18 +70,19 @@ bool CGUI::HandleEvent(const SDL_Event& ev)
 				pNearest->HandleMessage(GUIM_MOUSE_PRESS_LEFT);
 
 				// some temp
-		/*		CClientArea ca;
+				CClientArea ca;
 				bool hidden;
 
-				GUI<CClientArea>::GetSetting(*this, CStr(_T("a2")), CStr(_T("size")), ca);
-				GUI<bool>::GetSetting(*this, CStr(_T("a2")), CStr(_T("hidden")), hidden);
+				GUI<CClientArea>::GetSetting(*this, CStr("Child1"), CStr("size"), ca);
+				GUI<bool>::GetSetting(*this, CStr("Child1"), CStr("hidden"), hidden);
 			
-				hidden = !hidden;
-				ca.pixel.right += 30;
+				//hidden = !hidden;
+				ca.pixel.left -= 30;
+				ca.pixel.bottom += 15;
 
-				GUI<CClientArea>::SetSetting(*this, CStr(_T("a2")), CStr(_T("size")), ca);
-				GUI<bool>::SetSetting(*this, CStr(_T("a2")), CStr(_T("hidden")), hidden);
-		*/	}
+				GUI<CClientArea>::SetSetting(*this, CStr("Child1"), CStr("size"), ca);
+				GUI<bool>::SetSetting(*this, CStr("Child1"), CStr("hidden"), hidden);
+			}
 		}
 		else 
 		if (ev.type == SDL_MOUSEBUTTONUP)
@@ -247,6 +248,50 @@ void CGUI::Draw()
 	glPopMatrix();
 }
 
+void CGUI::DrawSprite(const CStr &SpriteName, 
+					  const float &Z, 
+					  const CRect &Rect, 
+					  const CRect &Clipping)
+{
+	// This is no error, so we won't report it.
+	if (SpriteName == CStr("null"))
+		return;
+
+	bool DoClipping = (Clipping != CRect(0,0,0,0));
+	CGUISprite Sprite;
+
+	// Fetch real sprite from name
+	if (m_Sprites.count(SpriteName) == 0)
+	{
+		// GeeTODO report error
+		return;
+	}
+	else Sprite = m_Sprites[SpriteName];
+
+	glPushMatrix();
+		glTranslatef(0.0f, 0.0f, Z);
+
+		// Iterate all images and request them being drawn be the
+		//  CRenderer
+		std::vector<SGUIImage>::const_iterator cit;
+		for (cit=Sprite.m_Images.begin(); cit!=Sprite.m_Images.end(); ++cit)
+		{
+			CRect real = cit->m_Size.GetClientArea(Rect);
+
+			glColor3f(cit->m_BackColor.r , cit->m_BackColor.g, cit->m_BackColor.b);
+			//glColor3f((float)real.right/1000.f, 0.5f, 0.5f);
+
+			// Do this
+			glBegin(GL_QUADS);
+				glVertex2i(real.right,			real.bottom);
+				glVertex2i(real.left,			real.bottom);
+				glVertex2i(real.left,			real.top);
+				glVertex2i(real.right,			real.top);
+			glEnd();
+		}
+	glPopMatrix();
+}
+
 void CGUI::Destroy()
 {
 	// We can use the map to delete all
@@ -280,8 +325,8 @@ void CGUI::UpdateResolution()
 
 void CGUI::AddObject(IGUIObject* pObject)
 {
-/*	try
-	{*/
+	try
+	{
 		// Add CGUI pointer
 		GUI<CGUI*>::RecurseObject(0, pObject, &IGUIObject::SetGUI, this);
 
@@ -291,11 +336,11 @@ void CGUI::AddObject(IGUIObject* pObject)
 		// Cache tree
 		GUI<>::RecurseObject(0, pObject, &IGUIObject::UpdateCachedSize);
 
-		/*	}
+	}
 	catch (PS_RESULT e)
 	{
 		throw e;
-	}*/
+	}
 }
 
 void CGUI::UpdateObjects()
@@ -372,13 +417,12 @@ void CGUI::LoadXMLFile(const string &Filename)
 		parser->setValidationScheme(XercesDOMParser::Val_Auto);
 		parser->setDoNamespaces(false);
 		parser->setDoSchema(false);
+		parser->setCreateEntityReferenceNodes(false);
 
 		// Set cosutomized error handler
 		CXercesErrorHandler *errorHandler = new CXercesErrorHandler();
 		parser->setErrorHandler(errorHandler);
 		
-		parser->setCreateEntityReferenceNodes(false);
-
 		try 
 		{
 ///			g_nemLog("*** Xerces XML Parsing Errors");
@@ -439,6 +483,15 @@ void CGUI::LoadXMLFile(const string &Filename)
 			{
 				Xerces_ReadRootSprites(node);
 			}
+			else
+			if (root_name == "styles")
+			{
+				Xerces_ReadRootStyles(node);
+			}
+			else
+			{
+				// GeeTODO output in log
+			}
 		}
 	}
 
@@ -494,6 +547,25 @@ void CGUI::Xerces_ReadRootSprites(XERCES_CPP_NAMESPACE::DOMElement *pElement)
 	}
 }
 
+void CGUI::Xerces_ReadRootStyles(XERCES_CPP_NAMESPACE::DOMElement *pElement)
+{
+	// Iterate main children
+	//  they should all be <styles> elements
+	DOMNodeList *children = pElement->getChildNodes();
+
+	for (int i=0; i<children->getLength(); ++i)
+	{
+		DOMNode *child = children->item(i);
+
+		if (child->getNodeType() == DOMNode::ELEMENT_NODE)
+		{
+			// Read in this whole object into the GUI
+			DOMElement *element = (DOMElement*)child;
+			Xerces_ReadStyle(element);
+		}
+	}
+}
+
 void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 {
 	assert(pParent && pElement);
@@ -503,7 +575,7 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 	IGUIObject *object = NULL;
 
 	// Well first of all we need to determine the type
-	string type = XMLString::transcode( pElement->getAttribute( XMLString::transcode("type") ) );
+	CStr type = XMLString::transcode( pElement->getAttribute( XMLString::transcode("type") ) );
 
 	// Construct object from specified type
 	//  henceforth, we need to do a rollback before aborting.
@@ -513,10 +585,44 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 	if (!object)
 	{
 		// Report error that object was unsuccessfully loaded
-		ReportParseError("Unrecognized type: " + type);
+		ReportParseError(CStr("Unrecognized type: ") + type);
 
 		delete object;
 		return;
+	}
+
+	//
+	//	Read Style and set defaults
+	//
+	CStr argStyle = XMLString::transcode( pElement->getAttribute( XMLString::transcode("style") ) );
+
+	if (argStyle != CStr())
+	{
+		// Get style
+		if (m_Styles.count(argStyle) == 0)
+		{
+			// GeeTODO Error
+			
+		}
+		else
+		{
+			// Get setting
+			SGUIStyle Style = m_Styles[argStyle];
+
+			// Iterate settings, it won't be able to set them all probably, but that doesn't matter
+			std::map<CStr, CStr>::const_iterator cit;
+			for (cit = Style.m_SettingsDefaults.begin(); cit != Style.m_SettingsDefaults.end(); ++cit)
+			{
+				// Try set setting in object
+				try
+				{
+					object->SetSetting(cit->first, cit->second);
+				}
+				// It doesn't matter if it fail, it's not suppose to be able to set every setting.
+				//  since it's generic.
+				catch (...) {}
+			}
+		}
 	}
 
 	//
@@ -530,15 +636,15 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 	for (i=0; i<attributes->getLength(); ++i)
 	{
 		DOMAttr *attr = (DOMAttr*)attributes->item(i);
-		string attr_name = XMLString::transcode( attr->getName() );
-		string attr_value = XMLString::transcode( attr->getValue() );
+		CStr attr_name = XMLString::transcode( attr->getName() );
+		CStr attr_value = XMLString::transcode( attr->getValue() );
 
-		// Ignore "type", we've already checked it
-		if (attr_name == "type")
+		// Ignore "type" and "style", we've already checked it
+		if (attr_name == CStr("type") || attr_name == CStr("style") )
 			continue;
 
 		// Also the name needs some special attention
-		if (attr_name == "name")
+		if (attr_name == CStr("name"))
 		{
 			object->SetName(attr_value);
 			NameSet = true;
@@ -552,7 +658,7 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 		}
 		catch (PS_RESULT e)
 		{
-			ReportParseError("Can't set \"" + attr_name + "\" to \"" + attr_value + "\"");
+			ReportParseError(CStr("Can't set \"") + attr_name + CStr("\" to \"") + attr_value + CStr("\""));
 
 			// This is not a fatal error
 		}
@@ -611,7 +717,7 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 			}
 			// GeeTODO check invalid strings?
 		}
-	}
+	} 
 
 	//
 	//	Input Child
@@ -625,7 +731,7 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 			pParent->AddChild(object);
 	}
 	catch (PS_RESULT e)
-	{
+	{ 
 		ReportParseError(e);
 	}
 }
@@ -695,29 +801,88 @@ void CGUI::Xerces_ReadImage(XERCES_CPP_NAMESPACE::DOMElement *pElement, CGUISpri
 	//
 
 	// Now we can iterate all attributes and store
-/*	DOMNamedNodeMap *attributes = pElement->getAttributes();
+	DOMNamedNodeMap *attributes = pElement->getAttributes();
 	for (int i=0; i<attributes->getLength(); ++i)
 	{
 		DOMAttr *attr = (DOMAttr*)attributes->item(i);
-		string attr_name = XMLString::transcode( attr->getName() );
-		string attr_value = XMLString::transcode( attr->getValue() );
+		CStr attr_name = XMLString::transcode( attr->getName() );
+		CStr attr_value(XMLString::transcode( attr->getValue() ));
 
 		// This is the only attribute we want
-		if (attr_name == "texture")
+		if (attr_name == CStr("texture"))
 		{
 			image.m_Texture = attr_value;
 		}
 		else
+		if (attr_name == CStr("size"))
 		{
-			// Log
-			g_console.submit("echo Error attribute " + attr_name + " is not expected in <image>");
+			CClientArea ca;
+			if (!GUI<CClientArea>::ParseString(attr_value, ca))
+			{
+				// GeeTODO : Error
+			}
+			else image.m_Size = ca;
+		}
+		else
+		if (attr_name == CStr("backcolor"))
+		{
+			CColor color;
+			if (!GUI<CColor>::ParseString(attr_value, color))
+			{
+				// GeeTODO : Error
+			}
+			else image.m_BackColor = color;
+		}
+		else
+		{
+			// GeeTODO Log
+			//g_console.submit("echo Error attribute " + attr_name + " is not expected in <image>");
 			return;
 		}
 	}
-*/
+
 	//
 	//	Input
 	//
 
 	parent.AddImage(image);	
+}
+
+void CGUI::Xerces_ReadStyle(XERCES_CPP_NAMESPACE::DOMElement *pElement)
+{
+	assert(pElement);
+
+	// style object we're adding
+	SGUIStyle style;
+	CStr name;
+	
+	//
+	//	Read Attributes
+	//
+
+	// Now we can iterate all attributes and store
+	DOMNamedNodeMap *attributes = pElement->getAttributes();
+	for (int i=0; i<attributes->getLength(); ++i)
+	{
+		DOMAttr *attr = (DOMAttr*)attributes->item(i);
+		CStr attr_name = XMLString::transcode( attr->getName() );
+		CStr attr_value = XMLString::transcode( attr->getValue() );
+
+		// The "name" setting is actually the name of the style
+		//  and not a new default
+		if (attr_name == CStr("name"))
+			name = attr_value;
+		else
+		// Type cannot be styled
+		if (attr_name == CStr("type"))
+			; // GeeTODO output warning
+		else
+			style.m_SettingsDefaults[attr_name] = attr_value;
+	}
+
+	//
+	//	Add to CGUI
+	//
+
+	m_Styles[name] = style;
 }

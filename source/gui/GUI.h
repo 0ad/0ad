@@ -59,19 +59,10 @@ gee@pyro.nu
 #include <vector>
 #include <stddef.h>
 
-//// janwas: these are very sloppy added, I don't know the etiquette
-#include "../ps/Prometheus.h"
-#include "../ps/CStr.h"
+#include "Prometheus.h"
+#include "CStr.h"
 #include "types.h"
 #include "ogl.h"
-//// This is what I need from these includes
-/*
-	- OGL
-	- #define DEFINE_ERROR(x, y)  PS_RESULT x=y; 
-	- #define DECLARE_ERROR(x)  extern PS_RESULT x; 
-	- PS_RESULT
-	- u16
-*/
 
 #include "GUIbase.h"
 #include "GUIutil.h"
