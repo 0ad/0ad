@@ -839,7 +839,8 @@ fail:
 ret:
 	free(rows);
 
-	png_destroy_read_struct(&png_ptr, &info_ptr, 0);
+	if(png_ptr)
+		png_destroy_read_struct(&png_ptr, &info_ptr, 0);
 
 	return err;
 }
