@@ -51,21 +51,6 @@ int get_executable_name(char* n_path, size_t buf_size)
 
 #endif	// #ifndef _WIN32
 
-void debug_break()
-{
-#ifndef NDEBUG
-# if defined(_WIN32)
-	win_debug_break();
-# elif defined(_M_IX86)
-	ia32_debug_break();
-# elif defined(OS_UNIX)
-	unix_debug_break();
-# else
-#  error "port"
-# endif
-#endif
-}
-
 
 const size_t MICROLOG_SIZE = 16384;
 wchar_t MicroBuffer[MICROLOG_SIZE];
