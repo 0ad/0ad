@@ -55,7 +55,7 @@
 
 
 CConsole* g_Console = 0;
-extern bool conInputHandler(const SDL_Event& ev);
+extern int conInputHandler(const SDL_Event* ev);
 
 
 
@@ -97,7 +97,7 @@ extern CCamera g_Camera;
 
 extern void terr_init();
 extern void terr_update(float time);
-extern bool terr_handler(const SDL_Event& ev);
+extern int terr_handler(const SDL_Event* ev);
 
 extern int allow_reload();
 extern int dir_add_watch(const char* const dir, bool watch_subdirs);
@@ -220,21 +220,29 @@ static int set_vmode(int w, int h, int bpp)
 }
 
 
+static void write_screenshot()
+{
+	const size_t size = g_xres * g_yres * 3;
+	void* img = malloc(size);
+	glReadPixels(0, 0, g_xres, g_yres, GL_BGR_EXT, GL_UNSIGNED_BYTE, img);
+}
+
+
 bool active = true;
 static bool quit = false;	// break out of main loop
 
-static bool handler(const SDL_Event& ev)
+static int handler(const SDL_Event* ev)
 {
 	int c;
 
-	switch(ev.type)
+	switch(ev->type)
 	{
 	case SDL_ACTIVE:
-		active = ev.active.gain != 0;
+		active = ev->active.gain != 0;
 		break;
 
 	case SDL_KEYDOWN:
-		c = ev.key.keysym.sym;
+		c = ev->key.keysym.sym;
 		keys[c] = true;
 
 		switch(c)
@@ -242,22 +250,26 @@ static bool handler(const SDL_Event& ev)
 		case SDLK_ESCAPE:
 			quit = true;
 			break;
+
+		case SDLK_PRINT:
+			write_screenshot();
+			break;
 		}
 		break;
 
 	case SDL_KEYUP:
-		c = ev.key.keysym.sym;
+		c = ev->key.keysym.sym;
 		keys[c] = false;
 		break;
 	case SDL_MOUSEBUTTONDOWN:
-		c = ev.button.button;
+		c = ev->button.button;
 		if( c < 5 )
 			mouseButtons[c] = true;
 		else
 			debug_warn("SDL mouse button defs changed; fix mouseButton array def");
 		break;
 	case SDL_MOUSEBUTTONUP:
-		c = ev.button.button;
+		c = ev->button.button;
 		if( c < 5 )
 			mouseButtons[c] = false;
 		else
@@ -265,7 +277,7 @@ static bool handler(const SDL_Event& ev)
 		break;
 	}
 
-	return 0;
+	return EV_PASS;
 }
 
 
