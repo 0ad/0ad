@@ -1029,41 +1029,20 @@ int vfs_close_dir(Handle& hd)
 }
 
 
-// return the next remaining directory entry (in alphabetical order) matching
-// filter, or a negative error code on error (e.g. end of directory reached).
+// retrieve the next dir entry (in alphabetical order) matching <filter>.
+// return 0 on success, ERR_VFS_DIR_END if no matching entry was found,
+// or a negative error code on failure.
 // filter values:
 // - 0: any file;
-// - ".": any file without extension (filename doesn't contain '.');
-// - ".ext": any file with extension ".ext" (which must not contain '.');
 // - "/": any subdirectory
+// - anything else: pattern for name (may include '?' and '*' wildcards)
 int vfs_next_dirent(const Handle hd, vfsDirEnt* ent, const char* const filter)
 {
 	H_DEREF(hd, VDir, vd);
 
-	// interpret filter (paranoid)
 	bool filter_dir = false;
-	bool filter_no_ext = false;
-	if(filter)
-	{
-		if(filter[0] == '/')
-		{
-			if(filter[1] != '\0')
-				goto invalid_filter;
-			filter_dir = true;
-		}
-		else if(filter[0] == '.')
-		{
-			if(strchr(filter+1, '.'))
-				goto invalid_filter;
-			filter_no_ext = filter[1] == '\0';
-		}
-		else
-		{
-		invalid_filter:
-			debug_warn("vfs_next_dirent: invalid filter");
-			return -1;
-		}
-	}
+	if(filter && filter[0] == '/' && filter[1] == '\0')
+		filter_dir = true;
 
 	// rationale: the filename is currently stored internally as
 	// std::string (=> less manual memory allocation). we don't want to
@@ -1078,40 +1057,23 @@ int vfs_next_dirent(const Handle hd, vfsDirEnt* ent, const char* const filter)
 	if(filter_dir)
 	{
 		if(vd->subdir_it == vd->subdirs->end())
-			return -1;
-		fn = vd->subdir_it->first.c_str();
+			return ERR_VFS_DIR_END;
+		ent->name = vd->subdir_it->first.c_str();
 		++vd->subdir_it;
-		goto have_match;
+		return 0;
 	}
 
 	// caller wants a file; loop until one matches or end of list.
 	for(;;)
 	{
 		if(vd->file_it == vd->files->end())
-			return -1;
-		fn = vd->file_it->first.c_str();
+			return ERR_VFS_DIR_END;
+		ent->name = vd->file_it->first.c_str();
 		++vd->file_it;
 
-		const char* ext = strrchr(fn, '.');
-		// file has an extension
-		if(ext)
-		{
-			// not filtering, or filter matches extension: match
-			if(!filter || stricmp(ext, filter) == 0)
-				goto have_match;
-		}
-		// file has no extension
-		else
-		{
-			// filter accepts files without an extension: match
-			if(filter_no_ext)
-				goto have_match;
-		}
+		if(!filter || match_wildcard(fn, filter))
+			return 0;
 	}
-
-have_match:
-	ent->name = fn;
-	return 0;
 }
 
 

@@ -86,13 +86,13 @@ extern Handle vfs_open_dir(const char* dir);
 // all vfsDirEnt.name strings are now invalid.
 extern int vfs_close_dir(Handle& hd);
 
-// return the next remaining directory entry (in alphabetical order) matching
-// filter, or a negative error code on error (e.g. end of directory reached).
+// retrieve the next dir entry (in alphabetical order) matching <filter>.
+// return 0 on success, ERR_VFS_DIR_END if no matching entry was found,
+// or a negative error code on failure.
 // filter values:
 // - 0: any file;
-// - ".": any file without extension (filename doesn't contain '.');
-// - ".ext": any file with extension ".ext" (which must not contain '.');
 // - "/": any subdirectory
+// - anything else: pattern for name (may include '?' and '*' wildcards)
 extern int vfs_next_dirent(Handle hd, vfsDirEnt* ent, const char* filter);
 
 
