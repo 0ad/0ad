@@ -70,7 +70,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /YX /FD /GZ /c
-# ADD CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /I "..\lib" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "NO_GUI" /FR /FD /GZ /c
+# ADD CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /I "..\lib" /I "..\ps" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /FR /FD /GZ /c
 # SUBTRACT CPP /YX
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
@@ -245,6 +245,82 @@ SOURCE=..\terrain\Vector4D.h
 # Begin Group "gui"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\gui\CButton.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\CButton.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\CGUI.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\CGUI.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\CGUISprite.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\CGUISprite.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\GUI.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\GUIbase.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\GUIbase.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\GUIutil.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\GUIutil.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\IGUIButtonBehavior.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\IGUIButtonBehavior.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\IGUIObject.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\IGUIObject.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\IGUISettingsObject.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\IGUISettingsObject.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\XercesErrorHandler.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\XercesErrorHandler.h
+# End Source File
 # End Group
 # Begin Group "lib"
 
@@ -389,6 +465,62 @@ SOURCE=..\lib\zip.h
 # Begin Group "ps"
 
 # PROP Default_Filter ""
+# Begin Group "Network"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\ps\Network\AllNetMessages.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\Network\NetMessage.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\Network\NetMessage.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\Network\Network.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\Network\Network.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\Network\NetworkInternal.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\Network\NMTCreator.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\Network\Serialization.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\Network\ServerSocket.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\Network\SocketBase.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\Network\SocketBase.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\Network\StreamSocket.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\Network\StreamSocket.h
+# End Source File
+# End Group
 # Begin Source File
 
 SOURCE=..\ps\BaseEntity.h
