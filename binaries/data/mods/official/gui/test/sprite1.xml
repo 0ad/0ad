@@ -746,6 +746,28 @@
 		<image backcolor="184 190 201" size="0 3 100% 100%"/>
 	</sprite>
 
+	<sprite name="atlas_window_white">
+		<!-- Starting with top left corner continuing in a clockwise manner -->
+		<!-- Top border -->
+		<image backcolor="129 134 142" size="0%+0 0%+0 100%-1 0%+1" />
+		<image backcolor="255 255 255" size="0%+1 0%+1 100%-1 0%+2" />
+		<image backcolor="80 97 127" size="2 0%+2 100%-2 0%+3" />
+		<!-- Right border -->
+		<image backcolor="80 97 127" size="100%-1 0%+0 100% 100%" />
+		<image backcolor="255 255 255" size="100%-1 0%+1 100%-2 100%-1" />
+		<image backcolor="129 134 142" size="100%-2 0%+3 100%-3 100%-2" />
+		<!-- Bottom border -->
+		<image backcolor="80 97 127" size="0%+1 100%-1 100% 100%" />
+		<image backcolor="255 255 255" size="0%+1 100%-1 100%-1 100%-2" />
+		<image backcolor="129 134 142" size="0%+2 100%-2 100%-2 100%-3" />
+		<!-- Left border -->
+		<image backcolor="129 134 142" size="0%+0 0%+0 0%+1 100%" />
+		<image backcolor="255 255 255" size="0%+1 0%+1 0%+2 100%-1" />
+		<image backcolor="80 97 127" size="0%+2 0%+2 0%+3 100%-3" />
+		<!-- middle -->
+		<image backcolor="255 255 255" size="3 3 100%-3 100%-3"/>
+	</sprite>
+
 	<sprite name="atlas_input_box">
 		<!-- Starting with top left corner continuing in a clockwise manner -->
 		<!-- Top border -->

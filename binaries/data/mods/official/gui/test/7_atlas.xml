@@ -15,7 +15,7 @@
 		<!-- Simply black out the lowest level of the GUI, until such time as we're capable of starting an editor session of a scenario. -->
 		<object type="text" name="atlas_gui_bkg" sprite="black" size="0 0 100% 100%" z="1" ghost="true" hidden="false"/>
 
-		<!-- LEFT SELECTION PANE -->
+		<!-- LEFT SELECTION PANE: Context panel along the left-hand side of the screen. -->
 		<object type="empty" name="atlas_left_pane" size="0 0 100% 100%" z="1" hidden="false">
 
 			<!-- LEFT SELECTION PANE BACKGROUND -->
@@ -26,7 +26,7 @@
 			</object>
 		</object>
 
-		<!-- BOTTOM SELECTION PANE -->
+		<!-- BOTTOM SELECTION PANE: Context panel along the bottom of the screen. -->
 		<object type="empty" name="atlas_bottom_pane" size="0 0 100% 100%" z="1" hidden="false">
 
 			<!-- BOTTOM SELECTION BACKGROUND -->
@@ -58,7 +58,7 @@
 			</object>
 		</object>
 
-		<!-- RB: MINIMAP -->
+		<!-- RB: MINIMAP: Displays whole map. Identical functionality to session map, just a little smaller. -->
 		<!-- Later change this to type minimap, no sprite (doesn't do anything if not in simulation mode). -->
 		<object type="text" name="atlas_minimap" sprite="atlas_window" z="60" hidden="false">
 			<action on="Load"><![CDATA[
@@ -87,14 +87,24 @@
 			]]></action>
 		</object>
 
-		<!-- RT: INFO -->
-		<object type="text" name="atlas_mainborder_rt_corner" sprite="atlas_mainborder_rt_corner" z="60" hidden="false">
-			<action on="Load"><![CDATA[
-				setSizeCoord("atlas_mainborder_rt_corner", crd_atlas_mainborder_rt_corner_x, crd_atlas_mainborder_rt_corner_y, crd_atlas_mainborder_rt_corner_x+crd_atlas_mainborder_rt_corner_width, crd_atlas_mainborder_rt_corner_y+crd_atlas_mainborder_rt_corner_height, right_screen, top_screen, right_screen, top_screen);
-			]]></action>
+		<!-- RT: INFO WINDOW: Displays editor information such as FPS and map name. -->
+		<object type="empty" name="atlas_info_window_pane" size="0 0 100% 100%" z="1" hidden="false">
+			<!-- RT: INFO WINDOW BACKGROUND -->
+			<object type="text" name="atlas_mainborder_rt_corner" sprite="atlas_mainborder_rt_corner" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					setSizeCoord("atlas_mainborder_rt_corner", crd_atlas_mainborder_rt_corner_x, crd_atlas_mainborder_rt_corner_y, crd_atlas_mainborder_rt_corner_x+crd_atlas_mainborder_rt_corner_width, crd_atlas_mainborder_rt_corner_y+crd_atlas_mainborder_rt_corner_height, right_screen, top_screen, right_screen, top_screen);
+				]]></action>
+			</object>
+			<!-- RT: INFO WINDOW BAR -->
+			<object type="button" name="atlas_info_window" sprite="atlas_window_white" font="tahoma10" textcolor="0 0 0" text-align="left" text-valign="center" tooltip-style="atlas_tooltip" tooltip="Information about the current scenario." z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					setSizeCoord("atlas_info_window", crd_atlas_info_window_x, crd_atlas_info_window_y, crd_atlas_info_window_x+crd_atlas_info_window_width, crd_atlas_info_window_y+crd_atlas_info_window_height, right_screen, top_screen, right_screen, top_screen);
+					setInterval(atlasUpdateInfoWindow, 500);
+				]]></action>
+			</object>
 		</object>
 
-		<!-- TOOLTIP WINDOW -->
+		<!-- TOOLTIP WINDOW: Displays current tooltip above the Mini Map. -->
 		<object type="text" name="atlas_tooltip" sprite="atlas_tooltip_background" font="tahoma10" textcolor="0 0 0" z="104" hidden="true" ghost="true">
 			<action on="Load"><![CDATA[
 				setSizeCoord("atlas_tooltip", -crd_atlas_tooltip_x-crd_atlas_tooltip_width, -crd_atlas_tooltip_y-crd_atlas_tooltip_height, -crd_atlas_tooltip_x, -crd_atlas_tooltip_y, right_screen, bottom_screen, right_screen, bottom_screen);

@@ -17,6 +17,12 @@ function initAtlas()
 	crd_atlas_mainborder_rt_corner_x = -crd_atlas_mainborder_rt_corner_width;
 	crd_atlas_mainborder_rt_corner_y = crd_atlas_mainborder_lt_corner_y;
 
+	// Info window in top-right corner.
+	crd_atlas_info_window_width = crd_atlas_mainborder_rt_corner_width-30-6;
+	crd_atlas_info_window_height = crd_atlas_mainborder_rt_corner_height-9;
+	crd_atlas_info_window_x = -crd_atlas_info_window_width-3;
+	crd_atlas_info_window_y = crd_atlas_mainborder_rt_corner_y+3;
+
 	// Top menu bar.
 	crd_atlas_mainborder_menu_bkg_width = crd_atlas_mainborder_rt_corner_width;
 	crd_atlas_mainborder_menu_bkg_height = 19;
@@ -70,6 +76,13 @@ function initAtlas()
 	crd_atlas_tooltip_height = 82;
 	crd_atlas_tooltip_x = crd_atlas_minimap_bkg_x+10;
 	crd_atlas_tooltip_y = crd_atlas_minimap_bkg_y+crd_atlas_minimap_bkg_height+4;
+}
+
+// ====================================================================
+
+function atlasUpdateInfoWindow()
+{
+	getGUIObjectByName("atlas_info_window").caption = "File: something.map\nOwner: Someone\nFPS: " + getFPS();
 }
 
 // ====================================================================
