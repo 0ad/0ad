@@ -18,15 +18,17 @@
 
 #include "precompiled.h"
 
-#include "lib.h"
-#include "res.h"
-#include "tex.h"
-
 #include <math.h>
 #include <stdlib.h>
 #include <assert.h>
 
 #include <algorithm>
+
+#include "lib.h"
+#include "res.h"
+#include "tex.h"
+#include "endian.h"
+
 
 // supported formats:
 //#define NO_DDS

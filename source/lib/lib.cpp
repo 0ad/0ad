@@ -19,8 +19,6 @@
 #include "types.h"
 #include "lib.h"
 
-#include "sdl.h"	// endian functions
-
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>
@@ -324,47 +322,6 @@ u16 fp_to_u16(double in)
 
 
 
-
-u16 read_le16(const void* p)
-{
-#if SDL_BYTE_ORDER == SDL_BIG_ENDIAN
-	const u8* _p = (const u8*)p;
-	return (u16)_p[0] | (u16)_p[1] << 8;
-#else
-	return *(u16*)p;
-#endif
-}
-
-
-u32 read_le32(const void* p)
-{
-#if SDL_BYTE_ORDER == SDL_BIG_ENDIAN
-	return SDL_Swap32(*(u32*)p);
-#else
-	return *(u32*)p;
-#endif
-}
-
-
-u16 read_be16(const void* p)
-{
-#if SDL_BYTE_ORDER == SDL_BIG_ENDIAN
-	return *(u16*)p;
-#else
-	const u8* _p = (const u8*)p;
-	return (u16)_p[0] | (u16)_p[1] << 8;
-#endif
-}
-
-
-u32 read_be32(const void* p)
-{
-#if SDL_BYTE_ORDER == SDL_BIG_ENDIAN
-	return *(u32*)p;
-#else
-	return SDL_Swap32(*(u32*)p);
-#endif
-}
 
 
 
