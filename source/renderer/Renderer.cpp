@@ -669,6 +669,9 @@ void CRenderer::RenderShadowMap()
 	// render models
 	CModelRData::RenderModels(STREAM_POS,MODELFLAG_CASTSHADOWS);
 
+	// call on the player renderer to render all of the player shadows.
+	g_PlayerRenderer.RenderShadows();
+
 	// call on the transparency renderer to render all the transparent stuff
 	g_TransparencyRenderer.RenderShadows();
 
@@ -891,6 +894,7 @@ void CRenderer::FlushFrame()
 	// sort all the transparent stuff
 	MICROLOG(L"sorting");
 	g_TransparencyRenderer.Sort();
+
 	if (!m_ShadowRendered) {
 		if (m_Options.m_Shadows) {
 			MICROLOG(L"render shadows");
@@ -909,10 +913,6 @@ void CRenderer::FlushFrame()
 	RenderPatches();
 	oglCheck();
 
-	MICROLOG(L"render player models");
-	g_PlayerRenderer.Render();
-	oglCheck();
-
 	MICROLOG(L"render models");
 	RenderModels();
 	oglCheck();
@@ -923,6 +923,10 @@ void CRenderer::FlushFrame()
 		oglCheck();
 	}
 	m_ShadowRendered=true;
+
+	MICROLOG(L"render player models");
+	g_PlayerRenderer.Render();
+	oglCheck();
 
 	// call on the transparency renderer to render all the transparent stuff
 	MICROLOG(L"render transparent");

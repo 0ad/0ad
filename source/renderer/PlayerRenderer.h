@@ -32,7 +32,7 @@ public:
 	// render all deferred objects 
 	void Render();
 	// render shadows from all deferred objects 
-	//void RenderShadows();
+	void RenderShadows();
 	// empty object list
 	void Clear();
 

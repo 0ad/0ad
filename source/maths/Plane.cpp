@@ -134,7 +134,7 @@ bool CPlane::FindRayIntersection (CVector3D &start, CVector3D &direction, CVecto
 	if (dot == 0.0f)
 		return false;
 
-	CVector3D a;
+	//CVector3D a; // EDIT: John M. Mena - Not sure why this is here
 	*intsect = start - (direction * (DistanceToPlane (start)/dot));
 	return true;
 }

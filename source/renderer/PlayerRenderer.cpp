@@ -187,37 +187,12 @@ void CPlayerRenderer::Add(CModel* model)
 }
 
 //TODO: Correctly implement shadows for the players
-//void CPlayerRenderer::RenderShadows()
-//{
-//	if (m_Objects.size()==0) return;
-//
-//	// switch on client states
-//	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-//
-//	glDepthMask(0);
-//
-//	glEnable(GL_BLEND);
-//	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
-//
-//	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-//	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
-//	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
-//	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-//	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-//	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
-//	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-//
-//	// Set the proper LOD bias
-//	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
-//
-//	RenderObjectsStreams(STREAM_POS|STREAM_UV0,MODELFLAG_CASTSHADOWS);
-//
-//	glDepthMask(1);
-//	glDisable(GL_BLEND);
-//
-//	// switch off client states
-//	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-//}
+void CPlayerRenderer::RenderShadows()
+{
+	if (m_Objects.size()==0) return;
+
+	RenderObjectsStreams(STREAM_POS|STREAM_UV0, false, MODELFLAG_CASTSHADOWS);
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // RenderObjectsStreams: render given streams on all objects

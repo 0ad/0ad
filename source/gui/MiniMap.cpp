@@ -2,21 +2,16 @@
 
 #include "gui/MiniMap.h"
 #include "ps/Game.h"
-#include "CConsole.h"
 
 #include "ogl.h"
 #include "renderer/Renderer.h"
 #include "graphics/TextureEntry.h"
 #include "graphics/TextureManager.h"
 #include "graphics/Unit.h"
-#include "graphics/Camera.h"
-
 
 #include "Bound.h"
 #include "Model.h"
 
-extern CConsole* g_Console;
-extern int g_mouse_x, g_mouse_y;
 
 static unsigned int ScaleColor(unsigned int color,float x)
 {
@@ -113,29 +108,99 @@ void CMiniMap::Draw()
 
         glEnd();
 
-
 		// render view rect : John M. Mena
+		// This sets up and draws the rectangle on the mini-map
+		// which represents the view of the camera in the world.
+		
+		// Get a handle to the camera
 		CCamera &g_Camera=*g_Game->GetView()->GetCamera();
-		CVector3D pos3D = g_Camera.GetWorldCoordinates();
-		pos = GetMapSpaceCoords(pos3D);
 
-		// Restrict the drawing to the map
+		CVector3D pos3D[4];
+		CVector2D pos2D[4];
+
+		// Get the far plane corner coordinates
+		g_Camera.GetCameraPlanePoints(g_Camera.GetFarPlane(), pos3D);
+
+		// transform to the plane coords to world space
+		CVector3D wPts[4];
+		for (int i=0;i<4;i++) wPts[i]=g_Camera.m_Orientation.Transform(pos3D[i]);
+
+
+		// TODO: Move this into the constructor
+		float h=128*HEIGHT_SCALE;
+		CPlane TerrainPlane;
+		TerrainPlane.Set(	CVector3D( 0.0f, h, 0.0f ),
+							CVector3D( float(CELL_SIZE*m_MapSize), h, 0.0f ),
+							CVector3D( 0.0f, h, float(CELL_SIZE*m_MapSize) ) );
+		TerrainPlane.Normalize();
+		// END TODO
+
+		// now intersect a ray from the camera through each point 
+		CVector3D rayOrigin=g_Camera.m_Orientation.GetTranslation();
+		CVector3D rayDir=g_Camera.m_Orientation.GetIn();
+
+		CVector3D hitPt[4];
+		for (i=0;i<4;i++) {
+			CVector3D rayDir=wPts[i]-rayOrigin;
+			rayDir.Normalize();
+
+			// get intersection point
+			TerrainPlane.FindRayIntersection( rayOrigin, rayDir, &hitPt[i] );
+		}
+
+		// This is the way the ScEd converts to mini-map space.
+		// When attempting to use the supplied one for this class, the lines
+		// would stretch to unknown locations on the screen causing the 
+		// rectangle to distort.
+		// TODO: Calculate this correctly.
+		// Currently the rectangle isn't drawing to the proper scale.
+		float ViewRect[4][2];
+		for (i=0;i<4;i++) {
+			// convert to minimap space
+			float px=hitPt[i].X;
+			float pz=hitPt[i].Z;
+			ViewRect[i][0]=(m_CachedActualSize.GetWidth()*px/float(CELL_SIZE*m_MapSize));
+			ViewRect[i][1]=(m_CachedActualSize.GetHeight()*pz/float(CELL_SIZE*m_MapSize));
+		}
+
+		// This is the alternate way that converts to mini-map space.
+		//for (int i = 0; i < 4; i++)
+		//	pos2D[i] = GetMapSpaceCoords(hitPt[i]);
+		// END TODO
+
+		// Enable Scissoring as to restrict the rectangle
+		// to only the mini-map below by retrieving the mini-maps
+		// screen coords.
 		glScissor((int)m_CachedActualSize.left, 0, (int)m_CachedActualSize.right, (int)m_CachedActualSize.GetHeight());
 		glEnable(GL_SCISSOR_TEST);
 
 		glLineWidth(2);
 		glColor3f(1.0f,0.3f,0.3f);
 
-		// Draw the viewing rectangle
+		// For some reason the coordinates need to be reversed on the x
+		// and y axis or everything is backwards.  Perhaps this has something
+		// to do with the location of the viewing rectangle being in the wrong
+		// place?
+
+		// Draw the viewing rectangle with the ScEd's conversion algorithm
 		glBegin(GL_LINE_LOOP);
-		glVertex2f(x + pos.y - 10, y + pos.x - 10);
-		glVertex2f(x + pos.y + 10, y + pos.x - 10);
-		glVertex2f(x + pos.y + 10, y + pos.x + 10);
-		glVertex2f(x + pos.y - 10, y + pos.x + 10);
+		glVertex2f(x+ViewRect[0][1],y+ViewRect[0][0]);
+		glVertex2f(x+ViewRect[1][1],y+ViewRect[1][0]);
+		glVertex2f(x+ViewRect[2][1],y+ViewRect[2][0]);
+		glVertex2f(x+ViewRect[3][1],y+ViewRect[3][0]);
 		glEnd();
+
+		// Draw the viewing rectangle with the class' conversion algorithm
+		//glBegin(GL_LINE_LOOP);
+		//glVertex2f(x+pos2D[0].y, y+pos2D[0].x);
+		//glVertex2f(x+pos2D[1].y, y+pos2D[1].x);
+		//glVertex2f(x+pos2D[2].y, y+pos2D[2].x);
+		//glVertex2f(x+pos2D[3].y, y+pos2D[3].x);
+		//glEnd();
 
 		glDisable(GL_SCISSOR_TEST);
 
+		// Reset everything back to normal
         glPointSize(1.0f);
 		glLineWidth(1.0f);
         glEnable(GL_TEXTURE_2D);
