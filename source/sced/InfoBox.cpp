@@ -188,7 +188,7 @@ void CInfoBox::RenderInfo()
 		render(&fttext);
 		y-=dy;
 
-		u32 totalTris=m_LastStats.m_TerrainTris+m_LastStats.m_ModelTris+m_LastStats.m_TransparentTris;
+		u32 totalTris=m_LastStats.m_TerrainTris+m_LastStats.m_ModelTris;
 		sprintf(buf,"TPF: %d",int(totalTris/m_LastStats.m_Counter));
 		COverlayText tpftext(5,y,0,DefaultFontName,buf,CColor(1,1,1,1));	
 		render(&tpftext);
@@ -202,11 +202,6 @@ void CInfoBox::RenderInfo()
 		sprintf(buf,"MTPF: %d",int(m_LastStats.m_ModelTris/m_LastStats.m_Counter));
 		COverlayText mtpftext(5,y,0,DefaultFontName,buf,CColor(1,1,1,1));	
 		render(&mtpftext);
-		y-=dy;
-
-		sprintf(buf,"TrTPF: %d",int(m_LastStats.m_TransparentTris/m_LastStats.m_Counter));
-		COverlayText trtpftext(5,y,0,DefaultFontName,buf,CColor(1,1,1,1));	
-		render(&trtpftext);
 		y-=dy;
 
 		sprintf(buf,"DCPF: %d",int(m_LastStats.m_DrawCalls/m_LastStats.m_Counter));

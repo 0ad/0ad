@@ -47,6 +47,9 @@ CScEdApp theApp;
 
 BOOL CScEdApp::InitInstance()
 {
+	extern void pre_main_init();
+	pre_main_init();
+
 	AfxEnableControlContainer();
 
 	// Standard initialization

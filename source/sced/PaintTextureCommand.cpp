@@ -48,17 +48,17 @@ void CPaintTextureCommand::Execute()
 			CMiniPatch* nmp=g_Terrain.GetTile(i,j);
 			
 			if (nmp) {
-				nmp->Tex1=m_Texture ? m_Texture->m_Handle : 0;
-				nmp->Tex1Priority=m_Texture ? ((int) m_Texture->m_Type) : 0;
+				nmp->Tex1=m_Texture ? m_Texture->GetHandle() : 0;
+				nmp->Tex1Priority=m_Texture ? ((int) m_Texture->GetType()) : 0;
 			}
 		}
 	}
 
 	// invalidate affected patches
-	int px0=clamp(-1+(x0/16),0,patchesPerSide);
-	int px1=clamp(1+(x1/16),0,patchesPerSide);
-	int pz0=clamp(-1+(z0/16),0,patchesPerSide);
-	int pz1=clamp(1+(z1/16),0,patchesPerSide);
+	int px0=clamp(-1+(x0/PATCH_SIZE),0,patchesPerSide);
+	int px1=clamp(1+(x1/PATCH_SIZE),0,patchesPerSide);
+	int pz0=clamp(-1+(z0/PATCH_SIZE),0,patchesPerSide);
+	int pz1=clamp(1+(z1/PATCH_SIZE),0,patchesPerSide);
 	for (j=pz0;j<pz1;j++) {
 		for (int i=px0;i<px1;i++) {
 			CPatch* patch=g_Terrain.GetPatch(i,j);
@@ -68,13 +68,13 @@ void CPaintTextureCommand::Execute()
 
 	// rebuild this bit of the minimap
 	int w=1+2*m_BrushSize;
-	int x=m_SelectionCentre[1]-m_BrushSize;
+	int x=m_SelectionCentre[0]-m_BrushSize;
 	if (x<0) {
 		w+=x;
 		x=0;
 	}
 	int h=1+2*m_BrushSize;
-	int y=m_SelectionCentre[0]-m_BrushSize;
+	int y=m_SelectionCentre[1]-m_BrushSize;
 	if (y<0) {
 		h+=y;
 		y=0;

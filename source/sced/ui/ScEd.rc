@@ -162,6 +162,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "L&oad Terrain",               ID_TERRAIN_LOAD
         MENUITEM "&Resize Terrain",             IDR_RESIZE_MAP
+        MENUITEM SEPARATOR
+        MENUITEM "Ra&ndom Map",                 ID_RANDOM_MAP
     END
     POPUP "&Tools"
     BEGIN
@@ -443,8 +445,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,0,7,2
- PRODUCTVERSION 0,0,7,2
+ FILEVERSION 0,0,7,3
+ PRODUCTVERSION 0,0,7,3
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -462,14 +464,14 @@ BEGIN
             VALUE "Comments", "\0"
             VALUE "CompanyName", "Wildfire Games\0"
             VALUE "FileDescription", "0AD Scenario Editor\0"
-            VALUE "FileVersion", "0, 0, 7, 2\0"
+            VALUE "FileVersion", "0, 0, 7, 3\0"
             VALUE "InternalName", "ScEd\0"
             VALUE "LegalCopyright", "Copyright (C) 2003-2004\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "ScEd.EXE\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "ScEd\0"
-            VALUE "ProductVersion", "0, 0, 7, 2\0"
+            VALUE "ProductVersion", "0, 0, 7, 3\0"
             VALUE "SpecialBuild", "\0"
         END
     END

@@ -1,6 +1,8 @@
 #ifndef _MINIMAP_H
 #define _MINIMAP_H
 
+#include "lib.h"
+
 class CMiniMap
 {
 public:
@@ -17,10 +19,14 @@ public:
 	float m_ViewRect[4][2];
 
 private:
+	// send data to GL; update stored texture data
+	void UpdateTexture();
 	// texture handle
-	unsigned int m_Handle;
+	u32 m_Handle;
 	// size of the map texture
-	unsigned int m_Size;
+	u32 m_Size;
+	// raw BGRA_EXT data for the minimap
+	u32* m_Data;
 };
 
 extern CMiniMap g_MiniMap;

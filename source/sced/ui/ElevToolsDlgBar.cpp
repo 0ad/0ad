@@ -1,3 +1,4 @@
+#include <assert.h>
 #include "stdafx.h"
 #include "ToolManager.h"
 #include "ElevToolsDlgBar.h"

@@ -1,9 +1,10 @@
 #include "stdafx.h"
+#define _IGNORE_WGL_H_
 #include "MainFrm.h"
 #include "EditorData.h"
 #include "BrushShapeEditorTool.h"
 #include "BrushShapeEditorDlgBar.h"
-
+#undef _IGNORE_WGL_H_
 
 BEGIN_MESSAGE_MAP(CBrushShapeEditorDlgBar, CDialogBar)
 	//{{AFX_MSG_MAP(CBrushShapeEditorDlgBar)

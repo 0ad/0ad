@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#define _IGNORE_WGL_H_
 #include "TexToolsDlgBar.h"
 #include "TextureManager.h"
 #include "PaintTextureTool.h"
@@ -7,6 +8,7 @@
 #include "ogl.h"
 #include "res/tex.h"
 #include "res/vfs.h"
+#undef _IGNORE_WGL_H_
 
 BEGIN_MESSAGE_MAP(CTexToolsDlgBar, CDialogBar)
 	//{{AFX_MSG_MAP(CTexToolsDlgBar)
@@ -51,7 +53,7 @@ BOOL CTexToolsDlgBar::Create(CWnd * pParentWnd, UINT nIDTemplate,UINT nStyle, UI
 void CTexToolsDlgBar::Select(CTextureEntry* entry) 
 {
 	CStatic* curbmp=(CStatic*) GetDlgItem(IDC_STATIC_CURRENTTEXTURE);
-	CBitmap* bmp=(CBitmap*) (entry ? entry->m_Bitmap : 0);
+	CBitmap* bmp=(CBitmap*) (entry ? entry->GetBitmap() : 0);
 	curbmp->SetBitmap((HBITMAP) (*bmp));
 	CPaintTextureTool::GetTool()->SetSelectedTexture(entry);
 }
@@ -101,7 +103,7 @@ int CTexToolsDlgBar::GetCurrentTerrainType()
 BOOL CTexToolsDlgBar::BuildImageListIcon(CTextureEntry* texentry)
 {
 	// bind to texture
-	g_Renderer.BindTexture(0,tex_id(texentry->m_Handle));
+	g_Renderer.BindTexture(0,tex_id(texentry->GetHandle()));
 
 	// get image data in BGRA format
 	int w,h;
@@ -120,7 +122,7 @@ BOOL CTexToolsDlgBar::BuildImageListIcon(CTextureEntry* texentry)
 	BOOL success=TRUE;
 	CDC* dc=GetDC();
 	CBitmap* bmp=new CBitmap;
-	texentry->m_Bitmap=bmp;
+	texentry->SetBitmap(bmp);
 
 	if (bmp->CreateCompatibleBitmap(dc,32,32)) {				
 
@@ -167,13 +169,13 @@ BOOL CTexToolsDlgBar::BuildImageListIcon(CTextureEntry* texentry)
 BOOL CTexToolsDlgBar::AddImageListIcon(CTextureEntry* texentry)
 {
 	// get a bitmap for imagelist yet?
-	if (!texentry->m_Bitmap) {
+	if (!texentry->GetBitmap()) {
 		// nope; create one now
 		BuildImageListIcon(texentry);
 	}
 
 	// add bitmap to imagelist
-	m_ImageList.Add((CBitmap*) texentry->m_Bitmap,RGB(255,255,255));
+	m_ImageList.Add((CBitmap*) texentry->GetBitmap(),RGB(255,255,255));
 
 	return TRUE;
 }
@@ -215,7 +217,7 @@ BOOL CTexToolsDlgBar::OnInitDialog()
 		
 			// add to list ctrl
 			int index=listctrl->GetItemCount();
-			listctrl->InsertItem(index,(const char*) textures[i]->m_Name,index);
+			listctrl->InsertItem(index,(const char*) textures[i]->GetName(),index);
 		}
 
 		// select first entry if we've got any entries
@@ -285,7 +287,7 @@ void CTexToolsDlgBar::OnSelChangeTerrainTypes()
 			AddImageListIcon(textures[j]);
 			
 			// add to list ctrl
-			listctrl->InsertItem(j,(const char*) textures[j]->m_Name,j);
+			listctrl->InsertItem(j,(const char*) textures[j]->GetName(),j);
 		}
 	}
 }

@@ -1,5 +1,3 @@
-
-
 #include "EditorData.h"
 #include "UIGlobals.h"
 #include "ToolManager.h"
@@ -17,6 +15,8 @@
 #include "Entity.h"
 #include "EntityHandles.h"
 #include "EntityManager.h"
+
+#include "XML.h"
 
 const int NUM_ALPHA_MAPS = 14;
 Handle AlphaMaps[NUM_ALPHA_MAPS];
@@ -68,9 +68,9 @@ bool CEditorData::InitScene()
 			
 			CPatch* patch=g_Terrain.GetPatch(pi,pj);
 			
-			for (int j=0;j<16;j++) {
-				for (int i=0;i<16;i++) {
-					patch->m_MiniPatches[j][i].Tex1=texture ? texture->m_Handle : 0;
+			for (int j=0;j<PATCH_SIZE;j++) {
+				for (int i=0;i<PATCH_SIZE;i++) {
+					patch->m_MiniPatches[j][i].Tex1=texture ? texture->GetHandle() : 0;
 				}
 			}
 		}
@@ -200,6 +200,9 @@ void CEditorData::InitSingletons()
 // Init: perform one time initialisation of the editor
 bool CEditorData::Init()
 {
+	// start up Xerces
+	XMLPlatformUtils::Initialize();
+
 	// create and initialise singletons
 	InitSingletons();
 
@@ -233,6 +236,9 @@ void CEditorData::Terminate()
 
 	// destroy terrain related stuff
 	delete CTextureManager::GetSingletonPtr();
+
+	// close down Xerces
+	XMLPlatformUtils::Terminate();
 }
 
 void CEditorData::InitCamera() 
@@ -578,11 +584,11 @@ bool CEditorData::LoadTerrain(const char* filename)
 
 		// rescale the texture to fit to the nearest of the 4 possible map sizes
 		u32 mapsize=9;	// assume smallest map
-		if (width>11*16+1) mapsize=11;
-		if (width>13*16+1) mapsize=13;
-		if (width>17*16+1) mapsize=17;
+		if (width>11*PATCH_SIZE+1) mapsize=11;
+		if (width>13*PATCH_SIZE+1) mapsize=13;
+		if (width>17*PATCH_SIZE+1) mapsize=17;
 
-		u32 targetsize=mapsize*16+1;
+		u32 targetsize=mapsize*PATCH_SIZE+1;
 		unsigned char* data=new unsigned char[targetsize*targetsize*bpp/8];
 		u32 fmt=(bpp==8) ? GL_RED : ((bpp==24) ? GL_RGB : GL_RGBA);
 		gluScaleImage(fmt,width,height,GL_UNSIGNED_BYTE,ptr,

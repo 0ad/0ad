@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+#define _IGNORE_WGL_H_
 #include "ScEd.h"
 
 #include "ScEdDoc.h"
@@ -13,6 +14,8 @@
 
 #include "timer.h"
 #include "ogl.h"
+#undef _IGNORE_WGL_H_
+
 #include "res/vfs.h"
 
 int g_ClickMode=0;

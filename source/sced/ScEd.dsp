@@ -43,7 +43,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /G5 /MT /W3 /GX /O2 /Ob0 /I "..\\" /I "..\lib" /I "..\ps" /I "..\simulation" /I "..\maths" /I "..\graphics" /I "..\renderer" /D "NDEBUG" /D "_MBCS" /D "_WINDOWS" /D "WIN32" /D "_NO_WINMAIN_" /FD /c
+# ADD CPP /nologo /G6 /MT /W3 /GR- /GX /Zi /O2 /Ob2 /I "..\\" /I "..\lib" /I "..\ps" /I "..\simulation" /I "..\maths" /I "..\graphics" /I "..\renderer" /I ".\\" /I ".\ui" /D "NDEBUG" /D "_MBCS" /D "_WINDOWS" /D "WIN32" /D "_NO_WINMAIN_" /D "_WGL_H_INCLUDED" /FD /c
 # SUBTRACT CPP /YX /Yc /Yu
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
@@ -54,8 +54,8 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
-# ADD LINK32 nafxcw.lib opengl32.lib glu32.lib ws2_32.lib version.lib xerces-c_2.lib /nologo /entry:"entry" /subsystem:windows /map /machine:I386 /out:"D:\0ad\binaries\system\ScEd.exe" /libpath:"..\libs" /fixed:no
-# SUBTRACT LINK32 /pdb:none /debug
+# ADD LINK32 nafxcw.lib opengl32.lib glu32.lib ws2_32.lib version.lib xerces-c_2.lib /nologo /entry:"entry" /subsystem:windows /map /debug /machine:I386 /out:"D:\0ad\binaries\system\ScEd.exe" /libpath:"..\libs" /fixed:no
+# SUBTRACT LINK32 /pdb:none
 
 !ELSEIF  "$(CFG)" == "ScEd - Win32 Debug"
 
@@ -71,7 +71,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /GZ /c
-# ADD CPP /nologo /G5 /MTd /W3 /Gm /Gi /GX /Zi /Od /I "..\\" /I "..\lib" /I "..\ps" /I "..\simulation" /I "..\maths" /I "..\graphics" /I "..\renderer" /D "_DEBUG" /D "_MBCS" /D "_WINDOWS" /D "WIN32" /D "_NO_WINMAIN_" /FD /GZ /c
+# ADD CPP /nologo /G5 /MTd /W3 /Gm /Gi /GX /Zi /Od /I "..\\" /I "..\lib" /I "..\ps" /I "..\simulation" /I "..\maths" /I "..\graphics" /I "..\renderer" /I ".\\" /I ".\ui" /D "_DEBUG" /D "_MBCS" /D "_WINDOWS" /D "WIN32" /D "_NO_WINMAIN_" /D "_WGL_H_INCLUDED" /FD /GZ /c
 # SUBTRACT CPP /YX /Yc /Yu
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
@@ -82,7 +82,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 nafxcwd.lib opengl32.lib glu32.lib ws2_32.lib version.lib xerces-c_2D.lib /nologo /entry:"entry" /subsystem:windows /incremental:no /map /debug /machine:I386 /out:"D:\0ad\binaries\system\ScEd_d.exe" /libpath:"..\libs"
+# ADD LINK32 nafxcwd.lib opengl32.lib glu32.lib ws2_32.lib version.lib xerces-c_2D.lib /nologo /entry:"entry" /subsystem:windows /incremental:no /map /debug /machine:I386 /out:"D:\0ad\binaries\system\ScEd_d.exe" /libpath:"..\libs" /fixed:no
 # SUBTRACT LINK32 /pdb:none
 
 !ENDIF 
@@ -170,14 +170,6 @@ SOURCE=..\lib\res\zip.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\lib\sysdep\win\hrt.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\lib\sysdep\win\hrt.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\lib\sysdep\win\waio.cpp
 # End Source File
 # Begin Source File
@@ -195,6 +187,10 @@ SOURCE=..\lib\sysdep\win\wfam.cpp
 # Begin Source File
 
 SOURCE=..\lib\sysdep\win\wfam.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\sysdep\win\wgl.h
 # End Source File
 # Begin Source File
 
@@ -231,6 +227,14 @@ SOURCE=..\lib\sysdep\win\wsock.cpp
 # Begin Source File
 
 SOURCE=..\lib\sysdep\win\wsock.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\sysdep\win\wtime.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\sysdep\win\wtime.h
 # End Source File
 # End Group
 # Begin Source File
@@ -276,14 +280,6 @@ SOURCE=..\lib\detect.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\endian.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\lib\endian.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\lib\glext_funcs.h
 # End Source File
 # Begin Source File
@@ -297,14 +293,6 @@ SOURCE=..\lib\lib.h
 # Begin Source File
 
 SOURCE=..\lib\memcpy.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\lib\misc.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\lib\misc.h
 # End Source File
 # Begin Source File
 
@@ -612,6 +600,10 @@ SOURCE=..\graphics\Texture.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\graphics\TextureEntry.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\graphics\TextureEntry.h
 # End Source File
 # Begin Source File
@@ -724,14 +716,6 @@ SOURCE=..\renderer\PatchRData.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\renderer\PBuffer.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\renderer\PBuffer.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\renderer\Renderer.cpp
 # End Source File
 # Begin Source File
@@ -753,6 +737,22 @@ SOURCE=..\renderer\TransparencyRenderer.cpp
 # Begin Source File
 
 SOURCE=..\renderer\TransparencyRenderer.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\renderer\VertexBuffer.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\renderer\VertexBuffer.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\renderer\VertexBufferManager.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\renderer\VertexBufferManager.h
 # End Source File
 # End Group
 # Begin Group "sced"
@@ -815,11 +815,19 @@ SOURCE=.\res\ScEd.ico
 # End Source File
 # Begin Source File
 
+SOURCE=.\ui\res\ScEd.ico
+# End Source File
+# Begin Source File
+
 SOURCE=.\res\ScEd.rc2
 # End Source File
 # Begin Source File
 
 SOURCE=.\res\ScEdDoc.ico
+# End Source File
+# Begin Source File
+
+SOURCE=.\ui\res\ScEdDoc.ico
 # End Source File
 # Begin Source File
 
@@ -843,228 +851,219 @@ SOURCE=.\res\Toolbar.bmp
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\BrushShapeEditorDlgBar.cpp
+SOURCE=.\ui\BrushShapeEditorDlgBar.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\BrushShapeEditorDlgBar.h
+SOURCE=.\ui\BrushShapeEditorDlgBar.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\ColorButton.cpp
+SOURCE=.\ui\ColorButton.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ColorButton.h
+SOURCE=.\ui\ColorButton.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\DirectionButton.cpp
+SOURCE=.\ui\DirectionButton.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\DirectionButton.h
+SOURCE=.\ui\DirectionButton.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\ElevationButton.cpp
+SOURCE=.\ui\ElevationButton.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ElevationButton.h
+SOURCE=.\ui\ElevationButton.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\ElevToolsDlgBar.cpp
+SOURCE=.\ui\ElevToolsDlgBar.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ElevToolsDlgBar.h
+SOURCE=.\ui\ElevToolsDlgBar.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\ImageListCtrl.cpp
+SOURCE=.\ui\ImageListCtrl.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ImageListCtrl.h
+SOURCE=.\ui\ImageListCtrl.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\LightSettingsDlg.cpp
+SOURCE=.\ui\LightSettingsDlg.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\LightSettingsDlg.h
+SOURCE=.\ui\LightSettingsDlg.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\MainFrameDlgBar.cpp
+SOURCE=.\ui\MainFrameDlgBar.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\MainFrameDlgBar.h
+SOURCE=.\ui\MainFrameDlgBar.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\MainFrm.cpp
+SOURCE=.\ui\MainFrm.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\MainFrm.h
+SOURCE=.\ui\MainFrm.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\MapSizeDlg.cpp
+SOURCE=.\ui\MapSizeDlg.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\MapSizeDlg.h
+SOURCE=.\ui\MapSizeDlg.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\NavigatePropPage.cpp
+SOURCE=.\ui\NavigatePropPage.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\NavigatePropPage.h
+SOURCE=.\ui\NavigatePropPage.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\OptionsDlg.cpp
+SOURCE=.\ui\OptionsDlg.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\OptionsDlg.h
+SOURCE=.\ui\OptionsDlg.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\OptionsPropSheet.cpp
+SOURCE=.\ui\OptionsPropSheet.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\OptionsPropSheet.h
+SOURCE=.\ui\OptionsPropSheet.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\Resource.h
+SOURCE=.\ui\resource.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\ScEd.cpp
+SOURCE=.\ui\ScEd.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ScEd.h
+SOURCE=.\ui\ScEd.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\ScEd.rc
+SOURCE=.\ui\ScEd.rc
 # End Source File
 # Begin Source File
 
-SOURCE=.\ScEdDoc.cpp
+SOURCE=.\ui\ScEdDoc.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ScEdDoc.h
+SOURCE=.\ui\ScEdDoc.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\ScEdView.cpp
+SOURCE=.\ui\ScEdView.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ScEdView.h
+SOURCE=.\ui\ScEdView.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\ShadowsPropPage.cpp
+SOURCE=.\ui\ShadowsPropPage.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ShadowsPropPage.h
+SOURCE=.\ui\ShadowsPropPage.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\SimpleEdit.cpp
+SOURCE=.\ui\SimpleEdit.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\SimpleEdit.h
+SOURCE=.\ui\SimpleEdit.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\StdAfx.cpp
-# ADD CPP /Yc"stdafx.h"
+SOURCE=.\ui\TexToolsDlgBar.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\StdAfx.h
+SOURCE=.\ui\TexToolsDlgBar.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\TexToolsDlgBar.cpp
+SOURCE=.\ui\UIGlobals.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\TexToolsDlgBar.h
+SOURCE=.\ui\UIGlobals.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\UIGlobals.cpp
+SOURCE=.\ui\UnitPropertiesAnimationsTab.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\UIGlobals.h
+SOURCE=.\ui\UnitPropertiesAnimationsTab.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\UnitPropertiesAnimationsTab.cpp
+SOURCE=.\ui\UnitPropertiesDlgBar.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\UnitPropertiesAnimationsTab.h
+SOURCE=.\ui\UnitPropertiesDlgBar.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\UnitPropertiesDlgBar.cpp
+SOURCE=.\ui\UnitPropertiesTabCtrl.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\UnitPropertiesDlgBar.h
+SOURCE=.\ui\UnitPropertiesTabCtrl.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\UnitPropertiesTabCtrl.cpp
+SOURCE=.\ui\UnitPropertiesTexturesTab.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\UnitPropertiesTabCtrl.h
+SOURCE=.\ui\UnitPropertiesTexturesTab.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\UnitPropertiesTexturesTab.cpp
+SOURCE=.\ui\UnitToolsDlgBar.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\UnitPropertiesTexturesTab.h
+SOURCE=.\ui\UnitToolsDlgBar.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\UnitToolsDlgBar.cpp
+SOURCE=.\ui\WebLinkButton.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\UnitToolsDlgBar.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\WebLinkButton.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\WebLinkButton.h
+SOURCE=.\ui\WebLinkButton.h
 # End Source File
 # End Group
 # Begin Group "Commands"
@@ -1228,6 +1227,14 @@ SOURCE=.\MiniMap.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\MouseHandler.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\MouseHandler.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\NaviCam.cpp
 # End Source File
 # Begin Source File
@@ -1377,6 +1384,14 @@ SOURCE=..\ps\Prometheus.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\ps\rc_array.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\rc_vector.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\ps\Singleton.h
 # End Source File
 # Begin Source File
@@ -1398,6 +1413,14 @@ SOURCE=..\ps\XercesErrorHandler.cpp
 # Begin Source File
 
 SOURCE=..\ps\XercesErrorHandler.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\XML.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\XMLUtils.cpp
 # End Source File
 # End Group
 # End Target

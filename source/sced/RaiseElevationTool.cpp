@@ -48,17 +48,17 @@ void CRaiseElevationTool::OnRButtonUp(u32 flags,int px,int py)
 	CBrushTool::OnRButtonUp(flags,px,py);
 }
 
-void CRaiseElevationTool::AlterSelectionHeight(int32 amount)
+void CRaiseElevationTool::AlterSelectionHeight(i32 amount)
 {
 	CRaiseElevationCommand* alterCmd=new CRaiseElevationCommand(amount,m_BrushSize,m_SelectionCentre);
 	g_CmdMan.Execute(alterCmd);
 }
 
-int32 CRaiseElevationTool::CalcDistSinceLastTrigger()
+i32 CRaiseElevationTool::CalcDistSinceLastTrigger()
 {
 	double curtime=get_time();
 	double elapsed=curtime-m_LastTriggerTime;
-	int32 dist=int32(elapsed*m_Speed);
+	i32 dist=i32(elapsed*m_Speed);
 	
 	m_LastTriggerTime+=dist/m_Speed;
 

@@ -105,6 +105,7 @@ protected:
 	afx_msg void OnUpdateTestGo(CCmdUI* pCmdUI);
 	afx_msg void OnTestStop();
 	afx_msg void OnUpdateTestStop(CCmdUI* pCmdUI);
+	afx_msg void OnRandomMap();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -3,10 +3,12 @@
 
 #include "stdafx.h"
 
+#define _IGNORE_WGL_H_
 #include "ogl.h"
 #include "res/tex.h"
 #include "res/mem.h"
 #include "res/vfs.h"
+#undef _IGNORE_WGL_H_
 
 #include "ScEd.h"
 #include "ScEdView.h"
@@ -18,6 +20,8 @@
 
 #include "Unit.h"
 #include "UnitManager.h"
+#include "ObjectManager.h"
+#include "TextureManager.h"
 #include "UIGlobals.h"
 #include "MainFrm.h"
 #include "OptionsPropSheet.h"
@@ -77,11 +81,12 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_COMMAND(ID_VIEW_RENDERSTATS, OnViewRenderStats)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_RENDERSTATS, OnUpdateViewRenderStats)
 	ON_MESSAGE(WM_MOUSEWHEEL,OnMouseWheel)
-	ON_COMMAND(IDR_UNIT_TOOLS, OnUnitTools)
 	ON_COMMAND(ID_TEST_GO, OnTestGo)
 	ON_UPDATE_COMMAND_UI(ID_TEST_GO, OnUpdateTestGo)
 	ON_COMMAND(ID_TEST_STOP, OnTestStop)
 	ON_UPDATE_COMMAND_UI(ID_TEST_STOP, OnUpdateTestStop)
+	ON_COMMAND(IDR_UNIT_TOOLS, OnUnitTools)
+	ON_COMMAND(ID_RANDOM_MAP, OnRandomMap)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -405,15 +410,15 @@ void CMainFrame::OnToolsOptions()
 	dlg.m_ShadowsPage.m_EnableShadows=g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWS) ? TRUE : FALSE;
 
 	COLORREF c;
-	RGBColorToColorRef(g_Renderer.GetOptionColor(CRenderer::OPT_SHADOWCOLOR),c);
+	RGBAColorToColorRef(g_Renderer.GetOptionColor(CRenderer::OPT_SHADOWCOLOR),c);
 	dlg.m_ShadowsPage.m_ShadowColor.m_Color=c;
 
 	if (dlg.DoModal()==IDOK) {
 		g_UserCfg.SetOptionInt(CFG_SCROLLSPEED,dlg.m_NavigatePage.m_ScrollSpeed);
 		g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS,dlg.m_ShadowsPage.m_EnableShadows ? true : false);
 		
-		RGBColor c;
-		ColorRefToRGBColor(dlg.m_ShadowsPage.m_ShadowColor.m_Color,c);
+		RGBAColor c;
+		ColorRefToRGBAColor(dlg.m_ShadowsPage.m_ShadowColor.m_Color,0xff,c);
 		g_Renderer.SetOptionColor(CRenderer::OPT_SHADOWCOLOR,c);
 	}
 }
@@ -716,4 +721,128 @@ void CMainFrame::OnUpdateTestStop(CCmdUI* pCmdUI)
 		pCmdUI->Enable(TRUE);
 	else
 		pCmdUI->Enable(FALSE);
+}
+
+static float getExactGroundLevel( float x, float y )
+{
+	// TODO MT: If OK with Rich, move to terrain core. Once this works, that is.
+
+	x /= 4.0f;
+	y /= 4.0f;
+
+	int xi = (int)floor( x );
+	int yi = (int)floor( y );
+	float xf = x - (float)xi;
+	float yf = y - (float)yi;
+
+	u16* heightmap = g_Terrain.GetHeightMap();
+	unsigned long mapsize = g_Terrain.GetVerticesPerSide();
+
+	float h00 = heightmap[yi*mapsize + xi];
+	float h01 = heightmap[yi*mapsize + xi + mapsize];
+	float h10 = heightmap[yi*mapsize + xi + 1];
+	float h11 = heightmap[yi*mapsize + xi + mapsize + 1];
+
+	/*
+	if( xf < ( 1.0f - yf ) )
+	{
+		return( HEIGHT_SCALE * ( ( 1 - xf - yf ) * h00 + xf * h10 + yf * h01 ) );
+	}
+	else
+		return( HEIGHT_SCALE * ( ( xf + yf - 1 ) * h11 + ( 1 - xf ) * h01 + ( 1 - yf ) * h10 ) );
+	*/
+
+	/*
+	if( xf > yf ) 
+	{
+		return( HEIGHT_SCALE * ( ( 1 - xf ) * h00 + ( xf - yf ) * h10 + yf * h11 ) );
+	}
+	else
+		return( HEIGHT_SCALE * ( ( 1 - yf ) * h00 + ( yf - xf ) * h01 + xf * h11 ) );
+	*/
+
+	return( HEIGHT_SCALE * ( ( 1 - yf ) * ( ( 1 - xf ) * h00 + xf * h10 ) + yf * ( ( 1 - xf ) * h01 + xf * h11 ) ) );
+
+}
+
+static CObjectEntry* GetRandomActorTemplate()
+{
+	if (g_ObjMan.m_ObjectTypes.size()==0) return 0;
+
+	CObjectEntry* found=0;
+	int checkloop=250;
+	do {
+		u32 type=rand()%g_ObjMan.m_ObjectTypes.size();
+		u32 actorsoftype=g_ObjMan.m_ObjectTypes[type].m_Objects.size();
+		if (actorsoftype>0) {
+			found=g_ObjMan.m_ObjectTypes[type].m_Objects[rand()%actorsoftype];
+			if (found && found->m_Model && found->m_Model->GetModelDef()->GetNumBones()>0) {
+			} else {
+				found=0;
+			}
+		}
+	} while (--checkloop && !found);
+	
+	return found;
+}
+
+static CTextureEntry* GetRandomTexture()
+{
+	if (g_TexMan.m_TerrainTextures.size()==0) return 0;
+
+	CTextureEntry* found=0;
+	do {
+		u32 type=rand()%g_TexMan.m_TerrainTextures.size();
+		u32 texturesoftype=g_TexMan.m_TerrainTextures[type].m_Textures.size();
+		if (texturesoftype>0) {
+			found=g_TexMan.m_TerrainTextures[type].m_Textures[rand()%texturesoftype];
+		}
+	} while (!found);
+	
+	return found;
+}
+
+void CMainFrame::OnRandomMap() 
+{
+	const u32 count=5000;	
+	const u32 unitsPerDir=u32(sqrt(float(count)));	
+	
+	u32 i,j;
+	u32 vsize=g_Terrain.GetVerticesPerSide()-1;
+
+	for (i=0;i<unitsPerDir;i++) {
+		for (j=0;j<unitsPerDir;j++) {
+//			float x=CELL_SIZE*vsize*float(i+1)/float(unitsPerDir+1);
+//			float z=CELL_SIZE*vsize*float(j+1)/float(unitsPerDir+1);
+			float dx=float(rand())/float(RAND_MAX);
+			float x=CELL_SIZE*vsize*dx;
+			float dz=float(rand())/float(RAND_MAX);
+			float z=CELL_SIZE*vsize*dz;
+			float y=getExactGroundLevel(x,z);
+			CObjectEntry* actortemplate=GetRandomActorTemplate();
+			if (actortemplate && actortemplate->m_Model) {
+				CUnit* unit=new CUnit(actortemplate,actortemplate->m_Model->Clone());
+				g_UnitMan.AddUnit(unit);
+				
+				CMatrix3D trans;
+				trans.SetIdentity();	
+				trans.RotateY(2*PI*float(rand())/float(RAND_MAX));
+				trans.Translate(x,y,z);
+				unit->GetModel()->SetTransform(trans);
+			}
+		}
+	}
+
+/*
+	for (i=0;i<vsize;i++) {
+		for (j=0;j<vsize;j++) {
+			CTextureEntry* tex=GetRandomTexture();
+			CMiniPatch* mp=g_Terrain.GetTile(i,j);
+			mp->Tex1=tex->GetHandle();
+			mp->Tex1Priority=tex->GetType();
+			mp->m_Parent->SetDirty(RENDERDATA_UPDATE_VERTICES | RENDERDATA_UPDATE_INDICES);
+		}
+	}
+	g_MiniMap.Rebuild();
+*/
 }

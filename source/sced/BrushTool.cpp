@@ -53,8 +53,7 @@ static void RenderTileOutline(int gx,int gz)
 
 void CBrushTool::OnDraw()
 {
-	glActiveTexture (GL_TEXTURE0);
-	glDisable (GL_TEXTURE_2D);
+	g_Renderer.SetTexture(0,0);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);

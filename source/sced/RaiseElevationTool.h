@@ -2,6 +2,7 @@
 #define _RAISEELEVATIONTOOL_H
 
 #include <set>
+#include "lib.h"
 #include "res/res.h"
 #include "BrushTool.h"
 
@@ -41,11 +42,11 @@ public:
 
 private:	
 	// raise/lower the currently selected terrain tiles by given amount
-	void AlterSelectionHeight(int32 amount);
+	void AlterSelectionHeight(i32 amount);
 
 	// calculate distance terrain has moved since last trigger; adjust last trigger
 	// time appropriately to avoid rounding errors
-	int32 CalcDistSinceLastTrigger();
+	i32 CalcDistSinceLastTrigger();
 
 	// number of units to raise/lower selected terrain tiles per second
 	int m_Speed;

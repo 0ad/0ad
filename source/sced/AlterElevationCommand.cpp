@@ -81,10 +81,10 @@ void CAlterElevationCommand::ApplyDataToSelection(const CArray2D<u16>& data)
 
 	// flag vertex data as dirty for affected patches, and rebuild bounds of these patches
 	u32 patchesPerSide=g_Terrain.GetPatchesPerSide();
-	int px0=clamp(-1+(x0/16),0,patchesPerSide);
-	int px1=clamp(1+(x1/16),0,patchesPerSide);
-	int pz0=clamp(-1+(z0/16),0,patchesPerSide);
-	int pz1=clamp(1+(z1/16),0,patchesPerSide);
+	int px0=clamp(-1+(x0/PATCH_SIZE),0,patchesPerSide);
+	int px1=clamp(1+(x1/PATCH_SIZE),0,patchesPerSide);
+	int pz0=clamp(-1+(z0/PATCH_SIZE),0,patchesPerSide);
+	int pz1=clamp(1+(z1/PATCH_SIZE),0,patchesPerSide);
 	for (j=pz0;j<pz1;j++) {
 		for (int i=px0;i<px1;i++) {
 			CPatch* patch=g_Terrain.GetPatch(i,j);

@@ -99,6 +99,7 @@
 #define ID_VIEW_RENDERSTATS             32794
 #define ID_TEST_STOP                    32797
 #define ID_TEST_GO                      32798
+#define ID_RANDOM_MAP                   32799
 
 // Next default values for new objects
 // 
@@ -106,7 +107,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        156
-#define _APS_NEXT_COMMAND_VALUE         32799
+#define _APS_NEXT_COMMAND_VALUE         32800
 #define _APS_NEXT_CONTROL_VALUE         1044
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

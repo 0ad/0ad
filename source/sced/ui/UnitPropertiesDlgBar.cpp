@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#define _IGNORE_WGL_H_
 #include "UserConfig.h"
 #include "MainFrm.h"
 #include "Model.h"
@@ -9,6 +10,7 @@
 
 #include "EditorData.h"
 #include "UIGlobals.h"
+#undef _IGNORE_WGL_H_
 
 BEGIN_MESSAGE_MAP(CUnitPropertiesDlgBar, CDialogBar)
 	//{{AFX_MSG_MAP(CUnitPropertiesDlgBar)

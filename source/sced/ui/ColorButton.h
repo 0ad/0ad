@@ -16,6 +16,14 @@ inline void ColorRefToRGBColor(COLORREF c,RGBColor& result)
 	result.Z=((c>>16) & 0xff)/255.0f;
 }
 
+inline void ColorRefToRGBAColor(COLORREF c,BYTE alpha,RGBAColor& result)
+{
+	result[0]=(c & 0xff)/255.0f;
+	result[1]=((c>>8) & 0xff)/255.0f;
+	result[2]=((c>>16) & 0xff)/255.0f;
+	result[3]=alpha/255.0f;
+}
+
 inline void RGBColorToColorRef(const RGBColor& c,COLORREF& result)
 {
 	int r=int(c.X*255);
@@ -31,6 +39,27 @@ inline void RGBColorToColorRef(const RGBColor& c,COLORREF& result)
 	if (b>255) b=255;
 
 	result=r | (g<<8) | (b<<16);
+}
+
+inline void RGBAColorToColorRef(const RGBAColor& c,COLORREF& result)
+{
+	int r=int(c[0]*255);
+	if (r<0) r=0;
+	if (r>255) r=255;
+	
+	int g=int(c[1]*255);
+	if (g<0) g=0;
+	if (g>255) g=255;
+
+	int b=int(c[2]*255);
+	if (b<0) b=0;
+	if (b>255) b=255;
+
+	int a=int(c[3]*255);
+	if (a<0) a=0;
+	if (a>255) a=255;
+
+	result=r | (g<<8) | (b<<16) | (a<<24);
 }
 
 /////////////////////////////////////////////////////////////////////////////

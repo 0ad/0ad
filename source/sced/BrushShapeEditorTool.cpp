@@ -1,8 +1,9 @@
-#include "BrushShapeEditorTool.h"
-
 #include <stdlib.h>
 #include <string.h>
 #include "ogl.h"
+#include "Renderer.h"
+#include "BrushShapeEditorTool.h"
+
 
 // default tool instance
 CBrushShapeEditorTool CBrushShapeEditorTool::m_BrushShapeEditorTool;
@@ -16,8 +17,7 @@ CBrushShapeEditorTool::CBrushShapeEditorTool() : m_BrushSize(5), m_BrushData(0)
 
 void CBrushShapeEditorTool::OnDraw()
 {
-	glActiveTexture(GL_TEXTURE0);
-	glDisable(GL_TEXTURE_2D);
+	g_Renderer.SetTexture(0,0);
 
 	glDepthMask(0);
 
