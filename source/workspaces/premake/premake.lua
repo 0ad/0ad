@@ -35,7 +35,9 @@ package.files = {
 	{ sourcesfromdirs(
                 "../../gui") },
 	-- main
-        { "../../main.cpp" }
+        { "../../main.cpp" },
+	-- scripting
+	{ sourcesfromdirs("../../scripting") }
 }
 package.includepaths = { "../../ps", "../../simulation", "../../lib", "../../terrain", "../.." }
 
