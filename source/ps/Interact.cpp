@@ -401,7 +401,7 @@ void CSelectedEntities::contextOrder( bool pushQueue )
 	// the number of units in the group.
 
 	float radius = 2.0f * sqrt( (float)m_selected.size() ); // A decent enough approximation
-	float _t, _x, _y;
+	float _x, _y;
 
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
 		if( (*it)->acceptsOrder( m_contextOrder, g_Mouseover.m_target ) )

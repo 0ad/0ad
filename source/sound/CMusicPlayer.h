@@ -16,8 +16,8 @@
 struct SOggFile
 {
 	char *dataPtr;
-	int dataSize;
-	int dataRead;
+	size_t dataSize;
+	size_t dataRead;
 };
 
 class CMusicPlayer

@@ -44,9 +44,9 @@ void CSimulation::Interpolate(double frameTime, double offset)
 {
 	const std::vector<CUnit*>& units=m_pWorld->GetUnitManager()->GetUnits();
 	for (uint i=0;i<units.size();++i)
-		units[i]->GetModel()->Update(frameTime);
+		units[i]->GetModel()->Update((float)frameTime);
 
-	g_EntityManager.interpolateAll(offset);
+	g_EntityManager.interpolateAll((float)offset);
 }
 
 void CSimulation::Simulate()

@@ -65,7 +65,7 @@ int VorbisSeek(void *datasource, ogg_int64_t offset, int fromWhere)
 			actualOffset = (offset);
 		else
 			actualOffset = spaceToEOF;	
-		vorbisData->dataRead += actualOffset;
+		vorbisData->dataRead += (size_t)actualOffset;
 		break;
 	case SEEK_END: 
 		vorbisData->dataRead = vorbisData->dataSize+1;
@@ -88,7 +88,7 @@ long VorbisTell(void *datasource)
 	SOggFile* vorbisData;
 	vorbisData = (SOggFile*)datasource;
 
-	return vorbisData->dataRead;
+	return (long)vorbisData->dataRead;
 }
 
 
@@ -290,13 +290,13 @@ bool CMusicPlayer::update()
 void CMusicPlayer::check()
 {
 	int error = alGetError();
-
+/*
 	if(error != AL_NO_ERROR)
 	{
-		std::cout << "OpenAL error " << error << std::endl;
+		std::cout << "OpenAL error " << error << errorString(error) << std::endl;
 		exit(1);
 	}
-
+*/
 }
 
 void CMusicPlayer::empty()
