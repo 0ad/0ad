@@ -601,6 +601,8 @@ static TNode tree_root;
 static TDir* tree_root_dir = &tree_root.u.dir;
 
 
+// rationale: can't do this in tree_clear - we'd leak at exit.
+// calling from tree_add* is ugly as well, so require manual init.
 void tree_init()
 {
 	tree_root_dir->init();

@@ -530,7 +530,7 @@ int file_open(const char* p_fn, const uint flags, File* f)
 
 	int oflag = O_RDONLY;
 	if(flags & FILE_WRITE)
-		oflag = O_WRONLY | O_CREAT;
+		oflag = O_WRONLY|O_CREAT|O_TRUNC;
 	// read access requested
 	else
 	{
@@ -597,13 +597,17 @@ int file_close(File* f)
 	if(f->mapping)	// only free if necessary (unmap complains if not mapped)
 		file_unmap(f);
 
+	// return final file size (required by VFS after writing files).
+	// this is much easier than updating when writing, because we'd have
+	// to add accounting code to both (sync and async) paths.
+	f->size = lseek(f->fd, 0, SEEK_END);
+
 	// (check fd to avoid BoundsChecker warning about invalid close() param)
 	if(f->fd != -1)
 	{
 		close(f->fd);
 		f->fd = -1;
 	}
-	f->size = 0;
 
 	return 0;
 }
@@ -987,7 +991,6 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 			return ERR_EOF;
 		data_size = MIN(data_size, (size_t)bytes_left);
 	}
-
 
 	bool temp = (data_buf == 0);
 

@@ -164,7 +164,7 @@ static int z_find_ecdr(const u8* file, size_t size, const u8*& ecdr_)
 	if(*(u32*)ecdr == *(u32*)&ecdr_id)
 		goto found_ecdr;
 
-	// jump crosses init, blah blah
+	// goto scoping
 	{
 		// scan the last 66000 bytes of file for ecdr_id signature
 		// (the Zip archive comment field, up to 64k, may follow ECDR).
@@ -232,6 +232,8 @@ enum z_extract_cdfh_ret
 // finally, advance to next CDFH.
 // return -1 on error (output params invalid), or 0 on success.
 // called by z_enum_files, which passes the output to lookup.
+//
+// [30ms]
 static int z_extract_cdfh(const u8* file, size_t size,              // in
 	const u8*& cdfh, const char*& fn, size_t& fn_len, ZLoc* loc)    // out
 {
@@ -308,6 +310,7 @@ static int z_extract_cdfh(const u8* file, size_t size,              // in
 // loc is only valid during the callback! must be copied or saved.
 typedef int(*CDFH_CB)(uintptr_t user, i32 idx, const char* fn, size_t fn_len, const ZLoc* loc);
 
+
 static int z_enum_files(const u8* file, const size_t size, const CDFH_CB cb, const uintptr_t user)
 {
 	// find "End of Central Directory Record"
@@ -332,11 +335,13 @@ static int z_enum_files(const u8* file, const size_t size, const CDFH_CB cb, con
 		// only incremented when valid, so we don't leave holes
 		// in lookup's arrays (bad locality).
 
+
 	for(i32 i = 0; i < num_entries; i++)
 	{
 		const char* fn;
 		size_t fn_len;
 		ZLoc loc;
+
 		int ret = z_extract_cdfh(file, size, cdfh, fn, fn_len, &loc);
 		// valid file
 		if(ret == Z_CDFH_FILE_OK)
@@ -425,6 +430,8 @@ struct LookupInfo
 // notes:
 // - fn (filename) is not necessarily 0-terminated!
 // - loc is only valid during the callback! must be copied or saved.
+//
+// [40ms]
 static int lookup_add_file_cb(uintptr_t user, i32 idx,
 	const char* fn, size_t fn_len, const ZLoc* loc)
 {
@@ -673,6 +680,7 @@ fail_close:
 // somewhat slow - each file is added to an internal index.
 Handle zip_archive_open(const char* fn)
 {
+TIMER(zip_archive_open);
 	return h_alloc(H_ZArchive, fn);
 }
 

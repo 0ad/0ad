@@ -118,6 +118,9 @@ extern int file_enum(const char* dir, FileCB cb, uintptr_t user);
 extern int file_stat(const char* path, struct stat*);
 
 extern int file_open(const char* fn, uint flags, File* f);
+
+// note: final file size is calculated and returned in f->size.
+// see implementation for rationale.
 extern int file_close(File* f);
 
 

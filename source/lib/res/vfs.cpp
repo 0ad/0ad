@@ -895,6 +895,8 @@ struct VFile
 
 	off_t ofs;
 
+	TFile* tf;
+
 	union
 	{
 		File f;
@@ -945,7 +947,17 @@ static void VFile_dtor(VFile* vf)
 		if(flags & VF_ZIP)
 			zip_close(&vf->zf);
 		else
+		{
 			file_close(&vf->f);
+
+			// update file state in VFS tree
+			// (must be done after close, since that calculates the size)
+			if(flags & FILE_WRITE)
+			{
+				vf->tf->mtime = time(0);
+				vf->tf->size = vf->f.size;
+			}
+		}
 
 		flags &= ~(VF_OPEN);
 	}
@@ -1001,6 +1013,7 @@ static int VFile_reload(VFile* vf, const char* v_path, Handle)
 
 	// success
 	flags |= VF_OPEN;
+	vf->tf = file;
 	return 0;
 }
 
