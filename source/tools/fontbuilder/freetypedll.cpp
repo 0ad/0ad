@@ -14,14 +14,16 @@
 
 HINSTANCE dlls[2] = { 0, 0 };
 
-bool SelectDLL(int DLL)
+static char err[255]; // not exactly thread-safe
+
+char* SelectDLL(int DLL)
 {
 	const char* name;
 	switch (DLL)
 	{
 	case 0: name = "freetypea.dll"; break;
 	case 1: name = "freetypeb.dll"; break;
-	default: assert(! "Invalid DLL id!"); return true;
+	default: assert(! "Invalid DLL id!"); return "Invalid DLL ID";
 	}
 
 	HINSTANCE hDLL;
@@ -31,12 +33,15 @@ bool SelectDLL(int DLL)
 		hDLL = dlls[DLL] = LoadLibraryA(name);
 
 	if (! hDLL)
-		return true;
+	{
+		sprintf(err, "LoadLibrary failed (%d)", GetLastError());
+		return err;
+	}
 
-	#define FUNC(ret, name, par) if (NULL == (DLL##name = (ret (*) par) GetProcAddress(hDLL, #name)) ) { return true; }
+	#define FUNC(ret, name, par) if (NULL == (DLL##name = (ret (*) par) GetProcAddress(hDLL, #name)) ) { sprintf(err, "GetProcAddress on %s failed (%d)", #name, GetLastError()); return err; }
 	#include "freetypedll_funcs.h"
 
-	return false;
+	return NULL;
 }
 
 void FreeDLLs()

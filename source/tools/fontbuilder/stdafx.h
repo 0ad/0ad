@@ -1,4 +1,4 @@
-// $Id: stdafx.h,v 1.6 2004/07/16 15:32:34 philip Exp $
+// $Id: stdafx.h,v 1.7 2004/11/23 18:19:27 philip Exp $
 
 // Precompiled headers
 
@@ -67,3 +67,7 @@
 #endif
 
 #include "wx/defs.h"
+
+#ifdef _WIN32
+# define swprintf _snwprintf
+#endif

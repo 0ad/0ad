@@ -1,4 +1,4 @@
-// $Id: font.h,v 1.4 2004/08/27 20:24:15 philip Exp $
+// $Id: font.h,v 1.5 2004/11/23 18:19:27 philip Exp $
 
 #ifndef _FONT_H_
 #define _FONT_H_
@@ -30,8 +30,8 @@ public:
 
 	~FontRenderer();
 	
-	// Generate the glyph for the given Unicode code point
-	void LoadGlyph(const int charcode);
+	// Generate the glyph for the given Unicode code point. Returns the glyph index.
+	int LoadGlyph(const int charcode);
 
 	// Put the appropriate pixel sizes into width and height
 	void GetBoundingBox(int& width, int& height);
@@ -49,6 +49,8 @@ public:
 
 	// Supplies some information for positioning glyphs
 	void GetMetrics(int& offset_x, int& offset_y, int& advance);
+
+	int GetKerning(int left, int right);
 
 	// Set by LoadGlyph if it can't find the right glyph
 	bool Missing;

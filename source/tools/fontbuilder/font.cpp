@@ -1,4 +1,4 @@
-// $Id: font.cpp,v 1.5 2004/08/27 20:24:15 philip Exp $
+// $Id: font.cpp,v 1.6 2004/11/23 18:19:27 philip Exp $
 
 #include "stdafx.h"
 
@@ -10,11 +10,15 @@
 
 #include "freetypedll.h"
 
+static char err[255]; // not exactly thread-safe
+
 FontRenderer::FontRenderer(const char* filename0, const char* filename1, double ptsize, bool unpatented_hinting, bool hinting)
 {
-	if (SelectDLL(hinting ? 0 : 1))
+	char* err_str = SelectDLL(hinting ? 0 : 1);
+	if (err_str)
 	{
-		throw "Error loading FreeType DLL (freetype(a|b).dll)";
+		sprintf(err, "Error loading FreeType DLL (freetype(a|b).dll (%d)): %s", hinting, err_str);
+		throw err;
 	}
 
 	int error;
@@ -48,14 +52,7 @@ FontRenderer::FontRenderer(const char* filename0, const char* filename1, double 
 		NULL, NULL,
 		1, &openparam
 	};
-/*
-	error = FT_New_Face(
-		FontLibrary0,
-		filename0,
-		0, // index of face inside font file
-		&FontFace0
-	);
-*/
+
 	error = DLLFT_Open_Face(
 		FontLibrary0,
 		&args0,
@@ -69,14 +66,6 @@ FontRenderer::FontRenderer(const char* filename0, const char* filename1, double 
 		throw "Error loading primary font";
 	}
 
-/*
-	error = FT_New_Face(
-		FontLibrary1,
-		filename1,
-		0, // index of face inside font file
-		&FontFace1
-	);
-*/
 	error = DLLFT_Open_Face(
 		FontLibrary1,
 		&args1,
@@ -139,7 +128,7 @@ FontRenderer::~FontRenderer()
 
 #define deg2rad(a) ((double)a * 3.14159265358979323846 / 180.0)
 
-void FontRenderer::LoadGlyph(const int charcode)
+int FontRenderer::LoadGlyph(const int charcode)
 {
 	FT_Face FontFace = FontFace0;
 	int glyph_index = DLLFT_Get_Char_Index(FontFace0, charcode);
@@ -232,6 +221,8 @@ void FontRenderer::LoadGlyph(const int charcode)
 	}
 
 	LastFontFace = FontFace;
+
+	return glyph_index;
 }
 
 
@@ -353,4 +344,12 @@ void FontRenderer::GetMetrics(int& offset_x, int& offset_y, int& advance)
 	advance = LastFontFace->glyph->advance.x >> 6;
 	if (advance)
 		offset_x += Tracking;
+}
+
+int FontRenderer::GetKerning(int left, int right)
+{
+	FT_Vector vec;
+	DLLFT_Get_Kerning(LastFontFace, left, right, FT_KERNING_DEFAULT, &vec);
+	assert(vec.y == 0);
+	return vec.x>>6;
 }

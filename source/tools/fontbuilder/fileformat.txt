@@ -1,4 +1,4 @@
-$Id: fileformat.txt,v 1.1 2004/06/17 19:32:04 philip Exp $
+$Id: fileformat.txt,v 1.2 2004/11/23 18:19:27 philip Exp $
 
 
 Fonts consist of
@@ -12,10 +12,11 @@ TGA's 1 byte/pixel, and DXTC's lossiness is almost noticeable.)
 
 The .fnt file is something like:
 
-  100
+  101
   512 256
   3
   16
+  12
   32 0 0 10 10 12
   33 10 0 6 10 7
   3300 16 0 6 10 7
@@ -28,6 +29,9 @@ Second line = size of texture (width/height).
 Third line = number of glyphs in the font.
 
 Fourth line = line spacing (pixels between each baseline)
+
+Fifth line = text 'height' (height of the "I" glyph, possibly manually
+                            adjusted so that vertical centering works)
 
 Each subsequent line is
 

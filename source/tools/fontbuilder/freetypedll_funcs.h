@@ -8,3 +8,4 @@ FUNC(FT_Long,  FT_MulFix, ( FT_Long a, FT_Long b ));
 FUNC(void,     FT_Set_Transform, ( FT_Face face, FT_Matrix* matrix, FT_Vector* delta ));
 FUNC(FT_Error, FT_Load_Glyph, ( FT_Face face, FT_UInt glyph_index, FT_Int32 load_flags ));
 FUNC(FT_Error, FT_Render_Glyph, ( FT_GlyphSlot slot, FT_Render_Mode render_mode ));
+FUNC(FT_Error, FT_Get_Kerning, ( FT_Face face, FT_UInt left_glyph, FT_UInt right_glyph, FT_UInt kern_mode, FT_Vector *akerning ));

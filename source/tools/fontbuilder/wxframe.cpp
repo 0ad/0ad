@@ -1,4 +1,4 @@
-// $Id: wxframe.cpp,v 1.7 2004/08/10 15:51:06 philip Exp $
+// $Id: wxframe.cpp,v 1.8 2004/11/23 18:19:27 philip Exp $
 
 #include "stdafx.h"
 
@@ -426,6 +426,8 @@ void MainFrame::GeneratePreview()
 
 		int x = 16, y = Font.GetLineSpacing();
 
+		int prev_glyph_index = 0;
+
 		wxString PreviewText = PreviewTextCtrl->GetValue();
 		for (size_t i = 0; i < PreviewText.Length(); ++i)
 		{
@@ -436,8 +438,14 @@ void MainFrame::GeneratePreview()
 			}
 			else
 			{
-				Font.LoadGlyph(PreviewText[i]);
+				int glyph_index = Font.LoadGlyph(PreviewText[i]);
+
+				if (prev_glyph_index)
+					x += Font.GetKerning(prev_glyph_index, glyph_index);
+
 				Font.RenderGlyph(PreviewImageData, x, y, PreviewWidth, PreviewHeight, PreviewWidth*3, false);
+
+				prev_glyph_index = glyph_index;
 			}
 		}
 	}
