@@ -57,8 +57,14 @@ extern "C" {
 // <limits.h>
 //
 
-#define PATH_MAX 256
+#define PATH_MAX 255
 // Win32 MAX_PATH is 260
+
+#ifdef _WIN32
+# define SIZE_MAX 0xffffffff
+#else
+# define SIZE_MAX 0xffffffffffffffff
+#endif
 
 
 //

@@ -170,9 +170,15 @@ int tncat_s(tchar* dst, size_t max_dst_chars, const tchar* src, size_t max_src_c
 }
 
 
-int tcat_s(tchar* dst, size_t max_chars, const tchar* src)
+// append <src> to <dst>, which must not overlap.
+// if thereby <max_dst_chars> (including null) would be exceeded,
+// <dst> is set to the empty string and ERANGE returned; otherwise,
+// 0 is returned to indicate success and that <dst> is null-terminated.
+//
+// note: implemented as tncat_s(dst, max_dst_chars, src, SIZE_MAX)
+int tcat_s(tchar* dst, size_t max_dst_chars, const tchar* src)
 {
-	return tncat_s(dst, max_chars, src, SIZE_MAX);
+	return tncat_s(dst, max_dst_chars, src, SIZE_MAX);
 }
 
 
