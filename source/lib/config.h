@@ -89,3 +89,10 @@
 #endif
 
 
+
+// HACK: (please remove when this is no longer necessary)
+// The ICC 9.0.006 beta seems to generate buggy code when we redefine new,
+// so don't redefine new:
+#if defined(__INTEL_COMPILER) && __INTEL_COMPILER == 900
+# undef HAVE_DEBUGALLOC
+#endif
