@@ -1,7 +1,7 @@
 function startLoadingScreen()
 {
 // HACK: Added to increase number of players from its default 2, until we have a session creation screen.
-        g_GameAttributes.numPlayers = 9;
+//        g_GameAttributes.numPlayers = 9;
 
         // Switch screens from main menu to loading screen.
         GUIObjectHide("PREGAME_GUI");
