@@ -7,10 +7,12 @@
   <script file="gui/test/test.js"><![CDATA[
     writeConsole("GUI file loading");
 
+    dudes = 0;
+
     function MakeDude(x, y, z) {
       DudeSpawnPoint = new Vector3D(x, y, z);
       new Entity(getEntityTemplate("Prometheus Dude"), DudeSpawnPoint, 1.0);
-      writeConsole("Dude created at " + DudeSpawnPoint);
+      writeConsole("Dude created at " + DudeSpawnPoint + "; " + ++dudes + " Dudes created this way." );
     }
 
     function updateOrbital()
@@ -74,7 +76,7 @@
     </action>
   </object>
 
-  <object type="button" name="Dude_Production_Button_random" sprite="sprite1" sprite-over="sprite1-over" sprite-pressed="sprite1-pressed" size="10% 80%+22 10%+128 80%+42" z="100" textcolor="0 0 0">
+  <object type="button" name="Dude_Production_Button_random" hotkey="dudemachine.random" sprite="sprite1" sprite-over="sprite1-over" sprite-pressed="sprite1-pressed" size="10% 80%+22 10%+128 80%+42" z="100" textcolor="0 0 0">
 
     Make random dude
 
