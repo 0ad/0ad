@@ -100,12 +100,16 @@ if (OS == "windows") then
 		"/DELAYLOAD:version.dll",
 		"/DELAYLOAD:ddraw.dll",
 		"/DELAYLOAD:glu32.dll",
+		"/DELAYLOAD:openal32.dll",
 		"/DELAY:UNLOAD"		-- allow manual unload of delay-loaded DLLs
 	}
 	package.config["Debug"].linkoptions = {
 		"/DELAYLOAD:js32d.dll",
 		"/DELAYLOAD:zlib1d.dll",
 		"/DELAYLOAD:libpng13d.dll",
+		"/DELAYLOAD:vorbisfile_d.dll",
+		"/DELAYLOAD:ogg_d.dll",
+		"/DELAYLOAD:vorbis_d.dll",
 	}
 	
 	-- Testing uses Debug DLL's
@@ -115,6 +119,9 @@ if (OS == "windows") then
 		"/DELAYLOAD:js32.dll",
 		"/DELAYLOAD:zlib1.dll",
 		"/DELAYLOAD:libpng13.dll",
+		"/DELAYLOAD:vorbisfile.dll",
+		"/DELAYLOAD:ogg.dll",
+		"/DELAYLOAD:vorbis.dll",
 	}
 	
 	tinsert(package.buildflags, { "no-main" })
