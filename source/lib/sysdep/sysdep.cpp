@@ -49,6 +49,8 @@ void debug_break()
 	win_debug_break();
 # elif defined(_M_IX86)
 	ia32_debug_break();
+# elif defined(OS_UNIX)
+	unix_debug_break();
 # else
 #  error "port"
 # endif

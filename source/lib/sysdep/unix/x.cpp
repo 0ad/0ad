@@ -36,7 +36,7 @@ int get_cur_vmode(int* xres, int* yres, int* bpp, int* freq)
 	if(yres)
 		*yres = XDisplayHeight(disp, screen);
 	if(bpp)
-		*bpp = 0;
+		*bpp = XDefaultDepth(disp, screen);
 	if(freq)
 		*freq = 0;
 	XCloseDisplay(disp);
@@ -48,7 +48,17 @@ int get_cur_vmode(int* xres, int* yres, int* bpp, int* freq)
 // if we fail, outputs are unchanged (assumed initialized to defaults)
 int get_monitor_size(int& width_mm, int& height_mm)
 {
-	return -1;
+	Display* disp = XOpenDisplay(0);
+	if(!disp)
+		return -1;
+
+	int screen = XDefaultScreen(disp);
+	
+	width_mm=XDisplayWidthMM(disp, screen);
+	height_mm=XDisplayHeightMM(disp, screen);
+	
+	XCloseDisplay(disp);
+	return 0;
 }
 
 

@@ -1,12 +1,14 @@
 #ifndef SYSDEP_H__
 #define SYSDEP_H__
 
+#include "config.h"
+
 #ifdef _WIN32
 #include "win/win.h"
 #include "win/wdbg.h"
+#elif defined(OS_UNIX)
+#include "unix/unix.h"
 #endif
-
-#include "config.h"
 
 #ifdef __cplusplus
 extern "C" {
