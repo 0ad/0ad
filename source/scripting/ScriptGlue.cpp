@@ -350,9 +350,12 @@ JSBool startGame(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned in
 	}
 	if (g_NetServer)
 		g_NetServer->StartGame();
-	else if (g_NetClient) // startGame is invalid on joined games; do nothing and return an error
-		return JS_FALSE;
-	else
+	else if (g_NetClient) // startGame is invalid on joined games; do nothing and return false
+	{
+		*rval=BOOLEAN_TO_JSVAL(JS_FALSE);
+		return JS_TRUE;
+	}
+	else if (!g_Game)
 	{
 		g_Game=new CGame();
         g_Game->StartGame(&g_GameAttributes);
