@@ -89,6 +89,8 @@
 //       component separator is '/'; no absolute paths, or ':', '\\' allowed.
 // *   : as above, but path within the VFS.
 //       "" is root dir; no absolute path allowed.
+//
+// . and .. directory entries aren't supported!
 
 
 // path1 and path2 may be empty, filenames, or full paths.
@@ -134,10 +136,13 @@ static int path_validate(const uint line, const char* const path)
 		goto fail;
 	}
 
+	int c = 0, last_c;
+
 	// scan each char in path string; count length.
 	for(;;)
 	{
-		const int c = path[path_len++];
+		last_c = c;
+		c = path[path_len++];
 
 		// whole path is too long
 		if(path_len >= VFS_MAX_PATH)
@@ -146,16 +151,16 @@ static int path_validate(const uint line, const char* const path)
 			goto fail;
 		}
 
-		// disallow ".." to prevent going above the VFS root dir
-		static bool last_was_dot;
-		if(c == '.')
+		// disallow:
+		// - ".." (prevent going above the VFS root dir)
+		// - "/." and "./" (security whole when mounting,
+		//   and not supported on Windows).
+		// - "//" (makes no sense)
+		if((c == '.' || c == '/') && (last_c == '.' || last_c == '/'))
 		{
-			if(last_was_dot)
-			{
-				msg = "contains \"..\"";
-				goto fail;
-			}
-			last_was_dot = true;
+			msg = "contains '..', '/.', './', or '//'";
+			goto fail;
+		}
 		}
 		else
 			last_was_dot = false;
@@ -731,9 +736,18 @@ int vfs_mount(const char* const vfs_mount_point, const char* const name, const u
 {
 	ONCE(atexit2(vfs_shutdown));
 
-	// make sure it's not already mounted, i.e. in mounts
+	const size_t name_len = strlen(name);
+	const std::string name_s(name);
+
+	// make sure it's not already mounted, i.e. in mounts.
+	// also prevents mounting a parent directory of a previously mounted
+	// directory, or vice versa. example: mount $install/data and then
+	// $install/data/mods/official - mods/official would also be accessible
+	// from the first mount point - bad.
 	for(MountIt it = mounts.begin(); it != mounts.end(); ++it)
-		if(it->f_name == name)
+	{
+		const size_t cmp_len = min(it->f_name.length(), name_len);
+		if(strncmp(name, it->f_name.c_str(), cmp_len) == 0)
 		{
 			debug_warn("vfs_mount: already mounted");
 			return -1;
@@ -741,13 +755,10 @@ int vfs_mount(const char* const vfs_mount_point, const char* const name, const u
 
 	CHECK_PATH(name);
 
-	// TODO: disallow mounting parent directory of a previous mounting
-
-	// disallow . because "./" isn't supported on Windows.
-	// the more important reason is that mount points must not overlap
-	// (i.e. mount $install/data and then $install/data/mods/official -
-	// mods/official would also be accessible from the first mount point).
-	if(!strcmp(name, ".") || !strcmp(name, "./"))
+	// disallow "." because "./" isn't supported on Windows.
+	// it would also create a loophole for the parent dir check above.
+	// "./" and "/." are caught by CHECK_PATH.
+	if(name_s == ".")
 	{
 		debug_warn("vfs_mount: mounting . not allowed");
 		return -1;
