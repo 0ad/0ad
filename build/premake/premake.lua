@@ -113,11 +113,9 @@ function setuppackage (projectname)
 		tinsert(package.includepaths, sourceroot .. v)
 	end)
 	
-	
 	package.libpaths = {}
 	
-	
-	package.buildflags = { "no-rtti" }
+	package.buildflags = { }
 	
 	package.config["Testing"].buildflags = { "with-symbols", "no-runtime-checks", "no-edit-and-continue" }
 	package.config["Testing"].defines = { "TESTING" }
@@ -213,12 +211,12 @@ function setuppackage (projectname)
 		package.links = {
 			-- OpenGL and X-Windows
 			"GL", "GLU", "X11",
-			"SDL", "png",
+			"SDL", "png", "jpeg",
 			"fam",
 			-- Audio
 			"openal", "vorbisfile", 
 			-- Utilities
-			"xerces-c", "z", "rt", "js"
+			"xerces-c", "z", "pthread", "rt", "js"
 		}
 		tinsert(package.libpaths, { "/usr/X11R6/lib" } )
 		-- Defines
@@ -230,4 +228,6 @@ function setuppackage (projectname)
 end
 
 setuppackage("pyrogenesis")
-setuppackage("sced")
+if (OS == "windows") then
+	setuppackage("sced")
+end
