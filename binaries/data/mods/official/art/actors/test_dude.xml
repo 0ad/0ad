@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor>
+  <castshadow>true</castshadow>
+
+  <group>
+    <variant>
+      <name>Base</name>
+      <frequency>100</frequency>
+      <mesh>art/meshes/skeletal/m_dress_a.pmd</mesh>
+      <material>art/materials/player_trans.xml</material>
+      <texture>art/textures/skins/skeletal/plac_rome_e.dds</texture>
+      <animations>
+        <animation>
+          <name>Idle</name>
+          <file>art/animation/biped/dudeidle.psa</file>
+          <speed>200</speed>
+        </animation>
+        <animation>
+          <name>Walk</name>
+          <file>art/animation/biped/dudewalk_swordshield.psa</file>
+          <speed>700</speed>
+        </animation>
+        <animation>
+          <name>Build</name>
+          <file>art/animation/biped/dudebuild.psa</file>
+          <speed>150</speed>
+        </animation>
+        <animation>
+          <name>Chop</name>
+          <file>art/animation/biped/dudechop.psa</file>
+          <speed>150</speed>
+        </animation>
+        <animation>
+          <name>Death</name>
+          <file>art/animation/biped/dudedeath_sword.psa</file>
+          <speed>200</speed>
+        </animation>
+        <animation>
+          <name>Decay</name>
+          <file>art/animation/biped/dudedecay_sword.psa</file>
+          <speed>100</speed>
+        </animation>
+        <animation>
+          <name>Attack</name>
+          <file>art/animation/biped/dudeattack.psa</file>
+          <speed>300</speed>
+        </animation>
+        <animation>
+          <name>Attack1</name>
+          <file>art/animation/biped/dudeattack1.psa</file>
+          <speed>300</speed>
+        </animation>
+      </animations>
+    </variant>
+  </group>
+
+
+  <group>
+    <variant>
+      <name>Helmet</name>
+      <props>
+        <prop>
+          <attachpoint>helmet</attachpoint>
+          <model>Elite Helmet</model>
+        </prop>
+      </props>
+    </variant>
+    <variant>
+      <name>None</name>
+    </variant>
+   </group>
+   
+   <group>
+    <variant>
+      <name>Head</name>
+      <frequency>50</frequency>
+      <props>
+        <prop>
+          <attachpoint>head</attachpoint>
+          <model>Dude Head</model>
+        </prop>
+      </props>
+    </variant>
+    <variant>
+      <name>None</name>
+      <frequency>1</frequency>
+    </variant>
+   </group>
+   
+   <group>
+    <variant>
+      <props>
+        <prop>
+          <attachpoint>l_hand</attachpoint>
+          <model>Axe B</model>
+        </prop>
+      </props>
+    </variant>
+    <variant>
+      <name>None</name>
+    </variant>
+   </group>
+   
+   <group>
+    <variant>
+      <props>
+        <prop>
+          <attachpoint>l_forearm</attachpoint>
+          <model>Left Glove</model>
+        </prop>
+      </props>
+    </variant>
+    <variant>
+      <name>None</name>
+    </variant>
+   </group>
+   
+   <group>
+    <variant>
+      <props>
+        <prop>
+          <attachpoint>l_shoulder</attachpoint>
+          <model>Left Shoulder</model>
+        </prop>
+      </props>
+    </variant>
+    <variant>
+      <name>None</name>
+    </variant>
+   </group>
+   
+   <group>
+    <variant>
+      <props>
+        <prop>
+          <attachpoint>r_hand</attachpoint>
+          <model>Axe A</model>
+        </prop>
+      </props>
+    </variant>
+    <variant>
+      <name>None</name>
+    </variant>
+   </group>
+   
+   <group>
+    <variant>
+      <props>
+        <prop>
+          <attachpoint>r_forearm</attachpoint>
+          <model>Right Glove</model>
+        </prop>
+      </props>
+    </variant>
+    <variant>
+      <name>None</name>
+    </variant>
+   </group>
+   
+   <group>
+    <variant>
+      <props>
+        <prop>
+          <attachpoint>r_shoulder</attachpoint>
+          <model>Right Shoulder</model>
+        </prop>
+      </props>
+    </variant>
+    <variant>
+      <name>None</name>
+    </variant>
+   </group>
+   
+   <group>
+    <variant>
+      <props>
+        <prop>
+          <attachpoint>chest</attachpoint>
+          <model>Breastplate</model>
+        </prop>
+      </props>
+    </variant>
+    <variant>
+      <name>None</name>
+    </variant>
+   </group>
+   
+   <group>
+    <variant>
+      <props>
+        <prop>
+          <attachpoint>back</attachpoint>
+          <model>Quiver</model>
+        </prop>
+      </props>
+    </variant>
+    <variant>
+      <name>None</name>
+    </variant>
+   </group>
+   
+   <group>
+    <variant>
+      <props>
+        <prop>
+          <attachpoint>shoulders</attachpoint>
+          <model>Cape</model>
+        </prop>
+      </props>
+    </variant>
+    <variant>
+      <name>None</name>
+    </variant>
+   </group>
+   
+   <group>
+    <variant>
+      <props>
+        <prop>
+          <attachpoint>l_leg</attachpoint>
+          <model>Left Boot</model>
+        </prop>
+      </props>
+    </variant>
+    <variant>
+      <name>None</name>
+    </variant>
+   </group>
+   
+   <group>
+    <variant>
+      <props>
+        <prop>
+          <attachpoint>r_leg</attachpoint>
+          <model>Right Boot</model>
+        </prop>
+      </props>
+    </variant>
+    <variant>
+      <name>None</name>
+    </variant>
+   </group>
+   
+   <group>
+    <variant>
+      <props>
+        <prop>
+          <attachpoint>l_hip</attachpoint>
+          <model>Left Sheath</model>
+        </prop>
+      </props>
+    </variant>
+    <variant>
+      <name>None</name>
+    </variant>
+   </group>
+   
+   <group>
+    <variant>
+      <props>
+        <prop>
+          <attachpoint>r_hip</attachpoint>
+          <model>Right Sheath</model>
+        </prop>
+      </props>
+    </variant>
+    <variant>
+      <name>None</name>
+    </variant>
+  </group>
+
+</actor>
