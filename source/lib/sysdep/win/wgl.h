@@ -19,7 +19,7 @@
 #define WINAPI __stdcall
 #endif
 
-
+#ifndef DECLARE_HANDLE
 typedef void VOID;
 typedef void* LPVOID;
 typedef int BOOL;
@@ -35,6 +35,7 @@ typedef int(*PROC)(void);
 #define DECLARE_HANDLE(name) typedef HANDLE name
 DECLARE_HANDLE(HDC);
 DECLARE_HANDLE(HGLRC);
+#endif
 
 typedef unsigned short wchar_t;	// for glu.h
 
