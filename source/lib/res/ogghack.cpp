@@ -153,30 +153,6 @@ void ogg_release(void* _o)
 }
 
 
-
-/*
-void ogg_display()
-{
-	cout
-		<< "version         " << vorbisInfo->version         << "\n"
-		<< "channels        " << vorbisInfo->channels        << "\n"
-		<< "rate (hz)       " << vorbisInfo->rate            << "\n"
-		<< "bitrate upper   " << vorbisInfo->bitrate_upper   << "\n"
-		<< "bitrate nominal " << vorbisInfo->bitrate_nominal << "\n"
-		<< "bitrate lower   " << vorbisInfo->bitrate_lower   << "\n"
-		<< "bitrate window  " << vorbisInfo->bitrate_window  << "\n"
-		<< "\n"
-		<< "vendor " << vorbisComment->vendor << "\n";
-
-	for(int i = 0; i < vorbisComment->comments; i++)
-		cout << "   " << vorbisComment->user_comments[i] << "\n";
-
-	cout << endl;
-}
-*/
-
-
-
 size_t ogg_read(void* _o, void* buf, size_t max_size)
 {
 	Ogg* o = (Ogg*)_o;
@@ -200,4 +176,3 @@ size_t ogg_read(void* _o, void* buf, size_t max_size)
 
 	return bytes_written;
 }
-
