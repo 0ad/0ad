@@ -84,7 +84,7 @@ void CSelectedEntities::renderOverlays()
 			glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
 			glTranslatef( x, g_Renderer.GetHeight() - y, 0.0f );
 			glScalef( 1.0f, -1.0f, 1.0f );
-			glwprintf( L"%d", (*it)->m_grouped );
+			glwprintf( L"%d", (i32) (*it)->m_grouped );
 			
 		}
 	}
@@ -108,7 +108,7 @@ void CSelectedEntities::renderOverlays()
 			glColor4f( 1.0f, 1.0f, 1.0f, 0.5f );
 			glTranslatef( x, g_Renderer.GetHeight() - y, 0.0f );
 			glScalef( 1.0f, -1.0f, 1.0f );
-			glwprintf( L"%d", (*it)->m_grouped );
+			glwprintf( L"%d", (i32) (*it)->m_grouped );
 		}
 
 		glDisable( GL_BLEND );
@@ -265,7 +265,7 @@ void CSelectedEntities::addGroup( i8 groupid )
 void CSelectedEntities::changeGroup( CEntity* entity, i8 groupid )
 {
 	// Remove from current group
-	u8 current = entity->m_grouped;
+	i32 current = entity->m_grouped;
 	if( current != -1 )
 	{
 		std::vector<CEntity*>::iterator it;
@@ -702,7 +702,7 @@ void CMouseoverEntities::renderOverlays()
 			glColor4f( 1.0f, 1.0f, 1.0f, it->fade );
 			glTranslatef( x, g_Renderer.GetHeight() - y, 0.0f );
 			glScalef( 1.0f, -1.0f, 1.0f );
-			glwprintf( L"%d", it->entity->m_grouped );
+			glwprintf( L"%d", (i32) it->entity->m_grouped );
 			glDisable( GL_TEXTURE_2D );
 			glPopMatrix();
 		}
