@@ -30,7 +30,9 @@ More Info:
 
 */
 
-// Last modified: 19 May 04, Mark Thompson (mot20@cam.ac.uk / mark@wildfiregames.com)
+// history:
+// 19 May 04, Mark Thompson (mot20@cam.ac.uk / mark@wildfiregames.com)
+// 2004-06-18 janwas: replaced conversion buffer with stringstream
 
 #ifndef CSTR_H_FIRST
 #define CSTR_H_FIRST
