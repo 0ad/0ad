@@ -25,12 +25,3 @@
 
 
 #undef CONFIG_DISABLE_EXCEPTIONS
-
-// TODO: where does this belong?
-#ifdef CONFIG_DISABLE_EXCEPTIONS
-# ifdef _WIN32
-#  define _HAS_EXCEPTIONS 0
-# else
-#  define STL_NO_EXCEPTIONS
-# endif
-#endif

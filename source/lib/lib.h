@@ -22,6 +22,7 @@
 #include "config.h"
 
 #include "misc.h"
+#include "types.h"
 
 #include "sysdep/sysdep.h"
 
@@ -30,6 +31,18 @@
 #if _MSC_VER <= 1200
 #pragma warning(disable:4786)
 #endif
+
+
+// tell STL not to generate exceptions, if compiling without exceptions
+// (usually done for performance reasons).
+#ifdef CONFIG_DISABLE_EXCEPTIONS
+# ifdef _WIN32
+#  define _HAS_EXCEPTIONS 0
+# else
+#  define STL_NO_EXCEPTIONS
+# endif
+#endif
+
 
 
 #define STMT(STMT_code__) do { STMT_code__; } while(0)

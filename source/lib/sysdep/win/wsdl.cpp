@@ -376,6 +376,7 @@ static int wsdl_init()
 	FILE* const ret = freopen("stdout.txt", "w", stdout);
 	if(!ret)
 		debug_warn("stdout freopen failed");
+	setvbuf(stdout, 0, _IONBF, 0);
 	return 0;
 }
 

@@ -63,7 +63,7 @@ u32 fnv_hash(const void* buf, const size_t len)
 // otherwise, hash <len> bytes of buf.
 u64 fnv_hash64(const void* buf, const size_t len)
 {
-	u64 h = 0xCBF29CE484222325;
+	u64 h = 0xCBF29CE484222325ull;
 		// give distinct values for different length 0 buffers.
 		// value taken from FNV; it has no special significance.
 
@@ -94,33 +94,6 @@ u64 fnv_hash64(const void* buf, const size_t len)
 }
 
 
-void bswap32(const u8* data, int cnt)
-{
-#ifdef _M_IX86
-
-	UNUSED(data)
-	UNUSED(cnt)
-
-	__asm
-	{
-		mov		edx, [data]
-		mov		ecx, [cnt]
-$loop:	mov		eax, [edx]
-		bswap	eax
-		mov		[edx], eax
-		add		edx, 4
-		dec		ecx
-		jnz		$loop
-	}
-
-#else
-
-	u32* p = (u32*)data;
-	for(int i = 0; i < cnt; i++, p++)
-		*p = bswap32(*p);
-
-#endif
-}
 
 
 bool is_pow2(const long n)

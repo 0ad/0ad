@@ -89,7 +89,7 @@
 
 // can't test for macro definition -
 // actual definitions in winnt.h are typedefs.
-typedef u64 DWORDLONG;
+typedef unsigned __int64 DWORDLONG;
 typedef DWORD ULONG_PTR;
 
 typedef struct _MEMORYSTATUSEX

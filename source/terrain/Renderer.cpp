@@ -542,7 +542,7 @@ bool CRenderer::LoadTexture(CTexture* texture)
 		return h==0xfffffff ? true : false;
 	} else {
 		h=tex_load(texture->GetName());
-		if (!h) {
+		if (h <= 0) {
 			texture->SetHandle(0xffffffff);
 			return false;
 		} else {

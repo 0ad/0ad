@@ -100,9 +100,7 @@ static int win_get_gfx_card()
 
 
 // get the name of the OpenGL driver DLL (used to determine driver version).
-//
-// the current implementation doens't
-// doesn't require OpenGL to be initialized, but 
+// implementation doesn't currently require OpenGL to be ready for use.
 //
 // an alternative would be to enumerate all DLLs loaded into the process,
 // and check for a glBegin export. this requires OpenGL to be initialized,
@@ -110,6 +108,7 @@ static int win_get_gfx_card()
 // to sort out MCD, ICD, and opengl32.dll.
 static int get_ogl_drv_name(char* const ogl_drv_name, const size_t max_name_len)
 {
+	// need single point of exit so that we can close all keys; return this.
 	int ret = -1;
 
 	HKEY hkOglDrivers;
@@ -117,6 +116,9 @@ static int get_ogl_drv_name(char* const ogl_drv_name, const size_t max_name_len)
 	if(RegOpenKeyEx(HKEY_LOCAL_MACHINE, key, 0, KEY_ENUMERATE_SUB_KEYS, &hkOglDrivers) != 0)
 		return -1;
 
+	// we just use the first entry. it might be wrong on dual-graphics card
+	// systems, but I don't see a better way to do it. there's no other
+	// occurence of the OpenGL driver name in the registry on my system.
 	char key_name[32];
 	DWORD key_name_len = sizeof(key_name);
 	if(RegEnumKeyEx(hkOglDrivers, 0, key_name, &key_name_len, 0, 0, 0, 0) == 0)
@@ -127,7 +129,7 @@ static int get_ogl_drv_name(char* const ogl_drv_name, const size_t max_name_len)
 			DWORD size = (DWORD)max_name_len-5;	// -5 for ".dll"
 			if(RegQueryValueEx(hkClass, "Dll", 0, 0, (LPBYTE)ogl_drv_name, &size) == 0)
 			{
-				// add .dll to filename, if necessary
+				// add .dll to filename, if not already there
 				char* ext = strrchr(ogl_drv_name, '.');
 				if(!ext || stricmp(ext, ".dll") != 0)
 					strcat(ogl_drv_name, ".dll");

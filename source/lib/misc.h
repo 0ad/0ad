@@ -22,9 +22,8 @@
 #include "types.h"
 #include "config.h"
 
-// bswap32 is overloaded!
 #ifdef __cplusplus
-//extern "C" {
+extern "C" {
 #endif
 
 
@@ -55,10 +54,6 @@ extern u16 subusw(u16 x, u16 y);
 
 
 
-extern u16 bswap16(u16);
-extern u32 bswap32(u32);
-
-extern void bswap32(const u8* data, int cnt);
 
 static inline u16 read_le16(const void* p)
 {
@@ -128,7 +123,7 @@ char *_ltoa(long, char *, int radix);
 
 
 #ifdef __cplusplus
-//}
+}
 #endif
 
 #endif	// #ifndef __MISC_H__

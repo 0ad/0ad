@@ -15,3 +15,5 @@ extern u32 bswap32(u32);
 extern u64 bswap64(u64);
 
 #endif
+
+extern void bswap32(const u8* data, int cnt);
