@@ -29,15 +29,121 @@ struct Mem
 H_TYPE_DEFINE(Mem);
 
 
+//////////////////////////////////////////////////////////////////////////////
+
+
+static bool has_shutdown = false;
+
+// raw pointer -> Handle
+typedef std::map<void*, Handle> PtrToH;
+typedef PtrToH::iterator It;
+static PtrToH* _ptr_to_h;
+
+
+static void ptr_to_h_shutdown()
+{
+	has_shutdown = true;
+	delete _ptr_to_h;
+	_ptr_to_h = 0;
+}
+
+
+// undefined NLSO init order fix
+static PtrToH& get_ptr_to_h()
+{
+	if(!_ptr_to_h)
+	{
+		if(has_shutdown)
+			debug_warn("mem.cpp: ptr -> handle lookup used after module shutdown");
+		// crash + burn
+
+		_ptr_to_h = new PtrToH;
+
+		atexit2(ptr_to_h_shutdown);
+	}
+	return *_ptr_to_h;
+}
+#define ptr_to_h get_ptr_to_h()
+
+
+// not needed by other modules - mem_get_size and mem_assign is enough.
+static Handle find_alloc(void* target_p, It* out_it = 0)
+{
+	// early out optimization (don't pay for full subset check)
+	It it = ptr_to_h.find(target_p);
+	if(it != ptr_to_h.end())
+		return it->second;
+
+	// not found; now check if target_p is within one of the mem ranges
+	for(it = ptr_to_h.begin(); it != ptr_to_h.end(); ++it)
+	{
+		std::pair<void*, Handle> item = *it;
+		void* p = item.first;
+		Handle hm = item.second;
+
+		// not before this alloc's p; could be it. now do range check.
+		if(target_p >= p)
+		{
+			Mem* m = (Mem*)h_user_data(hm, H_Mem);
+			if(m)
+			{
+				// found it within this mem range.
+				if(target_p <= (char*)m->raw_p + m->raw_size)
+				{
+					if(out_it)
+						*out_it = it;
+					return hm;
+				}
+			}
+		}
+	}
+
+	// not found
+	return 0;
+}
+
+
+// raw_p must be in map!
+static void remove_alloc(void* raw_p)
+{
+	size_t num_removed = ptr_to_h.erase(raw_p);
+	assert(num_removed == 1 && "remove_alloc: not in map");
+}
+
+
+// raw_p must not already be in map!
+static void set_alloc(void* raw_p, Handle hm)
+{
+	// verify it's not already in the mapping
+#ifndef NDEBUG
+	It it = ptr_to_h.find(raw_p);
+	if(it != ptr_to_h.end())
+	{
+		debug_warn("set_alloc: already in map");
+		return;
+	}
+#endif
+
+	ptr_to_h[raw_p] = hm;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+
 static void Mem_init(Mem* m, va_list args)
 {
-	UNUSED(m);
-	UNUSED(args);
+	// HACK: we pass along raw_p from h_alloc for use in Mem_reload
+	// (that means add/remove from mapping code is only here)
+	m->raw_p = va_arg(args, void*);
 }
 
 
 static void Mem_dtor(Mem* m)
 {
+	remove_alloc(m->raw_p);
+
 	if(m->dtor)
 		m->dtor(m->raw_p, m->raw_size, m->ctx);
 }
@@ -45,8 +151,11 @@ static void Mem_dtor(Mem* m)
 
 // can't alloc here, because h_alloc needs the key when called
 // (key == pointer we allocate)
-static int Mem_reload(Mem* /*m*/, const char* /*fn*/, Handle /*h*/)
+static int Mem_reload(Mem* m, const char* fn, Handle hm)
 {
+	UNUSED(fn);
+
+	set_alloc(m->raw_p, hm);
 	return 0;
 }
 
@@ -132,117 +241,25 @@ static void* pool_alloc(const size_t raw_size, uintptr_t& ctx)
 //////////////////////////////////////////////////////////////////////////////
 
 
-static bool has_shutdown = false;
-
-typedef std::map<void*, Handle> PtrToH;
-static PtrToH* _ptr_to_h;
-
-
-static void ptr_to_h_shutdown()
+int mem_free_h(Handle& hm)
 {
-	has_shutdown = true;
-	delete _ptr_to_h;
-	_ptr_to_h = 0;
-}
-
-
-// undefined NLSO init order fix
-static PtrToH& get_ptr_to_h()
-{
-	if(!_ptr_to_h)
-	{
-		if(has_shutdown)
-			debug_warn("mem.cpp: ptr -> handle lookup used after module shutdown");
-			// crash + burn
-
-		_ptr_to_h = new PtrToH;
-
-		atexit2(ptr_to_h_shutdown);
-	}
-	return *_ptr_to_h;
-}
-#define ptr_to_h get_ptr_to_h()
-
-
-// not needed by other modules - mem_get_size and mem_assign is enough.
-static Handle find_alloc(void* target_p)
-{
-	// early out optimization (don't pay for full subset check)
-	PtrToH::const_iterator it = ptr_to_h.find(target_p);
-	if(it != ptr_to_h.end())
-		return it->second;
-
-	// not found; now check if target_p is within one of the mem ranges
-	for(it = ptr_to_h.begin(); it != ptr_to_h.end(); ++it)
-	{
-		std::pair<void*, Handle> item = *it;
-		void* p = item.first;
-		Handle hm = item.second;
-
-		// not before this alloc's p; could be it. now do range check.
-		if(target_p >= p)
-		{
-			Mem* m = (Mem*)h_user_data(hm, H_Mem);
-			if(m)
-			{
-				// found it within this mem range.
-				if(target_p <= (char*)m->p + m->size)
-					return hm;
-			}
-		}
-	}
-
-	// not found
-	return 0;
-}
-
-
-// returns the handle that will be removed, for mem_free convenience.
-// makes sure p is in the mapping.
-static Handle remove_alloc(void* p)
-{
-	PtrToH::iterator it = ptr_to_h.find(p);
-	if(it == ptr_to_h.end())
-	{
-		debug_warn("remove_alloc: pointer not in map");
-		return 0;
-	}
-
-	Handle hm = it->second;
-	ptr_to_h.erase(it);
-	return hm;
-}
-
-
-// p must not alread be in mapping!
-static void set_alloc(void* p, Handle hm)
-{
-	ptr_to_h[p] = hm;
-}
-
-
-//////////////////////////////////////////////////////////////////////////////
-
-
-
-int mem_free_p(void*& p)
-{
-	if(!p)
-		return ERR_INVALID_PARAM;
-
-	Handle hm = remove_alloc(p);
-	p = 0;
-
 	return h_free(hm, H_Mem);
 }
 
 
-int mem_free_h(Handle& hm)
+int mem_free_p(void*& p)
 {
-	void* p = mem_get_ptr(hm);
-	hm = 0;
-	return mem_free_p(p);
+	Handle hm = find_alloc(p);
+	p = 0;
+	if(hm <= 0)
+	{
+		debug_warn("mem_free_p: not found in map");
+		return -1;
+	}
+	return mem_free_h(hm);
 }
+
+
 
 
 Handle mem_assign(void* p, size_t size, uint flags, void* raw_p, size_t raw_size, MEM_DTOR dtor, uintptr_t ctx)
@@ -258,11 +275,9 @@ Handle mem_assign(void* p, size_t size, uint flags, void* raw_p, size_t raw_size
 		return 0;
 	}
 
-	hm = h_alloc(H_Mem, (const char*)p, flags | RES_KEY);
+	hm = h_alloc(H_Mem, (const char*)p, flags|RES_KEY|RES_NO_CACHE, raw_p);
 	if(!hm)
 		return 0;
-
-	set_alloc(p, hm);
 
 	H_DEREF(hm, Mem, m);
 	m->p         = p;
@@ -282,9 +297,9 @@ int mem_assign_user(Handle hm, void* user_p, size_t user_size)
 
 	// security check: must be a subset of the existing buffer
 	// (otherwise, could reference other buffers / cause mischief)
-	char* end  = (char*)m->p + m->size;
+	char* raw_end  = (char*)m->raw_p + m->raw_size;
 	char* user_end = (char*)user_p + user_size;
-	if(user_p < m->p || user_end > end)
+	if(user_p < m->raw_p || user_end > raw_end)
 	{
 		debug_warn("mem_assign_user: user buffer not contained in real buffer");
 		return -EINVAL;
