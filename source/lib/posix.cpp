@@ -271,12 +271,16 @@ static HANDLE m2h(pthread_mutex_t* m)
 	return h;
 }
 
+pthread_mutex_t pthread_mutex_initializer()
+{
+	return CreateMutex(0, 0, 0);
+}
+
 int pthread_mutex_init(pthread_mutex_t* m, const pthread_mutexattr_t*)
 {
 	if(!m)
 		return -1;
-	HANDLE h = CreateMutex(0, 0, 0);
-	*m = ((char*)h - (char*)0);
+	*m = pthread_mutex_initializer();
 	return 0;
 }
 
