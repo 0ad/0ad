@@ -185,24 +185,24 @@ void TestingUnicode (void)
 
 static std::string SplitExts(const char *exts)
 {
-    std::string str = exts;
-    std::string ret = "";
-    size_t idx = str.find_first_of(" ");
-    while(idx != std::string::npos)
-    {
-        if(idx >= str.length() - 1)
-        {
-            ret += str;
-            break;
-        }
+	std::string str = exts;
+	std::string ret = "";
+	size_t idx = str.find_first_of(" ");
+	while(idx != std::string::npos)
+	{
+		if(idx >= str.length() - 1)
+		{
+			ret += str;
+			break;
+		}
 
-        ret += str.substr(0, idx);
-        ret += "\n";
-        str = str.substr(idx + 1);
-        idx = str.find_first_of(" ");
-    }
+		ret += str.substr(0, idx);
+		ret += "\n";
+		str = str.substr(idx + 1);
+		idx = str.find_first_of(" ");
+	}
 
-    return ret;
+	return ret;
 }
 
 static int WriteSysInfo()
@@ -247,7 +247,7 @@ debug_out("INT TIME %g\n\n", t2-t1);
 	fprintf(f, "%s\n", gfx_card);
 	fprintf(f, "%s\n", gfx_drv_ver);
 	fprintf(f, "%dx%d:%d@%d\n", g_xres, g_yres, g_bpp, g_freq);
-    fprintf(f, "OpenGL: %s\n", glGetString(GL_VERSION));
+	fprintf(f, "OpenGL: %s\n", glGetString(GL_VERSION));
 
 	// .. sound card
 	fprintf(f, "%s\n", snd_card);
@@ -848,7 +848,7 @@ static void Shutdown()
 	delete &g_SkelAnimMan;
 
 	delete &g_MaterialManager;
-    delete &g_MeshManager;
+	delete &g_MeshManager;
 
 	// destroy terrain related stuff
 	delete &g_TexMan;
@@ -982,7 +982,7 @@ sle(11340106);
 
 	// enable/disable VSync
 	// note: "GL_EXT_SWAP_CONTROL" is "historical" according to dox.
-    /*if(oglExtAvail("WGL_EXT_swap_control"))
+	/*if(oglExtAvail("WGL_EXT_swap_control"))
 		wglSwapIntervalEXT(g_VSync? 1 : 0);*/
 
 #ifdef _MSC_VER
@@ -1011,7 +1011,7 @@ PREVTSC=CURTSC;
 
 	// create the material manager
 	new CMaterialManager;
-    new CMeshManager;
+	new CMeshManager;
 
 	// create actor related stuff
 	new CSkeletonAnimManager;
