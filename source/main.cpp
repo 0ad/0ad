@@ -201,12 +201,12 @@ static void display_startup_error(const char* msg)
 }
 
 
-static int set_vmode(int w, int h, int bpp)
+static int set_vmode(int w, int h, int bpp, bool fullscreen)
 {
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
-	if(!SDL_SetVideoMode(w, h, bpp, SDL_OPENGL|SDL_FULLSCREEN))
+	if(!SDL_SetVideoMode(w, h, bpp, SDL_OPENGL|(fullscreen?SDL_FULLSCREEN:0)))
 		return -1;
 
 	glViewport(0, 0, w, h);
@@ -268,7 +268,7 @@ static int handler(const SDL_Event* ev)
 
 	switch(ev->type)
 	{
-	case SDL_ACTIVE:
+	case SDL_ACTIVEEVENT:
 		active = ev->active.gain != 0;
 		break;
 
@@ -701,7 +701,11 @@ PREVTSC=TSC;
 	new CGUI;
 #endif
 
-	if(set_vmode(g_xres, g_yres, 32) < 0)
+	CConfigValue *val=g_ConfigDB.GetValue(CFG_SYSTEM, "windowed");
+	bool windowed=false;
+	if (val) val->GetBool(windowed);
+
+	if(set_vmode(g_xres, g_yres, 32, !windowed) < 0)
 	{
 		swprintf(err_msg, ERR_MSG_SIZE, L"could not set %dx%d graphics mode: %s\n", g_xres, g_yres, SDL_GetError());
 		display_startup_error(err_msg);
