@@ -92,6 +92,8 @@ public:
 
 	bool StoreVFS(Handle h);
 
+	CStr HACK_GetData() { return m_Data; }
+
 private:
 
 	friend class XMLWriter_Element;

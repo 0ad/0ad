@@ -1,0 +1,19 @@
+<!ELEMENT Scenario (Entities)>
+
+	<!ELEMENT Entities (Entity*)>
+
+		<!ELEMENT Entity (Template,Position,Orientation)>
+
+			<!ELEMENT Template (#PCDATA)>
+
+			<!ELEMENT Position EMPTY>
+			<!ATTLIST Position
+				x CDATA #REQUIRED
+				y CDATA #REQUIRED
+				z CDATA #REQUIRED
+			>
+
+			<!ELEMENT Orientation EMPTY>
+			<!ATTLIST Orientation
+				angle CDATA #REQUIRED
+			>

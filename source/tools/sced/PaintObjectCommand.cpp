@@ -41,7 +41,7 @@ void CPaintObjectCommand::Finalize()
 		CVector3D orient = m_Unit->GetModel()->GetTransform().GetIn();
 		CVector3D position = m_Unit->GetModel()->GetTransform().GetTranslation();
 		g_UnitMan.RemoveUnit(m_Unit);
-		g_EntityManager.create( templateObject, position, atan2( orient.X, orient.Z ) );
+		g_EntityManager.create( templateObject, position, atan2( -orient.X, -orient.Z ) );
 	}
 }
 

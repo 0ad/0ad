@@ -5,6 +5,9 @@
 #include "ps/CLogger.h"
 #include "lib/res/vfs.h"
 
+// TODO: Write to the VFS handle all the time frequently, instead of buffering
+// the entire file, so that large files get written faster.
+
 enum { EL_ATTR, EL_TEXT, EL_SUBEL };
 
 XMLWriter_File::XMLWriter_File(const char* encoding)
@@ -153,3 +156,8 @@ TYPE(int)
 TYPE(float)
 TYPE(double)
 TYPE(const char*)
+
+template <> void XMLWriter_File::ElementAttribute<CStrW>(const char* name, CStrW& value, bool newelement)
+{
+	ElementAttribute(name, value.utf8(), newelement);
+}

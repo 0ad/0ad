@@ -134,7 +134,6 @@ void CEntityManager::destroy( u16 handle )
 {
 	m_reaper.push_back( m_entities[handle].m_entity );
 	m_entities[handle].m_entity->me.m_handle = INVALID_HANDLE;
-	//delete( m_entities[handle].m_entity ); // PT: Don't delete here, because the reaper will kill it later
 }
 
 bool CEntityManager::m_extant = false;

@@ -15,7 +15,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // CFileUnpacker: class to assist in reading of binary files
-class CFileUnpacker 
+class CFileUnpacker
 {
 public:
 	// exceptions thrown by class

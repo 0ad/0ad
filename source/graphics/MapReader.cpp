@@ -32,8 +32,15 @@ void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain, CUnitManager 
 	// unpack the data
 	UnpackMap(unpacker);
 
-	// finally, apply data to the world
+	// apply data to the world
 	ApplyData(unpacker, pTerrain, pUnitMan, pLightEnv);
+
+	if (unpacker.GetVersion()>=3) {
+		// read the corresponding XML file
+		CStr filename_xml (filename);
+		filename_xml = filename_xml.Left(filename_xml.Length()-4) + ".xml";
+		ReadXML(filename_xml);
+	}
 }
 
 // UnpackMap: unpack the given data from the raw data stream into local variables
@@ -148,29 +155,33 @@ void CMapReader::ApplyData(CFileUnpacker& unpacker, CTerrain *pTerrain, CUnitMan
 	for (u32 i=0;i<m_Objects.size();i++) {
 		CObjectEntry* objentry=m_ObjectTypes[m_Objects[i].m_ObjectIndex];
 		if (objentry && objentry->m_Model) {
-			// Hijack the standard actor instantiation for actors that correspond to entities.
-			// Not an ideal solution; we'll have to figure out a map format that can define entities separately or somesuch.
 
-			CBaseEntity* templateObject = g_EntityTemplateCollection.getTemplateByActor( objentry );
-			
-			if( templateObject )
-			{
-				CVector3D orient = ((CMatrix3D*)m_Objects[i].m_Transform)->GetIn();
-				CVector3D position = ((CMatrix3D*)m_Objects[i].m_Transform)->GetTranslation();
-
-				g_EntityManager.create( templateObject, position, atan2( -orient.X, -orient.Z ) );
-			}
-			else
-			{
-				CUnit* unit=new CUnit(objentry,objentry->m_Model->Clone());
-			
-				CMatrix3D transform;
-				memcpy(&transform._11,m_Objects[i].m_Transform,sizeof(float)*16);
-				unit->GetModel()->SetTransform(transform);
+			if (unpacker.GetVersion() < 3) {
 				
-				// add this unit to list of units stored in unit manager
-				pUnitMan->AddUnit(unit);
+				// Hijack the standard actor instantiation for actors that correspond to entities.
+				// Not an ideal solution; we'll have to figure out a map format that can define entities separately or somesuch.
+
+				CBaseEntity* templateObject = g_EntityTemplateCollection.getTemplateByActor(objentry);
+			
+				if (templateObject)
+				{
+					CVector3D orient = ((CMatrix3D*)m_Objects[i].m_Transform)->GetIn();
+					CVector3D position = ((CMatrix3D*)m_Objects[i].m_Transform)->GetTranslation();
+
+					g_EntityManager.create(templateObject, position, atan2(-orient.X, -orient.Z));
+
+					continue;
+				}
 			}
+
+			CUnit* unit=new CUnit(objentry,objentry->m_Model->Clone());
+			
+			CMatrix3D transform;
+			memcpy(&transform._11,m_Objects[i].m_Transform,sizeof(float)*16);
+			unit->GetModel()->SetTransform(transform);
+			
+			// add this unit to list of units stored in unit manager
+			pUnitMan->AddUnit(unit);
 		}
 	}
 
@@ -178,4 +189,103 @@ void CMapReader::ApplyData(CFileUnpacker& unpacker, CTerrain *pTerrain, CUnitMan
 		// copy over the lighting parameters
 		*pLightEnv=m_LightEnv;
 	}
+}
+
+
+void CMapReader::ReadXML(const char* filename)
+{
+#ifdef SCED
+	// HACK: ScEd uses absolute filenames, not VFS paths. I can't be bothered
+	// to make Xeromyces work with non-VFS, so just cheat:
+	CStr filename_vfs (filename);
+	filename_vfs = filename_vfs.substr(filename_vfs.ReverseFind("\\mods\\official\\") + 15);
+	filename_vfs.Replace("\\", "/");
+	filename = filename_vfs;
+#endif
+
+	CXeromyces XeroFile;
+	if (XeroFile.Load(filename) != PSRETURN_OK)
+		throw CFileUnpacker::CFileReadError();
+
+	// Define all the elements and attributes used in the XML file
+#define EL(x) int el_##x = XeroFile.getElementID(#x)
+#define AT(x) int at_##x = XeroFile.getAttributeID(#x)
+	EL(scenario);
+	EL(entities);
+	EL(entity);
+	EL(template);
+	EL(position);
+	EL(orientation);
+	AT(x);
+	AT(y);
+	AT(z);
+	AT(angle);
+#undef AT
+#undef EL
+
+	XMBElement root = XeroFile.getRoot();
+	assert(root.getNodeName() == el_scenario);
+
+	// <scenario>
+
+	XMBElementList children = root.getChildNodes();
+	for (int i = 0; i < children.Count; ++i)
+	{
+		XMBElement child = children.item(i);
+		if (child.getNodeName() == el_entities)
+		{
+			// <entities>
+
+			XMBElementList children = child.getChildNodes();
+			for (int i = 0; i < children.Count; ++i)
+			{
+				XMBElement child = children.item(i);
+				assert(child.getNodeName() == el_entity);
+
+				// <entity>
+
+				CStrW TemplateName;
+				CVector3D Position;
+				float Orientation;
+
+				XMBElementList children = child.getChildNodes();
+				for (int i = 0; i < children.Count; ++i)
+				{
+					XMBElement child = children.item(i);
+					int element_name = child.getNodeName();
+
+					if (element_name == el_template)
+					{
+						// <template>
+						TemplateName = child.getText();
+					}
+					else if (element_name == el_position)
+					{
+						// <position>
+						XMBAttributeList attrs = child.getAttributes();
+						Position = CVector3D(
+							CStr(attrs.getNamedItem(at_x)).ToFloat(),
+							CStr(attrs.getNamedItem(at_y)).ToFloat(),
+							CStr(attrs.getNamedItem(at_z)).ToFloat()
+						);
+					}
+					else if (element_name == el_orientation)
+					{
+						// <orientation>
+						XMBAttributeList attrs = child.getAttributes();
+						Orientation = CStr(attrs.getNamedItem(at_angle)).ToFloat();
+					}
+					else
+						debug_warn("Invalid XML data - DTD shouldn't allow this");
+				}
+
+				g_EntityManager.create(g_EntityTemplateCollection.getTemplate(TemplateName), Position, Orientation);
+			}
+		}
+		else
+		{
+			debug_warn("Invalid XML data - DTD shouldn't allow this");
+		}
+	}
+
 }

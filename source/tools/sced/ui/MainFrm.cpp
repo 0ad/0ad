@@ -580,10 +580,12 @@ void CMainFrame::OnFileSaveMap()
 			char buf[256];
 			sprintf(buf,"Error trying to write to \"%s\"",savename);
 			MessageBox(buf,"Error",MB_OK);
+#ifdef NDEBUG
 		} catch (...) {
 			char buf[256];
 			sprintf(buf,"Error saving file \"%s\"",savename);
 			MessageBox(buf,"Error",MB_OK);
+#endif
 		}
 	}
 }
@@ -645,10 +647,12 @@ void CMainFrame::OnFileLoadMap()
 			char buf[256];
 			sprintf(buf,"Error reading \"%s\" - doesn't seem to a PMP file",loadname);
 			MessageBox(buf,"Error",MB_OK);
+#ifdef NDEBUG
 		} catch (...) {
 			char buf[256];
 			sprintf(buf,"Error loading file \"%s\"",loadname);
 			MessageBox(buf,"Error",MB_OK);
+#endif
 		}
 	}	
 }

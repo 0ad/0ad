@@ -10,6 +10,12 @@
 #include "LightEnv.h"
 #include "TextureManager.h"
 
+#include "ps/XMLWriter.h"
+#include "lib/res/vfs.h"
+#include "simulation/Entity.h"
+#include "simulation/BaseEntity.h"
+#include "simulation/BaseEntityCollection.h"
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // CMapWriter constructor: nothing to do at the minute
 CMapWriter::CMapWriter()
@@ -27,6 +33,10 @@ void CMapWriter::SaveMap(const char* filename, CTerrain *pTerrain, CLightEnv *pL
 
 	// write it out
 	packer.Write(filename);
+
+	CStr filename_xml (filename);
+	filename_xml = filename_xml.Left(filename_xml.Length()-4) + ".xml";
+	WriteXML(filename_xml, pUnitMan);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -118,12 +128,17 @@ void CMapWriter::EnumObjects(CUnitManager *pUnitMan,
 	
 	// resize object array to required size
 	const std::vector<CUnit*>& units=pUnitMan->GetUnits();
-	objects.resize(units.size());
-	SObjectDesc* objptr=&objects[0];
+	objects.clear();
+	objects.reserve(units.size()); // slightly larger than necessary (if there are some entities)
 
 	// now iterate through all the units
-	for (u32 j=0;j<(u32)units.size();j++) {
+	for (size_t j=0;j<units.size();j++) {
+
 		CUnit* unit=units[j];
+
+		// Ignore entities, since they're outputted to XML instead
+		if (unit->GetEntity())
+			continue;
 
 		u16 index=u16(GetObjectIndex(unit->GetObject(),objectsInUse));
 		if (index==0xffff) {
@@ -131,9 +146,11 @@ void CMapWriter::EnumObjects(CUnitManager *pUnitMan,
 			objectsInUse.push_back(unit->GetObject());
 		}
 
-		objptr->m_ObjectIndex=index;
-		memcpy(objptr->m_Transform,&unit->GetModel()->GetTransform()._11,sizeof(float)*16);
-		objptr++;
+		SObjectDesc obj;
+		obj.m_ObjectIndex=index;
+		memcpy(obj.m_Transform,&unit->GetModel()->GetTransform()._11,sizeof(float)*16);
+
+		objects.push_back(obj);
 	}
 
 	// now build outgoing objectTypes array
@@ -220,3 +237,77 @@ void CMapWriter::PackTerrain(CFilePacker& packer, CTerrain *pTerrain)
 	packer.PackRaw(&tiles[0],(u32)(sizeof(STileDesc)*tiles.size()));	
 }
 
+
+
+void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan)
+{
+	// HACK: ScEd uses non-VFS filenames, so just use fopen instead of vfs_open
+#ifdef SCED
+	FILE* f = fopen(filename, "wb");
+	if (! f)
+	{
+		debug_warn("Failed to open map XML file");
+		return;
+	}
+#else
+	Handle h = vfs_open(filename, FILE_WRITE|FILE_NO_AIO);
+	if (h <= 0)
+	{
+		debug_warn("Failed to open map XML file");
+		return;
+	}
+#endif
+
+	XML_Start("utf-8");
+	XML_Doctype("Scenario", "/maps/scenario.dtd");
+
+	{
+		XML_Element("Scenario");
+		{
+			XML_Element("Entities");
+
+			const std::vector<CUnit*>& units = pUnitMan->GetUnits();
+			for (std::vector<CUnit*>::const_iterator unit = units.begin(); unit != units.end(); ++unit) {
+
+				CEntity* entity = (*unit)->GetEntity();
+
+				// Ignore objects that aren't entities
+				if (! entity)
+					continue;
+
+				XML_Element("Entity");
+
+				XML_Setting("Template", entity->m_base->m_Tag);
+
+				{
+					CVector3D position = entity->m_position;
+
+					XML_Element("Position");
+					XML_Attribute("x", position.X);
+					XML_Attribute("y", position.Y);
+					XML_Attribute("z", position.Z);
+				}
+
+				{
+					float angle = entity->m_orientation;
+
+					XML_Element("Orientation");
+					XML_Attribute("angle", angle);
+				}
+			}
+		}
+	}
+
+	// HACK: continued from above
+#ifdef SCED
+	CStr d = xml_file_.HACK_GetData();
+	fwrite(d.data(), d.length(), 1, f);
+	fclose(f);
+#else
+	if (! XML_StoreVFS(h))
+	{
+		debug_warn("Failed to write map XML file");
+	}
+	vfs_close(h);
+#endif
+}

@@ -1345,6 +1345,8 @@ void ScEd_Init()
 	char path[512];
 	::GetModuleFileName(0,path,512);
 
+	g_Quickstart = true;
+
 	char* argv[1];
 	argv[0] = path;
 	Init(1, argv, false);

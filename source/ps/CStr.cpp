@@ -13,6 +13,40 @@
 CStrW::CStrW(const CStr8 &asciStr) : std::wstring(asciStr.begin(), asciStr.end()) {}
 CStr8::CStr8(const CStrW &wideStr) : std:: string(wideStr.begin(), wideStr.end()) {}
 
+static const unsigned char firstByteMark[7] = { 0x00, 0x00, 0xC0, 0xE0, 0xF0, 0xF8, 0xFC };
+CStr8 CStrW::utf8() const
+{
+	// Adapted from http://www.unicode.org/Public/PROGRAMS/CVTUTF/ConvertUTF.c
+
+	CStr8 result;
+
+	const wchar_t* source = &*begin();
+	for (size_t i = 0; i < Length(); ++i)
+	{
+		unsigned short bytesToWrite;
+		wchar_t ch = (*this)[i];
+
+		if (ch < 0x80) bytesToWrite = 1;
+		else if (ch < 0x800) bytesToWrite = 2;
+		else if (ch < 0x10000) bytesToWrite = 3;
+		else if (ch <= 0x7FFFFFFF) bytesToWrite = 4;
+		else bytesToWrite = 3, ch = 0x0000FFFD; // replacement character
+
+		char buf[4];
+		char* target = &buf[bytesToWrite];
+		switch (bytesToWrite)
+		{
+			case 4: *--target = ((ch | 0x80) & 0xBF); ch >>= 6;
+			case 3: *--target = ((ch | 0x80) & 0xBF); ch >>= 6;
+			case 2: *--target = ((ch | 0x80) & 0xBF); ch >>= 6;
+			case 1: *--target = (ch | firstByteMark[bytesToWrite]);
+		}
+		result += CStr(buf, bytesToWrite);
+	}
+	return result;
+}
+
+
 #else
 
 #include "CStr.h"
@@ -175,18 +209,18 @@ CStr CStr::UCase() const
 }
 
 // Retrieve the substring of the first n characters 
-CStr CStr::Left(long len) const
+CStr CStr::Left(size_t len) const
 {
 	assert(len >= 0);
-	assert(len <= (long)length());
+	assert(len <= length());
 	return substr(0, len);
 }
 
 // Retrieve the substring of the last n characters
-CStr CStr::Right(long len) const
+CStr CStr::Right(size_t len) const
 {
 	assert(len >= 0);
-	assert(len <= (long)length());
+	assert(len <= length());
 	return substr(length()-len, len);
 }
 

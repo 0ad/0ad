@@ -33,6 +33,9 @@ private:
 	// ApplyData: take all the input data, and rebuild the scene from it
 	void ApplyData(CFileUnpacker& unpacker, CTerrain *pTerrain, CUnitManager *pUnitMan, CLightEnv *pLightEnv);
 
+	// ReadXML: read some other data (entities, etc) in XML format
+	void ReadXML(const char* filename);
+
 	// size of map 
 	u32 m_MapSize;
 	// heightmap for map

@@ -149,7 +149,12 @@ void CEntity::snapToGround()
 {
 	CTerrain *pTerrain = g_Game->GetWorld()->GetTerrain();
 	
+#ifdef SCED
+	extern CTerrain g_Terrain;
+	m_graphics_position.Y = g_Terrain.getExactGroundLevel( m_graphics_position.X, m_graphics_position.Z );
+#else
 	m_graphics_position.Y = pTerrain->getExactGroundLevel( m_graphics_position.X, m_graphics_position.Z );
+#endif
 }
 
 void CEntity::update( size_t timestep )

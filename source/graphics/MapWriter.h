@@ -37,6 +37,9 @@ private:
 	// each object in the world
 	void EnumObjects(CUnitManager *pUnitMan, std::vector<CStr>& objectTypes,
 		std::vector<SObjectDesc>& objects);
+
+	// WriteXML: output some other data (entities, etc) in XML format
+	void WriteXML(const char* filename, CUnitManager* pUnitMan);
 };
 
 #endif

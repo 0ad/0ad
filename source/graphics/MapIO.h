@@ -5,7 +5,7 @@ class CMapIO
 {
 public:
 	// current file version given to saved maps 
-	enum { FILE_VERSION = 2 };
+	enum { FILE_VERSION = 3 };
 	// supported file read version - file with version less than this will be reject
 	enum { FILE_READ_VERSION = 1 };
 

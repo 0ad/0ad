@@ -187,29 +187,15 @@ void CEditorData::InitResources()
 // InitSingletons: create and initialise required singletons
 void CEditorData::InitSingletons()
 {
-//	// create terrain related stuff
-//	new CTextureManager;
-//
-//	// create actor related stuff
-//	new CSkeletonAnimManager;
-//	new CObjectManager;
-//	new CUnitManager;
-//
-//	// create entity related stuff 
-//	new CBaseEntityCollection;
-//	new CEntityManager;
-//	g_EntityTemplateCollection.loadTemplates();
+	new CEntityManager;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 // Init: perform one time initialisation of the editor
 bool CEditorData::Init()
 {
-//	// start up Xerces
-//	XMLPlatformUtils::Initialize();
-//
-//	// create and initialise singletons
-//	InitSingletons();
+	// create and initialise singletons
+	InitSingletons();
 
 	// load default textures
 	InitResources();
@@ -223,6 +209,8 @@ bool CEditorData::Init()
 	// set up the info box
 	m_InfoBox.Initialise();
 
+	g_EntityTemplateCollection.loadTemplates();
+
 	return true;
 }
 
@@ -230,20 +218,7 @@ bool CEditorData::Init()
 // Terminate: close down the editor (destroy singletons in reverse order to construction)
 void CEditorData::Terminate()
 {
-//	// destroy entity related stuff 
-//	delete CEntityManager::GetSingletonPtr();
-//	delete CBaseEntityCollection::GetSingletonPtr();
-//
-//	// destroy actor related stuff
-//	delete CUnitManager::GetSingletonPtr();
-//	delete CObjectManager::GetSingletonPtr();
-//	delete CSkeletonAnimManager::GetSingletonPtr();
-//
-//	// destroy terrain related stuff
-//	delete CTextureManager::GetSingletonPtr();
-
-	// close down Xerces
-//	XMLPlatformUtils::Terminate();
+	delete &g_EntityManager;
 }
 
 void CEditorData::InitCamera() 
@@ -636,6 +611,7 @@ bool CEditorData::LoadTerrain(const char* filename)
 void CEditorData::UpdateWorld(float time)
 {
 	if (m_Mode==SCENARIO_EDIT || m_Mode==TEST_MODE) {
+		g_EntityManager.interpolateAll(0.f);
 		const std::vector<CUnit*>& units=g_UnitMan.GetUnits();
 		for (uint i=0;i<units.size();++i) {
 			units[i]->GetModel()->Update(time);

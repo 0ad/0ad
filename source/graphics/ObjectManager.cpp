@@ -142,7 +142,7 @@ void CObjectManager::LoadObjects(int type)
 	pathname += m_ObjectTypes[type].m_Name;
 	pathname += "/";
 
-	Handle dir=vfs_open_dir(pathname.c_str());
+	Handle dir=vfs_open_dir(pathname);
 	vfsDirEnt dent;
 	
 	if (dir > 0)

@@ -119,7 +119,8 @@ public:
 		CStr(utf16string String) : std::tstring(String.begin(), String.end()) {}
 	#endif
 
-	// Transparent CStrW/8 conversion.
+	// Transparent CStrW/8 conversion. Non-ASCII characters are not
+	// handled correctly.
 	#ifndef _UNICODE
 		CStr8(const CStrW &wideStr);
 	#else
@@ -170,10 +171,10 @@ public:
 	CStr UCase() const;
 
 	// Retrieve the substring of the first n characters 
-	CStr Left(long len) const;
+	CStr Left(size_t len) const;
 
 	// Retrieve the substring of the last n characters
-	CStr Right(long len) const;
+	CStr Right(size_t len) const;
 	
 	// Remove all occurrences of some character or substring 
 	void Remove(const CStr& Str);
@@ -213,6 +214,11 @@ public:
 	// Conversion to utf16string
 	inline utf16string utf16() const
 	{	return utf16string(begin(), end()); }
+
+	// Conversion to UTF-8, encoded in a CStr8
+#ifdef _UNICODE
+	CStr8 utf8() const;
+#endif
 	
 	// Calculates a hash of the string's contents
 	size_t GetHashCode() const;

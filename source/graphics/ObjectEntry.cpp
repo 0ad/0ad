@@ -80,16 +80,24 @@ bool CObjectEntry::BuildModel()
 			const char* animfilename = m_Animations[t].m_FileName.c_str();
 			m_Animations[t].m_AnimData = m_Model->BuildAnimation(animfilename,m_Animations[t].m_Speed);
 
-			if( m_Animations[t].m_AnimName.LowerCase() == "idle" )
+			CStr AnimNameLC = m_Animations[t].m_AnimName.LowerCase();
+
+			if( AnimNameLC == "idle" )
 				m_IdleAnim = m_Animations[t].m_AnimData;
-			if( m_Animations[t].m_AnimName.LowerCase() == "walk" )
+			else
+			if( AnimNameLC == "walk" )
 				m_WalkAnim = m_Animations[t].m_AnimData;
-			if( m_Animations[t].m_AnimName.LowerCase() == "attack" )
+			else
+			if( AnimNameLC == "attack" )
 				m_MeleeAnim = m_Animations[t].m_AnimData;
-			if( m_Animations[t].m_AnimName.LowerCase() == "death" )
+			else
+			if( AnimNameLC == "death" )
 				m_DeathAnim = m_Animations[t].m_AnimData;
-			if( m_Animations[t].m_AnimName.LowerCase() == "decay" )
+			else
+			if( AnimNameLC == "decay" )
 				m_CorpseAnim = m_Animations[t].m_AnimData;
+			//else
+			//	debug_out("Invalid animation name '%s'\n", (const char*)AnimNameLC);
 		}
 		else
 		{

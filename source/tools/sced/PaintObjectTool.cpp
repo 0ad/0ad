@@ -62,6 +62,7 @@ void CPaintObjectTool::OnLButtonUp(unsigned int flags,int px,int py)
 	// terminate current command, if we've got one
 	if (m_PaintCmd) {
 		m_PaintCmd->Finalize();
+		if (! m_PaintCmd->IsUndoable()) delete m_PaintCmd;
 		m_PaintCmd=0;
 		m_Rotation=0;
 	}
