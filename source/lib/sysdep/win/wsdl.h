@@ -87,7 +87,7 @@ extern int SDL_KillThread(SDL_Thread*);
 extern int __stdcall SDL_WarpMouse(int, int);
 
 
-
+extern int SDL_SetGamma(float r, float g, float b);
 
 /* macros */
 

@@ -18,7 +18,7 @@ using namespace std;
 
 // use GetDouble and type-cast it to <<type>>
 #define FUNC_IMPL_CAST_GETDOUBLE(func_name,type)		\
-_bool CParserValue::func_name(type &ret)					\
+bool CParserValue::func_name(type &ret)					\
 {														\
 	_double d;											\
 	if (GetDouble(d))									\
@@ -31,7 +31,7 @@ _bool CParserValue::func_name(type &ret)					\
 //  Get%type% from the CParserValue
 // func_name must belong to CParserFile
 #define FUNC_IMPL_GETARG(func_name, get_name, type)		\
-_bool CParserLine::func_name(const _int & arg, type &ret)	\
+bool CParserLine::func_name(const int & arg, type &ret)	\
 {														\
 	if (GetArgCount() <= arg)							\
 		return false;									\
@@ -42,15 +42,15 @@ _bool CParserLine::func_name(const _int & arg, type &ret)	\
 // Function definitions
 //-------------------------------------------------
 
-static _bool _IsStrictNameChar(const _char& c);
-static _bool _IsValueChar(const _char& c);
+static bool _IsStrictNameChar(const _char& c);
+static bool _IsValueChar(const _char& c);
 
 
 // Functions used for checking a character if it belongs to a value
 //  or not
 
 // Checks ident
-static _bool _IsStrictNameChar(const _char& c)
+static bool _IsStrictNameChar(const _char& c)
 {
 	return ((c >= 'a' && c <= 'z') ||
 			(c >= 'A' && c <= 'Z') ||
@@ -58,7 +58,7 @@ static _bool _IsStrictNameChar(const _char& c)
 }
 
 // Checks value
-static _bool _IsValueChar(const _char& c)
+static bool _IsValueChar(const _char& c)
 {
 	return ((c >= 'a' && c <= 'z') ||
 			(c >= 'A' && c <= 'Z') ||
@@ -80,7 +80,7 @@ CParserValue::~CParserValue()
 // Parse the string in Value to different types
 
 // bool
-_bool CParserValue::GetBool(_bool &ret)
+bool CParserValue::GetBool(bool &ret)
 {
 	// TODO Raj Add or remove some? I can make it all lowercase
 	//  first so True and TRUE also works, or you could just
@@ -111,16 +111,16 @@ _bool CParserValue::GetBool(_bool &ret)
 }
 
 // double
-_bool CParserValue::GetDouble(_double &ret)
+bool CParserValue::GetDouble(_double &ret)
 {
 	// locals
 	_double			TempRet = 0.0;
-	_int			Size = m_String.size();
-	_int			i;
-	_bool			AtLeastOne = false;		// Checked if at least one of the loops
+	int			Size = m_String.size();
+	int			i;
+	bool			AtLeastOne = false;		// Checked if at least one of the loops
 										//  run, otherwise "." would parse OK
-	_int			DecimalPos;
-	_bool			Negative = false;		// "-" is found
+	int			DecimalPos;
+	bool			Negative = false;		// "-" is found
 
 	// Check if '-' is found
 	if (m_String[0]=='-')
@@ -180,7 +180,7 @@ _bool CParserValue::GetDouble(_double &ret)
 }
 
 // string - only return m_String, can't fail
-_bool CParserValue::GetString(std::string &ret)
+bool CParserValue::GetString(std::string &ret)
 {
 	ret = m_String;
 	return true;
@@ -192,7 +192,7 @@ _bool CParserValue::GetString(std::string &ret)
 FUNC_IMPL_CAST_GETDOUBLE(GetFloat,			_float)
 FUNC_IMPL_CAST_GETDOUBLE(GetChar,			_char)
 FUNC_IMPL_CAST_GETDOUBLE(GetShort,			_short)
-FUNC_IMPL_CAST_GETDOUBLE(GetInt,			_int)
+FUNC_IMPL_CAST_GETDOUBLE(GetInt,			int)
 FUNC_IMPL_CAST_GETDOUBLE(GetLong,			_long)
 FUNC_IMPL_CAST_GETDOUBLE(GetUnsignedShort,	_ushort)
 FUNC_IMPL_CAST_GETDOUBLE(GetUnsignedInt,	_uint)
@@ -264,7 +264,7 @@ CParserLine::~CParserLine()
 }
 
 // Clear arguments (deleting m_Memory
-_bool CParserLine::ClearArguments()
+bool CParserLine::ClearArguments()
 {
 	// Now we can actually clear it
 	m_Arguments.clear();
@@ -275,10 +275,10 @@ _bool CParserLine::ClearArguments()
 //  it just checks if argument isn't out of range, and
 //  then it uses the the respective function in CParserValue
 FUNC_IMPL_GETARG(GetArgString,			GetString,			string)
-FUNC_IMPL_GETARG(GetArgBool,			GetBool,			_bool)
+FUNC_IMPL_GETARG(GetArgBool,			GetBool,			bool)
 FUNC_IMPL_GETARG(GetArgChar,			GetChar,			_char)
 FUNC_IMPL_GETARG(GetArgShort,			GetShort,			_short)
-FUNC_IMPL_GETARG(GetArgInt,				GetInt,				_int)
+FUNC_IMPL_GETARG(GetArgInt,				GetInt,				int)
 FUNC_IMPL_GETARG(GetArgLong,			GetLong,			_long)
 FUNC_IMPL_GETARG(GetArgUnsignedShort,	GetUnsignedShort,	_ushort)
 FUNC_IMPL_GETARG(GetArgUnsignedInt,		GetUnsignedInt,		_uint)
@@ -293,7 +293,7 @@ FUNC_IMPL_GETARG(GetArgDouble,			GetDouble,			_double)
 // ex:
 // variable = 5		=> variable, =, 5
 // CallFunc(4,2)	=> CallFunc, 4, 2
-_bool CParserLine::ParseString(const CParser& Parser, string strLine)
+bool CParserLine::ParseString(const CParser& Parser, string strLine)
 {
 	// Don't process empty string
 	if (strLine == string())
@@ -303,13 +303,13 @@ _bool CParserLine::ParseString(const CParser& Parser, string strLine)
 	}
 
 	// Locals
-	_bool				Extract=false;
-	_int				ExtractPos=0;
+	bool				Extract=false;
+	int				ExtractPos=0;
 	_char				Buffer[256];
 	_char				Letter[] = {'\0','\0'};		// Letter as string
 	vector<string>		Segments;
 	string				strSub;
-	_int				i;
+	int				i;
 
 	// Set result to false, then if a match is found, turn it true
 	m_ParseOK = false;
@@ -343,7 +343,7 @@ _bool CParserLine::ParseString(const CParser& Parser, string strLine)
 			if (strLine[i] == '\"')
 			{
 				// Extract a string, search for another "
-				_int pos = strLine.find("\"", i+1);
+				int pos = strLine.find("\"", i+1);
 
 				// If matching can't be found,
 				//  the parsing will fail!
@@ -419,23 +419,23 @@ _bool CParserLine::ParseString(const CParser& Parser, string strLine)
 	// * * * *
 
 	// Locals
-	_int Progress;						// progress in Segments index
-	_int Lane=0;							// Have many alternative routes we are in
-	_bool Match;							// If a task-type match has been found
+	int Progress;						// progress in Segments index
+	int Lane=0;							// Have many alternative routes we are in
+	bool Match;							// If a task-type match has been found
 	// The vector of these three represents the different lanes
 	//  LastValidProgress[1] takes you back to lane 1 and how
 	//  the variables was set at that point
-	vector<_int> LastValidProgress;		// When diving into a dynamic argument store store
+	vector<int> LastValidProgress;		// When diving into a dynamic argument store store
 										//  the last valid so you can go back to it
-	vector<_int> LastValidArgCount;		// If an alternative route turns out to fail, we
+	vector<int> LastValidArgCount;		// If an alternative route turns out to fail, we
 										//  need to know the amount of arguments on the last
 										//  valid position, so we can remove them.
-	vector<_bool> LastValidMatch;		// Match at that point
-	_bool BlockAltNode = false;			// If this turns true, the alternative route
+	vector<bool> LastValidMatch;		// Match at that point
+	bool BlockAltNode = false;			// If this turns true, the alternative route
 										//  tested was not a success, and the settings
 										//  should be set back in order to test the 
 										//  next node instead
-	_bool LookNoFurther = false;			// If this turns true, it means a definite match has been
+	bool LookNoFurther = false;			// If this turns true, it means a definite match has been
 										//  found and no further looking is required
 	CParserTaskTypeNode *CurNode=NULL;	// Current node on task type
 	CParserTaskTypeNode *PrevNode=NULL;	// Last node
@@ -626,7 +626,7 @@ _bool CParserLine::ParseString(const CParser& Parser, string strLine)
 						{
 							// Store argument in CParserValue!
 							CParserValue value;
-							_int i;
+							int i;
 
 							switch(CurNode->m_Type)
 							{
@@ -754,7 +754,7 @@ _bool CParserLine::ParseString(const CParser& Parser, string strLine)
 	// if _minus is found as argument, remove it and add "-" to the one after that
 	// note, it's easier if std::iterator isn't used here
 	
-	for (i=1; i<GetArgCount(); ++i)
+	for (i=1; i<(int)GetArgCount(); ++i)
 	{
 		if (m_Arguments[i-1].m_String == "_minus")
 		{
@@ -793,18 +793,18 @@ CParser::~CParser()
 // A task-type is a string representing the acquired syntax when parsing
 //  This function converts that string into a binary tree, making it easier
 //  and faster to later parse.
-_bool CParser::InputTaskType(const string& strName, const string& strSyntax)
+bool CParser::InputTaskType(const string& strName, const string& strSyntax)
 {
 	// Locals
-	CParserTaskType		TaskType;				// Object we acquire to create
-	_char				Buffer[REGULAR_MAX_LENGTH];
-	_int				ExtractPos = 0;
-	_bool				Extract = false;
-	_bool				Error = false;
-	_int				i;
-	_bool				ConstructNew = false;	// If it's the first input, then don't
-												//  construct a new node, because we
-												//  we already have m_BaseNode
+	CParserTaskType TaskType;	// Object we acquire to create
+	char Buffer[REGULAR_MAX_LENGTH];
+	size_t ExtractPos = 0;
+	bool Extract = false;
+	bool Error = false;
+	int i;
+	bool ConstructNew = false;	// If it's the first input, then don't
+								//  construct a new node, because we
+								//  we already have m_BaseNode
 
 	// Construct base node
 	TaskType.m_BaseNode = new CParserTaskTypeNode();
@@ -837,7 +837,7 @@ _bool CParser::InputTaskType(const string& strName, const string& strSyntax)
 				CurNode->m_AltNode->m_ParentNode = CurNode;
 
 				// It's repeatable
-				CurNode->m_AltNodeRepeatable = _bool(strSyntax[i]==START_DYNAMIC);
+				CurNode->m_AltNodeRepeatable = bool(strSyntax[i]==START_DYNAMIC);
 
 				// Set to current
 				CurNode = CurNode->m_AltNode;
@@ -974,7 +974,7 @@ _bool CParser::InputTaskType(const string& strName, const string& strSyntax)
 					}
 
 					// Now try finding the second ')'
-					_int Pos = strSyntax.find(")", ExtractPos+5);
+					size_t Pos = strSyntax.find(")", ExtractPos+5);
 
 					// Check if ')' exists at all
 					if (Pos == string::npos)

@@ -52,8 +52,9 @@ enum
 extern long cpu_caps;
 
 // define instead of enum to avoid stupid sign conversion warning
-#define	EXT_3DNOW_PRO BIT(30)
-#define EXT_3DNOW     BIT(31)
+#define EXT_MP_CAPABLE BIT(19)
+#define	EXT_3DNOW_PRO  BIT(30)
+#define EXT_3DNOW      BIT(31)
 
 extern long cpu_ext_caps;
 

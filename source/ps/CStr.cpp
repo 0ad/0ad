@@ -400,16 +400,9 @@ ostream &operator<<(ostream &os, CStr &Str)
 
 size_t CStr::GetHashCode() const
 {
-	// FNV-1 hash for 64 bit integers.
-	size_t hash = 14695981039346656037;
-	const char* data = m_String.data();
-	for( int t = 0; t < m_String.length(); t++ )
-	{
-		hash *= 1099511628211;
-		hash ^= *(data++);
-	}
-	return( hash );
-
+	return (size_t)fnv_hash64(m_String.data(), m_String.length());
+		// janwas asks: do we care about the hash being 64 bits?
+		// it is truncated here on 32-bit systems; why go 64 bit at all?
 }
 
 uint CStr::GetSerializedLength() const

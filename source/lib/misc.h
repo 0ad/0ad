@@ -32,6 +32,7 @@
 // if len = 0 (default), treat buf as a C-string;
 // otherwise, hash <len> bytes of buf.
 extern u32 fnv_hash(const void* buf, const size_t len = 0);
+extern u64 fnv_hash64(const void* buf, const size_t len);
 
 // hash (currently FNV) of a filename
 typedef u32 FnHash;
@@ -104,6 +105,8 @@ extern float fminf(float, float);
 
 
 
+extern long round(double);
+extern u16 fp_to_u16(double in);
 
 // big endian!
 extern void base32(const int len, const u8* in, u8* out);

@@ -96,10 +96,14 @@ __asm
 long cpu_caps = 0;
 long cpu_ext_caps = 0;
 
+int tsc_is_safe = -1;
+
+
 static char cpu_vendor[13];
 static int family, model;	// used to detect cpu_type
 
-int tsc_is_safe = -1;
+static int have_brand_string = 0;
+	// int instead of bool for easier setting from asm
 
 
 // optimized for size
@@ -148,11 +152,11 @@ __asm
 	mov			esi, 0x80000000
 	mov			eax, esi
 	cpuid
-	cmp			eax, esi
-	jbe			no_ext_funcs
-	lea			esi, [esi+4]
-	cmp			eax, esi
-	jb			no_brand_str
+	cmp			eax, esi						; max ext <= 0x80000000?
+	jbe			no_ext_funcs					; yes - no ext funcs at all
+	lea			esi, [esi+4]					; esi = 0x80000004
+	cmp			eax, esi						; max ext < 0x80000004?
+	jb			no_brand_str					; yes - brand string not available, skip
 
 ; get CPU brand string (>= Athlon XP, P4)
 	mov			edi, offset cpu_type
@@ -170,6 +174,8 @@ $1:	lea			eax, [ebp+esi]					; 0x80000002 .. 4
 	inc			ebp
 	jle			$1
 	; (already 0 terminated)
+
+	mov			[have_brand_string], ebp		; ebp = 1 = true
 
 no_brand_str:
 
@@ -194,8 +200,54 @@ void ia32_get_cpu_info()
 	if(cpu_caps == 0)	// cpuid not supported - can't do the rest
 		return;
 
-	// cpu_type set from brand string - clean it up some
-	if(strcmp(cpu_type, "unknown") != 0)
+	// fall back to manual detect of CPU type if it didn't supply
+	// a brand string, or if the brand string is useless (i.e. "Unknown").
+	if(!have_brand_string || strncmp(cpu_type, "Unknow", 6) == 0)
+		// we use an extra flag to detect if we got the brand string:
+		// safer than comparing against the default name, which may change.
+		//
+		// some older boards reprogram the brand string with
+		// "Unknow[n] CPU Type" on CPUs the BIOS doesn't recognize.
+		// in that case, we ignore the brand string and detect manually.
+	{
+		// AMD
+		if(!strcmp(cpu_vendor, "AuthenticAMD"))
+		{
+			// everything else is either too old, or should have a brand string.
+			if(family == 6)
+			{
+				if(model == 3 || model == 7)
+					strcpy(cpu_type, "AMD Duron");
+				else if(model <= 5)
+					strcpy(cpu_type, "AMD Athlon");
+				else
+				{
+					if(cpu_ext_caps & EXT_MP_CAPABLE)
+						strcpy(cpu_type, "AMD Athlon MP");
+					else
+                        strcpy(cpu_type, "AMD Athlon XP");
+				}
+			}
+		}
+		// Intel
+		else if(!strcmp(cpu_vendor, "GenuineIntel"))
+		{
+			// everything else is either too old, or should have a brand string.
+			if(family == 6)
+			{
+				if(model == 1)
+					strcpy(cpu_type, "Intel Pentium Pro");
+				else if(model == 3 || model == 5)
+					strcpy(cpu_type, "Intel Pentium II");
+				else if(model == 6)
+					strcpy(cpu_type, "Intel Celeron");
+				else
+					strcpy(cpu_type, "Intel Pentium III");
+			}
+		}
+	}
+	// we have a valid brand string; try to pretty it up some
+	else
 	{
 		// strip (tm) from Athlon string
 		if(!strncmp(cpu_type, "AMD Athlon(tm)", 14))
@@ -209,22 +261,11 @@ void ia32_get_cpu_info()
 		if(sscanf(cpu_type, " Intel(R) Pentium(R) 4 CPU %fGHz", &a) == 1)
 			strcpy(cpu_type, "Intel Pentium 4");
 	}
-	// detect cpu_type ourselves
-	else
-	{
-		// AMD
-		if(!strcmp(cpu_vendor, "AuthenticAMD"))
-		{
-			if(family == 6)
-				strcpy(cpu_type, (model == 3)? "AMD Duron" : "AMD Athlon");
-		}
-		// Intel
-		else if(!strcmp(cpu_vendor, "GenuineIntel"))
-		{
-			if(family == 6 && model >= 7)
-				strcpy(cpu_type, "Intel Pentium III / Celeron");
-		}
-	}
+
+
+	//
+	// measure CPU frequency
+	//
 
 	// .. get old policy and priority
 	int old_policy;

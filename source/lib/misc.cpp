@@ -58,7 +58,40 @@ u32 fnv_hash(const void* buf, const size_t len)
 }
 
 
+// FNV1-A hash - good for strings.
+// if len = 0 (default), treat buf as a C-string;
+// otherwise, hash <len> bytes of buf.
+u64 fnv_hash64(const void* buf, const size_t len)
+{
+	u64 h = 0xCBF29CE484222325;
+		// give distinct values for different length 0 buffers.
+		// value taken from FNV; it has no special significance.
 
+	const u8* p = (const u8*)buf;
+
+	// expected case: string
+	if(!len)
+	{
+		while(*p)
+		{
+			h ^= *p++;
+			h *= 0x100000001B3;
+		}
+	}
+	else
+	{
+		size_t bytes_left = len;
+		while(bytes_left != 0)
+		{
+			h ^= *p++;
+			h *= 0x100000001B3;
+
+			bytes_left--;
+		}
+	}
+
+	return h;
+}
 
 
 void bswap32(const u8* data, int cnt)
@@ -171,6 +204,26 @@ float fminf(float a, float b)
 
 #endif
 
+
+
+long round(double x)
+{
+	return (long)(x + 0.5);
+}
+
+// input in [0, 1); convert to u16 range
+u16 fp_to_u16(double in)
+{
+	if(!(0 <= in && in < 1.0))
+	{
+		debug_warn("clampf not in [0,1)");
+		return 65535;
+	}
+
+	long l = round(in * 65535.0);
+	assert((unsigned long)l <= 65535);
+	return (u16)l;
+}
 
 
 

@@ -22,3 +22,5 @@
 #include <algorithm>
 
 #include <numeric>
+
+#pragma warning(disable:4996)

@@ -29,10 +29,11 @@
 // powrprof is loaded manually - we only need 1 function.
 #endif
 
+#include "Tlhelp32.h"
+
 
 // EnumDisplayDevices is not available on Win95 or NT.
 // try to import it manually here; return -1 if not available.
-// note: FreeLibrary at exit avoids BoundsChecker resource leak warnings.
 static BOOL (WINAPI *pEnumDisplayDevicesA)(void*, DWORD, void*, DWORD);
 static int import_EnumDisplayDevices()
 {
@@ -40,7 +41,10 @@ static int import_EnumDisplayDevices()
 	{
 		static HMODULE hUser32Dll = LoadLibrary("user32.dll");
 		*(void**)&pEnumDisplayDevicesA = GetProcAddress(hUser32Dll, "EnumDisplayDevicesA");
-		ONCE(atexit2(FreeLibrary, (uintptr_t)hUser32Dll, CC_STDCALL_1));
+		FreeLibrary(hUser32Dll);
+			// make sure the reference is released so BoundsChecker
+			// doesn't complain. it won't actually be unloaded anyway -
+			// there is at least one other reference.
 	}
 
 	return pEnumDisplayDevicesA? 0 : -1;
@@ -94,21 +98,53 @@ int win_get_gfx_card()
 }
 
 
+/*
+get ogl client DLL name
+	enum loaded dlls
+		ogl must be running; ambiguous (need to eliminate MCD and opengl32.dll)
+	*/
+// no .dll appended
+//
+static int get_ogl_drv_name(char* const ogl_drv_name, const size_t max_name_len)
+{
+	int ret = -1;
+
+	HKEY hkOglDrivers;
+	const char* key = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\OpenGLDrivers";
+	if(RegOpenKeyEx(HKEY_LOCAL_MACHINE, key, 0, KEY_ENUMERATE_SUB_KEYS, &hkOglDrivers) != 0)
+		return -1;
+
+	char key_name[32];
+	DWORD key_name_len = sizeof(key_name);
+	if(RegEnumKeyEx(hkOglDrivers, 0, key_name, &key_name_len, 0, 0, 0, 0) == 0)
+	{
+		HKEY hkClass;
+		if(RegOpenKeyEx(hkOglDrivers, key_name, 0, KEY_QUERY_VALUE, &hkClass) == 0)
+		{
+			DWORD size = (DWORD)max_name_len;
+			if(RegQueryValueEx(hkClass, "Dll", 0, 0, (LPBYTE)ogl_drv_name, &size) == 0)
+				ret = 0;	// success
+
+			RegCloseKey(hkClass);
+		}
+	}
+
+	RegCloseKey(hkOglDrivers);
+
+	return ret;
+}
+
+
 // split out so we can return on failure, instead of goto
 // method: http://www.opengl.org/discussion_boards/ubb/Forum3/HTML/009679.html
 int win_get_gfx_drv()
 {
-	// get driver DLL name
-	DEVMODEA dm;
-		// note: dmDriverVersion is not what we're looking for
-	memset(&dm, 0, sizeof(dm));
-	dm.dmSize = sizeof(dm);
-		// note: dmSize isn't the first member!
-	if(!EnumDisplaySettingsA(0, ENUM_CURRENT_SETTINGS, &dm))
-		return -1;
-	char drv_name[CCHDEVICENAME+5];	// we add ".dll"
-	strcpy(drv_name, (const char*)dm.dmDeviceName);
-	strcat(drv_name, ".dll");
+
+/* want ogl icd, instead of 2d driver */
+
+	char ogl_drv_name[MAX_PATH];
+	CHECK_ERR(get_ogl_drv_name(ogl_drv_name, sizeof(ogl_drv_name)));
+
 
 	// don't want to return 0 on success - we'd need to duplicate free(buf).
 	// instead, set this variable and return that.
@@ -116,21 +152,21 @@ int win_get_gfx_drv()
 
 	// read the DLL's version info
 	DWORD unused;
-	DWORD ver_size = GetFileVersionInfoSize(drv_name, &unused);
+	const DWORD ver_size = GetFileVersionInfoSize(ogl_drv_name, &unused);
 	if(!ver_size)
 		return -1;
-	void* buf = malloc(ver_size);
+	void* const buf = malloc(ver_size);
 	if(!buf)
 		return -1;
-	if(GetFileVersionInfo(drv_name, 0, ver_size, buf))
+	if(GetFileVersionInfo(ogl_drv_name, 0, ver_size, buf))
 	{
 		u16* lang;	// -> 16 bit language ID, 16 bit codepage
 		uint lang_len;
-		BOOL ok = VerQueryValue(buf, "\\VarFileInfo\\Translation", (void**)&lang, &lang_len);
+		const BOOL ok = VerQueryValue(buf, "\\VarFileInfo\\Translation", (void**)&lang, &lang_len);
 		if(ok && lang && lang_len == 4)
 		{
 			char subblock[64];
-			sprintf(subblock, "\\StringFileInfo\\%04X%04X\\ProductName", lang[0], lang[1]);
+			sprintf(subblock, "\\StringFileInfo\\%04X%04X\\FileVersion", lang[0], lang[1]);
 			const char* ver;
 			uint ver_len;
 			if(VerQueryValue(buf, subblock, (void**)&ver, &ver_len))

@@ -19,6 +19,7 @@
 #include "Renderer.h"
 #include "Model.h"
 #include "UnitManager.h"
+
 #include "BaseEntityCollection.h"
 #include "Entity.h"
 #include "EntityHandles.h"
@@ -39,6 +40,11 @@ bool keys[SDLK_LAST];
 // flag to disable extended GL extensions until fix found - specifically, crashes
 // using VBOs on laptop Radeon cards
 static bool g_NoGLVBO=false;
+
+static bool g_VSync = false;
+
+static float g_Gamma = 1.0f;
+
 // mapfile to load or null for no map (and to use default terrain)
 static const char* g_MapFile=0;
 
@@ -72,6 +78,8 @@ static int write_sys_info()
 	fprintf(f, "%s %s (%s)\n", un.sysname, un.release, un.version);
 	// .. CPU
 	fprintf(f, "%s, %s", un.machine, cpu_type);
+	if(cpus > 1)
+		fprintf(f, " (x%d)", cpus);
 	if(cpu_freq != 0.0f)
 	{
 		if(cpu_freq < 1e9)
@@ -315,6 +323,7 @@ void UpdateWorld(float time)
 	for (uint i=0;i<units.size();++i) {
 		units[i]->m_Model->Update(time);
 	}
+
 	g_EntityManager.updateAll( time );
 
 }
@@ -340,6 +349,7 @@ void ParseArgs(int argc, char* argv[])
 		}
 	}
 }
+
 
 
 int main(int argc, char* argv[])
@@ -425,10 +435,21 @@ if(argc < 2)
 	if(!oglExtAvail("GL_ARB_multitexture") || !oglExtAvail("GL_ARB_texture_env_combine"))
 		display_startup_error(L"required ARB_multitexture or ARB_texture_env_combine extension not available");
 
+	// enable/disable VSync
+	// note: "GL_EXT_SWAP_CONTROL" is "historical" according to dox.
+	if(oglExtAvail("WGL_EXT_swap_control"))
+		wglSwapIntervalEXT(g_VSync? 1 : 0);
+
+
+	if(SDL_SetGamma(g_Gamma, g_Gamma, g_Gamma) < 0)
+	{
+		debug_warn("SDL_SetGamma failed");
+	}
+
 	new CConfig;
 
 	vfs_mount("", "mods/official/", 0);
-	dir_add_watch("mods\\official", false);
+////	dir_add_watch("mods\\official", false);
 
 #ifndef NO_GUI
 	// GUI uses VFS, so this must come after VFS init.
@@ -448,11 +469,13 @@ if(argc < 2)
 	// the terrain
 	terr_init();
 
+
 	// This needs to be done after the renderer has loaded all its actors...
 	new CBaseEntityCollection;
 	new CEntityManager;
 
 	g_EntityTemplateCollection.loadTemplates();
+
 
 	// load a map if we were given one
 	if (g_MapFile) {
@@ -491,7 +514,7 @@ in_add_handler(terr_handler);
 	{
 		//g_Config.Update();
 
-		allow_reload();
+////		allow_reload();
 
 
 // TODO: limiter in case simulation can't keep up?

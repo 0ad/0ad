@@ -466,6 +466,41 @@ inline void SDL_GL_SwapBuffers()
 }
 
 
+static int calc_gamma(float gamma, u16* ramp)
+{
+	if(gamma <= 0.0f)
+		return ERR_INVALID_PARAM;
+
+	// identity
+	// (special-case it to make sure we get the exact value)
+	if(gamma == 1.0f)
+	{
+		for(u16 i = 0; i < 256; i++)
+			ramp[i] = (i << 8);
+		return 0;
+	}
+
+	const double inv_gamma = 1.0 / gamma;
+	for(int i = 0; i < 256; i++)
+	{
+		const double frac = i / 256.0;
+			// make sure pow arg types are unambiguous
+		ramp[i] = fp_to_u16(pow(frac, inv_gamma));
+			// 8.8 fixed point
+	}
+
+	return 0;
+}
+
+
+int SDL_SetGamma(float r, float g, float b)
+{
+	u16 ramp[3][256];
+	CHECK_ERR(calc_gamma(r, ramp[0]));
+	CHECK_ERR(calc_gamma(g, ramp[1]));
+	CHECK_ERR(calc_gamma(b, ramp[2]));
+	return SetDeviceGammaRamp(hDC, ramp)? 0 : -1;
+}
 
 
 
