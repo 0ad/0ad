@@ -609,6 +609,14 @@ static void LoadGlobals()
 	if ((val=g_ConfigDB.GetValue(CFG_USER, "shadows")))
 		val->GetBool(g_Shadows);
 
+	if ((val=g_ConfigDB.GetValue(CFG_USER, "sound.mastergain")))
+	{
+		float gain;
+		val->GetFloat(gain);
+		int ret = snd_set_master_gain(gain);
+		assert2(ret == 0);
+	}
+
 	LOG(NORMAL, LOG_CATEGORY, "g_x/yres is %dx%d", g_xres, g_yres);
 	LOG(NORMAL, LOG_CATEGORY, "Active profile is %s", g_ActiveProfile.c_str());
 }
