@@ -95,7 +95,7 @@ int res_reload_changed_files()
 		char* ext = strrchr(fn, '.');
 		if(ext && !strcmp(ext, ".tmp"))
 			continue;
-		// .. directory change (more info is upcoming anyway)
+		// .. and directory change (more info is upcoming anyway)
 		if(!ext && e.code == FAMChanged)	// dir changed
 			continue;
 		// .. and reloads for the same file within a small timeframe.
@@ -103,8 +103,8 @@ int res_reload_changed_files()
 		if(cur_time - last_time < 50e-3 && !strcmp(last_fn, fn))
 			continue;
 
+debug_out("res_reload %s\n\n", fn);
 		res_reload(fn);
-debug_out("%s\n\n", fn);
 
 		last_time = get_time();
 		strcpy(last_fn, fn);
