@@ -380,15 +380,22 @@ void ParseArgs(int argc, char* argv[])
 	}
 }
 
-
+extern "C" char* _getcwd(char*, int);
 
 int main(int argc, char* argv[])
 {
 	const int ERR_MSG_SIZE = 1000;
 	wchar_t err_msg[ERR_MSG_SIZE];
 
-//	display_startup_error(argv[0]);
+char cwd[100];
+_getcwd(cwd, 100);
+char xbuf[1000];
+sprintf(xbuf, "%s\t%s\n", cwd, argv[0]);
+//display_startup_error(xbuf);
 
+
+freopen("stdout2.txt", "w", stdout);
+setvbuf(stdout, 0, _IONBF, 0);
 
 	// set current directory to "$game_dir/data".
 	// this is necessary because it is otherwise unknown,

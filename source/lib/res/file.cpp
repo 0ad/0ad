@@ -126,6 +126,20 @@ int file_rel_chdir(const char* argv0, const char* rel_path)
 
 	{
 
+	// Win32-specific: if started via batch file, argv0 might not end
+	// with ".exe". access and realpath require the filename with extension,
+	// so append it if not there. we don't get the full path either in that
+	// case, but realpath takes care of it.
+#ifdef _WIN32
+	char fixed_argv0[PATH_MAX];
+	if(!strchr(argv0, '.'))
+	{
+		strncpy(fixed_argv0, argv0, PATH_MAX-5);
+		strcat(fixed_argv0, ".exe");
+		argv0 = fixed_argv0;
+	}
+#endif
+
 	// get full path to executable
 	if(access(argv0, X_OK) < 0)
 		goto fail;
@@ -157,6 +171,7 @@ fail:
 	if(msg)
 	{
 		debug_out("file_rel_chdir: %s\n", msg);
+printf("%s\n", msg);
 		return -1;
 	}
 
