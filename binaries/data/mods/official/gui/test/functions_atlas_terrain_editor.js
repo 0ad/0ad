@@ -96,23 +96,10 @@ function initAtlasSectionTerrainEditor()
 	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SAMPLE_BUTTON].x+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SAMPLE_BUTTON].width-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX].width; 
 	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_ROUGHEN_BUTTON].y+4+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_ROUGHEN_BUTTON].height+ATLAS_LEFT_PANE_SECTION.TMARGIN; 
 
-	// Up button for power input box.
 	ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX_UP = addArrayElement(Crd, Crd.last); 
-	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
-	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
-	Crd[Crd.last-1].width	= ATLAS_COUNTER_BOX.width; 
-	Crd[Crd.last-1].height	= (Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX].height/2)+3; 
-	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX].x+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX].width-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX_UP].width; 
-	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX].y-3; 
-
-	// Down button for power input box.
-	ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX_DN = addArrayElement(Crd, Crd.last); 
-	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
-	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
-	Crd[Crd.last-1].width	= ATLAS_COUNTER_BOX.width; 
-	Crd[Crd.last-1].height	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX_UP].height; 
-	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX].x+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX].width-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX_UP].width; 
-	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX].y+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX].height-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX_DN].height; 
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX_DN = addArrayElement(Crd, Crd.last); 	
+	setCoordInputUpDown(Crd[Crd.last-2], Crd[Crd.last-1], ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX,
+		left_screen, top_screen, left_screen, top_screen);
 
 	// Power label.
 	ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_LABEL = addArrayElement(Crd, Crd.last); 
@@ -141,23 +128,10 @@ function initAtlasSectionTerrainEditor()
 	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_LABEL].x+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_LABEL].width; 
 	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX].y; 
 
-	// Up button for scale input box.
 	ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX_UP = addArrayElement(Crd, Crd.last); 
-	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
-	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
-	Crd[Crd.last-1].width	= ATLAS_COUNTER_BOX.width; 
-	Crd[Crd.last-1].height	= (Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX].height/2)+3; 
-	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX].x+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX].width-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX_UP].width; 
-	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX].y-3; 
-
-	// Down button for scale input box.
-	ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX_DN = addArrayElement(Crd, Crd.last); 
-	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
-	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
-	Crd[Crd.last-1].width	= ATLAS_COUNTER_BOX.width; 
-	Crd[Crd.last-1].height	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX_UP].height; 
-	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX].x+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX].width-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX_UP].width; 
-	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX].y+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX].height-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX_DN].height; 
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX_DN = addArrayElement(Crd, Crd.last); 	
+	setCoordInputUpDown(Crd[Crd.last-2], Crd[Crd.last-1], ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SCALE_INPUT_BOX,
+		left_screen, top_screen, left_screen, top_screen);
 
 	// Increment button.
 	ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_INCREMENT_BUTTON = addArrayElement(Crd, Crd.last); 
@@ -177,23 +151,10 @@ function initAtlasSectionTerrainEditor()
 	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SAMPLE_BUTTON].x+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SAMPLE_BUTTON].width-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX].width; 
 	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_INCREMENT_BUTTON].y; 
 
-	// Up button for amount input box.
 	ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX_UP = addArrayElement(Crd, Crd.last); 
-	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
-	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
-	Crd[Crd.last-1].width	= ATLAS_COUNTER_BOX.width; 
-	Crd[Crd.last-1].height	= (Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX].height/2)+3; 
-	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX].x+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_POWER_INPUT_BOX].width-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX_UP].width; 
-	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_INCREMENT_BUTTON].y-3; 
-
-	// Down button for amount input box.
-	ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX_DN = addArrayElement(Crd, Crd.last); 
-	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
-	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
-	Crd[Crd.last-1].width	= ATLAS_COUNTER_BOX.width; 
-	Crd[Crd.last-1].height	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX_UP].height; 
-	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX].x+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX].width-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX_UP].width; 
-	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX].y+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX].height-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX_DN].height; 
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX_DN = addArrayElement(Crd, Crd.last); 	
+	setCoordInputUpDown(Crd[Crd.last-2], Crd[Crd.last-1], ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_INPUT_BOX,
+		left_screen, top_screen, left_screen, top_screen);
 
 	// Amount label.
 	ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_AMOUNT_LABEL = addArrayElement(Crd, Crd.last); 
@@ -269,23 +230,10 @@ function initAtlasSectionTerrainEditor()
 	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_LABEL].x+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_LABEL].width; 
 	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_LABEL].y; 
 
-	// Up button for height input box.
 	ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX_UP = addArrayElement(Crd, Crd.last); 
-	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
-	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
-	Crd[Crd.last-1].width	= ATLAS_COUNTER_BOX.width; 
-	Crd[Crd.last-1].height	= (Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX].height/2)+3; 
-	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX].x+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX].width-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX_UP].width; 
-	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX].y-3; 
-
-	// Down button for height input box.
-	ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX_DN = addArrayElement(Crd, Crd.last); 
-	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
-	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
-	Crd[Crd.last-1].width	= ATLAS_COUNTER_BOX.width; 
-	Crd[Crd.last-1].height	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX_UP].height; 
-	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX].x+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX].width-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX_UP].width; 
-	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX].y+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX].height-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX_DN].height; 
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX_DN = addArrayElement(Crd, Crd.last); 	
+	setCoordInputUpDown(Crd[Crd.last-2], Crd[Crd.last-1], ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX,
+		left_screen, top_screen, left_screen, top_screen);
 
 	// Angle label.
 	ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_LABEL = addArrayElement(Crd, Crd.last); 
@@ -305,23 +253,10 @@ function initAtlasSectionTerrainEditor()
 	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX].x; 
 	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX].y+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX].height+ATLAS_LEFT_PANE_SECTION.TMARGIN*1.5; 
 
-	// Up button for angle input box.
 	ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX_UP = addArrayElement(Crd, Crd.last); 
-	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
-	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
-	Crd[Crd.last-1].width	= ATLAS_COUNTER_BOX.width; 
-	Crd[Crd.last-1].height	= (Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX].height/2)+3; 
-	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX].x+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX].width-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX_UP].width; 
-	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX].y-3; 
-
-	// Down button for Angle input box.
-	ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX_DN = addArrayElement(Crd, Crd.last); 
-	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
-	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
-	Crd[Crd.last-1].width	= ATLAS_COUNTER_BOX.width; 
-	Crd[Crd.last-1].height	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX_UP].height; 
-	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX].x+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX].width-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX_UP].width; 
-	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX].y+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX].height-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX_DN].height; 
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX_DN = addArrayElement(Crd, Crd.last); 	
+	setCoordInputUpDown(Crd[Crd.last-2], Crd[Crd.last-1], ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX,
+		left_screen, top_screen, left_screen, top_screen);
 
 	// Smooth label.
 	ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_LABEL = addArrayElement(Crd, Crd.last); 
@@ -341,23 +276,10 @@ function initAtlasSectionTerrainEditor()
 	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX].x; 
 	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX].y+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX].height+ATLAS_LEFT_PANE_SECTION.TMARGIN*1.5; 
 
-	// Up button for Smooth input box.
 	ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX_UP = addArrayElement(Crd, Crd.last); 
-	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
-	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
-	Crd[Crd.last-1].width	= ATLAS_COUNTER_BOX.width; 
-	Crd[Crd.last-1].height	= (Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX].height/2)+3; 
-	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX].x+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX].width-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX_UP].width; 
-	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX].y-3; 
-
-	// Down button for Smooth input box.
-	ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX_DN = addArrayElement(Crd, Crd.last); 
-	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
-	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
-	Crd[Crd.last-1].width	= ATLAS_COUNTER_BOX.width; 
-	Crd[Crd.last-1].height	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX_UP].height; 
-	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX].x+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX].width-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX_UP].width; 
-	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX].y+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX].height-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX_DN].height; 
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX_DN = addArrayElement(Crd, Crd.last); 	
+	setCoordInputUpDown(Crd[Crd.last-2], Crd[Crd.last-1], ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX,
+		left_screen, top_screen, left_screen, top_screen);
 
 	// Custom button.
 	ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_BUTTON_CUSTOM = addArrayElement(Crd, Crd.last); 
@@ -431,7 +353,7 @@ function initAtlasSectionTerrainEditor()
 	Crd[Crd.last-1].width	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_LABEL].width; 
 	Crd[Crd.last-1].height	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_LABEL].height; 
 	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_LABEL].x; 
-	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_BUTTON_PLACE].y+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_BUTTON_PLACE].height+ATLAS_LEFT_PANE_SECTION.TMARGIN*1.5; 
+	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_BUTTON_PLACE].y+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_BUTTON_PLACE].height+ATLAS_LEFT_PANE_SECTION.TMARGIN; 
 
 	// Depth input box.
 	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX = addArrayElement(Crd, Crd.last); 
@@ -442,23 +364,10 @@ function initAtlasSectionTerrainEditor()
 	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX].x; 
 	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_LABEL].y; 
 
-	// Up button for depth input box.
 	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX_UP = addArrayElement(Crd, Crd.last); 
-	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
-	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
-	Crd[Crd.last-1].width	= ATLAS_COUNTER_BOX.width; 
-	Crd[Crd.last-1].height	= (Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].height/2)+3; 
-	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].x+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].width-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX_UP].width; 
-	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].y-3; 
-
-	// Down button for depth input box.
-	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX_DN = addArrayElement(Crd, Crd.last); 
-	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
-	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
-	Crd[Crd.last-1].width	= ATLAS_COUNTER_BOX.width; 
-	Crd[Crd.last-1].height	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX_UP].height; 
-	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].x+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].width-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX_UP].width; 
-	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].y+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].height-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX_DN].height; 
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX_DN = addArrayElement(Crd, Crd.last); 	
+	setCoordInputUpDown(Crd[Crd.last-2], Crd[Crd.last-1], ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX,
+		left_screen, top_screen, left_screen, top_screen);
 
 	// Colour label.
 	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_LABEL = addArrayElement(Crd, Crd.last); 
@@ -474,34 +383,34 @@ function initAtlasSectionTerrainEditor()
 	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
 	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
 	Crd[Crd.last-1].width	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].width; 
-	Crd[Crd.last-1].height	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].height/3; 
+	Crd[Crd.last-1].height	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].height/1.5; 
 	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].x; 
-	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].y+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].height+ATLAS_LEFT_PANE_SECTION.TMARGIN; 
+	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].y+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].height+ATLAS_LEFT_PANE_SECTION.TMARGIN/1.2; 
 
 	// Colour input box.
 	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_G_INPUT_BOX = addArrayElement(Crd, Crd.last); 
 	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
 	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
 	Crd[Crd.last-1].width	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].width; 
-	Crd[Crd.last-1].height	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].height/3; 
+	Crd[Crd.last-1].height	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].height/1.5; 
 	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].x; 
-	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_R_INPUT_BOX].y+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_R_INPUT_BOX].height+ATLAS_LEFT_PANE_SECTION.TMARGIN; 
+	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_R_INPUT_BOX].y+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_R_INPUT_BOX].height+ATLAS_LEFT_PANE_SECTION.TMARGIN/1.2; 
 
 	// Colour input box.
 	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_B_INPUT_BOX = addArrayElement(Crd, Crd.last); 
 	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
 	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
 	Crd[Crd.last-1].width	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].width; 
-	Crd[Crd.last-1].height	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].height/3; 
+	Crd[Crd.last-1].height	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].height/1.5; 
 	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].x; 
-	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_G_INPUT_BOX].y+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_G_INPUT_BOX].height+ATLAS_LEFT_PANE_SECTION.TMARGIN; 
+	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_G_INPUT_BOX].y+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_G_INPUT_BOX].height+ATLAS_LEFT_PANE_SECTION.TMARGIN/1.2; 
 
 	// Colour tint box.
 	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_TINT_BOX = addArrayElement(Crd, Crd.last); 
 	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
 	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
 	Crd[Crd.last-1].width	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_LABEL].width/3; 
-	Crd[Crd.last-1].height	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_LABEL].height/2; 
+	Crd[Crd.last-1].height	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_TINT_BOX].width; 
 	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_LABEL].x+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_LABEL].width/5; 
 	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_LABEL].y+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_LABEL].height+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_LABEL].height/3; 
 
@@ -512,25 +421,12 @@ function initAtlasSectionTerrainEditor()
 	Crd[Crd.last-1].width	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].width; 
 	Crd[Crd.last-1].height	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].height; 
 	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].x; 
-	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_B_INPUT_BOX].y+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_B_INPUT_BOX].height+ATLAS_LEFT_PANE_SECTION.TMARGIN*1.5; 
+	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_B_INPUT_BOX].y+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_B_INPUT_BOX].height+ATLAS_LEFT_PANE_SECTION.TMARGIN; 
 
-	// Up button for Smooth input box.
 	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX_UP = addArrayElement(Crd, Crd.last); 
-	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
-	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
-	Crd[Crd.last-1].width	= ATLAS_COUNTER_BOX.width; 
-	Crd[Crd.last-1].height	= (Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX].height/2)+3; 
-	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX].x+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX].width-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX_UP].width; 
-	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX].y-3; 
-
-	// Down button for Smooth input box.
-	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX_DN = addArrayElement(Crd, Crd.last); 
-	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
-	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
-	Crd[Crd.last-1].width	= ATLAS_COUNTER_BOX.width; 
-	Crd[Crd.last-1].height	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX_UP].height; 
-	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX].x+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX].width-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX_UP].width; 
-	Crd[Crd.last-1].y	= Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX].y+Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX].height-Crd[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX_DN].height; 
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX_DN = addArrayElement(Crd, Crd.last); 	
+	setCoordInputUpDown(Crd[Crd.last-2], Crd[Crd.last-1], ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX,
+		left_screen, top_screen, left_screen, top_screen);
 
 	// Smooth label.
 	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_LABEL = addArrayElement(Crd, Crd.last); 

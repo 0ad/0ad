@@ -186,3 +186,29 @@ function setSizeArray(objectName, objectArrayElement, rleft, rtop, rright, rbott
 
 // ====================================================================
 
+function setCoordInputUpDown(setCoordObjectUp, setCoordObjectDn, parentInput, rleft, rtop, rright, rbottom)
+{
+	// Set the coordinates for the up/down button for an input box.
+
+	setCoordObjectUp.rleft = 		rleft;
+	setCoordObjectUp.rtop = 		rtop;
+	setCoordObjectUp.rright = 		rright;
+	setCoordObjectUp.rbottom = 		rbottom;
+
+	setCoordObjectDn.rleft = 		rleft;
+	setCoordObjectDn.rtop = 		rtop;
+	setCoordObjectDn.rright = 		rright;
+	setCoordObjectDn.rbottom = 		rbottom;
+
+	setCoordObjectUp.width =	 	(Crd[parentInput].width/5)+3;
+	setCoordObjectUp.height =		(Crd[parentInput].height/2)+3;
+	setCoordObjectUp.x =			Crd[parentInput].x+Crd[parentInput].width-setCoordObjectUp.width;
+	setCoordObjectUp.y = 			Crd[parentInput].y;
+
+	setCoordObjectDn.width =	 	setCoordObjectUp.width;
+	setCoordObjectDn.height =		setCoordObjectUp.height;
+	setCoordObjectDn.x =			setCoordObjectUp.x;
+	setCoordObjectDn.y = 			Crd[parentInput].y+Crd[parentInput].height-setCoordObjectDn.height+2;
+}
+
+// ====================================================================

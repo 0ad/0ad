@@ -139,7 +139,7 @@ function initAtlasSectionObjectEditor()
 	Crd[Crd.last-1].width	= 65; 
 	Crd[Crd.last-1].height	= 10; 
 	Crd[Crd.last-1].x	= Crd[ATLAS_BOTTOM_PANE_SECTION_OBJECT_ANIM_COMBO_BOX_LABEL].x+Crd[ATLAS_BOTTOM_PANE_SECTION_OBJECT_ANIM_COMBO_BOX_LABEL].width; 
-	Crd[Crd.last-1].y	= Crd[ATLAS_BOTTOM_PANE_SECTION_OBJECT_ANIM_COMBO_BOX_LABEL].y; 
+	Crd[Crd.last-1].y	= Crd[ATLAS_BOTTOM_PANE_SECTION_OBJECT_ANIM_COMBO_BOX_LABEL].y+5; 
 
 	// Animation Viewer.
 	ATLAS_BOTTOM_PANE_SECTION_OBJECT_ANIM_VIEWER = addArrayElement(Crd, Crd.last); 
