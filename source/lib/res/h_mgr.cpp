@@ -359,12 +359,8 @@ static Key2Idx key2idx;
 
 static Handle find_key(uintptr_t key, H_Type type, bool remove = false)
 {
-	It it = key2idx.find(key);
-	// not found in mapping
-	if(it == key2idx.end())
-		return -1;
-	It end = key2idx.upper_bound(key); // XXX this doesn't exist in gcc
-	for(; it != end; ++it)
+	std::pair<It, It> range = key2idx.equal_range(key);
+	for(It it = range.first; it != range.second; ++it)
 	{
 		i32 idx = it->second;
 		HDATA* hd = h_data(idx);
@@ -377,9 +373,9 @@ static Handle find_key(uintptr_t key, H_Type type, bool remove = false)
 		}
 	}
 
-	// key is in the mapping, but it's of the wrong type.
-	// this happens when called by h_alloc to check if
-	// e.g. a Tex object already exists; at that time,
+	// not found at all, or it's of the wrong type.
+	// the latter happens when called by h_alloc to check
+	// if e.g. a Tex object already exists; at that time,
 	// only the corresponding VFile exists.
 	return -1;
 }
