@@ -22,4 +22,13 @@
  		sprite2-pressed="sprite2-pressed"
 		sprite2-disabled="sprite2-disabled"
 	/>
+
+	<!-- Empty entity portrait. -->
+	<style name="portrait"
+		sprite="ui_portrait_default_64"
+		sprite-over="ui_portrait_default_64-lit"
+		sprite-disabled="ui_portrait_default_64-grey"
+		tooltip-style="session-tooltip" 
+	/>
+
 </styles>

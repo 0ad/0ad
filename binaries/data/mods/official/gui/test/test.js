@@ -1,1 +1,0 @@
-writeConsole("External JS file loaded");

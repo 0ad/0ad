@@ -4,17 +4,77 @@
 
 <objects>
 
-<!--
-==========================================
- - GLOBAL SCRIPTS -
-==========================================
--->
+	<!--
+	==========================================
+	 - SCRIPT DECLARATIONS -
+	==========================================
+	-->
 
+	<script file="gui/test/functions_utility_object.js"><![CDATA[
+	]]></script>
 
-<!--
-==========================================
- - GLOBAL OBJECTS -
-==========================================
--->
+	<script file="gui/test/functions_utility_animation.js"><![CDATA[
+	]]></script>
+
+	<script file="gui/test/functions_utility_debug.js"><![CDATA[
+	]]></script>
+
+	<script file="gui/test/functions_test.js"><![CDATA[
+	]]></script>
+
+	<script file="gui/test/functions_pregame.js"><![CDATA[
+	]]></script>
+
+	<script file="gui/test/functions_session.js"><![CDATA[
+		initSession();
+		writeConsole("Loaded GUI functions.");
+	]]></script>
+
+	<!--
+	==========================================
+	 - GLOBAL OBJECTS -
+	==========================================
+	-->
+
+	<object type="empty" name="always_on" hotkey="alwayson.toggle" size="0 0 100% 100%" z="1" hidden="false">
+		<action on="Press"><![CDATA[
+			GUIObjectToggle("always_on");
+		]]></action>
+
+		<object type="button" name="exit_button" sprite="exit_sprite" sprite-over="exit_sprite-over" size="100%-18 2 100%-2 18" z="1000" hidden="false">
+			<action on="Press"><![CDATA[
+				exit();
+			]]></action>
+
+			<!--  START temporary code
+			This code only applies to the main menu, I don't know how it'll behave ingame. It is temporary and should be removed as soon as we got proper tooltip support implemented. -->
+			<action on="MouseEnter"><![CDATA[
+				tooltipObject = getGUIObjectByName("pregame-mainmenu-tooltip");
+				tooltipObject.caption = "Tired of 0 A.D. ? Click here to leave and reenter the real world.";
+				GUIObjectUnhide("pregame-mainmenu-tooltip");
+			]]></action>
+			<action on="MouseLeave"><![CDATA[
+				GUIObjectHide("pregame-mainmenu-tooltip");
+			]]></action>
+			<!-- END temporary code -->
+		</object>
+
+		<!-- TEMPORARY END GAME BUTTON; REMOVE WHEN GAME MENU IMPLEMENTED; BUTTON IS OUTSIDE OF pregame_gui IN ORDER TO BE VISIBLE DURING GAME -->
+
+		<object type="button" name="End_Game_Button" sprite="sprite1" sprite-over="sprite1-over" sprite-pressed="sprite1-pressed" z="105" textcolor="0 0 0" text-align="center" text-valign="center" hidden="true">End Game
+			<action on="Load"><![CDATA[
+				AddSize(this.name,
+				"100%-150 100%-53 100%-30 100%-32", 
+				"100%-150 0%+32 100%-30 0%+53");
+			]]></action>
+			<action on="Press"><![CDATA[
+				endGame();
+				GUIObjectHide("session_gui");
+				GUIObjectHide("End_Game_Button");
+				GUIObjectUnhide("pregame_gui");
+			]]></action>
+		</object> 
+
+	</object>
 
 </objects>

@@ -10,4 +10,1129 @@
 
 <objects>
 
+        <object type="empty" name="session_gui" hotkey="flipgui.toggle" size="0 0 100% 100%" z="1" hidden="true">
+		<action on="Press"><![CDATA[
+			FlipGUI();
+		]]></action>
+		<action on="Tick"><![CDATA[
+			getObjectInfo();
+		]]></action>
+
+                <!-- GROUP: GROUP PANE -->
+		<object type="empty" name="session_group_pane" hotkey="grouppane.toggle" size="0 0 100% 100%" z="1" hidden="true">
+			<action on="Press"><![CDATA[
+				GUIObjectToggle("session_group_pane");
+			]]></action>
+
+			<object type="text" name="session_group_pane_bg" sprite="tooltip-background" z="60" ghost="true" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"0%+20 0% 100%-20 0%+127",
+					"0%+20 100%-127 100%-20 100%");
+				]]></action>
+			</object>
+			<!-- First row. -->
+			<object type="button" name="session_group_pane_portrait_1" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-16      32 50%+16      64", 
+					"50%-16 100%-64 50%+16 100%-32");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_1_bar" sprite="sprite1" z="60" hidden="false" >
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-16 66 50%+16 70",
+					"50%-16 100%-70 50%+16 100%-66");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_2" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-52 32 50%-20 64",
+					"50%-52 100%-64 50%-20 100%-32");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_2_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-52 66 50%-20 70",
+					"50%-52 100%-70 50%-20 100%-66");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_3" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+20 32 50%+52 64",
+					"50%+20 100%-64 50%+52 100%-32");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_3_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+20 66 50%+52 70",
+					"50%+20 100%-70 50%+52 100%-66");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_4" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-88 32 50%-56 64",
+					"50%-88 100%-64 50%-56 100%-32");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_4_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-88 66 50%-56 70",
+					"50%-88 100%-70 50%-56 100%-66");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_5" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+56 32 50%+88 64",
+					"50%+56 100%-64 50%+88 100%-32");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_5_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+56 66 50%+88 70",
+					"50%+56 100%-70 50%+88 100%-66");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_6" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-124 32 50%-92 64",
+					"50%-124 100%-64 50%-92 100%-32");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_6_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-124 66 50%-92 70",
+					"50%-124 100%-70 50%-92 100%-66");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_7" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+92 32 50%+124 64",
+					"50%+92 100%-64 50%+124 100%-32");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_7_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+92 66 50%+124 70",
+					"50%+92 100%-70 50%+124 100%-66");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_8" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-160 32 50%-128 64",
+					"50%-160 100%-64 50%-128 100%-32");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_8_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-160 66 50%-128 70",
+					"50%-160 100%-70 50%-128 100%-66");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_9" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+128 32 50%+160 64",
+					"50%+128 100%-64 50%+160 100%-32");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_9_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+128 66 50%+160 70",
+					"50%+128 100%-70 50%+160 100%-66");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_10" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-196 32 50%-164 64",
+					"50%-196 100%-64 50%-164 100%-32");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_10_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-196 66 50%-164 70",
+					"50%-196 100%-70 50%-164 100%-66");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_11" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+164 32 50%+192 64",
+					"50%+164 100%-64 50%+192 100%-32");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_11_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+164 66 50%+192 70",
+					"50%+164 100%-70 50%+192 100%-66");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_12" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-232 32 50%-200 64",
+					"50%-232 100%-64 50%-200 100%-32");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_12_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-232 66 50%-200 70",
+					"50%-232 100%-70 50%-200 100%-66");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_13" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+200 32 50%+232 64",
+					"50%+200 100%-64 50%+232 100%-32");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_13_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+200 66 50%+232 70",
+					"50%+200 100%-70 50%+232 100%-66");
+				]]></action>
+			</object>
+
+			<!-- Second row. -->
+			<object type="button" name="session_group_pane_portrait_14" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-16 78 50%+16 110",
+					"50%-16 100%-110 50%+16 100%-78");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_14_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-16 112 50%+16 116",
+					"50%-16 100%-116 50%+16 100%-112");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_15" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-52 78 50%-20 110",
+					"50%-52 100%-110 50%-20 100%-78");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_15_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-52 112 50%-20 116",
+					"50%-52 100%-116 50%-20 100%-112");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_16" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+20 78 50%+52 110",
+					"50%+20 100%-110 50%+52 100%-78");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_16_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+20 112 50%+52 116",
+					"50%+20 100%-116 50%+52 100%-112");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_17" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-88 78 50%-56 110",
+					"50%-88 100%-110 50%-56 100%-78");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_17_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-88 112 50%-56 116",
+					"50%-88 100%-116 50%-56 100%-112");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_18" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+56 78 50%+88 110",
+					"50%+56 100%-110 50%+88 100%-78");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_18_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+56 112 50%+88 116",
+					"50%+56 100%-116 50%+88 100%-112");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_19" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-124 78 50%-92 110",
+					"50%-124 100%-110 50%-92 100%-78");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_19_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-124 112 50%-92 116",
+					"50%-124 100%-116 50%-92 100%-112");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_20" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+92 78 50%+124 110",
+					"50%+92 100%-110 50%+124 100%-78");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_20_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+92 112 50%+124 116",
+					"50%+92 100%-116 50%+124 100%-112");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_21" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-160 78 50%-128 110",
+					"50%-160 100%-110 50%-128 100%-78");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_21_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-160 112 50%-128 116",
+					"50%-160 100%-116 50%-128 100%-112");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_22" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+128 78 50%+160 110",
+					"50%+128 100%-110 50%+160 100%-78");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_22_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+128 112 50%+160 116",
+					"50%+128 100%-116 50%+160 100%-112");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_23" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-196 78 50%-164 110",
+					"50%-196 100%-110 50%-164 100%-78");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_23_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-196 112 50%-164 116",
+					"50%-196 100%-116 50%-164 100%-112");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_24" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+164 78 50%+192 110",
+					"50%+164 100%-110 50%+192 100%-78");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_24_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+164 112 50%+192 116",
+					"50%+164 100%-116 50%+192 100%-112");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_25" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-232 78 50%-200 110",
+					"50%-232 100%-110 50%-200 100%-78");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_25_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-232 112 50%-200 116",
+					"50%-232 100%-116 50%-200 100%-112");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_26" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+200 78 50%+232 110",
+					"50%+200 100%-110 50%+232 100%-78");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_26_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+200 112 50%+232 116",
+					"50%+200 100%-116 50%+232 100%-112");
+				]]></action>
+			</object>
+
+			<!-- Third row. -->
+			<object type="button" name="session_group_pane_portrait_27" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-16 124 50%+16 156",
+					"50%-16 100%-156 50%+16 100%-124");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_27_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-16 158 50%+16 162",
+					"50%-16 100%-162 50%+16 100%-158");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_28" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-52 124 50%-20 156",
+					"50%-52 100%-156 50%-20 100%-124");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_28_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-52 158 50%-20 162",
+					"50%-52 100%-162 50%-20 100%-158");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_29" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+20 124 50%+52 156",
+					"50%+20 100%-156 50%+52 100%-124");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_29_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+20 158 50%+52 162",
+					"50%+20 100%-162 50%+52 100%-158");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_30" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-88 124 50%-56 156",
+					"50%-88 100%-156 50%-56 100%-124");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_30_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-88 158 50%-56 162",
+					"50%-88 100%-162 50%-56 100%-158");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_31" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+56 124 50%+88 156",
+					"50%+56 100%-156 50%+88 100%-124");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_31_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+56 158 50%+88 162",
+					"50%+56 100%-162 50%+88 100%-158");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_32" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-124 124 50%-92 156",
+					"50%-124 100%-156 50%-92 100%-124");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_32_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-124 158 50%-92 162",
+					"50%-124 100%-162 50%-92 100%-158");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_33" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+92 124 50%+124 156",
+					"50%+92 100%-156 50%+124 100%-124");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_33_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+92 158 50%+124 162",
+					"50%+92 100%-162 50%+124 100%-158");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_34" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-160 124 50%-128 156",
+					"50%-160 100%-156 50%-128 100%-124");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_34_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-160 158 50%-128 162",
+					"50%-160 100%-162 50%-128 100%-158");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_35" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+128 124 50%+160 156",
+					"50%+128 100%-156 50%+160 100%-124");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_35_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+128 158 50%+160 162",
+					"50%+128 100%-162 50%+160 100%-158");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_36" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-196 124 50%-164 156",
+					"50%-196 100%-156 50%-164 100%-124");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_36_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-196 158 50%-164 162",
+					"50%-196 100%-162 50%-164 100%-158");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_37" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+164 124 50%+192 156",
+					"50%+164 100%-156 50%+192 100%-124");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_37_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+164 158 50%+192 162",
+					"50%+164 100%-162 50%+192 100%-158");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_38" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-232 124 50%-200 156",
+					"50%-232 100%-156 50%-200 100%-124");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_38_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-232 158 50%-200 162",
+					"50%-232 100%-162 50%-200 100%-158");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_39" style="portrait" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+200 124 50%+232 156",
+					"50%+200 100%-156 50%+232 100%-124");
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_39_bar" sprite="sprite1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+200 158 50%+232 162",
+					"50%+200 100%-162 50%+232 100%-158");
+				]]></action>
+			</object>
+		</object>
+
+                <!-- GROUP: TOP BAR -->
+                <object type="empty" name="session_top_bar" hotkey="resourcepool.toggle" size="0 0 100% 100%" z="1" hidden="false">
+			<action on="Press"><![CDATA[
+				GUIObjectToggle("session_top_bar");
+			]]></action>
+
+                        <!-- FOOD icon/background/text-->
+                        <object type="text" name="resource_food" sprite="resource_food" z="70" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-191 4       100% 100%", 
+					"50%-191 100%-24 100% 100%");
+				]]></action>
+			</object>
+                        <object type="text" name="resource_food_counter" sprite="resource_counter" z="70" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-171 5 100% 100%", 
+					"50%-171 100%-25 100% 100%");
+				]]></action>
+			</object>
+                        <object type="text" name="resource_food_text" font="prospero16" textcolor="255 255 255" z="70" hidden="false">
+                                <action on="Load"><![CDATA[
+                                        this.caption = "123,456";
+					AddSize(this.name,
+					"50%-173 0%-3 100% 0%+20", 
+					"50%-173 100%-30 100% 100%");
+                                ]]></action>
+                        </object>
+
+                        <!-- WOOD -->
+                        <!-- icon/background/text -->
+                        <object type="text" name="resource_wood" sprite="resource_wood" z="70" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-111 4       100% 100%", 
+					"50%-111 100%-24 100% 100%");
+				]]></action>
+			</object>
+                        <object type="text" name="resource_wood_counter" sprite="resource_counter" z="70" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-91 5 100% 100%", 
+					"50%-91 100%-25 100% 100%");
+				]]></action>
+			</object>
+                        <object type="text" name="resource_wood_text" font="prospero16" textcolor="255 255 255" z="70" hidden="false">
+                                <action on="Load"><![CDATA[
+                                        this.caption = "789,012";
+					AddSize(this.name,
+					"50%-93 0%-3 100% 0%+20", 
+					"50%-93 100%-30 100% 100%");
+                                ]]></action>
+                        </object>
+
+                        <!-- STONE -->
+                        <!-- icon/background/text -->
+                        <object type="text" name="resource_stone" sprite="resource_stone" z="70" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-31 4       100% 100%", 
+					"50%-31 100%-24 100% 100%");
+				]]></action>
+			</object>
+                        <object type="text" name="resource_stone_counter" sprite="resource_counter" z="70" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%-11 5 100% 100%", 
+					"50%-11 100%-25 100% 100%");
+				]]></action>
+			</object>
+                        <object type="text" name="resource_stone_text" font="prospero16" textcolor="255 255 255" z="70" hidden="false">
+                                <action on="Load"><![CDATA[
+                                        this.caption = "345,678";
+					AddSize(this.name,
+					"50%-13 0%-3 100% 0%+20", 
+					"50%-13 100%-30 100% 100%");
+                                ]]></action>
+                        </object>
+
+                        <!-- ORE -->
+                        <!-- icon/background/text -->
+                        <object type="text" name="resource_ore" sprite="resource_ore" z="70" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+49 4       100% 100%", 
+					"50%+49 100%-24 100% 100%");
+				]]></action>
+			</object>
+                        <object type="text" name="resource_ore_counter" sprite="resource_counter" z="70" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+69 5 100% 100%", 
+					"50%+69 100%-25 100% 100%");
+				]]></action>
+			</object>
+                        <object type="text" name="resource_ore_text" font="prospero16" textcolor="255 255 255" z="70" hidden="false">
+                                <action on="Load"><![CDATA[
+                                        this.caption = "910,123";
+					AddSize(this.name,
+					"50%+67 0%-3 100% 0%+20", 
+					"50%+67 100%-30 100% 100%");
+                                ]]></action>
+                        </object>
+
+                        <!-- POPULATION -->
+                        <!-- icon/background/text -->
+                        <object type="text" name="resource_population" sprite="resource_population" z="70" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+129 4       100% 100%", 
+					"50%+129 100%-24 100% 100%");
+				]]></action>
+			</object>
+                        <object type="text" name="resource_population_counter" sprite="resource_counter_long" z="70" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"50%+149 5 100% 100%", 
+					"50%+149 100%-25 100% 100%");
+				]]></action>
+			</object>
+                        <object type="text" name="resource_population_text" font="prospero16" textcolor="255 255 255" z="70" hidden="false">
+                                <action on="Load"><![CDATA[
+                                        this.caption = "100/150";
+					AddSize(this.name,
+					"50%+147 0%-3 100% 0%+20", 
+					"50%+147 100%-30 100% 100%");
+                                ]]></action>
+                        </object>
+
+                <!-- / GROUP: TOP BAR -->
+                </object>
+
+                <!-- GROUP: MAP ORB -->
+                <object type="empty" name="session_map_orb" hotkey="maporb.toggle" size="0 0 100% 100%" z="1" hidden="false">
+			<action on="Press"><![CDATA[
+				GUIObjectToggle("session_map_orb");
+			]]></action>
+
+			<object type="text" name="session_panel_minimap_bg" sprite="session_panel_minimap_bg" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"100%-174 2 100% 100%", 
+					"100%-174 100%-174 100% 100%");
+				]]></action>
+			</object>
+
+			<object type="minimap" name="session_panel_minimap" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"100%-176 0 100% 176", 
+					"100%-176 100%-176 100% 100%");
+				]]></action>
+			</object>
+
+                        <object type="button" name="session_panel_minimap_segleft1" sprite="session_panel_minimap_segleft1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"100%-206 2 100% 100%", 
+					"100%-206 100%-175 100% 100%");
+				]]></action>
+			</object>
+                        <object type="button" name="session_panel_minimap_segleft2" sprite="session_panel_minimap_segleft2" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"100%-214 45 100% 100%", 
+					"100%-214 100%-131 100% 100%");
+				]]></action>
+			</object>
+                        <object type="button" name="session_panel_minimap_segleft3" sprite="session_panel_minimap_segleft3" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"100%-214 86 100% 100%", 
+					"100%-214 100%-90 100% 100%");
+				]]></action>
+			</object>
+                        <object type="button" name="session_panel_minimap_segleft4" sprite="session_panel_minimap_segleft4" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"100%-206 127 100% 100%", 
+					"100%-206 100%-48 100% 100%");
+				]]></action>
+			</object>
+
+                        <object type="button" name="session_panel_minimap_segbottom4" sprite="session_panel_minimap_segbottom4" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"100%-46 173 100% 100%", 
+					"100%-46 100%-205 100% 100%");
+				]]></action>
+			</object>
+                        <object type="button" name="session_panel_minimap_segbottom3" sprite="session_panel_minimap_segbottom3" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"100%-88 173 100% 100%", 
+					"100%-88 100%-213 100% 100%");
+				]]></action>
+			</object>
+                        <object type="button" name="session_panel_minimap_segbottom2" sprite="session_panel_minimap_segbottom2" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"100%-130 173 100% 100%", 
+					"100%-130 100%-213 100% 100%");
+				]]></action>
+			</object>
+                        <object type="button" name="session_panel_minimap_segbottom1" sprite="session_panel_minimap_segbottom1" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSize(this.name,
+					"100%-174 173 100% 100%", 
+					"100%-174 100%-205 100% 100%");
+				]]></action>
+			</object>
+
+                <!-- / GROUP: MAP ORB -->
+                </object>
+
+                <!-- GROUP: STATUS ORB -->
+                <object type="empty" name="session_status_orb" hotkey="statusorb.toggle" size="0 0 100% 100%" z="1" hidden="true">
+			<action on="Press"><![CDATA[
+				GUIObjectToggle("session_status_orb");
+			]]></action>
+
+			<!-- STATUS ORB BACKGROUND -->
+                        <object type="text" name="session_panel_status_bg" sprite="session_panel_status_bg-top" z="60" hidden="false">
+			        <action on="Load"><![CDATA[
+					AddSize(this.name,
+					"0% 0% 0%+184 0%+184", 
+					"0% 100%-184 0%+184 100%");
+				]]></action>
+			</object>
+			<!-- SELECTED UNIT LARGE PORTRAIT -->
+			<object type="button" name="session_panel_status_portrait" style="portrait" z="70" hidden="false">
+			        <action on="Load"><![CDATA[
+					AddSize(this.name,
+					"0%+55 0%+55 119 119", 
+					"0%+55 100%-129 119 100%-65");
+					setPortrait(this.name, "unit_dude");
+				]]></action>
+			</object>
+
+			<!-- STATUS ORB STATISTICS AND ICONS (Experience, Hitpoints, Supply, Garrison) -->
+                        <object type="button" name="session_panel_status_icon_exp" sprite="statistic_rank3" textcolor="255 255 0" text-align="center" text-valign="bottom" z="60" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_panel_status_icon_exp",
+					"0%+75 0%+10 0%+90 0%+47", 
+					"0%+75 100%-172 0%+90 100%-135");
+                                        getGUIObjectByName("session_panel_status_icon_exp").caption = "200/200";
+                                ]]></action>
+                        </object>
+                        <object type="button" name="session_panel_status_icon_hp" sprite="statistic_hp" textcolor="0 255 0" text-align="center" text-valign="bottom" z="60" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_panel_status_icon_hp",
+					"0%+75 0%+125 0%+90 0%+162", 
+					"0%+75 100%-57 0%+90 100%-20");
+                                        getGUIObjectByName("session_panel_status_icon_hp").caption = "325/1000";
+                                ]]></action>
+                        </object>
+                        <object type="button" name="session_panel_status_icon_supply" sprite="resource_food" textcolor="252 148 78" text-align="center" text-valign="center" z="60" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_panel_status_icon_supply",
+					"0%+135 0%+65 0%+150 0%+130", 
+					"0%+135 100%-110 0%+150 100%-45");
+                                        getGUIObjectByName("session_panel_status_icon_supply").caption = "1576";
+                                ]]></action>
+                        </object>
+                        <object type="button" name="session_panel_status_icon_garrison" sprite="statistic_garrison" textcolor="100 100 255" text-align="center" text-valign="center" z="60" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_panel_status_icon_garrison",
+					"0%+20 0%+65 0%+35 0%+130", 
+					"0%+20 100%-110 0%+35 100%-45");
+                                        getGUIObjectByName("session_panel_status_icon_garrison").caption = "23/30";
+                                ]]></action>
+                        </object>
+
+			<!-- PRIMARY COMMAND BUTTONS (arcs the Status Orb) -->
+			<object type="button" name="session_panel_status_command_pri_1" style="portrait" z="60" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_panel_status_command_pri_1",
+					"0 160 32 193", 
+					"0 100%-193 32 100%-160");
+                                ]]></action>
+			</object>
+			<object type="button" name="session_panel_status_command_pri_2" style="portrait" z="60" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_panel_status_command_pri_2",
+					"30 175 62 207", 
+					"30 100%-207 62 100%-175");
+                                ]]></action>
+			</object>
+
+			<object type="button" name="session_panel_status_command_pri_3" style="portrait" z="60" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_panel_status_command_pri_3",
+					"63 184 95 216", 
+					"63 100%-216 95 100%-184");
+                                ]]></action>
+			</object>
+
+			<object type="button" name="session_panel_status_command_pri_4" style="portrait" z="60" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_panel_status_command_pri_4",
+					"97 180 129 212", 
+					"97 100%-212 129 100%-180");
+                                ]]></action>
+			</object>
+
+			<object type="button" name="session_panel_status_command_pri_5" style="portrait" z="60" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_panel_status_command_pri_5",
+					"128 168 160 200", 
+					"128 100%-200 160 100%-168");
+                                ]]></action>
+			</object>
+
+			<object type="button" name="session_panel_status_command_pri_6" style="portrait" z="60" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_panel_status_command_pri_6",
+					"154 148 186 180", 
+					"154 100%-180 186 100%-148");
+                                ]]></action>
+			</object>
+
+			<object type="button" name="session_panel_status_command_pri_7" style="portrait" z="60" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_panel_status_command_pri_7",
+					"172 121 204 153", 
+					"172 100%-153 204 100%-121");
+                                ]]></action>
+			</object>
+
+			<object type="button" name="session_panel_status_command_pri_8" style="portrait" z="60" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_panel_status_command_pri_8",
+					"184 90 216 122", 
+					"184 100%-122 216 100%-90");
+                                ]]></action>
+			</object>
+
+			<object type="button" name="session_panel_status_command_pri_9" style="portrait" z="60" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_panel_status_command_pri_9",
+					"183 57 215 89", 
+					"183 100%-89 215 100%-57");
+                                ]]></action>
+			</object>
+
+			<object type="button" name="session_panel_status_command_pri_10" style="portrait" z="60" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_panel_status_command_pri_10",
+					"171 26 203 58", 
+					"171 100%-58 203 100%-26");
+                                ]]></action>
+			</object>
+
+			<object type="button" name="session_panel_status_command_pri_11" style="portrait" z="60" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_panel_status_command_pri_11",
+					"150 0 182 32", 
+					"150 100%-32 182 100%");
+                                ]]></action>
+			</object>
+
+			<!-- SECONDARY COMMAND BUTTONS (arcs the Primary Command Buttons) -->
+
+                <!-- / GROUP: STATUS ORB -->
+                </object>
+
+                <!-- GROUP: TEAM TRAY -->
+                <object type="empty" name="session_team_tray" hotkey="teamtray.toggle" size="0 0 100% 100%" z="60" hidden="false">
+			<action on="Press"><![CDATA[
+				GUIObjectToggle("session_team_tray");
+			]]></action>
+
+			<object type="button" name="session_team_tray_1" style="portrait" textcolor="255 255 255" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_team_tray_1",
+					"100%-32 200 100% 232", 
+					"100%-32 100%-488 100% 100%-456");
+                                ]]></action>
+			</object>
+			<object type="text" name="session_team_tray_1_num" textcolor="255 255 255" ghost="true" hidden="false">1
+                                <action on="Load"><![CDATA[
+					AddSize("session_team_tray_1_num",
+					"100%-20 200 100% 220", 
+					"100%-20 100%-488 100% 100%-468");
+                                ]]></action>
+			</object>
+
+			<object type="button" name="session_team_tray_2" style="portrait" textcolor="255 255 255" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_team_tray_2",
+					"100%-32 232 100% 264", 
+					"100%-32 100%-456 100% 100%-424");
+                                ]]></action>
+			</object>
+			<object type="text" name="session_team_tray_2_num" textcolor="255 255 255" ghost="true" hidden="false">2
+                                <action on="Load"><![CDATA[
+					AddSize("session_team_tray_2_num",
+					"100%-20 232 100% 252", 
+					"100%-20 100%-456 100% 100%-436");
+                                ]]></action>
+			</object>
+
+			<object type="button" name="session_team_tray_3" style="portrait" textcolor="255 255 255" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_team_tray_3",
+					"100%-32 264 100% 296", 
+					"100%-32 100%-424 100% 100%-392");
+                                ]]></action>
+			</object>
+			<object type="text" name="session_team_tray_3_num" textcolor="255 255 255" ghost="true" hidden="false">3
+                                <action on="Load"><![CDATA[
+					AddSize("session_team_tray_3_num",
+					"100%-20 264 100% 284", 
+					"100%-20 100%-424 100% 100%-304");
+                                ]]></action>
+			</object>
+
+			<object type="button" name="session_team_tray_4" style="portrait" textcolor="255 255 255" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_team_tray_4",
+					"100%-32 296 100% 328", 
+					"100%-32 100%-392 100% 100%-360");
+                                ]]></action>
+			</object>
+			<object type="text" name="session_team_tray_4_num" textcolor="255 255 255" ghost="true" hidden="false">4
+                                <action on="Load"><![CDATA[
+					AddSize("session_team_tray_4_num",
+					"100%-20 296 100% 316", 
+					"100%-20 100%-392 100% 100%-372");
+                                ]]></action>
+			</object>
+
+			<object type="button" name="session_team_tray_5" style="portrait" textcolor="255 255 255" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_team_tray_5",
+					"100%-32 328 100% 360", 
+					"100%-32 100%-360 100% 100%-328");
+                                ]]></action>
+			</object>
+			<object type="text" name="session_team_tray_5_num" textcolor="255 255 255" ghost="true" hidden="false">5
+                                <action on="Load"><![CDATA[
+					AddSize("session_team_tray_5_num",
+					"100%-20 328 100% 348", 
+					"100%-20 100%-360 100% 100%-340");
+                                ]]></action>
+			</object>
+
+			<object type="button" name="session_team_tray_6" style="portrait" textcolor="255 255 255" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_team_tray_6",
+					"100%-32 360 100% 392", 
+					"100%-32 100%-328 100% 100%-296");
+                                ]]></action>
+			</object>
+			<object type="text" name="session_team_tray_6_num" textcolor="255 255 255" ghost="true" hidden="false">6
+                                <action on="Load"><![CDATA[
+					AddSize("session_team_tray_6_num",
+					"100%-20 360 100% 380", 
+					"100%-20 100%-328 100% 100%-308");
+                                ]]></action>
+			</object>
+
+			<object type="button" name="session_team_tray_7" style="portrait" textcolor="255 255 255" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_team_tray_7",
+					"100%-32 392 100% 424", 
+					"100%-32 100%-296 100% 100%-264");
+                                ]]></action>
+			</object>
+			<object type="text" name="session_team_tray_7_num" textcolor="255 255 255" ghost="true" hidden="false">7
+                                <action on="Load"><![CDATA[
+					AddSize("session_team_tray_7_num",
+					"100%-20 392 100% 412", 
+					"100%-20 100%-296 100% 100%-276");
+                                ]]></action>
+			</object>
+
+			<object type="button" name="session_team_tray_8" style="portrait" textcolor="255 255 255" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_team_tray_8",
+					"100%-32 424 100% 456", 
+					"100%-32 100%-264 100% 100%-232");
+                                ]]></action>
+			</object>
+			<object type="text" name="session_team_tray_8_num" textcolor="255 255 255" ghost="true" hidden="false">8
+                                <action on="Load"><![CDATA[
+					AddSize("session_team_tray_8_num",
+					"100%-20 424 100% 444", 
+					"100%-20 100%-264 100% 100%-244");
+                                ]]></action>
+			</object>
+
+			<object type="button" name="session_team_tray_9" style="portrait" textcolor="255 255 255" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSize("session_team_tray_9",
+					"100%-32 456 100% 488", 
+					"100%-32 100%-232 100% 100%-200");
+                                ]]></action>
+			</object>
+			<object type="text" name="session_team_tray_9_num" textcolor="255 255 255" ghost="true" hidden="false">9
+                                <action on="Load"><![CDATA[
+					AddSize("session_team_tray_9_num",
+					"100%-20 456 100% 476", 
+					"100%-20 100%-232 100% 100%-212");
+                                ]]></action>
+			</object>
+
+                <!-- / GROUP: TRAY -->
+                </object>
+
+                <!--
+                ==========================================
+                - HIDDEN (HOTKEY ONLY) -
+                ==========================================
+                -->
+
+
+
+                <!--
+                ==========================================
+                - DEBUG -
+                ==========================================
+                -->
+
+                <!-- FPS COUNTER -->
+                <object type="text" name="FPS_Counter" z="100" hotkey="fps.toggle" textcolor="200 200 0" font="verdana16" hidden="false">
+                        <action on="Load"><![CDATA[
+				AddSize("FPS_Counter",
+				"18 100%-35 200 100%", 
+				"18 0%      200 0%+35");
+                                setInterval(UpdateFPSCounter, 50);
+                        ]]></action>
+			<action on="Press"><![CDATA[
+				GUIObjectToggle("FPS_Counter");
+			]]></action>
+                </object>
+
+                <!--
+                ==========================================
+                - TEST -
+                ==========================================
+                -->
+
+	<!-- / SESSION GUI -->
+        </object>
+
 </objects>
+
+
+
+

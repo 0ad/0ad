@@ -14,7 +14,7 @@
 		sprite-bar-vertical-pressed="null"
 		sprite-button-bottom-pressed="sprite2-pressed"
 		sprite-button-top-pressed="sprite2-pressed"
-		/>
+	/>
 
 	<scrollbar name="sb2" width="37" minimum-bar-size="5"
 		sprite-button-top="scroll"
@@ -27,6 +27,19 @@
 		sprite-bar-vertical-pressed="null"
 		sprite-button-bottom-pressed="scroll"
 		sprite-button-top-pressed="scroll"
-		/>
+	/>
+
 	<icon name="smiley" texture="test2" size="16 16" />
+
+<!-- Commented out until tooltips are implemented as documented.
+	<tooltip name="session_tooltip"
+		maxwidth="300"
+		pos="10 10"
+		time="5"
+		sprite="tooltip-background"
+		font="prospero16"
+		textcolor="255 255 255"
+	/>
+-->
+
 </setup>
