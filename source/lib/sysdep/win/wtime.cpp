@@ -588,7 +588,7 @@ static void* calibration_thread(void* data)
 }
 
 
-static inline int init_calibration_thread_lk()
+static inline int init_calibration_thread()
 {
 	sem_init(&exit_flag, 0, 0);
 	pthread_create(&thread, 0, calibration_thread, 0);
@@ -596,7 +596,7 @@ static inline int init_calibration_thread_lk()
 }
 
 
-static inline int shutdown_calibration_thread_lk()
+static inline int shutdown_calibration_thread()
 {
 	sem_post(&exit_flag);
 	pthread_join(thread, 0);
@@ -609,24 +609,21 @@ static inline int shutdown_calibration_thread_lk()
 
 static int hrt_init()
 {
-lock();
-
+	// no lock needed - calibration thread hasn't yet been created
 	reset_impl_lk();
-	int err = init_calibration_thread_lk();
-
-unlock();
-	return err;
+	return init_calibration_thread();
 }
 
 
 static int hrt_shutdown()
 {
-lock();
-
-	int err = shutdown_calibration_thread_lk();
-
-unlock();
-	return err;
+	// don't take a lock here! race condition:
+	// 1) calibration_thread is about to call clock_gettime
+	// 2) we take the lock and wait for the thread to exit
+	// 3) thread's clock_gettime waits on the lock we're holding => deadlock
+	//
+	// the calibration thread protects itself anyway, so nothing breaks.
+	return shutdown_calibration_thread();
 }
 
 
