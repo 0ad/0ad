@@ -720,9 +720,14 @@
 		</object>
 
 		<!-- LT: LOGO -->
-		<object type="text" name="atlas_mainborder_lt_corner" sprite="atlas_mainborder_lt_corner" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]0 A.D. Logo[font=tahoma10]\nMmm, nothing like the smell of blatant self-promotion in the morning ..." hidden="false">
+		<object type="button" name="atlas_mainborder_lt_corner" sprite="atlas_mainborder_lt_corner" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]0 A.D. Logo[font=tahoma10]\nMmm, nothing like the smell of blatant self-promotion in the morning ... Oh, you can click this to return to the Main Menu too." hidden="false">
 			<action on="Load"><![CDATA[
 				setSizeArray("atlas_mainborder_lt_corner", atlasCoord[ATLAS_MAINBORDER_LT_CORNER], left_screen, top_screen, left_screen, top_screen);
+			]]></action>
+			<action on="Press"><![CDATA[
+				// Jason asked for an exit button to be put here, until we're able to exit via the drop-down File menu.
+				GUIObjectUnhide("pregame_gui");
+				GUIObjectHide("atlas_gui");
 			]]></action>
 		</object>
 
