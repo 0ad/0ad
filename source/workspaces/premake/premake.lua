@@ -21,7 +21,7 @@ package.config["Release"].target = "ps"
 package.files = {
 	-- ps/
         { sourcesfromdirs("../../ps") },
-	-- ps/Network/
+        { sourcesfromdirs("../../ps/scripting") },
 	{ sourcesfromdirs("../../ps/Network") },
 	-- simulation/
 	{ sourcesfromdirs("../../simulation") },
@@ -64,7 +64,8 @@ package.includepaths = {
 	"../../terrain", 
 	"../.." }
 
-package.libpaths = {}
+package.libpaths = {
+	}
 
 -- Platform Specifics
 if (OS == "windows") then
