@@ -187,6 +187,74 @@
 
         <!--
         ==========================================
+        GENERIC ICONS
+        ==========================================
+        -->
+
+        <sprite name="0ad_icon">
+                <image texture="global/ui_gen_0ad-icon-black.png" size="0 0 100% 100%" texture-size="0 0 16 16" />
+        </sprite>
+
+        <sprite name="bullet_icon">
+                <image texture="global/ui_gen_bullet-icon.png" size="0 0 100% 100%" texture-size="0 0 8 8" />
+        </sprite>
+
+        <sprite name="infinity_icon">
+                <image texture="global/ui_gen_infinity-icon.png" size="0 0 100% 100%" texture-size="0 0 16 16" />
+        </sprite>
+
+        <!--
+        ==========================================
+        MESSAGE BOX
+        ==========================================
+        -->
+
+        <sprite name="message_box-gen-background">
+                <image texture="global/ui_gen_background_paper.png" size="0 0 100% 100%" texture-size="0 0 128 128" />
+        </sprite>
+
+        <sprite name="message_box-corner">
+                <image texture="global/ui_gen_border-corner-15px.png" size="0 0 100% 100%" real-texture-placement="0 0 15 15" />
+        </sprite>
+
+        <sprite name="message_box-border-top">
+                <image texture="global/ui_gen_border-top-20px.png" size="0 0 100% 100%" texture-size="0 0 128 32" />
+        </sprite>
+
+        <sprite name="message_box-border-left">
+                <image texture="global/ui_gen_border-left-20px.png" size="0 0 100% 100%" texture-size="0 0 32 128" />
+        </sprite>
+
+        <sprite name="message_box-border-right">
+                <image texture="global/ui_gen_border-right-20px.png" size="0 0 100% 100%" texture-size="0 0 32 128" />
+        </sprite>
+
+        <sprite name="message_box-border-bottom">
+                <image texture="global/ui_gen_border-bottom-20px.png" size="0 0 100% 100%" texture-size="0 0 128 32" />
+        </sprite>
+
+        <sprite name="message_box-titlebar-left">
+                <image texture="global/ui_gen_titlebar-left.png" size="0 0 100% 100%" real-texture-placement="0 0 64 32" />
+        </sprite>
+
+        <sprite name="message_box-titlebar-right">
+                <image texture="global/ui_gen_titlebar-right.png" size="0 0 100% 100%" real-texture-placement="0 0 64 32" />
+        </sprite>
+
+        <sprite name="message_box-titlebar-middle">
+                <image texture="global/ui_gen_titlebar-middle.png" size="0 0 100% 100%" texture-size="0 0 64 32" />
+        </sprite>
+        
+        <sprite name="message_box-button-normal">
+                <image texture="global/ui_gen_button-wood.png" size="0 0 100% 100%" real-texture-placement="0 0 160 31" />
+        </sprite>
+        
+        <sprite name="message_box-button-over">
+                <image texture="global/ui_gen_button-wood.png" size="0 0 100% 100%" real-texture-placement="0 32 160 64" />
+        </sprite>
+
+        <!--
+        ==========================================
         PREGAME GUI
         ==========================================
         -->
@@ -232,6 +300,12 @@
         <sprite name="black_bkg">
                 <image texture="black_bkg_16x16.png" texture-size="0 0 16 16" size="0 0 100% 100%" />
         </sprite>
+
+        <!--
+        ==========================================
+        SESSION GUI
+        ==========================================
+        -->
 
                 <!--
                 ==========================================
@@ -603,6 +677,147 @@
 
         <!--
         ==========================================
+        EDITOR GUI - BACKCOLOR SPRITES
+        ==========================================
+        -->
+
+	<sprite name="atlas_window">
+		<!-- Starting with top left corner continuing in a clockwise manner -->
+		<!-- Top border -->
+		<image backcolor="129 134 142" size="0%+0 0%+0 100%-1 0%+0" />
+		<image backcolor="255 255 255" size="0%+1 0%+1 100%-1 0%+1" />
+		<image backcolor="80 97 127" size="2 0%+2 100%-2 0%+2" />
+		<!-- Right border -->
+		<image backcolor="80 97 127" size="100% 0%+0 100% 100%" />
+		<image backcolor="255 255 255" size="100%-1 0%+1 100%-1 100%-1" />
+		<image backcolor="129 134 142" size="100%-2 0%+3 100%-2 100%-2" />
+		<!-- Bottom border -->
+		<image backcolor="80 97 127" size="0%+1 100% 100% 100%" />
+		<image backcolor="255 255 255" size="0%+1 100%-1 100%-1 100%-1" />
+		<image backcolor="129 134 142" size="0%+2 100%-2 100%-2 100%-2" />
+		<!-- Left border -->
+		<image backcolor="129 134 142" size="0%+0 0%+0 0%+0 100%" />
+		<image backcolor="255 255 255" size="0%+1 0%+1 0%+1 100%-1" />
+		<image backcolor="80 97 127" size="0%+2 0%+2 0%+2 100%-3" />
+		<!-- middle -->
+		<image backcolor="184 190 201" size="3 3 100%-3 100%-3"/>
+	</sprite>
+
+	<sprite name="atlas_input_box">
+		<!-- Starting with top left corner continuing in a clockwise manner -->
+		<!-- Top border -->
+		<image backcolor="109 122 146" size="0 0 100%-1 0" />
+		<image backcolor="0 0 0" size="0 1 100%-2 1" />
+		<!-- Right border -->
+		<image backcolor="220 223 228" size="100% 0 100% 100%" />
+		<image backcolor="184 190 201" size="100%-1 1 100%-1 100%-1" />
+		<!-- Bottom border -->
+		<image backcolor="220 223 228" size="0 100% 100% 100%" />
+		<image backcolor="184 190 201" size="1 100%-1 100%-1 100%-1" />
+		<!-- Left border -->
+		<image backcolor="109 122 146" size="0 0 0 100%-1" />
+		<image backcolor="0 0 0" size="1 1 1 100%-2" />
+		<!-- middle -->
+		<image backcolor="220 223 228" size="2 2 100%-2 100%-2"/>
+	</sprite>
+
+	<sprite name="atlas_emboss">
+		<!-- Starting with top left corner continuing in a clockwise manner -->
+		<!-- Top border -->
+		<image backcolor="220 223 228" size="0 0 100% 0" />
+		<!-- Right border -->
+		<image backcolor="109 122 146" size="100% 1 100% 100%" />
+		<!-- Bottom border -->
+		<image backcolor="109 122 146" size="1 100% 100% 100%" />
+		<!-- Left border -->
+		<image backcolor="220 223 228" size="0 0 0 100%" />
+		<!-- middle -->
+		<image backcolor="184 190 201" size="1 1 100%-1 100%-1"/>
+	</sprite>
+
+	<sprite name="atlas_indent">
+		<!-- Starting with top left corner continuing in a clockwise manner -->
+		<!-- Top border -->
+		<image backcolor="109 122 146" size="0 0 100%-1 0" />
+		<!-- Right border -->
+		<image backcolor="220 223 228" size="100% 0 100% 100%" />
+		<!-- Bottom border -->
+		<image backcolor="220 223 228" size="0 100% 100% 100%" />
+		<!-- Left border -->
+		<image backcolor="109 122 146" size="0 0 0 100%-1" />
+		<!-- middle -->
+		<image backcolor="220 223 228" size="1 1 100%-1 100%-1"/>
+	</sprite>
+
+	<sprite name="atlas_hline">
+		<image backcolor="109 122 146" size="0% 0 100% 0" />
+		<image backcolor="220 223 228" size="0% 1 100% 1" />
+	</sprite>
+
+	<sprite name="atlas_vline">
+		<image backcolor="109 122 146" size="0 0 0 100%" />
+		<image backcolor="220 223 228" size="1 0 1 100%" />
+	</sprite>
+
+	<sprite name="atlas_toolbar_bkg">
+		<image backcolor="184 190 201" size="0 0 100% 100%-3" />
+		<image backcolor="109 122 146" size="0 100%-2 100% 100%-2" />
+		<image backcolor="220 223 228" size="0 100%-1 100% 100%-1" />
+		<image backcolor="147 152 161" size="0 100% 100% 100%" />
+	</sprite>
+
+	<sprite name="atlas_menubar_bkg">
+		<image backcolor="184 190 201" size="0 0 100% 100%-1" />
+		<image backcolor="0 0 0" size="0 100% 100% 100%" />
+	</sprite>
+
+	<sprite name="atlas_border">
+		<!-- Starting with top left corner continuing in a clockwise manner -->
+		<!-- Top border -->
+		<image backcolor="109 122 146" size="1 0 100%-1 0" />
+		<image backcolor="220 223 228" size="1 1 100%-3 1" />
+		<image backcolor="184 190 201" size="100%-2 1 100%-2 1" />
+		<!-- Right border -->
+		<image backcolor="220 223 228" size="100% 0 100% 100%" />
+		<image backcolor="109 122 146" size="100%-1 0 100%-1 100%-1" />
+		<!-- Bottom border -->
+		<image backcolor="220 223 228" size="0% 100% 100% 100%" />
+		<image backcolor="109 122 146" size="0% 100%-1 100% 100%-1" />
+		<!-- Left border -->
+		<image backcolor="109 122 146" size="0 1 0 100%-2" />
+		<image backcolor="220 223 228" size="1 1 1 100%-2" />
+	</sprite>
+
+	<sprite name="atlas_button">
+		<!-- Starting with top left corner continuing in a clockwise manner -->
+		<!-- Top border -->
+		<image backcolor="184 190 201" size="0 0 100%-1 0" />
+		<image backcolor="220 223 228" size="1 1 100%-2 1" />
+		<!-- Right border -->
+		<image backcolor="0 0 0" size="100% 0 100% 100%" />
+		<image backcolor="109 122 146" size="100%-1 1 100%-1 100%-1" />
+		<!-- Bottom border -->
+		<image backcolor="0 0 0" size="0 100% 100% 100%" />
+		<image backcolor="109 122 146" size="1 100%-1 100%-1 100%-1" />
+		<!-- Left border -->
+		<image backcolor="184 190 201" size="0 0 0 100%-1" />
+		<image backcolor="220 223 228" size="1 1 1 100%-1" />
+		<!-- middle -->
+		<image backcolor="184 190 201" size="2 2 100%-2 100%-2"/>
+	</sprite>
+
+	<sprite name="atlas_bkgcol">
+		<image backcolor="184 190 201" size="0 0 100% 100%"/>
+	</sprite>
+
+        <!--
+        ==========================================
+        EDITOR GUI - TEXTURED SPRITES
+        ==========================================
+        -->
+
+        <!--
+        ==========================================
         TEMPORARY IMAGES
         ==========================================
         -->
@@ -624,72 +839,4 @@
                 <image size="0 0 100% 100%" backcolor="200 100 050" />
         </sprite>
         
-        <!--
-        ==========================================
-        GENERIC ICONS
-        ==========================================
-        -->
-
-        <sprite name="0ad_icon">
-                <image texture="global/ui_gen_0ad-icon-black.png" size="0 0 100% 100%" texture-size="0 0 16 16" />
-        </sprite>
-
-        <sprite name="bullet_icon">
-                <image texture="global/ui_gen_bullet-icon.png" size="0 0 100% 100%" texture-size="0 0 8 8" />
-        </sprite>
-
-        <sprite name="infinity_icon">
-                <image texture="global/ui_gen_infinity-icon.png" size="0 0 100% 100%" texture-size="0 0 16 16" />
-        </sprite>
-
-        <!--
-        ==========================================
-        MESSAGE BOX
-        ==========================================
-        -->
-
-        <sprite name="message_box-gen-background">
-                <image texture="global/ui_gen_background_paper.png" size="0 0 100% 100%" texture-size="0 0 128 128" />
-        </sprite>
-
-        <sprite name="message_box-corner">
-                <image texture="global/ui_gen_border-corner-15px.png" size="0 0 100% 100%" real-texture-placement="0 0 15 15" />
-        </sprite>
-
-        <sprite name="message_box-border-top">
-                <image texture="global/ui_gen_border-top-20px.png" size="0 0 100% 100%" texture-size="0 0 128 32" />
-        </sprite>
-
-        <sprite name="message_box-border-left">
-                <image texture="global/ui_gen_border-left-20px.png" size="0 0 100% 100%" texture-size="0 0 32 128" />
-        </sprite>
-
-        <sprite name="message_box-border-right">
-                <image texture="global/ui_gen_border-right-20px.png" size="0 0 100% 100%" texture-size="0 0 32 128" />
-        </sprite>
-
-        <sprite name="message_box-border-bottom">
-                <image texture="global/ui_gen_border-bottom-20px.png" size="0 0 100% 100%" texture-size="0 0 128 32" />
-        </sprite>
-
-        <sprite name="message_box-titlebar-left">
-                <image texture="global/ui_gen_titlebar-left.png" size="0 0 100% 100%" real-texture-placement="0 0 64 32" />
-        </sprite>
-
-        <sprite name="message_box-titlebar-right">
-                <image texture="global/ui_gen_titlebar-right.png" size="0 0 100% 100%" real-texture-placement="0 0 64 32" />
-        </sprite>
-
-        <sprite name="message_box-titlebar-middle">
-                <image texture="global/ui_gen_titlebar-middle.png" size="0 0 100% 100%" texture-size="0 0 64 32" />
-        </sprite>
-        
-        <sprite name="message_box-button-normal">
-                <image texture="global/ui_gen_button-wood.png" size="0 0 100% 100%" real-texture-placement="0 0 160 31" />
-        </sprite>
-        
-        <sprite name="message_box-button-over">
-                <image texture="global/ui_gen_button-wood.png" size="0 0 100% 100%" real-texture-placement="0 32 160 64" />
-        </sprite>
-
 </sprites>
