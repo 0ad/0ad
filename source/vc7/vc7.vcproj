@@ -113,13 +113,10 @@
 				Name="gui"
 				Filter="">
 				<File
-					RelativePath="..\gui\CButton.cpp">
-				</File>
-				<File
 					RelativePath="..\gui\CGUI.cpp">
 				</File>
 				<File
-					RelativePath="..\gui\CGUISprite.cpp">
+					RelativePath="..\gui\CGUIScrollBarVertical.cpp">
 				</File>
 				<File
 					RelativePath="..\gui\GUIbase.cpp">
@@ -134,11 +131,24 @@
 					RelativePath="..\gui\IGUIObject.cpp">
 				</File>
 				<File
-					RelativePath="..\gui\IGUISettingsObject.cpp">
+					RelativePath="..\gui\IGUIScrollBar.cpp">
 				</File>
 				<File
-					RelativePath="..\gui\XercesErrorHandler.cpp">
+					RelativePath="..\gui\IGUIScrollBarOwner.cpp">
 				</File>
+				<File
+					RelativePath="..\gui\IGUISettingsObject.cpp">
+				</File>
+				<Filter
+					Name="Controls"
+					Filter="">
+					<File
+						RelativePath="..\gui\CButton.cpp">
+					</File>
+					<File
+						RelativePath="..\gui\CText.cpp">
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="terrain"
@@ -272,6 +282,9 @@
 				<File
 					RelativePath="..\ps\Prometheus.cpp">
 				</File>
+				<File
+					RelativePath="..\ps\XercesErrorHandler.cpp">
+				</File>
 				<Filter
 					Name="Network"
 					Filter="">
@@ -300,10 +313,10 @@
 				Name="gui"
 				Filter="">
 				<File
-					RelativePath="..\gui\CButton.h">
+					RelativePath="..\gui\CGUI.h">
 				</File>
 				<File
-					RelativePath="..\gui\CGUI.h">
+					RelativePath="..\gui\CGUIScrollBarVertical.h">
 				</File>
 				<File
 					RelativePath="..\gui\CGUISprite.h">
@@ -324,11 +337,24 @@
 					RelativePath="..\gui\IGUIObject.h">
 				</File>
 				<File
-					RelativePath="..\gui\IGUISettingsObject.h">
+					RelativePath="..\gui\IGUIScrollBar.h">
 				</File>
 				<File
-					RelativePath="..\gui\XercesErrorHandler.h">
+					RelativePath="..\gui\IGUIScrollBarOwner.h">
 				</File>
+				<File
+					RelativePath="..\gui\IGUISettingsObject.h">
+				</File>
+				<Filter
+					Name="Controls"
+					Filter="">
+					<File
+						RelativePath="..\gui\CButton.h">
+					</File>
+					<File
+						RelativePath="..\gui\CText.h">
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="terrain"
@@ -500,6 +526,9 @@
 				</File>
 				<File
 					RelativePath="..\ps\ThreadUtil.h">
+				</File>
+				<File
+					RelativePath="..\ps\XercesErrorHandler.h">
 				</File>
 				<Filter
 					Name="Network"
