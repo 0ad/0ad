@@ -99,7 +99,7 @@ public:
 	
 	CStr(std::tstring String);	// Creates CStr from C++ string
 #if !(defined(_MSC_VER) && defined(_UNICODE))
-	CStr(std::utf16string String);	// Creates CStr from UTF16 string, potentially losing data in UTF16->ASCII conversions
+	CStr(utf16string String);	// Creates CStr from UTF16 string, potentially losing data in UTF16->ASCII conversions
 #endif
 	CStr(const TCHAR* String);	// Creates CStr from C-Style TCHAR string
 	CStr(TCHAR Char);		// Creates CStr from a TCHAR

@@ -9,9 +9,7 @@
 // with uint16_t (which is also an unsigned short), so just use std::wstring
 #ifdef _MSC_VER
 
-namespace std {
-	typedef wstring utf16string;
-}
+typedef std::wstring utf16string;
 
 // On Linux, wchar_t is 32-bit, so define a new version of it
 #else
@@ -19,11 +17,11 @@ namespace std {
 #include <string>
 #include "types.h"
 
-namespace std {
-	typedef uint16_t utf16_t;
-	typedef std::basic_string<utf16_t> utf16string;
-	typedef std::basic_stringstream<utf16_t> utf16stringstream;
+typedef uint16_t utf16_t;
+typedef std::basic_string<utf16_t> utf16string;
+typedef std::basic_stringstream<utf16_t> utf16stringstream;
 
+namespace std {
 	template<>
 	struct char_traits<utf16_t>
 	{

@@ -995,7 +995,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	XMBAttributeList attributes = Element.getAttributes();
 
 	// Well first of all we need to determine the type
-	std::utf16string type = attributes.getNamedItem( pFile->getAttributeID("type") );
+	utf16string type = attributes.getNamedItem( pFile->getAttributeID("type") );
 
 	// Construct object from specified type
 	//  henceforth, we need to do a rollback before aborting.

@@ -39,7 +39,7 @@ CStr::CStr(tstring String)
 }
 
 #if !(defined(_MSC_VER) && defined(_UNICODE))
-CStr::CStr(std::utf16string String)
+CStr::CStr(utf16string String)
 {
 	m_String = tstring(String.begin(), String.end());
 }

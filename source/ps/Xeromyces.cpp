@@ -1,4 +1,4 @@
-// $Id: Xeromyces.cpp,v 1.4 2004/07/10 20:33:00 philip Exp $
+// $Id: Xeromyces.cpp,v 1.5 2004/07/11 11:51:10 philip Exp $
 
 #include "precompiled.h"
 
@@ -96,12 +96,12 @@ private:
 // Convenient storage for the internal tree
 typedef struct {
 	std::string name;
-	std::utf16string value;
+	utf16string value;
 } XMLAttribute;
 
 typedef struct XMLElement {
 	std::string name;
-	std::utf16string text;
+	utf16string text;
 	std::vector<XMLElement*> childs;
 	std::vector<XMLAttribute*> attrs;
 } XMLElement;
@@ -354,7 +354,7 @@ void XeroHandler::startElement(const XMLCh* const uri, const XMLCh* const localn
 		XMLAttribute* a = new XMLAttribute;
 		a->name = attrName;
 		const XMLCh *tmp = attrs.getValue(i);
-		a->value = std::utf16string(tmp, tmp+XMLString::stringLen(tmp));
+		a->value = utf16string(tmp, tmp+XMLString::stringLen(tmp));
 		e->attrs.push_back(a);
 	}
 
@@ -372,7 +372,7 @@ void XeroHandler::endElement(const XMLCh* const uri, const XMLCh* const localnam
 
 void XeroHandler::characters(const XMLCh* const chars, const unsigned int length)
 {
-	ElementStack.top()->text += std::utf16string(chars, chars+XMLString::stringLen(chars));
+	ElementStack.top()->text += utf16string(chars, chars+XMLString::stringLen(chars));
 }
 
 
@@ -441,10 +441,10 @@ void XeroHandler::OutputElement(XMLElement* el)
 
 	// Trim excess whitespace
 	std::wstring whitespaceW = L" \t\r\n";
-	std::utf16string whitespace (whitespaceW.begin(), whitespaceW.end());
+	utf16string whitespace (whitespaceW.begin(), whitespaceW.end());
 	size_t first = el->text.find_first_not_of(whitespace);
 	if (first == -1) // entirely whitespace
-		el->text = std::utf16string();
+		el->text = utf16string();
 	else
 	{
 		size_t last = el->text.find_last_not_of(whitespace);

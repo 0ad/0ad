@@ -1,4 +1,4 @@
-// $Id: XeroXMB.cpp,v 1.3 2004/07/10 20:55:55 philip Exp $
+// $Id: XeroXMB.cpp,v 1.4 2004/07/11 11:51:10 philip Exp $
 
 #include "precompiled.h"
 
@@ -11,7 +11,7 @@
 const int HeaderMagic = 0x30424D58; // = "XMB0" (little-endian)
 const char* HeaderMagicStr = "XMB0";
 
-typedef std::utf16string::value_type char16;
+typedef utf16string::value_type char16;
 
 // Warning: May contain traces of pointer abuse
 
@@ -162,9 +162,9 @@ XMBAttributeList XMBElement::getAttributes()
 	);
 }
 
-std::utf16string XMBElement::getText()
+utf16string XMBElement::getText()
 {
-	return std::utf16string((char16*)(m_Pointer + 24));
+	return utf16string((char16*)(m_Pointer + 24));
 }
 
 
@@ -194,7 +194,7 @@ XMBElement XMBElementList::item(const int id)
 	return XMBElement(Pos);
 }
 
-std::utf16string XMBAttributeList::getNamedItem(const int AttributeName)
+utf16string XMBAttributeList::getNamedItem(const int AttributeName)
 {
 	char* Pos = m_Pointer;
 
@@ -203,12 +203,12 @@ std::utf16string XMBAttributeList::getNamedItem(const int AttributeName)
 	for (int i = 0; i < Count; ++i)
 	{
 		if (*(int*)Pos == AttributeName)
-			return std::utf16string((char16*)(Pos+8));
+			return utf16string((char16*)(Pos+8));
 		Pos += 8 + *(int*)(Pos+4); // Skip over the string
 	}
 
 	// Can't find attribute
-	return std::utf16string();
+	return utf16string();
 }
 
 XMBAttribute XMBAttributeList::item(const int id)
@@ -235,5 +235,5 @@ XMBAttribute XMBAttributeList::item(const int id)
 	m_LastItemID = id;
 	m_LastPointer = Pos;
 
-	return XMBAttribute(*(int*)Pos, std::utf16string( (char16*)(Pos+8) ));
+	return XMBAttribute(*(int*)Pos, utf16string( (char16*)(Pos+8) ));
 }

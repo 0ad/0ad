@@ -1,4 +1,4 @@
-/* $Id: XeroXMB.h,v 1.3 2004/07/10 20:55:55 philip Exp $
+/* $Id: XeroXMB.h,v 1.4 2004/07/11 11:51:10 philip Exp $
 
 	Xeromyces - XMB reading library
 
@@ -151,7 +151,7 @@ public:
 	int getNodeName();
 	XMBElementList getChildNodes();
 	XMBAttributeList getAttributes();
-	std::utf16string getText();
+	utf16string getText();
 
 private:
 	// Pointer to the start of the node
@@ -181,11 +181,11 @@ private:
 
 struct XMBAttribute
 {
-	XMBAttribute(int name, std::utf16string value)
+	XMBAttribute(int name, utf16string value)
 		: Name(name), Value(value) {};
 
 	int Name;
-	std::utf16string Value;
+	utf16string Value;
 };
 
 class XMBAttributeList
@@ -195,7 +195,7 @@ public:
 		: Count(count), m_Pointer(offset) {};
 
 	// Get the attribute value directly (unlike Xerces)
-	std::utf16string getNamedItem(const int AttributeName);
+	utf16string getNamedItem(const int AttributeName);
 
 	// Returns an attribute by position in the list
 	XMBAttribute item(const int id);
