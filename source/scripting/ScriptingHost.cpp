@@ -225,9 +225,9 @@ void ScriptingHost::SetObjectProperty(JSObject * object, const std::string & pro
 
 int ScriptingHost::ValueToInt(const jsval value)
 {
-	JSInt32 i = 0;
+	int32 i = 0;
 
-	JSBool ok = JS_ValueToInt32(m_Context, value, (JSInt32*)&i);
+	JSBool ok = JS_ValueToInt32(m_Context, value, &i);
 
 	if (ok == JS_FALSE)
 	{
