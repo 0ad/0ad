@@ -657,7 +657,11 @@ static void psInit()
 		g_Console->m_iFontOffset = 9;
 	}
 
-	I18n::LoadLanguage("english");
+	CConfigValue* val = g_ConfigDB.GetValue(CFG_SYSTEM, "language");
+	std::string lang = "english";
+	if (val)
+		val->GetString(lang);
+	I18n::LoadLanguage(lang.c_str());
 
 	loadHotkeys();
 
