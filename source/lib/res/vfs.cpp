@@ -419,7 +419,7 @@ struct TDir
 	TDir()
 	{
 #ifndef NO_DIR_WATCH
-		watch = -1;
+		watch = 0;	// not yet initialized
 #endif
 		loc = 0;
 		exact_dir_name = 0;	// safety

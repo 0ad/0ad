@@ -247,7 +247,7 @@ fail:
 
 int dir_cancel_watch(const intptr_t reqnum)
 {
-	if(reqnum < 0)
+	if(reqnum <= 0)
 		return ERR_INVALID_PARAM;
 
 	Watch* w = watches[reqnum];
