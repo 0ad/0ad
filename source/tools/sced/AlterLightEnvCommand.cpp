@@ -52,10 +52,10 @@ void CAlterLightEnvCommand::ApplyData(const CLightEnv& env)
 		unit->GetModel()->SetDirty(RENDERDATA_UPDATE_VERTICES);
 	}
 
-	CObjectEntry* selobject=g_ObjMan.GetSelectedObject();
-	if (selobject && selobject->m_Model) {
-		selobject->m_Model->SetDirty(RENDERDATA_UPDATE_VERTICES);
-	}
+//	CObjectEntry* selobject=g_ObjMan.GetSelectedObject();
+//	if (selobject && selobject->m_Model) {
+//		selobject->m_Model->SetDirty(RENDERDATA_UPDATE_VERTICES);
+//	}
 }
 
 

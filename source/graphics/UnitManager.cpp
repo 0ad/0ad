@@ -14,6 +14,7 @@
 #include "Unit.h"
 #include "CConsole.h"
 #include "ObjectManager.h"
+#include "ObjectEntry.h"
 
 extern CConsole* g_Console;
 

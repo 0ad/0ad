@@ -8,6 +8,8 @@
 #include "SelectObjectTool.h"
 #include "ToolManager.h"
 
+#include "BaseEntityCollection.h"
+
 BEGIN_MESSAGE_MAP(CUnitToolsDlgBar, CDialogBar)
 	//{{AFX_MSG_MAP(CUnitToolsDlgBar)
 		// NOTE - the ClassWizard will add and remove mapping macros here.
@@ -79,12 +81,16 @@ BOOL CUnitToolsDlgBar::OnInitDialog()
 		objecttypes->SetCurSel(0);
 
 		// set initial list contents
-		if (types.size()) {
-			const std::vector<CObjectEntry*>& objects=types[0].m_Objects;
-			for (uint i=0;i<objects.size();++i) {
-				listctrl->InsertItem(i,(const char*) objects[i]->m_Name,i);
-			}
-		}
+//		if (types.size()) {
+//			const std::vector<CObjectEntry*>& objects=types[0].m_Objects;
+//			for (uint i=0;i<objects.size();++i) {
+//				listctrl->InsertItem(i,(const char*) objects[i]->m_Name,i);
+//			}
+//		}
+		std::vector<CStrW> names;
+		g_EntityTemplateCollection.getTemplateNames(names);
+		for (size_t i = 0; i < names.size(); ++i)
+			listctrl->InsertItem(i, (CStr)names[i], i);
 	}
 
 	CButton* addunit=(CButton*) GetDlgItem(IDC_BUTTON_ADDUNIT);
@@ -106,59 +112,59 @@ void CUnitToolsDlgBar::OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHndler
 
 void CUnitToolsDlgBar::OnButtonAdd()
 {
-	bool foundname=false;
-	CSimpleEdit dlg("Enter Object Name");
-	while (!foundname && dlg.DoModal()==IDOK) {
-		// get object name
-		CString& name=dlg.m_Text;
-		if (name.GetLength()==0) {
-			MessageBox("Bad name","Error");
-		} else if (g_ObjMan.FindObject(name)!=0) {
-			MessageBox("Object with that name already exists","Error");
-		} else {
-			// add to list ctrl
-			CListCtrl* listctrl=(CListCtrl*) GetDlgItem(IDC_LIST_OBJECTBROWSER);
-			int index=listctrl->GetItemCount();
-			listctrl->InsertItem(index,(const char*) name,index);
-			
-			// deselect current selection in list ctrl, if any
-			POSITION pos=listctrl->GetFirstSelectedItemPosition();
-			if (pos) {
-				int oldindex=listctrl->GetNextSelectedItem(pos);
-				listctrl->SetItemState(oldindex, 0, LVIS_SELECTED);
-			}
-
-			// select new entry
-			listctrl->SetItemState(index, LVIS_SELECTED, LVIS_SELECTED);
-
-			// now enter edit mode
-			CObjectEntry* obj=new CObjectEntry(GetCurrentObjectType());
-			obj->m_Name=(const char*)name;
-			g_ObjMan.AddObject(obj,GetCurrentObjectType());
-
-			CMainFrame* mainfrm=(CMainFrame*) AfxGetMainWnd();
-			mainfrm->OnObjectProperties(obj);
-			foundname=true;
-		}
-	}
+//	bool foundname=false;
+//	CSimpleEdit dlg("Enter Object Name");
+//	while (!foundname && dlg.DoModal()==IDOK) {
+//		// get object name
+//		CString& name=dlg.m_Text;
+//		if (name.GetLength()==0) {
+//			MessageBox("Bad name","Error");
+//		} else if (g_ObjMan.FindObject(name)!=0) {
+//			MessageBox("Object with that name already exists","Error");
+//		} else {
+//			// add to list ctrl
+//			CListCtrl* listctrl=(CListCtrl*) GetDlgItem(IDC_LIST_OBJECTBROWSER);
+//			int index=listctrl->GetItemCount();
+//			listctrl->InsertItem(index,(const char*) name,index);
+//			
+//			// deselect current selection in list ctrl, if any
+//			POSITION pos=listctrl->GetFirstSelectedItemPosition();
+//			if (pos) {
+//				int oldindex=listctrl->GetNextSelectedItem(pos);
+//				listctrl->SetItemState(oldindex, 0, LVIS_SELECTED);
+//			}
+//
+//			// select new entry
+//			listctrl->SetItemState(index, LVIS_SELECTED, LVIS_SELECTED);
+//
+//			// now enter edit mode
+//			CObjectEntry* obj=new CObjectEntry(GetCurrentObjectType());
+//			obj->m_Name=(const char*)name;
+//			g_ObjMan.AddObject(obj,GetCurrentObjectType());
+//
+//			CMainFrame* mainfrm=(CMainFrame*) AfxGetMainWnd();
+//			mainfrm->OnObjectProperties(obj);
+//			foundname=true;
+//		}
+//	}
 
 }
  
 void CUnitToolsDlgBar::OnButtonEdit()
 {
-	// get current selection, if any
-	CListCtrl* listctrl=(CListCtrl*) GetDlgItem(IDC_LIST_OBJECTBROWSER);
-	POSITION pos=listctrl->GetFirstSelectedItemPosition();
-	if (!pos) {
-		// nothing selected, nothing to do
-		return;
-	}
-	
-	// get object at position
-	const std::vector<CObjectEntry*>& objects=g_ObjMan.m_ObjectTypes[GetCurrentObjectType()].m_Objects;
-	CObjectEntry* obj=objects[(intptr_t)pos-1];
-	CMainFrame* mainfrm=(CMainFrame*) AfxGetMainWnd();
-	mainfrm->OnObjectProperties(obj);
+//	// get current selection, if any
+//	CListCtrl* listctrl=(CListCtrl*) GetDlgItem(IDC_LIST_OBJECTBROWSER);
+//	POSITION pos=listctrl->GetFirstSelectedItemPosition();
+//	if (!pos) {
+//		// nothing selected, nothing to do
+//		return;
+//	}
+//	
+//	// get object at position
+//	const std::vector<CObjectEntry*>& objects=g_ObjMan.m_ObjectTypes[GetCurrentObjectType()].m_Objects;
+//	CObjectEntry* obj=objects[(intptr_t)pos-1];
+//	CMainFrame* mainfrm=(CMainFrame*) AfxGetMainWnd();
+//	mainfrm->OnObjectProperties(obj);
 }
 
 	
@@ -169,7 +175,8 @@ void CUnitToolsDlgBar::OnClickListObjectBrowser(NMHDR* pNMHDR, LRESULT* pResult)
 	// deselect current selection in list ctrl, if any
 	POSITION pos=listctrl->GetFirstSelectedItemPosition();
 	if (pos) {
-		g_ObjMan.SetSelectedObject(g_ObjMan.m_ObjectTypes[GetCurrentObjectType()].m_Objects[(intptr_t)pos-1]);
+//		g_ObjMan.SetSelectedObject(g_ObjMan.m_ObjectTypes[GetCurrentObjectType()].m_Objects[(intptr_t)pos-1]);
+		g_ObjMan.m_SelectedEntity = g_EntityTemplateCollection.getTemplateByID((intptr_t)pos-1);
 	}
 
 	// shift to add mode
@@ -186,18 +193,18 @@ int CUnitToolsDlgBar::GetCurrentObjectType()
 
 void CUnitToolsDlgBar::OnSelChangeObjectTypes()
 {
-	// clear out the listctrl
-	CListCtrl* listctrl=(CListCtrl*) GetDlgItem(IDC_LIST_OBJECTBROWSER);
-	listctrl->DeleteAllItems();
-	
-	// add new items back to listbox
-	std::vector<CObjectEntry*>& objects=g_ObjMan.m_ObjectTypes[GetCurrentObjectType()].m_Objects;
-	for (uint i=0;i<objects.size();i++) {
-		// add to list ctrl
-		listctrl->InsertItem(i,(const char*) objects[i]->m_Name,i);
-	}
-
-	g_ObjMan.SetSelectedObject(0);
+//	// clear out the listctrl
+//	CListCtrl* listctrl=(CListCtrl*) GetDlgItem(IDC_LIST_OBJECTBROWSER);
+//	listctrl->DeleteAllItems();
+//	
+//	// add new items back to listbox
+//	std::vector<CObjectEntry*>& objects=g_ObjMan.m_ObjectTypes[GetCurrentObjectType()].m_Objects;
+//	for (uint i=0;i<objects.size();i++) {
+//		// add to list ctrl
+//		listctrl->InsertItem(i,(const char*) objects[i]->m_Name,i);
+//	}
+//
+//	g_ObjMan.SetSelectedObject(0);
 }
 
 void CUnitToolsDlgBar::OnButtonSelect()

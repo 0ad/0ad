@@ -3,15 +3,16 @@
 
 #include "Command.h"
 #include "Matrix3D.h"
+#include "Entity.h"
 
 class CUnit;
-class CObjectEntry;
+class CBaseEntity;
 
 class CPaintObjectCommand : public CCommand
 {
 public:
 	// constructor, destructor
-	CPaintObjectCommand(CObjectEntry* object,const CMatrix3D& transform);
+	CPaintObjectCommand(CBaseEntity* entity, const CMatrix3D& transform);
 	~CPaintObjectCommand();
 
 	// return the texture name of this command
@@ -31,14 +32,16 @@ public:
 	// unit to entity if there's a template for it
 	void Finalize();
 
+	void UpdateTransform(CMatrix3D& transform);
+
 	// return unit added to world
-	CUnit* GetUnit() { return m_Unit; }
+//	CUnit* GetUnit() { return m_Unit; }
 
 private:
 	// unit to add to world
-	CUnit* m_Unit;
-	// object to paint
-	CObjectEntry* m_Object;
+	HEntity m_Entity;
+	// entity to paint
+	CBaseEntity* m_BaseEntity;
 	// model transformation
 	CMatrix3D m_Transform;
 };

@@ -786,23 +786,24 @@ static float getExactGroundLevel( float x, float y )
 
 static CObjectEntry* GetRandomActorTemplate()
 {
-	if (g_ObjMan.m_ObjectTypes.size()==0) return 0;
-
-	CObjectEntry* found=0;
-	int checkloop=250;
-	do {
-		u32 type=rand()%(u32)g_ObjMan.m_ObjectTypes.size();
-		u32 actorsoftype=(u32)g_ObjMan.m_ObjectTypes[type].m_Objects.size();
-		if (actorsoftype>0) {
-			found=g_ObjMan.m_ObjectTypes[type].m_Objects[rand()%actorsoftype];
-			if (found && found->m_Model && found->m_Model->GetModelDef()->GetNumBones()>0) {
-			} else {
-				found=0;
-			}
-		}
-	} while (--checkloop && !found);
-	
-	return found;
+	return NULL;
+//	if (g_ObjMan.m_ObjectTypes.size()==0) return 0;
+//
+//	CObjectEntry* found=0;
+//	int checkloop=250;
+//	do {
+//		u32 type=rand()%(u32)g_ObjMan.m_ObjectTypes.size();
+//		u32 actorsoftype=(u32)g_ObjMan.m_ObjectTypes[type].m_Objects.size();
+//		if (actorsoftype>0) {
+//			found=g_ObjMan.m_ObjectTypes[type].m_Objects[rand()%actorsoftype];
+//			if (found && found->m_Model && found->m_Model->GetModelDef()->GetNumBones()>0) {
+//			} else {
+//				found=0;
+//			}
+//		}
+//	} while (--checkloop && !found);
+//	
+//	return found;
 }
 
 static CTextureEntry* GetRandomTexture()

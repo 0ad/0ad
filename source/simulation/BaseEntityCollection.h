@@ -11,7 +11,7 @@
 //			Find an entity class by the actor it uses: g_EntityTemplateCollection.getTemplateByActor()
 //				Note that this is included solely for loading ScnEd 4,5 and 6 format map files. Don't rely on this
 //				working all the time.
-//	        Find an entity class by it's name: g_EntityTemplateCollection.getTemplate()
+//	        Find an entity class by its name: g_EntityTemplateCollection.getTemplate()
 //		  g_EntityManager will also use this class to lookup entity templates when you instantiate an entity with 
 //			a class name string.
 
@@ -36,6 +36,15 @@ public:
 	void LoadDirectory( Handle directory, CStr pathname );
 	void addTemplate( CBaseEntity* temp );
 	CBaseEntity* getTemplateByActor( CStrW actorName );
+
+	// Create a list of the names of all templates, for display in ScEd's
+	// entity-selection box. (This isn't really very good, since it includes
+	// 'abstract' entity classes that should never be created, and it doesn't
+	// split them into useful categories or give them readable names.)
+	void getTemplateNames( std::vector<CStrW>& names );
+#ifdef SCED // a slightly unpleasant hack, since ScEd can only remember numbers:
+	CBaseEntity* getTemplateByID( int n );
+#endif
 };
 
 #endif

@@ -145,7 +145,7 @@ int CScEdView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	oglInit();
 
 	// check for minimum requirements
-	if(!oglExtAvail("GL_ARB_multitexture") || !oglExtAvail("GL_ARB_texture_env_combine")) {
+	if(!oglHaveExtension("GL_ARB_multitexture") || !oglHaveExtension("GL_ARB_texture_env_combine")) {
 		const char* err="No graphics card support for multitexturing found; please visit the 0AD Forums for more information.";
 		::MessageBox(0,err,"Error",MB_OK);
 		exit(0);

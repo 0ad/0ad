@@ -128,6 +128,19 @@ CBaseEntity* CBaseEntityCollection::getTemplateByActor( CStrW actorName )
 	return( NULL );
 }
 
+void CBaseEntityCollection::getTemplateNames( std::vector<CStrW>& names )
+{
+	for( u16 t = 0; t < m_templates.size(); t++ )
+		names.push_back( m_templates[t]->m_Tag );
+}
+
+#ifdef SCED
+CBaseEntity* CBaseEntityCollection::getTemplateByID( int n )
+{
+	return m_templates[n];
+}
+#endif
+
 CBaseEntityCollection::~CBaseEntityCollection()
 {
 	for( u16 t = 0; t < m_templates.size(); t++ )

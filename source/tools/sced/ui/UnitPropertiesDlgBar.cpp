@@ -106,23 +106,23 @@ void CUnitPropertiesDlgBar::OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoH
 
 void CUnitPropertiesDlgBar::OnButtonBack()
 {
-	// save current object (if we've got one) before going back
-	if (m_Object) {
-
-		CStr filename("art/actors/");
-		filename+=g_ObjMan.m_ObjectTypes[m_Object->m_Type].m_Name;
-		filename+="/";
-		filename+=m_Object->m_Name;
-		filename+=".xml";
-		if (! m_Object->Save((const char*) filename))
-			::MessageBox(0,"Error saving actor file","Error",MB_OK|MB_TASKMODAL);
-
-		// and rebuild the model
-		UpdateEditorData();
-	}
-
-	CMainFrame* mainfrm=(CMainFrame*) AfxGetMainWnd();
-	mainfrm->OnUnitTools();
+//	// save current object (if we've got one) before going back
+//	if (m_Object) {
+//
+//		CStr filename("art/actors/");
+//		filename+=g_ObjMan.m_ObjectTypes[m_Object->m_Type].m_Name;
+//		filename+="/";
+//		filename+=m_Object->m_Name;
+//		filename+=".xml";
+//		if (! m_Object->Save((const char*) filename))
+//			::MessageBox(0,"Error saving actor file","Error",MB_OK|MB_TASKMODAL);
+//
+//		// and rebuild the model
+//		UpdateEditorData();
+//	}
+//
+//	CMainFrame* mainfrm=(CMainFrame*) AfxGetMainWnd();
+//	mainfrm->OnUnitTools();
 }
 
 void CUnitPropertiesDlgBar::OnButtonRefresh() 
@@ -186,90 +186,90 @@ void CUnitPropertiesDlgBar::OnButtonModelBrowse()
 
 void CUnitPropertiesDlgBar::UpdateEditorData()
 {
-	if (!m_Object) {
-		g_ObjMan.SetSelectedObject(0);
-		return;
-	}
-
-	CString str;
-	
-	CWnd* name=GetDlgItem(IDC_EDIT_NAME);
-	name->GetWindowText(str);
-	m_Object->m_Name=(const char*)str;
-	
-	CWnd* model=GetDlgItem(IDC_EDIT_MODEL);
-	model->GetWindowText(str);
-	m_Object->m_ModelName=(const char*)str;
-
-	CWnd* texture=GetDlgItem(IDC_EDIT_TEXTURE);
-	texture->GetWindowText(str);
-	m_Object->m_TextureName=(const char*)str;
-
-	CWnd* animation=GetDlgItem(IDC_EDIT_ANIMATION);
-	animation->GetWindowText(str);
-	if (m_Object->m_Animations.size()==0) {
-		m_Object->m_Animations.resize(1);
-		m_Object->m_Animations[0].m_AnimName="Idle";
-	}
-	m_Object->m_Animations[0].m_FileName=(const char*)str;
-
-	std::vector<CUnit*> animupdatelist;
-	const std::vector<CUnit*>& units=g_UnitMan.GetUnits();
-	for (uint i=0;i<units.size();++i) {
-		if (units[i]->GetModel()->GetModelDef()==m_Object->m_Model->GetModelDef()) {
-			animupdatelist.push_back(units[i]);
-		}
-	}
-	if (m_Object->BuildModel()) {
-		g_ObjMan.SetSelectedObject(m_Object);
-		CSkeletonAnim* anim=m_Object->m_Model->GetAnimation();
-		if (anim) {
-			for (uint i=0;i<animupdatelist.size();++i) {
-				animupdatelist[i]->GetModel()->SetAnimation(anim);
-			}
-		}
-	} else {
-		g_ObjMan.SetSelectedObject(0);
-	}
+//	if (!m_Object) {
+//		g_ObjMan.SetSelectedObject(0);
+//		return;
+//	}
+//
+//	CString str;
+//	
+//	CWnd* name=GetDlgItem(IDC_EDIT_NAME);
+//	name->GetWindowText(str);
+//	m_Object->m_Name=(const char*)str;
+//	
+//	CWnd* model=GetDlgItem(IDC_EDIT_MODEL);
+//	model->GetWindowText(str);
+//	m_Object->m_ModelName=(const char*)str;
+//
+//	CWnd* texture=GetDlgItem(IDC_EDIT_TEXTURE);
+//	texture->GetWindowText(str);
+//	m_Object->m_TextureName=(const char*)str;
+//
+//	CWnd* animation=GetDlgItem(IDC_EDIT_ANIMATION);
+//	animation->GetWindowText(str);
+//	if (m_Object->m_Animations.size()==0) {
+//		m_Object->m_Animations.resize(1);
+//		m_Object->m_Animations[0].m_AnimName="Idle";
+//	}
+//	m_Object->m_Animations[0].m_FileName=(const char*)str;
+//
+//	std::vector<CUnit*> animupdatelist;
+//	const std::vector<CUnit*>& units=g_UnitMan.GetUnits();
+//	for (uint i=0;i<units.size();++i) {
+//		if (units[i]->GetModel()->GetModelDef()==m_Object->m_Model->GetModelDef()) {
+//			animupdatelist.push_back(units[i]);
+//		}
+//	}
+//	if (m_Object->BuildModel()) {
+//		g_ObjMan.SetSelectedObject(m_Object);
+//		CSkeletonAnim* anim=m_Object->m_Model->GetAnimation();
+//		if (anim) {
+//			for (uint i=0;i<animupdatelist.size();++i) {
+//				animupdatelist[i]->GetModel()->SetAnimation(anim);
+//			}
+//		}
+//	} else {
+//		g_ObjMan.SetSelectedObject(0);
+//	}
 }
 
 void CUnitPropertiesDlgBar::UpdatePropertiesDlg()
 {
-	if (!m_Object) return;
-
-	CWnd* name=GetDlgItem(IDC_EDIT_NAME);
-	if (name) {
-		name->SetWindowText(m_Object->m_Name);
-	}
-	
-	CWnd* model=GetDlgItem(IDC_EDIT_MODEL);
-	if (model) {
-		model->SetWindowText(m_Object->m_ModelName);
-	}
-
-	CWnd* texture=GetDlgItem(IDC_EDIT_TEXTURE);
-	if (texture) {
-		texture->SetWindowText(m_Object->m_TextureName);
-	}
-
-	CWnd* animation=GetDlgItem(IDC_EDIT_ANIMATION);
-	if (animation) {
-		if (m_Object->m_Animations.size()>0) {
-			animation->SetWindowText(m_Object->m_Animations[0].m_FileName);
-		}
-	}
+//	if (!m_Object) return;
+//
+//	CWnd* name=GetDlgItem(IDC_EDIT_NAME);
+//	if (name) {
+//		name->SetWindowText(m_Object->m_Name);
+//	}
+//	
+//	CWnd* model=GetDlgItem(IDC_EDIT_MODEL);
+//	if (model) {
+//		model->SetWindowText(m_Object->m_ModelName);
+//	}
+//
+//	CWnd* texture=GetDlgItem(IDC_EDIT_TEXTURE);
+//	if (texture) {
+//		texture->SetWindowText(m_Object->m_TextureName);
+//	}
+//
+//	CWnd* animation=GetDlgItem(IDC_EDIT_ANIMATION);
+//	if (animation) {
+//		if (m_Object->m_Animations.size()>0) {
+//			animation->SetWindowText(m_Object->m_Animations[0].m_FileName);
+//		}
+//	}
 }
 
 
 void CUnitPropertiesDlgBar::SetObject(CObjectEntry* obj) 
 { 
-	m_Object=obj; 
-	if (m_Object) {
-		if (m_Object->BuildModel()) {
-			g_ObjMan.SetSelectedObject(m_Object);
-		} else {
-			g_ObjMan.SetSelectedObject(0);
-		}
-	}
-	UpdatePropertiesDlg();
+//	m_Object=obj; 
+//	if (m_Object) {
+//		if (m_Object->BuildModel()) {
+//			g_ObjMan.SetSelectedObject(m_Object);
+//		} else {
+//			g_ObjMan.SetSelectedObject(0);
+//		}
+//	}
+//	UpdatePropertiesDlg();
 }

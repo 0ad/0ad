@@ -2,8 +2,14 @@
 #define _OBJECTMANAGER_H
 
 #include <vector>
+#include <map>
 #include "Singleton.h"
-#include "ObjectEntry.h"
+#include "CStr.h"
+#include "ObjectBase.h"
+
+class CObjectBase;
+class CObjectEntry;
+class CBaseEntity;
 
 // access to sole CObjectManager object
 #define g_ObjMan CObjectManager::GetSingleton()
@@ -53,15 +59,12 @@ public:
 	void AddObjectBase(CObjectBase* base);
 	void DeleteObjectBase(CObjectBase* base);
 
-	CObjectEntry* GetSelectedObject() const { return m_SelectedObject; }
-	void SetSelectedObject(CObjectEntry* obj) { m_SelectedObject=obj; }
+	CBaseEntity* m_SelectedEntity;
 
 	std::vector<SObjectType> m_ObjectTypes;
 
 private:
 	void LoadObjectsIn(CStr& pathname);
-
-	CObjectEntry* m_SelectedObject;
 };
 
 

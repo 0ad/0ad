@@ -11,6 +11,8 @@
 #include "ObjectManager.h"
 #include "PaintObjectCommand.h"
 
+#include "BaseEntity.h"
+
 // rotate object at 180 degrees each second when applying to terrain
 #define ROTATION_SPEED PI
 
@@ -36,15 +38,15 @@ void CPaintObjectTool::PaintSelection()
 		double curtime=get_time();
 		m_Rotation+=ROTATION_SPEED*float(curtime-m_LastTriggerTime);
 		BuildTransform();
-		m_PaintCmd->GetUnit()->GetModel()->SetTransform(m_ObjectTransform);
+		m_PaintCmd->UpdateTransform(m_ObjectTransform);
 		m_LastTriggerTime=curtime;
 	} else {
 		m_Rotation=0;
 		m_Position=m_SelectionPoint;
 		m_LastTriggerTime=get_time();
 
-		CObjectEntry* obj=g_ObjMan.GetSelectedObject();
-		if (obj && obj->m_Model) {
+		CBaseEntity* obj=g_ObjMan.m_SelectedEntity;
+		if (obj) {
 			// get up to date transform 
 			BuildTransform();
 
@@ -73,10 +75,13 @@ void CPaintObjectTool::OnDraw()
 	// don't draw object if we're currently rotating it on the terrain
 	if (m_PaintCmd) return;
 
-	// don't draw unless we have a valid object to apply
-	CObjectEntry* obj=g_ObjMan.GetSelectedObject();
-	if (!obj || !obj->m_Model) return;
+	CBaseEntity* ent=g_ObjMan.m_SelectedEntity;
+	if (!ent) return;
 
+	// don't draw unless we have a valid object to apply
+	CObjectEntry* obj = g_ObjMan.FindObject((CStr)ent->m_actorName);
+	if (!obj || !obj->m_Model) return;
+	
 	// try to get object transform, in world space
 	m_Position=m_SelectionPoint;
 	BuildTransform();

@@ -7,6 +7,7 @@
 #include "timer.h"
 #include "VFSUtil.h"
 #include "ObjectBase.h"
+#include "ObjectEntry.h"
 
 #define LOG_CATEGORY "graphics"
 
@@ -20,7 +21,7 @@ bool operator< (const CObjectManager::ObjectKey& a, const CObjectManager::Object
 		return a.ActorVariation < b.ActorVariation;
 }
 
-CObjectManager::CObjectManager() : m_SelectedObject(0)
+CObjectManager::CObjectManager() : m_SelectedEntity(NULL)
 {
 	m_ObjectTypes.reserve(32);
 }
@@ -29,8 +30,6 @@ template<typename T, typename S> void delete_pair_2nd(std::pair<T,S> v) { delete
 
 CObjectManager::~CObjectManager()
 {
-	m_SelectedObject = NULL;
-
 	for (size_t i = 0; i < m_ObjectTypes.size(); i++) {
 		std::for_each(
 			m_ObjectTypes[i].m_Objects.begin(),

@@ -20,6 +20,7 @@
 #include "EntityManager.h"
 #include "ConfigDB.h"
 #include "Scheduler.h"
+#include "Loader.h"
 
 #include "XML.h"
 
@@ -174,6 +175,16 @@ bool CEditorData::Init()
 		g_Game = NULL;
 		return false;
 	}
+
+	int progress_percent;
+	wchar_t description[100];
+	int ret2;
+	do
+	{
+		ret2 = LDR_ProgressiveLoad(100.f, description, ARRAY_SIZE(description), &progress_percent);
+		assert(ret2 == 0 || ret2 == 1 || ret2 == ERR_TIMED_OUT);
+	}
+	while (ret2 != 0);
 
 	// create the scene - terrain, camera, light environment etc
 	if (!InitScene()) return false;
@@ -483,31 +494,31 @@ void CEditorData::OnDraw()
 		g_Renderer.SetClearColor(0x00453015);
 		g_Renderer.BeginFrame();
 		
-		CObjectEntry* selobject=g_ObjMan.GetSelectedObject();
-		if (selobject && selobject->m_Model) {
-			// setup camera such that object is in the centre of the viewport
-			m_ModelMatrix.SetIdentity();
-			selobject->m_Model->SetTransform(m_ModelMatrix);
-
-			const CBound& bound=selobject->m_Model->GetBounds();
-			CVector3D pt((bound[0].X+bound[1].X)*0.5f,(bound[0].Y+bound[1].Y)*0.5f,bound[0].Z);
-			
-			float hfov=tan(DEGTORAD(45));
-			float vfov=hfov/g_Renderer.GetAspect();
-			float zx=(bound[1].X-bound[0].X)*0.5f/hfov;
-			float zy=(bound[1].Y-bound[0].Y)*0.5f/vfov;
-			float z=zx>zy ? zx : zy;
-			z=(z+1)*2;
-
-			m_ObjectCamera.m_Orientation.SetIdentity();
-			m_ObjectCamera.m_Orientation.Translate(pt.X,pt.Y,-z);
-
-			g_Renderer.SetCamera(m_ObjectCamera);
-
-			RenderObEdGrid();
-
-			g_Renderer.Submit(selobject->m_Model);
-		}
+//		CObjectEntry* selobject=g_ObjMan.GetSelectedObject();
+//		if (selobject && selobject->m_Model) {
+//			// setup camera such that object is in the centre of the viewport
+//			m_ModelMatrix.SetIdentity();
+//			selobject->m_Model->SetTransform(m_ModelMatrix);
+//
+//			const CBound& bound=selobject->m_Model->GetBounds();
+//			CVector3D pt((bound[0].X+bound[1].X)*0.5f,(bound[0].Y+bound[1].Y)*0.5f,bound[0].Z);
+//			
+//			float hfov=tan(DEGTORAD(45));
+//			float vfov=hfov/g_Renderer.GetAspect();
+//			float zx=(bound[1].X-bound[0].X)*0.5f/hfov;
+//			float zy=(bound[1].Y-bound[0].Y)*0.5f/vfov;
+//			float z=zx>zy ? zx : zy;
+//			z=(z+1)*2;
+//
+//			m_ObjectCamera.m_Orientation.SetIdentity();
+//			m_ObjectCamera.m_Orientation.Translate(pt.X,pt.Y,-z);
+//
+//			g_Renderer.SetCamera(m_ObjectCamera);
+//
+//			RenderObEdGrid();
+//
+//			g_Renderer.Submit(selobject->m_Model);
+//		}
 
 		// flush prior to rendering overlays ..
 		g_Renderer.FlushFrame();
@@ -604,10 +615,10 @@ void CEditorData::UpdateWorld(float time)
 			g_EntityManager.updateAll( time );
 		}
 	} else {
-		CObjectEntry* selobject=g_ObjMan.GetSelectedObject();
-		if (selobject && selobject->m_Model) {
-			selobject->m_Model->Update(time);
-		}
+//		CObjectEntry* selobject=g_ObjMan.GetSelectedObject();
+//		if (selobject && selobject->m_Model) {
+//			selobject->m_Model->Update(time);
+//		}
 	}	
 }
 
