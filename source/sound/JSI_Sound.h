@@ -2,6 +2,18 @@
 //
 // Jan Wassenberg (jan@wildfiregames.com)
 
+// interface rationale:
+// - can't just expose fire and forget playSound to script code:
+//   we sometimes need to loop until a certain condition is met
+//   (e.g. building is complete) => need means of access (Handle) to sound.
+//
+// - the current 64-bit Handle can't be stored as-is by JS code;
+//   we could make it 32 bit, but that limits its usefulness
+//   (barely enough tag bits).
+//
+// - instead, we provide a thin class wrapper (using scriptableobject.h)
+//   on top of the snd API that encapsulates the Handle.
+
 #ifndef JSSOUND_INCLUDED
 #define JSSOUND_INCLUDED
 
