@@ -9,6 +9,7 @@
 #pragma comment(lib, "alut.lib")
 #endif
 
+
 int oal_Init()
 {
 	ONCE(alutInit(0, 0));
