@@ -8,9 +8,6 @@ gee@pyro.nu
 #include "GUI.h"
 #include "CButton.h"
 
-// TODO Gee: font.h is temporary.
-#include "res/font.h"
-#include "res/res.h"
 #include "ogl.h"
 
 using namespace std;

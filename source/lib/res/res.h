@@ -3,7 +3,6 @@
 #include "res/tex.h"
 #include "res/ogl_tex.h"
 #include "res/mem.h"
-#include "res/font.h"
 #include "res/unifont.h"
 
 

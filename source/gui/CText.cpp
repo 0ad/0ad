@@ -8,8 +8,6 @@ gee@pyro.nu
 #include "GUI.h"
 #include "CText.h"
 
-// TODO Gee: font.h is temporary.
-#include "res/font.h"
 #include "ogl.h"
 
 // TODO Gee: new
