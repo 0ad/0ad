@@ -169,7 +169,7 @@ extern ssize_t vfs_io(Handle hf, size_t size, void** p);
 
 // load the entire file <fn> into memory; return a memory handle to the
 // buffer and its address/size. output parameters are zeroed on failure.
-extern Handle vfs_load(const char* fn, void*& p, size_t& size);
+extern Handle vfs_load(const char* fn, void*& p, size_t& size, uint flags = 0);
 
 extern int vfs_store(const char* fn, void* p, size_t size, uint flags = 0);
 
