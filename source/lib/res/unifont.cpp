@@ -1,5 +1,5 @@
 /*
-$Id: unifont.cpp,v 1.20 2004/11/24 23:47:48 gee Exp $
+$Id$
 
 Unicode OpenGL texture font
   
@@ -76,8 +76,8 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSEDPARAM(h))
 	const char* fnt_fn = FilenameFnt.c_str();
 
 	// Fail quietly if the file simply doesn't exist
-	if (! vfs_exists(fnt_fn))
-		return -1;
+// //	if (! vfs_exists(fnt_fn))
+// //		return ERR_FILE_NOT_FOUND;
 
 	Handle fh = vfs_load(fnt_fn, RawFNT, FNTSize);
 	CHECK_ERR(fh);

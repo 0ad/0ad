@@ -39,18 +39,22 @@ static int get_gl_fmt(TexInfo* ti, GLenum* fmt)
 		*fmt = GL_LUMINANCE_ALPHA;
 		return 0;
 	case 24:
-		if(alpha)
-			return -1;
-		*fmt = bgr? GL_BGR : GL_RGB;
-		return 0;
-	case 32:
 		if(!alpha)
-			return -1;
-		*fmt = bgr? GL_BGRA : GL_RGBA;
-		return 0;
+		{
+			*fmt = bgr? GL_BGR : GL_RGB;
+			return 0;
+		}
+		break;
+	case 32:
+		if(alpha)
+		{
+			*fmt = bgr? GL_BGRA : GL_RGBA;
+			return 0;
+		}
+		break;
 	}
 
-	return -1;
+	return ERR_TEX_FMT_INVALID;
 }
 
 

@@ -709,13 +709,7 @@ static void sleep_ns(i64 ns)
 
 int clock_gettime(clockid_t clock, struct timespec* t)
 {
-#ifndef NDEBUG
-	if(clock != CLOCK_REALTIME || !t)
-	{
-		debug_warn("clock_gettime: invalid clock or t param");
-		return -1;
-	}
-#endif
+	assert(clock == CLOCK_REALTIME);
 
 	const i64 ns = time_ns();
 	t->tv_sec  = (time_t)(ns / _1e9);
@@ -726,13 +720,7 @@ int clock_gettime(clockid_t clock, struct timespec* t)
 
 int clock_getres(clockid_t clock, struct timespec* ts)
 {
-#ifndef NDEBUG
-	if(clock != CLOCK_REALTIME || !ts)
-	{
-		debug_warn("clock_getres: invalid clock or res param");
-		return -1;
-	}
-#endif
+	assert(clock == CLOCK_REALTIME);
 
 	HRTImpl impl;
 	double nominal_freq, res;
@@ -757,14 +745,6 @@ int nanosleep(const struct timespec* rqtp, struct timespec* /* rmtp */)
 int gettimeofday(struct timeval* tv, void* tzp)
 {
 	UNUSED(tzp);
-
-#ifndef NDEBUG
-	if(!tv)
-	{
-		debug_warn("gettimeofday: invalid t param");
-		return -1;
-	}
-#endif
 
 	const long us = (long)(time_ns() / 1000);
 	tv->tv_sec  = (time_t)     (us / _1e6);

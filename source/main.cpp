@@ -143,7 +143,7 @@ const wchar_t* HardcodedErrorString(int err)
 	E(ERR_INVALID_PARAM)
 	E(ERR_EOF)
 	E(ERR_PATH_NOT_FOUND)
-	E(ERR_VFS_PATH_LENGTH)
+	E(ERR_PATH_LENGTH)
 	default:
 		return 0;
 	}
@@ -205,7 +205,7 @@ static std::string SplitExts(const char *exts)
 	return ret;
 }
 
-static int WriteSysInfo()
+static void WriteSysInfo()
 {
 double t1 = get_time();
 	get_gfx_info();
@@ -213,7 +213,7 @@ double t1 = get_time();
 	get_snd_info();
 	get_mem_status();
 double t2 = get_time();
-debug_out("INT TIME %g\n\n", t2-t1);
+debug_out("SYS DETECT TIME %g\n\n", t2-t1);
 
 
 	struct utsname un;
@@ -221,7 +221,7 @@ debug_out("INT TIME %g\n\n", t2-t1);
 
 	FILE* const f = fopen("../logs/system_info.txt", "w");
 	if(!f)
-		return -1;
+		return;
 
 	// .. OS
 	fprintf(f, "%s %s (%s)\n", un.sysname, un.release, un.version);
@@ -276,7 +276,6 @@ debug_out("INT TIME %g\n\n", t2-t1);
 	fprintf(f, "\nSupported extensions: \n%s\n", SplitExts(exts).c_str());
 
 	fclose(f);
-	return 0;
 }
 
 

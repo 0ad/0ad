@@ -107,7 +107,7 @@ static inline int z_validate(const void* const file, const size_t size)
 	// make sure it's big enough to check the header and for
 	// z_find_ecdr to succeed (if smaller, it's definitely bogus).
 	if(size < ECDR_SIZE)
-		return -1;
+		return ERR_CORRUPTED;
 
 	// check "header" (first LFH) signature
 	return (*(u32*)file == *(u32*)&lfh_id)? 0 : -1;
@@ -144,7 +144,7 @@ static int z_find_ecdr(const void* const file, const size_t size, const u8*& ecd
 	}
 
 	// reached EOF and still haven't found the ECDR identifier.
-	return -1;
+	return ERR_CORRUPTED;
 
 	}
 
@@ -165,23 +165,19 @@ static int z_verify_lfh(const void* const file, const off_t lfh_ofs, const off_t
 
 	const u8* lfh = (const u8*)file + lfh_ofs;
 
+	// LFH signature doesn't match
 	if(*(u32*)lfh != *(u32*)lfh_id)
-	{
-		debug_warn("z_verify_lfh: LFH signature not found");
-		return -1;
-	}
+		return ERR_CORRUPTED;
 
 	const u16 lfh_fn_len = read_le16(lfh+26);
 	const u16 lfh_e_len  = read_le16(lfh+28);
 
 	const off_t lfh_file_ofs = lfh_ofs + LFH_SIZE + lfh_fn_len + lfh_e_len;
 
+	// CDFH and LFH are inconsistent =>
+	// normal builds would return incorrect offsets.
 	if(file_ofs != lfh_file_ofs)
-	{
-		debug_warn("z_verify_lfh: CDFH and LFH data differ! normal builds will"\
-			        "return incorrect file offsets. check Zip file!");
-		return -1;
-	}
+		return  ERR_CORRUPTED;
 
 	return 0;
 }
@@ -296,7 +292,7 @@ static int z_extract_cdfh(const u8* cdfh, const ssize_t bytes_left, const char*&
 	if(method & ~8)
 	{
 		debug_warn("z_extract_cdfh: unknown compression method");
-		return -1;
+		return ERR_NOT_SUPPORTED;
 	}
 	// .. this is a directory entry; we only want files.
 	if(!csize_ && !ucsize_)

@@ -568,9 +568,6 @@ int munmap(void* const start, const size_t len)
 
 int uname(struct utsname* un)
 {
-	if(!un)
-		return -1;
-
 	static OSVERSIONINFO vi;
 	vi.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
 	GetVersionEx(&vi);
@@ -653,9 +650,8 @@ long sysconf(int name)
 		GetSystemInfo(&si);		// can't fail => page_size always > 0.
 		page_size = si.dwPageSize;
 
-		// import GlobalMemoryStatusEx
-		// (used by _SC_*_PAGES if available -
-		// it's not defined in the VC6 Platform SDK)
+		// import GlobalMemoryStatusEx - it's not defined by the VC6 PSDK.
+		// used by _SC_*_PAGES if available (provides better results).
 		const HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");  
 		*(void**)&pGlobalMemoryStatusEx = GetProcAddress(hKernel32Dll, "GlobalMemoryStatusEx"); 
 		FreeLibrary(hKernel32Dll);
@@ -688,14 +684,13 @@ long sysconf(int name)
 		// newer API is available: use it to report correct results
 		// (no overflow or wraparound) on systems with > 4 GB of memory.
 		MEMORYSTATUSEX mse = { sizeof(mse) };
-		if(pGlobalMemoryStatusEx(&mse))
+		if(pGlobalMemoryStatusEx && pGlobalMemoryStatusEx(&mse))
 		{
 			total_phys_mem = mse.ullTotalPhys;
 			avail_phys_mem = mse.ullAvailPhys;
 		}
-		else
-			// no matter though, we have the results from GlobalMemoryStatus.
-			debug_warn("GlobalMemoryStatusEx failed - why?");
+		// else: not an error, since this isn't available before Win2k / XP.
+		// we have results from GlobalMemoryStatus anyway.
 
 		if(name == _SC_PHYS_PAGES)
 			return (long)(round_up((uintptr_t)total_phys_mem, 2*MB) / page_size);

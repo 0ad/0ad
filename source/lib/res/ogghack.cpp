@@ -76,7 +76,7 @@ size_t read_func(void* ptr, size_t elements, size_t el_size, void* datasource)
 
 int seek_func(void* datasource, ogg_int64_t offset, int whence)
 {
-	return -1;
+	return -1;	// libvorbisfile: indicate "not implemented"
 }
 
 int close_func(void* datasource)

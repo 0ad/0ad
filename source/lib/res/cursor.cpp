@@ -119,12 +119,7 @@ static int Cursor_reload(Cursor* c, const char* name, Handle)
 	sprintf(filename, "art/textures/cursors/%s.png", name);
 
 	Handle tex = tex_load(filename);
-	if (tex <= 0)
-	{
-		// TODO: Handle errors
-		assert(! "Error loading cursor texture");
-		return -1;
-	}
+	CHECK_ERR(tex);
 
 #ifdef _WIN32
 	if (c->type == 1)
@@ -219,12 +214,7 @@ static int Cursor_reload(Cursor* c, const char* name, Handle)
 	{
 
 		int err = tex_upload(tex);
-		if (err < 0)
-		{
-			// TODO: Handle errors
-			assert(! "Error uploading cursor texture");
-			return -1;
-		}
+		CHECK_ERR(err);
 
 		c->cursor = new struct ogl_cursor;
 

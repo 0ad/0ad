@@ -1031,7 +1031,7 @@ int vfs_close_dir(Handle& hd)
 
 
 // retrieve the next dir entry (in alphabetical order) matching <filter>.
-// return 0 on success, ERR_VFS_DIR_END if no matching entry was found,
+// return 0 on success, ERR_DIR_END if no matching entry was found,
 // or a negative error code on failure.
 // filter values:
 // - 0: any file;
@@ -1053,7 +1053,7 @@ int vfs_next_dirent(const Handle hd, vfsDirEnt* ent, const char* const filter)
 	if(filter && filter[0] == '/' && filter[1] == '\0')
 	{
 		if(vd->subdir_it == vd->subdirs->end())
-			return ERR_VFS_DIR_END;
+			return ERR_DIR_END;
 		ent->name = vd->subdir_it->first.c_str();
 		++vd->subdir_it;
 		return 0;
@@ -1063,7 +1063,7 @@ int vfs_next_dirent(const Handle hd, vfsDirEnt* ent, const char* const filter)
 	for(;;)
 	{
 		if(vd->file_it == vd->files->end())
-			return ERR_VFS_DIR_END;
+			return ERR_DIR_END;
 		ent->name = vd->file_it->first.c_str();
 		++vd->file_it;
 

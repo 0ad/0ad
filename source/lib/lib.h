@@ -119,16 +119,53 @@ STMT(\
 
 enum LibError
 {
-	ERR_INVALID_HANDLE  = -1000,
-	ERR_NO_MEM          = -1001,
-	ERR_EOF             = -1002,	// attempted to read beyond EOF
-	ERR_INVALID_PARAM   = -1003,
-	ERR_FILE_NOT_FOUND  = -1004,
-	ERR_PATH_NOT_FOUND  = -1005,
-	ERR_PATH_LENGTH     = -1006,
-	ERR_AGAIN           = -1007,	// try again later
+	//
+	// lib + res
+	//
 
-	ERR_VFS_DIR_END     = -1008,
+	ERR_INVALID_PARAM   = -1000,
+	ERR_INVALID_HANDLE  = -1001,
+	ERR_NO_MEM          = -1002,
+
+	// try again later
+	ERR_AGAIN           = -1003,
+
+	// fixed limit exceeded
+	ERR_LIMIT           = -1004,
+
+	// system doesn't support required API(s)
+	ERR_NO_SYS          = -1005,
+
+	// feature not currently implemented (will probably change)
+	ERR_NOT_IMPLEMENTED = -1006,
+
+	// feature won't be supported
+	ERR_NOT_SUPPORTED   = -1007,
+
+	// file contents are damaged
+	ERR_CORRUPTED       = -1008,
+
+	ERR_UNKNOWN_FORMAT  = -1009,
+
+	//
+	// file + vfs
+	//
+
+	ERR_FILE_NOT_FOUND  = -1100,
+	ERR_PATH_NOT_FOUND  = -1101,
+	ERR_DIR_END         = -1102,
+
+	// started 
+	ERR_EOF             = -1103,
+
+	ERR_PATH_LENGTH     = -1104,
+	ERR_NOT_FILE        = -1105,
+	ERR_FILE_ACCESS     = -1106,
+	ERR_IO              = -1107,
+
+
+	ERR_TEX_FMT_INVALID = -1200,
+
 
 	ERR_LAST
 };

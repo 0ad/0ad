@@ -248,7 +248,7 @@ fail:
 int dir_cancel_watch(const intptr_t reqnum)
 {
 	if(reqnum < 0)
-		return -1;
+		return ERR_INVALID_PARAM;
 
 	Watch* w = watches[reqnum];
 	if(!w)
@@ -336,12 +336,12 @@ static int get_packet()
 
 int dir_get_changed_file(char* fn)
 {
-	// slight optimization: only call get_packet if queue is empty
-	if(pending_events.empty())
-		get_packet();
+	// queue one or more events, or return 1 if none pending.
+	CHECK_ERR(get_packet());
 
+	// nothing to return; call again later.
 	if(pending_events.empty())
-		return -1;
+		return ERR_AGAIN;
 
 	const std::string& fn_s = pending_events.front();
 	strcpy(fn, fn_s.c_str());

@@ -87,7 +87,7 @@ extern Handle vfs_open_dir(const char* dir);
 extern int vfs_close_dir(Handle& hd);
 
 // retrieve the next dir entry (in alphabetical order) matching <filter>.
-// return 0 on success, ERR_VFS_DIR_END if no matching entry was found,
+// return 0 on success, ERR_DIR_END if no matching entry was found,
 // or a negative error code on failure.
 // filter values:
 // - 0: any file;

@@ -530,7 +530,7 @@ static const char* devs;
 int snd_dev_prepare_enum()
 {
 	if(alcIsExtensionPresent(0, (ALubyte*)"ALC_ENUMERATION_EXT") != AL_TRUE)
-		return -1;
+		return ERR_NO_SYS;
 
 	devs = (const char*)alcGetString(0, ALC_DEVICE_SPECIFIER);
 	return 0;
@@ -921,7 +921,7 @@ static int SndData_reload(SndData* sd, const char* fn, Handle hsd)
 		if(ogg_supported == -1)
 			ogg_supported = alIsExtensionPresent((ALubyte*)"AL_EXT_vorbis")? 1 : 0;
 		if(!ogg_supported)
-			return -1;
+			return ERR_NO_SYS
 
 		sd->al_fmt  = AL_FORMAT_VORBIS_EXT;
 		sd->al_freq = 0;
@@ -934,7 +934,7 @@ static int SndData_reload(SndData* sd, const char* fn, Handle hsd)
 		file_type = FT_WAV;
 	// .. unknown extension
 	else
-		return -1;
+		return ERR_UNKNOWN_FORMAT;
 
 
 	if(sd->is_stream)
@@ -1447,8 +1447,7 @@ static int VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
 
 	bool is_stream = (vs->flags & VS_IS_STREAM) != 0;
 	vs->hsd = snd_data_load(snd_fn, is_stream);
-	if(vs->hsd <= 0)
-		return -1;
+	CHECK_ERR(vs->hsd);
 
 	return 0;
 }
@@ -1497,9 +1496,8 @@ int snd_play(Handle hs, float static_pri)
 {
 	H_DEREF(hs, VSrc, vs);
 
-	// sound data wasn't loaded successfully - bail
-	if(vs->hsd <= 0)
-		return -1;
+	// note: vs->hsd is valid, otherwise snd_open would have failed
+	// and returned an invalid handle (caught above).
 
 	vs->static_pri = static_pri;
 	list_add(vs);

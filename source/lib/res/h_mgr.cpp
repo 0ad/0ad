@@ -280,7 +280,7 @@ static int alloc_idx(i32& idx, HDATA*& hd)
 		if(last_in_use >= hdata_cap)
 		{
 			assert(!"alloc_idx: too many open handles (increase IDX_BITS)");
-			return -1;
+			return ERR_LIMIT;
 		}
 		idx = last_in_use+1;	// just incrementing idx would start it at 1
 		hd = h_data_from_idx(idx);

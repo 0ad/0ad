@@ -284,7 +284,7 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 
 	DIR* const os_dir = opendir(n_path);
 	if(!os_dir)
-		return -1;
+		return ERR_PATH_NOT_FOUND;
 
 	// will append file names here
 	const size_t n_path_len = strlen(n_path);
@@ -473,9 +473,9 @@ int file_open(const char* const p_fn, const uint flags, File* const f)
 	{
 		struct stat s;
 		if(stat(n_fn, &s) < 0)
-			return -1;
+			return ERR_FILE_NOT_FOUND;
 		if(!S_ISREG(s.st_mode))
-			return -1;
+			return ERR_NOT_FILE;
 		size = s.st_size;
 	}
 
@@ -485,7 +485,7 @@ int file_open(const char* const p_fn, const uint flags, File* const f)
 
 	int fd = open(n_fn, oflag, S_IRWXO|S_IRWXU|S_IRWXG);
 	if(fd < 0)
-		return -1;
+		return ERR_FILE_ACCESS;
 
 #ifdef PARANOIA
 	f->magic = FILE_MAGIC;
@@ -674,8 +674,9 @@ debug_out("file_wait_io: hio=%p\n", io);
 	debug_out("file_wait_io: bytes_transferred=%d aio_nbytes=%d\n",
 		bytes_transferred, cb->aio_nbytes);
 #endif
+	// (size was clipped to EOF in file_io => this is an actual IO error)
 	if(bytes_transferred < (ssize_t)cb->aio_nbytes)
-		return -1;
+		return ERR_IO;
 
 	p = (void*)cb->aio_buf;	// cast from volatile void*
 	size = bytes_transferred;
@@ -881,7 +882,7 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 		// cut data_size off at EOF
 		const ssize_t bytes_left = f->size - data_ofs;
 		if(bytes_left < 0)
-			return -1;
+			return ERR_EOF;
 		data_size = MIN(data_size, (size_t)bytes_left);
 	}
 
