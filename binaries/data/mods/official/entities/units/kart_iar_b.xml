@@ -7,12 +7,16 @@
 			civ="Carthaginians"
 			internal_only="false"
 
-			specific="(Name)"
-			ranked="Basic (Name)"
+			specific="Qašát"
 
-			history="(Insert History Here)"
+			history="The Mauritanians are said to have supplied good archers to the armies of Carthage."
 		/>
 	</Traits>
+	<Actions>
+		<Create
+			list.structmil="mc;pc;ff;tf;wc;wg"
+		/>
+	</Actions>
 	<Actor>Carthaginian Basic Archer Infantry</Actor>
 </Entity>
 

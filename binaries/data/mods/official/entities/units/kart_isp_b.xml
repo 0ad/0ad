@@ -7,12 +7,16 @@
 			civ="Carthaginians"
 			internal_only="false"
 
-			specific="(Name)"
-			ranked="Basic (Name)"
+			specific="Iš Hanít Arukáh Meguyás"
 
-			history="(Insert History Here)"
+			history="Although the Liby-Phoenician soldiers were not themselves citizens of the city of Carthage, they were levied to the armies of Carthage from those Phoenician colonies of modern-day Tunisia and Libya that had been taken over by the Carthaginians upon the demise of the mother cities in the Levant. Those town and cities were not permitted to hold standing armies of their own, having instead to rely upon Carthage for leadership and defense."
 		/>
 	</Traits>
+	<Actions>
+		<Create
+			list.structmil="mc;pc;ff;tf;wc;wg"
+		/>
+	</Actions>
 	<Actor>Carthaginian Basic Spearman Infantry</Actor>
 </Entity>
 

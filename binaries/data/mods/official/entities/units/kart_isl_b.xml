@@ -7,12 +7,16 @@
 			civ="Carthaginians"
 			internal_only="false"
 
-			specific="(Name)"
-			ranked="Basic (Name)"
+			specific="Qalác"
 
-			history="(Insert History Here)"
+			history="The Balearic Slinger regiment was a levy from the islands that had been under control of Carthage from the 6th century BCE. They fired ceramic shot capable of punching through enemy shield and armour and dropping soldiers dead in their tracks. They carried 3 different slings of different lengths which were used to obtain range to target."
 		/>
 	</Traits>
+	<Actions>
+		<Create
+			list.structmil="mc;pc;ff;tf;wc;wg"
+		/>
+	</Actions>
 	<Actor>Carthaginian Basic Slinger Infantry</Actor>
 </Entity>
 

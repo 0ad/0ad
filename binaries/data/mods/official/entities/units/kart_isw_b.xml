@@ -7,12 +7,16 @@
 			civ="Carthaginians"
 			internal_only="false"
 
-			specific="(Name)"
-			ranked="Basic (Name)"
+			specific="Iš Hérev Sakhír"
 
-			history="(Insert History Here)"
+			history="Celts served as mercenaries in Carthaginian armies from the earliest times."
 		/>
 	</Traits>
+	<Actions>
+		<Create
+			list.structmil="mc;pc;ff;tf;wc;wg"
+		/>
+	</Actions>
 	<Actor>Carthaginian Basic Swordsman Infantry</Actor>
 </Entity>
 

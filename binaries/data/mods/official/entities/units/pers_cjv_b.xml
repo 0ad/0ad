@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity Tag="pers_cjv_b" Parent="csp">
+<Entity Tag="pers_cjv_b" Parent="cjv">
 	<Traits>
 		<Id
 			civ_code="pers"
 			civ="Persians"
 			internal_only="false"
 
-			specific="(Name)"
-			ranked="Basic (Name)"
+			specific="Asabari Madi"
 
-			history="(Insert History Here)"
+			history="The Mede Light Horse was the most widely used type of cavalry by the Persians, since Persian (and Median) boys were taught how to use a bow and ride a horse from a very early age. It was first introduced by the Median kings and was vital in the Median victory over the mighty Assyrians."
 		/>
 	</Traits>
 	<Actor>Persian Basic Javelinist Cavalry</Actor>

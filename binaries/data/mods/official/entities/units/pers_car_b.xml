@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity Tag="pers_car_b" Parent="csp">
+<Entity Tag="pers_car_b" Parent="car">
 	<Traits>
 		<Id
 			civ_code="pers"
 			civ="Persians"
 			internal_only="false"
 
-			specific="(Name)"
-			ranked="Basic (Name)"
+			specific="Chaharcharkhe Pars"
 
-			history="(Insert History Here)"
+			history="Chariots were the bulwark of most Middle Eastern armies during the latter part of the II millennium BC and retain their importance later on as elite units. The Persians learnt to use chariots from the Assyrians and Babylonians and employed them on several occasions. The introduction of scythes made the chariots very effective against enemy infantry. Their expensive equipment, however, meant that they were restricted to noblemen only and hence were difficult to amass."
 		/>
 	</Traits>
 	<Actor>Persian Basic Archer Cavalry</Actor>
