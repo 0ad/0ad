@@ -15,17 +15,17 @@ void CScheduler::pushFrame( size_t delay, const HEntity& destination, const CMes
 	frameMessage.push( SDispatchObjectMessage( destination, frameCount + delay, message ) );
 }
 
-void CScheduler::pushTime( size_t delay, const CStr16& fragment, JSObject* operateOn )
+void CScheduler::pushTime( size_t delay, const CStrW& fragment, JSObject* operateOn )
 {
 	timeScript.push( SDispatchObjectScript( fragment, simulationTime + delay, operateOn ) );
 }
 
-void CScheduler::pushFrame( size_t delay, const CStr16& fragment, JSObject* operateOn )
+void CScheduler::pushFrame( size_t delay, const CStrW& fragment, JSObject* operateOn )
 {
 	frameScript.push( SDispatchObjectScript( fragment, frameCount + delay, operateOn ) );
 }
 
-void CScheduler::pushInterval( size_t first, size_t interval, const CStr16& fragment, JSObject* operateOn )
+void CScheduler::pushInterval( size_t first, size_t interval, const CStrW& fragment, JSObject* operateOn )
 {
 	timeScript.push( SDispatchObjectScript( fragment, simulationTime + first, operateOn, interval ) );
 }
@@ -75,7 +75,7 @@ void CScheduler::update(size_t simElapsed)
 			break;
 		timeScript.pop();
 		m_abortInterval = false;
-		g_ScriptingHost.ExecuteScript( top.script, CStr16( L"timer" ), top.operateOn );
+		g_ScriptingHost.ExecuteScript( top.script, CStrW( L"timer" ), top.operateOn );
 		if( top.isRecurrent && !m_abortInterval )
 			pushInterval( top.delay, top.delay, top.script, top.operateOn );
 	}
@@ -85,7 +85,7 @@ void CScheduler::update(size_t simElapsed)
 		if( top.deliveryTime > frameCount )
 			break;
 		frameScript.pop();
-		g_ScriptingHost.ExecuteScript( top.script, CStr16( L"timer" ), top.operateOn );
+		g_ScriptingHost.ExecuteScript( top.script, CStrW( L"timer" ), top.operateOn );
 	}
 	while( !timeFunction.empty() )
 	{

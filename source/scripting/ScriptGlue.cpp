@@ -177,7 +177,7 @@ JSBool setTimeout( JSContext* context, JSObject* UNUSEDPARAM(globalObject), unsi
 	{
 	case JSTYPE_STRING:
 	{
-		CStr16 fragment = g_ScriptingHost.ValueToUCString( argv[0] );
+		CStrW fragment = g_ScriptingHost.ValueToUCString( argv[0] );
 		g_Scheduler.pushTime( delay, fragment, JS_GetScopeChain( context ) );
 		return( JS_TRUE );
 	}
@@ -221,7 +221,7 @@ JSBool setInterval( JSContext* context, JSObject* UNUSEDPARAM(globalObject), uns
 	{
 	case JSTYPE_STRING:
 	{
-		CStr16 fragment = g_ScriptingHost.ValueToUCString( argv[0] );
+		CStrW fragment = g_ScriptingHost.ValueToUCString( argv[0] );
 		g_Scheduler.pushInterval( first, interval, fragment, JS_GetScopeChain( context ) );
 		return( JS_TRUE );
 	}

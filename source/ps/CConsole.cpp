@@ -497,14 +497,14 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 	{
 		// Process it as JavaScript
 
-		g_ScriptingHost.ExecuteScript( CStr16( szLine + 1 ) );
+		g_ScriptingHost.ExecuteScript( CStrW( szLine + 1 ) );
 
 	}
 	else if (szLine[0] == '?')
 	{
 		// Process it as JavaScript and display the result
 
-		jsval rval = g_ScriptingHost.ExecuteScript( CStr16( szLine + 1 ) );
+		jsval rval = g_ScriptingHost.ExecuteScript( CStrW( szLine + 1 ) );
 		if (rval)
 		{
 			try {

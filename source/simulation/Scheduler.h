@@ -43,11 +43,11 @@ struct SDispatchObjectMessage : public SDispatchObject
 
 struct SDispatchObjectScript : public SDispatchObject
 {
-	CStr16 script;
+	CStrW script;
 	JSObject* operateOn;
-	inline SDispatchObjectScript( const CStr16& _script, const size_t _deliveryTime, JSObject* _operateOn = NULL )
+	inline SDispatchObjectScript( const CStrW& _script, const size_t _deliveryTime, JSObject* _operateOn = NULL )
 		: SDispatchObject( _deliveryTime ), script( _script ), operateOn( _operateOn ) {}
-	inline SDispatchObjectScript( const CStr16& _script, const size_t _deliveryTime, JSObject* _operateOn, const size_t recurrence )
+	inline SDispatchObjectScript( const CStrW& _script, const size_t _deliveryTime, JSObject* _operateOn, const size_t recurrence )
 		: SDispatchObject( _deliveryTime, recurrence ), script( _script ), operateOn( _operateOn ) {}
 };
 
@@ -71,9 +71,9 @@ struct CScheduler : public Singleton<CScheduler>
 
 	void pushTime( size_t delay, const HEntity& destination, const CMessage* message );
 	void pushFrame( size_t delay, const HEntity& destination, const CMessage* message );
-	void pushTime( size_t delay, const CStr16& fragment, JSObject* operateOn = NULL );
-	void pushFrame( size_t delay, const CStr16& fragment, JSObject* operateOn = NULL );
-	void pushInterval( size_t first, size_t interval, const CStr16& fragment, JSObject* operateOn = NULL );
+	void pushTime( size_t delay, const CStrW& fragment, JSObject* operateOn = NULL );
+	void pushFrame( size_t delay, const CStrW& fragment, JSObject* operateOn = NULL );
+	void pushInterval( size_t first, size_t interval, const CStrW& fragment, JSObject* operateOn = NULL );
 	void pushTime( size_t delay, JSFunction* function, JSObject* operateOn = NULL );
 	void pushFrame( size_t delay, JSFunction* function, JSObject* operateOn = NULL );
 	void pushInterval( size_t first, size_t interval, JSFunction* function, JSObject* operateOn = NULL );
