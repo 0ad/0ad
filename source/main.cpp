@@ -1132,6 +1132,10 @@ TIMER(init_after_InitRenderer);
 		in_add_handler(hotkeyInputHandler); // <- Leave this one until after all the others.
 	}
 
+#ifndef NO_GUI
+	g_GUI.SendEventToAll("load");
+#endif
+
 	MICROLOG(L"render blank");
 	// render everything to a blank frame to force renderer to load everything
 	RenderNoCull();

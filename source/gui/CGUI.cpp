@@ -499,7 +499,6 @@ void CGUI::AddObject(IGUIObject* pObject)
 
 		// Loaded
 		GUI<SGUIMessage>::RecurseObject(0, pObject, &IGUIObject::HandleMessage, SGUIMessage(GUIM_LOAD));
-		GUI<CStr>::RecurseObject(0, pObject, &IGUIObject::ScriptEvent, "load");
 	}
 	catch (PS_RESULT e)
 	{
