@@ -15,6 +15,23 @@
 // automatically use namespace ..
 XERCES_CPP_NAMESPACE_USE
 
+CBaseEntity::CBaseEntity( const CBaseEntity& copy )
+{
+	m_actorObject = copy.m_actorObject;
+
+	m_name = copy.m_name;
+	m_bound_type = copy.m_bound_type;
+	m_speed = copy.m_speed;
+	m_turningRadius = copy.m_turningRadius;
+
+	m_bound_circle = NULL;
+	m_bound_box = NULL;
+	if( copy.m_bound_circle )
+		m_bound_circle = new CBoundingCircle( 0.0f, 0.0f, copy.m_bound_circle );
+	if( copy.m_bound_box )
+		m_bound_box = new CBoundingBox( 0.0f, 0.0f, 0.0f, copy.m_bound_box );
+}
+
 CBaseEntity::~CBaseEntity()
 {
 	if( m_bound_box )

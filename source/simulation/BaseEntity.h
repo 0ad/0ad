@@ -28,6 +28,7 @@ class CBaseEntity
 {
 public:
 	CBaseEntity() { m_bound_circle = NULL; m_bound_box = NULL; }
+	CBaseEntity( const CBaseEntity& copy );
 	~CBaseEntity();
 	// Load from XML
 	bool loadXML( CStr filename );
