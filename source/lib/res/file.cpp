@@ -509,6 +509,31 @@ int file_close(File* const f)
 ///////////////////////////////////////////////////////////////////////////////
 
 
+// rationale:
+// asynchronous IO routines don't cache; they're just a thin AIO wrapper.
+// it's taken care of by file_io, which splits transfers into blocks
+// and keeps temp buffers in memory (not user-allocated, because they
+// might pull the rug out from under us at any time).
+//
+// doing so here would be more complicated: would have to handle "forwarding",
+// i.e. recognizing that the desired block has been issued, but isn't yet
+// complete. file_io also knows more about whether a block should be cached.
+//
+// disadvantages:
+// - streamed data will always be read from disk. no problem, because
+//   such data (e.g. music, long speech) is unlikely to be used again soon.
+// - prefetching (issuing the next few blocks from an archive during idle
+//   time, so that future out-of-order reads don't need to seek) isn't
+//   possible in the background (unless via thread, but that's discouraged).
+//   the utility is questionable, though: how to prefetch so as not to delay
+//   real IOs? can't determine "idle time" without completion notification,
+//   which is hard.
+//   we could get the same effect by bridging small gaps in file_io,
+//   and rearranging files in the archive in order of access.
+
+
+
+
 // starts transferring to/from the given buffer.
 // no attempt is made at aligning or padding the transfer.
 int file_start_io(File* const f, const off_t ofs, size_t size, void* const p, FileIO* io)
