@@ -3,6 +3,7 @@
 #include "types.h"
 #include "MapReader.h"
 #include "UnitManager.h"
+#include "Unit.h"
 #include "ObjectManager.h"
 #include "BaseEntity.h"
 #include "BaseEntityCollection.h"

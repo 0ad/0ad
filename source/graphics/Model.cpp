@@ -9,6 +9,7 @@
 #include "precompiled.h"
 
 #include "Model.h"
+#include "ModelDef.h"
 #include "Quaternion.h"
 #include "Bound.h"
 #include "SkeletonAnim.h"

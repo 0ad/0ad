@@ -9,6 +9,7 @@
 #include "MeshManager.h"
 
 #include "UnitManager.h"
+#include "Unit.h"
 
 #include "ps/Xeromyces.h"
 

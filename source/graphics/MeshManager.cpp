@@ -2,6 +2,7 @@
 #include "graphics/MeshManager.h"
 #include "CLogger.h"
 #include "FileUnpacker.h" // to get access to its CError
+#include "ModelDef.h"
 
 CMeshManager::CMeshManager()
 {

@@ -6,8 +6,6 @@ class CSkeletonAnim;
 
 #include <vector>
 #include "CStr.h"
-#include "Bound.h"
-#include "ModelDef.h"
 
 class CObjectEntry
 {

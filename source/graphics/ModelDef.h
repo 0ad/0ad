@@ -125,9 +125,9 @@ public:
 	// prop point data
 	u32 m_NumPropPoints;
 	SPropPoint* m_PropPoints;
+
 protected:
-    static CModelDef* Load(const char* filename);
-    //CStr m_Filename;
+	static CModelDef* Load(const char* filename);
 };
 
 #endif

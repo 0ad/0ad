@@ -10,6 +10,8 @@
 #include "Network/NetMessage.h"
 #include "CLogger.h"
 #include "CConsole.h"
+#include "Unit.h"
+#include "Model.h"
 
 #include "gui/CGUI.h"
 

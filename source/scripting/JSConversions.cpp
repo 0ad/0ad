@@ -4,6 +4,7 @@
 #include "ObjectManager.h"
 #include "scripting/JSInterface_Vector3D.h"
 #include "Parser.h"
+#include "BaseEntity.h"
 
 // HEntity
 

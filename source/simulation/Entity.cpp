@@ -5,6 +5,7 @@
 #include "Entity.h"
 #include "EntityManager.h"
 #include "BaseEntityCollection.h"
+#include "Unit.h"
 
 #include "Renderer.h"
 #include "Model.h"

@@ -7,6 +7,7 @@
 #include "TransparencyRenderer.h"
 #include "ModelRData.h"
 #include "Model.h"
+#include "ModelDef.h"
 #include "MaterialManager.h"
 
 ///////////////////////////////////////////////////////////////////

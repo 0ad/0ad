@@ -4,6 +4,8 @@
 
 #include "Entity.h"
 #include "Model.h"
+#include "ObjectEntry.h"
+#include "Unit.h"
 
 #include "Collision.h"
 #include "PathfindEngine.h"

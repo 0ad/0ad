@@ -11,6 +11,8 @@
 #include "res/res.h"
 #include "Model.h"
 #include "UnitManager.h"
+#include "Unit.h"
+
 #include <algorithm>
 
 ///////////////////////////////////////////////////////////////////////////////

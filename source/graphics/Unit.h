@@ -2,8 +2,8 @@
 #define _UNIT_H
 
 #include <assert.h>
-#include "Model.h"
 
+class CModel;
 class CObjectEntry;
 class CEntity;
 
@@ -21,9 +21,7 @@ public:
 	}
 
 	// destructor
-	~CUnit() {
-		delete m_Model;
-	}
+	~CUnit();
 
 
 	// get unit's template object

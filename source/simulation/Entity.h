@@ -34,18 +34,20 @@
 #include <deque>
 #include "scripting/ScriptableObject.h"
 
-#include "BaseEntity.h"
 #include "Vector2D.h"
-#include "BoundingObjects.h"
 #include "Vector3D.h"
-#include "Unit.h"
 #include "UnitManager.h"
 #include "EntityOrders.h"
 #include "EntityHandles.h"
 #include "EntityMessage.h"
 #include "EventHandlers.h"
+#include "ScriptObject.h"
 
 #include "EntitySupport.h"
+
+class CBaseEntity;
+class CBoundingObject;
+class CUnit;
 
 // TODO MT: Put this is /some/ sort of order...
 
@@ -201,7 +203,7 @@ public:
 // General entity globals
 
 
-// In it's current incarnation, inefficient but pretty
+// In its current incarnation, inefficient but pretty
 #define SELECTION_TERRAIN_CONFORMANCE 
 
 extern int SELECTION_CIRCLE_POINTS;

@@ -10,9 +10,9 @@
 #define _UNITMANAGER_H
 
 #include <vector>
-#include "Unit.h"
 #include "Singleton.h"
 
+class CUnit;
 class CVector3D;
 
 // access to sole CUnitManager object

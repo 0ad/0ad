@@ -2,8 +2,10 @@
 #define __H_MINIMAP_H__
 
 #include "GUI.h"
-#include "graphics/Terrain.h"
-#include "graphics/UnitManager.h"
+#include "Vector2D.h"
+#include "Vector3D.h"
+class CTerrain;
+class CUnitManager;
 
 class CMiniMap : public IGUIObject
 {

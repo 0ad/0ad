@@ -12,11 +12,11 @@
 #include <vector>
 
 #include "Texture.h"
-#include "ModelDef.h"
 #include "MeshManager.h"
 #include "RenderableObject.h"
 #include "SkeletonAnim.h"
 #include "Material.h"
+struct SPropPoint;
 
 #define MODELFLAG_CASTSHADOWS		(1<<0)
 #define MODELFLAG_NOLOOPANIMATION	(1<<1)

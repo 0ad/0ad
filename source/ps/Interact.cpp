@@ -8,6 +8,9 @@
 #include "timer.h"
 #include "Game.h"
 #include "Network/NetMessage.h"
+#include "BoundingObjects.h"
+#include "Unit.h"
+#include "Model.h"
 
 extern CConsole* g_Console;
 extern int mouse_x, mouse_y;

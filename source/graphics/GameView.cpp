@@ -17,6 +17,10 @@
 #include "Hotkey.h"
 #include "ConfigDB.h"
 
+#include "Quaternion.h"
+#include "Unit.h"
+#include "Model.h"
+
 #include "sdl.h"
 #include "input.h"
 #include "lib.h"

@@ -3,6 +3,7 @@
 #include "types.h"
 #include "MapWriter.h"
 #include "UnitManager.h"
+#include "Unit.h"
 #include "ObjectManager.h"
 #include "Model.h"
 #include "Terrain.h"

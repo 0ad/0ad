@@ -7,6 +7,7 @@
 #include "renderer/Renderer.h"
 #include "graphics/TextureEntry.h"
 #include "graphics/TextureManager.h"
+#include "graphics/Unit.h"
 
 static unsigned int ScaleColor(unsigned int color,float x)
 {
