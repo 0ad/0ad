@@ -1375,6 +1375,7 @@ debug_out("vfs_load fn=%s\n", fn);
 			// add ref to hm for VFile
 		}
 	}
+	}
 
 skip_read:
 
