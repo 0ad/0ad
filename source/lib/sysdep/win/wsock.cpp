@@ -71,3 +71,57 @@ uint16_t htons(uint16_t s)
 {
 	return (s >> 8) | ((s & 0xff) << 8);
 }
+
+
+
+
+
+
+
+
+
+#pragma comment(lib, "delayimp.lib")
+
+#include <delayimp.h>
+
+FARPROC WINAPI MSJCheezyDelayLoadHook(unsigned dliNotify, PDelayLoadInfo pdli )
+{
+    // Display which type of notification it is
+    switch( dliNotify )
+    {
+        case dliStartProcessing:
+            printf( "dliStartProcessing      " );
+            break;
+            
+        case dliNotePreLoadLibrary:
+            printf( "dliNotePreLoadLibrary   " );
+            break;
+            
+        case dliNotePreGetProcAddress:
+            printf( "dliNotePreGetProcAddress" );
+            break;
+            
+        case dliNoteEndProcessing:
+            printf( "dliNoteEndProcessing    " );
+            break;          
+    }
+
+    // Display the DLL name and the HMODULE
+    printf( " %s(%08P) -> ", pdli->szDll, pdli->hmodCur );
+
+    // Display the API ordinal or API name, as appropriate
+    if ( pdli->dlp.fImportByName )
+        printf( " %s", pdli->dlp.szProcName );
+    else
+        printf( " ordinal:%u", pdli->dlp.dwOrdinal );
+
+    printf( "\n" );
+    
+    return 0;   // Make sure __delayLoadHelper doesn't think we did something!
+}
+
+//
+// Override the standard definition of __pfnDliNotifyHook that's part of
+// DELAYHLP.LIB
+//
+PfnDliHook __pfnDliNotifyHook = MSJCheezyDelayLoadHook;
