@@ -42,7 +42,16 @@
 		sprite-button-top-pressed="sprite2-pressed"
 	/>
 
-	<icon name="smiley" texture="test2" size="16 16" />
+	<!-- Resource Icons -->
+	<icon name="icon_resource_food" texture="resource_food" size="20 20"/>
+	<icon name="icon_resource_wood" texture="resource_wood" size="20 20"/>
+	<icon name="icon_resource_stone" texture="resource_stone" size="20 20"/>
+	<icon name="icon_resource_ore" texture="resource_ore" size="20 20"/>
+	<icon name="icon_resource_population" texture="resource_population" size="20 20"/>
+
+	<!-- Statistic Icons -->
+
+	<icon name="icon_statistic_garrison" texture="statistic_garrison" size="20 20"/>
 
 <!-- Commented out until tooltips are implemented as documented.
 	<tooltip name="session_tooltip"

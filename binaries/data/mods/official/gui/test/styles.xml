@@ -23,6 +23,14 @@
 		sprite2-disabled="sprite2-disabled"
 	/>
 
+	<style name="resource_counter"
+		text-valign="bottom"
+		text-align="right"
+		font="prospero16"
+		textcolor="255 255 255"
+		ghost="true" 
+	/>
+
 	<!-- Empty entity portrait. -->
 	<style name="portrait"
 		sprite="ui_portrait_default_64"

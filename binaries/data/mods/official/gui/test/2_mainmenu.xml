@@ -19,7 +19,6 @@
                 startGame();
                 GUIObjectUnhide("session_gui");
                 GUIObjectHide("pregame_gui");
-                GUIObjectUnhide("End_Game_Button");
                 FlipGUI(GUIType);
             ]]></action>
             <action on="MouseEnter"><![CDATA[

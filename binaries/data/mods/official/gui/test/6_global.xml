@@ -37,16 +37,10 @@
 
                 <!-- TEMPORARY END GAME BUTTON; REMOVE WHEN GAME MENU IMPLEMENTED; BUTTON IS OUTSIDE OF pregame_gui IN ORDER TO BE VISIBLE DURING GAME -->
 
-                <object type="button" name="End_Game_Button" sprite="sprite1" sprite-over="sprite1-over" sprite-pressed="sprite1-pressed" z="105" textcolor="0 0 0" text-align="center" text-valign="center" hidden="true">End Game
-                        <action on="Load"><![CDATA[
-                                AddSizeString(this.name,
-                                "100%-150 100%-53 100%-30 100%-32", 
-                                "100%-150 0%+32 100%-30 0%+53");
-                        ]]></action>
+                <object type="button" name="End_Game_Button" hotkey="endgame" z="105" hidden="true">
                         <action on="Press"><![CDATA[
                                 endGame();
                                 GUIObjectHide("session_gui");
-                                GUIObjectHide("End_Game_Button");
                                 GUIObjectUnhide("pregame_gui");
                         ]]></action>
                 </object> 

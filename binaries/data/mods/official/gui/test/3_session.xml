@@ -484,137 +484,63 @@
 
 		</object>
 
-                <!-- GROUP: TOP BAR -->
+                <!-- GROUP: RESOURCE BAR -->
                 <object type="empty" name="session_top_bar" hotkey="resourcepool.toggle" size="0 0 100% 100%" z="1" hidden="false">
 			<action on="Press"><![CDATA[
 				GUIObjectToggle("session_top_bar");
 			]]></action>
 
-                        <!-- FOOD icon/background/text-->
-                        <object type="text" name="resource_food" sprite="resource_food" z="70" ghost="true" hidden="false">
+                        <object type="button" name="resource_food_counter" sprite="resource_food_counter" style="resource_counter" z="70" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-191 0%+4 50%-171 0%+24", 
-					"50%-191 100%-24 50%-171 100%-4");
-				]]></action>
-			</object>
-                        <object type="text" name="resource_food_counter" sprite="resource_counter" z="70" font="prospero16" textcolor="255 255 255" ghost="true" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-171 0%+5 50%-118 0%+24", 
-					"50%-171 100%-24 50%-118 100%-5");
-				]]></action>
-			</object>
-                        <object type="text" name="resource_food_text" font="prospero16" textcolor="255 255 255" z="70" ghost="true" hidden="false">
-                                <action on="Load"><![CDATA[
-                                        this.caption = "123,456";
-					AddSizeString(this.name,
-					"50%-175 0%+1 50%-118 0%+10", 
-					"50%-175 100%-28 50%-118 100%-4");
-                                ]]></action>
-                        </object>
+					this.caption = "123,456";
 
-                        <!-- WOOD -->
-                        <!-- icon/background/text -->
-                        <object type="text" name="resource_wood" sprite="resource_wood" z="70" ghost="true" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-111 0%+4 50%-91 0%+24", 
-					"50%-111 100%-24 50%-91 100%-4");
+					AddSizeCoord(this.name,
+					crd_resource_food_x, crd_resource_food_y, crd_resource_food_x+crd_resource_counter_width, crd_resource_food_y+crd_resource_counter_height, mid_screen, top_screen, mid_screen, top_screen,
+					crd_resource_food_x, -crd_resource_food_y-crd_resource_counter_height, crd_resource_food_x+crd_resource_counter_width, -crd_resource_food_y, mid_screen, bottom_screen, mid_screen, bottom_screen);
 				]]></action>
 			</object>
-                        <object type="text" name="resource_wood_counter" sprite="resource_counter" z="70" ghost="true" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-91 0%+5 50%-38 0%+24", 
-					"50%-91 100%-24 50%-38 100%-5");
-				]]></action>
-			</object>
-                        <object type="text" name="resource_wood_text" font="prospero16" textcolor="255 255 255" z="70" ghost="true" hidden="false">
-                                <action on="Load"><![CDATA[
-                                        this.caption = "789,012";
-					AddSizeString(this.name,
-					"50%-95 0%+1 50%-42 0%+10", 
-					"50%-95 100%-28 50%-42 100%-4");
-                                ]]></action>
-                        </object>
 
-                        <!-- STONE -->
-                        <!-- icon/background/text -->
-                        <object type="text" name="resource_stone" sprite="resource_stone" z="70" ghost="true" hidden="false">
+                        <object type="button" name="resource_wood_counter" sprite="resource_wood_counter" style="resource_counter" z="70" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-31 0%+4 50%-11 0%+24", 
-					"50%-31 100%-24 50%-11 100%-4");
-				]]></action>
-			</object>
-                        <object type="text" name="resource_stone_counter" sprite="resource_counter" z="70" ghost="true" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-11 0%+5 50%+42 0%+24", 
-					"50%-11 100%-24 50%+42 100%-5");
-				]]></action>
-			</object>
-                        <object type="text" name="resource_stone_text" font="prospero16" textcolor="255 255 255" z="70" ghost="true" hidden="false">
-                                <action on="Load"><![CDATA[
-                                        this.caption = "345,678";
-					AddSizeString(this.name,
-					"50%-13 0%+1 50%+40 0%+10", 
-					"50%-13 100%-28 50%+40 100%-4");
-                                ]]></action>
-                        </object>
+					this.caption = "789,012";
 
-                        <!-- ORE -->
-                        <!-- icon/background/text -->
-                        <object type="text" name="resource_ore" sprite="resource_ore" z="70" ghost="true" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+49 0%+4 50%-29 0%+24", 
-					"50%+49 100%-24 50%-29 100%-4");
+					AddSizeCoord(this.name,
+					crd_resource_wood_x, crd_resource_wood_y, crd_resource_wood_x+crd_resource_counter_width, crd_resource_wood_y+crd_resource_counter_height, mid_screen, top_screen, mid_screen, top_screen,
+					crd_resource_wood_x, -crd_resource_wood_y-crd_resource_counter_height, crd_resource_wood_x+crd_resource_counter_width, -crd_resource_wood_y, mid_screen, bottom_screen, mid_screen, bottom_screen);
 				]]></action>
 			</object>
-                        <object type="text" name="resource_ore_counter" sprite="resource_counter" z="70" ghost="true" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+69 0%+5 50%+122 0%+24", 
-					"50%+69 100%-24 50%+122 100%-5");
-				]]></action>
-			</object>
-                        <object type="text" name="resource_ore_text" font="prospero16" textcolor="255 255 255" z="70" ghost="true" hidden="false">
-                                <action on="Load"><![CDATA[
-                                        this.caption = "910,123";
-					AddSizeString(this.name,
-					"50%+67 0%+1 50%+120 0%+24", 
-					"50%+67 100%-28 50%+120 100%-4");
-                                ]]></action>
-                        </object>
 
-                        <!-- POPULATION -->
-                        <!-- icon/background/text -->
-                        <object type="text" name="resource_population" sprite="resource_population" z="70" ghost="true" hidden="false">
+                        <object type="button" name="resource_stone_counter" sprite="resource_stone_counter" style="resource_counter" z="70" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+129 0%+4 50%+149 0%+24", 
-					"50%+129 100%-24 50%+149 100%-4");
-				]]></action>
-			</object>
-                        <object type="text" name="resource_population_counter" sprite="resource_counter_long" z="70" ghost="true" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+149 0%+5 50%+202 0%+24", 
-					"50%+149 100%-24 50%+202 100%-5");
-				]]></action>
-			</object>
-                        <object type="text" name="resource_population_text" font="prospero16" textcolor="255 255 255" z="70" ghost="true" hidden="false">
-                                <action on="Load"><![CDATA[
-                                        this.caption = "100/150";
-					AddSizeString(this.name,
-					"50%+147 0%+1 50%+200 0%+24", 
-					"50%+147 100%-28 50%+200 100%-4");
-                                ]]></action>
-                        </object>
+					this.caption = "109,854";
 
-                <!-- / GROUP: TOP BAR -->
+					AddSizeCoord(this.name,
+					crd_resource_stone_x, crd_resource_stone_y, crd_resource_stone_x+crd_resource_counter_width, crd_resource_stone_y+crd_resource_counter_height, mid_screen, top_screen, mid_screen, top_screen,
+					crd_resource_stone_x, -crd_resource_stone_y-crd_resource_counter_height, crd_resource_stone_x+crd_resource_counter_width, -crd_resource_stone_y, mid_screen, bottom_screen, mid_screen, bottom_screen);
+				]]></action>
+			</object>
+
+                        <object type="button" name="resource_ore_counter" sprite="resource_ore_counter" style="resource_counter" z="70" hidden="false">
+				<action on="Load"><![CDATA[
+					this.caption = "42";
+
+					AddSizeCoord(this.name,
+					crd_resource_ore_x, crd_resource_ore_y, crd_resource_ore_x+crd_resource_counter_width, crd_resource_ore_y+crd_resource_counter_height, mid_screen, top_screen, mid_screen, top_screen,
+					crd_resource_ore_x, -crd_resource_ore_y-crd_resource_counter_height, crd_resource_ore_x+crd_resource_counter_width, -crd_resource_ore_y, mid_screen, bottom_screen, mid_screen, bottom_screen);
+				]]></action>
+			</object>
+
+                        <object type="button" name="resource_population_counter" sprite="resource_population_counter" style="resource_counter" z="70" hidden="false">
+				<action on="Load"><![CDATA[
+					this.caption = "199/200";
+
+					AddSizeCoord(this.name,
+					crd_resource_population_x, crd_resource_population_y, crd_resource_population_x+crd_resource_counter_long_width, crd_resource_population_y+crd_resource_counter_height, mid_screen, top_screen, mid_screen, top_screen,
+					crd_resource_population_x, -crd_resource_population_y-crd_resource_counter_height, crd_resource_population_x+crd_resource_counter_long_width, -crd_resource_population_y, mid_screen, bottom_screen, mid_screen, bottom_screen);
+				]]></action>
+			</object>
+
+                <!-- / GROUP: RESOURCE BAR -->
                 </object>
 
                 <!-- GROUP: MAP ORB -->
@@ -804,20 +730,20 @@
 			</object>
 
 			<!-- STATUS ORB STATISTICS AND ICONS (Experience, Hitpoints, Supply, Garrison) -->
-                        <object type="button" name="session_panel_status_icon_supply" sprite="resource_food" textcolor="252 148 78" text-align="center" text-valign="center" ghost="true" z="70" hidden="false">
+                        <object type="button" name="session_panel_status_icon_supply" textcolor="252 148 78" text-align="center" text-valign="center" ghost="true" z="70" hidden="false">
                                 <action on="Load"><![CDATA[
 					AddSizeString("session_panel_status_icon_supply",
 					"0%+135 0%+65 0%+150 0%+130", 
 					"0%+135 100%-110 0%+150 100%-45");
-                                        getGUIObjectByName("session_panel_status_icon_supply").caption = "1575";
+                                        getGUIObjectByName("session_panel_status_icon_supply").caption = "[icon=icon_resource_food] 1575";
                                 ]]></action>
                         </object>
-                        <object type="button" name="session_panel_status_icon_garrison" sprite="statistic_garrison" textcolor="100 100 255" text-align="center" text-valign="center" ghost="true" z="70" hidden="false">
+                        <object type="button" name="session_panel_status_icon_garrison" textcolor="100 100 255" text-align="center" text-valign="center" ghost="true" z="70" hidden="false">
                                 <action on="Load"><![CDATA[
 					AddSizeString("session_panel_status_icon_garrison",
-					"0%+126 0%+65 0%+141 0%+130", 
-					"0%+126 100%-160 0%+141 100%-95");
-                                        getGUIObjectByName("session_panel_status_icon_garrison").caption = "23/30";
+					"0%+116 0%+65 0%+141 0%+130", 
+					"0%+116 100%-160 0%+141 100%-95");
+                                        getGUIObjectByName("session_panel_status_icon_garrison").caption = "[icon=icon_statistic_garrison] 23/30";
                                 ]]></action>
                         </object>
 

@@ -11,6 +11,15 @@ function initCoord()
 	crd_portrait_lrg_height = crd_portrait_lrg_width;
 	crd_portrait_sml_width = 32;
 	crd_portrait_sml_height = crd_portrait_sml_width;
+
+	// Screen percentages.
+	top_screen = 0;
+	mid_screen = 50;
+	bottom_screen = 100;
+
+	// Small icons (eg Movement Rate, Food).
+	crd_mini_icon_width = 20;
+	crd_mini_icon_height = crd_mini_icon_width;
 }
 
 // ====================================================================
@@ -139,6 +148,8 @@ function FlipGUI(NewGUIType)
 				break;
 			}			
 		}
+
+		UpdateGroupPane();
 	}
 	else
 	{

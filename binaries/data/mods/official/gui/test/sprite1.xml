@@ -236,36 +236,61 @@
 
                 <!--
                 ==========================================
-                TOP BAR
+                RESOURCE BAR
                 ==========================================
                 -->
 
                 <sprite name="resource_food">
-                        <image texture="ui_icon_resource_food_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                        <image texture="ui_icon_resource_food_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="resource_wood">
-                        <image texture="ui_icon_resource_wood_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                        <image texture="ui_icon_resource_wood_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="resource_stone">
-                        <image texture="ui_icon_resource_stone_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                        <image texture="ui_icon_resource_stone_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="resource_ore">
-                        <image texture="ui_icon_resource_ore_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                        <image texture="ui_icon_resource_ore_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="resource_population">
-                        <image texture="ui_icon_resource_population_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                        <image texture="ui_icon_resource_population_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="resource_counter">
-                        <image texture="ui_icon_resource_counter.png" texture-size="0 0 64 64" size="0 0 53 19" />
+                        <image texture="ui_icon_resource_counter.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="resource_counter_long">
-                        <image texture="ui_icon_resource_counter_long.png" texture-size="0 0 64 64" size="0 0 62 19" />
+                        <image texture="ui_icon_resource_counter_long.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="resource_food_counter">
+			<image texture="ui_icon_resource_food_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                        <image texture="ui_icon_resource_counter.png" texture-size="0 0 64 64" size="21 0 100% 100%" />
+                </sprite>
+
+                <sprite name="resource_wood_counter">
+			<image texture="ui_icon_resource_wood_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                        <image texture="ui_icon_resource_counter.png" texture-size="0 0 64 64" size="21 0 100% 100%" />
+                </sprite>
+
+                <sprite name="resource_stone_counter">
+			<image texture="ui_icon_resource_stone_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                        <image texture="ui_icon_resource_counter.png" texture-size="0 0 64 64" size="21 0 100% 100%" />
+                </sprite>
+
+                <sprite name="resource_ore_counter">
+			<image texture="ui_icon_resource_ore_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                        <image texture="ui_icon_resource_counter.png" texture-size="0 0 64 64" size="21 0 100% 100%" />
+                </sprite>
+
+                <sprite name="resource_population_counter">
+			<image texture="ui_icon_resource_population_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                        <image texture="ui_icon_resource_counter_long.png" texture-size="0 0 64 64" size="21 0 100% 100%" />
                 </sprite>
 
                 <!--
@@ -275,23 +300,23 @@
                 -->
 
                 <sprite name="statistic_hp">
-                        <image texture="ui_icon_statistic_hp_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                        <image texture="ui_icon_statistic_hp_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="statistic_rank1">
-                        <image texture="ui_icon_statistic_rank1_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                        <image texture="ui_icon_statistic_rank1_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="statistic_rank2">
-                        <image texture="ui_icon_statistic_rank2_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                        <image texture="ui_icon_statistic_rank2_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="statistic_rank3">
-                        <image texture="ui_icon_statistic_rank3_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                        <image texture="ui_icon_statistic_rank3_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="statistic_garrison">
-                        <image texture="ui_icon_statistic_garrison_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                        <image texture="ui_icon_statistic_garrison_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
                 </sprite>
 
                 <!--
