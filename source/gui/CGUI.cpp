@@ -34,8 +34,6 @@ gee@pyro.nu
 using namespace std;
 
 #include "ps/CLogger.h"
-#define XERO_TIME
-
 #define LOG_CATEGORY "gui"
 
 
