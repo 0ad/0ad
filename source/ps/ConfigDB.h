@@ -18,6 +18,16 @@
 		user: Ditto, but linked to CFG_USER
 
 		g_ConfigDB Functions: None so far
+
+		ConfigNamespace Functions: (applicable to the system, mod or user
+			properties of g_ConfigDB)
+
+		boolean WriteFile(boolean useVFS, string path):
+			JS interface to g_ConfigDB.WriteFile - should work exactly the
+			same.
+
+		boolean Reload() => g_ConfigDB.Reload()
+		void SetFile() => g_ConfigDB.SetConfigFile()
 */
 
 #ifndef _ps_ConfigDB_H
@@ -90,7 +100,11 @@ public:
 	// WriteFile()
 	// Write the current state of the specified config namespace to the file
 	// specified by 'path'
-	void WriteFile(EConfigNamespace ns, bool useVFS, CStr path);
+	//
+	// Returns:
+	//	true:	if the config namespace was successfully written to the file
+	//	false:	if an error occured
+	bool WriteFile(EConfigNamespace ns, bool useVFS, CStr path);
 };
 
 #endif

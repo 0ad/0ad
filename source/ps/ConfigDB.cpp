@@ -20,7 +20,7 @@ namespace ConfigNamespace_JS
 {
 	JSBool GetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
 	{
-		EConfigNamespace cfgNs=(EConfigNamespace)(int)JS_GetPrivate(cx, obj);
+		EConfigNamespace cfgNs=(EConfigNamespace)(intptr_t)JS_GetPrivate(cx, obj);
 		if (cfgNs < 0 || cfgNs >= CFG_LAST)
 			return JS_FALSE;
 
@@ -31,14 +31,12 @@ namespace ConfigNamespace_JS
 			JSString *js_str=JS_NewStringCopyN(cx, val->m_String.c_str(), val->m_String.size());
 			*vp = STRING_TO_JSVAL(js_str);
 		}
-		else
-			*vp = JSVAL_NULL;
 		return JS_TRUE;
 	}
 
 	JSBool SetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
 	{
-		EConfigNamespace cfgNs=(EConfigNamespace)(int)JS_GetPrivate(cx, obj);
+		EConfigNamespace cfgNs=(EConfigNamespace)(intptr_t)JS_GetPrivate(cx, obj);
 		if (cfgNs < 0 || cfgNs >= CFG_LAST)
 			return JS_FALSE;
 
@@ -67,7 +65,7 @@ namespace ConfigNamespace_JS
 		if (argc != 0)
 			return JS_FALSE;
 
-		JSObject *newObj=JS_NewObject(cx, &Class, NULL, NULL);
+		JSObject *newObj=JS_NewObject(cx, &Class, NULL, obj);
 		*rval=OBJECT_TO_JSVAL(newObj);
 		return JS_TRUE;
 	}
@@ -76,6 +74,68 @@ namespace ConfigNamespace_JS
 	{
 		JS_SetPrivate(cx, obj, (void *)cfgNs);
 	}
+
+	JSBool WriteFile( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
+	{
+		EConfigNamespace cfgNs=(EConfigNamespace)(intptr_t)JS_GetPrivate(cx, obj);
+		if (cfgNs < 0 || cfgNs >= CFG_LAST)
+			return JS_FALSE;
+		
+		if (argc != 2)
+			return JS_FALSE;
+
+		JSBool useVFS;
+		char *path;
+		if (JS_ConvertArguments(cx, 2, argv, "bs", &useVFS, &path))
+		{
+			JSBool res=g_ConfigDB.WriteFile(cfgNs, useVFS?true:false, path);
+			*rval = BOOLEAN_TO_JSVAL(res);
+			return JS_TRUE;
+		}
+		else
+			return JS_FALSE;
+	}
+
+	JSBool Reload( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
+	{
+		if (argc != 0)
+			return JS_FALSE;
+
+		EConfigNamespace cfgNs=(EConfigNamespace)(intptr_t)JS_GetPrivate(cx, obj);
+		if (cfgNs < 0 || cfgNs >= CFG_LAST)
+			return JS_FALSE;
+
+		JSBool ret=g_ConfigDB.Reload(cfgNs);
+		*rval = BOOLEAN_TO_JSVAL(ret);
+		return JS_TRUE;
+	}
+
+	JSBool SetFile( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
+	{
+		if (argc != 0)
+			return JS_FALSE;
+
+		EConfigNamespace cfgNs=(EConfigNamespace)(intptr_t)JS_GetPrivate(cx, obj);
+		if (cfgNs < 0 || cfgNs >= CFG_LAST)
+			return JS_FALSE;
+
+		JSBool useVFS;
+		char *path;
+		if (JS_ConvertArguments(cx, 2, argv, "bs", &useVFS, &path))
+		{
+			g_ConfigDB.SetConfigFile(cfgNs, useVFS?true:false, path);
+			return JS_TRUE;
+		}
+		else
+			return JS_FALSE;
+	}
+
+	JSFunctionSpec Funcs[] = {
+		{ "WriteFile", WriteFile, 2, 0, 0},
+		{ "Reload", Reload, 0, 0, 0},
+		{ "SetFile", SetFile, 1, 0, 0},
+		{0}
+	};
 };
 
 namespace ConfigDB_JS
@@ -101,7 +161,7 @@ namespace ConfigDB_JS
 		if (argc != 0)
 			return JS_FALSE;
 
-		JSObject *newObj=JS_NewObject(cx, &Class, NULL, NULL);
+		JSObject *newObj=JS_NewObject(cx, &Class, NULL, obj);
 		*rval=OBJECT_TO_JSVAL(newObj);
 
 		int flags=JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT;
@@ -125,7 +185,7 @@ namespace ConfigDB_JS
 CConfigDB::CConfigDB()
 {
 	g_ScriptingHost.DefineCustomObjectType(&ConfigDB_JS::Class, ConfigDB_JS::Construct, 0, ConfigDB_JS::Props, ConfigDB_JS::Funcs, NULL, NULL);
-	g_ScriptingHost.DefineCustomObjectType(&ConfigNamespace_JS::Class, ConfigNamespace_JS::Construct, 0, NULL, NULL, NULL, NULL);
+	g_ScriptingHost.DefineCustomObjectType(&ConfigNamespace_JS::Class, ConfigNamespace_JS::Construct, 0, NULL, ConfigNamespace_JS::Funcs, NULL, NULL);
 	JSObject *js_ConfigDB=g_ScriptingHost.CreateCustomObject("ConfigDB");
 	g_ScriptingHost.SetGlobal("g_ConfigDB", OBJECT_TO_JSVAL(js_ConfigDB));
 }
@@ -245,7 +305,42 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	return true;
 }
 
-void CConfigDB::WriteFile(EConfigNamespace ns, bool useVFS, CStr path)
+bool CConfigDB::WriteFile(EConfigNamespace ns, bool useVFS, CStr path)
 {
-	// TODO Implement this function
+	assert(ns >= 0 && ns < CFG_LAST);
+
+	char realpath[VFS_MAX_PATH];
+	char nativepath[VFS_MAX_PATH];
+	const char *filepath=path.c_str();
+	int err;
+	FILE *fp;
+
+	if (useVFS)
+	{
+		if ((err=vfs_realpath(filepath, realpath))!=0)
+		{
+			LOG(ERROR, "CConfigDB::WriteFile(): vfs_realpath for VFS path \"%s\" failed (error: %d)", filepath, err);
+			return false;
+		}
+		filepath=realpath;
+	}
+	file_make_native_path(filepath, nativepath);
+	if ((fp = fopen(nativepath, "w")) == NULL)
+	{
+		LOG(ERROR, "CConfigDB::WriteFile(): fopen for path \"%s\" failed (error: %d)", filepath, errno);
+		return false;
+	}
+	
+	uint offset=0;
+
+	TConfigMap &map=m_Map[ns];
+	TConfigMap::const_iterator it=map.begin();
+	while (it != map.end())
+	{
+		fprintf(fp, "%s = \"%s\"\n", it->first.c_str(), it->second.m_String.c_str());
+		++it;
+	}
+
+	fclose(fp);
+	return true;
 }
