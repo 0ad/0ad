@@ -6,8 +6,11 @@
 //
 // Usage: All orders at this point use the location component of the union.
 //		  Orders are: ORDER_GOTO_NOPATHING: Attempts to reach the given destination via a line-of-sight
-//											system. Do not create an order of this type directly; it is
+//					  ORDER_GOTO_SMOOTED:	system. Do not create an order of these types directly; it is
 //											used to return a path of line segments from the pathfinder.
+//											_SMOOTHED flags to the entity state-control that it's OK to
+//											smooth the corner between segments. _NOPATHING just does
+//											zero-radius turns.
 //					  ORDER_GOTO_COLLISION: When the coldet system is trying to get us out of a collision,
 //											it generates these intermediate waypoints. We don't really have
 //											any reason to go to this specific point, so if a better way
@@ -45,6 +48,7 @@ public:
 	enum
 	{
 		ORDER_GOTO_NOPATHING,
+		ORDER_GOTO_SMOOTHED,
 		ORDER_GOTO_COLLISION,
 		ORDER_GOTO,
 		ORDER_PATROL

@@ -30,6 +30,6 @@ struct rayIntersectionResults
 HEntity getCollisionObject( CEntity* entity );
 HEntity getCollisionObject( CEntity* entity, float x, float y );
 CBoundingObject* getContainingObject( const CVector2D& point );
-bool getRayIntersection( const CVector2D& source, const CVector2D& forward, const CVector2D& right, float length, float maxDistance, rayIntersectionResults* results );
+bool getRayIntersection( const CVector2D& source, const CVector2D& forward, const CVector2D& right, float length, float maxDistance, CBoundingObject* destinationCollisionObject, rayIntersectionResults* results );
 
 #endif

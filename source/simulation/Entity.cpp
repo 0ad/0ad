@@ -17,6 +17,10 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	m_base = base;
 	m_actor = new CUnit(m_base->m_actorObject,m_base->m_actorObject->m_Model->Clone());
 
+		
+	// HACK: Debugging
+	// assert( m_base->m_name != CStr( "Waypoint" ) );
+
 	// Register the actor with the renderer.
 
 	g_UnitMan.AddUnit( m_actor );
@@ -33,13 +37,13 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 
 	if( m_base->m_bound_type == CBoundingObject::BOUND_CIRCLE )
 	{
-		m_bounds = new CBoundingCircle( m_position.X, m_position.Z, m_base->m_bound_circle );
+ 		m_bounds = new CBoundingCircle( m_position.X, m_position.Z, m_base->m_bound_circle );
 	}
 	else if( m_base->m_bound_type == CBoundingObject::BOUND_OABB )
 	{
 		m_bounds = new CBoundingBox( m_position.X, m_position.Z, m_ahead, m_base->m_bound_box );
 	}
-	
+
 	snapToGround();
 	updateActorTransforms();
 
@@ -141,6 +145,7 @@ void CEntity::update( float timestep )
 		{
 		case CEntityOrder::ORDER_GOTO_NOPATHING:
 		case CEntityOrder::ORDER_GOTO_COLLISION:
+		case CEntityOrder::ORDER_GOTO_SMOOTHED:
 			if( processGotoNoPathing( current, timestep ) ) break;
 			return;
 		case CEntityOrder::ORDER_GOTO:
@@ -200,21 +205,59 @@ void CEntity::pushOrder( CEntityOrder& order )
 void CEntity::render()
 {
 	// Rich! Help! ;)
-	// We can loose this later on, I just need a way to see collision boxes temporarily
+
+	// HACK: As in this entire function is a...
 	
 	if( !m_orderQueue.empty() )
 	{
-		glShadeModel( GL_FLAT );
-		glBegin( GL_LINE_STRIP );
-		
 		std::deque<CEntityOrder>::iterator it;
+		CBoundingObject* destinationCollisionObject;
+		float x0, y0, x, y;
 
-		glVertex3f( m_position.X, m_position.Y + 0.25f /* 20.0f */, m_position.Z );
+		x = m_orderQueue.front().m_data[0].location.x;
+		y = m_orderQueue.front().m_data[0].location.y;
 
 		for( it = m_orderQueue.begin(); it < m_orderQueue.end(); it++ )
 		{
-			float x = it->m_data[0].location.x;
-			float y = it->m_data[0].location.y;
+			if( it->m_type == CEntityOrder::ORDER_PATROL )
+				break;
+			x = it->m_data[0].location.x;
+			y = it->m_data[0].location.y;
+		}
+		destinationCollisionObject = getContainingObject( CVector2D( x, y ) );
+
+		glShadeModel( GL_FLAT );
+		glBegin( GL_LINE_STRIP );
+		
+		
+
+		glVertex3f( m_position.X, m_position.Y + 0.25f, m_position.Z );
+
+		
+		x = m_position.X;
+		y = m_position.Z;
+		
+		for( it = m_orderQueue.begin(); it < m_orderQueue.end(); it++ )
+		{
+			x0 = x; y0 = y;
+			x = it->m_data[0].location.x;
+			y = it->m_data[0].location.y;
+			rayIntersectionResults r;
+			CVector2D fwd( x - x0, y - y0 );
+			float l = fwd.length();
+			fwd = fwd.normalize();
+			CVector2D rgt = fwd.beta();
+			if( getRayIntersection( CVector2D( x0, y0 ), fwd, rgt, l, m_bounds->m_radius, destinationCollisionObject, &r ) )
+			{
+				glEnd();
+				glBegin( GL_LINES );
+				glColor3f( 1.0f, 0.0f, 0.0f );
+				glVertex3f( x0 + fwd.x * r.distance, getExactGroundLevel( x0 + fwd.x * r.distance, y0 + fwd.y * r.distance ) + 0.25f, y0 + fwd.y * r.distance );
+				glVertex3f( r.position.x, getExactGroundLevel( r.position.x, r.position.y ) + 0.25f, r.position.y );
+				glEnd();
+				glBegin( GL_LINE_STRIP );
+				glVertex3f( x0, getExactGroundLevel( x0, y0 ), y0 );
+			}
 			switch( it->m_type )
 			{
 			case CEntityOrder::ORDER_GOTO:
@@ -222,11 +265,15 @@ void CEntity::render()
 			case CEntityOrder::ORDER_GOTO_COLLISION:
 				glColor3f( 1.0f, 0.5f, 0.5f ); break;
 			case CEntityOrder::ORDER_GOTO_NOPATHING:
+			case CEntityOrder::ORDER_GOTO_SMOOTHED:
 				glColor3f( 0.5f, 0.5f, 0.5f ); break;
+			case CEntityOrder::ORDER_PATROL:
+				glColor3f( 0.0f, 1.0f, 0.0f ); break;
 			default:
-				glColor3f( 1.0f, 1.0f, 1.0f ); break;
+				continue;
 			}
-			glVertex3f( x, getExactGroundLevel( x, y ) + 0.25f /* 20.0f */, y );
+			
+			glVertex3f( x, getExactGroundLevel( x, y ) + 0.25f, y );
 		}
 
 		glEnd();
@@ -237,7 +284,7 @@ void CEntity::render()
 	
 
 	if( getCollisionObject( this ) ) glColor3f( 0.5f, 0.5f, 1.0f );
-	m_bounds->render( m_position.Y + 0.25f /* 20.0f */ );
+	m_bounds->render( getExactGroundLevel( m_position.X, m_position.Z ) + 0.25f ); //m_position.Y + 0.25f );
 
 }
 

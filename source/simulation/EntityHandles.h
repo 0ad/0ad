@@ -39,6 +39,7 @@ class HEntity
 {
 	friend class CEntityManager;
 	u16 m_handle;
+private:
 	void addRef();
 	void decRef();
 	HEntity( u16 index );

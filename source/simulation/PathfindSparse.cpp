@@ -1,7 +1,5 @@
 #include "PathfindSparse.h"
 
-#define NODESMOOTH_STEPS 4
-
 sparsePathTree::sparsePathTree( const CVector2D& _from, const CVector2D& _to, HEntity _entity, CBoundingObject* _destinationCollisionObject )
 {
 	from = _from; to = _to;
@@ -13,6 +11,7 @@ sparsePathTree::sparsePathTree( const CVector2D& _from, const CVector2D& _to, HE
 	rightPre = NULL; rightPost = NULL;
 	type = SPF_OPEN_UNVISITED;
 	leftImpossible = false; rightImpossible = false;
+	nextSubtree = 0;
 }
 
 sparsePathTree::~sparsePathTree()
@@ -31,46 +30,58 @@ bool sparsePathTree::slice()
 
 		CVector2D forward = to - from;
 		float len = forward.length();
-		forward /= len;
-		CVector2D right = CVector2D( forward.y, -forward.x );
 
-		// Hit nothing or hit destination; that's OK.
-		if( !getRayIntersection( from, forward, right, len, entity->m_bounds->m_radius * 1.1f, &r ) || ( r.boundingObject == destinationCollisionObject ) )
+		assert( len != 0.0f );
+
+		forward /= len;
+		CVector2D v_right = CVector2D( forward.y, -forward.x );
+
+		if( !getRayIntersection( from, forward, v_right, len, entity->m_bounds->m_radius * 1.1f, destinationCollisionObject, &r ) )
 		{
 			type = SPF_CLOSED_DIRECT;
 			return( true );
 		}
 
-		float turningRadius = ( entity->m_bounds->m_radius + r.boundingObject->m_radius ) * 1.1f; 
+ 		float turningRadius = ( entity->m_bounds->m_radius + r.boundingObject->m_radius ) * 1.1f; 
 		
 		if( turningRadius < entity->m_turningRadius ) turningRadius = entity->m_turningRadius;
 
 		// Too close, an impossible turn
-		if( r.distance < turningRadius ||
-			r.distance > ( len - turningRadius ) )
+		if( r.distance < turningRadius )
 		{
-			type = SPF_IMPOSSIBLE;
-			return( true );
+			// Too close to make a proper turn; try dodging immediately a long way to the left or right.
+			left = from - v_right * r.boundingObject->m_radius * 2.5f;
+			right = from + v_right * r.boundingObject->m_radius * 2.5f;
 		}
+		else if( r.distance > ( len - turningRadius ) )
+		{
+			// Again, too close to avoid it properly. Try approaching the goal from the left or right.
+			left = to - v_right * r.boundingObject->m_radius * 2.5f;
+			right = to + v_right * r.boundingObject->m_radius * 2.5f;
+		}
+		else
+		{
+			// Dodge to the left or right of the obstacle.
+			// A distance of offsetDistance is sufficient to guarantee we'll make the turn.
 
-		CVector2D delta = r.position - from;
-		float length = delta.length();
+			CVector2D delta = r.position - from;
+			float length = delta.length();
 
-		float offsetDistance = ( turningRadius * length / sqrt( length * length - turningRadius * turningRadius ) );
-		
+			float offsetDistance = ( turningRadius * length / sqrt( length * length - turningRadius * turningRadius ) );
+			left = r.position - v_right * offsetDistance;
+			right = r.position + v_right * offsetDistance;
+		}
 		favourLeft = false;
 		if( r.closestApproach < 0 )
 			favourLeft = true;
-
+	
 		// First we path to the left...
-
-		left = r.position - right * offsetDistance;
+		
 		leftPre = new sparsePathTree( from, left, entity, destinationCollisionObject );
 		leftPost = new sparsePathTree( left, to, entity, destinationCollisionObject );
 
 		// Then we path to the right...
 
-		right = r.position + right * offsetDistance;
 		rightPre = new sparsePathTree( from, right, entity, destinationCollisionObject );
 		rightPost = new sparsePathTree( right, to, entity, destinationCollisionObject );
 
@@ -87,24 +98,18 @@ bool sparsePathTree::slice()
 	else /* type == SPF_OPEN_PROCESSING */
 	{
 		bool done = false;
-		if( !leftImpossible )
+		while( !done )
 		{
-			if( !done && ( leftPre->type & SPF_OPEN ) )
-				done |= leftPre->slice();
-			if( !done && ( leftPost->type & SPF_OPEN ) )
-				done |= leftPost->slice();
-			if( ( leftPre->type == SPF_IMPOSSIBLE ) || ( leftPost->type == SPF_IMPOSSIBLE ) )
-				leftImpossible = true;
+			if( subtrees[nextSubtree]->type & SPF_OPEN )
+				if( subtrees[nextSubtree]->slice() )
+					done = true;
+			nextSubtree++;
+			nextSubtree %= 4;
 		}
-		if( !rightImpossible && !done )
-		{
-			if( !done && ( rightPre->type & SPF_OPEN ) )
-				done |= rightPre->slice();
-			if( !done && ( rightPost->type & SPF_OPEN ) )
-				done |= rightPost->slice();
-			if( ( rightPre->type == SPF_IMPOSSIBLE ) || ( rightPost->type == SPF_IMPOSSIBLE ) )
-				rightImpossible = true;
-		}
+		if( ( leftPre->type == SPF_IMPOSSIBLE ) || ( leftPost->type == SPF_IMPOSSIBLE ) )
+			leftImpossible = true;
+		if( ( rightPre->type == SPF_IMPOSSIBLE ) || ( rightPost->type == SPF_IMPOSSIBLE ) )
+			rightImpossible = true;
 		if( leftImpossible && rightImpossible )
 		{
 			type = SPF_IMPOSSIBLE;
@@ -149,14 +154,11 @@ void sparsePathTree::pushResults( std::vector<CVector2D>& nodelist )
 
 void nodeSmooth( HEntity entity, std::vector<CVector2D>& nodelist )
 {
-	// All your CPU are belong to us.
-	// But Jan wanted it ;)
-
 	std::vector<CVector2D>::iterator it;
 	CVector2D next = nodelist.front();
 
 	CEntityOrder node;
-	node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;
+	node.m_type = CEntityOrder::ORDER_GOTO_SMOOTHED;
 	node.m_data[0].location = next;
 
 	entity->m_orderQueue.push_front( node );
@@ -173,30 +175,30 @@ void nodeSmooth( HEntity entity, std::vector<CVector2D>& nodelist )
 		CVector2D ubar = u.beta();
 		CVector2D vbar = v.beta();
 		float alpha = entity->m_turningRadius * ( ubar - vbar ).length() / ( u + v ).length();
-		u *= alpha;
-		v *= alpha;
-
-		for( int t = NODESMOOTH_STEPS; t >= 0; t-- )
-		{
-			float lambda = t / (float)NODESMOOTH_STEPS;
-			CVector2D arcpoint = current + v * lambda * lambda - u * ( 1 - lambda ) * ( 1 - lambda );
-			node.m_data[0].location = arcpoint;
-			entity->m_orderQueue.push_front( node );
-		}
-		
+		node.m_data[0].location = current - u * alpha;
+		entity->m_orderQueue.push_front( node );
 		next = current;
 	}
+	
+	// If we try to apply turning constraints to getting onto this path, there's a reasonable
+	// risk the entity will deviate so far from the first path segment that the path becomes
+	// unwalkable for it.
+	entity->m_orderQueue.front().m_type = CEntityOrder::ORDER_GOTO_NOPATHING;
 }
 
 void pathSparse( HEntity entity, CVector2D destination )
 {
 	std::vector<CVector2D> pathnodes;
-	sparsePathTree sparseEngine( CVector2D( entity->m_position.X, entity->m_position.Z ), destination, entity, getContainingObject( destination ) );
+	CVector2D source( entity->m_position.X, entity->m_position.Z );
+	sparsePathTree sparseEngine( source, destination, entity, getContainingObject( destination ) );
 	while( sparseEngine.type & sparsePathTree::SPF_OPEN ) sparseEngine.slice();
+
+	assert( sparseEngine.type & sparsePathTree::SPF_SOLVED ); // Shouldn't be any impossible cases yet.
 
 	if( sparseEngine.type & sparsePathTree::SPF_SOLVED )
 	{
 		sparseEngine.pushResults( pathnodes );
+		pathnodes.push_back( source );
 		nodeSmooth( entity, pathnodes );
 	}
 	else

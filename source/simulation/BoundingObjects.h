@@ -56,15 +56,9 @@ public:
 	CVector2D m_v; // Unit vector along the direction of this box's width.
 	float m_h; // Half this box's height.
 	float m_w; // Half this box's width.
-	CBoundingBox( float x, float y, float orientation, float width, float height )
-	{
-		CBoundingBox( x, y, CVector2D( sin( orientation ), cos( orientation ) ), width, height );
-	}
+	CBoundingBox( float x, float y, float orientation, float width, float height );
 	CBoundingBox( float x, float y, const CVector2D& orientation, float width, float height );
-	CBoundingBox( float x, float y, float orientation, CBoundingBox* copy )
-	{
-		CBoundingBox( x, y, CVector2D( sin( orientation ), cos( orientation ) ), copy );
-	}
+	CBoundingBox( float x, float y, float orientation, CBoundingBox* copy );
 	CBoundingBox( float x, float y, const CVector2D& orientation, CBoundingBox* copy );
 	void setDimensions( float width, float height );
 	void setOrientation( float orientation );

@@ -54,7 +54,7 @@ HEntity getCollisionObject( CEntity* entity, float x, float y )
 	return( _e );
 }
 
-bool getRayIntersection( const CVector2D& source, const CVector2D& forward, const CVector2D& right, float length, float maxDistance, rayIntersectionResults* results )
+bool getRayIntersection( const CVector2D& source, const CVector2D& forward, const CVector2D& right, float length, float maxDistance, CBoundingObject* destinationCollisionObject, rayIntersectionResults* results )
 {
 	std::vector<HEntity>* entities = g_EntityManager.getActive();
 	std::vector<HEntity>::iterator it;
@@ -69,13 +69,17 @@ bool getRayIntersection( const CVector2D& source, const CVector2D& forward, cons
 	for( it = entities->begin(); it != entities->end(); it++ )
 	{
 		assert( (*it)->m_bounds );
+		if( (*it)->m_bounds == destinationCollisionObject ) continue;
+		// HACK:
+		if( (*it)->m_bounds->m_type == CBoundingObject::BOUND_OABB ) continue;
 		if( (*it)->m_speed ) continue;
 		CBoundingObject* obj = (*it)->m_bounds;
 		delta = obj->m_pos - source;
 		closestApproach = delta.dot( right );
 		dist = delta.dot( forward );
+		float collisionRadius = maxDistance + obj->m_radius;
 
-		if( ( fabs( closestApproach ) < maxDistance + obj->m_radius ) && ( dist > -maxDistance ) && ( dist < length + maxDistance ) ) 
+		if( ( fabs( closestApproach ) < collisionRadius ) && ( dist > collisionRadius * 0.0f ) && ( dist < length - collisionRadius * 0.0f ) ) 
 		{
 			if( dist < results->distance )
 			{

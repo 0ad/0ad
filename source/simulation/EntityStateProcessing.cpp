@@ -14,13 +14,71 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 
 	float len = delta.length();
 
-	if( len < 0.1f )
+	// Curve smoothing.
+	// Here there be trig.
+
+	if( current->m_type != CEntityOrder::ORDER_GOTO_SMOOTHED )
 	{
-		m_orderQueue.pop_front();
-		return( false );
+		// We can only really attempt to smooth paths the pathfinder
+		// has flagged for us. If the turning-radius calculations are
+		// applied to other types of waypoint, wierdness happens.
+		// Things like an entity trying to walk to a point inside
+		// his turning radius (which he can't do directly, so he'll
+		// orbit the point indefinately), or just massive deviations
+		// making the paths we calculate useless.
+		// It's also painful trying to watch two entities resolve their
+		// collision when they're both bound by turning constraints.
+		m_ahead = delta / len;
+		m_orientation = atan2( m_ahead.x, m_ahead.y );
+	}
+	else
+	{
+		m_targetorientation = atan2( delta.x, delta.y );
+
+		float deltatheta = m_targetorientation - m_orientation;
+		while( deltatheta > PI ) deltatheta -= 2 * PI;
+		while( deltatheta < -PI ) deltatheta += 2 * PI;
+
+		if( fabs( deltatheta ) > 0.01f )
+		{
+			float maxTurningSpeed = ( m_speed / m_turningRadius ) * timestep;
+			if( deltatheta > 0 )
+			{
+				m_orientation += MIN( deltatheta, maxTurningSpeed );
+			}
+			else
+				m_orientation += MAX( deltatheta, -maxTurningSpeed );
+
+			m_ahead.x = sin( m_orientation );
+			m_ahead.y = cos( m_orientation );
+		}
+		else
+		{
+			m_ahead = delta / len;
+			m_orientation = atan2( m_ahead.x, m_ahead.y );
+		}
 	}
 
-	m_ahead = delta / len;
+	if( len < 0.1f )
+	{
+		if( current->m_type == CEntityOrder::ORDER_GOTO_COLLISION )
+		{
+			// Repath.
+			CVector2D destination;
+			while( !m_orderQueue.empty() &&
+				( ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_COLLISION )
+				|| ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_NOPATHING )
+				|| ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_SMOOTHED ) ) )
+			{
+				destination = m_orderQueue.front().m_data[0].location;
+				m_orderQueue.pop_front();
+			}
+			g_Pathfinder.requestPath( me, destination );
+		}
+		else
+			m_orderQueue.pop_front();
+		return( false );
+	}
 
 	if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
 		((CBoundingBox*)m_bounds)->setOrientation( m_ahead );
@@ -78,7 +136,7 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 				avoidance.m_type = CEntityOrder::ORDER_GOTO_COLLISION;
 				CVector2D right;
 				right.x = m_ahead.y; right.y = -m_ahead.x;
-				CVector2D avoidancePosition = collide->m_bounds->m_pos + right * ( collide->m_bounds->m_radius * 2.5f );
+				CVector2D avoidancePosition = collide->m_bounds->m_pos + right * ( collide->m_bounds->m_radius + m_bounds->m_radius * 2.5f );
 				avoidance.m_data[0].location = avoidancePosition;
 				if( current->m_type == CEntityOrder::ORDER_GOTO_COLLISION )
 					m_orderQueue.pop_front();
@@ -91,12 +149,27 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 		{
 			// A circle.
 			// TODO: Implement this properly.
-			// Try turning right.
+			// Work out if our path goes to the left or to the right
+			// of this obstacle. Go that way.
+			// Weight a little to the right, too (helps unit-unit collisions)
+			
 			CEntityOrder avoidance;
 			avoidance.m_type = CEntityOrder::ORDER_GOTO_COLLISION;
 			CVector2D right;
 			right.x = m_ahead.y; right.y = -m_ahead.x;
-			CVector2D avoidancePosition = collide->m_bounds->m_pos + right * ( collide->m_bounds->m_radius * 2.5f );
+			CVector2D avoidancePosition;
+
+			if( ( collide->m_bounds->m_pos - m_bounds->m_pos ).dot( right ) < 1 )
+			{
+				// Turn right.
+				avoidancePosition = collide->m_bounds->m_pos + right * ( collide->m_bounds->m_radius + m_bounds->m_radius * 2.5f );
+			}
+			else
+			{
+				// Turn left.
+				avoidancePosition = collide->m_bounds->m_pos - right * ( collide->m_bounds->m_radius + m_bounds->m_radius * 2.5f );
+			}
+
 			avoidance.m_data[0].location = avoidancePosition;
 			if( current->m_type == CEntityOrder::ORDER_GOTO_COLLISION )
 				m_orderQueue.pop_front();

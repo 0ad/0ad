@@ -47,10 +47,18 @@ struct sparsePathTree
 	bool rightImpossible;
 	CVector2D right;
 	bool favourLeft;
-	sparsePathTree* leftPre;
-	sparsePathTree* leftPost;
-	sparsePathTree* rightPre;
-	sparsePathTree* rightPost;
+	union
+	{
+		struct
+		{
+			sparsePathTree* leftPre;
+			sparsePathTree* leftPost;
+			sparsePathTree* rightPre;
+			sparsePathTree* rightPost;
+		};
+		sparsePathTree* subtrees[4];
+	};
+	unsigned short nextSubtree;
 	sparsePathTree( const CVector2D& from, const CVector2D& to, HEntity entity, CBoundingObject* destinationCollisionObject );
 	~sparsePathTree();
 	bool slice();
