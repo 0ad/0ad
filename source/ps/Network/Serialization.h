@@ -50,7 +50,9 @@
 	uint32 _v1; uint32 _v2; \
 	Deserialize_int_4(_pos, _v1); \
 	Deserialize_int_4(_pos, _v2); \
-	_val=_v1<<32 | _v2; )
+	_val = _v1; \
+	_val <<= 32;	/* janwas: careful! (uint32 << 32) = 0 */ \
+	_val |= _v2; )
 
 /**
  * An interface for serializable objects. For a serializable object to be usable
