@@ -295,9 +295,9 @@ struct Dir
 
 int Dir::add_subdir(const char* const fn)
 {
-	if(find_file(fn) || find_subdir(fn))
+	if(find_file(fn))
 	{
-		debug_warn("add_subdir: file or subdirectory of same name already exists");
+		debug_warn("add_subdir: file of same name already exists");
 		return -1;
 	}
 
@@ -323,7 +323,7 @@ int Dir::add_file(const char* const fn, const Loc* const loc)
 {
 	if(find_subdir(fn))
 	{
-		debug_warn("add_file: file of same name already exists");
+		debug_warn("add_file: subdir of same name already exists");
 		return -1;
 	}
 
@@ -522,7 +522,7 @@ private:
 // to try to open it as an archive - not good.
 // this restriction also simplifies the code a bit, but if it's a problem,
 // just generate a list of archives here and mount them from the caller.
-static int add_dirent_cb(const char* const fn, const uint flags, const ssize_t size, const uintptr_t user)
+static int add_dirent_cb(const char* const path, const uint flags, const ssize_t size, const uintptr_t user)
 {
 	UNUSED(size);
 
@@ -530,22 +530,32 @@ static int add_dirent_cb(const char* const fn, const uint flags, const ssize_t s
 	Dir* const cur_dir       = params->dir;
 	const Loc* const cur_loc = params->loc;
 
-	int err;
+	int err = 1;
 
+	if(flags & LOC_ZIP)
+	{
+		Dir* dir;
+		if(tree_lookup(path, 0, &dir, LF_CREATE_MISSING_DIRS) >= 0)
+		{
+			const char* fn = strrchr(path, '/');
+			if(fn)
+				err = dir->add_file(fn+1, cur_loc);
+		}
+	}
 	// directory
-	if(flags & LOC_DIR)
+	else if(flags & LOC_DIR)
 	{
 		// leave out CVS dirs in debug builds. this makes possible
 		// user code that relies on a fixed data directory structure.
 #ifndef NDEBUG
-		if(!strcmp(fn, "CVS"))
+		if(!strcmp(path, "CVS"))
 			return 0;
 #endif
-		err = cur_dir->add_subdir(fn);
+		err = cur_dir->add_subdir(path);
 	}
 	// file
 	else
-		err = cur_dir->add_file(fn, cur_loc);
+		err = cur_dir->add_file(path, cur_loc);
 
 	if(err < 0)
 		return -EEXIST;
@@ -731,6 +741,11 @@ static int remount(Mount& m)
 
 	// f_name is a directory (not Zip file - would have been opened above)
 
+	// add all loose files and subdirectories in subtree
+	// (before adding archives, so that it doesn't try to add subdirs
+	// that are only in the archive).
+	CHECK_ERR(tree_add_loc(dir, dir_loc));
+
 	// enumerate all archives in dir (but not its subdirs! see above.)
 	ArchiveCBParams params = { f_name, pri, &archive_locs };
 	file_enum(f_name, archive_cb, (uintptr_t)&params);
@@ -742,9 +757,6 @@ static int remount(Mount& m)
 		if(tree_add_loc(dir, loc) < 0)
 			debug_warn("adding archive failed");
 	}
-
-	// add all loose files and subdirectories in subtree
-	CHECK_ERR(tree_add_loc(dir, dir_loc));
 
 	return 0;
 }
@@ -890,8 +902,13 @@ static int path_replace(char* dst, const char* src, const char* remove, const ch
 	if(strncmp(src, remove, remove_len) != 0)
 		return -1;
 
+	// get rid of trailing / in src (must not be included in remove)
+	const char* start = src+remove_len;
+	if(*start == '/' || *start == DIR_SEP)
+		start++;
+
 	// prepend replace.
-	CHECK_ERR(path_append(dst, replace, src+remove_len));
+	CHECK_ERR(path_append(dst, replace, start));
 	return 0;
 }
 

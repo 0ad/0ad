@@ -401,7 +401,14 @@ static int lookup_add_file_cb(const uintptr_t user, const i32 idx, const char* c
 		if(!ent->fn)
 			return ERR_NO_MEM;
 		strncpy((char*)ent->fn, fn, fn_len);
-		((char*)ent->fn)[fn_len] = '\0';
+
+		// 0-terminate and strip trailing '/'
+		char* end = (char*)ent->fn + fn_len-1;
+		if(*end != '/')
+			end++;
+		else
+			end = end;
+		*end = '\0';
 
 		ent->loc = *loc;
 	}
@@ -502,7 +509,10 @@ static int lookup_enum_files(LookupInfo* const li, LookupFileCB cb, uintptr_t us
 	const ZEnt* ent = li->ents;
 	for(i32 i = 0; i < li->num_files; i++, ent++)
 	{
-		err = cb(ent->fn, LOC_ZIP, (ssize_t)ent->loc.ucsize, user);
+		int flags = LOC_ZIP;
+		if(ent->loc.csize == 0 && ent->loc.ucsize == 0)
+			flags |= LOC_DIR;
+		err = cb(ent->fn, flags, (ssize_t)ent->loc.ucsize, user);
 		if(err < 0)
 			return 0;
 	}
