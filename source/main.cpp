@@ -682,8 +682,42 @@ static void ParseArgs(int argc, char* argv[])
 
 
 
+
+
+class ScopedTimer
+{
+	double t0;
+	const std::string name;
+
+public:
+	ScopedTimer(const char* _name)
+		: name(_name)
+	{
+		t0 = get_time();
+	}
+	~ScopedTimer()
+	{
+		double t1 = get_time();
+		double dt = t1-t0;
+
+		// assume microseconds
+		double scale = 1e6;
+		char unit = 'µ';
+		if(dt > 1.0)
+			scale = 1, unit = ' ';
+		// milli
+		else if(dt > 1e-3)
+			scale = 1e3, unit = 'm';
+
+		debug_out("TIMER %s: %g %cs\n", name.c_str(), dt*scale, unit);
+	}
+};
+
+#define TIMER(name) ScopedTimer name(#name);
+
 static void InitScripting()
 {
+TIMER(InitScripting)
 	// Create the scripting host.  This needs to be done before the GUI is created.
 	new ScriptingHost;
 
@@ -716,6 +750,7 @@ static void InitScripting()
 
 static void InitVfs(char* argv0)
 {
+TIMER(InitVfs)
 	// set current directory to "$game_dir/data".
 	// this is necessary because it is otherwise unknown,
 	// especially if run from a shortcut / symlink.
@@ -738,10 +773,12 @@ static void InitVfs(char* argv0)
 	// don't try vfs_display yet: SDL_Init hasn't yet redirected stdout
 }
 
-static void psInit()
+static void InitPs()
 {
 	// console
 	{
+	TIMER(ps_console)
+
 		float ConsoleHeight = g_yres * 0.6f;
 		g_Console->SetSize(0, g_yres-ConsoleHeight, (float)g_xres, ConsoleHeight);
 
@@ -752,31 +789,55 @@ static void psInit()
 		g_Console->m_iFontOffset = 9;
 	}
 
-	CConfigValue* val = g_ConfigDB.GetValue(CFG_SYSTEM, "language");
-	std::string lang = "english";
-	if (val)
-		val->GetString(lang);
-	I18n::LoadLanguage(lang.c_str());
+	// language and hotkeys
+	{
+	TIMER(ps_lang_hotkeys)
 
-	loadHotkeys();
+		CConfigValue* val = g_ConfigDB.GetValue(CFG_SYSTEM, "language");
+		std::string lang = "english";
+		if (val)
+			val->GetString(lang);
+		I18n::LoadLanguage(lang.c_str());
+
+		loadHotkeys();
+	}
 
 #ifndef NO_GUI
-	// GUI uses VFS, so this must come after VFS init.
-	g_GUI.Initialize();
+	{
+		// GUI uses VFS, so this must come after VFS init.
+		{TIMER(ps_gui_init)
+		g_GUI.Initialize();}
 
-	g_GUI.LoadXMLFile("gui/test/setup.xml");
-	g_GUI.LoadXMLFile("gui/test/styles.xml");
-	g_GUI.LoadXMLFile("gui/test/sprite1.xml");
+		{TIMER(ps_gui_setup_xml)
+		g_GUI.LoadXMLFile("gui/test/setup.xml");}
+		{TIMER(ps_gui_styles_xml)
+		g_GUI.LoadXMLFile("gui/test/styles.xml");}
+		{TIMER(ps_gui_sprite1_xml)
+		g_GUI.LoadXMLFile("gui/test/sprite1.xml");}
+	}
 
 	// Temporary hack until revised GUI structure is completed.
-	g_GUI.LoadXMLFile("gui/test/1_init.xml");
-	g_GUI.LoadXMLFile("gui/test/2_mainmenu.xml");
-	g_GUI.LoadXMLFile("gui/test/3_session.xml");
-	g_GUI.LoadXMLFile("gui/test/4_manual.xml");
-	g_GUI.LoadXMLFile("gui/test/5_atlas.xml");
-	g_GUI.LoadXMLFile("gui/test/6_global.xml");
+	{
+//	TIMER(ps_gui_hack)
 
-	g_GUI.LoadXMLFile("gui/test/hello.xml");
+		{TIMER(ps_gui_1)
+		g_GUI.LoadXMLFile("gui/test/1_init.xml");}
+		{TIMER(ps_gui_2)
+		g_GUI.LoadXMLFile("gui/test/2_mainmenu.xml");}
+		{TIMER(ps_gui_3)
+		g_GUI.LoadXMLFile("gui/test/3_session.xml");}
+		{TIMER(ps_gui_4)
+		g_GUI.LoadXMLFile("gui/test/4_manual.xml");}
+		{TIMER(ps_gui_5)
+		g_GUI.LoadXMLFile("gui/test/5_atlas.xml");}
+		{TIMER(ps_gui_6)
+		g_GUI.LoadXMLFile("gui/test/6_global.xml");}
+	}
+
+	{
+	TIMER(ps_gui_hello_xml)
+		g_GUI.LoadXMLFile("gui/test/hello.xml");
+	}
 #endif
 }
 
@@ -802,6 +863,75 @@ static void psShutdown()
 	I18n::LoadLanguage(NULL);
 }
 
+
+static void InitConfig(int argc, char* argv[])
+{
+TIMER(InitConfig)
+	MICROLOG(L"init config");
+
+	new CConfigDB;
+
+	g_ConfigDB.SetConfigFile(CFG_SYSTEM, false, "config/system.cfg");
+	g_ConfigDB.Reload(CFG_SYSTEM);
+
+	g_ConfigDB.SetConfigFile(CFG_MOD, true, "config/mod.cfg");
+	// No point in reloading mod.cfg here - we haven't mounted mods yet
+	
+	// We init the defaults here; command line options might want to override
+	InitDefaultGameAttributes();
+	ParseArgs(argc, argv);
+
+	LoadGlobals(); // Collects information from system.cfg, the profile file, and any command-line overrides
+				   // to fill in the globals.
+}
+
+
+static void InitRenderer()
+{
+TIMER(InitRenderer)
+	// create renderer
+	new CRenderer;
+
+	// set renderer options from command line options - NOVBO must be set before opening the renderer
+	g_Renderer.SetOptionBool(CRenderer::OPT_NOVBO,g_NoGLVBO);
+	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS,g_Shadows);
+	g_Renderer.SetOptionBool(CRenderer::OPT_NOPBUFFER,g_NoPBuffer);
+	g_Renderer.SetOptionFloat(CRenderer::OPT_LODBIAS, g_LodBias);
+
+	// create terrain related stuff
+	new CTextureManager;
+
+	// create the material manager
+	new CMaterialManager;
+	new CMeshManager;
+
+	// create actor related stuff
+	new CSkeletonAnimManager;
+	new CObjectManager;
+	new CUnitManager;
+
+	MICROLOG(L"init renderer");
+	g_Renderer.Open(g_xres,g_yres,g_bpp);
+
+	// Setup default lighting environment. Since the Renderer accesses the
+	// lighting environment through a pointer, this has to be done before
+	// the first Frame.
+	g_LightEnv.m_SunColor=RGBColor(1,1,1);
+	g_LightEnv.SetRotation(DEGTORAD(270));
+	g_LightEnv.SetElevation(DEGTORAD(45));
+	g_LightEnv.m_TerrainAmbientColor=RGBColor(0,0,0);
+	g_LightEnv.m_UnitsAmbientColor=RGBColor(0.4f,0.4f,0.4f);
+	g_Renderer.SetLightEnv(&g_LightEnv);
+
+	// I haven't seen the camera affecting GUI rendering and such, but the
+	// viewport has to be updated according to the video mode
+	SViewPort vp;
+	vp.m_X=0;
+	vp.m_Y=0;
+	vp.m_Width=g_xres;
+	vp.m_Height=g_yres;
+	g_Renderer.SetViewport(vp);
+}
 
 extern u64 PREVTSC;
 
@@ -859,6 +989,10 @@ static void Shutdown()
 
 static void Init(int argc, char* argv[])
 {
+#ifdef _WIN32
+	sle(11340106);
+#endif
+
 	MICROLOG(L"In init");
 
 	// If you ever want to catch a particular allocation:
@@ -898,7 +1032,7 @@ PREVTSC=TSC;
 
 	// Set up the console early, so that debugging
 	// messages can be logged to it. (The console's size
-	// and fonts are set later in psInit())
+	// and fonts are set later in InitPs())
 	g_Console = new CConsole();
 
 	MICROLOG(L"init sdl");
@@ -918,24 +1052,8 @@ PREVTSC=TSC;
 	MICROLOG(L"init scripting");
 	InitScripting();	// before GUI
 	
-	MICROLOG(L"init config");
-	new CConfigDB;
-
-
-	g_ConfigDB.SetConfigFile(CFG_SYSTEM, false, "config/system.cfg");
-	g_ConfigDB.Reload(CFG_SYSTEM);
-
-	g_ConfigDB.SetConfigFile(CFG_MOD, true, "config/mod.cfg");
-	// No point in reloading mod.cfg here - we haven't mounted mods yet
-	
-	// We init the defaults here; command line options might want to override
-	InitDefaultGameAttributes();
-	ParseArgs(argc, argv);
-
-	LoadGlobals(); // Collects information from system.cfg, the profile file, and any command-line overrides
-				   // to fill in the globals.
-//g_xres = 800;
-//g_yres = 600;
+	// g_ConfigDB, command line args, globals
+	InitConfig(argc, argv);
 
 	// GUI is notified in set_vmode, so this must come before that.
 #ifndef NO_GUI
@@ -993,50 +1111,11 @@ PREVTSC=CURTSC;
 #endif
 
 	MICROLOG(L"init ps");
-	psInit();
+	InitPs();
 
-	// create renderer
-	new CRenderer;
+	InitRenderer();
 
-	// set renderer options from command line options - NOVBO must be set before opening the renderer
-	g_Renderer.SetOptionBool(CRenderer::OPT_NOVBO,g_NoGLVBO);
-	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS,g_Shadows);
-	g_Renderer.SetOptionBool(CRenderer::OPT_NOPBUFFER,g_NoPBuffer);
-	g_Renderer.SetOptionFloat(CRenderer::OPT_LODBIAS, g_LodBias);
-
-	// create terrain related stuff
-	new CTextureManager;
-
-	// create the material manager
-	new CMaterialManager;
-	new CMeshManager;
-
-	// create actor related stuff
-	new CSkeletonAnimManager;
-	new CObjectManager;
-	new CUnitManager;
-
-	MICROLOG(L"init renderer");
-	g_Renderer.Open(g_xres,g_yres,g_bpp);
-	
-	// Setup default lighting environment. Since the Renderer accesses the
-	// lighting environment through a pointer, this has to be done before
-	// the first Frame.
-	g_LightEnv.m_SunColor=RGBColor(1,1,1);
-	g_LightEnv.SetRotation(DEGTORAD(270));
-	g_LightEnv.SetElevation(DEGTORAD(45));
-	g_LightEnv.m_TerrainAmbientColor=RGBColor(0,0,0);
-	g_LightEnv.m_UnitsAmbientColor=RGBColor(0.4f,0.4f,0.4f);
-	g_Renderer.SetLightEnv(&g_LightEnv);
-
-	// I haven't seen the camera affecting GUI rendering and such, but the
-	// viewport has to be updated according to the video mode
-	SViewPort vp;
-	vp.m_X=0;
-	vp.m_Y=0;
-	vp.m_Width=g_xres;
-	vp.m_Height=g_yres;
-	g_Renderer.SetViewport(vp);
+TIMER(init_after_InitRenderer);
 
 	// This needs to be done after the renderer has loaded all its actors...
 	new CBaseEntityCollection;
@@ -1061,18 +1140,21 @@ PREVTSC=CURTSC;
 	_CrtSetBreakAlloc(36367);
 //*/
 
-	in_add_handler(handler);
-	in_add_handler(game_view_handler);
+	// register input handlers
+	{
+		in_add_handler(handler);
+		in_add_handler(game_view_handler);
 
-	in_add_handler(interactInputHandler);
+		in_add_handler(interactInputHandler);
 
 #ifndef NO_GUI
-	in_add_handler(gui_handler);
+		in_add_handler(gui_handler);
 #endif
 
-	in_add_handler(conInputHandler);
+		in_add_handler(conInputHandler);
 
-	in_add_handler(hotkeyInputHandler); // <- Leave this one until after all the others.
+		in_add_handler(hotkeyInputHandler); // <- Leave this one until after all the others.
+	}
 
 	MICROLOG(L"render blank");
 	// render everything to a blank frame to force renderer to load everything
@@ -1225,8 +1307,11 @@ int main(int argc, char* argv[])
 
 		// Do some limited tests to ensure things aren't broken
 #ifndef NDEBUG
+		{
+			ScopedTimer c("PerformTests");
 		extern void PerformTests();
 		PerformTests();
+		}
 #endif
 
 		while(!quit)
