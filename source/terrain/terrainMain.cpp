@@ -343,16 +343,13 @@ void InitScene ()
 	g_Renderer.SetLightEnv(&g_LightEnv);
 
 	// load terrain
-	Handle ht = tex_load("terrain.raw");
-	if(ht > 0)
+	TexInfo ti;
+	int err = tex_load("terrain.raw", &ti);
+	if(err == 0)
 	{
-		const u8* p;
-		int w;
-		int h;
-
-		tex_info(ht, &w, &h, NULL, NULL, (void **)&p);
-
+		int w = ti.w, h = ti.h;
 		printf("terrain.raw: %dx%d\n", w, h);
+		char* p = (char*)mem_get_ptr(ti.hm);
 
 		u16 *p16=new u16[w*h];
 		u16 *p16p=p16;
@@ -364,7 +361,7 @@ void InitScene ()
 
 		delete[] p16;
 		
-		tex_free(ht);
+		tex_free(&ti);
 	}
 
 	// get default texture to apply to terrain
