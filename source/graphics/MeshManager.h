@@ -6,7 +6,7 @@
 
 #define g_MeshManager CMeshManager::GetSingleton()
 
-typedef STL_HASH_MAP<size_t, CModelDef *> mesh_map;
+typedef STL_HASH_MAP<CStr, CModelDef *, CStr_hash_compare> mesh_map;
 
 class CMeshManager : public Singleton<CMeshManager>
 {

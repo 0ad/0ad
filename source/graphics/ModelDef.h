@@ -128,7 +128,7 @@ public:
 protected:
     static CModelDef* Load(const char* filename);
     int m_RefCount;
-    size_t m_Hash;
+    CStr m_Filename;
 };
 
 #endif

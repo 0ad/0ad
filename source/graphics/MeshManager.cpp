@@ -14,7 +14,7 @@ CModelDef *CMeshManager::GetMesh(const char *filename)
 {
     mesh_map::iterator iter;
     CStr fn(filename);
-    if((iter = m_MeshMap.find(fn.GetHashCode())) == m_MeshMap.end())
+    if((iter = m_MeshMap.find(fn)) == m_MeshMap.end())
     {
         try
         {
@@ -23,9 +23,9 @@ CModelDef *CMeshManager::GetMesh(const char *filename)
                 return NULL;
 
             LOG(MESSAGE, "mesh", "Loading mesh '%s'...\n", filename);
-            model->m_Hash = fn.GetHashCode();
+            model->m_Filename = fn;
             model->m_RefCount = 1;
-            m_MeshMap[model->m_Hash] = model;
+            m_MeshMap[fn] = model;
             return model;
         }
         catch(...)
@@ -45,7 +45,7 @@ CModelDef *CMeshManager::GetMesh(const char *filename)
 
 int CMeshManager::ReleaseMesh(CModelDef* mesh)
 {
-    if(!mesh)
+	if(!mesh)
         return 0;
 
 	// FIXME: Someone sort this out. I'm tired.
@@ -56,7 +56,7 @@ int CMeshManager::ReleaseMesh(CModelDef* mesh)
 
 	try
 	{
-		iter = m_MeshMap.find(mesh->m_Hash);
+		iter = m_MeshMap.find(mesh->m_Filename);
 	}
 	catch( ... )
 	{

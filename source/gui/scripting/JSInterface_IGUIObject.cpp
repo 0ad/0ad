@@ -1,4 +1,4 @@
-// $Id: JSInterface_IGUIObject.cpp,v 1.15 2004/09/06 11:28:30 philip Exp $
+// $Id$
 
 #include "precompiled.h"
 
@@ -173,8 +173,17 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 			{
 				CStr value;
 				GUI<CStr>::GetSetting(e, propName, value);
-				// Create a garbage-collectable copy of the string
+				// Create a garbage-collectible copy of the string
 				*vp = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, value.c_str() ));
+				break;
+			}
+
+		case GUIST_CStrW:
+			{
+				CStrW value;
+				GUI<CStrW>::GetSetting(e, propName, value);
+				// Create a garbage-collectible copy of the string
+				*vp = STRING_TO_JSVAL(JS_NewUCStringCopyZ(cx, value.utf16().c_str() ));
 				break;
 			}
 
@@ -217,6 +226,13 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				{
 					CStr value = JS_GetStringBytes(JS_ValueToString(cx, *vp));
 					GUI<CStr>::SetSetting(e, propName, value);
+					break;
+				}
+
+			case GUIST_CStrW:
+				{
+					utf16string value (JS_GetStringChars(JS_ValueToString(cx, *vp)));
+					GUI<CStrW>::SetSetting(e, propName, value);
 					break;
 				}
 

@@ -11,7 +11,7 @@
 
 // Only include these function definitions in the first instance of CStr.cpp:
 CStrW::CStrW(const CStr8 &asciStr) : std::wstring(asciStr.begin(), asciStr.end()) {}
-CStr8::CStr8(const CStrW &wideStr) : std::string(wideStr.begin(), wideStr.end()) {}
+CStr8::CStr8(const CStrW &wideStr) : std:: string(wideStr.begin(), wideStr.end()) {}
 
 #else
 
@@ -172,12 +172,16 @@ CStr CStr::UCase() const
 // Retrieve the substring of the first n characters 
 CStr CStr::Left(long len) const
 {
+	assert(len >= 0);
+	assert(len <= (long)length());
 	return substr(0, len);
 }
 
 // Retrieve the substring of the last n characters
 CStr CStr::Right(long len) const
 {
+	assert(len >= 0);
+	assert(len <= (long)length());
 	return substr(length()-len, len);
 }
 

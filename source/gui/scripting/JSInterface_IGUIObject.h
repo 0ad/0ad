@@ -1,4 +1,4 @@
-// $Id: JSInterface_IGUIObject.h,v 1.2 2004/07/10 21:23:06 philip Exp $
+// $Id$
 
 #include "scripting/ScriptingHost.h"
 #include "gui/GUI.h"
@@ -19,7 +19,6 @@ namespace JSI_IGUIObject
 	JSBool getByName(JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval);
 	JSBool toString(JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval);
 	void init();
-	void x();
 }
 
 #endif
