@@ -158,7 +158,8 @@ InputSource *CVFSEntityResolver::resolveEntity(const XMLCh *const UNUSEDPARAM(pu
 		path=abspath;
 	}
 
-	LOG(NORMAL, LOG_CATEGORY, "EntityResolver: path \"%s\" translated to \"%s\"", orgpath, path);
+//	LOG(NORMAL, LOG_CATEGORY, "EntityResolver: path \"%s\" translated to \"%s\"", orgpath, path);
+// janwas: less spew
 
 	char *pos=path;		
 	if ((pos=strchr(pos, '\\')) != NULL)
