@@ -9,12 +9,11 @@
 		sprite="sprite1"
   size="0 0 600 400"
 		z="100"
+  hidden="true"
  >
   <action on="Load"><![CDATA[
     g_ballx = 300;
     g_bally = 200;
-//    g_balldx = 23;
-//    g_balldy = 11;
     g_balldx = 0;
     g_balldy = 0;
   ]]></action>
