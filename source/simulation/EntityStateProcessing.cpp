@@ -93,7 +93,7 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 		m_orientation = m_targetorientation;
 	}
 
-	if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
+	if( m_bounds && m_bounds->m_type == CBoundingObject::BOUND_OABB )
 		((CBoundingBox*)m_bounds)->setOrientation( m_ahead );
 
 	EGotoSituation rc = NORMAL;
@@ -111,50 +111,53 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 	m_position.X += delta.x;
 	m_position.Z += delta.y;
 
-	m_bounds->setPosition( m_position.X, m_position.Z );
+	if( m_bounds )
+	{
+		m_bounds->setPosition( m_position.X, m_position.Z );
 
-	collide = getCollisionObject( this );
-	
-	if( collide )
-	{	
-		// We'd hit something. Let's not.
-		m_position.X -= delta.x;
-		m_position.Z -= delta.y;
-		m_bounds->m_pos -= delta;
+		collide = getCollisionObject( this );
+		
+		if( collide )
+		{	
+			// We'd hit something. Let's not.
+			m_position.X -= delta.x;
+			m_position.Z -= delta.y;
+			m_bounds->m_pos -= delta;
 
-		// Is it too late to avoid the collision?
+			// Is it too late to avoid the collision?
 
-		if( collide->m_bounds->intersects( m_bounds ) )
-		{
-			// Yes. Oh dear. That can't be good.
-			// This really shouldn't happen in the current build.
-
-			assert( false && "Overlapping objects" );
-
-			// Erm... do nothing?
-			
-			return( COLLISION_OVERLAPPING_OBJECTS );
-		}
-
-		// No. Is our destination within the obstacle?
-		if( collide->m_bounds->contains( current->m_data[0].location ) )
-			return( COLLISION_WITH_DESTINATION );
-
-		// No. Are we nearing our destination, do we wish to stop there, and is it obstructed?
-
-		if( ( m_orderQueue.size() == 1 ) && ( len <= 10.0f ) )
-		{
-			CBoundingCircle destinationObs( current->m_data[0].location.x, current->m_data[0].location.y, m_bounds->m_radius );
-			if( getCollisionObject( &destinationObs ) )
+			if( collide->m_bounds->intersects( m_bounds ) )
 			{
-				// Yes. (Chances are a bunch of units were tasked to the same destination)
-				return( COLLISION_NEAR_DESTINATION );
+				// Yes. Oh dear. That can't be good.
+				// This really shouldn't happen in the current build.
+
+				assert( false && "Overlapping objects" );
+
+				// Erm... do nothing?
+				
+				return( COLLISION_OVERLAPPING_OBJECTS );
 			}
+
+			// No. Is our destination within the obstacle?
+			if( collide->m_bounds->contains( current->m_data[0].location ) )
+				return( COLLISION_WITH_DESTINATION );
+
+			// No. Are we nearing our destination, do we wish to stop there, and is it obstructed?
+
+			if( ( m_orderQueue.size() == 1 ) && ( len <= 10.0f ) )
+			{
+				CBoundingCircle destinationObs( current->m_data[0].location.x, current->m_data[0].location.y, m_bounds->m_radius );
+				if( getCollisionObject( &destinationObs ) )
+				{
+					// Yes. (Chances are a bunch of units were tasked to the same destination)
+					return( COLLISION_NEAR_DESTINATION );
+				}
+			}
+
+			// No?
+			return( COLLISION_OTHER );
+
 		}
-
-		// No?
-		return( COLLISION_OTHER );
-
 	}
 
 	// Will we step off the map?
@@ -164,7 +167,8 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 
 		m_position.X -= delta.x;
 		m_position.Z -= delta.y;
-		m_bounds->setPosition( m_position.X, m_position.Z );
+		if( m_bounds )
+			m_bounds->setPosition( m_position.X, m_position.Z );
 
 		// All things being equal, we should only get here while on a collision path
 		// (No destination should be off the map)

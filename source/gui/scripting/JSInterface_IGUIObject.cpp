@@ -49,6 +49,19 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 
 	IGUIObject* e = (IGUIObject*)JS_GetPrivate(cx, obj);
 
+	// Use onWhatever to access event handlers
+	if (propName.Left(2) == "on")
+	{
+		CStr eventName (CStr(propName.substr(2)).LowerCase());
+		std::map<CStr, JSFunction*>::iterator it = e->m_ScriptHandlers.find(eventName);
+		if (it == e->m_ScriptHandlers.end())
+			*vp = JSVAL_NULL;
+		else
+			*vp = OBJECT_TO_JSVAL(JS_GetFunctionObject(it->second));
+		return JS_TRUE;
+	}
+
+
 	// Handle the "parent" property specially
 	if (propName == "parent")
 	{
@@ -246,6 +259,20 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 		e->SetName(propValue);
 
 		return JS_TRUE;
+	}
+
+	// Use onWhatever to set event handlers
+	if (propName.Left(2) == "on")
+	{
+		JSFunction* func = JS_ValueToFunction(cx, *vp);
+		if (! func)
+		{
+			JS_ReportError(cx, "on- event-handlers must be functions");
+			return JS_FALSE;
+		}
+
+		CStr eventName (CStr(propName.substr(2)).LowerCase());
+		e->m_ScriptHandlers[eventName] = func;
 	}
 
 	// Retrieve the setting's type (and make sure it actually exists)
