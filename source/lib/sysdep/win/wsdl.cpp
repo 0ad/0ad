@@ -461,6 +461,8 @@ void enable_kbd_hook(bool enable)
 
 static int wsdl_init()
 {
+	hInst = GetModuleHandle(0);
+
 	// ignore BoundsChecker warnings here. subsystem is set to "Windows"
 	// to avoid the OS opening a console on startup (ugly). that means
 	// stdout isn't associated with a lowio handle; _close ends up
@@ -469,6 +471,7 @@ static int wsdl_init()
 	if(!ret)
 		debug_warn("stdout freopen failed");
 	setvbuf(stdout, 0, _IONBF, 0);
+
 	return 0;
 }
 
@@ -570,8 +573,6 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 	 * create new window every time (instead of once at startup), 'cause
 	 * pixel format isn't supposed to be changed more than once
 	 */
-
-	hInst = GetModuleHandle(0);
 
 	/* register window class */
 	static WNDCLASS wc;
