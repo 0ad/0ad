@@ -240,6 +240,7 @@ static int write_sys_info()
 	fprintf(f, "%dx%d:%d@%d\n", g_xres, g_yres, g_bpp, g_freq);
 
     g_ProgramManager.WritePPInfo(f);
+    fprintf(f, "OpenGL: %s\n", glGetString(GL_VERSION));
 
 	// .. network name / ips
 	//    note: can't use un.nodename because it is for an
