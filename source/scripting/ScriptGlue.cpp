@@ -23,11 +23,14 @@
 #include "scripting/JSCollection.h"
 #include "scripting/JSInterface_BaseEntity.h"
 #include "scripting/JSInterface_Vector3D.h"
-#include "gui/scripting/JSInterface_IGUIObject.h"
 #include "scripting/JSInterface_Selection.h"
 #include "scripting/JSInterface_Camera.h"
 #include "scripting/JSInterface_Console.h"
 #include "scripting/JSConversions.h"
+
+#ifndef NO_GUI
+# include "gui/scripting/JSInterface_IGUIObject.h"
+#endif
 
 extern CConsole* g_Console;
 
@@ -48,7 +51,9 @@ JSFunctionSpec ScriptFunctionTable[] =
 	{"setTimeout", setTimeout, 2, 0, 0 },
 	{"setInterval", setInterval, 2, 0, 0 },
 	{"cancelInterval", cancelInterval, 0, 0, 0 },
+#ifndef NO_GUI
 	{"getGUIObjectByName", JSI_IGUIObject::getByName, 1, 0, 0 },
+#endif
 	{"getGlobal", getGlobal, 0, 0, 0 },
 	{"getGUIGlobal", getGUIGlobal, 0, 0, 0 },
 	{"setCursor", setCursor, 1, 0, 0 },

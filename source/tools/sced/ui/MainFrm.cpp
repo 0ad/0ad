@@ -441,7 +441,7 @@ void CMainFrame::OnUpdateEditUndo(CCmdUI* pCmdUI)
 		const char* undoText="&Undo                                    Ctrl+Z";
 		char buf[64];
 		strcpy(buf,undoText);
-		int len=strlen(cmdName);
+		size_t len=strlen(cmdName);
 		if (len>32) len=32;
 		buf[6]='\"';
 		strncpy(buf+7,cmdName,len);
@@ -467,7 +467,7 @@ void CMainFrame::OnUpdateEditRedo(CCmdUI* pCmdUI)
 		const char* redoText="&Redo                                    Ctrl+Y";
 		char buf[64];
 		strcpy(buf,redoText);
-		int len=strlen(cmdName);
+		size_t len=strlen(cmdName);
 		if (len>32) len=32;
 		buf[6]='\"';
 		strncpy(buf+7,cmdName,len);
@@ -774,8 +774,8 @@ static CObjectEntry* GetRandomActorTemplate()
 	CObjectEntry* found=0;
 	int checkloop=250;
 	do {
-		u32 type=rand()%g_ObjMan.m_ObjectTypes.size();
-		u32 actorsoftype=g_ObjMan.m_ObjectTypes[type].m_Objects.size();
+		u32 type=rand()%(u32)g_ObjMan.m_ObjectTypes.size();
+		u32 actorsoftype=(u32)g_ObjMan.m_ObjectTypes[type].m_Objects.size();
 		if (actorsoftype>0) {
 			found=g_ObjMan.m_ObjectTypes[type].m_Objects[rand()%actorsoftype];
 			if (found && found->m_Model && found->m_Model->GetModelDef()->GetNumBones()>0) {
@@ -794,8 +794,8 @@ static CTextureEntry* GetRandomTexture()
 
 	CTextureEntry* found=0;
 	do {
-		u32 type=rand()%g_TexMan.m_TerrainTextures.size();
-		u32 texturesoftype=g_TexMan.m_TerrainTextures[type].m_Textures.size();
+		u32 type=rand()%(u32)g_TexMan.m_TerrainTextures.size();
+		u32 texturesoftype=(u32)g_TexMan.m_TerrainTextures[type].m_Textures.size();
 		if (texturesoftype>0) {
 			found=g_TexMan.m_TerrainTextures[type].m_Textures[rand()%texturesoftype];
 		}

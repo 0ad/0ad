@@ -95,7 +95,7 @@ void render(COverlayText* overlaytext)
 	if (!font) return;
 
 	const CStr& str=overlaytext->GetString();
-	int len=str.Length();
+	int len=(int)str.Length();
 	if (len==0) return;
 
 	// bind to font texture

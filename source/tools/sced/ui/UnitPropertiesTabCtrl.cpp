@@ -54,7 +54,7 @@ void CUnitPropertiesTabCtrl::Init()
 	{ 
 		tcItem.mask = TCIF_TEXT; 
 		tcItem.pszText = pszTabItems[i]; 
-		tcItem.cchTextMax = strlen(pszTabItems[i]); 
+		tcItem.cchTextMax = (int)strlen(pszTabItems[i]); 
 		InsertItem(i,&tcItem); 
 	} 
 

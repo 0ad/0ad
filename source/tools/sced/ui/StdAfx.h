@@ -19,10 +19,8 @@
 //#include "CStr.h"
 
 #undef _WINDOWS_
-#undef UNUSED
-#undef _T
-#undef _istspace
-#undef _totlower
+
+#define WINVER 0x0500		// Windows 2000
 
 #include <afxwin.h>         // MFC core and standard components
 #include <afxext.h>         // MFC extensions
@@ -31,6 +29,14 @@
 #ifndef _AFX_NO_AFXCMN_SUPPORT
 #include <afxcmn.h>			// MFC support for Windows Common Controls
 #endif // _AFX_NO_AFXCMN_SUPPORT
+
+#undef UNUSED
+#undef _T
+#undef _istspace
+#undef _totlower
+#undef _totupper
+#undef _ttoi
+#undef _ttol
 
 #include "resource.h"
 
