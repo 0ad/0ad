@@ -215,7 +215,7 @@ static int get_ogl_drv_name(char* ogl_drv_name, const size_t max_name_len)
 				// add .dll to filename, if not already there
 				char* ext = strrchr(ogl_drv_name, '.');
 				if(!ext || stricmp(ext, ".dll") != 0)
-					strcat_s(ogl_drv_name, sizeof(ogl_drv_name), ".dll");
+					strcat_s(ogl_drv_name, max_name_len, ".dll");
 
 				ret = 0;	// success
 			}
