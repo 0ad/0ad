@@ -20,7 +20,7 @@
                 GUIObjectUnhide("session_gui");
                 GUIObjectHide("pregame_gui");
                 GUIObjectUnhide("End_Game_Button");
-		FlipGUI("top");
+		FlipGUI(GUIType);
             ]]></action>
             <action on="MouseEnter"><![CDATA[
                 tooltipObject = getGUIObjectByName("pregame-mainmenu-tooltip");
