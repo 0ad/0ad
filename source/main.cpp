@@ -691,6 +691,9 @@ static void psShutdown()
 	delete &g_GUI;
 #endif
 
+	unifont_unload(g_Font_Misc);
+	unifont_unload(g_Font_Console);
+
 	delete g_Console;
 
 	// disable the special Windows cursor, or free textures for OGL cursors
@@ -701,7 +704,9 @@ static void psShutdown()
 
 	MusicPlayer.release();
 
-	I18n::Shutdown();
+	// Unload the real language (since it depends on the scripting engine,
+	// which is going to be killed later) and use the English fallback messages
+	I18n::LoadLanguage(NULL);
 }
 
 
@@ -739,6 +744,10 @@ static void Shutdown()
 	delete &g_Renderer;
 
 	delete &g_ConfigDB;
+
+	// Really shut down the i18n system. Any future calls
+	// to translate() will crash.
+	I18n::Shutdown();
 }
 
 static void Init(int argc, char* argv[])
@@ -746,7 +755,7 @@ static void Init(int argc, char* argv[])
 	MICROLOG(L"In init");
 
 	// If you ever want to catch a particular allocation:
-	//_CrtSetBreakAlloc(50371);
+	//_CrtSetBreakAlloc(7239);
 
 #ifdef _MSC_VER
 u64 TSC=rdtsc();
@@ -759,6 +768,15 @@ PREVTSC=TSC;
 
 	MICROLOG(L"init lib");
 	lib_init();
+
+	// Call LoadLanguage(NULL) to initialise the I18n system, but
+	// without loading an actual language file - translate() will
+	// just show the English key text, which is better than crashing
+	// from a null pointer when attempting to translate e.g. error messages.
+	// Real languages can only be loaded when the scripting system has
+	// been initialised.
+	MICROLOG(L"init i18n");
+	I18n::LoadLanguage(NULL);
 
 	// set 24 bit (float) FPU precision for faster divides / sqrts
 #ifdef _M_IX86
@@ -982,63 +1000,11 @@ PREVTSC=CURTSC;
 
 }
 
-// Define MOVIE_RECORD to record your camera motions and run at 30fps,
-// or MOVIE_CREATE to play them back as fast as possible while generating
-// millions of screenshots. (It should be a lot faster if you make
-// WriteScreenshot use BMPs.)
-//#define MOVIE_RECORD
-//#define MOVIE_CREATE
-
-#if defined(MOVIE_RECORD) || defined(MOVIE_CREATE)
- const int camera_len = 256;
- struct { float f[16]; } camera_pos[camera_len];
- int camera_pos_off = 0;
-#endif
-
 static void Frame()
 {
 	MICROLOG(L"In frame");
 
 	MusicPlayer.update();
-
-#if defined(MOVIE_RECORD) || defined(MOVIE_CREATE)
-
-	// Run at precisely 30fps
-	static double last_time;
-	double time = get_time();
-	const float TimeSinceLastFrame = 1.0f/30.0f;
-	ONCE(last_time = time);
-	last_time += TimeSinceLastFrame;
-	while (time-last_time < 0.0)
-		time = get_time();
-	extern CCamera g_Camera;
-
-#ifdef MOVIE_RECORD
-	memcpy(&camera_pos[camera_pos_off++], g_Camera.m_Orientation._data, 16*4);
-	if (camera_pos_off >= camera_len)
-	{
-		FILE* f = fopen("c:\\0adcamera.dat", "wb");
-		fwrite(camera_pos, camera_len, 16*4, f);
-		fclose(f);
-		exit(0);
-	}
-#else // #ifdef MOVIE_RECORD
-	if (camera_pos_off == 0)
-	{
-		FILE* f = fopen("c:\\0adcamera.dat", "rb");
-		fread(camera_pos, camera_len, 16*4, f);
-		fclose(f);
-	}
-	else if (camera_pos_off >= camera_len)
-		exit(0);
-	else
-		WriteScreenshot(true);
-	memcpy(g_Camera.m_Orientation._data, &camera_pos[camera_pos_off++], 16*4);
-#endif // #ifdef MOVIE_RECORD
-
-#else // #if defined(MOVIE_RECORD) || define(MOVIE_CREATE)
-
-	// Non-movie code:
 
 	static double last_time;
 	const double time = get_time();
@@ -1051,12 +1017,6 @@ static void Frame()
 	MICROLOG(L"reload files");
 
 	res_reload_changed_files();
-
-#endif // #if defined(MOVIE_RECORD) || define(MOVIE_CREATE)
-
-// TODO: limiter in case simulation can't keep up?
-//	const double TICK_TIME = 30e-3;	// [s]
-//	const float SIM_UPDATE_INTERVAL = 1.0f / (float)SIM_FRAMERATE; // Simulation runs at 10 fps.
 
 	MICROLOG(L"input");
 
@@ -1110,9 +1070,9 @@ static void Frame()
 }
 
 
-// Choose when to override the standard exception handling (i.e. opening
-// the debugger when available, or crashing when not) with one that
-// generates the crash log/dump.
+// Choose when to override the standard exception handling behaviour
+// (opening the debugger when available, or crashing when not) with
+// code that generates a crash log/dump.
 #if defined(_WIN32) && ( defined(NDEBUG) || defined(TESTING) )
 # define CUSTOM_EXCEPTION_HANDLER
 #endif
