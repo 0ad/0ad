@@ -19,7 +19,6 @@ extern bool keys[512];	// SDL also defines non-ascii keys; 512 should be enough
 extern bool mouseButtons[5];
 
 CMatrix3D			g_WorldMat;
-CRenderer			g_Renderer;
 CTerrain			g_Terrain;
 CCamera				g_Camera;
 CLightEnv			g_LightEnv;
