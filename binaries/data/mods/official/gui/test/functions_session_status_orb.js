@@ -10,7 +10,7 @@ function initStatusOrb()
 	crd_status_orb_portrait_x = 7;
 	crd_status_orb_portrait_y = 6;
 	crd_status_orb_portrait_width = crd_portrait_lrg_width;
-	crd_status_orb_portrait_height = crd_status_orb_portrait_width;
+	crd_status_orb_portrait_height = crd_portrait_lrg_height;
 
 	// Status Orb rank icon.
 	crd_status_orb_rank_width = crd_mini_icon_width;
@@ -88,6 +88,72 @@ function initStatusOrb()
 	crd_status_orb_armour_height = crd_status_orb_attack_height;
 	crd_status_orb_armour_x = crd_status_orb_attack_x;
 	crd_status_orb_armour_y = crd_status_orb_attack_y+crd_status_orb_attack_height;
+
+	// Command Button 1.
+	crd_status_orb_command_1_width = crd_portrait_sml_width;
+	crd_status_orb_command_1_height = crd_portrait_sml_height;
+	crd_status_orb_command_1_x = 0;
+	crd_status_orb_command_1_y = crd_status_orb_bkg_height;
+
+	// Command Button 2.
+	crd_status_orb_command_2_width = crd_status_orb_command_1_width;
+	crd_status_orb_command_2_height = crd_status_orb_command_1_height;
+	crd_status_orb_command_2_x = crd_status_orb_command_1_x+crd_status_orb_command_1_width;
+	crd_status_orb_command_2_y = crd_status_orb_command_1_y;
+
+	// Command Button 3.
+	crd_status_orb_command_3_width = crd_status_orb_command_1_width;
+	crd_status_orb_command_3_height = crd_status_orb_command_1_height;
+	crd_status_orb_command_3_x = crd_status_orb_command_2_x+crd_status_orb_command_2_width;
+	crd_status_orb_command_3_y = crd_status_orb_command_2_y;
+
+	// Command Button 4.
+	crd_status_orb_command_4_width = crd_status_orb_command_1_width;
+	crd_status_orb_command_4_height = crd_status_orb_command_1_height;
+	crd_status_orb_command_4_x = crd_status_orb_command_3_x+crd_status_orb_command_3_width;
+	crd_status_orb_command_4_y = crd_status_orb_command_3_y-3;
+
+	// Command Button 5.
+	crd_status_orb_command_5_width = crd_status_orb_command_1_width;
+	crd_status_orb_command_5_height = crd_status_orb_command_1_height;
+	crd_status_orb_command_5_x = crd_status_orb_command_4_x+crd_status_orb_command_4_width-1;
+	crd_status_orb_command_5_y = crd_status_orb_command_4_y-10;
+
+	// Command Button 6.
+	crd_status_orb_command_6_width = crd_status_orb_command_1_width;
+	crd_status_orb_command_6_height = crd_status_orb_command_1_height;
+	crd_status_orb_command_6_x = crd_status_orb_command_5_x+crd_status_orb_command_5_width-7;
+	crd_status_orb_command_6_y = crd_status_orb_command_5_y-20;
+
+	// Command Button 7.
+	crd_status_orb_command_7_width = crd_status_orb_command_1_width;
+	crd_status_orb_command_7_height = crd_status_orb_command_1_height;
+	crd_status_orb_command_7_x = crd_status_orb_command_6_x+crd_status_orb_command_6_width-12;
+	crd_status_orb_command_7_y = crd_status_orb_command_6_y-25;
+
+	// Command Button 8.
+	crd_status_orb_command_8_width = crd_status_orb_command_1_width;
+	crd_status_orb_command_8_height = crd_status_orb_command_1_height;
+	crd_status_orb_command_8_x = crd_status_orb_command_7_x+crd_status_orb_command_7_width-21;
+	crd_status_orb_command_8_y = crd_status_orb_command_7_y-31;
+
+	// Command Button 9.
+	crd_status_orb_command_9_width = crd_status_orb_command_1_width;
+	crd_status_orb_command_9_height = crd_status_orb_command_1_height;
+	crd_status_orb_command_9_x = crd_status_orb_command_8_x+crd_status_orb_command_8_width-32;
+	crd_status_orb_command_9_y = crd_status_orb_command_8_y-33;
+
+	// Command Button 10.
+	crd_status_orb_command_10_width = crd_status_orb_command_1_width;
+	crd_status_orb_command_10_height = crd_status_orb_command_1_height;
+	crd_status_orb_command_10_x = crd_status_orb_command_9_x+crd_status_orb_command_9_width-41;
+	crd_status_orb_command_10_y = crd_status_orb_command_9_y-32;
+
+	// Command Button 11.
+	crd_status_orb_command_11_width = crd_status_orb_command_1_width;
+	crd_status_orb_command_11_height = crd_status_orb_command_1_height;
+	crd_status_orb_command_11_x = crd_status_orb_command_10_x+crd_status_orb_command_10_width-52;
+	crd_status_orb_command_11_y = crd_status_orb_command_10_y-28;
 }
 
 // ====================================================================

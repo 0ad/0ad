@@ -666,88 +666,132 @@
 			<!-- PRIMARY COMMAND BUTTONS (arcs the Status Orb) -->
 			<object type="button" name="session_panel_status_command_pri_1" style="portrait" textcolor="255 255 255" z="70" hidden="false">1
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_panel_status_command_pri_1",
-					"0 184 32 216", 
-					"0 100%-216 32 100%-184");
+					AddSizeCoord(this.name,
+					crd_status_orb_command_1_x, crd_status_orb_command_1_y, crd_status_orb_command_1_x+crd_status_orb_command_1_width, crd_status_orb_command_1_y+crd_status_orb_command_1_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_command_1_x, -crd_status_orb_command_1_y-crd_status_orb_command_1_height, crd_status_orb_command_1_x+crd_status_orb_command_1_width, -crd_status_orb_command_1_y, left_screen, bottom_screen, left_screen, bottom_screen);
+
+//					AddSizeString("session_panel_status_command_pri_1",
+//					"0 184 32 216", 
+//					"0 100%-216 32 100%-184");
                                 ]]></action>
 			</object>
 			<object type="button" name="session_panel_status_command_pri_2" style="portrait" textcolor="255 255 255" z="70" hidden="false">2
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_panel_status_command_pri_2",
-					"32 184 64 216", 
-					"32 100%-216 64 100%-184");
+					AddSizeCoord(this.name,
+					crd_status_orb_command_2_x, crd_status_orb_command_2_y, crd_status_orb_command_2_x+crd_status_orb_command_2_width, crd_status_orb_command_2_y+crd_status_orb_command_2_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_command_2_x, -crd_status_orb_command_2_y-crd_status_orb_command_2_height, crd_status_orb_command_2_x+crd_status_orb_command_2_width, -crd_status_orb_command_2_y, left_screen, bottom_screen, left_screen, bottom_screen);
+
+//					AddSizeString("session_panel_status_command_pri_2",
+//					"32 184 64 216", 
+//					"32 100%-216 64 100%-184");
                                 ]]></action>
 			</object>
 
 			<object type="button" name="session_panel_status_command_pri_3" style="portrait" textcolor="255 255 255" z="70" hidden="false">3
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_panel_status_command_pri_3",
-					"65 184 97 216", 
-					"65 100%-216 97 100%-184");
+					AddSizeCoord(this.name,
+					crd_status_orb_command_3_x, crd_status_orb_command_3_y, crd_status_orb_command_3_x+crd_status_orb_command_3_width, crd_status_orb_command_3_y+crd_status_orb_command_3_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_command_3_x, -crd_status_orb_command_3_y-crd_status_orb_command_3_height, crd_status_orb_command_3_x+crd_status_orb_command_3_width, -crd_status_orb_command_3_y, left_screen, bottom_screen, left_screen, bottom_screen);
+
+//					AddSizeString("session_panel_status_command_pri_3",
+//					"65 184 97 216", 
+//					"65 100%-216 97 100%-184");
                                 ]]></action>
 			</object>
 
 			<object type="button" name="session_panel_status_command_pri_4" style="portrait" textcolor="255 255 255" z="70" hidden="false">4
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_panel_status_command_pri_4",
-					"97 180 129 212", 
-					"97 100%-212 129 100%-180");
+					AddSizeCoord(this.name,
+					crd_status_orb_command_4_x, crd_status_orb_command_4_y, crd_status_orb_command_4_x+crd_status_orb_command_4_width, crd_status_orb_command_4_y+crd_status_orb_command_4_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_command_4_x, -crd_status_orb_command_4_y-crd_status_orb_command_4_height, crd_status_orb_command_4_x+crd_status_orb_command_4_width, -crd_status_orb_command_4_y, left_screen, bottom_screen, left_screen, bottom_screen);
+
+//					AddSizeString("session_panel_status_command_pri_4",
+//					"97 180 129 212", 
+//					"97 100%-212 129 100%-180");
                                 ]]></action>
 			</object>
 
 			<object type="button" name="session_panel_status_command_pri_5" style="portrait" textcolor="255 255 255" z="70" hidden="false">5
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_panel_status_command_pri_5",
-					"128 168 160 200", 
-					"128 100%-200 160 100%-168");
+					AddSizeCoord(this.name,
+					crd_status_orb_command_5_x, crd_status_orb_command_5_y, crd_status_orb_command_5_x+crd_status_orb_command_5_width, crd_status_orb_command_5_y+crd_status_orb_command_5_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_command_5_x, -crd_status_orb_command_5_y-crd_status_orb_command_5_height, crd_status_orb_command_5_x+crd_status_orb_command_5_width, -crd_status_orb_command_5_y, left_screen, bottom_screen, left_screen, bottom_screen);
+
+//					AddSizeString("session_panel_status_command_pri_5",
+//					"128 168 160 200", 
+//					"128 100%-200 160 100%-168");
                                 ]]></action>
 			</object>
 
 			<object type="button" name="session_panel_status_command_pri_6" style="portrait" textcolor="255 255 255" z="70" hidden="false">6
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_panel_status_command_pri_6",
-					"154 148 186 180", 
-					"154 100%-180 186 100%-148");
+					AddSizeCoord(this.name,
+					crd_status_orb_command_6_x, crd_status_orb_command_6_y, crd_status_orb_command_6_x+crd_status_orb_command_6_width, crd_status_orb_command_6_y+crd_status_orb_command_6_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_command_6_x, -crd_status_orb_command_6_y-crd_status_orb_command_6_height, crd_status_orb_command_6_x+crd_status_orb_command_6_width, -crd_status_orb_command_6_y, left_screen, bottom_screen, left_screen, bottom_screen);
+
+//					AddSizeString("session_panel_status_command_pri_6",
+//					"154 148 186 180", 
+//					"154 100%-180 186 100%-148");
                                 ]]></action>
 			</object>
 
 			<object type="button" name="session_panel_status_command_pri_7" style="portrait" textcolor="255 255 255" z="70" hidden="false">7
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_panel_status_command_pri_7",
-					"172 121 204 153", 
-					"172 100%-153 204 100%-121");
+					AddSizeCoord(this.name,
+					crd_status_orb_command_7_x, crd_status_orb_command_7_y, crd_status_orb_command_7_x+crd_status_orb_command_7_width, crd_status_orb_command_7_y+crd_status_orb_command_7_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_command_7_x, -crd_status_orb_command_7_y-crd_status_orb_command_7_height, crd_status_orb_command_7_x+crd_status_orb_command_7_width, -crd_status_orb_command_7_y, left_screen, bottom_screen, left_screen, bottom_screen);
+
+//					AddSizeString("session_panel_status_command_pri_7",
+//					"172 121 204 153", 
+//					"172 100%-153 204 100%-121");
                                 ]]></action>
 			</object>
 
 			<object type="button" name="session_panel_status_command_pri_8" style="portrait" textcolor="255 255 255" z="70" hidden="false">8
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_panel_status_command_pri_8",
-					"184 90 216 122", 
-					"184 100%-122 216 100%-90");
+					AddSizeCoord(this.name,
+					crd_status_orb_command_8_x, crd_status_orb_command_8_y, crd_status_orb_command_8_x+crd_status_orb_command_8_width, crd_status_orb_command_8_y+crd_status_orb_command_8_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_command_8_x, -crd_status_orb_command_8_y-crd_status_orb_command_8_height, crd_status_orb_command_8_x+crd_status_orb_command_8_width, -crd_status_orb_command_8_y, left_screen, bottom_screen, left_screen, bottom_screen);
+
+//					AddSizeString("session_panel_status_command_pri_8",
+//					"184 90 216 122", 
+//					"184 100%-122 216 100%-90");
                                 ]]></action>
 			</object>
 
 			<object type="button" name="session_panel_status_command_pri_9" style="portrait" textcolor="255 255 255" z="70" hidden="false">9
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_panel_status_command_pri_9",
-					"183 57 215 89", 
-					"183 100%-89 215 100%-57");
+					AddSizeCoord(this.name,
+					crd_status_orb_command_9_x, crd_status_orb_command_9_y, crd_status_orb_command_9_x+crd_status_orb_command_9_width, crd_status_orb_command_9_y+crd_status_orb_command_9_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_command_9_x, -crd_status_orb_command_9_y-crd_status_orb_command_9_height, crd_status_orb_command_9_x+crd_status_orb_command_9_width, -crd_status_orb_command_9_y, left_screen, bottom_screen, left_screen, bottom_screen);
+
+//					AddSizeString("session_panel_status_command_pri_9",
+//					"183 57 215 89", 
+//					"183 100%-89 215 100%-57");
                                 ]]></action>
 			</object>
 
 			<object type="button" name="session_panel_status_command_pri_10" style="portrait" textcolor="255 255 255" z="70" hidden="false">10
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_panel_status_command_pri_10",
-					"171 26 203 58", 
-					"171 100%-58 203 100%-26");
+					AddSizeCoord(this.name,
+					crd_status_orb_command_10_x, crd_status_orb_command_10_y, crd_status_orb_command_10_x+crd_status_orb_command_10_width, crd_status_orb_command_10_y+crd_status_orb_command_10_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_command_10_x, -crd_status_orb_command_10_y-crd_status_orb_command_10_height, crd_status_orb_command_10_x+crd_status_orb_command_10_width, -crd_status_orb_command_10_y, left_screen, bottom_screen, left_screen, bottom_screen);
+
+//					AddSizeString("session_panel_status_command_pri_10",
+//					"171 26 203 58", 
+//					"171 100%-58 203 100%-26");
                                 ]]></action>
 			</object>
 
 			<object type="button" name="session_panel_status_command_pri_11" style="portrait" textcolor="255 255 255" z="70" hidden="false">11
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_panel_status_command_pri_11",
-					"150 0 182 32", 
-					"150 100%-32 182 100%");
+					AddSizeCoord(this.name,
+					crd_status_orb_command_11_x, crd_status_orb_command_11_y, crd_status_orb_command_11_x+crd_status_orb_command_11_width, crd_status_orb_command_11_y+crd_status_orb_command_11_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_command_11_x, -crd_status_orb_command_11_y-crd_status_orb_command_11_height, crd_status_orb_command_11_x+crd_status_orb_command_11_width, -crd_status_orb_command_11_y, left_screen, bottom_screen, left_screen, bottom_screen);
+
+//					AddSizeString("session_panel_status_command_pri_11",
+//					"150 0 182 32", 
+//					"150 100%-32 182 100%");
                                 ]]></action>
 			</object>
 
