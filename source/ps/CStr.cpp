@@ -1,8 +1,18 @@
 #include "precompiled.h"
 
-#include "CStr.h"
+#ifndef CStr_CPP_FIRST
+#define CStr_CPP_FIRST
+
 #include "Network/Serialization.h"
 #include <cassert>
+
+#define UNIDOUBLER_HEADER "CStr.cpp"
+#include "UniDoubler.h"
+
+#else
+
+#include "CStr.h"
+using namespace std;
 
 CStr::CStr()
 {
@@ -62,14 +72,14 @@ CStr::CStr(unsigned long Number)
 CStr::CStr(float Number)
 {
 	// Creates CStr from a float
-	_tsprintf(m_ConversionBuffer, FLOAT_CONVERSION, Number);
+	_tsnprintf(m_ConversionBuffer, CONVERSION_BUFFER_SIZE, FLOAT_CONVERSION, Number);
 	m_String = m_ConversionBuffer;
 }
 
 CStr::CStr(double Number)
 {
 	// Creates CStr from a double
-	_tsprintf(m_ConversionBuffer, FLOAT_CONVERSION, Number);
+	_tsnprintf(m_ConversionBuffer, CONVERSION_BUFFER_SIZE, FLOAT_CONVERSION, Number);
 	m_String = m_ConversionBuffer;
 }
 
@@ -328,14 +338,14 @@ CStr &CStr::operator=(unsigned long Number)
 
 CStr &CStr::operator=(float Number)
 {
-	_tsprintf(m_ConversionBuffer, FLOAT_CONVERSION, Number);
+	_tsnprintf(m_ConversionBuffer, CONVERSION_BUFFER_SIZE, FLOAT_CONVERSION, Number);
 	m_String = m_ConversionBuffer;
 	return *this;
 }
 
 CStr &CStr::operator=(double Number)
 {
-	_tsprintf(m_ConversionBuffer, FLOAT_CONVERSION, Number);
+	_tsnprintf(m_ConversionBuffer, CONVERSION_BUFFER_SIZE, FLOAT_CONVERSION, Number);
 	m_String = m_ConversionBuffer;
 	return *this;
 }
@@ -432,21 +442,32 @@ size_t CStr::GetHashCode() const
 
 uint CStr::GetSerializedLength() const
 {
-	return uint(m_String.length()+1);
+	return uint(m_String.length()*2 + 2);
 }
 
 u8 *CStr::Serialize(u8 *buffer) const
 {
 	size_t length=m_String.length();
-	memcpy(buffer, m_String.c_str(), length+1);
-	return buffer+length+1;
+	size_t i=0;
+	for (i=0;i<length;i++)
+		*(u16 *)(buffer+i*2)=htons(m_String[i]);
+	*(u16 *)(buffer+i*2)=0;
+	return buffer+length*2+2;
 }
 
 const u8 *CStr::Deserialize(const u8 *buffer, const u8 *bufferend)
 {
-	u8 *strend=(u8 *)memchr(buffer, 0, bufferend-buffer);
-	if (strend == NULL)
-		return NULL;
-	*this=(char *)buffer;
-	return strend+1;
+	const u16 *strend=(const u16 *)buffer;
+	while ((const u8 *)strend < bufferend && *strend) strend++;
+	if ((const u8 *)strend >= bufferend) return NULL;
+
+	m_String.resize(strend-((const u16 *)buffer));
+	size_t i=0;
+	const u16 *ptr=(const u16 *)buffer;
+	while (ptr<strend)
+		m_String[i++]=(TCHAR)ntohs(*(ptr++));
+
+	return (const u8 *)(strend+1);
 }
+
+#endif

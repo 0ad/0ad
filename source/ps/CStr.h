@@ -32,7 +32,23 @@ More Info:
 
 // Last modified: 19 May 04, Mark Thompson (mot20@cam.ac.uk / mark@wildfiregames.com)
 
-#ifndef CSTR_H
+#ifndef CSTR_H_FIRST
+#define CSTR_H_FIRST
+
+// DEFINES/ENUMS
+#define CONVERSION_BUFFER_SIZE		32
+#define FLOAT_CONVERSION			_T("%.6f")
+
+enum PS_TRIM_MODE {PS_TRIM_LEFT, PS_TRIM_RIGHT, PS_TRIM_BOTH};
+
+#ifndef IN_UNIDOUBLER
+#define UNIDOUBLER_HEADER "CStr.h"
+#include "UniDoubler.h"
+#endif
+
+#endif
+
+#if !defined(CSTR_H) || defined(IN_UNIDOUBLER)
 #define CSTR_H
 
 #include "Prometheus.h"
@@ -44,51 +60,40 @@ More Info:
 #include "Network/Serialization.h"
 
 #include <cstdlib>
-using namespace std;
-
-// DEFINES/ENUMS
-#define CONVERSION_BUFFER_SIZE		32
-#define FLOAT_CONVERSION			_T("%.6f")
 
 #ifdef  _UNICODE
-typedef wstring tstring;
+
+#define tstring wstring
 #define _tcout	wcout
 #define	_tstod	wcstod
-typedef wchar_t TCHAR;
+#define TCHAR wchar_t
 #define _ttoi _wtoi
 #define _ttol _wtol
 #define _itot _itow
 #define _ultot _itow
 #define _T(t) L ## t
-
 #define _totlower towlower
 #define _istspace iswspace
-#define _tsprintf wsprintf
+#define _tsnprintf swprintf
 #define _ltot _ltow
 
 #else
 
-typedef string	tstring;
+#define tstring string
 #define _tcout	cout
 #define	_tstod	strtod
 #define _ttoi atoi
 #define _ttol atol
 #define _itot _itoa
-typedef char TCHAR;
+#define TCHAR char
 #define _T(t) t
 #define _istspace isspace
-#define _tsprintf sprintf
+#define _tsnprintf snprintf
 #define _totlower tolower
 #define _ultot _ultoa
 #define _ltot _ltoa
 
 #endif
-
-enum PS_TRIM_MODE {PS_TRIM_LEFT, PS_TRIM_RIGHT, PS_TRIM_BOTH};
-
-// yuck - MAX already defines a CStr class...
-#define CStr PS_CStr
-
 
 // CStr class, the mother of all strings
 class CStr: public ISerializable
@@ -99,7 +104,7 @@ public:
 	CStr();					// Default constructor
 	CStr(const CStr &Str);		// Copy Constructor
 	
-	CStr(tstring String);	// Creates CStr from C++ string
+	CStr(std::tstring String);	// Creates CStr from C++ string
 	CStr(const TCHAR* String);	// Creates CStr from C-Style TCHAR string
 	CStr(TCHAR Char);		// Creates CStr from a TCHAR
 	CStr(int Number);		// Creates CStr from a int
@@ -183,7 +188,7 @@ public:
 	TCHAR &operator[](long n);
 	TCHAR &operator[](unsigned long n);
 
-	inline const char *c_str()
+	inline const TCHAR *c_str()
 	{	return m_String.c_str(); }
 	
 	size_t GetHashCode() const;
@@ -194,7 +199,7 @@ public:
 	virtual const u8 *Deserialize(const u8 *buffer, const u8 *bufferend);
 	
 protected:
-	tstring m_String;
+	std::tstring m_String;
 	TCHAR m_ConversionBuffer[CONVERSION_BUFFER_SIZE];
 };
 
@@ -214,6 +219,6 @@ public:
 };
 
 // overloaded operator for ostreams
-ostream &operator<<(ostream &os, CStr &Str);
+std::ostream &operator<<(std::ostream &os, CStr &Str);
 
 #endif
