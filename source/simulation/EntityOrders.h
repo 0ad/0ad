@@ -8,6 +8,10 @@
 //		  Orders are: ORDER_GOTO_NOPATHING: Attempts to reach the given destination via a line-of-sight
 //											system. Do not create an order of this type directly; it is
 //											used to return a path of line segments from the pathfinder.
+//					  ORDER_GOTO_COLLISION: When the coldet system is trying to get us out of a collision,
+//											it generates these intermediate waypoints. We don't really have
+//											any reason to go to this specific point, so if a better way
+//											comes along, this order can be deleted.
 //					  ORDER_GOTO:			Attempts to reach the given destination. Uses the pathfinder
 //											to... er... find the path.
 //											Create this order when a standard movement or movement waypoint
@@ -26,18 +30,12 @@
 #define ORDER_MAX_DATA 1
 
 #include "EntityHandles.h"
+#include "Vector2D.h"
 
 struct SOrderData
 {
-	union
-	{
-		struct
-		{
-			float x;
-			float y;
-		} location;
-		u64 data;  // miscellaneous
-	};
+	CVector2D location;
+	u64 data;  // miscellaneous
 	HEntity entity;
 };
 
@@ -47,6 +45,7 @@ public:
 	enum
 	{
 		ORDER_GOTO_NOPATHING,
+		ORDER_GOTO_COLLISION,
 		ORDER_GOTO,
 		ORDER_PATROL
 	} m_type;

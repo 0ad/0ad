@@ -269,8 +269,16 @@ static void Render()
 	RenderTerrain();
 	RenderModels();
 	g_Renderer.FlushFrame();
+/*
+	glPushAttrib( GL_ENABLE_BIT );
+	glDisable( GL_LIGHTING );
+	glDisable( GL_TEXTURE_2D );
+	glColor3f( 1.0f, 0.0f, 1.0f );
 
-	glColor3f(1.0f, 1.0f, 1.0f);
+	// g_EntityManager.renderAll(); // <-- collision outlines...
+
+	glPopAttrib();
+*/
 
 	// overlay mode
 	glPushAttrib(GL_ENABLE_BIT);
@@ -309,6 +317,8 @@ static void Render()
 	glLoadIdentity();
 	g_GUI.Draw();
 #endif
+
+
 
 	// restore
 	glMatrixMode(GL_PROJECTION);
@@ -471,7 +481,7 @@ int main(int argc, char* argv[])
 #endif
 
 
-	font = font_load("fonts/verdana.fnt");
+	font = font_load("fonts/verdana18.fnt");
 
 	// set renderer options from command line options - NOVBO must be set before opening the renderer
 	g_Renderer.SetOption(CRenderer::OPT_NOVBO,g_NoGLVBO);

@@ -1,6 +1,6 @@
 // Entity.h
 //
-// Last modified: 22 May 04, Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
+// Last modified: 26 May 04, Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
 // Entity class.
 //
@@ -15,10 +15,12 @@
 //			
 //			snapToGround(): Called every frame, this will ensure the entity never takes flight.
 //			updateActorTransforms(): Must be called every time the position of this entity changes.
+//			Also remember to update the collision object if you alter the position directly.
 //
 //			Some notes: update() and dispatch() /can/ be called directly without ill effects,
 //						but it's preferable to go through the Entity manager and the Scheduler, respectively.
 //
+//			Collision detection/avoidance is now present in some form; this is a work in progress.
 
 #ifndef ENTITY_INCLUDED
 #define ENTITY_INCLUDED
@@ -27,6 +29,8 @@
 #include "EntityProperties.h"
 
 #include "BaseEntity.h"
+#include "Vector2D.h"
+#include "BoundingObjects.h"
 #include "Vector3D.h"
 #include "Unit.h"
 #include "UnitManager.h"
@@ -45,7 +49,9 @@ public:
 	CStr m_name;
 	float m_speed;
 	CVector3D m_position;
+	CBoundingObject* m_bounds;
 	float m_targetorientation;
+	CVector2D m_ahead;
 	float m_orientation;
 	CBaseEntity* m_base;
 	CUnit* m_actor;
@@ -65,9 +71,12 @@ public:
 	void dispatch( CMessage* msg );
 	void update( float timestep );
 	void updateActorTransforms();
+	void render();
 	float getExactGroundLevel( float x, float y );
 	void snapToGround();
 	void pushOrder( CEntityOrder& order );
+	HEntity getCollisionObject();
+	HEntity getCollisionObject( float x, float y );
 };
 
 #endif

@@ -43,11 +43,13 @@ class HEntity
 	void decRef();
 	HEntity( u16 index );
 public:
-	CEntity& operator*();
-	CEntity* operator->();
+	CEntity& operator*() const;
+	CEntity* operator->() const;
 	HEntity();
 	HEntity( const HEntity& copy );
 	void operator=( const HEntity& copy );
+	bool operator==( const HEntity& test ) const;
+	operator bool() const { return( m_handle != INVALID_HANDLE ); }
 	~HEntity();
 };
 

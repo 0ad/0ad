@@ -17,8 +17,6 @@ XERCES_CPP_NAMESPACE_USE
 
 bool CBaseEntity::loadXML( CStr filename )
 {
-	// I can only assume Rich knows what this does ;)
-
 	bool parseOK = false;
 
 	// Initialize XML library
@@ -71,12 +69,52 @@ bool CBaseEntity::loadXML( CStr filename )
 					DOMNode *value_node= child_element->getChildNodes()->item(0);
 					CStr element_value=value_node ? XMLString::transcode(value_node->getNodeValue()) : "";
 
-					if (element_name==CStr("Name")) {
+					if( element_name == CStr( "Name" ) )
+					{
 						m_name = element_value;
-					} else if (element_name==CStr("Actor")) {
+					}
+					else if( element_name == CStr( "Actor" ) ) 
+					{
 						m_actorObject = g_ObjMan.FindObject( element_value );
-					} else if (element_name==CStr("Speed")) {
+					}
+					else if( element_name == CStr( "Speed" ) )
+					{
 						m_speed = element_value.ToFloat();
+					} 
+					else if( element_name == CStr( "Size" ) )
+					{
+						if( !m_bound_circle )
+							m_bound_circle = new CBoundingCircle();
+						CStr radius = XMLString::transcode( child_element->getAttribute( XMLString::transcode( "Radius" ) ) );
+						m_bound_circle->setRadius( radius.ToFloat() );
+						m_bound_type = CBoundingObject::BOUND_CIRCLE;
+					}
+					else if( element_name == CStr( "Footprint" ) )
+					{
+						if( !m_bound_box )
+							m_bound_box = new CBoundingBox();
+						CStr width = XMLString::transcode( child_element->getAttribute( XMLString::transcode( "Width" ) ) );
+						CStr height = XMLString::transcode( child_element->getAttribute( XMLString::transcode( "Height" ) ) ); 
+
+						m_bound_box->setDimensions( width.ToFloat(), height.ToFloat() );
+						m_bound_type = CBoundingObject::BOUND_OABB;
+					}
+					else if( element_name == CStr( "BoundsOffset" ) )
+					{
+						CStr x = XMLString::transcode( child_element->getAttribute( XMLString::transcode( "x" ) ) );
+						CStr y = XMLString::transcode( child_element->getAttribute( XMLString::transcode( "y" ) ) );
+
+						if( !m_bound_circle )
+							m_bound_circle = new CBoundingCircle();
+						if( !m_bound_box )
+							m_bound_box = new CBoundingBox();
+
+						m_bound_circle->m_offset.x = x.ToFloat();
+						m_bound_circle->m_offset.y = y.ToFloat();
+						m_bound_box->m_offset.x = x.ToFloat();
+						m_bound_box->m_offset.y = y.ToFloat();
+						
+						
 					}
 				}
 			}

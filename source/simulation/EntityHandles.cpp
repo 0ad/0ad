@@ -39,6 +39,11 @@ void HEntity::operator=( const HEntity& copy )
 	addRef();
 }
 
+bool HEntity::operator ==( const HEntity& test ) const
+{
+	return( m_handle == test.m_handle );
+}
+
 void HEntity::addRef()
 {
 	if( m_handle != INVALID_HANDLE )
@@ -57,14 +62,14 @@ void HEntity::decRef()
 	}
 }
 
-CEntity* HEntity::operator->()
+CEntity* HEntity::operator->() const
 {
 	assert( m_handle != INVALID_HANDLE );
 	assert( g_EntityManager.m_entities[m_handle].m_refcount != 0 );
 	return( g_EntityManager.m_entities[m_handle].m_entity );
 }
 
-CEntity& HEntity::operator*()
+CEntity& HEntity::operator*() const
 {
 	assert( m_handle != INVALID_HANDLE );
 	assert( g_EntityManager.m_entities[m_handle].m_refcount != 0 );

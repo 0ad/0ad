@@ -22,10 +22,12 @@
 #include "ObjectEntry.h"
 
 #include "EntityProperties.h"
+#include "BoundingObjects.h"
 
 class CBaseEntity
 {
 public:
+	CBaseEntity() { m_bound_circle = NULL; m_bound_box = NULL; }
 	// Load from XML
 	bool loadXML( CStr filename );
 
@@ -34,6 +36,10 @@ public:
 	CObjectEntry* m_actorObject;
 
 	CStr m_name;
+	CBoundingCircle* m_bound_circle;
+	CBoundingBox* m_bound_box;
+	CBoundingObject::EBoundingType m_bound_type;
+
 	float m_speed;
 
 	// Extended properties table

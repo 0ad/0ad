@@ -39,7 +39,9 @@ public:
 	HEntity create( CStr templatename, CVector3D position, float orientation );
 	void updateAll( float timestep );
 	void dispatchAll( CMessage* msg );
+	void renderAll(); // TODO MT: What's the correct way to hook this up to the renderer?
 	std::vector<HEntity>* matches( EntityPredicate predicate );
+	std::vector<HEntity>* getActive();
 	static inline bool extant()	// True if the singleton is actively maintaining handles. When false, system is shutting down, handles are quietly dumped.
 	{
 		return( m_extant );

@@ -10,35 +10,7 @@
 #ifndef BOUNDING_OBJECTS_INCLUDED
 #define BOUNDING_OBJECTS_INCLUDED
 
-#include "Prometheus.h"
-
-class CVector2D
-{
-public:
-	float x;
-	float y;
-	CVector2D() {}
-	CVector2D( float _x, float _y )
-	{
-		x = _x; y = _y;
-	}
-	static inline float dot( CVector2D& u, CVector2D& v )
-	{
-		return( u.x * v.x + u.y * v.y );
-	}
-	inline float dot( CVector2D& u )
-	{
-		return( dot( *this, u ) );
-	}
-	inline CVector2D operator-( CVector2D& u )
-	{
-		return( CVector2D( x - u.x, y - u.y ) );
-	}
-	inline bool within( float dist )
-	{
-		return( ( x * x + y * y ) <= ( dist * dist ) );
-	}
-};
+#include "Vector2D.h"
 
 class CBoundingBox;
 class CBoundingCircle;
@@ -46,42 +18,58 @@ class CBoundingCircle;
 class CBoundingObject
 {
 public:
-	CBoundingObject() {}
-	enum CBoundingType
+	CBoundingObject() { m_offset.x = 0; m_offset.y = 0; }
+	enum EBoundingType
 	{
 		BOUND_CIRCLE,
 		BOUND_OABB
 	};
-	CBoundingType type;
-	CVector2D pos;
-	float trivialRejectionRadius;
+	EBoundingType m_type;
+	CVector2D m_pos;
+	CVector2D m_offset;
+	float m_radius;
+	void setPosition( float x, float y );
 	bool intersects( CBoundingObject* obj );
 	virtual bool _intersects( CBoundingObject* obj, CVector2D* delta ) = 0;
-
+	virtual void render( float height ) = 0;	// Temporary
 };
 
 class CBoundingCircle : public CBoundingObject
 {
 public:
-	float r;
-	CBoundingCircle( float _x, float _y, float _radius );
-	void setPosition( float _x, float _y );
-	void setRadius( float _radius );
+	CBoundingCircle() { m_type = BOUND_OABB; }
+	CBoundingCircle( float x, float y, float radius );
+	CBoundingCircle( float x, float y, CBoundingCircle* copy );
+	void setRadius( float radius );
 	bool _intersects( CBoundingObject* obj, CVector2D* delta );
+	void render( float height );	// Temporary
 };
 
 class CBoundingBox : public CBoundingObject
 {
 public:
-	CVector2D u; // Unit vector along the direction of this box's height.
-	CVector2D v; // Unit vector along the direction of this box's width.
-	float h; // Half this box's height.
-	float w; // Half this box's width.
-	CBoundingBox( float _x, float _y, float _orientation, float _width, float _height );
-	void setPosition( float _x, float _y );
-	void setDimensions( float _width, float _height );
-	void setOrientation( float _orientation );
+	CBoundingBox() { m_type = BOUND_OABB; }
+	CVector2D m_u; // Unit vector along the direction of this box's height.
+	CVector2D m_v; // Unit vector along the direction of this box's width.
+	float m_h; // Half this box's height.
+	float m_w; // Half this box's width.
+	CBoundingBox( float x, float y, float orientation, float width, float height )
+	{
+		CBoundingBox( x, y, CVector2D( sin( orientation ), cos( orientation ) ), width, height );
+	}
+	CBoundingBox( float x, float y, const CVector2D& orientation, float width, float height );
+	CBoundingBox( float x, float y, float orientation, CBoundingBox* copy )
+	{
+		CBoundingBox( x, y, CVector2D( sin( orientation ), cos( orientation ) ), copy );
+	}
+	CBoundingBox( float x, float y, const CVector2D& orientation, CBoundingBox* copy );
+	void setDimensions( float width, float height );
+	void setOrientation( float orientation );
+	void setOrientation( const CVector2D& orientation );
+	float getWidth() const { return( 2.0f * m_w ); };
+	float getHeight() const { return( 2.0f * m_h ); };
 	bool _intersects( CBoundingObject* obj, CVector2D* delta );
+	void render( float height );	// Temporary
 };
 
 #endif

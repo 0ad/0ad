@@ -1,11 +1,12 @@
 // Last modified: May 15 2004, Mark Thompson (mark@wildfiregames.com)
 
 #include "Entity.h"
-#include "Model.h"
-#include "Terrain.h"
 #include "EntityManager.h"
 #include "BaseEntityCollection.h"
 
+#include "Renderer.h"
+#include "Model.h"
+#include "Terrain.h"
 
 CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 {
@@ -27,6 +28,18 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	m_position = position;
 	m_orientation = orientation;
 
+	m_ahead.x = sin( orientation );
+	m_ahead.y = cos( orientation );
+
+	if( m_base->m_bound_type == CBoundingObject::BOUND_CIRCLE )
+	{
+		m_bounds = new CBoundingCircle( m_position.X, m_position.Z, m_base->m_bound_circle );
+	}
+	else if( m_base->m_bound_type == CBoundingObject::BOUND_OABB )
+	{
+		m_bounds = new CBoundingBox( m_position.X, m_position.Z, m_ahead, m_base->m_bound_box );
+	}
+	
 	snapToGround();
 	updateActorTransforms();
 
@@ -44,10 +57,21 @@ bool isWaypoint( CEntity* e )
 void CEntity::updateActorTransforms()
 {
 	CMatrix3D m;
+	
+	m._11 = -m_ahead.y;	m._12 = 0.0f;	m._13 = -m_ahead.x;	m._14 = m_position.X;
+	m._21 = 0.0f;		m._22 = 1.0f;	m._23 = 0.0f;		m._24 = m_position.Y;
+	m._31 = m_ahead.x;	m._32 = 0.0f;	m._33 = -m_ahead.y;	m._34 = m_position.Z;
+	m._41 = 0.0f;		m._42 = 0.0f;	m._43 = 0.0f;		m._44 = 1.0f;
 
+	/* Equivalent to:
+	
 	m.SetYRotation( m_orientation );
 
 	m.Translate( m_position );
+
+	But the matrix multiplication seemed such a waste when we already have a forward vector
+
+	*/
 
 	m_actor->m_Model->SetTransform( m );
 }
@@ -108,34 +132,97 @@ void CEntity::update( float timestep )
 		switch( current->m_type )
 		{
 		case CEntityOrder::ORDER_GOTO_NOPATHING:
+		case CEntityOrder::ORDER_GOTO_COLLISION:
 			{
-				float deltax = (float)current->m_data[0].location.x - m_position.X;
-				float deltay = (float)current->m_data[0].location.y - m_position.Z;
+				CVector2D delta;
+				delta.x = (float)current->m_data[0].location.x - m_position.X;
+				delta.y = (float)current->m_data[0].location.y - m_position.Z;
 
-				m_targetorientation = atan2( -deltax, -deltay );
-				float deltatheta = m_targetorientation - m_orientation;
-				if( deltatheta > PI )
-					deltatheta -= 2 * PI;
-				if( deltatheta < -PI )
-					deltatheta += 2 * PI;
+				m_ahead = delta.normalize();
 
-				/*
-				if( deltatheta > 1.0f * timestep )
-					deltatheta = 1.0f * timestep;
-				if( deltatheta < -1.0f * timestep )
-					deltatheta = -1.0f * timestep;
-				*/
+				if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
+					((CBoundingBox*)m_bounds)->setOrientation( m_ahead );
 
-				m_orientation += deltatheta;
+				float len = delta.length();
 
-				float len = sqrt( deltax * deltax + deltay * deltay );
 				float scale = timestep * m_speed;
+
 				if( scale > len )
 					scale = len;
 
-				deltax = -sinf( m_orientation ) * scale; deltay = -cosf( m_orientation ) * scale;
-				m_position.X += deltax;
-				m_position.Z += deltay;
+				delta = m_ahead * scale;
+
+				m_position.X += delta.x;
+				m_position.Z += delta.y;
+				m_bounds->setPosition( m_position.X, m_position.Z );
+
+				HEntity collide = getCollisionObject();
+				
+				if( collide )
+				{	
+					// Hit something. Take a step back.
+					m_position.X -= delta.x;
+					m_position.Z -= delta.y;
+
+					m_bounds->setPosition( m_position.X, m_position.Z );
+
+					// Are we still hitting it?
+					if( collide->m_bounds->intersects( m_bounds ) )
+					{
+						// Oh dear. Most likely explanation is that this unit was created
+						// within the bounding area of another entity.
+						// Try a little boost of speed, to help resolve the situation more quickly.
+						m_position.X += delta.x * 2.0f;
+						m_position.Z += delta.y * 2.0f;
+						m_bounds->setPosition( m_position.X, m_position.Z );
+						return;
+					}
+				
+					if( collide->m_bounds->m_type == CBoundingObject::BOUND_OABB )
+					{
+						// And it's square.
+						// TODO: Implement this case properly.
+
+						// HACK: See if this thing we've hit is likely to be our destination. If so, just skip to our next waypoint.
+						// Otherwise, turn right (as with circle collisions)
+
+						if( len < collide->m_bounds->m_radius * 2.0f )
+						{
+							m_orderQueue.pop_front();
+							return;
+						}
+						else
+						{
+							CEntityOrder avoidance;
+							avoidance.m_type = CEntityOrder::ORDER_GOTO_COLLISION;
+							CVector2D right;
+							right.x = m_ahead.y; right.y = -m_ahead.x;
+							CVector2D avoidancePosition = collide->m_bounds->m_pos + right * ( collide->m_bounds->m_radius * 2.5f );
+							avoidance.m_data[0].location = avoidancePosition;
+							if( current->m_type == CEntityOrder::ORDER_GOTO_COLLISION )
+								m_orderQueue.pop_front();
+							m_orderQueue.push_front( avoidance );
+							return;
+						}
+						
+					}
+					else
+					{
+						// A circle.
+						// TODO: Implement this properly.
+						// Try turning right.
+						CEntityOrder avoidance;
+						avoidance.m_type = CEntityOrder::ORDER_GOTO_COLLISION;
+						CVector2D right;
+						right.x = m_ahead.y; right.y = -m_ahead.x;
+						CVector2D avoidancePosition = collide->m_bounds->m_pos + right * ( collide->m_bounds->m_radius * 2.5f );
+						avoidance.m_data[0].location = avoidancePosition;
+						if( current->m_type == CEntityOrder::ORDER_GOTO_COLLISION )
+							m_orderQueue.pop_front();
+						m_orderQueue.push_front( avoidance );
+						return;
+					}
+				}
 
 				snapToGround();
 				updateActorTransforms();
@@ -199,6 +286,7 @@ void CEntity::dispatch( CMessage* msg )
 				pushOrder( patrol );
 				waypoints->erase( it );
 			}
+			delete( waypoints );
 		}
 		break;
 	}
@@ -209,34 +297,49 @@ void CEntity::pushOrder( CEntityOrder& order )
 	m_orderQueue.push_back( order );
 }
 
-void PASAPScenario()
+void CEntity::render()
 {
-	// Entity demo. I don't know where this information is going to come from for pre-PASAP.
-	// So, it's hardcoded here. *shrug*
+	// Rich! Help! ;)
+	// We can loose this later on, I just need a way to see collision boxes temporarily
 
-	/*
-	float waypoints[4][2] = { { 12.0f, 64.0f },
-							  { 28.0f, 64.0f }, 
-							  { 56.0f, 52.0f },
-							  { 24.0f, 28.0f } };
-	*/
+	glColor3f( 1.0f, 1.0f, 1.0f );
+	if( getCollisionObject() ) glColor3f( 0.5f, 0.5f, 1.0f );
+	m_bounds->render( m_position.Y + 0.25f );
+}
 
-	/*
+HEntity CEntity::getCollisionObject()
+{
+	if( !m_bounds ) return( HEntity() );
+	std::vector<HEntity>* entities = g_EntityManager.getActive();
+	std::vector<HEntity>::iterator it;
 
-	for( int i = 0; i < 4; i++ )
+	for( it = entities->begin(); it != entities->end(); it++ )
 	{
-		HEntity bob = g_EntityManager.create( "Prometheus Dude", CVector3D( waypoints[i][0], 0.0f, waypoints[i][1] ), 0.0f );
-
-		for( int t = 0; t < 4; t++ )
-		{
-			CEntityOrder march_of_bob;
-			march_of_bob.m_type = CEntityOrder::ORDER_PATROL ;
-			march_of_bob.m_data[0].location.x = waypoints[(i+t+1)%4][0];
-			march_of_bob.m_data[0].location.y = waypoints[(i+t+1)%4][1];
-
-			bob->pushOrder( march_of_bob );
-		}
+		if( *it == me ) continue;
+		if( (*it)->m_bounds )
+			if( m_bounds->intersects( (*it)->m_bounds ) )
+			{
+				HEntity collisionObject = *it;
+				delete( entities );
+				return( collisionObject );
+			}
 	}
 
-	*/
+	delete( entities );
+	return( HEntity() );
+}
+
+HEntity CEntity::getCollisionObject( float x, float y )
+{
+	float _x = m_bounds->m_pos.x;
+	float _y = m_bounds->m_pos.y;
+	m_bounds->setPosition( x, y );
+	HEntity _e = getCollisionObject();
+	m_bounds->setPosition( _x, _y );
+	return( _e );
+}
+
+void PASAPScenario()
+{
+	// Got rid of all the hardcoding that was here.
 }

@@ -39,6 +39,15 @@ std::vector<HEntity>* CEntityManager::matches( EntityPredicate predicate )
 	return( matchlist );
 }
 
+std::vector<HEntity>* CEntityManager::getActive()
+{
+	std::vector<HEntity>* activelist = new std::vector<HEntity>;
+	for( int i = 0; i < MAX_HANDLES; i++ )
+		if( m_entities[i].m_refcount )
+			activelist->push_back( HEntity( i ) );
+	return( activelist );
+}
+
 void CEntityManager::dispatchAll( CMessage* msg )
 {
 	for( int i = 0; i < MAX_HANDLES; i++ )
@@ -51,6 +60,13 @@ void CEntityManager::updateAll( float timestep )
 	for( int i = 0; i < MAX_HANDLES; i++ )
 		if( m_entities[i].m_refcount )
 			m_entities[i].m_entity->update( timestep );
+}
+
+void CEntityManager::renderAll()
+{
+	for( int i = 0; i < MAX_HANDLES; i++ )
+		if( m_entities[i].m_refcount )
+			m_entities[i].m_entity->render();
 }
 
 bool CEntityManager::m_extant = false;
