@@ -66,16 +66,14 @@ gee@pyro.nu
 
 #include "GUIbase.h"
 #include "GUIutil.h"
+#include "GUItext.h"
 #include "IGUIObject.h"
-#include "IGUISettingsObject.h"
 #include "IGUIButtonBehavior.h"
 #include "IGUIScrollBarOwner.h"
+#include "IGUITextOwner.h"
 #include "IGUIScrollBar.h"
 #include "CGUIScrollBarVertical.h"
-#include "CButton.h"
-#include "CText.h"
 #include "CGUISprite.h"
 #include "CGUI.h"
-
 
 #endif

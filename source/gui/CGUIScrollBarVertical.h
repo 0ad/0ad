@@ -41,8 +41,8 @@ gee@pyro.nu
  class CGUIScrollBarVertical : public IGUIScrollBar
 {
 public:
-	CGUIScrollBarVertical() {}
-	virtual ~CGUIScrollBarVertical() {}
+	CGUIScrollBarVertical();
+	virtual ~CGUIScrollBarVertical();
 
 public:
 	/**
@@ -59,22 +59,22 @@ public:
 	 * @return true if messages handled the scroll-bar some. False if
 	 *		   the message should be processed by the object.
 	 */
-	virtual bool HandleMessage(const SGUIMessage &Message);
+	virtual void HandleMessage(const SGUIMessage &Message);
 
 	/**
 	 * Set m_Pos with mouse_x/y input, i.e. when draggin.
 	 */
-	virtual void SetPosFromMousePos(int _x, int _y);
+	virtual void SetPosFromMousePos(const CPos &mouse);
 
 	/**
 	 * @see IGUIScrollBar#HoveringButtonMinus
 	 */
-	virtual bool HoveringButtonMinus(int m_x, int m_y);
+	virtual bool HoveringButtonMinus(const CPos &mouse);
 
 	/**
 	 * @see IGUIScrollBar#HoveringButtonPlus
 	 */
-	virtual bool HoveringButtonPlus(int m_x, int m_y);
+	virtual bool HoveringButtonPlus(const CPos &mouse);
 
 	/**
 	 * Set Right Aligned
@@ -88,6 +88,13 @@ protected:
 	 * @return Rectangle, CRect
 	 */
 	virtual CRect GetBarRect() const;
+
+	/**
+	 * Get the rectangle of the outline of the scrollbar, every component of the
+	 * scroll-bar should be inside this area.
+	 * @return Rectangle, CRect
+	 */
+	virtual CRect GetOuterRect() const;
 
 	/**
 	 * Should the scroll bar proceed to the left or to the right of the m_X value.

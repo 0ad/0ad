@@ -64,16 +64,38 @@ enum EAlign { EAlign_Left, EAlign_Right, EAlign_Center };
 enum EValign { EValign_Top, EValign_Bottom, EValign_Center };
 
 /**
+ * Setting Type
+ * @see SGUISetting
+ *
+ * For use of later macros, all names should be GUIST_ followed
+ * by the code name (case sensitive!).
+ */
+enum EGUISettingType
+{
+	GUIST_bool,
+	GUIST_int,
+	GUIST_float,
+	GUIST_CColor,
+	GUIST_CClientArea,
+	GUIST_CGUIString,
+	GUIST_CStr
+};
+
+/**
  * @author Gustav Larsson
  *
- * Stores the information where to find a variable
- * in a GUI-Object object, also what type it is.
+ * A GUI Setting is anything that can be inputted from XML as
+ * <object>-attributes (with exceptions). For instance:
+ * <object style="null">
+ *
+ * "style" will be a SGUISetting.
  */
 struct SGUISetting
 {
-	size_t				m_Offset;		// The offset from IGUIObject to the variable (not from SGUIBaseSettings or similar)
-	EGUISettingsStruct	m_SettingsStruct;
-	CStr				m_Type;			// "string" or maybe "int"
+	SGUISetting() : m_pSetting(NULL) {}
+
+	void				*m_pSetting;
+	EGUISettingType		m_Type;
 };
 
 /**
@@ -83,8 +105,9 @@ struct SGUISetting
  * in their m_BaseSettings
  * Instructions can be found in the documentations.
  */
-struct SGUIBaseSettings
+/*struct SGUIBaseSettings
 {
+	//int				banan;
 	bool			m_Absolute;
 	CStr			m_Caption;	// Is usually set within an XML element and not in the attributes
 	bool			m_Enabled;
@@ -93,7 +116,7 @@ struct SGUIBaseSettings
 	CClientArea		m_Size;
 	CStr			m_Style;
 	float			m_Z;
-};
+};*/
 
 //////////////////////////////////////////////////////////
 
@@ -108,22 +131,11 @@ class IGUIObject
 	friend class CGUI;
 	friend class CInternalCGUIAccessorBase;
 	friend class IGUIScrollBar;
-#ifndef _MSC_VER
-	template <class T>
-#endif
-	friend class GUI;
 
 public:
 	IGUIObject();
 	virtual ~IGUIObject();
 	
-	/**
-	 * Get offsets
-	 *
-	 * @return Retrieves settings info
-	 */
-	virtual map_Settings GetSettingsInfo() const { return m_SettingsInfo; }
-
 	/**
 	 * Checks if mouse is hovering this object.
      * The mouse position is cached in CGUI.
@@ -193,8 +205,6 @@ public:
 	//--------------------------------------------------------
 	//@{
 
-	SGUIBaseSettings GetBaseSettings() const { return m_BaseSettings; }
-	
 	/**
 	 * Checks if settings exists, only available for derived
 	 * classes that has this set up, that's why the base
@@ -231,7 +241,7 @@ public:
 	 *
 	 * @param SettingsInfo Pointers that should be filled with base variables
 	 */
-	void SetupBaseSettingsInfo(map_Settings &SettingsInfo);
+	//void SetupBaseSettingsInfo(map_Settings &SettingsInfo);
 
 	/**
 	 * Set a setting by string, regardless of what type it is.
@@ -260,6 +270,14 @@ protected:
 	//@{
 
 	/**
+	 * Add a setting to m_Settings
+	 *
+	 * @param Type Setting type
+	 * @param Name Setting reference name
+	 */
+	void AddSetting(const EGUISettingType &Type, const CStr &Name);
+
+	/**
 	 * Calls Destroy on all children, and deallocates all memory.
 	 * MEGA TODO Should it destroy it's children?
 	 */
@@ -271,7 +289,7 @@ protected:
 	 *
 	 * @param Message GUI Message
 	 */
-	virtual void HandleMessage(const SGUIMessage &Message)=0;
+	virtual void HandleMessage(const SGUIMessage &Message) {};
 
 	/**
 	 * Draws the object.
@@ -305,7 +323,7 @@ protected:
 	 *
 	 * @return Actual Z value on the screen.
 	 */
-	float GetBufferedZ() const;
+	virtual float GetBufferedZ() const;
 
 	// This is done internally
 	CGUI *GetGUI() { return m_pGUI; }
@@ -342,11 +360,12 @@ protected:
 	 *
 	 * @param SettingsStruct tells us which pointer ot return
 	 */
-	virtual void *GetStructPointer(const EGUISettingsStruct &SettingsStruct) const;
+	//virtual void *GetStructPointer(const EGUISettingsStruct &SettingsStruct) const;
 
-	// Get cached mouse x/y from CGUI
-	u16 GetMouseX() const;
-	u16 GetMouseY() const;
+	/**
+	 * Get Mouse from CGUI.
+	 */
+	CPos GetMousePos() const;
 
 	/**
 	 * Cached size, real size m_Size is actually dependent on resolution
@@ -402,7 +421,7 @@ protected:
 	IGUIObject								*m_pParent;
 
 	/// Base settings
-	SGUIBaseSettings						m_BaseSettings;
+	//SGUIBaseSettings						m_BaseSettings;
 
 	/**
 	 * This is an array of true or false, each element is associated with
@@ -429,7 +448,18 @@ protected:
 	 * <b>note!</b> @uNOT from SGUIBaseSettings to 
 	 * m_Frozen!
 	 */
-	static map_Settings						m_SettingsInfo;
+	//static map_Settings						ms_SettingsInfo;
+
+	/**
+	 * Settings pool, all an object's settings are located here
+	 * If a derived object has got more settings that the base
+	 * settings, it's becasue they have a new version of the
+	 * function SetupSettings().
+	 *
+	 * @see SetupSettings()
+	 */
+	public:
+	std::map<CStr, SGUISetting>				m_Settings;
 
 private:
 	/// An object can't function stand alone
@@ -441,10 +471,13 @@ private:
  * @author Gustav Larsson
  *
  * Dummy object used primarily for the root object
- * which isn't a *real* object in the GUI.
+ * or objects of type 'empty'
  */
 class CGUIDummyObject : public IGUIObject
 {
+	GUI_OBJECT(CGUIDummyObject)
+
+public:
 	virtual void HandleMessage(const SGUIMessage &Message) {}
 	virtual void Draw() {}
 };

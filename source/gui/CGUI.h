@@ -108,7 +108,18 @@ public:
 	 * @param Clipping The sprite shouldn't be drawn outside this rectangle
 	 */
 	void DrawSprite(const CStr &SpriteName, const float &Z, 
-					const CRect &Rect, const CRect &Clipping=CRect(0,0,0,0));
+					const CRect &Rect, const CRect &Clipping=CRect());
+
+	/**
+	 * Draw a SGUIText object
+	 *
+	 * @param Text Text object.
+	 * @param DefaultColor Color used if no tag applied.
+	 * @param pos position
+	 * @param z z value.
+	 */
+	void DrawText(const SGUIText &Text, const CColor &DefaultColor, 
+				  const CPos &pos, const float &z);
 
 	/**
 	 * Clean up, call this to clean up all memory allocated
@@ -168,6 +179,24 @@ public:
 	 * @see IGUIObject#UpdateCachedSize()
 	 */
 	void UpdateResolution();
+
+	/**
+	 * Generate a SGUIText object from the inputted string.
+	 * The function will break down the string and its
+	 * tags to calculate exactly which rendering queries
+	 * will be sent to the Renderer.
+	 *
+	 * Done through the CGUI since it can communicate with 
+	 *
+	 * @param Text Text to generate SGUIText object from
+	 * @param Color Default color
+	 * @param Font Default font, notice both Default color and defult font
+	 *		  can be changed by tags.
+	 * @param Width Width, 0 if no word-wrapping.
+	 * @param BufferZone space between text and edge, and space between text and images.
+	 */
+	SGUIText GenerateText(const CGUIString &Text, /*const CColor &Color, */
+						  const CStr &Font, const int &Width, const int &BufferZone);
 
 private:
 	/**
@@ -385,9 +414,10 @@ private:
 	 * ChooseMouseOverAndClosest broadcast -
 	 * we'd need to pack this and pNearest in a struct
 	 */
-	u16 m_MouseX, m_MouseY;
+	CPos m_MousePos;
 
 	/// Used when reading in XML files
+	// TODO Gee: Used?
 	int16 m_Errors;
 
 	//@}
@@ -410,6 +440,14 @@ private:
 	 * not considered a real object.
 	 */
 	map_pObjects m_pAllObjects;
+
+	/**
+	 * Number of object that has been given name automatically.
+	 * the name given will be '__internal(#)', the number (#)
+	 * being this variable. When an object's name has been set
+	 * as followed, the value will increment.
+	 */
+	int m_InternalNameNumber;
 
 	/**
 	 * Function pointers to functions that constructs

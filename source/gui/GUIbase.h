@@ -36,20 +36,6 @@ class IGUIObject;
 #define g_GUI CGUI::GetSingleton()
 
 // Object settings setups
-#define GUI_ADD_OFFSET_GENERIC(si, guiss, _struct, var, type, str)				\
-	si[CStr(str)].m_Offset = offsetof(_struct, var);	\
-	si[CStr(str)].m_SettingsStruct = guiss;		\
-	si[CStr(str)].m_Type = CStr(type);
-
-#define GUI_ADD_OFFSET_BASE(_struct, var, type, str) \
-		GUI_ADD_OFFSET_GENERIC(m_SettingsInfo, GUISS_BASE, _struct, var, type, str)
-
-#define GUI_ADD_OFFSET_EXT(_struct, var, type, str) \
-		GUI_ADD_OFFSET_GENERIC(m_SettingsInfo, GUISS_EXTENDED, _struct, var, type, str)
-
-// Declares the static variable in IGUISettingsObject<>
-#define DECLARE_SETTINGS_INFO(_struct) \
-	map_Settings IGUISettingsObject<_struct>::m_SettingsInfo;
 
 // Setup an object's ConstructObject function
 #define GUI_OBJECT(obj)													\
@@ -83,10 +69,13 @@ enum EGUIMessageType
 	GUIM_MOUSE_WHEEL_DOWN,
 	GUIM_SETTINGS_UPDATED,	// SGUIMessage.m_Value = name of setting
 	GUIM_PRESSED,
-	GUIM_MOUSE_MOTION
+	GUIM_MOUSE_MOTION,
+	GUIM_LOAD				// Called when an object is added to the GUI.
 };
 
 /**
+ * @author Gustav Larsson
+ *
  * Message send to IGUIObject::HandleMessage() in order
  * to give life to Objects manually with
  * a derived HandleMessage().

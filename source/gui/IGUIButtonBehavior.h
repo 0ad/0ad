@@ -57,6 +57,34 @@ public:
 	 */
 	virtual void HandleMessage(const SGUIMessage &Message);
 
+	/**
+	 * This is a function that lets a button being drawn,
+	 * it regards if it's over, disabled, pressed and such.
+	 * You input sprite names and area and it'll output
+	 * it accordingly.
+	 *
+	 * This class is meant to be used manually in Draw()
+	 *
+	 * @param rect Rectangle in which the sprite should be drawn
+	 * @param z Z-value
+	 * @param sprite Sprite drawn when not pressed, hovered or disabled
+	 * @param sprite_over Sprite drawn when m_MouseHovering is true
+	 * @param sprite_pressed Sprite drawn when m_Pressed is true
+	 * @param sprite_disabled Sprite drawn when "enabled" is false
+	 */
+	void DrawButton(const CRect &rect,
+					const float &z,
+					const CStr &sprite,
+					const CStr &sprite_over,
+					const CStr &sprite_pressed,
+					const CStr &sprite_disabled);
+
+	/**
+	 * Choosing which color of the following according to 
+	 */
+	CColor IGUIButtonBehavior::ChooseColor();
+
+
 protected:
 	virtual void ResetStates()
 	{

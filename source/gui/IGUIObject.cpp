@@ -14,16 +14,10 @@ gee@pyro.nu
 
 using namespace std;
 
-// Offsets
-map_Settings IGUIObject::m_SettingsInfo;
-
 //-------------------------------------------------------------------
 //  Implementation Macros
 //-------------------------------------------------------------------
-/*#define _GUI_ADD_OFFSET(type, str, var) \
-	SettingsInfo[str].m_Offset = offsetof(IGUIObject, m_BaseSettings) + offsetof(SGUIBaseSettings,var); \
-	SettingsInfo[str].m_Type = type;
-*/
+
 //-------------------------------------------------------------------
 //  Constructor / Destructor
 //-------------------------------------------------------------------
@@ -32,21 +26,38 @@ IGUIObject::IGUIObject() :
 	m_pParent(NULL),
 	m_MouseHovering(false)
 {
-	// TODO Gee: Remove this when base object is excluded from the recursion routines.
-	m_BaseSettings.m_Hidden =		false;
-	m_BaseSettings.m_Ghost =		false;
-	m_BaseSettings.m_Enabled =		true;
-	m_BaseSettings.m_Absolute =		true;
+	AddSetting(GUIST_bool,			"enabled");
+	AddSetting(GUIST_bool,			"hidden");
+	AddSetting(GUIST_CClientArea,	"size");
+	AddSetting(GUIST_CStr,			"style");
+	AddSetting(GUIST_float,			"z");
+//	AddSetting(GUIST_CGUIString,	"caption");
+	AddSetting(GUIST_bool,			"absolute");
+	AddSetting(GUIST_bool,			"ghost");
 
-	// Static! Only done once
-	if (m_SettingsInfo.empty())
-	{
-		SetupBaseSettingsInfo(m_SettingsInfo);
-	}
+	// Setup important defaults
+	GUI<bool>::SetSetting(this, "hidden", false);
+	GUI<bool>::SetSetting(this, "ghost", false);
+	GUI<bool>::SetSetting(this, "enabled", true);
+	GUI<bool>::SetSetting(this, "absolute", true);
+
+
+
+	bool hidden=true;
+
+	GUI<bool>::GetSetting(this, "hidden", hidden);
+
+int hej=23;
 }
 
 IGUIObject::~IGUIObject()
 {
+	map<CStr, SGUISetting>::iterator it;
+	for (it = m_Settings.begin(); it != m_Settings.end(); ++it)
+	{
+		if (!it->second.m_pSetting)
+			delete it->second.m_pSetting;
+	}
 }
 
 //-------------------------------------------------------------------
@@ -116,24 +127,36 @@ void IGUIObject::Destroy()
 	// Is there anything besides the children to destroy?
 }
 
-void IGUIObject::SetupBaseSettingsInfo(map_Settings &SettingsInfo)
+// Notice if using this, the naming convention of GUIST_ should be strict.
+#define CASE_TYPE(type)								\
+	case GUIST_##type:								\
+		m_Settings[Name].m_pSetting = new type();	\
+		break;
+
+void IGUIObject::AddSetting(const EGUISettingType &Type, const CStr &Name)
 {
-/*	_GUI_ADD_OFFSET("bool",			"enabled",		m_Enabled)
-	_GUI_ADD_OFFSET("bool",			"hidden",		m_Hidden)
-	_GUI_ADD_OFFSET("client area",	"size",			m_Size)
-	_GUI_ADD_OFFSET("string",		"style",		m_Style)
-	_GUI_ADD_OFFSET("float",		"z",			m_Z)
-	_GUI_ADD_OFFSET("string",		"caption",		m_Caption)
-	_GUI_ADD_OFFSET("bool",			"absolute",		m_Absolute)
-*/
-	GUI_ADD_OFFSET_GENERIC(SettingsInfo, GUISS_BASE, SGUIBaseSettings, m_Enabled,	"bool",			"enabled")
-	GUI_ADD_OFFSET_GENERIC(SettingsInfo, GUISS_BASE, SGUIBaseSettings, m_Hidden,	"bool",			"hidden")
-	GUI_ADD_OFFSET_GENERIC(SettingsInfo, GUISS_BASE, SGUIBaseSettings, m_Size,		"client area",	"size")
-	GUI_ADD_OFFSET_GENERIC(SettingsInfo, GUISS_BASE, SGUIBaseSettings, m_Style,		"string",		"style")
-	GUI_ADD_OFFSET_GENERIC(SettingsInfo, GUISS_BASE, SGUIBaseSettings, m_Z,			"float",		"z")
-	GUI_ADD_OFFSET_GENERIC(SettingsInfo, GUISS_BASE, SGUIBaseSettings, m_Caption,	"string",		"caption")
-	GUI_ADD_OFFSET_GENERIC(SettingsInfo, GUISS_BASE, SGUIBaseSettings, m_Absolute,	"bool",			"absolute")
-	GUI_ADD_OFFSET_GENERIC(SettingsInfo, GUISS_BASE, SGUIBaseSettings, m_Ghost,		"bool",			"ghost")
+	// Is name already taken?
+	if (m_Settings.count(Name) >= 1)
+		return;
+
+	// Construct, and set type
+	m_Settings[Name].m_Type = Type;
+
+	switch (Type)
+	{
+		// Construct the setting.
+		CASE_TYPE(bool)
+		CASE_TYPE(int)
+		CASE_TYPE(float)
+		CASE_TYPE(CClientArea)
+		CASE_TYPE(CStr)
+		CASE_TYPE(CColor)
+		CASE_TYPE(CGUIString)
+
+	default:
+		// TODO Gee: Report in log, type is not recognized.
+		break;
+	}
 }
 
 bool IGUIObject::MouseOver()
@@ -141,23 +164,12 @@ bool IGUIObject::MouseOver()
 	if(!GetGUI())
 		throw PS_NEEDS_PGUI;
 
-	u16 mouse_x = GetMouseX(),
-		mouse_y = GetMouseY();
-
-	return (mouse_x >= m_CachedActualSize.left &&
-			mouse_x <= m_CachedActualSize.right &&
-			mouse_y >= m_CachedActualSize.top &&
-			mouse_y <= m_CachedActualSize.bottom);
+	return m_CachedActualSize.PointInside(GetMousePos());
 }
 
-u16 IGUIObject::GetMouseX() const
+CPos IGUIObject::GetMousePos() const
 { 
-	return ((GetGUI())?(GetGUI()->m_MouseX):0); 
-}
-
-u16 IGUIObject::GetMouseY() const 
-{ 
-	return ((GetGUI())?(GetGUI()->m_MouseY):0); 
+	return ((GetGUI())?(GetGUI()->m_MousePos):CPos()); 
 }
 
 void IGUIObject::UpdateMouseOver(IGUIObject * const &pMouseOver)
@@ -190,11 +202,23 @@ void IGUIObject::UpdateMouseOver(IGUIObject * const &pMouseOver)
 bool IGUIObject::SettingExists(const CStr &Setting) const
 {
 	// Because GetOffsets will direct dynamically defined
-	//  classes with polymorifsm to respective m_SettingsInfo
+	//  classes with polymorifsm to respective ms_SettingsInfo
 	//  we need to make no further updates on this function
 	//  in derived classes.
-	return (GetSettingsInfo().count(Setting) == 1)?true:false;
+	//return (GetSettingsInfo().count(Setting) >= 1);
+	return (m_Settings.count(Setting) >= 1);
 }
+
+#define ADD_TYPE(type)									\
+	else												\
+	if (set.m_Type == GUIST_##type)						\
+	{													\
+		type _Value;									\
+		if (!GUI<type>::ParseString(Value, _Value))		\
+			throw PS_FAIL;								\
+														\
+		GUI<type>::SetSetting(this, Setting, _Value);	\
+	}
 
 void IGUIObject::SetSetting(const CStr &Setting, const CStr &Value)
 {
@@ -204,48 +228,18 @@ void IGUIObject::SetSetting(const CStr &Setting, const CStr &Value)
 	}
 
 	// Get setting
-	SGUISetting set = GetSettingsInfo()[Setting];
+	SGUISetting set = m_Settings[Setting];
 
-	if (set.m_Type == CStr(_T("string")))
+	if (set.m_Type == GUIST_CStr)
 	{
         GUI<CStr>::SetSetting(this, Setting, Value);
 	}
-	else
-	if (set.m_Type == CStr(_T("bool")))
-	{
-		bool _Value;
-		if (!GUI<bool>::ParseString(Value, _Value))
-			throw PS_FAIL;
-
-		GUI<bool>::SetSetting(this, Setting, _Value);
-	}
-	else
-	if (set.m_Type == CStr(_T("float")))
-	{
-		float _Value;
-		if (!GUI<float>::ParseString(Value, _Value))
-			throw PS_FAIL;
-
-		GUI<float>::SetSetting(this, Setting, _Value);
-	}
-	else
-	if (set.m_Type == CStr(_T("rect")))
-	{
-		CRect _Value;
-		if (!GUI<CRect>::ParseString(Value, _Value))
-			throw PS_FAIL;
-
-		GUI<CRect>::SetSetting(this, Setting, _Value);
-	}
-	else
-	if (set.m_Type == CStr(_T("client area")))
-	{
-		CClientArea _Value;
-		if (!GUI<CClientArea>::ParseString(Value, _Value))
-			throw PS_FAIL;
-
-		GUI<CClientArea>::SetSetting(this, Setting, _Value);
-	}
+	ADD_TYPE(bool,			"bool")
+	ADD_TYPE(float,			"float")
+	ADD_TYPE(int,			"int")
+	ADD_TYPE(CColor,		"color")
+	ADD_TYPE(CClientArea,	"client area")
+	ADD_TYPE(CGUIString,	"text")
 	else
 	{
 		throw PS_FAIL;
@@ -285,28 +279,22 @@ IGUIObject *IGUIObject::GetParent() const
 	return m_pParent;
 }
 
-void * IGUIObject::GetStructPointer(const EGUISettingsStruct &SettingsStruct) const
-{
-	switch (SettingsStruct)
-	{
-	case GUISS_BASE:
-		return (void*)&m_BaseSettings;
-
-	default:
-		// TODO Gee: report error
-		return NULL;
-	}
-}
-
 void IGUIObject::UpdateCachedSize()
 {
+	bool absolute;
+	GUI<bool>::GetSetting(this, "absolute", absolute);
+
+	CClientArea ca;
+	GUI<CClientArea>::GetSetting(this, "size", ca);
+	
 	// If absolute="false" and the object has got a parent,
 	//  use its cached size instead of the screen. Notice
 	//  it must have just been cached for it to work.
-	if (m_BaseSettings.m_Absolute == false && m_pParent)
-		m_CachedActualSize = m_BaseSettings.m_Size.GetClientArea( m_pParent->m_CachedActualSize );
+	if (absolute == false && m_pParent)
+		m_CachedActualSize = ca.GetClientArea(m_pParent->m_CachedActualSize);
 	else
-		m_CachedActualSize = m_BaseSettings.m_Size.GetClientArea( CRect(0, 0, g_xres, g_yres) );
+		m_CachedActualSize = ca.GetClientArea(CRect(0, 0, g_xres, g_yres));
+
 }
 
 void IGUIObject::LoadStyle(CGUI &GUIinstance, const CStr &StyleName)
@@ -335,31 +323,39 @@ void IGUIObject::LoadStyle(const SGUIStyle &Style)
 		//  since it's generic.
 		catch (PS_RESULT e) 
 		{
-			// was ist das?
-			e;
+			// TODO Gee: was ist das?
 		}
 	}
 }
 
 float IGUIObject::GetBufferedZ() const
 {
-	if (GetBaseSettings().m_Absolute)
-		return GetBaseSettings().m_Z;
+	bool absolute;
+	GUI<bool>::GetSetting(this, "absolute", absolute);
+
+	float Z;
+	GUI<float>::GetSetting(this, "z", Z);
+
+	if (absolute)
+		return Z;
 	else
 	{
 		if (GetParent())
-			return GetParent()->GetBufferedZ() + GetBaseSettings().m_Z;
+			return GetParent()->GetBufferedZ() + Z;
 		else
-			// TODO Gee: Error, no object should be relative with a parent!
-			return GetBaseSettings().m_Z;
+			// TODO Gee: Error, no object should be relative without a parent!
+			return Z;
 	}
 }
 
 // TODO Gee: keep this function and all???
 void IGUIObject::CheckSettingsValidity()
 {
+	bool hidden;
+	GUI<bool>::GetSetting(this, "hidden", hidden);
+
 	// If we hide an object, reset many of its parts
-	if (GetBaseSettings().m_Hidden)
+	if (hidden)
 	{
 		// Simulate that no object is hovered for this object and all its children
 		//  why? because it's 

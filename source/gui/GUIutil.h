@@ -23,40 +23,39 @@ gee@pyro.nu
 //--------------------------------------------------------
 #include "GUI.h"
 #include "Parser.h"
+// TODO Gee: New
+#include "Overlay.h"
 
 //--------------------------------------------------------
 //  Help Classes/Structs for the GUI
 //--------------------------------------------------------
-// TEMP
-struct CRect
-{
-	CRect() {}
-	CRect(int _l, int _t, int _r, int _b) :
-		left(_l),
-		top(_t),
-		right(_r),
-		bottom(_b) {}
-	int bottom, top, left, right;
 
-	bool operator ==(const CRect &rect) const
-	{
-		return	(bottom==rect.bottom) &&
-				(top==rect.top) &&
-				(left==rect.left) &&
-				(right==rect.right);
-	}
+class CClientArea;
+class CGUIString;
 
-	bool operator !=(const CRect &rect) const
-	{
-		return	!(*this==rect);
-	}
-};
+template <typename T>
+bool __ParseString(const CStr &Value, T &tOutput);
 
-// TEMP
-struct CColor
-{
-	float r, g, b, a;
-};
+template <>
+bool __ParseString<bool>(const CStr &Value, bool &Output);
+
+template <>
+bool __ParseString<int>(const CStr &Value, int &Output);
+
+template <>
+bool __ParseString<float>(const CStr &Value, float &Output);
+
+template <>
+bool __ParseString<CRect>(const CStr &Value, CRect &Output);
+
+template <>
+bool __ParseString<CClientArea>(const CStr &Value, CClientArea &Output);
+
+template <>
+bool __ParseString<CColor>(const CStr &Value, CColor &Output);
+
+template <>
+bool __ParseString<CGUIString>(const CStr &Value, CGUIString &Output);
 
 /**
  * @author Gustav Larsson
@@ -66,7 +65,7 @@ struct CColor
  * You can input the whole value of the Client Area by
  * string. Like used in the GUI.
  */
-struct CClientArea
+class CClientArea
 {
 public:
 	CClientArea();
@@ -128,8 +127,6 @@ protected:
 	/// Wrapper for ResetStates
 	static void QueryResetting(IGUIObject *pObject);
 
-	static void * GetStructPointer(IGUIObject *pObject, const EGUISettingsStruct &SettingsStruct);
-
 	static void HandleMessage(IGUIObject *pObject, const SGUIMessage &message);
 };
 
@@ -167,13 +164,12 @@ public:
 		if (!pObject->SettingExists(Setting))
 			return PS_SETTING_FAIL;
 
-		// Set value
-		Value = 
-		//	*(T*)((size_t)pObject->GetStructPointer(pObject->GetSettingsInfo()[Setting].m_SettingsStruct) +
-		//		  pObject->GetSettingsInfo()[Setting].m_Offset);
-			*(T*)((size_t)GetStructPointer(pObject, pObject->GetSettingsInfo()[Setting].m_SettingsStruct) +
-				  pObject->GetSettingsInfo()[Setting].m_Offset);
+		if (!pObject->m_Settings.find(Setting)->second.m_pSetting)
+			return PS_FAIL;
 
+		// Set value
+		Value = *(T*)pObject->m_Settings.find(Setting)->second.m_pSetting;
+			
 		return PS_OK;
 	}
 
@@ -196,11 +192,7 @@ public:
 			return PS_SETTING_FAIL;
 
 		// Set value
-		//*(T*)((size_t)pObject->GetStructPointer(pObject->GetSettingsInfo()[Setting].m_SettingsStruct) +
-		//	   pObject->GetSettingsInfo()[Setting].m_Offset) = Value;
-		*(T*)((size_t)GetStructPointer(pObject, pObject->GetSettingsInfo()[Setting].m_SettingsStruct) +
-			   pObject->GetSettingsInfo()[Setting].m_Offset) = Value;
-
+		*(T*)pObject->m_Settings[Setting].m_pSetting = Value;
 		
 		//
 		//	Some settings needs special attention at change
@@ -219,11 +211,23 @@ public:
 			//RecurseObject(0, pObject, IGUIObject::ResetStates);
 		}
 
-		//pObject->HandleMessage(SGUIMessage(GUIM_SETTINGS_UPDATED, Setting));
 		HandleMessage(pObject, SGUIMessage(GUIM_SETTINGS_UPDATED, Setting));
 
 		return PS_OK;
 	}
+
+#ifdef g_GUI
+	/**
+	 * Adapter that uses the singleton g_GUI
+	 * Can safely be removed.
+	 */
+	static PS_RESULT GetSetting(
+		const CStr &Object, 
+		const CStr &Setting, T &Value)
+	{
+		return GetSetting(g_GUI, Object, Setting, Value);
+	}
+#endif // g_GUI
 
 	/**
 	 * Retrieves a setting by settings name and object name
@@ -245,6 +249,18 @@ public:
 
 		return GetSetting(pObject, Setting, Value);
 	}
+
+#ifdef g_GUI
+	/**
+	 * Adapter that uses the singleton g_GUI
+	 * Can safely be removed.
+	 */
+	static PS_RESULT SetSetting(
+		const CStr &Object, const CStr &Setting, const T &Value)
+	{
+		return SetSetting(g_GUI, Object, Setting, Value);		
+	}
+#endif // g_GUI
 
 	/**
 	 * Sets a value by setting and object name using a real 
@@ -274,8 +290,36 @@ public:
 
 		return SetSetting(pObject, Setting, Value);
 	}
+	
+	/**
+	 * This will return the value of the first sprite if it's not null,
+	 * if it is null, it will return the value of the second sprite, if
+	 * that one is null, then null it is.
+	 *
+	 * @param prim Primary sprite that should be used
+	 * @param sec Secondary sprite if Primary should fail
+	 * @return Resulting string
+	 */
+	static CStr FallBackSprite(const CStr &prim, const CStr &sec)
+	{
+		// CStr() == empty string, null
+		return ((prim!=CStr())?(prim):(sec));
+	}
 
-		
+	/**
+	 * Same principle as FallBackSprite
+	 *
+	 * @param prim Primary color that should be used
+	 * @param sec Secondary color if Primary should fail
+	 * @return Resulting color
+	 * @see FallBackSprite
+	 */
+	static CColor FallBackColor(const CColor &prim, const CColor &sec)
+	{
+		// CColor() == null.
+		return ((prim!=CColor())?(prim):(sec));
+	}
+
 	/**
 	 * Sets a value by setting and object name using a real 
 	 * datatype as input.
@@ -283,7 +327,6 @@ public:
 	 * This is just a wrapper for _mem_ParseString() which really
 	 * works the magic.
 	 *
-	 * @param Type type in string, like "float" or "client area"
 	 * @param Value The value in string form, like "0 0 100% 100%"
 	 * @param tOutput Parsed value of type T
 	 * @return True at success.
@@ -292,164 +335,10 @@ public:
 	 */
 	static bool ParseString(const CStr &Value, T &tOutput)
 	{
-		void *mem = NULL;
-
-		if (!_mem_ParseString(Value, mem))
-			return false;
-	
-		// Copy from memory
-		tOutput = *(T*)mem;
-
-		free(mem);
-
-		// TODO Gee: Undefined type - maybe report in log
-		return true;
+		return __ParseString<T>(Value, tOutput);
 	}
 
 private:
-	/**
-	 * Input a value in string form, and it will output the result in
-	 * Memory with type T.
-	 *
-	 * @param Type type in string, like "float" or "client area"
-	 * @param Value The value in string form, like "0 0 100% 100%"
-	 * @param Memory Should be NULL, will be constructed within the function.
-	 * @return True at success.
-	 */
-	static bool _mem_ParseString(const CStr &Value, void *&Memory)
-	{
-/*		if (typeid(T) == typeid(CStr))
-		{
-			tOutput = Value;
-			return true;
-		}
-		else
-*/		if (typeid(T) == typeid(bool))
-		{
-			bool _Value;
-
-			if (Value == CStr(_T("true")))
-				_Value = true;
-			else
-			if (Value == CStr(_T("false")))
-				_Value = false;
-			else 
-				return false;
-
-			Memory = malloc(sizeof(bool));
-			memcpy(Memory, (const void*)&_Value, sizeof(bool));
-			return true;
-		}
-		else
-		if (typeid(T) == typeid(float))
-		{
-			float _Value = Value.ToFloat();
-			// TODO Gee: Okay float value!?
-			Memory = malloc(sizeof(float));
-			memcpy(Memory, (const void*)&_Value, sizeof(float));
-			return true;
-		}
-		else
-		if (typeid(T) == typeid(int))
-		{
-			int _Value = Value.ToInt();
-			// TODO Gee: Okay float value!?
-			Memory = malloc(sizeof(int));
-			memcpy(Memory, (const void*)&_Value, sizeof(int));
-			return true;
-		}
-		else
-		if (typeid(T) == typeid(CRect))
-		{
-			// Use the parser to parse the values
-			CParser parser;
-			parser.InputTaskType("", "_$value_$value_$value_$value_");
-
-			string str = (const TCHAR*)Value;
-
-			CParserLine line;
-			line.ParseString(parser, str);
-			if (!line.m_ParseOK)
-			{
-				// Parsing failed
-				return false;
-			}
-			int values[4];
-			for (int i=0; i<4; ++i)
-			{
-				if (!line.GetArgInt(i, values[i]))
-				{
-					// Parsing failed
-					return false;
-				}
-			}
-
-			// Finally the rectangle values
-			CRect _Value(values[0], values[1], values[2], values[3]);
-			
-			Memory = malloc(sizeof(CRect));
-			memcpy(Memory, (const void*)&_Value, sizeof(CRect));
-			return true;
-		}
-		else
-		if (typeid(T) == typeid(CClientArea))
-		{
-			// Get Client Area
-			CClientArea _Value;
-
-			// Check if valid!
-			if (!_Value.SetClientArea(Value))
-			{
-				return false;
-			}
-
-			Memory = malloc(sizeof(CClientArea));
-			memcpy(Memory, (const void*)&_Value, sizeof(CClientArea));
-			return true;
-		}
-		else
-		if (typeid(T) == typeid(CColor))
-		{
-			// Use the parser to parse the values
-			CParser parser;
-			parser.InputTaskType("", "_$value_$value_$value_[$value_]");
-
-			string str = (const TCHAR*)Value;
-
-			CParserLine line;
-			line.ParseString(parser, str);
-			if (!line.m_ParseOK)
-			{
-				// TODO Gee: Parsing failed
-				return false;
-			}
-			float values[4];
-			values[3] = 255.f; // default
-			for (int i=0; i<line.GetArgCount(); ++i)
-			{
-				if (!line.GetArgFloat(i, values[i]))
-				{
-					// TODO Gee: Parsing failed
-					return false;
-				}
-			}
-
-			// Finally the rectangle values
-			CColor _Value;
-			// TODO Gee: Done better when CColor is sweeter
-			_Value.r = values[0]/255.f;
-			_Value.g = values[1]/255.f;
-			_Value.b = values[2]/255.f;
-			_Value.a = values[3]/255.f;
-			
-			Memory = malloc(sizeof(CColor));
-			memcpy(Memory, (const void*)&_Value, sizeof(CColor));
-			return true;
-		}
-
-		// TODO Gee: Undefined type - maybe report in log
-		return false;
-	}
 
 	// templated typedef of function pointer
 	typedef void (IGUIObject::*void_Object_pFunction_argT)(const T &arg);
@@ -553,17 +442,26 @@ private:
 	{
 		if (RR & GUIRR_HIDDEN)
 		{
-			if (pObject->GetBaseSettings().m_Hidden)
+			bool hidden;
+			GUI<bool>::GetSetting(pObject, "hidden", hidden);
+
+			if (hidden)
 				return true;
 		}
 		if (RR & GUIRR_DISABLED)
 		{
-			if (pObject->GetBaseSettings().m_Enabled)
+			bool enabled;
+			GUI<bool>::GetSetting(pObject, "enabled", enabled);
+
+			if (!enabled)
 				return true;
 		}
 		if (RR & GUIRR_GHOST)
 		{
-			if (pObject->GetBaseSettings().m_Ghost)
+			bool ghost;
+			GUI<bool>::GetSetting(pObject, "ghost", ghost);
+
+			if (ghost)
 				return true;
 		}
 

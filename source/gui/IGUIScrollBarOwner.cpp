@@ -40,24 +40,31 @@ void IGUIScrollBarOwner::ResetStates()
 void IGUIScrollBarOwner::AddScrollBar(IGUIScrollBar * scrollbar)
 {
 	scrollbar->SetHostObject(this);
+	scrollbar->SetGUI(GetGUI());
 	m_ScrollBars.push_back(scrollbar);
 }
-
-const SGUIScrollBarStyle & IGUIScrollBarOwner::GetScrollBarStyle(const CStr &style) const
+/*
+void SetGUI(CGUI * const &pGUI)
+{
+	m_pGUI = pGUI;
+	scrollbar->SetGUI(m_pGUI);
+}
+*/
+const SGUIScrollBarStyle * IGUIScrollBarOwner::GetScrollBarStyle(const CStr &style) const
 {
 	if (!GetGUI())
 	{
 		// TODO Gee: Output in log
-		return SGUIScrollBarStyle();
+		return NULL;
 	}
 	
 	if (GetGUI()->m_ScrollBarStyles.count(style) == 0)
 	{
 		// TODO Gee: Output in log
-		return SGUIScrollBarStyle();
+		return NULL;
 	}
 
- 	return GetGUI()->m_ScrollBarStyles.find(style)->second;
+ 	return &GetGUI()->m_ScrollBarStyles.find(style)->second;
 }
 
 void IGUIScrollBarOwner::HandleMessage(const SGUIMessage &Message)

@@ -26,6 +26,7 @@ gee@pyro.nu
 //  Includes / Compiler directives
 //--------------------------------------------------------
 #include "GUI.h"
+#include "Overlay.h"
 
 //--------------------------------------------------------
 //  Macros
@@ -51,6 +52,9 @@ gee@pyro.nu
  */
 struct SGUIImage
 {
+	SGUIImage() : m_Border(false), m_DeltaZ(0.f) {}
+	~SGUIImage() {}
+
 	CStr			m_Texture;
 
 	// Image placement
@@ -65,6 +69,13 @@ struct SGUIImage
 
 	// 0 or 1 pixel border is the only option
 	bool			m_Border;
+
+	/**
+	 * Z value modification of the image.
+	 * Inputted in XML as x-level, although it just an easier and safer
+	 * way of declaring delta-z.
+	 */
+	float			m_DeltaZ;
 };
 
 /**
@@ -86,16 +97,6 @@ class CGUISprite
 public:
 	CGUISprite() {}
 	virtual ~CGUISprite() {}
-
-	/**
-	 * Execute a drawing request for this sprite
-	 *
-	 * @param z				Draw in what depth.
-	 * @param rect			Outer rectangle to draw the collage.
-	 * @param clipping		The clipping rectangle, things should only 
-	 *						be drawn within these perimeters.
-	 */
-	//void Draw(const float &z, const CRect &rect, const CRect &clipping);
 
 	/**
 	 * Adds an image to the sprite collage.

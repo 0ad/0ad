@@ -34,28 +34,6 @@ gee@pyro.nu
 //--------------------------------------------------------
 
 /**
- * Button Settings
- */
-struct SButtonSettings
-{
-	CStr			m_Font;
-	CStr			m_Sprite;
-	CStr			m_SpriteDisabled;
-	CStr			m_SpriteOver;
-	CStr			m_SpritePressed;
-	EAlign			m_TextAlign;
-	CColor			m_TextColor;
-	CColor			m_TextColorDisabled;
-	CColor			m_TextColorOver;
-	CColor			m_TextColorPressed;
-	EValign			m_TextValign;
-	CStr			m_ToolTip;
-	CStr			m_ToolTipStyle;
-};
-
-///////////////////////////////////////////////////////////////////////////////
-
-/**
  * @author Gustav Larsson
  *
  * Button
@@ -63,22 +41,14 @@ struct SButtonSettings
  * @see IGUIObject
  * @see IGUISettingsObject
  * @see IGUIButtonBehavior
- * @see SButtonSettings
  */
-class CButton : public IGUISettingsObject<SButtonSettings>, public IGUIButtonBehavior
+class CButton : public IGUIButtonBehavior, public IGUITextOwner
 {
 	GUI_OBJECT(CButton)
 
 public:
 	CButton();
 	virtual ~CButton();
-
-	/**
-	 * Since we're doing multiple inheritance, this is to avoid error message
-	 *
-	 * @return Settings infos
-	 */
-	virtual map_Settings GetSettingsInfo() const { return IGUISettingsObject<SButtonSettings>::m_SettingsInfo; }
 
 	virtual void ResetStates() { IGUIButtonBehavior::ResetStates(); }
 
@@ -93,6 +63,18 @@ public:
 	 * Draws the Button
 	 */
 	virtual void Draw();
+
+protected:
+	/**
+	 * Sets up text, should be called every time changes has been
+	 * made that can change the visual.
+	 */
+	void SetupText();
+
+	/**
+	 * Placement of text.
+	 */
+	CPos m_TextPos;
 };
 
 #endif

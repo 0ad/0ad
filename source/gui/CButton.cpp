@@ -6,59 +6,61 @@ gee@pyro.nu
 
 //#include "stdafx."
 #include "GUI.h"
+#include "CButton.h"
 
 // TODO Gee: font.h is temporary.
+#include "res/font.h"
 #include "res/res.h"
 #include "ogl.h"
 
 using namespace std;
-
-// Offsets
-DECLARE_SETTINGS_INFO(SButtonSettings)
 
 //-------------------------------------------------------------------
 //  Constructor / Destructor
 //-------------------------------------------------------------------
 CButton::CButton()
 {
-	// Settings defaults !
-/*	m_Settings.m_Disabled =				false;
-	m_Settings.m_Font =					"null";
-	m_Settings.m_Sprite =				"null";
-	m_Settings.m_SpriteDisabled =		"null";
-	m_Settings.m_SpriteOver =			"null";
-	m_Settings.m_SpritePressed =		"null";
-	m_Settings.m_TextAlign =			EAlign_Center;
-//	m_Settings.m_TextColor =			CColor();
-//	m_Settings.m_TextColorDisabled;
-//	m_Settings.m_TextColorOver;
-//	m_Settings.m_TextColorPressed;
-	m_Settings.m_TextValign =			EValign_Center;
-	m_Settings.m_ToolTip =				"null";
-	m_Settings.m_ToolTipStyle =			"null";
-*/
+	AddSetting(GUIST_CGUIString,	"caption");
+	AddSetting(GUIST_CStr,			"font");
+	AddSetting(GUIST_CStr,			"sprite");
+	AddSetting(GUIST_CStr,			"sprite-over");
+	AddSetting(GUIST_CStr,			"sprite-pressed");
+	AddSetting(GUIST_CStr,			"sprite-disabled");
+	AddSetting(GUIST_CColor,		"textcolor");
+	AddSetting(GUIST_CColor,		"textcolor-over");
+	AddSetting(GUIST_CColor,		"textcolor-pressed");
+	AddSetting(GUIST_CColor,		"textcolor-disabled");
 
-	// Static! Only done once
-	if (m_SettingsInfo.empty())
-	{
-		// Setup the base ones too
-		SetupBaseSettingsInfo(m_SettingsInfo);
-
-		GUI_ADD_OFFSET_EXT(SButtonSettings, m_Sprite,			"string",		"sprite")
-		GUI_ADD_OFFSET_EXT(SButtonSettings, m_SpriteOver,		"string",		"sprite-over")
-		GUI_ADD_OFFSET_EXT(SButtonSettings, m_SpritePressed,	"string",		"sprite-pressed")
-		GUI_ADD_OFFSET_EXT(SButtonSettings, m_SpriteDisabled,	"string",		"sprite-disabled")
-	}
+	// Add text
+	AddText(new SGUIText());
 }
 
 CButton::~CButton()
 {
 }
 
+void CButton::SetupText()
+{
+	if (!GetGUI())
+		return;
+
+	assert(m_GeneratedTexts.size()>=1);
+
+	CStr font;
+	CGUIString caption;
+	GUI<CGUIString>::GetSetting(this, "caption", caption);
+
+	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, CStr("verdana12.fnt"), 0, 0);
+
+	// Set position of text
+	m_TextPos = m_CachedActualSize.CenterPoint() - m_GeneratedTexts[0]->m_Size/2;
+}
+
 void CButton::HandleMessage(const SGUIMessage &Message)
 {
 	// Important
 	IGUIButtonBehavior::HandleMessage(Message);
+	IGUITextOwner::HandleMessage(Message);
 
 	switch (Message.type)
 	{
@@ -98,31 +100,24 @@ void CButton::Draw()
 	glDisable(GL_TEXTURE_2D);
 	//////////
 
-	if (GetGUI())
-	{
-		bool useBase = false;
+	float bz = GetBufferedZ();
 
-		if (!GetBaseSettings().m_Enabled)
-		{
-			if (m_Settings.m_SpriteDisabled != CStr("null"))
-				GetGUI()->DrawSprite(m_Settings.m_SpriteDisabled, GetBufferedZ(), m_CachedActualSize);
-			else
-				useBase = true;
-		}
-		else
-		if (m_MouseHovering)
-		{
-			if (m_Pressed && m_Settings.m_SpritePressed != CStr("null"))
-				GetGUI()->DrawSprite(m_Settings.m_SpritePressed, GetBufferedZ(), m_CachedActualSize);
-			else
-			if (!m_Pressed && m_Settings.m_SpriteOver != CStr("null"))
-				GetGUI()->DrawSprite(m_Settings.m_SpriteOver, GetBufferedZ(), m_CachedActualSize);
-			else
-				useBase = true;
-		}
-		else useBase = true;
+	CStr sprite, sprite_over, sprite_pressed, sprite_disabled;
 
-		if (useBase)
-			GetGUI()->DrawSprite(m_Settings.m_Sprite, GetBufferedZ(), m_CachedActualSize);
-	}
+	GUI<CStr>::GetSetting(this, "sprite", sprite);
+	GUI<CStr>::GetSetting(this, "sprite-over", sprite_over);
+	GUI<CStr>::GetSetting(this, "sprite-pressed", sprite_pressed);
+	GUI<CStr>::GetSetting(this, "sprite-disabled", sprite_disabled);
+  
+	DrawButton(m_CachedActualSize, 
+			   bz, 
+			   sprite,
+			   sprite_over, 
+			   sprite_pressed, 
+			   sprite_disabled);
+
+
+	CColor color = ChooseColor();
+
+	IGUITextOwner::Draw(0, color, m_TextPos, bz+0.1f);
 }

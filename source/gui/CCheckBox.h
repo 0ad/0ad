@@ -1,11 +1,11 @@
 /*
-GUI Object - Text [field]
+GUI Object - Check box
 by Gustav Larsson
 gee@pyro.nu
 
 --Overview--
 
-	GUI Object representing a text field
+	GUI Object representing a check box
 
 --More info--
 
@@ -13,16 +13,13 @@ gee@pyro.nu
 
 */
 
-#ifndef CText_H
-#define CText_H
+#ifndef CCheckBox_H
+#define CCheckBox_H
 
 //--------------------------------------------------------
 //  Includes / Compiler directives
 //--------------------------------------------------------
 #include "GUI.h"
-
-// TODO Gee: Remove
-class IGUIScrollBar;
 
 //--------------------------------------------------------
 //  Macros
@@ -39,27 +36,21 @@ class IGUIScrollBar;
 /**
  * @author Gustav Larsson
  *
- * Text field that just displays static text.
+ * CheckBox
  * 
  * @see IGUIObject
  * @see IGUISettingsObject
+ * @see IGUIButtonBehavior
  */
-class CText : public IGUIScrollBarOwner, public IGUITextOwner
+class CCheckBox : public IGUIButtonBehavior, public IGUITextOwner
 {
-	GUI_OBJECT(CText)
+	GUI_OBJECT(CCheckBox)
 
 public:
-	CText();
-	virtual ~CText();
+	CCheckBox();
+	virtual ~CCheckBox();
 
-	virtual void ResetStates() { IGUIScrollBarOwner::ResetStates(); }
-
-protected:
-	/**
-	 * Sets up text, should be called every time changes has been
-	 * made that can change the visual.
-	 */
-	void SetupText();
+	virtual void ResetStates() { IGUIButtonBehavior::ResetStates(); }
 
 	/**
 	 * Handle Messages
@@ -69,9 +60,16 @@ protected:
 	virtual void HandleMessage(const SGUIMessage &Message);
 
 	/**
-	 * Draws the Text
+	 * Draws the control
 	 */
 	virtual void Draw();
+
+protected:
+	/**
+	 * Sets up text, should be called every time changes has been
+	 * made that can change the visual.
+	 */
+	void SetupText();
 };
 
 #endif

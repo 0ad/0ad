@@ -10,6 +10,122 @@ gee@pyro.nu
 
 using namespace std;
 
+template <typename T>
+bool __ParseString(const CStr &Value, T &tOutput)
+{
+	// TODO Gee: Unsupported, report error/warning
+	return false;
+}
+
+template <>
+bool __ParseString<bool>(const CStr &Value, bool &Output)
+{
+	if (Value == CStr(_T("true")))
+		Output = true;
+	else
+	if (Value == CStr(_T("false")))
+		Output = false;
+	else 
+		return false;
+
+	return true;
+}
+
+template <>
+bool __ParseString<int>(const CStr &Value, int &Output)
+{
+	Output = Value.ToInt();
+	return true;
+}
+
+template <>
+bool __ParseString<float>(const CStr &Value, float &Output)
+{
+	Output = Value.ToFloat();
+	return true;
+}
+
+template <>
+bool __ParseString<CRect>(const CStr &Value, CRect &Output)
+{
+	// Use the parser to parse the values
+	CParser parser;
+	parser.InputTaskType("", "_$value_$value_$value_$value_");
+
+	string str = (const TCHAR*)Value;
+
+	CParserLine line;
+	line.ParseString(parser, str);
+	if (!line.m_ParseOK)
+	{
+		// Parsing failed
+		return false;
+	}
+	int values[4];
+	for (int i=0; i<4; ++i)
+	{
+		if (!line.GetArgInt(i, values[i]))
+		{
+			// Parsing failed
+			return false;
+		}
+	}
+
+	// Finally the rectangle values
+	Output = CRect(values[0], values[1], values[2], values[3]);
+	return true;
+}
+
+template <>
+bool __ParseString<CClientArea>(const CStr &Value, CClientArea &Output)
+{
+	return Output.SetClientArea(Value);
+}
+
+template <>
+bool __ParseString<CColor>(const CStr &Value, CColor &Output)
+{
+	// Use the parser to parse the values
+	CParser parser;
+	parser.InputTaskType("", "_$value_$value_$value_[$value_]");
+
+	string str = (const TCHAR*)Value;
+
+	CParserLine line;
+	line.ParseString(parser, str);
+	if (!line.m_ParseOK)
+	{
+		// TODO Gee: Parsing failed
+		return false;
+	}
+	float values[4];
+	values[3] = 255.f; // default
+	for (int i=0; i<line.GetArgCount(); ++i)
+	{
+		if (!line.GetArgFloat(i, values[i]))
+		{
+			// TODO Gee: Parsing failed
+			return false;
+		}
+	}
+
+	Output.r = values[0]/255.f;
+	Output.g = values[1]/255.f;
+	Output.b = values[2]/255.f;
+	Output.a = values[3]/255.f;
+	
+	return true;
+}
+
+template <>
+bool __ParseString<CGUIString>(const CStr &Value, CGUIString &Output)
+{
+	const char * buf = Value;
+
+	Output.SetValue(Value);	
+	return true;
+}
+
 //--------------------------------------------------------
 //  Help Classes/Structs for the GUI implementation
 //--------------------------------------------------------
@@ -175,11 +291,6 @@ const IGUIObject * CInternalCGUIAccessorBase::GetObjectPointer(const CGUI &GUIin
 void CInternalCGUIAccessorBase::QueryResetting(IGUIObject *pObject)
 {
 	GUI<>::RecurseObject(0, pObject, &IGUIObject::ResetStates);
-}
-
-void * CInternalCGUIAccessorBase::GetStructPointer(IGUIObject *pObject, const EGUISettingsStruct &SettingsStruct)
-{
-	return pObject->GetStructPointer(SettingsStruct);
 }
 
 void CInternalCGUIAccessorBase::HandleMessage(IGUIObject *pObject, const SGUIMessage &message)

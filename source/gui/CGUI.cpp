@@ -6,6 +6,13 @@ gee@pyro.nu
 
 //#include "stdafx."
 #include "GUI.h"
+
+// Types - when including them into the engine.
+#include "CButton.h"
+#include "CText.h"
+#include "CCheckBox.h"
+#include "CRadioButton.h"
+
 #include <xercesc/dom/DOM.hpp>
 #include <xercesc/parsers/XercesDOMParser.hpp>
 #include <xercesc/framework/LocalFileInputSource.hpp>
@@ -15,6 +22,9 @@ gee@pyro.nu
 #include "XercesErrorHandler.h"
 #include "Prometheus.h"
 #include "input.h"
+#include "OverlayText.h"
+// TODO Gee: Whatever include CRect/CPos/CSize
+#include "Overlay.h"
 
 #include <string>
 #include <assert.h>
@@ -27,6 +37,12 @@ using namespace std;
 #ifdef _MSC_VER
 #pragma comment(lib, "xerces-c_2.lib")
 #endif
+
+// TODO Gee: how to draw overlays?
+void render(COverlayText* overlaytext)
+{
+
+}
 
 
 //-------------------------------------------------------------------
@@ -43,7 +59,7 @@ bool CGUI::HandleEvent(const SDL_Event& ev)
 {
 	if(ev.type == SDL_MOUSEMOTION)
 	{
-		m_MouseX = ev.motion.x, m_MouseY = ev.motion.y;
+		m_MousePos = CPos(ev.motion.x, ev.motion.y);
 
 		// pNearest will after this point at the hovered object, possibly NULL
 		GUI<SGUIMessage>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject, 
@@ -51,14 +67,15 @@ bool CGUI::HandleEvent(const SDL_Event& ev)
 										SGUIMessage(GUIM_MOUSE_MOTION));
 	}
 
-	char buf[30];
-	sprintf(buf, "type = %d", ev.type);
-	TEMPmessage = buf;
+	// TODO Gee: temp-stuff
+//	char buf[30];
+//	sprintf(buf, "type = %d", ev.type);
+	//TEMPmessage = buf;
 
 	if (ev.type == SDL_MOUSEBUTTONDOWN)
 	{
-		sprintf(buf, "button = %d", ev.button.button);
-		TEMPmessage = buf;
+	//	sprintf(buf, "button = %d", ev.button.button);
+		//TEMPmessage = buf;
 	}
 
 // JW: (pre|post)process omitted; what're they for? why would we need any special button_released handling?
@@ -68,6 +85,9 @@ bool CGUI::HandleEvent(const SDL_Event& ev)
 
 	try
 	{
+		// TODO Gee: Optimizations needed!
+		//  these two recursive function are quite overhead heavy.
+
 		// pNearest will after this point at the hovered object, possibly NULL
 		GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject, 
 										&IGUIObject::ChooseMouseOverAndClosest, 
@@ -80,70 +100,79 @@ bool CGUI::HandleEvent(const SDL_Event& ev)
 										&IGUIObject::UpdateMouseOver, 
 										pNearest);
 
-		//if (ev.type == SDL_MOUSEBUTTONDOWN)
+		if (ev.type == SDL_MOUSEBUTTONDOWN)
 		{
-			if (ev.type == SDL_MOUSEBUTTONDOWN)
+			switch (ev.button.button)
 			{
-				switch (ev.button.button)
-				{
-				case SDL_BUTTON_LEFT:
-					if (pNearest)
-					{
-						pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_PRESS_LEFT));
-
-						// some temp
-						CClientArea ca;
-						bool hidden;
-
-						/*GUI<CClientArea>::GetSetting(*this, CStr("backdrop"), CStr("size"), ca);
-						GUI<bool>::GetSetting(*this, CStr("backdrop"), CStr("hidden"), hidden);
-					
-						//hidden = !hidden;
-						ca.pixel.right += 3;
-						ca.pixel.bottom += 3;
-
-						GUI<CClientArea>::SetSetting(*this, CStr("backdrop"), CStr("size"), ca);
-						GUI<bool>::SetSetting(*this, CStr("backdrop"), CStr("hidden"), hidden);
-		*/			}
-					break;
-
-				case 3: // wheel down
-					if (pNearest)
-					{
-						pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_WHEEL_DOWN));
-					}
-					break;
-
-				case 4: // wheel up
-					if (pNearest)
-					{
-						pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_WHEEL_UP));
-					}
-					break;
-
-				default:
-					break;
-				}
-				
-			}
-			else 
-			if (ev.type == SDL_MOUSEBUTTONUP)
-			{
-				if (ev.button.button == SDL_BUTTON_LEFT)
-				{
-					if (pNearest)
-						pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_RELEASE_LEFT));
-				}
-
-				// Reset all states on all visible objects
-				GUI<>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, 
-										&IGUIObject::ResetStates);
-
-				// It will have reset the mouse over of the current hovered, so we'll
-				//  have to restore that
+			case SDL_BUTTON_LEFT:
 				if (pNearest)
-					pNearest->m_MouseHovering = true;
+				{
+					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_PRESS_LEFT));
+				}
+
+			{
+				// some temp
+/*				CClientArea ca;
+				bool hidden;
+
+				GUI<CClientArea>::GetSetting(*this, CStr("backdrop43"), CStr("size"), ca);
+			
+				//hidden = !hidden;
+				ca.pixel.right -= 3;
+
+				GUI<CClientArea>::SetSetting(*this, CStr("backdrop43"), CStr("size"), ca);
+*/			}
+			break;
+
+			case 3: // wheel down
+				if (pNearest)
+				{
+					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_WHEEL_DOWN));
+				}
+				break;
+
+			case 4: // wheel up
+				if (pNearest)
+				{
+					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_WHEEL_UP));
+				}
+				break;
+
+			// TODO Gee: Just temp
+			case SDL_BUTTON_RIGHT:
+			{
+				CClientArea ca;
+				GUI<CClientArea>::GetSetting(*this, CStr("backdrop43"), CStr("size"), ca);
+			
+				//hidden = !hidden;
+				ca.pixel.right -= 3;
+
+				GUI<CClientArea>::SetSetting(*this, CStr("backdrop43"), CStr("size"), ca);
 			}
+			break;
+
+			default:
+				break;
+			}
+			
+		}
+		else 
+		if (ev.type == SDL_MOUSEBUTTONUP)
+		{
+			if (ev.button.button == SDL_BUTTON_LEFT)
+			{
+				if (pNearest)
+					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_RELEASE_LEFT));
+			}
+
+			// Reset all states on all visible objects
+			GUI<>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, 
+									&IGUIObject::ResetStates);
+
+			// It will have reset the mouse over of the current hovered, so we'll
+			//  have to restore that
+			if (pNearest)
+				pNearest->m_MouseHovering = true;
 		}
 	}
 	catch (PS_RESULT e)
@@ -164,7 +193,7 @@ bool CGUI::HandleEvent(const SDL_Event& ev)
 //-------------------------------------------------------------------
 //  Constructor / Destructor
 //-------------------------------------------------------------------
-CGUI::CGUI()
+CGUI::CGUI() : m_InternalNameNumber(0)
 {
 	m_BaseObject = new CGUIDummyObject;
 	m_BaseObject->SetGUI(this);
@@ -198,8 +227,11 @@ void CGUI::Initialize()
 	// Add base types!
 	//  You can also add types outside the GUI to extend the flexibility of the GUI.
 	//  Prometheus though will have all the object types inserted from here.
-	AddObjectType("button", &CButton::ConstructObject);
-	AddObjectType("text", &CText::ConstructObject);
+	AddObjectType("empty",			&CGUIDummyObject::ConstructObject);
+	AddObjectType("button",			&CButton::ConstructObject);
+	AddObjectType("text",			&CText::ConstructObject);
+	AddObjectType("checkbox",		&CCheckBox::ConstructObject);
+	AddObjectType("radiobutton",	&CRadioButton::ConstructObject);
 }
 
 void CGUI::Process()
@@ -301,10 +333,12 @@ void CGUI::DrawSprite(const CStr &SpriteName,
 					  const CRect &Clipping)
 {
 	// This is not an error, it's just a choice not to draw any sprite.
-	if (SpriteName == CStr("null") || SpriteName == CStr())
+	if (SpriteName == CStr())
 		return;
 
-	bool DoClipping = (Clipping != CRect(0,0,0,0));
+	const char * buf = SpriteName;
+
+	bool DoClipping = (Clipping != CRect());
 	CGUISprite Sprite;
 
 	// Fetch real sprite from name
@@ -325,6 +359,9 @@ void CGUI::DrawSprite(const CStr &SpriteName,
 		{
 			CRect real = cit->m_Size.GetClientArea(Rect);
 
+			glPushMatrix();
+			glTranslatef(0.f, 0.f, cit->m_DeltaZ);
+
 			glColor3f(cit->m_BackColor.r , cit->m_BackColor.g, cit->m_BackColor.b);
 			//glColor3f((float)real.right/1000.f, 0.5f, 0.5f);
 
@@ -335,6 +372,8 @@ void CGUI::DrawSprite(const CStr &SpriteName,
 				glVertex2i(real.left,			real.top);
 				glVertex2i(real.right,			real.top);
 			glEnd();
+
+			glPopMatrix();
 		}
 	glPopMatrix();
 }
@@ -356,7 +395,6 @@ void CGUI::Destroy()
 		}
 		
 		delete it->second;
-		it->second = NULL;
 	}
 
 	// Clear all
@@ -383,6 +421,8 @@ void CGUI::AddObject(IGUIObject* pObject)
 		// Cache tree
 		GUI<>::RecurseObject(0, pObject, &IGUIObject::UpdateCachedSize);
 
+		// Loaded
+		GUI<SGUIMessage>::RecurseObject(0, pObject, &IGUIObject::HandleMessage, SGUIMessage(GUIM_LOAD));
 	}
 	catch (PS_RESULT e)
 	{
@@ -413,10 +453,316 @@ void CGUI::UpdateObjects()
 
 bool CGUI::ObjectExists(const CStr &Name) const
 {
-	if (m_pAllObjects.count(Name))
-		return true;
-	else
-		return false;
+	return m_pAllObjects.count(Name);
+}
+
+// private struct used only in GenerateText(...)
+static struct SGenerateTextImage
+{
+	int m_YFrom,		// The images starting location in Y
+		m_YTo,			// The images end location in Y
+		m_Indentation;	// The image width in other words
+
+	// Some help functions
+	// TODO Gee: CRect => CPoint ?
+	void SetupSpriteCall(const bool &Left, SGUIText::SSpriteCall &SpriteCall, 
+						 const int &width, const int &y,
+						 const CSize &Size, const CStr &TextureName, 
+						 const int &BufferZone)
+	{
+		// TODO Gee: Temp hardcoded values
+		SpriteCall.m_Area.top = y+BufferZone;
+		SpriteCall.m_Area.bottom = y+BufferZone + Size.cy;
+		
+		if (Left)
+		{
+			SpriteCall.m_Area.left = BufferZone;
+			SpriteCall.m_Area.right = Size.cx+BufferZone;
+		}
+		else
+		{
+			SpriteCall.m_Area.left = width-BufferZone - Size.cx;
+			SpriteCall.m_Area.right = width-BufferZone;
+		}
+
+		SpriteCall.m_TextureName = TextureName;
+
+		m_YFrom = SpriteCall.m_Area.top-BufferZone;
+		m_YTo = SpriteCall.m_Area.bottom+BufferZone;
+		m_Indentation = Size.cx+BufferZone*2;
+	}
+};
+
+SGUIText CGUI::GenerateText(const CGUIString &string, /*const CColor &Color, */
+							const CStr &Font, const int &Width, const int &BufferZone)
+{
+	SGUIText Text; // object we're generating
+	
+	if (string.m_Words.size() == 0)
+		return Text;
+
+	int x=BufferZone, y=BufferZone; // drawing pointer
+	int from=0;
+	bool done=false;
+
+	// Images on the left or the right side.
+	vector<SGenerateTextImage> Images[2];
+	int pos_last_img=-1;	// Position in the string where last img (either left or right) were encountered.
+							//  in order to avoid duplicate processing.
+
+	// Easier to read.
+	bool WordWrapping = (Width != 0);
+
+	// Go through string word by word
+	for (int i=0; i<string.m_Words.size()-1 && !done; ++i)
+	{
+		// Pre-process each line one time, so we know which floating images
+		//  will be added for that line.
+
+		// Generated stuff is stored in Feedback.
+		CGUIString::SFeedback Feedback;
+
+		// Preliminary line_height, used for word-wrapping with floating images.
+		int prelim_line_height=0;
+
+		// Width and height of all text calls generated.
+		string.GenerateTextCall(Feedback, Font, /*CColor(),*/
+								string.m_Words[i], string.m_Words[i+1]);
+
+		// Loop through our images queues, to see if images has been added.
+		
+		// Check if this has already been processed.
+		//  Also, floating images are only applicable if Word-Wrapping is on
+		if (WordWrapping && i > pos_last_img)
+		{
+			// Loop left/right
+			for (int j=0; j<2; ++j)
+			{
+				for (vector<CStr>::const_iterator it = Feedback.m_Images[j].begin(); 
+					it != Feedback.m_Images[j].end(); 
+					++it)
+				{
+					SGUIText::SSpriteCall SpriteCall;
+					SGenerateTextImage Image;
+
+					// Y is if no other floating images is above, y. Else it is placed
+					//  after the last image, like a stack downwards.
+					int _y;
+					if (Images[j].size() > 0)
+						_y = max(y, Images[j].back().m_YTo);
+					else
+						_y = y; 
+
+					// TODO Gee: CSize temp
+					CSize size; size.cx = 100; size.cy = 100;
+					Image.SetupSpriteCall((j==CGUIString::SFeedback::Left), SpriteCall, Width, _y, size, CStr("white-border"), BufferZone);
+
+					// Check if image is the lowest thing.
+					Text.m_Size.cy = max(Text.m_Size.cy, Image.m_YTo);
+
+					Images[j].push_back(Image);
+					Text.m_SpriteCalls.push_back(SpriteCall);
+				}
+			}
+		}
+
+		pos_last_img = max(pos_last_img, i);
+
+		x += Feedback.m_Size.cx;
+		prelim_line_height = max(prelim_line_height, Feedback.m_Size.cy);
+
+		// If Width is 0, then there's no word-wrapping, disable NewLine.
+		if ((WordWrapping && (x > Width-BufferZone || Feedback.m_NewLine)) || i == string.m_Words.size()-2)
+		{
+			// Change from to i, but first keep a copy of its value.
+			int temp_from = from;
+			from = i;
+
+			static const int From=0, To=1;
+			//int width_from=0, width_to=width;
+			int width_range[2];
+			width_range[From] = BufferZone;
+			width_range[To] = Width - BufferZone;
+
+			// Floating images are only appicable if word-wrapping is enabled.
+			if (WordWrapping)
+			{
+				// Decide width of the line. We need to iterate our floating images.
+				//  this won't be exact because we're assuming the line_height
+				//  will be as our preliminary calculation said. But that may change,
+				//  although we'd have to add a couple of more loops to try straightening
+				//  this problem out, and it is very unlikely to happen noticably if one
+				//  stuctures his text in a stylistically pure fashion. Even if not, it
+				//  is still quite unlikely it will happen.
+				// Loop through left and right side, from and to.
+				for (int j=0; j<2; ++j)
+				{
+					for (vector<SGenerateTextImage>::const_iterator it = Images[j].begin(); 
+						it != Images[j].end(); 
+						++it)
+					{
+						// We're working with two intervals here, the image's and the line height's.
+						//  let's find the union of these two.
+						int union_from, union_to;
+
+						union_from = max(y, it->m_YFrom);
+						union_to = min(y+prelim_line_height, it->m_YTo);
+						
+						// The union is not ø
+						if (union_to > union_from)
+						{
+							if (j == From)
+								width_range[From] = max(width_range[From], it->m_Indentation);
+							else
+								width_range[To] = min(width_range[To], Width - it->m_Indentation);
+						}
+					}
+				}
+			}
+
+			// Reset X for the next loop
+			x = width_range[From];
+
+			// Now we'll do another loop to figure out the height of
+			//  the line (the height of the largest character). This
+			//  couldn't be determined in the first loop (main loop)
+			//  because it didn't regard images, so we don't know
+			//  if all characters processed, will actually be involved
+			//  in that line.
+			int line_height=0;
+			for (int j=temp_from; j<=i; ++j)
+			{
+				// We don't want to use Feedback now, so we'll have to use
+				//  another.
+				CGUIString::SFeedback Feedback2;
+
+				string.GenerateTextCall(Feedback2, Font, /*CColor(),*/
+										string.m_Words[j], string.m_Words[j+1]);
+
+				// Append X value.
+				x += Feedback2.m_Size.cx;
+
+				if (WordWrapping && x > width_range[To] && j!=temp_from && !Feedback2.m_NewLine)
+					break;
+
+				// Let line_height be the maximum m_Height we encounter.
+				line_height = max(line_height, Feedback2.m_Size.cy);
+
+				if (WordWrapping && Feedback2.m_NewLine)
+					break;
+			}
+
+			// Reset x once more
+			x = width_range[From];
+
+			// Do the real processing now
+			for (int j=temp_from; j<=i; ++j)
+			{
+				// We don't want to use Feedback now, so we'll have to use
+				//  another.
+				CGUIString::SFeedback Feedback2;
+
+				// Defaults
+				string.GenerateTextCall(Feedback2, Font, /*Color, */
+										string.m_Words[j], string.m_Words[j+1]);
+
+				// Iterate all and set X/Y values
+				// Since X values are not set, we need to make an internal
+				//  iteration with an increment that will append the internal
+				//  x, that is what x_pointer is for.
+				int x_pointer=0;
+
+				vector<SGUIText::STextCall>::iterator it;
+				for (it = Feedback2.m_TextCalls.begin(); it != Feedback2.m_TextCalls.end(); ++it)
+				{
+					it->m_Pos = CPos(x + x_pointer, y + line_height - it->m_Size.cy);
+
+					x_pointer += it->m_Size.cx;
+
+					if (it->m_pSpriteCall)
+					{
+						it->m_pSpriteCall->m_Area = 
+							it->m_pSpriteCall->m_Area + it->m_Pos;
+					}
+				}
+
+				// Append X value.
+				x += Feedback2.m_Size.cx;
+
+				Text.m_Size.cx = max(Text.m_Size.cx, x+BufferZone);
+
+				// The first word overrides the width limit, that we
+				//  do in those cases, are just draw that word even
+				//  though it'll extend the object.
+				if (WordWrapping) // only if word-wrapping is applicable
+				{
+					if (Feedback2.m_NewLine)
+					{
+						from = j+1;
+						break;
+					}
+					else
+					if (x > width_range[To] && j==temp_from)
+					{
+						from = j+1;
+						// do not break, since we want it to be added to m_TextCalls
+					}
+					else
+					if (x > width_range[To])
+					{
+						from = j;
+						break;
+					}
+				}
+
+				// Add the whole Feedback2.m_TextCalls to our m_TextCalls.
+				Text.m_TextCalls.insert(Text.m_TextCalls.end(), Feedback2.m_TextCalls.begin(), Feedback2.m_TextCalls.end());
+				Text.m_SpriteCalls.insert(Text.m_SpriteCalls.end(), Feedback2.m_SpriteCalls.begin(), Feedback2.m_SpriteCalls.end());
+
+				if (j == string.m_Words.size()-2)
+					done = true;
+			}
+		
+			// Reset X, and append Y.
+			x = 0;
+			y += line_height;
+
+			// Update height of all
+			Text.m_Size.cy = max(Text.m_Size.cy, y+BufferZone);
+
+			// Now if we entered as from = i, then we want
+			//  i being one minus that, so that it will become
+			//  the same i in the next loop. The difference is that
+			//  we're on a new line now.
+			i = from-1;
+		}
+	}
+
+	return Text;
+}
+
+void CGUI::DrawText(const SGUIText &Text, const CColor &DefaultColor, 
+					const CPos &pos, const float &z)
+{
+	for (vector<SGUIText::STextCall>::const_iterator it=Text.m_TextCalls.begin(); 
+		 it!=Text.m_TextCalls.end(); 
+		 ++it)
+	{
+		if (it->m_pSpriteCall)
+			continue;
+
+		COverlayText txt(pos.x+it->m_Pos.x, pos.y+it->m_Pos.y, 
+						 z, it->m_Font, it->m_String, 
+						 (it->m_UseCustomColor?it->m_Color:DefaultColor));
+		render(&txt);
+	}
+
+	for (vector<SGUIText::SSpriteCall>::const_iterator it=Text.m_SpriteCalls.begin(); 
+		 it!=Text.m_SpriteCalls.end(); 
+		 ++it)
+	{
+		DrawSprite(it->m_TextureName, z, it->m_Area + pos);
+	}
 }
 
 void CGUI::ReportParseError(const CStr &str, ...)
@@ -426,6 +772,8 @@ void CGUI::ReportParseError(const CStr &str, ...)
 	{
 ///		g_nemLog("*** GUI Tree Creation Errors");
 	}
+
+
 
 	// Important, set ParseError to true
 	++m_Errors;
@@ -540,7 +888,7 @@ void CGUI::LoadXMLFile(const string &Filename)
 //	XML Reading Xerces Specific Sub-Routines
 //===================================================================
 
-void CGUI::Xerces_ReadRootObjects(XERCES_CPP_NAMESPACE::DOMElement *pElement)
+void CGUI::Xerces_ReadRootObjects(DOMElement *pElement)
 {
 	// Iterate main children
 	//  they should all be <object> elements
@@ -558,7 +906,7 @@ void CGUI::Xerces_ReadRootObjects(XERCES_CPP_NAMESPACE::DOMElement *pElement)
 	}
 }
 
-void CGUI::Xerces_ReadRootSprites(XERCES_CPP_NAMESPACE::DOMElement *pElement)
+void CGUI::Xerces_ReadRootSprites(DOMElement *pElement)
 {
 	// Iterate main children
 	//  they should all be <sprite> elements
@@ -576,7 +924,7 @@ void CGUI::Xerces_ReadRootSprites(XERCES_CPP_NAMESPACE::DOMElement *pElement)
 	}
 }
 
-void CGUI::Xerces_ReadRootStyles(XERCES_CPP_NAMESPACE::DOMElement *pElement)
+void CGUI::Xerces_ReadRootStyles(DOMElement *pElement)
 {
 	// Iterate main children
 	//  they should all be <styles> elements
@@ -594,7 +942,7 @@ void CGUI::Xerces_ReadRootStyles(XERCES_CPP_NAMESPACE::DOMElement *pElement)
 	}
 }
 
-void CGUI::Xerces_ReadRootSetup(XERCES_CPP_NAMESPACE::DOMElement *pElement)
+void CGUI::Xerces_ReadRootSetup(DOMElement *pElement)
 {
 	// Iterate main children
 	//  they should all be <icon>, <scrollbar> or <tooltip>.
@@ -665,7 +1013,6 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 		}
 		else object->LoadStyle(*this, argStyle);
 	}
-
 	
 
 	//
@@ -682,6 +1029,10 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 		DOMAttr *attr = (DOMAttr*)attributes->item(i);
 		CStr attr_name = XMLString::transcode( attr->getName() );
 		CStr attr_value = XMLString::transcode( attr->getValue() );
+
+		// If value is "null", then it is equivalent as never being entered
+		if (attr_value == CStr("null"))
+			continue;
 
 		// Ignore "type" and "style", we've already checked it
 		if (attr_name == CStr("type") || attr_name == CStr("style") )
@@ -711,10 +1062,11 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 		}
 	}
 
-	// Check if name isn't set, report error in that case
+	// Check if name isn't set, generate an internal name in that case.
 	if (!NameSet)
 	{
-		// TODO Gee: Generate internal name!
+		object->SetName(CStr("__internal(") + CStr(m_InternalNameNumber) + CStr(")"));
+		++m_InternalNameNumber;
 	}
 
 	//
@@ -759,8 +1111,15 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 				// Thank you CStr =)
 				caption.Trim(PS_TRIM_BOTH);
 
-				// Set the setting caption to this
-				GUI<CStr>::SetSetting(object, "caption", caption);
+				try
+				{
+					// Set the setting caption to this
+					object->SetSetting("caption", caption);
+				}
+				catch (...)
+				{
+					// There is no harm if the object didn't have a "caption"
+				}
 			}
 			// else 
 			// TODO Gee: give warning
@@ -779,9 +1138,12 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 		}
 		else
 		{
+			bool absolute;
+			GUI<bool>::GetSetting(object, "absolute", absolute);
+
 			// If the object is absolute, we'll have to get the parent's Z buffered,
 			//  and add to that!
-			if (object->GetBaseSettings().m_Absolute)
+			if (absolute)
 			{
 				GUI<float>::SetSetting(object, "z", pParent->GetBufferedZ() + 10.f);
 			}
@@ -811,7 +1173,7 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 	}
 }
 
-void CGUI::Xerces_ReadSprite(XERCES_CPP_NAMESPACE::DOMElement *pElement)
+void CGUI::Xerces_ReadSprite(DOMElement *pElement)
 {
 	assert(pElement);
 
@@ -862,7 +1224,7 @@ void CGUI::Xerces_ReadSprite(XERCES_CPP_NAMESPACE::DOMElement *pElement)
 	m_Sprites[name] = sprite;
 }
 
-void CGUI::Xerces_ReadImage(XERCES_CPP_NAMESPACE::DOMElement *pElement, CGUISprite &parent)
+void CGUI::Xerces_ReadImage(DOMElement *pElement, CGUISprite &parent)
 {
 	assert(pElement);
 
@@ -899,6 +1261,16 @@ void CGUI::Xerces_ReadImage(XERCES_CPP_NAMESPACE::DOMElement *pElement, CGUISpri
 			else image.m_Size = ca;
 		}
 		else
+		if (attr_name == CStr("z-level"))
+		{
+			int z_level;
+			if (!GUI<int>::ParseString(attr_value, z_level))
+			{
+				// TODO Gee: Error
+			}
+			else image.m_DeltaZ = (float)z_level/100.f;
+		}
+		else
 		if (attr_name == CStr("backcolor"))
 		{
 			CColor color;
@@ -923,7 +1295,7 @@ void CGUI::Xerces_ReadImage(XERCES_CPP_NAMESPACE::DOMElement *pElement, CGUISpri
 	parent.AddImage(image);	
 }
 
-void CGUI::Xerces_ReadStyle(XERCES_CPP_NAMESPACE::DOMElement *pElement)
+void CGUI::Xerces_ReadStyle(DOMElement *pElement)
 {
 	assert(pElement);
 
@@ -958,7 +1330,7 @@ void CGUI::Xerces_ReadStyle(XERCES_CPP_NAMESPACE::DOMElement *pElement)
 	m_Styles[name] = style;
 }
 
-void CGUI::Xerces_ReadScrollBarStyle(XERCES_CPP_NAMESPACE::DOMElement *pElement)
+void CGUI::Xerces_ReadScrollBarStyle(DOMElement *pElement)
 {
 	assert(pElement);
 
@@ -978,6 +1350,9 @@ void CGUI::Xerces_ReadScrollBarStyle(XERCES_CPP_NAMESPACE::DOMElement *pElement)
 		CStr attr_name = XMLString::transcode( attr->getName() );
 		CStr attr_value = XMLString::transcode( attr->getValue() );
 
+		if (attr_value == CStr("null"))
+			continue;
+
 		if (attr_name == CStr("name"))
 			name = attr_value;
 		else
@@ -990,6 +1365,79 @@ void CGUI::Xerces_ReadScrollBarStyle(XERCES_CPP_NAMESPACE::DOMElement *pElement)
 			}
 			scrollbar.m_Width = i;
 		}
+		else
+		if (attr_name == CStr("minimum-bar-size"))
+		{
+			int i;
+			if (!GUI<int>::ParseString(attr_value, i))
+			{
+				// TODO Gee: Report in log file
+			}
+			scrollbar.m_MinimumBarSize = i;
+		}
+		else
+		if (attr_name == CStr("sprite-button-top"))
+			scrollbar.m_SpriteButtonTop = attr_value;
+		else
+		if (attr_name == CStr("sprite-button-top-pressed"))
+			scrollbar.m_SpriteButtonTopPressed = attr_value;
+		else
+		if (attr_name == CStr("sprite-button-top-disabled"))
+			scrollbar.m_SpriteButtonTopDisabled = attr_value;
+		else
+		if (attr_name == CStr("sprite-button-top-over"))
+			scrollbar.m_SpriteButtonTopOver = attr_value;
+		else
+		if (attr_name == CStr("sprite-button-bottom"))
+			scrollbar.m_SpriteButtonBottom = attr_value;
+		else
+		if (attr_name == CStr("sprite-button-bottom-pressed"))
+			scrollbar.m_SpriteButtonBottomPressed = attr_value;
+		else
+		if (attr_name == CStr("sprite-button-bottom-disabled"))
+			scrollbar.m_SpriteButtonBottomDisabled = attr_value;
+		else
+		if (attr_name == CStr("sprite-button-bottom-over"))
+			scrollbar.m_SpriteButtonBottomOver = attr_value;
+		else
+		if (attr_name == CStr("sprite-back-vertical"))
+			scrollbar.m_SpriteBackVertical = attr_value;
+		else
+		if (attr_name == CStr("sprite-bar-vertical"))
+			scrollbar.m_SpriteBarVertical = attr_value;
+		else
+		if (attr_name == CStr("sprite-bar-vertical-over"))
+			scrollbar.m_SpriteBarVerticalOver = attr_value;
+		else
+		if (attr_name == CStr("sprite-bar-vertical-pressed"))
+			scrollbar.m_SpriteBarVerticalPressed = attr_value;
+
+/*
+	CStr m_SpriteButtonTop;
+	CStr m_SpriteButtonTopPressed;
+	CStr m_SpriteButtonTopDisabled;
+
+	CStr m_SpriteButtonBottom;
+	CStr m_SpriteButtonBottomPressed;
+	CStr m_SpriteButtonBottomDisabled;
+
+	CStr m_SpriteScrollBackHorizontal;
+	CStr m_SpriteScrollBarHorizontal;
+
+
+	CStr m_SpriteButtonLeft;
+	CStr m_SpriteButtonLeftPressed;
+	CStr m_SpriteButtonLeftDisabled;
+
+	CStr m_SpriteButtonRight;
+	CStr m_SpriteButtonRightPressed;
+	CStr m_SpriteButtonRightDisabled;
+
+	CStr m_SpriteScrollBackVertical;
+	CStr m_SpriteScrollBarVertical;
+
+*/
+
 	}
 
 	//

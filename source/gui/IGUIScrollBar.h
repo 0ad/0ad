@@ -86,13 +86,18 @@ struct SGUIScrollBarStyle
 	CStr m_SpriteButtonTop;
 	CStr m_SpriteButtonTopPressed;
 	CStr m_SpriteButtonTopDisabled;
+	CStr m_SpriteButtonTopOver;
 
 	CStr m_SpriteButtonBottom;
 	CStr m_SpriteButtonBottomPressed;
 	CStr m_SpriteButtonBottomDisabled;
+	CStr m_SpriteButtonBottomOver;
 
-	CStr m_SpriteScrollBackHorizontal;
-	CStr m_SpriteScrollBarHorizontal;
+	CStr m_SpriteBarVertical;
+	CStr m_SpriteBarVerticalOver;
+	CStr m_SpriteBarVerticalPressed;
+
+	CStr m_SpriteBackVertical;
 
 	//@}
 	//--------------------------------------------------------
@@ -108,8 +113,8 @@ struct SGUIScrollBarStyle
 	CStr m_SpriteButtonRightPressed;
 	CStr m_SpriteButtonRightDisabled;
 
-	CStr m_SpriteScrollBackVertical;
-	CStr m_SpriteScrollBarVertical;
+	CStr m_SpriteBackHorizontal;
+	CStr m_SpriteBarHorizontal;
 
 	//@}
 };
@@ -151,12 +156,12 @@ public:
 	 * @return true if messages handled the scroll-bar some. False if
 	 *		   the message should be processed by the object.
 	 */
-	virtual bool HandleMessage(const SGUIMessage &Message)=0;
+	virtual void HandleMessage(const SGUIMessage &Message)=0;
 
 	/**
 	 * Set m_Pos with mouse_x/y input, i.e. when draggin.
 	 */
-	virtual void SetPosFromMousePos(int _x, int _y)=0;
+	virtual void SetPosFromMousePos(const CPos &mouse)=0;
 
 	/**
 	 * Hovering the scroll minus button
@@ -165,7 +170,7 @@ public:
 	 * @param m_y mouse y
 	 * @return True if mouse positions are hovering the button
 	 */
-	virtual bool HoveringButtonMinus(int m_x, int m_y) { return false; }
+	virtual bool HoveringButtonMinus(const CPos &mouse) { return false; }
 
 	/**
 	 * Hovering the scroll plus button
@@ -174,23 +179,50 @@ public:
 	 * @param m_y mouse y
 	 * @return True if mouse positions are hovering the button
 	 */
-	virtual bool HoveringButtonPlus(int m_x, int m_y) { return false; }
+	virtual bool HoveringButtonPlus(const CPos &mouse) { return false; }
+
+	/**
+	 * Get scroll-position
+	 */
+	int GetPos() const { return m_Pos; }
 
 	/**
 	 * Scroll towards 1.0 one step
 	 */
-	virtual void ScrollPlus() { m_Pos += 0.1f; UpdatePosBoundaries(); }
+	virtual void ScrollPlus() { m_Pos += 30; UpdatePosBoundaries(); }
 
 	/**
 	 * Scroll towards 0.0 one step
 	 */
-	virtual void ScrollMinus() { m_Pos -= 0.1f; UpdatePosBoundaries(); }
+	virtual void ScrollMinus() { m_Pos -= 30; UpdatePosBoundaries(); }
+
+	/**
+	 * Scroll towards 1.0 one step
+	 */
+	virtual void ScrollPlusPlenty() { m_Pos += 90; UpdatePosBoundaries(); }
+
+	/**
+	 * Scroll towards 0.0 one step
+	 */
+	virtual void ScrollMinusPlenty() { m_Pos -= 90; UpdatePosBoundaries(); }
 
 	/**
 	 * Set host object, must be done almost at creation of scroll bar.
 	 * @param pOwner Pointer to host object.
 	 */
 	void SetHostObject(IGUIScrollBarOwner * pOwner) { m_pHostObject = pOwner; }
+
+	/**
+	 * Get GUI pointer
+	 * @return CGUI pointer
+	 */
+	CGUI *GetGUI() const;
+
+	/**
+	 * Set GUI pointer
+	 * @param pGUI pointer to CGUI object.
+	 */
+	void SetGUI(CGUI *pGUI) { m_pGUI = pGUI; }
 
 	/**
 	 * Set Width
@@ -202,25 +234,37 @@ public:
 	 * Set X Position
 	 * @param x Position in this axis
 	 */
-	void SetX(const int &x) {m_X = x; }
+	void SetX(const int &x) { m_X = x; }
 
 	/**
 	 * Set Y Position
 	 * @param y Position in this axis
 	 */
-	void SetY(const int &y) {m_Y = y; }
+	void SetY(const int &y) { m_Y = y; }
 
 	/**
 	 * Set Z Position
 	 * @param z Position in this axis
 	 */
-	void SetZ(const float &z) {m_Z = z; }
+	void SetZ(const float &z) { m_Z = z; }
 
 	/**
 	 * Set Length of scroll bar
 	 * @param length Length
 	 */
-	void SetLength(const float &length) {m_Length = length; }
+	void SetLength(const int &length) { m_Length = length; }
+
+	/**
+	 * Set content length
+	 * @param range Maximum scrollable range
+	 */
+	void SetScrollRange(const int &range) { m_ScrollRange = max(range,1); SetupBarSize(); }
+
+	/**
+	 * Set space that is visible in the scrollable control.
+	 * @param space Visible area in the scrollable control.
+	 */
+	void SetScrollSpace(const int &space) { m_ScrollSpace = space; SetupBarSize(); }
 
 	/**
 	 * Set bar pressed
@@ -229,22 +273,41 @@ public:
 	void SetBarPressed(const bool &b) { m_BarPressed = b; }
 
 	/**
+	 * Set use edge buttons
+	 * @param b True if edge buttons should be used
+	 */
+	void SetUseEdgeButtons(const bool &b) { m_UseEdgeButtons = b; }
+
+	/**
 	 * Set Scroll bar style string
 	 * @param style String with scroll bar style reference name
 	 */
 	void SetScrollBarStyle(const CStr &style) { m_ScrollBarStyle = style; }
 
-protected:
-	/**
-	 * Get the rectangle of the actual BAR. not the whole scroll-bar.
-	 */
-	virtual CRect GetBarRect() const = 0;
-
 	/**
 	 * Get style used by the scrollbar
 	 * @return Scroll bar style struct.
 	 */
-	const SGUIScrollBarStyle & GetStyle() const;
+	const SGUIScrollBarStyle * GetStyle() const;
+
+protected:
+	/**
+	 * Sets up bar size
+	 */
+	void SetupBarSize();
+
+	/**
+	 * Get the rectangle of the actual BAR. not the whole scroll-bar.
+	 * @return Rectangle, CRect
+	 */
+	virtual CRect GetBarRect() const = 0;
+
+	/**
+	 * Get the rectangle of the outline of the scrollbar, every component of the
+	 * scroll-bar should be inside this area.
+	 * @return Rectangle, CRect
+	 */
+	virtual CRect GetOuterRect() const = 0;
 
 	/**
 	 * Call every time m_Pos has been updated.
@@ -259,9 +322,15 @@ protected:
 	//@{
 
 	/**
+	 * True if you want edge buttons, i.e. buttons that can be pressed in order
+	 * to scroll.
+	 */
+	bool m_UseEdgeButtons;
+
+	/**
 	 * Width of the scroll bar
 	 */
-	int16 m_Width;	
+	int m_Width;	
 
 	/**
 	 * Absolute X Position
@@ -284,6 +353,16 @@ protected:
 	int m_Length;
 
 	/**
+	 * Content that can be scrolled, in pixels
+	 */
+	int m_ScrollRange;
+
+	/**
+	 * Content that can be viewed at a time, in pixels
+	 */
+	int m_ScrollSpace;
+
+	/**
 	 * Use input from the scroll-wheel? True or false.
 	 */
 	float m_BarSize;
@@ -304,9 +383,14 @@ protected:
 	IGUIScrollBarOwner *m_pHostObject;
 
 	/**
+	 * Reference to CGUI object, these cannot work stand-alone
+	 */
+	CGUI *m_pGUI;
+
+	/**
 	 * Mouse position when bar was pressed
 	 */
-	int m_BarPressedAtX, m_BarPressedAtY;
+	CPos m_BarPressedAtPos;
 
 	//@}
 	//--------------------------------------------------------
@@ -320,10 +404,26 @@ protected:
 	bool m_BarPressed;
 
 	/**
-	 * Position of scroll bar, 0 means scrolled all the way to one side... 1 means
-	 * scrolled all the way to the other side.
+	 * Bar being hovered or not
 	 */
-	float m_Pos;
+	bool m_BarHovered;
+
+	/**
+	 * Scroll buttons hovered
+	 */
+	bool m_ButtonMinusHovered, m_ButtonPlusHovered;
+
+	/**
+	 * Scroll buttons pressed
+	 */
+	bool m_ButtonMinusPressed, m_ButtonPlusPressed;
+
+	/**
+	 * Position of scroll bar, 0 means scrolled all the way to one side.
+	 * It is meassured in pixels, it is up to the host to make it actually
+	 * apply in pixels.
+	 */
+	int m_Pos;
 
 	/**
 	 * Position from 0.f to 1.f it had when the bar was pressed.

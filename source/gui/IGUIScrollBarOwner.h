@@ -46,6 +46,8 @@ struct SGUIScrollBarStyle;
  */
 class IGUIScrollBarOwner : virtual public IGUIObject
 {
+	friend class IGUIScrollBar;
+
 public:
 	IGUIScrollBarOwner();
 	virtual ~IGUIScrollBarOwner();
@@ -65,7 +67,7 @@ public:
 	/**
 	 * Interface for the m_ScrollBar to use.
 	 */
-	virtual const SGUIScrollBarStyle & GetScrollBarStyle(const CStr &style) const;
+	virtual const SGUIScrollBarStyle *GetScrollBarStyle(const CStr &style) const;
 
 	/**
 	 * Add a scroll-bar
