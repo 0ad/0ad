@@ -1,4 +1,4 @@
-// $Id: unifont.h,v 1.1 2004/06/16 15:36:28 philip Exp $
+// $Id: unifont.h,v 1.2 2004/06/16 16:29:38 philip Exp $
 
 #ifndef __UNIFONT_H__
 #define __UNIFONT_H__
@@ -19,7 +19,7 @@ extern int unifont_bind(Handle h);
 extern void glwprintf(const wchar_t* fmt, ...);
 
 /*
-  glwprintf assumes an environment rougly like:
+  glwprintf assumes an environment roughly like:
 
 	glEnable(GL_TEXTURE_2D);
 	glDisable(GL_CULL_FACE);
