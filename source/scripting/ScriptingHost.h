@@ -72,6 +72,9 @@ public:
 	void SetObjectProperty(JSObject * object, const std::string & propertyName, jsval value);
 	jsval GetObjectProperty( JSObject* object, const std::string& propertyName );
 
+	void SetGlobal(const std::string& globalName, jsval value);
+	jsval GetGlobal(const std::string& globalName);
+
 	int ValueToInt(const jsval value);
 	bool ValueToBool(const jsval value);
 	std::string ValueToString(const jsval value);

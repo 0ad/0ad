@@ -231,7 +231,7 @@ JSObject * ScriptingHost::CreateCustomObject(const std::string & typeName)
 		throw std::string("Tried to create a type that doesn't exist");
 	}
 
-	return JS_NewObject(m_Context, (*it).second.m_Class, (*it).second.m_Object, NULL);
+	return JS_ConstructObject(m_Context, (*it).second.m_Class, (*it).second.m_Object, NULL);
 
 }
 
@@ -245,6 +245,18 @@ jsval ScriptingHost::GetObjectProperty( JSObject* object, const std::string& pro
 	jsval vp;
 	JS_GetProperty( m_Context, object, propertyName.c_str(), &vp );
 	return( vp );
+}
+
+void ScriptingHost::SetGlobal(const std::string &globalName, jsval value)
+{
+	JS_SetProperty(m_Context, m_GlobalObject, globalName.c_str(), &value);
+}
+
+jsval ScriptingHost::GetGlobal(const std::string &globalName)
+{
+	jsval vp;
+	JS_GetProperty(m_Context, m_GlobalObject, globalName.c_str(), &vp);
+	return vp;
 }
 
 int ScriptingHost::ValueToInt(const jsval value)
@@ -298,13 +310,16 @@ double ScriptingHost::ValueToDouble(const jsval value)
 
 void ScriptingHost::ErrorReporter(JSContext * context, const char * message, JSErrorReport * report)
 {
-	g_Console->InsertMessage( L"%S ( %d )", report->filename, report->lineno );
-	if( message )
+	if (g_Console)
 	{
-		g_Console->InsertMessage( L"%S", message );
+		g_Console->InsertMessage( L"%S ( %d )", report->filename, report->lineno );
+		if( message )
+		{
+			g_Console->InsertMessage( L"%S", message );
+		}
+		else
+			g_Console->InsertMessage( L"No error message available" );
 	}
-	else
-		g_Console->InsertMessage( L"No error message available" );
 
 	if (report->filename != NULL)
 	{
