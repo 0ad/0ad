@@ -171,6 +171,7 @@ void IGUIObject::AddSetting(const EGUISettingType &Type, const CStr& Name)
 		CASE_TYPE(CGUIString)
 
 	default:
+		debug_warn("IGUIObject::AddSetting failed");
 		// TODO Gee: Report in log, type is not recognized.
 		break;
 	}
@@ -339,7 +340,9 @@ void IGUIObject::LoadStyle(CGUI &GUIinstance, const CStr& StyleName)
 		LoadStyle(GUIinstance.m_Styles[StyleName]);
 	}
 	else
-		;// TODO Gee: report error
+	{
+		debug_warn("IGUIObject::LoadStyle failed");
+	}
 }
 
 void IGUIObject::LoadStyle(const SGUIStyle &Style)
@@ -358,6 +361,7 @@ void IGUIObject::LoadStyle(const SGUIStyle &Style)
 		catch (PS_RESULT e) 
 		{
 			UNUSED(e);
+//			debug_warn("IGUIObject::LoadStyle failed");	// (this happens)
 			// TODO Gee: was ist das?
 		}
 	}
@@ -378,8 +382,11 @@ float IGUIObject::GetBufferedZ() const
 		if (GetParent())
 			return GetParent()->GetBufferedZ() + Z;
 		else
+		{
+			debug_warn("IGUIObject::LoadStyle failed");
 			// TODO Gee: Error, no object should be relative without a parent!
 			return Z;
+		}
 	}
 }
 
