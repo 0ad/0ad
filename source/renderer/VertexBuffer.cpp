@@ -10,6 +10,10 @@
 #include "ogl.h"
 #include "Renderer.h"
 #include "VertexBuffer.h"
+#include "ps/CLogger.h"
+
+ERROR_GROUP(Renderer);
+ERROR_TYPE(Renderer, VBOFailed);
 
 ///////////////////////////////////////////////////////////////////////////////
 // shared list of all free batch objects
@@ -33,9 +37,20 @@ CVertexBuffer::CVertexBuffer(size_t vertexSize,bool dynamic)
 
 	// allocate raw buffer
 	if (g_Renderer.m_Caps.m_VBO) {
+
+		// TODO: Detect when VBO failed, then fall back to system memory
+		// (and copy all old VBOs into there, because it needs to be
+		// consistent).
+
+		glGetError(); // clear the error state
+
 		glGenBuffersARB(1,&m_Handle);
 		glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_Handle);
+		if (glGetError() != GL_NO_ERROR) throw PSERROR_Renderer_VBOFailed();
+
 		glBufferDataARB(GL_ARRAY_BUFFER_ARB,MAX_VB_SIZE_BYTES,0,m_Dynamic ? GL_STREAM_DRAW_ARB : GL_STATIC_DRAW_ARB);
+		if (glGetError() != GL_NO_ERROR) throw PSERROR_Renderer_VBOFailed();
+
 	} else {
 		m_SysMem=new u8[MAX_VB_SIZE_BYTES];
 	}
@@ -80,8 +95,8 @@ CVertexBuffer::VBChunk* CVertexBuffer::Allocate(size_t vertexSize,size_t numVert
 	VBChunk* chunk=0;
 	typedef std::list<VBChunk*>::iterator Iter;
 	for (Iter iter=m_FreeList.begin();iter!=m_FreeList.end();++iter) {
-		chunk=*iter;
-		if (numVertices<=chunk->m_Count) {
+		if (numVertices<=(*iter)->m_Count) {
+			chunk=*iter;
 			// remove this chunk from the free list
 			size_t size1=m_FreeList.size();
 			m_FreeList.erase(iter);
@@ -98,15 +113,17 @@ CVertexBuffer::VBChunk* CVertexBuffer::Allocate(size_t vertexSize,size_t numVert
 
 	// split chunk into two; - allocate a new chunk using all unused vertices in the 
 	// found chunk, and add it to the free list
-	VBChunk* newchunk=new VBChunk;
-	newchunk->m_Owner=this;
-	newchunk->m_Count=chunk->m_Count-numVertices;
-	newchunk->m_Index=chunk->m_Index+numVertices;
-	m_FreeList.push_front(newchunk);
+	if (chunk->m_Count > numVertices) {
+		VBChunk* newchunk=new VBChunk;
+		newchunk->m_Owner=this;
+		newchunk->m_Count=chunk->m_Count-numVertices;
+		newchunk->m_Index=chunk->m_Index+numVertices;
+		m_FreeList.push_front(newchunk);
 
-	// resize given chunk, resize total available free vertices
-	chunk->m_Count=numVertices;
-	m_FreeVertices-=numVertices;
+		// resize given chunk, resize total available free vertices
+		chunk->m_Count=numVertices;
+		m_FreeVertices-=numVertices;
+	}
 	
 	// return found chunk
 	return chunk;
@@ -174,8 +191,10 @@ void CVertexBuffer::UpdateChunkVertices(VBChunk* chunk,void* data)
 {
 	if (g_Renderer.m_Caps.m_VBO) {
 		assert(m_Handle);
+		glGetError(); // clear the error state
 		glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_Handle);
 		glBufferSubDataARB(GL_ARRAY_BUFFER_ARB,chunk->m_Index*m_VertexSize,chunk->m_Count*m_VertexSize,data);
+		if (glGetError() != GL_NO_ERROR) throw PSERROR_Renderer_VBOFailed();
 	} else {
 		assert(m_SysMem);
 		memcpy(m_SysMem+chunk->m_Index*m_VertexSize,data,chunk->m_Count*m_VertexSize);
