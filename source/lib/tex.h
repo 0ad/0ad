@@ -21,18 +21,19 @@
 
 #include "types.h"
 #include "res.h"
-
+#include "misc.h"
 
 struct TEX
 {
 	u32 width  : 16;
 	u32 height : 16;
 	u32 fmt    : 16;
-	u32 bpp    : 8;		// 0 if S3TC
-	u32 s3tc_img_size;
+	u32 bpp    : 16;
 	const u8* ptr;
 	uint id;
 };
+
+
 
 
 // load and return a handle to the texture given in <fn>.

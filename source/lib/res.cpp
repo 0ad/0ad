@@ -26,67 +26,30 @@
 #include "posix.h"
 #include "misc.h"
 #include "res.h"
+#include "mem.h"
 #include "vfs.h"
 
-// handle (32 bits)
-// .. make sure this is the same handle we opened
-static const uint TAG_BITS = 16;
-// .. index into array => = log2(max open handles)
-static const uint IDX_BITS = 12;
-
-static const uint OWNER_BITS = 4;
-static const uint TYPE_BITS = 4;
-static const uint REF_BITS  = 8;
-
-struct Res
-{
-	u32 key;
-	u32 tag   : TAG_BITS;
-	u32 type  : TYPE_BITS;
-	u32 owner : OWNER_BITS;
-	u32 refs  : REF_BITS;
-};
-
-static const ulong res_array_cap = 1ul << IDX_BITS;
-static const uint owner_cap = 1ul << OWNER_BITS;
-
-// static allocation for simplicity; mem usage isn't significant
-static Res res_array[res_array_cap];
-static int first_free = -1;
-static int max_idx = -1;	// index of last in-use entry
+static const ulong hdata_cap = 1ul << HIDX_BITS;
+static const uint type_cap = 1ul << HTYPE_BITS;
 
 // array of pages for better locality, less fragmentation
 static const uint PAGE_SIZE = 4096;
 static const uint hdata_per_page = PAGE_SIZE / sizeof(HDATA);
-static const uint num_pages = res_array_cap / hdata_per_page;
+static const uint num_pages = hdata_cap / hdata_per_page;
 static HDATA* pages[num_pages];
 
-static void(*dtors[owner_cap])(HDATA*);
+static int first_free = -1;		// don't want to scan array every h_alloc
+static int last_in_use = -1;	// don't search unused entries
 
 
-
-static Handle handle(const int idx)
-{
-	const Res& r = res_array[idx];
-	return (r.tag) << IDX_BITS | (u32)idx;
-}
+static void(*dtors[type_cap])(void*);
 
 
-static int h_idx(const Handle h, const uint owner)
-{
-	int idx = h & ((1 << IDX_BITS)-1);
-	const Res& r = res_array[idx];
-
-	u32 tag = h >> IDX_BITS;
-	if(!tag || r.tag != tag || r.owner != owner)
-		return -1;
-
-	return idx;
-}
-
-
+// get pointer to handle data (non-contiguous array)
 static HDATA* h_data(const int idx)
 {
+	if(idx > hdata_cap)
+		return 0;
 	HDATA*& page = pages[idx / hdata_per_page];
 	if(!page)
 	{
@@ -99,21 +62,62 @@ static HDATA* h_data(const int idx)
 }
 
 
+// get array index from handle
+static int h_idx(const Handle h, const uint type)
+{
+	const int idx = h & ((1 << HIDX_BITS)-1);
+	if(idx > last_in_use)
+		return -1;
+
+	const HDATA* hd = h_data(idx);
+	// cannot fail - it was successfully allocated
+
+	const u32 tag = h >> HIDX_BITS;
+	// note: tag = 0 marks unused entries => is invalid
+	if(!tag || hd->tag != tag || hd->type != type)
+		return -1;
+
+	return idx;
+}
+
+
+static Handle handle(const int idx)
+{
+	const HDATA* hd = h_data(idx);
+	if(!hd)	// out of memory
+		return 0;
+	return (hd->tag) << HIDX_BITS | (u32)idx;
+}
+
+
+
 static int h_free(const int idx)
 {
-	Res& r = res_array[idx];
-	if(--r.refs)
+	HDATA* hd = h_data(idx);
+	if(!hd)
+		return -1;
+
+	// not the last reference
+	if(--hd->refs)
 		return 0;
 
-	HDATA* hd = h_data(idx);
-	if(hd)
+	// free its pointer
+	switch(hd->ptype)
 	{
-		if(dtors[r.owner])
-			dtors[r.owner](hd);
-		memset(hd, 0, sizeof(HDATA));
+	case PT_MEM:
+		mem_free(hd->p);
+		break;
+
+	case PT_MAP:
+		munmap(hd->p, hd->size);
+		break;
 	}
 
-	memset(&r, 0, sizeof(r));
+	// call its type's destructor
+	if(dtors[hd->type])
+		dtors[hd->type](hd);
+
+	memset(hd, 0, sizeof(HDATA));
 
 	if(first_free == -1 || idx < first_free)
 		first_free = idx;
@@ -127,10 +131,10 @@ static void cleanup(void)
 	int i;
 
 	// close open handles
-	for(i = 0; i < max_idx; i++)
+	for(i = 0; i < last_in_use; i++)
 		h_free(i);
 
-	// free internal data space
+	// free hdata array
 	for(i = 0; i < (int)num_pages; i++)
 	{
 		free(pages[i]);
@@ -139,20 +143,16 @@ static void cleanup(void)
 }
 
 
-Handle h_find(const void* p, uint owner, HDATA** phd)
+Handle h_find(const void* p, uint type, HDATA** puser)
 {
-	const Res* r = res_array;
-
-	for(int idx = 0; idx <= max_idx; idx++, r++)
+	for(int idx = 0; idx <= last_in_use; idx++)
 	{
-		if(r->owner != owner)
-			continue;
+		HDATA* hd = h_data(idx);	// guaranteed valid
 
-		HDATA* hd = h_data(idx);
-		if(hd && hd->p == p)
+		if(hd->p == p && hd->type == type)
 		{
-			if(phd)
-				*phd = hd;
+			if(puser)
+				*puser = hd/*->user*/;
 			return handle(idx);
 		}
 	}
@@ -161,26 +161,32 @@ Handle h_find(const void* p, uint owner, HDATA** phd)
 }
 
 
-Handle h_find(const u32 key, uint owner, HDATA** phd)
+Handle h_find(const u32 key, uint type, HDATA** puser)
 {
 	int idx;
-	const Res* r = res_array;
+	HDATA* hd;
 
 	// already have first free entry cached - just search
 	if(first_free != -1)
 	{
-		for(idx = 0; idx <= max_idx; idx++, r++)
-			if(r->key == key && r->owner == owner)
+		for(idx = 0; idx <= last_in_use; idx++)
+		{
+			hd = h_data(idx);	// guaranteed valid
+			if(hd->key == key && hd->type == type)
 				goto found;
+		}
 	}
 	// search and remember first free entry (slower)
 	else
 	{
-		for(idx = 0; idx <= max_idx; idx++, r++)
-			if(!r->tag && first_free == -1)
+		for(idx = 0; idx <= last_in_use; idx++)
+		{
+			hd = h_data(idx);	// guaranteed valid
+			if(!hd->tag && first_free == -1)
 				first_free = idx;
-			else if(r->key == key && r->owner == owner)
+			else if(hd->key == key && hd->type == type)
 				goto found;
+		}
 	}
 
 	// not found
@@ -188,54 +194,77 @@ Handle h_find(const u32 key, uint owner, HDATA** phd)
 
 found:
 	Handle h = handle(idx);
-	if(phd)
-	{
-		HDATA* hd = h_data(h, owner);
-		if(!hd)
-			return 0;
-		*phd = hd;
-	}
+	if(puser)
+		*puser = hd/*->user*/;
 	return h;
 }
 
 
-Handle h_alloc(const u32 key, const uint owner, DTOR dtor, HDATA** phd)
+int h_assign(Handle h, u8* p, size_t size, bool mem)
+{
+	HDATA* hd = h_data(h);
+	if(!hd)
+		return -1;
+
+	if(hd->p || hd->size || hd->ptype != PT_NONE)
+	{
+		assert(!"h_assign: field(s) already assigned");
+		return -1;
+	}
+
+	hd->p = p;
+	hd->size = size;
+	hd->ptype = mem? PT_MEM : PT_MAP;
+
+	return 0;
+}
+
+
+Handle h_alloc(const u32 key, const uint type, /*const size_t user_size,*/ DTOR dtor, HDATA** puser)
 {
 	ONCE(atexit(cleanup))
-
-	if(owner >= owner_cap)
+/*
+	if(user_size > HDATA_USER_SIZE)
+	{
+		assert(!"h_alloc: not enough space in entry for user data");
 		return 0;
+	}
+*/
+	if(type >= type_cap)
+	{
+		assert(!"h_alloc: invalid type");
+		return 0;
+	}
 
 	if(dtor)
 	{
-		// registering a second dtor for owner
-//		if(dtors[owner] && dtors[owner] != dtor)
-//			return 0;
-		dtors[owner] = dtor;
+		// registering a second dtor for type
+		if(dtors[type] && dtors[type] != dtor)
+		{
+			assert(!"h_alloc: registering a second, different dtor for type");
+			return 0;
+		}
+		dtors[type] = dtor;
 	}
 
 	int idx;
-	Res* r = res_array;
-
 	HDATA* hd;
-	Handle h;
+
 	if(key)
 	{
-		h = h_find(key, owner, &hd);
+		// object already loaded?
+		Handle h = h_find(key, type, &hd);
 		if(h)
 		{
-			idx = h_idx(h, owner);
-			r = &res_array[idx];
-
+			// only way to decide whether this handle is new, or a reference
 			assert(hd->size != 0);
 
-			if(r->refs == (1ul << REF_BITS))
+			if(hd->refs == (1ul << HREF_BITS))
 			{
 				assert(!"h_alloc: too many references to a handle - increase REF_BITS");
 				return 0;
 			}
-			r->refs++;
-
+			hd->refs++;
 			return h;
 		}
 	}
@@ -244,62 +273,57 @@ Handle h_alloc(const u32 key, const uint owner, DTOR dtor, HDATA** phd)
 	if(first_free != -1)
 	{
 		idx = first_free;
-		r = &res_array[idx];
+		hd = h_data(idx);
 	}
-	// search res_array for first entry
+	// search handle data for first free entry
 	else
-		for(idx = 0; idx < res_array_cap; idx++, r++)
-			if(!r->tag)
+		for(idx = 0; idx < hdata_cap; idx++)
+		{
+			hd = h_data(idx);
+			// not enough memory - abort (don't leave a hole in the array)
+			if(!hd)
+				return 0;
+			// found an empty entry - done
+			if(!hd->tag)
 				break;
+		}
 
-	// check if next entry is free
-	if(idx+1 < res_array_cap && !(r+1)->key)
-		first_free = idx+1;
-	else
-		first_free = -1;
-
-	if(idx >= res_array_cap)
+	if(idx >= hdata_cap)
 	{
 		assert(!"h_alloc: too many open handles (increase IDX_BITS)");
 		return 0;
 	}
 
-	if(idx > max_idx)
-		max_idx = idx;
+	// check if next entry is free
+	HDATA* hd2 = h_data(idx+1);
+	if(hd2 && hd2->tag == 0)
+		first_free = idx+1;
+	else
+		first_free = -1;
+
+	if(idx > last_in_use)
+		last_in_use = idx;
 
 	static u32 tag;
-	if(++tag >= (1 << TAG_BITS))
+	if(++tag >= (1 << HTAG_BITS))
 	{
 		assert(!"h_alloc: tag overflow - may not notice stale handle reuse (increase TAG_BITS)");
 		tag = 1;
 	}
 
-	r->key = key;
-	r->tag = tag;
-	r->owner = owner;
+	hd->key = key;
+	hd->tag = tag;
+	hd->type = type;
 
-	h = handle(idx);
-
-	// caller wants HDATA* returned
-	if(phd)
-	{
-		HDATA* hd = h_data(h, owner);
-		// not enough mem - fail
-		if(!hd)
-		{
-			h_free(h, owner);
-			return 0;
-		}
-		*phd = hd;
-	}
-
-	return h;
+	if(puser)
+		*puser = hd/*->user*/;
+	return handle(idx);
 }
 
 
-int h_free(const Handle h, const uint owner)
+int h_free(const Handle h, const uint type)
 {
-	int idx = h_idx(h, owner);
+	int idx = h_idx(h, type);
 	if(idx >= 0)
 		return h_free(idx);
 	return -1;
@@ -307,9 +331,9 @@ int h_free(const Handle h, const uint owner)
 
 
 
-HDATA* h_data(const Handle h, const uint owner)
+HDATA* h_data(const Handle h, const uint type)
 {
-	int idx = h_idx(h, owner);
+	int idx = h_idx(h, type);
 	if(idx >= 0)
 		return h_data(idx);
 	return 0;
@@ -317,15 +341,16 @@ HDATA* h_data(const Handle h, const uint owner)
 
 
 
-Handle res_load(const char* fn, uint type, DTOR dtor, void*& p, size_t& size, HDATA*& hd)
+Handle res_load(const char* fn, uint type, DTOR dtor, void*& p, size_t& size, HDATA*& user)
 {
 	p = 0;
 	size = 0;
-	hd = 0;
+	user = 0;
 
 	u32 fn_hash = fnv_hash(fn, strlen(fn));
 		// TODO: fn is usually a constant; pass fn len if too slow
 
+	HDATA* hd;
 	Handle h = h_alloc(fn_hash, type, dtor, &hd);
 	if(!h)
 		return 0;
@@ -348,7 +373,7 @@ Handle res_load(const char* fn, uint type, DTOR dtor, void*& p, size_t& size, HD
 
 	hd->p = p;
 	hd->size = size;
-
+user=hd;
 	return h;
 }
 

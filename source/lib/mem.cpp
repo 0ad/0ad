@@ -14,15 +14,20 @@
 struct MEM
 {
 	uint type;
-	void* org_p;	// MEM_HEAP only
-	size_t size;	// MEM_POOL only
+
+	// MEM_HEAP only
+	void* org_p;
+
+	// MEM_POOL only
+	size_t ofs;
+	size_t size;
 };
 
 
 
-static void heap_dtor(HDATA* hd)
+static void heap_dtor(void* p)
 {
-	MEM* mem = (MEM*)hd->internal;
+	MEM* mem = (MEM*)p;
 	free(mem->org_p);
 }
 
@@ -43,13 +48,12 @@ static size_t pool_pos;
 static const size_t POOL_CAP = 64*MB;	// TODO: user editable
 
 
-static void pool_dtor(HDATA* hd)
+static void pool_dtor(void* p)
 {
-	MEM* mem = (MEM*)hd->internal;
+	MEM* mem = (MEM*)p;
 
-	ssize_t pool_ofs = (u8*)hd->p - (u8*)pool;
 	// at end of pool? if so, 'free' it
-	if(pool_ofs + mem->size == pool_pos)
+	if(mem->ofs + mem->size == pool_pos)
 		pool_pos -= mem->size;
 }
 
@@ -70,6 +74,7 @@ static void* pool_alloc(const size_t size, const uint align, MEM& mem)
 	void* p = (u8*)pool + ofs;
 
 	mem.size = size;
+	mem.ofs = ofs;
 
 	pool_pos = ofs+size;
 	return p;
@@ -77,13 +82,13 @@ static void* pool_alloc(const size_t size, const uint align, MEM& mem)
 
 
 
-static void mem_dtor(HDATA* hd)
+static void mem_dtor(void* p)
 {
-	MEM* mem = (MEM*)hd->internal;
+	MEM* mem = (MEM*)p;
 	if(mem->type == MEM_HEAP)
-		heap_dtor(hd);
+		heap_dtor(p);
 	else if(mem->type == MEM_POOL)
-		pool_dtor(hd);
+		pool_dtor(p);
 }
 
 
@@ -93,11 +98,11 @@ void* mem_alloc(size_t size, const MemType type, const uint align, Handle* ph)
 		size = 1;
 
 	HDATA* hd;
-	Handle h = h_alloc(0, RES_MEM, mem_dtor, &hd);
+	Handle h = h_alloc(0, H_MEM, mem_dtor, &hd);
 	if(!h)
 		return 0;
 
-	MEM& mem = (MEM&)hd->internal;
+	MEM& mem = (MEM&)hd->user;
 
 	void* p;
 	if(type == MEM_HEAP)
@@ -106,7 +111,7 @@ void* mem_alloc(size_t size, const MemType type, const uint align, Handle* ph)
 		p = pool_alloc(size, align, mem);
 	else
 	{
-		h_free(h, RES_MEM);
+		h_free(h, H_MEM);
 		return 0;
 	}
 
@@ -123,8 +128,8 @@ int mem_free(void* p)
 		return 1;
 
 	HDATA* hd;
-	Handle h = h_find(p, RES_MEM, &hd);
+	Handle h = h_find(p, H_MEM, &hd);
 	if(h)
-		return h_free(h, RES_MEM);
+		return h_free(h, H_MEM);
 	return -1;
 }

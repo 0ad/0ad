@@ -119,9 +119,9 @@ int build_font(const char* in_ttf, const char* out_fnt, const char* out_raw, int
 #endif
 
 
-static void font_dtor(HDATA* hd)
+static void font_dtor(void* p)
 {
-	FONT* font = (FONT*)hd->internal;
+	FONT* font = (FONT*)p;
 	glDeleteLists(font->list_base, 96);
 }
 
@@ -131,7 +131,7 @@ u32 font_load(const char* fn)
 	void* p;
 	size_t size;
 	HDATA* hd;
-	Handle h = res_load(fn, RES_FONT, font_dtor, p, size, hd);
+	Handle h = res_load(fn, H_FONT, font_dtor, p, size, hd);
 	if(!h)
 		return 0;
 
@@ -191,7 +191,7 @@ u32 font_load(const char* fn)
 			u = 0.f, v += th;
 	}
 
-	FONT* font = (FONT*)hd->internal;
+	FONT* font = (FONT*)hd->user;
 	font->tex = tex;
 	font->list_base = list_base;
 
@@ -201,10 +201,10 @@ u32 font_load(const char* fn)
 
 int font_bind(const Handle h)
 {
-	HDATA* hd = h_data(h, RES_FONT);
+	HDATA* hd = h_data(h, H_FONT);
 	if(!hd)
 		return -1;
-	FONT* font = (FONT*)hd->internal;
+	FONT* font = (FONT*)hd->user;
 
 	tex_bind(font->tex);
 	glListBase(font->list_base);

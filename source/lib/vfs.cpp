@@ -31,20 +31,9 @@ struct PATH
 static PATH* path_list;
 
 
-static void vfile_dtor(HDATA* hd)
+static void vfile_dtor(void* p)
 {
-	VFILE* vf = (VFILE*)hd->internal;
-
-	// normal file
-	if(vf->fd != -1)
-	{
-		munmap(hd->p, hd->size);
-		hd->p = 0;
-		hd->size = 0;
-
-		close(vf->fd);
-		vf->fd = -1;
-	}
+	VFILE* vf = (VFILE*)p;
 
 	// in archive
 	if(vf->ha && vf->hz)
@@ -232,12 +221,12 @@ u32 vfs_start_read(const Handle hf, size_t& ofs, void** buf)
 {
 	HDATA* hfd = h_data(hf, 0);
 	if(!hfd)
-		return -1;
-	VFILE* vf = (VFILE*)hfd->internal;
+		return 0;
+	VFILE* vf = (VFILE*)hfd->user;
 
 	ssize_t bytes_left = hfd->size - ofs;
 	if(bytes_left < 0)
-		return -1;
+		return 0;
 
 // TODO: thread safety
 
@@ -250,7 +239,7 @@ u32 vfs_start_read(const Handle hf, size_t& ofs, void** buf)
 	if(i == NUM_SLOTS)
 	{
 		assert(!"vfs_start_read: too many active reads; increase NUM_SLOTS");
-		return -1;
+		return 0;
 	}
 
 	// mark it in use
@@ -273,7 +262,7 @@ u32 vfs_start_read(const Handle hf, size_t& ofs, void** buf)
 		{
 			cb->aio_buf = mem_alloc(64*KB, MEM_HEAP, 64*KB);
 			if(!cb->aio_buf)
-				return -1;
+				return 0;
 		}
 
 	// align to 64 KB for speed
@@ -328,7 +317,7 @@ int vfs_read(Handle h, void*& p, size_t& size, size_t ofs)
 	p = 0;
 	size = 0;
 
-	HDATA* hd = h_data(h, RES_VFILE);
+	HDATA* hd = h_data(h, H_VFILE);
 	if(hd)
 	{
 		if(ofs+size > hd->size)
@@ -338,7 +327,7 @@ int vfs_read(Handle h, void*& p, size_t& size, size_t ofs)
 			size = hd->size - ofs;
 		return 0;
 	}
-	// RES_ZFILE
+	// H_ZFILE
 	else
 		return zread(h, p, size, ofs);
 }

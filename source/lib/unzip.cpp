@@ -39,7 +39,7 @@ static const char cdfh_id[] = "PK\1\2";	// Central File Header identifier
 static const char lfh_id[]  = "PK\3\4";	// Local File Header identifier
 
 
-// RES_ZFILE handle
+// H_ZFILE handle
 // location and size of an archived file
 // no destructor
 struct ZFILE
@@ -50,11 +50,11 @@ struct ZFILE
 };
 
 
-// RES_ZARCHIVE handle
+// H_ZARCHIVE handle
 // information about a ZIP archive
 struct ZARCHIVE
 {
-	Handle hf;			// actual ZIP file (RES_VFILE)
+	Handle hf;			// actual ZIP file (H_VFILE)
 
 	// file lookup
 	u32 num_files;
@@ -64,12 +64,12 @@ struct ZARCHIVE
 };
 
 
-static void zarchive_dtor(HDATA* hd)
+static void zarchive_dtor(void* p)
 {
-	ZARCHIVE* z = (ZARCHIVE*)hd->internal;
+	ZARCHIVE* za = (ZARCHIVE*)p;
 
-	vfs_close(z->hf);
-	z->hf = 0;
+	vfs_close(za->hf);
+	za->hf = 0;
 }
 
 
@@ -80,7 +80,7 @@ Handle zopen(const char* const fn)
 
 	// already loaded?
 	HDATA* hd;
-	Handle h = h_find(fn_hash, RES_ZFILE, &hd);
+	Handle h = h_find(fn_hash, H_ZFILE, &hd);
 	if(h)
 		return h;
 
@@ -127,11 +127,11 @@ found_ecdr:
 	if(!mem)
 		goto fail;
 
-	h = h_alloc(fn_hash, RES_ZFILE, zarchive_dtor, &hd);
+	h = h_alloc(fn_hash, H_ZFILE, zarchive_dtor, &hd);
 	if(!h)
 		goto fail;
 
-	ZARCHIVE* const za = (ZARCHIVE*)hd->internal;
+	ZARCHIVE* const za = (ZARCHIVE*)hd->user;
 	za->hf = hf;
 	za->fn_hashs = (u32*)mem;
 	za->files = (ZFILE*)((u8*)mem + 4*num_files);
@@ -186,19 +186,19 @@ found_ecdr:
 
 void zclose(const Handle h)
 {
-	if(h_data(h, RES_ZFILE))
-		h_free(h, RES_ZFILE);
+	if(h_data(h, H_ZFILE))
+		h_free(h, H_ZFILE);
 	else
-		h_free(h, RES_ZARCHIVE);
+		h_free(h, H_ZARCHIVE);
 }
 
 
 Handle zopen(Handle hz, const char* fn)
 {
-	HDATA* hzd = h_data(hz, RES_ZFILE);
+	HDATA* hzd = h_data(hz, H_ZFILE);
 	if(!hzd)
 		return 0;
-	ZARCHIVE* za = (ZARCHIVE*)hzd->internal;
+	ZARCHIVE* za = (ZARCHIVE*)hzd->user;
 
 	// find its File descriptor
 	const u32 fn_hash = fnv_hash(fn, strlen(fn));
@@ -217,7 +217,7 @@ Handle zopen(Handle hz, const char* fn)
 
 	//
 	HDATA* hfd;
-	Handle hf = h_alloc(fn_hash, RES_ZFILE, 0, &hfd);
+	Handle hf = h_alloc(fn_hash, H_ZFILE, 0, &hfd);
 	return hf;
 }
 
@@ -228,7 +228,7 @@ int zread(Handle hf, void*& p, size_t& size, size_t ofs)
 	if(!hfd)
 		return -1;
 
-	ZFILE* zf = (ZFILE*)hfd->internal;
+	ZFILE* zf = (ZFILE*)hfd->user;
 	const size_t ucsize = zf->ucsize;
 	const size_t csize = zf->csize;
 

@@ -153,8 +153,7 @@ static int dds_load(const char* fn, const u8* ptr, size_t size, TEX* tex)
 		tex->width  = w;
 		tex->height = h;
 		tex->fmt    = fmt;
-		tex->bpp    = 0;
-		tex->s3tc_img_size = img_size;
+		tex->bpp    = img_size / (w * h);
 		tex->ptr    = img;
 
 		if(sizeof(DDSURFACEDESC2) != ddsd_size)
@@ -589,9 +588,9 @@ static int jp2_load(const char* fn, const u8* ptr, size_t size, TEX* tex)
 
 
 
-static void tex_dtor(HDATA* hd)
+static void tex_dtor(void* p)
 {
-	TEX* tex = (TEX*)hd->internal;
+	TEX* tex = (TEX*)p;
 	glDeleteTextures(1, &tex->id);
 }
 
@@ -603,11 +602,11 @@ Handle tex_load(const char* fn, TEX* ptex)
 	const u8* p;
 	size_t size;
 	HDATA* hd;
-	Handle h = res_load(fn, RES_TEX, tex_dtor, (void*&)p, size, hd);
+	Handle h = res_load(fn, H_TEX, tex_dtor, (void*&)p, size, hd);
 	if(!h)
 		return 0;
 
-	TEX* tex = (TEX*)hd->internal;
+	TEX* tex = (TEX*)hd->user;
 	if(!p)
 		goto already_loaded;
 	if(size < 4)	// guarantee xxx_valid routines 4 bytes
@@ -670,13 +669,13 @@ already_loaded:
 
 int tex_bind(const Handle h)
 {
-	HDATA* hd = h_data(h, RES_TEX);
+	HDATA* hd = h_data(h, H_TEX);
 	if(!hd)
 	{
 		glBindTexture(GL_TEXTURE_2D, 0);
 		return -1;
 	}
-	TEX* tex = (TEX*)hd->internal;
+	TEX* tex = (TEX*)hd->user;
 	glBindTexture(GL_TEXTURE_2D, tex->id);
 	return 0;
 }
@@ -687,10 +686,10 @@ uint tex_bpp = 32;				// 16 or 32
 
 int tex_upload(const Handle h, int filter, int int_fmt)
 {
-	HDATA* hd = h_data(h, RES_TEX);
+	HDATA* hd = h_data(h, H_TEX);
 	if(!hd)
 		return -1;
-	TEX* tex = (TEX*)hd->internal;
+	TEX* tex = (TEX*)hd->user;
 
 	// greater than max supported tex dimension?
 	// no-op if oglInit not yet called
@@ -726,7 +725,10 @@ int tex_upload(const Handle h, int filter, int int_fmt)
 	// S3TC compressed
 	if(tex->fmt >= GL_COMPRESSED_RGB_S3TC_DXT1_EXT &&
 	   tex->fmt <= GL_COMPRESSED_RGBA_S3TC_DXT5_EXT)
-		glCompressedTexImage2DARB(GL_TEXTURE_2D, 0, tex->fmt, tex->width, tex->height, 0, tex->s3tc_img_size, tex->ptr);
+	{
+		int img_size = tex->width * tex->height * tex->bpp;
+		glCompressedTexImage2DARB(GL_TEXTURE_2D, 0, tex->fmt, tex->width, tex->height, 0, img_size, tex->ptr);
+	}
 	// normal
 	else
 	{

@@ -22,50 +22,98 @@
 #include "types.h"
 
 
-// handle type (for 'type safety' - can't use a texture handle as a sound)
-enum
-{
-	RES_TEX = 1,
-	RES_FONT,
-	RES_SOUND,
-	RES_ZFILE,
-	RES_ZARCHIVE,
-	RES_VFILE,
 
-	RES_MMAP,
-	RES_MEM
+// handle type (for 'type safety' - can't use a texture handle as a sound)
+//
+// rationale: we could use the destructor passed to res_load to identify
+// the handle, but it's good to have a list of all types, and we avoid having
+// to create empty destructors for handle types that wouldn't need them.
+// finally, we save memory - this fits in a few bits, vs. needing a pointer.
+enum HType
+{
+	H_TEX      = 1,
+	H_FONT     = 2,
+	H_SOUND    = 3,
+	H_ZFILE    = 4,
+	H_ZARCHIVE = 5,
+	H_VFILE    = 6,
+	H_MEM      = 7,
+
+	NUM_HANDLE_TYPES
 };
 
+// handle's pointer type
+enum PType
+{
+	PT_NONE,
+	PT_MEM,			// allocated by mem_alloc
+	PT_MAP			// mapped by mmap
+};
 
-typedef unsigned long Handle;
+// handle (32 bits)
+// .. make sure this is the same handle we opened
+const uint HTAG_BITS = 16;
+// .. index into array => = log2(max open handles)
+const uint HIDX_BITS = 12;
 
-const int HDATA_INTERNAL_SIZE = 24;
+// <= 32-TAG_BITS bits
+const uint HTYPE_BITS = 4;
+const uint PTYPE_BITS = 4;
+const uint HREF_BITS  = 8;
 
+const int HDATA_USER_SIZE = 16;
 
+// 32 bytes
 struct HDATA
 {
+	u32 key;
+	u32 tag   : HTAG_BITS;
+	u32 type  : HTYPE_BITS;		// handle's type (e.g. texture, sound)
+	u32 ptype : PTYPE_BITS;		// what does p point to?
+	u32 refs  : HREF_BITS;
+
 	void* p;
 	size_t size;
-	u8 internal[HDATA_INTERNAL_SIZE];
+
+	u8 user[HDATA_USER_SIZE];
 };
 
-typedef void(*DTOR)(HDATA*);
 
-extern Handle h_alloc(u32 key, uint type, DTOR dtor = 0, HDATA** phd = 0);
+// 0 = invalid handle value.
+typedef u32 Handle;
+
+
+// destructor, registered by h_alloc for a given handle type.
+// receives the user data associated with the handle.
+typedef void(*DTOR)(void*);
+
+
+// all functions check the passed tag (part of the handle) and type against
+// the internal values. if they differ, an error is returned.
+
+
+// allocate a new handle.
+// if key is 0, or a (key, type) handle doesn't exist,
+//   the first free entry is used.
+// otherwise, a handle to the existing object is returned,
+//   and HDATA.size != 0.
+//// user_size is checked to make sure the user data fits in the handle data space.
+// dtor is associated with type and called when the object is freed.
+// handle data is initialized to 0; optionally, a pointer to it is returned.
+extern Handle h_alloc(u32 key, uint type,/* size_t user_size,*/ DTOR dtor = 0, HDATA** puser = 0);
 extern int h_free(Handle h, uint type);
 
-// find and return a handle by type and associated key (typically filename hash)
+// find and return a handle by type and key (typically filename hash)
 // currently O(n).
-extern Handle h_find(u32 key, uint type, HDATA** phd = 0);
+extern Handle h_find(u32 key, uint type, HDATA** puser = 0);
 
-// same as above, but search for a pointer the handle references
-extern Handle h_find(const void* p, uint type, HDATA** phd = 0);
+// same as above, but search for the handle's associated pointer
+extern Handle h_find(const void* p, uint type, HDATA** puser = 0);
 
-// get a handle's associated data.
-// returns 0 if the handle is invalid, or <type> doesn't match
+// return a pointer to handle data
 extern HDATA* h_data(Handle h, uint type);
 
-extern Handle res_load(const char* fn, uint type, DTOR dtor, void*& p, size_t& size, HDATA*& hd);
+extern Handle res_load(const char* fn, uint type, DTOR dtor, void*& p, size_t& size, HDATA*& user);
 
 
 #endif	// #ifndef __RES_H__

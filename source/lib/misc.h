@@ -40,6 +40,35 @@
 #define ONCE(code) { static bool done; if(!done) { code; }; done = true; }
 
 
+
+
+template<bool>
+struct cassert_checker
+{
+	cassert_checker(...) { }
+};
+
+template<> struct cassert_checker<false> { };
+
+#define cassert(expr, id) {\
+struct CASSERT_##id { };\
+typedef cassert_checker<(expr)> type;\
+type temp = type(CASSERT_##id());\
+(void)sizeof(temp);\
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 const u32 KB = 1 << 10;
 const u32 MB = 1 << 20;
 
