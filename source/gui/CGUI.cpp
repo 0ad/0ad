@@ -1037,7 +1037,7 @@ void CGUI::LoadXMLFile(const string &Filename)
 
 	// Check root element's (node) name so we know what kind of
 	//  data we'll be expecting
-	std::string root_name = XeroFile.getElementString(node.getNodeName());
+	CStr root_name (XeroFile.getElementString(node.getNodeName()));
 
 	try
 	{
@@ -1148,7 +1148,7 @@ void CGUI::Xeromyces_ReadRootSetup(XMBElement Element, CXeromyces* pFile)
 
 		// Read in this whole object into the GUI
 
-		std::string name = pFile->getElementString(child.getNodeName());
+		CStr name (pFile->getElementString(child.getNodeName()));
 
 		if (name == "scrollbar")
 		{
@@ -1174,12 +1174,12 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	XMBAttributeList attributes = Element.getAttributes();
 
 	// Well first of all we need to determine the type
-	utf16string type = attributes.getNamedItem( pFile->getAttributeID("type") );
+	CStr type (attributes.getNamedItem(pFile->getAttributeID("type")));
 
 	// Construct object from specified type
 	//  henceforth, we need to do a rollback before aborting.
 	//  i.e. releasing this object
-	object = ConstructObject((CStr)type);
+	object = ConstructObject(type);
 
 	if (!object)
 	{
@@ -1210,7 +1210,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	//
 	//	Always load default (if it's available) first!
 	//
-	CStr argStyle = (CStr)attributes.getNamedItem(attr_style);
+	CStr argStyle (attributes.getNamedItem(attr_style));
 
 	if (m_Styles.count(CStr("default")) == 1)
 		object->LoadStyle(*this, CStr("default"));
@@ -1234,7 +1234,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	bool ManuallySetZ = false; // if z has been manually set, this turn true
 
 // MT - temp tag
-	CStr hotkeyTag( "" );
+	CStr hotkeyTag;
 // -- MT
 
 	// Now we can iterate all attributes and store
@@ -1260,7 +1260,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 
 // MT - temp tag
 		// Wire up the hotkey tag, if it has one
-		if( attr.Name == attr_hotkey )
+		if (attr.Name == attr_hotkey)
 			hotkeyTag = attr.Value;
 // -- MT
 
@@ -1274,15 +1274,15 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		if (pFile->getAttributeString(attr.Name).substr(0, 6) == "sprite")
 		{
 			// Check whether it's a special stretched one
-			std::string SpriteName = CStr8(attr.Value).c_str();
+			CStr SpriteName (attr.Value);
 			if (SpriteName.substr(0, 10) == "stretched:" &&
 				m_Sprites.find(SpriteName) == m_Sprites.end() )
 			{
 
-				std::string TexFilename = "art/textures/ui/";
+				CStr TexFilename ("art/textures/ui/");
 				TexFilename += SpriteName.substr(10);
 
-				Handle tex = tex_load(TexFilename.c_str());
+				Handle tex = tex_load(TexFilename);
 				if (tex <= 0)
 				{
 					LOG(ERROR, LOG_CATEGORY, "Error opening texture '%s': %lld", TexFilename.c_str(), tex);
@@ -1314,7 +1314,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		catch (PS_RESULT e)
 		{
 			UNUSED(e);
-			ReportParseError("Can't set \"%s\" to \"%s\"", pFile->getAttributeString(attr.Name).c_str(), attr.Value.c_str());
+			ReportParseError("Can't set \"%s\" to \"%s\"", pFile->getAttributeString(attr.Name).c_str(), CStr(attr.Value).c_str());
 
 			// This is not a fatal error
 		}
@@ -1333,7 +1333,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		hotkeyRegisterGUIObject( object->GetName(), hotkeyTag );
 // -- MT
 
-	CStrW caption = (CStrW)Element.getText();
+	CStrW caption (Element.getText());
 	if (caption.Length())
 	{
 		try
@@ -1495,7 +1495,7 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 	//
 
 	// Get name, we know it exists because of DTD requirements
-	name = (CStr) Element.getAttributes().getNamedItem( pFile->getAttributeID("name") );
+	name = Element.getAttributes().getNamedItem( pFile->getAttributeID("name") );
 
 	//
 	//	Read Children (the images)
@@ -1529,7 +1529,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 	SGUIImage image;
 	
 	// TODO Gee: (2004-08-30) This is not how to set defaults.
-	CStr DefaultTextureSize = "0 0 100% 100%";
+	CStr DefaultTextureSize ("0 0 100% 100%");
 	image.m_TextureSize = CClientArea(DefaultTextureSize);
 	
 	// TODO Gee: Setup defaults here (or maybe they are in the SGUIImage ctor)
@@ -1543,14 +1543,14 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 	for (int i=0; i<attributes.Count; ++i)
 	{
 		XMBAttribute attr = attributes.item(i);
-		std::string attr_name = pFile->getAttributeString(attr.Name);
+		CStr attr_name (pFile->getAttributeString(attr.Name));
 		CStr attr_value (attr.Value);
 
 		// This is the only attribute we want
 		if (attr_name == "texture")
 		{
 			// Load the texture from disk now, because now's as good a time as any
-			std::string TexFilename = "art/textures/ui/";
+			CStr TexFilename ("art/textures/ui/");
 			TexFilename += attr_value;
 
 			Handle tex = tex_load(TexFilename.c_str());
@@ -1662,7 +1662,7 @@ void CGUI::Xeromyces_ReadStyle(XMBElement Element, CXeromyces* pFile)
 	for (int i=0; i<attributes.Count; ++i)
 	{
 		XMBAttribute attr = attributes.item(i);
-		std::string attr_name = pFile->getAttributeString(attr.Name);
+		CStr attr_name (pFile->getAttributeString(attr.Name));
 		CStr attr_value (attr.Value);
 
 		// The "name" setting is actually the name of the style
@@ -1695,10 +1695,10 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 	for (int i=0; i<attributes.Count; ++i)
 	{
 		XMBAttribute attr = attributes.item(i);
-		std::string attr_name = pFile->getAttributeString(attr.Name);
+		CStr attr_name = pFile->getAttributeString(attr.Name);
 		CStr attr_value (attr.Value);
 
-		if (attr_value == CStr("null"))
+		if (attr_value == "null")
 			continue;
 
 		if (attr_name == "name")
@@ -1778,10 +1778,10 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 	for (int i=0; i<attributes.Count; ++i)
 	{
 		XMBAttribute attr = attributes.item(i);
-		std::string attr_name = pFile->getAttributeString(attr.Name);
+		CStr attr_name (pFile->getAttributeString(attr.Name));
 		CStr attr_value (attr.Value);
 
-		if (attr_value == CStr("null"))
+		if (attr_value == "null")
 			continue;
 
 		if (attr_name == "name")
