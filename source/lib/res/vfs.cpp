@@ -597,7 +597,7 @@ enum TreeLookupFlags
 static int tree_lookup_dir(const char* path, TDir** pdir, uint flags = 0, char* exact_path = 0)
 {
 	CHECK_PATH(path);
-	assert(!(flags & ~LF_CREATE_MISSING|LF_START_DIR));
+	assert(flags & ~(LF_CREATE_MISSING|LF_START_DIR) == 0);
 		// no undefined bits set
 	// can't check if path ends in '/' here - we're called via tree_lookup.
 
