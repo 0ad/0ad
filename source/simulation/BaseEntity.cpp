@@ -201,7 +201,7 @@ void CBaseEntity::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement&
 	{	
 		if( !Existing->m_Intrinsic )
 			LOG( WARNING, LOG_CATEGORY, "CBaseEntity::XMLAddProperty: %s already defined for %s. Property trees will be merged.", PropertyName.c_str(), m_Tag.c_str() );
-		Existing->Set( ToJSVal<CStrW>( Source.getText() ) );
+		Existing->Set( JSParseString( Source.getText() ) );
 		Existing->m_Inherited = false;
 	}
 	else
@@ -229,7 +229,7 @@ void CBaseEntity::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement&
 		
 		if( Existing )
 		{
-			Existing->Set( ToJSVal<CStrW>( Attribute.Value ) );
+			Existing->Set( JSParseString( Attribute.Value ) );
 			Existing->m_Inherited = false;
 		}
 		else

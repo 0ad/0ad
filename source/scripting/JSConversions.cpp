@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "ObjectManager.h"
 #include "scripting/JSInterface_Vector3D.h"
+#include "Parser.h"
 
 // HEntity
 
@@ -239,3 +240,23 @@ template<> jsval ToJSVal<jsval>( const jsval& Native )
 	return( Native );
 }
 
+// String->JSVal
+
+jsval JSParseString( const CStrW& Native )
+{
+	CParser stringParser;
+	stringParser.InputTaskType( "string", "_$value_" );
+	CParserLine result;
+	result.ParseString( stringParser, (CStr)Native );
+	bool boolResult; int intResult; float floatResult;
+	if( result.GetArgBool( 0, boolResult ) )
+		return( BOOLEAN_TO_JSVAL( boolResult ) ); 
+	if( result.GetArgInt( 0, intResult ) )
+	{
+		if( INT_FITS_IN_JSVAL( intResult ) )
+			return( ToJSVal( intResult ) );
+	}
+	if( result.GetArgFloat( 0, floatResult ) )
+		return( ToJSVal( floatResult ) );
+	return( ToJSVal( Native ) );
+}

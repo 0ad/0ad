@@ -658,7 +658,7 @@ public:
 
 	void AddProperty( CStrW PropertyName, CStrW Value )
 	{
-		AddProperty( PropertyName, ToJSVal<CStrW>( Value ) );
+		AddProperty( PropertyName, JSParseString( Value ) );
 	}
 	void AddProperty( CStrW PropertyName, GetFn Getter, SetFn Setter = NULL )
 	{

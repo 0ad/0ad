@@ -143,8 +143,8 @@ template<> jsval ToJSVal<CStrW>( CStrW& Native );
 
 template<> jsval ToJSVal<jsval>( const jsval& Native );
 
+// Intelligent CStrW->JSVal conversion
 
-
-
+jsval JSParseString( const CStrW& String );
 
 #endif

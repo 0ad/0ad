@@ -241,6 +241,7 @@ void CInput::HandleMessage(const SGUIMessage &Message)
 		// Now get the height of the font.
 		CFont *font=NULL;
 		font = new CFont("Console");
+
 		float spacing = font->GetLineSpacing();
 		float height = font->GetHeight();
 
