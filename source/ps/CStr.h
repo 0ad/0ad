@@ -199,7 +199,7 @@ public:
 	operator const TCHAR*() const;
 
 	// Do some range checking in debug builds
-	TCHAR &operator[](size_t n)	{ assert(n >= 0 && (size_t)n < length()); return this->std::tstring::operator[](n); }
+	TCHAR &operator[](size_t n)	{ assert(n < length()); return this->std::tstring::operator[](n); }
 	TCHAR &operator[](int n)	{ assert(n >= 0 && (size_t)n < length()); return this->std::tstring::operator[](n); }
 	
 	// Conversion to utf16string
