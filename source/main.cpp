@@ -1001,9 +1001,6 @@ static void Frame()
 
 	MICROLOG(L"input");
 
-	// ugly, but necessary. these are one-shot events, have to be reset.
-	mouseButtons[SDL_BUTTON_WHEELUP] = false;
-	mouseButtons[SDL_BUTTON_WHEELDOWN] = false;
 	in_get_events();
 
 	if(TimeSinceLastFrame > 0.0f)
@@ -1014,6 +1011,10 @@ static void Frame()
 		if (!g_FixedFrameTiming)
 			terr_update(float(TimeSinceLastFrame));
 		g_Console->Update(TimeSinceLastFrame);
+
+		// ugly, but necessary. these are one-shot events, have to be reset.
+		mouseButtons[SDL_BUTTON_WHEELUP] = false;
+		mouseButtons[SDL_BUTTON_WHEELDOWN] = false;
 	}
 
 	if(g_active)
