@@ -146,8 +146,8 @@ CMiniPatch* CTerrain::GetTile(int32_t x,int32_t z)
 	if (x<0 || x>=int32_t(m_MapSize)-1) return 0;	
 	if (z<0 || z>=int32_t(m_MapSize)-1) return 0;
 
-	CPatch* patch=GetPatch(x/16,z/16);
-	return &patch->m_MiniPatches[z%16][x%16];
+	CPatch* patch=GetPatch(x/PATCH_SIZE,z/PATCH_SIZE);
+	return &patch->m_MiniPatches[z%PATCH_SIZE][x%PATCH_SIZE];
 }
 
 
@@ -210,16 +210,16 @@ void CTerrain::Resize(u32 size)
 		for (u32 i=0;i<size;i++) {
 			// copy over texture data from existing tiles, if possible
 			if (i<m_MapSizePatches && j<m_MapSizePatches) {
-				memcpy(newPatches[j*size+i].m_MiniPatches,m_Patches[j*m_MapSizePatches+i].m_MiniPatches,sizeof(CMiniPatch)*16*16);
+				memcpy(newPatches[j*size+i].m_MiniPatches,m_Patches[j*m_MapSizePatches+i].m_MiniPatches,sizeof(CMiniPatch)*PATCH_SIZE*PATCH_SIZE);
 			} 
 		}
 
 		if (j<m_MapSizePatches && size>m_MapSizePatches) {
 			// copy over the last tile from each column
 			for (u32 n=0;n<size-m_MapSizePatches;n++) {
-				for (int m=0;m<16;m++) {
+				for (int m=0;m<PATCH_SIZE;m++) {
 					CMiniPatch& src=m_Patches[j*m_MapSizePatches+m_MapSizePatches-1].m_MiniPatches[m][15];
-					for (int k=0;k<16;k++) {
+					for (int k=0;k<PATCH_SIZE;k++) {
 						CMiniPatch& dst=newPatches[j*size+m_MapSizePatches+n].m_MiniPatches[m][k];
 						dst.Tex1=src.Tex1;
 						dst.Tex1Priority=src.Tex1Priority;
@@ -235,8 +235,8 @@ void CTerrain::Resize(u32 size)
 		CPatch* dstpatch=srcpatch+size;
 		for (u32 p=0;p<size-m_MapSizePatches;p++) {
 			for (u32 n=0;n<size;n++) {
-				for (int m=0;m<16;m++) {
-					for (int k=0;k<16;k++) {
+				for (int m=0;m<PATCH_SIZE;m++) {
+					for (int k=0;k<PATCH_SIZE;k++) {
 						CMiniPatch& src=srcpatch->m_MiniPatches[15][k];
 						CMiniPatch& dst=dstpatch->m_MiniPatches[m][k];
 						dst.Tex1=src.Tex1;

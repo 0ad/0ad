@@ -8,8 +8,9 @@
 
 #include "precompiled.h"
 
-#include "MiniPatch.h"
 #include "Patch.h"
+#include "MiniPatch.h"
+#include "Terrain.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // Constructor
@@ -30,7 +31,7 @@ CMiniPatch::~CMiniPatch()
 void CMiniPatch::GetTileIndex(u32& x,u32& z)
 {
 	const ptrdiff_t tindex = this - &m_Parent->m_MiniPatches[0][0];
-	x=(m_Parent->m_X*16)+tindex%16;
-	z=(m_Parent->m_Z*16)+tindex/16;
+	x=(m_Parent->m_X*PATCH_SIZE)+tindex%PATCH_SIZE;
+	z=(m_Parent->m_Z*PATCH_SIZE)+tindex/PATCH_SIZE;
 }
 

@@ -14,18 +14,6 @@
 #include "Vector3D.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-// Terrain Constants:
-//
-// PATCH_SIZE: number of tiles in each patch
-const int	PATCH_SIZE = 16;
-// CELL_SIZE: size of each tile in x and z
-const int	CELL_SIZE = 4;	
-// HEIGHT_SCALE: vertical scale of terrain - terrain has a coordinate range of 
-// 0 to 65536*HEIGHT_SCALE
-const float HEIGHT_SCALE = 0.35f/256.0f;
-
-
-///////////////////////////////////////////////////////////////////////////////
 // CTerrain: main terrain class; contains the heightmap describing elevation
 // data, and the smaller subpatches that form the terrain
 class CTerrain
