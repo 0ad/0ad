@@ -337,4 +337,7 @@ extern void win_unlock(uint idx);
 #define WIN_RESTORE_LAST_ERROR STMT(if(last_err__ != 0 && GetLastError() == 0) SetLastError(last_err__););
 
 
+extern char win_sys_dir[MAX_PATH+1];
+
+
 #endif	// #ifndef WIN_INTERNAL_H

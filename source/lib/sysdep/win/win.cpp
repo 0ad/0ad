@@ -34,6 +34,8 @@ void sle(int x)
 	SetLastError((DWORD)x);
 }
 
+char win_sys_dir[MAX_PATH+1];
+
 
 //
 // these override the portable versions in sysdep.cpp
@@ -261,6 +263,8 @@ static inline void pre_libc_init()
 {
 	for(int i = 0; i < NUM_CS; i++)
 		InitializeCriticalSection(&cs[i]);
+
+	GetSystemDirectory(win_sys_dir, sizeof(win_sys_dir));
 }
 
 
