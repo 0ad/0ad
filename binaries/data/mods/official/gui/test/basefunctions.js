@@ -85,6 +85,9 @@ function GUIUpdateObjectInfo() {
 				case ("Prometheus Dudette"):
 					ObjectPortrait.sprite="portrait_unit_dudette_lrg";
 				break;
+				case ("Cavalry Dude"):
+					ObjectPortrait.sprite="portrait_unit_cavalrydude_lrg";
+				break;
 				case ("Deciduous Tree 1"):
 				case ("Deciduous Tree 2"):
 					ObjectPortrait.sprite="portrait_flora_deciduotree_lrg";

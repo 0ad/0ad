@@ -340,6 +340,11 @@
             MakeUnit(15,0,15,"Prometheus Dudette");
           ]]></action>
         </object>
+        <object type="button" name="normal_mode_button_cavalrydude" sprite="portrait_unit_cavalrydude_sml" sprite-over="portrait_unit_cavalrydude_sml_over" size="100%-110 100%-143 100%-77 100%-111" z="64" hidden="false">
+          <action on="Press"><![CDATA[
+            MakeUnit(15,0,15,"Cavalry Dude");
+          ]]></action>
+        </object>
       </object>
         
       <!-- TAB: [2] BUILD CIVIL -->
