@@ -82,10 +82,9 @@ void CPlayerRenderer::Render()
 	// the alpha channel as a mask.
 	// EDIT: The second pass resides in SetupColorRenderStates() [John M. Mena]
 	//
-	// Assume the alpha channel is 1-bit, so there's no need for blending.
-	//
-	// This probably ought to be done in a single pass on hardware that
-	// supports register combiners / fragment programs / etc.
+	// This really ought to be done in a single pass on hardware that
+	// supports register combiners / fragment programs / etc (since it
+	// would only need a single pass and no blending)
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -95,16 +94,19 @@ void CPlayerRenderer::Render()
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_CONSTANT);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 	
+	// First pass should ignore the alpha channel and render the whole model
 	glDisable(GL_ALPHA_TEST);
 
 	RenderObjectsStreams(STREAM_POS|STREAM_COLOR|STREAM_UV0);
 
+	// Render the second pass:
 
-	// Render the second pass
-
-	// Only render high-alpha parts
+	// Second pass uses the alpha channel to blend the coloured model
+	// with the first pass's solid model
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_ALPHA_TEST);
-	glAlphaFunc(GL_GREATER,0.5f);
+	glAlphaFunc(GL_GREATER, 0);
 
 	RenderObjectsStreams(STREAM_POS|STREAM_COLOR|STREAM_UV0, true);
 
@@ -113,6 +115,7 @@ void CPlayerRenderer::Render()
 	glActiveTexture(GL_TEXTURE1);
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_ALPHA_TEST);
+	glDisable(GL_BLEND);
 
 	glActiveTexture(GL_TEXTURE0);
 
