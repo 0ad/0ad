@@ -95,6 +95,7 @@ struct ZLoc
 static const char cdfh_id[] = "PK\1\2";
 static const char lfh_id[]  = "PK\3\4";
 static const char ecdr_id[] = "PK\5\6";
+// lengths include the id field!
 const size_t CDFH_SIZE = 46;
 const size_t LFH_SIZE  = 30;
 const size_t ECDR_SIZE = 22;
@@ -102,7 +103,7 @@ const size_t ECDR_SIZE = 22;
 
 // return -1 if file is obviously not a valid Zip archive,
 // otherwise 0. used as early-out test in lookup_init (see call site).
-static inline int z_validate(const void* file, size_t size)
+static inline int z_validate(const u8* file, size_t size)
 {
 	// make sure it's big enough to check the header and for
 	// z_find_ecdr to succeed (if smaller, it's definitely bogus).
@@ -114,75 +115,64 @@ static inline int z_validate(const void* file, size_t size)
 }
 
 
+// scan for and return a pointer to a Zip record, or 0 if not found.
+// <start> is the expected position; we scan from there until EOF for
+// the given ID (fourcc). <record_size> (includes ID field) bytes must
+// remain before EOF - this makes sure the record is completely in the file.
+// used by z_find_ecdr and z_extract_cdfh.
+static const u8* z_find_id(const u8* file, size_t size, const u8* start, const char id[5], size_t record_size)
+{
+	ssize_t bytes_left = (ssize_t)((file+size) - start - record_size);
+
+	const u8* p = start;
+		// don't increment function argument directly,
+		// so we can warn the user if we had to scan.
+
+	while(bytes_left-- >= 0)
+	{
+		// found it
+		if(*(u32*)p == *(u32*)id)
+		{
+#ifndef NDEBUG
+			if(p != start)
+				debug_warn("z_find_id: archive damaged, but still found next record.");
+#endif
+			return p;
+		}
+
+		p++;
+			// be careful not to increment before comparison;
+			// id may already be at <start>.
+	}
+
+	// passed EOF, didn't find it.
+	debug_warn("z_find_id: archive corrupted, next record not found.");
+	return 0;
+}
+
+
 // find "End of Central Dir Record" in file.
 // z_validate has made sure size >= ECDR_SIZE.
 // return -1 on failure (output param invalid), otherwise 0.
-static int z_find_ecdr(const void* file, size_t size, const u8*& ecdr_)
+static int z_find_ecdr(const u8* file, size_t size, const u8*& ecdr_)
 {
 	// early out: check expected case (ECDR at EOF; no file comment)
-	const u8* ecdr = (const u8*)file + size - ECDR_SIZE;
+	const u8* ecdr = file + size - ECDR_SIZE;
 	if(*(u32*)ecdr == *(u32*)&ecdr_id)
 		goto found_ecdr;
-
-	{
 
 	// scan the last 66000 bytes of file for ecdr_id signature
 	// (the Zip archive comment field, up to 64k, may follow ECDR).
 	// if the zip file is < 66000 bytes, scan the whole file.
-
-	size_t bytes_left = MIN(66000, size);
-	ecdr = (const u8*)file + size - bytes_left;
-
-	while(bytes_left >= 4)
-	{
-		if(*(u32*)ecdr == *(u32*)&ecdr_id)
-			goto found_ecdr;
-
-		// check next 4 bytes (unaligned!!)
-		ecdr++;
-		bytes_left--;
-	}
-
-	// reached EOF and still haven't found the ECDR identifier.
-	return ERR_CORRUPTED;
-
-	}
+	const u8* start = file + size - MIN(66000, size);
+	ecdr = z_find_id(file, size, start, ecdr_id, ECDR_SIZE);
+	if(!ecdr)
+		return ERR_CORRUPTED;
 
 found_ecdr:
 	ecdr_ = ecdr;
 	return 0;
 }
-
-
-#ifdef PARANOIA
-
-// make sure the LFH fields match those passed (from the CDFH).
-// only used in PARANOIA builds - costs time when opening archives.
-// return -1 on error or mismatch, otherwise 0.
-static int z_verify_lfh(const void* file, const off_t lfh_ofs, const off_t file_ofs)
-{
-	assert(lfh_ofs < file_ofs);	// header comes before file
-
-	const u8* lfh = (const u8*)file + lfh_ofs;
-
-	// LFH signature doesn't match
-	if(*(u32*)lfh != *(u32*)lfh_id)
-		return ERR_CORRUPTED;
-
-	const u16 lfh_fn_len = read_le16(lfh+26);
-	const u16 lfh_e_len  = read_le16(lfh+28);
-
-	const off_t lfh_file_ofs = lfh_ofs + LFH_SIZE + lfh_fn_len + lfh_e_len;
-
-	// CDFH and LFH are inconsistent =>
-	// normal builds would return incorrect offsets.
-	if(file_ofs != lfh_file_ofs)
-		return  ERR_CORRUPTED;
-
-	return 0;
-}
-
-#endif	// #ifdef PARANOIA
 
 
 //
@@ -203,7 +193,7 @@ static uint bits(uint num, uint lo_idx, uint hi_idx)
 
 static time_t convert_dos_date(u16 fatdate, u16 fattime)
 {
-	struct tm t;
+	struct tm t;							// struct tm format:
 	t.tm_sec   = bits(fattime, 0,4) * 2;	// [0,59]
 	t.tm_min   = bits(fattime, 5,10);		// [0,59]
 	t.tm_hour  = bits(fattime, 11,15);		// [0,23]
@@ -211,6 +201,9 @@ static time_t convert_dos_date(u16 fatdate, u16 fattime)
 	t.tm_mon   = bits(fatdate, 5,8)-1;		// [0,11]
 	t.tm_year  = bits(fatdate, 9,15) + 80;	// since 1900
 	t.tm_isdst = -1;	// unknown - let libc determine
+
+	assert(t.tm_year < 138);
+		// otherwise: totally bogus, and at the limit of 32-bit time_t
 
 	time_t ret = mktime(&t);
 	if(ret == (time_t)-1)
@@ -222,32 +215,31 @@ static time_t convert_dos_date(u16 fatdate, u16 fattime)
 ///////////////////////////////////////////////////////////////////////////////
 
 
-// if cdfh is valid and describes a file, extract its name, offset and size
-// for use in z_enum_files (passes it to lookup).
-// return -1 on error (output params invalid), or 0 on success.
-static int z_extract_cdfh(const u8* cdfh, ssize_t bytes_left, const char*& fn, size_t& fn_len, ZLoc* loc)
+enum z_extract_cdfh_ret
 {
-	// sanity check: did we even read the CDFH?
-	if(bytes_left < CDFH_SIZE)
-	{
-		debug_warn("z_extract_cdfh: CDFH not in buffer!");
-		return -1;
-	}
+	Z_CDFH_ABORT   = -1,	// next CDFH not found; abort.
+	Z_CDFH_FILE_OK =  0,	// valid file; add to lookup.
+	Z_CDFH_SKIPPED =  1		// not valid file, but have next CDFH; continue.
+};
 
-	// this is checked when advancing,
-	// but we need this for the first central dir entry.
-	if(*(u32*)cdfh != *(u32*)cdfh_id)
-	{
-		debug_warn("z_extract_cdfh: CDFH signature not found");
-		return -1;
-	}
+// read the current CDFH. if a valid file, return its filename and ZLoc.
+// finally, advance to next CDFH.
+// return -1 on error (output params invalid), or 0 on success.
+// called by z_enum_files, which passes the output to lookup.
+static int z_extract_cdfh(const u8* file, size_t size,              // in
+	const u8*& cdfh, const char*& fn, size_t& fn_len, ZLoc* loc)    // out
+{
+	// scan for next CDFH (at or beyond current cdfh position)
+	cdfh = z_find_id(file, size, cdfh, cdfh_id, CDFH_SIZE);
+	if(!cdfh)					// no (further) CDFH found:
+		return Z_CDFH_ABORT;	// caller will abort.
 
 	// extract fields from CDFH
-	const u8 method = cdfh[10];
+	const u16 method  = read_le16(cdfh+10);
 	const u16 fattime = read_le16(cdfh+12);
 	const u16 fatdate = read_le16(cdfh+14);
-	const u32 csize_  = read_le32(cdfh+20);
-	const u32 ucsize_ = read_le32(cdfh+24);
+	const u32 csize   = read_le32(cdfh+20);
+	const u32 ucsize  = read_le32(cdfh+24);
 	const u16 fn_len_ = read_le16(cdfh+28);
 	const u16 e_len   = read_le16(cdfh+30);
 	const u16 c_len   = read_le16(cdfh+32);
@@ -255,40 +247,43 @@ static int z_extract_cdfh(const u8* cdfh, ssize_t bytes_left, const char*& fn, s
 	const char* fn_ = (const char*)cdfh+CDFH_SIZE;
 		// not 0-terminated!
 
-	//
-	// check if valid and data should actually be returned
-	//
+	// find corresponding LFH, needed to calculate file offset
+	// (its extra field may not match that reported by CDFH!).
+	// TODO: this is slow, due to seeking backwards.
+	// optimization: calculate only on demand (i.e. open, not mount)?
+	const u8* lfh = z_find_id(file, size, (u8*)file+lfh_ofs, lfh_id, LFH_SIZE);
 
-	// .. compression method is unknown (neither deflated nor stored)
-	if(method & ~8)
-	{
-		debug_warn("z_extract_cdfh: unknown compression method");
-		return ERR_NOT_SUPPORTED;
-	}
-	// .. this is a directory entry; we only want files.
-	if(!csize_ && !ucsize_)
-        return -1;
-#ifdef PARANOIA
-	// .. CDFH's file ofs doesn't match that reported by LFH.
-	// don't check this in normal builds - seeking between LFHs and
-	// central dir is slow. this happens if the headers differ for some
-	// reason; we'd notice anyway, because inflate will fail
-	// (since file offset is incorrect).
-	if(z_verify_lfh(file, lfh_ofs, file_ofs) != 0)
-		return -1;
-#endif
+	// advance CDFH; we now know where the next CDFH entry should be,
+	// but will still scan ahead for its id on next call.
+	cdfh += CDFH_SIZE + fn_len_ + e_len + c_len;
 
+	// is this entry not a valid file?
+	if(
+		// compression method is unknown (neither deflated nor stored)
+		(method & ~8) ||
+		// it's a directory entry (we only want files).
+		(!csize && !ucsize) ||
+		// LFH signature not found
+		(!lfh)
+	)
+		return Z_CDFH_SKIPPED;
+
+	// get actual file ofs (see above)
+	const u16 lfh_fn_len = read_le16(lfh+26);
+	const u16 lfh_e_len  = read_le16(lfh+28);
+	const off_t file_ofs = lfh_ofs + LFH_SIZE + lfh_fn_len + lfh_e_len;
+		// LFH doesn't have a comment field!
 
 	// write out entry data
 	fn     = fn_;
 	fn_len = fn_len_;
-	loc->ofs    = (off_t)(lfh_ofs + LFH_SIZE + fn_len_ + e_len);
-	loc->csize  = (off_t)(method? csize_ : 0);
+	loc->ofs    = file_ofs;
+	loc->csize  = (off_t)(method? csize : 0);
 		// if not compressed, csize = 0 (see zfile_compressed)
-	loc->ucsize = (off_t)ucsize_;
+	loc->ucsize = (off_t)ucsize;
 	loc->mtime  = convert_dos_date(fatdate, fattime);
 
-	return 0;
+	return Z_CDFH_FILE_OK;
 }
 
 
@@ -307,7 +302,7 @@ static int z_extract_cdfh(const u8* cdfh, ssize_t bytes_left, const char*& fn, s
 // loc is only valid during the callback! must be copied or saved.
 typedef int(*CDFH_CB)(uintptr_t user, i32 idx, const char* fn, size_t fn_len, const ZLoc* loc);
 
-static int z_enum_files(const void* file, const size_t size, const CDFH_CB cb, const uintptr_t user)
+static int z_enum_files(const u8* file, const size_t size, const CDFH_CB cb, const uintptr_t user)
 {
 	// find "End of Central Directory Record"
 	const u8* ecdr;
@@ -330,44 +325,25 @@ static int z_enum_files(const void* file, const size_t size, const CDFH_CB cb, c
 	i32 idx = 0;
 		// only incremented when valid, so we don't leave holes
 		// in lookup's arrays (bad locality).
-	i32 entries_left = num_entries;
-	for(;;)
-	{
-		entries_left--;
-		ssize_t bytes_left = (ssize_t)size - ( cdfh - (u8*)file );
 
+	for(i32 i = 0; i < num_entries; i++)
+	{
 		const char* fn;
 		size_t fn_len;
 		ZLoc loc;
-		// CDFH is valid and of a file
-		if(z_extract_cdfh(cdfh, bytes_left, fn, fn_len, &loc) == 0)
+		int ret = z_extract_cdfh(file, size, cdfh, fn, fn_len, &loc);
+		// valid file
+		if(ret == Z_CDFH_FILE_OK)
 		{
 			cb(user, idx, fn, fn_len, &loc);
 			idx++;	// see rationale above
-
-			// advance to next cdfh (the easy way - we have a valid fn_len
-			// and assume there's no extra data stored after the header).
-			cdfh += CDFH_SIZE + fn_len;
-			if(*(u32*)cdfh == *(u32*)cdfh_id)
-				goto found_next_cdfh;
-
-			// not found; scan for it below (as if the CDFH were invalid).
-			// note: don't restore the previous cdfh pointer - fn_len is
-			// correct and there are additional fields before the next CDFH.
 		}
-
-		if(!entries_left)
-			break;
-
-		// scan for the next CDFH (its signature)
-		for(ssize_t i = 0; i < bytes_left - (ssize_t)CDFH_SIZE; i++)
-			if(*(u32*)(++cdfh) == *(u32*)cdfh_id)
-				goto found_next_cdfh;
-
-		debug_warn("z_enum_files: next CDFH not found");
-		return -1;
-
-found_next_cdfh:;
+		// next CDFH not found (Zip archive corrupted)
+		else if(ret == Z_CDFH_ABORT)
+			return -1;
+		// skipping this CDFH (e.g. if directory)
+		else
+			;
 	}
 
 	return 0;
@@ -436,26 +412,26 @@ struct LookupInfo
 };
 
 
-// support for case-insensitive filenames: the hash of each
-// filename string is saved in lookup_add_file_cb and searched for by
-// lookup_get_file_info. in both cases, we convert a temporary to
-// lowercase before hashing it.
-static void strcpy_lower(char* dst, const char* src)
+// write a lower-case copy of <src> to <dst>, which holds <buf_size> bytes.
+// up to buf_size-1 chars are written; we always 0-terminate the output!
+//
+// this routine is used to convert OS and user-specified filenames
+// to lowercase before hashing them and then comparing.
+static void copy_lower_case(char* dst, const char* src, size_t buf_size)
 {
+	assert(buf_size > 0);	// otherwise, no room for trailing '\0'
+
 	int c;
 	do
 	{
 		c = *src++;
+		// this is the last remaining byte in the buffer.
+		// loop will exit below after writing 0-terminator.
+		if(--buf_size == 0)
+			c = '\0';
 		*dst++ = tolower(c);
 	}
 	while(c != '\0');
-}
-
-static void strncpy_lower(char* dst, const char* src, size_t count)
-{
-	int n = (int)count;
-	while (--n >= 0)
-		*dst++ = tolower(*src++);
 }
 
 
@@ -499,8 +475,11 @@ static int lookup_add_file_cb(uintptr_t user, i32 idx,
 
 	// hash (lower case!) filename
 	char lc_fn[PATH_MAX];
-	strncpy_lower(lc_fn, fn, fn_len);
-	FnHash fn_hash = fnv_hash(lc_fn, fn_len);
+	size_t max_size = fn_len+1;	// fn not 0-terminated
+	if(max_size > PATH_MAX)		// (this avoids stupid min() type warning)
+		max_size = PATH_MAX;	// clamp to actual buffer size
+	copy_lower_case(lc_fn, fn, max_size);
+	FnHash fn_hash = fnv_hash(lc_fn);
 
 	// fill ZEnt
 	ZEnt* ent = li->ents + idx;
@@ -524,7 +503,7 @@ static int lookup_add_file_cb(uintptr_t user, i32 idx,
 
 // initialize lookup data structure for the given Zip archive:
 // adds all files to the index.
-static int lookup_init(LookupInfo* li, const void* file, const size_t size)
+static int lookup_init(LookupInfo* li, const u8* file, const size_t size)
 {
 	int err;
 
@@ -570,12 +549,12 @@ static int lookup_free(LookupInfo* li)
 }
 
 
-// look up ZLoc, given filename.
+// look up ZLoc, given filename (untrusted!).
 static int lookup_get_file_info(LookupInfo* li, const char* fn, ZLoc* loc)
 {
 	// hash (lower case!) filename
 	char lc_fn[PATH_MAX];
-	strcpy_lower(lc_fn, fn);
+	copy_lower_case(lc_fn, fn, sizeof(lc_fn));
 	const FnHash fn_hash = fnv_hash(lc_fn);
 
 	const FnHash* fn_hashes = li->fn_hashes;
@@ -696,7 +675,7 @@ static int ZArchive_reload(ZArchive* za, const char* fn, Handle)
 	if(err < 0)
 		goto exit_close;
 
-	err = lookup_init(&za->li, file, size);
+	err = lookup_init(&za->li, (u8*)file, size);
 	if(err < 0)
 		goto exit_unmap_close;
 
