@@ -4,12 +4,40 @@
 
 <objects>
 
-	<object name="Child" type="button" size="100%-50 100%-50 100%-5 100%-5" z="22"> 100
+	<object 
+		name="Child1" 
+		type="button"
+		style="button"
+		size="100%-140 10 100%-10 140" 
+		z="200" 
+	/>
 
 
-	</object>
+	<object 
+		name="Child2" 
+		type="button" 
+		style="button" 
+		size="10 10 140 40" 
+		z="200" 
+	/>
 
-	<object name="Child2" type="button" size="50% + 20 50% + 20 50% + 100 50% + 100" z="200" />
+	<object 
+		name="Child3" 
+		type="button"
+		style="button"
+		size="150 10 280 40" 
+		z="200" 
+	/>
+
+	<object 
+		name="Child4" 
+		type="button" 
+		sprite="sprite1" 
+		sprite-over="sprite1-over"
+ 		sprite-pressed="sprite1-pressed" 
+		size="290 10 420 40" 
+		z="200" 
+	/>
 
 	<object name="a1" type="button" size="50% 0 100% 50" z="20">
 		<object name="a2" type="button" size="-100 10 11 40" z="22" absolute="false"/>

@@ -4,6 +4,86 @@
 
 <sprites>
 	<sprite name="sprite1">
-		<image texture="t1" />
+		<!-- Starting with top left corner continuing in a clockwise manner -->
+		<image backcolor="255 250 204" size="0 0 2 2" />
+		<image backcolor="236 207 130" size="2 0 100%-2 2" />
+		<image backcolor="176 150 72" size="100%-2 0 100% 2" />
+		<image backcolor="126 107 52" size="100%-2 2 100% 100%-2" />
+		<image backcolor="87 74 36" size="100%-2 100%-2 100% 100%" />
+		<image backcolor="126 107 52" size="2 100%-2 100%-2 100%" />
+		<image backcolor="176 150 72" size="0 100%-2 2 100%" />
+		<image backcolor="236 207 130" size="0 2 2 100%-2" />
+		<!-- middle -->
+		<image backcolor="176 150 72" size="2 2 100%-2 100%-2" />
+	</sprite>
+
+	<sprite name="sprite1-pressed">
+		<!-- Starting with top left corner continuing in a clockwise manner -->
+		<image backcolor="52 9 9" size="0 0 2 2" />
+		<image backcolor="109 18 18" size="2 0 100%-2 2" />
+		<image backcolor="176 37 37" size="100%-2 0 100% 2" />
+		<image backcolor="255 54 54" size="100%-2 2 100% 100%-2" />
+		<image backcolor="255 105 105" size="100%-2 100%-2 100% 100%" />
+		<image backcolor="255 54 54" size="2 100%-2 100%-2 100%" />
+		<image backcolor="176 37 37" size="0 100%-2 2 100%" />
+		<image backcolor="109 18 18" size="0 2 2 100%-2" />
+		<!-- middle -->
+		<image backcolor="176 37 37" size="2 2 100%-2 100%-2" />
+	</sprite>
+
+	<sprite name="sprite1-over">
+		<!-- Starting with top left corner continuing in a clockwise manner -->
+		<image backcolor="255 105 105" size="0 0 2 2" />
+		<image backcolor="255 54 54" size="2 0 100%-2 2" />
+		<image backcolor="176 37 37" size="100%-2 0 100% 2" />
+		<image backcolor="109 18 18" size="100%-2 2 100% 100%-2" />
+		<image backcolor="52 9 9" size="100%-2 100%-2 100% 100%" />
+		<image backcolor="109 18 18" size="2 100%-2 100%-2 100%" />
+		<image backcolor="176 37 37" size="0 100%-2 2 100%" />
+		<image backcolor="255 54 54" size="0 2 2 100%-2" />
+		<!-- middle -->
+		<image backcolor="176 37 37" size="2 2 100%-2 100%-2" />
+	</sprite>
+
+	<sprite name="sprite2">
+		<!-- Starting with top left corner continuing in a counter-clockwise manner -->
+		<image backcolor="255 0 0" size="0 0 20 20" />
+		<image backcolor="0 255 0" size="20 0 100%-20 20" />
+		<image backcolor="0 0 255" size="100%-20 0 100% 20" />
+		<image backcolor="255 255 0" size="100%-20 20 100% 100%-20" />
+		<image backcolor="255 0 255" size="100%-20 100%-20 100% 100%" />
+		<image backcolor="0 255 255" size="20 100%-20 100%-20 100%" />
+		<image backcolor="128 128 0" size="0 100%-20 20 100%" />
+		<image backcolor="0 0 128" size="0 20 20 100%-20" />
+		<!-- middle -->
+		<image backcolor="255 255 255" size="20 20 100%-20 100%-20" />
+	</sprite>
+
+	<sprite name="sprite2-over">
+		<!-- Starting with top left corner continuing in a counter-clockwise manner -->
+		<image backcolor="128 0 0" size="0 0 20 20" />
+		<image backcolor="0 128 0" size="20 0 100%-20 20" />
+		<image backcolor="0 0 128" size="100%-20 0 100% 20" />
+		<image backcolor="128 128 0" size="100%-20 20 100% 100%-20" />
+		<image backcolor="128 0 128" size="100%-20 100%-20 100% 100%" />
+		<image backcolor="0 128 128" size="20 100%-20 100%-20 100%" />
+		<image backcolor="64 64 0" size="0 100%-20 20 100%" />
+		<image backcolor="0 0 64" size="0 20 20 100%-20" />
+		<!-- middle -->
+		<image backcolor="255 255 255" size="20 20 100%-20 100%-20" />
+	</sprite>
+
+	<sprite name="sprite2-pressed">
+		<!-- Starting with top left corner continuing in a counter-clockwise manner -->
+		<image backcolor="128 0 0" size="0 0 20 20" />
+		<image backcolor="0 128 0" size="20 0 100%-20 20" />
+		<image backcolor="0 0 128" size="100%-20 0 100% 20" />
+		<image backcolor="128 128 0" size="100%-20 20 100% 100%-20" />
+		<image backcolor="128 0 128" size="100%-20 100%-20 100% 100%" />
+		<image backcolor="0 128 128" size="20 100%-20 100%-20 100%" />
+		<image backcolor="64 64 0" size="0 100%-20 20 100%" />
+		<image backcolor="0 0 64" size="0 20 20 100%-20" />
+		<!-- middle -->
+		<image backcolor="255 0 0" size="20 20 100%-20 100%-20" />
 	</sprite>
 </sprites>

@@ -19,10 +19,8 @@
 	<image>
 -->
 <!ATTLIST image texture					CDATA #IMPLIED>
-<!ATTLIST image pixel					CDATA #IMPLIED>
-<!ATTLIST image percent					CDATA #IMPLIED>
-<!ATTLIST image t_pixel					CDATA #IMPLIED>
-<!ATTLIST image t_percent				CDATA #IMPLIED>
+<!ATTLIST image size					CDATA #IMPLIED>
+<!ATTLIST image texture_size				CDATA #IMPLIED>
 <!ATTLIST image backcolor				CDATA #IMPLIED>
 <!ATTLIST image bordercolor				CDATA #IMPLIED>
-<!ATTLIST image bordersize				CDATA #IMPLIED>
+<!ATTLIST image border					(true|false) #IMPLIED>
