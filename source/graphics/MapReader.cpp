@@ -14,6 +14,8 @@
 #include "Terrain.h"
 #include "TextureManager.h"
 
+#include "timer.h"
+
 // CMapReader constructor: nothing to do at the minute
 CMapReader::CMapReader()
 {
@@ -22,8 +24,13 @@ CMapReader::CMapReader()
 // LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
 void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain, CUnitManager *pUnitMan, CLightEnv *pLightEnv)
 {
+	TIMER(__CMapReader__LoadMap);
+
 	CFileUnpacker unpacker;
-	unpacker.Read(filename,"PSMP");
+	{
+		TIMER(____CMapReader__LoadMap__read);
+		unpacker.Read(filename,"PSMP");
+	}
 
 	// check version 
 	if (unpacker.GetVersion()<FILE_READ_VERSION) {
@@ -47,6 +54,8 @@ void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain, CUnitManager 
 // UnpackMap: unpack the given data from the raw data stream into local variables
 void CMapReader::UnpackMap(CFileUnpacker& unpacker)
 {
+TIMER(____CMapReader__UnpackMap);
+
 	// now unpack everything into local data
 	UnpackTerrain(unpacker);
 	UnpackObjects(unpacker);
@@ -129,6 +138,8 @@ void CMapReader::UnpackTerrain(CFileUnpacker& unpacker)
 // ApplyData: take all the input data, and rebuild the scene from it
 void CMapReader::ApplyData(CFileUnpacker& unpacker, CTerrain *pTerrain, CUnitManager *pUnitMan, CLightEnv *pLightEnv)
 {
+TIMER(____CMapReader__ApplyData);
+
 	// initialise the terrain 
 	pTerrain->Initialize(m_MapSize,&m_Heightmap[0]);	
 
@@ -198,6 +209,8 @@ void CMapReader::ApplyData(CFileUnpacker& unpacker, CTerrain *pTerrain, CUnitMan
 
 void CMapReader::ReadXML(const char* filename)
 {
+	TIMER(____CMapReader__ReadXML);
+
 #ifdef SCED
 	// HACK: ScEd uses absolute filenames, not VFS paths. I can't be bothered
 	// to make Xeromyces work with non-VFS, so just cheat:

@@ -24,6 +24,7 @@
 #include "sdl.h"
 #include "input.h"
 #include "lib.h"
+#include "timer.h"
 
 extern int g_xres, g_yres;
 extern bool g_active;
@@ -165,27 +166,12 @@ void CGameView::RenderNoCull()
 
 void CGameView::InitResources()
 {
+	TIMER(CGameView__InitResources);
+
 	g_TexMan.LoadTerrainTextures();
 	g_ObjMan.LoadObjects();
 
-	const char* fns[CRenderer::NumAlphaMaps] = {
-		"art/textures/terrain/alphamaps/special/blendcircle.png",
-		"art/textures/terrain/alphamaps/special/blendlshape.png",
-		"art/textures/terrain/alphamaps/special/blendedge.png",
-		"art/textures/terrain/alphamaps/special/blendedgecorner.png",
-		"art/textures/terrain/alphamaps/special/blendedgetwocorners.png",
-		"art/textures/terrain/alphamaps/special/blendfourcorners.png",
-		"art/textures/terrain/alphamaps/special/blendtwooppositecorners.png",
-		"art/textures/terrain/alphamaps/special/blendlshapecorner.png",
-		"art/textures/terrain/alphamaps/special/blendtwocorners.png",
-		"art/textures/terrain/alphamaps/special/blendcorner.png",
-		"art/textures/terrain/alphamaps/special/blendtwoedges.png",
-		"art/textures/terrain/alphamaps/special/blendthreecorners.png",
-		"art/textures/terrain/alphamaps/special/blendushape.png",
-		"art/textures/terrain/alphamaps/special/blendbad.png"
-	};
-
-	g_Renderer.LoadAlphaMaps(fns);
+	g_Renderer.LoadAlphaMaps();
 }
 
 void CGameView::UnloadResources()

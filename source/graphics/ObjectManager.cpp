@@ -4,6 +4,7 @@
 #include <algorithm>
 #include "CLogger.h"
 #include "lib/res/res.h"
+#include "timer.h"
 
 #define LOG_CATEGORY "graphics"
 
@@ -80,6 +81,8 @@ void CObjectManager::DeleteObject(CObjectEntry* entry)
 
 void CObjectManager::LoadObjects()
 {
+	TIMER(__CObjectManager__LoadObjects);
+
 	// find all the object types by directory name
 	BuildObjectTypes(0);
 

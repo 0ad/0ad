@@ -11,6 +11,7 @@
 #include "LightEnv.h"
 #include "BaseEntityCollection.h"
 #include "EntityManager.h"
+#include "timer.h"
 
 #define LOG_CATEGORY "world"
 
@@ -18,6 +19,8 @@ CLightEnv g_LightEnv;
 
 void CWorld::Initialize(CGameAttributes *pAttribs)
 {
+	TIMER(CWorld__Initialize);
+
 	// TODO: Find a better way of handling these global things
 	ONCE(g_EntityTemplateCollection.loadTemplates());
 

@@ -7,6 +7,7 @@
 #include "ogl.h"
 #include "res/ogl_tex.h"
 #include "CLogger.h"
+#include "timer.h"
 
 #define LOG_CATEGORY "graphics"
 
@@ -136,6 +137,8 @@ void CTextureManager::BuildTerrainTypes()
 
 void CTextureManager::LoadTerrainTextures()
 {
+	TIMER(__CTextureManager__LoadTerrainTextures);
+
 	// find all the terrain types by directory name
 	BuildTerrainTypes();
 

@@ -35,6 +35,7 @@
 #include "ogl.h"
 #include "res/mem.h"
 #include "res/ogl_tex.h"
+#include "timer.h"
 
 #define LOG_CATEGORY "graphics"
 
@@ -1152,9 +1153,30 @@ inline void CopyTriple(unsigned char* dst,const unsigned char* src)
 // LoadAlphaMaps: load the 14 default alpha maps, pack them into one composite texture and
 // calculate the coordinate of each alphamap within this packed texture .. need to add
 // validation that all maps are the same size
-bool CRenderer::LoadAlphaMaps(const char* fnames[])
+bool CRenderer::LoadAlphaMaps()
 {
+	TIMER(__CRenderer__LoadAlphaMaps);
+
 	Handle textures[NumAlphaMaps];
+
+
+	const char* fnames[CRenderer::NumAlphaMaps] = {
+		"art/textures/terrain/alphamaps/special/blendcircle.png",
+			"art/textures/terrain/alphamaps/special/blendlshape.png",
+			"art/textures/terrain/alphamaps/special/blendedge.png",
+			"art/textures/terrain/alphamaps/special/blendedgecorner.png",
+			"art/textures/terrain/alphamaps/special/blendedgetwocorners.png",
+			"art/textures/terrain/alphamaps/special/blendfourcorners.png",
+			"art/textures/terrain/alphamaps/special/blendtwooppositecorners.png",
+			"art/textures/terrain/alphamaps/special/blendlshapecorner.png",
+			"art/textures/terrain/alphamaps/special/blendtwocorners.png",
+			"art/textures/terrain/alphamaps/special/blendcorner.png",
+			"art/textures/terrain/alphamaps/special/blendtwoedges.png",
+			"art/textures/terrain/alphamaps/special/blendthreecorners.png",
+			"art/textures/terrain/alphamaps/special/blendushape.png",
+			"art/textures/terrain/alphamaps/special/blendbad.png"
+	};
+
 
 	int i;
 

@@ -207,7 +207,7 @@ public:
 	bool IsTextureTransparent(CTexture* texture);
 
 	// load the default set of alphamaps; return false if any alphamap fails to load, true otherwise
-	bool LoadAlphaMaps(const char* fnames[]);
+	bool LoadAlphaMaps();
 
 	void UnloadAlphaMaps();
 
