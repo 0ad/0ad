@@ -19,6 +19,9 @@
 	</Traits>
 	<Event On="Attack">
 	<![CDATA[
+		curr_hit = getGUIGlobal().newRandomSound("voice", "hit", this.traits.audio.path);
+		curr_hit.play();
+
 		// Attack logic.
 		dmg = new DamageType();
 		dmg.crush = this.actions.attack.damage * this.actions.attack.crush;
@@ -31,6 +34,9 @@
 
 	<Event On="TakesDamage">
 	<![CDATA[
+		curr_pain = getGUIGlobal().newRandomSound("voice", "pain", this.traits.audio.path);
+		curr_pain.play();
+
 		// Apply armour and work out how much damage we actually take
 		crushDamage = evt.damage.crush - this.traits.armour.value * this.traits.armour.crush;
 		if( crushDamage < 0 ) crushDamage = 0;

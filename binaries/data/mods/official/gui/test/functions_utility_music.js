@@ -13,7 +13,7 @@
 // Close "s" and free it from memory (use in conjunction with loop()):
 // s.free();
 
-function newRandomSound(soundType, soundSubType)
+function newRandomSound(soundType, soundSubType, soundPrePath)
 {
 	switch (soundType)
 	{
@@ -44,6 +44,176 @@ function newRandomSound(soundType, soundSubType)
 				break;
 				case "theme":
 					randomFileName = "menu_track.ogg"
+				break;
+				default:
+				break;
+			}
+		break;
+		case "voice":
+			randomSoundPath = soundPrePath + "/";
+			switch (soundSubType)
+			{
+				case "attack": // Unit given an attack order
+					// Get a random number within the sound's range.
+					// (Later we'll need to change this to an array selection of filenames.)
+					randomSound = getRandom(1, 6);
+
+					switch (randomSound)
+					{
+						case 1:
+							randomFileName = "Attack-Attackx.ogg"
+						break;
+						case 2:
+							randomFileName = "Attack-Chargex.ogg"
+						break;
+						case 3:
+							randomFileName = "Attack-Engagex.ogg"
+						break;
+						case 4:
+							randomFileName = "Attack-ForMyFamily.ogg"
+						break;
+						case 5:
+							randomFileName = "Attack-Warcry.ogg"
+						break;
+						case 6:
+							randomFileName = "Attack-ZeusSaviourandVictory.ogg"
+						break;
+					}
+				break;
+				case "command": // Unit given a generic order
+					// Get a random number within the sound's range.
+					// (Later we'll need to change this to an array selection of filenames.)
+					randomSound = getRandom(1, 8);
+
+					switch (randomSound)
+					{
+						case 1:
+							randomFileName = "Command-AsYouWish.ogg"
+						break;
+						case 2:
+							randomFileName = "Command-ByYourCommand.ogg"
+						break;
+						case 3:
+							randomFileName = "Command-ImComing.ogg"
+						break;
+						case 4:
+							randomFileName = "Command-IObey.ogg"
+						break;
+						case 5:
+							randomFileName = "Command-MyLiege.ogg"
+						break;
+						case 6:
+							randomFileName = "Command-OnMyWay.ogg"
+						break;
+						case 7:
+							randomFileName = "Command-WithMyHonour.ogg"
+						break;
+						case 8:
+							randomFileName = "Command-YesMyLord.ogg"
+						break;
+					}
+				break;
+				case "select": // Unit clicked by player
+					// Get a random number within the sound's range.
+					// (Later we'll need to change this to an array selection of filenames.)
+					randomSound = getRandom(1, 10);
+
+					switch (randomSound)
+					{
+						case 1:
+							randomFileName = "Select-AtYourService.ogg"
+						break;
+						case 2:
+							randomFileName = "Select-HowMayIServeYouq.ogg"
+						break;
+						case 3:
+							randomFileName = "Select-MyLiegeq.ogg"
+						break;
+						case 4:
+							randomFileName = "Select-MyLordq.ogg"
+						break;
+						case 5:
+							randomFileName = "Select-OrdersSireq.ogg"
+						break;
+						case 6:
+							randomFileName = "Select-Ready.ogg"
+						break;
+						case 7:
+							randomFileName = "Select-ReadySire.ogg"
+						break;
+						case 8:
+							randomFileName = "Select-Yesq.ogg"
+						break;
+						case 9:
+							randomFileName = "Select-YourOrdersq.ogg"
+						break;
+						case 10:
+							randomFileName = "Select-YourWishq.ogg"
+						break;
+					}
+				break;
+				case "hit": // Unit attacks with a grunt
+					// Get a random number within the sound's range.
+					// (Later we'll need to change this to an array selection of filenames.)
+					randomSound = getRandom(1, 6);
+
+					switch (randomSound)
+					{
+						case 1:
+							randomFileName = "Hit1.ogg"
+						break;
+						case 2:
+							randomFileName = "Hit2.ogg"
+						break;
+						case 3:
+							randomFileName = "Hit3.ogg"
+						break;
+						case 4:
+							randomFileName = "Hit4.ogg"
+						break;
+						case 5:
+							randomFileName = "Hit5.ogg"
+						break;
+						case 6:
+							randomFileName = "Hit6.ogg"
+						break;
+					}
+				break;
+				case "pain": // Unit is hurt, possibly death blow
+					// Get a random number within the sound's range.
+					// (Later we'll need to change this to an array selection of filenames.)
+					randomSound = getRandom(1, 9);
+
+					switch (randomSound)
+					{
+						case 1:
+							randomFileName = "Pain1.ogg"
+						break;
+						case 2:
+							randomFileName = "Pain2.ogg"
+						break;
+						case 3:
+							randomFileName = "Pain3.ogg"
+						break;
+						case 4:
+							randomFileName = "Pain4.ogg"
+						break;
+						case 5:
+							randomFileName = "Pain5.ogg"
+						break;
+						case 6:
+							randomFileName = "Pain6.ogg"
+						break;
+						case 7:
+							randomFileName = "Pain7.ogg"
+						break;
+						case 8:
+							randomFileName = "Pain8.ogg"
+						break;
+						case 9:
+							randomFileName = "Pain9.ogg"
+						break;
+					}
 				break;
 				default:
 				break;
