@@ -116,9 +116,8 @@ cassert(REF_BITS + TYPE_BITS <= IDX_BITS);
 // chosen so that all current resource structs are covered,
 // and so sizeof(HDATA) is a power of 2 (for more efficient array access
 // and array page usage).
-static const size_t HDATA_USER_SIZE = 48+64;
+static const size_t HDATA_USER_SIZE = 44+64;
 
-///static const size_t HDATA_MAX_PATH = 64;
 
 // 64 bytes
 // TODO: not anymore, fix later
@@ -127,12 +126,13 @@ struct HDATA
 	uintptr_t key;
 	u32 tag  : TAG_BITS;
 	u32 refs : REF_BITS;
+		// = 0: cached
 	u32 type_idx : TYPE_BITS;
 	H_Type type;
 
-	u8 user[HDATA_USER_SIZE];
-
 	const char* fn;
+
+	u8 user[HDATA_USER_SIZE];
 };
 
 
@@ -158,9 +158,12 @@ static i32 last_in_use = -1;	// don't search unused entries
 
 
 // get an array entry (array is non-contiguous).
+//
 // fails (returns 0) if idx is out of bounds, or if accessing a new page
 // for the first time, and there's not enough memory to allocate it.
-// used by h_data, and alloc_idx to find a free entry.
+//
+// also used by h_data, and alloc_idx to find a free entry.
+//
 // beware of conflict with h_data_any_type:
 //   our i32 param silently converts to its Handle (= i64) param.
 static HDATA* h_data(const i32 idx)
@@ -493,7 +496,17 @@ if(!(flags & RES_KEY))
 void* h_user_data(const Handle h, const H_Type type)
 {
 	HDATA* hd = h_data(h, type);
-	return hd? hd->user : 0;
+	if(!hd)
+		return 0;
+
+	if(!hd->refs)
+	{
+		// note: resetting the tag is not enough (user might pass in its value)
+		debug_warn("h_user_data: no references to resource (it's cached, but someone is accessing it directly)");
+		return 0;
+	}
+
+	return hd->user;
 }
 
 
@@ -504,6 +517,7 @@ const char* h_filename(const Handle h)
 		// even if the caller doesn't know its type.
 	return hd? hd->fn : 0;
 }
+
 
 int h_reload(const char* fn)
 {
