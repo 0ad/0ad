@@ -22,6 +22,7 @@
 
 #include "h_mgr.h"	// Handle
 #include "posix.h"	// struct stat
+#include "file.h"	// file open flags (renamed)
 
 
 //
@@ -40,7 +41,7 @@
 
 // mount either a single archive or a directory into the VFS at
 // <vfs_mount_point>, which is created if it does not yet exist.
-// new files override the previous VFS contents if pri(ority) is higher.
+// new files override the previous VFS contents if pri(ority) is not lower.
 // if <name> is a directory, all archives in that directory (but not
 // its subdirs - see add_dirent_cb) are also mounted in alphabetical order.
 // name = "." or "./" isn't allowed - see implementation for rationale.
@@ -82,8 +83,9 @@ extern Handle vfs_open_dir(const char* dir);
 // all vfsDirEnt.name strings are now invalid.
 extern int vfs_close_dir(Handle& hd);
 
-// get the next directory entry (in alphabetical order) that matches filter.
-// return 0 on success. filter values:
+// return the next remaining directory entry (in alphabetical order) matching
+// filter, or a negative error code on error (e.g. end of directory reached).
+// filter values:
 // - 0: any file;
 // - ".": any file without extension (filename doesn't contain '.');
 // - ".ext": any file with extension ".ext" (which must not contain '.');
@@ -103,25 +105,9 @@ extern int vfs_realpath(const char* fn, char* realpath);
 // most notably size. stat buffer is undefined on error.
 extern int vfs_stat(const char* fn, struct stat*);
 
-// vfs_open flags - keep in sync with file.cpp flag definitions!
-enum vfsOpenFlags
-{
-	// write-only access; otherwise, read only
-	VFS_WRITE        = 0x01,
-
-	// buffers returned may be read-only (allows some caching optimizations)
-	VFS_MEM_READONLY = 0x02,
-
-	// don't cache the whole file, e.g. if kept in memory elsewhere anyway.
-	VFS_NOCACHE      = 0x04,
-
-	// random access hint
-	VFS_RANDOM       = 0x08 	
-
-};
-
 // open the file for synchronous or asynchronous IO. write access is
-// requested via VFS_WRITE flag, and is not possible for files in archives.
+// requested via FILE_WRITE flag, and is not possible for files in archives.
+// flags defined in file.h
 extern Handle vfs_open(const char* fn, uint flags = 0);
 
 // close the handle to a file.
