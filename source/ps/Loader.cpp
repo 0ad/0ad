@@ -22,13 +22,19 @@ static int progress_percent = 0;
 // set by LDR_EndRegistering; used for progress % calculation. may be 0.
 static double total_estimated_duration;
 
+// used by LDR_ProgressiveLoad to add up the duration of requests that
+// time out by themselves (and therefore may be split across multiple calls)
+static double request_duration;
+
 // main purpose is to indicate whether a load is in progress, so that
 // LDR_ProgressiveLoad can return 0 iff loading just completed.
-// the REGISTERING state allows us to detect 2 simultaneous loads (bogus).
+// the REGISTERING state allows us to detect 2 simultaneous loads (bogus);
+// FIRST_LOAD is used to skip the first timeslice (see LDR_ProgressiveLoad).
 static enum
 {
 	IDLE,
 	REGISTERING,
+	FIRST_LOAD,
 	LOADING,
 }
 state = IDLE;
@@ -122,9 +128,10 @@ int LDR_EndRegistering()
 	if(load_requests.empty())
 		debug_warn("LDR_EndRegistering: no LoadRequests queued");
 
-	state = LOADING;
+	state = FIRST_LOAD;
 	progress_percent = 0;
 	total_estimated_duration = std::accumulate(load_requests.begin(), load_requests.end(), 0.0, DurationAdder());
+	request_duration = 0.0;
 	return 0;
 }
 
@@ -191,21 +198,36 @@ static bool HaveTimeForNextTask(double time_left, double time_budget, int estima
 int LDR_ProgressiveLoad(double time_budget, wchar_t* description_,
 	size_t max_chars, int* progress_percent_)
 {
+	int ret;	// single exit; this is returned
+	double time_left = time_budget;
+
+	// don't do any work the first call so that a graphics update
+	// happens before the first (probably lengthy) timeslice.
+	if(state == FIRST_LOAD)
+	{
+		state = LOADING;
+		ret = ERR_TIMED_OUT;	// make caller think we did something
+		goto done;
+	}
+
 	// we're called unconditionally from the main loop, so this isn't
 	// an error; there is just nothing to do.
 	if(state != LOADING)
 		return 1;
 
-	const double end_time = get_time() + time_budget;
-	int ret;	// single exit; this is returned
-
 	while(!load_requests.empty())
 	{
-		double time_left = end_time - get_time();
-
 		// do actual work of loading
 		const LoadRequest& lr = load_requests.front();
+		const double t0 = get_time();
 		ret = lr.func(lr.param, time_left);
+		const double elapsed_time = get_time() - t0;
+
+		// time accounting
+		time_left -= elapsed_time;
+		request_duration += elapsed_time;
+		wcscpy_s(description_, max_chars, lr.description);	// HACK, used below
+
 		// .. either finished entirely, or failed => remove from queue
 		if(ret != ERR_TIMED_OUT)
 			load_requests.pop_front();
@@ -224,12 +246,13 @@ int LDR_ProgressiveLoad(double time_budget, wchar_t* description_,
 			progress_percent += (int)(fraction * 100.0);
 			assert(0 <= progress_percent && progress_percent <= 100);
 		}
+		debug_out("LOADER: completed %ls in %f ms\n", description_, elapsed_time*1e3);
+		request_duration = 0.0;
 
 		// check if we're out of time; take into account next task length.
 		// note: do this at the end of the loop to make sure there's
 		// progress even if the timer is low-resolution (=> time_left = 0).
-		time_left = end_time - get_time();
-		if(!HaveTimeForNextTask(time_left, time_budget, lr.estimated_duration_ms))
+//		if(!HaveTimeForNextTask(time_left, time_budget, lr.estimated_duration_ms))
 		{
 			ret = ERR_TIMED_OUT;
 			goto done;
@@ -239,6 +262,7 @@ int LDR_ProgressiveLoad(double time_budget, wchar_t* description_,
 	// queue is empty, we just finished.
 	state = IDLE;
 	ret = 0;
+
 
 	// set output params (there are several return points above)
 done:

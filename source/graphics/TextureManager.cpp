@@ -137,8 +137,6 @@ void CTextureManager::BuildTerrainTypes()
 
 void CTextureManager::LoadTerrainTextures()
 {
-	TIMER(__CTextureManager__LoadTerrainTextures);
-
 	// find all the terrain types by directory name
 	BuildTerrainTypes();
 

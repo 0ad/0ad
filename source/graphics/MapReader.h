@@ -22,19 +22,22 @@ public:
 
 private:
 	// UnpackMap: unpack the given data from the raw data stream into local variables
-	void UnpackMap(CFileUnpacker& unpacker);
+	void UnpackMap();
 	// UnpackTerrain: unpack the terrain from the input stream
-	void UnpackTerrain(CFileUnpacker& unpacker);
+	void UnpackTerrain();
 	// UnpackObjects: unpack world objects from the input stream
-	void UnpackObjects(CFileUnpacker& unpacker);
+	void UnpackObjects();
 	// UnpackObjects: unpack lighting parameters from the input stream
-	void UnpackLightEnv(CFileUnpacker& unpacker);
+	void UnpackLightEnv();
 
 	// ApplyData: take all the input data, and rebuild the scene from it
-	void ApplyData(CFileUnpacker& unpacker, CTerrain *pTerrain, CUnitManager *pUnitMan, CLightEnv *pLightEnv);
+	void ApplyData();
 
 	// ReadXML: read some other data (entities, etc) in XML format
-	void ReadXML(const char* filename);
+	void ReadXML();
+
+	// clean up everything used during delayed load
+	void DelayLoadFinished();
 
 	// size of map 
 	u32 m_MapSize;
@@ -50,6 +53,13 @@ private:
 	std::vector<SObjectDesc> m_Objects;
 	// lightenv stored in file
 	CLightEnv m_LightEnv;
+
+	// state latched by LoadMap and held until DelayedLoadFinished
+	CFileUnpacker unpacker;
+	CTerrain *pTerrain;
+	CUnitManager *pUnitMan;
+	CLightEnv *pLightEnv;
+	CStr filename_xml;
 };
 
 #endif

@@ -170,8 +170,6 @@ void CObjectManager::DeleteObjectBase(CObjectBase* base)
 
 void CObjectManager::LoadObjects()
 {
-	TIMER(__CObjectManager__LoadObjects);
-
 	AddObjectType("");
 
 	CStr root ("art/actors");

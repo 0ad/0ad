@@ -15,22 +15,25 @@
 #include "TextureManager.h"
 
 #include "timer.h"
+#include "Loader.h"
+#include "LoaderThunks.h"
 
 // CMapReader constructor: nothing to do at the minute
 CMapReader::CMapReader()
 {
 }
 
-// LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
-void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain, CUnitManager *pUnitMan, CLightEnv *pLightEnv)
-{
-	TIMER(__CMapReader__LoadMap);
 
-	CFileUnpacker unpacker;
-	{
-		TIMER(____CMapReader__LoadMap__read);
-		unpacker.Read(filename,"PSMP");
-	}
+// LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
+void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_, CUnitManager *pUnitMan_, CLightEnv *pLightEnv_)
+{
+	// latch parameters (held until DelayedLoadFinished)
+	pTerrain = pTerrain_;
+	pUnitMan = pUnitMan_;
+	pLightEnv = pLightEnv_;
+
+	// [25ms]
+	unpacker.Read(filename,"PSMP");
 
 	// check version 
 	if (unpacker.GetVersion()<FILE_READ_VERSION) {
@@ -38,34 +41,34 @@ void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain, CUnitManager 
 	}
 
 	// unpack the data
-	UnpackMap(unpacker);
+	RegMemFun(this, &CMapReader::UnpackMap, L"CMapReader::UnpackMap", 691);
 
 	// apply data to the world
-	ApplyData(unpacker, pTerrain, pUnitMan, pLightEnv);
+	RegMemFun(this, &CMapReader::ApplyData, L"CMapReader::ApplyData", 415);
 
 	if (unpacker.GetVersion()>=3) {
 		// read the corresponding XML file
-		CStr filename_xml (filename);
+		filename_xml = filename;
 		filename_xml = filename_xml.Left(filename_xml.Length()-4) + ".xml";
-		ReadXML(filename_xml);
+		RegMemFun(this, &CMapReader::ReadXML, L"CMapReader::ReadXML", 1320);
 	}
+
+	RegMemFun(this, &CMapReader::DelayLoadFinished, L"CMapReader::DelayLoadFinished", 3);
 }
 
 // UnpackMap: unpack the given data from the raw data stream into local variables
-void CMapReader::UnpackMap(CFileUnpacker& unpacker)
+void CMapReader::UnpackMap()
 {
-TIMER(____CMapReader__UnpackMap);
-
 	// now unpack everything into local data
-	UnpackTerrain(unpacker);
-	UnpackObjects(unpacker);
+	UnpackTerrain();
+	UnpackObjects();
 	if (unpacker.GetVersion()>=2) {
-		UnpackLightEnv(unpacker);
+		UnpackLightEnv();
 	}
 }
 
 // UnpackLightEnv: unpack lighting parameters from input stream
-void CMapReader::UnpackLightEnv(CFileUnpacker& unpacker)
+void CMapReader::UnpackLightEnv()
 {
 	unpacker.UnpackRaw(&m_LightEnv.m_SunColor,sizeof(m_LightEnv.m_SunColor));
 	unpacker.UnpackRaw(&m_LightEnv.m_Elevation,sizeof(m_LightEnv.m_Elevation));
@@ -76,7 +79,7 @@ void CMapReader::UnpackLightEnv(CFileUnpacker& unpacker)
 }
 
 // UnpackObjects: unpack world objects from input stream
-void CMapReader::UnpackObjects(CFileUnpacker& unpacker)
+void CMapReader::UnpackObjects()
 {
 	// unpack object types
 	u32 numObjTypes;
@@ -95,7 +98,7 @@ void CMapReader::UnpackObjects(CFileUnpacker& unpacker)
 
 // UnpackTerrain: unpack the terrain from the end of the input data stream
 //		- data: map size, heightmap, list of textures used by map, texture tile assignments
-void CMapReader::UnpackTerrain(CFileUnpacker& unpacker)
+void CMapReader::UnpackTerrain()
 {
 	// unpack map size
 	unpacker.UnpackRaw(&m_MapSize,sizeof(m_MapSize));	
@@ -132,10 +135,8 @@ void CMapReader::UnpackTerrain(CFileUnpacker& unpacker)
 }
 
 // ApplyData: take all the input data, and rebuild the scene from it
-void CMapReader::ApplyData(CFileUnpacker& unpacker, CTerrain *pTerrain, CUnitManager *pUnitMan, CLightEnv *pLightEnv)
+void CMapReader::ApplyData()
 {
-TIMER(____CMapReader__ApplyData);
-
 	// initialise the terrain 
 	pTerrain->Initialize(m_MapSize,&m_Heightmap[0]);	
 
@@ -200,21 +201,19 @@ TIMER(____CMapReader__ApplyData);
 }
 
 
-void CMapReader::ReadXML(const char* filename)
+void CMapReader::ReadXML()
 {
-	TIMER(____CMapReader__ReadXML);
-
 #ifdef SCED
 	// HACK: ScEd uses absolute filenames, not VFS paths. I can't be bothered
 	// to make Xeromyces work with non-VFS, so just cheat:
-	CStr filename_vfs (filename);
+	CStr filename_vfs (filename_xml);
 	filename_vfs = filename_vfs.substr(filename_vfs.ReverseFind("\\mods\\official\\") + 15);
 	filename_vfs.Replace("\\", "/");
-	filename = filename_vfs;
+	filename_xml = filename_vfs;
 #endif
 
 	CXeromyces XeroFile;
-	if (XeroFile.Load(filename) != PSRETURN_OK)
+	if (XeroFile.Load(filename_xml) != PSRETURN_OK)
 		throw CFileUnpacker::CFileReadError();
 
 	// Define all the elements and attributes used in the XML file
@@ -306,4 +305,11 @@ void CMapReader::ReadXML(const char* filename)
 			debug_warn("Invalid XML data - DTD shouldn't allow this");
 		}
 	}
+}
+
+
+void CMapReader::DelayLoadFinished()
+{
+	// we were dynamically allocated by CWorld::Initialize
+	delete this;
 }

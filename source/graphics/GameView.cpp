@@ -17,6 +17,7 @@
 #include "Hotkey.h"
 #include "ConfigDB.h"
 #include "Loader.h"
+#include "LoaderThunks.h"
 
 #include "Quaternion.h"
 #include "Unit.h"
@@ -94,33 +95,24 @@ void CGameView::Initialize(CGameAttributes *pAttribs)
 	if( ( m_ViewSnapSmoothness < 0.0f ) || ( m_ViewSnapSmoothness > 1.0f ) ) m_ViewSnapSmoothness = 0.02f;
 
 #undef getViewParameter
-
-	InitResources();
 }
 
-struct ThunkParams
-{
-	CGameView* const this_;
-	CGameAttributes* const pAttribs;
-	ThunkParams(CGameView* this__, CGameAttributes* pAttribs_)
-		: this_(this__), pAttribs(pAttribs_) {}
-};
 
-static int LoadThunk(void* param, double time_left)
-{
-	const ThunkParams* p = (const ThunkParams*)param;
-	CGameView* const this_          = p->this_;
-	CGameAttributes* const pAttribs = p->pAttribs;
 
-	this_->Initialize(pAttribs);
-	delete p;
-	return 0;
-}
+
+
+
+
 
 void CGameView::RegisterInit(CGameAttributes *pAttribs)
 {
-	void* param = new ThunkParams(this, pAttribs);
-	THROW_ERR(LDR_Register(LoadThunk, param, L"CGameView", 1000));
+	// CGameView init
+	RegMemFun1(this, &CGameView::Initialize, pAttribs, L"CGameView init", 1);
+
+	// previously done by CGameView::InitResources
+	RegMemFun(g_TexMan.GetSingletonPtr(), &CTextureManager::LoadTerrainTextures, L"LoadTerrainTextures", 17);
+	RegMemFun(g_ObjMan.GetSingletonPtr(), &CObjectManager::LoadObjects, L"LoadObjects", 1063);
+	RegMemFun(g_Renderer.GetSingletonPtr(), &CRenderer::LoadAlphaMaps, L"LoadAlphaMaps", 36);
 }
 
 
@@ -192,15 +184,6 @@ void CGameView::RenderNoCull()
 	}
 }
 
-void CGameView::InitResources()
-{
-	TIMER(CGameView__InitResources);
-
-	g_TexMan.LoadTerrainTextures();
-	g_ObjMan.LoadObjects();
-
-	g_Renderer.LoadAlphaMaps();
-}
 
 void CGameView::UnloadResources()
 {

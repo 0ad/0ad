@@ -13,6 +13,7 @@
 #include "Unit.h"
 #include "Model.h"
 #include "Loader.h"
+#include "LoaderThunks.h"
 
 #include "gui/CGUI.h"
 
@@ -39,29 +40,9 @@ void CSimulation::Initialize(CGameAttributes *pAttribs)
 }
 
 
-struct ThunkParams
-{
-	CSimulation* const this_;
-	CGameAttributes* const pAttribs;
-	ThunkParams(CSimulation* this__, CGameAttributes* pAttribs_)
-		: this_(this__), pAttribs(pAttribs_) {}
-};
-
-static int LoadThunk(void* param, double time_left)
-{
-	const ThunkParams* p = (const ThunkParams*)param;
-	CSimulation* const this_        = p->this_;
-	CGameAttributes* const pAttribs = p->pAttribs;
-
-	this_->Initialize(pAttribs);
-	delete p;
-	return 0;
-}
-
 void CSimulation::RegisterInit(CGameAttributes *pAttribs)
 {
-	void* param = new ThunkParams(this, pAttribs);
-	THROW_ERR(LDR_Register(LoadThunk, param, L"CSimulation", 1000));
+	RegMemFun1(this, &CSimulation::Initialize, pAttribs, L"CSimulation", 31);
 }
 
 

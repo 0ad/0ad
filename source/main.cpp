@@ -955,7 +955,8 @@ static int ProgressiveLoad()
 	// no load active => no-op (skip code below)
 	case 1:
 		return 1;
-	// current task isn't complete (we don't care about this distinction)
+	// current task didn't complete. we only care about this insofar as the
+	// load process is therefore not yet finished.
 	case ERR_TIMED_OUT:
 		break;
 	// just finished loading
@@ -1161,15 +1162,6 @@ sle(11340106);
 	if(oglHaveExtension("WGL_EXT_swap_control"))
 		wglSwapIntervalEXT(g_VSync? 1 : 0);
 
-#ifdef _MSC_VER
-u64 CURTSC=rdtsc();
-debug_out(
-"----------------------------------------\n"\
-"low-level ready (elapsed = %f ms)\n"\
-"----------------------------------------\n", (CURTSC-PREVTSC)/2e9*1e3);
-PREVTSC=CURTSC;
-#endif
-
 	MICROLOG(L"init ps");
 	InitPs();
 
@@ -1256,16 +1248,11 @@ TIMER(init_after_InitRenderer);
 
 	g_Console->RegisterFunc(Testing, L"Testing");
 
-#ifdef _MSC_VER
-{
-u64 CURTSC=rdtsc();
 debug_out(
 "----------------------------------------\n"\
 "READY (elapsed = %f ms)\n"\
-"----------------------------------------\n", (CURTSC-PREVTSC)/2e9*1e3);
-PREVTSC=CURTSC;
-}
-#endif
+"----------------------------------------\n"
+);
 
 
 
