@@ -116,7 +116,7 @@ extern int zip_map(ZFile* zf, void*& p, size_t& size);
 extern int zip_unmap(ZFile* zf);
 
 // read from file <zf>, starting at offset <ofs> in the compressed data.
-extern ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void*& p);
+extern ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void** p);
 
 
 #endif	// #ifndef __ZIP_H__

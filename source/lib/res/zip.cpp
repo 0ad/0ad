@@ -894,7 +894,7 @@ static inline bool is_compressed(ZFile* zf)
 
 // note: we go to a bit of trouble to make sure the buffer we allocated
 // (if p == 0) is freed when the read fails.
-ssize_t zip_read(ZFile* zf, off_t raw_ofs, size_t size, void*& p)
+ssize_t zip_read(ZFile* zf, off_t raw_ofs, size_t size, void** p)
 {
 	CHECK_ZFILE(zf)
 
@@ -910,7 +910,7 @@ ssize_t zip_read(ZFile* zf, off_t raw_ofs, size_t size, void*& p)
 	// not compressed - just pass it on to file_io
 	// (avoid the Zip inflate start/finish stuff below)
 	if(!is_compressed(zf))
-		return file_io(&za->f, ofs, size, &p);
+		return file_io(&za->f, ofs, size, p);
 			// no need to set last_raw_ofs - only checked if compressed.
 
 	// compressed
@@ -926,14 +926,14 @@ ssize_t zip_read(ZFile* zf, off_t raw_ofs, size_t size, void*& p)
 	}
 
 	void* our_buf = 0;		// buffer we allocated (if necessary)
-	if(!p)
+	if(!*p)
 	{
-		p = our_buf = mem_alloc(size);
-		if(!p)
+		*p = our_buf = mem_alloc(size);
+		if(!*p)
 			return ERR_NO_MEM;
 	}
 
-	err = (ssize_t)inf_start_read(zf->read_ctx, p, size);
+	err = (ssize_t)inf_start_read(zf->read_ctx, *p, size);
 	if(err < 0)
 	{
 fail:
@@ -941,7 +941,7 @@ fail:
 		if(our_buf)
 		{
 			mem_free(our_buf);
-			p = 0;
+			*p = 0;
 		}
 		return err;
 	}
