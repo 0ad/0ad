@@ -177,7 +177,7 @@ int transform(TexInfo* t, u8* img, int transforms)
 		// note: we don't want to return a new buffer: the user assumes
 		// buffer address will remain unchanged.
 		const size_t size = h*pitch;
-		clone_img = mem_alloc(size, 32*KB);
+		clone_img = mem_alloc(size, 32*KiB);
 		if(!clone_img)
 			return ERR_NO_MEM;
 		memcpy(clone_img, img, size);
@@ -273,11 +273,10 @@ static int alloc_rows(const u8* tex, size_t h, size_t pitch,
 //////////////////////////////////////////////////////////////////////////////
 
 
-// write header and image out to file <fn>.
-// pixels are BGR-flipped if flags & TEX_BGR. bpp can be 8, 24, or 32.
-// note: if bpp=32, alpha is assumed to be the last component.
+// shoehorn header and image into to file <fn>
+// (it's faster to write in one shot).
 static int write_img(const char* fn, const void* hdr, size_t hdr_size,
-	int bpp, const void* img, size_t img_size)
+	const void* img, size_t img_size)
 {
 	const size_t file_size = hdr_size + img_size;
 	u8* file = (u8*)mem_alloc(file_size);
@@ -646,15 +645,15 @@ static int tga_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 	{
 		0,				// no image identifier present
 		0,				// no color map present
-		img_type,
+		(u8)img_type,
 		{0,0,0,0,0},	// unused (color map)
 		0, 0,			// unused (origin)
 		t->w,
 		t->h,
 		t->bpp,
-		img_desc
+		(u8)img_desc
 	};
-	return write_img(fn, &hdr, sizeof(hdr), t->bpp, img, img_size);
+	return write_img(fn, &hdr, sizeof(hdr), img, img_size);
 }
 
 #endif	// #ifndef NO_TGA
@@ -811,7 +810,7 @@ static int bmp_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 		0, 0, 0, 0			// unused (bi?PelsPerMeter, biClr*)
 	};
 
-	return write_img(fn, &hdr, sizeof(hdr), t->bpp, img, img_size);
+	return write_img(fn, &hdr, sizeof(hdr), img, img_size);
 }
 
 #endif	// #ifndef NO_BMP
@@ -885,7 +884,7 @@ static int raw_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 	transforms ^= TEX_BGR;			// RAW is native BGR.
 	transform(t, img, transforms);
 
-	return write_img(fn, 0, 0, t->bpp, img, img_size);
+	return write_img(fn, 0, 0, img, img_size);
 }
 
 #endif	// #ifndef NO_RAW
@@ -916,8 +915,7 @@ static inline bool png_ext(const char* ext)
 
 
 // note: it's not worth combining png_encode and png_decode, due to
-// libpng read/write interface differences (grr). we at least split
-// out alloc_rows, though.
+// libpng read/write interface differences (grr).
 
 
 struct PngMemFile
@@ -1005,7 +1003,7 @@ fail:
 		Handle img_hm;
 			// cannot free old t->hm until after png_read_end,
 			// but need to set to this handle afterwards => need tmp var.
-		img = (u8*)mem_alloc(img_size, 64*KB, 0, &img_hm);
+		img = (u8*)mem_alloc(img_size, 64*KiB, 0, &img_hm);
 		if(!img)
 		{
 			err = ERR_NO_MEM;
@@ -1053,11 +1051,11 @@ static void png_write(png_struct* png_ptr, u8* data, png_size_t length)
 {
 	void* p = (void*)data;
 	Handle hf = *(Handle*)png_ptr->io_ptr;
-	if(vfs_io(hf, length, &p) != length)
+	if(vfs_io(hf, length, &p) != (ssize_t)length)
 		png_error(png_ptr, "png_write: !");
 }
 
-static void png_flush(png_structp png_ptr)
+static void png_flush(png_structp)
 {
 }
 
@@ -1065,6 +1063,8 @@ static void png_flush(png_structp png_ptr)
 // limitation: palette images aren't supported
 static int png_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 {
+	UNUSED(img_size);
+
 	const char* msg = 0;
 	int err = -1;
 
@@ -1207,7 +1207,7 @@ fail:
 
 	size_t img_size = w * h * num_cmpts;
 	Handle img_hm;
-	u8* img = (u8*)mem_alloc(img_size, 64*KB, 0, &img_hm);
+	u8* img = (u8*)mem_alloc(img_size, 64*KiB, 0, &img_hm);
 	u8* out = img;
 
 	int cmpt;
@@ -1432,13 +1432,14 @@ fail:
 	Handle img_hm;
 		// cannot free old t->hm until after jpeg_finish_decompress,
 		// but need to set to this handle afterwards => need tmp var.
-	img = (u8*)mem_alloc(img_size, 64*KB, 0, &img_hm);
+	img = (u8*)mem_alloc(img_size, 64*KiB, 0, &img_hm);
 	if(!img)
 	{
 		err = ERR_NO_MEM;
 		goto fail;
 	}
-	int ret = alloc_rows(img, h, pitch, TEX_TOP_DOWN, rows);
+	const int transforms = TEX_TOP_DOWN ^ global_orientation;
+	int ret = alloc_rows(img, h, pitch, transforms, rows);
 	if(ret < 0)
 	{
 		err = ret;
@@ -1563,7 +1564,7 @@ fail:
 	transform(t, img, bgr_transform);
 
 	const size_t pitch = t->w * t->bpp / 8;
-	const int transform = t->flags ^ TEX_TOP_DOWN;
+	const int transform = TEX_TOP_DOWN ^ t->flags;
 	int ret = alloc_rows(img, t->h, pitch, transform, rows);
 	if(ret < 0)
 	{
@@ -1585,7 +1586,7 @@ fail:
 		// we've decoded in-place; no need to further process
 	}
 
-	(void)jpeg_finish_compress(&cinfo);
+	jpeg_finish_compress(&cinfo);
 
 	if(jerr.pub.num_warnings != 0)
 		debug_out("jpg_encode: corrupt-data warning(s) occurred\n");
@@ -1666,9 +1667,6 @@ int tex_load_mem(Handle hm, const char* fn, TexInfo* t)
 		return ERR_CORRUPTED;
 	t->hm = hm;
 
-	int err = -1;
-	// initial value, in case no codec is found
-
 	u8* p = (u8*)_p;
 		// more convenient to pass loaders u8 - less casting.
 		// not const, because image may have to be flipped (in-place).
@@ -1677,7 +1675,17 @@ int tex_load_mem(Handle hm, const char* fn, TexInfo* t)
 	const Codec* c = codecs;
 	for(int i = 0; i < num_codecs; i++, c++)
 		if(c->is_fmt(p, size))
-			return c->decode(t, fn, p, size);
+		{
+			CHECK_ERR(c->decode(t, fn, p, size));
+
+			// HACK: check if the texture's data buffer is the IO buffer
+			// passed to us. if so, need to increment refcount so the
+			// caller's doesn't actually free it.
+			if(hm == t->hm)
+				h_add_ref(t->hm);
+
+			return 0;
+		}
 
 	return ERR_UNKNOWN_FORMAT;
 }
@@ -1704,7 +1712,7 @@ int tex_free(TexInfo* t)
 }
 
 
-int tex_write(const char* fn, int w, int h, int bpp, int flags, void* img)
+int tex_write(const char* fn, uint w, uint h, uint bpp, uint flags, void* img)
 {
 	const size_t img_size = w * h * bpp / 8;
 

@@ -137,12 +137,8 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSEDPARAM(h))
 		GLfloat w = (GLfloat)Width  / (GLfloat)TextureWidth;
 		GLfloat h = (GLfloat)Height / (GLfloat)TextureHeight;
 
-		/*
-
-		It might be better to use vertex arrays instead of display lists,
-		but this works well enough for now.
-
-		*/
+		// It might be better to use vertex arrays instead of display lists,
+		// but this works well enough for now.
 
 		glNewList(f->ListBase+i, GL_COMPILE);
 			glBegin(GL_QUADS);
@@ -186,6 +182,7 @@ int unifont_unload(Handle& h)
 	return h_free(h, H_UniFont);
 }
 
+
 int unifont_bind(const Handle h)
 {
 	H_DEREF(h, UniFont, f);
@@ -204,11 +201,13 @@ int unifont_linespacing(const Handle h)
 	return f->LineSpacing;
 }
 
+
 int unifont_height(const Handle h)
 {
 	H_DEREF(h, UniFont, f);
 	return f->Height;
 }
+
 
 int unifont_character_width(const Handle h, const wchar_t& c)
 {
@@ -221,16 +220,14 @@ int unifont_character_width(const Handle h, const wchar_t& c)
 	return it->second;
 }
 
-void glwprintf(const wchar_t* fmt, ...)
+
+void glvwprintf(const wchar_t* fmt, va_list args)
 {
 	const int buf_size = 1024;
 	wchar_t buf[buf_size];
 
-	va_list args;
-	va_start(args, fmt);
-	if (vswprintf(buf, buf_size-1, fmt, args) < 0)
+	if(vswprintf(buf, buf_size-1, fmt, args) < 0)
 		debug_out("glwprintf failed (buffer size exceeded?)\n");
-	va_end(args);
 
 	// Make sure there's always null termination
 	buf[buf_size-1] = 0;
@@ -264,6 +261,16 @@ void glwprintf(const wchar_t* fmt, ...)
 	// Execute all the display lists
 	glCallLists((GLsizei)len, sizeof(wchar_t)==4 ? GL_INT : GL_UNSIGNED_SHORT, buf);
 }
+
+
+void glwprintf(const wchar_t* fmt, ...)
+{
+	va_list args;
+	va_start(args, fmt);
+	glvwprintf(fmt, args);
+	va_end(args);
+}
+
 
 int unifont_stringsize(const Handle h, const wchar_t* text, int& width, int& height)
 {

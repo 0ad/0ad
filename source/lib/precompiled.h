@@ -4,8 +4,8 @@
 // hence, all files include precompiled.h and then all the headers they'd
 // normally lead => best build performance with or without PCH.
 
-#include "lib/config.h"
-#include "lib/types.h"
+#include "config.h"
+#include "types.h"
 
 #ifdef _MSC_VER
 #pragma warning(disable:4996)	// function is deprecated
@@ -45,6 +45,7 @@
 // Nicer memory leak reporting in MSVC:
 // (You've got to include all STL headers first to avoid lots of errors,
 // so make sure they're in the list above and you compile with PCH)
+/*
 #ifdef HAVE_DEBUGALLOC
 # include <crtdbg.h>
 # include <malloc.h>
@@ -56,5 +57,12 @@
 # define   realloc(p, s)     _realloc_dbg(p, s, _NORMAL_BLOCK, __FILE__, __LINE__)
 # define   free(p)           _free_dbg(p, _NORMAL_BLOCK)
 #endif // HAVE_DEBUGALLOC
+*/
 
 #endif // #ifdef HAVE_PCH
+
+#define _INC_CRTDBG
+#define _INC_MALLOC
+#ifdef USE_MMGR
+# include "mmgr.h"
+#endif
