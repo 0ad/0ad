@@ -882,22 +882,18 @@ void CGUI::DrawText(const SGUIText &Text, const CColor &DefaultColor,
 	}
 }
 
-void CGUI::ReportParseError(const CStr& str, ...)
+void CGUI::ReportParseError(const CStr& str)
 {
 	// Print header
 	if (m_Errors==0)
 	{
-		LOG(ERROR, "*** GUI Tree Creation Errors");
+		LOG(ERROR, "*** GUI Tree Creation Errors:");
 	}
 
 	// Important, set ParseError to true
 	++m_Errors;
 
-	// Pass the varargs list to the CLogger
-	va_list args;
-	va_start(args, str);
-	LOG(ERROR, str.c_str(), args);
-	va_end(args);
+	LOG(ERROR, str);
 }
 
 /**

@@ -250,7 +250,7 @@ private:
 	 *
 	 * @param str Error message
 	 */
-	void ReportParseError(const CStr& str, ...);
+	void ReportParseError(const CStr& str);
 
 	/**
 	 * You input the name of the object type, and let's
