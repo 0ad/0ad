@@ -53,12 +53,12 @@ function manualDisplay()
 						ManualRollover.caption += "Hitpoints: " + selection[0].traits.health.curr + "/" + selection[0].traits.health.hitpoints + "\n";
 
 					// Display rank.
-					if (selection[0].traits.id.rank)
-						ManualRollover.caption += "Rank: " + selection[0].traits.id.rank + "\n";
+					if (selection[0].traits.up.rank)
+						ManualRollover.caption += "Rank: " + selection[0].traits.up.rank + "\n";
 
 					// Display experience.
-					if (selection[0].traits.transform && selection[0].traits.transform.upcurr && selection[0].traits.transform.upreq)
-						ManualRollover.caption += "XP: " + selection[0].traits.transform.upcurr + "/" + selection[0].traits.transform.upreq + "\n";
+					if (selection[0].traits.up && selection[0].traits.up.curr && selection[0].traits.up.req)
+						ManualRollover.caption += "XP: " + selection[0].traits.up.curr + "/" + selection[0].traits.up.req + "\n";
 
 					// Display UP on death.
 					if (selection[0].traits.loot.up)

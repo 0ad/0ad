@@ -7,8 +7,6 @@
 
 			class2="Cavalry"
 
-			rank="1"
-
 			type.unit.group.military="true"
 			type.unit.mounted="true"
 			type.unit.material.organic="true"
@@ -16,16 +14,17 @@
 			type.unit.group.citizensoldier="true"
 			type.unit.group.worker="true"
 		/>
-		<Transform
-			upreq="900"
-			upcurr="0"
-		/>
 		<Loot
-			up="20"
+			up="200"
 			food="1"
 			wood="1"
 			stone="1"
 			ore="1"
+		/>
+		<Up
+			curr="0"
+			rank="1"
+			req="900"
 		/>
 	</Traits>
 	<Footprint Radius="1.5"/>

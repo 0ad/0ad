@@ -4,7 +4,6 @@
 	<Traits extant="true" corpse="template_corpse">
 		<Id
 			type="true"
-			rank="0"
 		/>
 		<!-- Defaults to no armour -->
 		<Armour
@@ -14,6 +13,9 @@
 			Pierce="0.0"
 		/>
 		<Health />
+		<Up
+			rank="0"
+		/>
 	</Traits>
 	<Event On="Attack">
 	<![CDATA[
@@ -47,11 +49,58 @@
 
 		if( this.traits.health.curr <= 0 )
 		{
-			this.kill();
+			// If the inflictor gains promotions, and he's capable of earning more ranks,
+			if (evt.inflictor.traits.up && evt.inflictor.traits.up.curr && evt.inflictor.traits.up.req && evt.inflictor.traits.up.newentity && evt.inflictor.traits.up.newentity != "")
+			{
+				// Give him the fallen's upgrade points (if he has any).
+				if (this.traits.loot.up)
+					evt.inflictor.traits.up.curr = parseInt(evt.inflictor.traits.up.curr) + parseInt(this.traits.loot.up);
+
+				// Notify player.
+				if (this.traits.id.specific)
+					console.write(this.traits.id.specific + " has earned " + this.traits.loot.up + " upgrade points!");
+				else
+					console.write("One of your units has earned " + this.traits.loot.up + " upgrade points!");
+
+				// If he now has maximum upgrade points for his rank,
+				if (evt.inflictor.traits.up.curr >= evt.inflictor.traits.up.req)
+				{
+					// Notify the player.
+					if (this.traits.id.specific)
+						console.write(this.traits.id.specific + " has gained a promotion!");
+					else
+						console.write("One of your units has gained a promotion!");
+					
+					// Reset his upgrade points.
+					evt.inflictor.traits.up.curr = 0; 
+
+					// Transmogrify him into his next rank.
+//					evt.inflictor.template = getEntityTemplate(evt.inflictor.traits.up.newentity);
+				}
+			}
+/*
+			// If the fallen is worth any loot,
+			if (this.traits.loot && (this.traits.loot.food || this.traits.loot.wood || this.traits.loot.stone || this.traits.loot.ore))
+			{
+				// Give the inflictor his resources.
+				if (this.traits.loot.food)
+					GiveResources("Food", this.traits.loot.food);
+				if (this.traits.loot.wood)
+					GiveResources("Wood", this.traits.loot.wood);
+				if (this.traits.loot.stone)
+					GiveResources("Stone", this.traits.loot.stone);
+				if (this.traits.loot.ore)
+					GiveResources("Ore", this.traits.loot.ore);
+			}
+*/
+			// Notify player.
 			if( evt.inflictor )
 				console.write( this.traits.id.generic + " got the point of " + evt.inflictor.traits.id.generic + "'s Gladius." );
 			else
 				console.write( this.traits.id.generic + " died in mysterious circumstances." );
+
+			// We've taken what we need. Kill the swine.
+			this.kill();
 		}
 		else if( evt.inflictor && this.actions.attack )
 		{

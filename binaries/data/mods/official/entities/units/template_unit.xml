@@ -13,12 +13,13 @@
 			type.unit.group="true"
 			type.unit.material="true"
 			type.unit.attack="true"
-
-			rank="0"
 		/>
 		<Health
 			curr="150"
 			hitpoints="150"
+		/>
+		<Up
+			rank="0"
 		/>
 	</Traits>
 	<Footprint Radius="0.5"/>

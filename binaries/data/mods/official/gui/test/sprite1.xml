@@ -115,7 +115,7 @@
                 <image backcolor="64 64 64" size="0 100%-1 100%-1 100%" />
                 <image backcolor="128 128 128" size="100%-2 1 100%-1 100%-1" />
                 <image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
-                <image backcolor="0 200 200" size="0 0 100% 100%" />
+                <image backcolor="255 255 0" size="0 0 100% 100%" />
         </sprite>
 
         <sprite name="back-bar">
@@ -156,6 +156,10 @@
         
         <sprite name="tooltip-background">
                 <image texture="black_16x16.png" texture-size="0 0 16 16" size="0 0 100% 100%" />
+        </sprite>
+
+        <sprite name="0ad_icon">
+                <image texture="global/ui_gen_0ad-icon.png" size="0 0 100% 100%" texture-size="0 0 16 16" />
         </sprite>
 
                 <!--
@@ -431,7 +435,7 @@
         MESSAGE BOX
         ==========================================
         -->
-        
+
         <sprite name="message_box-gen-background">
                 <image texture="global/ui_gen_background_paper.png" size="0 0 100% 100%" texture-size="0 0 128 128" />
         </sprite>

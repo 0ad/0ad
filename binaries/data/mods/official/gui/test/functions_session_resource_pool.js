@@ -56,6 +56,8 @@ function GiveResources(resourceName, resourceQty)
 		default:
 		break;
 	}
+
+	console.write("Earned " + resourceQty + " resources.");
 }
 
 // ====================================================================

@@ -132,9 +132,9 @@ function UpdateStatusOrb()
 	}
 
 	// Update rank.
-	if (selection[0].traits.id.rank > 1)
+	if (selection[0].traits.up.rank > 1)
 	{
-		getGUIObjectByName("session_panel_status_icon_rank").sprite = "statistic_rank" + (selection[0].traits.id.rank-1);
+		getGUIObjectByName("session_panel_status_icon_rank").sprite = "statistic_rank" + (selection[0].traits.up.rank-1);
 	}
 	else
 		getGUIObjectByName("session_panel_status_icon_rank").sprite = "";
@@ -154,11 +154,11 @@ function UpdateStatusOrb()
 	}
 
 	// Update upgrade points
-	if (selection[0].traits.transform && selection[0].traits.transform.upcurr && selection[0].traits.transform.upreq)
+	if (selection[0].traits.up && selection[0].traits.up.curr && selection[0].traits.up.req)
 	{
-		getGUIObjectByName("session_panel_status_icon_xp_text").caption = Math.round(selection[0].traits.transform.upcurr) + "/" + Math.round(selection[0].traits.transform.upreq);
+		getGUIObjectByName("session_panel_status_icon_xp_text").caption = Math.round(selection[0].traits.up.curr) + "/" + Math.round(selection[0].traits.up.req);
 		getGUIObjectByName("session_panel_status_icon_xp_text").hidden = false;
-		getGUIObjectByName("session_panel_status_icon_xp_bar").caption = ((Math.round(selection[0].traits.transform.upcurr) * 100 ) / Math.round(selection[0].traits.transform.upreq));
+		getGUIObjectByName("session_panel_status_icon_xp_bar").caption = ((Math.round(selection[0].traits.up.curr) * 100 ) / Math.round(selection[0].traits.up.req));
 		getGUIObjectByName("session_panel_status_icon_xp_bar").hidden = false;
 	}
 	else
