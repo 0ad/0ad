@@ -6,5 +6,3 @@
 #endif
 
 extern int oal_Init();
-
-extern int oal_Shutdown();

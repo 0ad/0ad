@@ -112,6 +112,8 @@ CMusicPlayer::~CMusicPlayer(void)
 
 void CMusicPlayer::open(char *filename)
 {
+	oal_Init();
+
 	// If a new file is opened while another is already in memory,
 	// close the old one first.
 	if (is_open)
