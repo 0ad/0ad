@@ -27,6 +27,11 @@ void *CStreamSocket_ConnectThread(void *data)
 	}
 	
 	pSock->SetNonBlocking(true);
+	
+	// This should call the right callbacks, so that you get the expected
+	// results if you call Read or Write before the connect actually is complete
+	pSock->SetOpMask((pSock->m_WriteContext.m_Valid?CSocketBase::WRITE:0)|CSocketBase::READ);
+	
 	pSock->ConnectComplete(res);
 
 	free(pSock->m_pConnectHost);
@@ -62,7 +67,6 @@ PS_RESULT CStreamSocket::Read(void *buf, uint len)
 	m_ReadContext.m_Length=len;
 	m_ReadContext.m_Completed=0;
 	
-	OnRead();
 	SetOpMask(GetOpMask()|READ);
 	
 	return PS_OK;
@@ -79,12 +83,11 @@ PS_RESULT CStreamSocket::Write(void *buf, uint len)
 		return CONFLICTING_OP_IN_PROGRESS;
 
 	// Fill in read_cb
-	m_WriteContext.m_Valid=true;
 	m_WriteContext.m_pBuffer=buf;
 	m_WriteContext.m_Length=len;
 	m_WriteContext.m_Completed=0;
+	m_WriteContext.m_Valid=true;
 	
-	OnWrite();
 	SetOpMask(GetOpMask()|WRITE);
 	
 	return PS_OK;
@@ -131,7 +134,7 @@ void CStreamSocket::OnWrite()
 		WriteComplete(res);
 		return;
 	}
-	printf("OnWrite(): %u bytes\n", bytes);
+	printf("CStreamSocket::OnWrite(): %u bytes\n", bytes);
 	m_WriteContext.m_Completed+=bytes;
 	if (m_WriteContext.m_Completed == m_WriteContext.m_Length)
 	{
@@ -144,7 +147,8 @@ void CStreamSocket::OnRead()
 {
 	if (!m_ReadContext.m_Valid)
 	{
-		SetOpMask(GetOpMask() & (~READ));
+		printf("CStreamSocket::OnRead(): No Read request in progress\n");
+		//SetOpMask(GetOpMask() & (~READ));
 		return;
 	}
 	uint bytes=0;
@@ -152,12 +156,12 @@ void CStreamSocket::OnRead()
 		((char *)m_ReadContext.m_pBuffer)+m_ReadContext.m_Completed,
 		m_ReadContext.m_Length-m_ReadContext.m_Completed,
 		&bytes);
+	printf("CStreamSocket::OnRead(): %s, %u bytes read of %u\n", res, bytes, m_ReadContext.m_Length-m_ReadContext.m_Completed);
 	if (res != PS_OK)
 	{
 		ReadComplete(res);
 		return;
 	}
-	printf("OnRead(): %u bytes read of %u\n", bytes, m_ReadContext.m_Length-m_ReadContext.m_Completed);
 	m_ReadContext.m_Completed+=bytes;
 	if (m_ReadContext.m_Completed == m_ReadContext.m_Length)
 	{

@@ -14,11 +14,9 @@ DEFINE_ERROR(NO_ROUTE_TO_HOST, "No route to host");
 DEFINE_ERROR(CONNECTION_BROKEN, "The connection has been closed");
 DEFINE_ERROR(CONNECT_IN_PROGRESS, "The connection attempt has started, but is not yet complete");
 // The conditions that may cause this errors are at least as obscure as the message
-DEFINE_ERROR(WAIT_LOOP_FAIL, "RunWaitLoop Internal Error");
 DEFINE_ERROR(PORT_IN_USE, "The port is already in use by another process");
 DEFINE_ERROR(INVALID_PORT, "The port specified is either invalid, or forbidden by system or firewall policy");
-DEFINE_ERROR(NO_SOCKET_SUPPORT, "The socket type or protocol is not supported by the operating system. Make sure that the TCP/IP protocol is installed and activated");
-DEFINE_ERROR(INVALID_PROTOCOL, "An incompatible or unsupported protocol was specified for the operation");
+DEFINE_ERROR(INVALID_PROTOCOL, "The socket type or protocol is not supported by the operating system. Make sure that the TCP/IP protocol is installed and activated");
 
 // Map an OS error number to a PS_RESULT
 PS_RESULT GetPS_RESULT(int error)
@@ -61,6 +59,8 @@ SocketAddress::SocketAddress(int port, SocketProtocol proto)
 PS_RESULT SocketAddress::Resolve(const char *name, int port, SocketAddress &addr)
 {
 	hostent *he;
+
+	//FIXME IPv6 compatibilitise
 
 	// Construct address
 	// Try to parse dot-notation IP
@@ -132,9 +132,7 @@ void *WaitLoopThreadMain(void *)
 PS_RESULT CSocketBase::Initialize(SocketProtocol proto)
 {
 	ONCE(
-		CSocketBase::InitWaitLoop();
 		pthread_create(&g_SocketSetInternal.m_Thread, NULL, WaitLoopThreadMain, NULL);
-		//pthread_detach(&thread);
 	);
 
 	int res=socket(proto, SOCK_STREAM, 0);
@@ -305,6 +303,8 @@ PS_RESULT CSocketBase::Bind(const SocketAddress &address)
 
 	Initialize(address.GetProtocol());
 
+	SetOpMask(READ);
+
 	res=bind(m_pInternal->m_fd, (struct sockaddr *)&address, sizeof(address));
 	if (res == -1)
 	{
@@ -337,8 +337,6 @@ PS_RESULT CSocketBase::Bind(const SocketAddress &address)
 		m_State=SS_UNCONNECTED;
 		return PS_FAIL;
 	}
-
-	SetOpMask(READ);
 
 	m_State=SS_CONNECTED;
 	m_Error=PS_OK;
@@ -411,10 +409,12 @@ bool ConnectError(CSocketBase *pSocket, CSocketInternal *pInt)
 	return false;
 }
 
-void CSocketBase::InitWaitLoop()
+void CSocketBase::RunWaitLoop()
 {
 	int res;
-	
+
+	signal(SIGPIPE, SIG_IGN);
+
 	pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
 
 	// Create Control Pipe
@@ -424,15 +424,6 @@ void CSocketBase::InitWaitLoop()
 		g_SocketSetInternal.m_Pipe[0] == -1;
 		return;
 	}
-
-	pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
-}
-
-void CSocketBase::RunWaitLoop()
-{
-	int res;
-
-	pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
 	
 	if (g_SocketSetInternal.m_Pipe[0] == -1)
 	{
@@ -602,7 +593,7 @@ void CSocketBase::SendWaitLoopAbort()
 
 void CSocketBase::SendWaitLoopUpdate()
 {
-	//printf("SendWaitLoopUpdate: fd %d, ops %u\n", pSocket->m_pInternal->m_fd, ops);
+	printf("SendWaitLoopUpdate: fd %d, ops %u\n", m_pInternal->m_fd, m_pInternal->m_Ops);
 	char msg='r';
 	write(g_SocketSetInternal.m_Pipe[1], &msg, 1);
 }
@@ -611,16 +602,76 @@ void CSocketBase::SendWaitLoopUpdate()
 // Windows WindowProc for async event notification
 #ifdef _WIN32
 
-void CSocketBase::InitWaitLoop()
+void WaitLoop_SocketUpdateProc(int fd, int error, uint event)
 {
-	WNDCLASS wc;
-	ATOM atom;
+	pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
+	CSocketBase *pSock=g_SocketSetInternal.m_HandleMap[fd];
+	pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
+
+	if (error)
+	{
+		PS_RESULT res=GetPS_RESULT(error);
+		if (res == PS_FAIL)
+			pSock->OnClose(CONNECTION_BROKEN);
+		pSock->m_Error=res;
+		pSock->m_State=SS_UNCONNECTED;
+		return;
+	}
+
+	if (pSock->m_State==SS_CONNECT_STARTED)
+	{
+		pSock->m_Error=PS_OK;
+		pSock->m_State=SS_CONNECTED;
+	}
+
+	switch (event)
+	{
+	case FD_ACCEPT:
+	case FD_READ:
+		pSock->OnRead();
+		break;
+	case FD_CONNECT:
+	case FD_WRITE:
+		pSock->OnWrite();
+		break;
+	case FD_CLOSE:
+		// If FD_CLOSE and error, OnClose has already been called above
+		// with the appropriate PS_RESULT
+		pSock->OnClose(PS_OK);
+		break;
+	}
+}
+
+LRESULT WINAPI WaitLoop_WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+	//printf("WaitLoop_WindowProc(): Windows message: %d:%d:%d\n", msg, wParam, lParam);
+	switch (msg)
+	{
+		case MSG_SOCKET_READY:
+		{
+			int event=LOWORD(lParam);
+			int error=HIWORD(lParam);
+			
+			WaitLoop_SocketUpdateProc(wParam, error, event);
+			return FALSE;
+		}
+		default:
+			return DefWindowProc(hWnd, msg, wParam, lParam);
+	}
+}
+
+void CSocketBase::RunWaitLoop()
+{
 	int ret;
 	char errBuf[256];
+	MSG msg;
+
+	WNDCLASS wc;
+	ATOM atom;
 
 	memset(&wc, 0, sizeof(WNDCLASS));
 	wc.lpszClassName="Network Event WindowClass";
-	wc.lpfnWndProc=DefWindowProc;
+	wc.lpfnWndProc=WaitLoop_WindowProc;
 
 	atom=RegisterClass(&wc);
 	if (!atom)
@@ -641,68 +692,37 @@ void CSocketBase::InitWaitLoop()
 	}
 	//pthread_cond_signal(&g_SocketSetInternal.m_CondVar);
 	pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
-}
 
-void CSocketBase::RunWaitLoop()
-{
-	int ret;
-	char errBuf[256];
-	MSG msg;
+	if (!g_SocketSetInternal.m_hWnd)
+	{
+		//TODO Some kind of error message, and exit
+		return;
+	}
+	
+	pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
+	
+	// If OpMasks where set in another thread before we got this far,
+	// WSAAsyncSelect will need to be called again
+	std::map<int, CSocketBase *>::iterator it;
+	it=g_SocketSetInternal.m_HandleMap.begin();
+	while (it != g_SocketSetInternal.m_HandleMap.end())
+	{
+		it->second->SetOpMask(it->second->GetOpMask());
+		++it;
+	}
 
-	if (!g_SocketSetInternal.m_hWnd) return;
-
+	pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
+	
 	printf("Commencing message loop. hWnd %p\n", g_SocketSetInternal.m_hWnd);
 	while ((ret=GetMessage(&msg, g_SocketSetInternal.m_hWnd, 0, 0))!=0)
 	{
+		printf("RunWaitLoop(): Windows message: %d:%d:%d\n", msg.message, msg.wParam, msg.lParam);
 		if (ret == -1)
 		{
 			ret=GetLastError();
 			Network_GetErrorString(ret, errBuf, sizeof(errBuf));
 			printf("GetMessage: %s [%d]\n", errBuf, ret);
 		}
-		if (msg.message==MSG_SOCKET_READY)
-		{
-			int event=LOWORD(msg.lParam);
-			int error=HIWORD(msg.lParam);
-			
-			pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
-			CSocketBase *pSock=g_SocketSetInternal.m_HandleMap[msg.wParam];
-			pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
-
-			if (error)
-			{
-				PS_RESULT res=GetPS_RESULT(error);
-				if (res == PS_FAIL)
-					pSock->OnClose(CONNECTION_BROKEN);
-				pSock->m_Error=res;
-				pSock->m_State=SS_UNCONNECTED;
-				break;
-			}
-
-			if (pSock->m_State==SS_CONNECT_STARTED)
-			{
-				pSock->m_Error=PS_OK;
-				pSock->m_State=SS_CONNECTED;
-			}
-		
-			switch (event)
-			{
-			case FD_ACCEPT:
-			case FD_READ:
-				pSock->OnRead();
-				break;
-			case FD_CONNECT:
-			case FD_WRITE:
-				pSock->OnWrite();
-				break;
-			case FD_CLOSE:
-				// If FD_CLOSE and error, OnClose has already been called above
-				// with the appropriate PS_RESULT
-				pSock->OnClose(PS_OK);
-				break;
-			}
-		}
-		else
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
@@ -736,6 +756,7 @@ void CSocketBase::SendWaitLoopUpdate()
 		if (m_pInternal->m_Ops & WRITE)
 			wsaOps |= FD_WRITE|FD_CONNECT;
 		pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
+		printf("SendWaitLoopUpdate: %d: %u %x -> %p\n", m_pInternal->m_fd, m_pInternal->m_Ops, wsaOps, g_SocketSetInternal.m_hWnd);
 		WSAAsyncSelect(m_pInternal->m_fd, g_SocketSetInternal.m_hWnd, MSG_SOCKET_READY, wsaOps);
 	}
 	else
@@ -765,13 +786,11 @@ void CSocketBase::SetOpMask(uint ops)
 	g_SocketSetInternal.m_HandleMap[m_pInternal->m_fd]=this;
 	m_pInternal->m_Ops=ops;
 	
-	/*printf("SetOpMask(fd %d, ops %u) %u, %u\n",
-		pSocket->m_pInternal->m_fd,
+	printf("SetOpMask(fd %d, ops %u) %u\n",
+		m_pInternal->m_fd,
 		ops,
-		g_SocketSetInternal.m_Sockets[pSocket].m_Ops,
-		g_SocketSetInternal.m_HandleMap[pSocket->m_pInternal->m_fd]->m_Ops);*/
+		g_SocketSetInternal.m_HandleMap[m_pInternal->m_fd]->m_pInternal->m_Ops);
+	pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
 	
 	SendWaitLoopUpdate();
-
-	pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
 }

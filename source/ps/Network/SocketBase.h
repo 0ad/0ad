@@ -40,7 +40,9 @@ class CSocketInternal;
 // struct and a PF_* value
 enum SocketProtocol
 {
-	UNSPEC=-1, // This should be an invalid value
+	// This should be a value that's invalid for most socket functions, so that
+	// you don't accidentally use an UNSPEC SocketAddress
+	UNSPEC=((sa_family_t)-1),
 	IPv4=PF_INET,
 #ifdef USE_INET6
 	IPv6=PF_INET6,
@@ -58,9 +60,7 @@ enum SocketProtocol
 union SocketAddress
 {
 	sockaddr_in m_IPv4;
-#ifdef USE_INET6
 	sockaddr_in6 m_IPv6;
-#endif
 
 	inline SocketProtocol GetProtocol() const
 	{
@@ -168,11 +168,20 @@ private:
 	 * The network thread entry point. Simply calls RunWaitLoop()
 	 */
 	friend void *WaitLoopThreadMain(void *);
-	
+
+#ifdef _WIN32
+	/**
+	 * Used by the winsock AsyncSelect windowproc
+	 */
+	friend void WaitLoop_SocketUpdateProc(int fd, int error, uint eventmask);
+
+#else
+
 	/**
 	 * An internal utility function used by the UNIX select loop
 	 */
 	friend bool ConnectError(CSocketBase *, CSocketInternal *);
+#endif
 		
 	/**
 	 * Abort the call to RunWaitLoop(), if one is currently running.
@@ -187,18 +196,6 @@ private:
 	void SendWaitLoopUpdate();
 
 protected:
-	// These values are bitwise or-ed to produce op masks
-	enum Ops
-	{
-		// Call OnRead() on a stream socket when there is data to read from the
-		// socket, or OnAccept() on a server socket when there are incoming
-		// connections pending
-		READ=1,
-		// Call OnWrite() when there is space available in the socket's output
-		// buffer. Has no effect on server sockets.
-		WRITE=2
-	};
-
 	/**
 	 * Initialize a CSocketBase from a CSocketInternal pointer. Use in OnAccept
 	 * callbacks to create an object of your subclass. This constructor should
@@ -228,6 +225,22 @@ protected:
 	void SetOpMask(uint ops);
 
 public:
+	/**
+	 *	These values are bitwise or-ed to produce op masks
+	 */
+	enum Ops
+	{
+		/**
+		 * Call OnRead() on a stream socket when there is data to read from the
+		 * socket, or OnAccept() on a server socket when there are incoming
+		 * connections pending
+		 */
+		READ=1,
+		// Call OnWrite() when there is space available in the socket's output
+		// buffer. Has no effect on server sockets.
+		WRITE=2
+	};
+
 	/**
 	 * Constructs a CSocketBase. The OS socket object is not created by the
 	 * constructor, but by the protected Initialize method, which is called by
@@ -351,14 +364,6 @@ public:
 	 * @return A reference to the socket address
 	 */
 	const SocketAddress &GetRemoteAddress();
-
-	/**
-	 * Get the address of the internal pointer. Can be used in an OnAccept
-	 * callback to implement address-based protection.
-	 *
-	 * @return A reference to the socket address
-	 */
-	static const SocketAddress &GetRemoteAddress(CSocketInternal *pInt);
 
 	/**
 	 * Attempt to read data from the socket. Any data available without blocking
