@@ -1,7 +1,7 @@
 function GUIObjectHide(objectName) 
 {
         // Hide our GUI object
-        GUIObject = getGUIObjectByName(objectName);
+        var GUIObject = getGUIObjectByName(objectName);
         GUIObject.hidden = true;
 
 }
@@ -11,7 +11,7 @@ function GUIObjectHide(objectName)
 function GUIObjectUnhide(objectName)
 {
         // Unhide our GUI object
-        GUIObject = getGUIObjectByName(objectName);
+        var GUIObject = getGUIObjectByName(objectName);
         GUIObject.hidden = false;
 
 }
@@ -21,7 +21,7 @@ function GUIObjectUnhide(objectName)
 function GUIObjectToggle(objectName)
 {
         // Get our GUI object
-        GUIObject = getGUIObjectByName(objectName);
+        var GUIObject = getGUIObjectByName(objectName);
 
         // Toggle it
         GUIObject.hidden = !GUIObject.hidden;
