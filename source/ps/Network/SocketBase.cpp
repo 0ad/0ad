@@ -1,3 +1,6 @@
+#include "precompiled.h"
+#include "sysdep/win/win_internal.h"
+
 #include "Network.h"
 #include "NetworkInternal.h"
 
@@ -55,6 +58,25 @@ CSocketAddress::CSocketAddress(int port, ESocketProtocol proto)
 		m_Union.m_IPv6.sin6_port=htons(port);
 		break;
 	}
+}
+
+CSocketAddress CSocketAddress::Loopback(int port, ESocketProtocol proto)
+{
+	CSocketAddress ret;
+	switch (proto)
+	{
+	case IPv4:
+		ret.m_Union.m_IPv4.sin_family=PF_INET;
+		ret.m_Union.m_IPv4.sin_addr.s_addr=htonl(INADDR_LOOPBACK);
+		ret.m_Union.m_IPv4.sin_port=htons(port);
+		break;
+	case IPv6:
+		ret.m_Union.m_IPv6.sin6_family=PF_INET6;
+		memcpy(&ret.m_Union.m_IPv6.sin6_addr, &in6addr_loopback, sizeof(in6addr_loopback));
+		ret.m_Union.m_IPv6.sin6_port=htons(port);
+		break;
+	}
+	return ret;
 }
 
 PS_RESULT CSocketAddress::Resolve(const char *name, int port, CSocketAddress &addr)
@@ -681,10 +703,10 @@ void WaitLoop_SocketUpdateProc(int fd, int error, uint event)
 	if (error)
 	{
 		PS_RESULT res=GetPS_RESULT(error);
-		if (res == PS_FAIL)
-			pSock->OnClose(CONNECTION_BROKEN);
 		pSock->m_Error=res;
 		pSock->m_State=SS_UNCONNECTED;
+		if (res == PS_FAIL)
+			pSock->OnClose(CONNECTION_BROKEN);
 		return;
 	}
 

@@ -126,6 +126,12 @@ struct CSocketAddress
 	 * Returns the port number part of the address
 	 */
 	int GetPort() const;
+
+	/*
+		Create an address pointing to the loopback, with the specified port and
+		protocol. Use this with Bind to only listen on the loopback interface.
+	*/
+	static CSocketAddress Loopback(int port, ESocketProtocol proto=IPv4);
 };
 
 /**

@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "Network.h"
 #include "Serialization.h"
 #include <errno.h>

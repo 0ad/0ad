@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "Network.h"
 
 CServerSocket::~CServerSocket()

@@ -12,8 +12,6 @@
 #define closesocket(_fd) close(_fd)
 #else
 
-#include "sysdep/win/win_internal.h"
-
 #define Network_GetErrorString(_error, _buf, _buflen) \
 	FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, NULL, _error+WSABASEERR, 0, _buf, _buflen, NULL)
 #define Network_LastError (WSAGetLastError() - WSABASEERR)
@@ -74,7 +72,7 @@ struct CSocketSetInternal
 	pthread_mutex_t m_Mutex;
 	pthread_t m_Thread;
 
-	std::map <socket_t, CSocketBase *> m_HandleMap;
+	std::map <socket_t, CSocketBase * > m_HandleMap;
 #ifdef _WIN32
 	HWND m_hWnd;
 #else

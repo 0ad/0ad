@@ -1,6 +1,7 @@
+#include "precompiled.h"
+
 #include "posix.h"
 #include "lib.h"
-#include "misc.h"
 #include <stdio.h>
 
 #define ALLNETMSGS_IMPLEMENT

@@ -111,6 +111,11 @@ START_NMT_CLASS_(ServerHandshakeResponse)
 	NMT_FIELD(CStr, m_Message)
 END_NMT_CLASS()
 
+START_NMT_CLASS_(Result)
+	NMT_FIELD_INT(m_Code, u32, 4)
+	NMT_FIELD(CStr, m_Message)
+END_NMT_CLASS()
+
 START_NMT_CLASS_(Authenticate)
 	NMT_FIELD(CStr, m_Nick)
 	//NMT_FIELD(CPasswordHash, m_Password)
@@ -129,7 +134,7 @@ START_NMT_CLASS_(PlayerConnect)
 	NMT_END_ARRAY()
 END_NMT_CLASS()
 
-#include "../EventTypes.h"
+// #include "../EventTypes.h"
 
 END_NMTS()
 

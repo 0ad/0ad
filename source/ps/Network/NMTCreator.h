@@ -103,7 +103,7 @@ uint _nm::GetSerializedLength() const \
 	const _nm *thiz=this;
 
 #define NMT_START_ARRAY(_nm) \
-	vector <ARRAY_STRUCT_PREFIX##_nm>::const_iterator it=_nm.begin(); \
+	std::vector <ARRAY_STRUCT_PREFIX##_nm>::const_iterator it=_nm.begin(); \
 	while (it != _nm.end()) \
 	{ \
 		const ARRAY_STRUCT_PREFIX##_nm *thiz=&*it;
@@ -141,7 +141,7 @@ u8 *_nm::Serialize(u8 *buffer) const \
 	const _nm *thiz=this;
 
 #define NMT_START_ARRAY(_nm) \
-	vector <ARRAY_STRUCT_PREFIX##_nm>::const_iterator it=_nm.begin(); \
+	std::vector <ARRAY_STRUCT_PREFIX##_nm>::const_iterator it=_nm.begin(); \
 	while (it != _nm.end()) \
 	{ \
 		const ARRAY_STRUCT_PREFIX##_nm *thiz=&*it;
