@@ -1,4 +1,4 @@
-// $Id: packer.cpp,v 1.2 2004/06/19 12:56:09 philip Exp $
+// $Id: packer.cpp,v 1.3 2004/07/13 22:48:17 philip Exp $
 
 #include "stdafx.h"
 
@@ -307,6 +307,8 @@ void PackedFont::Generate(bool ProgressCallback(float, wxString, void*) = NULL, 
 
 	std::list<GlyphInfo> SortableGlyphs;
 
+	bool MissingMissingGlyph = false;
+
 	for (std::set<wchar_t>::iterator c = Chars.begin(); c != Chars.end(); ++c)
 	{
 		if (ProgressCallback != NULL)
@@ -325,8 +327,9 @@ void PackedFont::Generate(bool ProgressCallback(float, wxString, void*) = NULL, 
 				if (Font->Missing)
 					throw "Can't find either a missing glyph symbol or a question mark!";
 				Font->GetBoundingBox(w, h);
-				SortableGlyphs.push_back( GlyphInfo('?', w, h) );
+				SortableGlyphs.push_back( GlyphInfo(0xFFFD, w, h) );
 				total_area += w*h;
+				MissingMissingGlyph = true;
 			}
 			else
 			{
@@ -384,7 +387,11 @@ void PackedFont::Generate(bool ProgressCallback(float, wxString, void*) = NULL, 
 			if (ProgressCallback((float)ProgressCurrent++ / (float)ProgressMax, wxT("Rendering"), CallbackData))
 				throw "Aborted";
 
-		Font->LoadGlyph(ThisGlyph->c);
+		if (MissingMissingGlyph && ThisGlyph->c == 0xFFFD)
+			Font->LoadGlyph('?');
+		else
+			Font->LoadGlyph(ThisGlyph->c);
+
 		Font->RenderGlyph(TextureData, ThisGlyph->x, ThisGlyph->y, texture_width, texture_height, texture_width*3, true);
 		int offset_x, offset_y, advance;
 		Font->GetMetrics(offset_x, offset_y, advance);
