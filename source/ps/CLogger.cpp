@@ -128,7 +128,7 @@ void CLogger::Log(ELogMethod method, const char *fmt, ...)
 	memset(buffer,0,sizeof(buffer));
 	
 	va_start(argp, fmt);
-	vsnprintf(buffer, sizeof(buffer), fmt, argp);
+	vsnprintf2(buffer, sizeof(buffer), fmt, argp);
 	va_end(argp);
 
 	if(method == NORMAL)

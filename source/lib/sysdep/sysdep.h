@@ -12,6 +12,12 @@
 #include "unix/unix.h"
 #endif
 
+#ifdef _WIN32
+#include "lib/sysdep/win/printf.h"
+#else
+#define vsnprint2 vsnprint
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
