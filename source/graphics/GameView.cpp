@@ -450,7 +450,7 @@ void CGameView::Update(float DeltaTime)
 	else if( hotkeys[HOTKEY_CAMERA_ZOOM_OUT] )
 		zoom_delta -= m_ViewZoomSensitivity*DeltaTime;
 
-	if (zoom_delta)
+	if (fabsf(zoom_delta) > 0.1f) // use a fairly high limit to avoid nasty flickering when zooming
 	{
 		float zoom_proportion = powf(m_ViewZoomSmoothness, DeltaTime);
 		m_Camera.m_Orientation.Translate(forwards * (zoom_delta * (1.0f-zoom_proportion)));
