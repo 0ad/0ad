@@ -79,7 +79,8 @@ extern int aio_open_winhandle(HANDLE);
 #ifdef _MSC_VER
 #pragma comment(lib, "wsock32.lib")
 #endif
-#ifndef _WINSOCK2API_
+
+#ifndef _WINSOCKAPI_
 extern __declspec(dllimport) int __stdcall WSAStartup(WORD, char*);
 #endif
 #endif

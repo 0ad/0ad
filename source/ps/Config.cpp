@@ -1,4 +1,4 @@
-// Last modified: 6 November 2003 (Mark Thompson)
+// Last modified: 13 November 2003 (Mark Thompson)
 
 // TODO: A few changes from VFS -> CFile usage if required.
 
@@ -60,11 +60,12 @@ PS_RESULT CConfig::Register( CStr Filename, void* Data, LoaderFunction DynamicLo
 	}
 	
 	// Might as well check we can find the thing.
-	char filepath[PATH_MAX];
+	// This could need changing if vfs_stat doesn't
+	// search archives...
 
-	if( vfs_realpath( Filename, filepath ) )	// This changes filepath to the disk location
-												// of the file, if we know it, to speed up
-												// checks later.
+	struct stat dy;
+
+	if( vfs_stat( Filename, &dy ) )
 	{
 		if( m_LogFile )
 		{
@@ -75,16 +76,17 @@ PS_RESULT CConfig::Register( CStr Filename, void* Data, LoaderFunction DynamicLo
 		return( PS_FILE_NOT_FOUND );
 	}
 	
-	m_FileList.push_back( SConfigData( CStr( filepath ), Data, DynamicLoader ) );
+	m_FileList.push_back( SConfigData( Filename, Data, DynamicLoader ) );
 
 	i = m_FileList.begin();
 
 	if( m_LogFile )
 	{
-		CStr Report = _T( "Found file: " );
-		Report += CStr( filepath );
+		CStr Report = _T( "Adding file: " );
+		Report += CStr( Filename );
 		m_LogFile->WriteText( (const TCHAR*)Report );
 	}
+
 	return( PS_OK );
 }
 
@@ -106,7 +108,10 @@ PS_RESULT CConfig::Update()
 		
 		if( vfs_stat( i->Filename, &FileInfo ) )
 		{
-			// We can't find the file; if it exists, it's in an archive.
+			// We can't find the file.
+			// If VFS ends up implemented in such a way as vfs_stat doesn't
+			// search archives, the following code is needed...
+			/*
 			if( i->Timestamp )
 			{
 				// And it's already been loaded once, don't do so again.
@@ -116,28 +121,19 @@ PS_RESULT CConfig::Update()
 			// to now so that if it does turn up later on with a time
 			// after the start of the program, it will get loaded.
 			i->Timestamp = time( NULL );
+			*/
+			// Otherwise;
+			failed++;
+			if( m_LogFile )
+			{
+				CStr Error = _T( "File not found on: " );
+				Error += i->Filename;
+				m_LogFile->WriteError( (const TCHAR*)Error );
+			}
+			continue;
 		}
 		else
 		{
-			if( FileInfo.st_nlink ) 
-			{
-				// This flag is set by vfs_stat to indicate that the file's
-				// gone walkabouts since last we knew its location.
-				// Find its new path and copy it back to the data we maintain
-				// here to speed up future queries.
-				char filepath[PATH_MAX];
-				vfs_realpath( i->Filename, filepath );
-				if( m_LogFile )
-				{
-					CStr Report = _T( "File " );
-					Report += i->Filename;
-					Report += CStr( _T( " moved to: " ) );
-					Report += CStr( filepath );
-					m_LogFile->WriteText( (const TCHAR*)Report );
-				}
-
-				i->Filename = CStr( filepath );
-			}
 			if( i->Timestamp == FileInfo.st_mtime )
 			{
 				// This file has the same modification time as it did last
@@ -149,7 +145,7 @@ PS_RESULT CConfig::Update()
 		// If we reach here, the file needs to be (re)loaded.
 		
 		// Note also that polling every frame via _stat() for a file which 
-		// either does not exist or exists only in an archive could be a 
+		// either does not exist (or exists only in an archive) could be a 
 		// considerable waste of time, but if not done the game won't pick
 		// up on modified versions of archived files moved into the main
 		// directory trees. Also, alternatives to polling don't tend to be
@@ -207,8 +203,10 @@ PS_RESULT CConfig::ReloadAll()
 		
 		if( vfs_stat( i->Filename, &FileInfo ) )
 		{
-			// We can't find the file. Seeing as this should reload everything, 
-			// check that it exists.
+			// We can't find the file.
+			// Next block may need to be uncommented if VFS_stat 
+			// doesn't search archives in the final ver.
+			/*
 			char filepath[PATH_MAX];
 			if( vfs_realpath( i->Filename, filepath ) )
 			{
@@ -224,28 +222,18 @@ PS_RESULT CConfig::ReloadAll()
 			}
 			i->Filename = CStr( filepath );
 			i->Timestamp = time( NULL );
+			*/
+			notfound++;
+			if( m_LogFile )
+			{
+				CStr Error = _T( "File not found on: " );
+				Error += i->Filename;
+				m_LogFile->WriteError( (const TCHAR*)Error );
+			}
+			continue;
 		}
 		else
 		{
-			if( FileInfo.st_nlink ) 
-			{
-				// This flag is set by vfs_stat to indicate that the file's
-				// gone walkabouts since last we knew its location.
-				// Find its new path and copy it back to the data we maintain
-				// here to speed up future queries.
-				char filepath[PATH_MAX];
-				vfs_realpath( i->Filename, filepath );
-				if( m_LogFile )
-				{
-					CStr Report = _T( "File " );
-					Report += i->Filename;
-					Report += CStr( _T( " moved to: " ) );
-					Report += CStr( filepath );
-					m_LogFile->WriteText( (const TCHAR*)Report );
-				}
-
-				i->Filename = CStr( filepath );
-			}
 			i->Timestamp = FileInfo.st_mtime;
 		}
 

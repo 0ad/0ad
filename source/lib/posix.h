@@ -243,6 +243,7 @@ extern unsigned int sleep(unsigned int sec);
 
 #ifndef _WINSOCKAPI_
 
+
 IMP(int, gethostname, (char* name, size_t namelen))
 
 #endif
@@ -339,12 +340,13 @@ extern int pthread_mutex_unlock(pthread_mutex_t*);
 // <sys/socket.h>
 //
 
-#ifndef _WINSOCKAPI_
-
 typedef unsigned long socklen_t;
 typedef unsigned short sa_family_t;
 
 // Win32 values - do not change
+
+#ifndef _WINSOCKAPI_
+
 #define SOCK_STREAM 1
 #define SOCK_DGRAM 2
 #define AF_INET 2
@@ -429,7 +431,9 @@ IMP(ssize_t, send, (int, const void*, size_t, int))
 IMP(ssize_t, sendto, (int, const void*, size_t, int, const struct sockaddr*, socklen_t))
 IMP(ssize_t, recvfrom, (int, void*, size_t, int, struct sockaddr*, socklen_t*))
 
-#endif // _WINSOCKAPI_
+ 
+#endif /* _WINSOCKAPI_ */
+
 
 //
 // <poll.h>
