@@ -1,4 +1,4 @@
-// $Id: JSInterface_IGUIObject.cpp,v 1.8 2004/07/24 14:11:12 philip Exp $
+// $Id: JSInterface_IGUIObject.cpp,v 1.9 2004/07/31 11:29:28 philip Exp $
 
 #include "precompiled.h"
 
@@ -198,9 +198,20 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 			{
 
 			case GUIST_CStr:
+				{
+					CStr value = JS_GetStringBytes(JS_ValueToString(cx, *vp));
+					GUI<CStr>::SetSetting(e, propName, value);
+					break;
+				}
+
 			case GUIST_CGUIString:
-				e->SetSetting(propName, JS_GetStringBytes(JS_ValueToString(cx, *vp)) );
-				break;
+				{
+					CStr value = JS_GetStringBytes(JS_ValueToString(cx, *vp));
+					CGUIString str;
+					str.SetValue(value);
+					GUI<CGUIString>::SetSetting(e, propName, str);
+					break;
+				}
 
 			case GUIST_int:
 				{
