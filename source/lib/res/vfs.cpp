@@ -1428,31 +1428,32 @@ int vfs_unmap(const Handle hf)
 ///////////////////////////////////////////////////////////////////////////////
 
 
+// note: VFS and zip return the file I/O handle.
+// there's no way for zip to do any extra processing, but that's unnecessary
+// because aio is currently only supported for uncompressed files.
+
+
 // begin transferring <size> bytes, starting at <ofs>. get result
-// with vfs_wait_read; when no longer needed, free via vfs_discard_io.
+// with vfs_wait_io; when no longer needed, free via vfs_discard_io.
 Handle vfs_start_io(Handle hf, off_t ofs, size_t size, void* buf)
 {
 	H_DEREF(hf, VFile, vf);
-//	if(vf_flags(vf) & VF_ZIP)
-//		;
-
-	return 0;
+	if(vf_flags(vf) & VF_ZIP)
+		return zip_start_io(&vf->zf, ofs, size, buf);
+	return file_start_io(&vf->f, ofs, size, buf);
 }
 
 
 // wait until the transfer <hio> completes, and return its buffer.
 // output parameters are zeroed on error.
-int vfs_wait_io(Handle hio, void*& p, size_t& size)
+inline int vfs_wait_io(Handle hio, void*& p, size_t& size)
 {
-	p = 0;
-	size = 0;
-
-	return 0;
+	return file_wait_io(hio, p, size);
 }
 
 
-// finished with transfer <hio> - free its buffer (returned by vfs_wait_read)
-int vfs_discard_io(Handle& hio)
+// finished with transfer <hio> - free its buffer (returned by vfs_wait_io)
+inline int vfs_discard_io(Handle& hio)
 {
-	return 0;
+	return file_discard_io(hio);
 }

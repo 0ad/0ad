@@ -16,8 +16,8 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
-#ifndef __ZIP_H__
-#define __ZIP_H__
+#ifndef ZIP_H__
+#define ZIP_H__
 
 #include "h_mgr.h"
 #include "lib.h"
@@ -115,8 +115,33 @@ extern int zip_map(ZFile* zf, void*& p, size_t& size);
 // may be removed when no longer needed.
 extern int zip_unmap(ZFile* zf);
 
+
+//
+// asynchronous read
+//
+
+// currently only supported for compressed files to keep things simple.
+// see rationale in source.
+
+// begin transferring <size> bytes, starting at <ofs>. get result
+// with zip_wait_io; when no longer needed, free via zip_discard_io.
+extern Handle zip_start_io(ZFile* const zf, off_t ofs, size_t size, void* buf);
+
+// wait until the transfer <hio> completes, and return its buffer.
+// output parameters are zeroed on error.
+extern int zip_wait_io(Handle hio, void*& p, size_t& size);
+
+
+// finished with transfer <hio> - free its buffer (returned by vfs_wait_io)
+extern int zip_discard_io(Handle& hio);
+
+
+//
+// synchronous read
+//
+
 // read from file <zf>, starting at offset <ofs> in the compressed data.
 extern ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void** p);
 
 
-#endif	// #ifndef __ZIP_H__
+#endif	// #ifndef ZIP_H__

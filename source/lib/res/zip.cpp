@@ -352,7 +352,7 @@ struct LookupInfo
 		// we store index of next file instead of the last one opened
 		// to avoid trouble on first call (don't want last == -1).
 
-	// don't know size of std::map, and this is used in a control block
+	// don't know size of std::map, and this is used in a control block.
 	// allocate dynamically to save size.
 	LookupIdx* idx;
 };
@@ -569,7 +569,9 @@ static int ZArchive_reload(ZArchive* za, const char* fn, Handle h)
 	if(err < 0)
 		goto exit_close;
 
-	// early out: check if it's even a Zip file
+	// early out: check if it's even a Zip file.
+	// (VFS checks if a file is an archive for mounting by attempting to
+	// open it with zip_archive_open)
 	err = zip_validate(file, size);
 	if(err < 0)
 		goto exit_unmap_close;
@@ -630,7 +632,9 @@ uintptr_t inf_init_ctx()
 	return 0;
 #else
 	// allocate ZLib stream
-	z_stream* stream = (z_stream*)mem_alloc(round_up(sizeof(z_stream), 32), 32, MEM_ZERO);
+	const size_t size = round_up(sizeof(z_stream), 32);
+		// be nice to allocator
+	z_stream* stream = (z_stream*)calloc(size, 1);
 	if(inflateInit2(stream, -MAX_WBITS) != Z_OK)
 		// -MAX_WBITS indicates no zlib header present
 		return 0;
@@ -703,7 +707,7 @@ int inf_finish_read(uintptr_t ctx)
 
 	if(stream->avail_in || stream->avail_out)
 	{
-		debug_warn("zip_finish_read: input or input buffer has space remaining");
+		debug_warn("zip_finish_read: input or output buffer has space remaining");
 		stream->avail_in = stream->avail_out = 0;
 		return -1;
 	}
@@ -831,7 +835,7 @@ static int zip_open_idx(const Handle ha, const i32 idx, ZFile* zf)
 }
 
 invalid_zf:
-	CHECK_ZFILE(zf)
+	CHECK_ZFILE(zf);
 
 	return 0;
 }
@@ -853,7 +857,7 @@ int zip_open(const Handle ha, const char* fn, ZFile* zf)
 
 int zip_close(ZFile* zf)
 {
-	CHECK_ZFILE(zf)
+	CHECK_ZFILE(zf);
 
 	// remaining ZFile fields don't need to be freed/cleared
 	return inf_free_ctx(zf->read_ctx);
@@ -892,11 +896,18 @@ static inline bool is_compressed(ZFile* zf)
 }
 
 
+///////////////////////////////////////////////////////////////////////////////
+//
+// synchronous I/O
+//
+///////////////////////////////////////////////////////////////////////////////
+
+
 // note: we go to a bit of trouble to make sure the buffer we allocated
 // (if p == 0) is freed when the read fails.
 ssize_t zip_read(ZFile* zf, off_t raw_ofs, size_t size, void** p)
 {
-	CHECK_ZFILE(zf)
+	CHECK_ZFILE(zf);
 
 	ssize_t err = -1;
 	ssize_t raw_bytes_read;
@@ -968,6 +979,13 @@ fail:
 }
 
 
+///////////////////////////////////////////////////////////////////////////////
+//
+// file mapping
+//
+///////////////////////////////////////////////////////////////////////////////
+
+
 // map the entire file <zf> into memory. mapping compressed files
 // isn't allowed, since the compression algorithm is unspecified.
 // output parameters are zeroed on failure.
@@ -980,7 +998,7 @@ int zip_map(ZFile* const zf, void*& p, size_t& size)
 	p = 0;
 	size = 0;
 
-	CHECK_ZFILE(zf)
+	CHECK_ZFILE(zf);
 
 	// mapping compressed files doesn't make sense because the
 	// compression algorithm is unspecified - disallow it.
@@ -1005,7 +1023,7 @@ int zip_map(ZFile* const zf, void*& p, size_t& size)
 // may be removed when no longer needed.
 int zip_unmap(ZFile* const zf)
 {
-	CHECK_ZFILE(zf)
+	CHECK_ZFILE(zf);
 
 	// make sure archive mapping refcount remains balanced:
 	// don't allow multiple unmaps.
@@ -1018,89 +1036,46 @@ int zip_unmap(ZFile* const zf)
 }
 
 
+///////////////////////////////////////////////////////////////////////////////
+//
+// asynchronous I/O
+//
+///////////////////////////////////////////////////////////////////////////////
 
 
+// rationale for not supporting aio for compressed files:
+// would complicate things considerably (could no longer just
+// return the file I/O handle, since we have to decompress in wait_io),
+// yet it isn't really useful - aio is used to stream music,
+// which is already compressed.
 
 
-
-
-
-
-/*
-
-
-// note: we go to a bit of trouble to make sure the buffer we allocated
-// (if p == 0) is freed when the read fails.
-ssize_t zip_read(ZFile* zf, off_t raw_ofs, size_t size, void*& p)
+// begin transferring <size> bytes, starting at <ofs>. get result
+// with zip_wait_io; when no longer needed, free via zip_discard_io.
+Handle zip_start_io(ZFile* const zf, off_t ofs, size_t size, void* buf)
 {
-	CHECK_ZFILE(zf)
-
-	ssize_t err = -1;
-	ssize_t raw_bytes_read;
-
-	ZArchive* za = H_USER_DATA(zf->ha, ZArchive);
-	if(!za)
-		return ERR_INVALID_HANDLE;
-
-	const off_t ofs = zf->ofs + raw_ofs;
-
-	// not compressed - just pass it on to file_io
-	// (avoid the Zip inflate start/finish stuff below)
-	if(!is_compressed(zf))
-		return file_io(&za->f, ofs, size, &p);
-			// no need to set last_raw_ofs - only checked if compressed.
-
-	// compressed
-
-	// make sure we continue where we left off
-	// (compressed data must be read in one stream / sequence)
-	//
-	// problem: partial reads 
-	if(raw_ofs != zf->last_raw_ofs)
+	CHECK_ZFILE(zf);
+	if(is_compressed(zf))
 	{
-		debug_warn("zip_read: compressed read offset is non-continuous");
+		debug_warn("Zip aio doesn't currently support compressed files (see rationale above)");
 		return -1;
 	}
 
-	void* our_buf = 0;		// buffer we allocated (if necessary)
-	if(!p)
-	{
-		p = our_buf = mem_alloc(size);
-		if(!p)
-			return ERR_NO_MEM;
-	}
-
-	err = (ssize_t)inf_start_read(zf->read_ctx, p, size);
-	if(err < 0)
-	{
-fail:
-		// we allocated it, so free it now
-		if(our_buf)
-		{
-			mem_free(our_buf);
-			p = 0;
-		}
-		return err;
-	}
-
-	// read blocks from the archive's file starting at ofs and pass them to
-	// zip_inflate, until all compressed data has been read, or it indicates
-	// the desired output amount has been reached.
-	const size_t raw_size = zf->csize;
-	raw_bytes_read = file_io(&za->f, ofs, raw_size, (void**)0, inf_inflate, zf->read_ctx);
-
-	zf->last_raw_ofs = raw_ofs + (off_t)raw_bytes_read;
-
-	err = inf_finish_read(zf->read_ctx);
-	if(err < 0)
-		goto fail;
-
-	err = raw_bytes_read;
-
-	// failed - make sure buffer is freed
-	if(err <= 0)
-		goto fail;
-
-	return err;
+	H_DEREF(zf->ha, ZArchive, za);
+	return file_start_io(&za->f, zf->ofs+ofs, size, buf);
 }
-*/
+
+
+// wait until the transfer <hio> completes, and return its buffer.
+// output parameters are zeroed on error.
+inline int zip_wait_io(Handle hio, void*& p, size_t& size)
+{
+	return file_wait_io(hio, p, size);
+}
+
+
+// finished with transfer <hio> - free its buffer (returned by vfs_wait_io)
+inline int zip_discard_io(Handle& hio)
+{
+	return file_discard_io(hio);
+}
