@@ -406,7 +406,7 @@
     - FPS COUNTER -
     ==========================================
     -->
-    <object type="text" name="FPS_Counter" size="18 100%-35 100 100%" z="100" hotkey="hotkey.fps.toggle" textcolor="200 200 0" font="verdana16" hidden="false">
+    <object type="text" name="FPS_Counter" size="18 100%-35 200 100%" z="100" hotkey="hotkey.fps.toggle" textcolor="200 200 0" font="verdana16" hidden="false">
       <action on="Load"><![CDATA[
         setInterval(UpdateFPSCounter, 50);
       ]]></action>
