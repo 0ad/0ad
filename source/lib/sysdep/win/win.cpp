@@ -41,7 +41,7 @@ void sle(int x)
 //
 
 
-inline void check_heap()
+inline void debug_check_heap()
 {
 	_heapchk();
 }
