@@ -240,9 +240,12 @@ extern int access(const char*, int);
 extern int chdir(const char*);
 
 extern unsigned int sleep(unsigned int sec);
+
+#ifndef _WINSOCKAPI_
+
 IMP(int, gethostname, (char* name, size_t namelen))
 
-
+#endif
 
 //
 // <stdlib.h>
@@ -317,8 +320,11 @@ extern pthread_t pthread_self();
 extern int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param* param);
 extern int pthread_create(pthread_t* thread, const void* attr, void*(*IMP)(void*), void* arg);
 
-typedef unsigned int pthread_mutex_t;
+typedef void *pthread_mutex_t;
 typedef void pthread_mutexattr_t;
+
+extern pthread_mutex_t pthread_mutex_initializer();
+#define PTHREAD_MUTEX_INITIALIZER pthread_mutex_initializer()
 
 extern int pthread_mutex_init(pthread_mutex_t*, const pthread_mutexattr_t*);
 extern int pthread_mutex_destroy(pthread_mutex_t*);
@@ -332,6 +338,8 @@ extern int pthread_mutex_unlock(pthread_mutex_t*);
 //
 // <sys/socket.h>
 //
+
+#ifndef _WINSOCKAPI_
 
 typedef unsigned long socklen_t;
 typedef unsigned short sa_family_t;
@@ -421,6 +429,8 @@ IMP(ssize_t, send, (int, const void*, size_t, int))
 IMP(ssize_t, sendto, (int, const void*, size_t, int, const struct sockaddr*, socklen_t))
 IMP(ssize_t, recvfrom, (int, void*, size_t, int, struct sockaddr*, socklen_t*))
 
+#endif // _WINSOCKAPI_
+
 //
 // <poll.h>
 //
@@ -474,8 +484,9 @@ enum
 
 extern int ioctl(int fd, int op, int* data);
 
+#ifndef _WINSOCKAPI_
 #define FIONREAD 0
-
+#endif
 
 
 extern void _get_console();
