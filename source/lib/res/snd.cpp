@@ -57,7 +57,11 @@ struct Sound
 	uint flags;
 	ALuint al_source;
 
+	// list of all sounds
 	Sound* next;
+
+	// handle to this Sound, so that it can close itself
+	Handle hs;
 
 	// if stream:
 	Handle hf;
@@ -212,8 +216,12 @@ cassert(sizeof(WavFormatChunk) == 16);
 #pragma pack(pop)
 
 
-static int wav_detect(Handle hf, ALenum* al_format, ALsizei* al_sample_rate)
+// output parameters zeroed on failure.
+static int wav_detect_format(Handle hf, ALenum* al_format, ALsizei* al_sample_rate)
 {
+	*al_format = 0;
+	*al_sample_rate = 0;
+
 	int ret = -1;
 
 	WavFormatChunk* fmt = 0;
@@ -278,51 +286,6 @@ fail:
 }
 
 
-// output parameters zeroed on failure.
-static int detect_audio_fmt(Handle hf, ALenum* al_format, ALsizei* al_sample_rate)
-{
-	*al_format = 0;
-	*al_sample_rate = 0;
-
-	const char* fn = h_filename(hf);
-	if(!fn)
-		return -1;
-	char* ext = strrchr(fn, '.');
-	if(!ext)
-		return -1;
-
-	// OGG (data will be passed directly to OpenAL)
-	if(!stricmp(ext, ".ogg"))
-	{
-		if(!ogg_supported)
-			return -1;
-
-		*al_format = AL_FORMAT_VORBIS_EXT;
-		*al_sample_rate = 1;
-		return 0;
-	}
-	// WAV
-	else if(!stricmp(ext, ".wav"))
-		return wav_detect(hf, al_format, al_sample_rate);
-	// not WAV either => unknown 
-	else
-		return -1;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -360,51 +323,84 @@ static int ALBuffer_reload(ALBuffer* b, const char* fn, Handle)
 
 	{
 
-		hf = vfs_open(fn);
-		CHECK_ERR(hf);
+	hf = vfs_open(fn);
+	CHECK_ERR(hf);
 
-		// detect sound file format and seek to audio data
-		ALenum al_format;
-		ALsizei al_sample_rate;
-		int err = detect_audio_fmt(hf, &al_format, &al_sample_rate);
+
+	//
+	// detect sound format (by checking file extension)
+	//
+
+	ALenum al_format;
+	ALsizei al_sample_rate;
+
+	char* ext = strrchr(fn, '.');
+	// .. OGG (data will be passed directly to OpenAL)
+	if(ext && !stricmp(ext, ".ogg"))
+	{
+		if(!ogg_supported)
+		{
+			ret = -1;
+			goto fail;
+		}
+
+		al_format = AL_FORMAT_VORBIS_EXT;
+		al_sample_rate = 1;
+	}
+	// .. WAV (read format from header and seek to audio data)
+	else if(ext && !stricmp(ext, ".wav"))
+	{
+		int err = wav_detect_format(hf, &al_format, &al_sample_rate);
 		if(err < 0)
 		{
 			ret = err;
 			goto fail;
 		}
+	}
+	// .. unknown extension
+	else
+	{
+		ret = -1;
+		goto fail;
+	}
 
-		// alloc temp buffer that will hold waveform data until OpenAL latches
-		// it below. note: we don't know how much has already been read by
-		// detect_audio_fmt; we allocate enough for the entire file.
-		ssize_t file_size = vfs_size(hf);
-		if(file_size < 0)
-		{
-			ret = file_size;
-			goto fail;
-		}
-		void* file = malloc(file_size);	// freed soon after
-		if(!file)
-		{
-			ret = ERR_NO_MEM;
-			goto fail;
-		}
 
-		// read from file. note: don't use vfs_load - detect_audio_fmt
-		// has seeked to the actual audio data in the file.
-		void* dst = file;	// for vfs_io
-		ssize_t bytes_read = vfs_io(hf, file_size, &dst);
-		if(bytes_read < 0)
-		{
-			ret = bytes_read;
-			goto fail;
-		}
+	//
+	// allocate buffer for audio data
+	//
 
-		b->al_buffer = al_create_buffer(file, file_size, al_format, al_sample_rate);
+	// note: freed after openal latches its contents in al_create_buffer.
+	// we don't know how much has already been read by wav_detect_format;
+	// allocate enough for the entire file.
+	ssize_t file_size = vfs_size(hf);
+	if(file_size < 0)
+	{
+		ret = file_size;
+		goto fail;
+	}
+	void* file = malloc(file_size);	// freed soon after
+	if(!file)
+	{
+		ret = ERR_NO_MEM;
+		goto fail;
+	}
 
-		ret = 0;
+	// read from file. note: don't use vfs_load - detect_audio_fmt
+	// has seeked to the actual audio data in the file.
+	void* dst = file;	// for vfs_io
+	ssize_t bytes_read = vfs_io(hf, file_size, &dst);
+	if(bytes_read < 0)
+	{
+		ret = bytes_read;
+		goto fail;
+	}
+
+	b->al_buffer = al_create_buffer(file, bytes_read, al_format, al_sample_rate);
+
+	ret = 0;
 fail:
-		free(file);
-		vfs_close(hf);
+	free(file);
+	vfs_close(hf);
 
 	}
 
@@ -635,30 +631,21 @@ static void Sound_dtor(Sound* s)
 {
 	sounds_remove(s);
 
-	vfs_close(s->hf);
-
-	albuffer_free(s->hb);
-
 	alDeleteSources(1, &s->al_source);
 	check();
+
+	// move to sounddatasource
+	vfs_close(s->hf);
+	albuffer_free(s->hb);
 }
 
 
-static int Sound_reload(Sound* s, const char* fn, Handle)
+static int Sound_reload(Sound* s, const char* fn, Handle hs)
 {
 	// always add; if this fails, dtor is called, which removes from list
 	sounds_add(s);
 
-	// decide if it'll be streamed or loaded into memory
-	struct stat stat_buf;
-	CHECK_ERR(vfs_stat(fn, &stat_buf));
-	off_t file_size = stat_buf.st_size;
-	// big enough to warrant streaming
-	if(file_size > CLIP_MAX_SIZE)
-		s->flags = SF_STREAMING;
-
-	// TODO: let caller decide as well
-
+	s->hs = hs;
 
 	alGenSources(1, &s->al_source);
 	check();
@@ -674,12 +661,30 @@ static int Sound_reload(Sound* s, const char* fn, Handle)
 	check();
 
 
+
+
+
+
+
+
+	// decide if it'll be streamed or loaded into memory
+	struct stat stat_buf;
+	CHECK_ERR(vfs_stat(fn, &stat_buf));
+	off_t file_size = stat_buf.st_size;
+	// big enough to warrant streaming
+	if(file_size > CLIP_MAX_SIZE)
+		s->flags = SF_STREAMING;
+
+	// TODO: let caller decide as well
+
+
+
 	if(s->flags & SF_STREAMING)
 	{
 		s->hf = vfs_open(fn);
 		CHECK_ERR(s->hf);
 
-		CHECK_ERR(detect_audio_fmt(s->hf, &s->al_format, &s->al_sample_rate));
+//		CHECK_ERR(detect_audio_fmt(s->hf, &s->al_format, &s->al_sample_rate));
 
 		for(int i = 0; i < MAX_IOS; i++)
 			CHECK_ERR(io_issue(s, s->hf));
@@ -701,7 +706,7 @@ static int Sound_reload(Sound* s, const char* fn, Handle)
 Handle sound_open(const char* const fn)
 {
 	snd_init();
-	return h_alloc(H_Sound, fn);
+	return h_alloc(H_Sound, fn, RES_NO_CACHE);
 }
 
 
@@ -739,15 +744,28 @@ static int sound_update(Sound* s)
 	alGetSourcei(s->al_source, AL_BUFFERS_PROCESSED, &num_finished_buffers);
 	check();
 
-	for(int i = 0; i < num_finished_buffers; i++)
+	if(!(s->flags & SF_STREAMING) && num_finished_buffers == 1)
 	{
 		ALuint al_buffer;
 		alSourceUnqueueBuffers(s->al_source, 1, &al_buffer);
-		alDeleteBuffers(1, &al_buffer);
 		check();
 
-		CHECK_ERR(io_issue(s, s->hf));
+		alSourceStop(s->al_source);
+		check();
+
+		sound_free(s->hs);
 	}
+
+	if(s->flags & SF_STREAMING)
+		for(int i = 0; i < num_finished_buffers; i++)
+		{
+			ALuint al_buffer;
+			alSourceUnqueueBuffers(s->al_source, 1, &al_buffer);
+			alDeleteBuffers(1, &al_buffer);
+			check();
+
+			CHECK_ERR(io_issue(s, s->hf));
+		}
 
 	return 0;
 }
