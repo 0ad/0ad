@@ -785,7 +785,7 @@ PREVTSC=CURTSC;
 #endif
 
 	delete g_Console;
-//	delete &g_ScriptingHost;
+	delete &g_ScriptingHost;
 	delete &g_Pathfinder;
 	delete &g_EntityManager;
 	delete &g_EntityTemplateCollection;
