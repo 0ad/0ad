@@ -53,8 +53,6 @@
 #include "gui/GUI.h"
 #endif
 
-#include "NPFontManager.h"
-
 
 CConsole* g_Console = 0;
 extern int conInputHandler(const SDL_Event* ev);
@@ -770,9 +768,7 @@ static void Shutdown()
 
 	delete &g_ConfigDB;
 
-	// Not particularly consistent with all the other singletons,
-	// but the GUI currently uses it and so it needs to be unloaded
-	NPFontManager::release();
+	cursor_set(NULL);
 }
 
 static void Init(int argc, char* argv[])
@@ -1036,6 +1032,8 @@ PREVTSC=CURTSC;
 static void Frame()
 {
 	MICROLOG(L"In frame");
+
+	cursor_set("test");
 
 #if defined(MOVIE_RECORD) || defined(MOVIE_CREATE)
 
