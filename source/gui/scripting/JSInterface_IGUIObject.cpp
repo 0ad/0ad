@@ -1,9 +1,11 @@
-// $Id: JSInterface_IGUIObject.cpp,v 1.14 2004/09/06 02:22:38 gee Exp $
+// $Id: JSInterface_IGUIObject.cpp,v 1.15 2004/09/06 11:28:30 philip Exp $
 
 #include "precompiled.h"
 
 #include "JSInterface_IGUIObject.h"
 #include "JSInterface_GUITypes.h"
+
+#include "ps/StringConvert.h"
 
 JSClass JSI_IGUIObject::JSI_class = {
 	"GUIObject", JSCLASS_HAS_PRIVATE,
@@ -162,8 +164,8 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				CGUIString value;
 				GUI<CGUIString>::GetSetting(e, propName, value);
 				// Create a garbage-collectable copy of the string
-				// TODO Gee@Ykkrosh: this was just to make it compile
-				*vp = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, (const char*)value.GetRawString().c_str() ));
+				JSString* s = StringConvert::wchars_to_jsstring(cx, value.GetRawString().c_str());
+				*vp = STRING_TO_JSVAL(s);
 				break;
 			}
 
@@ -220,7 +222,9 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 
 			case GUIST_CGUIString:
 				{
-					CStr value = JS_GetStringBytes(JS_ValueToString(cx, *vp));
+					std::wstring value;
+					StringConvert::jsstring_to_wstring(JS_ValueToString(cx, *vp), value);
+
 					CGUIString str;
 					str.SetValue(value);
 					GUI<CGUIString>::SetSetting(e, propName, str);
