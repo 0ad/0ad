@@ -127,7 +127,7 @@ jsval ScriptingHost::ExecuteScript(const CStrW& script, const CStrW& calledFrom,
 
 	JSBool ok = JS_EvaluateUCScript(m_Context, contextObject ? contextObject : m_GlobalObject, script.utf16().c_str(), (int)script.Length(), asciiName, 0, &rval); 
 
-	delete( asciiName );
+	delete[]( asciiName );
 
 	if (!ok) return JSVAL_NULL;
 

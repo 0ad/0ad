@@ -521,7 +521,7 @@ void CEntity::renderSelectionOutline( float alpha )
 #ifdef SCED // HACK: ScEd doesn't have a g_Game, so we can't use its CPlayers
 		glColor3fv(PlayerColours[ (intptr_t)m_player ]);
 #else
-		SColour& col = m_player->m_Colour;
+		const SPlayerColour& col = m_player->GetColour();
 		glColor3f( col.r, col.g, col.b );
 #endif
 	}

@@ -21,7 +21,7 @@ class CNetClient: public CNetSession, protected CTurnManager, public CJSObject<C
 	// JS event scripts
 	CScriptObject m_OnStartGame;
 	CScriptObject m_OnChat;
-	CScriptObject m_OnConnect;
+	CScriptObject m_OnConnectComplete;
 
 protected:
 	virtual void NewTurn();
@@ -46,7 +46,6 @@ public:
 	static MessageHandler ChatHandler;
 	static MessageHandler InGameHandler;
 	
-	static void ScriptingInit();
 	bool JSI_BeginConnect(JSContext *cx, uintN argc, jsval *argv);
 };
 

@@ -59,9 +59,8 @@ JSFunctionSpec ScriptFunctionTable[] =
 	{"setCursor", setCursor, 1, 0, 0 },
 	{"startGame", startGame, 0, 0, 0 },
 	{"endGame", endGame, 0, 0, 0 },
-	{"joinGame", joinGame, 0, 0, 0 },
 	{"createClient", createClient, 0, 0, 0 },
-	{"startServer", startServer, 0, 0, 0 },
+	{"createServer", createServer, 0, 0, 0 },
 	{"loadLanguage", loadLanguage, 1, 0, 0 },
 	{"getLanguageID", getLanguageID, 0, 0, 0 },
 	{"getFPS", getFPS, 0, 0, 0 },
@@ -325,38 +324,16 @@ JSBool setCursor(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalOb
 	return JS_TRUE;
 }
 
-// Some globals from main.cpp
-extern void CreateGame();
-extern CGameAttributes g_GameAttributes;
-
-JSBool startServer(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* rval)
+JSBool createServer(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* rval)
 {
-	CSocketAddress listenAddress;
-	if (argc == 0)
-	{
-		CNetServer::GetDefaultListenAddress(listenAddress);
-	}
-	if (argc == 1)
-	{
-		LOG(MESSAGE, LOG_CAT_NET, "startServer: Server port is %d\n", g_ScriptingHost.ValueToInt(argv[0]));
-		listenAddress=CSocketAddress(g_ScriptingHost.ValueToInt(argv[0]), IPv4);
-	}
-
 	g_Game=new CGame();
-	g_NetServer=new CNetServer(&g_NetServerAttributes, g_Game, &g_GameAttributes);
-	PS_RESULT res=g_NetServer->Bind(listenAddress);
-	if (res != PS_OK)
-	{
-		LOG(ERROR, LOG_CAT_NET, "startServer: Bind error: %s", res);
-		*rval = BOOLEAN_TO_JSVAL(JS_FALSE);
-		return JS_TRUE;
-	}
-
-	*rval = BOOLEAN_TO_JSVAL(JS_TRUE);
+	g_NetServer=new CNetServer(g_Game, &g_GameAttributes);
+	
+	*rval=OBJECT_TO_JSVAL(g_NetServer->GetScript());
 	return JS_TRUE;
 }
 
-// More from main.cpp
+// from main.cpp
 extern void StartGame();
 
 JSBool createClient(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* rval)
@@ -373,45 +350,8 @@ JSBool createClient(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned
 	return JS_TRUE;
 }
 
-JSBool joinGame(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* rval)
-{
-	CStrW username;
-	CStr password;
-	CStr connectHostName;
-	int connectPort=PS_DEFAULT_PORT;
-	if (argc >= 2) // Two args; name, hostname and default port
-	{
-		username=g_ScriptingHost.ValueToUCString(argv[0]);
-		password="";
-		connectHostName=g_ScriptingHost.ValueToString(argv[1]);
-	}
-	else
-		return JS_FALSE;
-
-	if (argc == 3)
-	{
-		connectPort=g_ScriptingHost.ValueToInt(argv[2]);
-	}
-
-	if (g_Game)
-	{
-		return JS_FALSE;
-	}
-
-	g_Game=new CGame();
-	g_NetClient=new CNetClient(g_Game, &g_GameAttributes);
-	g_NetClient->SetLoginInfo(username, password);
-	PS_RESULT res=g_NetClient->BeginConnect(connectHostName.c_str(), connectPort);
-	if (res != PS_OK)
-	{
-		LOG(ERROR, LOG_CAT_NET, "joinGame: BeginConnect error: %s", res);
-		*rval=BOOLEAN_TO_JSVAL(JS_FALSE);
-	}
-	else
-		*rval=BOOLEAN_TO_JSVAL(JS_TRUE);
-	return JS_TRUE;
-}
-
+// TODO Replace startGame with create(Game|Server|Client)/game.start() - after
+// merging CGame and CGameAttributes
 JSBool startGame(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* rval)
 {
 	if (argc != 0)

@@ -1,5 +1,7 @@
 #include "precompiled.h"
 
+#include "lib.h"
+
 #include <scripting/DOMEvent.h>
 #include <scripting/JSConversions.h>
 #include <scripting/ScriptableObject.h>
@@ -18,7 +20,7 @@ enum CClientEvents
 {
 	CLIENT_EVENT_START_GAME,
 	CLIENT_EVENT_CHAT,
-	CLIENT_EVENT_CONNECT,
+	CLIENT_EVENT_CONNECT_COMPLETE,
 	CLIENT_EVENT_LAST
 };
 
@@ -45,13 +47,13 @@ public:
 	}
 };
 
-class CConnectEvent: public CScriptEvent
+class CConnectCompleteEvent: public CScriptEvent
 {
 	CStrW m_Message;
 	bool m_Success;
 public:
-	CConnectEvent(CStrW message, bool success):
-		CScriptEvent(L"connect", false, CLIENT_EVENT_CONNECT),
+	CConnectCompleteEvent(CStrW message, bool success):
+		CScriptEvent(L"connectComplete", false, CLIENT_EVENT_CONNECT_COMPLETE),
 		m_Message(message),
 		m_Success(success)
 	{
@@ -66,11 +68,20 @@ CNetClient::CNetClient(CGame *pGame, CGameAttributes *pGameAttribs):
 	m_pGame(pGame),
 	m_pGameAttributes(pGameAttribs)
 {
+	ONCE(
+		// This one's funny: if you remove the parantheses around this stmt
+		// the preprocessor will take the comma inside the template decl and
+		// interpret it as a macro argument delimiter ;-)
+		(AddMethod<bool, &CNetClient::JSI_BeginConnect>("beginConnect", 1));
+
+		CJSObject<CNetClient>::ScriptingInit("NetClient");
+	);
+
 	m_pGame->GetSimulation()->SetTurnManager(this);
 	
 	AddProperty(L"onStartGame", &m_OnStartGame);
 	AddProperty(L"onChat", &m_OnChat);
-	AddProperty(L"onConnect", &m_OnConnect);
+	AddProperty(L"onConnectComplete", &m_OnConnectComplete);
 	
 	AddProperty(L"password", &m_Password);
 	AddProperty(L"playerName", &m_Name);
@@ -81,13 +92,6 @@ CNetClient::CNetClient(CGame *pGame, CGameAttributes *pGameAttribs):
 CNetClient::~CNetClient()
 {
 	g_ScriptingHost.SetGlobal("g_NetClient", JSVAL_NULL);
-}
-
-void CNetClient::ScriptingInit()
-{
-	AddMethod<bool, &CNetClient::JSI_BeginConnect>("beginConnect", 1);
-
-	CJSObject<CNetClient>::ScriptingInit("NetClient");
 }
 
 bool CNetClient::JSI_BeginConnect(JSContext *cx, uintN argc, jsval *argv)
@@ -143,20 +147,20 @@ bool CNetClient::ConnectHandler(CNetMessage *pMsg, CNetSession *pSession)
 	{
 	case NMT_CONNECT_COMPLETE:
 		pClient->m_pMessageHandler=HandshakeHandler;
-		if (pClient->m_OnConnect.Defined())
+		if (pClient->m_OnConnectComplete.Defined())
 		{
-			CConnectEvent evt=CConnectEvent(CStr(PS_OK), true);
-			pClient->m_OnConnect.DispatchEvent(pClient->GetScript(), &evt);
+			CConnectCompleteEvent evt=CConnectCompleteEvent(CStr(PS_OK), true);
+			pClient->m_OnConnectComplete.DispatchEvent(pClient->GetScript(), &evt);
 		}
 		break;
 	case NMT_ERROR:
 	{
 		CNetErrorMessage *msg=(CNetErrorMessage *)pMsg;
 		LOG(ERROR, LOG_CAT_NET, "CNetClient::ConnectHandler(): Connect Failed: %s", msg->m_Error);
-		if (pClient->m_OnConnect.Defined())
+		if (pClient->m_OnConnectComplete.Defined())
 		{
-			CConnectEvent evt=CConnectEvent(CStr(msg->m_Error), false);
-			pClient->m_OnConnect.DispatchEvent(pClient->GetScript(), &evt);
+			CConnectCompleteEvent evt=CConnectCompleteEvent(CStr(msg->m_Error), false);
+			pClient->m_OnConnectComplete.DispatchEvent(pClient->GetScript(), &evt);
 		}
 		break;
 	}

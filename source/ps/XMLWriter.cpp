@@ -127,7 +127,7 @@ void XMLWriter_Element::Text(const char* text)
 
 
 
-template <> void XMLWriter_File::ElementAttribute<CStr>(const char* name, CStr& value, bool newelement)
+template <> void XMLWriter_File::ElementAttribute<CStr>(const char* name, const CStr& value, bool newelement)
 {
 	if (newelement)
 	{
@@ -145,35 +145,30 @@ template <> void XMLWriter_File::ElementAttribute<CStr>(const char* name, CStr& 
 	}
 }
 
-// (Simon) Since GCC refuses to pass temporaries through non-const reference, 
-// define this wrapper function to convert [ugly] a const CStr to a non-const
-template <>
-inline void XMLWriter_File::ElementAttribute<const CStr>(const char *name, const CStr& value, bool newelement)
-{
-	ElementAttribute(name, (CStr &)value, newelement);
-}
-
 // Attribute/setting value-to-string template specialisations:
 
 // Use CStr's conversion for most types:
-#define TYPE(T) \
-template <> void XMLWriter_File::ElementAttribute<T>(const char* name, T& value, bool newelement) \
+#define TYPE2(ID_T, ARG_T) \
+template <> void XMLWriter_File::ElementAttribute<ID_T>(const char* name, ARG_T value, bool newelement) \
 { \
-	ElementAttribute<const CStr>(name, CStr(value), newelement); \
+	ElementAttribute(name, CStr(value), newelement); \
 }
+#define TYPE(T) TYPE2(T, const T &)
 
 TYPE(int)
 TYPE(unsigned int)
 TYPE(float)
 TYPE(double)
-TYPE(const char*)
+// This is the effect of doing const T& with T=const char* - char const* const&
+// Weird - I know ;-)
+TYPE2(const char *, char const* const&) 
 
-template <> void XMLWriter_File::ElementAttribute<CStrW>(const char* name, CStrW& value, bool newelement)
+template <> void XMLWriter_File::ElementAttribute<CStrW>(const char* name, const CStrW& value, bool newelement)
 {
-	ElementAttribute<const CStr>(name, value.utf8(), newelement);
+	ElementAttribute(name, value.utf8(), newelement);
 }
 
-template <> void XMLWriter_File::ElementAttribute<CPlayer*>(const char* name, CPlayer*& value, bool newelement)
+template <> void XMLWriter_File::ElementAttribute<CPlayer*>(const char* name, CPlayer*const & value, bool newelement)
 {
-	ElementAttribute(name, value->m_PlayerID, newelement);
+	ElementAttribute(name, value->GetPlayerID(), newelement);
 }

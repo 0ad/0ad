@@ -100,7 +100,7 @@ private:
 
 	void ElementStart(XMLWriter_Element* element, const char* name);
 	void ElementText(const char* text);
-	template <typename T> void ElementAttribute(const char* name, T& value, bool newelement);
+	template <typename T> void ElementAttribute(const char* name, const T& value, bool newelement);
 	void ElementClose();
 	void ElementEnd(const char* name, int type);
 

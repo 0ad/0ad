@@ -2,49 +2,9 @@
 #define _Network_NetServer_H
 
 #include "Network/Session.h"
+#include "Network/ServerSession.h"
 #include "Game.h"
 #include "TurnManager.h"
-
-class CNetServer;
-class CPlayer;
-
-class CNetServerSession: public CNetSession
-{
-	CNetServer *m_pServer;
-	CPlayer *m_pPlayer;
-	bool m_IsObserver;
-	
-protected:
-	friend class CNetServer;
-
-	inline void SetPlayer(CPlayer *pPlayer)
-	{	m_pPlayer=pPlayer; }
-
-public:
-	virtual ~CNetServerSession();
-
-	inline CNetServerSession(CNetServer *pServer, CSocketInternal *pInt, MessageHandler *pMsgHandler=HandshakeHandler):
-		CNetSession(pInt, pMsgHandler),
-		m_pServer(pServer),
-		m_pPlayer(NULL),
-		m_IsObserver(false)
-	{}
-
-	inline bool IsObserver()
-	{	return m_IsObserver; }
-
-	// Called by server when starting the game, after sending NMT_StartGame to
-	// all connected clients.
-	void StartGame();
-
-	static MessageHandler BaseHandler;
-	static MessageHandler HandshakeHandler;
-	static MessageHandler AuthenticateHandler;
-	static MessageHandler PreGameHandler;
-	static MessageHandler ObserverHandler;
-	static MessageHandler ChatHandler;
-	static MessageHandler InGameHandler;
-};
 
 enum ENetServerState
 {
@@ -55,19 +15,17 @@ enum ENetServerState
 	// rules are set up by the operator and where players join and select civs
 	// and stuff.
 	NSS_PreGame,
+	// In-Game state: the one with all the killing ;-)
 	NSS_InGame,
 	// The game is over and someone has won. Players might linger to chat or
 	// download the replay log.
 	NSS_PostGame
 };
 
-class CNetServerAttributes: public CAttributeMap
-{
-public:
-	CNetServerAttributes();
-};
-
-class CNetServer: protected CServerSocket, protected CTurnManager
+class CNetServer:
+	protected CServerSocket,
+	protected CTurnManager,
+	public CJSObject<CNetServer>
 {
 private:
 	/*
@@ -94,12 +52,20 @@ private:
 
 	CGame *m_pGame;
 	CGameAttributes *m_pGameAttributes;
-	CNetServerAttributes *m_pServerAttributes;
 
-	CStr m_Password;
+	CPlayer *m_pServerPlayer;
+
+	CStrW m_Password;
 	CStrW m_ServerPlayerName;
-
-	static CAttributeMap::UpdateCallback AttributeUpdate;
+	CStrW m_ServerName;
+	CStrW m_WelcomeMessage;
+	
+	int m_Port;
+	
+	static CGameAttributes::UpdateCallback AttributeUpdate;
+	static CPlayer::UpdateCallback PlayerAttributeUpdate;
+	
+	void FillSetGameConfig(CSetGameConfig *pMsg);
 
 protected:
 	friend class CNetServerSession;
@@ -120,14 +86,6 @@ protected:
 	// by the caller.
 	void QueueIncomingCommand(CNetMessage *pMsg);
 	
-	// Simple accessor. NOTE: Most attributes are read in when creating the
-	// server object, so changing the attributes should not have any effect on
-	// the server's operation. Hence, return const-pointer.
-	inline const CNetServerAttributes *GetAttributes() const
-	{
-		return m_pServerAttributes;
-	}
-
 	// OVERRIDES FROM CServerSocket
 	virtual void OnAccept(const CSocketAddress &);
 
@@ -147,7 +105,7 @@ protected:
 	virtual bool AllowObserver(CNetServerSession *pSession);
 
 public:
-	CNetServer(CNetServerAttributes *pServerAttribs, CGame *pGame, CGameAttributes *pGameAttribs);
+	CNetServer(CGame *pGame, CGameAttributes *pGameAttribs);
 
 	static void GetDefaultListenAddress(CSocketAddress &address);
 	PS_RESULT Bind(const CSocketAddress &address);
@@ -163,11 +121,12 @@ public:
 
 	int StartGame();
 
-	// Synchronized, safe to call from any thread
 	void Broadcast(CNetMessage *);
+
+	// JS Interface Methods
+	bool JSI_Open(JSContext *cx, uintN argc, jsval *argv);
 };
 
 extern CNetServer *g_NetServer;
-extern CNetServerAttributes g_NetServerAttributes;
 
 #endif // _Network_NetServer_H

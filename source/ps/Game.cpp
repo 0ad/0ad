@@ -16,20 +16,22 @@ namespace PlayerArray_JS
 		if (!JSVAL_IS_INT(id))
 			return JS_FALSE;
 		uint index=g_ScriptingHost.ValueToInt(id);
-		uint numPlayers=pInstance->GetValue("numPlayers").ToUInt();
+		uint numPlayers=pInstance->m_NumPlayers;
 
-		if (numPlayers > pInstance->m_PlayerAttribs.size())
+		if (numPlayers+1 > pInstance->m_Players.size())
 		{
-			for (size_t i=pInstance->m_PlayerAttribs.size();i<=index;i++)
+			for (size_t i=pInstance->m_Players.size();i<=index;i++)
 			{
-				pInstance->m_PlayerAttribs.push_back(new CGameAttributes::CPlayerAttributes());
+				CPlayer *pNewPlayer=new CPlayer(i);
+				pNewPlayer->SetUpdateCallback(pInstance->m_PlayerUpdateCB, pInstance->m_PlayerUpdateCBData);
+				pInstance->m_Players.push_back(pNewPlayer);
 			}
 		}
 
 		if (index > numPlayers)
 			return JS_FALSE;
 
-		*vp=OBJECT_TO_JSVAL(pInstance->m_PlayerAttribs[index]->GetJSObject());
+		*vp=OBJECT_TO_JSVAL(pInstance->m_Players[index]->GetScript());
 		return JS_TRUE;
 	}
 
@@ -57,57 +59,82 @@ namespace PlayerArray_JS
 	}
 };
 
-namespace PlayerAttribs_JS
-{
-	void Finalize(JSContext *cx, JSObject *obj)
-	{
-		CAttributeMap *pAttribMap=(CAttributeMap *)JS_GetPrivate(cx, obj);
-		delete pAttribMap;
-	}
-
-	JSClass Class = {
-		"PlayerAttributes", JSCLASS_HAS_PRIVATE,
-		JS_PropertyStub, JS_PropertyStub,
-		AttributeMap_JS::GetProperty, AttributeMap_JS::SetProperty,
-		JS_EnumerateStub, JS_ResolveStub,
-		JS_ConvertStub, Finalize
-	};
-
-};
-
-void CGameAttributes::CPlayerAttributes::CreateJSObject()
+CGameAttributes::CGameAttributes():
+	m_UpdateCB(NULL),
+	m_MapFile("test01.pmp"),
+	m_NumPlayers(2)
 {
 	ONCE(
-		g_ScriptingHost.DefineCustomObjectType(&PlayerAttribs_JS::Class, AttributeMap_JS::Construct, 0, NULL, NULL, NULL, NULL);
+		g_ScriptingHost.DefineCustomObjectType(&PlayerArray_JS::Class,
+			PlayerArray_JS::Construct, 0, NULL, NULL, NULL, NULL);
+		
+		ScriptingInit("GameAttributes");
 	);
-	m_JSObject=g_ScriptingHost.CreateCustomObject("PlayerAttributes");
-	JS_SetPrivate(g_ScriptingHost.getContext(), m_JSObject, (CAttributeMap *)this);
-	CAttributeMap::CreateJSObject();
-}
 
-CGameAttributes::CPlayerAttributes::CPlayerAttributes()
-{
-	AddValue("name", L"Player Default Name");
-}
+	m_PlayerArrayJS=g_ScriptingHost.CreateCustomObject("PlayerArray");
+	JS_SetPrivate(g_ScriptingHost.GetContext(), m_PlayerArrayJS, this);
 
-CGameAttributes::CGameAttributes():
-	m_PlayerArrayJS(NULL)
-{
-	AddValue("mapFile", L"test01.pmp");
-	AddValue("numPlayers", L"2");
+	AddSynchedProperty(L"mapFile", &m_MapFile);
+	AddSynchedProperty(L"numPlayers", &m_NumPlayers);
+	
+	AddProperty(L"players", (GetFn)&CGameAttributes::JSGetPlayers);
+
+	m_Players.resize(3);
+	for (int i=0;i<3;i++)
+		m_Players[i]=new CPlayer(i);
+		
+	m_Players[0]->SetName(L"Gaia");
+	m_Players[0]->SetColour(SPlayerColour(0.2f, 0.7f, 0.2f));
+
+	m_Players[1]->SetName(L"Acumen");
+	m_Players[1]->SetColour(SPlayerColour(1.0f, 0.0f, 0.0f));
+
+	m_Players[2]->SetName(L"Boco the Insignificant");
+	m_Players[2]->SetColour(SPlayerColour(0.0f, 0.0f, 1.0f));
 }
 
 CGameAttributes::~CGameAttributes()
 {
-	std::vector<CPlayerAttributes *>::iterator it=m_PlayerAttribs.begin();
-	while (it != m_PlayerAttribs.end())
+	std::vector<CPlayer *>::iterator it=m_Players.begin();
+	while (it != m_Players.end())
 	{
 		delete *it;
 		++it;
 	}
 }
 
-void CGameAttributes::CreateJSObject()
+jsval CGameAttributes::JSGetPlayers()
+{
+	return OBJECT_TO_JSVAL(m_PlayerArrayJS);
+}
+
+void CGameAttributes::SetValue(CStrW name, CStrW value)
+{
+	ISynchedJSProperty *prop=GetSynchedProperty(name);
+	if (prop)
+	{
+		prop->FromString(value);
+	}
+}
+
+void CGameAttributes::Update(CStrW name, ISynchedJSProperty *attrib)
+{
+	if (m_UpdateCB)
+		m_UpdateCB(name, attrib->ToString(), m_UpdateCBData);
+}
+
+void CGameAttributes::SetPlayerUpdateCallback(CPlayer::UpdateCallback *cb, void *userdata)
+{
+	m_PlayerUpdateCB=cb;
+	m_PlayerUpdateCBData=userdata;
+	
+	for (int i=0;i<m_Players.size();i++)
+	{
+		m_Players[i]->SetUpdateCallback(cb, userdata);
+	}
+}
+	
+/*void CGameAttributes::CreateJSObject()
 {
 	CAttributeMap::CreateJSObject();
 
@@ -129,7 +156,7 @@ JSBool CGameAttributes::GetJSProperty(jsval id, jsval *ret)
 	if (name == CStr("players"))
 		return JS_TRUE;
 	return CAttributeMap::GetJSProperty(id, ret);
-}
+}*/
 
 // Disable "warning C4355: 'this' : used in base member initializer list".
 //   "The base-class constructors and class member constructors are called before
@@ -172,7 +199,8 @@ PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 		for (size_t i=0; i<m_Players.size(); ++i)
 			delete m_Players[i];
 
-		m_NumPlayers=pAttribs->GetValue("numPlayers").ToUInt();
+		//m_NumPlayers=pAttribs->GetValue("numPlayers").ToUInt();
+		m_NumPlayers=pAttribs->m_NumPlayers;
 
 		// Note: If m_Players is resized after this point (causing a reallocation)
 		// various bits of code will still contain pointers to data at the original
@@ -183,32 +211,8 @@ PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 		m_Players.resize(m_NumPlayers + 1);
 
 		for (uint i=0;i <= m_NumPlayers;i++)
-			m_Players[i]=new CPlayer(i);
+			m_Players[i]=pAttribs->m_Players[i];
 		
-		// FIXME If the GUI hasn't set attributes for all players, the CPlayer
-		// object's state will be whatever is set by the CPlayer constructor.
-		for (uint i=0;i<m_NumPlayers && i<pAttribs->m_PlayerAttribs.size();i++)
-		{
-			CGameAttributes::CPlayerAttributes *pPlayerAttribs=
-				pAttribs->m_PlayerAttribs[i];
-			// TODO Set player attributes in the player object
-		}
-			
-		m_Players[0]->m_Name = L"Gaia";
-		m_Players[0]->m_Colour.r = 0.2f;
-		m_Players[0]->m_Colour.g = 0.7f;
-		m_Players[0]->m_Colour.b = 0.2f;
-
-		m_Players[1]->m_Name = L"Acumen";
-		m_Players[1]->m_Colour.r = 1.0f;
-		m_Players[1]->m_Colour.g = 0.0f;
-		m_Players[1]->m_Colour.b = 0.0f;
-
-		m_Players[2]->m_Name = L"Boco the Insignificant";
-		m_Players[2]->m_Colour.r = 0.0f;
-		m_Players[2]->m_Colour.g = 0.0f;
-		m_Players[2]->m_Colour.b = 1.0f;
-
 		m_pLocalPlayer=m_Players[1];
 
 		// RC, 040804 - GameView needs to be initialised before World, otherwise GameView initialisation

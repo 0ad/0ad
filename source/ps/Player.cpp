@@ -7,12 +7,21 @@
 #include "scripting/JSCollection.h"
 
 CPlayer::CPlayer(uint playerID):
-	m_PlayerID(playerID)
+	m_PlayerID(playerID),
+	m_Name(CStrW(L"Player #")+CStrW(playerID)),
+	m_Colour(0.7f, 0.7f, 0.7f),
+	m_UpdateCB(0)
 {
 	AddReadOnlyProperty( L"id", &m_PlayerID );
-	AddProperty( L"controlled", (IJSObject::GetFn)GetControlledEntities_JS );
-	AddProperty( L"name", &m_Name );
-	AddProperty( L"colour", &m_Colour );
+	AddProperty( L"controlled", (IJSObject::GetFn)&CPlayer::GetControlledEntities_JS );
+	AddSynchedProperty( L"name", &m_Name );
+	AddSynchedProperty( L"colour", &m_Colour );
+}
+
+void CPlayer::Update(CStrW name, ISynchedJSProperty *prop)
+{
+	if (m_UpdateCB)
+		m_UpdateCB(name, prop->ToString(), this, m_UpdateCBData);
 }
 
 bool CPlayer::ValidateCommand(CNetMessage *pMsg)

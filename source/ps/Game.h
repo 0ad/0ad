@@ -11,31 +11,55 @@ ERROR_GROUP(Game);
 #include "Player.h"
 #include "GameView.h"
 
-#include "AttributeMap.h"
+#include "scripting/SynchedJSObject.h"
 
 #include <vector>
 
-class CGameAttributes: public CAttributeMap
+namespace PlayerArray_JS
 {
-protected:
-	virtual void CreateJSObject();
-	virtual JSBool GetJSProperty(jsval id, jsval *ret);
+	JSBool GetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );	
+};
+
+#define g_GameAttributes CGameAttributes::GetSingleton()
+class CGameAttributes:
+	public CSynchedJSObject<CGameAttributes>,
+	public Singleton<CGameAttributes>
+{
+public:
+	typedef void (UpdateCallback)(CStrW name, CStrW newValue, void *data);
+
+private:
+	friend JSBool PlayerArray_JS::GetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
+
+	virtual void Update(CStrW name, ISynchedJSProperty *attrib);
+	
+	UpdateCallback *m_UpdateCB;
+	void *m_UpdateCBData;
+	
+	CPlayer::UpdateCallback *m_PlayerUpdateCB;
+	void *m_PlayerUpdateCBData;
+	
+	jsval JSGetPlayers();
 
 public:
+	CStrW m_MapFile;
+	uint m_NumPlayers;
+	
 	CGameAttributes();
 	virtual ~CGameAttributes();
-
-	// NOTE: Public only for JS interface
-	class CPlayerAttributes: public CAttributeMap
+	
+	void SetValue(CStrW name, CStrW value);
+	
+	inline void SetUpdateCallback(UpdateCallback *cb, void *userdata)
 	{
-	protected:
-		virtual void CreateJSObject();
-	public:
-		CPlayerAttributes();
-	};
-
+		m_UpdateCB=cb;
+		m_UpdateCBData=userdata;
+	}
+	
+	void SetPlayerUpdateCallback(CPlayer::UpdateCallback *cb, void *userdata);
+	
+	std::vector <CPlayer *> m_Players;
 	JSObject *m_PlayerArrayJS;
-	std::vector <CPlayerAttributes *> m_PlayerAttribs;
 };
 
 class CGame
@@ -73,7 +97,15 @@ public:
 	{	m_pLocalPlayer=pLocalPlayer; }
 	
 	inline CPlayer *GetPlayer(uint idx)
-	{	if (idx >= 0 && idx < m_NumPlayers) return m_Players[idx]; else { debug_warn("Invalid player ID"); return m_Players[0]; } }
+	{
+		if (idx >= 0 && idx < m_NumPlayers)
+			return m_Players[idx];
+		else
+		{
+			debug_warn("Invalid player ID");
+			return m_Players[0];
+		}
+	}
 
 	inline std::vector<CPlayer*>* GetPlayers()
 	{	return( &m_Players ); }

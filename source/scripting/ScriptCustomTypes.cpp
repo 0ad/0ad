@@ -64,8 +64,7 @@ jsval SColour::ToString( JSContext* cx, uintN argc, jsval* argv )
 	buffer[255] = 0;
 
 	utf16string str16(buffer, buffer+wcslen(buffer));
-
-	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, buffer ) ) );
+	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, str16.c_str() ) ) );
 }
 
 

@@ -121,7 +121,6 @@ static bool g_EntGraph = false;
 
 static float g_Gamma = 1.0f;
 
-CGameAttributes g_GameAttributes;
 extern int game_view_handler(const SDL_Event* ev);
 
 static CMusicPlayer MusicPlayer;
@@ -568,12 +567,6 @@ static void Render()
 	oglCheck();
 }
 
-static void InitDefaultGameAttributes()
-{
-	g_GameAttributes.SetValue( "mapFile", L"combattest.pmp" );
-}
-
-
 static void LoadProfile( CStr profile )
 {
 	CStr filename = CStr( "profiles/" ) + profile + CStr( ".cfg" );
@@ -658,10 +651,6 @@ static void ParseArgs(int argc, char* argv[])
 			if(strncmp(name, "listfiles", 9) == 0)
 				vfs_enable_file_listing(true);
 			break;
-		case 'm':
-			if(strncmp(name, "m=", 2) == 0)
-				g_GameAttributes.SetValue( "mapFile", CStr( argv[i] + 3 ) );
-			break;
 		case 'n':
 			if(strncmp(name, "novbo", 5) == 0)
 				g_ConfigDB.CreateValue(CFG_COMMAND, "novbo")->m_String="true";
@@ -734,8 +723,6 @@ TIMER(InitScripting)
 
 	JSI_Camera::init();
 	JSI_Console::init();
-	
-	CNetClient::ScriptingInit();
 }
 
 
@@ -873,8 +860,6 @@ TIMER(InitConfig)
 	g_ConfigDB.SetConfigFile(CFG_MOD, true, "config/mod.cfg");
 	// No point in reloading mod.cfg here - we haven't mounted mods yet
 	
-	// We init the defaults here; command line options might want to override
-	InitDefaultGameAttributes();
 	ParseArgs(argc, argv);
 
 	LoadGlobals(); // Collects information from system.cfg, the profile file, and any command-line overrides
@@ -935,9 +920,6 @@ static void Shutdown()
 {
 	psShutdown(); // Must delete g_GUI before g_ScriptingHost
 
-	// Release script references to the globals before ScriptingHost shuts down
-	// g_GameAttributes.ReleaseScriptObject();
-
 	if (g_Game)
 		delete g_Game;
 
@@ -951,6 +933,8 @@ static void Shutdown()
 	delete &g_Pathfinder;
 	// Managed by CWorld
 	// delete &g_EntityManager;
+
+	delete &g_GameAttributes;
 
 	delete &g_EntityTemplateCollection;
 
@@ -1130,9 +1114,10 @@ TIMER(init_after_InitRenderer);
 
 	new CSessionManager;
 
+	new CGameAttributes;
+
 	// Register a few Game/Network JS globals
-	g_ScriptingHost.SetGlobal("g_NetServerAttributes", OBJECT_TO_JSVAL(g_NetServerAttributes.GetJSObject()));
-	g_ScriptingHost.SetGlobal("g_GameAttributes", OBJECT_TO_JSVAL(g_GameAttributes.GetJSObject()));
+	g_ScriptingHost.SetGlobal("g_GameAttributes", OBJECT_TO_JSVAL(g_GameAttributes.GetScript()));
 
 	// Check for heap corruption after every allocation. Very, very slowly.
 	// (And it highlights the allocation just after the one you care about,

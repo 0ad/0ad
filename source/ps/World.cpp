@@ -22,7 +22,7 @@ void CWorld::Initialize(CGameAttributes *pAttribs)
 
 	CStr mapfilename("maps/scenarios/");
 
-	mapfilename += (CStr)pAttribs->GetValue( "mapFile" );
+	mapfilename += (CStr)pAttribs->m_MapFile;
 
 	try {
 		CMapReader reader;

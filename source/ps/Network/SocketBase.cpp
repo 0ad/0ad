@@ -583,6 +583,7 @@ void CSocketBase::RunWaitLoop()
 		if (res == -1)
 		{
 			perror("CSocketSet::RunWaitLoop(), select");
+			pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
 			continue;
 		}
 
@@ -597,6 +598,7 @@ void CSocketBase::RunWaitLoop()
 					return;
 				else if (bt=='r')
 				{
+					pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
 					//printf("Op mask reload after select\n");
 					continue;
 				}
