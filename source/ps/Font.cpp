@@ -4,6 +4,7 @@
 
 #include "ps/ConfigDB.h"
 #include "lib/res/unifont.h"
+#include "lib/res/h_mgr.h"	// h_filename, needed for refcnt hack below
 
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "graphics"

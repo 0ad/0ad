@@ -1,6 +1,6 @@
 // OO wrapper around VFS file Handles, to simplify common usages
 
-#include "lib/res/h_mgr.h"
+#include "lib/res/handle.h"
 #include "ps/CStr.h"
 
 ERROR_GROUP(CVFSFile);

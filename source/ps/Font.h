@@ -4,7 +4,7 @@
 #include "ps/Singleton.h"
 #include "ps/CStr.h"
 
-#include "lib/res/h_mgr.h"
+#include "lib/res/handle.h"
 
 #include <map>
 #include <string>

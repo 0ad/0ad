@@ -44,7 +44,7 @@
 #define ZLIB_WINAPI
 #include "zlib.h" // for crc32
 
-#include "res/h_mgr.h"
+#include "lib/res/handle.h"
 #include "lib.h"
 #include "XercesErrorHandler.h"
 #include "CStr.h"
