@@ -21,22 +21,30 @@
 
 #include "h_mgr.h"
 
-// load and return a handle to the texture given in <fn>.
-// supports RAW, BMP, JP2, PNG, TGA, DDS
-extern Handle tex_load(const char* const fn, int scope = 0);
 
-extern int tex_bind(Handle ht);
-extern int tex_id(Handle ht);
 
-extern int tex_info(Handle ht, int* w, int* h, int *fmt, int *bpp, void** p);
+// TexInfo.flags
+enum
+{
+	TEX_DXT   = 0x07,	// mask; value = {1,3,5}
+	TEX_BGR   = 8,
+	TEX_ALPHA = 16,
+	TEX_GRAY  = 32,
+};
 
-extern int tex_filter;			// GL values; default: GL_LINEAR
-extern unsigned int tex_bpp;	// 16 or 32; default: 32
+// minimize size - stored in ogl tex resource control block
+struct TexInfo
+{
+	Handle hm;			// H_MEM handle to loaded file
+	size_t ofs;			// offset to image data in file
+	u32 w : 16;
+	u32 h : 16;
+	u32 bpp : 16;
+	u32 flags : 16;
+};
 
-// upload the specified texture to OpenGL. Texture filter and internal format
-// may be specified to override the global defaults.
-extern int tex_upload(Handle ht, int filter_override = 0, int internal_fmt_override = 0, int format_override = 0);
+extern int tex_load(const char* fn, TexInfo* ti);
+extern int tex_free(TexInfo* ti);
 
-extern int tex_free(Handle& ht);
 
 #endif	// __TEX_H__
