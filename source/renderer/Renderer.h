@@ -82,7 +82,8 @@ public:
 		OPT_NOVBO,
 		OPT_NOPBUFFER,
 		OPT_SHADOWS,
-		OPT_SHADOWCOLOR
+		OPT_SHADOWCOLOR,
+        OPT_LODBIAS
 	};
 
 	// stats class - per frame counts of number of draw calls, poly counts etc
@@ -128,6 +129,7 @@ public:
 	bool GetOptionBool(enum Option opt) const;
 	// set/get RGBA color renderer option 
 	void SetOptionColor(enum Option opt,const RGBAColor& value);
+    void SetOptionFloat(enum Option opt, float val);
 	const RGBAColor& GetOptionColor(enum Option opt) const;
 
 	// return view width
@@ -294,6 +296,7 @@ protected:
 		bool m_NoVBO;
 		bool m_Shadows;
 		RGBAColor m_ShadowColor;
+        float m_LodBias;
 	} m_Options;
 	// build card cap bits
 	void EnumCaps();

@@ -234,6 +234,16 @@ void CRenderer::SetOptionColor(enum Option opt,const RGBAColor& value)
 	}
 }
 
+void CRenderer::SetOptionFloat(enum Option opt, float val)
+{
+    switch(opt)
+    {
+    case OPT_LODBIAS:
+        m_Options.m_LodBias = val;
+        break;
+    }
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////
 // GetOptionColor: get color renderer option
 const RGBAColor& CRenderer::GetOptionColor(enum Option opt) const
@@ -652,6 +662,9 @@ void CRenderer::RenderShadowMap()
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PRIMARY_COLOR_ARB);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+    
+    // Set the proper LOD bias
+    glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, m_Options.m_LodBias);
 
 	glColor4fv(m_Options.m_ShadowColor);
 
@@ -792,6 +805,9 @@ void CRenderer::RenderModelSubmissions()
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_CONSTANT);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+
+    // Set the proper LOD bias
+    glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, m_Options.m_LodBias);
 
 	// setup client states
 	glEnableClientState(GL_VERTEX_ARRAY);

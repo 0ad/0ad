@@ -103,6 +103,7 @@ static bool g_NoPBuffer=true;
 // flag to switch on fixed frame timing (RC: I'm using this for profiling purposes)
 static bool g_FixedFrameTiming=false;
 static bool g_VSync = false;
+static float g_LodBias = 0.0f;
 
 CLightEnv g_LightEnv;
 
@@ -625,6 +626,9 @@ static void ParseArgs(int argc, char* argv[])
 		val->GetBool(g_NoGLVBO);
 	if ((val=g_ConfigDB.GetValue(CFG_SYSTEM, "shadows")))
 		val->GetBool(g_Shadows);
+
+    if((val = g_ConfigDB.GetValue(CFG_SYSTEM, "lodbias")))
+        val->GetFloat(g_LodBias);
 		
 	LOG(NORMAL, LOG_CATEGORY, "g_x/yres is %dx%d", g_xres, g_yres);
 }
@@ -912,9 +916,6 @@ sle(11340106);
 	if(oglExtAvail("WGL_EXT_swap_control"))
 		wglSwapIntervalEXT(g_VSync? 1 : 0);
 
-
-
-
 #ifdef _MSC_VER
 u64 CURTSC=rdtsc();
 debug_out(
@@ -934,6 +935,7 @@ PREVTSC=CURTSC;
 	g_Renderer.SetOptionBool(CRenderer::OPT_NOVBO,g_NoGLVBO);
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS,g_Shadows);
 	g_Renderer.SetOptionBool(CRenderer::OPT_NOPBUFFER,g_NoPBuffer);
+    g_Renderer.SetOptionFloat(CRenderer::OPT_LODBIAS, g_LodBias);
 
 	// create terrain related stuff
 	new CTextureManager;
