@@ -23,6 +23,12 @@ extern void debug_break();
 
 extern void check_heap();
 
+
+extern int clipboard_set(const wchar_t* text);
+extern wchar_t* clipboard_get();
+extern int clipboard_free(wchar_t* copy);
+
+
 #ifdef _MSC_VER
 extern double round(double);
 #endif
