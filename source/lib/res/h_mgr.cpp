@@ -226,7 +226,7 @@ static HDATA* h_data_any_type(const Handle h)
 // used by most functions accessing handle data.
 static HDATA* h_data(const Handle h, const H_Type type)
 {
-	if(!h)
+	if(h <= 0)
 		return 0;
 
 	HDATA* hd = h_data_any_type(h);
@@ -349,6 +349,10 @@ static int free_idx(i32 idx)
 int h_free(Handle& h, H_Type type)
 {
 	HDATA* hd = h_data(h, type);
+	h = 0;
+		// wipe out the handle, to prevent reuse.
+		// TODO: should we do this after checking if valid?
+		// (would help debugging, but handle wouldn't always be reset)
 	if(!hd)
 		return ERR_INVALID_HANDLE;
 

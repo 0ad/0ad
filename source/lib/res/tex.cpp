@@ -504,7 +504,8 @@ static inline bool bmp_fmt(u8* p, size_t size)
 {
 	UNUSED(size)
 
-	// bfType == BM? (check single bytes => endian safe)
+	// check header signature (BITMAPFILEHEADER.bfType == "BM"?).
+	// we compare single bytes to be endian-safe.
 	return p[0] == 'B' && p[1] == 'M';
 }
 
