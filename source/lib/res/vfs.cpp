@@ -622,9 +622,10 @@ static int tree_add_dirR(Dir* const dir, const char* const p_path, const Loc* co
 		Dir* const subdir = &it->second;
 		const char* const d_subdir_name = (it->first).c_str();
 
-		// don't clutter the tree with CVS dirs.
-		// only applicable for normal dirs, since archives don't include CVS.
-		if(!strcmp(d_subdir_name, "CVS"))
+		// don't clutter the tree with versioning system dirs.
+		// only applicable for normal dirs; the archive builder
+		// takes care of removing these there.
+		if(!strcmp(d_subdir_name, "CVS") || !strcmp(d_subdir_name, ".svn"))
 			continue;
 
 		char p_subdir_path[PATH_MAX];
