@@ -34,56 +34,81 @@ WIN_REGISTER_FUNC(wsock_shutdown);
 #pragma data_seg()
 
 
-static bool wsock_initialized;
+// IPv6 globals
+// These are included in the linux C libraries and in newer platform SDKs,
+// so should only be needed in VC++6 or earlier.
+const struct in6_addr in6addr_any = IN6ADDR_ANY_INIT;           // ::
+const struct in6_addr in6addr_loopback = IN6ADDR_LOOPBACK_INIT; // ::1
+
+static HMODULE hWs2_32Dll;
+static int dll_refs;
 
 
-fp_getnameinfo_t getnameinfo;
-fp_getaddrinfo_t getaddrinfo;
-fp_freeaddrinfo_t freeaddrinfo;
-
-
-/* IPv6 globals
-These are included in the linux C libraries, and in newer platform SDK's, so
-should only be needed in VC++6 or earlier.
-*/
-const struct in6_addr in6addr_any = IN6ADDR_ANY_INIT;        /* :: */
-const struct in6_addr in6addr_loopback = IN6ADDR_LOOPBACK_INIT;   /* ::1 */
-
-
+// called from delay loader the first time a wsock function is called
+// (shortly before the actual wsock function is called)
+// and also from the getaddrinfo hooks.
 static int wsock_init()
 {
-/*
-	char d[1024];
-	CHECK_ERR(WSAStartup(0x0002, d));	// want 2.0
+	hWs2_32Dll = LoadLibrary("ws2_32.dll");
 
-	const HMODULE hWs2_32Dll = LoadLibrary("ws2_32.dll");
-	*(void**)&getaddrinfo  = GetProcAddress(hWs2_32Dll, "getaddrinfo");
-	*(void**)&getnameinfo  = GetProcAddress(hWs2_32Dll, "getnameinfo");
-	*(void**)&freeaddrinfo = GetProcAddress(hWs2_32Dll, "freeaddrinfo");
-	FreeLibrary(hWs2_32Dll);
-		// make sure the reference is released so BoundsChecker
-		// doesn't complain. it won't actually be unloaded anyway -
-		// there is at least one other reference.
-*/
-	char d[1024];
-	if(WSAStartup(0x0002, d) == 0)	// want 2.0
-		wsock_initialized = true;
+	// first time: call WSAStartup
+	if(!dll_refs++)
+	{
+		char d[1024];
+		if(WSAStartup(0x0002, d) != 0)	// want 2.0
+			debug_warn("WSAStartup failed");
+	}
 
+	return 0;
+}
+
+WDLL_LOAD_NOTIFY("ws2_32", wsock_init);
+
+
+
+static int wsock_shutdown()
+{
+	// call WSACleanup if DLL was used
+	// (this way is easier to understand than ONCE in loop below)
+	if(dll_refs > 0)
+		if(WSACleanup() < 0)
+			debug_warn("WSACleanup failed");
+
+	// remove all references
+	while(dll_refs-- > 0)
+		FreeLibrary(hWs2_32Dll);
 
 	return 0;
 }
 
 
-static int wsock_shutdown()
+
+
+// manual import instead of delay-load because we don't want to require
+// these functions to be present. the user must be able to check if they
+// are available (currently, on Win2k with IPv6 update or WinXP).
+// can't use compile-time HAVE_* to make that decision because
+// we don't want to distribute a separate binary for this.
+//
+// note: can't import at startup because we don't want to load wsock unless necessary
+// don't use delay load because we don't want to confuse error handling for other users
+//
+// don't bother caching - these functions themselves take a while and aren't time-critical
+
+static void* import(const char* name)
 {
-	// only call WSACleanup if the library was loaded/used
-	return wsock_initialized? WSACleanup() : 0;
+	return GetProcAddress(hWs2_32Dll, name);
 }
+
+fp_getnameinfo_t  import_getnameinfo()  { return (fp_getnameinfo_t )import("getnameinfo" ); }
+fp_getaddrinfo_t  import_getaddrinfo()  { return (fp_getaddrinfo_t )import("getaddrinfo" ); }
+fp_freeaddrinfo_t import_freeaddrinfo() { return (fp_freeaddrinfo_t)import("freeaddrinfo"); }
+
+
+
 
 
 uint16_t htons(uint16_t s)
 {
 	return (s >> 8) | ((s & 0xff) << 8);
 }
-
-WDLL_LOAD_NOTIFY("ws2_32", wsock_init);

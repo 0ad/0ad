@@ -20,7 +20,12 @@
 
 #define IMP(ret, name, param) extern "C" __declspec(dllimport) ret __stdcall name param;
 
-IMP(int, gethostname, (char* name, size_t namelen))
+
+//
+// <unistd.h>
+//
+
+IMP(int, gethostname, (char*, int));
 
 
 //
@@ -171,21 +176,23 @@ struct addrinfo
 #define NI_MAXHOST 1025
 #define NI_MAXSERV 32
 
-	/* Note that these are function pointers. They will be initialized by the
-	entry point function in wsock.cpp */
+	// Note that these are function pointers. They will be initialized by the
+	// wsock_init in wsock.cpp
 	typedef int (*fp_getnameinfo_t)(const struct sockaddr *sa, socklen_t salen, char *node,
 									socklen_t nodelen, char *serv, socklen_t servlen, unsigned int flags);
 	typedef int (*fp_getaddrinfo_t)(const char	*nodename, const char *servname,
 									const struct addrinfo *hints, struct addrinfo **res);
 	typedef void (*fp_freeaddrinfo_t)(struct addrinfo *ai);
 
-	extern fp_getnameinfo_t p_getnameinfo;
-	extern fp_getaddrinfo_t p_getaddrinfo;
-	extern fp_freeaddrinfo_t p_freeaddrinfo;
+	extern fp_getnameinfo_t import_getnameinfo();
+	extern fp_getaddrinfo_t import_getaddrinfo();
+	extern fp_freeaddrinfo_t import_freeaddrinfo();
 
-	#define getnameinfo p_getnameinfo
-	#define getaddrinfo p_getaddrinfo
-	#define freeaddrinfo p_freeaddrinfo
+	#define getnameinfo (import_getnameinfo())
+	#define getaddrinfo (import_getaddrinfo())
+	#define freeaddrinfo (import_freeaddrinfo())
+
+
 
 // getaddr/nameinfo error codes
 #define EAI_NONAME HOST_NOT_FOUND
