@@ -214,6 +214,7 @@ int dir_add_watch(const char* const dir, intptr_t* const _reqnum)
 	try
 	{
 		Watch* w = new Watch(reqnum, dir_s, hDir);
+		assert(w != 0);		// happened once; heap corruption?
 
 		// add trailing \ if not already there
 		if(dir_s[dir_s.length()-1] != '\\')
@@ -223,6 +224,7 @@ int dir_add_watch(const char* const dir, intptr_t* const _reqnum)
 	{
 		goto fail;
 	}
+
 
 	// post a dummy kickoff packet; the IOCP polling code will "re"issue
 	// the corresponding watch. this keeps the ReadDirectoryChangesW call
@@ -245,7 +247,15 @@ fail:
 
 int dir_cancel_watch(const intptr_t reqnum)
 {
+	if(reqnum < 0)
+		return -1;
+
 	Watch* w = watches[reqnum];
+	if(!w)
+	{
+		debug_warn("dir_cancel_watch: watches[reqnum] invalid");
+		return -1;
+	}
 
 	// contrary to dox, the RDC IOs do not issue a completion notification.
 	// no packet was received on the IOCP while or after cancelling in a test.
