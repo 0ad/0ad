@@ -64,7 +64,7 @@ Handle sound_load(const char* filename)
 #else
 	ONCE(
 		FSOUND_Init(44100, 32, 0);
-		atexit2(FSOUND_Close, 0, CC_CDECL_0); // PT: Doesn't compile
+		atexit2((void*)FSOUND_Close, 0, CC_CDECL_0);
 	);
 #endif
 
