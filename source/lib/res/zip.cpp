@@ -677,11 +677,11 @@ static int ZArchive_reload(ZArchive* za, const char* fn, Handle)
 	size_t size;
 	err = file_map(&za->f, file, size);
 	if(err < 0)
-		goto exit_close;
+		goto fail_close;
 
 	err = lookup_init(&za->li, (u8*)file, size);
 	if(err < 0)
-		goto exit_unmap_close;
+		goto fail_unmap_close;
 
 	file_unmap(&za->f);
 		// we map the file only for convenience when loading;
@@ -690,9 +690,9 @@ static int ZArchive_reload(ZArchive* za, const char* fn, Handle)
 	za->is_open = true;
 	return 0;
 
-exit_unmap_close:
+fail_unmap_close:
 	file_unmap(&za->f);
-exit_close:
+fail_close:
 	file_close(&za->f);
 
 	// don't complain here either; this happens when vfs_mount

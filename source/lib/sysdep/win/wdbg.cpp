@@ -1301,7 +1301,7 @@ static void set_exception_handler()
 
 
 
-#ifndef NO_0AD_EXCEPTION
+#ifdef EXCEPTION_HACK_0AD
 
 
 
@@ -1596,5 +1596,5 @@ int debug_main_exception_filter(unsigned int UNUSEDPARAM(code), PEXCEPTION_POINT
 	exit(EXIT_FAILURE);
 }
 
-#endif	// #ifndef NO_0AD_EXCEPTION
+#endif	// #ifdef EXCEPTION_HACK_0AD
 

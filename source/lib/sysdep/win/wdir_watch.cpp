@@ -79,9 +79,8 @@ struct Watch;
 typedef std::map<intptr_t, Watch*> Watches;
 typedef Watches::iterator WatchIt;
 
-// list of all active watches to detect duplicates and
-// for easier cleanup. only store pointer in container -
-// they're not copy-equivalent.
+// list of all active watches to detect duplicates and for easier cleanup.
+// only store pointer in container - they're not copy-equivalent.
 static Watches watches;
 
 // don't worry about size; heap-allocated.
@@ -120,7 +119,7 @@ struct Watch
 		CloseHandle(hDir);
 		hDir = INVALID_HANDLE_VALUE;
 
-		watches.erase(reqnum);
+		watches[reqnum] = 0;
 	}
 };
 
@@ -150,9 +149,11 @@ static int wdir_watch_shutdown()
 	CloseHandle(hIOCP);
 	hIOCP = INVALID_HANDLE_VALUE;
 
-	// free all (dynamically allocated) Watch-es
+	// free all (dynamically allocated) Watch objects
 	for(WatchIt it = watches.begin(); it != watches.end(); ++it)
 		delete it->second;
+
+	watches.clear();
 
 	return 0;
 }

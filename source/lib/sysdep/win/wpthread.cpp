@@ -110,10 +110,8 @@ int pthread_create(pthread_t* thread, const void* attr, void*(*func)(void*), voi
 {
 	UNUSED(attr);
 
-	// notes:
-	// - don't call via asm: _beginthreadex might be a func ptr (if DLL CRT).
-	// - don't stack-allocate param: thread_start might not be called
-	//   in the new thread before we exit this stack frame.
+	// note: don't stack-allocate param: thread_start might not be called
+	//       in the new thread before we exit this stack frame.
 	ThreadParam* param = new ThreadParam(func, user_arg);
 	*thread = (pthread_t)_beginthreadex(0, 0, thread_start, (void*)param, 0, 0);
 	return 0;

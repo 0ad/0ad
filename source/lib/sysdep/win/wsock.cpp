@@ -45,8 +45,7 @@ static int dll_refs;
 
 
 // called from delay loader the first time a wsock function is called
-// (shortly before the actual wsock function is called)
-// and also from the getaddrinfo hooks.
+// (shortly before the actual wsock function is called).
 static int wsock_init()
 {
 	hWs2_32Dll = LoadLibrary("ws2_32.dll");

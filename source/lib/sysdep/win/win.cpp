@@ -268,7 +268,7 @@ static void call_func_tbl(_PIFV* begin, _PIFV* end)
 
 
 // locking for win-specific code
-// several init functions are called on-demand, possibly from constructors.
+// several init functions are before _cinit.
 // can't guarantee POSIX static mutex init has been done by then.
 
 

@@ -140,7 +140,7 @@ PfnDliHook   __pfnDliFailureHook2;
 
 
 #pragma data_seg(".LIB$WTY")	// must be last, since DLLs are unloaded here
-WIN_REGISTER_FUNC(wdelayload_shutdown);
+WIN_REGISTER_FUNC(wdll_shutdown);
 #pragma data_seg()
 
 
@@ -502,7 +502,7 @@ __FUnloadDelayLoadedDLL2(LPCSTR szDll) {
 
     return fRet;
     }
-*/
+
 extern "C"
 HRESULT WINAPI
 __HrLoadAllImportsForDll(LPCSTR szDll) {
@@ -559,10 +559,10 @@ __HrLoadAllImportsForDll(LPCSTR szDll) {
         }
     return hrRet;
 }
+*/
 
 
-
-static int wdelayload_shutdown()
+static int wdll_shutdown()
 {
 	PUnloadInfo pui;
 
