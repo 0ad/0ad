@@ -12,7 +12,6 @@
 #include "res.h"
 #include "ogl_tex.h"
 #include "lib/ogl.h"
-#include "CVFSFile.h"
 
 struct ogl_cursor {
 	Handle tex;
@@ -105,15 +104,15 @@ static int Cursor_reload(Cursor* c, const char* name, Handle)
 	int hotspotx, hotspoty;
 
 	{
-		CVFSFile file;
-		if (file.Load(filename) != PSRETURN_OK)
-		{
-			assert(! "Error loading cursor hotspot .txt file");
-			return -1;
-		}
-		std::stringstream s;
-		s << file.GetAsString();
+		void* p;
+		size_t size;
+		Handle hm = vfs_load(filename, p, size);
+		CHECK_ERR(hm);
+
+		std::stringstream s(std::string((const char*)p, size));
 		s >> hotspotx >> hotspoty;
+
+		mem_free_h(hm);
 	}
 
 	sprintf(filename, "art/textures/cursors/%s.png", name);

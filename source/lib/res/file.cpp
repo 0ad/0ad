@@ -319,46 +319,36 @@ int file_enum(const char* dir, const FileCB cb, const uintptr_t user)
 			// BTW, direct strcpy is faster than path_append -
 			// we save a strlen every iteration.
 
-
-		// HACK on wposix: readdir already returns stat info
-		// (shaves several hundred ms off of startup)
-		mode_t mode;
-		off_t size;
-		time_t mtime;
-#ifdef _WIN32
-		mode = os_ent->mode;
-		size = os_ent->size;
-		mtime = os_ent->mtime;
-#else
-		// no need to go through file_stat -
-		// we already have the native path.
-		// [290ms]
 		struct stat s;
+#ifdef _WIN32
+		// wposix readdir has enough information to return dirent
+		// status directly (much faster than calling stat).
+		ret = readdir_stat_np(os_dir, &s);
+#else
+		// no need to go through file_stat - we already have the native path.
+		// [290ms]
 		ret = stat(n_path, &s);
+#endif
 		if(ret < 0)
 		{
 			if(stat_err == 0)
 				stat_err = ret;	// first error (see decl)
 			continue;
 		}
-		mode = s.st_mode;
-		size = s.st_size;
-		mtime = s.st_mtime;
-#endif
 
 		// dir
-		if(S_ISDIR(mode))
+		if(S_ISDIR(s.st_mode))
 		{
 			// skip . and ..
 			if(fn[0] == '.' && (fn[1] == '\0' || (fn[1] == '.' && fn[2] == '\0')))
 				continue;
 		}
 		// skip if neither dir nor file
-		else if(!S_ISREG(mode))
+		else if(!S_ISREG(s.st_mode))
 			continue;
 
 		// [21ms]
-		dirents.push_back(new DirEnt(fn, mode, size, mtime));
+		dirents.push_back(new DirEnt(fn, s.st_mode, s.st_size, s.st_mtime));
 	}
 
 	// [2.5ms]

@@ -147,6 +147,51 @@ int ioctl(int fd, int op, int* data)
 	return 0;
 }
 
+
+
+
+// from wtime
+extern time_t local_filetime_to_time_t(FILETIME* ft);
+extern time_t utc_filetime_to_time_t(FILETIME* ft);
+
+// convert Windows FILETIME to POSIX time_t (seconds-since-1970 UTC);
+// used by stat and readdir_stat_np for st_mtime.
+//
+// path is used to determine the file system that recorded the time
+// (workaround for a documented Windows bug in converting FAT file times)
+//
+// note: complicated because we need to ensure the time returned is correct:
+// VFS mount logic considers files 'equal' if mtime and size are the same.
+static time_t filetime_to_time_t(FILETIME* ft, const char* path)
+{
+	// determine file system on volume containing path:
+	// .. assume relative path
+	const char* root = 0;
+	char drive_str[] = "?:\\";
+	// .. it's an absolute path
+	if(isalpha(path[0]) && path[1] == ':' && path[2] == '\\')
+	{
+		drive_str[0] = path[0];	// drive letter
+		root = drive_str;
+	}
+	char fs_name[16] = { 0 };
+	GetVolumeInformation(root, 0,0,0,0,0, fs_name, sizeof(fs_name));
+		// if this fails, fs_name != "FAT" => special-case is skipped.
+
+	// the FAT file system stores local file times, while
+	// NTFS records UTC. Windows does convert automatically,
+	// but uses the current DST settings. (boo!)
+	// we go back to local time, and convert properly.
+	if(!strncmp(fs_name, "FAT", 3))	// e.g. FAT32
+	{
+		FILETIME local_ft;
+		FileTimeToLocalFileTime(ft, &local_ft);
+		return local_filetime_to_time_t(&local_ft);
+	}
+
+	return utc_filetime_to_time_t(ft);
+}
+
 /*
 // currently only sets st_mode (file or dir) and st_size.
 int stat(const char* fn, struct stat* s)
@@ -194,92 +239,129 @@ int mkdir(const char* path, mode_t)
 }
 
 
-struct _DIR
+// opendir/readdir/closedir
+//
+// implementation rationale:
+//
+// opendir only performs minimal error checks (does directory exist?);
+// readdir calls FindFirstFile. this is to ensure correct handling
+// of empty directories. we need to store the path in WDIR anyway
+// for filetime_to_time_t.
+// 
+// we avoid opening directories or returning files that have hidden or system
+// attributes set. this is to prevent returning something like
+// "\system volume information", which raises an error upon opening.
+
+struct WDIR
 {
+	HANDLE hFind;
 	WIN32_FIND_DATA fd;
-	HANDLE handle;
-	struct dirent ent;		// must not be overwritten by calls for different dirs
-	bool not_first;
+
+	struct dirent ent;
+		// can't be global - must not be overwritten
+		// by calls from different DIRs.
+
+	char path[PATH_MAX+1];
+		// can't be stored in fd or ent's path fields -
+		// needed by each readdir_stat_np (for filetime_to_time_t).
 };
 
 
 static const DWORD hs = FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM;
+	// convenience
 
-DIR* opendir(const char* name)
+DIR* opendir(const char* path)
 {
-	DWORD fa = GetFileAttributes(name);
-	if((fa == INVALID_FILE_ATTRIBUTES) ||   // GetFileAttributes failed
-	   !(fa & FILE_ATTRIBUTE_DIRECTORY) ||  // not a directory
-	   (fa & hs))                           // hidden or system dir
+	// make sure path exists and is a normal directory (see rationale above).
+	// note: this is the only error check we can do here -
+	// FindFirstFile is called in readdir (see rationale above).
+	DWORD fa = GetFileAttributes(path);
+	if((fa == INVALID_FILE_ATTRIBUTES) || !(fa & FILE_ATTRIBUTE_DIRECTORY) || (fa & hs))
 		return 0;
 
-	_DIR* d = (_DIR*)calloc(sizeof(_DIR), 1);
+	WDIR* d = (WDIR*)calloc(sizeof(WDIR), 1);
+		// zero-initializes everything (required).
 
-	char path[MAX_PATH+1];
-	strncpy(path, name, MAX_PATH-2);
-	strcat(path, "\\*");
-	d->handle = FindFirstFile(path, &d->fd);
+	// note: "path\\dir" only returns information about that directory;
+	// trailing slashes aren't allowed. we have to append "\\*" to find files.
+	strncpy(d->path, path, MAX_PATH-2);
+	strcat(d->path, "\\*");
 
 	return d;
 }
 
 
-struct dirent* readdir(DIR* dir)
+struct dirent* readdir(DIR* d_)
 {
-	_DIR* d = (_DIR*)dir;
+	WDIR* const d = (WDIR*)d_;
 
-	DWORD last_err = GetLastError();
+	DWORD prev_err = GetLastError();
 
-again:
-	if(d->not_first)
-		if(!FindNextFile(d->handle, &d->fd))
-		{
-			// don't pass on the "error"
-			if(GetLastError() == ERROR_NO_MORE_FILES)
-				SetLastError(last_err);
-			else
-				debug_warn("FindNextFile failed");
-			return 0;
-		}
-	d->not_first = true;
+	// bails if end of dir reached or error.
+	// called (again) if entry was rejected below.
+get_another_entry:
 
-	// hidden or system entry - don't return it.
-	DWORD attr = d->fd.dwFileAttributes;
-	if(attr & hs)
-		goto again;
+	// first time
+	if(d->hFind == 0)
+	{
+		d->hFind = FindFirstFile(d->path, &d->fd);
+		if(d->hFind != INVALID_HANDLE_VALUE)    // success
+			goto have_entry;
+	}
+	else
+		if(FindNextFile(d->hFind, &d->fd))      // success
+			goto have_entry;
 
-	d->ent.d_ino = 0;
-	d->ent.d_name = &d->fd.cFileName[0];
+	// Find*File failed; determine why and bail.
+	// .. legit, end of dir reached. don't pollute last error code.
+	if(GetLastError() == ERROR_NO_MORE_FILES)
+		SetLastError(prev_err);
+	else
+		debug_warn("readdir: Find*File failed");
+	return 0;
 
-	// non-standard fields - what stat returns.
-	// add them to speed up file_enum (Win32 specific, though)
 
-	d->ent.size = (off_t)((((u64)d->fd.nFileSizeHigh) << 32) | d->fd.nFileSizeLow);
-	d->ent.mode = (attr & FILE_ATTRIBUTE_DIRECTORY)? S_IFDIR : S_IFREG;
+	// d->fd holds a valid entry, but we may have to get another below.
+have_entry:
 
-	SYSTEMTIME st = { 0 };
-	FileTimeToSystemTime(&d->fd.ftLastWriteTime, &st);
-	tm t;
-	t.tm_sec   = st.wSecond;
-	t.tm_min   = st.wMinute;
-	t.tm_hour  = st.wHour;
-	t.tm_mday  = st.wDay;
-	t.tm_mon   = st.wMonth-1;
-	t.tm_year  = st.wYear-1900;
-	t.tm_isdst = -1;	// unknown; let CRT decide
-	d->ent.mtime = mktime(&t);
+	// we must not return hidden or system entries, so get another.
+	// (see rationale above).
+	if(d->fd.dwFileAttributes & hs)
+		goto get_another_entry;
 
+
+	// this entry has passed all checks; return information about it.
+	// .. d_ino zero-initialized by opendir
+	// .. POSIX requires d_name to be an array, so we copy there.
+	strncpy(d->ent.d_name, d->fd.cFileName, PATH_MAX);
 	return &d->ent;
 }
 
 
-int closedir(DIR* dir)
+// return status for the dirent returned by the last successful
+// readdir call from the given directory stream.
+// currently sets st_size, st_mode, and st_mtime; the rest are zeroed.
+// non-portable, but considerably faster than stat(). used by file_enum.
+int readdir_stat_np(DIR* d_, struct stat* s)
 {
-	_DIR* d = (_DIR*)dir;
+	WDIR* d = (WDIR*)d_;
 
-	FindClose(d->handle);
+	memset(s, 0, sizeof(struct stat));
+	s->st_size  = (off_t)((((u64)d->fd.nFileSizeHigh) << 32) | d->fd.nFileSizeLow);
+	s->st_mode  = (d->fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)? S_IFDIR : S_IFREG;
+	s->st_mtime = filetime_to_time_t(&d->fd.ftLastWriteTime, d->path);
+	return 0;
+}
 
-	free(dir);
+
+int closedir(DIR* d_)
+{
+	WDIR* const d = (WDIR*)d_;
+
+	FindClose(d->hFind);
+
+	memset(d, 0, sizeof(WDIR));	// safety
+	free(d);
 	return 0;
 }
 
@@ -420,6 +502,32 @@ int pthread_create(pthread_t* thread, const void* attr, void*(*func)(void*), voi
 }
 
 
+void pthread_cancel(pthread_t thread)
+{
+	HANDLE hThread = cast_to_HANDLE((intptr_t)thread);
+	TerminateThread(hThread, 0);
+}
+
+
+void pthread_join(pthread_t thread, void** value_ptr)
+{
+	HANDLE hThread = cast_to_HANDLE((intptr_t)thread);
+
+	// clean exit
+	if(WaitForSingleObject(hThread, 100) == WAIT_OBJECT_0)
+	{
+		if(value_ptr)
+			GetExitCodeThread(hThread, (LPDWORD)value_ptr);
+	}
+	// force close
+	else
+		TerminateThread(hThread, 0);
+	if(value_ptr)
+		*value_ptr = (void*)-1;
+	CloseHandle(hThread);	
+}
+
+
 // DeleteCriticalSection currently doesn't complain if we double-free
 // (e.g. user calls destroy() and static initializer atexit runs),
 // and dox are ambiguous.
@@ -493,6 +601,33 @@ int pthread_mutex_unlock(pthread_mutex_t* m)
 int pthread_mutex_timedlock(pthread_mutex_t* m, const struct timespec* abs_timeout)
 {
 	return -ENOSYS;
+}
+
+
+
+
+int sem_init(sem_t* sem, int pshared, unsigned value)
+{
+	*sem = (uintptr_t)CreateSemaphore(0, (LONG)value, 0x7fffffff, 0);
+	return 0;
+}
+
+int sem_post(sem_t* sem)
+{
+	ReleaseSemaphore((HANDLE)*sem, 1, 0);
+	return 0;
+}
+
+int sem_wait(sem_t* sem)
+{
+	WaitForSingleObject((HANDLE)*sem, INFINITE);
+	return 0;
+}
+
+int sem_destroy(sem_t* sem)
+{
+	CloseHandle((HANDLE)*sem);
+	return 0;
 }
 
 

@@ -208,17 +208,18 @@ typedef void DIR;
 struct dirent
 {
 	ino_t d_ino;
-	char* d_name;
-
-	//
-	mode_t mode;
-	off_t size;
-	time_t mtime;
+	char d_name[PATH_MAX+1];
 };
 
 extern DIR* opendir(const char* name);
 extern struct dirent* readdir(DIR*);
 extern int closedir(DIR*);
+
+// return status for the file returned by the last successful
+// readdir call from the given directory stream.
+// currently sets st_size, st_mode, and st_mtime; the rest are zeroed.
+// non-portable, but considerably faster than stat(). used by file_enum.
+extern int readdir_stat_np(DIR*, struct stat*);
 
 
 //
@@ -377,7 +378,10 @@ typedef unsigned int pthread_t;
 extern pthread_t pthread_self();
 extern int pthread_getschedparam(pthread_t thread, int* policy, struct sched_param* param);
 extern int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param* param);
+
 extern int pthread_create(pthread_t* thread, const void* attr, void*(*func)(void*), void* arg);
+extern void pthread_cancel(pthread_t thread);
+extern void pthread_join(pthread_t thread, void** value_ptr);
 
 //typedef void* pthread_mutex_t;
 typedef struct
@@ -399,7 +403,16 @@ extern int pthread_mutex_unlock(pthread_mutex_t*);
 extern int pthread_mutex_timedlock(pthread_mutex_t*, const struct timespec*);
 
 
+//
+// <semaphore.h>
+//
 
+typedef uintptr_t sem_t;
+
+extern int sem_init(sem_t*, int pshared, unsigned value);
+extern int sem_post(sem_t*);
+extern int sem_wait(sem_t*);
+extern int sem_destroy(sem_t*);
 
 
 //
