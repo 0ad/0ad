@@ -47,6 +47,7 @@ void CFileUnpacker::Read(const char* filename,const char magicstr[4])
 	// extract data from header
 	u8* header = (u8*)m_Buf;
 	char* magic = (char*)(header+0);
+	// FIXME m_Version and datasize: Byte order? -- Simon
 	m_Version = *(u32*)(header+4);
 	u32 datasize = *(u32*)(header+8);
 
@@ -85,19 +86,20 @@ void CFileUnpacker::UnpackRaw(void* rawdata,u32 rawdatalen)
 
 ////////////////////////////////////////////////////////////////////////////////////////
 // UnpackString: unpack a string from the raw data stream
+//	- throws CFileEOFError if eof is reached before the string length has been
+// satisfied
 void CFileUnpacker::UnpackString(CStr& result)
 {
 	// get string length
 	u32 length;
-	UnpackRaw(&length,sizeof(length));
+	UnpackRaw(&length,sizeof(length)); // FIXME Byte order? -- Simon
 	
-	// read string into temporary buffer
-	std::vector<char> tmp;
-	tmp.resize(length+1);
-	UnpackRaw(&tmp[0],length);
-	tmp[length]='\0';
-	
-	// assign to output 
-	result=&tmp[0];
+	if (m_UnpackPos + length <= m_Size)
+	{
+		result=std::string((char *)m_Buf+m_UnpackPos, length);
+		m_UnpackPos += length;
+	}
+	else
+		throw CFileEOFError();
 }
 
