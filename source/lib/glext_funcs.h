@@ -1,9 +1,10 @@
 //#include <GL/glext.h>
-//#include <GL/wglext.h>
-
+#include <GL/wglext.h>
+/*
 typedef void* HDC;
 typedef void* HGLRC;
 typedef void* HPBUFFERARB;
+*/
 
 
 // were these defined as real functions in gl.h already?
