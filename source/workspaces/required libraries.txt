@@ -33,3 +33,10 @@ TODO:
   download xerces-c_2_5_0-windows_nt-msvc_60.zip.
   extract contents of include/ into $include,
   .lib files into $lib, and .DLLs into $binaries.
+
+  to reduce download size, you can instead grab the following
+  archives, which leave out everything we don't need:
+  http://www.wildfiregames/com/~code/libraries/xerces-c_2_5_0-lib.zip
+  http://www.wildfiregames/com/~code/libraries/xerces-c_2_5_0-include.zip
+  http://www.wildfiregames/com/~code/libraries/xerces-c_2_5_0.dll
+  extract into the appropriate directories as explained above.
