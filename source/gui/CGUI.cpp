@@ -20,6 +20,7 @@ gee@pyro.nu
 #include "CText.h"
 #include "CCheckBox.h"
 #include "CRadioButton.h"
+#include "MiniMap.h"
 
 #include "ps/Xeromyces.h"
 #include "ps/Font.h"
@@ -263,6 +264,7 @@ void CGUI::Initialize()
 	AddObjectType("text",			&CText::ConstructObject);
 	AddObjectType("checkbox",		&CCheckBox::ConstructObject);
 	AddObjectType("radiobutton",	&CRadioButton::ConstructObject);
+    AddObjectType("minimap",        &CMiniMap::ConstructObject);
 }
 
 void CGUI::Process()
