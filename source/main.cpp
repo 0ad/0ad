@@ -10,7 +10,9 @@
 #include "lib.h"
 #include "posix.h"
 #include "res/res.h"
+#ifdef _M_IX86
 #include "sysdep/ia32.h"
+#endif
 #include "ps/Config.h"
 
 #ifndef NO_GUI
@@ -234,7 +236,7 @@ int main(int argc, char* argv[])
 	// init SDL
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
 	{
-		snwprintf(err_msg, ERR_MSG_SIZE, L"SDL library initialization failed: %s\n", SDL_GetError());
+		swprintf(err_msg, ERR_MSG_SIZE, L"SDL library initialization failed: %s\n", SDL_GetError());
 		display_startup_error(err_msg);
 	}
 	atexit(SDL_Quit);
@@ -253,7 +255,7 @@ int main(int argc, char* argv[])
 
 	if(set_vmode(g_xres, g_yres, 32) < 0)
 	{
-		snwprintf(err_msg, ERR_MSG_SIZE, L"could not set %dx%d graphics mode: %s\n", g_xres, g_yres, SDL_GetError());
+		swprintf(err_msg, ERR_MSG_SIZE, L"could not set %dx%d graphics mode: %s\n", g_xres, g_yres, SDL_GetError());
 		display_startup_error(err_msg);
 	}
 
