@@ -59,7 +59,7 @@ namespace MathUtil
 	//    NAME: Abs
 	// PURPOSE: Calculates the Absolute value
 	//
-	template <class T>
+	template <typename T>
 	T Abs(const T &num)
 	{
 		if( num < 0)
@@ -72,7 +72,7 @@ namespace MathUtil
 	//    NAME: Clamp
 	// PURPOSE: Forces num to be between lowerBound and upperBound
 	//
-	template <class T>
+	template <typename T>
 	T Clamp(T &num, const _int &lowerBound,const _int &upperBound)
 	{
 		if(num <= lowerBound)
@@ -86,7 +86,7 @@ namespace MathUtil
 	//    NAME: Max
 	// PURPOSE: Returns the largest number.
 	//
-	template <class T>
+	template <typename T>
 	T Max(const T &num1, const T &num2)
 	{
 		if( num1 > num2)
@@ -100,7 +100,7 @@ namespace MathUtil
 	//    NAME: Min
 	// PURPOSE: Returns the smallest number.
 	//
-	template <class T>
+	template <typename T>
 	T Min(const T &num1, const T &num2)
 	{
 		if( num1 < num2)
@@ -115,7 +115,7 @@ namespace MathUtil
 	// PURPOSE: Returns 1 if the number is > 0, -1 if it's < 0,
 	//            otherwise returns 0.
 	//
-	template <class T>
+	template <typename T>
 	_int Sign(const T &num)
 	{
 		if( num > 0 )
@@ -133,7 +133,7 @@ namespace MathUtil
 	//   NOTES: Num should be less than the square root of the
 	//            maximum representable number for the data type.
 	//
-	template <class T>
+	template <typename T>
 	inline _double Square(const T &num)
 	{
 		return num*num;
@@ -144,7 +144,7 @@ namespace MathUtil
 	//    NAME: Swap
 	// PURPOSE: Swaps two numbers
 	//
-	template <class T>
+	template <typename T>
 	void Swap(T *num1, T *num2)
 	{
 		T temp = num1;
@@ -157,7 +157,7 @@ namespace MathUtil
 	//    NAME: Wrap
 	// PURPOSE: Wraps num between lowerBound and upperBound.
 	//
-	template <class T>
+	template <typename T>
 	PS_RESULT Wrap(T *num,const T &lowerBound, const T &upperBound)
 	{
 		if(lowerBound >= upperBound)
