@@ -666,8 +666,6 @@ static void psInit()
 {
 	g_Font_Console = unifont_load("console");
 	g_Font_Misc = unifont_load("verdana16");
-	// HACK: Cache some other fonts, because the resource manager doesn't
-	unifont_load("palatino12");
 
 	g_Console->SetSize(0, g_yres-600.f, (float)g_xres, 600.f);
 	g_Console->m_iFontHeight = unifont_linespacing(g_Font_Console);
