@@ -348,7 +348,6 @@ static int handler(const SDL_Event* ev)
 
 		case HOTKEY_PLAYMUSIC:
 			{
-			debug_out("---------P PRESSED--------\n");
 //			MusicPlayer.open("audio/music/germanic peace 3.ogg");
 //			MusicPlayer.play();
 			Handle hs = snd_open(
