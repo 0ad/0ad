@@ -26,6 +26,7 @@
 //extern "C" {
 #endif
 
+// check if compiler supports C99
 // avoid ICC warning about undefined macros in #if
 #undef HAVE_C99
 #ifdef __STDC_VERSION__
@@ -57,7 +58,7 @@ type temp = type(CASSERT_##id());\
 (void)sizeof(temp);\
 }
 
-
+#define cassert2(expr, id) struct CASSERT_##id { a : expr; };
 
 
 
