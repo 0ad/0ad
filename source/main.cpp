@@ -38,6 +38,7 @@
 #include "Model.h"
 #include "UnitManager.h"
 #include "MaterialManager.h"
+#include "ProgramManager.h"
 
 #include "Interact.h"
 #include "Hotkey.h"
@@ -182,7 +183,27 @@ void TestingUnicode (void)
 }
 
 
+static std::string SplitExts(const char *exts)
+{
+    std::string str = exts;
+    std::string ret = "";
+    size_t idx = str.find_first_of(" ");
+    while(idx != std::string::npos)
+    {
+        if(idx >= str.length() - 1)
+        {
+            ret += str;
+            break;
+        }
 
+        ret += str.substr(0, idx);
+        ret += "\n";
+        str = str.substr(idx + 1);
+        idx = str.find_first_of(" ");
+    }
+
+    return ret;
+}
 
 static int write_sys_info()
 {
@@ -217,6 +238,9 @@ static int write_sys_info()
 	fprintf(f, "%s\n", gfx_drv_ver);
 
 	fprintf(f, "%dx%d:%d@%d\n", g_xres, g_yres, g_bpp, g_freq);
+
+    g_ProgramManager.WritePPInfo(f);
+
 	// .. network name / ips
 	//    note: can't use un.nodename because it is for an
 	//    "implementation-defined communications network".
@@ -237,7 +261,7 @@ static int write_sys_info()
 	// Write extensions last, because there are lots of them
 	const char* exts = oglExtList();
 	if (!exts) exts = "{unknown}";
-	fprintf(f, "\nSupported extensions: %s\n", exts);
+	fprintf(f, "\nSupported extensions: \n%s\n", SplitExts(exts).c_str());
 
 	fclose(f);
 	return 0;
@@ -792,6 +816,7 @@ static void Shutdown()
 	delete &g_SkelAnimMan;
 
 	delete &g_MaterialManager;
+    delete &g_ProgramManager;
 
 	// destroy terrain related stuff
 	delete &g_TexMan;
@@ -914,6 +939,12 @@ sle(11340106);
 		throw PSERROR_System_VmodeFailed();
 	}
 	SDL_WM_SetCaption("0 A.D.", "0 A.D.");
+
+    
+    // create the program manager
+    // NOTE: We need to create this BEFORE we write the sys-info, so the PP stuff
+    // will be written to the system_info.txt file
+    new CProgramManager;
 
 	write_sys_info();
 
