@@ -1,4 +1,4 @@
-// $Id: unifont.h,v 1.7 2004/10/06 14:00:43 janwas Exp $
+// $Id: unifont.h,v 1.8 2004/10/14 10:09:51 gee Exp $
 
 #ifndef __UNIFONT_H__
 #define __UNIFONT_H__
@@ -36,6 +36,9 @@ void glwprintf(const wchar_t* fmt, ...);
 // Intended for the GUI (hence Unicode). 'height' is roughly the height of
 // a capital letter, for use when aligning text in an aesthetically pleasing way.
 int unifont_stringsize(const Handle h, const wchar_t* text, int& width, int& height);
+
+// Get only the height
+int unifont_height(const Handle h);
 
 // Return spacing in pixels from one line of text to the next
 int unifont_linespacing(const Handle h);

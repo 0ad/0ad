@@ -1,5 +1,5 @@
 /*
-$Id: unifont.cpp,v 1.18 2004/09/19 11:55:15 janwas Exp $
+$Id: unifont.cpp,v 1.19 2004/10/14 10:09:51 gee Exp $
 
 Unicode OpenGL texture font
   
@@ -204,6 +204,11 @@ int unifont_linespacing(const Handle h)
 	return f->LineSpacing;
 }
 
+int unifont_height(const Handle h)
+{
+	H_DEREF(h, UniFont, f);
+	return f->Height;
+}
 
 void glwprintf(const wchar_t* fmt, ...)
 {
