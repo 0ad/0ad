@@ -272,10 +272,12 @@ static size_t sector_size = 4096;	// minimum: one page
 // caller ensures this is not re-entered!
 static void init()
 {
+	const UINT old_err_mode = SetErrorMode(SEM_FAILCRITICALERRORS);
+
 	// Win32 requires transfers to be sector aligned.
 	// find maximum of all drive's sector sizes, then use that.
 	// (it's good to know this up-front, and checking every open() is slow).
-	DWORD drives = GetLogicalDrives();
+	const DWORD drives = GetLogicalDrives();
 	char drive_str[4] = "?:\\";
 	for(int drive = 2; drive <= 26; drive++)	// C: .. Z:
 	{
@@ -296,6 +298,9 @@ static void init()
 		// BoundsChecker error; GetDiskFreeSpace seems to be the
 		// only way of getting at the sector size.
 	}
+
+	SetErrorMode(old_err_mode);
+
 	assert(is_pow2((long)sector_size));
 }
 
