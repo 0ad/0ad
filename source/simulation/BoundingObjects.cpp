@@ -1,6 +1,6 @@
 #include "BoundingObjects.h"
 #include "ogl.h"
-#include "terrain/MathUtil.h"
+#include "MathUtil.h"
 #include "stdio.h"
 #include "assert.h"
 
