@@ -195,15 +195,6 @@ CConfigDB::CConfigDB()
 
 CConfigValue *CConfigDB::GetValue(EConfigNamespace ns, CStr name)
 {
-	/*
-	assert(ns < CFG_LAST && ns >= 0);
-	
-	TConfigMap::iterator it=m_Map[ns].find(name);
-	if (it == m_Map[ns].end())
-		return NULL;
-	else
-		return &(it->second[0] );
-	*/
 	CConfigValueSet* values = GetValues( ns, name );
 	if( !values ) return( NULL );
 	return &( (*values)[0] );
@@ -212,13 +203,20 @@ CConfigValue *CConfigDB::GetValue(EConfigNamespace ns, CStr name)
 CConfigValueSet *CConfigDB::GetValues(EConfigNamespace ns, CStr name )
 {
 	assert(ns < CFG_LAST && ns >= 0);
-	
-	TConfigMap::iterator it=m_Map[ns].find(name);
-	if (it == m_Map[ns].end())
-		return NULL;
-	else
-		return &(it->second );
-}
+
+	TConfigMap::iterator it = m_Map[CFG_COMMAND].find( name );
+	if( it != m_Map[CFG_COMMAND].end() )
+		return &( it->second );
+
+	for( int search_ns = ns; search_ns >= CFG_SYSTEM; search_ns-- )
+	{
+		TConfigMap::iterator it = m_Map[search_ns].find(name);
+		if (it != m_Map[search_ns].end())
+			return &( it->second );
+	}
+
+	return( NULL );
+}	
 
 CConfigValue *CConfigDB::CreateValue(EConfigNamespace ns, CStr name)
 {

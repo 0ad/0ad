@@ -71,9 +71,7 @@ template<> JSObject* ToScript<CVector3D>( CVector3D* Native )
 
 template<> jsval ToJSVal<CScriptObject>( CScriptObject& Native )
 {
-	if( Native.Type == CScriptObject::FUNCTION )
-		return( OBJECT_TO_JSVAL( JS_GetFunctionObject( Native.Function ) ) );
-	return( JSVAL_NULL );
+	return( OBJECT_TO_JSVAL( Native.GetFunctionObject() ) );
 }
 
 template<> bool ToPrimitive<CScriptObject>( JSContext* cx, jsval v, CScriptObject& Storage )

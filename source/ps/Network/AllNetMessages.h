@@ -59,8 +59,6 @@ enum ENetMessageType
 
 	/* Game event messages */
 
-	NMT_Event_IveGotAnInteger,
-
 	/**
 	 * One higher than the highest value of any message type
 	 */

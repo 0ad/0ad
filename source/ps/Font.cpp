@@ -24,7 +24,7 @@ CFont::CFont(const char* name)
 	CStr fontName = "font."; fontName += name;
 
 	// See if the config value can be loaded
-	CConfigValue* fontFilenameVar = g_ConfigDB.GetValue(CFG_SYSTEM, fontName);
+	CConfigValue* fontFilenameVar = g_ConfigDB.GetValue(CFG_USER, fontName);
 	if (fontFilenameVar && fontFilenameVar->GetString(fontFilename))
 	{
 		h = unifont_load(fontFilename.c_str());

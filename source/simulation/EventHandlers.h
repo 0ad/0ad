@@ -5,6 +5,8 @@
 #ifndef EVENT_HANDLERS_INCLUDED
 #define EVENT_HANDLERS_INCLUDED
 
+#include "scripting/DOMEvent.h"
+
 enum EEventType
 {
 	EVENT_INITIALIZE,
@@ -16,6 +18,16 @@ static const wchar_t* EventNames[] =
 {
 	/* EVENT_INITIALIZE */ L"onInitialize",
 	/* EVENT_TICK */ L"onTick"
+};
+
+class CEventInitialize : public CScriptEvent
+{
+public: CEventInitialize() : CScriptEvent( L"initialize", false, EVENT_INITIALIZE ) {}
+};
+
+class CEventTick : public CScriptEvent
+{
+public: CEventTick() : CScriptEvent( L"tick", false, EVENT_TICK ) {}
 };
 
 #endif

@@ -1,5 +1,7 @@
 #include "precompiled.h"
 
+#define CHEEZY_NOMIPMAP
+
 #include "res.h"
 #include "ogl.h"
 #include "tex.h"
@@ -331,6 +333,9 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 	if(int_fmt_ovr) int_fmt = int_fmt_ovr;
 	if(fmt_ovr) fmt = fmt_ovr;
 
+#ifdef CHEEZY_NOMIPMAP
+	filter = GL_NEAREST_MIPMAP_LINEAR;
+#endif
 	CHECK_ERR(tex_bind(ht));
 		// we know ht is valid (H_DEREF above), but tex_bind can
 		// fail in debug builds if Tex.id isn't a valid texture name
@@ -370,11 +375,13 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		}
 
+
 		glCompressedTexImage2DARB(GL_TEXTURE_2D, 0, fmt, w, h, 0, tex_size, tex_data);
 	}
 	// normal
 	else
 	{
+
 		// manual mipmap gen via GLU (box filter)
 		if(mipmap && !sgm_avl)
 			gluBuild2DMipmaps(GL_TEXTURE_2D, int_fmt, w, h, fmt, GL_UNSIGNED_BYTE, tex_data);
@@ -385,6 +392,7 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 				glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP_SGIS, GL_TRUE);
 
 			glTexImage2D(GL_TEXTURE_2D, 0, int_fmt, w, h, 0, fmt, GL_UNSIGNED_BYTE, tex_data);
+
 		}
 	}
 

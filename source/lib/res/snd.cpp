@@ -1414,7 +1414,6 @@ static void list_prune_removed()
 	vsrcs.erase(new_end, vsrcs.end());
 }
 
-
 static void free(VSrc* vs)
 {
 	snd_free(vs->hvs);

@@ -191,6 +191,12 @@ bool CParserValue::GetString(std::string &ret)
 	return true;
 }
 
+bool CParserValue::GetString( CStr& ret )
+{
+	ret = m_String;
+	return true; 
+}
+
 // These macros include the IMPLEMENTATION of the 
 // the function in the macro argument for CParserValue
 // They use GetDouble, and then type-cast it

@@ -14,7 +14,7 @@
 
 #define LOG_CATEGORY "world"
 
-extern CLightEnv g_LightEnv;
+CLightEnv g_LightEnv;
 
 void CWorld::Initialize(CGameAttributes *pAttribs)
 {

@@ -47,7 +47,7 @@
 
 class CEntityManager;
 
-class CEntity : public CJSObject<CEntity>
+class CEntity : public CJSObject<CEntity, true>
 {
 	friend class CEntityManager;
 public:
@@ -77,7 +77,22 @@ public:
 	float m_graphics_orientation;
 
 	//-- Scripts
+
+	// EventListener adaptation? 
+	//typedef std::vector<CScriptObject> ExtendedHandlerList;
+	//typedef STL_HASH_MAP<CStrW, HandlerList, CStrW_hash_compare> ExtendedHandlerTable;
+
 	CScriptObject m_EventHandlers[EVENT_LAST];
+
+	// EventListener adaptation?
+	/*
+	void AddListener( const CStrW& EventType, CScriptObject* Handler )
+	{
+		m_EventHandlers[EventType].push_back( Handler );
+	}
+	*/
+
+	bool DispatchEvent( CScriptEvent* evt );
 
 	CUnit* m_actor;
 	bool m_moving;
@@ -97,18 +112,28 @@ public:
 	// Handle-to-self.
 	HEntity me;
 
+	// Process an event
 	void dispatch( const CMessage* msg );
+
+	// Updates gameplay information for the specified timestep
 	void update( size_t timestep_millis );
+	// Updates graphical information for a point between the last and current simulation frame; 0 < relativeoffset < 1.
+	void interpolate( float relativeoffset );
+
+	// Removes entity from the gameworld and deallocates it, but not neccessarily immediately.
 	void kill();
 
-	void interpolate( float relativeoffset );
 	void snapToGround();
 	void updateActorTransforms();
+
+	// Things like selection circles and debug info - possibly move to gui if/when it becomes responsible for (and capable of) it.
 	void render();
 	void renderSelectionOutline( float alpha = 1.0f );
 
+	// After a collision, recalc the path to the next fixed waypoint.
 	void repath();
 
+	// Reset properties after the entity-template we use changes.
 	void loadBase();
 
 	void reorient(); // Orientation
@@ -117,6 +142,7 @@ public:
 	void checkGroup(); // Groups
 	void checkExtant(); // Existance
 
+	// Returns whether the entity is capable of performing the given orderType on the target.
 	bool acceptsOrder( int orderType, CEntity* orderTarget );
 
 	void clearOrders();

@@ -20,6 +20,8 @@ CBaseEntity::CBaseEntity()
 	for( int t = 0; t < EVENT_LAST; t++ )
 		AddProperty( EventNames[t], &m_EventHandlers[t] );
 	
+	m_base = NULL;
+
 	m_actorObject = NULL;
 	m_bound_type = CBoundingObject::BOUND_NONE;
 	m_bound_circle = NULL;
@@ -165,7 +167,7 @@ bool CBaseEntity::loadXML( CStr filename )
 			{
 				if( CStrW( EventNames[eventID] ) == EventName )
 				{
-					m_EventHandlers[eventID].CompileScript( CStrW( filename ) + L"::" + EventName + L" (" + CStrW( Child.getLineNumber() ) + L")", Code );
+					m_EventHandlers[eventID].Compile( CStrW( filename ) + L"::" + EventName + L" (" + CStrW( Child.getLineNumber() ) + L")", Code );
 					HasProperty( EventName )->m_Inherited = false;
 					break;
 				}
@@ -243,7 +245,7 @@ void CBaseEntity::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement&
 void CBaseEntity::ScriptingInit()
 {
 	AddMethod<jsval, ToString>( "toString", 0 );
-	CJSObject<CBaseEntity>::ScriptingInit( "EntityTemplate" );
+	CJSObject<CBaseEntity, true>::ScriptingInit( "EntityTemplate" );
 }
 
 // Script-bound functions

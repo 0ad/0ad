@@ -33,6 +33,7 @@ public:
 	~CBaseEntityCollection();
 	CBaseEntity* getTemplate( CStrW entityType );
 	void loadTemplates();
+	void LoadDirectory( Handle directory, CStr pathname );
 	void addTemplate( CBaseEntity* temp );
 	CBaseEntity* getTemplateByActor( CObjectEntry* actor );
 };

@@ -27,7 +27,7 @@
 #include "ScriptObject.h"
 #include "Xeromyces.h"
 
-class CBaseEntity : public CJSObject<CBaseEntity>
+class CBaseEntity : public CJSObject<CBaseEntity, true>
 {
 public:
 	CBaseEntity();

@@ -22,7 +22,6 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 {
 	m_position = position;
 	m_orientation = orientation;
-	
 	m_ahead.x = sin( m_orientation );
 	m_ahead.y = cos( m_orientation );
 	
@@ -186,13 +185,19 @@ void CEntity::update( size_t timestep )
 
 void CEntity::dispatch( const CMessage* msg )
 {
+	
 	switch( msg->type )
 	{
 	case CMessage::EMSG_TICK:
-		m_EventHandlers[EVENT_TICK].Run( GetScript() );
+	{
+		CEventTick Tick;
+		DispatchEvent( &Tick );
 		break;
+	}
 	case CMessage::EMSG_INIT:
-		m_EventHandlers[EVENT_INITIALIZE].Run( GetScript() );
+	{
+		CEventInitialize Init;
+		DispatchEvent( &Init );
 		if( m_base->m_Tag == CStrW( L"Prometheus Dude" ) )
 		{
 			if( getCollisionObject( this ) )
@@ -220,6 +225,7 @@ void CEntity::dispatch( const CMessage* msg )
 			*/
 		}
 		break;
+	}
 	case CMessage::EMSG_ORDER:
 		CMessageOrder* m;
 		m = (CMessageOrder*)msg;
@@ -228,6 +234,12 @@ void CEntity::dispatch( const CMessage* msg )
 		pushOrder( m->order );
 		break;
 	}
+}
+
+bool CEntity::DispatchEvent( CScriptEvent* evt )
+{
+	m_EventHandlers[evt->m_TypeCode].DispatchEvent( GetScript(), evt );
+	return( false );
 }
 
 void CEntity::clearOrders()
@@ -512,7 +524,7 @@ void CEntity::ScriptingInit()
 	AddMethod<jsval, ToString>( "toString", 0 );
 	AddMethod<bool, OrderSingle>( "order", 1 );
 	AddMethod<bool, OrderQueued>( "orderQueued", 1 );
-	CJSObject<CEntity>::ScriptingInit( "Entity", Construct, 2 );
+	CJSObject<CEntity, true>::ScriptingInit( "Entity", Construct, 2 );
 }
 
 // Script constructor

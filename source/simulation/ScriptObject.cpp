@@ -3,19 +3,12 @@
 
 CScriptObject::CScriptObject()
 {
-	Type = UNDEFINED;
 	Function = NULL;
-	Script = NULL;
 }
 
 CScriptObject::CScriptObject( JSFunction* _Function )
 {
 	SetFunction( _Function );
-}
-
-CScriptObject::CScriptObject( JSScript* _Script )
-{
-	SetScript( _Script );
 }
 
 CScriptObject::CScriptObject( jsval v )
@@ -25,45 +18,36 @@ CScriptObject::CScriptObject( jsval v )
 
 void CScriptObject::SetFunction( JSFunction* _Function )
 {
-	Type = FUNCTION;
 	Function = _Function;
-	Script = NULL;
-}
-
-void CScriptObject::SetScript( JSScript* _Script )
-{
-	Type = SCRIPT;
-	Function = NULL;
-	Script = _Script;
 }
 
 void CScriptObject::SetJSVal( jsval v )
 {
+	CStrW Source;
 	switch( JS_TypeOfValue( g_ScriptingHost.GetContext(), v ) )
 	{
 	case JSTYPE_STRING:
-	{
-		CStrW Source = g_ScriptingHost.ValueToUCString( v );
-		JSScript* Script = JS_CompileUCScript( g_ScriptingHost.GetContext(), JS_GetGlobalObject( g_ScriptingHost.GetContext() ), Source.c_str(), Source.Length(), "subset query script", 0 );
-		SetScript( Script );
+		Source = g_ScriptingHost.ValueToUCString( v );
+		Compile( L"unknown", Source );
 		break;
-	}
 	case JSTYPE_FUNCTION:
-	{
-		JSFunction* fn = JS_ValueToFunction( g_ScriptingHost.GetContext(), v );
-		SetFunction( fn );
+		SetFunction( JS_ValueToFunction( g_ScriptingHost.GetContext(), v ) );
 		break;
-	}
 	default:
-		Type = UNDEFINED;
 		Function = NULL;
-		Script = NULL;
 	}
 }
 
 bool CScriptObject::Defined()
 {
-	return( Type != UNDEFINED );
+	return( Function != NULL );
+}
+
+JSObject* CScriptObject::GetFunctionObject()
+{
+	if( Function )
+		return( JS_GetFunctionObject( Function ) );
+	return( NULL );
 }
 
 // Executes a script attached to a JS object.
@@ -71,17 +55,9 @@ bool CScriptObject::Defined()
 // otherwise true. Script return value is in rval.
 bool CScriptObject::Run( JSObject* Context, jsval* rval )
 {
-	switch( Type )
-	{
-	case UNDEFINED:
+	if( !Function )
 		return( false );
-	case FUNCTION:
-		return( JS_TRUE == JS_CallFunction( g_ScriptingHost.GetContext(), Context, Function, 0, NULL, rval ) );
-	case SCRIPT:
-		return( JS_TRUE == JS_ExecuteScript( g_ScriptingHost.GetContext(), Context, Script, rval ) );
-	default:
-		return( false );
-	}
+	return( JS_TRUE == JS_CallFunction( g_ScriptingHost.GetContext(), Context, Function, 0, NULL, rval ) );
 }
 
 // This variant casts script return value to a boolean, and passes it back.
@@ -92,9 +68,18 @@ bool CScriptObject::Run( JSObject* Context )
 		return( false );
 	return( g_ScriptingHost.ValueToBool( Temp ) );
 }
-	
-void CScriptObject::CompileScript( CStrW FileNameTag, CStrW Script )
+
+// Treat this as an event handler and dispatch an event to it.
+void CScriptObject::DispatchEvent( JSObject* Context, CScriptEvent* evt )
 {
-	Type = FUNCTION;
-	Function = JS_CompileUCFunction( g_ScriptingHost.GetContext(), NULL, NULL, 0, NULL, Script, Script.Length(), (CStr)FileNameTag, 0 );
+	jsval Temp;
+	jsval EventObject = OBJECT_TO_JSVAL( evt->GetScript() );
+	if( Function )
+		JS_CallFunction( g_ScriptingHost.GetContext(), Context, Function, 1, &EventObject, &Temp );
+}
+
+void CScriptObject::Compile( CStrW FileNameTag, CStrW FunctionBody )
+{
+	const char* argnames[] = { "evt" };
+	Function = JS_CompileUCFunction( g_ScriptingHost.GetContext(), NULL, NULL, 1, argnames, FunctionBody, FunctionBody.Length(), (CStr)FileNameTag, 0 );
 }

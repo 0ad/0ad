@@ -38,11 +38,15 @@
 #include "CStr.h"
 #include "Singleton.h"
 
+// Namespace priorities: User supersedes mod supersedes system.
+//						 Command-line arguments override everything.
+
 enum EConfigNamespace
 {
 	CFG_SYSTEM,
 	CFG_MOD,
 	CFG_USER,
+	CFG_COMMAND,
 	CFG_LAST
 };
 
@@ -63,16 +67,16 @@ public:
 	CConfigDB();
 
 	// GetValue()
-	// Attempt to find a config variable with the given name in the specified
-	// namespace.
+	// Attempt to find a config variable with the given name; will search all
+	// namespaces from system up to the specified namespace.
 	//
 	// Returns a pointer to the config value structure for the variable, or
 	// NULL if such a variable could not be found
 	CConfigValue *GetValue(EConfigNamespace ns, CStr name);
 	
 	// GetValues()
-	// Attempt to retrieve a vector of values corresponding to the given setting
-	// in the specified namespace
+	// Attempt to retrieve a vector of values corresponding to the given setting;
+	// will search all namespaces from system up to the specified namespace.
 	// 
 	// Returns a pointer to the vector, or NULL if the setting could not be found.
 	CConfigValueSet *GetValues(EConfigNamespace ns, CStr name);

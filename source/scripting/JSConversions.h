@@ -27,6 +27,8 @@ template<typename T> T* ToNative( JSContext* cx, JSObject* obj )
 
 template<typename T> JSObject* ToScript( T* Native )
 {
+	if( !Native )
+		return( JSVAL_NULL );
 	return( Native->GetScript() );
 }
 

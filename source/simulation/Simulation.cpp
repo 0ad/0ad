@@ -50,7 +50,6 @@ void CSimulation::Update(double frameTime)
 		{
 			// The desired sim frame rate can't be achieved. Settle for process & render
 			// frames as fast as possible.
-			// g_Console->InsertMessage( L"Can't maintain %d FPS simulation rate!", SIM_FRAMERATE );
 			m_DeltaTime = 0.0;
 		}
 	}

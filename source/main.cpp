@@ -56,6 +56,7 @@
 #include "scripting/JSInterface_Selection.h"
 #include "scripting/JSInterface_Console.h"
 #include "scripting/JSCollection.h"
+#include "scripting/DOMEvent.h"
 #include "gui/scripting/JSInterface_IGUIObject.h"
 #include "gui/scripting/JSInterface_GUITypes.h"
 
@@ -105,7 +106,7 @@ static bool g_FixedFrameTiming=false;
 static bool g_VSync = false;
 static float g_LodBias = 0.0f;
 
-CLightEnv g_LightEnv;
+extern CLightEnv g_LightEnv;
 
 static bool g_EntGraph = false;
 
@@ -117,8 +118,7 @@ extern int game_view_handler(const SDL_Event* ev);
 static CMusicPlayer MusicPlayer;
 
 CStr g_CursorName = "test";
-
-
+CStr g_ActiveProfile = "default";
 
 extern int allow_reload();
 extern int dir_add_watch(const char* const dir, bool watch_subdirs);
@@ -534,6 +534,42 @@ static void InitDefaultGameAttributes()
 	g_GameAttributes.SetValue("mapFile", L"test01.pmp");
 }
 
+
+static void LoadProfile( CStr profile )
+{
+	CStr filename = CStr( "profiles/" ) + profile + CStr( ".cfg" );
+	g_ConfigDB.SetConfigFile( CFG_USER, true, filename );
+	g_ConfigDB.Reload( CFG_USER );
+}
+
+// Fill in the globals from the config files.
+static void LoadGlobals()
+{
+	CConfigValue *val;
+
+	if ((val=g_ConfigDB.GetValue(CFG_SYSTEM, "profile")))
+		val->GetString( g_ActiveProfile );
+
+	// Now load the profile before trying to retrieve the values of the rest of these.
+
+	LoadProfile( g_ActiveProfile );
+
+	if ((val=g_ConfigDB.GetValue(CFG_USER, "xres")))
+		val->GetInt(g_xres);
+	if ((val=g_ConfigDB.GetValue(CFG_USER, "yres")))
+		val->GetInt(g_yres);
+
+	if ((val=g_ConfigDB.GetValue(CFG_USER, "vsync")))
+		val->GetBool(g_VSync);
+	if ((val=g_ConfigDB.GetValue(CFG_USER, "novbo")))
+		val->GetBool(g_NoGLVBO);
+	if ((val=g_ConfigDB.GetValue(CFG_USER, "shadows")))
+		val->GetBool(g_Shadows);
+		
+	LOG(NORMAL, LOG_CATEGORY, "g_x/yres is %dx%d", g_xres, g_yres);
+	LOG(NORMAL, LOG_CATEGORY, "Active profile is %s", g_ActiveProfile);
+}
+
 static void ParseArgs(int argc, char* argv[])
 {
 	for(int i = 1; i < argc; i++)
@@ -558,7 +594,7 @@ static void ParseArgs(int argc, char* argv[])
 					if(equ)
 					{
 						*equ = 0;
-						g_ConfigDB.CreateValue(CFG_SYSTEM, arg)
+						g_ConfigDB.CreateValue(CFG_COMMAND, arg)
 							->m_String = (equ+1);
 					}
 				}
@@ -585,45 +621,33 @@ static void ParseArgs(int argc, char* argv[])
 			break;
 		case 'n':
 			if(strncmp(name, "novbo", 5) == 0)
-				g_ConfigDB.CreateValue(CFG_SYSTEM, "novbo")->m_String="true";
+				g_ConfigDB.CreateValue(CFG_COMMAND, "novbo")->m_String="true";
 			else if(strncmp(name, "nopbuffer", 9) == 0)
 				g_NoPBuffer = true;
 			break;
 		case 's':
 			if(strncmp(name, "shadows", 7) == 0)
-				g_ConfigDB.CreateValue(CFG_SYSTEM, "shadows")->m_String="true";
+				g_ConfigDB.CreateValue(CFG_COMMAND, "shadows")->m_String="true";
 			break;
 		case 'v':
-			g_ConfigDB.CreateValue(CFG_SYSTEM, "vsync")->m_String="true";
+			g_ConfigDB.CreateValue(CFG_COMMAND, "vsync")->m_String="true";
 			break;
 		case 'x':
 			if(strncmp(name, "xres=", 6) == 0)
-				g_ConfigDB.CreateValue(CFG_SYSTEM, "xres")->m_String=argv[i]+6;
+				g_ConfigDB.CreateValue(CFG_COMMAND, "xres")->m_String=argv[i]+6;
 			break;
 		case 'y':
 			if(strncmp(name, "yres=", 6) == 0)
-				g_ConfigDB.CreateValue(CFG_SYSTEM, "yres")->m_String=argv[i]+6;
+				g_ConfigDB.CreateValue(CFG_COMMAND, "yres")->m_String=argv[i]+6;
+			break;
+		case 'p':
+			if(strncmp(name, "profile=", 8) == 0 )
+				g_ConfigDB.CreateValue(CFG_COMMAND, "profile")->m_String = argv[i]+9;
 			break;
 		}	// switch
 	}
 
-	CConfigValue *val;
-	if ((val=g_ConfigDB.GetValue(CFG_SYSTEM, "xres")))
-		val->GetInt(g_xres);
-	if ((val=g_ConfigDB.GetValue(CFG_SYSTEM, "yres")))
-		val->GetInt(g_yres);
-
-	if ((val=g_ConfigDB.GetValue(CFG_SYSTEM, "vsync")))
-		val->GetBool(g_VSync);
-	if ((val=g_ConfigDB.GetValue(CFG_SYSTEM, "novbo")))
-		val->GetBool(g_NoGLVBO);
-	if ((val=g_ConfigDB.GetValue(CFG_SYSTEM, "shadows")))
-		val->GetBool(g_Shadows);
-
-	if((val = g_ConfigDB.GetValue(CFG_SYSTEM, "lodbias")))
-		val->GetFloat(g_LodBias);
-		
-	LOG(NORMAL, LOG_CATEGORY, "g_x/yres is %dx%d", g_xres, g_yres);
+	
 }
 
 
@@ -644,9 +668,9 @@ static void InitScripting()
 	JSI_IGUIObject::init();
 	JSI_GUITypes::init();
 	JSI_Vector3D::init();
-	// JSI_Selection::init();
 	EntityCollection::Init( "EntityCollection" );
 	CJSPropertyAccessor<CEntity>::ScriptingInit(); // <-- Doesn't really matter which we use, but we know CJSPropertyAccessor<T> is already being compiled for T = CEntity.
+	CScriptEvent::ScriptingInit();
 
 	JSI_Camera::init();
 	JSI_Console::init();
@@ -672,6 +696,7 @@ static void InitVfs(char* argv0)
 
 	vfs_mount("", "mods/official", 0);
 	vfs_mount("screenshots", "screenshots", 0);
+	vfs_mount("profiles", "profiles", 0 );
 }
 
 static void psInit()
@@ -851,21 +876,20 @@ PREVTSC=TSC;
 	
 	MICROLOG(L"init config");
 	new CConfigDB;
+
+
 	g_ConfigDB.SetConfigFile(CFG_SYSTEM, false, "config/system.cfg");
 	g_ConfigDB.Reload(CFG_SYSTEM);
 
 	g_ConfigDB.SetConfigFile(CFG_MOD, true, "config/mod.cfg");
 	// No point in reloading mod.cfg here - we haven't mounted mods yet
 	
-	g_ConfigDB.SetConfigFile(CFG_USER, true, "config/user.cfg");
-	// Same thing here; we haven't even started up yet - this will wait until
-	// the profile dir is VFS mounted (or we will do a new SetConfigFile with
-	// a generated profile path)
-	
 	// We init the defaults here; command line options might want to override
 	InitDefaultGameAttributes();
 	ParseArgs(argc, argv);
 
+	LoadGlobals(); // Collects information from system.cfg, the profile file, and any command-line overrides
+				   // to fill in the globals.
 //g_xres = 800;
 //g_yres = 600;
 
@@ -1136,7 +1160,6 @@ static void Frame()
 #if defined(_WIN32) && ( defined(NDEBUG) || defined(TESTING) )
 # define CUSTOM_EXCEPTION_HANDLER
 #endif
-
 
 #ifdef CUSTOM_EXCEPTION_HANDLER
 #include <excpt.h>

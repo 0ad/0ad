@@ -68,13 +68,13 @@ public:
 	virtual void AddProperty( CStrW PropertyName, CStrW Value ) = 0;
 };
 
-template<typename T> class CJSObject;
+template<typename T, bool AllowInheritance = false, bool ReadOnly = false> class CJSObject;
 
 template<typename T> class CJSPropertyAccessor
 {
 	T* m_Owner;
 	CStrW m_PropertyRoot;
-	template<typename Q> friend class CJSObject;
+	template<typename Q, bool AllowInheritance, bool ReadOnly> friend class CJSObject;
 
 public:
 	CJSPropertyAccessor( T* Owner, CStrW PropertyRoot )
@@ -129,16 +129,6 @@ public:
 		
 		return( JS_TRUE );
 	}
-	/*
-	static void JSFinalize( JSContext* cx, JSObject* obj )
-	{
-		CJSPropertyAccessor* Instance = (CJSPropertyAccessor*)JS_GetPrivate( cx, obj );
-		if( !Instance )
-			return;
-	
-		if( Instance ) delete( Instance );
-	}
-	*/
 	static JSClass JSI_Class;
 	static void ScriptingInit()
 	{
@@ -159,7 +149,7 @@ template<typename T> JSClass CJSPropertyAccessor<T>::JSI_Class = {
 };
 
 
-template<typename T> class CJSProperty : public IJSProperty
+template<typename T, bool ReadOnly> class CJSProperty : public IJSProperty
 {
 	T* m_Data;
 
@@ -172,14 +162,14 @@ template<typename T> class CJSProperty : public IJSProperty
 	IJSObject::NotifyFn m_Freshen;
 
 public:
-	CJSProperty( T* Data, IJSObject* Owner = NULL, bool AllowsInheritance = true, IJSObject::NotifyFn Update = NULL, IJSObject::NotifyFn Freshen = NULL )
+	CJSProperty( T* Data, IJSObject* Owner = NULL, bool AllowsInheritance = false, IJSObject::NotifyFn Update = NULL, IJSObject::NotifyFn Freshen = NULL )
 	{
 		assert( !( !m_Owner && ( Freshen || Update ) ) ); // Bad programmer.
 		m_Data = Data;
 		m_Owner = Owner;
+		m_AllowsInheritance = AllowsInheritance;
 		m_Update = Update;
 		m_Freshen = Freshen;
-		m_AllowsInheritance = AllowsInheritance;
 		m_Intrinsic = true;
 	}
 	jsval Get( JSContext* cx )
@@ -189,19 +179,22 @@ public:
 	}
 	void ImmediateCopy( IJSProperty* Copy )
 	{
-		*m_Data = *( ((CJSProperty<T>*)Copy)->m_Data );
+		*m_Data = *( ((CJSProperty<T, ReadOnly>*)Copy)->m_Data );
 	}
 	void Set( JSContext* cx, jsval Value )
 	{
-		if( m_Freshen ) (m_Owner->*m_Freshen)();
-		if( ToPrimitive<T>( cx, Value, *m_Data ) )
-			if( m_Update ) (m_Owner->*m_Update)();
+		if( !ReadOnly ) // I think all our compilers are intelligent enough to optimize this away.
+		{
+			if( m_Freshen ) (m_Owner->*m_Freshen)();
+			if( ToPrimitive<T>( cx, Value, *m_Data ) )
+				if( m_Update ) (m_Owner->*m_Update)();
+		}
 	}
 };
 
 class CJSValProperty : public IJSProperty
 {
-	template<typename Q> friend class CJSObject;
+	template<typename Q, bool AllowInheritance, bool ReadOnly> friend class CJSObject;
 
 	jsval m_Data;
 	JSObject* m_JSAccessor;
@@ -264,7 +257,7 @@ public:
 	}
 };
 
-template<typename T> class CJSObject : public IJSObject
+template<typename T, bool AllowInheritance, bool ReadOnly> class CJSObject : public IJSObject
 {
 	JSObject* m_JS;
 public:
@@ -273,37 +266,43 @@ public:
 	void GetProperty( JSContext* cx, CStrW PropertyName, jsval* vp );
 	void SetProperty( JSContext* cx, CStrW PropertyName, jsval* vp )
 	{
-		IJSProperty* prop = HasProperty( PropertyName );
-		
-		if( prop )
+		if( !ReadOnly )
 		{
-			// Already exists
-			prop->Set( cx, *vp );
-
-			if( prop->m_AllowsInheritance )
+			IJSProperty* prop = HasProperty( PropertyName );
+			
+			if( prop )
 			{
-				// Run along and update this property in any inheritors
-				InheritorsList UpdateSet( m_Inheritors );
-
-				while( !UpdateSet.empty() )
+				// Already exists
+				prop->Set( cx, *vp );
+				
+				if( AllowInheritance )
 				{
-					IJSObject* UpdateObj = UpdateSet.back();
-					UpdateSet.pop_back();
-					IJSProperty* UpdateProp = UpdateObj->m_Properties[PropertyName];
-					if( UpdateProp->m_Inherited )
+					if( prop->m_AllowsInheritance )
 					{
-						UpdateProp->Set( cx, *vp );
-						InheritorsList::iterator it2;
-						for( it2 = UpdateObj->m_Inheritors.begin(); it2 != UpdateObj->m_Inheritors.end(); it2++ )
-							UpdateSet.push_back( *it2 );
+						// Run along and update this property in any inheritors
+						InheritorsList UpdateSet( m_Inheritors );
+
+						while( !UpdateSet.empty() )
+						{
+							IJSObject* UpdateObj = UpdateSet.back();
+							UpdateSet.pop_back();
+							IJSProperty* UpdateProp = UpdateObj->m_Properties[PropertyName];
+							if( UpdateProp->m_Inherited )
+							{
+								UpdateProp->Set( cx, *vp );
+								InheritorsList::iterator it2;
+								for( it2 = UpdateObj->m_Inheritors.begin(); it2 != UpdateObj->m_Inheritors.end(); it2++ )
+									UpdateSet.push_back( *it2 );
+							}
+						}
 					}
 				}
 			}
-		}
-		else
-		{
-			// Need to add it
-			AddProperty( PropertyName, *vp );
+			else
+			{
+				// Need to add it
+				AddProperty( PropertyName, *vp );
+			}
 		}
 	}
 
@@ -312,7 +311,7 @@ public:
 	// 
 	static JSBool JSGetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
 	{
-		CJSObject<T>* Instance = ToNative<T>( cx, obj );
+		CJSObject<T, AllowInheritance, ReadOnly>* Instance = ToNative<T>( cx, obj );
 		if( !Instance )
 			return( JS_TRUE );
 
@@ -324,7 +323,7 @@ public:
 	}
 	static JSBool JSSetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
 	{
-		CJSObject<T>* Instance = ToNative<T>( cx, obj );
+		CJSObject<T, AllowInheritance, ReadOnly>* Instance = ToNative<T>( cx, obj );
 		if( !Instance )
 			return( JS_TRUE );
 
@@ -384,7 +383,7 @@ public:
 				CJSValProperty* extProp = (CJSValProperty*)it->second;
 				if( extProp->m_JSAccessor )
 				{
-					CJSPropertyAccessor< CJSObject<T> >* accessor = (CJSPropertyAccessor< CJSObject<T> >*)JS_GetPrivate( g_ScriptingHost.GetContext(), extProp->m_JSAccessor );
+					CJSPropertyAccessor< CJSObject<T, AllowInheritance, ReadOnly> >* accessor = (CJSPropertyAccessor< CJSObject<T, AllowInheritance, ReadOnly> >*)JS_GetPrivate( g_ScriptingHost.GetContext(), extProp->m_JSAccessor );
 					assert( accessor );
 					delete( accessor );
 					JS_SetPrivate( g_ScriptingHost.GetContext(), extProp->m_JSAccessor, NULL );
@@ -393,37 +392,6 @@ public:
 			}
 			delete( it->second );
 		}
-		/*
-		ReferrersSet::iterator rit;
-		for( rit = m_Referring.begin(); rit != m_Referring.end(); rit++ )
-		{
-			JSObject* ref = *rit;
-			if( JS_GetClass( ref ) == &JSI_class )
-			{
-				// Reference to this object directly.
-				// Replace with null pointer.
-
-				// - Make sure it refers to this object.
-				assert( JS_GetPrivate( g_ScriptingHost.GetContext(), ref ) == this );
-
-				JS_SetPrivate( g_ScriptingHost.GetContext(), ref, NULL );
-			}
-			else
-			{
-				// Possibly just deallocate the property object?
-
-				// - Nothing else it should be.
-				assert( JS_GetClass( ref ) == &CJSPropertyAccessor<T>::JSI_Class );
-				
-				CJSPropertyAccessor<T>* Accessor = (CJSPropertyAccessor<T>*)JS_GetPrivate( g_ScriptingHost.GetContext(), ref );
-
-				// - Make sure it refers to this object.
-				assert( Accessor->m_Owner == this );
-
-				Accessor->m_Owner = NULL;
-			}
-		}
-		*/
 		if( m_JS )
 		{
 			JS_SetPrivate( g_ScriptingHost.GetContext(), m_JS, NULL );
@@ -432,45 +400,51 @@ public:
 	}
 	void SetBase( IJSObject* Parent )
 	{
-		if( m_Parent )
+		if( AllowInheritance )
 		{
-			// Remove this from the list of our parent's inheritors
-			InheritorsList::iterator it;
-			for( it = m_Parent->m_Inheritors.begin(); it != m_Parent->m_Inheritors.end(); it++ )
-				if( (*it) == this )
-					m_Parent->m_Inheritors.erase( it );
-			// TODO: Remove any properties we were inheriting from this parent that we didn't specify ourselves
-		}
-		m_Parent = Parent;
-		if( m_Parent )
-		{
-			// Place this in the list of our parent's inheritors
-			m_Parent->m_Inheritors.push_back( this );
-			Rebuild();
+			if( m_Parent )
+			{
+				// Remove this from the list of our parent's inheritors
+				InheritorsList::iterator it;
+				for( it = m_Parent->m_Inheritors.begin(); it != m_Parent->m_Inheritors.end(); it++ )
+					if( (*it) == this )
+						m_Parent->m_Inheritors.erase( it );
+				// TODO: Remove any properties we were inheriting from this parent that we didn't specify ourselves
+			}
+			m_Parent = Parent;
+			if( m_Parent )
+			{
+				// Place this in the list of our parent's inheritors
+				m_Parent->m_Inheritors.push_back( this );
+				Rebuild();
+			}
 		}
 	}
 	void Rebuild()
 	{
-		PropertyTable::iterator it;
-		// For each property in the parent
-		for( it = m_Parent->m_Properties.begin(); it != m_Parent->m_Properties.end(); it++ )
+		if( AllowInheritance )
 		{
-			if( !it->second->m_AllowsInheritance )
-				continue;
-			PropertyTable::iterator cp;
-			// Attempt to locate it in this object
-			cp = m_Properties.find( it->first );
-			if( cp != m_Properties.end() )
+			PropertyTable::iterator it;
+			// For each property in the parent
+			for( it = m_Parent->m_Properties.begin(); it != m_Parent->m_Properties.end(); it++ )
 			{
-				if( cp->second->m_Inherited )
-					cp->second->ImmediateCopy( it->second );
+				if( !it->second->m_AllowsInheritance )
+					continue;
+				PropertyTable::iterator cp;
+				// Attempt to locate it in this object
+				cp = m_Properties.find( it->first );
+				if( cp != m_Properties.end() )
+				{
+					if( cp->second->m_Inherited )
+						cp->second->ImmediateCopy( it->second );
+				}
+				else
+					m_Properties[it->first] = new CJSValProperty( it->second->Get(), true );
 			}
-			else
-				m_Properties[it->first] = new CJSValProperty( it->second->Get(), true );
+			InheritorsList::iterator c;
+			for( c = m_Inheritors.begin(); c != m_Inheritors.end(); c++ )
+				(*c)->Rebuild();
 		}
-		InheritorsList::iterator c;
-		for( c = m_Inheritors.begin(); c != m_Inheritors.end(); c++ )
-			(*c)->Rebuild();
 	}
 	IJSProperty* HasProperty( CStrW PropertyName )
 	{
@@ -483,13 +457,16 @@ public:
 
 	void ReplicateProperty( CStrW PropertyName, jsval Value )
 	{
-		m_Properties[PropertyName] = new CJSValProperty( Value, true );
-		// Run through our descendants to add the property to all of them that don't
-		// already have it.
-		InheritorsList::iterator it;
-		for( it = m_Inheritors.begin(); it != m_Inheritors.end(); it++ )
-			if( !((*it)->HasProperty( PropertyName ) ) )
-				(*it)->ReplicateProperty( PropertyName, Value );
+		if( AllowInheritance )
+		{
+			m_Properties[PropertyName] = new CJSValProperty( Value, true );
+			// Run through our descendants to add the property to all of them that don't
+			// already have it.
+			InheritorsList::iterator it;
+			for( it = m_Inheritors.begin(); it != m_Inheritors.end(); it++ )
+				if( !((*it)->HasProperty( PropertyName ) ) )
+					(*it)->ReplicateProperty( PropertyName, Value );
+		}
 	}
 
 	void AddProperty( CStrW PropertyName, jsval Value )
@@ -497,12 +474,15 @@ public:
 		assert( !HasProperty( PropertyName ) );
 		m_Properties[PropertyName] = new CJSValProperty( Value, false );
 
-		// Run through our descendants to add the property to all of them that don't
-		// already have it.
-		InheritorsList::iterator it;
-		for( it = m_Inheritors.begin(); it != m_Inheritors.end(); it++ )
-			if( !((*it)->HasProperty( PropertyName ) ) )
-				(*it)->ReplicateProperty( PropertyName, Value );
+		if( AllowInheritance )
+		{
+			// Run through our descendants to add the property to all of them that don't
+			// already have it.
+			InheritorsList::iterator it;
+			for( it = m_Inheritors.begin(); it != m_Inheritors.end(); it++ )
+				if( !((*it)->HasProperty( PropertyName ) ) )
+					(*it)->ReplicateProperty( PropertyName, Value );
+		}
 	}
 
 	void AddProperty( CStrW PropertyName, CStrW Value )
@@ -515,13 +495,18 @@ public:
 		JSFunctionSpec FnInfo = { Name, CNativeFunction<T, ReturnType, NativeFunction>::JSFunction, MinArgs, 0, 0 };
 		T::m_Methods.push_back( FnInfo );
 	}
-	template<typename PropType> void AddProperty( CStrW PropertyName, PropType* Native, bool AllowInheritance = true, NotifyFn Update = NULL, NotifyFn Refresh = NULL )
+	template<typename PropType> void AddProperty( CStrW PropertyName, PropType* Native, bool PropAllowInheritance = AllowInheritance, NotifyFn Update = NULL, NotifyFn Refresh = NULL )
 	{
-		m_Properties[PropertyName] = new CJSProperty<PropType>( Native, this, AllowInheritance, Update, Refresh );
+		m_Properties[PropertyName] = new CJSProperty<PropType, ReadOnly>( Native, this, PropAllowInheritance, Update, Refresh );
+	}
+	template<typename PropType> void AddReadOnlyProperty( CStrW PropertyName, PropType* Native, bool PropAllowInheritance = AllowInheritance, NotifyFn Update = NULL, NotifyFn Refresh = NULL )
+	{
+		assert( !( PropAllowInheritance && !AllowInheritance ) );
+		m_Properties[PropertyName] = new CJSProperty<PropType, true>( Native, this, PropAllowInheritance, Update, Refresh );
 	}
 };
 
-template<typename T> JSClass CJSObject<T>::JSI_class = {
+template<typename T, bool AllowInheritance, bool ReadOnly> JSClass CJSObject<T, AllowInheritance, ReadOnly>::JSI_class = {
 	NULL, JSCLASS_HAS_PRIVATE,
 	JS_PropertyStub, JS_PropertyStub,
 	JSGetProperty, JSSetProperty,
@@ -530,13 +515,13 @@ template<typename T> JSClass CJSObject<T>::JSI_class = {
 	NULL, NULL, NULL, NULL 
 };
 
-template<typename T> JSPropertySpec CJSObject<T>::JSI_props[] = {
+template<typename T, bool AllowInheritance, bool ReadOnly> JSPropertySpec CJSObject<T, AllowInheritance, ReadOnly>::JSI_props[] = {
 	{ 0 },
 };
 
-template<typename T> std::vector<JSFunctionSpec> CJSObject<T>::m_Methods;
+template<typename T, bool AllowInheritance, bool ReadOnly> std::vector<JSFunctionSpec> CJSObject<T, AllowInheritance, ReadOnly>::m_Methods;
 
-template<typename T> void CJSObject<T>::GetProperty( JSContext* cx, CStrW PropertyName, jsval* vp )
+template<typename T, bool AllowInheritance, bool ReadOnly> void CJSObject<T, AllowInheritance, ReadOnly>::GetProperty( JSContext* cx, CStrW PropertyName, jsval* vp )
 {
 	IJSProperty* Property = HasProperty( PropertyName );
 	if( Property )
@@ -550,7 +535,7 @@ template<typename T> void CJSObject<T>::GetProperty( JSContext* cx, CStrW Proper
 			CJSValProperty* extProp = (CJSValProperty*)Property;
 			if( !extProp->m_JSAccessor )
 			{
-				extProp->m_JSAccessor = CJSPropertyAccessor< CJSObject<T> >::CreateAccessor( cx, this, PropertyName );
+				extProp->m_JSAccessor = CJSPropertyAccessor< CJSObject<T, AllowInheritance> >::CreateAccessor( cx, this, PropertyName );
 				JS_AddRoot( cx, extProp->m_JSAccessor );
 			}
 

@@ -6,7 +6,7 @@
 
 CPathfindEngine::CPathfindEngine()
 {
-	CConfigValue* sparseDepth = g_ConfigDB.GetValue( CFG_SYSTEM, "pathfind.sparse.recursiondepth" );
+	CConfigValue* sparseDepth = g_ConfigDB.GetValue( CFG_USER, "pathfind.sparse.recursiondepth" );
 	if( sparseDepth )
 		sparseDepth->GetInt( SPF_RECURSION_DEPTH );
 }

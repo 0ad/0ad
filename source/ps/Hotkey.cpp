@@ -146,7 +146,7 @@ static GUIHotkeyMap guiHotkeyMap;
 
 void setBindings( const CStr& hotkeyName, int integerMapping = -1 )
 {
-	CConfigValueSet* binding = g_ConfigDB.GetValues( CFG_SYSTEM, CStr( "hotkey." ) + hotkeyName );
+	CConfigValueSet* binding = g_ConfigDB.GetValues( CFG_USER, CStr( "hotkey." ) + hotkeyName );
 	if( binding )
 	{
 		int mapping;

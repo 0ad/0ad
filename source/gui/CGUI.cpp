@@ -68,8 +68,6 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 {
 	int ret = EV_PASS;
 
-	// MT: If something's gone wrong, check this block... (added for hotkey support)
-
 	if( ev->type == SDL_GUIHOTKEYPRESS )
 	{
 		const CStr& objectName = *( (CStr*)ev->user.code );
@@ -77,8 +75,6 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 		object->HandleMessage( SGUIMessage( GUIM_PRESSED ) );
 		object->ScriptEvent( "press" );
 	}
-
-	// -- MT
 
 	if(ev->type == SDL_MOUSEMOTION)
 	{

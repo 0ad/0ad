@@ -39,6 +39,8 @@ will exist, and it's up to the system to figure out which one acquired.
 #include <deque>
 #include <cmath>
 
+#include "CStr.h"
+
 //-------------------------------------------------
 // Types
 //-------------------------------------------------
@@ -76,6 +78,7 @@ public:
 
 	// return is error status
 	bool GetString(std::string &ret);
+	bool GetString( CStr& ret );
 	bool GetBool(bool &ret);
 	bool GetChar(char &ret);	// As number! otherwise use GetString make sure size=1
 	bool GetShort(short &ret);

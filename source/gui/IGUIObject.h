@@ -524,6 +524,7 @@ class CGUIDummyObject : public IGUIObject
 	GUI_OBJECT(CGUIDummyObject)
 
 public:
+
 	virtual void HandleMessage(const SGUIMessage& UNUSEDPARAM(Message)) {}
 	virtual void Draw() {}
 	// Empty can never be hovered. It is only a category.

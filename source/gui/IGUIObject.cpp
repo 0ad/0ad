@@ -35,9 +35,7 @@ IGUIObject::IGUIObject() :
 	AddSetting(GUIST_bool,			"hidden");
 	AddSetting(GUIST_CClientArea,	"size");
 	AddSetting(GUIST_CStr,			"style");
-// MT - temp tag
 	AddSetting(GUIST_CStr,			"hotkey" );
-// -- MT
 	AddSetting(GUIST_float,			"z");
 	AddSetting(GUIST_bool,			"absolute");
 	AddSetting(GUIST_bool,			"ghost");

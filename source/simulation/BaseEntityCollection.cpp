@@ -10,7 +10,7 @@
 void CBaseEntityCollection::loadTemplates()
 {
 	Handle handle;
-	vfsDirEnt type, file;
+	vfsDirEnt type;
 	
 	CStr basepath = "entities/";
 	CStr pathname;
@@ -21,6 +21,7 @@ void CBaseEntityCollection::loadTemplates()
 
 	if( maindir > 0 )
 	{
+		LoadDirectory( maindir, basepath );
 		while( !vfs_next_dirent( maindir, &type, "/" ) )
 		{
 			pathname = basepath + type.name;
@@ -31,17 +32,7 @@ void CBaseEntityCollection::loadTemplates()
 
 			if( handle > 0 )
 			{
-				while( !vfs_next_dirent(handle, &file, ".xml") )
-				{
-					CBaseEntity* newTemplate = new CBaseEntity();
-					if( newTemplate->loadXML( pathname + file.name ) )
-					{
-						addTemplate( newTemplate );
-						LOG(NORMAL, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Loaded template \"%s%s\"", pathname.c_str(), file.name);
-					}
-					else
-						LOG(ERROR, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Couldn't load template \"%s%s\"", pathname.c_str(), file.name);
-				}
+				LoadDirectory( handle, pathname );
 				vfs_close_dir( handle );
 			}
 			else
@@ -73,6 +64,22 @@ void CBaseEntityCollection::loadTemplates()
 			LOG( WARNING, LOG_CATEGORY, "Parent template %s does not exist in template %s", CStr8( (*it)->m_Base_Name ).c_str(), CStr8( (*it)->m_Tag ).c_str() );
 	}
 
+}
+
+void CBaseEntityCollection::LoadDirectory( Handle directory, CStr pathname )
+{
+	vfsDirEnt file;
+	while( !vfs_next_dirent( directory, &file, ".xml") )
+	{
+		CBaseEntity* newTemplate = new CBaseEntity();
+		if( newTemplate->loadXML( pathname + file.name ) )
+		{
+			addTemplate( newTemplate );
+			LOG(NORMAL, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Loaded template \"%s%s\"", pathname.c_str(), file.name);
+		}
+		else
+			LOG(ERROR, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Couldn't load template \"%s%s\"", pathname.c_str(), file.name);
+	}
 }
 
 void CBaseEntityCollection::addTemplate( CBaseEntity* temp )
