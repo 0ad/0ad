@@ -56,7 +56,7 @@ JSPropertySpec ScriptGlobalTable[] =
 };
 
 // Allow scripts to output to the global log file
-JSBool WriteLog(JSContext * context, JSObject * globalObject, unsigned int argc, jsval * argv, jsval * rval)
+JSBool WriteLog(JSContext* context, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* UNUSEDPARAM(rval))
 {
 	if (argc < 1)
 		return JS_FALSE;
@@ -87,7 +87,7 @@ JSBool WriteLog(JSContext * context, JSObject * globalObject, unsigned int argc,
 	return JS_TRUE;
 }
 
-JSBool writeConsole( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval )
+JSBool writeConsole( JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* UNUSEDPARAM(rval) )
 {
 	assert( argc >= 1 );
 	CStr output = g_ScriptingHost.ValueToString( argv[0] );
@@ -95,7 +95,7 @@ JSBool writeConsole( JSContext* context, JSObject* globalObject, unsigned int ar
 	return( JS_TRUE );
 }
 
-JSBool getEntityByHandle( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval )
+JSBool getEntityByHandle( JSContext* context, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* rval )
 {
 	assert( argc >= 1 );
 	i32 handle;
@@ -122,7 +122,7 @@ JSBool getEntityByHandle( JSContext* context, JSObject* globalObject, unsigned i
 	return( JS_TRUE );
 }
 
-JSBool getEntityTemplate( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval )
+JSBool getEntityTemplate( JSContext* context, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* rval )
 {
 	assert( argc >= 1 );
 	CStr templateName;
@@ -149,7 +149,7 @@ JSBool getEntityTemplate( JSContext* context, JSObject* globalObject, unsigned i
 	return( JS_TRUE );
 }
 
-JSBool setTimeout( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval )
+JSBool setTimeout( JSContext* context, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* UNUSEDPARAM(rval) )
 {
 	assert( argc >= 2 );
 	size_t delay;
@@ -183,7 +183,7 @@ JSBool setTimeout( JSContext* context, JSObject* globalObject, unsigned int argc
 	}
 }
 
-JSBool setInterval( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval )
+JSBool setInterval( JSContext* context, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* UNUSEDPARAM(rval) )
 {
 	assert( argc >= 2 );
 	size_t first, interval;
@@ -227,19 +227,19 @@ JSBool setInterval( JSContext* context, JSObject* globalObject, unsigned int arg
 	}
 }
 
-JSBool cancelInterval( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval )
+JSBool cancelInterval( JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject), unsigned int UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* UNUSEDPARAM(rval) )
 {
 	g_Scheduler.m_abortInterval = true;
 	return( JS_TRUE );
 }
 
-JSBool getGUIGlobal( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval )
+JSBool getGUIGlobal( JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject), unsigned int UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* rval )
 {
 	*rval = OBJECT_TO_JSVAL( g_GUI.GetScriptObject() );
 	return( JS_TRUE );
 }
 
-JSBool getGlobal( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval )
+JSBool getGlobal( JSContext* UNUSEDPARAM(context), JSObject* globalObject, unsigned int UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* rval )
 {
 	*rval = OBJECT_TO_JSVAL( globalObject );
 	return( JS_TRUE );
@@ -248,13 +248,13 @@ JSBool getGlobal( JSContext* context, JSObject* globalObject, unsigned int argc,
 
 extern void kill_mainloop(); // from main.cpp
 
-JSBool exitProgram(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval)
+JSBool exitProgram(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject), unsigned int UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* UNUSEDPARAM(rval))
 {
 	kill_mainloop();
 	return JS_TRUE;
 }
 
-JSBool crash(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval)
+JSBool crash(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject), unsigned int UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* UNUSEDPARAM(rval))
 {
 	MICROLOG(L"Crashing at user's request.");
 	uintptr_t ptr = 0xDEADC0DE;

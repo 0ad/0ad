@@ -1,4 +1,4 @@
-// $Id: Xeromyces.cpp,v 1.9 2004/07/23 19:03:40 philip Exp $
+// $Id: Xeromyces.cpp,v 1.10 2004/07/24 14:03:44 philip Exp $
 
 #include "precompiled.h"
 
@@ -277,8 +277,8 @@ bool CXeromyces::ReadXMBFile(const char* filename, bool CheckCRC, unsigned long 
 
 	void* buffer;
 	size_t bufferSize;
-	int err;
-	if ( (err=vfs_map(file, 0, buffer, bufferSize)) )
+	int err = vfs_map(file, 0, buffer, bufferSize);
+	if (err)
 	{
 		LOG(ERROR, "CXeromyces: file '%s' couldn't be read (vfs_map: %d)", filename, err);
 		vfs_close(file);
@@ -332,7 +332,7 @@ std::string lowercase_ascii(const XMLCh *a)
 	return b;
 }
 
-void XeroHandler::startElement(const XMLCh* const uri, const XMLCh* const localname, const XMLCh* const qname, const Attributes& attrs)
+void XeroHandler::startElement(const XMLCh* const UNUSEDPARAM(uri), const XMLCh* const localname, const XMLCh* const UNUSEDPARAM(qname), const Attributes& attrs)
 {
 	std::string elementName = lowercase_ascii(localname);
 	ElementNames.insert(elementName);
@@ -361,12 +361,12 @@ void XeroHandler::startElement(const XMLCh* const uri, const XMLCh* const localn
 	ElementStack.push(e);
 }
 
-void XeroHandler::endElement(const XMLCh* const uri, const XMLCh* const localname, const XMLCh* const qname)
+void XeroHandler::endElement(const XMLCh* const UNUSEDPARAM(uri), const XMLCh* const UNUSEDPARAM(localname), const XMLCh* const UNUSEDPARAM(qname))
 {
 	ElementStack.pop();
 }
 
-void XeroHandler::characters(const XMLCh* const chars, const unsigned int length)
+void XeroHandler::characters(const XMLCh* const chars, const unsigned int UNUSEDPARAM(length))
 {
 	ElementStack.top()->text += utf16string(chars, chars+XMLString::stringLen(chars));
 }

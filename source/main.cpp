@@ -540,10 +540,6 @@ static void Render()
 }
 
 
-static void do_tick()
-{
-}
-
 //////////////////////////////////////////////////////////////////////////////////////////////
 // UpdateWorld: update time dependent data in the simulation to account for changes over
 // some fixed simulation timestep.
@@ -647,16 +643,16 @@ void ParseArgs(int argc, char* argv[])
 	}
 	
 	CConfigValue *val;
-	if (val=g_ConfigDB.GetValue(CFG_SYSTEM, "xres"))
+	if ((val=g_ConfigDB.GetValue(CFG_SYSTEM, "xres")))
 		val->GetInt(g_xres);
-	if (val=g_ConfigDB.GetValue(CFG_SYSTEM, "yres"))
+	if ((val=g_ConfigDB.GetValue(CFG_SYSTEM, "yres")))
 		val->GetInt(g_yres);
 
-	if (val=g_ConfigDB.GetValue(CFG_SYSTEM, "vsync"))
+	if ((val=g_ConfigDB.GetValue(CFG_SYSTEM, "vsync")))
 		val->GetBool(g_VSync);
-	if (val=g_ConfigDB.GetValue(CFG_SYSTEM, "novbo"))
+	if ((val=g_ConfigDB.GetValue(CFG_SYSTEM, "novbo")))
 		val->GetBool(g_NoGLVBO);
-	if (val=g_ConfigDB.GetValue(CFG_SYSTEM, "shadows"))
+	if ((val=g_ConfigDB.GetValue(CFG_SYSTEM, "shadows")))
 		val->GetBool(g_Shadows);
 		
 	LOG(NORMAL, "g_x/yres is %dx%d", g_xres, g_yres);
@@ -1091,7 +1087,7 @@ static void Frame()
 #endif // #if defined(MOVIE_RECORD) || define(MOVIE_CREATE)
 
 // TODO: limiter in case simulation can't keep up?
-	const double TICK_TIME = 30e-3;	// [s]
+//	const double TICK_TIME = 30e-3;	// [s]
 	const float SIM_UPDATE_INTERVAL = 1.0f / (float)SIM_FRAMERATE; // Simulation runs at 10 fps.
 
 	MICROLOG(L"input");
@@ -1202,5 +1198,4 @@ int main(int argc, char* argv[])
 #endif
 
 	exit(0);
-	return 0;
 }

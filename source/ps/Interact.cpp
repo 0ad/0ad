@@ -699,7 +699,8 @@ int interactInputHandler( const SDL_Event* ev )
 		default:
 			if( ( ev->user.code >= HOTKEY_SELECTION_GROUP_0 ) && ( ev->key.keysym.sym <= HOTKEY_SELECTION_GROUP_19 ) )
 			{
-				u8 id = ev->user.code - HOTKEY_SELECTION_GROUP_0;
+				// The above test limits it to 20 groups, so don't worry about overflowing
+				u8 id = (u8)( ev->user.code - HOTKEY_SELECTION_GROUP_0 );
 				
 				if( hotkeys[HOTKEY_SELECTION_GROUP_ADD] )
 				{
@@ -726,7 +727,8 @@ int interactInputHandler( const SDL_Event* ev )
 			}
 			else if( ( ev->user.code >= HOTKEY_CAMERA_BOOKMARK_0 ) && ( ev->user.code <= HOTKEY_CAMERA_BOOKMARK_9 ) )
 			{
-				u8 id = ev->user.code - HOTKEY_CAMERA_BOOKMARK_0;
+				// The above test limits it to 10 bookmarks, so don't worry about overflowing
+				u8 id = (u8)( ev->user.code - HOTKEY_CAMERA_BOOKMARK_0 );
 				if( hotkeys[HOTKEY_CAMERA_BOOKMARK_SAVE] )
 				{
 					// Attempt to track the ground we're looking at

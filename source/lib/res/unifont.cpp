@@ -1,5 +1,5 @@
 /*
-$Id: unifont.cpp,v 1.9 2004/07/15 19:58:12 philip Exp $
+$Id: unifont.cpp,v 1.10 2004/07/24 14:03:25 philip Exp $
 
 Unicode OpenGL texture font
   
@@ -40,7 +40,7 @@ struct UniFont
 
 H_TYPE_DEFINE(UniFont);
 
-static void UniFont_init(UniFont* f, va_list args)
+static void UniFont_init(UniFont* f, va_list UNUSEDPARAM(args))
 {
 	f->glyphs_id = new glyphmap_id;
 	f->glyphs_size = new glyphmap_size;
@@ -55,7 +55,7 @@ static void UniFont_dtor(UniFont* f)
 }
 
 
-static int UniFont_reload(UniFont* f, const char* fn, Handle h)
+static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSEDPARAM(h))
 {
 	// fn is the base filename, like "console"
 	// The font definition file is "fonts/"+fn+".fnt" and the texture is "fonts/"+fn+".tga"
@@ -94,6 +94,8 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle h)
 		int Codepoint, TextureX, TextureY, Width, Height, OffsetX, OffsetY, Advance;
 		FNTStream >> Codepoint >> TextureX >> TextureY >> Width >> Height >> OffsetX >> OffsetY >> Advance;
 
+		assert(Codepoint <= 0xffff);
+
 		GLfloat u = (GLfloat)TextureX / (GLfloat)TextureWidth;
 		GLfloat v = (GLfloat)TextureY / (GLfloat)TextureHeight;
 		GLfloat w = (GLfloat)Width  / (GLfloat)TextureWidth;
@@ -109,7 +111,7 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle h)
 			glTranslatef((GLfloat)Advance, 0, 0);
 		glEndList();
 
-		(*f->glyphs_id)[(wchar_t)Codepoint] = i;
+		(*f->glyphs_id)[(wchar_t)Codepoint] = (unsigned short)i;
 		(*f->glyphs_size)[(wchar_t)Codepoint] = Advance;
 	}
 

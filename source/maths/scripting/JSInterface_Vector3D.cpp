@@ -117,7 +117,7 @@ JSBool JSI_Vector3D::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval*
 	return( JS_TRUE );
 }
 
-JSBool JSI_Vector3D::construct( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+JSBool JSI_Vector3D::construct( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* UNUSEDPARAM(rval) )
 {
 	if( argc == 0 )
 	{

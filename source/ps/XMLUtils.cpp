@@ -108,7 +108,7 @@ const char *prevpathcomp(const char *end, const char *beginning)
 	return end;
 }
 
-InputSource *CVFSEntityResolver::resolveEntity(const XMLCh *const publicId,
+InputSource *CVFSEntityResolver::resolveEntity(const XMLCh *const UNUSEDPARAM(publicId),
 	const XMLCh *const systemId)
 {
 	CVFSInputSource *ret=new CVFSInputSource();
@@ -117,7 +117,6 @@ InputSource *CVFSEntityResolver::resolveEntity(const XMLCh *const publicId,
 	
 	char abspath[VFS_MAX_PATH];
 	const char *end=strchr(m_DocName, '\0');
-	const char *orgend=end;
 
 	if (IS_PATH_SEP(*path))
 		path++;

@@ -312,7 +312,7 @@ protected:
 	 *
 	 * @param Message GUI Message
 	 */
-	virtual void HandleMessage(const SGUIMessage &Message) {};
+	virtual void HandleMessage(const SGUIMessage& UNUSEDPARAM(Message)) {};
 
 	/**
 	 * Draws the object.
@@ -514,7 +514,7 @@ class CGUIDummyObject : public IGUIObject
 	GUI_OBJECT(CGUIDummyObject)
 
 public:
-	virtual void HandleMessage(const SGUIMessage &Message) {}
+	virtual void HandleMessage(const SGUIMessage& UNUSEDPARAM(Message)) {}
 	virtual void Draw() {}
 };
 

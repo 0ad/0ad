@@ -240,7 +240,7 @@ void CGUIString::SetValue(const CStr& str)
 		{
 			m_RawString += str.GetSubstring(position, str.Length()-position);
 
-			if (from != m_RawString.Length())
+			if (from != (long)m_RawString.Length())
 			{
 				CurrentTextChunk.m_From = from;
 				CurrentTextChunk.m_To = (int)m_RawString.Length();

@@ -255,7 +255,8 @@ void cursor_set(const char* name)
 			assert(! "Invalid contents of cursor hotspot .txt file (should be like \"123 456\")");
 			return;
 		}
-		// TODO: Do I have to unload the file?
+		
+		// TODO: Unload the file
 	}
 
 	sprintf(filename, "art/textures/cursors/%s.png", name);
@@ -281,7 +282,7 @@ void cursor_set(const char* name)
 	}
 	else if (fmt == GL_RGBA)
 	{
-		// Convert ABGR -> ARGB (assume little-endian)
+		// Convert ABGR -> ARGB (little-endian)
 		imgdata_bgra = new u32[w*h];
 		for (int i=0; i<w*h; ++i)
 		{

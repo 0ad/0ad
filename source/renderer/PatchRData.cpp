@@ -35,9 +35,9 @@ inline int clamp(int x,int min,int max)
 static SColor4ub ConvertColor(const RGBColor& src)
 {
 	SColor4ub result;
-	result.R=clamp(int(src.X*255),0,255);
-	result.G=clamp(int(src.Y*255),0,255);
-	result.B=clamp(int(src.Z*255),0,255);
+	result.R=(u8)clamp(int(src.X*255),0,255);
+	result.G=(u8)clamp(int(src.Y*255),0,255);
+	result.B=(u8)clamp(int(src.Z*255),0,255);
 	result.A=0xff;
 	return result;
 }
@@ -131,12 +131,12 @@ void CPatchRData::BuildBlends()
 				}
 			}
 			if (neighbourTextures.size()>0) {
-				u32 count=(u32)neighbourTextures.size();
 				// sort textures from lowest to highest priority
 				std::sort(neighbourTextures.begin(),neighbourTextures.end());
 
 				// for each of the neighbouring textures ..
-				for (uint k=0;k<(uint)neighbourTextures.size();++k) {
+				uint count=(uint)neighbourTextures.size();
+				for (uint k=0;k<count;++k) {
 
 					// now build the grid of blends dependent on whether the tile adjacent to the current tile 
 					// uses the current neighbour texture
@@ -241,10 +241,10 @@ void CPatchRData::BuildBlends()
 						// build a splat for this quad
 						STmpSplat splat;
 						splat.m_Texture=neighbourTextures[k].m_Handle;
-						splat.m_Indices[0]=vindex;
-						splat.m_Indices[1]=vindex+1;
-						splat.m_Indices[2]=vindex+2;
-						splat.m_Indices[3]=vindex+3;
+						splat.m_Indices[0]=(u16)(vindex);
+						splat.m_Indices[1]=(u16)(vindex+1);
+						splat.m_Indices[2]=(u16)(vindex+2);
+						splat.m_Indices[3]=(u16)(vindex+3);
 						splats.push_back(splat);
 
 						// add this texture to set of unique splat textures
@@ -267,7 +267,8 @@ void CPatchRData::BuildBlends()
 	m_BlendSplats.resize(splatTextures.size());
 	int splatCount=0;
 
-	u32 base=(u32)m_VBBlends->m_Index;
+	assert(m_VBBlends->m_Index < 65536);
+	unsigned short base = (unsigned short)m_VBBlends->m_Index;
 	std::set<Handle>::iterator iter=splatTextures.begin();
 	for (;iter!=splatTextures.end();++iter) {
 		Handle tex=*iter;

@@ -154,7 +154,6 @@ const wchar_t* GetErrorString(PSRETURN code)
 
 for (sort keys %types) {
   (my $name = $_) =~ s/~/_/;
-#  $name =~ s/.*?_//;
   print $out qq{\tcase 0x}.unpack('H*',$types{$_}).qq{: return L"$name"; break;\n};
 }
 

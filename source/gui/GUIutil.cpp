@@ -120,8 +120,6 @@ bool __ParseString<CColor>(const CStr& Value, CColor &Output)
 template <>
 bool __ParseString<CGUIString>(const CStr& Value, CGUIString &Output)
 {
-	const char * buf = Value;
-
 	Output.SetValue(Value);	
 	return true;
 }

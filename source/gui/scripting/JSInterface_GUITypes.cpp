@@ -1,4 +1,4 @@
-// $Id: JSInterface_GUITypes.cpp,v 1.4 2004/07/12 15:52:53 philip Exp $
+// $Id: JSInterface_GUITypes.cpp,v 1.5 2004/07/24 14:03:16 philip Exp $
 
 #include "precompiled.h"
 
@@ -35,7 +35,7 @@ JSFunctionSpec JSI_GUISize::JSI_methods[] =
 	{ 0 }
 };
 
-JSBool JSI_GUISize::construct(JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval)
+JSBool JSI_GUISize::construct(JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* UNUSEDPARAM(rval))
 {
 	if (argc == 8)
 	{
@@ -85,7 +85,7 @@ CStr ToPercentString(int pix, int per)
 		return CStr(per)+CStr("%")+( pix == 0 ? CStr() : pix > 0 ? CStr("+")+CStr(pix) : CStr(pix) );
 }
 
-JSBool JSI_GUISize::toString(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval)
+JSBool JSI_GUISize::toString(JSContext* cx, JSObject* obj, uintN UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* rval)
 {
 	char buffer[256];
 	snprintf(buffer, 256, "%s %s %s %s",
@@ -130,7 +130,7 @@ JSFunctionSpec JSI_GUIColor::JSI_methods[] =
 	{ 0 }
 };
 
-JSBool JSI_GUIColor::construct(JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval)
+JSBool JSI_GUIColor::construct(JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* UNUSEDPARAM(rval))
 {
 	if (argc == 4)
 	{

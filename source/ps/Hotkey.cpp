@@ -295,10 +295,10 @@ int hotkeyInputHandler( const SDL_Event* ev )
 			if( accept )
 			{
 				hotkeys[it->mapsTo] = true;
-				if( ( closestMap == -1 ) || ( it->requires.size() > closestMapMatch ) )
+				if( ( closestMap == -1 ) || ( it->requires.size() > (size_t)closestMapMatch ) )
 				{
 					closestMap = it->mapsTo;
-					closestMapMatch = it->requires.size();
+					closestMapMatch = (int)it->requires.size();
 				}
 			}
 		}

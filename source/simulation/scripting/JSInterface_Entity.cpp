@@ -65,7 +65,7 @@ JSBool JSI_Entity::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* v
 	return( JS_TRUE );
 }
 
-JSBool JSI_Entity::construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
+JSBool JSI_Entity::construct( JSContext* cx, JSObject* UNUSEDPARAM(obj), unsigned int argc, jsval* argv, jsval* rval )
 {
 	assert( argc >= 2 );
 	CBaseEntity* baseEntity = NULL;

@@ -1,9 +1,9 @@
 #ifndef _ERRORS_H_
 #define _ERRORS_H_
 
-#include <stdlib.h> // for wchar_t
+#include "lib/types.h"
 
-typedef unsigned long PSRETURN;
+typedef u32 PSRETURN;
 
 class PSERROR
 {

@@ -653,7 +653,7 @@ static void set_exception_handler()
 
 void abort_timer(); // from wtime.cpp
 
-int debug_main_exception_filter(unsigned int code, PEXCEPTION_POINTERS ep)
+int debug_main_exception_filter(unsigned int UNUSEDPARAM(code), PEXCEPTION_POINTERS ep)
 {
 	// If something crashes after we've already crashed (i.e. when shutting
 	// down everything), don't bother logging it, because the first crash
@@ -778,7 +778,6 @@ int debug_main_exception_filter(unsigned int code, PEXCEPTION_POINTERS ep)
 #endif
 
 	exit(EXIT_FAILURE);
-	return EXCEPTION_EXECUTE_HANDLER;
 }
 
 
@@ -837,6 +836,9 @@ static void DumpMiniDump(HANDLE hFile, PEXCEPTION_POINTERS excpInfo)
 		eInfo.ThreadId = GetCurrentThreadId();
 		eInfo.ExceptionPointers = excpInfo;
 		eInfo.ClientPointers = FALSE;
+
+		// TODO: Store the crashlog.txt inside the UserStreamParam
+		// so that people only have to send us one file?
 
 		// note:  MiniDumpWithIndirectlyReferencedMemory does not work on Win98
 		if (!_MiniDumpWriteDump(

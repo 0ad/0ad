@@ -308,6 +308,8 @@ double ScriptingHost::ValueToDouble(const jsval value)
 
 void ScriptingHost::ErrorReporter(JSContext * context, const char * message, JSErrorReport * report)
 {
+	UNUSED(context);
+
 	debug_out("%s(%d) : %s\n", report->filename, report->lineno, message);
 
 	if (g_Console)

@@ -72,9 +72,9 @@ static bool saveTGA(const char* filename,int width,int height,int bpp,unsigned c
 	memset(header.pad,0,sizeof(header.pad));
 	header.d_x_origin=0;
 	header.d_y_origin=0;
-	header.width=width;
-	header.height=height;
-	header.bpp=bpp;
+	header.width=(unsigned short)width;
+	header.height=(unsigned short)height;
+	header.bpp=(unsigned char)bpp;
 	header.image_descriptor=(bpp==32) ? 8 : 0;
 
 	if (fwrite(&header,sizeof(TGAHeader),1,fp)!=1) {
@@ -597,41 +597,40 @@ void CRenderer::RenderShadowMap()
 	glPushMatrix();
 	glLoadMatrixf(&m_LightTransform._11);
 
-	if (0)
-	{
-		// debug aid - render actual bounds of shadow casting objects; helps see where
-		// the lights projection/transform can be optimised
-		glColor3f(1.0,0.0,0.0);
-		const CBound& bounds=m_ShadowBound;
+#if 0
+	// debug aid - render actual bounds of shadow casting objects; helps see where
+	// the lights projection/transform can be optimised
+	glColor3f(1.0,0.0,0.0);
+	const CBound& bounds=m_ShadowBound;
 
-		glBegin(GL_LINE_LOOP);
-		glVertex3f(bounds[0].X,bounds[0].Y,bounds[0].Z);
-		glVertex3f(bounds[0].X,bounds[0].Y,bounds[1].Z);
-		glVertex3f(bounds[0].X,bounds[1].Y,bounds[1].Z);
-		glVertex3f(bounds[0].X,bounds[1].Y,bounds[0].Z);
-		glEnd();
+	glBegin(GL_LINE_LOOP);
+	glVertex3f(bounds[0].X,bounds[0].Y,bounds[0].Z);
+	glVertex3f(bounds[0].X,bounds[0].Y,bounds[1].Z);
+	glVertex3f(bounds[0].X,bounds[1].Y,bounds[1].Z);
+	glVertex3f(bounds[0].X,bounds[1].Y,bounds[0].Z);
+	glEnd();
 
-		glBegin(GL_LINE_LOOP);
-		glVertex3f(bounds[1].X,bounds[0].Y,bounds[0].Z);
-		glVertex3f(bounds[1].X,bounds[0].Y,bounds[1].Z);
-		glVertex3f(bounds[1].X,bounds[1].Y,bounds[1].Z);
-		glVertex3f(bounds[1].X,bounds[1].Y,bounds[0].Z);
-		glEnd();
+	glBegin(GL_LINE_LOOP);
+	glVertex3f(bounds[1].X,bounds[0].Y,bounds[0].Z);
+	glVertex3f(bounds[1].X,bounds[0].Y,bounds[1].Z);
+	glVertex3f(bounds[1].X,bounds[1].Y,bounds[1].Z);
+	glVertex3f(bounds[1].X,bounds[1].Y,bounds[0].Z);
+	glEnd();
 
-		glBegin(GL_LINE_LOOP);
-		glVertex3f(bounds[0].X,bounds[0].Y,bounds[0].Z);
-		glVertex3f(bounds[0].X,bounds[0].Y,bounds[1].Z);
-		glVertex3f(bounds[1].X,bounds[0].Y,bounds[1].Z);
-		glVertex3f(bounds[1].X,bounds[0].Y,bounds[0].Z);
-		glEnd();
+	glBegin(GL_LINE_LOOP);
+	glVertex3f(bounds[0].X,bounds[0].Y,bounds[0].Z);
+	glVertex3f(bounds[0].X,bounds[0].Y,bounds[1].Z);
+	glVertex3f(bounds[1].X,bounds[0].Y,bounds[1].Z);
+	glVertex3f(bounds[1].X,bounds[0].Y,bounds[0].Z);
+	glEnd();
 
-		glBegin(GL_LINE_LOOP);
-		glVertex3f(bounds[0].X,bounds[1].Y,bounds[0].Z);
-		glVertex3f(bounds[0].X,bounds[1].Y,bounds[1].Z);
-		glVertex3f(bounds[1].X,bounds[1].Y,bounds[1].Z);
-		glVertex3f(bounds[1].X,bounds[1].Y,bounds[0].Z);
-		glEnd();
-	}
+	glBegin(GL_LINE_LOOP);
+	glVertex3f(bounds[0].X,bounds[1].Y,bounds[0].Z);
+	glVertex3f(bounds[0].X,bounds[1].Y,bounds[1].Z);
+	glVertex3f(bounds[1].X,bounds[1].Y,bounds[1].Z);
+	glVertex3f(bounds[1].X,bounds[1].Y,bounds[0].Z);
+	glEnd();
+#endif // 0
 
 	// setup client states
 	glEnableClientState(GL_VERTEX_ARRAY);
@@ -675,23 +674,21 @@ void CRenderer::RenderShadowMap()
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
 
-	if (0)
-	{
-#if 1
-		// debug aid - dump generated shadow map to file; helps verify shadow map
-		// space being well used (not that it is at the minute .. (TODO, RC))
-		unsigned char* data=new unsigned char[m_ShadowMapWidth*m_ShadowMapHeight*3];
-		glGetTexImage(GL_TEXTURE_2D,0,GL_BGR_EXT,GL_UNSIGNED_BYTE,data);
-		saveTGA("d:\\test4.tga",m_ShadowMapWidth,m_ShadowMapHeight,24,data);
-		delete[] data;
-#else
-		unsigned char* data=new unsigned char[m_Width*m_Height*4];
-		glReadBuffer(GL_BACK);
-		glReadPixels(0,0,m_Width,m_Height,GL_BGRA_EXT,GL_UNSIGNED_BYTE,data);
-		saveTGA("d:\\test3.tga",m_Width,m_Height,32,data);
-		delete[] data;
-#endif
-	}
+#if 0
+	// debug aid - dump generated shadow map to file; helps verify shadow map
+	// space being well used (not that it is at the minute .. (TODO, RC))
+	unsigned char* data=new unsigned char[m_ShadowMapWidth*m_ShadowMapHeight*3];
+	glGetTexImage(GL_TEXTURE_2D,0,GL_BGR_EXT,GL_UNSIGNED_BYTE,data);
+	saveTGA("d:\\test4.tga",m_ShadowMapWidth,m_ShadowMapHeight,24,data);
+	delete[] data;
+#endif // 0
+#if 0
+	unsigned char* data=new unsigned char[m_Width*m_Height*4];
+	glReadBuffer(GL_BACK);
+	glReadPixels(0,0,m_Width,m_Height,GL_BGRA_EXT,GL_UNSIGNED_BYTE,data);
+	saveTGA("d:\\test3.tga",m_Width,m_Height,32,data);
+	delete[] data;
+#endif // 0
 }
 
 void CRenderer::ApplyShadowMap()

@@ -74,7 +74,6 @@ void debug_microlog(const wchar_t *fmt, ...)
 {
 	va_list argp;
 	wchar_t buffer[512];
-	int count = 0;
 
 	va_start(argp, fmt);
 	vswprintf(buffer, sizeof(buffer), fmt, argp);

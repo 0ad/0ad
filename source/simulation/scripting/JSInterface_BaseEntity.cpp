@@ -62,7 +62,7 @@ void JSI_BaseEntity::init()
 	g_ScriptingHost.DefineCustomObjectType( &JSI_class, NULL, 0, JSI_props, JSI_methods, NULL, NULL );
 }
 
-JSBool JSI_BaseEntity::toString( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+JSBool JSI_BaseEntity::toString( JSContext* cx, JSObject* obj, uintN UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* rval )
 {
 	CBaseEntity* e = (CBaseEntity*)JS_GetPrivate( cx, obj );
 

@@ -343,7 +343,8 @@ return_char:
 		default:
 			if( msg.message >= WM_APP )
 			{
-				ev->type = SDL_USEREVENT + ( msg.message - WM_APP );
+				assert( SDL_USEREVENT+(msg.message-WM_APP) <= 0xff && "Message too far above WM_APP");
+				ev->type = (u8)(SDL_USEREVENT+(msg.message-WM_APP));
 				ev->user.code = (int)msg.wParam;
 				return 1;
 			}

@@ -54,8 +54,6 @@ IGUIObject::IGUIObject() :
 	bool hidden=true;
 
 	GUI<bool>::GetSetting(this, "hidden", hidden);
-
-int hej=23;
 }
 
 IGUIObject::~IGUIObject()
@@ -464,8 +462,12 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 
 	jsval result;
 	JSBool ok = JS_CallFunction(g_ScriptingHost.getContext(), jsGuiObject, (JSFunction*)((*it).second), 1, paramData, &result);
+	if (!ok)
+	{
+		JS_ReportError(g_ScriptingHost.getContext(), "Errors executing script action \"%s\"", Action.c_str());
+	}
 
-	// Allow the temporary parameters to be collected
+	// Allow the temporary parameters to be garbage-collected
 	JS_RemoveRoot(g_ScriptingHost.getContext(), &mouseObj);
 	JS_RemoveRoot(g_ScriptingHost.getContext(), &jsGuiObject);
 }

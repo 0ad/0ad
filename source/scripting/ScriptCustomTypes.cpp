@@ -20,7 +20,7 @@ JSPropertySpec Point2dProperties[] =
 	{0}
 };
 
-JSBool Point2d_Constructor(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
+JSBool Point2d_Constructor(JSContext* UNUSEDPARAM(cx), JSObject* obj, uintN argc, jsval* argv, jsval* UNUSEDPARAM(rval))
 {
 	if (argc == 2)
 	{

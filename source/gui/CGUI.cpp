@@ -45,12 +45,6 @@ JSClass GUIClass = {
 
 extern int g_xres, g_yres;
 
-// TODO Gee: how to draw overlays?
-void render(COverlayText* overlaytext)
-{
-
-}
-
 
 //-------------------------------------------------------------------
 //	called from main loop when (input) events are received.
@@ -367,7 +361,9 @@ void CGUI::DrawSprite(const CStr& SpriteName,
 	if (SpriteName == CStr())
 		return;
 
+	// TODO: Clipping?
 	bool DoClipping = (Clipping != CRect());
+
 	CGUISprite Sprite;
 
 	// Fetch real sprite from name
@@ -653,7 +649,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string, /*const CColor &Color, */
 		prelim_line_height = max(prelim_line_height, Feedback.m_Size.cy);
 
 		// If Width is 0, then there's no word-wrapping, disable NewLine.
-		if ((WordWrapping && (x > Width-BufferZone || Feedback.m_NewLine)) || i == string.m_Words.size()-2)
+		if ((WordWrapping && (x > Width-BufferZone || Feedback.m_NewLine)) || i == (int)string.m_Words.size()-2)
 		{
 			// Change from to i, but first keep a copy of its value.
 			int temp_from = from;
@@ -802,7 +798,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string, /*const CColor &Color, */
 				Text.m_TextCalls.insert(Text.m_TextCalls.end(), Feedback2.m_TextCalls.begin(), Feedback2.m_TextCalls.end());
 				Text.m_SpriteCalls.insert(Text.m_SpriteCalls.end(), Feedback2.m_SpriteCalls.begin(), Feedback2.m_SpriteCalls.end());
 
-				if (j == string.m_Words.size()-2)
+				if (j == (int)string.m_Words.size()-2)
 					done = true;
 			}
 		
@@ -883,23 +879,17 @@ void CGUI::ReportParseError(const CStr& str, ...)
 	// Print header
 	if (m_Errors==0)
 	{
-///		g_nemLog("*** GUI Tree Creation Errors");
+		LOG(ERROR, "*** GUI Tree Creation Errors");
 	}
-
-
 
 	// Important, set ParseError to true
 	++m_Errors;
-/*	TODO Gee: (MEGA)
-	char buffer[512];
-	va_list args;
 
-	// get arguments
+	// Pass the varargs list to the CLogger
+	va_list args;
 	va_start(args, str);
-		vsprintf(buffer, str.c_str(), args);
+	LOG(ERROR, str.c_str(), args);
 	va_end(args);
-*/	
-///	g_nemLog(" %s", buffer);
 }
 
 /**

@@ -102,7 +102,7 @@ STMT(\
 // recommended use: assert2(expr && "descriptive string")
 #define assert2(expr)\
 {\
-	static int suppress__;\
+	static int suppress__ = 0;\
 	if(!suppress__ && !expr)\
 		switch(debug_assert_failed(__FILE__, __LINE__, #expr))\
 		{\
@@ -141,7 +141,11 @@ enum LibError
 #endif
 
 
+// For insertion into code, to avoid unused warnings:
 #define UNUSED(param) (void)param;
+// For using in parameters ("void f(int UNUSEDPARAM(x))"),
+// to avoid 'unreferenced formal parameter' warnings:
+#define UNUSEDPARAM(param)
 
 
 

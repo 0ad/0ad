@@ -58,7 +58,7 @@ void IGUITextOwner::HandleMessage(const SGUIMessage &Message)
 }
 
 void IGUITextOwner::Draw(const int &index, const CColor &color, const CPos &pos, 
-						 const float &z, const CRect &clipping)
+						 const float &z, const CRect &UNUSEDPARAM(clipping))
 {
 	if (index < 0 || index >= (int)m_GeneratedTexts.size())
 		// janwas fixed bug here; was i < 0 && i >= size - impossible.

@@ -98,9 +98,9 @@ CVertexBuffer::VBChunk* CVertexBuffer::Allocate(size_t vertexSize,size_t numVert
 		if (numVertices<=(*iter)->m_Count) {
 			chunk=*iter;
 			// remove this chunk from the free list
-			size_t size1=m_FreeList.size();
+//			size_t size1=m_FreeList.size();
 			m_FreeList.erase(iter);
-			size_t size2=m_FreeList.size();
+//			size_t size2=m_FreeList.size();
 			// no need to search further ..
 			break;
 		}
@@ -154,7 +154,7 @@ void CVertexBuffer::ClearBatchIndices()
 
 ///////////////////////////////////////////////////////////////////////////////
 // AppendBatch: add a batch to the render list for this buffer
-void CVertexBuffer::AppendBatch(VBChunk* chunk,Handle texture,size_t numIndices,u16* indices)
+void CVertexBuffer::AppendBatch(VBChunk* UNUSEDPARAM(chunk),Handle texture,size_t numIndices,u16* indices)
 {
 	// try and find a batch using this texture
 	size_t i;

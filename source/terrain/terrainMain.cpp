@@ -390,7 +390,7 @@ int terr_handler(const SDL_Event* ev)
 		case HOTKEY_CAMERA_ROTATE_ABOUT_TARGET:
 			{
 			int x, z;
-			CHFTracer tracer( g_Terrain.GetHeightMap(), g_Terrain.GetVerticesPerSide(), CELL_SIZE, HEIGHT_SCALE );
+			CHFTracer tracer( g_Terrain.GetHeightMap(), g_Terrain.GetVerticesPerSide(), (float)CELL_SIZE, HEIGHT_SCALE );
 			CVector3D origin, dir;
 			origin = g_Camera.m_Orientation.GetTranslation();
 			dir = g_Camera.m_Orientation.GetIn();
