@@ -530,6 +530,7 @@ void CConsole::SendChatMessage(const wchar_t *szMessage)
 		else
 		{
 			msg->m_Sender=g_NetServer->GetServerPlayerName();
+			ReceivedChatMessage(msg->m_Sender.c_str(), msg->m_Message.c_str());
 			g_NetServer->Broadcast(msg);
 		}
 	}
@@ -584,9 +585,11 @@ int conInputHandler(const SDL_Event* ev)
 	// also prevent ` and/or ~ appearing in console every time it's toggled.
 	// MT: Is this safe? Does any valid character require a ctrl+ or alt+
 	//     key combination?
+	// SB: Not safe, really.. Swedish keyboards have {[]} on AltGr (Ctrl-Alt)
+	//     for example, so I commented those tests.
 	if( ( ev->key.keysym.sym != SDLK_ESCAPE ) &&
-		!keys[SDLK_LCTRL] && !keys[SDLK_RCTRL] &&
-		!keys[SDLK_LALT] && !keys[SDLK_RALT] &&
+		/*!keys[SDLK_LCTRL] && !keys[SDLK_RCTRL] &&
+		!keys[SDLK_LALT] && !keys[SDLK_RALT] &&*/
 		!hotkeys[HOTKEY_CONSOLE_TOGGLE] ) 
 		g_Console->InsertChar(sym, (wchar_t)ev->key.keysym.unicode );
 
