@@ -31,7 +31,11 @@
 #include "assert_dlg.h"
 
 
+#define LOCALISED_TEXT
 
+#ifdef LOCALISED_TEXT
+#include "ps/i18n.h"
+#endif // LOCALISED_TEXT
 
 
 
@@ -712,6 +716,18 @@ static void set_exception_handler()
 }
 
 
+
+#ifdef LOCALISED_TEXT
+
+// Split this into a separate function because destructors and __try don't mix
+void i18n_display_fatal_msg(const wchar_t* errortext) {
+	CStrW title = translate(L"Prometheus Failure");
+	CStrW message = translate(L"A fatal error has occurred: $msg. Please report this to http://bugs.wildfiregames.com/ and attach the crashlog.txt and crashlog.dmp files from your 'data' folder.") << I18n::Raw(errortext);
+	wdisplay_msg(title.c_str(), message.c_str());
+}
+
+#endif // LOCALISED_TEXT
+
 // PT: Alternate version of the exception handler, which makes
 // the crash log more useful, and takes the responsibility of
 // suiciding away from main.cpp.
@@ -809,11 +825,24 @@ int debug_main_exception_filter(unsigned int UNUSEDPARAM(code), PEXCEPTION_POINT
 			swprintf(errortext, 256, L"Access violation reading 0x%08X", ep->ExceptionRecord->ExceptionInformation[1]);
 	}
 
-	wchar_t message[1024];
-	swprintf(message, 1024, L"A fatal error has occurred: %ls.\nPlease report this to http://bugs.wildfiregames.com/ and attach the crashlog.txt and crashlog.dmp files from your 'data' folder.", errortext);
-	message[1023] = 0;
+#ifdef LOCALISED_TEXT
 
-	wdisplay_msg(L"Prometheus failure", message);
+	// In case this is called before/after the i18n system is
+	// alive, make sure it's actually a valid pointer
+	if (g_CurrentLocale)
+	{
+		i18n_display_fatal_msg(errortext);
+	}
+	else
+#endif // LOCALISED_TEXT
+	{
+		wchar_t message[1024];
+		swprintf(message, 1024, L"A fatal error has occurred: %ls.\nPlease report this to http://bugs.wildfiregames.com/ and attach the crashlog.txt and crashlog.dmp files from your 'data' folder.", errortext);
+		message[1023] = 0;
+
+		wdisplay_msg(L"Prometheus failure", message);
+	}
+
 
 	__try
 	{
