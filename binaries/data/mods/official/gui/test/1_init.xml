@@ -34,9 +34,11 @@
         <script file="gui/test/functions_atlas.js"><![CDATA[
         ]]></script>
 
-        <script file="gui/test/functions_session.js"><![CDATA[
-                initSession();
-                writeConsole("Loaded GUI functions.");
-        ]]></script>
+	<script file="gui/test/functions_session_group_pane.js"><![CDATA[
+	]]></script>
+
+	<script file="gui/test/functions_session.js"><![CDATA[
+		initSession();
+	]]></script>
 
 </objects>

@@ -296,7 +296,7 @@
 
         	<!--
         	==========================================
-        	ENTITY PORTRAITS
+        	ENTITY SINGLE PORTRAITS
         	==========================================
         	-->
 
@@ -364,6 +364,18 @@
                 </sprite>
                 <sprite name="ui_portrait_structure_heleho_64-grey">
                         <image texture="ui_portrait_structure_heleho_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+
+        	<!--
+        	==========================================
+        	ENTITY SHEET PORTRAITS
+        	==========================================
+        	-->
+                <sprite name="ui_portrait_sheet_rome_1_64">
+                        <image texture="ui_portrait_sheet_rome_64.png" real-texture-placement="0 0 64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_rome_2_64">
+                        <image texture="ui_portrait_sheet_rome_64.png" real-texture-placement="64 0 128 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
         <!--
