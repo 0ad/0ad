@@ -399,20 +399,36 @@ int get_cur_processor_id()
 }
 
 
-static void check_hyperthread()
+// set cpu_smp if there's more than 1 physical CPU -
+// need to know this for wtime's TSC safety check.
+// call on each processor (via on_each_cpu).
+void cpu_check_smp()
 {
 	assert(cpus > 0 && "must know # CPUs (call OS-specific detect first)");
-
-	cpu_smp = 0;
 
 	// we don't check if it's Intel and P4 or above - HT may be supported
 	// on other CPUs in future. haven't come across a processor that
 	// incorrectly sets the HT feature bit.
-
 	if(!ia32_cap(HT))
+	{
+		// no HT supported, just check number of CPUs as reported by OS.
+		cpu_smp = (cpus > 1);
 		return;
+	}
+
+	// first call. we set cpu_smp below if more than 1 physical CPU is found,
+	// so clear it until then.
+	if(cpu_smp == -1)
+		cpu_smp = 0;
+
+
+	//
+	// still need to check if HT is actually enabled (BIOS and OS);
+	// there might be 2 CPUs with HT supported but disabled.
+	//
 
 	// get number of logical CPUs per package
+	// (the same for all packages on this system)
 	int log_cpus_per_package;
 	__asm {
 	push		1
@@ -423,7 +439,16 @@ static void check_hyperthread()
 	mov			log_cpus_per_package, ebx		; ebx[23:16]
 	}
 
-	cpu_smp = 1;
+	// logical CPUs are initialized after one another =>
+	// they have the same physical ID.
+	const int id = get_cur_processor_id();
+	const int phys_shift = log2(log_cpus_per_package);
+	const int phys_id = id >> phys_shift;
+
+	// more than 1 physical CPU found
+	static int last_phys_id = -1;
+	if(last_phys_id != phys_id)
+		cpu_smp = 1;
 }
 
 
@@ -448,7 +473,6 @@ void ia32_get_cpu_info()
 
 	get_cpu_type();
 	measure_cpu_freq();
-	check_hyperthread();
 	check_speedstep();
 }
 

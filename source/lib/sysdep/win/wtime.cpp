@@ -144,7 +144,7 @@ static int choose_impl()
 	//   => unsafe.
 	if(ia32_cap(TSC) && cpu_freq > 0.0)
 	{
-		safe = (cpus == 1 && !cpu_speedstep);
+		safe = (cpu_smp == 0 && cpu_speedstep == 0);
 		SAFETY_OVERRIDE(HRT_TSC);
 		if(safe)
 		{

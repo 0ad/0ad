@@ -6,9 +6,8 @@
 #include "cpu.h"
 
 
-// helper routine, called by ia32.cpp check_hyperthread
 // not possible with POSIX calls.
-int on_each_cpu(void(*cb)())
+static int on_each_cpu(void(*cb)())
 {
 	const HANDLE hProcess = GetCurrentProcess();
 
@@ -43,6 +42,12 @@ int on_each_cpu(void(*cb)())
 	SetProcessAffinityMask(hProcess, process_affinity);
 
 	return 0;
+}
+
+
+static void check_smp()
+{
+	on_each_cpu(cpu_check_smp);
 }
 
 
@@ -130,6 +135,7 @@ int win_get_cpu_info()
 	}
 
 	check_speedstep();
+	check_smp();
 
 	return 0;
 }
