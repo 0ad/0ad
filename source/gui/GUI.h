@@ -17,6 +17,14 @@ gee@pyro.nu
 #define GUI_H
 
 //--------------------------------------------------------
+//  Compiler specific
+//--------------------------------------------------------
+// Important that we do this before <map> is included
+#ifdef _MSC_VER
+# pragma warning(disable:4786)
+#endif
+
+//--------------------------------------------------------
 //  Includes
 //--------------------------------------------------------
 #include <map>
@@ -25,6 +33,7 @@ gee@pyro.nu
 
 //// janwas: these are very sloppy added, I don't know the etiquette
 #include "../ps/Prometheus.h"
+#include "../ps/CStr.h"
 #include "types.h"
 #include "ogl.h"
 //// This is what I need from these includes

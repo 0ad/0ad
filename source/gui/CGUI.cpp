@@ -302,7 +302,7 @@ bool CGUI::ObjectExists(const CStr &Name) const
 
 //-------------------------------------------------------------------
 //	Report XML Reading Error, should be called from within the
-//	 Xerces_* functions. These will not 
+//	 Xerces_* functions.
 //	Input:
 //	  str				String explaining error
 //-------------------------------------------------------------------
@@ -316,7 +316,7 @@ void CGUI::ReportParseError(const CStr &str, ...)
 
 	// Important, set ParseError to true
 	++m_Errors;
-
+/* MEGA TODO Gee
 	char buffer[512];
 	va_list args;
 
@@ -324,7 +324,7 @@ void CGUI::ReportParseError(const CStr &str, ...)
 	va_start(args, str);
 		vsprintf(buffer, str.c_str(), args);
 	va_end(args);
-	
+*/	
 ///	g_nemLog(" %s", buffer);
 }
 
@@ -333,7 +333,7 @@ void CGUI::ReportParseError(const CStr &str, ...)
 //  Input:
 //	  Filename			XML filename
 //-------------------------------------------------------------------
-void CGUI::LoadXMLFile(const CStr &Filename)
+void CGUI::LoadXMLFile(const string &Filename)
 {
 	// Reset parse error
 	//  we can later check if this has increased
@@ -365,7 +365,7 @@ void CGUI::LoadXMLFile(const CStr &Filename)
 ///			g_nemLog("*** Xerces XML Parsing Errors");
 
 			// Get main node
-			LocalFileInputSource source( XMLString::transcode(Filename.c_str()) );
+			LocalFileInputSource source( XMLString::transcode( Filename.c_str() ) );
 
 			// parse
 			parser->parse(source);

@@ -278,12 +278,12 @@ void CGUIObject::SetSetting(const CStr &Setting, const CStr &Value)
 	// Get setting
 	SGUISetting set = GetSettingsInfo()[Setting];
 
-	if (set.m_Type == "string")
+	if (set.m_Type == CStr(_T("string")))
 	{
-		GUI<string>::SetSetting(this, Setting, Value);
+		GUI<CStr>::SetSetting(this, Setting, Value);
 	}
 	else
-	if (set.m_Type == "float")
+	if (set.m_Type == CStr(_T("float")))
 	{
 		// Use the parser to parse the values
 /*		CParser parser;
@@ -307,17 +307,20 @@ void CGUIObject::SetSetting(const CStr &Setting, const CStr &Value)
 		// Finally the rectangle values
 		GUI<float>::SetSetting(this, Setting, value);
 */
-		GUI<float>::SetSetting(this, Setting, (float)atof(Value.c_str()) );
+		GUI<float>::SetSetting(this, Setting, Value.ToFloat() );
 	}
 	else
-	if (set.m_Type == "rect")
+	if (set.m_Type == CStr(_T("rect")))
 	{
 		// TEMP
-	//	GUI<CRect>::SetSetting(this, Setting, CRect(100,100,200,200));
+		GUI<CRect>::SetSetting(this, Setting, CRect(100,100,200,200));
 
 		// Use the parser to parse the values
-		CParser parser;
+	/*	CParser parser;
 		parser.InputTaskType("", "_$value_$value_$value_$value_");
+
+		// TODO Gee string really?
+		string str = Value;
 
 		CParserLine line;
 		line.ParseString(parser, Value);
@@ -339,7 +342,7 @@ void CGUIObject::SetSetting(const CStr &Setting, const CStr &Value)
 		// Finally the rectangle values
 		CRect rect(values[0], values[1], values[2], values[3]);
 		GUI<CRect>::SetSetting(this, Setting, rect);
-	}
+	*/}
 	else
 	{
 		throw PS_FAIL;

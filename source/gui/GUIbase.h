@@ -19,13 +19,6 @@ gee@pyro.nu
 
 
 //--------------------------------------------------------
-//  Compiler specific
-//--------------------------------------------------------
-#ifdef _MSC_VER
-# pragma warning(disable:4786)
-#endif
-
-//--------------------------------------------------------
 //  Includes / Compiler directives
 //--------------------------------------------------------
 
@@ -44,7 +37,7 @@ class CGUIObject;
 
 // Temp
 #define CInput		nemInput
-#define CStr		std::string
+//#define CStr		std::string
 
 // Example
 //  GUI_ADD_OFFSET(CButton, SButtonSettings, m_Settings, "frozen", m_Frozen);

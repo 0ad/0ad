@@ -83,7 +83,7 @@ public:
 	bool HandleEvent(const SDL_Event& ev);
 
 	// Load a GUI XML file
-	void LoadXMLFile(const CStr &Filename);
+	void LoadXMLFile(const std::string &Filename);
 
 	// Checks if object exists and return true or false accordingly
 	bool ObjectExists(const CStr &Name) const;

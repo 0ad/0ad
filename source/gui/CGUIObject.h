@@ -147,8 +147,8 @@ public:
 
 	// Get/Set
 	// Name
-	std::string GetName() const { return m_Name; }
-	void SetName(const std::string &Name) { m_Name = Name; }
+	CStr GetName() const { return m_Name; }
+	void SetName(const CStr &Name) { m_Name = Name; }
 
 	// Fill a map_pObjects with this object (does not include recursion)
 	void AddToPointersMap(map_pObjects &ObjectMap);
