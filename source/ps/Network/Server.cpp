@@ -110,7 +110,7 @@ bool CNetServerSession::HandshakeHandler(CNetMessage *pMsg, CNetSession *pNetSes
 			CServerHandshakeResponse *retmsg=new CServerHandshakeResponse();
 			retmsg->m_UseProtocolVersion=PS_PROTOCOL_VERSION;
 			retmsg->m_Flags=0;
-			retmsg->m_Message=CStrW(L"Hello and Welcome!");
+			retmsg->m_Message=pSession->m_pServer->GetAttributes()->GetValue("welcomeMessage");
 			pSession->Push(retmsg);
 			
 			pSession->m_pMessageHandler=AuthenticateHandler;
@@ -281,21 +281,30 @@ bool CNetServer::AddNewPlayer(CNetServerSession *pSession)
 	}
 	pSession->Push(pMsg);
 
-	if (m_PlayerSessions.size() < m_NumPlayers)
+	if (m_PlayerSessions.size() < m_NumPlayers-1)
 	{
 		m_PlayerSessions.push_back(pSession);
 
+		// Broadcast a message for the newly added player session
 		CPlayerConnect *pMsg=new CPlayerConnect();
 		pMsg->m_Players.resize(1);
+		// The player ID is the player session index plus one
 		pMsg->m_Players[0].m_PlayerID=(u32)m_PlayerSessions.size();
 		pMsg->m_Players[0].m_Nick=pSession->GetName();
 		Broadcast(pMsg);
 
 		pMsg=new CPlayerConnect();
+		
+		// Server Player
+		pMsg->m_Players.resize(1);
+		pMsg->m_Players.back().m_PlayerID=0;
+		pMsg->m_Players.back().m_Nick=m_ServerPlayerName;
+		
+		// All the other players
 		for (uint i=0;i<m_PlayerSessions.size()-1;i++)
 		{
-			pMsg->m_Players.resize(i+1);
-			pMsg->m_Players.back().m_PlayerID=i;
+			pMsg->m_Players.resize(i+2);
+			pMsg->m_Players.back().m_PlayerID=i+1;
 			pMsg->m_Players.back().m_Nick=m_PlayerSessions[i]->GetName();
 		}
 		pSession->Push(pMsg);
@@ -334,7 +343,7 @@ void CNetServer::RemoveSession(CNetServerSession *pSession)
 	if (it != m_Sessions.end())
 		m_Sessions.erase(it);
 
-	// TODO Correct handling of player and observers
+	// TODO Correct handling of players and observers
 }
 
 // Unfortunately, the message queueing model is made so that each message has
@@ -356,10 +365,18 @@ void CNetServer::Broadcast(CNetMessage *pMsg)
 
 int CNetServer::StartGame()
 {
+	// TODO Check for the case where we haven't yet filled all player slots
+	// CGame expects to have numPlayer players when it starts the game...
+
 	if (m_pGame->StartGame(m_pGameAttributes) != PSRETURN_OK)
 		return -1;
 	else
 	{
+		for (uint i=0;i<m_PlayerSessions.size();i++)
+		{
+			m_PlayerSessions[i]->SetPlayer(m_pGame->GetPlayer(i+1));
+		}
+
 		CTurnManager::Initialize(m_PlayerSessions.size());
 		for (uint i=0;i<m_PlayerSessions.size();i++)
 		{

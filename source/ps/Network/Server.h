@@ -13,13 +13,21 @@ class CNetServerSession: public CNetSession
 	CNetServer *m_pServer;
 	CPlayer *m_pPlayer;
 	bool m_IsObserver;
+	
+protected:
+	friend class CNetServer;
+
+	inline void SetPlayer(CPlayer *pPlayer)
+	{	m_pPlayer=pPlayer; }
 
 public:
 	virtual ~CNetServerSession();
 
 	inline CNetServerSession(CNetServer *pServer, CSocketInternal *pInt, MessageHandler *pMsgHandler=HandshakeHandler):
 		CNetSession(pInt, pMsgHandler),
-		m_pServer(pServer)
+		m_pServer(pServer),
+		m_pPlayer(NULL),
+		m_IsObserver(false)
 	{}
 
 	inline bool IsObserver()
@@ -111,6 +119,14 @@ protected:
 	// Queue a command coming in from the wire. The command has been validated
 	// by the caller.
 	void QueueIncomingCommand(CNetMessage *pMsg);
+	
+	// Simple accessor. NOTE: Most attributes are read in when creating the
+	// server object, so changing the attributes should not have any effect on
+	// the server's operation. Hence, return const-pointer.
+	inline const CNetServerAttributes *GetAttributes() const
+	{
+		return m_pServerAttributes;
+	}
 
 	// OVERRIDES FROM CServerSocket
 	virtual void OnAccept(const CSocketAddress &);
