@@ -35,7 +35,7 @@ struct ogl_cursor {
 	}
 };
 
-extern int mouse_x, mouse_y;
+extern int g_mouse_x, g_mouse_y;
 
 #ifdef _WIN32
 // On Windows, allow runtime choice between Windows cursors and OpenGL
@@ -98,7 +98,7 @@ static int Cursor_reload(Cursor* c, const char* name, Handle)
 
 	// Load the .txt file containing the pixel offset of
 	// the cursor's hotspot (the bit of it that's
-	// drawn at (mouse_x,mouse_y) )
+	// drawn at (g_mouse_x,g_mouse_y) )
 	sprintf(filename, "art/textures/cursors/%s.txt", name);
 
 	int hotspotx, hotspoty;
@@ -266,7 +266,7 @@ void cursor_draw(const char* name)
 	else
 #endif // _WIN32
 	{
-		c->cursor->draw(mouse_x, g_yres - mouse_y);
+		c->cursor->draw(g_mouse_x, g_yres - g_mouse_y);
 	}
 
 	cursor_free(h);
