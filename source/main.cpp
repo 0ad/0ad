@@ -347,19 +347,22 @@ static int handler(const SDL_Event* ev)
 
 		case HOTKEY_PLAYMUSIC:
 			{
+			debug_out("---------P PRESSED--------\n");
 //			MusicPlayer.open("audio/music/germanic peace 3.ogg");
 //			MusicPlayer.play();
 			Handle hs = snd_open(
 				//"audio/music/germanic peace 3.ogg"
-				"audio/voice/hellenes/citizensoldier/Attack-ZeusSaviourandVictory-Zeus-soter-kai-nike.ogg"
+				//"audio/voice/hellenes/citizensoldier/Attack-ZeusSaviourandVictory-Zeus-soter-kai-nike.ogg"
 				//"audio/voice/hellenes/citizensoldier/Stance-HoldYourPosition-Kataschete-ten-taxin.ogg"
 				//"audio/voice/hellenes/citizensoldier/Econ-Chop-Kopto.ogg"
 				//"audio/lead_em.wav"
-				//"audio/nike.wav"
+				"audio/nike.wav"
 				//"audio/nike.ogg"
 				//"audio/1111_Warcraft 2 - Orc Defeat.ogg"
 				);
 				
+
+			snd_set_pos(hs, 0,0,0, true);
 			snd_play(hs);
 			}
 			break;
@@ -375,6 +378,21 @@ static int handler(const SDL_Event* ev)
 		break;
 	case SDL_MOUSEBUTTONDOWN:
 		c = ev->button.button;
+{
+Handle hs = snd_open("audio/nike.wav");
+if(c==SDL_BUTTON_MIDDLE)
+{
+	int ms = 30;
+	usleep(ms*1000);
+}
+else if(c==SDL_BUTTON_RIGHT)
+{
+	int ms = rand()%32;
+	usleep(ms*1000);
+}
+snd_play(hs);
+}
+
 		if( c < 5 )
 			mouseButtons[c] = true;
 		else
@@ -778,6 +796,13 @@ static void Shutdown()
 	// Really shut down the i18n system. Any future calls
 	// to translate() will crash.
 	I18n::Shutdown();
+
+	h_mgr_shutdown();
+
+	// must be called after h_mgr_shutdown!
+	// (only then are cached resources actually released; we can't
+	// call the OpenAL free() function after it's been shut down)
+	snd_shutdown();
 }
 
 static void Init(int argc, char* argv[])
@@ -1040,7 +1065,6 @@ static void Frame()
 	MICROLOG(L"In frame");
 
 	MusicPlayer.update();
-	snd_update(0,0,0);
 
 	static double last_time;
 	const double time = get_time();
@@ -1069,7 +1093,18 @@ static void Frame()
 		// TODO Where does GameView end and other things begin?
 		g_Mouseover.update( TimeSinceLastFrame );
 		g_Selection.update();
+
+
+		CCamera* camera = g_Game->GetView()->GetCamera();
+		CMatrix3D& orientation = camera->m_Orientation;
+		snd_update(orientation._data);
 	}
+
+
+
+
+
+
 
 	g_Console->Update(TimeSinceLastFrame);
 
