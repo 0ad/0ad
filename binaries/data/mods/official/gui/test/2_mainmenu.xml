@@ -102,11 +102,11 @@
 		<object type="image" name="pregame_subwindow_bkg" sprite="tooltip-background" size="0 0 100% 100%" z="105" hidden="true"/>
 
 		<object type="button" name="pregame_ip_host" sprite="0ad_window" z="106" hidden="true">
-			<!-- NOT WORKING
 			<action on="Load"><![CDATA[
 				getGUIObjectByName("pregame_ip_host").caption = "Mary had a little lamb; her fleece was white as snow (the lamb's fleece; that is. Not Mary's. It'd be pretty silly if Mary had a fleece. Though I guess it's possible. I mean in this modern avant-garde world of ours, who am I to say that Mary doesn't come with a fleece at no additional cost? Ah, forget it.)";
 				setSizeCoord("pregame_ip_host",	crd_pregame_iphost_bkg_x, crd_pregame_iphost_bkg_y, crd_pregame_iphost_bkg_x+crd_pregame_iphost_bkg_width, crd_pregame_iphost_bkg_y+crd_pregame_iphost_bkg_height, mid_screen, mid_screen, mid_screen, mid_screen);
 			]]></action>
+
 			<object type="button" name="pregame_ip_host_exit_button" sprite="exit_sprite" sprite-over="exit_sprite-over">
 				<action on="Load"><![CDATA[
 					setSizeCoord("pregame_ip_host_exit_button", crd_pregame_iphost_exit_button_x, crd_pregame_iphost_exit_button_y, crd_pregame_iphost_exit_button_x+crd_pregame_iphost_exit_button_width, crd_pregame_iphost_exit_button_y+crd_pregame_iphost_exit_button_height, mid_screen, mid_screen, mid_screen, mid_screen);
@@ -117,12 +117,13 @@
 				]]></action>
 			</object>
 
-                        <object type="button" name="pregame_ip_host_titlebar" sprite="0ad_window_title" font="prospero18" z="165" text-align="center" text-valign="center">Direct IP Connect
+                        <object type="button" name="pregame_ip_host_titlebar" sprite="0ad_window_title" font="prospero18" z="165" text-align="center" text-valign="center">
 				<action on="Load"><![CDATA[
+					getGUIObjectByName("pregame_ip_host_titlebar").caption = "Direct IP Connect";
 					setSizeCoord("pregame_ip_host_titlebar", crd_pregame_iphost_titlebar_x, crd_pregame_iphost_titlebar_y, crd_pregame_iphost_titlebar_x+crd_pregame_iphost_titlebar_width, crd_pregame_iphost_titlebar_y+crd_pregame_iphost_titlebar_height, mid_screen, mid_screen, mid_screen, mid_screen);
 				]]></action>
 			</object>
-			NOT WORKING -->
+
 		</object>
 	</object>
 

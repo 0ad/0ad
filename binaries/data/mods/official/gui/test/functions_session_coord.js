@@ -60,11 +60,7 @@ function setSize(objectName, sizeString)
 {
 	// Use this function as a shortcut to change the size of a GUI control, specifying a size string. 
 
-        // Get GUI object
-        GUIObject = getGUIObjectByName(objectName);
-
-	// Set size
-	GUIObject.size = sizeString;
+        getGUIObjectByName(objectName).size = sizeString;
 }
 
 // ====================================================================
@@ -73,11 +69,7 @@ function setSizeCoord(objectName, left, top, right, bottom, rleft, rtop, rright,
 {
 	// Use this function as a shortcut to change the size of a GUI control, specifying individual coordinates. 
 
-        // Get GUI object
-        GUIObject = getGUIObjectByName(objectName);
-
-	// Set size
-	GUIObject.size = new GUISize(left, top, right, bottom, rleft, rtop, rright, rbottom);
+	getGUIObjectByName(objectName).size = new GUISize(left, top, right, bottom, rleft, rtop, rright, rbottom);
 } 
 
 // ====================================================================
