@@ -310,7 +310,7 @@
 								setSizeArray("ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB_" + ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB.last, Crd[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB.last]]);
 						]]></action>
 					</object>
-					<object type="button" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_RT_ARROW" sprite="atlas_global_arrow_rt" tooltip_style="ATLAS_TOOLTIP" tooltip="[font=tahoma10b]Terrain Palette Right Arrow[font=tahoma10]\nClick to display more terrain palette tabs." hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_RT_ARROW]); ]]></action>
+					<object type="button" name="ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_RT_ARROW" sprite="atlas_global_arrow_rt" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Terrain Palette Right Arrow[font=tahoma10]\nClick to display more terrain palette tabs." hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_RT_ARROW]); ]]></action>
 						<action on="Press"><![CDATA[
 						]]></action>
 					</object>
@@ -391,7 +391,7 @@
 				<action on="Press"><![CDATA[
 				]]></action>
 			</object>
-			<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_MAXIMISE_ARROW" sprite="atlas_global_arrow_dn" tooltip_style="ATLAS_TOOLTIP" tooltip="[font=tahoma10b]Toolbar Maximise Arrow[font=tahoma10]\nClick to maximise the toolbar." hidden="true"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_TOOLBAR_MAXIMISE_ARROW]); ]]></action>
+			<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_MAXIMISE_ARROW" sprite="atlas_global_arrow_dn" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Maximise Arrow[font=tahoma10]\nClick to maximise the toolbar." hidden="true"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_TOOLBAR_MAXIMISE_ARROW]); ]]></action>
 				<action on="Press"><![CDATA[
 					atlasMaximiseToolbar();
 				]]></action>
@@ -401,12 +401,12 @@
 		<!-- TOP: TOOLBAR -->
 		<object type="empty" name="ATLAS_MAINBORDER_TOOLBAR" size="0 0 100% 100%" z="1" hidden="false">
 			<object type="text" name="ATLAS_MAINBORDER_TOOLBAR_BKG" sprite="atlas_toolbar_bkg" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_TOOLBAR_BKG]); ]]></action></object>
-			<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW" sprite="atlas_global_arrow_up" tooltip_style="ATLAS_TOOLTIP" tooltip="[font=tahoma10b]Toolbar Fully Minimise Arrow[font=tahoma10]\nClick to fully minimise the toolbar." hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW]); ]]></action>
+			<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW" sprite="atlas_global_arrow_up" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Fully Minimise Arrow[font=tahoma10]\nClick to fully minimise the toolbar." hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW]); ]]></action>
 				<action on="Press"><![CDATA[
 					atlasFullyMinimiseToolbar();
 				]]></action>
 			</object>
-			<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_FULLY_MAXIMISE_ARROW" sprite="atlas_global_arrow_dn" tooltip_style="ATLAS_TOOLTIP" tooltip="[font=tahoma10b]Toolbar Full Maximise Arrow[font=tahoma10]\nClick to fully maximise the toolbar." hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_TOOLBAR_FULLY_MAXIMISE_ARROW]); ]]></action>
+			<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_FULLY_MAXIMISE_ARROW" sprite="atlas_global_arrow_dn" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Full Maximise Arrow[font=tahoma10]\nClick to fully maximise the toolbar." hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_TOOLBAR_FULLY_MAXIMISE_ARROW]); ]]></action>
 				<action on="Press"><![CDATA[
 					atlasFullyMaximiseToolbar();
 				]]></action>
@@ -416,7 +416,7 @@
 		<!-- TOP: TOOLBAR SECOND ROW -->
 		<object type="empty" name="ATLAS_MAINBORDER_TOOLBAR_MAX" size="0 0 100% 100%" z="1" hidden="true">
 			<object type="text" name="ATLAS_MAINBORDER_TOOLBAR_BKG_MAX" sprite="atlas_toolbar_bkg" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX]); ]]></action></object>
-			<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_MINIMISE_ARROW" sprite="atlas_global_arrow_up" tooltip_style="ATLAS_TOOLTIP" tooltip="[font=tahoma10b]Toolbar Minimise Arrow[font=tahoma10]\nClick to minimise the toolbar." hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_TOOLBAR_MINIMISE_ARROW]); ]]></action>
+			<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_MINIMISE_ARROW" sprite="atlas_global_arrow_up" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Minimise Arrow[font=tahoma10]\nClick to minimise the toolbar." hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_TOOLBAR_MINIMISE_ARROW]); ]]></action>
 				<action on="Press"><![CDATA[
 					atlasMinimiseToolbar();
 				]]></action>
@@ -424,95 +424,95 @@
 		</object>
 
 			<object type="empty" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_1" size="0 0 100% 100%" z="1" hidden="false">
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_1"  tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_2"  tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"><action on="Press"><![CDATA[ atlasOpenSectionMenu("none"); ]]></action></object>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_3"  tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"><action on="Press"><![CDATA[ atlasOpenSectionMenu("ATLAS_LEFT_PANE_SECTION_MAP"); ]]></action></object>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_4"  tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"><action on="Press"><![CDATA[ atlasOpenSectionMenu("ATLAS_LEFT_PANE_SECTION_TERRAIN"); ]]></action></object>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_5"  tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"><action on="Press"><![CDATA[ atlasOpenSectionMenu("ATLAS_LEFT_PANE_SECTION_OBJECT"); ]]></action></object>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_6"  tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_7"  tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_8"  tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_9"  tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_10" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_11" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_12" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_13" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_14" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_15" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_16" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_17" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_18" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_19" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_20" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_21" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_22" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_23" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_24" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_25" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_26" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_27" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_28" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_29" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_30" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_31" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_32" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_33" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_34" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_35" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_36" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_37" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_38" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_39" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_40" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_1"  style="atlas_object" tooltip="[font=tahoma10b]Clear[font=tahoma10]\nClick to hide all open menus." hidden="false"><action on="Press"><![CDATA[ atlasOpenSectionMenu("none"); ]]></action></object>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_2"  style="atlas_object" tooltip="[font=tahoma10b]Map Creator[font=tahoma10]\nClick to open this menu." hidden="false"><action on="Press"><![CDATA[ atlasOpenSectionMenu("ATLAS_LEFT_PANE_SECTION_MAP"); ]]></action></object>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_3"  style="atlas_object" tooltip="[font=tahoma10b]Terrain Editor[font=tahoma10]\nClick to open this menu." hidden="false"><action on="Press"><![CDATA[ atlasOpenSectionMenu("ATLAS_LEFT_PANE_SECTION_TERRAIN"); ]]></action></object>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_4"  style="atlas_object" tooltip="[font=tahoma10b]Object Editor[font=tahoma10]\nClick to open this menu." hidden="false"><action on="Press"><![CDATA[ atlasOpenSectionMenu("ATLAS_LEFT_PANE_SECTION_OBJECT"); ]]></action></object>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_5"  style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_6"  style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_7"  style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_8"  style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_9"  style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_10" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_11" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_12" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_13" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_14" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_15" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_16" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_17" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_18" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_19" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_20" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_21" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_22" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_23" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_24" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_25" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_26" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_27" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_28" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_29" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_30" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_31" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_32" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_33" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_34" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_35" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_36" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_37" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_38" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_39" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_40" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
 			</object>
 
 			<object type="empty" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_2" size="0 0 100% 100%" z="1" hidden="true">
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_41" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_42" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_43" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_44" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_45" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_46" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_47" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_48" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_49" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_50" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_51" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_52" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_53" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_54" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_55" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_56" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_57" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_58" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_59" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_60" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_61" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_62" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_63" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_64" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_65" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_66" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_67" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_68" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_69" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_70" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_71" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_72" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_73" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_74" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_75" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_76" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_77" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_78" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_79" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
-				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_80" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_41" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_42" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_43" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_44" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_45" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_46" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_47" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_48" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_49" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_50" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_51" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_52" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_53" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_54" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_55" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_56" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_57" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_58" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_59" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_60" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_61" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_62" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_63" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_64" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_65" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_66" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_67" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_68" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_69" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_70" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_71" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_72" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_73" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_74" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_75" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_76" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_77" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_78" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_79" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false"/>
+				<object type="button" name="ATLAS_MAINBORDER_TOOLBAR_BUTTON_80" style="atlas_object" tooltip="[font=tahoma10b]Menu Button[font=tahoma10]\nClick to open this menu." hidden="false">
 					<action on="Load"><![CDATA[
 						// Seek through ALL menu buttons and set their sizes at once. (So make sure this always goes in the last menu button.)
 						for (ATLAS_MAINBORDER_TOOLBAR_BUTTON.last = 1; ATLAS_MAINBORDER_TOOLBAR_BUTTON.last <= ATLAS_MAINBORDER_TOOLBAR_BUTTON.max; ATLAS_MAINBORDER_TOOLBAR_BUTTON.last++)
 						{
 							getGUIObjectByName("ATLAS_MAINBORDER_TOOLBAR_BUTTON_" + ATLAS_MAINBORDER_TOOLBAR_BUTTON.last).sprite = "atlas_sheet_toolbar_button";
-							getGUIObjectByName("ATLAS_MAINBORDER_TOOLBAR_BUTTON_" + ATLAS_MAINBORDER_TOOLBAR_BUTTON.last).cell_id = ATLAS_MAINBORDER_TOOLBAR_BUTTON.last-1;
+							getGUIObjectByName("ATLAS_MAINBORDER_TOOLBAR_BUTTON_" + ATLAS_MAINBORDER_TOOLBAR_BUTTON.last).cell_id = ATLAS_MAINBORDER_TOOLBAR_BUTTON.last;
 							setSizeArray("ATLAS_MAINBORDER_TOOLBAR_BUTTON_" + ATLAS_MAINBORDER_TOOLBAR_BUTTON.last, Crd[ATLAS_MAINBORDER_TOOLBAR_BUTTON[ATLAS_MAINBORDER_TOOLBAR_BUTTON.last]]);
 						}
 					]]></action>
@@ -520,7 +520,7 @@
 			</object>
 
 		<!-- LT: LOGO -->
-		<object type="button" name="ATLAS_MAINBORDER_LT_CORNER" sprite="atlas_mainborder_lt_corner" tooltip_style="ATLAS_TOOLTIP" tooltip="[font=tahoma10b]0 A.D. Logo[font=tahoma10]\nMmm, nothing like the smell of blatant self-promotion in the morning ... Oh, you can click this to return to the Main Menu too." hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_LT_CORNER]); ]]></action>
+		<object type="button" name="ATLAS_MAINBORDER_LT_CORNER" sprite="atlas_mainborder_lt_corner" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]0 A.D. Logo[font=tahoma10]\nMmm, nothing like the smell of blatant self-promotion in the morning ... Oh, you can click this to return to the Main Menu too." hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_LT_CORNER]); ]]></action>
 			<action on="Press"><![CDATA[
 				// Jason asked for an exit button to be put here, until we're able to exit via the drop-down File menu.
 				GUIObjectUnhide("PREGAME_GUI");
@@ -533,14 +533,14 @@
 			<!-- RT: INFO WINDOW BACKGROUND -->
 			<object type="text" name="ATLAS_MAINBORDER_RT_CORNER" sprite="atlas_mainborder_rt_corner" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_RT_CORNER]); ]]></action></object>
 			<!-- RT: INFO WINDOW BAR -->
-			<object type="text" name="ATLAS_INFO_WINDOW" sprite="atlas_window_white" font="tahoma10" textcolor="0 0 0" text_align="left" text_valign="center" tooltip_style="ATLAS_TOOLTIP" tooltip="[font=tahoma10b]Info Window[font=tahoma10]\nInformation about the current scenario." hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_INFO_WINDOW]);
+			<object type="text" name="ATLAS_INFO_WINDOW" sprite="atlas_window_white" font="tahoma10" textcolor="0 0 0" text_align="left" text_valign="center" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Info Window[font=tahoma10]\nInformation about the current scenario." hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_INFO_WINDOW]);
 					setInterval(atlasUpdateInfoWindow, 500);
 				 ]]></action>
 			</object>
 		</object>
 
 		<!-- TOOLTIP WINDOW: Displays current tooltip above the Mini Map. -->
-		<object type="text" name="ATLAS_TOOLTIP" sprite="atlas_tooltip_background" font="tahoma10" textcolor="0 0 0" z="104" hidden="true" ghost="true"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_TOOLTIP]); ]]></action></object>
+		<object type="text" name="ATLAS_TOOLTIP" sprite="atlas_tooltip_background" font="tahoma10" textcolor="0 0 0" z="104" hidden="true" ghost="true"><action on="Load"><![CDATA[ setSizeArray("ATLAS_TOOLTIP", Crd[ATLAS_TOOLTIP]); ]]></action></object>
 	</object>
 
 </objects>
