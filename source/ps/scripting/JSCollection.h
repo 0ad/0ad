@@ -41,7 +41,7 @@ private:
 	static JSBool GetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
 	static JSBool SetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
 	static void Finalize( JSContext* cx, JSObject* obj );
-	static T* GetNative( jsval m );
+	static bool GetNative( jsval m, T& Storage );
 
 public:
 	static void Init( const char* ClassName );
@@ -105,14 +105,14 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::A
 		JS_ReportError( cx, "Cannot create a property at that subscript" );
 		return( JS_FALSE );
 	}
-		
-	T* m = GetNative( *vp );
+	
+	T m;
 
-	if( !m )
-		return( JS_TRUE ); // GetNative will report the error if it can't be put in this collection.
+	if( !GetNative( *vp, m ) ) 
+		return( JS_TRUE );
 
 	set->resize( index + 1 );
-	set->at( index ) = *m;
+	set->at( index ) = m;
 
 	return( JS_TRUE );
 }
@@ -181,11 +181,12 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::S
 		return( JS_TRUE );
 	}
 
-	T* m = GetNative( *vp );
-	if( !m )
-		return( JS_TRUE ); // GetNative will report the error if that can't be put in this collection.
-	
-	set->at( index ) = *m;
+	T m;
+
+	if( !GetNative( *vp, m ) ) 
+		return( JS_TRUE );
+
+	set->at( index ) = m;
 	
 	return( JS_TRUE );
 }
@@ -219,12 +220,13 @@ template<typename T, JSClass* ScriptType> void CJSCollection<T, ScriptType>::Ini
 	g_ScriptingHost.DefineCustomObjectType( &JSI_class, NULL, 0, JSI_props, JSI_methods, NULL, NULL );	
 }
 
-template<typename T, JSClass* ScriptType> T* CJSCollection<T, ScriptType>::GetNative( jsval m )
+template<typename T, JSClass* ScriptType> bool CJSCollection<T, ScriptType>::GetNative( jsval m, T& Storage )
 {
-	T* Native = ToNative<T>( m );
-	if( !Native )
-		JS_ReportError( g_ScriptingHost.GetContext(), "Only objects of type %s can be stored in this collection.", ScriptType->name );
-	return( Native );
+	if( ToPrimitive( g_ScriptingHost.GetContext(), m, Storage ) )
+		return( true );
+
+	JS_ReportError( g_ScriptingHost.GetContext(), "Only objects of type %s can be stored in this collection.", ScriptType->name );
+	return( false );
 }
 
 
@@ -294,9 +296,9 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::P
 
 	for( int i = 0; i < (int)argc; i++ )
 	{
-		T* m = GetNative( argv[i] );
-		if( m )
-			Set->push_back( *m );
+		T m;
+		if( GetNative( argv[i], m ) )
+			Set->push_back( m );
 	}
 
 	*rval = INT_TO_JSVAL( Set->size() );
@@ -354,5 +356,6 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::R
 }
 
 #define EntityCollection CJSCollection<HEntity, &CEntity::JSI_class>
-	
+#define PlayerCollection CJSCollection<CPlayer*, &CPlayer::JSI_class>
+
 #endif
