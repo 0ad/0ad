@@ -1,0 +1,150 @@
+#include "precompiled.h"
+
+#include <string.h>
+
+#include "lib.h"
+#include "vfs.h"
+#include "vfs_path.h"
+
+
+// path types:
+// p_*: posix (e.g. mount object name or for open())
+// v_*: vfs (e.g. mount point)
+// fn : filename only (e.g. from readdir)
+// dir_name: directory only, no path (e.g. subdir name)
+//
+// all paths must be relative (no leading '/'); components are separated
+// by '/'; no ':', '\\', "." or ".." allowed; root dir is "".
+//
+// grammar:
+// path ::= dir*file?
+// dir  ::= name/
+// file ::= name
+// name ::= [^/]
+
+
+// if path is invalid (see source for criteria), print a diagnostic message
+// (indicating line number of the call that failed) and
+// return a negative error code. used by CHECK_PATH.
+int path_validate(const uint line, const char* path)
+{
+	size_t path_len = 0;	// counted as we go; checked against max.
+
+	const char* msg = 0;	// error occurred <==> != 0
+	int err = -1;			// what we pass to caller
+
+	int c = 0, last_c;		// used for ./ detection
+
+	// disallow "/", because it would create a second 'root' (with name = "").
+	// root dir is "".
+	if(path[0] == '/')
+	{
+		msg = "starts with '/'";
+		goto fail;
+	}
+
+	// scan each char in path string; count length.
+	for(;;)
+	{
+		last_c = c;
+		c = path[path_len++];
+
+		// whole path is too long
+		if(path_len >= VFS_MAX_PATH)
+		{
+			msg = "path too long";
+			goto fail;
+		}
+
+		// disallow:
+		// - ".." (prevent going above the VFS root dir)
+		// - "./" (security hole when mounting and not supported on Windows).
+		// allow "/.", because CVS backup files include it.
+		if(last_c == '.' && (c == '.' || c == '/'))
+		{
+			msg = "contains '..' or './'";
+			goto fail;
+		}
+
+		// disallow OS-specific dir separators
+		if(c == '\\' || c == ':')
+		{
+			msg = "contains OS-specific dir separator (e.g. '\\', ':')";
+			goto fail;
+		}
+
+		// end of string, all is well.
+		if(c == '\0')
+			goto ok;
+	}
+
+	// failed somewhere - err is the error code,
+	// or -1 if not set specifically above.
+fail:
+	debug_out("path_validate at line %d failed: %s (error code %d)\n", line, msg, err);
+	debug_warn("path_validate failed");
+	return err;
+
+ok:
+	return 0;
+}
+
+#define CHECK_PATH(path) CHECK_ERR(path_validate(__LINE__, path))
+
+
+// convenience function
+inline void path_copy(char* dst, const char* src)
+{
+	strcpy_s(dst, VFS_MAX_PATH, src);
+}
+
+
+// combine <path1> and <path2> into one path, and write to <dst>.
+// if necessary, a directory separator is added between the paths.
+// each may be empty, filenames, or full paths.
+// total path length (including '\0') must not exceed VFS_MAX_PATH.
+int path_append(char* dst, const char* path1, const char* path2)
+{
+	const size_t len1 = strlen(path1);
+	const size_t len2 = strlen(path2);
+	size_t total_len = len1 + len2 + 1;	// includes '\0'
+
+	// check if we need to add '/' between path1 and path2
+	// note: the second can't start with '/' (not allowed by path_validate)
+	bool need_separator = false;
+	if(len1 != 0 && path1[len1-1] != '/')
+	{
+		total_len++;	// for '/'
+		need_separator = true;
+	}
+
+	if(total_len+1 > VFS_MAX_PATH)
+		return ERR_PATH_LENGTH;
+
+	strcpy(dst, path1);	// safe
+	dst += len1;
+	if(need_separator)
+		*dst++ = '/';
+	strcpy(dst, path2);	// safe
+	return 0;
+}
+
+// strip <remove> from the start of <src>, prepend <replace>,
+// and write to <dst>.
+// used when converting VFS <--> real paths.
+int path_replace(char* dst, const char* src, const char* remove, const char* replace)
+{
+	// remove doesn't match start of <src>
+	const size_t remove_len = strlen(remove);
+	if(strncmp(src, remove, remove_len) != 0)
+		return -1;
+
+	// get rid of trailing / in src (must not be included in remove)
+	const char* start = src+remove_len;
+	if(*start == '/' || *start == DIR_SEP)
+		start++;
+
+	// prepend replace.
+	CHECK_ERR(path_append(dst, replace, start));
+	return 0;
+}

@@ -29,6 +29,8 @@
 // VFS tree
 //
 
+extern void vfs_init();
+
 // the VFS doesn't require this length restriction - VFS internal storage
 // is not fixed-length. the purpose here is to give an indication of how
 // large fixed-size user buffers should be. length includes trailing '\0'.
@@ -91,10 +93,15 @@ extern void vfs_display(void);
 struct vfsDirEnt
 {
 	// name of directory entry - does not include path.
-	// valid until the directory handle is closed. must not be modified!
-	// rationale for pointer and invalidation: see vfs_next_dirent.
+	// valid until the next VFS rebuild. must not be modified!
 	const char* name;
+
+	off_t size;
+
+	time_t mtime;
 };
+
+#define VFS_ENT_IS_DIR(ent) ((ent).size == -1)
 
 // open the directory for reading its entries via vfs_next_dirent.
 // <v_dir> need not end in '/'; we add it if not present.
@@ -110,10 +117,10 @@ extern int vfs_close_dir(Handle& hd);
 // return 0 on success, ERR_DIR_END if no matching entry was found,
 // or a negative error code on failure.
 // filter values:
-// - 0: any file;
+// - 0: anything;
 // - "/": any subdirectory
 // - anything else: pattern for name (may include '?' and '*' wildcards)
-extern int vfs_next_dirent(Handle hd, vfsDirEnt* ent, const char* filter);
+extern int vfs_next_dirent(Handle hd, vfsDirEnt* ent, const char* filter = 0);
 
 
 //

@@ -418,29 +418,6 @@ struct LookupInfo
 };
 
 
-// write a lower-case copy of <src> to <dst>, which holds <buf_size> bytes.
-// up to buf_size-1 chars are written; we always 0-terminate the output!
-//
-// this routine is used to convert OS and user-specified filenames
-// to lowercase before hashing them and then comparing.
-static void copy_lower_case(char* dst, const char* src, size_t buf_size)
-{
-	assert(buf_size > 0);	// otherwise, no room for trailing '\0'
-
-	int c;
-	do
-	{
-		c = *src++;
-		// this is the last remaining byte in the buffer.
-		// loop will exit below after writing 0-terminator.
-		if(--buf_size == 0)
-			c = '\0';
-		*dst++ = (char)tolower(c);
-	}
-	while(c != '\0');
-}
-
-
 // add file <fn> to the lookup data structure.
 // called from z_enum_files in order (0 <= idx < num_entries).
 // the first call notifies us of # entries, so we can allocate memory.
@@ -478,14 +455,7 @@ static int lookup_add_file_cb(uintptr_t user, i32 idx,
 	// adding a regular file.
 
 	assert(idx < li->num_entries);
-
-	// hash (lower case!) filename
-	char lc_fn[PATH_MAX];
-	size_t max_size = fn_len+1;	// fn not 0-terminated
-	if(max_size > PATH_MAX)		// (this avoids stupid min() type warning)
-		max_size = PATH_MAX;	// clamp to actual buffer size
-	copy_lower_case(lc_fn, fn, max_size);
-	FnHash fn_hash = fnv_hash(lc_fn);
+	FnHash fn_hash = fnv_lc_hash(fn, fn_len);
 
 	// fill ZEnt
 	ZEnt* ent = li->ents + idx;
@@ -558,10 +528,7 @@ static int lookup_free(LookupInfo* li)
 // look up ZLoc, given filename (untrusted!).
 static int lookup_get_file_info(LookupInfo* li, const char* fn, ZLoc* loc)
 {
-	// hash (lower case!) filename
-	char lc_fn[PATH_MAX];
-	copy_lower_case(lc_fn, fn, sizeof(lc_fn));
-	const FnHash fn_hash = fnv_hash(lc_fn);
+	const FnHash fn_hash = fnv_lc_hash(fn);
 
 	const FnHash* fn_hashes = li->fn_hashes;
 	const i32 num_files = li->num_files;
