@@ -8,7 +8,7 @@
 #include "res/res.h"
 
 #ifdef _WIN32
-# include "float.h" // <- MT: Just for _finite(), converting certain strings was causing wierd bugs.
+# include "float.h" // <- MT: Just for _finite(), converting certain strings was causing weird bugs.
 # define finite _finite
 #else
 # define finite __finite // PT: Need to use _finite in MSVC, __finite in gcc

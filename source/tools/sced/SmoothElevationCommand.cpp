@@ -1,11 +1,9 @@
 #include "precompiled.h"
 
 #include "SmoothElevationCommand.h"
-#include "Terrain.h"
+#include "Game.h"
 
 #include <math.h>
-
-extern CTerrain g_Terrain;
 
 inline int clamp(int x,int min,int max)
 {
@@ -27,7 +25,9 @@ CSmoothElevationCommand::~CSmoothElevationCommand()
 
 void CSmoothElevationCommand::CalcDataOut(int x0,int x1,int z0,int z1)
 {
-	u32 mapSize=g_Terrain.GetVerticesPerSide();
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+
+	u32 mapSize=terrain->GetVerticesPerSide();
 
 	// get valid filter vertex indices
 	int fxmin=clamp(x0-2,0,mapSize-1);
@@ -49,7 +49,7 @@ void CSmoothElevationCommand::CalcDataOut(int x0,int x1,int z0,int z1)
 					if (i+m>=fxmin && i+m<=fxmax && j+k>=fzmin && j+k<=fzmax) {
 						float dist=sqrt(float((k*k)+(m*m)));
 						float weight=1-(dist/(r+1));
-						accum+=weight*g_Terrain.GetHeightMap()[(j+k)*mapSize+(i+m)];
+						accum+=weight*terrain->GetHeightMap()[(j+k)*mapSize+(i+m)];
 						totalWeight+=weight;
 					}
 				}
@@ -57,11 +57,11 @@ void CSmoothElevationCommand::CalcDataOut(int x0,int x1,int z0,int z1)
 
 			if (1 || totalWeight>0) {
 				float t=0.5f;//m_SmoothPower/32.0f;
-				float inputHeight=g_Terrain.GetHeightMap()[j*mapSize+i];
+				float inputHeight=terrain->GetHeightMap()[j*mapSize+i];
 				accum/=totalWeight;
 				m_DataOut(i-x0,j-z0)=clamp(int((inputHeight*(1-t))+accum*t),0,65535);
 			} else {
-				m_DataOut(i-x0,j-z0)=g_Terrain.GetHeightMap()[j*mapSize+i];
+				m_DataOut(i-x0,j-z0)=terrain->GetHeightMap()[j*mapSize+i];
 			}
 		}
 	}

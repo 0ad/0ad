@@ -17,6 +17,11 @@ CBrushShapeEditorTool::CBrushShapeEditorTool() : m_BrushSize(5), m_BrushData(0)
 	memset(m_BrushData,0,sizeof(bool)*m_BrushSize*m_BrushSize);
 }
 
+CBrushShapeEditorTool::~CBrushShapeEditorTool()
+{
+	delete[] m_BrushData;
+}
+
 void CBrushShapeEditorTool::OnDraw()
 {
 	g_Renderer.SetTexture(0,0);

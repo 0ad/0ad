@@ -19,9 +19,6 @@
 
 #include "scripting/JSInterface_Vector3D.h"
 
-// TODO: don't hardcode player-colours
-static const float PlayerColours[9][3] = { {1,1,1}, {1,0,0}, {0,1,0}, {0,0,1}, {1,1,0}, {1,0,1}, {0,1,1}, {1,0.5,0}, {1,0,0.5} };
-
 CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 {
 	m_position = position;
@@ -71,11 +68,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 
 	m_grouped = -1;
 
-#ifdef SCED // HACK: ScEd doesn't have a g_Game, so we can't use its CPlayers
-	m_player = (CPlayer*)0;
-#else
 	m_player = g_Game->GetPlayer( 0 );
-#endif
 }
 
 CEntity::~CEntity()
@@ -166,13 +159,7 @@ void CEntity::updateActorTransforms()
 void CEntity::snapToGround()
 {
 	CTerrain *pTerrain = g_Game->GetWorld()->GetTerrain();
-	
-#ifdef SCED
-	extern CTerrain g_Terrain;
-	m_graphics_position.Y = g_Terrain.getExactGroundLevel( m_graphics_position.X, m_graphics_position.Z );
-#else
 	m_graphics_position.Y = pTerrain->getExactGroundLevel( m_graphics_position.X, m_graphics_position.Z );
-#endif
 }
 
 void CEntity::update( size_t timestep )
@@ -513,12 +500,7 @@ void CEntity::render()
 
 void CEntity::renderSelectionOutline( float alpha )
 {
-#ifdef SCED
-	extern CTerrain g_Terrain;
-	CTerrain *pTerrain = &g_Terrain;
-#else
 	CTerrain *pTerrain = g_Game->GetWorld()->GetTerrain();
-#endif
 	
 	if( !m_bounds ) return;
 
@@ -526,12 +508,8 @@ void CEntity::renderSelectionOutline( float alpha )
 		glColor4f( 1.0f, 0.5f, 0.5f, alpha );
 	else
 	{
-#ifdef SCED // HACK: ScEd doesn't have a g_Game, so we can't use its CPlayers
-		glColor3fv(PlayerColours[ (intptr_t)m_player ]);
-#else
 		const SPlayerColour& col = m_player->GetColour();
 		glColor3f( col.r, col.g, col.b );
-#endif
 	}
 	
 	glBegin( GL_LINE_LOOP );

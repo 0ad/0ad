@@ -25,7 +25,7 @@ END_MESSAGE_MAP()
 CScEdDoc::CScEdDoc()
 {
 	// TODO: add one-time construction code here
-	m_bAutoDelete = FALSE;
+//	m_bAutoDelete = FALSE; // (PT: Is this needed? All it seems to do is create memory leaks...)
 }
 
 CScEdDoc::~CScEdDoc()

@@ -15,9 +15,6 @@
 #include "AlterLightEnvCommand.h"
 
 
-extern CTerrain g_Terrain;
-
-
 /////////////////////////////////////////////////////////////////////////////
 // CLightSettingsDlg dialog
 

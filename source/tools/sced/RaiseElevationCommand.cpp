@@ -1,9 +1,7 @@
 #include "precompiled.h"
 
 #include "RaiseElevationCommand.h"
-#include "Terrain.h"
-
-extern CTerrain g_Terrain;
+#include "Game.h"
 
 inline int clamp(int x,int min,int max)
 {
@@ -25,12 +23,14 @@ CRaiseElevationCommand::~CRaiseElevationCommand()
 
 void CRaiseElevationCommand::CalcDataOut(int x0,int x1,int z0,int z1)
 {
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+
 	// fill output data
-	u32 mapSize=g_Terrain.GetVerticesPerSide();
+	u32 mapSize=terrain->GetVerticesPerSide();
 	int i,j;
 	for (j=z0;j<=z1;j++) {
 		for (i=x0;i<=x1;i++) {
-			u32 input=g_Terrain.GetHeightMap()[j*mapSize+i];
+			u32 input=terrain->GetHeightMap()[j*mapSize+i];
 			u16 output=clamp(input+m_DeltaHeight,0,65535);
 			m_DataOut(i-x0,j-z0)=output;
 		}

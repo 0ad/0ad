@@ -6,13 +6,12 @@
 #include "NaviCam.h"
 #include "TextureManager.h"
 #include "Camera.h"
-#include "Terrain.h"
+#include "Game.h"
 #include "Renderer.h"
 #include "ogl.h"
 #include <list>
 
 extern CCamera g_Camera;
-extern CTerrain g_Terrain;
 
 CBrushTool::CBrushTool() : m_BrushSize(1), m_LButtonDown(false), m_RButtonDown(false)
  
@@ -22,16 +21,18 @@ CBrushTool::CBrushTool() : m_BrushSize(1), m_LButtonDown(false), m_RButtonDown(f
 
 static void RenderTileOutline(int gx,int gz)
 {
-	CMiniPatch* mpatch=g_Terrain.GetTile(gx,gz);
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+
+	CMiniPatch* mpatch=terrain->GetTile(gx,gz);
 	if (!mpatch) return;
 
-	u32 mapSize=g_Terrain.GetVerticesPerSide();
+	u32 mapSize=terrain->GetVerticesPerSide();
 
 	CVector3D V[4];
-	g_Terrain.CalcPosition(gx,gz,V[0]);
-	g_Terrain.CalcPosition(gx+1,gz,V[1]);
-	g_Terrain.CalcPosition(gx+1,gz+1,V[2]);
-	g_Terrain.CalcPosition(gx,gz+1,V[3]);
+	terrain->CalcPosition(gx,gz,V[0]);
+	terrain->CalcPosition(gx+1,gz,V[1]);
+	terrain->CalcPosition(gx+1,gz+1,V[2]);
+	terrain->CalcPosition(gx,gz+1,V[3]);
 	
 	glLineWidth(2);
 	glColor4f(0.05f,0.95f,0.1f,0.75f);
@@ -135,7 +136,7 @@ void CBrushTool::OnMouseMove(unsigned int flags,int px,int py)
 
 	// intersect with terrain 
 	CVector3D ipt;
-	CHFTracer hftracer(&g_Terrain);
+	CHFTracer hftracer(g_Game->GetWorld()->GetTerrain());
 	if (hftracer.RayIntersect(rayorigin,raydir,m_SelectionCentre[0],m_SelectionCentre[1],m_SelectionPoint)) {
 		// drag trigger supported?
 		if (SupportDragTrigger()) {

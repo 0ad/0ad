@@ -36,7 +36,7 @@
 #include "AlterLightEnvCommand.h"
 
 #include "LightEnv.h"
-#include "Terrain.h"
+#include "Game.h"
 
 #include "PaintTextureTool.h"
 #include "PaintObjectTool.h"
@@ -46,7 +46,6 @@
 #include "SelectObjectTool.h"
 #include "simulation/Entity.h"
 
-extern CTerrain g_Terrain;
 extern CLightEnv g_LightEnv;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -496,7 +495,7 @@ void CMainFrame::OnResizeMap()
 	CMapSizeDlg dlg;
 	if (dlg.DoModal()==IDOK) {
 		// resize terrain to selected size
-		g_Terrain.Resize(dlg.m_MapSize);	
+		g_Game->GetWorld()->GetTerrain()->Resize(dlg.m_MapSize);	
 
 		// reinitialise minimap to cope with terrain of different size
 		g_MiniMap.Initialise();
@@ -577,7 +576,7 @@ void CMainFrame::OnFileSaveMap()
 
 		CMapWriter writer;
 		try {
-			writer.SaveMap(savename, &g_Terrain, &g_LightEnv, &g_UnitMan);
+			writer.SaveMap(savename, g_Game->GetWorld()->GetTerrain(), &g_LightEnv, &g_UnitMan);
 
 			CStr filetitle=savedlg.m_ofn.lpstrFileTitle;
 			int index=filetitle.ReverseFind(CStr("."));
@@ -619,7 +618,7 @@ void CMainFrame::OnFileLoadMap()
 		
 		CMapReader reader;
 		try {
-			reader.LoadMap(loadname, &g_Terrain, &g_UnitMan, &g_LightEnv);
+			reader.LoadMap(loadname, g_Game->GetWorld()->GetTerrain(), &g_UnitMan, &g_LightEnv);
 
 			CStr filetitle=loaddlg.m_ofn.lpstrFileTitle;
 			int index=filetitle.ReverseFind(CStr("."));
@@ -753,8 +752,10 @@ static float getExactGroundLevel( float x, float y )
 	float xf = x - (float)xi;
 	float yf = y - (float)yi;
 
-	u16* heightmap = g_Terrain.GetHeightMap();
-	unsigned long mapsize = g_Terrain.GetVerticesPerSide();
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+
+	u16* heightmap = terrain->GetHeightMap();
+	unsigned long mapsize = terrain->GetVerticesPerSide();
 
 	float h00 = heightmap[yi*mapsize + xi];
 	float h01 = heightmap[yi*mapsize + xi + mapsize];
@@ -826,7 +827,7 @@ void CMainFrame::OnRandomMap()
 	const u32 unitsPerDir=u32(sqrt(float(count)));	
 	
 	u32 i,j;
-	u32 vsize=g_Terrain.GetVerticesPerSide()-1;
+	u32 vsize=g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide()-1;
 
 	for (i=0;i<unitsPerDir;i++) {
 		for (j=0;j<unitsPerDir;j++) {
@@ -852,10 +853,11 @@ void CMainFrame::OnRandomMap()
 	}
 
 /*
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 	for (i=0;i<vsize;i++) {
 		for (j=0;j<vsize;j++) {
 			CTextureEntry* tex=GetRandomTexture();
-			CMiniPatch* mp=g_Terrain.GetTile(i,j);
+			CMiniPatch* mp=terrain->GetTile(i,j);
 			mp->Tex1=tex->GetHandle();
 			mp->Tex1Priority=tex->GetType();
 			mp->m_Parent->SetDirty(RENDERDATA_UPDATE_VERTICES | RENDERDATA_UPDATE_INDICES);
@@ -873,5 +875,5 @@ void CMainFrame::OnEntityPlayerX(int x)
 {
 	CEntity* entity = CSelectObjectTool::GetTool()->GetFirstEntity();
 	if (entity)
-		entity->m_player = (CPlayer*)(intptr_t)x; // HACK: ScEd doesn't have a g_Game, so we can't use its CPlayers
+		entity->SetPlayer(g_Game->GetPlayer(x));
 }

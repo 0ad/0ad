@@ -289,11 +289,7 @@ void CMapReader::ReadXML(const char* filename)
 
 				HEntity ent = g_EntityManager.create(g_EntityTemplateCollection.getTemplate(TemplateName), Position, Orientation);
 
-				#ifdef SCED // HACK: ScEd doesn't have a g_Game, so we can't use its CPlayers
-					ent->SetPlayer( (CPlayer*)(intptr_t)PlayerID );
-				#else
-					ent->SetPlayer( g_Game->GetPlayer( PlayerID ) );
-				#endif
+				ent->SetPlayer(g_Game->GetPlayer(PlayerID));
 			}
 		}
 		else

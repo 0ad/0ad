@@ -3,9 +3,7 @@
 #include "AlterElevationCommand.h"
 #include "ui/UIGlobals.h"
 #include "MiniMap.h"
-#include "Terrain.h"
-
-extern CTerrain g_Terrain;
+#include "Game.h"
 
 inline int clamp(int x,int min,int max)
 {
@@ -29,8 +27,10 @@ CAlterElevationCommand::~CAlterElevationCommand()
 
 void CAlterElevationCommand::Execute()
 {
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+
 	int r=m_BrushSize;
-	u32 mapSize=g_Terrain.GetVerticesPerSide();
+	u32 mapSize=terrain->GetVerticesPerSide();
 
 	// get range of vertices affected by brush
 	int x0=clamp(m_SelectionCentre[0]-r,0,mapSize-1);
@@ -46,7 +46,7 @@ void CAlterElevationCommand::Execute()
 	int i,j;
 	for (j=z0;j<=z1;j++) {
 		for (i=x0;i<=x1;i++) {
-			u16 input=g_Terrain.GetHeightMap()[j*mapSize+i];
+			u16 input=terrain->GetHeightMap()[j*mapSize+i];
 			m_DataIn(i-x0,j-z0)=input;
 		}
 	}
@@ -61,7 +61,9 @@ void CAlterElevationCommand::Execute()
 
 void CAlterElevationCommand::ApplyDataToSelection(const CArray2D<u16>& data)
 {
-	u32 mapSize=g_Terrain.GetVerticesPerSide();
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+
+	u32 mapSize=terrain->GetVerticesPerSide();
 
 	int r=m_BrushSize;
 	int x0=clamp(m_SelectionCentre[0]-r,0,mapSize-1);
@@ -77,19 +79,19 @@ void CAlterElevationCommand::ApplyDataToSelection(const CArray2D<u16>& data)
 			int idx=j*mapSize+i;
 			u16 height=data(i-x0,j-z0);
 			// update heightmap
-			g_Terrain.GetHeightMap()[idx]=height;
+			terrain->GetHeightMap()[idx]=height;
 		}
 	}
 
 	// flag vertex data as dirty for affected patches, and rebuild bounds of these patches
-	u32 patchesPerSide=g_Terrain.GetPatchesPerSide();
+	u32 patchesPerSide=terrain->GetPatchesPerSide();
 	int px0=clamp(-1+(x0/PATCH_SIZE),0,patchesPerSide);
 	int px1=clamp(1+(x1/PATCH_SIZE),0,patchesPerSide);
 	int pz0=clamp(-1+(z0/PATCH_SIZE),0,patchesPerSide);
 	int pz1=clamp(1+(z1/PATCH_SIZE),0,patchesPerSide);
 	for (j=pz0;j<pz1;j++) {
 		for (int i=px0;i<px1;i++) {
-			CPatch* patch=g_Terrain.GetPatch(i,j);
+			CPatch* patch=terrain->GetPatch(i,j);
 			patch->CalcBounds();
 			patch->SetDirty(RENDERDATA_UPDATE_VERTICES);
 		}

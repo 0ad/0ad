@@ -4,9 +4,7 @@
 #include "ui/UIGlobals.h"
 #include "MiniMap.h"
 #include "textureEntry.h"
-#include "Terrain.h"
-
-extern CTerrain g_Terrain;
+#include "Game.h"
 
 inline int clamp(int x,int min,int max)
 {
@@ -32,9 +30,11 @@ CPaintTextureCommand::~CPaintTextureCommand()
 
 void CPaintTextureCommand::Execute()
 {
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+
 	int r=m_BrushSize;
-	u32 patchesPerSide=g_Terrain.GetPatchesPerSide();
-	u32 mapSize=g_Terrain.GetVerticesPerSide();
+	u32 patchesPerSide=terrain->GetPatchesPerSide();
+	u32 mapSize=terrain->GetVerticesPerSide();
 
 	// get range of tiles affected by brush
 	int x0=clamp(m_SelectionCentre[0]-r,0,mapSize-1);
@@ -47,7 +47,7 @@ void CPaintTextureCommand::Execute()
 		for (int i=m_SelectionCentre[0]-r;i<=m_SelectionCentre[0]+r;i++) {
 
 			// try and get minipatch, if there is one
-			CMiniPatch* nmp=g_Terrain.GetTile(i,j);
+			CMiniPatch* nmp=terrain->GetTile(i,j);
 			
 			if (nmp) {
 				nmp->Tex1=m_Texture ? m_Texture->GetHandle() : 0;
@@ -63,7 +63,7 @@ void CPaintTextureCommand::Execute()
 	int pz1=clamp(1+(z1/PATCH_SIZE),0,patchesPerSide);
 	for (j=pz0;j<pz1;j++) {
 		for (int i=px0;i<px1;i++) {
-			CPatch* patch=g_Terrain.GetPatch(i,j);
+			CPatch* patch=terrain->GetPatch(i,j);
 			patch->SetDirty(RENDERDATA_UPDATE_INDICES);
 		}
 	}

@@ -14,6 +14,7 @@ public:
 
 public:
 	CBrushShapeEditorTool();
+	~CBrushShapeEditorTool();
 
 	// draw the visual representation of this tool
 	void OnDraw();

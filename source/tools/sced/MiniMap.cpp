@@ -2,11 +2,9 @@
 #include "MiniMap.h"
 #include "ui/UIGlobals.h"
 #include "TextureManager.h"
-#include "Terrain.h"
+#include "Game.h"
 #include "Renderer.h"
 #include "ogl.h"
-
-extern CTerrain g_Terrain;
 
 struct TGAHeader {
 	// header stuff
@@ -91,6 +89,11 @@ CMiniMap::CMiniMap() : m_Handle(0), m_Data(0), m_Size(0)
 {
 }
 
+CMiniMap::~CMiniMap()
+{
+	delete m_Data;
+}
+
 void CMiniMap::Initialise()
 {
 	// get rid of existing texture, if we've got one
@@ -103,9 +106,11 @@ void CMiniMap::Initialise()
 	glGenTextures(1,(GLuint*) &m_Handle);
 	g_Renderer.BindTexture(0,m_Handle);
 
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+
 	// allocate an image big enough to fit the entire map into
-	m_Size=RoundUpToPowerOf2(g_Terrain.GetVerticesPerSide());
-	u32 mapSize=g_Terrain.GetVerticesPerSide();
+	m_Size=RoundUpToPowerOf2(terrain->GetVerticesPerSide());
+	u32 mapSize=terrain->GetVerticesPerSide();
 	glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA8,m_Size,m_Size,0,GL_BGRA_EXT,GL_UNSIGNED_BYTE,0);
 
 	// allocate local copy
@@ -144,7 +149,7 @@ void CMiniMap::Render()
 	g_Renderer.BindTexture(0,m_Handle);
 	glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
 
-	float tclimit=float(g_Terrain.GetVerticesPerSide()-1)/float(m_Size);
+	float tclimit=float(g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide()-1)/float(m_Size);
 
 	// render minimap as quad
 	glBegin(GL_QUADS);
@@ -202,13 +207,15 @@ void CMiniMap::Render()
 
 void CMiniMap::Update(int x,int y,unsigned int color)
 {
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+
 	// get height at this pixel
-	int hmap=(int) g_Terrain.GetHeightMap()[y*g_Terrain.GetVerticesPerSide() + x]>>8;
+	int hmap=(int) terrain->GetHeightMap()[y*terrain->GetVerticesPerSide() + x]>>8;
 	// shift from 0-255 to 170-255
 	int val=(hmap/3)+170;
 
 	// get modulated color	
-	u32 mapSize=g_Terrain.GetVerticesPerSide();
+	u32 mapSize=terrain->GetVerticesPerSide();
 	*(m_Data+(y*(mapSize-1)+x))=ScaleColor(color,float(val)/255.0f);
 
 	UpdateTexture();
@@ -216,13 +223,15 @@ void CMiniMap::Update(int x,int y,unsigned int color)
 
 void CMiniMap::Update(int x,int y,int w,int h,unsigned int color)
 {
-	u32 mapSize=g_Terrain.GetVerticesPerSide();
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+
+	u32 mapSize=terrain->GetVerticesPerSide();
 
 	for (int j=0;j<h;j++) {
 		u32* dataptr=m_Data+((y+j)*(mapSize-1))+x;
 		for (int i=0;i<w;i++) {
 			// get height at this pixel
-			int hmap=int(g_Terrain.GetHeightMap()[(y+j)*mapSize + x+i])>>8;
+			int hmap=int(terrain->GetHeightMap()[(y+j)*mapSize + x+i])>>8;
 			// shift from 0-255 to 170-255
 			int val=(hmap/3)+170;
 			// load scaled color into data pointer
@@ -235,7 +244,7 @@ void CMiniMap::Update(int x,int y,int w,int h,unsigned int color)
 
 void CMiniMap::Rebuild()
 {
-	u32 mapSize=g_Terrain.GetVerticesPerSide();
+	u32 mapSize=g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
 	Rebuild(0,0,mapSize-1,mapSize-1);
 }
 
@@ -246,23 +255,25 @@ void CMiniMap::UpdateTexture()
 	// bind to the minimap
 	g_Renderer.BindTexture(0,m_Handle);
 	// subimage to update pixels 
-	u32 mapSize=g_Terrain.GetVerticesPerSide();
+	u32 mapSize=g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
 	glTexSubImage2D(GL_TEXTURE_2D,0,0,0,mapSize-1,mapSize-1,GL_BGRA_EXT,GL_UNSIGNED_BYTE,m_Data);	
 }
 
 void CMiniMap::Rebuild(int x,int y,int w,int h)
 {
-	u32 mapSize=g_Terrain.GetVerticesPerSide();
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+
+	u32 mapSize=terrain->GetVerticesPerSide();
 
 	for (int j=0;j<h;j++) {
 		u32* dataptr=m_Data+((y+j)*(mapSize-1))+x;
 		for (int i=0;i<w;i++) {
 			// get height at this pixel
-			int hmap=int(g_Terrain.GetHeightMap()[(y+j)*mapSize + x+i])>>8;
+			int hmap=int(terrain->GetHeightMap()[(y+j)*mapSize + x+i])>>8;
 			// shift from 0-255 to 170-255
 			int val=(hmap/3)+170;
 
-			CMiniPatch* mp=g_Terrain.GetTile(x+i,y+j);
+			CMiniPatch* mp=terrain->GetTile(x+i,y+j);
 			
 			unsigned int color;
 			if (mp) {

@@ -23,10 +23,11 @@
 
 #include "XML.h"
 
+#include "Game.h"
+
 const int NUM_ALPHA_MAPS = 14;
 Handle AlphaMaps[NUM_ALPHA_MAPS];
 
-CTerrain			g_Terrain;
 extern CLightEnv	g_LightEnv;
 CMiniMap			g_MiniMap;
 CEditorData			g_EditorData;
@@ -66,12 +67,14 @@ bool CEditorData::InitScene()
 		}
 	}
 
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+
 	// cover entire terrain with default texture
-	u32 patchesPerSide=g_Terrain.GetPatchesPerSide();
+	u32 patchesPerSide=terrain->GetPatchesPerSide();
 	for (uint pj=0; pj<patchesPerSide; pj++) {
 		for (uint pi=0; pi<patchesPerSide; pi++) {
 			
-			CPatch* patch=g_Terrain.GetPatch(pi,pj);
+			CPatch* patch=terrain->GetPatch(pi,pj);
 			
 			for (int j=0;j<PATCH_SIZE;j++) {
 				for (int i=0;i<PATCH_SIZE;i++) {
@@ -86,7 +89,7 @@ bool CEditorData::InitScene()
 
 	// build the terrain plane
 	float h=128*HEIGHT_SCALE;
-	u32 mapSize=g_Terrain.GetVerticesPerSide();
+	u32 mapSize=terrain->GetVerticesPerSide();
 	CVector3D pt0(0,h,0),pt1(float(CELL_SIZE*mapSize),h,0),pt2(0,h,float(CELL_SIZE*mapSize));
 	m_TerrainPlane.Set(pt0,pt1,pt2);
 	m_TerrainPlane.Normalize();
@@ -154,51 +157,20 @@ static bool saveTGA(const char* filename,int width,int height,unsigned char* dat
 	return true;
 }
 
-void CEditorData::LoadAlphaMaps()
-{
-	const char* fns[CRenderer::NumAlphaMaps] = {
-		"art/textures/terrain/alphamaps/special/blendcircle.png",
-		"art/textures/terrain/alphamaps/special/blendlshape.png",
-		"art/textures/terrain/alphamaps/special/blendedge.png",
-		"art/textures/terrain/alphamaps/special/blendedgecorner.png",
-		"art/textures/terrain/alphamaps/special/blendedgetwocorners.png",
-		"art/textures/terrain/alphamaps/special/blendfourcorners.png",
-		"art/textures/terrain/alphamaps/special/blendtwooppositecorners.png",
-		"art/textures/terrain/alphamaps/special/blendlshapecorner.png",
-		"art/textures/terrain/alphamaps/special/blendtwocorners.png",
-		"art/textures/terrain/alphamaps/special/blendcorner.png",
-		"art/textures/terrain/alphamaps/special/blendtwoedges.png",
-		"art/textures/terrain/alphamaps/special/blendthreecorners.png",
-		"art/textures/terrain/alphamaps/special/blendushape.png",
-		"art/textures/terrain/alphamaps/special/blendbad.png"
-	};
-
-	g_Renderer.LoadAlphaMaps(fns);
-}
-
-void CEditorData::InitResources()
-{
-	g_TexMan.LoadTerrainTextures();
-	LoadAlphaMaps();
-	g_ObjMan.LoadObjects();
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////
-// InitSingletons: create and initialise required singletons
-void CEditorData::InitSingletons()
-{
-	new CEntityManager;
-}
-
 /////////////////////////////////////////////////////////////////////////////////////////////////
 // Init: perform one time initialisation of the editor
 bool CEditorData::Init()
 {
-	// create and initialise singletons
-	InitSingletons();
-
-	// load default textures
-	InitResources();
+	// Set up the actual game
+	g_Game = new CGame();
+	PSRETURN ret = g_Game->StartGame(&g_GameAttributes);
+	if (ret != PSRETURN_OK)
+	{
+		// Failed to start the game
+		delete g_Game;
+		g_Game = NULL;
+		return false;
+	}
 
 	// create the scene - terrain, camera, light environment etc
 	if (!InitScene()) return false;
@@ -209,8 +181,6 @@ bool CEditorData::Init()
 	// set up the info box
 	m_InfoBox.Initialise();
 
-	g_EntityTemplateCollection.loadTemplates();
-
 	return true;
 }
 
@@ -218,7 +188,6 @@ bool CEditorData::Init()
 // Terminate: close down the editor (destroy singletons in reverse order to construction)
 void CEditorData::Terminate()
 {
-	delete &g_EntityManager;
 }
 
 void CEditorData::InitCamera() 
@@ -301,22 +270,26 @@ void CEditorData::OnCameraChanged()
 		m_TerrainPlane.FindRayIntersection(rayOrigin,rayDir,&hitPt[i]);
 	}
 
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+
 	for (i=0;i<4;i++) {
 		// convert to minimap space
 		float px=hitPt[i].X;
 		float pz=hitPt[i].Z;
-		g_MiniMap.m_ViewRect[i][0]=(197*px/float(CELL_SIZE*g_Terrain.GetVerticesPerSide()));
-		g_MiniMap.m_ViewRect[i][1]=197*pz/float(CELL_SIZE*g_Terrain.GetVerticesPerSide());
+		g_MiniMap.m_ViewRect[i][0]=(197*px/float(CELL_SIZE*terrain->GetVerticesPerSide()));
+		g_MiniMap.m_ViewRect[i][1]=197*pz/float(CELL_SIZE*terrain->GetVerticesPerSide());
 	}
 }
 
 void CEditorData::RenderTerrain()
 {
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+
 	CFrustum frustum=g_NaviCam.GetCamera().GetFrustum();
-	u32 patchesPerSide=g_Terrain.GetPatchesPerSide();
+	u32 patchesPerSide=	g_Game->GetWorld()->GetTerrain()->GetPatchesPerSide();
 	for (uint j=0; j<patchesPerSide; j++) {
 		for (uint i=0; i<patchesPerSide; i++) {
-			CPatch* patch=g_Terrain.GetPatch(i,j);
+			CPatch* patch=terrain->GetPatch(i,j);
 			if (frustum.IsBoxVisible (CVector3D(0,0,0),patch->GetBounds())) {
 				g_Renderer.Submit(patch);
 			}
@@ -373,10 +346,12 @@ void CEditorData::RenderNoCull()
 		SubmitModelRecursive(units[i]->GetModel());
 	}
 	
-	u32 patchesPerSide=g_Terrain.GetPatchesPerSide();
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+
+	u32 patchesPerSide=terrain->GetPatchesPerSide();
 	for (j=0; j<patchesPerSide; j++) {
 		for (i=0; i<patchesPerSide; i++) {
-			CPatch* patch=g_Terrain.GetPatch(i,j);
+			CPatch* patch=terrain->GetPatch(i,j);
 			g_Renderer.Submit(patch);
 		}
 	}
@@ -598,8 +573,8 @@ bool CEditorData::LoadTerrain(const char* filename)
 		}
 
 		// rebuild terrain
-		g_Terrain.Resize(mapsize);
-		g_Terrain.SetHeightMap(heightmap);
+		g_Game->GetWorld()->GetTerrain()->Resize(mapsize);
+		g_Game->GetWorld()->GetTerrain()->SetHeightMap(heightmap);
 		
 		// clean up
 		delete[] data;

@@ -7,6 +7,7 @@ class CMiniMap
 {
 public:
 	CMiniMap();
+	~CMiniMap();
 
 	void Initialise();
 	void Render();

@@ -17,6 +17,8 @@
 #include "ogl.h"
 #undef _IGNORE_WGL_H_
 
+#include "Game.h"
+
 #include "res/vfs.h"
 
 int g_ClickMode=0;
@@ -392,12 +394,12 @@ void CScEdView::OnLButtonDown(UINT nFlags, CPoint point)
 
 void CScEdView::AdjustCameraViaMinimapClick(CPoint point) 
 {
-	// convert from screen space point back to world space point representating intersection of 
+	// convert from screen space point back to world space point representing intersection of 
 	// ray with terrain plane
 	CVector3D pos;
-	pos.X=float(CELL_SIZE*g_Terrain.GetVerticesPerSide())*float(point.x+200-m_Width)/200.0f;
+	pos.X=float(CELL_SIZE * g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide()) * float(point.x+200-m_Width)/200.0f;
 	pos.Y=-g_EditorData.m_TerrainPlane.m_Dist;
-	pos.Z=float(CELL_SIZE*g_Terrain.GetVerticesPerSide())*float(m_Height-point.y)/197.0f;
+	pos.Z=float(CELL_SIZE * g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide()) * float(m_Height-point.y)/197.0f;
 
 	// calculate desired camera point from this
 	CVector3D startpos=g_NaviCam.GetCamera().m_Orientation.GetTranslation();

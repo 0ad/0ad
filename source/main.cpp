@@ -991,7 +991,7 @@ static void Init(int argc, char* argv[], bool setup_gfx = true)
 	MICROLOG(L"In init");
 
 	// If you ever want to catch a particular allocation:
-	//_CrtSetBreakAlloc(14246);
+	//_CrtSetBreakAlloc(187);
 
 #ifdef _MSC_VER
 u64 TSC=rdtsc();
@@ -1023,7 +1023,7 @@ PREVTSC=TSC;
 	// and will mess up the error reporting if anything
 	// crashes before the working directory is set.
 	MICROLOG(L"init vfs");
-	InitVfs(argv[0]);
+	InitVfs(argc?argv[0]:NULL);
 
 	// Set up the console early, so that debugging
 	// messages can be logged to it. (The console's size

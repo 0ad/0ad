@@ -50,15 +50,11 @@ public:
 
 private:
 	bool InitScene();
-	void LoadAlphaMaps();
-	void InitResources();
 	void InitCamera();
 	void RenderTerrain();
 	void RenderModels();
 	void RenderWorld();
 	void RenderObEdGrid();
-
-	void InitSingletons();
 
 	void StartTestMode();
 	void StopTestMode();
@@ -76,7 +72,6 @@ private:
 };
 
 extern CEditorData	g_EditorData;
-extern CTerrain	g_Terrain;
 extern CLightEnv g_LightEnv;
 
 #endif

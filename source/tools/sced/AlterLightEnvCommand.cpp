@@ -5,9 +5,8 @@
 #include "ObjectManager.h"
 #include "Model.h"
 #include "Unit.h"
-#include "Terrain.h"
+#include "Game.h"
 
-extern CTerrain g_Terrain;
 extern CLightEnv g_LightEnv;
 
 
@@ -34,12 +33,14 @@ void CAlterLightEnvCommand::ApplyData(const CLightEnv& env)
 	// copy given lighting environment to global environment
 	g_LightEnv=env;
 
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+
 	// dirty the vertices on all patches
-	u32 patchesPerSide=g_Terrain.GetPatchesPerSide();
+	u32 patchesPerSide=terrain->GetPatchesPerSide();
 	u32 i,j;
 	for (j=0;j<patchesPerSide;j++) {
 		for (i=0;i<patchesPerSide;i++) {
-			CPatch* patch=g_Terrain.GetPatch(i,j);
+			CPatch* patch=terrain->GetPatch(i,j);
 			patch->SetDirty(RENDERDATA_UPDATE_VERTICES);
 		}
 	}

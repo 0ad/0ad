@@ -71,7 +71,11 @@
 #endif
 
 #if defined(_MSC_VER) && defined(HAVE_PCH) && !( defined(NDEBUG) || defined(TESTING) )
-// # define HAVE_DEBUGALLOC
+# ifdef SCED
+#  define HAVE_DEBUGALLOC
+# else
+//#  define HAVE_DEBUGALLOC // <-- enable this if you want to use it instead of mmgr
+# endif
 #endif
 
 #ifdef OS_UNIX
