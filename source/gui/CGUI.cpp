@@ -52,16 +52,16 @@ void render(COverlayText* overlaytext)
 //	event is passed to other handlers if false is returned.
 //	trampoline: we don't want to make the implementation (in CGUI) static
 //-------------------------------------------------------------------
-bool gui_handler(const SDL_Event& ev)
+int gui_handler(const SDL_Event* ev)
 {
 	return g_GUI.HandleEvent(ev);
 }
 
-bool CGUI::HandleEvent(const SDL_Event& ev)
+int CGUI::HandleEvent(const SDL_Event* ev)
 {
-	if(ev.type == SDL_MOUSEMOTION)
+	if(ev->type == SDL_MOUSEMOTION)
 	{
-		m_MousePos = CPos(ev.motion.x, ev.motion.y);
+		m_MousePos = CPos(ev->motion.x, ev->motion.y);
 
 		// pNearest will after this point at the hovered object, possibly NULL
 		GUI<SGUIMessage>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject, 
@@ -71,12 +71,12 @@ bool CGUI::HandleEvent(const SDL_Event& ev)
 
 	// TODO Gee: temp-stuff
 //	char buf[30];
-//	sprintf(buf, "type = %d", ev.type);
+//	sprintf(buf, "type = %d", ev->type);
 	//TEMPmessage = buf;
 
-	if (ev.type == SDL_MOUSEBUTTONDOWN)
+	if (ev->type == SDL_MOUSEBUTTONDOWN)
 	{
-	//	sprintf(buf, "button = %d", ev.button.button);
+	//	sprintf(buf, "button = %d", ev->button.button);
 		//TEMPmessage = buf;
 	}
 
@@ -102,9 +102,9 @@ bool CGUI::HandleEvent(const SDL_Event& ev)
 										&IGUIObject::UpdateMouseOver, 
 										pNearest);
 
-		if (ev.type == SDL_MOUSEBUTTONDOWN)
+		if (ev->type == SDL_MOUSEBUTTONDOWN)
 		{
-			switch (ev.button.button)
+			switch (ev->button.button)
 			{
 			case SDL_BUTTON_LEFT:
 				if (pNearest)
@@ -159,9 +159,9 @@ bool CGUI::HandleEvent(const SDL_Event& ev)
 			
 		}
 		else 
-		if (ev.type == SDL_MOUSEBUTTONUP)
+		if (ev->type == SDL_MOUSEBUTTONUP)
 		{
-			if (ev.button.button == SDL_BUTTON_LEFT)
+			if (ev->button.button == SDL_BUTTON_LEFT)
 			{
 				if (pNearest)
 					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_RELEASE_LEFT));
@@ -191,7 +191,7 @@ bool CGUI::HandleEvent(const SDL_Event& ev)
 	}
 */
 
-	return false;
+	return EV_PASS;
 }
 
 //-------------------------------------------------------------------

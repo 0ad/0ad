@@ -11,6 +11,8 @@
 #include "sdl.h"
 #include "res/tex.h"
 #include "detect.h"
+#include "input.h"
+#include "lib.h"
 
 void InitScene ();
 void InitResources ();
@@ -287,23 +289,23 @@ void terr_update(const float DeltaTime)
 
 
 
-bool terr_handler(const SDL_Event& ev)
+int terr_handler(const SDL_Event* ev)
 {
 	// put any events that must be processed even if inactive here
 
 	if(!active)
-		return false;
+		return EV_PASS;
 
-	switch(ev.type)
+	switch(ev->type)
 	{
 	case SDL_MOUSEMOTION:
-		mouse_x = ev.motion.x;
-		mouse_y = ev.motion.y;
+		mouse_x = ev->motion.x;
+		mouse_y = ev->motion.y;
 		break;
 	
 
 	case SDL_KEYDOWN:
-		switch(ev.key.keysym.sym)
+		switch(ev->key.keysym.sym)
 		{
 		case SDLK_w:
 			if (g_Renderer.GetTerrainRenderMode()==WIREFRAME) {
@@ -324,7 +326,7 @@ bool terr_handler(const SDL_Event& ev)
 		}
 	}
 
-	return false;
+	return EV_PASS;
 }
 
 
