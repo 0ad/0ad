@@ -1,3 +1,15 @@
+/***************************************************************************************
+	AUTHOR:			John M. Mena
+	EMAIL:			JohnMMena@hotmail.com
+	FILE:			CConsole.h
+	CREATED:		12/3/03
+	COMPLETED:		NULL
+
+	DESCRIPTION:	The class CConsole provides an interface to the
+					scripting abilities of an engine.
+****************************************************************************************/
+
+
 #include <stdarg.h>
 #include <string>
 #include <deque>

@@ -116,6 +116,7 @@ void CConsole::RegisterFunc(fptr F, const wchar_t* szName)
 	delete[] copy;
 }
 
+
 void CConsole::Update(const float DeltaTime)
 {
 	if(m_bToggle)
