@@ -69,7 +69,6 @@ void CSimulation::Interpolate(double frameTime, double offset)
 
 void CSimulation::Simulate()
 {
-	g_GUI.TickObjects();
 	g_Scheduler.update(m_pTurnManager->GetTurnLength());
 	g_EntityManager.updateAll( m_pTurnManager->GetTurnLength() );
 

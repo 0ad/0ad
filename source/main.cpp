@@ -164,7 +164,6 @@ ERROR_TYPE(System, SDLInitFailed);
 ERROR_TYPE(System, VmodeFailed);
 ERROR_TYPE(System, RequiredExtensionsMissing);
 
-
 void Testing (void)
 {
 	g_Console->InsertMessage(L"Testing Function Registration");
@@ -1186,6 +1185,8 @@ static void Frame()
 	in_get_events();
 	g_SessionManager.Poll();
 	
+	g_GUI.TickObjects();
+	
 	if (g_Game && g_Game->IsGameStarted())
 	{
 		g_Game->Update(TimeSinceLastFrame);
@@ -1209,16 +1210,12 @@ static void Frame()
 	}
 	else
 	{
+		// CSimulation would do this with the proper turn length if we were in
+		// a game. This is basically just to keep script timers running.
+		g_Scheduler.update((uint)(TimeSinceLastFrame*1000));
 		if(snd_update(0, 0, 0) < 0)
 			debug_out("snd_update (pos=0 version) failed\n");
 	}
-
-
-
-
-
-
-
 
 	g_Console->Update(TimeSinceLastFrame);
 
