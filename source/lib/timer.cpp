@@ -74,22 +74,31 @@ double get_time()
 
 double timer_res()
 {
+	// may take a while to determine, so cache it
+	static double cached_res;
+	if(cached_res != 0.0)
+		return cached_res;
+
+	double res;
+
 #ifdef HAVE_CLOCK_GETTIME
 
-	struct timespec res;
-	clock_getres(CLOCK_REALTIME, &res);
-	return res.tv_nsec * 1e-9;
+	struct timespec ts;
+	clock_getres(CLOCK_REALTIME, &ts);
+	res = ts.tv_nsec * 1e-9;
 
 #else
 
-	double t0, t1, t2;
-	t0 = get_time();
+	const double t0 = get_time();
+	double t1, t2;
 	do t1 = get_time();	while(t1 == t0);
 	do t2 = get_time();	while(t2 == t1);
-
-	return t2-t1;
+	res = t2-t1;
 
 #endif
+
+	cached_res = res;
+	return res;
 }
 
 
