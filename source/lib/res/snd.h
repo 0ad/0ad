@@ -1,6 +1,6 @@
 // OpenAL sound engine
 //
-// Copyright (c) 2004 Jan Wassenberg
+// Copyright (c) 2004-5 Jan Wassenberg
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -19,12 +19,49 @@
 #include "handle.h"
 
 
-// introduction:
-// this module initializes the sound hardware and provides an interface
-// (backed by the resource manager) that allows any number of sounds
-// to be emitted simultaneously; they are also closed automatically.
-// the most "important" sounds are actually played, while the others
-// are discarded (necessary due to limited number of hardware voices).
+// overview:
+// this module provides a moderately high-level sound interface. basic usage
+// is opening a sound and requesting it be played; it is closed automatically
+// when playback has finished (fire and forget).
+// any number of sound play requests may be issued; the most 'important' ones
+// are actually played (necessary due to limited hardware mixing capacity).
+// 3d positional sounds (heard to emanate from a given spot) are supported.
+// active sound instances are referenced by Handles, so changing volume etc.
+// during playback is possible (useful for fadeout).
+//
+// sound setup:
+// OpenAL provides portable access to the underlying sound hardware, and
+// falls back to software mixing if no acceleration is provided.
+// we allow the user to specify the device to use (in case the default
+// has problems) and maximum number of sources (to reduce mixing cost).
+//
+// performance:
+// much effort has been invested in efficiency: all sound data is cached,
+// so every open() after the first is effectively free. large sound files are
+// streamed from disk to reduce load time and memory usage. hardware mixing
+// resources are suballocated to avoid delays when starting to play.
+// therefore, the user can confidently fire off hundreds of sound requests.
+// finally, lengthy initialization steps are delayed until the sound engine
+// is actually needed (i.e. upon first open()). perceived startup time is
+// therefore reduced - the user sees e.g. our main menu earlier.
+//
+// terminology:
+// "hardware voice" refers to mixing resources on the DSP. strictly
+//   speaking, we mean 'OpenAL source', but this term is more clear.
+//   voice ~= source, unless expensive effects (e.g. EAX) are enabled.
+//   note: software mixing usually doesn't have a fixed 'source' cap.
+// "gain" is quantified volume. 1 is unattenuated, 0.5 corresponds to -6 dB,
+//   and 0 is silence. this can be set per-source as well as globally.
+// "position" of a sound is within the app's coordinate system,
+//   the orientation of which is passed to snd_update.
+// "importance" of a sound derives from the app-assigned priority
+//   (e.g. voiceover must not be skipped in favor of seagulls) and
+//   distance from the listener. it's calculated by our prioritizer.
+// "virtual source" denotes a sound play request issued by the app.
+//   this is in contrast to an actual AL source, which will be mixed
+//   into the output channel. the most important VSrc receive an al_src.
+// "sound instances" store playback parameters (e.g. position), and
+//   reference the (centrally cached) "sound data" that will be played.
 
 
 //
@@ -82,7 +119,7 @@ extern int snd_set_master_gain(float gain);
 // sound instance
 //
 
-// open and return a handle to a sound.
+// open and return a handle to a sound instance.
 //
 // if <snd_fn> is a text file (extension ".txt"), it is assumed
 // to be a definition file containing the sound file name and
@@ -103,7 +140,7 @@ extern int snd_free(Handle& hs);
 // request the sound <hs> be played. once done playing, the sound is
 // automatically closed (allows fire-and-forget play code).
 // if no hardware voice is available, this sound may not be played at all,
-// or in the case of looped sounds, later.
+// or in the case of looped sounds, start later.
 // priority (min 0 .. max 1, default 0) indicates which sounds are
 // considered more important; this is attenuated by distance to the
 // listener (see snd_update).

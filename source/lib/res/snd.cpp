@@ -1,6 +1,6 @@
 // OpenAL sound engine
 //
-// Copyright (c) 2004 Jan Wassenberg
+// Copyright (c) 2004-5 Jan Wassenberg
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -78,7 +78,7 @@
 // - vsrc*: audio source
 //   owns source properties and queue, references SndData.
 // - vm*: voice management
-//   grants the most currently 'important' sounds a hardware voice.
+//   grants the currently most 'important' sounds a hardware voice.
 
 
 static bool al_initialized = false;
@@ -172,21 +172,20 @@ int snd_dev_set(const char* alc_new_dev_name)
 }
 
 
-static ALCcontext* alc_ctx=NULL;
-static ALCdevice* alc_dev=NULL;
+static ALCcontext* alc_ctx = 0;
+static ALCdevice* alc_dev = 0;
 
 
 static void alc_shutdown()
 {
-	if (alc_dev)
+	if(alc_ctx)
 	{
-		if (alc_ctx)
-		{
-			alcMakeContextCurrent(0);
-			alcDestroyContext(alc_ctx);
-		}
-		alcCloseDevice(alc_dev);
+		alcMakeContextCurrent(0);
+		alcDestroyContext(alc_ctx);
 	}
+
+	if(alc_dev)
+		alcCloseDevice(alc_dev);
 }
 
 
@@ -894,7 +893,8 @@ static void hsd_list_free_all()
 
 static void SndData_init(SndData* sd, va_list args)
 {
-	sd->is_stream = (va_arg(args, int) ? true : false);
+	// olsner: pass as int instead of bool for GCC compat.
+	sd->is_stream = va_arg(args, int) != 0;
 }
 
 static void SndData_dtor(SndData* sd)
@@ -1015,13 +1015,14 @@ else
 
 
 // open and return a handle to a sound file's data.
-static Handle snd_data_load(const char* fn, bool stream)
+static Handle snd_data_load(const char* fn, bool is_stream)
 {
 	// don't allow reloading stream objects
 	// (both references would read from the same file handle).
-	const uint flags = stream? RES_UNIQUE : 0;
+	const uint flags = is_stream? RES_UNIQUE : 0;
 
-	return h_alloc(H_SndData, fn, flags, (int)stream);
+	return h_alloc(H_SndData, fn, flags, (int)is_stream);
+		// (int) rationale: see SndData_init
 }
 
 
@@ -1201,9 +1202,9 @@ static void list_foreach(void(*cb)(VSrc*), uint skip = 0, uint end_idx = 0)
 }
 
 
-static bool is_greater(const VSrc* s1, const VSrc* s2)
+static bool is_greater(const VSrc* vs1, const VSrc* vs2)
 {
-	return s1->cur_pri > s2->cur_pri;
+	return vs1->cur_pri > vs2->cur_pri;
 }
 
 static void list_sort()
@@ -1260,7 +1261,7 @@ static int list_free_all()
 ///////////////////////////////////////////////////////////////////////////////
 
 
-// send the properties to OpenAL, as soon as we actually have a source.
+// send the properties to OpenAL (when we actually have a source).
 // called by snd_set* and vsrc_grant.
 static void vsrc_latch(VSrc* vs)
 {
@@ -1275,7 +1276,7 @@ static void vsrc_latch(VSrc* vs)
 }
 
 
-// return number removed.
+// return number of entries that were removed.
 static int vsrc_deque_finished_bufs(VSrc* vs)
 {
 	int num_processed;
@@ -1425,7 +1426,7 @@ static int VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
 	// cannot wait till play(), need to init here:
 	// must load OpenAL so that snd_data_load can check for OGG extension.
 	int err = snd_init();
-	// .. don't complain if sound disabled; fail silently.
+	// .. don't complain if sound is disabled; fail silently.
 	if(err == ERR_AGAIN)
 		return err;
 	// .. catch genuine errors during init.
@@ -1477,7 +1478,7 @@ static int VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
 }
 
 
-// open and return a handle to a sound.
+// open and return a handle to a sound instance.
 //
 // if <snd_fn> is a text file (extension ".txt"), it is assumed
 // to be a definition file containing the sound file name and
@@ -1512,7 +1513,7 @@ int snd_free(Handle& hvs)
 // request the sound <hs> be played. once done playing, the sound is
 // automatically closed (allows fire-and-forget play code).
 // if no hardware voice is available, this sound may not be played at all,
-// or in the case of looped sounds, later.
+// or in the case of looped sounds, start later.
 // priority (min 0 .. max 1, default 0) indicates which sounds are
 // considered more important; this is attenuated by distance to the
 // listener (see snd_update).
@@ -1590,7 +1591,7 @@ int snd_set_loop(Handle hvs, bool loop)
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// voice management: grants the most currently 'important' sounds
+// voice management: grants the currently most 'important' sounds
 // a hardware voice.
 //
 ///////////////////////////////////////////////////////////////////////////////
@@ -1672,6 +1673,7 @@ static int vm_update()
 //
 // additionally, if any parameter is non-NULL, we set the listener
 // position, look direction, and up vector (in world coordinates).
+// (allow any and all of them to be 0 in case world isn't initialized yet).
 int snd_update(const float* pos, const float* dir, const float* up)
 {
 	if(pos || dir || up)
