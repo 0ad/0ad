@@ -2,6 +2,8 @@
 
 #include "pbuffer.h"
 
+#include <string.h>
+
 #ifdef _WIN32
 
 // janwas: wgl-specific crap is in sysdep/win/wgl.h;
