@@ -256,7 +256,7 @@ bool CObjectEntry::Load(const char* filename)
 								DOMNode *nameattr=attributes->getNamedItem(attachpointtext);
 								prop.m_PropPointName=XMLTranscode(nameattr->getChildNodes()->item(0)->getNodeValue());
 								DOMNode *modelattr=attributes->getNamedItem(modeltext);
-								prop.m_ModelName=XMLString::transcode(modelattr->getChildNodes()->item(0)->getNodeValue());
+								prop.m_ModelName=XMLTranscode(modelattr->getChildNodes()->item(0)->getNodeValue());
 
 								m_Props.push_back(prop);
 							}

@@ -86,9 +86,9 @@ bool CBaseEntity::loadXML( CStr filename )
 					// First get element and not node
 					DOMElement *child_element = (DOMElement*)child;
 
-					CStr element_name = XMLString::transcode( child_element->getNodeName() );
+					CStr element_name = XMLTranscode( child_element->getNodeName() );
 					DOMNode *value_node= child_element->getChildNodes()->item(0);
-					CStr element_value=value_node ? XMLString::transcode(value_node->getNodeValue()) : "";
+					CStr element_value=value_node ? XMLTranscode(value_node->getNodeValue()) : "";
 
 					if( element_name == CStr( "Name" ) )
 					{
@@ -110,7 +110,7 @@ bool CBaseEntity::loadXML( CStr filename )
 					{
 						if( !m_bound_circle )
 							m_bound_circle = new CBoundingCircle();
-						CStr radius = XMLString::transcode( child_element->getAttribute( XMLString::transcode( "Radius" ) ) );
+						CStr radius = XMLTranscode( child_element->getAttribute( L"Radius" ) );
 						m_bound_circle->setRadius( radius.ToFloat() );
 						m_bound_type = CBoundingObject::BOUND_CIRCLE;
 					}
@@ -118,16 +118,16 @@ bool CBaseEntity::loadXML( CStr filename )
 					{
 						if( !m_bound_box )
 							m_bound_box = new CBoundingBox();
-						CStr width = XMLString::transcode( child_element->getAttribute( XMLString::transcode( "Width" ) ) );
-						CStr height = XMLString::transcode( child_element->getAttribute( XMLString::transcode( "Height" ) ) ); 
+						CStr width = XMLTranscode( child_element->getAttribute( L"Width" ) );
+						CStr height = XMLTranscode( child_element->getAttribute( L"Height" ) ); 
 
 						m_bound_box->setDimensions( width.ToFloat(), height.ToFloat() );
 						m_bound_type = CBoundingObject::BOUND_OABB;
 					}
 					else if( element_name == CStr( "BoundsOffset" ) )
 					{
-						CStr x = XMLString::transcode( child_element->getAttribute( XMLString::transcode( "x" ) ) );
-						CStr y = XMLString::transcode( child_element->getAttribute( XMLString::transcode( "y" ) ) );
+						CStr x = XMLTranscode( child_element->getAttribute( L"x" ) );
+						CStr y = XMLTranscode( child_element->getAttribute( L"y" ) );
 
 						if( !m_bound_circle )
 							m_bound_circle = new CBoundingCircle();
