@@ -950,19 +950,19 @@
         </sprite>
 
         <sprite name="atlas_global_arrow_up">
-                <image texture="atlas/atlas_global_arrow_up.png" texture_size="0 0 8 4" size="0 0 100% 100%"/>
+                <image texture="atlas/atlas_global_arrow_up.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
         </sprite>
 
         <sprite name="atlas_global_arrow_dn">
-                <image texture="atlas/atlas_global_arrow_dn.png" texture_size="0 0 8 4" size="0 0 100% 100%"/>
+                <image texture="atlas/atlas_global_arrow_dn.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
         </sprite>
 
         <sprite name="atlas_global_arrow_lt">
-                <image texture="atlas/atlas_global_arrow_lt.png" texture_size="0 0 4 8" size="0 0 100% 100%"/>
+                <image texture="atlas/atlas_global_arrow_lt.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
         </sprite>
 
         <sprite name="atlas_global_arrow_rt">
-                <image texture="atlas/atlas_global_arrow_rt.png" texture_size="0 0 4 8" size="0 0 100% 100%"/>
+                <image texture="atlas/atlas_global_arrow_rt.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
         </sprite>
 
 	<sprite name="atlas_sheet_toolbar_button">
@@ -996,21 +996,64 @@
 	</sprite>
 
         <sprite name="atlas_global_slider_bar_h">
-                <image texture="atlas/atlas_global_slider_bar_h.png" texture_size="0 0 128 16" size="0 0 100% 100%"/>
+                <image texture="atlas/atlas_global_slider_bar_h.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
         </sprite>
 
         <sprite name="atlas_global_slider_marker_h">
-                <image texture="atlas/atlas_global_slider_marker_h.png" texture_size="0 0 8 16" size="0 0 100% 100%"/>
+                <image texture="atlas/atlas_global_slider_marker_h.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
         </sprite>
 
         <sprite name="atlas_global_slider_bar_v">
-                <image texture="atlas/atlas_global_slider_bar_v.png" texture_size="0 0 16 128" size="0 0 100% 100%"/>
+                <image texture="atlas/atlas_global_slider_bar_v.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
         </sprite>
 
         <sprite name="atlas_global_slider_marker_v">
-                <image texture="atlas/atlas_global_slider_marker_v.png" texture_size="0 0 16 8" size="0 0 100% 100%"/>
+                <image texture="atlas/atlas_global_slider_marker_v.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
         </sprite>
 
+        <sprite name="atlas_global_tab">
+                <image texture="atlas/atlas_global_tab.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+        </sprite>
+
+        <sprite name="atlas_global_tab_lit">
+                <image texture="atlas/atlas_global_tab_lit.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+        </sprite>
+
+	<sprite name="atlas_sheet_icon">
+		<image texture="atlas/atlas_sheet_icon_15x15.png" cell_size="15 15" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+	</sprite>
+
+	<sprite name="atlas_sheet_icon_indent">
+		<!-- Starting with top left corner continuing in a clockwise manner -->
+		<!-- Top border -->
+		<image backcolor="109 122 146" size="0 0 100%-1 1" />
+		<!-- Right border -->
+		<image backcolor="220 223 228" size="100%-1 0 100% 100%" />
+		<!-- Bottom border -->
+		<image backcolor="220 223 228" size="0 100%-1 100% 100%" />
+		<!-- Left border -->
+		<image backcolor="109 122 146" size="0 0 1 100%-1" />
+		<!-- middle -->
+		<image backcolor="220 223 228" size="1 1 100%-1 100%-1"/>
+
+		<image texture="atlas/atlas_sheet_icon_15x15.png" cell_size="15 15" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+	</sprite>
+
+	<sprite name="atlas_sheet_icon_emboss">
+		<!-- Starting with top left corner continuing in a clockwise manner -->
+		<!-- Top border -->
+		<image backcolor="220 223 228" size="0 0 100% 1" />
+		<!-- Right border -->
+		<image backcolor="109 122 146" size="100%-1 1 100% 100%" />
+		<!-- Bottom border -->
+		<image backcolor="109 122 146" size="1 100%-1 100% 100%" />
+		<!-- Left border -->
+		<image backcolor="220 223 228" size="0 0 1 100%" />
+		<!-- middle -->
+		<image backcolor="184 190 201" size="1 1 100%-1 100%-1"/>
+
+		<image texture="atlas/atlas_sheet_icon_15x15.png" cell_size="15 15" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+	</sprite>
 
         <!--
         ==========================================

@@ -94,10 +94,10 @@ function initAtlas()
 
 	// Fully Minimise arrow on tool bar.
 	ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		8,
+		12,
 		4
 	); atlasCoord_Last 				= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_MAINBORDER_RT_CORNER].x+atlasCoord[ATLAS_MAINBORDER_RT_CORNER].width+atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].width-11,
+		atlasCoord[ATLAS_MAINBORDER_RT_CORNER].x+atlasCoord[ATLAS_MAINBORDER_RT_CORNER].width+atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW].width-15,
 		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG].y+3
 	);
 
@@ -164,6 +164,8 @@ function initAtlas()
 		atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG].y+atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG].height
 	);
 
+	// ============================================= GENERIC BOTTOM SECTION MENU ===============================================
+
 	// Bottom-right Mini Map Background.
 	ATLAS_MINIMAP_BKG	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
 		182,
@@ -217,6 +219,13 @@ function initAtlas()
 		atlasCoord[ATLAS_MINIMAP_BKG].x+10,
 		atlasCoord[ATLAS_MINIMAP_BKG].y+atlasCoord[ATLAS_MINIMAP_BKG].height+4
 	);
+
+	// Setup margins for Bottom Section Menu.
+	ATLAS_BOTTOM_PANE_SECTION = new Object();
+	ATLAS_BOTTOM_PANE_SECTION.LMARGIN = 5;
+	ATLAS_BOTTOM_PANE_SECTION.RMARGIN = 5;
+	ATLAS_BOTTOM_PANE_SECTION.TMARGIN = 5;
+	ATLAS_BOTTOM_PANE_SECTION.BMARGIN = 5;
 
 	// ============================================= GENERIC LEFT SECTION MENU ===============================================
 
@@ -532,7 +541,7 @@ function initAtlas()
 
 	// Intensity slider bar.
 	ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_INTENSITY_SLIDER_BAR		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		110,
+		138,
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SMOOTH_BUTTON].height
 	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_ELEVATION_SMOOTH_BUTTON].x,
@@ -912,6 +921,123 @@ function initAtlas()
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_HEADING_HR].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_HEADING_HR].height+(ATLAS_LEFT_PANE_SECTION.TMARGIN/2)
 	);
 
+	// Depth label.
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_LABEL		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_LABEL].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_LABEL].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_LABEL].x,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_BUTTON_PLACE].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_BUTTON_PLACE].height+ATLAS_LEFT_PANE_SECTION.TMARGIN*1.5
+	);
+
+	// Depth input box.
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+				atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX].x,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_LABEL].y
+	);
+
+	// Up button for depth input box.
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX_UP	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		ATLAS_COUNTER_BOX.width,
+		(atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].height/2)+3
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].width-atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX_UP].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].y-3
+	);
+
+	// Down button for depth input box.
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX_DN	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		ATLAS_COUNTER_BOX.width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX_UP].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].width-atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX_UP].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].height-atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX_DN].height
+	);
+
+	// Colour label.
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_LABEL		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_LABEL].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_LABEL].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_LABEL].x,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_LABEL].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_LABEL].height+ATLAS_LEFT_PANE_SECTION.TMARGIN*1.5
+	);
+
+	// Colour input box.
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_R_INPUT_BOX	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].height/3
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].x,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].height+ATLAS_LEFT_PANE_SECTION.TMARGIN
+	);
+
+	// Colour input box.
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_G_INPUT_BOX	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].height/3
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].x,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_R_INPUT_BOX].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_R_INPUT_BOX].height+ATLAS_LEFT_PANE_SECTION.TMARGIN
+	);
+
+	// Colour input box.
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_B_INPUT_BOX	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].height/3
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].x,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_G_INPUT_BOX].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_G_INPUT_BOX].height+ATLAS_LEFT_PANE_SECTION.TMARGIN
+	);
+
+	// Colour tint box.
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_TINT_BOX	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_LABEL].width/3,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_LABEL].height/2
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_LABEL].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_LABEL].width/5,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_LABEL].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_LABEL].height+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_LABEL].height/3
+	);
+
+	// Smooth input box.
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_INPUT_BOX].x,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_B_INPUT_BOX].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_COLOUR_B_INPUT_BOX].height+ATLAS_LEFT_PANE_SECTION.TMARGIN*1.5
+	);
+
+	// Up button for Smooth input box.
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX_UP	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		ATLAS_COUNTER_BOX.width,
+		(atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX].height/2)+3
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX].width-atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX_UP].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX].y-3
+	);
+
+	// Down button for Smooth input box.
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX_DN	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		ATLAS_COUNTER_BOX.width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX_UP].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX].width-atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX_UP].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX].height-atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX_DN].height
+	);
+
+	// Smooth label.
+	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_LABEL		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_LABEL].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_LABEL].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_DEPTH_LABEL].x,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_SMOOTH_INPUT_BOX].y-2
+	);
+
 	// Custom button.
 	ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_BUTTON_CUSTOM	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_BUTTON_CUSTOM].width,
@@ -928,6 +1054,152 @@ function initAtlas()
 	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HR].x,
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_LIST].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_LIST].height+ATLAS_LEFT_PANE_SECTION.BMARGIN
+	);
+
+	// =============================================     BOTTOM MENU SECTIONS  ===================================================
+
+	// ============================================= TERRAIN EDITOR: BRUSH SETTINGS ==============================================
+
+	// Terrain Preview.
+	ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PREVIEW	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		125,
+		125
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		ATLAS_LEFT_PANE_SECTION.LMARGIN,
+		ATLAS_LEFT_PANE_SECTION.LMARGIN
+	);
+
+	// Terrain Preview label.
+	ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PREVIEW_LABEL	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PREVIEW].width,
+		15
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PREVIEW].x,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PREVIEW].y+atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PREVIEW].height
+	);
+
+	// Brush border.
+	ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BORDER	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_RB_CORNER].x-atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PREVIEW].width,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PREVIEW].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PREVIEW].x+atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PREVIEW].width+(atlasCoord[ATLAS_RB_CORNER].width/4),
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PREVIEW].y
+	);
+
+	// Brush border label.
+	ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BORDER_LABEL	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BORDER].width,
+		15
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BORDER].x,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BORDER].y+atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BORDER].height
+	);
+
+	// Brush size slider bar.
+	ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_SIZE_SLIDER_BAR		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		15,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BORDER].height+11
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BORDER].x+atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BORDER].width-atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_SIZE_SLIDER_BAR].width-5,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BORDER].y-22
+	);
+
+	// Brush size slider marker.
+	ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_SIZE_SLIDER_MARKER	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_SIZE_SLIDER_BAR].width,
+		8
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_SIZE_SLIDER_BAR].x-3,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_SIZE_SLIDER_BAR].y+70
+	);
+
+	ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_SPAN = 5;
+
+	// Brush button.
+	ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_1	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		15,
+		15
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BORDER].x+10,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BORDER].y+atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BORDER].height-15-10
+	);
+
+	// Brush button.
+	ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_2	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_1].width,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_1].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_1].x,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_1].y-atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_1].height-ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_SPAN
+	);
+
+	// Brush button.
+	ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_3	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_1].width,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_1].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_1].x,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_2].y-atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_2].height-ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_SPAN
+	);
+
+	// Brush button.
+	ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_4	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_1].width,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_1].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_1].x,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_3].y-atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_3].height-ATLAS_BOTTOM_PANE_SECTION_TERRAIN_BRUSH_BUTTON_SPAN
+	);
+
+	// ============================================= TERRAIN EDITOR: PAINT TERRAIN ===============================================
+
+	// Terrain Palette Background.
+	ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_BKG	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		603,
+		122
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_RB_CORNER].x+atlasCoord[ATLAS_RB_CORNER].width,
+		atlasCoord[ATLAS_BOTTOM_PANE_BKG].y+5
+	);
+
+	// Terrain Palette Tabs.	
+	ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB = new Object();
+	ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB.span = 9;
+	ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB.max = 9;
+	for (ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB.last = 1; ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB.last <= ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB.max; ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB.last++)
+	{
+		ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB.last] = atlasCoord_Last;
+		atlasCoord[atlasCoord_Last] = new Object();
+		atlasCoord[atlasCoord_Last].width = 63;
+		atlasCoord[atlasCoord_Last].height = 17;
+
+		if (ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB.last == 1)
+			atlasCoord[atlasCoord_Last].x = atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_BKG].x+atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_BKG].width-atlasCoord[atlasCoord_Last].width+2;
+		else
+			atlasCoord[atlasCoord_Last].x = atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB.last]-1].x-atlasCoord[atlasCoord_Last].width+ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB.span;
+
+		atlasCoord[atlasCoord_Last].y = atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_BKG].y+atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_BKG].height;
+
+		atlasCoord_Last++;
+	}
+
+	// Custom button.
+	ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_BUTTON_CUSTOM	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_BUTTON_CUSTOM].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_BUTTON_CUSTOM].height
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_BKG].x-1,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_BKG].y+atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_BKG].height+3
+	);
+
+	// Right arrow on Terrain Palette.
+	ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_RT_ARROW	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		6,
+		12
+	); atlasCoord_Last 				= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_TAB.last-1]].x-atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_RT_ARROW].width-atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_RT_ARROW].width,
+		atlasCoord[ATLAS_BOTTOM_PANE_SECTION_TERRAIN_PALETTE_BUTTON_CUSTOM].y-2
 	);
 }
 

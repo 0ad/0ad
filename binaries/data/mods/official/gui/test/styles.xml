@@ -124,4 +124,40 @@
 		text_align="center"
 		text_valign="center"
 	/>
+
+	<style name="atlas_indent"
+		sprite="atlas_indent"
+		sprite_over="atlas_indent"
+		sprite_pressed="atlas_indent"
+		tooltip_style="atlas_tooltip"
+		tooltip=""
+		textcolor="0 0 0"
+		font="tahoma10"
+		text_align="center"
+		text_valign="center"
+	/>
+
+	<style name="atlas_tab"
+		sprite="atlas_global_tab"
+		sprite_over="atlas_global_tab_lit"
+		sprite_pressed="atlas_global_tab_lit"
+		tooltip_style="atlas_tooltip"
+		tooltip="[font=tahoma10b]Tab[font=tahoma10]\nClick to choose this category."
+		textcolor="0 0 0"
+		font="tahoma10"
+		text_align="center"
+		text_valign="center"
+	/>
+
+	<style name="atlas_icon"
+		sprite="atlas_sheet_icon_emboss"
+		sprite_over="atlas_sheet_icon_indent"
+		sprite_pressed="atlas_sheet_icon_indent"
+		tooltip_style="atlas_tooltip"
+		tooltip="[font=tahoma10b]Icon[font=tahoma10]\nClick to perform this function."
+		textcolor="0 0 0"
+		font="tahoma10"
+		text_align="center"
+		text_valign="center"
+	/>
 </styles>
