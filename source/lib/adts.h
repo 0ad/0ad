@@ -9,7 +9,7 @@
 #include <map>
 
 
-static struct BIT_BUF
+struct BIT_BUF
 {
 	ulong buf;
 	ulong cur;	/* bit to be appended (toggled by add()) */
@@ -39,9 +39,7 @@ static struct BIT_BUF
 
 		return i;
 	}
-}
-bit_buf;
-
+};
 
 
 template<class T, int n> struct RingBuf

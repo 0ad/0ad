@@ -40,7 +40,7 @@ void CFilePacker::Write(const char* filename,u32 version,const char magicstr[4])
 	}
 
 	// get size of data
-	u32 datasize=m_Data.size();
+	u32 datasize=(u32)m_Data.size();
 	if (fwrite(&datasize,sizeof(datasize),1,fp)!=1) {
 		fclose(fp);
 		throw CFileWriteError();
@@ -61,7 +61,7 @@ void CFilePacker::Write(const char* filename,u32 version,const char magicstr[4])
 // PackRaw: pack given number of bytes onto the end of the data stream
 void CFilePacker::PackRaw(const void* rawdata,u32 rawdatalen)
 {
-	u32 start=m_Data.size();
+	u32 start=(u32)m_Data.size();
 	m_Data.resize(m_Data.size()+rawdatalen);
 	memcpy(&m_Data[start],rawdata,rawdatalen);
 	
@@ -71,7 +71,7 @@ void CFilePacker::PackRaw(const void* rawdata,u32 rawdatalen)
 // PackString: pack a string onto the end of the data stream
 void CFilePacker::PackString(const CStr& str)
 {
-	u32 len=str.Length();
+	u32 len=(u32)str.Length();
 	PackRaw(&len,sizeof(len));
 	PackRaw((const char*) str,len);
 }

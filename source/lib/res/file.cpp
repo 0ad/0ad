@@ -64,6 +64,16 @@ enum Conversion
 
 static int convert_path(const char* src, char* dst, Conversion conv = TO_NATIVE)
 {
+	/*
+	// if there's a platform with multiple-character DIR_SEP,
+	// scan through the path and add space for each separator found.
+	const size_t len = strlen(p_path);
+
+	n_path = (const char*)malloc(len * sizeof(char));
+	if(!n_path)
+	return ERR_NO_MEM;
+	*/
+
 	const char* s = src;
 	char* d = dst;
 
@@ -189,19 +199,6 @@ fail:
 // makes sure length < PATH_MAX.
 int file_make_native_path(const char* const path, char* const n_path)
 {
-/*
-	// if there's a platform with multiple-character DIR_SEP,
-	// scan through the path and add space for each separator found.
-	const size_t len = strlen(p_path);
-
-	n_path = (const char*)malloc(len * sizeof(char));
-	if(!n_path)
-		return ERR_NO_MEM;
-*/
-
-	const char* portable = path;
-	char* native = (char*)n_path;
-
 	strcpy(n_path, n_root_dir);
 	return convert_path(path, n_path+n_root_dir_len, TO_NATIVE);
 }
@@ -509,7 +506,7 @@ struct ll_cb
 };
 
 
-int ll_start_io(File* const f, const off_t ofs, size_t size, void* const p, ll_cb* const lcb)
+static int ll_start_io(File* const f, const off_t ofs, size_t size, void* const p, ll_cb* const lcb)
 {
 	CHECK_FILE(f);
 
@@ -545,7 +542,7 @@ int ll_start_io(File* const f, const off_t ofs, size_t size, void* const p, ll_c
 
 // as a convenience, return a pointer to the transfer buffer
 // (rather than expose the ll_cb internals)
-ssize_t ll_wait_io(ll_cb* const lcb, void*& p)
+static ssize_t ll_wait_io(ll_cb* const lcb, void*& p)
 {
 	aiocb* cb = &lcb->cb;
 
@@ -733,7 +730,7 @@ struct IO
 	int pending : 1;
 };
 
-H_TYPE_DEFINE(IO)
+H_TYPE_DEFINE(IO);
 
 
 // don't support forcibly closing files => don't need to keep track of
@@ -742,6 +739,8 @@ H_TYPE_DEFINE(IO)
 
 static void IO_init(IO* io, va_list args)
 {
+	UNUSED(args);
+
 	const size_t cb_size = round_up(sizeof(struct ll_cb), 16);
 	io->cb = (ll_cb*)mem_alloc(cb_size, 16, MEM_ZERO);
 }
@@ -761,6 +760,8 @@ static void IO_dtor(IO* io)
 // aio_result, which would terminate the read.
 static int IO_reload(IO* io, const char* fn)
 {
+	UNUSED(fn);
+
 	return io->cb? 0 : ERR_NO_MEM;
 }
 
@@ -920,8 +921,6 @@ Handle file_start_io(File* const f, const off_t user_ofs, size_t user_size, void
 		debug_warn("file_start_io: user_size = 0 - why?");
 		return ERR_INVALID_PARAM;
 	}
-
-	const int op = (f->flags & FILE_WRITE)? LIO_WRITE : LIO_READ;
 
 	// cut off at EOF.
 	// avoid min() due to type conversion warnings.

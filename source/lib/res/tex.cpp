@@ -53,6 +53,9 @@
 #endif	// NO_PNG
 
 
+static const u32 INVALID_FORMAT = 0xffffffff;
+	// used in local variables only; never written into Tex.
+
 // filled by loader funcs => declare here
 struct Tex
 {
@@ -68,7 +71,7 @@ struct Tex
 	int int_fmt;
 };
 
-H_TYPE_DEFINE(Tex)
+H_TYPE_DEFINE(Tex);
 
 
 const u32 FMT_UNKNOWN = 0;
@@ -272,7 +275,7 @@ static int tga_load(const char* fn, const u8* ptr, size_t size, Tex* t)
 		const u32 ofs = hdr_size;
 
 		// determine format
-		u32 fmt = ~0;
+		u32 fmt = INVALID_FORMAT;
 		// .. grayscale
 		if(type == 3)
 		{
@@ -291,7 +294,7 @@ static int tga_load(const char* fn, const u8* ptr, size_t size, Tex* t)
 				fmt = GL_BGRA;
 		}
 
-		if(fmt == ~0)
+		if(fmt == INVALID_FORMAT)
 			err = "invalid format or bpp";
 		if(desc & 0x30)
 			err = "image is not bottom-up and left-to-right";
@@ -429,6 +432,8 @@ static inline bool raw_valid(const u8* p, size_t size)
 
 static int raw_load(const char* fn, const u8* ptr, size_t size, Tex* t)
 {
+	UNUSED(ptr);
+
 	static u32 fmts[5] = { 0, 0, GL_LUMINANCE_ALPHA, GL_RGB, GL_RGBA };
 	for(uint i = 1; i <= 4; i++)
 	{
@@ -517,7 +522,7 @@ fail:
 		goto ret;
 	}
 
-	const u8** rows;
+	const u8** rows = 0;
 		// freed in cleanup code; need scoping on VC6 due to goto
 
 	{
@@ -532,14 +537,14 @@ fail:
 
 	const size_t pitch = png_get_rowbytes(png_ptr, info_ptr);
 
-	const u32 fmts[8] = { 0, ~0, GL_RGB, ~0, GL_LUMINANCE_ALPHA, ~0, GL_RGBA, ~0 };
-	const u32 fmt = color_type < 8? fmts[color_type] : ~0;
+	const u32 fmts[8] = { 0, INVALID_FORMAT, GL_RGB, INVALID_FORMAT, GL_LUMINANCE_ALPHA, INVALID_FORMAT, GL_RGBA, INVALID_FORMAT };
+	const u32 fmt = color_type < 8? fmts[color_type] : INVALID_FORMAT;
 	const u32 bpp = (u32)(pitch / w * 8);
 	const u32 ofs = 0;	// libpng returns decoded image data; no header
 
 	if(prec != 8)
 		msg = "channel precision != 8 bits";
-	if(fmt == ~0)
+	if(fmt == INVALID_FORMAT)
 		msg = "color type is invalid (must be direct color)";
 	if(msg)
 	{
@@ -684,6 +689,8 @@ fail:
 
 static void Tex_init(Tex* t, va_list args)
 {
+	UNUSED(t);
+	UNUSED(args);
 }
 
 

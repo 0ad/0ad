@@ -107,7 +107,7 @@ typedef H_VTbl* H_Type;
 		sizeof(type),	/* control block size */\
 		#type			/* name */\
 	};\
-	static H_Type H_##type = &V_##type;
+	static H_Type H_##type = &V_##type
 
 	// note: we cast to void* pointers so the functions can be declared to
 	// take the control block pointers, instead of requiring a cast in each.
@@ -256,7 +256,7 @@ guide to defining and using resources
    };
 
 3) build its vtbl:
-   H_TYPE_DEFINE(Res1)
+   H_TYPE_DEFINE(Res1);
 
    this defines the symbol H_Res1, which is used whenever the handle
    manager needs its type. it is only accessible to this module

@@ -16,6 +16,9 @@
 
 static void heap_free(void* const p, const size_t size, const uintptr_t ctx)
 {
+	UNUSED(p);
+	UNUSED(size);
+
 	void* org_p = (void*)ctx;
 	free(org_p);
 }
@@ -42,6 +45,8 @@ static const size_t POOL_CAP = 8*MB;	// TODO: user editable
 
 static void pool_free(void* const p, const size_t size, const uintptr_t ctx)
 {
+	UNUSED(p);
+
 	size_t ofs = ctx;
 
 	// at end of pool? if so, 'free' it
@@ -159,11 +164,13 @@ struct Mem
 					// alternative: switch(mem->type) in mem_dtor
 };
 
-H_TYPE_DEFINE(Mem)
+H_TYPE_DEFINE(Mem);
 
 
 static void Mem_init(Mem* m, va_list args)
 {
+	UNUSED(m);
+	UNUSED(args);
 }
 
 
@@ -178,6 +185,9 @@ static void Mem_dtor(Mem* m)
 // (key == pointer we allocate)
 static int Mem_reload(Mem* m, const char* fn)
 {
+	UNUSED(m);
+	UNUSED(fn);
+
 	return 0;
 }
 

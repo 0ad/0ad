@@ -78,12 +78,6 @@ struct Watch
 	// user pointer from from FAMMonitorDirectory; passed to FAMEvent
 	void* user_data;
 
-	// history to detect series of notifications, so we can skip
-	// redundant reloads (slow)
-	std::string last_path;
-	DWORD last_action;	// FILE_ACTION_* codes or 0
-	DWORD last_ticks;	// timestamp via GetTickCount
-
 	DWORD dummy_nbytes;
 		// storage for RDC lpBytesReturned, to avoid BoundsChecker warning
 		// (dox are unclear on whether the pointer must be valid).
@@ -99,12 +93,8 @@ struct Watch
 
 
 	Watch()
-		: last_path("")
 	{
 		hDir = INVALID_HANDLE_VALUE;
-
-		last_action = 0;
-		last_ticks = 0;
 
 		// change_buf[] doesn't need init
 	}
@@ -376,22 +366,8 @@ static int extract_events(FAMConnection* fc, FAMRequest* fr, Watch* w)
 			// fields are set below; we need to add the event here
 			// so that we have a place to put the converted filename.
 
-
-		//
 		// interpret action
-		//
-
-		const char* actions[] = { "", "FILE_ACTION_ADDED", "FILE_ACTION_REMOVED", "FILE_ACTION_MODIFIED", "FILE_ACTION_RENAMED_OLD_NAME", "FILE_ACTION_RENAMED_NEW_NAME" };
-		const char* action = actions[fni->Action];
-
-		// many apps save by creating a temp file, deleting the original,
-		// and renaming the temp file. that leads to 2 reloads, which is slow.
-		// try to detect this case with a simple state machine - we assume
-		// the notification order is always the same.
-
-		// TODO
-
-		FAMCodes code;
+		FAMCodes code = FAMChanged;
 		switch(fni->Action)
 		{
 		case FILE_ACTION_ADDED:
@@ -405,10 +381,11 @@ static int extract_events(FAMConnection* fc, FAMRequest* fr, Watch* w)
 		case FILE_ACTION_MODIFIED:
 			code = FAMChanged;
 			break;
+		default:
+			debug_warn("unknown fni->Action");
+			break;
 		};
-
 		event.code = code;
-
 
 		// build filename
 		// (prepend directory and convert from Windows BSTR)
@@ -419,14 +396,12 @@ static int extract_events(FAMConnection* fc, FAMRequest* fr, Watch* w)
 			*fn++ = (char)fni->FileName[i];
 		*fn = '\0';
 
-
+		// advance to next entry in buffer (variable length)
 		const DWORD ofs = fni->NextEntryOffset;
-		// advance to next FILE_NOTIFY_INFORMATION (variable length)
-		if(ofs)
-			pos += ofs;
-		// this was the last entry - no more elements left in buffer.
-		else
+		// .. this one was the last - done.
+		if(!ofs)
 			break;
+		pos += ofs;
 	}
 
 	return 0;

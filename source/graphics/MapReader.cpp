@@ -118,7 +118,7 @@ void CMapReader::UnpackTerrain(CFileUnpacker& unpacker)
 	// unpack tile data
 	u32 tilesPerSide=m_MapSize*PATCH_SIZE;
 	m_Tiles.resize(SQR(tilesPerSide));
-	unpacker.UnpackRaw(&m_Tiles[0],sizeof(STileDesc)*m_Tiles.size());	
+	unpacker.UnpackRaw(&m_Tiles[0],(u32)(sizeof(STileDesc)*m_Tiles.size()));	
 }
 
 // ApplyData: take all the input data, and rebuild the scene from it

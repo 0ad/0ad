@@ -63,7 +63,7 @@ void CModelRData::BuildIndices()
 	}
 
 	// build indices
-	u32 base=m_VB->m_Index;
+	u32 base=(u32)m_VB->m_Index;
 	u32 indices=0;
 	SModelFace* faces=mdef->GetFaces();
 	for (int j=0; j<mdef->GetNumFaces(); j++) {
@@ -265,9 +265,9 @@ float CModelRData::BackToFrontIndexSort(CMatrix3D& objToCam)
 	u32 indices=0;
 	for (i=0;i<numFaces;i++) {
 		SModelFace& face=faces[IndexSorter[i].first];
-		m_Indices[indices++]=face.m_Verts[0]+m_VB->m_Index;
-		m_Indices[indices++]=face.m_Verts[1]+m_VB->m_Index;
-		m_Indices[indices++]=face.m_Verts[2]+m_VB->m_Index;
+		m_Indices[indices++]=(u16)(face.m_Verts[0]+m_VB->m_Index);
+		m_Indices[indices++]=(u16)(face.m_Verts[1]+m_VB->m_Index);
+		m_Indices[indices++]=(u16)(face.m_Verts[2]+m_VB->m_Index);
 	}
 
 	// clear list for next call
@@ -320,9 +320,9 @@ void CModelRData::RenderModels(u32 streamflags)
 				if (batch->m_IndexData.size()>0) {
 					if (streamflags & STREAM_UV0) g_Renderer.BindTexture(0,tex_id(batch->m_Texture));
 					for (uint j=0;j<batch->m_IndexData.size();j++) {
-						glDrawElements(GL_TRIANGLES,batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);
+						glDrawElements(GL_TRIANGLES,(GLsizei)batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);
 						g_Renderer.m_Stats.m_DrawCalls++;
-						g_Renderer.m_Stats.m_ModelTris+=batch->m_IndexData[j].first/2;
+						g_Renderer.m_Stats.m_ModelTris+=(u32)batch->m_IndexData[j].first/2;
 					}
 				}
 			}

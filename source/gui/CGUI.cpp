@@ -181,7 +181,8 @@ bool CGUI::HandleEvent(const SDL_Event& ev)
 		// TODO Gee: Handle
 	}
 // JW: what's the difference between mPress and mDown? what's the code below responsible for?
-/*/* // Generally if just mouse is clicked
+/*
+	// Generally if just mouse is clicked
 	if (m_pInput->mDown(NEMM_BUTTON1) && pNearest)
 	{
 		pNearest->HandleMessage(GUIM_MOUSE_DOWN_LEFT);
@@ -237,7 +238,7 @@ void CGUI::Initialize()
 
 void CGUI::Process()
 {
-/*/*
+/*
 
 	// TODO Gee: check if m_pInput is valid, otherwise return
 ///	assert(m_pInput);

@@ -221,8 +221,8 @@ public:
 	struct SFeedback
 	{
 		// Constants
-		const static int Left=0;
-		const static int Right=1;
+		static const int Left=0;
+		static const int Right=1;
 
 		/**
 		 * Reset all member data.

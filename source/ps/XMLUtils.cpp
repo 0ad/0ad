@@ -9,8 +9,20 @@
 
 
 #ifdef _MSC_VER
-#pragma comment(lib, "xerces-c_2.lib")
-#endif
+# ifdef XERCES_STATIC_LIB
+#  ifndef NDEBUG
+#   pragma comment(lib, "xerces-c_2-static.lib")
+#  else
+#   pragma comment(lib, "xerces-c_2-static.lib")
+#  endif	// NDEBUG
+# else
+#  ifndef NDEBUG
+#   pragma comment(lib, "xerces-c_2D.lib")
+#  else
+#   pragma comment(lib, "xerces-c_2.lib")
+#  endif	// NDEBUG
+# endif	// XERCES_STATIC_LIB
+#endif	// _MSC_VER
 
 XERCES_CPP_NAMESPACE_USE
 

@@ -62,7 +62,7 @@ enum
 enum FILE_CB_FLAGS
 {
 	// location
-	LOC_DIR = BIT(0),
+	LOC_DIR = BIT(0)
 };
 
 

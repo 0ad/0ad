@@ -110,11 +110,13 @@ struct Font
 	uint list_base;
 };
 
-H_TYPE_DEFINE(Font)
+H_TYPE_DEFINE(Font);
 
 
 static void Font_init(Font* f, va_list args)
 {
+	UNUSED(f);
+	UNUSED(args);
 }
 
 static void Font_dtor(Font* f)

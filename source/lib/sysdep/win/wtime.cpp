@@ -466,6 +466,8 @@ static HANDLE hExitEvent;
 
 static unsigned __stdcall calibration_thread(void* data)
 {
+	UNUSED(data);
+
 	for(;;)
 	{
 		if(WaitForSingleObject(hExitEvent, 1000) != WAIT_TIMEOUT)

@@ -43,7 +43,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 
 CEntity::~CEntity()
 {
-	for( i32 i = 0; i < m_base->m_inheritors.size(); i++ )
+	for( size_t i = 0; i < m_base->m_inheritors.size(); i++ )
 		if( m_base->m_inheritors[i] == this )
 			m_base->m_inheritors.erase( m_base->m_inheritors.begin() + i );
 
@@ -126,7 +126,7 @@ float CEntity::getExactGroundLevel( float x, float y )
 	u16* heightmap = g_Terrain.GetHeightMap();
 	unsigned long mapsize = g_Terrain.GetVerticesPerSide();
 
-	assert( ( xi >= 0 ) && ( xi < mapsize ) && ( yi >= 0 ) && ( yi < mapsize ) );
+	assert( ( xi >= 0 ) && ( xi < (int)mapsize ) && ( yi >= 0 ) && ( yi < (int)mapsize ) );
 
 	float h00 = heightmap[yi*mapsize + xi];
 	float h01 = heightmap[yi*mapsize + xi + mapsize];

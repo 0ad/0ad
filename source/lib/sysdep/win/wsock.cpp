@@ -27,6 +27,8 @@
 #pragma comment(lib, "ws2_32.lib")
 #endif
 
+static bool wsock_initialized;
+
 
 fp_getnameinfo_t getnameinfo;
 fp_getaddrinfo_t getaddrinfo;
@@ -64,7 +66,8 @@ static int wsock_init()
 
 static int wsock_shutdown()
 {
-	return WSACleanup();
+	// only call WSACleanup if the library was loaded/used
+	return wsock_initialized? WSACleanup() : 0;
 }
 
 
@@ -85,7 +88,8 @@ static FARPROC WINAPI delay_load_hook(unsigned dliNotify, PDelayLoadInfo pdli)
 	if(dliNotify == dliNoteEndProcessing && !strncmp(pdli->szDll, "ws2_32", 6))
 	{
 		char d[1024];
-		WSAStartup(0x0002, d);	// want 2.0
+		if(WSAStartup(0x0002, d) == 0)	// want 2.0
+			wsock_initialized = true;
 	}
 
 	return 0;

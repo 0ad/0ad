@@ -25,8 +25,10 @@
 #undef CONFIG_DISABLE_EXCEPTIONS
 
 
-#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
-# define HAVE_C99
+#ifdef __STDC_VERSION__		// nested #if to avoid ICC warning if not defined
+# if __STDC_VERSION__ >= 199901L
+#  define HAVE_C99
+# endif
 #endif
 
 #ifdef _MSC_VER

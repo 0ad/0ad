@@ -278,7 +278,8 @@ int Dir::add_subdir(const char* const fn)
 		return -1;
 	}
 
-	subdirs[fn];
+	const std::string fn_s(fn);
+	subdirs[fn_s];
 		// side effect: maps <fn> to a newly constructed Dir()
 		// non-const => cannot be optimized away.
 	return 0;
@@ -287,7 +288,8 @@ int Dir::add_subdir(const char* const fn)
 
 Dir* Dir::find_subdir(const char* const fn)
 {
-	SubDirIt it = subdirs.find(fn);
+	const std::string fn_s(fn);
+	SubDirIt it = subdirs.find(fn_s);
 	if(it == subdirs.end())
 		return 0;
 	return &it->second;
@@ -308,7 +310,8 @@ int Dir::add_file(const char* const fn, const FileLoc* const loc)
 		// for absolute clarity; the container holds const FileLoc* objects.
 		// operator[] returns a reference to that.
 		// need this typedef to work around a GCC bug?
-	Data& old_loc = files[fn];
+	const std::string fn_s(fn);
+	Data& old_loc = files[fn_s];
 	// old loc exists and is higher priority - keep it.
 	if(old_loc && old_loc->pri > loc->pri)
 		return 1;
@@ -320,7 +323,8 @@ int Dir::add_file(const char* const fn, const FileLoc* const loc)
 
 const FileLoc* Dir::find_file(const char* const fn)
 {
-	FileIt it = files.find(fn);
+	const std::string fn_s(fn);
+	FileIt it = files.find(fn_s);
 	if(it == files.end())
 		return 0;
 	return it->second;
@@ -472,6 +476,8 @@ struct FileCBParams
 // just generate a list of archives here and mount them from the caller.
 static int add_dirent_cb(const char* const fn, const uint flags, const ssize_t size, const uintptr_t user)
 {
+	UNUSED(size);
+
 	const FileCBParams* const params = (FileCBParams*)user;
 	Dir* const cur_dir           = params->dir;
 	const FileLoc* const cur_loc = params->loc;
@@ -620,6 +626,8 @@ struct ArchiveCBParams
 // add each successfully opened archive to list.
 static int archive_cb(const char* const fn, const uint flags, const ssize_t size, const uintptr_t user)
 {
+	UNUSED(size);
+
 	// not interested in subdirectories
 	if(flags & LOC_DIR)
 		return 0;
@@ -652,8 +660,6 @@ static int archive_cb(const char* const fn, const uint flags, const ssize_t size
 // mount list, when invalidating (reloading) the VFS.
 static int remount(Mount& m)
 {
-	int err;
-
 	const char* const v_path = m.v_path.c_str();
 	const char* const f_name = m.f_name.c_str();
 	const uint pri           = m.pri;
@@ -710,7 +716,7 @@ static inline void remount_all()
 	{ std::for_each(mounts.begin(), mounts.end(), remount); }
 
 
-void vfs_shutdown(void)
+static void vfs_shutdown(void)
 {
 	tree_clear();
 	unmount_all();
@@ -833,6 +839,8 @@ H_TYPE_DEFINE(VDir);
 
 static void VDir_init(VDir* vd, va_list args)
 {
+	UNUSED(vd);
+	UNUSED(args);
 }
 
 static void VDir_dtor(VDir* vd)
@@ -1015,7 +1023,7 @@ enum
 	// internal file state flags
 	// make sure these don't conflict with vfs.h flags
 	VF_OPEN = 0x100,
-	VF_ZIP  = 0x200,
+	VF_ZIP  = 0x200
 
 };
 
@@ -1035,7 +1043,7 @@ struct VFile
 	// (especially in PARANOIA builds, which add a member!)
 };
 
-H_TYPE_DEFINE(VFile)
+H_TYPE_DEFINE(VFile);
 
 
 // with #define PARANOIA, File and ZFile get an additional member,
@@ -1093,9 +1101,6 @@ static int VFile_reload(VFile* vf, const char* path)
 	// (e.g. if resource opens a file) is unspecified.
 	if(flags & VF_OPEN)
 		return 0;
-
-	int err = -1;
-
 
 	const FileLoc* loc;
 	CHECK_ERR(tree_lookup(path, &loc));
@@ -1202,7 +1207,7 @@ debug_out("vfs_load fn=%s\n", fn);
 		p = mem_get_ptr(vf->hm, &size);
 		if(p)
 		{
-			assert(vf_size(vf) == size && "vfs_load: mismatch between File and Mem size");
+			assert(vf_size(vf) == (off_t)size && "vfs_load: mismatch between File and Mem size");
 			hm = vf->hm;
 			goto skip_read;
 		}

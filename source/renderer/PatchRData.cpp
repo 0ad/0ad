@@ -130,12 +130,12 @@ void CPatchRData::BuildBlends()
 				}
 			}
 			if (neighbourTextures.size()>0) {
-				u32 count=neighbourTextures.size();
+				u32 count=(u32)neighbourTextures.size();
 				// sort textures from lowest to highest priority
 				std::sort(neighbourTextures.begin(),neighbourTextures.end());
 
 				// for each of the neighbouring textures ..
-				for (uint k=0;k<neighbourTextures.size();++k) {
+				for (uint k=0;k<(uint)neighbourTextures.size();++k) {
 
 					// now build the grid of blends dependent on whether the tile adjacent to the current tile 
 					// uses the current neighbour texture
@@ -199,7 +199,7 @@ void CPatchRData::BuildBlends()
 						int vsize=PATCH_SIZE+1;
 
 						SBlendVertex dst;
-						int vindex=m_BlendVertices.size();
+						int vindex=(int)m_BlendVertices.size();
 
 						const SBaseVertex& vtx0=m_Vertices[(j*vsize)+i];
 						dst.m_UVs[0]=i*0.125f;
@@ -262,21 +262,20 @@ void CPatchRData::BuildBlends()
 	m_VBBlends=g_VBMan.Allocate(sizeof(SBlendVertex),m_BlendVertices.size(),false);
 	m_VBBlends->m_Owner->UpdateChunkVertices(m_VBBlends,&m_BlendVertices[0]);
 
-
 	// now build outgoing splats
 	m_BlendSplats.resize(splatTextures.size());
 	int splatCount=0;
 
-	u32 base=m_VBBlends->m_Index;
+	u32 base=(u32)m_VBBlends->m_Index;
 	std::set<Handle>::iterator iter=splatTextures.begin();
 	for (;iter!=splatTextures.end();++iter) {
 		Handle tex=*iter;
 
 		SSplat& splat=m_BlendSplats[splatCount];
-		splat.m_IndexStart=m_BlendIndices.size();
+		splat.m_IndexStart=(u32)m_BlendIndices.size();
 		splat.m_Texture=tex;
 
-		for (uint k=0;k<splats.size();k++) {
+		for (uint k=0;k<(uint)splats.size();k++) {
 			if (splats[k].m_Texture==tex) {
 				m_BlendIndices.push_back(splats[k].m_Indices[0]+base);
 				m_BlendIndices.push_back(splats[k].m_Indices[1]+base);
@@ -287,7 +286,6 @@ void CPatchRData::BuildBlends()
 		}
 		splatCount++;
 	}
-
 }
 
 void CPatchRData::BuildIndices()
@@ -318,13 +316,13 @@ void CPatchRData::BuildIndices()
 	// now build base splats from interior textures
 	m_Splats.resize(textures.size());
 	// build indices for base splats	
-	u32 base=m_VBBase->m_Index;
-	for (uint i=0;i<m_Splats.size();i++) {
+	u32 base=(u32)m_VBBase->m_Index;
+	for (uint i=0;i<(uint)m_Splats.size();i++) {
 		Handle h=textures[i];
 
 		SSplat& splat=m_Splats[i];
 		splat.m_Texture=h;
-		splat.m_IndexStart=m_Indices.size();
+		splat.m_IndexStart=(u32)m_Indices.size();
 		
 		for (int j=0;j<PATCH_SIZE;j++) {
 			for (int i=0;i<PATCH_SIZE;i++) {
@@ -336,7 +334,7 @@ void CPatchRData::BuildIndices()
 				}
 			}
 		}
-		splat.m_IndexCount=m_Indices.size()-splat.m_IndexStart;
+		splat.m_IndexCount=(u32)m_Indices.size()-splat.m_IndexStart;
 	}
 	
 	// build indices for the shadow map pass
@@ -428,7 +426,7 @@ void CPatchRData::RenderBase()
 	glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SBaseVertex,m_UVs[0]));
 	
 	// render each splat
-	for (uint i=0;i<m_Splats.size();i++) {
+	for (uint i=0;i<(uint)m_Splats.size();i++) {
 		SSplat& splat=m_Splats[i];
 		g_Renderer.BindTexture(0,tex_id(splat.m_Texture));
 		glDrawElements(GL_QUADS,splat.m_IndexCount,GL_UNSIGNED_SHORT,&m_Indices[splat.m_IndexStart]);
@@ -450,11 +448,11 @@ void CPatchRData::RenderStreams(u32 streamflags)
 	else if (streamflags & STREAM_POSTOUV0) glTexCoordPointer(3,GL_FLOAT,sizeof(SBaseVertex),base+offsetof(SBaseVertex,m_Position));
 	
 	// render all base splats at once
-	glDrawElements(GL_QUADS,m_Indices.size(),GL_UNSIGNED_SHORT,&m_Indices[0]);
+	glDrawElements(GL_QUADS,(GLsizei)m_Indices.size(),GL_UNSIGNED_SHORT,&m_Indices[0]);
 
 	// bump stats
 	g_Renderer.m_Stats.m_DrawCalls++;
-	g_Renderer.m_Stats.m_TerrainTris+=m_Indices.size()/2;
+	g_Renderer.m_Stats.m_TerrainTris+=(u32)m_Indices.size()/2;
 }
 
 
@@ -477,7 +475,7 @@ void CPatchRData::RenderBlends()
 	glClientActiveTexture(GL_TEXTURE1_ARB);
 	glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SBlendVertex,m_AlphaUVs[0]));
 
-	for (uint i=0;i<m_BlendSplats.size();i++) {
+	for (uint i=0;i<(uint)m_BlendSplats.size();i++) {
 		SSplat& splat=m_BlendSplats[i];
 		g_Renderer.BindTexture(0,tex_id(splat.m_Texture));
 		glDrawElements(GL_QUADS,splat.m_IndexCount,GL_UNSIGNED_SHORT,&m_BlendIndices[splat.m_IndexStart]);
@@ -587,9 +585,9 @@ void CPatchRData::RenderBaseSplats()
 				if (batch->m_IndexData.size()>0) {
 					g_Renderer.BindTexture(0,tex_id(batch->m_Texture));
 					for (uint j=0;j<batch->m_IndexData.size();j++) {
-						glDrawElements(GL_QUADS,batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);
+						glDrawElements(GL_QUADS,(GLsizei)batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);
 						g_Renderer.m_Stats.m_DrawCalls++;
-						g_Renderer.m_Stats.m_TerrainTris+=batch->m_IndexData[j].first/2;
+						g_Renderer.m_Stats.m_TerrainTris+=(u32)batch->m_IndexData[j].first/2;
 					}
 				}
 			}
@@ -680,9 +678,9 @@ void CPatchRData::RenderBlendSplats()
 				if (batch->m_IndexData.size()>0) {
 					g_Renderer.BindTexture(0,tex_id(batch->m_Texture));
 					for (uint j=0;j<batch->m_IndexData.size();j++) {
-						glDrawElements(GL_QUADS,batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);
+						glDrawElements(GL_QUADS,(GLsizei)batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);
 						g_Renderer.m_Stats.m_DrawCalls++;
-						g_Renderer.m_Stats.m_TerrainTris+=batch->m_IndexData[j].first/2;
+						g_Renderer.m_Stats.m_TerrainTris+=(u32)batch->m_IndexData[j].first/2;
 					}
 				}
 			}
@@ -784,9 +782,9 @@ void CPatchRData::ApplyShadowMap(GLuint shadowmaphandle)
 			// render batch (can only be one per buffer, since all batches are flagged as using a null texture)
 			const CVertexBuffer::Batch* batch=batches[0];
 			for (uint j=0;j<batch->m_IndexData.size();j++) {
-				glDrawElements(GL_QUADS,batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);
+				glDrawElements(GL_QUADS,(GLsizei)batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);
 				g_Renderer.m_Stats.m_DrawCalls++;
-				g_Renderer.m_Stats.m_TerrainTris+=batch->m_IndexData[j].first/2;
+				g_Renderer.m_Stats.m_TerrainTris+=(u32)batch->m_IndexData[j].first/2;
 			}
 		}
 	}
@@ -804,4 +802,4 @@ void CPatchRData::ApplyShadowMap(GLuint shadowmaphandle)
 	glDisable(GL_BLEND);
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-} 
+}

@@ -128,6 +128,8 @@ found_ecdr:
 }
 
 
+#ifdef PARANOIA
+
 // make sure the LFH fields match those passed (from the CDFH).
 // only used in PARANOIA builds - costs time when opening archives.
 static int zip_verify_lfh(const void* const file, const off_t lfh_ofs, const off_t file_ofs)
@@ -159,6 +161,8 @@ static int zip_verify_lfh(const void* const file, const off_t lfh_ofs, const off
 
 	return 0;
 }
+
+#endif	// #ifdef PARANOIA
 
 
 // extract information from the current Central Directory File Header;
@@ -527,11 +531,13 @@ struct ZArchive
 	bool is_open;
 };
 
-H_TYPE_DEFINE(ZArchive)
+H_TYPE_DEFINE(ZArchive);
 
 
 static void ZArchive_init(ZArchive* za, va_list args)
 {
+	UNUSED(za);
+	UNUSED(args);
 }
 
 
@@ -789,7 +795,7 @@ do\
 while(0);
 
 
-int zip_open_idx(const Handle ha, const i32 idx, ZFile* zf)
+static int zip_open_idx(const Handle ha, const i32 idx, ZFile* zf)
 {
 	memset(zf, 0, sizeof(ZFile));
 

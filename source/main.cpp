@@ -540,12 +540,6 @@ PREVTSC=TSC;
 	// (command line params may override these)
 	get_cur_vmode(&g_xres, &g_yres, &g_bpp, &g_freq);
 
-	if(FSOUND_Init(44100, 32, 0) == 0)
-	{
-		swprintf(err_msg, ERR_MSG_SIZE, L"Failed to initialise FMOD");
-		display_startup_error(err_msg);
-	}
-
 	// set current directory to "$game_dir/data".
 	// this is necessary because it is otherwise unknown,
 	// especially if run from a shortcut / symlink.
@@ -626,7 +620,7 @@ PREVTSC=TSC;
 
 	font = font_load("fonts/verdana.fnt");
 
-	g_Console = new CConsole(0, g_yres-600.f, g_xres, 600.f);
+	g_Console = new CConsole(0, g_yres-600.f, (float)g_xres, 600.f);
 
 	// create renderer
 	new CRenderer;
@@ -685,7 +679,8 @@ if(!g_MapFile)
 
 	// Initialize entities
 
-	g_EntityManager.dispatchAll( &CMessage( CMessage::EMSG_INIT ) );
+	CMessage init_msg (CMessage::EMSG_INIT);
+	g_EntityManager.dispatchAll(&init_msg);
 
 #ifndef NO_GUI
 	in_add_handler(gui_handler);

@@ -36,7 +36,7 @@ void CMapWriter::SaveMap(const char* filename)
 // handle isn't in list
 static u16 GetHandleIndex(const Handle handle,const std::vector<Handle>& handles)
 {
-	for (uint i=0;i<handles.size();i++) {
+	for (uint i=0;i<(uint)handles.size();i++) {
 		if (handles[i]==handle) {
 			return i;
 		}
@@ -50,7 +50,7 @@ static u16 GetHandleIndex(const Handle handle,const std::vector<Handle>& handles
 // object isn't in list
 static u16 GetObjectIndex(const CObjectEntry* object,const std::vector<CObjectEntry*>& objects)
 {
-	for (uint i=0;i<objects.size();i++) {
+	for (uint i=0;i<(uint)objects.size();i++) {
 		if (objects[i]==object) {
 			return i;
 		}
@@ -81,7 +81,7 @@ void CMapWriter::EnumTerrainTextures(std::vector<CStr>& textures,
 					CMiniPatch& mp=g_Terrain.GetPatch(i,j)->m_MiniPatches[m][k];
 					u16 index=u16(GetHandleIndex(mp.Tex1,handles));
 					if (index==0xffff) {
-						index=handles.size();
+						index=(u16)handles.size();
 						handles.push_back(mp.Tex1);
 					}
 
@@ -95,7 +95,7 @@ void CMapWriter::EnumTerrainTextures(std::vector<CStr>& textures,
 	}
 
 	// now find the texture names for each handle
-	for (uint i=0;i<handles.size();i++) {
+	for (uint i=0;i<(uint)handles.size();i++) {
 		CStr texturename;
 		CTextureEntry* texentry=g_TexMan.FindTexture(handles[i]);
 		if (!texentry) {
@@ -122,12 +122,12 @@ void CMapWriter::EnumObjects(std::vector<CStr>& objectTypes,std::vector<SObjectD
 	SObjectDesc* objptr=&objects[0];
 
 	// now iterate through all the units
-	for (u32 j=0;j<units.size();j++) {
+	for (u32 j=0;j<(u32)units.size();j++) {
 		CUnit* unit=units[j];
 
 		u16 index=u16(GetObjectIndex(unit->GetObject(),objectsInUse));
 		if (index==0xffff) {
-			index=objectsInUse.size();
+			index=(u16)objectsInUse.size();
 			objectsInUse.push_back(unit->GetObject());
 		}
 
@@ -137,7 +137,7 @@ void CMapWriter::EnumObjects(std::vector<CStr>& objectTypes,std::vector<SObjectD
 	}
 
 	// now build outgoing objectTypes array
-	for (uint i=0;i<objectsInUse.size();i++) {
+	for (uint i=0;i<(uint)objectsInUse.size();i++) {
 		objectTypes.push_back(objectsInUse[i]->m_Name);
 	}
 }
@@ -177,14 +177,14 @@ void CMapWriter::PackObjects(CFilePacker& packer)
 	EnumObjects(objectTypes,objects);
 
 	// pack object types
-	u32 numObjTypes=objectTypes.size();
+	u32 numObjTypes=(u32)objectTypes.size();
 	packer.PackRaw(&numObjTypes,sizeof(numObjTypes));	
 	for (uint i=0;i<numObjTypes;i++) {
 		packer.PackString(objectTypes[i]);
 	}
 	
 	// pack object data
-	u32 numObjects=objects.size();
+	u32 numObjects=(u32)objects.size();
 	packer.PackRaw(&numObjects,sizeof(numObjects));	
 	packer.PackRaw(&objects[0],sizeof(SObjectDesc)*numObjects);	
 }
@@ -210,13 +210,13 @@ void CMapWriter::PackTerrain(CFilePacker& packer)
 	EnumTerrainTextures(terrainTextures,tiles);
 	
 	// pack texture names
-	u32 numTextures=terrainTextures.size();
+	u32 numTextures=(u32)terrainTextures.size();
 	packer.PackRaw(&numTextures,sizeof(numTextures));	
 	for (uint i=0;i<numTextures;i++) {
 		packer.PackString(terrainTextures[i]);
 	}
 	
 	// pack tile data
-	packer.PackRaw(&tiles[0],sizeof(STileDesc)*tiles.size());	
+	packer.PackRaw(&tiles[0],(u32)(sizeof(STileDesc)*tiles.size()));	
 }
 

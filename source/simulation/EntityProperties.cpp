@@ -66,8 +66,8 @@ bool CProperty_i32::rebuild( CProperty* parent, bool triggerFn )
 		newvalue = *_parent;
 	if( modifier )
 	{
-		newvalue *= modifier->multiplicative;
-		newvalue += modifier->additive;
+		newvalue = (i32)(newvalue * modifier->multiplicative);
+		newvalue += (i32)modifier->additive;
 	}
 	if( data == newvalue )
 		return( false );		// No change.
@@ -150,7 +150,7 @@ CProperty_float::operator jsval()
 
 CProperty_float::operator bool()
 {
-	return( data );
+	return( data != 0.0f);
 }
 
 float CProperty_float::operator+( float value )

@@ -2,6 +2,7 @@
 
 #include "res.h"
 #include "file.h"
+#include "timer.h"
 
 #ifdef _WIN32
 #include "sysdep/win/wfam.h"
@@ -66,16 +67,43 @@ int res_reload_changed_files()
 	if(!initialized)
 		return -1;
 
+	static double last_time;
+	static char last_fn[VFS_MAX_PATH];
+
 	FAMEvent e;
 	while(FAMPending(&fc) > 0)
-		if(FAMNextEvent(&fc, &e) == 0)
-		{
-			char path[PATH_MAX];
-			char vfs_path[VFS_MAX_PATH];
-			CHECK_ERR(file_make_portable_path(e.filename, path));
-			CHECK_ERR(vfs_get_path(path, vfs_path));
-			res_reload(vfs_path);
-		}
+	{
+		if(FAMNextEvent(&fc, &e) < 0)
+			continue;
+
+		char path[PATH_MAX];
+		char vfs_path[VFS_MAX_PATH];
+		CHECK_ERR(file_make_portable_path(e.filename, path));
+		CHECK_ERR(vfs_get_path(path, vfs_path));
+
+		const char* fn = vfs_path;
+
+		// many apps save by creating a temp file, deleting the original,
+		// and renaming the temp file. that leads to 2 reloads, which is slow.
+		// so:
+		// .. ignore temp files,
+		char* ext = strrchr(fn, '.');
+		if(ext && !strcmp(ext, ".tmp"))
+			continue;
+		// .. directory change (more info is upcoming anyway)
+		if(!ext && e.code == FAMChanged)	// dir changed
+			continue;
+		// .. and reloads for the same file within a small timeframe.
+		double cur_time = get_time();
+		if(cur_time - last_time < 50e-3 && !strcmp(last_fn, fn))
+			continue;
+
+		res_reload(fn);
+debug_out("%s\n\n", fn);
+
+		last_time = get_time();
+		strcpy(last_fn, fn);
+	}
 
 	return 0;
 }

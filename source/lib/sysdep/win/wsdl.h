@@ -14,7 +14,6 @@
 extern "C" {
 #endif
 
-
 #define Uint32 u32
 
 /* SDL_Init flags */

@@ -52,7 +52,7 @@ static bool fullscreen;		/* in fullscreen mode?
 
 static bool is_shutdown;
 
-HWND hWnd = 0;				/* available to the app for ShowWindow calls, etc. */
+static HWND hWnd = 0;		/* make available to the app for ShowWindow calls, etc.? */
 
 static DEVMODE dm;			/* current video mode */
 static HDC hDC;
@@ -383,6 +383,8 @@ int SDL_GL_SetAttribute(SDL_GLattr attr, int value)
 
 WIN_REGISTER_MODULE(wsdl);
 
+#include <io.h>
+
 // SDL redirects stdout.txt in its WinMain hook. we need to do this
 // here (before main is called), instead of in SDL_Init,
 // to completely emulate SDL; bonus: we don't miss output before SDL_Init.
@@ -438,6 +440,7 @@ static int wsdl_shutdown()
 
 int SDL_Init(Uint32 flags)
 {
+	UNUSED(flags);
 	return 0;
 }
 

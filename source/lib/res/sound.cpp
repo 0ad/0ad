@@ -27,10 +27,12 @@ struct Sound
 	int channel;
 };
 //build its vtbl
-H_TYPE_DEFINE(Sound)
+H_TYPE_DEFINE(Sound);
 
 static void Sound_init(Sound* s, va_list args)
 {
+	UNUSED(args);
+
 	s->channel = -1;
 }
 
@@ -54,6 +56,8 @@ static void Sound_dtor(Sound* s)
 
 Handle sound_load(const char* filename)
 {
+	ONCE(FSOUND_Init(44100, 32, 0));
+
 	return h_alloc(H_Sound,filename,0,0);
 }
 

@@ -337,7 +337,7 @@ struct RegisterModuleHelper
 #define WIN_REGISTER_MODULE(mod)\
 	static int mod##_init();\
 	static int mod##_shutdown();\
-	static RegisterModuleHelper module__(mod##_init, mod##_shutdown);
+	static RegisterModuleHelper module__(mod##_init, mod##_shutdown)
 
 
 

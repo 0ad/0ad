@@ -12,6 +12,8 @@
 #ifdef _MSC_VER
 #pragma comment(lib, "opengl32.lib")
 #pragma comment(lib, "glu32.lib")
+	// cannot get rid of glu32 - seems to be loaded by opengl32,
+	// even though dependency walker marks it as demand-loaded.
 #endif
 
 
