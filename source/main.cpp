@@ -150,40 +150,11 @@ const wchar_t* ErrorString(int err)
 static int write_sys_info();
 
 
-
-
-// TODO: load from language file
-// these will need to be variables; better to make an index into string table
-// (as with errors)? if it's a string, what happens if lang file load failed?
-#define STR_SDL_INIT_FAILED     L"SDL library initialization failed: %hs\n"
-#define STR_SET_VMODE_FAILED    L"could not set %dx%d graphics mode: %hs\n"
-#define STR_OGL_EXT_MISSING     L"required ARB_multitexture or ARB_texture_env_combine extension not available"
-#define STR_MAP_LOAD_FAILED     L"Failed to load map %hs\n"
-
-
-void Die(int err, const wchar_t* fmt, ...)
-{
-	va_list args;
-	va_start(args, fmt);
-	wchar_t buf[1000];
-	vswprintf(buf, 1000, fmt, args);
-	va_end(args);
-
-	const wchar_t* err_string = ErrorString(err);
-	if(err_string)
-	{
-		wcscat(buf, L" (");	wcscat(buf, err_string); wcscat(buf, L")\n");
-	}
-
-	wdisplay_msg(L"0ad", buf);
-
-	write_sys_info();
-
-	debug_write_crashlog("crashlog.txt", NULL, NULL);
-
-	exit(EXIT_FAILURE);
-}
-
+ERROR_GROUP(System);
+ERROR_TYPE(System, SDLInitFailed);
+ERROR_TYPE(System, VmodeFailed);
+ERROR_TYPE(System, RequiredExtensionsMissing);
+ERROR_TYPE(System, MapLoadFailed);
 
 
 void Testing (void)
@@ -237,6 +208,7 @@ static int write_sys_info()
 	// .. graphics card
 	fprintf(f, "%s\n", gfx_card);
 	fprintf(f, "%s\n", gfx_drv_ver);
+
 	fprintf(f, "%dx%d:%d@%d\n", g_xres, g_yres, g_bpp, g_freq);
 	// .. network name / ips
 	//    note: can't use un.nodename because it is for an
@@ -254,6 +226,11 @@ static int write_sys_info()
 			fprintf(f, "\n");
 		}
 	}
+
+	// Write extensions last, because there are lots of them
+	const char* exts = oglExtList();
+	if (!exts) exts = "{unknown}";
+	fprintf(f, "\nSupported extensions: %s\n", exts);
 
 	fclose(f);
 	return 0;
@@ -767,7 +744,7 @@ sle(1134);
 	MICROLOG(L"In init");
 
 	// If you ever want to catch a particular allocation:
-	//_CrtSetBreakAlloc(4128);
+	//_CrtSetBreakAlloc(5874);
 
 #ifdef _MSC_VER
 u64 TSC=rdtsc();
@@ -778,7 +755,6 @@ debug_out(
 PREVTSC=TSC;
 #endif
 
-
 	MICROLOG(L"init lib");
 	lib_init();
 
@@ -786,6 +762,12 @@ PREVTSC=TSC;
 #ifdef _M_IX86
 	_control87(_PC_24, _MCW_PC);
 #endif
+
+	// Do this as soon as possible, because it chdirs
+	// and will mess up the error reporting if anything
+	// crashes before the working directory is set.
+	MICROLOG(L"init vfs");
+	InitVfs(argv[0]);
 
 	// Set up the console early, so that debugging
 	// messages can be logged to it. (The console's size
@@ -795,13 +777,13 @@ PREVTSC=TSC;
 	MICROLOG(L"detect");
 	detect();
 
-	MICROLOG(L"init vfs");
-	InitVfs(argv[0]);
-
 	MICROLOG(L"init sdl");
 	// init SDL
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
-		Die(0, STR_SDL_INIT_FAILED, SDL_GetError());
+	{
+		LOG(ERROR, "SDL library initialization failed: %s", SDL_GetError());
+		throw PSERROR_System_SDLInitFailed();
+	}
 	atexit(SDL_Quit);
 	SDL_EnableUNICODE(1);
 
@@ -839,8 +821,6 @@ PREVTSC=TSC;
 	bool windowed=false;
 	if (val) val->GetBool(windowed);
 
-	write_sys_info();
-
 #ifdef _WIN32
 sle(11340106);
 #endif
@@ -848,10 +828,18 @@ sle(11340106);
 	MICROLOG(L"set vmode");
 
 	if(set_vmode(g_xres, g_yres, 32, !windowed) < 0)
-		Die(0, STR_SET_VMODE_FAILED, g_xres, g_yres, SDL_GetError());
+	{
+		LOG(ERROR, "Could not set %dx%d graphics mode: %s", g_xres, g_yres, SDL_GetError());
+		throw PSERROR_System_VmodeFailed();
+	}
+
+	write_sys_info();
 
 	if(!oglExtAvail("GL_ARB_multitexture") || !oglExtAvail("GL_ARB_texture_env_combine"))
-		Die(0, STR_OGL_EXT_MISSING);
+	{
+		LOG(ERROR, "Required ARB_multitexture or ARB_texture_env_combine extension not available");
+		throw PSERROR_System_RequiredExtensionsMissing();
+	}
 
 	// enable/disable VSync
 	// note: "GL_EXT_SWAP_CONTROL" is "historical" according to dox.
@@ -919,7 +907,8 @@ if(!g_MapFile)
 			CMapReader reader;
 			reader.LoadMap(mapfilename);
 		} catch (...) {
-			Die(0, STR_MAP_LOAD_FAILED, mapfilename.c_str());
+			LOG(ERROR, "Failed to load map %s", mapfilename.c_str());
+			throw PSERROR_System_MapLoadFailed();
 		}
 	}
 
