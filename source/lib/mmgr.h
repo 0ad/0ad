@@ -40,7 +40,7 @@
 // log all allocation/deallocation operations undertaken.
 const uint MMGR_LOG_ALL       = 0x01;
 
-// validate all allocations on every call to the allocator (slow!)
+// validate all allocations on every memory API call. slow!
 const uint MMGR_VALIDATE_ALL  = 0x02;
 
 // fill the user-visible part of each allocation with a certain pattern
@@ -57,10 +57,16 @@ const uint MMGR_TRACE         = 0x08;
 // more informative, but adds 500µs to every call.
 const uint MMGR_RESOLVE_OWNER = 0x10;
 
-const uint MMGR_ALL = MMGR_LOG_ALL|MMGR_VALIDATE_ALL|MMGR_FILL|MMGR_TRACE|MMGR_RESOLVE_OWNER;
+// force each log line to be written directly to disk. slow!
+// use only when the application is crashing, to make sure all
+// available information is written out.
+const uint MMGR_FLUSH_LOG     = 0x20;
+
+// an alias that includes all of the above.
+const uint MMGR_ALL           = 0xff;
 
 // return the current options unchanged.
-const uint MMGR_QUERY        = ~0;
+const uint MMGR_QUERY         = ~0;
 
 extern uint mmgr_set_options(uint);
 

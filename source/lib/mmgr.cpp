@@ -84,38 +84,6 @@ static void unlock() throw()
 
 
 //////////////////////////////////////////////////////////////////////////////
-// init/shutdown hook - notifies us when ctor/dtor are called
-//////////////////////////////////////////////////////////////////////////////
-
-static bool static_dtor_called = false;
-
-static struct NonLocalStaticObject
-{
-	NonLocalStaticObject()
-	{
-		// by calling now instead of on first lock() call,
-		// we ensure no threads have been spawned yet.
-		lock_init();
-
-		// note: don't init log here - current directory hasn't yet been set.
-		// the log file may otherwise be split between 2 files.
-	}
-	~NonLocalStaticObject()
-	{
-		// if the app requested a leak report before now, the deallocator
-		// will update its leak report on every call (since dtors are now
-		// being called, each may be the last). note that there is no
-		// portable way to make sure a mmgr_shutdown() would be called
-		// as the very last thing before exit.
-		static_dtor_called = true;
-
-		// don't shutdown the lock - some threads may still be active.
-		// do so in shutdown() - see call site.
-	}
-} nlso;
-
-
-//////////////////////////////////////////////////////////////////////////////
 // options (enable/disable additional checks)
 //////////////////////////////////////////////////////////////////////////////
 
@@ -160,13 +128,6 @@ uint mmgr_set_options(uint new_options)
 //////////////////////////////////////////////////////////////////////////////
 // string formatting routines for log and reports
 //////////////////////////////////////////////////////////////////////////////
-
-const size_t NUM_SIZE = 32;
-	// enough to cover even 64 bit numbers
-const size_t OWNER_SIZE = 92+400;
-	// specific size chosen such that sizeof(Alloc) == 128
-	// (power-of-two for more efficient allocation)
-
 
 
 // strip off uninteresting parts of func in-place.
@@ -271,8 +232,9 @@ static void simplify_stl_func(char* func)
 }
 
 
-
-
+const size_t OWNER_SIZE = 92+400;
+	// specific size chosen such that sizeof(Alloc) == 128
+	// (power-of-two for more efficient allocation)
 
 static void store_owner(char* owner, const char* path, int line, const char* func)
 {
@@ -310,6 +272,9 @@ static void store_owner(char* owner, const char* path, int line, const char* fun
 	owner[OWNER_SIZE-1] = '\0';
 }
 
+
+const size_t NUM_SIZE = 32;
+	// enough to cover even 64 bit numbers
 
 static const char* insert_commas(char* out, size_t value)
 {
@@ -715,31 +680,19 @@ static void stats_remove(const Alloc* a)
 static void log_init();
 static const char* const log_filename = "mem_log.txt";
 
+static FILE* log_fp;
+
 // open/append/close every call to make sure nothing gets lost when crashing.
 // split out of log() to allow locked_log without code duplication.
 static void vlog(const char* fmt, va_list args)
 {
 	log_init();
 
-	static FILE* fp;
-	// first call, or FLUSH option set
-	if(!fp)
-	{
-		fp = fopen(log_filename, "a");
-		if(!fp)
-		{
-			assert2(0 && "log file open failed");
-			return;
-		}
-	}
+	(void)vfprintf(log_fp, fmt, args);
 
-	(void)vfprintf(fp, fmt, args);
-
-	if(0 || static_dtor_called)
-	{
-		fclose(fp);
-		fp = 0;
-	}
+	// user requested each log line go directly to disk.
+	if(options & MMGR_FLUSH_LOG)
+		fflush(log_fp);
 }
 
 static void log(const char* fmt, ...)
@@ -767,12 +720,16 @@ static void locked_log(const char* fmt, ...)
 
 static void log_init()
 {
-	static bool log_initialized = false;
-	if(log_initialized)
+	// open => we're already initialized.
+	if(log_fp)
 		return;
-	log_initialized = true;
 
-	unlink(log_filename);
+	log_fp = fopen(log_filename, "w");
+	if(!log_fp)
+	{
+		assert2(0 && "log file open failed");
+		return;
+	}
 
 	//
 	// write header
@@ -805,9 +762,19 @@ static void log_init()
 }
 
 
-static void log_alloc(const Alloc* a)
+static void log_shutdown()
 {
-	// duplicated in write_alloc_cb(FILE*); factoring out isn't worth it
+	if(log_fp)
+	{
+		fclose(log_fp);
+		log_fp = 0;
+	}
+}
+
+
+static void log_this_alloc(const Alloc* a)
+{
+	// duplicated in write_alloc_cb(); factoring out isn't worth it
 	log("%06d 0x%08p 0x%08X 0x%08p 0x%08X 0x%08X %-8s    %c       %c    %s\n",
 		a->alloc_num,
 		a->user_p, a->user_size,
@@ -829,7 +796,7 @@ static void write_alloc_cb(const Alloc* a, void* arg)
 {
 	FILE* f = (FILE*)arg;
 
-	// duplicated in log_alloc(Alloc*); factoring out isn't worth it
+	// duplicated in log_this_alloc(Alloc*); factoring out isn't worth it
 	fprintf(f, "%06d 0x%08p 0x%08X 0x%08p 0x%08X 0x%08X %-8s    %c       %c    %s\n",
 		a->alloc_num,
 		a->user_p, a->user_size,
@@ -975,7 +942,7 @@ static bool alloc_is_valid(const Alloc* a)
 	// allocation's memory range.
 	assert2(0);
 	log("[!] Memory over/underrun:\n");
-	log_alloc(a);
+	log_this_alloc(a);
 	return false;
 }
 
@@ -1030,13 +997,42 @@ bool mmgr_are_all_valid()
 }
 
 
+//////////////////////////////////////////////////////////////////////////////
+// init/shutdown hook - notifies us when ctor/dtor are called
+//////////////////////////////////////////////////////////////////////////////
 
+static bool static_dtor_called = false;
 
+static struct NonLocalStaticObject
+{
+	NonLocalStaticObject()
+	{
+		// by calling now instead of on first lock() call,
+		// we ensure no threads have been spawned yet.
+		lock_init();
+
+		// note: don't init log here - current directory hasn't yet been set.
+		// the log file may otherwise be split between 2 files.
+	}
+	~NonLocalStaticObject()
+	{
+		// if the app requested a leak report before now, the deallocator
+		// will update its leak report on every call (since dtors are now
+		// being called, each may be the last). note that there is no
+		// portable way to make sure a mmgr_shutdown() would be called
+		// as the very last thing before exit.
+		static_dtor_called = true;
+
+		// don't shutdown the lock - some threads may still be active.
+		// do so in shutdown() - see call site.
+	}
+} nlso;
 
 
 static void shutdown(void)
 {
 	alloc_shutdown();
+	log_shutdown();
 	lock_shutdown();
 }
 
