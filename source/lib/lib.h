@@ -118,6 +118,15 @@ STMT(\
 )
 #endif
 
+// just pass on errors without any kind of annoying warning
+// (useful for functions that can legitimately fail, e.g. vfs_exists).
+#define RETURN_ERR(func)\
+STMT(\
+	int err__ = (int)((func) & UINT_MAX);\
+	if(err__ < 0)\
+		return err__;\
+)
+
 #define THROW_ERR(func)\
 STMT(\
 	int err__ = (int)((func) & UINT_MAX);\

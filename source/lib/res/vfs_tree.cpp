@@ -648,9 +648,8 @@ int tree_lookup_dir(const char* path, TDir** pdir, uint flags, char* exact_path)
 
 	TDir* dir = (flags & LF_START_DIR)? *pdir : tree_root_dir;
 	TNode* node;
-	int err = dir->lookup(path, flags, &node, exact_path);
-	if(err <= 0)
-		CHECK_ERR(err);
+	CHECK_ERR(dir->lookup(path, flags, &node, exact_path));
+		// directories should exist, so warn if this fails
 	*pdir = &node->u.dir;
 	return 0;
 }
@@ -664,8 +663,7 @@ int tree_lookup(const char* path, TFile** pfile, uint flags, char* exact_path)
 
 	TNode* node;
 	int ret = tree_root_dir->lookup(path, flags, &node, exact_path);
-	if(ret < 0)	// xxx
-		return ret;
+	RETURN_ERR(ret);
 	*pfile = &node->u.file;
 	return 0;
 }

@@ -487,8 +487,7 @@ static int lookup_init(LookupInfo* li, const u8* file, const size_t size)
 	// the VFS blindly opens files when mounting; it needs to open
 	// all archives, but doesn't know their extension (e.g. ".pk3").
 	err = z_validate(file, size);
-	if(err < 0)		// don't CHECK_ERR - this can happen often.
-		return err;
+	RETURN_ERR(err);
 
 	li->next_file = 0;
 	li->idx = new LookupIdx;
@@ -926,14 +925,7 @@ static int zfile_validate(uint line, ZFile* zf)
 	return err;
 }
 
-#define CHECK_ZFILE(f)\
-do\
-{\
-	int err = zfile_validate(__LINE__, f);\
-	if(err < 0)\
-		return err;\
-}\
-while(0);
+#define CHECK_ZFILE(f) CHECK_ERR(zfile_validate(__LINE__, f))
 
 
 // convenience function, allows implementation change in ZFile.
