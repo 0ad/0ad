@@ -6,7 +6,7 @@
 //
 // General note: Template, Base Entity, and Entity Class are used more-or-less interchangably.
 // 
-// Usage: g_EntityTemplateCollection.loadTemplates(): initializes the lists from mods/official/entities/templates
+// Usage: g_EntityTemplateCollection.loadTemplates(): initializes the lists from entities/templates
 //        After that, you can:
 //			Find an entity class by the actor it uses: g_EntityTemplateCollection.getTemplateByActor()
 //				Note that this is included solely for loading ScnEd 4,5 and 6 format map files. Don't rely on this
