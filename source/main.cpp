@@ -72,6 +72,7 @@
 #endif
 
 #include "sound/CMusicPlayer.h"
+#include "sound/JSI_Sound.h"
 #include "lib/res/snd.h"
 
 #include "Network/SessionManager.h"
@@ -690,6 +691,7 @@ static void InitScripting()
 	// Register the JavaScript interfaces with the runtime
 	CEntity::ScriptingInit();
 	CBaseEntity::ScriptingInit();
+	JSI_Sound::ScriptingInit();
 	
 	JSI_IGUIObject::init();
 	JSI_GUITypes::init();
