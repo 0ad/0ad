@@ -160,7 +160,7 @@ void CMapReader::ApplyData(CFileUnpacker& unpacker)
 			CBaseEntity* templateObject = g_EntityTemplateCollection.getTemplateByActor( objentry );
 			if( templateObject )
 			{
-				CVector3D orient = ((CMatrix3D*)m_Objects[i].m_Transform)->GetIn();
+				CVector3D orient = -((CMatrix3D*)m_Objects[i].m_Transform)->GetIn();
 				CVector3D position = ((CMatrix3D*)m_Objects[i].m_Transform)->GetTranslation();
 
 				g_EntityManager.create( templateObject, position, atan2( orient.X, orient.Z ) );
