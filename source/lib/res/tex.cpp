@@ -465,8 +465,8 @@ fail:
 		err = "image dimensions not padded to S3TC block size";
 	if(!w || !h)
 		err = "width or height = 0";
-	if(mipmaps > 0)
-		err = "contains mipmaps";
+//	if(mipmaps > 0)					// (PT: Not an error, since we probably want
+//		err = "contains mipmaps";	// to support mipmapped textures eventually)
 	if(bpp == 0)
 		err = "invalid pixel format (not DXT{1,3,5})";
 	if((sd_flags & sd_req_flags) != sd_req_flags)
