@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<!DOCTYPE sprites SYSTEM "../gui.dtd">
+
+<!-- testing an update -->
+
+<sprites>
+
+        <!--
+        ==========================================
+        GENERIC BUTTONS
+        ==========================================
+        -->
+
+        <sprite name="sprite1">
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <image backcolor="255 255 255" size="0 1 1 100%-1" />
+                <image backcolor="255 255 255" size="0 0 100%-1 1" />
+                <image backcolor="64 64 64" size="100%-1 0 100% 100%" />
+                <image backcolor="64 64 64" size="0 100%-1 100%-1 100%" />
+                <image backcolor="128 128 128" size="100%-2 1 100%-1 100%-1" />
+                <image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
+                <!-- middle -->
+                <image texture="background.tga" texture-size="0 0 256 256" size="1 1 100%-2 100%-2" />
+        </sprite>
+
+        <sprite name="sprite4">
+                <image backcolor="50 50 50" size="0 0 100% 100%" />
+        </sprite>
+
+        <sprite name="sprite1-over">
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <image backcolor="255 255 255" size="0 1 1 100%-1" />
+                <image backcolor="255 255 255" size="0 0 100%-1 1" />
+                <image backcolor="64 64 64" size="100%-1 0 100% 100%" />
+                <image backcolor="64 64 64" size="0 100%-1 100%-1 100%" />
+                <image backcolor="128 128 128" size="100%-2 1 100%-1 100%-1" />
+                <image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
+                <!-- middle -->
+                <image backcolor="200 0 0" size="1 1 100%-2 100%-2" />
+                <image texture="background.tga" texture-size="0 0 256 256" size="2 2 100%-3 100%-3" />
+        </sprite>
+
+        <sprite name="sprite1-ch">
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <image backcolor="255 255 255" size="0 1 1 100%-1" />
+                <image backcolor="255 255 255" size="0 0 100%-1 1" />
+                <image backcolor="64 64 64" size="100%-1 0 100% 100%" />
+                <image backcolor="64 64 64" size="0 100%-1 100%-1 100%" />
+                <image backcolor="128 128 128" size="100%-2 1 100%-1 100%-1" />
+                <image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
+                <!-- middle -->
+                <image backcolor="212 208 200" size="4 4 100%-5 100%-5" z-level="1" />
+                <image backcolor="128 0 0" size="4 4 100%-5 100%-5" z-level="1" />
+        </sprite>
+
+        <sprite name="sprite1-pressed">
+                <image backcolor="64 64 64" size="0 0 100% 100%" />
+                <image backcolor="128 128 128" size="1 1 100%-1 100%-1" z-level="1" />
+                <image backcolor="212 208 200" size="2 2 100%-2 100%-2" z-level="2" />
+        </sprite>
+
+        <sprite name="sprite2">
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <image backcolor="212 208 200" size="0 1 1 100%-1" />
+                <image backcolor="212 208 200" size="0 0 100%-1 1" />
+                <image backcolor="255 255 255" size="1 2 1 100%-2" />
+                <image backcolor="255 255 255" size="1 1 100%-2 2" />
+                <image backcolor="64 64 64" size="100%-1 0 100% 100%" />
+                <image backcolor="64 64 64" size="0 100%-1 100%-1 100%" />
+                <image backcolor="128 128 128" size="100%-2 1 100%-1 100%-1" />
+                <image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
+                <!-- middle -->
+                <image backcolor="212 208 200" size="2 2 100%-2 100%-2" />
+        </sprite>
+
+        <sprite name="sprite2-pressed">
+                <image backcolor="128 128 128" size="0 0 100% 100%" />
+                <image backcolor="212 208 200" size="1 1 100%-1 100%-1" z-level="1" />
+        </sprite>
+
+        <sprite name="grey">
+                <image backcolor="243 242 240" size="0 0 100% 100%" />
+        </sprite>
+
+        <sprite name="white-border">
+                <image backcolor="100 70 120" size="0 0 100% 100%" />
+                <image backcolor="255 255 255" size="-1 -1 100%+1 0" />
+                <image backcolor="255 255 255" size="-1 100% 100%+1 100%+1" />
+                <image backcolor="255 255 255" size="-1 0 0 100%" />
+                <image backcolor="255 255 255" size="100% 0 100%+1 100%" />
+        </sprite>
+
+        <sprite name="scroll">
+                <!--<image backcolor="128 128 128" size="0 0 100% 100%" />-->
+                <image backcolor="150 105 180" size="2 2 100%-2 100%-2" z-level="1" />
+        </sprite>
+        <sprite name="scroll-bar">
+                <!--<image backcolor="128 128 128" size="0 0 100% 100%" />-->
+                <image backcolor="150 105 180" size="2 0 100%-2 100%" z-level="1" />
+        </sprite>
+
+        <sprite name="green-bar">
+                <image backcolor="255 255 255" size="0 1 1 100%-1" />
+                <image backcolor="255 255 255" size="0 0 100%-1 1" />
+                <image backcolor="64 64 64" size="100%-1 0 100% 100%" />
+                <image backcolor="64 64 64" size="0 100%-1 100%-1 100%" />
+                <image backcolor="128 128 128" size="100%-2 1 100%-1 100%-1" />
+                <image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
+                <image backcolor="0 200 0" size="0 0 100% 100%" />
+        </sprite>
+
+        <sprite name="yellow-bar">
+                <image backcolor="255 255 255" size="0 1 1 100%-1" />
+                <image backcolor="255 255 255" size="0 0 100%-1 1" />
+                <image backcolor="64 64 64" size="100%-1 0 100% 100%" />
+                <image backcolor="64 64 64" size="0 100%-1 100%-1 100%" />
+                <image backcolor="128 128 128" size="100%-2 1 100%-1 100%-1" />
+                <image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
+                <image backcolor="255 255 0" size="0 0 100% 100%" />
+        </sprite>
+
+        <sprite name="blue-bar">
+                <image backcolor="255 255 255" size="0 1 1 100%-1" />
+                <image backcolor="255 255 255" size="0 0 100%-1 1" />
+                <image backcolor="64 64 64" size="100%-1 0 100% 100%" />
+                <image backcolor="64 64 64" size="0 100%-1 100%-1 100%" />
+                <image backcolor="128 128 128" size="100%-2 1 100%-1 100%-1" />
+                <image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
+                <image backcolor="0 0 255" size="0 0 100% 100%" />
+        </sprite>
+
+        <sprite name="blue-bar-outlined">
+                <image backcolor="0 0 0" size="-1 -1 100%+1 0" />
+                <image backcolor="0 0 0" size="-1 100% 100%+1 100%+1" />
+                <image backcolor="0 0 0" size="-1 0 0 100%" />
+                <image backcolor="0 0 0" size="100% 0 100%+1 100%" />
+                <image backcolor="0 0 255" size="0 0 100% 100%" />
+        </sprite>
+
+        <sprite name="back-bar">
+                <image backcolor="200 200 200" size="0 1 1 100%-1" />
+                <image backcolor="200 200 200" size="0 0 100%-1 1" />
+                <image backcolor="200 200 200" size="100%-1 0 100% 100%" />
+                <image backcolor="200 200 200" size="0 100%-1 100%-1 100%" />
+        </sprite>
+
+        <sprite name="only-white-border">
+                <image backcolor="255 255 255" size="-1 -1 100%+1 0" />
+                <image backcolor="255 255 255" size="-1 100% 100%+1 100%+1" />
+                <image backcolor="255 255 255" size="-1 0 0 100%" />
+                <image backcolor="255 255 255" size="100% 0 100%+1 100%" />
+        </sprite>
+
+        <sprite name="only-black-border">
+                <image backcolor="0 0 0" size="-1 -1 100%+1 0" />
+                <image backcolor="0 0 0" size="-1 100% 100%+1 100%+1" />
+                <image backcolor="0 0 0" size="-1 0 0 100%" />
+                <image backcolor="0 0 0" size="100% 0 100%+1 100%" />
+        </sprite>
+
+	<!-- Standard 0 A.D.-style framed window -->
+        <sprite name="0ad_window">
+                <!-- middle -->
+                <image texture="global/ui_gen_background_paper.png" texture-size="0 0 128 128" size="0%-10 0%-10 100%+10 100%+10" />
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+		<image texture="global/ui_gen_border-corner-15px.png" real-texture-placement="0 0 15 15" size="0%-25 0%-25 0%-10 0%-10" />
+		<image texture="global/ui_gen_border-top-20px.png" texture-size="0 0 128 32" size="0%-10 0%-25 100%+10 0%+7" />
+		<image texture="global/ui_gen_border-corner-15px.png" real-texture-placement="0 0 15 15" size="100%+10 0%-25 100%+25 0%-10" />
+		<image texture="global/ui_gen_border-right-20px.png" texture-size="0 0 32 128" size="100%-6 0%-10 100%+26 100%+10" />
+		<image texture="global/ui_gen_border-corner-15px.png" real-texture-placement="0 0 15 15" size="100%+10 100%+10 100%+25 100%+25" />
+		<image texture="global/ui_gen_border-bottom-20px.png" texture-size="0 0 128 32" size="0%-10 100%-7 100%+10 100%+25" />
+		<image texture="global/ui_gen_border-corner-15px.png" real-texture-placement="0 0 15 15" size="0%-25 100%+10 0%-10 100%+25" />
+		<image texture="global/ui_gen_border-left-20px.png" texture-size="0 0 32 128" size="0%-25 0%-10 0%+7 100%+10" />
+        </sprite>
+
+	<!-- Standard 0 A.D.-style window's title bar -->
+        <sprite name="0ad_window_title">
+                <image texture="global/ui_gen_titlebar-left.png" real-texture-placement="0 0 64 32" size="0%+0 0%-10 5%+64 0%+22" />
+                <image texture="global/ui_gen_titlebar-middle.png" real-texture-placement="0 0 64 32" size="5%+64 0%-10 95%-64 0%+22" />
+                <image texture="global/ui_gen_titlebar-right.png" real-texture-placement="0 0 64 32" size="95%-64 0%-10 100%+0 0%+22" />
+	</sprite>
+
+        <!--
+        ==========================================
+        PREGAME GUI
+        ==========================================
+        -->
+
+        <sprite name="pregame-mainmenu-background">
+                <image texture="pregame/ui_pregame_mainmenu_background.png" real-texture-placement="0 0 1024 768" size="0 0 100% 100%" />
+        </sprite>
+        
+        <sprite name="pregame-mainmenu-0ad-logo-480x218">
+                <image texture="pregame/ui_pregame_mainmenu_0ad_logo.png" real-texture-placement="0 0 480 218" size="0 0 100% 100%" />
+        </sprite>
+        
+        <sprite name="pregame-mainmenu-wfg-logo-256x64">
+                <image texture="pregame/ui_pregame_mainmenu_wfg_logo.png" real-texture-placement="0 0 256 64" size="0 0 100% 100%" />
+        </sprite>
+
+        <sprite name="pregame-mainmenu-spbt">
+                <image texture="pregame/ui_pregame_mainmenu_spbt_over.png" real-texture-placement="1 1 151 142" size="0 0 100% 100%" />
+        </sprite>
+
+        <sprite name="pregame-mainmenu-mpbt">
+                <image texture="pregame/ui_pregame_mainmenu_mpbt_over.png" real-texture-placement="1 1 137 139" size="0 0 100% 100%" />
+        </sprite>
+        
+        <sprite name="tooltip-background">
+                <image texture="black_16x16.png" texture-size="0 0 16 16" size="0 0 100% 100%" />
+        </sprite>
+
+        <!--
+        ==========================================
+        LOADING GUI
+        ==========================================
+        -->
+
+        <sprite name="black_bkg">
+                <image texture="black_bkg_16x16.png" texture-size="0 0 16 16" size="0 0 100% 100%" />
+        </sprite>
+
+                <!--
+                ==========================================
+                MAP ORB
+                ==========================================
+                -->
+
+                <sprite name="session_panel_minimap_bg">
+                        <image texture="session/ui_session_panel_minimap_bg.png" texture-size="0 0 256 256" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_dummy">
+                        <image texture="session/ui_session_panel_minimap_dummy.png" texture-size="0 0 256 256" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segleft1">
+                        <image texture="session/ui_session_panel_minimap_segleft1.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segleft2">
+                        <image texture="session/ui_session_panel_minimap_segleft2.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segleft3">
+                        <image texture="session/ui_session_panel_minimap_segleft3.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segleft4">
+                        <image texture="session/ui_session_panel_minimap_segleft4.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segbottom1">
+                        <image texture="session/ui_session_panel_minimap_segbottom1.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segbottom2">
+                        <image texture="session/ui_session_panel_minimap_segbottom2.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segbottom3">
+                        <image texture="session/ui_session_panel_minimap_segbottom3.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segbottom4">
+                        <image texture="session/ui_session_panel_minimap_segbottom4.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segtop1">
+                        <image texture="session/ui_session_panel_minimap_segtop1.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segtop2">
+                        <image texture="session/ui_session_panel_minimap_segtop2.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segtop3">
+                        <image texture="session/ui_session_panel_minimap_segtop3.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segtop4">
+                        <image texture="session/ui_session_panel_minimap_segtop4.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segleft1-lit">
+                        <image texture="session/ui_session_panel_minimap_segleft1-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segleft2-lit">
+                        <image texture="session/ui_session_panel_minimap_segleft2-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segleft3-lit">
+                        <image texture="session/ui_session_panel_minimap_segleft3-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segleft4-lit">
+                        <image texture="session/ui_session_panel_minimap_segleft4-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segbottom1-lit">
+                        <image texture="session/ui_session_panel_minimap_segbottom1-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segbottom2-lit">
+                        <image texture="session/ui_session_panel_minimap_segbottom2-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segbottom3-lit">
+                        <image texture="session/ui_session_panel_minimap_segbottom3-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segbottom4-lit">
+                        <image texture="session/ui_session_panel_minimap_segbottom4-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segtop1-lit">
+                        <image texture="session/ui_session_panel_minimap_segtop1-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segtop2-lit">
+                        <image texture="session/ui_session_panel_minimap_segtop2-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segtop3-lit">
+                        <image texture="session/ui_session_panel_minimap_segtop3-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segtop4-lit">
+                        <image texture="session/ui_session_panel_minimap_segtop4-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <!--
+                ==========================================
+                STATUS ORB
+                ==========================================
+                -->
+
+                <sprite name="session_panel_status_bg-top">
+                        <image texture="session/ui_session_panel_status_bg-top.png" texture-size="0 0 256 256" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_status_bg-bottom">
+                        <image texture="session/ui_session_panel_status_bg-bottom.png" texture-size="0 0 256 256" size="0 0 100% 100%" />
+                </sprite>
+
+                <!--
+                ==========================================
+                RESOURCE BAR
+                ==========================================
+                -->
+
+                <sprite name="resource_food_counter">
+                        <image texture="session/icons/ui_icon_sheet_statistic.png" real-texture-placement="0 128 64 192" texture-size="0 0 100% 100%" size="0 0 20 20" />
+                        <image texture="session/ui_session_panel_resource_counter.png" texture-size="0 0 64 64" size="21 0 100% 100%" />
+                </sprite>
+
+                <sprite name="resource_wood_counter">
+                        <image texture="session/icons/ui_icon_sheet_statistic.png" real-texture-placement="64 128 128 192" texture-size="0 0 100% 100%" size="0 0 20 20" />
+                        <image texture="session/ui_session_panel_resource_counter.png" texture-size="0 0 64 64" size="21 0 100% 100%" />
+                </sprite>
+
+                <sprite name="resource_stone_counter">
+                        <image texture="session/icons/ui_icon_sheet_statistic.png" real-texture-placement="128 128 192 192" texture-size="0 0 100% 100%" size="0 0 20 20" />
+                        <image texture="session/ui_session_panel_resource_counter.png" texture-size="0 0 64 64" size="21 0 100% 100%" />
+                </sprite>
+
+                <sprite name="resource_ore_counter">
+                        <image texture="session/icons/ui_icon_sheet_statistic.png" real-texture-placement="192 128 256 192" texture-size="0 0 100% 100%" size="0 0 20 20" />
+                        <image texture="session/ui_session_panel_resource_counter.png" texture-size="0 0 64 64" size="21 0 100% 100%" />
+                </sprite>
+
+                <sprite name="resource_population_counter">
+                        <image texture="session/icons/ui_icon_sheet_statistic.png" real-texture-placement="256 128 320 192" texture-size="0 0 100% 100%" size="0 0 20 20" />
+                        <image texture="session/ui_session_panel_resource_counter_long.png" texture-size="0 0 64 64" size="21 0 100% 100%" />
+                </sprite>
+
+                <!--
+                ==========================================
+                STATISTIC ICONS - SHEETS
+                ==========================================
+                -->
+
+                <sprite name="ui_icon_sheet_statistic">
+                        <image texture="session/icons/ui_icon_sheet_statistic.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+
+                <!--
+                ==========================================
+                BACKDROP SINGLE PORTRAITS
+                ==========================================
+                -->
+
+                <!-- Default (empty) portrait (circular). -->
+                <sprite name="ui_portrait_default_circle">
+                        <image texture="session/portraits/ui_portrait_default_circle.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_default_circle-lit">
+                        <image texture="session/portraits/ui_portrait_default_circle-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_default_circle-grey">
+                        <image texture="session/portraits/ui_portrait_default_circle-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+
+                <!-- Default (empty) portrait (square). -->
+                <sprite name="ui_portrait_default_square">
+                        <image texture="session/portraits/ui_portrait_default_square.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_default_square-lit">
+                        <image texture="session/portraits/ui_portrait_default_square-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_default_square-grey">
+                        <image texture="session/portraits/ui_portrait_default_square-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+
+                <!--
+                ==========================================
+                ACTION SHEET PORTRAITS - COMMANDS, TABS, STANCES, FORMATIONS, ETC
+                ==========================================
+                -->
+
+                <sprite name="ui_portrait_sheet_action">
+                        <image texture="session/portraits/ui_portrait_sheet_action.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_action-lit">
+                        <image texture="session/portraits/ui_portrait_sheet_action-lit.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_action-grey">
+                        <image texture="session/portraits/ui_portrait_sheet_action-grey.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+
+                <!--
+                ==========================================
+                ENTITY SINGLE PORTRAITS
+                ==========================================
+                -->
+
+                <!-- Pyrogenesis Dude portrait. -->
+                <sprite name="ui_portrait_unit_dude">
+                        <image texture="session/portraits/ui_portrait_unit_dude.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_unit_dude-lit">
+                        <image texture="session/portraits/ui_portrait_unit_dude-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_unit_dude-grey">
+                        <image texture="session/portraits/ui_portrait_unit_dude-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+
+                <!-- Pyrogenesis Dudette portrait. -->
+                <sprite name="ui_portrait_unit_dudette">
+                        <image texture="session/portraits/ui_portrait_unit_dudette.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_unit_dudette-lit">
+                        <image texture="session/portraits/ui_portrait_unit_dudette-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_unit_dudette-grey">
+                        <image texture="session/portraits/ui_portrait_unit_dudette-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+
+                <!-- Deciduous Tree portrait. -->
+                <sprite name="ui_portrait_flora_deciduotree">
+                        <image texture="session/portraits/ui_portrait_flora_deciduotree.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_flora_deciduotree-lit">
+                        <image texture="session/portraits/ui_portrait_flora_deciduotree-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_flora_deciduotree-grey">
+                        <image texture="session/portraits/ui_portrait_flora_deciduotree-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+
+                <!--
+                ==========================================
+                ENTITY SHEET PORTRAITS - CELTS
+                ==========================================
+                -->
+
+                <sprite name="ui_portrait_sheet_civ_celt">
+                        <image texture="session/portraits/ui_portrait_sheet_civ_celt.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_celt-grey">
+                        <image texture="session/portraits/ui_portrait_sheet_civ_celt-grey.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_celt-lit">
+                        <image texture="session/portraits/ui_portrait_sheet_civ_celt-lit.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+
+                <!--
+                ==========================================
+                ENTITY SHEET PORTRAITS - HELLENES
+                ==========================================
+                -->
+
+                <sprite name="ui_portrait_sheet_civ_hele">
+                        <image texture="session/portraits/ui_portrait_sheet_civ_hele.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_hele-grey">
+                        <image texture="session/portraits/ui_portrait_sheet_civ_hele-grey.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_hele-lit">
+                        <image texture="session/portraits/ui_portrait_sheet_civ_hele-lit.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+
+                <!--
+                ==========================================
+                ENTITY SHEET PORTRAITS - IBERIANS
+                ==========================================
+                -->
+
+                <sprite name="ui_portrait_sheet_civ_iber">
+                        <image texture="session/portraits/ui_portrait_sheet_civ_iber.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_iber-grey">
+                        <image texture="session/portraits/ui_portrait_sheet_civ_iber-grey.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_iber-lit">
+                        <image texture="session/portraits/ui_portrait_sheet_civ_iber-lit.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+
+                <!--
+                ==========================================
+                ENTITY SHEET PORTRAITS - CARTHAGINIANS
+                ==========================================
+                -->
+
+                <sprite name="ui_portrait_sheet_civ_kart">
+                        <image texture="session/portraits/ui_portrait_sheet_civ_kart.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_kart-grey">
+                        <image texture="session/portraits/ui_portrait_sheet_civ_kart-grey.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_kart-lit">
+                        <image texture="session/portraits/ui_portrait_sheet_civ_kart-lit.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+
+                <!--
+                ==========================================
+                ENTITY SHEET PORTRAITS - PERSIANS
+                ==========================================
+                -->
+
+                <sprite name="ui_portrait_sheet_civ_pers">
+                        <image texture="session/portraits/ui_portrait_sheet_civ_pers.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_pers-grey">
+                        <image texture="session/portraits/ui_portrait_sheet_civ_pers-grey.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_pers-lit">
+                        <image texture="session/portraits/ui_portrait_sheet_civ_pers-lit.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+
+                <!--
+                ==========================================
+                ENTITY SHEET PORTRAITS - ROMANS
+                ==========================================
+                -->
+
+                <sprite name="ui_portrait_sheet_civ_rome">
+                        <image texture="session/portraits/ui_portrait_sheet_civ_rome.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_rome-grey">
+                        <image texture="session/portraits/ui_portrait_sheet_civ_rome-grey.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_rome-lit">
+                        <image texture="session/portraits/ui_portrait_sheet_civ_rome-lit.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                </sprite>
+
+        <!--
+        ==========================================
+        TEMPORARY IMAGES
+        ==========================================
+        -->
+
+        <!-- Exit Button -->
+        <sprite name="exit_sprite">
+                <image texture="exit_button_16.png" texture-size="0 0 16 16" size="0 0 100% 100%" />
+        </sprite>
+        <sprite name="exit_sprite-over">
+                <image texture="exit_button_16-over.png" texture-size="0 0 16 16" size="0 0 100% 100%" />
+        </sprite>
+
+        <!-- Some more temps /Gee -->
+        <sprite name="test">
+                <image size="0 0 100% 100%" backcolor="100 100 250" />
+        </sprite>
+
+        <sprite name="test2">
+                <image size="0 0 100% 100%" backcolor="200 100 050" />
+        </sprite>
+        
+        <!--
+        ==========================================
+        GENERIC ICONS
+        ==========================================
+        -->
+
+        <sprite name="0ad_icon">
+                <image texture="global/ui_gen_0ad-icon-black.png" size="0 0 100% 100%" texture-size="0 0 16 16" />
+        </sprite>
+
+        <sprite name="bullet_icon">
+                <image texture="global/ui_gen_bullet-icon.png" size="0 0 100% 100%" texture-size="0 0 8 8" />
+        </sprite>
+
+        <sprite name="0ad_icon">
+                <image texture="global/ui_gen_infinity-icon.png" size="0 0 100% 100%" texture-size="0 0 16 16" />
+        </sprite>
+
+        <!--
+        ==========================================
+        MESSAGE BOX
+        ==========================================
+        -->
+
+        <sprite name="message_box-gen-background">
+                <image texture="global/ui_gen_background_paper.png" size="0 0 100% 100%" texture-size="0 0 128 128" />
+        </sprite>
+
+        <sprite name="message_box-corner">
+                <image texture="global/ui_gen_border-corner-15px.png" size="0 0 100% 100%" real-texture-placement="0 0 15 15" />
+        </sprite>
+
+        <sprite name="message_box-border-top">
+                <image texture="global/ui_gen_border-top-20px.png" size="0 0 100% 100%" texture-size="0 0 128 32" />
+        </sprite>
+
+        <sprite name="message_box-border-left">
+                <image texture="global/ui_gen_border-left-20px.png" size="0 0 100% 100%" texture-size="0 0 32 128" />
+        </sprite>
+
+        <sprite name="message_box-border-right">
+                <image texture="global/ui_gen_border-right-20px.png" size="0 0 100% 100%" texture-size="0 0 32 128" />
+        </sprite>
+
+        <sprite name="message_box-border-bottom">
+                <image texture="global/ui_gen_border-bottom-20px.png" size="0 0 100% 100%" texture-size="0 0 128 32" />
+        </sprite>
+
+        <sprite name="message_box-titlebar-left">
+                <image texture="global/ui_gen_titlebar-left.png" size="0 0 100% 100%" real-texture-placement="0 0 64 32" />
+        </sprite>
+
+        <sprite name="message_box-titlebar-right">
+                <image texture="global/ui_gen_titlebar-right.png" size="0 0 100% 100%" real-texture-placement="0 0 64 32" />
+        </sprite>
+
+        <sprite name="message_box-titlebar-middle">
+                <image texture="global/ui_gen_titlebar-middle.png" size="0 0 100% 100%" texture-size="0 0 64 32" />
+        </sprite>
+        
+        <sprite name="message_box-button-normal">
+                <image texture="global/ui_gen_button-wood.png" size="0 0 100% 100%" real-texture-placement="0 0 160 31" />
+        </sprite>
+        
+        <sprite name="message_box-button-over">
+                <image texture="global/ui_gen_button-wood.png" size="0 0 100% 100%" real-texture-placement="0 32 160 64" />
+        </sprite>
+
+</sprites>
