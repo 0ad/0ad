@@ -11,9 +11,13 @@
 			
 			type.structure.phase.vp="true"
 		/>
+		<Garrison
+			curr="0"
+			max="3"
+		/>
 		<Health
 			curr="60"
-			hitpoints="60"
+			max="60"
 		/>
 	</Traits>
 	<Footprint Width="6.0" Height="6.0"/>

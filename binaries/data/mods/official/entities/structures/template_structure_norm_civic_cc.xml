@@ -12,9 +12,13 @@
 			type.structure.group.housing="true"
 			type.structure.phase.vp="true"
 		/>
+		<Garrison
+			curr="0"
+			max="15"
+		/>
 		<Health
 			curr="1000"
-			hitpoints="1000"
+			max="1000"
 		/>
 		<Population
 			add="10"

@@ -11,8 +11,20 @@
 			rollover="Chop these down to accumulate Wood."
 		/>
 		<Health
-			hitpoints="100"
+			max="100"
 			curr="100"
+		/>
+		<MiniMap
+			type="Wood"
+			red="0"
+			green="128"
+			blue="0"
+		/>
+		<Supply
+			curr="200"
+			max="200"
+			type="wood"
+			subtype="wood"
 		/>
 	</Traits>
 </Entity>

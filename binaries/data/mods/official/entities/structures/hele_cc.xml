@@ -10,7 +10,13 @@
 
 			specific="Apoikia"
 			history="During the Great Colonisation, the Hellenes built numerous colonies all over the shores of the Mediterranean and Black Seas, which became miniature versions of Greece on foreign soil."
+
 		/>
 	</Traits>
+	<Actions>
+		<Create
+			unitlist="hele_fem_b1;hele_isp_u1"
+		/>
+	</Actions>
 	<Actor>Hellenes Civilisation Centre</Actor>
 </Entity>

@@ -10,11 +10,11 @@ function initStatusOrb()
 	crd_status_orb_heading_width = crd_status_orb_bkg_width;
 	crd_status_orb_heading_height = 14;
 	crd_status_orb_heading_x = crd_status_orb_bkg_x+2;
-	crd_status_orb_heading_y = crd_status_orb_bkg_y;
+	crd_status_orb_heading_y = crd_status_orb_bkg_y+3;
 
 	// Status Orb large portrait.
 	crd_status_orb_portrait_x = crd_status_orb_heading_x+5;
-	crd_status_orb_portrait_y = crd_status_orb_heading_y+crd_status_orb_heading_height+5;
+	crd_status_orb_portrait_y = crd_status_orb_heading_y+crd_status_orb_heading_height+7;
 	crd_status_orb_portrait_width = crd_portrait_lrg_width;
 	crd_status_orb_portrait_height = crd_portrait_lrg_height;
 
@@ -57,37 +57,25 @@ function initStatusOrb()
 	crd_status_orb_xpbar_text_width = crd_status_orb_hpbar_text_width;
 	crd_status_orb_xpbar_text_height = crd_status_orb_hpbar_text_height;
 
-	// Garrison counter.
-	crd_status_orb_garrison_span_x = 5;
-	crd_status_orb_garrison_span_y = 2;
-	crd_status_orb_garrison_width = 65;
-	crd_status_orb_garrison_height = 30;
-	crd_status_orb_garrison_x = crd_status_orb_hpbar_text_x+crd_status_orb_hpbar_text_width;
-	crd_status_orb_garrison_y = crd_status_orb_hpbar_y-(crd_status_orb_garrison_height/3);
+	// Garrison/Supply counter.
+	crd_status_orb_stat1_span_x = 5;
+	crd_status_orb_stat1_span_y = 2;
+	crd_status_orb_stat1_width = 126;
+	crd_status_orb_stat1_height = 30;
+	crd_status_orb_stat1_x = crd_status_orb_hpbar_text_x+crd_status_orb_hpbar_text_width;
+	crd_status_orb_stat1_y = crd_status_orb_hpbar_y-crd_mini_icon_width+1;
 
-	// Supply counter.
-	crd_status_orb_supply_x = crd_status_orb_garrison_x+crd_status_orb_garrison_width;
-	crd_status_orb_supply_y = crd_status_orb_garrison_y;
-	crd_status_orb_supply_width = crd_status_orb_garrison_width-4;
-	crd_status_orb_supply_height = crd_status_orb_garrison_height;
+	// Attack Stats.
+	crd_status_orb_stat2_x = crd_status_orb_portrait_x;
+	crd_status_orb_stat2_y = crd_status_orb_xpbar_y+crd_status_orb_xpbar_height+2;
+	crd_status_orb_stat2_width = crd_status_orb_bkg_width-8;
+	crd_status_orb_stat2_height = (crd_status_orb_bkg_y+crd_status_orb_bkg_height-5-crd_status_orb_stat2_y)/2;
 
-	// Attack.
-	crd_status_orb_attack_width = crd_status_orb_bkg_width-8;
-	crd_status_orb_attack_height = 22;
-	crd_status_orb_attack_x = crd_status_orb_portrait_x;
-	crd_status_orb_attack_y = crd_status_orb_xpbar_y+crd_status_orb_xpbar_height;
-
-	// Armour.
-	crd_status_orb_armour_width = crd_status_orb_attack_width;
-	crd_status_orb_armour_height = crd_status_orb_attack_height;
-	crd_status_orb_armour_x = crd_status_orb_attack_x;
-	crd_status_orb_armour_y = crd_status_orb_attack_y+crd_status_orb_attack_height;
-
-	// Other.
-	crd_status_orb_other_width = crd_status_orb_armour_width;
-	crd_status_orb_other_height = crd_status_orb_armour_height;
-	crd_status_orb_other_x = crd_status_orb_armour_x;
-	crd_status_orb_other_y = crd_status_orb_armour_y+crd_status_orb_armour_height;
+	// Armour & Other Stats.
+	crd_status_orb_stat3_width = crd_status_orb_stat2_width;
+	crd_status_orb_stat3_height = crd_status_orb_stat2_height;
+	crd_status_orb_stat3_x = crd_status_orb_stat2_x;
+	crd_status_orb_stat3_y = crd_status_orb_stat2_y+crd_status_orb_stat2_height;
 
 	// Command Button 1.
 	crd_status_orb_command_1_width = crd_portrait_sml_width;
@@ -95,6 +83,42 @@ function initStatusOrb()
 	crd_status_orb_command_1_x = 0;
 	crd_status_orb_command_1_y = crd_status_orb_bkg_height+1;
 	crd_status_orb_command_span = 2;
+
+	// Command Button 1_1.
+	crd_status_orb_command_1_1_width = crd_status_orb_command_1_width;
+	crd_status_orb_command_1_1_height = crd_status_orb_command_1_height;
+	crd_status_orb_command_1_1_x = crd_status_orb_command_1_x;
+	crd_status_orb_command_1_1_y = crd_status_orb_command_1_y+crd_status_orb_command_1_height+crd_status_orb_command_span;
+
+	// Command Button 1_2.
+	crd_status_orb_command_1_2_width = crd_status_orb_command_1_width;
+	crd_status_orb_command_1_2_height = crd_status_orb_command_1_height;
+	crd_status_orb_command_1_2_x = crd_status_orb_command_1_x;
+	crd_status_orb_command_1_2_y = crd_status_orb_command_1_1_y+crd_status_orb_command_1_1_height+crd_status_orb_command_span;
+
+	// Command Button 1_3.
+	crd_status_orb_command_1_3_width = crd_status_orb_command_1_width;
+	crd_status_orb_command_1_3_height = crd_status_orb_command_1_height;
+	crd_status_orb_command_1_3_x = crd_status_orb_command_1_x;
+	crd_status_orb_command_1_3_y = crd_status_orb_command_1_2_y+crd_status_orb_command_1_2_height+crd_status_orb_command_span;
+
+	// Command Button 1_4.
+	crd_status_orb_command_1_4_width = crd_status_orb_command_1_width;
+	crd_status_orb_command_1_4_height = crd_status_orb_command_1_height;
+	crd_status_orb_command_1_4_x = crd_status_orb_command_1_x;
+	crd_status_orb_command_1_4_y = crd_status_orb_command_1_3_y+crd_status_orb_command_1_3_height+crd_status_orb_command_span;
+
+	// Command Button 1_5.
+	crd_status_orb_command_1_5_width = crd_status_orb_command_1_width;
+	crd_status_orb_command_1_5_height = crd_status_orb_command_1_height;
+	crd_status_orb_command_1_5_x = crd_status_orb_command_1_x;
+	crd_status_orb_command_1_5_y = crd_status_orb_command_1_4_y+crd_status_orb_command_1_4_height+crd_status_orb_command_span;
+
+	// Command Button 1_6.
+	crd_status_orb_command_1_6_width = crd_status_orb_command_1_width;
+	crd_status_orb_command_1_6_height = crd_status_orb_command_1_height;
+	crd_status_orb_command_1_6_x = crd_status_orb_command_1_x;
+	crd_status_orb_command_1_6_y = crd_status_orb_command_1_5_y+crd_status_orb_command_1_5_height+crd_status_orb_command_span;
 
 	// Command Button 2.
 	crd_status_orb_command_2_width = crd_status_orb_command_1_width;
@@ -170,6 +194,20 @@ function initStatusOrb()
 }
 
 // ====================================================================
+/*
+function getCommandSlot()
+{
+	if (crd_status_orb_command_1.length == 0)
+		return "1";
+	if (crd_status_orb_command_2.length == 0)
+		return "2";
+	if (crd_status_orb_command_3.length == 0)
+		return "3";
+	if (crd_status_orb_command_4.length == 0)
+		return "4";
+}
+*/
+// ====================================================================
 
 function UpdateStatusOrb()
 {
@@ -223,11 +261,11 @@ function UpdateStatusOrb()
 		getGUIObjectByName("session_panel_status_icon_rank").sprite = "";
 
 	// Update hitpoints
-	if (selection[0].traits.health.curr && selection[0].traits.health.hitpoints)
+	if (selection[0].traits.health.curr && selection[0].traits.health.max)
 	{
-		getGUIObjectByName("session_panel_status_icon_hp_text").caption = Math.round(selection[0].traits.health.curr) + "/" + Math.round(selection[0].traits.health.hitpoints);
+		getGUIObjectByName("session_panel_status_icon_hp_text").caption = Math.round(selection[0].traits.health.curr) + "/" + Math.round(selection[0].traits.health.max);
 		getGUIObjectByName("session_panel_status_icon_hp_text").hidden = false;
-		getGUIObjectByName("session_panel_status_icon_hp_bar").caption = ((Math.round(selection[0].traits.health.curr) * 100 ) / Math.round(selection[0].traits.health.hitpoints));
+		getGUIObjectByName("session_panel_status_icon_hp_bar").caption = ((Math.round(selection[0].traits.health.curr) * 100 ) / Math.round(selection[0].traits.health.max));
 		getGUIObjectByName("session_panel_status_icon_hp_bar").hidden = false;
 	}
 	else
@@ -250,36 +288,104 @@ function UpdateStatusOrb()
 		getGUIObjectByName("session_panel_status_icon_xp_bar").hidden = true;
 	}
 
-	// Update stats
-	if (selection[0].actions.attack && selection[0].actions.attack.damage && selection[0].actions.attack.damage > 0 && selection[0].actions.attack.crush && selection[0].actions.attack.hack && selection[0].actions.attack.pierce)
+	// Update Supply/Garrison
+	GUIObject = getGUIObjectByName("session_panel_status_stat1");
+	GUIObject.caption = '';
+	if (selection[0].traits.garrison)
 	{
-		getGUIObjectByName("session_panel_status_attack").caption = "[icon=icon_statistic_attack]" + selection[0].actions.attack.damage + " [icon=icon_statistic_hack]" + Math.round(selection[0].actions.attack.hack*100) + "% [icon=icon_statistic_pierce]" + Math.round(selection[0].actions.attack.pierce*100) + "% [icon=icon_statistic_crush]" + Math.round(selection[0].actions.attack.crush*100) + "%";
+		if (selection[0].traits.garrison.curr && selection[0].traits.garrison.max)
+		{
+			GUIObject.caption += '[icon="icon_statistic_garrison"] [color="100 100 255"]' + selection[0].traits.garrison.curr + '/' + selection[0].traits.garrison.max + '[/color] ';
+		}
 	}
-	else
-		getGUIObjectByName("session_panel_status_attack").caption = "";
-
-	if (selection[0].traits.armour && selection[0].traits.armour.value && selection[0].traits.armour.value > 0 && selection[0].traits.armour.crush && selection[0].traits.armour.hack && selection[0].traits.armour.pierce)
+	if (selection[0].traits.supply)
 	{
-		getGUIObjectByName("session_panel_status_armour").caption = "[icon=icon_statistic_armour]" + selection[0].traits.armour.value + " [icon=icon_statistic_hack]" + Math.round(selection[0].traits.armour.hack*100) + "% [icon=icon_statistic_pierce]" + Math.round(selection[0].traits.armour.pierce*100) + "% [icon=icon_statistic_crush]" + Math.round(selection[0].traits.armour.crush*100) + "%";
+		if (selection[0].traits.supply.curr && selection[0].traits.supply.max && selection[0].traits.supply.type)
+		{
+			GUIObject.caption += '[icon="icon_resource_' + selection[0].traits.supply.type + '"] [color="255 100 100"]';
+			// Special case for infinity.
+			if (selection[0].traits.supply.curr == "0" && selection[0].traits.supply.max == "0")
+				GUIObject.caption += '8 ';
+			else
+				GUIObject.caption += selection[0].traits.supply.curr + '/' + selection[0].traits.supply.max;
+		}
 	}
-	else
-		getGUIObjectByName("session_panel_status_armour").caption = "";
 
-	GUIObject = getGUIObjectByName("session_panel_status_other");
-	GUIObject.caption = "";
-	if (selection[0].actions.attack && selection[0].actions.attack.range)
+	// Update Attack stats
+	GUIObject = getGUIObjectByName("session_panel_status_stat2");
+	GUIObject.caption = '';
+	if (selection[0].actions.attack)
 	{
-		GUIObject.caption += "[icon=icon_statistic_accuracy]" + selection[0].actions.attack.range + " ";
+		if (selection[0].actions.attack.damage && selection[0].actions.attack.damage > 0)
+			GUIObject.caption += '[icon="icon_statistic_attack"]' + selection[0].actions.attack.damage + ' ';
+		if (selection[0].actions.attack.hack && selection[0].actions.attack.hack > 0)
+			GUIObject.caption += '[icon="icon_statistic_hack"]' + Math.round(selection[0].actions.attack.hack*100) + '% ';
+		if (selection[0].actions.attack.pierce && selection[0].actions.attack.pierce > 0)
+			GUIObject.caption += '[icon="icon_statistic_pierce"]' + Math.round(selection[0].actions.attack.pierce*100) + '% ';
+		if (selection[0].actions.attack.crush && selection[0].actions.attack.crush > 0)
+			GUIObject.caption += '[icon="icon_statistic_crush"]' + Math.round(selection[0].actions.attack.crush*100) + '% ';
+		if (selection[0].actions.attack.range)
+			GUIObject.caption += '[icon="icon_statistic_range"]' + selection[0].actions.attack.range + ' ';
+		if (selection[0].actions.attack.accuracy)
+			GUIObject.caption += '[icon="icon_statistic_accuracy"]' + Math.round(selection[0].actions.attack.accuracy*100) + '% ';
+	}
+
+	// Update Armour & Other stats
+	GUIObject = getGUIObjectByName("session_panel_status_stat3");
+	GUIObject.caption = '';
+	if (selection[0].traits.armour)
+	{
+		if (selection[0].traits.armour.value && selection[0].traits.armour.value > 0)
+			GUIObject.caption += '[icon="icon_statistic_armour"]' + selection[0].traits.armour.value + ' ';
+		if (selection[0].traits.armour.hack && selection[0].traits.armour.hack > 0)
+			GUIObject.caption += '[icon="icon_statistic_hack"]' + Math.round(selection[0].traits.armour.hack*100) + '% ';
+		if (selection[0].traits.armour.pierce && selection[0].traits.armour.pierce > 0)
+			GUIObject.caption += '[icon="icon_statistic_pierce"]' + Math.round(selection[0].traits.armour.pierce*100) + '% ';
+		if (selection[0].traits.armour.crush && selection[0].traits.armour.crush > 0)
+			GUIObject.caption += '[icon="icon_statistic_crush"]' + Math.round(selection[0].traits.armour.crush*100) + '% ';
 	}
 	if (selection[0].actions.move && selection[0].actions.move.speed)
-	{
-		GUIObject.caption += "[icon=icon_statistic_speed]" + selection[0].actions.move.speed + " ";
-	}
+		GUIObject.caption += '[icon="icon_statistic_speed"]' + selection[0].actions.move.speed + ' ';
 	if (selection[0].traits.vision && selection[0].traits.vision.los)
-	{
-		GUIObject.caption += "[icon=icon_statistic_los]" + selection[0].traits.vision.los + " ";
-	}
+		GUIObject.caption += '[icon="icon_statistic_los"]' + selection[0].traits.vision.los + ' ';
 
 	// Reveal Status Orb
 	getGUIObjectByName("session_status_orb").hidden = false;
+
+	// Build unit list.
+	if (selection[0].actions.create)
+	{
+		if (selection[0].actions.create.unitlist)
+		{
+			// Enable tab portrait.
+			setPortrait("session_panel_status_command_pri_1", "tab_train");
+			getGUIObjectByName("session_panel_status_command_pri_1").hidden = false;
+
+//			commandSlot = getCommandSlot();
+
+			// Extract entity list into an array.
+			// (Give it a string literally identical to the attribute, as for some reason it doesn't work right now. :(
+//			crd_status_orb_command_1 = parseDelimiterString(selection[0].actions.create.unitlist, ";");
+			crd_status_orb_command_1 = parseDelimiterString("hele_fem_b1;hele_isp_u1", ";");
+		}
+	}
+	else
+		getGUIObjectByName("session_panel_status_command_pri_1").hidden = true;
+
+
+	// Populate appropriate command buttons.
+	for (createLoop = 1; createLoop <= 6; createLoop++)
+	{
+		if (selection[0].actions.create && selection[0].actions.create.unitlist && createLoop < crd_status_orb_command_1.length+1)
+		{
+			if (getEntityTemplate(crd_status_orb_command_1[createLoop-1]).traits.id.icon_cell && getEntityTemplate(crd_status_orb_command_1[createLoop-1]).traits.id.icon_cell != "")
+				setPortrait("session_panel_status_command_pri_1_" + createLoop, getEntityTemplate(crd_status_orb_command_1[createLoop-1]).traits.id.icon + "_" + getEntityTemplate(crd_status_orb_command_1[createLoop-1]).traits.id.icon_cell);
+			else
+				setPortrait("session_panel_status_command_pri_1_" + createLoop, getEntityTemplate(crd_status_orb_command_1[createLoop-1]).traits.id.icon);
+				getGUIObjectByName("session_panel_status_command_pri_1_" + createLoop).hidden = false;
+		}
+		else
+			getGUIObjectByName("session_panel_status_command_pri_1_" + createLoop).hidden = true;
+	}
 }
+

@@ -11,9 +11,16 @@
 			
 			type.structure.phase.cp="true"
 		/>
+		<Garrison
+			curr="0"
+			max="30"
+		/>
 		<Health
 			curr="1000"
-			hitpoints="1000"
+			max="1000"
+		/>
+		<Population
+			add="20"
 		/>
 	</Traits>
 	<Footprint Width="24.0" Height="24.0"/>

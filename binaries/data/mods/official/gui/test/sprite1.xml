@@ -397,8 +397,84 @@
                         <image texture="ui_icon_statistic_pierce_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
                 </sprite>
 
+                <sprite name="statistic_range">
+                        <image texture="ui_icon_statistic_accuracy_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
+                </sprite>
+
                 <sprite name="statistic_speed">
                         <image texture="ui_icon_statistic_speed_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
+                </sprite>
+
+                <!--
+                ==========================================
+                TAB PORTRAITS
+                ==========================================
+                -->
+
+                <!-- Unit List (Train) portrait. -->
+                <sprite name="ui_portrait_tab_train_64">
+                        <image texture="ui_portrait_tab_train_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_tab_train_64-lit">
+                        <image texture="ui_portrait_tab_train_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_tab_train_64-grey">
+                        <image texture="ui_portrait_tab_train_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+
+                <!-- Structure List (Build Civil) portrait. -->
+                <sprite name="ui_portrait_tab_buildciv_64">
+                        <image texture="ui_portrait_tab_buildciv_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_tab_buildciv_64-lit">
+                        <image texture="ui_portrait_tab_buildciv_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_tab_buildciv_64-grey">
+                        <image texture="ui_portrait_tab_buildciv_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+
+                <!-- Structure List (Build Military) portrait. -->
+                <sprite name="ui_portrait_tab_buildmil_64">
+                        <image texture="ui_portrait_tab_buildciv_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_tab_buildmil_64-lit">
+                        <image texture="ui_portrait_tab_buildciv_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_tab_buildmil_64-grey">
+                        <image texture="ui_portrait_tab_buildciv_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+
+                <!-- Tech List (Research) portrait. -->
+                <sprite name="ui_portrait_tab_research_64">
+                        <image texture="ui_portrait_tab_research_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_tab_research_64-lit">
+                        <image texture="ui_portrait_tab_research_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_tab_research_64-grey">
+                        <image texture="ui_portrait_tab_research_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+
+                <!-- Formation portrait. -->
+                <sprite name="ui_portrait_tab_formation_64">
+                        <image texture="ui_portrait_tab_formation_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_tab_formation_64-lit">
+                        <image texture="ui_portrait_tab_formation_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_tab_formation_64-grey">
+                        <image texture="ui_portrait_tab_formation_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+
+                <!-- Behaviour portrait. -->
+                <sprite name="ui_portrait_tab_behaviour_64">
+                        <image texture="ui_portrait_tab_behaviour_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_tab_behaviour_64-lit">
+                        <image texture="ui_portrait_tab_behaviour_64-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                </sprite>
+                <sprite name="ui_portrait_tab_behaviour_64-grey">
+                        <image texture="ui_portrait_tab_behaviour_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
 
                 <!--

@@ -8,6 +8,18 @@
 
 			type.gaia.group.fauna="true"
 		/>
+		<MiniMap
+			type="Food"
+			red="253"
+			green="141"
+			blue="21"
+		/>
+		<Supply
+			curr="100"
+			max="100"
+			type="food"
+			subtype="meat"
+		/>
 	</Traits>
 	<Footprint Radius="1.0"/>
 </Entity>

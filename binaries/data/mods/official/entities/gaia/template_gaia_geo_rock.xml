@@ -8,5 +8,17 @@
 
 			rollover="A lump of hard common mineral. It can be mined to provide stone building material."
 		/>
+		<MiniMap
+			type="Stone"
+			red="128"
+			green="128"
+			blue="128"
+		/>
+		<Supply
+			curr="50"
+			max="50"
+			type="stone"
+			subtype="stone"
+		/>
 	</Traits>
 </Entity>

@@ -49,8 +49,8 @@ function manualDisplay()
 						ManualRollover.caption += "Civilisation: " + selection[0].traits.id.civ + "\n";
 					
 					// Display hitpoints.
-					if (selection[0].traits.health.curr && selection[0].traits.health.hitpoints && selection[0].traits.health)
-						ManualRollover.caption += "Hitpoints: " + selection[0].traits.health.curr + "/" + selection[0].traits.health.hitpoints + "\n";
+					if (selection[0].traits.health.curr && selection[0].traits.health.max && selection[0].traits.health)
+						ManualRollover.caption += "Hitpoints: " + selection[0].traits.health.curr + "/" + selection[0].traits.health.max + "\n";
 
 					// Display rank.
 					if (selection[0].traits.up.rank)
@@ -59,6 +59,37 @@ function manualDisplay()
 					// Display experience.
 					if (selection[0].traits.up && selection[0].traits.up.curr && selection[0].traits.up.req)
 						ManualRollover.caption += "XP: " + selection[0].traits.up.curr + "/" + selection[0].traits.up.req + "\n";
+
+					// Display population.
+					if (selection[0].traits.population)
+					{
+						if (selection[0].traits.population.sub)
+							ManualRollover.caption += "Pop: -" + selection[0].traits.population.sub + "\n";
+						if (selection[0].traits.population.add)
+							ManualRollover.caption += "Housing: +" + selection[0].traits.population.add + "\n";
+					}
+
+					// Display garrison.
+					if (selection[0].traits.garrison)
+					{
+						if (selection[0].traits.garrison.curr && selection[0].traits.garrison.max)
+							ManualRollover.caption += "Garrison: " + selection[0].traits.garrison.curr + "/" + selection[0].traits.garrison.max + "\n";
+					}
+
+					// Display supply.
+					if (selection[0].traits.supply)
+					{
+						if (selection[0].traits.supply.curr && selection[0].traits.supply.max && selection[0].traits.supply.type)
+						{
+							// If Supply is infinite,
+							if (selection[0].traits.supply.curr == "0" && selection[0].traits.supply.max == "0")
+								// Use infinity symbol.
+								ManualRollover.caption += "Supply: " + selection[0].traits.supply.curr + "/" + selection[0].traits.supply.max + " " + selection[0].traits.supply.type + " (" + selection[0].traits.supply.subtype + ")\n";
+							else
+								// Use numbers.
+								ManualRollover.caption += "Supply: 8 " + selection[0].traits.supply.type + " (" + selection[0].traits.supply.subtype + ")\n";
+						}
+					}
 
 					if (selection[0].traits.loot)
 					{
@@ -80,6 +111,17 @@ function manualDisplay()
 								ManualRollover.caption += selection[0].traits.loot.ore + " Ore ";
 							ManualRollover.caption += "\n";
 						}
+					}
+
+					// Display minimap.
+					if (selection[0].traits.minimap)
+					{
+
+						if (selection[0].traits.minimap && selection[0].traits.minimap.type)
+							ManualRollover.caption += "Map Type: " + selection[0].traits.minimap.type + "\n";
+
+						if (selection[0].traits.minimap && selection[0].traits.minimap.red && selection[0].traits.minimap.green && selection[0].traits.minimap.blue)
+							ManualRollover.caption += "Map Colour: " + selection[0].traits.minimap.red + "-" + selection[0].traits.minimap.green + "-" + selection[0].traits.minimap.blue + "\n";
 					}
 
 					// Armour.
@@ -127,6 +169,9 @@ function manualDisplay()
 
 						if (selection[0].actions.attack.range)						
 							ManualRollover.caption += "Attack Range: " + selection[0].actions.attack.range + "\n";
+
+						if (selection[0].actions.attack.accuracy)						
+							ManualRollover.caption += "Attack Accuracy: " + selection[0].actions.attack.accuracy*100 + "%\n";
 					}
 
 					// Speed.
@@ -172,6 +217,14 @@ function manualDisplay()
 					// Version.
 					if (selection[0].traits.id.version)
 					ManualRollover.caption += "Version: " + selection[0].traits.id.version + "\n";
+
+					// Lists.
+					if (selection[0].actions.create)
+					{
+						if (selection[0].actions.create.unitlist)
+							ManualRollover.caption += "Trains: " + selection[0].actions.create.unitlist + "\n";
+					}
+
 
 					// Display types.
 					if (selection[0].traits.id.type)

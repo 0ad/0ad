@@ -8,5 +8,17 @@
 
 			rollover="A mineral deposit, providing access to rare forms of precious metal."
 		/>
+		<MiniMap
+			type="Ore"
+			red="192"
+			green="192"
+			blue="0"
+		/>
+		<Supply
+			curr="100"
+			max="100"
+			type="ore"
+			subtype="ore"
+		/>
 	</Traits>
 </Entity>
