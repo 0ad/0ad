@@ -48,6 +48,12 @@ More detailed overview:
 
 =cut
 
+$SIG{__DIE__} = sub {
+	warn @_;
+	print "(Press enter to exit)";
+	<STDIN>;
+	exit;
+};
 
 use File::Find;
 use Archive::Zip;
@@ -62,7 +68,12 @@ struct( FileData => [
 my $XMB_VERSION = 'A'; # TODO: Find a way of not having to update this manually
 
 
-generate_archive("../../../binaries", "official");
+
+my $bin_dir = get_opt('bindir', '../../../binaries');
+my $mod_name = get_opt('mod', 'official');
+
+
+generate_archive($bin_dir, $mod_name);
 
 
 
@@ -338,4 +349,19 @@ sub create_archive {
 	}
 
 	my $err = $zip->overwriteAs($filename); $err == Archive::Zip::AZ_OK or die "Error saving zip file $filename ($err)";
+}
+
+
+
+### Miscellaneous code ###
+
+sub get_opt {
+	my ($name, $default) = @_;
+
+	for (@ARGV) {
+		if (/^--\Q$name\E="?(.*)"?$/) {
+			return $1;	
+		}
+	}
+	return $default;
 }
