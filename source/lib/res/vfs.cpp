@@ -1400,9 +1400,10 @@ debug_out("vfs_io size=%d\n", size);
 
 #include "timer.h"
 static double dt;
+static double totaldata;
 void dump()
 {
-	debug_out("TOTAL TIME IN VFS_IO:\n\n%f\n\n", dt);
+	debug_out("TOTAL TIME IN VFS_IO: %f\nthroughput: %f MB/s\n\n", dt, totaldata/dt/1e6);
 }
 
 // load the entire file <fn> into memory; return a handle to the memory
@@ -1444,6 +1445,7 @@ debug_out("vfs_load fn=%s\n", fn);
 
 	{	// VC6 goto fix
 double t1=get_time();
+totaldata += size;
 	ssize_t nread = vfs_io(hf, size, &p);
 double t2=get_time();
 dt += t2-t1;
