@@ -74,23 +74,6 @@
 #include "Network/Server.h"
 
 
-
-int cstr_seq = 0;
-const char* a1="default";
-const char* a2="const CStr&";
-const char* a3="const TCHAR*";
-const char* a4="const TCHAR*, size_t";
-const char* a5="a5";
-const char* a6="a6";
-const char* a7="a7";
-const char* a8="a8";
-const char* a9="a9";
-const char* a10="a10";
-const char* a11="a11";
-const char* a12="a12";
-const char* a13="a13";
-
-
 CConsole* g_Console = 0;
 extern int conInputHandler(const SDL_Event* ev);
 
@@ -130,6 +113,8 @@ extern int game_view_handler(const SDL_Event* ev);
 static CMusicPlayer MusicPlayer;
 
 CStr g_CursorName = "test";
+
+
 
 extern int allow_reload();
 extern int dir_add_watch(const char* const dir, bool watch_subdirs);
@@ -361,7 +346,14 @@ static int handler(const SDL_Event* ev)
 			{
 //			MusicPlayer.open("audio/music/germanic peace 3.ogg");
 //			MusicPlayer.play();
-			Handle hs = sound_open("audio/voice/hellenes/citizensoldier/Attack-ZeusSaviourandVictory-Zeus-soter-kai-nike.ogg");
+			Handle hs = sound_open(
+				//"audio/music/germanic peace 3.ogg"
+				"audio/voice/hellenes/citizensoldier/Attack-ZeusSaviourandVictory-Zeus-soter-kai-nike.ogg"
+				//"audio/voice/hellenes/citizensoldier/Stance-HoldYourPosition-Kataschete-ten-taxin.ogg"
+				//"audio/voice/hellenes/citizensoldier/Econ-Chop-Kopto.ogg"
+				//"audio/voice/hellenes/citizensoldier/lead_em.wav"
+				);
+				
 			sound_play(hs);
 			}
 			break;
@@ -673,8 +665,11 @@ static void InitVfs(char* argv0)
 
 static void psInit()
 {
-	g_Console->SetSize(0, g_yres-600.f, (float)g_xres, 600.f);
+	// console
 	{
+		float ConsoleHeight = g_yres * 0.6f;
+		g_Console->SetSize(0, g_yres-ConsoleHeight, (float)g_xres, ConsoleHeight);
+
 		// Calculate and store the line spacing
 		CFont font("console");
 		g_Console->m_iFontHeight = font.GetLineSpacing();
