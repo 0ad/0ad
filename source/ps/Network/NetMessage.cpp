@@ -9,18 +9,24 @@
 #include <map>
 
 // NEVER modify the deserializer map outside the ONCE-block in DeserializeMessage
-typedef std::map <NetMessageType, NetMessageDeserializer> MessageDeserializerMap;
+typedef std::map <ENetMessageType, NetMessageDeserializer> MessageDeserializerMap;
 MessageDeserializerMap g_DeserializerMap;
 
-void CNetMessage::Serialize(u8 *) const
-{}
+u8 *CNetMessage::Serialize(u8 *pos) const
+{ return pos; }
 
 uint CNetMessage::GetSerializedLength() const
 {
 	return 0;
 }
 
-CNetMessage *CNetMessage::DeserializeMessage(NetMessageType type, u8 *buffer, uint length)
+CStr CNetMessage::GetString() const
+{ return CStr(); }
+
+const u8 *CNetMessage::Deserialize(const u8 *pos, const u8 *end)
+{ return pos; }
+
+CNetMessage *CNetMessage::DeserializeMessage(ENetMessageType type, u8 *buffer, uint length)
 {
 	{
 	ONCE(
@@ -39,3 +45,4 @@ CNetMessage *CNetMessage::DeserializeMessage(NetMessageType type, u8 *buffer, ui
 	NetMessageDeserializer pDes=dEntry->second;
 	return (pDes)(buffer, length);
 }
+

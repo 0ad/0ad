@@ -2,22 +2,28 @@
 #define _NetMessage_H
 
 #include "types.h"
+#include "Serialization.h"
+#include "Network/SocketBase.h"
 
+// We need the enum from AllNetMessages.h, but we can't create any classes in
+// AllNetMessages, since they in turn require CNetMessage to be defined
 #define ALLNETMSGS_DONT_CREATE_NMTS
 #include "AllNetMessages.h"
 #undef ALLNETMSGS_DONT_CREATE_NMTS
 
-
-class CNetMessage
+/**
+ * The base class for network messages
+ */
+class CNetMessage: public ISerializable
 {
-	NetMessageType m_Type;
+	ENetMessageType m_Type;
 protected:
-	inline CNetMessage(NetMessageType type):
+	inline CNetMessage(ENetMessageType type):
 		m_Type(type)
 	{}
 
 public:
-	inline NetMessageType GetType() const
+	inline ENetMessageType GetType() const
 	{ return m_Type; }
 
 	/**
@@ -28,7 +34,16 @@ public:
 	 * Serialize the message into the buffer. The buffer will have the size
 	 * returned from the last call to GetSerializedLength()
 	 */
-	virtual void Serialize(u8 *buffer) const;
+	virtual u8 *Serialize(u8 *buffer) const;
+	virtual const u8 *Deserialize(const u8 *pos, const u8 *end);
+	
+	/**
+	 * Make a string representation of the message. The default implementation
+	 * returns the empty string
+	 */
+	virtual CStr GetString() const;
+	inline operator CStr() const
+	{ return GetString(); }
 
 	/**
 	 * Deserialize a net message, using the globally registered deserializers.
@@ -40,20 +55,20 @@ public:
 	 * @returns a pointer to a newly created CNetMessage subclass, or NULL if
 	 * there was an error in data format.
 	 */
-	static CNetMessage *DeserializeMessage(NetMessageType type, u8 *buffer, uint length);
+	static CNetMessage *DeserializeMessage(ENetMessageType type, u8 *buffer, uint length);
 };
 
-class CNetMessage;
 typedef CNetMessage * (*NetMessageDeserializer) (const u8 *buffer, uint length);
 
 #include "Entity.h"
 
 struct SNetMessageDeserializerRegistration
 {
-	NetMessageType m_Type;
+	ENetMessageType m_Type;
 	NetMessageDeserializer m_pDeserializer;
 };
 
+// This time, the classes are created
 #include "AllNetMessages.h"
 
 #endif // #ifndef _NetMessage_H
