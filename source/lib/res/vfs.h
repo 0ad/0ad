@@ -57,6 +57,8 @@ extern int vfs_rebuild();
 // unmount a previously mounted item, and rebuild the VFS afterwards.
 extern int vfs_unmount(const char* name);
 
+extern int vfs_get_path(const char* path, char* vfs_path);
+
 
 //
 // directory entry

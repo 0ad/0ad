@@ -39,6 +39,15 @@
 // not safe to call before main!
 
 
+// we add/cancel directory watches from the VFS mount code for convenience -
+// it iterates through all subdirectories anyway (the watch code would need
+// to do this, because FAM can't monitor a directory subtree) and provides
+// storage for the FAM request number.
+// define to disable that - removes request number from struct Dir,
+// and calls to res_watch_dir / res_cancel_watch.
+#undef NO_DIR_WATCH
+
+
 // rationale for no forcibly-close support:
 // issue:
 // we might want to edit files while the game has them open.
@@ -144,7 +153,7 @@ static int path_validate(const uint line, const char* const path)
 			if(last_was_dot)
 			{
 				msg = "contains \"..\"";
-///				goto fail;
+				goto fail;
 			}
 			last_was_dot = true;
 		}
@@ -155,7 +164,7 @@ static int path_validate(const uint line, const char* const path)
 		if(c == '\\' || c == ':')
 		{
 			msg = "contains OS-specific dir separator (e.g. '\\', ':')";
-///			goto fail;
+			goto fail;
 		}
 
 		// end of string, all is well.
@@ -244,6 +253,10 @@ typedef SubDirs::iterator SubDirIt;
 
 struct Dir
 {
+#ifndef NO_DIR_WATCH
+	uint watch_reqnum;
+#endif
+
 	int add_file(const char* name, const FileLoc* loc);
 	const FileLoc* find_file(const char* name);
 
@@ -325,6 +338,10 @@ void Dir::clearR()
 
 	subdirs.clear();
 	files.clear();
+
+#ifndef NO_DIR_WATCH
+	res_cancel_watch(watch_reqnum);
+#endif
 }
 
 
@@ -489,6 +506,10 @@ static int tree_add_dirR(Dir* const dir, const char* const f_path, const FileLoc
 	// add files and subdirs to vdir
 	const FileCBParams params(dir, loc);
 	file_enum(f_path, add_dirent_cb, (uintptr_t)&params);
+
+#ifndef NO_DIR_WATCH
+	res_watch_dir(f_path, &dir->watch_reqnum);
+#endif
 
 	for(SubDirIt it = dir->subdirs.begin(); it != dir->subdirs.end(); ++it)
 	{
@@ -771,6 +792,24 @@ int vfs_unmount(const char* name)
 	return ERR_PATH_NOT_FOUND;
 }
 
+
+int vfs_get_path(const char* const path, char* const vfs_path)
+{
+	for(MountIt it = mounts.begin(); it != mounts.end(); ++it)
+	{
+		const char* dir_name = it->f_name.c_str();
+		const size_t len = strlen(dir_name);
+		if(!strncmp(dir_name, path, len))
+		{
+			const char* fn = path+len;
+			const char* v_path = it->v_path.c_str();
+			CHECK_ERR(path_append(vfs_path, v_path, fn));
+			return 0;
+		}
+	}
+
+	return -1;
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 //
