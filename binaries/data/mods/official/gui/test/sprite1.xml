@@ -158,121 +158,121 @@
                 <image texture="black_16x16.png" texture-size="0 0 16 16" size="0 0 100% 100%" />
         </sprite>
 
-		<!--
-		==========================================
-        	MAP ORB
-        	==========================================
-        	-->
+                <!--
+                ==========================================
+                MAP ORB
+                ==========================================
+                -->
 
-       		<sprite name="session_panel_minimap_bg">
-                	<image texture="ui_session_panel_minimap_bg.png" texture-size="0 0 256 256" size="0 0 176 176" />
-        	</sprite>
+                       <sprite name="session_panel_minimap_bg">
+                        <image texture="ui_session_panel_minimap_bg.png" texture-size="0 0 256 256" size="0 0 176 176" />
+                </sprite>
 
-        	<sprite name="session_panel_minimap_dummy">
-                	<image texture="ui_session_panel_minimap_dummy.png" texture-size="0 0 256 256" size="0 0 172 172" />
-        	</sprite>
+                <sprite name="session_panel_minimap_dummy">
+                        <image texture="ui_session_panel_minimap_dummy.png" texture-size="0 0 256 256" size="0 0 172 172" />
+                </sprite>
 
-        	<sprite name="session_panel_minimap_segleft1">
-                	<image texture="ui_session_panel_minimap_segleft1.png" texture-size="0 0 64 64" size="0 0 32 46" />
-        	</sprite>
+                <sprite name="session_panel_minimap_segleft1">
+                        <image texture="ui_session_panel_minimap_segleft1.png" texture-size="0 0 64 64" size="0 0 32 46" />
+                </sprite>
 
-        	<sprite name="session_panel_minimap_segleft2">
-                	<image texture="ui_session_panel_minimap_segleft2.png" texture-size="0 0 64 64" size="0 0 40 44" />
-        	</sprite>
+                <sprite name="session_panel_minimap_segleft2">
+                        <image texture="ui_session_panel_minimap_segleft2.png" texture-size="0 0 64 64" size="0 0 40 44" />
+                </sprite>
 
-        	<sprite name="session_panel_minimap_segleft3">
-                	<image texture="ui_session_panel_minimap_segleft3.png" texture-size="0 0 64 64" size="0 0 40 44" />
-        	</sprite>
+                <sprite name="session_panel_minimap_segleft3">
+                        <image texture="ui_session_panel_minimap_segleft3.png" texture-size="0 0 64 64" size="0 0 40 44" />
+                </sprite>
 
-        	<sprite name="session_panel_minimap_segleft4">
-                	<image texture="ui_session_panel_minimap_segleft4.png" texture-size="0 0 64 64" size="0 0 32 46" />
-        	</sprite>
+                <sprite name="session_panel_minimap_segleft4">
+                        <image texture="ui_session_panel_minimap_segleft4.png" texture-size="0 0 64 64" size="0 0 32 46" />
+                </sprite>
 
-        	<sprite name="session_panel_minimap_segbottom1">
-                	<image texture="ui_session_panel_minimap_segbottom1.png" texture-size="0 0 64 64" size="0 0 44 40" />
-        	</sprite>
+                <sprite name="session_panel_minimap_segbottom1">
+                        <image texture="ui_session_panel_minimap_segbottom1.png" texture-size="0 0 64 64" size="0 0 44 40" />
+                </sprite>
 
-        	<sprite name="session_panel_minimap_segbottom2">
-                	<image texture="ui_session_panel_minimap_segbottom2.png" texture-size="0 0 64 64" size="0 0 46 46" />
-        	</sprite>
+                <sprite name="session_panel_minimap_segbottom2">
+                        <image texture="ui_session_panel_minimap_segbottom2.png" texture-size="0 0 64 64" size="0 0 46 46" />
+                </sprite>
 
-        	<sprite name="session_panel_minimap_segbottom3">
-                	<image texture="ui_session_panel_minimap_segbottom3.png" texture-size="0 0 64 64" size="0 0 46 46" />
-        	</sprite>
+                <sprite name="session_panel_minimap_segbottom3">
+                        <image texture="ui_session_panel_minimap_segbottom3.png" texture-size="0 0 64 64" size="0 0 46 46" />
+                </sprite>
 
-        	<sprite name="session_panel_minimap_segbottom4">
-                	<image texture="ui_session_panel_minimap_segbottom4.png" texture-size="0 0 64 64" size="0 0 44 40" />
-        	</sprite>
+                <sprite name="session_panel_minimap_segbottom4">
+                        <image texture="ui_session_panel_minimap_segbottom4.png" texture-size="0 0 64 64" size="0 0 44 40" />
+                </sprite>
 
-        	<sprite name="session_panel_minimap_segtop1">
-                	<image texture="ui_session_panel_minimap_segtop1.png" texture-size="0 0 64 64" size="0 0 44 40" />
-        	</sprite>
+                <sprite name="session_panel_minimap_segtop1">
+                        <image texture="ui_session_panel_minimap_segtop1.png" texture-size="0 0 64 64" size="0 0 44 40" />
+                </sprite>
 
-        	<sprite name="session_panel_minimap_segtop2">
-                	<image texture="ui_session_panel_minimap_segtop2.png" texture-size="0 0 64 64" size="0 0 46 46" />
-        	</sprite>
+                <sprite name="session_panel_minimap_segtop2">
+                        <image texture="ui_session_panel_minimap_segtop2.png" texture-size="0 0 64 64" size="0 0 46 46" />
+                </sprite>
 
-        	<sprite name="session_panel_minimap_segtop3">
-                	<image texture="ui_session_panel_minimap_segtop3.png" texture-size="0 0 64 64" size="0 0 46 46" />
-        	</sprite>
+                <sprite name="session_panel_minimap_segtop3">
+                        <image texture="ui_session_panel_minimap_segtop3.png" texture-size="0 0 64 64" size="0 0 46 46" />
+                </sprite>
 
-        	<sprite name="session_panel_minimap_segtop4">
-                	<image texture="ui_session_panel_minimap_segtop4.png" texture-size="0 0 64 64" size="0 0 44 40" />
-        	</sprite>
+                <sprite name="session_panel_minimap_segtop4">
+                        <image texture="ui_session_panel_minimap_segtop4.png" texture-size="0 0 64 64" size="0 0 44 40" />
+                </sprite>
 
-        	<!--
-        	==========================================
-        	STATUS ORB
-        	==========================================
-        	-->
+                <!--
+                ==========================================
+                STATUS ORB
+                ==========================================
+                -->
 
-       		<sprite name="session_panel_status_bg-top">
-                	<image texture="ui_session_panel_status_bg-top.png" texture-size="0 0 256 256" size="0 0 184 184" />
-        	</sprite>
+                       <sprite name="session_panel_status_bg-top">
+                        <image texture="ui_session_panel_status_bg-top.png" texture-size="0 0 256 256" size="0 0 184 184" />
+                </sprite>
 
-       		<sprite name="session_panel_status_bg-bottom">
-                	<image texture="ui_session_panel_status_bg-bottom.png" texture-size="0 0 256 256" size="0 0 184 184" />
-        	</sprite>
+                       <sprite name="session_panel_status_bg-bottom">
+                        <image texture="ui_session_panel_status_bg-bottom.png" texture-size="0 0 256 256" size="0 0 184 184" />
+                </sprite>
 
-        	<!--
-        	==========================================
-        	TOP BAR
-        	==========================================
-        	-->
+                <!--
+                ==========================================
+                TOP BAR
+                ==========================================
+                -->
 
-        	<sprite name="resource_food">
-                	<image texture="ui_icon_resource_food_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
-        	</sprite>
+                <sprite name="resource_food">
+                        <image texture="ui_icon_resource_food_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                </sprite>
 
-        	<sprite name="resource_wood">
-                	<image texture="ui_icon_resource_wood_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
-        	</sprite>
+                <sprite name="resource_wood">
+                        <image texture="ui_icon_resource_wood_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                </sprite>
 
-        	<sprite name="resource_stone">
-                	<image texture="ui_icon_resource_stone_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
-        	</sprite>
+                <sprite name="resource_stone">
+                        <image texture="ui_icon_resource_stone_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                </sprite>
 
-        	<sprite name="resource_ore">
-                	<image texture="ui_icon_resource_ore_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
-        	</sprite>
+                <sprite name="resource_ore">
+                        <image texture="ui_icon_resource_ore_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                </sprite>
 
-        	<sprite name="resource_population">
-                	<image texture="ui_icon_resource_population_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
-        	</sprite>
+                <sprite name="resource_population">
+                        <image texture="ui_icon_resource_population_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                </sprite>
 
-        	<sprite name="resource_counter">
-                	<image texture="ui_icon_resource_counter.png" texture-size="0 0 64 64" size="0 0 53 19" />
-        	</sprite>
+                <sprite name="resource_counter">
+                        <image texture="ui_icon_resource_counter.png" texture-size="0 0 64 64" size="0 0 53 19" />
+                </sprite>
 
-        	<sprite name="resource_counter_long">
-                	<image texture="ui_icon_resource_counter_long.png" texture-size="0 0 64 64" size="0 0 62 19" />
-        	</sprite>
+                <sprite name="resource_counter_long">
+                        <image texture="ui_icon_resource_counter_long.png" texture-size="0 0 64 64" size="0 0 62 19" />
+                </sprite>
 
-        	<!--
-        	==========================================
-        	STATISTIC ICONS
-        	==========================================
-        	-->
+                <!--
+                ==========================================
+                STATISTIC ICONS
+                ==========================================
+                -->
 
                 <sprite name="statistic_hp">
                         <image texture="ui_icon_statistic_hp_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
@@ -294,13 +294,13 @@
                         <image texture="ui_icon_statistic_garrison_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
                 </sprite>
 
-        	<!--
-        	==========================================
-        	ENTITY SINGLE PORTRAITS
-        	==========================================
-        	-->
+                <!--
+                ==========================================
+                ENTITY SINGLE PORTRAITS
+                ==========================================
+                -->
 
-		<!-- Default (empty) portrait. -->
+                <!-- Default (empty) portrait. -->
                 <sprite name="ui_portrait_default_64">
                         <image texture="ui_portrait_default_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
@@ -311,7 +311,7 @@
                         <image texture="ui_portrait_default_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
 
-		<!-- Pyrogenesis Dude portrait. -->
+                <!-- Pyrogenesis Dude portrait. -->
                 <sprite name="ui_portrait_unit_dude_64">
                         <image texture="ui_portrait_unit_dude_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
@@ -322,7 +322,7 @@
                         <image texture="ui_portrait_unit_dude_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
 
-		<!-- Pyrogenesis Dudette portrait. -->
+                <!-- Pyrogenesis Dudette portrait. -->
                 <sprite name="ui_portrait_unit_dudette_64">
                         <image texture="ui_portrait_unit_dudette_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
@@ -333,7 +333,7 @@
                         <image texture="ui_portrait_unit_dudette_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
 
-		<!-- Pyrogenesis Cavalry Dude portrait. -->
+                <!-- Pyrogenesis Cavalry Dude portrait. -->
                 <sprite name="ui_portrait_unit_cavalrydude_64">
                         <image texture="ui_portrait_unit_cavalrydude_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
@@ -344,7 +344,7 @@
                         <image texture="ui_portrait_unit_cavalrydude_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
 
-		<!-- Deciduous Tree portrait. -->
+                <!-- Deciduous Tree portrait. -->
                 <sprite name="ui_portrait_flora_deciduotree_64">
                         <image texture="ui_portrait_flora_deciduotree_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
@@ -355,7 +355,7 @@
                         <image texture="ui_portrait_flora_deciduotree_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
 
-		<!-- Structure: Hellenic House portrait. -->
+                <!-- Structure: Hellenic House portrait. -->
                 <sprite name="ui_portrait_structure_heleho_64">
                         <image texture="ui_portrait_structure_heleho_64.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
@@ -366,11 +366,11 @@
                         <image texture="ui_portrait_structure_heleho_64-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
 
-        	<!--
-        	==========================================
-        	ENTITY SHEET PORTRAITS
-        	==========================================
-        	-->
+                <!--
+                ==========================================
+                ENTITY SHEET PORTRAITS
+                ==========================================
+                -->
                 <sprite name="ui_portrait_sheet_rome_1_64">
                         <image texture="ui_portrait_sheet_rome_64.png" real-texture-placement="0 0 64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
@@ -403,8 +403,52 @@
 
         <!--
         ==========================================
-        TEST
+        MESSAGE BOX
         ==========================================
         -->
+        
+        <sprite name="message_box-gen-background">
+                <image texture="global/ui_gen_background_paper.png" size="0 0 100% 100%" texture-size="0 0 128 128" />
+        </sprite>
+
+        <sprite name="message_box-corner">
+                <image texture="global/ui_gen_border-corner-15px.png" size="0 0 100% 100%" real-texture-placement="0 0 15 15" />
+        </sprite>
+
+        <sprite name="message_box-border-top">
+                <image texture="global/ui_gen_border-top-20px.png" size="0 0 100% 100%" texture-size="0 0 128 32" />
+        </sprite>
+
+        <sprite name="message_box-border-left">
+                <image texture="global/ui_gen_border-left-20px.png" size="0 0 100% 100%" texture-size="0 0 32 128" />
+        </sprite>
+
+        <sprite name="message_box-border-right">
+                <image texture="global/ui_gen_border-right-20px.png" size="0 0 100% 100%" texture-size="0 0 32 128" />
+        </sprite>
+
+        <sprite name="message_box-border-bottom">
+                <image texture="global/ui_gen_border-bottom-20px.png" size="0 0 100% 100%" texture-size="0 0 128 32" />
+        </sprite>
+
+        <sprite name="message_box-titlebar-left">
+                <image texture="global/ui_gen_titlebar-left.png" size="0 0 100% 100%" real-texture-placement="0 0 64 32" />
+        </sprite>
+
+        <sprite name="message_box-titlebar-right">
+                <image texture="global/ui_gen_titlebar-right.png" size="0 0 100% 100%" real-texture-placement="0 0 64 32" />
+        </sprite>
+
+        <sprite name="message_box-titlebar-middle">
+                <image texture="global/ui_gen_titlebar-middle.png" size="0 0 100% 100%" texture-size="0 0 64 32" />
+        </sprite>
+        
+        <sprite name="message_box-button-normal">
+                <image texture="global/ui_gen_button-wood.png" size="0 0 100% 100%" real-texture-placement="0 0 160 31" />
+        </sprite>
+        
+        <sprite name="message_box-button-over">
+                <image texture="global/ui_gen_button-wood.png" size="0 0 100% 100%" real-texture-placement="0 32 160 64" />
+        </sprite>
 
 </sprites>
