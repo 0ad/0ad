@@ -892,7 +892,7 @@ static void VDir_dtor(VDir* vd)
 	delete vd->files;
 }
 
-static int VDir_reload(VDir* vd, const char* path)
+static int VDir_reload(VDir* vd, const char* path, Handle)
 {
 	if(vd->subdirs)
 	{
@@ -1141,7 +1141,7 @@ static void VFile_dtor(VFile* vf)
 
 
 
-static int VFile_reload(VFile* vf, const char* path)
+static int VFile_reload(VFile* vf, const char* path, Handle)
 {
 	uint& flags = vf_flags(vf);
 

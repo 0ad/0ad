@@ -25,6 +25,15 @@
 #include "lib.h"
 
 
+// 0 = invalid handle value; < 0 is an error code.
+// 64 bits, because we want tags to remain unique: tag overflow may
+// let handle use errors slip through, or worse, cause spurious errors.
+// with 32 bits, we'd need >= 12 for the index, leaving < 512K tags -
+// not a lot.
+typedef i64 Handle;
+
+
+
 // handle type (for 'type safety' - can't use a texture handle as a sound)
 
 	
@@ -86,7 +95,7 @@ but- has to handle variable params, a bit ugly
 struct H_VTbl
 {
 	void(*init)(void* user, va_list);
-	int(*reload)(void* user, const char* fn);
+	int(*reload)(void* user, const char* fn, Handle);
 	void(*dtor)(void* user);
 	size_t user_size;
 	const char* name;
@@ -97,12 +106,12 @@ typedef H_VTbl* H_Type;
 #define H_TYPE_DEFINE(type)\
 	/* forward decls */\
 	static void type##_init(type*, va_list);\
-	static int type##_reload(type*, const char*);\
+	static int type##_reload(type*, const char*, Handle);\
 	static void type##_dtor(type*);\
 	static H_VTbl V_##type =\
 	{\
 		(void(*)(void*, va_list))type##_init,\
-		(int(*)(void*, const char*))type##_reload,\
+		(int(*)(void*, const char*, Handle))type##_reload,\
 		(void(*)(void*))type##_dtor,\
 		sizeof(type),	/* control block size */\
 		#type			/* name */\
@@ -127,14 +136,6 @@ typedef H_VTbl* H_Type;
 	type* const var = H_USER_DATA(h, type);\
 	if(!var)\
 		return ERR_INVALID_HANDLE;
-
-
-// 0 = invalid handle value; < 0 is an error code.
-// 64 bits, because we want tags to remain unique: tag overflow may
-// let handle use errors slip through, or worse, cause spurious errors.
-// with 32 bits, we'd need >= 12 for the index, leaving < 512K tags -
-// not a lot.
-typedef i64 Handle;
 
 
 // all functions check the passed tag (part of the handle) and type against
@@ -296,7 +297,7 @@ guide to defining and using resources
    does all initialization of the resource that requires its source file.
    called after init; also after dtor every time the file is reloaded.
 
-   static int Type_reload(Res1* r, const char* filename);
+   static int Type_reload(Res1* r, const char* filename, Handle);
    {
        // somehow load stuff from filename, and store it in r->data1.
        return 0;

@@ -126,7 +126,7 @@ static void Font_dtor(Font* f)
 }
 
 
-static int Font_reload(Font* f, const char* fn)
+static int Font_reload(Font* f, const char* fn, Handle)
 {
 	// we pass the loaded file to sscanf. the data needs to be 0-terminated,
 	// so we read, and then copy into a 0-terminated buffer. ugh.

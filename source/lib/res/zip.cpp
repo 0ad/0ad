@@ -553,8 +553,10 @@ static void ZArchive_dtor(ZArchive* za)
 }
 
 
-static int ZArchive_reload(ZArchive* za, const char* fn)
+static int ZArchive_reload(ZArchive* za, const char* fn, Handle h)
 {
+	UNUSED(h);
+
 	int err;
 
 	err = file_open(fn, 0, &za->f);

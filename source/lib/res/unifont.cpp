@@ -1,5 +1,5 @@
 /*
-$Id: unifont.cpp,v 1.3 2004/06/21 12:49:37 janwas Exp $
+$Id: unifont.cpp,v 1.4 2004/06/25 22:19:19 janwas Exp $
 
 Unicode OpenGL texture font
   
@@ -51,7 +51,7 @@ static void UniFont_dtor(UniFont* f)
 }
 
 
-static int UniFont_reload(UniFont* f, const char* fn)
+static int UniFont_reload(UniFont* f, const char* fn, Handle h)
 {
 	// fn is the base filename, like "fonts/console"
 	// The font definition file is fn+".fnt" and the texture is fn+".tga"

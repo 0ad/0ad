@@ -471,7 +471,7 @@ if(!(flags & RES_KEY))
 		// catch exception to simplify reload funcs - let them use new()
 		try
 		{
-			err = vtbl->reload(hd->user, fn);
+			err = vtbl->reload(hd->user, fn, h);
 		}
 		catch(std::bad_alloc)
 		{
@@ -536,11 +536,12 @@ int h_reload(const char* fn)
 		if(!hd || hd->key != key)
 			continue;
 
-		int err = hd->type->reload(hd->user, hd->fn);
+		Handle h = handle(i, hd->tag);
+
+		int err = hd->type->reload(hd->user, hd->fn, h);
 		// don't stop if an error is encountered - try to reload them all.
 		if(err < 0)
 		{
-			Handle h = handle(i, hd->tag);
 			h_free(h, hd->type);
 			ret = err;
 		}

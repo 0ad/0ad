@@ -183,10 +183,11 @@ static void Mem_dtor(Mem* m)
 
 // can't alloc here, because h_alloc needs the key when called
 // (key == pointer we allocate)
-static int Mem_reload(Mem* m, const char* fn)
+static int Mem_reload(Mem* m, const char* fn, Handle h)
 {
 	UNUSED(m);
 	UNUSED(fn);
+	UNUSED(h);
 
 	return 0;
 }

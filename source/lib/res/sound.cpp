@@ -36,7 +36,7 @@ static void Sound_init(Sound* s, va_list args)
 	s->channel = -1;
 }
 
-static int Sound_reload(Sound* s, const char* filename)
+static int Sound_reload(Sound* s, const char* filename, Handle)
 {
 	//only load if clip is empty
 	if(s->clip == NULL)

@@ -761,9 +761,10 @@ static void IO_dtor(IO* io)
 // i don't think it's possible anyway, without controlling the AIO
 // implementation: when we cancel, we can't prevent the app from calling
 // aio_result, which would terminate the read.
-static int IO_reload(IO* io, const char* fn)
+static int IO_reload(IO* io, const char* fn, Handle h)
 {
 	UNUSED(fn);
+	UNUSED(h);
 
 	return io->cb? 0 : ERR_NO_MEM;
 }
