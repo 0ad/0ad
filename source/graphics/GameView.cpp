@@ -310,14 +310,14 @@ void CGameView::Update(float DeltaTime)
 
 	if( !hotkeys[HOTKEY_CAMERA_ROTATE] && !hotkeys[HOTKEY_CAMERA_ROTATE_ABOUT_TARGET] )
 	{
-		if (mouse_x >= g_xres-2)
+		if (mouse_x >= g_xres-2 && mouse_x < g_xres)
 			m_Camera.m_Orientation.Translate(rightwards * (m_ViewScrollSpeed * DeltaTime));
-		else if (mouse_x <= 3)
+		else if (mouse_x <= 3 && mouse_x >= 0)
 			m_Camera.m_Orientation.Translate(-rightwards * (m_ViewScrollSpeed * DeltaTime));
 
-		if (mouse_y >= g_yres-2)
+		if (mouse_y >= g_yres-2 && mouse_y < g_yres)
 			m_Camera.m_Orientation.Translate(-forwards_horizontal * (m_ViewScrollSpeed * DeltaTime));
-		else if (mouse_y <= 3)
+		else if (mouse_y <= 3 && mouse_y >= 0)
 			m_Camera.m_Orientation.Translate(forwards_horizontal * (m_ViewScrollSpeed * DeltaTime));
 	}
 
