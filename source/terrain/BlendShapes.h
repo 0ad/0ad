@@ -1,3 +1,11 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// Name:		BlendShapes.h
+// Author:		Rich Cross
+// Contact:		rich@wildfiregames.com
+//
+///////////////////////////////////////////////////////////////////////////////
+
 #ifndef _BLENDSHAPES_H
 #define _BLENDSHAPES_H
 
@@ -38,17 +46,17 @@ public:
 	}
 
 	void FlipU(BlendShape4& dst) const {
-		dst[0]=m_Data[0];
-		dst[1]=m_Data[3];
-		dst[2]=m_Data[2];
-		dst[3]=m_Data[1];
-	}
-
-	void FlipV(BlendShape4& dst) const {
 		dst[0]=m_Data[2];
 		dst[1]=m_Data[1];
 		dst[2]=m_Data[0];
 		dst[3]=m_Data[3];
+	}
+
+	void FlipV(BlendShape4& dst) const {
+		dst[0]=m_Data[0];
+		dst[1]=m_Data[3];
+		dst[2]=m_Data[2];
+		dst[3]=m_Data[1];
 	}
 
 private:
@@ -106,17 +114,6 @@ public:
 	}
 
 	void FlipU(BlendShape8& dst) const {
-		dst[0]=m_Data[0];
-		dst[1]=m_Data[7];
-		dst[2]=m_Data[6];
-		dst[3]=m_Data[5];
-		dst[4]=m_Data[4];
-		dst[5]=m_Data[3];
-		dst[6]=m_Data[2];
-		dst[7]=m_Data[1];
-	}
-
-	void FlipV(BlendShape8& dst) const {
 		dst[0]=m_Data[4];
 		dst[1]=m_Data[3];
 		dst[2]=m_Data[2];
@@ -125,6 +122,17 @@ public:
 		dst[5]=m_Data[7];
 		dst[6]=m_Data[6];
 		dst[7]=m_Data[5];
+	}
+
+	void FlipV(BlendShape8& dst) const {
+		dst[0]=m_Data[0];
+		dst[1]=m_Data[7];
+		dst[2]=m_Data[6];
+		dst[3]=m_Data[5];
+		dst[4]=m_Data[4];
+		dst[5]=m_Data[3];
+		dst[6]=m_Data[2];
+		dst[7]=m_Data[1];
 	}
 
 private:

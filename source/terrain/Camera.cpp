@@ -11,7 +11,6 @@
 //***********************************************************
 
 #include "Camera.h"
-#include "Prometheus.h"
 
 CCamera::CCamera ()
 {
@@ -57,7 +56,7 @@ void CCamera::UpdateFrustum ()
 	CMatrix3D MatFinal;
 	CMatrix3D MatView;
 
-	m_Orientation.Invert(MatView);
+	m_Orientation.GetInverse(MatView);
 	
 	MatFinal = m_ProjMat * MatView;
 

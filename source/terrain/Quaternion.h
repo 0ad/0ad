@@ -33,10 +33,11 @@ class CQuaternion
 		void FromEularAngles (float x, float y, float z);
 		
 		//convert the quaternion to matrix
-		CMatrix3D ToMatrix ();
+		CMatrix3D ToMatrix() const;
+		void ToMatrix(CMatrix3D& result) const;
 
 		//sphere interpolation
-		void Slerp(CQuaternion &from, CQuaternion &to, float ratio);
+		void Slerp(const CQuaternion& from,const CQuaternion& to, float ratio);
 };
 
 #endif

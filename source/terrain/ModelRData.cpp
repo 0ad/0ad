@@ -6,13 +6,10 @@
 #include "ModelRData.h"
 #include "terrain/Model.h"
 
-extern CRenderer g_Renderer;
 
-CModelRData::CModelRData(CModel* model) : m_Model(model), m_Vertices(0), m_Indices(0), m_VB(0) 
+CModelRData::CModelRData(CModel* model) : m_Model(model), m_Vertices(0), m_Normals(0), m_Indices(0), m_VB(0) 
 {
 	assert(model);
-	// set models renderdata pointer to point to this object
-	m_Model->m_RenderData=this;
 	// build all data now
 	Build();
 }
@@ -64,6 +61,32 @@ static SColor4ub ConvertColor(const RGBColor& src)
 	return result;
 }
 
+static CVector3D SkinPoint(const SModelVertex& vertex,const CMatrix3D* matrices)
+{
+	CVector3D result(0,0,0),tmp;
+
+	for (u32 i=0;vertex.m_Blend.m_Bone[i]!=0xff && i<SVertexBlend::SIZE;i++) {
+		const CMatrix3D& m=matrices[vertex.m_Blend.m_Bone[i]];
+		m.Transform(vertex.m_Coords,tmp);
+		result+=tmp*vertex.m_Blend.m_Weight[i];
+	}
+
+	return result;
+}
+
+static CVector3D SkinNormal(const SModelVertex& vertex,const CMatrix3D* invmatrices)
+{
+	CVector3D result(0,0,0),tmp;
+
+	for (u32 i=0;vertex.m_Blend.m_Bone[i]!=0xff && i<SVertexBlend::SIZE;i++) {
+		const CMatrix3D& m=invmatrices[vertex.m_Blend.m_Bone[i]];
+		m.RotateTransposed(vertex.m_Norm,tmp);
+		result+=tmp*vertex.m_Blend.m_Weight[i];
+	}
+
+	return result;
+}
+
 void CModelRData::BuildVertices()
 {
 	CModelDef* mdef=m_Model->GetModelDef();
@@ -71,22 +94,33 @@ void CModelRData::BuildVertices()
 	// allocate vertices if we haven't got any already
 	if (!m_Vertices) {
 		m_Vertices=new SVertex[mdef->GetNumVertices()];
+		m_Normals=new CVector3D[mdef->GetNumVertices()];
 	}
 
 	// build vertices
+	u32 numVertices=mdef->GetNumVertices();
 	SModelVertex* vertices=mdef->GetVertices();
-	for (int j=0; j<mdef->GetNumVertices(); j++) {
-		if (vertices[j].m_Bone!=-1) {
-			m_Vertices[j].m_Position=m_Model->GetBonePoses()[vertices[j].m_Bone].Transform(vertices[j].m_Coords);
-		} else {
+	if (m_Model->GetBoneMatrices()) {
+		// boned model - calculate skinned vertex positions/normals
+		for (uint j=0; j<numVertices; j++) {
+			m_Vertices[j].m_Position=SkinPoint(vertices[j],m_Model->GetBoneMatrices());
+			m_Normals[j]=SkinNormal(vertices[j],m_Model->GetInvBoneMatrices());
+		}
+	} else {
+		// just copy regular positions
+		for (uint j=0; j<numVertices; j++) {
 			m_Vertices[j].m_Position=vertices[j].m_Coords;
-		}						
-
+			m_Normals[j]=vertices[j].m_Norm;
+		}
+	}
+	
+	// now fill in UV and vertex colour data
+	for (uint j=0; j<numVertices; j++) {
 		m_Vertices[j].m_UVs[0]=vertices[j].m_U;
 		m_Vertices[j].m_UVs[1]=1-vertices[j].m_V;
 
 		RGBColor c;
-		g_Renderer.m_SHCoeffsUnits.Evaluate(vertices[j].m_Norm,c);
+		g_Renderer.m_SHCoeffsUnits.Evaluate(m_Normals[j],c);
 
 		m_Vertices[j].m_Color=ConvertColor(c);
 	}
@@ -95,62 +129,15 @@ void CModelRData::BuildVertices()
 		if (!m_VB) {
 			glGenBuffersARB(1,(GLuint*) &m_VB);
 			glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_VB);
-			glBufferDataARB(GL_ARRAY_BUFFER_ARB,mdef->GetNumVertices()*sizeof(SVertex),0,GL_STATIC_DRAW_ARB);
-		} else {
-			glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_VB);
+			glBufferDataARB(GL_ARRAY_BUFFER_ARB,mdef->GetNumVertices()*sizeof(SVertex),0,mdef->GetNumBones() ? GL_DYNAMIC_DRAW_ARB : GL_STATIC_DRAW_ARB);
 		}
-		
-		u8* vertices=(u8*) glMapBufferARB(GL_ARRAY_BUFFER_ARB,GL_WRITE_ONLY_ARB);
-		memcpy(vertices,m_Vertices,mdef->GetNumVertices()*sizeof(SVertex));
-		glUnmapBufferARB(GL_ARRAY_BUFFER_ARB);
+		glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_VB);
+		glBufferSubDataARB(GL_ARRAY_BUFFER_ARB,0,mdef->GetNumVertices()*sizeof(SVertex),m_Vertices);
 	} 
 }
 
-void CModelRData::RenderWireframe(const CMatrix3D& transform,bool transparentPass)
-{
-	// ignore transparent passes 
-	if (!transparentPass && g_Renderer.IsTextureTransparent(m_Model->GetTexture())) {
-		return;
-	}
 
-	assert(m_UpdateFlags==0);
-
-	u8* base;
-	if (g_Renderer.m_Caps.m_VBO) {
-		glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_VB);
-		base=0;
-	} else {
-		base=(u8*) &m_Vertices[0];
-	}
-
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-
-	CMatrix3D tmp;
-	transform.GetTranspose(tmp);
-	glMultMatrixf(&tmp._11);	
-
-	
-	// set vertex pointers
-	glVertexPointer(3,GL_FLOAT,sizeof(SVertex),base+offsetof(SVertex,m_Position));
-
-	// render the lot
-	u32 numFaces=m_Model->GetModelDef()->GetNumFaces();
-	glDrawElements(GL_TRIANGLES,numFaces*3,GL_UNSIGNED_SHORT,m_Indices);
-
-	// bump stats
-	g_Renderer.m_Stats.m_DrawCalls++;
-	if (transparentPass) {
-		g_Renderer.m_Stats.m_TransparentTris+=numFaces;
-	} else {
-		g_Renderer.m_Stats.m_ModelTris+=numFaces;
-	}
-
-	glPopMatrix();
-}
-
-
-void CModelRData::Render(const CMatrix3D& transform,bool transparentPass)
+void CModelRData::RenderStreams(u32 streamflags,const CMatrix3D& transform,bool transparentPass)
 {	
 	// ignore transparent passes 
 	if (!transparentPass && g_Renderer.IsTextureTransparent(m_Model->GetTexture())) {
@@ -163,10 +150,9 @@ void CModelRData::Render(const CMatrix3D& transform,bool transparentPass)
 	glPushMatrix();
 
 	CMatrix3D tmp;
-	transform.GetTranspose(tmp);
-	glMultMatrixf(&tmp._11);	
+	glMultMatrixf(&transform._11);	
 
-	g_Renderer.SetTexture(0,m_Model->GetTexture());
+	if (streamflags & STREAM_UV0) g_Renderer.SetTexture(0,m_Model->GetTexture(),GL_CLAMP_TO_EDGE);
 
 	u8* base;
 	if (g_Renderer.m_Caps.m_VBO) {
@@ -179,8 +165,8 @@ void CModelRData::Render(const CMatrix3D& transform,bool transparentPass)
 	// set vertex pointers
 	u32 stride=sizeof(SVertex);
 	glVertexPointer(3,GL_FLOAT,stride,base+offsetof(SVertex,m_Position));
-	glColorPointer(4,GL_UNSIGNED_BYTE,stride,base+offsetof(SVertex,m_Color));
-	glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SVertex,m_UVs));
+	if (streamflags & STREAM_COLOR) glColorPointer(4,GL_UNSIGNED_BYTE,stride,base+offsetof(SVertex,m_Color));
+	if (streamflags & STREAM_UV0) glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SVertex,m_UVs));
 
 	// render the lot
 	u32 numFaces=mdldef->GetNumFaces();
@@ -237,7 +223,7 @@ float CModelRData::BackToFrontIndexSort(CMatrix3D& objToCam)
 	IndexSorter.reserve(numFaces);
 
 	SModelFace* facePtr=faces;
-	uint i;
+	u32 i;
 	for (i=0;i<numFaces;i++)
 	{
 		osvtx=vtxs[facePtr->m_Verts[0]].m_Coords;

@@ -1,14 +1,10 @@
-//-----------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////
 //
 // Name:		Color.h
-// Last Update: 25/11/03
 // Author:		Rich Cross
-// Contact:		rich@0ad.wildfiregames.com
+// Contact:		rich@wildfiregames.com
 //
-// Description: Definitions for 3 and 4 component floating 
-//				point colors
-//
-//-----------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////
 
 #ifndef _COLOR_H
 #define _COLOR_H
@@ -16,7 +12,19 @@
 #include "Vector3D.h"
 #include "Vector4D.h"
 
+// simple defines for 3 and 4 component floating point colors - just map to 
+// corresponding vector types
 typedef CVector3D RGBColor;
 typedef CVector4D RGBAColor;
+
+// SColor4ub: structure for packed RGBA colors
+struct SColor4ub
+{
+	u8 R;
+	u8 G;
+	u8 B;
+	u8 A;
+};
+
 
 #endif

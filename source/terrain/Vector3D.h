@@ -13,8 +13,8 @@
 #define VECTOR3D_H
 
 #include <math.h>
+#include "res/res.h"
 #include "MathUtil.h"
-#include "Types.h"
 
 class CVector3D
 {
@@ -22,11 +22,9 @@ class CVector3D
 		float X, Y, Z;
 
 	public:
-		CVector3D ();
+		CVector3D () { }
 		CVector3D (float x, float y, float z);
 
-		int operator == (const CVector3D &vector) const ;
-		int operator != (const CVector3D &vector) const ;
 		int operator ! () const ; 
 
 		float& operator[](int index) { return *((&X)+index); }
@@ -63,8 +61,6 @@ class CVector3D
 		float GetLength () const;
 		void Normalize ();
 
-		//Returns a color which describes the vector
-		SColor4ub ConvertToColor (float alpha_factor) const;
 };
 
 

@@ -8,8 +8,6 @@
 #include "PatchRData.h"
 #include "AlphaMapCalculator.h"
 
-extern CRenderer g_Renderer;
-
 const int BlendOffsets[8][2] = {
 	{  0, -1 },
 	{ -1, -1 },
@@ -25,9 +23,6 @@ const int BlendOffsets[8][2] = {
 CPatchRData::CPatchRData(CPatch* patch) : m_Patch(patch), m_Vertices(0), m_VBBase(0), m_VBBlends(0) 
 {
 	assert(patch);
-	// set patches renderdata pointer to point to this object
-	m_Patch->m_RenderData=this;
-	// build all data now
 	Build();
 }
 
@@ -106,7 +101,7 @@ void CPatchRData::BuildBlends()
 				}
 			}
 			if (neighbourTextures.size()>0) {
-				size_t count=neighbourTextures.size();
+				u32 count=neighbourTextures.size();
 				// sort textures from lowest to highest priority
 				std::sort(neighbourTextures.begin(),neighbourTextures.end());
 
@@ -136,14 +131,14 @@ void CPatchRData::BuildBlends()
 						float u1=g_Renderer.m_AlphaMapCoords[alphamap].u1;
 						float v0=g_Renderer.m_AlphaMapCoords[alphamap].v0;
 						float v1=g_Renderer.m_AlphaMapCoords[alphamap].v1;
-						if (alphamapflags & 0x01) {
+						if (alphamapflags & BLENDMAP_FLIPU) {
 							// flip u
 							float t=u0;
 							u0=u1;
 							u1=t;
 						}  
 						
-						if (alphamapflags & 0x02) {
+						if (alphamapflags & BLENDMAP_FLIPV) {
 							// flip v
 							float t=v0;
 							v0=v1;
@@ -151,13 +146,13 @@ void CPatchRData::BuildBlends()
 						}  
 
 						int base=0;
-						if (alphamapflags & 0x04) {
+						if (alphamapflags & BLENDMAP_ROTATE90) {
 							// rotate 1 
 							base=1;
-						} else if (alphamapflags & 0x08) {
+						} else if (alphamapflags & BLENDMAP_ROTATE180) {
 							// rotate 2
 							base=2;
-						} else if (alphamapflags & 0x10) {
+						} else if (alphamapflags & BLENDMAP_ROTATE270) {
 							// rotate 3
 							base=3;
 						}
@@ -175,7 +170,7 @@ void CPatchRData::BuildBlends()
 						int vsize=PATCH_SIZE+1;
 
 						SBlendVertex dst;
-						size_t vindex=m_BlendVertices.size();
+						int vindex=m_BlendVertices.size();
 
 						const SBaseVertex& vtx0=m_Vertices[(j*vsize)+i];
 						dst.m_UVs[0]=i*0.125f;
@@ -265,11 +260,7 @@ void CPatchRData::BuildBlends()
 
 		// create new buffer
 		glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_VBBlends);
-		glBufferDataARB(GL_ARRAY_BUFFER_ARB,m_BlendVertices.size()*sizeof(SBlendVertex),0,GL_STATIC_DRAW_ARB);
-		
-		u8* vertices=(u8*) glMapBufferARB(GL_ARRAY_BUFFER_ARB,GL_WRITE_ONLY_ARB);
-		memcpy(vertices,&m_BlendVertices[0],sizeof(SBlendVertex)*m_BlendVertices.size());
-		glUnmapBufferARB(GL_ARRAY_BUFFER_ARB);
+		glBufferDataARB(GL_ARRAY_BUFFER_ARB,m_BlendVertices.size()*sizeof(SBlendVertex),&m_BlendVertices[0],GL_STATIC_DRAW_ARB);
 	}
 }
 
@@ -384,9 +375,6 @@ void CPatchRData::BuildVertices()
 	CTerrain* terrain=m_Patch->m_Parent;
 	u32 mapSize=terrain->GetVerticesPerSide();
 
-//	CVector3D* normals=new CVector3D[mapSize*mapSize];
-//	BuildHeightmapNormals(mapSize,terrain->GetHeightMap(),normals);
-
 	// build vertices
 	for (int j=0; j<vsize; j++)
 	{
@@ -396,9 +384,7 @@ void CPatchRData::BuildVertices()
 			int iz=pz*16+j;
 
 			CVector3D pos,normal;
-			terrain->CalcPosition(ix,iz,pos);
-			
-//			normal=normals[iz*mapSize+ix];
+			terrain->CalcPosition(ix,iz,pos);			
 			terrain->CalcNormal(ix,iz,normal);
 			
 			RGBColor c;
@@ -417,16 +403,10 @@ void CPatchRData::BuildVertices()
 			glGenBuffersARB(1,(GLuint*) &m_VBBase);
 			glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_VBBase);
 			glBufferDataARB(GL_ARRAY_BUFFER_ARB,vsize*vsize*sizeof(SBaseVertex),0,GL_STATIC_DRAW_ARB);
-		} else {
-			glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_VBBase);
-		}
-		
-		u8* vertices=(u8*) glMapBufferARB(GL_ARRAY_BUFFER_ARB,GL_WRITE_ONLY_ARB);
-		memcpy(vertices,m_Vertices,sizeof(SBaseVertex)*vsize*vsize);
-		glUnmapBufferARB(GL_ARRAY_BUFFER_ARB);
+		} 
+		glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_VBBase);
+		glBufferSubDataARB(GL_ARRAY_BUFFER_ARB,0,vsize*vsize*sizeof(SBaseVertex),m_Vertices);
 	} 
-
-//	delete[] normals;
 }
 
 void CPatchRData::Build()
@@ -439,16 +419,9 @@ void CPatchRData::Build()
 void CPatchRData::Update()
 {
 	if (m_UpdateFlags!=0) {
-		// renderdata changed : rebuild necessary portions
-/*
-		if (data->m_UpdateFlags & RENDERDATA_UPDATE_VERTICES) {
-			BuildPatchVertices(patch,data);
-		}
-		if (data->m_UpdateFlags & RENDERDATA_UPDATE_INDICES) {
-			BuildPatchIndices(patch,data);
-			BuildPatchBlends(patch,data);
-		}
-*/
+		// TODO,RC 11/04/04 - need to only rebuild necessary bits of renderdata rather
+		// than everything; it's complicated slightly because the blends are dependent
+		// on both vertex and index data
 		BuildVertices();
 		BuildIndices();
 		BuildBlends();
@@ -486,7 +459,7 @@ void CPatchRData::RenderBase()
 	}
 }
 
-void CPatchRData::RenderWireframe()
+void CPatchRData::RenderStreams(u32 streamflags)
 {
 	assert(m_UpdateFlags==0);
 
@@ -500,6 +473,7 @@ void CPatchRData::RenderWireframe()
 
 	// setup data pointers
 	glVertexPointer(3,GL_FLOAT,sizeof(SBaseVertex),base+offsetof(SBaseVertex,m_Position));
+	if (streamflags & STREAM_UV0) glTexCoordPointer(2,GL_FLOAT,sizeof(SBaseVertex),base+offsetof(SBaseVertex,m_UVs));
 	
 	// render all base splats at once
 	glDrawElements(GL_QUADS,m_Indices.size(),GL_UNSIGNED_SHORT,&m_Indices[0]);

@@ -1,30 +1,33 @@
-//***********************************************************
+///////////////////////////////////////////////////////////////////////////////
 //
 // Name:		Terrain.h
-// Last Update: 23/2/02
-// Author:		Poya Manouchehri
+// Author:		Rich Cross
+// Contact:		rich@wildfiregames.com
 //
-// Description: CTerrain handles the terrain portion of the
-//				engine. It holds open the file to the terrain
-//				information, so terrain data can be loaded
-//				dynamically. We use a ROAM method to render 
-//				the terrain, ie using binary triangle trees.
-//				The terrain consists of smaller PATCHS, which
-//				do most of the work.
-//
-//***********************************************************
+///////////////////////////////////////////////////////////////////////////////
 
-#ifndef TERRAIN_H
-#define TERRAIN_H
+
+#ifndef _TERRAIN_H
+#define _TERRAIN_H
 
 #include "Patch.h"
 #include "Vector3D.h"
-#include "TerrGlobals.h"
 
-class CLightEnv;
-class CSHCoeffs;
+///////////////////////////////////////////////////////////////////////////////
+// Terrain Constants:
+//
+// PATCH_SIZE: number of tiles in each patch
+const int	PATCH_SIZE = 16;
+// CELL_SIZE: size of each tile in x and z
+const int	CELL_SIZE = 4;	
+// HEIGHT_SCALE: vertical scale of terrain - terrain has a coordinate range of 
+// 0 to 65536*HEIGHT_SCALE
+const float HEIGHT_SCALE = 0.35f/256.0f;
 
 
+///////////////////////////////////////////////////////////////////////////////
+// CTerrain: main terrain class; contains the heightmap describing elevation
+// data, and the smaller subpatches that form the terrain
 class CTerrain
 {
 public:
@@ -59,8 +62,8 @@ public:
 	void CalcNormal(u32 i,u32 j,CVector3D& normal);
 
 private:
-	// clean up terrain data
-	void Reset();
+	// delete any data allocated by this terrain
+	void ReleaseData();
 	// setup patch pointers etc
 	void InitialisePatches();
 
@@ -72,7 +75,8 @@ private:
 	CPatch*	m_Patches;
 	// 16-bit heightmap data
 	u16* m_Heightmap;	
-
 };
+
+extern CTerrain g_Terrain;
 
 #endif

@@ -1,36 +1,35 @@
-//***********************************************************
+///////////////////////////////////////////////////////////////////////////////
 //
 // Name:		Patch.h
-// Last Update: 23/2/02
-// Author:		Poya Manouchehri
+// Author:		Rich Cross
+// Contact:		rich@wildfiregames.com
 //
-// Description: CPatch is a smaller portion of the terrain.
-//				It handles its own rendering
-//
-//***********************************************************
+///////////////////////////////////////////////////////////////////////////////
 
-#ifndef PATCH_H
-#define PATCH_H
+#ifndef _PATCH_H
+#define _PATCH_H
 
-#include "Matrix3D.h"
-#include "Camera.h"
-#include "TerrGlobals.h"
 #include "MiniPatch.h"
 #include "RenderableObject.h"
 
+class CTerrain;
 
+///////////////////////////////////////////////////////////////////////////////
+// CPatch: a single terrain patch, 16 tiles square
 class CPatch : public CRenderableObject
 {
 public:
+	// constructor
 	CPatch();
+	// destructor
 	~CPatch();
 
-	//initialize the patch
+	// initialize the patch
 	void Initialize(CTerrain* parent,u32 x,u32 z);
-
 	// calculate and store bounds of this patch
 	void CalcBounds();
 
+public:
 	// minipatches (tiles) making up the patch
 	CMiniPatch m_MiniPatches[16][16];
 	// position of patch in parent terrain grid

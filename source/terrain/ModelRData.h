@@ -15,8 +15,7 @@ public:
 	~CModelRData();
 
 	void Update();
-	void Render(const CMatrix3D& transform,bool transparentPass=false);
-	void RenderWireframe(const CMatrix3D& transform,bool transparentPass=false);
+	void RenderStreams(u32 streamflags,const CMatrix3D& transform,bool transparentPass=false);
 
 	// sort indices of this object from back to front according to given
 	// object to camera space transform; return sqrd distance to centre of nearest triangle
@@ -45,6 +44,8 @@ private:
 	u32 m_VB;
 	// model render vertices
 	SVertex* m_Vertices;
+	// transformed vertex normals - required for recalculating lighting on skinned models
+	CVector3D* m_Normals;
 	// model render indices
 	u16* m_Indices;
 };

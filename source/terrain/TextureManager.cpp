@@ -12,16 +12,6 @@ const char* SupportedTextureFormats[] = { "png", "dds", "tga", "bmp" };
 
 CTextureManager g_TexMan;
 
-int GetNumMipmaps(int w,int h)
-{
-	int mip=0;
-	int dim=(w > h) ? w : h;
-	while(dim) {
-		dim>>=1;
-		mip++;
-	}
-	return mip;
-}
 
 CTextureManager::CTextureManager()
 {
@@ -65,20 +55,9 @@ CTextureEntry* CTextureManager::FindTexture(Handle handle)
 	return 0;
 }
 
-static bool IsCompressed(Handle h)
-{
-	int fmt;
-	tex_info(h, NULL, NULL, &fmt, NULL, NULL);
-	if (fmt==GL_COMPRESSED_RGB_S3TC_DXT1_EXT) return true;
-	if (fmt==GL_COMPRESSED_RGBA_S3TC_DXT1_EXT) return true;
-	if (fmt==GL_COMPRESSED_RGBA_S3TC_DXT3_EXT) return true;
-	if (fmt==GL_COMPRESSED_RGBA_S3TC_DXT5_EXT) return true;
-	return false;
-}
-
 CTextureEntry* CTextureManager::AddTexture(const char* filename,int type)
 {
-	assert(type<m_TerrainTextures.size());
+	assert((uint)type<m_TerrainTextures.size());
 	
 	CStr pathname("art/textures/terrain/types/");
 	pathname+=m_TerrainTextures[type].m_Name;
@@ -108,22 +87,29 @@ CTextureEntry* CTextureManager::AddTexture(const char* filename,int type)
 	texentry->m_Type=type;
 
 	// upload texture for future GL use
-	if (IsCompressed(h)) {
-		tex_upload(h,GL_LINEAR);
-	} else {
-		tex_upload(h,GL_LINEAR_MIPMAP_LINEAR);
-	}
+	tex_upload(h,GL_LINEAR_MIPMAP_LINEAR);
 
 	// setup texture to repeat
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-	// get root color for coloring minimap
+	// get root color for coloring minimap by querying root level of the texture 
+	// (this should decompress any compressed textures for us),
+	// then scaling it down to a 1x1 size 
+	//	- an alternative approach of just grabbing the top level of the mipmap tree fails 
+	//	(or gives an incorrect colour) in some cases: 
+	//		- suspect bug on Radeon cards when SGIS_generate_mipmap is used 
+	//		- any textures without mipmaps
+	// we'll just take the basic approach here:
 	int width,height;
 	glGetTexLevelParameteriv(GL_TEXTURE_2D,0,GL_TEXTURE_WIDTH,&width);
 	glGetTexLevelParameteriv(GL_TEXTURE_2D,0,GL_TEXTURE_HEIGHT,&height);
-	int mip=GetNumMipmaps(width,height);
-	glGetTexImage(GL_TEXTURE_2D,mip-1,GL_BGRA_EXT,GL_UNSIGNED_BYTE,&texentry->m_BaseColor);
+
+	unsigned char* buf=new unsigned char[width*height*4];
+	glGetTexImage(GL_TEXTURE_2D,0,GL_BGRA_EXT,GL_UNSIGNED_BYTE,buf);
+	gluScaleImage(GL_BGRA_EXT,width,height,GL_UNSIGNED_BYTE,buf,
+			1,1,GL_UNSIGNED_BYTE,&texentry->m_BaseColor);
+	delete[] buf;
 
 	// add entry to list ..
 	m_TerrainTextures[type].m_Textures.push_back(texentry);
@@ -182,15 +168,15 @@ void CTextureManager::BuildTerrainTypes()
 	long handle;
 	
 	// Find first matching directory in terrain\textures
-	if ((handle=_findfirst("mods\\official\\art\\textures\\terrain\\types\\*",&file))!=-1) {
+    if ((handle=_findfirst("mods\\official\\art\\textures\\terrain\\types\\*",&file))!=-1) {
 		
-		if ((file.attrib & _A_SUBDIR) && file.name[0]!='.' && file.name[0]!='_') {
+		if ((file.attrib & _A_SUBDIR) && file.name[0]!='.') {
 			AddTextureType(file.name);
 		}
 
 		// Find the rest of the matching files
         while( _findnext(handle,&file)==0) {
-			if ((file.attrib & _A_SUBDIR) && file.name[0]!='.' && file.name[0]!='_') {
+			if ((file.attrib & _A_SUBDIR) && file.name[0]!='.') {
 				AddTextureType(file.name);
 			}
 		}

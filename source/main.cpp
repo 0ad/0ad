@@ -14,6 +14,11 @@
 #include "sysdep/ia32.h"
 #endif
 #include "ps/Config.h"
+#include "MapReader.h"
+#include "Terrain.h"
+#include "Renderer.h"
+#include "Model.h"
+#include "UnitManager.h"
 
 #ifndef NO_GUI
 #include "gui/GUI.h"
@@ -26,11 +31,20 @@ bool keys[SDLK_LAST];
 
 #include <cmath>
 
+// flag to disable extended GL extensions until fix found - specifically, crashes
+// using VBOs on laptop Radeon cards
+static bool g_NoGLVBO=false;
+// mapfile to load or null for no map (and to use default terrain)
+static const char* g_MapFile=0;
+
+
 static Handle font;
 static Handle tex;
 
+extern CCamera g_Camera;
+
 extern void terr_init();
-extern void terr_update();
+extern void terr_update(float time);
 extern bool terr_handler(const SDL_Event& ev);
 
 
@@ -83,6 +97,17 @@ static void display_startup_error(const wchar_t* msg)
 
 	write_sys_info();
 	wdisplay_msg(caption, msg);
+	exit(1);
+}
+
+// error before GUI is initialized: display message, and quit
+// TODO: localization
+static void display_startup_error(const char* msg)
+{
+	const char* caption = "0ad startup problem";
+
+	write_sys_info();
+	display_msg(caption, msg);
 	exit(1);
 }
 
@@ -143,14 +168,80 @@ static bool handler(const SDL_Event& ev)
 }
 
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// RenderTerrain: iterate through all terrain patches and submit all patches in viewing frustum to
+// the renderer
+void RenderTerrain()
+{
+	CFrustum frustum=g_Camera.GetFustum();
+	u32 patchesPerSide=g_Terrain.GetPatchesPerSide();
+	for (uint j=0; j<patchesPerSide; j++) {
+		for (uint i=0; i<patchesPerSide; i++) {
+			CPatch* patch=g_Terrain.GetPatch(i,j);
+			if (frustum.IsBoxVisible (CVector3D(0,0,0),patch->GetBounds())) {
+				g_Renderer.Submit(patch);
+			}
+		}
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// RenderModels: iterate through model list and submit all models in viewing frustum to the 
+// Renderer
+void RenderModels()
+{
+	CFrustum frustum=g_Camera.GetFustum();
+
+	const std::vector<CUnit*>& units=g_UnitMan.GetUnits();
+	uint i;
+	for (i=0;i<units.size();++i) {
+		if (frustum.IsBoxVisible(CVector3D(0,0,0),units[i]->m_Model->GetBounds())) {
+			g_Renderer.Submit(units[i]->m_Model);
+		}
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+// RenderNoCull: render absolutely everything to a blank frame to force renderer
+// to load required assets 
+void RenderNoCull()
+{
+	g_Renderer.BeginFrame();
+	g_Renderer.SetCamera(g_Camera);
+
+	uint i,j;
+	const std::vector<CUnit*>& units=g_UnitMan.GetUnits();
+	for (i=0;i<units.size();++i) {
+		g_Renderer.Submit(units[i]->m_Model);
+	}
+	
+	u32 patchesPerSide=g_Terrain.GetPatchesPerSide();
+	for (j=0; j<patchesPerSide; j++) {
+		for (i=0; i<patchesPerSide; i++) {
+			CPatch* patch=g_Terrain.GetPatch(i,j);
+			g_Renderer.Submit(patch);
+		}
+	}
+
+	g_Renderer.FlushFrame();
+	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+	g_Renderer.EndFrame();
+}
+
 static void render()
 {
-// TODO: not needed with 100% draw coverage
-	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+	// start new frame
+	g_Renderer.BeginFrame();
+	g_Renderer.SetCamera(g_Camera);
 
-	terr_update();
+	// switch on wireframe for terrain if we want it
+	g_Renderer.SetTerrainRenderMode(SOLID);
 
-glColor3f(1.0f, 1.0f, 1.0f);
+	RenderTerrain();
+	RenderModels();
+	g_Renderer.FlushFrame();
+
+	glColor3f(1.0f, 1.0f, 1.0f);
 
 	// overlay mode
 	glPushAttrib(GL_ENABLE_BIT);
@@ -213,6 +304,8 @@ const float x = 600.0f, y = 512.0f;
 	glMatrixMode(GL_MODELVIEW);
 	glPopMatrix();
 	glPopAttrib();
+
+	g_Renderer.EndFrame();
 }
 
 
@@ -220,10 +313,42 @@ static void do_tick()
 {
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+// UpdateWorld: update time dependent data in the world to account for changes over 
+// the given time (in s)
+void UpdateWorld(float time)
+{
+	const std::vector<CUnit*>& units=g_UnitMan.GetUnits();
+	for (uint i=0;i<units.size();++i) {
+		units[i]->m_Model->Update(time);
+	}
+}
 
+
+void ParseArgs(int argc, char* argv[])
+{
+	for (int i=1;i<argc;i++) {
+		if (argv[i][0]=='-') {
+			switch (argv[i][1]) {
+				case 'm':
+					if (argv[i][2]=='=') {
+						g_MapFile=argv[i]+3;
+					}
+					break;
+
+				case 'n':
+					if (strncmp(argv[i]+1,"novbo",5)==0) {
+						g_NoGLVBO=true;
+					}
+					break;
+			}
+		}
+	}
+}
 
 int main(int argc, char* argv[])
 {
+	ParseArgs(argc,argv);
 
 chdir("\\games\\bf\\ScreenShots");
 int a,b;
@@ -321,12 +446,8 @@ int c = b-a;
 
 	write_sys_info();
 
-if(!oglExtAvail("GL_ARB_multitexture") || !oglExtAvail("GL_ARB_texture_env_combine"))
-	display_startup_error(L"required ARB_multitexture or ARB_texture_env_combine extension not available");
-glEnable (GL_CULL_FACE);
-glEnable (GL_DEPTH_TEST);
-
-	glEnable(GL_TEXTURE_2D);
+	if(!oglExtAvail("GL_ARB_multitexture") || !oglExtAvail("GL_ARB_texture_env_combine"))
+		display_startup_error(L"required ARB_multitexture or ARB_texture_env_combine extension not available");
 
 	new CConfig;
 
@@ -346,18 +467,35 @@ glEnable (GL_DEPTH_TEST);
 //	tex_upload(tex);
 	font = font_load("verdana.fnt");
 
+	// set renderer options from command line options - NOVBO must be set before opening the renderer
+	g_Renderer.SetOption(CRenderer::OPT_NOVBO,g_NoGLVBO);
 
-extern int dir_add_watch(const char* const dir, bool watch_subdirs);
-dir_add_watch("mods\\official", false);
+	// terr_init actually opens the renderer and loads a bunch of resources as well as setting up
+	// the terrain
+	terr_init();
 
-terr_init();
-
-
+	// load a map if we were given one
+	if (g_MapFile) {
+		CStr mapfilename("mods/official/maps/scenarios/");
+		mapfilename+=g_MapFile;
+		try {
+			CMapReader reader;
+			reader.LoadMap(mapfilename);
+		} catch (...) {
+			char errmsg[256];
+			sprintf(errmsg, "Failed to load map %s\n", mapfilename.c_str());
+			display_startup_error(errmsg);		
+		}
+	}
+	
 #ifndef NO_GUI
 	in_add_handler(gui_handler);
 #endif
 in_add_handler(handler);
 in_add_handler(terr_handler);
+
+	// render everything to a blank frame to force renderer to load everything
+	RenderNoCull();
 
 
 // fixed timestep main loop
@@ -370,6 +508,7 @@ in_add_handler(terr_handler);
 		g_Config.Update();
 
 // TODO: limiter in case simulation can't keep up?
+#if 0
 		double time1 = get_time();
 		while((time1-time0) > TICK_TIME)
 		{
@@ -378,15 +517,26 @@ in_add_handler(terr_handler);
 			do_tick();
 			time0 += TICK_TIME;
 		}
-
+		UpdateWorld(float(time1-time0));
+		terr_update(float(time1-time0));
 		render();
 		SDL_GL_SwapBuffers();
 
 		calc_fps();
 
-extern int allow_reload();
-allow_reload();
+#else
 
+		double time1 = get_time();
+
+		in_get_events();
+		UpdateWorld(float(time1-time0));
+		terr_update(float(time1-time0));
+		render();
+		SDL_GL_SwapBuffers();
+
+		calc_fps();
+		time0=time1;
+#endif
 	}
 
 #ifndef NO_GUI

@@ -1,13 +1,10 @@
-//-----------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////
 //
 // Name:		Bound.h
-// Last Update: 25/11/03
 // Author:		Rich Cross
-// Contact:		rich@0ad.wildfiregames.com
+// Contact:		rich@wildfiregames.com
 //
-// Description: Basic axis aligned bounding box class
-//
-//-----------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////
 
 #ifndef _BOUND_H
 #define _BOUND_H
@@ -16,6 +13,8 @@
 #include "Vector3D.h"
 #include "Matrix3D.h"
 
+///////////////////////////////////////////////////////////////////////////////
+// CBound: basic axis aligned bounding box class
 class CBound
 {
 public:

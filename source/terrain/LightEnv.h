@@ -1,15 +1,15 @@
-//----------------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////
 //
 // Name:		LightEnv.h
-// Last Update: 25/11/03
 // Author:		Rich Cross
-// Contact:		rich@0ad.wildfiregames.com
+// Contact:		rich@wildfiregames.com
 //
 // Description: class describing current lighting environment - 
 //	at the minute, this is only sunlight and ambient light 
 //	parameters; will be extended to handle dynamic lights at some
 //  later date
-//----------------------------------------------------------------
+//
+///////////////////////////////////////////////////////////////////////////////
 
 
 #ifndef __LIGHTENV_H
@@ -18,6 +18,9 @@
 #include "Color.h"
 #include "Vector3D.h"
 
+///////////////////////////////////////////////////////////////////////////////
+// CLightEnv: description of a lighting environment - contains all the 
+// necessary parameters for representation of the lighting within a scenario
 class CLightEnv 
 {
 public:

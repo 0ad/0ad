@@ -53,15 +53,23 @@ void CSHCoeffs::AddDirectionalLight(const CVector3D& lightDir,const RGBColor& li
 void CSHCoeffs::Evaluate(const CVector3D& normal,RGBColor& color) const
 {
 #if 1
-	color=_data[0];
-	color+=_data[1]*normal.X;
-	color+=_data[2]*normal.Y;
-	color+=_data[3]*normal.Z;
-	color+=_data[4]*(normal.X*normal.Z);
-	color+=_data[5]*(normal.Z*normal.Y);
-	color+=_data[6]*(normal.Y*normal.X);
-	color+=_data[7]*(3*SQR(normal.Z)-1.0f);
-	color+=_data[8]*(SQR(normal.X)-SQR(normal.Y));
+	float c4=normal.X*normal.Z;
+	float c5=normal.Z*normal.Y;
+	float c6=normal.Y*normal.X;
+	float c7=(3*SQR(normal.Z)-1.0f);
+	float c8=(SQR(normal.X)-SQR(normal.Y));
+
+	for (int i=0;i<3;i++) {
+		color[i]=_data[0][i];
+		color[i]+=_data[1][i]*normal.X;
+		color[i]+=_data[2][i]*normal.Y;
+		color[i]+=_data[3][i]*normal.Z;
+		color[i]+=_data[4][i]*c4;
+		color[i]+=_data[5][i]*c5;
+		color[i]+=_data[6][i]*c6;
+		color[i]+=_data[7][i]*c7;
+		color[i]+=_data[8][i]*c8;
+	}
 #else
 	// debug aid: output quantised normal 
 	color=RGBColor((normal.X+1)*0.5,(normal.Y+1)*0.5,(normal.Z+1)*0.5);

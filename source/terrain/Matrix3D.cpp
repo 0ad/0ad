@@ -11,10 +11,10 @@
 
 
 #include "Matrix3D.h"
+#include "Quaternion.h"
 
 CMatrix3D::CMatrix3D ()
 {
-	SetIdentity ();
 }
 
 CMatrix3D::CMatrix3D(float a11,float a12,float a13,float a14,float a21,float a22,float a23,float a24,
@@ -132,8 +132,46 @@ CMatrix3D CMatrix3D::operator * (const CMatrix3D &matrix) const
 //Matrix multiplication/assignment
 CMatrix3D &CMatrix3D::operator *= (const CMatrix3D &matrix)
 {
-	(*this) = (*this) * matrix;
+	CMatrix3D tmp=(*this) * matrix;
+	*this=tmp;
+	return *this;
+}
 
+//Matrix scaling
+CMatrix3D CMatrix3D::operator*(float f) const
+{
+	CMatrix3D tmp;
+	for (int i=0;i<16;i++) {
+		tmp._data[i]=_data[i]*f;
+	}
+	return tmp;
+}
+
+//Matrix scaling/assignment
+CMatrix3D& CMatrix3D::operator*=(float f) 
+{
+	for (int i=0;i<16;i++) {
+		_data[i]*=f;
+	}
+	return *this;
+}
+
+//Matrix addition
+CMatrix3D CMatrix3D::operator+(const CMatrix3D& m) const
+{
+	CMatrix3D tmp;
+	for (int i=0;i<16;i++) {
+		tmp._data[i]=_data[i]+m._data[i];
+	}
+	return tmp;
+}
+
+//Matrix addition/assignment
+CMatrix3D& CMatrix3D::operator+=(const CMatrix3D& m) 
+{
+	for (int i=0;i<16;i++) {
+		_data[i]+=m._data[i];
+	}
 	return *this;
 }
 
@@ -227,7 +265,7 @@ void CMatrix3D::SetTranslation (float x, float y, float z)
 	_41=0.0f; _42=0.0f; _43=0.0f; _44=1.0f;
 }
 
-void CMatrix3D::SetTranslation (CVector3D &vector)
+void CMatrix3D::SetTranslation(const CVector3D& vector)
 {
 	SetTranslation (vector.X, vector.Y, vector.Z);	
 }
@@ -246,7 +284,7 @@ void CMatrix3D::Translate (const CVector3D &vector)
 	Translate (vector.X, vector.Y, vector.Z);
 }
 
-CVector3D CMatrix3D::GetTranslation ()
+CVector3D CMatrix3D::GetTranslation() const
 {
 	CVector3D Temp;
 
@@ -300,6 +338,7 @@ void CMatrix3D::GetTranspose(CMatrix3D& result) const
 	result._44 = _44;
 }
 
+
 //Get a vector which points to the left of the matrix
 CVector3D CMatrix3D::GetLeft () const
 {
@@ -336,99 +375,73 @@ CVector3D CMatrix3D::GetIn () const
 	return Temp;
 }
 
-//Set the matrix from two vectors (Up and In)
-void CMatrix3D::SetFromUpIn (CVector3D &up, CVector3D &in, float scale)
-{
-	CVector3D u = up;
-	CVector3D i = in;
-	
-	CVector3D r;
-	
-	r = up.Cross (in);
-
-	u.Normalize (); u *= scale;
-	i.Normalize (); i *= scale;
-	r.Normalize (); r *= scale;
-
-	_11=r.X;  _12=u.X;  _13=i.X;  _14=0.0f;
-	_21=r.Y;  _22=u.Y;  _23=i.Y;  _24=0.0f;
-	_31=r.Z;  _32=u.Z;	_33=i.Z;  _34=0.0f;
-	_41=0.0f; _42=0.0f;	_43=0.0f; _44=1.0f;
-}
 
 //Transform a vector by this matrix
-CVector3D CMatrix3D::Transform (CVector3D &vector)
+CVector3D CMatrix3D::Transform (const CVector3D &vector) const
 {
-	CVector3D Temp;
+	CVector3D result;
+	Transform(vector,result);
+	return result;
+}
 
-	Temp.X = _11*vector.X +
-			 _12*vector.Y +
-			 _13*vector.Z +
-			 _14;
-
-	Temp.Y = _21*vector.X +
-			 _22*vector.Y +
-			 _23*vector.Z +
-			 _24;
-
-	Temp.Z = _31*vector.X +
-			 _32*vector.Y +
-			 _33*vector.Z +
-			 _34;
-
-	return Temp;
+void CMatrix3D::Transform(const CVector3D& vector,CVector3D& result) const
+{
+	result.X = _11*vector.X + _12*vector.Y + _13*vector.Z + _14;
+	result.Y = _21*vector.X + _22*vector.Y + _23*vector.Z + _24;
+	result.Z = _31*vector.X + _32*vector.Y + _33*vector.Z + _34;
 }
 
 //Transform a vector by this matrix
 CVector4D CMatrix3D::Transform(const CVector4D &vector) const
 {
-	CVector4D Temp;
+	CVector4D result;
+	Transform(vector,result);
+	return result;
+}
 
-	Temp[0] = _11*vector[0] +
-			  _12*vector[1] +
-			  _13*vector[2] +
-			  _14*vector[3];
-
-	Temp[1] = _21*vector[0] +
-			  _22*vector[1] +
-			  _23*vector[2] +
-			  _24*vector[3];
-
-	Temp[2] = _31*vector[0] +
-			  _32*vector[1] +
-			  _33*vector[2] +
-			  _34*vector[3];
-
-	Temp[3] = _41*vector[0] +
-			  _42*vector[1] +
-			  _43*vector[2] +
-			  _44*vector[3];
-
-	return Temp;
+void CMatrix3D::Transform(const CVector4D& vector,CVector4D& result) const
+{
+	result[0] = _11*vector[0] + _12*vector[1] + _13*vector[2] + _14*vector[3];
+	result[1] = _21*vector[0] + _22*vector[1] + _23*vector[2] + _24*vector[3];
+	result[2] = _31*vector[0] + _32*vector[1] + _33*vector[2] + _34*vector[3];
+	result[3] = _41*vector[0] + _42*vector[1] + _43*vector[2] + _44*vector[3];
 }
 
 //Only rotate (not translate) a vector by this matrix
-CVector3D CMatrix3D::Rotate (CVector3D &vector)
+CVector3D CMatrix3D::Rotate (const CVector3D& vector) const
 {
-	CVector3D Temp;
+	CVector3D result;
+	Rotate(vector,result);
+	return result;
+}
 
-	Temp.X = _11*vector.X +
-			 _12*vector.Y +
-			 _13*vector.Z;
+void CMatrix3D::Rotate(const CVector3D& vector,CVector3D& result) const
+{
+	result.X = _11*vector.X + _12*vector.Y + _13*vector.Z;
+	result.Y = _21*vector.X + _22*vector.Y + _23*vector.Z;
+	result.Z = _31*vector.X + _32*vector.Y + _33*vector.Z;
+}
 
-	Temp.Y = _21*vector.X +
-			 _22*vector.Y +
-			 _23*vector.Z;
+///////////////////////////////////////////////////////////////////////////////
+// RotateTransposed: rotate a vector by the transpose of this matrix
+CVector3D CMatrix3D::RotateTransposed(const CVector3D& vector) const
+{
+	CVector3D result;
+	RotateTransposed(vector,result);
+	return result;
+}
 
-	Temp.Z = _31*vector.X +
-			 _32*vector.Y +
-			 _33*vector.Z;
-
-	return Temp;
+///////////////////////////////////////////////////////////////////////////////
+// RotateTransposed: rotate a vector by the transpose of this matrix
+void CMatrix3D::RotateTransposed(const CVector3D& vector,CVector3D& result) const
+{
+	result.X = _11*vector.X + _21*vector.Y + _31*vector.Z;
+	result.Y = _12*vector.X + _22*vector.Y + _32*vector.Z;
+	result.Z = _13*vector.X + _23*vector.Y + _33*vector.Z;
 }
 
 
-void CMatrix3D::Invert(CMatrix3D& dst) const
+void CMatrix3D::GetInverse(CMatrix3D& dst) const
 {
 	float tmp[12];	// temp array for pairs 
 	float src[16];	// array of transpose source matrix 
@@ -513,3 +526,15 @@ void CMatrix3D::Invert(CMatrix3D& dst) const
 		dst._data[j] *= det;
 	}
 }
+
+void CMatrix3D::Rotate(const CQuaternion& quat)
+{
+	CMatrix3D rotationMatrix=quat.ToMatrix();
+	(*this) = rotationMatrix * (*this);
+}
+
+void CMatrix3D::SetRotation(const CQuaternion& quat)
+{
+	quat.ToMatrix(*this);
+}
+

@@ -1,6 +1,6 @@
 //***********************************************************
 //
-// Name:		Camera.h
+// Name:		Camera.H
 // Last Update: 24/2/02
 // Author:		Poya Manouchehri
 //

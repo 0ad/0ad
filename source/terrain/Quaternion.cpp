@@ -84,9 +84,15 @@ void CQuaternion::FromEularAngles (float x, float y, float z)
 	(*this) = QYaw * QPitch * QRoll;
 }
 
-CMatrix3D CQuaternion::ToMatrix ()
+CMatrix3D CQuaternion::ToMatrix () const
 {
-	CMatrix3D R;
+	CMatrix3D result;
+	ToMatrix(result);
+	return result;
+}
+
+void CQuaternion::ToMatrix(CMatrix3D& result) const
+{
 	float x2, y2, z2;
 	float wx, wy, wz, xx, xy, xz, yy, yz, zz;
 
@@ -108,24 +114,28 @@ CMatrix3D CQuaternion::ToMatrix ()
 	wy = m_W * y2;
 	wz = m_W * z2;
 
-	R.SetIdentity();
+	result._11 = 1.0f - (yy + zz);
+	result._12 = xy - wz;
+	result._13 = xz + wy;
+	result._14 = 0;
 
-	R._11 = 1.0f - (yy + zz);
-	R._12 = xy - wz;
-	R._13 = xz + wy;
+	result._21 = xy + wz;
+	result._22 = 1.0f - (xx + zz);
+	result._23 = yz - wx;
+	result._24 = 0;
 
-	R._21 = xy + wz;
-	R._22 = 1.0f - (xx + zz);
-	R._23 = yz - wx;
+	result._31 = xz - wy;
+	result._32 = yz + wx;
+	result._33 = 1.0f - (xx + yy);
+	result._34 = 0;
 
-	R._31 = xz - wy;
-	R._32 = yz + wx;
-	R._33 = 1.0f - (xx + yy);
-
-	return R;
+	result._41 = 0;
+	result._42 = 0;
+	result._43 = 0;
+	result._44 = 1;
 }
 
-void CQuaternion::Slerp(CQuaternion &from, CQuaternion &to, float ratio)
+void CQuaternion::Slerp(const CQuaternion& from,const CQuaternion& to, float ratio)
 {
 	float to1[4];
 	float omega, cosom, sinom, scale0, scale1;

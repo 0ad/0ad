@@ -1,19 +1,10 @@
-//***********************************************************
+///////////////////////////////////////////////////////////////////////////////
 //
-// Name:		Terrain.Cpp
-// Last Update: 23/2/02
-// Author:		Poya Manouchehri
+// Name:		Terrain.cpp
+// Author:		Rich Cross
+// Contact:		rich@wildfiregames.com
 //
-// Description: CTerrain handles the terrain portion of the
-//				engine. It holds open the file to the terrain
-//				information, so terrain data can be loaded
-//				dynamically. We use a ROAM method to render 
-//				the terrain, ie using binary triangle trees.
-//				The terrain consists of smaller PATCHS, which
-//				do most of the work.
-//
-//***********************************************************
-
+///////////////////////////////////////////////////////////////////////////////
 
 #include "res/tex.h"
 #include "res/mem.h"
@@ -22,31 +13,36 @@
 #include "Terrain.h"
 
 
-CTerrain::CTerrain()
+///////////////////////////////////////////////////////////////////////////////
+// CTerrain constructor
+CTerrain::CTerrain() : m_Heightmap(0), m_Patches(0), m_MapSize(0), m_MapSizePatches(0)
 {
-	m_Heightmap = NULL;
-	m_Patches = NULL;
-	m_MapSize = 0;
-	m_MapSizePatches = 0;
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// CTerrain constructor
 CTerrain::~CTerrain()
 {
-	Reset();
+	ReleaseData();
 }
 
 
-void CTerrain::Reset()
+///////////////////////////////////////////////////////////////////////////////
+// ReleaseData: delete any data allocated by this terrain
+void CTerrain::ReleaseData()
 {
 	delete[] m_Heightmap;
 	delete[] m_Patches;
 }
 
 
+///////////////////////////////////////////////////////////////////////////////
+// Initialise: initialise this terrain to the given size (in patches per side);
+// using given heightmap to setup elevation data
 bool CTerrain::Initialize(u32 size,const u16* data)
 {
 	// clean up any previous terrain
-	Reset();
+	ReleaseData();
 
 	// store terrain size
 	m_MapSize=(size*PATCH_SIZE)+1;
@@ -71,6 +67,8 @@ bool CTerrain::Initialize(u32 size,const u16* data)
 	return true;
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// CalcPosition: calculate the world space position of the vertex at (i,j)
 void CTerrain::CalcPosition(u32 i,u32 j,CVector3D& pos)
 {
 	u16 height=m_Heightmap[j*m_MapSize + i];
@@ -80,6 +78,8 @@ void CTerrain::CalcPosition(u32 i,u32 j,CVector3D& pos)
 }
 
 
+///////////////////////////////////////////////////////////////////////////////
+// CalcNormal: calculate the world space normal of the vertex at (i,j)
 void CTerrain::CalcNormal(u32 i,u32 j,CVector3D& normal)
 {
 	CVector3D left, right, up, down;
@@ -125,6 +125,9 @@ void CTerrain::CalcNormal(u32 i,u32 j,CVector3D& normal)
 }
 
 
+///////////////////////////////////////////////////////////////////////////////
+// GetPatch: return the patch at (x,z) in patch space, or null if the patch is 
+// out of bounds
 CPatch* CTerrain::GetPatch(int32 x,int32 z)
 {
 	if (x<0 || x>=int32(m_MapSizePatches)) return 0;	
@@ -132,6 +135,10 @@ CPatch* CTerrain::GetPatch(int32 x,int32 z)
 	return &m_Patches[(z*m_MapSizePatches)+x]; 
 }
 
+
+///////////////////////////////////////////////////////////////////////////////
+// GetPatch: return the tile at (x,z) in tile space, or null if the tile is out 
+// of bounds
 CMiniPatch* CTerrain::GetTile(int32 x,int32 z)
 {
 	if (x<0 || x>=int32(m_MapSize)-1) return 0;	
@@ -142,6 +149,8 @@ CMiniPatch* CTerrain::GetTile(int32 x,int32 z)
 }
 
 
+///////////////////////////////////////////////////////////////////////////////
+// Resize: resize this terrain to the given size (in patches per side)
 void CTerrain::Resize(u32 size)
 {
 	if (size==m_MapSizePatches) {
@@ -240,7 +249,7 @@ void CTerrain::Resize(u32 size)
 
 
 	// release all the original data
-	Reset();
+	ReleaseData();
 
 	// store new data
 	m_Heightmap=newHeightmap;
@@ -252,6 +261,8 @@ void CTerrain::Resize(u32 size)
 	InitialisePatches();
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// InitialisePatches: initialise patch data
 void CTerrain::InitialisePatches()
 {
 	for (u32 j=0;j<m_MapSizePatches;j++) {
@@ -262,6 +273,7 @@ void CTerrain::InitialisePatches()
 	}
 }
 
+///////////////////////////////////////////////////////////////////////////////
 // SetHeightMap: set up a new heightmap from 16-bit source data; 
 // assumes heightmap matches current terrain size
 void CTerrain::SetHeightMap(u16* heightmap)
@@ -274,7 +286,7 @@ void CTerrain::SetHeightMap(u16* heightmap)
 		for (u32 i=0;i<m_MapSizePatches;i++) {
 			CPatch* patch=GetPatch(i,j);
 			patch->CalcBounds();
-			if (patch->m_RenderData) patch->m_RenderData->m_UpdateFlags|=RENDERDATA_UPDATE_VERTICES;
+			patch->SetDirty(RENDERDATA_UPDATE_VERTICES);
 		}
 	}
 }

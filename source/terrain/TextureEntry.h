@@ -7,7 +7,7 @@
 class CTextureEntry
 {
 public:
-	CTextureEntry() : m_Bitmap(0) {}
+	CTextureEntry() : m_Bitmap(0), m_Handle(0), m_BaseColor(0), m_Type(0) {}
 
 	// filename
 	CStr m_Name;

@@ -2,9 +2,7 @@
 #include "Renderer.h"
 #include "TransparencyRenderer.h"
 #include "terrain/Model.h"
-#include "terrain/Visual.h"
 
-extern CRenderer g_Renderer;
 
 CTransparencyRenderer g_TransparencyRenderer;
 
@@ -50,9 +48,9 @@ void CTransparencyRenderer::Render()
 
 	uint i;
 	for (i=0;i<m_Objects.size();++i) {
-		CVisual* visual=m_Objects[i].m_Visual;
-		CModelRData* modeldata=(CModelRData*) visual->m_Model->m_RenderData;
-		modeldata->Render(visual->GetTransform(),true);
+		CModel* model=m_Objects[i].m_Model;
+		CModelRData* modeldata=(CModelRData*) model->GetRenderData();
+		modeldata->RenderStreams(STREAM_POS|STREAM_COLOR|STREAM_UV0,model->GetTransform(),true);
 	}
 
 	glDepthMask(0);
@@ -62,9 +60,9 @@ void CTransparencyRenderer::Render()
 	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 
 	for (i=0;i<m_Objects.size();++i) {
-		CVisual* visual=m_Objects[i].m_Visual;
-		CModelRData* modeldata=(CModelRData*) visual->m_Model->m_RenderData;
-		modeldata->Render(visual->GetTransform(),true);
+		CModel* model=m_Objects[i].m_Model;
+		CModelRData* modeldata=(CModelRData*) model->GetRenderData();
+		modeldata->RenderStreams(STREAM_POS|STREAM_COLOR|STREAM_UV0,model->GetTransform(),true);
 	}
 	glDisable(GL_BLEND);
 	glDisable(GL_ALPHA_TEST);
@@ -96,10 +94,10 @@ void CTransparencyRenderer::Render()
 		glEnableClientState(GL_VERTEX_ARRAY);
 
 		// render each model
-		for (uint i=0;i<m_Objects.size();++i) {
-			CVisual* visual=m_Objects[i].m_Visual;
-			CModelRData* modeldata=(CModelRData*) visual->m_Model->m_RenderData;
-			modeldata->RenderWireframe(visual->GetTransform(),true);
+		for (i=0;i<m_Objects.size();++i) {
+			CModel* model=m_Objects[i].m_Model;
+			CModelRData* modeldata=(CModelRData*) model->GetRenderData();
+			modeldata->RenderStreams(STREAM_POS,model->GetTransform(),true);
 		}
 
 		// .. and switch off the client states
@@ -117,22 +115,22 @@ void CTransparencyRenderer::Render()
 	m_Objects.clear();
 }
 
-void CTransparencyRenderer::Add(CVisual* visual)
+void CTransparencyRenderer::Add(CModel* model)
 {	
 	// resize array, get last object in list
 	m_Objects.resize(m_Objects.size()+1);
 	
 	SObject& obj=m_Objects.back();
-	obj.m_Visual=visual;
+	obj.m_Model=model;
 
 	// build transform from object to camera space 
 	CMatrix3D objToCam,invcam;
-	g_Renderer.m_Camera.m_Orientation.Invert(objToCam);
-	objToCam*=visual->GetTransform();
+	g_Renderer.m_Camera.m_Orientation.GetInverse(objToCam);
+	objToCam*=model->GetTransform();
 
 	// resort model indices from back to front, according to camera position - and store
 	// the returned sqrd distance to the centre of the nearest triangle
-	CModelRData* modeldata=(CModelRData*) visual->m_Model->m_RenderData;
+	CModelRData* modeldata=(CModelRData*) model->GetRenderData();
 	obj.m_Dist=modeldata->BackToFrontIndexSort(objToCam);
 }
  

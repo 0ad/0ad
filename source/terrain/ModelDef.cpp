@@ -1,112 +1,90 @@
-/************************************************************
- *
- * File Name: ModelDef.Cpp
- *
- * Description: CModelDef is essentially a CModelFile, except
- *				that the data is stored in a more convenient
- *				way. To create a CModelDef, call
- *				CModelFile::ReadModelDef();
- *
- ************************************************************/
+///////////////////////////////////////////////////////////////////////////////
+//
+// Name:		ModelDef.cpp
+// Author:		Rich Cross
+// Contact:		rich@wildfiregames.com
+//
+///////////////////////////////////////////////////////////////////////////////
 
 #include "ModelDef.h"
+#include "FilePacker.h"
+#include "FileUnpacker.h"
 
-CModelDef::CModelDef()
+///////////////////////////////////////////////////////////////////////////////
+// CModelDef Constructor
+CModelDef::CModelDef()	
+	: m_pVertices(0), m_NumVertices(0), m_pFaces(0), m_NumFaces(0), m_Bones(0), m_NumBones(0)
 {
-	m_pVertices = NULL;
-	m_pFaces = NULL;
-	m_pBones = NULL;
-	m_pAnimationKeys = NULL;
-	m_pAnimationFrames = NULL;
-	m_pAnimations = NULL;
-	
-	m_NumVertices = 0;
-	m_NumFaces = 0;
-	m_NumBones = 0;
-	m_NumAnimationKeys = 0;
-	m_NumAnimationFrames = 0;
-	m_NumAnimations = 0;
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// CModelDef Destructor
 CModelDef::~CModelDef()
 {
-	Destroy();
+	delete[] m_pVertices;
+	delete[] m_pFaces;
+	delete[] m_Bones;
 }
 
-void CModelDef::Destroy()
-{
-	if (m_pVertices)
-		delete [] m_pVertices;
-	if (m_pFaces)
-		delete [] m_pFaces;
-	if (m_pBones)
-		delete [] m_pBones;
-	if (m_pAnimationKeys)
-		delete [] m_pAnimationKeys;
-	if (m_pAnimationFrames)
-		delete [] m_pAnimationFrames;
-	if (m_pAnimations)
-		delete [] m_pAnimations;
 
-	m_pVertices = NULL;
-	m_pFaces = NULL;
-	m_pBones = NULL;
-	m_pAnimationKeys = NULL;
-	m_pAnimationFrames = NULL;
-	m_pAnimations = NULL;
+///////////////////////////////////////////////////////////////////////////////
+// Load: read and return a new CModelDef initialised with data from given file
+CModelDef* CModelDef::Load(const char* filename)
+{
+	CFileUnpacker unpacker;
 	
-	m_NumVertices = 0;
-	m_NumFaces = 0;
-	m_NumBones = 0;
-	m_NumAnimationKeys = 0;
-	m_NumAnimationFrames = 0;
-	m_NumAnimations = 0;
+	// read everything in from file
+	unpacker.Read(filename,"PSMD");
+			
+	// check version
+	if (unpacker.GetVersion()<FILE_READ_VERSION) {
+		throw CFileUnpacker::CFileVersionError();
+	}
+
+	CModelDef* mdef=new CModelDef;
+	try {
+		// now unpack everything 
+		unpacker.UnpackRaw(&mdef->m_NumVertices,sizeof(mdef->m_NumVertices));	
+		mdef->m_pVertices=new SModelVertex[mdef->m_NumVertices];
+		unpacker.UnpackRaw(mdef->m_pVertices,sizeof(SModelVertex)*mdef->m_NumVertices);
+		
+		unpacker.UnpackRaw(&mdef->m_NumFaces,sizeof(mdef->m_NumFaces));
+		mdef->m_pFaces=new SModelFace[mdef->m_NumFaces];
+		unpacker.UnpackRaw(mdef->m_pFaces,sizeof(SModelFace)*mdef->m_NumFaces);
+		
+		unpacker.UnpackRaw(&mdef->m_NumBones,sizeof(mdef->m_NumBones));
+		if (mdef->m_NumBones) {
+			mdef->m_Bones=new CBoneState[mdef->m_NumBones];
+			unpacker.UnpackRaw(mdef->m_Bones,mdef->m_NumBones*sizeof(CBoneState));
+		}
+	} catch (...) {
+		delete mdef;
+		throw CFileUnpacker::CFileEOFError();
+	}
+
+	return mdef;
 }
 
-void CModelDef::SetupBones()
+///////////////////////////////////////////////////////////////////////////////
+// Save: write the given CModelDef to the given file
+void CModelDef::Save(const char* filename,const CModelDef* mdef)
 {
-	for (int i=0; i<m_NumBones; i++)
-	{
-		SModelBone *pBone = &m_pBones[i];
+	CFilePacker packer;
 
-		pBone->m_Relative.SetIdentity();
-		pBone->m_Absolute.SetIdentity();
-
-		pBone->m_Relative.RotateX (pBone->m_Rotation.X);
-		pBone->m_Relative.RotateY (pBone->m_Rotation.Y);
-		pBone->m_Relative.RotateZ (pBone->m_Rotation.Z);
-//		pBone->m_Relative.RotateX (DEGTORAD(90));
-
-		pBone->m_Relative.Translate (pBone->m_Position);
-
-		if (pBone->m_Parent >= 0)
-		{
-			SModelBone *pParent = &m_pBones[pBone->m_Parent];
-			
-			pBone->m_Absolute = pParent->m_Absolute * pBone->m_Relative;
-		}
-		else
-			pBone->m_Absolute = pBone->m_Relative;
+	// pack everything up
+	u32 numVertices=mdef->GetNumVertices();
+	packer.PackRaw(&numVertices,sizeof(numVertices));
+	packer.PackRaw(mdef->GetVertices(),sizeof(SModelVertex)*numVertices);
+	
+	u32 numFaces=mdef->GetNumFaces();
+	packer.PackRaw(&numFaces,sizeof(numFaces));
+	packer.PackRaw(mdef->GetFaces(),sizeof(SModelFace)*numFaces);
+	
+	packer.PackRaw(&mdef->m_NumBones,sizeof(mdef->m_NumBones));
+	if (mdef->m_NumBones) {
+		packer.PackRaw(mdef->m_Bones,sizeof(CBoneState)*mdef->m_NumBones);
 	}
 
-	//we need to "un-transform" all the vertices by the initial
-	//pose of the bones they are attached to.
-	for (i=0; i<m_NumVertices; i++)
-	{
-		SModelVertex *pVertex = &m_pVertices[i];
-		if (pVertex->m_Bone>=0) {
-			SModelBone *pBone = &m_pBones[pVertex->m_Bone];
-
-			CVector3D BonePos = pBone->m_Absolute.GetTranslation();
-
-			pVertex->m_Coords.X -= BonePos.X;
-			pVertex->m_Coords.Y -= BonePos.Y;
-			pVertex->m_Coords.Z -= BonePos.Z;
-
-			CMatrix3D BoneInvMat;
-			pBone->m_Absolute.Invert(BoneInvMat);
-
-			pVertex->m_Coords = BoneInvMat.Rotate (pVertex->m_Coords);
-		}
-	}
+	// flush everything out to file
+	packer.Write(filename,FILE_VERSION,"PSMD");
 }

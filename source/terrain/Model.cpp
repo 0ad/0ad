@@ -1,146 +1,169 @@
-/************************************************************
- *
- * File Name: Model.Cpp
- *
- * Description: CModel is a specific instance of a model.
- *				It contains a pointer to CModelDef, and
- *				includes all instance information, such as
- *				current animation pose.
- *
- ************************************************************/
+///////////////////////////////////////////////////////////////////////////////
+//
+// Name:		Model.cpp
+// Author:		Rich Cross
+// Contact:		rich@wildfiregames.com
+//
+///////////////////////////////////////////////////////////////////////////////
 
 #include "Model.h"
 #include "Quaternion.h"
 #include "Bound.h"
 
-CModel::CModel()
+///////////////////////////////////////////////////////////////////////////////
+// Constructor
+CModel::CModel() 
+	: m_pModelDef(0), m_Anim(0), m_AnimTime(0), 
+	m_BoneMatrices(0), m_InvBoneMatrices(0)
 {
-	m_pModelDef = NULL;
-	m_pBonePoses = NULL;
-	m_RenderData = 0;
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Destructor
 CModel::~CModel()
 {
-	Destroy();
+	ReleaseData();
 }
 
-bool CModel::InitModel(CModelDef *modeldef)
+///////////////////////////////////////////////////////////////////////////////
+// ReleaseData: delete anything allocated by the model
+void CModel::ReleaseData()
 {
+	delete[] m_BoneMatrices;
+	delete[] m_InvBoneMatrices;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// InitModel: setup model from given geometry
+bool CModel::InitModel(CModelDef* modeldef)
+{
+	// clean up any existing data first
+	ReleaseData();
+
 	m_pModelDef = modeldef;
-
-	m_pBonePoses = new CMatrix3D[m_pModelDef->GetNumBones()];
-
-	ClearPose();
+	
+	u32 numBones=modeldef->GetNumBones();
+	if (numBones>0) {
+		// allocate matrices for bone transformations
+		m_BoneMatrices=new CMatrix3D[numBones];
+		m_InvBoneMatrices=new CMatrix3D[numBones];
+		// store default pose until animation assigned
+		CBoneState* defpose=modeldef->GetBones();
+		for (uint i=0;i<numBones;i++) {
+			CMatrix3D& m=m_BoneMatrices[i];
+			m.SetIdentity();
+			m.Rotate(defpose[i].m_Rotation);
+			m.Translate(defpose[i].m_Translation);
+			m.GetInverse(m_InvBoneMatrices[i]);
+		}
+	}
 
 	return true;
 }
 
-void CModel::Destroy()
+///////////////////////////////////////////////////////////////////////////////
+// SkinPoint: skin the given point using the given blend and bonestate data
+static CVector3D SkinPoint(const CVector3D& pos,const SVertexBlend& blend,
+						   const CBoneState* bonestates)
 {
-	m_pModelDef = NULL;
+	CVector3D result(0,0,0);
+	for (int i=0;i<SVertexBlend::SIZE && blend.m_Bone[i]!=0xff;i++) {
+		CMatrix3D m;
+		m.SetIdentity();
+		m.Rotate(bonestates[blend.m_Bone[i]].m_Rotation);		
+		m.Translate(bonestates[blend.m_Bone[i]].m_Translation);		
 
-	if (m_pBonePoses)
-		delete [] m_pBonePoses;
-
-	m_pBonePoses = NULL;
-}
-
-
-void CModel::SetPose (const char *anim_name, float time)
-{
-	int AnimI = -1;
-
-	for (int i=0; i<m_pModelDef->GetNumAnimations(); i++)
-	{
-		if ( strcmp(anim_name, m_pModelDef->GetAnimations()[i].m_Name) == 0 )
-		{
-			AnimI = i;
-			break;
-		}
+		CVector3D tmp=m.Transform(pos);
+		result+=tmp*blend.m_Weight[i];
 	}
 
-	if (AnimI == -1)
-		return;
-
-	SModelAnimation *pAnim = &m_pModelDef->GetAnimations()[AnimI];
-
-	int StartI = (int)time;
-	int EndI;// = (int)(time + 0.999999f);
-
-	if ((float)StartI == time)
-		EndI = StartI;
-	else
-		EndI = StartI+1;
-
-	float factor = time - (float)StartI;
-
-	if (EndI > pAnim->m_NumFrames-1)
-		EndI = 0;
-
-	SModelAnimationFrame *pStartFrame = &m_pModelDef->GetAnimationFrames()[pAnim->m_FirstFrame + StartI];
-	SModelAnimationFrame *pEndFrame = &m_pModelDef->GetAnimationFrames()[pAnim->m_FirstFrame + EndI];
-
-	for (i=0; i<m_pModelDef->GetNumBones(); i++)
-	{
-		SModelAnimationKey *pKey1 = &m_pModelDef->GetAnimationKeys()[pStartFrame->m_FirstKey+i];
-		SModelAnimationKey *pKey2 = &m_pModelDef->GetAnimationKeys()[pEndFrame->m_FirstKey+i];
-
-		CVector3D Translation = pKey1->m_Translation + (pKey2->m_Translation - pKey1->m_Translation)*factor;
-
-		m_pBonePoses[i].SetIdentity();
-
-		CQuaternion from, to, rotation;
-		from.FromEularAngles (pKey1->m_Rotation.X, pKey1->m_Rotation.Y, pKey1->m_Rotation.Z);
-		to.FromEularAngles (pKey2->m_Rotation.X, pKey2->m_Rotation.Y, pKey2->m_Rotation.Z);
-		rotation.Slerp (from, to, factor);
-
-		m_pBonePoses[i] = rotation.ToMatrix();
-
-		m_pBonePoses[i].Translate(Translation);
-
-		int Parent = m_pModelDef->GetBones()[i].m_Parent;
-
-		if (Parent > -1)
-			m_pBonePoses[i] = m_pBonePoses[Parent] * m_pBonePoses[i];
-	}
+	return result;
 }
 
-void CModel::ClearPose()
+///////////////////////////////////////////////////////////////////////////////
+// CalcBound: calculate the world space bounds of this model
+//
+// TODO,RC 11/03/04: need to calculate (and store somewhere) the object space 
+// bounds, and then just retransform the bounds as necessary, rather than 
+// recalculating them from vertex data every time the transform changes
+void CModel::CalcBounds()
 {
-	//for each bone, set the bone's pose to the intial pose
-	for (int i=0; i<m_pModelDef->GetNumBones(); i++)
-		m_pBonePoses[i] = m_pModelDef->GetBones()[i].m_Absolute;
-}
+	m_Bounds.SetEmpty();
 
-
-void RotateX (CMatrix3D *mat, float angle1, float angle2, float factor)
-{
-	float Cos = cosf(angle1) + (cosf(angle2)-cosf(angle1))*factor;
-	float Sin = sinf(angle1) + (sinf(angle2)-cosf(angle1))*factor;
-
-	CMatrix3D RotX;
+	int numverts=m_pModelDef->GetNumVertices();
+	SModelVertex* verts=m_pModelDef->GetVertices();
 	
-	RotX._11=1.0f; RotX._12=0.0f; RotX._13=0.0f; RotX._14=0.0f;
-	RotX._21=0.0f; RotX._22=Cos;  RotX._23=-Sin; RotX._24=0.0f;
-	RotX._31=0.0f; RotX._32=Sin;  RotX._33=Cos;  RotX._34=0.0f;
-	RotX._41=0.0f; RotX._42=0.0f; RotX._43=0.0f; RotX._44=1.0f;
-
-	*mat = RotX * (*mat);
+	u32 numbones=m_pModelDef->GetNumBones();
+	if (numbones>0) {
+		// Boned object: tricky to get an ideal bound - for the minute, just use the bound of 
+		// the reference pose.  There's no guarantee that when animations are applied to the 
+		// model, the bounds will be within this bound - ideally, we want the bound of the 
+		// object to be the union of the bounds of the model for each animation
+		for (int i=0;i<numverts;i++) {
+			CVector3D tmp=SkinPoint(verts[i].m_Coords,verts[i].m_Blend,m_pModelDef->GetBones());
+			m_Bounds+=m_Transform.Transform(tmp);
+		}
+	} else {
+		for (int i=0;i<numverts;i++) {
+			m_Bounds+=m_Transform.Transform(verts[i].m_Coords);
+		}	
+	}
 }
 
-void CModel::CalcBounds(CBound& bound)
+///////////////////////////////////////////////////////////////////////////////
+// Update: update this model by the given time, in seconds
+void CModel::Update(float time)
 {
-	bound.SetEmpty();
+	// convert to ms 
+	time*=1000;
 
-	for (int i=0; i<m_pModelDef->GetNumVertices(); i++)
-	{
-		SModelVertex *pVertex = &m_pModelDef->GetVertices()[i];
-		CVector3D coord;
-		if (pVertex->m_Bone!=-1) {
-			bound+=GetBonePoses()[pVertex->m_Bone].Transform(pVertex->m_Coords);
-		} else {
-			bound+=pVertex->m_Coords;
+	if (m_Anim && m_BoneMatrices) {
+		m_AnimTime+=time;
+		
+		float duration=m_Anim->GetDuration();
+		if (m_AnimTime>duration) {
+			m_AnimTime=(float) fmod(m_AnimTime,duration);
 		}
+
+		m_Anim->BuildBoneMatrices(m_AnimTime,m_BoneMatrices);
+		for (int i=0;i<m_pModelDef->GetNumBones();i++) {
+			m_BoneMatrices[i].GetInverse(m_InvBoneMatrices[i]);
+		}
+
+		if (m_RenderData) m_RenderData->m_UpdateFlags|=RENDERDATA_UPDATE_VERTICES;
 	}
+}
+
+/////////////////////////////////////////////////////////////////////////////////////
+// SetAnimation: set the given animation as the current animation on this model;
+// return false on error, else true
+bool CModel::SetAnimation(CSkeletonAnim* anim)
+{ 
+	if (anim) {
+		if (!m_BoneMatrices) {
+			// not boned, can't animate
+			return false;
+		}
+
+		if (anim->GetNumKeys()!=m_pModelDef->GetNumBones()) {
+			// mismatch between models skeleton and animations skeleton
+			return false;
+		}
+	} 
+
+	m_AnimTime=0; 
+	m_Anim=anim; 
+
+	return true;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////
+// Clone: return a clone of this model
+CModel* CModel::Clone() const
+{
+	CModel* clone=new CModel;
+	clone->InitModel(m_pModelDef);
+	clone->SetTexture(m_Texture);
+	clone->SetAnimation(m_Anim);
+	return clone;
 }

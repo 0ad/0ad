@@ -1,14 +1,14 @@
-//----------------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////
 //
 // Name:		Renderer.cpp
-// Last Update: 25/11/03
 // Author:		Rich Cross
-// Contact:		rich@0ad.wildfiregames.com
+// Contact:		rich@wildfiregames.com
 //
 // Description: OpenGL renderer class; a higher level interface
 //	on top of OpenGL to handle rendering the basic visual games 
 //	types - terrain, models, sprites, particles etc
-//----------------------------------------------------------------
+//
+///////////////////////////////////////////////////////////////////////////////
 
 
 #include <map>
@@ -22,16 +22,13 @@
 #include "PatchRData.h"
 #include "Texture.h"
 #include "LightEnv.h"
-#include "Visual.h"
 
 #include "Model.h"
 #include "ModelDef.h"
 
-#include "types.h"
 #include "ogl.h"
 #include "res/mem.h"
 #include "res/tex.h"
-
 
 struct TGAHeader {
 	// header stuff
@@ -103,24 +100,28 @@ CRenderer::CRenderer ()
 	m_FrameCounter=0;
 	m_TerrainRenderMode=SOLID;
 	m_ModelRenderMode=SOLID;
+	m_ClearColor[0]=m_ClearColor[1]=m_ClearColor[2]=m_ClearColor[3]=0;
+	m_OptNOVBO=false;
 }
 
 CRenderer::~CRenderer ()
 {
 }
 
-	
+
+///////////////////////////////////////////////////////////////////////////////////	
 // EnumCaps: build card cap bits
 void CRenderer::EnumCaps()
 {
 	// assume support for nothing
 	m_Caps.m_VBO=false;
-#if 1
+
 	// now start querying extensions
-	if (oglExtAvail("GL_ARB_vertex_buffer_object")) {
-		m_Caps.m_VBO=true;
+	if (!m_OptNOVBO) {
+		if (oglExtAvail("GL_ARB_vertex_buffer_object")) {
+			m_Caps.m_VBO=true;
+		}
 	}
-#endif
 }
 
 bool CRenderer::Open(int width, int height, int depth)
@@ -136,6 +137,8 @@ bool CRenderer::Open(int width, int height, int depth)
 	// setup default state
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_DEPTH_TEST);
+	glCullFace(GL_BACK);
+	glFrontFace(GL_CCW);
 	glEnable(GL_CULL_FACE);
 	glClearColor(0.0f,0.0f,0.0f,0.0f);
 
@@ -156,7 +159,18 @@ void CRenderer::Resize(int width,int height)
 	m_Height = height;
 }
 
-// signal frame start
+//////////////////////////////////////////////////////////////////////////////////////////
+// SetOption: set boolean renderer option 
+void CRenderer::SetOption(enum Option opt,bool value)
+{
+	switch (opt) {
+		case OPT_NOVBO:
+			m_OptNOVBO=value;
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// BeginFrame: signal frame start
 void CRenderer::BeginFrame()
 {
 	// bump frame counter
@@ -180,8 +194,30 @@ void CRenderer::BeginFrame()
 	}
 
 	// clear buffers
+	glClearColor(m_ClearColor[0],m_ClearColor[1],m_ClearColor[2],m_ClearColor[3]);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// SetClearColor: set color used to clear screen in BeginFrame()
+void CRenderer::SetClearColor(u32 color)
+{ 
+	m_ClearColor[0]=float(color & 0xff)/255.0f;
+	m_ClearColor[1]=float((color>>8) & 0xff)/255.0f;
+	m_ClearColor[2]=float((color>>16) & 0xff)/255.0f;
+	m_ClearColor[3]=float((color>>24) & 0xff)/255.0f;
+}
+
+static int RoundUpToPowerOf2(int x)
+{
+	if ((x & (x-1))==0) return x;
+	int d=x;
+	while (d & (d-1)) {
+		d&=(d-1);
+	}
+	return d<<1;
+}
+
 
 void CRenderer::RenderPatches()
 {
@@ -217,9 +253,9 @@ void CRenderer::RenderPatches()
 
 		// render each patch in wireframe
 		for (i=0;i<m_TerrainPatches.size();++i) {
-			CPatch* patch=m_TerrainPatches[i].m_Object;
-			CPatchRData* patchdata=(CPatchRData*) patch->m_RenderData;
-			patchdata->RenderWireframe();
+			CPatch* patch=m_TerrainPatches[i];
+			CPatchRData* patchdata=(CPatchRData*) patch->GetRenderData();
+			patchdata->RenderStreams(STREAM_POS);
 		}
 
 		// set color for outline
@@ -228,8 +264,8 @@ void CRenderer::RenderPatches()
 	
 		// render outline of each patch 
 		for (i=0;i<m_TerrainPatches.size();++i) {
-			CPatch* patch=m_TerrainPatches[i].m_Object;
-			CPatchRData* patchdata=(CPatchRData*) patch->m_RenderData;
+			CPatch* patch=m_TerrainPatches[i];
+			CPatchRData* patchdata=(CPatchRData*) patch->GetRenderData();
 			patchdata->RenderOutline();
 		}
 
@@ -249,19 +285,9 @@ void CRenderer::RenderModelSubmissions()
 {
 	uint i;
 
-	// first ensure all patches have up to date renderdata built for them; build up transparent passes
-	// along the way
+	// build up transparent passes
 	for (i=0;i<m_Models.size();++i) {
-		CVisual* visual=m_Models[i].m_Object;
-		CModelRData* data=(CModelRData*) visual->m_Model->m_RenderData;
-		if (data==0) {
-			// no renderdata for model, create it now
-			data=new CModelRData(visual->m_Model);
-		} else {
-			data->Update();
-		}
-
-		BuildTransparentPasses(visual);
+		BuildTransparentPasses(m_Models[i]);
 	}
 
 	// setup texture environment to modulate diffuse color with texture color
@@ -285,9 +311,9 @@ void CRenderer::RenderModelSubmissions()
 
 	// render models
 	for (i=0;i<m_Models.size();++i) {
-		CVisual* visual=m_Models[i].m_Object;
-		CModelRData* modeldata=(CModelRData*) visual->m_Model->m_RenderData;
-		modeldata->Render(visual->GetTransform());
+		CModel* model=m_Models[i];
+		CModelRData* modeldata=(CModelRData*) model->GetRenderData();
+		modeldata->RenderStreams(STREAM_POS|STREAM_COLOR|STREAM_UV0,model->GetTransform());
 	}
 
 	// switch off client states
@@ -328,9 +354,9 @@ void CRenderer::RenderModels()
 
 		// render each model
 		for (uint i=0;i<m_Models.size();++i) {
-			CVisual* visual=m_Models[i].m_Object;
-			CModelRData* modeldata=(CModelRData*) visual->m_Model->m_RenderData;
-			modeldata->RenderWireframe(visual->GetTransform());
+			CModel* model=m_Models[i];
+			CModelRData* modeldata=(CModelRData*) model->GetRenderData();
+			modeldata->RenderStreams(STREAM_POS,model->GetTransform());
 		}
 
 		// .. and switch off the client states
@@ -345,12 +371,15 @@ void CRenderer::RenderModels()
 	}
 }
 
-// force rendering of any batched objects
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// FlushFrame: force rendering of any batched objects
 void CRenderer::FlushFrame()
 {	
+	// update renderdata of everything submitted
+	UpdateSubmittedObjectData();
+
 	// render submitted patches and models
 	RenderPatches();
-
 	RenderModels();
 
 	// call on the transparency renderer to render all the transparent stuff
@@ -370,7 +399,7 @@ void CRenderer::EndFrame()
 void CRenderer::SetCamera(CCamera& camera)
 {
 	CMatrix3D view;
-	camera.m_Orientation.Invert(view);
+	camera.m_Orientation.GetInverse(view);
 	CMatrix3D proj = camera.GetProjection();
 
 	float gl_view[16] = {view._11, view._21, view._31, view._41,
@@ -398,23 +427,19 @@ void CRenderer::SetCamera(CCamera& camera)
 
 void CRenderer::Submit(CPatch* patch)
 {
-	SSubmission<CPatch*> sub;
-	sub.m_Object=patch;
-	m_TerrainPatches.push_back(sub);
+	m_TerrainPatches.push_back(patch);
 }
 
-void CRenderer::Submit(CVisual* visual)
+void CRenderer::Submit(CModel* model)
 {
-	SSubmission<CVisual*> sub;
-	sub.m_Object=visual;
-	m_Models.push_back(sub);
+	m_Models.push_back(model);
 }
 
-void CRenderer::Submit(CSprite* sprite,CMatrix3D* transform)
+void CRenderer::Submit(CSprite* sprite)
 {
 }
 
-void CRenderer::Submit(CParticleSys* psys,CMatrix3D* transform)
+void CRenderer::Submit(CParticleSys* psys)
 {
 }
 
@@ -425,17 +450,6 @@ void CRenderer::Submit(COverlay* overlay)
 void CRenderer::RenderPatchSubmissions()
 {
 	uint i;
-	// first ensure all patches have up to date renderdata built for them
-	for (i=0;i<m_TerrainPatches.size();++i) {
-		CPatch* patch=m_TerrainPatches[i].m_Object;
-		CPatchRData* data=(CPatchRData*) patch->m_RenderData;
-		if (data==0) {
-			// no renderdata for patch, create it now
-			data=new CPatchRData(patch);
-		} else {
-			data->Update();
-		}
-	}
 
 	// set up client states for base pass
 	glClientActiveTexture(GL_TEXTURE0);
@@ -459,8 +473,8 @@ void CRenderer::RenderPatchSubmissions()
 
 	// render base passes for each patch
 	for (i=0;i<m_TerrainPatches.size();++i) {
-		CPatch* patch=m_TerrainPatches[i].m_Object;
-		CPatchRData* patchdata=(CPatchRData*) patch->m_RenderData;
+		CPatch* patch=m_TerrainPatches[i];
+		CPatchRData* patchdata=(CPatchRData*) patch->GetRenderData();
 		patchdata->RenderBase();
 	}
 
@@ -490,8 +504,8 @@ void CRenderer::RenderPatchSubmissions()
 
 	// render blend passes for each patch
 	for (i=0;i<m_TerrainPatches.size();++i) {
-		CPatch* patch=m_TerrainPatches[i].m_Object;
-		CPatchRData* patchdata=(CPatchRData*) patch->m_RenderData;
+		CPatch* patch=m_TerrainPatches[i];
+		CPatchRData* patchdata=(CPatchRData*) patch->GetRenderData();
 		patchdata->RenderBlends();
 	}
 
@@ -533,6 +547,11 @@ bool CRenderer::LoadTexture(CTexture* texture)
 			return false;
 		} else {
 			tex_upload(h);
+
+			tex_bind(h);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
 			texture->SetHandle(h);
 			return true;
 		}
@@ -575,10 +594,6 @@ bool CRenderer::IsTextureTransparent(CTexture* texture)
 		if (!h) {
 			LoadTexture(texture);
 			h=texture->GetHandle();
-			if (h!=0xffffffff) {
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-			}
 		} 
 		if (h!=0xffffffff && h) {
 			int fmt;
@@ -598,15 +613,7 @@ bool CRenderer::IsTextureTransparent(CTexture* texture)
 	}
 }
 
-static int RoundUpToPowerOf2(int x)
-{
-	if ((x & (x-1))==0) return x;
-	int d=x;
-	while (d & (d-1)) {
-		d&=(d-1);
-	}
-	return d<<1;
-}
+
 
 
 inline void CopyTriple(unsigned char* dst,const unsigned char* src)
@@ -624,9 +631,9 @@ bool CRenderer::LoadAlphaMaps(const char* fnames[])
 	glActiveTexture(GL_TEXTURE0_ARB);
 	
 	Handle textures[NumAlphaMaps];
-	
-	int i;
 
+	int i;
+		
 	for (i=0;i<NumAlphaMaps;i++) {
 		textures[i]=tex_load(fnames[i]);
 		if (textures[i] <= 0) {
@@ -634,28 +641,28 @@ bool CRenderer::LoadAlphaMaps(const char* fnames[])
 		}
 	}
 
-	int base;//=textures[0].width;
+	int base;
 	
 	i=tex_info(textures[0], &base, NULL, NULL, NULL, NULL);
 	
 	int size=(base+4)*NumAlphaMaps;
 	int texsize=RoundUpToPowerOf2(size);
-	
+
 	unsigned char* data=new unsigned char[texsize*base*3];
 	
 	// for each tile on row
 	for (i=0;i<NumAlphaMaps;i++) {
-		//TEX& tex=textures[i];
+
 		int bpp;
 		// get src of copy
-		const unsigned char* src;
+		const u8* src;
 		
 		tex_info(textures[i], NULL, NULL, NULL, &bpp, (void **)&src);
 		
 		int srcstep=bpp/8;
 
 		// get destination of copy
-		unsigned char* dst=data+3*(i*(base+4));
+		u8* dst=data+3*(i*(base+4));
 		
 		// for each row of image
 		for (int j=0;j<base;j++) {
@@ -672,9 +679,9 @@ bool CRenderer::LoadAlphaMaps(const char* fnames[])
 				src+=srcstep;
 			}
 			// duplicate last pixel
-			CopyTriple(dst,(src-bpp/8));
+			CopyTriple(dst,(src-srcstep));
 			dst+=3;
-			CopyTriple(dst,(src-bpp/8));
+			CopyTriple(dst,(src-srcstep));
 			dst+=3;
 
 			// advance write pointer for next row
@@ -687,7 +694,7 @@ bool CRenderer::LoadAlphaMaps(const char* fnames[])
 		m_AlphaMapCoords[i].v1=1.0f;
 	}
 
-	glGenTextures(1,&m_CompositeAlphaMap);
+	glGenTextures(1,(GLuint*) &m_CompositeAlphaMap);
 	glBindTexture(GL_TEXTURE_2D,m_CompositeAlphaMap);
 	glTexImage2D(GL_TEXTURE_2D,0,GL_INTENSITY,texsize,base,0,GL_RGB,GL_UNSIGNED_BYTE,data);
 
@@ -700,15 +707,49 @@ bool CRenderer::LoadAlphaMaps(const char* fnames[])
 	return true;
 }
 
-void CRenderer::BuildTransparentPasses(CVisual* visual)
+void CRenderer::BuildTransparentPasses(CModel* model)
 {
-	if (!IsTextureTransparent(visual->m_Model->GetTexture())) {
+	if (!IsTextureTransparent(model->GetTexture())) {
 		// ok, no transparency on this model .. ignore it here
 		return;
 	}
 
 	// add this visual to the transparency renderer for later processing
-	g_TransparencyRenderer.Add(visual);
+	g_TransparencyRenderer.Add(model);
 }
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+// UpdateSubmittedObjectData: ensure all submitted objects have renderdata and that it is up to date 
+// - call once before doing anything with any objects
+void CRenderer::UpdateSubmittedObjectData()
+{
+	uint i;
+
+	// ensure all patches have up to date renderdata built for them
+	for (i=0;i<m_TerrainPatches.size();++i) {
+		CPatch* patch=m_TerrainPatches[i];
+		CPatchRData* data=(CPatchRData*) patch->GetRenderData();
+		if (data==0) {
+			// no renderdata for patch, create it now
+			data=new CPatchRData(patch);
+			patch->SetRenderData(data);
+		} else {
+			data->Update();
+		}
+	}
+
+	// ensure all models have up to date renderdata built for them
+	for (i=0;i<m_Models.size();++i) {
+		CModel* model=m_Models[i];
+		CModelRData* data=(CModelRData*) model->GetRenderData();
+		if (data==0) {
+			// no renderdata for model, create it now
+			data=new CModelRData(model);
+			model->SetRenderData(data);
+		} else {
+			data->Update();
+		}
+	}
+}
 

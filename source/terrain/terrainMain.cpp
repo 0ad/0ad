@@ -3,6 +3,7 @@
 #include "Terrain.h"
 #include "LightEnv.h"
 #include "TextureManager.h"
+#include "ObjectManager.h"
 #include "Prometheus.h"
 
 #include "time.h"
@@ -58,65 +59,33 @@ void terr_init()
 	InitScene ();
 }
 
-void terr_update()
+void terr_update(float time)
 {
-	// start new frame
-	g_Renderer.BeginFrame();
-	g_Renderer.SetCamera(g_Camera);
-
-	// switch on wireframe for terrain if we want it
-	g_Renderer.SetTerrainRenderMode(SOLID);
-
-	/////////////////////////////////////////////
-		CVector3D right(1,0,1);
-		CVector3D up(1,0,-1);
-		right.Normalize ();
-		up.Normalize ();
-		
-		if (mouse_x >= g_xres-2)
-			g_Camera.m_Orientation.Translate (right);
-		if (mouse_x <= 3)
-			g_Camera.m_Orientation.Translate (right*-1);
-
-		if (mouse_y >= g_yres-2)
-			g_Camera.m_Orientation.Translate (up);
-		if (mouse_y <= 3)
-			g_Camera.m_Orientation.Translate (up*-1);
-
-
-
-		float fov = g_Camera.GetFOV();
-		float d = DEGTORAD(0.4f);
-		if(keys[SDLK_KP_MINUS])
-			if (fov+d < DEGTORAD(90))
-				g_Camera.SetProjection (1, 1000, fov + d);
-		if(keys[SDLK_KP_PLUS])
-			if (fov-d > DEGTORAD(20))
-			g_Camera.SetProjection (1, 1000, fov - d);
-
-		g_Camera.UpdateFrustum ();
-/////////////////////////////////////////////
-
-
-	CFrustum frustum=g_Camera.GetFustum();
-
-	// iterate through patches; cull everything not visible
-	for (uint j=0; j<g_Terrain.GetPatchesPerSide(); j++)
-	{
-		for (uint i=0; i<g_Terrain.GetPatchesPerSide(); i++)
-		{
-			if (frustum.IsBoxVisible (CVector3D(0,0,0),g_Terrain.GetPatch(j, i)->GetBounds())) {
-				g_Renderer.Submit(g_Terrain.GetPatch(j, i));
-			}
-		}
-	}
-
-	// flush the frame to force terrain to be renderered before overlays
-	g_Renderer.FlushFrame();
+	CVector3D right(time*60,0,time*60);
+	CVector3D up(time*60,0,-time*60);
 	
-		//	g_Renderer.RenderTileOutline (&(g_Terrain.m_Patches[SelPY][SelPX].m_MiniPatches[SelTY][SelTX]));
+	if (mouse_x >= g_xres-2)
+		g_Camera.m_Orientation.Translate(right);
+	if (mouse_x <= 3)
+		g_Camera.m_Orientation.Translate(right*-1);
 
-	g_Renderer.EndFrame();
+	if (mouse_y >= g_yres-2)
+		g_Camera.m_Orientation.Translate(up);
+	if (mouse_y <= 3)
+		g_Camera.m_Orientation.Translate(up*-1);
+
+
+
+	float fov = g_Camera.GetFOV();
+	float d = DEGTORAD(0.4f);
+	if(keys[SDLK_KP_MINUS])
+		if (fov+d < DEGTORAD(90))
+			g_Camera.SetProjection(1, 1000, fov + d);
+	if(keys[SDLK_KP_PLUS])
+		if (fov-d > DEGTORAD(20))
+		g_Camera.SetProjection(1, 1000, fov - d);
+
+	g_Camera.UpdateFrustum ();
 }
 
 
@@ -294,19 +263,12 @@ void InitScene ()
 	}
 
 	// get default texture to apply to terrain
-//	CTextureEntry* texture=0;
-//	if (g_TexMan.m_TerrainTextures.size()>0) {
-//		if (g_TexMan.m_TerrainTextures[0].m_Textures.size()) {
-//			texture=g_TexMan.m_TerrainTextures[0].m_Textures[0];
-//		}
-//	}
-
 	CTextureEntry* texture=0;
 for (uint ii=0;ii<g_TexMan.m_TerrainTextures.size();ii++) {  
     if (g_TexMan.m_TerrainTextures[ii].m_Textures.size()) {
         texture=g_TexMan.m_TerrainTextures[ii].m_Textures[0];
         break;
-    }
+	}
 }
 
 
@@ -341,6 +303,7 @@ void InitResources()
 	g_TexMan.AddTexture("Base1.tga", 0);
 #else
 	g_TexMan.LoadTerrainTextures();
+	g_ObjMan.LoadObjects();
 #endif
 
 	const char* fns[CRenderer::NumAlphaMaps] = {
@@ -360,5 +323,5 @@ void InitResources()
 		"art/textures/terrain/alphamaps/special/blendbad.png"
 	};
 
-	assert(g_Renderer.LoadAlphaMaps(fns));
+	g_Renderer.LoadAlphaMaps(fns);
 }

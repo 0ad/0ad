@@ -3,9 +3,11 @@
 
 #include <vector>
 #include "res/res.h"
+#include "Color.h"
 #include "Vector3D.h"
 #include "RenderableObject.h"
 
+class CPatch;
 
 class CPatchRData : public CRenderData
 {
@@ -17,7 +19,7 @@ public:
 	void RenderBase();
 	void RenderBlends();
 	void RenderOutline();
-	void RenderWireframe();
+	void RenderStreams(u32 streamflags);
 
 private:
 	// build this renderdata object

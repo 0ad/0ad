@@ -1,22 +1,19 @@
-//-----------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////
 //
-// Name:		Bound.h
-// Last Update: 25/11/03
+// Name:		Bound.cpp
 // Author:		Rich Cross
-// Contact:		rich@0ad.wildfiregames.com
+// Contact:		rich@wildfiregames.com
 //
-// Description: Basic axis aligned bounding box class
-//
-//-----------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////
+
 
 // necessary includes
 #include <assert.h>
 #include <float.h>
 #include "Bound.h"
 
-//-----------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////
 // operator+=: extend this bound to include given bound
-//-----------------------------------------------------------
 CBound& CBound::operator+=(const CBound& b)
 {
 	for (int i=0;i<3;++i) {
@@ -29,9 +26,8 @@ CBound& CBound::operator+=(const CBound& b)
 	return *this;
 }
 
-//-----------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////
 // operator+=: extend this bound to include given point
-//-----------------------------------------------------------
 CBound& CBound::operator+=(const CVector3D& pt)
 {
 	for (int i=0;i<3;++i) {
@@ -44,12 +40,11 @@ CBound& CBound::operator+=(const CVector3D& pt)
 	return *this;
 }
 
-//-----------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////
 // RayIntersect: intersect ray with this bound; return true
 // if ray hits (and store entry and exit times), or false
 // otherwise
 // note: incoming ray direction must be normalised
-//-----------------------------------------------------------
 bool CBound::RayIntersect(const CVector3D& origin,const CVector3D& dir,
             float& tmin,float& tmax) const
 {
@@ -129,16 +124,18 @@ bool CBound::RayIntersect(const CVector3D& origin,const CVector3D& dir,
     return true;
 }
 
-//-----------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////
 // SetEmpty: initialise this bound as empty
-//-----------------------------------------------------------
 void CBound::SetEmpty()
 {
 	m_Data[0]=CVector3D(FLT_MAX,FLT_MAX,FLT_MAX);
 	m_Data[1]=CVector3D(FLT_MIN,FLT_MIN,FLT_MIN);
 }
 
-
+///////////////////////////////////////////////////////////////////////////////
+// Transform: transform this bound by given matrix; return transformed bound
+// in 'result' parameter - slightly modified version of code in Graphic Gems
+// (can't remember which one it was, though)
 void CBound::Transform(const CMatrix3D& m,CBound& result) const
 {
 	assert(this!=&result);

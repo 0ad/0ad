@@ -1,15 +1,14 @@
-//----------------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////
 //
 // Name:		Renderer.h
-// Last Update: 25/11/03
 // Author:		Rich Cross
-// Contact:		rich@0ad.wildfiregames.com
+// Contact:		rich@wildfiregames.com
 //
 // Description: OpenGL renderer class; a higher level interface
 //	on top of OpenGL to handle rendering the basic visual games 
 //	types - terrain, models, sprites, particles etc
-//----------------------------------------------------------------
-
+//
+///////////////////////////////////////////////////////////////////////////////
 
 #ifndef RENDERER_H
 #define RENDERER_H
@@ -27,7 +26,6 @@
 // necessary declarations
 class CCamera;
 class CPatch;
-class CVisual;
 class CSprite;
 class CParticleSys;
 class COverlay;
@@ -40,15 +38,14 @@ class CTerrain;
 // rendering modes
 enum ERenderMode { WIREFRAME, SOLID, EDGED_FACES };
 
-
-//////////////////////////////////////////////////////////////////////////////////////////
-// SSubmission: generalised class representating a submission of objects to renderer
-template <class T>
-struct SSubmission
-{
-	T m_Object;
-	CMatrix3D* m_Transform;
-};
+// stream flags
+#define STREAM_POS		0x01
+#define STREAM_NORMAL	0x02
+#define STREAM_COLOR	0x04
+#define STREAM_UV0		0x08
+#define STREAM_UV1		0x10
+#define STREAM_UV2		0x20
+#define STREAM_UV3		0x40
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // SVertex3D: simple 3D vertex declaration
@@ -76,6 +73,9 @@ class CRenderer
 public:
 	// various enumerations and renderer related constants
 	enum { NumAlphaMaps=14 };
+	enum Option {
+		OPT_NOVBO
+	};
 
 	// stats class - per frame counts of number of draw calls, poly counts etc
 	struct Stats {
@@ -117,6 +117,16 @@ public:
 
 	// resize renderer view
 	void Resize(int width,int height);
+	
+	// set boolean renderer option 
+	void SetOption(enum Option opt,bool value);
+
+	// return view width
+	int GetWidth() const { return m_Width; }
+	// return view height
+	int GetHeight() const { return m_Height; }
+	// return view aspect ratio
+	float GetAspect() const { return float(m_Width)/float(m_Height); }
 
 	// signal frame start
 	void BeginFrame();
@@ -124,6 +134,9 @@ public:
 	void FlushFrame();
 	// signal frame end : implicitly flushes batched objects 
 	void EndFrame();
+
+	// set color used to clear screen in BeginFrame()
+	void SetClearColor(u32 color);
 
 	// return current frame counter
 	int GetFrameCounter() const { return m_FrameCounter; }
@@ -134,9 +147,9 @@ public:
 	// submission of objects for rendering; the passed matrix indicating the transform must be scoped such that it is valid beyond
 	// the call to frame end, as must the object itself
 	void Submit(CPatch* patch);
-	void Submit(CVisual* visual);
-	void Submit(CSprite* sprite,CMatrix3D* transform);
-	void Submit(CParticleSys* psys,CMatrix3D* transform);
+	void Submit(CModel* model);
+	void Submit(CSprite* sprite);
+	void Submit(CParticleSys* psys);
 	void Submit(COverlay* overlay);
 
 	// basic primitive rendering operations in 2 and 3D; handy for debugging stuff, but also useful in 
@@ -183,21 +196,21 @@ public:
 
 	// return stats accumulated for current frame
 	const Stats& GetStats() { return m_Stats; }
-	
-	inline int GetWidth() const { return m_Width; }
-	inline int GetHeight() const { return m_Height; }
 
 protected:
 	friend class CPatchRData;
 	friend class CModelRData;
 	friend class CTransparencyRenderer;
 
+	// update renderdata of everything submitted
+	void UpdateSubmittedObjectData();
+
 	// patch rendering stuff
 	void RenderPatchSubmissions();
 	void RenderPatches();
 
 	// model rendering stuff
-	void BuildTransparentPasses(CVisual* visual);
+	void BuildTransparentPasses(CModel* model);
 	void RenderModelSubmissions();
 	void RenderModels();
 
@@ -216,27 +229,28 @@ protected:
 	ERenderMode m_ModelRenderMode;
 	// current view camera
 	CCamera m_Camera;
+	// color used to clear screen in BeginFrame
+	float m_ClearColor[4];
 	// submitted object lists for batching
-	std::vector<SSubmission<CPatch*> > m_TerrainPatches;
-	std::vector<SSubmission<CVisual*> > m_Models;
-	std::vector<SSubmission<CSprite*> > m_Sprites;
-	std::vector<SSubmission<CParticleSys*> > m_ParticleSyses;
-	std::vector<SSubmission<COverlay*> > m_Overlays;
+	std::vector<CPatch*> m_TerrainPatches;
+	std::vector<CModel*> m_Models;
+	std::vector<CSprite*> m_Sprites;
+	std::vector<CParticleSys*> m_ParticleSyses;
+	std::vector<COverlay*> m_Overlays;
 	// current lighting setup
 	CLightEnv* m_LightEnv;
 	// current spherical harmonic coefficients (for unit lighting), derived from lightenv
 	CSHCoeffs m_SHCoeffsUnits;
 	// current spherical harmonic coefficients (for terrain lighting), derived from lightenv
 	CSHCoeffs m_SHCoeffsTerrain;
-	// default alpha maps
-	//Handle m_AlphaMaps[NumAlphaMaps];
-	// all the alpha maps packed into one texture
-	unsigned int m_CompositeAlphaMap;
+	// handle of composite alpha map (all the alpha maps packed into one texture)
+	u32 m_CompositeAlphaMap;
 	// coordinates of each (untransformed) alpha map within the packed texture
 	struct {
 		float u0,u1,v0,v1;
 	} m_AlphaMapCoords[NumAlphaMaps];
-
+	// renderer options
+	bool m_OptNOVBO;
 	// card capabilities
 	struct Caps {
 		bool m_VBO;
@@ -247,5 +261,7 @@ protected:
 	Stats m_Stats;
 };
 
+// declaration of sole renderer object
+extern CRenderer g_Renderer;
 
 #endif

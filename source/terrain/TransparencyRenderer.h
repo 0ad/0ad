@@ -3,21 +3,21 @@
 
 #include <vector>
 
-class CVisual;
+class CModel;
 
 class CTransparencyRenderer
 {
 public:
 	struct SObject {
-		// visual representation of object
-		CVisual* m_Visual;
+		// the transparent model
+		CModel* m_Model;
 		// sqrd distance from camera to centre of nearest triangle
 		float m_Dist;
 	};
 
 public:
 	// add object to render in deferred transparency pass
-	void Add(CVisual* visual);
+	void Add(CModel* model);
 	// render all deferred objects 
 	void Render();
 

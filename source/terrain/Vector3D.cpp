@@ -11,38 +11,11 @@
 
 #include "Vector3D.h"
 
-CVector3D::CVector3D ()
-{
-	X = Y = Z = 0.0f;
-}
-
 CVector3D::CVector3D (float x, float y, float z)
 {
 	X = x;
 	Y = y;
 	Z = z;
-}
-
-int CVector3D::operator == (const CVector3D &vector) const 
-{
-	if (X != vector.X ||
-		Y != vector.Y ||
-		Z != vector.Z)
-		
-		return 0;
-	
-	return 1;
-}
-
-int CVector3D::operator != (const CVector3D &vector) const 
-{
-	if (X != vector.X ||
-		Y != vector.Y ||
-		Z != vector.Z)
-		
-		return 1;
-	
-	return 0;
 }
 
 int CVector3D::operator ! () const 
@@ -177,16 +150,4 @@ void CVector3D::Normalize ()
 	X *= scale;
 	Y *= scale;
 	Z *= scale;
-}
-
-SColor4ub CVector3D::ConvertToColor (float alpha_factor) const 
-{
-    SColor4ub color;
-
-	color.R = (unsigned char)(127.0f * X + 128.0f);
-	color.G = (unsigned char)(127.0f * Y + 128.0f);
-	color.B = (unsigned char)(127.0f * Z + 128.0f);
-	color.A = (unsigned char)(255.0f * alpha_factor);
-
-	return color;
 }
