@@ -5,6 +5,8 @@
 #include "Prometheus.h"
 #include "sysdep/sysdep.h"
 
+#include "scripting/ScriptingHost.h"
+
 CConsole::CConsole(float X, float Y, float W, float H)
 	: m_fX(X), m_fY(Y), m_fWidth(W), m_fHeight(H)
 {
@@ -242,7 +244,7 @@ void CConsole::DrawCursor(void)
 
 
 //Inserts a character into the buffer.
-void CConsole::InsertChar(const int szChar)
+void CConsole::InsertChar(const int szChar, const int cooked )
 {
 	static int iHistoryPos = -1;
 
@@ -321,15 +323,16 @@ void CConsole::InsertChar(const int szChar)
 
 		default: //Insert a character
 			if (IsFull()) return;
-			if (!isprint(szChar)) return;
+			if( cooked >= 255 ) return;
+			if (!isprint( cooked )) return;
 
 			if (IsEOB()) //are we at the end of the buffer?
-				m_szBuffer[m_iBufferPos] = szChar; //cat char onto end
+				m_szBuffer[m_iBufferPos] = cooked; //cat char onto end
 			else{ //we need to insert
 				int i;
 				for(i=m_iBufferLength; i>m_iBufferPos; i--)
 					m_szBuffer[i] = m_szBuffer[i-1]; // move chars to right
-				m_szBuffer[i] = szChar;
+				m_szBuffer[i] = cooked;
 			}
 
 			m_iBufferPos++;
@@ -410,6 +413,18 @@ void CConsole::ProcessBuffer(const char* szLine){
 			}
 		}
 	}
+	else if( szLine[0] == ':' )
+	{
+		// Process it as JavaScript
+		g_ScriptingHost.ExecuteScript( szLine + 1 );
+	}
+	else if( szLine[0] == '?' )
+	{
+		// Process it as JavaScript and display the result
+		jsval rval = g_ScriptingHost.ExecuteScript( szLine + 1 );
+		if( rval )
+			InsertMessage( g_ScriptingHost.ValueToString( rval ).c_str() );
+	}
 	else InsertMessage("<say>: %s", szLine);
 
 	delete[] szCommand;
@@ -425,6 +440,6 @@ bool conInputHandler(const SDL_Event& ev)
 	if(ev.type != SDL_KEYDOWN)
 		return false;
 
-	g_Console->InsertChar(ev.key.keysym.sym);
+	g_Console->InsertChar(ev.key.keysym.sym, ev.key.keysym.unicode );
 	return g_Console->IsActive();
 }

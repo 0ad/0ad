@@ -12,7 +12,7 @@
 #ifndef CCONSOLE_H
 #define CCONSOLE_H
 
-#define BUFFER_SIZE 50
+#define BUFFER_SIZE 100
 #define FONT_HEIGHT 18
 
 typedef void(*fptr)(void);
@@ -70,7 +70,7 @@ public:
     void Render();
 
     void InsertMessage(const char* szMessage, ...);
-	void InsertChar(const int szChar);
+	void InsertChar(const int szChar, const int cooked);
 
 	void SetBuffer(const char* szMessage, ...);
 	void FlushBuffer();
@@ -80,4 +80,7 @@ public:
 	bool IsActive() { return m_bVisible; }
 };
 
+// TODO MT: Better solution to character translation than 'const int cooked'? Anyone?
+
 #endif
+

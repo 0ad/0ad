@@ -24,32 +24,25 @@
 #include "EntityProperties.h"
 #include "BoundingObjects.h"
 
-class CBaseEntity
+class CBaseEntity : public IPropertyOwner
 {
 public:
-	CBaseEntity() { m_bound_circle = NULL; m_bound_box = NULL; }
-	CBaseEntity( const CBaseEntity& copy );
+	CBaseEntity();
 	~CBaseEntity();
 	// Load from XML
 	bool loadXML( CStr filename );
 
 	// Base stats
 
-	
 	CObjectEntry* m_actorObject;
 
-	CStr m_name;
+	CProperty_CStr m_name;
 	CBoundingCircle* m_bound_circle;
 	CBoundingBox* m_bound_box;
 	CBoundingObject::EBoundingType m_bound_type;
 
-	float m_speed;
-	float m_turningRadius;
-	
-
-	// Extended properties table
-
-	STL_HASH_MAP<CStr,CGenericProperty,CStr_hash_compare> m_properties;
+	CProperty_float m_speed;
+	CProperty_float m_turningRadius;
 };
 
 #endif

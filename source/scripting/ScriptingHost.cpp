@@ -2,11 +2,15 @@
 
 #include "ScriptingHost.h"
 #include "ScriptGlue.h"
+#include "CConsole.h"
 #include <sstream>
 #include <fstream>
 #include <iostream>
+#include "float.h" // <- MT: Just for _finite(), converting certain strings was causing wierd bugs.
 
 #pragma comment (lib, "js32.lib")
+
+extern CConsole* g_Console;
 
 namespace
 {
@@ -76,6 +80,11 @@ ScriptingHost::~ScriptingHost()
 	}
 }
 
+JSContext* ScriptingHost::getContext()
+{
+	return( m_Context );
+}
+
 void ScriptingHost::LoadScriptFromDisk(const std::string & fileName)
 {
 	std::string script;
@@ -123,6 +132,8 @@ jsval ScriptingHost::ExecuteScript(const std::string & script)
 	jsval rval; 
 
 	JSBool ok = JS_EvaluateScript(m_Context, m_GlobalObject, script.c_str(), (int)script.length(), "Console", 0, &rval); 
+
+	if( !ok ) return( NULL );
 
 	return rval;
 }
@@ -223,6 +234,13 @@ void ScriptingHost::SetObjectProperty(JSObject * object, const std::string & pro
 	JS_SetProperty(m_Context, object, propertyName.c_str(), &value);
 }
 
+jsval ScriptingHost::GetObjectProperty( JSObject* object, const std::string& propertyName )
+{
+	jsval vp;
+	JS_GetProperty( m_Context, object, propertyName.c_str(), &vp );
+	return( vp );
+}
+
 int ScriptingHost::ValueToInt(const jsval value)
 {
 	int32 i = 0;
@@ -264,7 +282,7 @@ double ScriptingHost::ValueToDouble(const jsval value)
 
 	JSBool ok = JS_ValueToNumber(m_Context, value, &d);
 
-	if (ok == JS_FALSE)
+	if (ok == JS_FALSE || !_finite( d ) )
 	{
 		throw (std::string("Convert to double failed"));
 	}
@@ -274,6 +292,14 @@ double ScriptingHost::ValueToDouble(const jsval value)
 
 void ScriptingHost::ErrorReporter(JSContext * context, const char * message, JSErrorReport * report)
 {
+	g_Console->InsertMessage( "%s ( %d )", report->filename, report->lineno );
+	if( message )
+	{
+		g_Console->InsertMessage( message );
+	}
+	else
+		g_Console->InsertMessage( "No error message available" );
+
 	if (report->filename != NULL)
 	{
 		std::cout << report->filename << " (" << report->lineno << ") ";

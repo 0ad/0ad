@@ -11,17 +11,63 @@
 #include "Terrain.h"
 
 #include "Collision.h"
+#include "PathfindEngine.h"
 
 CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 {
+	m_position = position;
+	m_orientation = orientation;
+
+	m_ahead.x = sin( m_orientation );
+	m_ahead.y = cos( m_orientation );
+	
+	m_base.associate( this, "template", ( void( IPropertyOwner::* )() )&CEntity::loadBase );
+	m_name.associate( this, "name" );
+	m_speed.associate( this, "speed" );
+	m_turningRadius.associate( this, "turningRadius" );
+	m_position.associate( this, "position", ( void( IPropertyOwner::* )() )&CEntity::teleport );
+	m_orientation.associate( this, "orientation", ( void( IPropertyOwner::* )() )&CEntity::reorient );
+
 	// Set our parent unit and build us an actor.
+	m_actor = NULL;
+	m_bounds = NULL;
 
 	m_base = base;
-	m_actor = new CUnit(m_base->m_actorObject,m_base->m_actorObject->m_Model->Clone());
+	
+	loadBase();
 
-		
-	// HACK: Debugging
-	// assert( m_base->m_name != CStr( "Waypoint" ) );
+	snapToGround();
+	updateActorTransforms();
+
+}
+
+CEntity::~CEntity()
+{
+	for( i32 i = 0; i < m_base->m_inheritors.size(); i++ )
+		if( m_base->m_inheritors[i] == this )
+			m_base->m_inheritors.erase( m_base->m_inheritors.begin() + i );
+
+	if( m_actor )
+	{
+		g_UnitMan.RemoveUnit( m_actor );
+		delete( m_actor );
+	}
+	if( m_bounds ) delete( m_bounds );
+}
+	
+void CEntity::loadBase()
+{
+	if( m_actor )
+	{
+		g_UnitMan.RemoveUnit( m_actor );
+		delete( m_actor );
+	}
+	if( m_bounds )
+	{
+		delete( m_bounds );
+	}
+
+	m_actor = new CUnit(m_base->m_actorObject,m_base->m_actorObject->m_Model->Clone());
 
 	// Register the actor with the renderer.
 
@@ -29,13 +75,8 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 
 	// Set up our instance data
 
-	m_speed = m_base->m_speed;
-	m_turningRadius = m_base->m_turningRadius;
-	m_position = position;
-	m_orientation = orientation;
-
-	m_ahead.x = sin( orientation );
-	m_ahead.y = cos( orientation );
+	m_base->m_inheritors.push_back( this );
+	rebuild();
 
 	if( m_base->m_bound_type == CBoundingObject::BOUND_CIRCLE )
 	{
@@ -45,28 +86,8 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	{
 		m_bounds = new CBoundingBox( m_position.X, m_position.Z, m_ahead, m_base->m_bound_box );
 	}
-
-	snapToGround();
-	updateActorTransforms();
-
-	// Register the addresses of our native properties with the properties table
-	
-	m_properties["speed"].associate( &m_speed );
-	m_properties["orientation"].associate( &m_orientation );
-	m_properties["position"].associate( &m_position );
-	
 }
 
-CEntity::~CEntity()
-{
-	if( m_actor )
-	{
-		g_UnitMan.RemoveUnit( m_actor );
-		delete( m_actor );
-	}
-	if( m_bounds ) delete( m_bounds );
-}
-	
 bool isWaypoint( CEntity* e )
 {
 	return( e->m_base->m_name == CStr( "Waypoint" ) );
@@ -104,6 +125,8 @@ float CEntity::getExactGroundLevel( float x, float y )
 
 	u16* heightmap = g_Terrain.GetHeightMap();
 	unsigned long mapsize = g_Terrain.GetVerticesPerSide();
+
+	assert( ( xi >= 0 ) && ( xi < mapsize ) && ( yi >= 0 ) && ( yi < mapsize ) );
 
 	float h00 = heightmap[yi*mapsize + xi];
 	float h01 = heightmap[yi*mapsize + xi + mapsize];
@@ -202,6 +225,39 @@ void CEntity::dispatch( CMessage* msg )
 void CEntity::pushOrder( CEntityOrder& order )
 {
 	m_orderQueue.push_back( order );
+}
+
+void CEntity::repath()
+{
+	CVector2D destination;
+	if( m_orderQueue.empty() ) return;
+
+	while( !m_orderQueue.empty() &&
+		( ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_COLLISION )
+		|| ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_NOPATHING )
+		|| ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_SMOOTHED ) ) )
+	{
+		destination = m_orderQueue.front().m_data[0].location;
+		m_orderQueue.pop_front();
+	}
+	g_Pathfinder.requestPath( me, destination );
+}
+
+void CEntity::reorient()
+{
+	m_ahead.x = sin( m_orientation );
+	m_ahead.y = cos( m_orientation );
+	if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
+		((CBoundingBox*)m_bounds)->setOrientation( m_ahead );
+	updateActorTransforms();
+}
+	
+void CEntity::teleport()
+{
+	snapToGround();
+	updateActorTransforms();
+	m_bounds->setPosition( m_position.X, m_position.Z );
+	repath();
 }
 
 void CEntity::render()

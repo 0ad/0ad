@@ -1,6 +1,17 @@
 #include "precompiled.h"
 
 #include "ScriptGlue.h"
+#include "CConsole.h"
+#include "CStr.h"
+#include "EntityHandles.h"
+#include "Entity.h"
+#include "EntityManager.h"
+#include "BaseEntityCollection.h"
+#include "scripting/JSInterface_Entity.h"
+#include "scripting/JSInterface_BaseEntity.h"
+#include "scripting/JSInterface_Vector3D.h"
+
+extern CConsole* g_Console;
 
 // Parameters for the table are:
 
@@ -12,7 +23,9 @@
 JSFunctionSpec ScriptFunctionTable[] = 
 {
 	{"WriteLog", WriteLog, 1, 0, 0},
-
+	{"writeConsole", writeConsole, 1, 0, 0 },
+	{"getEntityByHandle", getEntityByHandle, 1, 0, 0 },
+	{"getEntityTemplate", getEntityTemplate, 1, 0, 0 },
 	{0, 0, 0, 0, 0}, 
 };
 
@@ -47,3 +60,62 @@ JSBool WriteLog(JSContext * context, JSObject * globalObject, unsigned int argc,
 
 	return JS_TRUE;
 }
+
+JSBool writeConsole( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval )
+{
+	assert( argc >= 1 );
+	CStr output = g_ScriptingHost.ValueToString( argv[0] );
+	g_Console->InsertMessage( output );
+	return( JS_TRUE );
+}
+
+JSBool getEntityByHandle( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval )
+{
+	assert( argc >= 1 );
+	i32 handle;
+	try
+	{
+		handle = g_ScriptingHost.ValueToInt( argv[0] );
+	}
+	catch( ... )
+	{
+		*rval = JSVAL_NULL;
+		return( JS_TRUE );
+	}
+	HEntity* v = g_EntityManager.getByHandle( (u16)handle );
+	if( !v )
+	{
+		*rval = JSVAL_NULL;
+		return( JS_TRUE );
+	}
+	JSObject* entity = JS_NewObject( context, &JSI_Entity::JSI_class, NULL, NULL );
+	JS_SetPrivate( context, entity, v );
+	*rval = OBJECT_TO_JSVAL( entity );
+	return( JS_TRUE );
+}
+
+JSBool getEntityTemplate( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval )
+{
+	assert( argc >= 1 );
+	CStr templateName;
+	try
+	{
+		templateName = g_ScriptingHost.ValueToString( argv[0] );
+	}
+	catch( ... )
+	{
+		*rval = JSVAL_NULL;
+		return( JS_TRUE );
+	}
+	CBaseEntity* v = g_EntityTemplateCollection.getTemplate( templateName );
+	if( !v )
+	{
+		*rval = JSVAL_NULL;
+		return( JS_TRUE );
+	}
+	JSObject* baseEntity = JS_NewObject( context, &JSI_BaseEntity::JSI_class, NULL, NULL );
+	JS_SetPrivate( context, baseEntity, v );
+	*rval = OBJECT_TO_JSVAL( baseEntity );
+	return( JS_TRUE );
+}
+

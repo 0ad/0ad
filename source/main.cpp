@@ -42,9 +42,13 @@
 #include "PathfindEngine.h"
 #include "XML.h"
 
-#include "ConfigDB.h"
+#include "scripting/JSInterface_Entity.h"
+#include "scripting/JSInterface_BaseEntity.h"
+#include "scripting/JSInterface_Vector3D.h"
 
+#include "ConfigDB.h"
 #include "CLogger.h"
+
 
 #ifndef NO_GUI
 #include "gui/GUI.h"
@@ -431,7 +435,7 @@ void ParseArgs(int argc, char* argv[])
 					}
 					break;
 				case 'e':
-					g_EntGraph = true;
+					g_EntGraph = true; break;
 				case 'v':
 					g_VSync = true;
 					break;
@@ -622,7 +626,7 @@ PREVTSC=TSC;
 
 	font = font_load("fonts/verdana.fnt");
 
-	g_Console = new CConsole(0, g_yres-600.f, 800.f, 600.f);
+	g_Console = new CConsole(0, g_yres-600.f, g_xres, 600.f);
 
 	// create renderer
 	new CRenderer;
@@ -653,6 +657,10 @@ PREVTSC=TSC;
 
 	g_EntityTemplateCollection.loadTemplates();
 
+	// Register the JavaScript interfaces with the runtime
+	JSI_Entity::init();
+	JSI_BaseEntity::init();
+	JSI_Vector3D::init();
 
 // if no map name specified, load test01.pmp (for convenience during
 // development. that means loading no map at all is currently impossible.

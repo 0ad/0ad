@@ -17,6 +17,9 @@
 
 #include "CStr.h"
 #include "Vector3D.h"
+#include "scripting/ScriptingHost.h"
+#include "scripting/JSInterface_Entity.h"
+#include "scripting/JSInterface_Vector3D.h"
 
 #ifndef __GNUC__
 
@@ -35,89 +38,126 @@
 
 #endif
 
-class CGenericProperty
+class IPropertyOwner;
+class CBaseEntity;
+class CProperty;
+struct SProperty_NumericModifier;
+struct SProperty_StringModifier;
+
+class CProperty
+{
+protected:
+	IPropertyOwner* m_owner;
+	void (IPropertyOwner::*m_updateFn)();
+	virtual void set( const jsval value ) = 0;
+public:
+	CProperty& operator=( const jsval value );
+	virtual operator jsval() = 0;
+	virtual bool rebuild( CProperty* parent, bool triggerFn = true ) = 0; // Returns true if the rebuild changed the value of this property.
+	void associate( IPropertyOwner* owner, const CStr& name );
+	void associate( IPropertyOwner* owner, const CStr& name, void (IPropertyOwner::*updateFn)() );
+};
+
+class CProperty_i32 : public CProperty
+{
+	i32 data;
+	SProperty_NumericModifier* modifier;
+public:
+	CProperty_i32();
+	~CProperty_i32();
+	void set( const jsval value );
+	operator jsval();
+	bool rebuild( CProperty* parent, bool triggerFn = true );
+	CProperty_i32& operator=( const i32 value );
+	operator i32();
+};
+
+class CProperty_float : public CProperty
+{
+	float data;
+	SProperty_NumericModifier* modifier;
+public:
+	CProperty_float();
+	~CProperty_float();
+	void set( const jsval value );
+	operator jsval();
+	bool rebuild( CProperty* parent, bool triggerFn = true );
+	CProperty_float& operator=( const float& value );
+	operator float();
+	operator bool();
+	float operator+( float value );
+	float operator-( float value );
+	float operator*( float value );
+	float operator/( float value );
+	bool operator<( float value );
+	bool operator>( float value );
+	bool operator==( float value );
+};
+
+class CProperty_CStr : public CProperty, public CStr
+{
+	SProperty_StringModifier* modifier;
+public:
+	CProperty_CStr();
+	~CProperty_CStr();
+	void set( const jsval value );
+	operator jsval();
+	bool rebuild( CProperty* parent, bool triggerFn = true );
+	CProperty_CStr& operator=( const CStr& value );
+};
+
+class CProperty_CVector3D : public CProperty, public CVector3D
 {
 public:
-	enum EPropTypes
-	{
-		PROP_INTRINSIC = 256,
-		PROP_TYPELOCKED = 512,
-		PROP_STRIPFLAGS = 255,
-		PROP_INTEGER = 0,
-		PROP_FLOAT,
-		PROP_STRING,
-		PROP_VECTOR,
-		PROP_PTR,
-		PROP_INTEGER_INTRINSIC = PROP_INTEGER | PROP_INTRINSIC,
-		PROP_FLOAT_INTRINSIC = PROP_FLOAT | PROP_INTRINSIC,
-		PROP_STRING_INTRINSIC = PROP_STRING | PROP_INTRINSIC,
-		PROP_VECTOR_INTRINSIC = PROP_VECTOR | PROP_INTRINSIC
-	};
-	EPropTypes m_type;
-private:
-	union
-	{
-		i32 m_integer;
-		i32* m_integerptr;
-		float m_float;
-		float* m_floatptr;
-		CStr* m_string;
-		CVector3D* m_vector;
-		void* m_ptr;
-	};
+	void set( const jsval value );
+	operator jsval();
+	bool rebuild( CProperty* parent, bool triggerFn = true );
+	CProperty_CVector3D& operator=( const CVector3D& value );
+};
+
+class CProperty_CBaseEntityPtr : public CProperty
+{
+	CBaseEntity* data;
 public:
-	CGenericProperty(); // Create an integer property containing 0.
-	~CGenericProperty();
-	void releaseData();
+	void set( const jsval value );
+	operator jsval();
+	bool rebuild( CProperty* parent, bool triggerFn = true );
+	operator CBaseEntity*();
+	operator bool();
+	CBaseEntity& operator*() const;
+	CBaseEntity* operator->() const;
+	CProperty_CBaseEntityPtr& operator=( CBaseEntity* value );
+};
 
-	// Associator functions: Links the property with the specified engine variable.
-	void associate( i32* value ); 
-	void associate( float* value ); 
-	void associate( CStr* value );
-	void associate( CVector3D* value );
-	
-	// Getter functions: Attempts to convert the property to the given type.
-	operator i32(); // Convert to an integer if possible (integer, float, some strings), otherwise returns 0.
-	operator float(); // Convert to a float if possible (integer, float, some strings), otherwise returns 0.0f.
-	operator CStr(); // Convert to a string if possible (all except generic pointer), otherwise returns CStr().
-	operator CVector3D(); // If this property is a vector, returns that vector, otherwise returns CVector3D().
-	operator void*(); // If this property is a generic pointer, returns that pointer, otherwise returns NULL.
+// e.g. Entities and their templates.
+class IPropertyOwner
+{
+public:
+	CProperty_CBaseEntityPtr m_base;
+	STL_HASH_MAP<CStr,CProperty*,CStr_hash_compare> m_properties;
+	std::vector<IPropertyOwner*> m_inheritors;
+	void rebuild( CStr propName ); // Recursively rebuild just the named property over the inheritance tree.
+	void rebuild(); // Recursively rebuild everything over the inheritance tree.
+};
 
-	// Setter functions: If this is a typelocked property, attempts to convert the given data
-	//					 into the appropriate type, otherwise setting the associated value to 0, 0.0f, CStr() or CVector3D().
-	//					 If this property is typeloose, converts this property into one of the same type
-	//					 as the given value, then stores that value in this property.
-	CGenericProperty& operator=( i32 value );
-	CGenericProperty& operator=( float value );
-	CGenericProperty& operator=( CStr& value );
-	CGenericProperty& operator=( CVector3D& value );
-	CGenericProperty& operator=( void* value ); // Be careful with this one. A lot of things will cast to void*.
-												// Especially pointers you meant to associate().
+struct SProperty_NumericModifier
+{
+	float multiplicative;
+	float additive;
+	void operator=( float value )
+	{
+		multiplicative = 0.0f;
+		additive = value;
+	}
+};
 
-	// Typelock functions. Use these when you want to make sure the property has the given type.
-	void typelock( EPropTypes type );
-	void typeloose();
-
-private:
-	// resolve-as functions. References the data, whereever it is.
-	i32& asInteger();
-	float& asFloat();
-	CStr& asString();
-	CVector3D& asVector();
-
-	// to functions. Convert whatever this is now to the chosen type.
-	i32 toInteger();
-	float toFloat();
-	CStr toString();
-	CVector3D toVector();
-	void* toVoid();
-
-	// from functions. Convert the given value to whatever type this is now.
-	void fromInteger( i32 value );
-	void fromFloat( float value );
-	void fromString( CStr& value );
-	void fromVector( CVector3D& value );
-	void fromVoid( void* value );
+struct SProperty_StringModifier
+{
+	CStr replacement;
+	void operator=( const CStr& value )
+	{
+		replacement = value;
+	}
 };
 
 #endif

@@ -23,6 +23,7 @@ package.files = {
         { sourcesfromdirs("../../ps") },
 	-- simulation/
 	{ sourcesfromdirs("../../simulation") },
+        { sourcesfromdirs("../../simulation/scripting") },
 	-- lib/
 	{ sourcesfromdirs(
                 "../../lib",
@@ -34,6 +35,7 @@ package.files = {
 	-- maths/
 	{ sourcesfromdirs(
                 "../../maths") },
+        { sourcesfromdirs( "../../maths/scripting" ) },
 	-- renderer/
 	{ sourcesfromdirs(
                 "../../renderer") },

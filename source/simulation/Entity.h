@@ -47,28 +47,22 @@
 
 class CEntityManager;
 
-class CEntity
+class CEntity : public IPropertyOwner
 {
 	friend class CEntityManager;
-private:
-	// Intrinsic properties
 public:
-	CStr m_name;
-	float m_speed;
-	float m_turningRadius;
-	CVector3D m_position;
+	// Intrinsic properties
+	CProperty_CStr m_name;
+	CProperty_float m_speed;
+	CProperty_float m_turningRadius;
+	CProperty_CVector3D m_position;
 	CBoundingObject* m_bounds;
 	float m_targetorientation;
 	CVector2D m_ahead;
-	float m_orientation;
-	CBaseEntity* m_base;
+	CProperty_float m_orientation;
 	CUnit* m_actor;
 
 	std::deque<CEntityOrder> m_orderQueue;
-
-	// Extended properties table
-
-	STL_HASH_MAP<CStr,CGenericProperty,CStr_hash_compare> m_properties;
 
 private:
 	CEntity( CBaseEntity* base, CVector3D position, float orientation );
@@ -88,6 +82,12 @@ public:
 	void render();
 	float getExactGroundLevel( float x, float y );
 	void snapToGround();
+	void repath();
+
+	void loadBase();
+	void reorient();
+	void teleport(); // Fixes things if the position is changed by something externally.
+
 	void pushOrder( CEntityOrder& order );
 };
 

@@ -16,12 +16,18 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 
 	float len = delta.length();
 
-	// janwas added EVIL HACK: BoundsChecker complains about NaNs
-	// in atan2 and fabs => delta must be 0 somewhere.
-	// currently skip over all math code that would break.
-	// what's the real solution?
-	if(len == 0.0f)
-		goto small_delta;
+	// ... 'Are we there yet?' ...
+
+	if( len < 0.1f )
+	{
+		if( current->m_type == CEntityOrder::ORDER_GOTO_COLLISION )
+		{
+			repath();
+		}
+		else
+			m_orderQueue.pop_front();
+		return( false );
+	}
 
 	// Curve smoothing.
 	// Here there be trig.
@@ -44,7 +50,7 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 	{
 		m_targetorientation = atan2( delta.x, delta.y );
 
-		float deltatheta = m_targetorientation - m_orientation;
+		float deltatheta = m_targetorientation - (float)m_orientation;
 		while( deltatheta > PI ) deltatheta -= 2 * PI;
 		while( deltatheta < -PI ) deltatheta += 2 * PI;
 
@@ -53,10 +59,10 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 			float maxTurningSpeed = ( m_speed / m_turningRadius ) * timestep;
 			if( deltatheta > 0 )
 			{
-				m_orientation += MIN( deltatheta, maxTurningSpeed );
+				m_orientation = m_orientation + MIN( deltatheta, maxTurningSpeed );
 			}
 			else
-				m_orientation += MAX( deltatheta, -maxTurningSpeed );
+				m_orientation = m_orientation + MAX( deltatheta, -maxTurningSpeed );
 
 			m_ahead.x = sin( m_orientation );
 			m_ahead.y = cos( m_orientation );
@@ -68,33 +74,11 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 		}
 	}
 
-	if( len < 0.1f )
-	{
-small_delta:
-		if( current->m_type == CEntityOrder::ORDER_GOTO_COLLISION )
-		{
-			// Repath.
-			CVector2D destination;
-			while( !m_orderQueue.empty() &&
-				( ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_COLLISION )
-				|| ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_NOPATHING )
-				|| ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_SMOOTHED ) ) )
-			{
-				destination = m_orderQueue.front().m_data[0].location;
-				m_orderQueue.pop_front();
-			}
-			g_Pathfinder.requestPath( me, destination );
-		}
-		else
-			m_orderQueue.pop_front();
-		return( false );
-	}
-
 	if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
 		((CBoundingBox*)m_bounds)->setOrientation( m_ahead );
 
 	
-	float scale = timestep * m_speed;
+	float scale = m_speed * timestep;
 
 	if( scale > len )
 		scale = len;

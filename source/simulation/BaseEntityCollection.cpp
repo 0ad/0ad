@@ -18,8 +18,8 @@ void CBaseEntityCollection::loadTemplates()
 	{
 		while (vfs_next_dirent(handle, &dent, ".xml") == 0)
 		{
-			CBaseEntity newTemplate;
-			if( newTemplate.loadXML( pathname + dent.name ) )
+			CBaseEntity* newTemplate = new CBaseEntity();
+			if( newTemplate->loadXML( pathname + dent.name ) )
 			{
 				addTemplate( newTemplate );
 				LOG(NORMAL, "CBaseEntityCollection::loadTemplates(): Loaded template \"%s%s\"", pathname.c_str(), dent.name);
@@ -35,13 +35,9 @@ void CBaseEntityCollection::loadTemplates()
 		LOG(ERROR, "CBaseEntityCollection::loadTemplates(): Failed to enumerate entity template directory\n");
 		return;
 	}
-	
-	// He's so annoyingly slow...
-	CBaseEntity* dude = getTemplate( "Prometheus Dude" );
-	dude->m_speed *= 10.0f;
 }
 
-void CBaseEntityCollection::addTemplate( CBaseEntity& temp )
+void CBaseEntityCollection::addTemplate( CBaseEntity* temp )
 {
 	m_templates.push_back( temp );
 }
@@ -49,7 +45,7 @@ void CBaseEntityCollection::addTemplate( CBaseEntity& temp )
 CBaseEntity* CBaseEntityCollection::getTemplate( CStr name )
 {
 	for( u16 t = 0; t < m_templates.size(); t++ )
-		if( m_templates[t].m_name == name ) return( &( m_templates[t] ) );
+		if( m_templates[t]->m_name == name ) return( m_templates[t] );
 
 	return( NULL );
 }
@@ -57,7 +53,13 @@ CBaseEntity* CBaseEntityCollection::getTemplate( CStr name )
 CBaseEntity* CBaseEntityCollection::getTemplateByActor( CObjectEntry* actor )
 {
 	for( u16 t = 0; t < m_templates.size(); t++ )
-		if( m_templates[t].m_actorObject == actor ) return( &( m_templates[t] ) );
+		if( m_templates[t]->m_actorObject == actor ) return( m_templates[t] );
 
 	return( NULL );
+}
+
+CBaseEntityCollection::~CBaseEntityCollection()
+{
+	for( u16 t = 0; t < m_templates.size(); t++ )
+		delete( m_templates[t] );
 }

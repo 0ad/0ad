@@ -193,7 +193,7 @@ public:
 	virtual u8 *Serialize(u8 *buffer) const;
 	virtual const u8 *Deserialize(const u8 *buffer, const u8 *bufferend);
 	
-private:
+protected:
 	tstring m_String;
 	TCHAR m_ConversionBuffer[CONVERSION_BUFFER_SIZE];
 };

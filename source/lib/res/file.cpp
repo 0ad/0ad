@@ -28,6 +28,7 @@
 
 #include <vector>
 #include <algorithm>
+
 #include <string>
 
 // block := power-of-two sized chunk of a file.

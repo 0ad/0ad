@@ -5,8 +5,6 @@
 sparsePathTree::sparsePathTree( const CVector2D& _from, const CVector2D& _to, HEntity _entity, CBoundingObject* _destinationCollisionObject )
 {
 	from = _from; to = _to;
-	assert( from.length() > 0.01f );
-	assert( to.length() > 0.01f );
 
 	entity = _entity; destinationCollisionObject = _destinationCollisionObject;
 	leftPre = NULL; leftPost = NULL;
@@ -46,7 +44,7 @@ bool sparsePathTree::slice()
 
  		float turningRadius = ( entity->m_bounds->m_radius + r.boundingObject->m_radius ) * 1.1f; 
 		
-		if( turningRadius < entity->m_turningRadius ) turningRadius = entity->m_turningRadius;
+		if( entity->m_turningRadius > turningRadius ) turningRadius = entity->m_turningRadius;
 
 		// Too close, an impossible turn
 		if( r.distance < turningRadius )

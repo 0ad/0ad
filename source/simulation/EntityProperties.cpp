@@ -1,621 +1,368 @@
 #include "precompiled.h"
 
 #include "EntityProperties.h"
+#include "BaseEntityCollection.h"
+#include "scripting/JSInterface_BaseEntity.h"
 
-#include <cassert>
-
-CGenericProperty::CGenericProperty()
+void CProperty::associate( IPropertyOwner* owner, const CStr& name )
 {
-	m_type = PROP_INTEGER;
-	m_integer = 0;
+	m_owner = owner;
+	owner->m_properties[name] = this;
+	m_updateFn = NULL;
 }
 
-CGenericProperty::~CGenericProperty()
+void CProperty::associate( IPropertyOwner* owner, const CStr& name, void (IPropertyOwner::*updateFn)() )
 {
-	releaseData();
+	m_owner = owner;
+	owner->m_properties[name] = this;
+	m_updateFn = updateFn;
 }
 
-void CGenericProperty::releaseData()
+CProperty& CProperty::operator=( jsval value )
 {
-	switch( m_type & ~PROP_TYPELOCKED )
-	{
-	case PROP_STRING:
-		delete( m_string ); break;
-	case PROP_VECTOR:
-		delete( m_vector ); break;
-	default:
-		break;
-	}
-}
-
-CGenericProperty::operator i32()
-{
-	return( toInteger() );
-}
-
-CGenericProperty::operator float()
-{
-	return( toFloat() );
-}
-
-CGenericProperty::operator CStr()
-{
-	return( toString() );
-}
-
-CGenericProperty::operator CVector3D()
-{
-	return( toVector() );
-}
-
-CGenericProperty::operator void *()
-{
-	return( toVoid() );
-}
-
-CGenericProperty& CGenericProperty::operator=( int32_t value )
-{
-	if( m_type & PROP_TYPELOCKED )
-	{
-		fromInteger( value );
-	}
-	else
-	{
-		releaseData();
-		m_type = PROP_INTEGER;
-		m_integer = value;
-	}
+	set( value );
 	return( *this );
 }
 
-CGenericProperty& CGenericProperty::operator=( float value )
+CProperty_i32::CProperty_i32()
 {
-	if( m_type & PROP_TYPELOCKED )
-	{
-		fromFloat( value );
-	}
-	else
-	{
-		releaseData();
-		m_type = PROP_FLOAT;
-		m_float = value;
-	}
+	modifier = NULL;
+}
+
+CProperty_i32::~CProperty_i32()
+{
+	if( modifier )
+		delete( modifier );
+}
+
+inline CProperty_i32& CProperty_i32::operator =( i32 value )
+{
+	if( !modifier )
+		modifier = new SProperty_NumericModifier();
+	*modifier = (float)value;
+	data = value;
 	return( *this );
 }
 
-CGenericProperty& CGenericProperty::operator=( CStr& value )
+void CProperty_i32::set( jsval value )
 {
-	if( m_type & PROP_TYPELOCKED )
+	if( !modifier )
+		modifier = new SProperty_NumericModifier();
+	try
 	{
-		fromString( value );
+		*modifier = (float)g_ScriptingHost.ValueToInt( value );
 	}
-	else
+	catch( ... )
 	{
-		releaseData();
-		m_type = PROP_STRING;
-		m_string = new CStr( value );
+		*modifier = 0;
 	}
+}
+
+bool CProperty_i32::rebuild( CProperty* parent, bool triggerFn )
+{
+	CProperty_i32* _parent = (CProperty_i32*)parent;
+	i32 newvalue = 0;
+	if( _parent )
+		newvalue = *_parent;
+	if( modifier )
+	{
+		newvalue *= modifier->multiplicative;
+		newvalue += modifier->additive;
+	}
+	if( data == newvalue )
+		return( false );		// No change.
+	data = newvalue;
+	if( triggerFn && m_updateFn ) (m_owner->*m_updateFn)();
+	return( true );
+}
+
+inline CProperty_i32::operator i32()
+{
+	return( data );
+}
+
+CProperty_i32::operator jsval()
+{
+	return( INT_TO_JSVAL( data ) );
+}
+
+CProperty_float::CProperty_float()
+{
+	modifier = NULL;
+}
+
+CProperty_float::~CProperty_float()
+{
+	if( modifier )
+		modifier = NULL;
+}
+
+CProperty_float& CProperty_float::operator =( const float& value )
+{
+	if( !modifier )
+		modifier = new SProperty_NumericModifier();
+	*modifier = value;
+	data = value;
 	return( *this );
 }
 
-CGenericProperty& CGenericProperty::operator=( CVector3D& value )
+void CProperty_float::set( const jsval value )
 {
-	if( m_type & PROP_TYPELOCKED )
+	if( !modifier )
+		modifier = new SProperty_NumericModifier();
+	try
 	{
-		fromVector( value );
+		*modifier = (float)g_ScriptingHost.ValueToDouble( value );
 	}
-	else
+	catch( ... )
 	{
-		releaseData();
-		m_type = PROP_VECTOR;
-		m_vector = new CVector3D( value );
+		*modifier = 0.0f;
 	}
+}
+
+bool CProperty_float::rebuild( CProperty* parent, bool triggerFn )
+{
+	CProperty_float* _parent = (CProperty_float*)parent;
+	float newvalue = 0;
+	if( _parent )
+		newvalue = *_parent;
+	if( modifier )
+	{
+		newvalue *= modifier->multiplicative;
+		newvalue += modifier->additive;
+	}
+	if( data == newvalue )
+		return( false );		// No change.
+	data = newvalue;
+	if( triggerFn && m_updateFn ) (m_owner->*m_updateFn)();
+	return( true );
+}
+
+CProperty_float::operator float()
+{
+	return( data );
+}
+
+CProperty_float::operator jsval()
+{
+	return( DOUBLE_TO_JSVAL( JS_NewDouble( g_ScriptingHost.getContext(), (jsdouble)data ) ) );
+}
+
+CProperty_float::operator bool()
+{
+	return( data );
+}
+
+float CProperty_float::operator+( float value )
+{
+	return( data + value );
+}
+
+float CProperty_float::operator-( float value )
+{
+	return( data - value );
+}
+
+float CProperty_float::operator*( float value )
+{
+	return( data * value );
+}
+
+float CProperty_float::operator/( float value )
+{
+	return( data / value );
+}
+
+bool CProperty_float::operator<( float value )
+{
+	return( data < value );
+}
+
+bool CProperty_float::operator>( float value )
+{
+	return( data > value );
+}
+
+bool CProperty_float::operator==( float value )
+{
+	return( data == value );
+}
+
+CProperty_CStr::CProperty_CStr()
+{
+	modifier = NULL;
+}
+
+CProperty_CStr::~CProperty_CStr()
+{
+	if( modifier )
+		delete( modifier );
+}
+
+CProperty_CStr& CProperty_CStr::operator=( const CStr& value )
+{
+	if( !modifier )
+		modifier = new SProperty_StringModifier();
+	*modifier = value;
+	m_String = value;
 	return( *this );
 }
 
-CGenericProperty& CGenericProperty::operator =( void* value )
+void CProperty_CStr::set( jsval value )
 {
-	if( m_type & PROP_TYPELOCKED )
+	if( !modifier )
+		modifier = new SProperty_StringModifier();
+	try
 	{
-		fromVoid( value );
+		*modifier = g_ScriptingHost.ValueToString( value );
 	}
-	else
+	catch( ... )
 	{
-		releaseData();
-		m_type = PROP_PTR;
-		m_ptr = value;
+		*modifier = CStr();
+		m_String.clear();
 	}
+}
+
+bool CProperty_CStr::rebuild( CProperty* parent, bool triggerFn )
+{
+	CProperty_CStr* _parent = (CProperty_CStr*)parent;
+	CStr newvalue = "";
+	if( _parent )
+		newvalue = *_parent;
+	if( modifier )
+		newvalue = modifier->replacement;
+
+	if( *this == newvalue )
+		return( false );		// No change.
+	m_String = newvalue;
+	if( triggerFn && m_updateFn ) (m_owner->*m_updateFn)();
+	return( true );
+}
+
+CProperty_CStr::operator jsval()
+{
+	return( STRING_TO_JSVAL( JS_NewStringCopyZ( g_ScriptingHost.getContext(), m_String.c_str() ) ) );
+}
+
+CProperty_CVector3D& CProperty_CVector3D::operator =( const CVector3D& value )
+{
+	*( (CVector3D*)this ) = value;
 	return( *this );
 }
 
-void CGenericProperty::associate( i32* value )
+void CProperty_CVector3D::set( jsval value )
 {
-	i32 current = toInteger();
-	releaseData();
-	m_type = (EPropTypes)( PROP_INTEGER | PROP_INTRINSIC | PROP_TYPELOCKED );
-	m_integerptr = value;
-	//*m_integerptr = current;
-}
-
-void CGenericProperty::associate( float* value )
-{
-	float current = toFloat();
-	releaseData();
-	m_type = (EPropTypes)( PROP_FLOAT | PROP_INTRINSIC | PROP_TYPELOCKED );
-	m_floatptr = value;
-	//*m_floatptr = current;
-}
-
-void CGenericProperty::associate( CStr* value )
-{
-	CStr current = toString();
-	releaseData();
-	m_type = (EPropTypes)( PROP_STRING | PROP_VECTOR | PROP_TYPELOCKED );
-	m_string = value;
-	//*m_string = current;
-}
-
-void CGenericProperty::associate( CVector3D* value )
-{
-	CVector3D current = toVector();
-	releaseData();
-	m_type = (EPropTypes)( PROP_VECTOR | PROP_INTRINSIC | PROP_TYPELOCKED );
-	m_vector = value;
-	//*value = current;
-}
-
-void CGenericProperty::typelock( EPropTypes type )
-{
-	if( m_type & PROP_INTRINSIC ) return;
-	switch( type )
+	JSObject* vector3d = JSVAL_TO_OBJECT( value );
+	if( !JSVAL_IS_OBJECT( value ) || ( JS_GetClass( vector3d ) != &JSI_Vector3D::JSI_class ) )
 	{
-	case PROP_INTEGER:
+		X = 0.0f; Y = 0.0f; Z = 0.0f;
+	}
+	else
+	{
+		CVector3D* copy = ( (JSI_Vector3D::Vector3D_Info*)JS_GetPrivate( g_ScriptingHost.getContext(), vector3d ) )->vector;
+		X = copy->X;
+		Y = copy->Y;
+		Z = copy->Z;
+	}
+}
+
+bool CProperty_CVector3D::rebuild( CProperty* parent, bool triggerFn )
+{
+	if( triggerFn && m_updateFn ) (m_owner->*m_updateFn)();
+	return( false ); //	Vector properties aren't inheritable.
+}
+
+CProperty_CVector3D::operator jsval()
+{
+	JSObject* vector3d = JS_NewObject( g_ScriptingHost.getContext(), &JSI_Vector3D::JSI_class, NULL, NULL );
+	JS_SetPrivate( g_ScriptingHost.getContext(), vector3d, new JSI_Vector3D::Vector3D_Info( this, m_owner, m_updateFn ) );
+	return( OBJECT_TO_JSVAL( vector3d ) );
+}
+
+CProperty_CBaseEntityPtr& CProperty_CBaseEntityPtr::operator =( CBaseEntity* value )
+{
+	data = value;
+	return( *this );
+}
+
+void CProperty_CBaseEntityPtr::set( jsval value )
+{
+	JSObject* baseEntity = JSVAL_TO_OBJECT( value );
+	if( JSVAL_IS_OBJECT( value ) && ( JS_GetClass( baseEntity ) == &JSI_BaseEntity::JSI_class ) )
+		data = (CBaseEntity*)JS_GetPrivate( g_ScriptingHost.getContext(), baseEntity );
+}
+
+bool CProperty_CBaseEntityPtr::rebuild( CProperty* parent, bool triggerFn )
+{
+	if( triggerFn && m_updateFn ) (m_owner->*m_updateFn)();
+	return( false ); // CBaseEntity* properties aren't inheritable.
+}
+
+CProperty_CBaseEntityPtr::operator jsval()
+{
+	JSObject* baseEntity = JS_NewObject( g_ScriptingHost.getContext(), &JSI_BaseEntity::JSI_class, NULL, NULL );
+	JS_SetPrivate( g_ScriptingHost.getContext(), baseEntity, data );
+	return( OBJECT_TO_JSVAL( baseEntity ) );
+}
+
+CProperty_CBaseEntityPtr::operator bool()
+{
+	return( data != NULL );
+}
+
+CProperty_CBaseEntityPtr::operator CBaseEntity*()
+{
+	return( data );
+}
+
+CBaseEntity& CProperty_CBaseEntityPtr::operator *() const
+{
+	return( *data );
+}
+
+CBaseEntity* CProperty_CBaseEntityPtr::operator ->() const
+{
+	return( data );
+}
+
+void IPropertyOwner::rebuild( CStr propertyName )
+{
+	CProperty* thisProperty = m_properties[propertyName];
+	CProperty* baseProperty = NULL;
+	if( m_base )
+	{
+		if( m_base->m_properties.find( propertyName ) != m_base->m_properties.end() )
+			baseProperty = m_base->m_properties[propertyName];
+	}
+	if( thisProperty->rebuild( baseProperty ) )
+	{
+		std::vector<IPropertyOwner*>::iterator it;
+		for( it = m_inheritors.begin(); it != m_inheritors.end(); it++ )
+			(*it)->rebuild( propertyName );
+	}
+}
+
+void IPropertyOwner::rebuild()
+{
+	STL_HASH_MAP<CStr,CProperty*,CStr_hash_compare>::iterator property;
+	if( m_base )
+	{
+		for( property = m_properties.begin(); property != m_properties.end(); property++ )
 		{
-			i32 current = toInteger();
-			releaseData();
-			m_integer = current;
+			CProperty* baseProperty = NULL;
+			if( m_base->m_properties.find( property->first ) != m_base->m_properties.end() )
+				baseProperty = m_base->m_properties[property->first];
+			(property->second)->rebuild( baseProperty, false );
 		}
-		break;
-	case PROP_FLOAT:
-		{
-			float current = toFloat();
-			releaseData();
-			m_float = current;
-		}
-		break;
-	case PROP_STRING:
-		{
-			CStr* current = new CStr( toString() );
-			releaseData();
-			m_string = current;
-		}
-		break;
-	case PROP_VECTOR:
-		{
-			CVector3D* current = new CVector3D( toVector() );
-			releaseData();
-			m_vector = current;
-		}
-		break;
-	case PROP_PTR:
-		{
-			void* current = toVoid();
-			releaseData();
-			m_ptr = current;
-		}
-		break;
-	default:
-		return;
 	}
-	m_type = (EPropTypes)( type | PROP_TYPELOCKED );
-}
-
-void CGenericProperty::typeloose()
-{
-	if( m_type & PROP_INTRINSIC ) return;
-	m_type = (EPropTypes)( m_type & ~PROP_TYPELOCKED );
-}
-
-i32& CGenericProperty::asInteger()
-{
-	assert( ( m_type & PROP_STRIPFLAGS ) == PROP_INTEGER );
-	if( m_type & PROP_INTRINSIC )
-		return( *m_integerptr );
-	return( m_integer );
-}
-
-float& CGenericProperty::asFloat()
-{
-	assert( ( m_type & PROP_STRIPFLAGS ) == PROP_FLOAT );
-	if( m_type & PROP_INTRINSIC )
-		return( *m_floatptr );
-	return( m_float );
-}
-
-CStr& CGenericProperty::asString()
-{
-	assert( ( m_type & PROP_STRIPFLAGS ) == PROP_STRING );
-	return( *m_string );
-}
-
-CVector3D& CGenericProperty::asVector()
-{
-	assert( ( m_type & PROP_STRIPFLAGS ) == PROP_VECTOR );
-	return( *m_vector );
-}
-
-i32 CGenericProperty::toInteger()
-{
-	switch( m_type & PROP_STRIPFLAGS )
+	else
 	{
-	case PROP_INTEGER:
-		return( asInteger() );
-	case PROP_FLOAT:
-		return( (i32)asFloat() );
-	case PROP_STRING:
-	case PROP_STRING_INTRINSIC:
-		return( (i32)( asString().ToInt() ) );
-	case PROP_VECTOR:
-	case PROP_VECTOR_INTRINSIC:
-	case PROP_PTR:
-		return( 0 );
-	default:
-		assert( 0 && "Invalid property type" );
+		for( property = m_properties.begin(); property != m_properties.end(); property++ )
+			(property->second)->rebuild( NULL, false );
 	}
-	return( 0 );
+
+	std::vector<IPropertyOwner*>::iterator it;
+	for( it = m_inheritors.begin(); it != m_inheritors.end(); it++ )
+		(*it)->rebuild();
+
 }
-
-float CGenericProperty::toFloat()
-{
-	switch( m_type & PROP_STRIPFLAGS )
-	{
-	case PROP_INTEGER:
-		return( (float)asInteger() );
-	case PROP_FLOAT:
-		return( asFloat() );
-	case PROP_STRING:
-	case PROP_STRING_INTRINSIC:
-		return( asString().ToFloat() );
-	case PROP_VECTOR:
-	case PROP_VECTOR_INTRINSIC:
-	case PROP_PTR:
-		return( 0.0f );
-	default:
-		assert( 0 && "Invalid property type" );
-	}
-	return( 0.0f );
-}
-
-CStr CGenericProperty::toString()
-{
-	switch( m_type & PROP_STRIPFLAGS )
-	{
-	case PROP_INTEGER:
-		return( CStr( asInteger() ) );
-	case PROP_FLOAT:
-		return( CStr( asFloat() ) );
-	case PROP_STRING:
-		return( CStr( asString() ) );
-	case PROP_VECTOR:
-		{
-			char buffer[256];
-			snprintf( buffer, 250, "{ %f, %f, %f }", asVector().X, asVector().Y, asVector().Z );
-			return( CStr( buffer ) );
-		}
-	case PROP_PTR:
-		return CStr();
-	default:
-		assert( 0 && "Invalid property type" );
-	}
-	return CStr();
-}
-
-CVector3D CGenericProperty::toVector()
-{
-	switch( m_type & PROP_STRIPFLAGS )
-	{
-	case PROP_VECTOR:
-		return( CVector3D( asVector() ) );
-	case PROP_INTEGER:
-	case PROP_FLOAT:
-	case PROP_STRING:
-	case PROP_PTR:
-		return CVector3D();
-	default:
-		assert( 0 && "Invalid property type" );
-	}
-	return CVector3D();
-}
-
-void* CGenericProperty::toVoid()
-{
-	switch( m_type & PROP_STRIPFLAGS )
-	{
-	case PROP_PTR:
-		return( m_ptr );
-	case PROP_INTEGER:
-	case PROP_INTEGER_INTRINSIC:
-	case PROP_FLOAT:
-	case PROP_FLOAT_INTRINSIC:
-	case PROP_STRING:
-	case PROP_STRING_INTRINSIC:
-	case PROP_VECTOR:
-	case PROP_VECTOR_INTRINSIC:
-		return( NULL );
-	default:
-		assert( 0 && "Invalid property type" );
-	}
-	return( NULL );
-}
-
-void CGenericProperty::fromInteger( i32 value )
-{
-	switch( m_type & PROP_STRIPFLAGS )
-	{
-	case PROP_INTEGER:
-		asInteger() = value; return;
-	case PROP_FLOAT:
-		asFloat() = (float)value; return;
-	case PROP_STRING:
-		asString() = value; return;
-	case PROP_VECTOR:
-		asVector() = CVector3D(); return;
-	case PROP_PTR:
-		m_ptr = NULL; return;
-	default:
-		assert( 0 && "Invalid property type" );
-	}
-}
-
-void CGenericProperty::fromFloat( float value )
-{
-	switch( m_type & PROP_STRIPFLAGS )
-	{
-	case PROP_INTEGER:
-		asInteger() = (i32)value; return;
-	case PROP_FLOAT:
-		asFloat() = value; return;
-	case PROP_STRING:
-		asString() = value; return;
-	case PROP_VECTOR:
-		asVector() = CVector3D(); return;
-	case PROP_PTR:
-		m_ptr = NULL; return;
-	default:
-		assert( 0 && "Invalid property type" );
-	}
-}
-
-void CGenericProperty::fromString( CStr& value )
-{
-	switch( m_type & PROP_STRIPFLAGS )
-	{
-	case PROP_INTEGER:
-		asInteger() = value.ToInt(); return;
-	case PROP_FLOAT:
-		asFloat() = value.ToFloat(); return;
-	case PROP_STRING:
-		asString() = value; return;
-	case PROP_VECTOR:
-		asVector() = CVector3D(); return;
-	case PROP_PTR:
-		m_ptr = NULL; return;
-	default:
-		assert( 0 && "Invalid property type" );
-	}
-}
-
-void CGenericProperty::fromVector( CVector3D& value )
-{
-	switch( m_type & PROP_STRIPFLAGS )
-	{
-	case PROP_INTEGER:
-		asInteger() = 0; return;
-	case PROP_FLOAT:
-		asFloat() = 0.0f; return;
-	case PROP_STRING:
-		{
-			char buffer[256];
-			snprintf( buffer, 250, "{ %f, %f, %f }", value.X, value.Y, value.Z );
-			asString() = CStr( buffer );
-		}
-		return;
-	case PROP_VECTOR:
-		asVector() = CVector3D( value ); return;
-	case PROP_PTR:
-		m_ptr = NULL; return;
-	default:
-		assert( 0 && "Invalid property type" );
-	}
-}
-
-void CGenericProperty::fromVoid( void* value )
-{
-	switch( m_type & PROP_STRIPFLAGS )
-	{
-	case PROP_INTEGER:
-		asInteger() = 0; return;
-	case PROP_FLOAT:
-		asFloat() = 0.0f; return;
-	case PROP_STRING:
-		asString() = CStr(); return;
-	case PROP_VECTOR:
-		asVector() = CVector3D(); return;
-	case PROP_PTR:
-		m_ptr = value; return;
-	default:
-		assert( 0 && "Invalid property type" );
-	}
-}
-
-
-
-
-
-
-	
-	
-
-/*
-
-Here lies the old version of CGenericProperty. Will remove it when I know the new one works.
-
-CGenericProperty::CGenericProperty()
-{
-	m_type = PROP_INTEGER;
-	m_integer = 0;
-}
-
-CGenericProperty::CGenericProperty( i32 value )
-{
-	m_type = PROP_INTEGER;
-	m_integer = value;
-}
-
-CGenericProperty::CGenericProperty( float value )
-{
-	m_type = PROP_FLOAT;
-	m_float = value;
-}
-
-CGenericProperty::CGenericProperty( CStr& value )
-{
-	m_type = PROP_STRING;
-	m_string = new CStr( value );
-}
-
-CGenericProperty::CGenericProperty( CVector3D& value )
-{
-	m_type = PROP_VECTOR;
-	m_vector = new CVector3D( value );
-}
-
-CGenericProperty::CGenericProperty( void* value )
-{
-	m_type = PROP_PTR;
-	m_ptr = value;
-}
-
-CGenericProperty::CGenericProperty( i32* value )
-{
-	m_type = PROP_INTEGER_INTRINSIC;
-	m_integerptr = value;
-}
-
-CGenericProperty::CGenericProperty( float* value )
-{
-	m_type = PROP_FLOAT_INTRINSIC;
-	m_floatptr = value;
-}
-
-CGenericProperty::CGenericProperty( CStr* value )
-{
-	m_type = PROP_STRING_INTRINSIC;
-	m_string = value;
-}
-
-CGenericProperty::CGenericProperty( CVector3D* value )
-{
-	m_type = PROP_VECTOR_INTRINSIC;
-	m_vector = value;
-}
-
-CGenericProperty::~CGenericProperty()
-{
-	switch( m_type )
-	{
-	case PROP_STRING:
-		delete( m_string ); break;
-	case PROP_VECTOR:
-		delete( m_vector ); break;
-	default:
-		break;
-	}
-}
-
-CGenericProperty::operator CStr&()
-{
-	char working[64];
-	switch( m_type )
-	{
-	case PROP_STRING:
-	case PROP_STRING_INTRINSIC:
-		return( *m_string );
-	case PROP_VECTOR:
-	case PROP_VECTOR_INTRINSIC:
-		snprintf( working, 63, "{ %f, %f, %f }", m_vector->X, m_vector->Y, m_vector->Z );
-		working[63] = 0;
-		return( CStr( working ) );
-	case PROP_INTEGER:
-		return( CStr( m_integer ) );
-	case PROP_INTEGER_INTRINSIC:
-		return( CStr( *m_integerptr ) );
-	case PROP_FLOAT:
-		return( CStr( m_float ) );
-	case PROP_FLOAT_INTRINSIC:
-		return( CStr( *m_floatptr ) );
-	default:
-		return CStr();
-	}
-}
-
-CGenericProperty::operator CVector3D()
-{
-	switch( m_type )
-	{
-	case PROP_VECTOR:
-		return( *m_vector );
-	default:
-		return CVector3D();
-	}
-}
-
-CGenericProperty::operator i32()
-{
-	switch( m_type )
-	{
-	case PROP_INTEGER:
-		return( m_integer );
-	case PROP_INTEGER_INTRINSIC:
-		return( *m_integerptr );
-	case PROP_FLOAT:
-		return( (i32)m_float );
-	case PROP_FLOAT_INTRINSIC:
-		return( (i32)*m_floatptr );
-	case PROP_STRING:
-		return( m_string->ToInt() );
-	default:
-		return( 0 );
-	}
-}
-
-CGenericProperty::operator float()
-{
-	switch( m_type )
-	{
-	case PROP_INTEGER:
-		return( (float)m_integer );
-	case PROP_INTEGER_INTRINSIC:
-		return( (float)*m_integerptr );
-	case PROP_FLOAT:
-		return( m_float );
-	case PROP_FLOAT_INTRINSIC:
-		return( *m_floatptr );
-	case PROP_STRING:
-		return( m_string->ToFloat() );
-	default:
-		return( 0.0f );
-	}
-}
-
-CGenericProperty::operator void*()
-{
-	switch( m_type )
-	{
-	case PROP_PTR:
-		return( m_ptr );
-	default:
-		return( NULL );
-	}
-}
-*/

@@ -34,6 +34,12 @@ HEntity CEntityManager::create( CStr templatename, CVector3D position, float ori
 	return( create( templateobj, position, orientation ) );
 }
 
+HEntity* CEntityManager::getByHandle( u16 index )
+{
+	if( index >= MAX_HANDLES ) return( NULL );
+	if( !m_entities[index].m_refcount ) return( NULL );
+	return( new HEntity( index ) );
+}
 std::vector<HEntity>* CEntityManager::matches( EntityPredicate predicate )
 {
 	std::vector<HEntity>* matchlist = new std::vector<HEntity>;

@@ -48,6 +48,8 @@ public:
 
 	ScriptingHost();
 	~ScriptingHost();
+	
+	JSContext* getContext();
 
 	void LoadScriptFromDisk(const std::string & fileName);
 
@@ -65,6 +67,7 @@ public:
 	JSObject * CreateCustomObject(const std::string & typeName);
 
 	void SetObjectProperty(JSObject * object, const std::string & propertyName, jsval value);
+	jsval GetObjectProperty( JSObject* object, const std::string& propertyName );
 
 	int ValueToInt(const jsval value);
 	bool ValueToBool(const jsval value);

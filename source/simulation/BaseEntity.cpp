@@ -9,21 +9,16 @@
 // automatically use namespace ..
 XERCES_CPP_NAMESPACE_USE
 
-CBaseEntity::CBaseEntity( const CBaseEntity& copy )
+CBaseEntity::CBaseEntity()
 {
-	m_actorObject = copy.m_actorObject;
-
-	m_name = copy.m_name;
-	m_bound_type = copy.m_bound_type;
-	m_speed = copy.m_speed;
-	m_turningRadius = copy.m_turningRadius;
-
+	m_base = NULL;
+	m_base.associate( this, "super" );
+	m_name.associate( this, "name" );
+	m_speed.associate( this, "speed" );
+	m_turningRadius.associate( this, "turningRadius" );
+	
 	m_bound_circle = NULL;
 	m_bound_box = NULL;
-	if( copy.m_bound_circle )
-		m_bound_circle = new CBoundingCircle( 0.0f, 0.0f, copy.m_bound_circle );
-	if( copy.m_bound_box )
-		m_bound_box = new CBoundingBox( 0.0f, 0.0f, 0.0f, copy.m_bound_box );
 }
 
 CBaseEntity::~CBaseEntity()
@@ -94,8 +89,6 @@ bool CBaseEntity::loadXML( CStr filename )
 					CStr element_name = XMLString::transcode( child_element->getNodeName() );
 					DOMNode *value_node= child_element->getChildNodes()->item(0);
 					CStr element_value=value_node ? XMLString::transcode(value_node->getNodeValue()) : "";
-
-					//m_properties[element_name] = element_value;
 
 					if( element_name == CStr( "Name" ) )
 					{
