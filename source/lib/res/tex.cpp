@@ -56,16 +56,19 @@
 
 
 
-#define CODEC(name) { name##_fmt, name##_ext, name##_decode, name##_get_output_size, name##_encode, #name}
+#define CODEC(name) { name##_fmt, name##_ext, name##_decode, name##_encode, #name}
 
 struct Codec
 {
 	// size is at least 4.
 	bool(*is_fmt)(const u8* p, size_t size);
 	bool(*is_ext)(const char* ext);
-	int(*decode)(TexInfo* t, const char* fn, const u8* in, size_t in_size);
-	int(*get_output_size)(TexInfo* t, size_t* out_size);
-	int(*encode)(TexInfo* t, const u8* img, size_t img_size, u8* out, size_t out_size);
+	int(*decode)(TexInfo* t, const char* fn, const u8* file, size_t file_size);
+	int(*encode)(TexInfo* t, const char* fn, const u8* img, size_t img_size);
+
+	// no get_output_size() function and central mem alloc / file write,
+	// because codecs that write via external lib or output compressed files
+	// don't know the output size beforehand.
 
 	const char* name;
 };
@@ -142,15 +145,15 @@ static inline bool dds_ext(const char* const ext)
 }
 
 
-static int dds_decode(TexInfo* t, const char* fn, const u8* in, size_t in_size)
+static int dds_decode(TexInfo* t, const char* fn, const u8* file, size_t file_size)
 {
 	const char* err = 0;
 
-	const DDSURFACEDESC2* surf = (const DDSURFACEDESC2*)(in+4);
+	const DDSURFACEDESC2* surf = (const DDSURFACEDESC2*)(file+4);
 	const size_t hdr_size = 4+sizeof(DDSURFACEDESC2);
 
 	// make sure we can access all header fields
-	if(in_size < hdr_size)
+	if(file_size < hdr_size)
 	{
 		err = "header not completely read";
 fail:
@@ -204,7 +207,7 @@ fail:
 		break;
 	}
 
-	if(in_size < hdr_size + img_size)
+	if(file_size < hdr_size + img_size)
 		err = "image not completely loaded";
 	if(w % 4 || h % 4)
 		err = "image dimensions not padded to S3TC block size";
@@ -233,13 +236,7 @@ fail:
 }
 
 
-static int dds_get_output_size(TexInfo* t, size_t* out_size)
-{
-	return -1;
-}
-
-
-static int dds_encode(TexInfo* t, const u8* img, size_t img_size, u8* out, size_t out_size)
+static int dds_encode(TexInfo* t, const char* fn, const u8* img, size_t img_size)
 {
 	return -1;
 }
@@ -271,15 +268,15 @@ static inline bool tga_ext(const char* const ext)
 
 
 // requirements: uncompressed, direct color, bottom up
-static int tga_decode(TexInfo* t, const char* fn, const u8* in, size_t in_size)
+static int tga_decode(TexInfo* t, const char* fn, const u8* file, size_t file_size)
 {
 	const char* err = 0;
 
-	const u8 img_id_len = in[0];
+	const u8 img_id_len = file[0];
 	const size_t hdr_size = 18+img_id_len;
 
 	// make sure we can access all header fields
-	if(in_size < hdr_size)
+	if(file_size < hdr_size)
 	{
 		err = "header not completely read";
 fail:
@@ -287,11 +284,11 @@ fail:
 		return -1;
 	}
 
-	const u8 type = in[2];
-	const u16 w   = read_le16(in+12);
-	const u16 h   = read_le16(in+14);
-	const u8 bpp  = in[16];
-	const u8 desc = in[17];
+	const u8 type = file[2];
+	const u16 w   = read_le16(file+12);
+	const u16 h   = read_le16(file+14);
+	const u8 bpp  = file[16];
+	const u8 desc = file[17];
 
 	const u8 alpha_bits = desc & 0x0f;
 	const size_t img_size = (ulong)w * h * bpp / 8;
@@ -307,7 +304,7 @@ fail:
 
 	if(desc & 0x30)
 		err = "image is not bottom-up and left-to-right";
-	if(in_size < hdr_size + img_size)
+	if(file_size < hdr_size + img_size)
 		err = "size < image size";
 
 	if(err)
@@ -323,13 +320,7 @@ fail:
 }
 
 
-static int tga_get_output_size(TexInfo* t, size_t* out_size)
-{
-	return -1;
-}
-
-
-static int tga_encode(TexInfo* t, const u8* img, size_t img_size, u8* out, size_t out_size)
+static int tga_encode(TexInfo* t, const char* fn, const u8* img, size_t img_size)
 {
 	return -1;
 }
@@ -355,20 +346,26 @@ struct BITMAPFILEHEADER
 	u32 bfOffBits;		// offset to image data
 };
 
-// BITMAPCOREHEADER + compression field
-struct BITMAPCOREHEADER2
+struct BITMAPINFOHEADER
 {
 	u32 biSize;
 	long biWidth;
 	long biHeight;
-	u16 biPlanes;		// = 1
-	u16 biBitCount;		// bpp
+	u16 biPlanes;
+	u16 biBitCount;
 	u32 biCompression;
+	u32 biSizeImage;
+
+	// unused; zeroed when writing
+	long biXPelsPerMeter;
+	long biYPelsPerMeter;
+	u32 biClrUsed;
+	u32 biClrImportant;
 };
 
 #pragma pack(pop)
 
-#define BI_RGB 0		// bch->biCompression
+#define BI_RGB 0		// bih->biCompression
 
 
 static inline bool bmp_fmt(const u8* p, size_t size)
@@ -387,14 +384,14 @@ static inline bool bmp_ext(const char* const ext)
 
 
 // requirements: uncompressed, direct color, bottom up
-static int bmp_decode(TexInfo* t, const char* fn, const u8* in, size_t in_size)
+static int bmp_decode(TexInfo* t, const char* fn, const u8* in, size_t file_size)
 {
 	const char* err = 0;
 
-	const size_t hdr_size = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPCOREHEADER2);
+	const size_t hdr_size = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);
 
 	// make sure we can access all header fields
-	if(in_size < hdr_size)
+	if(file_size < hdr_size)
 	{
 		err = "header not completely read";
 fail:
@@ -403,12 +400,12 @@ fail:
 	}
 
 	const BITMAPFILEHEADER* bfh = (const BITMAPFILEHEADER*)in;
-	const BITMAPCOREHEADER2* bch = (const BITMAPCOREHEADER2*)(in+sizeof(BITMAPFILEHEADER));
+	const BITMAPINFOHEADER* bih = (const BITMAPINFOHEADER*)(in+sizeof(BITMAPFILEHEADER));
 
-	const long w       = read_le32(&bch->biWidth);
-	const long h       = read_le32(&bch->biHeight);
-	const u16 bpp      = read_le16(&bch->biBitCount);
-	const u32 compress = read_le32(&bch->biCompression);
+	const long w       = read_le32(&bih->biWidth);
+	const long h       = read_le32(&bih->biHeight);
+	const u16 bpp      = read_le16(&bih->biBitCount);
+	const u32 compress = read_le32(&bih->biCompression);
 	const u32 ofs      = read_le32(&bfh->bfOffBits);
 
 	const size_t img_size = w * h * bpp/8;
@@ -423,7 +420,7 @@ fail:
 		err = "compressed";
 	if(bpp < 24)
 		err = "not direct color";
-	if(in_size < ofs+img_size)
+	if(file_size < ofs+img_size)
 		err = "image not completely read";
 
 	if(err)
@@ -439,7 +436,7 @@ fail:
 }
 
 
-static int bmp_get_output_size(TexInfo* t, size_t* out_size)
+static int bmp_encode(TexInfo* t, const char* fn, const u8* img, size_t img_size)
 {
 	int flags = t->flags;
 	if((flags & TEX_DXT) || !(flags & TEX_BGR))
@@ -448,31 +445,35 @@ static int bmp_get_output_size(TexInfo* t, size_t* out_size)
 		return -1;
 	}
 
-	const size_t hdr_size = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPCOREHEADER2);
-	*out_size = hdr_size + (t->w * t->h * t->bpp / 8);
-	return 0;
-}
+	const size_t hdr_size = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);
 
+	const size_t file_size = hdr_size + img_size;
+	u8* file = (u8*)mem_alloc(hdr_size + img_size);
+	if(!file)
+		return -1;
 
-static int bmp_encode(TexInfo* t, const u8* img, size_t img_size, u8* out, size_t out_size)
-{
-	const size_t hdr_size = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPCOREHEADER2);
-
-	BITMAPFILEHEADER* bfh = (BITMAPFILEHEADER*)out;
+	BITMAPFILEHEADER* bfh = (BITMAPFILEHEADER*)file;
 	bfh->bfType    = 0x4d42;	// 'B','M'
-	bfh->bfSize    = (u32)round_up(out_size, 65536);
+	bfh->bfSize    = (u32)file_size;
 	bfh->reserved  = 0;
 	bfh->bfOffBits = hdr_size;
 
-	BITMAPCOREHEADER2* bch = (BITMAPCOREHEADER2*)(out+sizeof(BITMAPFILEHEADER));
-	bch->biSize        = sizeof(BITMAPCOREHEADER2);
-	bch->biWidth       = t->w;
-	bch->biHeight      = t->h;
-	bch->biPlanes      = 1;
-	bch->biBitCount    = t->bpp;
-	bch->biCompression = 0;
+	BITMAPINFOHEADER* bih = (BITMAPINFOHEADER*)(file+sizeof(BITMAPFILEHEADER));
+	bih->biSize          = sizeof(BITMAPINFOHEADER);
+	bih->biWidth         = t->w;
+	bih->biHeight        = t->h;
+	bih->biPlanes        = 1;
+	bih->biBitCount      = t->bpp;
+	bih->biCompression   = BI_RGB;
+	bih->biSizeImage     = (u32)img_size;
+	bih->biXPelsPerMeter = 0;
+	bih->biYPelsPerMeter = 0;
+	bih->biClrUsed       = 0;
+	bih->biClrImportant  = 0;
 
-	memcpy(out+hdr_size, img, img_size);
+	memcpy(file+hdr_size, img, img_size);
+	vfs_uncached_store(fn, file, file_size);
+	mem_free(file);
 	return 0;
 }
 
@@ -502,7 +503,7 @@ static inline bool raw_ext(const char* const ext)
 }
 
 
-static int raw_decode(TexInfo* t, const char* fn, const u8* in, size_t in_size)
+static int raw_decode(TexInfo* t, const char* fn, const u8* in, size_t file_size)
 {
 	UNUSED(in);
 
@@ -510,8 +511,8 @@ static int raw_decode(TexInfo* t, const char* fn, const u8* in, size_t in_size)
 
 	for(uint i = 2; i <= 4; i++)
 	{
-		const u32 dim = (u32)sqrtf((float)in_size/i);
-		if(dim*dim*i != in_size)
+		const u32 dim = (u32)sqrtf((float)file_size/i);
+		if(dim*dim*i != file_size)
 			continue;
 
 		// formats are: GL_LUMINANCE_ALPHA, GL_RGB, GL_RGBA
@@ -531,13 +532,7 @@ static int raw_decode(TexInfo* t, const char* fn, const u8* in, size_t in_size)
 }
 
 
-static int raw_get_output_size(TexInfo* t, size_t* out_size)
-{
-	return -1;
-}
-
-
-static int raw_encode(TexInfo* t, const u8* img, size_t img_size, u8* out, size_t out_size)
+static int raw_encode(TexInfo* t, const char* fn, const u8* img, size_t img_size)
 {
 	return -1;
 }
@@ -566,242 +561,236 @@ static inline bool png_ext(const char* const ext)
 }
 
 
-enum PngIO { PNG_WRITE, PNG_READ };
+// note: it's not worth combining png_encode and png_decode, due to
+// libpng read/write interface differences (grr). we at least split
+// out alloc_rows, though.
 
-struct PngTransfer
+// allocate and set up rows to point into image buffer
+static int alloc_rows(const u8* img, size_t h, size_t pitch, bool inverted, const u8*** rows)
+{
+	*rows = (const u8**)malloc(h * sizeof(void*));
+	if(!*rows)
+		return -ENOMEM;
+	const u8* pos = img;
+	size_t i;
+	if(inverted)
+		for(i = 0; i < h; i++)
+		{
+			(*rows)[h-1-i] = pos;
+			pos += pitch;
+		}
+	else
+		for(i = 0; i < h; i++)
+		{
+			(*rows)[i] = pos;
+			pos += pitch;
+		}
+
+	return 0;
+}
+
+
+struct PngMemFile
 {
 	const u8* p;
 	size_t size;
 
-	PngIO op;
 	size_t pos;		// 0-initialized if no initializer
 };
 
-
-static void png_io(png_struct* const png_ptr, u8* const data, const png_size_t length)
+// pass data from PNG file in memory to libpng
+static void png_read(png_struct* const png_ptr, u8* const data, const png_size_t length)
 {
-	PngTransfer* const t = (PngTransfer*)png_ptr->io_ptr;
+	PngMemFile* const f = (PngMemFile*)png_ptr->io_ptr;
 
-	void* src = (void*)(t->p + t->pos);
-	void* dst = data;
-	// (assume read, i.e. copy from transfer buffer; switch if writing)
-	if(t->op == PNG_WRITE)
-		std::swap(src, dst);
+	void* src = (u8*)(f->p + f->pos);
 
-	// make sure there's enough space/data in the buffer
-	t->pos += length;
-	if(t->pos > t->size)
-		png_error(png_ptr, "png_io: not enough data to satisfy request!");
+	// make sure there's enough new data remaining in the buffer
+	f->pos += length;
+	if(f->pos > f->size)
+		png_error(png_ptr, "png_read: not enough data to satisfy request!");
 
-	memcpy(dst, src, length);
+	memcpy(data, src, length);
 }
 
 
-// requirement: direct color
-static int png_decode(TexInfo* t, const char* fn, const u8* in, size_t in_size)
+// limitation: palette images aren't supported
+static int png_decode(TexInfo* t, const char* fn, const u8* file, size_t file_size)
 {
 	const char* msg = 0;
 	int err = -1;
 
-	const u8** rows = 0; 
-		// freed in cleanup code; need scoping on VC6 due to goto
+	// freed when ret is reached.
+	png_structp png_ptr = 0;
+	png_infop info_ptr = 0;
+	const u8** rows = 0;
+	// freed when fail is reached
+	const u8* img = 0;
 
-	// allocate PNG structures
-	png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
-		// default stderr and longjmp error handling
+	// allocate PNG structures; use default stderr and longjmp error handlers
+	png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
 	if(!png_ptr)
-		return ERR_NO_MEM;
-	png_infop info_ptr = png_create_info_struct(png_ptr);
-	if(!info_ptr)
-	{
-		err = ERR_NO_MEM;
 		goto fail;
-	}
+	info_ptr = png_create_info_struct(png_ptr);
+	if(!info_ptr)
+		goto fail;
 
 	// setup error handling
 	if(setjmp(png_jmpbuf(png_ptr)))
 	{
 fail:
+		mem_free(img);
+
 		debug_out("png_decode: %s: %s\n", fn, msg? msg : "unknown");
 		goto ret;
 	}
 
-
 	{
+		PngMemFile f = { file, file_size };
+		png_set_read_fn(png_ptr, &f, png_read);
 
-	PngTransfer trans = { in, in_size, PNG_READ };
-	png_set_read_fn(png_ptr, &trans, png_io);
+		// read header and determine format
+		png_read_info(png_ptr, info_ptr);
+		png_uint_32 w, h;
+		int bit_depth, color_type;
+		png_get_IHDR(png_ptr, info_ptr, &w, &h, &bit_depth, &color_type, 0, 0, 0);
+		const size_t pitch = png_get_rowbytes(png_ptr, info_ptr);
+		const u32 bpp = (u32)(pitch / w * 8);
 
-	png_read_info(png_ptr, info_ptr);
-	unsigned long w, h;
-	int prec, color_type;
-	png_get_IHDR(png_ptr, info_ptr, &w, &h, &prec, &color_type, 0, 0, 0);
+		// make sure format is acceptable
+		if(bit_depth != 8)
+			msg = "channel precision != 8 bits";
+		if(color_type & 1)
+			msg = "color type is invalid (must be direct color)";
+		if(msg)
+			goto fail;
 
-	const size_t pitch = png_get_rowbytes(png_ptr, info_ptr);
+		const size_t img_size = pitch * h;
+		Handle img_hm;
+			// cannot free old t->hm until after png_read_end,
+			// but need to set to this handle afterwards => need tmp var.
+		img = (const u8*)mem_alloc(img_size, 64*KB, 0, &img_hm);
+		if(!img)
+			goto fail;
 
-	const u32 bpp = (u32)(pitch / w * 8);
-	const u32 ofs = 0;	// libpng returns decoded image data; no header
+		CHECK_ERR(alloc_rows(img, h, pitch, false, &rows));
 
-	int flags = (bpp == 24)? 0 : TEX_ALPHA;
+		png_read_image(png_ptr, (png_bytepp)rows);
+		png_read_end(png_ptr, info_ptr);
 
-	if(prec != 8)
-		msg = "channel precision != 8 bits";
-	if(color_type & 1)
-		msg = "color type is invalid (must be direct color)";
-	if(msg)
-	{
-		err = -1;
-		goto fail;
-	}
+		// store image info
+		mem_free_h(t->hm);
+		t->hm    = img_hm;
+		t->ofs   = 0;	// libpng returns decoded image data; no header
+		t->w     = w;
+		t->h     = h;
+		t->bpp   = bpp;
+		t->flags = (bpp == 24)? 0 : TEX_ALPHA;
 
-	// allocate mem for image - rows point into buffer (sequential)
-	rows = (const u8**)malloc(h*sizeof(void*));
-	if(!rows)
-		goto fail;
-	const size_t img_size = pitch * h;
-	Handle img_hm;
-	const u8* img = (const u8*)mem_alloc(img_size, 64*KB, 0, &img_hm);
-	if(!img)
-		goto fail;
-	const u8* pos = img;
-	for(size_t i = 0; i < h; i++)
-	{
-		rows[i] = pos;
-		pos += pitch;
-	}
-
-	png_read_image(png_ptr, (png_bytepp)rows);
-
-	png_read_end(png_ptr, info_ptr);
-
-	mem_free_h(t->hm);
-	t->hm  = img_hm;
-
-	t->ofs = ofs;
-	t->w   = w;
-	t->h   = h;
-	t->bpp = bpp;
-	t->flags = flags;
-
-	err = 0;
-
+		err = 0;
 	}
 
 	// shared cleanup
 ret:
 	free(rows);
+
 	png_destroy_read_struct(&png_ptr, &info_ptr, 0);
 
 	return err;
 }
 
 
-static int png_get_output_size(TexInfo* t, size_t* out_size)
+// write libpng output to PNG file
+static void png_write(png_struct* const png_ptr, u8* const data, const png_size_t length)
 {
-	return -1;
+	void* p = (void*)data;
+	Handle hf = *(Handle*)png_ptr->io_ptr;
+	if(vfs_uncached_io(hf, length, &p) != length)
+		png_error(png_ptr, "png_write: !");
 }
 
 
-static int png_encode(TexInfo* t, const u8* img, size_t img_size, u8* out, size_t out_size)
+// limitation: palette images aren't supported
+static int png_encode(TexInfo* t, const char* fn, const u8* img, size_t img_size)
 {
 	const char* msg = 0;
 	int err = -1;
 
+	// freed when ret is reached.
+	png_structp png_ptr = 0;
+	png_infop info_ptr = 0;
 	const u8** rows = 0; 
-	// freed in cleanup code; need scoping on VC6 due to goto
+	Handle hf = 0;
 
-
-	// allocate PNG structures
-	png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
-		// default stderr and longjmp error handling
+	// allocate PNG structures; use default stderr and longjmp error handlers
+	png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
 	if(!png_ptr)
-		return ERR_NO_MEM;
-	png_infop info_ptr = png_create_info_struct(png_ptr);
-	if(!info_ptr)
-	{
-		err = ERR_NO_MEM;
 		goto fail;
-	}
+	info_ptr = png_create_info_struct(png_ptr);
+	if(!info_ptr)
+		goto fail;
 
 	// setup error handling
 	if(setjmp(png_jmpbuf(png_ptr)))
 	{
 fail:
-		debug_out("png_encode: %s\n", msg? msg : "unknown");
+		debug_out("png_encode: %s: %s\n", fn, msg? msg : "unknown");
 		goto ret;
 	}
 
 	{
+		const png_uint_32 w = t->w, h = t->h;
+		const size_t pitch = w * t->bpp / 8;
 
+		int color_type;
+		switch(t->flags & (TEX_GRAY|TEX_ALPHA))
+		{
+		case TEX_GRAY|TEX_ALPHA:
+			color_type = PNG_COLOR_TYPE_GRAY_ALPHA;
+			break;
+		case TEX_GRAY:
+			color_type = PNG_COLOR_TYPE_GRAY;
+			break;
+		case TEX_ALPHA:
+			color_type = PNG_COLOR_TYPE_RGB_ALPHA;
+			break;
+		default:
+			color_type = PNG_COLOR_TYPE_RGB;
+			break;
+		}
 
+		hf = vfs_open(fn, FILE_WRITE);
+		if(hf < 0)
+		{
+			err = (int)hf;
+			goto fail;
+		}
+		png_set_write_fn(png_ptr, &hf, png_write, 0);
 
-	PngTransfer trans = { out, out_size, PNG_WRITE };
-	png_set_write_fn(png_ptr, (void*)&trans, png_io, 0);
-
-
-
-
-	/* Set the image information here.  Width and height are up to 2^31,
-	* bit_depth is one of 1, 2, 4, 8, or 16, but valid values also depend on
-	* the color_type selected. color_type is one of PNG_COLOR_TYPE_GRAY,
-	* PNG_COLOR_TYPE_GRAY_ALPHA, PNG_COLOR_TYPE_PALETTE, PNG_COLOR_TYPE_RGB,
-	* or PNG_COLOR_TYPE_RGB_ALPHA.  interlace is either PNG_INTERLACE_NONE or
-	* PNG_INTERLACE_ADAM7, and the compression_type and filter_type MUST
-	* currently be PNG_COMPRESSION_TYPE_BASE and PNG_FILTER_TYPE_BASE. REQUIRED
-	*/
-	int color_type;
-	switch(t->flags & (TEX_GRAY|TEX_ALPHA))
-	{
-	case TEX_GRAY|TEX_ALPHA:
-		color_type = PNG_COLOR_TYPE_GRAY_ALPHA;
-		break;
-	case TEX_GRAY:
-		color_type = PNG_COLOR_TYPE_GRAY;
-		break;
-	case TEX_ALPHA:
-		color_type = PNG_COLOR_TYPE_RGB_ALPHA;
-		break;
-	default:
-		color_type = PNG_COLOR_TYPE_RGB;
-		break;
-	}
+		png_set_IHDR(png_ptr, info_ptr, w, h, 8, color_type,
+			PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+		png_write_info(png_ptr, info_ptr);
 	
-	png_set_IHDR(png_ptr, info_ptr, t->w, t->h, 8, color_type,
-		PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
-	/* Write the file header information.  REQUIRED */
-	png_write_info(png_ptr, info_ptr);
+		CHECK_ERR(alloc_rows(img, h, pitch, true, &rows));
 
-	const size_t pitch = png_get_rowbytes(png_ptr, info_ptr);
-
-	// allocate mem for image - rows point into buffer (sequential)
-	rows = (const u8**)malloc(t->h*sizeof(void*));
-	if(!rows)
-		goto fail;
-	const u8* pos = img;
-	for(size_t i = 0; i < t->h; i++)
-	{
-		rows[i] = pos;
-		pos += pitch;
-	}
-
-	png_write_image(png_ptr, (png_bytepp)rows);
-
-	/* It is REQUIRED to call this to finish writing the rest of the file */
-	png_write_end(png_ptr, info_ptr);
-
-
-   /* Similarly, if you png_malloced any data that you passed in with
-      png_set_something(), such as a hist or trans array, free it here,
-      when you can be sure that libpng is through with it. */
+		png_write_image(png_ptr, (png_bytepp)rows);
+		png_write_end(png_ptr, info_ptr);
+	
+		err = 0;
 
 	}
 
+	// shared cleanup
 ret:
-   free(rows);
-   png_destroy_write_struct(&png_ptr, &info_ptr);
+	free(rows);
+	vfs_close(hf);
 
-   return err;
+	png_destroy_write_struct(&png_ptr, &info_ptr);
+
+	return err;
 }
+
+
 
 #endif
 
@@ -829,11 +818,11 @@ static inline bool jp2_ext(const char* const ext)
 }
 
 
-static int jp2_decode(TexInfo* t, const char* fn, const u8* in, size_t in_size)
+static int jp2_decode(TexInfo* t, const char* fn, const u8* file, size_t file_size)
 {
 	const char* err = 0;
 
-	jas_stream_t* stream = jas_stream_memopen((char*)in, in_size);
+	jas_stream_t* stream = jas_stream_memopen((char*)file, file_size);
 	jas_image_t* image = jas_image_decode(stream, -1, 0);
 	if(!image)
 		return -1;
@@ -896,13 +885,7 @@ fail:
 }
 
 
-static int jp2_get_output_size(TexInfo* t, size_t* out_size)
-{
-	return -1;
-}
-
-
-static int jp2_encode(TexInfo* t, const u8* img, size_t img_size, u8* out, size_t out_size)
+static int jp2_encode(TexInfo* t, const char* fn, const u8* img, size_t img_size)
 {
 	return -1;
 }
@@ -996,11 +979,11 @@ int tex_free(TexInfo* t)
 
 int tex_write(TexInfo* t, const char* fn)
 {
-	int err;
-
 	u8* img = (u8*)mem_get_ptr(t->hm);
 	if(!img)
 		return -1;
+
+	const size_t img_size = t->w * t->h * t->bpp / 8;
 
 	char* ext = strrchr(fn, '.');
 	if(!ext)
@@ -1009,33 +992,12 @@ int tex_write(TexInfo* t, const char* fn)
 	Codec* c = codecs;
 	for(int i = 0; i < num_codecs; i++, c++)
 		if(c->is_ext(ext))
-			goto have_codec;
+		{
+			c->encode(t, fn, img, img_size);
+			return 0;
+		}
 
 	// no codec found
-	return -1;
-
-have_codec:
-
-	size_t out_size;
-	CHECK_ERR(c->get_output_size(t, &out_size));
-
-	u8* out = (u8*)mem_alloc(out_size);
-	if(!out)
-		return ENOMEM;
-
-	const size_t img_size = t->w * t->h * t->bpp / 8;
-	err = c->encode(t, img, img_size, out, out_size);
-	if(err < 0)
-		goto fail;
-
-	vfs_uncached_store(fn, out, out_size);
-	if(err < 0)
-		goto fail;
-
-	return 0;
-
-fail:
-	mem_free(out);
 	return -1;
 }
 
