@@ -33,8 +33,7 @@ public:
 	~CBaseEntityCollection();
 	CBaseEntity* getTemplate( CStrW entityType );
 	void loadTemplates();
-	void LoadDirectory( Handle directory, CStr pathname );
-	void addTemplate( CBaseEntity* temp );
+	void LoadFile( const char* path );
 	CBaseEntity* getTemplateByActor( CStrW actorName );
 
 	// Create a list of the names of all templates, for display in ScEd's

@@ -4,48 +4,34 @@
 #include "ObjectManager.h"
 #include "Model.h"
 #include "CLogger.h"
-#include "res/res.h"
+#include "VFSUtil.h"
 
 #define LOG_CATEGORY "entity"
 
-void CBaseEntityCollection::loadTemplates()
+
+void CBaseEntityCollection::LoadFile( const char* path )
 {
-	Handle handle;
-	vfsDirEnt type;
-	
-	CStr basepath = "entities/";
-	CStr pathname;
-
-	// Iterate through all subdirectories 
-
-	Handle maindir = vfs_open_dir( basepath );
-
-	if( maindir > 0 )
+	CBaseEntity* newTemplate = new CBaseEntity();
+	if( newTemplate->loadXML( path ) )
 	{
-		LoadDirectory( maindir, basepath );
-		while( !vfs_next_dirent( maindir, &type, "/" ) )
-		{
-			pathname = basepath + type.name;
-
-			handle = vfs_open_dir( pathname );
-
-			pathname += "/";
-
-			if( handle > 0 )
-			{
-				LoadDirectory( handle, pathname );
-				vfs_close_dir( handle );
-			}
-			else
-			{
-				LOG(ERROR, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Failed to enumerate entity template directory");
-				return;
-			}
-		}
-		vfs_close_dir( maindir );
+		m_templates.push_back( newTemplate );
+		LOG(NORMAL, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Loaded template \"%s\"", path);
 	}
 	else
-		LOG(ERROR, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Unable to open directory entities/");
+		LOG(ERROR, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Couldn't load template \"%s\"", path);
+}
+
+static void LoadFileThunk( const char* path, const vfsDirEnt* ent, void* context )
+{
+	CBaseEntityCollection* this_ = (CBaseEntityCollection*)context;
+	this_->LoadFile(path);
+}
+
+void CBaseEntityCollection::loadTemplates()
+{
+	// Load all files in entities/ and its subdirectories.
+	THROW_ERR( VFSUtil::EnumDirEnts( "entities/", "*.xml", true, LoadFileThunk, this ) );
+
 
 	// Fix up parent links in the templates.
 	
@@ -89,27 +75,6 @@ void CBaseEntityCollection::loadTemplates()
 				LOG( WARNING, LOG_CATEGORY, "Parent template %s does not exist in template %s", CStr8( (*it)->m_Base_Name ).c_str(), CStr8( (*it)->m_Tag ).c_str() );
 		}
 	}
-}
-
-void CBaseEntityCollection::LoadDirectory( Handle directory, CStr pathname )
-{
-	vfsDirEnt file;
-	while( !vfs_next_dirent( directory, &file, "*.xml") )
-	{
-		CBaseEntity* newTemplate = new CBaseEntity();
-		if( newTemplate->loadXML( pathname + file.name ) )
-		{
-			addTemplate( newTemplate );
-			LOG(NORMAL, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Loaded template \"%s%s\"", pathname.c_str(), file.name);
-		}
-		else
-			LOG(ERROR, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Couldn't load template \"%s%s\"", pathname.c_str(), file.name);
-	}
-}
-
-void CBaseEntityCollection::addTemplate( CBaseEntity* temp )
-{
-	m_templates.push_back( temp );
 }
 
 CBaseEntity* CBaseEntityCollection::getTemplate( CStrW name )
