@@ -38,9 +38,7 @@
 
 #define UNUSED(param) (void)param;
 
-#define ONCE(code) { static bool done; if(!done) { code; }; done = true; }
-
-
+#define ONCE(code) { pthread_mutex_t mutex=PTHREAD_MUTEX_INITIALIZER; if(pthread_mutex_trylock(&(mutex))==0) { code; } }
 
 
 template<bool>
