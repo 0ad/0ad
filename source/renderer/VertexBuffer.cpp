@@ -5,7 +5,7 @@
 // Contact:		rich@wildfiregames.com
 //
 ///////////////////////////////////////////////////////////////////////////////
-
+#include "precompiled.h"
 #include "ogl.h"
 #include "Renderer.h"
 #include "VertexBuffer.h"

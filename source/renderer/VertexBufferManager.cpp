@@ -5,7 +5,7 @@
 // Contact:		rich@wildfiregames.com
 //
 ///////////////////////////////////////////////////////////////////////////////
-
+#include "precompiled.h"
 #include <assert.h>
 #include "ogl.h"
 #include "VertexBufferManager.h"
