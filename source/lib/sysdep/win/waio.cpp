@@ -359,39 +359,43 @@ int aio_assign_handle(uintptr_t handle)
 
 
 // open fn in async mode; associate with fd (retrieve via aio_h(fd))
-int aio_open(const char* fn, int mode, int fd)
+int aio_reopen(int fd, const char* fn, int oflag, ...)
 {
-	// interpret mode
+	// interpret oflag
 	DWORD access = GENERIC_READ;	// assume O_RDONLY
-	DWORD share = 0;
-	if(mode & O_WRONLY)
-		access = GENERIC_WRITE;
-	else if(mode & O_RDWR)
-		access = GENERIC_READ|GENERIC_WRITE;
-	else
-		share = FILE_SHARE_READ;
+	DWORD share = FILE_SHARE_READ;
 	DWORD create = OPEN_EXISTING;
-	if(mode & O_CREAT)
-		create = (mode & O_EXCL)? CREATE_NEW : CREATE_ALWAYS;
-	DWORD flags = FILE_FLAG_OVERLAPPED|FILE_FLAG_NO_BUFFERING|FILE_FLAG_SEQUENTIAL_SCAN;
+	if(oflag & O_WRONLY)
+	{
+		access = GENERIC_WRITE;
+		share = FILE_SHARE_WRITE;
+	}
+	else if(oflag & O_RDWR)
+	{
+		access |= GENERIC_WRITE;
+		share |= FILE_SHARE_WRITE;
+	}
+	if(oflag & O_CREAT)
+		create = (oflag & O_EXCL)? CREATE_NEW : CREATE_ALWAYS;
 
 	// open file
+	DWORD flags = FILE_FLAG_OVERLAPPED|FILE_FLAG_NO_BUFFERING|FILE_FLAG_SEQUENTIAL_SCAN;
 	HANDLE h = CreateFile(fn, access, share, 0, create, flags, 0);
 	if(h == INVALID_HANDLE_VALUE)
 	{
+fail:
 		debug_warn("aio_open failed");
 		return -1;
 	}
 
 	if(aio_h_set(fd, h) < 0)
 	{
-		debug_warn("aio_open failed");
 		CloseHandle(h);
-		return -1;
+		goto fail;
 	}
 
 #ifdef PARANOIA
-debug_out("aio_open fn=%s fd=%d\n", fn, fd);
+debug_out("aio_reopen fd=%d fn=%s\n", fd, fn);
 #endif
 
 	return 0;
