@@ -80,14 +80,6 @@ static inline Handle handle(const i32 idx, const i32 tag)
 	return _idx | _tag;
 }
 
-inline __int64 __declspec(naked) GetCycleCount()
-{ 
-	__asm 
-	{
-		RDTSC
-	}
-}
-
 
 //
 // internal per-resource-instance data
