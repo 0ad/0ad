@@ -116,7 +116,7 @@ cassert(REF_BITS + TYPE_BITS <= IDX_BITS);
 // chosen so that all current resource structs are covered,
 // and so sizeof(HDATA) is a power of 2 (for more efficient array access
 // and array page usage).
-static const size_t HDATA_USER_SIZE = 48;
+static const size_t HDATA_USER_SIZE = 48+64;
 
 ///static const size_t HDATA_MAX_PATH = 64;
 
