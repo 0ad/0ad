@@ -1,8 +1,6 @@
-// $Id: fontselect.cpp,v 1.3 2004/07/16 15:32:34 philip Exp $
+// $Id: fontselect.cpp,v 1.4 2004/08/10 15:51:06 philip Exp $
 
-// Switch as appropriate, because MSVC's PCH support doesn't like me
-#include "../../stdafx.h"
-//#include "stdafx.h"
+#include "stdafx.h"
 
 #include "../fontselect.h"
 

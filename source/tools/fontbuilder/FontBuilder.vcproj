@@ -21,7 +21,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;E:\wx\wxWindows-2.4.2\include&quot;;&quot;E:\wx\wxWindows-2.4.2\lib\mswud&quot;;&quot;E:\freetype\freetype-2.1.8\include&quot;;E:\wx\pretends"
+				AdditionalIncludeDirectories="&quot;E:\wx\wxWindows-2.4.2\include&quot;;&quot;E:\wx\wxWindows-2.4.2\lib\mswud&quot;;&quot;E:\freetype\freetype-2.1.8\include&quot;;E:\wx\pretends;."
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;__WXDEBUG__;_UNICODE;UNICODE;wxUSE_UNICODE=1"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -37,7 +37,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wxmswud.lib freetype218MT_D.lib comctl32.lib ws2_32.lib rpcrt4.lib"
+				AdditionalDependencies="wxmswud.lib comctl32.lib ws2_32.lib rpcrt4.lib"
 				OutputFile="$(OutDir)/FontBuilder.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
@@ -86,7 +86,7 @@
 				EnableFiberSafeOptimizations="FALSE"
 				OptimizeForProcessor="2"
 				OptimizeForWindowsApplication="FALSE"
-				AdditionalIncludeDirectories="E:\wx\wxWindows-2.4.2\include;E:\wx\wxWindows-2.4.2\lib\mswu;E:\freetype\freetype-2.1.8\include"
+				AdditionalIncludeDirectories="&quot;E:\wx\wxWindows-2.4.2\include&quot;;&quot;E:\wx\wxWindows-2.4.2\lib\mswud&quot;;&quot;E:\freetype\freetype-2.1.8\include&quot;;E:\wx\pretends;."
 				PreprocessorDefinitions="_STATIC_CPPLIB;WIN32;NDEBUG;_WINDOWS;_UNICODE;UNICODE;wxUSE_UNICODE=1"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
@@ -112,6 +112,7 @@
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
+				OptimizeForWindows98="0"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -148,6 +149,9 @@
 			</File>
 			<File
 				RelativePath=".\font.cpp">
+			</File>
+			<File
+				RelativePath=".\freetypedll.cpp">
 			</File>
 			<File
 				RelativePath=".\imagemanip.cpp">
@@ -231,6 +235,12 @@
 			</File>
 			<File
 				RelativePath=".\font.h">
+			</File>
+			<File
+				RelativePath=".\freetypedll.h">
+			</File>
+			<File
+				RelativePath=".\freetypedll_funcs.h">
 			</File>
 			<File
 				RelativePath=".\imagemanip.h">

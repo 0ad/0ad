@@ -56,6 +56,13 @@
 				Name="Release|Win32"/>
 		</File>
 		<File 
+			RelativePath=".\freetypedll.cpp">
+			<FileConfiguration 
+				Name="Debug|Win32"/>
+			<FileConfiguration 
+				Name="Release|Win32"/>
+		</File>
+		<File 
 			RelativePath=".\imagemanip.cpp">
 			<FileConfiguration 
 				Name="Debug|Win32"/>
@@ -130,6 +137,20 @@
 		</File>
 		<File 
 			RelativePath=".\font.h">
+			<FileConfiguration 
+				Name="Debug|Win32"/>
+			<FileConfiguration 
+				Name="Release|Win32"/>
+		</File>
+		<File 
+			RelativePath=".\freetypedll.h">
+			<FileConfiguration 
+				Name="Debug|Win32"/>
+			<FileConfiguration 
+				Name="Release|Win32"/>
+		</File>
+		<File 
+			RelativePath=".\freetypedll_funcs.h">
 			<FileConfiguration 
 				Name="Debug|Win32"/>
 			<FileConfiguration 

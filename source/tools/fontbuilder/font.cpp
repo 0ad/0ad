@@ -1,4 +1,4 @@
-// $Id: font.cpp,v 1.3 2004/07/16 15:32:34 philip Exp $
+// $Id: font.cpp,v 1.4 2004/08/10 15:51:06 philip Exp $
 
 #include "stdafx.h"
 
@@ -8,20 +8,27 @@
 #include "freetype/ttunpat.h"
 #include <math.h>
 
-FontRenderer::FontRenderer(const char* filename0, const char* filename1, int ptsize, bool unpatented_hinting)
+#include "freetypedll.h"
+
+FontRenderer::FontRenderer(const char* filename0, const char* filename1, int ptsize, bool unpatented_hinting, bool hinting)
 {
+	if (SelectDLL(hinting ? 0 : 1))
+	{
+		throw "Error loading FreeType DLL (freetype(a|b).dll)";
+	}
+
 	int error;
 	
-	error = FT_Init_FreeType(&FontLibrary0);
+	error = DLLFT_Init_FreeType(&FontLibrary0);
 	if (error)
 	{
 		throw "Error initialising FreeType";
 	}
 
-	error = FT_Init_FreeType(&FontLibrary1);
+	error = DLLFT_Init_FreeType(&FontLibrary1);
 	if (error)
 	{
-		FT_Done_FreeType(FontLibrary0);
+		DLLFT_Done_FreeType(FontLibrary0);
 		throw "Error initialising FreeType";
 	}
 
@@ -49,7 +56,7 @@ FontRenderer::FontRenderer(const char* filename0, const char* filename1, int pts
 		&FontFace0
 	);
 */
-	error = FT_Open_Face(
+	error = DLLFT_Open_Face(
 		FontLibrary0,
 		&args0,
 		0, // index of face inside font file
@@ -57,8 +64,8 @@ FontRenderer::FontRenderer(const char* filename0, const char* filename1, int pts
 	);
 	if (error)
 	{
-		FT_Done_FreeType(FontLibrary0);
-		FT_Done_FreeType(FontLibrary1);
+		DLLFT_Done_FreeType(FontLibrary0);
+		DLLFT_Done_FreeType(FontLibrary1);
 		throw "Error loading primary font";
 	}
 
@@ -70,7 +77,7 @@ FontRenderer::FontRenderer(const char* filename0, const char* filename1, int pts
 		&FontFace1
 	);
 */
-	error = FT_Open_Face(
+	error = DLLFT_Open_Face(
 		FontLibrary1,
 		&args1,
 		0, // index of face inside font file
@@ -78,13 +85,13 @@ FontRenderer::FontRenderer(const char* filename0, const char* filename1, int pts
 	);
 	if (error)
 	{
-		FT_Done_Face(FontFace0);
-		FT_Done_FreeType(FontLibrary0);
-		FT_Done_FreeType(FontLibrary1);
+		DLLFT_Done_Face(FontFace0);
+		DLLFT_Done_FreeType(FontLibrary0);
+		DLLFT_Done_FreeType(FontLibrary1);
 		throw "Error loading secondary font face";
 	}
 
-	error = FT_Set_Char_Size(
+	error = DLLFT_Set_Char_Size(
 		FontFace0,
 		0,			// char_width in 1/64th of points
 		ptsize*64,	// char_height in 1/64th of points
@@ -93,14 +100,14 @@ FontRenderer::FontRenderer(const char* filename0, const char* filename1, int pts
 	);
 	if (error)
 	{
-		FT_Done_Face(FontFace0);
-		FT_Done_Face(FontFace1);
-		FT_Done_FreeType(FontLibrary0);
-		FT_Done_FreeType(FontLibrary1);
+		DLLFT_Done_Face(FontFace0);
+		DLLFT_Done_Face(FontFace1);
+		DLLFT_Done_FreeType(FontLibrary0);
+		DLLFT_Done_FreeType(FontLibrary1);
 		throw "Error loading scalable character from primary font - is this a TrueType font?";
 	}
 
-	error = FT_Set_Char_Size(
+	error = DLLFT_Set_Char_Size(
 		FontFace1,
 		0,			// char_width in 1/64th of points
 		ptsize*64,	// char_height in 1/64th of points
@@ -109,10 +116,10 @@ FontRenderer::FontRenderer(const char* filename0, const char* filename1, int pts
 	);
 	if (error)
 	{
-		FT_Done_Face(FontFace0);
-		FT_Done_Face(FontFace1);
-		FT_Done_FreeType(FontLibrary0);
-		FT_Done_FreeType(FontLibrary1);
+		DLLFT_Done_Face(FontFace0);
+		DLLFT_Done_Face(FontFace1);
+		DLLFT_Done_FreeType(FontLibrary0);
+		DLLFT_Done_FreeType(FontLibrary1);
 		throw "Error loading scalable character from secondary font - is this a TrueType font?";
 	}
 
@@ -124,10 +131,10 @@ FontRenderer::FontRenderer(const char* filename0, const char* filename1, int pts
 
 FontRenderer::~FontRenderer()
 {
-	FT_Done_Face(FontFace0);
-	FT_Done_Face(FontFace1);
-	FT_Done_FreeType(FontLibrary0);
-	FT_Done_FreeType(FontLibrary1);
+	DLLFT_Done_Face(FontFace0);
+	DLLFT_Done_Face(FontFace1);
+	DLLFT_Done_FreeType(FontLibrary0);
+	DLLFT_Done_FreeType(FontLibrary1);
 }
 
 #define deg2rad(a) ((double)a * 3.14159265358979323846 / 180.0)
@@ -135,19 +142,19 @@ FontRenderer::~FontRenderer()
 void FontRenderer::LoadGlyph(const int charcode)
 {
 	FT_Face FontFace = FontFace0;
-	int glyph_index = FT_Get_Char_Index(FontFace0, charcode);
+	int glyph_index = DLLFT_Get_Char_Index(FontFace0, charcode);
 
 	Missing = false;
 	if (glyph_index == 0)
 	{
 		// Can't find glyph in primary font - switch to secondary
 		FontFace = FontFace1;
-		glyph_index = FT_Get_Char_Index(FontFace1, charcode);
+		glyph_index = DLLFT_Get_Char_Index(FontFace1, charcode);
 
 		// Still can't find it - use the missing glyph symbol
 		if (glyph_index == 0)
 		{
-			glyph_index = FT_Get_Char_Index(FontFace1, 0xFFFD);
+			glyph_index = DLLFT_Get_Char_Index(FontFace1, 0xFFFD);
 			Missing = true;
 		}
 	}
@@ -163,13 +170,13 @@ void FontRenderer::LoadGlyph(const int charcode)
 		mat.xy = mat.yx = (FT_Fixed)(0x00000L);
 		// Apply shear
 		FT_Fixed f = (FT_Fixed)(tan(deg2rad(Italicness)) * 0x10000L);
-		mat.xy += FT_MulFix(f, mat.xx);
-		mat.yy += FT_MulFix(f, mat.yx);
+		mat.xy += DLLFT_MulFix(f, mat.xx);
+		mat.yy += DLLFT_MulFix(f, mat.yx);
 
-		FT_Set_Transform(FontFace, &mat, 0);
+		DLLFT_Set_Transform(FontFace, &mat, 0);
 	}
 
-	error = FT_Load_Glyph(FontFace, glyph_index, FT_LOAD_DEFAULT);
+	error = DLLFT_Load_Glyph(FontFace, glyph_index, FT_LOAD_DEFAULT);
 	if (error)
 		throw "Error loading glyph";
 
@@ -218,7 +225,7 @@ void FontRenderer::LoadGlyph(const int charcode)
 	else
 	{
 		// Simple version:
-		error = FT_Render_Glyph(FontFace->glyph, FT_RENDER_MODE_NORMAL);
+		error = DLLFT_Render_Glyph(FontFace->glyph, FT_RENDER_MODE_NORMAL);
 		if (error)
 			throw "Error rendering glyph";
 	}

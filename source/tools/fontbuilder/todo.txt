@@ -1,9 +1,11 @@
-$Id: todo.txt,v 1.1 2004/06/17 19:32:04 philip Exp $
+$Id: todo.txt,v 1.2 2004/08/10 15:51:06 philip Exp $
 
 * Optimise storage of duplicated bitmaps (e.g. e and e-with-some-accent,
   comma and semicolon, anything and fullwidth versions, etc)
   
 * Optional antialiasing
+
+* Right-to-left text
 
 * Optional outlining (text with e.g. yellow fill and black outline
   is made by drawing the black outline font and then the yellow
@@ -14,3 +16,5 @@ $Id: todo.txt,v 1.1 2004/06/17 19:32:04 philip Exp $
   compression and filtering and antialiasing
   
 * Work out when I should say 'character', when 'code point', and when 'glyph'
+
+* Kerning

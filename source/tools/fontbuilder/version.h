@@ -1,1 +1,1 @@
-const wxString version = L"v1.0";
+const wxString version = L"v1.1";

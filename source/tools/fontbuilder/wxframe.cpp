@@ -1,4 +1,4 @@
-// $Id: wxframe.cpp,v 1.6 2004/07/16 15:32:34 philip Exp $
+// $Id: wxframe.cpp,v 1.7 2004/08/10 15:51:06 philip Exp $
 
 #include "stdafx.h"
 
@@ -162,7 +162,7 @@ MainFrame::MainFrame(const wxString& title, const wxPoint& pos, const wxSize& si
 	StyleSizer->Add(new wxStaticText(Panel, -1, wxT("Leading:")), 0, wxALIGN_RIGHT | wxLEFT | wxRIGHT, 2);
 	StyleSizer->Add(new StyleSpinCtrl(Panel, ID_Style_Leading, -256, 256, 0), 0, wxGROW | wxLEFT | wxRIGHT, 2);
 
-	StyleSizer->Add(new wxStaticText(Panel, -1, wxT("Alt. hinting:")), 0, wxALIGN_RIGHT | wxLEFT | wxRIGHT, 2);
+	StyleSizer->Add(new wxStaticText(Panel, -1, wxT("Disable hinting:")), 0, wxALIGN_RIGHT | wxLEFT | wxRIGHT, 2);
 	StyleSizer->Add(new wxCheckBox(Panel, ID_Style_Hinting, wxT("")), 0, wxGROW | wxLEFT | wxRIGHT, 2);
 
 	ControlSizer->Add(StyleSizer, 0, wxLEFT | wxRIGHT | wxALIGN_CENTER, 8);
@@ -269,7 +269,7 @@ void MainFrame::LoadSettings(wxString& filename)
 	Settings->GetAttributeValue(wxT("Size"),		t); SizeCtrl->SetValue(t);
 	Settings->GetAttributeValue(wxT("Tracking"),	t); TrackingCtrl->SetValue(t);
 	Settings->GetAttributeValue(wxT("Leading"),		t); LeadingCtrl->SetValue(t);
-	Settings->GetAttributeValue(wxT("Hinting"),		t); HintingCtrl->SetValue(t);
+	Settings->GetAttributeValue(wxT("Hinting"),		t); HintingCtrl->SetValue(t ? true : false);
 
 
 	// Convert back to UTF16 from hex, because wxExpr doesn't like non-ASCII
@@ -415,7 +415,8 @@ void MainFrame::GeneratePreview()
 			FontFilename0.ToAscii(),
 			FontFilename1.ToAscii(),
 			SizeCtrl->GetValidValue(),
-			HintingCtrl->GetValue() );
+			false,
+			!HintingCtrl->GetValue() );
 
 		Font.Boldness = BoldnessCtrl->GetValidValue();
 		Font.Italicness = 5 * ItalicnessCtrl->GetValidValue();
@@ -516,7 +517,8 @@ void MainFrame::GenerateTexture(wxString TextureFilename, wxString FontDefnFilen
 			FontFilename0.ToAscii(),
 			FontFilename1.ToAscii(),
 			SizeCtrl->GetValidValue(),
-			HintingCtrl->GetValue() );
+			false,
+			!HintingCtrl->GetValue() );
 
 		Font.Boldness = BoldnessCtrl->GetValidValue();
 		Font.Italicness = 5 * ItalicnessCtrl->GetValidValue();

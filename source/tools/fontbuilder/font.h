@@ -1,4 +1,4 @@
-// $Id: font.h,v 1.2 2004/07/16 15:32:34 philip Exp $
+// $Id: font.h,v 1.3 2004/08/10 15:51:06 philip Exp $
 
 #ifndef _FONT_H_
 #define _FONT_H_
@@ -7,12 +7,6 @@
 #include FT_FREETYPE_H
 #include FT_OUTLINE_H
 #include FT_BBOX_H
-
-
-// XXX: Kerning ( = hard? got to store giant table for OpenGL to use)
-
-// XXX: Right-to-left text
-
 
 
 // Make my IDE a little happier:
@@ -32,7 +26,7 @@ public:
 	// Two fonts are required - a primary (0) font which will be used first,
 	// and a secondary (1) font for filling in missing glyphs.
 	// (The secondary font should usually be Arial Unicode MS).
-	FontRenderer(const char* filename0, const char* filename1, int ptsize, bool unpatented_hinting);
+	FontRenderer(const char* filename0, const char* filename1, int ptsize, bool unpatented_hinting, bool hinting);
 
 	~FontRenderer();
 	
