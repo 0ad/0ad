@@ -197,10 +197,13 @@ static void init_vkmap(SDLKey (&VK_keymap)[256])
 	VK_keymap[VK_SCROLL] = SDLK_SCROLLOCK;
 	VK_keymap[VK_RSHIFT] = SDLK_RSHIFT;
 	VK_keymap[VK_LSHIFT] = SDLK_LSHIFT;
+	VK_keymap[VK_SHIFT] = SDLK_LSHIFT; // XXX: Not quite
 	VK_keymap[VK_RCONTROL] = SDLK_RCTRL;
 	VK_keymap[VK_LCONTROL] = SDLK_LCTRL;
+	VK_keymap[VK_CONTROL] = SDLK_LCTRL; // XXX: Not quite
 	VK_keymap[VK_RMENU] = SDLK_RALT;
 	VK_keymap[VK_LMENU] = SDLK_LALT;
+	VK_keymap[VK_MENU] = SDLK_LALT; // XXX: Not quite
 	VK_keymap[VK_RWIN] = SDLK_RSUPER;
 	VK_keymap[VK_LWIN] = SDLK_LSUPER;
 
@@ -281,6 +284,7 @@ return_char:
 			UINT scancode = (UINT)((msg.lParam >> 16) & 0xff);
 			u8 key_states[256];
 			GetKeyboardState(key_states);
+
 			num_chars = ToUnicode(vk, scancode, key_states, char_buf, CHAR_BUF_SIZE, 0);
 			next_char_idx = 0;
 			if(num_chars > 0)
@@ -300,7 +304,7 @@ return_char:
 					// leave the switch statement; get next message.
 			}
 			// num_chars == 0: No translation: Just produce a plain KEYDOWN event
-			
+
 			// TODO Mappings for left/right modifier keys
 			// TODO Modifier statekeeping
 
