@@ -80,7 +80,6 @@ if (OS == "windows") then
 "/DELAYLOAD:gdi32.dll",
 "/DELAYLOAD:user32.dll",
 "/DELAYLOAD:ws2_32.dll",
-"/DELAYLOAD:fmod.dll",
 "/DELAYLOAD:version.dll",
 "/DELAYLOAD:ddraw.dll",
 "/DELAYLOAD:libpng10.dll",
@@ -106,7 +105,6 @@ else -- Non-Windows, = Unix
 		-- OpenGL and X-Windows
 		"GL", "GLU", "X11",
 		"SDL", "png",
-		"fmod-3.73",
 		"fam",
 		-- Utilities
 		"xerces-c", "z", "rt", "js"
