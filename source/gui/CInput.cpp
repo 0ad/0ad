@@ -287,7 +287,7 @@ void CInput::Draw()
 		// U+FE33: PRESENTATION FORM FOR VERTICAL LOW LINE
 		// (sort of like a | which is aligned to the left of most characters)
 
-		for (int i=0; i<caption.Length(); ++i)
+		for (size_t i=0; i<caption.Length(); ++i)
 		{
 			if (m_iBufferPos == i)
 			{
