@@ -29,6 +29,7 @@
 <!ENTITY % ex_settings
  "checked				%bool; #IMPLIED
   font					CDATA #IMPLIED
+  hotkey				CDATA #IMPLIED
   input-initvalue-destroyed-at-focus	%bool; #IMPLIED
   rectcolor-selected			CDATA #IMPLIED
   scrollbar				%bool; #IMPLIED

@@ -17,7 +17,6 @@
     {
       if( !getGUIObjectByName( 'arena' ).hidden )
       {
-        writeConsole( "Updating..." );
         g_ballx += g_balldx;
         g_bally += g_balldy;
         if (g_ballx > 600) {
@@ -115,13 +114,15 @@ Nunc bibendum metus a tellus. Nulla lorem metus, convallis id, lobortis eu, elem
 
   </object>
 
-  <object type="button" name="ball" sprite="sprite1" size="0 0 1 1" z="120">
+  <object type="button" name="ball" sprite="sprite1" size="0 0 1 1" z="120" hotkey="orbital.cheat">
     <action on="Press"><![CDATA[
       writeConsole(mouse);
+      g_balldx = 0;
+      g_balldy = 0;
     ]]></action>
   </object>
 
-  <object type="button" sprite="sprite1" size="592 2 608 18" z="200"> |v|
+  <object type="button" sprite="sprite1" size="592 2 608 18" z="200" hotkey="orbital.toggle"> |v|
     <action on="Press"><![CDATA[
       var arena = getGUIObjectByName('arena');
       arena.hidden = !arena.hidden;
