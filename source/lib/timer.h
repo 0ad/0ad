@@ -1,4 +1,4 @@
-// platform independent high resolution timer
+// platform-independent high resolution timer and FPS measuring code
 //
 // Copyright (c) 2003 Jan Wassenberg
 //

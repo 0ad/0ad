@@ -1,3 +1,4 @@
+// platform-independent high resolution timer and FPS measuring code
 //
 // Copyright (c) 2003 Jan Wassenberg
 //
@@ -107,33 +108,7 @@ double timer_res()
 // less fluctuation, but rapid tracking.
 // filter values are tuned for 100 FPS.
 
-int fps = 0;
-
-static char xbuf[1000000];
-static char* xpos = xbuf;
-
-static void dump(void)
-{
-	FILE* f = fopen("test.csv", "w");
-	if(!f)
-		f = fopen("test.csv", "w");
-	fwrite(xbuf, xpos-xbuf, 1, f);
-	fclose(f);
-}
-
-
-void debug_out2(const char* fmt, ...)
-{
-ONCE(atexit(dump););
-
-	va_list ap;
-	va_start(ap, fmt);
-	int ret = vsprintf(xpos, fmt, ap);
-	if(ret > 0)
-		xpos += ret;
-	va_end(ap);
-}
-
+int fps;
 
 void calc_fps()
 {
@@ -249,27 +224,10 @@ void calc_fps()
 	old = cur_fps*gain + old*(1.0-gain);
 	avg_fps = old;
 
-
-
-
-	// update fps counter
-	static double la2, la1, la0;
-	la2 = la1; la1 = la0; la0 = avg_fps;
-
-//	if(ONE_SIDE(fps, la2, la1, la1 /*!*/))
-//		;
-
-	const double d_avg = (avg_fps-fps);
-	const double max_diff = fminf(5.f, 0.05f*fps);
-if( (fabs(d_avg) > max_diff))							// significant difference
-	{
+	// update fps counter if it differs "enough"
+	// currently, that means off by more than 5 FPS or 5%.
+	const double difference = fabs(avg_fps-fps);
+	const double threshold = fminf(5.f, 0.05f*fps);
+	if(difference > threshold)
 		fps = (int)avg_fps;
-//debug_out("%d\n", fps);
-	}
-
-
-
-//debug_out2("%f\t%f\t%f\t%f\n", cur_fps, avg_fps,(float)fps,(1.0-gain)*100.0);
-
-
 }
