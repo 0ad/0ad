@@ -2,18 +2,15 @@
 #include <cstring>
 #include <cstdlib>
 
-#include "wsdl.h"
+#include "sdl.h"
 #include "ogl.h"
 #include "detect.h"
-#include "time.h"
+#include "timer.h"
 #include "input.h"
-#include "misc.h"
+#include "lib.h"
 #include "posix.h"
-#include "font.h"
-#include "res.h"
-#include "tex.h"
-#include "vfs.h"
-#include "ia32.h"
+#include "res/res.h"
+#include "sysdep/ia32.h"
 #include "ps/Config.h"
 
 #ifndef NO_GUI
@@ -37,7 +34,7 @@ extern bool terr_handler(const SDL_Event& ev);
 
 static void write_sys_info()
 {
-	get_gfx_card();
+	get_gfx_info();
 
 	struct utsname un;
 	uname(&un);
@@ -59,6 +56,7 @@ static void write_sys_info()
 	printf("%lu MB RAM; %lu MB free\n", tot_mem/MB, avl_mem/MB);
 	// .. graphics card
 	printf("%s\n", gfx_card);
+	printf("%s\n", gfx_drv);
 	// .. network name / ips
 	char hostname[100];	// possibly nodename != hostname
 	gethostname(hostname, sizeof(hostname));
@@ -75,25 +73,14 @@ static void write_sys_info()
 }
 
 
-#ifdef _WIN32
-#define MB_ICONEXCLAMATION 0x30
-IMP(int, MessageBoxA, (void*, const char*, const char*, unsigned int))
-#endif
-
 // error before GUI is initialized: display message, and quit
 // TODO: localization
-static void display_startup_error(const char* msg)
+static void display_startup_error(const wchar_t* msg)
 {
-	const char* caption = "0ad startup problem";
-
-	fprintf(stderr, msg);
+	const wchar_t* caption = L"0ad startup problem";
 
 	write_sys_info();
-
-#ifdef _WIN32
-	MessageBoxA(0, msg, caption, MB_ICONEXCLAMATION);
-#endif
-
+	display_msg(caption, msg);
 	exit(1);
 }
 
@@ -168,7 +155,6 @@ glColor3f(1.0f, 1.0f, 1.0f);
 	glPushMatrix();
 	glLoadIdentity();
 
-	/// Gee: It doesn't hide the FPS anymore
 	glOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.f, 1000.f);
 
 	glMatrixMode(GL_MODELVIEW);
@@ -228,6 +214,8 @@ static void do_tick()
 
 int main(int argc, char* argv[])
 {
+	lib_init();
+
 	// set 24 bit (float) FPU precision for faster divides / sqrts
 #ifdef _M_IX86
 	_control87(_PC_24, _MCW_PC);
@@ -235,20 +223,22 @@ int main(int argc, char* argv[])
 
 	detect();
 
-	// Gee @ Janwas - Had to move this up because the GUI is used in set_vmode
+	// GUI is notified in set_vmode, so this must come before that.
 #ifndef NO_GUI
-	new CGUI; // we should have a place for all singleton news
+	new CGUI;
 #endif
+
+	const int ERR_MSG_SIZE = 1000;
+	wchar_t err_msg[ERR_MSG_SIZE];
 
 	// init SDL
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
 	{
-		char buf[1000];
-		snprintf(buf, sizeof(buf), "SDL library initialization failed: %s\n", SDL_GetError());
-		display_startup_error(buf);
+		snwprintf(err_msg, ERR_MSG_SIZE, L"SDL library initialization failed: %s\n", SDL_GetError());
+		display_startup_error(err_msg);
 	}
-	// Gee @ Janwas - I left his uncommented
 	atexit(SDL_Quit);
+	SDL_EnableUNICODE(1);
 
 	// preferred video mode = current desktop settings
 	// (command line params may override these)
@@ -263,15 +253,14 @@ int main(int argc, char* argv[])
 
 	if(set_vmode(g_xres, g_yres, 32) < 0)
 	{
-		char buf[1000];
-		snprintf(buf, sizeof(buf), "could not set %dx%d graphics mode: %s\n", g_xres, g_yres, SDL_GetError());
-		display_startup_error(buf);
+		snwprintf(err_msg, ERR_MSG_SIZE, L"could not set %dx%d graphics mode: %s\n", g_xres, g_yres, SDL_GetError());
+		display_startup_error(err_msg);
 	}
 
 	write_sys_info();
 
 if(!oglExtAvail("GL_ARB_multitexture") || !oglExtAvail("GL_ARB_texture_env_combine"))
-	exit(1);
+	display_startup_error(L"required ARB_multitexture or ARB_texture_env_combine extension not available");
 glEnable (GL_CULL_FACE);
 glEnable (GL_DEPTH_TEST);
 
@@ -281,9 +270,8 @@ glEnable (GL_DEPTH_TEST);
 
 	vfs_set_root(argv[0], "data");
 
-// Gee @ Janwas - I've moved this down here now, so the GUI data will be placed in the correct place
-//  it works perfectly btw.
 #ifndef NO_GUI
+	// GUI uses VFS, so this must come after VFS init.
 	g_GUI.Initialize();
 	g_GUI.LoadXMLFile("gui/styles.xml");
 	g_GUI.LoadXMLFile("gui/hello.xml");
@@ -300,7 +288,7 @@ glEnable (GL_DEPTH_TEST);
 
 terr_init();
 
-// Gee @ Janwas - Added the gui_handler
+
 #ifndef NO_GUI
 	in_add_handler(gui_handler);
 #endif
