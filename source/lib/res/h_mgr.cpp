@@ -349,9 +349,55 @@ static int free_idx(i32 idx)
 // speed up h_find (called every h_alloc)
 // multimap, because we want to add handles of differing type but same key
 // (e.g. a VFile and Tex object for the same underlying filename hash key)
+//
+// store index because it's smaller and Handle can easily be reconstructed
 typedef STL_HASH_MULTIMAP<uintptr_t, i32> Key2Idx;
 typedef Key2Idx::iterator It;
 static Key2Idx key2idx;
+
+
+
+static Handle find_key(uintptr_t key, H_Type type, bool remove = false)
+{
+	It it = key2idx.find(key);
+	// not found in mapping
+	if(it == key2idx.end())
+		return -1;
+	It end = key2idx.upper_bound(key);
+	for(; it != end; ++it)
+	{
+		i32 idx = it->second;
+		HDATA* hd = h_data(idx);
+		// found match
+		if(hd && hd->type == type && hd->key == key)
+		{
+			if(remove)
+				key2idx.erase(it);
+			return handle(idx, hd->tag);
+		}
+	}
+
+	// key is in the mapping, but it's of the wrong type.
+	// this happens when called by h_alloc to check if
+	// e.g. a Tex object already exists; at that time,
+	// only the corresponding VFile exists.
+	return -1;
+}
+
+
+static void add_key(uintptr_t key, Handle h)
+{
+	const i32 idx = h_idx(h);
+	key2idx.insert(std::make_pair(key, idx));
+}
+
+
+static void remove_key(uintptr_t key, H_Type type)
+{
+	Handle ret = find_key(key, type, true);
+	assert(ret > 0);
+}
+
 
 
 int h_free(Handle& h, H_Type type)
@@ -385,24 +431,7 @@ int h_free(Handle& h, H_Type type)
 		vtbl->dtor(hd->user);
 
 	if(hd->key)
-	{
-		It it = key2idx.find(hd->key);
-		// not found in mapping
-		if(it == key2idx.end())
-			debug_warn("h_free: not in key2idx");
-		It end = key2idx.upper_bound(hd->key);
-		for(; it != end; ++it)
-		{
-			i32 idx = it->second;
-			HDATA* hd2 = h_data(idx);
-			// found match
-			if(hd2 && hd2->type == type && hd2->key == hd->key)
-			{
-				key2idx.erase(it);
-				break;
-			}
-		}
-	}
+		remove_key(hd->key, type);
 
 	free((void*)hd->fn);
 
@@ -532,7 +561,7 @@ skip_alloc:
 	}
 
 	if(key)
-		key2idx.insert(std::make_pair(key, idx));
+		add_key(key, h);
 
 	// one-time init
 	hd->tag  = tag;
@@ -665,25 +694,7 @@ int h_reload(const char* fn)
 
 Handle h_find(H_Type type, uintptr_t key)
 {
-	It it = key2idx.find(key);
-	// not found in mapping
-	if(it == key2idx.end())
-		return -1;
-	It end = key2idx.upper_bound(key);
-	for(; it != end; ++it)
-	{
-		i32 idx = it->second;
-		HDATA* hd = h_data(idx);
-		// found match
-		if(hd && hd->type == type && hd->key == key)
-			return handle(idx, hd->tag);
-	}
-
-	// key is in the mapping, but it's of the wrong type.
-	// this happens when called by h_alloc to check if
-	// e.g. a Tex object already exists; at that time,
-	// only the corresponding VFile exists.
-	return -1;
+	return find_key(key, type);
 }
 
 
