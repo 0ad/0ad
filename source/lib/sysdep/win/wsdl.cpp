@@ -350,7 +350,7 @@ return_char:
 			sdl_btn = (msg.wParam & BIT(31))? SDL_BUTTON_WHEELUP : SDL_BUTTON_WHEELDOWN;
 			break;	// event filled in mouse code below
 		default:
-			if( msg.message >= WM_APP )
+			if( msg.message >= WM_APP && msg.message < 0xC000 )
 			{
 				assert( SDL_USEREVENT+(msg.message-WM_APP) <= 0xff && "Message too far above WM_APP");
 				ev->type = (u8)(SDL_USEREVENT+(msg.message-WM_APP));
