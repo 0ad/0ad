@@ -116,7 +116,7 @@ typedef enum
 	SDLK_r = 'R',
 	SDLK_s = 'S',
 
-	SDLK_KP_ADD     = 0x6b,
+	SDLK_KP_PLUS    = 0x6b,
 	SDLK_KP_MINUS   = 0x6d,
 	SDLK_LEFT       = 0x25,
 	SDLK_UP         = 0x26,
