@@ -54,7 +54,7 @@ public:
 
 	// Extended properties table
 
-	std::hash_map<CStr,CGenericProperty,CStr_hash_compare> m_properties;
+	STL_HASH_MAP<CStr,CGenericProperty,CStr_hash_compare> m_properties;
 
 private:
 	CEntity( CBaseEntity* base, CVector3D position, float orientation );

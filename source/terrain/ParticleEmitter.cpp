@@ -84,7 +84,7 @@ void CParticleEmitter::Render()
 
 void CParticleEmitter::Update() 
 {
-	float timeElapsed = get_time() - m_timeOfLastFrame;
+	double timeElapsed = get_time() - m_timeOfLastFrame;
 
 	// update existing particles
 	vector<CParticle *>::iterator itor = m_particles.begin();
@@ -105,12 +105,12 @@ void CParticleEmitter::Update()
 		++itor;
 	}
 
-	float secondsPerEmit = 1 / (m_minParticles / m_minLifetime);
+	double secondsPerEmit = 1 / (m_minParticles / m_minLifetime);
 
 	if (m_timeSinceLastEmit > secondsPerEmit) 
 	{
 		
-		int duration;
+		float duration;
 		CVector3D position, velocity;
 		float colour[4];
 
@@ -119,7 +119,7 @@ void CParticleEmitter::Update()
 			CParticle * newParticle = new CParticle();
 			
 			// calculate particle duration
-			duration = m_minLifetime;
+			duration = (float)m_minLifetime;
 			duration += (rand() % (int)((m_maxLifetime - m_minLifetime) * 1000.0f + 1)) / 1000.0f;
 			newParticle->m_duration = duration;
 
@@ -168,7 +168,7 @@ void CParticleEmitter::Update()
 		m_timeSinceLastEmit = 0.0f;
 	}
 	else
-		m_timeSinceLastEmit += timeElapsed;
+		m_timeSinceLastEmit += (float)timeElapsed;
 
 	m_timeOfLastFrame = get_time();
 }

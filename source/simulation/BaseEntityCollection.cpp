@@ -52,7 +52,7 @@ void CBaseEntityCollection::addTemplate( CBaseEntity& temp )
 
 CBaseEntity* CBaseEntityCollection::getTemplate( CStr name )
 {
-	for( int t = 0; t < m_templates.size(); t++ )
+	for( u16 t = 0; t < m_templates.size(); t++ )
 		if( m_templates[t].m_name == name ) return( &( m_templates[t] ) );
 
 	return( NULL );
@@ -60,7 +60,7 @@ CBaseEntity* CBaseEntityCollection::getTemplate( CStr name )
 
 CBaseEntity* CBaseEntityCollection::getTemplateByActor( CObjectEntry* actor )
 {
-	for( int t = 0; t < m_templates.size(); t++ )
+	for( u16 t = 0; t < m_templates.size(); t++ )
 		if( m_templates[t].m_actorObject == actor ) return( &( m_templates[t] ) );
 
 	return( NULL );

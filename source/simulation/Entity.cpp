@@ -59,13 +59,13 @@ float CEntity::getExactGroundLevel( float x, float y )
 	x /= 4.0f;
 	y /= 4.0f;
 
-	int xi = floor( x );
-	int yi = floor( y );
+	int xi = (int)floor( x );
+	int yi = (int)floor( y );
 	float xf = x - (float)xi;
 	float yf = y - (float)yi;
 
 	u16* heightmap = g_Terrain.GetHeightMap();
-	u16 mapsize = g_Terrain.GetVerticesPerSide();
+	unsigned long mapsize = g_Terrain.GetVerticesPerSide();
 
 	float h00 = heightmap[yi*mapsize + xi];
 	float h01 = heightmap[yi*mapsize + xi + mapsize];
@@ -189,7 +189,7 @@ void CEntity::dispatch( CMessage* msg )
 			while( !waypoints->empty() )
 			{
 				CEntityOrder patrol;
-				int id = rand() % waypoints->size();
+				size_t id = rand() % waypoints->size();
 				std::vector<HEntity>::iterator it = waypoints->begin();
 				it += id;
 				HEntity waypoint = *it;
