@@ -7,6 +7,7 @@
 #include "TransparencyRenderer.h"
 #include "ModelRData.h"
 #include "Model.h"
+#include "MaterialManager.h"
 
 ///////////////////////////////////////////////////////////////////
 // shared list of all submitted models this frame
@@ -44,9 +45,11 @@ void CModelRData::Build()
 	// force a texture load on models texture
 	g_Renderer.LoadTexture(m_Model->GetTexture(),GL_CLAMP_TO_EDGE);
 	// setup model render flags
-	if (g_Renderer.IsTextureTransparent(m_Model->GetTexture())) {
+	/*if (g_Renderer.IsTextureTransparent(m_Model->GetTexture())) {
 		m_Flags|=MODELRDATA_FLAG_TRANSPARENT;
-	}
+	}*/
+    if(m_Model->GetMaterial().UsesAlpha())
+        m_Flags |= MODELRDATA_FLAG_TRANSPARENT;
 }
 
 void CModelRData::BuildIndices()
@@ -183,7 +186,11 @@ void CModelRData::RenderStreams(u32 streamflags)
 {	
 	CModelDef* mdldef=(CModelDef*) m_Model->GetModelDef();
 	
-	if (streamflags & STREAM_UV0) g_Renderer.SetTexture(0,m_Model->GetTexture());
+	if (streamflags & STREAM_UV0)
+    {
+        m_Model->GetMaterial().Bind();
+        g_Renderer.SetTexture(0,m_Model->GetTexture());
+    }
 
 	u8* base=m_VB->m_Owner->Bind();
 
@@ -197,6 +204,9 @@ void CModelRData::RenderStreams(u32 streamflags)
 	u32 numFaces=mdldef->GetNumFaces();
 //	glDrawRangeElements(GL_TRIANGLES,0,mdldef->GetNumVertices(),numFaces*3,GL_UNSIGNED_SHORT,m_Indices);
 	glDrawElements(GL_TRIANGLES,numFaces*3,GL_UNSIGNED_SHORT,m_Indices);
+
+    if(streamflags & STREAM_UV0)
+        m_Model->GetMaterial().Unbind();
 	
 	// bump stats
 	g_Renderer.m_Stats.m_DrawCalls++;
