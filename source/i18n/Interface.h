@@ -11,6 +11,7 @@ The only file that external code should need to include.
 #include "DataTypes.h"
 
 struct JSContext;
+struct JSObject;
 
 namespace I18n
 {
@@ -37,7 +38,7 @@ namespace I18n
 	};
 
 	// Build a CLocale. Returns NULL on failure.
-	CLocale_interface* NewLocale(JSContext* cx);
+	CLocale_interface* NewLocale(JSContext* cx, JSObject* scope);
 }
 
 #endif // I18N_INTERFACE_H

@@ -20,14 +20,14 @@ bool I18n::LoadLanguage(const char* name)
 	// been loaded yet)
 	if (name == NULL)
 	{
-		CLocale_interface* locale_ptr = I18n::NewLocale(NULL);
+		CLocale_interface* locale_ptr = I18n::NewLocale(NULL, NULL);
 		assert(locale_ptr);
 		delete g_CurrentLocale;
 		g_CurrentLocale = locale_ptr;
 		return true;
 	}
 
-	CLocale_interface* locale_ptr = I18n::NewLocale(g_ScriptingHost.getContext());
+	CLocale_interface* locale_ptr = I18n::NewLocale(g_ScriptingHost.getContext(), JS_GetGlobalObject(g_ScriptingHost.getContext()));
 
 	if (! locale_ptr)
 	{

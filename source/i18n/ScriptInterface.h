@@ -36,7 +36,7 @@ namespace I18n
 	class ScriptObject
 	{
 	public:
-		ScriptObject(CLocale* locale, JSContext* cx);
+		ScriptObject(CLocale* locale, JSContext* cx, JSObject* scope);
 		~ScriptObject();
 
 		bool ExecuteCode(const jschar* data, size_t len, const char* filename);

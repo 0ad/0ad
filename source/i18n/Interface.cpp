@@ -62,11 +62,11 @@ using namespace I18n;
 
 struct JSContext;
 
-CLocale_interface* I18n::NewLocale(JSContext* cx)
+CLocale_interface* I18n::NewLocale(JSContext* cx, JSObject* scope)
 {
 	try
 	{
-		return new CLocale(cx);
+		return new CLocale(cx, scope);
 	}
 	catch (PSERROR_I18n& e)
 	{

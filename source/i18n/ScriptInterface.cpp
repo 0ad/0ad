@@ -11,9 +11,12 @@
 
 using namespace I18n;
 
-namespace LookedupWord {
-	
-	JSBool GetProperty(JSContext *cx, JSObject *obj, jsval id, jsval *vp)
+#define JS_ASSERT(expr, msg) if (! (expr)) { JS_ReportError(cx, msg); return JS_FALSE; }
+
+// LookedupWord JS class:
+namespace JSI_LookedupWord {
+
+	static JSBool GetProperty(JSContext *cx, JSObject *obj, jsval id, jsval *vp)
 	{
 		CLocale::LookupType* lookedup = (CLocale::LookupType*)JS_GetPrivate(cx, obj);
 		assert(lookedup);
@@ -24,18 +27,9 @@ namespace LookedupWord {
 		assert(locale);
 
 		JSString* prop = JS_ValueToString(cx, id);
-		if (!prop)
-		{
-			JS_ReportError(cx, "lookup() property failed to convert to string");
-			return JS_FALSE;
-		}
+		JS_ASSERT(prop, "lookup() property failed to convert to string");
 
 		jschar* prop_chars = JS_GetStringChars(prop);
-		if (!prop_chars)
-		{
-			JS_ReportError(cx, "lookup() property failed to convert string to chars");
-			return JS_FALSE;
-		}
 
 		Str prop_str;
 		StringConvert::jschars_to_wstring(prop_chars, JS_GetStringLength(prop), prop_str);
@@ -45,18 +39,14 @@ namespace LookedupWord {
 			result = L"(unrecognised property)";
 
 		JSString* result_str = StringConvert::wstring_to_jsstring(cx, result);
-		if (!result_str)
-		{
-			JS_ReportError(cx, "lookup() property failed to create string");
-			return JS_FALSE;
-		}
+		JS_ASSERT(result_str, "lookup() property failed to create string");
 
 		*vp = STRING_TO_JSVAL(result_str);
 		
 		return JS_TRUE;
 	}
 
-	void Finalize(JSContext *cx, JSObject *obj)
+	static void Finalize(JSContext *cx, JSObject *obj)
 	{
 		// Free the LookupType that was allocated when building this object
 
@@ -76,30 +66,66 @@ namespace LookedupWord {
 }
 
 
-JSBool JSFunc_LookupWord(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
-{
-	if (argc != 2)
-	{
-		JS_ReportError(cx, "Incorrect number of parameters to lookup(dictionary, word) function");
-		return JS_FALSE;
+// 'i18n' JS class:
+namespace JSI_i18n {
+
+	#define TYPE(x)	\
+	static JSBool Create_##x(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)	\
+	{																								\
+		/* Set *rval = { type => "Name", value => argv[0] } */			\
+																		\
+		JSObject* object = JS_NewObject(cx, NULL, NULL, obj);			\
+		JS_ASSERT(object, "Failed to create i18n value object");		\
+																		\
+		/* TODO: More error checking */									\
+		jsval type = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, #x));		\
+		jsval value = STRING_TO_JSVAL(JS_ValueToString(cx, argv[0]));	\
+		JS_SetProperty(cx, object, "type", &type);						\
+		JS_SetProperty(cx, object, "value", &value);					\
+																		\
+		*rval = OBJECT_TO_JSVAL(object);								\
+																		\
+		return JS_TRUE;													\
 	}
+	TYPE(Name)
+	TYPE(Raw)
+	TYPE(Noun)
+	#undef TYPE
+
+	static JSClass JSI_class = {
+		"JSI_i18n", JSCLASS_HAS_PRIVATE,
+		JS_PropertyStub, JS_PropertyStub,
+		JS_PropertyStub, JS_PropertyStub,
+		JS_EnumerateStub, JS_ResolveStub,
+		JS_ConvertStub, JS_FinalizeStub,
+		NULL, NULL, NULL, NULL
+	};
+
+	#define TYPE(x) {#x, Create_##x, 1, 0, 0}
+	static JSFunctionSpec JSI_funcs[] = {
+		TYPE(Name),
+		TYPE(Raw),
+		TYPE(Noun),
+		{0,0,0,0,0},
+	};
+	#undef TYPE
+}
+
+
+static JSBool JSFunc_LookupWord(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
+{
+	JS_ASSERT(argc == 2, "Incorrect number of parameters to lookup(dictionary, word) function");
 
 	// Get the strings
 	JSString* dictname = JS_ValueToString(cx, argv[0]);
 	JSString* word = JS_ValueToString(cx, argv[1]);
-	if (!dictname || !word)
-	{
-		JS_ReportError(cx, "lookup() failed to convert parameters to strings");
-		return JS_FALSE;
-	}
+	JS_ASSERT(dictname && word, "lookup() failed to convert parameters to strings");
+
 	// and the characters from the strings
 	jschar* dictname_chars = JS_GetStringChars(dictname);
 	jschar* word_chars = JS_GetStringChars(word);
-	if (!dictname_chars || !word_chars)
-	{
-		JS_ReportError(cx, "lookup() failed to get parameter string data");
-		return JS_FALSE;
-	}
+	// (can't fail)
+
 	// and convert those characters into to wstrings
 	Str dictname_str, word_str;
 	StringConvert::jschars_to_wstring(dictname_chars, JS_GetStringLength(dictname), dictname_str);
@@ -117,12 +143,9 @@ JSBool JSFunc_LookupWord(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, 
 	}
 
 	// Create an object to be returned, containing enough data to access properties of the found word
-	JSObject* wordobj = JS_NewObject(cx, &LookedupWord::JSI_class, NULL, obj);
-	if (!wordobj)
-	{
-		JS_ReportError(cx, "lookup() failed to create object");
-		return JS_FALSE;
-	}
+	JSObject* wordobj = JS_NewObject(cx, &JSI_LookedupWord::JSI_class, NULL, obj);
+	JS_ASSERT(wordobj, "lookup() failed to create object");
+
 	// Associate the looked-up word data with the JS object
 	JS_SetPrivate(cx, wordobj, (void*)lookedup);
 
@@ -130,13 +153,94 @@ JSBool JSFunc_LookupWord(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, 
 	return JS_TRUE;
 }
 
-static JSFunctionSpec JSFunc_list[] = {
+static JSBool JSFunc_Translate(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
+{
+	JS_ASSERT(argc >= 1, "Too few parameters to translate() function");
+
+	JSString* phrase_str = JS_ValueToString(cx, argv[0]);
+	JS_ASSERT(phrase_str, "translate() failed to convert first parameter to string");
+
+	CStrW phrase (JS_GetStringChars(phrase_str));
+
+	jsval locale_objval;
+	JS_ASSERT(JS_GetProperty(cx, obj, "i18n", &locale_objval), "translate() failed to find i18n object in current scope");
+	JSObject* locale_obj = JSVAL_TO_OBJECT(locale_objval);
+	CLocale* locale = (CLocale*)JS_GetPrivate(cx, JSVAL_TO_OBJECT(locale_objval));
+
+	StringBuffer sb = locale->Translate(phrase.c_str());
+	for (uintN i=1; i<argc; ++i)
+	{
+		if (JSVAL_IS_INT(argv[i]))
+		{
+			sb << (int) JSVAL_TO_INT(argv[i]);
+			continue;
+		}
+
+		if (JSVAL_IS_DOUBLE(argv[i]))
+		{
+			sb << *JSVAL_TO_DOUBLE(argv[i]);
+			continue;
+		}
+
+		if (JSVAL_IS_OBJECT(argv[i]))
+		{
+			// Check for 'type' and 'value' properties
+			jsval type, value;
+			if (JS_GetProperty(cx, JSVAL_TO_OBJECT(argv[i]), "type", &type)
+			 && type != JSVAL_VOID
+			 && JS_GetProperty(cx, JSVAL_TO_OBJECT(argv[i]), "value", &value)
+			 && value != JSVAL_VOID)
+			{
+				// TODO: More error handling
+				std::string typestr = JS_GetStringBytes(JS_ValueToString(cx, type));
+
+				std::wstring val;
+				if (typestr == "Name")
+				{
+					JSString* s = JS_ValueToString(cx, value);
+					sb << I18n::Name(JS_GetStringChars(s));
+					continue;
+				}
+				else if (typestr == "Raw")
+				{
+					JSString* s = JS_ValueToString(cx, value);
+					sb << I18n::Raw(JS_GetStringChars(s));
+					continue;
+				}
+				else if (typestr == "Noun")
+				{
+					JSString* s = JS_ValueToString(cx, value);
+					sb << I18n::Noun(JS_GetStringChars(s));
+					continue;
+				}
+			}
+		}
+
+		JS_ReportError(cx, "Invalid parameter passed to translate() (must be a number or a i18n.something() object)");
+		return JS_FALSE;
+	}
+
+	JSString* result_str = StringConvert::wstring_to_jsstring(cx, sb);
+	*rval = STRING_TO_JSVAL(result_str);
+
+	return JS_TRUE;
+}
+
+
+// Visible to all JS code:
+static JSFunctionSpec JSI_i18nInterfaceFunctions[] = {
+	{"translate", JSFunc_Translate, 0, 0, 0},
+	{0,0,0,0,0},
+};
+
+// Visible to functions called by the i18n system:
+static JSFunctionSpec JSI_i18nFunctions[] = {
 	{"lookup", JSFunc_LookupWord, 2, 0, 0},
 	{0,0,0,0,0},
 };
 
-
-static JSClass JSI_class_scriptglobal = {
+// Object under which to run functions called by the i18n system:
+static JSClass JSI_i18nFunctionScope = {
 	"", JSCLASS_HAS_PRIVATE,
 	JS_PropertyStub, JS_PropertyStub,
 	JS_PropertyStub, JS_PropertyStub,
@@ -146,32 +250,50 @@ static JSClass JSI_class_scriptglobal = {
 };
 
 
-ScriptObject::ScriptObject(CLocale* locale, JSContext* cx)
+ScriptObject::ScriptObject(CLocale* locale, JSContext* cx, JSObject* scope)
 	: Context(cx)
 {
 	// Don't do much if there's currently no scripting support
 	if (cx == NULL)
 		return;
 
-	// This should, in theory, never fail
+	// This constructor should, in theory, never fail
 
-	Object = JS_NewObject(Context, &JSI_class_scriptglobal, NULL, NULL);
+	// Create the object [/scope] under which the locale-dependent translation
+	// functions are executed
+	Object = JS_NewObject(Context, &JSI_i18nFunctionScope, NULL, NULL);
 	if (! Object)
-	{
-		debug_warn("Object creation failed");
 		throw PSERROR_I18n_Script_SetupFailed();
-	}
+
 	JS_AddRoot(Context, &Object);
+	// (This will get leaked if the constructor throws, but there will be more
+	// important things to worry about than memory leaks in those situations)
 
-	// Register the 'global' functions
-	if (! JS_DefineFunctions(Context, Object, JSFunc_list))
-	{
-		debug_warn("JS_DefineFunctions failed");
+	// Register the functions for use by i18n translations
+	if (! JS_DefineFunctions(Context, Object, JSI_i18nFunctions))
 		throw PSERROR_I18n_Script_SetupFailed();
-	}
 
-	// Store the CLocale* ins in the script-object's private area
+	// Store the CLocale* in the script-object's private area
 	JS_SetPrivate(Context, Object, locale);
+
+	// Interface setup:
+
+	// Register the interface functions
+	if (! JS_DefineFunctions(Context, scope, JSI_i18nInterfaceFunctions))
+		throw PSERROR_I18n_Script_SetupFailed();
+
+	// Create the 'i18n' interface object
+	JSObject* i18nObject = JS_DefineObject(Context, scope, "i18n", &JSI_i18n::JSI_class, NULL, JSPROP_READONLY | JSPROP_PERMANENT);
+	if (! i18nObject)
+		throw PSERROR_I18n_Script_SetupFailed();
+
+	// Define its functions (i18n.Name() etc)
+	if (! JS_DefineFunctions(Context, i18nObject, JSI_i18n::JSI_funcs))
+		throw PSERROR_I18n_Script_SetupFailed();
+
+	// Store the CLocale* in the i18n object's private area
+	JS_SetPrivate(Context, i18nObject, locale);
+
 }
 
 ScriptObject::~ScriptObject()

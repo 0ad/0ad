@@ -16,9 +16,13 @@ namespace I18n {
 
 	template<> BufferVariable* NewBufferVariable<int>(int v) { return new BufferVariable_int(v); }
 	template<> BufferVariable* NewBufferVariable<double>(double v) { return new BufferVariable_double(v); }
-	template<> BufferVariable* NewBufferVariable<const wchar_t*>(const wchar_t* v) { return new BufferVariable_string(v); }
-	template<> BufferVariable* NewBufferVariable<const char*>(const char* v) { return new BufferVariable_string(v); }
-	template<> BufferVariable* NewBufferVariable<I18n::Name>(I18n::Name v) { return new BufferVariable_rawstring(v.value); }
+	template<> BufferVariable* NewBufferVariable<Noun>(Noun v) { return new BufferVariable_string(v.value); }
+	template<> BufferVariable* NewBufferVariable<Name>(Name v) { return new BufferVariable_rawstring(v.value); }
+
+	//
+	// Don't allow plain strings -- people *must* specify whether it's going
+	// to be automatically translated (I18n::Noun) or not (I18n::Name/Raw)
+	//
 }
 
 StrImW BufferVariable_int::ToString(CLocale*)
