@@ -156,7 +156,7 @@ if (OS == "windows") then
 
 else -- Non-Windows, = Unix
 
-	tinsert(package.files, sourcesfromdirs(sourceroot.."lib/sysdep/unix"))
+	tinsert(package.files, sourcesfromdirs(sourceroot, "lib/sysdep/unix"))
 
 	-- Libraries
 	package.links = {
