@@ -19,6 +19,7 @@
 
 #include "lib.h"
 #include "win_internal.h"
+#include "lib/res/file.h"	// file_is_subpath
 
 #include <assert.h>
 
@@ -87,6 +88,8 @@ static Watches watches;
 struct Watch
 {
 	intptr_t reqnum;
+	int refs;
+		// refcounted, since dir_add_watch reuses existing Watches.
 
 	std::string dir_name;
 	HANDLE hDir;
@@ -99,14 +102,20 @@ struct Watch
 		// fields aren't used.
 		// overlapped I/O completation notification is via IOCP.
 
-	char change_buf[15000];
-		// better be big enough - if too small,
-		// we miss changes made to a directory.
+	char change_buf[4096-58];
+		// if too small, the current FILE_NOTIFY_INFORMATION is lost!
+		// this is enough for ~7 packets (worst case) - should be enough,
+		// since the app polls once a frame. we don't want to waste too much
+		// memory. size chosen such that sizeof(Watch) = 4KiB.
 		// issue code uses sizeof(change_buf) to determine size.
+		//
+		// note: we can't share one central buffer: the individual watches
+		// are independent, and may be triggered 'simultaneously' before
+		// the next app poll, so they'd overwrite one another.
 
 
 	Watch(intptr_t _reqnum, const std::string& _dir_name, HANDLE _hDir)
-		: reqnum(_reqnum), dir_name(_dir_name), hDir(_hDir)
+		: reqnum(_reqnum), refs(1), dir_name(_dir_name), hDir(_hDir)
 	{
 		memset(&ovl, 0, sizeof(ovl));
 		// change_buf[] doesn't need init
@@ -152,7 +161,6 @@ static int wdir_watch_shutdown()
 	// free all (dynamically allocated) Watch objects
 	for(WatchIt it = watches.begin(); it != watches.end(); ++it)
 		delete it->second;
-
 	watches.clear();
 
 	return 0;
@@ -162,6 +170,11 @@ static int wdir_watch_shutdown()
 // HACK - see call site
 static int get_packet();
 
+
+static Watch* find_watch(intptr_t reqnum)
+{
+	return watches[reqnum];
+}
 
 // path: portable and relative, must add current directory and convert to native
 // better to use a cached string from rel_chdir - secure
@@ -176,10 +189,22 @@ int dir_add_watch(const char* dir, intptr_t* _reqnum)
 	{
 	const std::string dir_s(dir);
 
-	// make sure dir is not already being watched
+	// check if this is a subdirectory of an already watched dir tree
+	// (much faster than issuing a new watch for every subdir).
+	// this also prevents watching the same directory twice.
 	for(WatchIt it = watches.begin(); it != watches.end(); ++it)
-		if(dir == it->second->dir_name)
-			goto fail;
+	{
+		Watch* const w = it->second;
+		if(!w)
+			continue;
+		const char* old_dir = w->dir_name.c_str();
+		if(file_is_subpath(dir, old_dir))
+		{
+			reqnum = w->reqnum;
+			w->refs++;
+			goto done;
+		}
+	}
 
 	// open handle to directory
 	const DWORD share = FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE;
@@ -237,6 +262,7 @@ int dir_add_watch(const char* dir, intptr_t* _reqnum)
 	get_packet();
 	}
 
+done:
 	err = 0;
 	*_reqnum = reqnum;
 
@@ -251,12 +277,17 @@ int dir_cancel_watch(const intptr_t reqnum)
 	if(reqnum <= 0)
 		return ERR_INVALID_PARAM;
 
-	Watch* w = watches[reqnum];
+	Watch* w = find_watch(reqnum);
 	if(!w)
 	{
 		debug_warn("dir_cancel_watch: watches[reqnum] invalid");
 		return -1;
 	}
+
+	// we're freeing a reference - done.
+	assert(w->refs >= 1);
+	if(--w->refs != 0)
+		return 0;
 
 	// contrary to dox, the RDC IOs do not issue a completion notification.
 	// no packet was received on the IOCP while or after cancelling in a test.
@@ -266,12 +297,15 @@ int dir_cancel_watch(const intptr_t reqnum)
 	BOOL ret = CancelIo(w->hDir);
 
 	delete w;
+	watches[reqnum] = 0;
 	return ret? 0 : -1;
 }
 
 
 static int extract_events(Watch* w)
 {
+	assert(w);
+
 	// points to current FILE_NOTIFY_INFORMATION;
 	// char* simplifies advancing to the next (variable length) FNI.
 	char* pos = w->change_buf;
@@ -286,6 +320,17 @@ static int extract_events(Watch* w)
 		std::string fn = w->dir_name;
 		for(int i = 0; i < (int)fni->FileNameLength/2; i++)
 			fn += (char)fni->FileName[i];
+
+		const char* action;
+		switch(fni->Action)
+		{
+		case FILE_ACTION_ADDED: action = "FILE_ACTION_ADDED"; break;
+		case FILE_ACTION_REMOVED: action = "FILE_ACTION_REMOVED"; break;
+		case FILE_ACTION_MODIFIED: action = "FILE_ACTION_MODIFIED"; break;
+		case FILE_ACTION_RENAMED_OLD_NAME: action = "FILE_ACTION_RENAMED_OLD_NAME"; break;
+		case FILE_ACTION_RENAMED_NEW_NAME: action = "FILE_ACTION_RENAMED_NEW_NAME"; break;
+		}
+		debug_out("PACKET %s %s\n", fn.c_str(), action);
 
 		pending_events.push_back(fn);
 
@@ -313,7 +358,11 @@ static int get_packet()
 	if(!got_packet)	// no new packet - done
 		return 1;
 
-	Watch* w = watches[(intptr_t)key];
+	const intptr_t reqnum = (intptr_t)key;
+	Watch* const w = find_watch(reqnum);
+	// watch was subsequently removed - ignore the error.
+	if(!w)
+		return 1;
 
 	// this is an actual packet, not just a kickoff for issuing the watch.
 	// extract the events and push them onto AppState's queue.
@@ -327,7 +376,9 @@ static int get_packet()
 						 FILE_NOTIFY_CHANGE_CREATION;
 	const DWORD buf_size = sizeof(w->change_buf);
 	memset(&w->ovl, 0, sizeof(w->ovl));
-	BOOL ret = ReadDirectoryChangesW(w->hDir, w->change_buf, buf_size, FALSE, filter, &w->dummy_nbytes, &w->ovl, 0);
+	BOOL watch_subtree = TRUE;
+		// much faster than watching every dir separately. see dir_add_watch.
+	BOOL ret = ReadDirectoryChangesW(w->hDir, w->change_buf, buf_size, watch_subtree, filter, &w->dummy_nbytes, &w->ovl, 0);
 	if(!ret)
 		debug_warn("ReadDirectoryChangesW failed");
 
