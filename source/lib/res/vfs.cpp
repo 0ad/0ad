@@ -437,15 +437,11 @@ struct TDir
 
 int TDir::add_subdir(const char* dir_name)
 {
-// ######################## TODO: Fix this ###########################
-/*
-	if(find_subdir(dir_name))
+	if(find_file(dir_name))
 	{
 		debug_warn("TDir::add_subdir: file of same name already exists");
 		return -1;
 	}
-*/
-	// The above code fails frequently and makes the game unplayable
 
 	TDirPair pair = std::make_pair(dir_name, TDir());
 	std::pair<TDirIt, bool> ret = subdirs.insert(pair);
@@ -856,7 +852,9 @@ static int dirent_cb(const char* name, const struct stat* s, uintptr_t user)
 
 	// directory: add it.
 	if(S_ISDIR(s->st_mode))
-		return dir->add_subdir(name);
+		// add_subdir returns -1 on error, 1 on it's-already-added,
+		// 0 on it's-now-added. Only consider -1 to be an error.
+		return (dir->add_subdir(name) < 0 ? 1 : 0);
 
 	// caller is requesting we look for archives
 	// (only happens in tree_add_dir's dir, not subdirectories. see below)
