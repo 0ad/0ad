@@ -52,7 +52,7 @@ __asm
 	fstp		[r]
 }
 
-	UNUSED(f)
+	UNUSED(f);
 
 	return r;
 }
@@ -94,8 +94,8 @@ __asm
 	pop			eax
 }
 
-	UNUSED(new_cw)
-	UNUSED(mask)
+	UNUSED(new_cw);
+	UNUSED(mask);
 
 	return 0;
 }

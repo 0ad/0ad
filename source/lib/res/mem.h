@@ -29,6 +29,8 @@ extern int mem_free_h(Handle& hm);
 extern void* mem_get_ptr(Handle h, size_t* size = 0);
 
 
+extern void mem_shutdown();
+
 #ifdef __cplusplus
 }
 #endif

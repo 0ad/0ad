@@ -93,7 +93,7 @@ static bool is_valid_file_handle(const HANDLE h)
 
 
 // return async-capable handle associated with file <fd>
-HANDLE aio_h_get(const int fd)
+static HANDLE aio_h_get(const int fd)
 {
 	HANDLE h = INVALID_HANDLE_VALUE;
 
@@ -118,7 +118,7 @@ HANDLE aio_h_get(const int fd)
 // associate h (an async-capable file handle) with fd;
 // returned by subsequent aio_h_get(fd) calls.
 // setting h = INVALID_HANDLE_VALUE removes the association.
-int aio_h_set(const int fd, const HANDLE h)
+static int aio_h_set(const int fd, const HANDLE h)
 {
 	lock();
 
@@ -214,16 +214,17 @@ int aio_close(int fd)
 {
 	HANDLE h = aio_h_get(fd);
 	if(h == INVALID_HANDLE_VALUE)	// out of bounds or already closed
-	{
-		debug_warn("aio_close failed");
-		return -1;
-	}
+		goto fail;
 
 	if(!CloseHandle(h))
-		debug_warn("aio_close: CloseHandle failed");
-	aio_h_set(fd, INVALID_HANDLE_VALUE);
+		goto fail;
+	CHECK_ERR(aio_h_set(fd, INVALID_HANDLE_VALUE));
 
 	return 0;
+
+fail:
+	debug_warn("aio_close failed");
+	return -1;
 }
 
 
@@ -500,6 +501,13 @@ fail:
 // return status of transfer
 int aio_error(const struct aiocb* cb)
 {
+	// must not pass 0 to req_find - we'd look for a free cb!
+	if(!cb)
+	{
+		debug_warn("aio_error: invalid cb");
+		return -1;
+	}
+
 	Req* r = req_find(cb);
 	if(!r)
 		return -1;
@@ -519,6 +527,13 @@ int aio_error(const struct aiocb* cb)
 // get bytes transferred. call exactly once for each op.
 ssize_t aio_return(struct aiocb* cb)
 {
+	// must not pass 0 to req_find - we'd look for a free cb!
+	if(!cb)
+	{
+		debug_warn("aio_return: invalid cb");
+		return -1;
+	}
+
 	Req* r = req_find(cb);
 	if(!r)
 	{
@@ -600,14 +615,14 @@ int aio_suspend(const struct aiocb* const cbs[], int n, const struct timespec* t
 
 int aio_cancel(int fd, struct aiocb* cb)
 {
-	UNUSED(cb)
+	// Win32 limitation: can't cancel single transfers -
+	// all pending reads on this file are cancelled.
+	UNUSED(cb);
 
 	const HANDLE h = aio_h_get(fd);
 	if(h == INVALID_HANDLE_VALUE)
 		return -1;
 
-	// Win32 limitation: can't cancel single transfers -
-	// all pending reads on this file are cancelled.
 	CancelIo(h);
 	return AIO_CANCELED;
 }
@@ -618,33 +633,32 @@ int aio_cancel(int fd, struct aiocb* cb)
 int aio_read(struct aiocb* cb)
 {
 	cb->aio_lio_opcode = LIO_READ;
-	return aio_rw(cb);
+	return aio_rw(cb);	// checks for cb == 0
 }
 
 
 int aio_write(struct aiocb* cb)
 {
 	cb->aio_lio_opcode = LIO_WRITE;
-	return aio_rw(cb);
+	return aio_rw(cb);	// checks for cb == 0
 }
 
 
 int lio_listio(int mode, struct aiocb* const cbs[], int n, struct sigevent* se)
 {
-	UNUSED(se)
+	UNUSED(se);
 
-		int err = 0;
+	int err = 0;
 
 	for(int i = 0; i < n; i++)
 	{
-		int ret = aio_rw(cbs[i]);		// aio_rw checks for 0 param
+		int ret = aio_rw(cbs[i]);		// checks for cbs[i] == 0
 		// don't CHECK_ERR - want to try to issue each one
-		if(ret < 0)
+		if(ret < 0 && !err)
 			err = ret;
 	}
 
-	if(err < 0)
-		return err;
+	CHECK_ERR(err);
 
 	if(mode == LIO_WAIT)
 		return aio_suspend(cbs, n, 0);

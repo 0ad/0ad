@@ -57,8 +57,6 @@ static PtrToH& get_ptr_to_h()
 		// crash + burn
 
 		_ptr_to_h = new PtrToH;
-
-		atexit2(ptr_to_h_shutdown);
 	}
 	return *_ptr_to_h;
 }
@@ -381,6 +379,8 @@ void* mem_alloc(size_t size, const size_t align, uint flags, Handle* phm)
 
 void* mem_get_ptr(Handle hm, size_t* user_size /* = 0 */)
 {
+	h_add_ref(hm);
+
 	Mem* m = H_USER_DATA(hm, Mem);
 	if(!m)
 	{
@@ -405,3 +405,9 @@ ssize_t mem_size(void* p)
 	return (ssize_t)m->size;
 }
 */
+
+
+void mem_shutdown()
+{
+	ptr_to_h_shutdown();
+}

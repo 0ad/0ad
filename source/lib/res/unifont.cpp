@@ -21,8 +21,8 @@ Unicode OpenGL texture font
 #include <stdio.h>
 #include <assert.h>
 
-#include <ps/CLogger.h>
-#define LOG_CATEGORY "graphics"
+/*/*#include <ps/CLogger.h>
+#define LOG_CATEGORY "graphics"*/
 
 // This isn't particularly efficient - it can be improved if we
 // (a) care enough, and (b) know about fixed ranges of characters
@@ -79,20 +79,20 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSEDPARAM(h))
 // //	if (! vfs_exists(fnt_fn))
 // //		return ERR_FILE_NOT_FOUND;
 
-	Handle fh = vfs_load(fnt_fn, RawFNT, FNTSize);
-	CHECK_ERR(fh);
+	Handle hm = vfs_load(fnt_fn, RawFNT, FNTSize);
+	CHECK_ERR(hm);
 
 	// Get the data in a nicer object
-	std::istringstream FNTStream (std::string((char*)RawFNT, (int)FNTSize));
+	std::istringstream FNTStream (std::string((const char*)RawFNT, (int)FNTSize));
 
 	// Unload the file
-	mem_free(RawFNT);
+	mem_free_h(hm);
 
 	int Version;
 	FNTStream >> Version;
 	if (Version != 100) // Make sure this is from a recent version of the font builder
 	{
-		LOG(ERROR, LOG_CATEGORY, "Invalid .fnt version number");
+//		LOG(ERROR, LOG_CATEGORY, "Invalid .fnt version number");
 		return -1;
 	}
 
@@ -112,7 +112,7 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSEDPARAM(h))
 	f->ListBase = glGenLists(NumGlyphs);
 	if (f->ListBase == 0) // My Voodoo2 drivers didn't support display lists (although I'd be surprised if they got this far)
 	{
-		LOG(ERROR, LOG_CATEGORY, "Display list creation failed");
+//		LOG(ERROR, LOG_CATEGORY, "Display list creation failed");
 		return -1;
 	}
 
