@@ -22,7 +22,7 @@
 
 #ifdef SAVE_RCSID
 static char rcsid =
- "@(#) $Id: SDL_keysym.h,v 1.1 2004/03/29 13:06:44 olsner Exp $";
+ "@(#) $Id: SDL_keysym.h,v 1.1 2004/06/19 12:21:05 janwas Exp $";
 #endif
 
 #ifndef _SDL_keysym_h
