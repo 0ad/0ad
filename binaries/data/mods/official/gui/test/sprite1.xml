@@ -8,6 +8,7 @@
                 <image backcolor="0 0 0" size="50% 2 50%+2 100%-1" />
                 <image backcolor="0 0 0" size="2 50% 100%-1 50%+2" />
         </sprite>
+
         <sprite name="sprite1">
                 <!-- Starting with top left corner continuing in a clockwise manner -->
                 <image backcolor="255 255 255" size="0 1 1 100%-1" />
@@ -17,7 +18,7 @@
                 <image backcolor="128 128 128" size="100%-2 1 100%-1 100%-1" />
                 <image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
                 <!-- middle -->
-                <image backcolor="212 208 200" size="1 1 100%-2 100%-2" />
+                <image texture="background.tga" texture-size="0 0 256 256" size="1 1 100%-2 100%-2" />
         </sprite>
 
         <sprite name="sprite4">
@@ -34,7 +35,7 @@
                 <image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
                 <!-- middle -->
                 <image backcolor="200 0 0" size="1 1 100%-2 100%-2" />
-                <image backcolor="212 208 200" size="2 2 100%-3 100%-3" />
+                <image texture="background.tga" texture-size="0 0 256 256" size="2 2 100%-3 100%-3" />
         </sprite>
 
         <sprite name="sprite1-ch">
@@ -73,18 +74,6 @@
         <sprite name="sprite2-pressed">
                 <image backcolor="128 128 128" size="0 0 100% 100%" />
                 <image backcolor="212 208 200" size="1 1 100%-1 100%-1" z-level="1" />
-        </sprite>
-
-        <sprite name="sprite1">
-                <!-- Starting with top left corner continuing in a clockwise manner -->
-                <image backcolor="255 255 255" size="0 1 1 100%-1" />
-                <image backcolor="255 255 255" size="0 0 100%-1 1" />
-                <image backcolor="64 64 64" size="100%-1 0 100% 100%" />
-                <image backcolor="64 64 64" size="0 100%-1 100%-1 100%" />
-                <image backcolor="128 128 128" size="100%-2 1 100%-1 100%-1" />
-                <image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
-                <!-- middle -->
-                <image backcolor="212 208 200" size="1 1 100%-2 100%-2" />
         </sprite>
 
         <sprite name="grey">
