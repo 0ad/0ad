@@ -21,7 +21,7 @@ void RenderScene ();
 extern bool keys[512];	// SDL also defines non-ascii keys; 512 should be enough
 extern bool mouseButtons[5];
 
-extern bool active;
+extern bool g_active;
 
 
 CMatrix3D			g_WorldMat;
@@ -280,7 +280,7 @@ static void move_camera(float DeltaTime)
 
 void terr_update(const float DeltaTime)
 {
-	if(active)
+	if(g_active)
 		move_camera(DeltaTime);
 }
 
@@ -293,7 +293,7 @@ int terr_handler(const SDL_Event* ev)
 {
 	// put any events that must be processed even if inactive here
 
-	if(!active)
+	if(!g_active)
 		return EV_PASS;
 
 	switch(ev->type)
