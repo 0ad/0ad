@@ -53,20 +53,30 @@ extern void debug_check_heap(void);
 
 // superassert
 // recommended use: assert2(expr && "descriptive string")
-#define assert2(expr)\
-{\
+#define assert2(expr) STMT(\
 	static int suppress__ = 0;\
 	if(!suppress__ && !(expr))\
-	switch(debug_assert_failed(__FILE__, __LINE__, #expr))\
-	{\
-	case 1:\
-		suppress__ = 1;\
-		break;\
-	case 2:\
-		debug_break();\
-		break;\
-	}\
-}
+		switch(debug_assert_failed(__FILE__, __LINE__, #expr))\
+		{\
+		case 1:\
+			suppress__ = 1;\
+			break;\
+		case 2:\
+			debug_break();\
+			break;\
+		}\
+)
+
+
+
+
+#ifdef _WIN32
+# define debug_warn(str) assert2(0 && (str))
+#else
+# define debug_warn(str) debug_out("Debug Warning Fired at %s:%d: %s\n", __FILE__, __LINE__, str)
+#endif
+
+
 
 
 #endif	// #ifndef DEBUG_H__
