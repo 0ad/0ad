@@ -95,7 +95,6 @@ public:
 			m_DrawCalls+=rhs.m_DrawCalls;
 			m_TerrainTris+=rhs.m_TerrainTris;
 			m_ModelTris+=rhs.m_ModelTris;
-			m_TransparentTris+=rhs.m_TransparentTris;
 			m_BlendSplats+=rhs.m_BlendSplats;
 			return *this;
 		}
@@ -107,8 +106,6 @@ public:
 		u32 m_TerrainTris;
 		// number of (non-transparent) model triangles drawn
 		u32 m_ModelTris;
-		// number of transparent model triangles drawn
-		u32 m_TransparentTris;
 		// number of splat passes for alphamapping
 		u32 m_BlendSplats;
 	};
@@ -129,9 +126,9 @@ public:
 	// set/get boolean renderer option 
 	void SetOptionBool(enum Option opt,bool value);
 	bool GetOptionBool(enum Option opt) const;
-	// set/get color renderer option 
-	void SetOptionColor(enum Option opt,const RGBColor& value);
-	const RGBColor& GetOptionColor(enum Option opt) const;
+	// set/get RGBA color renderer option 
+	void SetOptionColor(enum Option opt,const RGBAColor& value);
+	const RGBAColor& GetOptionColor(enum Option opt) const;
 
 	// return view width
 	int GetWidth() const { return m_Width; }
@@ -197,9 +194,10 @@ public:
 
 	// try and load the given texture
 	bool LoadTexture(CTexture* texture,u32 wrapflags);
-	// set the given unit to reference the given texture; pass a null texture to disable texturing on any unit
+	// set the given unit to reference the given texture; pass a null texture to disable texturing on any unit;
+	// active texture unit always set to given unit on exit
 	void SetTexture(int unit,CTexture* texture);
-	// BindTexture: bind a GL texture object to given unit
+	// bind a GL texture object to active unit
 	void BindTexture(int unit,GLuint tex);
 	// query transparency of given texture
 	bool IsTextureTransparent(CTexture* texture);
@@ -211,12 +209,11 @@ public:
 	const Stats& GetStats() { return m_Stats; }
 
 protected:
+	friend class CVertexBuffer;
 	friend class CPatchRData;
 	friend class CModelRData;
 	friend class CTransparencyRenderer;
 
-	// recurse down given model building renderdata for it and all it's children
-	void UpdateModelDataRecursive(CModel* model);
 	// update renderdata of everything submitted
 	void UpdateSubmittedObjectData();
 
@@ -225,17 +222,14 @@ protected:
 	void RenderPatches();
 
 	// model rendering stuff
-	void BuildTransparentPasses(CModel* model);
 	void RenderModelSubmissions();
-	void RenderModelsRecursive(CModel* model,u32 streamflags);
-	void RenderModelsStreams(u32 streamflags);
 	void RenderModels();
 
 	// shadow rendering stuff
 	void CreateShadowMap();
 	void RenderShadowMap();
 	void ApplyShadowMap();
-	void CRenderer::BuildTransformation(const CVector3D& pos,const CVector3D& right,const CVector3D& up,
+	void BuildTransformation(const CVector3D& pos,const CVector3D& right,const CVector3D& up,
 						 const CVector3D& dir,CMatrix3D& result);
 	void ConstructLightTransform(const CVector3D& pos,const CVector3D& lightdir,CMatrix3D& result);
 	void CalcShadowMatrices();
@@ -259,8 +253,6 @@ protected:
 	// color used to clear screen in BeginFrame
 	float m_ClearColor[4];
 	// submitted object lists for batching
-	std::vector<CPatch*> m_TerrainPatches;
-	std::vector<CModel*> m_Models;
 	std::vector<CSprite*> m_Sprites;
 	std::vector<CParticleSys*> m_ParticleSyses;
 	std::vector<COverlay*> m_Overlays;
@@ -274,8 +266,10 @@ protected:
 	u32 m_CompositeAlphaMap;
 	// handle of shadow map
 	u32 m_ShadowMap;
-	// size of each side of shadow map
-	u32 m_ShadowMapSize;
+	// width, height of shadow map
+	u32 m_ShadowMapWidth,m_ShadowMapHeight;
+	// object space bound of shadow casting objects
+	CBound m_ShadowBound;
 	// per-frame flag: has the shadow map been rendered this frame?
 	bool m_ShadowRendered;
 	// projection matrix of shadow casting light
@@ -290,15 +284,13 @@ protected:
 	struct Caps {
 		bool m_VBO;
 		bool m_TextureBorderClamp;
-		bool m_PBuffer;
 		bool m_GenerateMipmaps;
 	} m_Caps;
 	// renderer options 
 	struct Options {
 		bool m_NoVBO;
-		bool m_NoPBuffer;
 		bool m_Shadows;
-		RGBColor m_ShadowColor;
+		RGBAColor m_ShadowColor;
 	} m_Options;
 	// build card cap bits
 	void EnumCaps();

@@ -1,3 +1,11 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// Name:		TransparencyRenderer.cpp
+// Author:		Rich Cross
+// Contact:		rich@wildfiregames.com
+//
+///////////////////////////////////////////////////////////////////////////////
+
 #include "precompiled.h"
 
 #include <algorithm>
@@ -31,6 +39,8 @@ void CTransparencyRenderer::Sort()
 // are drawn in correct order
 void CTransparencyRenderer::Render()
 {
+	if (m_Objects.size()==0) return;
+
 	// switch on wireframe if we need it
 	if (g_Renderer.m_ModelRenderMode==WIREFRAME) {
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
@@ -41,13 +51,10 @@ void CTransparencyRenderer::Render()
 	glEnableClientState(GL_COLOR_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-	// setup texture environment to modulate diffuse color with texture color
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_ONE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
 
 	// just pass through texture's alpha
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
@@ -57,13 +64,23 @@ void CTransparencyRenderer::Render()
 	glEnable(GL_ALPHA_TEST);
 	glAlphaFunc(GL_GREATER,0.975f);
 
-	RenderObjectsStreams(STREAM_POS|STREAM_COLOR|STREAM_UV0);
-
-	glDepthMask(0);
-	glAlphaFunc(GL_LEQUAL,0.975f);
+	// render everything with color writes off to setup depth buffer correctly
+	glColorMask(0,0,0,0);
+	RenderObjectsStreams(STREAM_POS|STREAM_UV0);
+	glColorMask(1,1,1,1);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+
+	glDepthMask(0);
+	glAlphaFunc(GL_GREATER,0);
+
+	// setup texture environment to modulate diffuse color with texture color
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
 
 	RenderObjectsStreams(STREAM_POS|STREAM_COLOR|STREAM_UV0);
 
@@ -138,11 +155,9 @@ void CTransparencyRenderer::Add(CModel* model)
  
 void CTransparencyRenderer::RenderShadows()
 {
-	// coarsely sort submitted objects in back to front manner
-	std::sort(m_Objects.begin(),m_Objects.end(),SortObjectsByDist());
+	if (m_Objects.size()==0) return;
 
 	// switch on client states
-	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
 	glDepthMask(0);
@@ -152,7 +167,7 @@ void CTransparencyRenderer::RenderShadows()
 
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS_ARB);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
@@ -160,12 +175,10 @@ void CTransparencyRenderer::RenderShadows()
 
 	RenderObjectsStreams(STREAM_POS|STREAM_UV0);
 
-	glDisable(GL_ALPHA_TEST);
 	glDepthMask(1);
 	glDisable(GL_BLEND);
 
 	// switch off client states
-	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
@@ -174,14 +187,7 @@ void CTransparencyRenderer::RenderShadows()
 void CTransparencyRenderer::RenderObjectsStreams(u32 streamflags)
 {
 	for (uint i=0;i<m_Objects.size();++i) {
-		CModel* model=m_Objects[i].m_Model;
-
-		glPushMatrix();
-		glMultMatrixf(&model->GetTransform()._11);
-
-		CModelRData* modeldata=(CModelRData*) model->GetRenderData();
-		modeldata->RenderStreams(streamflags,true);
-
-		glPopMatrix();
+		CModelRData* modeldata=(CModelRData*) m_Objects[i].m_Model->GetRenderData();
+		modeldata->RenderStreams(streamflags);
 	}
 }

@@ -18,7 +18,7 @@ public:
 	~CModelRData();
 
 	void Update();
-	void RenderStreams(u32 streamflags,bool transparentPass=false);
+	void RenderStreams(u32 streamflags);
 
 	// return render flags for this model
 	u32 GetFlags() const { return m_Flags; }
@@ -27,6 +27,14 @@ public:
 	// object to camera space transform; return sqrd distance to centre of nearest triangle
 	float BackToFrontIndexSort(CMatrix3D& objToCam);
 
+	// submit a model to render this frame
+	static void Submit(CModel* model);
+	// clear per frame patch list
+	static void ClearSubmissions() { m_Models.clear(); }
+
+	// render all submitted models
+	static void RenderModels(u32 streamflags);
+
 private:
 	// build this renderdata object
 	void Build();
@@ -34,6 +42,8 @@ private:
 	void BuildVertices();
 	void BuildIndices();
 
+	// submit batches for this model to the vertex buffer
+	void SubmitBatches();
 
 	struct SVertex {
 		// vertex position
@@ -46,8 +56,8 @@ private:
 
 	// owner model
 	CModel* m_Model;
-	// handle to models vertex buffer
-	u32 m_VB;
+	// vertex buffer object for this model
+	CVertexBuffer::VBChunk* m_VB;
 	// model render vertices
 	SVertex* m_Vertices;
 	// transformed vertex normals - required for recalculating lighting on skinned models
@@ -56,6 +66,8 @@ private:
 	u16* m_Indices;
 	// model render flags
 	u32 m_Flags;
+	// list of all submitted models
+	static std::vector<CModel*> m_Models;
 };
 
 

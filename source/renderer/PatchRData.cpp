@@ -8,6 +8,11 @@
 #include "PatchRData.h"
 #include "AlphaMapCalculator.h"
 
+///////////////////////////////////////////////////////////////////
+// shared list of all submitted patches this frame
+std::vector<CPatch*> CPatchRData::m_Patches;
+
+
 const int BlendOffsets[8][2] = {
 	{  0, -1 },
 	{ -1, -1 },
@@ -19,18 +24,40 @@ const int BlendOffsets[8][2] = {
 	{  1, -1 }
 };
 
+inline int clamp(int x,int min,int max)
+{
+	if (x<min) return min;
+	else if (x>max) return max;
+	else return x;
+}
 
+static SColor4ub ConvertColor(const RGBColor& src)
+{
+	SColor4ub result;
+	result.R=clamp(int(src.X*255),0,255);
+	result.G=clamp(int(src.Y*255),0,255);
+	result.B=clamp(int(src.Z*255),0,255);
+	result.A=0xff;
+	return result;
+}
+
+///////////////////////////////////////////////////////////////////
+// CPatchRData constructor
 CPatchRData::CPatchRData(CPatch* patch) : m_Patch(patch), m_Vertices(0), m_VBBase(0), m_VBBlends(0) 
 {
 	assert(patch);
 	Build();
 }
 
+///////////////////////////////////////////////////////////////////
+// CPatchRData destructor
 CPatchRData::~CPatchRData() 
 {
+	// delete copy of vertex data
 	delete[] m_Vertices;
-	if (m_VBBase) glDeleteBuffersARB(1,(GLuint*) &m_VBBase);
-	if (m_VBBlends) glDeleteBuffersARB(1,(GLuint*) &m_VBBlends);
+	// release vertex buffer chunks
+	if (m_VBBase) g_VBMan.Release(m_VBBase);
+	if (m_VBBlends) g_VBMan.Release(m_VBBlends);
 }
 
 
@@ -226,11 +253,21 @@ void CPatchRData::BuildBlends()
 			}
 		}
 	}
+	
+	// build vertex data
+	if (m_VBBlends) {
+		// release existing vertex buffer chunk
+		g_VBMan.Release(m_VBBlends);
+	}
+	m_VBBlends=g_VBMan.Allocate(sizeof(SBlendVertex),m_BlendVertices.size(),false);
+	m_VBBlends->m_Owner->UpdateChunkVertices(m_VBBlends,&m_BlendVertices[0]);
+
 
 	// now build outgoing splats
 	m_BlendSplats.resize(splatTextures.size());
 	int splatCount=0;
 
+	u32 base=m_VBBlends->m_Index;
 	std::set<Handle>::iterator iter=splatTextures.begin();
 	for (;iter!=splatTextures.end();++iter) {
 		Handle tex=*iter;
@@ -241,33 +278,23 @@ void CPatchRData::BuildBlends()
 
 		for (uint k=0;k<splats.size();k++) {
 			if (splats[k].m_Texture==tex) {
-				m_BlendIndices.push_back(splats[k].m_Indices[0]);
-				m_BlendIndices.push_back(splats[k].m_Indices[1]);
-				m_BlendIndices.push_back(splats[k].m_Indices[2]);
-				m_BlendIndices.push_back(splats[k].m_Indices[3]);
+				m_BlendIndices.push_back(splats[k].m_Indices[0]+base);
+				m_BlendIndices.push_back(splats[k].m_Indices[1]+base);
+				m_BlendIndices.push_back(splats[k].m_Indices[2]+base);
+				m_BlendIndices.push_back(splats[k].m_Indices[3]+base);
 				splat.m_IndexCount+=4;
 			}
 		}
 		splatCount++;
 	}
 
-	if (g_Renderer.m_Caps.m_VBO) {
-		if (m_VBBlends) {
-			// destroy old buffer
-			glDeleteBuffersARB(1,(GLuint*) &m_VBBlends);
-		} else {
-			// generate buffer index
-			glGenBuffersARB(1,(GLuint*) &m_VBBlends);
-		}
-
-		// create new buffer
-		glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_VBBlends);
-		glBufferDataARB(GL_ARRAY_BUFFER_ARB,m_BlendVertices.size()*sizeof(SBlendVertex),&m_BlendVertices[0],GL_STATIC_DRAW_ARB);
-	}
 }
 
 void CPatchRData::BuildIndices()
 {
+	// must have allocated some vertices before trying to build corresponding indices
+	assert(m_VBBase);
+
 	// number of vertices in each direction in each patch
 	int vsize=PATCH_SIZE+1;
 
@@ -290,7 +317,8 @@ void CPatchRData::BuildIndices()
 
 	// now build base splats from interior textures
 	m_Splats.resize(textures.size());
-	
+	// build indices for base splats	
+	u32 base=m_VBBase->m_Index;
 	for (uint i=0;i<m_Splats.size();i++) {
 		Handle h=textures[i];
 
@@ -301,66 +329,33 @@ void CPatchRData::BuildIndices()
 		for (int j=0;j<PATCH_SIZE;j++) {
 			for (int i=0;i<PATCH_SIZE;i++) {
 				if (texgrid[j][i]==h){
-					m_Indices.push_back(((j+0)*vsize+(i+0)));
-					m_Indices.push_back(((j+0)*vsize+(i+1)));
-					m_Indices.push_back(((j+1)*vsize+(i+1)));
-					m_Indices.push_back(((j+1)*vsize+(i+0)));
+					m_Indices.push_back(((j+0)*vsize+(i+0))+base);
+					m_Indices.push_back(((j+0)*vsize+(i+1))+base);
+					m_Indices.push_back(((j+1)*vsize+(i+1))+base);
+					m_Indices.push_back(((j+1)*vsize+(i+0))+base);
 				}
 			}
 		}
 		splat.m_IndexCount=m_Indices.size()-splat.m_IndexStart;
 	}
-}
-
-inline int clamp(int x,int min,int max)
-{
-	if (x<min) return min;
-	else if (x>max) return max;
-	else return x;
-}
-
-static SColor4ub ConvertColor(const RGBColor& src)
-{
-	SColor4ub result;
-	result.R=clamp(int(src.X*255),0,255);
-	result.G=clamp(int(src.Y*255),0,255);
-	result.B=clamp(int(src.Z*255),0,255);
-	result.A=0xff;
-	return result;
-}
-
-static void BuildHeightmapNormals(int size,u16 *heightmap,CVector3D* normals)
-{
-    int x, y;
-    int sm=size-1;
-
-    for(y = 0;y < size; y++)
-		for(x = 0; x < size; x++) {
-
-	      // Access current normalmap grid point
-	      CVector3D* N = &normals[y*size+x];
-
-	      // Compute normal by using the height differential
-		  u16 h1=(x==sm) ? heightmap[y*size+x] : heightmap[y*size+x+1];
-		  u16 h2=(y==sm) ? heightmap[y*size+x] : heightmap[(y+1)*size+x];
-		  u16 h3=(x==0) ? heightmap[y*size+x] : heightmap[y*size+x-1];
-		  u16 h4=(y==0) ? heightmap[y*size+x] : heightmap[(y-1)*size+x+1];
-          N->X = (h3-h1)*HEIGHT_SCALE;
-          N->Y = CELL_SIZE;
-          N->Z = (h4-h2)*HEIGHT_SCALE;
-
-	      // Normalize it
-		  float len=N->GetLength();
-		  if (len>0) {
-			  (*N)*=1.0f/len;
-		  } else {
-			  *N=CVector3D(0,0,0);
-		  }
+	
+	// build indices for the shadow map pass
+	for (int j=0;j<PATCH_SIZE;j++) {
+		for (int i=0;i<PATCH_SIZE;i++) {
+			m_ShadowMapIndices.push_back(((j+0)*vsize+(i+0))+base);
+			m_ShadowMapIndices.push_back(((j+0)*vsize+(i+1))+base);
+			m_ShadowMapIndices.push_back(((j+1)*vsize+(i+1))+base);
+			m_ShadowMapIndices.push_back(((j+1)*vsize+(i+0))+base);
+		}
 	}
 }
 
+
 void CPatchRData::BuildVertices()
 {
+	CVector3D normal;
+	RGBColor c;
+
 	// number of vertices in each direction in each patch
 	int vsize=PATCH_SIZE+1;
 	
@@ -378,37 +373,25 @@ void CPatchRData::BuildVertices()
 	u32 mapSize=terrain->GetVerticesPerSide();
 
 	// build vertices
-	for (int j=0; j<vsize; j++)
-	{
-		for (int i=0; i<vsize; i++)
-		{
-			int ix=px*16+i;
-			int iz=pz*16+j;
-
-			CVector3D pos,normal;
-			terrain->CalcPosition(ix,iz,pos);			
-			terrain->CalcNormal(ix,iz,normal);
-			
-			RGBColor c;
-			g_Renderer.m_SHCoeffsTerrain.Evaluate(normal,c);
-
+	for (int j=0;j<vsize;j++) {
+		for (int i=0;i<vsize;i++) {
+			int ix=px*PATCH_SIZE+i;
+			int iz=pz*PATCH_SIZE+j;
 			int v=(j*vsize)+i;
+
+			terrain->CalcPosition(ix,iz,vertices[v].m_Position);			
+			terrain->CalcNormal(ix,iz,normal);
+			g_Renderer.m_SHCoeffsTerrain.Evaluate(normal,c);
+			vertices[v].m_Color=ConvertColor(c);
 			vertices[v].m_UVs[0]=i*0.125f;
 			vertices[v].m_UVs[1]=j*0.125f;
-			vertices[v].m_Color=ConvertColor(c);
-			vertices[v].m_Position=pos;							
 		}
 	}
 	
-	if (g_Renderer.m_Caps.m_VBO) {
-		if (!m_VBBase) {
-			glGenBuffersARB(1,(GLuint*) &m_VBBase);
-			glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_VBBase);
-			glBufferDataARB(GL_ARRAY_BUFFER_ARB,vsize*vsize*sizeof(SBaseVertex),0,GL_STATIC_DRAW_ARB);
-		} 
-		glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_VBBase);
-		glBufferSubDataARB(GL_ARRAY_BUFFER_ARB,0,vsize*vsize*sizeof(SBaseVertex),m_Vertices);
+	if (!m_VBBase) {
+		m_VBBase=g_VBMan.Allocate(sizeof(SBaseVertex),vsize*vsize,false);
 	} 
+	m_VBBase->m_Owner->UpdateChunkVertices(m_VBBase,m_Vertices);
 }
 
 void CPatchRData::Build()
@@ -436,13 +419,7 @@ void CPatchRData::RenderBase()
 {
 	assert(m_UpdateFlags==0);
 
-	u8* base;
-	if (g_Renderer.m_Caps.m_VBO) {
-		glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_VBBase);
-		base=0;
-	} else {
-		base=(u8*) &m_Vertices[0];
-	}
+	u8* base=m_VBBase->m_Owner->Bind();
 
 	// setup data pointers
 	u32 stride=sizeof(SBaseVertex);
@@ -465,13 +442,7 @@ void CPatchRData::RenderStreams(u32 streamflags)
 {
 	assert(m_UpdateFlags==0);
 
-	u8* base;
-	if (g_Renderer.m_Caps.m_VBO) {
-		glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_VBBase);
-		base=0;
-	} else {
-		base=(u8*) &m_Vertices[0];
-	}
+	u8* base=m_VBBase->m_Owner->Bind();
 
 	// setup data pointers
 	glVertexPointer(3,GL_FLOAT,sizeof(SBaseVertex),base+offsetof(SBaseVertex,m_Position));
@@ -493,14 +464,7 @@ void CPatchRData::RenderBlends()
 
 	if (m_BlendVertices.size()==0) return;
 
-	u8* base;
-	if (g_Renderer.m_Caps.m_VBO) {
-		glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_VBBlends);
-		base=0;
-	} else {
-		base=(u8*) &m_BlendVertices[0];
-	}
-
+	u8* base=m_VBBlends->m_Owner->Bind();
 
 	// setup data pointers
 	u32 stride=sizeof(SBlendVertex);
@@ -527,6 +491,7 @@ void CPatchRData::RenderBlends()
 
 void CPatchRData::RenderOutline()
 {
+	// TODO, RC - fixme, only works for PATCH_SIZE = 16
 	const u16 EdgeIndices[PATCH_SIZE*4] = {
 		  1,   2,   3,   4,   5,   6,   7,   8,   9,  10,  11,  12,  13,  14,  15,  16,
 		 33,  50,  67,  84, 101, 118, 135, 152, 169, 186, 203, 220, 237, 254, 271, 288, 
@@ -534,13 +499,7 @@ void CPatchRData::RenderOutline()
 		255, 238, 221, 204, 187, 170, 153, 136, 119, 102,  85,  68,  51,  34,  17,   0
 	};
 
-	u8* base;
-	if (g_Renderer.m_Caps.m_VBO) {
-		glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_VBBase);
-		base=0;
-	} else {
-		base=(u8*) &m_Vertices[0];
-	}
+	u8* base=m_VBBase->m_Owner->Bind();
 
 	// setup data pointers
 	glVertexPointer(3,GL_FLOAT,sizeof(SBaseVertex),base+offsetof(SBaseVertex,m_Position));
@@ -551,3 +510,298 @@ void CPatchRData::RenderOutline()
 	g_Renderer.m_Stats.m_DrawCalls++;
 	g_Renderer.m_Stats.m_TerrainTris+=numIndices/2;
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+// SubmitBaseBatches: submit base batches for this patch to the vertex buffer
+void CPatchRData::SubmitBaseBatches()
+{
+	assert(m_VBBase);
+
+	for (uint i=0;i<m_Splats.size();i++) {
+		const SSplat& splat=m_Splats[i];
+		m_VBBase->m_Owner->AppendBatch(m_VBBase,splat.m_Texture,splat.m_IndexCount,&m_Indices[splat.m_IndexStart]);
+	}
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+// SubmitBlendBatches: submit next set of blend batches for this patch to the vertex buffer;
+// return true if all blends on this patch have been submitted, else false
+bool CPatchRData::SubmitBlendBatches()
+{
+	if (m_NextBlendSplat<m_BlendSplats.size()) {
+		for (uint i=m_NextBlendSplat;i<m_BlendSplats.size();i++) {
+			const SSplat& splat=m_BlendSplats[i];
+			m_VBBlends->m_Owner->AppendBatch(m_VBBlends,splat.m_Texture,splat.m_IndexCount,&m_BlendIndices[splat.m_IndexStart]);
+		}
+		return true;
+	}
+	return true;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+// RenderBaseSplats: render all base passes of all patches; assumes vertex, texture and color 
+// client states are enabled
+void CPatchRData::RenderBaseSplats()
+{
+	uint i;
+
+	// set up texture environment for base pass
+	glActiveTexture(GL_TEXTURE0);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_ZERO);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_ONE_MINUS_SRC_ALPHA);
+
+#if 1
+	// submit base batches for each patch to the vertex buffer
+	for (i=0;i<m_Patches.size();++i) {
+		CPatchRData* patchdata=(CPatchRData*) m_Patches[i]->GetRenderData();
+		patchdata->SubmitBaseBatches();
+	}
+
+	// render base passes for each patch
+	const std::list<CVertexBuffer*>& buffers=g_VBMan.GetBufferList();
+	std::list<CVertexBuffer*>::const_iterator iter;
+	for (iter=buffers.begin();iter!=buffers.end();++iter) {
+		CVertexBuffer* buffer=*iter;
+		
+		// any batches in this VB?
+		const std::vector<CVertexBuffer::Batch*>& batches=buffer->GetBatches();
+		if (batches.size()>0) {
+			u8* base=buffer->Bind();
+
+			// setup data pointers
+			u32 stride=sizeof(SBaseVertex);
+			glVertexPointer(3,GL_FLOAT,stride,base+offsetof(SBaseVertex,m_Position));
+			glColorPointer(4,GL_UNSIGNED_BYTE,stride,base+offsetof(SBaseVertex,m_Color));
+			glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SBaseVertex,m_UVs[0]));
+
+			// render each batch
+			for (i=0;i<batches.size();++i) {
+				const CVertexBuffer::Batch* batch=batches[i];
+				if (batch->m_IndexData.size()>0) {
+					g_Renderer.BindTexture(0,tex_id(batch->m_Texture));
+					for (uint j=0;j<batch->m_IndexData.size();j++) {
+						glDrawElements(GL_QUADS,batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);
+						g_Renderer.m_Stats.m_DrawCalls++;
+						g_Renderer.m_Stats.m_TerrainTris+=batch->m_IndexData[j].first/2;
+					}
+				}
+			}
+		}
+	}
+	// everything rendered; empty out batch lists
+	g_VBMan.ClearBatchIndices();
+#else 
+	for (i=0;i<m_Patches.size();++i) {
+		CPatchRData* patchdata=(CPatchRData*) m_Patches[i]->GetRenderData();
+		patchdata->RenderBase();
+	}
+#endif
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+// RenderBlendSplats: render all blend passes of all patches; assumes vertex, texture and color 
+// client states are enabled
+void CPatchRData::RenderBlendSplats()
+{
+	uint i;
+
+	// switch on second uv set
+	glClientActiveTexture(GL_TEXTURE1);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	glClientActiveTexture(GL_TEXTURE0);
+
+	// switch on the composite alpha map texture
+	g_Renderer.BindTexture(1,g_Renderer.m_CompositeAlphaMap);
+
+	// setup additional texenv required by blend pass
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_ONE_MINUS_SRC_ALPHA);
+
+	// switch on blending
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+
+	// no need to write to the depth buffer a second time
+	glDepthMask(0);
+
+#if 1
+	// submit blend batches for each patch to the vertex buffer
+	for (i=0;i<m_Patches.size();++i) {
+		CPatchRData* patchdata=(CPatchRData*) m_Patches[i]->GetRenderData();
+		patchdata->SetupBlendBatches();
+	}
+
+	bool finished=true;
+	do
+	{
+		for (i=0;i<m_Patches.size();++i) {
+			CPatchRData* patchdata=(CPatchRData*) m_Patches[i]->GetRenderData();
+			if (!patchdata->SubmitBlendBatches()) finished=false;
+		}
+	} while (!finished);
+
+	// render blend passes for each patch
+	const std::list<CVertexBuffer*>& buffers=g_VBMan.GetBufferList();
+	std::list<CVertexBuffer*>::const_iterator iter;
+	for (iter=buffers.begin();iter!=buffers.end();++iter) {
+		CVertexBuffer* buffer=*iter;
+		
+		// any batches in this VB?
+		const std::vector<CVertexBuffer::Batch*>& batches=buffer->GetBatches();
+		if (batches.size()>0) {
+			u8* base=buffer->Bind();
+
+			// setup data pointers
+			u32 stride=sizeof(SBlendVertex);
+			glVertexPointer(3,GL_FLOAT,stride,base+offsetof(SBlendVertex,m_Position));
+			glColorPointer(4,GL_UNSIGNED_BYTE,stride,base+offsetof(SBlendVertex,m_Color));
+			glClientActiveTexture(GL_TEXTURE0);
+			glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SBlendVertex,m_UVs[0]));
+		
+			glClientActiveTexture(GL_TEXTURE1);
+			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+			glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SBlendVertex,m_AlphaUVs[0]));
+
+			// render each batch
+			for (i=0;i<batches.size();++i) {
+				const CVertexBuffer::Batch* batch=batches[i];
+				if (batch->m_IndexData.size()>0) {
+					g_Renderer.BindTexture(0,tex_id(batch->m_Texture));
+					for (uint j=0;j<batch->m_IndexData.size();j++) {
+						glDrawElements(GL_QUADS,batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);
+						g_Renderer.m_Stats.m_DrawCalls++;
+						g_Renderer.m_Stats.m_TerrainTris+=batch->m_IndexData[j].first/2;
+					}
+				}
+			}
+		}
+	}
+	// everything rendered; empty out batch lists
+	g_VBMan.ClearBatchIndices();
+#else
+	// render blend passes for each patch
+	for (i=0;i<m_TerrainPatches.size();++i) {
+		CPatchRData* patchdata=(CPatchRData*) m_Patches[i]->GetRenderData();
+		patchdata->RenderBlends();
+	}
+#endif
+
+	// restore depth writes
+	glDepthMask(1);
+
+	// restore default state: switch off blending
+	glDisable(GL_BLEND);
+
+	// switch off texture unit 1, make unit 0 active texture
+	g_Renderer.BindTexture(1,0);
+	glActiveTexture(GL_TEXTURE0);
+	
+	// tidy up client states
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	glClientActiveTexture(GL_TEXTURE0_ARB);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+// Submit: submit a patch to render this frame
+void CPatchRData::Submit(CPatch* patch)
+{
+	CPatchRData* data=(CPatchRData*) patch->GetRenderData();
+	if (data==0) {
+		// no renderdata for patch, create it now
+		data=new CPatchRData(patch);
+		patch->SetRenderData(data);
+	} else {
+		data->Update();
+	}
+
+	m_Patches.push_back(patch);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+// ApplyShadowMap: apply given shadow map to all terrain patches; assume the texture matrix
+// has been correctly setup on unit 1 to handle the projection
+void CPatchRData::ApplyShadowMap(GLuint shadowmaphandle)
+{
+	uint i;
+
+//	glEnable(GL_ALPHA_TEST);
+//	glAlphaFunc(GL_GREATER,0.0f);
+
+	g_Renderer.BindTexture(0,shadowmaphandle);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+
+	glColor3f(1,1,1);
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_DST_COLOR,GL_ZERO);
+
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+#if 1
+	// submit base batches for each patch to the vertex buffer
+	for (i=0;i<m_Patches.size();++i) {
+		CPatchRData* patchdata=(CPatchRData*) m_Patches[i]->GetRenderData();
+		patchdata->m_VBBase->m_Owner->AppendBatch(patchdata->m_VBBase,0,patchdata->m_ShadowMapIndices.size(),
+							&patchdata->m_ShadowMapIndices[0]);
+	}
+
+	// render base passes for each patch
+	const std::list<CVertexBuffer*>& buffers=g_VBMan.GetBufferList();
+	std::list<CVertexBuffer*>::const_iterator iter;
+	for (iter=buffers.begin();iter!=buffers.end();++iter) {
+		CVertexBuffer* buffer=*iter;
+		
+		// any batches in this VB?
+		const std::vector<CVertexBuffer::Batch*>& batches=buffer->GetBatches();
+		if (batches.size()>0) {
+			u8* base=buffer->Bind();
+
+			// setup data pointers
+			u32 stride=sizeof(SBaseVertex);
+			glVertexPointer(3,GL_FLOAT,stride,base+offsetof(SBaseVertex,m_Position));
+			glColorPointer(4,GL_UNSIGNED_BYTE,stride,base+offsetof(SBaseVertex,m_Color));
+			glTexCoordPointer(3,GL_FLOAT,sizeof(SBaseVertex),base+offsetof(SBaseVertex,m_Position));
+
+			// render batch (can only be one per buffer, since all batches are flagged as using a null texture)
+			const CVertexBuffer::Batch* batch=batches[0];
+			for (uint j=0;j<batch->m_IndexData.size();j++) {
+				glDrawElements(GL_QUADS,batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);
+				g_Renderer.m_Stats.m_DrawCalls++;
+				g_Renderer.m_Stats.m_TerrainTris+=batch->m_IndexData[j].first/2;
+			}
+		}
+	}
+	// everything rendered; empty out batch lists
+	g_VBMan.ClearBatchIndices();
+#else 
+	for (uint i=0;i<m_Patches.size();++i) {
+		CPatchRData* patchdata=(CPatchRData*) m_Patches[i]->GetRenderData();;
+		patchdata->RenderStreams(STREAM_POS|STREAM_POSTOUV0);
+	}
+#endif
+
+	glDisable(GL_ALPHA_TEST);
+
+	glDisable(GL_BLEND);
+	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+} 

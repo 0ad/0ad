@@ -8,7 +8,12 @@
 #include "ModelRData.h"
 #include "Model.h"
 
+///////////////////////////////////////////////////////////////////
+// shared list of all submitted models this frame
+std::vector<CModel*> CModelRData::m_Models;
 
+///////////////////////////////////////////////////////////////////
+// CModelRData constructor
 CModelRData::CModelRData(CModel* model) 
 	: m_Model(model), m_Vertices(0), m_Normals(0), m_Indices(0), m_VB(0), m_Flags(0)
 {
@@ -17,13 +22,17 @@ CModelRData::CModelRData(CModel* model)
 	Build();
 }
 
+///////////////////////////////////////////////////////////////////
+// CModelRData destructor
 CModelRData::~CModelRData() 
 {
+	// clean up system copies of data
 	delete[] m_Indices;
 	delete[] m_Vertices;
 	delete[] m_Normals;
 	if (m_VB) {
-		glGenBuffersARB(1,(GLuint*) &m_VB);
+		// release vertex buffer chunks
+		g_VBMan.Release(m_VB);
 	}
 }
 
@@ -41,22 +50,27 @@ void CModelRData::Build()
 }
 
 void CModelRData::BuildIndices()
-{
+{	
 	CModelDef* mdef=m_Model->GetModelDef();
-
+	assert(mdef);
+	
+	// must have a valid vertex buffer by this point so we know where indices are supposed to start
+	assert(m_VB);
+	
 	// allocate indices if we haven't got any already
 	if (!m_Indices) {
 		m_Indices=new u16[mdef->GetNumFaces()*3];
 	}
 
 	// build indices
+	u32 base=m_VB->m_Index;
 	u32 indices=0;
 	SModelFace* faces=mdef->GetFaces();
 	for (int j=0; j<mdef->GetNumFaces(); j++) {
 		SModelFace& face=faces[j];
-		m_Indices[indices++]=face.m_Verts[0];
-		m_Indices[indices++]=face.m_Verts[1];
-		m_Indices[indices++]=face.m_Verts[2];
+		m_Indices[indices++]=face.m_Verts[0]+base;
+		m_Indices[indices++]=face.m_Verts[1]+base;
+		m_Indices[indices++]=face.m_Verts[2]+base;
 	}
 }
 
@@ -77,30 +91,46 @@ static SColor4ub ConvertColor(const RGBColor& src)
 	return result;
 }
 
-static CVector3D SkinPoint(const SModelVertex& vertex,const CMatrix3D* matrices)
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// SkinPoint: skin the vertex position using it's blend data and given bone matrices
+static void SkinPoint(const SModelVertex& vertex,const CMatrix3D* matrices,CVector3D& result)
 {
-	CVector3D result(0,0,0),tmp;
+	CVector3D tmp;
+	const SVertexBlend& blend=vertex.m_Blend;
 
-	for (u32 i=0;vertex.m_Blend.m_Bone[i]!=0xff && i<SVertexBlend::SIZE;i++) {
-		const CMatrix3D& m=matrices[vertex.m_Blend.m_Bone[i]];
+	// must have at least one valid bone if we're using SkinPoint
+	assert(blend.m_Bone[0]!=0xff);
+
+	const CMatrix3D& m=matrices[blend.m_Bone[0]];
+	m.Transform(vertex.m_Coords,result);
+	result*=blend.m_Weight[0];
+
+	for (u32 i=1;blend.m_Bone[i]!=0xff && i<SVertexBlend::SIZE;i++) {
+		const CMatrix3D& m=matrices[blend.m_Bone[i]];
 		m.Transform(vertex.m_Coords,tmp);
-		result+=tmp*vertex.m_Blend.m_Weight[i];
+		result+=tmp*blend.m_Weight[i];
 	}
-
-	return result;
 }
 
-static CVector3D SkinNormal(const SModelVertex& vertex,const CMatrix3D* invmatrices)
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// SkinPoint: skin the vertex normal using it's blend data and given bone matrices
+static void SkinNormal(const SModelVertex& vertex,const CMatrix3D* invmatrices,CVector3D& result)
 {
-	CVector3D result(0,0,0),tmp;
+	CVector3D tmp;
+	const SVertexBlend& blend=vertex.m_Blend;
 
-	for (u32 i=0;vertex.m_Blend.m_Bone[i]!=0xff && i<SVertexBlend::SIZE;i++) {
-		const CMatrix3D& m=invmatrices[vertex.m_Blend.m_Bone[i]];
+	// must have at least one valid bone if we're using SkinNormal
+	assert(blend.m_Bone[0]!=0xff);
+
+	const CMatrix3D& m=invmatrices[blend.m_Bone[0]];
+	m.RotateTransposed(vertex.m_Norm,result);
+	result*=blend.m_Weight[0];
+
+	for (u32 i=1;vertex.m_Blend.m_Bone[i]!=0xff && i<SVertexBlend::SIZE;i++) {
+		const CMatrix3D& m=invmatrices[blend.m_Bone[i]];
 		m.RotateTransposed(vertex.m_Norm,tmp);
-		result+=tmp*vertex.m_Blend.m_Weight[i];
+		result+=tmp*blend.m_Weight[i];
 	}
-
-	return result;
 }
 
 void CModelRData::BuildVertices()
@@ -116,18 +146,21 @@ void CModelRData::BuildVertices()
 	// build vertices
 	u32 numVertices=mdef->GetNumVertices();
 	SModelVertex* vertices=mdef->GetVertices();
-	if (m_Model->GetBoneMatrices()) {
+	const CMatrix3D* bonematrices=m_Model->GetBoneMatrices();
+	if (bonematrices) {
 		// boned model - calculate skinned vertex positions/normals
+		const CMatrix3D* invbonematrices=m_Model->GetInvBoneMatrices();
 		for (uint j=0; j<numVertices; j++) {
-			m_Vertices[j].m_Position=SkinPoint(vertices[j],m_Model->GetBoneMatrices());
-			m_Normals[j]=SkinNormal(vertices[j],m_Model->GetInvBoneMatrices());
+			SkinPoint(vertices[j],bonematrices,m_Vertices[j].m_Position);
+			SkinNormal(vertices[j],invbonematrices,m_Normals[j]);
 		}
 	} else {
 		// just copy regular positions, transform normals to world space
-		const CMatrix3D& trans=m_Model->GetInvTransform();
+		const CMatrix3D& transform=m_Model->GetTransform();
+		const CMatrix3D& invtransform=m_Model->GetInvTransform();
 		for (uint j=0; j<numVertices; j++) {
-			m_Vertices[j].m_Position=vertices[j].m_Coords;
-			m_Normals[j]=trans.RotateTransposed(vertices[j].m_Norm);
+			transform.Transform(vertices[j].m_Coords,m_Vertices[j].m_Position);
+			invtransform.RotateTransposed(vertices[j].m_Norm,m_Normals[j]);
 		}
 	}
 	
@@ -138,36 +171,21 @@ void CModelRData::BuildVertices()
 		g_Renderer.m_SHCoeffsUnits.Evaluate(m_Normals[j],m_Vertices[j].m_Color);
 	}
 
-	if (g_Renderer.m_Caps.m_VBO) {
-		if (!m_VB) {
-			glGenBuffersARB(1,(GLuint*) &m_VB);
-			glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_VB);
-			glBufferDataARB(GL_ARRAY_BUFFER_ARB,mdef->GetNumVertices()*sizeof(SVertex),0,mdef->GetNumBones() ? GL_DYNAMIC_DRAW_ARB : GL_STATIC_DRAW_ARB);
-		}
-		glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_VB);
-		glBufferSubDataARB(GL_ARRAY_BUFFER_ARB,0,mdef->GetNumVertices()*sizeof(SVertex),m_Vertices);
-	} 
+	// upload everything to vertex buffer - create one if necessary
+	if (!m_VB) {
+		m_VB=g_VBMan.Allocate(sizeof(SVertex),mdef->GetNumVertices(),mdef->GetNumBones() ? true : false);
+	}
+	m_VB->m_Owner->UpdateChunkVertices(m_VB,m_Vertices);
 }
 
 
-void CModelRData::RenderStreams(u32 streamflags,bool transparentPass)
+void CModelRData::RenderStreams(u32 streamflags)
 {	
-	// ignore transparent passes if this is a transparent object
-	if (!transparentPass && (m_Flags & MODELRDATA_FLAG_TRANSPARENT)) {
-		return;
-	}
-	
 	CModelDef* mdldef=(CModelDef*) m_Model->GetModelDef();
 	
 	if (streamflags & STREAM_UV0) g_Renderer.SetTexture(0,m_Model->GetTexture());
 
-	u8* base;
-	if (g_Renderer.m_Caps.m_VBO) {
-		glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_VB);
-		base=0;
-	} else {
-		base=(u8*) &m_Vertices[0];
-	}
+	u8* base=m_VB->m_Owner->Bind();
 
 	// set vertex pointers
 	u32 stride=sizeof(SVertex);
@@ -182,11 +200,7 @@ void CModelRData::RenderStreams(u32 streamflags,bool transparentPass)
 	
 	// bump stats
 	g_Renderer.m_Stats.m_DrawCalls++;
-	if (transparentPass) {
-		g_Renderer.m_Stats.m_TransparentTris+=numFaces;
-	} else {
-		g_Renderer.m_Stats.m_ModelTris+=numFaces;
-	}
+	g_Renderer.m_Stats.m_ModelTris+=numFaces;
 }
 
 
@@ -251,13 +265,98 @@ float CModelRData::BackToFrontIndexSort(CMatrix3D& objToCam)
 	u32 indices=0;
 	for (i=0;i<numFaces;i++) {
 		SModelFace& face=faces[IndexSorter[i].first];
-		m_Indices[indices++]=face.m_Verts[0];
-		m_Indices[indices++]=face.m_Verts[1];
-		m_Indices[indices++]=face.m_Verts[2];
+		m_Indices[indices++]=face.m_Verts[0]+m_VB->m_Index;
+		m_Indices[indices++]=face.m_Verts[1]+m_VB->m_Index;
+		m_Indices[indices++]=face.m_Verts[2]+m_VB->m_Index;
 	}
 
 	// clear list for next call
 	IndexSorter.clear();
 
 	return mindist;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+// SubmitBatches: submit batches for this model to the vertex buffer
+void CModelRData::SubmitBatches()
+{
+	assert(m_VB);
+	m_VB->m_Owner->AppendBatch(m_VB,m_Model->GetTexture()->GetHandle(),m_Model->GetModelDef()->GetNumFaces()*3,m_Indices);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+// RenderModels: render all submitted models; assumes necessary client states already enabled,
+// and texture environment already setup as required
+void CModelRData::RenderModels(u32 streamflags)
+{
+	uint i;
+#if 1
+	// submit batches for each model to the vertex buffer
+	for (i=0;i<m_Models.size();++i) {
+		CModelRData* modeldata=(CModelRData*) m_Models[i]->GetRenderData();
+		modeldata->SubmitBatches();
+	}
+
+	// step through all accumulated batches
+	const std::list<CVertexBuffer*>& buffers=g_VBMan.GetBufferList();
+	std::list<CVertexBuffer*>::const_iterator iter;
+	for (iter=buffers.begin();iter!=buffers.end();++iter) {
+		CVertexBuffer* buffer=*iter;
+		
+		// any batches in this VB?
+		const std::vector<CVertexBuffer::Batch*>& batches=buffer->GetBatches();
+		if (batches.size()>0) {
+			u8* base=buffer->Bind();
+
+			// setup data pointers
+			u32 stride=sizeof(SVertex);
+			glVertexPointer(3,GL_FLOAT,stride,base+offsetof(SVertex,m_Position));
+			if (streamflags & STREAM_COLOR) glColorPointer(3,GL_FLOAT,stride,base+offsetof(SVertex,m_Color));
+			if (streamflags & STREAM_UV0) glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SVertex,m_UVs[0]));
+
+			// render each batch
+			for (i=0;i<batches.size();++i) {
+				const CVertexBuffer::Batch* batch=batches[i];
+				if (batch->m_IndexData.size()>0) {
+					if (streamflags & STREAM_UV0) g_Renderer.BindTexture(0,tex_id(batch->m_Texture));
+					for (uint j=0;j<batch->m_IndexData.size();j++) {
+						glDrawElements(GL_TRIANGLES,batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);
+						g_Renderer.m_Stats.m_DrawCalls++;
+						g_Renderer.m_Stats.m_ModelTris+=batch->m_IndexData[j].first/2;
+					}
+				}
+			}
+		}
+	}
+	// everything rendered; empty out batch lists
+	g_VBMan.ClearBatchIndices();
+#else 
+	for (i=0;i<m_Models.size();++i) {
+		CModelRData* modeldata=(CModelRData*) m_Models[i]->GetRenderData();
+		modeldata->RenderStreams(streamflags);
+	}
+#endif
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+// Submit: submit a model to render this frame
+void CModelRData::Submit(CModel* model)
+{
+	CModelRData* data=(CModelRData*) model->GetRenderData();
+	if (data==0) {
+		// no renderdata for model, create it now
+		data=new CModelRData(model);
+		model->SetRenderData(data);
+	} else {
+		data->Update();
+	}
+
+	if (data->GetFlags() & MODELRDATA_FLAG_TRANSPARENT) {
+		// add this mode to the transparency renderer for later processing - calculate
+		// transform matrix
+		g_TransparencyRenderer.Add(model);
+	} else {
+		// add to regular model list
+		m_Models.push_back(model);
+	}
 }

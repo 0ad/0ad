@@ -6,7 +6,7 @@
 // Contact:		rich@wildfiregames.com
 //
 // Description: OpenGL renderer class; a higher level interface
-//	on top of OpenGL to handle rendering the basic visual games 
+//	on top of OpenGL to handle rendering the basic visual games
 //	types - terrain, models, sprites, particles etc
 //
 ///////////////////////////////////////////////////////////////////////////////
@@ -25,6 +25,7 @@
 #include "PatchRData.h"
 #include "Texture.h"
 #include "LightEnv.h"
+#include "CLogger.h"
 
 #include "Model.h"
 #include "ModelDef.h"
@@ -33,36 +34,32 @@
 #include "res/mem.h"
 #include "res/tex.h"
 
-#ifdef _WIN32
-#include "pbuffer.h"
-#endif
-
 struct TGAHeader {
 	// header stuff
-	unsigned char  iif_size;            
-	unsigned char  cmap_type;           
-	unsigned char  image_type;          
+	unsigned char  iif_size;
+	unsigned char  cmap_type;
+	unsigned char  image_type;
 	unsigned char  pad[5];
 
 	// origin : unused
 	unsigned short d_x_origin;
 	unsigned short d_y_origin;
-	
+
 	// dimensions
 	unsigned short width;
 	unsigned short height;
 
 	// bits per pixel : 16, 24 or 32
-	unsigned char  bpp;          
+	unsigned char  bpp;
 
 	// image descriptor : Bits 3-0: size of alpha channel
 	//					  Bit 4: must be 0 (reserved)
 	//					  Bit 5: should be 0 (origin)
 	//					  Bits 6-7: should be 0 (interleaving)
-   unsigned char image_descriptor;    
+   unsigned char image_descriptor;
 };
 
-static bool saveTGA(const char* filename,int width,int height,unsigned char* data) 
+static bool saveTGA(const char* filename,int width,int height,int bpp,unsigned char* data)
 {
 	FILE* fp=fopen(filename,"wb");
 	if (!fp) return false;
@@ -77,16 +74,16 @@ static bool saveTGA(const char* filename,int width,int height,unsigned char* dat
 	header.d_y_origin=0;
 	header.width=width;
 	header.height=height;
-	header.bpp=24;
-	header.image_descriptor=0;
+	header.bpp=bpp;
+	header.image_descriptor=(bpp==32) ? 8 : 0;
 
 	if (fwrite(&header,sizeof(TGAHeader),1,fp)!=1) {
 		fclose(fp);
 		return false;
 	}
 
-	// write data 
-	if (fwrite(data,width*height*3,1,fp)!=1) {
+	// write data
+	if (fwrite(data,width*height*bpp/8,1,fp)!=1) {
 		fclose(fp);
 		return false;
 	}
@@ -96,10 +93,10 @@ static bool saveTGA(const char* filename,int width,int height,unsigned char* dat
 	return true;
 }
 
-extern CTerrain g_Terrain;
 
-
-CRenderer::CRenderer ()
+///////////////////////////////////////////////////////////////////////////////////
+// CRenderer destructor
+CRenderer::CRenderer()
 {
 	m_Width=0;
 	m_Height=0;
@@ -109,25 +106,30 @@ CRenderer::CRenderer ()
 	m_ModelRenderMode=SOLID;
 	m_ClearColor[0]=m_ClearColor[1]=m_ClearColor[2]=m_ClearColor[3]=0;
 	m_ShadowMap=0;
+
 	m_Options.m_NoVBO=false;
-	m_Options.m_NoPBuffer=false;
 	m_Options.m_Shadows=true;
-	m_Options.m_ShadowColor=RGBColor(0.4f,0.4f,0.4f);
+	m_Options.m_ShadowColor=RGBAColor(0.4f,0.4f,0.4f,1.0f);
+
+	for (uint i=0;i<MaxTextureUnits;i++) {
+		m_ActiveTextures[i]=0;
+	}
 }
 
-CRenderer::~CRenderer ()
+///////////////////////////////////////////////////////////////////////////////////
+// CRenderer destructor
+CRenderer::~CRenderer()
 {
 }
 
 
-///////////////////////////////////////////////////////////////////////////////////	
+///////////////////////////////////////////////////////////////////////////////////
 // EnumCaps: build card cap bits
 void CRenderer::EnumCaps()
 {
 	// assume support for nothing
 	m_Caps.m_VBO=false;
 	m_Caps.m_TextureBorderClamp=false;
-	m_Caps.m_PBuffer=false;
 	m_Caps.m_GenerateMipmaps=false;
 
 	// now start querying extensions
@@ -141,13 +143,6 @@ void CRenderer::EnumCaps()
 	}
 	if (oglExtAvail("GL_SGIS_generate_mipmap")) {
 		m_Caps.m_GenerateMipmaps=true;
-	}
-	
-	if (!m_Options.m_NoPBuffer) {
-		extern bool PBufferQuery();
-		if (PBufferQuery()) {
-			m_Caps.m_PBuffer=true;
-		}
 	}
 }
 
@@ -167,17 +162,18 @@ bool CRenderer::Open(int width, int height, int depth)
 	glCullFace(GL_BACK);
 	glFrontFace(GL_CCW);
 	glEnable(GL_CULL_FACE);
-	glClearColor(0.0f,0.0f,0.0f,0.0f);
 
 	// query card capabilities
 	EnumCaps();
 
-#ifdef _WIN32
-	if (m_Caps.m_PBuffer) {
-		// TODO, RC - query max pbuffer size
-		PBufferInit(1024,1024,0,32,16,0);
-	}
-#endif
+	GLint bits;
+	glGetIntegerv(GL_DEPTH_BITS,&bits);
+	CLogger::GetInstance()->Log(NORMAL,"CRenderer::Open: depth bits %d",bits);
+	glGetIntegerv(GL_STENCIL_BITS,&bits);
+	CLogger::GetInstance()->Log(NORMAL,"CRenderer::Open: stencil bits %d",bits);
+	glGetIntegerv(GL_ALPHA_BITS,&bits);
+	CLogger::GetInstance()->Log(NORMAL,"CRenderer::Open: alpha bits %d",bits);
+
 	return true;
 }
 
@@ -188,24 +184,21 @@ void CRenderer::Close()
 // resize renderer view
 void CRenderer::Resize(int width,int height)
 {
-	m_Width = width;
-	m_Height = height;
-	if (m_ShadowMap) {
+	if (m_ShadowMap && (width>m_Width || height>m_Height)) {
 		glDeleteTextures(1,(GLuint*) &m_ShadowMap);
 		m_ShadowMap=0;
 	}
+	m_Width=width;
+	m_Height=height;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-// SetOptionBool: set boolean renderer option 
+// SetOptionBool: set boolean renderer option
 void CRenderer::SetOptionBool(enum Option opt,bool value)
 {
 	switch (opt) {
 		case OPT_NOVBO:
 			m_Options.m_NoVBO=value;
-			break;
-		case OPT_NOPBUFFER:
-			m_Options.m_NoPBuffer=value;
 			break;
 		case OPT_SHADOWS:
 			m_Options.m_Shadows=value;
@@ -214,24 +207,22 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-// GetOptionBool: get boolean renderer option 
+// GetOptionBool: get boolean renderer option
 bool CRenderer::GetOptionBool(enum Option opt) const
 {
 	switch (opt) {
 		case OPT_NOVBO:
 			return m_Options.m_NoVBO;
-		case OPT_NOPBUFFER:
-			return m_Options.m_NoPBuffer;
 		case OPT_SHADOWS:
 			return m_Options.m_Shadows;
 	}
-	
+
 	return false;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-// SetOptionColor: set color renderer option 
-void CRenderer::SetOptionColor(enum Option opt,const RGBColor& value)
+// SetOptionColor: set color renderer option
+void CRenderer::SetOptionColor(enum Option opt,const RGBAColor& value)
 {
 	switch (opt) {
 		case OPT_SHADOWCOLOR:
@@ -241,10 +232,10 @@ void CRenderer::SetOptionColor(enum Option opt,const RGBColor& value)
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-// GetOptionColor: get color renderer option 
-const RGBColor& CRenderer::GetOptionColor(enum Option opt) const
+// GetOptionColor: get color renderer option
+const RGBAColor& CRenderer::GetOptionColor(enum Option opt) const
 {
-	static const RGBColor defaultColor(1.0f,1.0f,1.0f);
+	static const RGBAColor defaultColor(1.0f,1.0f,1.0f,1.0f);
 
 	switch (opt) {
 		case OPT_SHADOWCOLOR:
@@ -275,17 +266,18 @@ void CRenderer::BeginFrame()
 		m_SHCoeffsTerrain.AddDirectionalLight(dirlight,m_LightEnv->m_SunColor);
 
 		m_SHCoeffsUnits.AddAmbientLight(m_LightEnv->m_UnitsAmbientColor);
-		m_SHCoeffsTerrain.AddAmbientLight(m_LightEnv->m_TerrainAmbientColor);		
+		m_SHCoeffsTerrain.AddAmbientLight(m_LightEnv->m_TerrainAmbientColor);
 	}
 
 	// init per frame stuff
 	m_ShadowRendered=false;
+	m_ShadowBound.SetEmpty();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // SetClearColor: set color used to clear screen in BeginFrame()
 void CRenderer::SetClearColor(u32 color)
-{ 
+{
 	m_ClearColor[0]=float(color & 0xff)/255.0f;
 	m_ClearColor[1]=float((color>>8) & 0xff)/255.0f;
 	m_ClearColor[2]=float((color>>16) & 0xff)/255.0f;
@@ -334,7 +326,7 @@ void CRenderer::BuildTransformation(const CVector3D& pos,const CVector3D& right,
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// ConstructLightTransform: build transformation matrix for light at given position casting in 
+// ConstructLightTransform: build transformation matrix for light at given position casting in
 // given direction
 void CRenderer::ConstructLightTransform(const CVector3D& pos,const CVector3D& dir,CMatrix3D& result)
 {
@@ -354,15 +346,14 @@ void CRenderer::ConstructLightTransform(const CVector3D& pos,const CVector3D& di
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// CalcShadowMatrices: calculate required matrices for shadow map generation - the light's 
+// CalcShadowMatrices: calculate required matrices for shadow map generation - the light's
 // projection and transformation matrices
 void CRenderer::CalcShadowMatrices()
 {
 	int i;
 
 	// get bounds of shadow casting objects
-	CBound bounds;
-	CalcShadowBounds(bounds);
+	const CBound& bounds=m_ShadowBound;
 
 	// get centre of bounds
 	CVector3D centre;
@@ -376,8 +367,8 @@ void CRenderer::CalcShadowMatrices()
 	CVector3D lightpos=centre-(lightdir*1000);
 
 	// make light transformation matrix
-	ConstructLightTransform(lightpos,lightdir,m_LightTransform);	
-	
+	ConstructLightTransform(lightpos,lightdir,m_LightTransform);
+
 	// transform shadow bounds to light space, calculate near and far bounds
 	CVector3D vp[8];
 	m_LightTransform.Transform(CVector3D(bounds[0].X,bounds[0].Y,bounds[0].Z),vp[0]);
@@ -409,7 +400,7 @@ void CRenderer::CalcShadowMatrices()
 
 	// shift near and far clip planes slightly to avoid artifacts with points
 	// exactly on the clip planes
-	znear-=0.01f;
+	znear=(znear<m_Camera.GetNearPlane()+0.01f) ? m_Camera.GetNearPlane() : znear-0.01f;
 	zfar+=0.01f;
 
 	m_LightProjection.SetZero();
@@ -418,7 +409,7 @@ void CRenderer::CalcShadowMatrices()
 	m_LightProjection._33=2/(zfar-znear);
 	m_LightProjection._14=-(right+left)/(right-left);
 	m_LightProjection._24=-(top+bottom)/(top-bottom);
-	m_LightProjection._34=-(zfar+znear)/(zfar-znear);	
+	m_LightProjection._34=-(zfar+znear)/(zfar-znear);
 	m_LightProjection._44=1;
 
 #if 0
@@ -433,7 +424,7 @@ void CRenderer::CalcShadowMatrices()
 	for (i=0;i<8;i++) {
 		m_LightTransform.Transform(frustumPts[i],vp[i]);
 	}
-	
+
 	float left1=vp[0].X;
 	float right1=vp[0].X;
 	float top1=vp[0].Y;
@@ -463,7 +454,7 @@ void CRenderer::CalcShadowMatrices()
 	// experimental stuff, do not use ..
 	// TODO, RC - desperately need to improve resolution here if we're using shadow maps; investigate
 	// feasibility of PSMs
-	
+
 	// transform light space bounds to image space - TODO, RC: safe to just use 3d transform here?
 	CVector4D vph[8];
 	for (i=0;i<8;i++) {
@@ -489,7 +480,7 @@ void CRenderer::CalcShadowMatrices()
 		}
 	}
 
-	// now we want to rotate the camera such that the longest axis lies the diagonal at 45 degrees - 
+	// now we want to rotate the camera such that the longest axis lies the diagonal at 45 degrees -
 	// get angle between points
 	float angle=atan2(vph[p0][1]-vph[p1][1],vph[p0][0]-vph[p1][0]);
 	float rotation=-angle;
@@ -504,7 +495,7 @@ void CRenderer::CalcShadowMatrices()
 	CVector3D up(m_LightTransform._21,m_LightTransform._22,m_LightTransform._23);
 	up=m.Rotate(up);
 	up.Normalize();		// TODO, RC - required??
-	
+
 	// rebuild right vector
 	CVector3D rightvec;
 	rightvec=lightdir.Cross(up);
@@ -551,50 +542,32 @@ void CRenderer::CalcShadowMatrices()
 	m_LightProjection._33=2/(zfar-znear);
 	m_LightProjection._14=-(right+left)/(right-left);
 	m_LightProjection._24=-(top+bottom)/(top-bottom);
-	m_LightProjection._34=-(zfar+znear)/(zfar-znear);	
+	m_LightProjection._34=-(zfar+znear)/(zfar-znear);
 	m_LightProjection._44=1;
 #endif
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// CalcShadowBounds: calculate the bounding box encompassing all visible shadow casting
-// objects
-void CRenderer::CalcShadowBounds(CBound& bounds)
-{
-	bounds.SetEmpty();
-
-	for (uint i=0;i<m_Models.size();++i) {
-		CModel* model=m_Models[i];
-		bounds+=model->GetBounds();
-	}
-}
-
 void CRenderer::CreateShadowMap()
 {
-	// get shadow map size as next power of two down from minimum of view width and height
-	if (!m_Caps.m_PBuffer) {
-		m_ShadowMapSize=m_Width<m_Height ? m_Width : m_Height;
-		m_ShadowMapSize=RoundUpToPowerOf2(m_ShadowMapSize);
-		m_ShadowMapSize>>=1;
-	} else {
-		m_ShadowMapSize=PBufferWidth();
-	}
+	// get shadow map size as next power of two up from view width and height
+	m_ShadowMapWidth=m_Width;
+	m_ShadowMapWidth=RoundUpToPowerOf2(m_ShadowMapWidth);
+	m_ShadowMapHeight=m_Height;
+	m_ShadowMapHeight=RoundUpToPowerOf2(m_ShadowMapHeight);
 
-	// create texture object
+	// create texture object - initially filled with white, so clamp to edge clamps to correct color
 	glGenTextures(1,(GLuint*) &m_ShadowMap);
 	BindTexture(0,(GLuint) m_ShadowMap);
-	glTexImage2D(GL_TEXTURE_2D,0,m_Depth==16 ? GL_RGBA4 : GL_RGBA8,m_ShadowMapSize,m_ShadowMapSize,0,GL_RGBA,GL_UNSIGNED_BYTE,0);
+
+	u32 size=m_ShadowMapWidth*m_ShadowMapHeight;
+	u32* buf=new u32[size];
+	for (uint i=0;i<size;i++) buf[i]=0x00ffffff;
+	glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA8,m_ShadowMapWidth,m_ShadowMapHeight,0,GL_RGBA,GL_UNSIGNED_BYTE,buf);
+	delete[] buf;
 
 	// set texture parameters
-	if (m_Caps.m_TextureBorderClamp) {
-		const float borderColour[4]={1,1,1,0};
-		glTexParameterfv(GL_TEXTURE_2D,GL_TEXTURE_BORDER_COLOR,borderColour);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-	} else {
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	}
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
 }
@@ -604,19 +577,15 @@ void CRenderer::RenderShadowMap()
 	// create shadow map if we haven't already got one
 	if (!m_ShadowMap) CreateShadowMap();
 
-	if (m_Caps.m_PBuffer) {
-		PBufferMakeCurrent();
-	}
-
 	// clear buffers
-	glClearColor(1,1,1,1);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(1,1,1,0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 	// build required matrices
 	CalcShadowMatrices();
 
 	// setup viewport
-	glViewport(0,0,m_ShadowMapSize,m_ShadowMapSize);
+	glViewport(0,0,m_Width,m_Height);
 
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
@@ -628,11 +597,10 @@ void CRenderer::RenderShadowMap()
 
 	if (0)
 	{
-		// debug aid - render actual bounds of shadow casting objects; helps see where 
+		// debug aid - render actual bounds of shadow casting objects; helps see where
 		// the lights projection/transform can be optimised
 		glColor3f(1.0,0.0,0.0);
-		CBound bounds;
-		CalcShadowBounds(bounds);
+		const CBound& bounds=m_ShadowBound;
 
 		glBegin(GL_LINE_LOOP);
 		glVertex3f(bounds[0].X,bounds[0].Y,bounds[0].Z);
@@ -666,37 +634,38 @@ void CRenderer::RenderShadowMap()
 	// setup client states
 	glEnableClientState(GL_VERTEX_ARRAY);
 
-	if (!m_Caps.m_TextureBorderClamp) {
-		glEnable(GL_SCISSOR_TEST);
-		glScissor(1,1,m_ShadowMapSize-2,m_ShadowMapSize-2);
-	}
+	glEnable(GL_SCISSOR_TEST);
+	glScissor(1,1,m_Width-2,m_Height-2);
 
+	glActiveTexture(GL_TEXTURE0);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PRIMARY_COLOR_ARB);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_ONE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PRIMARY_COLOR_ARB);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 
-	glColor3fv(&m_Options.m_ShadowColor.X);
+	glColor4fv(m_Options.m_ShadowColor);
+
+	glDisable(GL_CULL_FACE);
 
 	// render models
-	RenderModelsStreams(STREAM_POS);
+	CModelRData::RenderModels(STREAM_POS);
 
 	// call on the transparency renderer to render all the transparent stuff
 	g_TransparencyRenderer.RenderShadows();
 
+	glEnable(GL_CULL_FACE);
+
 	glColor3f(1.0f,1.0f,1.0f);
 
-	if (!m_Caps.m_TextureBorderClamp) {
-		glDisable(GL_SCISSOR_TEST);
-	}
+	glDisable(GL_SCISSOR_TEST);
 	glDisableClientState(GL_VERTEX_ARRAY);
 
 	// copy result into shadow map texture
 	BindTexture(0,m_ShadowMap);
-	glCopyTexSubImage2D(GL_TEXTURE_2D,0,0,0,0,0,m_ShadowMapSize,m_ShadowMapSize);
+	glCopyTexSubImage2D(GL_TEXTURE_2D,0,0,0,0,0,m_Width,m_Height);
 
 	// restore matrix stack
 	glPopMatrix();
@@ -705,52 +674,35 @@ void CRenderer::RenderShadowMap()
 	glMatrixMode(GL_MODELVIEW);
 
 	if (0)
-	{	
+	{
+#if 1
 		// debug aid - dump generated shadow map to file; helps verify shadow map
-		// space being well used (no guarantee this'll work on pbuffer - may have a single buffered one)
-		unsigned char* data=new unsigned char[m_ShadowMapSize*m_ShadowMapSize*3];
-		glReadBuffer(GL_BACK);
-		glReadPixels(0,0,m_ShadowMapSize,m_ShadowMapSize,GL_BGR_EXT,GL_UNSIGNED_BYTE,data);	
-		saveTGA("d:\\test.tga",m_ShadowMapSize,m_ShadowMapSize,data);
+		// space being well used (not that it is at the minute .. (TODO, RC))
+		unsigned char* data=new unsigned char[m_ShadowMapWidth*m_ShadowMapHeight*3];
+		glGetTexImage(GL_TEXTURE_2D,0,GL_BGR_EXT,GL_UNSIGNED_BYTE,data);
+		saveTGA("d:\\test4.tga",m_ShadowMapWidth,m_ShadowMapHeight,24,data);
 		delete[] data;
+#else
+		unsigned char* data=new unsigned char[m_Width*m_Height*4];
+		glReadBuffer(GL_BACK);
+		glReadPixels(0,0,m_Width,m_Height,GL_BGRA_EXT,GL_UNSIGNED_BYTE,data);
+		saveTGA("d:\\test3.tga",m_Width,m_Height,32,data);
+		delete[] data;
+#endif
 	}
-	
-	if (m_Caps.m_PBuffer) {
-		PBufferMakeUncurrent();
-	}
-
-	// restore viewport
-	const SViewPort& vp=m_Camera.GetViewPort();
-	glViewport(vp.m_X, vp.m_Y, vp.m_Width, vp.m_Height);
 }
 
 void CRenderer::ApplyShadowMap()
 {
-	BindTexture(0,m_ShadowMap);
-
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_ONE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-	
-	glColor3f(1,1,1);
-
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_DST_COLOR,GL_ZERO);
-
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
 	CMatrix3D tmp2;
 	CMatrix3D texturematrix;
 
-	texturematrix.SetTranslation(0.5f,0.5f,0.5f);				// transform (-0.5, 0.5) to (0,1) - texture space
-	tmp2.SetScaling(0.5f,0.5f,0.5f);						// scale (-1,1) to (-0.5,0.5)
+	float dx=0.5f*float(m_Width)/float(m_ShadowMapWidth);
+	float dy=0.5f*float(m_Height)/float(m_ShadowMapHeight);
+	texturematrix.SetTranslation(dx,dy,0);				// transform (-0.5, 0.5) to (0,1) - texture space
+	tmp2.SetScaling(dx,dy,0);						// scale (-1,1) to (-0.5,0.5)
 	texturematrix=texturematrix*tmp2;
-	
+
 	texturematrix=texturematrix*m_LightProjection;						// transform light -> projected light space (-1 to 1)
 	texturematrix=texturematrix*m_LightTransform;						// transform world -> light space
 
@@ -758,19 +710,11 @@ void CRenderer::ApplyShadowMap()
 	glLoadMatrixf(&texturematrix._11);
 	glMatrixMode(GL_MODELVIEW);
 
-	for (uint i=0;i<m_TerrainPatches.size();++i) {
-		CPatch* patch=m_TerrainPatches[i];
-		CPatchRData* patchdata=(CPatchRData*) patch->GetRenderData();
-		patchdata->RenderStreams(STREAM_POS|STREAM_POSTOUV0);
-	}
+	CPatchRData::ApplyShadowMap(m_ShadowMap);
 
 	glMatrixMode(GL_TEXTURE);
 	glLoadIdentity();
 	glMatrixMode(GL_MODELVIEW);
-
-	glDisable(GL_BLEND);
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);	
 }
 
 void CRenderer::RenderPatches()
@@ -778,25 +722,27 @@ void CRenderer::RenderPatches()
 	// switch on wireframe if we need it
 	if (m_TerrainRenderMode==WIREFRAME) {
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
-	} 
+	}
 
 	// render all the patches, including blend pass
 	RenderPatchSubmissions();
-	
+
 	if (m_TerrainRenderMode==WIREFRAME) {
 		// switch wireframe off again
 		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 	} else if (m_TerrainRenderMode==EDGED_FACES) {
+/*
+		// TODO, RC - fix this
 		// edged faces: need to make a second pass over the data:
 		// first switch on wireframe
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
-		
+
 		// setup some renderstate ..
 		glDepthMask(0);
 		SetTexture(0,0);
 		glColor4f(1,1,1,0.35f);
 		glLineWidth(2.0f);
-		
+
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 
@@ -815,8 +761,8 @@ void CRenderer::RenderPatches()
 		// set color for outline
 		glColor3f(0,0,1);
 		glLineWidth(4.0f);
-	
-		// render outline of each patch 
+
+		// render outline of each patch
 		for (i=0;i<m_TerrainPatches.size();++i) {
 			CPatch* patch=m_TerrainPatches[i];
 			CPatchRData* patchdata=(CPatchRData*) patch->GetRenderData();
@@ -832,58 +778,38 @@ void CRenderer::RenderPatches()
 
 		// restore fill mode, and we're done
 		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+*/
 	}
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////
-// RenderModelsStreams: recurse down given model rendering given streams on each model						   
-void CRenderer::RenderModelsStreams(u32 streamflags)
-{
-	glMatrixMode(GL_MODELVIEW);
-
-	for (uint i=0;i<m_Models.size();++i) {
-		CModel* model=m_Models[i];
-		// push transform onto stack
-		glPushMatrix();
-		glMultMatrixf(&model->GetTransform()._11);	
-
-		// render this model
-		CModelRData* modeldata=(CModelRData*) model->GetRenderData();
-		modeldata->RenderStreams(streamflags);
-
-		// pop transform off stack
-		glPopMatrix();
-	}
-}
 
 void CRenderer::RenderModelSubmissions()
 {
-	// setup texture environment to modulate diffuse color with texture color
+	// set up texture environment for base pass - modulate texture and primary color
+	glActiveTexture(GL_TEXTURE0);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
-
-	// just pass through texture's alpha
+	// pass one through as alpha; transparent textures handled specially by CTransparencyRenderer
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_ONE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 
 	// setup client states
-	glClientActiveTexture(GL_TEXTURE0);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_COLOR_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
 	// render models
-	RenderModelsStreams(STREAM_POS|STREAM_COLOR|STREAM_UV0);
+	CModelRData::RenderModels(STREAM_POS|STREAM_COLOR|STREAM_UV0);
 
 	// switch off client states
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	glDisableClientState(GL_COLOR_ARRAY);
+	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 void CRenderer::RenderModels()
@@ -891,11 +817,11 @@ void CRenderer::RenderModels()
 	// switch on wireframe if we need it
 	if (m_ModelRenderMode==WIREFRAME) {
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
-	} 
+	}
 
 	// render all the models
 	RenderModelSubmissions();
-	
+
 	if (m_ModelRenderMode==WIREFRAME) {
 		// switch wireframe off again
 		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
@@ -903,13 +829,13 @@ void CRenderer::RenderModels()
 		// edged faces: need to make a second pass over the data:
 		// first switch on wireframe
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
-		
+
 		// setup some renderstate ..
 		glDepthMask(0);
 		SetTexture(0,0);
 		glColor4f(1,1,1,0.75f);
 		glLineWidth(1.0f);
-	
+
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 
@@ -917,7 +843,7 @@ void CRenderer::RenderModels()
 		glEnableClientState(GL_VERTEX_ARRAY);
 
 		// render each model
-		RenderModelsStreams(STREAM_POS);
+		CModelRData::RenderModels(STREAM_POS);
 
 		// .. and switch off the client states
 		glDisableClientState(GL_VERTEX_ARRAY);
@@ -935,7 +861,7 @@ void CRenderer::RenderModels()
 // SortModelsByTexture: sorting class used for batching models with identical textures
 struct SortModelsByTexture {
 	typedef CModel* SortObj;
-	
+
 	bool operator()(const SortObj& lhs,const SortObj& rhs) {
 		return lhs->GetTexture()<rhs->GetTexture() ? true : false;
 	}
@@ -944,83 +870,81 @@ struct SortModelsByTexture {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // FlushFrame: force rendering of any batched objects
 void CRenderer::FlushFrame()
-{	
-	// update renderdata of everything submitted
-	UpdateSubmittedObjectData();
-
+{
 	// sort all the models by texture
-	std::sort(m_Models.begin(),m_Models.end(),SortModelsByTexture());
+//	std::sort(m_Models.begin(),m_Models.end(),SortModelsByTexture());
 
 	// sort all the transparent stuff
 	g_TransparencyRenderer.Sort();
 
 	if (!m_ShadowRendered) {
-		if (m_Models.size()>0 && m_Options.m_Shadows) RenderShadowMap();
-		m_ShadowRendered=true;
+		if (m_Options.m_Shadows) RenderShadowMap();
 		// clear buffers
 		glClearColor(m_ClearColor[0],m_ClearColor[1],m_ClearColor[2],m_ClearColor[3]);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	}
 
 	// render submitted patches and models
 	RenderPatches();
-	if (m_Models.size()>0) {
-		if (m_Options.m_Shadows) ApplyShadowMap();
-		RenderModels();
-		// call on the transparency renderer to render all the transparent stuff
-		g_TransparencyRenderer.Render();
-	}
-	
+	RenderModels();
+	if (m_Options.m_Shadows && !m_ShadowRendered) ApplyShadowMap();
+	m_ShadowRendered=true;
+
+	// call on the transparency renderer to render all the transparent stuff
+	g_TransparencyRenderer.Render();
+
 	// empty lists
 	g_TransparencyRenderer.Clear();
-	m_TerrainPatches.clear();
-	m_Models.clear();
+	CPatchRData::ClearSubmissions();
+	CModelRData::ClearSubmissions();
 }
 
-// signal frame end : implicitly flushes batched objects 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// EndFrame: signal frame end; implicitly flushes batched objects
 void CRenderer::EndFrame()
 {
 	FlushFrame();
 	g_Renderer.SetTexture(0,0);
+
+	static bool once=false;
+	if (!once && glGetError()) {
+		CLogger::GetInstance()->Log(ERROR,"CRenderer::EndFrame: GL errors occurred\n");
+		once=true;
+	}
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// SetCamera: setup projection and transform of camera and adjust viewport to current view
 void CRenderer::SetCamera(CCamera& camera)
 {
 	CMatrix3D view;
 	camera.m_Orientation.GetInverse(view);
-	CMatrix3D proj = camera.GetProjection();
-
-	float gl_view[16] = {view._11, view._21, view._31, view._41,
-						 view._12, view._22, view._32, view._42,
-						 view._13, view._23, view._33, view._43,
-						 view._14, view._24, view._34, view._44};
-
-	float gl_proj[16] = {proj._11, proj._21, proj._31, proj._41,
-						 proj._12, proj._22, proj._32, proj._42,
-						 proj._13, proj._23, proj._33, proj._43,
-						 proj._14, proj._24, proj._34, proj._44};
-
+	const CMatrix3D& proj=camera.GetProjection();
 
 	glMatrixMode(GL_PROJECTION);
-	glLoadMatrixf(gl_proj);
+	glLoadMatrixf(&proj._11);
 
 	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixf(gl_view);
+	glLoadMatrixf(&view._11);
 
-	const SViewPort& vp = camera.GetViewPort();
-	glViewport (vp.m_X, vp.m_Y, vp.m_Width, vp.m_Height);
+	const SViewPort& vp=camera.GetViewPort();
+	glViewport(vp.m_X,vp.m_Y,vp.m_Width,vp.m_Height);
 
 	m_Camera=camera;
 }
 
 void CRenderer::Submit(CPatch* patch)
 {
-	m_TerrainPatches.push_back(patch);
+	CPatchRData::Submit(patch);
 }
 
 void CRenderer::Submit(CModel* model)
 {
-	m_Models.push_back(model);
+	if (1 /*ThisModelCastsShadows*/) {
+		m_ShadowBound+=model->GetBounds();
+	}
+
+	CModelRData::Submit(model);
 }
 
 void CRenderer::Submit(CSprite* sprite)
@@ -1037,82 +961,19 @@ void CRenderer::Submit(COverlay* overlay)
 
 void CRenderer::RenderPatchSubmissions()
 {
-	uint i;
-
-	// set up client states for base pass
-	glClientActiveTexture(GL_TEXTURE0);
+	// switch on required client states 
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_COLOR_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
-	// set up texture environment for base pass
-	glActiveTexture(GL_TEXTURE0);
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
-
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_ZERO);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_ONE_MINUS_SRC_ALPHA);
-
-	// render base passes for each patch
-	for (i=0;i<m_TerrainPatches.size();++i) {
-		CPatch* patch=m_TerrainPatches[i];
-		CPatchRData* patchdata=(CPatchRData*) patch->GetRenderData();
-		patchdata->RenderBase();
-	}
-
-	// switch on the composite alpha map texture
-	BindTexture(1,m_CompositeAlphaMap);
-
-	// setup additional texenv required by blend pass
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_ONE_MINUS_SRC_ALPHA);
-
-	// switch on blending
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
-
-	// no need to write to the depth buffer a second time
-	glDepthMask(0);
-
-	glClientActiveTexture(GL_TEXTURE1);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
-	// render blend passes for each patch
-	for (i=0;i<m_TerrainPatches.size();++i) {
-		CPatch* patch=m_TerrainPatches[i];
-		CPatchRData* patchdata=(CPatchRData*) patch->GetRenderData();
-		patchdata->RenderBlends();
-	}
-
-	glClientActiveTexture(GL_TEXTURE1);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-
-	// restore depth writes
-	glDepthMask(1);
-
-	// restore default state: switch off blending
-	glDisable(GL_BLEND);
-
-	// switch off texture unit 1, make unit 0 active texture
-	glActiveTexture(GL_TEXTURE1);
-	glDisable(GL_TEXTURE_2D);
-	glActiveTexture(GL_TEXTURE0);
+	
+	// render everything 
+	CPatchRData::RenderBaseSplats();
+	CPatchRData::RenderBlendSplats();
 
 	// switch off all client states
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
-	glClientActiveTexture(GL_TEXTURE0);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	glDisableClientState(GL_COLOR_ARRAY);
+	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 
@@ -1123,45 +984,71 @@ bool CRenderer::LoadTexture(CTexture* texture,u32 wrapflags)
 {
 	Handle h=texture->GetHandle();
 	if (h) {
-		// already tried to load this texture, nothing to do here - just return success according 
+		// already tried to load this texture, nothing to do here - just return success according
 		// to whether this is a valid handle or not
 		return h==0xfffffff ? true : false;
 	} else {
 		h=tex_load(texture->GetName());
 		if (!h) {
+			CLogger::GetInstance()->Log(ERROR,"LoadTexture failed on \"%s\"",(const char*) texture->GetName());
 			texture->SetHandle(0xffffffff);
 			return false;
 		} else {
-			tex_upload(h);
+			int tw,th;
+			tex_info(h, &tw, &th, NULL, NULL, NULL);
 
-			BindTexture(0,tex_id(h));
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+			tw&=(tw-1);
+			th&=(th-1);
+			if (tw || th) {
+				texture->SetHandle(0xffffffff);
+				CLogger::GetInstance()->Log(ERROR,"LoadTexture failed on \"%s\" : not a power of 2 texture",(const char*) texture->GetName());
+				return false;
+			} else {
+				BindTexture(0,tex_id(h));
+				tex_upload(h,GL_LINEAR_MIPMAP_LINEAR);
 
-			if (wrapflags) {
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrapflags);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrapflags);
+				if (wrapflags) {
+					glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrapflags);
+					glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrapflags);
+				} else {
+					glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+					glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+				}
+				texture->SetHandle(h);
+				return true;
 			}
-
-			texture->SetHandle(h);
-			return true;
 		}
 	}
 }
 
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// BindTexture: bind a GL texture object to given unit
+// BindTexture: bind a GL texture object to current active unit
 void CRenderer::BindTexture(int unit,GLuint tex)
 {
+#if 0
 	glActiveTexture(GL_TEXTURE0+unit);
-//	if (tex==m_ActiveTextures[unit]) return;
-	
+	if (tex==m_ActiveTextures[unit]) return;
+
 	if (tex) {
-		glEnable(GL_TEXTURE_2D);	
+		glBindTexture(GL_TEXTURE_2D,tex);
+		if (!m_ActiveTextures[unit]) {
+			glEnable(GL_TEXTURE_2D);
+		}
+	} else if (m_ActiveTextures[unit]) {
+		glDisable(GL_TEXTURE_2D);
+	}
+	m_ActiveTextures[unit]=tex;
+#endif
+
+	glActiveTexture(GL_TEXTURE0+unit);
+
+	glBindTexture(GL_TEXTURE_2D,tex);
+	if (tex) {
+		glEnable(GL_TEXTURE_2D);
 	} else {
 		glDisable(GL_TEXTURE_2D);
 	}
-	glBindTexture(GL_TEXTURE_2D,tex);
 	m_ActiveTextures[unit]=tex;
 }
 
@@ -1183,13 +1070,13 @@ void CRenderer::SetTexture(int unit,CTexture* texture)
 bool CRenderer::IsTextureTransparent(CTexture* texture)
 {
 	if (!texture) return false;
-	
+
 	Handle h=texture->GetHandle();
 	if (h<=0) return false;
-		
+
 	int fmt;
 	int bpp;
-	
+
 	tex_info(h, NULL, NULL, &fmt, &bpp, NULL);
 	if (bpp==24 || fmt == GL_COMPRESSED_RGB_S3TC_DXT1_EXT) {
 		return false;
@@ -1208,17 +1095,15 @@ inline void CopyTriple(unsigned char* dst,const unsigned char* src)
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// LoadAlphaMaps: load the 14 default alpha maps, pack them into one composite texture and 
+// LoadAlphaMaps: load the 14 default alpha maps, pack them into one composite texture and
 // calculate the coordinate of each alphamap within this packed texture .. need to add
 // validation that all maps are the same size
 bool CRenderer::LoadAlphaMaps(const char* fnames[])
 {
-	glActiveTexture(GL_TEXTURE0_ARB);
-	
 	Handle textures[NumAlphaMaps];
 
 	int i;
-		
+
 	for (i=0;i<NumAlphaMaps;i++) {
 		textures[i]=tex_load(fnames[i]);
 		if (textures[i] <= 0) {
@@ -1227,28 +1112,28 @@ bool CRenderer::LoadAlphaMaps(const char* fnames[])
 	}
 
 	int base;
-	
+
 	i=tex_info(textures[0], &base, NULL, NULL, NULL, NULL);
-	
+
 	int size=(base+4)*NumAlphaMaps;
 	int texsize=RoundUpToPowerOf2(size);
 
 	unsigned char* data=new unsigned char[texsize*base*3];
-	
+
 	// for each tile on row
 	for (i=0;i<NumAlphaMaps;i++) {
 
 		int bpp;
 		// get src of copy
 		const u8* src;
-		
+
 		tex_info(textures[i], NULL, NULL, NULL, &bpp, (void **)&src);
-		
+
 		int srcstep=bpp/8;
 
 		// get destination of copy
 		u8* dst=data+3*(i*(base+4));
-		
+
 		// for each row of image
 		for (int j=0;j<base;j++) {
 			// duplicate first pixel
@@ -1291,61 +1176,4 @@ bool CRenderer::LoadAlphaMaps(const char* fnames[])
 	delete[] data;
 
 	return true;
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-// BuildTransparentPasses: add deferred passes from given model to the transparency renderer
-void CRenderer::BuildTransparentPasses(CModel* model)
-{
-	CModelRData* data=(CModelRData*) model->GetRenderData();
-	assert(data);
-	if (data->GetFlags() & MODELRDATA_FLAG_TRANSPARENT) {
-		// add this mode to the transparency renderer for later processing - calculate 
-		// transform matrix
-		g_TransparencyRenderer.Add(model);
-	}
-}
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-// UpdateModelDataRecursive: recurse down given model building renderdata for it
-// and all it's children
-void CRenderer::UpdateModelDataRecursive(CModel* model)
-{
-	CModelRData* data=(CModelRData*) model->GetRenderData();
-	if (data==0) {
-		// no renderdata for model, create it now
-		data=new CModelRData(model);
-		model->SetRenderData(data);
-	} else {
-		data->Update();
-	}
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-// UpdateSubmittedObjectData: ensure all submitted objects have renderdata and that it is up to date 
-// - call once before doing anything with any objects
-void CRenderer::UpdateSubmittedObjectData()
-{
-	uint i;
-
-	// ensure all patches have up to date renderdata built for them
-	for (i=0;i<m_TerrainPatches.size();++i) {
-		CPatch* patch=m_TerrainPatches[i];
-		CPatchRData* data=(CPatchRData*) patch->GetRenderData();
-		if (data==0) {
-			// no renderdata for patch, create it now
-			data=new CPatchRData(patch);
-			patch->SetRenderData(data);
-		} else {
-			data->Update();
-		}
-	}
-
-	// ensure all models have up to date renderdata built for them
-	for (i=0;i<m_Models.size();++i) {
-		UpdateModelDataRecursive(m_Models[i]);
-		// (recursively) build transparent passes from model
-		BuildTransparentPasses(m_Models[i]);
-	}
 }
