@@ -1,4 +1,4 @@
-Workspace settings:
+Workspace settings for VC7.1 (2003) with Intel compiler 7.1:
 ________________________________________________________________________________
 
 Compiler settings:
@@ -19,9 +19,13 @@ put the DLL in bin in your system dir, or in the game's dir;
 add its include dir to the compiler's include path
 ________________________________________________________________________________
 
-Files to leave out, as they aren't necessary ATM, and require compiler support:
-- debug* (requires dbghelp, included with vc7)
-- memcpy.cpp (requires VC6 processor pack)
+ZLib 
+  
+download from http://www.stud.uni-karlsruhe.de/~urkt/zlib.zip ; 
+put the DLL in the game's dir, and the headers/lib in the appropriate compiler 
+dirs. 
+Note: another version of ZLib will probably do, but best to use this one, to 
+avoid conflicts (v1.1.4.8751).
 ________________________________________________________________________________
 
 NB: earlier steps that are now unnecessary:
