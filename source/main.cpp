@@ -378,21 +378,6 @@ static int handler(const SDL_Event* ev)
 		break;
 	case SDL_MOUSEBUTTONDOWN:
 		c = ev->button.button;
-{
-Handle hs = snd_open("audio/nike.wav");
-if(c==SDL_BUTTON_MIDDLE)
-{
-	int ms = 30;
-	usleep(ms*1000);
-}
-else if(c==SDL_BUTTON_RIGHT)
-{
-	int ms = rand()%32;
-	usleep(ms*1000);
-}
-snd_play(hs);
-}
-
 		if( c < 5 )
 			mouseButtons[c] = true;
 		else
