@@ -273,6 +273,8 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 
 		CStr eventName (CStr(propName.substr(2)).LowerCase());
 		e->m_ScriptHandlers[eventName] = func;
+
+		return JS_TRUE;
 	}
 
 	// Retrieve the setting's type (and make sure it actually exists)
