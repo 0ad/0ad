@@ -90,6 +90,7 @@ void CLogger::WriteMessage(const char *message)
 
 void CLogger::WriteError(const char *message)
 {
+	debug_out("ERROR: %s\n", message);
 	m_NumberOfErrors++;
 	m_MainLog << "<P class=\"error\">ERROR: "<< message << "</P>\n";
 	m_MainLog.flush();
