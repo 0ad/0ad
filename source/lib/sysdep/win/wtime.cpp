@@ -43,17 +43,40 @@ WIN_REGISTER_FUNC(wtime_shutdown);
 #pragma data_seg()
 
 
+// see http://www.gamedev.net/reference/programming/features/timing/ .
+
+// rationale:
 // we no longer use TGT, due to issues on Win9x; GTC is just as good.
 // (don't want to accelerate the tick rate, because performance will suffer).
 // avoid dependency on WinMM (event timer) to shorten startup time;
 // fmod pulls it in, but it's delay-loaded.
+//
+// we go to the trouble of allowing switching time sources at runtime
+// (=> have to be careful to keep the timer continuous) because we want
+// to allow overriding the implementation choice via command line switch,
+// in case a time source turns out to have a serious problem.
 
 
-// ticks per second; average of last few values measured in calibrate()
-static double hrt_freq = -1.0;
+// initial measurement of the time source's tick rate. not necessarily
+// correct (e.g. when using TSC; cpu_freq isn't exact).
+static i64 hrt_nominal_freq = -1;
 
-// used to rebase the hrt tick values to 0
-static i64 hrt_origin = 0;
+// current ticks per second; average of last few values measured in
+// calibrate(). needed to prevent long-term drift, and because
+// hrt_nominal_freq isn't necessarily correct. only affects the ticks since
+// last calibration - don't want to retroactively change the time.
+static double hrt_cur_freq = -1.0;
+
+// ticks at init or last calibration.
+// ticks since then are scaled by 1/hrt_cur_freq and added to hrt_cal_time
+// to yield the current time.
+static i64 hrt_cal_ticks = 0;
+
+// value of hrt_time() at last calibration. needed so that changes to
+// hrt_cur_freq don't affect the previous ticks (example: 72 ticks elapsed,
+// nominal freq = 8 => time = 9.0. if freq is calculated as 9, time would
+// go backwards to 8.0).
+static double hrt_cal_time = 0.0;
 
 
 // possible high resolution timers, in order of preference.
@@ -101,7 +124,7 @@ static HRTOverride overrides[HRT_NUM_IMPLS];
 	// HACK: no init needed - static data is zeroed (= HRT_DEFAULT)
 cassert(HRT_DEFAULT == 0);
 
-static i64 hrt_nominal_freq = -1;
+
 
 
 #define lock() win_lock(HRT_CS)
@@ -234,21 +257,18 @@ static int choose_impl()
 }
 
 
-// return ticks since first call. lock must be held.
+// return ticks (unspecified start time). lock must be held.
 //
 // split to allow calling from reset_impl_lk without recursive locking.
 // (not a problem, but avoids a BoundsChecker warning)
 static i64 ticks_lk()
 {
-	i64 t;
-
 	switch(hrt_impl)
 	{
 // TSC
 #if defined(_M_IX86) && !defined(NO_TSC)
 	case HRT_TSC:
-		t = rdtsc();
-		break;
+		return rdtsc();
 #endif
 
 // QPC
@@ -256,29 +276,41 @@ static i64 ticks_lk()
 	case HRT_QPC:
 		LARGE_INTEGER i;
 		QueryPerformanceCounter(&i);
-		t = i.QuadPart;
-		break;
+		return i.QuadPart;
 #endif
 
 // TGT
 #ifdef _WIN32
 	case HRT_GTC:
-		t = (i64)GetTickCount();
-		break;
+		return (i64)GetTickCount();
 #endif
 
 	// add further timers here.
 
 	default:
-		debug_warn("hrt_ticks: invalid impl");
+		debug_warn("ticks_lk: invalid impl");
 		// fall through
 
 	case HRT_NONE:
-		t = 0;
+		return 0;
 	}	// switch(impl)
-
-	return t - hrt_origin;
 }
+
+
+// return seconds since first call. lock must be held.
+//
+// split to allow calling from calibrate without recursive locking.
+// (not a problem, but avoids a BoundsChecker warning)
+static double time_lk()
+{
+	// elapsed ticks and time since last calibration
+	const i64 delta_ticks = ticks_lk() - hrt_cal_ticks;
+	const double delta_time = delta_ticks / hrt_cur_freq;
+
+	return hrt_cal_time + delta_time;
+}
+
+
 
 
 // this module is dependent upon detect (supplies system information needed to
@@ -289,11 +321,11 @@ static i64 ticks_lk()
 // we first use a safe timer, and choose again after client code calls
 // hrt_override_impl when system information is available.
 // the timer will work without this call, but it won't use certain
-// implementations. we do it this way, instead of polling every hrt_ticks,
-// because a timer implementation change causes hrt_ticks to jump.
+// implementations. we do it this way, instead of polling on each timer use,
+// because a timer implementation change may cause the timer to jump a bit.
 
 
-// choose a HRT implementation. lock must be held.
+// choose a HRT implementation and prepare it for use. lock must be held.
 //
 // don't want to saddle timer module with the problem of initializing
 // us on first call - it wouldn't otherwise need to be thread-safe.
@@ -301,37 +333,35 @@ static int reset_impl_lk()
 {
 	HRTImpl old_impl = hrt_impl;
 	double old_time = 0.0;
+		// if first time: starts the timer at 0
 
-	// if not first time: want to reset tick origin
-	if(hrt_nominal_freq > 0)
-		old_time = ticks_lk() / hrt_freq;
-			// don't call hrt_time to avoid recursive lock.
+	// in case we are going to switch implementation below:
+	// get current time before switching impl, so we can continue from that time on.
+	// not first call => hrt_cur_freq is valid => time_lk works
+	if(hrt_cur_freq > 0.0)
+		old_time = time_lk();
 
 	CHECK_ERR(choose_impl());
 	assert(hrt_impl != HRT_NONE && hrt_nominal_freq > 0);
 
-	hrt_freq = (double)hrt_nominal_freq;
-
-	// if impl has changed, re-base tick counter.
-	// want it 0-based, but it must not go backwards WRT previous reading.
+	// impl has changed; reset timer state.
 	if(old_impl != hrt_impl)
 	{
-		// have to clear hrt_origin before it's used by ticks_lk.
-		// thanks to Andre Loker for reporting this bug.
-		hrt_origin = 0;
-
-		hrt_origin = ticks_lk() - (i64)(old_time * hrt_freq);
+		hrt_cur_freq = (double)hrt_nominal_freq;
+		hrt_cal_time = old_time;
+		hrt_cal_ticks = ticks_lk();
 	}
 
 	return 0;
 }
 
 
-// return ticks since first call.
+// return ticks (unspecified start point)
 static i64 hrt_ticks()
 {
+	i64 t;
 lock();
-	i64 t = ticks_lk();
+	t = ticks_lk();
 unlock();
 	return t;
 }
@@ -340,22 +370,22 @@ unlock();
 // return seconds since first call.
 static double hrt_time()
 {
-	// don't implement with hrt_ticks - hrt_freq may
-	// change, invalidating ticks_lk.
+	double t;
 lock();
-	double t = ticks_lk() / hrt_freq;
+	t = time_lk();
 unlock();
 	return t;
 }
 
 
 // return seconds between start and end timestamps (returned by hrt_ticks).
-// negative if end comes before start.
+// negative if end comes before start. not intended to be called for long
+// intervals (start -> end), since the current frequency is used!
 static double hrt_delta_s(i64 start, i64 end)
 {
 	// paranoia: reading double may not be atomic.
 lock();
-	double freq = hrt_freq;
+	double freq = hrt_cur_freq;
 unlock();
 
 	assert(freq != -1.0 && "hrt_delta_s called before hrt_ticks");
@@ -413,8 +443,10 @@ unlock();
 //////////////////////////////////////////////////////////////////////////////
 
 
-// 'safe' millisecond timer, used to measure HRT freq
-static long ms_time()
+// 'safe' timer, used to measure HRT freq in calibrate()
+static const long safe_timer_freq = 1000;
+
+static long safe_time()
 {
 #ifdef _WIN32
 	return (long)GetTickCount();
@@ -424,51 +456,53 @@ static long ms_time()
 }
 
 
-static void calibrate()
+// measure current HRT freq - prevents long-term drift; also useful because
+// hrt_nominal_freq isn't necessarily exact.
+//
+// lock must be held.
+static void calibrate_lk()
 {
-lock();
+	// we're called from a WinMM event or after thread wakeup,
+	// so the timer has just been updated.
+	// no need to determine tick / compensate.
+
+	// get elapsed HRT ticks
+	const i64 hrt_cur = ticks_lk();
+	const i64 hrt_d = hrt_cur - hrt_cal_ticks;
+	hrt_cal_ticks = hrt_cur;
+
+	hrt_cal_time += hrt_d / hrt_cur_freq;
+
+	// get elapsed time from safe millisecond timer
+	static long safe_last = LONG_MAX;
+		// chosen so that dt and therefore hrt_est_freq will be negative
+		// on first call => it won't be added to buffer
+	const long safe_cur = safe_time();
+	const double dt = (safe_cur - safe_last) / safe_timer_freq;
+	safe_last = safe_cur;
+
+	double hrt_est_freq = hrt_d / dt;
 
 	// past couple of calculated hrt freqs, for averaging
 	typedef RingBuf<double, 8> SampleBuf;
 	static SampleBuf samples;
 
-	const i64 hrt_cur = ticks_lk();
-	const long ms_cur = ms_time();
-
-	// get elapsed times since last call
-	static long ms_cal_time;
-	static i64 hrt_cal_time;
-	double hrt_ds = (hrt_cur - hrt_cal_time) / hrt_freq;
-	double ms_ds = (ms_cur - ms_cal_time) / 1e3;
-	hrt_cal_time = hrt_cur;
-	ms_cal_time = ms_cur;
-
-//	// we're called from a WinMM event, so the timer has just been updated.
-//	// no need to determine tick / compensate.
-//	double dt = ms_ds;	// actual elapsed time since last calibration
-//	double hrt_err = ms_ds - hrt_ds;
-//	double hrt_abs_err = fabs(hrt_err);
-//	double hrt_rel_err = hrt_abs_err / ms_ds;
-
-	double hrt_est_freq = hrt_ds / ms_ds;
-	// only add to buffer if within 10% of nominal
-	// (don't want to pollute buffer with flukes / incorrect results)
 	if(fabs(hrt_est_freq / hrt_nominal_freq - 1.0) < 0.10)
+		// only add to buffer if within 10% of nominal
+		// (don't want to pollute buffer with flukes / incorrect results)
 	{
 		samples.push_back(hrt_est_freq);
 
 		// average all samples in buffer
 		double freq_sum = std::accumulate(samples.begin(), samples.end(), 0.0);
-		hrt_freq = freq_sum / (int)samples.size();
+		hrt_cur_freq = freq_sum / (int)samples.size();
 	}
 	else
 	{
 		samples.clear();
 
-		hrt_freq = (double)hrt_nominal_freq;
+		hrt_cur_freq = (double)hrt_nominal_freq;
 	}
-
-unlock();
 }
 
 
@@ -493,7 +527,9 @@ static unsigned __stdcall calibration_thread(void* data)
 		if(WaitForSingleObject(hExitEvent, 1000) != WAIT_TIMEOUT)
 			break;
 
-		calibrate();
+		lock();
+		calibrate_lk();
+		unlock();
 	}
 
 	return 0;
@@ -511,7 +547,7 @@ static inline int init_calibration_thread()
 static inline int shutdown_calibration_thread()
 {
 	SetEvent(hExitEvent);
-	if(WaitForSingleObject(hThread, 250) != WAIT_OBJECT_0)
+	if(WaitForSingleObject(hThread, 100) != WAIT_OBJECT_0)
 		TerminateThread(hThread, 0);
 	CloseHandle(hThread);
 	CloseHandle(hExitEvent);
@@ -531,6 +567,7 @@ lock();
 unlock();
 	return err;
 }
+
 
 static int hrt_shutdown()
 {
@@ -573,17 +610,17 @@ static i64 st_time_ns()
 static i64 hrt_time_ns()
 {
 	// use as starting value, because HRT origin is unspecified
-	static i64 hrt_start;
+	static double hrt_start_time;
 	static i64 st_start;
 
 	if(!st_start)
 	{
-		hrt_start = hrt_ticks();
+		hrt_start_time = hrt_time();
 		st_start = st_time_ns();
 	}
 
-	const double delta_s = hrt_delta_s(hrt_start, hrt_ticks());
-	const i64 ns = st_start + (i64)(delta_s * _1e9);
+	const double dt = hrt_time() - hrt_start_time;
+	const i64 ns = st_start + (i64)(dt * _1e9);
 	return ns;
 }
 
