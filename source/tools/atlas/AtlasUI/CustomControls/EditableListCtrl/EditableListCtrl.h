@@ -16,6 +16,7 @@ class EditableListCtrl : public wxListCtrl, public IAtlasSerialiser
 	friend class DeleteCommand;
 	friend class DragCommand;
 	friend class ImportCommand;
+	friend class PasteCommand;
 
 public:
 	EditableListCtrl(wxWindow *parent,
@@ -28,6 +29,7 @@ public:
 
 	~EditableListCtrl();
 
+	void OnKeyDown(wxKeyEvent& event);
 	void OnMouseEvent(wxMouseEvent& event);
 
 	void MakeSizeAtLeast(int n);

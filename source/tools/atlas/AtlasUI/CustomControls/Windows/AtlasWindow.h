@@ -14,8 +14,34 @@ class AtlasWindow : public wxFrame, public IAtlasSerialiser
 	DECLARE_CLASS(AtlasWindow);
 
 public:
-	AtlasWindow(wxWindow* parent, const wxString& title, const wxSize& size);
 
+	enum
+	{
+		ID_Quit = 1,
+		ID_New,
+		//	ID_Import,
+		//	ID_Export,
+		ID_Open,
+		ID_Save,
+		ID_SaveAs,
+
+		// IDs for custom window-specific menu items
+		ID_Custom1,
+		ID_Custom2,
+		ID_Custom3
+	};
+
+	// See ActorEditor.cpp for example usage
+	struct CustomMenu {
+		const wxChar* title;
+		struct CustomMenuItem {
+			const wxChar* name;
+		}** items;
+	};
+
+	AtlasWindow(wxWindow* parent, const wxString& title, const wxSize& size, CustomMenu* menu = NULL);
+
+private:
 	void OnNew(wxCommandEvent& event);
 //	void OnImport(wxCommandEvent& event);
 //	void OnExport(wxCommandEvent& event);

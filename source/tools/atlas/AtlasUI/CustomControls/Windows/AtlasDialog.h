@@ -16,6 +16,7 @@ public:
 	AtlasDialog(wxWindow* parent, const wxString& title);
 	virtual ~AtlasDialog() {}
 
+private:
 	void OnUndo(wxCommandEvent& event);
 	void OnRedo(wxCommandEvent& event);
 

@@ -13,6 +13,9 @@ const int verticalPadding = 2;
 // changes, and compare the focus-recipient to every control inside the group,
 // to tell whether focus is leaving.
 //
+// (This solution doesn't work very well, and I'd like to find a better
+// way of doing it...)
+//
 // So, create some unexciting classes:
 
 class FileCtrl_TextCtrl : public wxTextCtrl
@@ -86,14 +89,30 @@ public:
 		long style, const wxString& rootDir, const wxString& fileMask)
 	: FileCtrl_Button(parent, wxID_ANY, _("&Browse..."), pos, size, style),
 		m_RootDir(rootDir), m_FileMask(fileMask)
-	{}
+	{
+	}
 
 	void OnPress(wxCommandEvent& WXUNUSED(event))
 	{
 		QuickFileCtrl* parent = wxDynamicCast(GetParent(), QuickFileCtrl);
 		wxASSERT(parent);
 
-		wxFileDialog dlg(this, _("Choose a file"), m_RootDir, wxEmptyString, m_FileMask, wxOPEN);
+		wxString defaultDir, defaultFile;
+
+		wxFileName oldFilename (parent->m_TextCtrl->GetValue()); // TODO: use wxPATH_UNIX?
+		if (oldFilename.IsOk())
+		{
+			oldFilename.MakeAbsolute(m_RootDir);
+			defaultDir = oldFilename.GetPath();
+			defaultFile = oldFilename.GetFullName();
+		}
+		else
+		{
+			defaultDir = *parent->m_RememberedDir;
+			defaultFile = wxEmptyString;
+		}
+
+		wxFileDialog dlg(this, _("Choose a file"), defaultDir, defaultFile, m_FileMask, wxOPEN);
 
 		parent->m_DisableKillFocus = true;
 		int ret = dlg.ShowModal();
@@ -103,6 +122,8 @@ public:
 			return;
 
 		wxFileName filename (dlg.GetPath());
+		*parent->m_RememberedDir = filename.GetPath();
+
 		filename.MakeRelativeTo(m_RootDir);
 		wxString filenameRel (filename.GetFullPath(wxPATH_UNIX));
 
@@ -123,11 +144,12 @@ QuickFileCtrl::QuickFileCtrl(wxWindow* parent,
 							 wxRect& location,
 							 const wxString& rootDir,
 							 const wxString& fileMask,
+							 wxString& rememberedDir,
 							 const wxValidator& validator)
  : wxPanel(parent, wxID_ANY,
 	location.GetPosition()-wxPoint(0,verticalPadding), wxDefaultSize,
 	wxNO_BORDER),
-	m_DisableKillFocus(false)
+	m_DisableKillFocus(false), m_RememberedDir(&rememberedDir)
 {
 	wxBoxSizer* s = new wxBoxSizer(wxVERTICAL);
 
@@ -148,9 +170,12 @@ QuickFileCtrl::QuickFileCtrl(wxWindow* parent,
 	SetSizer(s);
 	s->SetSizeHints(this);
 
+	m_DisableKillFocus = true; // yucky
 	m_TextCtrl->GetValidator()->TransferToWindow();
 	m_TextCtrl->SetFocus();
 	m_TextCtrl->SetSelection(-1, -1);
+	m_DisableKillFocus = false;
+	m_TextCtrl->SetFocus();
 }
 
 void QuickFileCtrl::OnKillFocus()

@@ -17,6 +17,7 @@
 #include "wx/dialog.h"
 #include "wx/filename.h"
 #include "wx/artprov.h"
+#include "wx/file.h"
 
 #include <vector>
 #include <string>

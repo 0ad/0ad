@@ -31,6 +31,16 @@ AtObj PropListEditor::FreezeData()
 	return m_MainListBox->FreezeData();
 }
 
+void PropListEditor::ImportData(AtObj& in)
+{
+	m_MainListBox->ImportData(in);
+}
+
+AtObj PropListEditor::ExportData()
+{
+	return m_MainListBox->ExportData();
+}
+
 //////////////////////////////////////////////////////////////////////////
 
 PropListEditorListCtrl::PropListEditorListCtrl(wxWindow* parent)
@@ -38,7 +48,7 @@ PropListEditorListCtrl::PropListEditorListCtrl(wxWindow* parent)
 					wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_SINGLE_SEL)
 {
 	AddColumnType(_("Attachment point"), 100, "@attachpoint",	new FieldEditCtrl_List("attachpoints"));
-	AddColumnType(_("Prop model"),		 200, "@actor",			new FieldEditCtrl_File(_T("art/actors"), _("Actor files (*.xml)|*.xml|All files (*.*)|*.*")));
+	AddColumnType(_("Prop model"),		 200, "@actor",			new FieldEditCtrl_File(_T("art/actors/"), _("Actor files (*.xml)|*.xml|All files (*.*)|*.*")));
 }
 
 void PropListEditorListCtrl::DoImport(AtObj& in)

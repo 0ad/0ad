@@ -54,6 +54,7 @@ private:
 class FieldEditCtrl_File : public FieldEditCtrl
 {
 public:
+	// rootDir is relative to mods/official, and must end with a /
 	FieldEditCtrl_File(const wxString& rootDir, const wxString& fileMask);
 
 protected:
@@ -62,4 +63,5 @@ protected:
 private:
 	wxString m_RootDir;
 	wxString m_FileMask;
+	wxString m_RememberedDir;
 };

@@ -6,35 +6,6 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-IMPLEMENT_CLASS(ImportCommand, AtlasWindowCommand);
-
-ImportCommand::ImportCommand(EditableListCtrl* ctrl, AtObj& in)
-	: AtlasWindowCommand(true, _("Import")), m_Ctrl(ctrl), m_In(in)
-{
-}
-
-bool ImportCommand::Do()
-{
-	m_Ctrl->CloneListData(m_OldData);
-
-	m_Ctrl->DoImport(m_In);
-
-	m_Ctrl->UpdateDisplay();
-
-	return true;
-}
-
-bool ImportCommand::Undo()
-{
-	m_Ctrl->SetListData(m_OldData);
-
-	m_Ctrl->UpdateDisplay();
-
-	return true;
-}
-
-//////////////////////////////////////////////////////////////////////////
-
 IMPLEMENT_CLASS(EditCommand_Dialog, AtlasWindowCommand);
 
 EditCommand_Dialog::EditCommand_Dialog(EditableListCtrl* ctrl, long row, int col, AtObj& newData)
@@ -90,6 +61,39 @@ bool EditCommand_Text::Do()
 }
 
 bool EditCommand_Text::Undo()
+{
+	m_Ctrl->SetListData(m_OldData);
+
+	m_Ctrl->UpdateDisplay();
+	m_Ctrl->SetSelection(m_Row);
+
+	return true;
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+IMPLEMENT_CLASS(PasteCommand, AtlasWindowCommand);
+
+PasteCommand::PasteCommand(EditableListCtrl* ctrl, long row, AtObj& newData)
+	: AtlasWindowCommand(true, _("Paste")), m_Ctrl(ctrl), m_Row(row), m_NewData(newData)
+{
+}
+
+bool PasteCommand::Do()
+{
+	m_Ctrl->CloneListData(m_OldData);
+
+	m_Ctrl->MakeSizeAtLeast(m_Row);
+
+	m_Ctrl->m_ListData.insert(m_Ctrl->m_ListData.begin()+m_Row, m_NewData);
+
+	m_Ctrl->UpdateDisplay();
+	m_Ctrl->SetSelection(m_Row);
+
+	return true;
+}
+
+bool PasteCommand::Undo()
 {
 	m_Ctrl->SetListData(m_OldData);
 

@@ -59,13 +59,13 @@ void FieldEditCtrl_Dialog::StartEdit(wxWindow* parent, wxRect WXUNUSED(rect), lo
 	EditableListCtrl* editCtrl = (EditableListCtrl*)parent;
 
 	AtObj in (editCtrl->GetCellObject(row, col));
-	dialog->ThawData(in);
+	dialog->ImportData(in);
 
 	int ret = dialog->ShowModal();
 
 	if (ret == wxID_OK)
 	{
-		AtObj out (dialog->FreezeData());
+		AtObj out (dialog->ExportData());
 
 		AtlasWindowCommandProc::GetFromParentFrame(parent)->Submit(
 			new EditCommand_Dialog(editCtrl, row, col, out)
@@ -80,11 +80,15 @@ void FieldEditCtrl_Dialog::StartEdit(wxWindow* parent, wxRect WXUNUSED(rect), lo
 FieldEditCtrl_File::FieldEditCtrl_File(const wxString& rootDir, const wxString& fileMask)
 	: m_FileMask(fileMask)
 {
-	// Make the path correct, relative to binaries/system
-	m_RootDir = _T("../data/mods/official/") + rootDir;
+	// Make the rootDir path absolute (where rootDir is relative to binaries/system):
+	wxFileName path (_T("../data/mods/official/") + rootDir);
+	wxASSERT(path.IsOk());
+	path.MakeAbsolute(Datafile::GetSystemDirectory());
+	wxASSERT(path.IsOk());
+	m_RememberedDir = m_RootDir = path.GetPath();
 }
 
 void FieldEditCtrl_File::StartEdit(wxWindow* parent, wxRect rect, long row, int col)
 {
-	new QuickFileCtrl(parent, rect, m_RootDir, m_FileMask, ListCtrlValidator((EditableListCtrl*)parent, row, col));
+	new QuickFileCtrl(parent, rect, m_RootDir, m_FileMask, m_RememberedDir, ListCtrlValidator((EditableListCtrl*)parent, row, col));
 }

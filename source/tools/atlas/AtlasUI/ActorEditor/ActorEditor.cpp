@@ -4,9 +4,21 @@
 
 #include "ActorEditorListCtrl.h"
 #include "AtlasObject/AtlasObject.h"
+#include "Datafile.h"
+
+#include "wx/file.h"
+
+BEGIN_EVENT_TABLE(ActorEditor, AtlasWindow)
+	EVT_MENU(ID_Custom1, OnCreateEntity)
+END_EVENT_TABLE()
+
+
+static AtlasWindow::CustomMenu::CustomMenuItem menuItem1 = { _("Create &entity...") };
+static AtlasWindow::CustomMenu::CustomMenuItem* menuItems[] = {	&menuItem1, NULL };
+static AtlasWindow::CustomMenu menu = { _("&Actor"), menuItems };
 
 ActorEditor::ActorEditor(wxWindow* parent)
-	: AtlasWindow(parent, _("Actor Editor"), wxSize(1024, 450))
+	: AtlasWindow(parent, _("Actor Editor"), wxSize(1024, 450), &menu)
 {
 	wxPanel* mainPanel = new wxPanel(this);
 
@@ -264,4 +276,90 @@ AtObj ActorEditor::ExportData()
 	AtObj out;
 	out.set("actor", actor);
 	return out;
+}
+
+
+void ActorEditor::OnCreateEntity(wxCommandEvent& WXUNUSED(event))
+{
+	// Create a very basic entity for this actor.
+	
+	// The output should be an XML file like:
+	//
+	//   <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+	//   <Entity Parent="celt_csw_b">
+	//     <Actor>units/celt_csw_a.xml</Actor>
+	//   </Entity>
+	//
+	// 'Actor' comes from this actor's filename.
+	// 'Parent' comes from the filename of a user-selected entity.
+	// The file will be saved into a user-selected location.
+	
+	// Get the entity's expected name
+	wxFileName currentFilename (GetCurrentFilename());
+	if (! currentFilename.IsOk())
+	{
+		wxMessageDialog(this, _("Please save this actor before attempting to create an entity for it."),
+			_("Gentle reminder"), wxOK | wxICON_INFORMATION).ShowModal();
+		return;
+	}
+	wxString entityName = currentFilename.GetName();
+
+	// Work out where the entities are stored
+	wxFileName entityPath (_T("../data/mods/official/entities/"));
+	entityPath.MakeAbsolute(Datafile::GetSystemDirectory());
+
+	// Make sure the user knows what's going on
+	static bool instructed = false; // only tell them once per session
+	if (! instructed)
+	{
+		instructed = true;
+		if (wxMessageBox(_("To create an entity, you will first be asked to choose a parent entity, and then asked where save the new entity."),
+			_("Usage instructions"), wxICON_INFORMATION|wxOK|wxCANCEL, this) != wxOK)
+			return; // cancelled by user
+	}
+
+	wxString parentEntityFilename
+		(wxFileSelector(_("Choose a parent entity"), entityPath.GetPath(), _T(""),
+		_T("xml"), _("XML files (*.xml)|*.xml|All files (*.*)|*.*"), wxOPEN, this));
+
+	if (! parentEntityFilename.Length())
+		return; // cancelled by user
+
+	// Get the parent's name
+	wxString parentName (wxFileName(parentEntityFilename).GetName());
+
+	wxString outputEntityFilename
+		(wxFileSelector(_("Choose a filename to save as"), entityPath.GetPath(), entityName,
+		_T("xml"), _("XML files (*.xml)|*.xml|All files (*.*)|*.*"), wxSAVE|wxOVERWRITE_PROMPT, this));
+
+	if (! outputEntityFilename.Length())
+		return; // cancelled by user
+
+	// Get this actor's filename, relative to actors/
+	wxFileName actorPath (_T("../data/mods/official/art/actors/"));
+	actorPath.MakeAbsolute(Datafile::GetSystemDirectory());
+	wxFileName actorFilename (currentFilename);
+	actorFilename.MakeRelativeTo(actorPath.GetFullPath());
+
+	// Create the XML data to be written
+	// TODO: Native line endings
+	wxString xml =
+		_T("<?xml version=\"1.0\" encoding=\"iso-8859-1\" standalone=\"no\"?>\r\n")
+		_T("\r\n")
+		_T("<Entity Parent=\"") + parentName + _T("\">\r\n")
+		_T("\t<Actor>") + actorFilename.GetFullPath(wxPATH_UNIX) + _T("</Actor>\r\n")
+		_T("</Entity>\r\n");
+
+	wxFile file (outputEntityFilename.fn_str(), wxFile::write);
+	if (! file.IsOpened())
+	{
+		wxLogError(_("Failed to open file"));
+		return;
+	}
+
+	if (! file.Write(xml))
+	{
+		wxLogError(_("Failed to write XML data to file"));
+		return;
+	}
 }

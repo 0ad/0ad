@@ -54,17 +54,6 @@ END_EVENT_TABLE()
 
 IMPLEMENT_CLASS(AtlasWindow, wxFrame);
 
-enum
-{
-	ID_Quit = 1,
-	ID_New,
-//	ID_Import,
-//	ID_Export,
-	ID_Open,
-	ID_Save,
-	ID_SaveAs
-};
-
 BEGIN_EVENT_TABLE(AtlasWindow, wxFrame)
 	EVT_MENU(ID_New, AtlasWindow::OnNew)
 //	EVT_MENU(ID_Import, AtlasWindow::OnImport)
@@ -81,7 +70,7 @@ BEGIN_EVENT_TABLE(AtlasWindow, wxFrame)
 	EVT_CLOSE(AtlasWindow::OnClose)
 END_EVENT_TABLE()
 
-AtlasWindow::AtlasWindow(wxWindow* parent, const wxString& title, const wxSize& size)
+AtlasWindow::AtlasWindow(wxWindow* parent, const wxString& title, const wxSize& size, CustomMenu* menu)
 	: wxFrame(parent, wxID_ANY, _T(""), wxDefaultPosition, size),
 	m_WindowTitle(title), m_FileHistory(9)
 {
@@ -116,6 +105,18 @@ AtlasWindow::AtlasWindow(wxWindow* parent, const wxString& title, const wxSize& 
 
 	m_CommandProc.SetEditMenu(menuEdit);
 	m_CommandProc.Initialize();
+
+
+	if (menu)
+	{
+		wxMenu* menuCustom = new wxMenu;
+		menuBar->Append(menuCustom, menu->title);
+
+		int id = ID_Custom1;
+		for (CustomMenu::CustomMenuItem** item = menu->items; *item; ++item)
+			menuCustom->Append(id++, (*item)->name);
+	}
+
 
 	m_FileHistory.Load(*wxConfigBase::Get());
 

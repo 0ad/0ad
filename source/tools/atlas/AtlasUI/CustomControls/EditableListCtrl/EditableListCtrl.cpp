@@ -7,6 +7,7 @@
 #include "FieldEditCtrl.h"
 #include "AtlasObject/AtlasObject.h"
 #include "AtlasObject/AtlasObjectText.h"
+#include "AtlasClipboard.h"
 
 const int BlanksAtEnd = 2;
 
@@ -76,6 +77,37 @@ void EditableListCtrl::OnMouseEvent(wxMouseEvent& event)
 	}
 }
 
+void EditableListCtrl::OnKeyDown(wxKeyEvent& event)
+{
+	// TODO: Don't use magic key-code numbers
+
+	// Check for Copy
+	if ((event.GetKeyCode() == 3) || // ctrl+c
+		(event.GetKeyCode() == WXK_INSERT && event.ControlDown())) // ctrl+insert
+	{
+		AtObj row;
+		long selection = GetSelection();
+		if (selection >= 0 && selection < (long)m_ListData.size())
+			row = m_ListData[selection];
+		AtlasClipboard::SetClipboard(row);
+	}
+
+	// Check for Paste
+	else
+	if ((event.GetKeyCode() == 22) || // ctrl+v
+		(event.GetKeyCode() == WXK_INSERT && event.ShiftDown())) // shift+insert
+	{
+		AtObj row;
+		if (AtlasClipboard::GetClipboard(row))
+		{
+			long selection = GetSelection();
+			AtlasWindowCommandProc* commandProc = AtlasWindowCommandProc::GetFromParentFrame(this);
+			commandProc->Submit(new PasteCommand(this, selection, row));
+		}
+	}
+	else
+		event.Skip();
+}
 
 int EditableListCtrl::GetColumnAtPosition(wxPoint& pos)
 {
@@ -235,8 +267,6 @@ wxListItemAttr* EditableListCtrl::OnGetItemAttr(long item) const
 
 void EditableListCtrl::ImportData(AtObj& in)
 {
-	//AtlasWindowCommandProc* commandProc = AtlasWindowCommandProc::GetFromParentFrame(this);
-	//commandProc->Submit(new ImportCommand(this, in));
 	return DoImport(in);
 }
 
@@ -267,4 +297,5 @@ AtObj EditableListCtrl::FreezeData()
 BEGIN_EVENT_TABLE(EditableListCtrl, wxListCtrl)
 	EVT_LEFT_DCLICK(EditableListCtrl::OnMouseEvent)
 	EVT_RIGHT_DOWN(EditableListCtrl::OnMouseEvent)
+	EVT_CHAR(EditableListCtrl::OnKeyDown)
 END_EVENT_TABLE()

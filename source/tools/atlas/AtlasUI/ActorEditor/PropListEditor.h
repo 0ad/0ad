@@ -17,6 +17,9 @@ protected:
 	AtObj FreezeData();
 	void ThawData(AtObj& in);
 
+	AtObj ExportData();
+	void ImportData(AtObj& in);
+
 private:
 	PropListEditorListCtrl* m_MainListBox;
 };

@@ -31,6 +31,16 @@ AtObj AnimListEditor::FreezeData()
 	return m_MainListBox->FreezeData();
 }
 
+void AnimListEditor::ImportData(AtObj& in)
+{
+	m_MainListBox->ImportData(in);
+}
+
+AtObj AnimListEditor::ExportData()
+{
+	return m_MainListBox->ExportData();
+}
+
 //////////////////////////////////////////////////////////////////////////
 
 AnimListEditorListCtrl::AnimListEditorListCtrl(wxWindow* parent)
@@ -38,7 +48,7 @@ AnimListEditorListCtrl::AnimListEditorListCtrl(wxWindow* parent)
 					wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_SINGLE_SEL)
 {
 	AddColumnType(_("Anim name"), 100, "@name",  new FieldEditCtrl_List("animations"));
-	AddColumnType(_("File"),	  200, "@file",  new FieldEditCtrl_File(_T("art/animation"), _("Animation files (*.psa)|*.psa|All files (*.*)|*.*")));
+	AddColumnType(_("File"),	  200, "@file",  new FieldEditCtrl_File(_T("art/animation/"), _("Animation files (*.psa)|*.psa|All files (*.*)|*.*")));
 	AddColumnType(_("Speed"),	  50,  "@speed", new FieldEditCtrl_Text());
 }
 

@@ -11,6 +11,8 @@ public:
 	// relative to the current working directory.
 	static void SetSystemDirectory(const wxString& dir);
 
+	static wxString GetSystemDirectory() { return systemDir; }
+
 private:
 	static wxString systemDir;
 };

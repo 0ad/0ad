@@ -23,8 +23,8 @@ ActorEditorListCtrl::ActorEditorListCtrl(wxWindow* parent)
 
 	AddColumnType(_("Variant"),		100, "@name",		new FieldEditCtrl_Text());
 	AddColumnType(_("Freq"),		50,  "@frequency",	new FieldEditCtrl_Text());
-	AddColumnType(_("Model"),		160, "mesh",		new FieldEditCtrl_File(_T("art/meshes"), _("Mesh files (*.pmd)|*.pmd|All files (*.*)|*.*")));
-	AddColumnType(_("Texture"),		160, "texture",		new FieldEditCtrl_File(_T("art/textures/skins"), _("All files (*.*)|*.*"))); // could be dds, or tga, or png, or bmp, etc, so just allow *
+	AddColumnType(_("Model"),		160, "mesh",		new FieldEditCtrl_File(_T("art/meshes/"), _("Mesh files (*.pmd)|*.pmd|All files (*.*)|*.*")));
+	AddColumnType(_("Texture"),		160, "texture",		new FieldEditCtrl_File(_T("art/textures/skins/"), _("All files (*.*)|*.*"))); // could be dds, or tga, or png, or bmp, etc, so just allow *
 	AddColumnType(_("Animations"),	250, "animations",	new FieldEditCtrl_Dialog(_T("AnimListEditor")));
 	AddColumnType(_("Props"),		250, "props",		new FieldEditCtrl_Dialog(_T("PropListEditor")));
 }

@@ -7,6 +7,9 @@ class ActorEditor : public AtlasWindow
 public:
 	ActorEditor(wxWindow* parent);
 
+private:
+	void OnCreateEntity(wxCommandEvent& event);
+
 protected:
 	AtObj FreezeData();
 	void ThawData(AtObj& in);
@@ -19,4 +22,6 @@ private:
 
 	wxCheckBox* m_CastShadows;
 	wxTextCtrl* m_Material;
+
+	DECLARE_EVENT_TABLE();
 };

@@ -15,6 +15,11 @@ class MyApp: public wxApp
 		// Initialise the global config file
 		wxConfigBase::Set(new wxConfig(_T("Atlas Editor"), _T("Wildfire Games")));
 
+		// Assume that the .exe is located in .../binaries/system. (We can't
+		// just use the cwd, since that isn't correct when being executed by
+		// dragging-and-dropping onto the program in Explorer.)
+		Datafile::SetSystemDirectory(argv[0]);
+
 		// Display the Actor Editor window
 		AtlasWindow *frame = new ActorEditor(NULL);
 		frame->Show();
@@ -23,12 +28,6 @@ class MyApp: public wxApp
 		// One argument => argv[1] is a filename to open
 		if (argc > 1)
 		{
-			// We were probably executed by dragging a file onto the icon.
-			// The working directory is then different to the exe's directory,
-			// so we need to set it. (In the normal no-argument case, it should
-			// be safe to assume that we're being run from the right directory.)
-			Datafile::SetSystemDirectory(argv[0]);
-
 			wxChar* filename = argv[1];
 			if (wxFile::Exists(filename))
 				frame->OpenFile(filename);

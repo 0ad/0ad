@@ -1,14 +1,12 @@
-* Open from prop-actor selection
+* Regression testing
+
+* Open actors from prop-actor selection
 
 * Make import undo work with multi-control windows, and update the title bar
 
 ===
 
-* 'Create entity' button (take name, parent)
-
 * Better input controls (=> export nicely, support undo, etc)
-
-* Copy and paste
 
 * Help (tooltips, etc)
 
@@ -22,7 +20,8 @@
 
 ===
 
-* Correct undo menu entry when selecting 'New' (so it's not 'Import')
+* Better copy and paste (e.g. between multiple instances of the program,
+  and paste XML into other text-editing programs
 
 * Save on exit: don't ask if no changes
 
@@ -63,8 +62,11 @@
 
 ======
 
-Done:
+Done: (newest at top)
 
+* Copy and paste
+* 'Create entity' button (take name, parent)
+* Correct undo menu entry when selecting 'New' (so it's not 'Import')
 * MRU file list
 * 'New' menu item
 * Import/export filter, for validation(?) and for handling attributes

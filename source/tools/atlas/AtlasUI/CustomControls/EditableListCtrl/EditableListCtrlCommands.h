@@ -4,23 +4,6 @@
 
 class EditableListCtrl;
 
-class ImportCommand : public AtlasWindowCommand
-{
-	DECLARE_CLASS(ImportCommand);
-
-public:
-	ImportCommand(EditableListCtrl* ctrl, AtObj& in);
-	bool Do();
-	bool Undo();
-
-private:
-	EditableListCtrl* m_Ctrl;
-	AtObj m_In;
-
-	std::vector<AtObj> m_OldData;
-};
-
-
 class EditCommand_Dialog : public AtlasWindowCommand
 {
 	DECLARE_CLASS(EditCommand_Dialog);
@@ -56,6 +39,23 @@ private:
 	long m_Row;
 	int m_Col;
 	wxString m_NewText;
+	std::vector<AtObj> m_OldData;
+};
+
+
+class PasteCommand : public AtlasWindowCommand
+{
+	DECLARE_CLASS(PasteCommand);
+
+public:
+	PasteCommand(EditableListCtrl* ctrl, long row, AtObj& newData);
+	bool Do();
+	bool Undo();
+
+private:
+	EditableListCtrl* m_Ctrl;
+	long m_Row;
+	AtObj m_NewData;
 	std::vector<AtObj> m_OldData;
 };
 
