@@ -66,7 +66,7 @@ int CFont::GetLineSpacing()
 	return unifont_linespacing(h);
 }
 
-void CFont::CalculateStringSize(const CStr& string, int& width, int& height)
+void CFont::CalculateStringSize(const CStrW& string, int& width, int& height)
 {
-	unifont_stringsize(h, string.c_str(), width, height);
+	unifont_stringsize(h, (const wchar_t*)string, width, height);
 }

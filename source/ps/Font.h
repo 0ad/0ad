@@ -29,7 +29,7 @@ public:
 
 	void Bind();
 	int GetLineSpacing();
-	void CalculateStringSize(const CStr& string, int& w, int& h);
+	void CalculateStringSize(const CStrW& string, int& w, int& h);
 
 private:
 	Handle h;
