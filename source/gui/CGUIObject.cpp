@@ -25,7 +25,7 @@ map_Settings CGUIObject::m_SettingsInfo;
 //  m_SettingsInfo, GeeTODO, I'm not sure if this is
 //  the appropriate file, but it crashes if it's not
 //  in this file.
-CGUI g_GUI;
+//CGUI g_GUI;
 
 //-------------------------------------------------------------------
 //  Implementation Macros

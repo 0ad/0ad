@@ -140,8 +140,8 @@ void CButton::Draw()
 	//////////
 
 	glPushMatrix();
-///		glTranslatef(0.0f, 0.0f, GetBaseSettings().m_Z);
-		glTranslatef(0.0f, 0.0f, 0.0f);
+		glTranslatef(0.0f, 0.0f, GetBaseSettings().m_Z);
+///		glTranslatef(0.0f, 0.0f, 0.0f);
 
 		// Do this
 		glBegin(GL_QUADS);
@@ -151,12 +151,12 @@ void CButton::Draw()
 			glVertex2i(GetBaseSettings().m_Size.right, GetBaseSettings().m_Size.top);
 		glEnd();
 
-		glDisable(GL_DEPTH_TEST);
+		//glDisable(GL_DEPTH_TEST);
 
-		glColor3f(0,0,0);
-///		font.print(GetBaseSettings().m_Size.left + 3, GetBaseSettings().m_Size.top - 15, LEFT, "Object: %s", GetName().c_str());
+		//glColor3f(0,0,0);
+		//font.print(GetBaseSettings().m_Size.left + 3, GetBaseSettings().m_Size.top - 15, LEFT, "Object: %s", GetName().c_str());
 
-		glEnable(GL_DEPTH_TEST);
+		//glEnable(GL_DEPTH_TEST);
 
 	glPopMatrix();
 }

@@ -9,6 +9,9 @@ gee@pyro.nu
 
 using namespace std;
 
+//--------------------------------------------------------
+//  Utilities implementation
+//--------------------------------------------------------
 CGUIObject * CInternalCGUIAccessorBase::GetObjectPointer(CGUI &GUIinstance, const CStr &Object)
 {
 //	if (!GUIinstance.ObjectExists(Object))

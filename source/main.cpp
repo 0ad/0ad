@@ -164,7 +164,9 @@ glColor3f(1.0f, 1.0f, 1.0f);
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 	glLoadIdentity();
-	glOrtho(0., xres, 0., yres, -1., 1.);
+	////// janwas: I changed to some more for the GUI, we can talk about how to set this up
+	glOrtho(0., xres, 0., yres, -1000., 1.);
+	//////
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 
@@ -229,8 +231,8 @@ int main(int argc, char* argv[])
 	detect();
 
 	///// janwas: place this wherever
+	new CGUI; // we should have a place for all singleton news
 	g_GUI.Initialize();
-
 	g_GUI.LoadXMLFile("hello.xml");
 	//g_GUI.LoadXMLFile("sprite1.xml");
 	/////
@@ -305,6 +307,7 @@ in_add_handler(terr_handler);
 
 	///// Janwas place this wherever
 	g_GUI.Destroy();
+	delete CGUI::GetSingletonPtr(); // again, we should have all singleton deletes somewhere
 	/////
 
 	return 0;

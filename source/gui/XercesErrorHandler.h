@@ -25,18 +25,18 @@ gee@pyro.nu
 #include <iostream>
 
 
-class XercesErrorHandler : public XERCES_CPP_NAMESPACE::ErrorHandler
+class CXercesErrorHandler : public XERCES_CPP_NAMESPACE::ErrorHandler
 {
 public:
     // -----------------------------------------------------------------------
     //  Constructors and Destructor
     // -----------------------------------------------------------------------
-    XercesErrorHandler() :
+    CXercesErrorHandler() :
        fSawErrors(false)
     {
     }
 
-    ~XercesErrorHandler()
+    ~CXercesErrorHandler()
     {
     }
 
@@ -66,7 +66,7 @@ private:
     bool fSawErrors;
 };
 
-inline bool XercesErrorHandler::getSawErrors() const
+inline bool CXercesErrorHandler::getSawErrors() const
 {
     return fSawErrors;
 }

@@ -84,7 +84,7 @@ bool CGUI::HandleEvent(const SDL_Event& ev)
 //-------------------------------------------------------------------
 CGUI::CGUI()
 {
-	m_BaseObject = new CButton; // Big todo!
+	m_BaseObject = new CGUIDummyObject;
 	m_BaseObject->SetGUI(this);
 
 	// This will make this invisible, not add
@@ -355,7 +355,7 @@ void CGUI::LoadXMLFile(const CStr &Filename)
 		parser->setDoSchema(false);
 
 		// Set cosutomized error handler
-		XercesErrorHandler *errorHandler = new XercesErrorHandler();
+		CXercesErrorHandler *errorHandler = new CXercesErrorHandler();
 		parser->setErrorHandler(errorHandler);
 		
 		parser->setCreateEntityReferenceNodes(false);

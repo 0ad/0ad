@@ -17,14 +17,14 @@ gee@pyro.nu
 XERCES_CPP_NAMESPACE_USE
 
 
-void XercesErrorHandler::warning(const SAXParseException&)
+void CXercesErrorHandler::warning(const SAXParseException&)
 {
 	//
 	// Ignore all warnings.
 	//
 }
 
-void XercesErrorHandler::error(const SAXParseException& toCatch)
+void CXercesErrorHandler::error(const SAXParseException& toCatch)
 {
 	char * buf = XMLString::transcode(toCatch.getMessage());
 	fSawErrors = true;
@@ -39,7 +39,7 @@ void XercesErrorHandler::error(const SAXParseException& toCatch)
 ///	g_nemLog(" Error: %s", XMLString::transcode(toCatch.getMessage()));
 }
 
-void XercesErrorHandler::fatalError(const SAXParseException& toCatch)
+void CXercesErrorHandler::fatalError(const SAXParseException& toCatch)
 {
 	char * buf = XMLString::transcode(toCatch.getMessage());
 	fSawErrors = true;
@@ -55,7 +55,7 @@ void XercesErrorHandler::fatalError(const SAXParseException& toCatch)
 ///	g_nemLog(" Error: %s", XMLString::transcode(toCatch.getMessage()));
 }
 
-void XercesErrorHandler::resetErrors()
+void CXercesErrorHandler::resetErrors()
 {
 	fSawErrors = false;
 }

@@ -38,6 +38,10 @@ class CGUIObject;
 //--------------------------------------------------------
 //  Macros
 //--------------------------------------------------------
+
+// Global CGUI
+#define g_GUI CGUI::GetSingleton()
+
 // Temp
 #define CInput		nemInput
 #define CStr		std::string

@@ -8,6 +8,9 @@ gee@pyro.nu
 	All objects are derived from this class, it's an ADT
 	so it can't be used per se
 
+	Also contains a Dummy object which is used for
+	 completely blank objects.
+
 --Usage--
 
 	Write about how to use it here
@@ -35,7 +38,7 @@ gee@pyro.nu
 struct SGUISetting;
 class CGUI;
 
-extern CGUI g_GUI;
+//extern CGUI g_GUI;
 
 //--------------------------------------------------------
 //  Macros
@@ -234,8 +237,8 @@ protected:
 //	void UpdateObjects();
 
 	// Get cached mouse x/y from CGUI
-	u16 GetMouseX() const; //{ return ((GetGUI())?(GetGUI()->m_MouseX):0); }
-	u16 GetMouseY() const; //{ return ((GetGUI())?(GetGUI()->m_MouseY):0); }
+	u16 GetMouseX() const;
+	u16 GetMouseY() const;
 
 
 private:
@@ -280,6 +283,17 @@ protected:
 private:
 	// An object can't function stand alone
 	CGUI									*m_pGUI;
+};
+
+
+//--------------------------------------------------------
+//  Dummy object used primarily for the root object
+//	 which isn't a *real* object in the GUI.
+//--------------------------------------------------------
+class CGUIDummyObject : public CGUIObject
+{
+	virtual void HandleMessage(const EGUIMessage &Message) {}
+	virtual void Draw() {}
 };
 
 #endif
