@@ -795,27 +795,99 @@ void CRenderer::RenderModelSubmissions()
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
 
-	// pass one through as alpha; transparent textures handled specially by CTransparencyRenderer
-	// (gl_constant means the colour comes from the environment (glColorxf))
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_CONSTANT);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-
 	// Set the proper LOD bias
 	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, m_Options.m_LodBias);
 
+	// TODO: do this properly
+	const bool playercolor=true;
+
+	if (! playercolor)
+	{
+		// pass one through as alpha; transparent textures handled specially by CTransparencyRenderer
+		// (gl_constant means the colour comes from the environment (glColorxf))
+		
+		// TODO: ^^^ no it doesn't (I (Philip) think) - gl_primary_color comes from
+		// glColorxf, gl_constant comes from gl_texture_env_color. Unless I'm
+		// mistaken.
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_CONSTANT);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+	}
+	else
+	{
+		// Pass through the alpha to the second texture unit
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+
+		// Second texture unit:
+		//
+		//     output = texture*alpha + playercolour*(1-alpha)
+		//
+		// where playercolour = previous stage, texture = colour from texture,
+		// alpha = alpha from texture. Do this using GL_INTERPOLATE, which
+		// performs precisely that calculation.
+
+		glActiveTexture(GL_TEXTURE1);
+		glEnable(GL_TEXTURE_2D);
+
+		// Set the proper LOD bias
+		glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, m_Options.m_LodBias);
+
+		// Set this texture unit to calculate arg0*arg2 + arg1*(1-arg2)
+		// using 'interpolate'
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_INTERPOLATE);
+
+		// arg0 = texture
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE0);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+		// TODO: GL_TEXTURE0 requires ARB_texture_env_crossbar, or OpenGL 1.4.
+		// Will that be a problem? Can it be avoided?
+
+		// arg1 = player-colour modulated texture, from previous render stage
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+
+		// arg2 = texture alpha, from previous render stage
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE2_RGB_ARB, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND2_RGB_ARB, GL_SRC_ALPHA);
+
+		// Set the alpha to be 1.0 (obtained from the environment colour)
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PRIMARY_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+	}
+
 	// setup client states
 	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	if (!playercolor)
+		glEnableClientState(GL_COLOR_ARRAY);
+
+	if (playercolor)
+		// TODO: nicer color
+		glColor4f(1.0, 0.0, 0.0, 1.0);
 
 	// render models
-	CModelRData::RenderModels(STREAM_POS|STREAM_COLOR|STREAM_UV0);
+	if (playercolor)
+		CModelRData::RenderModels(STREAM_POS|STREAM_UV0);
+	else
+		CModelRData::RenderModels(STREAM_POS|STREAM_COLOR|STREAM_UV0);
 
 	// switch off client states
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
+	if (! playercolor)
+		glDisableClientState(GL_COLOR_ARRAY);
+
+	if (playercolor)
+	{
+		glActiveTexture(GL_TEXTURE1);
+		glDisable(GL_TEXTURE_2D);
+		glActiveTexture(GL_TEXTURE0);
+	}
 }
 
 void CRenderer::RenderModels()
