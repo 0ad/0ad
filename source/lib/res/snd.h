@@ -3,7 +3,7 @@
 
 // prepare to enumerate all device names (this resets the list returned by
 // snd_dev_next). return 0 on success, otherwise -1 (only if the requisite
-// OpenAL extension isn't available). on failure, a "cannot change device"
+// OpenAL extension isn't available). on failure, a "cannot enum device"
 // message should be presented to the user, and snd_dev_set need not be
 // called; OpenAL will use its default device.
 // may be called each time the device list is needed.
@@ -46,4 +46,7 @@ extern int snd_set_loop(Handle hs, bool loop);
 
 
 
-extern int snd_update(float lx, float ly, float lz);
+extern int snd_update(float listener_orientation[16]);
+
+
+extern void snd_shutdown();
