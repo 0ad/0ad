@@ -11,13 +11,28 @@ function initSession()
 
 // ====================================================================
 
+function startLoadingScreen()
+{
+	// Setup loading screen.
+
+	// Switch screens from main menu to loading screen.
+	GUIObjectHide("pregame_gui");
+	GUIObjectUnhide("loading_screen");
+	console.write("Loading " + g_GameAttributes.mapFile + " (" + g_GameAttributes.numPlayers + " players) ...");
+
+	// Begin game session.
+	setTimeout( loadSession(), 0 );
+}
+
+// ====================================================================
+
 function loadSession()
 {
-	console.write("Loading Scenario ...");
 	startGame();
 	GUIObjectHide("loading_screen");
 	GUIObjectUnhide("session_gui");
 	FlipGUI(GUIType);
+
 	// Select session peace track.
 	curr_session_playlist_1 = newRandomSound("music", "peace");
 	// Fade out main theme and fade in session theme.

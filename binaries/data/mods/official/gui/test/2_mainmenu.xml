@@ -10,79 +10,99 @@
   ==========================================
   -->
 
-    <object type="empty" name="pregame_gui" size="0 0 100% 100%" z="1" hidden="false">
-        <action on="Load"><![CDATA[
-                // Play main 0 A.D. theme when the main menu starts.
-		curr_music = newRandomSound("music", "theme");
-		curr_music.loop();
-        ]]></action>
+	<object type="empty" name="pregame_gui" size="0 0 100% 100%" z="1" hidden="false">
+        	<action on="Load"><![CDATA[
+	                // Play main 0 A.D. theme when the main menu starts.
+			curr_music = newRandomSound("music", "theme");
+			curr_music.loop();
+	        ]]></action>
 
-        <object type="image" name="pregame-mainmenu-background-image" sprite="pregame-mainmenu-background" size="0 0 100% 100%" z="100" hidden="false" ghost="true"/>
+		<object type="image" name="pregame-mainmenu-background-image" sprite="pregame-mainmenu-background" size="0 0 100% 100%" z="100" hidden="false" ghost="true"/>
 
-        <object type="button" name="pregame-mainmenu-sp-button" sprite-over="pregame-mainmenu-spbt" size="52.9296875% 23.95833333% 67.578125% 42.317708333%" z="101" hidden="false">
-            <action on="Press"><![CDATA[
-                GUIObjectHide("pregame_gui");
-		GUIObjectUnhide("loading_screen");
-		setTimeout( loadSession(), 0 );
-            ]]></action>
-            <action on="MouseEnter"><![CDATA[
-                tooltipObject = getGUIObjectByName("pregame-mainmenu-tooltip");
-                tooltipObject.caption = "Want to move some Dudes around or test something ? Click here to start a new game on the default map.";
-                GUIObjectUnhide("pregame-mainmenu-tooltip");
-            ]]></action>
-            <action on="MouseLeave"><![CDATA[
-                GUIObjectHide("pregame-mainmenu-tooltip");
-            ]]></action>
-        </object>
+		<object type="button" name="pregame-mainmenu-sp-button" sprite-over="pregame-mainmenu-spbt" size="52.9296875% 23.95833333% 67.578125% 42.317708333%" z="101" hidden="false">
+			<action on="Press"><![CDATA[
+				startLoadingScreen();
+			]]></action>
+			<action on="MouseEnter"><![CDATA[
+				tooltipObject = getGUIObjectByName("pregame-mainmenu-tooltip");
+				tooltipObject.caption = "Want to move some Dudes around or test something ? Click here to start a new game on the default map.";
+				GUIObjectUnhide("pregame-mainmenu-tooltip");
+			]]></action>
+			<action on="MouseLeave"><![CDATA[
+				GUIObjectHide("pregame-mainmenu-tooltip");
+			]]></action>
+	        </object>
 
-        <object type="image" name="pregame-mainmenu-0ad-logo" sprite="pregame-mainmenu-0ad-logo-480x218" size="21.1914062% 3.125% 68.0664062% 31.5104166%" z="102" hidden="false" ghost="true"/>
+		<object type="button" name="pregame-mainmenu-mp-button" sprite-over="pregame-mainmenu-mpbt" size="61.00% 48.50% 74.45% 66.55%" z="101" hidden="false">
+			<action on="Press"><![CDATA[
+				getGUIObjectByName("pregame_subwindow_bkg").hidden = false;
+			]]></action>
+			<action on="MouseEnter"><![CDATA[
+				tooltipObject = getGUIObjectByName("pregame-mainmenu-tooltip");
+				tooltipObject.caption = "Tired of playing with yourself? Fight against one or more human players in a multiplayer game.";
+				GUIObjectUnhide("pregame-mainmenu-tooltip");
+			]]></action>
+			<action on="MouseLeave"><![CDATA[
+				GUIObjectHide("pregame-mainmenu-tooltip");
+			]]></action>
+		</object>
 
-        <object type="text" name="pregame-mainmenu-versionnumber" size="43% 24% 43%+282 24%+25" z="103" textcolor="237 227 167" font="prospero16" hidden="false" ghost="true">
-            {buildTime}
-            <action on="Load"><![CDATA[
-                    this.caption = "Build: " + buildTime(0) + " " + getLanguageID();
-            ]]></action>
-        </object>
+		<object type="image" name="pregame-mainmenu-0ad-logo" sprite="pregame-mainmenu-0ad-logo-480x218" size="21.1914062% 3.125% 68.0664062% 31.5104166%" z="102" hidden="false" ghost="true"/>
 
-        <object type="button" name="pregame-mainmenu-wfg-logo" sprite="pregame-mainmenu-wfg-logo-256x64" size="10 91.666666%-30 25.9765% 100%-30" z="102" hidden="false">
-            <action on="Press"><![CDATA[
-                btCode = new Array("GUIObjectHide('mb_main');");
-                messageBox(420, 420, "[icon=0ad_icon] A.D. - History Is Yours For The Taking\nby Wildfire Games, 2002-2005\n\nVersion 0.1.2 (PASAP II)\n\n" +
-                "This is a confidental pre-release version of the game!\n\nVisit http://www.wildfiregames.com/0ad/ " +
-                "to learn more about [icon=0ad_icon] A.D., participate in the community and meet the developers.\n\n", "About [icon=0ad_icon] A.D.", 2, new Array(), btCode);
-            ]]></action>
-            <action on="MouseEnter"><![CDATA[
-                tooltipObject = getGUIObjectByName("pregame-mainmenu-tooltip");
-                tooltipObject.caption = "These are the guys who made this game. Visit them at http://www.wildfiregames.com/0ad/";
-                GUIObjectUnhide("pregame-mainmenu-tooltip");
-            ]]></action>
-            <action on="MouseLeave"><![CDATA[
-                GUIObjectHide("pregame-mainmenu-tooltip");
-            ]]></action>
-        </object>
+		<object type="text" name="pregame-mainmenu-versionnumber" size="43% 24% 43%+282 24%+25" z="103" textcolor="237 227 167" font="prospero16" hidden="false" ghost="true">
+			{buildTime}
+			<action on="Load"><![CDATA[
+				this.caption = "Build: " + buildTime(0) + " " + getLanguageID();
+			]]></action>
+		</object>
 
-        <object type="text" name="pregame-mainmenu-tooltip" sprite="tooltip-background" size="69% 6.3802% 97.0703125% 28.125%" font="prospero16" textcolor="255 255 255" z="104" hidden="true" ghost="true">tooltipText</object>
+		<object type="button" name="pregame-mainmenu-wfg-logo" sprite="pregame-mainmenu-wfg-logo-256x64" size="10 91.666666%-30 25.9765% 100%-30" z="102" hidden="false">
+			<action on="Press"><![CDATA[
+				btCode = new Array("GUIObjectHide('mb_main');");
+				messageBox(420, 420, "[icon=0ad_icon] A.D. - History Is Yours For The Taking\nby Wildfire Games, 2002-2005\n\nVersion 0.1.2 (PASAP II)\n\n" +
+				"This is a confidental pre-release version of the game!\n\nVisit http://www.wildfiregames.com/0ad/ " +
+				"to learn more about [icon=0ad_icon] A.D., participate in the community and meet the developers.\n\n", "About [icon=0ad_icon] A.D.", 2, new Array(), btCode);
+			]]></action>
+			<action on="MouseEnter"><![CDATA[
+				tooltipObject = getGUIObjectByName("pregame-mainmenu-tooltip");
+				tooltipObject.caption = "These are the guys who made this game. Visit them at http://www.wildfiregames.com/0ad/";
+				GUIObjectUnhide("pregame-mainmenu-tooltip");
+			]]></action>
+			<action on="MouseLeave"><![CDATA[
+				GUIObjectHide("pregame-mainmenu-tooltip");
+			]]></action>
+		</object>
 
-	<object type="button" name="exit_button" sprite="exit_sprite" sprite-over="exit_sprite-over" size="100%-18 2 100%-2 18" z="1000" hidden="false">
-		<action on="Press"><![CDATA[
-			btCaptions = new Array("Yes, let me out!", "Nooooo!");
-			btCode = new Array("exit();", "");
-			messageBox(400, 200, "Do you really want to quit [icon=0ad_icon] A.D.? This will cause a sudden return to reality.", "Confirmation", 0, btCaptions, btCode);
-		]]></action>
+		<object type="text" name="pregame-mainmenu-tooltip" sprite="tooltip-background" size="69% 6.3802% 97.0703125% 28.125%" font="prospero16" textcolor="255 255 255" z="104" hidden="true" ghost="true">tooltipText</object>
 
-		<!--  START temporary code
-		This code only applies to the main menu, I don't know how it'll behave ingame. It is temporary and should be removed as soon as we got proper tooltip support implemented. -->
-		<action on="MouseEnter"><![CDATA[
-			tooltipObject = getGUIObjectByName("pregame-mainmenu-tooltip");
-			tooltipObject.caption = "Tired of 0 A.D. ? Click here to leave and reenter the real world.";
-			GUIObjectUnhide("pregame-mainmenu-tooltip");
-		]]></action>
-		<action on="MouseLeave"><![CDATA[
-			GUIObjectHide("pregame-mainmenu-tooltip");
-		]]></action>
-		<!-- END temporary code -->
+		<object type="button" name="exit_button" sprite="exit_sprite" sprite-over="exit_sprite-over" size="100%-18 2 100%-2 18" z="104" hidden="false">
+			<action on="Press"><![CDATA[
+				btCaptions = new Array("Yes, let me out!", "Nooooo!");
+				btCode = new Array("exit();", "");
+				messageBox(400, 200, "Do you really want to quit [icon=0ad_icon] A.D.? This will cause a sudden return to reality.", "Confirmation", 0, btCaptions, btCode);
+			]]></action>
+
+			<!--  START temporary code
+			This code only applies to the main menu, I don't know how it'll behave ingame. It is temporary and should be removed as soon as we got proper tooltip support implemented. -->
+				<action on="MouseEnter"><![CDATA[
+					tooltipObject = getGUIObjectByName("pregame-mainmenu-tooltip");
+					tooltipObject.caption = "Tired of 0 A.D. ? Click here to leave and reenter the real world.";
+					GUIObjectUnhide("pregame-mainmenu-tooltip");
+				]]></action>
+				<action on="MouseLeave"><![CDATA[
+					GUIObjectHide("pregame-mainmenu-tooltip");
+				]]></action>
+			<!-- END temporary code -->
+		</object>
 	</object>
 
-  </object>
+	<object type="empty" name="pregame_subwindows" size="0 0 100% 100%" z="1" hidden="false">
+
+		<object type="image" name="pregame_subwindow_bkg" sprite="tooltip-background" size="0 0 100% 100%" z="105" hidden="true"/>
+
+		<object type="empty" name="pregame_ip_host" size="0 0 100% 100%" z="1" hidden="false">
+		</object>
+
+	</object>
 
 </objects>
