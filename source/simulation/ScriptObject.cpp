@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "ScriptObject.h"
 #include "Entity.h"
 

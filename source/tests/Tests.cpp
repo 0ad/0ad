@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "ps/CLogger.h"
 #include "ps/Parser.h"
 

@@ -1,5 +1,4 @@
-#ifndef __ogg_h__
-#define __ogg_h__
+#include "precompiled.h"
 
 #include <string>
 #include <iostream>
@@ -19,11 +18,6 @@
 
 
 #define BUFFER_SIZE (4096 * 4)
-
-
-
-
-#endif // __ogg_h__
 
 
 struct Buf
