@@ -6,14 +6,26 @@ gee@pyro.nu
 
 //#include "stdafx."
 #include "GUI.h"
-#include "cgui.h"
-///#include "Parser/parser.h"
+
+///// janwas: you addded this? not needed
+//#include "cgui.h"
+/////
+
+///// janwas: again, including etiquette?
+#include "../ps/Parser.h"
 #include <assert.h>
+/////
 
 using namespace std;
 
 // Offsets
 map_Settings CGUIObject::m_SettingsInfo;
+
+// This must be placed after the line above defining
+//  m_SettingsInfo, GeeTODO, I'm not sure if this is
+//  the appropriate file, but it crashes if it's not
+//  in this file.
+CGUI g_GUI;
 
 //-------------------------------------------------------------------
 //  Implementation Macros
@@ -158,6 +170,9 @@ void CGUIObject::Destroy()
 //-------------------------------------------------------------------
 void CGUIObject::SetupBaseSettingsInfo(map_Settings &SettingsInfo)
 {
+	SettingsInfo["hejsan"].m_Offset = 0;
+
+
 	_GUI_ADD_OFFSET("bool",		"enabled",		m_Enabled)
 	_GUI_ADD_OFFSET("bool",		"hidden",		m_Hidden)
 	_GUI_ADD_OFFSET("rect",		"size1024",		m_Size)
@@ -166,23 +181,35 @@ void CGUIObject::SetupBaseSettingsInfo(map_Settings &SettingsInfo)
 	_GUI_ADD_OFFSET("string",	"caption",		m_Caption)
 }
 
-
-
-
 //-------------------------------------------------------------------
 //  Checks if mouse is over and returns result
 //  mouse_x, mouse_y defined in CGUI
 //-------------------------------------------------------------------
 bool CGUIObject::MouseOver()
 {
-	CGUI* gui = GetGUI();
-	if(!gui)
+	if(!GetGUI())
 		throw PS_NEEDS_PGUI;
 
-	return (gui->mouse_x >= m_BaseSettings.m_Size.left &&
-			gui->mouse_x <= m_BaseSettings.m_Size.right &&
-			gui->mouse_y >= m_BaseSettings.m_Size.bottom &&
-			gui->mouse_y <= m_BaseSettings.m_Size.top);
+	u16 mouse_x = GetMouseX(),
+		mouse_y = GetMouseY();
+
+	return (mouse_x >= m_BaseSettings.m_Size.left &&
+			mouse_x <= m_BaseSettings.m_Size.right &&
+			mouse_y >= m_BaseSettings.m_Size.bottom &&
+			mouse_y <= m_BaseSettings.m_Size.top);
+}
+
+//-------------------------------------------------------------------
+//  Get Mouse X/Y from CGUI
+//-------------------------------------------------------------------
+u16 CGUIObject::GetMouseX() const
+{ 
+	return ((GetGUI())?(GetGUI()->m_MouseX):0); 
+}
+
+u16 CGUIObject::GetMouseY() const 
+{ 
+	return ((GetGUI())?(GetGUI()->m_MouseY):0); 
 }
 
 //-------------------------------------------------------------------
@@ -233,7 +260,6 @@ bool CGUIObject::SettingExists(const CStr &Setting) const
 	//  in derived classes.
 	return (GetSettingsInfo().count(Setting) == 1)?true:false;
 }
-
 
 //-------------------------------------------------------------------
 //  Set a setting by string, regardless of what type it is...
@@ -287,10 +313,10 @@ void CGUIObject::SetSetting(const CStr &Setting, const CStr &Value)
 	if (set.m_Type == "rect")
 	{
 		// TEMP
-		GUI<CRect>::SetSetting(this, Setting, CRect(100,100,200,200));
+	//	GUI<CRect>::SetSetting(this, Setting, CRect(100,100,200,200));
 
 		// Use the parser to parse the values
-/*		CParser parser;
+		CParser parser;
 		parser.InputTaskType("", "_$value_$value_$value_$value_");
 
 		CParserLine line;
@@ -313,7 +339,7 @@ void CGUIObject::SetSetting(const CStr &Setting, const CStr &Value)
 		// Finally the rectangle values
 		CRect rect(values[0], values[1], values[2], values[3]);
 		GUI<CRect>::SetSetting(this, Setting, rect);
-*/	}
+	}
 	else
 	{
 		throw PS_FAIL;
@@ -374,6 +400,7 @@ CGUIObject *CGUIObject::GetParent()
 	return m_pParent;
 }
 
+// GeeTODO keep this function and all???
 //-------------------------------------------------------------------
 //  Called every time settings are change, this is where you check
 //	 validity (not syntactical, that's already check) of your values.

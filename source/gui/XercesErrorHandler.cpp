@@ -4,8 +4,6 @@ by Gustav Larsson
 gee@pyro.nu
 */
 
-///#include "nemesis.h"
-
 // ---------------------------------------------------------------------------
 //  Includes
 // ---------------------------------------------------------------------------
@@ -14,6 +12,9 @@ gee@pyro.nu
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
+
+// Use namespace
+XERCES_CPP_NAMESPACE_USE
 
 
 void XercesErrorHandler::warning(const SAXParseException&)
@@ -25,7 +26,10 @@ void XercesErrorHandler::warning(const SAXParseException&)
 
 void XercesErrorHandler::error(const SAXParseException& toCatch)
 {
+	char * buf = XMLString::transcode(toCatch.getMessage());
 	fSawErrors = true;
+
+        XMLString::release(&buf);
 /*    cerr << "Error at file \"" << StrX(toCatch.getSystemId())
 		 << "\", line " << toCatch.getLineNumber()
 		 << ", column " << toCatch.getColumnNumber()
@@ -37,7 +41,12 @@ void XercesErrorHandler::error(const SAXParseException& toCatch)
 
 void XercesErrorHandler::fatalError(const SAXParseException& toCatch)
 {
+	char * buf = XMLString::transcode(toCatch.getMessage());
 	fSawErrors = true;
+
+
+        XMLString::release(&buf);
+
 /*    cerr << "Fatal Error at file \"" << StrX(toCatch.getSystemId())
 		 << "\", line " << toCatch.getLineNumber()
 		 << ", column " << toCatch.getColumnNumber()

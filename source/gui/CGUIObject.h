@@ -35,6 +35,8 @@ gee@pyro.nu
 struct SGUISetting;
 class CGUI;
 
+extern CGUI g_GUI;
+
 //--------------------------------------------------------
 //  Macros
 //--------------------------------------------------------
@@ -212,6 +214,7 @@ protected:
 	//  from within
 	// SetGUI uses a first parameter that fits into RecurseObject
 	CGUI *GetGUI() { return m_pGUI; }
+	const CGUI *GetGUI() const { return m_pGUI; }
 	void SetGUI(CGUI * const &pGUI) { m_pGUI = pGUI; }
 
 	// Set parent
@@ -229,6 +232,10 @@ protected:
 	//  to access a private member in CGUI, this base
 	//  class will be only one with permission
 //	void UpdateObjects();
+
+	// Get cached mouse x/y from CGUI
+	u16 GetMouseX() const; //{ return ((GetGUI())?(GetGUI()->m_MouseX):0); }
+	u16 GetMouseY() const; //{ return ((GetGUI())?(GetGUI()->m_MouseY):0); }
 
 
 private:

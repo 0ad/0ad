@@ -63,7 +63,6 @@ public:
 	virtual ~CButton();
 
 
-
 	// Since we're doing multiple inheritance, this is to avoid error message
 	virtual map_Settings GetSettingsInfo() const { return CGUISettingsObject<SButtonSettings>::m_SettingsInfo; }
 

@@ -135,8 +135,13 @@ void CButton::Draw()
 	else
 		glColor3f((float)m_BaseSettings.m_Size.right/300.f,0,1);
 
+	////////// Gee: janwas, this is just temp to see it
+	glDisable(GL_TEXTURE_2D);
+	//////////
+
 	glPushMatrix();
-		glTranslatef(0.0f, 0.0f, GetBaseSettings().m_Z);
+///		glTranslatef(0.0f, 0.0f, GetBaseSettings().m_Z);
+		glTranslatef(0.0f, 0.0f, 0.0f);
 
 		// Do this
 		glBegin(GL_QUADS);

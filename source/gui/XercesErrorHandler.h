@@ -25,10 +25,7 @@ gee@pyro.nu
 #include <iostream>
 
 
-XERCES_CPP_NAMESPACE_USE
-
-
-class XercesErrorHandler : public ErrorHandler
+class XercesErrorHandler : public XERCES_CPP_NAMESPACE::ErrorHandler
 {
 public:
     // -----------------------------------------------------------------------
@@ -47,9 +44,9 @@ public:
     // -----------------------------------------------------------------------
     //  Implementation of the error handler interface
     // -----------------------------------------------------------------------
-    void warning(const SAXParseException& toCatch);
-    void error(const SAXParseException& toCatch);
-    void fatalError(const SAXParseException& toCatch);
+	void warning(const XERCES_CPP_NAMESPACE::SAXParseException& toCatch);
+	void error(const XERCES_CPP_NAMESPACE::SAXParseException& toCatch);
+	void fatalError(const XERCES_CPP_NAMESPACE::SAXParseException& toCatch);
     void resetErrors();
 
     // -----------------------------------------------------------------------

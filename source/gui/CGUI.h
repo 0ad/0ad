@@ -25,9 +25,12 @@ gee@pyro.nu
 #include <xercesc/util/XMLString.hpp>
 #include <xercesc/util/PlatformUtils.hpp>
 
+///// janwas: yeah I don't know how the including etiquette is really
+#include "../ps/Singleton.h"
 #include "input.h"	// JW: grr, classes suck in this case :P
 
 class XERCES_CPP_NAMESPACE::DOMElement;
+
 
 //--------------------------------------------------------
 //  Macros
@@ -45,12 +48,13 @@ class XERCES_CPP_NAMESPACE::DOMElement;
 //  Declarations
 //--------------------------------------------------------
 
-class CGUI
+class CGUI : public Singleton<CGUI>
 {
 
 	// Only CGUIObject's leaf functions uses CGUI
 	//  freely.
 	friend class CGUIObject;
+	friend class CInternalCGUIAccessorBase;
 
 private:
 	// Private typedefs
@@ -58,7 +62,7 @@ private:
 
 	// don't want to pass this around with the ChooseMouseOverAndClosest broadcast -
 	// we'd need to pack this and pNearest in a struct
-	u16 mouse_x, mouse_y;
+	u16 m_MouseX, m_MouseY;
 
 public:
 	CGUI();

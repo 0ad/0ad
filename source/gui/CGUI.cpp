@@ -31,22 +31,21 @@ using namespace std;
 
 #include "input.h"
 
-
 // called from main loop when (input) events are received.
 // event is passed to other handlers if false is returned.
 // trampoline: we don't want to make the implementation (in CGUI) static
 bool gui_handler(const SDL_Event& ev)
 {
-//	return gui.HandleEvent(ev);
+	return g_GUI.HandleEvent(ev);
 
-	return false;
+//	return false;
 }
 
 
 bool CGUI::HandleEvent(const SDL_Event& ev)
 {
 	if(ev.type == SDL_MOUSEMOTION)
-		mouse_x = ev.motion.x, mouse_y = ev.motion.y;
+		m_MouseX = ev.motion.x, m_MouseY = ev.motion.y;
 
 // JW: (pre|post)process omitted; what're they for? why would we need any special button_released handling?
 
