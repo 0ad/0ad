@@ -326,7 +326,6 @@ static void Render()
 
 	// switch on wireframe for terrain if we want it
 	g_Renderer.SetTerrainRenderMode( SOLID );
-
 	RenderTerrain();
 	RenderModels();
 	g_Renderer.FlushFrame();
@@ -354,7 +353,6 @@ static void Render()
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 	glLoadIdentity();
-
 	glOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.f, 1000.f);
 
 	glMatrixMode(GL_MODELVIEW);
@@ -381,7 +379,6 @@ static void Render()
 	glLoadIdentity();
 	g_GUI.Draw();
 #endif
-
 
 	g_Console->Render();
 
