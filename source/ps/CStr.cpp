@@ -9,6 +9,10 @@
 #define UNIDOUBLER_HEADER "CStr.cpp"
 #include "UniDoubler.h"
 
+// Only include these function definitions in the first instance of CStr.cpp:
+CStrW::CStrW(const CStr8 &asciStr) : m_String(asciStr.m_String.begin(), asciStr.m_String.end()) {}
+CStr8::CStr8(const CStrW &wideStr) : m_String(wideStr.m_String.begin(), wideStr.m_String.end()) {}
+
 #else
 
 #include "CStr.h"
