@@ -1,5 +1,5 @@
 /*
-$Id: unifont.cpp,v 1.2 2004/06/18 18:34:04 philip Exp $
+$Id: unifont.cpp,v 1.3 2004/06/21 12:49:37 janwas Exp $
 
 Unicode OpenGL texture font
   
@@ -152,7 +152,7 @@ void glwprintf(const wchar_t* fmt, ...)
 
 	va_start(args, fmt);
 	if (vswprintf(buf, buf_size-1, fmt, args) < 0)
-		debug_out("glwprintf failed (buffer size exceeded?)");
+		debug_out("glwprintf failed (buffer size exceeded?)\n");
 	va_end(args);
 
 	// Make sure there's always NULL termination
@@ -173,13 +173,17 @@ void glwprintf(const wchar_t* fmt, ...)
 		
 		if (it == BoundGlyphs->end()) // Missing the missing glyph symbol - give up
 		{
-			debug_out("Missing the missing glyph in a unifont!");
+			debug_out("Missing the missing glyph in a unifont!\n");
 			return;
 		}
 
 		buf[i] = (*it).second; // Replace with the display list offset
 	}
-	
+
+	// 0 gylphs -> nothing to do (avoid BoundsChecker warning)
+	if(!len)
+		return;
+
 	// Execute all the display lists
 	glCallLists((GLsizei)len, GL_UNSIGNED_SHORT, buf);
 }
