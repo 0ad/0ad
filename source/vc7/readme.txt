@@ -1,33 +1,25 @@
-Workspace settings for VC7.1 (2003) with Intel compiler 7.1:
-________________________________________________________________________________
+VC7.1 (2003) workspace, for Intel compiler 7.1
 
-Compiler settings:
-- set code generation to multithreaded (+debug if desired)
-- set entry point to entry
-________________________________________________________________________________
+TODO:
 
-Includes:
-- download http://oss.sgi.com/projects/ogl-sample/ABI/glext.h ;
+- get latest glext.h:
+  download from http://oss.sgi.com/projects/ogl-sample/ABI/glext.h ;
   put it in GL subdir of compiler's include dir
-- add dir containing tex.h etc. to the compiler's include path
-________________________________________________________________________________
 
-Xerces (required for the GUI, which can be omitted ATM)
+- install ZLib:
+  download from http://www.stud.uni-karlsruhe.de/~urkt/zlib.zip ; 
+  put the DLL in binaries\, put header and lib into compiler dirs
+  Note: this is version 1.1.4.8751
 
-download Xerces binary from http://xml.apache.org/xerces-c/download.cgi ;
-put the DLL in bin in your system dir, or in the game's dir;
-add its include dir to the compiler's include path
-________________________________________________________________________________
+- omit GUI folder (not necessary ATM)
+OR
+- install Xerces:
+  download Xerces binary from http://xml.apache.org/xerces-c/download.cgi ;
+  put the DLL in binaries\, add the include dir to the compiler's include path
 
-ZLib 
-  
-download from http://www.stud.uni-karlsruhe.de/~urkt/zlib.zip ; 
-put the DLL in the game's dir, and the headers/lib in the appropriate compiler 
-dirs. 
-Note: another version of ZLib will probably do, but best to use this one, to 
-avoid conflicts (v1.1.4.8751).
-________________________________________________________________________________
 
-NB: earlier steps that are now unnecessary:
-- adding .lib files - now taken care of by the code, via #pragma comment(lib
-- installing DX7 SDK - detect code now uses stock Win32 and DX3 calls
+NOTE: important workspace settings (already set)
+
+- code generation = multithreaded [debug]
+- entry point = entry
+- add lib\ to include path

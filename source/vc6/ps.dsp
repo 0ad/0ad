@@ -42,7 +42,7 @@ RSC=rc.exe
 # PROP Intermediate_Dir "Release"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /YX /FD /c
-# ADD CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /YX /FD /c
+# ADD CPP /nologo /W3 /GX /O2 /I "..\lib" /I "d:\apps\xerces-c_2_3_0-win32\include\\" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /YX /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x407 /d "NDEBUG"
@@ -68,7 +68,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /YX /FD /GZ /c
-# ADD CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /I "..\lib" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /FD /GZ /c
+# ADD CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /I "..\lib" /I "d:\apps\xerces-c_2_3_0-win32\include\\" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /FD /GZ /c
 # SUBTRACT CPP /YX
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
@@ -183,6 +183,74 @@ SOURCE=..\terrain\Vector3D.h
 # Begin Group "gui"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\gui\CButton.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\CButton.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\CGUI.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\CGUI.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\CGUIButtonBehavior.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\CGUIButtonBehavior.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\CGUIObject.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\CGUIObject.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\CGUISettingsObject.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\CGUISettingsObject.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\CGUISprite.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\CGUISprite.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\GUI.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\GUI.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\guimain.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\XercesErrorHandler.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\gui\XercesErrorHandler.h
+# End Source File
 # End Group
 # Begin Group "lib"
 
