@@ -363,7 +363,7 @@ static Handle find_key(uintptr_t key, H_Type type, bool remove = false)
 	// not found in mapping
 	if(it == key2idx.end())
 		return -1;
-	It end = key2idx.upper_bound(key);
+	It end = key2idx.upper_bound(key); // XXX this doesn't exist in gcc
 	for(; it != end; ++it)
 	{
 		i32 idx = it->second;
