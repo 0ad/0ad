@@ -307,6 +307,10 @@ extern u16 fp_to_u16(double in);
 extern void base32(const int len, const u8* in, u8* out);
 
 
+// case-insensitive check if string <s> matches the pattern <w>,
+// which may contain '?' or '*' wildcards. if so, return 1, otherwise 0.
+extern int match_wildcard(const char* s, const char* w);
+
 
 // design goals:
 // fast (including startup time)
