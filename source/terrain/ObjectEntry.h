@@ -14,7 +14,7 @@ public:
 	struct Anim {
 		CStr m_AnimName;
 		CStr m_FileName;
-	CSkeletonAnim* m_AnimData; //Pending
+		CSkeletonAnim* m_AnimData;
 	};
 
 public:
@@ -34,14 +34,14 @@ public:
 	CStr m_ModelName;
 	// animations
 	std::vector<Anim> m_Animations;
-CSkeletonAnim* m_IdleAnim;
-CSkeletonAnim* m_WalkAnim;
-CSkeletonAnim* m_DeathAnim;
-CSkeletonAnim* m_MeleeAnim;
-CSkeletonAnim* m_RangedAnim;
-CSkeletonAnim* GetNamedAnimation( CStr animationName );
+	CSkeletonAnim* m_IdleAnim;
+	CSkeletonAnim* m_WalkAnim;
+	CSkeletonAnim* m_DeathAnim;
+	CSkeletonAnim* m_MeleeAnim;
+	CSkeletonAnim* m_RangedAnim;
+	CSkeletonAnim* GetNamedAnimation( CStr animationName );
 	// object space bounds of model
-//	CBound m_Bound;
+	//	CBound m_Bound;
 	// corresponding model 
 	CModel* m_Model;
 	// type of object; index into object managers types array

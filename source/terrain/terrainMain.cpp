@@ -155,6 +155,7 @@ bool terr_handler(const SDL_Event& ev)
 			g_Camera.m_Orientation.RotateY(DEGTORAD(-45));
 			g_Camera.m_Orientation.Translate (100, 150, -100);
 			break;
+
 		}
 	}
 
@@ -201,12 +202,12 @@ void InitScene ()
 
 	// get default texture to apply to terrain
 	CTextureEntry* texture=0;
-for (uint ii=0;ii<g_TexMan.m_TerrainTextures.size();ii++) {  
-    if (g_TexMan.m_TerrainTextures[ii].m_Textures.size()) {
-        texture=g_TexMan.m_TerrainTextures[ii].m_Textures[0];
-        break;
+	for (uint ii=0;ii<g_TexMan.m_TerrainTextures.size();ii++) {  
+		if (g_TexMan.m_TerrainTextures[ii].m_Textures.size()) {
+			texture=g_TexMan.m_TerrainTextures[ii].m_Textures[0];
+			break;
+		}
 	}
-}
 
 
 	// cover entire terrain with default texture

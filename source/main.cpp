@@ -400,11 +400,11 @@ int main(int argc, char* argv[])
 
 // default to loading map for convenience during development
 // override by passing any parameter.
-if(argc < 2)
-{
-	argc = 2;
-	argv[1] = "-m=test01.pmp";
-}
+	if(argc < 2)
+	{
+		argc = 2;
+		argv[1] = "-m=test01.pmp";
+	}
 
 	ParseArgs(argc, argv);
 
@@ -518,8 +518,8 @@ if(argc < 2)
 #ifndef NO_GUI
 	in_add_handler(gui_handler);
 #endif
-in_add_handler(handler);
-in_add_handler(terr_handler);
+	in_add_handler(handler);
+	in_add_handler(terr_handler);
 
 	// render everything to a blank frame to force renderer to load everything
 	RenderNoCull();
