@@ -81,16 +81,24 @@ void CMiniMap::Draw()
         glDisable(GL_DEPTH_TEST);
         glEnable(GL_POINT_SMOOTH);
         glDisable(GL_TEXTURE_2D);
-        glPointSize(3.0f);
-        glColor3f(1.0f, 1.0f, 1.0f);
+        glPointSize(2.5f);
+		// REMOVED: glColor3f(1.0f, 1.0f, 1.0f);
         glBegin(GL_POINTS);
         for(; iter != units.end(); iter++)
         {
             unit = (CUnit *)(*iter);
             if(unit && unit->GetEntity())
             {
+				// EDIT: John M. Mena // Set the player colour
+				const SPlayerColour& colour = unit->GetEntity()->GetPlayer()->GetColour();
+				glColor3f(colour.r, colour.g, colour.b);
+
                 pos = GetMapSpaceCoords(unit->GetEntity()->m_position);
-                glVertex3f(x + pos.x, y + pos.y, GetBufferedZ());
+
+				// TODO: Investigate why player position must be reversed with map.
+				// EDIT: John M. Mena // Reversed x and y addition
+									  // Not quite sure what the problems is here.
+                glVertex3f(x + pos.y, y + pos.x, GetBufferedZ());
             }
         }
         glEnd();
