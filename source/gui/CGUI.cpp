@@ -379,8 +379,7 @@ void CGUI::DrawSprite(const CStr& SpriteName,
 	// Fetch real sprite from name
 	if (m_Sprites.count(SpriteName) == 0)
 	{
-		LOG(ERROR, LOG_CATEGORY, "Trying to use a sprite that doesn't exist (\"%s\").", SpriteName.c_str());
-		// TODO Gee: (2004-08-31) This will be called continuously when it happens.
+		LOG_ONCE(ERROR, LOG_CATEGORY, "Trying to use a sprite that doesn't exist (\"%s\").", SpriteName.c_str());
 		return;
 	}
 	else Sprite = m_Sprites[SpriteName];
@@ -929,7 +928,7 @@ void CGUI::DrawText(const SGUIText &Text, const CColor &DefaultColor,
 		// TODO Gee: (2004-09-04) Why are font corrupted if inputted float value?
 		glTranslatef((GLfloat)int(pos.x+it->m_Pos.x), (GLfloat)int(pos.y+it->m_Pos.y), z);
 		glColor4f(color.r, color.g, color.b, color.a);
-		glwprintf(it->m_String);
+		glwprintf("%ls", it->m_String); // "%ls" is necessary in case m_String contains % symbols
 
 		glPopMatrix();
 
@@ -1287,7 +1286,6 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 // -- MT
 
 	CStrW caption = (CStrW)Element.getText();
-	caption.Trim(PS_TRIM_BOTH);
 	if (caption.Length())
 	{
 		try
