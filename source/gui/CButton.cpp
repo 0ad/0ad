@@ -72,7 +72,8 @@ void CButton::SetupText()
 		m_TextPos.x = m_CachedActualSize.left;
 		break;
 	case EAlign_Center:
-		m_TextPos.x = m_CachedActualSize.CenterPoint().x - m_GeneratedTexts[0]->m_Size.cx/2;
+		// Round to integer pixel values, else the fonts look awful
+		m_TextPos.x = floorf(m_CachedActualSize.CenterPoint().x - m_GeneratedTexts[0]->m_Size.cx/2.f);
 		break;
 	case EAlign_Right:
 		m_TextPos.x = m_CachedActualSize.right - m_GeneratedTexts[0]->m_Size.cx;
@@ -87,7 +88,8 @@ void CButton::SetupText()
 		m_TextPos.y = m_CachedActualSize.top;
 		break;
 	case EVAlign_Center:
-		m_TextPos.y = m_CachedActualSize.CenterPoint().y - m_GeneratedTexts[0]->m_Size.cy/2;
+		// Round to integer pixel values, else the fonts look awful
+		m_TextPos.y = floorf(m_CachedActualSize.CenterPoint().y - m_GeneratedTexts[0]->m_Size.cy/2.f);
 		break;
 	case EVAlign_Bottom:
 		m_TextPos.y = m_CachedActualSize.bottom - m_GeneratedTexts[0]->m_Size.cy;
