@@ -498,6 +498,7 @@ void CGUI::Xerces_ReadRootSprites(XERCES_CPP_NAMESPACE::DOMElement *pElement)
 void CGUI::Xerces_ReadObject(DOMElement *pElement, CGUIObject *pParent)
 {
 	assert(pParent && pElement);
+	int i;
 
 	// Our object we are going to create
 	CGUIObject *object = NULL;
@@ -527,7 +528,7 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, CGUIObject *pParent)
 
 	// Now we can iterate all attributes and store
 	DOMNamedNodeMap *attributes = pElement->getAttributes();
-	for (int i=0; i<attributes->getLength(); ++i)
+	for (i=0; i<attributes->getLength(); ++i)
 	{
 		DOMAttr *attr = (DOMAttr*)attributes->item(i);
 		string attr_name = XMLString::transcode( attr->getName() );
@@ -571,7 +572,7 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, CGUIObject *pParent)
 	// Iterate children
 	DOMNodeList *children = pElement->getChildNodes();
 
-	for (int i=0; i<children->getLength(); ++i)
+	for (i=0; i<children->getLength(); ++i)
 	{
 		// Get node
 		DOMNode *child = children->item(i);
