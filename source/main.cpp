@@ -687,6 +687,7 @@ static void psInit()
 	// GUI uses VFS, so this must come after VFS init.
 	g_GUI.Initialize();
 
+	g_GUI.LoadXMLFile("gui/test/setup.xml");
 	g_GUI.LoadXMLFile("gui/test/styles.xml");
 	g_GUI.LoadXMLFile("gui/test/hello.xml");
 	g_GUI.LoadXMLFile("gui/test/sprite1.xml");
