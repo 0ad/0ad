@@ -13,8 +13,8 @@
     <object type="empty" name="pregame_gui" size="0 0 100% 100%" z="1" hidden="false">
         <action on="Load"><![CDATA[
                 // Play main 0 A.D. theme when the main menu starts.
-                curr_music = new Sound("audio/music/menu_track.ogg");
-                curr_music.loop();
+//		curr_music = new Sound("audio/music/menu_track.ogg");
+//		curr_music.loop();
         ]]></action>
 
         <object type="image" name="pregame-mainmenu-background-image" sprite="pregame-mainmenu-background" size="0 0 100% 100%" z="100" hidden="false" />
@@ -25,7 +25,9 @@
                 GUIObjectUnhide("session_gui");
                 GUIObjectHide("pregame_gui");
                 FlipGUI(GUIType);
-                curr_music.free(); // Close main theme when starting game session.
+//		curr_music.free(); // Close main theme when starting game session.
+		curr_session_music = new Sound("audio/music/germanic_peace_1.ogg");
+		curr_session_music.play();
             ]]></action>
             <action on="MouseEnter"><![CDATA[
                 tooltipObject = getGUIObjectByName("pregame-mainmenu-tooltip");
@@ -49,7 +51,7 @@
         <object type="button" name="pregame-mainmenu-wfg-logo" sprite="pregame-mainmenu-wfg-logo-256x64" size="10 91.666666%-30 25.9765% 100%-30" z="102" hidden="false">
             <action on="Press"><![CDATA[
                 btCode = new Array("GUIObjectHide('mb_main');");
-                messageBox(420, 420, "[icon=0ad_icon] A.D. - History Is Yours For The Taking\nby Wildfire Games, 2002-2004\n\nVersion 0.1.2 (PASAP II)\n\n" +
+                messageBox(420, 420, "[icon=0ad_icon] A.D. - History Is Yours For The Taking\nby Wildfire Games, 2002-2005\n\nVersion 0.1.2 (PASAP II)\n\n" +
                 "This is a confidental pre-release version of the game!\n\nVisit http://www.wildfiregames.com/0ad/ " +
                 "to learn more about [icon=0ad_icon] A.D., participate in the community and meet the developers.\n\n", "About [icon=0ad_icon] A.D.", 2, new Array(), btCode);
             ]]></action>

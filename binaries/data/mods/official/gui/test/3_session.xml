@@ -492,8 +492,6 @@
 
                         <object type="button" name="resource_food_counter" sprite="resource_food_counter" style="resource_counter" z="70" hidden="false">
 				<action on="Load"><![CDATA[
-					this.caption = "123,456";
-
 					AddSizeCoord(this.name,
 					crd_resource_food_x, crd_resource_food_y, crd_resource_food_x+crd_resource_counter_width, crd_resource_food_y+crd_resource_counter_height, mid_screen, top_screen, mid_screen, top_screen,
 					crd_resource_food_x, -crd_resource_food_y-crd_resource_counter_height, crd_resource_food_x+crd_resource_counter_width, -crd_resource_food_y, mid_screen, bottom_screen, mid_screen, bottom_screen);
@@ -502,8 +500,6 @@
 
                         <object type="button" name="resource_wood_counter" sprite="resource_wood_counter" style="resource_counter" z="70" hidden="false">
 				<action on="Load"><![CDATA[
-					this.caption = "789,012";
-
 					AddSizeCoord(this.name,
 					crd_resource_wood_x, crd_resource_wood_y, crd_resource_wood_x+crd_resource_counter_width, crd_resource_wood_y+crd_resource_counter_height, mid_screen, top_screen, mid_screen, top_screen,
 					crd_resource_wood_x, -crd_resource_wood_y-crd_resource_counter_height, crd_resource_wood_x+crd_resource_counter_width, -crd_resource_wood_y, mid_screen, bottom_screen, mid_screen, bottom_screen);
@@ -512,8 +508,6 @@
 
                         <object type="button" name="resource_stone_counter" sprite="resource_stone_counter" style="resource_counter" z="70" hidden="false">
 				<action on="Load"><![CDATA[
-					this.caption = "109,854";
-
 					AddSizeCoord(this.name,
 					crd_resource_stone_x, crd_resource_stone_y, crd_resource_stone_x+crd_resource_counter_width, crd_resource_stone_y+crd_resource_counter_height, mid_screen, top_screen, mid_screen, top_screen,
 					crd_resource_stone_x, -crd_resource_stone_y-crd_resource_counter_height, crd_resource_stone_x+crd_resource_counter_width, -crd_resource_stone_y, mid_screen, bottom_screen, mid_screen, bottom_screen);
@@ -522,8 +516,6 @@
 
                         <object type="button" name="resource_ore_counter" sprite="resource_ore_counter" style="resource_counter" z="70" hidden="false">
 				<action on="Load"><![CDATA[
-					this.caption = "42";
-
 					AddSizeCoord(this.name,
 					crd_resource_ore_x, crd_resource_ore_y, crd_resource_ore_x+crd_resource_counter_width, crd_resource_ore_y+crd_resource_counter_height, mid_screen, top_screen, mid_screen, top_screen,
 					crd_resource_ore_x, -crd_resource_ore_y-crd_resource_counter_height, crd_resource_ore_x+crd_resource_counter_width, -crd_resource_ore_y, mid_screen, bottom_screen, mid_screen, bottom_screen);
@@ -532,8 +524,6 @@
 
                         <object type="button" name="resource_population_counter" sprite="resource_population_counter" style="resource_counter" z="70" hidden="false">
 				<action on="Load"><![CDATA[
-					this.caption = "199/200";
-
 					AddSizeCoord(this.name,
 					crd_resource_population_x, crd_resource_population_y, crd_resource_population_x+crd_resource_counter_long_width, crd_resource_population_y+crd_resource_counter_height, mid_screen, top_screen, mid_screen, top_screen,
 					crd_resource_population_x, -crd_resource_population_y-crd_resource_counter_height, crd_resource_population_x+crd_resource_counter_long_width, -crd_resource_population_y, mid_screen, bottom_screen, mid_screen, bottom_screen);
@@ -651,100 +641,104 @@
 			</object>
 
 			<!-- RANK ICON -->
-                        <object type="button" name="session_panel_status_icon_rank" sprite="statistic_rank2" ghost="true" z="70" hidden="false">
+                        <object type="button" name="session_panel_status_icon_rank" ghost="true" z="70" hidden="false">
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_panel_status_icon_rank",
-					"0%+50 0%+44 0%+70 0%+47", 
-					"0%+50 100%-180 0%+70 100%-160");
+					AddSizeCoord(this.name,
+					crd_status_orb_rank_x, crd_status_orb_rank_y, crd_status_orb_rank_x+crd_status_orb_rank_width, crd_status_orb_rank_y+crd_status_orb_rank_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_rank_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_rank_y, crd_status_orb_rank_x+crd_status_orb_rank_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_rank_y+crd_status_orb_rank_height, left_screen, bottom_screen, left_screen, bottom_screen);
                                 ]]></action>
                         </object>
 
 			<!-- HITPOINTS BAR -->
 			<object type="progressbar" name="session_panel_status_icon_hp_bar" style="group_portrait_bar" sprite-background="back-bar" ghost="true" z="70" hidden="false">
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_panel_status_icon_hp_bar",
-					"0%+6 0%+147 0%+66 0%+160", 
-					"0%+6 100%-114 0%+66 100%-108");
-                                ]]></action>
-			</object>
-
-			<!-- EXPERIENCE BAR -->
-			<object type="progressbar" name="session_panel_status_icon_exp_bar" style="up_bar" sprite-background="back-bar" ghost="true" z="70" hidden="false">
-                                <action on="Load"><![CDATA[
-					AddSizeString("session_panel_status_icon_exp_bar",
-					"0%+6 0%+147 0%+66 0%+160", 
-					"0%+6 100%-106 0%+66 100%-98");
+					AddSizeCoord(this.name,
+					crd_status_orb_hpbar_x, crd_status_orb_hpbar_y, crd_status_orb_hpbar_x+crd_status_orb_hpbar_width, crd_status_orb_hpbar_y+crd_status_orb_hpbar_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_hpbar_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_hpbar_y, crd_status_orb_portrait_x+crd_status_orb_hpbar_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_hpbar_y+crd_status_orb_hpbar_height, left_screen, bottom_screen, left_screen, bottom_screen);
                                 ]]></action>
 			</object>
 
 			<!-- HITPOINTS TEXT -->
-                        <object type="button" name="session_panel_status_icon_hp_text" font="verdana10" textcolor="0 255 0" text-align="center" text-valign="bottom" ghost="true" z="70" hidden="false">
+                        <object type="button" name="session_panel_status_icon_hp_text" font="verdana10" textcolor="0 255 0" text-align="left" text-valign="center" ghost="true" z="70" hidden="false">
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_panel_status_icon_hp_text",
-					"0%+46 0%+148 0%+146 0%+161", 
-					"0%+46 100%-110 0%+146 100%-104");
+					AddSizeCoord(this.name,
+					crd_status_orb_hpbar_text_x, crd_status_orb_hpbar_text_y, crd_status_orb_hpbar_text_x+crd_status_orb_hpbar_text_width, crd_status_orb_hpbar_text_y+crd_status_orb_hpbar_text_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_hpbar_text_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_hpbar_text_y, crd_status_orb_hpbar_text_x+crd_status_orb_hpbar_text_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_hpbar_text_y+crd_status_orb_hpbar_text_height, left_screen, bottom_screen, left_screen, bottom_screen);
                                 ]]></action>
                         </object>
+
+			<!-- EXPERIENCE BAR -->
+			<object type="progressbar" name="session_panel_status_icon_xp_bar" style="up_bar" sprite-background="back-bar" ghost="true" z="70" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_status_orb_xpbar_x, crd_status_orb_xpbar_y, crd_status_orb_xpbar_x+crd_status_orb_xpbar_width, crd_status_orb_xpbar_y+crd_status_orb_xpbar_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_xpbar_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_xpbar_y, crd_status_orb_portrait_x+crd_status_orb_xpbar_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_xpbar_y+crd_status_orb_xpbar_height, left_screen, bottom_screen, left_screen, bottom_screen);
+                                ]]></action>
+			</object>
 
 			<!-- EXPERIENCE TEXT -->
-                        <object type="button" name="session_panel_status_icon_exp_text" font="verdana10" textcolor="255 255 0" text-align="center" text-valign="bottom" ghost="true" z="70" hidden="false">
+                        <object type="button" name="session_panel_status_icon_xp_text" font="verdana10" textcolor="255 255 0" text-align="left" text-valign="center" ghost="true" z="70" hidden="false">
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_panel_status_icon_exp_text",
-					"0%+46 0%+148 0%+146 0%+161", 
-					"0%+46 100%-102 0%+146 100%-94");
-					getGUIObjectByName("session_panel_status_icon_exp_text").caption = "100/200";
+					AddSizeCoord(this.name,
+					crd_status_orb_xpbar_text_x, crd_status_orb_xpbar_text_y, crd_status_orb_xpbar_text_x+crd_status_orb_xpbar_text_width, crd_status_orb_xpbar_text_y+crd_status_orb_xpbar_text_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_xpbar_text_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_xpbar_text_y, crd_status_orb_xpbar_text_x+crd_status_orb_xpbar_text_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_xpbar_text_y+crd_status_orb_xpbar_text_height, left_screen, bottom_screen, left_screen, bottom_screen);
                                 ]]></action>
                         </object>
 
-                        <object type="button" name="session_panel_status_icon_hp" sprite="statistic_hp" ghost="true" z="70" hidden="true">
+			<!-- GARRISON COUNTER -->
+                        <object type="button" name="session_panel_status_icon_garrison" textcolor="100 100 255" font="verdana11" text-align="left" text-valign="bottom" ghost="true" z="70" hidden="false">
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_panel_status_icon_hp",
-					"0%+75 0%+125 0%+95 0%+145", 
-					"0%+75 100%-57 0%+95 100%-37");
+					AddSizeCoord(this.name,
+					crd_status_orb_garrison_x, crd_status_orb_garrison_y, crd_status_orb_garrison_x+crd_status_orb_garrison_width, crd_status_orb_garrison_y+crd_status_orb_garrison_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_garrison_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_garrison_y, crd_status_orb_garrison_x+crd_status_orb_garrison_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_garrison_y+crd_status_orb_garrison_height, left_screen, bottom_screen, left_screen, bottom_screen);
+
+                                        getGUIObjectByName("session_panel_status_icon_garrison").caption = "[icon=icon_statistic_garrison] 23/30";
+                                ]]></action>
+                        </object>
+
+			<!-- SUPPLY COUNTER -->
+                        <object type="button" name="session_panel_status_icon_supply" textcolor="252 148 78" font="verdana11" text-align="left" text-valign="bottom" ghost="true" z="70" hidden="false">
+                                <action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_status_orb_supply_x, crd_status_orb_supply_y, crd_status_orb_supply_x+crd_status_orb_supply_width, crd_status_orb_supply_y+crd_status_orb_supply_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_supply_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_supply_y, crd_status_orb_supply_x+crd_status_orb_supply_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_supply_y+crd_status_orb_supply_height, left_screen, bottom_screen, left_screen, bottom_screen);
+
+                                        getGUIObjectByName("session_panel_status_icon_supply").caption = "[icon=icon_resource_wood] 1575";
                                 ]]></action>
                         </object>
 
 			<!-- NAME TEXT -->
 			<object type="text" name="session_panel_status_name1" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
 			        <action on="Load"><![CDATA[
-					AddSizeString("session_panel_status_name1",
-					"0%+2 0%+4 0%+254 0%+27", 
-					"0%+2 100%-60 0%+254 100%-37");
+					AddSizeCoord(this.name,
+					crd_status_orb_name1_x, crd_status_orb_name1_y, crd_status_orb_name1_x+crd_status_orb_name1_width, crd_status_orb_name1_y+crd_status_orb_name1_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_name1_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_name1_y, crd_status_orb_name1_x+crd_status_orb_name1_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_name1_y+crd_status_orb_name1_height, left_screen, bottom_screen, left_screen, bottom_screen);
 				]]></action>
 			</object>
-
 			<object type="text" name="session_panel_status_name2" font="verdana12" textcolor="255 255 255" ghost="true" z="70" hidden="false">
 			        <action on="Load"><![CDATA[
-					AddSizeString("session_panel_status_name2",
-					"0%+2 0%+19 0%+254 0%+42", 
-					"0%+2 100%-45 0%+254 100%-22");
+					AddSizeCoord(this.name,
+					crd_status_orb_name2_x, crd_status_orb_name2_y, crd_status_orb_name2_x+crd_status_orb_name2_width, crd_status_orb_name2_y+crd_status_orb_name2_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_name2_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_name2_y, crd_status_orb_name2_x+crd_status_orb_name2_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_name3_y+crd_status_orb_name3_height, left_screen, bottom_screen, left_screen, bottom_screen);
 				]]></action>
 			</object>
 			<object type="text" name="session_panel_status_name3" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
 			        <action on="Load"><![CDATA[
-					AddSizeString("session_panel_status_name3",
-					"0%+2 0%+34 0%+254 0%+59", 
-					"0%+2 100%-28 0%+254 100%-17");
+					AddSizeCoord(this.name,
+					crd_status_orb_name3_x, crd_status_orb_name3_y, crd_status_orb_name3_x+crd_status_orb_name3_width, crd_status_orb_name3_y+crd_status_orb_name3_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_name3_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_name3_y, crd_status_orb_name3_x+crd_status_orb_name3_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_name3_y+crd_status_orb_name3_height, left_screen, bottom_screen, left_screen, bottom_screen);
 				]]></action>
 			</object>
 
-			<!-- STATUS ORB STATISTICS AND ICONS (Experience, Hitpoints, Supply, Garrison) -->
-                        <object type="button" name="session_panel_status_icon_supply" textcolor="252 148 78" text-align="center" text-valign="center" ghost="true" z="70" hidden="false">
-                                <action on="Load"><![CDATA[
-					AddSizeString("session_panel_status_icon_supply",
-					"0%+135 0%+65 0%+150 0%+130", 
-					"0%+135 100%-110 0%+150 100%-45");
-                                        getGUIObjectByName("session_panel_status_icon_supply").caption = "[icon=icon_resource_food] 1575";
-                                ]]></action>
-                        </object>
-                        <object type="button" name="session_panel_status_icon_garrison" textcolor="100 100 255" text-align="center" text-valign="center" ghost="true" z="70" hidden="false">
-                                <action on="Load"><![CDATA[
-					AddSizeString("session_panel_status_icon_garrison",
-					"0%+116 0%+65 0%+141 0%+130", 
-					"0%+116 100%-160 0%+141 100%-95");
-                                        getGUIObjectByName("session_panel_status_icon_garrison").caption = "[icon=icon_statistic_garrison] 23/30";
-                                ]]></action>
-                        </object>
+			<object type="text" name="session_panel_status_armour" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
+			        <action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_status_orb_armour_x, crd_status_orb_armour_y, crd_status_orb_armour_x+crd_status_orb_armour_width, crd_status_orb_armour_y+crd_status_orb_armour_height, left_screen, top_screen, left_screen, top_screen,
+					crd_status_orb_armour_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_armour_y, crd_status_orb_armour_x+crd_status_orb_armour_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_armour_y+crd_status_orb_armour_height, left_screen, bottom_screen, left_screen, bottom_screen);
+
+					getGUIObjectByName("session_panel_status_armour").caption = "Attack:\nArmour:\n";
+				]]></action>
+			</object>
 
 			<!-- PRIMARY COMMAND BUTTONS (arcs the Status Orb) -->
 			<object type="button" name="session_panel_status_command_pri_1" style="portrait" textcolor="255 255 255" z="70" hidden="false">1

@@ -76,6 +76,8 @@ function getObjectInfo()
 		}
         }
 
+	// Modify any resources given/taken (later, we need to base this on a resource-changing event).
+	UpdateResourcePool();
 }
 
 // ====================================================================

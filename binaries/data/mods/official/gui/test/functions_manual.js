@@ -56,6 +56,29 @@ function manualDisplay()
 					if (selection[0].traits.id.rank)
 						ManualRollover.caption += "Rank: " + selection[0].traits.id.rank + "\n";
 
+					// Display experience.
+					if (selection[0].traits.transform && selection[0].traits.transform.upcurr && selection[0].traits.transform.upreq)
+						ManualRollover.caption += "XP: " + selection[0].traits.transform.upcurr + "/" + selection[0].traits.transform.upreq + "\n";
+
+					// Display UP on death.
+					if (selection[0].traits.loot.up)
+						ManualRollover.caption += "UP: " + selection[0].traits.loot.up + "\n";
+
+					// Display loot.
+					if (selection[0].traits.loot.food || selection[0].traits.loot.wood || selection[0].traits.loot.stone || selection[0].traits.loot.ore)
+					{
+						ManualRollover.caption += "Loot: ";
+						if (selection[0].traits.loot.food)
+							ManualRollover.caption += selection[0].traits.loot.food + " Food ";
+						if (selection[0].traits.loot.wood)
+							ManualRollover.caption += selection[0].traits.loot.wood + " Wood ";
+						if (selection[0].traits.loot.stone)
+							ManualRollover.caption += selection[0].traits.loot.stone + " Stone ";
+						if (selection[0].traits.loot.ore)
+							ManualRollover.caption += selection[0].traits.loot.ore + " Ore ";
+						ManualRollover.caption += "\n";
+					}
+
 					// Armour.
 					if (selection[0].traits.armour)
 					{
@@ -72,7 +95,7 @@ function manualDisplay()
 								ManualRollover.caption += "Hack: " + Math.round(selection[0].traits.armour.hack*100) + "%, ";
 
 							if (selection[0].traits.armour.pierce)
-								ManualRollover.caption += "Hack: " + Math.round(selection[0].traits.armour.pierce*100) + "%";
+								ManualRollover.caption += "Pierce: " + Math.round(selection[0].traits.armour.pierce*100) + "%";
 
 							ManualRollover.caption += "]\n";
 						}
@@ -94,7 +117,7 @@ function manualDisplay()
 								ManualRollover.caption += "Hack: " + Math.round(selection[0].actions.attack.hack*100) + "%, ";
 
 							if (selection[0].actions.attack.pierce)
-								ManualRollover.caption += "Hack: " + Math.round(selection[0].actions.attack.pierce*100) + "%";
+								ManualRollover.caption += "Pierce: " + Math.round(selection[0].actions.attack.pierce*100) + "%";
 
 							ManualRollover.caption += "]\n";
 						}
