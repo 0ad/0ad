@@ -21,7 +21,7 @@
 #include <assert.h>
 
 #include "config.h"
-#include "types.h"
+#include "lib/types.h"
 
 #include "sysdep/sysdep.h"
 

@@ -30,7 +30,7 @@
 #ifndef	MMGR_H__
 #define	MMGR_H__
 
-#include "types.h"
+#include "lib/types.h"
 
 
 //

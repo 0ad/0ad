@@ -16,7 +16,7 @@
 
 #include "precompiled.h"
 
-#include "types.h"
+#include "lib/types.h"
 #include "lib.h"
 
 #include <assert.h>

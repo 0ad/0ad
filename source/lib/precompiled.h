@@ -9,7 +9,7 @@
 // this policy yields the best compile performance with or without PCH.
 
 #include "config.h"
-#include "types.h"
+#include "lib/types.h"
 
 #ifdef _MSC_VER
 #pragma warning(disable:4996)	// function is deprecated
