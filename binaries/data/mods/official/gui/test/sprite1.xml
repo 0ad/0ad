@@ -120,6 +120,24 @@
                 <image backcolor="255 255 0" size="0 0 100% 100%" />
         </sprite>
 
+        <sprite name="blue-bar">
+                <image backcolor="255 255 255" size="0 1 1 100%-1" />
+                <image backcolor="255 255 255" size="0 0 100%-1 1" />
+                <image backcolor="64 64 64" size="100%-1 0 100% 100%" />
+                <image backcolor="64 64 64" size="0 100%-1 100%-1 100%" />
+                <image backcolor="128 128 128" size="100%-2 1 100%-1 100%-1" />
+                <image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
+                <image backcolor="0 0 255" size="0 0 100% 100%" />
+        </sprite>
+
+        <sprite name="blue-bar-outlined">
+                <image backcolor="0 0 0" size="-1 -1 100%+1 0" />
+                <image backcolor="0 0 0" size="-1 100% 100%+1 100%+1" />
+                <image backcolor="0 0 0" size="-1 0 0 100%" />
+                <image backcolor="0 0 0" size="100% 0 100%+1 100%" />
+                <image backcolor="0 0 255" size="0 0 100% 100%" />
+        </sprite>
+
         <sprite name="back-bar">
                 <image backcolor="200 200 200" size="0 1 1 100%-1" />
                 <image backcolor="200 200 200" size="0 0 100%-1 1" />
@@ -132,6 +150,13 @@
                 <image backcolor="255 255 255" size="-1 100% 100%+1 100%+1" />
                 <image backcolor="255 255 255" size="-1 0 0 100%" />
                 <image backcolor="255 255 255" size="100% 0 100%+1 100%" />
+        </sprite>
+
+        <sprite name="only-black-border">
+                <image backcolor="0 0 0" size="-1 -1 100%+1 0" />
+                <image backcolor="0 0 0" size="-1 100% 100%+1 100%+1" />
+                <image backcolor="0 0 0" size="-1 0 0 100%" />
+                <image backcolor="0 0 0" size="100% 0 100%+1 100%" />
         </sprite>
 
         <!--
@@ -158,6 +183,16 @@
         
         <sprite name="tooltip-background">
                 <image texture="black_16x16.png" texture-size="0 0 16 16" size="0 0 100% 100%" />
+        </sprite>
+
+        <!--
+        ==========================================
+        LOADING GUI
+        ==========================================
+        -->
+
+        <sprite name="black_bkg">
+                <image texture="black_bkg_16x16.png" texture-size="0 0 16 16" size="0 0 100% 100%" />
         </sprite>
 
                 <!--

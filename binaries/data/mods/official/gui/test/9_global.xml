@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no" ?>
+
+<!DOCTYPE objects SYSTEM "../gui.dtd">
+
+<objects>
+
+        <!--
+        ==========================================
+         - GLOBAL OBJECTS -
+        ==========================================
+        -->
+
+        <object type="empty" name="always_on" hotkey="alwayson.toggle" size="0 0 100% 100%" z="1" hidden="false">
+                <action on="Press"><![CDATA[
+                        GUIObjectToggle("always_on");
+                ]]></action>
+
+		<object type="button" name="audio_toggle" hotkey="audio.toggle" hidden="true">
+	                <action on="Press"><![CDATA[
+				if (snd_disabled == true)
+					snd_disable(false);
+				else
+					snd_disable(true);
+	                ]]></action>		
+		</object>
+
+                <!--
+                ==========================================
+                 - MESSAGE BOX -
+                ==========================================
+                -->
+        
+                <object type="image" size="50%-400 50%-200 50%+400 50%+200" name="mb_main" z="149" hidden="true">
+
+                        <!-- control for blocking access to other controls in background -->
+                        <object type="image" size="0 0 100% 100%" name="mb_blocker" hidden="false" />
+                        
+                        <!-- background -->
+                        <object type="image" size="0 10 100% 100%" name="mb_background" sprite="message_box-gen-background" absolute="false" z="160" />
+
+                        <!-- top -->
+                        <object type="image" name="mb_border-corner-lt" size="0 10 15 25" sprite="message_box-corner" absolute="false" z="161" />
+                        <object type="image" name="mb_border-top" size="15 10 100%-15 42" sprite="message_box-border-top" absolute="false" z="161" />
+                        <object type="image" name="mb_border-corner-rt" size="100%-15 10 100% 25" sprite="message_box-corner" absolute="false" z="161" />
+
+                        <!-- left/right -->
+                        <object type="image" name="mb_border-left" size="0 25 20 100%-15" sprite="message_box-border-left" absolute="false" z="162" />
+                        <object type="image" name="mb_border-right" size="100%-32 25 100% 100%-15" sprite="message_box-border-right" absolute="false" z="161" />
+                        
+                        <!-- bottom -->
+                        <object type="image" name="mb_border-corner-lb" size="0 100%-15 15 100%" sprite="message_box-corner" absolute="false" z="161" />
+                        <object type="image" name="mb_border-bottom" size="15 100%-32 100%-15 100%" sprite="message_box-border-bottom" absolute="false" z="162" />
+                        <object type="image" name="mb_border-corner-rb" size="100%-15 100%-15 100% 100%" sprite="message_box-corner" absolute="false" z="161" />
+                        
+                        <!-- titlebar -->
+                        <object type="image" name="mb_titlebar-left" size="15% 0 15%+64 32" sprite="message_box-titlebar-left" absolute="false" z="164" />
+                        <object type="image" name="mb_titlebar-middle" size="15%+64 0 85%-64 32" sprite="message_box-titlebar-middle" absolute="false" z="164" />
+                        <object type="image" name="mb_titlebar-right" size="85%-64 0 85% 32" sprite="message_box-titlebar-right" absolute="false" z="164" />
+                        <object type="button" name="mb_titlebar-text" size="15%+54 4 85%-54 32" absolute="false" font="prospero18" z="165" text-align="center" text-valign="center">mbTitle</object>
+                        
+                        <!-- text -->
+                        <object type="text" name="mb_text" size="32 40 100%-32 100%-100" absolute="false" font="prospero18" z="165" ghost="true">
+                                mbMessage
+                        </object>
+                        
+                        <!-- buttons -->
+                        <object type="button" name="mb_button1" size="40 100%-80 33%-30 100%-50" absolute="false" sprite="message_box-button-normal" sprite-over="message_box-button-over" font="prospero18" z="165" text-align="center" text-valign="center">
+                                mbButton1Caption
+                                <action on="Press"><![CDATA[
+                                        eval(getGUIGlobal().mbButton1Code);
+                                        GUIObjectHide('mb_main');
+                                ]]></action>
+                        </object>
+                        <object type="button" name="mb_button2" size="33%+30 100%-80 66%-40 100%-50" absolute="false" sprite="message_box-button-normal" sprite-over="message_box-button-over" font="prospero18" z="165" text-align="center" text-valign="center">
+                                mbButton2Caption
+                                <action on="Press"><![CDATA[
+                                        eval(getGUIGlobal().mbButton2Code);
+                                        GUIObjectHide('mb_main');
+                                ]]></action>
+                        </object>
+                        <object type="button" name="mb_button3" size="66%+30 100%-80 100%-40 100%-50" absolute="false" sprite="message_box-button-normal" sprite-over="message_box-button-over" font="prospero18" z="165" text-align="center" text-valign="center">
+                                mbButton3Caption
+                                <action on="Press"><![CDATA[
+                                        eval(getGUIGlobal().mbButton2Code);
+                                        GUIObjectHide('mb_main');
+                                ]]></action>
+                        </object>
+
+                </object>
+
+        </object>
+
+</objects>

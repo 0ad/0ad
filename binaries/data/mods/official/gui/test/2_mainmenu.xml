@@ -21,15 +21,9 @@
 
         <object type="button" name="pregame-mainmenu-sp-button" sprite-over="pregame-mainmenu-spbt" size="52.9296875% 23.95833333% 67.578125% 42.317708333%" z="101" hidden="false">
             <action on="Press"><![CDATA[
-                startGame();
-                GUIObjectUnhide("session_gui");
-                GUIObjectUnhide("End_Game_Button");
                 GUIObjectHide("pregame_gui");
-                FlipGUI(GUIType);
-		// Select session peace track.
-		curr_session_playlist_1 = newRandomSound("music", "peace");
-		// Fade out main theme and fade in session theme.
-		CrossFade(curr_music, curr_session_playlist_1, 0.0001);
+		GUIObjectUnhide("loading_screen");
+		setTimeout( loadSession(), 0 );
             ]]></action>
             <action on="MouseEnter"><![CDATA[
                 tooltipObject = getGUIObjectByName("pregame-mainmenu-tooltip");
@@ -68,6 +62,26 @@
         </object>
 
         <object type="text" name="pregame-mainmenu-tooltip" sprite="tooltip-background" size="69% 6.3802% 97.0703125% 28.125%" font="prospero16" textcolor="255 255 255" z="104" hidden="true" ghost="true">tooltipText</object>
+
+	<object type="button" name="exit_button" sprite="exit_sprite" sprite-over="exit_sprite-over" size="100%-18 2 100%-2 18" z="1000" hidden="false">
+		<action on="Press"><![CDATA[
+			btCaptions = new Array("Yes, let me out!", "Nooooo!");
+			btCode = new Array("exit();", "");
+			messageBox(400, 200, "Do you really want to quit [icon=0ad_icon] A.D.? This will cause a sudden return to reality.", "Confirmation", 0, btCaptions, btCode);
+		]]></action>
+
+		<!--  START temporary code
+		This code only applies to the main menu, I don't know how it'll behave ingame. It is temporary and should be removed as soon as we got proper tooltip support implemented. -->
+		<action on="MouseEnter"><![CDATA[
+			tooltipObject = getGUIObjectByName("pregame-mainmenu-tooltip");
+			tooltipObject.caption = "Tired of 0 A.D. ? Click here to leave and reenter the real world.";
+			GUIObjectUnhide("pregame-mainmenu-tooltip");
+		]]></action>
+		<action on="MouseLeave"><![CDATA[
+			GUIObjectHide("pregame-mainmenu-tooltip");
+		]]></action>
+		<!-- END temporary code -->
+	</object>
 
   </object>
 

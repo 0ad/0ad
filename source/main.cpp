@@ -793,19 +793,23 @@ static void InitPs()
 		{TIMER(ps_gui_2)
 		g_GUI.LoadXMLFile("gui/test/2_mainmenu.xml");}
 		{TIMER(ps_gui_3)
-		g_GUI.LoadXMLFile("gui/test/3_session.xml");}
+		g_GUI.LoadXMLFile("gui/test/3_loading.xml");}
 		{TIMER(ps_gui_4)
-		g_GUI.LoadXMLFile("gui/test/4_manual.xml");}
+		g_GUI.LoadXMLFile("gui/test/4_session.xml");}
 		{TIMER(ps_gui_5)
-		g_GUI.LoadXMLFile("gui/test/5_atlas.xml");}
+		g_GUI.LoadXMLFile("gui/test/5_manual.xml");}
 		{TIMER(ps_gui_6)
-		g_GUI.LoadXMLFile("gui/test/6_global.xml");}
+		g_GUI.LoadXMLFile("gui/test/6_subwindows.xml");}
+		{TIMER(ps_gui_7)
+		g_GUI.LoadXMLFile("gui/test/7_atlas.xml");}
+		{TIMER(ps_gui_9)
+		g_GUI.LoadXMLFile("gui/test/9_global.xml");}
 	}
 
-	{
-	TIMER(ps_gui_hello_xml)
-		g_GUI.LoadXMLFile("gui/test/hello.xml");
-	}
+//	{
+//	TIMER(ps_gui_hello_xml)
+//		g_GUI.LoadXMLFile("gui/test/hello.xml");
+//	}
 #endif
 }
 

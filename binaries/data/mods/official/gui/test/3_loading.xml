@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no" ?>
+
+<!DOCTYPE objects SYSTEM "../gui.dtd">
+
+<!--
+==========================================
+- LOADING SCREEN DEFINITION -
+==========================================
+-->
+
+<objects>
+
+	<object type="empty" name="loading_screen" size="0 0 100% 100%" z="1" ghost="true" hidden="true">
+                <!-- background -->
+		<object type="image" name="loading_screen_background_black" sprite="black_bkg" size="0 0 100% 10" z="99" hidden="false" />
+		<object type="image" name="loading_screen_background_image" sprite="message_box-gen-background" size="0 10 100% 100%" z="100" hidden="false" />
+
+                <!-- top -->
+		<object type="image" name="loading_screen_border-corner-lt" size="0 10 15 25" sprite="message_box-corner" absolute="false" z="161"  hidden="false"/>
+		<object type="image" name="loading_screen_border-top" size="15 10 100%-15 42" sprite="message_box-border-top" absolute="false" z="161"  hidden="false"/>
+		<object type="image" name="loading_screen_border-corner-rt" size="100%-15 10 100% 25" sprite="message_box-corner" absolute="false" z="161"  hidden="false"/>
+
+		<!-- left/right -->
+		<object type="image" name="loading_screen_border-left" size="0 25 20 100%-15" sprite="message_box-border-left" absolute="false" z="162"  hidden="false"/>
+		<object type="image" name="loading_screen_border-right" size="100%-32 25 100% 100%-15" sprite="message_box-border-right" absolute="false" z="161"  hidden="false"/>
+                        
+		<!-- bottom -->
+		<object type="image" name="loading_screen_border-corner-lb" size="0 100%-15 15 100%" sprite="message_box-corner" absolute="false" z="161" hidden="false"/>
+		<object type="image" name="loading_screen_border-bottom" size="15 100%-32 100%-15 100%" sprite="message_box-border-bottom" absolute="false" z="162" hidden="false"/>
+		<object type="image" name="loading_screen_border-corner-rb" size="100%-15 100%-15 100% 100%" sprite="message_box-corner" absolute="false" z="161" hidden="false"/>
+                        
+		<!-- titlebar -->
+		<object type="image" name="loading_screen_titlebar-left" size="15% 0 15%+64 32" sprite="message_box-titlebar-left" absolute="false" z="164" hidden="false"/>
+		<object type="image" name="loading_screen_titlebar-middle" size="15%+64 0 85%-64 32" sprite="message_box-titlebar-middle" absolute="false" z="164" hidden="false"/>
+		<object type="image" name="loading_screen_titlebar-right" size="85%-64 0 85% 32" sprite="message_box-titlebar-right" absolute="false" z="164" hidden="false"/>
+		<object type="button" name="loading_screen_titlebar-text" size="15%+54 4 85%-54 32" absolute="false" font="prospero18" z="165" text-align="center" text-valign="center" hidden="false">
+			<action on="Load"><![CDATA[
+				this.caption = "Loading Scenario ..."
+			]]></action>
+		</object>
+
+		<!-- progress bar -->
+		<object type="button" name="loading_screen_progress_bar_text" size="0%+32 100%-205 100%-32 100%-185" font="tahoma14" textcolor="0 0 0" text-align="center" text-valign="center" z="165" hidden="false">
+			<action on="Load"><![CDATA[
+				this.caption = "... Reticulating splines ...";
+			]]></action>
+		</object>
+		<object type="progressbar" name="loading_screen_progress_bar" style="blue_bar_outlined" size="0%+32 100%-185 100%-32 100%-160" z="165" hidden="false">
+			<action on="Load"><![CDATA[
+				this.caption = 80;
+			]]></action>
+		</object>
+                        
+		<!-- text -->
+		<object type="text" name="loading_screen_text" size="32 40 100%-32 100%-100" absolute="false" font="prospero18" z="165" hidden="false">
+			<action on="Load"><![CDATA[
+				this.caption = "LOADING ...\nPlease wait ...\n(Yes, we know the progress bar doesn't do diddly squat right now)\nJust keep waiting ...\nIt'll get there ...\nAlmost done ...\nTrust me!"
+			]]></action>
+		</object>
+		<object type="button" name="loading_screen_tip" sprite="only-white-border" size="32 100%-150 100%-32 100%-32" font="tahoma18" text-valign="center" textcolor="0 0 0" z="165" hidden="false">
+			<action on="Load"><![CDATA[
+				this.caption = "Wise man once say ...\nHe who thinks slow, he act in haste, be rash and quick and foolish. But he that thinks too much, acts too slowly. The stupid always win, Commandersan. Remember that. You are tiny grasshopper."
+			]]></action>
+		</object>
+	</object>
+
+</objects>

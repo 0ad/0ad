@@ -10,6 +10,21 @@ function initSession()
 
 // ====================================================================
 
+function loadSession()
+{
+	console.write("Loading Scenario ...");
+	startGame();
+	GUIObjectHide("loading_screen");
+	GUIObjectUnhide("session_gui");
+	FlipGUI(GUIType);
+	// Select session peace track.
+	curr_session_playlist_1 = newRandomSound("music", "peace");
+	// Fade out main theme and fade in session theme.
+	CrossFade(curr_music, curr_session_playlist_1, 0.0001);
+}
+
+// ====================================================================
+
 function setPortrait(objectName, portraitString) 
 {
 	// Use this function as a shortcut to change a portrait object to a different portrait image. 

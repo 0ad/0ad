@@ -55,4 +55,18 @@
 		tooltip-style="session-tooltip"
 		ghost="true"
 	/>
+
+	<style name="blue_bar"
+		sprite-background=""
+		sprite-bar="blue-bar"
+		tooltip-style="session-tooltip"
+		ghost="true"
+	/>
+
+	<style name="blue_bar_outlined"
+		sprite-background="only-black-border"
+		sprite-bar="blue-bar-outlined"
+		tooltip-style="session-tooltip"
+		ghost="true"
+	/>
 </styles>
