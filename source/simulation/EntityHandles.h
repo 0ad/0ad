@@ -20,7 +20,7 @@
 #ifndef ENTITY_HANDLE_INCLUDED
 #define ENTITY_HANDLE_INCLUDED
 
-#include "types.h"
+#include "lib/types.h"
 #include "Network/Serialization.h"
 
 #define INVALID_HANDLE 65535

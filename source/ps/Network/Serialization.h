@@ -1,7 +1,7 @@
 #ifndef _Serialization_H
 #define _Serialization_H
 
-#include "types.h"
+#include "lib/types.h"
 #include "lib.h"
 
 #define Serialize_int_1(_pos, _val) \

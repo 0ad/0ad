@@ -8,7 +8,7 @@
 #include "res/file.h"
 #include "res/mem.h"
 #include "scripting/ScriptingHost.h"
-#include "types.h"
+#include "lib/types.h"
 
 #define LOG_CATEGORY "config"
 

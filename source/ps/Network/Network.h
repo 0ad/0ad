@@ -46,7 +46,7 @@ MORE INFO
 //--------------------------------------------------------
 
 #include "posix.h"
-#include "types.h"
+#include "lib/types.h"
 #include "Pyrogenesis.h"
 #include "ThreadUtil.h"
 #include "Singleton.h"

@@ -10,7 +10,7 @@
 #define _FILEUNPACKER_H
 
 #include <vector>
-#include "types.h"
+#include "lib/types.h"
 #include "CStr.h"
 
 ////////////////////////////////////////////////////////////////////////////////

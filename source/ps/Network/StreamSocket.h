@@ -1,7 +1,7 @@
 #ifndef _StreamSocket_H
 #define _StreamSocket_H
 
-#include "types.h"
+#include "lib/types.h"
 #include "Pyrogenesis.h"
 #include "Network.h"
 #include "SocketBase.h"

@@ -6,7 +6,7 @@
 //--------------------------------------------------------
 
 #include "posix.h"
-#include "types.h"
+#include "lib/types.h"
 #include "Pyrogenesis.h"
 #include <string.h>
 #include "CStr.h"

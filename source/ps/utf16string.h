@@ -17,7 +17,7 @@ typedef std::wstringstream utf16stringstream;
 #else
 
 #include <string>
-#include "types.h"
+#include "lib/types.h"
 
 typedef uint16_t utf16_t;
 typedef std::basic_string<utf16_t> utf16string;

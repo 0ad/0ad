@@ -1,7 +1,7 @@
 #ifndef _AllNetMessages_H
 #define _AllNetMessages_H
 
-#include "types.h"
+#include "lib/types.h"
 #include "CStr.h"
 #include "scripting/JSSerialization.h"
 

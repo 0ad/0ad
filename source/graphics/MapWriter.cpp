@@ -1,6 +1,6 @@
 #include "precompiled.h"
 
-#include "types.h"
+#include "lib/types.h"
 #include "MapWriter.h"
 #include "UnitManager.h"
 #include "Unit.h"
