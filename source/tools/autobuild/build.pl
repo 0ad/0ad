@@ -74,9 +74,10 @@ allow_abort();
 $svn_output =~ /^(?:Updated to|At) revision (\d+)\.$/m or die;
 my $svn_revision = $1;
 
-if ($svn_output =~ m~^.  (source(?![/\\]tools)|build|libraries)~)
+if ($svn_output =~ m~^.  (source(?![/\\]tools)|build|libraries)~m)
 {
 	# The source has been updated.
+	# ('source' means something in the source, build, or libraries directories, excluding source/tools)
 }
 else
 {
