@@ -50,10 +50,12 @@ extern int vfs_discard_read(Handle& hr);
 extern ssize_t vfs_io(Handle hf, size_t ofs, size_t size, void*& p);
 
 
+// keep in sync with File flags!
+
 enum
 {
 	VFS_WRITE = 1,			// write-only access; otherwise, read only
-	VFS_MODIFY = 2,			// want to be able to change in memory data
+	VFS_MEM_READONLY = 2,	// !want to be able to change in memory data
 	VFS_NOCACHE = 4,		// don't cache whole file, e.g. if cached on a higher level
 	VFS_RANDOM = 8			// random access hint, allow offset
 };

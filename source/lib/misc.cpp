@@ -22,23 +22,37 @@
 #include <cmath>
 
 #include "lib.h"
-#include "timer.h"
 #include "misc.h"
 
 
-#include <map>
-
-
-
-// FNV1-A
-u32 fnv_hash(const char* str, size_t len)
+// FNV1-A hash - good for strings.
+// if len = 0 (default), treat buf as a C-string;
+// otherwise, hash <len> bytes of buf.
+u32 fnv_hash(const void* buf, const size_t len)
 {
-	u32 h = 0;
+	u32 h = 0x811c9dc5;
+		// give distinct values for different length 0 buffers.
+		// value taken from FNV; it has no special significance.
 
-	while(len--)
+	const u8* p = (const u8*)buf;
+
+	// expected case: string
+	if(!len)
 	{
-		h ^= *(const u8*)str++;
-		h *= 0x01000193;
+		while(*p)
+		{
+			h ^= *p++;
+			h *= 0x01000193;
+		}
+	}
+	else
+	{
+		size_t bytes_left = len;
+		while(bytes_left--)
+		{
+			h ^= *p++;
+			h *= 0x01000193;
+		}
 	}
 
 	return h;
@@ -168,14 +182,14 @@ uintptr_t round_up(uintptr_t val, uintptr_t multiple)
 u16 addusw(u16 x, u16 y)
 {
 	u32 t = x;
-	return min(t+y, 0xffff);
+	return (u16)MIN(t+y, 0xffff);
 }
 
 
 u16 subusw(u16 x, u16 y)
 {
 	long t = x;
-	return max(t-y, 0);
+	return MAX(t-y, 0);
 }
 
 

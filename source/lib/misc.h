@@ -28,6 +28,12 @@
 #endif
 
 
+// FNV1-A hash - good for strings.
+// if len = 0 (default), treat buf as a C-string;
+// otherwise, hash <len> bytes of buf.
+extern u32 fnv_hash(const void* buf, const size_t len = 0);
+
+
 #ifndef min
 inline int min(int a, int b)
 {

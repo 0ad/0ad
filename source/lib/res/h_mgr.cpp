@@ -23,6 +23,7 @@
 #include <climits>
 
 #include "lib.h"
+#include "misc.h"
 #include "h_mgr.h"
 #include "mem.h"
 
@@ -393,7 +394,7 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 	else
 	{
 		if(fn)
-			key = fnv_hash(fn, strlen(fn));
+			key = fnv_hash(fn);
 	}
 
 	if(key)
@@ -481,7 +482,7 @@ int h_reload(const char* fn)
 		return ERR_INVALID_PARAM;
 	}
 
-	const u32 key = fnv_hash(fn, strlen(fn));
+	const u32 key = fnv_hash(fn);
 
 	i32 i;
 	// destroy (note: not free!) all handles backed by this file.

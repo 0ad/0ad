@@ -132,8 +132,6 @@ const size_t MB = 1 << 20;
 #endif
 
 
-extern u32 fnv_hash(const char* str, size_t len);
-
 
 #define BIT(n) (1ul << (n))
 

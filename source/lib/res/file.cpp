@@ -167,9 +167,9 @@ int file_open(const char* path, int flags, File* f)
 	f->magic = FILE_MAGIC;
 #endif
 
-	f->size    = size;
 	f->flags   = flags;
-	f->fn_hash = fnv_hash(path, strlen(path));
+	f->size    = size;
+	f->fn_hash = fnv_hash(path);
 	f->mapping = 0;
 	f->fd      = fd;
 }

@@ -274,7 +274,7 @@ found_ecdr:
 		const u16 lfh_e_len  = read_le16(lfh+28);
 		const char* lfh_fn   = (const char*)lfh+30;
 
-		*hs++ = fnv_hash(lfh_fn, lfh_fn_len);
+		*hs++ = fnv_hash(lfh_fn);
 		ent->ofs = lfh_ofs + 30 + lfh_fn_len + lfh_e_len;
 		ent->csize = csize;
 		ent->ucsize = ucsize;
@@ -316,7 +316,7 @@ static int lookup(Handle ha, const char* fn, const ZEnt*& ent)
 	H_DEREF(ha, ZArchive, za);
 
 	// find its File descriptor
-	const u32 fn_hash = fnv_hash(fn, strlen(fn));
+	const u32 fn_hash = fnv_hash(fn);
 	u16 i = za->last_file+1;
 	if(i >= za->num_files || za->fn_hashs[i] != fn_hash)
 	{
@@ -349,7 +349,7 @@ static int zfile_validate(uint line, ZFile* zf)
 		err = ERR_INVALID_PARAM;
 	}
 #ifdef PARANOIA
-	else if(zf->magic != FILE_MAGIC)
+	else if(zf->magic != ZFILE_MAGIC)
 		msg = "ZFile corrupted (magic field incorrect)";
 #endif
 #ifndef NDEBUG

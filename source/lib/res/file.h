@@ -30,8 +30,12 @@ struct File
 	u32 magic;
 #endif
 
-	size_t size;
+	// keep offset of flags and size members in sync with struct ZFile!
+	// it is accessed by VFS and must be the same for both (union).
+	// dirty, but necessary because VFile is pushing the HDATA size limit.
 	int flags;
+	size_t size;
+
 	u32 fn_hash;
 
 	void* mapping;
@@ -48,7 +52,7 @@ enum
 
 	// do not cache any part of the file
 	// (e.g. if caching on a higher level)
-	FILE_NO_CACHE     = 4,
+	FILE_NO_CACHE     = 4
 
 
 };

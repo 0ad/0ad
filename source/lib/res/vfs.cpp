@@ -358,18 +358,15 @@ int vfs_stat(const char* fn, struct stat* s)
 
 enum
 {
-	VF_OPEN = 1,
-	VF_ZIP = 2,
-	VF_WRITE = 4
+	// internal file state flags
+	// make sure these don't conflict with vfs.h flags
+	VF_OPEN = 0x100,
+	VF_ZIP  = 0x200,
+
 };
 
 struct VFile
 {
-	int flags;
-	size_t size;
-		// duplicated in File/ZFile below - oh well.
-		// resource data size is fixed anyway.
-
 	// cached contents of file from vfs_load
 	// (can't just use pointer - may be freed behind our back)
 	Handle hm;
@@ -379,29 +376,54 @@ struct VFile
 		File f;
 		ZFile zf;
 	};
+
+	// be aware when adding fields that we're already pushing the size limit.
 };
 
 H_TYPE_DEFINE(VFile)
 
 
+// with #define PARANOIA, File and ZFile get an additional member,
+// and VFile was exceeding HDATA_USER_SIZE. flags and size (required
+// in File as well as VFile) are now moved into the union.
+// use the functions below to insulate against change a bit.
+
+
+static size_t& vf_size(VFile* vf)
+{
+	assert(offsetof(struct File, size) == offsetof(struct ZFile, ucsize));
+	return vf->f.size;
+}
+
+
+static int& vf_flags(VFile* vf)
+{
+	assert(offsetof(struct File, flags) == offsetof(struct ZFile, flags));
+	return vf->f.flags;
+}
+
+
+
 static void VFile_init(VFile* vf, va_list args)
 {
-	vf->flags = va_arg(args, int);
+	int flags = va_arg(args, int);
+	vf_flags(vf) = flags;
 }
 
 
 static void VFile_dtor(VFile* vf)
 {
-	if(vf->flags & VF_OPEN)
+	int& flags = vf_flags(vf);
+
+	if(flags & VF_OPEN)
 	{
-		if(vf->flags & VF_ZIP)
+		if(flags & VF_ZIP)
 			zip_close(&vf->zf);
 		else
 			file_close(&vf->f);
 
-		vf->flags &= ~(VF_OPEN);
+		flags &= ~(VF_OPEN);
 	}
-	
 
 	mem_free_h(vf->hm);
 }
@@ -420,18 +442,7 @@ static int file_open_cb(const char* path, Handle ha, uintptr_t ctx)
 	if(ha != 0)
 		return 1;
 
-	int err = file_open(path, vf->flags, &vf->f);
-	if(!err)
-	{
-		vf->size = vf->f.size;
-			// somewhat of a hack.. but returning size from file_open
-			// is uglier, and relying on start of VFile / File to
-			// overlap is unsafe (#define PARANOIA adds a magic field).
-		return 0;	// found it - done
-	}
-
-	// failed to open.
-	return err;
+	return file_open(path, vf_flags(vf), &vf->f);
 }
 
 
@@ -447,8 +458,7 @@ static int zip_open_cb(const char* path, Handle ha, uintptr_t ctx)
 	int err = zip_open(ha, path, &vf->zf);
 	if(!err)
 	{
-		vf->size = vf->zf.ucsize;
-		vf->flags |= VF_ZIP;
+		vf_flags(vf) |= VF_ZIP;
 		return 0;	// found it - done
 	}
 
@@ -460,9 +470,11 @@ static int zip_open_cb(const char* path, Handle ha, uintptr_t ctx)
 
 static int VFile_reload(VFile* vf, const char* fn)
 {
+	int& flags = vf_flags(vf);
+
 	// we're done if file is already open. need to check this because reload order
 	// (e.g. if resource opens a file) is unspecified.
-	if(vf->flags & VF_OPEN)
+	if(flags & VF_OPEN)
 		return 0;
 
 	int err = -1;
@@ -480,13 +492,13 @@ static int VFile_reload(VFile* vf, const char* fn)
 	//
 	// note: flags have been set by init already
 #ifdef FINAL
-	if(vf->flags & VF_WRITE)
+	if(flags & VFS_WRITE)
 #endif
 		err = vfs_foreach_path(file_open_cb, fn, (uintptr_t)vf);
 
 	// load from Zip iff we didn't successfully open the plain file,
 	// and we're not opening for writing.
-	if(err < 0 && !(vf->flags & VF_WRITE))
+	if(err < 0 && !(flags & VFS_WRITE))
 		err = vfs_foreach_path(zip_open_cb, fn, (uintptr_t)vf);
 
 	// failed - return error code
@@ -494,7 +506,7 @@ static int VFile_reload(VFile* vf, const char* fn)
 		return err;
 
 	// success
-	vf->flags |= VF_OPEN;
+	flags |= VF_OPEN;
 	return 0;
 }
 
@@ -537,7 +549,7 @@ ssize_t vfs_io(Handle hf, size_t ofs, size_t size, void*& p)
 	H_DEREF(hf, VFile, vf);
 
 	// (vfs_open makes sure it's not opened for writing if zip)
-	if(vf->flags & VF_ZIP)
+	if(vf_flags(vf) & VF_ZIP)
 		return zip_read(&vf->zf, ofs, size, p);
 
 	// normal file:
@@ -550,7 +562,7 @@ ssize_t vfs_io(Handle hf, size_t ofs, size_t size, void*& p)
 Handle vfs_load(const char* fn, void*& p, size_t& size)
 {
 	p = 0;		// vfs_io needs initial 0 value
-	size = 0;
+	size = 0;	// in case open or deref fails
 
 	Handle hf = vfs_open(fn);
 	if(hf <= 0)
@@ -558,6 +570,7 @@ Handle vfs_load(const char* fn, void*& p, size_t& size)
 	H_DEREF(hf, VFile, vf);
 
 	Handle hm = 0;
+	size = vf_size(vf);
 
 	// already read into mem - return existing mem handle
 	// TODO: what if mapped?
@@ -566,7 +579,7 @@ Handle vfs_load(const char* fn, void*& p, size_t& size)
 		p = mem_get_ptr(vf->hm, &size);
 		if(p)
 		{
-			assert(vf->size == size && "vfs_load: mismatch between File and Mem size");
+			assert(vf_size(vf) == size && "vfs_load: mismatch between File and Mem size");
 			hm = vf->hm;
 			goto skip_read;
 		}
@@ -575,7 +588,6 @@ Handle vfs_load(const char* fn, void*& p, size_t& size)
 			// happens if someone frees the pointer. not an error!
 	}
 
-	size = vf->size;
 	{	// VC6 goto fix
 	ssize_t nread = vfs_io(hf, 0, size, p);
 	if(nread > 0)
@@ -609,88 +621,6 @@ int vfs_store(const char* fn, void* p, size_t size)
 
 
 
-
- 
-
-
-
-// separate mem and mmap handles
-
-//mmap used rarely, don't need transparency
-//mmap needs filename (so it's invalidated when file changes), passed to h_alloc
-//also uses reload and dtor - don't want to stretch mem too far (doesn't belong there)
-
-
-struct MMap
-{
-	void* p;
-	size_t size;
-	File f;
-};
-
-H_TYPE_DEFINE(MMap)
-
-
-static void MMap_init(MMap* m, va_list args)
-{
-}
-
-
-void MMap_dtor(MMap* m)
-{
-//	munmap(m->p, m->size);
-//	vfs_close(m->hf);
-}
-
-/*
-
-// get pointer to archive in memory
-Handle ham;
-if(0)
-//			if(zip_archive_info(0, 0, &ham) == 0)
-{
-void* archive_p;
-size_t archive_size;
-archive_p = mem_get_ptr(ham, &archive_size);
-
-// return file's pos in mapping
-assert(ofs < archive_size && "vfs_load: vfile.ofs exceeds Zip archive size");
-_p = (char*)archive_p + ofs;
-_size = out_size;
-hm = mem_assign(_p, _size);
-goto done;
-}
-}
-*/
-
-int MMap_reload(MMap* m, const char* fn)
-{
-	/*
-	Handle hf = vfs_open(fn);
-	if(!hf)
-	return -1;
-	File* vf = H_USER_DATA(hf, File);
-	Handle hf2;
-	size_t ofs;
-	#if 0
-	if(vf->hz)
-	if(zip_get_file(vf->hz, hf2, ofs) < 0)
-	return -1;
-	#endif
-	void* p = mmap(0, (uint)vf->size, PROT_READ, MAP_PRIVATE, vf->fd, 0);
-	if(!p)
-	{
-	vfs_close(hf);
-	return -1;
-	}
-
-	m->p = p;
-	m->size = vf->size;
-	*/
-	return 0;
-}
-
-
 Handle vfs_map(const char* fn, int flags, void*& p, size_t& size)
 {
 	Handle hf = vfs_open(fn, flags);
@@ -706,6 +636,7 @@ uintptr_t ctx = 0;
 
 int vfs_unmap(Handle& hm)
 {
-	return h_free(hm, H_MMap);
+	return -1;
+//	return h_free(hm, H_MMap);
 }
 
