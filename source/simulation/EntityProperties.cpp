@@ -94,7 +94,7 @@ CProperty_float::CProperty_float()
 CProperty_float::~CProperty_float()
 {
 	if( modifier )
-		modifier = NULL;
+		delete modifier;
 }
 
 CProperty_float& CProperty_float::operator =( const float& value )
