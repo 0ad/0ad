@@ -402,6 +402,8 @@ struct sockaddr_in
 	unsigned char  sin_zero[8];
 };
 
+#define INET_ADDRSTRLEN 16
+
 #define INADDR_ANY 0
 #define INADDR_NONE ((in_addr_t)-1)
 
@@ -417,7 +419,7 @@ struct ip_mreq
 
 // IPv6 Structures
 
-struct in_addr6 {
+struct in6_addr {
 	unsigned char 		s6_addr[16];
 };
 
@@ -425,7 +427,7 @@ struct sockaddr_in6 {
 	sa_family_t			sin6_family;     /* AF_INET6 */
 	in_port_t			sin6_port;       /* Transport level port number */
 	unsigned long		sin6_flowinfo;   /* IPv6 flow information */
-	struct in_addr6		sin6_addr;       /* IPv6 address */
+	struct in6_addr		sin6_addr;       /* IPv6 address */
 	unsigned long		sin6_scope_id;   /* set of interfaces for a scope */
 };
 
@@ -435,8 +437,6 @@ extern const struct in6_addr in6addr_any;        /* :: */
 extern const struct in6_addr in6addr_loopback;   /* ::1 */
 #define IN6ADDR_ANY_INIT { { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 } } }
 #define IN6ADDR_LOOPBACK_INIT { { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 } } }
-
-#define INET6_ADDRSTRLEN 46
 
 //
 // <netdb.h>
@@ -459,7 +459,49 @@ IMP(struct hostent*, gethostbyname, (const char *name))
 
 #define h_error WSAGetLastError()
 #define TRY_AGAIN 11002
+#define HOST_NOT_FOUND 11001
 
+/* addrinfo struct */
+struct addrinfo
+{
+    int ai_flags;              /* AI_PASSIVE, AI_CANONNAME, AI_NUMERICHOST */
+    int ai_family;             /* PF_xxx */
+    int ai_socktype;           /* SOCK_xxx */
+    int ai_protocol;           /* 0 or IPPROTO_xxx for IPv4 and IPv6 */
+    size_t ai_addrlen;         /* Length of ai_addr */
+    char *ai_canonname;        /* Canonical name for nodename */
+    struct sockaddr *ai_addr;  /* Binary address */
+    struct addrinfo *ai_next;  /* Next structure in linked list */
+};
+
+/* Hint flags for getaddrinfo */
+#define AI_PASSIVE     0x1  /* Socket address will be used in bind() call */
+
+/* Flags for getnameinfo() */
+#define NI_NUMERICHOST  0x02  /* Return numeric form of the host's address */
+
+/* Various Constants */
+#define NI_MAXHOST 1025
+#define NI_MAXSERV 32
+
+/* Note that these are function pointers. They will be initialized by the
+   entry point function in posix.cpp */
+typedef int (*fp_getnameinfo_t)(const struct sockaddr *sa, socklen_t salen, char *node,
+	socklen_t nodelen, char *serv, socklen_t servlen, unsigned int flags);
+typedef int (*fp_getaddrinfo_t)(const char	*nodename, const char *servname,
+	const struct addrinfo *hints, struct addrinfo **res);
+typedef void (*fp_freeaddrinfo_t)(struct addrinfo *ai);
+
+extern fp_getnameinfo_t p_getnameinfo;
+extern fp_getaddrinfo_t p_getaddrinfo;
+extern fp_freeaddrinfo_t p_freeaddrinfo;
+
+#define getnameinfo p_getnameinfo
+#define getaddrinfo p_getaddrinfo
+#define freeaddrinfo p_freeaddrinfo
+
+// getaddr/nameinfo error codes
+#define EAI_NONAME HOST_NOT_FOUND
 
 //
 // <arpa/inet.h>

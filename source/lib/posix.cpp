@@ -479,10 +479,14 @@ int uname(struct utsname* un)
 
 u16_t htons(u16_t s)
 {
-	return (s >> 8) || ((s & 0xff) << 8);
+	return (s >> 8) | ((s & 0xff) << 8);
 }
 
-
+/******************************************************************/
+/* socket dynamic functions */
+fp_getnameinfo_t getnameinfo;
+fp_getaddrinfo_t getaddrinfo;
+fp_freeaddrinfo_t freeaddrinfo;
 
 void entry(void)
 {
@@ -491,6 +495,20 @@ void entry(void)
 	char d[1024];
 	WSAStartup(0x0002, d);	// want 2.0
 #endif
+
+	HMODULE h=LoadLibrary("ws2_32.dll");
+	if (h)
+	{
+		getaddrinfo=(fp_getaddrinfo_t)GetProcAddress(h, "getaddrinfo");
+		getnameinfo=(fp_getnameinfo_t)GetProcAddress(h, "getnameinfo");
+		freeaddrinfo=(fp_freeaddrinfo_t)GetProcAddress(h, "freeaddrinfo");
+	}
+	else
+	{
+		getaddrinfo=NULL;
+		getnameinfo=NULL;
+		freeaddrinfo=NULL;
+	}
 
 	mainCRTStartup();
 }
