@@ -3,6 +3,8 @@
 #include "Network.h"
 #include "StreamSocket.h"
 
+#include <CLogger.h>
+
 CStreamSocket::CStreamSocket()
 {}
 
@@ -21,11 +23,14 @@ void *CStreamSocket_ConnectThread(void *data)
 	CSocketAddress addr;
 
 	res=CSocketAddress::Resolve(pSock->m_pConnectHost, pSock->m_ConnectPort, addr);
+	LOG(NORMAL, LOG_CAT_NET, "CStreamSocket_ConnectThread: Resolve: %s -> %s", res, addr.GetString().c_str());
 	if (res == PS_OK)
 	{
 		pSock->Initialize();
 		pSock->SetNonBlocking(false);
 		res=pSock->Connect(addr);
+		if (res != PS_OK)
+			LOG(ERROR, LOG_CAT_NET, "CStreamSocket_ConnectThread: Connect: %s", res);
 	}
 	
 	if (res == PS_OK)

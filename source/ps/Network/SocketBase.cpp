@@ -9,6 +9,9 @@
 
 #include "lib.h"
 #include "CStr.h"
+// ERROR is defined by some windows header. Undef it
+#undef ERROR
+#include "CLogger.h"
 
 #include <errno.h>
 
@@ -41,6 +44,9 @@ PS_RESULT GetPS_RESULT(int error)
 	case ECONNREFUSED:
 		return CONNECT_REFUSED;
 	default:
+		char buf[256];
+		Network_GetErrorString(error, buf, sizeof(buf));
+		LOG(ERROR, LOG_CAT_NET, "SocketBase.cpp::GetPS_RESULT(): Untranslated error %s[%d]", buf, error);
 		return PS_FAIL;
 	}
 }
@@ -414,7 +420,7 @@ PS_RESULT CSocketBase::Bind(const CSocketAddress &address)
 				break;
 			default:
 				Network_GetErrorString(err, errBuf, sizeof(errBuf));
-				printf("CServerSocket::Bind(): bind: %s [%d]\n", errBuf, err);
+				LOG(ERROR, LOG_CAT_NET, "CServerSocket::Bind(): bind: %s [%d] => PS_FAIL", errBuf, err);
 		}
 		m_State=SS_UNCONNECTED;
 		m_Error=ret;
@@ -426,7 +432,7 @@ PS_RESULT CSocketBase::Bind(const CSocketAddress &address)
 	{
 		int err=Network_LastError;
 		Network_GetErrorString(err, errBuf, sizeof(errBuf));
-		printf("CServerSocket::Bind(): listen: %s [%d]\n", errBuf, err);
+		LOG(ERROR, LOG_CAT_NET, "CServerSocket::Bind(): listen: %s [%d] => PS_FAIL", errBuf, err);
 		m_State=SS_UNCONNECTED;
 		return PS_FAIL;
 	}
@@ -445,7 +451,7 @@ PS_RESULT CSocketBase::PreAccept(CSocketAddress &addr)
 	if (fd != -1)
 		return PS_OK;
 	else
-		return PS_FAIL;
+		return GetPS_RESULT(Network_LastError);
 }
 
 CSocketInternal *CSocketBase::Accept()

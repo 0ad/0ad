@@ -342,7 +342,7 @@ public:
 	 * connection by calling Accept or Reject
 	 *
 	 * @param addr A pointer to a SocketAddress
-	 * @return PS_OK or PS_FAIL
+	 * @return PS_OK or an error code
 	 * 
 	 * @see Accept(SocketAddress&)
 	 * @see Reject()
