@@ -4,9 +4,9 @@
 	<Name>Deciduous Tree 1</Name>
 	<Actor>Deciduous 1</Actor>
 	<Speed>0</Speed>
-	<TurningRadius>5.0</TurningRadius>
+	<TurningRadius>0.0</TurningRadius>
 	<Size Radius="1.0"/>
-	<GraphicsOffset x="0.25" y="-1.0" />
+	<GraphicsOffset x="0" y="0" />
 	<EventHandlers>
 		<Initialize>scripts/pasap/initdude</Initialize>
 		<Update>scripts/pasap/tick</Update>

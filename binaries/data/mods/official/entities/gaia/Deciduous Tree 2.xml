@@ -4,7 +4,11 @@
 	<Name>Deciduous Tree 2</Name>
 	<Actor>Deciduous 2</Actor>
 	<Speed>0</Speed>
-	<TurningRadius>7.0</TurningRadius>
-	<GraphicsOffset x="0.0" y="-15.25" />
-	<Size Radius="1.5"/>
+	<TurningRadius>0.0</TurningRadius>
+	<Size Radius="1.0"/>
+	<GraphicsOffset x="0" y="0" />
+	<EventHandlers>
+		<Initialize>scripts/pasap/initdude</Initialize>
+		<Update>scripts/pasap/tick</Update>
+	</EventHandlers>
 </Entity>
