@@ -182,7 +182,7 @@ static int path_validate(const uint line, const char* const path)
 	// failed somewhere - err is the error code,
 	// or -1 if not set specifically above.
 fail:
-	debug_out("path_validate at line %d failed: %s (error code %d)", line, msg, err);
+	debug_out("path_validate at line %d failed: %s (error code %d)\n", line, msg, err);
 	debug_warn("path_validate failed");
 	return err;
 

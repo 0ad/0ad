@@ -205,7 +205,7 @@ static int tex_validate(const uint line, const Tex* const t)
 
 	if(msg)
 	{
-		debug_out("tex_validate at line %d failed: %s (error code %d)", line, msg, err);
+		debug_out("tex_validate at line %d failed: %s (error code %d)\n", line, msg, err);
 		debug_warn("tex_validate failed");
 		return err;
 	}

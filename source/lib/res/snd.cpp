@@ -69,7 +69,7 @@ static void al_check(const char* caller = "(unknown)")
 		return;
 
 	const char* str = (const char*)alGetString(err);
-	debug_out("openal error: %s; called from %s", str, caller);
+	debug_out("openal error: %s; called from %s\n", str, caller);
 	debug_warn("OpenAL error");
 }
 
