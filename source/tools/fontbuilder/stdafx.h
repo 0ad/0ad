@@ -1,4 +1,4 @@
-// $Id: stdafx.h,v 1.1 2004/06/17 19:32:04 philip Exp $
+// $Id: stdafx.h,v 1.2 2004/06/18 22:05:58 philip Exp $
 
 // Precompiled headers
 
@@ -7,11 +7,11 @@
 
 // Disable some complaints in wx headers
 #pragma warning (push)
-#pragma warning (disable: 4267 4311 1125)
+#pragma warning (disable: 4267 4311)
 
 #ifdef __INTEL_COMPILER
 // Disable some of the excessively pedantic icl /W4 warnings (remarks)
-#pragma warning (disable: 193 373 444 981 383 1418)
+#pragma warning (disable: 193 373 444 981 383 1125 1418)
 #endif
 
 // Include relevant wx headers

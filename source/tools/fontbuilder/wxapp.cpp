@@ -1,4 +1,4 @@
-// $Id: wxapp.cpp,v 1.1 2004/06/17 19:32:04 philip Exp $
+// $Id: wxapp.cpp,v 1.2 2004/06/18 22:05:58 philip Exp $
 
 #include "stdafx.h"
 
@@ -19,7 +19,7 @@ bool FontBuilderApp::OnInit()
 {
 	ConfigInit();
 
-	MainFrame *frame = new MainFrame(wxString::Format(wxT("Font Builder %s"), version), wxDefaultPosition, wxSize(640,480));
+	MainFrame *frame = new MainFrame(wxString::Format(wxT("Font Builder %s"), (const wchar_t*)version), wxDefaultPosition, wxSize(640,480));
 	frame->SetIcon(wxIcon(wxT("IDI_ICON1")));
 	frame->Show(true);
 	SetTopWindow(frame);
