@@ -721,14 +721,17 @@ void CRenderer::RenderPatches()
 {
 	// switch on wireframe if we need it
 	if (m_TerrainRenderMode==WIREFRAME) {
+		MICROLOG(L"wireframe on");
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 	}
 
 	// render all the patches, including blend pass
+	MICROLOG(L"render patch submissions");
 	RenderPatchSubmissions();
 
 	if (m_TerrainRenderMode==WIREFRAME) {
 		// switch wireframe off again
+		MICROLOG(L"wireframe off");
 		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 	} else if (m_TerrainRenderMode==EDGED_FACES) {
 /*
@@ -876,23 +879,35 @@ void CRenderer::FlushFrame()
 //	std::sort(m_Models.begin(),m_Models.end(),SortModelsByTexture());
 
 	// sort all the transparent stuff
+	MICROLOG(L"sorting");
 	g_TransparencyRenderer.Sort();
 	if (!m_ShadowRendered) {
-		if (m_Options.m_Shadows) RenderShadowMap();
+		if (m_Options.m_Shadows) {
+			MICROLOG(L"render shadows");
+			RenderShadowMap();
+		}
 		// clear buffers
+		MICROLOG(L"clear buffer");
 		glClearColor(m_ClearColor[0],m_ClearColor[1],m_ClearColor[2],m_ClearColor[3]);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	}
 
 	// render submitted patches and models
+	MICROLOG(L"render patches");
 	RenderPatches();
+	MICROLOG(L"render models");
 	RenderModels();
-	if (m_Options.m_Shadows && !m_ShadowRendered) ApplyShadowMap();
+	if (m_Options.m_Shadows && !m_ShadowRendered) {
+		MICROLOG(L"apply shadows");
+		ApplyShadowMap();
+	}
 	m_ShadowRendered=true;
 	// call on the transparency renderer to render all the transparent stuff
+	MICROLOG(L"render transparent");
 	g_TransparencyRenderer.Render();
 
 	// empty lists
+	MICROLOG(L"empty lists");
 	g_TransparencyRenderer.Clear();
 	CPatchRData::ClearSubmissions();
 	CModelRData::ClearSubmissions();
@@ -961,17 +976,25 @@ void CRenderer::Submit(COverlay* overlay)
 void CRenderer::RenderPatchSubmissions()
 {
 	// switch on required client states 
+	MICROLOG(L"enable vertex array");
 	glEnableClientState(GL_VERTEX_ARRAY);
+	MICROLOG(L"enable color array");
 	glEnableClientState(GL_COLOR_ARRAY);
+	MICROLOG(L"enable tex coord array");
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	
 	// render everything 
+	MICROLOG(L"render base splats");
 	CPatchRData::RenderBaseSplats();
+	MICROLOG(L"render blend splats");
 	CPatchRData::RenderBlendSplats();
 
 	// switch off all client states
+	MICROLOG(L"disable tex coord array");
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	MICROLOG(L"disable color array");
 	glDisableClientState(GL_COLOR_ARRAY);
+	MICROLOG(L"disable vertex array");
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
 

@@ -30,7 +30,6 @@
 #include "wdbg.h"
 #include "assert_dlg.h"
 
-
 /*
  * voodoo programming. PDB debug info is a poorly documented mess.
  * see http://msdn.microsoft.com/msdnmag/issues/02/03/hood/default.aspx
@@ -784,10 +783,9 @@ static void DumpMiniDump(HANDLE hFile, PEXCEPTION_POINTERS excpInfo)
 //	}
 }
 
-const int MICROLOG_SIZE = 16384;
-int MicroBuffer_size = MICROLOG_SIZE;
-wchar_t MicroBuffer[MICROLOG_SIZE];
-int MicroBuffer_off = 0;
+// From sysdep.h
+extern wchar_t MicroBuffer[];
+extern int MicroBuffer_off;
 
 int debug_write_crashlog(const char* file, wchar_t* header, void* context)
 {

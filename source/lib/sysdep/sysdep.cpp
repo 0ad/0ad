@@ -58,6 +58,35 @@ void debug_break()
 }
 
 
+wchar_t MicroBuffer[MICROLOG_SIZE];
+int MicroBuffer_off = 0;
+
+void debug_microlog(const wchar_t *fmt, ...)
+{
+	va_list argp;
+	wchar_t buffer[512];
+	int count = 0;
+
+	va_start(argp, fmt);
+	vsnwprintf(buffer, sizeof(buffer), fmt, argp);
+	va_end(argp);
+
+	wcscat(buffer, L"\r\n");
+
+	int len = (int)wcslen(buffer);
+
+	// Lose half of the old data if the log's too big
+	if (MicroBuffer_off + len >= MICROLOG_SIZE)
+	{
+		memcpy(&MicroBuffer, (void*)&MicroBuffer[MICROLOG_SIZE/2], sizeof(wchar_t)*MICROLOG_SIZE/2);
+		memset(&MicroBuffer[MICROLOG_SIZE/2], 0, sizeof(wchar_t)*MICROLOG_SIZE/2);
+		MicroBuffer_off -= MICROLOG_SIZE/2;
+	}
+	memcpy(&MicroBuffer[MicroBuffer_off], buffer, sizeof(wchar_t)*len);
+	MicroBuffer_off += len;
+}
+
+
 
 #ifdef _MSC_VER
 

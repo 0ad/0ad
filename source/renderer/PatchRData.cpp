@@ -7,6 +7,7 @@
 #include "Renderer.h"
 #include "PatchRData.h"
 #include "AlphaMapCalculator.h"
+#include "ps/CLogger.h"
 
 ///////////////////////////////////////////////////////////////////
 // shared list of all submitted patches this frame
@@ -543,6 +544,7 @@ void CPatchRData::RenderBaseSplats()
 	uint i;
 
 	// set up texture environment for base pass
+	MICROLOG(L"base splat textures");
 	glActiveTexture(GL_TEXTURE0);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
@@ -557,12 +559,15 @@ void CPatchRData::RenderBaseSplats()
 
 #if 1
 	// submit base batches for each patch to the vertex buffer
+	MICROLOG(L"submitting %d patches", m_Patches.size());
 	for (i=0;i<m_Patches.size();++i) {
+		MICROLOG(L"%d", i);
 		CPatchRData* patchdata=(CPatchRData*) m_Patches[i]->GetRenderData();
 		patchdata->SubmitBaseBatches();
 	}
 
 	// render base passes for each patch
+	MICROLOG(L"get buffer list");
 	const std::list<CVertexBuffer*>& buffers=g_VBMan.GetBufferList();
 	std::list<CVertexBuffer*>::const_iterator iter;
 	for (iter=buffers.begin();iter!=buffers.end();++iter) {
@@ -575,16 +580,20 @@ void CPatchRData::RenderBaseSplats()
 
 			// setup data pointers
 			u32 stride=sizeof(SBaseVertex);
+			MICROLOG(L"data pointers");
 			glVertexPointer(3,GL_FLOAT,stride,base+offsetof(SBaseVertex,m_Position));
 			glColorPointer(4,GL_UNSIGNED_BYTE,stride,base+offsetof(SBaseVertex,m_Color));
 			glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SBaseVertex,m_UVs[0]));
 
 			// render each batch
+			MICROLOG(L"render batches");
 			for (i=0;i<batches.size();++i) {
+				MICROLOG(L"b");
 				const CVertexBuffer::Batch* batch=batches[i];
 				if (batch->m_IndexData.size()>0) {
 					g_Renderer.BindTexture(0,tex_id(batch->m_Texture));
 					for (uint j=0;j<batch->m_IndexData.size();j++) {
+						MICROLOG(L"e");
 						glDrawElements(GL_QUADS,(GLsizei)batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);
 						g_Renderer.m_Stats.m_DrawCalls++;
 						g_Renderer.m_Stats.m_TerrainTris+=(u32)batch->m_IndexData[j].first/2;
@@ -594,6 +603,7 @@ void CPatchRData::RenderBaseSplats()
 		}
 	}
 	// everything rendered; empty out batch lists
+	MICROLOG(L"clear");
 	g_VBMan.ClearBatchIndices();
 #else 
 	for (i=0;i<m_Patches.size();++i) {

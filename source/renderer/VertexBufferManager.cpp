@@ -9,6 +9,7 @@
 #include <assert.h>
 #include "ogl.h"
 #include "VertexBufferManager.h"
+#include "ps/CLogger.h"
 
 CVertexBufferManager g_VBMan;
 
@@ -50,7 +51,11 @@ CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize,size_t 
 	
 	// TODO, RC - assert not really suitable?  probably need to handle "failed to create 
 	// VBO case" better
-	assert(result);
+	if (!result)
+	{
+		LOG(ERROR, "Failed to create VBOs");
+		assert2(!"Failed to create VBOs");
+	}
 
 	return result;
 }

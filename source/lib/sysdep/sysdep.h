@@ -37,6 +37,13 @@ extern int debug_assert_failed(const char* source_file, int line, const char* ex
 extern int debug_write_crashlog(const char* file, wchar_t* header, void* context);
 
 
+// Small fast(ish) log for recording the events leading up to a crash:
+#define MICROLOG debug_microlog
+//#define MICROLOG (void)
+
+const int MICROLOG_SIZE = 16384;
+void debug_microlog(const wchar_t *fmt, ...);
+
 extern void check_heap();
 
 

@@ -21,6 +21,9 @@ JSBool getGlobal(JSContext* context, JSObject* globalObject, unsigned int argc, 
 // Tells the main loop to stop looping
 JSBool exitProgram(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
 
+// Crashes.
+JSBool crash(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
+
 extern JSFunctionSpec ScriptFunctionTable[];
 
 #endif

@@ -2,6 +2,7 @@
 
 #include "ScriptGlue.h"
 #include "CConsole.h"
+#include "CLogger.h"
 #include "CStr.h"
 #include "EntityHandles.h"
 #include "Entity.h"
@@ -32,6 +33,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	{"getGlobal", getGlobal, 0, 0, 0 },
 	{"getGUIGlobal", getGUIGlobal, 0, 0, 0 },
 	{"exit", exitProgram, 0, 0, 0 },
+	{"crash", crash, 0, 0, 0 },
 	{0, 0, 0, 0, 0}, 
 };
 
@@ -144,4 +146,11 @@ JSBool exitProgram(JSContext* context, JSObject* globalObject, unsigned int argc
 {
 	kill_mainloop();
 	return JS_TRUE;
+}
+
+JSBool crash(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval)
+{
+	MICROLOG(L"Crashing.");
+	uintptr_t ptr = 0xDEADC0DE;
+	return *(JSBool*) ptr;
 }
