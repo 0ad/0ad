@@ -27,8 +27,7 @@ CObjectEntry::CObjectEntry(int type) : m_Model(0), m_Type(type)
 CObjectEntry::~CObjectEntry()
 {
 	for (size_t i=0;i<m_Animations.size();i++) {
-		CSkeletonAnim* anim=m_Animations[i].m_AnimData;
-		delete anim;
+		delete m_Animations[i].m_AnimData;
 	}
 
 	delete m_Model;
@@ -36,8 +35,6 @@ CObjectEntry::~CObjectEntry()
 
 bool CObjectEntry::BuildModel()
 {
-	debug_out("Building model %s\n",(const char*) m_Name);
-
 	// check we've enough data to consider building the object
 	if (m_ModelName.Length()==0 || m_TextureName.Length()==0) {
 		return false;
@@ -51,26 +48,26 @@ bool CObjectEntry::BuildModel()
 
 	// build filename
 	CStr modelfilename("mods/official/");
-	modelfilename+=m_ModelName;	
-	
+	modelfilename+=m_ModelName;
+
 	// try and create a model
 	CModelDef* modeldef;
-	
+
 	try {
 		modeldef=CModelDef::Load((const char*) modelfilename);
 	} catch (...) {
 		LOG(ERROR, "CObjectEntry::BuildModel(): Model %s failed to load\n", modelfilename.c_str());
 		return false;
 	}
-		
-	// create new Model 
+
+	// create new Model
 	m_Model=new CModel;
 	m_Model->SetTexture((const char*) m_TextureName);
 	m_Model->InitModel(modeldef);
-	
+
 	// calculate initial object space bounds, based on vertex positions
 	m_Model->CalcObjectBounds();
-	
+
 	// load animations
 	for( uint t = 0; t < m_Animations.size(); t++ )
 	{
@@ -87,13 +84,13 @@ bool CObjectEntry::BuildModel()
 		}
 		else
 		{
-			// FIXME, RC - don't store invalid animations
+			// FIXME, RC - don't store invalid animations (possible?)
 			m_Animations[t].m_AnimData=0;
 		}
 	}
 	// start up idling
 	m_Model->SetAnimation( m_IdleAnim );
-	
+
 	// build props - TODO, RC - need to fix up bounds here
 	for (uint p=0;p<m_Props.size();p++) {
 		const Prop& prop=m_Props[p];
@@ -107,8 +104,12 @@ bool CObjectEntry::BuildModel()
 					CModel* propmodel=oe->m_Model->Clone();
 					m_Model->AddProp(proppoint,propmodel);
 					if (oe->m_WalkAnim) propmodel->SetAnimation(oe->m_WalkAnim);
+				} else {
+					LOG(ERROR,"Failed to build prop model \"%s\" on actor \"%s\"\n",(const char*) m_Name,(const char*) prop.m_ModelName);
 				}
 			}
+		} else {
+			LOG(ERROR,"Failed to matching prop point called \"%s\" in model \"%s\"\n",prop.m_PropPointName,(const char*) modelfilename);
 		}
 	}
 
@@ -121,7 +122,7 @@ bool CObjectEntry::BuildModel()
 		CModel* unitmodel=units[i]->GetModel();
 		if (unitmodel->GetModelDef()==oldmodel) {
 			unitmodel->InitModel(m_Model->GetModelDef());
-			
+
 			const std::vector<CModel::Prop>& newprops=m_Model->GetProps();
 			for (uint j=0;j<newprops.size();j++) {
 				unitmodel->AddProp(newprops[j].m_Point,newprops[j].m_Model->Clone());
@@ -131,7 +132,7 @@ bool CObjectEntry::BuildModel()
 
 	// and were done with the old model ..
 	delete oldmodel;
-	
+
 	return true;
 }
 
@@ -151,7 +152,6 @@ bool CObjectEntry::Load(const char* filename)
 
 
 	// Initialize XML library
-	XMLPlatformUtils::Initialize();
 	{
 		XMLCh* attachpointtext=XMLString::transcode("attachpoint");
 		XMLCh* modeltext=XMLString::transcode("model");
@@ -171,7 +171,7 @@ bool CObjectEntry::Load(const char* filename)
 		// Set customized error handler
 		CXercesErrorHandler *errorHandler = new CXercesErrorHandler();
 		parser->setErrorHandler(errorHandler);
-		
+
 		CVFSEntityResolver *entityResolver = new CVFSEntityResolver(filename);
 		parser->setEntityResolver(entityResolver);
 
@@ -190,8 +190,8 @@ bool CObjectEntry::Load(const char* filename)
 		}
 		if (parseOK) {
 			// parsed successfully - grab our data
-			DOMDocument *doc = parser->getDocument(); 
-			DOMElement *element = doc->getDocumentElement(); 
+			DOMDocument *doc = parser->getDocument();
+			DOMElement *element = doc->getDocumentElement();
 
 			// root_name should be Object
 			CStr root_name = XMLTranscode( element->getNodeName() );
@@ -233,9 +233,9 @@ bool CObjectEntry::Load(const char* filename)
 								anim.m_AnimName=XMLTranscode(nameattr->getChildNodes()->item(0)->getNodeValue());
 								DOMNode *fileattr=attributes->getNamedItem(filetext);
 								anim.m_FileName=XMLTranscode(fileattr->getChildNodes()->item(0)->getNodeValue());
-								
+
 								DOMNode *speedattr=attributes->getNamedItem(speedtext);
-								CStr speedstr=XMLTranscode(speedattr->getChildNodes()->item(0)->getNodeValue());			
+								CStr speedstr=XMLTranscode(speedattr->getChildNodes()->item(0)->getNodeValue());
 
 								anim.m_Speed=float(atoi((const char*) speedstr))/100.0f;
 								if (anim.m_Speed<=0) anim.m_Speed=1.0f;
@@ -257,14 +257,14 @@ bool CObjectEntry::Load(const char* filename)
 								prop.m_PropPointName=XMLTranscode(nameattr->getChildNodes()->item(0)->getNodeValue());
 								DOMNode *modelattr=attributes->getNamedItem(modeltext);
 								prop.m_ModelName=XMLString::transcode(modelattr->getChildNodes()->item(0)->getNodeValue());
-								
+
 								m_Props.push_back(prop);
 							}
 						}
 					}
 				}
 			}
-		} 
+		}
 
 		XMLString::release(&attachpointtext);
 		XMLString::release(&modeltext);
@@ -276,7 +276,6 @@ bool CObjectEntry::Load(const char* filename)
 		delete errorHandler;
 		delete entityResolver;
 	}
-	XMLPlatformUtils::Terminate();
 
 	return parseOK;
 }
