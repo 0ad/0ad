@@ -762,7 +762,7 @@ int tex_bind(const Handle h)
 	}
 
 #ifndef NDEBUG
-	if(!glIsTexture(t->id))
+	if(!t->id)
 	{
 		assert(0 && "tex_bind: Tex.id is not a valid texture");
 		return -1;
@@ -874,10 +874,14 @@ int tex_upload(const Handle ht, int filter, int int_fmt)
 	// normal
 	else
 	{
-		// internal fmt not explicitly requested. choose one based
-		// on texture format and the global quality setting tex_bpp.
-		// we could just let the driver choose, but it's good to allow
-		// the user to control the actual texture size (for tweaking).
+		// internal fmt not explicitly requested:
+		// choose a specific, sized internal format for common formats,
+		// based on the global tex_bpp setting (32 or 16 bpp textures).
+		// could just let the driver choose, but this gives the user
+		// control for performance/quality tweaking.
+		// 
+		// rare formats (e.g. GL_BGR) not in the switch statements
+		// are handled below.
 		if(!int_fmt)
 		{
 			// high quality, 32 bit textures (8 bits per component)
@@ -925,7 +929,13 @@ int tex_upload(const Handle ht, int filter, int int_fmt)
 				}
 			}
 
-			// failed to choose an internal format
+			// fmt wasn't in the list above, so we haven't chosen
+			// the internal format yet, and need to do so now.
+			// set it to # of components in the texture.
+			// note: can't use the texture data's format -
+			// not all can be used as an internal format! (e.g. GL_BGR)
+			if(!int_fmt)
+				int_fmt = bpp / 8;
 		}
 
 		// check if SGIS_generate_mipmap is available (once)
