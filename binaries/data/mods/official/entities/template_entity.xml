@@ -24,9 +24,9 @@
 
 		// Attack logic.
 		dmg = new DamageType();
-		dmg.crush = this.actions.attack.damage * this.actions.attack.crush;
-		dmg.hack = this.actions.attack.damage * this.actions.attack.hack;
-		dmg.pierce = this.actions.attack.damage * this.actions.attack.pierce;
+		dmg.crush = parseInt(this.actions.attack.damage * this.actions.attack.crush);
+		dmg.hack = parseInt(this.actions.attack.damage * this.actions.attack.hack);
+		dmg.pierce = parseInt(this.actions.attack.damage * this.actions.attack.pierce);
 
 		evt.target.damage( dmg, this );
 	]]>	
@@ -34,18 +34,15 @@
 
 	<Event On="TakesDamage">
 	<![CDATA[
-		curr_pain = getGUIGlobal().newRandomSound("voice", "pain", this.traits.audio.path);
-		curr_pain.play();
-
 		// Apply armour and work out how much damage we actually take
-		crushDamage = evt.damage.crush - this.traits.armour.value * this.traits.armour.crush;
-		if( crushDamage < 0 ) crushDamage = 0;
-		pierceDamage = evt.damage.pierce - this.traits.armour.value * this.traits.armour.pierce;
-		if( pierceDamage < 0 ) pierceDamage = 0;
-		hackDamage = evt.damage.hack - this.traits.armour.value * this.traits.armour.hack;
-		if( hackDamage < 0 ) hackDamage = 0;
+		crushDamage = parseInt(evt.damage.crush - this.traits.armour.value * this.traits.armour.crush);
+		if ( crushDamage < 0 ) crushDamage = 0;
+		pierceDamage = parseInt(evt.damage.pierce - this.traits.armour.value * this.traits.armour.pierce);
+		if ( pierceDamage < 0 ) pierceDamage = 0;
+		hackDamage = parseInt(evt.damage.hack - this.traits.armour.value * this.traits.armour.hack);
+		if ( hackDamage < 0 ) hackDamage = 0;
 
-		totalDamage = evt.damage.typeless + crushDamage + pierceDamage + hackDamage;
+		totalDamage = parseInt(evt.damage.typeless + crushDamage + pierceDamage + hackDamage);
 
 		// Minimum of 1 damage
 		
@@ -104,6 +101,10 @@
 				console.write( this.traits.id.generic + " got the point of " + evt.inflictor.traits.id.generic + "'s Gladius." );
 			else
 				console.write( this.traits.id.generic + " died in mysterious circumstances." );
+
+			// Make him cry out in pain.
+			curr_pain = getGUIGlobal().newRandomSound("voice", "pain", this.traits.audio.path);
+			curr_pain.play();
 
 			// We've taken what we need. Kill the swine.
 			this.kill();
