@@ -1,102 +1,72 @@
+
+<!--
+	Defines
+-->
+<!ENTITY % unique_settings
+ "name					CDATA #IMPLIED
+  type					CDATA #IMPLIED
+  style					CDATA #IMPLIED"
+>
+
+<!ENTITY % base_settings
+ "absolute				(true|false) #IMPLIED
+  enabled				(true|false) #IMPLIED
+  ghost					(true|false) #IMPLIED
+  hidden				(true|false) #IMPLIED
+  size					CDATA #IMPLIED
+  z					CDATA #IMPLIED"
+>
+
+<!ENTITY % ex_settings
+ "font					CDATA #IMPLIED
+  input-initvalue-destroyed-at-focus	(true|false) #IMPLIED
+  rectcolor-selected			CDATA #IMPLIED
+  scrollbar				(true|false) #IMPLIED
+  scrollbar-style			CDATA #IMPLIED
+  sprite				CDATA #IMPLIED
+  sprite2				CDATA #IMPLIED
+  sprite-disabled			CDATA #IMPLIED
+  sprite2-disabled			CDATA #IMPLIED
+  sprite-over				CDATA #IMPLIED
+  sprite2-over				CDATA #IMPLIED
+  sprite-pressed			CDATA #IMPLIED
+  square-side				CDATA #IMPLIED
+  textalign				(left|center|right) #IMPLIED
+  textcolor				CDATA #IMPLIED
+  textcolor-disabled			CDATA #IMPLIED
+  textcolor-over			CDATA #IMPLIED
+  textcolor-pressed			CDATA #IMPLIED
+  textcolor-selected			CDATA #IMPLIED
+  textvalign				(top|center|bottom) #IMPLIED
+  tooltip				CDATA #IMPLIED
+  tooltip-style				CDATA #IMPLIED"
+>
+
 <!--
 	<objects>
 -->
 <!ELEMENT objects (object*)>
 <!ELEMENT object (#PCDATA|object|action)*>
+<!ATTLIST object 
+  %unique_settings;
+  %base_settings; 
+  %ex_settings;
+>
 
 <!--
-	Base Settings
+	<styles>
 -->
-<!ATTLIST object name 					CDATA #IMPLIED>
-<!ATTLIST object type					CDATA #IMPLIED>
-<!ATTLIST object absolute				(true|false) #IMPLIED>
-<!ATTLIST object enabled				(true|false) #IMPLIED>
-<!ATTLIST object ghost					(true|false) #IMPLIED>
-<!ATTLIST object hidden					(true|false) #IMPLIED>
-<!ATTLIST object size					CDATA #IMPLIED>
-<!ATTLIST object style					CDATA #IMPLIED>
-<!ATTLIST object z					CDATA #IMPLIED>
-
-<!--
-	Setting Pool
--->
-<!ATTLIST object font					CDATA #IMPLIED>
-<!ATTLIST object input-initvalue-destroyed-at-focus	(true|false) #IMPLIED>
-<!ATTLIST object rectcolor-selected			CDATA #IMPLIED>
-<!ATTLIST object scrollbar				(true|false) #IMPLIED>
-<!ATTLIST object scrollbar-style			CDATA #IMPLIED>
-<!ATTLIST object sprite					CDATA #IMPLIED>
-<!ATTLIST object sprite2				CDATA #IMPLIED>
-<!ATTLIST object sprite-disabled			CDATA #IMPLIED>
-<!ATTLIST object sprite2-disabled			CDATA #IMPLIED>
-<!ATTLIST object sprite-over				CDATA #IMPLIED>
-<!ATTLIST object sprite2-over				CDATA #IMPLIED>
-<!ATTLIST object sprite-pressed				CDATA #IMPLIED>
-<!ATTLIST object square-side				CDATA #IMPLIED>
-<!ATTLIST object textalign				(left|center|right) #IMPLIED>
-<!ATTLIST object textcolor				CDATA #IMPLIED>
-<!ATTLIST object textcolor-disabled			CDATA #IMPLIED>
-<!ATTLIST object textcolor-over				CDATA #IMPLIED>
-<!ATTLIST object textcolor-pressed			CDATA #IMPLIED>
-<!ATTLIST object textcolor-selected			CDATA #IMPLIED>
-<!ATTLIST object textvalign				(top|center|bottom) #IMPLIED>
-<!ATTLIST object tooltip				CDATA #IMPLIED>
-<!ATTLIST object tooltip-style				CDATA #IMPLIED>
-
-
-<!--
-	GUI XML Files DTD
-	
-	Root Element: <styles>
-
-	Version: 
--->
-
 <!ELEMENT styles (style*)>
 <!ELEMENT style (#PCDATA)>
-
-<!ATTLIST style name					CDATA #REQUIRED>
-
-<!--
-	Setting Pool
--->
-<!ATTLIST style absolute				(true|false) #IMPLIED>
-<!ATTLIST style enabled				(true|false) #IMPLIED>
-<!ATTLIST style ghost					(true|false) #IMPLIED>
-<!ATTLIST style hidden					(true|false) #IMPLIED>
-<!ATTLIST style size					CDATA #IMPLIED>
-<!ATTLIST style z					CDATA #IMPLIED>
-<!ATTLIST style font					CDATA #IMPLIED>
-<!ATTLIST style input-initvalue-destroyed-at-focus	(true|false) #IMPLIED>
-<!ATTLIST style rectcolor-selected			CDATA #IMPLIED>
-<!ATTLIST style scrollbar				(true|false) #IMPLIED>
-<!ATTLIST style scrollbar-style				CDATA #IMPLIED>
-<!ATTLIST style sprite					CDATA #IMPLIED>
-<!ATTLIST style sprite2					CDATA #IMPLIED>
-<!ATTLIST style sprite-disabled				CDATA #IMPLIED>
-<!ATTLIST style sprite2-disabled			CDATA #IMPLIED>
-<!ATTLIST style sprite-over				CDATA #IMPLIED>
-<!ATTLIST style sprite2-over				CDATA #IMPLIED>
-<!ATTLIST style sprite-pressed				CDATA #IMPLIED>
-<!ATTLIST style square-side				CDATA #IMPLIED>
-<!ATTLIST style textalign				(left|center|right) #IMPLIED>
-<!ATTLIST style textcolor				CDATA #IMPLIED>
-<!ATTLIST style textcolor-disabled			CDATA #IMPLIED>
-<!ATTLIST style textcolor-over				CDATA #IMPLIED>
-<!ATTLIST style textcolor-pressed			CDATA #IMPLIED>
-<!ATTLIST style textcolor-selected			CDATA #IMPLIED>
-<!ATTLIST style textvalign				(top|center|bottom) #IMPLIED>
-<!ATTLIST style tooltip					CDATA #IMPLIED>
-<!ATTLIST style tooltip-style				CDATA #IMPLIED>
+<!ATTLIST style 
+  name					CDATA #REQUIRED
+  %base_settings; 
+  %ex_settings;
+>
 
 <!--
-	GUI XML Files DTD
-	
-	Root Element: <setup>
-
-	Version: 
+	<setup>
 -->
-
 <!ELEMENT setup (icon*,scrollbar*,tooltip*)>
 <!ELEMENT scrollbar (#PCDATA)>
 <!ELEMENT icon (#PCDATA)>
@@ -105,36 +75,36 @@
 <!--
 	<scrollbar>
 -->
-<!ATTLIST scrollbar name				CDATA #REQUIRED>
-<!ATTLIST scrollbar width				CDATA #IMPLIED>
-<!ATTLIST scrollbar scroll-wheel			CDATA #IMPLIED>
-<!ATTLIST scrollbar alwaysshown				CDATA #IMPLIED>
-<!ATTLIST scrollbar scroll-speed			CDATA #IMPLIED>
-
+<!ATTLIST 
+  scrollbar name			CDATA #REQUIRED
+  width					CDATA #IMPLIED
+  scroll-wheel				CDATA #IMPLIED
+  alwaysshown				CDATA #IMPLIED
+  scroll-speed				CDATA #IMPLIED
+  sprite-button-top			CDATA #IMPLIED
+  sprite-button-top-pressed		CDATA #IMPLIED
+  sprite-button-top-disabled		CDATA #IMPLIED
+  sprite-button-bottom			CDATA #IMPLIED
+  sprite-button-bottom-pressed		CDATA #IMPLIED
+  sprite-button-bottom-disabled		CDATA #IMPLIED
+>
 
 <!--
-	GUI XML Files DTD
-	
-	Root Element: <sprites>
-
-	Version: 
+	<sprites>
 -->
-
 <!ELEMENT sprites (sprite*)>
 <!ELEMENT sprite (image+)>
 <!ELEMENT image (#PCDATA)>
 
-<!--
-	<sprite>
--->
-<!ATTLIST sprite name 					CDATA #REQUIRED>
+<!ATTLIST sprite 
+  name 					CDATA #REQUIRED
+>
 
-<!--
-	<image>
--->
-<!ATTLIST image texture					CDATA #IMPLIED>
-<!ATTLIST image size					CDATA #IMPLIED>
-<!ATTLIST image texture_size				CDATA #IMPLIED>
-<!ATTLIST image backcolor				CDATA #IMPLIED>
-<!ATTLIST image bordercolor				CDATA #IMPLIED>
-<!ATTLIST image border					(true|false) #IMPLIED>
+<!ATTLIST image
+  texture				CDATA #IMPLIED
+  size					CDATA #IMPLIED
+  texture_size				CDATA #IMPLIED
+  backcolor				CDATA #IMPLIED
+  bordercolor				CDATA #IMPLIED
+  border				(true|false) #IMPLIED
+>
