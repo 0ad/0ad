@@ -325,43 +325,6 @@ extern _CRTIMP int _close(int);
 
 extern _CRTIMP char* _getcwd(char*, size_t);
 
-// can't include malloc.h or crtdbg due to conflicts with mmgr.h
-extern _CRTIMP int _heapchk(void);
-#ifndef NDEBUG
-extern _CRTIMP int _CrtSetDbgFlag(int);
-#else
-#define _CrtSetDbgFlag(f)
-#endif
-extern _CRTIMP void  _aligned_free(void *);
-extern _CRTIMP void* _aligned_malloc(size_t, size_t);
-extern _CRTIMP void* _aligned_realloc(void *, size_t, size_t);
-
-
-
-/*
-* Bit values for _crtDbgFlag flag:
-*
-* These bitflags control debug heap behavior.
-*/
-
-#define _CRTDBG_ALLOC_MEM_DF        0x01  /* Turn on debug allocation */
-#define _CRTDBG_DELAY_FREE_MEM_DF   0x02  /* Don't actually free memory */
-#define _CRTDBG_CHECK_ALWAYS_DF     0x04  /* Check heap every alloc/dealloc */
-#define _CRTDBG_RESERVED_DF         0x08  /* Reserved - do not use */
-#define _CRTDBG_CHECK_CRT_DF        0x10  /* Leak check/diff CRT blocks */
-#define _CRTDBG_LEAK_CHECK_DF       0x20  /* Leak check at program exit */
-
-/*
-We do not check the heap by default at this point because the cost was too high
-for some applications. You can still turn this feature on manually.
-*/
-#define _CRTDBG_CHECK_DEFAULT_DF    0           
-
-#define _CRTDBG_REPORT_FLAG         -1    /* Query bitflag status */
-
-
-
-
 #ifndef NO_WINSOCK
 extern __declspec(dllimport) int __stdcall WSAStartup(unsigned short, void*);
 extern __declspec(dllimport) int __stdcall WSACleanup(void);
