@@ -237,27 +237,35 @@ int win_get_gfx_info()
 // and renderer (e.g. "Software").
 
 
+// problem when including dsound.h: subwtype.h
+// (included via d3dtypes.h and dsound.h) isn't present on VC6/7 hybrid.
+// we're only using one DirectSound function ATM, so we'll declare it here.
+
+#if 0
 // mmsystem.h is necessary for dsound.h; we cut out unnecessary junk
-#define MMNODRV         // Installable driver support
-#define MMNOSOUND       // Sound support
-//#define MMNOWAVE      // Waveform support
-#define MMNOMIDI        // MIDI support
-#define MMNOAUX         // Auxiliary audio support
-#define MMNOMIXER       // Mixer support
-#define MMNOTIMER       // Timer support
-#define MMNOJOY         // Joystick support
-#define MMNOMCI         // MCI support
-#define MMNOMMIO        // Multimedia file I/O support
-#define MMNOMMSYSTEM    // General MMSYSTEM functions
-#include <MMSystem.h>
-
-#define DIRECTSOUND_VERSION 0x0500
-#include <dsound.h>
-
+# define MMNODRV         // Installable driver support
+# define MMNOSOUND       // Sound support
+//# define MMNOWAVE      // Waveform support
+# define MMNOMIDI        // MIDI support
+# define MMNOAUX         // Auxiliary audio support
+# define MMNOMIXER       // Mixer support
+# define MMNOTIMER       // Timer support
+# define MMNOJOY         // Joystick support
+# define MMNOMCI         // MCI support
+# define MMNOMMIO        // Multimedia file I/O support
+# define MMNOMMSYSTEM    // General MMSYSTEM functions
+# include <MMSystem.h>
+# define DIRECTSOUND_VERSION 0x0500
+# include <dsound.h>
+#else
+typedef BOOL (CALLBACK* LPDSENUMCALLBACKA)(void*, const char*, const char*, void*);
+extern "C" __declspec(dllimport) HRESULT WINAPI DirectSoundEnumerateA(LPDSENUMCALLBACKA, void*);
+#define DS_OK 0
+#endif
 
 static char ds_drv_name[MAX_PATH+1];
 
-static bool CALLBACK ds_enum(GUID* guid, PCSTR description, PCSTR module, void* ctx)
+static int __stdcall ds_enum(void* guid, const char* description, const char* module, void* ctx)
 {
 	// skip if description == "Primary Sound Driver"
 	if(module[0] == '\0')
@@ -299,7 +307,7 @@ static void add_drv(const char* module)
 
 int win_get_snd_info()
 {
-	if(DirectSoundEnumerate((LPDSENUMCALLBACK)ds_enum, (void*)0) != DS_OK)
+	if(DirectSoundEnumerateA((LPDSENUMCALLBACKA)ds_enum, (void*)0) != DS_OK)
 		debug_warn("DirectSoundEnumerate failed");
 
 	// find all DLLs related to OpenAL and retrieve their versions.
