@@ -184,6 +184,14 @@ public:
 	// (or the whole string if it doesn't contain Str)
 	CStr BeforeLast(const CStr& Str) const;
 
+	// Retrieve the substring following the first occurrence of Str
+	// (or the whole string if it doesn't contain Str)
+	CStr AfterFirst(const CStr& Str) const;
+
+	// Retrieve the substring preceding the first occurrence of Str
+	// (or the whole string if it doesn't contain Str)
+	CStr BeforeFirst(const CStr& Str) const;
+
 	// Remove all occurrences of some character or substring 
 	void Remove(const CStr& Str);
 

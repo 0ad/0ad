@@ -245,6 +245,28 @@ CStr CStr::BeforeLast(const CStr& Str) const
 		return substr(0, pos);
 }
 
+// Retrieve the substring following the first occurrence of Str
+// (or the whole string if it doesn't contain Str)
+CStr CStr::AfterFirst(const CStr& Str) const
+{
+	long pos = Find(Str);
+	if (pos == -1)
+		return *this;
+	else
+		return substr(pos + Str.length());
+}
+
+// Retrieve the substring preceding the first occurrence of Str
+// (or the whole string if it doesn't contain Str)
+CStr CStr::BeforeFirst(const CStr& Str) const
+{
+	long pos = Find(Str);
+	if (pos == -1)
+		return *this;
+	else
+		return substr(0, pos);
+}
+
 // Remove all occurrences of some character or substring 
 void CStr::Remove(const CStr& Str)
 {

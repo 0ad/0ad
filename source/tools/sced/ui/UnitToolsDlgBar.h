@@ -20,6 +20,8 @@ protected:
 	BOOL OnInitDialog();
 	int GetCurrentObjectType();
 
+	std::vector<CStr> m_ObjectNames[2];
+
 	// Generated message map functions
 	//{{AFX_MSG(CUnitToolsDlgBar)
 	afx_msg void OnButtonAdd();

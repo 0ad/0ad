@@ -45,7 +45,7 @@ void CPaintObjectTool::PaintSelection()
 		m_Position=m_SelectionPoint;
 		m_LastTriggerTime=get_time();
 
-		CBaseEntity* obj=g_ObjMan.m_SelectedEntity;
+		CObjectThing* obj = g_ObjMan.m_SelectedThing;
 		if (obj) {
 			// get up to date transform 
 			BuildTransform();
@@ -75,11 +75,11 @@ void CPaintObjectTool::OnDraw()
 	// don't draw object if we're currently rotating it on the terrain
 	if (m_PaintCmd) return;
 
-	CBaseEntity* ent=g_ObjMan.m_SelectedEntity;
-	if (!ent) return;
+	CObjectThing* thing = g_ObjMan.m_SelectedThing;
+	if (!thing) return;
 
 	// don't draw unless we have a valid object to apply
-	CObjectEntry* obj = g_ObjMan.FindObject((CStr)ent->m_actorName);
+	CObjectEntry* obj = thing->GetObjectEntry();
 	if (!obj || !obj->m_Model) return;
 	
 	// try to get object transform, in world space

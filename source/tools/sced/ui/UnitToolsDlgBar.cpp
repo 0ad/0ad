@@ -71,27 +71,19 @@ BOOL CUnitToolsDlgBar::OnInitDialog()
 
 	// build combo box for object types
 	CComboBox* objecttypes=(CComboBox*) GetDlgItem(IDC_COMBO_OBJECTTYPES);
-	
-	const std::vector<CObjectManager::SObjectType>& types=g_ObjMan.m_ObjectTypes;
-	for (uint i=0;i<types.size();i++) {
-		objecttypes->AddString((const char*) types[i].m_Name);
-	}
-	if (types.size()>0) {
-		// select first type
-		objecttypes->SetCurSel(0);
 
-		// set initial list contents
-//		if (types.size()) {
-//			const std::vector<CObjectEntry*>& objects=types[0].m_Objects;
-//			for (uint i=0;i<objects.size();++i) {
-//				listctrl->InsertItem(i,(const char*) objects[i]->m_Name,i);
-//			}
-//		}
-		std::vector<CStrW> names;
-		g_EntityTemplateCollection.getTemplateNames(names);
-		for (size_t i = 0; i < names.size(); ++i)
-			listctrl->InsertItem(i, (CStr)names[i], i);
-	}
+	objecttypes->AddString("Entities");
+	objecttypes->AddString("Actors");
+
+	objecttypes->SetCurSel(0);
+
+	std::vector<CStrW> names;
+	g_EntityTemplateCollection.getBaseEntityNames(names);
+	for (size_t i = 0; i < names.size(); ++i)
+		m_ObjectNames[0].push_back((CStr)names[i]);
+
+	g_ObjMan.GetAllObjectNames(m_ObjectNames[1]);
+
 
 	CButton* addunit=(CButton*) GetDlgItem(IDC_BUTTON_ADDUNIT);
 	addunit->SetBitmap(::LoadBitmap(::GetModuleHandle(0),MAKEINTRESOURCE(IDB_BITMAP_ADDUNIT)));
@@ -100,6 +92,8 @@ BOOL CUnitToolsDlgBar::OnInitDialog()
 	selectunit->SetBitmap(::LoadBitmap(::GetModuleHandle(0),MAKEINTRESOURCE(IDB_BITMAP_SELECTUNIT)));
 
 	OnButtonSelect();
+
+	OnSelChangeObjectTypes();
 
 	return TRUE;  	              
 }
@@ -175,8 +169,11 @@ void CUnitToolsDlgBar::OnClickListObjectBrowser(NMHDR* pNMHDR, LRESULT* pResult)
 	// deselect current selection in list ctrl, if any
 	POSITION pos=listctrl->GetFirstSelectedItemPosition();
 	if (pos) {
-//		g_ObjMan.SetSelectedObject(g_ObjMan.m_ObjectTypes[GetCurrentObjectType()].m_Objects[(intptr_t)pos-1]);
-		g_ObjMan.m_SelectedEntity = g_EntityTemplateCollection.getTemplateByID((intptr_t)pos-1);
+		CStrW name (CStr(listctrl->GetItemText((int)(intptr_t)pos-1, 0)));
+		if (GetCurrentObjectType() == 0)
+			g_ObjMan.SetSelectedEntity(g_EntityTemplateCollection.getTemplate(name));
+		else
+			g_ObjMan.SetSelectedObject(g_ObjMan.FindObject((CStr)name));
 	}
 
 	// shift to add mode
@@ -193,18 +190,18 @@ int CUnitToolsDlgBar::GetCurrentObjectType()
 
 void CUnitToolsDlgBar::OnSelChangeObjectTypes()
 {
-//	// clear out the listctrl
-//	CListCtrl* listctrl=(CListCtrl*) GetDlgItem(IDC_LIST_OBJECTBROWSER);
-//	listctrl->DeleteAllItems();
-//	
-//	// add new items back to listbox
-//	std::vector<CObjectEntry*>& objects=g_ObjMan.m_ObjectTypes[GetCurrentObjectType()].m_Objects;
-//	for (uint i=0;i<objects.size();i++) {
-//		// add to list ctrl
-//		listctrl->InsertItem(i,(const char*) objects[i]->m_Name,i);
-//	}
-//
-//	g_ObjMan.SetSelectedObject(0);
+	// clear out the listctrl
+	CListCtrl* listctrl=(CListCtrl*) GetDlgItem(IDC_LIST_OBJECTBROWSER);
+	listctrl->DeleteAllItems();
+	
+	// add new items back to listbox
+	std::vector<CStr>& names=m_ObjectNames[GetCurrentObjectType()];
+	for (uint i=0;i<names.size();i++) {
+		// add to list ctrl
+		listctrl->InsertItem(i, names[i], i);
+	}
+
+	g_ObjMan.SetSelectedObject(0);
 }
 
 void CUnitToolsDlgBar::OnButtonSelect()

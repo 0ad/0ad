@@ -10,9 +10,10 @@
 #include "BaseEntity.h"
 #include "BaseEntityCollection.h"
 #include "EntityManager.h"
+#include "ObjectManager.h"
 
-CPaintObjectCommand::CPaintObjectCommand(CBaseEntity* object,const CMatrix3D& transform) 
-	: m_BaseEntity(object), m_Transform(transform), m_Entity()
+CPaintObjectCommand::CPaintObjectCommand(CObjectThing* object,const CMatrix3D& transform) 
+	: m_Thing(object), m_Transform(transform), m_Entity()
 {
 }
 
@@ -23,28 +24,12 @@ CPaintObjectCommand::~CPaintObjectCommand()
 
 void CPaintObjectCommand::Execute()
 {
-	CVector3D orient = m_Transform.GetIn();
-	CVector3D position = m_Transform.GetTranslation();
-	m_Entity = g_EntityManager.create(m_BaseEntity, position, atan2(-orient.X, -orient.Z));
-	m_Entity->SetPlayer(g_Game->GetPlayer(1));
+	m_Thing->Create(m_Transform, 1);
 }
 
 void CPaintObjectCommand::UpdateTransform(CMatrix3D& transform)
 {
-	CVector3D orient = transform.GetIn();
-	CVector3D position = transform.GetTranslation();
-
-	// This is quite yucky, but nothing else seems to actually work:
-
-	m_Entity->m_position =
-	m_Entity->m_position_previous =
-	m_Entity->m_graphics_position = position;
-	m_Entity->teleport();
-
-	m_Entity->m_orientation =
-	m_Entity->m_orientation_previous =
-	m_Entity->m_graphics_orientation = atan2(-orient.X, -orient.Z);
-	m_Entity->reorient();
+	m_Thing->SetTransform(transform);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////

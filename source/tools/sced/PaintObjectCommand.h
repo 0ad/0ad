@@ -7,12 +7,13 @@
 
 class CUnit;
 class CBaseEntity;
+class CObjectThing;
 
 class CPaintObjectCommand : public CCommand
 {
 public:
 	// constructor, destructor
-	CPaintObjectCommand(CBaseEntity* entity, const CMatrix3D& transform);
+	CPaintObjectCommand(CObjectThing* entity, const CMatrix3D& transform);
 	~CPaintObjectCommand();
 
 	// return the texture name of this command
@@ -41,7 +42,7 @@ private:
 	// unit to add to world
 	HEntity m_Entity;
 	// entity to paint
-	CBaseEntity* m_BaseEntity;
+	CObjectThing* m_Thing;
 	// model transformation
 	CMatrix3D m_Transform;
 };

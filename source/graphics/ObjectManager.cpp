@@ -8,6 +8,13 @@
 #include "VFSUtil.h"
 #include "ObjectBase.h"
 #include "ObjectEntry.h"
+#include "Entity.h"
+#include "EntityManager.h"
+#include "BaseEntity.h"
+#include "Game.h"
+#include "Model.h"
+#include "Unit.h"
+#include "Matrix3D.h"
 
 #define LOG_CATEGORY "graphics"
 
@@ -21,7 +28,7 @@ bool operator< (const CObjectManager::ObjectKey& a, const CObjectManager::Object
 		return a.ActorVariation < b.ActorVariation;
 }
 
-CObjectManager::CObjectManager() : m_SelectedEntity(NULL)
+CObjectManager::CObjectManager() : m_SelectedThing(NULL)
 {
 	m_ObjectTypes.reserve(32);
 }
@@ -151,4 +158,83 @@ void CObjectManager::DeleteObject(CObjectEntry* entry)
 void CObjectManager::LoadObjects()
 {
 	AddObjectType("");
+}
+
+
+static void GetObjectThunk(const char* path, const vfsDirEnt* ent, void* context)
+{
+	std::vector<CStr>* names = (std::vector<CStr>*)context;
+	CStr name (path);
+	names->push_back(name.AfterFirst("actors/"));
+}
+void CObjectManager::GetAllObjectNames(std::vector<CStr>& names)
+{
+	VFSUtil::EnumDirEnts("art/actors/", "*.xml", true, GetObjectThunk, &names);
+}
+
+
+struct CObjectThing_Entity : public CObjectThing
+{
+	CObjectThing_Entity(CBaseEntity* b) : base(b) {}
+	~CObjectThing_Entity() {}
+	CBaseEntity* base;
+	CEntity* ent;
+	void Create(CMatrix3D& transform, int playerID)
+	{
+		CVector3D orient = transform.GetIn();
+		CVector3D position = transform.GetTranslation();
+		ent = g_EntityManager.create(base, position, atan2(-orient.X, -orient.Z));
+		ent->SetPlayer(g_Game->GetPlayer(playerID));
+	}
+	void SetTransform(CMatrix3D& transform)
+	{
+		CVector3D orient = transform.GetIn();
+		CVector3D position = transform.GetTranslation();
+
+		// This is quite yucky, but nothing else seems to actually work:
+		ent->m_position =
+		ent->m_position_previous =
+		ent->m_graphics_position = position;
+		ent->teleport();
+		ent->m_orientation =
+		ent->m_orientation_previous =
+		ent->m_graphics_orientation = atan2(-orient.X, -orient.Z);
+		ent->reorient();
+	}
+	CObjectEntry* GetObjectEntry()
+	{
+		return g_ObjMan.FindObject((CStr)base->m_actorName);
+	}
+};
+struct CObjectThing_Object : public CObjectThing
+{
+	CObjectThing_Object(CObjectEntry* o) : obj(o) {}
+	~CObjectThing_Object() {}
+	CObjectEntry* obj;
+	CUnit* unit;
+	void Create(CMatrix3D& transform, int playerID)
+	{
+		unit = new CUnit(obj, obj->m_Model->Clone());
+		unit->GetModel()->SetTransform(transform);
+		g_UnitMan.AddUnit(unit);
+	}
+	void SetTransform(CMatrix3D& transform)
+	{
+		unit->GetModel()->SetTransform(transform);
+	}
+	CObjectEntry* GetObjectEntry()
+	{
+		return obj;
+	}
+};
+
+void CObjectManager::SetSelectedEntity(CBaseEntity* thing)
+{
+	delete m_SelectedThing;
+	m_SelectedThing = (thing ? new CObjectThing_Entity(thing) : NULL);
+}
+void CObjectManager::SetSelectedObject(CObjectEntry* thing)
+{
+	delete m_SelectedThing;
+	m_SelectedThing = (thing ? new CObjectThing_Object(thing) : NULL);
 }
