@@ -457,15 +457,6 @@ static void Render()
 #ifndef NO_GUI
 	// Temp GUI message GeeTODO
 	glLoadIdentity();
-	glTranslatef(10, 60, 0);
-	{
-		CFont font("misc");
-		font.Bind();
-		glwprintf( L"%hs", g_GUI.TEMPmessage.c_str() );
-	}
-	oglCheck();
-
-	glLoadIdentity();
 	MICROLOG(L"render GUI");
 	g_GUI.Draw();
 #endif
