@@ -112,7 +112,7 @@ struct Codec
 //
 //////////////////////////////////////////////////////////////////////////////
 
-// DDS and BMP are normally bottom-up, while PNG and JPG are always top-down.
+// TGA and BMP are normally bottom-up, while PNG and JPG are always top-down.
 // we don't want to dump the burden of flipping them to a common orientation
 // on the application - that would affect all drawing code.
 // instead, we flip the texture data to <global_orientation> when loading.
@@ -123,8 +123,16 @@ struct Codec
 //
 // this is slow; in release builds, we should be using formats optimized
 // for their intended use that don't require preprocessing.
+//
+// the default top-down is to match the Photoshop DDS plugin's output.
+// DDS is the optimized format, so we don't want to have to flip that.
+// notes:
+// - there's no way to tell which orientation a DDS file has;
+//   we have to go with what the DDS encoder uses.
+// - flipping DDS is possible without re-encoding; we'd have to shuffle
+//   around the pixel values inside the 4x4 blocks.
 
-static TexOrientation global_orientation = TEX_BOTTOM_UP;
+static TexOrientation global_orientation = TEX_TOP_DOWN;
 
 void tex_set_global_orientation(TexOrientation o)
 {
@@ -976,7 +984,7 @@ fail:
 	}
 
 	// shared cleanup
-	ret:
+ret:
 	free(rows);
 
 	if(png_ptr)
@@ -1075,7 +1083,7 @@ fail:
 	}
 
 	// shared cleanup
-	ret:
+ret:
 	png_destroy_write_struct(&png_ptr, &info_ptr);
 
 	free(rows);
@@ -1411,7 +1419,7 @@ fail:
 	err = 0;
 
 	// shared cleanup
-	ret:
+ret:
 	free(rows);
 
 	jpeg_destroy_decompress(&cinfo);
@@ -1497,7 +1505,7 @@ fail:
 	}
 
 	// shared cleanup
-	ret:
+ret:
 	png_destroy_write_struct(&png_ptr, &info_ptr);
 
 	free(rows);
