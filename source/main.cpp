@@ -36,7 +36,7 @@
 #include "LightEnv.h"
 #include "Model.h"
 #include "UnitManager.h"
-#include "MaterialReader.h"
+#include "MaterialManager.h"
 
 #include "Interact.h"
 #include "Hotkey.h"
@@ -907,8 +907,8 @@ PREVTSC=CURTSC;
 	// create terrain related stuff
 	new CTextureManager;
 
-    // create the material reader
-    new CMaterialReader;
+    // create the material manager
+    new CMaterialManager;
 
 	// create actor related stuff
 	new CSkeletonAnimManager;
