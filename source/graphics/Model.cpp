@@ -314,6 +314,7 @@ CModel* CModel::Clone() const
 	clone->m_ObjectBounds=m_ObjectBounds;
 	clone->InitModel(m_pModelDef);
 	clone->SetTexture(m_Texture);
+    clone->SetMaterial(m_Material);
 	clone->SetAnimation(m_Anim);
 	for (uint i=0;i<m_Props.size();i++) {
 		// eek!  TODO, RC - need to investigate shallow clone here

@@ -14,10 +14,17 @@ public:
         b = _b;
         a = _a;
     }
+    SMaterialColor(const SMaterialColor &color)
+    {
+        r = color.r;
+        g = color.g;
+        b = color.b;
+        a = color.a;
+    } 
 
 	union
 	{
-		struct 
+		struct
 		{
 			float r;
 			float g;
@@ -26,6 +33,28 @@ public:
 		};
 		float data[4];
 	};
+
+    void operator =(const SMaterialColor color)
+    {
+        r = color.r;
+        g = color.g;
+        b = color.b;
+        a = color.a;
+    }
+    bool operator ==(const SMaterialColor color)
+    {
+        return (
+            r == color.r &&
+            g == color.g &&
+            b == color.b &&
+            a == color.a
+        );
+    }
+
+    float Sum()
+    {
+        return (r + g + b + a);
+    }
 };
 
 class CMaterial
@@ -35,7 +64,9 @@ public:
 	CMaterial(const CMaterial &material);
 	virtual ~CMaterial();
 
-	bool Apply();
+	void Bind();
+    void Unbind();
+    float GetHash() { return m_Hash; }
 
 	CStr GetTexture() { return m_Texture; }
 	SMaterialColor GetDiffuse();
@@ -43,41 +74,32 @@ public:
 	SMaterialColor GetSpecular();
 	SMaterialColor GetEmissive();
 	float GetSpecularPower() { return m_SpecularPower; }
-	GLenum GetSourceBlend() { return m_SourceBlend; }
-	GLenum GetDestBlend() { return m_DestBlend; }
-	GLenum GetAlphaFunc() { return m_AlphaFunc; }
-	float GetAlphaClamp() { return m_AlphaClamp; }
 	bool UsesAlpha() { return m_Alpha; }
 
-    void SetTexture(CStr &texture) { m_Texture = texture; }
+    void SetTexture(const CStr &texture);
 	void SetDiffuse(SMaterialColor &color);
 	void SetAmbient(SMaterialColor &color);
 	void SetSpecular(SMaterialColor &color);
 	void SetEmissive(SMaterialColor &color);
-    void SetSpecularPower(float power) { m_SpecularPower = power; }
-    void SetSourceBlend(GLenum func) { m_SourceBlend = func; }
-    void SetDestBlend(GLenum func) { m_DestBlend = func; }
-    void SetAlphaFunc(GLenum func) { m_AlphaFunc = func; }
-    void SetAlphaClamp(float clamp) { m_AlphaClamp = clamp; }
-    void SetUsesAlpha(bool flag) { m_Alpha = flag; }
+    void SetSpecularPower(float power);
+    void SetUsesAlpha(bool flag);
 
-	void operator =(CMaterial &material);
+    void operator =(const CMaterial &material);
+    bool operator ==(const CMaterial &material);
 protected:
+    void ComputeHash();
+
+    float m_Hash;
+
 	// Various reflective color properties
-	SMaterialColor *m_Diffuse;
-	SMaterialColor *m_Ambient;
-	SMaterialColor *m_Specular;
-	SMaterialColor *m_Emissive;
+	SMaterialColor m_Diffuse;
+	SMaterialColor m_Ambient;
+	SMaterialColor m_Specular;
+	SMaterialColor m_Emissive;
 	float m_SpecularPower;
 
 	// Path to the materials texture
 	CStr m_Texture;
-	
-	// OpenGL blend and alpha func states for the materials render pass
-	GLenum m_SourceBlend;
-	GLenum m_DestBlend;
-	GLenum m_AlphaFunc;
-	float m_AlphaClamp;
 
 	// Alpha required flag
 	bool m_Alpha;

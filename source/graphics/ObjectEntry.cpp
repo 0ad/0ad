@@ -5,6 +5,7 @@
 #include "Model.h"
 #include "ModelDef.h"
 #include "CLogger.h"
+#include "MaterialManager.h"
 
 #include "UnitManager.h"
 
@@ -59,6 +60,7 @@ bool CObjectEntry::BuildModel()
 	// create new Model
 	m_Model=new CModel;
 	m_Model->SetTexture((const char*) m_TextureName);
+    m_Model->SetMaterial(g_MaterialManager.LoadMaterial((const char *)m_Material));
 	m_Model->InitModel(modeldef);
 
 	// calculate initial object space bounds, based on vertex positions

@@ -169,6 +169,9 @@ CMaterialManager::~CMaterialManager()
 
 CMaterial &CMaterialManager::LoadMaterial(const char *file)
 {
+    if(!strlen(file))
+        return NullMaterial;
+
     std::map<std::string, CMaterial *>::iterator iter;
     if((iter = m_Materials.find(std::string(file))) != m_Materials.end())
     {
@@ -193,12 +196,6 @@ CMaterial &CMaterialManager::LoadMaterial(const char *file)
 
 	EL(alpha);
 	AT(usage);
-	AT(function);
-	AT(clamp);
-
-	EL(blend);
-	AT(sourcefunction);
-	AT(destfunction);
 
 	#undef AT
 	#undef EL
@@ -244,21 +241,6 @@ CMaterial &CMaterialManager::LoadMaterial(const char *file)
             {
                 temp = (CStr)attrs.getNamedItem(at_usage);
                 material->SetUsesAlpha(ParseUsage(temp));
-
-                temp = (CStr)attrs.getNamedItem(at_function);
-                material->SetAlphaFunc(ParseAlphaFunc(temp));
-
-                temp = (CStr)attrs.getNamedItem(at_clamp);
-                if(temp.Length() > 0)
-                    material->SetAlphaClamp(ClampFloat(temp.ToFloat(), 0.0f, 1.0f));
-            }
-            else if(token == el_blend)
-            {
-                temp = (CStr)attrs.getNamedItem(at_sourcefunction);
-                material->SetSourceBlend(ParseBlendFunc(temp));
-
-                temp = (CStr)attrs.getNamedItem(at_destfunction);
-                material->SetDestBlend(ParseBlendFunc(temp));
             }
 		}
 

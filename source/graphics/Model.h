@@ -15,6 +15,7 @@
 #include "ModelDef.h"
 #include "RenderableObject.h"
 #include "SkeletonAnim.h"
+#include "Material.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -46,8 +47,12 @@ public:
 
 	// set the model's texture
 	void SetTexture(const CTexture& tex) { m_Texture=tex; }
+    // set the model's material
+    void SetMaterial(const CMaterial &material) { m_Material = material; }
 	// get the model's texture
 	CTexture* GetTexture() { return &m_Texture; }
+    // get the models material
+    CMaterial &GetMaterial() { return m_Material; }
 
 	// set the given animation as the current animation on this model
 	bool SetAnimation(CSkeletonAnim* anim); 
@@ -97,6 +102,8 @@ private:
 
 	// texture used by model
 	CTexture m_Texture;
+    // model's material
+    CMaterial m_Material;
 	// pointer to the model's raw 3d data
 	CModelDef* m_pModelDef;
 	// object space bounds of model - accounts for bounds of all possible animations

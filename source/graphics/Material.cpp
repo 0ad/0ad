@@ -14,118 +14,135 @@ static SMaterialColor IdentityAmbient(0.2f, 0.2f, 0.2f, 1.0f);
 static SMaterialColor IdentitySpecular(0.0f, 0.0f, 0.0f, 1.0f);
 static SMaterialColor IdentityEmissive(0.0f, 0.0f, 0.0f, 1.0f);
 
-static SMaterialColor *CopyColor(SMaterialColor *color)
-{
-	if(!color)
-		return NULL;
-
-	if(color == &IdentityDiffuse
-		|| color == &IdentityAmbient
-		|| color == &IdentitySpecular
-		|| color == &IdentityEmissive)
-		return NULL;
-
-	SMaterialColor *ret = new SMaterialColor();
-	memcpy(ret, color, sizeof(SMaterialColor));
-	return ret;
-}
-
 CMaterial::CMaterial()
-	: m_Diffuse(NULL),
-	m_Ambient(NULL),
-	m_Specular(NULL),
-	m_Emissive(NULL),
+	: m_Diffuse(IdentityDiffuse),
+    m_Ambient(IdentityAmbient),
+    m_Specular(IdentitySpecular),
+    m_Emissive(IdentityEmissive),
 	m_SpecularPower(0.0f),
-	m_SourceBlend(GL_NONE),
-	m_DestBlend(GL_NONE),
-	m_AlphaFunc(GL_NONE),
-	m_AlphaClamp(1.0f),
 	m_Alpha(false)
 {
+    ComputeHash();
 }
 
 CMaterial::CMaterial(const CMaterial &material)
 {
-    (*this) = const_cast<CMaterial &>(material);
+    (*this) = material;
 }
 
 CMaterial::~CMaterial()
 {
-	SAFE_DELETE(m_Diffuse);
-	SAFE_DELETE(m_Ambient);
-	SAFE_DELETE(m_Specular);
-	SAFE_DELETE(m_Emissive);
 }
 
-void CMaterial::operator =(CMaterial &material)
+void CMaterial::operator =(const CMaterial &material)
 {
-	m_Diffuse = CopyColor(material.m_Diffuse);
-    m_Ambient = CopyColor(material.m_Ambient);
-    m_Specular = CopyColor(material.m_Specular);
-    m_Emissive = CopyColor(material.m_Emissive);
+	m_Diffuse = material.m_Diffuse;
+    m_Ambient = material.m_Ambient;
+    m_Specular = material.m_Specular;
+    m_Emissive = material.m_Emissive;
 
     m_SpecularPower = material.m_SpecularPower;
-    m_SourceBlend = material.m_SourceBlend;
-    m_DestBlend = material.m_DestBlend;
-    m_AlphaFunc = material.m_AlphaFunc;
-    m_AlphaClamp = material.m_AlphaClamp;
     m_Alpha = material.m_Alpha;
+    ComputeHash();
+}
+
+bool CMaterial::operator ==(const CMaterial &material)
+{
+    return(
+        m_Texture == m_Texture &&
+        m_Diffuse == material.m_Diffuse &&
+        m_Ambient == material.m_Ambient &&
+        m_Specular == material.m_Specular &&
+        m_Emissive == material.m_Emissive &&
+        m_SpecularPower == material.m_SpecularPower &&
+        m_Alpha == material.m_Alpha
+    );
+}
+
+void CMaterial::Bind()
+{
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, m_Diffuse.data);
+    glMaterialfv(GL_FRONT, GL_AMBIENT, m_Ambient.data);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, m_Specular.data);
+    glMaterialfv(GL_FRONT, GL_EMISSION, m_Emissive.data);
+    glMaterialf(GL_FRONT, GL_SHININESS, m_SpecularPower);
+
+    oglCheck();
+}
+
+void CMaterial::Unbind()
+{
 }
 
 SMaterialColor CMaterial::GetDiffuse()
 {
-	if(!m_Diffuse)
-		return IdentityDiffuse;
-
-	return *m_Diffuse;
+    return m_Diffuse;
 }
 
 SMaterialColor CMaterial::GetAmbient()
 {
-	if(!m_Ambient)
-		return IdentityAmbient;
-
-	return *m_Ambient;
+    return m_Ambient;
 }
 
 SMaterialColor CMaterial::GetSpecular()
 {
-	if(!m_Specular)
-		return IdentitySpecular;
-
-	return *m_Specular;
+    return m_Specular;
 }
 
 SMaterialColor CMaterial::GetEmissive()
 {
-	if(!m_Emissive)
-		return IdentityEmissive;
-
-	return *m_Emissive;
+    return m_Emissive;
 }
 
-#define SETMC(var) \
-	if((var)) (*var) = color; \
-	else (var) = CopyColor(&color) ;
+void CMaterial::SetTexture(const CStr &texture)
+{
+    m_Texture = texture;
+    ComputeHash();
+}
 
 void CMaterial::SetDiffuse(SMaterialColor &color)
 {
-	SETMC(m_Diffuse);
+	m_Diffuse = color;
+    ComputeHash();
 }
 
 void CMaterial::SetAmbient(SMaterialColor &color)
 {
-	SETMC(m_Ambient);
+	m_Ambient = color;
+    ComputeHash();
 }
 
 void CMaterial::SetSpecular(SMaterialColor &color)
 {
-	SETMC(m_Specular);
+	m_Specular = color;
+    ComputeHash();
 }
 
 void CMaterial::SetEmissive(SMaterialColor &color)
 {
-	SETMC(m_Emissive);
+	m_Emissive = color;
+    ComputeHash();
 }
 
-#undef SETMC
+void CMaterial::SetSpecularPower(float power)
+{
+    m_SpecularPower = power;
+    ComputeHash();
+}
+
+void CMaterial::SetUsesAlpha(bool flag)
+{
+    m_Alpha = flag;
+    ComputeHash();
+}
+
+void CMaterial::ComputeHash()
+{
+    m_Hash = 
+        m_Diffuse.Sum() +
+        m_Ambient.Sum() +
+        m_Specular.Sum() +
+        m_Emissive.Sum() +
+        m_SpecularPower +
+        (float)m_Texture.GetHashCode();
+}
