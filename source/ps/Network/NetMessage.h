@@ -7,6 +7,7 @@
 #include "AllNetMessages.h"
 #undef ALLNETMSGS_DONT_CREATE_NMTS
 
+
 class CNetMessage
 {
 	NetMessageType m_Type;
@@ -44,6 +45,8 @@ public:
 
 class CNetMessage;
 typedef CNetMessage * (*NetMessageDeserializer) (const u8 *buffer, uint length);
+
+#include "Entity.h"
 
 struct SNetMessageDeserializerRegistration
 {

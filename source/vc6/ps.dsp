@@ -583,7 +583,7 @@ SOURCE=..\ps\Encryption.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\Entity.cpp
+SOURCE=..\ps\Entity.cpp
 # End Source File
 # Begin Source File
 

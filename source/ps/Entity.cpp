@@ -1,6 +1,6 @@
 // Last modified: 19 January 2004 (Mark Thompson)
 
-#include "entity.h"
+#include "Entity.h"
 
 //--------------------------------------------------------
 // CEntity: Entity class
@@ -261,15 +261,6 @@ HEntityWeak::HEntityWeak( unsigned short _index )
 }
 
 //--------------------------------------------------------
-// HEntityWeak::operator=( const HEntityWeak& copy )
-//--------------------------------------------------------
-
-void HEntityWeak::operator=( const HEntityWeak& copy )
-{
-	index = copy.index;
-}
-
-//--------------------------------------------------------
 // HEntityWeak::operator*()
 //--------------------------------------------------------
 
@@ -288,7 +279,7 @@ CEntity* HEntityWeak::operator->()
 {
 	assert( index != BAD_HANDLE );
 	assert( g_HandlePool.Pool[index].ptr );
-	return( *g_HandlePool.Pool[index].ptr );
+	return( g_HandlePool.Pool[index].ptr );
 }
 
 //--------------------------------------------------------
@@ -297,5 +288,5 @@ CEntity* HEntityWeak::operator->()
 
 HEntityWeak::operator HEntity()
 {
-	return *( new HEntity( index ) );
+	return HEntity( index );
 }

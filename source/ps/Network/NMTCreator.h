@@ -21,6 +21,7 @@
 
 /*************************************************************************/
 // Pass 1, class definition
+#define NMT_CREATOR_PASS_CLASSDEF
 #define START_NMTS()
 #define END_NMTS()
 
@@ -66,11 +67,13 @@ struct _nm: public CNetMessage \
 #define END_NMT_CLASS() };
 
 #include "NMTCreator.h"
+#undef NMT_CREATOR_PASS_CLASSDEF
 
 #ifdef NMT_CREATOR_IMPLEMENT
 
 /*************************************************************************/
 // Pass 2, GetSerializedLength
+#define NMT_CREATOR_PASS_GETLENGTH
 #define START_NMTS()
 #define END_NMTS()
 
@@ -90,9 +93,13 @@ uint _nm::GetSerializedLength() const \
 };
 
 #include "NMTCreator.h"
+#undef NMT_CREATOR_PASS_GETLENGTH
 
 /*************************************************************************/
 // Pass 3, Serialize
+
+#define NMT_CREATOR_PASS_SERIALIZE
+
 #define START_NMTS()
 #define END_NMTS()
 
@@ -112,8 +119,13 @@ void _nm::Serialize(u8 *buffer) const \
 
 #include "NMTCreator.h"
 
+#undef NMT_CREATOR_PASS_SERIALIZE
+
 /*************************************************************************/
 // Pass 4, Deserialize
+
+#define NMT_CREATOR_PASS_DESERIALIZE
+
 #define START_NMTS()
 #define END_NMTS()
 
@@ -143,8 +155,13 @@ CNetMessage *Deserialize##_nm(const u8 *buffer, uint length) \
 
 #undef BAIL_DESERIALIZER
 
+#undef NMT_CREATOR_PASS_DESERIALIZE
+
 /*************************************************************************/
 // Pass 5, Deserializer Registration
+
+#define NMT_CREATOR_PASS_REGISTRATION
+
 #define START_NMTS() SNetMessageDeserializerRegistration g_DeserializerRegistrations[] = {
 #define END_NMTS() { NMT_NONE, NULL } };
 
@@ -158,6 +175,8 @@ CNetMessage *Deserialize##_nm(const u8 *buffer, uint length) \
 #define END_NMT_CLASS()
 
 #include "NMTCreator.h"
+
+#undef NMT_CREATOR_PASS_REGISTRATION
 
 #endif // #ifdef NMT_CREATOR_IMPLEMENT
 

@@ -29,7 +29,8 @@ TDD at http://forums.wildfiregames.com/0ad
 
 #include "assert.h"
 #include "stdio.h"
-#include "ps/singleton.h"
+#include "singleton.h"
+#include "Event.h"
 
 // Handle defines
 
@@ -45,6 +46,22 @@ class CEntity;
 class HEntity;
 class HEntityWeak;
 
+// HEntityWeak: Weak (non-refcounted) smart pointer
+
+class HEntityWeak
+{
+	friend CHandlePool;
+	friend HEntity;
+private:
+	unsigned short index;
+	HEntityWeak( unsigned short index );
+public:
+	HEntityWeak();
+	CEntity& operator*();
+	CEntity* operator->();
+	operator HEntity();
+};
+
 // CEntity: Entity class
 
 class CEntity
@@ -58,13 +75,15 @@ public:
 	CEntity();				
 	~CEntity();				
 	void Dispatch( CEvent* ev ); 
-}
+};
 
 // CHandle: Entity handles, used by manager class
 
 class CHandle
 {
 	friend CHandlePool;
+	friend HEntity;
+	friend HEntityWeak;
 private:
 	CEntity* ptr;
 	unsigned short refcount;
@@ -73,29 +92,12 @@ private:
 	~CHandle();
 };
 
-// CHandlePool: Tracks entity handles
-
-#define g_HandlePool CHandlePool::GetSingleton()
-
-class CHandlePool : public Singleton<CHandlePool>
-{
-	friend HEntity;
-private:
-	unsigned short FreeHandle;
-	CHandle Pool[MAX_HANDLES];
-public:
-	CHandlePool();
-	~CHandlePool();
-	HEntity Assign( CEntity* ptr );
-	HEntity Create() { return Assign( new CEntity ); };
-	void Destroy( unsigned short index );
-};
-
 // HEntity: Entity smart pointer
 
 class HEntity
 {
 	friend CHandlePool;
+	friend HEntityWeak;
 private:
 	unsigned short index;
 	HEntity( unsigned short index );
@@ -112,17 +114,23 @@ public:
 	~HEntity();
 };
 
-// HEntityWeak: Weak (non-refcounted) smart pointer
+// CHandlePool: Tracks entity handles
 
-class HEntityWeak
+#define g_HandlePool CHandlePool::GetSingleton()
+
+class CHandlePool : public Singleton<CHandlePool>
 {
-	friend CHandlePool;
+	friend HEntity;
+	friend HEntityWeak;
 private:
-	unsigned short index;
-	HEntityWeak( unsigned short index );
+	unsigned short FreeHandle;
+	CHandle Pool[MAX_HANDLES];
 public:
-	CEntity& operator*();
-	CEntity* operator->();
+	CHandlePool();
+	~CHandlePool();
+	HEntity Assign( CEntity* ptr );
+	HEntity Create() { return Assign( new CEntity ); };
+	void Destroy( unsigned short index );
 };
 
 #endif // !defined( ENTITY_INCLUDED )

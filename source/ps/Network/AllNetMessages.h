@@ -22,9 +22,14 @@ enum NetMessageType
 	 */
 	NMT_NONE=0,
 	
+	/* Game event messages */
+
+	NMT_Event_IveGotAnInteger,
+
 	/* Beware, the list will contain bogus messages when under development ;-) */
 	NMT_Aloha,
 	NMT_Sayonara,
+	
 
 	/**
 	 * One higher than the highest value of any message type
@@ -49,6 +54,8 @@ START_NMT_CLASS(SayonaraMessage, NMT_Sayonara)
 //	NMT_FIELD_INT(m_SayonaraCode, u64, 8)
 	NMT_FIELD(CStr, m_SayonaraCode)
 END_NMT_CLASS()
+
+#include "../EventTypes.h"
 
 END_NMTS()
 
