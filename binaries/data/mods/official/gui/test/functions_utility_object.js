@@ -29,3 +29,17 @@ function GUIObjectToggle(objectName)
 
 // ====================================================================
 
+function GUIObjectRenameandReveal(objectName, objectCaption)
+{
+        // Get our GUI object
+        var GUIObject = getGUIObjectByName(objectName);
+
+	// Rename it
+	GUIObject.caption = objectCaption;
+
+        // Toggle it
+        GUIObject.hidden = false;
+}
+
+// ====================================================================
+

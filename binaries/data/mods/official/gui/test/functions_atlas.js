@@ -252,7 +252,7 @@ function initAtlas()
 	ATLAS_LEFT_PANE_SECTION.LMARGIN = 7;
 	ATLAS_LEFT_PANE_SECTION.RMARGIN = 10;
 	ATLAS_LEFT_PANE_SECTION.TMARGIN = 10;
-	ATLAS_LEFT_PANE_SECTION.BMARGIN = 10;
+	ATLAS_LEFT_PANE_SECTION.BMARGIN = 12;
 
 	// ============================================= MAP CREATOR SECTION MENU ===============================================
 
@@ -349,16 +349,16 @@ function initAtlas()
 
 	// "Players:" label for Map Settings.
 	ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		40,
+		45,
 		15
 	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3].x+ATLAS_LEFT_PANE_SECTION.LMARGIN,
-		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3].height+ATLAS_LEFT_PANE_SECTION.TMARGIN
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3].height+ATLAS_LEFT_PANE_SECTION.TMARGIN+ATLAS_LEFT_PANE_SECTION.TMARGIN
 	);
 
 	// Players "counter" input box for Map Settings.
 	ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		32,
+		30,
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL].height
 	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL].width,
@@ -368,16 +368,16 @@ function initAtlas()
 	// Players up button for "counter" input box for Map Settings.
 	ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX_UP	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
 		ATLAS_COUNTER_BOX.width,
-		ATLAS_COUNTER_BOX.height
+		(atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX].height/2)+3
 	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX].width-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX_UP].width,
-		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX].y
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX].y-3
 	);
 
 	// Players down button for "counter" input box for Map Settings.
 	ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX_DN	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
 		ATLAS_COUNTER_BOX.width,
-		ATLAS_COUNTER_BOX.height
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX_UP].height
 	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX].width-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX_UP].width,
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX].height-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_INPUT_BOX_DN].height
@@ -395,16 +395,16 @@ function initAtlas()
 	// Settlements up button for "counter" input box for Map Settings.
 	ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX_UP	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
 		ATLAS_COUNTER_BOX.width,
-		ATLAS_COUNTER_BOX.height
+		(atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX].height/2)+3
 	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX].width-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX_UP].width,
-		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX].y
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX].y-3
 	);
 
 	// Settlements down button for "counter" input box for Map Settings.
 	ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX_DN	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
 		ATLAS_COUNTER_BOX.width,
-		ATLAS_COUNTER_BOX.height
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX_UP].height
 	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX].width-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX_UP].width,
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX].height-atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_SETTLEMENT_INPUT_BOX_DN].height
@@ -421,16 +421,16 @@ function initAtlas()
 
 	// "Resources:" label for Map Settings.
 	ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_RESOURCES_LABEL		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		40,
+		60,
 		15
 	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL].x+ATLAS_LEFT_PANE_SECTION.LMARGIN,
-		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL].height+ATLAS_LEFT_PANE_SECTION.TMARGIN
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL].x,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL].height+ATLAS_LEFT_PANE_SECTION.TMARGIN+ATLAS_LEFT_PANE_SECTION.TMARGIN
 	);
 
 	// Resources "drop-down" box for Map Settings.
 	ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_RESOURCES_COMBO_BOX	= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		32,
+		55,
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_PLAYER_LABEL].height
 	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_RESOURCES_LABEL].x+atlasCoord[ATLAS_LEFT_PANE_SECTION_MAP_SETTINGS_RESOURCES_LABEL].width,
@@ -443,20 +443,20 @@ function initAtlas()
 
 	// Terrain Map input box.
 	ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3].width-ATLAS_LEFT_PANE_SECTION.LMARGIN-ATLAS_LEFT_PANE_SECTION.RMARGIN,
-		20
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3].width-ATLAS_LEFT_PANE_SECTION.LMARGIN-ATLAS_LEFT_PANE_SECTION.RMARGIN-ATLAS_LEFT_PANE_SECTION.LMARGIN,
+		15
 	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3].x+ATLAS_LEFT_PANE_SECTION.LMARGIN,
-		-ATLAS_LEFT_PANE_SECTION.BMARGIN-atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX].height
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3].x+ATLAS_LEFT_PANE_SECTION.LMARGIN+ATLAS_LEFT_PANE_SECTION.LMARGIN,
+		ATLAS_LEFT_PANE_SECTION.BMARGIN
 	);
 
 	// "Terrain Map:" label.
 	ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_LABEL		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		32,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX].width,
 		20
 	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3].x+ATLAS_LEFT_PANE_SECTION.LMARGIN,
-		atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_HEADING_3].height+ATLAS_LEFT_PANE_SECTION.TMARGIN
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX].x,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX].height
 	);
 
 	// Height Map input box.
@@ -465,16 +465,36 @@ function initAtlas()
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX].height
 	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX].x,
-		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX].y-atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX].height-atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_LABEL].height
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_LABEL].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_LABEL].height
 	);
 
 	// "Height Map:" label.
 	ATLAS_LEFT_PANE_SECTION_GENERATE_HEIGHT_MAP_LABEL		= addSizeArrayWH(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_LABEL].width,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX].width,
 		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_LABEL].height
 	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
-		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_LABEL].x,
-		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_LABEL].y-atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_LABEL].height
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX].x,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_HEIGHT_MAP_INPUT_BOX].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_HEIGHT_MAP_INPUT_BOX].height
+	);
+
+	// "Generate!" border.
+	ATLAS_LEFT_PANE_SECTION_GENERATE_BORDER				= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX].width,
+		40
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX].x,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_HEIGHT_MAP_INPUT_BOX].y+atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_HEIGHT_MAP_INPUT_BOX].height+atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_BORDER].height+ATLAS_LEFT_PANE_SECTION.BMARGIN
+	);
+
+	ATLAS_LEFT_PANE_SECTION_GENERATE_SPAN = 7;
+
+	// "Generate!" button.
+	ATLAS_LEFT_PANE_SECTION_GENERATE_BUTTON				= addSizeArrayWH(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX].width-ATLAS_LEFT_PANE_SECTION_GENERATE_SPAN-ATLAS_LEFT_PANE_SECTION_GENERATE_SPAN,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_BORDER].height-ATLAS_LEFT_PANE_SECTION_GENERATE_SPAN-ATLAS_LEFT_PANE_SECTION_GENERATE_SPAN
+	); atlasCoord_Last 			= addSizeArrayXY(atlasCoord, atlasCoord_Last,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_BORDER].x+ATLAS_LEFT_PANE_SECTION_GENERATE_SPAN,
+		atlasCoord[ATLAS_LEFT_PANE_SECTION_GENERATE_BORDER].y+ATLAS_LEFT_PANE_SECTION_GENERATE_SPAN
 	);
 }
 
@@ -550,562 +570,49 @@ function atlasMaximiseToolbar()
 
 // ====================================================================
 
-function atlasToolbarButton_1()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_2()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_3()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_4()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_5()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_6()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_7()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_8()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_9()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_10()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_11()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_12()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_13()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_14()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_15()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_16()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_17()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_18()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_19()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_20()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_21()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_22()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_23()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_24()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_25()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_26()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_27()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_28()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_29()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_30()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_31()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_32()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_33()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_34()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_35()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_36()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_37()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_38()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_39()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_40()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_41()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_42()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_43()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_44()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_45()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_46()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_47()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_48()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_49()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_50()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_51()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_52()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_53()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_54()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_55()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_56()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_57()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_58()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_59()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_60()
-{
-	// Perform action associated with this toolbar button.
+function atlasOpenSectionMenu(atlasMenuName)
+{
+	// Open the specified Section Menu; only one is open at a time.
+
+	// Clear all section menus to begin.
+	GUIObjectHide("atlas_left_pane_section_map");
+	GUIObjectHide("atlas_left_pane_section_terrain");
+
+	switch (atlasMenuName)
+	{
+		case "none":
+			// Hide backgrounds.
+			GUIObjectHide("atlas_left_pane");
+			GUIObjectHide("atlas_bottom_pane");
+			// Hide headings.
+			GUIObjectHide("atlas_left_pane_section_heading_1");
+			GUIObjectHide("atlas_left_pane_section_heading_2");
+			GUIObjectHide("atlas_left_pane_section_heading_3");
+		break;
+		case "atlas_left_pane_section_map":
+			// Toggle backgrounds.
+			GUIObjectUnhide("atlas_left_pane");
+			GUIObjectHide("atlas_bottom_pane");
+			// Reveal headings.
+			GUIObjectRenameandReveal("atlas_left_pane_section_heading_1", "Map Creator");
+			GUIObjectRenameandReveal("atlas_left_pane_section_heading_2", "Map Type");
+			GUIObjectRenameandReveal("atlas_left_pane_section_heading_3", "Map Settings");
+		break;
+		case "atlas_left_pane_section_terrain":
+			// Toggle backgrounds.
+			GUIObjectUnhide("atlas_left_pane");
+			GUIObjectUnhide("atlas_bottom_pane");
+			// Reveal headings.
+			GUIObjectRenameandReveal("atlas_left_pane_section_heading_1", "Terrain Editor");
+			GUIObjectRenameandReveal("atlas_left_pane_section_heading_2", "Edit Elevation");
+			GUIObjectHide("atlas_left_pane_section_heading_3");
+		break;
+	}
+
+	// Reveal Section Menu content.
+	if (atlasMenuName != "none")
+		GUIObjectUnhide(atlasMenuName);
 }
 
 // ====================================================================
 
-function atlasToolbarButton_61()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_62()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_63()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_64()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_65()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_66()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_67()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_68()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_69()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_70()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_71()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_72()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_73()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_74()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_75()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_76()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_77()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_78()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_79()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
-
-function atlasToolbarButton_80()
-{
-	// Perform action associated with this toolbar button.
-}
-
-// ====================================================================
