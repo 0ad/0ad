@@ -171,23 +171,23 @@
 
   <object type="text" name="resource_food" sprite="resource_food" size="10 4 14 14" z="100" hidden="false"></object>
 
-  <object type="text" name="resource_food_text" size="26 -3 1 1" font="palatino12" textcolor="255 255 255" hidden="false">9999999</object>
+  <object type="text" name="resource_food_text" size="26 -2 1 1" font="prospero16" textcolor="255 255 255" hidden="false"> 123,456</object>
 
   <object type="text" name="resource_wood" sprite="resource_wood" size="90 4 14 14" z="100" hidden="false"></object>
 
-  <object type="text" name="resource_wood_text" size="106 -3 1 1" font="palatino12" textcolor="255 255 255" hidden="false">9999999</object>
+  <object type="text" name="resource_wood_text" size="106 -2 1 1" font="prospero16" textcolor="255 255 255" hidden="false"> 789,012</object>
 
   <object type="text" name="resource_stone" sprite="resource_stone" size="170 4 14 14" z="100" hidden="false"></object>
 
-  <object type="text" name="resource_stone_text" size="186 -3 1 1" font="palatino12" textcolor="255 255 255" hidden="false">9999999</object>
+  <object type="text" name="resource_stone_text" size="186 -2 1 1" font="prospero16" textcolor="255 255 255" hidden="false"> 345,678</object>
 
   <object type="text" name="resource_ore" sprite="resource_ore" size="250 4 14 14" z="100" hidden="false"></object>
 
-  <object type="text" name="resource_ore_text" size="266 -3 1 1" font="palatino12" textcolor="255 255 255" hidden="false">9999999</object>
+  <object type="text" name="resource_ore_text" size="266 -2 1 1" font="prospero16" textcolor="255 255 255" hidden="false"> 910,123</object>
 
   <object type="text" name="resource_population" sprite="resource_population" size="330 4 14 14" z="100" hidden="false"></object>
 
-  <object type="text" name="resource_population_text" size="346 -3 1 1" font="palatino12" textcolor="255 255 255" hidden="false">9999999</object>
+  <object type="text" name="resource_population_text" size="346 -2 1 1" font="prospero16" textcolor="255 255 255" hidden="false"> 100/150</object>
 
 <!--
 ==========================================
@@ -236,7 +236,7 @@
         </object>
         <!-- Entity info objects -->
         <object type="text" name="selection_portrait_test" sprite="portrait_unit_dude_lrg" size="50%-250 100%-130 64 64" z="60" hidden="false" />
-        <object type="text" name="selection_name_test" size="50%-180 100%-140 50%+200 100%-120" font="giovanni22bold" textcolor="255 255 255" z="60" hidden="false" />
+        <object type="text" name="selection_name_test" size="50%-180 100%-140 50%+200 100%-120" font="prospero24b" textcolor="255 255 255" z="60" hidden="false" />
         <object type="text" name="selection_pos_test" size="50%-250 100%-60 50%+200 100%-95" textcolor="255 255 255" z="60" hidden="false" />
         <object type="text" name="selection_speed_test" size="50%+200 100%-43 100%-241 0" textcolor="255 255 255" z="60" hidden="false" />
         <!-- / Entity info objects -->
