@@ -706,7 +706,8 @@ debug_out("aio_suspend cb=%p\n", cbs[0]);
 	if(ts)
 		timeout = (DWORD)(ts->tv_sec*1000 + ts->tv_nsec/1000000);
 
-	DWORD result = WaitForMultipleObjects(cnt, hs, 0, timeout);
+	DWORD result = WaitForMultipleObjects(cnt, hs, FALSE, timeout);
+
 	for(i = 0; i < cnt; i++)
 		ResetEvent(hs[i]);
 
