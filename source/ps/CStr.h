@@ -39,6 +39,7 @@ More Info:
 
 #include "posix.h"
 #include "misc.h"
+#include "Network/Serialization.h"
 
 #include <cstdlib>
 using namespace std;
@@ -85,7 +86,7 @@ enum PS_TRIM_MODE {PS_TRIM_LEFT, PS_TRIM_RIGHT, PS_TRIM_BOTH};
 
 
 // CStr class, the mother of all strings
-class CStr
+class CStr: public ISerializable
 {
 public:
 
@@ -112,7 +113,7 @@ public:
 	_float	ToFloat() const;
 	_double	ToDouble() const;
 
-	_long Length(){return m_String.length();}
+	size_t Length() const {return m_String.length();}
 	// Retrieves the substring within the string 
 	CStr GetSubstring(_long start, _long len);
 
@@ -171,6 +172,10 @@ public:
 	TCHAR &operator[](_long n);
 	TCHAR &operator[](_ulong n);
 
+	// Serialization functions
+	virtual uint GetSerializedLength() const;
+	virtual u8 *Serialize(u8 *buffer) const;
+	virtual const u8 *Deserialize(const u8 *buffer, const u8 *bufferend);
 	
 private:
 	tstring m_String;

@@ -1,4 +1,5 @@
 #include "CStr.h"
+#include "Network/Serialization.h"
 
 CStr::CStr()
 {
@@ -189,7 +190,7 @@ CStr CStr::Right(_long len)
 //Remove all occurences of some character or substring 
 void CStr::Remove(const CStr &Str)
 {
-	long FoundAt = 0;
+	size_t FoundAt = 0;
 	while (FoundAt != tstring::npos)
 	{
 		FoundAt = m_String.find(Str.m_String, 0);
@@ -202,7 +203,7 @@ void CStr::Remove(const CStr &Str)
 //Replace all occurences of some substring by another 
 void CStr::Replace(const CStr &ToReplace, const CStr &ReplaceWith)
 {
-	long Pos = 0;
+	size_t Pos = 0;
 	
 	while (Pos != tstring::npos)
 	{
@@ -219,7 +220,7 @@ void CStr::Replace(const CStr &ToReplace, const CStr &ReplaceWith)
 // returns a trimed string, removes whitespace from the left/right/both
 CStr CStr::Trim(PS_TRIM_MODE Mode)
 {
-	int Left, Right;
+	size_t Left, Right;
 	
 	
 	switch (Mode)
@@ -393,4 +394,25 @@ ostream &operator<<(ostream &os, CStr &Str)
 {
 	os << (const TCHAR*)Str;
 	return os;
+}
+
+uint CStr::GetSerializedLength() const
+{
+	return m_String.length()+1;
+}
+
+u8 *CStr::Serialize(u8 *buffer) const
+{
+	uint length=m_String.length();
+	memcpy(buffer, m_String.c_str(), length+1);
+	return buffer+length+1;
+}
+
+const u8 *CStr::Deserialize(const u8 *buffer, const u8 *bufferend)
+{
+	u8 *strend=(u8 *)memchr(buffer, 0, bufferend-buffer);
+	if (strend == NULL)
+		return NULL;
+	*this=(char *)buffer;
+	return strend+1;
 }
