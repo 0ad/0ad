@@ -34,7 +34,6 @@ CUnitManager::~CUnitManager()
 // AddUnit: add given unit to world
 void CUnitManager::AddUnit(CUnit* unit)
 {
-	//unit->GetModel()->SetPlayerID(unit->GetEntity()->m_player->GetPlayerID());
 	m_Units.push_back(unit);
 }
 
