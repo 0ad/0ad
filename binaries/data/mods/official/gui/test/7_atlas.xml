@@ -21,7 +21,7 @@
 			<!-- LEFT SELECTION PANE BACKGROUND -->
 			<object type="text" name="atlas_left_pane_bkg" sprite="atlas_window_rt_border" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_left_pane_bkg", crd_atlas_left_pane_bkg_x, crd_atlas_left_pane_bkg_y, crd_atlas_left_pane_bkg_x+crd_atlas_left_pane_bkg_width, 0, left_screen, top_screen, left_screen, bottom_screen);
+					setSizeArray("atlas_left_pane_bkg", atlasCoord[ATLAS_LEFT_PANE_BKG], left_screen, top_screen, left_screen, bottom_screen);
 				]]></action>
 			</object>
 		</object>
@@ -32,28 +32,28 @@
 			<!-- BOTTOM SELECTION BACKGROUND -->
 			<object type="text" name="atlas_bottom_pane_bkg" sprite="atlas_window_rt_border" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_bottom_pane_bkg", crd_atlas_bottom_pane_bkg_x, -crd_atlas_bottom_pane_bkg_y-crd_atlas_bottom_pane_bkg_height, crd_atlas_bottom_pane_bkg_x+crd_atlas_bottom_pane_bkg_width, 0, left_screen, bottom_screen, right_screen, bottom_screen);
+					setSizeArray("atlas_bottom_pane_bkg", atlasCoord[ATLAS_BOTTOM_PANE_BKG], left_screen, bottom_screen, right_screen, bottom_screen);
 				]]></action>
 			</object>
 
 			<!-- LEFT/BOTTOM SELECTION PANE CORNER -->
 			<object type="text" name="atlas_lb_corner" sprite="atlas_lb_corner" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_lb_corner", crd_atlas_lb_corner_x, -crd_atlas_lb_corner_y-crd_atlas_lb_corner_height, crd_atlas_lb_corner_x+crd_atlas_lb_corner_width, -crd_atlas_lb_corner_y, left_screen, bottom_screen, left_screen, bottom_screen);
+					setSizeArray("atlas_lb_corner", atlasCoord[ATLAS_LB_CORNER], left_screen, bottom_screen, left_screen, bottom_screen);
 				]]></action>
 			</object>
 
 			<!-- RB: MINIMAP BACKGROUND -->
 			<object type="text" name="atlas_minimap_bkg" sprite="atlas_window_t_border" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_minimap_bkg", -crd_atlas_minimap_bkg_x-crd_atlas_minimap_bkg_width, -crd_atlas_minimap_bkg_y-crd_atlas_minimap_bkg_height, -crd_atlas_minimap_bkg_x, -crd_atlas_minimap_bkg_y, right_screen, bottom_screen, right_screen, bottom_screen);
+					setSizeArray("atlas_minimap_bkg", atlasCoord[ATLAS_MINIMAP_BKG], right_screen, bottom_screen, right_screen, bottom_screen);
 				]]></action>
 			</object>
 
 			<!-- RIGHT/BOTTOM SELECTION PANE CORNER -->
 			<object type="text" name="atlas_rb_corner" sprite="atlas_rb_corner_x2" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_rb_corner", -crd_atlas_rb_corner_x-crd_atlas_rb_corner_width, -crd_atlas_rb_corner_y-crd_atlas_rb_corner_height, -crd_atlas_rb_corner_x, -crd_atlas_rb_corner_y, right_screen, bottom_screen, right_screen, bottom_screen);
+					setSizeArray("atlas_rb_corner", atlasCoord[ATLAS_RB_CORNER], right_screen, bottom_screen, right_screen, bottom_screen);
 				]]></action>
 			</object>
 		</object>
@@ -62,7 +62,7 @@
 		<!-- Later change this to type minimap, no sprite (doesn't do anything if not in simulation mode). -->
 		<object type="text" name="atlas_minimap" sprite="atlas_window" z="60" hidden="false">
 			<action on="Load"><![CDATA[
-				setSizeCoord("atlas_minimap", -crd_atlas_minimap_x-crd_atlas_minimap_width, -crd_atlas_minimap_y-crd_atlas_minimap_height, -crd_atlas_minimap_x, -crd_atlas_minimap_y, right_screen, bottom_screen, right_screen, bottom_screen);
+				setSizeArray("atlas_minimap", atlasCoord[ATLAS_MINIMAP], right_screen, bottom_screen, right_screen, bottom_screen);
 			]]></action>
 		</object>
 
@@ -70,12 +70,12 @@
 		<object type="empty" name="atlas_mainborder_menu" size="0 0 100% 100%" z="1" hidden="false">
 			<object type="text" name="atlas_mainborder_menu_bkg" sprite="atlas_menubar_bkg" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_menu_bkg", crd_atlas_mainborder_menu_bkg_x, crd_atlas_mainborder_menu_bkg_y, -crd_atlas_mainborder_menu_bkg_width, crd_atlas_mainborder_menu_bkg_y+crd_atlas_mainborder_menu_bkg_height, left_screen, top_screen, right_screen, top_screen);
+					setSizeArray("atlas_mainborder_menu_bkg", atlasCoord[ATLAS_MAINBORDER_MENU_BKG], left_screen, top_screen, right_screen, top_screen);
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_maximise_arrow" sprite="atlas_global_arrow_dn" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Maximise Arrow[font=tahoma10]\nClick to maximise the toolbar." z="60" hidden="true">
 				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_maximise_arrow", -crd_atlas_mainborder_toolbar_maximise_arrow_x-crd_atlas_mainborder_toolbar_maximise_arrow_width, crd_atlas_mainborder_toolbar_maximise_arrow_y, -crd_atlas_mainborder_toolbar_maximise_arrow_x, crd_atlas_mainborder_toolbar_maximise_arrow_y+crd_atlas_mainborder_toolbar_maximise_arrow_height, right_screen, top_screen, right_screen, top_screen);
+					setSizeArray("atlas_mainborder_toolbar_maximise_arrow", atlasCoord[ATLAS_MAINBORDER_TOOLBAR_MAXIMISE_ARROW], right_screen, top_screen, right_screen, top_screen);
 				]]></action>
 				<action on="Press"><![CDATA[
 					atlasMaximiseToolbar();
@@ -87,12 +87,12 @@
 		<object type="empty" name="atlas_mainborder_toolbar" size="0 0 100% 100%" z="1" hidden="false">
 			<object type="text" name="atlas_mainborder_toolbar_bkg" sprite="atlas_toolbar_bkg" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_bkg", crd_atlas_mainborder_toolbar_bkg_x, crd_atlas_mainborder_toolbar_bkg_y, -crd_atlas_mainborder_toolbar_bkg_width, crd_atlas_mainborder_toolbar_bkg_y+crd_atlas_mainborder_toolbar_bkg_height, left_screen, top_screen, right_screen, top_screen);
+					setSizeArray("atlas_mainborder_toolbar_bkg", atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG], left_screen, top_screen, right_screen, top_screen);
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_fully_minimise_arrow" sprite="atlas_global_arrow_up" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Fully Minimise Arrow[font=tahoma10]\nClick to fully minimise the toolbar." z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_fully_minimise_arrow", -crd_atlas_mainborder_toolbar_fully_minimise_arrow_x-crd_atlas_mainborder_toolbar_fully_minimise_arrow_width, crd_atlas_mainborder_toolbar_fully_minimise_arrow_y, -crd_atlas_mainborder_toolbar_fully_minimise_arrow_x, crd_atlas_mainborder_toolbar_fully_minimise_arrow_y+crd_atlas_mainborder_toolbar_fully_minimise_arrow_height, right_screen, top_screen, right_screen, top_screen);
+					setSizeArray("atlas_mainborder_toolbar_fully_minimise_arrow", atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW], right_screen, top_screen, right_screen, top_screen);
 				]]></action>
 				<action on="Press"><![CDATA[
 					atlasFullyMinimiseToolbar();
@@ -100,7 +100,7 @@
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_fully_maximise_arrow" sprite="atlas_global_arrow_dn" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Full Maximise Arrow[font=tahoma10]\nClick to fully maximise the toolbar." z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_fully_maximise_arrow", -crd_atlas_mainborder_toolbar_fully_maximise_arrow_x-crd_atlas_mainborder_toolbar_fully_maximise_arrow_width, crd_atlas_mainborder_toolbar_fully_maximise_arrow_y, -crd_atlas_mainborder_toolbar_fully_maximise_arrow_x, crd_atlas_mainborder_toolbar_fully_maximise_arrow_y+crd_atlas_mainborder_toolbar_fully_maximise_arrow_height, right_screen, top_screen, right_screen, top_screen);
+					setSizeArray("atlas_mainborder_toolbar_fully_maximise_arrow", atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MAXIMISE_ARROW], right_screen, top_screen, right_screen, top_screen);
 				]]></action>
 				<action on="Press"><![CDATA[
 					atlasFullyMaximiseToolbar();
@@ -112,12 +112,12 @@
 		<object type="empty" name="atlas_mainborder_toolbar_max" size="0 0 100% 100%" z="1" hidden="true">
 			<object type="text" name="atlas_mainborder_toolbar_bkg_max" sprite="atlas_toolbar_bkg" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_bkg_max", crd_atlas_mainborder_toolbar_bkg_max_x, crd_atlas_mainborder_toolbar_bkg_max_y, -crd_atlas_mainborder_toolbar_bkg_max_width, crd_atlas_mainborder_toolbar_bkg_max_y+crd_atlas_mainborder_toolbar_bkg_max_height, left_screen, top_screen, right_screen, top_screen);
+					setSizeArray("atlas_mainborder_toolbar_bkg_max", atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX], left_screen, top_screen, right_screen, top_screen);
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_minimise_arrow" sprite="atlas_global_arrow_up" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Minimise Arrow[font=tahoma10]\nClick to minimise the toolbar." z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_minimise_arrow", -crd_atlas_mainborder_toolbar_minimise_arrow_x-crd_atlas_mainborder_toolbar_minimise_arrow_width, crd_atlas_mainborder_toolbar_minimise_arrow_y, -crd_atlas_mainborder_toolbar_minimise_arrow_x, crd_atlas_mainborder_toolbar_minimise_arrow_y+crd_atlas_mainborder_toolbar_minimise_arrow_height, right_screen, top_screen, right_screen, top_screen);
+					setSizeArray("atlas_mainborder_toolbar_minimise_arrow", atlasCoord[ATLAS_MAINBORDER_TOOLBAR_FULLY_MINIMISE_ARROW], right_screen, top_screen, right_screen, top_screen);
 				]]></action>
 				<action on="Press"><![CDATA[
 					atlasMinimiseToolbar();
@@ -129,321 +129,201 @@
 		<object type="empty" name="atlas_mainborder_toolbar_button_row_1" size="0 0 100% 100%" z="1" hidden="false">
 			<!-- TOP: TOOLBAR: BUTTONS -->
 			<object type="button" name="atlas_mainborder_toolbar_button_1" cell_id="1" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_1", crd_atlas_mainborder_toolbar_button_1_x, crd_atlas_mainborder_toolbar_button_1_y, crd_atlas_mainborder_toolbar_button_1_x+crd_atlas_mainborder_toolbar_button_1_width, crd_atlas_mainborder_toolbar_button_1_y+crd_atlas_mainborder_toolbar_button_1_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_1();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_2" cell_id="2" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_2", crd_atlas_mainborder_toolbar_button_2_x, crd_atlas_mainborder_toolbar_button_2_y, crd_atlas_mainborder_toolbar_button_2_x+crd_atlas_mainborder_toolbar_button_2_width, crd_atlas_mainborder_toolbar_button_2_y+crd_atlas_mainborder_toolbar_button_2_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_2();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_3" cell_id="3" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_3", crd_atlas_mainborder_toolbar_button_3_x, crd_atlas_mainborder_toolbar_button_3_y, crd_atlas_mainborder_toolbar_button_3_x+crd_atlas_mainborder_toolbar_button_3_width, crd_atlas_mainborder_toolbar_button_3_y+crd_atlas_mainborder_toolbar_button_3_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_3();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_4" cell_id="4" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_4", crd_atlas_mainborder_toolbar_button_4_x, crd_atlas_mainborder_toolbar_button_4_y, crd_atlas_mainborder_toolbar_button_4_x+crd_atlas_mainborder_toolbar_button_4_width, crd_atlas_mainborder_toolbar_button_4_y+crd_atlas_mainborder_toolbar_button_4_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_4();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_5" cell_id="5" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_5", crd_atlas_mainborder_toolbar_button_5_x, crd_atlas_mainborder_toolbar_button_5_y, crd_atlas_mainborder_toolbar_button_5_x+crd_atlas_mainborder_toolbar_button_5_width, crd_atlas_mainborder_toolbar_button_5_y+crd_atlas_mainborder_toolbar_button_5_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_5();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_6" cell_id="6" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_6", crd_atlas_mainborder_toolbar_button_6_x, crd_atlas_mainborder_toolbar_button_6_y, crd_atlas_mainborder_toolbar_button_6_x+crd_atlas_mainborder_toolbar_button_6_width, crd_atlas_mainborder_toolbar_button_6_y+crd_atlas_mainborder_toolbar_button_6_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_6();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_7" cell_id="7" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_7", crd_atlas_mainborder_toolbar_button_7_x, crd_atlas_mainborder_toolbar_button_7_y, crd_atlas_mainborder_toolbar_button_7_x+crd_atlas_mainborder_toolbar_button_7_width, crd_atlas_mainborder_toolbar_button_7_y+crd_atlas_mainborder_toolbar_button_7_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_7();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_8" cell_id="8" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_8", crd_atlas_mainborder_toolbar_button_8_x, crd_atlas_mainborder_toolbar_button_8_y, crd_atlas_mainborder_toolbar_button_8_x+crd_atlas_mainborder_toolbar_button_8_width, crd_atlas_mainborder_toolbar_button_8_y+crd_atlas_mainborder_toolbar_button_8_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_8();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_9" cell_id="9" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_9", crd_atlas_mainborder_toolbar_button_9_x, crd_atlas_mainborder_toolbar_button_9_y, crd_atlas_mainborder_toolbar_button_9_x+crd_atlas_mainborder_toolbar_button_9_width, crd_atlas_mainborder_toolbar_button_9_y+crd_atlas_mainborder_toolbar_button_9_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_9();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_10" cell_id="10" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_10", crd_atlas_mainborder_toolbar_button_10_x, crd_atlas_mainborder_toolbar_button_10_y, crd_atlas_mainborder_toolbar_button_10_x+crd_atlas_mainborder_toolbar_button_10_width, crd_atlas_mainborder_toolbar_button_10_y+crd_atlas_mainborder_toolbar_button_10_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_10();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_11" cell_id="11" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_11", crd_atlas_mainborder_toolbar_button_11_x, crd_atlas_mainborder_toolbar_button_11_y, crd_atlas_mainborder_toolbar_button_11_x+crd_atlas_mainborder_toolbar_button_11_width, crd_atlas_mainborder_toolbar_button_11_y+crd_atlas_mainborder_toolbar_button_11_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_11();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_12" cell_id="12" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_12", crd_atlas_mainborder_toolbar_button_12_x, crd_atlas_mainborder_toolbar_button_12_y, crd_atlas_mainborder_toolbar_button_12_x+crd_atlas_mainborder_toolbar_button_12_width, crd_atlas_mainborder_toolbar_button_12_y+crd_atlas_mainborder_toolbar_button_12_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_12();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_13" cell_id="13" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_13", crd_atlas_mainborder_toolbar_button_13_x, crd_atlas_mainborder_toolbar_button_13_y, crd_atlas_mainborder_toolbar_button_13_x+crd_atlas_mainborder_toolbar_button_13_width, crd_atlas_mainborder_toolbar_button_13_y+crd_atlas_mainborder_toolbar_button_13_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_13();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_14" cell_id="14" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_14", crd_atlas_mainborder_toolbar_button_14_x, crd_atlas_mainborder_toolbar_button_14_y, crd_atlas_mainborder_toolbar_button_14_x+crd_atlas_mainborder_toolbar_button_14_width, crd_atlas_mainborder_toolbar_button_14_y+crd_atlas_mainborder_toolbar_button_14_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_14();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_15" cell_id="15" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_15", crd_atlas_mainborder_toolbar_button_15_x, crd_atlas_mainborder_toolbar_button_15_y, crd_atlas_mainborder_toolbar_button_15_x+crd_atlas_mainborder_toolbar_button_15_width, crd_atlas_mainborder_toolbar_button_15_y+crd_atlas_mainborder_toolbar_button_15_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_15();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_16" cell_id="16" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_16", crd_atlas_mainborder_toolbar_button_16_x, crd_atlas_mainborder_toolbar_button_16_y, crd_atlas_mainborder_toolbar_button_16_x+crd_atlas_mainborder_toolbar_button_16_width, crd_atlas_mainborder_toolbar_button_16_y+crd_atlas_mainborder_toolbar_button_16_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_16();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_17" cell_id="17" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_17", crd_atlas_mainborder_toolbar_button_17_x, crd_atlas_mainborder_toolbar_button_17_y, crd_atlas_mainborder_toolbar_button_17_x+crd_atlas_mainborder_toolbar_button_17_width, crd_atlas_mainborder_toolbar_button_17_y+crd_atlas_mainborder_toolbar_button_17_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_17();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_18" cell_id="18" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_18", crd_atlas_mainborder_toolbar_button_18_x, crd_atlas_mainborder_toolbar_button_18_y, crd_atlas_mainborder_toolbar_button_18_x+crd_atlas_mainborder_toolbar_button_18_width, crd_atlas_mainborder_toolbar_button_18_y+crd_atlas_mainborder_toolbar_button_18_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_18();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_19" cell_id="19" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_19", crd_atlas_mainborder_toolbar_button_19_x, crd_atlas_mainborder_toolbar_button_19_y, crd_atlas_mainborder_toolbar_button_19_x+crd_atlas_mainborder_toolbar_button_19_width, crd_atlas_mainborder_toolbar_button_19_y+crd_atlas_mainborder_toolbar_button_19_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_19();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_20" cell_id="20" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_20", crd_atlas_mainborder_toolbar_button_20_x, crd_atlas_mainborder_toolbar_button_20_y, crd_atlas_mainborder_toolbar_button_20_x+crd_atlas_mainborder_toolbar_button_20_width, crd_atlas_mainborder_toolbar_button_20_y+crd_atlas_mainborder_toolbar_button_20_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_20();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_21" cell_id="21" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_21", crd_atlas_mainborder_toolbar_button_21_x, crd_atlas_mainborder_toolbar_button_21_y, crd_atlas_mainborder_toolbar_button_21_x+crd_atlas_mainborder_toolbar_button_21_width, crd_atlas_mainborder_toolbar_button_21_y+crd_atlas_mainborder_toolbar_button_21_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_21();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_22" cell_id="22" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_22", crd_atlas_mainborder_toolbar_button_22_x, crd_atlas_mainborder_toolbar_button_22_y, crd_atlas_mainborder_toolbar_button_22_x+crd_atlas_mainborder_toolbar_button_22_width, crd_atlas_mainborder_toolbar_button_22_y+crd_atlas_mainborder_toolbar_button_22_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_22();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_23" cell_id="23" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_23", crd_atlas_mainborder_toolbar_button_23_x, crd_atlas_mainborder_toolbar_button_23_y, crd_atlas_mainborder_toolbar_button_23_x+crd_atlas_mainborder_toolbar_button_23_width, crd_atlas_mainborder_toolbar_button_23_y+crd_atlas_mainborder_toolbar_button_23_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_23();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_24" cell_id="24" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_24", crd_atlas_mainborder_toolbar_button_24_x, crd_atlas_mainborder_toolbar_button_24_y, crd_atlas_mainborder_toolbar_button_24_x+crd_atlas_mainborder_toolbar_button_24_width, crd_atlas_mainborder_toolbar_button_24_y+crd_atlas_mainborder_toolbar_button_24_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_24();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_25" cell_id="25" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_25", crd_atlas_mainborder_toolbar_button_25_x, crd_atlas_mainborder_toolbar_button_25_y, crd_atlas_mainborder_toolbar_button_25_x+crd_atlas_mainborder_toolbar_button_25_width, crd_atlas_mainborder_toolbar_button_25_y+crd_atlas_mainborder_toolbar_button_25_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_25();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_26" cell_id="26" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_26", crd_atlas_mainborder_toolbar_button_26_x, crd_atlas_mainborder_toolbar_button_26_y, crd_atlas_mainborder_toolbar_button_26_x+crd_atlas_mainborder_toolbar_button_26_width, crd_atlas_mainborder_toolbar_button_26_y+crd_atlas_mainborder_toolbar_button_26_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_26();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_27" cell_id="27" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_27", crd_atlas_mainborder_toolbar_button_27_x, crd_atlas_mainborder_toolbar_button_27_y, crd_atlas_mainborder_toolbar_button_27_x+crd_atlas_mainborder_toolbar_button_27_width, crd_atlas_mainborder_toolbar_button_27_y+crd_atlas_mainborder_toolbar_button_27_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_27();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_28" cell_id="28" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_28", crd_atlas_mainborder_toolbar_button_28_x, crd_atlas_mainborder_toolbar_button_28_y, crd_atlas_mainborder_toolbar_button_28_x+crd_atlas_mainborder_toolbar_button_28_width, crd_atlas_mainborder_toolbar_button_28_y+crd_atlas_mainborder_toolbar_button_28_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_28();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_29" cell_id="29" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_29", crd_atlas_mainborder_toolbar_button_29_x, crd_atlas_mainborder_toolbar_button_29_y, crd_atlas_mainborder_toolbar_button_29_x+crd_atlas_mainborder_toolbar_button_29_width, crd_atlas_mainborder_toolbar_button_29_y+crd_atlas_mainborder_toolbar_button_29_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_29();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_30" cell_id="30" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_30", crd_atlas_mainborder_toolbar_button_30_x, crd_atlas_mainborder_toolbar_button_30_y, crd_atlas_mainborder_toolbar_button_30_x+crd_atlas_mainborder_toolbar_button_30_width, crd_atlas_mainborder_toolbar_button_30_y+crd_atlas_mainborder_toolbar_button_30_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_30();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_31" cell_id="31" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_31", crd_atlas_mainborder_toolbar_button_31_x, crd_atlas_mainborder_toolbar_button_31_y, crd_atlas_mainborder_toolbar_button_31_x+crd_atlas_mainborder_toolbar_button_31_width, crd_atlas_mainborder_toolbar_button_31_y+crd_atlas_mainborder_toolbar_button_31_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_31();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_32" cell_id="32" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_32", crd_atlas_mainborder_toolbar_button_32_x, crd_atlas_mainborder_toolbar_button_32_y, crd_atlas_mainborder_toolbar_button_32_x+crd_atlas_mainborder_toolbar_button_32_width, crd_atlas_mainborder_toolbar_button_32_y+crd_atlas_mainborder_toolbar_button_32_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_32();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_33" cell_id="33" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_33", crd_atlas_mainborder_toolbar_button_33_x, crd_atlas_mainborder_toolbar_button_33_y, crd_atlas_mainborder_toolbar_button_33_x+crd_atlas_mainborder_toolbar_button_33_width, crd_atlas_mainborder_toolbar_button_33_y+crd_atlas_mainborder_toolbar_button_33_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_33();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_34" cell_id="34" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_34", crd_atlas_mainborder_toolbar_button_34_x, crd_atlas_mainborder_toolbar_button_34_y, crd_atlas_mainborder_toolbar_button_34_x+crd_atlas_mainborder_toolbar_button_34_width, crd_atlas_mainborder_toolbar_button_34_y+crd_atlas_mainborder_toolbar_button_34_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_34();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_35" cell_id="35" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_35", crd_atlas_mainborder_toolbar_button_35_x, crd_atlas_mainborder_toolbar_button_35_y, crd_atlas_mainborder_toolbar_button_35_x+crd_atlas_mainborder_toolbar_button_35_width, crd_atlas_mainborder_toolbar_button_35_y+crd_atlas_mainborder_toolbar_button_35_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_35();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_36" cell_id="36" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_36", crd_atlas_mainborder_toolbar_button_36_x, crd_atlas_mainborder_toolbar_button_36_y, crd_atlas_mainborder_toolbar_button_36_x+crd_atlas_mainborder_toolbar_button_36_width, crd_atlas_mainborder_toolbar_button_36_y+crd_atlas_mainborder_toolbar_button_36_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_36();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_37" cell_id="37" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_37", crd_atlas_mainborder_toolbar_button_37_x, crd_atlas_mainborder_toolbar_button_37_y, crd_atlas_mainborder_toolbar_button_37_x+crd_atlas_mainborder_toolbar_button_37_width, crd_atlas_mainborder_toolbar_button_37_y+crd_atlas_mainborder_toolbar_button_37_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_37();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_38" cell_id="38" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_38", crd_atlas_mainborder_toolbar_button_38_x, crd_atlas_mainborder_toolbar_button_38_y, crd_atlas_mainborder_toolbar_button_38_x+crd_atlas_mainborder_toolbar_button_38_width, crd_atlas_mainborder_toolbar_button_38_y+crd_atlas_mainborder_toolbar_button_38_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_38();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_39" cell_id="39" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_39", crd_atlas_mainborder_toolbar_button_39_x, crd_atlas_mainborder_toolbar_button_39_y, crd_atlas_mainborder_toolbar_button_39_x+crd_atlas_mainborder_toolbar_button_39_width, crd_atlas_mainborder_toolbar_button_39_y+crd_atlas_mainborder_toolbar_button_39_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_39();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_40" cell_id="40" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_40", crd_atlas_mainborder_toolbar_button_40_x, crd_atlas_mainborder_toolbar_button_40_y, crd_atlas_mainborder_toolbar_button_40_x+crd_atlas_mainborder_toolbar_button_40_width, crd_atlas_mainborder_toolbar_button_40_y+crd_atlas_mainborder_toolbar_button_40_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_40();
 				]]></action>
@@ -454,320 +334,205 @@
 		<object type="empty" name="atlas_mainborder_toolbar_button_row_2" size="0 0 100% 100%" z="1" hidden="true">
 			<!-- TOP: TOOLBAR: BUTTONS -->
 			<object type="button" name="atlas_mainborder_toolbar_button_41" cell_id="41" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_41", crd_atlas_mainborder_toolbar_button_41_x, crd_atlas_mainborder_toolbar_button_41_y, crd_atlas_mainborder_toolbar_button_41_x+crd_atlas_mainborder_toolbar_button_41_width, crd_atlas_mainborder_toolbar_button_41_y+crd_atlas_mainborder_toolbar_button_41_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_41();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_42" cell_id="42" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_42", crd_atlas_mainborder_toolbar_button_42_x, crd_atlas_mainborder_toolbar_button_42_y, crd_atlas_mainborder_toolbar_button_42_x+crd_atlas_mainborder_toolbar_button_42_width, crd_atlas_mainborder_toolbar_button_42_y+crd_atlas_mainborder_toolbar_button_42_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_42();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_43" cell_id="43" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_43", crd_atlas_mainborder_toolbar_button_43_x, crd_atlas_mainborder_toolbar_button_43_y, crd_atlas_mainborder_toolbar_button_43_x+crd_atlas_mainborder_toolbar_button_43_width, crd_atlas_mainborder_toolbar_button_43_y+crd_atlas_mainborder_toolbar_button_43_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_43();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_44" cell_id="44" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_44", crd_atlas_mainborder_toolbar_button_44_x, crd_atlas_mainborder_toolbar_button_44_y, crd_atlas_mainborder_toolbar_button_44_x+crd_atlas_mainborder_toolbar_button_44_width, crd_atlas_mainborder_toolbar_button_44_y+crd_atlas_mainborder_toolbar_button_44_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_44();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_45" cell_id="45" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_45", crd_atlas_mainborder_toolbar_button_45_x, crd_atlas_mainborder_toolbar_button_45_y, crd_atlas_mainborder_toolbar_button_45_x+crd_atlas_mainborder_toolbar_button_45_width, crd_atlas_mainborder_toolbar_button_45_y+crd_atlas_mainborder_toolbar_button_45_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_45();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_46" cell_id="46" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_46", crd_atlas_mainborder_toolbar_button_46_x, crd_atlas_mainborder_toolbar_button_46_y, crd_atlas_mainborder_toolbar_button_46_x+crd_atlas_mainborder_toolbar_button_46_width, crd_atlas_mainborder_toolbar_button_46_y+crd_atlas_mainborder_toolbar_button_46_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_46();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_47" cell_id="47" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_47", crd_atlas_mainborder_toolbar_button_47_x, crd_atlas_mainborder_toolbar_button_47_y, crd_atlas_mainborder_toolbar_button_47_x+crd_atlas_mainborder_toolbar_button_47_width, crd_atlas_mainborder_toolbar_button_47_y+crd_atlas_mainborder_toolbar_button_47_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_47();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_48" cell_id="48" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_48", crd_atlas_mainborder_toolbar_button_48_x, crd_atlas_mainborder_toolbar_button_48_y, crd_atlas_mainborder_toolbar_button_48_x+crd_atlas_mainborder_toolbar_button_48_width, crd_atlas_mainborder_toolbar_button_48_y+crd_atlas_mainborder_toolbar_button_48_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_48();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_49" cell_id="49" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_49", crd_atlas_mainborder_toolbar_button_49_x, crd_atlas_mainborder_toolbar_button_49_y, crd_atlas_mainborder_toolbar_button_49_x+crd_atlas_mainborder_toolbar_button_49_width, crd_atlas_mainborder_toolbar_button_49_y+crd_atlas_mainborder_toolbar_button_49_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_49();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_50" cell_id="50" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_50", crd_atlas_mainborder_toolbar_button_50_x, crd_atlas_mainborder_toolbar_button_50_y, crd_atlas_mainborder_toolbar_button_50_x+crd_atlas_mainborder_toolbar_button_50_width, crd_atlas_mainborder_toolbar_button_50_y+crd_atlas_mainborder_toolbar_button_50_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_50();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_51" cell_id="51" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_51", crd_atlas_mainborder_toolbar_button_51_x, crd_atlas_mainborder_toolbar_button_51_y, crd_atlas_mainborder_toolbar_button_51_x+crd_atlas_mainborder_toolbar_button_51_width, crd_atlas_mainborder_toolbar_button_51_y+crd_atlas_mainborder_toolbar_button_51_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_51();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_52" cell_id="52" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_52", crd_atlas_mainborder_toolbar_button_52_x, crd_atlas_mainborder_toolbar_button_52_y, crd_atlas_mainborder_toolbar_button_52_x+crd_atlas_mainborder_toolbar_button_52_width, crd_atlas_mainborder_toolbar_button_52_y+crd_atlas_mainborder_toolbar_button_52_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_52();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_53" cell_id="53" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_53", crd_atlas_mainborder_toolbar_button_53_x, crd_atlas_mainborder_toolbar_button_53_y, crd_atlas_mainborder_toolbar_button_53_x+crd_atlas_mainborder_toolbar_button_53_width, crd_atlas_mainborder_toolbar_button_53_y+crd_atlas_mainborder_toolbar_button_53_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_53();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_54" cell_id="54" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_54", crd_atlas_mainborder_toolbar_button_54_x, crd_atlas_mainborder_toolbar_button_54_y, crd_atlas_mainborder_toolbar_button_54_x+crd_atlas_mainborder_toolbar_button_54_width, crd_atlas_mainborder_toolbar_button_54_y+crd_atlas_mainborder_toolbar_button_54_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_54();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_55" cell_id="55" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_55", crd_atlas_mainborder_toolbar_button_55_x, crd_atlas_mainborder_toolbar_button_55_y, crd_atlas_mainborder_toolbar_button_55_x+crd_atlas_mainborder_toolbar_button_55_width, crd_atlas_mainborder_toolbar_button_55_y+crd_atlas_mainborder_toolbar_button_55_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_55();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_56" cell_id="56" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_56", crd_atlas_mainborder_toolbar_button_56_x, crd_atlas_mainborder_toolbar_button_56_y, crd_atlas_mainborder_toolbar_button_56_x+crd_atlas_mainborder_toolbar_button_56_width, crd_atlas_mainborder_toolbar_button_56_y+crd_atlas_mainborder_toolbar_button_56_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_56();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_57" cell_id="57" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_57", crd_atlas_mainborder_toolbar_button_57_x, crd_atlas_mainborder_toolbar_button_57_y, crd_atlas_mainborder_toolbar_button_57_x+crd_atlas_mainborder_toolbar_button_57_width, crd_atlas_mainborder_toolbar_button_57_y+crd_atlas_mainborder_toolbar_button_57_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_57();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_58" cell_id="58" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_58", crd_atlas_mainborder_toolbar_button_58_x, crd_atlas_mainborder_toolbar_button_58_y, crd_atlas_mainborder_toolbar_button_58_x+crd_atlas_mainborder_toolbar_button_58_width, crd_atlas_mainborder_toolbar_button_58_y+crd_atlas_mainborder_toolbar_button_58_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_58();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_59" cell_id="59" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_59", crd_atlas_mainborder_toolbar_button_59_x, crd_atlas_mainborder_toolbar_button_59_y, crd_atlas_mainborder_toolbar_button_59_x+crd_atlas_mainborder_toolbar_button_59_width, crd_atlas_mainborder_toolbar_button_59_y+crd_atlas_mainborder_toolbar_button_59_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_59();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_60" cell_id="60" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_60", crd_atlas_mainborder_toolbar_button_60_x, crd_atlas_mainborder_toolbar_button_60_y, crd_atlas_mainborder_toolbar_button_60_x+crd_atlas_mainborder_toolbar_button_60_width, crd_atlas_mainborder_toolbar_button_60_y+crd_atlas_mainborder_toolbar_button_60_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_60();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_61" cell_id="61" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_61", crd_atlas_mainborder_toolbar_button_61_x, crd_atlas_mainborder_toolbar_button_61_y, crd_atlas_mainborder_toolbar_button_61_x+crd_atlas_mainborder_toolbar_button_61_width, crd_atlas_mainborder_toolbar_button_61_y+crd_atlas_mainborder_toolbar_button_61_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_61();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_62" cell_id="62" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_62", crd_atlas_mainborder_toolbar_button_62_x, crd_atlas_mainborder_toolbar_button_62_y, crd_atlas_mainborder_toolbar_button_62_x+crd_atlas_mainborder_toolbar_button_62_width, crd_atlas_mainborder_toolbar_button_62_y+crd_atlas_mainborder_toolbar_button_62_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_62();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_63" cell_id="63" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_63", crd_atlas_mainborder_toolbar_button_63_x, crd_atlas_mainborder_toolbar_button_63_y, crd_atlas_mainborder_toolbar_button_63_x+crd_atlas_mainborder_toolbar_button_63_width, crd_atlas_mainborder_toolbar_button_63_y+crd_atlas_mainborder_toolbar_button_63_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_63();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_64" cell_id="64" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_64", crd_atlas_mainborder_toolbar_button_64_x, crd_atlas_mainborder_toolbar_button_64_y, crd_atlas_mainborder_toolbar_button_64_x+crd_atlas_mainborder_toolbar_button_64_width, crd_atlas_mainborder_toolbar_button_64_y+crd_atlas_mainborder_toolbar_button_64_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_64();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_65" cell_id="65" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_65", crd_atlas_mainborder_toolbar_button_65_x, crd_atlas_mainborder_toolbar_button_65_y, crd_atlas_mainborder_toolbar_button_65_x+crd_atlas_mainborder_toolbar_button_65_width, crd_atlas_mainborder_toolbar_button_65_y+crd_atlas_mainborder_toolbar_button_65_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_65();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_66" cell_id="66" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_66", crd_atlas_mainborder_toolbar_button_66_x, crd_atlas_mainborder_toolbar_button_66_y, crd_atlas_mainborder_toolbar_button_66_x+crd_atlas_mainborder_toolbar_button_66_width, crd_atlas_mainborder_toolbar_button_66_y+crd_atlas_mainborder_toolbar_button_66_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_66();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_67" cell_id="67" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_67", crd_atlas_mainborder_toolbar_button_67_x, crd_atlas_mainborder_toolbar_button_67_y, crd_atlas_mainborder_toolbar_button_67_x+crd_atlas_mainborder_toolbar_button_67_width, crd_atlas_mainborder_toolbar_button_67_y+crd_atlas_mainborder_toolbar_button_67_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_67();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_68" cell_id="68" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_68", crd_atlas_mainborder_toolbar_button_68_x, crd_atlas_mainborder_toolbar_button_68_y, crd_atlas_mainborder_toolbar_button_68_x+crd_atlas_mainborder_toolbar_button_68_width, crd_atlas_mainborder_toolbar_button_68_y+crd_atlas_mainborder_toolbar_button_68_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_68();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_69" cell_id="69" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_69", crd_atlas_mainborder_toolbar_button_69_x, crd_atlas_mainborder_toolbar_button_69_y, crd_atlas_mainborder_toolbar_button_69_x+crd_atlas_mainborder_toolbar_button_69_width, crd_atlas_mainborder_toolbar_button_69_y+crd_atlas_mainborder_toolbar_button_69_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_69();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_70" cell_id="70" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_70", crd_atlas_mainborder_toolbar_button_70_x, crd_atlas_mainborder_toolbar_button_70_y, crd_atlas_mainborder_toolbar_button_70_x+crd_atlas_mainborder_toolbar_button_70_width, crd_atlas_mainborder_toolbar_button_70_y+crd_atlas_mainborder_toolbar_button_70_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_70();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_71" cell_id="71" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_71", crd_atlas_mainborder_toolbar_button_71_x, crd_atlas_mainborder_toolbar_button_71_y, crd_atlas_mainborder_toolbar_button_71_x+crd_atlas_mainborder_toolbar_button_71_width, crd_atlas_mainborder_toolbar_button_71_y+crd_atlas_mainborder_toolbar_button_71_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_71();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_72" cell_id="72" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_72", crd_atlas_mainborder_toolbar_button_72_x, crd_atlas_mainborder_toolbar_button_72_y, crd_atlas_mainborder_toolbar_button_72_x+crd_atlas_mainborder_toolbar_button_72_width, crd_atlas_mainborder_toolbar_button_72_y+crd_atlas_mainborder_toolbar_button_72_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_72();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_73" cell_id="73" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_73", crd_atlas_mainborder_toolbar_button_73_x, crd_atlas_mainborder_toolbar_button_73_y, crd_atlas_mainborder_toolbar_button_73_x+crd_atlas_mainborder_toolbar_button_73_width, crd_atlas_mainborder_toolbar_button_73_y+crd_atlas_mainborder_toolbar_button_73_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_73();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_74" cell_id="74" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_74", crd_atlas_mainborder_toolbar_button_74_x, crd_atlas_mainborder_toolbar_button_74_y, crd_atlas_mainborder_toolbar_button_74_x+crd_atlas_mainborder_toolbar_button_74_width, crd_atlas_mainborder_toolbar_button_74_y+crd_atlas_mainborder_toolbar_button_74_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_74();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_75" cell_id="75" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_75", crd_atlas_mainborder_toolbar_button_75_x, crd_atlas_mainborder_toolbar_button_75_y, crd_atlas_mainborder_toolbar_button_75_x+crd_atlas_mainborder_toolbar_button_75_width, crd_atlas_mainborder_toolbar_button_75_y+crd_atlas_mainborder_toolbar_button_75_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_75();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_76" cell_id="76" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_76", crd_atlas_mainborder_toolbar_button_76_x, crd_atlas_mainborder_toolbar_button_76_y, crd_atlas_mainborder_toolbar_button_76_x+crd_atlas_mainborder_toolbar_button_76_width, crd_atlas_mainborder_toolbar_button_76_y+crd_atlas_mainborder_toolbar_button_76_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_76();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_77" cell_id="77" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_77", crd_atlas_mainborder_toolbar_button_77_x, crd_atlas_mainborder_toolbar_button_77_y, crd_atlas_mainborder_toolbar_button_77_x+crd_atlas_mainborder_toolbar_button_77_width, crd_atlas_mainborder_toolbar_button_77_y+crd_atlas_mainborder_toolbar_button_77_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_77();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_78" cell_id="78" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_78", crd_atlas_mainborder_toolbar_button_78_x, crd_atlas_mainborder_toolbar_button_78_y, crd_atlas_mainborder_toolbar_button_78_x+crd_atlas_mainborder_toolbar_button_78_width, crd_atlas_mainborder_toolbar_button_78_y+crd_atlas_mainborder_toolbar_button_78_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_78();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_79" cell_id="39" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_79", crd_atlas_mainborder_toolbar_button_79_x, crd_atlas_mainborder_toolbar_button_79_y, crd_atlas_mainborder_toolbar_button_79_x+crd_atlas_mainborder_toolbar_button_79_width, crd_atlas_mainborder_toolbar_button_79_y+crd_atlas_mainborder_toolbar_button_79_height, left_screen, top_screen, left_screen, top_screen);
-				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_79();
 				]]></action>
 			</object>
 			<object type="button" name="atlas_mainborder_toolbar_button_80" cell_id="80" sprite="atlas_sheet_toolbar_button" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Toolbar Button[font=tahoma10]\nClick to perform some yet-to-be-determined function." z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_toolbar_button_80", crd_atlas_mainborder_toolbar_button_80_x, crd_atlas_mainborder_toolbar_button_80_y, crd_atlas_mainborder_toolbar_button_80_x+crd_atlas_mainborder_toolbar_button_80_width, crd_atlas_mainborder_toolbar_button_80_y+crd_atlas_mainborder_toolbar_button_80_height, left_screen, top_screen, left_screen, top_screen);
+					// Seek through ALL toolbar buttons and set their sizes at once.
+					for (ATLAS_MAINBORDER_TOOLBAR_BUTTON.last = 1; ATLAS_MAINBORDER_TOOLBAR_BUTTON.last <= ATLAS_MAINBORDER_TOOLBAR_BUTTON.max; ATLAS_MAINBORDER_TOOLBAR_BUTTON.last++)
+						setSizeArray("atlas_mainborder_toolbar_button_" + ATLAS_MAINBORDER_TOOLBAR_BUTTON.last, atlasCoord[ATLAS_MAINBORDER_TOOLBAR_BUTTON[ATLAS_MAINBORDER_TOOLBAR_BUTTON.last]], left_screen, top_screen, left_screen, top_screen);
 				]]></action>
 				<action on="Press"><![CDATA[
 					atlasToolbarButton_80();
@@ -778,7 +543,7 @@
 		<!-- LT: LOGO -->
 		<object type="text" name="atlas_mainborder_lt_corner" sprite="atlas_mainborder_lt_corner" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]0 A.D. Logo[font=tahoma10]\nMmm, nothing like the smell of blatant self-promotion in the morning ..." z="60" hidden="false">
 			<action on="Load"><![CDATA[
-				setSizeCoord("atlas_mainborder_lt_corner", crd_atlas_mainborder_lt_corner_x, crd_atlas_mainborder_lt_corner_y, crd_atlas_mainborder_lt_corner_x+crd_atlas_mainborder_lt_corner_width, crd_atlas_mainborder_lt_corner_y+crd_atlas_mainborder_lt_corner_height, left_screen, top_screen, left_screen, top_screen);
+				setSizeArray("atlas_mainborder_lt_corner", atlasCoord[ATLAS_MAINBORDER_LT_CORNER], left_screen, top_screen, left_screen, top_screen);
 			]]></action>
 		</object>
 
@@ -787,13 +552,13 @@
 			<!-- RT: INFO WINDOW BACKGROUND -->
 			<object type="text" name="atlas_mainborder_rt_corner" sprite="atlas_mainborder_rt_corner" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_mainborder_rt_corner", -crd_atlas_mainborder_rt_corner_x-crd_atlas_mainborder_rt_corner_width, crd_atlas_mainborder_rt_corner_y, -crd_atlas_mainborder_rt_corner_x, crd_atlas_mainborder_rt_corner_y+crd_atlas_mainborder_rt_corner_height, right_screen, top_screen, right_screen, top_screen);
+					setSizeArray("atlas_mainborder_rt_corner", atlasCoord[ATLAS_MAINBORDER_RT_CORNER], right_screen, top_screen, right_screen, top_screen);
 				]]></action>
 			</object>
 			<!-- RT: INFO WINDOW BAR -->
 			<object type="text" name="atlas_info_window" sprite="atlas_window_white" font="tahoma10" textcolor="0 0 0" text_align="left" text_valign="center" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]Info Window[font=tahoma10]\nInformation about the current scenario." z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					setSizeCoord("atlas_info_window", -crd_atlas_info_window_x-crd_atlas_info_window_width, crd_atlas_info_window_y, -crd_atlas_info_window_x, crd_atlas_info_window_y+crd_atlas_info_window_height, right_screen, top_screen, right_screen, top_screen);
+					setSizeArray("atlas_info_window", atlasCoord[ATLAS_INFO_WINDOW], right_screen, top_screen, right_screen, top_screen);
 					setInterval(atlasUpdateInfoWindow, 500);
 				]]></action>
 			</object>
@@ -802,7 +567,7 @@
 		<!-- TOOLTIP WINDOW: Displays current tooltip above the Mini Map. -->
 		<object type="text" name="atlas_tooltip" sprite="atlas_tooltip_background" font="tahoma10" textcolor="0 0 0" z="104" hidden="true" ghost="true">
 			<action on="Load"><![CDATA[
-				setSizeCoord("atlas_tooltip", -crd_atlas_tooltip_x-crd_atlas_tooltip_width, -crd_atlas_tooltip_y-crd_atlas_tooltip_height, -crd_atlas_tooltip_x, -crd_atlas_tooltip_y, right_screen, bottom_screen, right_screen, bottom_screen);
+				setSizeArray("atlas_tooltip", atlasCoord[ATLAS_TOOLTIP], right_screen, bottom_screen, right_screen, bottom_screen);
 			]]></action>
 		</object>
 	</object>
