@@ -42,7 +42,7 @@ struct BIT_BUF
 };
 
 
-template<class T, int n> struct RingBuf
+template<class T, size_t n> struct RingBuf
 {
 	size_t size_;	// # of entries in buffer
 	size_t pos;		// index of oldest data
@@ -52,10 +52,10 @@ template<class T, int n> struct RingBuf
 	void clear() { size_ = 0; pos = 0; }
 	size_t size() { return size_; }
 
-	const T& operator[](int idx) const
+	const T& operator[](int ofs) const
 	{
-		assert(idx < n);
-		return data[idx];
+		size_t idx = (size_t)(pos + ofs);
+		return data[idx % n];
 	}
 
 	void push_back(const T& item)
