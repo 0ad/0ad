@@ -166,5 +166,9 @@ extern ssize_t vfs_io(Handle hf, off_t ofs, size_t size, void*& p);
 // buffer and its address/size. output parameters are zeroed on failure.
 extern Handle vfs_load(const char* fn, void*& p, size_t& size);
 
+extern int vfs_store(const char* fn, void* p, size_t size);
+
+extern int vfs_uncached_store(const char* const fn, void* p, const size_t size);
+
 
 #endif	// #ifndef __VFS_H__

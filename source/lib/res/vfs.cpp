@@ -263,7 +263,7 @@ typedef SubDirs::iterator SubDirIt;
 struct Dir
 {
 #ifndef NO_DIR_WATCH
-	uintptr_t watch;
+	intptr_t watch;
 #endif
 
 	int add_file(const char* name, const Loc* loc);
@@ -374,6 +374,7 @@ void Dir::clearR()
 
 #ifndef NO_DIR_WATCH
 	res_cancel_watch(watch);
+	watch = 0;
 #endif
 }
 
@@ -527,7 +528,7 @@ static int add_dirent_cb(const char* const fn, const uint flags, const ssize_t s
 	UNUSED(size);
 
 	const FileCBParams* const params = (FileCBParams*)user;
-	Dir* const cur_dir           = params->dir;
+	Dir* const cur_dir       = params->dir;
 	const Loc* const cur_loc = params->loc;
 
 	int err;
@@ -626,14 +627,15 @@ struct Mount
 	uint pri;
 
 	// storage for all Locs ensuing from this mounting.
-	// the VFS tree only holds pointers to Loc, which is why the
-	// Locs container must not invalidate its contents after adding,
-	// and also why the VFS tree must be rebuilt after unmounting something.
+	// it's safe to store pointers to them: the Mount and Locs containers
+	// are std::lists; all pointers are reset after unmounting something.
+	// the VFS stores Loc* pointers for each file and for dirs with exactly
+	// 1 associated real dir, so that newly written files may be added.
 	Loc dir_loc;
 	Locs archive_locs;
-		// if not is_single_archive, contains one Loc for every archive
-		// in the directory (but not its children - see remount()).
-		// otherwise, contains exactly one Loc for the single archive.
+		// if f_name is a single archive, this stores its Loc.
+		// otherwise, there's one Loc for every archive in the directory
+		// (but not its children - see remount()).
 
 	Mount() {}
 	Mount(const char* _mount_point, const char* _f_name, uint _pri)
@@ -641,7 +643,7 @@ struct Mount
 		dir_loc(0, _f_name, 0), archive_locs() {}
 };
 
-typedef std::vector<Mount> Mounts;
+typedef std::list<Mount> Mounts;
 typedef Mounts::iterator MountIt;
 static Mounts mounts;
 
@@ -708,7 +710,7 @@ static int remount(Mount& m)
 	const char* const mount_point = m.mount_point.c_str();
 	const char* const f_name = m.f_name.c_str();
 	const uint pri           = m.pri;
-	const Loc& dir_loc   = m.dir_loc;
+	const Loc& dir_loc       = m.dir_loc;
 	Locs& archive_locs       = m.archive_locs;
 
 	Dir* dir;
@@ -1324,6 +1326,9 @@ skip_read:
 }
 
 
+// caveat: pads file to next max(4kb, sector_size) boundary
+// (due to limitation of Win32 FILE_FLAG_NO_BUFFERING I/O).
+// if that's a problem, use vfs_uncached_store instead.
 int vfs_store(const char* const fn, void* p, const size_t size)
 {
 	Handle hf = vfs_open(fn, FILE_WRITE);
@@ -1331,6 +1336,20 @@ int vfs_store(const char* const fn, void* p, const size_t size)
 		return (int)hf;	// error code
 	H_DEREF(hf, VFile, vf);
 	const int ret = vfs_io(hf, 0, size, p);
+	vfs_close(hf);
+	return ret;
+}
+
+
+// plain file write. exactly size bytes are written (as opposed to
+// vfs_store's padding problem), but this bypasses the file cache.
+int vfs_uncached_store(const char* const fn, void* p, const size_t size)
+{
+	Handle hf = vfs_open(fn, FILE_WRITE);
+	if(hf <= 0)
+		return (int)hf;	// error code
+	H_DEREF(hf, VFile, vf);
+	const int ret = file_uncached_io(&vf->f, size, p);
 	vfs_close(hf);
 	return ret;
 }
