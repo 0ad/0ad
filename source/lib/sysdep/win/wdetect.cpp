@@ -57,12 +57,16 @@ static int import_EnumDisplayDevices()
 // if we fail, outputs are unchanged (assumed initialized to defaults)
 int get_cur_vmode(int* xres, int* yres, int* bpp, int* freq)
 {
-	DEVMODEW dm;
+	// don't use EnumDisplaySettingsW - BoundsChecker reports it causes
+	// a memory overrun (even if called as the very first thing, before
+	// static CRT initialization).
+
+	DEVMODEA dm;
 	memset(&dm, 0, sizeof(dm));
 	dm.dmSize = sizeof(dm);
 	// dm.dmDriverExtra already set to 0 by memset
 
-	if(!EnumDisplaySettingsW(0, ENUM_CURRENT_SETTINGS, &dm))
+	if(!EnumDisplaySettingsA(0, ENUM_CURRENT_SETTINGS, &dm))
 		return -1;
 
 	if(dm.dmFields & DM_PELSWIDTH && xres)
