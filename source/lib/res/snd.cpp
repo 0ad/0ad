@@ -409,7 +409,7 @@ static void al_src_free(ALuint al_src)
 {
 	assert(alIsSource(al_src));
 	al_srcs[--al_src_used] = al_src;
-	assert(0 <= al_src_used && al_src_used < al_src_allocated);
+	assert(al_src_used < al_src_allocated);
 		// don't compare against cap - it might have been
 		// decreased to less than were in use.
 }
