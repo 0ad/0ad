@@ -104,7 +104,7 @@ CModelDef* CModelDef::Load(const char* filename)
 // Save: write the given CModelDef to the given file
 void CModelDef::Save(const char* filename,const CModelDef* mdef)
 {
-	CFilePacker packer;
+	CFilePacker packer(FILE_VERSION, "PSMD");
 
 	// pack everything up
 	u32 numVertices=mdef->GetNumVertices();
@@ -128,8 +128,7 @@ void CModelDef::Save(const char* filename,const CModelDef* mdef)
 		packer.PackRaw(&mdef->m_PropPoints[i].m_BoneIndex,sizeof(mdef->m_PropPoints[i].m_BoneIndex));
 	}
 	
-
 	// flush everything out to file
-	packer.Write(filename,FILE_VERSION,"PSMD");
+	packer.Write(filename);
 }
 

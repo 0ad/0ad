@@ -10,11 +10,13 @@
 #define _FILEPACKER_H
 
 #include <vector>
-#include "lib/types.h"
+#include "lib/types.h"	// u32
 #include "CStr.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////
-// CFilePacker: class to assist in writing of binary files
+// CFilePacker: class to assist in writing of binary files.
+// basically a resizeable buffer that allows adding raw data and strings;
+// upon calling Write(), everything is written out to disk.
 class CFilePacker 
 {
 public:
@@ -25,10 +27,13 @@ public:
 
 public:
 	// constructor
-	CFilePacker();
+	// adds version and signature (i.e. the header) to the buffer.
+	// this means Write() can write the entire buffer to file in one go,
+	// which is simpler and more efficient than writing in pieces.
+	CFilePacker(u32 version,const char magicstr[4]);
 
-	// Write: write out any packed data to file, using given version and magic bits
-	void Write(const char* filename,u32 version,const char magicstr[4]);
+	// Write: write out to file all packed data added so far
+	void Write(const char* filename);
 
 	// PackRaw: pack given number of bytes onto the end of the data stream
 	void PackRaw(const void* rawdata,u32 rawdatalen);
@@ -36,7 +41,8 @@ public:
 	void PackString(const CStr& str);
 
 private:
-	// the output data stream built during pack operations
+	// the output data stream built during pack operations.
+	// contains the header, so we can write this out in one go.
 	std::vector<u8> m_Data;
 };
 

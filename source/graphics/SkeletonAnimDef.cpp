@@ -88,7 +88,7 @@ CSkeletonAnimDef* CSkeletonAnimDef::Load(const char* filename)
 // Save: try to save anim to file
 void CSkeletonAnimDef::Save(const char* filename,const CSkeletonAnimDef* anim)
 {
-	CFilePacker packer;
+	CFilePacker packer(FILE_VERSION, "PSSA");
 
 	// pack up all the data
 	packer.PackString(CStr(anim->m_Name));
@@ -98,6 +98,6 @@ void CSkeletonAnimDef::Save(const char* filename,const CSkeletonAnimDef* anim)
 	packer.PackRaw(anim->m_Keys,anim->m_NumKeys*anim->m_NumFrames*sizeof(Key));
 
 	// now write it
-	packer.Write(filename,FILE_VERSION,"PSSA");
+	packer.Write(filename);
 }
 

@@ -20,13 +20,13 @@ CMapWriter::CMapWriter()
 // SaveMap: try to save the current map to the given file
 void CMapWriter::SaveMap(const char* filename, CTerrain *pTerrain, CLightEnv *pLightEnv, CUnitManager *pUnitMan)
 {
-	CFilePacker packer;
+	CFilePacker packer(FILE_VERSION, "PSMP");
 
 	// build necessary data
 	PackMap(packer, pTerrain, pLightEnv, pUnitMan);
 
 	// write it out
-	packer.Write(filename,FILE_VERSION,"PSMP");
+	packer.Write(filename);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
