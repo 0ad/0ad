@@ -122,7 +122,7 @@ static SHotkeyInfo hotkeyInfo[] =
 	{ HOTKEY_CONTEXTORDER_NEXT, "contextorder.next", SDLK_RIGHTBRACKET, 0 },
 	{ HOTKEY_CONTEXTORDER_PREVIOUS, "contextorder.previous", SDLK_LEFTBRACKET, 0 },
 	{ HOTKEY_HIGHLIGHTALL, "highlightall", SDLK_o, 0 },
-
+	{ HOTKEY_PROFILE_TOGGLE, "profile.toggle", SDLK_F11, 0 },
 	{ HOTKEY_PLAYMUSIC, "playmusic", SDLK_p, 0 }
 };
 

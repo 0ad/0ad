@@ -97,19 +97,19 @@ void RenderProfile()
 
 	glTranslatef( 0.0f, 20.0f, 0.0f );
 
-	float unlogged = currentNode->GetFrameTime();
+	float unlogged = (float)currentNode->GetFrameTime();
 
 	int currentNodeid = 1;
 
 	for( it = currentNode->GetChildren()->begin(); it != currentNode->GetChildren()->end(); it++, currentNodeid++ )
 	{
-		unlogged -= (*it)->GetFrameTime();
+		unlogged -= (float)(*it)->GetFrameTime();
 		RenderProfileNode( *it, currentNodeid );
 	}
 	glColor3f( 1.0f, 0.5f, 0.5f );
 	for( it = currentNode->GetScriptChildren()->begin(); it != currentNode->GetScriptChildren()->end(); it++, currentNodeid++ )
 	{
-		unlogged -= (*it)->GetFrameTime();
+		unlogged -= (float)(*it)->GetFrameTime();
 		RenderProfileNode( *it, currentNodeid );
 	}
 	glColor3f( 1.0f, 1.0f, 1.0f );
