@@ -9,6 +9,7 @@
 #include "BaseEntity.h"
 #include "BaseEntityCollection.h"
 #include "EntityManager.h"
+#include "CLogger.h"
 
 #include "Model.h"
 #include "Terrain.h"
@@ -17,6 +18,8 @@
 #include "timer.h"
 #include "Loader.h"
 #include "LoaderThunks.h"
+
+#define LOG_CATEGORY "graphics"
 
 // CMapReader constructor: nothing to do at the minute
 CMapReader::CMapReader()
@@ -167,21 +170,25 @@ void CMapReader::ApplyData()
 	for (u32 i=0;i<m_Objects.size();i++) {
 
 		if (unpacker.GetVersion() < 3) {
-			
-			// Hijack the standard actor instantiation for actors that correspond to entities.
-			// Not an ideal solution; we'll have to figure out a map format that can define entities separately or somesuch.
 
-			CBaseEntity* templateObject = g_EntityTemplateCollection.getTemplateByActor(m_ObjectTypes.at(m_Objects[i].m_ObjectIndex));
-		
-			if (templateObject)
-			{
-				CVector3D orient = ((CMatrix3D*)m_Objects[i].m_Transform)->GetIn();
-				CVector3D position = ((CMatrix3D*)m_Objects[i].m_Transform)->GetTranslation();
+			debug_warn("Old unsupported map version - objects will be missing");
+			// (getTemplateByActor doesn't work, since entity templates are now
+			// loaded on demand)
 
-				g_EntityManager.create(templateObject, position, atan2(-orient.X, -orient.Z));
-
-				continue;
-			}
+//			// Hijack the standard actor instantiation for actors that correspond to entities.
+//			// Not an ideal solution; we'll have to figure out a map format that can define entities separately or somesuch.
+//
+//			CBaseEntity* templateObject = g_EntityTemplateCollection.getTemplateByActor(m_ObjectTypes.at(m_Objects[i].m_ObjectIndex));
+//		
+//			if (templateObject)
+//			{
+//				CVector3D orient = ((CMatrix3D*)m_Objects[i].m_Transform)->GetIn();
+//				CVector3D position = ((CMatrix3D*)m_Objects[i].m_Transform)->GetTranslation();
+//
+//				g_EntityManager.create(templateObject, position, atan2(-orient.X, -orient.Z));
+//
+//				continue;
+//			}
 		}
 
 		CUnit* unit = g_UnitMan.CreateUnit(m_ObjectTypes.at(m_Objects[i].m_ObjectIndex), NULL);
@@ -226,6 +233,9 @@ void CMapReader::ReadXML()
 	EL(player);
 	EL(position);
 	EL(orientation);
+	EL(nonentities);
+	EL(nonentity);
+	EL(actor);
 	AT(x);
 	AT(y);
 	AT(z);
@@ -266,28 +276,22 @@ void CMapReader::ReadXML()
 					int element_name = child.getNodeName();
 
 					if (element_name == el_template)
-					{
-						// <template>
+					{	// <template>
 						TemplateName = child.getText();
 					}
 					else if (element_name == el_player)
-					{
-						// <player>
+					{	// <player>
 						PlayerID = CStr(child.getText()).ToInt();
 					}
 					else if (element_name == el_position)
-					{
-						// <position>
+					{	// <position>
 						XMBAttributeList attrs = child.getAttributes();
-						Position = CVector3D(
-							CStr(attrs.getNamedItem(at_x)).ToFloat(),
-							CStr(attrs.getNamedItem(at_y)).ToFloat(),
-							CStr(attrs.getNamedItem(at_z)).ToFloat()
-						);
+						Position = CVector3D(CStr(attrs.getNamedItem(at_x)).ToFloat(),
+						                     CStr(attrs.getNamedItem(at_y)).ToFloat(),
+						                     CStr(attrs.getNamedItem(at_z)).ToFloat());
 					}
 					else if (element_name == el_orientation)
-					{
-						// <orientation>
+					{	// <orientation>
 						XMBAttributeList attrs = child.getAttributes();
 						Orientation = CStr(attrs.getNamedItem(at_angle)).ToFloat();
 					}
@@ -296,8 +300,67 @@ void CMapReader::ReadXML()
 				}
 
 				HEntity ent = g_EntityManager.create(g_EntityTemplateCollection.getTemplate(TemplateName), Position, Orientation);
+				if (! ent)
+					LOG(ERROR, LOG_CATEGORY, "Failed to create entity '%ls'", TemplateName.c_str());
+				else
+					ent->SetPlayer(g_Game->GetPlayer(PlayerID));
+			}
+		}
+		else if (child.getNodeName() == el_nonentities)
+		{
+			// <nonentities>
 
-				ent->SetPlayer(g_Game->GetPlayer(PlayerID));
+			XMBElementList children = child.getChildNodes();
+			for (int i = 0; i < children.Count; ++i)
+			{
+				XMBElement child = children.item(i);
+				assert(child.getNodeName() == el_nonentity);
+
+				// <nonentity>
+
+				CStr ActorName;
+				CVector3D Position;
+				float Orientation;
+
+				XMBElementList children = child.getChildNodes();
+				for (int i = 0; i < children.Count; ++i)
+				{
+					XMBElement child = children.item(i);
+					int element_name = child.getNodeName();
+
+					if (element_name == el_actor)
+					{	// <actor>
+						ActorName = child.getText();
+					}
+					else if (element_name == el_position)
+					{	// <position>
+						XMBAttributeList attrs = child.getAttributes();
+						Position = CVector3D(CStr(attrs.getNamedItem(at_x)).ToFloat(),
+						                     CStr(attrs.getNamedItem(at_y)).ToFloat(),
+						                     CStr(attrs.getNamedItem(at_z)).ToFloat());
+					}
+					else if (element_name == el_orientation)
+					{	// <orientation>
+						XMBAttributeList attrs = child.getAttributes();
+						Orientation = CStr(attrs.getNamedItem(at_angle)).ToFloat();
+					}
+					else
+						debug_warn("Invalid XML data - DTD shouldn't allow this");
+				}
+
+				CUnit* unit = g_UnitMan.CreateUnit(ActorName, NULL);
+				if (unit && unit->GetModel())
+				{
+					// Copied from CEntity::updateActorTransforms():
+					float s = sin( Orientation );
+					float c = cos( Orientation );
+					CMatrix3D m;
+					m._11 = -c;		m._12 = 0.0f;	m._13 = -s;		m._14 = Position.X;
+					m._21 = 0.0f;	m._22 = 1.0f;	m._23 = 0.0f;	m._24 = Position.Y;
+					m._31 = s;		m._32 = 0.0f;	m._33 = -c;		m._34 = Position.Z;
+					m._41 = 0.0f;	m._42 = 0.0f;	m._43 = 0.0f;	m._44 = 1.0f;
+					unit->GetModel()->SetTransform(m);
+				}
 			}
 		}
 		else

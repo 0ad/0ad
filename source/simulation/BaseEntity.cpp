@@ -79,12 +79,12 @@ bool CBaseEntity::loadXML( CStr filename )
 	EL(script);
 	EL(footprint);
 	EL(event);
-	AT(tag);
 	AT(parent);
 	AT(radius);
 	AT(width);
 	AT(height);
 	AT(on);
+	AT(file);
 	#undef AT
 	#undef EL
 
@@ -98,13 +98,7 @@ bool CBaseEntity::loadXML( CStr filename )
 
 	XMBElementList RootChildren = Root.getChildNodes();
 
-	m_Tag = Root.getAttributes().getNamedItem( at_tag );
-
-	if( !m_Tag.Length() )
-	{
-		LOG( ERROR, LOG_CATEGORY, "CBaseEntity::LoadXML: Tag attribute was not specified in file %s. Load failed.", filename.c_str() );
-		return( false );
-	}
+	m_Tag = CStr(filename).AfterLast("/").BeforeLast(".xml");
 
 	m_Base_Name = Root.getAttributes().getNamedItem( at_parent );
 	
@@ -116,7 +110,7 @@ bool CBaseEntity::loadXML( CStr filename )
 
 		if( ChildName == el_script )
 		{
-			CStr Include = Child.getAttributes().getNamedItem( XeroFile.getAttributeID( "file" ) );
+			CStr Include = Child.getAttributes().getNamedItem( at_file );
 
 			jsval dy;
 
@@ -164,9 +158,9 @@ bool CBaseEntity::loadXML( CStr filename )
 		else if( ChildName == el_event )
 		{
 			// Action...On for consistency with the GUI.
-			CStrW EventName = CStrW( L"on" ) + (CStrW)Child.getAttributes().getNamedItem( at_on );
+			CStrW EventName = L"on" + (CStrW)Child.getAttributes().getNamedItem( at_on );
 
-			CStrW Code = (CStrW)Child.getText();
+			CStrW Code (Child.getText());
 			
 			// Does a property with this name already exist?
 

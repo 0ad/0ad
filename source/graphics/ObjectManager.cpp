@@ -61,14 +61,11 @@ CObjectBase* CObjectManager::FindObjectBase(const char* objectname)
 
 	// Not already loaded, so try to load it:
 
-	for (uint k = 0; k < m_ObjectTypes.size(); k++) {
-
-		CStr filename ("art/actors/");
-		filename += objectname;
-
+	for (uint k = 0; k < m_ObjectTypes.size(); k++)
+	{
 		CObjectBase* obj = new CObjectBase();
 
-		if (obj->Load(filename))
+		if (obj->Load(objectname))
 		{
 			m_ObjectTypes[k].m_ObjectBases[objectname] = obj;
 			return obj;
@@ -148,25 +145,6 @@ void CObjectManager::DeleteObject(CObjectEntry* entry)
 			++it;
 
 	delete entry;
-}
-
-
-void CObjectManager::AddObjectBase(CObjectBase* base)
-{
-	m_ObjectTypes[0].m_ObjectBases.insert(make_pair(base->m_FileName, base));
-}
-
-void CObjectManager::DeleteObjectBase(CObjectBase* base)
-{
-	std::map<CStr, CObjectBase*>& objects = m_ObjectTypes[0].m_ObjectBases;
-
-	for (std::map<CStr, CObjectBase*>::iterator it = objects.begin(); it != objects.end(); )
-		if (it->second == base)
-			objects.erase(it++);
-		else
-			++it;
-
-	delete base;
 }
 
 

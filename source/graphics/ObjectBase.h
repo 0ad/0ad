@@ -57,8 +57,8 @@ public:
 	// object name
 	CStr m_Name;
 
-	// file name
-	CStr m_FileName;
+	// short human-readable name
+	CStr m_ShortName;
 
 	struct {
 		// automatically flatten terrain when applying object

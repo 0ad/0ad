@@ -10,6 +10,8 @@
 #include "BaseEntityCollection.h"
 #include "Scheduler.h"
 #include "timer.h"
+#include "LightEnv.h"
+#include "MapWriter.h"
 
 #include "Game.h"
 #include "Network/Server.h"
@@ -72,8 +74,9 @@ JSFunctionSpec ScriptFunctionTable[] =
 	{"exit", exitProgram, 0, 0, 0 },
 	{"crash", crash, 0, 0, 0 },
 	{"forceGC", forceGC, 0, 0, 0 },
-	{"_mem", js_mem, 0, 0, 0 }, // Intentionally undocumented
-	{0, 0, 0, 0, 0}, 
+	{"vmem", vmem, 0, 0, 0 },
+	{"_rewriteMaps", _rewriteMaps, 0, 0, 0 },
+	{0, 0, 0, 0, 0}
 };
 
 enum ScriptGlobalTinyIDs
@@ -486,7 +489,7 @@ JSBool crash(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject
 	return *(JSBool*) ptr;
 }
 
-JSBool js_mem(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject), unsigned int UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* UNUSEDPARAM(rval))
+JSBool vmem(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject), unsigned int UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* UNUSEDPARAM(rval))
 {
 #ifdef _WIN32
 	int left, total;
@@ -498,5 +501,12 @@ JSBool js_mem(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObjec
 #else
 	g_Console->InsertMessage(L"VRAM: [not available on non-Windows]");
 #endif
+	return JS_TRUE;
+}
+
+JSBool _rewriteMaps(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject), unsigned int UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* UNUSEDPARAM(rval))
+{
+	extern CLightEnv g_LightEnv;
+	CMapWriter::RewriteAllMaps(g_Game->GetWorld()->GetTerrain(), g_Game->GetWorld()->GetUnitManager(), &g_LightEnv);
 	return JS_TRUE;
 }

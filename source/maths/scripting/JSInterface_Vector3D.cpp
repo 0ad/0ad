@@ -286,7 +286,7 @@ JSBool JSI_Vector3D::divide( JSContext* cx, JSObject* obj, uintN argc, jsval* ar
 	}
 
 	JSObject* vector3d = JS_NewObject( g_ScriptingHost.getContext(), &JSI_Vector3D::JSI_class, NULL, NULL );
-	JS_SetPrivate( g_ScriptingHost.getContext(), vector3d, new JSI_Vector3D::Vector3D_Info( *v * ( 1.0 / f ) ) );
+	JS_SetPrivate( g_ScriptingHost.getContext(), vector3d, new JSI_Vector3D::Vector3D_Info( *v * ( 1.0f / f ) ) );
 	*rval = OBJECT_TO_JSVAL( vector3d );
 
 	return( JS_TRUE );

@@ -11,7 +11,7 @@ typedef std::vector<CStr> FileList;
 // 'filter': see vfs_next_dirent
 // 'files' is initially cleared, and undefined on failure.
 // On failure, logs an error and returns false.
-extern bool FindFiles(CStr& dirname, const char* filter, FileList& files);
+extern bool FindFiles(const CStr& dirname, const char* filter, FileList& files);
 
 
 // called by EnumFiles for each file in a directory (optionally

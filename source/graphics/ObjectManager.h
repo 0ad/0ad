@@ -54,8 +54,6 @@ public:
 	void DeleteObject(CObjectEntry* entry);
 	
 	CObjectBase* FindObjectBase(const char* objname);
-	void AddObjectBase(CObjectBase* base);
-	void DeleteObjectBase(CObjectBase* base);
 
 	CBaseEntity* m_SelectedEntity;
 

@@ -17,11 +17,14 @@ bool CObjectBase::Load(const char* filename)
 {
 	m_Variants.clear();
 
+	CStr filePath ("art/actors/");
+	filePath += filename;
+
 	CXeromyces XeroFile;
-	if (XeroFile.Load(filename) != PSRETURN_OK)
+	if (XeroFile.Load(filePath) != PSRETURN_OK)
 		return false;
 
-	m_FileName = filename;
+	m_Name = filename;
 
 	XMBElement root = XeroFile.getRoot();
 
@@ -59,7 +62,7 @@ bool CObjectBase::Load(const char* filename)
 			CStr element_value (child.getText());
 
 			if (element_name == el_name)
-				m_Name = element_value;
+				m_ShortName = element_value;
 
 			else if (element_name == el_modelname)
 				m_Variants.back().back().m_ModelFilename = element_value;
@@ -136,7 +139,7 @@ bool CObjectBase::Load(const char* filename)
 		//// New-format actor file ////
 
 		// Use the filename for the model's name
-		m_Name = CStr(filename).AfterLast("/").BeforeLast(".xml");
+		m_ShortName = CStr(filename).AfterLast("/").BeforeLast(".xml");
 
 		// Define all the elements used in the XML file
 		#define EL(x) int el_##x = XeroFile.getElementID(#x)

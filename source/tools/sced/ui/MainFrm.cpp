@@ -624,17 +624,7 @@ void CMainFrame::OnFileLoadMap()
 			CMapReader* reader = new CMapReader(); // freed by the progressive loader
 			reader->LoadMap(loadname, g_Game->GetWorld()->GetTerrain(), &g_UnitMan, &g_LightEnv);
 			LDR_EndRegistering();
-
-			int progress_percent;
-			wchar_t description[100];
-			int ret;
-			do
-			{
-				ret = LDR_ProgressiveLoad(100.f, description, ARRAY_SIZE(description), &progress_percent);
-				assert(ret == 0 || ret == 1 || ret == ERR_TIMED_OUT);
-			}
-			while (ret != 0);
-
+			LDR_NonprogressiveLoad();
 
 			CStr filetitle=loaddlg.m_ofn.lpstrFileTitle;
 			int index=filetitle.ReverseFind(CStr("."));

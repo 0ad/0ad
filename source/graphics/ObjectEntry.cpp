@@ -124,7 +124,7 @@ bool CObjectEntry::BuildModel()
 					m_Model->AddProp(proppoint,propmodel);
 					if (oe->m_WalkAnim) propmodel->SetAnimation(oe->m_WalkAnim);
 				} else {
-					LOG(ERROR, LOG_CATEGORY, "Failed to build prop model \"%s\" on actor \"%s\"", (const char*)prop.m_ModelName, (const char*)m_Base->m_Name);
+					LOG(ERROR, LOG_CATEGORY, "Failed to build prop model \"%s\" on actor \"%s\"", (const char*)prop.m_ModelName, (const char*)m_Base->m_ShortName);
 				}
 			}
 		} else {

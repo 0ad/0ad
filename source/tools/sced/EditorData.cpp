@@ -176,15 +176,7 @@ bool CEditorData::Init()
 		return false;
 	}
 
-	int progress_percent;
-	wchar_t description[100];
-	int ret2;
-	do
-	{
-		ret2 = LDR_ProgressiveLoad(100.f, description, ARRAY_SIZE(description), &progress_percent);
-		assert(ret2 == 0 || ret2 == 1 || ret2 == ERR_TIMED_OUT);
-	}
-	while (ret2 != 0);
+	LDR_NonprogressiveLoad();
 
 	// create the scene - terrain, camera, light environment etc
 	if (!InitScene()) return false;

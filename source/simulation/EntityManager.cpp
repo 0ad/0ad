@@ -31,6 +31,9 @@ CEntityManager::~CEntityManager()
 HEntity CEntityManager::create( CBaseEntity* base, CVector3D position, float orientation )
 {
 	assert( base );
+	if( !base )
+		return( HEntity() );
+
 	while( m_entities[m_nextalloc].m_refcount )
 		m_nextalloc++;
 	m_entities[m_nextalloc].m_entity = new CEntity( base, position, orientation );

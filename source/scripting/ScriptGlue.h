@@ -63,8 +63,11 @@ JSFunc exitProgram;
 // Crashes.
 JSFunc crash;
 
-// Tries to print the amount of remaining video memory. (I don't like starting functions with underscores).
-JSFunc js_mem;
+// Tries to print the amount of remaining video memory.
+JSFunc vmem;
+
+// You don't want to use this
+JSFunc _rewriteMaps;
 
 extern JSFunctionSpec ScriptFunctionTable[];
 extern JSPropertySpec ScriptGlobalTable[];

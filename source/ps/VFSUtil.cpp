@@ -10,7 +10,7 @@
 using namespace VFSUtil;
 
 // Because I'm lazy, and it saves a few lines of code in other places:
-bool VFSUtil::FindFiles (CStr& dirname, const char* filter, FileList& files)
+bool VFSUtil::FindFiles (const CStr& dirname, const char* filter, FileList& files)
 {
 	files.clear();
 

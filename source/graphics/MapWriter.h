@@ -18,6 +18,10 @@ public:
 	// SaveMap: try to save the current map to the given file
 	void SaveMap(const char* filename, CTerrain *pTerr, CLightEnv *pLightEnv, CUnitManager *pUnitMan);
 
+	// RewriteAllMaps: for use during development: load/save all maps, to
+	// update them to the newest format.
+	static void RewriteAllMaps(CTerrain *pTerrain, CUnitManager *pUnitMan, CLightEnv *pLightEnv);
+
 private:
 	// PackMap: pack the current world into a raw data stream
 	void PackMap(CFilePacker& packer, CTerrain *pTerr, CLightEnv *pLightEnv, CUnitManager *pUnitMan);
@@ -32,11 +36,6 @@ private:
 	// for each tile on the terrain
 	void EnumTerrainTextures(CTerrain *pTerrain, std::vector<CStr>& textures,
 		std::vector<STileDesc>& tileIndices);
-
-	// EnumObjects: build lists of object types used by map, and object descriptions for 
-	// each object in the world
-	void EnumObjects(CUnitManager *pUnitMan, std::vector<CStr>& objectTypes,
-		std::vector<SObjectDesc>& objects);
 
 	// WriteXML: output some other data (entities, etc) in XML format
 	void WriteXML(const char* filename, CUnitManager* pUnitMan);

@@ -84,3 +84,7 @@ extern int LDR_Cancel();
 // the request is de-queued. that leaves writing into caller's buffer.
 extern int LDR_ProgressiveLoad(double time_budget, wchar_t* next_description,
 	size_t max_chars, int* progress_percent);
+
+// immediately process all queued load requests.
+// returns 0 on success, something else on failure.
+extern int LDR_NonprogressiveLoad();

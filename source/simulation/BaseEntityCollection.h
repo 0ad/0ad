@@ -28,13 +28,15 @@
 
 class CBaseEntityCollection : public Singleton<CBaseEntityCollection>
 {
-	std::vector<CBaseEntity*> m_templates;
+	typedef std::map<CStrW, CBaseEntity*> templateMap;
+	typedef std::map<CStrW, CStr> templateFilenameMap;
+	templateMap m_templates;
+	templateFilenameMap m_templateFilenames;
 public:
 	~CBaseEntityCollection();
 	CBaseEntity* getTemplate( CStrW entityType );
 	void loadTemplates();
 	void LoadFile( const char* path );
-	CBaseEntity* getTemplateByActor( CStrW actorName );
 
 	// Create a list of the names of all templates, for display in ScEd's
 	// entity-selection box. (This isn't really very good, since it includes

@@ -1,4 +1,4 @@
-<!ELEMENT Scenario (Entities)>
+<!ELEMENT Scenario (Entities,Nonentities)>
 
 	<!ELEMENT Entities (Entity*)>
 
@@ -18,3 +18,9 @@
 			<!ATTLIST Orientation
 				angle CDATA #REQUIRED
 			>
+
+	<!ELEMENT Nonentities (Nonentity*)>
+
+		<!ELEMENT Nonentity (Actor,Position,Orientation)>
+
+			<!ELEMENT Actor (#PCDATA)>

@@ -2,6 +2,7 @@
 
 #include "lib/types.h"
 #include "MapWriter.h"
+#include "MapReader.h"
 #include "UnitManager.h"
 #include "Unit.h"
 #include "ObjectManager.h"
@@ -10,6 +11,8 @@
 #include "Terrain.h"
 #include "LightEnv.h"
 #include "TextureManager.h"
+#include "VFSUtil.h"
+#include "Loader.h"
 
 #include "ps/XMLWriter.h"
 #include "lib/res/vfs.h"
@@ -47,20 +50,6 @@ static u16 GetHandleIndex(const Handle handle,const std::vector<Handle>& handles
 {
 	for (uint i=0;i<(uint)handles.size();i++) {
 		if (handles[i]==handle) {
-			return i;
-		}
-	}
-
-	return 0xffff;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// GetObjectIndex: return the index of the given object in the given list; or 0xffff if
-// object isn't in list
-static u16 GetObjectIndex(const CObjectEntry* object,const std::vector<CObjectEntry*>& objects)
-{
-	for (uint i=0;i<(uint)objects.size();i++) {
-		if (objects[i]==object) {
 			return i;
 		}
 	}
@@ -119,48 +108,6 @@ void CMapWriter::EnumTerrainTextures(CTerrain *pTerrain,
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// EnumObjects: build lists of object types used by map, and object descriptions for 
-// each object in the world
-void CMapWriter::EnumObjects(CUnitManager *pUnitMan,
-	std::vector<CStr>& objectTypes, std::vector<SObjectDesc>& objects)
-{
-	// the list of all object entries in use
-	std::vector<CObjectEntry*> objectsInUse;
-	
-	// resize object array to required size
-	const std::vector<CUnit*>& units=pUnitMan->GetUnits();
-	objects.clear();
-	objects.reserve(units.size()); // slightly larger than necessary (if there are some entities)
-
-	// now iterate through all the units
-	for (size_t j=0;j<units.size();j++) {
-
-		CUnit* unit=units[j];
-
-		// Ignore entities, since they're outputted to XML instead
-		if (unit->GetEntity())
-			continue;
-
-		u16 index=u16(GetObjectIndex(unit->GetObject(),objectsInUse));
-		if (index==0xffff) {
-			index=(u16)objectsInUse.size();
-			objectsInUse.push_back(unit->GetObject());
-		}
-
-		SObjectDesc obj;
-		obj.m_ObjectIndex=index;
-		memcpy(obj.m_Transform,&unit->GetModel()->GetTransform()._11,sizeof(float)*16);
-
-		objects.push_back(obj);
-	}
-
-	// now build outgoing objectTypes array
-	for (uint i=0;i<(uint)objectsInUse.size();i++) {
-		objectTypes.push_back(objectsInUse[i]->m_Base->m_Name);
-	}
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // PackMap: pack the current world into a raw data stream
 void CMapWriter::PackMap(CFilePacker& packer, CTerrain *pTerrain, CLightEnv *pLightEnv, CUnitManager *pUnitMan)
 {
@@ -186,25 +133,10 @@ void CMapWriter::PackLightEnv(CFilePacker& packer, CLightEnv *pLightEnv)
 //		- data: list of objects types used by map, list of object descriptions
 void CMapWriter::PackObjects(CFilePacker& packer, CUnitManager *pUnitMan)
 {
-	// the list of object types used by map
-	std::vector<CStr> objectTypes;
-	// descriptions of each object
-	std::vector<SObjectDesc> objects;
-	
-	// build lists by scanning through the world
-	EnumObjects(pUnitMan, objectTypes, objects);
-
-	// pack object types
-	u32 numObjTypes=(u32)objectTypes.size();
-	packer.PackRaw(&numObjTypes,sizeof(numObjTypes));	
-	for (uint i=0;i<numObjTypes;i++) {
-		packer.PackString(objectTypes[i]);
-	}
-	
-	// pack object data
-	u32 numObjects=(u32)objects.size();
-	packer.PackRaw(&numObjects,sizeof(numObjects));	
-	packer.PackRaw(&objects[0],sizeof(SObjectDesc)*numObjects);	
+	// (These are now handled by XML, so this function is fairly uninteresting)
+	u32 zero = 0;
+	packer.PackRaw(&zero,sizeof(zero));	// numObjTypes
+	packer.PackRaw(&zero,sizeof(zero));	// numObjects
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -299,6 +231,38 @@ void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan)
 				}
 			}
 		}
+		{
+			XML_Element("Nonentities");
+
+			const std::vector<CUnit*>& units = pUnitMan->GetUnits();
+			for (std::vector<CUnit*>::const_iterator unit = units.begin(); unit != units.end(); ++unit) {
+
+				// Ignore objects that are entities
+				if ((*unit)->GetEntity())
+					continue;
+
+				XML_Element("Nonentity");
+
+				XML_Setting("Actor", (*unit)->GetObject()->m_Base->m_Name);
+
+				{
+					CVector3D position = (*unit)->GetModel()->GetTransform().GetTranslation();
+
+					XML_Element("Position");
+					XML_Attribute("x", position.X);
+					XML_Attribute("y", position.Y);
+					XML_Attribute("z", position.Z);
+				}
+
+				{
+					CVector3D orient = (*unit)->GetModel()->GetTransform().GetIn();
+					float angle = atan2(-orient.X, -orient.Z);
+
+					XML_Element("Orientation");
+					XML_Attribute("angle", angle);
+				}
+			}
+		}
 	}
 
 	// HACK: continued from above
@@ -313,4 +277,26 @@ void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan)
 	}
 	vfs_close(h);
 #endif
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// RewriteAllMaps
+void CMapWriter::RewriteAllMaps(CTerrain *pTerrain, CUnitManager *pUnitMan, CLightEnv *pLightEnv)
+{
+	VFSUtil::FileList files;
+	VFSUtil::FindFiles("maps/scenarios", "*.pmp", files);
+
+	for (VFSUtil::FileList::iterator it = files.begin(); it != files.end(); ++it)
+	{
+		CMapReader* reader = new CMapReader;
+		LDR_BeginRegistering();
+		reader->LoadMap(*it, pTerrain, pUnitMan, pLightEnv);
+		LDR_EndRegistering();
+		LDR_NonprogressiveLoad();
+
+		CStr n (*it);
+		n.Replace("scenarios/", "scenarios/new/");
+		CMapWriter writer;
+		writer.SaveMap(n, pTerrain, pLightEnv, pUnitMan);
+	}
 }

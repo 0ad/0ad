@@ -273,3 +273,26 @@ done:
 
 	return ret;
 }
+
+
+// immediately process all queued load requests.
+// returns 0 on success, something else on failure.
+int LDR_NonprogressiveLoad()
+{
+	int progress_percent;
+	wchar_t description[100];
+	int ret;
+	
+	while(1)
+	{
+		ret = LDR_ProgressiveLoad(100.f, description, ARRAY_SIZE(description), &progress_percent);
+
+		switch(ret)
+		{
+		case 1: debug_warn("NonprogressiveLoad: No load in progress"); return 0;
+		case 0: return 0; // success
+		case ERR_TIMED_OUT: break; // try again
+		default: CHECK_ERR(ret);
+		}
+	}
+}

@@ -10,7 +10,9 @@
 
 #include "FilePacker.h"
 
-#include <stdio.h>	// VFS_REPLACE: remove
+#ifdef SCED
+# include <stdio.h>
+#endif
 #include <string.h>
 #include "lib/res/vfs.h"
 
@@ -34,12 +36,11 @@ CFilePacker::CFilePacker(u32 version, const char magicstr[4])
 // Write: write out to file all packed data added so far
 void CFilePacker::Write(const char* filename)
 {
-/*
-VFS_REPLACE: this is the entire function body
+#ifndef SCED
 	// write out all data (including header)
-	if(vfs_store(filename, &m_Data[0], m_Data.size()) < 0)
+	if(vfs_store(filename, &m_Data[0], m_Data.size(), FILE_NO_AIO) < 0)
 		throw CFileWriteError();
-*/
+#else
 
 	FILE* fp=fopen(filename,"wb");
 	if (!fp) {
@@ -54,6 +55,7 @@ VFS_REPLACE: this is the entire function body
 
 	// all done
 	fclose(fp);
+#endif
 }
 
 

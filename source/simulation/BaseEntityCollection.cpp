@@ -11,14 +11,14 @@
 
 void CBaseEntityCollection::LoadFile( const char* path )
 {
-	CBaseEntity* newTemplate = new CBaseEntity();
-	if( newTemplate->loadXML( path ) )
-	{
-		m_templates.push_back( newTemplate );
-		LOG(NORMAL, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Loaded template \"%s\"", path);
-	}
-	else
-		LOG(ERROR, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Couldn't load template \"%s\"", path);
+	// Build the entity name -> filename mapping. This is done so that
+	// the entity 'x' can be in units/x.xml, structures/x.xml, etc, and
+	// we don't have to search every directory for x.xml.
+
+	// Extract the filename out of the path+name+extension.
+	// Equivalent to /.*\/(.*)\.xml/, but not as pretty. 
+	CStrW tag = CStr(path).AfterLast("/").BeforeLast(".xml");
+	m_templateFilenames[tag] = path;
 }
 
 static void LoadFileThunk( const char* path, const vfsDirEnt* ent, void* context )
@@ -31,75 +31,56 @@ void CBaseEntityCollection::loadTemplates()
 {
 	// Load all files in entities/ and its subdirectories.
 	THROW_ERR( VFSUtil::EnumDirEnts( "entities/", "*.xml", true, LoadFileThunk, this ) );
-
-
-	// Fix up parent links in the templates.
-	
-	std::vector<CBaseEntity*>::iterator it, it_done;
-	std::vector<CBaseEntity*> done;
-
-	// TODO: MT: Circular references check.
-
-	while( done.size() < m_templates.size() )
-	{
-		for( it = m_templates.begin(); it != m_templates.end(); it++ )
-		{
-			if( !( (*it)->m_Base_Name.Length() ) )
-			{
-				done.push_back( *it );
-				continue;
-			}
-
-			CBaseEntity* Base = getTemplate( (*it)->m_Base_Name );
-			if( Base )
-			{
-				// Check whether it's been loaded yet.
-				for( it_done = done.begin(); it_done != done.end(); it_done++ )
-				{
-					if( *it_done == Base )
-					{
-						(*it)->m_base = Base;
-						(*it)->loadBase();
-						Base = NULL;
-						break;
-					}
-				}
-				if( !Base )
-				{
-					// Done
-					done.push_back( *it );
-					continue;
-				}
-			}
-			else
-				LOG( WARNING, LOG_CATEGORY, "Parent template %s does not exist in template %s", CStr8( (*it)->m_Base_Name ).c_str(), CStr8( (*it)->m_Tag ).c_str() );
-		}
-	}
 }
 
 CBaseEntity* CBaseEntityCollection::getTemplate( CStrW name )
 {
-	for( u16 t = 0; t < m_templates.size(); t++ )
-		if( m_templates[t]->m_Tag == name ) return( m_templates[t] );
+	// Check whether this template has already been loaded
+	templateMap::iterator it = m_templates.find( name );
+	if( it != m_templates.end() )
+		return( it->second );
 
-	return( NULL );
-}
+	// Find the filename corresponding to this template
+	templateFilenameMap::iterator filename_it = m_templateFilenames.find( name );
+	if( filename_it == m_templateFilenames.end() )
+		return( NULL );
 
-CBaseEntity* CBaseEntityCollection::getTemplateByActor( CStrW actorName )
-{
-	for( u16 t = 0; t < m_templates.size(); t++ )
-		if( m_templates[t]->m_actorName == actorName ) return( m_templates[t] );
+	CStr path( filename_it->second );
 
-	return( NULL );
+	// Try to load to the entity
+	CBaseEntity* newTemplate = new CBaseEntity();
+	if( !newTemplate->loadXML( path ) )
+	{
+		LOG(ERROR, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Couldn't load template \"%s\"", path.c_str());
+		return( NULL );
+	}
+
+	LOG(NORMAL, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Loaded template \"%s\"", path.c_str());
+	m_templates[name] = newTemplate;
+
+	// Load the entity's parent, if it has one
+	if( newTemplate->m_Base_Name.Length() )
+	{
+		CBaseEntity* base = getTemplate( newTemplate->m_Base_Name );
+		if( base )
+			newTemplate->m_base = base;
+		else
+			LOG( WARNING, LOG_CATEGORY, "Parent template \"%ls\" does not exist in template \"%ls\"", newTemplate->m_Base_Name.c_str(), newTemplate->m_Tag.c_str() );
+			// (The requested entity will still be returned, but with no parent.
+			// Is this a reasonable thing to do?)
+	}
+
+	return newTemplate;
 }
 
 void CBaseEntityCollection::getTemplateNames( std::vector<CStrW>& names )
 {
-	for( u16 t = 0; t < m_templates.size(); t++ )
-		names.push_back( m_templates[t]->m_Tag );
+	for( templateFilenameMap::iterator it = m_templateFilenames.begin(); it != m_templateFilenames.end(); ++it )
+		names.push_back( it->first );
 }
 
 #ifdef SCED
+// TODO: Fix ScEd, so that it works
 CBaseEntity* CBaseEntityCollection::getTemplateByID( int n )
 {
 	return m_templates[n];
@@ -108,6 +89,6 @@ CBaseEntity* CBaseEntityCollection::getTemplateByID( int n )
 
 CBaseEntityCollection::~CBaseEntityCollection()
 {
-	for( u16 t = 0; t < m_templates.size(); t++ )
-		delete( m_templates[t] );
+	for( templateMap::iterator it = m_templates.begin(); it != m_templates.end(); ++it )
+		delete( it->second );
 }
