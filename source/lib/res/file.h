@@ -102,17 +102,20 @@ extern int file_close(File* f);
 // asynchronous IO
 //
 
-typedef void* FileIO;
+struct FileIO
+{
+	void* cb;
+};
 
 extern int file_start_io(File* f, off_t ofs, size_t size, void* buf, FileIO* io);
 
 // indicates if the given IO has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
-extern int file_io_complete(FileIO io);
+extern int file_io_complete(FileIO* io);
 
-extern int file_wait_io(FileIO io, void*& p, size_t& size);
+extern int file_wait_io(FileIO* io, void*& p, size_t& size);
 
-extern int file_discard_io(FileIO io);
+extern int file_discard_io(FileIO* io);
 
 
 //

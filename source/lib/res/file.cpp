@@ -429,6 +429,7 @@ while(0);
 
 int file_open(const char* const p_fn, const uint flags, File* const f)
 {
+	// zero output param in case we fail below.
 	memset(f, 0, sizeof(File));
 
 	char n_fn[PATH_MAX];
@@ -541,6 +542,9 @@ int file_close(File* const f)
 // no attempt is made at aligning or padding the transfer.
 int file_start_io(File* const f, const off_t ofs, size_t size, void* const p, FileIO* io)
 {
+	// zero output param in case we fail below.
+	memset(io, 0, sizeof(FileIO));
+
 #ifdef PARANOIA
 	debug_out("file_start_io ofs=%d size=%d\n", ofs, size);
 #endif
@@ -582,8 +586,7 @@ int file_start_io(File* const f, const off_t ofs, size_t size, void* const p, Fi
 	aiocb* cb = (aiocb*)malloc(sizeof(aiocb));
 	if(!cb)
 		return ERR_NO_MEM;
-
-	*io = cb;
+	io->cb = cb;
 
 	// send off async read/write request
 	cb->aio_lio_opcode = is_write? LIO_WRITE : LIO_READ;
@@ -594,7 +597,7 @@ int file_start_io(File* const f, const off_t ofs, size_t size, void* const p, Fi
 	int err = lio_listio(LIO_NOWAIT, &cb, 1, (struct sigevent*)0);
 	if(err < 0)
 	{
-		file_discard_io(*io);
+		file_discard_io(io);
 		return err;
 	}
 
@@ -604,9 +607,9 @@ int file_start_io(File* const f, const off_t ofs, size_t size, void* const p, Fi
 
 // indicates if the IO referenced by <io> has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
-int file_io_complete(FileIO io)
+int file_io_complete(FileIO* io)
 {
-	aiocb* cb = (aiocb*)io;
+	aiocb* cb = (aiocb*)io->cb;
 	int ret = aio_error(cb);
 	if(ret == EINPROGRESS)
 		return 0;
@@ -618,7 +621,7 @@ int file_io_complete(FileIO io)
 }
 
 
-int file_wait_io(FileIO io, void*& p, size_t& size)
+int file_wait_io(FileIO* io, void*& p, size_t& size)
 {
 #ifdef PARANOIA
 debug_out("file_wait_io: hio=%I64x\n", hio);
@@ -628,7 +631,7 @@ debug_out("file_wait_io: hio=%I64x\n", hio);
 	p = 0;
 	size = 0;
 
-	aiocb* cb = (aiocb*)io;
+	aiocb* cb = (aiocb*)io->cb;
 
 	// wait for transfer to complete.
 	const aiocb** cbs = (const aiocb**)&cb;	// pass in an "array"
@@ -646,11 +649,12 @@ debug_out("file_wait_io: hio=%I64x\n", hio);
 }
 
 
-int file_discard_io(FileIO io)
+int file_discard_io(FileIO* io)
 {
-	memset(io, 0, sizeof(aiocb));
+	memset(io->cb, 0, sizeof(aiocb));
 		// discourage further use.
-	free(io);
+	free(io->cb);
+	io->cb = 0;
 	return 0;
 }
 
@@ -967,7 +971,7 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 			{
 				from_cache = false;
 
-				int ret = file_wait_io(slot->io, block, size);
+				int ret = file_wait_io(&slot->io, block, size);
 				if(ret < 0)
 					err = (ssize_t)ret;
 			}
@@ -1015,7 +1019,7 @@ if(from_cache && !temp)
 				actual_transferred_cnt += size;
 
 			if(!from_cache)
-				file_discard_io(slot->io);
+				file_discard_io(&slot->io);
 
 			if(temp)
 			{
