@@ -358,9 +358,12 @@ JSBool startGame(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned in
 	{
 		return JS_FALSE;
 	}
+
+	*rval=BOOLEAN_TO_JSVAL(JS_TRUE);
+
 	// Hosted MP Game
 	if (g_NetServer)
-		g_NetServer->StartGame();
+		*rval=BOOLEAN_TO_JSVAL(g_NetServer->StartGame() == 0);
 	// Joined MP Game: startGame is invalid - do nothing
 	else if (g_NetClient)
 	{
@@ -382,7 +385,6 @@ JSBool startGame(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned in
 		}
 	}
 
-	*rval=BOOLEAN_TO_JSVAL(JS_TRUE);
 	return JS_TRUE;
 }
 

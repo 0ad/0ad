@@ -22,7 +22,7 @@ CPlane::CPlane ()
 }
 
 //sets the plane equation from 3 points on that plane
-void CPlane::Set (CVector3D &p1, CVector3D &p2, CVector3D &p3)
+void CPlane::Set (const CVector3D &p1, const CVector3D &p2, const CVector3D &p3)
 {
 	CVector3D D1, D2;
 	CVector3D Norm;
@@ -39,7 +39,7 @@ void CPlane::Set (CVector3D &p1, CVector3D &p2, CVector3D &p3)
 
 //sets the plane equation from a normal and a point on 
 //that plane
-void CPlane::Set (CVector3D &norm, CVector3D &point)
+void CPlane::Set (const CVector3D &norm, const CVector3D &point)
 {
 	m_Norm = norm;
 

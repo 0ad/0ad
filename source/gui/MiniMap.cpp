@@ -47,13 +47,12 @@ CMiniMap::~CMiniMap()
 
 void CMiniMap::Draw()
 {
-    if(GetGUI() && g_Game)
+	// The terrain isn't actually initialized until the map is loaded, which
+	// happens when the game is started
+    if(GetGUI() && g_Game && g_Game->IsGameStarted())
     {
         if(!m_Handle)
             GenerateMiniMapTexture();
-
-        if(!m_Terrain || !m_UnitManager)
-            return;
 
         g_Renderer.BindTexture(0, m_Handle);
         glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
@@ -140,7 +139,7 @@ void CMiniMap::Draw()
 		CVector3D rayDir=g_Camera.m_Orientation.GetIn();
 
 		CVector3D hitPt[4];
-		for (i=0;i<4;i++) {
+		for (int i=0;i<4;i++) {
 			CVector3D rayDir=wPts[i]-rayOrigin;
 			rayDir.Normalize();
 
@@ -155,7 +154,7 @@ void CMiniMap::Draw()
 		// TODO: Calculate this correctly.
 		// Currently the rectangle isn't drawing to the proper scale.
 		float ViewRect[4][2];
-		for (i=0;i<4;i++) {
+		for (int i=0;i<4;i++) {
 			// convert to minimap space
 			float px=hitPt[i].X;
 			float pz=hitPt[i].Z;
@@ -222,8 +221,6 @@ void CMiniMap::GenerateMiniMapTexture()
 {
     m_Terrain = g_Game->GetWorld()->GetTerrain();
     m_UnitManager = g_Game->GetWorld()->GetUnitManager();
-    if(!m_Terrain)
-        return;
 
     m_Width = (u32)(m_CachedActualSize.right - m_CachedActualSize.left);
     m_Height = (u32)(m_CachedActualSize.bottom - m_CachedActualSize.top);
