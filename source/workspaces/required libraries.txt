@@ -17,7 +17,8 @@ $binaries := directory containing system/ and data/ .
 TODO:
 
 - OpenGL extensions:
-  download glext.h and put it in $GL .
+  download glext.h and put it in $GL.
+  download wglext.h and put it in $GL.
 
 - ZLib (v1.2.1)
   download zlib121.zip.
