@@ -265,6 +265,10 @@ Handle h_alloc(const u32 key, const uint type, /*const size_t user_size,*/ DTOR 
 				return 0;
 			}
 			hd->refs++;
+
+			if(puser)
+				*puser = hd;
+
 			return h;
 		}
 	}
