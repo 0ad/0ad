@@ -9,11 +9,36 @@
 //
 //***********************************************************
 
+
 #include "Matrix3D.h"
 
 CMatrix3D::CMatrix3D ()
 {
 	SetIdentity ();
+}
+
+CMatrix3D::CMatrix3D(float a11,float a12,float a13,float a14,float a21,float a22,float a23,float a24,
+			float a31,float a32,float a33,float a34,float a41,float a42,float a43,float a44)
+{
+	_11=a11;
+	_12=a12;
+	_13=a13;
+	_14=a14;
+
+	_21=a21;
+	_22=a22;
+	_23=a23;
+	_24=a24;
+
+	_31=a31;
+	_32=a32;
+	_33=a33;
+	_34=a34;
+
+	_41=a41;
+	_42=a42;
+	_43=a43;
+	_44=a44;
 }
 
 //Matrix multiplication
@@ -107,9 +132,9 @@ CMatrix3D CMatrix3D::operator * (const CMatrix3D &matrix) const
 //Matrix multiplication/assignment
 CMatrix3D &CMatrix3D::operator *= (const CMatrix3D &matrix)
 {
-	*this = (*this) * matrix;
+	CMatrix3D &Temp = (*this) * matrix;
 
-	return *this;
+	return Temp;
 }
 
 //Sets the identity matrix
@@ -202,7 +227,7 @@ void CMatrix3D::SetTranslation (float x, float y, float z)
 	_41=0.0f; _42=0.0f; _43=0.0f; _44=1.0f;
 }
 
-void CMatrix3D::SetTranslation (const CVector3D &vector)
+void CMatrix3D::SetTranslation (CVector3D &vector)
 {
 	SetTranslation (vector.X, vector.Y, vector.Z);	
 }
@@ -252,7 +277,7 @@ void CMatrix3D::Scale (float x_scale, float y_scale, float z_scale)
 
 //Returns the transpose of the matrix. For orthonormal
 //matrices, this is the same is the inverse matrix
-CMatrix3D CMatrix3D::GetTranspose ()
+CMatrix3D CMatrix3D::GetTranspose() const
 {
 	CMatrix3D Temp;
 
@@ -285,7 +310,7 @@ CMatrix3D CMatrix3D::GetTranspose ()
 }
 
 //Get a vector which points to the left of the matrix
-CVector3D CMatrix3D::GetLeft ()
+CVector3D CMatrix3D::GetLeft () const
 {
 	CVector3D Temp;
 
@@ -297,7 +322,7 @@ CVector3D CMatrix3D::GetLeft ()
 }
 
 //Get a vector which points up from the matrix
-CVector3D CMatrix3D::GetUp ()
+CVector3D CMatrix3D::GetUp () const
 {
 	CVector3D Temp;
 
@@ -309,7 +334,7 @@ CVector3D CMatrix3D::GetUp ()
 }
 
 //Get a vector which points to front of the matrix
-CVector3D CMatrix3D::GetIn ()
+CVector3D CMatrix3D::GetIn () const
 {
 	CVector3D Temp;
 
@@ -363,6 +388,34 @@ CVector3D CMatrix3D::Transform (CVector3D &vector)
 	return Temp;
 }
 
+//Transform a vector by this matrix
+CVector4D CMatrix3D::Transform(const CVector4D &vector) const
+{
+	CVector4D Temp;
+
+	Temp[0] = _11*vector[0] +
+			  _12*vector[1] +
+			  _13*vector[2] +
+			  _14*vector[3];
+
+	Temp[1] = _21*vector[0] +
+			  _22*vector[1] +
+			  _23*vector[2] +
+			  _24*vector[3];
+
+	Temp[2] = _31*vector[0] +
+			  _32*vector[1] +
+			  _33*vector[2] +
+			  _34*vector[3];
+
+	Temp[3] = _41*vector[0] +
+			  _42*vector[1] +
+			  _43*vector[2] +
+			  _44*vector[3];
+
+	return Temp;
+}
+
 //Only rotate (not translate) a vector by this matrix
 CVector3D CMatrix3D::Rotate (CVector3D &vector)
 {
@@ -381,4 +434,91 @@ CVector3D CMatrix3D::Rotate (CVector3D &vector)
 			 _33*vector.Z;
 
 	return Temp;
+}
+
+
+void CMatrix3D::Invert(CMatrix3D& dst) const
+{
+	float tmp[12];	// temp array for pairs 
+	float src[16];	// array of transpose source matrix 
+	float det;		// determinant 
+	
+	// transpose matrix 
+	for (int i = 0; i < 4; ++i) {
+		src[i] = _data[i*4];
+		src[i + 4] = _data[i*4 + 1];
+		src[i + 8] = _data[i*4 + 2];
+		src[i + 12] = _data[i*4 + 3];
+	}
+
+	// calculate pairs for first 8 elements (cofactors) 
+	tmp[0] = src[10] * src[15];
+	tmp[1] = src[11] * src[14];
+	tmp[2] = src[9] * src[15];
+	tmp[3] = src[11] * src[13];
+	tmp[4] = src[9] * src[14];
+	tmp[5] = src[10] * src[13];
+	tmp[6] = src[8] * src[15];
+	tmp[7] = src[11] * src[12];
+	tmp[8] = src[8] * src[14];
+	tmp[9] = src[10] * src[12];
+	tmp[10] = src[8] * src[13];
+	tmp[11] = src[9] * src[12];
+	
+	// calculate first 8 elements (cofactors)
+	dst._data[0] = tmp[0]*src[5] + tmp[3]*src[6] + tmp[4]*src[7];
+	dst._data[0] -= tmp[1]*src[5] + tmp[2]*src[6] + tmp[5]*src[7];
+	dst._data[1] = tmp[1]*src[4] + tmp[6]*src[6] + tmp[9]*src[7];
+	dst._data[1] -= tmp[0]*src[4] + tmp[7]*src[6] + tmp[8]*src[7];
+	dst._data[2] = tmp[2]*src[4] + tmp[7]*src[5] + tmp[10]*src[7];
+	dst._data[2] -= tmp[3]*src[4] + tmp[6]*src[5] + tmp[11]*src[7];
+	dst._data[3] = tmp[5]*src[4] + tmp[8]*src[5] + tmp[11]*src[6];
+	dst._data[3] -= tmp[4]*src[4] + tmp[9]*src[5] + tmp[10]*src[6];
+	dst._data[4] = tmp[1]*src[1] + tmp[2]*src[2] + tmp[5]*src[3];
+	dst._data[4] -= tmp[0]*src[1] + tmp[3]*src[2] + tmp[4]*src[3];
+	dst._data[5] = tmp[0]*src[0] + tmp[7]*src[2] + tmp[8]*src[3];
+	dst._data[5] -= tmp[1]*src[0] + tmp[6]*src[2] + tmp[9]*src[3];
+	dst._data[6] = tmp[3]*src[0] + tmp[6]*src[1] + tmp[11]*src[3];
+	dst._data[6] -= tmp[2]*src[0] + tmp[7]*src[1] + tmp[10]*src[3];
+	dst._data[7] = tmp[4]*src[0] + tmp[9]*src[1] + tmp[10]*src[2];
+	dst._data[7] -= tmp[5]*src[0] + tmp[8]*src[1] + tmp[11]*src[2];
+	
+	// calculate pairs for second 8 elements (cofactors) 
+	tmp[0] = src[2]*src[7];
+	tmp[1] = src[3]*src[6];
+	tmp[2] = src[1]*src[7];
+	tmp[3] = src[3]*src[5];
+	tmp[4] = src[1]*src[6];
+	tmp[5] = src[2]*src[5];
+	tmp[6] = src[0]*src[7];
+	tmp[7] = src[3]*src[4];
+	tmp[8] = src[0]*src[6];
+	tmp[9] = src[2]*src[4];
+	tmp[10] = src[0]*src[5];
+	tmp[11] = src[1]*src[4];
+
+	// calculate second 8 elements (cofactors) 
+	dst._data[8] = tmp[0]*src[13] + tmp[3]*src[14] + tmp[4]*src[15];
+	dst._data[8] -= tmp[1]*src[13] + tmp[2]*src[14] + tmp[5]*src[15];
+	dst._data[9] = tmp[1]*src[12] + tmp[6]*src[14] + tmp[9]*src[15];
+	dst._data[9] -= tmp[0]*src[12] + tmp[7]*src[14] + tmp[8]*src[15];
+	dst._data[10] = tmp[2]*src[12] + tmp[7]*src[13] + tmp[10]*src[15];
+	dst._data[10]-= tmp[3]*src[12] + tmp[6]*src[13] + tmp[11]*src[15];
+	dst._data[11] = tmp[5]*src[12] + tmp[8]*src[13] + tmp[11]*src[14];
+	dst._data[11]-= tmp[4]*src[12] + tmp[9]*src[13] + tmp[10]*src[14];
+	dst._data[12] = tmp[2]*src[10] + tmp[5]*src[11] + tmp[1]*src[9];
+	dst._data[12]-= tmp[4]*src[11] + tmp[0]*src[9] + tmp[3]*src[10];
+	dst._data[13] = tmp[8]*src[11] + tmp[0]*src[8] + tmp[7]*src[10];
+	dst._data[13]-= tmp[6]*src[10] + tmp[9]*src[11] + tmp[1]*src[8];
+	dst._data[14] = tmp[6]*src[9] + tmp[11]*src[11] + tmp[3]*src[8];
+	dst._data[14]-= tmp[10]*src[11] + tmp[2]*src[8] + tmp[7]*src[9];
+	dst._data[15] = tmp[10]*src[10] + tmp[4]*src[8] + tmp[9]*src[9];
+	dst._data[15]-= tmp[8]*src[9] + tmp[11]*src[10] + tmp[5]*src[8];
+
+	// calculate matrix inverse 
+	det=src[0]*dst._data[0]+src[1]*dst._data[1]+src[2]*dst._data[2]+src[3]*dst._data[3];
+	det = 1/det;
+	for ( int j = 0; j < 16; j++) {
+		dst._data[j] *= det;
+	}
 }
