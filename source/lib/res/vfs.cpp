@@ -1059,7 +1059,9 @@ static int VDir_reload(VDir* vd, const char* path, Handle)
 // are not returned by this handle. rationale: see VDir definition.
 Handle vfs_open_dir(const char* const v_dir)
 {
-	return h_alloc(H_VDir, v_dir, 0);
+	return h_alloc(H_VDir, v_dir, RES_NO_CACHE);
+		// must not cache, since the position in file array
+		// is advanced => not copy-equivalent.
 }
 
 
@@ -1448,6 +1450,9 @@ double t1=get_time();
 totaldata += size;
 	ssize_t nread = vfs_io(hf, size, &p);
 double t2=get_time();
+if(t2-t1 > 1.0)
+;
+else
 dt += t2-t1;
 	if(nread > 0)
 	{
@@ -1561,7 +1566,7 @@ int vfs_unmap(const Handle hf)
 
 struct IO
 {
-	FileIO fio;
+	FileIO io;
 };
 
 H_TYPE_DEFINE(IO);
@@ -1577,7 +1582,7 @@ static void IO_init(IO*, va_list)
 
 static void IO_dtor(IO* io)
 {
-	file_discard_io(&io->fio);
+	file_discard_io(io->io);
 }
 
 
@@ -1588,11 +1593,6 @@ static void IO_dtor(IO* io)
 // aio_result, which would terminate the read.
 static int IO_reload(IO* io, const char*, Handle)
 {
-	// IO was pending - see above.
-	if(io->fio.cb->aio_buf)
-		return -1;
-
-	// ok
 	return 0;
 }
 
@@ -1606,8 +1606,17 @@ Handle vfs_start_io(Handle hf, off_t ofs, size_t size, void* buf)
 
 	H_DEREF(hf, VFile, vf);
 	if(vf_flags(vf) & VF_ZIP)
-		return zip_start_io(&vf->zf, ofs, size, buf, &io->fio);
-	return file_start_io(&vf->f, ofs, size, buf, &io->fio);
+		return zip_start_io(&vf->zf, ofs, size, buf, &io->io);
+	return file_start_io(&vf->f, ofs, size, buf, &io->io);
+}
+
+
+// indicates if the IO referenced by <io> has completed.
+// return value: 0 if pending, 1 if complete, < 0 on error.
+inline int vfs_io_complete(Handle hio)
+{
+	H_DEREF(hio, IO, io);
+	return file_io_complete(io->io);
 }
 
 
@@ -1616,7 +1625,7 @@ Handle vfs_start_io(Handle hf, off_t ofs, size_t size, void* buf)
 inline int vfs_wait_io(Handle hio, void*& p, size_t& size)
 {
 	H_DEREF(hio, IO, io);
-	return file_wait_io(&io->fio, p, size);
+	return file_wait_io(io->io, p, size);
 }
 
 
