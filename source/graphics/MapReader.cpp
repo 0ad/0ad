@@ -149,7 +149,10 @@ void CMapReader::ApplyData(CFileUnpacker& unpacker, CTerrain *pTerrain, CUnitMan
 		}
 	}
 
-	// empty out existing units
+	// remove all existing entities (by recreating the entity manager)
+	delete &g_EntityManager;
+	new CEntityManager();
+	// delete all remaining non-entity units
 	pUnitMan->DeleteAll();
 	
 	// add new objects

@@ -2,13 +2,10 @@
 
 #include "XMLWriter.h"
 
-// TODO: (MT) Someone who knows what this is supposed to do, please take a look at CPlayer and make sure it's doing what it's supposed to.
-
-#include "Player.h"
 #include "ps/CLogger.h"
 #include "lib/res/vfs.h"
 
-// TODO: Write to the VFS handle all the time frequently, instead of buffering
+// TODO (maybe): Write to the VFS handle frequently, instead of buffering
 // the entire file, so that large files get written faster.
 
 enum { EL_ATTR, EL_TEXT, EL_SUBEL };
@@ -145,7 +142,11 @@ template <> void XMLWriter_File::ElementAttribute<CStr>(const char* name, const 
 	}
 }
 
-// Attribute/setting value-to-string template specialisations:
+// Attribute/setting value-to-string template specialisations.
+//
+// These only deal with basic types. Anything more complicated should
+// be converted into a basic type by whatever is making use of XMLWriter,
+// to keep game-related logic out of the not-directly-game-related code here.
 
 // Use CStr's conversion for most types:
 #define TYPE2(ID_T, ARG_T) \
@@ -163,12 +164,10 @@ TYPE(double)
 // Weird - I know ;-)
 TYPE2(const char *, char const* const&) 
 
+// Encode Unicode strings as UTF-8 (though that will only be correct if
+// the encoding was set to "utf-8"; it'll look a little odd if you store
+// Unicode strings in an iso-8859-1 file, so please don't do that)
 template <> void XMLWriter_File::ElementAttribute<CStrW>(const char* name, const CStrW& value, bool newelement)
 {
 	ElementAttribute(name, value.utf8(), newelement);
-}
-
-template <> void XMLWriter_File::ElementAttribute<CPlayer*>(const char* name, CPlayer*const & value, bool newelement)
-{
-	ElementAttribute(name, value->GetPlayerID(), newelement);
 }

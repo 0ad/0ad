@@ -25,7 +25,7 @@ protected:
 
 public:
 	/*
-		Note: This constructer takes over ownership of the passed pipe end. It
+		Note: This constructor takes over ownership of the passed pipe end. It
 		should not be freed by the caller, and should be heap-allocated.
 	 */
 	inline CNetSession(MessageHandler *pMsgHandler=NULL):

@@ -92,7 +92,7 @@ CModelDef* CModelDef::Load(const char* filename)
 				}
 			}
 		}
-	} catch (...) {
+	} catch (CFileUnpacker::CFileEOFError) {
 		delete mdef;
 		throw CFileUnpacker::CFileEOFError();
 	}

@@ -18,6 +18,9 @@
 #include "MeshManager.h"
 #include "lib/res/ogl_tex.h"
 
+#include "ps/CLogger.h"
+#define LOG_CATEGORY "graphics"
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Constructor
 CModel::CModel() 
@@ -249,6 +252,8 @@ void CModel::GenerateBoneMatrices()
 {
 	if (!m_Anim || !m_BoneMatrices) return;
 
+	assert(m_pModelDef->GetNumBones() == m_Anim->m_AnimDef->GetNumKeys());
+
 	m_Anim->m_AnimDef->BuildBoneMatrices(m_AnimTime,m_BoneMatrices);
 
 	const CMatrix3D& transform=GetTransform();
@@ -282,8 +287,9 @@ void CModel::GenerateBoneMatrices()
 // return false on error, else true
 bool CModel::SetAnimation(CSkeletonAnim* anim, bool once)
 {
-	m_Anim=anim;
-	if (m_Anim) {
+	m_Anim=NULL; // in case something fails
+
+	if (anim) {
 		m_Flags &= ~MODELFLAG_NOLOOPANIMATION;
 		if( once )
 			m_Flags |= MODELFLAG_NOLOOPANIMATION;
@@ -293,8 +299,10 @@ bool CModel::SetAnimation(CSkeletonAnim* anim, bool once)
 			return false;
 		}
 
-		if (m_Anim->m_AnimDef->GetNumKeys()!=m_pModelDef->GetNumBones()) {
+		if (anim->m_AnimDef->GetNumKeys()!=m_pModelDef->GetNumBones()) {
 			// mismatch between model's skeleton and animation's skeleton
+			LOG(ERROR, LOG_CATEGORY, "Mismatch between model's skeleton and animation's skeleton (%d model bones != %d animation keys)",
+										m_pModelDef->GetNumBones(), anim->m_AnimDef->GetNumKeys());
 			return false;
 		}
 
@@ -305,6 +313,8 @@ bool CModel::SetAnimation(CSkeletonAnim* anim, bool once)
 		// start anim from beginning 
 		m_AnimTime=0; 
 	} 
+
+	m_Anim=anim;
 
 	return true;
 }

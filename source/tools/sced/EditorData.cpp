@@ -161,6 +161,9 @@ static bool saveTGA(const char* filename,int width,int height,unsigned char* dat
 // Init: perform one time initialisation of the editor
 bool CEditorData::Init()
 {
+	// Set attributes for the game
+	g_GameAttributes.m_MapFile = L""; // start without a map
+
 	// Set up the actual game
 	g_Game = new CGame();
 	PSRETURN ret = g_Game->StartGame(&g_GameAttributes);

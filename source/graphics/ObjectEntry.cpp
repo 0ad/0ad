@@ -73,28 +73,28 @@ bool CObjectEntry::BuildModel()
 	m_Model->CalcObjectBounds();
 
 	// load animations
-	for( uint t = 0; t < m_Animations.size(); t++ )
+	for (uint t = 0; t < m_Animations.size(); t++)
 	{
-		if( m_Animations[t].m_FileName.Length() > 0 )
+		if (m_Animations[t].m_FileName.Length() > 0)
 		{
 			const char* animfilename = m_Animations[t].m_FileName.c_str();
 			m_Animations[t].m_AnimData = m_Model->BuildAnimation(animfilename,m_Animations[t].m_Speed);
 
 			CStr AnimNameLC = m_Animations[t].m_AnimName.LowerCase();
 
-			if( AnimNameLC == "idle" )
+			if (AnimNameLC == "idle")
 				m_IdleAnim = m_Animations[t].m_AnimData;
 			else
-			if( AnimNameLC == "walk" )
+			if (AnimNameLC == "walk")
 				m_WalkAnim = m_Animations[t].m_AnimData;
 			else
-			if( AnimNameLC == "attack" )
+			if (AnimNameLC == "attack")
 				m_MeleeAnim = m_Animations[t].m_AnimData;
 			else
-			if( AnimNameLC == "death" )
+			if (AnimNameLC == "death")
 				m_DeathAnim = m_Animations[t].m_AnimData;
 			else
-			if( AnimNameLC == "decay" )
+			if (AnimNameLC == "decay")
 				m_CorpseAnim = m_Animations[t].m_AnimData;
 			//else
 			//	debug_out("Invalid animation name '%s'\n", (const char*)AnimNameLC);
@@ -106,7 +106,8 @@ bool CObjectEntry::BuildModel()
 		}
 	}
 	// start up idling
-	m_Model->SetAnimation( m_IdleAnim );
+	if (! m_Model->SetAnimation(m_IdleAnim))
+		LOG(ERROR, LOG_CATEGORY, "Failed to set idle animation in model \"%s\"", modelfilename);
 
 	// build props - TODO, RC - need to fix up bounds here
 	for (uint p=0;p<m_Props.size();p++) {

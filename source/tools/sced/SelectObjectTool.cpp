@@ -75,11 +75,7 @@ void CSelectObjectTool::SelectObject(unsigned int flags,int px,int py)
 // RenderUnitBounds: render a bounding box round given unit
 void CSelectObjectTool::RenderUnitBounds(CUnit* unit)
 {
-	glPushMatrix();
-	const CMatrix3D& transform=unit->GetModel()->GetTransform();
-	glMultMatrixf(&transform._11);	
-
-	const CBound& bounds=unit->GetModel()->GetObjectBounds();
+	const CBound& bounds=unit->GetModel()->GetBounds();
 
 	glBegin(GL_LINE_LOOP);
 	glVertex3f(bounds[0].X,bounds[0].Y,bounds[0].Z);
@@ -108,8 +104,6 @@ void CSelectObjectTool::RenderUnitBounds(CUnit* unit)
 	glVertex3f(bounds[1].X,bounds[1].Y,bounds[1].Z);
 	glVertex3f(bounds[1].X,bounds[1].Y,bounds[0].Z);
 	glEnd();
-
-	glPopMatrix();
 }
 
 
