@@ -1,6 +1,6 @@
 //***********************************************************
 //
-// Name:		Vector3D.h
+// Name:		Vector3D.H
 // Last Update:	28/1/02
 // Author:		Poya Manouchehri
 //
@@ -25,24 +25,30 @@ class CVector3D
 		CVector3D ();
 		CVector3D (float x, float y, float z);
 
-		int operator == (CVector3D &vector);
-		int operator != (CVector3D &vector);
-		int operator ! ();
-		
+		int operator == (const CVector3D &vector) const ;
+		int operator != (const CVector3D &vector) const ;
+		int operator ! () const ; 
+
+		float& operator[](int index) { return *((&X)+index); }
+		const float& operator[](int index) const { return *((&X)+index); }
+
 		//vector addition
-		CVector3D operator + (const CVector3D &vector) const;
+		CVector3D operator + (const CVector3D &vector) const ;
 		//vector addition/assignment
 		CVector3D &operator += (const CVector3D &vector);
 
 		//vector subtraction
-		CVector3D operator - (const CVector3D &vector) const;
+		CVector3D operator - (const CVector3D &vector) const ;
 		//vector subtraction/assignment
 		CVector3D &operator -= (const CVector3D &vector);
 		
 		//scalar multiplication
-		CVector3D operator * (float value);
+		CVector3D operator * (float value) const ;
 		//scalar multiplication/assignment
-		CVector3D operator *= (float value);
+		CVector3D& operator *= (float value);
+
+		// negation
+		CVector3D operator-() const;
 
 	public:
 		void Set (float x, float y, float z);
@@ -54,11 +60,11 @@ class CVector3D
 		CVector3D Cross (const CVector3D &vector) const;
 
 		//Returns length of the vector
-		float GetLength ();
+		float GetLength () const;
 		void Normalize ();
 
 		//Returns a color which describes the vector
-		SColor4ub ConvertToColor (float alpha_factor);
+		SColor4ub ConvertToColor (float alpha_factor) const;
 };
 
 

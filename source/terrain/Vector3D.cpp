@@ -23,7 +23,7 @@ CVector3D::CVector3D (float x, float y, float z)
 	Z = z;
 }
 
-int CVector3D::operator == (CVector3D &vector)
+int CVector3D::operator == (const CVector3D &vector) const 
 {
 	if (X != vector.X ||
 		Y != vector.Y ||
@@ -34,7 +34,7 @@ int CVector3D::operator == (CVector3D &vector)
 	return 1;
 }
 
-int CVector3D::operator != (CVector3D &vector)
+int CVector3D::operator != (const CVector3D &vector) const 
 {
 	if (X != vector.X ||
 		Y != vector.Y ||
@@ -45,7 +45,7 @@ int CVector3D::operator != (CVector3D &vector)
 	return 0;
 }
 
-int CVector3D::operator ! ()
+int CVector3D::operator ! () const 
 {
 	if (X != 0.0f ||
 		Y != 0.0f ||
@@ -57,7 +57,7 @@ int CVector3D::operator ! ()
 }
 
 //vector addition
-CVector3D CVector3D::operator + (const CVector3D &vector) const
+CVector3D CVector3D::operator + (const CVector3D &vector) const 
 {
 	CVector3D Temp;
 
@@ -79,7 +79,7 @@ CVector3D &CVector3D::operator += (const CVector3D &vector)
 }
 
 //vector subtraction
-CVector3D CVector3D::operator - (const CVector3D &vector) const
+CVector3D CVector3D::operator - (const CVector3D &vector) const 
 {
 	CVector3D Temp;
 
@@ -90,8 +90,19 @@ CVector3D CVector3D::operator - (const CVector3D &vector) const
 	return Temp;
 }
 
+//vector negation
+CVector3D CVector3D::operator-() const 
+{
+	CVector3D Temp;
+
+	Temp.X = -X;
+	Temp.Y = -Y;
+	Temp.Z = -Z;
+
+	return Temp;
+}
 //vector subtrcation/assignment
-CVector3D &CVector3D::operator -= (const CVector3D &vector)
+CVector3D &CVector3D::operator -= (const CVector3D &vector) 
 {
 	X -= vector.X;
 	Y -= vector.Y;
@@ -101,7 +112,7 @@ CVector3D &CVector3D::operator -= (const CVector3D &vector)
 }
 
 //scalar multiplication
-CVector3D CVector3D::operator * (float value)
+CVector3D CVector3D::operator * (float value) const 
 {
 	CVector3D Temp;
 
@@ -113,7 +124,7 @@ CVector3D CVector3D::operator * (float value)
 }
 
 //scalar multiplication/assignment
-CVector3D CVector3D::operator *= (float value)
+CVector3D& CVector3D::operator *= (float value)
 {
 	X *= value;
 	Y *= value;
@@ -135,7 +146,7 @@ void CVector3D::Clear ()
 }
 
 //Dot product
-float CVector3D::Dot (const CVector3D &vector) const
+float CVector3D::Dot (const CVector3D &vector) const 
 {
 	return ( X * vector.X +
 			 Y * vector.Y +
@@ -143,7 +154,7 @@ float CVector3D::Dot (const CVector3D &vector) const
 }
 
 //Cross product
-CVector3D CVector3D::Cross (const CVector3D &vector) const
+CVector3D CVector3D::Cross (const CVector3D &vector) const 
 {
 	CVector3D Temp;
 
@@ -154,7 +165,7 @@ CVector3D CVector3D::Cross (const CVector3D &vector) const
 	return Temp;
 }
 
-float CVector3D::GetLength ()
+float CVector3D::GetLength () const 
 {
 	return sqrtf ( SQR(X) + SQR(Y) + SQR(Z) );
 }
@@ -168,7 +179,7 @@ void CVector3D::Normalize ()
 	Z *= scale;
 }
 
-SColor4ub CVector3D::ConvertToColor (float alpha_factor)
+SColor4ub CVector3D::ConvertToColor (float alpha_factor) const 
 {
     SColor4ub color;
 
