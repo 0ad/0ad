@@ -530,6 +530,7 @@ void GUIRenderer::Draw(DrawCalls &Calls)
 {
 	// Called every frame, to draw the object (based on cached calculations)
 
+	glDisable(GL_BLEND);
 
 	// Iterate through each DrawCall, and execute whatever drawing code is being called
 	for (DrawCalls::const_iterator cit = Calls.begin(); cit != Calls.end(); ++cit)
