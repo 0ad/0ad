@@ -99,7 +99,9 @@ static SHotkeyInfo hotkeyInfo[] =
 	{ HOTKEY_ORDER_QUEUE, "order.queue", SDLK_LSHIFT, SDLK_RSHIFT },
 	{ HOTKEY_CONTEXTORDER_NEXT, "contextorder.next", SDLK_RIGHTBRACKET, 0 },
 	{ HOTKEY_CONTEXTORDER_PREVIOUS, "contextorder.previous", SDLK_LEFTBRACKET, 0 },
-	{ HOTKEY_HIGHLIGHTALL, "highlightall", SDLK_o, 0 }
+	{ HOTKEY_HIGHLIGHTALL, "highlightall", SDLK_o, 0 },
+
+	{ HOTKEY_PLAYMUSIC, "playmusic", SDLK_p, 0 }
 };
 
 /* SDL-type ends */
