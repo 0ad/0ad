@@ -180,9 +180,13 @@ struct Req
 
 	// read into a separate align buffer if necessary
 	// (note: unaligned writes aren't supported. see aio_rw)
-	size_t pad;		// offset from starting sector
-	void* buf;		// reused; resize if too small
+	void* buf;		// reused; resized if too small
 	size_t buf_size;
+
+	HANDLE hFile;
+
+	size_t pad;		// offset from starting sector
+	bool use_align_buffer;
 };
 
 
@@ -195,7 +199,7 @@ struct Req
 // req -> cb via Req.cb pointer.
 
 
-const int MAX_REQS = 16;
+const int MAX_REQS = 8;
 static Req reqs[MAX_REQS];
 
 
@@ -439,6 +443,9 @@ debug_out("aio_close fd=%d\n", fd);
 // cb->aio_offset must be 0.
 static int aio_rw(struct aiocb* cb)
 {
+	int ret = -1;
+	Req* r = 0;
+
 #ifdef PARANOIA
 debug_out("aio_rw cb=%p\n", cb);
 #endif
@@ -449,110 +456,128 @@ debug_out("aio_rw cb=%p\n", cb);
 	if(!cb || cb->aio_lio_opcode == LIO_NOP)
 		return 0;
 
-	const bool is_write = cb->aio_lio_opcode == LIO_WRITE;
-
-	HANDLE h = aio_h_get(cb->aio_fildes);
-	if(h == INVALID_HANDLE_VALUE)
-	{
-		debug_warn("aio_rw: associated handle is invalid");
-		return -EINVAL;
-	}
-
+	// fail if aiocb is already in use (forbidden by SUSv3)
 	if(req_find(cb))
 	{
-		// SUSv3 says this has undefined results; we fail the attempt.
 		debug_warn("aio_rw: aiocb is already in use");
-		return -1;
+		goto fail;
 	}
 
-	Req* r = req_alloc(cb);
+	// allocate IO request
+	r = req_alloc(cb);
 	if(!r)
 	{
 		debug_warn("aio_rw: cannot allocate a Req (too many concurrent IOs)");
-		return -1;
+		goto fail;
 	}
 
-	size_t ofs = 0;
-	size_t size = cb->aio_nbytes;
-	void* buf = (void*)cb->aio_buf;	// from volatile void*
+	// extract aiocb fields for convenience
+	const bool is_write = (cb->aio_lio_opcode == LIO_WRITE);
+	const int fd        = cb->aio_fildes;
+	const size_t size   = cb->aio_nbytes;
+	const off_t ofs     = cb->aio_offset;
+	void* const buf     = (void*)cb->aio_buf; // from volatile void*
+	assert(buf);
 
-	// check if h is a normal file, as opposed to a socket
-	// (they need offset to be 0)
-	bool is_file = GetFileType(h) == FILE_TYPE_DISK;
-
-	// socket: no alignment calculation necessary
-	if(!is_file)
-		cb->aio_offset = 0;
-	else
+	HANDLE h = aio_h_get(fd);
+	if(h == INVALID_HANDLE_VALUE)
 	{
-		// calculate alignment
-		r->pad = cb->aio_offset % sector_size;		// offset to start of sector
-		ofs = cb->aio_offset - r->pad;
-		size += r->pad + sector_size-1;
-		size &= ~(sector_size-1);	// align (sector_size = 2**n)
+		debug_warn("aio_rw: associated handle is invalid");
+		ret = -EINVAL;
+		goto fail;
+	}
+	const bool is_file = (GetFileType(h) == FILE_TYPE_DISK);
+
+	r->hFile = h;
+	r->pad = 0;
+	r->use_align_buffer = false;
+
+	//
+	// align
+	//
+
+	size_t actual_ofs = 0;
+		// assume socket; if file, set below
+	size_t actual_size = size;
+	void* actual_buf = buf;
+
+	// leave offset 0 if h is a socket (don't support seeking);
+	// otherwise, calculate aligned offset
+	if(is_file)
+	{
+		r->pad = ofs % sector_size;		// offset to start of sector
+		actual_ofs = ofs - r->pad;
+		actual_size = round_up(size + r->pad, sector_size);
+
+		const bool misaligned = (size != actual_size);
+			// either ofs or size is unaligned
+		const bool buf_misaligned = ((uintptr_t)buf % sector_size != 0);
 
 		// not aligned
-		if(r->pad || (uintptr_t)buf % sector_size)
+		if(misaligned || buf_misaligned)
 		{
 			// expand current align buffer if too small
-			if(r->buf_size < size)
+			if(r->buf_size < actual_size)
 			{
-				void* buf2 = realloc(r->buf, size);
+				void* buf2 = realloc(r->buf, actual_size);
 				if(!buf2)
-					return -ENOMEM;
+				{
+					ret = -ENOMEM;
+					goto fail;
+				}
 				r->buf = buf2;
-				r->buf_size = size;
+				r->buf_size = actual_size;
 			}
 
 			if(is_write)
 			{
 				// file offset isn't aligned. we don't support this -
 				// we'd have to read padding, then write our data. ugh.
-				if(r->pad)
-					return -EINVAL;
+				if(misaligned)
+				{
+					ret = -EINVAL;
+					goto fail;
+				}
 				// only the buffer is misaligned - copy data to align buffer
 				else
-					memcpy(r->buf, buf, cb->aio_nbytes);
+					memcpy(r->buf, buf, actual_size);
 			}
 
-			buf = r->buf;
+			actual_buf = r->buf;
+			r->use_align_buffer = true;
 		}
 	}
 
-	r->ovl.Internal = r->ovl.InternalHigh = 0;
-
-	// a bit tricky: this should work even if size_t grows to 64 bits.
-	//
-	// we don't use OVERLAPPED.Pointer because it's not defined in
-	// previous platform sdk versions, and i can't figure out how
-	// determine the sdk version installed. can't just check for the
-	// vc6/vc7 compiler - vc6 with the old sdk may have been upgraded
-	// to the vc7.1 compiler.
-	//
-	// this assumes little endian, but we're windows-specific here anyway.
-	*(size_t*)&r->ovl.Offset = ofs;
-
-	assert(cb->aio_buf != 0);
-	DWORD size32 = (DWORD)(size & 0xffffffff);
-
+	// set OVERLAPPED fields
 	ResetEvent(r->ovl.hEvent);
+	r->ovl.Internal = r->ovl.InternalHigh = 0;
+	*(size_t*)&r->ovl.Offset = actual_ofs;
+		// HACK: use this instead of OVERLAPPED.Pointer,
+		// which isn't defined in older headers (e.g. VC6).
+		// 64-bit clean, but endian dependent!
 
+	DWORD size32 = (DWORD)(actual_size & 0xffffffff);
 	BOOL ok;
-	if(cb->aio_lio_opcode == LIO_READ)
-		ok =  ReadFile(h, buf, size32, 0, &r->ovl);
+	if(is_write)
+		ok = WriteFile(h, actual_buf, size32, 0, &r->ovl);
 	else
-		ok = WriteFile(h, buf, size32, 0, &r->ovl);
+		ok =  ReadFile(h, actual_buf, size32, 0, &r->ovl);		
 
 	// "pending" isn't an error
 	if(GetLastError() == ERROR_IO_PENDING)
-	{
-		SetLastError(0);
 		ok = true;
-	}
 
+	if(ok)
+		ret = 0;
+
+done:
 	WIN_RESTORE_LAST_ERROR;
 
-	return ok? 0 : -1;
+	return ret;
+
+fail:
+	req_free(r);
+	goto done;
 }
 
 
@@ -579,6 +604,7 @@ int lio_listio(int mode, struct aiocb* const cbs[], int n, struct sigevent* se)
 	for(int i = 0; i < n; i++)
 	{
 		int ret = aio_rw(cbs[i]);		// aio_rw checks for 0 param
+		// don't CHECK_ERR - want to try to issue each one
 		if(ret < 0)
 			err = ret;
 	}
@@ -634,9 +660,12 @@ debug_out("aio_return cb=%p\n", cb);
 
 	assert(r->ovl.Internal == 0 && "aio_return with transfer in progress");
 
-	// read wasn't aligned - need to copy to user's buffer
-	const size_t _buf = (char*)cb->aio_buf - (char*)0;
-	if(r->pad || _buf % sector_size)
+	BOOL wait = FALSE;	// should already be done!
+	DWORD bytes_transferred;
+	GetOverlappedResult(r->hFile, &r->ovl, &bytes_transferred, wait);
+
+	// we read into align buffer - copy to user's buffer
+	if(r->use_align_buffer)
 		memcpy((void*)cb->aio_buf, (u8*)r->buf + r->pad, cb->aio_nbytes);
 
 	// TODO: this copies data back into original buffer from align buffer
@@ -644,7 +673,7 @@ debug_out("aio_return cb=%p\n", cb);
 
 	req_free(r);
 
-	return (ssize_t)cb->aio_nbytes;
+	return (ssize_t)bytes_transferred;
 }
 
 
