@@ -92,7 +92,7 @@ function startLoadingScreen()
 	getGUIObjectByName("loading_screen_tip").caption = "Wise man once say ...\nHe who thinks slow, he act in haste, be rash and quick and foolish. But he that thinks too much, acts too slowly. The stupid always win, Commandersan. Remember that. You are tiny grasshopper.";
 
 	// Begin game session.
-	setTimeout( loadSession(), 0 );
+	setTimeout( loadSession, 5 );
 }
 
 // ====================================================================
