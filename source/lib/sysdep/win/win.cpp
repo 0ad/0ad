@@ -231,3 +231,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	pre_main_init();
 	return main(__argc, __argv);
 }
+
+
+
+
+
+
+
+#pragma comment(lib, "delayimp.lib")
