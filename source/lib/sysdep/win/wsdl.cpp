@@ -1,22 +1,21 @@
-/*
- * emulation of a subset of SDL and GLUT for Win32
- *
- * Copyright (c) 2003 Jan Wassenberg
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * General Public License for more details.
- *
- * Contact info:
- *   Jan.Wassenberg@stud.uni-karlsruhe.de
- *   http://www.stud.uni-karlsruhe.de/~urkt/
- */
+// emulation of a subset of SDL and GLUT for Win32
+//
+// Copyright (c) 2003 Jan Wassenberg
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License as
+// published by the Free Software Foundation; either version 2 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// General Public License for more details.
+//
+// Contact info:
+//   Jan.Wassenberg@stud.uni-karlsruhe.de
+//   http://www.stud.uni-karlsruhe.de/~urkt/
+
  
 // TODO: should use GetMessage when not active to reduce CPU load.
 // where to do this?
@@ -34,17 +33,31 @@
 #include "lib.h"
 #include "win_internal.h"
 
+#include "ogl.h"	// needed to pull in the delay-loaded opengl32.dll
+
 #include "SDL_vkeys.h"
 /*/*#include "ps/Hotkey.h"*/
 
+
+#include <ddraw.h>
 #include <process.h>	// _beginthreadex
 #include <assert.h>
 #include <stdio.h>
 #include <math.h>
 
+// for easy removal of DirectDraw dependency (used to query total video mem)
+#define DDRAW
+
 #ifdef _MSC_VER
 #pragma comment(lib, "user32.lib")
 #pragma comment(lib, "gdi32.lib")
+
+// don't bother with dynamic linking -
+// DirectX is present in all Windows versions since Win95.
+#ifdef DDRAW
+# pragma comment(lib, "ddraw.lib")
+#endif
+
 #endif
 
 
@@ -75,14 +88,14 @@ static HINSTANCE hInst = 0;
 	// returned by GetModuleHandle and used in kbd hook and window creation. 
 
 
-HWND hWnd = (HWND)INVALID_HANDLE_VALUE;		/* make available to the app for ShowWindow calls, etc.? */
-											/* MT: Yes, please. Clipboard calls need it, at least. */
+HWND hWnd = (HWND)INVALID_HANDLE_VALUE;
+											
 
-static DEVMODE dm;			/* current video mode */
+static DEVMODE dm;			// current video mode
 static HDC hDC;
 static HGLRC hGLRC;
 
-static int depth_bits = 24;	/* depth buffer size; set via SDL_GL_SetAttribute */
+static int depth_bits = 24;	// depth buffer size; set via SDL_GL_SetAttribute
 
 static u16 mouse_x, mouse_y;
 
@@ -90,10 +103,9 @@ static u16 mouse_x, mouse_y;
 static void gamma_swap(bool restore_org);
 
 
-/*
- * shared msg handler
- * SDL and GLUT have separate pumps; messages are handled there
- */
+// shared msg handler
+// SDL and GLUT have separate pumps; messages are handled there
+
 static LRESULT CALLBACK wndproc(HWND hWnd, unsigned int uMsg, WPARAM wParam, LPARAM lParam)
 {
 	if(is_shutdown)
@@ -132,6 +144,7 @@ static LRESULT CALLBACK wndproc(HWND hWnd, unsigned int uMsg, WPARAM wParam, LPA
 
 	case WM_CLOSE:
 		exit(0);
+		break;
 
 	// prevent moving, sizing, screensaver, and power-off in fullscreen mode
 	case WM_SYSCOMMAND:
@@ -143,6 +156,7 @@ static LRESULT CALLBACK wndproc(HWND hWnd, unsigned int uMsg, WPARAM wParam, LPA
 			case SC_MONITORPOWER:
 				if(fullscreen)
 					return 1;
+			default:;
 		}
 		break;
 
@@ -151,7 +165,11 @@ static LRESULT CALLBACK wndproc(HWND hWnd, unsigned int uMsg, WPARAM wParam, LPA
 	case WM_NCHITTEST:
 		if(fullscreen)
 			return HTCLIENT;
-		// else: fall through to DefWindowProc
+		break;
+
+	default:;
+		// can't call DefWindowProc here: some messages
+		// are only conditionally 'grabbed' (e.g. NCHITTEST)
 	}
 
 	return DefWindowProc(hWnd, uMsg, wParam, lParam);
@@ -169,7 +187,7 @@ static void init_vkmap(SDLKey (&VK_keymap)[256])
 {
 	int i;
 
-	/* Map the VK keysyms */
+	// Map the VK keysyms
 	for ( i=0; i<sizeof(VK_keymap)/sizeof(VK_keymap[0]); ++i )
 		VK_keymap[i] = SDLK_UNKNOWN;
 
@@ -248,7 +266,7 @@ static void init_vkmap(SDLKey (&VK_keymap)[256])
 
 inline SDLKey vkmap(int vk)
 {
-	static SDLKey VK_SDLKMap[256]; /* VK_SDLKMap[vk] == SDLK */
+	static SDLKey VK_SDLKMap[256]; // VK_SDLKMap[vk] == SDLK
 
 	ONCE( init_vkmap(VK_SDLKMap); );
 
@@ -576,18 +594,12 @@ void SDL_Quit()
 
 
 
-#include "ogl.h"
 
 
 
 
-
-
-
-/*
- * set video mode wxh:bpp if necessary.
- * w = h = bpp = 0 => no change.
- */
+// set video mode wxh:bpp if necessary.
+// w = h = bpp = 0 => no change.
 int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 {
 	int ret = 0;	// assume failure
@@ -595,46 +607,55 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 
 	fullscreen = (flags & SDL_FULLSCREEN) != 0;
 
-	/* get current mode settings */
+	// get current mode settings
 	memset(&dm, 0, sizeof(dm));
 	dm.dmSize = sizeof(dm);
 	EnumDisplaySettings(0, ENUM_CURRENT_SETTINGS, &dm);
-	int cur_w = dm.dmPelsWidth, cur_h = dm.dmPelsHeight;
+	int cur_w = (int)dm.dmPelsWidth, cur_h = (int)dm.dmPelsHeight;
 
+	// independent of resolution; app must always get bpp it wants
 	dm.dmBitsPerPel = bpp;
 	dm.dmFields = DM_BITSPERPEL;
 
-	/*
-	 * check if mode needs to be changed
-	 * (could split this out, but depends on fullscreen and dm)
-	 */
-	if(w != 0 && h != 0 && bpp != 0)
-		if(/* higher res mode needed */
-		   (w > cur_w || h > cur_h) ||
-		   /* fullscreen, and not exact mode */
-		   (fullscreen && (w != cur_w || h != cur_h)))
+	// check if resolution needs to be changed
+	// .. invalid: keep current settings
+	if(w <= 0 || h <= 0 || bpp <= 0)
+		goto keep;
+	// .. higher resolution mode needed
+	if(w > cur_w || h > cur_h)
+		goto change;
+	// .. fullscreen requested and not exact same mode set
+	if(fullscreen && (w != cur_w || h != cur_h))
 	{
-		dm.dmPelsWidth  = w;
-		dm.dmPelsHeight = h;
+change:
+		dm.dmPelsWidth  = (DWORD)w;
+		dm.dmPelsHeight = (DWORD)h;
 		dm.dmFields |= DM_PELSWIDTH|DM_PELSHEIGHT;
 	}
-	// mode set at first WM_ACTIVATE
+keep:
 
-	/*
-	 * window init
-	 * create new window every time (instead of once at startup), 'cause
-	 * pixel format isn't supposed to be changed more than once
-	 */
+	// the (possibly changed) mode will be (re)set at next WM_ACTIVATE
 
-	/* register window class */
+	//
+	// window init
+	// create new window every time (instead of once at startup), because
+	// pixel format isn't supposed to be changed more than once
+	//
+	
+	// register window class
 	WNDCLASS wc;
 	memset(&wc, 0, sizeof(wc));
 	wc.lpfnWndProc = wndproc;
-	wc.lpszClassName = "ogl";
+	wc.lpszClassName = "WSDL";
 	wc.hInstance = hInst;
-	RegisterClass(&wc);
+	ATOM class_atom = RegisterClass(&wc);
+	if(!class_atom)
+	{
+		debug_warn("SDL_SetVideoMode: RegisterClass failed");
+		return 0;
+	}
 
-	hWnd = CreateWindowEx(0, "ogl", APP_NAME, WS_POPUP|WS_VISIBLE, 0, 0, w, h, 0, 0, hInst, 0);
+	hWnd = CreateWindowEx(0, (LPCSTR)class_atom, APP_NAME, WS_POPUP|WS_VISIBLE, 0, 0, w, h, 0, 0, hInst, 0);
 	if(!hWnd)
 		return 0;
 
@@ -677,7 +698,7 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 	// GDI pixel format functions apparently require opengl to be loaded
 	// (may not have been done yet, if delay-loaded). call a gl function
 	// (no-op) to make sure.
-	glGetError();
+	(void)glGetError();
 
 	int pf = ChoosePixelFormat(hDC, &pfd);
 	if(!SetPixelFormat(hDC, pf, &pfd))
@@ -698,7 +719,7 @@ fail:
 }
 
 
-inline void SDL_GL_SwapBuffers()
+void SDL_GL_SwapBuffers()
 {
 	SwapBuffers(hDC);
 }
@@ -821,17 +842,6 @@ void SDL_WM_SetCaption(const char* title, const char* icon)
 
 
 
-#define DDRAW
-
-
-#ifdef DDRAW
-#include <ddraw.h>
-#ifdef _MSC_VER
-#pragma comment(lib, "ddraw.lib")
-	// for DirectDrawCreate. don't bother with dynamic linking -
-	// DirectX is present in all Windows versions since Win95.
-#endif
-#endif
 
 
 SDL_VideoInfo* SDL_GetVideoInfo()
@@ -847,7 +857,8 @@ SDL_VideoInfo* SDL_GetVideoInfo()
 		HRESULT hr = DirectDrawCreate(0, &dd, 0);
 		if(SUCCEEDED(hr) && dd != 0)
 		{
-			static DDCAPS caps;
+			DDCAPS caps;
+			memset(&caps, 0, sizeof(caps));
 			caps.dwSize = sizeof(caps);
 			hr = dd->GetCaps(&caps, 0);
 			if(SUCCEEDED(hr))
@@ -1010,11 +1021,11 @@ int SDL_ShowCursor(int toggle)
 
 
 
-static bool need_redisplay;	/* display callback should be called in next main loop iteration */
+static bool need_redisplay;	// display callback should be called in next main loop iteration
 
 
 
-/* glut callbacks */
+// glut callbacks
 static void (*idle)();
 static void (*display)();
 static void (*key)(int, int, int);
@@ -1075,7 +1086,7 @@ static int w, h, bpp, refresh;
 
 int glutGameModeString(const char* str)
 {
-	/* default = "don't care", in case string doesn't specify all values */
+	// default = "don't care", in case string doesn't specify all values
 	w = 0, h = 0, bpp = 0, refresh = 0;
 
 	sscanf(str, "%dx%d:%d@%d", &w, &h, &bpp, &refresh);
@@ -1084,8 +1095,7 @@ int glutGameModeString(const char* str)
 }
 
 
-/*
- */
+
 int glutEnterGameMode()
 {
 	return SDL_SetVideoMode(w, h, bpp, SDL_OPENGL|SDL_FULLSCREEN);
@@ -1106,13 +1116,12 @@ void glutSetCursor(int cursor)
 
 
 
-/*
- * GLUT message handler
- * message also goes to the shared wndproc
- *
- * not done in wndproc to separate GLUT and SDL;
- * split out of glutMainLoop for clarity.
- */
+
+// GLUT message handler
+// message also goes to the shared wndproc
+//
+// not done in wndproc to separate GLUT and SDL;
+// split out of glutMainLoop for clarity.
 static void glut_process_msg(MSG* msg)
 {
 	switch(msg->message)
@@ -1132,7 +1141,7 @@ static void glut_process_msg(MSG* msg)
 		break;
 
 	case WM_LBUTTONDOWN:
-	case WM_RBUTTONDOWN:	/* FIXME: only left/right clicks, assume GLUT_LEFT|RIGHT_BUTTON == 0, 1 */
+	case WM_RBUTTONDOWN:	// FIXME: only left/right clicks, assume GLUT_LEFT|RIGHT_BUTTON == 0, 1
 		if(mouse)
 			mouse(msg->message == WM_RBUTTONDOWN, GLUT_DOWN, (int)(msg->lParam & 0xffff), (int)(msg->lParam >> 16));
 		break;
