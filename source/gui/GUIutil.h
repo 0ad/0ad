@@ -152,6 +152,12 @@ protected:
 };
 
 
+//#ifndef NDEBUG
+// Used to ensure type-safety, sort of 
+template<typename T> void CheckType(const IGUIObject* obj, const CStr& setting);
+//#endif
+
+
 /**
  * @author Gustav Larsson
  *
@@ -188,7 +194,9 @@ public:
 		if (!pObject->m_Settings.find(Setting)->second.m_pSetting)
 			return PS_FAIL;
 
-		// Set value
+		CheckType<T>(pObject, Setting);
+
+		// Get value
 		Value = *(T*)pObject->m_Settings.find(Setting)->second.m_pSetting;
 			
 		return PS_OK;
@@ -211,6 +219,8 @@ public:
 
 		if (!pObject->SettingExists(Setting))
 			return PS_SETTING_FAIL;
+
+		CheckType<T>(pObject, Setting);
 
 		// Set value
 		*(T*)pObject->m_Settings[Setting].m_pSetting = Value;

@@ -367,3 +367,25 @@ void CInternalCGUIAccessorBase::HandleMessage(IGUIObject *pObject, const SGUIMes
 {
 	pObject->HandleMessage(message);		
 }
+
+
+//#ifndef NDEBUG
+#define TYPE(T) \
+	template<> void CheckType<T>(const IGUIObject* obj, const CStr& setting) {	\
+		if (((IGUIObject*)obj)->m_Settings[setting].m_Type != GUIST_##T)	\
+		{	\
+			debug_warn("EXCESSIVELY FATAL ERROR: Inconsistent types in GUI");	\
+			throw "EXCESSIVELY FATAL ERROR: Inconsistent types in GUI";	/* TODO: better reporting */ \
+		}	\
+	}
+TYPE(bool)
+TYPE(int)
+TYPE(float)
+TYPE(CClientArea)
+TYPE(CStr)
+TYPE(CColor)
+TYPE(CGUIString)
+TYPE(EAlign)
+TYPE(EVAlign)
+#undef TYPE
+//#endif // #ifndef NDEBUG
