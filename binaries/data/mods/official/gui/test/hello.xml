@@ -287,8 +287,8 @@
   
       <!-- PANEL BACKGROUND -->
       <object type="text" name="session_panel_bg_left" sprite="session_panel_bg_left" size="0 100%-161 258 100%" z="50" hidden="false" />
-      <object type="text" name="session_panel_minimap_bg" sprite="session_panel_minimap_bg" size="0%-41 100%-217 1 1" z="60" hidden="false" />
-      <object type="text" name="session_panel_bg_middle" sprite="session_panel_bg_middle" size="50%-257 100%-161 50%+274 100%" z="50" hidden="false">
+      <object type="text" name="session_panel_minimap_bg" sprite="session_panel_minimap_bg" size="0 100%-179 100% 100%" z="60" hidden="false" />
+      <object type="text" name="session_panel_bg_middle" sprite="session_panel_bg_middle" size="50%-257 100%-161 50%+274 100%" z="50" hidden="false"> 
         <action on="Tick"><![CDATA[
           getGUIGlobal().GUIUpdateObjectInfo();
         ]]></action>
@@ -296,7 +296,7 @@
       <object type="text" name="session_panel_bg_right" sprite="session_panel_bg_right" size="100%-241 100%-161 100% 100%" z="50" hidden="false" />
 
       <!-- MINIMAP - TEMP: Insert real minimap here later. -->
-      <object type="text" name="session_panel_minimap_dummy" sprite="session_panel_minimap_dummy" size="0%-41 100%-217 1 1" z="60" hidden="false" />
+      <object type="text" name="session_panel_minimap_dummy" sprite="session_panel_minimap_dummy" size="9 100%-169 100% 100%" z="60" hidden="false" />
 
       <!--
       ==========================================
