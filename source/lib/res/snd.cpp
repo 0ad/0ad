@@ -1,40 +1,85 @@
+// OpenAL sound engine
+//
+// Copyright (c) 2004 Jan Wassenberg
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License as
+// published by the Free Software Foundation; either version 2 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// General Public License for more details.
+//
+// Contact info:
+//   Jan.Wassenberg@stud.uni-karlsruhe.de
+//   http://www.stud.uni-karlsruhe.de/~urkt/
+
 #include "precompiled.h"
 
 #include "res/res.h"
 #include "res/snd.h"
 
 #include <sstream>	// to extract snd_open's definition file contents
+#include <string>
+#include <vector>
+#include <algorithm>
 
 #ifdef __APPLE__
 # include <OpenAL/alut.h>
 #else
 # include <AL/al.h>
 # include <AL/alc.h>
-# include <AL/alut.h>
+# include <AL/alut.h>	// alutLoadWAVMemory
 #endif
 
-// Linux OpenAL puts the Ogg Vorbis extension enums in alexttypes.h
+// for AL_FORMAT_VORBIS_EXT decl on Linux
 #ifdef OS_LINUX
 # include <AL/alexttypes.h>
 #endif
 
 // for DLL-load hack in alc_init
 #ifdef _WIN32
-#include "sysdep/win/win_internal.h"
+# include "sysdep/win/win_internal.h"
 #endif
 
 #define OGG_HACK
 #include "ogghack.h"
 
-
 #ifdef _MSC_VER
-#pragma comment(lib, "openal32.lib")
-#pragma comment(lib, "alut.lib")
+# pragma comment(lib, "openal32.lib")
+# pragma comment(lib, "alut.lib")	// alutLoadWAVMemory
 #endif
 
 
-
-
+// components:
+// - alc*: OpenAL context
+//   readies OpenAL for use; allows specifying the device.
+// - al_listener*: OpenAL listener
+//   owns position/orientation and master gain.
+// - al_buf*: OpenAL buffer suballocator
+//   for convenience; also makes sure all have been freed at exit.
+// - al_src*: OpenAL source suballocator
+//   avoids high source alloc cost. also enforces user-set source limit.
+// - al_init*: OpenAL startup mechanism
+//   allows deferred init (speeding up start time) and runtime reset.
+// - snd_dev*: device enumeration
+//   lists names of all available devices (for sound options screen).
+// - io_buf*: buffer suballocator
+//   avoids frequent large alloc/frees and therefore heap fragmentation.
+// - stream*: streaming
+//   passes chunks of data (read via async I/O) to snd_data on request.
+// - snd_data*: sound data provider
+//   holds audio data (clip or stream) and returns OpenAL buffers on request.
+// - hsd_list*: list of SndData instances
+//   ensures all are freed when desired (despite being cached).
+// - list*: list of active sounds.
+//   sorts by priority for voice management, and has each VSrc update itself.
+// - vsrc*: audio source
+//   owns source properties and queue, references SndData.
+// - vm*: voice management
+//   grants the most currently 'important' sounds a hardware voice.
 
 
 static bool al_initialized = false;
@@ -42,24 +87,17 @@ static bool al_initialized = false;
 	// when deciding if they can pass settings changes to OpenAL directly,
 	// or whether they need to be saved until init.
 
+// used by snd_dev_set to reset OpenAL after device has been changed.
 static int al_reinit();
+	
+// used by al_shutdown to free all VSrc and SndData objects, respectively,
+// so that they release their OpenAL sources and buffers.
 static int list_free_all();
 static void hsd_list_free_all();
 
 
-
-// rationale for "buffer" handle and separate handle for each sound instance:
-// - need access to sound instances to fade them out / loop for an unknown period
-// - access via handle for safety
-// - don't want to reload sound data every time => need one central instance
-//   that owns the data
-// - want to support normal reload mechanism (for consistency if not necessity)
-// - could hack something via h_find / if so, create new handle with fn_key = 0,
-//   but that would break reloading and is dodgy. we will create a new handle
-//   type instead.
-
-
-
+// check if OpenAL indicates an error has occurred. it can only report
+// 1 error at a time, so this is called after every OpenAL request.
 static void al_check(const char* caller = "(unknown)")
 {
 	assert(al_initialized);
@@ -72,11 +110,6 @@ static void al_check(const char* caller = "(unknown)")
 	debug_out("openal error: %s; called from %s\n", str, caller);
 	debug_warn("OpenAL error");
 }
-
-
-
-
-
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -132,7 +165,7 @@ int snd_dev_set(const char* alc_new_dev_name)
 	}
 
 	return al_reinit();
-		// no-op if not initialized yet, otherwise re-init
+		// no-op if not initialized yet, otherwise re-init.
 }
 
 
@@ -219,6 +252,8 @@ static void al_listener_latch()
 }
 
 
+// set amplitude modifier, which is effectively applied to all sounds.
+// must be non-negative; 1 -> unattenuated, 0.5 -> -6 dB, 0 -> silence.
 int snd_set_master_gain(float gain)
 {
 	if(gain < 0)
@@ -317,7 +352,7 @@ static const uint AL_SRC_MAX = 64;
 	// regardless of sound card caps, we won't use more than this ("enough").
 	// necessary in case OpenAL doesn't limit #sources (e.g. if SW mixing).
 static ALuint al_srcs[AL_SRC_MAX];
-	// stack of sources (first allocated is #0)
+	// stack of sources (first allocated is [0])
 static uint al_src_allocated;
 	// number of valid sources in al_srcs[] (set by al_src_init)
 static uint al_src_used = 0;
@@ -341,6 +376,7 @@ static void al_src_init()
 	}
 
 	// limit user's cap to what we actually got.
+	// (in case snd_set_max_src was called before this)
 	if(al_src_cap > al_src_allocated)
 		al_src_cap = al_src_allocated;
 
@@ -381,21 +417,25 @@ static void al_src_free(ALuint al_src)
 }
 
 
-int snd_set_max_src(uint cap)
+// set maximum number of voices to play simultaneously,
+// to reduce mixing cost on low-end systems.
+// return 0 on success, or 1 if limit was ignored
+// (e.g. if higher than an implementation-defined limit anyway).
+int snd_set_max_voices(uint limit)
 {
-	// either cap is legit (less than what we allocated in al_src_init),
-	// or al_src_init hasn't been called yet. note: we accept anything
+	// valid if cap is legit (less than what we allocated in al_src_init),
+	// or if al_src_init hasn't been called yet. note: we accept anything
 	// in the second case, as al_src_init will sanity-check al_src_cap.
-	if(!al_src_allocated || cap < al_src_allocated)
+	if(!al_src_allocated || limit < al_src_allocated)
 	{
-		al_src_cap = cap;
+		al_src_cap = limit;
 		return 0;
 	}
 	// user is requesting a cap higher than what we actually allocated.
 	// that's fine (not an error), but we won't set the cap, since it
 	// determines how many sources may be returned.
 	else
-		return -1;
+		return 1;
 }
 
 
@@ -434,8 +474,8 @@ static void al_shutdown()
 	// somewhat tricky: go through gyrations to free OpenAL resources.
 
 	// .. free all active sounds so that they release their source.
-	//    the SndData reference is also removed, but these
-	//    remain open, since they are cached.
+	//    the SndData reference is also removed,
+	//    but these remain open, since they are cached.
 	list_free_all();
 
 	// .. actually free all (still cached) SndData instances.
@@ -452,7 +492,7 @@ static void al_shutdown()
 }
 
 
-// called from snd_dev_set (no other settings that require re-init ATM).
+// called from snd_dev_set (no other settings require re-init ATM).
 static int al_reinit()
 {
 	// not yet initialized. settings have been saved, and will be
@@ -525,8 +565,8 @@ static const size_t STREAM_BUF_SIZE = 32*KB;
 
 
 //
-// I/O buffer suballocator for streamed sounds, to avoid
-// frequent alloc/frees and therefore heap fragmentation.
+// I/O buffer suballocator: avoids frequent large alloc/frees
+// when streaming, and therefore heap fragmentation.
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -551,13 +591,13 @@ static void io_buf_free(void* p)
 // called from first io_buf_alloc.
 static void io_buf_init()
 {
-	// allocate 1 big aligned block for all buffers
+	// allocate 1 big aligned block for all buffers.
 	io_bufs = mem_alloc(TOTAL_BUF_SIZE, 4*KB);
 	// .. failed; io_buf_alloc calls will return 0
 	if(!io_bufs)
 		return;
 
-	// build freelist
+	// build freelist.
 	char* p = (char*)io_bufs;
 	for(int i = 0; i < TOTAL_IOS; i++)
 	{
@@ -579,6 +619,7 @@ static void* io_buf_alloc()
 			debug_warn("io_buf_alloc: not enough memory to allocate buffer pool");
 		else
 			debug_warn("io_buf_alloc: max #streams exceeded");
+			// can't happen (tm) because stream_open enforces MAX_STREAMS.
 		return 0;
 	}
 
@@ -596,7 +637,7 @@ static void io_buf_shutdown()
 
 
 //
-// stream layer on top of VFS async I/O: owns queue and buffers
+// stream: owns queue and buffers; uses VFS async I/O
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -630,29 +671,34 @@ static int stream_issue(Stream* s)
 }
 
 
+// if the first pending IO hasn't completed, return ERR_AGAIN;
+// otherwise, return a negative error code or 0 on success,
+// if the pending IO's buffer is returned.
 static int stream_buf_get(Stream* s, void*& data, size_t& size)
 {
 	if(s->active_ios == 0)
 		return ERR_EOF;
 	Handle hio = s->ios[0];
 
-	// has it finished? if not, bail
+	// has it finished? if not, bail.
 	int is_complete = vfs_io_complete(hio);
 	CHECK_ERR(is_complete);
 	if(is_complete == 0)
 		return ERR_AGAIN;
 
-	// get its buffer
+	// get its buffer.
 	CHECK_ERR(vfs_wait_io(hio, data, size));
 		// no delay, since vfs_io_complete == 1
 
 	s->last_buf = data;
-		// next stream_buf_discard will free this buffer
+		// (next stream_buf_discard will free this buffer)
 	return 0;
 }
 
 
-// must be called once after every stream_buf_get;
+// free the buffer that was last returned by stream_buf_get,
+// and remove its IO slot from our queue.
+// must be called exactly once after every successful stream_buf_get;
 // call before calling any other stream_* functions!
 static int stream_buf_discard(Stream* s)
 {
@@ -675,6 +721,8 @@ static int stream_buf_discard(Stream* s)
 
 static uint active_streams;
 
+
+// open a stream and begin reading from disk.
 static int stream_open(Stream* s, const char* fn)
 {
 	if(active_streams >= MAX_STREAMS)
@@ -695,6 +743,7 @@ static int stream_open(Stream* s, const char* fn)
 }
 
 
+// close a stream, which may currently be active.
 // returns the first error that occurred while waiting for IOs / closing file.
 static int stream_close(Stream* s)
 {
@@ -730,17 +779,26 @@ static int stream_close(Stream* s)
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// sound data provider
+// sound data provider: holds audio data (clip or stream) and returns
+// OpenAL buffers on request.
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-// rationale: could make a case for a separate IO layer, but there's a
-// problem: IOs need to be discarded after their data has been processed.
-// if the IO layer is separate, we'd either need a callback from
-// io_complete, passing the buffer to OpenAL, or mark IO slots as
-// "discardable", so that they are freed the next io_issue.
-// both are ugly; we instead integrate IO into the sound data code.
-// IOs are passed to OpenAL and the discarded immediately.
+// rationale for separate VSrc (instance) and SndData resources:
+// - need to be able to fade out and cancel loops.
+//   => VSrc isn't fire and forget; need to access sounds at runtime.
+// - allowing access via direct pointer is unsafe
+//   => need Handle-based access
+// - don't want to reload sound data on every play()
+//   => need either a separate caching mechanism or one central data resource.
+// - want to support reloading (for consistency if not necessity)
+//   => can't hack via h_find / setting fn_key to 0; need a separate instance.
+
+// rationale for integrating IO logic into SndData:
+// if the IO layer were completely separate, we'd need a callback to pass
+// the buffer to OpenAL, or mark processed buffers as "discardable" for
+// next time. both are ugly; we instead integrate IO into the SndData code.
+// IOs are passed to OpenAL and then discarded immediately.
 
 struct SndData
 {
@@ -763,38 +821,26 @@ void* o;
 H_TYPE_DEFINE(SndData);
 
 
-// open and return a handle to a sound file's data.
-static Handle snd_data_load(const char* const fn, const bool stream)
-{
-	// don't allow reloading stream objects
-	// (both references would read from the same file handle).
-	const uint flags = stream? RES_UNIQUE : 0;
-
-	return h_alloc(H_SndData, fn, flags, stream);
-}
-
-
-// close the sound file data <hsd> and set hsd to 0.
-static int snd_data_free(Handle& hsd)
-{
-	return h_free(hsd, H_SndData);
-}
-
-
 //
-// list of all SndData instances allocated since last al_shutdown.
-// ensures these instances are actually freed at al_shutdown -
-// they are cached, and we otherwise lose track of them after their
-// associated VSrc finishes playing and frees itself (and its SD reference).
+// SndData instance list: ensures all allocated since last al_shutdown
+// are freed when desired (they are cached => extra work needed).
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-// rationale: we cannot rely on h_mgr_shutdown's cleanup of leaked handles
-// to actually free these (for the most part) cached instances.
-// they must be freed when al_shutdown is called, and this may happen
-// at runtime (if we are re-initializing OpenAL).
+// rationale: all SndData objects (actually, their OpenAL buffers) must be
+// freed during al_shutdown, to prevent leaks. we can't rely on list*
+// to free all VSrc, and thereby their associated SndData objects -
+// completed sounds are no longer in the list.
 //
-// note that we never need to delete single entries: hsd_list_free_all
+// nor can we use the h_mgr_shutdown automatic leaked resource cleanup:
+// we need to be able to al_shutdown at runtime
+// (when resetting OpenAL, after e.g. device change).
+//
+// h_mgr support is required to forcibly close SndData objects,
+// since they are cached (kept open). it requires that this come after
+// H_TYPE_DEFINE(SndData), since h_force_free needs the handle type.
+//
+// we never need to delete single entries: hsd_list_free_all
 // (called by al_shutdown) frees each entry and clears the entire list.
 
 typedef std::vector<Handle> Handles;
@@ -946,6 +992,24 @@ al_size = (ALsizei)datasize;
 }
 
 
+// open and return a handle to a sound file's data.
+static Handle snd_data_load(const char* const fn, const bool stream)
+{
+	// don't allow reloading stream objects
+	// (both references would read from the same file handle).
+	const uint flags = stream? RES_UNIQUE : 0;
+
+	return h_alloc(H_SndData, fn, flags, stream);
+}
+
+
+// close the sound file data <hsd> and set hsd to 0.
+static int snd_data_free(Handle& hsd)
+{
+	return h_free(hsd, H_SndData);
+}
+
+
 // (need to convert ERR_EOF and ERR_AGAIN to legitimate return values -
 // for the caller, those aren't errors.)
 enum BufRet
@@ -1021,319 +1085,66 @@ static int snd_data_buf_free(Handle hsd, ALuint al_buf)
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// sound instance
+// virtual sound source: a sound the user wants played.
+// owns source properties, buffer queue, and references SndData.
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-struct Src
-{
-	ALuint al_src;
+// rationale: combine Src and VSrc - best interface, due to needing hsd,
+// buffer queue (# processed) in update
 
-	ALfloat pos[3];
-	ALfloat gain;
-	ALboolean loop;
-	ALboolean relative;
+enum VSrcFlags
+{
+	// SndData has reported EOF. will close down after last buffer completes.
+	VS_EOF       = 1,
+
+	// indicates the VSrc is being closed. 
+	VS_CLOSING   = 2,
+
+	// tell SndData to open the sound as a stream.
+	// require caller to pass this explicitly, so they're aware
+	// of the limitation that there can only be 1 instance of those.
+	VS_IS_STREAM = 4,
+
+	// fn passed to VSrc_reload is the actual sound file name,
+	// not a definition file.
+	VS_NO_DEF    = 8
 };
-
-
-static void src_latch(Src* s)
-{
-	if(!s->al_src)
-		return;
-
-	alSourcefv(s->al_src, AL_POSITION,        s->pos);
-	alSourcei (s->al_src, AL_SOURCE_RELATIVE, s->relative);
-	alSourcef (s->al_src, AL_GAIN,            s->gain);
-	alSourcei (s->al_src, AL_LOOPING,         s->loop);
-	al_check("src_latch");
-}
-
-
-static void src_init(Src* s)
-{
-	// OpenAL docs don't specify default values, so initialize everything
-	// ourselves to be sure. note: alSourcefv param is not const.
-	float zero3[3] = { 0.0f, 0.0f, 0.0f };
-	alSourcefv(s->al_src, AL_VELOCITY,        zero3);
-	alSourcefv(s->al_src, AL_DIRECTION,       zero3);
-	alSourcef (s->al_src, AL_ROLLOFF_FACTOR,  0.0f);
-	alSourcei (s->al_src, AL_SOURCE_RELATIVE, AL_TRUE);
-	al_check("src_init");
-
-	src_latch(s);
-}
-
-
-
-///////////////////////////////////////////////////////////////////////////////
 
 struct VSrc
 {
-	Src s;
+	ALuint al_src;
 
-	// handle to this VSrc, so that it can close itself
+	// handle to this VSrc, so that it can close itself.
 	Handle hvs;
 
 	// associated sound data
 	Handle hsd;
 
-	// - can't have 2 active instances of a streamed sound, so make sure
-	//   caller is aware of the limitation by requiring them to set this.
-	bool stream;
+	// controls vsrc_update behavior
+	uint flags;
 
-	bool eof;
-	bool closing;
+	// AL source properties (set via snd_set*)
+	ALfloat pos[3];
+	ALfloat gain;
+	ALboolean loop;
+	ALboolean relative;
 
-
-	float static_pri;
-	float cur_pri;
+	// priority for voice management
+	float static_pri;	// as given by snd_play
+	float cur_pri;		// holds newly calculated value
 };
 
 H_TYPE_DEFINE(VSrc);
 
 
-
-
-
-
-
-static int vsrc_update(VSrc* vs)
-{
-	// remove all finished buffers
-	int num_processed;
-	alGetSourcei(vs->s.al_src, AL_BUFFERS_PROCESSED, &num_processed);
-	for(int i = 0; i < num_processed;  i++)
-	{
-		ALuint al_buf;
-		alSourceUnqueueBuffers(vs->s.al_src, 1, &al_buf);
-		CHECK_ERR(snd_data_buf_free(vs->hsd, al_buf));
-	}
-
-if(vs->closing)
-return 0;
-
-	// no more buffers left, and EOF reached
-	ALint num_queued;
-	alGetSourcei(vs->s.al_src, AL_BUFFERS_QUEUED, &num_queued);
-	al_check("vsrc_update alGetSourcei");
-
-	if(num_queued == 0 && vs->eof)
-	{
-//debug_out("reached end, closing vs=%p src=%p    hvs=%I64x\n", vs, vs->s.al_src, vs->hvs);
-		snd_free(vs->hvs);
-		return 0;
-	}
-
-	if(!vs->eof)
-	{
-		int to_fill = 4;
-		if(num_queued > 0)
-			to_fill = num_processed;
-
-		int ret;
-		do
-		{
-			ALuint al_buf;
-			ret = snd_data_buf_get(vs->hsd, al_buf);
-			CHECK_ERR(ret);
-
-			alSourceQueueBuffers(vs->s.al_src, 1, &al_buf);
-			al_check("vsrc_update SourceQueueBuffers");
-		}
-		while(to_fill-- && ret == BUF_OK);
-
-		if(ret == BUF_EOF)
-			vs->eof = true;
-	}
-
-	return 0;
-}
-
-
-static int vsrc_grant_src(VSrc* vs)
-{
-//debug_out("grant vs=%p src=%p\n", vs, vs->s.al_src);
-
-	// already playing - bail
-	if(vs->s.al_src)
-		return 0;
-
-	// try to alloc source
-	vs->s.al_src = al_src_alloc();
-	// called from 2 places: sound_play can't know if a source is available,
-	// so this isn't an error
-	if(!vs->s.al_src)
-	{
-debug_out("grant couldn't alloc src!\n");
-		return -1;
-	}
-
-	src_init(&vs->s);	// can't fail
-
-	CHECK_ERR(vsrc_update(vs));
-
-	alSourcePlay(vs->s.al_src);
-	al_check("vsrc_grant_src SourcePlay");
-	return 0;
-}
-
-
-static int vsrc_reclaim_src(VSrc* vs)
-{
-//debug_out("reclaim vs=%p src=%p\n", vs, vs->s.al_src);
-
-	// not playing - bail
-	if(!vs->s.al_src)
-		return 0;
-
-	alSourceStop(vs->s.al_src);
-	al_check("vsrc_reclaim_src SourceStop");
-
-	vs->closing = true;
-	CHECK_ERR(vsrc_update(vs));
-	// (note: all buffers are now considered 'processed', since src is stopped)
-
-	al_src_free(vs->s.al_src);
-	return 0;
-}
-
-
-
-
-
-
-
-// relative: default false.
-int snd_set_pos(Handle hvs, float x, float y, float z, bool relative)
-{
-	H_DEREF(hvs, VSrc, vs);
-
-	vs->s.pos[0] = x; vs->s.pos[1] = y; vs->s.pos[2] = z;
-	vs->s.relative = relative;
-
-	src_latch(&vs->s);
-	return 0;
-}
-
-
-int snd_set_gain(Handle hvs, float gain)
-{
-	H_DEREF(hvs, VSrc, vs);
-
-	vs->s.gain = gain;
-
-	src_latch(&vs->s);
-	return 0;
-}
-
-
-int snd_set_loop(Handle hvs, bool loop)
-{
-	H_DEREF(hvs, VSrc, vs);
-
-	vs->s.loop = loop;
-
-	src_latch(&vs->s);
-	return 0;
-}
-
-
-
-
-
-
-
-
-
-static void list_add(VSrc*);
-static void list_remove(VSrc*);
-
-
-static void VSrc_init(VSrc* vs, va_list args)
-{
-	vs->stream = va_arg(args, bool);
-}
-
-
-static void VSrc_dtor(VSrc* vs)
-{
-	list_remove(vs);
-	vsrc_reclaim_src(vs);
-	snd_data_free(vs->hsd);
-}
-
-
-static int VSrc_reload(VSrc* vs, const char* def_fn, Handle hvs)
-{
-	// cannot wait till play(), need to init here:
-	// must load OpenAL so that snd_data_load can check for OGG extension.
-	al_init();
-
-#if 0
-	void* def_file;
-	size_t def_size;
-	CHECK_ERR(vfs_load(def_fn, def_file, def_size));
-	std::istringstream def(std::string((char*)def_file, (int)def_size));
-	mem_free(def_file);
-
-	std::string snd_data_fn;
-	float gain_percent;
-	def >> snd_data_fn;
-	def >> gain_percent;
-#else
-float gain_percent = 100.0;
-std::string snd_data_fn = def_fn;
-#endif
-
-	vs->s.gain = gain_percent / 100.0f;
-		// can legitimately be > 1.0 - don't clamp.
-
-	vs->hvs = hvs;
-		// needed so we can snd_free ourselves when done playing.
-
-	const char* data_fn = snd_data_fn.c_str();
-	vs->hsd = snd_data_load(data_fn, vs->stream);
-
-	return 0;
-}
-
-
-// open and return a handle to the sound <fn>.
-// stream: default false
-Handle snd_open(const char* const fn, const bool stream)
-{
-	return h_alloc(H_VSrc, fn, RES_UNIQUE, stream);
-}
-
-
-// close the sound <hs> and set hs to 0.
-int snd_free(Handle& hvs)
-{
-	return h_free(hvs, H_VSrc);
-}
-
-
-
-int snd_play(Handle hs)
-{
-	H_DEREF(hs, VSrc, vs);
-
-	list_add(vs);
-
-	// optimization (don't want to do full update here - too slow)
-	// either we get a source and playing begins immediately, or it'll be
-	// taken care of on next update
-	vsrc_grant_src(vs);
-	return 0;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////
 //
 // list of active sounds. used by voice management component,
 // and to have each VSrc update itself (queue new buffers).
 //
 ///////////////////////////////////////////////////////////////////////////////
+
+// VSrc fields are used -> must come after struct VSrc
 
 // sorted in descending order of current priority
 // (we sometimes remove low pri items, which requires moving down
@@ -1397,7 +1208,7 @@ static void list_remove(VSrc* vs)
 			return;
 		}
 
-	debug_warn("list_remove: VSrc not found");
+		debug_warn("list_remove: VSrc not found");
 }
 
 
@@ -1414,22 +1225,334 @@ static void list_prune_removed()
 	vsrcs.erase(new_end, vsrcs.end());
 }
 
-static void free(VSrc* vs)
+static void free_vs(VSrc* vs)
 {
 	snd_free(vs->hvs);
 }
 
 static int list_free_all()
 {
-	list_foreach(free);
+	list_foreach(free_vs);
+	return 0;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+
+
+// send the properties to OpenAL, as soon as we actually have a source.
+// called by snd_set* and vsrc_grant.
+static void vsrc_latch(VSrc* vs)
+{
+	if(!vs->al_src)
+		return;
+
+	alSourcefv(vs->al_src, AL_POSITION,        vs->pos);
+	alSourcei (vs->al_src, AL_SOURCE_RELATIVE, vs->relative);
+	alSourcef (vs->al_src, AL_GAIN,            vs->gain);
+	alSourcei (vs->al_src, AL_LOOPING,         vs->loop);
+	al_check("vsrc_latch");
+}
+
+
+static int vsrc_update(VSrc* vs)
+{
+	int num_processed, num_queued;
+	alGetSourcei(vs->al_src, AL_BUFFERS_PROCESSED, &num_processed);
+	alGetSourcei(vs->al_src, AL_BUFFERS_QUEUED, &num_queued);
+	al_check("vsrc_update alGetSourcei");
+
+	// remove already processed buffers from queue.
+	for(int i = 0; i < num_processed; i++)
+	{
+		ALuint al_buf;
+		alSourceUnqueueBuffers(vs->al_src, 1, &al_buf);
+		snd_data_buf_free(vs->hsd, al_buf);
+	}
+
+	// closing the source; we just wanted to deque buffers - bail.
+	if(vs->flags & VS_CLOSING)
+		return 0;
+
+	if(vs->flags & VS_EOF)
+	{
+		// no more buffers left, and EOF reached - done playing.
+		if(num_queued == 0)
+		{
+			snd_free(vs->hvs);
+			return 0;
+		}
+	}
+	// can still read from SndData
+	else
+	{
+		// decide how many buffers we are going to request
+		// (start off with MAX_IOS; after that, replace finished buffers).
+		int to_fill = MAX_IOS;
+		if(num_queued > 0)
+			to_fill = num_processed;
+
+		// request and queue each buffer.
+		int ret;
+		do
+		{
+			ALuint al_buf;
+			ret = snd_data_buf_get(vs->hsd, al_buf);
+			CHECK_ERR(ret);
+
+			alSourceQueueBuffers(vs->al_src, 1, &al_buf);
+			al_check("vsrc_update alSourceQueueBuffers");
+		}
+		while(to_fill-- && ret == BUF_OK);
+
+		// SndData has reported that no further buffers are available.
+		if(ret == BUF_EOF)
+			vs->flags |= VS_EOF;
+	}
+
+	return 0;
+}
+
+
+// attempt to (re)start playing. fails if a source cannot be allocated
+// (see below). called by snd_play and voice management.
+static int vsrc_grant(VSrc* vs)
+{
+	// already playing - bail
+	if(vs->al_src)
+		return 0;
+
+	// try to alloc source. if none are available, bail -
+	// we get called in that hope that one is available by snd_play.
+	vs->al_src = al_src_alloc();
+	if(!vs->al_src)
+		return -1;
+
+	// OpenAL docs don't specify default values, so initialize everything
+	// ourselves to be sure. note: alSourcefv param is not const.
+	float zero3[3] = { 0.0f, 0.0f, 0.0f };
+	alSourcefv(vs->al_src, AL_VELOCITY,        zero3);
+	alSourcefv(vs->al_src, AL_DIRECTION,       zero3);
+	alSourcef (vs->al_src, AL_ROLLOFF_FACTOR,  0.0f);
+	alSourcei (vs->al_src, AL_SOURCE_RELATIVE, AL_TRUE);
+	al_check("vsrc_grant");
+
+	// set remaining (user-specifiable) properties.
+	vsrc_latch(vs);
+
+	// queue up some buffers (enough to start playing, at least).
+	vsrc_update(vs);
+
+	alSourcePlay(vs->al_src);
+	al_check("vsrc_grant alSourcePlay");
+	return 0;
+}
+
+
+// stop playback, and reclaim the OpenAL source.
+// called when closing the VSrc, or when voice management decides
+// this VSrc must yield to others of higher priority.
+static int vsrc_reclaim(VSrc* vs)
+{
+	// don't own a source - bail.
+	if(!vs->al_src)
+		return -1;
+
+	alSourceStop(vs->al_src);
+	al_check("src_stop");
+	// (note: all queued buffers are now considered 'processed')
+
+	// deque and free all buffers in queue
+	// (there may be some left if we were closed abruptly).
+	vsrc_update(vs);
+
+	al_src_free(vs->al_src);
+	return 0;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+
+
+static void VSrc_init(VSrc* vs, va_list args)
+{
+	vs->flags = va_arg(args, uint);
+}
+
+
+static void VSrc_dtor(VSrc* vs)
+{
+	list_remove(vs);
+	vsrc_reclaim(vs);
+	snd_data_free(vs->hsd);
+}
+
+
+static int VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
+{
+	// cannot wait till play(), need to init here:
+	// must load OpenAL so that snd_data_load can check for OGG extension.
+	al_init();
+
+	//
+	// decide whether using from definition file or just sound filename
+	//
+
+	const char* snd_fn;
+	std::string snd_fn_s;	// must not go out of scope below
+
+	if(vs->flags & VS_NO_DEF)
+	{
+		snd_fn = fn;
+		vs->gain = 1.0f;
+	}
+	else
+	{
+		void* def_file;
+		size_t def_size;
+		CHECK_ERR(vfs_load(fn, def_file, def_size));
+		std::istringstream def(std::string((char*)def_file, (int)def_size));
+		mem_free(def_file);
+
+		float gain_percent;
+		def >> snd_fn_s;
+		def >> gain_percent;
+
+		snd_fn = snd_fn_s.c_str();
+		vs->gain = gain_percent / 100.0f;
+	}
+
+	// note: vs->gain can legitimately be > 1.0 - don't clamp.
+
+	vs->hvs = hvs;
+		// needed so we can snd_free ourselves when done playing.
+
+	bool is_stream = (vs->flags & VS_IS_STREAM) != 0;
+	vs->hsd = snd_data_load(snd_fn, is_stream);
+
+	return 0;
+}
+
+
+// open and return a handle to the sound specified by the
+// definition file <def_fn> (it consists of filename and gain).
+// 
+// is_stream (default false) forces the sound to be opened as a stream:
+// opening is faster, it won't be kept in memory, but only one instance
+// can be open at a time.
+//
+// note: RES_UNIQUE forces each instance to get a new resource
+// (which is of course what we want).
+Handle snd_open_def(const char* const def_fn, const bool is_stream)
+{
+	uint flags = 0;
+	if(is_stream)
+		flags |= VS_IS_STREAM;
+	return h_alloc(H_VSrc, def_fn, RES_UNIQUE, flags);
+}
+
+
+// open and return a handle to the sound <snd_fn>.
+// gain is set to the default, and may be changed via snd_set_gain.
+//
+// is_stream (default false) forces the sound to be opened as a stream:
+// opening is faster, it won't be kept in memory, but only one instance
+// can be open at a time.
+//
+// note: RES_UNIQUE forces each instance to get a new resource
+// (which is of course what we want).
+Handle snd_open(const char* const snd_fn, const bool is_stream)
+{
+	uint flags = VS_NO_DEF;
+	if(is_stream)
+		flags |= VS_IS_STREAM;
+	return h_alloc(H_VSrc, snd_fn, RES_UNIQUE, flags);
+}
+
+
+// close the sound <hvs> and set hvs to 0. if it was playing,
+// it will be stopped. sounds are closed automatically when done
+// playing; this is provided for completeness only.
+int snd_free(Handle& hvs)
+{
+	return h_free(hvs, H_VSrc);
+}
+
+
+// request the sound <hs> be played. once done playing, the sound is
+// automatically closed (allows fire-and-forget play code).
+// if no hardware voice is available, this sound may not be played at all,
+// or in the case of looped sounds, later.
+// priority (min 0 .. max 1, default 0) indicates which sounds are
+// considered more important; this is attenuated by distance to the
+// listener (see snd_update)
+int snd_play(Handle hs, float static_pri)
+{
+	H_DEREF(hs, VSrc, vs);
+
+	vs->static_pri = static_pri;
+	list_add(vs);
+
+	// optimization (don't want to do full update here - too slow)
+	// either we get a source and playing begins immediately,
+	// or it'll be taken care of on next update.
+	vsrc_grant(vs);
+	return 0;
+}
+
+
+// change 3d position of the sound source.
+// if relative (default false), (x,y,z) is treated as relative to the
+// listener; otherwise, it is the position in world coordinates.
+// may be called at any time.
+int snd_set_pos(Handle hvs, float x, float y, float z, bool relative)
+{
+	H_DEREF(hvs, VSrc, vs);
+
+	vs->pos[0] = x; vs->pos[1] = y; vs->pos[2] = z;
+	vs->relative = relative;
+
+	vsrc_latch(vs);
+	return 0;
+}
+
+
+// change gain (amplitude modifier) of the sound source.
+// must be non-negative; 1 -> unattenuated, 0.5 -> -6 dB, 0 -> silence.
+int snd_set_gain(Handle hvs, float gain)
+{
+	H_DEREF(hvs, VSrc, vs);
+
+	vs->gain = gain;
+
+	vsrc_latch(vs);
+	return 0;
+}
+
+
+// enable/disable looping on the sound source.
+// used to implement variable-length sounds (e.g. while building).
+//
+// notes:
+// - looping sounds are not discarded if they cannot be played for lack of
+//   a hardware voice at the moment play was requested.
+// - once looping is again disabled and the sound has reached its end,
+//   the sound instance is freed automatically (as if never looped).
+int snd_set_loop(Handle hvs, bool loop)
+{
+	H_DEREF(hvs, VSrc, vs);
+
+	vs->loop = loop;
+
+	vsrc_latch(vs);
 	return 0;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// voice management: responsible for granting the most 'important'
-// (as determined by current priority) sounds a hardware voice.
+// voice management: grants the most currently 'important' sounds
+// a hardware voice.
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -1447,10 +1570,10 @@ static void calc_cur_pri(VSrc* vs)
 	const float falloff = 10.0f;
 
 	float d_2;	// euclidean distance to listener (squared)
-	if(vs->s.relative)
-		d_2 = magnitude_2(vs->s.pos);
+	if(vs->relative)
+		d_2 = magnitude_2(vs->pos);
 	else
-		d_2 = al_listener_dist_2(vs->s.pos);
+		d_2 = al_listener_dist_2(vs->pos);
 
 	// scale priority down exponentially
 	float e = d_2 / MAX_DIST_2;	// 0.0f (close) .. 1.0f (far)
@@ -1462,32 +1585,24 @@ static void calc_cur_pri(VSrc* vs)
 	vs->cur_pri = cur_pri;
 }
 
+
 static void reclaim(VSrc* vs)
 {
-	if(vs->s.al_src)
-	{
-debug_out("reclaiming from low-pri\n");
-		vsrc_reclaim_src(vs);
-	}
+	vsrc_reclaim(vs);
 
-	if(!vs->s.loop)
-	{
-debug_out("kicking out low-pri\n");
+	if(!vs->loop)
 		snd_free(vs->hvs);
-	}
 }
+
 
 static void grant(VSrc* vs)
 {
-	if(!vs->s.al_src)
-	{
-debug_out("now granting high-pri a new src\n");
-		vsrc_grant_src(vs);
-	}
+	vsrc_grant(vs);
 }
 
+
 // no-op if OpenAL not yet initialized.
-static int voice_management_update()
+static int vm_update()
 {
 	list_prune_removed();
 
@@ -1504,6 +1619,7 @@ static int voice_management_update()
 	list_foreach(reclaim, first_unimportant, 0);
 	list_foreach(grant, 0, first_unimportant);
 
+	// add / remove buffers for each source.
 	list_foreach((void(*)(VSrc*))vsrc_update);
 
 	return 0;
@@ -1513,17 +1629,23 @@ static int voice_management_update()
 ///////////////////////////////////////////////////////////////////////////////
 
 
+// perform housekeeping (e.g. streaming); call once a frame.
+//
+// additionally, if any parameter is non-NULL, we set the listener
+// position, look direction, and up vector (in world coordinates).
 int snd_update(const float* pos, const float* dir, const float* up)
 {
 	if(pos || dir || up)
 		al_listener_set_pos(pos, dir, up);
 
-	voice_management_update();
+	vm_update();
 
 	return 0;
 }
 
 
+// free all resources and shut down the sound system.
+// call before h_mgr_shutdown.
 void snd_shutdown()
 {
 	io_buf_shutdown();
