@@ -19,6 +19,7 @@
 
 #include "lib.h"
 #include "timer.h"
+#include "adts.h"
 
 #include <math.h>
 
@@ -99,28 +100,35 @@ int fps = 0;
 void calc_fps()
 {
 	// history buffer - smooth out slight variations
-#define H 10					// # buffer entries
-	static float fps_sum = 0;	// sum of last H frames' cur_fps
-	static float fps_hist[H];	// last H frames' cur_fps
-								// => don't need to re-average every time
-	static uint head = 0;		// oldest entry in fps_hist
-								// must be unsigned, b/c we do (head-1)%H
+	RingBuf<float, 16> samples;
 
-	// get elapsed time [s] since last frame; approximate current fps
+	// get elapsed time [s] since last update
 	static double last_t;
-	double t = get_time();
+	const double t = get_time();
+	const double dt = t - last_t;
+
+	// (in case timer resolution is low): count frames until
+	// timer value has changed "enough".
+	static uint num_frames = 1;
+	if(dt < 1e-3)
+		// bonus: if FPS > 1000, updates are slowed down a few frames.
+	{
+		num_frames++;
+		return;
+	}
+
+	// dt is big enough => we will update.
+	// calculate approximate current FPS (= 1 / elapsed time per frame).
 	float cur_fps = 30.0f;	// start value => history converges faster
 	if(last_t != 0.0)
-		cur_fps = 1.0f / (float)(t-last_t);	// = 1 / elapsed time
+		cur_fps = 1.0f / (float)dt * num_frames;
+	num_frames = 1;	// reset for next time
 	last_t = t;
-
-	if (cur_fps > 1e+6) // Avoid undesirable infinities if some frames
-		return;			// were rendered in no time
 
 	// calculate fps activity over 3 frames (used below to prevent fluctuation)
 	// -1: decreasing, +1: increasing, 0: neither or fluctuating
-	float h1 = fps_hist[(head-1)%H];	// last frame's cur_fps
-	float h2 = fps_hist[(head-2)%H];	// 2nd most recent frame's cur_fps
+	const float h1 = samples[-1];	// last frame's cur_fps
+	const float h2 = samples[-2];	// 2nd most recent frame's cur_fps
 
 	int trend = 0;
 	if(h2 > h1 && h1 > cur_fps)			// decreasing
@@ -135,17 +143,14 @@ void calc_fps()
 		return;				// yes: don't update fps_hist/fps
 	ignored = 0;	// either value ok, or it wasn't a fluke - reset counter
 
-	// remove oldest cur_fps value in fps_hist from the sum
-	// and add cur_fps; also insert cur_fps in fps_hist
-	fps_sum -=  fps_hist[head];
-	fps_sum += (fps_hist[head] = cur_fps);
-	head = (head+1)%H;
+	// add new sample and average
+	samples.push_back(cur_fps);
+	const double sum_fps = std::accumulate(samples.begin(), samples.end(), 0.0);
+	const double avg_fps = sum_fps / (int)samples.size();
 
 	// update fps counter if update threshold is exceeded
-	const float avg_fps = fps_sum / H;
-	const float d_avg = avg_fps-fps;
+	const float d_avg = (float)(avg_fps-fps);
 	const float max_diff = fminf(5.f, 0.05f*fps);
-
 	if((trend > 0 && (avg_fps > fps || d_avg < -4.f)) ||	// going up, or large drop
 	   (trend < 0 && (avg_fps < fps || d_avg >  4.f)) ||	// going down, or large raise
 	   (fabs(d_avg) > max_diff))							// significant difference
