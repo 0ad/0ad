@@ -37,7 +37,7 @@
 #include "lib.h"
 #include "zip.h"
 #include "res.h"
-#include "endian.h"
+#include "byte_order.h"
 
 #include <map>
 

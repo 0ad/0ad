@@ -1,6 +1,6 @@
 #include "precompiled.h"
 
-#include "endian.h"
+#include "byte_order.h"
 
 
 u16 read_le16(const void* p)

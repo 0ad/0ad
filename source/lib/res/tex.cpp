@@ -27,7 +27,7 @@
 #include "lib.h"
 #include "res.h"
 #include "tex.h"
-#include "endian.h"
+#include "byte_order.h"
 
 
 // supported formats:
