@@ -271,8 +271,14 @@ void CConsole::DrawBuffer(void)
 void CConsole::DrawCursor(void)
 {
 	glPushMatrix();
+		// Slightly translucent yellow
 		glColor4f(1.0f, 1.0f, 0.0f, 0.8f);
+
+		// U+FE33: PRESENTATION FORM FOR VERTICAL LOW LINE
+		// (sort of like a | which is aligned to the left of most characters)
 		glwprintf(L"%lc", 0xFE33);
+
+		// Revert to the standard text colour
 		glColor3f(1.0f, 1.0f, 1.0f);
 	glPopMatrix();
 }
