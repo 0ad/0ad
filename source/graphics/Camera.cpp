@@ -14,6 +14,8 @@
 
 #include "Camera.h"
 #include "Renderer.h"
+#include "HFTracer.h"
+#include "Game.h"
 
 CCamera::CCamera ()
 {
@@ -187,14 +189,57 @@ void CCamera::GetScreenCoordinates( const CVector3D& world, float& x, float& y )
 	y = ( 1 - y ) * 0.5f * g_Renderer.GetHeight();
 }
 
+CVector3D CCamera::GetWorldCoordinates( int px, int py )
+{
+	CHFTracer tracer( g_Game->GetWorld()->GetTerrain() ); int x, z;
+
+	CVector3D origin, dir, delta, currentTarget;
+	
+	BuildCameraRay( px, py, origin, dir );
+
+	if( tracer.RayIntersect( origin, dir, x, z, currentTarget ) )
+		return( currentTarget );
+
+	// Off the edge of the world?
+	// Work out where it /would/ hit, if the map were extended out to infinity with average height.
+
+	return( origin + dir * ( ( 50.0f - origin.Y ) / dir.Y ) );
+}
+
+CVector3D CCamera::GetFocus()
+{
+	// Basically the same as GetWorldCoordinates
+
+	CHFTracer tracer( g_Game->GetWorld()->GetTerrain() ); int x, z;
+
+	CVector3D origin, dir, delta, currentTarget;
+	
+	origin = m_Orientation.GetTranslation();
+	dir = m_Orientation.GetIn();
+
+	if( tracer.RayIntersect( origin, dir, x, z, currentTarget ) )
+		return( currentTarget );
+
+	// Off the edge of the world?
+	// Work out where it /would/ hit, if the map were extended out to infinity with average height.
+
+	return( origin + dir * ( ( 50.0f - origin.Y ) / dir.Y ) );
+}
+
 void CCamera::LookAt( const CVector3D& camera, const CVector3D& target, const CVector3D& up )
 {
 	CVector3D delta = target - camera;
-	delta.Normalize();
-	CVector3D s = delta.Cross( up );
-	CVector3D u = s.Cross( delta );
-	m_Orientation._11 = -s.X;	m_Orientation._12 = up.X;	m_Orientation._13 = delta.X;	m_Orientation._14 = camera.X;
-	m_Orientation._21 = -s.Y;	m_Orientation._22 = up.Y;	m_Orientation._23 = delta.Y;	m_Orientation._24 = camera.Y;
-	m_Orientation._31 = -s.Z;	m_Orientation._32 = up.Z;	m_Orientation._33 = delta.Z;	m_Orientation._34 = camera.Z;
-	m_Orientation._41 = 0.0f;	m_Orientation._42 = 0.0f;	m_Orientation._43 = 0.0f;		m_Orientation._44 = 1.0f;
+	LookAlong( camera, delta, up );
+}
+
+void CCamera::LookAlong( CVector3D camera, CVector3D orientation, CVector3D up )
+{
+	orientation.Normalize();
+	up.Normalize();
+	CVector3D s = orientation.Cross( up );
+	// CVector3D u = s.Cross( orientation );
+	m_Orientation._11 = -s.X;	m_Orientation._12 = up.X;	m_Orientation._13 = orientation.X;	m_Orientation._14 = camera.X;
+	m_Orientation._21 = -s.Y;	m_Orientation._22 = up.Y;	m_Orientation._23 = orientation.Y;	m_Orientation._24 = camera.Y;
+	m_Orientation._31 = -s.Z;	m_Orientation._32 = up.Z;	m_Orientation._33 = orientation.Z;	m_Orientation._34 = camera.Z;
+	m_Orientation._41 = 0.0f;	m_Orientation._42 = 0.0f;	m_Orientation._43 = 0.0f;			m_Orientation._44 = 1.0f;
 }

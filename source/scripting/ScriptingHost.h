@@ -75,7 +75,6 @@ private:
 
 	JSErrorReport	m_ErrorReport;
 
-	//std::vector < DelayedScriptExecutor >		m_DelayedScripts;
 	std::map < std::string, CustomType >		m_CustomObjectTypes;
 
 	void _CollectGarbage();
@@ -85,6 +84,8 @@ public:
 	ScriptingHost();
 	~ScriptingHost();
 	
+	// Helpers:
+
 	JSContext* getContext();
 
 	void LoadScriptFromDisk(const std::string & fileName);
@@ -113,14 +114,6 @@ public:
 	std::string ValueToString(const jsval value);
 	CStrW ValueToUCString( const jsval value );
     double ValueToDouble(const jsval value);
-
-	/*
-	All herald the new way of doing this!
-
-	void Tick(float timeElapsed);
-
-	void AddDelayedScript(const std::string & functionName, float delaySeconds);
-	*/
 
 	static void ErrorReporter(JSContext * context, const char * message, JSErrorReport * report);
 };

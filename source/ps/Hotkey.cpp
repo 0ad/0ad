@@ -9,6 +9,7 @@
 extern CConsole* g_Console;
 extern bool keys[SDLK_LAST];
 extern bool mouseButtons[5];
+bool unified[5];
 
 /* SDL-type */
 
@@ -20,8 +21,10 @@ struct SHotkeyMapping
 
 typedef std::vector<SHotkeyMapping> KeyMapping;
 
+const int HK_MAX_KEYCODES = SDLK_LAST + 10;
+
 // A mapping of keycodes onto sets of SDL event codes
-static KeyMapping hotkeyMap[SDLK_LAST + 5];
+static KeyMapping hotkeyMap[HK_MAX_KEYCODES];
 
 // An array of the status of virtual keys
 bool hotkeys[HOTKEY_LAST];
@@ -33,6 +36,13 @@ const int MOUSE_MIDDLE = SDLK_LAST + SDL_BUTTON_MIDDLE;
 const int MOUSE_WHEELUP = SDLK_LAST + SDL_BUTTON_WHEELUP;
 const int MOUSE_WHEELDOWN = SDLK_LAST + SDL_BUTTON_WHEELDOWN;
 
+// 'Keycodes' for the unified modifier keys
+const int UNIFIED_SHIFT = MOUSE_WHEELDOWN + 1;
+const int UNIFIED_CTRL = MOUSE_WHEELDOWN + 2;
+const int UNIFIED_ALT = MOUSE_WHEELDOWN + 3;
+const int UNIFIED_META = MOUSE_WHEELDOWN + 4;
+const int UNIFIED_SUPER = MOUSE_WHEELDOWN + 5;
+
 struct SHotkeyInfo
 {
 	int code;
@@ -40,12 +50,17 @@ struct SHotkeyInfo
 	int defaultmapping1, defaultmapping2;
 };
 
+// Will phase out the default shortcuts at sometime in the near future
+// (or, failing that, will update them so they can do the tricky stuff
+// the config file can.
+
 static SHotkeyInfo hotkeyInfo[] =
 {
 	{ HOTKEY_EXIT, "exit", SDLK_ESCAPE, 0 },
 	{ HOTKEY_SCREENSHOT, "screenshot", SDLK_PRINT, 0 },
 	{ HOTKEY_WIREFRAME, "wireframe", SDLK_w, 0 },
-	{ HOTKEY_CAMERA_RESET, "camera.reset", SDLK_h, 0 },
+	{ HOTKEY_CAMERA_RESET, "camera.reset", 0, 0 },
+	{ HOTKEY_CAMERA_RESET_ORIGIN, "camera.reset.origin", SDLK_h, 0 },
 	{ HOTKEY_CAMERA_ZOOM_IN, "camera.zoom.in", SDLK_PLUS, SDLK_KP_PLUS },
 	{ HOTKEY_CAMERA_ZOOM_OUT, "camera.zoom.out", SDLK_MINUS, SDLK_KP_MINUS },
 	{ HOTKEY_CAMERA_ZOOM_WHEEL_IN, "camera.zoom.wheel.in", MOUSE_WHEELUP, 0 },
@@ -70,6 +85,8 @@ static SHotkeyInfo hotkeyInfo[] =
 	{ HOTKEY_CAMERA_BOOKMARK_SAVE, "camera.bookmark.save", 0, 0 },
 	{ HOTKEY_CAMERA_BOOKMARK_SNAP, "camera.bookmark.snap", 0, 0 },
 	{ HOTKEY_CONSOLE_TOGGLE, "console.toggle", SDLK_F1, 0 },
+	{ HOTKEY_CONSOLE_COPY, "console.copy", 0, 0 },
+	{ HOTKEY_CONSOLE_PASTE, "console.paste", 0, 0 },
 	{ HOTKEY_SELECTION_ADD, "selection.add", SDLK_LSHIFT, SDLK_RSHIFT },
 	{ HOTKEY_SELECTION_REMOVE, "selection.remove", SDLK_LCTRL, SDLK_RCTRL },
 	{ HOTKEY_SELECTION_GROUP_0, "selection.group.0", SDLK_0, 0, },
@@ -117,7 +134,7 @@ struct SHotkeyMappingGUI
 typedef std::vector<SHotkeyMappingGUI> GuiMapping;
 
 // A mapping of keycodes onto sets of hotkey name strings (e.g. '[hotkey.]camera.reset')
-static GuiMapping hotkeyMapGUI[SDLK_LAST + 5];
+static GuiMapping hotkeyMapGUI[HK_MAX_KEYCODES];
 
 typedef std::vector<CStr> GUIObjectList; // A list of GUI objects
 typedef std::map<CStr,GUIObjectList> GUIHotkeyMap; // A mapping of name strings to lists of GUI objects that they trigger
@@ -189,6 +206,7 @@ void setBindings( const CStr& hotkeyName, int integerMapping = -1 )
 								bindCode.requires.push_back( *itKey2 );
 						}
 					}
+
 					hotkeyMapGUI[*itKey].push_back( bindName );
 					if( integerMapping != -1 )
 						hotkeyMap[*itKey].push_back( bindCode );
@@ -246,13 +264,55 @@ int hotkeyInputHandler( const SDL_Event* ev )
 		return( EV_PASS );
 	}
 
-	// Inhibit the dispatch of hotkey events caused by printable or control keys
-	// while the console is up. 
+	// Somewhat hackish:
+	// Create phantom 'unified-modifier' events when left- or right- modifier keys are pressed
+	// Just send them to this handler; don't let the imaginary event codes leak back to real SDL.
 
-	if( g_Console->IsActive() && (
+	SDL_Event phantom;
+	phantom.type = ( ( ev->type == SDL_KEYDOWN ) || ( ev->type == SDL_MOUSEBUTTONDOWN ) ) ? SDL_KEYDOWN : SDL_KEYUP;
+	if( ( keycode == SDLK_LSHIFT ) || ( keycode == SDLK_RSHIFT ) )
+	{
+		(int&)phantom.key.keysym.sym = UNIFIED_SHIFT;
+		unified[0] = ( phantom.type == SDL_KEYDOWN );
+		hotkeyInputHandler( &phantom );
+	}
+	else if( ( keycode == SDLK_LCTRL ) || ( keycode == SDLK_RCTRL ) )
+	{
+		(int&)phantom.key.keysym.sym = UNIFIED_CTRL;
+		unified[1] = ( phantom.type == SDL_KEYDOWN );
+		hotkeyInputHandler( &phantom );
+	}
+	else if( ( keycode == SDLK_LALT ) || ( keycode == SDLK_RALT ) )
+	{
+		(int&)phantom.key.keysym.sym = UNIFIED_ALT;
+		unified[2] = ( phantom.type == SDL_KEYDOWN );
+		hotkeyInputHandler( &phantom );
+	}
+	else if( ( keycode == SDLK_LMETA ) || ( keycode == SDLK_RMETA ) )
+	{
+		(int&)phantom.key.keysym.sym = UNIFIED_META;
+		unified[3] = ( phantom.type == SDL_KEYDOWN );
+		hotkeyInputHandler( &phantom );
+	}
+	else if( ( keycode == SDLK_LSUPER ) || ( keycode == SDLK_RSUPER ) )
+	{
+		(int&)phantom.key.keysym.sym = UNIFIED_SUPER;
+		unified[4] = ( phantom.type == SDL_KEYDOWN );
+		hotkeyInputHandler( &phantom );
+	}
+
+	// Inhibit the dispatch of hotkey events caused by printable or control keys
+	// while the console is up. (But allow multiple-key - 'Ctrl+F' events, and whatever
+	// key toggles the console.)
+
+	bool consoleCapture = false, isCapturable;
+
+	if( g_Console->IsActive() && ( 
 	    ( keycode == 8 ) || ( keycode == 9 ) || ( keycode == 13 ) || /* Editing */
-		( ( keycode >= 32 ) && ( keycode < 282 ) ) ) )				 /* Printable (<128), 'World' (<256) */
-		return( EV_PASS );											 /* Numeric keypad (<273) and Navigation (<282) */
+		( ( keycode >= 32 ) && ( keycode < 273 ) ) ||				 /* Printable (<128), 'World' (<256) */
+		( ( keycode >= 273 ) && ( keycode < 282 ) &&				 /* Numeric keypad (<273), navigation */
+		  ( keycode != SDLK_INSERT ) ) ) )							 /* keys (<282) except insert */
+		consoleCapture = true;
 
 	std::vector<SHotkeyMapping>::iterator it;
 	std::vector<SHotkeyMappingGUI>::iterator itGUI;
@@ -261,26 +321,28 @@ int hotkeyInputHandler( const SDL_Event* ev )
 
 	// Here's an interesting bit:
 	// If you have an event bound to, say, 'F', and another to, say, 'Ctrl+F', pressing
-	// 'F' while control is down will fire off both.
+	// 'F' while control is down would normally fire off both.
 
 	// To avoid this, set the modifier keys for /all/ events this key would trigger
 	// (Ctrl, for example, is both group-save and bookmark-save)
-	// but only send a HotkeyDown event for the event whos bindings most precisely
-	// match the conditions (i.e. the event with the highest number of auxiliary
+	// but only send a HotkeyDown event for the event with bindings most precisely
+	// matching the conditions (i.e. the event with the highest number of auxiliary
 	// keys, providing they're all down)
 
 	if( ( ev->type == SDL_KEYDOWN ) || ( ev->type == SDL_MOUSEBUTTONDOWN ) )
 	{
 		// SDL-events bit
 		
-		int closestMap = -1, closestMapMatch;
+		unsigned int closestMap;
+		size_t closestMapMatch = 0;
 
 		for( it = hotkeyMap[keycode].begin(); it < hotkeyMap[keycode].end(); it++ )
 		{			
 			// Check to see if all auxiliary keys are down
-
+			
 			std::vector<int>::iterator itKey;
 			bool accept = true;
+			isCapturable = true;
 
 			for( itKey = it->requires.begin(); itKey != it->requires.end(); itKey++ )
 			{
@@ -288,36 +350,51 @@ int hotkeyInputHandler( const SDL_Event* ev )
 				{
 					if( !keys[*itKey] ) accept = false;
 				}
-				else
+				else if( *itKey < UNIFIED_SHIFT )
 				{
 					if( !mouseButtons[(*itKey)-SDLK_LAST] ) accept = false;
 				}
+				else
+					if( !unified[(*itKey)-UNIFIED_SHIFT] ) accept = false;
+
+				// If this event requires a multiple keypress (with the exception
+				// of shift+key combinations) the console won't inhibit it.
+				if( ( *itKey != SDLK_RSHIFT ) && ( *itKey != SDLK_LSHIFT ) )
+					isCapturable = false;
 			}
 
-			if( accept )
+			if( it->mapsTo == HOTKEY_CONSOLE_TOGGLE ) isCapturable = false; // Because that would be silly.
+
+			if( accept && !( isCapturable && consoleCapture ) )
 			{
 				hotkeys[it->mapsTo] = true;
-				if( ( closestMap == -1 ) || ( it->requires.size() > (size_t)closestMapMatch ) )
+				if( it->requires.size() >= closestMapMatch )
 				{
+					// Only if it's a more precise match, and it either isn't capturable or the console won't capture it.
 					closestMap = it->mapsTo;
-					closestMapMatch = (int)it->requires.size();
+					closestMapMatch = it->requires.size() + 1;
 				}
 			}
 		}
 
-		if( closestMap != -1 )
+		if( closestMapMatch )
 		{
 			hotkeyNotification.type = SDL_HOTKEYDOWN;
 			hotkeyNotification.user.code = closestMap;
 			SDL_PushEvent( &hotkeyNotification );
 		}
 		// GUI bit... could do with some optimization later.
+
+		CStr closestMapName = -1;
+		closestMapMatch = 0;
+
 		for( itGUI = hotkeyMapGUI[keycode].begin(); itGUI != hotkeyMapGUI[keycode].end(); itGUI++ )
 		{			
 			// Check to see if all auxiliary keys are down
 
 			std::vector<int>::iterator itKey;
 			bool accept = true;
+			isCapturable = true;
 
 			for( itKey = itGUI->requires.begin(); itKey != itGUI->requires.end(); itKey++ )
 			{
@@ -325,30 +402,46 @@ int hotkeyInputHandler( const SDL_Event* ev )
 				{
 					if( !keys[*itKey] ) accept = false;
 				}
-				else
+				else if( *itKey < UNIFIED_SHIFT )
 				{
 					if( !mouseButtons[(*itKey)-SDLK_LAST] ) accept = false;
 				}
+				else
+					if( !unified[(*itKey)-UNIFIED_SHIFT] ) accept = false;
+
+				// If this event requires a multiple keypress (with the exception
+				// of shift+key combinations) the console won't inhibit it.
+				if( ( *itKey != SDLK_RSHIFT ) && ( *itKey != SDLK_LSHIFT ) )
+					isCapturable = false;
 			}
 
-			if( accept )
+			if( accept && !( isCapturable && consoleCapture ) )
 			{
-				// GUI-objects bit
-				// This fragment is an obvious candidate for rewriting when speed becomes an issue.
-				GUIHotkeyMap::iterator map_it;
-				GUIObjectList::iterator obj_it;
-				map_it = guiHotkeyMap.find( itGUI->mapsTo );
-				if( map_it != guiHotkeyMap.end() )
+				if( itGUI->requires.size() >= closestMapMatch )
 				{
-					GUIObjectList& targets = map_it->second;
-					for( obj_it = targets.begin(); obj_it != targets.end(); obj_it++ )
-					{
-						hotkeyNotification.type = SDL_GUIHOTKEYPRESS;
-						hotkeyNotification.user.code = (intptr_t)&(*obj_it);
-						SDL_PushEvent( &hotkeyNotification );
-					}
-				}	
+					closestMapName = itGUI->mapsTo;
+					closestMapMatch = itGUI->requires.size() + 1;
+				}
 			}
+		}
+		// GUI-objects bit
+		// This fragment is an obvious candidate for rewriting when speed becomes an issue.
+
+		if( closestMapMatch )
+		{
+			GUIHotkeyMap::iterator map_it;
+			GUIObjectList::iterator obj_it;
+			map_it = guiHotkeyMap.find( closestMapName );
+			if( map_it != guiHotkeyMap.end() )
+			{
+				GUIObjectList& targets = map_it->second;
+				for( obj_it = targets.begin(); obj_it != targets.end(); obj_it++ )
+				{
+					hotkeyNotification.type = SDL_GUIHOTKEYPRESS;
+					hotkeyNotification.user.code = (intptr_t)&(*obj_it);
+					SDL_PushEvent( &hotkeyNotification );
+				}
+			}	
 		}
 	}
 	else
@@ -366,10 +459,12 @@ int hotkeyInputHandler( const SDL_Event* ev )
 				{
 					if( !keys[*itKey] ) accept = false;
 				}
-				else
+				else if( *itKey < UNIFIED_SHIFT )
 				{
 					if( !mouseButtons[(*itKey)-SDLK_LAST] ) accept = false;
 				}
+				else
+					if( !unified[(*itKey)-UNIFIED_SHIFT] ) accept = false;
 			}
 
 			if( accept )

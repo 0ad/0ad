@@ -37,7 +37,7 @@ JSBool JSI_Entity::getProperty( JSContext* cx, JSObject* obj, jsval id, jsval* v
 		*vp = JSVAL_NULL;
 		return( JS_TRUE );
 	}
-	CStr propName = g_ScriptingHost.ValueToString( id );
+	CStrW propName = g_ScriptingHost.ValueToUCString( id );
 	
 	if( (*e)->m_properties.find( propName ) != (*e)->m_properties.end() )
 	{
@@ -45,40 +45,40 @@ JSBool JSI_Entity::getProperty( JSContext* cx, JSObject* obj, jsval id, jsval* v
 		return( JS_TRUE );
 	}
 	else
-		JS_ReportError( cx, "No such property on %s: %s", (const char*)((*e)->m_name), (const char*)propName );
+		JS_ReportError( cx, "No such property on %ls: %ls", (const wchar_t*)((*e)->m_name), (const wchar_t*)propName );
 	return( JS_TRUE );
 }
 
 JSBool JSI_Entity::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
 {
 	HEntity* e = (HEntity*)JS_GetPrivate( cx, obj );
-	CStr propName = g_ScriptingHost.ValueToString( id );
+	CStrW propName = g_ScriptingHost.ValueToUCString( id );
 	
 	if( (*e)->m_properties.find( propName ) != (*e)->m_properties.end() )
 	{
-		*((*e)->m_properties[propName]) = *vp;
+		(*e)->m_properties[propName]->fromjsval( *vp );
 		(*e)->rebuild( propName );
 		return( JS_TRUE );
 	}
 	else
-		JS_ReportError( cx, "No such property on %s: %s", (const char*)((*e)->m_name), (const char*)propName );
+		JS_ReportError( cx, "No such property on %ls: %ls", (const wchar_t*)((*e)->m_name), (const wchar_t*)propName );
 	return( JS_TRUE );
 }
 
-JSBool JSI_Entity::construct( JSContext* cx, JSObject* UNUSEDPARAM(obj), unsigned int argc, jsval* argv, jsval* rval )
+JSBool JSI_Entity::construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
 {
 	assert( argc >= 2 );
 	CBaseEntity* baseEntity = NULL;
 	CVector3D position;
 	float orientation = 0.0f;
 	JSObject* jsBaseEntity = JSVAL_TO_OBJECT( argv[0] );
-	CStr templateName;
+	CStrW templateName;
 
 	if( !JSVAL_IS_OBJECT( argv[0] ) || !( baseEntity = (CBaseEntity*)JS_GetInstancePrivate( cx, jsBaseEntity, &JSI_BaseEntity::JSI_class, NULL ) ) )
 	{	
 		try
 		{
-			templateName = g_ScriptingHost.ValueToString( argv[0] );
+			templateName = g_ScriptingHost.ValueToUCString( argv[0] );
 		}
 		catch( PSERROR_Scripting_ConversionFailed )
 		{
@@ -91,7 +91,7 @@ JSBool JSI_Entity::construct( JSContext* cx, JSObject* UNUSEDPARAM(obj), unsigne
 	if( !baseEntity )
 	{
 		*rval = JSVAL_NULL;
-		JS_ReportError( cx, "No such template: %s", (const char*)templateName );
+		JS_ReportError( cx, "No such template: %ls", (const wchar_t*)templateName );
 		return( JS_TRUE );
 	}
 	JSI_Vector3D::Vector3D_Info* jsVector3D = NULL;
@@ -107,6 +107,7 @@ JSBool JSI_Entity::construct( JSContext* cx, JSObject* UNUSEDPARAM(obj), unsigne
 		}
 		catch( PSERROR_Scripting_ConversionFailed )
 		{
+			// TODO: Net-safe random for this parameter.
 			orientation = 0.0f;
 		}
 	}
@@ -134,9 +135,9 @@ JSBool JSI_Entity::toString( JSContext* cx, JSObject* obj, uintN argc, jsval* ar
 {
 	HEntity* e = (HEntity*)JS_GetPrivate( cx, obj );
 
-	char buffer[256];
-	snprintf( buffer, 256, "[object Entity: \"%s\" (%s)]", (const TCHAR*)(*e)->m_name, (const TCHAR*)(*e)->m_base->m_name );
+	wchar_t buffer[256];
+	_snwprintf( buffer, 256, L"[object Entity: \"%ls\" (%ls)]", (const wchar_t*)(*e)->m_name, (const wchar_t*)(*e)->m_base->m_name );
 	buffer[255] = 0;
-	*rval = STRING_TO_JSVAL( JS_NewStringCopyZ( cx, buffer ) );
+	*rval = STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, buffer ) );
 	return( JS_TRUE );
 }

@@ -69,6 +69,7 @@ public:
 	
 	// Camera Control Functions (used by input handler)
 	void ResetCamera();
+	void ResetCameraOrientation();
 	void RotateAboutTarget();
 	
 	void PushCameraTarget( const CVector3D& target );

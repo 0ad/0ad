@@ -24,7 +24,7 @@
 #include "EntityProperties.h"
 #include "BoundingObjects.h"
 
-class CBaseEntity : public IPropertyOwner
+class CBaseEntity : public IBoundPropertyOwner
 {
 public:
 	CBaseEntity();
@@ -36,14 +36,14 @@ public:
 
 	CObjectEntry* m_actorObject;
 
-	CProperty_CStr m_name;
+	CBoundObjectProperty<CStrW> m_name;
 	CBoundingCircle* m_bound_circle;
 	CBoundingBox* m_bound_box;
 	CBoundingObject::EBoundingType m_bound_type;
 	CVector2D m_graphicsOffset;
 
-	CProperty_float m_speed;
-	CProperty_float m_turningRadius;
+	CBoundProperty<float> m_speed;
+	CBoundProperty<float> m_turningRadius;
 };
 
 #endif

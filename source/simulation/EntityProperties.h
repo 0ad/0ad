@@ -4,8 +4,7 @@
 // 
 // Extended properties table, primarily intended for data-inheritable properties and those defined by JavaScript functions.
 //
-// Usage: Nothing yet.
-//        These properties will be accessed via functions in CEntity/CBaseEntity
+// Usage: These properties are accessed via functions in CEntity/CBaseEntity
 //
 
 // TODO: Fix the silent failures of the conversion functions: need to work out what to do in these cases.
@@ -38,164 +37,127 @@
 
 #endif
 
-class IPropertyOwner;
+class IBoundPropertyOwner;
 class CBaseEntity;
-class CProperty;
-struct SProperty_NumericModifier;
-struct SProperty_StringModifier;
-struct SProperty_BooleanModifier;
+class CBoundPropertyModifier;
 
-// Property abstract.
+// Property interface
 
-class CProperty
+class IBoundProperty
 {
 protected:
-	IPropertyOwner* m_owner;
-	void (IPropertyOwner::*m_updateFn)();
+	IBoundPropertyOwner* m_owner;
+	void (IBoundPropertyOwner::*m_updateFn)();
 	virtual void set( const jsval value ) = 0;
 public:
-	CProperty& operator=( const jsval value );
+	void fromjsval( const jsval value );
 	virtual jsval tojsval() = 0;
-	virtual bool rebuild( CProperty* parent, bool triggerFn = true ) = 0; // Returns true if the rebuild changed the value of this property.
-	void associate( IPropertyOwner* owner, const CStr& name );
-	void associate( IPropertyOwner* owner, const CStr& name, void (IPropertyOwner::*updateFn)() );
+	virtual bool rebuild( IBoundProperty* parent, bool triggerFn = true ) = 0; // Returns true if the rebuild changed the value of this property.
+	void associate( IBoundPropertyOwner* owner, const CStrW& name );
+	void associate( IBoundPropertyOwner* owner, const CStrW& name, void (IBoundPropertyOwner::*updateFn)() );
 };
 
-// Integer specialization
+// Specialize at least:
+// - jsval conversion functions (set, tojsval)
 
-class CProperty_i32 : public CProperty
+// Generic primitive one:
+
+template<typename T> class CBoundProperty : public IBoundProperty
 {
-	i32 data;
-	SProperty_NumericModifier* modifier;
+	T m_data;
+	bool m_inherited;
+	void (IBoundPropertyOwner::*m_updateFn)();
+
 public:
-	CProperty_i32();
-	~CProperty_i32();
+	CBoundProperty() { m_inherited = true; }
+	CBoundProperty( const T& copy ) { m_inherited = false; m_data = copy; }
+	operator T&() { return( m_data ); }
+	operator const T&() const { return( m_data ); }
+	T& operator=( const T& copy ) { m_inherited = false; return( m_data = copy ); }
+
 	void set( const jsval value );
 	jsval tojsval();
-	bool rebuild( CProperty* parent, bool triggerFn = true );
-	CProperty_i32& operator=( const i32 value );
-	operator i32();
+	bool rebuild( IBoundProperty* parent, bool triggerFn = true )
+	{
+		if( m_inherited && parent )
+		{
+			*this = *( (CBoundProperty<T>*)parent );
+			if( triggerFn && m_updateFn )
+				(m_owner->*m_updateFn)();
+		}
+		return( !m_inherited );
+	}
 };
 
-// Boolean specialization
+// Generic class one:
 
-class CProperty_bool : public CProperty
+template<typename T> class CBoundObjectProperty : public IBoundProperty, public T
 {
-	bool data;
-	SProperty_BooleanModifier* modifier;
+	bool m_inherited;
+	void (IBoundPropertyOwner::*m_updateFn)();
+
 public:
-	CProperty_bool();
-	~CProperty_bool();
+	CBoundObjectProperty() { m_inherited = true; }
+	CBoundObjectProperty( const T& copy ) : T( copy ) { m_inherited = false; }
+
 	void set( const jsval value );
 	jsval tojsval();
-	bool rebuild( CProperty* parent, bool triggerFn = true );
-	CProperty_bool& operator=( const bool value );
-	operator bool();
+	bool rebuild( IBoundProperty* parent, bool triggerFn = true )
+	{
+		if( m_inherited && parent )
+		{
+			*this = *( (CBoundObjectProperty<T>*)parent );
+			if( triggerFn && m_updateFn )
+				(m_owner->*m_updateFn)();
+		}
+		return( !m_inherited );
+	}
 };
 
-// Floating-point specialization
+// And an explicit one:
 
-class CProperty_float : public CProperty
+template<> class CBoundProperty<CBaseEntity*> : public IBoundProperty
 {
-	float data;
-	SProperty_NumericModifier* modifier;
+	CBaseEntity* m_data;
+	void (IBoundPropertyOwner::*m_updateFn)();
+
 public:
-	CProperty_float();
-	~CProperty_float();
+	CBoundProperty() { m_data = NULL; }
+	CBoundProperty( CBaseEntity* copy ) { m_data = copy; }
+
+	operator CBaseEntity*&() { return( m_data ); }
+	operator CBaseEntity*() const { return( m_data ); }
+	CBaseEntity*& operator=( CBaseEntity* copy ) { return( m_data = copy ); }
+
+// Standard pointerish things
+
+	CBaseEntity& operator*() { return( *m_data ); }
+	CBaseEntity* operator->() { return( m_data ); }
+	
+	/*
+	CBoundProperty( uintptr_t ptr ) { m_data = (CBaseEntity*)ptr; }
+	CBaseEntity*& operator=( uintptr_t ptr ) { m_data = (CBaseEntity*)ptr; }
+	operator uintptr_t() { return( (uintptr_t)m_data ); }
+	*/
+
 	void set( const jsval value );
 	jsval tojsval();
-	bool rebuild( CProperty* parent, bool triggerFn = true );
-	CProperty_float& operator=( const float& value );
-	operator float();
-	operator bool();
-	float operator+( float value );
-	float operator-( float value );
-	float operator*( float value );
-	float operator/( float value );
-	bool operator<( float value );
-	bool operator>( float value );
-	bool operator==( float value );
-};
-
-// String specialization
-
-class CProperty_CStr : public CProperty, public CStr
-{
-	SProperty_StringModifier* modifier;
-public:
-	CProperty_CStr();
-	~CProperty_CStr();
-	void set( const jsval value );
-	jsval tojsval();
-	bool rebuild( CProperty* parent, bool triggerFn = true );
-	CProperty_CStr& operator=( const CStr& value );
-};
-
-// 3-Vector specialization
-
-class CProperty_CVector3D : public CProperty, public CVector3D
-{
-public:
-	void set( const jsval value );
-	jsval tojsval();
-	bool rebuild( CProperty* parent, bool triggerFn = true );
-	CProperty_CVector3D& operator=( const CVector3D& value );
-};
-
-// CBaseEntity* specialization
-
-class CProperty_CBaseEntityPtr : public CProperty
-{
-	CBaseEntity* data;
-public:
-	void set( const jsval value );
-	jsval tojsval();
-	bool rebuild( CProperty* parent, bool triggerFn = true );
-	operator CBaseEntity*();
-	operator bool();
-	CBaseEntity& operator*() const;
-	CBaseEntity* operator->() const;
-	CProperty_CBaseEntityPtr& operator=( CBaseEntity* value );
+	bool rebuild( IBoundProperty* parent, bool triggerFn = true )
+	{
+		return( false ); // Can't inherit a CBaseEntity*
+	}
 };
 
 // e.g. Entities and their templates.
-class IPropertyOwner
+
+class IBoundPropertyOwner
 {
 public:
-	CProperty_CBaseEntityPtr m_base;
-	STL_HASH_MAP<CStr,CProperty*,CStr_hash_compare> m_properties;
-	std::vector<IPropertyOwner*> m_inheritors;
-	void rebuild( CStr propName ); // Recursively rebuild just the named property over the inheritance tree.
+	CBoundProperty<CBaseEntity*> m_base;
+	STL_HASH_MAP<CStrW,IBoundProperty*,CStrW_hash_compare> m_properties;
+	std::vector<IBoundPropertyOwner*> m_inheritors;
+	void rebuild( CStrW propName ); // Recursively rebuild just the named property over the inheritance tree.
 	void rebuild(); // Recursively rebuild everything over the inheritance tree.
-};
-
-struct SProperty_NumericModifier
-{
-	float multiplicative;
-	float additive;
-	void operator=( float value )
-	{
-		multiplicative = 0.0f;
-		additive = value;
-	}
-};
-
-struct SProperty_StringModifier
-{
-	CStr replacement;
-	void operator=( const CStr& value )
-	{
-		replacement = value;
-	}
-};
-
-struct SProperty_BooleanModifier
-{
-	bool replacement;
-	void operator=( const bool value )
-	{
-		replacement = value;
-	}
 };
 
 #endif

@@ -16,13 +16,9 @@ extern bool keys[SDLK_LAST];
 static const float SELECT_DBLCLICK_RATE = 0.5f;
 static const int ORDER_DELAY = 5;
 
-CVector3D cameraBookmarks[10];
-bool bookmarkInUse[10] = { false, false, false, false, false, false, false, false, false, false };
-u8 currentBookmark = 255;
-
 void CSelectedEntities::addSelection( CEntity* entity )
 {
-	m_group = 255;
+	m_group = -1;
 	assert( !isSelected( entity ) );
 	m_selected.push_back( entity );
 	entity->m_selected = true;
@@ -30,7 +26,7 @@ void CSelectedEntities::addSelection( CEntity* entity )
 
 void CSelectedEntities::removeSelection( CEntity* entity )
 {
-	m_group = 255;
+	m_group = -1;
 	assert( isSelected( entity ) );
 	entity->m_selected = false;
 	std::vector<CEntity*>::iterator it;
@@ -50,7 +46,7 @@ void CSelectedEntities::renderSelectionOutlines()
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
 		(*it)->renderSelectionOutline();
 
-	if( m_group_highlight != 255 )
+	if( m_group_highlight != -1 )
 	{
 		glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 		glEnable( GL_BLEND );
@@ -73,7 +69,7 @@ void CSelectedEntities::renderOverlays()
 	std::vector<CEntity*>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
 	{
-		if( (*it)->m_grouped != 255 )
+		if( (*it)->m_grouped != -1 )
 		{
 			assert( (*it)->m_bounds );
 			
@@ -91,7 +87,7 @@ void CSelectedEntities::renderOverlays()
 			
 		}
 	}
-	if( m_group_highlight != 255 )
+	if( m_group_highlight != -1 )
 	{
 		glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 		glEnable( GL_BLEND );
@@ -137,14 +133,14 @@ void CSelectedEntities::renderOverlays()
 
 void CSelectedEntities::setSelection( CEntity* entity )
 {
-	m_group = 255;
+	m_group = -1;
 	clearSelection();
 	m_selected.push_back( entity );
 }
 
 void CSelectedEntities::clearSelection()
 {
-	m_group = 255;
+	m_group = -1;
 	std::vector<CEntity*>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
 		(*it)->m_selected = false;
@@ -186,21 +182,19 @@ CVector3D CSelectedEntities::getSelectionPosition()
 	return( avg * ( 1.0f / m_selected.size() ) );
 }
 
-void CSelectedEntities::saveGroup( u8 groupid )
+void CSelectedEntities::saveGroup( i8 groupid )
 {
 	std::vector<CEntity*>::iterator it;
 	// Clear all entities in the group...
 	for( it = m_groups[groupid].begin(); it < m_groups[groupid].end(); it++ )
-	{
-		(*it)->m_grouped = 255;
-		(*it)->m_grouped_mirror = 0;
-	}
+		(*it)->m_grouped = -1;
+	
 	m_groups[groupid].clear();
 	// Remove selected entities from each group they're in, and flag them as
 	// members of the new group
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
 	{
-		if( (*it)->m_grouped < 255 )
+		if( (*it)->m_grouped != -1 )
 		{
 			std::vector<CEntity*>& group = m_groups[(*it)->m_grouped];
 			std::vector<CEntity*>::iterator it2;
@@ -214,7 +208,6 @@ void CSelectedEntities::saveGroup( u8 groupid )
 			}
 		}
 		(*it)->m_grouped = groupid;
-		(*it)->m_grouped_mirror = ( groupid != 0 ) ? groupid : 10;
 	}
 	// Copy the group across
 	m_groups[groupid] = m_selected;
@@ -222,7 +215,31 @@ void CSelectedEntities::saveGroup( u8 groupid )
 	m_group = groupid;
 }
 
-void CSelectedEntities::loadGroup( u8 groupid )
+void CSelectedEntities::addToGroup( i8 groupid, CEntity* entity )
+{
+	std::vector<CEntity*>::iterator it;
+
+	// Remove selected entities from each group they're in, and flag them as
+	// members of the new group
+	if( entity->m_grouped != -1 )
+	{
+		std::vector<CEntity*>& group = m_groups[(*it)->m_grouped];
+		std::vector<CEntity*>::iterator it2;
+		for( it2 = group.begin(); it2 < group.end(); it2++ )
+		{
+			if( (*it2) == entity )
+			{
+				group.erase( it2 );
+				break;
+			}
+		}
+	}
+	entity->m_grouped = groupid;
+
+	m_groups[groupid].push_back( entity );
+}
+
+void CSelectedEntities::loadGroup( i8 groupid )
 {
 	clearSelection();
 	m_selected = m_groups[groupid];
@@ -232,7 +249,7 @@ void CSelectedEntities::loadGroup( u8 groupid )
 	m_group = groupid;
 }
 
-void CSelectedEntities::addGroup( u8 groupid )
+void CSelectedEntities::addGroup( i8 groupid )
 {
 	std::vector<CEntity*>::iterator it;
 	for( it = m_groups[groupid].begin(); it < m_groups[groupid].end(); it++ )
@@ -244,11 +261,11 @@ void CSelectedEntities::addGroup( u8 groupid )
 		(*it)->m_selected = true;
 }
 
-void CSelectedEntities::changeGroup( CEntity* entity, u8 groupid )
+void CSelectedEntities::changeGroup( CEntity* entity, i8 groupid )
 {
 	// Remove from current group
 	u8 current = entity->m_grouped;
-	if( current != 255 )
+	if( current != -1 )
 	{
 		std::vector<CEntity*>::iterator it;
 		for( it = m_groups[current].begin(); it < m_groups[current].end(); it++ )
@@ -260,7 +277,7 @@ void CSelectedEntities::changeGroup( CEntity* entity, u8 groupid )
 			}
 		}
 	}
-	if( groupid != 255 )
+	if( groupid != -1 )
 		m_groups[groupid].push_back( entity );
 	entity->m_grouped = groupid;
 }
@@ -276,9 +293,9 @@ bool CSelectedEntities::isSelected( CEntity* entity )
 	return( false );
 }
 
-void CSelectedEntities::highlightGroup( u8 groupid )
+void CSelectedEntities::highlightGroup( i8 groupid )
 {
-	if( m_group_highlight != 255 )
+	if( m_group_highlight != -1 )
 		return;
 	if( !getGroupCount( groupid ) )
 		return;
@@ -288,17 +305,19 @@ void CSelectedEntities::highlightGroup( u8 groupid )
 
 void CSelectedEntities::highlightNone()
 {
-	if( m_group_highlight != 255 )
+
+	if( m_group_highlight != -1 )
 		g_Game->GetView()->PopCameraTarget();
-	m_group_highlight = 255;
+	m_group_highlight = -1;
+
 }
 
-int CSelectedEntities::getGroupCount( u8 groupid )
+int CSelectedEntities::getGroupCount( i8 groupid )
 {
 	return( (int)m_groups[groupid].size() );
 }
 
-CVector3D CSelectedEntities::getGroupPosition( u8 groupid )
+CVector3D CSelectedEntities::getGroupPosition( i8 groupid )
 {
 	CVector3D avg;
 	std::vector<CEntity*>::iterator it;
@@ -319,8 +338,10 @@ void CSelectedEntities::update()
 			}
 		m_contextOrder = -1;
 	}
-	if( ( m_group_highlight != 255 ) && getGroupCount( m_group_highlight ) )
+
+	if( ( m_group_highlight != -1 ) && getGroupCount( m_group_highlight ) )
 		g_Game->GetView()->SetCameraTarget( getGroupPosition( m_group_highlight ) );
+
 }
 
 void CSelectedEntities::setContext( int contextOrder )
@@ -367,6 +388,10 @@ bool CSelectedEntities::isContextValid( int contextOrder )
 {
 	if( contextOrder == -1 ) return( false );
 
+	// Can't order anything off the map
+	if( !g_Game->GetWorld()->GetTerrain()->isOnMap( g_Mouseover.m_worldposition ) )
+		return( false );
+
 	// Check to see if any member of the selection supports this order type.
 	std::vector<CEntity*>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
@@ -383,20 +408,12 @@ void CSelectedEntities::contextOrder( bool pushQueue )
 	std::vector<CEntity*>::iterator it;
 	CEntityOrder context, contextRandomized;
 	(int&)context.m_type = m_contextOrder;
-	CVector3D origin, dir;
-	pCamera->BuildCameraRay( origin, dir );
 
 	switch( m_contextOrder )
 	{
 	case CEntityOrder::ORDER_GOTO:
 	case CEntityOrder::ORDER_PATROL:
-		{
-		CHFTracer maptracer( pTerrain );
-		int x, y; CVector3D ipt;
-		maptracer.RayIntersect( origin, dir, x, y, ipt );
-		context.m_data[0].location.x = ipt.X;
-		context.m_data[0].location.y = ipt.Z;
-		}
+		context.m_data[0].location = g_Mouseover.m_worldposition;
 		break;
 	
 	default:
@@ -411,8 +428,10 @@ void CSelectedEntities::contextOrder( bool pushQueue )
 	// Task them all to a point within a radius of the target, radius depends upon
 	// the number of units in the group.
 
-	float radius = 2.0f * sqrt( (float)m_selected.size() ); // A decent enough approximation
+	float radius = 2.0f * sqrt( (float)m_selected.size() - 1 ); // A decent enough approximation
+
 	float _x, _y;
+
 
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
 		if( (*it)->acceptsOrder( m_contextOrder, g_Mouseover.m_target ) )
@@ -427,6 +446,18 @@ void CSelectedEntities::contextOrder( bool pushQueue )
 
 			contextRandomized.m_data[0].location.x += _x * radius;
 			contextRandomized.m_data[0].location.y += _y * radius;
+
+			// Clamp it to within the map, just in case.
+			float mapsize = (float)g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
+			if( contextRandomized.m_data[0].location.x < 0.0f )
+				contextRandomized.m_data[0].location.x = 0.0f;
+			if( contextRandomized.m_data[0].location.x >= mapsize )
+				contextRandomized.m_data[0].location.x = mapsize;
+			if( contextRandomized.m_data[0].location.y < 0.0f )
+				contextRandomized.m_data[0].location.y = 0.0f;
+			if( contextRandomized.m_data[0].location.y >= mapsize )
+				contextRandomized.m_data[0].location.y = mapsize;
+
 			g_Scheduler.pushFrame( ORDER_DELAY, (*it)->me, new CMessageOrder( contextRandomized, pushQueue ) );
 		}
 	
@@ -443,6 +474,9 @@ void CMouseoverEntities::update( float timestep )
 	CUnit* hit = g_UnitMan.PickUnit( origin, dir );
 
 	m_target = NULL;
+	
+	m_worldposition = pCamera->GetWorldCoordinates();
+
 	if( hit )
 		m_target = hit->GetEntity();
 	if( m_viewall )
@@ -652,7 +686,7 @@ void CMouseoverEntities::renderOverlays()
 	std::vector<SMouseoverFader>::iterator it;
 	for( it = m_mouseover.begin(); it < m_mouseover.end(); it++ )
 	{
-		if( it->entity->m_grouped != 255 )
+		if( it->entity->m_grouped != -1 )
 		{
 			assert( it->entity->m_bounds );
 			glPushMatrix();
@@ -720,7 +754,8 @@ int interactInputHandler( const SDL_Event* ev )
 			if( ( ev->user.code >= HOTKEY_SELECTION_GROUP_0 ) && ( ev->user.code <= HOTKEY_SELECTION_GROUP_19 ) )
 			{
 				// The above test limits it to 20 groups, so don't worry about overflowing
-				u8 id = (u8)( ev->user.code - HOTKEY_SELECTION_GROUP_0 );
+
+				i8 id = (i8)( ev->user.code - HOTKEY_SELECTION_GROUP_0 );
 				
 				if( hotkeys[HOTKEY_SELECTION_GROUP_ADD] )
 				{
@@ -745,44 +780,7 @@ int interactInputHandler( const SDL_Event* ev )
 				}
 				return( EV_HANDLED );
 			}
-			else if( ( ev->user.code >= HOTKEY_CAMERA_BOOKMARK_0 ) && ( ev->user.code <= HOTKEY_CAMERA_BOOKMARK_9 ) )
-			{
-				// The above test limits it to 10 bookmarks, so don't worry about overflowing
-				u8 id = (u8)( ev->user.code - HOTKEY_CAMERA_BOOKMARK_0 );
-				if( hotkeys[HOTKEY_CAMERA_BOOKMARK_SAVE] )
-				{
-					// Attempt to track the ground we're looking at
-					CHFTracer tracer( pTerrain );
-					int x, z;
-					CVector3D origin, dir, delta, currentTarget;
-					origin = pCamera->m_Orientation.GetTranslation();
-					dir = pCamera->m_Orientation.GetIn();
-					if( tracer.RayIntersect( origin, dir, x, z, currentTarget ) )
-					{					
-						cameraBookmarks[id] = currentTarget;
-					}
-					else
-					{
-						// Placing a bookmark off the map? If you say so, guv'nor.
-						cameraBookmarks[id] = pCamera->m_Orientation.GetTranslation() + pCamera->m_Orientation.GetIn() * 160.0f;
-					}
-					bookmarkInUse[id] = true;
-				}
-				else if( hotkeys[HOTKEY_CAMERA_BOOKMARK_SNAP] )
-				{
-					if( bookmarkInUse[id] && ( currentBookmark == 255 ) )
-					{
-						pView->PushCameraTarget( cameraBookmarks[id] );
-						currentBookmark = id;
-					}
-				}
-				else
-				{
-					if( bookmarkInUse[id] )
-						pView->SetCameraTarget( cameraBookmarks[id] );
-				}
-				return( EV_HANDLED );
-			}
+		
 			return( EV_PASS );
 		}
 		return( EV_HANDLED );
@@ -790,17 +788,14 @@ int interactInputHandler( const SDL_Event* ev )
 		switch( ev->user.code )
 		{
 		case HOTKEY_SELECTION_GROUP_SNAP:
-			if( g_Selection.m_group_highlight != 255 )
+			if( g_Selection.m_group_highlight != -1 )
 				g_Selection.highlightNone();
-			break;
-		case HOTKEY_CAMERA_BOOKMARK_SNAP:
-			if( currentBookmark != 255 )
-				pView->PopCameraTarget();
-			currentBookmark = 255;
 			break;
 		case HOTKEY_HIGHLIGHTALL:
 			g_Mouseover.m_viewall = false;
 			break;
+		default:
+			return( EV_PASS );
 		}
 		return( EV_HANDLED );
 	case SDL_MOUSEBUTTONUP:
@@ -892,3 +887,29 @@ bool isMouseoverType( CEntity* ev )
 	}
 	return( false );
 }
+
+/*
+void pushCameraTarget( const CVector3D& target )
+{
+	// Save the current position
+	cameraTargets.push_back( g_Camera.m_Orientation.GetTranslation() );
+	// And set the camera
+	setCameraTarget( target );
+}
+
+void setCameraTarget( const CVector3D& target )
+{
+	// Maintain the same orientation and level of zoom, if we can
+	// (do this by working out the point the camera is looking at, saving
+	//  the difference beteen that position and the camera point, and restoring
+	//  that difference to our new target)
+
+	cameraDelta = target - g_Camera.GetFocus();
+}
+
+void popCameraTarget()
+{
+	cameraDelta = cameraTargets.back() - g_Camera.m_Orientation.GetTranslation();
+	cameraTargets.pop_back();
+}
+*/

@@ -36,6 +36,7 @@ package.files = {
 	-- graphics/
 	{ sourcesfromdirs(
                 "../../graphics") },
+        { sourcesfromdirs( "../../graphics/scripting" ) },
 	-- maths/
 	{ sourcesfromdirs(
                 "../../maths") },

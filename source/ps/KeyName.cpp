@@ -13,6 +13,20 @@ struct SKeycodeMapping
 	const char* altkeyname;
 };
 
+// 'Keycodes' for the mouse buttons
+const int MOUSE_LEFT = SDLK_LAST + SDL_BUTTON_LEFT;
+const int MOUSE_RIGHT = SDLK_LAST + SDL_BUTTON_RIGHT;
+const int MOUSE_MIDDLE = SDLK_LAST + SDL_BUTTON_MIDDLE;
+const int MOUSE_WHEELUP = SDLK_LAST + SDL_BUTTON_WHEELUP;
+const int MOUSE_WHEELDOWN = SDLK_LAST + SDL_BUTTON_WHEELDOWN;
+
+// 'Keycodes' for the unified modifier keys
+const int UNIFIED_SHIFT = MOUSE_WHEELDOWN + 1;
+const int UNIFIED_CTRL = MOUSE_WHEELDOWN + 2;
+const int UNIFIED_ALT = MOUSE_WHEELDOWN + 3;
+const int UNIFIED_META = MOUSE_WHEELDOWN + 4;
+const int UNIFIED_SUPER = MOUSE_WHEELDOWN + 5;
+
 // You can use either key name in the config file...
 
 static SKeycodeMapping keycodeMapping[] =
@@ -255,11 +269,16 @@ static SKeycodeMapping keycodeMapping[] =
     { SDLK_POWER, "Power", 0 }, // ?
     { SDLK_EURO, "Euro", 0 },
     { SDLK_UNDO, "Undo", 0 }, // ?
-	{ SDLK_LAST + SDL_BUTTON_LEFT, "Left Mouse Button", "MouseLeft" },
-	{ SDLK_LAST + SDL_BUTTON_RIGHT, "Right Mouse Button", "MouseRight" },
-	{ SDLK_LAST + SDL_BUTTON_MIDDLE, "Middle Mouse Button", "MouseMiddle" },
-	{ SDLK_LAST + SDL_BUTTON_WHEELUP, "Mouse Wheel Up", "WheelUp" },
-	{ SDLK_LAST + SDL_BUTTON_WHEELDOWN, "Mouse Wheel Down", "WheelDown" },
+	{ MOUSE_LEFT, "Left Mouse Button", "MouseLeft" },
+	{ MOUSE_RIGHT, "Right Mouse Button", "MouseRight" },
+	{ MOUSE_MIDDLE, "Middle Mouse Button", "MouseMiddle" },
+	{ MOUSE_WHEELUP, "Mouse Wheel Up", "WheelUp" },
+	{ MOUSE_WHEELDOWN, "Mouse Wheel Down", "WheelDown" },
+	{ UNIFIED_SHIFT, "Shift", "AnyShift" },
+    { UNIFIED_CTRL, "Ctrl", "AnyCtrl" },
+    { UNIFIED_ALT, "Alt", "AnyAlt" },
+    { UNIFIED_META, "Meta", "AnyMeta" },
+    { UNIFIED_SUPER, "Super", "AnyWindows" },
 	{ 0, 0, 0 },
 };
 

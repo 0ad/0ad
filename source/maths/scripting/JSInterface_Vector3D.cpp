@@ -42,18 +42,24 @@ JSI_Vector3D::Vector3D_Info::Vector3D_Info( float x, float y, float z )
 	vector = new CVector3D( x, y, z );
 }
 
-JSI_Vector3D::Vector3D_Info::Vector3D_Info( CVector3D* copy, IPropertyOwner* _owner )
+JSI_Vector3D::Vector3D_Info::Vector3D_Info( const CVector3D& copy )
+{
+	owner = NULL;
+	vector = new CVector3D( copy.X, copy.Y, copy.Z );
+}
+
+JSI_Vector3D::Vector3D_Info::Vector3D_Info( CVector3D* attach, IBoundPropertyOwner* _owner )
 {
 	owner = _owner;
 	updateFn = NULL;
-	vector = copy;
+	vector = attach;
 }
 
-JSI_Vector3D::Vector3D_Info::Vector3D_Info( CVector3D* copy, IPropertyOwner* _owner, void( IPropertyOwner::*_updateFn )(void) )
+JSI_Vector3D::Vector3D_Info::Vector3D_Info( CVector3D* attach, IBoundPropertyOwner* _owner, void( IBoundPropertyOwner::*_updateFn )(void) )
 {
 	owner = _owner;
 	updateFn = _updateFn;
-	vector = copy;
+	vector = attach;
 }
 
 JSI_Vector3D::Vector3D_Info::~Vector3D_Info()
@@ -97,31 +103,28 @@ JSBool JSI_Vector3D::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval*
 	}
 	CVector3D* vectorData = vectorInfo->vector;
 
-	try
+
+	switch( g_ScriptingHost.ValueToInt( id ) )
 	{
-		switch( g_ScriptingHost.ValueToInt( id ) )
-		{
-		case component_x: vectorData->X = (float)g_ScriptingHost.ValueToDouble( *vp ); break;
-		case component_y: vectorData->Y = (float)g_ScriptingHost.ValueToDouble( *vp ); break;
-		case component_z: vectorData->Z = (float)g_ScriptingHost.ValueToDouble( *vp ); break;
-		}
+	case component_x: vectorData->X = (float)g_ScriptingHost.ValueToDouble( *vp ); break;
+	case component_y: vectorData->Y = (float)g_ScriptingHost.ValueToDouble( *vp ); break;
+	case component_z: vectorData->Z = (float)g_ScriptingHost.ValueToDouble( *vp ); break;
 	}
-	catch (PSERROR_Scripting_ConversionFailed)
-	{
-		JS_ReportError( cx, "Invalid parameter value for Vector3D" );
-		return( JS_TRUE );
-	}
+
 	
 	if( vectorInfo->owner && vectorInfo->updateFn ) ( (vectorInfo->owner)->*(vectorInfo->updateFn) )();
 
 	return( JS_TRUE );
 }
 
-JSBool JSI_Vector3D::construct( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* UNUSEDPARAM(rval) )
+JSBool JSI_Vector3D::construct( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
+	JSObject* vector = JS_NewObject( cx, &JSI_Vector3D::JSI_class, NULL, NULL );
+	
 	if( argc == 0 )
 	{
-		JS_SetPrivate( cx, obj, new Vector3D_Info() );
+		JS_SetPrivate( cx, vector, new Vector3D_Info() );
+		*rval = OBJECT_TO_JSVAL( vector );
 		return( JS_TRUE );
 	}
 	else if( argc == 3 )
@@ -131,19 +134,22 @@ JSBool JSI_Vector3D::construct( JSContext* cx, JSObject* obj, uintN argc, jsval*
 			float x = (float)g_ScriptingHost.ValueToDouble( argv[0] );
 			float y = (float)g_ScriptingHost.ValueToDouble( argv[1] );
 			float z = (float)g_ScriptingHost.ValueToDouble( argv[2] );
-			JS_SetPrivate( cx, obj, new Vector3D_Info( x, y, z ) );
+			JS_SetPrivate( cx, vector, new Vector3D_Info( x, y, z ) );
+			*rval = OBJECT_TO_JSVAL( vector );
 			return( JS_TRUE );
 		}
 		catch (PSERROR_Scripting_ConversionFailed)
 		{
 			// Invalid input (i.e. can't be coerced into doubles) - fail
 			JS_ReportError( cx, "Invalid parameters to Vector3D constructor" );
-			return( JS_TRUE );
+			*rval = JSVAL_NULL;
+			return( JS_FALSE );
 		}
 	}
 	else
 	{
 		JS_ReportError( cx, "Invalid number of parameters to Vector3D constructor" );
+		*rval = JSVAL_NULL;
 		return( JS_FALSE );
 	}
 }

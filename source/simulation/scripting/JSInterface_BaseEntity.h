@@ -1,6 +1,4 @@
 // JSInterface_BaseEntity.h
-//
-// Last modified: 08 June 04, Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
 // An interface between CBaseEntity and the JavaScript class EntityTemplate
 //

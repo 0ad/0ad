@@ -31,7 +31,7 @@ class CBaseEntityCollection : public Singleton<CBaseEntityCollection>
 	std::vector<CBaseEntity*> m_templates;
 public:
 	~CBaseEntityCollection();
-	CBaseEntity* getTemplate( CStr entityType );
+	CBaseEntity* getTemplate( CStrW entityType );
 	void loadTemplates();
 	void addTemplate( CBaseEntity* temp );
 	CBaseEntity* getTemplateByActor( CObjectEntry* actor );

@@ -1,5 +1,3 @@
-// Last modified: May 15 2004, Mark Thompson (mark@wildfiregames.com)
-
 #include "precompiled.h"
 
 #include "BaseEntityCollection.h"
@@ -10,31 +8,50 @@
 void CBaseEntityCollection::loadTemplates()
 {
 	Handle handle;
-	vfsDirEnt dent;
+	vfsDirEnt type, file;
 	
-	CStr pathname = "entities/templates/";
-	handle=vfs_open_dir(pathname.c_str());
-	if (handle > 0)
+	CStr basepath = "entities/";
+	CStr pathname;
+
+	// Iterate through all subdirectories 
+
+	Handle maindir = vfs_open_dir( basepath );
+
+	if( maindir > 0 )
 	{
-		while (vfs_next_dirent(handle, &dent, ".xml") == 0)
+		while( !vfs_next_dirent( maindir, &type, "/" ) )
 		{
-			CBaseEntity* newTemplate = new CBaseEntity();
-			if( newTemplate->loadXML( pathname + dent.name ) )
+			pathname = basepath + type.name;
+
+			handle = vfs_open_dir( pathname );
+
+			pathname += "/";
+
+			if( handle > 0 )
 			{
-				addTemplate( newTemplate );
-				LOG(NORMAL, "CBaseEntityCollection::loadTemplates(): Loaded template \"%s%s\"", pathname.c_str(), dent.name);
+				while( !vfs_next_dirent(handle, &file, ".xml") )
+				{
+					CBaseEntity* newTemplate = new CBaseEntity();
+					if( newTemplate->loadXML( pathname + file.name ) )
+					{
+						addTemplate( newTemplate );
+						LOG(NORMAL, "CBaseEntityCollection::loadTemplates(): Loaded template \"%s%s\"", pathname.c_str(), file.name);
+					}
+					else
+						LOG(ERROR, "CBaseEntityCollection::loadTemplates(): Couldn't load template \"%s%s\"", pathname.c_str(), file.name);
+				}
+				vfs_close_dir( handle );
 			}
 			else
-				LOG(ERROR, "CBaseEntityCollection::loadTemplates(): Couldn't load template \"%s%s\"", pathname.c_str(), dent.name);
-
+			{
+				LOG(ERROR, "CBaseEntityCollection::loadTemplates(): Failed to enumerate entity template directory");
+				return;
+			}
 		}
-		vfs_close_dir(handle);
+		vfs_close_dir( maindir );
 	}
 	else
-	{
-		LOG(ERROR, "CBaseEntityCollection::loadTemplates(): Failed to enumerate entity template directory");
-		return;
-	}
+		LOG(ERROR, "CBaseEntityCollection::loadTemplates(): Unable to open directory entities/");	
 }
 
 void CBaseEntityCollection::addTemplate( CBaseEntity* temp )
@@ -42,7 +59,7 @@ void CBaseEntityCollection::addTemplate( CBaseEntity* temp )
 	m_templates.push_back( temp );
 }
 
-CBaseEntity* CBaseEntityCollection::getTemplate( CStr name )
+CBaseEntity* CBaseEntityCollection::getTemplate( CStrW name )
 {
 	for( u16 t = 0; t < m_templates.size(); t++ )
 		if( m_templates[t]->m_name == name ) return( m_templates[t] );

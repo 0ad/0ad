@@ -14,15 +14,18 @@
 #include "Scheduler.h"
 #include "Camera.h"
 
+#define MAX_BOOKMARKS 10
+#define MAX_GROUPS    20
+
 // CSelectedEntities: the singleton containing entities currently selected on the local machine.
 // (including group allocations on the local machine)
 
 struct CSelectedEntities : public Singleton<CSelectedEntities>
 {
-	CSelectedEntities() { clearSelection(); m_group = 255; m_group_highlight = 255; m_contextOrder = -1; }
+	CSelectedEntities() { clearSelection(); m_group = -1; m_group_highlight = -1; m_contextOrder = -1; }
 	std::vector<CEntity*> m_selected;
-	std::vector<CEntity*> m_groups[10];
-	u8 m_group, m_group_highlight;
+	std::vector<CEntity*> m_groups[MAX_GROUPS];
+	i8 m_group, m_group_highlight;
 	int m_contextOrder;
 
 	void addSelection( CEntity* entity );
@@ -33,14 +36,15 @@ struct CSelectedEntities : public Singleton<CSelectedEntities>
 	bool isSelected( CEntity* entity );
 	CVector3D getSelectionPosition();
 
-	void saveGroup( u8 groupid );
-	void loadGroup( u8 groupid );
-	void addGroup( u8 groupid );
-	void changeGroup( CEntity* entity, u8 groupid );
-	void highlightGroup( u8 groupid );
+	void addToGroup( i8 groupid, CEntity* entity );
+	void saveGroup( i8 groupid );
+	void loadGroup( i8 groupid );
+	void addGroup( i8 groupid );
+	void changeGroup( CEntity* entity, i8 groupid );
+	void highlightGroup( i8 groupid );
 	void highlightNone();
-	int getGroupCount( u8 groupid );
-	CVector3D getGroupPosition( u8 groupid );
+	int getGroupCount( i8 groupid );
+	CVector3D getGroupPosition( i8 groupid );
 
 	void update();
 	bool isContextValid( int contextOrder );
@@ -69,6 +73,7 @@ struct CMouseoverEntities : public Singleton<CMouseoverEntities>
 	float m_fadeinrate;
 	float m_fadeoutrate;
 	float m_fademaximum;
+	CVector2D m_worldposition;
 	CEntity* m_target;
 
 	bool m_bandbox, m_viewall;
@@ -81,7 +86,8 @@ struct CMouseoverEntities : public Singleton<CMouseoverEntities>
 		m_fadeinrate = 1.0f;
 		m_fadeoutrate = 2.0f;
 		m_fademaximum = 0.5f;
-		m_mouseover.clear(); 
+		m_mouseover.clear();
+		m_target = NULL;
 	}
 	std::vector<SMouseoverFader> m_mouseover;
 	void update( float timestep );

@@ -93,9 +93,8 @@ bool getRayIntersection( const CVector2D& source, const CVector2D& forward, cons
 	{
 		assert( (*it)->m_bounds );
 		if( (*it)->m_bounds == destinationCollisionObject ) continue;
-		// HACK:
-		// if( (*it)->m_bounds->m_type == CBoundingObject::BOUND_OABB ) continue;
-		if( (*it)->m_speed ) continue;
+	
+		if( (*it)->m_moving ) continue;
 		CBoundingObject* obj = (*it)->m_bounds;
 		delta = obj->m_pos - source;
 		closestApproach = delta.dot( right );

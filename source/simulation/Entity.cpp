@@ -24,19 +24,20 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	m_ahead.x = sin( m_orientation );
 	m_ahead.y = cos( m_orientation );
 	
-	m_base.associate( this, "template", ( void( IPropertyOwner::* )() )&CEntity::loadBase );
-	m_name.associate( this, "name" );
-	m_speed.associate( this, "speed" );
-	m_selected.associate( this, "selected", ( void( IPropertyOwner::* )() )&CEntity::checkSelection );
-	m_grouped_mirror.associate( this, "group", ( void( IPropertyOwner::* )() )&CEntity::checkGroup );
-	m_extant_mirror.associate( this, "extant", ( void( IPropertyOwner::* )() )&CEntity::checkExtant );
-	m_turningRadius.associate( this, "turningRadius" );
-	m_graphics_position.associate( this, "position", ( void( IPropertyOwner::* )() )&CEntity::teleport );
-	m_graphics_orientation.associate( this, "orientation", ( void( IPropertyOwner::* )() )&CEntity::reorient );
+	m_base.associate( this, L"template", ( void( IBoundPropertyOwner::* )() )&CEntity::loadBase );
+	m_name.associate( this, L"name" );
+	m_speed.associate( this, L"speed" );
+	m_selected.associate( this, L"selected", ( void( IBoundPropertyOwner::* )() )&CEntity::checkSelection );
+	m_grouped.associate( this, L"group", ( void( IBoundPropertyOwner::* )() )&CEntity::checkGroup );
+	m_extant_mirror.associate( this, L"extant", ( void( IBoundPropertyOwner::* )() )&CEntity::checkExtant );
+	m_turningRadius.associate( this, L"turningRadius" );
+	m_graphics_position.associate( this, L"position", ( void( IBoundPropertyOwner::* )() )&CEntity::teleport );
+	m_graphics_orientation.associate( this, L"orientation", ( void( IBoundPropertyOwner::* )() )&CEntity::reorient );
 
 	// Set our parent unit and build us an actor.
 	m_actor = NULL;
 	m_bounds = NULL;
+	m_moving = false;
 
 	m_base = base;
 	
@@ -57,8 +58,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	m_extant_mirror = true;
 
 	m_selected = false;
-	m_grouped = 255;
-	m_grouped_mirror = 0;
+	m_grouped = -1;
 }
 
 CEntity::~CEntity()
@@ -135,7 +135,7 @@ void CEntity::kill()
 
 bool isWaypoint( CEntity* e )
 {
-	return( e->m_base->m_name == CStr( "Waypoint" ) );
+	return( e->m_base->m_name == CStrW( L"House" ) );
 }
 
 void CEntity::updateActorTransforms()
@@ -186,8 +186,12 @@ void CEntity::update( size_t timestep )
 			assert( 0 && "Invalid entity order" );
 		}
 	}
-	if( m_actor->GetModel()->GetAnimation() != m_actor->GetObject()->m_IdleAnim )
+
+	if( m_moving )
+	{
 		m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_IdleAnim );
+		m_moving = false;
+	}
 }
 
 void CEntity::dispatch( const CMessage* msg )
@@ -197,7 +201,7 @@ void CEntity::dispatch( const CMessage* msg )
 	case CMessage::EMSG_TICK:
 		break;
 	case CMessage::EMSG_INIT:
-		if( m_base->m_name == CStr( "Prometheus Dude" ) )
+		if( m_base->m_name == CStrW( L"Prometheus Dude" ) )
 		{
 			if( getCollisionObject( this ) )
 			{
@@ -303,19 +307,9 @@ void CEntity::checkSelection()
 
 void CEntity::checkGroup()
 {
-	if( m_grouped != m_grouped_mirror )
-	{
-		if( ( m_grouped_mirror >= 0 ) && ( m_grouped_mirror <= 10 ) )
-		{
-			u8 newgroup = m_grouped_mirror;
-			if( newgroup == 0 ) newgroup = 255;
-			if( newgroup == 10 ) newgroup = 0;
-
-			g_Selection.changeGroup( this, newgroup );
-		}
-		else
-			m_grouped_mirror = m_grouped;
-	}
+	g_Selection.changeGroup( this, -1 ); // Ungroup
+	if( ( m_grouped >= 0 ) && ( m_grouped < MAX_GROUPS ) )
+		g_Selection.changeGroup( this, m_grouped );		
 }
 
 void CEntity::checkExtant()

@@ -1,6 +1,6 @@
 // Vector2D.h
 //
-// Last modified: 26 May 04, Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
+// Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
 // 2-dimensional vector class, primarily for use by simulation code.
 
@@ -8,16 +8,21 @@
 #define VECTOR_2D_INCLUDED
 
 #include "math.h"
+#include "Vector3D.h"
 
 class CVector2D
 {
 public:
 	float x;
 	float y;
-	CVector2D() { x = 0.0f; y = 0.0f; }
-	CVector2D( float _x, float _y )
+	inline CVector2D() { x = 0.0f; y = 0.0f; }
+	inline CVector2D( float _x, float _y )
 	{
 		x = _x; y = _y;
+	}
+	inline CVector2D( const CVector3D& v3 ) // This is done an awful lot.
+	{
+		x = v3.X; y = v3.Z;
 	}
 	static inline float dot( const CVector2D& u, const CVector2D& v )
 	{

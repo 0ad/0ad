@@ -70,10 +70,22 @@ class CCamera
 			BuildCameraRay( mouse_x, mouse_y, origin, dir );
 		}
 
+// General helpers that seem to fit here
+
+// Get the screen-space coordinates corresponding to a given world-space position 
 		void GetScreenCoordinates( const CVector3D& world, float& x, float& y );
 
-		// Build an orientation matrix from camera position, camera target, and up-vector
-		void LookAt( const CVector3D& camera, const CVector3D& target, const CVector3D& up );
+// Get the point on the terrain corresponding to pixel (px,py) (or the mouse coordinates)
+		CVector3D GetWorldCoordinates( int px, int py );
+		CVector3D GetWorldCoordinates() { return( GetWorldCoordinates( mouse_x, mouse_y ) ); }
+// Get the point on the terrain the camera is pointing towards
+		CVector3D GetFocus();
+
+		// Build an orientation matrix from camera position, camera focus point, and up-vector
+		void LookAt( const CVector3D& camera, const CVector3D& orientation, const CVector3D& up );
+
+		// Build an orientation matrix from camera position, camera orientation, and up-vector
+		void LookAlong( CVector3D camera, CVector3D focus, CVector3D up );
 
 	public:
 		//This is the orientation matrix. The inverse of this

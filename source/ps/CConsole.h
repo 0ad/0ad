@@ -80,6 +80,7 @@ public:
 	void SetSize(float X = 300, float Y = 0, float W = 800, float H = 600);
 
 	void ToggleVisible();
+	void SetVisible( bool visible );
 
 	void Update(float DeltaTime);
 
@@ -89,6 +90,9 @@ public:
 	void InsertChar(const int szChar, const wchar_t cooked);
 
 	void SetBuffer(const wchar_t* szMessage, ...);
+
+	// Only returns a pointer to the buffer; copy out of here if you want to keep it.
+	const wchar_t* GetBuffer();
 	void FlushBuffer();
 
 	void RegisterFunc(fptr F, const wchar_t* szName);

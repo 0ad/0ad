@@ -27,7 +27,7 @@ JSFunctionSpec JSI_BaseEntity::JSI_methods[] =
 JSBool JSI_BaseEntity::getProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
 {
 	CBaseEntity* e = (CBaseEntity*)JS_GetPrivate( cx, obj );
-	CStr propName = g_ScriptingHost.ValueToString( id );
+	CStrW propName = g_ScriptingHost.ValueToUCString( id );
 	
 	if( e->m_properties.find( propName ) != e->m_properties.end() )
 	{
@@ -35,7 +35,7 @@ JSBool JSI_BaseEntity::getProperty( JSContext* cx, JSObject* obj, jsval id, jsva
 		return( JS_TRUE );
 	}
 	else
-		JS_ReportError( cx, "No such property on %s: %s", (const char*)e->m_name, (const char*)propName );
+		JS_ReportError( cx, "No such property on %ls: %ls", (const wchar_t*)e->m_name, (const wchar_t*)propName );
 
 	return( JS_TRUE );
 }
@@ -43,16 +43,16 @@ JSBool JSI_BaseEntity::getProperty( JSContext* cx, JSObject* obj, jsval id, jsva
 JSBool JSI_BaseEntity::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
 {
 	CBaseEntity* e = (CBaseEntity*)JS_GetPrivate( cx, obj );
-	CStr propName = g_ScriptingHost.ValueToString( id );
+	CStrW propName = g_ScriptingHost.ValueToUCString( id );
 	
 	if( e->m_properties.find( propName ) != e->m_properties.end() )
 	{
-		*(e->m_properties[propName]) = *vp;
+		e->m_properties[propName]->fromjsval( *vp );
 		e->rebuild( propName );
 		return( JS_TRUE );
 	}
 	else
-		JS_ReportError( cx, "No such property on %s: %s", (const char*)e->m_name, (const char*)propName );
+		JS_ReportError( cx, "No such property on %ls: %ls", (const wchar_t*)e->m_name, (const wchar_t*)propName );
 
 	return( JS_TRUE );
 }
@@ -67,7 +67,7 @@ JSBool JSI_BaseEntity::toString( JSContext* cx, JSObject* obj, uintN UNUSEDPARAM
 	CBaseEntity* e = (CBaseEntity*)JS_GetPrivate( cx, obj );
 
 	char buffer[256];
-	snprintf( buffer, 256, "[object EntityTemplate: %s]", (const TCHAR*)e->m_name );
+	snprintf( buffer, 256, "[object EntityTemplate: %ls]", (const wchar_t*)e->m_name );
 	buffer[255] = 0;
 	*rval = STRING_TO_JSVAL( JS_NewStringCopyZ( cx, buffer ) );
 	return( JS_TRUE );

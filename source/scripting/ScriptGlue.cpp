@@ -14,6 +14,8 @@
 #include "scripting/JSInterface_Vector3D.h"
 #include "gui/scripting/JSInterface_IGUIObject.h"
 #include "scripting/JSInterface_Selection.h"
+#include "scripting/JSInterface_Camera.h"
+#include "scripting/JSInterface_Console.h"
 
 extern CConsole* g_Console;
 
@@ -27,8 +29,8 @@ extern CConsole* g_Console;
 
 JSFunctionSpec ScriptFunctionTable[] = 
 {
-	{"WriteLog", WriteLog, 1, 0, 0},
-	{"writeConsole", writeConsole, 1, 0, 0 },
+	{"writeLog", WriteLog, 1, 0, 0},
+	{"writeConsole", JSI_Console::writeConsole, 1, 0, 0 }, // Keep this variant available for now.
 	{"getEntityByHandle", getEntityByHandle, 1, 0, 0 },
 	{"getEntityTemplate", getEntityTemplate, 1, 0, 0 },
 	{"setTimeout", setTimeout, 2, 0, 0 },
@@ -45,14 +47,18 @@ JSFunctionSpec ScriptFunctionTable[] =
 
 enum ScriptGlobalTinyIDs
 {
-	GLOBAL_SELECTED,
-	GLOBAL_SELECTIONARRAY
+	GLOBAL_SELECTION,
+	GLOBAL_GROUPSARRAY,
+	GLOBAL_CAMERA,
+	GLOBAL_CONSOLE,
 };
 
 JSPropertySpec ScriptGlobalTable[] =
 {
-	{ "selected", GLOBAL_SELECTED, JSPROP_PERMANENT, JSI_Selected::getProperty, JSI_Selected::setProperty },
-	{ "selection", GLOBAL_SELECTIONARRAY, JSPROP_PERMANENT, JSI_Selection::getProperty, JSI_Selection::setProperty },
+	{ "selection", GLOBAL_SELECTION, JSPROP_PERMANENT, JSI_Selection::getSelection, JSI_Selection::setSelection },
+	{ "groups", GLOBAL_GROUPSARRAY, JSPROP_PERMANENT, JSI_Selection::getGroups, JSI_Selection::setGroups },
+	{ "camera", GLOBAL_CAMERA, JSPROP_PERMANENT, JSI_Camera::getCamera, JSI_Camera::setCamera },
+	{ "console", GLOBAL_CONSOLE, JSPROP_PERMANENT | JSPROP_READONLY, JSI_Console::getConsole, NULL },
 	{ 0, 0, 0, 0, 0 },
 };
 
@@ -62,38 +68,26 @@ JSBool WriteLog(JSContext* context, JSObject* UNUSEDPARAM(globalObject), unsigne
 	if (argc < 1)
 		return JS_FALSE;
 
+	CStr logMessage;
+
 	for (int i = 0; i < (int)argc; i++)
 	{
-		if (JSVAL_IS_INT(argv[i]))
+		try
 		{
-			printf("%d", JSVAL_TO_INT(argv[i]));
+			CStr arg = g_ScriptingHost.ValueToString( argv[i] );
+			logMessage += arg;
 		}
-
-		if (JSVAL_IS_DOUBLE(argv[i]))
+		catch( PSERROR_Scripting_ConversionFailed )
 		{
-			double d = g_ScriptingHost.ValueToDouble(argv[i]);
-			printf("%e", d);
-		}
-
-		if (JSVAL_IS_STRING(argv[i]))
-		{
-			JSString * str = JS_ValueToString(context, argv[i]);
-			char * chars = JS_GetStringBytes(str);
-			printf(chars);
+			// Do nothing.
 		}
 	}
 
-	printf("\n");
+	// We should perhaps unicodify (?) the logger at some point.
+
+	LOG( NORMAL, logMessage );
 
 	return JS_TRUE;
-}
-
-JSBool writeConsole( JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* UNUSEDPARAM(rval) )
-{
-	assert( argc >= 1 );
-	CStr output = g_ScriptingHost.ValueToString( argv[0] );
-	g_Console->InsertMessage( L"%hs", (const char*)output );
-	return( JS_TRUE );
 }
 
 JSBool getEntityByHandle( JSContext* context, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* rval )
@@ -126,10 +120,10 @@ JSBool getEntityByHandle( JSContext* context, JSObject* UNUSEDPARAM(globalObject
 JSBool getEntityTemplate( JSContext* context, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* rval )
 {
 	assert( argc >= 1 );
-	CStr templateName;
+	CStrW templateName;
 	try
 	{
-		templateName = g_ScriptingHost.ValueToString( argv[0] );
+		templateName = g_ScriptingHost.ValueToUCString( argv[0] );
 	}
 	catch( PSERROR_Scripting_ConversionFailed )
 	{
@@ -141,7 +135,7 @@ JSBool getEntityTemplate( JSContext* context, JSObject* UNUSEDPARAM(globalObject
 	if( !v )
 	{
 		*rval = JSVAL_NULL;
-		JS_ReportError( context, "No such template: %s", (const char*)templateName );
+		JS_ReportError( context, "No such template: %ls", (const wchar_t*)templateName );
 		return( JS_TRUE );
 	}
 	JSObject* baseEntity = JS_NewObject( context, &JSI_BaseEntity::JSI_class, NULL, NULL );

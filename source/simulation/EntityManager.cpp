@@ -38,7 +38,7 @@ HEntity CEntityManager::create( CBaseEntity* base, CVector3D position, float ori
 	return( HEntity( m_nextalloc++ ) );
 }
 
-HEntity CEntityManager::create( CStr templatename, CVector3D position, float orientation )
+HEntity CEntityManager::create( CStrW templatename, CVector3D position, float orientation )
 {
 	CBaseEntity* templateobj = g_EntityTemplateCollection.getTemplate( templatename );
 	return( create( templateobj, position, orientation ) );

@@ -27,6 +27,8 @@
 #include <stdlib.h>	// __argc
 #include <malloc.h>
 
+extern HWND hWnd;
+
 void sle(int x)
 {
 	SetLastError((DWORD)x);
@@ -120,9 +122,11 @@ int clipboard_set(const wchar_t* text)
 {
 	int err = -1;
 
-	if(!OpenClipboard(0))
+	if(!OpenClipboard( hWnd ))
 		return err;
 	EmptyClipboard();
+
+	err = 0;
 
 	const size_t len = wcslen(text);
 
@@ -137,7 +141,7 @@ int clipboard_set(const wchar_t* text)
 
 		GlobalUnlock(hMem);
 
-		if(SetClipboardData(CF_TEXT, hMem) != 0)
+		if(SetClipboardData(CF_UNICODETEXT, hMem) != 0)
 			err = 0;	// success
 	}
 

@@ -72,8 +72,9 @@ static HINSTANCE hInst = 0;
 	// app instance.
 	// returned by GetModuleHandle and used in kbd hook and window creation. 
 
-static HWND hWnd = (HWND)INVALID_HANDLE_VALUE;
-	// make available to the app for ShowWindow calls, etc.?
+
+HWND hWnd = (HWND)INVALID_HANDLE_VALUE;		/* make available to the app for ShowWindow calls, etc.? */
+											/* MT: Yes, please. Clipboard calls need it, at least. */
 
 static DEVMODE dm;			/* current video mode */
 static HDC hDC;
@@ -350,7 +351,7 @@ return_char:
 			sdl_btn = (msg.wParam & BIT(31))? SDL_BUTTON_WHEELUP : SDL_BUTTON_WHEELDOWN;
 			break;	// event filled in mouse code below
 		default:
-			if( msg.message >= WM_APP && msg.message < 0xC000 )
+			if( ( msg.message >= WM_APP ) && ( msg.message < 0xC000 ) ) // 0xC000 = maximum application message
 			{
 				assert( SDL_USEREVENT+(msg.message-WM_APP) <= 0xff && "Message too far above WM_APP");
 				ev->type = (u8)(SDL_USEREVENT+(msg.message-WM_APP));

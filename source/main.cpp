@@ -46,6 +46,9 @@
 #include "scripting/JSInterface_Entity.h"
 #include "scripting/JSInterface_BaseEntity.h"
 #include "scripting/JSInterface_Vector3D.h"
+#include "scripting/JSInterface_Camera.h"
+#include "scripting/JSInterface_Selection.h"
+#include "scripting/JSInterface_Console.h"
 #include "gui/scripting/JSInterface_IGUIObject.h"
 #include "gui/scripting/JSInterface_GUITypes.h"
 
@@ -578,6 +581,9 @@ static void InitScripting()
 	JSI_IGUIObject::init();
 	JSI_GUITypes::init();
 	JSI_Vector3D::init();
+	JSI_Selection::init();
+	JSI_Camera::init();
+	JSI_Console::init();
 }
 
 

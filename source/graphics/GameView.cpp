@@ -26,6 +26,10 @@ extern bool g_active;
 
 extern CLightEnv g_LightEnv;
 
+CVector3D cameraBookmarks[10];
+bool bookmarkInUse[10] = { false, false, false, false, false, false, false, false, false, false };
+i8 currentBookmark = -1;
+
 CGameView::CGameView(CGame *pGame):
 	m_pGame(pGame),
 	m_pWorld(pGame->GetWorld()),
@@ -189,19 +193,28 @@ void CGameView::ResetCamera()
 	m_Camera.m_Orientation.Translate (100, 150, -100);
 }
 
+void CGameView::ResetCameraOrientation()
+{
+
+	CVector3D origin = m_Camera.m_Orientation.GetTranslation();
+	CVector3D dir = m_Camera.m_Orientation.GetIn();
+
+	CVector3D target = origin + dir * ( ( 50.0f - origin.Y ) / dir.Y );
+
+	target -= CVector3D( -22.474480f, 50.0f, 22.474480f );
+
+	m_Camera.SetProjection (1, 5000, DEGTORAD(20));
+	m_Camera.m_Orientation.SetXRotation(DEGTORAD(30));
+	m_Camera.m_Orientation.RotateY(DEGTORAD(-45));
+	
+	target += CVector3D( 100.0f, 150.0f, -100.0f );
+
+	m_Camera.m_Orientation.Translate( target );
+}
+
 void CGameView::RotateAboutTarget()
 {
-	CTerrain *pTerrain=m_pWorld->GetTerrain();
-
-	int x, z;
-	CHFTracer tracer( pTerrain );
-	CVector3D origin, dir;
-	origin = m_Camera.m_Orientation.GetTranslation();
-	dir = m_Camera.m_Orientation.GetIn();
-	m_Camera.BuildCameraRay( origin, dir );
-
-	if( !tracer.RayIntersect( origin, dir, x, z, m_CameraPivot ) )
-		m_CameraPivot = origin - dir * ( origin.Y / dir.Y );
+	m_CameraPivot = m_Camera.GetWorldCoordinates();
 }
 
 void CGameView::Update(float DeltaTime)
@@ -215,7 +228,7 @@ void CGameView::Update(float DeltaTime)
 
 #define CAMERASTYLE 2 // 0 = old style, 1 = relatively new style, 2 = newest style
 
-#if CAMERASTYLE == 2
+// #if CAMERASTYLE == 2
 
 	// This could be rewritten much more reliably, so it doesn't e.g. accidentally tilt
 	// the camera, assuming we know exactly what limits the camera should have.
@@ -239,10 +252,6 @@ void CGameView::Update(float DeltaTime)
 	forwards_horizontal.Y = 0.0f;
 	forwards_horizontal.Normalize();
 
-	/*
-	if ((mouseButtons[SDL_BUTTON_MIDDLE] && (keys[SDLK_LCTRL] || keys[SDLK_RCTRL]))
-	 || (mouseButtons[SDL_BUTTON_LEFT] && mouseButtons[SDL_BUTTON_RIGHT]) )
-	*/
 	if( hotkeys[HOTKEY_CAMERA_ROTATE] )
 	{
 		// Ctrl + middle-drag or left-and-right-drag to rotate view
@@ -352,6 +361,8 @@ void CGameView::Update(float DeltaTime)
 		zoom_delta *= zoom_proportion;
 	}
 
+/*
+Just commented out to make it more obvious it's not in use.
 
 #elif CAMERASTYLE == 1
 
@@ -437,7 +448,7 @@ void CGameView::Update(float DeltaTime)
 	to be completely wrong. sticking with the FOV hack for now.
 	if anyone sees what's wrong, or knows how to correctly implement zoom,
 	please put this code out of its misery :)
-	*/
+	*//*
 	// RC - added ScEd style zoom in and out (actually moving camera, rather than fudging fov)	
 
 	float dir=0;
@@ -463,6 +474,7 @@ void CGameView::Update(float DeltaTime)
 		}
 	}
 #endif // CAMERASTYLE
+*/
 
 	m_Camera.UpdateFrustum ();
 }
@@ -482,17 +494,8 @@ void CGameView::SetCameraTarget( const CVector3D& target )
 	//  the difference beteen that position and the camera point, and restoring
 	//  that difference to our new target)
 
-	CHFTracer tracer( m_pWorld->GetTerrain() );
-	int x, z;
-	CVector3D origin, dir, currentTarget;
-	origin = m_Camera.m_Orientation.GetTranslation();
-	dir = m_Camera.m_Orientation.GetIn();
-	if( tracer.RayIntersect( origin, dir, x, z, currentTarget ) )
-	{
-		m_CameraDelta = target - currentTarget;
-	}
-	else
-		m_CameraDelta = ( target - dir * 160.0f ) - origin;
+	CVector3D CurrentTarget = m_Camera.GetFocus();
+	m_CameraDelta = target - CurrentTarget;
 }
 
 void CGameView::PopCameraTarget()
@@ -523,16 +526,59 @@ int game_view_handler(const SDL_Event* ev)
 			}
 			return( EV_HANDLED );
 
-		case HOTKEY_CAMERA_RESET:
+		case HOTKEY_CAMERA_RESET_ORIGIN:
 			pView->ResetCamera();
+			return( EV_HANDLED );
+
+		case HOTKEY_CAMERA_RESET:
+			pView->ResetCameraOrientation();
 			return( EV_HANDLED );
 
 		case HOTKEY_CAMERA_ROTATE_ABOUT_TARGET:
 			pView->RotateAboutTarget();
 			return( EV_HANDLED );
 
-		}
+		default:
 
+			if( ( ev->user.code >= HOTKEY_CAMERA_BOOKMARK_0 ) && ( ev->user.code <= HOTKEY_CAMERA_BOOKMARK_9 ) )
+			{
+				// The above test limits it to 10 bookmarks, so don't worry about overflowing
+				i8 id = (i8)( ev->user.code - HOTKEY_CAMERA_BOOKMARK_0 );
+
+				if( hotkeys[HOTKEY_CAMERA_BOOKMARK_SAVE] )
+				{
+					// Attempt to track the ground we're looking at
+					cameraBookmarks[id] = pView->GetCamera()->GetFocus();
+					bookmarkInUse[id] = true;
+				}
+				else if( hotkeys[HOTKEY_CAMERA_BOOKMARK_SNAP] )
+				{
+					if( bookmarkInUse[id] && ( currentBookmark == -1 ) )
+					{
+						pView->PushCameraTarget( cameraBookmarks[id] );
+						currentBookmark = id;
+					}
+				}
+				else
+				{
+					if( bookmarkInUse[id] )
+						pView->SetCameraTarget( cameraBookmarks[id] );
+				}
+				return( EV_HANDLED );
+			}
+		}
+	case SDL_HOTKEYUP:
+		switch( ev->user.code )
+		{
+			case HOTKEY_CAMERA_BOOKMARK_SNAP:
+				if( currentBookmark != -1 )
+					pView->PopCameraTarget();
+				currentBookmark = -1;
+				break;
+			default:
+				return( EV_PASS );
+		}
+		return( EV_HANDLED );
 	}
 
 	return EV_PASS;

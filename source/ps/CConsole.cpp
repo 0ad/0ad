@@ -7,8 +7,9 @@
 #include "sysdep/sysdep.h"
 #include "input.h"
 #include "Hotkey.h"
-
 #include "scripting/ScriptingHost.h"
+
+extern bool keys[SDLK_LAST];
 
 CConsole::CConsole()
 {
@@ -52,6 +53,12 @@ void CConsole::ToggleVisible()
 	m_bVisible = !m_bVisible;
 }
 
+void CConsole::SetVisible( bool visible )
+{
+	if( visible != m_bVisible )
+		m_bToggle = true;
+	m_bVisible = visible;
+}
 
 void CConsole::FlushBuffer(void)
 {
@@ -411,6 +418,11 @@ void CConsole::InsertMessage(const wchar_t* szMessage, ...)
 	delete[] szBuffer;
 }
 
+const wchar_t* CConsole::GetBuffer()
+{
+	m_szBuffer[m_iBufferLength] = 0;
+	return( m_szBuffer );
+}
 
 void CConsole::SetBuffer(const wchar_t* szMessage, ...)
 {
@@ -521,6 +533,21 @@ int conInputHandler(const SDL_Event* ev)
 			g_Console->ToggleVisible();
 			return( EV_HANDLED );
 		}
+		else if( ev->user.code == HOTKEY_CONSOLE_COPY )
+		{
+			clipboard_set( g_Console->GetBuffer() );
+		}
+		else if( ev->user.code == HOTKEY_CONSOLE_PASTE )
+		{
+			wchar_t* text = clipboard_get();
+			if(text)
+			{
+				for(wchar_t* c = text; *c; c++)
+					g_Console->InsertChar(0, *c);
+
+				clipboard_free(text);
+			}
+		}
 	}
 
 	if( ev->type != SDL_KEYDOWN)
@@ -531,20 +558,15 @@ int conInputHandler(const SDL_Event* ev)
 	if(!g_Console->IsActive())
 		return EV_PASS;
 
-	// paste from clipboard
-	if(sym == SDLK_INSERT)
-	{
-		wchar_t* text = clipboard_get();
-		if(text)
-		{
-			for(wchar_t* c = text; *c; c++)
-				g_Console->InsertChar(0, *c);
-
-			clipboard_free(text);
-		}
-	}
-	else
+	// Stop unprintable characters (ctrl+, alt+ and escape), 
+	// also prevent ` and/or ~ appearing in console every time it's toggled.
+	// MT: Is this safe? Does any valid character require a ctrl+ or alt+
+	//     key combination?
+	if( ( ev->key.keysym.sym != SDLK_ESCAPE ) &&
+		!keys[SDLK_LCTRL] && !keys[SDLK_RCTRL] &&
+		!keys[SDLK_LALT] && !keys[SDLK_RALT] &&
+		!hotkeys[HOTKEY_CONSOLE_TOGGLE] ) 
 		g_Console->InsertChar(sym, (wchar_t)ev->key.keysym.unicode );
 
-	return EV_HANDLED;
+	return EV_PASS;
 }

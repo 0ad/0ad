@@ -21,8 +21,6 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 
 	float len = delta.length();
 
-	// ... 'Are we there yet?' ...
-
 	if( len < 0.1f )
 	{
 		if( current->m_type == CEntityOrder::ORDER_GOTO_COLLISION )
@@ -37,8 +35,31 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 	// Curve smoothing.
 	// Here there be trig.
 
-	if( current->m_type != CEntityOrder::ORDER_GOTO_SMOOTHED )
+	float scale = m_speed * timestep;
+
+	// Note: Easy optimization: flag somewhere that this unit
+	// is already pointing the right way, and don't do this
+	// trig every time.
+
+	m_targetorientation = atan2( delta.x, delta.y );
+
+	float deltatheta = m_targetorientation - (float)m_orientation;
+	while( deltatheta > PI ) deltatheta -= 2 * PI;
+	while( deltatheta < -PI ) deltatheta += 2 * PI;
+
+	if( fabs( deltatheta ) > 0.01f )
 	{
+		float maxTurningSpeed = ( m_speed / m_turningRadius ) * timestep;
+		if( deltatheta > 0 )
+		{
+			m_orientation = m_orientation + MIN( deltatheta, maxTurningSpeed );
+		}
+		else
+			m_orientation = m_orientation + MAX( deltatheta, -maxTurningSpeed );
+
+		m_ahead.x = sin( m_orientation );
+		m_ahead.y = cos( m_orientation );
+
 		// We can only really attempt to smooth paths the pathfinder
 		// has flagged for us. If the turning-radius calculations are
 		// applied to other types of waypoint, wierdness happens.
@@ -48,42 +69,27 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 		// making the paths we calculate useless.
 		// It's also painful trying to watch two entities resolve their
 		// collision when they're both bound by turning constraints.
+		
+		// So, as a compromise for the look of the thing, we'll just turn in
+		// place until we're looking the right way. At least, that's what
+		// seems logical. But in most cases that looks worse. So actually,
+		// let's not.
 
-		m_ahead = delta / len;
-		m_orientation = atan2( m_ahead.x, m_ahead.y );
+		
+		if( current->m_type != CEntityOrder::ORDER_GOTO_SMOOTHED )
+			m_orientation = m_targetorientation;
+			
 	}
 	else
 	{
-		m_targetorientation = atan2( delta.x, delta.y );
-
-		float deltatheta = m_targetorientation - (float)m_orientation;
-		while( deltatheta > PI ) deltatheta -= 2 * PI;
-		while( deltatheta < -PI ) deltatheta += 2 * PI;
-
-		if( fabs( deltatheta ) > 0.01f )
-		{
-			float maxTurningSpeed = ( m_speed / m_turningRadius ) * timestep;
-			if( deltatheta > 0 )
-			{
-				m_orientation = m_orientation + MIN( deltatheta, maxTurningSpeed );
-			}
-			else
-				m_orientation = m_orientation + MAX( deltatheta, -maxTurningSpeed );
-
-			m_ahead.x = sin( m_orientation );
-			m_ahead.y = cos( m_orientation );
-		}
-		else
-		{
-			m_ahead = delta / len;
-			m_orientation = atan2( m_ahead.x, m_ahead.y );
-		}
+		m_ahead = delta / len;
+		m_orientation = m_targetorientation;
 	}
+
+	
 
 	if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
 		((CBoundingBox*)m_bounds)->setOrientation( m_ahead );
-
-	float scale = m_speed * timestep;
 
 	if( scale > len )
 		scale = len;
@@ -138,8 +144,8 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 				// Yes. (Chances are a bunch of units were tasked to the same destination)
 				// Here's a wierd idea: (I hope it works)
 				// Spiral round the destination until a free point is found.
-				float r = 0.0f, theta = 0.0f, delta;
 				float interval = destinationObs.m_radius;
+				float r = interval, theta = 0.0f, delta;
 				float _x = current->m_data[0].location.x, _y = current->m_data[0].location.y;
 				
 				while( true )
@@ -152,8 +158,8 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 				}
 				
 				// Reset our destination
-				current->m_data[0].location.x = _x;
-				current->m_data[0].location.y = _y;
+				current->m_data[0].location.x = _x + r * cosf( theta );
+				current->m_data[0].location.y = _y + r * sinf( theta );
 
 				return( false );
 			}
@@ -201,9 +207,7 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 		m_bounds->setPosition( m_position.X, m_position.Z );
 
 		// All things being equal, we should only get here while on a collision path
-		// (No destination could be off the map)
-
-		assert( current->m_type == CEntityOrder::ORDER_GOTO_COLLISION );
+		// (No destination should be off the map)
 
 		// Just stop here, repath if necessary.
 
@@ -227,15 +231,17 @@ bool CEntity::processGoto( CEntityOrder* current, size_t timestep_millis )
 	if( ( path_to - pos ).length() < 0.1f ) 
 		return( false );
 
-	if( m_actor->GetModel()->GetAnimation() != m_actor->GetObject()->m_WalkAnim )
+	if( !m_moving )
 	{
 		m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_WalkAnim );
 		m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
+		m_moving = true;
 	}
 
 	// The pathfinder will push its result back into this unit's queue.
 
 	g_Pathfinder.requestPath( me, path_to );
+
 	return( true );
 }
 

@@ -1,5 +1,3 @@
-// Last modified: 22 November 2003 (Mark Thompson)
-
 // TODO: A few changes from VFS -> CFile usage if required.
 // TODO: Optimizations, when we've decided what needs to be done.
 

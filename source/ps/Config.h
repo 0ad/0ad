@@ -1,10 +1,9 @@
 /*
+
 Config.h
 
 CConfig dynamic data file manager class
 Mark Thompson (mot20@cam.ac.uk)
-
-Last modified: 22 November 2003 (Mark Thompson)
 
 --Overview--
 

@@ -46,25 +46,24 @@
 
 class CEntityManager;
 
-class CEntity : public IPropertyOwner
+class CEntity : public IBoundPropertyOwner
 {
 	friend class CEntityManager;
 public:
 	// Intrinsic properties
-	CProperty_CStr m_name;
-	CProperty_float m_speed;
-	CProperty_float m_turningRadius;
-	CProperty_bool m_selected;
+	CBoundObjectProperty<CStrW> m_name;
+	CBoundProperty<float> m_speed;
+	CBoundProperty<float> m_turningRadius;
+	CBoundProperty<bool> m_selected;
+	CBoundProperty<i32> m_grouped;
 
 	bool m_extant; // Don't want JS to have direct write-access to these. (Things that should be done might not be)
-	CProperty_bool m_extant_mirror; // plus this way limits the number of nasty semantics to work around.
-	u8 m_grouped;
-	CProperty_i32 m_grouped_mirror;
+	CBoundProperty<bool> m_extant_mirror; // plus this way limits the number of nasty semantics to work around.
 
 	//-- Interpolated property
 	CVector3D m_position;
 	CVector3D m_position_previous;
-	CProperty_CVector3D m_graphics_position;
+	CBoundObjectProperty<CVector3D> m_graphics_position;
 
 	CVector2D m_graphicsOffset;
 
@@ -75,9 +74,10 @@ public:
 	//-- Interpolated property
 	float m_orientation;
 	float m_orientation_previous;
-	CProperty_float m_graphics_orientation;
+	CBoundProperty<float> m_graphics_orientation;
 
 	CUnit* m_actor;
+	bool m_moving;
 
 	std::deque<CEntityOrder> m_orderQueue;
 

@@ -160,10 +160,28 @@ float CTerrain::getExactGroundLevel( float x, float y ) const
 	float xf = x - (float)xi;
 	float yf = y - (float)yi;
 
+	if( xi < 0 )
+	{
+		xi = 0; xf = 0.0f;
+	}
+	if( xi >= m_MapSize )
+	{
+		xi = m_MapSize - 1; xf = 1.0f;
+	}
+	if( yi < 0 )
+	{
+		yi = 0; yf = 0.0f;
+	}
+	if( yi >= m_MapSize )
+	{
+		yi = m_MapSize - 1; yf = 1.0f;
+	}
+	/*
 	assert( isOnMap( x, y ) );
 
 	if( !isOnMap( x, y ) )
 		return 0.0f;
+	*/
 
 	float h00 = m_Heightmap[yi*m_MapSize + xi];
 	float h01 = m_Heightmap[yi*m_MapSize + xi + m_MapSize];
