@@ -538,8 +538,12 @@ skip_alloc:
 			err = ERR_NO_MEM;
 		}
 
+		// reload failed; free the handle
 		if(err < 0)
 		{
+			// don't cache it - it's not valid
+			hd->keep_open = 0;
+
 			h_free(h, type);
 			return (Handle)err;
 		}
