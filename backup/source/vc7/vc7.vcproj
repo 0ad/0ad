@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding = "Windows-1252"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="7.00"
+	Version="7.10"
 	Name="vc7"
 	ProjectGUID="{BEBCC605-46F3-4927-BDC4-1E5F739A2A4F}"
 	Keyword="Win32Proj">
@@ -53,7 +53,13 @@
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
 				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
@@ -100,9 +106,17 @@
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
 				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 	</Configurations>
+	<References>
+	</References>
 	<Files>
 		<Filter
 			Name="Source Files"
@@ -206,6 +220,9 @@
 					RelativePath="..\terrain\Terrain.cpp">
 				</File>
 				<File
+					RelativePath="..\terrain\terrainMain.cpp">
+				</File>
+				<File
 					RelativePath="..\terrain\TextureManager.cpp">
 				</File>
 				<File
@@ -219,9 +236,6 @@
 				</File>
 				<File
 					RelativePath="..\terrain\Visual.cpp">
-				</File>
-				<File
-					RelativePath="..\terrain\terrainMain.cpp">
 				</File>
 			</Filter>
 			<Filter
@@ -487,10 +501,10 @@
 					RelativePath="..\ps\CLogger.cpp">
 				</File>
 				<File
-					RelativePath="..\ps\CStr.cpp">
+					RelativePath="..\ps\Config.cpp">
 				</File>
 				<File
-					RelativePath="..\ps\Config.cpp">
+					RelativePath="..\ps\CStr.cpp">
 				</File>
 				<File
 					RelativePath="..\ps\Encryption.cpp">
@@ -654,10 +668,10 @@
 					RelativePath="..\terrain\SHCoeffs.h">
 				</File>
 				<File
-					RelativePath="..\terrain\TerrGlobals.h">
+					RelativePath="..\terrain\Terrain.h">
 				</File>
 				<File
-					RelativePath="..\terrain\Terrain.h">
+					RelativePath="..\terrain\TerrGlobals.h">
 				</File>
 				<File
 					RelativePath="..\terrain\Texture.h">
@@ -691,10 +705,10 @@
 					RelativePath="..\ps\CLogger.h">
 				</File>
 				<File
-					RelativePath="..\ps\CStr.h">
+					RelativePath="..\ps\Config.h">
 				</File>
 				<File
-					RelativePath="..\ps\Config.h">
+					RelativePath="..\ps\CStr.h">
 				</File>
 				<File
 					RelativePath="..\ps\Encryption.h">
@@ -733,9 +747,6 @@
 						RelativePath="..\ps\Network\AllNetMessages.h">
 					</File>
 					<File
-						RelativePath="..\ps\Network\NMTCreator.h">
-					</File>
-					<File
 						RelativePath="..\ps\Network\NetMessage.h">
 					</File>
 					<File
@@ -743,6 +754,9 @@
 					</File>
 					<File
 						RelativePath="..\ps\Network\NetworkInternal.h">
+					</File>
+					<File
+						RelativePath="..\ps\Network\NMTCreator.h">
 					</File>
 					<File
 						RelativePath="..\ps\Network\Serialization.h">

@@ -115,7 +115,7 @@ void CRenderer::EnumCaps()
 {
 	// assume support for nothing
 	m_Caps.m_VBO=false;
-#if 1
+#ifndef RENDER_FORCE_NO_VBO
 	// now start querying extensions
 	if (oglExtAvail("GL_ARB_vertex_buffer_object")) {
 		m_Caps.m_VBO=true;
