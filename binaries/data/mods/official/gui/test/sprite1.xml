@@ -322,11 +322,11 @@
         </sprite>
 
         <sprite name="pregame_mainmenu_mpbt">
-                <image texture="pregame/ui_pregame_mainmenu_mpbt_over.png" real_texture_placement="1 1 136 138" size="0 0 100% 100%" />
+                <image texture="pregame/ui_pregame_mainmenu_mpbt_over.png" real_texture_placement="1 1 135 137" size="0 0 100% 100%" />
         </sprite>
 
         <sprite name="pregame_mainmenu_edbt">
-                <image texture="pregame/ui_pregame_mainmenu_edbt_over.png" real_texture_placement="0 0 204 162" size="0 0 100% 100%" />
+                <image texture="pregame/ui_pregame_mainmenu_edbt_over.png" real_texture_placement="1 1 202 160" size="0 0 100% 100%" />
         </sprite>
 
         <!--
@@ -1104,6 +1104,10 @@
 
         <sprite name="test2">
                 <image size="0 0 100% 100%" backcolor="200 100 050" />
+        </sprite>
+
+        <sprite name="GeeTemp_selected">
+                <image size="0 0 100% 100%" backcolor="50 50 50" />
         </sprite>
         
 </sprites>

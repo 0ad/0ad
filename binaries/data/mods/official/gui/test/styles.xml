@@ -3,7 +3,12 @@
 <!DOCTYPE styles SYSTEM "..\gui.dtd">
 
 <styles>
-	<!-- The default values -->
+	<!-- 
+		The default values
+		The style with the name 'default' is special, it will
+		be called by every object before any other style is 
+		loaded.
+	 -->
 	<style name="default"
 		hidden="false"
 		enabled="true"
@@ -11,6 +16,8 @@
 		absolute="true"
 		scrollbar_style="sb2"
 		buffer_zone="5"
+		multiline="false"
+		font="verdana12"
 	/>
 
 	<style name="button"

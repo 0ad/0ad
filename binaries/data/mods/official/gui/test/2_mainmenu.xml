@@ -27,7 +27,7 @@
                         ]]></action>
                 </object>
 
-                <object type="button" name="pregame_mainmenu_mp_button" sprite_over="pregame_mainmenu_mpbt" size="60.9375% 48.567708333% 74.21875% 66.53645833333%" z="101" hidden="false"
+                <object type="button" name="pregame_mainmenu_mp_button" sprite_over="pregame_mainmenu_mpbt" size="61.03515625% 48.6979166% 74.12109375% 66.40625%" z="101" hidden="false"
                         tooltip_style="pregame_mainmenu_tooltip" tooltip="Tired of playing with yourself? Fight against one or more human players in a multiplayer game.">
                         <action on="Press"><![CDATA[
                                 getGUIObjectByName("pregame_subwindow_bkg").hidden = false;
@@ -35,7 +35,7 @@
                         ]]></action>
                 </object>
 
-                <object type="button" name="pregame_mainmenu_ed_button" sprite_over="pregame_mainmenu_edbt" size="43.65234375% 61.71875% 63.57421875% 82.8125%" z="101" hidden="false"
+                <object type="button" name="pregame_mainmenu_ed_button" sprite_over="pregame_mainmenu_edbt" size="43.75% 61.84895833% 63.4765625% 82.682291667%" z="101" hidden="false"
                         tooltip_style="pregame_mainmenu_tooltip" tooltip="Come forth and witness a totally non-functioning Editor, a mere shadow of its potential self!">
                         <action on="Press"><![CDATA[
                                 GUIObjectHide("PREGAME_GUI");
@@ -203,7 +203,7 @@
                                 Map Name:
                         </object>
 
-                        <object type="input" name="pregame_sp_mapname" sprite="only_black_border" absolute="false" size="130 90 290 110" textcolor="0 0 0">
+                        <object type="input" name="pregame_sp_mapname" sprite="only_black_border" sprite_selectarea="GeeTemp_selected" absolute="false" size="130 90 290 110" textcolor="0 0 0" textcolor_selected="255 255 255">
                                 ph2
                         </object>
 
