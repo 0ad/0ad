@@ -4,11 +4,7 @@
 #include "file.h"
 #include "timer.h"
 
-#ifdef _WIN32
-#include "sysdep/win/wfam.h"
-#else
-#include <fam.h>
-#endif
+#include "sysdep/dir_watch.h"
 
 #include <string.h>
 
@@ -18,49 +14,17 @@ int res_reload(const char* const fn)
 }
 
 
-static FAMConnection fc;
-static bool initialized=false;
-
-
-
 // path: portable and relative, must add current directory and convert to native
 // better to use a cached string from rel_chdir - secure
 int res_watch_dir(const char* const path, intptr_t* const watch)
 {
-	if(!initialized)
-	{
-		CHECK_ERR(FAMOpen2(&fc, "lib_res"));
-		atexit2((void*)FAMClose, (uintptr_t)&fc);
-		initialized = true;
-	}
-
-	char n_full_path[PATH_MAX];
-	CHECK_ERR(file_make_native_path(path, n_full_path));
-
-	FAMRequest req;
-	if(FAMMonitorDirectory(&fc, n_full_path, &req, (void*)0) < 0)
-	{
-		*watch = -1;
-		debug_warn("res_watch_dir failed!");
-		return -1;	// no way of getting error code?
-	}
-
-	*watch = (intptr_t)req.reqnum;
-	return 0;
+	return dir_add_watch(path, watch);
 }
 
 
 int res_cancel_watch(const intptr_t watch)
 {
-	if(!initialized)
-	{
-		debug_warn("res_cancel_watch before res_watch_dir");
-		return -1;
-	}
-
-	FAMRequest req;
-	req.reqnum = (int)watch;
-	return FAMCancelMonitor(&fc, &req);
+	return dir_cancel_watch(watch);
 }
 
 
@@ -69,21 +33,13 @@ int res_cancel_watch(const intptr_t watch)
 // to take place here, we don't require everything to be thread-safe.
 int res_reload_changed_files()
 {
-	if(!initialized)
-		return -1;
-
 	static double last_time;
 	static char last_fn[VFS_MAX_PATH];
 
-	FAMEvent e;
-	while(FAMPending(&fc) > 0)
+	char path[PATH_MAX];
+	while(dir_get_changed_file(path) == 0)
 	{
-		if(FAMNextEvent(&fc, &e) < 0)
-			continue;
-
-		char path[PATH_MAX];
 		char vfs_path[VFS_MAX_PATH];
-		CHECK_ERR(file_make_portable_path(e.filename, path));
 		CHECK_ERR(vfs_make_vfs_path(path, vfs_path));
 
 		const char* fn = vfs_path;
@@ -96,7 +52,7 @@ int res_reload_changed_files()
 		if(ext && !strcmp(ext, ".tmp"))
 			continue;
 		// .. and directory change (more info is upcoming anyway)
-		if(!ext && e.code == FAMChanged)	// dir changed
+		if(!ext)	// dir changed
 			continue;
 		// .. and reloads for the same file within a small timeframe.
 		double cur_time = get_time();
