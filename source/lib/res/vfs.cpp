@@ -77,11 +77,11 @@
 //   version - that's what they're for).
 
 
-///////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 //
 // path
 //
-///////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
 // path types:
 // fn  : filename only, no path at all.
@@ -567,10 +567,9 @@ typedef Locs::iterator LocIt;
 struct Mount
 {
 	// mounting into this VFS directory ("" for root)
-	std::string v_path;
+	std::string mount_point;
 
-	// what is being mounted; either directory,
-	// or archive filename (=> is_single_archive = true)
+	// what is being mounted; either directory, or archive filename 
 	std::string f_name;
 
 	uint pri;
@@ -585,15 +584,10 @@ struct Mount
 		// in the directory (but not its children - see remount()).
 		// otherwise, contains exactly one FileLoc for the single archive.
 
-	// is f_name an archive filename? if not, it's a directory.
-	bool is_single_archive;
-
 	Mount() {}
-	Mount(const char* _v_path, const char* _f_name, uint _pri)
-		: v_path(_v_path), f_name(_f_name), pri(_pri),
-		dir_loc(0, _f_name, 0), archive_locs(), is_single_archive(false)
-	{
-	}
+	Mount(const char* _mount_point, const char* _f_name, uint _pri)
+		: mount_point(_mount_point), f_name(_f_name), pri(_pri),
+		dir_loc(0, _f_name, 0), archive_locs() {}
 };
 
 typedef std::vector<Mount> Mounts;
@@ -660,36 +654,40 @@ static int archive_cb(const char* const fn, const uint flags, const ssize_t size
 // mount list, when invalidating (reloading) the VFS.
 static int remount(Mount& m)
 {
-	const char* const v_path = m.v_path.c_str();
+	const char* const mount_point = m.mount_point.c_str();
 	const char* const f_name = m.f_name.c_str();
 	const uint pri           = m.pri;
 	const FileLoc& dir_loc   = m.dir_loc;
 	Locs& archive_locs       = m.archive_locs;
 
 	Dir* dir;
-	CHECK_ERR(tree_lookup(v_path, 0, &dir, LF_CREATE_MISSING_COMPONENTS));
+	CHECK_ERR(tree_lookup(mount_point, 0, &dir, LF_CREATE_MISSING_COMPONENTS));
 
 	// check if target is a single Zip archive
-	// order doesn't matter; can't have both an archive and dir
+	// (it can't also be a directory - prevented by OS FS)
 	const Handle archive = zip_archive_open(f_name);
 	if(archive > 0)
 	{
-		m.is_single_archive = true;
 		archive_locs.push_back(FileLoc(archive, "", pri));
 		const FileLoc* loc = &archive_locs.front();
 		return tree_add_loc(dir, loc);
 	}
 
-	// enumerate all archives
+	// f_name is a directory (not Zip file - would have been opened above)
+
+	// enumerate all archives in dir (but not its subdirs! see above.)
 	ArchiveCBParams params = { f_name, pri, &archive_locs };
 	file_enum(f_name, archive_cb, (uintptr_t)&params);
 
+	// .. and add them
 	for(LocIt it = archive_locs.begin(); it != archive_locs.end(); ++it)
 	{
 		const FileLoc* const loc = &*it;
-		tree_add_loc(dir, loc);
+		if(tree_add_loc(dir, loc) < 0)
+			debug_warn("adding archive failed");
 	}
 
+	// add all loose files and subdirectories in subtree
 	CHECK_ERR(tree_add_loc(dir, &dir_loc));
 
 	return 0;
@@ -806,14 +804,15 @@ int vfs_get_path(const char* const path, char* const vfs_path)
 		if(!strncmp(dir_name, path, len))
 		{
 			const char* fn = path+len;
-			const char* v_path = it->v_path.c_str();
-			CHECK_ERR(path_append(vfs_path, v_path, fn));
+			const char* mount_point= it->mount_point.c_str();
+			CHECK_ERR(path_append(vfs_path, mount_point, fn));
 			return 0;
 		}
 	}
 
 	return -1;
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //
