@@ -65,6 +65,12 @@ template<> JSObject* ToScript<CVector3D>( CVector3D* Native )
 	return( Script );
 }
 
+template<> jsval ToJSVal<CVector3D>( const CVector3D& Native )
+{
+	JSObject* Script = JS_NewObject( g_ScriptingHost.GetContext(), &JSI_Vector3D::JSI_class, NULL, NULL );
+	JS_SetPrivate( g_ScriptingHost.GetContext(), Script, new JSI_Vector3D::Vector3D_Info( Native ) );
+	return( OBJECT_TO_JSVAL( Script ) );
+}
 
 // CScriptObject
 

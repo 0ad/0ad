@@ -13,8 +13,6 @@
 #ifndef JSI_VECTOR3_INCLUDED
 #define JSI_VECTOR3_INCLUDED
 
-class IPropertyOwner;
-
 namespace JSI_Vector3D
 {
 	enum 
@@ -23,7 +21,18 @@ namespace JSI_Vector3D
 		component_y,
 		component_z
 	};
+	static CVector3D* GetVector( JSContext* cx, JSObject* obj );
 	JSBool toString( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
+	JSBool add( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
+	JSBool subtract( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
+	JSBool negate( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
+	JSBool scale( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
+	JSBool divide( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
+	JSBool dot( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
+	JSBool cross( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
+	JSBool length( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
+	JSBool normalize( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
+
 	struct Vector3D_Info
 	{
 		IPropertyOwner* owner;
@@ -41,6 +50,7 @@ namespace JSI_Vector3D
 	extern JSClass JSI_class;
 	extern JSPropertySpec JSI_props[];
 	extern JSFunctionSpec JSI_methods[];
+
 	JSBool getProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
     JSBool setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
 	void finalize( JSContext* cx, JSObject* obj );

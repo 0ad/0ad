@@ -1157,7 +1157,7 @@ sle(11340106);
 	if(!g_Quickstart)
 	{
 		WriteSysInfo();
-		vfs_display();
+		// vfs_display();
 	}
 	else
 		// speed up startup by disabling all sound

@@ -1,6 +1,8 @@
 #include "precompiled.h"
 
 #include "JSInterface_Vector3D.h"
+#include "scripting/JSConversions.h"
+#include "scripting/ScriptingHost.h"
 
 JSClass JSI_Vector3D::JSI_class = {
 	"Vector3D", JSCLASS_HAS_PRIVATE,
@@ -22,6 +24,17 @@ JSPropertySpec JSI_Vector3D::JSI_props[] =
 JSFunctionSpec JSI_Vector3D::JSI_methods[] = 
 {
 	{ "toString", JSI_Vector3D::toString, 0, 0, 0 },
+	{ "add", JSI_Vector3D::add, 1, 0, 0 },
+	{ "subtract", JSI_Vector3D::subtract, 1, 0, 0 },
+	{ "minus", JSI_Vector3D::subtract, 1, 0, 0 },
+	{ "negate", JSI_Vector3D::negate, 1, 0, 0 },
+	{ "scale", JSI_Vector3D::scale, 1, 0, 0 },
+	{ "multiply", JSI_Vector3D::scale, 1, 0, 0 },
+	{ "divide", JSI_Vector3D::divide, 1, 0, 0 },
+	{ "dot", JSI_Vector3D::dot, 1, 0, 0 },
+	{ "cross", JSI_Vector3D::cross, 1, 0, 0 },
+	{ "length", JSI_Vector3D::length, 0, 0, 0 },
+	{ "normalize", JSI_Vector3D::normalize, 0, 0, 0 },
 	{ 0 }
 };
 
@@ -186,5 +199,144 @@ JSBool JSI_Vector3D::toString( JSContext* cx, JSObject* obj, uintN argc, jsval* 
 	snprintf( buffer, 256, "[object Vector3D: ( %f, %f, %f )]", vectorData->X, vectorData->Y, vectorData->Z );
 	buffer[255] = 0;
 	*rval = STRING_TO_JSVAL( JS_NewStringCopyZ( cx, buffer ) );
+	return( JS_TRUE );
+}
+
+CVector3D* JSI_Vector3D::GetVector( JSContext* cx, JSObject* obj )
+{
+	Vector3D_Info* vectorInfo = (Vector3D_Info*)JS_GetInstancePrivate( cx, obj, &JSI_class, NULL );
+	if( !vectorInfo )
+	{
+		JS_ReportError( cx, "[Vector3D] Invalid reference" );
+		return( NULL );
+	}
+	if( vectorInfo->owner && vectorInfo->freshenFn ) ( (vectorInfo->owner)->*(vectorInfo->freshenFn) )();
+	return( vectorInfo->vector );
+}
+
+JSBool JSI_Vector3D::add( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+{
+	CVector3D *a, *b;
+	if( !( a = GetVector( cx, obj ) ) ) return( JS_TRUE );
+	if( ( argc == 0 ) || !JSVAL_IS_OBJECT( argv[0] ) || !( b = GetVector( cx, JSVAL_TO_OBJECT( argv[0] ) ) ) )
+	{
+		JS_ReportError( cx, "[Vector3D] Invalid parameter" );
+		return( JS_TRUE );
+	}
+
+	JSObject* vector3d = JS_NewObject( g_ScriptingHost.getContext(), &JSI_Vector3D::JSI_class, NULL, NULL );
+	JS_SetPrivate( g_ScriptingHost.getContext(), vector3d, new JSI_Vector3D::Vector3D_Info( *a + *b ) );
+	*rval = OBJECT_TO_JSVAL( vector3d );
+
+	return( JS_TRUE );
+}
+
+JSBool JSI_Vector3D::subtract( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+{
+	CVector3D *a, *b;
+	if( !( a = GetVector( cx, obj ) ) ) return( JS_TRUE );
+	if( ( argc == 0 ) || !JSVAL_IS_OBJECT( argv[0] ) || !( b = GetVector( cx, JSVAL_TO_OBJECT( argv[0] ) ) ) )
+	{
+		JS_ReportError( cx, "[Vector3D] Invalid parameter" );
+		return( JS_TRUE );
+	}
+
+	JSObject* vector3d = JS_NewObject( g_ScriptingHost.getContext(), &JSI_Vector3D::JSI_class, NULL, NULL );
+	JS_SetPrivate( g_ScriptingHost.getContext(), vector3d, new JSI_Vector3D::Vector3D_Info( *a - *b ) );
+	*rval = OBJECT_TO_JSVAL( vector3d );
+
+	return( JS_TRUE );
+}
+
+JSBool JSI_Vector3D::negate( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+{
+	CVector3D *v;
+	if( !( v = GetVector( cx, obj ) ) ) return( JS_TRUE );
+
+	*rval = ToJSVal( -( *v ) );
+
+	return( JS_TRUE );
+}
+
+JSBool JSI_Vector3D::scale( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+{
+	CVector3D *v; float f;
+	if( !( v = GetVector( cx, obj ) ) ) return( JS_TRUE );
+	if( ( argc == 0 ) || !ToPrimitive( cx, argv[0], f ) )
+	{
+		JS_ReportError( cx, "Invalid parameter" );
+		return( JS_TRUE );
+	}
+
+	JSObject* vector3d = JS_NewObject( g_ScriptingHost.getContext(), &JSI_Vector3D::JSI_class, NULL, NULL );
+	JS_SetPrivate( g_ScriptingHost.getContext(), vector3d, new JSI_Vector3D::Vector3D_Info( *v * f ) );
+	*rval = OBJECT_TO_JSVAL( vector3d );
+
+	return( JS_TRUE );
+}
+
+JSBool JSI_Vector3D::divide( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+{
+	CVector3D *v; float f;
+	if( !( v = GetVector( cx, obj ) ) ) return( JS_TRUE );
+	if( ( argc == 0 ) || !ToPrimitive( cx, argv[0], f ) )
+	{
+		JS_ReportError( cx, "Invalid parameter" );
+		return( JS_TRUE );
+	}
+
+	JSObject* vector3d = JS_NewObject( g_ScriptingHost.getContext(), &JSI_Vector3D::JSI_class, NULL, NULL );
+	JS_SetPrivate( g_ScriptingHost.getContext(), vector3d, new JSI_Vector3D::Vector3D_Info( *v * ( 1.0 / f ) ) );
+	*rval = OBJECT_TO_JSVAL( vector3d );
+
+	return( JS_TRUE );
+}
+
+JSBool JSI_Vector3D::dot( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+{
+	CVector3D *a, *b;
+	if( !( a = GetVector( cx, obj ) ) ) return( JS_TRUE );
+	if( ( argc == 0 ) || !JSVAL_IS_OBJECT( argv[0] ) || !( b = GetVector( cx, JSVAL_TO_OBJECT( argv[0] ) ) ) )
+	{
+		JS_ReportError( cx, "[Vector3D] Invalid parameter" );
+		return( JS_TRUE );
+	}
+
+	*rval = ToJSVal( a->Dot( *b ) );
+	return( JS_TRUE );
+}
+
+JSBool JSI_Vector3D::cross( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+{
+	CVector3D *a, *b;
+	if( !( a = GetVector( cx, obj ) ) ) return( JS_TRUE );
+	if( ( argc == 0 ) || !JSVAL_IS_OBJECT( argv[0] ) || !( b = GetVector( cx, JSVAL_TO_OBJECT( argv[0] ) ) ) )
+	{
+		JS_ReportError( cx, "[Vector3D] Invalid parameter" );
+		return( JS_TRUE );
+	}
+
+	*rval = ToJSVal( a->Cross( *b ) );
+	return( JS_TRUE );
+}
+
+JSBool JSI_Vector3D::length( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+{
+	CVector3D *v;
+	if( !( v = GetVector( cx, obj ) ) ) return( JS_TRUE );
+
+	*rval = ToJSVal( v->GetLength() );
+	return( JS_TRUE );
+}
+
+JSBool JSI_Vector3D::normalize( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+{
+	CVector3D *v;
+	if( !( v = GetVector( cx, obj ) ) ) return( JS_TRUE );
+
+	CVector3D r( v->X, v->Y, v->Z );
+	r.Normalize();
+
+	*rval = ToJSVal( r );
 	return( JS_TRUE );
 }

@@ -41,6 +41,10 @@ ERROR_TYPE(Scripting_DefineType, CreationFailed);
 #include "Singleton.h"
 #include "CStr.h"
 
+class IPropertyOwner
+{
+};
+
 /*
 class DelayedScriptExecutor
 {

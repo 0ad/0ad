@@ -153,7 +153,7 @@ JSBool JSI_Camera::getProperty( JSContext* cx, JSObject* obj, jsval id, jsval* v
 	}
 
 	JSObject* vector3d = JS_NewObject( g_ScriptingHost.getContext(), &JSI_Vector3D::JSI_class, NULL, NULL );
-	JS_SetPrivate( g_ScriptingHost.getContext(), vector3d, new JSI_Vector3D::Vector3D_Info( *d /*, cameraInfo, ( void( IPropertyOwner::* )() )&Camera_Info::Update, ( void( IPropertyOwner::* )() )&Camera_Info::Freshen */ ) );
+	JS_SetPrivate( g_ScriptingHost.getContext(), vector3d, new JSI_Vector3D::Vector3D_Info( d, cameraInfo, ( void( IPropertyOwner::* )() )&Camera_Info::Update, ( void( IPropertyOwner::* )() )&Camera_Info::Freshen ) );
 	*vp = OBJECT_TO_JSVAL( vector3d );
 	return( JS_TRUE );
 }
@@ -236,7 +236,7 @@ JSBool JSI_Camera::getFocus( JSContext* cx, JSObject* obj, uintN argc, jsval* ar
 	Camera_Info* cameraInfo = (Camera_Info*)JS_GetPrivate( cx, obj );
 
 	JSObject* vector3d = JS_NewObject( g_ScriptingHost.getContext(), &JSI_Vector3D::JSI_class, NULL, NULL );
-	JS_SetPrivate( g_ScriptingHost.getContext(), vector3d, new JSI_Vector3D::Vector3D_Info( cameraInfo->m_sv_Target /*, cameraInfo, NULL, ( void( IPropertyOwner::* )() )&Camera_Info::FreshenTarget */ ) );
+	JS_SetPrivate( g_ScriptingHost.getContext(), vector3d, new JSI_Vector3D::Vector3D_Info( &( cameraInfo->m_sv_Target ), cameraInfo, NULL, ( void( IPropertyOwner::* )() )&Camera_Info::FreshenTarget ) );
 	*rval = OBJECT_TO_JSVAL( vector3d );
 	return( JS_TRUE );
 }

@@ -17,6 +17,10 @@ JSBool GetEntitySet( JSContext* context, JSObject* globalObject, jsval argv, jsv
 
 // Player
 JSBool GetPlayerSet( JSContext* context, JSObject* globalObject, jsval argv, jsval* vp );
+JSBool GetLocalPlayer( JSContext* context, JSObject* globalObject, jsval argv, jsval* vp );
+
+// Camera
+JSFunc setCameraTarget;
 
 // Timer
 JSFunc setTimeout;

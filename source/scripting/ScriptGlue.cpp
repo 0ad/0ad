@@ -57,6 +57,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	{"getGlobal", getGlobal, 0, 0, 0 },
 	{"getGUIGlobal", getGUIGlobal, 0, 0, 0 },
 	{"setCursor", setCursor, 1, 0, 0 },
+	{"setCameraTarget", setCameraTarget, 1, 0, 0 },
 	{"startGame", startGame, 0, 0, 0 },
 	{"endGame", endGame, 0, 0, 0 },
 	{"createClient", createClient, 0, 0, 0 },
@@ -91,6 +92,7 @@ JSPropertySpec ScriptGlobalTable[] =
 	{ "console", GLOBAL_CONSOLE, JSPROP_PERMANENT | JSPROP_READONLY, JSI_Console::getConsole, NULL },
 	{ "entities", 0, JSPROP_PERMANENT | JSPROP_READONLY, GetEntitySet, NULL },
 	{ "players", 0, JSPROP_PERMANENT | JSPROP_READONLY, GetPlayerSet, NULL },
+	{ "localPlayer", 0, JSPROP_PERMANENT | JSPROP_READONLY, GetLocalPlayer, NULL }, 
 	{ 0, 0, 0, 0, 0 },
 };
 
@@ -192,6 +194,27 @@ JSBool GetPlayerSet( JSContext* cx, JSObject* globalObject, jsval argv, jsval* v
 
 	*vp = OBJECT_TO_JSVAL( PlayerCollection::Create( *players ) );
 
+	return( JS_TRUE );
+}
+
+JSBool GetLocalPlayer( JSContext* cx, JSObject* globalObject, jsval argv, jsval* vp )
+{
+	*vp = OBJECT_TO_JSVAL( g_Game->GetLocalPlayer()->GetScript() );
+
+	return( JS_TRUE );
+}
+
+JSBool setCameraTarget( JSContext* context, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
+{
+	CVector3D* target; 
+	if( ( argc == 0 ) || !( target = ToNative<CVector3D>( argv[0] ) ) )
+	{
+		JS_ReportError( context, "Invalid camera target" );
+		return( JS_TRUE );
+	}
+	g_Game->GetView()->SetCameraTarget( *target );
+
+	*rval = JSVAL_TRUE;
 	return( JS_TRUE );
 }
 

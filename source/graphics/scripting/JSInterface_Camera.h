@@ -29,7 +29,7 @@ namespace JSI_Camera
 		lookat
 	};
 
-	struct Camera_Info
+	struct Camera_Info : public IPropertyOwner
 	{
 		CCamera* m_Data;
 		bool m_EngineOwned;

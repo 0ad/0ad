@@ -36,6 +36,8 @@ private:
 	static JSBool Pop( JSContext* cx, JSObject* obj, uintN argc, jsval* agv, jsval* rval );
 	static JSBool Remove( JSContext* cx, JSObject* obj, uintN argc, jsval* agv, jsval* rval );
 	static JSBool GetLength( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
+	static JSBool IsEmpty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
+	static JSBool Clear( JSContext* cx, JSObject* obj, uintN argc, jsval* agv, jsval* rval );
 	static JSBool AddProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
 	static JSBool RemoveProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
 	static JSBool GetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
@@ -63,6 +65,7 @@ template<typename T, JSClass* ScriptType> JSClass CJSCollection<T, ScriptType>::
 template<typename T, JSClass* ScriptType> JSPropertySpec CJSCollection<T, ScriptType>::JSI_props[] =
 {
 	{ "length", 0, JSPROP_PERMANENT | JSPROP_READONLY, GetLength },
+	{ "empty", 0, JSPROP_PERMANENT | JSPROP_READONLY, IsEmpty },
 	{ 0 }
 };
 
@@ -73,6 +76,7 @@ template<typename T, JSClass* ScriptType> JSFunctionSpec CJSCollection<T, Script
 	{ "push", Push, 1, 0, 0 },
 	{ "pop", Pop, 0, 0, 0 },
 	{ "remove", Remove, 1, 0, 0 },
+	{ "clear", Clear, 0, 0, 0 },
 	{ 0 },
 };
 
@@ -257,6 +261,17 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::G
 	return( JS_TRUE );
 }
 
+template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::IsEmpty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
+{
+	std::vector<T>* set = RetrieveSet( cx, obj );
+
+	if( !set )
+		return( JS_FALSE ); // That's odd; we've lost the pointer.
+
+	*vp = BOOLEAN_TO_JSVAL( set->empty() );
+	return( JS_TRUE );
+}
+
 template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::Subset( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
 	assert( argc > 0 );
@@ -282,6 +297,19 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::S
 			CollectionData->m_Data->push_back( *it );
 
 	*rval = OBJECT_TO_JSVAL( Collection );
+
+	return( JS_TRUE );
+}
+
+template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::Clear( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+{
+	std::vector<T>* Set = RetrieveSet( cx, obj );
+	if( !Set )
+		return( JS_FALSE );
+
+	Set->clear();
+
+	*rval = JSVAL_TRUE;
 
 	return( JS_TRUE );
 }
@@ -357,5 +385,5 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::R
 
 #define EntityCollection CJSCollection<HEntity, &CEntity::JSI_class>
 #define PlayerCollection CJSCollection<CPlayer*, &CPlayer::JSI_class>
-
+#define JSObjectCollection
 #endif

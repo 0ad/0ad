@@ -93,6 +93,7 @@ template<typename T> jsval ToJSVal( const T& Native );
 // CVector3D
 template<> CVector3D* ToNative<CVector3D>( JSContext* cx, JSObject* obj );
 template<> JSObject* ToScript<CVector3D>( CVector3D* Native );
+template<> jsval ToJSVal<CVector3D>( const CVector3D& Native );
 
 // CBaseEntity
 template<> bool ToPrimitive<CBaseEntity*>( JSContext* cx, jsval v, CBaseEntity*& Storage );
