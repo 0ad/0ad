@@ -198,7 +198,7 @@ static HDATA* h_data(const i32 idx)
 static HDATA* h_data_any_type(const Handle h)
 {
 #ifdef PARANOIA
-	check_heap();
+	debug_check_heap();
 #endif
 
 	// invalid, or an error code
