@@ -1,16 +1,17 @@
 
-// useful for choosing a video mode. not called by detect().
+// useful for choosing a video mode.
 // if we fail, outputs are unchanged (assumed initialized to defaults)
 extern int get_cur_vmode(int* xres, int* yres, int* bpp, int* freq);
 
-// useful for determining aspect ratio. not called by detect().
+// useful for determining aspect ratio.
 // if we fail, outputs are unchanged (assumed initialized to defaults)
 extern int get_monitor_size(int& width_mm, int& height_mm);
 
 
-
-extern char gfx_card[64];		// default: ""
-extern char gfx_drv_ver[64];	// default: ""
+const size_t GFX_CARD_LEN = 32;
+extern char gfx_card[GFX_CARD_LEN];		// default: ""
+const size_t GFX_DRV_VER_LEN = 16;
+extern char gfx_drv_ver[GFX_DRV_VER_LEN];	// default: ""
 
 // attempt to detect graphics card without OpenGL (in case ogl init fails,
 // or we want more detailed info). gfx_card[] is unchanged on failure.
