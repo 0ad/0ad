@@ -33,7 +33,9 @@ gee@pyro.nu
 //  Declarations
 //--------------------------------------------------------
 
-// Settings
+/**
+ * Button Settings
+ */
 struct SButtonSettings
 {
 	bool			m_Disabled;
@@ -54,6 +56,16 @@ struct SButtonSettings
 
 ///////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @author Gustav Larsson
+ *
+ * Button
+ * 
+ * @see CGUIObject
+ * @see CGUISettingsObject
+ * @see CGUIButtonBehavior
+ * @see SButtonSettings
+ */
 class CButton : public CGUISettingsObject<SButtonSettings>, public CGUIButtonBehavior
 {
 	GUI_OBJECT(CButton)
@@ -62,14 +74,23 @@ public:
 	CButton();
 	virtual ~CButton();
 
-
-	// Since we're doing multiple inheritance, this is to avoid error message
+	/**
+	 * Since we're doing multiple inheritance, this is to avoid error message
+	 *
+	 * @return Settings infos
+	 */
 	virtual map_Settings GetSettingsInfo() const { return CGUISettingsObject<SButtonSettings>::m_SettingsInfo; }
 
-	// Handle Messages
+	/**
+	 * Handle Messages
+	 *
+	 * @param Message GUI Message
+	 */
 	virtual void HandleMessage(const EGUIMessage &Message);
 
-	// Draw
+	/**
+	 * Draws the Button
+	 */
 	virtual void Draw();
 };
 

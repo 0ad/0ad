@@ -43,7 +43,12 @@ gee@pyro.nu
 //  Declarations
 //--------------------------------------------------------
 
-// Actual sprite
+/**
+ * @author Gustav Larsson
+ *
+ * A CGUISprite is actually a collage of several <b>real</b>
+ * sprites, this struct represents is such real sprite.
+ */
 struct SGUIImage
 {
 	CStr			m_Texture;
@@ -61,19 +66,36 @@ struct SGUIImage
 	int				m_BorderSize;
 };
 
-// The GUI sprite, is actually several real sprites (images).
+/**
+ * @author Gustav Larsson
+ *
+ * The GUI sprite, is actually several real sprites (images)
+ * like a collage. View the section <sprites> in the GUI
+ * TDD for more information.
+ */
 class CGUISprite
 {
 public:
 	CGUISprite() {}
 	virtual ~CGUISprite() {}
 
-	// Execute a drawing request for this sprite
+	/**
+	 * Execute a drawing request for this sprite
+	 *
+	 * @param z Draw in what depth.
+	 * @param rect Outer rectangle to draw the collage.
+	 */
 	void Draw(const float &z, const CRect &rect, const CRect &clipping);
 
+	/**
+	 * Adds an image to the sprite collage.
+	 *
+	 * @param image Adds this image to the sprite collage.
+	 */
 	void AddImage(const SGUIImage &image) { m_Images.push_back(image); }
 
 private:
+	/// List of images
 	std::vector<SGUIImage>			m_Images;
 };
 

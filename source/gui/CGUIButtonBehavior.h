@@ -37,22 +37,32 @@ gee@pyro.nu
 //  Declarations
 //--------------------------------------------------------
 
-// Abstract Data Type
+/**
+ * @author Gustav Larsson
+ *
+ * Appends button behaviours to the <code>CGUIObject</code>.
+ * Can be used with multiple inheritance alongside
+ * <code>CGUISettingsObject</code> and such.
+ *
+ * @see CGUIObject
+ */
 class CGUIButtonBehavior : virtual public CGUIObject
 {
 public:
 	CGUIButtonBehavior();
 	virtual ~CGUIButtonBehavior();
 
-	// Handle Messages
+	/// Handle Messages
 	virtual void HandleMessage(const EGUIMessage &Message);
 
 protected:
-	// Everybody knows how a button works, you don't simply press it,
-	//  you have to first press the button, and then release it...
-	//  in between those two steps you can actually leave the button
-	//  area, as long as you release it within the button area... Anyway
-	//  this lets us know we are done with step one (clicking).
+	/**
+	 * Everybody knows how a button works, you don't simply press it,
+	 * you have to first press the button, and then release it...
+	 * in between those two steps you can actually leave the button
+	 * area, as long as you release it within the button area... Anyway
+	 * this lets us know we are done with step one (clicking).
+	 */
 	bool							m_Pressed;
 };
 

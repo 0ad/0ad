@@ -56,8 +56,14 @@ gee@pyro.nu
 //  Declarations
 //--------------------------------------------------------
 
-// Generic object that stores a struct with settings
-
+/**
+ * @author Gustav Larsson
+ *
+ * Appends more settings to the <code>CGUIObject</code>.
+ * Can be used with multiple inheritance.
+ *
+ * @see CGUIObject
+ */
 template <typename SETTINGS>
 class CGUISettingsObject : virtual public CGUIObject
 {
@@ -65,16 +71,20 @@ public:
 	CGUISettingsObject() {}
 	virtual ~CGUISettingsObject() {}
 
-	// Get Offsets
-	//  important so it returns this m_Offsets and not CGUIObject::m_SettingsInfo
+	/**
+	 * Get Offsets, <b>important</b> to include so it returns this 
+	 * <code>m_Offsets</code> and not <code>CGUIObject::m_SettingsInfo</code>
+	 *
+	 * @return Settings infos
+	 */
 	virtual map_Settings GetSettingsInfo() const { return m_SettingsInfo; }
 
-	// GetSettings()
-	// returns a copy of m_Settings
+	/**
+	 * @return Returns a copy of <code>m_Settings</code>
+	 */
 	SETTINGS GetSettings() const { return m_Settings; }
 	
-	// SetSettings
-	// Sets m_Settings to _set
+	/// Sets settings
 	void SetSettings(const SETTINGS &Set) 
 	{ 
 		m_Settings = Set; 
@@ -91,20 +101,23 @@ public:
 	}
 
 protected:
-	// Settings
+	/// Settings struct
 	SETTINGS								m_Settings;
 
-	// Offset database
-	//  tells us where a variable by a string name is
-	//  located hardcoded, in order to acquire a pointer
-	//  for that variable... Say "frozen" gives
-	//  the offset from CGUIObject to m_Frozen
-	// note! _NOT_ from SGUIBaseSettings to m_Frozen!
-	//
-	// Note that it's imperative that this m_SettingsInfo includes
-	//  all offsets of m_BaseSettings too, because when
-	//  using this class, this m_SettingsInfo will be the only
-	//  one used.
+	/**
+	 * <b>Offset database</b><br>
+	 * tells us where a variable by a string name is
+	 * located hardcoded, in order to acquire a pointer
+	 * for that variable... Say "frozen" gives
+	 * the offset from <code>CGUIObject</code> to <code>m_Frozen</code>.
+	 *
+	 * <b>note!</b> _NOT_ from <code>SGUIBaseSettings</code> to <code>m_Frozen</code>!
+	 *
+	 * Note that it's imperative that this <code>m_SettingsInfo</code> includes
+	 * all offsets of <code>m_BaseSettings</code> too, because when
+	 * using this class, this m_SettingsInfo will be the only
+	 * one used.
+	 */
 	static map_Settings						m_SettingsInfo;
 };
 

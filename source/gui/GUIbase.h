@@ -59,9 +59,11 @@ public:																	\
 //--------------------------------------------------------
 //  Types
 //--------------------------------------------------------
-// Message send to HandleMessage in order
-//  to give life to Objects manually with
-//  a derived HandleMessage().
+/**
+ * Message send to <code>CGUIObject::HandleMessage()</code> in order
+ * to give life to Objects manually with
+ * a derived <code>HandleMessage()</code>.
+ */
 enum EGUIMessage
 {
 	GUIM_PREPROCESS,
@@ -79,11 +81,13 @@ enum EGUIMessage
 	GUIM_PRESSED
 };
 
-// Recurse restrictions, when we recurse, if an object
-//  is hidden for instance, you might want it to skip
-//	the children also
-// Notice these are flags! and we don't really need one
-//  for no restrictions, because then you'll just enter 0
+/**
+ * Recurse restrictions, when we recurse, if an object
+ * is hidden for instance, you might want it to skip
+ * the children also
+ * Notice these are flags! and we don't really need one
+ * for no restrictions, because then you'll just enter 0
+ */
 enum
 {
 	GUIRR_HIDDEN=1,
