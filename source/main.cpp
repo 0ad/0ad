@@ -107,6 +107,8 @@ static int set_vmode(int w, int h, int bpp)
 		return -1;
 
 	glViewport(0, 0, w, h);
+
+	g_GUI.UpdateResolution();
 	
 	oglInit();	// required after each mode change
 
@@ -226,6 +228,11 @@ int main(int argc, char* argv[])
 
 	detect();
 
+	// Gee @ Janwas - Had to move this up because the GUI is used in set_vmode
+#ifndef NO_GUI
+	new CGUI; // we should have a place for all singleton news
+#endif
+
 	// init SDL
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
 	{
@@ -270,7 +277,6 @@ glEnable (GL_DEPTH_TEST);
 // Gee @ Janwas - I've moved this down here now, so the GUI data will be placed in the correct place
 //  it works perfectly btw.
 #ifndef NO_GUI
-	new CGUI; // we should have a place for all singleton news
 	g_GUI.Initialize();
 	g_GUI.LoadXMLFile("gui/hello.xml");
 	//g_GUI.LoadXMLFile("sprite1.xml");
