@@ -5,8 +5,9 @@
  */
 
 #include "precompiled.h"
+#include "config.h"
 
-#if _MSC_VER >= 0x1300
+#ifdef HAVE_ASM
 
 void memcpy_nt(void* dst, void* src, int len)
 {
@@ -29,7 +30,7 @@ prefetch_loop:
 	mov			eax, [esi-64]
 	mov			eax, [esi-128]
 	sub			esi, 128
-	test		esi, 4095					; CHUNK_SIZE-1 (icc doesn't preprocess asm)
+	test		esi, 4095					; CHUNK_SIZE-1 (icc doesnt preprocess asm)
 	jnz			prefetch_loop
 
 
@@ -66,4 +67,4 @@ write_loop:
 }
 }
 
-#endif	// #if _MSC_VER >= 0x1300
+#endif	// #ifdef HAVE_ASM

@@ -13,17 +13,23 @@
 #endif
 
 
-// HAVE_C99: check if compiler advertises support for C99
-// (make sure it's #defined before testing value to avoid ICC warning)
-#undef HAVE_C99
-#ifdef __STDC_VERSION__
-# if __STDC_VERSION__ >= 199901L
-#  define HAVE_C99
-# endif
-#endif
+#undef HAVE_C99		// compiler advertises support for C99
+
+#undef HAVE_ASM
 
 #undef HAVE_GETTIMEOFDAY
 #undef HAVE_X
+
+#undef CONFIG_DISABLE_EXCEPTIONS
+
+
+#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
+# define HAVE_C99
+#endif
+
+#ifdef _MSC_VER
+# define HAVE_ASM
+#endif
 
 #ifdef OS_UNIX
 # define HAVE_GETTIMEOFDAY
@@ -33,4 +39,4 @@
 # define HAVE_X
 #endif
 
-#undef CONFIG_DISABLE_EXCEPTIONS
+
