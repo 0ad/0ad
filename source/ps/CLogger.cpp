@@ -1,31 +1,24 @@
 #include "precompiled.h"
 
 #include "CLogger.h"
+#include "ConfigDB.h"
 #include "lib.h"
 
-#define CONSOLE_DEBUG
-
-#ifdef CONSOLE_DEBUG
- #include "CConsole.h"
- extern CConsole* g_Console;
-#endif
+#include "CConsole.h"
+extern CConsole* g_Console;
 
 using namespace std;
 
-#define MAIN_HEADER		"<HTML>\n<HEAD>\n<LINK REL=StyleSheet HREF=" \
-						"\"style.css\" TYPE=\"text/css\">\n" \
-						"</HEAD>\n<BODY>\n<P align=\"center\"><IMG src=" \
-						"\"0adlogo.jpg\"/></P>\n" \
-						"<P><H1>Main Log</H1></P>\n"
+const char* html_header0 =
+	"<HTML>\n<HEAD>\n<LINK REL=StyleSheet HREF="
+	"\"style.css\" TYPE=\"text/css\">\n"
+	"</HEAD>\n<BODY>\n<P align=\"center\"><IMG src="
+	"\"0adlogo.jpg\"/></P>\n"
+	"<P><H1>";
 
-#define MEMORY_HEADER	"<HTML>\n<HEAD>\n<LINK REL=StyleSheet HREF=" \
-						"\"style.css\" TYPE=\"text/css\">\n" \
-						"</HEAD>\n<BODY>\n<P align=\"center\"><IMG src=" \
-						"\"0adlogo.jpg\"/></P>\n" \
-						"<P><H1>Memory Log</H1></P>\n"
+const char* html_header1 = "</H1></P>\n";
 
-
-#define FOOTER			"</BODY>\n</HTML>\n"
+const char* html_footer = "</BODY>\n</HTML>\n";
 
 #define MEMORY_BUFFER_SIZE	35
 
@@ -43,20 +36,24 @@ CLogger::CLogger()
 	m_NumberOfErrors = 0;
 	m_NumberOfWarnings = 0;
 	
-	m_MemoryLog = (char *) malloc(MEMORY_BUFFER_SIZE);
-	m_CurrentPosition = m_MemoryLog;
+	m_MemoryLogBuffer = (char *) malloc(MEMORY_BUFFER_SIZE);
+	m_CurrentPosition = m_MemoryLogBuffer;
 
 	memset(m_MemoryLog,0,MEMORY_BUFFER_SIZE);
 
 	// current directory is $install_dir/data, we want $install_dir/logs.
 	// TODO: make sure we are called after file_rel_chdir,
 	// or else cur dir may be anywhere
-	m_MainLog.open ("../logs/mainlog.html",ofstream::out | ofstream::trunc);
-	m_DetailedLog.open ("../logs/detailedlog.html",ofstream::out | ofstream::trunc );
+	m_MainLog.open			("../logs/mainlog.html",		ofstream::out | ofstream::trunc);
+	m_InterestingLog.open	("../logs/interestinglog.html",	ofstream::out | ofstream::trunc);
+	m_MemoryLog.open		("../logs/memorylog.html",		ofstream::out | ofstream::trunc);
 
 	//Write Headers for the HTML documents
-	m_MainLog << MAIN_HEADER;
+	m_MainLog << html_header0 << "Main log" << html_header1;
 	
+	//Write Headers for the HTML documents
+	m_InterestingLog << html_header0 << "Main log (interesting items only, as specified in system.cfg)" << html_header1;
+
 }
 
 CLogger::~CLogger ()
@@ -68,59 +65,72 @@ CLogger::~CLogger ()
 	//Write closing text
 	m_MainLog << "<P>Engine exited successfully on " << __DATE__;
 	m_MainLog << " at " << __TIME__ << buffer << "</P>\n";
-	m_MainLog << FOOTER;
+	m_MainLog << html_footer;
+	m_MainLog.close ();
 	
+	m_InterestingLog << "<P>Engine exited successfully on " << __DATE__;
+	m_InterestingLog << " at " << __TIME__ << buffer << "</P>\n";
+	m_InterestingLog << html_footer;
+	m_InterestingLog.close ();
+
+
 	//Add end marker to logs in memory
 	m_CurrentPosition = '\0';
 
-	m_DetailedLog << MEMORY_HEADER;
-	m_DetailedLog << "<P>Memory Log started with capacity of " << \
+	m_MemoryLog << html_header0 << "Memory log" << html_header1;
+	m_MemoryLog << "<P>Memory Log started with capacity of " << \
 						MEMORY_BUFFER_SIZE << " characters.</P>\n";
-	m_DetailedLog << m_MemoryLog;
-	m_DetailedLog << FOOTER;
+	m_MemoryLog << m_MemoryLogBuffer;
+	m_MemoryLog << html_footer;
 
-	m_DetailedLog.close ();
+	m_MemoryLog.close ();
 
-	m_MainLog.close ();
-
-	free(m_MemoryLog);
+	free(m_MemoryLogBuffer);
 }
 
-void CLogger::WriteMessage(const char *message)
+void CLogger::WriteMessage(const char *message, int interestedness)
 {
-#ifdef CONSOLE_DEBUG
-	if (g_Console) g_Console->InsertMessage(L"LOG: %hs", message);
-#endif
 	m_NumberOfMessages++;
+
+	if (interestedness >= 2)
+	{
+		if (g_Console) g_Console->InsertMessage(L"LOG: %hs", message);
+		m_InterestingLog << "<P>" << message << "</P>\n";
+		m_InterestingLog.flush();
+	}
 	m_MainLog << "<P>" << message << "</P>\n";
-									
 	m_MainLog.flush();
 	
 }
 
-void CLogger::WriteError(const char *message)
+void CLogger::WriteError(const char *message, int interestedness)
 {
-#ifdef CONSOLE_DEBUG
-	if (g_Console) g_Console->InsertMessage(L"ERROR: %hs", message);
-#endif
-	debug_out("ERROR: %s\n", message);
 	m_NumberOfErrors++;
+	debug_out("ERROR: %s\n", message);
+	if (interestedness >= 1)
+	{
+		if (g_Console) g_Console->InsertMessage(L"ERROR: %hs", message);
+		m_InterestingLog << "<P class=\"error\">ERROR: "<< message << "</P>\n";
+		m_InterestingLog.flush();
+	}
 	m_MainLog << "<P class=\"error\">ERROR: "<< message << "</P>\n";
 	m_MainLog.flush();
 }
 
-void CLogger::WriteWarning(const char *message)
+void CLogger::WriteWarning(const char *message, int interestedness)
 {
-#ifdef CONSOLE_DEBUG
-	if (g_Console) g_Console->InsertMessage(L"WARNING: %hs", message);
-#endif
 	m_NumberOfWarnings++;
+	if (interestedness >= 1)
+	{
+		if (g_Console) g_Console->InsertMessage(L"WARNING: %hs", message);
+		m_InterestingLog << "<P class=\"warning\">WARNING: "<< message << "</P>\n";
+		m_InterestingLog.flush();
+	}
 	m_MainLog << "<P class=\"warning\">WARNING: "<< message << "</P>\n";
-
 	m_MainLog.flush();
 }
 
-void CLogger::Log(ELogMethod method, const char *fmt, ...)
+void CLogger::Log(ELogMethod method, const char* category, const char *fmt, ...)
 {
 	va_list argp;
 	char buffer[512];
@@ -132,13 +142,13 @@ void CLogger::Log(ELogMethod method, const char *fmt, ...)
 	va_end(argp);
 
 	if(method == NORMAL)
-		WriteMessage(buffer);
+		WriteMessage(buffer, Interestedness(category));
 	else if(method == ERROR)
-		WriteError(buffer);
+		WriteError(buffer, Interestedness(category));
 	else if(method == WARNING)
-		WriteWarning(buffer);
+		WriteWarning(buffer, Interestedness(category));
 	else
-		WriteMessage(buffer);
+		WriteMessage(buffer, Interestedness(category));
 }
 
 void CLogger::QuickLog(const char *fmt, ...)
@@ -157,7 +167,7 @@ void CLogger::QuickLog(const char *fmt, ...)
 	//add some html formatting
 	strcat(buffer,"</P>");
 	
-	if((m_CurrentPosition - m_MemoryLog + strlen(buffer) + 1) >= MEMORY_BUFFER_SIZE)
+	if((m_CurrentPosition - m_MemoryLogBuffer + strlen(buffer) + 1) >= MEMORY_BUFFER_SIZE)
 	{
 		//not enough room in the buffer so don't log.
 		return;
@@ -176,3 +186,23 @@ void CLogger::QuickLog(const char *fmt, ...)
 	free(buffer);
 }
 
+int CLogger::Interestedness(const char* category)
+{
+	// This could be cached, but reading from the config DB every time allows
+	// easy run-time alteration of interest levels (and shouldn't be particularly
+	// slow)
+
+	// If the config DB hasn't been loaded, assume the default
+	if (! g_ConfigDB.IsInitialised())
+		return 1;
+
+	CConfigValue* v = g_ConfigDB.GetValue(CFG_SYSTEM, CStr("loginterest.")+category);
+	if (!v)
+		return 1;
+
+	int level;
+	if (! v->GetInt(level))
+		return 1;
+
+	return level;
+}
