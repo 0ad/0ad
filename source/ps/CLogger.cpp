@@ -39,8 +39,11 @@ CLogger::CLogger()
 
 	memset(m_MemoryLog,0,MEMORY_BUFFER_SIZE);
 
-	m_MainLog.open ("logs/mainlog.html",ofstream::out | ofstream::trunc);
-	m_DetailedLog.open ("logs/detailedlog.html",ofstream::out | ofstream::trunc );
+	// current directory is $install_dir/data, we want $install_dir/logs.
+	// TODO: make sure we are called after file_rel_chdir,
+	// or else cur dir may be anywhere
+	m_MainLog.open ("../logs/mainlog.html",ofstream::out | ofstream::trunc);
+	m_DetailedLog.open ("../logs/detailedlog.html",ofstream::out | ofstream::trunc );
 
 	//Write Headers for the HTML documents
 	m_MainLog << MAIN_HEADER;
