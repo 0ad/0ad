@@ -172,20 +172,18 @@ static int Mem_reload(Mem* m, const char* fn, Handle hm)
 
 static void heap_free(void* const raw_p, const size_t raw_size, const uintptr_t ctx)
 {
-	UNUSED(raw_p);
 	UNUSED(raw_size);
+	UNUSED(ctx);
 
-	void* heap_p = (void*)ctx;
-	free(heap_p);
+	free(raw_p);
 }
 
 
 static void* heap_alloc(const size_t raw_size, uintptr_t& ctx)
 {
-	void* heap_p = malloc(raw_size);
-
-	ctx = (uintptr_t)heap_p;
-	return heap_p;
+	ctx = 0;
+	void* raw_p = malloc(raw_size);
+	return raw_p;
 }
 
 
@@ -210,7 +208,7 @@ static void pool_free(void* const raw_p, const size_t raw_size, const uintptr_t 
 	else if(ofs + raw_size == pool_pos)
 		pool_pos = ofs;
 	else
-		;	// TODO: warn about 'leaked' memory;
+		;	// TODO: warn about lost memory in pool;
 			// suggest using a different allocator
 }
 
@@ -234,7 +232,8 @@ static void* pool_alloc(const size_t raw_size, uintptr_t& ctx)
 
 	ctx = (uintptr_t)pool_pos;
 	pool_pos += raw_size;
-	return (u8*)pool + ctx;
+	void* raw_p = (u8*)pool + ctx;
+	return raw_p;
 }
 
 
@@ -263,8 +262,9 @@ int mem_free_p(void*& p)
 }
 
 
-
-
+// create a H_MEM handle of type MEM_USER,
+// and assign it the specified memory range.
+// dtor is called when the handle is freed, if non-NULL.
 Handle mem_assign(void* p, size_t size, uint flags, void* raw_p, size_t raw_size, MEM_DTOR dtor, uintptr_t ctx)
 {
 	// we've already allocated that pointer - returns its handle
@@ -294,6 +294,7 @@ Handle mem_assign(void* p, size_t size, uint flags, void* raw_p, size_t raw_size
 }
 
 
+/*
 int mem_assign_user(Handle hm, void* user_p, size_t user_size)
 {
 	H_DEREF(hm, Mem, m);
@@ -312,12 +313,13 @@ int mem_assign_user(Handle hm, void* user_p, size_t user_size)
 	m->size = user_size;
 	return 0;
 }
+*/
 
 
 void* mem_alloc(size_t size, const size_t align, uint flags, Handle* phm)
 {
 	if(phm)
-		*phm = 0;
+		*phm = ERR_NO_MEM;
 
 	if(size == 0)
 	{
@@ -358,6 +360,7 @@ void* mem_alloc(size_t size, const size_t align, uint flags, Handle* phm)
 	Handle hm = mem_assign(p, size, flags, raw_p, raw_size, dtor, ctx);
 	if(!hm)			// failed to allocate a handle
 	{
+		debug_warn("mem_alloc: mem_assign failed");
 		dtor(p, size, ctx);
 		return 0;
 	}
@@ -396,9 +399,11 @@ void* mem_get_ptr(Handle hm, size_t* user_size /* = 0 */)
 }
 
 
+/*
 ssize_t mem_size(void* p)
 {
 	Handle hm = find_alloc(p);
 	H_DEREF(hm, Mem, m);
 	return (ssize_t)m->size;
 }
+*/
