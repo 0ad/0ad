@@ -31,7 +31,7 @@ bool CPlayer::ValidateCommand(CNetMessage *pMsg)
 
 static bool ControllerPredicate( CEntity* entity, void* userdata )
 {
-	return( entity->m_player == userdata );
+	return( entity->GetPlayer() == userdata );
 }
 
 std::vector<HEntity>* CPlayer::GetControlledEntities()

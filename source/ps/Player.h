@@ -18,7 +18,7 @@ public:
 
 private:
 	CStrW m_Name;
-	uint m_PlayerID;
+	PS_uint m_PlayerID;
 	SPlayerColour m_Colour;
 	
 	UpdateCallback *m_UpdateCB;
@@ -31,7 +31,7 @@ public:
 
 	bool ValidateCommand(CNetMessage *pMsg);
 
-	inline uint GetPlayerID() const
+	inline PS_uint GetPlayerID() const
 	{	return m_PlayerID; }
 	
 	inline const CStrW &GetName() const
