@@ -1,0 +1,7 @@
+- download http://oss.sgi.com/projects/ogl-sample/ABI/glext.h , put in compiler's include\gl dir
+- leave out debug* for now (requires dbghelp, included with vc7)
+- leave out memcpy.cpp, unless processor pack installed (not currently used anyway)
+- don't define D3D8 unless the SDK is installed (=> less accurate graphics card info)
+- dito for DDRAW7 (=> video card memory size not available)
+- set code generation to multithreaded
+- set entry point to entry (=> 
