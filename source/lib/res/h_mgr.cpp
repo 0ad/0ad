@@ -124,10 +124,12 @@ static const size_t HDATA_USER_SIZE = 44+64;
 struct HDATA
 {
 	uintptr_t key;
+
 	u32 tag  : TAG_BITS;
+
 	u32 refs : REF_BITS;
-		// = 0: cached
 	u32 type_idx : TYPE_BITS;
+
 	H_Type type;
 
 	const char* fn;
