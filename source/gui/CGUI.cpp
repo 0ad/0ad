@@ -37,10 +37,16 @@ int gui_mouse_x, gui_mouse_y;
 
 // called from main loop when (input) events are received.
 // event is passed to other handlers if false is returned.
+// trampoline: we don't want to make the implementation (in CGUI) static
+bool gui_handler(const SDL_Event& ev)
+{
+//	return gui.HandleEvent(ev);
 
-// JW: problem! this needs to be static, or not a member function
-// (it's a callback from the input distributor)
-bool InputHandler(const SDL_Event& ev)
+	return false;
+}
+
+
+bool CGUI::HandleEvent(const SDL_Event& ev)
 {
 	if(ev.type == SDL_MOUSEMOTION)
 		gui_mouse_x = ev.motion.x, gui_mouse_y = ev.motion.y;
@@ -51,20 +57,19 @@ bool InputHandler(const SDL_Event& ev)
 	//  check which one it is, if any !
 	CGUIObject *pNearest = NULL;
 
-//	GUI<CGUIObject*>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, &CGUIObject::ChooseMouseOverAndClosest, pNearest);
+	GUI<CGUIObject*>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, &CGUIObject::ChooseMouseOverAndClosest, pNearest);
 	
 	// Now we'll call UpdateMouseOver on *all* objects,
 	//  we'll input the one hovered, and they will each
 	//  update their own data and send messages accordingly
-//	GUI<CGUIObject*>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, &CGUIObject::UpdateMouseOver, pNearest);
+	GUI<CGUIObject*>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, &CGUIObject::UpdateMouseOver, pNearest);
 
 	if(pNearest)
 	{
-/*		if(ev.type == SDL_MOUSEBUTTONDOWN)
+		if(ev.type == SDL_MOUSEBUTTONDOWN)
 			pNearest->HandleMessage(GUIM_MOUSE_PRESS_LEFT);	// JW: want to pass SDL button value, or translate?
 		else if(ev.type == SDL_MOUSEBUTTONUP)
 			pNearest->HandleMessage(GUIM_MOUSE_RELEASE_LEFT);	// JW: want to pass SDL button value, or translate?
-*/
 	}
 
 // JW: what's the difference between mPress and mDown? what's the code below responsible for?

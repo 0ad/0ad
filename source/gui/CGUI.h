@@ -72,6 +72,8 @@ public:
 	// Shutdown
 	void Destroy();
 
+	bool HandleEvent(const SDL_Event& ev);
+
 	// Load a GUI XML file
 	void LoadXMLFile(const CStr &Filename);
 
