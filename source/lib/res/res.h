@@ -3,6 +3,7 @@
 #include "res/tex.h"
 #include "res/mem.h"
 #include "res/font.h"
+#include "res/unifont.h"
 
 
 extern int res_reload(const char* fn);
