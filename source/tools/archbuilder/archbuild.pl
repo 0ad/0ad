@@ -356,10 +356,23 @@ sub create_archive {
 	my $zip = new Archive::Zip;
 
 	for my $file (@$files) {
+
 		if ($file->[1]->archive) {
+
 			$zip->addMember($file->[1]->location) or die "Error adding zipped file $file->[0] to zip";
+
 		} else {
-			$zip->addFile($file->[1]->location, $file->[0]) or die "Error adding file $file->[0] to zip";
+
+			my $member = Archive::Zip::Member->newFromFile($file->[1]->location) or die "Error adding file $file->[0] to zip";
+			$member->fileName($file->[0]);
+
+			if (should_compress($file->[1]->location)) {
+				$member->desiredCompressionMethod(Archive::Zip::COMPRESSION_DEFLATED);
+			} else {
+				$member->desiredCompressionMethod(Archive::Zip::COMPRESSION_STORED);
+			}
+
+			$zip->addMember($member);
 		}
 	}
 
@@ -379,4 +392,11 @@ sub get_opt {
 		}
 	}
 	return $default;
+}
+
+sub should_compress {
+	my ($filename) = @_;
+	return 0 if $filename =~ /\.(ogg|png)$/i; # don't compress things that are already compressed
+	return 0 if (stat $filename)[7] < 8192; # don't compress small files
+	return 1;
 }
