@@ -1,6 +1,6 @@
 #include "precompiled.h"
 #include "ogl.h"
-#include "res/tex.h"
+#include "res/ogl_tex.h"
 #include "TextureEntry.h"
 #include "TextureManager.h"
 #include "Texture.h"

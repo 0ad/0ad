@@ -5,7 +5,7 @@
 #include "TextureManager.h"
 #include "lib.h"
 #include "ogl.h"
-#include "res/tex.h"
+#include "res/ogl_tex.h"
 #include "CLogger.h"
 
 #define LOG_CATEGORY "graphics"

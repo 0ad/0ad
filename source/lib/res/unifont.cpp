@@ -1,5 +1,5 @@
 /*
-$Id: unifont.cpp,v 1.17 2004/09/06 03:21:56 gee Exp $
+$Id: unifont.cpp,v 1.18 2004/09/19 11:55:15 janwas Exp $
 
 Unicode OpenGL texture font
   
@@ -12,6 +12,7 @@ Unicode OpenGL texture font
 #include "lib.h"
 #include "res.h"
 #include "ogl.h"
+#include "ogl_tex.h"
 
 #include <string>
 #include <sstream>

@@ -29,7 +29,7 @@
 #include "Sprite.h"
 #include "Renderer.h"
 #include "ogl.h"
-#include "res/tex.h"
+#include "res/ogl_tex.h"
 
 CSprite::CSprite() :
 	m_texture(NULL) 
