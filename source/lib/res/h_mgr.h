@@ -183,7 +183,10 @@ extern int h_free(Handle& h, H_Type type);
 
 
 // find and return a handle by key (typically filename hash)
-// currently O(n).
+// currently O(log n).
+//
+// HACK: currently can't find RES_UNIQUE handles, because there
+// may be multiple instances of them, breaking the lookup data structure.
 extern Handle h_find(H_Type type, uintptr_t key);
 
 // returns a void* pointer to the control block of the resource <h>,
@@ -197,6 +200,10 @@ extern const char* h_filename(Handle h);
 extern int h_reload(const char* fn);
 
 extern int res_cur_scope;
+
+
+
+extern void h_mgr_shutdown();
 
 
 #endif	// #ifndef H_MGR_H__

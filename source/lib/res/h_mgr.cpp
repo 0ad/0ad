@@ -131,6 +131,10 @@ struct HDATA
 		// if set, do not actually release the resource (i.e. call dtor)
 		// when the handle is h_free-d, regardless of the refcount.
 		// set by h_alloc; reset on exit and by housekeeping.
+	u32 unique : 1;
+		// HACK: prevent adding to h_find lookup index if flags & RES_UNIQUE
+		// (because those handles might have several instances open,
+		// which the index can't currently handle)
 
 	H_Type type;
 
@@ -245,7 +249,7 @@ static HDATA* h_data(const Handle h, const H_Type type)
 
 
 
-void h_mgr_shutdown(void)
+void h_mgr_shutdown()
 {
 	// close open handles
 	for(i32 i = 0; i <= last_in_use; i++)
@@ -356,6 +360,13 @@ static int free_idx(i32 idx)
 // (e.g. a VFile and Tex object for the same underlying filename hash key)
 //
 // store index because it's smaller and Handle can easily be reconstructed
+//
+//
+// note: there may be several RES_UNIQUE handles of the same type and key
+// (e.g. sound files - several instances of a sound definition file).
+// that wasn't forseen here, so we'll just refrain from adding to the index.
+// that means they won't be found via h_find - no biggie.
+
 typedef STL_HASH_MULTIMAP<uintptr_t, i32> Key2Idx;
 typedef Key2Idx::iterator It;
 static Key2Idx key2idx;
@@ -404,6 +415,8 @@ static void remove_key(uintptr_t key, H_Type type)
 int h_free(Handle& h, H_Type type)
 {
 	HDATA* hd = h_data(h, type);
+	i32 idx = h_idx(h);
+
 	h = 0;
 		// wipe out the handle, to prevent reuse.
 		// TODO: should we do this after checking if valid?
@@ -431,14 +444,13 @@ int h_free(Handle& h, H_Type type)
 	if(vtbl->dtor)
 		vtbl->dtor(hd->user);
 
-	if(hd->key)
+	if(hd->key && !hd->unique)
 		remove_key(hd->key, type);
 
 	free((void*)hd->fn);
 
 	memset(hd, 0, sizeof(HDATA));
 
-	i32 idx = h_idx(h);
 	free_idx(idx);
 
 	return 0;
@@ -476,7 +488,7 @@ fail:
 // any further params are passed to type's init routine
 Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 {
-	ONCE(atexit2(h_mgr_shutdown));
+//	ONCE(atexit2(h_mgr_shutdown));
 
 	CHECK_ERR(type_validate(type));
 
@@ -561,7 +573,12 @@ skip_alloc:
 		return h;
 	}
 
-	if(key)
+	//
+	// now adding a new handle
+	//
+	hd->unique = (flags & RES_UNIQUE) != 0;
+
+	if(key && !hd->unique)
 		add_key(key, h);
 
 	// one-time init
