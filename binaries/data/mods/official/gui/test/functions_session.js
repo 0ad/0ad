@@ -4,6 +4,8 @@ function initSession()
 	initGroupPane();
 	initResourcePool();
 	initStatusOrb();
+	initMapOrb();
+	initTeamTray();
 }
 
 // ====================================================================

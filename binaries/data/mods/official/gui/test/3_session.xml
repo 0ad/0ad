@@ -533,89 +533,6 @@
                 <!-- / GROUP: RESOURCE BAR -->
                 </object>
 
-                <!-- GROUP: MAP ORB -->
-                <object type="empty" name="session_map_orb" hotkey="maporb.toggle" size="0 0 100% 100%" z="1" hidden="false">
-			<action on="Press"><![CDATA[
-				GUIObjectToggle("session_map_orb");
-			]]></action>
-
-			<object type="text" name="session_panel_minimap_bg" sprite="session_panel_minimap_bg" z="60" ghost="true" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"100%-174 0%+2 100% 0%+176", 
-					"100%-174 100%-174 100% 100%-176");
-				]]></action>
-			</object>
-
-			<object type="minimap" name="session_panel_minimap" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"100%-176 0 100% 176", 
-					"100%-176 100%-176 100% 100%");
-				]]></action>
-			</object>
-
-                        <object type="button" name="session_panel_minimap_segleft1" sprite="session_panel_minimap_segleft1" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"100%-206 0%+2 100%-174 0%+38", 
-					"100%-206 100%-175 100%-174 100%-129");
-				]]></action>
-			</object>
-                        <object type="button" name="session_panel_minimap_segleft2" sprite="session_panel_minimap_segleft2" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"100%-214 0%+45 100%-174 0%+89", 
-					"100%-214 100%-131 100%-174 100%-87");
-				]]></action>
-			</object>
-                        <object type="button" name="session_panel_minimap_segleft3" sprite="session_panel_minimap_segleft3" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"100%-214 0%+86 100%-174 0%+130", 
-					"100%-214 100%-90 100%-174 100%-46");
-				]]></action>
-			</object>
-                        <object type="button" name="session_panel_minimap_segleft4" sprite="session_panel_minimap_segleft4" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"100%-206 0%+127 100%-174 0%+163", 
-					"100%-206 100%-48 100%-174 100%-12");
-				]]></action>
-			</object>
-
-                        <object type="button" name="session_panel_minimap_segbottom4" sprite="session_panel_minimap_segbottom4" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"100%-46 0%+173 100%-2 0%+213", 
-					"100%-46 100%-205 100%-2 100%-165");
-				]]></action>
-			</object>
-                        <object type="button" name="session_panel_minimap_segbottom3" sprite="session_panel_minimap_segbottom3" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"100%-88 0%+173 100%-42 0%+213", 
-					"100%-88 100%-213 100%-42 100%");
-				]]></action>
-			</object>
-                        <object type="button" name="session_panel_minimap_segbottom2" sprite="session_panel_minimap_segbottom2" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"100%-130 0%+173 100%-84 0%+213", 
-					"100%-130 100%-213 100%-84 100%");
-				]]></action>
-			</object>
-                        <object type="button" name="session_panel_minimap_segbottom1" sprite="session_panel_minimap_segbottom1" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"100%-174 0%+173 100%-130 0%+213", 
-					"100%-174 100%-205 100%-130 100%-165");
-				]]></action>
-			</object>
-
-                <!-- / GROUP: MAP ORB -->
-                </object>
-
                 <!-- GROUP: STATUS ORB -->
                 <object type="empty" name="session_status_orb" hotkey="statusorb.toggle" size="0 0 100% 100%" z="1" hidden="true">
 			<action on="Press"><![CDATA[
@@ -839,147 +756,150 @@
                 <!-- / GROUP: STATUS ORB -->
                 </object>
 
+                <!-- GROUP: MAP ORB -->
+                <object type="empty" name="session_map_orb" hotkey="maporb.toggle" size="0 0 100% 100%" z="1" hidden="false">
+			<action on="Press"><![CDATA[
+				GUIObjectToggle("session_map_orb");
+			]]></action>
+
+			<object type="minimap" name="session_panel_minimap" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_map_orb_minimap_x, crd_map_orb_minimap_y, crd_map_orb_minimap_x+crd_map_orb_minimap_width, crd_map_orb_minimap_y+crd_map_orb_minimap_height, right_screen, top_screen, right_screen, top_screen,
+					crd_map_orb_minimap_x, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_minimap_y, crd_map_orb_minimap_x+crd_map_orb_minimap_width, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_minimap_y+crd_map_orb_minimap_height, right_screen, bottom_screen, right_screen, bottom_screen);
+				]]></action>
+			</object>
+
+                        <object type="button" name="session_panel_minimap_segleft1" sprite="session_panel_minimap_segleft1" sprite-over="session_panel_minimap_segleft1-lit" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_map_orb_segleft1_x, crd_map_orb_segleft1_y, crd_map_orb_segleft1_x+crd_map_orb_segleft1_width, crd_map_orb_segleft1_y+crd_map_orb_segleft1_height, right_screen, top_screen, right_screen, top_screen,
+					crd_map_orb_segleft1_x, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_segleft1_y, crd_map_orb_segleft1_x+crd_map_orb_segleft1_width, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_segleft1_y+crd_map_orb_segleft1_height, right_screen, bottom_screen, right_screen, bottom_screen);
+				]]></action>
+			</object>
+                        <object type="button" name="session_panel_minimap_segleft2" sprite="session_panel_minimap_segleft2" sprite-over="session_panel_minimap_segleft2-lit" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_map_orb_segleft2_x, crd_map_orb_segleft2_y, crd_map_orb_segleft2_x+crd_map_orb_segleft2_width, crd_map_orb_segleft2_y+crd_map_orb_segleft2_height, right_screen, top_screen, right_screen, top_screen,
+					crd_map_orb_segleft2_x, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_segleft2_y, crd_map_orb_segleft2_x+crd_map_orb_segleft2_width, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_segleft2_y+crd_map_orb_segleft2_height, right_screen, bottom_screen, right_screen, bottom_screen);
+				]]></action>
+			</object>
+                        <object type="button" name="session_panel_minimap_segleft3" sprite="session_panel_minimap_segleft3" sprite-over="session_panel_minimap_segleft3-lit" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_map_orb_segleft3_x, crd_map_orb_segleft3_y, crd_map_orb_segleft3_x+crd_map_orb_segleft3_width, crd_map_orb_segleft3_y+crd_map_orb_segleft3_height, right_screen, top_screen, right_screen, top_screen,
+					crd_map_orb_segleft3_x, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_segleft3_y, crd_map_orb_segleft3_x+crd_map_orb_segleft3_width, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_segleft3_y+crd_map_orb_segleft3_height, right_screen, bottom_screen, right_screen, bottom_screen);
+				]]></action>
+			</object>
+                        <object type="button" name="session_panel_minimap_segleft4" sprite="session_panel_minimap_segleft4" sprite-over="session_panel_minimap_segleft4-lit" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_map_orb_segleft4_x, crd_map_orb_segleft4_y, crd_map_orb_segleft4_x+crd_map_orb_segleft4_width, crd_map_orb_segleft4_y+crd_map_orb_segleft4_height, right_screen, top_screen, right_screen, top_screen,
+					crd_map_orb_segleft4_x, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_segleft4_y, crd_map_orb_segleft4_x+crd_map_orb_segleft4_width, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_segleft4_y+crd_map_orb_segleft4_height, right_screen, bottom_screen, right_screen, bottom_screen);
+				]]></action>
+			</object>
+
+                        <object type="button" name="session_panel_minimap_segbottom1" sprite="session_panel_minimap_segbottom1" sprite-over="session_panel_minimap_segbottom1-lit" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_map_orb_segbottom1_x, crd_map_orb_segbottom1_y, crd_map_orb_segbottom1_x+crd_map_orb_segbottom1_width, crd_map_orb_segbottom1_y+crd_map_orb_segbottom1_height, right_screen, top_screen, right_screen, top_screen,
+					crd_map_orb_segbottom1_x, -crd_map_orb_minimap_y-crd_map_orb_segbottom1_y-crd_map_orb_segbottom1_height, crd_map_orb_segbottom1_x+crd_map_orb_segbottom1_width, -crd_map_orb_minimap_y-crd_map_orb_segbottom1_y, right_screen, bottom_screen, right_screen, bottom_screen);
+				]]></action>
+			</object>
+                        <object type="button" name="session_panel_minimap_segbottom2" sprite="session_panel_minimap_segbottom2" sprite-over="session_panel_minimap_segbottom2-lit" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_map_orb_segbottom2_x, crd_map_orb_segbottom2_y, crd_map_orb_segbottom2_x+crd_map_orb_segbottom2_width, crd_map_orb_segbottom2_y+crd_map_orb_segbottom2_height, right_screen, top_screen, right_screen, top_screen,
+					crd_map_orb_segbottom2_x, -crd_map_orb_minimap_y-crd_map_orb_segbottom2_y-crd_map_orb_segbottom2_height, crd_map_orb_segbottom2_x+crd_map_orb_segbottom2_width, -crd_map_orb_minimap_y-crd_map_orb_segbottom2_y, right_screen, bottom_screen, right_screen, bottom_screen);
+				]]></action>
+			</object>
+                        <object type="button" name="session_panel_minimap_segbottom3" sprite="session_panel_minimap_segbottom3" sprite-over="session_panel_minimap_segbottom3-lit" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_map_orb_segbottom3_x, crd_map_orb_segbottom3_y, crd_map_orb_segbottom3_x+crd_map_orb_segbottom3_width, crd_map_orb_segbottom3_y+crd_map_orb_segbottom3_height, right_screen, top_screen, right_screen, top_screen,
+					crd_map_orb_segbottom3_x, -crd_map_orb_minimap_y-crd_map_orb_segbottom3_y-crd_map_orb_segbottom3_height, crd_map_orb_segbottom3_x+crd_map_orb_segbottom3_width, -crd_map_orb_minimap_y-crd_map_orb_segbottom3_y, right_screen, bottom_screen, right_screen, bottom_screen);
+				]]></action>
+			</object>
+                        <object type="button" name="session_panel_minimap_segbottom4" sprite="session_panel_minimap_segbottom4" sprite-over="session_panel_minimap_segbottom4-lit" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSizeCoord(this.name,
+					crd_map_orb_segbottom4_x, crd_map_orb_segbottom4_y, crd_map_orb_segbottom4_x+crd_map_orb_segbottom4_width, crd_map_orb_segbottom4_y+crd_map_orb_segbottom4_height, right_screen, top_screen, right_screen, top_screen,
+					crd_map_orb_segbottom4_x, -crd_map_orb_minimap_y-crd_map_orb_segbottom4_y-crd_map_orb_segbottom4_height, crd_map_orb_segbottom4_x+crd_map_orb_segbottom4_width, -crd_map_orb_minimap_y-crd_map_orb_segbottom4_y, right_screen, bottom_screen, right_screen, bottom_screen);
+				]]></action>
+			</object>
+
+                <!-- / GROUP: MAP ORB -->
+                </object>
+
                 <!-- GROUP: TEAM TRAY -->
-                <object type="empty" name="session_team_tray" hotkey="teamtray.toggle" size="0 0 100% 100%" z="60" hidden="true">
+                <object type="empty" name="session_team_tray" hotkey="teamtray.toggle" size="0 0 100% 100%" z="60" hidden="false">
 			<action on="Press"><![CDATA[
 				GUIObjectToggle("session_team_tray");
 			]]></action>
 
-			<object type="button" name="session_team_tray_1" style="portrait" textcolor="255 255 255" hidden="false">
+			<object type="button" name="session_team_tray_1" style="portrait" text-align="left" z="70" hidden="false">1
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_team_tray_1",
-					"100%-32 200 100% 232", 
-					"100%-32 100%-488 100% 100%-456");
+					AddSizeCoord(this.name,
+					crd_team_tray_1_x, crd_team_tray_1_y, crd_team_tray_1_x+crd_team_tray_1_width, crd_team_tray_1_y+crd_team_tray_1_height, right_screen, top_screen, right_screen, top_screen,
+					crd_team_tray_1_x, -crd_team_tray_1_y-crd_team_tray_1_height, crd_team_tray_1_x+crd_team_tray_1_width, -crd_team_tray_1_y, right_screen, bottom_screen, right_screen, bottom_screen);
                                 ]]></action>
 			</object>
-			<object type="text" name="session_team_tray_1_num" textcolor="255 255 255" ghost="true" hidden="false">1
+			<object type="button" name="session_team_tray_2" style="portrait" text-align="left" z="70" hidden="false">2
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_team_tray_1_num",
-					"100%-20 200 100% 220", 
-					"100%-20 100%-488 100% 100%-468");
+					AddSizeCoord(this.name,
+					crd_team_tray_2_x, crd_team_tray_2_y, crd_team_tray_2_x+crd_team_tray_2_width, crd_team_tray_2_y+crd_team_tray_2_height, right_screen, top_screen, right_screen, top_screen,
+					crd_team_tray_2_x, -crd_team_tray_2_y-crd_team_tray_2_height, crd_team_tray_2_x+crd_team_tray_2_width, -crd_team_tray_2_y, right_screen, bottom_screen, right_screen, bottom_screen);
                                 ]]></action>
 			</object>
-
-			<object type="button" name="session_team_tray_2" style="portrait" textcolor="255 255 255" hidden="false">
+			<object type="button" name="session_team_tray_3" style="portrait" text-align="left" z="70" hidden="false">3
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_team_tray_2",
-					"100%-32 232 100% 264", 
-					"100%-32 100%-456 100% 100%-424");
+					AddSizeCoord(this.name,
+					crd_team_tray_3_x, crd_team_tray_3_y, crd_team_tray_3_x+crd_team_tray_3_width, crd_team_tray_3_y+crd_team_tray_3_height, right_screen, top_screen, right_screen, top_screen,
+					crd_team_tray_3_x, -crd_team_tray_3_y-crd_team_tray_3_height, crd_team_tray_3_x+crd_team_tray_3_width, -crd_team_tray_3_y, right_screen, bottom_screen, right_screen, bottom_screen);
                                 ]]></action>
 			</object>
-			<object type="text" name="session_team_tray_2_num" textcolor="255 255 255" ghost="true" hidden="false">2
+			<object type="button" name="session_team_tray_4" style="portrait" text-align="left" z="70" hidden="false">4
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_team_tray_2_num",
-					"100%-20 232 100% 252", 
-					"100%-20 100%-456 100% 100%-436");
+					AddSizeCoord(this.name,
+					crd_team_tray_4_x, crd_team_tray_4_y, crd_team_tray_4_x+crd_team_tray_4_width, crd_team_tray_4_y+crd_team_tray_4_height, right_screen, top_screen, right_screen, top_screen,
+					crd_team_tray_4_x, -crd_team_tray_4_y-crd_team_tray_4_height, crd_team_tray_4_x+crd_team_tray_4_width, -crd_team_tray_4_y, right_screen, bottom_screen, right_screen, bottom_screen);
                                 ]]></action>
 			</object>
-
-			<object type="button" name="session_team_tray_3" style="portrait" textcolor="255 255 255" hidden="false">
+			<object type="button" name="session_team_tray_5" style="portrait" text-align="left" z="70" hidden="false">5
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_team_tray_3",
-					"100%-32 264 100% 296", 
-					"100%-32 100%-424 100% 100%-392");
+					AddSizeCoord(this.name,
+					crd_team_tray_5_x, crd_team_tray_5_y, crd_team_tray_5_x+crd_team_tray_5_width, crd_team_tray_5_y+crd_team_tray_5_height, right_screen, top_screen, right_screen, top_screen,
+					crd_team_tray_5_x, -crd_team_tray_5_y-crd_team_tray_5_height, crd_team_tray_5_x+crd_team_tray_5_width, -crd_team_tray_5_y, right_screen, bottom_screen, right_screen, bottom_screen);
                                 ]]></action>
 			</object>
-			<object type="text" name="session_team_tray_3_num" textcolor="255 255 255" ghost="true" hidden="false">3
+			<object type="button" name="session_team_tray_6" style="portrait" text-align="left" z="70" hidden="false">6
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_team_tray_3_num",
-					"100%-20 264 100% 284", 
-					"100%-20 100%-424 100% 100%-304");
+					AddSizeCoord(this.name,
+					crd_team_tray_6_x, crd_team_tray_6_y, crd_team_tray_6_x+crd_team_tray_6_width, crd_team_tray_6_y+crd_team_tray_6_height, right_screen, top_screen, right_screen, top_screen,
+					crd_team_tray_6_x, -crd_team_tray_6_y-crd_team_tray_6_height, crd_team_tray_6_x+crd_team_tray_6_width, -crd_team_tray_6_y, right_screen, bottom_screen, right_screen, bottom_screen);
                                 ]]></action>
 			</object>
-
-			<object type="button" name="session_team_tray_4" style="portrait" textcolor="255 255 255" hidden="false">
+			<object type="button" name="session_team_tray_7" style="portrait" text-align="left" z="70" hidden="false">7
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_team_tray_4",
-					"100%-32 296 100% 328", 
-					"100%-32 100%-392 100% 100%-360");
+					AddSizeCoord(this.name,
+					crd_team_tray_7_x, crd_team_tray_7_y, crd_team_tray_7_x+crd_team_tray_7_width, crd_team_tray_7_y+crd_team_tray_7_height, right_screen, top_screen, right_screen, top_screen,
+					crd_team_tray_7_x, -crd_team_tray_7_y-crd_team_tray_7_height, crd_team_tray_7_x+crd_team_tray_7_width, -crd_team_tray_7_y, right_screen, bottom_screen, right_screen, bottom_screen);
                                 ]]></action>
 			</object>
-			<object type="text" name="session_team_tray_4_num" textcolor="255 255 255" ghost="true" hidden="false">4
+			<object type="button" name="session_team_tray_8" style="portrait" text-align="left" z="70" hidden="false">8
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_team_tray_4_num",
-					"100%-20 296 100% 316", 
-					"100%-20 100%-392 100% 100%-372");
+					AddSizeCoord(this.name,
+					crd_team_tray_8_x, crd_team_tray_8_y, crd_team_tray_8_x+crd_team_tray_8_width, crd_team_tray_8_y+crd_team_tray_8_height, right_screen, top_screen, right_screen, top_screen,
+					crd_team_tray_8_x, -crd_team_tray_8_y-crd_team_tray_8_height, crd_team_tray_8_x+crd_team_tray_8_width, -crd_team_tray_8_y, right_screen, bottom_screen, right_screen, bottom_screen);
                                 ]]></action>
 			</object>
-
-			<object type="button" name="session_team_tray_5" style="portrait" textcolor="255 255 255" hidden="false">
+			<object type="button" name="session_team_tray_9" style="portrait" text-align="left" z="70" hidden="false">9
                                 <action on="Load"><![CDATA[
-					AddSizeString("session_team_tray_5",
-					"100%-32 328 100% 360", 
-					"100%-32 100%-360 100% 100%-328");
+					AddSizeCoord(this.name,
+					crd_team_tray_9_x, crd_team_tray_9_y, crd_team_tray_9_x+crd_team_tray_9_width, crd_team_tray_9_y+crd_team_tray_9_height, right_screen, top_screen, right_screen, top_screen,
+					crd_team_tray_9_x, -crd_team_tray_9_y-crd_team_tray_9_height, crd_team_tray_9_x+crd_team_tray_9_width, -crd_team_tray_9_y, right_screen, bottom_screen, right_screen, bottom_screen);
                                 ]]></action>
 			</object>
-			<object type="text" name="session_team_tray_5_num" textcolor="255 255 255" ghost="true" hidden="false">5
-                                <action on="Load"><![CDATA[
-					AddSizeString("session_team_tray_5_num",
-					"100%-20 328 100% 348", 
-					"100%-20 100%-360 100% 100%-340");
-                                ]]></action>
-			</object>
-
-			<object type="button" name="session_team_tray_6" style="portrait" textcolor="255 255 255" hidden="false">
-                                <action on="Load"><![CDATA[
-					AddSizeString("session_team_tray_6",
-					"100%-32 360 100% 392", 
-					"100%-32 100%-328 100% 100%-296");
-                                ]]></action>
-			</object>
-			<object type="text" name="session_team_tray_6_num" textcolor="255 255 255" ghost="true" hidden="false">6
-                                <action on="Load"><![CDATA[
-					AddSizeString("session_team_tray_6_num",
-					"100%-20 360 100% 380", 
-					"100%-20 100%-328 100% 100%-308");
-                                ]]></action>
-			</object>
-
-			<object type="button" name="session_team_tray_7" style="portrait" textcolor="255 255 255" hidden="false">
-                                <action on="Load"><![CDATA[
-					AddSizeString("session_team_tray_7",
-					"100%-32 392 100% 424", 
-					"100%-32 100%-296 100% 100%-264");
-                                ]]></action>
-			</object>
-			<object type="text" name="session_team_tray_7_num" textcolor="255 255 255" ghost="true" hidden="false">7
-                                <action on="Load"><![CDATA[
-					AddSizeString("session_team_tray_7_num",
-					"100%-20 392 100% 412", 
-					"100%-20 100%-296 100% 100%-276");
-                                ]]></action>
-			</object>
-
-			<object type="button" name="session_team_tray_8" style="portrait" textcolor="255 255 255" hidden="false">
-                                <action on="Load"><![CDATA[
-					AddSizeString("session_team_tray_8",
-					"100%-32 424 100% 456", 
-					"100%-32 100%-264 100% 100%-232");
-                                ]]></action>
-			</object>
-			<object type="text" name="session_team_tray_8_num" textcolor="255 255 255" ghost="true" hidden="false">8
-                                <action on="Load"><![CDATA[
-					AddSizeString("session_team_tray_8_num",
-					"100%-20 424 100% 444", 
-					"100%-20 100%-264 100% 100%-244");
-                                ]]></action>
-			</object>
-
-			<object type="button" name="session_team_tray_9" style="portrait" textcolor="255 255 255" hidden="false">
-                                <action on="Load"><![CDATA[
-					AddSizeString("session_team_tray_9",
-					"100%-32 456 100% 488", 
-					"100%-32 100%-232 100% 100%-200");
-                                ]]></action>
-			</object>
-			<object type="text" name="session_team_tray_9_num" textcolor="255 255 255" ghost="true" hidden="false">9
-                                <action on="Load"><![CDATA[
-					AddSizeString("session_team_tray_9_num",
-					"100%-20 456 100% 476", 
-					"100%-20 100%-232 100% 100%-212");
-                                ]]></action>
-			</object>
-
                 <!-- / GROUP: TRAY -->
                 </object>
 

@@ -109,15 +109,19 @@ function FlipGUI(NewGUIType)
 					switch (SizeCoord[FlipGUILoop].name){
 						case "session_panel_minimap_segbottom1":
 							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = SizeCoord[FlipGUILoop].name;
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name)["sprite-over"] = SizeCoord[FlipGUILoop].name + "-lit";
 						break;
 						case "session_panel_minimap_segbottom2":
 							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = SizeCoord[FlipGUILoop].name;
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name)["sprite-over"] = SizeCoord[FlipGUILoop].name + "-lit";
 						break;
 						case "session_panel_minimap_segbottom3":
 							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = SizeCoord[FlipGUILoop].name;
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name)["sprite-over"] = SizeCoord[FlipGUILoop].name + "-lit";
 						break;
 						case "session_panel_minimap_segbottom4":
 							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = SizeCoord[FlipGUILoop].name;
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name)["sprite-over"] = SizeCoord[FlipGUILoop].name + "-lit";
 						break;
 						case "session_panel_status_bg":
 							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_status_bg-top";
@@ -131,15 +135,19 @@ function FlipGUI(NewGUIType)
 					switch (SizeCoord[FlipGUILoop].name){
 						case "session_panel_minimap_segbottom1":
 							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop1";
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name)["sprite-over"] = "session_panel_minimap_segtop1-lit";
 						break;
 						case "session_panel_minimap_segbottom2":
 							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop2";
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name)["sprite-over"] = "session_panel_minimap_segtop2-lit";
 						break;
 						case "session_panel_minimap_segbottom3":
 							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop3";
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name)["sprite-over"] = "session_panel_minimap_segtop3-lit";
 						break;
 						case "session_panel_minimap_segbottom4":
 							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop4";
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name)["sprite-over"] = "session_panel_minimap_segtop4-lit";
 						break;
 						case "session_panel_status_bg":
 							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_status_bg-bottom";

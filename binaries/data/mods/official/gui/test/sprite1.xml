@@ -171,59 +171,107 @@
                 -->
 
                        <sprite name="session_panel_minimap_bg">
-                        <image texture="ui_session_panel_minimap_bg.png" texture-size="0 0 256 256" size="0 0 176 176" />
+                        <image texture="ui_session_panel_minimap_bg.png" texture-size="0 0 256 256" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="session_panel_minimap_dummy">
-                        <image texture="ui_session_panel_minimap_dummy.png" texture-size="0 0 256 256" size="0 0 172 172" />
+                        <image texture="ui_session_panel_minimap_dummy.png" texture-size="0 0 256 256" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="session_panel_minimap_segleft1">
-                        <image texture="ui_session_panel_minimap_segleft1.png" texture-size="0 0 64 64" size="0 0 32 46" />
+                        <image texture="ui_session_panel_minimap_segleft1.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="session_panel_minimap_segleft2">
-                        <image texture="ui_session_panel_minimap_segleft2.png" texture-size="0 0 64 64" size="0 0 40 44" />
+                        <image texture="ui_session_panel_minimap_segleft2.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="session_panel_minimap_segleft3">
-                        <image texture="ui_session_panel_minimap_segleft3.png" texture-size="0 0 64 64" size="0 0 40 44" />
+                        <image texture="ui_session_panel_minimap_segleft3.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="session_panel_minimap_segleft4">
-                        <image texture="ui_session_panel_minimap_segleft4.png" texture-size="0 0 64 64" size="0 0 32 46" />
+                        <image texture="ui_session_panel_minimap_segleft4.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="session_panel_minimap_segbottom1">
-                        <image texture="ui_session_panel_minimap_segbottom1.png" texture-size="0 0 64 64" size="0 0 44 40" />
+                        <image texture="ui_session_panel_minimap_segbottom1.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="session_panel_minimap_segbottom2">
-                        <image texture="ui_session_panel_minimap_segbottom2.png" texture-size="0 0 64 64" size="0 0 46 46" />
+                        <image texture="ui_session_panel_minimap_segbottom2.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="session_panel_minimap_segbottom3">
-                        <image texture="ui_session_panel_minimap_segbottom3.png" texture-size="0 0 64 64" size="0 0 46 46" />
+                        <image texture="ui_session_panel_minimap_segbottom3.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="session_panel_minimap_segbottom4">
-                        <image texture="ui_session_panel_minimap_segbottom4.png" texture-size="0 0 64 64" size="0 0 44 40" />
+                        <image texture="ui_session_panel_minimap_segbottom4.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="session_panel_minimap_segtop1">
-                        <image texture="ui_session_panel_minimap_segtop1.png" texture-size="0 0 64 64" size="0 0 44 40" />
+                        <image texture="ui_session_panel_minimap_segtop1.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="session_panel_minimap_segtop2">
-                        <image texture="ui_session_panel_minimap_segtop2.png" texture-size="0 0 64 64" size="0 0 46 46" />
+                        <image texture="ui_session_panel_minimap_segtop2.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="session_panel_minimap_segtop3">
-                        <image texture="ui_session_panel_minimap_segtop3.png" texture-size="0 0 64 64" size="0 0 46 46" />
+                        <image texture="ui_session_panel_minimap_segtop3.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="session_panel_minimap_segtop4">
-                        <image texture="ui_session_panel_minimap_segtop4.png" texture-size="0 0 64 64" size="0 0 44 40" />
+                        <image texture="ui_session_panel_minimap_segtop4.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segleft1-lit">
+                        <image texture="ui_session_panel_minimap_segleft1-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segleft2-lit">
+                        <image texture="ui_session_panel_minimap_segleft2-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segleft3-lit">
+                        <image texture="ui_session_panel_minimap_segleft3-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segleft4-lit">
+                        <image texture="ui_session_panel_minimap_segleft4-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segbottom1-lit">
+                        <image texture="ui_session_panel_minimap_segbottom1-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segbottom2-lit">
+                        <image texture="ui_session_panel_minimap_segbottom2-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segbottom3-lit">
+                        <image texture="ui_session_panel_minimap_segbottom3-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segbottom4-lit">
+                        <image texture="ui_session_panel_minimap_segbottom4-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segtop1-lit">
+                        <image texture="ui_session_panel_minimap_segtop1-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segtop2-lit">
+                        <image texture="ui_session_panel_minimap_segtop2-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segtop3-lit">
+                        <image texture="ui_session_panel_minimap_segtop3-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="session_panel_minimap_segtop4-lit">
+                        <image texture="ui_session_panel_minimap_segtop4-lit.png" texture-size="0 0 64 64" size="0 0 100% 100%" />
                 </sprite>
 
                 <!--
