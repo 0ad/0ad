@@ -1,4 +1,4 @@
-VC6 workspace
+VC6 workspace:
 
 TODO:
 
