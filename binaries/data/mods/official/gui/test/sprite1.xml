@@ -213,6 +213,20 @@
 
         <!--
         ==========================================
+        SCREENSHOT WATERMARK
+        ==========================================
+        -->
+
+        <sprite name="watermark_product">
+                <image texture="global/ui_gen_watermark_0ad.png" texture_size="0 0 256 128" size="0 0 100% 100%" />
+        </sprite>
+
+        <sprite name="watermark_company">
+                <image texture="global/ui_gen_watermark_wfg.png" texture_size="0 0 256 32" size="0 0 100% 100%" />
+        </sprite>
+
+        <!--
+        ==========================================
         MESSAGE BOX
         ==========================================
         -->

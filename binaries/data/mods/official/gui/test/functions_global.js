@@ -37,6 +37,35 @@
 TODO: Make button code work for any number of buttons without extending the code each time! ((arrays | nested variables) & calculating sizes)
 */
 
+// ====================================================================
+
+function initGlobal()
+{
+	// Initialise coordinate set for this page.
+	globalCoord = new Array();
+	globalCoord_Last = 0;
+
+	// Bottom-left product logo; used when taking official screenshots.
+	GLOBAL_WATERMARK_PRODUCT_LOGO 		= addSizeArrayWH(globalCoord, globalCoord_Last,
+		200,
+		98
+	); globalCoord_Last 			= addSizeArrayXY(globalCoord, globalCoord_Last,
+		0,
+		0
+	);
+
+	// Bottom-right company logo; used when taking official screenshots.
+	GLOBAL_WATERMARK_COMPANY_LOGO 		= addSizeArrayWH(globalCoord, globalCoord_Last,
+		207,
+		28
+	); globalCoord_Last 			= addSizeArrayXY(globalCoord, globalCoord_Last,
+		0,
+		0
+	);
+}
+
+// ====================================================================
+
 function messageBox(mbWidth, mbHeight, mbMessage, mbTitle, mbMode, mbButtonCaptions, mbButtonsCode) {
 
         mbMainObj = getGUIObjectByName("mb_main");
