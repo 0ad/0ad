@@ -55,6 +55,7 @@ extern int tex_free(TexInfo* ti);
 
 extern int tex_write(const char* fn, int w, int h, int bpp, int flags, void* img);
 
+extern int tex_is_known_fmt(void* p, size_t size_t);
 
 // param: either TEX_BOTTOM_UP or TEX_TOP_DOWN
 extern void tex_set_global_orientation(int orientation);

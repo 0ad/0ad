@@ -1641,6 +1641,16 @@ static const Codec codecs[] =
 static const int num_codecs = ARRAY_SIZE(codecs);
 
 
+int tex_is_known_fmt(void* p, size_t size)
+{
+	// skips raw, because that always returns true.
+	const Codec* c = codecs;
+	for(int i = 0; i < num_codecs-1; i++, c++)
+		if(c->is_fmt((const u8*)p, size))
+			return 1;
+	return 0;
+}
+
 
 int tex_load_mem(Handle hm, const char* fn, TexInfo* t)
 {

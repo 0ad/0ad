@@ -151,6 +151,8 @@ enum LibError
 
 	ERR_UNKNOWN_FORMAT  = -1009,
 
+	ERR_TIMED_OUT       = -1010,
+
 	//
 	// file + vfs
 	//
@@ -158,10 +160,7 @@ enum LibError
 	ERR_FILE_NOT_FOUND  = -1100,
 	ERR_PATH_NOT_FOUND  = -1101,
 	ERR_DIR_END         = -1102,
-
-	// started 
 	ERR_EOF             = -1103,
-
 	ERR_PATH_LENGTH     = -1104,
 	ERR_NOT_FILE        = -1105,
 	ERR_FILE_ACCESS     = -1106,

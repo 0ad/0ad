@@ -818,7 +818,7 @@ ssize_t inf_inflate(uintptr_t _ctx, void* in, size_t in_size, bool free_in_buf =
 
 	if(in)
 	{
-		if(zs->avail_in || ctx->in_buf)
+		if(ctx->in_buf)
 			debug_warn("inf_inflate: previous input buffer not empty");
 		zs->avail_in = (uInt)in_size;
 		zs->next_in = (Byte*)in;
@@ -834,7 +834,7 @@ ssize_t inf_inflate(uintptr_t _ctx, void* in, size_t in_size, bool free_in_buf =
 	else
 	{
 		memcpy(zs->next_out, zs->next_in, zs->avail_in);
-		uInt size = zs->avail_in;
+		uInt size = min(zs->avail_in, zs->avail_out);
 		zs->avail_out -= size;
 		zs->avail_in -= size;	// => = 0
 		zs->next_in += size;
@@ -849,6 +849,7 @@ ssize_t inf_inflate(uintptr_t _ctx, void* in, size_t in_size, bool free_in_buf =
 	// data in one block (due to misalignment). return 0 ("no data output"),
 	// which doesn't abort the read.
 	size_t avail_out = zs->avail_out;
+
 	assert(avail_out <= prev_avail_out);
 		// make sure output buffer size didn't magically increase
 	ssize_t nread = (ssize_t)(prev_avail_out - avail_out);

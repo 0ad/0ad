@@ -574,7 +574,8 @@ static inline void tree_display()
 
 enum TreeLookupFlags
 {
-	LF_CREATE_MISSING  = 1
+	LF_CREATE_MISSING = 1,
+	LF_START_DIR      = 2
 };
 
 // starting at VFS root, traverse <path> and pass back information
@@ -594,7 +595,8 @@ enum TreeLookupFlags
 static int tree_lookup_dir(const char* path, TDir** pdir, uint flags = 0, char* exact_path = 0)
 {
 	CHECK_PATH(path);
-	assert(!(flags & ~LF_CREATE_MISSING));	// no undefined bits set
+	assert(!(flags & ~LF_CREATE_MISSING|LF_START_DIR));
+		// no undefined bits set
 	// can't check if path ends in '/' here - we're called via tree_lookup.
 
 	// path contains no directory, return "" (root dir).
@@ -602,6 +604,7 @@ static int tree_lookup_dir(const char* path, TDir** pdir, uint flags = 0, char* 
 		exact_path[0] = '\0';
 
 	const bool create_missing = !!(flags & LF_CREATE_MISSING);
+	const bool start_dir      = !!(flags & LF_START_DIR);
 
 	// copy into (writeable) buffer so we can 'tokenize' path components
 	// by replacing '/' with '\0'. length check done by CHECK_PATH.
@@ -609,7 +612,7 @@ static int tree_lookup_dir(const char* path, TDir** pdir, uint flags = 0, char* 
 	strcpy(v_path, path);
 	char* cur_component = v_path;
 
-	TDir* cur_dir = &vfs_root;
+	TDir* cur_dir = start_dir? *pdir : &vfs_root;
 
 	// successively navigate to the next subdirectory in <path>.
 	for(;;)
@@ -708,8 +711,6 @@ static int tree_lookup(const char* path, TFile** pfile, uint flags = 0, char* ex
 // note: if "priority" is the same, replace!
 // this makes sure mods/patches etc. actually replace files.
 //
-// called by add_dirent_cb.
-//
 // [total time 27ms, with ~2000 files and up-to-date archive]
 static int add_file(TDir* dir, const char* fn, const struct stat* s, const TLoc* loc)
 {
@@ -747,6 +748,9 @@ static int add_file(TDir* dir, const char* fn, const struct stat* s, const TLoc*
 // passed through dirent_cb's zip_enum to zip_cb
 struct ZipCBParams
 {
+	// tree directory into which we are adding the archive's files
+	TDir* const dir;
+
 	// archive's location; assigned to all files added from here
 	const TLoc* const loc;
 
@@ -756,8 +760,8 @@ struct ZipCBParams
 	size_t last_path_len;
 	TDir* last_dir;
 
-	ZipCBParams(const TLoc* _loc)
-		: loc(_loc)
+	ZipCBParams(TDir* dir_, const TLoc* loc_)
+		: dir(dir_), loc(loc_)
 	{
 		last_path[0] = '\0';
 		last_path_len = 0;
@@ -776,6 +780,7 @@ private:
 static int zip_cb(const char* path, const struct stat* s, uintptr_t user)
 {
 	ZipCBParams* params = (ZipCBParams*)user;
+	TDir* dir              = params->dir;
 	const TLoc* loc        = params->loc;
 	char* last_path        = params->last_path;
 	size_t& last_path_len  = params->last_path_len;
@@ -786,22 +791,25 @@ static int zip_cb(const char* path, const struct stat* s, uintptr_t user)
 	const char* slash = strrchr(path, '/');
 	if(slash)
 		fn = slash+1;
-	// else: file is in archive's root dir, and fn = path
+	// else: there is no path - it's in the archive's root dir.
 
 	// into which directory should the file be inserted?
 	// naive approach: tree_lookup_dir the path (slow!)
 	// optimization: store the last file's path; if it's the same,
 	//   use the directory we looked up last time (much faster!)
-	TDir* dir = last_dir;
 	const size_t path_len = fn-path;
+	// .. same as last time
+	if(last_dir && path_len == last_path_len &&
+	   strnicmp(path, last_path, path_len) == 0)
+		dir = last_dir;
 	// .. last != current: need to do lookup
-	if(path_len != last_path_len ||
-	   strnicmp(path, last_path, path_len) != 0)
+	else
 	{
-		CHECK_ERR(tree_lookup_dir(path, &dir, LF_CREATE_MISSING));
+		CHECK_ERR(tree_lookup_dir(path, &dir, LF_CREATE_MISSING|LF_START_DIR));
 			// we have to create them if missing, since we can't rely on the
 			// archiver placing directories before subdirs or files that
-			// reference them (WinZip doesn't).
+			// reference them (WinZip doesn't always).
+			// we also need to start at the mount point (dir).
 
 		path_copy(last_path, path);
 		last_path_len = path_len;
@@ -876,7 +884,7 @@ static int dirent_cb(const char* name, const struct stat* s, uintptr_t user)
 			archive_locs->push_back(TLoc(archive, "", "", loc->pri));
 			const TLoc* archive_loc = &archive_locs->back();
 
-			ZipCBParams params(archive_loc);
+			ZipCBParams params(dir, archive_loc);
 			return zip_enum(archive, zip_cb, (uintptr_t)&params);
 				// bail, so that the archive file isn't added below.
 		}
@@ -887,7 +895,7 @@ static int dirent_cb(const char* name, const struct stat* s, uintptr_t user)
 
 
 // add the directory <p_path>, its files, and all subdirectories
-// (recursively) to the tree, marking location as <dir_loc>.
+// (recursively) to this TDir, marking location as <dir_loc>.
 // if archive_locs != 0, all archives found in this directory
 // (but not subdirs! see below) are opened and their TLoc stored there.
 int TDir::addR(const char* p_path, const TLoc* dir_loc, TLocs* archive_locs)
