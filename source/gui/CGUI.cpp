@@ -1162,29 +1162,30 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 				m_Sprites.find(SpriteName) == m_Sprites.end() )
 			{
 
-				CGUISprite sprite;
-				SGUIImage image;
-
-				CStr DefaultSize ("0 0 100% 100%");
-				image.m_TextureSize = CClientArea(DefaultSize);
-				image.m_Size = CClientArea(DefaultSize);
-
 				std::string TexFilename = "art/textures/ui/";
 				TexFilename += SpriteName.substr(10);
 
-				image.m_TextureName = TexFilename;
 				Handle tex = tex_load(TexFilename.c_str());
 				if (tex <= 0)
 				{
 					LOG(ERROR, LOG_CATEGORY, "Error opening texture '%s': %lld", TexFilename.c_str(), tex);
-					throw PSERROR_GUI_TextureLoadFailed();
 				}
-				image.m_Texture = tex;
-				// TODO: more error handling
-				tex_upload(tex);
+				else
+				{
+					CGUISprite sprite;
+					SGUIImage image;
 
-				sprite.AddImage(image);	
-				m_Sprites[SpriteName] = sprite;
+					CStr DefaultSize ("0 0 100% 100%");
+					image.m_TextureSize = CClientArea(DefaultSize);
+					image.m_Size = CClientArea(DefaultSize);
+
+					image.m_TextureName = TexFilename;
+					image.m_Texture = tex;
+					tex_upload(tex);
+
+					sprite.AddImage(image);	
+					m_Sprites[SpriteName] = sprite;
+				}
 			}
 		}
 
@@ -1435,15 +1436,17 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			std::string TexFilename = "art/textures/ui/";
 			TexFilename += attr_value;
 
-			image.m_TextureName = TexFilename;
 			Handle tex = tex_load(TexFilename.c_str());
 			if (tex <= 0)
 			{
 				LOG(ERROR, LOG_CATEGORY, "Error opening texture '%s': %lld", TexFilename.c_str(), tex);
-				throw PSERROR_GUI_TextureLoadFailed();
 			}
-			image.m_Texture = tex;
-			tex_upload(tex);
+			else
+			{
+				image.m_TextureName = TexFilename;
+				image.m_Texture = tex;
+				tex_upload(tex);
+			}
 		}
 		else
 		if (attr_name == "size")

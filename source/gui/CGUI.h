@@ -19,7 +19,6 @@ gee@pyro.nu
 
 ERROR_GROUP(GUI);
 ERROR_TYPE(GUI, JSOpenFailed);
-ERROR_TYPE(GUI, TextureLoadFailed);
 
 //--------------------------------------------------------
 //  Includes / Compiler directives

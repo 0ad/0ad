@@ -24,7 +24,6 @@ class PSERROR_CVFSFile_InvalidBufferAccess : public PSERROR_CVFSFile { public: P
 class PSERROR_CVFSFile_LoadFailed : public PSERROR_CVFSFile { public: PSERROR_CVFSFile_LoadFailed(); };
 class PSERROR_Error_InvalidError : public PSERROR_Error { public: PSERROR_Error_InvalidError(); };
 class PSERROR_GUI_JSOpenFailed : public PSERROR_GUI { public: PSERROR_GUI_JSOpenFailed(); };
-class PSERROR_GUI_TextureLoadFailed : public PSERROR_GUI { public: PSERROR_GUI_TextureLoadFailed(); };
 class PSERROR_Game_World_MapLoadFailed : public PSERROR_Game_World { public: PSERROR_Game_World_MapLoadFailed(); };
 class PSERROR_I18n_Script_SetupFailed : public PSERROR_I18n_Script { public: PSERROR_I18n_Script_SetupFailed(); };
 class PSERROR_Renderer_VBOFailed : public PSERROR_Renderer { public: PSERROR_Renderer_VBOFailed(); };
@@ -54,7 +53,6 @@ extern const PSRETURN PSRETURN_CVFSFile_InvalidBufferAccess = 0x01000002;
 extern const PSRETURN PSRETURN_CVFSFile_LoadFailed = 0x01000003;
 extern const PSRETURN PSRETURN_Error_InvalidError = 0x02000001;
 extern const PSRETURN PSRETURN_GUI_JSOpenFailed = 0x03000001;
-extern const PSRETURN PSRETURN_GUI_TextureLoadFailed = 0x03000002;
 extern const PSRETURN PSRETURN_Game_World_MapLoadFailed = 0x04040001;
 extern const PSRETURN PSRETURN_I18n_Script_SetupFailed = 0x05030001;
 extern const PSRETURN PSRETURN_Renderer_VBOFailed = 0x06000001;
@@ -116,8 +114,6 @@ extern const PSRETURN MASK__PSRETURN_Error_InvalidError = 0xffffffff;
 extern const PSRETURN CODE__PSRETURN_Error_InvalidError = 0x02000001;
 extern const PSRETURN MASK__PSRETURN_GUI_JSOpenFailed = 0xffffffff;
 extern const PSRETURN CODE__PSRETURN_GUI_JSOpenFailed = 0x03000001;
-extern const PSRETURN MASK__PSRETURN_GUI_TextureLoadFailed = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_GUI_TextureLoadFailed = 0x03000002;
 extern const PSRETURN MASK__PSRETURN_Game_World_MapLoadFailed = 0xffffffff;
 extern const PSRETURN CODE__PSRETURN_Game_World_MapLoadFailed = 0x04040001;
 extern const PSRETURN MASK__PSRETURN_I18n_Script_SetupFailed = 0xffffffff;
@@ -170,7 +166,6 @@ PSERROR_CVFSFile_InvalidBufferAccess::PSERROR_CVFSFile_InvalidBufferAccess() { m
 PSERROR_CVFSFile_LoadFailed::PSERROR_CVFSFile_LoadFailed() { magic=0x45725221; code=0x01000003; }
 PSERROR_Error_InvalidError::PSERROR_Error_InvalidError() { magic=0x45725221; code=0x02000001; }
 PSERROR_GUI_JSOpenFailed::PSERROR_GUI_JSOpenFailed() { magic=0x45725221; code=0x03000001; }
-PSERROR_GUI_TextureLoadFailed::PSERROR_GUI_TextureLoadFailed() { magic=0x45725221; code=0x03000002; }
 PSERROR_Game_World_MapLoadFailed::PSERROR_Game_World_MapLoadFailed() { magic=0x45725221; code=0x04040001; }
 PSERROR_I18n_Script_SetupFailed::PSERROR_I18n_Script_SetupFailed() { magic=0x45725221; code=0x05030001; }
 PSERROR_Renderer_VBOFailed::PSERROR_Renderer_VBOFailed() { magic=0x45725221; code=0x06000001; }
@@ -199,72 +194,72 @@ const wchar_t* GetErrorString(PSRETURN code)
 {
 	switch (code)
 	{
-	case 0x01000001: return L"CVFSFile_AlreadyLoaded"; break;
-	case 0x01000002: return L"CVFSFile_InvalidBufferAccess"; break;
-	case 0x01000003: return L"CVFSFile_LoadFailed"; break;
-	case 0x02000001: return L"Error_InvalidError"; break;
-	case 0x03000001: return L"GUI_JSOpenFailed"; break;
-	case 0x03000002: return L"GUI_TextureLoadFailed"; break;
-	case 0x04040001: return L"Game_World_MapLoadFailed"; break;
-	case 0x05030001: return L"I18n_Script_SetupFailed"; break;
-	case 0x06000001: return L"Renderer_VBOFailed"; break;
-	case 0x07010001: return L"Scripting_DefineType_AlreadyExists"; break;
-	case 0x07010002: return L"Scripting_DefineType_CreationFailed"; break;
-	case 0x07020001: return L"Scripting_LoadFile_EvalErrors"; break;
-	case 0x07020002: return L"Scripting_LoadFile_OpenFailed"; break;
-	case 0x07000001: return L"Scripting_CallFunctionFailed"; break;
-	case 0x07000002: return L"Scripting_ContextCreationFailed"; break;
-	case 0x07000003: return L"Scripting_ConversionFailed"; break;
-	case 0x07000004: return L"Scripting_CreateObjectFailed"; break;
-	case 0x07000005: return L"Scripting_DefineConstantFailed"; break;
-	case 0x07000006: return L"Scripting_GlobalObjectCreationFailed"; break;
-	case 0x07000007: return L"Scripting_NativeFunctionSetupFailed"; break;
-	case 0x07000008: return L"Scripting_RegisterFunctionFailed"; break;
-	case 0x07000009: return L"Scripting_RuntimeCreationFailed"; break;
-	case 0x0700000a: return L"Scripting_StandardClassSetupFailed"; break;
-	case 0x0700000b: return L"Scripting_TypeDoesNotExist"; break;
-	case 0x08000001: return L"System_RequiredExtensionsMissing"; break;
-	case 0x08000002: return L"System_SDLInitFailed"; break;
-	case 0x08000003: return L"System_VmodeFailed"; break;
-	case 0x09000001: return L"Xeromyces_XMLOpenFailed"; break;
-	case 0x09000002: return L"Xeromyces_XMLParseError"; break;
+	case 0x01000001: return L"CVFSFile_AlreadyLoaded";
+	case 0x01000002: return L"CVFSFile_InvalidBufferAccess";
+	case 0x01000003: return L"CVFSFile_LoadFailed";
+	case 0x02000001: return L"Error_InvalidError";
+	case 0x03000001: return L"GUI_JSOpenFailed";
+	case 0x04040001: return L"Game_World_MapLoadFailed";
+	case 0x05030001: return L"I18n_Script_SetupFailed";
+	case 0x06000001: return L"Renderer_VBOFailed";
+	case 0x07010001: return L"Scripting_DefineType_AlreadyExists";
+	case 0x07010002: return L"Scripting_DefineType_CreationFailed";
+	case 0x07020001: return L"Scripting_LoadFile_EvalErrors";
+	case 0x07020002: return L"Scripting_LoadFile_OpenFailed";
+	case 0x07000001: return L"Scripting_CallFunctionFailed";
+	case 0x07000002: return L"Scripting_ContextCreationFailed";
+	case 0x07000003: return L"Scripting_ConversionFailed";
+	case 0x07000004: return L"Scripting_CreateObjectFailed";
+	case 0x07000005: return L"Scripting_DefineConstantFailed";
+	case 0x07000006: return L"Scripting_GlobalObjectCreationFailed";
+	case 0x07000007: return L"Scripting_NativeFunctionSetupFailed";
+	case 0x07000008: return L"Scripting_RegisterFunctionFailed";
+	case 0x07000009: return L"Scripting_RuntimeCreationFailed";
+	case 0x0700000a: return L"Scripting_StandardClassSetupFailed";
+	case 0x0700000b: return L"Scripting_TypeDoesNotExist";
+	case 0x08000001: return L"System_RequiredExtensionsMissing";
+	case 0x08000002: return L"System_SDLInitFailed";
+	case 0x08000003: return L"System_VmodeFailed";
+	case 0x09000001: return L"Xeromyces_XMLOpenFailed";
+	case 0x09000002: return L"Xeromyces_XMLParseError";
+
+	default: return L"Unrecognised error";
 	}
-	return L"Unrecognised error";
 }
 
 void ThrowError(PSRETURN code)
 {
-	switch (code)
+	switch (code)  // Use 'break' in case someone tries to continue from the exception
 	{
-	case 0x01000001: throw PSERROR_CVFSFile_AlreadyLoaded();
-	case 0x01000002: throw PSERROR_CVFSFile_InvalidBufferAccess();
-	case 0x01000003: throw PSERROR_CVFSFile_LoadFailed();
-	case 0x02000001: throw PSERROR_Error_InvalidError();
-	case 0x03000001: throw PSERROR_GUI_JSOpenFailed();
-	case 0x03000002: throw PSERROR_GUI_TextureLoadFailed();
-	case 0x04040001: throw PSERROR_Game_World_MapLoadFailed();
-	case 0x05030001: throw PSERROR_I18n_Script_SetupFailed();
-	case 0x06000001: throw PSERROR_Renderer_VBOFailed();
-	case 0x07010001: throw PSERROR_Scripting_DefineType_AlreadyExists();
-	case 0x07010002: throw PSERROR_Scripting_DefineType_CreationFailed();
-	case 0x07020001: throw PSERROR_Scripting_LoadFile_EvalErrors();
-	case 0x07020002: throw PSERROR_Scripting_LoadFile_OpenFailed();
-	case 0x07000001: throw PSERROR_Scripting_CallFunctionFailed();
-	case 0x07000002: throw PSERROR_Scripting_ContextCreationFailed();
-	case 0x07000003: throw PSERROR_Scripting_ConversionFailed();
-	case 0x07000004: throw PSERROR_Scripting_CreateObjectFailed();
-	case 0x07000005: throw PSERROR_Scripting_DefineConstantFailed();
-	case 0x07000006: throw PSERROR_Scripting_GlobalObjectCreationFailed();
-	case 0x07000007: throw PSERROR_Scripting_NativeFunctionSetupFailed();
-	case 0x07000008: throw PSERROR_Scripting_RegisterFunctionFailed();
-	case 0x07000009: throw PSERROR_Scripting_RuntimeCreationFailed();
-	case 0x0700000a: throw PSERROR_Scripting_StandardClassSetupFailed();
-	case 0x0700000b: throw PSERROR_Scripting_TypeDoesNotExist();
-	case 0x08000001: throw PSERROR_System_RequiredExtensionsMissing();
-	case 0x08000002: throw PSERROR_System_SDLInitFailed();
-	case 0x08000003: throw PSERROR_System_VmodeFailed();
-	case 0x09000001: throw PSERROR_Xeromyces_XMLOpenFailed();
-	case 0x09000002: throw PSERROR_Xeromyces_XMLParseError();
+	case 0x01000001: throw PSERROR_CVFSFile_AlreadyLoaded(); break;
+	case 0x01000002: throw PSERROR_CVFSFile_InvalidBufferAccess(); break;
+	case 0x01000003: throw PSERROR_CVFSFile_LoadFailed(); break;
+	case 0x02000001: throw PSERROR_Error_InvalidError(); break;
+	case 0x03000001: throw PSERROR_GUI_JSOpenFailed(); break;
+	case 0x04040001: throw PSERROR_Game_World_MapLoadFailed(); break;
+	case 0x05030001: throw PSERROR_I18n_Script_SetupFailed(); break;
+	case 0x06000001: throw PSERROR_Renderer_VBOFailed(); break;
+	case 0x07010001: throw PSERROR_Scripting_DefineType_AlreadyExists(); break;
+	case 0x07010002: throw PSERROR_Scripting_DefineType_CreationFailed(); break;
+	case 0x07020001: throw PSERROR_Scripting_LoadFile_EvalErrors(); break;
+	case 0x07020002: throw PSERROR_Scripting_LoadFile_OpenFailed(); break;
+	case 0x07000001: throw PSERROR_Scripting_CallFunctionFailed(); break;
+	case 0x07000002: throw PSERROR_Scripting_ContextCreationFailed(); break;
+	case 0x07000003: throw PSERROR_Scripting_ConversionFailed(); break;
+	case 0x07000004: throw PSERROR_Scripting_CreateObjectFailed(); break;
+	case 0x07000005: throw PSERROR_Scripting_DefineConstantFailed(); break;
+	case 0x07000006: throw PSERROR_Scripting_GlobalObjectCreationFailed(); break;
+	case 0x07000007: throw PSERROR_Scripting_NativeFunctionSetupFailed(); break;
+	case 0x07000008: throw PSERROR_Scripting_RegisterFunctionFailed(); break;
+	case 0x07000009: throw PSERROR_Scripting_RuntimeCreationFailed(); break;
+	case 0x0700000a: throw PSERROR_Scripting_StandardClassSetupFailed(); break;
+	case 0x0700000b: throw PSERROR_Scripting_TypeDoesNotExist(); break;
+	case 0x08000001: throw PSERROR_System_RequiredExtensionsMissing(); break;
+	case 0x08000002: throw PSERROR_System_SDLInitFailed(); break;
+	case 0x08000003: throw PSERROR_System_VmodeFailed(); break;
+	case 0x09000001: throw PSERROR_Xeromyces_XMLOpenFailed(); break;
+	case 0x09000002: throw PSERROR_Xeromyces_XMLParseError(); break;
+
+	default: throw PSERROR_Error_InvalidError(); // Hmm...
 	}
-	throw PSERROR_Error_InvalidError(); // Hmm...
 }
