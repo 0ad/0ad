@@ -36,7 +36,10 @@ void CObjectManager::AddObjectType(const char* name)
 void CObjectManager::AddObject(CObjectEntry* object,int type)
 {
 	assert((uint)type<m_ObjectTypes.size());
-	m_ObjectTypes[type].m_Objects.push_back(object);
+	// build the model now to load the required model/animations from it
+	if (object->BuildModel()) {
+		m_ObjectTypes[type].m_Objects.push_back(object);
+	}
 }
 
 void CObjectManager::DeleteObject(CObjectEntry* entry)
