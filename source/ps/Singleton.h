@@ -5,7 +5,7 @@
 //
 //    USEAGE: class myClass : Singleton<myClass>{};
 //
-//      INFO: This implementation was copied from: 
+//      INFO: This implementation was originally copied from: 
 //
 //                           Enginuity, Part II 
 //            Memory Management, Error Logging, and Utility Classes; 
@@ -56,6 +56,11 @@ class Singleton
          assert( ms_singleton );
          return ms_singleton;
       }
+
+	  static bool IsInitialised()
+	  {
+		  return (ms_singleton != 0);
+	  }
 };
 
 template <typename T>
