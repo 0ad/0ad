@@ -14,6 +14,8 @@
 
 class CUnit;
 class CVector3D;
+class CEntity;
+class CStr;
 
 // access to sole CUnitManager object
 #define g_UnitMan CUnitManager::GetSingleton()
@@ -35,6 +37,9 @@ public:
 	void DeleteUnit(CUnit* unit);
 	// remove and delete all units
 	void DeleteAll();
+
+	// creates a new unit and adds it to the world
+	CUnit* CreateUnit(CStr& actorName, CEntity* entity);
 
 	// return the units
 	const std::vector<CUnit*>& GetUnits() const { return m_Units; }

@@ -40,6 +40,9 @@ public:
 	bool Load(const char* filename);
 	bool Save(const char* filename);
 
+	// TODO: Remove this, once all the actors are renamed properly
+	static bool LoadName(const CStr& filename, CStr& out);
+
 	Prop* FindProp(const char* proppointname);
 
 	// object name
@@ -72,8 +75,8 @@ public:
 	CModel* m_Model;
 	// type of object; index into object managers types array
 	int m_Type;
-    // the material file
-    CStr m_Material;
+	// the material file
+	CStr m_Material;
 };
 
 

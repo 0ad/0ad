@@ -46,7 +46,7 @@ public:
 	CStrW m_Base_Name; // <- We don't guarantee the order XML files will be loaded in, so we'll store the name of the
 					   //    parent entity referenced, then, after all files are loaded, attempt to match names to objects.
 
-	CObjectEntry* m_actorObject;
+	CStrW m_actorName;
 	
 
 	CStrW m_Tag;

@@ -13,6 +13,7 @@
 #include "UnitManager.h"
 #include "Unit.h"
 #include "CConsole.h"
+#include "ObjectManager.h"
 
 extern CConsole* g_Console;
 
@@ -104,4 +105,18 @@ CUnit* CUnitManager::PickUnit(const CVector3D& origin,const CVector3D& dir) cons
 		}
 	}
 	return hit;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// CreateUnit: create a new unit and add it to the world
+CUnit* CUnitManager::CreateUnit(CStr& actorName, CEntity* entity)
+{
+	CObjectEntry* obj = g_ObjMan.FindObject(actorName);
+
+	if (! obj)
+		return NULL;
+
+	CUnit* unit = new CUnit(obj, obj->m_Model->Clone(), entity);
+	AddUnit(unit);
+	return unit;
 }

@@ -120,10 +120,10 @@ CBaseEntity* CBaseEntityCollection::getTemplate( CStrW name )
 	return( NULL );
 }
 
-CBaseEntity* CBaseEntityCollection::getTemplateByActor( CObjectEntry* actor )
+CBaseEntity* CBaseEntityCollection::getTemplateByActor( CStrW actorName )
 {
 	for( u16 t = 0; t < m_templates.size(); t++ )
-		if( m_templates[t]->m_actorObject == actor ) return( m_templates[t] );
+		if( m_templates[t]->m_actorName == actorName ) return( m_templates[t] );
 
 	return( NULL );
 }

@@ -50,24 +50,6 @@ template<> JSObject* ToScript<CBaseEntity*>( CBaseEntity** Native )
 	return( ToScript<CBaseEntity>( *Native ) );
 }
 
-// CObjectEntry
-
-template<> bool ToPrimitive<CObjectEntry>( JSContext* cx, jsval v, CObjectEntry*& Storage )
-{
-	CStrW ActorName;
-	if( !ToPrimitive<CStrW>( cx, v, ActorName ) )
-		return( false );
-	Storage = g_ObjMan.FindObject( (CStr)ActorName );
-	return( true );
-}
-
-template<> jsval ToJSVal<CObjectEntry>( CObjectEntry*& Native )
-{
-	if( !Native )
-		return( ToJSVal<CStrW>( CStrW( L"[No actor]" ) ) );
-	return( ToJSVal<CStrW>( CStrW( Native->m_Name ) ) );
-}
-
 // CVector3D
 
 template<> CVector3D* ToNative<CVector3D>( JSContext* cx, JSObject* obj )

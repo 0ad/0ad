@@ -20,7 +20,9 @@ public:
 		// index in parent array
 		int m_Index;
 		// list of objects of this type (found from the objects directory)
-		std::vector<CObjectEntry*> m_Objects;
+		std::map<CStr, CObjectEntry*> m_Objects;
+
+		std::map<CStr, CStr> m_ObjectNameToFilename;
 	};
 
 public:
@@ -33,7 +35,6 @@ public:
 	void AddObjectType(const char* name);
 
 	CObjectEntry* FindObject(const char* objname);
-	CObjectEntry* FindObjectByFileName(const char* filename);
 	void AddObject(CObjectEntry* entry,int type);
 	void DeleteObject(CObjectEntry* entry);
 
@@ -43,8 +44,7 @@ public:
 	std::vector<SObjectType> m_ObjectTypes;
 
 private:
-	void BuildObjectTypes(const char* basedir);
-	void LoadObjects(int type);
+	void LoadObjectsIn(CStr& pathname);
 
 	CObjectEntry* m_SelectedObject;
 };

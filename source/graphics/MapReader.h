@@ -45,7 +45,7 @@ private:
 	// tile descriptions for each tile
 	std::vector<STileDesc> m_Tiles;
 	// list of object types used by map
-	std::vector<CObjectEntry*> m_ObjectTypes;
+	std::vector<CStr> m_ObjectTypes;
 	// descriptions for each objects
 	std::vector<SObjectDesc> m_Objects;
 	// lightenv stored in file

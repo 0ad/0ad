@@ -17,7 +17,7 @@ CBaseEntity::CBaseEntity()
 	AddProperty( L"actions.move.turningradius", &m_turningRadius );
 	AddProperty( L"actions.attack.range", &m_meleeRange );
 	AddProperty( L"actions.attack.rangemin", &m_meleeRangeMin );
-	AddProperty( L"actor", &m_actorObject );
+	AddProperty( L"actor", &m_actorName );
 	AddProperty( L"traits.extant", &m_extant );
 	AddProperty( L"traits.corpse", &m_corpse );
 
@@ -25,8 +25,6 @@ CBaseEntity::CBaseEntity()
 		AddProperty( EventNames[t], &m_EventHandlers[t] );
 	
 	m_base = NULL;
-
-	m_actorObject = NULL;
 
 	// Initialize, make life a little easier on the scriptors
 	m_speed = m_turningRadius = m_meleeRange = m_meleeRangeMin = 0.0f;

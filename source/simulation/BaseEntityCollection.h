@@ -35,7 +35,7 @@ public:
 	void loadTemplates();
 	void LoadDirectory( Handle directory, CStr pathname );
 	void addTemplate( CBaseEntity* temp );
-	CBaseEntity* getTemplateByActor( CObjectEntry* actor );
+	CBaseEntity* getTemplateByActor( CStrW actorName );
 };
 
 #endif

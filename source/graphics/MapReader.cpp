@@ -83,11 +83,7 @@ void CMapReader::UnpackObjects(CFileUnpacker& unpacker)
 	unpacker.UnpackRaw(&numObjTypes,sizeof(numObjTypes));	
 	m_ObjectTypes.resize(numObjTypes);
 	for (uint i=0;i<numObjTypes;i++) {
-		CStr objname;
-		unpacker.UnpackString(objname);
-
-		CObjectEntry* object=g_ObjMan.FindObject((const char*) objname);
-		m_ObjectTypes[i]=object;
+		unpacker.UnpackString(m_ObjectTypes[i]);
 	}
 	
 	// unpack object data
@@ -168,35 +164,32 @@ TIMER(____CMapReader__ApplyData);
 	
 	// add new objects
 	for (u32 i=0;i<m_Objects.size();i++) {
-		CObjectEntry* objentry=m_ObjectTypes[m_Objects[i].m_ObjectIndex];
-		if (objentry && objentry->m_Model) {
 
-			if (unpacker.GetVersion() < 3) {
-				
-				// Hijack the standard actor instantiation for actors that correspond to entities.
-				// Not an ideal solution; we'll have to figure out a map format that can define entities separately or somesuch.
-
-				CBaseEntity* templateObject = g_EntityTemplateCollection.getTemplateByActor(objentry);
+		if (unpacker.GetVersion() < 3) {
 			
-				if (templateObject)
-				{
-					CVector3D orient = ((CMatrix3D*)m_Objects[i].m_Transform)->GetIn();
-					CVector3D position = ((CMatrix3D*)m_Objects[i].m_Transform)->GetTranslation();
+			// Hijack the standard actor instantiation for actors that correspond to entities.
+			// Not an ideal solution; we'll have to figure out a map format that can define entities separately or somesuch.
 
-					g_EntityManager.create(templateObject, position, atan2(-orient.X, -orient.Z));
+			CBaseEntity* templateObject = g_EntityTemplateCollection.getTemplateByActor(m_ObjectTypes.at(m_Objects[i].m_ObjectIndex));
+		
+			if (templateObject)
+			{
+				CVector3D orient = ((CMatrix3D*)m_Objects[i].m_Transform)->GetIn();
+				CVector3D position = ((CMatrix3D*)m_Objects[i].m_Transform)->GetTranslation();
 
-					continue;
-				}
+				g_EntityManager.create(templateObject, position, atan2(-orient.X, -orient.Z));
+
+				continue;
 			}
+		}
 
-			CUnit* unit=new CUnit(objentry,objentry->m_Model->Clone());
-			
+		CUnit* unit = g_UnitMan.CreateUnit(m_ObjectTypes.at(m_Objects[i].m_ObjectIndex), NULL);
+
+		if (unit)
+		{
 			CMatrix3D transform;
 			memcpy(&transform._11,m_Objects[i].m_Transform,sizeof(float)*16);
 			unit->GetModel()->SetTransform(transform);
-			
-			// add this unit to list of units stored in unit manager
-			pUnitMan->AddUnit(unit);
 		}
 	}
 

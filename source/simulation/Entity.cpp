@@ -95,13 +95,8 @@ void CEntity::loadBase()
 		m_bounds = NULL;
 	}
 
-	if( m_base->m_actorObject )
-		m_actor = new CUnit( m_base->m_actorObject, m_base->m_actorObject->m_Model->Clone(), this );
-
-	// Register the actor with the renderer.
-
-	if( m_actor )
-		g_UnitMan.AddUnit( m_actor );
+	CStr actorName ( m_base->m_actorName ); // convert CStrW->CStr8
+	m_actor = g_UnitMan.CreateUnit( actorName, this );
 
 	// Set up our instance data
 

@@ -82,7 +82,7 @@ bool CObjectEntry::BuildModel()
 	delete m_Model;
 	m_Model=new CModel;
 	m_Model->SetTexture((const char*) m_TextureName);
-    m_Model->SetMaterial(g_MaterialManager.LoadMaterial((const char *)m_Material));
+	m_Model->SetMaterial(g_MaterialManager.LoadMaterial((const char *)m_Material));
 	m_Model->InitModel(modeldef);
 
 	// calculate initial object space bounds, based on vertex positions
@@ -194,6 +194,7 @@ CSkeletonAnim* CObjectEntry::GetNamedAnimation( CStr animationName )
 
 bool CObjectEntry::Load(const char* filename)
 {
+//static int x=0; debug_out("load %s %d\n", filename, ++x);
 
 	CXeromyces XeroFile;
 	if (XeroFile.Load(filename) != PSRETURN_OK)
@@ -331,6 +332,8 @@ bool CObjectEntry::Load(const char* filename)
 		#undef EL
 
 		std::vector< std::vector<Variant> > actorVariants;
+
+		// (This code is rather worryingly verbose...)
 
 		XERO_ITER_EL(root, child)
 		{
@@ -539,4 +542,48 @@ CObjectEntry::Prop* CObjectEntry::FindProp(const char* proppointname)
 	}
 
 	return 0;
+}
+
+
+// TODO: Remove this, once all the actors are renamed properly
+bool CObjectEntry::LoadName(const CStr& filename, CStr& out)
+{
+	CXeromyces XeroFile;
+	if (XeroFile.Load(filename) != PSRETURN_OK)
+		return false;
+
+	XMBElement root = XeroFile.getRoot();
+
+	if (root.getNodeName() == XeroFile.getElementID("object"))
+	{
+		//// Old-format actor file ////
+
+		#define EL(x) int el_##x = XeroFile.getElementID(#x)
+		EL(name);
+		#undef EL
+
+		XERO_ITER_EL(root, child)
+		{
+			if (child.getNodeName() == el_name)
+			{
+				out = child.getText();
+				return true;
+			}
+		}
+		LOG(ERROR, LOG_CATEGORY, "Invalid actor format (couldn't find 'name')");
+		return false;
+	}
+	else if (root.getNodeName() == XeroFile.getElementID("actor"))
+	{
+		//// New-format actor file ////
+
+		// Use the filename for the model's name
+		out = CStr(filename).AfterLast("/").BeforeLast(".xml");
+		return true;
+	}
+	else
+	{
+		LOG(ERROR, LOG_CATEGORY, "Invalid actor format (unrecognised root element '%s')", XeroFile.getElementString(root.getNodeName()));
+		return false;
+	}
 }
