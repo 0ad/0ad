@@ -2,16 +2,6 @@
 #ifndef _SCRIPTINGHOST_H_
 #define _SCRIPTINGHOST_H_
 
-#ifdef OS_WIN
-# define XP_WIN
-#endif
-
-#ifdef OS_UNIX
-# ifndef XP_UNIX
-#  define XP_UNIX
-# endif
-#endif
-
 #include "Errors.h"
 
 ERROR_GROUP(Scripting);

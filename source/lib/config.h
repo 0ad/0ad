@@ -5,17 +5,21 @@
 // Windows
 #if defined(_WIN32) || defined(WIN32)
 # define OS_WIN
+# define XP_WIN
 // Linux
 #elif defined(linux) || defined(__linux) || defined(__linux__)
 # define OS_LINUX
 # define OS_UNIX
+# define XP_UNIX
 // Mac OS X
 #elif defined(MAC_OS_X
 # define OS_MACOSX
 # define OS_UNIX
+# define XP_UNIX
 // Mac OS 9 or below
 #elif defined(macintosh) || defined(__APPLE__) || defined(__APPLE_CC__)
 # define OS_MACOS
+# define XP_MAC
 // BSD
 #elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
 # define OS_BSD
@@ -25,12 +29,14 @@
 // BeOS
 #elif defined(__BEOS__)
 # define OS_BEOS
+# define XP_BEOS
 // Amiga
 #elif defined(__amigaos__)
 # define OS_AMIGA
 // Unix-based
 #elif defined(unix) || defined(__unix) || defined(_XOPEN_SOURCE) || defined(_POSIX_SOURCE)
 # define OS_UNIX
+# define XP_UNIX
 #else
 # error "unknown OS - add define here"
 #endif
