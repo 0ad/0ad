@@ -1,3 +1,5 @@
+// Microsoft Visual C++ generated resource script.
+//
 #include "assert_dlg.h"
 #include <windows.h>
 
@@ -36,8 +38,8 @@ END
 //
 
 IDD_DIALOG1 DIALOGEX 0, 0, 328, 260
-STYLE DS_SETFONT | DS_SETFOREGROUND | DS_FIXEDSYS | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU | WS_THICKFRAME
+STYLE DS_SETFONT | DS_SETFOREGROUND | DS_FIXEDSYS | WS_MINIMIZEBOX | 
+    WS_MAXIMIZEBOX | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 CAPTION "Program Error"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN

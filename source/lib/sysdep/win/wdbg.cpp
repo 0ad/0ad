@@ -541,7 +541,7 @@ static int dump_base_type(DWORD type_idx, const u8* p, size_t size, uint level)
 		case btInt:
 		case btLong:
 			data = movsx_64le(p, size);
-			if(size == 2 || size == 4)
+			if(size == 1 || size == 2 || size == 4)
 				fmt = L"%d";
 			else if(size == 8)
 				fmt = L"%I64d";
@@ -552,7 +552,9 @@ static int dump_base_type(DWORD type_idx, const u8* p, size_t size, uint level)
 		// unsigned integers (displayed as hex)
 		case btUInt:
 		case btULong:
-			if(size == 2)
+			if(size == 1)
+				fmt = L"0x%02X";
+			else if(size == 2)
 				fmt = L"0x%04X";
 			else if(size == 4)
 				fmt = L"0x%08X";
@@ -593,9 +595,8 @@ static int dump_base_type(DWORD type_idx, const u8* p, size_t size, uint level)
 
 	out(fmt, data);
 
-	// cannot be shoehorned into single out().
-	// note: no need for type checks; if the value is right,
-	// we just display what character that corresponds to.
+	// if the current value is a printable character, display in that form.
+	// this isn't only done in btChar because sometimes ints store characters.
 	if(data < 0x100)
 	{
 		int c = (int)data;
@@ -856,7 +857,12 @@ static int dump_data_sym(DWORD data_idx, const u8* p, uint level)
 	if(!SymFromIndexW(hProcess, mod_base, data_idx, sym))
 		return -1;
 
-	assert(sym->Tag == SymTagData);
+	if(sym->Tag != SymTagData)
+	{
+		assert(sym->Tag == SymTagData);
+		return -1;
+	}
+
 
 	// indent
 	for(uint i = 0; i <= level+1; i++)
@@ -1021,16 +1027,97 @@ enum DialogType
 	EXCEPTION
 };
 
+
+//
+// support for resizing the dialog / its controls
+// (have to do this manually - grr)
+//
+
+static POINTS dlg_client_origin;
+static POINTS prev_dlg_client_size;
+
+const int ANCHOR_LEFT   = 0x01;
+const int ANCHOR_RIGHT  = 0x02;
+const int ANCHOR_TOP    = 0x04;
+const int ANCHOR_BOTTOM = 0x08;
+const int ANCHOR_ALL    = 0x0f;
+
+static void resize_control(HWND hDlg, int dlg_item, int dx,int dy, int anchors)
+{
+	HWND hControl = GetDlgItem(hDlg, dlg_item);
+	RECT r;
+	GetWindowRect(hControl, &r);
+
+	int w = r.right - r.left, h = r.bottom - r.top;
+	int x = r.left - dlg_client_origin.x, y = r.top - dlg_client_origin.y;
+
+	if(anchors & ANCHOR_RIGHT)
+	{
+		// right only
+		if(!(anchors & ANCHOR_LEFT))
+			x += dx;
+		// horizontal (stretch width)
+		else
+			w += dx;
+	}
+
+	if(anchors & ANCHOR_BOTTOM)
+	{
+		// bottom only
+		if(!(anchors & ANCHOR_TOP))
+			y += dy;
+		// vertical (stretch height)
+		else
+			h += dy;
+	}
+
+	SetWindowPos(hControl, 0, x,y, w,h, SWP_NOZORDER);
+}
+
+
+static void onSize(HWND hDlg, WPARAM wParam, LPARAM lParam)
+{
+	// 'minimize' was clicked. we need to ignore this, otherwise
+	// dx/dy would reduce some control positions to less than 0.
+	// since Windows clips them, we wouldn't later be able to
+	// reconstruct the previous values when 'restoring'.
+	if(wParam == SIZE_MINIMIZED)
+		return;
+
+	// first call for this dialog instance. WM_MOVE hasn't been sent yet,
+	// so dlg_client_origin are invalid => must not call resize_control().
+	// we need to set prev_dlg_client_size for the next call before exiting.
+	bool first_call = (prev_dlg_client_size.y == 0);
+
+	POINTS dlg_client_size = MAKEPOINTS(lParam);
+	int dx = dlg_client_size.x - prev_dlg_client_size.x;
+	int dy = dlg_client_size.y - prev_dlg_client_size.y;
+	prev_dlg_client_size = dlg_client_size;
+
+	if(first_call)
+		return;
+
+	resize_control(hDlg, IDC_CONTINUE, dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
+	resize_control(hDlg, IDC_SUPPRESS, dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
+	resize_control(hDlg, IDC_BREAK   , dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
+	resize_control(hDlg, IDC_EXIT    , dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
+	resize_control(hDlg, IDC_COPY    , dx,dy, ANCHOR_RIGHT|ANCHOR_BOTTOM);
+	resize_control(hDlg, IDC_EDIT1   , dx,dy, ANCHOR_ALL);
+}
+
+
 static int CALLBACK dlgproc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM lParam)
 {
 	switch(msg)
 	{
-	// return TRUE to set default keyboard focus
 	case WM_INITDIALOG:
-	{
-		DialogType type = (DialogType)lParam;
-
+		{
+		// need to reset for new instance of dialog
+		dlg_client_origin.x = dlg_client_origin.y = 0;
+		prev_dlg_client_size.x = prev_dlg_client_size.y = 0;
+			
 		// disable inappropriate buttons
+		DialogType type = (DialogType)lParam;
 		if(type != ASSERT)
 		{
 			HWND h;
@@ -1043,17 +1130,16 @@ static int CALLBACK dlgproc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM l
 		}
 
 		SetDlgItemTextW(hDlg, IDC_EDIT1, buf);
-		return TRUE;
-	}
+		return TRUE;	// set default keyboard focus
+		}
 
-	// return 0 if processed, otherwise break
 	case WM_SYSCOMMAND:
 		// close dialog if [X] is clicked (doesn't happen automatically)
 		// note: lower 4 bits are reserved
 		if((wParam & 0xFFF0) == SC_CLOSE)
 		{
 			EndDialog(hDlg, 0);
-			return 0;
+			return 0;	// processed
 		}
 		break;
 
@@ -1078,6 +1164,25 @@ static int CALLBACK dlgproc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM l
 		default:
 			break;
 		}
+		break;
+
+	case WM_MOVE:
+		dlg_client_origin = MAKEPOINTS(lParam);
+		break;
+
+	case WM_GETMINMAXINFO:
+		{
+		// we must make sure resize_control will never set negative coords -
+		// Windows would clip them, and its real position would be lost.
+		// restrict to a reasonable and good looking minimum size [pixels].
+		MINMAXINFO* mmi = (MINMAXINFO*)lParam;
+		mmi->ptMinTrackSize.x = 407;
+		mmi->ptMinTrackSize.y = 159;	// determined experimentally
+		return 0;
+		}
+
+	case WM_SIZE:
+		onSize(hDlg, wParam, lParam);
 		break;
 
 	default:
