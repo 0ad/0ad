@@ -250,14 +250,19 @@ jsval JSParseString( const CStrW& Native )
 	CParserLine result;
 	result.ParseString( stringParser, (CStr)Native );
 	bool boolResult; int intResult; float floatResult;
+
+	if( result.GetArgFloat( 0, floatResult ) )
+	{
+		if( floatResult == floor( floatResult ) )
+		{
+			intResult = (int)floatResult;
+			if( INT_FITS_IN_JSVAL( intResult ) )
+				return( ToJSVal( intResult ) );
+		}
+		return( ToJSVal( floatResult ) );
+	}
 	if( result.GetArgBool( 0, boolResult ) )
 		return( BOOLEAN_TO_JSVAL( boolResult ) ); 
-	if( result.GetArgInt( 0, intResult ) )
-	{
-		if( INT_FITS_IN_JSVAL( intResult ) )
-			return( ToJSVal( intResult ) );
-	}
-	if( result.GetArgFloat( 0, floatResult ) )
-		return( ToJSVal( floatResult ) );
+	
 	return( ToJSVal( Native ) );
 }
