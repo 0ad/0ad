@@ -356,9 +356,9 @@ CStr::operator const TCHAR*() const
 
 size_t CStr::GetHashCode() const
 {
-	return (size_t)fnv_hash64(data(), length());
-		// janwas asks: do we care about the hash being 64 bits?
-		// it is truncated here on 32-bit systems; why go 64 bit at all?
+	return (size_t)fnv_hash(data(), length());
+		// janwas 2005-03-18: now use 32-bit version; 64 is slower and
+		// the result was truncated down to 32 anyway.
 }
 
 #ifdef _UNICODE
