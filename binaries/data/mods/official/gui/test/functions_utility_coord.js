@@ -133,6 +133,9 @@ function setSizeArray(objectName, objectArrayElement, rleft, rtop, rright, rbott
 		case right_screen:
 			setSizeContainer.x1 = -objectArrayElement.x-objectArrayElement.width;
 		break;
+		case mid_screen:
+			setSizeContainer.x1 = objectArrayElement.x;
+		break;
 	}
 	switch (setSizeContainer.rtop)
 	{
@@ -141,6 +144,9 @@ function setSizeArray(objectName, objectArrayElement, rleft, rtop, rright, rbott
 		break;
 		case bottom_screen:
 			setSizeContainer.y1 = -objectArrayElement.y-objectArrayElement.height;
+		break;
+		case mid_screen:
+			setSizeContainer.y1 = objectArrayElement.y;
 		break;
 	}
 	switch (setSizeContainer.rright)
@@ -154,6 +160,9 @@ function setSizeArray(objectName, objectArrayElement, rleft, rtop, rright, rbott
 			else
 				setSizeContainer.x2 = -objectArrayElement.width;				
 		break;
+		case mid_screen:
+			setSizeContainer.x2 = objectArrayElement.x+objectArrayElement.width;
+		break;
 	}
 	switch (setSizeContainer.rbottom)
 	{
@@ -166,6 +175,9 @@ function setSizeArray(objectName, objectArrayElement, rleft, rtop, rright, rbott
 			else
 				setSizeContainer.y2 = -objectArrayElement.height;
 		break;
+		case mid_screen:
+			setSizeContainer.y2 = objectArrayElement.y+objectArrayElement.height;
+		break;
 	}
 
 	// Set appropriate size for dimensions.
@@ -174,104 +186,3 @@ function setSizeArray(objectName, objectArrayElement, rleft, rtop, rright, rbott
 
 // ====================================================================
 
-function FlipGUI(NewGUIType)
-{
-	// Sets the GUI coordinates and graphics so that the panel is either at the top or bottom of the screen.
-
-	switch (NewGUIType)
-	{
-		// Set which GUI to use.
-		case "top":
-		case "bottom":
-		case "none":
-			GUIType=NewGUIType;
-		break;
-		default:
-			// If no type specified, toggle.
-			if (GUIType == "top")
-				GUIType = "bottom";
-			else
-			if (GUIType == "bottom")
-				GUIType = "none";
-			else
-				GUIType = "top";
-		break;
-	}
-
-	if (GUIType != "none")
-	{
-		GUIObjectUnhide("SESSION_GUI");
-		GUIObjectUnhide("always_on");
-
-		// Seek through all sizes created.
-		for (FlipGUILoop = 0; FlipGUILoop <= SizeCoord.last-1; FlipGUILoop++)
-		{
-			// Set each object to the other size.
-			switch (GUIType)
-			{
-				case "top":
-					setSize(SizeCoord[FlipGUILoop].name, SizeCoord[FlipGUILoop].size1);
-					switch (SizeCoord[FlipGUILoop].name){
-						case "session_panel_minimap_segbottom1":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = SizeCoord[FlipGUILoop].name;
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = SizeCoord[FlipGUILoop].name + "_lit";
-						break;
-						case "session_panel_minimap_segbottom2":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = SizeCoord[FlipGUILoop].name;
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = SizeCoord[FlipGUILoop].name + "_lit";
-						break;
-						case "session_panel_minimap_segbottom3":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = SizeCoord[FlipGUILoop].name;
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = SizeCoord[FlipGUILoop].name + "_lit";
-						break;
-						case "session_panel_minimap_segbottom4":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = SizeCoord[FlipGUILoop].name;
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = SizeCoord[FlipGUILoop].name + "_lit";
-						break;
-						case "session_panel_status_bg":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_status_bg_top";
-						break;
-						default:
-						break;
-					}
-				break;
-				case "bottom":
-					setSize(SizeCoord[FlipGUILoop].name, SizeCoord[FlipGUILoop].size2);
-					switch (SizeCoord[FlipGUILoop].name){
-						case "session_panel_minimap_segbottom1":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop1";
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segtop1_lit";
-						break;
-						case "session_panel_minimap_segbottom2":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop2";
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segtop2_lit";
-						break;
-						case "session_panel_minimap_segbottom3":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop3";
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segtop3_lit";
-						break;
-						case "session_panel_minimap_segbottom4":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop4";
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segtop4_lit";
-						break;
-						case "session_panel_status_bg":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_status_bg_bottom";
-						break;
-						default:
-						break;
-					}
-				break;
-			}			
-		}
-
-		UpdateGroupPane();
-	}
-	else
-	{
-		GUIObjectHide("SESSION_GUI");
-		GUIObjectHide("always_on");
-	}
-
-	writeConsole("GUI flipped to " + GUIType + ".");
-
-}

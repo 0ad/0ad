@@ -236,8 +236,8 @@ function initAtlasSectionMapCreator()
 
 	// "Generate!" button.
 	ATLAS_LEFT_PANE_SECTION_GENERATE_BUTTON = addArrayElement(Crd, Crd.last); 
-	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= top_screen; 
-	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
 	Crd[Crd.last-1].width	= Crd[ATLAS_LEFT_PANE_SECTION_GENERATE_TERRAIN_MAP_INPUT_BOX].width-ATLAS_LEFT_PANE_SECTION_GENERATE_SPAN-ATLAS_LEFT_PANE_SECTION_GENERATE_SPAN; 
 	Crd[Crd.last-1].height	= Crd[ATLAS_LEFT_PANE_SECTION_GENERATE_BORDER].height-ATLAS_LEFT_PANE_SECTION_GENERATE_SPAN-ATLAS_LEFT_PANE_SECTION_GENERATE_SPAN; 
 	Crd[Crd.last-1].x	= Crd[ATLAS_LEFT_PANE_SECTION_GENERATE_BORDER].x+ATLAS_LEFT_PANE_SECTION_GENERATE_SPAN;

@@ -327,7 +327,7 @@ function atlasFullyMaximiseToolbar()
 	// Extend toolbar to two rows.
 
 	GUIObjectHide("ATLAS_MAINBORDER_TOOLBAR");
-	GUIObjectUnhide("ATLAS_MAINBORDER_TOOLBAR_max");
+	GUIObjectUnhide("ATLAS_MAINBORDER_TOOLBAR_MAX");
 	GUIObjectUnhide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_1");
 	GUIObjectUnhide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_2");
 
