@@ -2,6 +2,9 @@
 
 #include "XMLWriter.h"
 
+// TODO: (MT) Someone who knows what this is supposed to do, please take a look at CPlayer and make sure it's doing what it's supposed to.
+
+#include "Player.h"
 #include "ps/CLogger.h"
 #include "lib/res/vfs.h"
 
@@ -160,6 +163,7 @@ template <> void XMLWriter_File::ElementAttribute<T>(const char* name, T& value,
 }
 
 TYPE(int)
+TYPE(unsigned int)
 TYPE(float)
 TYPE(double)
 TYPE(const char*)
@@ -169,3 +173,7 @@ template <> void XMLWriter_File::ElementAttribute<CStrW>(const char* name, CStrW
 	ElementAttribute<const CStr>(name, value.utf8(), newelement);
 }
 
+template <> void XMLWriter_File::ElementAttribute<CPlayer*>(const char* name, CPlayer*& value, bool newelement)
+{
+	ElementAttribute(name, value->m_PlayerID, newelement);
+}
