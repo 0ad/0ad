@@ -775,10 +775,23 @@ TIMER(InitVfs)
 //		display_startup_error(L"error setting current directory.\n"\
 //			L"argv[0] is probably incorrect. please start the game via command-line.");
 
+	{
+	TIMER(VFS_INIT);
+	vfs_init();
 	vfs_mount("", "mods/official", VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES);
 	vfs_mount("screenshots/", "screenshots");
 	vfs_mount("profiles/", "profiles");
-
+	}
+/*
+	double t0 = get_time();
+	for(int i = 0; i < 30*4*5; i++)
+	{
+		TIMER(rebuild);
+		vfs_rebuild();
+	}
+	debug_out("%f\n\n\n", get_time()-t0);
+	exit(1134);
+/**/
 	// don't try vfs_display yet: SDL_Init hasn't yet redirected stdout
 }
 
@@ -949,7 +962,7 @@ static int ProgressiveLoad()
 {
 	wchar_t description[100];
 	int progress_percent;
-	int ret = LDR_ProgressiveLoad(100e-3, description, ARRAY_SIZE(description), &progress_percent);
+	int ret = LDR_ProgressiveLoad(10e-3, description, ARRAY_SIZE(description), &progress_percent);
 	switch(ret)
 	{
 	// no load active => no-op (skip code below)
