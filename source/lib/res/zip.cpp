@@ -16,6 +16,22 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
+// components:
+// - z_*: Zip-specific code
+//   passes the list of files in an archive to lookup.
+// - lookup_*: file lookup
+//   per archive: return file info (e.g. offset, size), given filename.
+// - ZArchive_*: Handle-based container for archive info
+//   owns archive file and its lookup mechanism.
+// - inf_*: in-memory inflate routines (zlib wrapper)
+//   decompresses blocks from file_io callback.
+// - zip_*: file from Zip archive
+//   uses lookup to get file information; holds inflate state.
+// - sync and async I/O
+//   uses file_* and inf_*.
+// - file mapping
+
+
 #include "precompiled.h"
 
 #include "lib.h"
@@ -89,8 +105,8 @@ static inline int z_validate(const void* const file, const size_t size)
 	if(size < 22)
 		return -1;
 
-	// check "header" (first CDFH) signature
-	return (*(u32*)file == *(u32*)&cdfh_id)? 0 : -1;
+	// check "header" (first LFH) signature
+	return (*(u32*)file == *(u32*)&lfh_id)? 0 : -1;
 }
 
 
@@ -199,7 +215,7 @@ static int z_read_cdfh(const u8*& cdfh, const char*& fn, size_t& fn_len, ZLoc* c
 		debug_warn("warning: unknown compression method");
 		goto skip_file;
 	}
-	// tell is_compressed that the file is uncompressed,
+	// tell zfile_compressed that the file is uncompressed,
 	// by setting csize_ to 0.
 	if(method == 0)
 		csize_ = 0;
@@ -301,7 +317,7 @@ static int z_enum_files(const void* const file, const size_t size, const CDFH_CB
 ///////////////////////////////////////////////////////////////////////////////
 //
 // lookup_*: file lookup
-// per archive: retrieve file information (e.g. offset, size), given filename.
+// per archive: return file info (e.g. offset, size), given filename.
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -359,6 +375,22 @@ struct LookupInfo
 };
 
 
+// support for case-insensitive filenames: the FNV hash of each
+// filename string is saved in lookup_add_file_cb and searched for by
+// lookup_get_file_info. in both cases, we convert a temporary to
+// lowercase before hashing it.
+static void strcpy_lower(char* dst, const char* src)
+{
+	int c;
+	do
+	{
+		c = *src++;
+		*dst++ = tolower(c);
+	}
+	while(c != '\0');
+}
+
+
 // add file <fn> to the lookup data structure.
 // called from z_enum_files in order (0 <= idx < num_files).
 // the first call notifies us of # files, so we can allocate memory.
@@ -392,7 +424,9 @@ static int lookup_add_file_cb(const uintptr_t user, const i32 idx, const char* c
 
 	ZEnt* ent = li->ents + idx;
 
-	FnHash fn_hash = fnv_hash(fn, fn_len);
+	char lc_fn[PATH_MAX];
+	strcpy_lower(lc_fn, fn);
+	FnHash fn_hash = fnv_hash(lc_fn, fn_len);
 
 	(*li->idx)[fn_hash] = idx;
 	li->fn_hashes[idx] = fn_hash;
@@ -400,6 +434,7 @@ static int lookup_add_file_cb(const uintptr_t user, const i32 idx, const char* c
 	// valid file - write out its info.
 	if(loc)
 	{
+		// copy filename, so we can 0-terminate it
 		ent->fn = (const char*)malloc(fn_len+1);
 		if(!ent->fn)
 			return ERR_NO_MEM;
@@ -473,9 +508,11 @@ static int lookup_free(LookupInfo* const li)
 // return file information of file <fn>.
 static int lookup_get_file_info(LookupInfo* const li, const char* fn, ZLoc* const loc)
 {
-	const FnHash fn_hash = fnv_hash(fn);
-	const FnHash* fn_hashes = li->fn_hashes;
+	char lc_fn[PATH_MAX];
+	strcpy_lower(lc_fn, fn);
+	const FnHash fn_hash = fnv_hash(lc_fn);
 
+	const FnHash* fn_hashes = li->fn_hashes;
 	const i32 num_files = li->num_files;
 	i32 i = li->next_file;
 
@@ -501,19 +538,17 @@ static int lookup_get_file_info(LookupInfo* const li, const char* fn, ZLoc* cons
 }
 
 
-typedef ZipFileCB LookupFileCB;
-
-static int lookup_enum_files(LookupInfo* const li, LookupFileCB cb, uintptr_t user)
+static int lookup_enum_files(LookupInfo* const li, FileCB cb, uintptr_t user)
 {
 	const ZEnt* ent = li->ents;
 	for(i32 i = 0; i < li->num_files; i++, ent++)
 	{
-		// is this entry a directory?
-		int flags = 0;
-		if(ent->loc.csize == 0 && ent->loc.ucsize == 0)
-			flags |= LOC_DIR;
+		ssize_t size = (ssize_t)ent->loc.ucsize;
+		if(size == 0)	// it's a directory
+			size = -1;
 
-		CHECK_ERR(cb(ent->fn, flags, (ssize_t)ent->loc.ucsize, user));
+		CHECK_ERR(cb(ent->fn, size, user));
+			// pass in complete path (see file_enum rationale).
 	}
 
 	return 0;
@@ -522,7 +557,7 @@ static int lookup_enum_files(LookupInfo* const li, LookupFileCB cb, uintptr_t us
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// container with handle for archive info
+// ZArchive_*: Handle-based container for archive info
 // owns archive file and its lookup mechanism.
 //
 ///////////////////////////////////////////////////////////////////////////////
@@ -534,9 +569,17 @@ struct ZArchive
 
 	LookupInfo li;
 
-	// hack: on first open, file is invalid (fn_hash isn't set),
-	// and file validate in file_close fails.
-	// workaround: only close if open.
+	// problem:
+	//   if ZArchive_reload aborts due to file_open failing, ZArchive_dtor
+	//   is called by h_alloc, and file_close complains the File is
+	//   invalid (wasn't open). this happens if e.g. vfs_mount blindly
+	//   tries to open a directory as an archive.
+	// workaround:
+	//   only free the above if ZArchive_reload succeeds, i.e. is_open.
+	// note:
+	//   if lookup_init fails after file_open opened the file,
+	//   we wouldn't file_close in the dtor,
+	//   but it's taken care of by ZArchive_reload.
 	bool is_open;
 };
 
@@ -569,7 +612,9 @@ static int ZArchive_reload(ZArchive* za, const char* fn, Handle h)
 	int err;
 
 	err = file_open(fn, 0, &za->f);
-	if(err < 0)		// don't CHECK_ERR; this happens often.
+	if(err < 0)
+		// don't complain - this happens when vfs_mount blindly
+		// zip_archive_opens a dir.
 		return err;
 
 	// map
@@ -594,26 +639,29 @@ exit_unmap_close:
 	file_unmap(&za->f);
 exit_close:
 	file_close(&za->f);
+
+	// don't complain here either; this happens when vfs_mount
+	// zip_archive_opens an invalid file that's in a mount point dir.
 	return err;
 }
 
 
 // open and return a handle to the zip archive indicated by <fn>
-Handle zip_archive_open(const char* const fn)
+inline Handle zip_archive_open(const char* const fn)
 {
 	return h_alloc(H_ZArchive, fn);
 }
 
 
 // close the archive <ha> and set ha to 0
-int zip_archive_close(Handle& ha)
+inline int zip_archive_close(Handle& ha)
 {
 	return h_free(ha, H_ZArchive);
 }
 
 
-// see lookup rationale for not passing along a key.
-int zip_enum(const Handle ha, const ZipFileCB cb, const uintptr_t user)
+// call <cb>, passing <user>, for all files in archive <ha>
+int zip_enum(const Handle ha, const FileCB cb, const uintptr_t user)
 {
 	H_DEREF(ha, ZArchive, za);
 
@@ -623,7 +671,8 @@ int zip_enum(const Handle ha, const ZipFileCB cb, const uintptr_t user)
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// in-memory inflate routines (zlib wrapper)
+// inf_*: in-memory inflate routines (zlib wrapper)
+// decompresses blocks from file_io callback.
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -749,8 +798,8 @@ int inf_free_ctx(uintptr_t ctx)
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// file from Zip archive
-// on top of inflate and lookup
+// zip_*: file from Zip archive
+// uses lookup to get file information; holds inflate state.
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -758,7 +807,8 @@ int inf_free_ctx(uintptr_t ctx)
 enum ZFileFlags
 {
 	// the ZFile has been successfully zip_map-ped.
-	// we store this so that the archive mapping refcount remains balanced.
+	// used to make sure the archive's mmap refcount remains balanced,
+	// i.e. no one double-frees the mapping.
 	ZF_HAS_MAPPING = 0x4000
 };
 
@@ -788,7 +838,7 @@ static int zfile_validate(uint line, ZFile* zf)
 #endif
 	else if(!zf->ucsize)
 		msg = "ucsize = 0";
-	else if(!zf->read_ctx)
+	else if(!zf->inf_ctx)
 		msg = "read context invalid";
 	// everything is OK
 	else
@@ -809,6 +859,35 @@ do\
 		return err;\
 }\
 while(0);
+
+
+// convenience function, allows implementation change in ZFile.
+// note that size == ucsize isn't foolproof, and adding a flag to
+// ofs or size is ugly and error-prone.
+// no error checking - always called from functions that check zf.
+static inline bool zfile_compressed(ZFile* zf)
+{
+	return zf->csize != 0;
+}
+
+
+
+
+// return file information for <fn> in archive <ha>
+int zip_stat(Handle ha, const char* fn, struct stat* s)
+{
+	// zero output param in case we fail below.
+	memset(s, 0, sizeof(struct stat));
+
+	H_DEREF(ha, ZArchive, za);
+	LookupInfo* li = &za->li;
+
+	ZLoc loc;
+	CHECK_ERR(lookup_get_file_info(li, fn, &loc));
+
+	s->st_size = loc.ucsize;
+	return 0;
+}
 
 
 int zip_open(const Handle ha, const char* fn, ZFile* zf)
@@ -842,7 +921,7 @@ int zip_open(const Handle ha, const char* fn, ZFile* zf)
 	zf->csize    = loc.csize;
 
 	zf->ha       = ha;
-	zf->read_ctx = inf_init_ctx();
+	zf->inf_ctx = inf_init_ctx();
 }
 
 invalid_zf:
@@ -857,41 +936,14 @@ int zip_close(ZFile* zf)
 	CHECK_ZFILE(zf);
 
 	// remaining ZFile fields don't need to be freed/cleared
-	return inf_free_ctx(zf->read_ctx);
-}
-
-
-// return file information for <fn> in archive <ha>
-int zip_stat(Handle ha, const char* fn, struct stat* s)
-{
-	// zero output param in case we fail below.
-	memset(s, 0, sizeof(struct stat));
-
-	H_DEREF(ha, ZArchive, za);
-	LookupInfo* li = &za->li;
-
-	ZLoc loc;
-	CHECK_ERR(lookup_get_file_info(li, fn, &loc));
-
-	s->st_size = loc.ucsize;
-	return 0;
-}
-
-
-
-// convenience function, allows implementation change in ZFile.
-// note that size == ucsize isn't foolproof, and adding a flag to
-// ofs or size is ugly and error-prone.
-// no error checking - always called from functions that check zf.
-static inline bool is_compressed(ZFile* zf)
-{
-	return zf->csize != 0;
+	return inf_free_ctx(zf->inf_ctx);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// synchronous I/O
+// sync and async I/O
+// uses file_* and inf_*.
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -913,7 +965,7 @@ ssize_t zip_read(ZFile* zf, off_t raw_ofs, size_t size, void** p)
 
 	// not compressed - just pass it on to file_io
 	// (avoid the Zip inflate start/finish stuff below)
-	if(!is_compressed(zf))
+	if(!zfile_compressed(zf))
 		return file_io(&za->f, ofs, size, p);
 			// no need to set last_raw_ofs - only checked if compressed.
 
@@ -947,7 +999,7 @@ ssize_t zip_read(ZFile* zf, off_t raw_ofs, size_t size, void** p)
 		*p = buf;
 	}
 
-	err = (ssize_t)inf_start_read(zf->read_ctx, buf, size);
+	err = (ssize_t)inf_start_read(zf->inf_ctx, buf, size);
 	if(err < 0)
 	{
 fail:
@@ -964,11 +1016,11 @@ fail:
 	// zip_inflate, until all compressed data has been read, or it indicates
 	// the desired output amount has been reached.
 	const size_t raw_size = zf->csize;
-	raw_bytes_read = file_io(&za->f, ofs, raw_size, (void**)0, inf_inflate, zf->read_ctx);
+	raw_bytes_read = file_io(&za->f, ofs, raw_size, (void**)0, inf_inflate, zf->inf_ctx);
 
 	zf->last_raw_ofs = raw_ofs + (off_t)raw_bytes_read;
 
-	err = inf_finish_read(zf->read_ctx);
+	err = inf_finish_read(zf->inf_ctx);
 	if(err < 0)
 		goto fail;
 
@@ -979,6 +1031,47 @@ fail:
 		goto fail;
 
 	return err;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+
+
+// rationale for not supporting aio for compressed files:
+// would complicate things considerably (could no longer just
+// return the file I/O handle, since we have to decompress in wait_io),
+// yet it isn't really useful - aio is used to stream music,
+// which is already compressed.
+
+
+// begin transferring <size> bytes, starting at <ofs>. get result
+// with zip_wait_io; when no longer needed, free via zip_discard_io.
+Handle zip_start_io(ZFile* const zf, off_t ofs, size_t size, void* buf)
+{
+	CHECK_ZFILE(zf);
+	if(zfile_compressed(zf))
+	{
+		debug_warn("Zip aio doesn't currently support compressed files (see rationale above)");
+		return -1;
+	}
+
+	H_DEREF(zf->ha, ZArchive, za);
+	return file_start_io(&za->f, zf->ofs+ofs, size, buf);
+}
+
+
+// wait until the transfer <hio> completes, and return its buffer.
+// output parameters are zeroed on error.
+inline int zip_wait_io(Handle hio, void*& p, size_t& size)
+{
+	return file_wait_io(hio, p, size);
+}
+
+
+// finished with transfer <hio> - free its buffer (returned by vfs_wait_io)
+inline int zip_discard_io(Handle& hio)
+{
+	return file_discard_io(hio);
 }
 
 
@@ -1005,14 +1098,22 @@ int zip_map(ZFile* const zf, void*& p, size_t& size)
 
 	// mapping compressed files doesn't make sense because the
 	// compression algorithm is unspecified - disallow it.
-	if(is_compressed(zf))
+	if(zfile_compressed(zf))
 	{
 		debug_warn("zip_map: file is compressed");
 		return -1;
 	}
 
-	H_DEREF(zf->ha, ZArchive, za)
-	CHECK_ERR(file_map(&za->f, p, size));
+	// note: we mapped the archive in zip_archive_open, but unmapped it
+	// in the meantime to save memory in case it wasn't going to be mapped.
+	// now we do so again; it's unmapped in zip_unmap (refcounted).
+	H_DEREF(zf->ha, ZArchive, za);
+	void* archive_p;
+	size_t archive_size;
+	CHECK_ERR(file_map(&za->f, archive_p, archive_size));
+
+	p = (char*)archive_p + zf->ofs;
+	size = zf->ucsize;
 
 	zf->flags |= ZF_HAS_MAPPING;
 	return 0;
@@ -1034,51 +1135,6 @@ int zip_unmap(ZFile* const zf)
 		return -1;
 	zf->flags &= ~ZF_HAS_MAPPING;
 
-	H_DEREF(zf->ha, ZArchive, za)
-	return file_unmap(&za->f);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////
-//
-// asynchronous I/O
-//
-///////////////////////////////////////////////////////////////////////////////
-
-
-// rationale for not supporting aio for compressed files:
-// would complicate things considerably (could no longer just
-// return the file I/O handle, since we have to decompress in wait_io),
-// yet it isn't really useful - aio is used to stream music,
-// which is already compressed.
-
-
-// begin transferring <size> bytes, starting at <ofs>. get result
-// with zip_wait_io; when no longer needed, free via zip_discard_io.
-Handle zip_start_io(ZFile* const zf, off_t ofs, size_t size, void* buf)
-{
-	CHECK_ZFILE(zf);
-	if(is_compressed(zf))
-	{
-		debug_warn("Zip aio doesn't currently support compressed files (see rationale above)");
-		return -1;
-	}
-
 	H_DEREF(zf->ha, ZArchive, za);
-	return file_start_io(&za->f, zf->ofs+ofs, size, buf);
-}
-
-
-// wait until the transfer <hio> completes, and return its buffer.
-// output parameters are zeroed on error.
-inline int zip_wait_io(Handle hio, void*& p, size_t& size)
-{
-	return file_wait_io(hio, p, size);
-}
-
-
-// finished with transfer <hio> - free its buffer (returned by vfs_wait_io)
-inline int zip_discard_io(Handle& hio)
-{
-	return file_discard_io(hio);
+	return file_unmap(&za->f);
 }

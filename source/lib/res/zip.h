@@ -20,23 +20,10 @@
 #define ZIP_H__
 
 #include "h_mgr.h"
-#include "lib.h"
-#include "file.h"
+#include "file.h"	// FileCB for zip_enum
 
 
-//
-// in-memory inflate routines (zlib wrapper)
-//
-
-extern uintptr_t inf_init_ctx();
-
-extern int inf_start_read(uintptr_t ctx, void* out, size_t out_size);
-
-extern ssize_t inf_inflate(uintptr_t ctx, void* in, size_t in_size);
-
-extern int inf_finish_read(uintptr_t ctx);
-
-extern int inf_free_ctx(uintptr_t ctx);
+// note: filenames are case-insensitive.
 
 
 //
@@ -49,10 +36,10 @@ extern Handle zip_archive_open(const char* fn);
 // close the archive <ha> and set ha to 0
 extern int zip_archive_close(Handle& ha);
 
+// for all files in archive <ha>: call <cb>, passing <user>
+// and the entries's complete path.
+extern int zip_enum(const Handle ha, const FileCB cb, const uintptr_t user);
 
-// all files in archive!
-typedef int(*ZipFileCB)(const char* const fn, const uint flags, const ssize_t size, const uintptr_t user);
-extern int zip_enum(const Handle ha, const ZipFileCB cb, const uintptr_t user);
 
 //
 // file
@@ -64,7 +51,7 @@ struct ZFile
 	u32 magic;
 #endif
 
-	// keep offset of flags and size members in sync with struct ZFile!
+	// keep offset of flags and size members in sync with struct File!
 	// it is accessed by VFS and must be the same for both (union).
 	// dirty, but necessary because VFile is pushing the HDATA size limit.
 	uint flags;
@@ -76,10 +63,10 @@ struct ZFile
 	off_t last_raw_ofs;
 
 	Handle ha;
-	uintptr_t read_ctx;
+	uintptr_t inf_ctx;
 };
 
-// return file information for <fn> (may include path) in archive <ha>
+// return file information for <fn> in archive <ha>
 extern int zip_stat(Handle ha, const char* fn, struct stat* s);
 
 // open the file <fn> in archive <ha>, and fill *zf with information about it.
@@ -124,7 +111,6 @@ extern Handle zip_start_io(ZFile* const zf, off_t ofs, size_t size, void* buf);
 // wait until the transfer <hio> completes, and return its buffer.
 // output parameters are zeroed on error.
 extern int zip_wait_io(Handle hio, void*& p, size_t& size);
-
 
 // finished with transfer <hio> - free its buffer (returned by vfs_wait_io)
 extern int zip_discard_io(Handle& hio);
