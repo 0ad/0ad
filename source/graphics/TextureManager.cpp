@@ -10,7 +10,8 @@
 
 #define LOG_CATEGORY "graphics"
 
-static const char* SupportedTextureFormats[] = { ".png", ".dds", ".tga", ".bmp" };
+// filter for vfs_next_dirent
+static const char* SupportedTextureFormats[] = { "*.png", "*.dds", "*.tga", "*.bmp" };
 
 
 
@@ -91,7 +92,7 @@ void CTextureManager::DeleteTexture(CTextureEntry* entry)
 	delete entry;
 }
 
-void CTextureManager::LoadTerrainTextures(int terraintype,const char* fileext)
+void CTextureManager::LoadTerrainTextures(int terraintype,const char* fileext_filter)
 {
 	CStr pathname("art/textures/terrain/types/");
 	pathname+=m_TerrainTextures[terraintype].m_Name;
@@ -102,7 +103,7 @@ void CTextureManager::LoadTerrainTextures(int terraintype,const char* fileext)
 
 	if (dir > 0)
 	{
-		while (vfs_next_dirent(dir, &dent, fileext) == 0)
+		while (vfs_next_dirent(dir, &dent, fileext_filter) == 0)
 		{
 			LOG(NORMAL, LOG_CATEGORY, "CTextureManager::LoadTerrainTextures(): texture %s added to type %s", dent.name, m_TerrainTextures[terraintype].m_Name.c_str());
 			AddTexture(dent.name, terraintype);
@@ -136,7 +137,7 @@ void CTextureManager::LoadTerrainTextures()
 
 	// now iterate through terrain types loading all textures of that type
 	for (uint i=0;i<m_TerrainTextures.size();i++) {
-		for (uint j=0;j<sizeof(SupportedTextureFormats)/sizeof(const char*);j++) {
+		for (uint j=0;j<ARRAY_SIZE(SupportedTextureFormats);j++) {
 			LoadTerrainTextures(i,SupportedTextureFormats[j]);
 		}
 	}
