@@ -1081,6 +1081,15 @@ int vfs_realpath(const char* fn, char* full_path)
 }
 
 
+// does the specified file exist? return false on error.
+// useful because a "file not found" warning is not raised, unlike vfs_stat.
+bool vfs_exists(const char* fn)
+{
+	const Loc* loc;
+	return (tree_lookup(fn, &loc) == 0);
+}
+
+
 // return information about the specified file as in stat(2),
 // most notably size. stat buffer is undefined on error.
 int vfs_stat(const char* fn, struct stat* s)
@@ -1121,6 +1130,8 @@ struct VFile
 	// cached contents of file from vfs_load
 	// (can't just use pointer - may be freed behind our back)
 	Handle hm;
+
+	off_t ofs;
 
 	union
 	{
@@ -1249,17 +1260,20 @@ debug_out("vfs_close %I64x\n", h);
 }
 
 
-// try to transfer <size> bytes, starting at <ofs>, to/from the given file.
+// try to transfer the next <size> bytes to/from the given file.
 // (read or write access was chosen at file-open time).
 // return bytes of actual data transferred, or a negative error code.
 // TODO: buffer types
-ssize_t vfs_io(const Handle hf, const off_t ofs, const size_t size, void*& p)
+ssize_t vfs_io(const Handle hf, const size_t size, void** p)
 {
 #ifdef PARANOIA
-debug_out("vfs_io ofs=%d size=%d\n", ofs, size);
+debug_out("vfs_io size=%d\n", size);
 #endif
 
 	H_DEREF(hf, VFile, vf);
+
+	off_t ofs = vf->ofs;
+	vf->ofs += (off_t)size;
 
 	// (vfs_open makes sure it's not opened for writing if zip)
 	if(vf_flags(vf) & VF_ZIP)
@@ -1268,7 +1282,32 @@ debug_out("vfs_io ofs=%d size=%d\n", ofs, size);
 	// normal file:
 	// let file_io alloc the buffer if the caller didn't (i.e. p = 0),
 	// because it knows about alignment / padding requirements
-	return file_io(&vf->f, ofs, size, &p);
+	return file_io(&vf->f, ofs, size, p);
+}
+
+
+// try to transfer the next <size> bytes to/from the given file.
+// (read or write access was chosen at file-open time).
+// return bytes of actual data transferred, or a negative error code.
+ssize_t vfs_uncached_io(const Handle hf, const size_t size, void** p)
+{
+#ifdef PARANOIA
+	debug_out("vfs_uncached_io size=%d\n", size);
+#endif
+
+	H_DEREF(hf, VFile, vf);
+
+	off_t ofs = vf->ofs;
+	vf->ofs += (off_t)size;
+
+	// (vfs_open makes sure it's not opened for writing if zip)
+	if(vf_flags(vf) & VF_ZIP)
+		return zip_read(&vf->zf, ofs, size, p);
+
+	// normal file:
+	// let file_io alloc the buffer if the caller didn't (i.e. p = 0),
+	// because it knows about alignment / padding requirements
+	return file_uncached_io(&vf->f, ofs, size, *p);
 }
 
 
@@ -1308,7 +1347,7 @@ debug_out("vfs_load fn=%s\n", fn);
 	}
 
 	{	// VC6 goto fix
-	ssize_t nread = vfs_io(hf, 0, size, p);
+	ssize_t nread = vfs_io(hf, size, &p);
 	if(nread > 0)
 		hm = mem_assign(p, size);
 	}
@@ -1335,7 +1374,7 @@ int vfs_store(const char* const fn, void* p, const size_t size)
 	if(hf <= 0)
 		return (int)hf;	// error code
 	H_DEREF(hf, VFile, vf);
-	const int ret = vfs_io(hf, 0, size, p);
+	const int ret = vfs_io(hf, size, &p);
 	vfs_close(hf);
 	return ret;
 }
@@ -1349,7 +1388,7 @@ int vfs_uncached_store(const char* const fn, void* p, const size_t size)
 	if(hf <= 0)
 		return (int)hf;	// error code
 	H_DEREF(hf, VFile, vf);
-	const int ret = file_uncached_io(&vf->f, size, p);
+	const int ret = file_uncached_io(&vf->f, 0, size, p);
 	vfs_close(hf);
 	return ret;
 }

@@ -1328,14 +1328,18 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, raw_size, raw_ofs);
 }
 
 
-int file_uncached_io(File* f, size_t size, void* p)
+int file_uncached_io(File* f, off_t ofs, size_t size, void* p)
 {
 	CHECK_FILE(f);
 
+	int fd = f->fd;
+
+	lseek(fd, ofs, SEEK_SET);
+
 	if(f->flags & FILE_WRITE)
-		return write(f->fd, p, size);
+		return write(fd, p, size);
 	else
-		return read(f->fd, p, size);
+		return read(fd, p, size);
 }
 
 

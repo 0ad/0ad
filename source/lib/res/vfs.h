@@ -101,6 +101,10 @@ extern int vfs_next_dirent(Handle hd, vfsDirEnt* ent, const char* filter);
 // "<real_directory>/fn" or "<archive_name>/fn".
 extern int vfs_realpath(const char* fn, char* realpath);
 
+// does the specified file exist? return false on error.
+// useful because a "file not found" warning is not raised, unlike vfs_stat.
+extern bool vfs_exists(const char* fn);
+
 // return information about the specified file as in stat(2),
 // most notably size. stat buffer is undefined on error.
 extern int vfs_stat(const char* fn, struct stat*);
@@ -156,11 +160,17 @@ extern int vfs_discard_io(Handle& hio);
 // synchronous I/O
 //
 
-// try to transfer <size> bytes, starting at <ofs>.
+// try to transfer the next <size> bytes to/from the given file.
 // (read or write access was chosen at file-open time).
 // return bytes of actual data transferred, or a negative error code.
 // TODO: buffer types
-extern ssize_t vfs_io(Handle hf, off_t ofs, size_t size, void*& p);
+extern ssize_t vfs_io(Handle hf, size_t size, void** p);
+
+// try to transfer the next <size> bytes to/from the given file.
+// (read or write access was chosen at file-open time).
+// return bytes of actual data transferred, or a negative error code.
+extern ssize_t vfs_uncached_io(const Handle hf, const size_t size, void** p);
+
 
 // load the entire file <fn> into memory; return a memory handle to the
 // buffer and its address/size. output parameters are zeroed on failure.
