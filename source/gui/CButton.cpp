@@ -77,10 +77,6 @@ void CButton::HandleMessage(const SGUIMessage &Message)
 
 void CButton::Draw() 
 {
-	////////// Gee: janwas, this is just temp to see it
-	glDisable(GL_TEXTURE_2D);
-	//////////
-
 	float bz = GetBufferedZ();
 
 	CStr sprite, sprite_over, sprite_pressed, sprite_disabled;
@@ -96,7 +92,6 @@ void CButton::Draw()
 			   sprite_over, 
 			   sprite_pressed, 
 			   sprite_disabled);
-
 
 	CColor color = ChooseColor();
 

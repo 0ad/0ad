@@ -797,8 +797,9 @@ void CRenderer::RenderModelSubmissions()
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
 
 	// pass one through as alpha; transparent textures handled specially by CTransparencyRenderer
+	// (gl_constant means the colour comes from the environment (glColorxf))
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_ONE);	// janwas found BUG: INVALID ENUM
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_CONSTANT);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 
 	// setup client states
@@ -877,6 +878,8 @@ void CRenderer::FlushFrame()
 	// sort all the models by texture
 //	std::sort(m_Models.begin(),m_Models.end(),SortModelsByTexture());
 
+	oglCheck();
+
 	// sort all the transparent stuff
 	MICROLOG(L"sorting");
 	g_TransparencyRenderer.Sort();
@@ -891,19 +894,28 @@ void CRenderer::FlushFrame()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	}
 
+	oglCheck();
+
 	// render submitted patches and models
 	MICROLOG(L"render patches");
 	RenderPatches();
+	oglCheck();
+
 	MICROLOG(L"render models");
 	RenderModels();
+	oglCheck();
+
 	if (m_Options.m_Shadows && !m_ShadowRendered) {
 		MICROLOG(L"apply shadows");
 		ApplyShadowMap();
+		oglCheck();
 	}
 	m_ShadowRendered=true;
+
 	// call on the transparency renderer to render all the transparent stuff
 	MICROLOG(L"render transparent");
 	g_TransparencyRenderer.Render();
+	oglCheck();
 
 	// empty lists
 	MICROLOG(L"empty lists");

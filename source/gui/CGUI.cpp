@@ -394,7 +394,7 @@ void CGUI::DrawSprite(const CStr& SpriteName,
 			// TODO: Handle the GL state in a nicer way
 
 			glEnable(GL_TEXTURE_2D);
-			glDisable(GL_COLOR);
+			glColor3f(1.0f, 1.0f, 1.0f);
 			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 
 			int fmt;
@@ -432,6 +432,7 @@ void CGUI::DrawSprite(const CStr& SpriteName,
 			glEnd();
 
 			glDisable(GL_TEXTURE_2D);
+
 		}
 		else
 		{

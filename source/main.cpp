@@ -399,15 +399,21 @@ static void Render()
 {
 	MICROLOG(L"begin frame");
 
+	oglCheck();
+
 	// start new frame
 	g_Renderer.BeginFrame();
 
 	// switch on wireframe for terrain if we want it
 	//g_Renderer.SetTerrainRenderMode( SOLID ); // (PT: If this is done here, the W key doesn't work)
 
+	oglCheck();
+
 	if (g_Game)
 	{
 		g_Game->GetView()->Render();
+
+		oglCheck();
 
 		MICROLOG(L"flush frame");
 		g_Renderer.FlushFrame();
@@ -433,6 +439,8 @@ static void Render()
 	else
 		g_Renderer.FlushFrame();
 
+	oglCheck();
+
 	MICROLOG(L"render fonts");
 	// overlay mode
 	glPushAttrib(GL_ENABLE_BIT);
@@ -448,6 +456,8 @@ static void Render()
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 
+	oglCheck();
+
 #ifndef NO_GUI
 	// Temp GUI message GeeTODO
 	glLoadIdentity();
@@ -455,16 +465,22 @@ static void Render()
 	unifont_bind(g_Font_Misc);
 	glwprintf( L"%hs", g_GUI.TEMPmessage.c_str() );
 
+	oglCheck();
+
 	glLoadIdentity();
 	MICROLOG(L"render GUI");
 	g_GUI.Draw();
 #endif
+
+	oglCheck();
 
 	// Text:
 
 	// Use the GL_ALPHA texture as the alpha channel with a flat colouring
 	glDisable(GL_ALPHA_TEST);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
+	oglCheck();
 
 	unifont_bind(g_Font_Misc);
 
@@ -476,16 +492,22 @@ static void Render()
 	glScalef(1.0, -1.0, 1.0);
 	glwprintf( L"%d FPS", fps);
 
+	oglCheck();
+
 	unifont_bind(g_Font_Console);
 	glLoadIdentity();
 	MICROLOG(L"render console");
 	g_Console->Render();
+
+	oglCheck();
 
 	if (g_Game)
 	{
 		g_Mouseover.renderOverlays();
 		g_Selection.renderOverlays();
 	}
+
+	oglCheck();
 
 	// Draw the cursor (or set the Windows cursor, on Windows)
 	cursor_draw(g_CursorName);
@@ -499,6 +521,8 @@ static void Render()
 
 	MICROLOG(L"end frame");
 	g_Renderer.EndFrame();
+
+	oglCheck();
 }
 
 static void InitDefaultGameAttributes()
@@ -722,7 +746,7 @@ static void Init(int argc, char* argv[])
 	MICROLOG(L"In init");
 
 	// If you ever want to catch a particular allocation:
-	//_CrtSetBreakAlloc(5874);
+	//_CrtSetBreakAlloc(50371);
 
 #ifdef _MSC_VER
 u64 TSC=rdtsc();
