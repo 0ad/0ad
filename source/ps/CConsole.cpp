@@ -271,7 +271,9 @@ void CConsole::DrawBuffer(void)
 void CConsole::DrawCursor(void)
 {
 	glPushMatrix();
-		glwprintf(L"_");
+		glColor4f(1.0f, 1.0f, 0.0f, 0.8f);
+		glwprintf(L"%lc", 0xFE33);
+		glColor3f(1.0f, 1.0f, 1.0f);
 	glPopMatrix();
 }
 
