@@ -431,10 +431,7 @@ protected:
 	 */
 	void ScriptEvent(const CStr& Action);
 
-	/**
-	 * Internal storage for registered script handlers.
-	 */
-	std::map<CStr, JSFunction*> m_ScriptHandlers;
+	void SetScriptHandler(const CStr& Action, JSObject* Function);
 
 	//@}
 private:
@@ -511,6 +508,9 @@ protected:
 private:
 	// An object can't function stand alone
 	CGUI									*m_pGUI;
+
+	// Internal storage for registered script handlers.
+	std::map<CStr, JSObject**> m_ScriptHandlers;
 };
 
 

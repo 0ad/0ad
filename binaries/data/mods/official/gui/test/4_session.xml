@@ -143,7 +143,8 @@
 			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_52_BAR" style="group_portrait_bar" >
 				<action on="Load"><![CDATA[
 					// Seek through ALL group portraits and set their sizes at once. (So make sure this always goes in the last menu button.)
-					groupPaneCounter = 1;
+					var groupPaneCounter = 1;
+
 					for (rowLoop = 0; rowLoop < crd_grppane_prt_row.last; rowLoop++)
 					{
 						for (colLoop = 0; colLoop < crd_grppane_prt_col.last; colLoop++)
@@ -151,7 +152,11 @@
 							// Set size, caption, and onPress function for each button.
 							AddSizeGroupPane("SESSION_GROUP_PANE_PORTRAIT_" + groupPaneCounter, rowLoop, colLoop);
 							getGUIObjectByName("SESSION_GROUP_PANE_PORTRAIT_" + groupPaneCounter).caption = groupPaneCounter;
-							getGUIObjectByName("SESSION_GROUP_PANE_PORTRAIT_" + groupPaneCounter).onPress = function() { SelectUnit(groupPaneCounter); }
+
+							// This is quite evil:
+							getGUIObjectByName("SESSION_GROUP_PANE_PORTRAIT_" + groupPaneCounter).onPress =
+								function (n) { return function() { SelectUnit(n); } } (groupPaneCounter);
+
 							AddSizeGroupPaneBar("SESSION_GROUP_PANE_PORTRAIT_" + groupPaneCounter + "_BAR");
 							groupPaneCounter++;
 						}

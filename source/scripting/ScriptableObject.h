@@ -258,7 +258,7 @@ public:
 	}
 	void ImmediateCopy( IJSObject* CopyTo, IJSObject* CopyFrom, IJSProperty* CopyProperty )
 	{
-		assert( "Inheritance not supported for CJSSharedProperties" );
+		debug_warn( "Inheritance not supported for CJSSharedProperties" );
 	}
 	void Set( JSContext* cx, IJSObject* owner, jsval Value )
 	{

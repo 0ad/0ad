@@ -1408,7 +1408,9 @@ static void Frame()
 		MICROLOG(L"render");
 		Render();
 		MICROLOG(L"finished render");
+		PROFILE_START( "swap buffers" );
 		SDL_GL_SwapBuffers();
+		PROFILE_END( "swap buffers" );
 	}
 	// inactive; relinquish CPU for a little while
 	// don't use SDL_WaitEvent: don't want the main loop to freeze until app focus is restored

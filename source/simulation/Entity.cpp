@@ -333,7 +333,7 @@ bool CEntity::DispatchEvent( CScriptEvent* evt )
 	else
 	{
 		CStr8 short_string( evt->m_Type );
-		int length = short_string.length();
+		size_t length = short_string.length();
 		data = new char[length + 9];
 		strcpy( data, "script: " );
 		strcpy( data + 8, short_string.c_str() );

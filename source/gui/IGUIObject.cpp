@@ -55,17 +55,30 @@ IGUIObject::IGUIObject() :
 
 IGUIObject::~IGUIObject()
 {
-// delete() needs to know the type of the variable - never delete a void*
-#define TYPE(t) case GUIST_##t: delete (t*)it->second.m_pSetting; break;
-	map<CStr, SGUISetting>::iterator it;
-	for (it = m_Settings.begin(); it != m_Settings.end(); ++it)
-		switch (it->second.m_Type)
+	{
+		map<CStr, SGUISetting>::iterator it;
+		for (it = m_Settings.begin(); it != m_Settings.end(); ++it)
 		{
-		#include "GUItypes.h"
+			switch (it->second.m_Type)
+			{
+				// delete() needs to know the type of the variable - never delete a void*
+#define TYPE(t) case GUIST_##t: delete (t*)it->second.m_pSetting; break;
+#include "GUItypes.h"
+#undef TYPE
 		default:
 			debug_warn("Invalid setting type");
+			}
 		}
-#undef TYPE
+	}
+
+	{
+		std::map<CStr, JSObject**>::iterator it;
+		for (it = m_ScriptHandlers.begin(); it != m_ScriptHandlers.end(); ++it)
+		{
+			JS_RemoveRoot(g_ScriptingHost.getContext(), it->second);
+			delete it->second;
+		}
+	}
 }
 
 //-------------------------------------------------------------------
@@ -413,13 +426,27 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 
 	JSFunction* func = JS_CompileFunction(g_ScriptingHost.getContext(), pGUI->m_ScriptObject, buf, paramCount, paramNames, (const char*)Code, Code.Length(), CodeName, 0);
 	assert(func); // TODO: Handle errors
+	if (func)
+		SetScriptHandler(Action, JS_GetFunctionObject(func));
+}
 
-	m_ScriptHandlers[Action] = func;
+void IGUIObject::SetScriptHandler(const CStr& Action, JSObject* Function)
+{
+	JSObject** obj = new JSObject*;
+	*obj = Function;
+	JS_AddRoot(g_ScriptingHost.getContext(), obj);
+
+	if (m_ScriptHandlers[Action])
+	{
+		JS_RemoveRoot(g_ScriptingHost.getContext(), m_ScriptHandlers[Action]);
+		delete m_ScriptHandlers[Action];
+	}
+	m_ScriptHandlers[Action] = obj;
 }
 
 void IGUIObject::ScriptEvent(const CStr& Action)
 {
-	map<CStr, JSFunction*>::iterator it = m_ScriptHandlers.find(Action);
+	map<CStr, JSObject**>::iterator it = m_ScriptHandlers.find(Action);
 	if (it == m_ScriptHandlers.end())
 		return;
 
@@ -454,7 +481,7 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 
 	jsval result;
 
-	JSBool ok = JS_CallFunction(g_ScriptingHost.getContext(), jsGuiObject, it->second, 1, paramData, &result);
+	JSBool ok = JS_CallFunctionValue(g_ScriptingHost.getContext(), jsGuiObject, OBJECT_TO_JSVAL(*it->second), 1, paramData, &result);
 	if (!ok)
 	{
 		JS_ReportError(g_ScriptingHost.getContext(), "Errors executing script action \"%s\"", Action.c_str());
