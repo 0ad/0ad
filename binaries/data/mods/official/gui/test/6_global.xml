@@ -39,7 +39,7 @@
 
                 <object type="button" name="End_Game_Button" sprite="sprite1" sprite-over="sprite1-over" sprite-pressed="sprite1-pressed" z="105" textcolor="0 0 0" text-align="center" text-valign="center" hidden="true">End Game
                         <action on="Load"><![CDATA[
-                                AddSize(this.name,
+                                AddSizeString(this.name,
                                 "100%-150 100%-53 100%-30 100%-32", 
                                 "100%-150 0%+32 100%-30 0%+53");
                         ]]></action>
