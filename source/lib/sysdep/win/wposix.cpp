@@ -24,9 +24,6 @@
 
 #include "lib.h"
 #include "win_internal.h"
-#include "hrt.h"
-
-// waio included via lib -> posix -> wposix
 
 
 static HANDLE mk_handle(intptr_t i)

@@ -24,8 +24,9 @@
 #include "detect.h"
 #include "timer.h"
 
+// HACK (see call to wtime_reset_impl)
 #ifdef _WIN32
-#include "win/hrt.h"
+#include "win/wtime.h"
 #endif
 
 
