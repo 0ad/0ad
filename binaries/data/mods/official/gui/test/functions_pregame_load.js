@@ -1,7 +1,7 @@
 function startLoadingScreen()
 {
 // HACK: Added to increase number of players from its default 2, until we have a session creation screen.
-	g_GameAttributes.numPlayers = 9;
+        g_GameAttributes.numPlayers = 9;
 
         // Switch screens from main menu to loading screen.
         GUIObjectHide("PREGAME_GUI");
@@ -27,11 +27,14 @@ function loadSession()
                 // Failed to start the game; go back to the main menu. TODO: display an error message.
                 GUIObjectHide("loading_screen");
                 GUIObjectUnhide("PREGAME_GUI");
-                return;
+                // Show an error message
+                btCaptions = new Array("OK");
+                btCode = new Array("");
+                messageBox(400, 200, "The game could not be started with the given parameters. You probably have entered an invalid map name.", "Error", 0, btCaptions, btCode);
         }
 
-	// Create resource pools for each player, etc.
-	setupSession();        
+        // Create resource pools for each player, etc.
+        setupSession();        
 
         FlipGUI(GUIType);
 
@@ -40,7 +43,7 @@ function loadSession()
         // Fade out main theme and fade in session theme.
         CrossFade(curr_music, curr_session_playlist_1, 0.0001);
 
-	// Switch GUI from main menu to game session.
+        // Switch GUI from main menu to game session.
         GUIObjectHide("loading_screen");
         GUIObjectUnhide("SESSION_GUI");
 }
@@ -49,52 +52,52 @@ function loadSession()
 
 function setupSession()
 {
-	// Do essentials that can only be done when the session has been loaded ...
-	// For example, create the resource types.
-	// Initialise Resource Pools by attaching them to the Player object.
-	// (CPlayer code takes care of giving a copy to each player.)
-	player = new Object(); // I shouldn't need to do this. Need to find the existing Player to add these to.
-	player.resource = new Object();
-	player.resource.food = 0;
-	player.resource.wood = 0;
-	player.resource.stone = 0;
-	player.resource.ore = 0;
-	player.resource.pop = new Object();
-	player.resource.pop.curr = 0;
-	player.resource.pop.housing = 0;
+        // Do essentials that can only be done when the session has been loaded ...
+        // For example, create the resource types.
+        // Initialise Resource Pools by attaching them to the Player object.
+        // (CPlayer code takes care of giving a copy to each player.)
+        player = new Object(); // I shouldn't need to do this. Need to find the existing Player to add these to.
+        player.resource = new Object();
+        player.resource.food = 0;
+        player.resource.wood = 0;
+        player.resource.stone = 0;
+        player.resource.ore = 0;
+        player.resource.pop = new Object();
+        player.resource.pop.curr = 0;
+        player.resource.pop.housing = 0;
 
-	// Start refreshing the session controls.
-	setInterval( getObjectInfo, 1, 1000 );
+        // Start refreshing the session controls.
+        setInterval( getObjectInfo, 1, 1000 );
 }
 
 // ====================================================================
 
 function endSession(closeType)
 {
-	// Occurs when the player chooses to close the current game.
+        // Occurs when the player chooses to close the current game.
 
-	switch (closeType)
-	{
-		case ("return"):
-			// If the player has chosen to quit game and return to main menu,
+        switch (closeType)
+        {
+                case ("return"):
+                        // If the player has chosen to quit game and return to main menu,
 
-			// End the session.
-			endGame();
-			
-			// Fade out current music and return to playing menu theme.
-			curr_music = newRandomSound('music', 'theme');
-			CrossFade(curr_session_playlist_1, curr_music, 0.0001);
+                        // End the session.
+                        endGame();
+                        
+                        // Fade out current music and return to playing menu theme.
+                        curr_music = newRandomSound('music', 'theme');
+                        CrossFade(curr_session_playlist_1, curr_music, 0.0001);
 
-			// Swap GUIs to display main menu.
-			GUIObjectHide('SESSION_GUI');
-			GUIObjectUnhide('PREGAME_GUI');
-		break;
-		case ("exit"):
-			// If the player has chosen to shutdown and immediately return to operating system,
+                        // Swap GUIs to display main menu.
+                        GUIObjectHide('SESSION_GUI');
+                        GUIObjectUnhide('PREGAME_GUI');
+                break;
+                case ("exit"):
+                        // If the player has chosen to shutdown and immediately return to operating system,
 
-			exit();
-		break;
-	}
+                        exit();
+                break;
+        }
 }
 
 // ====================================================================

@@ -115,10 +115,12 @@
                         
                         <!-- PLAYER NAME controls -->
                         <object type="text" name="pregame_mp_ip_playername_txt" absolute="false" size="45 80 200 100" textcolor="0 0 0">
-                                Player Name (temporary):
+                        <action on="Load"><![CDATA[
+                                getGUIObjectByName("pregame_mp_ip_playername_txt").caption = "Player Name (temporary):";
+                        ]]></action>
                         </object>
                         
-                        <object type="input" name="pregame_mp_ip_playername" sprite="only_black" absolute="false" size="220 80 350 100" textcolor="255 255 255">
+                        <object type="input" name="pregame_mp_ip_playername" sprite="only_black_border" absolute="false" size="220 80 350 100" textcolor="0 0 0">
                                 Player
                         </object>
                         <!-- END PLAYER NAME controls -->
@@ -131,10 +133,12 @@
                         </object>
 
                         <object type="text" name="pregame_mp_ip_mapname_txt" absolute="false" size="45 130 200 150" textcolor="0 0 0">
-                                Map Name:
+                        <action on="Load"><![CDATA[
+                                getGUIObjectByName("pregame_mp_ip_mapname_txt").caption = "Map Name:";
+                        ]]></action>
                         </object>
 
-                        <object type="input" name="pregame_mp_ip_host_mapname" sprite="only_black" absolute="false" size="50 150 200 170" textcolor="255 255 255">
+                        <object type="input" name="pregame_mp_ip_host_mapname" sprite="only_black_border" absolute="false" size="50 150 200 170" textcolor="0 0 0">
                                 test01.pmp
                         </object>
 
@@ -157,10 +161,12 @@
                         </object>
 
                         <object type="text" name="pregame_mp_ip_joinip_txt" absolute="false" size="45 190 200 210" textcolor="0 0 0">
-                                IP address:
+                        <action on="Load"><![CDATA[
+                                getGUIObjectByName("pregame_mp_ip_joinip_txt").caption = "IP Address:";
+                        ]]></action>
                         </object>
 
-                        <object type="input" name="pregame_mp_ip_joinip" sprite="only_black" absolute="false" size="50 210 200 230" textcolor="255 255 255">
+                        <object type="input" name="pregame_mp_ip_joinip" sprite="only_black_border" absolute="false" size="50 210 200 230" textcolor="0 0 0">
                                 127.0.0.1
                         </object>
 
@@ -177,7 +183,11 @@
 
                 </object>
                 
-                <!-- SINGLEPLAYER TEMPORARY MAP SELECTION DIALOG -->
+                <!--
+                ===============================================
+                - SINGLEPLAYER TEMPORARY MAP SELECTION DIALOG -
+                ===============================================
+                -->
                 <object type="button" name="pregame_sp_mapsel" sprite="0ad_window" z="106" hidden="true" size="50%-150 50%-90 50%+150 50%+90">
 
                         <!-- The placement of this titlebar object is VERY hackish (see y-placement), but it doesn't work any other way so far, and this dialog will be temporary anyway -->
@@ -193,7 +203,7 @@
                                 Map Name:
                         </object>
 
-                        <object type="input" name="pregame_sp_mapname" sprite="only_black" absolute="false" size="130 90 290 110" textcolor="255 255 255">
+                        <object type="input" name="pregame_sp_mapname" sprite="only_black_border" absolute="false" size="130 90 290 110" textcolor="0 0 0">
                                 ph2
                         </object>
 
