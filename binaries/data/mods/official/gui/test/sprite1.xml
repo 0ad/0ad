@@ -83,6 +83,10 @@
                 <image backcolor="243 242 240" size="0 0 100% 100%" />
         </sprite>
 
+        <sprite name="black">
+                <image backcolor="0 0 0" size="0 0 100% 100%" />
+        </sprite>
+
         <sprite name="white-border">
                 <image backcolor="100 70 120" size="0 0 100% 100%" />
                 <image backcolor="255 255 255" size="-1 -1 100%+1 0" />
@@ -825,6 +829,14 @@
         EDITOR GUI - TEXTURED SPRITES
         ==========================================
         -->
+
+        <sprite name="atlas_mainborder_lt_corner">
+                <image texture="atlas/atlas_mainborder_lt_corner.png" texture-size="0 0 64 64" size="0 0 100% 100%"/>
+        </sprite>
+
+        <sprite name="atlas_mainborder_rt_corner">
+                <image texture="atlas/atlas_mainborder_rt_corner.png" texture-size="0 0 256 256" size="0 0 100% 100%"/>
+        </sprite>
 
         <!--
         ==========================================
