@@ -1208,9 +1208,7 @@ ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void* p, FileIOCB cb, uintpt
 
 	const bool compressed = zfile_compressed(zf);
 
-	ZArchive* za = H_USER_DATA(zf->ha, ZArchive);
-	if(!za)
-		return ERR_INVALID_HANDLE;
+	H_DEREF(zf->ha, ZArchive, za);
 
 	ofs += zf->ofs;
 
