@@ -160,6 +160,9 @@ enum
 	// alias for RES_TEMP scope. the handle will not be kept open.
 	RES_NO_CACHE = 1,
 
+	// not cached, and will never reuse a previous instance
+	RES_UNIQUE = 1|16,
+
 	// the resource isn't backed by a file. the fn parameter is treated as the search key (uintptr_t)
 	// currently only used by mem manager
 	RES_KEY = 8

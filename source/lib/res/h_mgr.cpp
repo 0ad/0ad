@@ -505,7 +505,7 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 	if(!key)
 		flags |= RES_NO_CACHE;	// changes scope to RES_TEMP
 	// check if already loaded (cached)
-	else
+	else if(!(flags & RES_UNIQUE))
 	{
 		// object already loaded?
 		h = h_find(type, key);
