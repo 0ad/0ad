@@ -151,10 +151,10 @@ public:
 	void Tick();
 
 	// Store the player associated with this entity
-	void SetPlayer(CPlayer *pPlayer);
+	inline void SetPlayer(CPlayer *pPlayer);
 
 	// Retrieve the player associated with this entity
-	CPlayer* GetPlayer() { return m_player; } 
+	inline CPlayer* GetPlayer() { return m_player; } 
 
 	// Process damage
 	void Damage( CDamageType& damage, CEntity* inflictor = NULL );
