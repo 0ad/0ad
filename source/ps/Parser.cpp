@@ -166,7 +166,7 @@ bool CParserValue::GetDouble(double &ret)
 		// Check if a digit is found
 		if (m_String[i] >= '0' && m_String[i] <= '9')
 		{
-			double exp = DecimalPos-i;	// disambiguate pow() argument type
+			double exp = (int)(DecimalPos-i);	// disambiguate pow() argument type
 			TempRet += (m_String[i]-'0')*pow(10.0,exp);
 		}
 		// It will accept and ending f, like 1.0f

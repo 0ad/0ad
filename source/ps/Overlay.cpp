@@ -27,31 +27,31 @@ COverlay::~COverlay()
 /*************************************************************************/
 
 CRect::CRect() : 
-	left(0), top(0), right(0), bottom(0) 
+	left(0.f), top(0.f), right(0.f), bottom(0.f) 
 {
 }
 
 CRect::CRect(const CPos &pos) :
-	left(pos.x), top(pos.y), right(pos.x), bottom(pos.y)
+	left((float)pos.x), top((float)pos.y), right((float)pos.x), bottom((float)pos.y)
 {
 }
 
 CRect::CRect(const CSize &size) :
-	left(0), top(0), right(size.cx), bottom(size.cy)
+	left(0.f), top(0.f), right((float)size.cx), bottom((float)size.cy)
 {
 }
 
 CRect::CRect(const CPos &upperleft, const CPos &bottomright) :
-	left(upperleft.x), top(upperleft.y), right(bottomright.x), bottom(bottomright.y)
+	left((float)upperleft.x), top((float)upperleft.y), right((float)bottomright.x), bottom((float)bottomright.y)
 {
 }
 
 CRect::CRect(const CPos &pos, const CSize &size) :
-	left(pos.x), top(pos.y), right(pos.x+size.cx), bottom(pos.y+size.cy)
+	left((float)pos.x), top((float)pos.y), right((float)(pos.x+size.cx)), bottom((float)(pos.y+size.cy))
 {
 }
 
-CRect::CRect(const int32_t &_l, const int32_t &_t, const int32_t &_r, const int32_t &_b) : 
+CRect::CRect(const float &_l, const float &_t, const float &_r, const float &_b) : 
 	left(_l), top(_t), right(_r), bottom(_b) 
 {
 }
@@ -101,13 +101,13 @@ CRect CRect::operator + (const CRect& a) const
 // +
 CRect CRect::operator + (const CPos& a) const
 {
-	return CRect(left+a.x, top+a.y, right+a.x, bottom+a.y);
+	return CRect(left+(float)a.x, top+(float)a.y, right+(float)a.x, bottom+(float)a.y);
 }
 
 // +
 CRect CRect::operator + (const CSize& a) const
 {
-	return CRect(left+a.cx, top+a.cy, right+a.cx, bottom+a.cy);
+	return CRect(left+(float)a.cx, top+(float)a.cy, right+(float)a.cx, bottom+(float)a.cy);
 }
 
 // -
@@ -119,13 +119,13 @@ CRect CRect::operator - (const CRect& a) const
 // -
 CRect CRect::operator - (const CPos& a) const
 { 
-	return CRect(left-a.x, top-a.y, right-a.x, bottom-a.y);
+	return CRect(left-(float)a.x, top-(float)a.y, right-(float)a.x, bottom-(float)a.y);
 }
 
 // -
 CRect CRect::operator - (const CSize& a) const
 { 
-	return CRect(left-a.cx, top-a.cy, right-a.cx, bottom-a.cy);
+	return CRect(left-(float)a.cx, top-(float)a.cy, right-(float)a.cx, bottom-(float)a.cy);
 }
 
 // +=
@@ -140,19 +140,19 @@ void CRect::operator +=(const CRect& a)
 // +=
 void CRect::operator +=(const CPos& a)
 {
-	left += a.x;
-	top += a.y;
-	right += a.x;
-	bottom += a.y;
+	left += (float)a.x;
+	top += (float)a.y;
+	right += (float)a.x;
+	bottom += (float)a.y;
 }
 
 // +=
 void CRect::operator +=(const CSize& a)
 {
-	left += a.cx;
-	top += a.cy;
-	right += a.cx;
-	bottom += a.cy;
+	left += (float)a.cx;
+	top += (float)a.cy;
+	right += (float)a.cx;
+	bottom += (float)a.cy;
 }
 
 // -=
@@ -167,34 +167,34 @@ void CRect::operator -=(const CRect& a)
 // -=
 void CRect::operator -=(const CPos& a)
 {
-	left -= a.x;
-	top -= a.y;
-	right -= a.x;
-	bottom -= a.y;
+	left -= (float)a.x;
+	top -= (float)a.y;
+	right -= (float)a.x;
+	bottom -= (float)a.y;
 }
 
 // -=
 void CRect::operator -=(const CSize& a)
 {
-	left -= a.cx;
-	top -= a.cy;
-	right -= a.cx;
-	bottom -= a.cy;
+	left -= (float)a.cx;
+	top -= (float)a.cy;
+	right -= (float)a.cx;
+	bottom -= (float)a.cy;
 }
 
-int32_t CRect::GetWidth() const 
+float CRect::GetWidth() const 
 {
 	return right-left;
 }
 
-int32_t CRect::GetHeight() const
+float CRect::GetHeight() const
 {
 	return bottom-top;
 }
 
 CSize CRect::GetSize() const
 {
-	return CSize(right-left, bottom-top);
+	return CSize((int)right-left, (int)bottom-top);
 }
 
 CPos CRect::TopLeft() const
@@ -204,12 +204,12 @@ CPos CRect::TopLeft() const
 
 CPos CRect::BottomRight() const
 {
-	return CPos(right, right);
+	return CPos((int)right, (int)right);
 }
 
 CPos CRect::CenterPoint() const
 {
-	return CPos((left+right)/2, (top+bottom)/2);
+	return CPos(int((left+right)/2.f), int((top+bottom)/2.f));
 }
 
 bool CRect::PointInside(const CPos &point) const

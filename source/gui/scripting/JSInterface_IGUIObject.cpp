@@ -1,4 +1,4 @@
-// $Id: JSInterface_IGUIObject.cpp,v 1.10 2004/08/14 11:23:38 philip Exp $
+// $Id: JSInterface_IGUIObject.cpp,v 1.11 2004/09/02 03:03:13 gee Exp $
 
 #include "precompiled.h"
 
@@ -165,6 +165,8 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				break;
 			}
 
+			// TODO Gee: (2004-09-01) EAlign and EVAlign too.
+
 		default:
 			JS_ReportError(cx, "Setting '%s' uses an unimplemented type", propName.c_str());
 			assert(! "This shouldn't happen");
@@ -308,6 +310,8 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 					}
 					break;
 				}
+
+				// TODO Gee: (2004-09-01) EAlign and EVAlign too.
 
 			default:
 				JS_ReportError(cx, "Setting '%s' uses an unimplemented type", propName.c_str());

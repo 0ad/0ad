@@ -47,10 +47,10 @@ class CSize;
  * @author Gustav Larsson
  *
  * Rectangle class used for screen rectangles. It's very similiar to the MS
- * CRect, but be aware it is not identical.
- * Works with CPos.
- * @see CSize
- * @see CPos
+ * CRect, but with FLOATS because it's meant to be used with OpenGL which
+ * takes float values.
+ *
+ * Changed to floats 2004-08-31 /GL
  */
 class CRect
 {
@@ -60,7 +60,7 @@ public:
 	CRect(const CSize &size);
 	CRect(const CPos &upperleft, const CPos &bottomright);
 	CRect(const CPos &pos, const CSize &size);
-	CRect(const int32_t &_l, const int32_t &_t, const int32_t &_r, const int32_t &_b);
+	CRect(const float &_l, const float &_t, const float &_r, const float &_b);
 
 	// Operators
 	void				operator =  (const CRect& a);
@@ -86,12 +86,12 @@ public:
 	/**
 	 * @return Width of Rectangle
 	 */
-	int32_t GetWidth() const;
+	float GetWidth() const;
 	
 	/**
 	 * @return Height of Rectangle
 	 */
-	int32_t GetHeight() const;
+	float GetHeight() const;
 
 	/**
 	 * Get Size
@@ -128,7 +128,7 @@ public:
 	/**
 	 * Dimensions
 	 */
-	int32_t left, top, right, bottom;
+	float left, top, right, bottom;
 };
 
 /**
