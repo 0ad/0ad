@@ -309,7 +309,8 @@ static void list_add_dll(const char* dll_path)
 
 	// get filename for "already added" check.
 	const char* dll_fn = strrchr(dll_path, '\\')+1;
-	if(dll_fn != (const char*)1)	// fires if dll_path was a filename
+
+	if(dll_fn == (const char*)1)	// if dll_path was a filename
 	{
 		debug_warn("list_add_dll: invalid path");
 		return;
