@@ -290,7 +290,7 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 		off_t size = s.st_size;
 
 		// dir
-		if(s.st_mode & S_IFDIR)
+		if(S_ISDIR(s.st_mode))
 		{
 			// skip . and ..
 			if(fn[0] == '.' && (fn[1] == '\0' || (fn[1] == '.' && fn[2] == '\0')))
@@ -300,7 +300,7 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 			size = -1;
 		}
 		// skip if neither dir nor file
-		else if(!(s.st_mode & S_IFREG))
+		else if(!S_ISREG(s.st_mode))
 			continue;
 
 		const DirEnt* const ent = new DirEnt(fn, flags, size);
@@ -437,20 +437,20 @@ int file_open(const char* const p_fn, const uint flags, File* const f)
 	// don't stat if opening for writing - the file may not exist yet
 	off_t size = 0;
 
-	int mode = O_RDONLY;
+	int oflag = O_RDONLY;
 	if(flags & FILE_WRITE)
-		mode = O_WRONLY;
+		oflag = O_WRONLY | O_CREAT;
 	else
 	{
 		struct stat s;
 		if(stat(n_fn, &s) < 0)
 			return -1;
-		if(!(s.st_mode & S_IFREG))
+		if(!S_ISREG(s.st_mode))
 			return -1;
 		size = s.st_size;
 	}
 
-	int fd = open(n_fn, mode);
+	int fd = open(n_fn, oflag, S_IRWXO);
 	if(fd < 0)
 		return -1;
 
