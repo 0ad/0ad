@@ -868,7 +868,8 @@ int debug_main_exception_filter(unsigned int UNUSEDPARAM(code), PEXCEPTION_POINT
 	// Disable memory-leak reporting, because it's going to
 	// leak like a bucket with a missing bottom when it crashes.
 #ifdef HAVE_DEBUGALLOC
-	_CrtSetDbgFlag( _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & ~_CRTDBG_LEAK_CHECK_DF );
+	uint flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
+	_CrtSetDbgFlag(flags  & ~_CRTDBG_LEAK_CHECK_DF);
 #endif
 
 	exit(EXIT_FAILURE);
