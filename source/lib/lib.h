@@ -254,14 +254,6 @@ extern int ilog2(const int n);
 
 extern uintptr_t round_up(uintptr_t val, uintptr_t multiple);
 
-
-// provide fminf for non-C99 compilers
-#ifndef HAVE_C99
-extern float fminf(float, float);
-#endif
-
-
-
 extern u16 fp_to_u16(double in);
 
 // big endian!

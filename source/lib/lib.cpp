@@ -271,19 +271,6 @@ u16 subusw(u16 x, u16 y)
 }
 
 
-// provide fminf for non-C99 compilers
-#ifndef HAVE_C99
-
-float fminf(float a, float b)
-{
-	return (a < b)? a : b;
-}
-
-#endif
-
-
-
-
 // input in [0, 1); convert to u8 range
 u8 fp_to_u8(double in)
 {
