@@ -63,7 +63,10 @@ CBaseEntity* CBaseEntityCollection::getTemplate( CStrW name )
 	{
 		CBaseEntity* base = getTemplate( newTemplate->m_Base_Name );
 		if( base )
+		{
 			newTemplate->m_base = base;
+			newTemplate->loadBase();
+		}
 		else
 			LOG( WARNING, LOG_CATEGORY, "Parent template \"%ls\" does not exist in template \"%ls\"", newTemplate->m_Base_Name.c_str(), newTemplate->m_Tag.c_str() );
 			// (The requested entity will still be returned, but with no parent.
