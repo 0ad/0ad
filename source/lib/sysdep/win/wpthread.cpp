@@ -287,12 +287,17 @@ static DWORD calc_timeout_length_ms(const struct timespec* abs_timeout,
 
 	timeout_is_valid = true;
 
-	i64 ds = abs_timeout->tv_sec - cur_time.tv_sec;	// i64 to avoid overflow
-	long dn = abs_timeout->tv_nsec - cur_time.tv_nsec;
+	// convert absolute deadline to relative length
+	// note: use i64 to avoid overflow in multiply
+	const i64  ds = abs_timeout->tv_sec  - cur_time.tv_sec;
+	const long dn = abs_timeout->tv_nsec - cur_time.tv_nsec;
 	i64 length_ms = ds*1000 + dn/1000000;
-	// > 49 days -> result doesn't fit in 32 bits; most likely bogus.
-	// also be careful to avoid returning exactly -1,
-	// because that's the Win32 INFINITE value.
+	// .. deadline already reached; we'll still attempt to lock once
+	if(length_ms < 0)
+		return 0;
+	// .. length > 49 days => result won't fit in 32 bits. most likely bogus.
+	//    note: we're careful to avoid returning exactly -1 since
+	//          that's the Win32 INFINITE value.
 	if(length_ms >= 0xffffffff)
 	{
 		debug_warn("calc_timeout_length_ms: 32-bit overflow");
