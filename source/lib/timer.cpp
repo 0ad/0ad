@@ -24,9 +24,11 @@
 #include <numeric>
 #include <math.h>
 
-// wrapper over gettimeofday, instead of emulating it for Windows,
-// because double return type allows higher resolution (e.g. if using TSC),
-// and gettimeofday is not guaranteed to be monotonic.
+
+// rationale for wrapping gettimeofday and clock_gettime, instead of emulating
+// them where not available: allows returning higher-resolution timer values
+// than their µs / ns interface, via double [seconds]. they're also not
+// guaranteed to be monotonic.
 
 double get_time()
 {
@@ -62,8 +64,9 @@ double get_time()
 
 	// make sure time is monotonic (never goes backwards)
 	static double t_last;
-	if(t_last != 0.0 && t < t_last)
+	if(t < t_last)
 		t = t_last;
+	t_last = t;
 
 	return t;
 }
@@ -79,8 +82,12 @@ double timer_res()
 
 #else
 
-	// guess millisecond-class
-	return 1e-3;
+	double t0, t1, t2;
+	t0 = get_time();
+	do t1 = get_time();	while(t1 == t0);
+	do t2 = get_time();	while(t2 == t1);
+
+	return t2-t1;
 
 #endif
 }
