@@ -216,9 +216,9 @@ struct FileLoc
 // - storing Dir objects directly in the map means less
 //   memory allocations / no need to free them.
 //
-// *_add guard against a subdir and file of the same name.
+// add_* aborts if a subdir or file of the same name already exists.
 
-typedef std::map<const std::string, FileLoc*> Files;
+typedef std::map<const std::string, const FileLoc*> Files;
 typedef Files::iterator FileIt;
 	// notes:
 	// - FileLoc is allocated and owned by caller (the mount code)
@@ -234,11 +234,11 @@ typedef SubDirs::iterator SubDirIt;
 
 struct Dir
 {
-	int file_add(const char* name, const FileLoc* loc);
-	FileLoc* file_find(const char* name);
+	int add_file(const char* name, const FileLoc* loc);
+	const FileLoc* find_file(const char* name);
 
-	int subdir_add(const char* name);
-	Dir* subdir_find(const char* name);
+	int add_subdir(const char* name);
+	Dir* find_subdir(const char* name);
 
 	void clearR();
 
@@ -247,9 +247,9 @@ struct Dir
 };
 
 
-int Dir::subdir_add(const char* const fn)
+int Dir::add_subdir(const char* const fn)
 {
-	if(file_find(fn) || subdir_find(fn))
+	if(find_file(fn) || find_subdir(fn))
 	{
 		debug_warn("dir_add: file or subdirectory of same name already exists");
 		return -1;
@@ -262,7 +262,7 @@ int Dir::subdir_add(const char* const fn)
 }
 
 
-Dir* Dir::subdir_find(const char* const fn)
+Dir* Dir::find_subdir(const char* const fn)
 {
 	SubDirIt it = subdirs.find(fn);
 	if(it == subdirs.end())
@@ -271,9 +271,9 @@ Dir* Dir::subdir_find(const char* const fn)
 }
 
 
-int Dir::file_add(const char* const fn, const FileLoc* const loc)
+int Dir::add_file(const char* const fn, const FileLoc* const loc)
 {
-	if(subdir_find(fn))
+	if(find_subdir(fn))
 	{
 		debug_warn("dir_add: file of same name already exists");
 		return -1;
@@ -281,7 +281,11 @@ int Dir::file_add(const char* const fn, const FileLoc* const loc)
 
 	// default pointer ctor sets it to 0 =>
 	// if fn wasn't already in the container, old_loc is 0.
-	const FileLoc*& old_loc = files[fn];
+	typedef const FileLoc* Data;
+		// for absolute clarity; the container holds const FileLoc* objects.
+		// operator[] returns a reference to that.
+		// need this typedef to work around a GCC bug?
+	Data& old_loc = files[fn];
 	// old loc exists and is higher priority - keep it.
 	if(old_loc && old_loc->pri > loc->pri)
 		return 1;
@@ -291,7 +295,7 @@ int Dir::file_add(const char* const fn, const FileLoc* const loc)
 }
 
 
-FileLoc* Dir::file_find(const char* const fn)
+const FileLoc* Dir::find_file(const char* const fn)
 {
 	FileIt it = files.find(fn);
 	if(it == files.end())
@@ -322,65 +326,96 @@ static Dir vfs_root;
 enum LookupFlags
 {
 	LF_DEFAULT                   = 0,
-	LF_CREATE_MISSING_COMPONENTS = 1
+
+	LF_CREATE_MISSING_COMPONENTS = 1,
+
+	LF_LAST                      = 2
 };
 
 
 // starts in VFS root directory (path = "").
-// path doesn't need to, and shouldn't, start with '/'.
+// path may specify a file or directory; it need not end in '/'.
 static int tree_lookup(const char* path, const FileLoc** const loc = 0, Dir** const dir = 0, LookupFlags flags = LF_DEFAULT)
 {
 	CHECK_PATH(path);
-
-	// copy into (writeable) buffer so we can 'tokenize' path components
-	// by replacing '/' with '\0'.
-	// note: CHECK_PATH does length checking
-	char buf[VFS_MAX_PATH];
-	strcpy(buf, path);
-	const char* cur_component = buf;
+	assert(loc != 0 || dir != 0);
+	assert(flags < LF_LAST);
 
 	const bool create_missing_components = flags & LF_CREATE_MISSING_COMPONENTS;
 
-	Dir* cur_dir = &vfs_root;
+	// copy into (writeable) buffer so we can 'tokenize' path components
+	// by replacing '/' with '\0'. length check done by CHECK_PATH.
+	char buf[VFS_MAX_PATH];
+	strcpy(buf, path);
 
-	// for each path component:
+	Dir* cur_dir = &vfs_root;
+	const char* cur_component = buf;
+	bool is_last_component = false;
+
+	// subdirectory traverse logic
+	// valid:
+	//   "" (root dir),
+	//   "*file",
+	//   "*dir[/]"
+	// invalid:
+	//   "/*" (caught by CHECK_PATH),
+	//   "*file/*" (subdir switch will fail)
+	//
+	// a bit tricky: make sure we go through the directory checks for the
+	// last component - it may either be a file or directory name.
+	// we don't require a trailing '/' for dir names because appending it
+	// to a given dir name would be more (unnecessary) work for the caller.
+
+	// successively navigate to the next subdirectory in <path>.
 	for(;;)
 	{
+		// "extract" cur_component string (0-terminate by replacing '/')
 		char* slash = strchr(cur_component, '/');
-		// done, cur_component is the filename or "" if <path> is a directory
-		if(!slash)
+		if(slash)
+			*slash = 0;
+		// allow root dir ("") and trailing '/' if looking up a dir
+		if(*cur_component == '\0' && loc == 0)
 			break;
-		*slash = 0;	// 0-terminate cur_component
-		const char* subdir_name = cur_component;
+		is_last_component = (slash == 0);
 
-		// create <subdir_name>
-		// (note: no-op if it already exists
+		// create <cur_component> subdir (no-op if it already exists)
 		if(create_missing_components)
-			cur_dir->subdir_add(subdir_name);
+			cur_dir->add_subdir(cur_component);
 
-		// switch to <subdir_name>
-		Dir* subdir = cur_dir->subdir_find(subdir_name);
+		// switch to <cur_component>
+		Dir* subdir = cur_dir->find_subdir(cur_component);
 		if(!subdir)
-			return ERR_PATH_NOT_FOUND;
+		{
+			// this last component is a filename.
+			if(is_last_component && loc != 0)
+				break;
+			// otherwise, we had an (invalid) subdir name - fail.
+			return -ENOENT;
+		}
+		cur_dir = subdir; // don't assign if invalid - need cur_dir below.
 
 		// next component
-		cur_dir = subdir;
+		if(is_last_component)
+			break;
 		cur_component = slash+1;
 	}
 
-	// we have followed all path components.
-
-	// caller wants pointer to file location returned
+	// caller wants a file (possibly in addition to its dir)
 	if(loc)
 	{
-		*loc = cur_dir->file_find(cur_component);
+		*loc = cur_dir->find_file(cur_component);
 		// .. but the file doesn't exist
 		if(!*loc)
-			return ERR_FILE_NOT_FOUND;
+			return -ENOENT;
 	}
-	// caller wants pointer to this dir returned
+
+	// if loc != 0, we know cur_dir is correct, because it contains
+	// the desired file (otherwise, the find_file above will have failed).
+	// if loc == 0, path is a dir name, and we have successfully traversed
+	// all path components (subdirectories) in the loop.
 	if(dir)
 		*dir = cur_dir;
+
 	return 0;
 }
 
@@ -396,7 +431,9 @@ static inline void tree_clear()
 struct FileCBParams
 {
 	Dir* const dir;
-	const FileLoc* loc;
+	const FileLoc* const loc;
+	FileCBParams(Dir* _dir, const FileLoc* _loc)
+		: dir(_dir), loc(_loc) {}
 };
 
 // called for each OS dir ent.
@@ -413,17 +450,17 @@ struct FileCBParams
 static int add_dirent_cb(const char* const fn, const uint flags, const ssize_t size, const uintptr_t user)
 {
 	const FileCBParams* const params = (FileCBParams*)user;
-	Dir* const cur_dir = params->dir;
+	Dir* const cur_dir           = params->dir;
 	const FileLoc* const cur_loc = params->loc;
 
 	int err;
 
 	// directory
 	if(flags & LOC_DIR)
-		err = cur_dir->subdir_add(fn);
+		err = cur_dir->add_subdir(fn);
 	// file
 	else
-		err = cur_dir->file_add(fn, cur_loc);
+		err = cur_dir->add_file(fn, cur_loc);
 
 	if(err < 0)
 		return -EEXIST;
@@ -436,7 +473,7 @@ static int tree_add_dirR(Dir* const dir, const char* const f_path, const FileLoc
 	CHECK_PATH(f_path);
 
 	// add files and subdirs to vdir
-	const FileCBParams params = { dir, loc };
+	const FileCBParams params(dir, loc);
 	file_enum(f_path, add_dirent_cb, (uintptr_t)&params);
 
 	for(SubDirIt it = dir->subdirs.begin(); it != dir->subdirs.end(); ++it)
@@ -458,7 +495,7 @@ static int tree_add_loc(Dir* const dir, const FileLoc* const loc)
 {
 	if(loc->archive > 0)
 	{
-		FileCBParams params = { dir, loc };
+		const FileCBParams params(dir, loc);
 		return zip_enum(loc->archive, add_dirent_cb, (uintptr_t)&params);
 	}
 	else
@@ -479,6 +516,9 @@ static int tree_add_loc(Dir* const dir, const FileLoc* const loc)
 // container must not invalidate iterators after insertion!
 // (we keep and pass around pointers to Mount.archive_locs elements)
 // see below.
+//
+// not const, because we h_free a handle in FileLoc
+// (it resets the handle to 0)
 typedef std::list<FileLoc> Locs;
 typedef Locs::iterator LocIt;
 
@@ -510,7 +550,7 @@ struct Mount
 	Mount() {}
 	Mount(const char* _v_path, const char* _f_name, uint _pri)
 		: v_path(_v_path), f_name(_f_name), pri(_pri),
-		dir_loc(0, "", 0), archive_locs(), is_single_archive(false)
+		dir_loc(0, _f_name, 0), archive_locs(), is_single_archive(false)
 	{
 	}
 };
@@ -582,7 +622,7 @@ static int remount(Mount& m)
 	const char* const v_path = m.v_path.c_str();
 	const char* const f_name = m.f_name.c_str();
 	const uint pri           = m.pri;
-	FileLoc& dir_loc         = m.dir_loc;
+	const FileLoc& dir_loc   = m.dir_loc;
 	Locs& archive_locs       = m.archive_locs;
 
 	Dir* dir;
@@ -609,8 +649,6 @@ static int remount(Mount& m)
 		tree_add_loc(dir, loc);
 	}
 
-
-	dir_loc.dir = f_name;
 	err = tree_add_loc(dir, &dir_loc);
 	if(err < 0)
 		err = err;
