@@ -304,10 +304,29 @@ int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param
 }
 
 
-int pthread_create(pthread_t* /* thread */, const void* /* attr */, void*(*func)(void*), void* arg)
+struct ThreadParam
 {
-	/* can't use asm 'cause _beginthread might be a func ptr (with libc) */
-	return (int)_beginthread((void(*)(void*))func, 0, arg);
+	void*(*func)(void*);
+	void* user_arg;
+};
+
+static unsigned __stdcall thread_start(void* arg)
+{
+	const ThreadParam* param = (const ThreadParam*)arg;
+
+	param->func(param->user_arg);
+	return 0;
+}
+
+
+int pthread_create(pthread_t* thread, const void* attr, void*(*func)(void*), void* user_arg)
+{
+	UNUSED(attr);
+
+	// can't use asm - _beginthreadex might be a func ptr (with DLL CRT)
+	const ThreadParam param = { func, user_arg };
+	*thread = (pthread_t)_beginthreadex(0, 0, thread_start, (void*)&param, 0, 0);
+	return 0;
 }
 
 
