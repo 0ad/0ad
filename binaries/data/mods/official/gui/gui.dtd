@@ -1,0 +1,133 @@
+<!--
+	Types
+-->
+<!ENTITY % bool				"(true|false)">
+<!ENTITY % align			"(left|center|right)">
+<!ENTITY % valign			"(top|center|bottom)">
+
+<!--
+	Defines
+-->
+<!ENTITY % unique_settings
+ "name					CDATA #IMPLIED
+  type					CDATA 'empty'
+  style					CDATA #IMPLIED"
+>
+
+<!ENTITY % base_settings
+ "absolute 				%bool; #IMPLIED
+  enabled				%bool; #IMPLIED
+  ghost					%bool; #IMPLIED
+  hidden				%bool; #IMPLIED
+  size					CDATA #IMPLIED
+  z					CDATA #IMPLIED"
+>
+
+
+<!-- Defaults are not put in here, because it ruins the concept of styles -->
+
+<!ENTITY % ex_settings
+ "checked				%bool; #IMPLIED
+  font					CDATA #IMPLIED
+  input-initvalue-destroyed-at-focus	%bool; #IMPLIED
+  rectcolor-selected			CDATA #IMPLIED
+  scrollbar				%bool; #IMPLIED
+  scrollbar-style			CDATA #IMPLIED
+  sprite				CDATA #IMPLIED
+  sprite2				CDATA #IMPLIED
+  sprite-disabled			CDATA #IMPLIED
+  sprite2-disabled			CDATA #IMPLIED
+  sprite-over				CDATA #IMPLIED
+  sprite2-over				CDATA #IMPLIED
+  sprite-pressed			CDATA #IMPLIED
+  sprite2-pressed			CDATA #IMPLIED
+  square-side				CDATA #IMPLIED
+  textalign				%align; #IMPLIED
+  textcolor				CDATA #IMPLIED
+  textcolor-disabled			CDATA #IMPLIED
+  textcolor-over			CDATA #IMPLIED
+  textcolor-pressed			CDATA #IMPLIED
+  textcolor-selected			CDATA #IMPLIED
+  textvalign				%valign; #IMPLIED
+  tooltip				CDATA #IMPLIED
+  tooltip-style				CDATA #IMPLIED"
+>
+
+<!--
+	<objects>
+-->
+<!ELEMENT objects (object*)>
+<!ELEMENT object (#PCDATA|object|action)*>
+<!ATTLIST object 
+  %unique_settings;
+  %base_settings;
+  %ex_settings;
+>
+<!ELEMENT action (#PCDATA)>
+<!ATTLIST action 
+  on					CDATA #REQUIRED
+>
+
+<!--
+	<styles>
+-->
+<!ELEMENT styles (style*)>
+<!ELEMENT style EMPTY>
+<!ATTLIST style 
+  name					CDATA #REQUIRED
+  %base_settings; 
+  %ex_settings;
+>
+
+<!--
+	<setup>
+-->
+<!ELEMENT setup (icon|scrollbar|tooltip)*>
+<!ELEMENT scrollbar EMPTY>
+<!ELEMENT icon EMPTY>
+<!ELEMENT tooltip EMPTY>
+
+<!--
+	<scrollbar>
+-->
+<!ATTLIST scrollbar
+  name					CDATA #REQUIRED
+  width					CDATA #IMPLIED
+  scroll-wheel				%bool; #IMPLIED
+  alwaysshown				%bool; #IMPLIED
+  scroll-speed				CDATA #IMPLIED
+  sprite-button-top			CDATA #IMPLIED
+  sprite-button-top-pressed		CDATA #IMPLIED
+  sprite-button-top-disabled		CDATA #IMPLIED
+  sprite-button-top-over		CDATA #IMPLIED
+  sprite-button-bottom			CDATA #IMPLIED
+  sprite-button-bottom-pressed		CDATA #IMPLIED
+  sprite-button-bottom-disabled		CDATA #IMPLIED
+  sprite-button-bottom-over		CDATA #IMPLIED
+  sprite-bar-vertical			CDATA #IMPLIED
+  sprite-bar-vertical-over		CDATA #IMPLIED
+  sprite-bar-vertical-pressed		CDATA #IMPLIED
+  sprite-back-vertical			CDATA #IMPLIED
+  minimum-bar-size			CDATA #IMPLIED
+>
+
+<!--
+	<sprites>
+-->
+<!ELEMENT sprites (sprite*)>
+<!ELEMENT sprite (image+)>
+<!ELEMENT image EMPTY>
+
+<!ATTLIST sprite 
+  name 					CDATA #REQUIRED
+>
+
+<!ATTLIST image
+  texture				CDATA #IMPLIED
+  size					CDATA #IMPLIED
+  texture_size				CDATA #IMPLIED
+  backcolor				CDATA #IMPLIED
+  bordercolor				CDATA #IMPLIED
+  border				%bool; #IMPLIED
+  z-level				CDATA #IMPLIED
+>

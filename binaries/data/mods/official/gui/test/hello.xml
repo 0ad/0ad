@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no" ?>
+
+<!DOCTYPE objects SYSTEM "../gui.dtd">
+
+<objects>
+ <object
+		type="button"
+  name="arena"
+		sprite="sprite1"
+  size="0 0 600 400"
+		z="100"
+ >
+  <action on="Load"><![CDATA[
+    g_ballx = 300;
+    g_bally = 200;
+//    g_balldx = 23;
+//    g_balldy = 11;
+    g_balldx = 0;
+    g_balldy = 0;
+  ]]></action>
+
+  <action on="MouseOver"><![CDATA[
+    g_ballx += g_balldx;
+    g_bally += g_balldy;
+    if (g_ballx > 600) {
+      g_balldx *= -0.9;
+      g_ballx = 600-(g_ballx-600);
+    }
+    else if (g_ballx < 0) {
+      g_balldx *= -0.9;
+      g_ballx = -g_ballx;
+    }
+    if (g_bally > 400) {
+      g_balldy *= -0.9;
+      g_bally = 400-(g_bally-400);
+    }
+    else if (g_bally < 0) {
+      g_balldy *= -0.9;
+      g_bally = -g_bally;
+    }
+
+    // Gravitate towards the mouse
+    var vect_x = g_ballx-mouse.x;
+    var vect_y = g_bally-mouse.y;
+    var dsquared = vect_x*vect_x + vect_y*vect_y;
+    if (dsquared < 1000) dsquared = 1000;
+    var force = 10000.0 / dsquared;
+    var mag = Math.sqrt(vect_x*vect_x + vect_y*vect_y);
+    vect_x /= mag; vect_y /= mag;
+    g_balldx -= force * vect_x;
+    g_balldy -= force * vect_y;
+
+    var ball = getGUIObjectByName('ball');
+    var r=5;
+    ball.size = new GUISize(g_ballx-r, g_bally-r, g_ballx+r, g_bally+r);
+  ]]></action>
+ </object>
+
+	<object
+  type="button"
+  name="ball"
+  sprite="sprite1"
+  size="0 0 1 1"
+  z="120"
+ >*
+  <action on="Press"><![CDATA[
+    writeConsole(mouse);
+  ]]></action>
+ </object>
+
+	<object
+  type="button"
+  sprite="sprite1"
+  size="592 2 608 18"
+  z="200"
+ >*
+  <action on="Press"><![CDATA[
+    var arena = getGUIObjectByName('arena');
+    arena.hidden = !arena.hidden;
+  ]]></action>
+ </object>
+
+</objects>
