@@ -252,8 +252,8 @@ const RGBAColor& CRenderer::GetOptionColor(enum Option opt) const
 // BeginFrame: signal frame start
 void CRenderer::BeginFrame()
 {
-    if(!g_Game || !g_Game->IsGameStarted())
-        return;
+	if(!g_Game || !g_Game->IsGameStarted())
+		return;
 
 	// bump frame counter
 	m_FrameCounter++;

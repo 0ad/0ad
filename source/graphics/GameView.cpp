@@ -41,13 +41,7 @@ CGameView::CGameView(CGame *pGame):
 	m_ViewZoomSmoothness(0.02f),
 	m_ViewSnapSmoothness(0.02f),
 	m_CameraPivot(),
-	m_CameraDelta()//,
-//	m_CameraZoom(10)
-{
-	InitResources();
-}
-
-void CGameView::Initialize(CGameAttributes *pAttribs)
+	m_CameraDelta()
 {
 	SViewPort vp;
 	vp.m_X=0;
@@ -56,6 +50,17 @@ void CGameView::Initialize(CGameAttributes *pAttribs)
 	vp.m_Height=g_yres;
 	m_Camera.SetViewPort(&vp);
 
+	m_Camera.SetProjection (1, 5000, DEGTORAD(20));
+	m_Camera.m_Orientation.SetXRotation(DEGTORAD(30));
+	m_Camera.m_Orientation.RotateY(DEGTORAD(-45));
+	m_Camera.m_Orientation.Translate (100, 150, -100);
+	g_Renderer.SetCamera(m_Camera);
+
+	InitResources();
+}
+
+void CGameView::Initialize(CGameAttributes *pAttribs)
+{
 	CConfigValue* cfg;
 	
 #define getViewParameter( name, value ) STMT( \
@@ -75,14 +80,6 @@ void CGameView::Initialize(CGameAttributes *pAttribs)
 	if( ( m_ViewSnapSmoothness < 0.0f ) || ( m_ViewSnapSmoothness > 1.0f ) ) m_ViewSnapSmoothness = 0.02f;
 
 #undef getViewParameter
-
-	// If we start storing initial camera in the Map/World, change this code to
-	// init from the CWorld member instead of filling in defaults
-	m_Camera.SetProjection (1, 5000, DEGTORAD(20));
-	m_Camera.m_Orientation.SetXRotation(DEGTORAD(30));
-	m_Camera.m_Orientation.RotateY(DEGTORAD(-45));
-	m_Camera.m_Orientation.Translate (100, 150, -100);
-	g_Renderer.SetCamera(m_Camera);
 }
 
 void CGameView::Render()
