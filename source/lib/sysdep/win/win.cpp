@@ -206,10 +206,21 @@ static inline void pre_main_init()
 }
 
 
-
+extern u64 rdtsc();
+extern u64 PREVTSC;
+u64 PREVTSC;
 
 int entry()
 {
+#ifdef _MSC_VER
+u64 TSC=rdtsc();
+debug_out(
+"----------------------------------------\n"\
+"ENTRY\n"\
+"----------------------------------------\n");
+PREVTSC=TSC;
+#endif
+
 	pre_libc_init();
 	return WinMainCRTStartup();	// calls _cinit, and then WinMain
 }
