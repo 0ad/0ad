@@ -8,8 +8,10 @@
 #define _UNICODE
 #undef CStr
 #undef CStr_hash_compare
-#define CStr CStr16
-#define CStr_hash_compare CStr16_hash_compare
+#define CStr CStrW
+// Compat for old code. *Deprecated* CStrW isn't 16-bit - it is "wide"
+#define CStr16 CStrW
+#define CStr_hash_compare CStrW_hash_compare
 #include UNIDOUBLER_HEADER
 
 // Undef all the Conversion Macros
