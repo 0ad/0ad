@@ -1,24 +1,189 @@
 #include "precompiled.h"
 
 #include <string.h>
+#include <sstream>
 
 
 #ifdef _WIN32
 
-// From win.cpp (so we don't need all the Windows headers in here)
-void cursor_set(const char* name);
+#include "lib/sysdep/win/win_internal.h"
+
+#include "lib/res/tex.h"
+#include "lib/res/ogl_tex.h"
+#include "lib/res/vfs.h"
+#include "lib/ogl.h"
+#include "lib/res/CVFSFile.h"
+
+
+// Slightly hacky resource-loading code, but it doesn't
+// need to do anything particularly clever.
+// Pass name==NULL to unset the cursor. Pass name=="xyz"
+// to load "art/textures/cursors/xyz.txt" (containing e.g. "10 10"
+// for hotspot position) and "art/textures/cursors/xyz.png".
 
 void cursor_draw(const char* name)
 {
-	cursor_set(name);
+	static HICON last_cursor = NULL;
+	static char* last_name = NULL;
+
+	if (name == NULL)
+	{
+		// Clean up and go back to the standard Windows cursor
+
+		SetCursor(LoadCursor(NULL, IDC_ARROW));
+
+		if (last_cursor)
+			DestroyIcon(last_cursor);
+		last_cursor = NULL;
+
+		delete[] last_name;
+		last_name = NULL;
+
+		return;
+	}
+
+	// Don't do much if it's the same as last time
+	if (last_name && !strcmp(name, last_name))
+	{
+		if (GetCursor() != last_cursor)
+			SetCursor(last_cursor);
+		return;
+	}
+
+	// Store the name, so that the code can tell when it's
+	// being called several times with the same cursor
+	delete[] last_name;
+	last_name = new char[strlen(name)+1];
+	strcpy(last_name, name);
+
+	char filename[VFS_MAX_PATH];
+
+	// Load the .txt file containing the pixel offset of
+	// the cursor's hotspot (the bit of it that's
+	// drawn at (mouse_x,mouse_y) )
+	sprintf(filename, "art/textures/cursors/%s.txt", name);
+
+	int hotspotx, hotspoty;
+
+	{
+		CVFSFile file;
+		if (file.Load(filename) != PSRETURN_OK)
+		{
+			assert(! "Error loading cursor hotspot .txt file");
+			return;
+		}
+		std::stringstream s;
+		s << file.GetAsString();
+		s >> hotspotx >> hotspoty;
+	}
+
+	sprintf(filename, "art/textures/cursors/%s.png", name);
+
+	Handle tex = tex_load(filename);
+	if (tex <= 0)
+	{
+		// TODO: Handle errors
+		assert(! "Error loading cursor texture");
+		return;
+	}
+
+	// Convert the image data into a DIB
+
+	int w, h, fmt, bpp;
+	u32* imgdata;
+	tex_info(tex, &w, &h, &fmt, &bpp, (void**)&imgdata);
+	u32* imgdata_bgra;
+	if (fmt == GL_BGRA)
+	{
+		// No conversion needed
+		imgdata_bgra = imgdata;
+	}
+	else if (fmt == GL_RGBA)
+	{
+		// Convert ABGR -> ARGB (little-endian)
+		imgdata_bgra = new u32[w*h];
+		for (int i=0; i<w*h; ++i)
+		{
+			imgdata_bgra[i] = (
+				(imgdata[i] & 0xff00ff00) // G and A
+				| ( (imgdata[i] << 16) & 0x00ff0000) // R
+				| ( (imgdata[i] >> 16) & 0x000000ff) // B
+				);
+		}
+	}
+	else
+	{
+		// TODO: Handle errors
+		assert(! "Cursor texture not 32-bit RGBA/BGRA");
+
+		tex_free(tex);
+
+		return;
+	}
+
+	BITMAPINFOHEADER dibheader = {
+		sizeof(BITMAPINFOHEADER), // biSize
+			w,	// biWidth
+			-h,	// biHeight (negative for top-down)
+			1,	// biPlanes
+			32,	// biBitCount
+			BI_RGB,	// biCompression
+			0,	// biSizeImage (not needed for BI_RGB)
+			0,	// biXPelsPerMeter (I really don't care how many pixels are in a meter)
+			0,	// biYPelsPerMeter
+			0,	// biClrUser (0 == maximum for this biBitCount. I hope we're not going to run in paletted display modes.)
+			0	// biClrImportant
+	};
+	BITMAPINFO dibinfo = {
+		dibheader,	// bmiHeader
+			NULL		// bmiColors[]
+	};
+
+	HDC hDC = wglGetCurrentDC();
+	HBITMAP iconbitmap = CreateDIBitmap(hDC, &dibheader, CBM_INIT, imgdata_bgra, &dibinfo, 0);
+	if (! iconbitmap)
+	{
+		// TODO: Handle errors
+		assert(! "Error creating icon DIB");
+
+		if (imgdata_bgra != imgdata) delete[] imgdata_bgra;
+		tex_free(tex);
+
+		return;
+	}
+
+	ICONINFO info = { FALSE, hotspotx, hotspoty, iconbitmap, iconbitmap };
+	HICON cursor = CreateIconIndirect(&info);
+	DeleteObject(iconbitmap);
+
+	if (! cursor)
+	{
+		// TODO: Handle errors
+		assert(! "Error creating cursor");
+
+		if (imgdata_bgra != imgdata) delete[] imgdata_bgra;
+		tex_free(tex);
+
+		return;
+	}
+
+	if (last_cursor)
+		DestroyIcon(last_cursor);
+	SetCursor(cursor);
+	last_cursor = cursor;
+
+	if (imgdata_bgra != imgdata) delete[] imgdata_bgra;
+	tex_free(tex);
 }
 
+/****************************************************************/
 #else // #ifdef _WIN32
 
 #include "lib/res/tex.h"
 #include "lib/res/ogl_tex.h"
 #include "lib/res/vfs.h"
 #include "lib/ogl.h"
+#include "lib/res/CVFSFile.h"
 
 extern int mouse_x, mouse_y;
 
@@ -90,24 +255,17 @@ void cursor_draw(const char* name)
 	sprintf(filename, "art/textures/cursors/%s.txt", name);
 
 	int hotspotx, hotspoty;
+
 	{
-		void* data;
-		size_t size;
-		Handle h = vfs_load(filename, data, size);
-		if (h <= 0)
+		CVFSFile file;
+		if (file.Load(filename) != PSRETURN_OK)
 		{
-			// TODO: Handle errors
 			assert(! "Error loading cursor hotspot .txt file");
 			return;
 		}
-		if (sscanf((const char*)data, "%d %d", &hotspotx, &hotspoty) != 2)
-		{
-			// TODO: Handle errors
-			assert(! "Invalid contents of cursor hotspot .txt file (should be like \"123 456\")");
-			return;
-		}
-
-		// TODO: Unload the file
+		std::stringstream s;
+		s << file.GetAsString();
+		s >> hotspotx >> hotspoty;
 	}
 
 	sprintf(filename, "art/textures/cursors/%s.png", name);
