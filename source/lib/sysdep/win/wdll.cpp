@@ -261,13 +261,13 @@ FLoadedAtPreferredAddress(PIMAGE_NT_HEADERS pinh, HMODULE hmod) {
 #define InterlockedExchangePointer(Target, Value) \
     (PVOID)(uintptr_t)InterlockedExchange((PLONG)(Target), (LONG)(uintptr_t)(Value))
 
-/*
+
 #if (_MSC_VER >= 1300)
 typedef __w64 unsigned long *PULONG_PTR;
 #else
 typedef unsigned long *PULONG_PTR;
 #endif
-*/
+
 
 #endif
 
@@ -295,11 +295,11 @@ extern "C" FARPROC WINAPI __delayLoadHelper2(PCImgDelayDescr pidd, FARPROC* ppfn
     if (!(idd.grAttrs & dlattrRva))
 	{
         PDelayLoadInfo  rgpdli[1] = { &dli };
-/*
+
         RaiseException(
             VcppException(ERROR_SEVERITY_ERROR, ERROR_INVALID_PARAMETER),
             0, 1, PULONG_PTR(rgpdli)
-            );*/
+            );
         return 0;
         }
 
@@ -354,14 +354,14 @@ extern "C" FARPROC WINAPI __delayLoadHelper2(PCImgDelayDescr pidd, FARPROC* ppfn
 
             if (hmod == 0) {
                 PDelayLoadInfo  rgpdli[1] = { &dli };
-/*
+
                 RaiseException(
                     VcppException(ERROR_SEVERITY_ERROR, ERROR_MOD_NOT_FOUND),
                     0,
                     1,
                     PULONG_PTR(rgpdli)
                     );
-*/
+
                 // If we get to here, we blindly assume that the handler of the exception
                 // has magically fixed everything up and left the function pointer in 
                 // dli.pfnCur.
@@ -426,14 +426,14 @@ extern "C" FARPROC WINAPI __delayLoadHelper2(PCImgDelayDescr pidd, FARPROC* ppfn
             }
         if (pfnRet == 0) {
             PDelayLoadInfo  rgpdli[1] = { &dli };
-/*
+
             RaiseException(
                 VcppException(ERROR_SEVERITY_ERROR, ERROR_PROC_NOT_FOUND),
                 0,
                 1,
                 PULONG_PTR(rgpdli)
                 );
-*/
+
             // If we get to here, we blindly assume that the handler of the exception
             // has magically fixed everything up and left the function pointer in 
             // dli.pfnCur.
