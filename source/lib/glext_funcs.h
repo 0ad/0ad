@@ -1,5 +1,7 @@
-//#include <GL/glext.h>
-#include <GL/wglext.h>
+#include <GL/glext.h>
+#ifdef _WIN32
+# include <GL/wglext.h>
+#endif
 /*
 typedef void* HDC;
 typedef void* HGLRC;
@@ -51,6 +53,7 @@ FUNC(void, glGetBufferParameterivARB, (int target, int pname, int* params))
 FUNC(void, glGetBufferPointervARB, (int target, int pname, void** params))
 
 // ARB_pbuffer
+#ifdef _WIN32
 FUNC(HPBUFFERARB, wglCreatePbufferARB, (HDC, int, int, int, const int*))
 FUNC(HDC, wglGetPbufferDCARB, (HPBUFFERARB))
 FUNC(int, wglReleasePbufferDCARB, (HPBUFFERARB, HDC))
@@ -61,6 +64,7 @@ FUNC(int, wglQueryPbufferARB, (HPBUFFERARB, int, int*))
 FUNC(int, wglGetPixelFormatAttribivARB, (HDC, int, int, unsigned int, const int*, int*))
 FUNC(int, wglGetPixelFormatAttribfvARB, (HDC, int, int, unsigned int, const int*, float*))
 FUNC(int, wglChoosePixelFormatARB, (HDC, const int *, const float*, unsigned int, int*, unsigned int*))
+#endif // _WIN32
 
 // ARB_texture_compression
 FUNC(void, glCompressedTexImage3DARB, (GLenum, GLint, GLenum, GLsizei, GLsizei, GLsizei, GLint, GLsizei, const GLvoid*))

@@ -2,7 +2,10 @@
 #ifndef _SCRIPTINGHOST_H_
 #define _SCRIPTINGHOST_H_
 
+#ifdef _WIN32
 #define XP_WIN
+#endif
+
 #include <jsapi.h>
 
 #include <string>

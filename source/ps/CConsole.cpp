@@ -374,7 +374,7 @@ void CConsole::InsertMessage(const wchar_t* szMessage, ...)
 	wchar_t* szBuffer = new wchar_t[BUFFER_SIZE];
 
 	va_start(args, szMessage);
-	if (vsnwprintf(szBuffer, BUFFER_SIZE, szMessage, args) == -1)
+	if (vswprintf(szBuffer, BUFFER_SIZE, szMessage, args) == -1)
 		debug_out("Error printfing console message (buffer size exceeded?");
 	va_end(args);
 
@@ -390,7 +390,7 @@ void CConsole::SetBuffer(const wchar_t* szMessage, ...)
 	wchar_t* szBuffer = new wchar_t[BUFFER_SIZE];
 
 	va_start(args, szMessage);
-		vsnwprintf(szBuffer, BUFFER_SIZE, szMessage, args);
+		vswprintf(szBuffer, BUFFER_SIZE, szMessage, args);
 	va_end(args);
 
 	FlushBuffer();

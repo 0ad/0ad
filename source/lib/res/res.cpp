@@ -10,6 +10,7 @@
 #include <fam.h>
 #endif
 
+#include <string.h>
 
 int res_reload(const char* const fn)
 {

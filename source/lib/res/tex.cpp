@@ -503,6 +503,9 @@ static int png_load(const char* fn, const u8* ptr, size_t size, Tex* t)
 	const char* msg = 0;
 	int err = -1;
 
+	const u8** rows = 0; 
+		// freed in cleanup code; need scoping on VC6 due to goto
+
 	// allocate PNG structures
 	png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
 	if(!png_ptr)
@@ -522,8 +525,6 @@ fail:
 		goto ret;
 	}
 
-	const u8** rows = 0;
-		// freed in cleanup code; need scoping on VC6 due to goto
 
 	{
 

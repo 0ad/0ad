@@ -6,7 +6,13 @@
 #include <sstream>
 #include <fstream>
 #include <iostream>
-#include "float.h" // <- MT: Just for _finite(), converting certain strings was causing wierd bugs.
+
+#ifdef _WIN32
+# include "float.h" // <- MT: Just for _finite(), converting certain strings was causing wierd bugs.
+# define finite _finite
+#else
+# define finite __finite // PT: Need to use _finite in MSVC, __finite in gcc
+#endif
 
 #pragma comment (lib, "js32.lib")
 
@@ -282,7 +288,7 @@ double ScriptingHost::ValueToDouble(const jsval value)
 
 	JSBool ok = JS_ValueToNumber(m_Context, value, &d);
 
-	if (ok == JS_FALSE || !_finite( d ) )
+	if (ok == JS_FALSE || !finite( d ) )
 	{
 		throw (std::string("Convert to double failed"));
 	}

@@ -7,6 +7,10 @@
 
 #ifndef _WIN32
 
+#include <stdio.h>
+#include <wchar.h>
+#include <stdarg.h>
+
 // portable output routines (win.cpp overrides these)
 
 void display_msg(const char* caption, const char* msg)

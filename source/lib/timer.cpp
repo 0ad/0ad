@@ -21,6 +21,7 @@
 #include "timer.h"
 #include "adts.h"
 
+#include <numeric>
 #include <math.h>
 
 // wrapper over gettimeofday, instead of emulating it for Windows,

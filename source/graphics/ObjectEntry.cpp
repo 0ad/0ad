@@ -110,7 +110,7 @@ bool CObjectEntry::BuildModel()
 				}
 			}
 		} else {
-			LOG(ERROR,"Failed to matching prop point called \"%s\" in model \"%s\"\n",prop.m_PropPointName,(const char*) modelfilename);
+			LOG(ERROR,"Failed to matching prop point called \"%s\" in model \"%s\"\n", (const char*)prop.m_PropPointName, (const char*)modelfilename);
 		}
 	}
 

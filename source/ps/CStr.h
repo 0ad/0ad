@@ -66,8 +66,8 @@ enum PS_TRIM_MODE {PS_TRIM_LEFT, PS_TRIM_RIGHT, PS_TRIM_BOTH};
 #define _tcout	wcout
 #define	_tstod	wcstod
 #define TCHAR wchar_t
-#define _ttoi _wtoi
-#define _ttol _wtol
+#define _ttoi(a) wcstol(a, NULL, 0)
+#define _ttol(a) wcstol(a, NULL, 0)
 #define _T(t) L ## t
 #define _totlower towlower
 #define _istspace iswspace
