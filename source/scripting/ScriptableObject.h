@@ -164,7 +164,7 @@ template<typename T, bool ReadOnly> class CJSProperty : public IJSProperty
 public:
 	CJSProperty( T* Data, IJSObject* Owner = NULL, bool AllowsInheritance = false, IJSObject::NotifyFn Update = NULL, IJSObject::NotifyFn Freshen = NULL )
 	{
-		assert( !( !m_Owner && ( Freshen || Update ) ) ); // Bad programmer.
+		assert( !( !Owner && ( Freshen || Update ) ) ); // Bad programmer.
 		m_Data = Data;
 		m_Owner = Owner;
 		m_AllowsInheritance = AllowsInheritance;
@@ -336,7 +336,8 @@ public:
 	static void ScriptingInit( const char* ClassName, JSNative Constructor = NULL, uintN ConstructorMinArgs = 0 )
 	{
 		JSFunctionSpec* JSI_methods = new JSFunctionSpec[ m_Methods.size() + 1 ];
-		for( unsigned int MethodID = 0; MethodID < m_Methods.size(); MethodID++ )
+		unsigned int MethodID;
+		for( MethodID = 0; MethodID < m_Methods.size(); MethodID++ )
 			JSI_methods[MethodID] = m_Methods[MethodID];
 
 		JSI_methods[MethodID].name = 0;

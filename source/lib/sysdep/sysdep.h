@@ -63,6 +63,20 @@ extern float fmaxf(float a, float b);
 # include <ext/hash_map>
 # define STL_HASH_MAP __gnu_cxx::hash_map
 # define STL_HASH_MULTIMAP __gnu_cxx::hash_multimap
+
+// Hack: GCC Doesn't have a hash instance for std::string included (and it looks
+// like they won't add it - marked resolved/wontfix in the gcc bugzilla)
+namespace __gnu_cxx
+{
+	template<> struct hash<std::string>
+	{
+		size_t operator()(const std::string& __x) const 
+		{
+			return __stl_hash_string(__x.c_str());
+    	}
+	};
+}
+
 #else	// !__GNUC__
 # include <hash_map>
 # if defined(_MSC_VER) && (_MSC_VER >= 1300)

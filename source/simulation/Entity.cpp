@@ -25,14 +25,14 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	m_ahead.x = sin( m_orientation );
 	m_ahead.y = cos( m_orientation );
 	
-	AddProperty( L"template", (CBaseEntity**)&m_base, false, (NotifyFn)loadBase );
+	AddProperty( L"template", (CBaseEntity**)&m_base, false, (NotifyFn)&CEntity::loadBase );
 	AddProperty( L"actions.move.speed", &m_speed );
-	AddProperty( L"selected", &m_selected, false, (NotifyFn)checkSelection );
-	AddProperty( L"group", &m_grouped, false, (NotifyFn)checkGroup );
-	AddProperty( L"extant", &m_extant, false, (NotifyFn)checkExtant );
+	AddProperty( L"selected", &m_selected, false, (NotifyFn)&CEntity::checkSelection );
+	AddProperty( L"group", &m_grouped, false, (NotifyFn)&CEntity::checkGroup );
+	AddProperty( L"extant", &m_extant, false, (NotifyFn)&CEntity::checkExtant );
 	AddProperty( L"actions.move.turningradius", &m_turningRadius );
-	AddProperty( L"position", &m_graphics_position, false, (NotifyFn)teleport );
-	AddProperty( L"orientation", &m_graphics_orientation, false, (NotifyFn)reorient );
+	AddProperty( L"position", &m_graphics_position, false, (NotifyFn)&CEntity::teleport );
+	AddProperty( L"orientation", &m_graphics_orientation, false, (NotifyFn)&CEntity::reorient );
 
 	
 	for( int t = 0; t < EVENT_LAST; t++ )
@@ -521,9 +521,9 @@ void CEntity::renderSelectionOutline( float alpha )
 
 void CEntity::ScriptingInit()
 {
-	AddMethod<jsval, ToString>( "toString", 0 );
-	AddMethod<bool, OrderSingle>( "order", 1 );
-	AddMethod<bool, OrderQueued>( "orderQueued", 1 );
+	AddMethod<jsval, &CEntity::ToString>( "toString", 0 );
+	AddMethod<bool, &CEntity::OrderSingle>( "order", 1 );
+	AddMethod<bool, &CEntity::OrderQueued>( "orderQueued", 1 );
 	CJSObject<CEntity, true>::ScriptingInit( "Entity", Construct, 2 );
 }
 
@@ -593,10 +593,11 @@ JSBool CEntity::Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsva
 
 jsval CEntity::ToString( JSContext* cx, uintN argc, jsval* argv )
 {
-	utf16_t buffer[256];
+	wchar_t buffer[256];
 	swprintf( buffer, 256, L"[object Entity: %ls]", m_base->m_Tag.c_str() );
 	buffer[255] = 0;
-	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, buffer ) ) );
+	utf16string str16(buffer, buffer+wcslen(buffer));
+	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, str16.c_str() ) ) );
 }
 
 bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )

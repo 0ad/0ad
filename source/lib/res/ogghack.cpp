@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <cassert>
 
-#include <al/al.h>
+#include <AL/al.h>
 #include <vorbis/vorbisfile.h>
 
 

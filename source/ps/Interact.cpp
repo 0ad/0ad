@@ -15,7 +15,7 @@ extern bool keys[SDLK_LAST];
 extern bool g_active;
 
 static const float SELECT_DBLCLICK_RATE = 0.5f;
-static const int ORDER_DELAY = 5;
+const int ORDER_DELAY = 5;
 
 void CSelectedEntities::addSelection( HEntity entity )
 {

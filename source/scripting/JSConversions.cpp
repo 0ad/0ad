@@ -197,12 +197,12 @@ template<> bool ToPrimitive<CStrW>( JSContext* cx, jsval v, CStrW& Storage )
 
 template<> jsval ToJSVal<CStrW>( const CStrW& Native )
 {
-	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( g_ScriptingHost.GetContext(), Native.c_str() ) ) );
+	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( g_ScriptingHost.GetContext(), Native.utf16().c_str() ) ) );
 }
 
 template<> jsval ToJSVal<CStrW>( CStrW& Native )
 {
-	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( g_ScriptingHost.GetContext(), Native.c_str() ) ) );
+	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( g_ScriptingHost.GetContext(), Native.utf16().c_str() ) ) );
 }
 
 // jsval

@@ -12,8 +12,8 @@ CScriptEvent::CScriptEvent( const CStrW& Type, bool Cancelable, unsigned int Typ
 
 void CScriptEvent::ScriptingInit()
 {
-	AddMethod<jsval, ToString>( "toString", 0 );
-	AddMethod<jsval, PreventDefault>( "preventDefault", 0 );
+	AddMethod<jsval, &CScriptEvent::ToString>( "toString", 0 );
+	AddMethod<jsval, &CScriptEvent::PreventDefault>( "preventDefault", 0 );
 
 	CJSObject<CScriptEvent>::ScriptingInit( "Event" );
 }
@@ -27,9 +27,10 @@ jsval CScriptEvent::PreventDefault( JSContext* cx, uintN argc, jsval* argv )
 
 jsval CScriptEvent::ToString( JSContext* cx, uintN argc, jsval* argv )
 {
-	utf16_t buffer[256];
+	wchar_t buffer[256];
 	swprintf( buffer, 256, L"[object Event: %ls]", m_Type.c_str() );
 	buffer[255] = 0;
-	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, buffer ) ) );
+	utf16string str16=utf16string(buffer, buffer+wcslen(buffer));
+	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, str16.c_str() ) ) );
 }
 

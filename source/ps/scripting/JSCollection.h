@@ -5,6 +5,8 @@
 
 #include "scripting/ScriptingHost.h"
 #include "scripting/JSInterface_Entity.h"
+#include "simulation/ScriptObject.h"
+#include "scripting/JSConversions.h"
 
 #ifndef JS_COLLECTION_INCLUDED
 #define JS_COLLECTION_INCLUDED
@@ -264,7 +266,7 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::S
 	CJSCollectionData* CollectionData = new CJSCollectionData();
 	CollectionData->m_EngineOwned = false;
 
-	std::vector<T>::iterator it;
+	typename std::vector<T>::iterator it;
 
 	CScriptObject Predicate( argv[0] );
 

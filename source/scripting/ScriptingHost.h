@@ -114,6 +114,7 @@ public:
 	bool ValueToBool(const jsval value);
 	std::string ValueToString(const jsval value);
 	CStrW ValueToUCString( const jsval value );
+	utf16string ValueToUTF16( const jsval value );
     double ValueToDouble(const jsval value);
 
 	jsval UCStringToValue(const utf16string &str);

@@ -1,17 +1,18 @@
 #include "precompiled.h"
+
 #include "gui/MiniMap.h"
-#include "ps/game.h"
+#include "ps/Game.h"
 
 #include "ogl.h"
-#include "renderer/renderer.h"
+#include "renderer/Renderer.h"
 #include "graphics/TextureEntry.h"
 #include "graphics/TextureManager.h"
 
 static unsigned int ScaleColor(unsigned int color,float x)
 {
-    unsigned int r=unsigned int(float(color & 0xff)*x);
-    unsigned int g=unsigned int(float((color>>8) & 0xff)*x);
-    unsigned int b=unsigned int(float((color>>16) & 0xff)*x);
+    unsigned int r=uint(float(color & 0xff)*x);
+    unsigned int g=uint(float((color>>8) & 0xff)*x);
+    unsigned int b=uint(float((color>>16) & 0xff)*x);
     return (0xff000000 | r | g<<8 | b<<16);
 }
 

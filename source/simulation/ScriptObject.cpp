@@ -81,5 +81,6 @@ void CScriptObject::DispatchEvent( JSObject* Context, CScriptEvent* evt )
 void CScriptObject::Compile( CStrW FileNameTag, CStrW FunctionBody )
 {
 	const char* argnames[] = { "evt" };
-	Function = JS_CompileUCFunction( g_ScriptingHost.GetContext(), NULL, NULL, 1, argnames, FunctionBody, FunctionBody.Length(), (CStr)FileNameTag, 0 );
+	utf16string str16=FunctionBody.utf16();
+	Function = JS_CompileUCFunction( g_ScriptingHost.GetContext(), NULL, NULL, 1, argnames, str16.c_str(), str16.size(), (CStr)FileNameTag, 0 );
 }

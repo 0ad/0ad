@@ -244,7 +244,7 @@ void CBaseEntity::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement&
 
 void CBaseEntity::ScriptingInit()
 {
-	AddMethod<jsval, ToString>( "toString", 0 );
+	AddMethod<jsval, &CBaseEntity::ToString>( "toString", 0 );
 	CJSObject<CBaseEntity, true>::ScriptingInit( "EntityTemplate" );
 }
 
@@ -252,8 +252,9 @@ void CBaseEntity::ScriptingInit()
 
 jsval CBaseEntity::ToString( JSContext* cx, uintN argc, jsval* argv )
 {
-	utf16_t buffer[256];
+	wchar_t buffer[256];
 	swprintf( buffer, 256, L"[object EntityTemplate: %ls]", m_Tag.c_str() );
 	buffer[255] = 0;
-	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, buffer ) ) );
+	utf16string str16(buffer, buffer+wcslen(buffer));
+	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, str16.c_str() ) ) );
 }

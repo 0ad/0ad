@@ -27,7 +27,6 @@
 
 #include "ps/Game.h"
 
-#include "Config.h"
 #include "MapReader.h"
 #include "Terrain.h"
 #include "TextureManager.h"
@@ -592,7 +591,7 @@ static void LoadGlobals()
 		val->GetBool(g_Shadows);
 		
 	LOG(NORMAL, LOG_CATEGORY, "g_x/yres is %dx%d", g_xres, g_yres);
-	LOG(NORMAL, LOG_CATEGORY, "Active profile is %s", g_ActiveProfile);
+	LOG(NORMAL, LOG_CATEGORY, "Active profile is %s", g_ActiveProfile.c_str());
 }
 
 static void ParseArgs(int argc, char* argv[])
