@@ -5,13 +5,7 @@
 #include "Singleton.h"
 #include "renderer/VertexProgram.h"
 
-#if (_MSC_VER < 1300) || (_MSC_VER > 1310)
-#   include <map>
-typedef std::map<std::string, CVertexProgram *> pp_map;
-#else
-#   include <hash_map>
-typedef std::hash_map<std::string, CVertexProgram *> pp_map;
-#endif
+typedef STL_HASH_MAP<std::string, CVertexProgram *> pp_map;
 
 #define g_ProgramManager CProgramManager::GetSingleton()
 
