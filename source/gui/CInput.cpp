@@ -15,6 +15,8 @@ gee@pyro.nu
 #include "OverlayText.h"
 #include "lib/res/unifont.h"
 
+#include "ps/Hotkey.h"
+
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "gui"
 
@@ -59,133 +61,162 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 {
 	assert(m_iBufferPos != -1);
 
-	int szChar = ev->key.keysym.sym;
-	wchar_t cooked = (wchar_t)ev->key.keysym.unicode;
-
 	// Since the GUI framework doesn't handle to set settings
 	//  in Unicode (CStrW), we'll simply retrieve the actual
 	//  pointer and edit that.
 	CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
 
-	switch (szChar){
-		//TODOcase '\r':
-	/*	case '\n':
-			// TODO Gee: (2004-09-07) New line? I should just add '\n'
-			*pCaption += wchar_t('\n');
-			++m_iBufferPos;
-			break;
-*/
-	/*	case '\r':
-			// TODO Gee: (2004-09-07) New line? I should just add '\n'
-			*pCaption += wchar_t('\n');
-			++m_iBufferPos;
-			break;
-*/
-		case '\t':
-			/* Auto Complete */
-			// TODO Gee: (2004-09-07) What to do with tab?
-			break;
-
-		case '\b':
-			// TODO Gee: (2004-09-07) What is this?
-			if (pCaption->Length() == 0 ||
-				m_iBufferPos == 0)
-				break;
-
-			if (m_iBufferPos == pCaption->Length())
-				*pCaption = pCaption->Left( (long) pCaption->Length()-1);
-			else
-				*pCaption = pCaption->Left( m_iBufferPos-1 ) + 
-							pCaption->Right( (long) pCaption->Length()-m_iBufferPos );
-
-			UpdateText(m_iBufferPos-1, m_iBufferPos, m_iBufferPos-1);
-			
-			--m_iBufferPos;
-			break;
-
-		case SDLK_DELETE:
-			if (pCaption->Length() == 0 ||
-				m_iBufferPos == pCaption->Length())
-				break;
-
-			*pCaption = pCaption->Left( m_iBufferPos ) + 
-						pCaption->Right( (long) pCaption->Length()-(m_iBufferPos+1) );
-
-			UpdateText(m_iBufferPos, m_iBufferPos+1, m_iBufferPos);
-			break;
-
-		case SDLK_HOME:
-			m_iBufferPos = 0;
-			break;
-
-		case SDLK_END:
-			m_iBufferPos = (long) pCaption->Length();
-			break;
-
-		case SDLK_LEFT:
-			if (m_iBufferPos) 
-				--m_iBufferPos;
-			break;
-
-		case SDLK_RIGHT:
-			if (m_iBufferPos != pCaption->Length())
-				++m_iBufferPos;
-			break;
-
-		case SDLK_UP:
-			/*if (m_deqBufHistory.size() && iHistoryPos != (int)m_deqBufHistory.size() - 1)
+	if (ev->type == SDL_HOTKEYDOWN)
+	{
+		if (ev->user.code == HOTKEY_CONSOLE_PASTE)
+		{
+			wchar_t* text = clipboard_get();
+			if (text)
 			{
-				iHistoryPos++;
-				SetBuffer(m_deqBufHistory.at(iHistoryPos).data());
-			}*/
-			break;
+				if (m_iBufferPos == pCaption->Length())
+					*pCaption += text;
+				else
+					*pCaption = pCaption->Left(m_iBufferPos) + text + 
+					pCaption->Right((long) pCaption->Length()-m_iBufferPos);
 
-		case SDLK_DOWN:
-			/*if (iHistoryPos != -1) iHistoryPos--;
+				UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
 
-			if (iHistoryPos != -1)
-				SetBuffer(m_deqBufHistory.at(iHistoryPos).data());
-			else FlushBuffer();*/
-			break;
+				m_iBufferPos += (int)wcslen(text);
 
-		case SDLK_PAGEUP:
-			//if (m_iMsgHistPos != (int)m_deqMsgHistory.size()) m_iMsgHistPos++;
-			break;
+				clipboard_free(text);
+			}
 
-		case SDLK_PAGEDOWN:
-			//if (m_iMsgHistPos != 1) m_iMsgHistPos--;
-			break;
-		/* END: Message History Lookup */
-
-		case '\r':
-			cooked = '\n'; // Change to '\n' and do default:
-			// NOTE: Fall-through
-
-		default: //Insert a character
-			if (cooked == 0)
-				return EV_PASS; // Important, because we didn't use any key
-
-			if (m_iBufferPos == pCaption->Length())
-				*pCaption += cooked;
-			else
-				*pCaption = pCaption->Left(m_iBufferPos) + CStrW(cooked) + 
-							pCaption->Right((long) pCaption->Length()-m_iBufferPos);
-
-			UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
-
-			++m_iBufferPos;
-
-			// TODO
-			//UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+4);
-
-			//m_iBufferPos+=4;
-
-			break;
+			return EV_HANDLED;
+		}
 	}
+	else if (ev->type == SDL_KEYDOWN)
+	{
 
-	//UpdateText();
+		int szChar = ev->key.keysym.sym;
+		wchar_t cooked = (wchar_t)ev->key.keysym.unicode;
 
-	return EV_HANDLED;
+		switch (szChar){
+			//TODOcase '\r':
+		/*	case '\n':
+				// TODO Gee: (2004-09-07) New line? I should just add '\n'
+				*pCaption += wchar_t('\n');
+				++m_iBufferPos;
+				break;
+	*/
+		/*	case '\r':
+				// TODO Gee: (2004-09-07) New line? I should just add '\n'
+				*pCaption += wchar_t('\n');
+				++m_iBufferPos;
+				break;
+	*/
+			case '\t':
+				/* Auto Complete */
+				// TODO Gee: (2004-09-07) What to do with tab?
+				break;
+
+			case '\b':
+				// TODO Gee: (2004-09-07) What is this?
+				if (pCaption->Length() == 0 ||
+					m_iBufferPos == 0)
+					break;
+
+				if (m_iBufferPos == pCaption->Length())
+					*pCaption = pCaption->Left( (long) pCaption->Length()-1);
+				else
+					*pCaption = pCaption->Left( m_iBufferPos-1 ) + 
+								pCaption->Right( (long) pCaption->Length()-m_iBufferPos );
+
+				UpdateText(m_iBufferPos-1, m_iBufferPos, m_iBufferPos-1);
+				
+				--m_iBufferPos;
+				break;
+
+			case SDLK_DELETE:
+				if (pCaption->Length() == 0 ||
+					m_iBufferPos == pCaption->Length())
+					break;
+
+				*pCaption = pCaption->Left( m_iBufferPos ) + 
+							pCaption->Right( (long) pCaption->Length()-(m_iBufferPos+1) );
+
+				UpdateText(m_iBufferPos, m_iBufferPos+1, m_iBufferPos);
+				break;
+
+			case SDLK_HOME:
+				m_iBufferPos = 0;
+				break;
+
+			case SDLK_END:
+				m_iBufferPos = (long) pCaption->Length();
+				break;
+
+			case SDLK_LEFT:
+				if (m_iBufferPos) 
+					--m_iBufferPos;
+				break;
+
+			case SDLK_RIGHT:
+				if (m_iBufferPos != pCaption->Length())
+					++m_iBufferPos;
+				break;
+
+			case SDLK_UP:
+				/*if (m_deqBufHistory.size() && iHistoryPos != (int)m_deqBufHistory.size() - 1)
+				{
+					iHistoryPos++;
+					SetBuffer(m_deqBufHistory.at(iHistoryPos).data());
+				}*/
+				break;
+
+			case SDLK_DOWN:
+				/*if (iHistoryPos != -1) iHistoryPos--;
+
+				if (iHistoryPos != -1)
+					SetBuffer(m_deqBufHistory.at(iHistoryPos).data());
+				else FlushBuffer();*/
+				break;
+
+			case SDLK_PAGEUP:
+				//if (m_iMsgHistPos != (int)m_deqMsgHistory.size()) m_iMsgHistPos++;
+				break;
+
+			case SDLK_PAGEDOWN:
+				//if (m_iMsgHistPos != 1) m_iMsgHistPos--;
+				break;
+			/* END: Message History Lookup */
+
+			case '\r':
+				cooked = '\n'; // Change to '\n' and do default:
+				// NOTE: Fall-through
+
+			default: //Insert a character
+				if (cooked == 0)
+					return EV_PASS; // Important, because we didn't use any key
+
+				if (m_iBufferPos == pCaption->Length())
+					*pCaption += cooked;
+				else
+					*pCaption = pCaption->Left(m_iBufferPos) + CStrW(cooked) + 
+								pCaption->Right((long) pCaption->Length()-m_iBufferPos);
+
+				UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
+
+				++m_iBufferPos;
+
+				// TODO
+				//UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+4);
+
+				//m_iBufferPos+=4;
+
+				break;
+		}
+
+		//UpdateText();
+
+		return EV_HANDLED;
+	}
+	
+	return EV_PASS;
 }
 
 void CInput::HandleMessage(const SGUIMessage &Message)

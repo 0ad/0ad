@@ -233,11 +233,15 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 	}
 
 	// Handle keys for input boxes
-	if (GetFocusedObject() && ev->type == SDL_KEYDOWN)
+	if (GetFocusedObject())
 	{
-		if( (ev->key.keysym.sym != SDLK_ESCAPE ) &&
-			!keys[SDLK_LCTRL] && !keys[SDLK_RCTRL] &&
-			!keys[SDLK_LALT] && !keys[SDLK_RALT]) 
+		if (
+			(ev->type == SDL_KEYDOWN &&
+				ev->key.keysym.sym != SDLK_ESCAPE &&
+				!keys[SDLK_LCTRL] && !keys[SDLK_RCTRL] &&
+				!keys[SDLK_LALT] && !keys[SDLK_RALT]) 
+			|| ev->type == SDL_HOTKEYDOWN
+			)
 		{
 			ret = GetFocusedObject()->ManuallyHandleEvent(ev);
 		}
