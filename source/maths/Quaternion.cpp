@@ -15,8 +15,8 @@ const float EPSILON=0.0001f;
 
 CQuaternion::CQuaternion()
 {
-	m_V.Clear ();
-	m_W = 0;
+	m_V.Clear();
+	m_W = 1;
 }
 
 //quaternion addition
@@ -201,4 +201,17 @@ void CQuaternion::FromAxisAngle(const CVector3D& axis,float angle)
     m_V.Y=axis.Y*sinHalfTheta;
     m_V.Z=axis.Z*sinHalfTheta;
     m_W=cosHalfTheta;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+// Normalize: normalize this quaternion
+void CQuaternion::Normalize()
+{
+	float lensqrd=SQR(m_V.X)+SQR(m_V.Y)+SQR(m_V.Z)+SQR(m_W);
+	if (lensqrd>0) {
+		float invlen=1.0f/float(sqrt(lensqrd));
+		m_V*=invlen;
+		m_W*=invlen;
+	}
 }

@@ -47,6 +47,14 @@ void CUnitManager::RemoveUnit(CUnit* unit)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+// DeleteUnit: remove given unit from world and delete it
+void CUnitManager::DeleteUnit(CUnit* unit)
+{
+	RemoveUnit(unit);
+	delete unit;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 // DeleteAll: remove and delete all units
 void CUnitManager::DeleteAll()
 {

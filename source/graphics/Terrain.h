@@ -61,6 +61,10 @@ public:
 	// calculate the normal at a given vertex
 	void CalcNormal(u32 i,u32 j,CVector3D& normal);
 
+	// flatten out an area of terrain (specified in world space coords); return
+	// the average height of the flattened area
+	float FlattenArea(float x0,float x1,float z0,float z1);
+
 private:
 	// delete any data allocated by this terrain
 	void ReleaseData();

@@ -18,7 +18,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Constructor
 CModel::CModel() 
-	: m_pModelDef(0), m_Anim(0), m_AnimTime(0), 
+	: m_pModelDef(0), m_Flags(0), m_Anim(0), m_AnimTime(0), 
 	m_BoneMatrices(0), m_InvBoneMatrices(0), m_BoneMatricesValid(false)
 {
 }
@@ -316,6 +316,7 @@ CModel* CModel::Clone() const
 	clone->SetTexture(m_Texture);
     clone->SetMaterial(m_Material);
 	clone->SetAnimation(m_Anim);
+	clone->SetFlags(m_Flags);
 	for (uint i=0;i<m_Props.size();i++) {
 		// eek!  TODO, RC - need to investigate shallow clone here
 		clone->AddProp(m_Props[i].m_Point,m_Props[i].m_Model->Clone());
@@ -330,6 +331,7 @@ void CModel::SetTransform(const CMatrix3D& transform)
 {
 	// call base class to set transform on this object
 	CRenderableObject::SetTransform(transform);
+	m_BoneMatricesValid=false;
 
 	// now set transforms on props
 	const CMatrix3D* bonematrices=GetBoneMatrices();

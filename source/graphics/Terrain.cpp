@@ -331,3 +331,36 @@ void CTerrain::SetHeightMap(u16* heightmap)
 		}
 	}
 }
+
+
+///////////////////////////////////////////////////////////////////////////////
+// FlattenArea: flatten out an area of terrain (specified in world space 
+// coords); return the average height of the flattened area
+float CTerrain::FlattenArea(float x0,float x1,float z0,float z1)
+{
+	u32 tx0=u32(clamp(int(float(x0/CELL_SIZE)),0,int(m_MapSize)));	
+	u32 tx1=u32(clamp(int(float(x1/CELL_SIZE)+1.0f),0,int(m_MapSize)));	
+	u32 tz0=u32(clamp(int(float(z0/CELL_SIZE)),0,int(m_MapSize)));	
+	u32 tz1=u32(clamp(int(float(z1/CELL_SIZE)+1.0f),0,int(m_MapSize)));	
+	
+	u32 count=0;
+	u32 y=0;
+	for (u32 x=tx0;x<=tx1;x++) {
+		for (u32 z=tz0;z<=tz1;z++) {
+			y+=m_Heightmap[z*m_MapSize + x];
+			count++;
+		}
+	}
+	y/=count;
+
+	for (u32 x=tx0;x<=tx1;x++) {
+		for (u32 z=tz0;z<=tz1;z++) {
+			m_Heightmap[z*m_MapSize + x]=y;
+			CPatch* patch=GetPatch(x/PATCH_SIZE,z/PATCH_SIZE);
+			patch->SetDirty(RENDERDATA_UPDATE_VERTICES);
+		}
+	}
+
+	return y*HEIGHT_SCALE;
+}
+

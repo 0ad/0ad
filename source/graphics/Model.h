@@ -17,6 +17,7 @@
 #include "SkeletonAnim.h"
 #include "Material.h"
 
+#define MODELFLAG_CASTSHADOWS		(1<<0)
 
 ///////////////////////////////////////////////////////////////////////////////
 // CModel: basically, a mesh object - holds the texturing and skinning 
@@ -25,6 +26,8 @@ class CModel : public CRenderableObject
 {
 public:
 	struct Prop {
+		Prop() : m_Point(0), m_Model(0) {}
+
 		SPropPoint* m_Point;
 		CModel* m_Model;
 	};
@@ -59,6 +62,19 @@ public:
 	// get the currently playing animation, if any
 	CSkeletonAnim* GetAnimation() { return m_Anim; }
 
+	// set object flags
+	void SetFlags(u32 flags) { m_Flags=flags; }
+	// get object flags
+	u32 GetFlags() const { return m_Flags; }
+
+	// recurse down tree setting dirty bits
+	void SetDirtyRec(u32 dirtyflags) {
+		SetDirty(dirtyflags);
+		for (size_t i=0;i<m_Props.size();i++) {
+			m_Props[i].m_Model->SetDirtyRec(dirtyflags);
+		}
+	}
+
 	// calculate object space bounds of this model, based solely on vertex positions
 	void CalcObjectBounds();
 	// calculate bounds encompassing all vertex positions for given animation 
@@ -89,7 +105,8 @@ public:
 	// remove a prop from the given point
 	void RemoveProp(SPropPoint* point);
 	// return prop list
-	const std::vector<Prop>& GetProps() { return m_Props; }
+	std::vector<Prop>& GetProps() { return m_Props; }
+	const std::vector<Prop>& GetProps() const { return m_Props; }
 
 	// return a clone of this model
 	CModel* Clone() const;
@@ -100,6 +117,8 @@ private:
 	// calculate necessary bone transformation matrices for skinning
 	void GenerateBoneMatrices();
 
+	// object flags
+	u32 m_Flags;
 	// texture used by model
 	CTexture m_Texture;
     // model's material

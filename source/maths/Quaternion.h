@@ -42,6 +42,8 @@ public:
 	// create a quaternion from axis/angle representation of a rotation
 	void FromAxisAngle(const CVector3D& axis,float angle);
 
+	// normalize this quaternion
+	void Normalize();
 };
 
 #endif

@@ -31,6 +31,8 @@ public:
 	void AddUnit(CUnit* unit);
 	// remove given unit from world, but don't delete it
 	void RemoveUnit(CUnit* unit);
+	// remove given unit from world and delete it
+	void DeleteUnit(CUnit* unit);
 	// remove and delete all units
 	void DeleteAll();
 

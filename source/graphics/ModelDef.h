@@ -94,15 +94,20 @@ public:
 public:
 	// accessor: get vertex data
 	int GetNumVertices() const { return m_NumVertices; }
-	SModelVertex *GetVertices() const { return m_pVertices; }
+	SModelVertex* GetVertices() const { return m_pVertices; }
 
 	// accessor: get face data
 	int GetNumFaces() const { return m_NumFaces; }
-	SModelFace *GetFaces() const { return m_pFaces; }
+	SModelFace* GetFaces() const { return m_pFaces; }
 
 	// accessor: get bone data
 	int GetNumBones() const { return m_NumBones; }
-	CBoneState *GetBones() const { return m_Bones; }
+	CBoneState* GetBones() const { return m_Bones; }
+
+
+	// accessor: get prop data
+	int GetNumPropPoints() const { return m_NumPropPoints; }
+	SPropPoint* GetPropPoints() const { return m_PropPoints; }
 
 	// find and return pointer to prop point matching given name; return
 	// null if no match (case insensitive search)
