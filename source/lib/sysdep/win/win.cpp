@@ -26,6 +26,7 @@
 #include <stdio.h>
 #include <stdlib.h>	// __argc
 #include <malloc.h>
+#include <shlobj.h>	// pick_dir
 
 extern HWND hWnd;
 
@@ -54,6 +55,43 @@ inline int get_executable_name(char* n_path, size_t buf_size)
 {
 	DWORD nbytes = GetModuleFileName(0, n_path, (DWORD)buf_size);
 	return nbytes? 0 : -1;
+}
+
+static int CALLBACK browse_cb(HWND hWnd, unsigned int msg, LPARAM lParam, LPARAM ldata)
+{
+	if(msg == BFFM_INITIALIZED)
+	{
+		const char* cur_dir = (const char*)ldata;
+		SendMessage(hWnd, BFFM_SETSELECTIONA, 1, (LPARAM)cur_dir);
+		return 1;
+	}
+
+	return 0;
+}
+
+int pick_directory(char* path, size_t buf_size)
+{
+	IMalloc* p_malloc;
+	SHGetMalloc(&p_malloc);
+
+	GetCurrentDirectory(PATH_MAX, path);
+
+///	ShowWindow(hWnd, SW_HIDE);
+
+	BROWSEINFOA bi;
+	memset(&bi, 0, sizeof(bi));
+	bi.ulFlags = BIF_RETURNONLYFSDIRS;
+	bi.lpfn = (BFFCALLBACK)browse_cb;
+	bi.lParam = (LPARAM)path;
+	ITEMIDLIST* pidl = SHBrowseForFolderA(&bi);
+	BOOL ok = SHGetPathFromIDList(pidl, path);
+
+///	ShowWindow(hWnd, SW_SHOW);
+
+	p_malloc->Free(pidl);
+	p_malloc->Release();
+
+	return ok? 0 : -1;
 }
 
 

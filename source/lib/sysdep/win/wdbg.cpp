@@ -31,7 +31,7 @@
 #include "assert_dlg.h"
 
 
-#define LOCALISED_TEXT
+//#define LOCALISED_TEXT
 
 #ifdef LOCALISED_TEXT
 #include "ps/i18n.h"
@@ -763,12 +763,14 @@ int debug_main_exception_filter(unsigned int UNUSEDPARAM(code), PEXCEPTION_POINT
 	{
 		if (ep->ExceptionRecord->NumberParameters == 3)
 		{
+/*/*
 			PSERROR* err = (PSERROR*) ep->ExceptionRecord->ExceptionInformation[1];
 			if (err->magic == 0x45725221)
 			{
 				int code = err->code;
 				error = GetErrorString(code);
 			}
+*/
 		}
 	}
 	__except (EXCEPTION_EXECUTE_HANDLER)
