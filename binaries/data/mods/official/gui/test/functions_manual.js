@@ -219,10 +219,21 @@ function manualDisplay()
 					ManualRollover.caption += "Version: " + selection[0].traits.id.version + "\n";
 
 					// Lists.
-					if (selection[0].actions.create)
+					if (selection[0].actions.create && selection[0].actions.create.list)
 					{
-						if (selection[0].actions.create.unitlist)
-							ManualRollover.caption += "Trains: " + selection[0].actions.create.unitlist + "\n";
+						if (selection[0].actions.create.list.unit)
+							ManualRollover.caption += "Trains: " + selection[0].actions.create.list.unit + "\n";
+						if (selection[0].actions.create.list.structciv || selection[0].actions.create.list.structmil)
+						{
+							ManualRollover.caption += "Builds: ";
+							if (selection[0].actions.create.list.structciv)
+								ManualRollover.caption += selection[0].actions.create.list.structciv + " ";
+							if (selection[0].actions.create.list.structmil)
+								ManualRollover.caption += selection[0].actions.create.list.structmil + " ";
+							ManualRollover.caption += "\n";
+						}
+						if (selection[0].actions.create.list.tech)
+							ManualRollover.caption += "Research: " + selection[0].actions.create.list.research + "\n";
 					}
 
 

@@ -35,6 +35,15 @@
                         <!-- END temporary code -->
                 </object>
 
+		<object type="button" name="audio_toggle" hotkey="audio.toggle" hidden="true">
+	                <action on="Press"><![CDATA[
+				if (snd_disabled == true)
+					snd_disable(false);
+				else
+					snd_disable(true);
+	                ]]></action>		
+		</object>
+
                 <!-- TEMPORARY END GAME BUTTON; REMOVE WHEN GAME MENU IMPLEMENTED; BUTTON IS OUTSIDE OF pregame_gui IN ORDER TO BE VISIBLE DURING GAME -->
 
                 <object type="button" name="End_Game_Button" sprite="message_box-button-normal" sprite-over="message_box-button-over" hotkey="endgame" text-align="center" text-valign="center" size="100%-200 2 100%-100 36" z="105" hidden="true">
