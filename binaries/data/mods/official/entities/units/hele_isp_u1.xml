@@ -3,39 +3,23 @@
 <Entity Tag="hele_isp_u1" Parent="isp">
 	<Traits>
 		<Id
-			civ="hele"
-			class2="Infantry"
-			class3="Melee"
-			generic="Infantry Spearman"
-			specific="Hoplite"
-			ranked="Ultimate Hoplite"
+			civ_code="hele"
+			civ="Hellenes"
 			personal1="hele_male_names_1st.csv"
 			personal2="hele_male_names_2nd.csv"
-			icon="unit_dude"
+			internal_only="false"
+			icon="sheet_hele"
+
+			specific="Hoplite"
+			ranked="Ultimate Hoplite"
+
 			rollover="Hoplites were the very symbol of Hellenistic prestige and citizenship, armed with a spear and a large round, bronze-coated shield known as a hoplon. Armor was heavy, with bronze helmets and a cuirass of either bronze or linen, in addition to greaves. Hoplites fought in a tight formation called a phalanx, guarding each other with their shields while they attacked the enemy with their spear or a short iron sword."
-			type="UnitSpearman, UnitNonMechanical, UnitMilitary, UnitCitizenSoldier"
 		/>
 		<Health
 			hitpoints="250"
 			hpcurr="10"
 		/>
 	</Traits>
-	<Event On="Initialize">
-	<![CDATA[
-	    // PASAP wander-between-houses script
-	    
-	    houses = entities.subset( "this.template.tag == \"House\"" );
-	    while( houses.length )
-	    {
-			index = Math.floor( Math.random() * houses.length );
-			house = houses[index];
-			console.write( house.position ); 
-			this.orderQueued( 4 /* patrol */, house.position.x, house.position.z );
-			houses.remove( index );
-		}
-		console.write( "A new Dude has entered your dungeon." );
-	]]>	
-	</Event>
 		
 	<Actor>The Spartan</Actor>
 </Entity>
