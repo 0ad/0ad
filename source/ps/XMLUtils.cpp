@@ -8,6 +8,14 @@
 
 #include "res/vfs.h"
 
+/*
+// but static Xerces => tons of warnings due to missing debug info,
+// and warnings about invalid pointers (conflicting CRT heaps?) in parser => allow for now
+#ifndef XERCES_STATIC_LIB
+#error "need to define XERCES_STATIC_LIB in project options (so that Xerces uses the same CRT as the other libs)"
+#endif
+*/
+
 #ifdef _MSC_VER
 # ifdef XERCES_STATIC_LIB
 #  ifndef NDEBUG
@@ -15,14 +23,14 @@
 #  else
 #   pragma comment(lib, "xerces-c_2-static.lib")
 #  endif	// NDEBUG
-# else
+# else		// XERCES_STATIC_LIB
 #  ifndef NDEBUG
 #   pragma comment(lib, "xerces-c_2D.lib")
 #  else
 #   pragma comment(lib, "xerces-c_2.lib")
 #  endif	// NDEBUG
-# endif	// XERCES_STATIC_LIB
-#endif	// _MSC_VER
+# endif		// XERCES_STATIC_LIB
+#endif		// _MSC_VER
 
 XERCES_CPP_NAMESPACE_USE
 
