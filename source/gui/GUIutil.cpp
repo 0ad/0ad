@@ -11,20 +11,13 @@ gee@pyro.nu
 
 using namespace std;
 
-template <typename T>
-bool __ParseString(const CStr& Value, T &tOutput)
-{
-	// TODO Gee: Unsupported, report error/warning
-	return false;
-}
-
 template <>
 bool __ParseString<bool>(const CStr& Value, bool &Output)
 {
-	if (Value == (CStr)"true")
+	if (Value == "true")
 		Output = true;
 	else
-	if (Value == (CStr)"false")
+	if (Value == "false")
 		Output = false;
 	else 
 		return false;
@@ -160,13 +153,13 @@ bool __ParseString<CSize>(const CStr& Value, CSize &Output)
 template <>
 bool __ParseString<EAlign>(const CStr &Value, EAlign &Output)
 {
-	if (Value == (CStr)"left")
+	if (Value == "left")
 		Output = EAlign_Left;
 	else
-	if (Value == (CStr)"center")
+	if (Value == "center")
 		Output = EAlign_Center;
 	else
-	if (Value == (CStr)"right")
+	if (Value == "right")
 		Output = EAlign_Right;
 	else
 		return false;
@@ -177,13 +170,13 @@ bool __ParseString<EAlign>(const CStr &Value, EAlign &Output)
 template <>
 bool __ParseString<EVAlign>(const CStr &Value, EVAlign &Output)
 {
-	if (Value == (CStr)"top")
+	if (Value == "top")
 		Output = EVAlign_Top;
 	else
-	if (Value == (CStr)"center")
+	if (Value == "center")
 		Output = EVAlign_Center;
 	else
-	if (Value == (CStr)"bottom")
+	if (Value == "bottom")
 		Output = EVAlign_Bottom;
 	else
 		return false;
