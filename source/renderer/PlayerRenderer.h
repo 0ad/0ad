@@ -38,7 +38,9 @@ public:
 
 private:
 	// render given streams on all objects
-	//void RenderObjectsStreams(u32 streamflags,u32 mflags=0);
+	void RenderObjectsStreams(u32 streamflags, bool iscolorpass=false, u32 mflags=0);
+	// setup the second pass for the player color
+	void SetupColorRenderStates();
 	// list of transparent objects to render
 	std::vector<SObject> m_Objects;
 };
