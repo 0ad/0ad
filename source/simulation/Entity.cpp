@@ -15,10 +15,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	// Set our parent unit and build us an actor.
 
 	m_base = base;
-	m_actor = new CUnit;
-
-	m_actor->m_Object = m_base->m_actorObject;
-	m_actor->m_Model = ( m_actor->m_Object->m_Model ) ? m_actor->m_Object->m_Model->Clone() : NULL;
+	m_actor = new CUnit(m_base->m_actorObject,m_base->m_actorObject->m_Model->Clone());
 
 	// Register the actor with the renderer.
 
@@ -58,7 +55,6 @@ CEntity::~CEntity()
 {
 	if( m_actor )
 	{
-		if( m_actor->m_Model ) delete( m_actor->m_Model );
 		g_UnitMan.RemoveUnit( m_actor );
 		delete( m_actor );
 	}
@@ -79,17 +75,13 @@ void CEntity::updateActorTransforms()
 	m._31 = m_ahead.x;	m._32 = 0.0f;	m._33 = -m_ahead.y;	m._34 = m_position.Z;
 	m._41 = 0.0f;		m._42 = 0.0f;	m._43 = 0.0f;		m._44 = 1.0f;
 
-	/* Equivalent to:
-	
-	m.SetYRotation( m_orientation );
-
-	m.Translate( m_position );
-
-	But the matrix multiplication seemed such a waste when we already have a forward vector
-
+	/* Equivalent to:	
+		m.SetYRotation( m_orientation );
+		m.Translate( m_position );
+		But the matrix multiplication seemed such a waste when we already have a forward vector
 	*/
 
-	m_actor->m_Model->SetTransform( m );
+	m_actor->GetModel()->SetTransform( m );
 }
 
 float CEntity::getExactGroundLevel( float x, float y )
@@ -161,8 +153,8 @@ void CEntity::update( float timestep )
 			assert( 0 && "Invalid entity order" );
 		}
 	}
-	if( m_actor->m_Model->GetAnimation() != m_actor->m_Object->m_IdleAnim )
-		m_actor->m_Model->SetAnimation( m_actor->m_Object->m_IdleAnim );
+	if( m_actor->GetModel()->GetAnimation() != m_actor->GetObject()->m_IdleAnim )
+		m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_IdleAnim );
 }
 
 void CEntity::dispatch( CMessage* msg )

@@ -115,10 +115,10 @@ bool CEntity::processGoto( CEntityOrder* current, float timestep )
 {
 	CVector2D path_to = current->m_data[0].location;
 	m_orderQueue.pop_front();
-	if( m_actor->m_Model->GetAnimation() != m_actor->m_Object->m_WalkAnim )
+	if( m_actor->GetModel()->GetAnimation() != m_actor->GetObject()->m_WalkAnim )
 	{
-		m_actor->m_Model->SetAnimation( m_actor->m_Object->m_WalkAnim );
-		m_actor->m_Model->Update( ( rand() * 1000.0f ) / 1000.0f );
+		m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_WalkAnim );
+		m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
 	}
 	g_Pathfinder.requestPath( me, path_to );
 	return( true );

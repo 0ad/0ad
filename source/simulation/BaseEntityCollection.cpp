@@ -29,7 +29,6 @@ void CBaseEntityCollection::loadTemplates()
 
 	// He's so annoyingly slow...
 	CBaseEntity* dude = getTemplate( "Prometheus Dude" );
-	dude->m_actorObject->m_WalkAnim->m_FrameTime /= 10.0f;
 	dude->m_speed *= 10.0f;
 
 /*
