@@ -28,7 +28,7 @@ GUI_OBJS=$(patsubst %.cpp, $(OBJDIR)/%.o, $(GUI_SOURCES))
 
 TERR_SOURCES=$(addprefix terrain/, Camera.cpp Frustum.cpp Matrix3D.cpp \
 	MiniPatch.cpp Patch.cpp Plane.cpp Renderer.cpp Terrain.cpp Vector3D.cpp\
-	terrainMain.cpp)
+	terrainMain.cpp SHCoeffs.cpp Bound.cpp Quaternion.cpp)
 TERR_OBJS=$(patsubst %.cpp, $(OBJDIR)/%.o, $(TERR_SOURCES))
 
 LIB_BASE_SOURCES=$(addprefix lib/, detect.cpp mem.cpp\
