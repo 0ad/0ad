@@ -21,6 +21,8 @@
 
 #include "lib.h"
 #include "res.h"
+#include "zip.h"
+#include "file.h"
 #include "adts.h"
 
 #include <string.h>

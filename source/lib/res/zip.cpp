@@ -19,6 +19,7 @@
 #include "precompiled.h"
 
 #include "lib.h"
+#include "zip.h"
 #include "res.h"
 
 #include <assert.h>

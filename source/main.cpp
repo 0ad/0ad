@@ -18,6 +18,7 @@
 #include "input.h"
 #include "lib.h"
 #include "res/res.h"
+#include "res/file.h"
 #ifdef _M_IX86
 #include "sysdep/ia32.h"
 #endif
