@@ -437,6 +437,8 @@ static int aio_rw(struct aiocb* cb)
 debug_out("aio_rw cb=%p\n", cb);
 #endif
 
+	const bool is_write = cb->aio_lio_opcode == LIO_WRITE;
+
 	if(!cb)
 	{
 		assert(0);
@@ -473,13 +475,18 @@ debug_out("aio_rw cb=%p\n", cb);
 	size_t size = cb->aio_nbytes;
 	void* buf = cb->aio_buf;
 
+	// check if h is a socket
 #define SOL_SOCKET 0xffff
 #define SO_TYPE 0x1008
-
 	unsigned long opt = 0;
 	socklen_t optlen = sizeof(opt);
-	if (getsockopt((int)(intptr_t)h, SOL_SOCKET, SO_TYPE, &opt, &optlen) != -1)
-//		||	(WSAGetLastError() != WSAENOTSOCK))
+	int sock = (int)(intptr_t)h;
+	DWORD last_err = GetLastError();
+	bool is_sock = getsockopt(sock, SOL_SOCKET, SO_TYPE, &opt, &optlen) != -1;
+	SetLastError(last_err);
+
+	// socket: no alignment calculation necessary
+	if(is_sock)
 		cb->aio_offset = 0;
 	else
 	{
@@ -492,7 +499,7 @@ debug_out("aio_rw cb=%p\n", cb);
 		// not aligned
 		if(r->pad || (uintptr_t)buf % sector_size)
 		{
-			// current align buffer is too small - resize
+			// expand current align buffer if too small
 			if(r->buf_size < size)
 			{
 				void* buf2 = realloc(r->buf, size);
@@ -502,11 +509,15 @@ debug_out("aio_rw cb=%p\n", cb);
 				r->buf_size = size;
 			}
 
-			// unaligned writes are not supported -
-			// we'd have to read padding, then write our data. ugh.
-			if(cb->aio_lio_opcode == LIO_WRITE)
+			if(is_write)
 			{
-				return -EINVAL;
+				// file offset isn't aligned. we don't support this -
+				// we'd have to read padding, then write our data. ugh.
+				if(r->pad)
+					return -EINVAL;
+				// only the buffer is misaligned - copy data to align buffer
+				else
+					memcpy(r->buf, buf, cb->aio_nbytes);
 			}
 
 			buf = r->buf;
@@ -626,6 +637,9 @@ debug_out("aio_return cb=%p\n", cb);
 	const size_t _buf = (char*)cb->aio_buf - (char*)0;
 	if(r->pad || _buf % sector_size)
 		memcpy(cb->aio_buf, (u8*)r->buf + r->pad, cb->aio_nbytes);
+
+	// TODO: this copies data back into original buffer from align buffer
+	// when writing from unaligned buffer. unnecessarily slow.
 
 	req_free(r);
 
