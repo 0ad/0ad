@@ -896,6 +896,9 @@ static void SndData_dtor(SndData* sd)
 		stream_close(&sd->s);
 	else
 		al_buf_free(sd->al_buf);
+#ifdef OGG_HACK
+if(sd->o) ogg_release(sd->o);
+#endif
 }
 
 
@@ -989,6 +992,10 @@ if(file_type == FT_OGG)
  while(bytes_read > 0);
  al_data = &data[0];
  al_size = (ALsizei)datasize;
+}
+else
+{
+ sd->o = NULL;
 }
 #endif
 
