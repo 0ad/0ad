@@ -45,7 +45,7 @@
 //#define NO_ZLIB
 
 #ifndef NO_ZLIB
-# define ZLIB_WINAPI
+# define ZLIB_DLL
 # include <zlib.h>
 
 # ifdef _MSC_VER
