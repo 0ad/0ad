@@ -1005,6 +1005,12 @@ int tex_bind(const Handle h)
 	return 0;
 }
 
+int tex_id(const Handle h)
+{
+	Tex* t = H_USER_DATA(h, Tex);
+	return t ? t->id : 0;
+}
+
 
 int tex_filter = GL_LINEAR;
 uint tex_bpp = 32;				// 16 or 32
