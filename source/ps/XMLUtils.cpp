@@ -22,10 +22,9 @@ CStr XMLTranscode(const XMLCh* xmltext)
 	return result;
 }
 
-XMLCh *XMLTranscode(const CStr &str)
+XMLCh *XMLTranscode(const char *str)
 {
-	const char *cstr=(const char *)str;
-	return XMLString::transcode(cstr);
+	return XMLString::transcode(str);
 }
 
 int CVFSInputSource::OpenFile(const char *path)
@@ -35,7 +34,7 @@ int CVFSInputSource::OpenFile(const char *path)
 	m_hFile=vfs_open(path);
 	if (m_hFile <= 0)
 	{
-		LOG(ERROR, "CVFSInputSource: file %s couldn't be opened (vfs_open)\n", path);
+		LOG(ERROR, "CVFSInputSource: file %s couldn't be opened (vfs_open: %lld)\n", path, m_hFile);
 		return -1;
 	}
 	
@@ -75,6 +74,18 @@ BinInputStream *CVFSInputSource::makeStream() const
 		return NULL;
 }
 
+#define IS_PATH_SEP(_chr) (_chr == '/' || _chr == '\\')
+
+// Return a pointer to the last path separator preceding *end, while not
+// going further back than *beginning
+const char *prevpathcomp(const char *end, const char *beginning)
+{
+	do
+		end--;
+	while (end > beginning && !IS_PATH_SEP(*end));
+	return end;
+}
+
 InputSource *CVFSEntityResolver::resolveEntity(const XMLCh *const publicId,
 	const XMLCh *const systemId)
 {
@@ -82,38 +93,50 @@ InputSource *CVFSEntityResolver::resolveEntity(const XMLCh *const publicId,
 	char *path=XMLString::transcode(systemId);
 	char *orgpath=path;
 	
-	CStr abspath=m_DocName;
-	const char *end=m_DocName+abspath.Length();
-	if (strncmp(path, "..", 2) == 0 && (path[2] == '/' || path[2] == '\\'))
+	char abspath[VFS_MAX_PATH];
+	const char *end=strchr(m_DocName, '\0');
+	
+	// Remove one path component for each opening ../ (or ..\)
+	// Note that this loop will stop when all path components from the
+	// document name have been stripped - the resulting path will be invalid, but
+	// so was the input path.
+	// Also note that this will not handle ../ path components in the middle of
+	// the input path.
+	while (strncmp(path, "..", 2) == 0 && IS_PATH_SEP(path[2]) && end > m_DocName)
 	{
-		do
-			--end;
-		while (end > m_DocName && (*end != '/' && *end != '\\'));
+		end=prevpathcomp(end, m_DocName);
+		path += 3;
+	}
 
-		while (strncmp(path, "..", 2) == 0 && (path[2] == '/' || path[2] == '\\'))
-		{
-			path += 3;
+	// The ../ loop has found opening ../'s
+	if (path != orgpath)
+	{
+		// Remove one more path component
+		if (end > m_DocName)
+			end=prevpathcomp(end, m_DocName);
 
-			do
-				--end;
-			while (end > m_DocName && (*end != '/' && *end != '\\'));
-		}
-		
+		// include one slash from suffix
 		--path;
 		
-		const ptrdiff_t d = end-m_DocName;
-		abspath=abspath.Left((long)d)+path;
+		const ptrdiff_t prefixlen=end-m_DocName;
 		
-		int pos=0;
-		if (abspath.Find('\\') != -1)
+		memcpy(abspath, m_DocName, prefixlen);
+		strncpy(abspath+prefixlen, path, VFS_MAX_PATH-prefixlen);
+		// strncpy might not have terminated, if path was too long
+		abspath[VFS_MAX_PATH-1]=0;
+		
+		char *pos=abspath;		
+		if ((pos=strchr(pos, '\\')) != NULL)
 		{
-			LOG(WARNING, "While resolving XML entities for %s: path %s [%s] contains non-portable path separator \\", m_DocName, orgpath, abspath.c_str());
-			abspath.Replace("\\", "/");
+			LOG(WARNING, "While resolving XML entities for %s: path %s [%s] contains non-portable path separator \\", m_DocName, orgpath, abspath);
+			do
+				*pos='/';
+			while ((pos=strchr(pos+1, '\\')) != NULL);
 		}
+		path=abspath;
 	}
 	
-	if ((orgpath != path &&	ret->OpenFile(abspath)!=0)
-		|| (orgpath == path && ret->OpenFile(path)!=0))
+	if (ret->OpenFile(path)!=0)
 	{
 		delete ret;
 		ret=NULL;
