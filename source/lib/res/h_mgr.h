@@ -149,17 +149,20 @@ enum
 {
 	RES_TEMP   = 1,
 	RES_LEVEL  = 2,
-	RES_STATIC = 3
+	RES_STATIC = 4
 };
 
-#define RES_SCOPE_MASK 3
+#define RES_SCOPE_MASK 7
 
 // h_alloc flags
 enum
 {
+	// alias for RES_TEMP scope. the handle will not be kept open.
+	RES_NO_CACHE = 1,
+
 	// the resource isn't backed by a file. the fn parameter is treated as the search key (uintptr_t)
 	// currently only used by mem manager
-	RES_KEY = 4
+	RES_KEY = 8
 };
 
 
