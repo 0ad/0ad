@@ -625,7 +625,9 @@ static long CALLBACK except_filter(EXCEPTION_POINTERS* except)
 	{
 		base = (uintptr_t)mbi.AllocationBase;
 		if(GetModuleFileName((HMODULE)base, module_buf, sizeof(module_buf)))
-			module = strrchr(module_buf, '\\');
+			module = strrchr(module_buf, '\\')+1;
+			// GetModuleFileName returns fully qualified path =>
+			// trailing '\\' exists
 	}
 
 
