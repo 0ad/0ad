@@ -111,7 +111,7 @@ bool CBaseEntity::loadXML( CStr filename )
 					{
 						if( !m_bound_circle )
 							m_bound_circle = new CBoundingCircle();
-						CStr radius = XMLTranscode( child_element->getAttribute( L"Radius" ) );
+						CStr radius = XMLTranscode( child_element->getAttribute( (XMLCh*)L"Radius" ) );
 						m_bound_circle->setRadius( radius.ToFloat() );
 						m_bound_type = CBoundingObject::BOUND_CIRCLE;
 					}
@@ -119,16 +119,16 @@ bool CBaseEntity::loadXML( CStr filename )
 					{
 						if( !m_bound_box )
 							m_bound_box = new CBoundingBox();
-						CStr width = XMLTranscode( child_element->getAttribute( L"Width" ) );
-						CStr height = XMLTranscode( child_element->getAttribute( L"Height" ) ); 
+						CStr width = XMLTranscode( child_element->getAttribute( (XMLCh*)L"Width" ) );
+						CStr height = XMLTranscode( child_element->getAttribute( (XMLCh*)L"Height" ) ); 
 
 						m_bound_box->setDimensions( width.ToFloat(), height.ToFloat() );
 						m_bound_type = CBoundingObject::BOUND_OABB;
 					}
 					else if( element_name == CStr( "BoundsOffset" ) )
 					{
-						CStr x = XMLTranscode( child_element->getAttribute( L"x" ) );
-						CStr y = XMLTranscode( child_element->getAttribute( L"y" ) );
+						CStr x = XMLTranscode( child_element->getAttribute( (XMLCh*)L"x" ) );
+						CStr y = XMLTranscode( child_element->getAttribute( (XMLCh*)L"y" ) );
 
 						if( !m_bound_circle )
 							m_bound_circle = new CBoundingCircle();
