@@ -30,10 +30,10 @@
 #include <stdlib.h>
 
 
-static HANDLE mk_handle(intptr_t i)
+// cast intptr_t to HANDLE; centralized for easier changing, e.g. avoiding
+// warnings. i = -1 converts to INVALID_HANDLE_VALUE (same value).
+static inline HANDLE cast_to_HANDLE(intptr_t i)
 {
-	// passing in -1 (e.g. if _get_osfhandle fails),
-	// is fine, it ends up INVALID_HANDLE_VALUE.
 	return (HANDLE)((char*)0 + i);
 }
 
@@ -106,7 +106,7 @@ debug_out("close %d\n", fd);
 
 int ioctl(int fd, int op, int* data)
 {
-	const HANDLE h = mk_handle(_get_osfhandle(fd));
+	const HANDLE h = cast_to_HANDLE(_get_osfhandle(fd));
 
 	switch(op)
 	{
@@ -315,7 +315,7 @@ int pthread_getschedparam(pthread_t thread, int* policy, struct sched_param* par
 	}
 	if(param)
 	{
-		const HANDLE hThread = mk_handle((intptr_t)thread);
+		const HANDLE hThread = cast_to_HANDLE((intptr_t)thread);
 		param->sched_priority = GetThreadPriority(hThread);
 	}
 
@@ -327,7 +327,7 @@ int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param
 	if(policy == SCHED_FIFO)
 		SetPriorityClass(GetCurrentProcess(), HIGH_PRIORITY_CLASS);
 
-	const HANDLE hThread = mk_handle((intptr_t)thread);
+	const HANDLE hThread = cast_to_HANDLE((intptr_t)thread);
 	SetThreadPriority(hThread, param->sched_priority);
 	return 0;
 }
@@ -459,7 +459,7 @@ void* mmap(void* const user_start, const size_t len, const int prot, const int f
 	HANDLE hFile = INVALID_HANDLE_VALUE;
 	if(fd != -1)
 	{
-		hFile = mk_handle(_get_osfhandle(fd));
+		hFile = cast_to_HANDLE(_get_osfhandle(fd));
 		if(hFile == INVALID_HANDLE_VALUE)
 		{
 			debug_warn("mmap: invalid file handle");
