@@ -23,7 +23,9 @@
 #include "lib.h"
 
 #include "win_internal.h"
-#include <dbghelp.h>
+#define _NO_CVCONST_H	// request SymTagEnum be defined
+#include "dbghelp63.h"
+#include <OAIdl.h>	// VARIANT
 
 #include "wdbg.h"
 #include "assert_dlg.h"
@@ -49,74 +51,24 @@ WIN_REGISTER_FUNC(wdbg_shutdown);
 #endif // LOCALISED_TEXT
 
 
-void win_debug_break()
-{
-	DebugBreak();
-}
 
 
 
-// need to shoehorn printf-style variable params into
-// the OutputDebugString call.
-// - don't want to split into multiple calls - would add newlines to output.
-// - fixing Win32 _vsnprintf to return # characters that would be written,
-//   as required by C99, looks difficult and unnecessary. if any other code
-//   needs that, implement GNU vasprintf.
-// - fixed size buffers aren't nice, but much simpler than vasprintf-style
-//   allocate+expand_until_it_fits. these calls are for quick debug output,
-//   not loads of data, anyway.
+// dbghelp isn't thread-safe. lock is taken by walk_stack,
+// debug_resolve_symbol, and while dumping a stack frame (dump_frame_cb).
+static void lock() { win_lock(DBGHELP_CS); }
+static void unlock() { win_unlock(DBGHELP_CS); }
 
-
-static const int MAX_CNT = 512;
-// max output size of 1 call of (w)debug_out (including \0)
-
-
-
-// voodoo programming. PDB debug info is a poorly documented mess.
-// see http://msdn.microsoft.com/msdnmag/issues/02/03/hood/default.aspx
-
-
-
-// from DIA cvconst.h
-typedef enum
-{
-    btNoType    = 0,
-    btVoid      = 1,
-    btChar      = 2,
-    btWChar     = 3,
-    btInt       = 6,
-    btUInt      = 7,
-    btFloat     = 8,
-    btBCD       = 9,
-    btBool      = 10,
-    btLong      = 13,
-    btULong     = 14,
-    btCurrency  = 25,
-    btDate      = 26,
-    btVariant   = 27,
-    btComplex   = 28,
-    btBit       = 29,
-    btBSTR      = 30,
-    btHresult   = 31
-}
-BasicType;
 
 static void DumpMiniDump(HANDLE hFile, PEXCEPTION_POINTERS excpInfo);
 
 static void set_exception_handler();
 
-// function pointers
-//
-// we need to link against dbghelp dynamically - some systems may not
-// have v5.1. (if <= 5.0, type information is unavailable).
 
 
+static HINSTANCE hInstance;
 static HANDLE hProcess;
 static uintptr_t mod_base;
-
-const int bufsize = 64000;
-static wchar_t buf[bufsize];	// buffer for stack trace
-static wchar_t* pos;			// current pos in buf
 
 static WORD machine;
 	// needed by StackWalk
@@ -130,6 +82,7 @@ static int wdbg_init()
 	set_exception_handler();
 
 	hProcess = GetCurrentProcess();
+	hInstance = GetModuleHandle(0);
 
 	SymSetOptions(SYMOPT_DEFERRED_LOADS);
 	SymInitialize(hProcess, 0, TRUE);
@@ -156,17 +109,21 @@ static int wdbg_shutdown(void)
 
 //////////////////////////////////////////////////////////////////////////////
 
-static void out(wchar_t* fmt, ...)
-{
-	// Don't overflow the buffer (and abort if we're about to)
-	if (pos-buf+1000 > bufsize)
-		throw;
 
-	va_list args;
-	va_start(args, fmt);
-	pos += vswprintf(pos, 1000, fmt, args);
-	va_end(args);
-}
+
+// need to shoehorn printf-style variable params into
+// the OutputDebugString call.
+// - don't want to split into multiple calls - would add newlines to output.
+// - fixing Win32 _vsnprintf to return # characters that would be written,
+//   as required by C99, looks difficult and unnecessary. if any other code
+//   needs that, implement GNU vasprintf.
+// - fixed size buffers aren't nice, but much simpler than vasprintf-style
+//   allocate+expand_until_it_fits. these calls are for quick debug output,
+//   not loads of data, anyway.
+
+static const int MAX_CNT = 512;
+// max output size of 1 call of (w)debug_out (including \0)
+
 
 
 void debug_out(const char* fmt, ...)
@@ -198,338 +155,106 @@ void wdebug_out(const wchar_t* fmt, ...)
 
 
 //////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-// guess if addr points to a string
-// algorithm:
-//   scan string; count # text chars vs. garbage
-
-static bool is_string_ptr(u64 addr)
-{
-	// early out for x86
-#ifdef _WIN32
-	if(addr < 0x10000 || addr > 0x80000000)
-		return false;
-#endif
-
-	const char* str = (const char*)addr;
-
-	__try
-	{
-		int score = 0;
-		for(;;)
-		{
-			const int c = *str++ & 0xff;	// signed char => promoted
-			if(isalnum(c))
-				score += 1;
-			else if(!c)
-				return (score > 0);			// end of string reached
-			else if(!isprint(c))
-				score -= 5;
-
-			// give up
-			if(score <= -10)
-				return false;
-		}
-	}
-	__except(1)
-	{
-		return false;
-	}
-}
-
-
-// output the value of 'basic' types: string, (array of) float, int
 //
-// not reliably supported, due to broken debug info / bad documentation:
-// - multidimensional arrays (e.g. int[2][2] => len 16, elements 2)
-// - arrays of character arrays (would have rely on is_string_ptr)
-// - nested structures (invalid base type index)
-static void print_var(u32 type_idx, uint level, u64 addr)
-{
-	// successful with index we were given?
-	BasicType type = btNoType;
-	u32 real_typeid = 0;
-	if(!SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_BASETYPE, &type))
-	{
-		// no; try to get the "real" index first
-		BOOL ok = SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_TYPEID, &real_typeid);
-		if(ok && real_typeid != type_idx)
-			SymGetTypeInfo(hProcess, mod_base, real_typeid, TI_GET_BASETYPE, &type);
-	}
-
-	u64 len;
-	SymGetTypeInfo(hProcess, mod_base, level? real_typeid : type_idx, TI_GET_LENGTH, &len);
-
-	u32 elements;
-	SymGetTypeInfo(hProcess, mod_base, level? real_typeid : type_idx, TI_GET_COUNT, &elements);
-
-	wchar_t* fmt = L"%I64X";	// default: 64 bit integer
-
-	out(L"= ");
-
-	// single string (character array)
-	// len == elements => bool array | character array (probably string)
-	if(len == elements && is_string_ptr(addr))
-	{
-		out(L"\"%hs\"\r\n", (char*)addr);
-		return;
-	}
-
-	// array
-	if(elements)
-	{
-		len /= elements;
-		out(L"{ ");
-	}
-
-	u32 totalelements = elements;
-
-next_element:
-
-	// zero extend to 64 bit (little endian)
-	u64 data = 0;
-	for(u64 i = 0; i < MIN(len,8); i++)
-		data |= (u64)(*(u8*)(addr+i)) << (i*8);
-
-	// float / double
-	if(type == btFloat)
-	{
-		// convert floats to double (=> single printf call)
-		if(len == 4)
-		{
-			double double_data = (double)(*(float*)addr);
-			data = *(u64*)&double_data;
-		}
-		fmt = L"%lf";
-	}
-	// string (char*)
-	else if(len == sizeof(void*) && is_string_ptr(data))
-	{
-		fmt = L"\"%hs\"";
-	}
-
-	out(fmt, data);
-
-	// ascii char
-	if(data < 0x100 && isprint((int)data))
-		out(L" ('%hc')", (char)data);
-
-	if(elements)
-	{
-		addr += len;	// add stride
-		elements--;
-
-		// don't display too many elements of huge arrays
-		if (totalelements-elements > 32)
-			out(L" ... }");
-		
-		else if(elements == 0)
-			out(L" }");
-
-		else
-		{
-			out(L", ");
-			goto next_element;
-		}
-	}
-
-	out(L"\r\n");
-}
+// dbghelp support routines for walking the stack
+//
+//////////////////////////////////////////////////////////////////////////////
 
 
-// print sym name; if not a basic type, recurse for each child
-static void dump_sym(u32 type_idx, uint level, u64 addr)
-{
-	// print type name / member name
-	WCHAR* type_name;
-	if(SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_SYMNAME, &type_name))
-	{
-		// ignore things that look like member functions, because
-		// there's no point in outputting them
-		if (wcsstr(type_name, L"::"))
-		{
-			LocalFree(type_name);
-			return;
-		}
-
-		// indent
-		for(uint i = 0; i < level+2; i++)
-			out(L"  ");
-
-		out(L"%ls ", type_name);
-
-		// exclude some specific variable types, because
-		// they just fill the stack trace with rubbish
-		if (!wcscmp(type_name, L"JSType")
-		 || !wcscmp(type_name, L"JSVersion")
-			)
-		{
-			LocalFree(type_name);
-			out(L"\r\n");
-			return;
-		}
-
-		LocalFree(type_name);
-	}
-
-	u32 num_children = 0;
-
-	// built-in type? yes - show its value, terminate recursion
-	if (! SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_CHILDRENCOUNT, &num_children)
-		|| num_children == 0)
-	{
-		print_var(type_idx, level, addr);
-		return;
-	}
-
-	// bogus
-	if(num_children > 50)
-		return;
-
-	// get children's type indices
-	char child_buf[sizeof(TI_FINDCHILDREN_PARAMS) + 256*4];
-	TI_FINDCHILDREN_PARAMS* children = (TI_FINDCHILDREN_PARAMS*)child_buf;
-	children->Count = num_children;
-	children->Start = 0;
-	SymGetTypeInfo(hProcess, mod_base, type_idx, TI_FINDCHILDREN, children);
-
-    out(L"\r\n");
-
-	// recurse for each child
-	for(uint child_idx = 0; child_idx < num_children; child_idx++)
-	{
-		u32 child_id = children->ChildId[child_idx];
-
-		u32 member_ofs;
-		SymGetTypeInfo(hProcess, mod_base, child_id, TI_GET_OFFSET, &member_ofs);
-
-		dump_sym(child_id, level+1, addr+member_ofs);
-    }
-}
-
-
-static enum
-{
-	NONE,
-	PARAMS,
-	LOCALS
-}
-var_type;
-
-
-#define SYM_FLAG(flag) (sym->Flags & (IMAGEHLP_SYMBOL_INFO_##flag))
-
-
-// called for each local symbol
-static BOOL CALLBACK sym_callback(SYMBOL_INFO* sym, ULONG SymbolSize, void* ctx)
-{
-	UNUSED(SymbolSize);
-
-	mod_base = (uintptr_t)sym->ModBase;
-
-	__try
-	{
-		if(SYM_FLAG(PARAMETER))
-		{
-			if(var_type != PARAMS)
-			{
-				var_type = PARAMS;
-				out(L"  params:\r\n");
-			}
-		}
-		else
-			if(var_type != LOCALS)
-			{
-				var_type = LOCALS;
-				out(L"  locals:\r\n");
-			}
-
-		out(L"    %hs ", sym->Name);
-
-		u64 addr = sym->Address;	//* -> var's contents
-//		if(SYM_FLAG(REGRELATIVE))
-//			addr += frame->AddrFrame.Offset;
-//		else if(SYM_FLAG(REGISTER))
-//			return 0;
-
-		dump_sym(sym->TypeIndex, 0, addr);
-	}
-    __except(1)
-    {
-		out(L"\r\nError reading symbol %hs!\r\n", sym->Name);
-    }
-
-	return 1;
-}
-
-
-
-
-
-
-
-static int foreach_caller(int (*cb)(void*, void*), void* ctx, CONTEXT* thread_context = 0)
+// iterate over a call stack.
+// if <thread_context> != 0, we start there; otherwise, at the current
+// stack frame. call <cb> for each stack frame found, also passing the
+// user-specified <ctx>. if it returns <= 0, we stop immediately and
+// pass on that value; otherwise, the eventual return value is -1
+// ("callback never succeeded").
+//
+// note: can't just pass function's address to the callback -
+// dump_frame_cb needs the frame pointer for reg-relative variables.
+static int walk_stack(int (*cb)(STACKFRAME64*, void*), void* ctx, CONTEXT* thread_context = 0)
 {
 	HANDLE hThread = GetCurrentThread();
 
-	CONTEXT context;
-	// user knows the thread state (e.g. if called from exception handler)
-	if(thread_context)
-		context = *thread_context;
-	// we have to retrieve it ourselves
-	// dox say this isn't possible unless the thread is suspended.
-	// it appears to work fine, though; this is common practice.
-	// looking at http://dotnet.di.unipi.it/Content/sscli/docs/doxygen/pal/context_8c-source.html#l00119 ,
-	// which is derived from the Windows code, this should work.
-	// suspending this thread and having a helper thread call this
-	// is overdoing it, not worth the effort.
-/*	else
-	{
-		memset(&context, 0, sizeof(context));
-		context.ContextFlags = CONTEXT_FULL;
-		GetThreadContext(hThread, &context);
-	}
-*/
-	DWORD eip_, ebp_;
-	__asm
-	{
-cur_eip:
-		mov		eax, offset cur_eip
-		mov		[eip_], eax
-		mov		[ebp_], ebp
-	}
-
-
+	// we need to set STACKFRAME64.AddrPC and AddrFrame for the initial
+	// StackWalk call in our loop. there is no portable way to do this,
+	// since CONTEXT is platform-specific. if the caller passed in a thread
+	// context (e.g. if calling from an exception handler), we use that;
+	// otherwise, determine the current PC / frame pointer ourselves.
+	// GetThreadContext is documented not to work if the current thread
+	// is running, but that seems to be current practice. Regardless, we
+	// avoid using it, since simple asm code is safer.
 	STACKFRAME64 frame;
 	memset(&frame, 0, sizeof(frame));
 
-	// AddrPC and AddrFrame must be initialized for the first StackWalk call.
-#ifdef _M_IX86
-	frame.AddrPC.Offset     = eip_;//context.Eip;
-	frame.AddrPC.Mode       = AddrModeFlat;
-	frame.AddrFrame.Offset  = ebp_;//context.Ebp;
-	frame.AddrFrame.Mode    = AddrModeFlat;
+#if defined(_M_AMD64)
+
+	DWORD64 rip_, rbp_;
+	if(thread_context)
+	{
+		rip_ = thread_context->Rip;
+		rbp_ = thread_context->Rbp;
+	}
+	else
+	{
+		__asm
+		{
+		cur_rip:
+			mov		rax, offset cur_rip
+			mov		[rip_], rax
+			mov		[rbp_], rbp
+		}
+	}
+
+	frame.AddrPC.Offset    = rip_;
+	frame.AddrPC.Mode      = AddrModeFlat;
+	frame.AddrFrame.Offset = rbp_;
+	frame.AddrFrame.Mode   = AddrModeFlat;
+
+#elif defined(_M_IX86)
+
+	DWORD eip_, ebp_;
+	if(thread_context)
+	{
+		eip_ = thread_context->Eip;
+		ebp_ = thread_context->Ebp;
+	}
+	else
+	{
+		__asm
+		{
+		cur_eip:
+			mov		eax, offset cur_eip
+			mov		[eip_], eax
+			mov		[ebp_], ebp
+		}
+	}
+
+	frame.AddrPC.Offset    = eip_;
+	frame.AddrPC.Mode      = AddrModeFlat;
+	frame.AddrFrame.Offset = ebp_;
+	frame.AddrFrame.Mode   = AddrModeFlat;
+
+#else
+
+#error "TODO: set STACKFRAME64.AddrPC, AddrFrame for this platform"
+
 #endif
 
+	// for each stack frame found:
 	for(;;)
 	{
-		win_lock(DBGHELP_CS);
-		BOOL ok = StackWalk64(machine, hProcess, hThread, &frame, /*&context*/thread_context, 0, SymFunctionTableAccess64, SymGetModuleBase64, 0);
-		win_unlock(DBGHELP_CS);
+		lock();
+		BOOL ok = StackWalk64(machine, hProcess, hThread, &frame, thread_context, 0, SymFunctionTableAccess64, SymGetModuleBase64, 0);
+		unlock();
 
+		// no more frames found, and callback never succeeded; abort.
 		if(!ok)
 			return -1;
 
 		void* func = (void*)frame.AddrPC.Offset;
 
-		int ret = cb(func, ctx);
+		int ret = cb(&frame, ctx);
+		// callback reports it's done; stop calling it and return that value.
+		// (can be 0 for success, or a negative error code)
 		if(ret <= 0)
 			return ret;
 	}
@@ -538,177 +263,824 @@ cur_eip:
 
 
 // ~500µs
-int wdbg_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
+int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
 {
-	DWORD64 addr = (DWORD64)ptr_of_interest;
+	int ret = -1;
 
-	win_lock(DBGHELP_CS);
+	lock();
+
+	{
+	const DWORD64 addr = (DWORD64)ptr_of_interest;
 
 	// get symbol name
-	char sym_buf[sizeof(SYMBOL_INFO) + 1000];
-		// C++ decorated names can be hundreds of characters long!
-	memset(sym_buf, 0, sizeof(sym_buf));
-	SYMBOL_INFO* sym_info = (SYMBOL_INFO*)sym_buf;
-	sym_info->SizeOfStruct = sizeof(SYMBOL_INFO);
-	sym_info->MaxNameLen = 1000;
-	if(SymFromAddr(hProcess, addr, 0, sym_info))
-		sprintf(sym_name, "%s", sym_info->Name);
-	else
-		sprintf(sym_name, "%I64X", addr);
+	SYMBOL_INFO_PACKAGE sp;
+	SYMBOL_INFO* sym = &sp.si;
+	sym->SizeOfStruct = sizeof(sp.si);
+	sym->MaxNameLen = MAX_SYM_NAME;
+	if(!SymFromAddr(hProcess, addr, 0, sym))
+		goto fail;
+	sprintf(sym_name, "%s", sym->Name);
 
 	// get source file + line number
 	IMAGEHLP_LINE64 line_info = { sizeof(IMAGEHLP_LINE64) };
-	DWORD displacement;	// required by SymGetLineFromAddr64!
-	if(SymGetLineFromAddr64(hProcess, addr, &displacement, &line_info))
-	{
-		sprintf(file, "%s", line_info.FileName);
-		*line = line_info.LineNumber;
+	DWORD displacement; // unused but required by SymGetLineFromAddr64!
+	if(!SymGetLineFromAddr64(hProcess, addr, &displacement, &line_info))
+		goto fail;
+	sprintf(file, "%s", line_info.FileName);
+	*line = line_info.LineNumber;
+
+	ret = 0;
 	}
 
-	win_unlock(DBGHELP_CS);
-	return 0;
+fail:
+	unlock();
+	return ret;
 }
 
 
+//////////////////////////////////////////////////////////////////////////////
+//
+// get address of Nth function above us on the call stack (uses walk_stack)
+//
+//////////////////////////////////////////////////////////////////////////////
 
 struct NthCallerParams
 {
-	uint left_to_skip;
+	int left_to_skip;
 	void* func;
 };
 
-static int nth_caller_cb(void* func, void* ctx)
+// called by walk_stack for each stack frame
+static int nth_caller_cb(STACKFRAME64* frame, void* ctx)
 {
 	NthCallerParams* p = (NthCallerParams*)ctx;
 
 	// not the one we want yet
-	if(p->left_to_skip-- != 0)
-		return 1;
+	if(p->left_to_skip > 0)
+	{
+		p->left_to_skip--;
+		return 1;	// keep calling
+	}
 
 	// return its address
-	p->func = func;
+	p->func = (void*)frame->AddrPC.Offset;
 	return 0;
 }
 
 
 // n starts at 1
-void* wdbg_get_nth_caller(uint n)
+void* debug_get_nth_caller(uint n)
 {
-	NthCallerParams params = { n-1+3, 0 };
-		// should be n-1, but we skip foreach_caller, this function and its caller as well
-	if(foreach_caller(nth_caller_cb, &params) == 0)
+	NthCallerParams params = { (int)n-1 + 3, 0 };
+		// skip walk_stack, debug_get_nth_caller and its caller
+	if(walk_stack(nth_caller_cb, &params) == 0)
 		return params.func;
 	return 0;
 }
 
 
+//////////////////////////////////////////////////////////////////////////////
+//
+// helper routines for symbol value dump
+//
+//////////////////////////////////////////////////////////////////////////////
 
+static const size_t DUMP_BUF_SIZE = 64000;
+static wchar_t buf[DUMP_BUF_SIZE];	// buffer for stack trace
+static wchar_t* pos;			// current pos in buf
 
-static int dump_caller(void* func, void* ctx)
+static void out(const wchar_t* fmt, ...)
 {
-	uint& skip = *(uint*)ctx;
-	if(skip-- != 0)
-		return 1;	// keep calling
+	// Don't overflow the buffer (and abort if we're about to)
+	if (pos-buf+1000 > DUMP_BUF_SIZE)
+	{
+		debug_warn("");
+		return;
+	};
 
-	char func_name[1000];
-	char file[100];
-	int line;
-	if(wdbg_resolve_symbol(func, func_name, file, &line) == 0)
+	va_list args;
+	va_start(args, fmt);
+	pos += vswprintf(pos, 1000, fmt, args);
+	va_end(args);
+}
+
+
+// is an ASCII string apparently located at <addr>?
+// set <stride> to 2 to search for WCS-2 strings (of western characters!).
+// called by dump_ptr and dump_array for their string special-cases.
+//
+// algorithm: scan the "string" and count # text chars vs. garbage.
+static bool is_string_ptr(u64 addr, size_t stride = 1)
+{
+	// completely bogus on IA32; save ourselves the segfault (slow).
+#ifdef _WIN32
+	if(addr < 0x10000 || addr > 0xc0000000)
+		return false;
+#endif
+
+	const char* str = (const char*)addr;
+
+	__try
+	{
+		int score = 0;
+
+		for(;;)
+		{
+			// current character is:
+			const int c = *str & 0xff;	// prevent sign extension
+			// .. text
+			if(isalnum(c))
+				score += 2;
+			// .. end of string
+			else if(!c)
+				break;
+			// .. garbage
+			else if(!isprint(c))
+				score -= 5;
+
+			// too much garbage found, probably not a string.
+			// abort fairly early so we don't segfault unnecessarily (slow).
+			if(score <= -10)
+				break;
+
+			str += stride;
+		}
+
+		return (score > 0);
+	}
+	__except(1)
+	{
+		return false;
+	}
+}
+
+
+// zero-extend <size> (truncated to 8) bytes of little-endian data to u64,
+// starting at address <p> (need not be aligned).
+static u64 movzx_64le(const u8* p, size_t size)
+{
+	if(size > 8)
+		size = 8;
+
+	u64 data = 0;
+	for(u64 i = 0; i < MIN(size,8); i++)
+		data |= ((u64)p[i]) << (i*8);
+
+	return data;
+}
+
+
+// sign-extend <size> (truncated to 8) bytes of little-endian data to i64,
+// starting at address <p> (need not be aligned).
+static i64 movsx_64le(const u8* p, size_t size)
+{
+	if(size > 8)
+		size = 8;
+
+	u64 data = movzx_64le(p, size);
+
+	// no point in sign-extending if >= 8 bytes were requested
+	if(size < 8)
+	{
+		u64 sign_bit = 1;
+		sign_bit <<= (size*8)-1;
+			// be sure that we don't shift more than variable's bit width
+
+		// number would be negative in the smaller type,
+		// so sign-extend, i.e. set all more significant bits.
+		if(data & sign_bit)
+		{
+			const u64 size_mask = (sign_bit+sign_bit)-1;
+			data |= ~size_mask;
+		}
+	}
+
+	return (i64)data;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// output values of specific types of local variables
+//
+//////////////////////////////////////////////////////////////////////////////
+
+// forward decl; called by dump_udt.
+static int dump_data_sym(DWORD data_idx, const u8* p, uint level);
+
+// forward decl; called by dump_array.
+static int dump_type_sym(DWORD type_idx, const u8* p, uint level);
+
+
+// these functions return -1 if they're not able to produce any reasonable
+// output; dump_type_sym will display value as "?"
+
+
+// <type_id> is a SymTagPointerType; output its value.
+// called by dump_type_sym; lock is held.
+static int dump_ptr(const u8* p, size_t size)
+{
+	const u64 data = movzx_64le(p, size);
+
+	const wchar_t* fmt;
+
+	// char*
+	if(is_string_ptr(data, sizeof(char)))
+		fmt = L"\"%hs\"";
+	// WCHAR*
+	else if(is_string_ptr(data, sizeof(WCHAR)))
+		fmt = L"\"%s\"";
+	// generic 32-bit pointer
+	else if(size == 4)
+		fmt = L"0x%08X";
+	// generic 64-bit pointer
+	else
+		fmt = L"0x%I64016X";
+	
+	out(fmt, data);
+	return 0;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+// <type_id> is a SymTagBaseType; output its value.
+// called by dump_type_sym; lock is held.
+static int dump_base_type(DWORD type_idx, const u8* p, size_t size, uint level)
+{
+	UNUSED(level);
+
+	DWORD base_type;
+	if(!SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_BASETYPE, &base_type))
+		return -1;
+
+	u64 data = movzx_64le(p, size);
+
+	// single out() call
+	// (note: passing pointers in u64 assumes little-endian)
+	const wchar_t* fmt;
+
+	switch(base_type)
+	{
+		case btBool:
+			assert(size == sizeof(bool));
+			fmt = L"%hs";
+			data = (u64)(data? "true " : "false");
+			break;
+
+		case btFloat:
+			if(size == sizeof(float))
+				fmt = L"%f";
+			else if(size == sizeof(double))
+				fmt = L"%lf";
+			else
+				assert(0);
+			break;
+
+		// signed integers
+		case btInt:
+		case btLong:
+			data = movsx_64le(p, size);
+			if(size == 2 || size == 4)
+				fmt = L"%d";
+			else if(size == 8)
+				fmt = L"%I64d";
+			else
+				assert(0);
+			break;
+
+		// unsigned integers (displayed as hex)
+		case btUInt:
+		case btULong:
+			if(size == 2)
+				fmt = L"0x%04X";
+			else if(size == 4)
+				fmt = L"0x%08X";
+			else if(size == 8)
+				fmt = L"0x%016I64X";
+			else
+				assert(0);
+			break;
+
+		// either 8-bit integer or character (character value appended below)
+		case btChar:
+			assert(size == sizeof(char));
+			fmt = L"%I64d";
+			break;
+
+		case btWChar:
+			assert(size == sizeof(wchar_t));
+			fmt = L"%c";
+			break;
+
+		// shouldn't happen
+		case btNoType:
+		case btVoid:
+		default:
+			//-fallthrough
+
+		// unsupported complex types
+		case btBCD:
+		case btCurrency:
+		case btDate:
+		case btVariant:
+		case btComplex:
+		case btBit:
+		case btBSTR:
+		case btHresult:
+			return -1;
+	}
+
+	out(fmt, data);
+
+	// cannot be shoehorned into single out().
+	// note: no need for type checks; if the value is right,
+	// we just display what character that corresponds to.
+	if(data < 0x100)
+	{
+		int c = (int)data;
+		if(isprint(c))
+			out(L" ('%hc')", c);
+	}
+
+	return 0;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+// <type_id> is a SymTagEnum; output its value.
+// called by dump_type_sym; lock is held.
+static int dump_enum(DWORD type_idx, const u8* p, size_t size, uint level)
+{
+	UNUSED(level);
+
+	const i64 current_value = movsx_64le(p, size);
+
+	DWORD num_children;
+	if(!SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_CHILDRENCOUNT, &num_children))
+		goto name_unavailable;
+
+	// alloc an array to hold child IDs
+	const size_t MAX_CHILDREN = 1000;
+	char child_buf[sizeof(TI_FINDCHILDREN_PARAMS)+MAX_CHILDREN*sizeof(DWORD)];
+	TI_FINDCHILDREN_PARAMS* fcp = (TI_FINDCHILDREN_PARAMS*)child_buf;
+	fcp->Start = 0;
+	fcp->Count = MIN(num_children, MAX_CHILDREN);
+
+	if(!SymGetTypeInfo(hProcess, mod_base, type_idx, TI_FINDCHILDREN, fcp))
+		goto name_unavailable;
+
+	for(uint i = 0; i < fcp->Count; i++)
+	{
+		DWORD child_data_idx = fcp->ChildId[i];
+
+		// get enum value. don't make any assumptions about the
+		// variant's type (i.e. size)  - no restriction is documented.
+		// also don't do this manually - it's tedious and we might not
+		// cover everything. OLE DLL is already pulled in anyway.
+		VARIANT v;
+		SymGetTypeInfo(hProcess, mod_base, child_data_idx, TI_GET_VALUE, &v);
+		if(VariantChangeType(&v, &v, 0, VT_I8) != S_OK)
+			continue;
+
+		if(current_value == v.llVal)
+		{
+			WCHAR* name;
+			if(!SymGetTypeInfo(hProcess, mod_base, child_data_idx, TI_GET_SYMNAME, &name))
+				goto name_unavailable;
+
+			out(L"%s", name);
+			LocalFree(name);
+			return 0;
+		}
+	}
+
+name_unavailable:
+	// we can produce reasonable output (the numeric value),
+	// but weren't able to retrieve the matching enum name.
+	out(L"%I64d", current_value);
+	return 1;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+// <type_id> is a SymTagArrayType; output its value.
+// called by dump_type_sym; lock is held.
+static int dump_array(DWORD type_idx, const u8* p, size_t size, uint level)
+{
+	DWORD elements;
+	if(!SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_COUNT, &elements))
+		return -1;
+
+	DWORD el_type_idx = 0;
+	if(!SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_TYPEID, &el_type_idx))
+		return -1;
+
+	size_t stride = (size_t)(size / elements);
+
+
+	//
+	// special case for character arrays, i.e. strings
+	//
+
+	u64 addr = (u64)p;
+	// .. char[]
+	if(stride == sizeof(char) && is_string_ptr(addr, stride))
+	{
+		out(L"\"%hs\"", p);
+		return 0;
+	}
+	// .. WCHAR[] (don't use wchar_t, since that might be 4 bytes)
+	if(stride == sizeof(WCHAR) && is_string_ptr(addr, stride))
+	{
+		out(L"\"%s\"", p);
+		return 0;
+	}
+
+
+	//
+	// regular array output
+	//
+
+	int err = 0;
+
+	out(L"{ ");
+
+	const uint elements_to_show = MIN(32, elements);
+	for(uint i = 0; i < elements_to_show; i++)
+	{
+		int ret = dump_type_sym(el_type_idx, p + i*stride, level+1);
+		// skip trailing comma
+		if(i != elements_to_show-1)
+			out(L", ");
+
+		// remember first error
+		if(err == 0)
+			err = ret;
+	}
+	// we truncated some
+	if(elements != elements_to_show)
+		out(L" ...");
+
+	out(L" }");
+	return err;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+// <type_id> is a SymTagUDT; output its value.
+// called by dump_type_sym; lock is held.
+static int dump_udt(DWORD type_idx, const u8* p, size_t size, uint level)
+{
+	UNUSED(size);
+
+	out(L"\r\n");
+
+	DWORD num_children;
+	if(!SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_CHILDRENCOUNT, &num_children))
+		return -1;
+
+	// alloc an array to hold child IDs
+	const size_t MAX_CHILDREN = 1000;
+	char child_buf[sizeof(TI_FINDCHILDREN_PARAMS)+MAX_CHILDREN*sizeof(DWORD)];
+	TI_FINDCHILDREN_PARAMS* fcp = (TI_FINDCHILDREN_PARAMS*)child_buf;
+	fcp->Start = 0;
+	fcp->Count = MIN(num_children, MAX_CHILDREN);
+
+	if(!SymGetTypeInfo(hProcess, mod_base, type_idx, TI_FINDCHILDREN, fcp))
+		return -1;
+
+	int err = 0;
+
+	// recursively display each child (call back to dump_data)
+	for(uint i = 0; i < fcp->Count; i++)
+	{
+		DWORD child_data_idx = fcp->ChildId[i];
+
+		DWORD ofs = 0;
+		if(!SymGetTypeInfo(hProcess, mod_base, child_data_idx, TI_GET_OFFSET, &ofs))
+			debug_warn("dump_udt: warning: TI_GET_OFFSET query failed");
+
+		int ret = dump_data_sym(child_data_idx, p+ofs, level+1);
+
+		// remember first error
+		if(err == 0)
+			err = ret;
+	}
+
+	return err;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+//
+//
+//////////////////////////////////////////////////////////////////////////////
+
+// given a data symbol's type identifier, output its type name (if
+// applicable), determine what kind of variable it describes, and
+// call the appropriate dump_* routine.
+// lock is held.
+static int dump_type_sym(DWORD type_idx, const u8* p, uint level)
+{
+	DWORD type_tag;
+	if(!SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_SYMTAG, &type_tag))
+		return -1;
+
+	// get "type name" (only available for SymTagUDT, SymTagEnum, and
+	// SymTagTypedef types).
+	// note: can't use SymFromIndex to get tag as well as name, because it
+	// fails when name isn't available (e.g. if this is a SymTagBaseType).
+	WCHAR* type_name;
+	if(SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_SYMNAME, &type_name))
+	{
+		out(L"(%s)", type_name);
+		LocalFree(type_name);
+	}
+
+	ULONG64 size;
+	if(!SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_LENGTH, &size))
+		return -1;
+
+
+	switch(type_tag)
+	{
+	case SymTagPointerType:
+		return dump_ptr(p, (size_t)size);
+
+	case SymTagEnum:
+		return dump_enum(type_idx, p, (size_t)size, level);
+
+	case SymTagBaseType:
+		return dump_base_type(type_idx, p, (size_t)size, level);
+
+	case SymTagUDT:
+		return dump_udt(type_idx, p, (size_t)size, level);
+
+	case SymTagArrayType:
+		return dump_array(type_idx, p, (size_t)size, level);
+
+	case SymTagTypedef:
+		if(!SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_TYPEID, &type_idx))
+			return -1;
+		return dump_type_sym(type_idx, p, level);
+
+	default:
+		debug_out("Unknown tag: %d\n", type_tag);
+		return -1;
+	}
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+// indent to current nesting level, display name, and output value via
+// dump_type_sym.
+//
+// split out of dump_sym_cb so dump_udt can call back here for its members.
+// lock is held.
+static int dump_data_sym(DWORD data_idx, const u8* p, uint level)
+{
+	SYMBOL_INFO_PACKAGEW sp;
+	SYMBOL_INFOW* sym = &sp.si;
+	sym->SizeOfStruct = sizeof(sp.si);
+	sym->MaxNameLen = MAX_SYM_NAME;
+	if(!SymFromIndexW(hProcess, mod_base, data_idx, sym))
+		return -1;
+
+	assert(sym->Tag == SymTagData);
+
+	// indent
+	for(uint i = 0; i <= level+1; i++)
+		out(L"    ");
+
+	out(L"%s = ", sym->Name);
+
+	int ret = dump_type_sym(sym->TypeIndex, p, level);
+
+	// couldn't produce any reasonable output; value = "?"
+	if(ret < 0)
+		out(L"?");
+
+	out(L"\r\n");
+
+	return ret;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+struct DumpSymParams
+{
+	STACKFRAME64* frame;
+	bool locals_active;
+};
+
+// get actual address of what the symbol represents (may be relative
+// to frame pointer); demarcate local/param sections; output name+value via
+// dump_data_sym.
+// 
+// called from dump_frame_cb for each local symbol; lock is held.
+static BOOL CALLBACK dump_sym_cb(SYMBOL_INFO* sym, ULONG sym_size, void* ctx)
+{
+	UNUSED(sym_size);
+	DumpSymParams* p = (DumpSymParams*)ctx;
+
+	mod_base = (uintptr_t)sym->ModBase;
+
+	// get address
+	ULONG64 addr = sym->Address;
+	// .. relative to a register; we assume it's the frame pointer,
+	//    since sym->Register is undocumented.
+	if(sym->Flags & SYMF_REGREL || sym->Flags & SYMF_FRAMEREL)
+		addr += p->frame->AddrFrame.Offset;
+	// .. in register; we can't reliably retrieve it (since undocumented)
+	else if(sym->Flags & SYMF_REGISTER)
+		return 1;
+	// .. global variable (address already set)
+
+	// demarcate local / parameter report sections - this is nicer than
+	// printing e.g. "local" in front of each variable. we assume that
+	// symbols are sorted by group (local/param); if not, we waste space
+	// with redundant "locals:"/"params:" tags.
+	// note that both flags can be set, so we can't combine the if pairs.
+	if(sym->Flags & SYMF_PARAMETER)
+	{
+		if(p->locals_active)
+		{
+			out(L"params:\r\n");
+			p->locals_active = false;
+		}
+	}
+	else if(sym->Flags & SYMF_LOCAL)
+	{
+		if(!p->locals_active)
+		{
+			out(L"locals:\r\n ");
+			p->locals_active = true;
+		}
+	}
+
+	dump_data_sym(sym->Index, (const u8*)addr, 0);
+	return TRUE;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+struct DumpFrameParams
+{
+	int left_to_skip;
+};
+
+// called by walk_stack for each stack frame
+static int dump_frame_cb(STACKFRAME64* frame, void* ctx)
+{
+	DumpFrameParams* p = (DumpFrameParams*)ctx;
+
+	// not the one we want yet
+	if(p->left_to_skip > 0)
+	{
+		p->left_to_skip--;
+		return 1;	// keep calling
+	}
+
+	lock();
+
+	void* func = (void*)frame->AddrPC.Offset;
+	char func_name[1000]; char file[100]; int line;
+	if(debug_resolve_symbol(func, func_name, file, &line) == 0)
 		out(L"%hs (%hs:%lu)", func_name, file, line);
 	else
 		out(L"%p", func);
 
-
 	out(L"\r\n");
 
-	// params + vars
-	var_type = NONE;
-
+	// only enumerate symbols for this stack frame
+	// (i.e. its locals and parameters)
+	// problem: debug info is scope-aware, so we won't see any variables
+	// declared in sub-blocks. we'd have to pass an address in that block,
+	// which isn't worth the trouble. since 
 	IMAGEHLP_STACK_FRAME imghlp_frame;
 	imghlp_frame.InstructionOffset = (DWORD64)func;
-	SymSetContext(hProcess, &imghlp_frame, 0);
-	SymEnumSymbols(hProcess, 0, 0, sym_callback, 0);
+	SymSetContext(hProcess, &imghlp_frame, 0);	// last param is ignored
+
+	DumpSymParams params = { frame, true };
+	SymEnumSymbols(hProcess, 0, 0, dump_sym_cb, &params);
+		// 2nd and 3rd params indicate scope set by SymSetContext
+		// should be used.
 
 	out(L"\r\n");
+
+	unlock();
 	return 1;	// keep calling
 }
 
 
+//////////////////////////////////////////////////////////////////////////////
+
+
 // most recent <skip> stack frames will be skipped
 // (we don't want to show e.g. GetThreadContext / this call)
-
-static void walk_stack(uint skip, wchar_t* out_buf, CONTEXT* thread_context = NULL)
+static void dump_stack(uint skip, CONTEXT* thread_context = NULL)
 {
-	pos = out_buf;
 	out(L"\r\nCall stack:\r\n\r\n");
 
-	foreach_caller(dump_caller, 0, thread_context);
+	DumpFrameParams params = { (int)skip+2 };
+		// skip dump_stack and walk_stack
+	walk_stack(dump_frame_cb, &params, thread_context);
 }
 
 
-/*---------------------------------------------------------------------------*/
+//////////////////////////////////////////////////////////////////////////////
+//
+// "program error" dialog with stack trace (triggered by assert and exception)
+//
+//////////////////////////////////////////////////////////////////////////////
 
-
-typedef enum
+enum DialogType
 {
 	ASSERT,
 	EXCEPTION
-}
-DLG_TYPE;
-
+};
 
 static int CALLBACK dlgproc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM lParam)
 {
 	switch(msg)
 	{
+	// return TRUE to set default keyboard focus
 	case WM_INITDIALOG:
 	{
-		DLG_TYPE type = (DLG_TYPE)lParam;
+		DialogType type = (DialogType)lParam;
 
 		// disable inappropriate buttons
 		if(type != ASSERT)
 		{
 			HWND h;
 			h = GetDlgItem(hDlg, IDC_CONTINUE);
-			EnableWindow(h, 0);
+			EnableWindow(h, FALSE);
 			h = GetDlgItem(hDlg, IDC_SUPPRESS);
-			EnableWindow(h, 0);
+			EnableWindow(h, FALSE);
 			h = GetDlgItem(hDlg, IDC_BREAK);
-			EnableWindow(h, 0);
+			EnableWindow(h, FALSE);
 		}
 
 		SetDlgItemTextW(hDlg, IDC_EDIT1, buf);
-		return 1;	// allow focus to be set
+		return TRUE;
 	}
 
+	// return 0 if processed, otherwise break
 	case WM_SYSCOMMAND:
-		if(wParam == SC_CLOSE)
+		// close dialog if [X] is clicked (doesn't happen automatically)
+		// note: lower 4 bits are reserved
+		if((wParam & 0xFFF0) == SC_CLOSE)
+		{
 			EndDialog(hDlg, 0);
-		return 0;	// allows dragging; don't understand why.
+			return 0;
+		}
+		break;
 
+	// return 0 if processed, otherwise break
 	case WM_COMMAND:
 		switch(wParam)
 		{
 		case IDC_COPY:
 			clipboard_set(buf);
-			break;
+			return 0;
 
 		case IDC_CONTINUE:	// 2000
 		case IDC_SUPPRESS:
 		case IDC_BREAK:		// 2002
 			EndDialog(hDlg, wParam-2000);
-			break;
+			return 0;
 
 		case IDC_EXIT:
 			exit(0);
+			return 0;
+
+		default:
+			break;
 		}
-		return 1;
+		break;
+
+	default:
+		break;
 	}
 
-	return 0;	// do default processing for msg
+	// we didn't process the message; caller will perform default action.
+	return FALSE;
 }
-
-
 
 
 // show error dialog, with stack trace (must be stored in buf[])
@@ -719,9 +1091,11 @@ static int CALLBACK dlgproc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM l
 //   1 - suppress
 //   2 - break
 
-static int dialog(DLG_TYPE type)
+static int dialog(DialogType type)
 {
-	return (int)DialogBoxParam(0, MAKEINTRESOURCE(IDD_DIALOG1), 0, dlgproc, (LPARAM)type);
+	// we don't know if the enclosing app even has a Window.
+	const HWND hParent = GetDesktopWindow();
+	return (int)DialogBoxParam(hInstance, MAKEINTRESOURCE(IDD_DIALOG1), hParent, dlgproc, (LPARAM)type);
 }
 
 
@@ -782,8 +1156,9 @@ static long CALLBACK except_filter(EXCEPTION_POINTERS* except)
 	}
 
 
-	int pos = swprintf(buf, 1000, L"Exception %hs at %hs!%08lX\r\n", except_str, module, addr-base);
-	walk_stack(0, buf+pos, except->ContextRecord);
+	pos = buf;
+	out(L"Exception %hs at %hs!%08lX\r\n", except_str, module, addr-base);
+	dump_stack(0, except->ContextRecord);
 
 	dialog(EXCEPTION);
 
@@ -975,8 +1350,9 @@ int debug_main_exception_filter(unsigned int UNUSEDPARAM(code), PEXCEPTION_POINT
 
 int debug_assert_failed(const char* file, int line, const char* expr)
 {
-	int pos = swprintf(buf, 1000, L"Assertion failed in %hs, line %d: %hs\r\n", file, line, expr);
-	walk_stack(2, buf+pos);
+	pos = buf;
+	out(L"Assertion failed in %hs, line %d: \"%hs\"\r\n", file, line, expr);
+	dump_stack(1);	// skip this function's frame
 
 	return dialog(ASSERT);
 }
@@ -1042,21 +1418,14 @@ static void cat_atow(FILE* in, FILE* out)
 extern wchar_t MicroBuffer[];
 extern size_t MicroBuffer_off;
 
-int debug_write_crashlog(const char* file, const wchar_t* header, void* context)
+int debug_write_crashlog(const char* file, const wchar_t* header, void* ctx)
 {
-	int len = swprintf(buf, 1000, L"Undefined state reached.\r\n");
+	pos = buf;
+	out(L"Undefined state reached.\r\n");
 
-	__try
-	{
-		if (context)
-			walk_stack(0, buf+len, (CONTEXT*)context);
-		else
-			walk_stack(2, buf+len);
-	}
-	__except(EXCEPTION_EXECUTE_HANDLER)
-	{
-		// Probably caught a buffer overflow
-	}
+	CONTEXT* context = (CONTEXT*)ctx;
+	const uint skip = context? 0 : 2;
+	dump_stack(skip, context);
 
 	FILE* f = fopen(file, "wb");
 	u16 BOM = 0xFEFF;
