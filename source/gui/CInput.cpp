@@ -79,10 +79,10 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 				break;
 
 			if (m_iBufferPos == pCaption->Length())
-				*pCaption = pCaption->Left( pCaption->Length()-1 );
+				*pCaption = pCaption->Left( (long) pCaption->Length()-1);
 			else
 				*pCaption = pCaption->Left( m_iBufferPos-1 ) + 
-							pCaption->Right( pCaption->Length()-m_iBufferPos );
+							pCaption->Right( (long) pCaption->Length()-m_iBufferPos );
 
 			--m_iBufferPos;
 			break;
@@ -93,7 +93,7 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 				break;
 
 			*pCaption = pCaption->Left( m_iBufferPos ) + 
-						pCaption->Right( pCaption->Length()-(m_iBufferPos+1) );
+						pCaption->Right( (long) pCaption->Length()-(m_iBufferPos+1) );
 
 			break;
 
@@ -102,7 +102,7 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 			break;
 
 		case SDLK_END:
-			m_iBufferPos = pCaption->Length();
+			m_iBufferPos = (long) pCaption->Length();
 			break;
 
 		case SDLK_LEFT:
@@ -151,7 +151,7 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 				*pCaption += cooked;
 			else
 				*pCaption = pCaption->Left(m_iBufferPos) + CStrW(cooked) + 
-							pCaption->Right(pCaption->Length()-m_iBufferPos);
+							pCaption->Right((long) pCaption->Length()-m_iBufferPos);
 
 			++m_iBufferPos;
 			break;
@@ -296,8 +296,7 @@ void CInput::Draw()
 				glPopMatrix();
 			}
 
-			//glwprintf(L"%ls", caption.c_str());
-			glwprintf(L"%lc", caption[i]);
+			glwprintf(L"%lc", caption[(int)i]);
 		}
 
 		if (m_iBufferPos == caption.Length())
