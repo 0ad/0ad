@@ -208,8 +208,8 @@ public:
 class CParser
 {
 public:
-	CParser::CParser();
-	CParser::~CParser();
+	CParser();
+	~CParser();
 
 	std::vector<CParserTaskType>	m_TaskTypes;
 
@@ -217,5 +217,32 @@ public:
 	bool InputTaskType(const std::string& strName, const std::string& strSyntax);
 };
 
+
+
+// CParserCache
+// ---------------------------------------------------------------------| Class
+// Provides access to CParser objects, caching them to avoid
+// reconstructing the object every time a string needs to be parsed.
+class CParserCache
+{
+public:
+	// Returns a simple parser based on a single nameless task-type
+	static CParser& Get(const char* str);
+
+private:
+	// Self-destructing std::map
+	template <typename T, typename P> class SDMap : public std::map<T,P>
+	{
+	public:
+		~SDMap()
+		{
+			for (iterator it = begin(); it != end(); ++it) delete it->second;
+		}
+	};
+
+	typedef SDMap<std::string, CParser*> CacheType;
+
+	static CacheType m_Cached;
+};
 
 #endif

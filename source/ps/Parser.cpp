@@ -1067,3 +1067,23 @@ next	[a]		Null	[a]		<-- added NewNode
 
 	return !Error;
 }
+
+
+CParserCache::CacheType CParserCache::m_Cached;
+
+CParser& CParserCache::Get(const char* str)
+{
+	CacheType::iterator it = m_Cached.find(str);
+	if (it == m_Cached.end())
+	{
+		CParser* parser = new CParser;
+		parser->InputTaskType("", str);
+		m_Cached[str] = parser;
+		return *parser;
+	}
+	else
+	{
+		CParser* parser = it->second;
+		return *parser;
+	}
+}

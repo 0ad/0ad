@@ -43,8 +43,7 @@ template <>
 bool __ParseString<CRect>(const CStr& Value, CRect &Output)
 {
 	// Use the parser to parse the values
-	CParser parser;
-	parser.InputTaskType("", "_$value_$value_$value_$value_");
+	CParser& parser (CParserCache::Get("_$value_$value_$value_$value_"));
 
 	string str = (const TCHAR*)Value;
 
@@ -80,8 +79,7 @@ template <>
 bool __ParseString<CColor>(const CStr& Value, CColor &Output)
 {
 	// Use the parser to parse the values
-	CParser parser;
-	parser.InputTaskType("", "_$value_$value_$value_[$value_]");
+	CParser& parser (CParserCache::Get("_$value_$value_$value_[$value_]"));
 
 	string str = (const TCHAR*)Value;
 
@@ -115,8 +113,7 @@ template <>
 bool __ParseString<CSize>(const CStr& Value, CSize &Output)
 {
 	// Use the parser to parse the values
-	CParser parser;
-	parser.InputTaskType("", "_$value_$value_");
+	CParser& parser (CParserCache::Get("_$value_$value_"));
 
 	string str = (const TCHAR*)Value;
 
@@ -244,7 +241,6 @@ bool CClientArea::SetClientArea(const CStr& Value)
 	//  negligible in the loading time.
 
 	// Setup parser to parse the value
-	CParser parser;
 
 	// One of the for values:
 	//  will give outputs like (in argument):
@@ -253,13 +249,20 @@ bool CClientArea::SetClientArea(const CStr& Value)
 	//  (200) (percent) (100) <== percent PLUS pixel
 	//  (200) (percent) (-100) <== percent MINUS pixel
 	//  (200) (percent) (100) (-100) <== Both PLUS and MINUS are used, INVALID
+	/*
 	string one_value = "_[-_$arg(_minus)]$value[$arg(percent)%_[+_$value]_[-_$arg(_minus)$value]_]";
 	string four_values = one_value + "$arg(delim)" + 
 						 one_value + "$arg(delim)" + 
 						 one_value + "$arg(delim)" + 
 						 one_value + "$arg(delim)_"; // it's easier to just end with another delimiter
-
-	parser.InputTaskType("ClientArea", four_values);
+	*/
+	const char* four_values =
+		"_[-_$arg(_minus)]$value[$arg(percent)%_[+_$value]_[-_$arg(_minus)$value]_]" "$arg(delim)"
+		"_[-_$arg(_minus)]$value[$arg(percent)%_[+_$value]_[-_$arg(_minus)$value]_]" "$arg(delim)"
+		"_[-_$arg(_minus)]$value[$arg(percent)%_[+_$value]_[-_$arg(_minus)$value]_]" "$arg(delim)"
+		"_[-_$arg(_minus)]$value[$arg(percent)%_[+_$value]_[-_$arg(_minus)$value]_]" "$arg(delim)"
+		"_";
+	CParser& parser (CParserCache::Get(four_values));
 
     CParserLine line;
 	line.ParseString(parser, _Value);
@@ -286,6 +289,7 @@ bool CClientArea::SetClientArea(const CStr& Value)
 			{
 				if (valuenr!=3)
 				{
+					assert(valuenr <= 2);
 					arg_start[valuenr+1] = i+1;
 					arg_count[valuenr] = arg_start[valuenr+1] - arg_start[valuenr] - 1;
 				}
@@ -376,24 +380,24 @@ void CInternalCGUIAccessorBase::HandleMessage(IGUIObject *pObject, const SGUIMes
 }
 
 
-//#ifndef NDEBUG
-#define TYPE(T) \
-	template<> void CheckType<T>(const IGUIObject* obj, const CStr& setting) {	\
-		if (((IGUIObject*)obj)->m_Settings[setting].m_Type != GUIST_##T)	\
-		{	\
-			debug_warn("EXCESSIVELY FATAL ERROR: Inconsistent types in GUI");	\
-			throw "EXCESSIVELY FATAL ERROR: Inconsistent types in GUI";	/* TODO: better reporting */ \
-		}	\
-	}
-TYPE(bool)
-TYPE(int)
-TYPE(float)
-TYPE(CClientArea)
-TYPE(CStr)
-TYPE(CStrW)
-TYPE(CColor)
-TYPE(CGUIString)
-TYPE(EAlign)
-TYPE(EVAlign)
-#undef TYPE
-//#endif // #ifndef NDEBUG
+#ifndef NDEBUG
+	#define TYPE(T) \
+		template<> void CheckType<T>(const IGUIObject* obj, const CStr& setting) {	\
+			if (((IGUIObject*)obj)->m_Settings[setting].m_Type != GUIST_##T)	\
+			{	\
+				debug_warn("EXCESSIVELY FATAL ERROR: Inconsistent types in GUI");	\
+				throw "EXCESSIVELY FATAL ERROR: Inconsistent types in GUI";	/* TODO: better reporting */ \
+			}	\
+		}
+	TYPE(bool)
+	TYPE(int)
+	TYPE(float)
+	TYPE(CClientArea)
+	TYPE(CStr)
+	TYPE(CStrW)
+	TYPE(CColor)
+	TYPE(CGUIString)
+	TYPE(EAlign)
+	TYPE(EVAlign)
+	#undef TYPE
+#endif
