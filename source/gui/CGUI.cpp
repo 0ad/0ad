@@ -264,6 +264,12 @@ void CGUI::TickObjects()
 	m_Tooltip.Update(pNearest, m_MousePos, this);
 }
 
+void CGUI::SendEventToAll(CStr EventName)
+{
+	GUI<CStr>::RecurseObject(0, m_BaseObject, 
+		&IGUIObject::ScriptEvent, EventName);
+}
+
 //-------------------------------------------------------------------
 //  Constructor / Destructor
 //-------------------------------------------------------------------

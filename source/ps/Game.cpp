@@ -2,6 +2,9 @@
 
 #include "Game.h"
 #include "CLogger.h"
+#ifndef NO_GUI
+#include "gui/CGUI.h"
+#endif
 
 CGame *g_Game=NULL;
 
@@ -195,6 +198,10 @@ PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 		m_Simulation.Initialize(pAttribs);
 
 		m_GameStarted=true;
+
+#ifndef NO_GUI
+		g_GUI.SendEventToAll("sessionstart");
+#endif
 	}
 	catch (PSERROR_Game e)
 	{

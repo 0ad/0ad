@@ -95,9 +95,14 @@ public:
 	void Process();
 
 	/**
-	 * Sends a "Tick" event to every object
+	 * Performs processing that should happen every frame (including the "Tick" event)
 	 */
 	void TickObjects();
+
+	/**
+	 * Sends a specified event to every object
+	 */
+	void SendEventToAll(CStr EventName);
 
 	/**
 	 * Displays the whole GUI
