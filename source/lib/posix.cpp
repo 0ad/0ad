@@ -257,20 +257,6 @@ int pthread_create(pthread_t* /* thread */, const void* /* attr */, void*(* func
 }
 
 
-static HANDLE m2h(pthread_mutex_t* m)
-{
-	if(!m)
-		return INVALID_HANDLE_VALUE;
-	HANDLE h;
-	__asm
-	{
-		mov		edx, [m]
-		mov		eax, [edx]
-		mov		[h], eax
-	}
-	return h;
-}
-
 pthread_mutex_t pthread_mutex_initializer()
 {
 	return CreateMutex(0, 0, 0);
@@ -286,17 +272,17 @@ int pthread_mutex_init(pthread_mutex_t* m, const pthread_mutexattr_t*)
 
 int pthread_mutex_lock(pthread_mutex_t* m)
 {
-	return WaitForSingleObject(m2h(m), INFINITE) == WAIT_OBJECT_0? 0 : -1;
+	return WaitForSingleObject(*m, INFINITE) == WAIT_OBJECT_0? 0 : -1;
 }
 
 int pthread_mutex_trylock(pthread_mutex_t* m)
 {
-	return WaitForSingleObject(m2h(m), 0) == WAIT_OBJECT_0? 0 : -1;
+	return WaitForSingleObject(*m, 0) == WAIT_OBJECT_0? 0 : -1;
 }
 
 int pthread_mutex_unlock(pthread_mutex_t* m)
 {
-	return ReleaseMutex(m2h(m))? 0 : -1;
+	return ReleaseMutex(*m)? 0 : -1;
 }
 
 
@@ -500,13 +486,10 @@ u16_t htons(u16_t s)
 
 void entry(void)
 {
-// alloc __pio, __iob?
-// replace CRT init?
-
-// header also removed to prevent calling Winsock functions
+// note: winsock header is also removed by this define
 #ifndef NO_WINSOCK
 	char d[1024];
-	WSAStartup(0x0101, d);
+	WSAStartup(0x0002, d);	// want 2.0
 #endif
 
 	mainCRTStartup();

@@ -321,7 +321,7 @@ extern pthread_t pthread_self();
 extern int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param* param);
 extern int pthread_create(pthread_t* thread, const void* attr, void*(*IMP)(void*), void* arg);
 
-typedef void *pthread_mutex_t;
+typedef void* pthread_mutex_t;
 typedef void pthread_mutexattr_t;
 
 extern pthread_mutex_t pthread_mutex_initializer();
@@ -353,6 +353,9 @@ typedef unsigned short sa_family_t;
 
 IMP(int, socket, (int, int, int))
 IMP(int, setsockopt, (int, int, int, const void*, socklen_t))
+IMP(int, getsockopt, (int, int, int, void*, socklen_t*))
+
+
 
 struct sockaddr;
 

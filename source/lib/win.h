@@ -57,17 +57,23 @@
 
 #include <windows.h>
 
-// VC6 windows.h may not have defined these
+// VC6 windows.h doesn't define these
 #ifndef INVALID_FILE_ATTRIBUTES
 #define INVALID_FILE_ATTRIBUTES ((DWORD)-1)
 #endif
+
 #ifndef PROCESSOR_ARCHITECTURE_AMD64
 #define PROCESSOR_ARCHITECTURE_AMD64 9
 #endif
 
+// end VC6 fixes
+
+
 // HACK: warning-free definition for ICC (value is -1)
 #undef INVALID_HANDLE_VALUE
 const HANDLE INVALID_HANDLE_VALUE = (HANDLE)(((char*)0) + ~0);
+
+#define HANDLE2INT(_h) ((char *)_h - (char *)0)
 
 extern "C" {
 extern int _get_osfhandle(int);
@@ -77,14 +83,12 @@ extern int aio_open_winhandle(HANDLE);
 
 #ifndef NO_WINSOCK
 #ifdef _MSC_VER
-#pragma comment(lib, "wsock32.lib")
+#pragma comment(lib, "ws2_32.lib")
 #endif
 
-#ifndef _WINSOCKAPI_
-extern __declspec(dllimport) int __stdcall WSAStartup(WORD, char*);
-#endif
+extern __declspec(dllimport) int __stdcall WSAStartup(WORD, void*);
 #endif
 }
 
-#endif
-#endif
+#endif	// #ifndef __WIN_H__
+#endif	// #ifdef _WIN32

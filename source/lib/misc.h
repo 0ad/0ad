@@ -27,7 +27,7 @@
 #endif
 
 // check if compiler supports C99
-// avoid ICC warning about undefined macros in #if
+// nested #if to avoid ICC warning about undefined macro value
 #undef HAVE_C99
 #ifdef __STDC_VERSION__
 #if __STDC_VERSION__ >= 199901L)
@@ -145,7 +145,7 @@ extern bool is_pow2(int n);
 extern int ilog2(const int n);
 
 
-extern long round_up(long val, int multiple);
+extern uintptr_t round_up(uintptr_t val, uintptr_t multiple);
 
 
 // provide fminf for non-C99 compilers

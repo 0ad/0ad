@@ -20,7 +20,7 @@
 #include <cstdlib>
 #include <cstdio>
 
-#include <winsock2.h>
+//#include <winsock2.h>
 #include "posix.h"
 #include "win.h"
 #include "misc.h"
@@ -28,7 +28,7 @@
 
 // Win32 functions require sector aligned transfers.
 // updated by aio_open; changes don't affect aio_return
-static u32 sector_size = 4096;
+static size_t sector_size = 4096;
 
 // async-capable handles to each lowio file
 static HANDLE* aio_hs;
@@ -45,9 +45,9 @@ struct Req
 
 	// read into a separate align buffer if necessary
 	// (note: unaligned writes aren't supported. see aio_rw)
-	u32 pad;		// offset from starting sector
+	size_t pad;		// offset from starting sector
 	void* buf;		// reused; resize if too small
-	u32 buf_size;
+	size_t buf_size;
 };
 
 static const int MAX_REQS = 4;
@@ -90,10 +90,10 @@ static Req* find_req(const aiocb* cb)
 
 static void cleanup(void)
 {
-	uint i;
+	int i;
 
 	// close files
-	for(i = 0; i < hs_cap; i++)
+	for(i = 0; i < (int)hs_cap; i++)
 	{
 		HANDLE h = aio_h(i);
 		if(h != INVALID_HANDLE_VALUE)
@@ -152,13 +152,10 @@ int alloc_handle_entry(int fd)
 	// alloc aio_hs entry
 	if((unsigned)fd >= hs_cap)
 	{
-		uint hs_cap2 = round_up(fd+8, 8);
+		uint hs_cap2 = (uint)round_up(fd+8, 8);
 		HANDLE* aio_hs2 = (HANDLE*)realloc(aio_hs, hs_cap2*sizeof(HANDLE));
 		if(!aio_hs2)
-		{
-			UNLOCK(open)
 			return -1;
-		}
 
         for(uint i = hs_cap; i < hs_cap2; i++)
 			aio_hs2[i] = INVALID_HANDLE_VALUE;
@@ -176,7 +173,10 @@ int aio_open_winhandle(HANDLE fd)
 	LOCK(open)
 
 	if (alloc_handle_entry(HANDLE2INT(fd)) == -1)
+	{
+		UNLOCK(open)
 		return -1;
+	}
 
 	aio_hs[HANDLE2INT(fd)]=fd;
 
@@ -233,6 +233,7 @@ UNLOCK(open)
 	return 0;
 }
 
+
 // called by aio_read, aio_write, and lio_listio
 // cb->aio_lio_opcode specifies desired operation
 static int aio_rw(struct aiocb* cb)
@@ -263,19 +264,27 @@ LOCK(reqs)
 
 UNLOCK(reqs)
 
-	unsigned long opt=0;
-	int optlen=sizeof(opt);
-
-	// align
-	r->pad = cb->aio_offset % sector_size;		// offset to start of sector
-	u32 ofs = cb->aio_offset - r->pad;
-	u32 size = round_up((long)cb->aio_nbytes+r->pad, sector_size);
+	size_t ofs = 0;
+	size_t size = cb->aio_nbytes;
 	void* buf = cb->aio_buf;
-	const size_t _buf = (char*)buf - (char*)0;
-	if (getsockopt((SOCKET)h, SOL_SOCKET, SO_TYPE, (char *)&opt, &optlen)==-1 &&
-		(WSAGetLastError()==WSAENOTSOCK))
+
+#define SOL_SOCKET 0xffff
+#define SO_TYPE 0x1008
+
+	unsigned long opt = 0;
+	socklen_t optlen = sizeof(opt);
+	if (getsockopt((int)h, SOL_SOCKET, SO_TYPE, &opt, &optlen) != -1)
+//		||	(WSAGetLastError() != WSAENOTSOCK))
+		cb->aio_offset = 0;
+	else
 	{
-		if(r->pad || _buf % sector_size)
+		// align
+		r->pad = cb->aio_offset % sector_size;		// offset to start of sector
+		ofs = cb->aio_offset - r->pad;
+		size += r->pad + sector_size-1;
+		size &= sector_size-1;	// align (sector_size = 2**n)
+
+		if(r->pad || (uintptr_t)buf % sector_size)
 		{
 			// current align buffer is too small - resize
 			if(r->buf_size < size)
@@ -297,15 +306,16 @@ UNLOCK(reqs)
 			buf = r->buf;
 		}
 	}
-	else
-	{
-		ofs=0;
-		size=cb->aio_nbytes;
-	}
 
+#if _MSC_VER >= 1300
+	r->ovl.Pointer = (void*)ofs;
+#else
 	r->ovl.Offset = ofs;
+#endif
+
+	DWORD size32 = (DWORD)(size & 0xffffffff);
 	u32 status = (cb->aio_lio_opcode == LIO_READ)?
-		ReadFile(h, buf, size, NULL, &r->ovl) : WriteFile(h, buf, size, NULL, &r->ovl);
+		ReadFile(h, buf, size32, 0, &r->ovl) : WriteFile(h, buf, size32, 0, &r->ovl);
 
 	if(status || GetLastError() == ERROR_IO_PENDING)
 		return 0;

@@ -156,7 +156,7 @@ static int ilog2(const float x)
 }
 
 
-long round_up(long val, int multiple)
+uintptr_t round_up(uintptr_t val, uintptr_t multiple)
 {
 	val += multiple-1;
 	val -= val % multiple;

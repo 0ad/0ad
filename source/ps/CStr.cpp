@@ -98,7 +98,7 @@ _ulong CStr::ToULong() const
 
 _float CStr::ToFloat() const
 {
-	return _tstod(m_String.c_str(), NULL);
+	return (_float)_tstod(m_String.c_str(), NULL);
 }
 
 _double	CStr::ToDouble() const
@@ -139,7 +139,7 @@ _long CStr::ReverseFind(const CStr &Str)
 CStr CStr::LowerCase()
 {
 	tstring NewTString = m_String;
-	for (long i = 0; i < m_String.length(); i++)
+	for (size_t i = 0; i < m_String.length(); i++)
 		NewTString[i] = _totlower(m_String[i]);
 
 	return CStr(NewTString);
@@ -148,7 +148,7 @@ CStr CStr::LowerCase()
 CStr CStr::UpperCase()
 {
 	tstring NewTString = m_String;
-	for (long i = 0; i < m_String.length(); i++)
+	for (size_t i = 0; i < m_String.length(); i++)
 		NewTString[i] = _totlower(m_String[i]);
 
 	return CStr(NewTString);
@@ -159,7 +159,7 @@ CStr CStr::UpperCase()
 CStr CStr::LCase()
 {
 	tstring NewTString = m_String;
-	for (long i = 0; i < m_String.length(); i++)
+	for (size_t i = 0; i < m_String.length(); i++)
 		NewTString[i] = _totlower(m_String[i]);
 
 	return CStr(NewTString);
@@ -168,7 +168,7 @@ CStr CStr::LCase()
 CStr CStr::UCase()
 {
 	tstring NewTString = m_String;
-	for (long i = 0; i < m_String.length(); i++)
+	for (size_t i = 0; i < m_String.length(); i++)
 		NewTString[i] = _totlower(m_String[i]);
 
 	return CStr(NewTString);
@@ -219,7 +219,7 @@ void CStr::Replace(const CStr &ToReplace, const CStr &ReplaceWith)
 // returns a trimed string, removes whitespace from the left/right/both
 CStr CStr::Trim(PS_TRIM_MODE Mode)
 {
-	long Left, Right;
+	size_t Left, Right;
 	
 	
 	switch (Mode)
@@ -363,7 +363,7 @@ CStr::operator const TCHAR*()
 
 TCHAR &CStr::operator[](_int n)
 {
-	assert(n < m_String.length());
+	assert((size_t)n < m_String.length());
 	return m_String[n];
 }
 
@@ -374,7 +374,7 @@ TCHAR &CStr::operator[](_uint n)
 }
 TCHAR &CStr::operator[](_long n)
 {
-	assert(n < m_String.length());
+	assert((size_t)n < m_String.length());
 	return m_String[n];
 }
 

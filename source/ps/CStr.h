@@ -37,7 +37,7 @@ More Info:
 #include <string>				// Used for basic string functionality
 #include <iostream>
 
-#include "..\lib\posix.h"
+#include "posix.h"
 
 #include <cstdlib>
 using namespace std;
