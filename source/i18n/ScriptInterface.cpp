@@ -4,7 +4,14 @@
 #include "CLocale.h"
 #include "StringConvert.h"
 
-#include "jsapi.h"
+#include <jsapi.h>
+
+// Make JS debugging a little easier by automatically naming GC roots
+#ifndef NDEBUG
+// Don't simply #define NAME_ALL_GC_ROOTS, because jsapi.h is horridly broken
+# define JS_AddRoot(cx, rp) JS_AddNamedRoot((cx), (rp), __FILE__)
+#endif
+
 
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "i18n"
@@ -360,8 +367,8 @@ ScriptValueString::ScriptValueString(ScriptObject& script, const wchar_t* s)
 	}
 	else
 	{
-		JS_AddRoot(Context, str);
 		Value = STRING_TO_JSVAL(str);
+		JS_AddRoot(Context, &Value);
 	}
 }
 
@@ -375,8 +382,7 @@ ScriptValueString::~ScriptValueString()
 {
 	if (! JSVAL_IS_NULL(Value))
 	{
-		JSString* str = JSVAL_TO_STRING(Value);
-		JS_RemoveRoot(Context, str);
+		JS_RemoveRoot(Context, &Value);
 	}
 }
 
@@ -412,7 +418,7 @@ jsval ScriptValueVariable::GetJsval(const std::vector<BufferVariable*>& vars)
 	// Clean up from earlier invocations
 	if (GCVal)
 	{
-		JS_RemoveRoot(Context, GCVal);
+		JS_RemoveRoot(Context, &GCVal);
 		GCVal = NULL;
 	}
 
@@ -432,7 +438,7 @@ jsval ScriptValueVariable::GetJsval(const std::vector<BufferVariable*>& vars)
 				return JSVAL_NULL;
 			}
 			GCVal = (void*)val;
-			JS_AddRoot(Context, val);
+			JS_AddRoot(Context, &GCVal);
 			return DOUBLE_TO_JSVAL(val);
 		}
 	case vartype_string:
@@ -444,7 +450,7 @@ jsval ScriptValueVariable::GetJsval(const std::vector<BufferVariable*>& vars)
 				return JSVAL_NULL;
 			}
 			GCVal = (void*)val;
-			JS_AddRoot(Context, val);
+			JS_AddRoot(Context, &GCVal);
 			return STRING_TO_JSVAL(val);
 		}
 	case vartype_rawstring:
@@ -456,7 +462,7 @@ jsval ScriptValueVariable::GetJsval(const std::vector<BufferVariable*>& vars)
 				return JSVAL_NULL;
 			}
 			GCVal = (void*)val;
-			JS_AddRoot(Context, val);
+			JS_AddRoot(Context, &GCVal);
 			return STRING_TO_JSVAL(val);
 		}
 	default:
@@ -468,5 +474,5 @@ jsval ScriptValueVariable::GetJsval(const std::vector<BufferVariable*>& vars)
 ScriptValueVariable::~ScriptValueVariable()
 {
 	if (GCVal)
-		JS_RemoveRoot(Context, GCVal);
+		JS_RemoveRoot(Context, &GCVal);
 }

@@ -1,4 +1,4 @@
-// $Id: JSInterface_IGUIObject.cpp,v 1.12 2004/09/03 14:12:43 philip Exp $
+// $Id: JSInterface_IGUIObject.cpp,v 1.13 2004/09/04 14:42:46 philip Exp $
 
 #include "precompiled.h"
 
@@ -131,7 +131,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				CClientArea area;
 				GUI<CClientArea>::GetSetting(e, propName, area);
 				JSObject* obj = JS_NewObject(cx, &JSI_GUISize::JSI_class, NULL, NULL);
-				JS_AddRoot(cx, obj);
+				JS_AddRoot(cx, &obj);
 				try
 				{
 				#define P(x, y, z) g_ScriptingHost.SetObjectProperty_Double(obj, #z, area.x.y)
@@ -148,12 +148,12 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				catch (PSERROR_Scripting_ConversionFailed)
 				{
 					debug_warn("Error creating size object!");
-					JS_RemoveRoot(cx, obj);
+					JS_RemoveRoot(cx, &obj);
 					break;
 				}
 
 				*vp = OBJECT_TO_JSVAL(obj);
-				JS_RemoveRoot(cx, obj);
+				JS_RemoveRoot(cx, &obj);
 				break;
 			}
 

@@ -3,7 +3,15 @@
 #include "StringConvert.h"
 
 #include <assert.h>
-#include "jsapi.h"
+
+#include <jsapi.h>
+
+// Make JS debugging a little easier by automatically naming GC roots
+#ifndef NDEBUG
+// Don't simply #define NAME_ALL_GC_ROOTS, because jsapi.h is horridly broken
+# define JS_AddRoot(cx, rp) JS_AddNamedRoot((cx), (rp), __FILE__)
+#endif
+
 
 #if SDL_BYTE_ORDER == SDL_BIG_ENDIAN
 #define ucs2le_to_wchart(ptr) (wchar_t)( (u16) ((u8*)ptr)[0] | (u16) ( ((u8*)ptr)[1] << 8) )
