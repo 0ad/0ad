@@ -177,6 +177,8 @@ extern int mkdir(const char*, mode_t);
 extern int stat(const char*, struct stat*);
 
 #define S_IRWXO 0xffff
+#define S_IRWXU 0xffff
+#define S_IRWXG 0xffff
 	// stat.h _S_* values are wrong! disassembly shows _S_IWRITE is 0x80,
 	// instead of 0x100. define christmas-tree value to be safe.
 
