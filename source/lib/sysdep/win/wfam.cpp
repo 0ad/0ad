@@ -73,6 +73,9 @@ struct Watch
 	const std::string dir_name;
 	HANDLE hDir;
 
+	// user pointer from from FAMMonitorDirectory; passed to FAMEvent
+	void* user_data;
+
 	// history to detect series of notifications, so we can skip
 	// redundant reloads (slow)
 	std::string last_path;
@@ -88,11 +91,11 @@ struct Watch
 		// we miss changes made to a directory.
 		// issue code uses sizeof(change_buf) to determine size.
 
-	// these are returned in FAMEvent. could get them via FAMNextEvent's
-	// fc parameter and associating packets with FAMRequest,
-	// but storing them here is more convenient.
 	FAMConnection* fc;
-	FAMRequest* fr;
+	FAMRequest fr;
+		// these are returned in FAMEvent. could get them via FAMNextEvent's
+		// fc parameter and associating packets with FAMRequest,
+		// but storing them here is more convenient.
 
 
 	Watch(const std::string& _dir_name, HANDLE _hDir)
@@ -102,8 +105,6 @@ struct Watch
 
 		last_action = 0;
 		last_ticks = 0;
-
-		memset(&ovl, 0, sizeof(ovl));
 
 		// change_buf[] doesn't need init
 	}
@@ -118,8 +119,8 @@ struct Watch
 
 // list of all active watches to detect duplicates and
 // for easier cleanup. only store pointer in container -
-// they're not copy-equivalent.
-typedef std::map<std::string, Watch*> Watches;
+// they're not copy-equivalent (dtor would close hDir).
+typedef std::map<uint, Watch*> Watches;
 typedef Watches::iterator WatchIt;
 
 typedef std::list<FAMEvent> Events;
@@ -149,11 +150,15 @@ struct AppState
 	// they're not copy-equivalent.
 	Watches watches;
 
+	uint last_reqnum;
+
 	AppState(const char* _app_name)
 		: app_name(_app_name)
 	{
 		hIOCP = 0;
 		// not INVALID_HANDLE_VALUE! (CreateIoCompletionPort requirement)
+
+		last_reqnum = 0;
 	}
 
 	~AppState()
@@ -170,21 +175,32 @@ struct AppState
 
 // macros to return pointers to the above from the FAM* structs (pImpl)
 // (macro instead of function so we can bail out of the "calling" function)
-#define GET_APP_STATE(fc, ptr_name)\
-	AppState* const ptr_name = (AppState*)fc->internal;\
-	if(!ptr_name)\
+//
+// WARNING: expands to multiple statements. can't use STMT, because
+// the macros defined variables (*_ptr_name) that must be visible.
+
+#define GET_APP_STATE(fc, state_ptr_var)\
+	AppState* state_ptr_var = (AppState*)fc->internal;\
+	if(!state_ptr_var)\
 	{\
 		debug_warn("no FAM connection");\
 		return -1;\
 	}
 
-#define GET_WATCH(fr, ptr_name)\
-	Watch* const ptr_name = (Watch*)fr->internal;\
-	if(!ptr_name)\
-	{\
-		debug_warn("FAMRequest.internal invalid!");\
-		return -1;\
-	}
+static int find_watch(FAMConnection* const fc, const FAMRequest* const fr, Watch*& w)
+{
+	GET_APP_STATE(fc, state);
+	Watches& watches = state->watches;
+	WatchIt it = watches.find(fr->reqnum);
+	if(it == watches.end())
+		return -1;
+	w = it->second;
+	return 0;
+}
+
+#define GET_WATCH(fc, fr, watch_ptr_var)\
+	Watch* watch_ptr_var;\
+	CHECK_ERR(find_watch(fc, fr, watch_ptr_var);
 
 
 int FAMOpen2(FAMConnection* const fc, const char* const app_name)
@@ -217,48 +233,59 @@ int FAMClose(FAMConnection* const fc)
 
 
 // HACK - see call site
-static void get_packet(AppState*);
+static int get_packet(FAMConnection* vc);
 
 
-int FAMMonitorDirectory(FAMConnection* const fc, char* const _dir, FAMRequest* const fr, void* const user)
+int FAMMonitorDirectory(FAMConnection* const fc, const char* const _dir, FAMRequest* const fr, void* const user_data)
 {
-	GET_APP_STATE(fc, state);
-	Watches& watches = state->watches;
-	HANDLE& hIOCP = state->hIOCP;
-
 	const std::string dir(_dir);
 
+	GET_APP_STATE(fc, state);
+	Watches& watches  = state->watches;
+	HANDLE& hIOCP     = state->hIOCP;
+	uint& last_reqnum = state->last_reqnum;
+
 	// make sure dir is not already being watched
-	WatchIt it = watches.find(dir);
-	if(it != watches.end())
-		return -1;
+	for(WatchIt it = watches.begin(); it != watches.end(); ++it)
+		if(dir == it->second->dir_name)
+			return -1;
 
 	// open handle to directory
 	const DWORD share = FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE;
 	const DWORD flags = FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED;
-	HANDLE hDir = CreateFile(_dir, FILE_LIST_DIRECTORY, share, 0, OPEN_EXISTING, flags, 0);
+	const HANDLE hDir = CreateFile(_dir, FILE_LIST_DIRECTORY, share, 0, OPEN_EXISTING, flags, 0);
 	if(hDir == INVALID_HANDLE_VALUE)
 		return -1;
 
-	// create Watch and associate with FAM structs
-	Watch* const w = new Watch(dir, hDir);
-	watches[dir] = w;
-	w->fc = fc;
-	w->fr = fr;
+	// assign a new (unique) request number. don't do this earlier - prevents
+	// DOS via wasting reqnums due to invalid directory parameters.
+	// need it before binding dir to IOCP because it is our "key".
+	if(last_reqnum == UINT_MAX)
+	{
+		debug_warn("FAMMonitorDirectory: request numbers are no longer unique");
+		return -1;
+	}
+	const uint reqnum = ++last_reqnum;
+	fr->reqnum = reqnum;
 
 	// associate Watch* with the directory handle. when we receive a packet
-	// from the IOCP, we will need to re-issue the watch and find the
-	// corresponding FAMRequest.
-	const ULONG_PTR key = (ULONG_PTR)w;
+	// from the IOCP, we will need to re-issue the watch.
+	const ULONG_PTR key = (ULONG_PTR)reqnum;
 
 	// create IOCP (if not already done) and attach hDir to it
 	hIOCP = CreateIoCompletionPort(hDir, hIOCP, key, 0);
 	if(hIOCP == 0 || hIOCP == INVALID_HANDLE_VALUE)
 	{
-		delete w;
 		CloseHandle(hDir);
 		return -1;
 	}
+
+	// create Watch and associate with FAM structs
+	Watch* const w = new Watch(dir, hDir);
+	watches[reqnum] = w;
+	w->fc = fc;
+	w->fr = *fr;
+	w->user_data = user_data;
 
 	// post a dummy kickoff packet; the IOCP polling code will "re"issue
 	// the corresponding watch. this keeps the ReadDirectoryChangesW call
@@ -267,9 +294,7 @@ int FAMMonitorDirectory(FAMConnection* const fc, char* const _dir, FAMRequest* c
 	// we call get_packet so that it's issued immediately,
 	// instead of only at the next call to FAMPending.
 	PostQueuedCompletionStatus(hIOCP, 0, key, 0);
-	get_packet(state);
-
-	fr->internal = w;
+	get_packet(fc);
 
 	return 0;
 }
@@ -278,18 +303,19 @@ int FAMMonitorDirectory(FAMConnection* const fc, char* const _dir, FAMRequest* c
 int FAMCancelMonitor(FAMConnection* const fc, FAMRequest* const fr)
 {
 	GET_APP_STATE(fc, state);
-	GET_WATCH(fr, w)
+//	GET_WATCH(fc, fr, w);
 
-	// TODO
+	// contrary to dox, the RDC IOs do not "complete" - no packet received on the IOCP in test. 
+///	int a = CancelIo(w->hDir);
 
-	return -1;
+	return 0;
 }
 
 
 static int extract_events(Watch* const w)
 {
 	FAMConnection* const fc = w->fc;
-	FAMRequest* const fr = w->fr;
+	const FAMRequest& fr = w->fr;
 
 	GET_APP_STATE(fc, state);
 	Events& events = state->pending_events;
@@ -297,7 +323,8 @@ static int extract_events(Watch* const w)
 	// will be modified for each event and added to events
 	FAMEvent event_template;
 	event_template.fc = fc;
-	event_template.fr = *fr;
+	event_template.fr = fr;
+	event_template.user = w->user_data;
 
 	// points to current FILE_NOTIFY_INFORMATION;
 	// char* simplifies advancing to the next (variable length) FNI.
@@ -377,18 +404,23 @@ static int extract_events(Watch* const w)
 
 
 // if a packet is pending, extract its events and re-issue its watch.
-void get_packet(AppState* const state)
+int get_packet(FAMConnection* fc)
 {
+	GET_APP_STATE(fc, state);
+	const HANDLE hIOCP = state->hIOCP;
+
 	// poll for change notifications from all pending FAMRequests
 	DWORD bytes_transferred;
 		// used to determine if packet is valid or a kickoff
 	ULONG_PTR key;
 	OVERLAPPED* povl;
-	BOOL got_packet = GetQueuedCompletionStatus(state->hIOCP, &bytes_transferred, &key, &povl, 0);
+	BOOL got_packet = GetQueuedCompletionStatus(hIOCP, &bytes_transferred, &key, &povl, 0);
 	if(!got_packet)	// no new packet - done
-		return;
+		return 1;
 
-	Watch* w = (Watch*)key;
+	const FAMRequest fr = { (uint)key };
+	Watch* w;
+	CHECK_ERR(find_watch(fc, &fr, w));
 
 	// this is an actual packet, not just a kickoff for issuing the watch.
 	// extract the events and push them onto AppState's queue.
@@ -401,9 +433,12 @@ void get_packet(AppState* const state)
 	                     FILE_NOTIFY_CHANGE_SIZE | FILE_NOTIFY_CHANGE_LAST_WRITE |
 						 FILE_NOTIFY_CHANGE_CREATION;
 	const DWORD buf_size = sizeof(w->change_buf);
+	memset(&w->ovl, 0, sizeof(w->ovl));
 	BOOL ret = ReadDirectoryChangesW(w->hDir, w->change_buf, buf_size, FALSE, filter, 0, &w->ovl, 0);
 	if(!ret)
 		debug_warn("ReadDirectoryChangesW failed");
+
+	return 0;
 }
 
 
@@ -417,7 +452,7 @@ int FAMPending(FAMConnection* const fc)
 	if(!pending_events.empty())
 		return 1;
 
-	get_packet(state);
+	get_packet(fc);
 
 	return !pending_events.empty();
 }
