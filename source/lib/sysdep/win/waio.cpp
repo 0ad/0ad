@@ -477,16 +477,12 @@ debug_out("aio_rw cb=%p\n", cb);
 	size_t size = cb->aio_nbytes;
 	void* buf = (void*)cb->aio_buf;	// from volatile void*
 
-	// check if h is a socket
-#define SOL_SOCKET 0xffff
-#define SO_TYPE 0x1008
-	unsigned long opt = 0;
-	socklen_t optlen = sizeof(opt);
-	int sock = (int)(intptr_t)h;
-	bool is_sock = getsockopt(sock, SOL_SOCKET, SO_TYPE, &opt, &optlen) != -1;
+	// check if h is a normal file, as opposed to a socket
+	// (they need offset to be 0)
+	bool is_file = GetFileType(h) == FILE_TYPE_DISK;
 
 	// socket: no alignment calculation necessary
-	if(is_sock)
+	if(!is_file)
 		cb->aio_offset = 0;
 	else
 	{
