@@ -26,8 +26,9 @@ private:
 	float m_fHeight;
 	float m_fWidth;
 
-	// show / hide animation
-	float m_VisibleFrac;
+	// "position" in show/hide animation, how visible the console is (0..1).
+	// allows implementing other animations than sliding, e.g. fading in/out.
+	float m_fVisibleFrac;
 
 	std::map<std::string, fptr> m_mapFuncList;
 
@@ -41,8 +42,8 @@ private:
 	int	m_iBufferLength;
 
     bool m_bFocus;
-	bool m_bVisible;
-	bool m_bToggle;
+	bool m_bVisible;	// console is to be drawn
+	bool m_bToggle;		// show/hide animation is currently active
 
 	char* ToLower(const char* szMessage, uint iSize = 0);
 	char* Trim(const char* szMessage, const char cChar = 32, uint iSize = 0);

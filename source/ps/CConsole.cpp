@@ -9,7 +9,7 @@ CConsole::CConsole(float X, float Y, float W, float H)
 	m_bToggle = false;
 	m_bVisible = false;
 
-	m_VisibleFrac = 0.0f;
+	m_fVisibleFrac = 0.0f;
 
 	m_szBuffer = (char*)malloc(sizeof(char) * BUFFER_SIZE);
 	FlushBuffer();
@@ -114,19 +114,19 @@ void CConsole::Update(const float DeltaTime)
 		const float Delta = DeltaTime / AnimateTime;
 		if(m_bVisible)
 		{
-			m_VisibleFrac += Delta;
-			if(m_VisibleFrac > 1.0f)
+			m_fVisibleFrac += Delta;
+			if(m_fVisibleFrac > 1.0f)
 			{
-				m_VisibleFrac = 1.0f;
+				m_fVisibleFrac = 1.0f;
 				m_bToggle = false;
 			}
 		}
 		else
 		{
-			m_VisibleFrac -= Delta;
-			if(m_VisibleFrac < 0.0f)
+			m_fVisibleFrac -= Delta;
+			if(m_fVisibleFrac < 0.0f)
 			{
-				m_VisibleFrac = 0.0f;
+				m_fVisibleFrac = 0.0f;
 				m_bToggle = false;
 			}
 		}
@@ -140,7 +140,7 @@ void CConsole::Render()
 
 	// animation: slide in from top of screen
 	const float MaxY = m_fHeight;
-	const float DeltaY = (1.0f - m_VisibleFrac) * MaxY;
+	const float DeltaY = (1.0f - m_fVisibleFrac) * MaxY;
 
 	glTranslatef(m_fX, m_fY + DeltaY, 0.0f); //Move to window position
 
