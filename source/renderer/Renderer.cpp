@@ -168,11 +168,11 @@ bool CRenderer::Open(int width, int height, int depth)
 
 	GLint bits;
 	glGetIntegerv(GL_DEPTH_BITS,&bits);
-	CLogger::GetInstance()->Log(NORMAL,"CRenderer::Open: depth bits %d",bits);
+	LOG(NORMAL,"CRenderer::Open: depth bits %d",bits);
 	glGetIntegerv(GL_STENCIL_BITS,&bits);
-	CLogger::GetInstance()->Log(NORMAL,"CRenderer::Open: stencil bits %d",bits);
+	LOG(NORMAL,"CRenderer::Open: stencil bits %d",bits);
 	glGetIntegerv(GL_ALPHA_BITS,&bits);
-	CLogger::GetInstance()->Log(NORMAL,"CRenderer::Open: alpha bits %d",bits);
+	LOG(NORMAL,"CRenderer::Open: alpha bits %d",bits);
 
 	return true;
 }
@@ -793,9 +793,10 @@ void CRenderer::RenderModelSubmissions()
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+
 	// pass one through as alpha; transparent textures handled specially by CTransparencyRenderer
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_ONE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_ONE);	// janwas found BUG: INVALID ENUM
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 
 	// setup client states
@@ -876,7 +877,6 @@ void CRenderer::FlushFrame()
 
 	// sort all the transparent stuff
 	g_TransparencyRenderer.Sort();
-
 	if (!m_ShadowRendered) {
 		if (m_Options.m_Shadows) RenderShadowMap();
 		// clear buffers
@@ -889,7 +889,6 @@ void CRenderer::FlushFrame()
 	RenderModels();
 	if (m_Options.m_Shadows && !m_ShadowRendered) ApplyShadowMap();
 	m_ShadowRendered=true;
-
 	// call on the transparency renderer to render all the transparent stuff
 	g_TransparencyRenderer.Render();
 
@@ -908,7 +907,7 @@ void CRenderer::EndFrame()
 
 	static bool once=false;
 	if (!once && glGetError()) {
-		CLogger::GetInstance()->Log(ERROR,"CRenderer::EndFrame: GL errors occurred\n");
+		LOG(ERROR,"CRenderer::EndFrame: GL errors occurred\n");
 		once=true;
 	}
 }
@@ -990,7 +989,7 @@ bool CRenderer::LoadTexture(CTexture* texture,u32 wrapflags)
 	} else {
 		h=tex_load(texture->GetName());
 		if (!h) {
-			CLogger::GetInstance()->Log(ERROR,"LoadTexture failed on \"%s\"",(const char*) texture->GetName());
+			LOG(ERROR,"LoadTexture failed on \"%s\"",(const char*) texture->GetName());
 			texture->SetHandle(0xffffffff);
 			return false;
 		} else {
@@ -1001,7 +1000,7 @@ bool CRenderer::LoadTexture(CTexture* texture,u32 wrapflags)
 			th&=(th-1);
 			if (tw || th) {
 				texture->SetHandle(0xffffffff);
-				CLogger::GetInstance()->Log(ERROR,"LoadTexture failed on \"%s\" : not a power of 2 texture",(const char*) texture->GetName());
+				LOG(ERROR,"LoadTexture failed on \"%s\" : not a power of 2 texture",(const char*) texture->GetName());
 				return false;
 			} else {
 				BindTexture(0,tex_id(h));
