@@ -1,5 +1,10 @@
 #include "precompiled.h"
 
+#ifdef SCED
+# include "ui/StdAfx.h"
+# undef ERROR
+#endif // SCED
+
 #include <cstdio>
 #include <cstring>
 #include <cstdlib>
@@ -17,7 +22,7 @@
 #include "lib/res/tex.h"
 #include "lib/res/hotload.h"
 #ifdef _M_IX86
-#include "sysdep/ia32.h"	// _control87
+# include "sysdep/ia32.h"	// _control87
 #endif
 #include "lib/res/cursor.h"
 
@@ -38,6 +43,7 @@
 #include "UnitManager.h"
 #include "MaterialManager.h"
 #include "MeshManager.h"
+#include "Overlay.h"
 
 #include "Interact.h"
 #include "Hotkey.h"
@@ -57,8 +63,10 @@
 #include "scripting/JSInterface_Console.h"
 #include "scripting/JSCollection.h"
 #include "scripting/DOMEvent.h"
-#include "gui/scripting/JSInterface_IGUIObject.h"
-#include "gui/scripting/JSInterface_GUITypes.h"
+#ifndef NO_GUI
+# include "gui/scripting/JSInterface_IGUIObject.h"
+# include "gui/scripting/JSInterface_GUITypes.h"
+#endif
 
 #include "ConfigDB.h"
 #include "CLogger.h"
@@ -68,7 +76,7 @@
 #define LOG_CATEGORY "main"
 
 #ifndef NO_GUI
-#include "gui/GUI.h"
+# include "gui/GUI.h"
 #endif
 
 #include "sound/CMusicPlayer.h"
@@ -441,6 +449,7 @@ static void Render()
 
 	oglCheck();
 
+#ifndef NO_GUI // HACK: because colour-parsing requires the GUI
 	CStr skystring = "61 193 255";
 	CConfigValue* val;
 	if ((val=g_ConfigDB.GetValue(CFG_USER, "skycolor")))
@@ -448,6 +457,7 @@ static void Render()
 	CColor skycol;
 	GUI<CColor>::ParseString(skystring, skycol);
 	g_Renderer.SetClearColor(skycol.Int());
+#endif
 
 	// start new frame
 	g_Renderer.BeginFrame();
@@ -702,8 +712,10 @@ TIMER(InitScripting)
 	CBaseEntity::ScriptingInit();
 	JSI_Sound::ScriptingInit();
 	
+#ifndef NO_GUI
 	JSI_IGUIObject::init();
 	JSI_GUITypes::init();
+#endif
 	JSI_Vector3D::init();
 	EntityCollection::Init( "EntityCollection" );
 	// PlayerCollection::Init( "PlayerCollection" );
@@ -966,7 +978,7 @@ static void Shutdown()
 	mem_shutdown();
 }
 
-static void Init(int argc, char* argv[])
+static void Init(int argc, char* argv[], bool setup_gfx = true)
 {
 #ifdef _WIN32
 	sle(11340106);
@@ -1014,15 +1026,18 @@ PREVTSC=TSC;
 	// and fonts are set later in InitPs())
 	g_Console = new CConsole();
 
-	MICROLOG(L"init sdl");
-	// init SDL
-	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
+	if (setup_gfx)
 	{
-		LOG(ERROR, LOG_CATEGORY, "SDL library initialization failed: %s", SDL_GetError());
-		throw PSERROR_System_SDLInitFailed();
+		MICROLOG(L"init sdl");
+		// init SDL
+		if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
+		{
+			LOG(ERROR, LOG_CATEGORY, "SDL library initialization failed: %s", SDL_GetError());
+			throw PSERROR_System_SDLInitFailed();
+		}
+		atexit(SDL_Quit);
+		SDL_EnableUNICODE(1);
 	}
-	atexit(SDL_Quit);
-	SDL_EnableUNICODE(1);
 
 	// preferred video mode = current desktop settings
 	// (command line params may override these)
@@ -1047,14 +1062,17 @@ PREVTSC=TSC;
 sle(11340106);
 #endif
 
-	MICROLOG(L"set vmode");
-
-	if(set_vmode(g_xres, g_yres, 32, !windowed) < 0)
+	if (setup_gfx)
 	{
-		LOG(ERROR, LOG_CATEGORY, "Could not set %dx%d graphics mode: %s", g_xres, g_yres, SDL_GetError());
-		throw PSERROR_System_VmodeFailed();
+		MICROLOG(L"set vmode");
+
+		if(set_vmode(g_xres, g_yres, 32, !windowed) < 0)
+		{
+			LOG(ERROR, LOG_CATEGORY, "Could not set %dx%d graphics mode: %s", g_xres, g_yres, SDL_GetError());
+			throw PSERROR_System_VmodeFailed();
+		}
+		SDL_WM_SetCaption("0 A.D.", "0 A.D.");
 	}
-	SDL_WM_SetCaption("0 A.D.", "0 A.D.");
 
 	if(!g_Quickstart)
 	{
@@ -1139,9 +1157,12 @@ TIMER(init_after_InitRenderer);
 	g_GUI.SendEventToAll("load");
 #endif
 
-	MICROLOG(L"render blank");
-	// render everything to a blank frame to force renderer to load everything
-	RenderNoCull();
+	if (setup_gfx)
+	{
+		MICROLOG(L"render blank");
+		// render everything to a blank frame to force renderer to load everything
+		RenderNoCull();
+	}
 
 	if (g_FixedFrameTiming) {
 		CCamera &g_Camera=*g_Game->GetView()->GetCamera();
@@ -1197,7 +1218,9 @@ static void Frame()
 	in_get_events();
 	g_SessionManager.Poll();
 	
+#ifndef NO_GUI
 	g_GUI.TickObjects();
+#endif
 	
 	if (g_Game && g_Game->IsGameStarted())
 	{
@@ -1274,6 +1297,8 @@ static void Frame()
 #include <excpt.h>
 #endif
 
+#ifndef SCED
+
 int main(int argc, char* argv[])
 {
 	MICROLOG(L"In main");
@@ -1283,7 +1308,7 @@ int main(int argc, char* argv[])
 	{
 #endif
 		MICROLOG(L"Init");
-		Init(argc, argv);
+		Init(argc, argv, true);
 
 		// Do some limited tests to ensure things aren't broken
 #ifndef NDEBUG
@@ -1312,3 +1337,22 @@ int main(int argc, char* argv[])
 
 	exit(0);
 }
+
+#else // SCED:
+
+void ScEd_Init()
+{
+	char path[512];
+	::GetModuleFileName(0,path,512);
+
+	char* argv[1];
+	argv[0] = path;
+	Init(1, argv, false);
+}
+
+void ScEd_Shutdown()
+{
+	Shutdown();
+}
+
+#endif // SCED

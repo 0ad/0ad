@@ -156,7 +156,7 @@ void CUnitToolsDlgBar::OnButtonEdit()
 	
 	// get object at position
 	const std::vector<CObjectEntry*>& objects=g_ObjMan.m_ObjectTypes[GetCurrentObjectType()].m_Objects;
-	CObjectEntry* obj=objects[(int) pos-1];
+	CObjectEntry* obj=objects[(intptr_t)pos-1];
 	CMainFrame* mainfrm=(CMainFrame*) AfxGetMainWnd();
 	mainfrm->OnObjectProperties(obj);
 }
@@ -169,7 +169,7 @@ void CUnitToolsDlgBar::OnClickListObjectBrowser(NMHDR* pNMHDR, LRESULT* pResult)
 	// deselect current selection in list ctrl, if any
 	POSITION pos=listctrl->GetFirstSelectedItemPosition();
 	if (pos) {
-		g_ObjMan.SetSelectedObject(g_ObjMan.m_ObjectTypes[GetCurrentObjectType()].m_Objects[(int) pos-1]);
+		g_ObjMan.SetSelectedObject(g_ObjMan.m_ObjectTypes[GetCurrentObjectType()].m_Objects[(intptr_t)pos-1]);
 	}
 
 	// shift to add mode

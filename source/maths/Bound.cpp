@@ -17,12 +17,12 @@
 // operator+=: extend this bound to include given bound
 CBound& CBound::operator+=(const CBound& b)
 {
-	for (int i=0;i<3;++i) {
-		if (b[0][i]<m_Data[0][i])
-			m_Data[0][i]=b[0][i];
-		if (b[1][i]>m_Data[1][i])
-			m_Data[1][i]=b[1][i];
-	}
+#define CMPT(c) if (b[0].c < m_Data[0].c) m_Data[0].c = b[0].c; \
+           else if (b[1].c > m_Data[1].c) m_Data[1].c = b[1].c
+	CMPT(X);
+	CMPT(Y);
+	CMPT(Z);
+#undef CMPT
 
 	return *this;
 }

@@ -54,8 +54,6 @@ XMLCh *XMLTranscode(const char *str)
 
 int CVFSInputSource::OpenFile(const char *path)
 {
-	debug_out("CVFSInputSource::OpenFile(): opening file %s.\n", path);
-
 	m_hMem = vfs_load(path, m_pBuffer, m_BufferSize);
 	if(m_hMem <= 0)
 	{

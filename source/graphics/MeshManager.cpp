@@ -14,14 +14,14 @@ CMeshManager::~CMeshManager()
 
 CModelDefPtr CMeshManager::GetMesh(const char *filename)
 {
-    CStr fn(filename);
+	CStr fn(filename);
 	mesh_map::iterator iter = m_MeshMap.find(fn);
-    if (iter != m_MeshMap.end())
-    {
+	if (iter != m_MeshMap.end())
+	{
 		try
 		{
 			CModelDefPtr model (iter->second);
-			LOG(MESSAGE, "mesh", "Loading mesh '%s%' (cached)...\n", filename);
+			LOG(MESSAGE, "mesh", "Loading mesh '%s%' (cached)...", filename);
 			return model;
 		}
 		// If the mesh has already been deleted, the weak_ptr -> shared_ptr
@@ -37,13 +37,13 @@ CModelDefPtr CMeshManager::GetMesh(const char *filename)
 		if (!model)
 			return CModelDefPtr();
 
-		LOG(MESSAGE, "mesh", "Loading mesh '%s'...\n", filename);
+		LOG(MESSAGE, "mesh", "Loading mesh '%s'...", filename);
 		m_MeshMap[fn] = model;
 		return model;
 	}
 	catch (CFileUnpacker::CError)
 	{
-		LOG(ERROR, "mesh", "Could not load mesh '%s'\n!", filename);
+		LOG(ERROR, "mesh", "Could not load mesh '%s'!", filename);
 		return CModelDefPtr();
 	}
 }
