@@ -20,7 +20,7 @@ const char* html_header1 = "</H1></P>\n";
 
 const char* html_footer = "</BODY>\n</HTML>\n";
 
-#define MEMORY_BUFFER_SIZE	35
+#define MEMORY_BUFFER_SIZE	240
 
 CLogger * CLogger::GetInstance()
 {
