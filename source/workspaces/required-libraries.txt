@@ -42,10 +42,6 @@ Instructions:
   download http://www.wildfiregames.com/~code/libraries/fmodapi372win.zip
   ... extract contents of include/ into $include, and .lib files into $lib 
 
-- VC6 hybrid only: delayimp: [fix for compiler's delay load stub]
-  download http://www.wildfiregames.com/~code/libraries/delayimp.zip
-  ... extract *.h into $include, and *.lib into $lib (overwriting previous files).
-
 
 Note: these libraries are stored in the codepit; access via SCP:
 host = wildfiregames.com
