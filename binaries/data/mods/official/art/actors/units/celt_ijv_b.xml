@@ -12,13 +12,13 @@
 		castshadows="1"
 	></Properties>
 	<Animations>
-		<Animation name="Idle" file="art/animation/biped/idle.psa" speed="200"> </Animation>
+		<Animation name="Idle" file="art/animation/biped/dudeidle.psa" speed="200"> </Animation>
 		<Animation name="Walk" file="art/animation/biped/dudewalk_swordshield.psa" speed="700"> </Animation>
 		<Animation name="Build" file="art/animation/biped/dudebuild.psa" speed="150"> </Animation>
 		<Animation name="Chop" file="art/animation/biped/dudechop.psa" speed="150"> </Animation>
 		<Animation name="Death" file="art/animation/biped/dudedeath_sword.psa" speed="200"> </Animation>
 		<Animation name="Decay" file="art/animation/biped/dudedecay_sword.psa" speed="100"> </Animation>
-		<Animation name="Attack" file="art/animation/inf_jav_atk_a.psa" speed="400"> </Animation>
+		<Animation name="Attack" file="art/animation/biped/inf_jav_atk_a.psa" speed="400"> </Animation>
 	</Animations>
 	<Props>
 		<Prop attachpoint="head_extra" model="C Sign IJV B"> </Prop>
