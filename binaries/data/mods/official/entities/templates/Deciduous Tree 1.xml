@@ -6,4 +6,8 @@
 	<Speed>0</Speed>
 	<Size Radius="1.0"/>
 	<BoundsOffset x="0.25" y="-1.0" />
+	<EventHandlers>
+		<Initialize>scripts/pasap/initdude</Initialize>
+		<Update>scripts/pasap/tick</Update>
+	</EventHandlers>
 </Entity>
