@@ -403,6 +403,7 @@ struct sockaddr_in
 #define INET_ADDRSTRLEN 16
 
 #define INADDR_ANY 0
+#define INADDR_LOOPBACK 0x7f000001
 #define INADDR_NONE ((in_addr_t)-1)
 
 #define IPPROTO_IP 0
