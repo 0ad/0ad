@@ -19,17 +19,6 @@
 
 CPlayerRenderer g_PlayerRenderer;
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// SortObjectsByDist: sorting class used for back-to-front sort of transparent passes
-struct SortObjectsByDist {
-	typedef CPlayerRenderer::SObject SortObj;
-	
-	bool operator()(const SortObj& lhs,const SortObj& rhs) {
-		return lhs.m_Dist>rhs.m_Dist? true : false;
-	}
-};
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // SetupColorRenderStates: setup the render states for the player color pass.
 void CPlayerRenderer::SetupColorRenderStates()
@@ -134,39 +123,39 @@ void CPlayerRenderer::Render()
 
 
 	//TODO: Wireframe correctly for players
-	//if (g_Renderer.m_ModelRenderMode==WIREFRAME) {
-	//	// switch wireframe off again
-	//	glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
-	//} else if (g_Renderer.m_ModelRenderMode==EDGED_FACES) {
-	//	// edged faces: need to make a second pass over the data:
-	//	// first switch on wireframe
-	//	glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
-	//	
-	//	// setup some renderstate ..
-	//	glDepthMask(0);
-	//	g_Renderer.SetTexture(0,0);
-	//	glColor4f(1,1,1,0.75f);
-	//	glLineWidth(1.0f);
+	if (g_Renderer.m_ModelRenderMode==WIREFRAME) {
+		// switch wireframe off again
+		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+	} else if (g_Renderer.m_ModelRenderMode==EDGED_FACES) {
+		// edged faces: need to make a second pass over the data:
+		// first switch on wireframe
+		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+		
+		// setup some renderstate ..
+		glDepthMask(0);
+		g_Renderer.SetTexture(0,0);
+		glColor4f(1,1,1,0.75f);
+		glLineWidth(1.0f);
 
-	//	glEnable(GL_BLEND);
-	//	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 
-	//	// .. and some client states
-	//	glEnableClientState(GL_VERTEX_ARRAY);
+		// .. and some client states
+		glEnableClientState(GL_VERTEX_ARRAY);
 
-	//	// render each model
-	//	RenderObjectsStreams(STREAM_POS);
+		// render each model
+		RenderObjectsStreams(STREAM_POS);
 
-	//	// .. and switch off the client states
-	//	glDisableClientState(GL_VERTEX_ARRAY);
+		// .. and switch off the client states
+		glDisableClientState(GL_VERTEX_ARRAY);
 
-	//	// .. and restore the renderstates
-	//	glDisable(GL_BLEND);
-	//	glDepthMask(1);
+		// .. and restore the renderstates
+		glDisable(GL_BLEND);
+		glDepthMask(1);
 
-	//	// restore fill mode, and we're done
-	//	glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
-	//}
+		// restore fill mode, and we're done
+		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+	}
 }
 
 void CPlayerRenderer::Clear()
