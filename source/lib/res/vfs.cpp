@@ -962,7 +962,7 @@ static off_t& vf_size(VFile* vf)
 }
 
 
-static int& vf_flags(VFile* vf)
+static uint& vf_flags(VFile* vf)
 {
 	assert(offsetof(struct File, flags) == offsetof(struct ZFile, flags));
 	return vf->f.flags;
@@ -972,14 +972,14 @@ static int& vf_flags(VFile* vf)
 
 static void VFile_init(VFile* vf, va_list args)
 {
-	int flags = va_arg(args, int);
+	uint flags = va_arg(args, int);
 	vf_flags(vf) = flags;
 }
 
 
 static void VFile_dtor(VFile* vf)
 {
-	int& flags = vf_flags(vf);
+	uint& flags = vf_flags(vf);
 
 	if(flags & VF_OPEN)
 	{
@@ -998,7 +998,7 @@ static void VFile_dtor(VFile* vf)
 
 static int VFile_reload(VFile* vf, const char* path)
 {
-	int& flags = vf_flags(vf);
+	uint& flags = vf_flags(vf);
 
 	// we're done if file is already open. need to check this because reload order
 	// (e.g. if resource opens a file) is unspecified.
@@ -1132,38 +1132,56 @@ skip_read:
 }
 
 
-int vfs_store(const char* fn, void* p, size_t size)
+int vfs_store(const char* const fn, void* p, const size_t size)
 {
 	Handle hf = vfs_open(fn, VFS_WRITE);
 	if(hf <= 0)
 		return (int)hf;	// error code
 	H_DEREF(hf, VFile, vf);
-	int ret = vfs_io(hf, 0, size, p);
+	const int ret = vfs_io(hf, 0, size, p);
 	vfs_close(hf);
 	return ret;
 }
 
 
+//
+// memory mapping
+//
 
-
-int vfs_map(const Handle hf, uint flags, void*& p, size_t& size)
+// map the entire file <hf> into memory. if already currently mapped,
+// return the previous mapping (reference-counted).
+// output parameters are zeroed on failure.
+//
+// the mapping will be removed (if still open) when its file is closed.
+// however, map/unmap calls should still be paired so that the mapping
+// may be removed when no longer needed.
+int vfs_map(const Handle hf, const uint flags, void*& p, size_t& size)
 {
-	H_DEREF(hf, VFile, vf);
+	UNUSED(flags);
 
+	p = 0;
+	size = 0;
+		// need to zero these here in case H_DEREF fails
+
+	H_DEREF(hf, VFile, vf);
 	if(vf_flags(vf) & VF_ZIP)
-		CHECK_ERR(zip_map(&vf->zf, p, size));
+		return zip_map(&vf->zf, p, size);
 	else
-		CHECK_ERR(file_map(&vf->f, p, size));
-	return 0;
+		return file_map(&vf->f, p, size);
 }
 
 
-int vfs_unmap(Handle hf)
+// decrement the reference count for the mapping belonging to file <f>.
+// fail if there are no references; remove the mapping if the count reaches 0.
+//
+// the mapping will be removed (if still open) when its file is closed.
+// however, map/unmap calls should still be paired so that the mapping
+// may be removed when no longer needed.
+int vfs_unmap(const Handle hf)
 {
 	H_DEREF(hf, VFile, vf);
 	if(vf_flags(vf) & VF_ZIP)
-		CHECK_ERR(zip_unmap(&vf->zf));
+		return zip_unmap(&vf->zf);
 	else
-		CHECK_ERR(file_unmap(&vf->f));
-	return 0;
+		return file_unmap(&vf->f);
 }

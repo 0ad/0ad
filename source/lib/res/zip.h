@@ -73,7 +73,7 @@ struct ZFile
 	// keep offset of flags and size members in sync with struct ZFile!
 	// it is accessed by VFS and must be the same for both (union).
 	// dirty, but necessary because VFile is pushing the HDATA size limit.
-	int flags;
+	uint flags;
 	size_t ucsize;
 		// size of logical file
 
@@ -95,10 +95,27 @@ extern int zip_open(Handle ha, const char* fn, ZFile* zf);
 extern int zip_close(ZFile* zf);
 
 
+//
+// memory mapping
+//
+
+// map the entire file <zf> into memory. mapping compressed files
+// isn't allowed, since the compression algorithm is unspecified.
+// output parameters are zeroed on failure.
+//
+// the mapping will be removed (if still open) when its archive is closed.
+// however, map/unmap calls should still be paired so that the archive mapping
+// may be removed when no longer needed.
 extern int zip_map(ZFile* zf, void*& p, size_t& size);
+
+// remove the mapping of file <zf>; fail if not mapped.
+//
+// the mapping will be removed (if still open) when its archive is closed.
+// however, map/unmap calls should be paired so that the archive mapping
+// may be removed when no longer needed.
 extern int zip_unmap(ZFile* zf);
 
-// read from file <zf>, starting at offset <ofs> in the compressed data
+// read from file <zf>, starting at offset <ofs> in the compressed data.
 extern ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void*& p);
 
 

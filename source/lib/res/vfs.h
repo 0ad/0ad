@@ -41,9 +41,32 @@ extern Handle vfs_load(const char* fn, void*& p, size_t& size);
 extern Handle vfs_open(const char* fn, uint flags = 0);
 extern int vfs_close(Handle& h);
 
+
+//
+// memory mapping
+//
+
+// map the entire file <hf> into memory. if already currently mapped,
+// return the previous mapping (reference-counted).
+// output parameters are zeroed on failure.
+//
+// the mapping will be removed (if still open) when its file is closed.
+// however, map/unmap calls should still be paired so that the mapping
+// may be removed when no longer needed.
 extern int vfs_map(Handle hf, uint flags, void*& p, size_t& size);
+
+// decrement the reference count for the mapping belonging to file <f>.
+// fail if there are no references; remove the mapping if the count reaches 0.
+//
+// the mapping will be removed (if still open) when its file is closed.
+// however, map/unmap calls should still be paired so that the mapping
+// may be removed when no longer needed.
 extern int vfs_unmap(Handle hf);
 
+
+//
+// directory entry enumeration
+//
 
 struct vfsDirEnt
 {
@@ -54,17 +77,9 @@ struct vfsDirEnt
 	const char* name;
 };
 
-
 extern Handle vfs_open_dir(const char* path);
 extern int vfs_close_dir(Handle& hd);
 extern int vfs_next_dirent(Handle hd, vfsDirEnt* ent, const char* filter);
-
-
-
-
-extern int vfs_rebuild();
-
-
 
 
 //
@@ -87,6 +102,10 @@ enum
 	VFS_NOCACHE = 4,		// don't cache whole file, e.g. if cached on a higher level
 	VFS_RANDOM = 8			// random access hint, allow offset
 };
+
+
+
+extern int vfs_rebuild();
 
 
 #endif	// #ifndef __VFS_H__

@@ -33,12 +33,14 @@ struct File
 	// keep offset of flags and size members in sync with struct ZFile!
 	// it is accessed by VFS and must be the same for both (union).
 	// dirty, but necessary because VFile is pushing the HDATA size limit.
-	int flags;
+	uint flags;
 	off_t size;
 
 	u32 fn_hash;
 
 	void* mapping;
+	uint map_refs;
+
 	int fd;
 };
 
@@ -88,8 +90,36 @@ extern int file_stat(const char* path, struct stat*);
 extern int file_open(const char* fn, uint flags, File* f);
 extern int file_close(File* f);
 
+
+//
+// memory mapping
+//
+
+// map the entire file <f> into memory. if already currently mapped,
+// return the previous mapping (reference-counted).
+// output parameters are zeroed on failure.
+//
+// the mapping will be removed (if still open) when its file is closed.
+// however, map/unmap calls should still be paired so that the mapping
+// may be removed when no longer needed.
+//
+// rationale: reference counting is required for zip_map: several
+// Zip "mappings" each reference one ZArchive's actual file mapping.
+// implement it here so that we also get refcounting for normal files.
 extern int file_map(File* f, void*& p, size_t& size);
+
+// decrement the reference count for the mapping belonging to file <f>.
+// fail if there are no references; remove the mapping if the count reaches 0.
+//
+// the mapping will be removed (if still open) when its file is closed.
+// however, map/unmap calls should still be paired so that the mapping
+// may be removed when no longer needed.
 extern int file_unmap(File* f);
+
+
+//
+// async IO
+//
 
 extern Handle file_start_io(File* f, off_t ofs, size_t size, void* buf);
 extern int file_wait_io(const Handle hio, void*& p, size_t& size);

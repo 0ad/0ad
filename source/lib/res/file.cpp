@@ -107,7 +107,7 @@ static int mk_native_path(const char* const path, char* const n_path)
 // easiest portable way to find our install directory.
 //
 // can only be called once, by design (see below). rel_path is trusted.
-int file_rel_chdir(const char* argv0, const char* rel_path)
+int file_rel_chdir(const char* argv0, const char* const rel_path)
 {
 	const char* msg = 0;
 
@@ -299,7 +299,7 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 }
 
 
-int file_stat(const char* path, struct stat* s)
+int file_stat(const char* const path, struct stat* const s)
 {
 	char n_path[PATH_MAX+1];
 	CHECK_ERR(mk_native_path(path, n_path));
@@ -361,6 +361,8 @@ static int file_validate(const uint line, File* const f)
 #endif
 	else if(f->fd < 0)
 		msg = "File fd invalid (< 0)";
+	else if((f->mapping != 0) ^ (f->map_refs != 0))
+		msg = "File mapping without refs";
 #ifndef NDEBUG
 	else if(!f->fn_hash)
 		msg = "File fn_hash not set";
@@ -387,7 +389,7 @@ do\
 while(0);
 
 
-int file_open(const char* p_fn, uint flags, File* f)
+int file_open(const char* const p_fn, const uint flags, File* const f)
 {
 	memset(f, 0, sizeof(File));
 
@@ -423,21 +425,22 @@ int file_open(const char* p_fn, uint flags, File* f)
 	f->magic = FILE_MAGIC;
 #endif
 
-	f->flags   = flags;
-	f->size    = size;
-	f->fn_hash = fnv_hash(n_fn);		// copy filename insteaD?
-	f->mapping = 0;
-	f->fd      = fd;
+	f->flags    = flags;
+	f->size     = size;
+	f->fn_hash  = fnv_hash(n_fn);		// copy filename instead?
+	f->mapping  = 0;
+	f->map_refs = 0;
+	f->fd       = fd;
 }
 
 invalid_f:
-	CHECK_FILE(f)
+	CHECK_FILE(f);
 
 	return 0;
 }
 
 
-int file_close(File* f)
+int file_close(File* const f)
 {
 	CHECK_FILE(f);
 
@@ -467,26 +470,23 @@ struct ll_cb
 };
 
 
-int ll_start_io(File* f, off_t ofs, size_t size, void* p, ll_cb* lcb)
+int ll_start_io(File* const f, const off_t ofs, size_t size, void* const p, ll_cb* const lcb)
 {
-	CHECK_FILE(f)
+	CHECK_FILE(f);
 
 	if(size == 0)
 	{
 		debug_warn("ll_start_io: size = 0 - why?");
 		return ERR_INVALID_PARAM;
 	}
-	if(ofs >= f->size)
-	{
-		debug_warn("ll_start_io: ofs beyond f->size");
-		return -1;
-	}
 
-	off_t bytes_left = f->size - ofs;	// > 0
-	int op = (f->flags & FILE_WRITE)? LIO_WRITE : LIO_READ;
+	const int op = (f->flags & FILE_WRITE)? LIO_WRITE : LIO_READ;
 
 	// cut off at EOF.
 	// avoid min() due to type conversion warnings.
+	const off_t bytes_left = f->size - ofs;
+	if(bytes_left < 0)
+		return ERR_EOF;
 	if((off_t)size > bytes_left)
 		size = (size_t)bytes_left;
 		// guaranteed to fit, since size was > bytes_left
@@ -506,7 +506,7 @@ int ll_start_io(File* f, off_t ofs, size_t size, void* p, ll_cb* lcb)
 
 // as a convenience, return a pointer to the transfer buffer
 // (rather than expose the ll_cb internals)
-ssize_t ll_wait_io(ll_cb* lcb, void*& p)
+ssize_t ll_wait_io(ll_cb* const lcb, void*& p)
 {
 	aiocb* cb = &lcb->cb;
 
@@ -554,7 +554,7 @@ static u64 block_make_id(const u32 fn_hash, const off_t ofs)
 	// to allocate their own buffer, but don't bother.
 
 	// make sure block_num fits in 32 bits
-	size_t block_num = ofs / BLOCK_SIZE;
+	const size_t block_num = ofs / BLOCK_SIZE;
 	assert(block_num <= 0xffffffff);
 
 	u64 id = fn_hash;	// careful, don't shift a u32 32 bits left
@@ -573,18 +573,18 @@ static void* block_alloc(const u64 id)
 	{
 		get_mem_status();
 		// TODO: calculate size
-		size_t num_blocks = 16;
+		const size_t num_blocks = 16;
 
 		// evil: waste some mem (up to one block) to make sure the first block
 		// isn't at the start of the allocation, so that users can't
 		// mem_free() it. do this by manually aligning the pool.
 		//
 		// allocator will free the whole thing at exit.
-		void* pool = mem_alloc((num_blocks+1) * BLOCK_SIZE);
+		void* const pool = mem_alloc((num_blocks+1) * BLOCK_SIZE);
 		if(!pool)
 			return 0;
 
-		uintptr_t start = round_up((uintptr_t)pool + 1, BLOCK_SIZE);
+		const uintptr_t start = round_up((uintptr_t)pool + 1, BLOCK_SIZE);
 			// +1 => if already block-aligned, add a whole block!
 
 		// add all blocks to cache
@@ -600,10 +600,10 @@ static void* block_alloc(const u64 id)
 		cache_initialized = true;
 	}
 
-	void** entry = c.assign(id);
+	void** const entry = c.assign(id);
 	if(!entry)
 		return 0;
-	void* block = *entry;
+	void* const block = *entry;
 
 	if(c.lock(id, true) < 0)
 		debug_warn("block_alloc: Cache::lock failed!");
@@ -623,7 +623,7 @@ static void* block_alloc(const u64 id)
 
 static int block_retrieve(const u64 id, void*& p)
 {
-	void** entry = c.retrieve(id);
+	void** const entry = c.retrieve(id);
 	if(entry)
 	{
 		p = *entry;
@@ -655,8 +655,8 @@ static int block_discard(const u64 id)
 
 int file_free_buf(void*& p)
 {
-	uintptr_t _p = (uintptr_t)p;
-	void* actual_p = (void*)(_p - (_p % BLOCK_SIZE));	// round down
+	const uintptr_t _p = (uintptr_t)p;
+	void* const actual_p = (void*)(_p - (_p % BLOCK_SIZE));	// round down
 
 	return mem_free(actual_p);
 
@@ -796,7 +796,7 @@ static Handle io_alloc()
 }
 
 
-static int io_free(Handle hio)
+static int io_free(const Handle hio)
 {
 	H_DEREF(hio, IO, io);
 
@@ -832,7 +832,7 @@ static int io_free(Handle hio)
 
 struct FindBlock : public std::binary_function<Handle, u64, bool>
 {
-	bool operator()(Handle hio, u64 block_id) const
+	bool operator()(const Handle hio, const u64 block_id) const
 	{
 		// can't use H_DEREF - we return bool
 		IO* io = (IO*)h_user_data(hio, H_IO);
@@ -845,7 +845,7 @@ struct FindBlock : public std::binary_function<Handle, u64, bool>
 	}
 };
 
-static Handle io_find(u64 block_id)
+static Handle io_find(const u64 block_id)
 {
 	IOList::const_iterator it;
 	it = std::find_if(all_ios.begin(), all_ios.end(), std::bind2nd(FindBlock(), block_id));
@@ -870,31 +870,28 @@ static Handle io_find(u64 block_id)
 // pads the request up to BLOCK_SIZE, and stores the original parameters in IO.
 // transfers of more than 1 block (including padding) are allowed, but do not
 // go through the cache. don't see any case where that's necessary, though.
-Handle file_start_io(File* f, off_t user_ofs, size_t user_size, void* user_p)
+Handle file_start_io(File* const f, const off_t user_ofs, size_t user_size, void* const user_p)
 {
 	int err;
 
-	CHECK_FILE(f)
+	CHECK_FILE(f);
 
 	if(user_size == 0)
 	{
 		debug_warn("file_start_io: user_size = 0 - why?");
 		return ERR_INVALID_PARAM;
 	}
-	if(user_ofs >= f->size)
-	{
-		debug_warn("file_start_io: user_ofs beyond f->size");
-		return -1;
-	}
 
-	const off_t bytes_left = f->size - user_ofs;	// > 0
-	int op = (f->flags & FILE_WRITE)? LIO_WRITE : LIO_READ;
+	const int op = (f->flags & FILE_WRITE)? LIO_WRITE : LIO_READ;
 
-	// don't read beyond EOF
-	if((off_t)user_size > bytes_left)		// avoid min() - it wants int
+	// cut off at EOF.
+	// avoid min() due to type conversion warnings.
+	const off_t bytes_left = f->size - user_ofs;
+	if(bytes_left < 0)
+		return ERR_EOF;
+	if((off_t)user_size > bytes_left)
 		user_size = (size_t)bytes_left;
-			// guaranteed to fit in user_size, since user_size > bytes_left
-
+		// guaranteed to fit, since size was > bytes_left
 
 	u64 block_id = block_make_id(f->fn_hash, user_ofs);
 		// reset to 0 if transferring more than 1 block.
@@ -924,9 +921,9 @@ debug_out("file_start_io hio=%I64x ofs=%d size=%d\n", hio, user_ofs, user_size);
 	// if not, no loss - the buffer will be LRU, and reused.
 
 	off_t ofs = user_ofs;
-	size_t padding = ofs % BLOCK_SIZE;
+	const size_t padding = ofs % BLOCK_SIZE;
 	ofs -= (off_t)padding;
-	size_t size = round_up(padding + user_size, BLOCK_SIZE);
+	const size_t size = round_up(padding + user_size, BLOCK_SIZE);
 
 
 
@@ -1071,7 +1068,7 @@ ssize_t file_io(File* const f, const off_t raw_ofs, size_t raw_size, void** cons
 debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, raw_size, raw_ofs);
 #endif
 
-	CHECK_FILE(f)
+	CHECK_FILE(f);
 
 	const bool is_write = (f->flags == FILE_WRITE);
 
@@ -1087,7 +1084,7 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, raw_size, raw_ofs);
 		off_t bytes_left = f->size - raw_ofs;
 		if(bytes_left < 0)
 			return ERR_EOF;
-        if((off_t)raw_size > bytes_left)
+		if((off_t)raw_size > bytes_left)
 			raw_size = (size_t)bytes_left;
 			// guaranteed to fit, since size was > bytes_left
 	}
@@ -1288,40 +1285,72 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, raw_size, raw_ofs);
 ///////////////////////////////////////////////////////////////////////////////
 
 
-int file_map(File* f, void*& p, size_t& size)
+// no significance aside from preventing uint overflow.
+static const uint MAX_MAP_REFS = 255;
+
+
+// map the entire file <f> into memory. if already currently mapped,
+// return the previous mapping (reference-counted).
+// output parameters are zeroed on failure.
+//
+// the mapping will be removed (if still open) when its file is closed.
+// however, map/unmap calls should still be paired so that the mapping
+// may be removed when no longer needed.
+//
+// rationale: reference counting is required for zip_map: several
+// Zip "mappings" each reference one ZArchive's actual file mapping.
+// implement it here so that we also get refcounting for normal files.
+int file_map(File* const f, void*& p, size_t& size)
 {
-	CHECK_FILE(f)
+	p = 0;
+	size = 0;
 
-	p = f->mapping;
-	size = f->size;
+	CHECK_FILE(f);
 
-	// already mapped - done
-	if(p)
-		return 0;
-
-	int prot = (f->flags & FILE_WRITE)? PROT_WRITE : PROT_READ;
-
-	p = f->mapping = mmap((void*)0, (uint)size, prot, MAP_PRIVATE, f->fd, (long)0);
-	if(!p)
+	// already mapped - increase refcount and return previous mapping.
+	if(f->mapping)
 	{
-		size = 0;
-		return ERR_NO_MEM;
+		// prevent overflow; if we have this many refs, should find out why.
+		if(f->map_refs >= MAX_MAP_REFS)
+		{
+			debug_warn("file_map: too many references to mapping");
+			return -1;
+		}
+		f->map_refs++;
+		goto have_mapping;
 	}
 
+	const int prot = (f->flags & FILE_WRITE)? PROT_WRITE : PROT_READ;
+	f->mapping = mmap((void*)0, size, prot, MAP_PRIVATE, f->fd, (off_t)0);
+	if(!f->mapping)
+		return ERR_NO_MEM;
+
+	f->map_refs = 1;
+
+have_mapping:
+	p = f->mapping;
+	size = f->size;
 	return 0;
 }
 
 
-int file_unmap(File* f)
+// decrement the reference count for the mapping belonging to file <f>.
+// fail if there are no references; remove the mapping if the count reaches 0.
+//
+// the mapping will be removed (if still open) when its file is closed.
+// however, map/unmap calls should still be paired so that the mapping
+// may be removed when no longer needed.
+int file_unmap(File* const f)
 {
-	CHECK_FILE(f)
+	CHECK_FILE(f);
 
-	void* p = f->mapping;
+	void* const p = f->mapping;
+	f->mapping = 0;
+	// don't reset size - the file is still open.
+
 	// not currently mapped
 	if(!p)
 		return -1;
-	f->mapping = 0;
-	// don't reset size - the file is still open.
 
 	return munmap(p, (uint)f->size);
 }

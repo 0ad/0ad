@@ -730,8 +730,17 @@ int inf_free_ctx(uintptr_t ctx)
 ///////////////////////////////////////////////////////////////////////////////
 
 
+enum ZFileFlags
+{
+	// the ZFile has been successfully zip_map-ped.
+	// we store this so that the archive mapping refcount remains balanced.
+	ZF_HAS_MAPPING = 0x4000
+};
+
 // marker for ZFile struct, to make sure it's valid
+#ifdef PARANOIA
 static const u32 ZFILE_MAGIC = FOURCC('Z','F','I','L');
+#endif
 
 
 static int zfile_validate(uint line, ZFile* zf)
@@ -946,29 +955,51 @@ fail:
 }
 
 
+// map the entire file <zf> into memory. mapping compressed files
+// isn't allowed, since the compression algorithm is unspecified.
+// output parameters are zeroed on failure.
+//
+// the mapping will be removed (if still open) when its file is closed.
+// however, map/unmap calls should still be paired so that the mapping
+// may be removed when no longer needed.
 int zip_map(ZFile* const zf, void*& p, size_t& size)
 {
+	p = 0;
+	size = 0;
+
 	CHECK_ZFILE(zf)
 
-	// doesn't really make sense to map compressed files, so disallow it.
+	// mapping compressed files doesn't make sense because the
+	// compression algorithm is unspecified - disallow it.
 	if(is_compressed(zf))
 	{
-		debug_warn("mapping a compressed file from archive. why?");
+		debug_warn("zip_map: file is compressed");
 		return -1;
 	}
 
 	H_DEREF(zf->ha, ZArchive, za)
-	// increase refs
+	CHECK_ERR(file_map(&za->f, p, size));
 
-	return file_map(&za->f, p, size);
+	zf->flags |= ZF_HAS_MAPPING;
+	return 0;
 }
 
 
+// remove the mapping of file <zf>; fail if not mapped.
+//
+// the mapping will be removed (if still open) when its archive is closed.
+// however, map/unmap calls should be paired so that the archive mapping
+// may be removed when no longer needed.
 int zip_unmap(ZFile* const zf)
 {
 	CHECK_ZFILE(zf)
+
+	// make sure archive mapping refcount remains balanced:
+	// don't allow multiple unmaps.
+	if(!(zf->flags & ZF_HAS_MAPPING))
+		return -1;
+	zf->flags &= ~ZF_HAS_MAPPING;
+
 	H_DEREF(zf->ha, ZArchive, za)
-	// decrement refs
-	// unmap archive if 0
-	return 0;
+	return file_unmap(&za->f);
 }
