@@ -185,6 +185,8 @@ CountOfImports(PCImgThunkData pitdBase) {
 
 extern "C" PUnloadInfo __puiHead = 0;
 
+#include "nommgr.h"
+
 struct ULI : public UnloadInfo
 {
 	ULI(PCImgDelayDescr pidd_)
@@ -195,7 +197,7 @@ struct ULI : public UnloadInfo
 
 	~ULI() { Unlink();	}
 
-	void* operator_new(size_t cb) {	return ::LocalAlloc(LPTR, cb); }
+	void* operator new(size_t cb) {	return ::LocalAlloc(LPTR, cb); }
 	void operator delete(void* pv) { ::LocalFree(pv); }
 
 	void Unlink()
@@ -214,6 +216,8 @@ struct ULI : public UnloadInfo
 		__puiHead = this;
 	}
 };
+
+#include "mmgr.h"
 
 
 // For our own internal use, we convert to the old
