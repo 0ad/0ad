@@ -932,6 +932,23 @@
 		<image texture="atlas/atlas_global_sheet_dropdownbutton_updown.png" cell_size="9 5" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
 	</sprite>
 
+        <sprite name="atlas_global_slider_bar_h">
+                <image texture="atlas/atlas_global_slider_bar_h.png" texture_size="0 0 128 16" size="0 0 100% 100%"/>
+        </sprite>
+
+        <sprite name="atlas_global_slider_marker_h">
+                <image texture="atlas/atlas_global_slider_marker_h.png" texture_size="0 0 8 16" size="0 0 100% 100%"/>
+        </sprite>
+
+        <sprite name="atlas_global_slider_bar_v">
+                <image texture="atlas/atlas_global_slider_bar_v.png" texture_size="0 0 16 128" size="0 0 100% 100%"/>
+        </sprite>
+
+        <sprite name="atlas_global_slider_marker_v">
+                <image texture="atlas/atlas_global_slider_marker_v.png" texture_size="0 0 16 8" size="0 0 100% 100%"/>
+        </sprite>
+
+
         <!--
         ==========================================
         TEMPORARY IMAGES

@@ -43,15 +43,21 @@ function GUIObjectRenameandReveal(objectName, objectCaption)
 
 // ====================================================================
 
-function GUIObjectModifyCaption(objectName, objectModifier)
+function GUIObjectModifyCaption(objectName, objectModifier, objectPlaces)
 {
 	// Adds a modifier to a GUI object's caption (eg increase a number by 1).
 	// Obviously don't use this unless you're sure the caption contains a number.
+	// objectPlaces specifies the number of decimal places to use for a floating point number.
+	// If not specified, it defaults to zero (whole number).
 
         // Get our GUI object
         var GUIObject = getGUIObjectByName(objectName);
 
-	GUIObject.caption = parseInt(GUIObject.caption) + parseInt(objectModifier);
+	if (!objectPlaces)
+		objectPlaces = 0;
+	objectPlaces = Math.pow(10, objectPlaces);
+
+	GUIObject.caption = (Math.round(objectPlaces * GUIObject.caption) + Math.round(objectPlaces * objectModifier)) / objectPlaces;
 }
 
 // ====================================================================
