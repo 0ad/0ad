@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <group>
+    <variant frequency="10" name="A">
+      <mesh>props/shield/hex_s_f.pmd</mesh>
+      <props>
+        <prop actor="props/shield/hex_a_back.xml" attachpoint="back"/>
+      </props>
+      <texture>props/shield/celt_hex_a.dds</texture>
+    </variant>
+    <variant frequency="10" name="B">
+      <mesh>props/shield/hex_s_f.pmd</mesh>
+      <props>
+        <prop actor="props/shield/hex_a_back.xml" attachpoint="back"/>
+      </props>
+      <texture>props/shield/celt_hex_b.dds</texture>
+    </variant>
+    <variant frequency="10" name="C">
+      <mesh>props/shield/hex_s_f.pmd</mesh>
+      <props>
+        <prop actor="props/shield/hex_a_back.xml" attachpoint="back"/>
+      </props>
+      <texture>props/shield/celt_hex_c.dds</texture>
+    </variant>
+    <variant frequency="10" name="D">
+      <mesh>props/shield/hex_s_f.pmd</mesh>
+      <props>
+        <prop actor="props/shield/hex_a_back.xml" attachpoint="back"/>
+      </props>
+      <texture>props/shield/celt_hex_d.dds</texture>
+    </variant>
+    <variant frequency="10" name="E">
+      <mesh>props/shield/hex_s_f.pmd</mesh>
+      <props>
+        <prop actor="props/shield/hex_a_back.xml" attachpoint="back"/>
+      </props>
+      <texture>props/shield/celt_hex_e.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>
