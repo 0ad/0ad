@@ -4,6 +4,8 @@
 #include "ps/CVFSFile.h"
 #include "scripting/ScriptingHost.h"
 
+#include "ps/VFSUtil.h"
+
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "i18n"
 
@@ -11,6 +13,20 @@ I18n::CLocale_interface* g_CurrentLocale = NULL;
 
 bool I18n::LoadLanguage(const char* name)
 {
+	// Special case: If name==NULL, use an 'empty' locale which should have
+	// no external dependencies other than CLogger, so it can be called
+	// before SpiderMonkey/etc has been initialised (useful for localised
+	// error messages that should fall back to English if the language hasn't
+	// been loaded yet)
+	if (name == NULL)
+	{
+		CLocale_interface* locale_ptr = I18n::NewLocale(NULL);
+		assert(locale_ptr);
+		delete g_CurrentLocale;
+		g_CurrentLocale = locale_ptr;
+		return true;
+	}
+
 	CLocale_interface* locale_ptr = I18n::NewLocale(g_ScriptingHost.getContext());
 
 	if (! locale_ptr)
@@ -19,22 +35,64 @@ bool I18n::LoadLanguage(const char* name)
 		return false;
 	}
 
+	// Automatically delete the pointer when returning early
 	std::auto_ptr<CLocale_interface> locale (locale_ptr);
 
+	CStr dirname = CStr("language/")+name;
+
+	VFSUtil::FileList files;
+	VFSUtil::FileList::iterator filename;
+
+	// Open *.lng with LoadStrings
+
+	if (! VFSUtil::FindFiles(dirname, ".lng", files))
+		return false;
+
+	for (filename = files.begin(); filename != files.end(); ++filename)
 	{
 		CVFSFile strings;
 
-		CStr filename = CStr("language/")+name+"/phrases.lng";
-
-		if (strings.Load(filename) != PSRETURN_OK)
+		if (! (strings.Load(*filename) == PSRETURN_OK && locale->LoadStrings((const char*)strings.GetBuffer())))
 		{
-			LOG(ERROR, LOG_CATEGORY, "Error opening language string file '%s'", filename.c_str());
+			LOG(ERROR, LOG_CATEGORY, "Error opening language string file '%s'", filename->c_str());
 			return false;
 		}
+	}
 
-		if (! locale->LoadStrings( (const char*) strings.GetBuffer() ))
+	// Open *.wrd with LoadDictionary
+
+	if (! VFSUtil::FindFiles(dirname, ".wrd", files))
+		return false;
+
+	for (filename = files.begin(); filename != files.end(); ++filename)
+	{
+		CVFSFile strings;
+
+		if (! (strings.Load(*filename) == PSRETURN_OK && locale->LoadDictionary((const char*)strings.GetBuffer())))
 		{
-			LOG(ERROR, LOG_CATEGORY, "Error loading language string file '%s'", filename.c_str());
+			LOG(ERROR, LOG_CATEGORY, "Error opening language string file '%s'", filename->c_str());
+			return false;
+		}
+	}
+
+	// Open *.js with LoadFunctions
+
+	if (! VFSUtil::FindFiles(dirname, ".js", files))
+		return false;
+
+	for (filename = files.begin(); filename != files.end(); ++filename)
+	{
+		CVFSFile strings;
+
+		if (! (strings.Load(*filename) == PSRETURN_OK
+			&& 
+			locale->LoadFunctions(
+				(const char*)strings.GetBuffer(),
+				strings.GetBufferSize(),
+				filename->c_str()
+			)))
+		{
+			LOG(ERROR, LOG_CATEGORY, "Error opening language function file '%s'", filename->c_str());
 			return false;
 		}
 	}
@@ -42,11 +100,14 @@ bool I18n::LoadLanguage(const char* name)
 	// Free any previously loaded data
 	delete g_CurrentLocale;
 
+	// Store the new CLocale*, and stop the auto_ptr from deleting it
 	g_CurrentLocale = locale.release();
+
 	return true;
 }
 
 void I18n::Shutdown()
 {
 	delete g_CurrentLocale;
+	g_CurrentLocale = NULL;
 }
