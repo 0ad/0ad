@@ -33,21 +33,20 @@
 #include <jasper/jasper.h>
 #endif
 
-// libpng includes windows.h - prevent that, and define what it needs.
-#define _WINDOWS_
-#define WINAPI __stdcall
-#define WINAPIV __cdecl
 
 #ifndef NO_PNG
 # ifdef _WIN32
+#  define _WINDOWS_			// prevent libpng from including windows.h
+#  define WINAPI __stdcall	// .. and define what it needs
+#  define WINAPIV __cdecl
 #  include <libpng10/png.h>
-# else
-#  include <png.h>
 #  ifdef _MSC_VER
 #   pragma comment(lib, "libpng10.lib")
 #  endif
-# endif
-#endif
+# else	// _WIN32
+#  include <png.h>
+# endif	// _WIN32
+#endif	// NO_PNG
 
 
 // filled by loader funcs => declare here
