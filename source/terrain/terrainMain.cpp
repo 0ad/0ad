@@ -36,6 +36,11 @@ float g_CameraZoom = 10;
 
 const int NUM_ALPHA_MAPS = 13;
 const float ViewScrollSpeed = 60;
+const float ViewRotateSensitivity = 0.002f;
+const float ViewDragSensitivity = 0.5f;
+const float ViewZoomSensitivityWheel = 16.0f;
+const float ViewZoomSensitivityKey = 256.0f;
+const float ViewZoomSmoothness = 0.02f; // 0.0 = instantaneous zooming, 1.0 = so slow it never moves
 float ViewFOV;
 
 int mouse_x=50, mouse_y=50;
@@ -57,10 +62,178 @@ void terr_init()
 
 void terr_update(const float DeltaTime)
 {
+
+#define CAMERASTYLE 2 // 0 = old style, 1 = relatively new style, 2 = newer style
+
+#if CAMERASTYLE == 2
+
+
+	// Calculate mouse movement
+	static int mouse_last_x = 0;
+	static int mouse_last_y = 0;
+	int mouse_dx = mouse_x - mouse_last_x;
+	int mouse_dy = mouse_y - mouse_last_y;
+	mouse_last_x = mouse_x;
+	mouse_last_y = mouse_y;
+
+	// Miscellaneous vectors
+	CVector3D forwards = g_Camera.m_Orientation.GetIn();
+	CVector3D upwards (0.0f, 1.0f, 0.0f);
+	CVector3D rightwards = upwards.Cross(forwards);
+	rightwards.Normalize();
+	
+	CVector3D forwards_horizontal = forwards;
+	forwards_horizontal.Y = 0.0f;
+	forwards_horizontal.Normalize();
+
+	if (mouseButtons[SDL_BUTTON_MIDDLE])
+	{
+		if (keys[SDLK_LCTRL] || keys[SDLK_RCTRL])
+		{
+			// Ctrl + middle-drag to rotate view
+
+			// Untranslate the camera, so it rotates around the correct point
+			CVector3D position = g_Camera.m_Orientation.GetTranslation();
+			g_Camera.m_Orientation.Translate(position*-1);
+
+			// Sideways rotation
+			g_Camera.m_Orientation.RotateY(ViewRotateSensitivity * (float)(mouse_dx));
+
+			// Up/down rotation
+			CQuaternion temp;
+			temp.FromAxisAngle(rightwards, ViewRotateSensitivity * (float)(mouse_dy));
+			g_Camera.m_Orientation.Rotate(temp);
+
+			// Retranslate back to the right position
+			g_Camera.m_Orientation.Translate(position);
+
+		}
+		else
+		{
+			// Middle-drag to pan
+
+			g_Camera.m_Orientation.Translate(rightwards * (ViewDragSensitivity * mouse_dx));
+			g_Camera.m_Orientation.Translate(forwards_horizontal * (-ViewDragSensitivity * mouse_dy));
+		}
+	}
+
+	// Mouse movement
+
+	if (mouse_x >= g_xres-2)
+		g_Camera.m_Orientation.Translate(rightwards * (ViewScrollSpeed * DeltaTime));
+	else if (mouse_x <= 3)
+		g_Camera.m_Orientation.Translate(-rightwards * (ViewScrollSpeed * DeltaTime));
+
+	if (mouse_y >= g_yres-2)
+		g_Camera.m_Orientation.Translate(-forwards_horizontal * (ViewScrollSpeed * DeltaTime));
+	else if (mouse_y <= 3)
+		g_Camera.m_Orientation.Translate(forwards_horizontal * (ViewScrollSpeed * DeltaTime));
+
+
+	// Keyboard movement (added to mouse movement, so you can go faster if you want)
+
+	if (keys[SDLK_RIGHT])
+		g_Camera.m_Orientation.Translate(rightwards * (ViewScrollSpeed * DeltaTime));
+	if (keys[SDLK_LEFT])
+		g_Camera.m_Orientation.Translate(-rightwards * (ViewScrollSpeed * DeltaTime));
+
+	if (keys[SDLK_DOWN])
+		g_Camera.m_Orientation.Translate(-forwards_horizontal * (ViewScrollSpeed * DeltaTime));
+	if (keys[SDLK_UP])
+		g_Camera.m_Orientation.Translate(forwards_horizontal * (ViewScrollSpeed * DeltaTime));
+
+
+	// Smoothed zooming (move a certain percentage towards the desired zoom distance every frame)
+
+	static float zoom_delta = 0.0f;
+
+	if (mouseButtons[SDL_BUTTON_WHEELUP])
+		zoom_delta -= ViewZoomSensitivityWheel;
+	else if (mouseButtons[SDL_BUTTON_WHEELDOWN])
+		zoom_delta += ViewZoomSensitivityWheel;
+
+	if (keys[SDLK_MINUS])
+		zoom_delta -= ViewZoomSensitivityKey*DeltaTime;
+	else if (keys[SDLK_EQUALS])
+		zoom_delta += ViewZoomSensitivityKey*DeltaTime;
+
+	if (zoom_delta)
+	{
+		float zoom_proportion = powf(ViewZoomSmoothness, DeltaTime);
+		g_Camera.m_Orientation.Translate(forwards * (zoom_delta * (1.0f-zoom_proportion)));
+		zoom_delta *= zoom_proportion;
+	}
+
+
+#elif CAMERASTYLE == 1
+
+	// Remember previous mouse position, to calculate changes
+	static mouse_last_x = 0;
+	static mouse_last_y = 0;
+
+	// Miscellaneous vectors
+	CVector3D forwards = g_Camera.m_Orientation.GetIn();
+	CVector3D upwards (0.0f, 1.0f, 0.0f);
+	CVector3D rightwards = upwards.Cross(forwards);
+
+	// Click and drag to look around
+	if (mouseButtons[0])
+	{
+		// Untranslate the camera, so it rotates around the correct point
+		CVector3D position = g_Camera.m_Orientation.GetTranslation();
+		g_Camera.m_Orientation.Translate(position*-1);
+
+		// Sideways rotation
+		g_Camera.m_Orientation.RotateY(ViewRotateSpeed*(float)(mouse_x-mouse_last_x));
+
+		// Up/down rotation
+		CQuaternion temp;
+		temp.FromAxisAngle(rightwards, ViewRotateSpeed*(float)(mouse_y-mouse_last_y));
+		g_Camera.m_Orientation.Rotate(temp);
+
+		// Retranslate back to the right position
+		g_Camera.m_Orientation.Translate(position);
+	}
+	mouse_last_x = mouse_x;
+	mouse_last_y = mouse_y;
+
+	// Calculate the necessary vectors for movement
+
+	rightwards.Normalize();
+	CVector3D forwards_horizontal = upwards.Cross(rightwards);
+	forwards_horizontal.Normalize();
+
+	// Move when desirable
+
+	if (mouse_x >= g_xres-2)
+		g_Camera.m_Orientation.Translate(rightwards);
+	else if (mouse_x <= 3)
+		g_Camera.m_Orientation.Translate(-rightwards);
+
+	if (mouse_y >= g_yres-2)
+		g_Camera.m_Orientation.Translate(forwards_horizontal);
+	else if (mouse_y <= 3)
+		g_Camera.m_Orientation.Translate(-forwards_horizontal);
+
+	// Smoothed height-changing (move a certain percentage towards the desired height every frame)
+
+	static float height_delta = 0.0f;
+
+	if (mouseButtons[SDL_BUTTON_WHEELUP])
+		height_delta -= 4.0f;
+	else if (mouseButtons[SDL_BUTTON_WHEELDOWN])
+		height_delta += 4.0f;
+
+	const float height_speed = 0.2f;
+	g_Camera.m_Orientation.Translate(0.0f, height_delta*height_speed, 0.0f);
+	height_delta *= (1.0f - height_speed);
+
+#else // CAMERASTYLE == 0
+
 	const float dx = ViewScrollSpeed * DeltaTime;
 	const CVector3D Right(dx,0, dx);
 	const CVector3D Up   (dx,0,-dx);
-	
+
 	if (mouse_x >= g_xres-2)
 		g_Camera.m_Orientation.Translate(Right);
 	if (mouse_x <= 3)
@@ -70,7 +243,6 @@ void terr_update(const float DeltaTime)
 		g_Camera.m_Orientation.Translate(Up);
 	if (mouse_y <= 3)
 		g_Camera.m_Orientation.Translate(Up*-1);
-
 
 	/*
 	janwas: grr, plotted the zoom vector on paper twice, but it appears
@@ -102,6 +274,7 @@ void terr_update(const float DeltaTime)
 			g_Camera.m_Orientation.Translate(forward*(factor*g_CameraZoom));
 		}
 	}
+#endif // CAMERASTYLE
 
 	g_Camera.UpdateFrustum ();
 }
