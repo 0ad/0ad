@@ -4,6 +4,7 @@ cd premake
 
 ./premake --target gnu
 
+mkdir -p ../gcc
 cd ../gcc
 mv -f ../premake/Makefile ../premake/prometheus.make .
 
