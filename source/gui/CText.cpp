@@ -20,7 +20,7 @@ using namespace std;
 //-------------------------------------------------------------------
 CText::CText()
 {
-	AddSetting(GUIST_int,			"buffer-zone");
+	AddSetting(GUIST_float,			"buffer-zone");
 	AddSetting(GUIST_CGUIString,	"caption");
 	AddSetting(GUIST_CStr,			"font");
 	AddSetting(GUIST_bool,			"scrollbar");
