@@ -3,18 +3,20 @@ BINDIR=../../binaries
 SRCDIR=..
 DEPDIR=deps
 
-INCLUDES=-I$(SRCDIR) -I$(SRCDIR)/ps -I$(SRCDIR)/lib -I.
-DEFINES=-D__STDC_VERSION__=199901L -DDEBUG_LOCKS
+INCLUDES=-I$(SRCDIR) -I$(SRCDIR)/ps -I$(SRCDIR)/lib -I. -I/usr/include/X11
+DEFINES=-D__STDC_VERSION__=199901L -DDEBUG_LOCKS -DHAVE_X_WINDOWS
 
 CPPFLAGS=$(INCLUDES) $(DEFINES)
-CXXFLAGS=-O3 -mcpu=athlon-xp -march=athlon-xp -ffast-math \
+CXXFLAGS=-O3 -mcpu=athlon-4 -march=pentium-mmx -ffast-math \
 	-foptimize-sibling-calls -fno-cprop-registers \
-	-fstrict-aliasing -mmmx -msse -m3dnow \
-	-mfpmath=sse,387 -g3
-LDFLAGS=-lrt -lGL -lglut -lSDL -lz -lxerces-c -g3 -z combreloc
+	-fstrict-aliasing -mmmx \
+	-g3
+LD_DIRS=-L/usr/X11R6/lib
+LD_LIBS=-lX11 -lrt -lGL -lglut -lSDL -lz -lxerces-c 
+LDFLAGS=-g3 -z combreloc $(LD_DIRS) $(LD_LIBS)
 
 PS_SOURCES=$(addprefix ps/, Encryption.cpp CStr.cpp Config.cpp LogFile.cpp \
-	MathUtil.cpp Parser.cpp Prometheus.cpp)
+	MathUtil.cpp Parser.cpp Prometheus.cpp XercesErrorHandler.cpp)
 PS_OBJS=$(patsubst %.cpp, $(OBJDIR)/%.o, $(PS_SOURCES))
 
 PS_NET_SOURCES=$(addprefix ps/Network/, NetMessage.cpp Network.cpp \
@@ -23,7 +25,8 @@ PS_NET_OBJS=$(patsubst %.cpp, $(OBJDIR)/%.o, $(PS_NET_SOURCES))
 
 GUI_SOURCES=$(addprefix gui/, CButton.cpp CGUI.cpp CGUISprite.cpp GUIbase.cpp \
 	GUIutil.cpp IGUIButtonBehavior.cpp IGUIObject.cpp \
-	IGUISettingsObject.cpp XercesErrorHandler.cpp)
+	IGUISettingsObject.cpp CText.cpp IGUIScrollBar.cpp \
+	IGUIScrollBarOwner.cpp CGUIScrollBarStyle.cpp CGUIScrollBarVertical.cpp)
 GUI_OBJS=$(patsubst %.cpp, $(OBJDIR)/%.o, $(GUI_SOURCES))
 
 TERR_SOURCES=$(addprefix terrain/, Camera.cpp Frustum.cpp Matrix3D.cpp \
