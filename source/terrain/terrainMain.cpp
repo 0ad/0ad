@@ -16,7 +16,7 @@ void InitResources ();
 void RenderScene ();
 
 extern bool keys[512];	// SDL also defines non-ascii keys; 512 should be enough
-
+extern bool mouseButtons[5];
 
 CMatrix3D			g_WorldMat;
 CRenderer			g_Renderer;
@@ -91,13 +91,30 @@ please put this code out of its misery :)
 */
 
 	float fov = g_Camera.GetFOV();
-	const float d = DEGTORAD(10.0f) * DeltaTime;
+	const float d_key = DEGTORAD(10.0f) * DeltaTime;
+	const float d_wheel = DEGTORAD( 50.0f ) * DeltaTime;
+	const float fov_max = DEGTORAD( 60.0f );
+	const float fov_min = DEGTORAD( 10.0f );
+
 	if(keys[SDLK_KP_MINUS])
-		if (fov < DEGTORAD(60.f))
-			fov += d;
+		if (fov < fov_max)
+			fov += d_key;
 	if(keys[SDLK_KP_PLUS])
-		if (fov-d > DEGTORAD(10))
-			fov -= d;
+		if (fov-d_key > fov_min)
+			fov -= d_key;
+	if( mouseButtons[SDL_BUTTON_WHEELUP] )
+	{
+		fov += d_wheel;
+		if( fov > fov_max )
+			fov = fov_max;
+	}
+	if( mouseButtons[SDL_BUTTON_WHEELDOWN] )
+	{
+		fov -= d_wheel;
+		if( fov < fov_min )
+			fov = fov_min;
+	}
+
 
 	ViewFOV = fov;
 
@@ -118,6 +135,7 @@ bool terr_handler(const SDL_Event& ev)
 		mouse_x = ev.motion.x;
 		mouse_y = ev.motion.y;
 		break;
+	
 
 	case SDL_KEYDOWN:
 		switch(ev.key.keysym.sym)

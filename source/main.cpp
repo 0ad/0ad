@@ -34,6 +34,7 @@
 u32 game_ticks;
 
 bool keys[SDLK_LAST];
+bool mouseButtons[5];
 
 #include <cmath>
 
@@ -178,6 +179,16 @@ static bool handler(const SDL_Event& ev)
 	case SDL_KEYUP:
 		c = ev.key.keysym.sym;
 		keys[c] = false;
+		break;
+	case SDL_MOUSEBUTTONDOWN:
+		c = ev.button.button;
+		if( c < 5 )
+			mouseButtons[c] = true;
+		break;
+	case SDL_MOUSEBUTTONUP:
+		c = ev.button.button;
+		if( c < 5 )
+			mouseButtons[c] = false;
 		break;
 	}
 
@@ -345,6 +356,9 @@ void ParseArgs(int argc, char* argv[])
 						g_Gamma = (float)atof( argv[i] + 3 );
 						if( g_Gamma == 0.0f ) g_Gamma = 1.0f;
 					}
+					break;
+				case 'v':
+					g_VSync = true;
 					break;
 				case 'n':
 					if (strncmp(argv[i]+1,"novbo",5)==0) {
@@ -543,6 +557,9 @@ in_add_handler(terr_handler);
 #else
 
 		double time1 = get_time();
+
+		mouseButtons[SDL_BUTTON_WHEELUP] = false;
+		mouseButtons[SDL_BUTTON_WHEELDOWN] = false;
 
 		in_get_events();
 		UpdateWorld(float(time1-time0));
