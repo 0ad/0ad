@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity Tag="iber_cjv_b" Parent="csp">
+<Entity Tag="iber_cjv_b" Parent="cjv">
 	<Traits>
 		<Id
 			civ_code="iber"
 			civ="Iberians"
 			internal_only="false"
 
-			specific="(Name)"
-			ranked="Basic (Name)"
+			specific="Caballero Turdetano"
 
-			history="(Insert History Here)"
+			history="Mounted troops comprised variously 20-25% of warriors and their horses were well cared for by their owners. Horses were raised in abundant numbers in the Iberian Peninsula from the earliest of times; it was said by the Romans that either Iberia or Numidia (in North Africa) could provide on the order of 100,000 mounts per year!"
 		/>
 	</Traits>
 	<Actor>Iberian Basic Javelinist Cavalry</Actor>
