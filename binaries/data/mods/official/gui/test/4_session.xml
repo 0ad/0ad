@@ -11,9 +11,6 @@
 <objects>
 
 	<object type="empty" name="session_gui" hotkey="flipgui.toggle" size="0 0 100% 100%" z="1" hidden="true">
-		<action on="Load"><![CDATA[
-			setInterval( getObjectInfo, 1, 1000 );
-		]]></action>
 		<action on="Press"><![CDATA[
 			FlipGUI();
 		]]></action>
@@ -1594,7 +1591,7 @@
 					]]></action>
 					<action on="Press"><![CDATA[
 						btCaptions = new Array("Yep, work's done!", "No, more slaughter!");
-						btCode = new Array("endGame();\ncurr_music = newRandomSound('music', 'theme');\nCrossFade(curr_session_playlist_1, curr_music, 0.0001);\nGUIObjectHide('session_gui');\nGUIObjectUnhide('pregame_gui');", "");
+						btCode = new Array("endSession('return');", "");
 						messageBox(600, 200, "Do you want to leave the current game? There might be more dudes to slaughter.", "Confirmation", 0, btCaptions, btCode);
 					]]></action>
 				End Game
@@ -1610,7 +1607,7 @@
 					]]></action>
 					<action on="Press"><![CDATA[
 						btCaptions = new Array("Yes, let me out!", "Nooooo!");
-						btCode = new Array("exit();", "");
+						btCode = new Array("endSession('exit');", "");
 						messageBox(400, 200, "Do you really want to quit [icon=0ad_icon] A.D.? This will cause a sudden return to reality.", "Confirmation", 0, btCaptions, btCode);
 					]]></action>
 				</object>
