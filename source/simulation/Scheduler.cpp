@@ -49,6 +49,9 @@ void CScheduler::pushInterval( size_t first, size_t interval, JSFunction* functi
 
 void CScheduler::update(size_t simElapsed)
 {
+	simulationTime += simElapsed;
+    frameCount++;
+
 	while( !timeScript.empty() )
 	{
 		SDispatchObjectScript top = timeScript.top();
