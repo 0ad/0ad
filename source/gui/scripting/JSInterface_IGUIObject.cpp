@@ -1,4 +1,4 @@
-// $Id: JSInterface_IGUIObject.cpp,v 1.13 2004/09/04 14:42:46 philip Exp $
+// $Id: JSInterface_IGUIObject.cpp,v 1.14 2004/09/06 02:22:38 gee Exp $
 
 #include "precompiled.h"
 
@@ -162,7 +162,8 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				CGUIString value;
 				GUI<CGUIString>::GetSetting(e, propName, value);
 				// Create a garbage-collectable copy of the string
-				*vp = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, value.GetRawString().c_str() ));
+				// TODO Gee@Ykkrosh: this was just to make it compile
+				*vp = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, (const char*)value.GetRawString().c_str() ));
 				break;
 			}
 
