@@ -1,6 +1,6 @@
 //***********************************************************
 //
-// Name:		MathUtil.h
+// Name:		MathUtil.H
 // Last Update:	28/1/02
 // Author:		Poya Manouchehri
 //
@@ -14,7 +14,8 @@
 
 #define PI							3.14159265358979323846f
 
-#define DEGTORAD(a)					(((a) * PI) / 180.0f)
+#define DEGTORAD(a)					((a) * (PI/180.0f))
+#define RADTODEG(a)					((a) * (180.0f/PI))
 #define SQR(x)						((x) * (x))
 #define MAX(a,b)					((a < b) ? (b) : (a))
 #define MIN(a,b)					((a < b) ? (a) : (b))
