@@ -1,4 +1,4 @@
-// $Id: filemanip.cpp,v 1.1 2004/06/17 19:32:04 philip Exp $
+// $Id: filemanip.cpp,v 1.2 2004/06/19 13:46:11 philip Exp $
 
 #include "stdafx.h"
 
@@ -6,9 +6,10 @@
 
 // Ensure there's no padding added into the struct,
 // in a very non-portable way
+#ifdef _WIN32
 #pragma pack(push)
 #pragma pack(1)
-// For gcc, use "} TGA_HEADER __attribute__ ((packed));" instead of this
+#endif
 
 typedef struct
 {
@@ -26,9 +27,12 @@ typedef struct
 	short height;			// image height in pixels
 	char  bits;				// image bits per pixel 8,16,24,32
 	char  descriptor;		// image descriptor bits (vh flip bits)
+#ifdef _WIN32
 } TGA_HEADER;
-
-#pragma pack(pop)
+# pragma pack(pop)
+#else
+} __attribute__ ((packed)) TGA_HEADER;
+#endif
 
 // Convert the RGB image to 8-bit greyscale and output
 void RGB_OutputGreyscaleTGA(unsigned char* image_data, int width, int height, int pitch, wxFFile& file)

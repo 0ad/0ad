@@ -1,4 +1,4 @@
-// $Id: wxframe.cpp,v 1.4 2004/06/19 12:56:09 philip Exp $
+// $Id: wxframe.cpp,v 1.5 2004/06/19 13:46:11 philip Exp $
 
 #include "stdafx.h"
 
@@ -314,11 +314,10 @@ void MainFrame::SaveSettings(wxString& filename)
 	for (size_t i=0; i<PreviewText.Length(); ++i)
 	{
 		wchar_t b[5];
-		swprintf(b, wxT("%04x"), PreviewText[i]);
+		swprintf(b, 5, wxT("%04x"), PreviewText[i]);
 		PreviewTextHex += wxString(b, 4);
 	}
 	Settings->AddAttributeValueString(wxT("PreviewText"), PreviewTextHex);
-
 
 	db.Append(Settings);
 

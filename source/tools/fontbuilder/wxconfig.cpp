@@ -1,4 +1,4 @@
-// $Id: wxconfig.cpp,v 1.2 2004/06/19 12:56:09 philip Exp $
+// $Id: wxconfig.cpp,v 1.3 2004/06/19 13:46:11 philip Exp $
 
 #include "stdafx.h"
 
@@ -6,6 +6,12 @@
 #include "wx/filename.h"
 
 #include "wxconfig.h"
+
+#ifdef _WIN32
+const wxString PathSep = wxT("\\");
+#else
+const wxString PathSep = wxT("/");
+#endif
 
 void ConfigInit()
 {
@@ -15,24 +21,30 @@ void ConfigInit()
 	// Default paths, for the first time program is run:
 
 	// Get "x:\wherever\etc\binaries\"
-	wxFileName cwd = wxFileName::GetCwd()+wxT("\\");
+	wxFileName cwd = wxFileName::GetCwd()+PathSep;
 	cwd.RemoveDir((int)cwd.GetDirCount()-1);
 
+#define DIR(a) dir.AppendDir(wxT(a))
+
+	cwd.AppendDir(wxT("data"));
 	if (!ConfigGet(wxT("FSF path")))
 	{
-		wxFileName dir = cwd; dir.AppendDir(wxT("data\\tools\\fontbuilder\\settings"));
+		wxFileName dir = cwd; 
+		DIR("tools"); DIR("fontbuilder"); DIR("settings");
 		ConfigSet(wxT("FSF path"), dir.GetPath(wxPATH_GET_VOLUME));
 	}
 
 	if (!ConfigGet(wxT("FNT path")))
 	{
-		wxFileName dir = cwd; dir.AppendDir(wxT("data\\mods\\official\\fonts"));
+		wxFileName dir = cwd;
+		DIR("mods"); DIR("official"); DIR("fonts");
 		ConfigSet(wxT("FNT path"), dir.GetPath(wxPATH_GET_VOLUME));
 	}
 
 	if (!ConfigGet(wxT("Charset path")))
 	{
-		wxFileName dir = cwd; dir.AppendDir(wxT("data\\tools\\fontbuilder\\charsets"));
+		wxFileName dir = cwd;
+		DIR("tools"); DIR("fontbuilder"); DIR("charsets");
 		ConfigSet(wxT("Charset path"), dir.GetPath(wxPATH_GET_VOLUME));
 	}
 }
