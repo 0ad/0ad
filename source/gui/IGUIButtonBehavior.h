@@ -73,13 +73,16 @@ public:
 	 * @param sprite_over Sprite drawn when m_MouseHovering is true
 	 * @param sprite_pressed Sprite drawn when m_Pressed is true
 	 * @param sprite_disabled Sprite drawn when "enabled" is false
+	 * @param icon_id Identifies the icon to be used (if the sprite contains
+	 *                icon-using images)
 	 */
 	void DrawButton(const CRect &rect,
 					const float &z,
 					CGUISpriteInstance& sprite,
 					CGUISpriteInstance& sprite_over,
 					CGUISpriteInstance& sprite_pressed,
-					CGUISpriteInstance& sprite_disabled);
+					CGUISpriteInstance& sprite_disabled,
+					int icon_id);
 
 	/**
 	 * Choosing which color of the following according to 

@@ -38,11 +38,13 @@ void CGUIScrollBarVertical::Draw()
 		CRect outline = GetOuterRect();
 
 		// Draw background
-		GetGUI()->DrawSprite(GetStyle()->m_SpriteBackVertical, m_Z+0.1f, 
-							 CRect(	outline.left,
-									outline.top+(m_UseEdgeButtons?GetStyle()->m_Width:0),
-									outline.right,
-									outline.bottom-(m_UseEdgeButtons?GetStyle()->m_Width:0))
+		GetGUI()->DrawSprite(GetStyle()->m_SpriteBackVertical,
+							 0,
+							 m_Z+0.1f, 
+							 CRect(outline.left,
+								   outline.top+(m_UseEdgeButtons?GetStyle()->m_Width:0),
+								   outline.right,
+								   outline.bottom-(m_UseEdgeButtons?GetStyle()->m_Width:0))
 							 );
 
 		if (m_UseEdgeButtons)
@@ -72,36 +74,41 @@ void CGUIScrollBarVertical::Draw()
 			
 			// Draw top button
 			GetGUI()->DrawSprite(*button_top,
-								 m_Z+0.2f, 
-								 CRect(outline.left, 
-									   outline.top, 
-									   outline.right, 
+								 0,
+								 m_Z+0.2f,
+								 CRect(outline.left,
+									   outline.top,
+									   outline.right,
 									   outline.top+GetStyle()->m_Width)
 								);
 			
 			// Draw bottom button
-			GetGUI()->DrawSprite(*button_bottom, 
-								 m_Z+0.2f, 
-								 CRect(outline.left, 
-									   outline.bottom-GetStyle()->m_Width, 
-									   outline.right, 
+			GetGUI()->DrawSprite(*button_bottom,
+								 0,
+								 m_Z+0.2f,
+								 CRect(outline.left,
+									   outline.bottom-GetStyle()->m_Width,
+									   outline.right,
 									   outline.bottom)
 								);
 		}
 
 		// Draw bar
 		if (m_BarPressed)
-			GetGUI()->DrawSprite(GUI<>::FallBackSprite(GetStyle()->m_SpriteBarVerticalPressed, GetStyle()->m_SpriteBarVertical), 
-								 m_Z+0.2f, 
+			GetGUI()->DrawSprite(GUI<>::FallBackSprite(GetStyle()->m_SpriteBarVerticalPressed, GetStyle()->m_SpriteBarVertical),
+								 0,
+								 m_Z+0.2f,
 								 GetBarRect());
 		else
 		if (m_BarHovered)
-			GetGUI()->DrawSprite(GUI<>::FallBackSprite(GetStyle()->m_SpriteBarVerticalOver, GetStyle()->m_SpriteBarVertical), 
-								 m_Z+0.2f, 
+			GetGUI()->DrawSprite(GUI<>::FallBackSprite(GetStyle()->m_SpriteBarVerticalOver, GetStyle()->m_SpriteBarVertical),
+								 0,
+								 m_Z+0.2f,
 								 GetBarRect());
 		else
-			GetGUI()->DrawSprite(GetStyle()->m_SpriteBarVertical, 
-								 m_Z+0.2f, 
+			GetGUI()->DrawSprite(GetStyle()->m_SpriteBarVertical,
+								 0,
+								 m_Z+0.2f,
 								 GetBarRect());
 	}
 } 

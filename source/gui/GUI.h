@@ -18,14 +18,6 @@ gee@pyro.nu
 #define GUI_H
 
 //--------------------------------------------------------
-//  Compiler specific
-//--------------------------------------------------------
-// Important that we do this before <map> is included
-#ifdef _MSC_VER
-# pragma warning(disable:4786)
-#endif
-
-//--------------------------------------------------------
 //  Includes
 //--------------------------------------------------------
 #include <map>
@@ -47,7 +39,6 @@ gee@pyro.nu
 #include "IGUITextOwner.h"
 #include "IGUIScrollBar.h"
 #include "CGUIScrollBarVertical.h"
-#include "CGUISprite.h"
 #include "CGUI.h"
 
 #endif

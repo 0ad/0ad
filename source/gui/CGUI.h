@@ -108,11 +108,13 @@ public:
 	 *
 	 * @param Sprite Object refering to the sprite (which also caches
 	 *        calculations for faster rendering)
+	 * @param IconID Number of the icon to use. (Ignored if this sprite doesn't
+	 *        have any images with "icon-size")
 	 * @param Z Drawing order, depth value
 	 * @param Rect Position and Size
 	 * @param Clipping The sprite shouldn't be drawn outside this rectangle
 	 */
-	void DrawSprite(CGUISpriteInstance& Sprite, const float &Z, 
+	void DrawSprite(CGUISpriteInstance& Sprite, int IconID, const float &Z, 
 					const CRect &Rect, const CRect &Clipping=CRect());
 
 	/**

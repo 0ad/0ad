@@ -91,7 +91,8 @@ void IGUIButtonBehavior::DrawButton(const CRect &rect,
 									CGUISpriteInstance& sprite,
 									CGUISpriteInstance& sprite_over,
 									CGUISpriteInstance& sprite_pressed,
-									CGUISpriteInstance& sprite_disabled)
+									CGUISpriteInstance& sprite_disabled,
+									int icon_id)
 {
 	if (GetGUI())
 	{
@@ -100,16 +101,16 @@ void IGUIButtonBehavior::DrawButton(const CRect &rect,
 
 		if (!enabled)
 		{
-			GetGUI()->DrawSprite(GUI<>::FallBackSprite(sprite_disabled, sprite), z, rect);
+			GetGUI()->DrawSprite(GUI<>::FallBackSprite(sprite_disabled, sprite), icon_id, z, rect);
 		}
 		else
 		if (m_MouseHovering)
 		{
 			if (m_Pressed)
-				GetGUI()->DrawSprite(GUI<>::FallBackSprite(sprite_pressed, sprite), z, rect);
+				GetGUI()->DrawSprite(GUI<>::FallBackSprite(sprite_pressed, sprite), icon_id, z, rect);
 			else
-				GetGUI()->DrawSprite(GUI<>::FallBackSprite(sprite_over, sprite), z, rect);
+				GetGUI()->DrawSprite(GUI<>::FallBackSprite(sprite_over, sprite), icon_id, z, rect);
 		}
-		else GetGUI()->DrawSprite(sprite, z, rect);
+		else GetGUI()->DrawSprite(sprite, icon_id, z, rect);
 	}
 }

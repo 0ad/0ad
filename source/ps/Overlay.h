@@ -120,6 +120,8 @@ public:
 	 */
 	bool PointInside(const CPos &point) const;
 
+	CRect Scale(float x, float y) const;
+
 	/**
 	 * Returning CPos representing each corner.
 	 */

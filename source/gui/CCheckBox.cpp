@@ -145,7 +145,8 @@ void CCheckBox::Draw()
 			   *sprite,
 			   *sprite_over,
 			   *sprite_pressed,
-			   *sprite_disabled);
+			   *sprite_disabled,
+			   0);
 
 	CColor color = ChooseColor();
 

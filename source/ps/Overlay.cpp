@@ -220,6 +220,11 @@ bool CRect::PointInside(const CPos &point) const
 			point.y <= bottom);
 }
 
+CRect CRect::Scale(float x, float y) const
+{
+	return CRect(left*x, top*y, right*x, bottom*y);
+}
+
 /*************************************************************************/
 
 CPos::CPos() : x(0.f), y(0.f)

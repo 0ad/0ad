@@ -73,7 +73,7 @@ struct SGUIImage
 	// For textures that contain a collection of icons (e.g. unit portraits), this
 	//  will be set to the size of one icon. An object's icon-id will determine
 	//  which part of the texture is used.
-	//  Equal to CPos(0,0) for non-icon textures.
+	//  Equal to CSize(0,0) for non-icon textures.
 	CSize			m_IconSize;
 
 	// Color
@@ -130,7 +130,7 @@ public:
 	CGUISpriteInstance();
 	CGUISpriteInstance(CStr SpriteName);
 	CGUISpriteInstance &operator=(CStr SpriteName);
-	void Draw(CRect Size, std::map<CStr, CGUISprite> &Sprites);
+	void Draw(CRect Size, int IconID, std::map<CStr, CGUISprite> &Sprites);
 	void Invalidate();
 	bool IsEmpty() const;
 	CStr GetName() { return m_SpriteName; }
@@ -140,9 +140,10 @@ private:
 
 	// Stored drawing calls, for more efficient rendering
 	GUIRenderer::DrawCalls m_DrawCallCache;
-	// Size of previously rendered sprite; the cache is invalidated
-	// whenever this changes.
+	// Relevant details of previously rendered sprite; the cache is invalidated
+	// whenever any of these values changes.
 	CRect m_CachedSize;
+	int m_CachedIconID;
 };
 
 #endif

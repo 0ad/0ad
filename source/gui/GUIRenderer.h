@@ -39,7 +39,7 @@ namespace GUIRenderer
 
 namespace GUIRenderer
 {
-	void UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect& Size, std::map<CStr, CGUISprite> &Sprites);
+	void UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect& Size, int IconID, std::map<CStr, CGUISprite> &Sprites);
 
 	void Draw(DrawCalls &Calls);
 }

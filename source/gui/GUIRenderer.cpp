@@ -42,8 +42,11 @@ Handle_rfcnt_tex& Handle_rfcnt_tex::operator=(Handle h_)
 
 // Functions to perform drawing-related actions:
 
-void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect &Size, std::map<CStr, CGUISprite> &Sprites)
+void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect &Size, int IconID, std::map<CStr, CGUISprite> &Sprites)
 {
+	// This is called only when something has changed (like the size of the
+	// sprite), so it doesn't need to be particularly efficient.
+
 	Calls.clear();
 
 	std::map<CStr, CGUISprite>::iterator it (Sprites.find(SpriteName));
@@ -69,8 +72,8 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 	{
 		SDrawCall Call;
 
-		CRect real = cit->m_Size.GetClientArea(Size);
-		Call.m_Vertices = real;
+		CRect ObjectSize = cit->m_Size.GetClientArea(Size);
+		Call.m_Vertices = ObjectSize;
 
 		if (cit->m_TextureName.Length())
 		{
@@ -90,39 +93,68 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 
 			Call.m_TexHandle = h;
 
-			int fmt, t_w, t_h;
-			tex_info(h, &t_w, &t_h, &fmt, NULL, NULL);
-			Call.m_EnableBlending = (fmt == GL_RGBA || fmt == GL_BGRA);
+			int TexFormat, t_w, t_h;
+			tex_info(h, &t_w, &t_h, &TexFormat, NULL, NULL);
+			float TexWidth = (float)t_w, TexHeight = (float)t_h;
+			
+			// TODO: Detect the presence of an alpha channel in a nicer way
+			Call.m_EnableBlending = (TexFormat == GL_RGBA || TexFormat == GL_BGRA);
 
-			// Get the screen position/size of a single tiling of the texture
-			CRect TexSize = cit->m_TextureSize.GetClientArea(real);
+			// Textures are positioned by defining a rectangular block of the
+			// texture (usually the whole texture), and a rectangular block on
+			// the screen. The texture is positioned to make those blocks line up.
 
-			CRect TexCoords;
+			// Get the screen's position/size for the block
+			CRect BlockScreen = cit->m_TextureSize.GetClientArea(ObjectSize);
 
-			TexCoords.left = (TexSize.left - real.left) / TexSize.GetWidth();
-			TexCoords.right = TexCoords.left + real.GetWidth() / TexSize.GetWidth();
+			// Get the texture's position/size for the block:
+			CRect BlockTex;
 
-			// 'Bottom' is actually the top in screen-space (I think),
-			// because the GUI puts (0,0) at the top-left
-			TexCoords.bottom = (TexSize.bottom - real.bottom) / TexSize.GetHeight();
-			TexCoords.top = TexCoords.bottom + real.GetHeight() / TexSize.GetHeight();
-
+			// "real-texture-placement" overrides everything
 			if (cit->m_TexturePlacementInFile != CRect())
+				BlockTex = cit->m_TexturePlacementInFile;
+
+			// Check whether this sprite has "icon-size" set
+			else if (cit->m_IconSize != CSize())
 			{
-				// Save the width/height, because we'll change the values one at a time and need
-				//  to be able to use the unchanged width/height
-				float width = TexCoords.GetWidth(),
-					  height = TexCoords.GetHeight();
-
-				float fTW=(float)t_w, fTH=(float)t_h;
-
-				// notice left done after right, so that left is still unchanged, that is important.
-				TexCoords.right = TexCoords.left + width * cit->m_TexturePlacementInFile.right/fTW;
-				TexCoords.left += width * cit->m_TexturePlacementInFile.left/fTW;
-
-				TexCoords.bottom = TexCoords.top + height * cit->m_TexturePlacementInFile.bottom/fTH;
-				TexCoords.top += height * cit->m_TexturePlacementInFile.top/fTH;
+				int cols = t_w / (int)cit->m_IconSize.cx;
+				int col = IconID % cols;
+				int row = IconID / cols;
+				BlockTex = CRect(cit->m_IconSize.cx*col, cit->m_IconSize.cy*row,
+								 cit->m_IconSize.cx*(col+1), cit->m_IconSize.cy*(row+1));
 			}
+
+			// Use the whole texture
+			else
+				BlockTex = CRect(0, 0, TexWidth, TexHeight);
+
+
+			// When rendering, BlockTex will be transformed onto BlockScreen.
+			// Also, TexCoords will be transformed onto ObjectSize (giving the
+			// UV coords at each vertex of the object). We know everything
+			// except for TexCoords, so calculate it:
+
+			CPos translation (BlockTex.TopLeft()-BlockScreen.TopLeft());
+			float ScaleW = BlockTex.GetWidth()/BlockScreen.GetWidth();
+			float ScaleH = BlockTex.GetHeight()/BlockScreen.GetHeight();
+			
+			CRect TexCoords (
+						// Resize (translating to/from the origin, so the
+						// topleft corner stays in the same place)
+						(ObjectSize-ObjectSize.TopLeft())
+						.Scale(ScaleW, ScaleH)
+						+ ObjectSize.TopLeft()
+						// Translate from BlockTex to BlockScreen
+						+ translation
+			);
+
+			// The tex coords need to be scaled so that (texwidth,texheight) is
+			// mapped onto (1,1)
+			TexCoords.left   /= TexWidth;
+			TexCoords.right  /= TexWidth;
+			// and flip it vertically, because of some confusion between coordinate systems
+			TexCoords.top    /= -TexHeight;
+			TexCoords.bottom /= -TexHeight;
 
 			Call.m_TexCoords = TexCoords;
 		}
@@ -142,6 +174,8 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 
 void GUIRenderer::Draw(DrawCalls &Calls)
 {
+	// Called every frame, to draw the object (based on cached calculations)
+
 
 	// Iterate through each DrawCall, and execute whatever drawing code is being called
 	for (DrawCalls::const_iterator cit = Calls.begin(); cit != Calls.end(); ++cit)

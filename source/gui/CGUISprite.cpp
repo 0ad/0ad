@@ -17,12 +17,13 @@ CGUISpriteInstance &CGUISpriteInstance::operator=(CStr SpriteName)
 	return *this;
 }
 
-void CGUISpriteInstance::Draw(CRect Size, std::map<CStr, CGUISprite> &Sprites)
+void CGUISpriteInstance::Draw(CRect Size, int IconID, std::map<CStr, CGUISprite> &Sprites)
 {
-	if (m_CachedSize != Size)
+	if (m_CachedSize != Size || m_CachedIconID != IconID)
 	{
-		GUIRenderer::UpdateDrawCallCache(m_DrawCallCache, m_SpriteName, Size, Sprites);
+		GUIRenderer::UpdateDrawCallCache(m_DrawCallCache, m_SpriteName, Size, IconID, Sprites);
 		m_CachedSize = Size;
+		m_CachedIconID = IconID;
 	}
 	GUIRenderer::Draw(m_DrawCallCache);
 }

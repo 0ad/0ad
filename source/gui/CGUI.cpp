@@ -408,6 +408,7 @@ void CGUI::Draw()
 }
 
 void CGUI::DrawSprite(CGUISpriteInstance& Sprite,
+					  int IconID,
 					  const float &Z,
 					  const CRect &Rect,
 					  const CRect &Clipping)
@@ -421,7 +422,7 @@ void CGUI::DrawSprite(CGUISpriteInstance& Sprite,
 	glPushMatrix();
 	glTranslatef(0.0f, 0.0f, Z);
 
-	Sprite.Draw(Rect, m_Sprites);
+	Sprite.Draw(Rect, IconID, m_Sprites);
 
 	glPopMatrix();
 
@@ -877,7 +878,7 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 		 it!=Text.m_SpriteCalls.end(); 
 		 ++it)
 	{
-		DrawSprite(it->m_Sprite, z, it->m_Area + pos);
+		DrawSprite(it->m_Sprite, 0, z, it->m_Area + pos);
 	}
 
 	// TODO To whom it may concern: Thing were not reset, so
@@ -1419,7 +1420,6 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		CStr attr_name (pFile->getAttributeString(attr.Name));
 		CStr attr_value (attr.Value);
 
-		// This is the only attribute we want
 		if (attr_name == "texture")
 		{
 			CStr TexFilename ("art/textures/ui/");
@@ -1432,9 +1432,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		{
 			CClientArea ca;
 			if (!GUI<CClientArea>::ParseString(attr_value, ca))
-			{
 				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
-			}
 			else image.m_Size = ca;
 		}
 		else
@@ -1442,9 +1440,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		{
 			CClientArea ca;
 			if (!GUI<CClientArea>::ParseString(attr_value, ca))
-			{
 				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
-			}
 			else image.m_TextureSize = ca;
 		}
 		else
@@ -1452,19 +1448,23 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		{
 			CRect rect;
 			if (!GUI<CRect>::ParseString(attr_value, rect))
-			{
-				ReportParseError("TODO");
-			}
+				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
 			else image.m_TexturePlacementInFile = rect;
+		}
+		else
+		if (attr_name == "icon-size")
+		{
+			CSize size;
+			if (!GUI<CSize>::ParseString(attr_value, size))
+				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
+			else image.m_IconSize = size;
 		}
 		else
 		if (attr_name == "z-level")
 		{
 			float z_level;
 			if (!GUI<float>::ParseString(attr_value, z_level))
-			{
 				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
-			}
 			else image.m_DeltaZ = z_level/100.f;
 		}
 		else
@@ -1472,9 +1472,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		{
 			CColor color;
 			if (!GUI<CColor>::ParseString(attr_value, color))
-			{
 				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
-			}
 			else image.m_BackColor = color;
 		}
 		else
@@ -1482,9 +1480,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		{
 			CColor color;
 			if (!GUI<CColor>::ParseString(attr_value, color))
-			{
 				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
-			}
 			else image.m_BorderColor = color;
 		}
 		else
@@ -1492,9 +1488,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		{
 			bool b;
 			if (!GUI<bool>::ParseString(attr_value, b))
-			{
 				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
-			}
 			else image.m_Border = b;
 		}
 		// We don't need no else when we're using DTDs.

@@ -24,6 +24,7 @@ CButton::CButton()
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite-over");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite-pressed");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite-disabled");
+	AddSetting(GUIST_int,			"icon-id");
 	AddSetting(GUIST_EAlign,		"text-align");
 	AddSetting(GUIST_EVAlign,		"text-valign");
 	AddSetting(GUIST_CColor,		"textcolor");
@@ -125,18 +126,21 @@ void CButton::Draw()
 	float bz = GetBufferedZ();
 
 	CGUISpriteInstance *sprite, *sprite_over, *sprite_pressed, *sprite_disabled;
+	int icon_id;
 
 	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
 	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite-over", sprite_over);
 	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite-pressed", sprite_pressed);
 	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite-disabled", sprite_disabled);
+	GUI<int>::GetSetting(this, "icon-id", icon_id);
 
 	DrawButton(m_CachedActualSize,
 			   bz,
 			   *sprite,
 			   *sprite_over,
 			   *sprite_pressed,
-			   *sprite_disabled);
+			   *sprite_disabled,
+			   icon_id);
 
 	CColor color = ChooseColor();
 	IGUITextOwner::Draw(0, color, m_TextPos, bz+0.1f);

@@ -257,7 +257,7 @@ bool CClientArea::SetClientArea(const CStr& Value)
 
 	// Setup parser to parse the value
 
-	// One of the for values:
+	// One of the four values:
 	//  will give outputs like (in argument):
 	//  (200) <== no percent, just the first $value
 	//  (200) (percent) <== just the percent
@@ -271,6 +271,7 @@ bool CClientArea::SetClientArea(const CStr& Value)
 						 one_value + "$arg(delim)" + 
 						 one_value + "$arg(delim)_"; // it's easier to just end with another delimiter
 	*/
+	// Don't use the above strings, because they make this code go very slowly
 	const char* four_values =
 		"_[-_$arg(_minus)]$value[$arg(percent)%_[+_$value]_[-_$arg(_minus)$value]_]" "$arg(delim)"
 		"_[-_$arg(_minus)]$value[$arg(percent)%_[+_$value]_[-_$arg(_minus)$value]_]" "$arg(delim)"
@@ -286,7 +287,7 @@ bool CClientArea::SetClientArea(const CStr& Value)
 		return false;
 
 	int arg_count[4]; // argument counts for the four values
-	int arg_start[4] = {0,0,0,0}; // location of first argument, [0] is alwasy 0
+	int arg_start[4] = {0,0,0,0}; // location of first argument, [0] is always 0
 
 	// Divide into the four piles (delimiter is an argument named "delim")
 	for (int i=0, valuenr=0; i<(int)line.GetArgCount(); ++i)
@@ -482,6 +483,7 @@ PS_RESULT GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting, const T &
 		return PS_OK;
 }
 
+// Instantiate templated functions:
 #define TYPE(T) \
 	template PS_RESULT GUI<T>::GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, T* &Value); \
 	template PS_RESULT GUI<T>::GetSetting(const IGUIObject *pObject, const CStr& Setting, T &Value); \
