@@ -187,7 +187,7 @@ int file_rel_chdir(const char* argv0, const char* rel_path)
 	}
 
 	// make sure it's valid
-	if(access(argv0, X_OK) < 0)
+	if(access(n_path, X_OK) < 0)
 		goto fail;
 
 	// strip executable name and append rel_path
