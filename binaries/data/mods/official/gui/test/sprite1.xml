@@ -3,103 +3,108 @@
 <!DOCTYPE sprites SYSTEM "..\gui.dtd">
 
 <sprites>
-	<sprite name="sprite1">
-		<!-- Starting with top left corner continuing in a clockwise manner -->
-		<image backcolor="255 255 255" size="0 1 1 100%-1" />
-		<image backcolor="255 255 255" size="0 0 100%-1 1" />
-		<image backcolor="64 64 64" size="100%-1 0 100% 100%" />
-		<image backcolor="64 64 64" size="0 100%-1 100%-1 100%" />
-		<image backcolor="128 128 128" size="100%-2 1 100%-1 100%-1" />
-		<image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
-		<!-- middle -->
-		<image backcolor="212 208 200" size="1 1 100%-2 100%-2" />
-	</sprite>
+        <sprite name="exit_sprite">
+                <image backcolor="255 255 255" size="0 0 100% 100%" />
+                <image backcolor="0 0 0" size="50% 2 50%+2 100%-1" />
+                <image backcolor="0 0 0" size="2 50% 100%-1 50%+2" />
+        </sprite>
+        <sprite name="sprite1">
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <image backcolor="255 255 255" size="0 1 1 100%-1" />
+                <image backcolor="255 255 255" size="0 0 100%-1 1" />
+                <image backcolor="64 64 64" size="100%-1 0 100% 100%" />
+                <image backcolor="64 64 64" size="0 100%-1 100%-1 100%" />
+                <image backcolor="128 128 128" size="100%-2 1 100%-1 100%-1" />
+                <image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
+                <!-- middle -->
+                <image backcolor="212 208 200" size="1 1 100%-2 100%-2" />
+        </sprite>
 
-	<sprite name="sprite4">
-		<image backcolor="50 50 50" size="0 0 100% 100%" />
-	</sprite>
+        <sprite name="sprite4">
+                <image backcolor="50 50 50" size="0 0 100% 100%" />
+        </sprite>
 
-	<sprite name="sprite1-over">
-		<!-- Starting with top left corner continuing in a clockwise manner -->
-		<image backcolor="255 255 255" size="0 1 1 100%-1" />
-		<image backcolor="255 255 255" size="0 0 100%-1 1" />
-		<image backcolor="64 64 64" size="100%-1 0 100% 100%" />
-		<image backcolor="64 64 64" size="0 100%-1 100%-1 100%" />
-		<image backcolor="128 128 128" size="100%-2 1 100%-1 100%-1" />
-		<image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
-		<!-- middle -->
-		<image backcolor="200 0 0" size="1 1 100%-2 100%-2" />
-		<image backcolor="212 208 200" size="2 2 100%-3 100%-3" />
-	</sprite>
+        <sprite name="sprite1-over">
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <image backcolor="255 255 255" size="0 1 1 100%-1" />
+                <image backcolor="255 255 255" size="0 0 100%-1 1" />
+                <image backcolor="64 64 64" size="100%-1 0 100% 100%" />
+                <image backcolor="64 64 64" size="0 100%-1 100%-1 100%" />
+                <image backcolor="128 128 128" size="100%-2 1 100%-1 100%-1" />
+                <image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
+                <!-- middle -->
+                <image backcolor="200 0 0" size="1 1 100%-2 100%-2" />
+                <image backcolor="212 208 200" size="2 2 100%-3 100%-3" />
+        </sprite>
 
-	<sprite name="sprite1-ch">
-		<!-- Starting with top left corner continuing in a clockwise manner -->
-		<image backcolor="255 255 255" size="0 1 1 100%-1" />
-		<image backcolor="255 255 255" size="0 0 100%-1 1" />
-		<image backcolor="64 64 64" size="100%-1 0 100% 100%" />
-		<image backcolor="64 64 64" size="0 100%-1 100%-1 100%" />
-		<image backcolor="128 128 128" size="100%-2 1 100%-1 100%-1" />
-		<image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
-		<!-- middle -->
-		<image backcolor="212 208 200" size="4 4 100%-5 100%-5" z-level="1" />
-		<image backcolor="128 0 0" size="4 4 100%-5 100%-5" z-level="1" />
-	</sprite>
+        <sprite name="sprite1-ch">
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <image backcolor="255 255 255" size="0 1 1 100%-1" />
+                <image backcolor="255 255 255" size="0 0 100%-1 1" />
+                <image backcolor="64 64 64" size="100%-1 0 100% 100%" />
+                <image backcolor="64 64 64" size="0 100%-1 100%-1 100%" />
+                <image backcolor="128 128 128" size="100%-2 1 100%-1 100%-1" />
+                <image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
+                <!-- middle -->
+                <image backcolor="212 208 200" size="4 4 100%-5 100%-5" z-level="1" />
+                <image backcolor="128 0 0" size="4 4 100%-5 100%-5" z-level="1" />
+        </sprite>
 
-	<sprite name="sprite1-pressed">
-		<image backcolor="64 64 64" size="0 0 100% 100%" />
-		<image backcolor="128 128 128" size="1 1 100%-1 100%-1" z-level="1" />
-		<image backcolor="212 208 200" size="2 2 100%-2 100%-2" z-level="2" />
-	</sprite>
+        <sprite name="sprite1-pressed">
+                <image backcolor="64 64 64" size="0 0 100% 100%" />
+                <image backcolor="128 128 128" size="1 1 100%-1 100%-1" z-level="1" />
+                <image backcolor="212 208 200" size="2 2 100%-2 100%-2" z-level="2" />
+        </sprite>
 
-	<sprite name="sprite2">
-		<!-- Starting with top left corner continuing in a clockwise manner -->
-		<image backcolor="212 208 200" size="0 1 1 100%-1" />
-		<image backcolor="212 208 200" size="0 0 100%-1 1" />
-		<image backcolor="255 255 255" size="1 2 1 100%-2" />
-		<image backcolor="255 255 255" size="1 1 100%-2 2" />
-		<image backcolor="64 64 64" size="100%-1 0 100% 100%" />
-		<image backcolor="64 64 64" size="0 100%-1 100%-1 100%" />
-		<image backcolor="128 128 128" size="100%-2 1 100%-1 100%-1" />
-		<image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
-		<!-- middle -->
-		<image backcolor="212 208 200" size="2 2 100%-2 100%-2" />
-	</sprite>
+        <sprite name="sprite2">
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <image backcolor="212 208 200" size="0 1 1 100%-1" />
+                <image backcolor="212 208 200" size="0 0 100%-1 1" />
+                <image backcolor="255 255 255" size="1 2 1 100%-2" />
+                <image backcolor="255 255 255" size="1 1 100%-2 2" />
+                <image backcolor="64 64 64" size="100%-1 0 100% 100%" />
+                <image backcolor="64 64 64" size="0 100%-1 100%-1 100%" />
+                <image backcolor="128 128 128" size="100%-2 1 100%-1 100%-1" />
+                <image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
+                <!-- middle -->
+                <image backcolor="212 208 200" size="2 2 100%-2 100%-2" />
+        </sprite>
 
-	<sprite name="sprite2-pressed">
-		<image backcolor="128 128 128" size="0 0 100% 100%" />
-		<image backcolor="212 208 200" size="1 1 100%-1 100%-1" z-level="1" />
-	</sprite>
+        <sprite name="sprite2-pressed">
+                <image backcolor="128 128 128" size="0 0 100% 100%" />
+                <image backcolor="212 208 200" size="1 1 100%-1 100%-1" z-level="1" />
+        </sprite>
 
-	<sprite name="sprite1">
-		<!-- Starting with top left corner continuing in a clockwise manner -->
-		<image backcolor="255 255 255" size="0 1 1 100%-1" />
-		<image backcolor="255 255 255" size="0 0 100%-1 1" />
-		<image backcolor="64 64 64" size="100%-1 0 100% 100%" />
-		<image backcolor="64 64 64" size="0 100%-1 100%-1 100%" />
-		<image backcolor="128 128 128" size="100%-2 1 100%-1 100%-1" />
-		<image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
-		<!-- middle -->
-		<image backcolor="212 208 200" size="1 1 100%-2 100%-2" />
-	</sprite>
+        <sprite name="sprite1">
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <image backcolor="255 255 255" size="0 1 1 100%-1" />
+                <image backcolor="255 255 255" size="0 0 100%-1 1" />
+                <image backcolor="64 64 64" size="100%-1 0 100% 100%" />
+                <image backcolor="64 64 64" size="0 100%-1 100%-1 100%" />
+                <image backcolor="128 128 128" size="100%-2 1 100%-1 100%-1" />
+                <image backcolor="128 128 128" size="1 100%-2 100%-1 100%-1" />
+                <!-- middle -->
+                <image backcolor="212 208 200" size="1 1 100%-2 100%-2" />
+        </sprite>
 
-	<sprite name="grey">
-		<image backcolor="243 242 240" size="0 0 100% 100%" />
-	</sprite>
+        <sprite name="grey">
+                <image backcolor="243 242 240" size="0 0 100% 100%" />
+        </sprite>
 
-	<sprite name="white-border">
-		<image backcolor="100 70 120" size="0 0 100% 100%" />
-		<image backcolor="255 255 255" size="-1 -1 100%+1 0" />
-		<image backcolor="255 255 255" size="-1 100% 100%+1 100%+1" />
-		<image backcolor="255 255 255" size="-1 0 0 100%" />
-		<image backcolor="255 255 255" size="100% 0 100%+1 100%" />
-	</sprite>
+        <sprite name="white-border">
+                <image backcolor="100 70 120" size="0 0 100% 100%" />
+                <image backcolor="255 255 255" size="-1 -1 100%+1 0" />
+                <image backcolor="255 255 255" size="-1 100% 100%+1 100%+1" />
+                <image backcolor="255 255 255" size="-1 0 0 100%" />
+                <image backcolor="255 255 255" size="100% 0 100%+1 100%" />
+        </sprite>
 
-	<sprite name="scroll">
-		<!--<image backcolor="128 128 128" size="0 0 100% 100%" />-->
-		<image backcolor="150 105 180" size="2 2 100%-2 100%-2" z-level="1" />
-	</sprite>
-	<sprite name="scroll-bar">
-		<!--<image backcolor="128 128 128" size="0 0 100% 100%" />-->
-		<image backcolor="150 105 180" size="2 0 100%-2 100%" z-level="1" />
-	</sprite>
+        <sprite name="scroll">
+                <!--<image backcolor="128 128 128" size="0 0 100% 100%" />-->
+                <image backcolor="150 105 180" size="2 2 100%-2 100%-2" z-level="1" />
+        </sprite>
+        <sprite name="scroll-bar">
+                <!--<image backcolor="128 128 128" size="0 0 100% 100%" />-->
+                <image backcolor="150 105 180" size="2 0 100%-2 100%" z-level="1" />
+        </sprite>
 </sprites>

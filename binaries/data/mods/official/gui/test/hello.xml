@@ -3,80 +3,102 @@
 <!DOCTYPE objects SYSTEM "../gui.dtd">
 
 <objects>
- <object
-		type="button"
-  name="arena"
-		sprite="sprite1"
-  size="0 0 600 400"
-		z="100"
-  hidden="true"
- >
-  <action on="Load"><![CDATA[
-    g_ballx = 300;
-    g_bally = 200;
-    g_balldx = 0;
-    g_balldy = 0;
-  ]]></action>
 
-  <action on="MouseOver"><![CDATA[
-    g_ballx += g_balldx;
-    g_bally += g_balldy;
-    if (g_ballx > 600) {
-      g_balldx *= -0.9;
-      g_ballx = 600-(g_ballx-600);
-    }
-    else if (g_ballx < 0) {
-      g_balldx *= -0.9;
-      g_ballx = -g_ballx;
-    }
-    if (g_bally > 400) {
-      g_balldy *= -0.9;
-      g_bally = 400-(g_bally-400);
-    }
-    else if (g_bally < 0) {
-      g_balldy *= -0.9;
-      g_bally = -g_bally;
+  <script file="gui/test/test.js"><![CDATA[
+    writeConsole("GUI file loading");
+
+    function MakeDude(x, y, z) {
+      DudeSpawnPoint = new Vector3D(x, y, z);
+      new Entity(getEntityTemplate("Prometheus Dude"), DudeSpawnPoint, 1.0);
+      writeConsole("Dude created at " + DudeSpawnPoint);
     }
 
-    // Gravitate towards the mouse
-    var vect_x = g_ballx-mouse.x;
-    var vect_y = g_bally-mouse.y;
-    var dsquared = vect_x*vect_x + vect_y*vect_y;
-    if (dsquared < 1000) dsquared = 1000;
-    var force = 10000.0 / dsquared;
-    var mag = Math.sqrt(vect_x*vect_x + vect_y*vect_y);
-    vect_x /= mag; vect_y /= mag;
-    g_balldx -= force * vect_x;
-    g_balldy -= force * vect_y;
+    writeConsole("Made MakeDude " + MakeDude);
+  ]]></script>
 
-    var ball = getGUIObjectByName('ball');
-    var r=5;
-    ball.size = new GUISize(g_ballx-r, g_bally-r, g_ballx+r, g_bally+r);
-  ]]></action>
- </object>
+  <object type="button" name="exit_button" sprite="exit_sprite" size="100%-18 2 100%-2 18" z="100" hidden="false">
+    <action on="Load"><![CDATA[
+      writeConsole("(GUI) Exit button successfully loaded.");
+    ]]></action>
+    <action on="Press"><![CDATA[
+     exit();
+    ]]></action>
+  </object>
+ 
+  <object type="button" name="Dude_Production_Button" sprite="sprite1" sprite-over="sprite1-over" sprite-pressed="sprite1-pressed" size="10% 80% 10%+32 80%+32" z="100" hidden="false">
+    <action on="Press">
+      MakeDude(15, 0, 15);
+    </action>
+  </object>
 
-	<object
-  type="button"
-  name="ball"
-  sprite="sprite1"
-  size="0 0 1 1"
-  z="120"
- >*
-  <action on="Press"><![CDATA[
-    writeConsole(mouse);
-  ]]></action>
- </object>
+  <object type="button" name="Dude_Production_Button_random" sprite="sprite1" sprite-over="sprite1-over" sprite-pressed="sprite1-pressed" size="10%+34 80% 10%+66 80%+32" z="100" hidden="false">
+    <action on="Press"><![CDATA[
+      // Generate random numbers
+      rand_x = Math.round(Math.random()*100);
+      rand_y = Math.round(Math.random()*100);
+      rand_z = Math.round(Math.random()*100);
 
-	<object
-  type="button"
-  sprite="sprite1"
-  size="592 2 608 18"
-  z="200"
- >*
-  <action on="Press"><![CDATA[
-    var arena = getGUIObjectByName('arena');
-    arena.hidden = !arena.hidden;
-  ]]></action>
- </object>
+      MakeDude(rand_x, rand_y, rand_z);
+    ]]></action>
+  </object>
+
+  <object type="button" name="arena" sprite="sprite1" sprite-over="sprite1-over" size="0 0 600 400" z="100" hidden="true">
+    <action on="Load"><![CDATA[
+      g_ballx = 300;
+      g_bally = 200;
+      g_balldx = 0;
+      g_balldy = 0;
+    ]]></action>
+
+    <action on="MouseOver"><![CDATA[
+      g_ballx += g_balldx;
+      g_bally += g_balldy;
+      if (g_ballx > 600) {
+        g_balldx *= -0.9;
+        g_ballx = 600-(g_ballx-600);
+      }
+      else if (g_ballx < 0) {
+        g_balldx *= -0.9;
+        g_ballx = -g_ballx;
+      }
+      if (g_bally > 400) {
+        g_balldy *= -0.9;
+        g_bally = 400-(g_bally-400);
+      }
+      else if (g_bally < 0) {
+        g_balldy *= -0.9;
+        g_bally = -g_bally;
+      }
+
+      // Gravitate towards the mouse
+      var vect_x = g_ballx-mouse.x;
+      var vect_y = g_bally-mouse.y;
+      var dsquared = vect_x*vect_x + vect_y*vect_y;
+      if (dsquared < 1000) dsquared = 1000;
+      var force = 10000.0 / dsquared;
+      var mag = Math.sqrt(dsquared);
+      vect_x /= mag; vect_y /= mag;
+      g_balldx -= force * vect_x;
+      g_balldy -= force * vect_y;
+
+      var ball = getGUIObjectByName('ball');
+      var r=5;
+      ball.size = new GUISize(g_ballx-r, g_bally-r, g_ballx+r, g_bally+r);
+    ]]></action>
+
+  </object>
+
+  <object type="button" name="ball" sprite="sprite1" size="0 0 1 1" z="120">*
+    <action on="Press"><![CDATA[
+      writeConsole(mouse);
+    ]]></action>
+  </object>
+
+  <object type="button" sprite="sprite1" size="592 2 608 18" z="200">*
+    <action on="Press"><![CDATA[
+      var arena = getGUIObjectByName('arena');
+      arena.hidden = !arena.hidden;
+    ]]></action>
+  </object>
 
 </objects>
