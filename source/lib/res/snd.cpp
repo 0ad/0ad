@@ -882,7 +882,7 @@ static void hsd_list_free_all()
 
 static void SndData_init(SndData* sd, va_list args)
 {
-	sd->is_stream = va_arg(args, int);
+	sd->is_stream = (va_arg(args, int) ? true : false);
 }
 
 static void SndData_dtor(SndData* sd)

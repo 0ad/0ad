@@ -128,6 +128,17 @@ JSBool CGameAttributes::GetJSProperty(jsval id, jsval *ret)
 	return CAttributeMap::GetJSProperty(id, ret);
 }
 
+// Disable "warning C4355: 'this' : used in base member initializer list".
+//   "The base-class constructors and class member constructors are called before
+//   this constructor. In effect, you've passed a pointer to an unconstructed
+//   object to another constructor. If those other constructors access any
+//   members or call member functions on this, the result will be undefined."
+// In this case, the pointers are simply stored for later use, so there
+// should be no problem.
+#ifdef _MSC_VER
+# pragma warning (disable: 4355)
+#endif
+
 CGame::CGame():
 	m_World(this),
 	m_Simulation(this),
@@ -137,6 +148,10 @@ CGame::CGame():
 {
 	debug_out("CGame::CGame(): Game object CREATED\n");
 }
+
+#ifdef _MSC_VER
+# pragma warning (default: 4355)
+#endif
 
 CGame::~CGame()
 {

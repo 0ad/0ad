@@ -220,12 +220,12 @@ void setBindings( const CStr& hotkeyName, int integerMapping = -1 )
 				for( itKey = keyCombination.begin(); itKey != keyCombination.end(); itKey++ )
 				{
 					bindName.mapsTo = hotkeyName;
-					bindName.negation = (bool)( *itKey & HOTKEY_NEGATION_FLAG );
+					bindName.negation = ( ( *itKey & HOTKEY_NEGATION_FLAG ) ? true : false );
 					bindName.requires.clear();
 					if( integerMapping != -1 )
 					{
 						bindCode.mapsTo = integerMapping;
-						bindCode.negation = (bool)( *itKey & HOTKEY_NEGATION_FLAG );
+						bindCode.negation = ( ( *itKey & HOTKEY_NEGATION_FLAG ) ? true : false );
 						bindCode.requires.clear();
 					}
 					for( itKey2 = keyCombination.begin(); itKey2 != keyCombination.end(); itKey2++ )
