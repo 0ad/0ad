@@ -76,6 +76,8 @@ protected:
 
 	bool IsRowBlank(int n);
 
+	wxListItemAttr m_ListItemAttr[2]; // standard+alternate colours
+
 	DECLARE_EVENT_TABLE();
 };
 

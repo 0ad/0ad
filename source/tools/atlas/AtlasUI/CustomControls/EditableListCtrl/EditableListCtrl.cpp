@@ -17,6 +17,9 @@ EditableListCtrl::EditableListCtrl(wxWindow *parent,
 								   const wxString& name)
 	: wxListCtrl(parent, id, pos, size, style | wxLC_VIRTUAL, validator, name)
 {
+	m_ListItemAttr[0].SetBackgroundColour(wxColour(0xff, 0xff, 0xff));
+	m_ListItemAttr[1].SetBackgroundColour(wxColour(0xee, 0xee, 0xee));
+
 	wxASSERT_MSG(style & wxLC_REPORT, _T("EditableListCtrl must be LC_REPORT"));
 	UpdateDisplay();
 }
@@ -113,7 +116,7 @@ void EditableListCtrl::GetCellRect(long row, int col, wxRect& rect)
 
 bool EditableListCtrl::IsRowBlank(int n)
 {
-	return m_ListData[n].isContentless();
+	return ! m_ListData[n].hasContent();
 }
 
 void EditableListCtrl::TrimBlankEnds()
@@ -217,19 +220,10 @@ wxString EditableListCtrl::OnGetItemText(long item, long column) const
 	return GetCellString(item, column);
 }
 
-wxListItemAttr* EditableListCtrl::OnGetItemAttr(long WXUNUSED(item)) const
+wxListItemAttr* EditableListCtrl::OnGetItemAttr(long item) const
 {
-//	if (item > (int)m_ListData.size()-BlanksAtEnd)
-//	{
-//		static wxListItemAttr attr;
-//		static int attr_init = 0;
-//		if (attr_init++ == 0)
-//			attr.SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_3DLIGHT));
-//
-//		return &attr;
-//	}
-//	else
-		return NULL;
+	// Make the background colours of rows alternate
+	return const_cast<wxListItemAttr*>(&m_ListItemAttr[item%2]);
 }
 
 

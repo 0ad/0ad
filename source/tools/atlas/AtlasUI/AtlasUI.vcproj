@@ -12,8 +12,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="Debug"
-			IntermediateDirectory="Debug"
+			OutputDirectory="..\..\..\..\binaries\system"
+			IntermediateDirectory="..\..\..\..\build\_atlas\Debug"
 			ConfigurationType="1"
 			CharacterSet="1">
 			<Tool
@@ -63,8 +63,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="Release"
-			IntermediateDirectory="Release"
+			OutputDirectory="..\..\..\..\binaries\system"
+			IntermediateDirectory="..\..\..\..\build\_atlas\Release"
 			ConfigurationType="1"
 			CharacterSet="1">
 			<Tool

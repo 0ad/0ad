@@ -72,6 +72,8 @@ public:
 	AtIter& operator ++ ();
 	// Return whether this iterator has an AtObj to point to
 	bool defined() const;
+	// Return whether this iterator is pointing to a non-contentless AtObj
+	bool hasContent() const;
 
 	// Return an iterator to the children matching 'key'. (That is, children
 	// of the AtObj currently pointed to by this iterator)
@@ -110,7 +112,7 @@ public:
 	bool isNull() const { return !p; }
 	
 	// Check recursively whether there's actually any non-empty data in the object
-	bool isContentless() const;
+	bool hasContent() const;
 
 	// Add or set a child. The wchar_t* versions create a new AtObj with
 	// the appropriate string value, then use that as the child.

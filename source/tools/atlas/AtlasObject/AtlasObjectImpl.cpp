@@ -75,6 +75,14 @@ bool AtIter::defined() const
 	return (p != NULL);
 }
 
+bool AtIter::hasContent() const
+{
+	if (p == NULL)
+		return false;
+
+	return p->iter->second->hasContent();
+}
+
 //////////////////////////////////////////////////////////////////////////
 
 const AtIter AtObj::operator [] (const char* key) const
@@ -130,12 +138,12 @@ void AtObj::set(const char* key, const wchar_t* value)
 	p = p->setChild(key, AtNode::Ptr(o));
 }
 
-bool AtObj::isContentless() const
+bool AtObj::hasContent() const
 {
 	if (! p)
 		return true;
 
-	return ! p->hasContent();
+	return p->hasContent();
 }
 
 //////////////////////////////////////////////////////////////////////////

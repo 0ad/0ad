@@ -5,8 +5,6 @@
 #include "AtlasWindowCommandProc.h"
 #include "DraggableListCtrlCommands.h"
 
-//DEFINE_EVENT_TYPE(wxEVT_LISTCTRL_UPDATED);
-
 const int ScrollSpeed = 8; // when dragging off the top or bottom of the control
 
 DraggableListCtrl::DraggableListCtrl(wxWindow *parent,
