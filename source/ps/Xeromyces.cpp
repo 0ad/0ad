@@ -1,4 +1,4 @@
-// $Id: Xeromyces.cpp,v 1.16 2004/11/22 00:19:08 janwas Exp $
+// $Id$
 
 #include "precompiled.h"
 
@@ -192,7 +192,6 @@ void CXeromyces::Terminate()
 
 PSRETURN CXeromyces::Load(const char* filename)
 {
-
 	// Open the file, so that its checksum can be calculated
 
 	CVFSFile file;
