@@ -61,32 +61,21 @@ bool CObjectEntry::BuildModel()
 	CStr texturefilename(m_TextureName);	
 
 	m_Model->SetTexture(CTexture((const char*) texturefilename));
-
-	// animations?
+	for( int t = 0; t < m_Animations.size(); t++ )	{		if( m_Animations[t].m_FileName.Length() > 0 )		{			CStr animfilename( "mods\\official\\" );			animfilename += m_Animations[t].m_FileName;			try			{				m_Animations[t].m_AnimData = CSkeletonAnim::Load( animfilename );			}			catch( ... )			{				m_Animations[t].m_AnimData = NULL;			}			if( m_Animations[t].m_AnimName.LowerCase() == CStr( "idle" ) )				m_IdleAnim = m_Animations[t].m_AnimData;			if( m_Animations[t].m_AnimName.LowerCase() == CStr( "walk" ) )				m_WalkAnim = m_Animations[t].m_AnimData;		}	}	m_Model->SetAnimation( m_IdleAnim );	/*
 	if (m_Animations.size()) {
-		// yes; iterate through and load each one
-		for (uint i=0;i<m_Animations.size();i++) {
-			if (m_Animations[i].m_FileName.Length()>0) {
-				CStr animfilename("mods\\official\\");
-				animfilename+=m_Animations[i].m_FileName;	
-				
-				try {
-					m_Animations[i].m_AnimData=CSkeletonAnim::Load((const char*) animfilename);
-				} catch (...) {
-					m_Animations[i].m_AnimData=0;
-				}
-			}
-		}
-		
-		// set the first valid animation found as current
-		for (uint i=0;i<m_Animations.size();i++) {
-			if (m_Animations[i].m_AnimData) {
-				m_Model->SetAnimation(m_Animations[i].m_AnimData);
-				break;
+		if (m_Animations[0].m_FileName.Length()>0) {
+			CStr animfilename("mods\\official\\");
+			animfilename+=m_Animations[0].m_FileName;	
+			
+			try {
+				CSkeletonAnim* anim=CSkeletonAnim::Load((const char*) animfilename);
+				m_Model->SetAnimation(anim);
+			} catch (...) {
+				m_Model->SetAnimation(0);
 			}
 		}
 	}
-	
+	*/
 	// rebuild model bounds
 	m_Model->CalcBounds();
 
@@ -95,11 +84,12 @@ bool CObjectEntry::BuildModel()
 	for (uint i=0;i<units.size();++i) {
 		if (units[i]->m_Model->GetModelDef()==oldmodel) {
 			units[i]->m_Model->InitModel(m_Model->GetModelDef());
-			
+			/*
 			CSkeletonAnim* anim=m_Model->GetAnimation();
+
 			if (anim) {
 				units[i]->m_Model->SetAnimation(anim);
-			}
+			}*/
 		}
 	}
 
@@ -108,7 +98,7 @@ bool CObjectEntry::BuildModel()
 	
 	return true;
 }
-
+CSkeletonAnim* CObjectEntry::GetNamedAnimation( CStr animationName ){	for( int t = 0; t < m_Animations.size(); t++ )	{		if( m_Animations[t].m_AnimName == animationName )			return( m_Animations[t].m_AnimData );	}	return( NULL );}
 bool CObjectEntry::Load(const char* filename)
 {
 	bool parseOK = false;

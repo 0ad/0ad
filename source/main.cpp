@@ -19,6 +19,10 @@
 #include "Renderer.h"
 #include "Model.h"
 #include "UnitManager.h"
+#include "BaseEntityCollection.h"
+#include "Entity.h"
+#include "EntityHandles.h"
+#include "EntityManager.h"
 
 #ifndef NO_GUI
 #include "gui/GUI.h"
@@ -240,7 +244,7 @@ static void Render()
 	g_Renderer.SetCamera(g_Camera);
 
 	// switch on wireframe for terrain if we want it
-	g_Renderer.SetTerrainRenderMode(SOLID);
+	g_Renderer.SetTerrainRenderMode( SOLID );
 
 	RenderTerrain();
 	RenderModels();
@@ -310,6 +314,8 @@ void UpdateWorld(float time)
 	for (uint i=0;i<units.size();++i) {
 		units[i]->m_Model->Update(time);
 	}
+	g_EntityManager.updateAll( time );
+
 }
 
 
@@ -441,6 +447,12 @@ if(argc < 2)
 	// the terrain
 	terr_init();
 
+	// This needs to be done after the renderer has loaded all its actors...
+	new CBaseEntityCollection;
+	new CEntityManager;
+
+	g_EntityTemplateCollection.loadTemplates();
+
 	// load a map if we were given one
 	if (g_MapFile) {
 		CStr mapfilename("mods/official/maps/scenarios/");
@@ -455,6 +467,12 @@ if(argc < 2)
 		}
 	}
 	
+	// Initialize entities
+
+	g_EntityManager.dispatchAll( &CMessage( CMessage::EMSG_INIT ) );
+
+	PASAPScenario();
+
 #ifndef NO_GUI
 	in_add_handler(gui_handler);
 #endif
@@ -472,7 +490,7 @@ in_add_handler(terr_handler);
 	g_Config.Update();
 	while(!quit)
 	{
-		g_Config.Update();
+		//g_Config.Update();
 
 		allow_reload();
 
@@ -515,6 +533,8 @@ in_add_handler(terr_handler);
 #endif
 
 	delete &g_Config;
+	delete &g_EntityManager;
+	delete &g_EntityTemplateCollection;
 
 	return 0;
 }

@@ -30,6 +30,8 @@ More Info:
 
 */
 
+// Last modified: 19 May 04, Mark Thompson (mot20@cam.ac.uk / mark@wildfiregames.com)
+
 #ifndef CSTR_H
 #define CSTR_H
 
@@ -177,6 +179,8 @@ public:
 
 	inline const char *c_str()
 	{	return m_String.c_str(); }
+	
+	size_t GetHashCode() const;
 
 	// Serialization functions
 	virtual uint GetSerializedLength() const;
@@ -186,6 +190,21 @@ public:
 private:
 	tstring m_String;
 	TCHAR m_ConversionBuffer[CONVERSION_BUFFER_SIZE];
+};
+
+class CStr_hash_compare
+{
+public:
+	static const size_t bucket_size = 1;
+	static const size_t min_buckets = 16;
+	size_t operator()( const CStr& Key ) const
+	{
+		return( Key.GetHashCode() );
+	}
+	bool operator()( const CStr& _Key1, const CStr& _Key2 ) const
+	{
+		return( _Key1 < _Key2 );
+	}
 };
 
 // overloaded operator for ostreams

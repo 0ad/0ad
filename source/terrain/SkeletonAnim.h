@@ -13,7 +13,6 @@
 #include "Vector3D.h"
 #include "Quaternion.h"
 
-// TODO, RC: ugh - remove; use CStr
 #ifndef MAX_NAME_LENGTH
 #define MAX_NAME_LENGTH			128
 #endif

@@ -2,8 +2,8 @@ dofile("functions.lua")
 
 -- Set up the Project
 project.name = "prometheus"
-project.bindir = "../../../binaries/system"
-project.libdir = "../../../binaries/system"
+project.bindir = "../../binaries/system"
+project.libdir = "../../binaries/system"
 
 -- Start the package part
 package = newpackage()
@@ -20,22 +20,24 @@ package.config["Release"].target = "ps"
 -- Files
 package.files = {
 	-- ps/
-	{ sourcesfromdirs("../../ps") },
+        { sourcesfromdirs("../ps") },
+	-- simulation/
+	{ sourcesfromdirs("../simulation") },
 	-- lib/
 	{ sourcesfromdirs(
-		"../../lib",
-		"../../lib/sysdep",
-		"../../lib/res") },
+                "../lib",
+                "../lib/sysdep",
+                "../lib/res") },
 	-- terrain/
 	{ sourcesfromdirs(
-		"../../terrain") },
+                "../terrain") },
 	-- gui/
 	{ sourcesfromdirs(
-		"../../gui") },
+                "../gui") },
 	-- main
-	{ "../../main.cpp" }
+        { "../main.cpp" }
 }
-package.includepaths = { "../../ps", "../../lib", "../../terrain", "../.." }
+package.includepaths = { "../ps", "../simulation", "../lib", "../terrain", ".." }
 
 -- Platform Specifics
 if (OS == "windows") then
@@ -44,7 +46,7 @@ if (OS == "windows") then
 		"opengl32",
 		"glu32"
 	}
-	tinsert(package.files, sourcesfromdirs("../../lib/sysdep/win"))
+        tinsert(package.files, sourcesfromdirs("../lib/sysdep/win"))
 	package.linkoptions = { "/ENTRY:entry" }
 	package.linkflags = { "static-runtime" }
 	package.buildflags = { "no-main" }

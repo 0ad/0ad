@@ -1,3 +1,4 @@
+
 #include "TextureManager.h"
 #include "lib.h"
 #include "ogl.h"
@@ -23,7 +24,7 @@ void CTextureManager::AddTextureType(const char* name)
 	m_TerrainTextures.resize(m_TerrainTextures.size()+1);
 	STextureType& ttype=m_TerrainTextures.back();
 	ttype.m_Name=name;
-	ttype.m_Index=(int)m_TerrainTextures.size()-1;
+	ttype.m_Index=m_TerrainTextures.size()-1;
 }
 
 CTextureEntry* CTextureManager::FindTexture(const char* filename)
@@ -198,4 +199,3 @@ void CTextureManager::LoadTerrainTextures()
 		}
 	}
 }
-

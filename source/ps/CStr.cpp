@@ -398,6 +398,20 @@ ostream &operator<<(ostream &os, CStr &Str)
 	return os;
 }
 
+size_t CStr::GetHashCode() const
+{
+	// FNV-1 hash for 64 bit integers.
+	size_t hash = 14695981039346656037;
+	const char* data = m_String.data();
+	for( int t = 0; t < m_String.length(); t++ )
+	{
+		hash *= 1099511628211;
+		hash ^= *(data++);
+	}
+	return( hash );
+
+}
+
 uint CStr::GetSerializedLength() const
 {
 	return uint(m_String.length()+1);

@@ -5,6 +5,10 @@
 #include "MapReader.h"
 #include "UnitManager.h"
 #include "ObjectManager.h"
+#include "BaseEntity.h"
+#include "BaseEntityCollection.h"
+#include "EntityManager.h"
+
 #include "terrain/Model.h"
 #include "terrain/Terrain.h"
 #include "terrain/TextureManager.h"
@@ -150,17 +154,30 @@ void CMapReader::ApplyData(CFileUnpacker& unpacker)
 	for (u32 i=0;i<m_Objects.size();i++) {
 		CObjectEntry* objentry=m_ObjectTypes[m_Objects[i].m_ObjectIndex];
 		if (objentry && objentry->m_Model) {
-			// create new unit
-			CUnit* unit=new CUnit;
-			unit->m_Object=objentry;
-			unit->m_Model=objentry->m_Model ? objentry->m_Model->Clone() : 0;
-			
-			CMatrix3D transform;
-			memcpy(&transform._11,m_Objects[i].m_Transform,sizeof(float)*16);
-			unit->m_Model->SetTransform(transform);
+			// Hijack the standard actor instantiation for actors that correspond to entities.
+			// Not an ideal solution; we'll have to figure out a map format that can define entities seperately or somesuch.
 
-			// add this unit to list of units stored in unit manager
-			g_UnitMan.AddUnit(unit);
+			CBaseEntity* templateObject = g_EntityTemplateCollection.getTemplateByActor( objentry );
+			if( templateObject )
+			{
+				CVector3D orient = ((CMatrix3D*)m_Objects[i].m_Transform)->GetIn();
+				CVector3D position = ((CMatrix3D*)m_Objects[i].m_Transform)->GetTranslation();
+
+				g_EntityManager.create( templateObject, position, atan2( orient.X, orient.Z ) );
+			}
+			else
+			{
+				CUnit* unit=new CUnit;
+				unit->m_Object=objentry;
+				unit->m_Model=objentry->m_Model ? objentry->m_Model->Clone() : 0;
+			
+				CMatrix3D transform;
+				memcpy(&transform._11,m_Objects[i].m_Transform,sizeof(float)*16);
+				unit->m_Model->SetTransform(transform);
+				
+				// add this unit to list of units stored in unit manager
+				g_UnitMan.AddUnit(unit);
+			}
 		}
 	}
 

@@ -2,20 +2,18 @@
 #define _OBJECTENTRY_H
 
 class CModel;
-class CSkeletonAnim;
 
 #include <vector>
 #include "CStr.h"
 #include "terrain/Bound.h"
-
+#include "terrain/ModelDef.h"
 
 class CObjectEntry
 {
 public:
 	struct Anim {
 		CStr m_AnimName;
-		CStr m_FileName;
-		CSkeletonAnim* m_AnimData;
+		CStr m_FileName;		CSkeletonAnim* m_AnimData; //Pending
 	};
 
 public:
@@ -33,8 +31,8 @@ public:
 	CStr m_TextureName;
 	// model name
 	CStr m_ModelName;
-	// list of valid animations for this object
-	std::vector<Anim> m_Animations;
+	// animations
+	std::vector<Anim> m_Animations;	CSkeletonAnim* m_IdleAnim;	CSkeletonAnim* m_WalkAnim;	CSkeletonAnim* m_DeathAnim;	CSkeletonAnim* m_MeleeAnim;	CSkeletonAnim* m_RangedAnim;	CSkeletonAnim* GetNamedAnimation( CStr animationName );
 	// object space bounds of model
 //	CBound m_Bound;
 	// corresponding model 
@@ -45,3 +43,4 @@ public:
 
 
 #endif
+
