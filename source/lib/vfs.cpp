@@ -42,6 +42,12 @@ static void vfile_dtor(void* p)
 		zclose(vf->ha);
 		vf->ha = vf->hz = 0;
 	}
+	// normal file
+	if(vf->fd > 0)
+	{
+		close(vf->fd);
+		vf->fd = -1;
+	}
 }
 
 
@@ -161,11 +167,13 @@ Handle vfs_map(const char* fn)
 	if(p != MAP_FAILED)
 	{
 		HDATA* hd;
-		Handle h = h_alloc(0, 0, vfile_dtor, &hd);
+		Handle h = h_alloc(0, H_VFILE, vfile_dtor, &hd);
 		if(h)
 		{
 			hd->p = p;
 			hd->size = size;
+//			VFILE* vf = (VFILE*)hd->user;
+//			vf->fd = fd;
 			return h;
 		}
 	}
