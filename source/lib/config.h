@@ -22,6 +22,8 @@
 
 #undef HAVE_PCH
 
+#undef HAVE_DEBUGALLOC
+
 #undef CONFIG_DISABLE_EXCEPTIONS
 
 
@@ -34,6 +36,9 @@
 #ifdef _MSC_VER
 # define HAVE_ASM
 # define HAVE_PCH
+# ifndef NDEBUG
+#  define HAVE_DEBUGALLOC
+# endif
 #endif
 
 #ifdef OS_UNIX

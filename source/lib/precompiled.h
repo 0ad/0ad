@@ -54,15 +54,19 @@
 #include <xercesc/framework/LocalFileInputSource.hpp>
 
 // Nicer memory leak reporting in MSVC:
-// (except you've got to include all STL headers first to avoid
-//  nasty complaints, so make sure they're in the list above)
-// (Don't define _CRTDBG_MAP_ALLOC because it has a broken 'new')
-#include <crtdbg.h>
-#include <malloc.h>
-#define   new               new(_NORMAL_BLOCK, __FILE__, __LINE__)
-#define   malloc(s)         _malloc_dbg(s, _NORMAL_BLOCK, __FILE__, __LINE__)
-#define   calloc(c, s)      _calloc_dbg(c, s, _NORMAL_BLOCK, __FILE__, __LINE__)
-#define   realloc(p, s)     _realloc_dbg(p, s, _NORMAL_BLOCK, __FILE__, __LINE__)
-#define   free(p)           _free_dbg(p, _NORMAL_BLOCK)
 
-#endif
+// (You've got to include all STL headers first to avoid lots of errors,
+// so make sure they're in the list above and you compile with PCH)
+#ifdef HAVE_DEBUGALLOC
+# include <crtdbg.h>
+# include <malloc.h>
+// Can't define _CRTDBG_MAP_ALLOC because it has a broken 'new',
+// so manually redefine the appropriate functions
+# define   new               new(_NORMAL_BLOCK, __FILE__, __LINE__)
+# define   malloc(s)         _malloc_dbg(s, _NORMAL_BLOCK, __FILE__, __LINE__)
+# define   calloc(c, s)      _calloc_dbg(c, s, _NORMAL_BLOCK, __FILE__, __LINE__)
+# define   realloc(p, s)     _realloc_dbg(p, s, _NORMAL_BLOCK, __FILE__, __LINE__)
+# define   free(p)           _free_dbg(p, _NORMAL_BLOCK)
+#endif // HAVE_DEBUGALLOC
+
+#endif // #ifdef HAVE_PCH
