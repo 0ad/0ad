@@ -370,7 +370,7 @@ pthread_mutex_t pthread_mutex_initializer()
 	HANDLE h = CreateMutex(0, 0, 0);
 	if(h == INVALID_HANDLE_VALUE)
 		return 0;
-	atexit2(CloseHandle, (uintptr_t)h, CC_STDCALL_1);
+	// app is responsible for freeing via pthread_destroy_mutex!
 	return h;
 }
 
