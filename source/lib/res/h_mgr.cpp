@@ -450,7 +450,7 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 			// adding reference; already in-use
 			if(hd->refs > 1)
 			{
-				debug_warn("adding reference to handle (undermines tag security check)");
+//				debug_warn("adding reference to handle (undermines tag security check)");
 				return h;
 			}
 
