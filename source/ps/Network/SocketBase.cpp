@@ -656,7 +656,10 @@ void CSocketBase::RunWaitLoop()
 						(res == 0 && nRead == 0))
 					{
 						printf("RunWaitLoop:ioctl: Connection broken [%d:%s]\n", errno, strerror(errno));
-						pSock->SetOpMask(0);
+						// Don't use API function - we both hold a lock and
+						// it is unnecessary to SendWaitLoopUpdate at this
+						// stage
+						pSock->m_pInternal->m_Ops=0;
 						pSock->m_State=SS_UNCONNECTED;
 						if (errno)
 							pSock->m_Error=GetPS_RESULT(errno);
