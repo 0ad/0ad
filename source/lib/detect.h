@@ -27,7 +27,6 @@ extern "C" {
 
 
 // useful for choosing a video mode. not called by detect().
-// currently not implemented for non-Win32 systems (returns 800x600).
 extern void get_cur_resolution(int& xres, int& yres);
 
 
@@ -36,7 +35,7 @@ extern char gfx_drv[128];	// default: "unknown"
 
 // attempt to detect graphics card without OpenGL (in case ogl init fails,
 // or we want more detailed info). gfx_card[] is unchanged on failure.
-extern void get_gfx_card();
+extern void get_gfx_info();
 
 
 //
@@ -57,28 +56,9 @@ extern void get_mem_status();
 extern char cpu_type[];
 extern double cpu_freq;
 
-enum
-{
-	TSC  = BIT(4),
-	CMOV = BIT(15),
-	MMX  = BIT(23),
-	SSE  = BIT(25),
-	SSE2 = BIT(26)
-};
-
-extern long cpu_caps;
-
-// define instead of enum to avoid stupid sign conversion warning
-#define	EXT_3DNOW_PRO BIT(30)
-#define EXT_3DNOW     BIT(31)
-
-extern long cpu_ext_caps;
-
 // -1 if detect not yet called, or cannot be determined
 extern int cpus;
-extern int is_notebook;
-extern int has_tsc;
-
+extern int cpu_speedstep;
 
 extern void detect();
 

@@ -21,7 +21,8 @@
 #include <cstdlib>
 #include <cmath>
 
-#include "time.h"
+#include "lib.h"
+#include "timer.h"
 #include "misc.h"
 
 
@@ -107,9 +108,9 @@ $loop:	mov		eax, [edx]
 }
 
 
-bool is_pow2(const int n)
+bool is_pow2(const long n)
 {
-	return (n > 0) && !(n & (n-1));
+	return (n != 0) && !(n & (n-1));
 }
 
 
@@ -190,28 +191,6 @@ float fminf(float a, float b)
 #endif
 
 
-// replaces pathetic MS libc implementation
-#if defined(_M_IX86) && defined(_WIN32)
-
-double _ceil(double f)
-{
-	double r;
-
-	const float _49 = 0.499999f;
-	__asm
-	{
-		fld			[f]
-		fadd		[_49]
-		frndint
-		fstp		[r]
-	}
-
-	UNUSED(f)
-
-	return r;
-}
-
-#endif
 
 
 // big endian!
@@ -237,47 +216,7 @@ void base32(const int len, const u8* in, u8* out)
 	}
 }
 
-#ifndef _WIN32
 
-char *_itoa(int val, char *buffer, int radix)
-{
-	return _ltoa(val, buffer, radix);
-}
 
-static const char digits[]="0123456789abcdef";
-	
-char *_ultoa(unsigned long int value, char *out, int radix)
-{
-	char buf[21];
-	char *p=buf+21;
 
-	while (value)
-	{
-		*(--p)=digits[value % radix];
-		value /= radix;
-	}
-	
-	memcpy(out, p, (buf+21)-p);
-	return out;
-}
 
-char *_ltoa(long val, char *out, int radix)
-{
-	char buf[21];
-	char *p=buf+21;
-	bool sign=val < 0;
-	if (sign) val=-val;
-	
-	while (val)
-	{
-		*(--p)=digits[val % radix];
-		val /= radix;
-	}
-	
-	if (sign) *(--p) = '-';
-	
-	memcpy(out, p, (buf+21)-p);
-	return out;
-}
-
-#endif

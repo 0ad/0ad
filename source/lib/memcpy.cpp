@@ -3,6 +3,9 @@
  *
  * src and len must be multiples of CHUNK_SIZE.
  */
+
+#if _MSC_VER >= 0x1300
+
 void memcpy_nt(void* dst, void* src, int len)
 {
 __asm
@@ -60,3 +63,5 @@ write_loop:
 	pop			esi
 }
 }
+
+#endif	// #if _MSC_VER >= 0x1300

@@ -2,7 +2,7 @@
 #include <cstring>
 #include <cstdio>
 
-#include "wsdl.h"
+#include "sdl.h"
 #include "ogl.h"
 #include "detect.h"
 
@@ -78,7 +78,6 @@ int max_VAR_elements = -1;		// GF2: 64K; GF3: 1M
 bool tex_compression_avail;		// S3TC / DXT{1,3,5}
 int video_mem;					// [MB]; approximate
 
-#include "time.h"
 
 // call after each video mode change
 void oglInit()

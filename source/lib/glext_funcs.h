@@ -27,17 +27,17 @@ FUNC(int, glIsFenceNV, (unsigned int))
 FUNC(void, glGetFenceivNV, (unsigned int, int, int*))
 
 // ARB_vertex_array_object
-FUNC(void, BindBufferARB, (int target, GLuint buffer))
-FUNC(void, DeleteBuffersARB, (GLsizei n, const GLuint* buffers))
-FUNC(void, GenBuffersARB, (GLsizei n, GLuint* buffers))
-FUNC(bool, IsBufferARB, (GLuint buffer))
-FUNC(void, BufferDataARB, (int target, GLsizeiptrARB size, const void* data, int usage))
-FUNC(void, BufferSubDataARB, (int target, GLintptrARB offset, GLsizeiptrARB size, const void* data))
-FUNC(void, GetBufferSubDataARB, (int target, GLintptrARB offset, GLsizeiptrARB size, void* data))
-FUNC(void*, MapBufferARB, (int target, int access))
-FUNC(bool, UnmapBufferARB, (int target))
-FUNC(void, GetBufferParameterivARB, (int target, int pname, int* params))
-FUNC(void, GetBufferPointervARB, (int target, int pname, void** params))
+FUNC(void, glBindBufferARB, (int target, GLuint buffer))
+FUNC(void, glDeleteBuffersARB, (GLsizei n, const GLuint* buffers))
+FUNC(void, glGenBuffersARB, (GLsizei n, GLuint* buffers))
+FUNC(bool, glIsBufferARB, (GLuint buffer))
+FUNC(void, glBufferDataARB, (int target, GLsizeiptrARB size, const void* data, int usage))
+FUNC(void, glBufferSubDataARB, (int target, GLintptrARB offset, GLsizeiptrARB size, const void* data))
+FUNC(void, glGetBufferSubDataARB, (int target, GLintptrARB offset, GLsizeiptrARB size, void* data))
+FUNC(void*, glMapBufferARB, (int target, int access))
+FUNC(bool, glUnmapBufferARB, (int target))
+FUNC(void, glGetBufferParameterivARB, (int target, int pname, int* params))
+FUNC(void, glGetBufferPointervARB, (int target, int pname, void** params))
 
 
 
