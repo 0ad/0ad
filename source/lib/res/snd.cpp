@@ -320,6 +320,11 @@ static ALuint al_buf_alloc(ALvoid* data, ALsizei size, ALenum al_fmt, ALsizei al
 
 static void al_buf_free(ALuint al_buf)
 {
+	// no-op if 0 (needed in case SndData_reload fails -
+	// sd->al_buf will not have been set)
+	if(!al_buf)
+		return;
+
 	assert(alIsBuffer(al_buf));
 	alDeleteBuffers(1, &al_buf);
 	al_check("al_buf_free");
@@ -960,6 +965,7 @@ static int SndData_reload(SndData* sd, const char* fn, Handle hsd)
 
 #ifdef OGG_HACK
 std::vector<u8> data;
+data.reserve(500000);
 if(file_type == FT_OGG)
 {
 sd->o = ogg_create();
@@ -1099,7 +1105,12 @@ enum VSrcFlags
 	// tell SndData to open the sound as a stream.
 	// require caller to pass this explicitly, so they're aware
 	// of the limitation that there can only be 1 instance of those.
-	VS_IS_STREAM = 2
+	VS_IS_STREAM = 2,
+
+	// this VSrc was added via list_add and needs to be removed with
+	// list_remove in VSrc_dtor.
+	// not set if load fails somehow (avoids list_remove "not found" error).
+	VS_IN_LIST = 4
 };
 
 struct VSrc
@@ -1379,7 +1390,13 @@ static void VSrc_init(VSrc* vs, va_list args)
 
 static void VSrc_dtor(VSrc* vs)
 {
-	list_remove(vs);
+	// only remove if added (not the case if load failed)
+	if(vs->flags & VS_IN_LIST)
+	{
+		list_remove(vs);
+		vs->flags &= ~VS_IN_LIST;
+	}
+
 	vsrc_reclaim(vs);
 	snd_data_free(vs->hsd);
 }
@@ -1431,6 +1448,8 @@ static int VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
 
 	bool is_stream = (vs->flags & VS_IS_STREAM) != 0;
 	vs->hsd = snd_data_load(snd_fn, is_stream);
+	if(vs->hsd <= 0)
+		return -1;
 
 	return 0;
 }
@@ -1479,8 +1498,13 @@ int snd_play(Handle hs, float static_pri)
 {
 	H_DEREF(hs, VSrc, vs);
 
+	// sound data wasn't loaded successfully - bail
+	if(vs->hsd <= 0)
+		return -1;
+
 	vs->static_pri = static_pri;
 	list_add(vs);
+	vs->flags |= VS_IN_LIST;
 
 	// optimization (don't want to do full update here - too slow)
 	// either we get a source and playing begins immediately,
