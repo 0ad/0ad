@@ -30,6 +30,8 @@
 
 // no module init/shutdown necessary: all global data is allocated
 // as part of a FAMConnection, which must be FAMClose-d by caller.
+//
+// that means every routine has a FAMConnection* parameter, but it's safer.
 
 
 // rationale for polling:
@@ -70,7 +72,7 @@
 // to this struct, due to the pImpl idiom. this is heap-allocated.
 struct Watch
 {
-	const std::string dir_name;
+	std::string dir_name;
 	HANDLE hDir;
 
 	// user pointer from from FAMMonitorDirectory; passed to FAMEvent
@@ -91,17 +93,11 @@ struct Watch
 		// we miss changes made to a directory.
 		// issue code uses sizeof(change_buf) to determine size.
 
-	FAMConnection* fc;
-	FAMRequest fr;
-		// these are returned in FAMEvent. could get them via FAMNextEvent's
-		// fc parameter and associating packets with FAMRequest,
-		// but storing them here is more convenient.
 
-
-	Watch(const std::string& _dir_name, HANDLE _hDir)
-		: dir_name(_dir_name), last_path("")
+	Watch()
+		: last_path("")
 	{
-		hDir = _hDir;
+		hDir = INVALID_HANDLE_VALUE;
 
 		last_action = 0;
 		last_ticks = 0;
@@ -117,9 +113,15 @@ struct Watch
 };
 
 
-// list of all active watches to detect duplicates and
-// for easier cleanup. only store pointer in container -
-// they're not copy-equivalent (dtor would close hDir).
+// list of all active watches. required, since we have to be able to
+// cancel watches; also makes detecting duplicates possible.
+//
+// only store pointer in container - they're not copy-equivalent
+// (dtor would close hDir).
+//
+// key is uint reqnum - that's what FAMCancelMonitor is passed.
+// reqnums aren't reused to avoid problems with stale reqnums after
+// cancelling; hence, map instead of vector and freelist.
 typedef std::map<uint, Watch*> Watches;
 typedef Watches::iterator WatchIt;
 
@@ -152,13 +154,13 @@ struct AppState
 
 	uint last_reqnum;
 
-	AppState(const char* _app_name)
-		: app_name(_app_name)
+	AppState()
 	{
 		hIOCP = 0;
 		// not INVALID_HANDLE_VALUE! (CreateIoCompletionPort requirement)
 
-		last_reqnum = 0;
+		// provide a little protection against random reqnums passed in
+		last_reqnum = 1000;
 	}
 
 	~AppState()
@@ -187,6 +189,33 @@ struct AppState
 		return -1;\
 	}
 
+
+///////////////////////////////////////////////////////////////////////////////
+
+
+static int alloc_watch(FAMConnection* const fc, const FAMRequest* const fr, Watch*& _w)
+{
+	GET_APP_STATE(fc, state);
+	Watches& watches = state->watches;
+
+	SAFE_NEW(Watch, w);
+	watches[fr->reqnum] = w;
+	_w = w;
+	return 0;
+}
+
+
+static int free_watch(FAMConnection* const fc, const FAMRequest* const fr, Watch*& w)
+{
+	GET_APP_STATE(fc, state);
+	Watches& watches = state->watches;
+
+	watches.erase(fr->reqnum);
+	w = 0;
+	return 0;
+}
+
+
 static int find_watch(FAMConnection* const fc, const FAMRequest* const fr, Watch*& w)
 {
 	GET_APP_STATE(fc, state);
@@ -200,24 +229,18 @@ static int find_watch(FAMConnection* const fc, const FAMRequest* const fr, Watch
 
 #define GET_WATCH(fc, fr, watch_ptr_var)\
 	Watch* watch_ptr_var;\
-	CHECK_ERR(find_watch(fc, fr, watch_ptr_var);
+	CHECK_ERR(find_watch(fc, fr, watch_ptr_var))
+
+
+///////////////////////////////////////////////////////////////////////////////
 
 
 int FAMOpen2(FAMConnection* const fc, const char* const app_name)
 {
-	try
-	{
-		fc->internal = new AppState(app_name);
-	}
-	catch(std::bad_alloc)
-	{
-		fc->internal = 0;
-	}
+	SAFE_NEW(AppState, state);
+	state->app_name = app_name;
 
-	// either (VC6) new returned 0, or we caught bad_alloc => fail.
-	if(!fc->internal)
-		return -1;
-
+	fc->internal = state;
 	return 0;
 }
 
@@ -233,7 +256,7 @@ int FAMClose(FAMConnection* const fc)
 
 
 // HACK - see call site
-static int get_packet(FAMConnection* vc);
+static int get_packet(FAMConnection* fc);
 
 
 int FAMMonitorDirectory(FAMConnection* const fc, const char* const _dir, FAMRequest* const fr, void* const user_data)
@@ -276,16 +299,21 @@ int FAMMonitorDirectory(FAMConnection* const fc, const char* const _dir, FAMRequ
 	hIOCP = CreateIoCompletionPort(hDir, hIOCP, key, 0);
 	if(hIOCP == 0 || hIOCP == INVALID_HANDLE_VALUE)
 	{
+fail:
 		CloseHandle(hDir);
 		return -1;
 	}
 
 	// create Watch and associate with FAM structs
-	Watch* const w = new Watch(dir, hDir);
-	watches[reqnum] = w;
-	w->fc = fc;
-	w->fr = *fr;
+	Watch* w;
+	if(alloc_watch(fc, fr, w) < 0)
+		goto fail;
+	w->dir_name  = dir;
+	w->hDir      = hDir;
 	w->user_data = user_data;
+
+	if(dir[dir.length()-1] != '\\')
+		w->dir_name += '\\';
 
 	// post a dummy kickoff packet; the IOCP polling code will "re"issue
 	// the corresponding watch. this keeps the ReadDirectoryChangesW call
@@ -302,28 +330,29 @@ int FAMMonitorDirectory(FAMConnection* const fc, const char* const _dir, FAMRequ
 
 int FAMCancelMonitor(FAMConnection* const fc, FAMRequest* const fr)
 {
-	GET_APP_STATE(fc, state);
-//	GET_WATCH(fc, fr, w);
+	GET_WATCH(fc, fr, w);
 
-	// contrary to dox, the RDC IOs do not "complete" - no packet received on the IOCP in test. 
-///	int a = CancelIo(w->hDir);
+	// contrary to dox, the RDC IOs do not issue a completion notification.
+	// no packet was received on the IOCP while or after cancelling in a test.
+	//
+	// if cancel somehow fails though, no matter - the Watch is freed, and
+	// its reqnum isn't reused; if we receive a packet, it's ignored.
+	CancelIo(w->hDir);
 
+	free_watch(fc, fr, w);	// can't fail
 	return 0;
 }
 
 
-static int extract_events(Watch* const w)
+static int extract_events(FAMConnection* fc, FAMRequest* fr, Watch* w)
 {
-	FAMConnection* const fc = w->fc;
-	const FAMRequest& fr = w->fr;
-
 	GET_APP_STATE(fc, state);
 	Events& events = state->pending_events;
 
 	// will be modified for each event and added to events
 	FAMEvent event_template;
 	event_template.fc = fc;
-	event_template.fr = fr;
+	event_template.fr = *fr;
 	event_template.user = w->user_data;
 
 	// points to current FILE_NOTIFY_INFORMATION;
@@ -374,19 +403,13 @@ static int extract_events(Watch* const w)
 		event.code = code;
 
 
-		//
-		// convert filename from Windows BSTR to portable C string
-		//
-
-		char* fn = event.filename;
-		const int num_chars = fni->FileNameLength/2;
-		for(int i = 0; i < num_chars; i++)
-		{
-			char c = (char)fni->FileName[i];
-			if(c == '\\')
-				c = '/';
-			*fn++ = c;
-		}
+		// build filename
+		// (prepend directory and convert from Windows BSTR)
+		strcpy(event.filename, w->dir_name.c_str());
+		char* fn = event.filename + w->dir_name.length();
+		// .. can't use wcstombs - FileName isn't 0-terminated
+		for(int i = 0; i < (int)fni->FileNameLength/2; i++)
+			*fn++ = (char)fni->FileName[i];
 		*fn = '\0';
 
 
@@ -404,7 +427,7 @@ static int extract_events(Watch* const w)
 
 
 // if a packet is pending, extract its events and re-issue its watch.
-int get_packet(FAMConnection* fc)
+static int get_packet(FAMConnection* fc)
 {
 	GET_APP_STATE(fc, state);
 	const HANDLE hIOCP = state->hIOCP;
@@ -418,14 +441,16 @@ int get_packet(FAMConnection* fc)
 	if(!got_packet)	// no new packet - done
 		return 1;
 
-	const FAMRequest fr = { (uint)key };
-	Watch* w;
-	CHECK_ERR(find_watch(fc, &fr, w));
+	FAMRequest _fr = { (uint)key };
+	FAMRequest* const fr = &_fr;
+		// if other fields are added, their value is 0;
+		// find_watch only looks at reqnum anyway.
+	GET_WATCH(fc, fr, w);
 
 	// this is an actual packet, not just a kickoff for issuing the watch.
 	// extract the events and push them onto AppState's queue.
 	if(bytes_transferred != 0)
-		extract_events(w);
+		extract_events(fc, fr, w);
 
 	// (re-)issue change notification request.
 	// it's safe to reuse Watch.change_buf, because we copied out all events.

@@ -53,6 +53,9 @@ typedef struct
 FAMEvent;
 
 
+// these functions must be called from the same thread!
+// (Win32 overlapped I/O limitation)
+
 extern int FAMOpen2(FAMConnection*, const char* app_name);
 extern int FAMClose(FAMConnection*);
 
