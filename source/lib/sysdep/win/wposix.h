@@ -257,6 +257,8 @@ extern int open(const char* fn, int mode, ...);
 #define write _write
 _CRTIMP int read(int, void*, size_t);
 _CRTIMP int write(int, void*, size_t);
+_CRTIMP off_t lseek(int fd, off_t ofs, int whence);
+
 
 // redefinition error here => io.h is getting included somewhere.
 // we implement this function, so the io.h definition conflicts if
