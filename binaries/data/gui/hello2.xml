@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no" ?>
+
+<!DOCTYPE objects SYSTEM "objects.dtd">
+
+<objects>
+
+	<object name="Child" type="button" size="100%-50 100%-50 100%-5 100%-5" z="22"> 100
+
+
+	</object>
+
+	<object name="Child2" type="button" size="50% + 20 50% + 20 50% + 100 50% + 100" z="200" />
+
+	<object name="a1" type="button" size="50% 0 100% 50" z="20">
+		<object name="a2" type="button" size="-100 10 11 40" z="22" absolute="false"/>
+		<object name="a3" type="button" size="100%-200 10 100%-110 40" z="22" />
+		<object name="a4" type="button" size="100%-300 10 100%-210 40" z="22" />
+	</object>
+
+</objects>
