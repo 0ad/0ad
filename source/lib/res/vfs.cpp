@@ -80,7 +80,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 // path types:
-// p_* : portable
+// portable (/ as directory separator; no ':' or '\\')
 // v_* : VFS
 // f_* : no path at all, filename only
 
@@ -90,7 +90,7 @@ static int path_append(char* dst, const char* path, const char* path2)
 	const size_t path_len = strlen(path);
 	const size_t path2_len = strlen(path2);
 
-	if(path_len+path2_len+1 > PATH_MAX)
+	if(path_len+path2_len+1 > VFS_MAX_PATH)
 		return -1;
 
 	char* p = dst;
@@ -168,7 +168,7 @@ ok:
 }
 
 
-#define CHECK_PATH(p_path) CHECK_ERR(path_validate(__LINE__, p_path))
+#define CHECK_PATH(path) CHECK_ERR(path_validate(__LINE__, path))
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -248,9 +248,9 @@ static int loc_free_all()
 // wrapper on top of new + ctor to emphasize that
 // the caller must not free the Loc pointer.
 // (if they do, VFS entries point to freed memory => disaster)
-static Loc* loc_create(const Handle ha, const char* const p_path, const uint pri)
+static Loc* loc_create(const Handle ha, const char* const path, const uint pri)
 {
-	return new Loc(ha, p_path, pri);
+	return new Loc(ha, path, pri);
 }
 
 

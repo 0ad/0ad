@@ -21,7 +21,7 @@
 #define __VFS_H__
 
 #include "h_mgr.h"
-#include "posix.h"
+#include "posix.h"	// struct stat
 
 #define VFS_MAX_PATH 256	// includes trailing '\0'
 
