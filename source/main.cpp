@@ -270,6 +270,12 @@ static void Render()
 	font_bind(font);
 	glprintf("%d FPS", fps);
 
+	// view params
+	glLoadIdentity();
+	glTranslatef(10, 90, 0);
+	extern float ViewFOV;
+	glprintf("FOV=%.1f", RADTODEG(ViewFOV));
+
 #ifndef NO_GUI
 	// Temp GUI message GeeTODO
 	glLoadIdentity();
@@ -333,6 +339,8 @@ int main(int argc, char* argv[])
 {
 	const int ERR_MSG_SIZE = 1000;
 	wchar_t err_msg[ERR_MSG_SIZE];
+
+//	display_startup_error(argv[0]);
 
 
 	// set current directory to "$game_dir/data".

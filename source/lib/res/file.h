@@ -78,7 +78,7 @@ enum FILE_CB_FLAGS
 extern int file_rel_chdir(const char* argv0, const char* rel_path);
 
 
-typedef int(*FileCB)(const char* name, uint flags, ssize_t size, uintptr_t user);
+typedef int(*FileCB)(const char* const name, const uint flags, const ssize_t size, const uintptr_t user);
 
 // not recursive - only the files in <dir>!
 extern int file_enum(const char* dir, FileCB cb, uintptr_t user);

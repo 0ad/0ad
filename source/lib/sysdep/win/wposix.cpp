@@ -607,36 +607,77 @@ int uname(struct utsname* un)
 }
 
 
+ 
+
+
+
+
 long sysconf(int name)
 {
 	// used by _SC_*_PAGES
 	static DWORD page_size;
+	static BOOL (WINAPI *pGlobalMemoryStatusEx)(MEMORYSTATUSEX*);  
+
+	ONCE(
+	{
+		// get page size
+		// (used by _SC_PAGESIZE and _SC_*_PAGES)
+		SYSTEM_INFO si;
+		GetSystemInfo(&si);		// can't fail => page_size always > 0.
+		page_size = si.dwPageSize;
+
+		// import GlobalMemoryStatusEx
+		// (used by _SC_*_PAGES if available -
+		// it's not defined in the VC6 Platform SDK)
+		const HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");  
+		*(void**)&pGlobalMemoryStatusEx = GetProcAddress(hKernel32Dll, "GlobalMemoryStatusEx"); 
+		FreeLibrary(hKernel32Dll);
+			// make sure the reference is released so BoundsChecker
+			// doesn't complain. it won't actually be unloaded anyway -
+			// there is at least one other reference.
+	}
+	);
+
 
 	switch(name)
 	{
 	case _SC_PAGESIZE:
-		if(page_size)
-			return page_size;
-		SYSTEM_INFO si;
-		GetSystemInfo(&si);		// can't fail => page_size always > 0.
-		return page_size = si.dwPageSize;
+		return page_size;
 
 	case _SC_PHYS_PAGES:
 	case _SC_AVPHYS_PAGES:
-		if(!page_size)
-			sysconf(_SC_PAGESIZE);	// sets page_size
-
 		{
-		MEMORYSTATUSEX ms = { sizeof(ms) };
-		GlobalMemoryStatusEx(&ms);
+		u64 total_phys_mem;
+		u64 avail_phys_mem;
+
+		// first try GlobalMemoryStatus - cannot fail.
+		// override its results if GlobalMemoryStatusEx is available.
+		MEMORYSTATUS ms;
+		GlobalMemoryStatus(&ms);
+			// can't fail.
+		total_phys_mem = ms.dwTotalPhys;
+		avail_phys_mem = ms.dwAvailPhys;
+
+		// newer API is available: use it to report correct results
+		// (no overflow or wraparound) on systems with > 4 GB of memory.
+		MEMORYSTATUSEX mse = { sizeof(mse) };
+		if(pGlobalMemoryStatusEx(&mse))
+		{
+			total_phys_mem = mse.ullTotalPhys;
+			avail_phys_mem = mse.ullAvailPhys;
+		}
+		else
+			// no matter though, we have the results from GlobalMemoryStatus.
+			debug_warn("GlobalMemoryStatusEx failed - why?");
+
 		if(name == _SC_PHYS_PAGES)
-			return (long)(round_up((uintptr_t)ms.ullTotalPhys, 2*MB) / page_size);
+			return (long)(round_up((uintptr_t)total_phys_mem, 2*MB) / page_size);
 				// Richter, "Programming Applications for Windows":
 				// reported value doesn't include non-paged pool reserved
 				// during boot; it's not considered available to kernel.
 				// it's 528 KB on my 512 MB machine (WinXP and Win2k).
  		else
-			return (long)(ms.ullAvailPhys / page_size);
+			return (long)(avail_phys_mem / page_size);
 		}
 
 	default:

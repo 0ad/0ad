@@ -88,6 +88,7 @@ static int zip_find_ecdr(const void* const file, const size_t size, const u8*& e
 	if(*(u32*)ecdr == *(u32*)&ecdr_id)
 		goto found_ecdr;
 
+	{
 
 	// scan the last 66000 bytes of file for ecdr_id signature
 	// (zip comment <= 65535 bytes, sizeof(ECDR) = 22, add some for safety)
@@ -109,6 +110,8 @@ static int zip_find_ecdr(const void* const file, const size_t size, const u8*& e
 	// reached EOF and still haven't found the ECDR identifier.
 	ecdr_ = 0;
 	return -1;
+
+	}
 
 found_ecdr:
 	ecdr_ = ecdr;
@@ -164,6 +167,8 @@ static int zip_read_cdfh(const u8*& cdfh, const char*& fn, size_t& fn_len, ZFile
 		goto skip_file;
 	}
 
+	{
+
 	const u8  method  = cdfh[10];
 	const u32 csize_  = read_le32(cdfh+20);
 	const u32 ucsize_ = read_le32(cdfh+24);
@@ -202,6 +207,8 @@ static int zip_read_cdfh(const u8*& cdfh, const char*& fn, size_t& fn_len, ZFile
 	cdfh += CDFH_SIZE + fn_len + e_len + c_len;
 	return 0;
 
+	}
+
 // file was invalid somehow; try to seek forward to the next CDFH
 skip_file:
 	// scan for next CDFH (look for signature)
@@ -223,7 +230,7 @@ found_next_cdfh:
 
 // fn (filename) is not necessarily 0-terminated!
 // loc is only valid during the callback! must be copied or saved.
-typedef int(*ZipCdfhCB)(const uintptr_t user, const i32 idx, const char* fn, const size_t fn_len, const ZFileLoc* const loc);
+typedef int(*ZipCdfhCB)(const uintptr_t user, const i32 idx, const char* const fn, const size_t fn_len, const ZFileLoc* const loc);
 
 // go through central directory of the Zip file (loaded or mapped into memory);
 // call back for each file.

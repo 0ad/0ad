@@ -65,6 +65,13 @@
 
 #include <windows.h>
 
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// fixes for VC6 platform SDK
+//
+///////////////////////////////////////////////////////////////////////////////
+
 // VC6 windows.h doesn't define these
 #ifndef DWORD_PTR
 #define DWORD_PTR DWORD
@@ -78,10 +85,34 @@
 #define PROCESSOR_ARCHITECTURE_AMD64 9
 #endif
 
-// end VC6 fixes
+#if WINVER < 0x500
+
+// can't test for macro definition -
+// actual definitions in winnt.h are typedefs.
+typedef u64 DWORDLONG;
+typedef DWORD ULONG_PTR;
+
+typedef struct _MEMORYSTATUSEX
+{ 
+	DWORD dwLength; 
+	DWORD dwMemoryLoad; 
+	DWORDLONG ullTotalPhys; 
+	DWORDLONG ullAvailPhys; 
+	DWORDLONG ullTotalPageFile; 
+	DWORDLONG ullAvailPageFile; 
+	DWORDLONG ullTotalVirtual; 
+	DWORDLONG ullAvailVirtual; 
+	DWORDLONG ullAvailExtendedVirtual; 
+} MEMORYSTATUSEX, *LPMEMORYSTATUSEX; 
+
+#endif	// #if WINVER < 0x500
 
 
+///////////////////////////////////////////////////////////////////////////////
+//
 // powrprof.h (not there at all in VC6, missing some parts in VC7)
+//
+///////////////////////////////////////////////////////////////////////////////
 
 #ifndef NTSTATUS
 #define NTSTATUS long
@@ -202,7 +233,7 @@ typedef struct _SYSTEM_POWER_INFORMATION
 	                         // or there is no thermal zone defined [..]
 
 
-// end powrprof.h fixes
+///////////////////////////////////////////////////////////////////////////////
 
 
 #include "types.h"	// intptr_t

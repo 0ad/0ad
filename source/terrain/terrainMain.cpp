@@ -35,6 +35,7 @@ int mouse_x=50, mouse_y=50;
 
 float ViewScrollSpeed = 60.0f;
 float ViewZoomFactor = 1.0f;
+float ViewFOV = 0.0f;
 
 
 void terr_init()
@@ -79,21 +80,21 @@ void terr_update(const float DeltaTime)
 	const float s60 = sin(DEGTORAD(60.0f));
 	const float c60 = cos(DEGTORAD(60.0f));
 
-	const CVector3D vert   (c30*c45, s45*0, -s30*c45*0);
+	const CVector3D vert   (c30*c45, s45, -s30*c45);
 
 
 	float fov = g_Camera.GetFOV();
 	float d = DEGTORAD(0.4f);
 	if(keys[SDLK_KP_MINUS])
-//		g_Camera.m_Orientation.Translate(vert);
-		if (fov < DEGTORAD(90.f))
+		if (fov < DEGTORAD(60.f))
+			fov += d;
 			g_Camera.SetProjection(1, 1000, fov + d);
 	if(keys[SDLK_KP_PLUS])
-//			g_Camera.m_Orientation.Translate(vert*-1);
-		if (fov-d > DEGTORAD(20))
-		g_Camera.SetProjection(1, 1000, fov - d);
+		if (fov-d > DEGTORAD(10))
+			fov -= d;
+	g_Camera.SetProjection(1, 1000, fov);
 
-
+	ViewFOV = fov;
 
 	g_Camera.UpdateFrustum ();
 }

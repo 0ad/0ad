@@ -124,6 +124,8 @@ int file_rel_chdir(const char* argv0, const char* rel_path)
 	}
 	already_attempted = true;
 
+	{
+
 	// get full path to executable
 	if(access(argv0, X_OK) < 0)
 		goto fail;
@@ -147,6 +149,8 @@ int file_rel_chdir(const char* argv0, const char* rel_path)
 		goto fail;
 
 	return 0;
+
+	}
 
 fail:
 	debug_warn("file_rel_chdir failed");
@@ -971,6 +975,9 @@ debug_out("file_wait_io: hio=%I64x\n", hio);
 
 	size = io->user_size;
 
+	void* transfer_buf;
+	ssize_t bytes_transferred;
+
 	// block's tag is in cache. need to check if its read is still pending.
 	if(io->cached)
 	{
@@ -985,8 +992,7 @@ debug_out("file_wait_io: hio=%I64x\n", hio);
 		cb = cache_io->cb;
 	}
 
-	void* transfer_buf;
-	ssize_t bytes_transferred = ll_wait_io(cb, transfer_buf);
+	bytes_transferred = ll_wait_io(cb, transfer_buf);
 
 skip_wait:
 

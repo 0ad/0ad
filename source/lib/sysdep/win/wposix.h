@@ -209,7 +209,10 @@ extern int open(const char* fn, int mode, ...);
 
 extern int close(int);
 extern int access(const char*, int);
+
 extern int chdir(const char*);
+#define getcwd _getcwd
+
 
 extern unsigned int sleep(unsigned int sec);
 extern int usleep(useconds_t us);
