@@ -11,8 +11,10 @@
 
 extern CTerrain g_Terrain;
 
-bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
+bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_millis )
 {
+	float timestep=timestep_millis/1000.0f;
+
 	CVector2D delta;
 	delta.x = (float)current->m_data[0].location.x - m_position.X;
 	delta.y = (float)current->m_data[0].location.y - m_position.Z;
@@ -213,8 +215,10 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 	return( false );
 }
 
-bool CEntity::processGoto( CEntityOrder* current, float timestep )
+bool CEntity::processGoto( CEntityOrder* current, size_t timestep_millis )
 {
+	float timestep=timestep_millis/1000.0f;
+
 	CVector2D pos( m_position.X, m_position.Z );
 	CVector2D path_to = current->m_data[0].location;
 	m_orderQueue.pop_front();
@@ -235,8 +239,10 @@ bool CEntity::processGoto( CEntityOrder* current, float timestep )
 	return( true );
 }
 
-bool CEntity::processPatrol( CEntityOrder* current, float timestep )
+bool CEntity::processPatrol( CEntityOrder* current, size_t timestep_millis )
 {
+	float timestep=timestep_millis/1000.0f;
+
 	CEntityOrder this_segment;
 	CEntityOrder repeat_patrol;
 

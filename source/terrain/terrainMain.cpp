@@ -19,7 +19,6 @@
 
 void InitScene ();
 void InitResources ();
-void RenderScene ();
 
 extern bool keys[512];	// SDL also defines non-ascii keys; 512 should be enough
 extern bool mouseButtons[5];
@@ -28,7 +27,6 @@ extern bool g_active;
 
 
 CMatrix3D			g_WorldMat;
-CTerrain			g_Terrain;
 CCamera				g_Camera;
 CLightEnv			g_LightEnv;
 
@@ -473,7 +471,6 @@ void InitScene ()
 	g_Camera.m_Orientation.RotateY(DEGTORAD(-45));
 
 	g_Camera.m_Orientation.Translate (100, 150, -100);
-
 }
 
 void InitResources()

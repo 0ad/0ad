@@ -43,7 +43,7 @@ class CCamera
 		//everytime the view or projection matrices are
 		//altered.
 		void UpdateFrustum ();
-		CFrustum GetFustum () { return m_ViewFrustum; }
+		CFrustum GetFrustum () { return m_ViewFrustum; }
 
 		void SetViewPort (SViewPort *viewport);
 		SViewPort GetViewPort () { return m_ViewPort; }

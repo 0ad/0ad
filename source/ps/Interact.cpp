@@ -855,7 +855,7 @@ int interactInputHandler( const SDL_Event* ev )
 
 bool isOnScreen( CEntity* ev )
 {
-	CFrustum frustum = g_Camera.GetFustum();
+	CFrustum frustum = g_Camera.GetFrustum();
 	return( frustum.IsBoxVisible( CVector3D(), ev->m_actor->GetModel()->GetBounds() ) );
 }
 

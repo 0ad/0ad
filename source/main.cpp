@@ -21,6 +21,8 @@
 
 #include "ps/CConsole.h"
 
+#include "ps/Game.h"
+
 #include "Config.h"
 #include "MapReader.h"
 #include "Terrain.h"
@@ -54,7 +56,6 @@
 #include "gui/GUI.h"
 #endif
 
-
 CConsole* g_Console = 0;
 extern int conInputHandler(const SDL_Event* ev);
 
@@ -70,7 +71,6 @@ int g_xres, g_yres;
 int g_bpp;
 int g_freq;
 bool g_active = true;
-const int SIM_FRAMERATE = 10;
 
 // flag to disable extended GL extensions until fix found - specifically, crashes
 // using VBOs on laptop Radeon cards
@@ -87,13 +87,11 @@ static bool g_EntGraph = false;
 
 static float g_Gamma = 1.0f;
 
-// mapfile to load or null for no map (and to use default terrain)
-static const char* g_MapFile=0;
-
+CGameAttributes g_GameAttributes;
+CGame *g_Game=NULL;
 
 static Handle g_Font_Console; // for the console
 static Handle g_Font_Misc; // random font for miscellaneous things
-
 
 extern CCamera g_Camera;
 
@@ -104,23 +102,10 @@ extern int terr_handler(const SDL_Event* ev);
 extern int allow_reload();
 extern int dir_add_watch(const char* const dir, bool watch_subdirs);
 
-
-
-
-
 extern void sle(int);
 
-
-
-size_t frameCount=0;
-size_t simulationTime = 0;
+extern size_t frameCount;
 static bool quit = false;	// break out of main loop
-
-
-
-
-
-
 
 const wchar_t* HardcodedErrorString(int err)
 {
@@ -156,7 +141,6 @@ ERROR_GROUP(System);
 ERROR_TYPE(System, SDLInitFailed);
 ERROR_TYPE(System, VmodeFailed);
 ERROR_TYPE(System, RequiredExtensionsMissing);
-ERROR_TYPE(System, MapLoadFailed);
 
 
 void Testing (void)
@@ -369,52 +353,6 @@ static int handler(const SDL_Event* ev)
 	return EV_PASS;
 }
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// RenderTerrain: iterate through all terrain patches and submit all patches in viewing frustum to
-// the renderer
-void RenderTerrain()
-{
-	CFrustum frustum=g_Camera.GetFustum();
-	u32 patchesPerSide=g_Terrain.GetPatchesPerSide();
-	for (uint j=0; j<patchesPerSide; j++) {
-		for (uint i=0; i<patchesPerSide; i++) {
-			CPatch* patch=g_Terrain.GetPatch(i,j);
-			if (frustum.IsBoxVisible (CVector3D(0,0,0),patch->GetBounds())) {
-				g_Renderer.Submit(patch);
-			}
-		}
-	}
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// SubmitModelRecursive: recurse down given model, submitting it and all its descendents to the
-// renderer
-void SubmitModelRecursive(CModel* model)
-{
-	g_Renderer.Submit(model);
-
-	const std::vector<CModel::Prop>& props=model->GetProps();
-	for (uint i=0;i<props.size();i++) {
-		SubmitModelRecursive(props[i].m_Model);
-	}
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// RenderModels: iterate through model list and submit all models in viewing frustum to the
-// Renderer
-void RenderModels()
-{
-	CFrustum frustum=g_Camera.GetFustum();
-
-	const std::vector<CUnit*>& units=g_UnitMan.GetUnits();
-	for (uint i=0;i<units.size();++i) {
-		if (frustum.IsBoxVisible(CVector3D(0,0,0),units[i]->GetModel()->GetBounds())) {
-			SubmitModelRecursive(units[i]->GetModel());
-		}
-	}
-}
-
 /////////////////////////////////////////////////////////////////////////////////////////////
 // RenderNoCull: render absolutely everything to a blank frame to force renderer
 // to load required assets
@@ -422,20 +360,8 @@ void RenderNoCull()
 {
 	g_Renderer.BeginFrame();
 	g_Renderer.SetCamera(g_Camera);
-
-	uint i,j;
-	const std::vector<CUnit*>& units=g_UnitMan.GetUnits();
-	for (i=0;i<units.size();++i) {
-		SubmitModelRecursive(units[i]->GetModel());
-	}
-
-	u32 patchesPerSide=g_Terrain.GetPatchesPerSide();
-	for (j=0; j<patchesPerSide; j++) {
-		for (i=0; i<patchesPerSide; i++) {
-			CPatch* patch=g_Terrain.GetPatch(i,j);
-			g_Renderer.Submit(patch);
-		}
-	}
+	
+	g_Game->GetView()->RenderNoCull();
 
 	g_Renderer.FlushFrame();
 	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
@@ -453,11 +379,9 @@ static void Render()
 
 	// switch on wireframe for terrain if we want it
 	//g_Renderer.SetTerrainRenderMode( SOLID ); // (PT: If this is done here, the W key doesn't work)
-	MICROLOG(L"render terrain");
-	RenderTerrain();
-	MICROLOG(L"render models");
-	RenderModels();
-	MICROLOG(L"flush frame");
+
+	g_Game->Render();
+
 	g_Renderer.FlushFrame();
 
 	glPushAttrib( GL_ENABLE_BIT );
@@ -543,33 +467,6 @@ static void Render()
 	g_Renderer.EndFrame();
 }
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////
-// UpdateWorld: update time dependent data in the simulation to account for changes over
-// some fixed simulation timestep.
-
-void UpdateWorld(float time)
-{
-	g_GUI.TickObjects();
-	g_Scheduler.update();
-	simulationTime += (size_t)( time * 1000.0f );
-	frameCount++;
-	g_EntityManager.updateAll( time );
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////
-// InterpolateWorld: interpolate a data point for rendering between simulation frames.
-
-void InterpolateWorld( float delta, float offset )
-{
-	const std::vector<CUnit*>& units=g_UnitMan.GetUnits();
-	for (uint i=0;i<units.size();++i)
-		units[i]->GetModel()->Update( delta );
-
-	g_EntityManager.interpolateAll( offset );
-}
-
-
 void ParseArgs(int argc, char* argv[])
 {
 	for (int i=1;i<argc;i++) {
@@ -577,7 +474,7 @@ void ParseArgs(int argc, char* argv[])
 			switch (argv[i][1]) {
 				case 'm':
 					if (argv[i][2]=='=') {
-						g_MapFile=argv[i]+3;
+						g_GameAttributes.m_MapFile=argv[i]+3;
 					}
 					break;
 				case 'g':
@@ -931,26 +828,15 @@ PREVTSC=CURTSC;
 
 	g_EntityTemplateCollection.loadTemplates();
 
-// if no map name specified, load test01.pmp (for convenience during
-// development. that means loading no map at all is currently impossible.
-// is that a problem?
-if(!g_MapFile)
-	g_MapFile = "test01.pmp";
+	// if no map name specified, load test01.pmp (for convenience during
+	// development. that means loading no map at all is currently impossible.
+	// is that a problem?
+	if(!g_GameAttributes.m_MapFile)
+		g_GameAttributes.m_MapFile = "test01.pmp";
 
-	MICROLOG(L"init map");
-
-	// load a map if we were given one
-	if (g_MapFile) {
-		CStr mapfilename("mods/official/maps/scenarios/");
-		mapfilename+=g_MapFile;
-		try {
-			CMapReader reader;
-			reader.LoadMap(mapfilename);
-		} catch (...) {
-			LOG(ERROR, "Failed to load map %s", mapfilename.c_str());
-			throw PSERROR_System_MapLoadFailed();
-		}
-	}
+	MICROLOG(L"start game");
+	g_Game=new CGame();
+	g_Game->Initialize(&g_GameAttributes);
 
 	// Check for heap corruption after every allocation. Very, very slowly.
 	// (And it highlights the allocation just after the one you care about,
@@ -1075,8 +961,6 @@ static void Frame()
 	// Non-movie code:
 
 	static double last_time;
-	static double delta_time = 0.0; // The amount by which the displayed frame is lagging
-									// the simulation.
 	const double time = get_time();
 	const float TimeSinceLastFrame = (float)(time-last_time);
 	last_time = time;
@@ -1092,34 +976,14 @@ static void Frame()
 
 // TODO: limiter in case simulation can't keep up?
 //	const double TICK_TIME = 30e-3;	// [s]
-	const float SIM_UPDATE_INTERVAL = 1.0f / (float)SIM_FRAMERATE; // Simulation runs at 10 fps.
+//	const float SIM_UPDATE_INTERVAL = 1.0f / (float)SIM_FRAMERATE; // Simulation runs at 10 fps.
 
 	MICROLOG(L"input");
 
 	in_get_events();
-
-	delta_time += TimeSinceLastFrame;
-
-	if( delta_time >= 0.0 )
-	{
-		// A new simulation frame is required.
-		MICROLOG( L"calculate simulation" );
-		UpdateWorld( SIM_UPDATE_INTERVAL );
-		delta_time -= SIM_UPDATE_INTERVAL;
-		if( delta_time >= 0.0 )
-		{
-			// The desired sim frame rate can't be achieved. Settle for process & render
-			// frames as fast as possible.
-			// g_Console->InsertMessage( L"Can't maintain %d FPS simulation rate!", SIM_FRAMERATE );
-			delta_time = 0.0;
-		}
-	}
-
 	
-	MICROLOG(L"interpolate frame");
-
-	InterpolateWorld( TimeSinceLastFrame, (float)( delta_time / (double)SIM_UPDATE_INTERVAL ) + 1.0f );
-
+	g_Game->Update(TimeSinceLastFrame);
+	
 	if (!g_FixedFrameTiming)
 		terr_update(float(TimeSinceLastFrame));
 
@@ -1142,8 +1006,6 @@ static void Frame()
 
 	mouseButtons[SDL_BUTTON_WHEELUP] = false;
 	mouseButtons[SDL_BUTTON_WHEELDOWN] = false;
-
-	
 
 	if(g_active)
 	{

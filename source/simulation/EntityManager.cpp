@@ -86,7 +86,7 @@ void CEntityManager::dispatchAll( CMessage* msg )
 			m_entities[i].m_entity->dispatch( msg );
 }
 
-void CEntityManager::updateAll( float timestep )
+void CEntityManager::updateAll( size_t timestep )
 {
 	std::vector<CEntity*>::iterator it;
 	for( it = m_reaper.begin(); it < m_reaper.end(); it++ )

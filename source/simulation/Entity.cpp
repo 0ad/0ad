@@ -158,7 +158,7 @@ void CEntity::snapToGround()
 	m_graphics_position.Y = g_Terrain.getExactGroundLevel( m_graphics_position.X, m_graphics_position.Z );
 }
 
-void CEntity::update( float timestep )
+void CEntity::update( size_t timestep )
 {
 	m_position_previous = m_position;
 	m_orientation_previous = m_orientation;

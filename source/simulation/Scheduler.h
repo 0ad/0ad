@@ -77,7 +77,7 @@ struct CScheduler : public Singleton<CScheduler>
 	void pushTime( size_t delay, JSFunction* function, JSObject* operateOn = NULL );
 	void pushFrame( size_t delay, JSFunction* function, JSObject* operateOn = NULL );
 	void pushInterval( size_t first, size_t interval, JSFunction* function, JSObject* operateOn = NULL );
-	void update();
+	void update(size_t elapsedSimulationTime);
 };
 
 #define g_Scheduler CScheduler::GetSingleton()

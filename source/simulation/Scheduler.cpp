@@ -2,8 +2,8 @@
 #include "Scheduler.h"
 #include "Entity.h"
 
-extern size_t simulationTime;
-extern size_t frameCount;
+size_t simulationTime;
+size_t frameCount;
 
 void CScheduler::pushTime( size_t delay, const HEntity& destination, const CMessage* message )
 {
@@ -45,8 +45,11 @@ void CScheduler::pushInterval( size_t first, size_t interval, JSFunction* functi
 	timeFunction.push( SDispatchObjectFunction( function, simulationTime + first, operateOn, interval ) );
 }
 
-void CScheduler::update()
+void CScheduler::update(size_t simElapsed)
 {
+	simulationTime += simElapsed;
+	frameCount++;
+
 	while( !timeMessage.empty() )
 	{
 		SDispatchObjectMessage top = timeMessage.top();

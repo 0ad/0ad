@@ -44,7 +44,7 @@ public:
 	HEntity create( CBaseEntity* base, CVector3D position, float orientation );
 	HEntity create( CStr templatename, CVector3D position, float orientation );
 	HEntity* getByHandle( u16 index );
-	void updateAll( float timestep );
+	void updateAll( size_t timestep );
 	void interpolateAll( float relativeoffset );
 	void dispatchAll( CMessage* msg );
 	void renderAll();

@@ -84,9 +84,9 @@ public:
 private:
 	CEntity( CBaseEntity* base, CVector3D position, float orientation );
 
-	bool processGotoNoPathing( CEntityOrder* current, float timestep );
-	bool processGoto( CEntityOrder* current, float timestep );
-	bool processPatrol( CEntityOrder* current, float timestep );
+	bool processGotoNoPathing( CEntityOrder* current, size_t timestep_milli );
+	bool processGoto( CEntityOrder* current, size_t timestep_milli );
+	bool processPatrol( CEntityOrder* current, size_t timestep_milli );
 
 public:
 	~CEntity();
@@ -95,7 +95,7 @@ public:
 	HEntity me;
 
 	void dispatch( const CMessage* msg );
-	void update( float timestep );
+	void update( size_t timestep_millis );
 	void kill();
 
 	void interpolate( float relativeoffset );
