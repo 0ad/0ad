@@ -102,33 +102,57 @@ double timer_res()
 }
 
 
-// calculate fps (call once per frame)
-// several smooth filters:
-// - throw out single spikes / dips
-// - average via small history buffer
-// - update final value iff the difference (% or absolute) is too great,
-//   or if the change is consistent with the trend over the last few frames.
-//
-// => less fluctuation, but rapid tracking.
+// calculate fps (call once per frame).
+// algorithm: variable-gain IIR filter.
+// less fluctuation, but rapid tracking.
 // filter values are tuned for 100 FPS.
 
 int fps = 0;
 
+static char xbuf[1000000];
+static char* xpos = xbuf;
+
+static void dump(void)
+{
+	FILE* f = fopen("test.csv", "w");
+	if(!f)
+		f = fopen("test.csv", "w");
+	fwrite(xbuf, xpos-xbuf, 1, f);
+	fclose(f);
+}
+
+
+void debug_out2(const char* fmt, ...)
+{
+ONCE(atexit(dump););
+
+	va_list ap;
+	va_start(ap, fmt);
+	int ret = vsprintf(xpos, fmt, ap);
+	if(ret > 0)
+		xpos += ret;
+	va_end(ap);
+}
+
+
 void calc_fps()
 {
-	// history buffer - smooth out slight variations
-	RingBuf<float, 16> samples;
+	static double avg_fps = 30.0;
+	double cur_fps = avg_fps;
 
 	// get elapsed time [s] since last update
 	static double last_t;
 	const double t = get_time();
+	ONCE(last_t = t - 33e-3);	// first call: 30 FPS
 	const double dt = t - last_t;
 
 	// (in case timer resolution is low): count frames until
 	// timer value has changed "enough".
+	static double min_dt;
+	ONCE(min_dt = timer_res() * 4.0);
+		// chosen to reduce error but still yield rapid updates.
 	static uint num_frames = 1;
-	if(dt < 1e-3)
-		// bonus: if FPS > 1000, updates are slowed down a few frames.
+	if(dt < min_dt)
 	{
 		num_frames++;
 		return;
@@ -136,40 +160,116 @@ void calc_fps()
 
 	// dt is big enough => we will update.
 	// calculate approximate current FPS (= 1 / elapsed time per frame).
-	float cur_fps = 30.0f;	// start value => history converges faster
-	if(last_t != 0.0)
-		cur_fps = 1.0f / (float)dt * num_frames;
-	num_frames = 1;	// reset for next time
 	last_t = t;
+	cur_fps = 1.0 / dt * num_frames;
+	num_frames = 1;	// reset for next time
 
-	// calculate fps activity over 3 frames (used below to prevent fluctuation)
-	// -1: decreasing, +1: increasing, 0: neither or fluctuating
-	const float h1 = samples[-1];	// last frame's cur_fps
-	const float h2 = samples[-2];	// 2nd most recent frame's cur_fps
 
-	int trend = 0;
-	if(h2 > h1 && h1 > cur_fps)			// decreasing
-		trend = -1;
-	else if(cur_fps < h1 && h1 < h2)	// increasing
-		trend = 1;
+	// average and smooth cur_fps.
+	//
+	// filter design goals: steady output, but rapid signal tracking.
+	//
+	// implemented as a variable-gain IIR filter with knowledge of typical
+	// function characteristics. this is easier to stabilize than a PID
+	// scheme, since it is based on averaging actual function values,
+	// instead of trying to minimize output-vs-input error.
+	// there are some similarities, though: same_side ~= I, and
+	// bounced ~= D.
 
-	// ignore onetime skips in fps (probably page faults or similar)
-	static int ignored;
-	if(fabs(h1-cur_fps) > .05f*h1 &&	// > 5% difference
-	   !ignored++)			// was it first value we're discarding?
-		return;				// yes: don't update fps_hist/fps
-	ignored = 0;	// either value ok, or it wasn't a fluke - reset counter
+	//
+	// check cur_fps function for several characteristics that
+	// help decide if it's actually changing or just jittering.
+	//
 
-	// add new sample and average
-	samples.push_back(cur_fps);
-	const double sum_fps = std::accumulate(samples.begin(), samples.end(), 0.0);
-	const double avg_fps = sum_fps / (int)samples.size();
+#define REL_ERR(correct, measured) (fabs((correct) - (measured)) / (correct))
+#define SIGN_EQ(x0, x1, x2) ( ((x0) * (x1)) > 0.0 && ((x1) * (x2)) > 0.0 )
+#define ONE_SIDE(x, x0, x1, x2) SIGN_EQ(x-x0, x-x1, x-x2)
 
-	// update fps counter if update threshold is exceeded
-	const float d_avg = (float)(avg_fps-fps);
-	const float max_diff = fminf(5.f, 0.05f*fps);
-	if((trend > 0 && (avg_fps > fps || d_avg < -4.f)) ||	// going up, or large drop
-	   (trend < 0 && (avg_fps < fps || d_avg >  4.f)) ||	// going down, or large raise
-	   (fabs(d_avg) > max_diff))							// significant difference
+	// cur_fps history and changes over past few frames
+	static double h2, h1 = 30.0, h0 = 30.0;
+	h2 = h1; h1 = h0; h0 = cur_fps;
+	const double d21 = h1 - h2, d10 = h0 - h1, d20 = h0 - h2;
+	const double e20 = REL_ERR(h2, h0), e10 = REL_ERR(h1, h0);
+	const double e0 = REL_ERR(avg_fps, h0);
+
+	// indicators that the function is jittering
+	const bool bounced = d21 * d10 < 0.0 && e20 < 0.05 && e10 > 0.10;
+		// /\ or \/
+	const bool jumped = e10 > 0.30;
+		// large change (have seen semi-legitimate changes of 25%)
+	const bool close = e0 < 0.02;
+		// cur_fps - avg_fps is "small"
+
+	// "same-side" check for rapid tracking of the function.
+	// if the past few samples have been consistently above/below the average,
+	// the function is moving up/down and we need to catch up.
+	static int same_side;
+		// consecutive times the last 3 samples have been on the same side.
+	if(!ONE_SIDE(avg_fps, h0, h1, h2))	// not all on same side:
+		same_side = 0;					// reset counter
+	// (only increase if not too close to average,
+	// so that this isn't triggered by jitter alone)
+	if(!close)
+		same_side++;
+
+
+	//
+	// determine filter gain, based on above characteristics.
+	//
+
+	static double gain;	// sensitivity to changes in cur_fps ([0,1])
+	double bias = 0.0;	// (unlimited) exponential change to gain
+
+	// ignore (gain -> 0) large jumps.
+	if(jumped)
+		bias -= 4.0;
+	// don't let a "bounce" affect things too much.
+	else if(bounced)
+		bias -= 1.0;
+	// otherwise, function is normal here.
+	else
+	{
+		// function is changing, we need to track it rapidly.
+		// note: check close again so we aren't too loose if the function
+		// comes closer to the average again (meaning it probably
+		// wasn't really changing).
+		if(same_side >= 2 && !close)
+			bias += min(same_side, 4);
+	}
+
+	// bias = 0: no change. > 0: increase (n-th root). < 0: decrease (^n)
+	double e = (bias > 0)? 1.0 / bias : -bias;
+	if(e == 0.0) e = 1.0;
+	gain = pow(0.08, e);
+		// default: fairly insensitive to changes (~= 16 sample average)
+
+
+	// IIR filter
+	static double old = 30.0;
+	old = cur_fps*gain + old*(1.0-gain);
+	avg_fps = old;
+
+
+
+
+	// update fps counter
+	static double la2, la1, la0;
+	la2 = la1; la1 = la0; la0 = avg_fps;
+
+//	if(ONE_SIDE(fps, la2, la1, la1 /*!*/))
+//		;
+
+	const double d_avg = (avg_fps-fps);
+	const double max_diff = fminf(5.f, 0.05f*fps);
+if( (fabs(d_avg) > max_diff))							// significant difference
+	{
 		fps = (int)avg_fps;
+//debug_out("%d\n", fps);
+	}
+
+
+
+//debug_out2("%f\t%f\t%f\t%f\n", cur_fps, avg_fps,(float)fps,(1.0-gain)*100.0);
+
+
 }
