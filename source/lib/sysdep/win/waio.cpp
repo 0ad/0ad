@@ -549,7 +549,7 @@ ssize_t aio_return(struct aiocb* cb)
 }
 
 
-int aio_suspend(const struct aiocb* cbs[], int n, const struct timespec* ts)
+int aio_suspend(const struct aiocb* const cbs[], int n, const struct timespec* ts)
 {
 	int i;
 
