@@ -211,8 +211,12 @@
                 <image texture="pregame/ui_pregame_mainmenu_edbt_over.png" real-texture-placement="1 1 203 161" size="0 0 100% 100%" />
         </sprite>
         
-        <sprite name="tooltip-background">
-                <image texture="black_16x16.png" texture-size="0 0 16 16" size="0 0 100% 100%" />
+        <sprite name="pregame-mainmenu-tooltip-background">
+                <image backcolor="0 0 0 85" size="0 0 100% 100%"/>
+        </sprite>
+
+        <sprite name="session-tooltip-background">
+                <image backcolor="255 255 255" size="0 0 100% 100%" border="true" bordercolor="0 0 0"/>
         </sprite>
 
         <!--

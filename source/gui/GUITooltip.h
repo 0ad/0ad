@@ -14,7 +14,6 @@ public:
 	void Update(IGUIObject* Nearest, CPos MousePos, CGUI* GUI);
 
 private:
-	void ShowTooltip(IGUIObject* obj, CPos pos, CStr& style, CGUI* gui);
 
 	int m_State;
 

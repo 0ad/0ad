@@ -67,18 +67,24 @@
         
         <!-- Generic Icons / malte, 15th nov -->
         <icon name="0ad_icon" texture="0ad_icon" size="16 16" />
-	<icon name="bullet_icon" texture="bullet_icon" size="8 8" />
-	<icon name="infinity_icon" texture="infinity_icon" size="16 16" />
+        <icon name="bullet_icon" texture="bullet_icon" size="8 8" />
+        <icon name="infinity_icon" texture="infinity_icon" size="16 16" />
 
-<!-- Commented out until tooltips are implemented as documented.
-        <tooltip name="session_tooltip"
-                maxwidth="300"
-                pos="10 10"
-                time="5"
-                sprite="tooltip-background"
-                font="prospero16"
-                textcolor="255 255 255"
+        <tooltip name="pregame-mainmenu-tooltip"
+                use-object="pregame-mainmenu-tooltip"
+                hide-object="true"
+                delay="0"
         />
--->
+
+        <tooltip name="session-tooltip"
+                maxwidth="300"
+                offset="16 32"
+                anchor="top"
+                delay="500"
+                sprite="session-tooltip-background"
+                font="tahoma12"
+                buffer-zone="4"
+                textcolor="0 0 0"
+        />
 
 </setup>

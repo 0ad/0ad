@@ -471,7 +471,7 @@ CStr IGUIObject::GetPresentableName() const
 	if (m_Name.Length() <= 12)
 		return m_Name;
 
-	if (m_Name.GetSubstring(0, 10) == CStr("__internal"))
+	if (m_Name.GetSubstring(0, 10) == "__internal")
 		return CStr("[unnamed object]");
 	else
 		return m_Name;

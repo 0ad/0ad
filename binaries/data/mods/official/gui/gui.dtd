@@ -139,15 +139,16 @@
 -->
 <!ATTLIST tooltip
   name					CDATA #REQUIRED
-  sprite				CDATA #REQUIRED
-
+  sprite				CDATA #IMPLIED
   anchor				CDATA #IMPLIED
   buffer-zone				CDATA #IMPLIED
   font					CDATA #IMPLIED
   maxwidth				CDATA #IMPLIED
-  pos					CDATA #IMPLIED
+  offset				CDATA #IMPLIED
   textcolor				CDATA #IMPLIED
-  time					CDATA #IMPLIED
+  delay					CDATA #IMPLIED
+  use-object				CDATA #IMPLIED
+  hide-object				CDATA #IMPLIED
 >
 
 

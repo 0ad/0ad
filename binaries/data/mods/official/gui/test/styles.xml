@@ -14,12 +14,12 @@
 	/>
 
 	<style name="button"
-		sprite="sprite1" 
- 		sprite-pressed="sprite1-pressed"
+		sprite="sprite1"
+		sprite-pressed="sprite1-pressed"
 		sprite-disabled="sprite1-disabled"
 		sprite-over="sprite1-over"
-		sprite2="sprite1-ch" 
- 		sprite2-pressed="sprite2-pressed"
+		sprite2="sprite1-ch"
+		sprite2-pressed="sprite2-pressed"
 		sprite2-disabled="sprite2-disabled"
 	/>
 
@@ -28,7 +28,8 @@
 		text-align="right"
 		font="prospero16"
 		textcolor="255 255 255"
-		ghost="true" 
+		tooltip-style="session-tooltip"
+		ghost="false"
 	/>
 
 	<!-- Empty entity portrait. -->
@@ -36,7 +37,7 @@
 		sprite="ui_portrait_default_square"
 		sprite-over="ui_portrait_default_square-lit"
 		sprite-disabled="ui_portrait_default_square-grey"
-		tooltip-style="session-tooltip" 
+		tooltip-style="session-tooltip"
 		text-align="right"
 		textcolor="255 255 255"
 	/>
@@ -45,7 +46,7 @@
 		sprite="ui_portrait_default_circle"
 		sprite-over="ui_portrait_default_circle-lit"
 		sprite-disabled="ui_portrait_default_circle-grey"
-		tooltip-style="session-tooltip" 
+		tooltip-style="session-tooltip"
 		text-align="right"
 		textcolor="255 255 255"
 	/>

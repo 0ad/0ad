@@ -128,7 +128,10 @@ class IGUIObject
 	friend class CGUI;
 	friend class CInternalCGUIAccessorBase;
 	friend class IGUIScrollBar;
-	friend class GUITooltip;
+
+	// Allow ShowTooltip/HideTooltip (GUITooltip.cpp) to access HandleMessage
+	friend void ShowTooltip(IGUIObject*, CPos, CStr&, CGUI*);
+	friend void HideTooltip(CStr&, CGUI*);
 
 	// Allow getProperty to access things like GetParent()
 	friend JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval* vp);

@@ -578,10 +578,10 @@ void GUIRenderer::Draw(DrawCalls &Calls)
 			{
 				glColor4fv(cit->m_BorderColor.FloatArray());
 				glBegin(GL_LINE_LOOP);
-					glVertex3f(cit->m_Vertices.left,		cit->m_Vertices.top+1.f,	cit->m_DeltaZ);
-					glVertex3f(cit->m_Vertices.right-1.f,	cit->m_Vertices.top+1.f,	cit->m_DeltaZ);
-					glVertex3f(cit->m_Vertices.right-1.f,	cit->m_Vertices.bottom,		cit->m_DeltaZ);
-					glVertex3f(cit->m_Vertices.left,		cit->m_Vertices.bottom,		cit->m_DeltaZ);
+					glVertex3f(cit->m_Vertices.left,	cit->m_Vertices.top,	cit->m_DeltaZ);
+					glVertex3f(cit->m_Vertices.right,	cit->m_Vertices.top,	cit->m_DeltaZ);
+					glVertex3f(cit->m_Vertices.right,	cit->m_Vertices.bottom,	cit->m_DeltaZ);
+					glVertex3f(cit->m_Vertices.left,	cit->m_Vertices.bottom,	cit->m_DeltaZ);
 				glEnd();
 			}
 		}

@@ -26,6 +26,7 @@
 	IN MOTION
 	* If the mouse stops, check whether it should have a tooltip and move to
 	  'STATIONARY, NO TOOLTIP' or 'STATIONARY, TOOLIP'
+	* If the mouse enters an object with a tooltip delay of 0, switch to 'SHOWING'
 
 	STATIONARY, NO TOOLTIP
 	* If the mouse moves, switch to 'IN MOTION'
@@ -63,85 +64,131 @@ GUITooltip::GUITooltip()
 
 const double CooldownTime = 0.25; // TODO: Don't hard-code this value
 
-static bool GetTooltip(IGUIObject* obj, CStr* &style)
+static bool GetTooltip(IGUIObject* obj, CStr &style)
 {
-	if (obj && obj->SettingExists("tooltip-style"))
+	if (obj && obj->SettingExists("tooltip-style")
+		&& GUI<CStr>::GetSetting(obj, "tooltip-style", style) == PS_OK)
 	{
-		// Use GetSettingPointer to avoid unnecessary string-copying.
-		// (The tooltip code is only run once per frame, but efficiency
-		// would be nice anyway.)
-		if (GUI<CStr>::GetSettingPointer(obj, "tooltip-style", style) == PS_OK
-			&& style->Length())
-
-			return true;
+		if (style.Length() == 0)
+			style = "default";
+		return true;
 	}
 	return false;
 }
 
-// Urgh - this is only a method because it needs to access HandleMessage (which
-// is 'protected'), so it needs to be friendable (and so not a static function)
-void GUITooltip::ShowTooltip(IGUIObject* obj, CPos pos, CStr& style, CGUI* gui)
+static void ShowTooltip(IGUIObject* obj, CPos pos, CStr& style, CGUI* gui)
 {
-	IGUIObject* tooltipobj = gui->FindObjectByName(style);
-	if (! tooltipobj)
-	{
-		LOG_ONCE(ERROR, "gui", "Cannot find tooltip object named '%s'", (const char*)style);
-		return;
-	}
-	// Unhide the object
-	GUI<bool>::SetSetting(tooltipobj, "hidden", false);
-
 	assert(obj);
 
-	// These shouldn't fail:
+	// Get the object referenced by 'tooltip-style'
+	IGUIObject* tooltipobj = gui->FindObjectByName("__tooltip_"+style);
+	if (! tooltipobj)
+	{
+		LOG_ONCE(ERROR, "gui", "Cannot find tooltip named '%s'", (const char*)style);
+		return;
+	}
+
+	IGUIObject* usedobj = tooltipobj; // object actually used to display the tooltip in
+
+	CStr usedObjectName;
+	if (GUI<CStr>::GetSetting(tooltipobj, "use-object", usedObjectName) == PS_OK
+		&& usedObjectName.Length())
+	{
+		usedobj = gui->FindObjectByName(usedObjectName);
+		if (! usedobj)
+		{
+			LOG_ONCE(ERROR, "gui", "Cannot find object named '%s' used by tooltip '%s'", (const char*)usedObjectName, (const char*)style);
+			return;
+		}
+
+		// Unhide the object. (If it had use-object and hide-object="true",
+		// still unhide it, because the used object might be hidden by default)
+		GUI<bool>::SetSetting(usedobj, "hidden", false);
+	}
+	else
+	{
+		// Unhide the object
+		GUI<bool>::SetSetting(usedobj, "hidden", false);
+
+		// Store mouse position inside the CTooltip
+		if (GUI<CPos>::SetSetting(usedobj, "_mousepos", pos) != PS_OK)
+			debug_warn("Failed to set tooltip mouse position");
+	}
 
 	// Retrieve object's 'tooltip' setting
 	CStr text;
 	if (GUI<CStr>::GetSetting(obj, "tooltip", text) != PS_OK)
-		debug_warn("Failed to retrieve tooltip text");
+		debug_warn("Failed to retrieve tooltip text"); // shouldn't fail
 
 	// Set tooltip's caption
-	if (tooltipobj->SetSetting("caption", text) != PS_OK)
-		debug_warn("Failed to set tooltip caption");
-
-	// Store mouse position inside the tooltip
-	if (GUI<CPos>::SetSetting(tooltipobj, "_mousepos", pos) != PS_OK)
-		debug_warn("Failed to set tooltip mouse position");
+	if (usedobj->SetSetting("caption", text) != PS_OK)
+		debug_warn("Failed to set tooltip caption"); // shouldn't fail
 
 	// Make the tooltip object regenerate its text
-	tooltipobj->HandleMessage(SGUIMessage(GUIM_SETTINGS_UPDATED, "caption"));
+	usedobj->HandleMessage(SGUIMessage(GUIM_SETTINGS_UPDATED, "caption"));
 }
 
 static void HideTooltip(CStr& style, CGUI* gui)
 {
-	IGUIObject* tooltipobj = gui->FindObjectByName(style);
+	IGUIObject* tooltipobj = gui->FindObjectByName("__tooltip_"+style);
 	if (! tooltipobj)
 	{
-		LOG_ONCE(ERROR, "gui", "Cannot find tooltip object named '%s'", (const char*)style);
+		LOG_ONCE(ERROR, "gui", "Cannot find tooltip named '%s'", (const char*)style);
 		return;
 	}
-	GUI<bool>::SetSetting(tooltipobj, "hidden", true);
+
+	CStr usedObjectName;
+	if (GUI<CStr>::GetSetting(tooltipobj, "use-object", usedObjectName) == PS_OK
+		&& usedObjectName.Length())
+	{
+		IGUIObject* usedobj = gui->FindObjectByName(usedObjectName);
+		if (! usedobj)
+		{
+			LOG_ONCE(ERROR, "gui", "Cannot find object named '%s' used by tooltip '%s'", (const char*)usedObjectName, (const char*)style);
+			return;
+		}
+
+		// Clear the caption
+		usedobj->SetSetting("caption", "");
+		usedobj->HandleMessage(SGUIMessage(GUIM_SETTINGS_UPDATED, "caption"));
+
+
+		bool hideobject = true;
+		GUI<bool>::GetSetting(tooltipobj, "hide-object", hideobject);
+
+		// If hide-object was enabled, hide it
+		if (hideobject)
+			GUI<bool>::SetSetting(usedobj, "hidden", true);
+	}
+	else
+	{
+		GUI<bool>::SetSetting(tooltipobj, "hidden", true);
+	}
+
 }
 
-static int GetTooltipTime(CStr& style, CGUI* gui)
+static int GetTooltipDelay(CStr& style, CGUI* gui)
 {
-	int time = 500; // default value (in msec)
+	int delay = 500; // default value (in msec)
 
-	IGUIObject* tooltipobj = gui->FindObjectByName(style);
+	IGUIObject* tooltipobj = gui->FindObjectByName("__tooltip_"+style);
 	if (! tooltipobj)
 	{
 		LOG_ONCE(ERROR, "gui", "Cannot find tooltip object named '%s'", (const char*)style);
-		return time;
+		return delay;
 	}
-	GUI<int>::GetSetting(tooltipobj, "time", time);
-	return time;
+	GUI<int>::GetSetting(tooltipobj, "delay", delay);
+	return delay;
 }
 
 void GUITooltip::Update(IGUIObject* Nearest, CPos MousePos, CGUI* GUI)
 {
+	// Called once per frame, so efficiency isn't vital
+
+
 	double now = get_time();
 
-	CStr* style = NULL;
+	CStr style;
 
 	int nextstate = -1;
 
@@ -154,6 +201,13 @@ void GUITooltip::Update(IGUIObject* Nearest, CPos MousePos, CGUI* GUI)
 				nextstate = ST_STATIONARY_TOOLTIP;
 			else
 				nextstate = ST_STATIONARY_NO_TOOLTIP;
+		}
+		else
+		{
+			// Check for movement onto a zero-delayed tooltip
+			if (GetTooltip(Nearest, style) && GetTooltipDelay(style, GUI)==0)
+
+				nextstate = ST_SHOWING;
 		}
 		break;
 
@@ -190,31 +244,29 @@ void GUITooltip::Update(IGUIObject* Nearest, CPos MousePos, CGUI* GUI)
 		break;
 
 	case ST_COOLING:
-		if (now >= m_Time)
-			nextstate = ST_IN_MOTION;
-		else if (Nearest != m_PreviousObject && GetTooltip(Nearest, style))
+		if (GetTooltip(Nearest, style))
 			nextstate = ST_SHOWING;
+		else if (now >= m_Time)
+			nextstate = ST_IN_MOTION;
 		break;
 	}
 
-	// Handle state-entry code
+	// Handle state-entry code:
 
 	if (nextstate != -1)
 	{
 		switch (nextstate)
 		{
 		case ST_STATIONARY_TOOLTIP:
-			m_Time = now + (double)GetTooltipTime(*style, GUI) / 1000.;
+			m_Time = now + (double)GetTooltipDelay(style, GUI) / 1000.;
 			break;
 
 		case ST_SHOWING:
-			// show tooltip
-			ShowTooltip(Nearest, MousePos, *style, GUI);
-			m_PreviousTooltipName = *style;
+			ShowTooltip(Nearest, MousePos, style, GUI);
+			m_PreviousTooltipName = style;
 			break;
 
 		case ST_COOLING:
-			// hide the tooltip
 			HideTooltip(m_PreviousTooltipName, GUI);
 			m_Time = now + CooldownTime;
 			break;

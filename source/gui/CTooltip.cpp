@@ -1,23 +1,34 @@
+// CTooltip: GUI object used for tooltips
+
 #include "precompiled.h"
 
 #include "CTooltip.h"
 #include "CGUI.h"
 
+#include <algorithm>
+
 CTooltip::CTooltip()
 {
+	// If the tooltip is an object by itself:
 	AddSetting(GUIST_float,					"buffer-zone");
 	AddSetting(GUIST_CGUIString,			"caption");
 	AddSetting(GUIST_CStr,					"font");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
-	AddSetting(GUIST_int,					"time");
+	AddSetting(GUIST_int,					"delay");
 	AddSetting(GUIST_CColor,				"textcolor");
 	AddSetting(GUIST_int,					"maxwidth");
-	AddSetting(GUIST_CPos,					"pos");
+	AddSetting(GUIST_CPos,					"offset");
 	AddSetting(GUIST_EVAlign,				"anchor");
 
+	// If the tooltip is just a reference to another object:
+	AddSetting(GUIST_CStr,					"use-object");
+	AddSetting(GUIST_bool,					"hide-object");
+
+	// Private settings:
 	AddSetting(GUIST_CPos,					"_mousepos");
 
-	GUI<int>::SetSetting(this, "time", 500);
+	// Defaults
+	GUI<int>::SetSetting(this, "delay", 500);
 	GUI<EVAlign>::SetSetting(this, "anchor", EVAlign_Bottom);
 
 	// Set up a blank piece of text, to be replaced with a more
@@ -40,46 +51,54 @@ void CTooltip::SetupText()
 	if (GUI<CStr>::GetSetting(this, "font", font) != PS_OK || font.Length()==0)
 		font = "default";
 
-    float buffer_zone=0.f;
+	float buffer_zone = 0.f;
 	GUI<float>::GetSetting(this, "buffer-zone", buffer_zone);
 
 	CGUIString caption;
 	GUI<CGUIString>::GetSetting(this, "caption", caption);
 
-	float max_width = 500.f; // TODO: max-width setting
+	int max_width = 0;
+	GUI<int>::GetSetting(this, "maxwidth", max_width);
 
-	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, max_width, buffer_zone, this);
+	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, (float)max_width, buffer_zone, this);
 
-	CPos mousepos, pos;
+
+	// Position the tooltip relative to the mouse:
+
+	CPos mousepos, offset;
 	EVAlign anchor;
 	GUI<CPos>::GetSetting(this, "_mousepos", mousepos);
-	GUI<CPos>::GetSetting(this, "pos", pos);
+	GUI<CPos>::GetSetting(this, "offset", offset);
 	GUI<EVAlign>::GetSetting(this, "anchor", anchor);
 
-	// Position the tooltip relative to the mouse
+	// TODO: Calculate the actual width of the wrapped text and use that.
+	// (m_Size.cx is >max_width if the text wraps, which is not helpful)
+	float textwidth = std::min(m_GeneratedTexts[0]->m_Size.cx, (float)max_width);
+	float textheight = m_GeneratedTexts[0]->m_Size.cy;
 
 	CClientArea size;
-	size.pixel.left = mousepos.x + pos.x;
-	size.pixel.right = size.pixel.left + m_GeneratedTexts[0]->m_Size.cx;
+	size.pixel.left = mousepos.x + offset.x;
+	size.pixel.right = size.pixel.left + textwidth;
 	switch (anchor)
 	{
 	case EVAlign_Top:
-		size.pixel.top = mousepos.y + pos.y;
-		size.pixel.bottom = size.pixel.top + m_GeneratedTexts[0]->m_Size.cy;
+		size.pixel.top = mousepos.y + offset.y;
+		size.pixel.bottom = size.pixel.top + textheight;
 		break;
 	case EVAlign_Bottom:
-		size.pixel.bottom = mousepos.y + pos.y;
-		size.pixel.top = size.pixel.bottom - m_GeneratedTexts[0]->m_Size.cy;
+		size.pixel.bottom = mousepos.y + offset.y;
+		size.pixel.top = size.pixel.bottom - textheight;
 		break;
 	case EVAlign_Center:
-		size.pixel.top = mousepos.y + pos.y - m_GeneratedTexts[0]->m_Size.cy/2.f;
-		size.pixel.bottom = size.pixel.top + m_GeneratedTexts[0]->m_Size.cy;
+		size.pixel.top = mousepos.y + offset.y - textheight/2.f;
+		size.pixel.bottom = size.pixel.top + textwidth;
 		break;
 	default:
 		debug_warn("Invalid EVAlign!");
 	}
 
-	// Adjust it if it's falling off the screen
+
+	// Reposition the tooltip if it's falling off the screen:
 
 	extern int g_xres, g_yres;
 	float screenw = (float)g_xres, screenh = (float)g_yres;

@@ -1738,10 +1738,9 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 
 void CGUI::Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile)
 {
-	IGUIObject* object = new CTooltip;
+	// Read the tooltip, and store it as a specially-named object
 
-	object->SetName(CStr("__internal(") + CStr(m_InternalNameNumber) + CStr(")"));
-	++m_InternalNameNumber;
+	IGUIObject* object = new CTooltip;
 
 	XMBAttributeList attributes = Element.getAttributes();
 	for (int i=0; i<attributes.Count; ++i)
@@ -1752,7 +1751,7 @@ void CGUI::Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile)
 
 		if (attr_name == "name")
 		{
-			object->SetName(attr_value);
+			object->SetName("__tooltip_" + attr_value);
 		}
 		else
 		{

@@ -118,7 +118,7 @@ struct SGUIText
 		bool m_Bold, m_Italic, m_Underlined;
 
 		/**
-		 * *IF* an icon, than this is not NULL.
+		 * *IF* an icon, then this is not NULL.
 		 */
 		std::list<SSpriteCall>::pointer m_pSpriteCall;
 	};
