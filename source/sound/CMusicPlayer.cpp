@@ -116,35 +116,6 @@ void CMusicPlayer::open(char *filename)
 	format = 0;
 	info = NULL;
 
-/*
-	FILE*   tempOggFile;
-	int		sizeOfFile; 
-	char	tempChar;
-	int		tempArray;
-
-    if(!(tempOggFile = fopen(filename, "rb")))
-	{	
-		printf("Unable to open Ogg file\n");
-		exit(1);
-	}
-	sizeOfFile = 0;
-	while (!feof(tempOggFile))
-	{
-		tempChar = getc(tempOggFile);
-		sizeOfFile++;
-	}
-
-	memFile.dataPtr = new char[sizeOfFile];
-	rewind(tempOggFile);
-	tempArray = 0;
-	while (!feof(tempOggFile))
-	{
-		memFile.dataPtr[tempArray] = getc(tempOggFile);
-		tempArray++;
-	}
-
-	fclose(tempOggFile);
-*/
 	void* p;
 	size_t sizeOfFile;
 	if(vfs_load(filename, p, sizeOfFile) <= 0)
@@ -170,8 +141,8 @@ void CMusicPlayer::open(char *filename)
 	//start file to from memory
 	if (ov_open_callbacks(&memFile, &oggStream, NULL, 0, vorbisCallbacks) != 0)
 	{
-		printf("Could not decode ogg into memory\n");
-		exit(1);
+		LOG(ERROR, "Could not decode ogg into memory\n");
+		return;
 	}
 	
 	info = ov_info(&oggStream, -1);
@@ -322,9 +293,8 @@ void CMusicPlayer::check()
 
 	if(error != AL_NO_ERROR)
 	{
-		std::string err = errorString(error);
-		std::cout << "OpenAL error: " << err << std::endl;
-		exit(1);
+		std::string str = errorString(error);
+		LOG(ERROR, "OpenAL error: %s\n", str.c_str());
 	}
 }
 
@@ -360,8 +330,8 @@ bool CMusicPlayer::stream(ALuint buffer)
 		// error
 		else if(ret < 0)
 		{
-			printf("Error reading from ogg file: %s\n", errorString(ret).c_str());
-			exit(1);
+			LOG(ERROR, "Error reading from ogg file: %s\n", errorString(ret).c_str());
+			return false;
 		}
 		// EOF
 		else
