@@ -26,6 +26,7 @@
 #include <limits.h>	// CHAR_BIT
 #include <string.h>
 #include <stdlib.h>
+#include <new> // std::bad_alloc
 
 
 // rationale
