@@ -120,27 +120,33 @@ public:
 
 	size_t Length() const {return m_String.length();}
 	// Retrieves the substring within the string 
-	CStr GetSubstring(size_t start, size_t len);
+	CStr GetSubstring(size_t start, size_t len) const;
 
 	//Search the string for another string 
-	_long Find(const CStr &Str);
+	_long Find(const CStr &Str) const;
+
+	//Search the string for another string 
+	_long Find(const TCHAR &tchar) const;
+
+	//Search the string for another string 
+	_long Find(const int &start, const TCHAR &tchar) const;
 
 	//You can also do a "ReverseFind"- i.e. search starting from the end 
-	_long ReverseFind(const CStr &Str);
+	_long ReverseFind(const CStr &Str) const;
 
 	// Lowercase and uppercase 
-	CStr LowerCase();
-	CStr UpperCase();
+	CStr LowerCase() const;
+	CStr UpperCase() const;
 
 	// Lazy funcs
-	CStr LCase();
-	CStr UCase();
+	CStr LCase() const;
+	CStr UCase() const;
 
 	// Retreive the substring of the first n characters 
-	CStr Left(_long len);
+	CStr Left(_long len) const;
 
 	// Retreive the substring of the last n characters
-	CStr Right(_long len);
+	CStr Right(_long len) const;
 	
 	//Remove all occurences of some character or substring 
 	void Remove(const CStr &Str);

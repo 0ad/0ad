@@ -108,14 +108,14 @@ _double	CStr::ToDouble() const
 }
 
 //You can retrieve the substring within the string 
-CStr CStr::GetSubstring(size_t start, size_t len)
+CStr CStr::GetSubstring(size_t start, size_t len) const
 {
 	return CStr( m_String.substr(start, len) );
 }
 
 
 //Search the string for another string 
-_long CStr::Find(const CStr &Str)
+_long CStr::Find(const CStr &Str) const
 {
 	_long Pos = (_long)m_String.find(Str.m_String, 0);
 
@@ -125,7 +125,29 @@ _long CStr::Find(const CStr &Str)
 	return -1;
 }
 
-_long CStr::ReverseFind(const CStr &Str)
+//Search the string for another string 
+_long CStr::Find(const TCHAR &tchar) const
+{
+	_long Pos = (_long)m_String.find(tchar, 0);
+
+	if (Pos != tstring::npos)
+		return Pos;
+
+	return -1;
+}
+
+//Search the string for another string 
+_long CStr::Find(const int &start, const TCHAR &tchar) const
+{
+	_long Pos = (_long)m_String.find(tchar, start);
+
+	if (Pos != tstring::npos)
+		return Pos;
+
+	return -1;
+}
+
+_long CStr::ReverseFind(const CStr &Str) const
 {
 	_long Pos = (_long)m_String.rfind(Str.m_String, m_String.length() );
 
@@ -137,7 +159,7 @@ _long CStr::ReverseFind(const CStr &Str)
 }
 
 // Lowercase and uppercase 
-CStr CStr::LowerCase()
+CStr CStr::LowerCase() const
 {
 	tstring NewTString = m_String;
 	for (size_t i = 0; i < m_String.length(); i++)
@@ -146,7 +168,7 @@ CStr CStr::LowerCase()
 	return CStr(NewTString);
 }
 
-CStr CStr::UpperCase()
+CStr CStr::UpperCase() const
 {
 	tstring NewTString = m_String;
 	for (size_t i = 0; i < m_String.length(); i++)
@@ -157,7 +179,7 @@ CStr CStr::UpperCase()
 
 // Lazy versions
 // code duplication because return by value overhead if they were merely an allias
-CStr CStr::LCase()
+CStr CStr::LCase() const
 {
 	tstring NewTString = m_String;
 	for (size_t i = 0; i < m_String.length(); i++)
@@ -166,7 +188,7 @@ CStr CStr::LCase()
 	return CStr(NewTString);
 }
 
-CStr CStr::UCase()
+CStr CStr::UCase() const
 {
 	tstring NewTString = m_String;
 	for (size_t i = 0; i < m_String.length(); i++)
@@ -176,13 +198,13 @@ CStr CStr::UCase()
 }
 
 //Retreive the substring of the first n characters 
-CStr CStr::Left(_long len)
+CStr CStr::Left(_long len) const
 {
 	return CStr( m_String.substr(0, len) );
 }
 
 //Retreive the substring of the last n characters
-CStr CStr::Right(_long len)
+CStr CStr::Right(_long len) const
 {
 	return CStr( m_String.substr(m_String.length()-len, len) );
 }
