@@ -82,20 +82,17 @@ extern int snd_set_master_gain(float gain);
 // sound instance
 //
 
-// open and return a handle to the sound specified by the
-// definition file <def_fn> (it consists of filename and gain).
-// 
-// is_stream (default false) forces the sound to be opened as a stream:
-// opening is faster, it won't be kept in memory, but only one instance
-// of the sound file, and 2 streams total, are allowed at a time.
-extern Handle snd_open_def(const char* def_fn, bool stream = false);
-
-// open and return a handle to the sound file <snd_fn>.
-// gain is set to the default, and may be changed via snd_set_gain.
+// open and return a handle to a sound.
+//
+// if <snd_fn> is a text file (extension ".txt"), it is assumed
+// to be a definition file containing the sound file name and
+// its gain (0.0 .. 1.0).
+// otherwise, <snd_fn> is taken to be the sound file name and
+// gain is set to the default of 1.0 (no attenuation).
 //
 // is_stream (default false) forces the sound to be opened as a stream:
 // opening is faster, it won't be kept in memory, but only one instance
-// of the sound file, and 2 streams total, are allowed at a time.
+// can be open at a time.
 extern Handle snd_open(const char* snd_fn, bool stream = false);
 
 // close the sound <hs> and set hs to 0. if it was playing,

@@ -1099,11 +1099,7 @@ enum VSrcFlags
 	// tell SndData to open the sound as a stream.
 	// require caller to pass this explicitly, so they're aware
 	// of the limitation that there can only be 1 instance of those.
-	VS_IS_STREAM = 2,
-
-	// fn passed to VSrc_reload is the actual sound file name,
-	// not a definition file.
-	VS_NO_DEF    = 4
+	VS_IS_STREAM = 2
 };
 
 struct VSrc
@@ -1396,18 +1392,18 @@ static int VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
 	al_init();
 
 	//
-	// decide whether using from definition file or just sound filename
+	// if extension is .txt, fn is a definition file containing the
+	// sound file name and its gain; otherwise, read directly from fn
+	// and assume default gain (1.0).
 	//
 
-	const char* snd_fn;
-	std::string snd_fn_s;	// must not go out of scope below
+	const char* snd_fn;		// actual sound file name
+	std::string snd_fn_s;
+		// extracted from stringstream;
+		// declare here so that it doesn't go out of scope below.
 
-	if(vs->flags & VS_NO_DEF)
-	{
-		snd_fn = fn;
-		vs->gain = 1.0f;
-	}
-	else
+	const char* ext = strchr(fn, '.');
+	if(ext && !strcmp(ext, ".txt"))
 	{
 		void* def_file;
 		size_t def_size;
@@ -1422,6 +1418,11 @@ static int VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
 		snd_fn = snd_fn_s.c_str();
 		vs->gain = gain_percent / 100.0f;
 	}
+	else
+	{
+		snd_fn = fn;
+		vs->gain = 1.0f;
+	}
 
 	// note: vs->gain can legitimately be > 1.0 - don't clamp.
 
@@ -1435,26 +1436,13 @@ static int VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
 }
 
 
-// open and return a handle to the sound specified by the
-// definition file <def_fn> (it consists of filename and gain).
-// 
-// is_stream (default false) forces the sound to be opened as a stream:
-// opening is faster, it won't be kept in memory, but only one instance
-// can be open at a time.
+// open and return a handle to a sound.
 //
-// note: RES_UNIQUE forces each instance to get a new resource
-// (which is of course what we want).
-Handle snd_open_def(const char* const def_fn, const bool is_stream)
-{
-	uint flags = 0;
-	if(is_stream)
-		flags |= VS_IS_STREAM;
-	return h_alloc(H_VSrc, def_fn, RES_UNIQUE, flags);
-}
-
-
-// open and return a handle to the sound <snd_fn>.
-// gain is set to the default, and may be changed via snd_set_gain.
+// if <snd_fn> is a text file (extension ".txt"), it is assumed
+// to be a definition file containing the sound file name and
+// its gain (0.0 .. 1.0).
+// otherwise, <snd_fn> is taken to be the sound file name and
+// gain is set to the default of 1.0 (no attenuation).
 //
 // is_stream (default false) forces the sound to be opened as a stream:
 // opening is faster, it won't be kept in memory, but only one instance
@@ -1464,7 +1452,7 @@ Handle snd_open_def(const char* const def_fn, const bool is_stream)
 // (which is of course what we want).
 Handle snd_open(const char* const snd_fn, const bool is_stream)
 {
-	uint flags = VS_NO_DEF;
+	uint flags = 0;
 	if(is_stream)
 		flags |= VS_IS_STREAM;
 	return h_alloc(H_VSrc, snd_fn, RES_UNIQUE, flags);
