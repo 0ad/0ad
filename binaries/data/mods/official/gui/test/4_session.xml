@@ -1370,7 +1370,7 @@
 					crd_map_orb_segleft3_x, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_segleft3_y, crd_map_orb_segleft3_x+crd_map_orb_segleft3_width, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_segleft3_y+crd_map_orb_segleft3_height, right_screen, bottom_screen, right_screen, bottom_screen);
 				]]></action>
 			</object>
-                        <object type="button" name="session_panel_minimap_segleft4" sprite="session_panel_minimap_segleft4" sprite-over="session_panel_minimap_segleft4-lit" z="60" hidden="false">
+                        <object type="button" name="session_panel_minimap_segleft4" hotkey="menu.game" sprite="session_panel_minimap_segleft4" sprite-over="session_panel_minimap_segleft4-lit" z="60" hidden="false">
 				<action on="Load"><![CDATA[
 					AddSizeCoord(this.name,
 					crd_map_orb_segleft4_x, crd_map_orb_segleft4_y, crd_map_orb_segleft4_x+crd_map_orb_segleft4_width, crd_map_orb_segleft4_y+crd_map_orb_segleft4_height, right_screen, top_screen, right_screen, top_screen,

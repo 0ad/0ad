@@ -726,6 +726,7 @@ function UpdateStatusOrb()
 	// Update Supply/Garrison
 	GUIObject = getGUIObjectByName("session_panel_status_stat1");
 	GUIObject.caption = '';
+
 	if (selection[0].traits.garrison)
 	{
 		if (selection[0].traits.garrison.curr && selection[0].traits.garrison.max)
@@ -733,16 +734,16 @@ function UpdateStatusOrb()
 			GUIObject.caption += '[icon="icon_statistic_garrison"] [color="100 100 255"]' + selection[0].traits.garrison.curr + '/' + selection[0].traits.garrison.max + '[/color] ';
 		}
 	}
+
 	if (selection[0].traits.supply)
 	{
 		if (selection[0].traits.supply.curr && selection[0].traits.supply.max && selection[0].traits.supply.type)
 		{
-			GUIObject.caption += '[icon="icon_resource_' + selection[0].traits.supply.type + '"] [color="255 100 100"]';
 			// Special case for infinity.
 			if (selection[0].traits.supply.curr == "0" && selection[0].traits.supply.max == "0")
-				GUIObject.caption += '8 ';
+				GUIObject.caption += '[icon="icon_resource_' + selection[0].traits.supply.type + '"] [color="100 100 255"] [icon="infinity_icon"] [/color] ';
 			else
-				GUIObject.caption += selection[0].traits.supply.curr + '/' + selection[0].traits.supply.max;
+				GUIObject.caption += '[icon="icon_resource_' + selection[0].traits.supply.type + '"] [color="100 100 255"]' + selection[0].traits.supply.curr + '/' + selection[0].traits.supply.max + '[/color] ';
 		}
 	}
 
