@@ -1036,25 +1036,20 @@ int vfs_close_dir(Handle& hd)
 // - 0: any file;
 // - "/": any subdirectory
 // - anything else: pattern for name (may include '?' and '*' wildcards)
+//
+// rationale: the filename is currently stored internally as
+// std::string (=> less manual memory allocation). we don't want to
+// return a reference, because that would break C compatibility.
+// we're trying to avoid fixed-size buffers, so that is out as well.
+// finally, allocating a copy is not so good because it has to be
+// freed by the user (won't happen). returning a volatile pointer
+// to the string itself via c_str is the only remaining option.
 int vfs_next_dirent(const Handle hd, vfsDirEnt* ent, const char* const filter)
 {
 	H_DEREF(hd, VDir, vd);
 
-	bool filter_dir = false;
-	if(filter && filter[0] == '/' && filter[1] == '\0')
-		filter_dir = true;
-
-	// rationale: the filename is currently stored internally as
-	// std::string (=> less manual memory allocation). we don't want to
-	// return a reference, because that would break C compatibility.
-	// we're trying to avoid fixed-size buffers, so that is out as well.
-	// finally, allocating a copy is not so good because it has to be
-	// freed by the user (won't happen). returning a volatile pointer
-	// to the string itself via c_str is the only remaining option.
-	const char* fn;
-
 	// caller wants a subdirectory; return the next one.
-	if(filter_dir)
+	if(filter && filter[0] == '/' && filter[1] == '\0')
 	{
 		if(vd->subdir_it == vd->subdirs->end())
 			return ERR_VFS_DIR_END;
@@ -1071,7 +1066,7 @@ int vfs_next_dirent(const Handle hd, vfsDirEnt* ent, const char* const filter)
 		ent->name = vd->file_it->first.c_str();
 		++vd->file_it;
 
-		if(!filter || match_wildcard(fn, filter))
+		if(!filter || match_wildcard(ent->name, filter))
 			return 0;
 	}
 }
