@@ -296,7 +296,8 @@
       <object type="text" name="session_panel_bg_right" sprite="session_panel_bg_right" size="100%-241 100%-161 100% 100%" z="50" hidden="false" />
 
       <!-- MINIMAP - TEMP: Insert real minimap here later. -->
-      <object type="text" name="session_panel_minimap_dummy" sprite="session_panel_minimap_dummy" size="9 100%-169 100% 100%" z="60" hidden="false" />
+      <!--<object type="text" name="session_panel_minimap_dummy" sprite="session_panel_minimap_dummy" size="9 100%-169 100% 100%" z="60" hidden="false" />-->
+      <object type="minimap" name="session_panel_minimap_dummy" sprite="session_panel_minimap_dummy" size="0%+9 100%-169 0%+169 100%-9" z="60" hidden="false" />
 
       <!--
       ==========================================
