@@ -47,7 +47,7 @@
 XERCES_CPP_NAMESPACE_USE
 
 CStr XMLTranscode(const XMLCh *);
-XMLCh *XMLTranscode(const CStr &);
+XMLCh *XMLTranscode(const char *);
 
 /*
 	CLASS		: CVFSInputSource
