@@ -245,8 +245,8 @@ static int write_sys_info()
 
 static int set_vmode(int w, int h, int bpp, bool fullscreen)
 {
-    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
-    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
 	if(!SDL_SetVideoMode(w, h, bpp, SDL_OPENGL|(fullscreen?SDL_FULLSCREEN:0)))
 		return -1;
@@ -266,7 +266,7 @@ static int set_vmode(int w, int h, int bpp, bool fullscreen)
 }
 
 
-// use_bmp is for when you simply want high-speed output
+// use_bmp is for when you want high-speed output at the expense of huge files
 static void WriteScreenshot(bool use_bmp = false)
 {
 	// determine next screenshot number.
@@ -281,9 +281,9 @@ static void WriteScreenshot(bool use_bmp = false)
 	// could fix via enumerating all files, but it's not worth it ATM.
 	char fn[VFS_MAX_PATH];
 
-	const char* file_format;
-	if(use_bmp)	file_format = "screenshots/screenshot%04d.bmp";
-	else		file_format = "screenshots/screenshot%04d.png";
+	const char* file_format =
+					use_bmp	? "screenshots/screenshot%04d.bmp"
+							: "screenshots/screenshot%04d.png";
 
 	static int next_num = 1;
 	do
@@ -747,6 +747,8 @@ static void Shutdown()
 	delete &g_ObjMan;
 	delete &g_SkelAnimMan;
 
+	delete &g_MaterialManager;
+
 	// destroy terrain related stuff
 	delete &g_TexMan;
 
@@ -907,8 +909,8 @@ PREVTSC=CURTSC;
 	// create terrain related stuff
 	new CTextureManager;
 
-    // create the material manager
-    new CMaterialManager;
+	// create the material manager
+	new CMaterialManager;
 
 	// create actor related stuff
 	new CSkeletonAnimManager;
