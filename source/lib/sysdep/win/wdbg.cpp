@@ -45,6 +45,13 @@ WIN_REGISTER_FUNC(wdbg_shutdown);
 #pragma data_seg()
 
 
+// debug_warn usually uses assert2, but we don't want to call that from
+// inside an assert2 (from inside another assert2 (from inside another assert2
+// (... etc))), so just use the normal assert
+#undef debug_warn
+#define debug_warn(str) assert(0 && (str))
+
+
 static void set_exception_handler();
 
 
