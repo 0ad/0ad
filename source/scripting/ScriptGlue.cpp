@@ -40,11 +40,12 @@ JSFunctionSpec ScriptFunctionTable[] =
 	{"getGUIObjectByName", JSI_IGUIObject::getByName, 1, 0, 0 },
 	{"getGlobal", getGlobal, 0, 0, 0 },
 	{"getGUIGlobal", getGUIGlobal, 0, 0, 0 },
-	{"setCursor", setCursor, 0, 0, 0 },
+	{"setCursor", setCursor, 1, 0, 0 },
 	{"startGame", startGame, 0, 0, 0 },
 	{"endGame", endGame, 0, 0, 0 },
 	{"exit", exitProgram, 0, 0, 0 },
-	{"crash", crash, 1, 0, 0 },
+	{"crash", crash, 0, 0, 0 },
+	{"_mem", js_mem, 0, 0, 0 }, // Intentionally undocumented
 	{0, 0, 0, 0, 0}, 
 };
 
@@ -295,4 +296,19 @@ JSBool crash(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject
 	MICROLOG(L"Crashing at user's request.");
 	uintptr_t ptr = 0xDEADC0DE;
 	return *(JSBool*) ptr;
+}
+
+JSBool js_mem(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject), unsigned int UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* UNUSEDPARAM(rval))
+{
+#ifdef _WIN32
+	int left, total;
+	extern int GetVRAMInfo(int&, int&);
+	if (GetVRAMInfo(left, total))
+		LOG(WARNING, "VRAM: used %d, total %d, free %d", total-left, total, left);
+	else
+		LOG(WARNING, "VRAM: failed to detect");
+#else
+	LOG(WARNING, "VRAM: [not available on non-Windows]");
+#endif
+	return JS_TRUE;
 }

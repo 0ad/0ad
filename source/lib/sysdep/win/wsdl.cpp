@@ -825,6 +825,40 @@ SDL_VideoInfo* SDL_GetVideoInfo()
 }
 
 
+// For very [very] basic memory-usage information.
+// Should be replaced by a decent memory profiler.
+int GetVRAMInfo(int& remaining, int& total)
+{
+	int ok = 0;
+#ifdef DDRAW
+
+	WIN_SAVE_LAST_ERROR;	// DirectDraw
+
+	IDirectDraw* dd = 0;
+	HRESULT hr = DirectDrawCreate(0, &dd, 0);
+	if(SUCCEEDED(hr) && dd != 0)
+	{
+		static DDCAPS caps;
+		caps.dwSize = sizeof(caps);
+		hr = dd->GetCaps(&caps, 0);
+		if(SUCCEEDED(hr))
+		{
+			ok = 1;
+			remaining = caps.dwVidMemFree;
+			total = caps.dwVidMemTotal;
+		}
+		dd->Release();
+	}
+
+	WIN_RESTORE_LAST_ERROR;
+
+#endif
+
+	return ok;
+}
+
+
+
 SDL_Surface* SDL_GetVideoSurface()
 {
 	return 0;

@@ -31,6 +31,9 @@ JSBool exitProgram(JSContext* context, JSObject* globalObject, unsigned int argc
 // Crashes.
 JSBool crash(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
 
+// Tries to print the amount of remaining video memory
+JSBool js_mem(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
+
 extern JSFunctionSpec ScriptFunctionTable[];
 extern JSPropertySpec ScriptGlobalTable[];
 
