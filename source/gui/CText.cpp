@@ -69,7 +69,7 @@ void CText::SetupText()
 	GUI<CGUIString>::GetSetting(this, "caption", caption);
 	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
 
-	int width = m_CachedActualSize.GetWidth();
+	int width = (int)m_CachedActualSize.GetWidth();
 	// remove scrollbar if applicable
 	if (scrollbar && GetScrollBar(0).GetStyle())
 		width -= GetScrollBar(0).GetStyle()->m_Width;
@@ -83,7 +83,7 @@ void CText::SetupText()
 	if (scrollbar)
 	{
 		GetScrollBar(0).SetScrollRange( m_GeneratedTexts[0]->m_Size.cy );
-		GetScrollBar(0).SetScrollSpace( m_CachedActualSize.GetHeight() );
+		GetScrollBar(0).SetScrollSpace( (int)m_CachedActualSize.GetHeight() );
 	}
 }
 
@@ -106,8 +106,8 @@ void CText::HandleMessage(const SGUIMessage &Message)
 			 Message.value == CStr("absolute")))
 		{
 			
-			GetScrollBar(0).SetX( m_CachedActualSize.right );
-			GetScrollBar(0).SetY( m_CachedActualSize.top );
+			GetScrollBar(0).SetX( (int)m_CachedActualSize.right );
+			GetScrollBar(0).SetY( (int)m_CachedActualSize.top );
 			GetScrollBar(0).SetZ( GetBufferedZ() );
 			GetScrollBar(0).SetLength( m_CachedActualSize.bottom - m_CachedActualSize.top );
 		}
