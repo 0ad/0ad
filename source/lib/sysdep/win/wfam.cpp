@@ -113,10 +113,10 @@ struct Watch
 // only store pointer in container - they're not copy-equivalent
 // (dtor would close hDir).
 //
-// key is uint reqnum - that's what FAMCancelMonitor is passed.
+// key is int reqnum - that's what FAMCancelMonitor is passed.
 // reqnums aren't reused to avoid problems with stale reqnums after
 // cancelling; hence, map instead of vector and freelist.
-typedef std::map<uint, Watch*> Watches;
+typedef std::map<int, Watch*> Watches;
 typedef Watches::iterator WatchIt;
 
 typedef std::list<FAMEvent> Events;
@@ -146,7 +146,7 @@ struct AppState
 	// they're not copy-equivalent.
 	Watches watches;
 
-	uint last_reqnum;
+	int last_reqnum;
 
 	AppState()
 	{
@@ -265,9 +265,9 @@ int FAMMonitorDirectory(FAMConnection* const fc, const char* const _dir, FAMRequ
 	const std::string dir(_dir);
 
 	GET_APP_STATE(fc, state);
-	Watches& watches  = state->watches;
-	HANDLE& hIOCP     = state->hIOCP;
-	uint& last_reqnum = state->last_reqnum;
+	Watches& watches = state->watches;
+	HANDLE& hIOCP    = state->hIOCP;
+	int& last_reqnum = state->last_reqnum;
 
 	// make sure dir is not already being watched
 	for(WatchIt it = watches.begin(); it != watches.end(); ++it)
@@ -284,12 +284,12 @@ int FAMMonitorDirectory(FAMConnection* const fc, const char* const _dir, FAMRequ
 	// assign a new (unique) request number. don't do this earlier - prevents
 	// DOS via wasting reqnums due to invalid directory parameters.
 	// need it before binding dir to IOCP because it is our "key".
-	if(last_reqnum == UINT_MAX)
+	if(last_reqnum == INT_MAX)
 	{
 		debug_warn("FAMMonitorDirectory: request numbers are no longer unique");
 		return -1;
 	}
-	const uint reqnum = ++last_reqnum;
+	const int reqnum = ++last_reqnum;
 	fr->reqnum = reqnum;
 
 	// associate Watch* with the directory handle. when we receive a packet
@@ -427,7 +427,7 @@ static int get_packet(FAMConnection* fc)
 	if(!got_packet)	// no new packet - done
 		return 1;
 
-	FAMRequest _fr = { (uint)key };
+	FAMRequest _fr = { (int)key };
 	FAMRequest* const fr = &_fr;
 		// if other fields are added, their value is 0;
 		// find_watch only looks at reqnum anyway.
