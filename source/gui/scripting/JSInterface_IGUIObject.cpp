@@ -1,4 +1,4 @@
-// $Id: JSInterface_IGUIObject.cpp,v 1.9 2004/07/31 11:29:28 philip Exp $
+// $Id: JSInterface_IGUIObject.cpp,v 1.10 2004/08/14 11:23:38 philip Exp $
 
 #include "precompiled.h"
 
@@ -36,6 +36,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 	// just for efficiency, and to allow correct reporting of attempts to access
 	// nonexistent properties.)
 	if (propName == (CStr)"constructor" ||
+		propName == (CStr)"prototype"   ||
 		propName == (CStr)"toString"    ||
 		propName == (CStr)"getByName"
 	   )
