@@ -295,7 +295,7 @@ static inline void pre_libc_init()
 
 static inline void pre_main_init()
 {
-#ifndef NDEBUG
+#ifdef HAVE_DEBUGALLOC
 	uint flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
 	// Always enable leak detection in debug builds
 	flags |= _CRTDBG_LEAK_CHECK_DF;
@@ -305,7 +305,7 @@ static inline void pre_main_init()
 	flags |= _CRTDBG_CHECK_ALWAYS_DF | _CRTDBG_DELAY_FREE_MEM_DF;
 #endif // PARANOIA
 	_CrtSetDbgFlag(flags);
-#endif // !NDEBUG
+#endif // HAVE_DEBUGALLOC
 
 	call_func_tbl(init_begin, init_end);
 
@@ -316,6 +316,12 @@ static inline void pre_main_init()
 	// (w)sdl will take care of it anyway.
 }
 
+// Enable heap corruption checking after every allocation. Has the same
+// effect as PARANOIA in pre_main_init, but lets you switch it on anywhere
+// so that you can skip checking the whole of the initialisation code.
+// The debugger will break in the allocation just after the one that
+// corrupted the heap, so check its ID and then _CrtSetBreakAlloc(...)
+// on the previous one and try again.
 // Warning: This makes things rather slow.
 void memory_debug_extreme_turbo_plus()
 {

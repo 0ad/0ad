@@ -38,7 +38,7 @@
 # define HAVE_PCH
 #endif
 
-#if defined(_MSC_VER) && defined(HAVE_PCH) && !defined(NDEBUG)
+#if defined(_MSC_VER) && defined(HAVE_PCH) && !( defined(NDEBUG) || defined(TESTING) )
 # define HAVE_DEBUGALLOC
 #endif
 
