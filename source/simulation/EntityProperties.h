@@ -1,3 +1,12 @@
+// EntityProperties.h
+//
+// Last modified: 22 May 04, Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
+// 
+// Extended properties table, primarily intended for data-inheritable properties and those defined by JavaScript functions.
+//
+// Usage: Nothing yet.
+//        These properties will be accessed via functions in CEntity/CBaseEntity
+//
 // Inefficiency warning.
 // Will move frequently accessed properties (position, name, etc.) to native C++ primitives.
 // Just playing around with this idea, will probably keep it for at least some of the more exotic and/or user-defined properties.

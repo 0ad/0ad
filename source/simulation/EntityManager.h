@@ -1,3 +1,17 @@
+// EntityManager.h
+//
+// Last modified: 22 May 04, Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
+// 
+// Maintains entity id->object mappings. Does most of the work involved in creating an entity.
+//
+// Usage: Do not attempt to directly instantiate an entity class.
+//        HEntity bob = g_EntityManager.create( unit_class_name, position, orientation );
+//	   or HEntity jim = g_EntityManager.create( pointer_to_unit_class, position, orientation );
+//
+//        Perform updates on all world entities by g_EntityManager.updateAll( timestep )
+//		  Dispatch an identical message to all world entities by g_EntityManager.dispatchAll( message_pointer )
+//		  Get an STL vector container of all entities with a certain property with g_EntityManager.matches( predicate )
+
 #ifndef ENTITY_MANAGER_INCLUDED
 #define ENTITY_MANAGER_INCLUDED
 
