@@ -102,6 +102,7 @@ CPlayer *CGame::GetPlayer(uint idx)
 			// Hmm. This is a bit of a problem.
 			assert2(! "### ### ### ### ERROR: Tried to access the players list when there aren't any players. That really isn't going to work, so I'll give up. ### ###");
 			abort();
+			return NULL; // else VC2005 warns about not returning a value
 		}
 		else
 			return m_Players[0];

@@ -235,6 +235,11 @@ CGameAttributes::~CGameAttributes()
 		delete *it;
 		++it;
 	}
+
+	// PT: ??? - Gaia isn't a player slot, but still needs to be deleted; but
+	// this feels rather unpleasantly inconsistent with the above code, so maybe
+	// there's a better way to avoid the memory leak.
+	delete m_Players[0];
 }
 
 void CGameAttributes::ScriptingInit()

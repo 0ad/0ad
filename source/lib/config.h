@@ -74,7 +74,9 @@
 # ifdef SCED
 #  define HAVE_DEBUGALLOC
 # else
-//#  define HAVE_DEBUGALLOC // <-- enable this if you want to use it instead of mmgr
+#  ifndef USE_MMGR
+#   define HAVE_DEBUGALLOC
+#  endif
 # endif
 #endif
 

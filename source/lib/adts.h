@@ -70,6 +70,12 @@ template<class T, size_t n> struct RingBuf
 	class const_iterator
 	{
 	public:
+		typedef std::random_access_iterator_tag iterator_category;
+		typedef T value_type;
+		typedef ptrdiff_t difference_type;
+		typedef const T* pointer;
+		typedef const T& reference;
+
 		const_iterator() : data(0), pos(0)
 			{}
 		const_iterator(const T* _data, size_t _pos) : data(_data), pos(_pos)
@@ -88,6 +94,9 @@ template<class T, size_t n> struct RingBuf
 			{ return data == rhs.data && pos == rhs.pos; }
 		bool operator!=(const const_iterator& rhs) const
 			{ return !(*this == rhs); }
+		bool operator<(const const_iterator& rhs) const
+			{ return (pos < rhs.pos); }
+
 	protected:
 		const T* data;
 		size_t pos;

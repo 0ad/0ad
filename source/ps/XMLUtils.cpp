@@ -2,6 +2,7 @@
 
 #include "nommgr.h"
 #include "XML.h"
+#include "nommgr.h" // undefine 'new' a lot, because Xerces doesn't like it
 
 #include "CStr.h"
 #include "CLogger.h"

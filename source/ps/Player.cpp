@@ -24,6 +24,13 @@ CPlayer::CPlayer(uint playerID):
 	m_SynchedProperties[L"colour"]=prop;
 }
 
+CPlayer::~CPlayer()
+{
+	// Side-effect of HACK - since it's not passed to CJSObject's list, it
+	// doesn't get freed automatically
+	delete m_SynchedProperties[L"colour"];
+}
+
 void CPlayer::ScriptingInit()
 {
 	AddMethod<jsval, &CPlayer::JSI_ToString>( "toString", 0 );

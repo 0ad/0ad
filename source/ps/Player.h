@@ -28,6 +28,7 @@ private:
 	
 public:
 	CPlayer( uint playerID );
+	~CPlayer();
 
 	bool ValidateCommand(CNetMessage *pMsg);
 
