@@ -13,8 +13,8 @@
         <object type="empty" name="PREGAME_GUI" size="0 0 100% 100%" z="1" hidden="false">
                 <action on="Load"><![CDATA[
                         // Play main 0 A.D. theme when the main menu starts.
-                        curr_music = newRandomSound("music", "theme");
-                        curr_music.loop();
+                        //curr_music = newRandomSound("music", "theme");
+                        //curr_music.loop();
                 ]]></action>
 
                 <object type="image" name="pregame_mainmenu_background_image" sprite="pregame_mainmenu_background" size="0 0 100% 100%" z="100" hidden="false" ghost="true"/>
@@ -31,7 +31,7 @@
                         tooltip_style="pregame_mainmenu_tooltip" tooltip="Tired of playing with yourself? Fight against one or more human players in a multiplayer game.">
                         <action on="Press"><![CDATA[
                                 getGUIObjectByName("pregame_subwindow_bkg").hidden = false;
-                                getGUIObjectByName("pregame_mp_ip").hidden = false;
+                                getGUIObjectByName("pregame_mp_modesel").hidden = false;
                         ]]></action>
                 </object>
 
@@ -78,111 +78,164 @@
 
                 <object type="image" name="pregame_subwindow_bkg" sprite="translucent_background" size="0 0 100% 100%" z="105" hidden="true"/>
 
-                        <object type="button" name="pregame_mp_ip" sprite="0ad_window" z="106" hidden="true">
-                                <action on="Load"><![CDATA[
-                                        setSizeCoord("pregame_mp_ip", crd_pregame_iphost_bkg_x, crd_pregame_iphost_bkg_y, crd_pregame_iphost_bkg_x+crd_pregame_iphost_bkg_width, crd_pregame_iphost_bkg_y+crd_pregame_iphost_bkg_height, mid_screen, mid_screen, mid_screen, mid_screen);
-                                ]]></action>
+                <!--
+                ===============================================
+                - MULTIPLAYER MODE SELECTION SCREEN -
+                ===============================================
+                -->
 
-                        <object type="button" name="pregame_ip_host_titlebar" sprite="0ad_window_title" font="prospero18" z="165" text_align="center" text_valign="center">
-                                                <action on="Load"><![CDATA[
-                                                        getGUIObjectByName("pregame_ip_host_titlebar").caption = "Direct IP Connect";
-                                                        setSizeCoord("pregame_ip_host_titlebar", crd_pregame_iphost_titlebar_x, crd_pregame_iphost_titlebar_y, crd_pregame_iphost_titlebar_x+crd_pregame_iphost_titlebar_width, crd_pregame_iphost_titlebar_y+crd_pregame_iphost_titlebar_height, mid_screen, mid_screen, mid_screen, mid_screen);
-                                                ]]></action>
-                        </object>
+                        <object type="image" size="50%-200 50%-90 50%+200 50%+90" name="pregame_mp_modesel" sprite="0ad_window" z="106" hidden="true">
+                              <!--<action on="Load"><![CDATA[
+                                    setSizeCoord("pregame_mp_modesel", -200, -200, 200, 200, mid_screen, mid_screen, mid_screen, mid_screen);
+                              ]]></action>-->
 
-                        <object type="button" name="pregame_ip_host_exit_button" sprite="exit_sprite" sprite_over="exit_sprite_over">
-                                <action on="Load"><![CDATA[
-                                        setSizeCoord("pregame_ip_host_exit_button", crd_pregame_iphost_exit_button_x, crd_pregame_iphost_exit_button_y, crd_pregame_iphost_exit_button_x+crd_pregame_iphost_exit_button_width, crd_pregame_iphost_exit_button_y+crd_pregame_iphost_exit_button_height, mid_screen, mid_screen, mid_screen, mid_screen);
-                                ]]></action>
-                                <action on="Press"><![CDATA[
-                                        getGUIObjectByName("pregame_subwindow_bkg").hidden = true;
-                                        getGUIObjectByName("pregame_mp_ip").hidden = true;
-                                ]]></action>
-                        </object>
+                              <object type="button" name="pregame_mp_modesel_titlebar" size="50%-150 0%-25 50%+150 0%-9" absolute="false" sprite="0ad_window_title" font="prospero18" z="165" text_align="center" text_valign="center">
+                                      <action on="Load"><![CDATA[
+                                              getGUIObjectByName("pregame_mp_modesel_titlebar").caption = "Multiplayer";
+                                              /*setSizeCoord("pregame_mp_modesel_titlebar", crd_pregame_iphost_titlebar_x, crd_pregame_iphost_titlebar_y,
+                                              crd_pregame_iphost_titlebar_x+crd_pregame_iphost_titlebar_width, crd_pregame_iphost_titlebar_y+crd_pregame_iphost_titlebar_height,
+                                              mid_screen, mid_screen, mid_screen, mid_screen);*/
+                                      ]]></action>
+                              </object>
+                              
+                              <object type="button" name="pregame_mp_modesel_exit_button" size="100%+9 0%-25 100%+25 0%-9" sprite="exit_sprite" sprite_over="exit_sprite_over" absolute="false">
+                                      <action on="Press"><![CDATA[
+                                              getGUIObjectByName("pregame_subwindow_bkg").hidden = true;
+                                              getGUIObjectByName("pregame_mp_modesel").hidden = true;
+                                      ]]></action>
+                              </object>
 
-                        <object type="text" name="pregame_ip_infotext">
-                                <action on="Load"><![CDATA[
-                                        getGUIObjectByName("pregame_ip_infotext").caption = "You can start a multiplayer game by Direct-IP connect from here. Either \n- enter a map name and click 'Host Game' to host a game or \n- enter an IP and click 'Join Game' to join a game on the entered IP.";
-                                        setSizeCoord("pregame_ip_infotext", crd_pregame_iphost_bkg_x, crd_pregame_iphost_bkg_y, crd_pregame_iphost_bkg_x+crd_pregame_iphost_bkg_width, crd_pregame_iphost_bkg_y+crd_pregame_iphost_bkg_height, mid_screen, mid_screen, mid_screen, mid_screen);
-                                ]]></action>
-                        </object>
+                              <!-- PLAYER NAME controls -->
+                              <object type="text" name="pregame_mp_modesel_txt1" size="0 0 400 30" absolute="false">
+                                    Please enter the Player name you would like to use during the game.
+                              </object>
 
-                        <object type="image" name="pregame_mp_ip_divider1" sprite="only_black_border">
-                        <action on="Load"><![CDATA[
-                                setSizeCoord("pregame_mp_ip_divider1", -230, -130, 230, -130, mid_screen, mid_screen, mid_screen, mid_screen);
-                        ]]></action>
-                        </object>
-                        
-                        <!-- PLAYER NAME controls -->
-                        <object type="text" name="pregame_mp_ip_playername_txt" absolute="false" size="45 80 200 100" textcolor="0 0 0">
-                        <action on="Load"><![CDATA[
-                                getGUIObjectByName("pregame_mp_ip_playername_txt").caption = "Player Name (temporary):";
-                        ]]></action>
-                        </object>
-                        
-                        <object type="input" name="pregame_mp_ip_playername" sprite="only_black_border" absolute="false" size="220 80 350 100" textcolor="0 0 0">
-                                Player
-                        </object>
-                        <!-- END PLAYER NAME controls -->
+                              <object type="text" name="pregame_mp_modesel_playername_txt" font="tahoma16" absolute="false" size="0 40 200 60" textcolor="0 0 0">
+                                    Player Name (temporary):
+                              </object>
 
-                        <!-- HOST GAME controls -->
-                        <object type="image" name="pregame_mp_ip_divider2" sprite="only_black_border">
-                        <action on="Load"><![CDATA[
-                                setSizeCoord("pregame_mp_ip_divider2", -230, -75, 230, -75, mid_screen, mid_screen, mid_screen, mid_screen);
-                        ]]></action>
-                        </object>
+                              <object type="input" name="pregame_mp_modesel_playername" sprite="only_black_border" absolute="false" size="220 40 350 60" textcolor="0 0 0">
+                                    Player
+                              </object>
+                              <!-- END PLAYER NAME controls -->
 
-                        <object type="text" name="pregame_mp_ip_mapname_txt" absolute="false" size="45 130 200 150" textcolor="0 0 0">
-                        <action on="Load"><![CDATA[
-                                getGUIObjectByName("pregame_mp_ip_mapname_txt").caption = "Map Name:";
-                        ]]></action>
-                        </object>
+                              <object type="image" name="pregame_mp_modesel_divider1" size="10 80 100%-10 80" absolute="false" sprite="only_black_border" />
 
-                        <object type="input" name="pregame_mp_ip_host_mapname" sprite="only_black_border" absolute="false" size="50 150 200 170" textcolor="0 0 0">
-                                test01.pmp
-                        </object>
+                              <!-- HOST / JOIN CONTROLS -->
 
-                        <object type="button" name="pregame_mp_ip_host_bt" sprite="message_box_button_normal" sprite_over="message_box_button_over" text_align="center" text_valign="center">
-                                Host Game
-                                <action on="Load"><![CDATA[
-                                        setSizeCoord("pregame_mp_ip_host_bt", 50, -60, 150, -30, mid_screen, mid_screen, mid_screen, mid_screen);
-                                ]]></action>
-                                <action on="Press"><![CDATA[
-                                        initMPSessionHost(getGUIObjectByName("pregame_mp_ip_playername").caption, getGUIObjectByName("pregame_mp_ip_host_mapname").caption);
-                                ]]></action>
-                        </object>
-                        <!-- END HOST GAME controls -->
-                        
-                        <!-- JOIN GAME controls -->
-                        <object type="image" name="pregame_mp_ip_divider3" sprite="only_black_border">
-                                <action on="Load"><![CDATA[
-                                        setSizeCoord("pregame_mp_ip_divider3", -230, -20, 230, -20, mid_screen, mid_screen, mid_screen, mid_screen);
-                                ]]></action>
+                              <object type="text" name="pregame_mp_modesel_txt" size="0 100 400 120" absolute="false">
+                                    Please select wheter you want to join a game or host your own game.
+                              </object>
+                              
+                              <object type="text" name="pregame_mp_modesel_hostjoin_txt" size="0 140 200 170" text_valign="center" font="tahoma16" absolute="false" textcolor="0 0 0">
+                                    Game Mode
+                              </object>
+
+                              <object type="button" name="pregame_mp_modesel_join_button" size="130 140 230 170" sprite="message_box_button_normal" sprite_over="message_box_button_over" absolute="false" text_align="center" text_valign="center">
+                                    Join Game
+                                    <action on="Press"><![CDATA[
+                                          GUIObjectHide("pregame_mp_modesel");
+                                          GUIObjectUnhide("pregame_mp_join");
+                                    ]]></action>
+                              </object>
+
+                              <object type="button" name="pregame_mp_modesel_host_button" size="250 140 350 170" sprite="message_box_button_normal" sprite_over="message_box_button_over" absolute="false" text_align="center" text_valign="center">
+                                    Host Game
+                                    <action on="Press"><![CDATA[
+                                          GUIObjectHide("pregame_mp_modesel");
+                                          GUIObjectUnhide("pregame_mp_host");
+                                    ]]></action>
+                              </object>
+
+                              <!-- END HOST / JOIN CONTROLS -->
+
                         </object>
 
-                        <object type="text" name="pregame_mp_ip_joinip_txt" absolute="false" size="45 190 200 210" textcolor="0 0 0">
-                        <action on="Load"><![CDATA[
-                                getGUIObjectByName("pregame_mp_ip_joinip_txt").caption = "IP Address:";
-                        ]]></action>
+                <!--
+                ===============================================
+                - MULTIPLAYER HOST GAME SCREEN -
+                ===============================================
+                -->
+
+                        <object type="image" size="50%-190 50%-120 50%+190 50%+120" name="pregame_mp_host" sprite="0ad_window" z="106" hidden="true">
+                              <!--<action on="Load"><![CDATA[
+                                    setSizeCoord("pregame_mp_modesel", -200, -200, 200, 200, mid_screen, mid_screen, mid_screen, mid_screen);
+                              ]]></action>-->
+
+                              <object type="button" name="pregame_mp_host_titlebar" size="50%-150 0%-25 50%+150 0%-9" absolute="false" sprite="0ad_window_title" font="prospero18" z="165" text_align="center" text_valign="center">
+                                      <action on="Load"><![CDATA[
+                                              getGUIObjectByName("pregame_mp_host_titlebar").caption = "Host a game";
+                                              /*setSizeCoord("pregame_mp_modesel_titlebar", crd_pregame_iphost_titlebar_x, crd_pregame_iphost_titlebar_y,
+                                              crd_pregame_iphost_titlebar_x+crd_pregame_iphost_titlebar_width, crd_pregame_iphost_titlebar_y+crd_pregame_iphost_titlebar_height,
+                                              mid_screen, mid_screen, mid_screen, mid_screen);*/
+                                      ]]></action>
+                              </object>
+
+                              <object type="button" name="pregame_mp_host_exit_button" size="100%+9 0%-25 100%+25 0%-9" sprite="exit_sprite" sprite_over="exit_sprite_over" absolute="false">
+                                      <action on="Press"><![CDATA[
+                                              getGUIObjectByName("pregame_subwindow_bkg").hidden = true;
+                                              getGUIObjectByName("pregame_mp_host").hidden = true;
+                                      ]]></action>
+                              </object>
+
+                              <!-- SERVER/GAME NAME controls -->
+                              <object type="text" name="pregame_mp_host_txt1" size="0 0 400 30" absolute="false">
+                                    Setting up your server.
+                              </object>
+
+                              <object type="text" name="pregame_mp_host_gamename_txt" font="tahoma16" absolute="false" size="0 40 200 60" textcolor="0 0 0">
+                                    Game (Server) Name:
+                              </object>
+
+                              <object type="input" name="pregame_mp_host_gamename" sprite="only_black_border" absolute="false" size="220 40 370 60" textcolor="0 0 0">
+                                    My Game
+                              </object>
+                              <!-- END SERVER/GAME NAME controls -->
+
+                              <!-- WELCOME MESSAGE controls -->
+
+                              <object type="text" name="pregame_mp_host_welcomemsg_txt" font="tahoma16" absolute="false" size="0 70 200 90" textcolor="0 0 0">
+                                    Welcome Message:
+                              </object>
+
+                              <object type="text" name="pregame_mp_host_txt2" size="0 100 200 180" absolute="false">
+                                    You can enter some message which is displayed to new players upon joining here.
+                              </object>
+
+                              <object type="input" name="pregame_mp_host_welcomemsg" font="verdana9" sprite="only_black_border" absolute="false" size="220 70 370 180" textcolor="0 0 0">
+                                    Uhm, welcome to my game. Have fun!
+                              </object>
+                              <!-- END WELCOME MESSAGE controls -->
+
+                              <object type="button" name="pregame_mp_host_setup_button" size="50%-125 200 50%-25 230" sprite="message_box_button_normal" sprite_over="message_box_button_over" absolute="false" text_align="center" text_valign="center">
+                                    Continue
+                                    <action on="Press"><![CDATA[
+                                          GUIObjectHide("pregame_mp_host");
+                                          GUIObjectUnhide("pregame_mp_setup_host");
+                                    ]]></action>
+                              </object>
+
+                              <object type="button" name="pregame_mp_host_back_button" size="50%+25 200 50%+125 230" sprite="message_box_button_normal" sprite_over="message_box_button_over" absolute="false" text_align="center" text_valign="center">
+                                    Back
+                                    <action on="Press"><![CDATA[
+                                          GUIObjectHide("pregame_mp_host");
+                                          GUIObjectUnhide("pregame_mp_modesel");
+                                    ]]></action>
+                              </object>
+
+                              <!-- END HOST / JOIN CONTROLS -->
+
                         </object>
 
-                        <object type="input" name="pregame_mp_ip_joinip" sprite="only_black_border" absolute="false" size="50 210 200 230" textcolor="0 0 0">
-                                127.0.0.1
-                        </object>
+                <!--
+                ===============================================
+                - MULTIPLAYER SESSION SETUP SCREEN -
+                ===============================================
+                -->
 
-                        <object type="button" name="pregame_mp_ip_join_bt" sprite="message_box_button_normal" sprite_over="message_box_button_over" text_align="center" text_valign="center">
-                                Join Game
-                                <action on="Load"><![CDATA[
-                                        setSizeCoord("pregame_mp_ip_join_bt", 50, 0, 150, 30, mid_screen, mid_screen, mid_screen, mid_screen);
-                                ]]></action>
-                                <action on="Press"><![CDATA[
-                                        initMPSessionClient(getGUIObjectByName("pregame_mp_ip_playername").caption, getGUIObjectByName("pregame_mp_ip_joinip").caption);
-                                ]]></action>
-                        </object>
-                        <!-- END JOIN GAME controls -->
 
-                </object>
-                
+                  <!-- Insert rewritten SESSION SETUP SCREEN here (in two variants: HOST and JOIN -->
+
                 <!--
                 ===============================================
                 - SINGLEPLAYER TEMPORARY MAP SELECTION DIALOG -
