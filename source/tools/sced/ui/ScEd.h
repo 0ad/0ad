@@ -24,11 +24,6 @@ class CScEdApp : public CWinApp
 public:
 	CScEdApp();
 
-	// Separate the useful code from the functions that are called by MFC,
-	// so they can be wrapped in SEH code to catch exceptions
-	virtual BOOL InitInstance_();
-	virtual int Run_();
-
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CScEdApp)
