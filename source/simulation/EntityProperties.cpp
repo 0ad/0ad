@@ -3,7 +3,6 @@
 #include "EntityProperties.h"
 #include "BaseEntityCollection.h"
 #include "scripting/JSInterface_BaseEntity.h"
-#include "utf16string.h"
 
 #undef new // to avoid confusing warnings
 
@@ -116,7 +115,7 @@ void CBoundObjectProperty<CStrW>::set( const jsval value )
 
 jsval CBoundObjectProperty<CStrW>::tojsval()
 {
-	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( g_ScriptingHost.getContext(), utf16string().c_str() ) ) );
+	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( g_ScriptingHost.getContext(), utf16().c_str() ) ) );
 }
 
 CBoundObjectProperty<CVector3D>::CBoundObjectProperty()
