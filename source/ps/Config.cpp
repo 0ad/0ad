@@ -82,7 +82,24 @@ PS_RESULT CConfig::Register( CStr Filename, void* Data, LoaderFunction DynamicLo
 
 	i = m_FileList.begin();
 
-	return( PS_OK );
+	if( !Static )
+		return( PS_OK ); 
+
+	// Load static files at the point of registration.
+
+	PS_RESULT Result;
+	if( ( Result = DynamicLoader( Filename, Data ) ) != PS_OK )
+	{
+		if( m_LogFile )
+		{
+			CStr Error = _T( "Load failed on: " );
+			Error += Filename;
+			Error += CStr( "Load function returned: " );
+			Error += CStr( Result );
+			m_LogFile->WriteError( (const TCHAR*)Error );
+		}
+	}
+	return( Result );
 }
 
 //--------------------------------------------------------
