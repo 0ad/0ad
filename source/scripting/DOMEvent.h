@@ -52,7 +52,7 @@ public:
 	jsval PreventDefault( JSContext* cx, uintN argc, jsval* argv );
 
 public:
-	CScriptEvent( const CStrW& Type, bool Cancelable, unsigned int TypeCode = -1 );
+	CScriptEvent( const CStrW& Type, bool Cancelable, unsigned int TypeCode = (unsigned int)-1 );
 	static void ScriptingInit();
 };
 
