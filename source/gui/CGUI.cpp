@@ -20,6 +20,7 @@ gee@pyro.nu
 #include "CText.h"
 #include "CCheckBox.h"
 #include "CRadioButton.h"
+#include "CInput.h"
 #include "CProgressBar.h"
 #include "MiniMap.h"
 
@@ -49,9 +50,9 @@ JSClass GUIClass = {
 	JS_EnumerateStub, JS_ResolveStub, JS_ConvertStub, JS_FinalizeStub,
 };
 
-
+// Globals used.
 extern int g_xres, g_yres;
-
+extern bool keys[SDLK_LAST];
 
 //-------------------------------------------------------------------
 //	called from main loop when (input) events are received.
@@ -65,6 +66,8 @@ int gui_handler(const SDL_Event* ev)
 
 int CGUI::HandleEvent(const SDL_Event* ev)
 {
+	int ret = EV_PASS;
+
 	// MT: If something's gone wrong, check this block... (added for hotkey support)
 
 	if( ev->type == SDL_GUIHOTKEYPRESS )
@@ -102,6 +105,7 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 	// Only one object can be hovered
 	IGUIObject *pNearest = NULL;
 
+	// TODO Gee: (2004-09-08) Big TODO, don't do the below if the SDL_Event is something like a keypress!
 	try
 	{
 		// TODO Gee: Optimizations needed!
@@ -130,8 +134,20 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 			case SDL_BUTTON_LEFT:
 				if (pNearest)
 				{
+					if (pNearest != m_FocusedObject)
+					{
+						// Update focused object
+						if (m_FocusedObject)
+							m_FocusedObject->HandleMessage(SGUIMessage(GUIM_LOST_FOCUS));
+						m_FocusedObject = pNearest;
+						m_FocusedObject->HandleMessage(SGUIMessage(GUIM_GOT_FOCUS));
+					}
+
 					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_PRESS_LEFT));
 					pNearest->ScriptEvent("mouseleftpress");
+
+					// Block event, so things on the map (behind the GUI) won't be pressed
+					LOG(ERROR, LOG_CATEGORY, "Left click blocked");
 				}
 				break;
 
@@ -155,6 +171,7 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 				break;
 			}
 			
+			ret = EV_HANDLED;
 		}
 		else 
 		if (ev->type == SDL_MOUSEBUTTONUP)
@@ -165,6 +182,8 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 				{
 					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_RELEASE_LEFT));
 					pNearest->ScriptEvent("mouseleftrelease");
+
+					ret = EV_HANDLED;
 				}
 			}
 
@@ -203,7 +222,19 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 			m_MouseButtons &= ~(1 << ev->button.button);
 	}
 
-	return EV_PASS;
+	// Handle keys for input boxes
+	if (GetFocusedObject() && ev->type == SDL_KEYDOWN)
+	{
+		if( (ev->key.keysym.sym != SDLK_ESCAPE ) &&
+			!keys[SDLK_LCTRL] && !keys[SDLK_RCTRL] &&
+			!keys[SDLK_LALT] && !keys[SDLK_RALT]) 
+		{
+			ret = GetFocusedObject()->ManuallyHandleEvent(ev);
+		}
+		// else will return EV_PASS because we never used the button.
+	}
+
+	return ret;
 }
 
 void CGUI::TickObjects()
@@ -216,7 +247,7 @@ void CGUI::TickObjects()
 //-------------------------------------------------------------------
 //  Constructor / Destructor
 //-------------------------------------------------------------------
-CGUI::CGUI() : m_InternalNameNumber(0), m_MouseButtons(0)
+CGUI::CGUI() : m_InternalNameNumber(0), m_MouseButtons(0), m_FocusedObject(NULL)
 {
 	m_BaseObject = new CGUIDummyObject;
 	m_BaseObject->SetGUI(this);
@@ -267,6 +298,7 @@ void CGUI::Initialize()
 	AddObjectType("radiobutton",	&CRadioButton::ConstructObject);
 	AddObjectType("progressbar",	&CProgressBar::ConstructObject);
     AddObjectType("minimap",        &CMiniMap::ConstructObject);
+	AddObjectType("input",			&CInput::ConstructObject);
 }
 
 void CGUI::Process()
@@ -469,8 +501,10 @@ void CGUI::DrawSprite(const CStr& SpriteName,
 		}
 		else
 		{
+			//glDisable(GL_TEXTURE_2D);
+
 			// TODO Gee: (2004-09-04) Shouldn't untextured sprites be able to be transparent too?
-			glColor3f(cit->m_BackColor.r, cit->m_BackColor.g, cit->m_BackColor.b);
+			glColor4f(cit->m_BackColor.r, cit->m_BackColor.g, cit->m_BackColor.b, cit->m_BackColor.a);
 
 			CRect real = cit->m_Size.GetClientArea(Rect);
 
@@ -940,7 +974,8 @@ void CGUI::DrawText(const SGUIText &Text, const CColor &DefaultColor,
 
 	}
 
-	delete font;
+	if (font)
+		delete font;
 
 	for (list<SGUIText::SSpriteCall>::const_iterator it=Text.m_SpriteCalls.begin(); 
 		 it!=Text.m_SpriteCalls.end(); 
@@ -999,6 +1034,7 @@ void CGUI::LoadXMLFile(const string &Filename)
 
 	try
 	{
+
 		if (root_name == "objects")
 		{
 			Xeromyces_ReadRootObjects(node, &XeroFile);

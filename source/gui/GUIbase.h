@@ -57,8 +57,8 @@ public:																	\
  */
 enum EGUIMessageType
 {
-	GUIM_PREPROCESS,		// questionable
-	GUIM_POSTPROCESS,		// questionable
+	GUIM_PREPROCESS,		// TODO questionable
+	GUIM_POSTPROCESS,		// TODO questionable
 	GUIM_MOUSE_OVER,
 	GUIM_MOUSE_ENTER,
 	GUIM_MOUSE_LEAVE,
@@ -73,7 +73,9 @@ enum EGUIMessageType
 	GUIM_SETTINGS_UPDATED,	// SGUIMessage.m_Value = name of setting
 	GUIM_PRESSED,
 	GUIM_MOUSE_MOTION,
-	GUIM_LOAD				// Called when an object is added to the GUI.
+	GUIM_LOAD,				// Called when an object is added to the GUI.
+	GUIM_GOT_FOCUS,
+	GUIM_LOST_FOCUS
 };
 
 /**

@@ -17,6 +17,7 @@ using namespace std;
 //-------------------------------------------------------------------
 CButton::CButton()
 {
+	AddSetting(GUIST_float,			"buffer-zone");
 	AddSetting(GUIST_CGUIString,	"caption");
 	AddSetting(GUIST_CStr,			"font");
 	AddSetting(GUIST_CStr,			"sprite");
@@ -61,40 +62,42 @@ void CButton::SetupText()
 	// Check which alignment to use!
 	EAlign align;
 	EVAlign valign;
+	float bz;
 	GUI<EAlign>::GetSetting(this, "text-align", align);
 	GUI<EVAlign>::GetSetting(this, "text-valign", valign);
-
-	m_TextPos = m_CachedActualSize.TopLeft();
+	GUI<float>::GetSetting(this, "buffer-zone", bz);
 
 	switch (align)
 	{
 	case EAlign_Left:
-		m_TextPos.x = m_CachedActualSize.left;
+		m_TextPos.x = m_CachedActualSize.left + bz;
 		break;
 	case EAlign_Center:
 		// Round to integer pixel values, else the fonts look awful
 		m_TextPos.x = floorf(m_CachedActualSize.CenterPoint().x - m_GeneratedTexts[0]->m_Size.cx/2.f);
 		break;
 	case EAlign_Right:
-		m_TextPos.x = m_CachedActualSize.right - m_GeneratedTexts[0]->m_Size.cx;
+		m_TextPos.x = m_CachedActualSize.right - m_GeneratedTexts[0]->m_Size.cx - bz;
 		break;
 	default:
+		debug_warn("Broken EAlign in CButton::SetupText()");
 		break;
 	}
 
 	switch (valign)
 	{
 	case EVAlign_Top:
-		m_TextPos.y = m_CachedActualSize.top;
+		m_TextPos.y = m_CachedActualSize.top + bz;
 		break;
 	case EVAlign_Center:
 		// Round to integer pixel values, else the fonts look awful
 		m_TextPos.y = floorf(m_CachedActualSize.CenterPoint().y - m_GeneratedTexts[0]->m_Size.cy/2.f);
 		break;
 	case EVAlign_Bottom:
-		m_TextPos.y = m_CachedActualSize.bottom - m_GeneratedTexts[0]->m_Size.cy;
+		m_TextPos.y = m_CachedActualSize.bottom - m_GeneratedTexts[0]->m_Size.cy - bz;
 		break;
 	default:
+		debug_warn("Broken EVAlign in CButton::SetupText()");
 		break;
 	}
 

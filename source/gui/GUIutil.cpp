@@ -201,6 +201,16 @@ bool __ParseString<CGUIString>(const CStr& Value, CGUIString &Output)
 	return true;
 }
 
+template <>
+bool __ParseString<CStrW>(const CStr& Value, CStrW &Output)
+{
+	// Translate the Value and retrieve the locilised string in
+	//  Unicode.
+
+	Output = translate((CStrW)Value);
+	return true;
+}
+
 //--------------------------------------------------------
 //  Help Classes/Structs for the GUI implementation
 //--------------------------------------------------------
@@ -387,6 +397,7 @@ TYPE(int)
 TYPE(float)
 TYPE(CClientArea)
 TYPE(CStr)
+TYPE(CStrW)
 TYPE(CColor)
 TYPE(CGUIString)
 TYPE(EAlign)

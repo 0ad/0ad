@@ -53,12 +53,6 @@ void IGUIButtonBehavior::HandleMessage(const SGUIMessage &Message)
 		}
 	}	break;
 
-	case GUIM_SETTINGS_UPDATED:
-		// If it's hidden, then it can't be pressed
-		//if (GetBaseSettings().m_Hidden)
-		//	m_Pressed = false;
-		break;
-
 	default:
 		break;
 	}

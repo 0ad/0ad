@@ -34,6 +34,7 @@ gee@pyro.nu
 #include "GUI.h"
 #include <string>
 #include <vector>
+#include "input.h" // just for EV_PASS
 
 #include "gui/scripting/JSInterface_IGUIObject.h"
 
@@ -76,6 +77,7 @@ enum EGUISettingType
 	GUIST_CClientArea,
 	GUIST_CGUIString,
 	GUIST_CStr,
+	GUIST_CStrW,
 	GUIST_EAlign,
 	GUIST_EVAlign
 };
@@ -326,6 +328,18 @@ protected:
 	virtual void Draw()=0;
 
 	/**
+	 * Some objects need to handle the SDL_Event manually.
+	 * For instance the input box.
+	 *
+	 * Only the object with focus will have this function called.
+	 *
+	 * Returns either EV_PASS or EV_HANDLED. If EV_HANDLED, then
+	 * the key won't be passed on and processed by other handlers.
+	 * This is used for keys that the GUI uses.
+	 */
+	virtual int ManuallyHandleEvent(const SDL_Event* ev) { return EV_PASS; }
+
+	/**
 	 * Loads a style.
 	 *
 	 * @param GUIinstance Reference to the GUI
@@ -361,6 +375,16 @@ protected:
 	{
 		m_MouseHovering = false;
 	}
+
+	/**
+	 * Take focus!
+	 */
+	void SetFocus();
+
+	/**
+	 * Check if object is focused.
+	 */
+	bool IsFocused() const;
 
 	/**
 	 * <b>NOTE!</b> This will not just return m_pParent, when that is
@@ -442,23 +466,18 @@ private:
 	 */
 	void UpdateMouseOver(IGUIObject * const &pMouseOver);
 
-	//@}
-
 	// Variables
 
 protected:
-	/// Name of object
+	// Name of object
 	CStr									m_Name;
 
-	/// Constructed on the heap, will be destroyed along with the the object
+	// Constructed on the heap, will be destroyed along with the the object
 	// TODO Gee: really the above?
 	vector_pObjects							m_Children;
 
-	/// Pointer to parent
+	// Pointer to parent
 	IGUIObject								*m_pParent;
-
-	/// Base settings
-	//SGUIBaseSettings						m_BaseSettings;
 
 	/**
 	 * This is an array of true or false, each element is associated with
@@ -474,18 +493,8 @@ protected:
 
 	// More variables
 
-	/// Is mouse hovering the object? used with the function MouseOver()
+	// Is mouse hovering the object? used with the function MouseOver()
 	bool									m_MouseHovering;
-
-	/**	
-	 * Tells us where a variable by a string name is
-	 * located hardcoded, in order to acquire a pointer
-	 * for that variable... Say "frozen" gives
-	 * the offset from IGUIObject to m_Frozen.
-	 * <b>note!</b> @uNOT from SGUIBaseSettings to 
-	 * m_Frozen!
-	 */
-	//static map_Settings						ms_SettingsInfo;
 
 	/**
 	 * Settings pool, all an object's settings are located here
@@ -499,7 +508,7 @@ protected:
 	std::map<CStr, SGUISetting>				m_Settings;
 
 private:
-	/// An object can't function stand alone
+	// An object can't function stand alone
 	CGUI									*m_pGUI;
 };
 
@@ -517,6 +526,8 @@ class CGUIDummyObject : public IGUIObject
 public:
 	virtual void HandleMessage(const SGUIMessage& UNUSEDPARAM(Message)) {}
 	virtual void Draw() {}
+	// Empty can never be hovered. It is only a category.
+	virtual bool MouseOver() { return false; }
 };
 
 #endif

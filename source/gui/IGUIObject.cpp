@@ -70,6 +70,7 @@ IGUIObject::~IGUIObject()
 			TYPE(CClientArea);
 			TYPE(CGUIString);
 			TYPE(CStr);
+			TYPE(CStrW);
 			TYPE(EAlign);
 			TYPE(EVAlign);
 		default:
@@ -168,6 +169,7 @@ void IGUIObject::AddSetting(const EGUISettingType &Type, const CStr& Name)
 		CASE_TYPE(float)
 		CASE_TYPE(CClientArea)
 		CASE_TYPE(CStr)
+		CASE_TYPE(CStrW)
 		CASE_TYPE(CColor)
 		CASE_TYPE(CGUIString)
 		CASE_TYPE(EAlign)
@@ -232,7 +234,7 @@ bool IGUIObject::SettingExists(const CStr& Setting) const
 	return (m_Settings.count(Setting) >= 1);
 }
 
-#define ADD_TYPE(type, type_name)									\
+#define ADD_TYPE(type)									\
 	else												\
 	if (set.m_Type == GUIST_##type)						\
 	{													\
@@ -257,14 +259,15 @@ void IGUIObject::SetSetting(const CStr& Setting, const CStr& Value)
 	{
         GUI<CStr>::SetSetting(this, Setting, Value);
 	}
-	ADD_TYPE(bool,			"bool")
-	ADD_TYPE(float,			"float")
-	ADD_TYPE(int,			"int")
-	ADD_TYPE(CColor,		"color")
-	ADD_TYPE(CClientArea,	"client area")
-	ADD_TYPE(CGUIString,	"text")
-	ADD_TYPE(EAlign,		"align")
-	ADD_TYPE(EVAlign,		"valign")
+	ADD_TYPE(CStrW)
+	ADD_TYPE(bool)
+	ADD_TYPE(float)
+	ADD_TYPE(int)
+	ADD_TYPE(CColor)
+	ADD_TYPE(CClientArea)
+	ADD_TYPE(CGUIString)
+	ADD_TYPE(EAlign)
+	ADD_TYPE(EVAlign)
 	else
 	{
 		throw PS_FAIL;
@@ -365,8 +368,9 @@ void IGUIObject::LoadStyle(const SGUIStyle &Style)
 		catch (PS_RESULT e) 
 		{
 			UNUSED(e);
-//			debug_warn("IGUIObject::LoadStyle failed");	// (this happens)
-			// TODO Gee: was ist das?
+			// The beauty with styles is that it can contain more settings
+			//  than exists for the objects using it. So if the SetSetting
+			//  fails, don't care.
 		}
 	}
 }
@@ -462,7 +466,7 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	mouseParams[1] = INT_TO_JSVAL(m_pGUI->m_MousePos.y);
 	mouseParams[2] = INT_TO_JSVAL(m_pGUI->m_MouseButtons);
 	JSObject* mouseObj = JS_ConstructObjectWithArguments(g_ScriptingHost.getContext(), &JSI_GUIMouse::JSI_class, NULL, m_pGUI->m_ScriptObject, 3, mouseParams);
-	assert(mouseObj); // need better error handling
+	assert(mouseObj); // TODO need better error handling
 
 	// Don't garbage collect the mouse
 	JS_AddRoot(g_ScriptingHost.getContext(), &mouseObj);
@@ -494,4 +498,14 @@ CStr IGUIObject::GetPresentableName() const
 		return CStr("[unnamed object]");
 	else
 		return m_Name;
+}
+
+void IGUIObject::SetFocus()
+{
+	GetGUI()->m_FocusedObject = this; 
+}
+
+bool IGUIObject::IsFocused() const
+{
+	return GetGUI()->m_FocusedObject == this; 
 }

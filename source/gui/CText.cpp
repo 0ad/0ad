@@ -119,6 +119,9 @@ void CText::HandleMessage(const SGUIMessage &Message)
 			GUI<CStr>::GetSetting(this, Message.value, scrollbar_style);
 
 			GetScrollBar(0).SetScrollBarStyle( scrollbar_style );
+
+			// Update text
+			SetupText();
 		}
 
 		break;

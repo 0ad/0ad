@@ -40,6 +40,7 @@ void IGUITextOwner::HandleMessage(const SGUIMessage &Message)
 		//  it is assumed that the text of the object will be dependent on
 		//  these. Although that is not certain, but one will have to manually
 		//  change it and disregard this function.
+		// TODO Gee: (2004-09-07) Make sure this is all options that can affect the text.
 		if (Message.value == CStr("size") || Message.value == CStr("z") ||
 			Message.value == CStr("absolute") || Message.value == CStr("caption") ||
 			Message.value == CStr("font") || Message.value == CStr("textcolor") ||

@@ -274,6 +274,11 @@ private:
 	 */
 	IGUIObject *ConstructObject(const CStr& str);
 
+	/**
+	 * Get Focused Object.
+	 */
+	IGUIObject *GetFocusedObject() { return m_FocusedObject; }
+
 	//--------------------------------------------------------
 	/** @name XML Reading Xeromyces specific subroutines
 	 *
@@ -511,6 +516,13 @@ private:
 	 * because this is not a real object per se.
 	 */
 	IGUIObject* m_BaseObject;
+
+	/**
+	 * Focused object!
+	 * Say an input box that is selected. That one is focused.
+	 * There can only be one focused object.
+	 */
+	IGUIObject* m_FocusedObject;
 
 	/** 
 	 * Just pointers for fast name access, each object

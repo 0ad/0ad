@@ -66,6 +66,9 @@ bool __ParseString<EVAlign>(const CStr& Value, EVAlign &Output);
 template <>
 bool __ParseString<CGUIString>(const CStr& Value, CGUIString &Output);
 
+template <>
+bool __ParseString<CStrW>(const CStr& Value, CStrW &Output);
+
 
 // Icon, you create them in the XML file with root element <setup>
 //  you use them in text owned by different objects... Such as CText.
@@ -133,7 +136,7 @@ class IGUIObject;
  * Base class to only the class GUI. This superclass is 
  * kind of a templateless extention of the class GUI.
  * Used for other functions to friend with, because it
- * it can't friend with GUI since it's templated (at least
+ * can't friend with GUI since it's templated (at least
  * not on all compilers we're using).
  */
 class CInternalCGUIAccessorBase
