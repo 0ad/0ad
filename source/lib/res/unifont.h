@@ -1,4 +1,4 @@
-// $Id: unifont.h,v 1.2 2004/06/16 16:29:38 philip Exp $
+// $Id: unifont.h,v 1.3 2004/07/12 20:08:34 philip Exp $
 
 #ifndef __UNIFONT_H__
 #define __UNIFONT_H__
@@ -10,6 +10,9 @@
 // Load and return a handle to the font defined
 // in fn+".fnt" with texture fn+".tga"
 extern Handle unifont_load(const char* fn, int scope = RES_STATIC);
+
+// Release a handle to a previously loaded font
+int unifont_unload(Handle& h);
 
 // Use the font referenced by h for all subsequent glwprintf() calls.
 // Must be called before any glwprintf().

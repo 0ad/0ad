@@ -1,5 +1,5 @@
 /*
-$Id: unifont.cpp,v 1.5 2004/07/11 20:29:34 olsner Exp $
+$Id: unifont.cpp,v 1.6 2004/07/12 20:08:34 philip Exp $
 
 Unicode OpenGL texture font
   
@@ -81,7 +81,7 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle h)
 	FNTStream >> f->LineSpacing;
 
 	f->ListBase = glGenLists(NumGlyphs);
-	assert(f->ListBase != 0); // My Voodoo2 drivers didn't support display lists
+	assert(f->ListBase != 0); // My Voodoo2 drivers didn't support display lists (although I'd be surprised if they got this far)
 
 	for (int i = 0; i < NumGlyphs; ++i)
 	{
@@ -124,6 +124,11 @@ Handle unifont_load(const char* fn, int scope)
 	return h_alloc(H_UniFont, fn, scope);
 }
 
+
+int unifont_unload(Handle& h)
+{
+	return h_free(h, H_UniFont);
+}
 
 int unifont_bind(const Handle h)
 {
