@@ -587,7 +587,7 @@ static int add_dirent_cb(const char* const n_name, const ssize_t size, const uin
 	uint lf_flags = 0;
 
 	// it's a dir
-	if(size <= 0)
+	if(size < 0)
 	{
         ploc = 0;	// need to treat last component as a dir
 		lf_flags |= LF_CREATE_MISSING_DIRS;
@@ -599,7 +599,8 @@ static int add_dirent_cb(const char* const n_name, const ssize_t size, const uin
 	if(cur_loc->archive > 0)
 	{
 		lf_flags |= LF_HAVE_LOC;
-		lf_flags |= LF_CREATE_MISSING_DIRS;
+		if(size >= 0)
+			lf_flags |= LF_CREATE_MISSING_DIRS;
 			// grrrr, winzip outputs some dir names after entries in that dir
 			// that means the dir hasn't yet been created
 	}
@@ -622,32 +623,6 @@ static int add_dirent_cb(const char* const n_name, const ssize_t size, const uin
 	if(err < 0)
 		debug_warn("add_dirent_cb: tree_lookup failed");
 
-/*
-	// file or directory in archive
-	if(cur_loc->archive > 0)
-	{
-		
-	}
-	// directory (not in archive)
-	else if(size < 0)
-	{
-		// leave out CVS dirs in debug builds. this makes possible
-		// user code that relies on a fixed data directory structure.
-#ifndef NDEBUG
-		if(!strcmp_lower(path, "cvs"))
-			return 0;
-#endif
-		err = cur_dir->add_subdir(path);
-	}
-	// file (not in archive)
-	else
-		err = cur_dir->add_file(path, cur_loc);
-
-	if(err < 0)
-		return -EEXIST;
-*/
-
-
 	return 0;
 }
 
@@ -669,6 +644,9 @@ static int tree_add_dirR(Dir* const dir, const char* const p_path, const Loc* co
 	{
 		Dir* const subdir = &it->second;
 		const char* const d_subdir_name = (it->first).c_str();
+
+if(strchr(d_subdir_name, '.'))
+debug_warn("file stored as dir");
 
 		char p_subdir_path[PATH_MAX];
 		CHECK_ERR(path_append(p_subdir_path, p_path, d_subdir_name));
