@@ -1,12 +1,35 @@
-- glext.h:
-  download from http://oss.sgi.com/projects/ogl-sample/ABI/glext.h ;
-  put it in GL subdir of compiler's include dir
+The codepit with all required files is accessed via SCP:
+host = wildfiregames.com
+port = 22
+user = code
+pass = ae3934hjf
 
-- ZLib:
-  download from http://www.stud.uni-karlsruhe.de/~urkt/zlib.zip ; 
-  put the DLL in binaries\, put header and lib into compiler dirs
-  Note: this is version 1.1.4.8751
+$install := directory where the compiler is installed.
+$lib := directory where the compiler looks for lib files;
+  typically = $install\lib .
+$include := the same for header files (= $install\include).
+$GL := directory containing OpenGL headers.
+  VC6: $install\GL;
+  VC7: $install\PlatformSDK\Include\GL.
+$binaries := directory containing system\ and data\ .
 
-- Xerces:
-  download Xerces binary from http://xml.apache.org/xerces-c/download.cgi ;
-  put the DLL in binaries\, put include\ contents into compiler include dir
+
+TODO:
+
+- OpenGL extensions:
+  download glext.h and put it in $GL .
+
+- ZLib (v1.1.4.8751)
+  download zlib.zip; extract headers into $include,
+  lib files into $lib, and DLLs into $binaries.
+  If you get an error 'zlib.dll not found', rename zlib-1.dll to zlib.dll
+    in directory $binaries (cause of the error is unclear ATM).
+
+- libpng (v1.2.4)
+  download libpng.zip; extract headers into $include,
+  lib files into $lib, and DLLs into $binaries.
+
+- Xerces: [required if compiling GUI]
+  download xerces-c_2_3_0-win32.zip .
+  put xerces-c_2.lib in $lib, and xerces-c_2_3_0.dll in $binaries;
+  copy xerces-c_2_3_0-win32\include\* into $include .
