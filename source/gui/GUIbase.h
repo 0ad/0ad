@@ -10,7 +10,7 @@ gee@pyro.nu
 
 --More info--
 
-	http://gee.pyro.nu/wfg/GUI/
+	Check GUI.h
 
 */
 
@@ -67,8 +67,8 @@ public:																	\
  */
 enum EGUIMessage
 {
-	GUIM_PREPROCESS,
-	GUIM_POSTPROCESS,
+	GUIM_PREPROCESS,		// questionable
+	GUIM_POSTPROCESS,		// questionable
 	GUIM_MOUSE_OVER,
 	GUIM_MOUSE_ENTER,
 	GUIM_MOUSE_LEAVE,

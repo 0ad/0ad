@@ -49,27 +49,60 @@ bool CGUI::HandleEvent(const SDL_Event& ev)
 	// Only one object can be hovered
 	IGUIObject *pNearest = NULL;
 
-	// pNearest will after this point at the hovered object, possibly NULL
-	GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, 
-									&IGUIObject::ChooseMouseOverAndClosest, 
-									pNearest);
-	
-	// Now we'll call UpdateMouseOver on *all* objects,
-	//  we'll input the one hovered, and they will each
-	//  update their own data and send messages accordingly
-	GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, 
-									&IGUIObject::UpdateMouseOver, 
-									pNearest);
-
-	if(pNearest)
+	try
 	{
-		if(ev.type == SDL_MOUSEBUTTONDOWN)
-			pNearest->HandleMessage(GUIM_MOUSE_PRESS_LEFT);
-		else 
-		if(ev.type == SDL_MOUSEBUTTONUP)
-			pNearest->HandleMessage(GUIM_MOUSE_RELEASE_LEFT);
-	}
+		// pNearest will after this point at the hovered object, possibly NULL
+		GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, 
+										&IGUIObject::ChooseMouseOverAndClosest, 
+										pNearest);
+		
+		// Now we'll call UpdateMouseOver on *all* objects,
+		//  we'll input the one hovered, and they will each
+		//  update their own data and send messages accordingly
+		GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, 
+										&IGUIObject::UpdateMouseOver, 
+										pNearest);
 
+		if (ev.type == SDL_MOUSEBUTTONDOWN)
+		{
+			if (pNearest)
+			{
+				pNearest->HandleMessage(GUIM_MOUSE_PRESS_LEFT);
+
+				// some temp
+		/*		CClientArea ca;
+				bool hidden;
+
+				GUI<CClientArea>::GetSetting(*this, CStr(_T("a2")), CStr(_T("size")), ca);
+				GUI<bool>::GetSetting(*this, CStr(_T("a2")), CStr(_T("hidden")), hidden);
+			
+				hidden = !hidden;
+				ca.pixel.right += 30;
+
+				GUI<CClientArea>::SetSetting(*this, CStr(_T("a2")), CStr(_T("size")), ca);
+				GUI<bool>::SetSetting(*this, CStr(_T("a2")), CStr(_T("hidden")), hidden);
+		*/	}
+		}
+		else 
+		if (ev.type == SDL_MOUSEBUTTONUP)
+		{
+			if (pNearest)
+				pNearest->HandleMessage(GUIM_MOUSE_RELEASE_LEFT);
+
+			// Reset all states on all visible objects
+			GUI<>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, 
+									&IGUIObject::ResetStates);
+
+			// It will have reset the mouse over of the current hovered, so we'll
+			//  have to restore that
+			if (pNearest)
+				pNearest->m_MouseHovering = true;
+		}
+	}
+	catch (PS_RESULT e)
+	{
+		// TODO
+	}
 // JW: what's the difference between mPress and mDown? what's the code below responsible for?
 /*/* // Generally if just mouse is clicked
 	if (m_pInput->mDown(NEMM_BUTTON1) && pNearest)
@@ -208,7 +241,7 @@ void CGUI::Draw()
 	{
 		glPopMatrix();
 
-		// TODO
+		// GeeTODO
 		return;
 	}
 	glPopMatrix();
@@ -227,7 +260,7 @@ void CGUI::Destroy()
 		}
 		catch (PS_RESULT e)
 		{
-			// TODO
+			// GeeTODO
 		}
 		
 		delete it->second;
@@ -241,6 +274,7 @@ void CGUI::Destroy()
 
 void CGUI::UpdateResolution()
 {
+	// Update ALL cached
 	GUI<>::RecurseObject(0, m_BaseObject, &IGUIObject::UpdateCachedSize );
 }
 
@@ -253,7 +287,11 @@ void CGUI::AddObject(IGUIObject* pObject)
 
 		// Add child to base object
 		m_BaseObject->AddChild(pObject);
-/*	}
+
+		// Cache tree
+		GUI<>::RecurseObject(0, pObject, &IGUIObject::UpdateCachedSize);
+
+		/*	}
 	catch (PS_RESULT e)
 	{
 		throw e;
@@ -299,7 +337,7 @@ void CGUI::ReportParseError(const CStr &str, ...)
 
 	// Important, set ParseError to true
 	++m_Errors;
-/* MEGA TODO Gee
+/* MEGA GeeTODO 
 	char buffer[512];
 	va_list args;
 
@@ -358,7 +396,7 @@ void CGUI::LoadXMLFile(const string &Filename)
 				int todo_remove = parser->getErrorCount();
 
 
-				// TODO report for real!
+				// GeeTODO report for real!
 ///				g_console.submit("echo Xerces XML Parsing Reports %d errors", parser->getErrorCount());
 			}
 		} 
@@ -392,6 +430,9 @@ void CGUI::LoadXMLFile(const string &Filename)
 			if (root_name == "objects")
 			{
 				Xerces_ReadRootObjects(node);
+
+				// Re-cache all values so these gets cached too.
+				//UpdateResolution();
 			}
 			else
 			if (root_name == "sprites")
@@ -408,6 +449,7 @@ void CGUI::LoadXMLFile(const string &Filename)
 	}
 	
 	XMLPlatformUtils::Terminate();
+
 }
 
 //===================================================================
@@ -519,7 +561,7 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 	// Check if name isn't set, report error in that case
 	if (!NameSet)
 	{
-		// Set Random name! TODO
+		// Generate internal name! GeeTODO
 	}
 
 	//
@@ -547,7 +589,7 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 				// First get element and not node
 				DOMElement *element = (DOMElement*)child;
 
-				// TODO REPORT ERROR
+				// GeeTODO REPORT ERROR
 
 				// Call this function on the child
 				Xerces_ReadObject(element, object);
@@ -561,12 +603,12 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 			// Text is only okay if it's the first element i.e. <object>caption ... </object>
 			if (i==0)
 			{
-				// TODO !!!!! CROP STRING!
+				// GeeTODO !!!!! CROP STRING!
 
 				// Set the setting caption to this
 				GUI<CStr>::SetSetting(object, "caption", caption);
 			}
-			// TODO check invalid strings?
+			// GeeTODO check invalid strings?
 		}
 	}
 

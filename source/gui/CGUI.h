@@ -70,6 +70,9 @@ public:
 	CGUI();
 	~CGUI();
 
+	// TEMP TEMP GeeTODO
+	std::string TEMPmessage;
+
 	/**
 	 * Initializes the GUI, needs to be called before the GUI is used
 	 */

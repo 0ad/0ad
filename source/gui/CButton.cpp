@@ -7,6 +7,10 @@ gee@pyro.nu
 //#include "stdafx."
 #include "GUI.h"
 
+// temp GeeTODO
+#include "font.h"
+#include "ogl.h"
+
 using namespace std;
 
 // Offsets
@@ -69,9 +73,7 @@ CButton::~CButton()
 
 void CButton::HandleMessage(const EGUIMessage &Message)
 {
-// TODO REMOVE
-#define OUTPUT(x) g_console.submit("echo Object(<red>%s</>) <AADDFF>%s</>", m_Name.c_str(), #x);
-
+	// Important
 	IGUIButtonBehavior::HandleMessage(Message);
 
 	switch (Message)
@@ -102,6 +104,7 @@ void CButton::HandleMessage(const EGUIMessage &Message)
 		break;
 
 	case GUIM_PRESSED:
+		GetGUI()->TEMPmessage = "Button " + string((const TCHAR*)m_Name) + " was pressed!";
 ///		OUTPUT(GUIM_PRESSED);
 		break;
 
@@ -128,7 +131,6 @@ void CButton::Draw()
 
 	glPushMatrix();
 		glTranslatef(0.0f, 0.0f, GetBaseSettings().m_Z);
-///		glTranslatef(0.0f, 0.0f, 0.0f);
 
 		// Do this
 		glBegin(GL_QUADS);
@@ -154,7 +156,16 @@ void CButton::Draw()
 
 		//glDisable(GL_DEPTH_TEST);
 
-		//glColor3f(0,0,0);
+/*		glEnable(GL_TEXTURE_2D);
+		glColor3f(1,1,1);
+		
+		//glLoadIdentity();
+		//glTranslatef(ca.left + 10, g_yres - (ca.top + 10), GetBaseSettings().m_Z + 0.1f);
+		glTranslatef(ca.left + 10, ca.top + 10, 0.0f);
+		//glScalef(0,-1,0);
+		font_bind(GetGUI()->TEMPfont);
+		glprintf("%s", (const TCHAR*)m_Name);
+*/		//glColor3f(0,0,0);
 		//font.print(GetBaseSettings().m_Size.left + 3, GetBaseSettings().m_Size.top - 15, LEFT, "Object: %s", GetName().c_str());
 
 		//glEnable(GL_DEPTH_TEST);

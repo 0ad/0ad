@@ -58,6 +58,12 @@ public:
 	virtual void HandleMessage(const EGUIMessage &Message);
 
 protected:
+	virtual void ResetStates()
+	{
+		m_MouseHovering = false;
+		m_Pressed = false;
+	}
+
 	/**
 	 * Everybody knows how a button works, you don't simply press it,
 	 * you have to first press the button, and then release it...

@@ -10,7 +10,7 @@ gee@pyro.nu
 
 --More info--
 
-	http://gee.pyro.nu/wfg/GUI/
+	Check GUI.h
 
 */
 
@@ -165,7 +165,10 @@ public:
 	}
 
 	/**
-	 * Sets a value by name using a real datatype as input
+	 * Sets a value by name using a real datatype as input.
+	 *
+	 * This is the official way of setting a setting, no other
+	 *  way should only causiously be used!
 	 *
 	 * @param pObject Object pointer
 	 * @param Setting Setting by name
@@ -183,7 +186,22 @@ public:
 		// This better be the correct adress
 		*(T*)((size_t)pObject+pObject->GetSettingsInfo()[Setting].m_Offset) = Value;
 
-		pObject->CheckSettingsValidity();
+		
+		//
+		//	Some settings needs special attention at change
+		//
+
+		// If setting was "size", we need to re-cache itself and all children
+		if (Setting == CStr(_T("size")))
+		{
+			RecurseObject(0, pObject, IGUIObject::UpdateCachedSize);
+		}
+		else
+		if (Setting == CStr(_T("hidden")))
+		{
+			// Hiding an object requires us to reset it and all children
+			RecurseObject(0, pObject, IGUIObject::ResetStates);
+		}
 
 		return PS_OK;
 	}
@@ -213,6 +231,9 @@ public:
 	 * Sets a value by setting and object name using a real 
 	 * datatype as input
 	 *
+	 * This is just a wrapper so that we can type the object name
+	 *  and not input the actual pointer.
+	 *
 	 * @param GUI GUI Object, reference since we'll be changing values
 	 * @param Object Object name
 	 * @param Setting Setting by name
@@ -231,8 +252,6 @@ public:
 		//  to use the standard T, since that will be the
 		//  one with the friend relationship
 		IGUIObject *pObject = GetObjectPointer(GUIinstance, Object);
-
-		pObject->CheckSettingsValidity();
 
 		return SetSetting(pObject, Setting, Value);
 	}

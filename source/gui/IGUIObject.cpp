@@ -37,6 +37,7 @@ IGUIObject::IGUIObject() :
 	m_BaseSettings.m_Hidden =		false;
 	m_BaseSettings.m_Style =		"null";
 	m_BaseSettings.m_Z =			0.f;
+	m_BaseSettings.m_Absolute =		true;
 
 	// Static! Only done once
 	if (m_SettingsInfo.empty())
@@ -52,12 +53,6 @@ IGUIObject::~IGUIObject()
 //-------------------------------------------------------------------
 //  Functions
 //-------------------------------------------------------------------
-void IGUIObject::SetBaseSettings(const SGUIBaseSettings &Set)
-{ 
-	m_BaseSettings = Set; 
-	CheckSettingsValidity(); 
-}
-
 void IGUIObject::AddChild(IGUIObject *pChild)
 {
 	// 
@@ -130,6 +125,7 @@ void IGUIObject::SetupBaseSettingsInfo(map_Settings &SettingsInfo)
 	_GUI_ADD_OFFSET("string",		"style",		m_Style)
 	_GUI_ADD_OFFSET("float",		"z",			m_Z)
 	_GUI_ADD_OFFSET("string",		"caption",		m_Caption)
+	_GUI_ADD_OFFSET("bool",			"absolute",		m_Absolute)
 }
 
 bool IGUIObject::MouseOver()
@@ -211,8 +207,24 @@ void IGUIObject::SetSetting(const CStr &Setting, const CStr &Value)
 		GUI<CStr>::SetSetting(this, Setting, Value);
 	}
 	else
+	if (set.m_Type == CStr(_T("bool")))
+	{
+		bool bValue;
+
+		if (Value == CStr(_T("true")))
+			bValue = true;
+		else
+		if (Value == CStr(_T("false")))
+			bValue = false;
+		else 
+			throw PS_FAIL;
+
+		GUI<bool>::SetSetting(this, Setting, bValue);
+	}
+	else
 	if (set.m_Type == CStr(_T("float")))
 	{
+		// GeeTODO Okay float value!?
 		GUI<float>::SetSetting(this, Setting, Value.ToFloat() );
 	}
 	else
@@ -222,7 +234,7 @@ void IGUIObject::SetSetting(const CStr &Setting, const CStr &Value)
 		CParser parser;
 		parser.InputTaskType("", "_$value_$value_$value_$value_");
 
-		// TODO Gee string really?
+		// GeeTODO  string really?
 		string str = (const TCHAR*)Value;
 
 		CParserLine line;
@@ -302,15 +314,20 @@ IGUIObject *IGUIObject::GetParent()
 
 void IGUIObject::UpdateCachedSize()
 {
-	m_CachedActualSize = m_BaseSettings.m_Size.GetClientArea( CRect(0, 0, g_xres, g_yres) );
+	// If absolute="false" and the object has got a parent,
+	//  use its cached size instead of the screen. Notice
+	//  it must have just been cached for it to work.
+	if (m_BaseSettings.m_Absolute == false && m_pParent)
+	{
+		m_CachedActualSize = m_BaseSettings.m_Size.GetClientArea( m_pParent->m_CachedActualSize );
+	}
+	else
+		m_CachedActualSize = m_BaseSettings.m_Size.GetClientArea( CRect(0, 0, g_xres, g_yres) );
 }
 
 // GeeTODO keep this function and all???
 void IGUIObject::CheckSettingsValidity()
 {
-	// Size might have been change, update cached size
-	UpdateCachedSize();
-
 	// If we hide an object, reset many of its parts
 	if (GetBaseSettings().m_Hidden)
 	{
@@ -325,7 +342,7 @@ void IGUIObject::CheckSettingsValidity()
 
 	try
 	{
-		// Send message to myself
+		// Send message to itself
 		HandleMessage(GUIM_SETTINGS_UPDATED);
 	}
 	catch (...)

@@ -108,8 +108,10 @@ static int set_vmode(int w, int h, int bpp)
 
 	glViewport(0, 0, w, h);
 
+#ifndef NO_GUI
 	g_GUI.UpdateResolution();
-	
+#endif
+
 	oglInit();	// required after each mode change
 
 	return 0;
@@ -202,6 +204,11 @@ const float x = 600.0f, y = 512.0f;
 	glprintf("%d FPS", fps);
 
 #ifndef NO_GUI
+	// Temp GUI message GeeTODO
+	glLoadIdentity();
+	glTranslatef(10, 60, 0);
+	glprintf("%s", g_GUI.TEMPmessage.c_str());
+
 	glLoadIdentity();
 	g_GUI.Draw();
 #endif

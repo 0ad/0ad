@@ -24,7 +24,11 @@ void IGUIButtonBehavior::HandleMessage(const EGUIMessage &Message)
 {
 	switch (Message)
 	{
-	case GUIM_POSTPROCESS:
+	case GUIM_PREPROCESS:
+		m_Pressed = false;
+		break;
+
+/*	case GUIM_POSTPROCESS:
 		// Check if button has been pressed
 		if (m_Pressed)
 		{
@@ -40,7 +44,7 @@ void IGUIButtonBehavior::HandleMessage(const EGUIMessage &Message)
 			}
 		}
 		break;
-
+*/
 	case GUIM_MOUSE_PRESS_LEFT:
 		m_Pressed = true;
 		break;
@@ -52,6 +56,12 @@ void IGUIButtonBehavior::HandleMessage(const EGUIMessage &Message)
 			// BUTTON WAS CLICKED
 			HandleMessage(GUIM_PRESSED);
 		}
+		break;
+
+	case GUIM_SETTINGS_UPDATED:
+		// If it's hidden, then it can't be pressed
+		//if (GetBaseSettings().m_Hidden)
+		//	m_Pressed = false;
 		break;
 
 	default:

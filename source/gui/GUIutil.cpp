@@ -28,10 +28,10 @@ CRect CClientArea::GetClientArea(const CRect &parent)
 	CRect client;
 
 	// This should probably be cached and not calculated all the time for every object.
-	client.left =	int(float(parent.left) + float(parent.right-parent.left)*float(percent.left))/100.f + pixel.left;
-	client.top =	int(float(parent.top) + float(parent.bottom-parent.top)*float(percent.top))/100.f + pixel.top;
-	client.right =	int(float(parent.left) + float(parent.right-parent.left)*float(percent.right))/100.f + pixel.right;
-	client.bottom =	int(float(parent.top) + float(parent.bottom-parent.top)*float(percent.bottom))/100.f + pixel.bottom;
+    client.left =	parent.left + int(float((parent.right-parent.left)*percent.left)/100.f) + pixel.left;
+	client.top =	parent.top + int(float((parent.bottom-parent.top)*percent.top)/100.f) + pixel.top;
+	client.right =	parent.left + int(float((parent.right-parent.left)*percent.right)/100.f) + pixel.right;
+	client.bottom =	parent.top + int(float((parent.bottom-parent.top)*percent.bottom)/100.f) + pixel.bottom;
 
 	return client;
 }

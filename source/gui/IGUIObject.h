@@ -104,6 +104,7 @@ struct SGUIBaseSettings
 class IGUIObject
 {
 	friend class CGUI;
+
 #ifndef _MSC_VER
 	template <class T>
 #endif
@@ -190,7 +191,6 @@ public:
 	//@{
 
 	SGUIBaseSettings GetBaseSettings() const { return m_BaseSettings; }
-	void SetBaseSettings(const SGUIBaseSettings &Set);
 	
 	/**
 	 * Checks if settings exists, only available for derived
@@ -286,6 +286,11 @@ protected:
 	// Set parent
 	void SetParent(IGUIObject *pParent) { m_pParent = pParent; }
 	
+	virtual void ResetStates()
+	{
+		m_MouseHovering = false;
+	}
+
 	/**
 	 * <b>NOTE!</b> This will not just return m_pParent, when that is
 	 * need use it! There is one exception to it, when the parent is
@@ -307,7 +312,6 @@ protected:
 	 * cached to avoid slow calculations in real time.
 	 */
 	CRect m_CachedActualSize;
-
 
 	//@}
 private:
