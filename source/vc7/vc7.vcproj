@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding = "Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="7.0"
+	Version="7.00"
 	Name="vc7"
 	ProjectGUID="{BEBCC605-46F3-4927-BDC4-1E5F739A2A4F}"
 	Keyword="Win32Proj">
@@ -19,7 +19,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\ps;..\lib"
+				AdditionalIncludeDirectories="..\ps;..\lib,.."
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -53,13 +53,7 @@
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
 				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
@@ -106,17 +100,9 @@
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
 				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 	</Configurations>
-	<References>
-	</References>
 	<Files>
 		<Filter
 			Name="Source Files"
@@ -169,6 +155,9 @@
 				Name="terrain"
 				Filter="">
 				<File
+					RelativePath="..\terrain\AlphaMapCalculator.cpp">
+				</File>
+				<File
 					RelativePath="..\terrain\Bound.cpp">
 				</File>
 				<File
@@ -193,7 +182,13 @@
 					RelativePath="..\terrain\ModelFile.cpp">
 				</File>
 				<File
+					RelativePath="..\terrain\ModelRData.cpp">
+				</File>
+				<File
 					RelativePath="..\terrain\Patch.cpp">
+				</File>
+				<File
+					RelativePath="..\terrain\PatchRData.cpp">
 				</File>
 				<File
 					RelativePath="..\terrain\Plane.cpp">
@@ -211,10 +206,22 @@
 					RelativePath="..\terrain\Terrain.cpp">
 				</File>
 				<File
-					RelativePath="..\terrain\terrainMain.cpp">
+					RelativePath="..\terrain\TextureManager.cpp">
+				</File>
+				<File
+					RelativePath="..\terrain\TransparencyRenderer.cpp">
+				</File>
+				<File
+					RelativePath="..\terrain\Triangle.cpp">
 				</File>
 				<File
 					RelativePath="..\terrain\Vector3D.cpp">
+				</File>
+				<File
+					RelativePath="..\terrain\Visual.cpp">
+				</File>
+				<File
+					RelativePath="..\terrain\terrainMain.cpp">
 				</File>
 			</Filter>
 			<Filter
@@ -477,10 +484,13 @@
 				Name="ps"
 				Filter="">
 				<File
-					RelativePath="..\ps\Config.cpp">
+					RelativePath="..\ps\CLogger.cpp">
 				</File>
 				<File
 					RelativePath="..\ps\CStr.cpp">
+				</File>
+				<File
+					RelativePath="..\ps\Config.cpp">
 				</File>
 				<File
 					RelativePath="..\ps\Encryption.cpp">
@@ -575,6 +585,15 @@
 				Name="terrain"
 				Filter="">
 				<File
+					RelativePath="..\terrain\AABBTree.h">
+				</File>
+				<File
+					RelativePath="..\terrain\AlphaMapCalculator.h">
+				</File>
+				<File
+					RelativePath="..\terrain\BlendShapes.h">
+				</File>
+				<File
 					RelativePath="..\terrain\Bound.h">
 				</File>
 				<File
@@ -585,6 +604,9 @@
 				</File>
 				<File
 					RelativePath="..\terrain\Frustum.h">
+				</File>
+				<File
+					RelativePath="..\terrain\HBV.h">
 				</File>
 				<File
 					RelativePath="..\terrain\LightEnv.h">
@@ -608,7 +630,13 @@
 					RelativePath="..\terrain\ModelFile.h">
 				</File>
 				<File
+					RelativePath="..\terrain\ModelRData.h">
+				</File>
+				<File
 					RelativePath="..\terrain\Patch.h">
+				</File>
+				<File
+					RelativePath="..\terrain\PatchRData.h">
 				</File>
 				<File
 					RelativePath="..\terrain\Plane.h">
@@ -617,19 +645,28 @@
 					RelativePath="..\terrain\Quaternion.h">
 				</File>
 				<File
+					RelativePath="..\terrain\RenderableObject.h">
+				</File>
+				<File
 					RelativePath="..\terrain\Renderer.h">
 				</File>
 				<File
 					RelativePath="..\terrain\SHCoeffs.h">
 				</File>
 				<File
-					RelativePath="..\terrain\Terrain.h">
-				</File>
-				<File
 					RelativePath="..\terrain\TerrGlobals.h">
 				</File>
 				<File
+					RelativePath="..\terrain\Terrain.h">
+				</File>
+				<File
 					RelativePath="..\terrain\Texture.h">
+				</File>
+				<File
+					RelativePath="..\terrain\TransparencyRenderer.h">
+				</File>
+				<File
+					RelativePath="..\terrain\Triangle.h">
 				</File>
 				<File
 					RelativePath="..\terrain\Types.h">
@@ -640,6 +677,9 @@
 				<File
 					RelativePath="..\terrain\Vector4D.h">
 				</File>
+				<File
+					RelativePath="..\terrain\Visual.h">
+				</File>
 			</Filter>
 			<Filter
 				Name="ps"
@@ -648,10 +688,13 @@
 					RelativePath="..\ps\BaseEntity.h">
 				</File>
 				<File
-					RelativePath="..\ps\Config.h">
+					RelativePath="..\ps\CLogger.h">
 				</File>
 				<File
 					RelativePath="..\ps\CStr.h">
+				</File>
+				<File
+					RelativePath="..\ps\Config.h">
 				</File>
 				<File
 					RelativePath="..\ps\Encryption.h">
@@ -690,6 +733,9 @@
 						RelativePath="..\ps\Network\AllNetMessages.h">
 					</File>
 					<File
+						RelativePath="..\ps\Network\NMTCreator.h">
+					</File>
+					<File
 						RelativePath="..\ps\Network\NetMessage.h">
 					</File>
 					<File
@@ -697,9 +743,6 @@
 					</File>
 					<File
 						RelativePath="..\ps\Network\NetworkInternal.h">
-					</File>
-					<File
-						RelativePath="..\ps\Network\NMTCreator.h">
 					</File>
 					<File
 						RelativePath="..\ps\Network\Serialization.h">

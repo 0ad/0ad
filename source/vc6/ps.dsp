@@ -70,7 +70,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /YX /FD /GZ /c
-# ADD CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /I "..\lib" /I "..\ps" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /FR /FD /GZ /c
+# ADD CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /I "..\lib" /I "..\ps" /I ".." /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /FR /FD /GZ /c
 # SUBTRACT CPP /YX
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
@@ -93,6 +93,14 @@ LINK32=link.exe
 # Begin Group "terrain"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\terrain\AlphaMapCalculator.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\terrain\AlphaMapCalculator.h
+# End Source File
 # Begin Source File
 
 SOURCE=..\terrain\Bound.cpp
@@ -167,11 +175,27 @@ SOURCE=..\terrain\ModelFile.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\terrain\ModelRData.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\terrain\ModelRData.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\terrain\Patch.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=..\terrain\Patch.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\terrain\PatchRData.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\terrain\PatchRData.h
 # End Source File
 # Begin Source File
 
@@ -224,6 +248,22 @@ SOURCE=..\terrain\TerrGlobals.h
 # Begin Source File
 
 SOURCE=..\terrain\Texture.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\terrain\TextureManager.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\terrain\TextureManager.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\terrain\TransparencyRenderer.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\terrain\TransparencyRenderer.h
 # End Source File
 # Begin Source File
 
@@ -644,6 +684,14 @@ SOURCE=..\ps\Network\StreamSocket.h
 # Begin Source File
 
 SOURCE=..\ps\BaseEntity.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\CLogger.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\CLogger.h
 # End Source File
 # Begin Source File
 
