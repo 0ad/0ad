@@ -98,6 +98,41 @@ u64 fnv_hash64(const void* buf, const size_t len)
 }
 
 
+// special version for strings: first converts to lowercase
+// (useful for comparing mixed-case filenames).
+// note: still need <len>, e.g. to support non-0-terminated strings
+u32 fnv_lc_hash(const char* str, const size_t len)
+{
+	u32 h = 0x811c9dc5u;
+		// give distinct values for different length 0 buffers.
+		// value taken from FNV; it has no special significance.
+
+	// expected case: string
+	if(!len)
+	{
+		while(*str)
+		{
+			h ^= tolower(*str++);
+			h *= 0x01000193u;
+		}
+	}
+	else
+	{
+		size_t bytes_left = len;
+		while(bytes_left != 0)
+		{
+			h ^= tolower(*str++);
+			h *= 0x01000193u;
+
+			bytes_left--;
+		}
+	}
+
+	return h;
+}
+
+
+
 
 
 bool is_pow2(const long n)
@@ -259,8 +294,12 @@ void base32(const int len, const u8* in, u8* out)
 // case-insensitive check if string <s> matches the pattern <w>,
 // which may contain '?' or '*' wildcards. if so, return 1, otherwise 0.
 // idea from http://www.codeproject.com/string/wildcmp.asp .
+// note: NULL wildcard pattern matches everything!
 int match_wildcard(const char* s, const char* w)
 {
+	if(!w)
+		return 1;
+
 	// saved position in both strings, used to expand '*':
 	// s2 is advanced until match.
 	// initially 0 - we abort on mismatch before the first '*'.

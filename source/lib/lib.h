@@ -100,7 +100,7 @@ STMT(\
 	int err__ = (int)((func) & UINT_MAX);\
 	if(err__ < 0)\
 	{\
-		assert(0 && "FYI: CHECK_ERR reports that a function failed."\
+		assert2(0 && "FYI: CHECK_ERR reports that a function failed."\
 		            "feel free to ignore or suppress this warning.");\
 		return err__;\
 	}\
@@ -269,13 +269,15 @@ const size_t GiB = 1ul << 30;
 
 
 
-
-
 // FNV1-A hash - good for strings.
 // if len = 0 (default), treat buf as a C-string;
 // otherwise, hash <len> bytes of buf.
 extern u32 fnv_hash(const void* buf, const size_t len = 0);
 extern u64 fnv_hash64(const void* buf, const size_t len = 0);
+
+// special version for strings: first converts to lowercase
+// (useful for comparing mixed-case filenames)
+extern u32 fnv_lc_hash(const char* str, const size_t len = 0);
 
 // hash (currently FNV) of a filename
 typedef u32 FnHash;
@@ -306,6 +308,7 @@ extern void base32(const int len, const u8* in, u8* out);
 
 // case-insensitive check if string <s> matches the pattern <w>,
 // which may contain '?' or '*' wildcards. if so, return 1, otherwise 0.
+// note: NULL wildcard pattern matches everything!
 extern int match_wildcard(const char* s, const char* w);
 
 
