@@ -104,7 +104,10 @@ struct SGUIBaseSettings
 class IGUIObject
 {
 	friend class CGUI;
-	template <class T> friend class GUI;
+#ifndef _MSC_VER
+	template <class T>
+#endif
+	friend class GUI;
 
 public:
 	IGUIObject();
