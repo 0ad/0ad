@@ -919,6 +919,10 @@
                 <image texture="atlas/atlas_global_arrow_rt.png" texture-size="0 0 4 8" size="0 0 100% 100%"/>
         </sprite>
 
+	<sprite name="atlas_sheet_toolbar_button">
+		<image texture="atlas/atlas_sheet_toolbar_button.png" cell-size="15 15" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+	</sprite>
+
         <!--
         ==========================================
         TEMPORARY IMAGES
