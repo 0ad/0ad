@@ -802,16 +802,33 @@ function UpdateStatusOrb()
 	{
 		if (selection[0].actions.attack.damage && selection[0].actions.attack.damage > 0)
 			getGUIObjectByName("session_panel_status_stat1_1").caption = '[icon="icon_statistic_attack"]' + selection[0].actions.attack.damage;
+		else
+			getGUIObjectByName("session_panel_status_stat1_1").caption = "";
+
 		if (selection[0].actions.attack.hack && selection[0].actions.attack.hack > 0)
 			getGUIObjectByName("session_panel_status_stat2_1").caption = '[icon="icon_statistic_hack"]' + Math.round(selection[0].actions.attack.hack*100) + '%';
+		else
+			getGUIObjectByName("session_panel_status_stat2_1").caption = "";
+
 		if (selection[0].actions.attack.pierce && selection[0].actions.attack.pierce > 0)
 			getGUIObjectByName("session_panel_status_stat3_1").caption = '[icon="icon_statistic_pierce"]' + Math.round(selection[0].actions.attack.pierce*100) + '%';
+		else
+			getGUIObjectByName("session_panel_status_stat3_1").caption = "";
+
 		if (selection[0].actions.attack.crush && selection[0].actions.attack.crush > 0)
 			getGUIObjectByName("session_panel_status_stat4_1").caption = '[icon="icon_statistic_crush"]' + Math.round(selection[0].actions.attack.crush*100) + '%';
-		if (selection[0].actions.attack.range)
+		else
+			getGUIObjectByName("session_panel_status_stat4_1").caption = "";
+
+		if (selection[0].actions.attack.range && selection[0].actions.attack.range > 0)
 			getGUIObjectByName("session_panel_status_stat5_1").caption = '[icon="icon_statistic_range"]' + selection[0].actions.attack.range;
-		if (selection[0].actions.attack.accuracy)
+		else
+			getGUIObjectByName("session_panel_status_stat5_1").caption = "";
+
+		if (selection[0].actions.attack.accuracy && selection[0].actions.attack.accuracy > 0)
 			getGUIObjectByName("session_panel_status_stat6_1").caption = '[icon="icon_statistic_accuracy"]' + Math.round(selection[0].actions.attack.accuracy*100) + '%';
+		else
+			getGUIObjectByName("session_panel_status_stat6_1").caption = "";
 	}
 
 	// Update Armour & Other stats
@@ -819,17 +836,23 @@ function UpdateStatusOrb()
 	{
 		if (selection[0].traits.armour.value && selection[0].traits.armour.value > 0)
 			getGUIObjectByName("session_panel_status_stat1_2").caption = '[icon="icon_statistic_armour"]' + selection[0].traits.armour.value;
+		else getGUIObjectByName("session_panel_status_stat1_2").caption = "";
 		if (selection[0].traits.armour.hack && selection[0].traits.armour.hack > 0)
 			getGUIObjectByName("session_panel_status_stat2_2").caption = '[icon="icon_statistic_hack"]' + Math.round(selection[0].traits.armour.hack*100) + '%';
+		else getGUIObjectByName("session_panel_status_stat2_2").caption = "";
 		if (selection[0].traits.armour.pierce && selection[0].traits.armour.pierce > 0)
 			getGUIObjectByName("session_panel_status_stat3_2").caption = '[icon="icon_statistic_pierce"]' + Math.round(selection[0].traits.armour.pierce*100) + '%';
+		else getGUIObjectByName("session_panel_status_stat3_2").caption = "";
 		if (selection[0].traits.armour.crush && selection[0].traits.armour.crush > 0)
 			getGUIObjectByName("session_panel_status_stat4_2").caption = '[icon="icon_statistic_crush"]' + Math.round(selection[0].traits.armour.crush*100) + '%';
+		else getGUIObjectByName("session_panel_status_stat4_2").caption = "";
 	}
 	if (selection[0].actions.move && selection[0].actions.move.speed)
 		getGUIObjectByName("session_panel_status_stat5_2").caption = '[icon="icon_statistic_speed"]' + selection[0].actions.move.speed;
+		else getGUIObjectByName("session_panel_status_stat5_2").caption = "";
 	if (selection[0].traits.vision && selection[0].traits.vision.los)
 		getGUIObjectByName("session_panel_status_stat6_2").caption = '[icon="icon_statistic_los"]' + selection[0].traits.vision.los;
+		else getGUIObjectByName("session_panel_status_stat6_2").caption = "";
 
 	// Reveal Status Orb
 	getGUIObjectByName("session_status_orb").hidden = false;
