@@ -58,6 +58,8 @@ jsval CPlayerSlot::JSI_GetAssignment()
 		case SLOT_SESSION:
 			return g_ScriptingHost.UCStringToValue(L"session");
 /*		case SLOT_AI:*/
+		default:
+			return JSVAL_NULL;
 	}
 }
 
@@ -286,7 +288,7 @@ void CGameAttributes::OnNumSlotsUpdate(CSynchedJSObjectBase *owner)
 										  pInstance->m_PlayerUpdateCBData);
 			pInstance->m_Players.push_back(pNewPlayer);
 
-			CPlayerSlot *pNewSlot=new CPlayerSlot(i, pNewPlayer);
+			CPlayerSlot *pNewSlot=new CPlayerSlot((uint)i, pNewPlayer);
 			pNewSlot->SetCallback(pInstance->m_PlayerSlotAssignmentCB,
 								  pInstance->m_PlayerSlotAssignmentCBData);
 			pInstance->m_PlayerSlots.push_back(pNewSlot);
@@ -296,7 +298,7 @@ void CGameAttributes::OnNumSlotsUpdate(CSynchedJSObjectBase *owner)
 
 CPlayer *CGameAttributes::GetPlayer(int id)
 {
-	if (id >= 0 && id < m_Players.size())
+	if (id >= 0 && id < (int)m_Players.size())
 		return m_Players[id];
 	else
 	{
@@ -307,7 +309,7 @@ CPlayer *CGameAttributes::GetPlayer(int id)
 
 CPlayerSlot *CGameAttributes::GetSlot(int index)
 {
-	if (index >= 0 && index < m_PlayerSlots.size())
+	if (index >= 0 && index < (int)m_PlayerSlots.size())
 		return m_PlayerSlots[index];
 	else
 	{

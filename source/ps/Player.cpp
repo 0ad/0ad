@@ -86,4 +86,7 @@ jsval CPlayer::JSI_SetColour( JSContext* cx, uintN argc, jsval* argv )
 	m_Colour=*( ToNative<SPlayerColour>(argv[0]) );
 	ISynchedJSProperty *prop=GetSynchedProperty(L"colour");
 	Update(L"colour", prop);
+	
+	// Return something that isn't null, so users can check whether this function succeeded
+	return argv[0];
 }

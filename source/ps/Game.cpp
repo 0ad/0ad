@@ -87,7 +87,7 @@ CPlayer *CGame::GetPlayer(uint idx)
 {
 	if (idx > m_NumPlayers)
 	{
-		debug_warn("Invalid player ID");
+//		debug_warn("Invalid player ID");
 		LOG(ERROR, "", "Invalid player ID %d (outside 0..%d)", idx, m_NumPlayers);
 		return m_Players[0];
 	}
