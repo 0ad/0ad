@@ -116,7 +116,7 @@ JSBool JSI_Entity::construct( JSContext* cx, JSObject* obj, unsigned int argc, j
 
 void JSI_Entity::finalize( JSContext* cx, JSObject* obj )
 {
-	delete( JS_GetPrivate( cx, obj ) );
+	delete( (HEntity*)JS_GetPrivate( cx, obj ) );
 }
 
 void JSI_Entity::init()
