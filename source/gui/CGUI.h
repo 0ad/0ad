@@ -128,6 +128,17 @@ public:
 	 */
 	void AddObjectType(const CStr &str, ConstructObjectFunction pFunc) { m_ObjectTypes[str] = pFunc; }
 
+	/**
+	 * Update Resolution, should be called every time the resolution
+	 * of the opengl screen has been changed, this is becuase it needs
+	 * to re-cache all its actual sizes
+	 *
+	 * Needs no input since screen resolution is global.
+	 *
+	 * @see IGUIObject#UpdateCachedSize()
+	 */
+	void UpdateResolution();
+
 private:
 	/**
 	 * Updates the object pointers, needs to be called each

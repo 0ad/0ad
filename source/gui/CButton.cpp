@@ -117,10 +117,10 @@ void CButton::Draw()
 		if (m_Pressed)
 			glColor3f(0.7f, 0.f, 0.f);
 		else
-			glColor3f(0,1,(float)m_BaseSettings.m_Size.right/300.f);
+			glColor3f(0,1,(float)m_BaseSettings.m_Size.pixel.right/300.f);
 	}
 	else
-		glColor3f((float)m_BaseSettings.m_Size.right/300.f,0,1);
+		glColor3f((float)m_BaseSettings.m_Size.pixel.right/300.f,0,1);
 
 	////////// Gee: janwas, this is just temp to see it
 	glDisable(GL_TEXTURE_2D);
@@ -133,11 +133,19 @@ void CButton::Draw()
 		// Do this
 		glBegin(GL_QUADS);
 		//glBegin(GL_TRIANGLES);
-			glVertex2i(GetBaseSettings().m_Size.right, GetBaseSettings().m_Size.bottom);
+			//CRect ca = GetBaseSettings().m_Size.GetClientArea(CRect(0, 0, g_xres, g_yres));
+			CRect ca = m_CachedActualSize;
+
+			glVertex2i(ca.right, ca.bottom);
+			glVertex2i(ca.left, ca.bottom);
+			glVertex2i(ca.left, ca.top);
+			glVertex2i(ca.right, ca.top);
+
+/*			glVertex2i(GetBaseSettings().m_Size.right, GetBaseSettings().m_Size.bottom);
 			glVertex2i(GetBaseSettings().m_Size.left, GetBaseSettings().m_Size.bottom);
 			glVertex2i(GetBaseSettings().m_Size.left, GetBaseSettings().m_Size.top);
 			glVertex2i(GetBaseSettings().m_Size.right, GetBaseSettings().m_Size.top);
-/*
+*//*
 			glVertex2i(GetBaseSettings().m_Size.right, GetBaseSettings().m_Size.bottom);
 			glVertex2i(GetBaseSettings().m_Size.left, GetBaseSettings().m_Size.bottom);
 			glVertex2i(GetBaseSettings().m_Size.left, GetBaseSettings().m_Size.top);

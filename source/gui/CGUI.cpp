@@ -239,6 +239,11 @@ void CGUI::Destroy()
 	m_Sprites.clear();
 }
 
+void CGUI::UpdateResolution()
+{
+	GUI<>::RecurseObject(0, m_BaseObject, &IGUIObject::UpdateCachedSize );
+}
+
 void CGUI::AddObject(IGUIObject* pObject)
 {
 /*	try

@@ -97,7 +97,7 @@ enum
 
 // Typedefs
 typedef	std::map<CStr, IGUIObject*> map_pObjects;
-
+typedef std::vector<IGUIObject*> vector_pObjects;
 
 //--------------------------------------------------------
 //  Error declarations

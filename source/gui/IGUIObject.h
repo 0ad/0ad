@@ -48,7 +48,6 @@ class CGUI;
 
 // Map with pointers
 typedef std::map<CStr, SGUISetting> map_Settings;
-typedef std::vector<IGUIObject*> vector_pObjects;
 
 //--------------------------------------------------------
 //  Error declarations
@@ -58,36 +57,6 @@ typedef std::vector<IGUIObject*> vector_pObjects;
 //  Declarations
 //--------------------------------------------------------
 
-// TEMP
-struct CRect
-{
-	CRect() {}
-	CRect(int _l, int _b, int _r, int _t) :
-		top(_t),
-		bottom(_b),
-		right(_r),
-		left(_l) {}
-	int bottom, top, left, right;
-
-	bool operator ==(const CRect &rect) const
-	{
-		return	(bottom==rect.bottom) &&
-				(top==rect.top) &&
-				(left==rect.left) &&
-				(right==rect.right);
-	}
-
-	bool operator !=(const CRect &rect) const
-	{
-		return	!(*this==rect);
-	}
-};
-
-// TEMP
-struct CColor
-{
-	float r, g, b, a;
-};
 
 // Text alignments
 enum EAlign { EAlign_Left, EAlign_Right, EAlign_Center };
@@ -117,7 +86,8 @@ struct SGUIBaseSettings
 	bool			m_Hidden;
 	bool			m_Enabled;
 	bool			m_Absolute;
-	CRect			m_Size;
+//	CRect			m_Size2;
+	CClientArea		m_Size;
 	CStr			m_Style;
 	float			m_Z;
 	CStr			m_Caption;	// Is usually set within an XML element and not in the attributes
@@ -134,7 +104,7 @@ struct SGUIBaseSettings
 class IGUIObject
 {
 	friend class CGUI;
-	friend class GUI;
+	template <class T> friend class GUI;
 
 public:
 	IGUIObject();
@@ -230,6 +200,13 @@ public:
 	bool SettingExists(const CStr &Setting) const;
 	
 	/**
+	 * All sizes are relative to resolution, and the calculation
+	 * is not wanted in real time, therefore it is cached, update
+	 * the cached size with this function.
+	 */
+	void UpdateCachedSize();
+
+	/**
 	 * Should be called every time the settings has been updated
 	 * will also send a message GUIM_SETTINGS_UPDATED, so that
 	 * if a derived object wants to add things to be updated,
@@ -321,6 +298,14 @@ protected:
 	u16 GetMouseX() const;
 	u16 GetMouseY() const;
 
+	/**
+	 * Cached size, real size m_Size is actually dependent on resolution
+	 * and can have different *real* outcomes, this is the real outcome
+	 * cached to avoid slow calculations in real time.
+	 */
+	CRect m_CachedActualSize;
+
+
 	//@}
 private:
 	//--------------------------------------------------------
@@ -379,7 +364,7 @@ protected:
 	 * located hardcoded, in order to acquire a pointer
 	 * for that variable... Say "frozen" gives
 	 * the offset from IGUIObject to m_Frozen.
-	 * <b>note!</b> <u>NOT</u> from SGUIBaseSettings to 
+	 * <b>note!</b> @uNOT from SGUIBaseSettings to 
 	 * m_Frozen!
 	 */
 	static map_Settings						m_SettingsInfo;

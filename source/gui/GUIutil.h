@@ -24,6 +24,84 @@ gee@pyro.nu
 #include "GUI.h"
 
 //--------------------------------------------------------
+//  Help Classes/Structs for the GUI
+//--------------------------------------------------------
+// TEMP
+struct CRect
+{
+	CRect() {}
+	CRect(int _l, int _t, int _r, int _b) :
+		left(_l),
+		top(_t),
+		right(_r),
+		bottom(_b) {}
+	int bottom, top, left, right;
+
+	bool operator ==(const CRect &rect) const
+	{
+		return	(bottom==rect.bottom) &&
+				(top==rect.top) &&
+				(left==rect.left) &&
+				(right==rect.right);
+	}
+
+	bool operator !=(const CRect &rect) const
+	{
+		return	!(*this==rect);
+	}
+};
+
+/**
+ * @author Gustav Larsson
+ *
+ * Client Area is a rectangle relative to a parent rectangle
+ *
+ * You can input the whole value of the Client Area by
+ * string. Like used in the GUI.
+ */
+struct CClientArea
+{
+public:
+	CClientArea();
+	CClientArea(const CStr &Value);
+
+	/// Pixel modifiers
+	CRect pixel;
+
+	/// Percent modifiers (I'll let this be integers, I don't think a greater precision is needed)
+	CRect percent;
+
+	/**
+	 * Get client area rectangle when the parent is given
+	 */
+	CRect GetClientArea(const CRect &parent);
+
+	/**
+	 * The ClientArea can be set from a string looking like:
+	 *
+	 * @code
+	 * "0 0 100% 100%"
+	 * "50%-10 50%-10 50%+10 50%+10" @endcode
+	 * 
+	 * i.e. First percent modifier, then + or - and the pixel modifier.
+	 * Although you can use just the percent or the pixel modifier. Notice
+	 * though that the percent modifier must always be the first when
+	 * both modifiers are inputted.
+	 *
+	 * @return true if success, false if failure. If false then the client area
+	 *			will be unchanged.
+	 */
+	bool SetClientArea(const CStr &Value);
+};
+
+
+// TEMP
+struct CColor
+{
+	float r, g, b, a;
+};
+
+//--------------------------------------------------------
 //  Forward declarations
 //--------------------------------------------------------
 class CGUI;
@@ -153,6 +231,8 @@ public:
 		//  to use the standard T, since that will be the
 		//  one with the friend relationship
 		IGUIObject *pObject = GetObjectPointer(GUIinstance, Object);
+
+		pObject->CheckSettingsValidity();
 
 		return SetSetting(pObject, Setting, Value);
 	}

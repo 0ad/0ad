@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no" ?>
 
-<!DOCTYPE objects SYSTEM "file:///C:/objects.dtd">
+<!DOCTYPE objects SYSTEM "objects.dtd">
 
 <objects>
-	<object name="Button2" type="button" size1024="10 10 100 100" style="hello" z="10" />
 
-	<object name="Button3" type="button" size1024="120 120 220 220" style="hello" z="20">
-		<object name="Child" type="button" size1024="140 140 300 200" z="22">
-			<object name="ChildsChilds" type="button" size1024="200 150 400 190" z="24"> </object>
-		</object>
+	<object name="Child" type="button" size="100%-50 100%-50 100%-5 100%-5" z="22">
 	</object>
+
 </objects>

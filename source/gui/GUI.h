@@ -56,6 +56,7 @@ gee@pyro.nu
 //--------------------------------------------------------
 #include <map>
 #include <string>
+#include <vector>
 #include <stddef.h>
 
 //// janwas: these are very sloppy added, I don't know the etiquette

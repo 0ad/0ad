@@ -124,15 +124,12 @@ void IGUIObject::Destroy()
 
 void IGUIObject::SetupBaseSettingsInfo(map_Settings &SettingsInfo)
 {
-	SettingsInfo["hejsan"].m_Offset = 0;
-
-
-	_GUI_ADD_OFFSET("bool",		"enabled",		m_Enabled)
-	_GUI_ADD_OFFSET("bool",		"hidden",		m_Hidden)
-	_GUI_ADD_OFFSET("rect",		"size1024",		m_Size)
-	_GUI_ADD_OFFSET("string",	"style",		m_Style)
-	_GUI_ADD_OFFSET("float",	"z",			m_Z)
-	_GUI_ADD_OFFSET("string",	"caption",		m_Caption)
+	_GUI_ADD_OFFSET("bool",			"enabled",		m_Enabled)
+	_GUI_ADD_OFFSET("bool",			"hidden",		m_Hidden)
+	_GUI_ADD_OFFSET("client area",	"size",			m_Size)
+	_GUI_ADD_OFFSET("string",		"style",		m_Style)
+	_GUI_ADD_OFFSET("float",		"z",			m_Z)
+	_GUI_ADD_OFFSET("string",		"caption",		m_Caption)
 }
 
 bool IGUIObject::MouseOver()
@@ -143,10 +140,14 @@ bool IGUIObject::MouseOver()
 	u16 mouse_x = GetMouseX(),
 		mouse_y = GetMouseY();
 
-	return (mouse_x >= m_BaseSettings.m_Size.left &&
-			mouse_x <= m_BaseSettings.m_Size.right &&
-			mouse_y >= m_BaseSettings.m_Size.bottom &&
-			mouse_y <= m_BaseSettings.m_Size.top);
+	//CRect ca = m_BaseSettings.m_Size.GetClientArea(CRect(0,0,g_xres,g_yres));
+	CRect ca = m_CachedActualSize;
+
+
+	return (mouse_x >= ca.left &&
+			mouse_x <= ca.right &&
+			mouse_y >= ca.top &&
+			mouse_y <= ca.bottom);
 }
 
 u16 IGUIObject::GetMouseX() const
@@ -217,9 +218,6 @@ void IGUIObject::SetSetting(const CStr &Setting, const CStr &Value)
 	else
 	if (set.m_Type == CStr(_T("rect")))
 	{
-		// TEMP
-		//GUI<CRect>::SetSetting(this, Setting, CRect(100,100,200,200));
-
 		// Use the parser to parse the values
 		CParser parser;
 		parser.InputTaskType("", "_$value_$value_$value_$value_");
@@ -247,6 +245,21 @@ void IGUIObject::SetSetting(const CStr &Setting, const CStr &Value)
 		// Finally the rectangle values
 		CRect rect(values[0], values[1], values[2], values[3]);
 		GUI<CRect>::SetSetting(this, Setting, rect);
+	}
+	else
+	if (set.m_Type == CStr(_T("client area")))
+	{
+		// Get Client Area
+		CClientArea ca;
+
+		if (!ca.SetClientArea(Value))
+		{
+			// GeeTODO REPORT
+		}
+
+		// Check if valid!
+
+		GUI<CClientArea>::SetSetting(this, Setting, ca);
 	}
 	else
 	{
@@ -287,9 +300,17 @@ IGUIObject *IGUIObject::GetParent()
 	return m_pParent;
 }
 
+void IGUIObject::UpdateCachedSize()
+{
+	m_CachedActualSize = m_BaseSettings.m_Size.GetClientArea( CRect(0, 0, g_xres, g_yres) );
+}
+
 // GeeTODO keep this function and all???
 void IGUIObject::CheckSettingsValidity()
 {
+	// Size might have been change, update cached size
+	UpdateCachedSize();
+
 	// If we hide an object, reset many of its parts
 	if (GetBaseSettings().m_Hidden)
 	{
