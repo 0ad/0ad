@@ -128,6 +128,12 @@ float CEntity::getExactGroundLevel( float x, float y )
 
 	assert( ( xi >= 0 ) && ( xi < (int)mapsize ) && ( yi >= 0 ) && ( yi < (int)mapsize ) );
 
+	// In non-debug builds, do something nicer than crashing
+	if (! ( ( xi >= 0 ) && ( xi < (int)mapsize ) && ( yi >= 0 ) && ( yi < (int)mapsize ) ) )
+	{
+		return 0.0f;
+	}
+
 	float h00 = heightmap[yi*mapsize + xi];
 	float h01 = heightmap[yi*mapsize + xi + mapsize];
 	float h10 = heightmap[yi*mapsize + xi + 1];
