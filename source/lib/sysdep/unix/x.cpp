@@ -23,6 +23,7 @@
 #include <stdlib.h>
 #include <Xatom.h>
 
+#include "lib.h"
 #include "detect.h"
 
 #include <algorithm>

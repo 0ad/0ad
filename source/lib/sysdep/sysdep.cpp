@@ -1,5 +1,6 @@
 #include "precompiled.h"
 
+#include "lib.h"
 #include "sysdep.h"
 #include <memory.h>
 #include <stdarg.h>
