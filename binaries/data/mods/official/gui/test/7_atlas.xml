@@ -357,15 +357,136 @@
 						setSizeArray("atlas_left_pane_section_terrain_cliff_list", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_LIST], left_screen, top_screen, left_screen, top_screen);
 					]]></action>
 				</object>
+				<object type="text" name="atlas_left_pane_section_terrain_cliff_heading" style="atlas_label_text" hidden="false">Cliff
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_cliff_heading", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEADING], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+				</object>
+				<object type="text" name="atlas_left_pane_section_terrain_cliff_heading_hr" sprite="atlas_hline" hidden="false">
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_cliff_heading_hr", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEADING_HR], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+				</object>
+				<object type="button" name="atlas_left_pane_section_terrain_cliff_button_place" style="atlas_button" hidden="false">Place Cliff
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_cliff_button_place", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_BUTTON_PLACE], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+				</object>
+				<object type="text" name="atlas_left_pane_section_terrain_cliff_height_label" style="atlas_label_text" text_align="left" hidden="false">Height
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_cliff_height_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_LABEL], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+				</object>
+				<object type="input" name="atlas_left_pane_section_terrain_cliff_height_input_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_cliff_height_input_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX], left_screen, top_screen, left_screen, top_screen);
+						GUIObjectSetCaption("atlas_left_pane_section_terrain_cliff_height_input_box", "3.0");
+					]]></action>
+				</object>
+				<object type="button" name="atlas_left_pane_section_terrain_cliff_height_input_box_up" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false">
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_cliff_height_input_box_up", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX_UP], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+					<action on="Press"><![CDATA[
+						GUIObjectModifyCaption("atlas_left_pane_section_terrain_cliff_height_input_box", .1, 1);
+					]]></action>
+				</object>
+				<object type="button" name="atlas_left_pane_section_terrain_cliff_height_input_box_dn" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false">
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_cliff_height_input_box_dn", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HEIGHT_INPUT_BOX_DN], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+					<action on="Press"><![CDATA[
+						GUIObjectModifyCaption("atlas_left_pane_section_terrain_cliff_height_input_box", -.1, 1);
+					]]></action>
+				</object>
+				<object type="text" name="atlas_left_pane_section_terrain_cliff_angle_label" style="atlas_label_text" text_align="left" hidden="false">Angle
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_cliff_angle_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_LABEL], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+				</object>
+				<object type="input" name="atlas_left_pane_section_terrain_cliff_angle_input_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_cliff_angle_input_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX], left_screen, top_screen, left_screen, top_screen);
+						GUIObjectSetCaption("atlas_left_pane_section_terrain_cliff_angle_input_box", "65.0");
+					]]></action>
+				</object>
+				<object type="button" name="atlas_left_pane_section_terrain_cliff_angle_input_box_up" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false">
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_cliff_angle_input_box_up", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX_UP], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+					<action on="Press"><![CDATA[
+						GUIObjectModifyCaption("atlas_left_pane_section_terrain_cliff_angle_input_box", .1, 1);
+					]]></action>
+				</object>
+				<object type="button" name="atlas_left_pane_section_terrain_cliff_angle_input_box_dn" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false">
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_cliff_angle_input_box_dn", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_ANGLE_INPUT_BOX_DN], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+					<action on="Press"><![CDATA[
+						GUIObjectModifyCaption("atlas_left_pane_section_terrain_cliff_angle_input_box", -.1, 1);
+					]]></action>
+				</object>
+				<object type="text" name="atlas_left_pane_section_terrain_cliff_smooth_label" style="atlas_label_text" text_align="left" hidden="false">Smooth
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_cliff_smooth_label", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_LABEL], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+				</object>
+				<object type="input" name="atlas_left_pane_section_terrain_cliff_smooth_input_box" sprite="atlas_input_box" style="atlas_label_text" hidden="false">
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_cliff_smooth_input_box", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX], left_screen, top_screen, left_screen, top_screen);
+						GUIObjectSetCaption("atlas_left_pane_section_terrain_cliff_smooth_input_box", "1.0");
+					]]></action>
+				</object>
+				<object type="button" name="atlas_left_pane_section_terrain_cliff_smooth_input_box_up" sprite="atlas_sheet_updown_button" cell_id="0" hidden="false">
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_cliff_smooth_input_box_up", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX_UP], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+					<action on="Press"><![CDATA[
+						GUIObjectModifyCaption("atlas_left_pane_section_terrain_cliff_smooth_input_box", .1, 1);
+					]]></action>
+				</object>
+				<object type="button" name="atlas_left_pane_section_terrain_cliff_smooth_input_box_dn" sprite="atlas_sheet_updown_button" cell_id="1" hidden="false">
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_cliff_smooth_input_box_dn", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_SMOOTH_INPUT_BOX_DN], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+					<action on="Press"><![CDATA[
+						GUIObjectModifyCaption("atlas_left_pane_section_terrain_cliff_smooth_input_box", -.1, 1);
+					]]></action>
+				</object>
+				<object type="button" name="atlas_left_pane_section_terrain_cliff_button_custom" style="atlas_button" hidden="false">Custom Cliff
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_cliff_button_custom", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_BUTTON_CUSTOM], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+				</object>
 				<object type="text" name="atlas_left_pane_section_terrain_cliff_hr" sprite="atlas_hline" hidden="false">
 					<action on="Load"><![CDATA[
 						setSizeArray("atlas_left_pane_section_terrain_cliff_hr", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_CLIFF_HR], left_screen, top_screen, left_screen, top_screen);
 					]]></action>
 				</object>
-				<!-- TERRAIN EDITOR: CLIFF -->
+				<!-- TERRAIN EDITOR: WATER -->
 				<object type="text" name="atlas_left_pane_section_terrain_water_list" sprite="atlas_window_grey" scrollbar_style="atlas_scrollbar" scrollbar="true" hidden="false">
 					<action on="Load"><![CDATA[
 						setSizeArray("atlas_left_pane_section_terrain_water_list", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_LIST], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+				</object>
+				<object type="text" name="atlas_left_pane_section_terrain_water_heading" style="atlas_label_text" hidden="false">Water
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_water_heading", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_HEADING], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+				</object>
+				<object type="text" name="atlas_left_pane_section_terrain_water_heading_hr" sprite="atlas_hline" hidden="false">
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_water_heading_hr", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_HEADING_HR], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+				</object>
+				<object type="button" name="atlas_left_pane_section_terrain_water_button_place" style="atlas_button" hidden="false">Place Water
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_water_button_place", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_BUTTON_PLACE], left_screen, top_screen, left_screen, top_screen);
+					]]></action>
+				</object>
+				<object type="button" name="atlas_left_pane_section_terrain_water_button_custom" style="atlas_button" hidden="false">Custom Water
+					<action on="Load"><![CDATA[
+						setSizeArray("atlas_left_pane_section_terrain_water_button_custom", atlasCoord[ATLAS_LEFT_PANE_SECTION_TERRAIN_WATER_BUTTON_CUSTOM], left_screen, top_screen, left_screen, top_screen);
 					]]></action>
 				</object>
 				<object type="text" name="atlas_left_pane_section_terrain_water_hr" sprite="atlas_hline" hidden="false">
