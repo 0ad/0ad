@@ -3,6 +3,7 @@
 #ifndef CStr_CPP_FIRST
 #define CStr_CPP_FIRST
 
+#include "posix.h" // for htons, ntohs
 #include "Network/Serialization.h"
 #include <cassert>
 

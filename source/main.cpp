@@ -1039,7 +1039,9 @@ PREVTSC=TSC;
 	// crashes before the working directory is set.
 	MICROLOG(L"init vfs");
 	const char* argv0 = argc? argv[0] : NULL;
-		// TODO FIXME: why? document the need for this
+		// ScEd doesn't have a main(argc, argv), and so it has no argv. In that
+		// case, just pass NULL to InitVfs, which will work out the current
+		// directory for itself.
 	InitVfs(argv0);
 
 	// Set up the console early, so that debugging
