@@ -506,7 +506,6 @@ u64 PREVTSC;
 
 int entry()
 {
-
 #ifdef _MSC_VER
 u64 TSC=rdtsc();
 debug_out(
