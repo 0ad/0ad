@@ -338,6 +338,7 @@ extern void win_unlock(uint idx);
 
 
 extern char win_sys_dir[MAX_PATH+1];
+extern char win_exe_dir[MAX_PATH+1];
 
 
 #endif	// #ifndef WIN_INTERNAL_H

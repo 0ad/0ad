@@ -35,6 +35,7 @@ void sle(int x)
 }
 
 char win_sys_dir[MAX_PATH+1];
+char win_exe_dir[MAX_PATH+1];
 
 
 //
@@ -265,6 +266,14 @@ static inline void pre_libc_init()
 		InitializeCriticalSection(&cs[i]);
 
 	GetSystemDirectory(win_sys_dir, sizeof(win_sys_dir));
+
+	if(GetModuleFileName(GetModuleHandle(0), win_exe_dir, MAX_PATH) != 0)
+	{
+		char* slash = strrchr(win_exe_dir, '\\');
+		if(slash)
+			*slash = '\0';
+	}
+
 }
 
 
