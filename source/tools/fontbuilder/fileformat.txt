@@ -1,0 +1,41 @@
+$Id: fileformat.txt,v 1.1 2004/06/17 19:32:04 philip Exp $
+
+
+Fonts consist of
+  fontname.fnt
+  fontname.tga
+and you load fonts by just specifying the "path/fontname" part.
+
+The .tga is an 8-bit greyscale image, used for alpha-blending the text.
+(DXTC allows 0.5 bytes/pixel at best, which isn't much better than
+TGA's 1 byte/pixel, and DXTC's lossiness is almost noticeable.)
+
+The .fnt file is something like:
+
+  100
+  512 256
+  3
+  16
+  32 0 0 10 10 12
+  33 10 0 6 10 7
+  3300 16 0 6 10 7
+  
+First line = version number of file, for slightly better error
+detection if people leave old ones hanging around.
+
+Second line = size of texture (width/height).
+
+Third line = number of glyphs in the font.
+
+Fourth line = line spacing (pixels between each baseline)
+
+Each subsequent line is
+
+  <code point> <x> <y> <width> <height> <x offset> <y offset> <advance>
+
+0 <= Code point < 2^16.
+x, y, width, height are in pixels on the texture.
+x/y offset are the position of the texture relative to the glyph's origin.
+advance is the number of pixels to move along for the next character.
+
+Currently no support for kerning.
