@@ -61,14 +61,18 @@ typedef enum
 }
 BasicType;
 
-/*
- * function pointers
- *
- * we need to link against dbghelp dynamically - some systems may not
- * have v5.1. (if <= 5.0, type information is unavailable).
- * can't skip the dbghelp.h function prototypes, so we need to
- * name the function pointers differently (prepend _). Grr.
- */
+
+// function pointers
+//
+// we need to link against dbghelp dynamically - some systems may not
+// have v5.1. (if <= 5.0, type information is unavailable).
+//
+// don't delay-load: requires the .lib file, which may not be present
+// on all compilers.
+//
+// can't skip the dbghelp.h function prototypes, so we need to
+// name the function pointers differently (prepend _). Grr.
+//
 #define FUNC(ret, name, params) ret (WINAPI *_##name) params;
 #include "dbghelp_funcs.h"
 #undef FUNC
@@ -77,7 +81,7 @@ BasicType;
 static HANDLE hProcess;
 static uintptr_t mod_base;
 
-static char buf[8192];		/* buffer for stack trace */
+static char buf[64000];		/* buffer for stack trace */
 static char* out;			/* current pos in buf */
 
 
@@ -95,7 +99,7 @@ static void dbg_init()
 
 	HMODULE hdbghelp = LoadLibrary("dbghelp.dll");
 
-/* import functions */
+// import functions
 #define FUNC(ret, name, params) *(void**)&_##name = (void*)GetProcAddress(hdbghelp, #name);
 #include "dbghelp_funcs.h"
 #undef FUNC
@@ -159,18 +163,22 @@ static bool is_string_ptr(u64 addr)
  */
 static void print_var(u32 type_idx, uint level, u64 addr)
 {
-	// ?
-	BasicType type;
-	u32 base_idx = 0;
+	// successful with index we were given?
+	BasicType type = btNoType;
+	u32 real_typeid = 0;
 	if(!_SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_BASETYPE, &type))
-		if(_SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_TYPEID, &base_idx))
-			_SymGetTypeInfo(hProcess, mod_base, base_idx, TI_GET_BASETYPE, &type);
+	{
+		// no; try to get the "real" index first
+		BOOL ok = _SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_TYPEID, &real_typeid);
+		if(ok && real_typeid != type_idx)
+			_SymGetTypeInfo(hProcess, mod_base, real_typeid, TI_GET_BASETYPE, &type);
+	}
 
 	u64 len;
-	_SymGetTypeInfo(hProcess, mod_base, level? base_idx : type_idx, TI_GET_LENGTH, &len);
+	_SymGetTypeInfo(hProcess, mod_base, level? real_typeid : type_idx, TI_GET_LENGTH, &len);
 
 	u32 elements;
-	_SymGetTypeInfo(hProcess, mod_base, level? base_idx : type_idx, TI_GET_COUNT, &elements);
+	_SymGetTypeInfo(hProcess, mod_base, level? real_typeid : type_idx, TI_GET_COUNT, &elements);
 
 	char* fmt = "%I64X";	/* default: 64 bit integer */
 
@@ -596,6 +604,8 @@ static long CALLBACK except_filter(EXCEPTION_POINTERS* except)
 
 int show_assert_dlg(char* file, int line, char* expr)
 {
+	ONCE(dbg_init());
+
 	int pos = sprintf(buf, "Assertion failed in %s, line %d: %s\r\n", file, line, expr);
 	walk_stack(2, buf+pos);
 
