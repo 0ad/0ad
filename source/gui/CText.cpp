@@ -27,12 +27,11 @@ CText::CText()
 	AddSetting(GUIST_CStr,					"scrollbar-style");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
 	AddSetting(GUIST_int,					"cell-id");
+	AddSetting(GUIST_EAlign,				"text-align");
+	AddSetting(GUIST_EVAlign,				"text-valign");
 	AddSetting(GUIST_CColor,				"textcolor");
 	AddSetting(GUIST_CStr,					"tooltip");
 	AddSetting(GUIST_CStr,					"tooltip-style");
-	// TODO Gee: (2004-08-14)
-	//  Add a setting for buffer zone
-	//AddSetting(GUIST_int,			"
 
 	//GUI<bool>::SetSetting(this, "ghost", true);
 	GUI<bool>::SetSetting(this, "scrollbar", false);
@@ -78,6 +77,9 @@ void CText::SetupText()
     float buffer_zone=0.f;
 	GUI<float>::GetSetting(this, "buffer-zone", buffer_zone);
 	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, width, buffer_zone, this);
+
+	if (! scrollbar)
+		CalculateTextPosition(m_CachedActualSize, m_TextPos, *m_GeneratedTexts[0]);
 
 	// Setup scrollbar
 	if (scrollbar)
@@ -178,6 +180,9 @@ void CText::Draw()
 		GUI<CColor>::GetSetting(this, "textcolor", color);
 
 		// Draw text
-		IGUITextOwner::Draw(0, color, m_CachedActualSize.TopLeft() - CPos(0.f, scroll), bz+0.1f);
+		if (scrollbar)
+			IGUITextOwner::Draw(0, color, m_CachedActualSize.TopLeft() - CPos(0.f, scroll), bz+0.1f);
+		else
+			IGUITextOwner::Draw(0, color, m_TextPos, bz+0.1f);
 	}
 }

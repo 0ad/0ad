@@ -17,22 +17,22 @@ using namespace std;
 //-------------------------------------------------------------------
 CButton::CButton()
 {
-	AddSetting(GUIST_float,			"buffer-zone");
-	AddSetting(GUIST_CGUIString,	"caption");
-	AddSetting(GUIST_CStr,			"font");
+	AddSetting(GUIST_float,					"buffer-zone");
+	AddSetting(GUIST_CGUIString,			"caption");
+	AddSetting(GUIST_CStr,					"font");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite-over");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite-pressed");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite-disabled");
-	AddSetting(GUIST_int,			"cell-id");
-	AddSetting(GUIST_EAlign,		"text-align");
-	AddSetting(GUIST_EVAlign,		"text-valign");
-	AddSetting(GUIST_CColor,		"textcolor");
-	AddSetting(GUIST_CColor,		"textcolor-over");
-	AddSetting(GUIST_CColor,		"textcolor-pressed");
-	AddSetting(GUIST_CColor,		"textcolor-disabled");
-	AddSetting(GUIST_CStr,			"tooltip");
-	AddSetting(GUIST_CStr,			"tooltip-style");
+	AddSetting(GUIST_int,					"cell-id");
+	AddSetting(GUIST_EAlign,				"text-align");
+	AddSetting(GUIST_EVAlign,				"text-valign");
+	AddSetting(GUIST_CColor,				"textcolor");
+	AddSetting(GUIST_CColor,				"textcolor-over");
+	AddSetting(GUIST_CColor,				"textcolor-pressed");
+	AddSetting(GUIST_CColor,				"textcolor-disabled");
+	AddSetting(GUIST_CStr,					"tooltip");
+	AddSetting(GUIST_CStr,					"tooltip-style");
 
 	// Add text
 	AddText(new SGUIText());
@@ -60,50 +60,7 @@ void CButton::SetupText()
 
 	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, m_CachedActualSize.GetWidth(), 0, this);
 
-	// Set position of text
-
-	// Check which alignment to use!
-	EAlign align;
-	EVAlign valign;
-	float bz;
-	GUI<EAlign>::GetSetting(this, "text-align", align);
-	GUI<EVAlign>::GetSetting(this, "text-valign", valign);
-	GUI<float>::GetSetting(this, "buffer-zone", bz);
-
-	switch (align)
-	{
-	case EAlign_Left:
-		m_TextPos.x = m_CachedActualSize.left + bz;
-		break;
-	case EAlign_Center:
-		// Round to integer pixel values, else the fonts look awful
-		m_TextPos.x = floorf(m_CachedActualSize.CenterPoint().x - m_GeneratedTexts[0]->m_Size.cx/2.f);
-		break;
-	case EAlign_Right:
-		m_TextPos.x = m_CachedActualSize.right - m_GeneratedTexts[0]->m_Size.cx - bz;
-		break;
-	default:
-		debug_warn("Broken EAlign in CButton::SetupText()");
-		break;
-	}
-
-	switch (valign)
-	{
-	case EVAlign_Top:
-		m_TextPos.y = m_CachedActualSize.top + bz;
-		break;
-	case EVAlign_Center:
-		// Round to integer pixel values, else the fonts look awful
-		m_TextPos.y = floorf(m_CachedActualSize.CenterPoint().y - m_GeneratedTexts[0]->m_Size.cy/2.f);
-		break;
-	case EVAlign_Bottom:
-		m_TextPos.y = m_CachedActualSize.bottom - m_GeneratedTexts[0]->m_Size.cy - bz;
-		break;
-	default:
-		debug_warn("Broken EVAlign in CButton::SetupText()");
-		break;
-	}
-
+	CalculateTextPosition(m_CachedActualSize, m_TextPos, *m_GeneratedTexts[0]);
 }
 
 void CButton::HandleMessage(const SGUIMessage &Message)

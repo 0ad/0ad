@@ -200,7 +200,37 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				break;
 			}
 
-			// TODO Gee: (2004-09-01) EAlign and EVAlign too.
+		case GUIST_EAlign:
+			{
+				EAlign value;
+				GUI<EAlign>::GetSetting(e, propName, value);
+				CStr word;
+				switch (value)
+				{
+				case EAlign_Left: word = "left"; break;
+				case EAlign_Right: word = "right"; break;
+				case EAlign_Center: word = "center"; break;
+				default: debug_warn("Invalid EAlign!"); word = "error"; break;
+				}
+				*vp = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, word));
+				break;
+			}
+
+		case GUIST_EVAlign:
+			{
+				EVAlign value;
+				GUI<EVAlign>::GetSetting(e, propName, value);
+				CStr word;
+				switch (value)
+				{
+				case EVAlign_Top: word = "top"; break;
+				case EVAlign_Bottom: word = "bottom"; break;
+				case EVAlign_Center: word = "center"; break;
+				default: debug_warn("Invalid EVAlign!"); word = "error"; break;
+				}
+				*vp = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, word));
+				break;
+			}
 
 		default:
 			JS_ReportError(cx, "Setting '%s' uses an unimplemented type", propName.c_str());
@@ -270,6 +300,38 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 			CGUIString str;
 			str.SetValue(value);
 			GUI<CGUIString>::SetSetting(e, propName, str);
+			break;
+		}
+
+	case GUIST_EAlign:
+		{
+			CStr value (JS_GetStringBytes(JS_ValueToString(cx, *vp)));
+			EAlign a;
+			if (value == "left") a = EAlign_Left;
+			else if (value == "right") a = EAlign_Right;
+			else if (value == "center" || value == "centre") a = EAlign_Center;
+			else
+			{
+				JS_ReportError(cx, "Invalid alignment (should be 'left', 'right' or 'center')");
+				return JS_FALSE;
+			}
+			GUI<EAlign>::SetSetting(e, propName, a);
+			break;
+		}
+
+	case GUIST_EVAlign:
+		{
+			CStr value (JS_GetStringBytes(JS_ValueToString(cx, *vp)));
+			EVAlign a;
+			if (value == "top") a = EVAlign_Top;
+			else if (value == "bottom") a = EVAlign_Bottom;
+			else if (value == "center" || value == "centre") a = EVAlign_Center;
+			else
+			{
+				JS_ReportError(cx, "Invalid alignment (should be 'top', 'bottom' or 'center')");
+				return JS_FALSE;
+			}
+			GUI<EVAlign>::SetSetting(e, propName, a);
 			break;
 		}
 

@@ -75,3 +75,47 @@ void IGUITextOwner::Draw(const int &index, const CColor &color, const CPos &pos,
 		GetGUI()->DrawText(*m_GeneratedTexts[index], color, pos, z);
 	}
 }
+
+void IGUITextOwner::CalculateTextPosition(CRect &ObjSize, CPos &TextPos, SGUIText &Text)
+{
+	EAlign align;
+	EVAlign valign;
+	float bz;
+	GUI<EAlign>::GetSetting(this, "text-align", align);
+	GUI<EVAlign>::GetSetting(this, "text-valign", valign);
+	GUI<float>::GetSetting(this, "buffer-zone", bz);
+
+	switch (align)
+	{
+	case EAlign_Left:
+		TextPos.x = ObjSize.left + bz;
+		break;
+	case EAlign_Center:
+		// Round to integer pixel values, else the fonts look awful
+		TextPos.x = floorf(ObjSize.CenterPoint().x - Text.m_Size.cx/2.f);
+		break;
+	case EAlign_Right:
+		TextPos.x = ObjSize.right - Text.m_Size.cx - bz;
+		break;
+	default:
+		debug_warn("Broken EAlign in CButton::SetupText()");
+		break;
+	}
+
+	switch (valign)
+	{
+	case EVAlign_Top:
+		TextPos.y = ObjSize.top + bz;
+		break;
+	case EVAlign_Center:
+		// Round to integer pixel values, else the fonts look awful
+		TextPos.y = floorf(ObjSize.CenterPoint().y - Text.m_Size.cy/2.f);
+		break;
+	case EVAlign_Bottom:
+		TextPos.y = ObjSize.bottom - Text.m_Size.cy - bz;
+		break;
+	default:
+		debug_warn("Broken EVAlign in CButton::SetupText()");
+		break;
+	}
+}

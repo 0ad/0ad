@@ -83,6 +83,11 @@ protected:
 	 * Texts that are generated and ready to be rendered.
 	 */
 	std::vector<SGUIText*> m_GeneratedTexts;
+
+	/**
+	 * Calculate the position for the text, based on the alignment.
+	 */
+	void CalculateTextPosition(CRect &ObjSize, CPos &TextPos, SGUIText &Text);
 };
 
 #endif
