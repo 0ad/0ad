@@ -781,12 +781,9 @@ static void Shutdown()
 	// to translate() will crash.
 	I18n::Shutdown();
 
-	h_mgr_shutdown();
-
-	// must be called after h_mgr_shutdown!
-	// (only then are cached resources actually released; we can't
-	// call the OpenAL free() function after it's been shut down)
 	snd_shutdown();
+
+	h_mgr_shutdown();
 }
 
 static void Init(int argc, char* argv[])
@@ -1083,8 +1080,15 @@ static void Frame()
 		float* pos = &orientation._data[12];
 		float* dir = &orientation._data[8];
 		float* up  = &orientation._data[4];
-		snd_update(pos, dir, up);
+		if(snd_update(pos, dir, up) < 0)
+			debug_out("snd_update failed\n");
 	}
+	else
+	{
+		if(snd_update(0, 0, 0) < 0)
+			debug_out("snd_update (pos=0 version) failed\n");
+	}
+
 
 
 
