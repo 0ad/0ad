@@ -23,12 +23,10 @@
 extern "C" {
 #endif
 
-
 // high resolution (> 1 µs) timestamp [s], starting at or near 0 s.
 extern double get_time();
 
 extern double timer_res();
-
 
 // calculate fps (call once per frame)
 // several smooth filters (tuned for ~100 FPS)
@@ -38,9 +36,9 @@ extern int fps;
 
 extern void calc_fps();
 
-
-
-
+#ifdef __cplusplus
+}
+#endif
 
 #include <string>
 
@@ -74,10 +72,5 @@ public:
 };
 
 #define TIMER(name) ScopedTimer name(#name);
-
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif	// #ifndef TIMER_H

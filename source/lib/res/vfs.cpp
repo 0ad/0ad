@@ -329,7 +329,7 @@ struct TLoc
 // container must not invalidate iterators after insertion!
 // (we keep and pass around pointers to Mount.archive_locs elements)
 // see below.
-typedef std::list<const TLoc> TLocs;
+typedef std::list<TLoc> TLocs;
 typedef TLocs::iterator TLocIt;
 
 
@@ -1902,7 +1902,7 @@ int vfs_unmap(const Handle hf)
 
 
 // write a representation of the VFS tree to stdout.
-inline void vfs_display()
+void vfs_display()
 {
 	tree_display();
 }

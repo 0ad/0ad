@@ -161,13 +161,16 @@ static int z_find_ecdr(const u8* file, size_t size, const u8*& ecdr_)
 	if(*(u32*)ecdr == *(u32*)&ecdr_id)
 		goto found_ecdr;
 
-	// scan the last 66000 bytes of file for ecdr_id signature
-	// (the Zip archive comment field, up to 64k, may follow ECDR).
-	// if the zip file is < 66000 bytes, scan the whole file.
-	const u8* start = file + size - MIN(66000, size);
-	ecdr = z_find_id(file, size, start, ecdr_id, ECDR_SIZE);
-	if(!ecdr)
-		return ERR_CORRUPTED;
+	// jump crosses init, blah blah
+	{
+		// scan the last 66000 bytes of file for ecdr_id signature
+		// (the Zip archive comment field, up to 64k, may follow ECDR).
+		// if the zip file is < 66000 bytes, scan the whole file.
+		const u8* start = file + size - MIN(66000, size);
+		ecdr = z_find_id(file, size, start, ecdr_id, ECDR_SIZE);
+		if(!ecdr)
+			return ERR_CORRUPTED;
+	}
 
 found_ecdr:
 	ecdr_ = ecdr;

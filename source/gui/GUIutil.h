@@ -21,6 +21,7 @@ gee@pyro.nu
 //--------------------------------------------------------
 //  Includes / Compiler directives
 //--------------------------------------------------------
+#include "GUIbase.h"
 #include "Parser.h"
 // TODO Gee: New
 #include "Overlay.h"

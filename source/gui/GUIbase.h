@@ -21,6 +21,8 @@ gee@pyro.nu
 //--------------------------------------------------------
 //  Includes / Compiler directives
 //--------------------------------------------------------
+#include <map>
+#include <vector>
 
 // I would like to just forward declare CSize, but it doesn't
 //  seem to be defined anywhere in the predefined header.

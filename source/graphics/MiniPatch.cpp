@@ -8,6 +8,8 @@
 
 #include "precompiled.h"
 
+#include "lib.h"
+
 #include "Patch.h"
 #include "MiniPatch.h"
 #include "Terrain.h"

@@ -234,6 +234,7 @@ private:
 	template <typename T, typename P> class SDMap : public std::map<T,P>
 	{
 	public:
+		typedef typename std::map<T,P>::iterator iterator;
 		~SDMap()
 		{
 			for (iterator it = begin(); it != end(); ++it) delete it->second;

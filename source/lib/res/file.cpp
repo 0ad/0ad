@@ -236,7 +236,12 @@ struct DirEnt
 	// in order of decl in VC2003 sys/stat.h.
 	mode_t st_mode;
 	off_t  st_size;
+// glibc compat hack - they have st_mtime #defined to st_mtim.tv_sec
+#ifdef st_mtime
+	struct timespec st_mtim;
+#else
 	time_t st_mtime;
+#endif
 
 	DirEnt(const char* _name, mode_t _st_mode, off_t _st_size, time_t _st_mtime)
 		: name(_name)
