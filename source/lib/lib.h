@@ -1,4 +1,4 @@
-// Copyright (c) 2003 Jan Wassenberg
+// Copyright (c) 2003-2005 Jan Wassenberg
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -14,8 +14,43 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
-#ifndef LIB_H
-#define LIB_H
+/*
+
+[KEEP IN SYNC WITH WIKI]
+
+low-level aka "lib"
+-------------------
+
+this codebase was grown from modules shared between several projects,
+i.e. my personal library; hence the name "lib". it has been expanded to
+fit the needs of 0ad - in particular, resource loading.
+
+owing to the dual-use situation, the 0ad coding conventions are not met;
+also, major changes are ill-advised because they may break other projects.
+
+
+design goals
+------------
+
+- fast and low-overhead, including startup time
+- portable: must run on Win32, Mac OS X and Linux
+- reusable across projects, i.e. no dependency on a
+  central 'manager' that ties modules together.
+
+
+scope
+-----
+
+- POSIX definitions
+- resource management
+- debugging tools (including memory tracker)
+- low-level helper functions, e.g. ADTs, endian conversion and timing
+- platform-dependent system/feature detection
+
+*/
+
+#ifndef LIB_H__
+#define LIB_H__
 
 #include <stddef.h>
 #include <assert.h>
@@ -85,7 +120,7 @@ STMT(\
 
 
 
-// useful because VC may return 0 on failure, instead of throwing.
+// useful because VC6 may return 0 on failure, instead of throwing.
 // this wraps the exception handling, and creates a NULL pointer on failure.
 #define SAFE_NEW(type, ptr)\
 	type* ptr;\
@@ -164,10 +199,10 @@ enum LibError
 #endif
 
 
-// For insertion into code, to avoid unused warnings:
+// 2 ways of avoiding "unreferenced formal parameter" warnings:
+// .. inside the function body, e.g. void f(int x) { UNUSED(x); }
 #define UNUSED(param) (void)param;
-// For using in parameters ("void f(int UNUSEDPARAM(x))"),
-// to avoid 'unreferenced formal parameter' warnings:
+// .. wrapped around the parameter name, e.g. void f(int UNUSEDPARAM(x))
 #define UNUSEDPARAM(param)
 
 
@@ -222,43 +257,6 @@ const size_t GiB = 1ul << 30;
 
 
 
-// call from main as early as possible.
-extern void lib_init(void);
-
-
-enum CallConvention	// number of parameters and convention
-{
-	CC_CDECL_0,
-	CC_CDECL_1,
-#ifdef _WIN32
-	CC_STDCALL_0,
-	CC_STDCALL_1,
-#endif
-
-	CC_UNUSED	// get rid of trailing comma when !_WIN32
-};
-
-
-// more powerful atexit: registers an exit handler, with 0 or 1 parameters.
-// callable before libc initialized, and frees up the real atexit table.
-// stdcall convention is provided on Windows to call APIs (e.g. WSACleanup).
-// for these to be called at exit, lib_main must be invoked after _cinit.
-extern int atexit2(void* func, uintptr_t arg, CallConvention cc = CC_CDECL_1);
-
-// no parameters, cdecl (CC_CDECL_0)
-extern int atexit2(void* func);
-inline int atexit2(void (*func)())
-{
-	return atexit2((void *)func);
-}
-
-
-
-
-
-
-
-
 
 
 
@@ -266,7 +264,7 @@ inline int atexit2(void (*func)())
 // if len = 0 (default), treat buf as a C-string;
 // otherwise, hash <len> bytes of buf.
 extern u32 fnv_hash(const void* buf, const size_t len = 0);
-extern u64 fnv_hash64(const void* buf, const size_t len);
+extern u64 fnv_hash64(const void* buf, const size_t len = 0);
 
 // hash (currently FNV) of a filename
 typedef u32 FnHash;
@@ -300,10 +298,4 @@ extern void base32(const int len, const u8* in, u8* out);
 extern int match_wildcard(const char* s, const char* w);
 
 
-// design goals:
-// fast (including startup time)
-// portable
-// reusable across projects (i.e. no dependency on "parent" that calls modules)
-
-
-#endif	// #ifndef LIB_H
+#endif	// #ifndef LIB_H__
