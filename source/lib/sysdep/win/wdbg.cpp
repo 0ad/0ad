@@ -779,7 +779,10 @@ static int dump_udt(DWORD type_idx, const u8* p, size_t size, uint level)
 
 		DWORD ofs = 0;
 		if(!SymGetTypeInfo(hProcess, mod_base, child_data_idx, TI_GET_OFFSET, &ofs))
-			debug_warn("dump_udt: warning: TI_GET_OFFSET query failed");
+			// this happens if child_data_idx doesn't represent a member
+			// variable of the UDT - e.g. a SymTagBaseClass. we don't bother
+			// checking the tag; just skip this symbol.
+			continue;
 
 		int ret = dump_data_sym(child_data_idx, p+ofs, level+1);
 
@@ -801,7 +804,9 @@ static int dump_udt(DWORD type_idx, const u8* p, size_t size, uint level)
 // given a data symbol's type identifier, output its type name (if
 // applicable), determine what kind of variable it describes, and
 // call the appropriate dump_* routine.
-// lock is held.
+//
+// split out of dump_data_sym so we can recurse for typedefs (cleaner than
+// 'restart' via goto or loop). lock is held.
 static int dump_type_sym(DWORD type_idx, const u8* p, uint level)
 {
 	DWORD type_tag;
@@ -863,6 +868,8 @@ static int dump_type_sym(DWORD type_idx, const u8* p, uint level)
 // lock is held.
 static int dump_data_sym(DWORD data_idx, const u8* p, uint level)
 {
+	// note: return both type_idx and name in one call for convenience.
+	// this is also more efficient than TI_GET_SYMNAME (avoids 1 LocalAlloc).
 	SYMBOL_INFO_PACKAGEW sp;
 	SYMBOL_INFOW* sym = &sp.si;
 	sym->SizeOfStruct = sizeof(sp.si);
@@ -870,11 +877,13 @@ static int dump_data_sym(DWORD data_idx, const u8* p, uint level)
 	if(!SymFromIndexW(hProcess, mod_base, data_idx, sym))
 		return -1;
 
-	// one case where this happens is when called for all children of UDT:
-	// that includes 'BaseClass' nodes.
 	if(sym->Tag != SymTagData)
+	{
+		// shouldn't happen; dump_udt skips symbols that don't have defined
+		// offset values. dump_sym_cb is the only other call site.
+		assert(0 && "unexpected symbol tag in dump_data_sym");
 		return -1;
-
+	}
 
 	// indent
 	for(uint i = 0; i <= level+1; i++)

@@ -32,38 +32,39 @@
 
 #include "types.h"
 
+
 //
 // optional additional checks, enabled via mmgr_set_options.
-// these slow down the application; see 'digging deeper' above.
+// these slow down the application; see 'digging deeper' in documentation.
 //
 
 // log all allocation/deallocation operations undertaken.
-const uint MMGR_LOG_ALL       = 0x01;
+const uint MMGR_LOG_ALL       = 0x001;
 
 // validate all allocations on every memory API call. slow!
-const uint MMGR_VALIDATE_ALL  = 0x02;
+const uint MMGR_VALIDATE_ALL  = 0x002;
 
 // fill the user-visible part of each allocation with a certain pattern
 // on alloc and free. this is required for unused memory tracking.
-const uint MMGR_FILL          = 0x04;
+const uint MMGR_FILL          = 0x004;
 
-// log all enter/exit into our main functions. if there's an
+// log all enter/exit into our API. if there's an
 // unmatched pair in the log, we know where a crash occurred.
-const uint MMGR_TRACE         = 0x08;
+const uint MMGR_TRACE         = 0x008;
 
-// when calling global operator delete, where we can't pass owner
-// information via macro, find out who called us via stack trace
-// and resolve the symbol via debug information.
-// more informative, but adds 500µs to every call.
-const uint MMGR_RESOLVE_OWNER = 0x10;
+// use debug information to resolve owner address to file/line/function.
+// note: passing owner information to global operator delete via macro
+// isn't reliable, so a stack backtrace (list of function addresses) is all
+// we have there. this costs ~500µs per unique call site on Windows.
+const uint MMGR_RESOLVE_OWNER = 0x010;
 
 // force each log line to be written directly to disk. slow!
 // use only when the application is crashing, to make sure all
 // available information is written out.
-const uint MMGR_FLUSH_LOG     = 0x20;
+const uint MMGR_FLUSH_LOG     = 0x020;
 
-// an alias that includes all of the above.
-const uint MMGR_ALL           = 0xff;
+// an alias that includes all of the above. (more convenient)
+const uint MMGR_ALL           = 0xfff;
 
 // return the current options unchanged.
 const uint MMGR_QUERY         = ~0;
@@ -76,7 +77,7 @@ extern void mmgr_break_on_alloc(uint count);
 extern void mmgr_break_on_realloc(const void*);
 extern void mmgr_break_on_free(const void*);
 
-// "proactive" validation: (see 'digging deeper' above)
+// "proactive" validation: (see 'digging deeper')
 extern bool mmgr_is_valid_ptr(const void*);
 extern bool mmgr_are_all_valid(void);
 
@@ -84,21 +85,22 @@ extern bool mmgr_are_all_valid(void);
 extern void mmgr_write_report(void);
 extern void mmgr_write_leak_report(void);
 
+
 //
 // our wrappers for C++ memory handling functions
 //
 
-// note that all line numbers are int, for compatibility with external
-// overloaded operator new.
+// note that all line numbers are int, for compatibility with any external
+// overloaded operator new (in case someone forget to include "mmgr.h").
 
 extern void* mmgr_malloc_dbg (size_t size,             const char* file, int line, const char* func);
 extern void* mmgr_calloc_dbg (size_t num, size_t size, const char* file, int line, const char* func);
 extern void* mmgr_realloc_dbg(void* p, size_t size,    const char* file, int line, const char* func);
 extern void  mmgr_free_dbg   (void* p,                 const char* file, int line, const char* func);
 
-extern char* mmgr_strdup_dbg(const char*,                  const char* file, int line, const char* func);
-extern wchar_t* mmgr_wcsdup_dbg(const wchar_t*,            const char* file, int line, const char* func);
-extern char* mmgr_getcwd_dbg(char*, size_t,                const char* file, int line, const char* func);
+extern char* mmgr_strdup_dbg(const char*,              const char* file, int line, const char* func);
+extern wchar_t* mmgr_wcsdup_dbg(const wchar_t*,        const char* file, int line, const char* func);
+extern char* mmgr_getcwd_dbg(char*, size_t,            const char* file, int line, const char* func);
 
 
 // .. global operator new (to catch allocs from STL/external libs)
@@ -148,9 +150,9 @@ extern void operator delete[](void* p, const char* file, int line, const char* f
 #define	realloc(p,size)   mmgr_realloc_dbg(p,size,  __FILE__,__LINE__,__FUNCTION__)
 #define	free(p)           mmgr_free_dbg   (p,       __FILE__,__LINE__,__FUNCTION__)
 
-#define strdup(p)              mmgr_strdup_dbg(p,       __FILE__,__LINE__,__FUNCTION__)
-#define wcsdup(p)              mmgr_wcsdup_dbg(p,       __FILE__,__LINE__,__FUNCTION__)
-#define getcwd(p,size)         mmgr_getcwd_dbg(p, size, __FILE__,__LINE__,__FUNCTION__)
+#define strdup(p)         mmgr_strdup_dbg(p,        __FILE__,__LINE__,__FUNCTION__)
+#define wcsdup(p)         mmgr_wcsdup_dbg(p,        __FILE__,__LINE__,__FUNCTION__)
+#define getcwd(p,size)    mmgr_getcwd_dbg(p, size,  __FILE__,__LINE__,__FUNCTION__)
 
 #endif	// #ifdef USE_MMGR
 
@@ -158,9 +160,8 @@ extern void operator delete[](void* p, const char* file, int line, const char* f
 // purpose and history
 // -------------------
 
-// our goal is to expose any memory handling bugs in the
-// application as early as possible, by triggering
-// breakpoints when a problem is detected.
+// our goal is to expose any memory handling bugs in the application as
+// early as possible. various checks are performed upon each memory API call;
 // if all options are on, we can spot the following:
 //   memory leaks, double-free, allocation over/underruns,
 //   unused memory, and use-after-free.
@@ -175,6 +176,8 @@ extern void operator delete[](void* p, const char* file, int line, const char* f
 // ----------------------------------------------
 //
 // 1) #include this from all project source files [that will allocate memory].
+//    doing so from the precompiled header is recommended, since the
+//    compiler will make sure it has actually been included.
 // 2) all system headers must be #include-d before this header, so that
 //    we don't mess with any of their local operator new/delete.
 // 3) if project source/headers also use local operator new/delete, #include
@@ -204,7 +207,7 @@ extern void operator delete[](void* p, const char* file, int line, const char* f
 // when tracking down hard-to-find bugs, more stringent checks can be
 // activated via mmgr_set_option, or by changing the initial value of
 // options in mmgr.cpp. however, they slow down the app considerably
-// and need not always be enabled. see option declarations below.
+// and need not always be enabled. see option declarations above.
 //
 // you can also change padding_size in mmgr.cpp at compile-time to provide
 // more safety vs. overruns, at the cost of wasting lots of memory per
