@@ -96,6 +96,9 @@ extern void oglInit();
 // gfx_card and gfx_drv_ver are unchanged on failure.
 extern int ogl_get_gfx_info();
 
+// return a NULL-terminated string (of unlimited length) containing
+// a space-separated list of supported extensions.
+const char* oglExtList();
 
 #ifdef __cplusplus
 }

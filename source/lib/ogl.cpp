@@ -26,7 +26,7 @@ extern "C"
 }
 
 
-static const char* exts;
+static const char* exts = NULL;
 
 
 // check if the extension <ext> is supported by the OpenGL implementation
@@ -115,6 +115,10 @@ int ogl_get_gfx_info()
 	return 0;
 }
 
+const char* oglExtList()
+{
+	return exts;
+}
 
 // call after each video mode change
 void oglInit()
