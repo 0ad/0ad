@@ -246,8 +246,8 @@ void h_mgr_shutdown(void)
 			Handle h = handle(i, hd->tag);
 
 			// HACK: must actually free the handles, regardless
-			// of current refcount. so, quick'n dirty solution: set it to 0.
-			hd->refs = 0;
+			// of current refcount. so, quick'n dirty solution: set it to 1.
+			hd->refs = 1;
 
 			h_free(h, hd->type);
 		}
@@ -440,6 +440,7 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 	hd->key = key;
 	hd->tag = tag;
 	hd->type = type;
+	hd->refs = 1;
 	Handle h = handle(idx, tag);
 
 // regular filename
