@@ -63,6 +63,14 @@
 	}                                   \
 )
 
+// raise a debug warning if <len> is the size of a pointer.
+// catches bugs such as: tchar* s = ..; tcpy_s(s, sizeof(s), T(".."));
+// if warnings get annoying, replace with debug_out. usable as a statement.
+#define WARN_IF_PTR_LEN(len) STMT(                            \
+	if(len == sizeof(char*))                                  \
+		debug_warn("make sure string buffer size is correct");\
+)
+
 
 // skip the functions on VC2005 (already provided there), but not our
 // self-test and the t* defines (needed for test).
@@ -77,6 +85,8 @@ size_t tlen_s(const tchar* str, size_t max_len)
 {
 	// note: we can't bail - what would the return value be?
 	assert2(str != 0);
+
+	WARN_IF_PTR_LEN(max_len);
 
 	size_t len;
 	for(len = 0; len < max_len; len++)
@@ -103,6 +113,9 @@ int tncpy_s(tchar* dst, size_t max_dst_chars, const tchar* src, size_t max_src_c
 	ENFORCE(max_dst_chars != 0, ERANGE);
 	*dst = '\0';	// in case src ENFORCE is triggered
 	ENFORCE(src != 0, EINVAL);
+
+	WARN_IF_PTR_LEN(max_dst_chars);
+	WARN_IF_PTR_LEN(max_src_chars);
 
 	// copy string until null character encountered or limit reached.
 	// optimized for size (less comparisons than MS impl) and
@@ -150,6 +163,9 @@ int tncat_s(tchar* dst, size_t max_dst_chars, const tchar* src, size_t max_src_c
 	ENFORCE(max_dst_chars != 0, ERANGE);
 	// src is checked in tncpy_s
 
+	// WARN_IF_PTR_LEN not necessary: both max_dst_chars and max_src_chars
+	// are checked by tlen_s / tncpy_s (respectively).
+
 	const size_t dst_len = tlen_s(dst, max_dst_chars);
 	if(dst_len == max_dst_chars)
 	{
@@ -191,6 +207,8 @@ int tcat_s(tchar* dst, size_t max_dst_chars, const tchar* src)
 
 static int test()
 {
+	// note: avoid 4-byte strings - they would trigger WARN_IF_PTR_LEN.
+
 	const tchar* s0 = T("");
 	const tchar* s1 = T("a");
 	const tchar* s5 = T("abcde");
