@@ -20,7 +20,7 @@ void RenderScene ();
 
 extern bool keys[512];	// SDL also defines non-ascii keys; 512 should be enough
 extern bool mouseButtons[5];
-
+extern int mouse_x, mouse_y;
 extern bool g_active;
 
 
@@ -32,15 +32,17 @@ CLightEnv			g_LightEnv;
 
 float g_CameraZoom = 10;
 
+std::vector<CVector3D> cameraTargets;
+CVector3D cameraDelta;
+
 const float ViewScrollSpeed = 60;
 const float ViewRotateSensitivity = 0.002f;
 const float ViewDragSensitivity = 0.5f;
 const float ViewZoomSensitivityWheel = 16.0f;
 const float ViewZoomSensitivityKey = 256.0f;
 const float ViewZoomSmoothness = 0.02f; // 0.0 = instantaneous zooming, 1.0 = so slow it never moves
+const float ViewSnapSmoothness = 0.02f; // Just the same.
 float ViewFOV;
-
-int mouse_x=50, mouse_y=50;
 
 extern int g_xres, g_yres;
 
@@ -60,6 +62,9 @@ void terr_init()
 
 static void move_camera(float DeltaTime)
 {
+	float delta = powf( ViewSnapSmoothness, DeltaTime );
+	g_Camera.m_Orientation.Translate( cameraDelta * ( 1.0f - delta ) );
+	cameraDelta *= delta;
 
 #define CAMERASTYLE 2 // 0 = old style, 1 = relatively new style, 2 = newest style
 
@@ -284,11 +289,6 @@ void terr_update(const float DeltaTime)
 		move_camera(DeltaTime);
 }
 
-
-
-
-
-
 int terr_handler(const SDL_Event* ev)
 {
 	// put any events that must be processed even if inactive here
@@ -298,11 +298,6 @@ int terr_handler(const SDL_Event* ev)
 
 	switch(ev->type)
 	{
-	case SDL_MOUSEMOTION:
-		mouse_x = ev->motion.x;
-		mouse_y = ev->motion.y;
-		break;
-	
 
 	case SDL_KEYDOWN:
 		switch(ev->key.keysym.sym)
@@ -421,3 +416,4 @@ void InitResources()
 
 	g_Renderer.LoadAlphaMaps(fns);
 }
+

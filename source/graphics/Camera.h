@@ -16,6 +16,8 @@
 #include "Frustum.h"
 #include "Matrix3D.h"
 
+extern int mouse_x, mouse_y;
+
 //view port
 struct SViewPort
 {
@@ -57,6 +59,18 @@ class CCamera
 		// return four points in camera space at given distance from camera
 		void GetCameraPlanePoints(float dist,CVector3D pts[4]) const;
 
+		// Build a ray passing through the screen coordinate (px, py) and the camera
+		/////////////////////////////////////////////////////////////////////////////////////////
+// BuildCameraRay: calculate origin and ray direction of a ray through
+// the pixel (px,py) on the screen
+		void BuildCameraRay( int px, int py, CVector3D& origin, CVector3D& dir );
+// BuildCameraRay: as previous, using global mouse position
+		void BuildCameraRay( CVector3D& origin, CVector3D& dir )
+		{
+			BuildCameraRay( mouse_x, mouse_y, origin, dir );
+		}
+
+		void GetScreenCoordinates( const CVector3D& world, float& x, float& y );
 	public:
 		//This is the orientation matrix. The inverse of this
 		//is the view matrix

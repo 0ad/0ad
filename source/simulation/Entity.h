@@ -1,6 +1,6 @@
 // Entity.h
 //
-// Last modified: 26 May 04, Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
+// Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
 // Entity class.
 //
@@ -13,7 +13,7 @@
 //			Destroying entities: An entity is destroyed when all references to it expire.
 //								 It is somewhat unfunny if this happens while a method from this
 //                               class is still executing. If you need to kill an entity,
-//								 use g_EntityManager.kill( entity ). If kill() releases the final handle,
+//								 use CEntity::kill(). If kill() releases the final handle,
 //								 the entity is placed in the reaper queue and is deleted immediately
 //								 prior to its next update cycle.
 //
@@ -27,7 +27,6 @@
 //			Some notes: update() and dispatch() /can/ be called directly without ill effects,
 //						but it's preferable to go through the Entity manager and the Scheduler, respectively.
 //
-//			Collision detection/avoidance is now present in some form; this is a work in progress.
 
 #ifndef ENTITY_INCLUDED
 #define ENTITY_INCLUDED
@@ -55,11 +54,28 @@ public:
 	CProperty_CStr m_name;
 	CProperty_float m_speed;
 	CProperty_float m_turningRadius;
-	CProperty_CVector3D m_position;
+	CProperty_bool m_selected;
+
+	bool m_extant; // Don't want JS to have direct write-access to these. (Things that should be done might not be)
+	CProperty_bool m_extant_mirror; // plus this way limits the number of nasty semantics to work around.
+	u8 m_grouped;
+	CProperty_i32 m_grouped_mirror;
+
+
+	//-- Interpolated property
+	CVector3D m_position;
+	CVector3D m_position_previous;
+	CProperty_CVector3D m_graphics_position;
+
 	CBoundingObject* m_bounds;
 	float m_targetorientation;
 	CVector2D m_ahead;
-	CProperty_float m_orientation;
+
+	//-- Interpolated property
+	float m_orientation;
+	float m_orientation_previous;
+	CProperty_float m_graphics_orientation;
+
 	CUnit* m_actor;
 
 	std::deque<CEntityOrder> m_orderQueue;
@@ -76,18 +92,31 @@ public:
 
 	// Handle-to-self.
 	HEntity me;
-	void dispatch( CMessage* msg );
+
+	void dispatch( const CMessage* msg );
 	void update( float timestep );
-	void updateActorTransforms();
-	void render();
+	void kill();
+
+	void interpolate( float relativeoffset );
 	float getExactGroundLevel( float x, float y );
 	void snapToGround();
+	void updateActorTransforms();
+	void render();
+	void renderSelectionOutline( float alpha = 1.0f );
+
 	void repath();
 
 	void loadBase();
-	void reorient();
-	void teleport(); // Fixes things if the position is changed by something externally.
 
+	void reorient(); // Orientation
+	void teleport(); // Fixes things if the position is changed by something externally.
+	void checkSelection(); // In case anyone tries to select/deselect this through JavaScript. You'd think they'd have something better to do.
+	void checkGroup(); // Groups
+	void checkExtant(); // Existance
+
+	bool acceptsOrder( int orderType, CEntity* orderTarget );
+
+	void clearOrders();
 	void pushOrder( CEntityOrder& order );
 };
 

@@ -1,6 +1,6 @@
 // PathfindEngine.h
 //
-// Last modified: 28 May 04, Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
+// Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
 // The pathfinding engine singleton.
 //

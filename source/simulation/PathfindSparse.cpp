@@ -190,6 +190,9 @@ void pathSparse( HEntity entity, CVector2D destination )
 {
 	std::vector<CVector2D> pathnodes;
 	CVector2D source( entity->m_position.X, entity->m_position.Z );
+	// Sanity check:
+	if( source.length() < 0.01f ) return;
+
 	sparsePathTree sparseEngine( source, destination, entity, getContainingObject( destination ) );
 	while( sparseEngine.type & sparsePathTree::SPF_OPEN ) sparseEngine.slice();
 

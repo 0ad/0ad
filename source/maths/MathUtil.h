@@ -11,6 +11,12 @@
 #define MAX3(a,b,c)					( MAX (MAX(a,b), c) )
 #define ABS(a)						((a > 0) ? (a) : (-a))
 
+template <typename T>
+T Interpolate( T& a, T& b, float l )
+{
+	return( a + ( b - a ) * l );
+}
+
 #if 0
 
 /*
@@ -184,8 +190,6 @@ namespace MathUtil
 		}
 		return 0;
 	}
-
-
 
 	//--------------------------------------------------------
 	//  Non-template functions

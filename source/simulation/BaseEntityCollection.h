@@ -1,6 +1,6 @@
 // BaseEntityCollection.h
 //
-// Last modified: 22 May 04, Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
+// Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
 // Keeps tabs on the various types of entity that roam the world.
 //

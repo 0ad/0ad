@@ -37,7 +37,7 @@ CProperty_i32::~CProperty_i32()
 		delete( modifier );
 }
 
-inline CProperty_i32& CProperty_i32::operator =( i32 value )
+CProperty_i32& CProperty_i32::operator =( i32 value )
 {
 	if( !modifier )
 		modifier = new SProperty_NumericModifier();
@@ -83,9 +83,68 @@ inline CProperty_i32::operator i32()
 	return( data );
 }
 
-CProperty_i32::operator jsval()
+jsval CProperty_i32::tojsval()
 {
 	return( INT_TO_JSVAL( data ) );
+}
+
+CProperty_bool::CProperty_bool()
+{
+	modifier = NULL;
+}
+
+CProperty_bool::~CProperty_bool()
+{
+	if( modifier )
+		delete( modifier );
+}
+
+CProperty_bool& CProperty_bool::operator=( const bool value )
+{
+	if( !modifier )
+		modifier = new SProperty_BooleanModifier();
+	*modifier = value;
+	data = value;
+	return( *this );
+}
+
+void CProperty_bool::set( jsval value )
+{
+	if( !modifier )
+		modifier = new SProperty_BooleanModifier();
+	try
+	{
+		*modifier = g_ScriptingHost.ValueToBool( value );
+	}
+	catch( ... )
+	{
+		*modifier = false;
+	}
+}
+
+bool CProperty_bool::rebuild( CProperty* parent, bool triggerFn )
+{
+	CProperty_bool* _parent = (CProperty_bool*)parent;
+	bool newvalue = false;
+	if( _parent )
+		newvalue = *_parent;
+	if( modifier )
+		newvalue = modifier->replacement;
+	if( data == newvalue )
+		return( false );		// No change.
+	data = newvalue;
+	if( triggerFn && m_updateFn ) (m_owner->*m_updateFn)();
+	return( true );
+}
+
+inline CProperty_bool::operator bool()
+{
+	return( data );
+}
+
+jsval CProperty_bool::tojsval()
+{
+	return( BOOLEAN_TO_JSVAL( data ) );
 }
 
 CProperty_float::CProperty_float()
@@ -145,7 +204,7 @@ CProperty_float::operator float()
 	return( data );
 }
 
-CProperty_float::operator jsval()
+jsval CProperty_float::tojsval()
 {
 	return( DOUBLE_TO_JSVAL( JS_NewDouble( g_ScriptingHost.getContext(), (jsdouble)data ) ) );
 }
@@ -241,7 +300,7 @@ bool CProperty_CStr::rebuild( CProperty* parent, bool triggerFn )
 	return( true );
 }
 
-CProperty_CStr::operator jsval()
+jsval CProperty_CStr::tojsval()
 {
 	return( STRING_TO_JSVAL( JS_NewStringCopyZ( g_ScriptingHost.getContext(), m_String.c_str() ) ) );
 }
@@ -255,7 +314,7 @@ CProperty_CVector3D& CProperty_CVector3D::operator =( const CVector3D& value )
 void CProperty_CVector3D::set( jsval value )
 {
 	JSObject* vector3d = JSVAL_TO_OBJECT( value );
-	if( !JSVAL_IS_OBJECT( value ) || ( JS_GetClass( vector3d ) != &JSI_Vector3D::JSI_class ) )
+	if( JSVAL_IS_NULL( value ) || !JSVAL_IS_OBJECT( value ) || ( JS_GetClass( vector3d ) != &JSI_Vector3D::JSI_class ) )
 	{
 		X = 0.0f; Y = 0.0f; Z = 0.0f;
 	}
@@ -274,7 +333,7 @@ bool CProperty_CVector3D::rebuild( CProperty* parent, bool triggerFn )
 	return( false ); //	Vector properties aren't inheritable.
 }
 
-CProperty_CVector3D::operator jsval()
+jsval CProperty_CVector3D::tojsval()
 {
 	JSObject* vector3d = JS_NewObject( g_ScriptingHost.getContext(), &JSI_Vector3D::JSI_class, NULL, NULL );
 	JS_SetPrivate( g_ScriptingHost.getContext(), vector3d, new JSI_Vector3D::Vector3D_Info( this, m_owner, m_updateFn ) );
@@ -290,8 +349,13 @@ CProperty_CBaseEntityPtr& CProperty_CBaseEntityPtr::operator =( CBaseEntity* val
 void CProperty_CBaseEntityPtr::set( jsval value )
 {
 	JSObject* baseEntity = JSVAL_TO_OBJECT( value );
-	if( JSVAL_IS_OBJECT( value ) && ( JS_GetClass( baseEntity ) == &JSI_BaseEntity::JSI_class ) )
+	if( !JSVAL_IS_NULL( value ) && JSVAL_IS_OBJECT( value ) && ( JS_GetClass( baseEntity ) == &JSI_BaseEntity::JSI_class ) )
+	{
 		data = (CBaseEntity*)JS_GetPrivate( g_ScriptingHost.getContext(), baseEntity );
+	}
+	else
+		JS_ReportError( g_ScriptingHost.getContext(), "[BaseEntity] Invalid reference" );
+
 }
 
 bool CProperty_CBaseEntityPtr::rebuild( CProperty* parent, bool triggerFn )
@@ -300,7 +364,7 @@ bool CProperty_CBaseEntityPtr::rebuild( CProperty* parent, bool triggerFn )
 	return( false ); // CBaseEntity* properties aren't inheritable.
 }
 
-CProperty_CBaseEntityPtr::operator jsval()
+jsval CProperty_CBaseEntityPtr::tojsval()
 {
 	JSObject* baseEntity = JS_NewObject( g_ScriptingHost.getContext(), &JSI_BaseEntity::JSI_class, NULL, NULL );
 	JS_SetPrivate( g_ScriptingHost.getContext(), baseEntity, data );

@@ -30,12 +30,13 @@
 #include "Model.h"
 #include "UnitManager.h"
 
-
+#include "Interact.h"
 #include "BaseEntityCollection.h"
 #include "Entity.h"
 #include "EntityHandles.h"
 #include "EntityManager.h"
 #include "PathfindEngine.h"
+#include "Scheduler.h"
 
 #include "scripting/ScriptingHost.h"
 #include "scripting/JSInterface_Entity.h"
@@ -57,19 +58,19 @@
 CConsole* g_Console = 0;
 extern int conInputHandler(const SDL_Event* ev);
 
-
+// Globals
 
 u32 game_ticks;
 
 bool keys[SDLK_LAST];
 bool mouseButtons[5];
+int mouse_x=50, mouse_y=50;
 
-// Globals
 int g_xres, g_yres;
 int g_bpp;
 int g_freq;
 bool g_active = true;
-
+const int SIM_FRAMERATE = 10;
 
 // flag to disable extended GL extensions until fix found - specifically, crashes
 // using VBOs on laptop Radeon cards
@@ -111,7 +112,8 @@ extern void sle(int);
 
 
 
-static size_t frameCount=0;
+size_t frameCount=0;
+size_t simulationTime = 0;
 static bool quit = false;	// break out of main loop
 
 
@@ -317,6 +319,11 @@ static int handler(const SDL_Event* ev)
 		g_active = ev->active.gain != 0;
 		break;
 
+	case SDL_MOUSEMOTION:
+		mouse_x = ev->motion.x;
+		mouse_y = ev->motion.y;
+		break;
+
 	case SDL_KEYDOWN:
 		c = ev->key.keysym.sym;
 		keys[c] = true;
@@ -447,19 +454,23 @@ static void Render()
 	MICROLOG(L"flush frame");
 	g_Renderer.FlushFrame();
 
+	glPushAttrib( GL_ENABLE_BIT );
+	glDisable( GL_LIGHTING );
+	glDisable( GL_TEXTURE_2D );
+	glDisable( GL_DEPTH_TEST );
+	
 	if( g_EntGraph )
 	{
-		glPushAttrib( GL_ENABLE_BIT );
-		glDisable( GL_LIGHTING );
-		glDisable( GL_TEXTURE_2D );
-		glDisable( GL_DEPTH_TEST );
 		glColor3f( 1.0f, 0.0f, 1.0f );
 
 		MICROLOG(L"render entities");
 		g_EntityManager.renderAll(); // <-- collision outlines, pathing routes
-
-		glPopAttrib();
 	}
+
+	g_Mouseover.renderSelectionOutlines();
+	g_Selection.renderSelectionOutlines();
+
+	glPopAttrib();
 
 	MICROLOG(L"render fonts");
 	// overlay mode
@@ -509,6 +520,9 @@ static void Render()
 	MICROLOG(L"render console");
 	g_Console->Render();
 
+	g_Mouseover.renderOverlays();
+	g_Selection.renderOverlays();
+
 	// restore
 	glMatrixMode(GL_PROJECTION);
 	glPopMatrix();
@@ -526,17 +540,27 @@ static void do_tick()
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
-// UpdateWorld: update time dependent data in the world to account for changes over
-// the given time (in s)
+// UpdateWorld: update time dependent data in the simulation to account for changes over
+// some fixed simulation timestep.
+
 void UpdateWorld(float time)
 {
-	const std::vector<CUnit*>& units=g_UnitMan.GetUnits();
-	for (uint i=0;i<units.size();++i) {
-		units[i]->GetModel()->Update(time);
-	}
-
+	g_Scheduler.update();
+	simulationTime += (size_t)( time * 1000.0f );
+	frameCount++;
 	g_EntityManager.updateAll( time );
+}
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+// InterpolateWorld: interpolate a data point for rendering between simulation frames.
+
+void InterpolateWorld( float delta, float offset )
+{
+	const std::vector<CUnit*>& units=g_UnitMan.GetUnits();
+	for (uint i=0;i<units.size();++i)
+		units[i]->GetModel()->Update( delta );
+
+	g_EntityManager.interpolateAll( offset );
 }
 
 
@@ -640,6 +664,9 @@ static void InitScripting()
 	// Create the scripting host.  This needs to be done before the GUI is created.
 	new ScriptingHost;
 
+	// It would be nice for onLoad code to be able to access the setTimeout() calls.
+	new CScheduler;
+
 	// Register the JavaScript interfaces with the runtime
 	JSI_Entity::init();
 	JSI_BaseEntity::init();
@@ -711,6 +738,11 @@ extern u64 PREVTSC;
 static void Shutdown()
 {
 	psShutdown(); // Must delete g_GUI before g_ScriptingHost
+
+	delete &g_Scheduler;
+
+	delete &g_Mouseover;
+	delete &g_Selection;
 
 	delete &g_ScriptingHost;
 	delete &g_Pathfinder;
@@ -888,6 +920,8 @@ PREVTSC=CURTSC;
 	new CBaseEntityCollection;
 	new CEntityManager;
 	new CPathfindEngine;
+	new CSelectedEntities;
+	new CMouseoverEntities;
 
 	g_EntityTemplateCollection.loadTemplates();
 
@@ -917,13 +951,17 @@ if(!g_MapFile)
 	CMessage init_msg (CMessage::EMSG_INIT);
 	g_EntityManager.dispatchAll(&init_msg);
 
-#ifndef NO_GUI
-	in_add_handler(gui_handler);
-#endif
 	in_add_handler(handler);
 	in_add_handler(terr_handler);
 
+	in_add_handler(interactInputHandler);
+
 	in_add_handler(conInputHandler);
+#ifndef NO_GUI
+	in_add_handler(gui_handler);
+#endif
+
+	
 
 	MICROLOG(L"render blank");
 	// render everything to a blank frame to force renderer to load everything
@@ -1021,6 +1059,8 @@ static void Frame()
 	// Non-movie code:
 
 	static double last_time;
+	static double delta_time = 0.0; // The amount by which the displayed frame is lagging
+									// the simulation.
 	const double time = get_time();
 	const float TimeSinceLastFrame = (float)(time-last_time);
 	last_time = time;
@@ -1036,36 +1076,42 @@ static void Frame()
 
 // TODO: limiter in case simulation can't keep up?
 	const double TICK_TIME = 30e-3;	// [s]
-#if 0
-	double time1 = get_time();
-	while((time1-time0) > TICK_TIME)
-	{
-		game_ticks++;
-
-		in_get_events();
-		do_tick();
-		time0 += TICK_TIME;
-	}
-
-#endif
+	const float SIM_UPDATE_INTERVAL = 1.0f / (float)SIM_FRAMERATE; // Simulation runs at 50 fps.
 
 	MICROLOG(L"input");
 
 	in_get_events();
 
-	if(TimeSinceLastFrame > 0.0f)
+	delta_time += TimeSinceLastFrame;
+
+	if( delta_time >= 0.0 )
 	{
-		MICROLOG(L"update world");
-
-		UpdateWorld(TimeSinceLastFrame);
-		if (!g_FixedFrameTiming)
-			terr_update(float(TimeSinceLastFrame));
-		g_Console->Update(TimeSinceLastFrame);
-
-		// ugly, but necessary. these are one-shot events, have to be reset.
-		mouseButtons[SDL_BUTTON_WHEELUP] = false;
-		mouseButtons[SDL_BUTTON_WHEELDOWN] = false;
+		// A new simulation frame is required.
+		MICROLOG( L"calculate simulation" );
+		UpdateWorld( SIM_UPDATE_INTERVAL );
+		delta_time -= SIM_UPDATE_INTERVAL;
+		if( delta_time >= 0.0 )
+		{
+			// The desired sim frame rate can't be achieved. Settle for process & render
+			// frames as fast as possible.
+			// g_Console->InsertMessage( L"Can't maintain %d FPS simulation rate!", SIM_FRAMERATE );
+			delta_time = 0.0;
+		}
 	}
+
+	
+	MICROLOG(L"interpolate frame");
+
+	InterpolateWorld( TimeSinceLastFrame, (float)( delta_time / (double)SIM_UPDATE_INTERVAL ) + 1.0f );
+
+	if (!g_FixedFrameTiming)
+		terr_update(float(TimeSinceLastFrame));
+	g_Mouseover.update( TimeSinceLastFrame );
+	g_Console->Update(TimeSinceLastFrame);
+
+	// ugly, but necessary. these are one-shot events, have to be reset.
+	mouseButtons[SDL_BUTTON_WHEELUP] = false;
+	mouseButtons[SDL_BUTTON_WHEELDOWN] = false;
 
 	if(g_active)
 	{
@@ -1081,13 +1127,13 @@ static void Frame()
 		SDL_Delay(10);
 
 	calc_fps();
-	frameCount++;
 	if (g_FixedFrameTiming && frameCount==100) quit=true;
 }
 
 
 #ifdef _WIN32
 // Define/undefine this as desired:
+
 #ifndef NDEBUG
 #  define CUSTOM_EXCEPTION_HANDLER
 #endif
@@ -1110,7 +1156,7 @@ int main(int argc, char* argv[])
 
 		while(!quit)
 		{
-			MICROLOG(L"Frame");
+			MICROLOG(L"(Simulation) Frame");
 			Frame();
 		}
 

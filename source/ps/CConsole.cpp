@@ -477,30 +477,27 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 		// Process it as JavaScript
 
 		// Convert Unicode to 8-bit sort-of-ASCII
-		size_t len = wcstombs(NULL, szLine, 0);
-		assert(len != (size_t)-1 && "Cannot convert unicode->multibyte");
-		char* szMBLine = new char[len+1];
-		wcstombs(szMBLine, szLine, len+1);
+		
+		g_ScriptingHost.ExecuteScript( CStr16( szLine + 1 ) );
 
-		g_ScriptingHost.ExecuteScript( szMBLine + 1 );
-
-		delete[] szMBLine;
 	}
 	else if( szLine[0] == '?' )
 	{
 		// Process it as JavaScript and display the result
 
+		/*
 		// Convert Unicode to 8-bit sort-of-ASCII
 		size_t len = wcstombs(NULL, szLine, 0);
 		assert(len != (size_t)-1 && "Cannot convert unicode->multibyte");
 		char* szMBLine = new char[len+1];
 		wcstombs(szMBLine, szLine, len+1);
+		*/
 
-		jsval rval = g_ScriptingHost.ExecuteScript( szMBLine + 1 );
+		jsval rval = g_ScriptingHost.ExecuteScript( CStr16( szLine + 1 ) );
 		if( rval )
 			InsertMessage( L"%hs", g_ScriptingHost.ValueToString( rval ).c_str() );
 
-		delete[] szMBLine;
+		// delete[] szMBLine;
 	}
 	else InsertMessage(L"<say>: %ls", szLine);
 
@@ -529,6 +526,9 @@ int conInputHandler(const SDL_Event* ev)
 			// bail, because we'd fall under if(sym) .. else below
 	}
 
+	if( sym == SDLK_ESCAPE )
+		return EV_PASS; // Not being able to quit while the console is up is annoying.
+	
 	if(!g_Console->IsActive())
 		return EV_PASS;
 

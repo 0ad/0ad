@@ -62,6 +62,9 @@ ScriptingHost::ScriptingHost() : m_RunTime(NULL), m_Context(NULL), m_GlobalObjec
 	if (JS_DefineFunctions(m_Context, m_GlobalObject, ScriptFunctionTable) == JS_FALSE)
 		throw PSERROR_Scripting_NativeFunctionSetupFailed();
 
+	if( JS_DefineProperties( m_Context, m_GlobalObject, ScriptGlobalTable ) == JS_FALSE )
+		throw( std::string( "ScriptingHost: Failed to setup native objects" ) );
+
 	std::cout << "Scripting environment initialized" << std::endl;
 }
 
@@ -123,11 +126,20 @@ jsval ScriptingHost::CallFunction(const std::string & functionName, jsval * para
 	return result;
 }
 
-jsval ScriptingHost::ExecuteScript(const std::string & script)
+jsval ScriptingHost::ExecuteScript( const CStr16& script, const CStr16& calledFrom, JSObject* contextObject )
 {
 	jsval rval; 
 
-	JSBool ok = JS_EvaluateScript(m_Context, m_GlobalObject, script.c_str(), (int)script.length(), "Console", 0, &rval); 
+	/* Unicode->ASCII conversion (mostly) for calledFrom */
+
+	size_t len = wcstombs( NULL, calledFrom, 0 );
+	assert( len != (size_t)-1 );
+	char* asciiName = new char[len + 1];
+	wcstombs( asciiName, calledFrom, len + 1 );
+
+	JSBool ok = JS_EvaluateUCScript(m_Context, contextObject ? contextObject : m_GlobalObject, script, (int)script.Length(), asciiName, 0, &rval); 
+
+	delete( asciiName );
 
 	if (!ok) return JSVAL_NULL;
 
@@ -276,6 +288,12 @@ std::string ScriptingHost::ValueToString(const jsval value)
 	return std::string(bytes);
 }
 
+CStrW ScriptingHost::ValueToUCString( const jsval value )
+{
+	JSString* string = JS_ValueToString( m_Context, value );
+	return( CStrW( JS_GetStringChars( string ) ) );
+}
+
 double ScriptingHost::ValueToDouble(const jsval value)
 {
 	jsdouble d;
@@ -318,6 +336,7 @@ void ScriptingHost::ErrorReporter(JSContext * context, const char * message, JSE
 	}
 }
 
+/*
 void ScriptingHost::Tick(float timeElapsed)
 {
 	if (timeElapsed > 0.2f) timeElapsed = 0.2f;
@@ -342,6 +361,7 @@ void ScriptingHost::AddDelayedScript(const std::string & functionName, float del
 {
 	m_DelayedScripts.push_back(DelayedScriptExecutor(functionName, delaySeconds));
 }
+*/
 
 void ScriptingHost::_CollectGarbage()
 {

@@ -11,6 +11,14 @@ JSBool writeConsole( JSContext* context, JSObject* globalObject, unsigned int ar
 
 JSBool getEntityByHandle( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval );
 JSBool getEntityTemplate( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval );
+JSBool setTimeout( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval );
+JSBool setInterval( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval );
+JSBool cancelInterval( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval );
+// Getter/Setter for interface global objects (e.g. selection object)
+JSBool getSelected( JSContext* context, JSObject* globalObject, jsval id, jsval* vp );
+JSBool setSelected( JSContext* context, JSObject* globalObject, jsval id, jsval* vp );
+JSBool getSelection( JSContext* context, JSObject* globalObject, jsval id, jsval* vp );
+JSBool setSelection( JSContext* context, JSObject* globalObject, jsval id, jsval* vp );
 
 // Returns the sort-of-global object associated with the current GUI
 JSBool getGUIGlobal(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
@@ -25,5 +33,6 @@ JSBool exitProgram(JSContext* context, JSObject* globalObject, unsigned int argc
 JSBool crash(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
 
 extern JSFunctionSpec ScriptFunctionTable[];
+extern JSPropertySpec ScriptGlobalTable[];
 
 #endif

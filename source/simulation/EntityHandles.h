@@ -1,6 +1,6 @@
 // EntityHandles.h
 //
-// Last modified: 22 May 04, Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
+// Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
 // Entity smart pointer definitions.
 //
@@ -51,6 +51,7 @@ public:
 	void operator=( const HEntity& copy );
 	bool operator==( const HEntity& test ) const;
 	operator bool() const { return( m_handle != INVALID_HANDLE ); }
+	operator CEntity*() const;
 	~HEntity();
 };
 

@@ -99,7 +99,5 @@ public:
 	int m_iFontOffset; // distance to move up before drawing
 };
 
-// TODO MT: Better solution to character translation than 'const int cooked'? Anyone?
-
 #endif
 

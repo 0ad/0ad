@@ -35,15 +35,18 @@ JSBool JSI_Entity::getProperty( JSContext* cx, JSObject* obj, jsval id, jsval* v
 	if( !e )
 	{
 		*vp = JSVAL_NULL;
+		JS_ReportError( cx, "[Entity] Invalid reference" );
 		return( JS_TRUE );
 	}
 	CStr propName = g_ScriptingHost.ValueToString( id );
 	
 	if( (*e)->m_properties.find( propName ) != (*e)->m_properties.end() )
 	{
-		*vp = *((*e)->m_properties[propName]);
+		*vp = (*e)->m_properties[propName]->tojsval();
 		return( JS_TRUE );
 	}
+	else
+		JS_ReportError( cx, "No such property on %s: %s", (const char*)((*e)->m_name), (const char*)propName );
 	return( JS_TRUE );
 }
 
@@ -58,6 +61,8 @@ JSBool JSI_Entity::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* v
 		(*e)->rebuild( propName );
 		return( JS_TRUE );
 	}
+	else
+		JS_ReportError( cx, "No such property on %s: %s", (const char*)((*e)->m_name), (const char*)propName );
 	return( JS_TRUE );
 }
 
@@ -68,13 +73,14 @@ JSBool JSI_Entity::construct( JSContext* cx, JSObject* obj, unsigned int argc, j
 	CVector3D position;
 	float orientation = 0.0f;
 	JSObject* jsBaseEntity = JSVAL_TO_OBJECT( argv[0] );
-	if( JSVAL_IS_OBJECT( argv[0] ) && ( JS_GetClass( jsBaseEntity ) == &JSI_BaseEntity::JSI_class ) )
+	CStr templateName;
+
+	if( !JSVAL_IS_NULL( argv[0] ) && JSVAL_IS_OBJECT( argv[0] ) && ( JS_GetClass( jsBaseEntity ) == &JSI_BaseEntity::JSI_class ) )
 	{
 		baseEntity = (CBaseEntity*)JS_GetPrivate( cx, jsBaseEntity );
 	}
 	else
-	{
-		CStr templateName;
+	{	
 		try
 		{
 			templateName = g_ScriptingHost.ValueToString( argv[0] );
@@ -82,6 +88,7 @@ JSBool JSI_Entity::construct( JSContext* cx, JSObject* obj, unsigned int argc, j
 		catch( PSERROR_Scripting_ConversionFailed )
 		{
 			*rval = JSVAL_NULL;
+			JS_ReportError( cx, "Invalid template identifier" );
 			return( JS_TRUE );
 		}
 		baseEntity = g_EntityTemplateCollection.getTemplate( templateName );
@@ -89,11 +96,14 @@ JSBool JSI_Entity::construct( JSContext* cx, JSObject* obj, unsigned int argc, j
 	if( !baseEntity )
 	{
 		*rval = JSVAL_NULL;
+		JS_ReportError( cx, "No such template: %s", (const char*)templateName );
 		return( JS_TRUE );
 	}
 	JSObject* jsVector3D = JSVAL_TO_OBJECT( argv[1] );
-	if( JSVAL_IS_OBJECT( argv[1] ) && ( JS_GetClass( jsVector3D ) == &JSI_Vector3D::JSI_class ) )
+	if( !JSVAL_IS_NULL( argv[1] ) && JSVAL_IS_OBJECT( argv[1] ) && ( JS_GetClass( jsVector3D ) == &JSI_Vector3D::JSI_class ) )
+	{
 		position = *( ( (JSI_Vector3D::Vector3D_Info*)JS_GetPrivate( cx, jsVector3D ) )->vector );
+	}
 	if( argc >= 3 )
 	{
 		try

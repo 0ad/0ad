@@ -62,16 +62,31 @@ void CUnitManager::DeleteAll()
 CUnit* CUnitManager::PickUnit(const CVector3D& origin,const CVector3D& dir) const
 {
 	// closest object found so far
-	CUnit* hit=0;
+	CUnit* hit = 0;
 	// distance to closest object found so far
-	float dist=1.0e30f;
+	float dist = 1.0e30f;
+	// closest approach offset (easier to pick small stuff in forests than standard ScEd style selection)
+	float minrel = 1.0e30f;
+
 	for (uint i=0;i<m_Units.size();i++) {
 		CUnit* unit=m_Units[i];
 		float tmin,tmax;
-		if (unit->GetModel()->GetBounds().RayIntersect(origin,dir,tmin,tmax)) {
-			if (!hit || tmin<dist) {
+		
+		if (unit->GetModel()->GetBounds().RayIntersect(origin,dir,tmin,tmax))
+		{
+			// Point of closest approach
+			CVector3D obj;
+			unit->GetModel()->GetBounds().GetCentre( obj );
+			CVector3D delta = obj - origin;
+			float distance = delta.Dot( dir );
+			CVector3D closest = origin + dir * distance;
+			CVector3D offset = obj - closest;
+
+			float rel = offset.GetLength();
+			if (!hit || rel < minrel ) {
 				hit=unit;
 				dist=tmin;
+				minrel = rel;
 			}
 		}
 	}

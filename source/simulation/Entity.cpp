@@ -9,9 +9,12 @@
 #include "Renderer.h"
 #include "Model.h"
 #include "Terrain.h"
+#include "Interact.h"
 
 #include "Collision.h"
 #include "PathfindEngine.h"
+
+extern CCamera g_Camera;
 
 CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 {
@@ -24,9 +27,12 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	m_base.associate( this, "template", ( void( IPropertyOwner::* )() )&CEntity::loadBase );
 	m_name.associate( this, "name" );
 	m_speed.associate( this, "speed" );
+	m_selected.associate( this, "selected", ( void( IPropertyOwner::* )() )&CEntity::checkSelection );
+	m_grouped_mirror.associate( this, "group", ( void( IPropertyOwner::* )() )&CEntity::checkGroup );
+	m_extant_mirror.associate( this, "extant", ( void( IPropertyOwner::* )() )&CEntity::checkExtant );
 	m_turningRadius.associate( this, "turningRadius" );
-	m_position.associate( this, "position", ( void( IPropertyOwner::* )() )&CEntity::teleport );
-	m_orientation.associate( this, "orientation", ( void( IPropertyOwner::* )() )&CEntity::reorient );
+	m_graphics_position.associate( this, "position", ( void( IPropertyOwner::* )() )&CEntity::teleport );
+	m_graphics_orientation.associate( this, "orientation", ( void( IPropertyOwner::* )() )&CEntity::reorient );
 
 	// Set our parent unit and build us an actor.
 	m_actor = NULL;
@@ -35,10 +41,14 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	m_base = base;
 	
 	loadBase();
+	
+	// We can now freely admit that this exists.
+	m_extant = true;
+	m_extant_mirror = true;
 
-	snapToGround();
-	updateActorTransforms();
-
+	m_selected = false;
+	m_grouped = 255;
+	m_grouped_mirror = 0;
 }
 
 CEntity::~CEntity()
@@ -67,7 +77,7 @@ void CEntity::loadBase()
 		delete( m_bounds );
 	}
 
-	m_actor = new CUnit(m_base->m_actorObject,m_base->m_actorObject->m_Model->Clone());
+	m_actor = new CUnit( m_base->m_actorObject, m_base->m_actorObject->m_Model->Clone(), this );
 
 	// Register the actor with the renderer.
 
@@ -88,6 +98,30 @@ void CEntity::loadBase()
 	}
 }
 
+void CEntity::kill()
+{
+	g_Selection.removeAll( this );
+	if( m_bounds ) delete( m_bounds );
+	m_actor = NULL;
+	m_bounds = NULL;
+
+	m_extant = false;
+	m_extant_mirror = false;
+	
+	return; // TODO: Help! Wierd heap corruption error I've not been able to fix
+			// but stopping entities being deallocated supresses it.
+			// Have a hunch it's to do with deallocating actors that haven't
+			// had renderdata set up yet.
+
+	if( m_actor )
+	{
+		g_UnitMan.RemoveUnit( m_actor );
+		delete( m_actor );
+	}
+
+	me = HEntity();
+}
+
 bool isWaypoint( CEntity* e )
 {
 	return( e->m_base->m_name == CStr( "Waypoint" ) );
@@ -97,24 +131,19 @@ void CEntity::updateActorTransforms()
 {
 	CMatrix3D m;
 	
-	m._11 = -m_ahead.y;	m._12 = 0.0f;	m._13 = -m_ahead.x;	m._14 = m_position.X;
-	m._21 = 0.0f;		m._22 = 1.0f;	m._23 = 0.0f;		m._24 = m_position.Y;
-	m._31 = m_ahead.x;	m._32 = 0.0f;	m._33 = -m_ahead.y;	m._34 = m_position.Z;
-	m._41 = 0.0f;		m._42 = 0.0f;	m._43 = 0.0f;		m._44 = 1.0f;
+	float s = sin( m_graphics_orientation );
+	float c = cos( m_graphics_orientation );
 
-	/* Equivalent to:	
-		m.SetYRotation( m_orientation );
-		m.Translate( m_position );
-		But the matrix multiplication seemed such a waste when we already have a forward vector
-	*/
+	m._11 = -c;		m._12 = 0.0f;	m._13 = -s;		m._14 = m_graphics_position.X;
+	m._21 = 0.0f;	m._22 = 1.0f;	m._23 = 0.0f;	m._24 = m_graphics_position.Y;
+	m._31 = s;		m._32 = 0.0f;	m._33 = -c;		m._34 = m_graphics_position.Z;
+	m._41 = 0.0f;	m._42 = 0.0f;	m._43 = 0.0f;	m._44 = 1.0f;
 
 	m_actor->GetModel()->SetTransform( m );
 }
 
 float CEntity::getExactGroundLevel( float x, float y )
 {
-	// TODO MT: If OK with Rich, move to terrain core. Once this works, that is.
-
 	x /= 4.0f;
 	y /= 4.0f;
 
@@ -163,11 +192,14 @@ float CEntity::getExactGroundLevel( float x, float y )
 
 void CEntity::snapToGround()
 {
-	m_position.Y = getExactGroundLevel( m_position.X, m_position.Z );
+	m_graphics_position.Y = getExactGroundLevel( m_graphics_position.X, m_graphics_position.Z );
 }
 
 void CEntity::update( float timestep )
 {
+	m_position_previous = m_position;
+	m_orientation_previous = m_orientation;
+
 	while( !m_orderQueue.empty() )
 	{
 		CEntityOrder* current = &m_orderQueue.front();
@@ -193,7 +225,7 @@ void CEntity::update( float timestep )
 		m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_IdleAnim );
 }
 
-void CEntity::dispatch( CMessage* msg )
+void CEntity::dispatch( const CMessage* msg )
 {
 	switch( msg->type )
 	{
@@ -205,7 +237,7 @@ void CEntity::dispatch( CMessage* msg )
 			if( getCollisionObject( this ) )
 			{
 				// Prometheus telefragging. (Appeared inside another object)
-				g_EntityManager.kill( me );
+				kill();
 				return;
 			}
 			std::vector<HEntity>* waypoints = g_EntityManager.matches( isWaypoint );
@@ -225,12 +257,36 @@ void CEntity::dispatch( CMessage* msg )
 			delete( waypoints );
 		}
 		break;
+	case CMessage::EMSG_ORDER:
+		CMessageOrder* m;
+		m = (CMessageOrder*)msg;
+		if( !m->queue )
+			clearOrders();
+		pushOrder( m->order );
+		break;
 	}
+}
+
+void CEntity::clearOrders()
+{
+	m_orderQueue.clear();
 }
 			
 void CEntity::pushOrder( CEntityOrder& order )
 {
 	m_orderQueue.push_back( order );
+}
+
+bool CEntity::acceptsOrder( int orderType, CEntity* orderTarget )
+{
+	// Hardcoding...
+	switch( orderType )
+	{
+	case CEntityOrder::ORDER_GOTO:
+	case CEntityOrder::ORDER_PATROL:
+		return( m_speed > 0.0f );
+	}
+	return( false );
 }
 
 void CEntity::repath()
@@ -251,6 +307,7 @@ void CEntity::repath()
 
 void CEntity::reorient()
 {
+	m_orientation = m_graphics_orientation;
 	m_ahead.x = sin( m_orientation );
 	m_ahead.y = cos( m_orientation );
 	if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
@@ -260,18 +317,66 @@ void CEntity::reorient()
 	
 void CEntity::teleport()
 {
-	snapToGround();
-	updateActorTransforms();
+	m_position = m_graphics_position;
 	m_bounds->setPosition( m_position.X, m_position.Z );
 	repath();
 }
 
-void CEntity::render()
+void CEntity::checkSelection()
 {
-	// Rich! Help! ;)
+	if( m_selected )
+	{
+		if( !g_Selection.isSelected( this ) )
+			g_Selection.addSelection( this );
+	}
+	else
+	{
+		if( g_Selection.isSelected( this ) )
+			g_Selection.removeSelection( this );
+	}
+}
 
-	// HACK: As in this entire function is a...
+void CEntity::checkGroup()
+{
+	if( m_grouped != m_grouped_mirror )
+	{
+		if( ( m_grouped_mirror >= 0 ) && ( m_grouped_mirror <= 10 ) )
+		{
+			u8 newgroup = m_grouped_mirror;
+			if( newgroup == 0 ) newgroup = 255;
+			if( newgroup == 10 ) newgroup = 0;
+
+			g_Selection.changeGroup( this, newgroup );
+		}
+		else
+			m_grouped_mirror = m_grouped;
+	}
+}
+
+void CEntity::checkExtant()
+{
+	if( m_extant && !( (bool)m_extant_mirror ) )
+		kill();
+	// Sorry. Dead stuff stays dead.
+}
+
+void CEntity::interpolate( float relativeoffset )
+{
+	m_graphics_position = Interpolate<CVector3D>( m_position_previous, m_position, relativeoffset );
 	
+	// Avoid wraparound glitches for interpolating angles.
+	while( m_orientation < m_orientation_previous - PI )
+		m_orientation_previous -= 2 * PI;
+	while( m_orientation > m_orientation_previous + PI )
+		m_orientation_previous += 2 * PI;
+
+	m_graphics_orientation = Interpolate<float>( m_orientation_previous, m_orientation, relativeoffset );
+	snapToGround();
+	updateActorTransforms();
+}
+
+void CEntity::render()
+{	
 	if( !m_orderQueue.empty() )
 	{
 		std::deque<CEntityOrder>::iterator it;
@@ -345,14 +450,97 @@ void CEntity::render()
 	}
 	
 	glColor3f( 1.0f, 1.0f, 1.0f );
-	
-
 	if( getCollisionObject( this ) ) glColor3f( 0.5f, 0.5f, 1.0f );
 	m_bounds->render( getExactGroundLevel( m_position.X, m_position.Z ) + 0.25f ); //m_position.Y + 0.25f );
-
 }
 
-void PASAPScenario()
+void CEntity::renderSelectionOutline( float alpha )
 {
-	// Got rid of all the hardcoding that was here.
+	if( !m_bounds ) return;
+
+	glColor4f( 1.0f, 1.0f, 1.0f, alpha );
+	
+	glBegin( GL_LINE_LOOP );
+
+	CVector3D pos = m_graphics_position;
+	pos.X += m_bounds->m_offset.x;
+	pos.Z += m_bounds->m_offset.y;
+
+	switch( m_bounds->m_type )
+	{
+	case CBoundingObject::BOUND_CIRCLE:
+	{
+		float radius = ((CBoundingCircle*)m_bounds)->m_radius;
+		for( int i = 0; i < SELECTION_CIRCLE_POINTS; i++ )
+		{
+			float ang = i * 2 * PI / (float)SELECTION_CIRCLE_POINTS;
+			float x = pos.X + radius * sin( ang );
+			float y = pos.Z + radius * cos( ang );
+#ifdef SELECTION_TERRAIN_CONFORMANCE
+			glVertex3f( x, getExactGroundLevel( x, y ) + 0.25f, y );
+#else
+			glVertex3f( x, pos.Y + 0.25f, y );
+#endif
+		}
+		break;
+	}
+	case CBoundingObject::BOUND_OABB:
+	{
+		CVector2D p, q;
+		CVector2D u, v;
+		q.x = pos.X; q.y = pos.Z;
+		float h = ((CBoundingBox*)m_bounds)->m_h;
+		float w = ((CBoundingBox*)m_bounds)->m_w;
+
+		u.x = sin( m_graphics_orientation );
+		u.y = cos( m_graphics_orientation );
+		v.x = u.y;
+		v.y = -u.x;
+
+#ifdef SELECTION_TERRAIN_CONFORMANCE
+		for( int i = SELECTION_BOX_POINTS; i > -SELECTION_BOX_POINTS; i-- )
+		{
+			p = q + u * h + v * ( w * (float)i / (float)SELECTION_BOX_POINTS );
+			glVertex3f( p.x, getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+		}
+
+		for( int i = SELECTION_BOX_POINTS; i > -SELECTION_BOX_POINTS; i-- )
+		{
+			p = q + u * ( h * (float)i / (float)SELECTION_BOX_POINTS ) - v * w;
+			glVertex3f( p.x, getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+		}
+
+		for( int i = -SELECTION_BOX_POINTS; i < SELECTION_BOX_POINTS; i++ )
+		{
+			p = q - u * h + v * ( w * (float)i / (float)SELECTION_BOX_POINTS );
+			glVertex3f( p.x, getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+		}
+
+		for( int i = -SELECTION_BOX_POINTS; i < SELECTION_BOX_POINTS; i++ )
+		{
+			p = q + u * ( h * (float)i / (float)SELECTION_BOX_POINTS ) + v * w;
+			glVertex3f( p.x, getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+		}
+#else
+			p = q + u * h + v * w;
+			glVertex3f( p.x, getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+
+			p = q + u * h - v * w;
+			glVertex3f( p.x, getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+
+			p = q - u * h + v * w;
+			glVertex3f( p.x, getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+
+			p = q + u * h + v * w;
+			glVertex3f( p.x, getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+#endif
+
+
+		break;
+	}
+	}
+
+	glEnd();
+	
 }
+

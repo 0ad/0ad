@@ -1,6 +1,6 @@
 // BoundingObjects.h
 //
-// Last modified: 26 May 04, Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
+// Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
 // Bounding circle and object-aligned bounding box. 2D, for simulation code.
 //

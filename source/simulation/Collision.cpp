@@ -5,7 +5,7 @@
 
 CBoundingObject* getContainingObject( const CVector2D& point )
 {
-	std::vector<HEntity>* entities = g_EntityManager.getActive();
+	std::vector<HEntity>* entities = g_EntityManager.getExtant();
 	std::vector<HEntity>::iterator it;
 
 	for( it = entities->begin(); it != entities->end(); it++ )
@@ -27,7 +27,7 @@ HEntity getCollisionObject( CEntity* entity )
 {
 	assert( entity->m_bounds ); 
 
-	std::vector<HEntity>* entities = g_EntityManager.getActive();
+	std::vector<HEntity>* entities = g_EntityManager.getExtant();
 	std::vector<HEntity>::iterator it;
 
 	for( it = entities->begin(); it != entities->end(); it++ )
@@ -58,7 +58,7 @@ HEntity getCollisionObject( CEntity* entity, float x, float y )
 
 bool getRayIntersection( const CVector2D& source, const CVector2D& forward, const CVector2D& right, float length, float maxDistance, CBoundingObject* destinationCollisionObject, rayIntersectionResults* results )
 {
-	std::vector<HEntity>* entities = g_EntityManager.getActive();
+	std::vector<HEntity>* entities = g_EntityManager.getExtant();
 	std::vector<HEntity>::iterator it;
 
 	float closestApproach, dist;

@@ -41,7 +41,9 @@ ERROR_TYPE(Scripting_DefineType, CreationFailed);
 #include <map>
 
 #include "Singleton.h"
+#include "CStr.h"
 
+/*
 class DelayedScriptExecutor
 {
 public:
@@ -53,6 +55,7 @@ public:
 	std::string m_FunctionName;
 	float		m_SecondsToExecution;
 };
+*/
 
 class CustomType
 {
@@ -70,7 +73,7 @@ private:
 
 	JSErrorReport	m_ErrorReport;
 
-	std::vector < DelayedScriptExecutor >		m_DelayedScripts;
+	//std::vector < DelayedScriptExecutor >		m_DelayedScripts;
 	std::map < std::string, CustomType >		m_CustomObjectTypes;
 
 	void _CollectGarbage();
@@ -86,7 +89,7 @@ public:
 
 	jsval CallFunction(const std::string & functionName, jsval * params, int numParams);
 
-	jsval ExecuteScript(const std::string & script);
+	jsval ScriptingHost::ExecuteScript( const CStr16& script, const CStr16& calledFrom = CStr16( L"Console" ), JSObject* contextObject = NULL );
 
 	void RegisterFunction(const std::string & functionName, JSNative function, int numArgs);
 
@@ -106,11 +109,16 @@ public:
 	int ValueToInt(const jsval value);
 	bool ValueToBool(const jsval value);
 	std::string ValueToString(const jsval value);
+	CStrW ValueToUCString( const jsval value );
     double ValueToDouble(const jsval value);
+
+	/*
+	All herald the new way of doing this!
 
 	void Tick(float timeElapsed);
 
 	void AddDelayedScript(const std::string & functionName, float delaySeconds);
+	*/
 
 	static void ErrorReporter(JSContext * context, const char * message, JSErrorReport * report);
 };

@@ -93,7 +93,14 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 	
 	if( collide )
 	{	
-		// Hit something. Take a step back.
+		// Hit something. Is it our destination?
+		if( collide->m_bounds->contains( current->m_data[0].location ) )
+		{
+			m_orderQueue.pop_front();
+			return( false );
+		}
+		
+		// No? Take a step back.
 		m_position.X -= delta.x;
 		m_position.Z -= delta.y;
 
@@ -110,78 +117,44 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 			m_bounds->setPosition( m_position.X, m_position.Z );
 			return( false );
 		}
-	
-		if( collide->m_bounds->m_type == CBoundingObject::BOUND_OABB )
-		{
-			// And it's square.
-			// TODO: Implement this case properly.
-
-			// HACK: See if this thing we've hit is likely to be our destination. If so, just skip to our next waypoint.
-			// Otherwise, turn right (as with circle collisions)
-
-			if( len < collide->m_bounds->m_radius * 2.0f )
-			{
-				m_orderQueue.pop_front();
-				return( false );
-			}
-			else
-			{
-				CEntityOrder avoidance;
-				avoidance.m_type = CEntityOrder::ORDER_GOTO_COLLISION;
-				CVector2D right;
-				right.x = m_ahead.y; right.y = -m_ahead.x;
-				CVector2D avoidancePosition = collide->m_bounds->m_pos + right * ( collide->m_bounds->m_radius + m_bounds->m_radius * 2.5f );
-				avoidance.m_data[0].location = avoidancePosition;
-				if( current->m_type == CEntityOrder::ORDER_GOTO_COLLISION )
-					m_orderQueue.pop_front();
-				m_orderQueue.push_front( avoidance );
-				return( false );
-			}
+		
+		// No? Path around it.
 			
+		CEntityOrder avoidance;
+		avoidance.m_type = CEntityOrder::ORDER_GOTO_COLLISION;
+		CVector2D right;
+		right.x = m_ahead.y; right.y = -m_ahead.x;
+		CVector2D avoidancePosition;
+
+		if( ( collide->m_bounds->m_pos - m_bounds->m_pos ).dot( right ) < 1 )
+		{
+			// Turn right.
+			avoidancePosition = collide->m_bounds->m_pos + right * ( collide->m_bounds->m_radius + m_bounds->m_radius * 2.5f );
 		}
 		else
 		{
-			// A circle.
-			// TODO: Implement this properly.
-			// Work out if our path goes to the left or to the right
-			// of this obstacle. Go that way.
-			// Weight a little to the right, too (helps unit-unit collisions)
-			
-			CEntityOrder avoidance;
-			avoidance.m_type = CEntityOrder::ORDER_GOTO_COLLISION;
-			CVector2D right;
-			right.x = m_ahead.y; right.y = -m_ahead.x;
-			CVector2D avoidancePosition;
-
-			if( ( collide->m_bounds->m_pos - m_bounds->m_pos ).dot( right ) < 1 )
-			{
-				// Turn right.
-				avoidancePosition = collide->m_bounds->m_pos + right * ( collide->m_bounds->m_radius + m_bounds->m_radius * 2.5f );
-			}
-			else
-			{
-				// Turn left.
-				avoidancePosition = collide->m_bounds->m_pos - right * ( collide->m_bounds->m_radius + m_bounds->m_radius * 2.5f );
-			}
-
-			avoidance.m_data[0].location = avoidancePosition;
-			if( current->m_type == CEntityOrder::ORDER_GOTO_COLLISION )
-				m_orderQueue.pop_front();
-			m_orderQueue.push_front( avoidance );
-			return( false );
+			// Turn left.
+			avoidancePosition = collide->m_bounds->m_pos - right * ( collide->m_bounds->m_radius + m_bounds->m_radius * 2.5f );
 		}
-	}
 
-	snapToGround();
-	updateActorTransforms();
+		avoidance.m_data[0].location = avoidancePosition;
+		if( current->m_type == CEntityOrder::ORDER_GOTO_COLLISION )
+			m_orderQueue.pop_front();
+		m_orderQueue.push_front( avoidance );
+		return( false );
+
+	}
 
 	return( false );
 }
 
 bool CEntity::processGoto( CEntityOrder* current, float timestep )
 {
+	CVector2D pos( m_position.X, m_position.Z );
 	CVector2D path_to = current->m_data[0].location;
 	m_orderQueue.pop_front();
+	if( ( path_to - pos ).length() < 0.1f ) 
+		return( false );
 	if( m_actor->GetModel()->GetAnimation() != m_actor->GetObject()->m_WalkAnim )
 	{
 		m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_WalkAnim );

@@ -48,7 +48,7 @@ CBoundingCircle::CBoundingCircle( float x, float y, CBoundingCircle* copy )
 void CBoundingObject::setPosition( float x, float y )
 {
 	m_pos.x = x; m_pos.y = y;
-	m_pos -= m_offset;
+	m_pos += m_offset;
 }
 
 void CBoundingCircle::setRadius( float radius )

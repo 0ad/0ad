@@ -13,6 +13,7 @@
 #include "precompiled.h"
 
 #include "Camera.h"
+#include "Renderer.h"
 
 CCamera::CCamera ()
 {
@@ -145,4 +146,43 @@ void CCamera::GetFrustumPoints(CVector3D pts[8]) const
 	for (int i=0;i<8;i++) {
 		m_Orientation.Transform(cpts[i],pts[i]);
 	}
+}
+
+void CCamera::BuildCameraRay( int px, int py, CVector3D& origin, CVector3D& dir )
+{
+	CVector3D cPts[4];
+	GetCameraPlanePoints( m_FarPlane, cPts );
+
+	// transform to world space
+	CVector3D wPts[4];
+	for( int i = 0; i < 4; i++)
+		wPts[i] = m_Orientation.Transform( cPts[i] );
+
+	// get world space position of mouse point
+	float dx = (float)px/(float)g_Renderer.GetWidth();
+	float dz=1-(float)py/(float)g_Renderer.GetHeight();
+
+	CVector3D vdx = wPts[1] - wPts[0];
+	CVector3D vdz = wPts[3] - wPts[0];
+	CVector3D pt = wPts[0] + ( vdx * dx ) + ( vdz * dz );
+
+	// copy origin
+	origin = m_Orientation.GetTranslation();
+	// build direction
+	dir = pt - origin;
+	dir.Normalize();
+}
+
+void CCamera::GetScreenCoordinates( const CVector3D& world, float& x, float& y )
+{
+	CMatrix3D transform;
+	m_Orientation.GetInverse( transform );
+	transform.Concatenate( m_ProjMat );
+
+	CVector3D screenspace = transform.Transform( world );
+
+    x = screenspace.X / screenspace.Z;
+	y = screenspace.Y / screenspace.Z;
+	x = ( x + 1 ) * 0.5f * g_Renderer.GetWidth();
+	y = ( 1 - y ) * 0.5f * g_Renderer.GetHeight();
 }

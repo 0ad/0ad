@@ -28,7 +28,7 @@
 #include <stdlib.h>
 
 
-#define MAX_HANDLERS 4
+#define MAX_HANDLERS 8
 
 static EventHandler handler_stack[MAX_HANDLERS];
 static int handler_stack_top = 0;

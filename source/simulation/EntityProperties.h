@@ -1,6 +1,6 @@
 // EntityProperties.h
 //
-// Last modified: 22 May 04, Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
+// Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
 // Extended properties table, primarily intended for data-inheritable properties and those defined by JavaScript functions.
 //
@@ -43,6 +43,9 @@ class CBaseEntity;
 class CProperty;
 struct SProperty_NumericModifier;
 struct SProperty_StringModifier;
+struct SProperty_BooleanModifier;
+
+// Property abstract.
 
 class CProperty
 {
@@ -52,11 +55,13 @@ protected:
 	virtual void set( const jsval value ) = 0;
 public:
 	CProperty& operator=( const jsval value );
-	virtual operator jsval() = 0;
+	virtual jsval tojsval() = 0;
 	virtual bool rebuild( CProperty* parent, bool triggerFn = true ) = 0; // Returns true if the rebuild changed the value of this property.
 	void associate( IPropertyOwner* owner, const CStr& name );
 	void associate( IPropertyOwner* owner, const CStr& name, void (IPropertyOwner::*updateFn)() );
 };
+
+// Integer specialization
 
 class CProperty_i32 : public CProperty
 {
@@ -66,11 +71,29 @@ public:
 	CProperty_i32();
 	~CProperty_i32();
 	void set( const jsval value );
-	operator jsval();
+	jsval tojsval();
 	bool rebuild( CProperty* parent, bool triggerFn = true );
 	CProperty_i32& operator=( const i32 value );
 	operator i32();
 };
+
+// Boolean specialization
+
+class CProperty_bool : public CProperty
+{
+	bool data;
+	SProperty_BooleanModifier* modifier;
+public:
+	CProperty_bool();
+	~CProperty_bool();
+	void set( const jsval value );
+	jsval tojsval();
+	bool rebuild( CProperty* parent, bool triggerFn = true );
+	CProperty_bool& operator=( const bool value );
+	operator bool();
+};
+
+// Floating-point specialization
 
 class CProperty_float : public CProperty
 {
@@ -80,7 +103,7 @@ public:
 	CProperty_float();
 	~CProperty_float();
 	void set( const jsval value );
-	operator jsval();
+	jsval tojsval();
 	bool rebuild( CProperty* parent, bool triggerFn = true );
 	CProperty_float& operator=( const float& value );
 	operator float();
@@ -94,6 +117,8 @@ public:
 	bool operator==( float value );
 };
 
+// String specialization
+
 class CProperty_CStr : public CProperty, public CStr
 {
 	SProperty_StringModifier* modifier;
@@ -101,26 +126,30 @@ public:
 	CProperty_CStr();
 	~CProperty_CStr();
 	void set( const jsval value );
-	operator jsval();
+	jsval tojsval();
 	bool rebuild( CProperty* parent, bool triggerFn = true );
 	CProperty_CStr& operator=( const CStr& value );
 };
+
+// 3-Vector specialization
 
 class CProperty_CVector3D : public CProperty, public CVector3D
 {
 public:
 	void set( const jsval value );
-	operator jsval();
+	jsval tojsval();
 	bool rebuild( CProperty* parent, bool triggerFn = true );
 	CProperty_CVector3D& operator=( const CVector3D& value );
 };
+
+// CBaseEntity* specialization
 
 class CProperty_CBaseEntityPtr : public CProperty
 {
 	CBaseEntity* data;
 public:
 	void set( const jsval value );
-	operator jsval();
+	jsval tojsval();
 	bool rebuild( CProperty* parent, bool triggerFn = true );
 	operator CBaseEntity*();
 	operator bool();
@@ -155,6 +184,15 @@ struct SProperty_StringModifier
 {
 	CStr replacement;
 	void operator=( const CStr& value )
+	{
+		replacement = value;
+	}
+};
+
+struct SProperty_BooleanModifier
+{
+	bool replacement;
+	void operator=( const bool value )
 	{
 		replacement = value;
 	}

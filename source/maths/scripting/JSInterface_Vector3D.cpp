@@ -67,7 +67,11 @@ JSBool JSI_Vector3D::getProperty( JSContext* cx, JSObject* obj, jsval id, jsval*
 		return( JS_TRUE );
 
 	Vector3D_Info* vectorInfo = (Vector3D_Info*)JS_GetPrivate( cx, obj );
-	if( !vectorInfo ) return( JS_TRUE );
+	if( !vectorInfo )
+	{
+		JS_ReportError( cx, "[Vector3D] Invalid reference" );
+		return( JS_TRUE );
+	}
  	CVector3D* vectorData = vectorInfo->vector;
 
 	switch( g_ScriptingHost.ValueToInt( id ) )
@@ -86,7 +90,11 @@ JSBool JSI_Vector3D::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval*
 		return( JS_TRUE );
 
 	Vector3D_Info* vectorInfo = (Vector3D_Info*)JS_GetPrivate( cx, obj );
-	if( !vectorInfo ) return( JS_TRUE );
+	if( !vectorInfo )
+	{
+		JS_ReportError( cx, "[Vector3D] Invalid reference" );
+		return( JS_TRUE );
+	}
 	CVector3D* vectorData = vectorInfo->vector;
 
 	try
@@ -100,8 +108,8 @@ JSBool JSI_Vector3D::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval*
 	}
 	catch (PSERROR_Scripting_ConversionFailed)
 	{
-		JS_ReportError(cx, "Invalid parameter value for Vector3D");
-		return( JS_FALSE );
+		JS_ReportError( cx, "Invalid parameter value for Vector3D" );
+		return( JS_TRUE );
 	}
 	
 	if( vectorInfo->owner && vectorInfo->updateFn ) ( (vectorInfo->owner)->*(vectorInfo->updateFn) )();
@@ -130,7 +138,7 @@ JSBool JSI_Vector3D::construct( JSContext* cx, JSObject* obj, uintN argc, jsval*
 		{
 			// Invalid input (i.e. can't be coerced into doubles) - fail
 			JS_ReportError( cx, "Invalid parameters to Vector3D constructor" );
-			return( JS_FALSE );
+			return( JS_TRUE );
 		}
 	}
 	else

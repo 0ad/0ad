@@ -1,6 +1,6 @@
 // BaseEntity.h
 //
-// Last modified: 22 May 04, Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
+// Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
 // Entity Templates
 //

@@ -1,6 +1,6 @@
 // EntityOrders.h
 //
-// Last modified: 22 May 04, Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
+// Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
 // Entity orders structure.
 //
@@ -49,9 +49,10 @@ public:
 	{
 		ORDER_GOTO_NOPATHING,
 		ORDER_GOTO_SMOOTHED,
-		ORDER_GOTO_COLLISION,
+		ORDER_GOTO_COLLISION,	
 		ORDER_GOTO,
-		ORDER_PATROL
+		ORDER_PATROL,
+		ORDER_LAST
 	} m_type;
 	SOrderData m_data[ORDER_MAX_DATA];
 };

@@ -31,9 +31,12 @@ JSBool JSI_BaseEntity::getProperty( JSContext* cx, JSObject* obj, jsval id, jsva
 	
 	if( e->m_properties.find( propName ) != e->m_properties.end() )
 	{
-		*vp = *(e->m_properties[propName]);
+		*vp = e->m_properties[propName]->tojsval();
 		return( JS_TRUE );
 	}
+	else
+		JS_ReportError( cx, "No such property on %s: %s", (const char*)e->m_name, (const char*)propName );
+
 	return( JS_TRUE );
 }
 
@@ -48,6 +51,9 @@ JSBool JSI_BaseEntity::setProperty( JSContext* cx, JSObject* obj, jsval id, jsva
 		e->rebuild( propName );
 		return( JS_TRUE );
 	}
+	else
+		JS_ReportError( cx, "No such property on %s: %s", (const char*)e->m_name, (const char*)propName );
+
 	return( JS_TRUE );
 }
 
