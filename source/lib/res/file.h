@@ -127,33 +127,17 @@ extern int file_unmap(File* f);
 // async IO
 //
 
-struct FileIO
-{
-	u64 block_id;
-		// set by file_start_io when in block-cache mode, otherwise 0.
-
-	aiocb* cb;
-		// large (144 bytes) on Linux; cannot store here.
-		// allocated in file_start_io.
-
-	size_t padding;
-	size_t user_size;
-
-	bool our_buf;
-	bool from_cache;
-	bool given_to_cache;
-	bool return_called;
-};
+typedef void* FileIO;
 
 extern int file_start_io(File* f, off_t ofs, size_t size, void* buf, FileIO* io);
 
 // indicates if the given IO has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
-extern int file_io_complete(FileIO* io);
+extern int file_io_complete(FileIO io);
 
-extern int file_wait_io(FileIO* io, void*& p, size_t& size);
+extern int file_wait_io(FileIO io, void*& p, size_t& size);
 
-extern int file_discard_io(FileIO* io);
+extern int file_discard_io(FileIO io);
 
 
 
