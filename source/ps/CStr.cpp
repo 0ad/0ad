@@ -108,7 +108,7 @@ _double	CStr::ToDouble() const
 }
 
 //You can retrieve the substring within the string 
-CStr CStr::GetSubstring(_long start, _long len)
+CStr CStr::GetSubstring(size_t start, size_t len)
 {
 	return CStr( m_String.substr(start, len) );
 }
@@ -398,9 +398,9 @@ ostream &operator<<(ostream &os, CStr &Str)
 	return os;
 }
 
-size_t CStr::GetSerializedLength() const
+uint CStr::GetSerializedLength() const
 {
-	return m_String.length()+1;
+	return uint(m_String.length()+1);
 }
 
 u8 *CStr::Serialize(u8 *buffer) const

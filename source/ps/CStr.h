@@ -38,7 +38,7 @@ More Info:
 #include <iostream>
 
 #include "posix.h"
-#include "misc.h"
+#include "lib.h"
 #include "Network/Serialization.h"
 
 #include <cstdlib>
@@ -115,7 +115,7 @@ public:
 
 	size_t Length() const {return m_String.length();}
 	// Retrieves the substring within the string 
-	CStr GetSubstring(_long start, _long len);
+	CStr GetSubstring(size_t start, size_t len);
 
 	//Search the string for another string 
 	_long Find(const CStr &Str);
@@ -172,8 +172,11 @@ public:
 	TCHAR &operator[](_long n);
 	TCHAR &operator[](_ulong n);
 
+	inline const char *c_str()
+	{	return m_String.c_str(); }
+
 	// Serialization functions
-	virtual size_t GetSerializedLength() const;
+	virtual uint GetSerializedLength() const;
 	virtual u8 *Serialize(u8 *buffer) const;
 	virtual const u8 *Deserialize(const u8 *buffer, const u8 *bufferend);
 	
