@@ -13,6 +13,16 @@
 class CObjectManager : public Singleton<CObjectManager>
 {
 public:
+	struct ObjectKey
+	{
+		ObjectKey(CStr& name, CObjectBase::variation_key& var)
+			: ActorName(name), ActorVariation(var) {}
+
+		CStr ActorName;
+		CObjectBase::variation_key ActorVariation;
+
+	};
+
 	struct SObjectType
 	{
 		// name of this object type (derived from directory name)
@@ -20,7 +30,8 @@ public:
 		// index in parent array
 		int m_Index;
 		// list of objects of this type (found from the objects directory)
-		std::map<CStr, CObjectEntry*> m_Objects;
+		std::map<ObjectKey, CObjectEntry*> m_Objects;
+		std::map<CStr, CObjectBase*> m_ObjectBases;
 
 		std::map<CStr, CStr> m_ObjectNameToFilename;
 	};
@@ -35,8 +46,12 @@ public:
 	void AddObjectType(const char* name);
 
 	CObjectEntry* FindObject(const char* objname);
-	void AddObject(CObjectEntry* entry,int type);
+	void AddObject(ObjectKey& key, CObjectEntry* entry, int type);
 	void DeleteObject(CObjectEntry* entry);
+	
+	CObjectBase* FindObjectBase(const char* objname);
+	void AddObjectBase(CObjectBase* base);
+	void DeleteObjectBase(CObjectBase* base);
 
 	CObjectEntry* GetSelectedObject() const { return m_SelectedObject; }
 	void SetSelectedObject(CObjectEntry* obj) { m_SelectedObject=obj; }
@@ -49,5 +64,8 @@ private:
 	CObjectEntry* m_SelectedObject;
 };
 
+
+// Global comparison operator
+bool operator< (const CObjectManager::ObjectKey& a, const CObjectManager::ObjectKey& b);
 
 #endif

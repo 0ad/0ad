@@ -6,8 +6,19 @@
 #include "lib/res/res.h"
 #include "timer.h"
 #include "VFSUtil.h"
+#include "ObjectBase.h"
 
 #define LOG_CATEGORY "graphics"
+
+bool operator< (const CObjectManager::ObjectKey& a, const CObjectManager::ObjectKey& b)
+{
+	if (a.ActorName < b.ActorName)
+		return true;
+	else if (a.ActorName > b.ActorName)
+		return false;
+	else
+		return a.ActorVariation < b.ActorVariation;
+}
 
 CObjectManager::CObjectManager() : m_SelectedObject(0)
 {
@@ -18,12 +29,18 @@ template<typename T, typename S> void delete_pair_2nd(std::pair<T,S> v) { delete
 
 CObjectManager::~CObjectManager()
 {
-	m_SelectedObject=0;
-	for (size_t i=0;i<m_ObjectTypes.size();i++) {
+	m_SelectedObject = NULL;
+
+	for (size_t i = 0; i < m_ObjectTypes.size(); i++) {
 		std::for_each(
 			m_ObjectTypes[i].m_Objects.begin(),
 			m_ObjectTypes[i].m_Objects.end(),
-			delete_pair_2nd<const CStr8, CObjectEntry *>
+			delete_pair_2nd<ObjectKey, CObjectEntry*>
+		);
+		std::for_each(
+			m_ObjectTypes[i].m_ObjectBases.begin(),
+			m_ObjectTypes[i].m_ObjectBases.end(),
+			delete_pair_2nd<CStr, CObjectBase*>
 		);
 	}
 }
@@ -32,12 +49,14 @@ CObjectManager::~CObjectManager()
 // TODO (PT): Work out what the object 'types' are for, since they're not
 // doing anything obvious. (And if they're useless, remove them.)
 
-CObjectEntry* CObjectManager::FindObject(const char* objectname)
+CObjectBase* CObjectManager::FindObjectBase(const char* objectname)
 {
+	// See if the base type has been loaded yet
+
 	for (uint k = 0; k < m_ObjectTypes.size(); k++)
 	{
-		std::map<CStr, CObjectEntry*>::iterator it = m_ObjectTypes[k].m_Objects.find(objectname);
-		if (it != m_ObjectTypes[k].m_Objects.end())
+		std::map<CStr, CObjectBase*>::iterator it = m_ObjectTypes[k].m_ObjectBases.find(objectname);
+		if (it != m_ObjectTypes[k].m_ObjectBases.end())
 			return it->second;
 	}
 
@@ -48,19 +67,11 @@ CObjectEntry* CObjectManager::FindObject(const char* objectname)
 		std::map<CStr, CStr>::iterator it = m_ObjectTypes[k].m_ObjectNameToFilename.find(objectname);
 		if (it != m_ObjectTypes[k].m_ObjectNameToFilename.end())
 		{
-			CObjectEntry* obj = new CObjectEntry(0); // TODO: correct type??
+			CObjectBase* obj = new CObjectBase();
 
 			obj->Load(it->second);
-
-			if (! obj->BuildModel())
-			{
-				DeleteObject(obj);
-			}
-			else
-			{
-				m_ObjectTypes[k].m_Objects[objectname] = obj;
-				return obj;
-			}
+			m_ObjectTypes[k].m_ObjectBases[objectname] = obj;
+			return obj;
 		}
 	}
 
@@ -68,6 +79,46 @@ CObjectEntry* CObjectManager::FindObject(const char* objectname)
 
 	return 0;
 }
+
+CObjectEntry* CObjectManager::FindObject(const char* objname)
+{
+	CObjectBase* base = FindObjectBase(objname);
+
+	if (! base)
+		return NULL;
+
+	std::set<CStr> choices;
+	// TODO: Fill in these choices from somewhere, e.g.:
+	//choices.insert("whatever");
+
+	CObjectBase::variation_key var;
+	base->CalculateVariation(choices, var);
+
+	// Look to see whether this particular variation has already been loaded
+
+	ObjectKey key (CStr(objname), var);
+
+	std::map<ObjectKey, CObjectEntry*>::iterator it = m_ObjectTypes[0].m_Objects.find(key);
+	if (it != m_ObjectTypes[0].m_Objects.end())
+		return it->second;
+
+	// If it hasn't been loaded, load it now
+
+	CObjectEntry* obj = new CObjectEntry(0, base); // TODO: type ???
+
+	obj->ApplyRandomVariant(var);
+
+	if (! obj->BuildModel())
+	{
+		DeleteObject(obj);
+		return NULL;
+	}
+
+	m_ObjectTypes[0].m_Objects[key] = obj;
+
+	return obj;
+}
+
 
 void CObjectManager::AddObjectType(const char* name)
 {
@@ -77,27 +128,45 @@ void CObjectManager::AddObjectType(const char* name)
 	type.m_Index=(int)m_ObjectTypes.size()-1;
 }
 
-void CObjectManager::AddObject(CObjectEntry* object,int type)
+
+void CObjectManager::AddObject(ObjectKey& key, CObjectEntry* entry, int type)
 {
 	assert((uint)type<m_ObjectTypes.size());
-	m_ObjectTypes[type].m_Objects.insert(make_pair((CStr)object->m_FileName, object));
+	m_ObjectTypes[type].m_Objects.insert(std::make_pair(key, entry));
 }
 
 void CObjectManager::DeleteObject(CObjectEntry* entry)
 {
-	std::map<CStr, CObjectEntry*>& objects = m_ObjectTypes[entry->m_Type].m_Objects;
+	std::map<ObjectKey, CObjectEntry*>& objects = m_ObjectTypes[entry->m_Type].m_Objects;
 
-	std::map<CStr, CObjectEntry*>::iterator it;
-
-	for (it = objects.begin(); it != objects.end(); )
-	{
+	for (std::map<ObjectKey, CObjectEntry*>::iterator it = objects.begin(); it != objects.end(); )
 		if (it->second == entry)
 			objects.erase(it++);
 		else
 			++it;
-	}
+
 	delete entry;
 }
+
+
+void CObjectManager::AddObjectBase(CObjectBase* base)
+{
+	m_ObjectTypes[0].m_ObjectBases.insert(make_pair(base->m_FileName, base));
+}
+
+void CObjectManager::DeleteObjectBase(CObjectBase* base)
+{
+	std::map<CStr, CObjectBase*>& objects = m_ObjectTypes[0].m_ObjectBases;
+
+	for (std::map<CStr, CObjectBase*>::iterator it = objects.begin(); it != objects.end(); )
+		if (it->second == base)
+			objects.erase(it++);
+		else
+			++it;
+
+	delete base;
+}
+
 
 void CObjectManager::LoadObjects()
 {
@@ -127,7 +196,7 @@ void CObjectManager::LoadObjectsIn(CStr& pathname)
 	for (it = files.begin(); it != files.end(); ++it)
 	{
 		CStr objectName;
-		if (! CObjectEntry::LoadName(*it, objectName))
+		if (! CObjectBase::LoadName(*it, objectName))
 			LOG(ERROR, LOG_CATEGORY, "CObjectManager::LoadObjects(): %s: XML Load failed", it->c_str());
 		else
 		{

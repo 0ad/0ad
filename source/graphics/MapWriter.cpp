@@ -5,6 +5,7 @@
 #include "UnitManager.h"
 #include "Unit.h"
 #include "ObjectManager.h"
+#include "ObjectBase.h"
 #include "Model.h"
 #include "Terrain.h"
 #include "LightEnv.h"
@@ -155,7 +156,7 @@ void CMapWriter::EnumObjects(CUnitManager *pUnitMan,
 
 	// now build outgoing objectTypes array
 	for (uint i=0;i<(uint)objectsInUse.size();i++) {
-		objectTypes.push_back(objectsInUse[i]->m_Name);
+		objectTypes.push_back(objectsInUse[i]->m_Base->m_Name);
 	}
 }
 

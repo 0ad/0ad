@@ -366,7 +366,7 @@ CModel* CModel::Clone() const
 	clone->m_ObjectBounds=m_ObjectBounds;
 	clone->InitModel(m_pModelDef);
 	clone->SetTexture(m_Texture);
-    clone->SetMaterial(m_Material);
+	clone->SetMaterial(m_Material);
 	clone->SetAnimation(m_Anim);
 	clone->SetPlayerID(m_PlayerID);
 	clone->SetFlags(m_Flags);
@@ -404,8 +404,8 @@ void CModel::SetTransform(const CMatrix3D& transform)
 
 void CModel::SetMaterial(const CMaterial &material)
 {
-    m_Material = material;
-    if(m_Material.GetTexture().Trim(PS_TRIM_BOTH).Length() > 0)
-    {
-    }
+	m_Material = material;
+	if(m_Material.GetTexture().Trim(PS_TRIM_BOTH).Length() > 0)
+	{
+	}
 }
