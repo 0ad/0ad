@@ -23,14 +23,14 @@
                 <image texture="wfg_logo_128.tga" texture-size="0 0 128 128" size="0 0 128 128" />
         </sprite>
 
-	<!-- Some more temps /Gee -->
-	<sprite name="test">
-		<image size="0 0 100% 100%" backcolor="100 100 250" />
-	</sprite>
+        <!-- Some more temps /Gee -->
+        <sprite name="test">
+                <image size="0 0 100% 100%" backcolor="100 100 250" />
+        </sprite>
 
-	<sprite name="test2">
-		<image size="0 0 100% 100%" backcolor="200 100 050" />
-	</sprite>
+        <sprite name="test2">
+                <image size="0 0 100% 100%" backcolor="200 100 050" />
+        </sprite>
 
         <!--
         ==========================================
@@ -41,9 +41,21 @@
         <sprite name="pregame-mainmenu-background">
                 <image texture="ui_pregame_mainmenu_background.png" real-texture-placement="0 0 1024 768" size="0 0 100% 100%" />
         </sprite>
+        
+        <sprite name="pregame-mainmenu-0ad-logo-480x218">
+                <image texture="ui_pregame_mainmenu_0ad_logo.png" real-texture-placement="0 0 480 218" size="0 0 100% 100%" />
+        </sprite>
+        
+        <sprite name="pregame-mainmenu-wfg-logo-256x64">
+                <image texture="ui_pregame_mainmenu_wfg_logo.png" real-texture-placement="0 0 256 64" size="0 0 100% 100%" />
+        </sprite>
 
         <sprite name="pregame-mainmenu-spbt">
-    		<image texture="ui_pregame_mainmenu_spbt_over.png" real-texture-placement="1 1 151 142" size="0 0 100% 100%" />
+                <image texture="ui_pregame_mainmenu_spbt_over.png" real-texture-placement="1 1 151 142" size="0 0 100% 100%" />
+        </sprite>
+        
+        <sprite name="tooltip-background">
+                <image texture="black_16x16.png" texture-size="0 0 16 16" size="0 0 100% 100%" />
         </sprite>
 
         <!--

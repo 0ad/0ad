@@ -98,11 +98,45 @@
 <!-- TEST -->
  <object type="image" name="pregame-mainmenu-background-image" sprite="pregame-mainmenu-background" size="0 0 100% 100%" z="100" hidden="false" />
 
- <object type="button" name="pregame-mainmenu-sp-button" sprite-over="pregame-mainmenu-spbt" size="52.9296875% 23.95833333% 67.578125% 42.317708333%" z="101" hidden="false">      <action on="Press"><![CDATA[
+ <object type="button" name="pregame-mainmenu-sp-button" sprite-over="pregame-mainmenu-spbt" size="52.9296875% 23.95833333% 67.578125% 42.317708333%" z="101" hidden="false">
+    <action on="Press"><![CDATA[
       startGame();
       GUIObjectUnhide("session_gui");
       GUIObjectHide("pregame_gui")
       GUIObjectUnhide("End_Game_Button")
+    ]]></action>
+    <action on="MouseEnter"><![CDATA[
+      tooltipObject = getGUIObjectByName("pregame-mainmenu-tooltip");
+      tooltipObject.caption = "Want to move some Dudes around or test something ? Click here to start a new game on the default map.";
+      GUIObjectUnhide("pregame-mainmenu-tooltip");
+    ]]></action>
+    <action on="MouseLeave"><![CDATA[
+      GUIObjectHide("pregame-mainmenu-tooltip");
+    ]]></action>
+ </object>
+
+ <object type="image" name="pregame-mainmenu-0ad-logo" sprite="pregame-mainmenu-0ad-logo-480x218" size="21.1914062% 3.125% 68.0664062% 31.5104166%" z="102" hidden="false">
+ </object>
+ 
+ <object type="text" name="pregame-mainmenu-versionnumber" size="43% 24% 43%+282 24%+25" z="103" textcolor="237 227 167" font="prospero16" hidden="false">
+   {buildTime}
+   <action on="Load"><![CDATA[
+        this.caption = "Build: " + buildTime(0);
+   ]]></action>
+ </object>
+ 
+ <object type="text" name="pregame-mainmenu-tooltip" sprite="tooltip-background" size="69% 6.3802% 97.0703125% 28.125%" font="prospero16" textcolor="255 255 255" z="104" hidden="true">
+        tooltipText
+ </object>
+
+ <object type="image" name="pregame-mainmenu-wfg-logo" sprite="pregame-mainmenu-wfg-logo-256x64" size="10 91.666666%-30 25.9765% 100%-30" z="102" hidden="false">
+    <action on="MouseEnter"><![CDATA[
+      tooltipObject = getGUIObjectByName("pregame-mainmenu-tooltip");
+      tooltipObject.caption = "These are the guys who made this game. Visit them at http://www.wildfiregames.com/0ad/";
+      GUIObjectUnhide("pregame-mainmenu-tooltip");
+    ]]></action>
+    <action on="MouseLeave"><![CDATA[
+      GUIObjectHide("pregame-mainmenu-tooltip");
     ]]></action>
  </object>
 
@@ -134,6 +168,14 @@
     ]]></action>
     <action on="Press"><![CDATA[
      exit();
+    ]]></action>
+    <action on="MouseEnter"><![CDATA[
+      tooltipObject = getGUIObjectByName("pregame-mainmenu-tooltip");
+      tooltipObject.caption = "Tired of 0 A.D. ? Click here to leave and reenter the real world.";
+      GUIObjectUnhide("pregame-mainmenu-tooltip");
+    ]]></action>
+    <action on="MouseLeave"><![CDATA[
+      GUIObjectHide("pregame-mainmenu-tooltip");
     ]]></action>
   </object>
 
