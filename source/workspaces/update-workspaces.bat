@@ -7,7 +7,7 @@ mkdir vc2003
 
 REM Change to the lua project name, this must correspond to the base file name
 REM of the created project files
-SET PROJECT=prometheus
+SET PROJECT=pyrogenesis
 
 CD premake
 premake --target vs6

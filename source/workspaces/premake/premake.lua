@@ -1,14 +1,14 @@
 dofile("functions.lua")
 
 -- Set up the Project
-project.name = "prometheus"
+project.name = "pyrogenesis"
 project.bindir = "../../../binaries/system"
 project.libdir = "../../../binaries/system"
 project.configs = { "Debug", "Release", "Testing" }
 
 -- Start the package part
 package = newpackage()
-package.name = "prometheus"
+package.name = "pyrogenesis"
 -- Windowed executable on windows, "exe" on all other platforms
 package.kind = "winexe"
 package.language = "c++"
@@ -21,59 +21,42 @@ package.config["Testing"].target = "ps_test"
 
 -- Files
 package.files = {
-	-- ps/
-	{ sourcesfromdirs("../../ps") },
-	{ sourcesfromdirs("../../ps/scripting") },
-	{ sourcesfromdirs("../../ps/Network") },
+	sourcesfromdirs(
 
-	-- simulation/
-	{ sourcesfromdirs("../../simulation") },
-	{ sourcesfromdirs("../../simulation/scripting") },
+		"../../ps",
+		"../../ps/scripting",
+		"../../ps/Network",
 
-	-- lib/
-	{ sourcesfromdirs(
+		"../../simulation",
+		"../../simulation/scripting",
+
 		"../../lib",
 		"../../lib/sysdep",
-		"../../lib/res") },
+		"../../lib/res",
 
-	-- graphics/
-	{ sourcesfromdirs(
-		"../../graphics") },
-	{ sourcesfromdirs( "../../graphics/scripting" ) },
+		"../../graphics",
+		"../../graphics/scripting",
 
-	-- maths/
-	{ sourcesfromdirs(
-		"../../maths") },
-	{ sourcesfromdirs( "../../maths/scripting" ) },
+		"../../maths",
+		"../../maths/scripting",
 
-	-- renderer/
-	{ sourcesfromdirs(
-		"../../renderer") },
+		"../../renderer",
 
-	-- gui/
-	{ sourcesfromdirs(
-		"../../gui") },
-	{ sourcesfromdirs( "../../gui/scripting" ) },
+		"../../gui",
+		"../../gui/scripting",
 
-	-- terrain/
-	{ sourcesfromdirs(
-		"../../terrain") },
+		"../../terrain",
 
-	-- sound/
-	{ sourcesfromdirs(
-		"../../sound") },
+		"../../sound",
 
-	-- main
-	{ "../../main.cpp" },
+		"../../scripting",
 
-	-- scripting
-	{ sourcesfromdirs("../../scripting") },
+		"../../i18n",
 
-	-- i18n
-	{ sourcesfromdirs("../../i18n") },
+		"../../tests"
+	),
 
-	-- tests
-	{ sourcesfromdirs("../../tests") }
+	"../../main.cpp"
 }
 
 package.includepaths = {
@@ -91,14 +74,13 @@ package.libpaths = {}
 
 package.buildflags = { "no-rtti" }
 
-package.config["Testing"].buildflags = { "with-symbols" }
+package.config["Testing"].buildflags = { "with-symbols", "no-runtime-checks", "no-edit-and-continue" }
 package.config["Testing"].defines = { "TESTING" }
 
 package.config["Release"].defines = { "NDEBUG" }
 
--- Docs says that premake does this automatically - it doesn't (at least not for
--- GCC/Linux)
-package.config["Debug"].buildflags = { "with-symbols" }
+-- Docs says that premake does this automatically - it doesn't (at least not for GCC/Linux)
+package.config["Debug"].buildflags = { "with-symbols", "no-edit-and-continue" }
 
 -- Platform Specifics
 if (OS == "windows") then
@@ -122,7 +104,6 @@ if (OS == "windows") then
 
 	-- Libraries
 	package.links = { "opengl32" }
---	package.defines = { "XERCES_STATIC_LIB" }
 	tinsert(package.files, sourcesfromdirs("../../lib/sysdep/win"))
 	tinsert(package.files, {"../../lib/sysdep/win/assert_dlg.rc"})
 
@@ -156,12 +137,10 @@ if (OS == "windows") then
 	}
 	
 	tinsert(package.buildflags, { "no-main" })
-	package.config["Testing"].buildoptions = {
-		" /Zi"
-	}
 	
 	package.pchHeader = "precompiled.h"
 	package.pchSource = "precompiled.cpp"
+
 else -- Non-Windows, = Unix
 
 	tinsert(package.files, sourcesfromdirs("../../lib/sysdep/unix"))
