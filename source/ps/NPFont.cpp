@@ -1,4 +1,5 @@
 #include "NPFont.h"
+#include "Renderer.h"
 
 NPFont::NPFont() 
 {
@@ -62,7 +63,7 @@ NPFont* NPFont::create(const char* name)
 		delete font;
 		return 0;
 	}
-	CStr texname("gui/fonts/");
+	CStr texname("fonts/");
 	for (uint i=0;i<namelen;i++) {
 		char c;
 		if (fread(&c,sizeof(char),1,fp)!=1) {
@@ -76,6 +77,8 @@ NPFont* NPFont::create(const char* name)
 
 	// store font name
 	font->_name=name;
+
+	g_Renderer.LoadTexture(&font->_texture,0);
 
 	// return created font
 	return font;
