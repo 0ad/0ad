@@ -74,7 +74,7 @@ static int get_gl_fmt(int bpp, int flags, GLenum* fmt, GLenum* int_fmt)
 		switch(dxt)
 		{
 		case 1:
-			*fmt = alpha? GL_COMPRESSED_RGB_S3TC_DXT1_EXT : GL_COMPRESSED_RGBA_S3TC_DXT1_EXT;
+			*fmt = alpha? GL_COMPRESSED_RGBA_S3TC_DXT1_EXT : GL_COMPRESSED_RGB_S3TC_DXT1_EXT;
 			break;
 		case 3:
 			*fmt = GL_COMPRESSED_RGBA_S3TC_DXT3_EXT;
