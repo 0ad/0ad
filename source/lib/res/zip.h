@@ -121,7 +121,7 @@ extern int zip_discard_io(Handle& hio);
 //
 
 // read from file <zf>, starting at offset <ofs> in the compressed data.
-extern ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void** p);
+extern ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void** p, FileIOCB cb = 0, uintptr_t ctx = 0);
 
 
 #endif	// #ifndef ZIP_H__

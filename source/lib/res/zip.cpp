@@ -948,9 +948,31 @@ int zip_close(ZFile* zf)
 ///////////////////////////////////////////////////////////////////////////////
 
 
+struct IOCBParams
+{
+	uintptr_t inf_ctx;
+
+	FileIOCB user_cb;
+	uintptr_t user_ctx;
+};
+
+
+static ssize_t io_cb(uintptr_t ctx, void* buf, size_t size)
+{
+	IOCBParams* p = (IOCBParams*)ctx;
+
+	CHECK_ERR(inf_inflate(p->inf_ctx, buf, size));
+
+	if(p->user_cb)
+		return p->user_cb(p->user_ctx, buf, size);
+
+	return 0;
+}
+
+
 // note: we go to a bit of trouble to make sure the buffer we allocated
 // (if p == 0) is freed when the read fails.
-ssize_t zip_read(ZFile* zf, off_t raw_ofs, size_t size, void** p)
+ssize_t zip_read(ZFile* zf, off_t raw_ofs, size_t size, void** p, FileIOCB cb, uintptr_t ctx)
 {
 	CHECK_ZFILE(zf);
 
@@ -1012,11 +1034,13 @@ fail:
 		return err;
 	}
 
+	const IOCBParams params = { zf->inf_ctx, cb, ctx };
+
 	// read blocks from the archive's file starting at ofs and pass them to
-	// zip_inflate, until all compressed data has been read, or it indicates
+	// inf_inflate, until all compressed data has been read, or it indicates
 	// the desired output amount has been reached.
 	const size_t raw_size = zf->csize;
-	raw_bytes_read = file_io(&za->f, ofs, raw_size, (void**)0, inf_inflate, zf->inf_ctx);
+	raw_bytes_read = file_io(&za->f, ofs, raw_size, (void**)0, io_cb, (uintptr_t)&params);
 
 	zf->last_raw_ofs = raw_ofs + (off_t)raw_bytes_read;
 

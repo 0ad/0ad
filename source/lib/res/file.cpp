@@ -756,7 +756,7 @@ int file_discard_io(Handle& hio)
 // whole file.
 
 ssize_t file_io(File* const f, const off_t data_ofs, size_t data_size, void** const p,
-	const FILE_IO_CB cb, const uintptr_t ctx) // optional
+	const FileIOCB cb, const uintptr_t ctx) // optional
 {
 #ifdef PARANOIA
 debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);

@@ -140,13 +140,11 @@ extern int file_discard_io(Handle& hio);
 
 
 // return value:
-// < 0: failed (do not call again) - abort transfer.
-// = 0: done (no more data needed) - stop transfer gracefully.
-// > 0: bytes output (not used ATM; useful for statistics) - continue.
-typedef ssize_t(*FILE_IO_CB)(uintptr_t ctx, void* p, size_t size);
+// < 0: failed; abort transfer.
+// >= 0: bytes output; continue.
+typedef ssize_t(*FileIOCB)(uintptr_t ctx, void* p, size_t size);
 
-extern ssize_t file_io(File* f, off_t ofs, size_t size, void** p,
-	FILE_IO_CB cb = 0, uintptr_t ctx = 0);
+extern ssize_t file_io(File* f, off_t ofs, size_t size, void** p, FileIOCB cb = 0, uintptr_t ctx = 0);
 
 
 #endif	// #ifndef FILE_H

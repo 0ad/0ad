@@ -165,7 +165,7 @@ extern int vfs_discard_io(Handle& hio);
 // (read or write access was chosen at file-open time).
 // return bytes of actual data transferred, or a negative error code.
 // TODO: buffer types
-extern ssize_t vfs_io(Handle hf, size_t size, void** p);
+extern ssize_t vfs_io(Handle hf, size_t size, void** p, FileIOCB cb = 0, uintptr_t ctx = 0);
 
 // load the entire file <fn> into memory; return a memory handle to the
 // buffer and its address/size. output parameters are zeroed on failure.

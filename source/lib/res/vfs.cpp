@@ -1376,7 +1376,7 @@ debug_out("vfs_close %I64x\n", h);
 // (read or write access was chosen at file-open time).
 // return bytes of actual data transferred, or a negative error code.
 // TODO: buffer types
-ssize_t vfs_io(const Handle hf, const size_t size, void** p)
+ssize_t vfs_io(const Handle hf, const size_t size, void** p, FileIOCB cb, uintptr_t ctx)
 {
 #ifdef PARANOIA
 debug_out("vfs_io size=%d\n", size);
@@ -1389,12 +1389,12 @@ debug_out("vfs_io size=%d\n", size);
 
 	// (vfs_open makes sure it's not opened for writing if zip)
 	if(vf_flags(vf) & VF_ZIP)
-		return zip_read(&vf->zf, ofs, size, p);
+		return zip_read(&vf->zf, ofs, size, p, cb, ctx);
 
 	// normal file:
 	// let file_io alloc the buffer if the caller didn't (i.e. p = 0),
 	// because it knows about alignment / padding requirements
-	return file_io(&vf->f, ofs, size, p);
+	return file_io(&vf->f, ofs, size, p, cb, ctx);
 }
 
 
