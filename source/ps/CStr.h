@@ -189,6 +189,9 @@ public:
 	inline const TCHAR *c_str() const
 	{	return m_String.c_str(); }
 	
+	inline utf16string utf16() const
+	{	return utf16string(m_String.begin(), m_String.end()); }
+	
 	size_t GetHashCode() const;
 
 	// Serialization functions
