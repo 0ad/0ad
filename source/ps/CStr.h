@@ -35,7 +35,7 @@ More Info:
 #include "Prometheus.h"
 #include <string>				// Used for basic string functionality
 #include <iostream>
-#include <windows.h>
+#include "win.h"	// REMOVEME
 #include <TCHAR.h>				// TCHAR of course
 #include <cstdlib>
 using namespace std;

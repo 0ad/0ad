@@ -16,6 +16,8 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
+#include <stddef.h>
+
 #ifndef _WIN32
 
 #include <sys/types.h>
@@ -41,6 +43,7 @@
 #ifndef __POSIX_H__
 #define __POSIX_H__
 
+
 #include <sys/stat.h>
 #include <sys/types.h>
 
@@ -63,11 +66,6 @@ typedef unsigned short u16_t;
 //
 // <sys/types.h>
 //
-
-#ifndef _SIZE_T_DEFINED	// compatibility with VC stdlib.h
-#define _SIZE_T_DEFINED
-typedef unsigned long size_t;
-#endif
 
 typedef long ssize_t;
 

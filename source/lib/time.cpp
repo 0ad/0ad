@@ -19,16 +19,17 @@
 #include <time.h>
 #include <cmath>
 
-#ifdef _WIN32
-#include "win.h"
-#endif
-
 #include "ia32.h"
 #include "posix.h"
 #include "detect.h"
 #include "time.h"
 #include "types.h"
 #include "misc.h"
+
+#ifdef _WIN32
+#include "win.h"
+#endif
+
 
 
 // high resolution (> 1 µs) timestamp [s], starting at or near 0 s.

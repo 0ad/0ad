@@ -21,6 +21,11 @@
 
 #include "types.h"
 
+// the following are internal to the resource manager,
+// but are required for the HDATA definition
+// (which is passed around to modules that create handles).
+// we don't want to waste memory or fragment the handle data
+// by splitting into internal/external
 
 
 // handle type (for 'type safety' - can't use a texture handle as a sound)

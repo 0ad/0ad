@@ -38,16 +38,16 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="$(OutDir)/ps_dbg.exe"
+				OutputFile="$(OutDir)/ps_dbg.vc7.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="$(OutDir)/ps_dbg.pdb"
+				ProgramDatabaseFile="$(OutDir)/ps_dbg.vc7.pdb"
 				SubSystem="2"
 				EntryPointSymbol="entry"
 				TargetMachine="1">
 				<IntelOptions
-					AllOptions="/NOLOGO /OUT:&quot;..\..\binaries/ps_dbg.exe&quot; /INCREMENTAL /DEBUG /PDB:&quot;..\..\binaries/ps_dbg.pdb&quot; /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:&quot;entry&quot; /MACHINE:IX86  kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib"/>
+					AllOptions="/NOLOGO /OUT:&quot;..\..\binaries/ps_dbg.vc7.exe&quot; /INCREMENTAL /DEBUG /PDB:&quot;..\..\binaries/ps_dbg.vc7.pdb&quot; /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:&quot;entry&quot; /MACHINE:IX86  kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib"/>
 			</Tool>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -93,17 +93,18 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="$(OutDir)/ps.exe"
+				OutputFile="$(OutDir)/ps.vc7.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				GenerateDebugInformation="TRUE"
+				ProgramDatabaseFile="$(OutDir)/ps.vc7.pdb"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				EntryPointSymbol="entry"
 				TargetMachine="1">
 				<IntelOptions
-					AllOptions="/NOLOGO /OUT:&quot;..\..\binaries/ps.exe&quot; /INCREMENTAL:NO /DEBUG /PDB:&quot;..\..\binaries/ps.pdb&quot; /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /ENTRY:&quot;entry&quot; /MACHINE:IX86  kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib"/>
+					AllOptions="/NOLOGO /OUT:&quot;..\..\binaries/ps.vc7.exe&quot; /INCREMENTAL:NO /DEBUG /PDB:&quot;..\..\binaries/ps.vc7.pdb&quot; /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /ENTRY:&quot;entry&quot; /MACHINE:IX86  kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib"/>
 			</Tool>
 			<Tool
 				Name="VCMIDLTool"/>
