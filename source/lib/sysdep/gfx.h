@@ -1,3 +1,6 @@
+#ifndef GFX_H__
+#define GFX_H__
+
 
 // useful for choosing a video mode.
 // if we fail, outputs are unchanged (assumed initialized to defaults)
@@ -15,4 +18,6 @@ extern char gfx_drv_ver[GFX_DRV_VER_LEN];	// default: ""
 
 // attempt to detect graphics card without OpenGL (in case ogl init fails,
 // or we want more detailed info). gfx_card[] is unchanged on failure.
-extern void get_gfx_info();
+extern void get_gfx_info(void);
+
+#endif	// #ifndef GFX_H__

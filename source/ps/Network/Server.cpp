@@ -127,7 +127,7 @@ bool CNetServer::AddNewPlayer(CNetServerSession *pSession)
 	{
 		// First two players are Gaia and Server player, so assign new player
 		// ID's starting from 2
-		uint newPlayerID=2+m_PlayerSessions.size();
+		uint newPlayerID=2+(uint)m_PlayerSessions.size();
 		m_PlayerSessions.push_back(pSession);
 		pSession->m_pPlayer=m_pGame->GetPlayer(newPlayerID);
 		pSession->m_pPlayer->SetName(pSession->GetName());

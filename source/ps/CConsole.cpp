@@ -68,7 +68,7 @@ void CConsole::SetVisible( bool visible )
 
 void CConsole::FlushBuffer(void)
 {
-	/* Clear the buffer and set the cursor and length to 0 */
+	// Clear the buffer and set the cursor and length to 0
 	memset(m_szBuffer, '\0', sizeof(wchar_t) * CONSOLE_BUFFER_SIZE);
 	m_iBufferPos = m_iBufferLength = 0;
 }
@@ -97,8 +97,8 @@ void CConsole::Trim(wchar_t* szMessage, const wchar_t cChar, uint iSize)
 
 	wchar_t szChar[2] = { cChar, 0 };
 
-	/* Find the first point at which szChar does not */
-	/* exist in the message */
+	// Find the first point at which szChar does not
+	// exist in the message
 	size_t ofs = wcsspn(szMessage, szChar);
 	if(ofs == 0)	// no leading <cChar> chars - we're done
 		return;
@@ -176,13 +176,13 @@ void CConsole::Render()
 
 void CConsole::DrawWindow(void)
 {
-	/* TODO:  Add texturing */
+	// TODO:  Add texturing
 	glDisable(GL_TEXTURE_2D);
 
 	glPushMatrix();
 
-		/* Draw Background */
-		/* Set the color to a translucent blue */
+		// Draw Background
+		// Set the color to a translucent blue
 		glColor4f(0.0f, 0.0f, 0.5f, 0.6f);
 		glBegin(GL_QUADS);
 			glVertex2f(0.0f,		0.0f);
@@ -191,8 +191,8 @@ void CConsole::DrawWindow(void)
 			glVertex2f(0.0f,		m_fHeight-1.0f);
 		glEnd();
 
-		/* Draw Border */
-		/* Set the color to a translucent yellow */
+		// Draw Border
+		// Set the color to a translucent yellow
 		glColor4f(0.5f, 0.5f, 0.0f, 0.6f);
 		glBegin(GL_LINE_LOOP);
 			glVertex2f(0.0f,		0.0f);
@@ -301,7 +301,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 			return;
 
 		case '\t':
-			/* Auto Complete */
+			// Auto Complete
 			return;
 
 		case '\b':
@@ -364,7 +364,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 			if (m_iBufferPos != m_iBufferLength) m_iBufferPos++;
 			return;
 
-		/* BEGIN: Buffer History Lookup */
+		// BEGIN: Buffer History Lookup
 		case SDLK_UP:
 			if (m_deqBufHistory.size() && iHistoryPos != (int)m_deqBufHistory.size() - 1)
 			{
@@ -380,9 +380,9 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 				SetBuffer(m_deqBufHistory.at(iHistoryPos).data());
 			else FlushBuffer();
 			return;
-		/* END: Buffer History Lookup */
+		// END: Buffer History Lookup
 
-		/* BEGIN: Message History Lookup */
+		// BEGIN: Message History Lookup
 		case SDLK_PAGEUP:
 			if (m_iMsgHistPos != (int)m_deqMsgHistory.size()) m_iMsgHistPos++;
 			return;
@@ -390,7 +390,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 		case SDLK_PAGEDOWN:
 			if (m_iMsgHistPos != 1) m_iMsgHistPos--;
 			return;
-		/* END: Message History Lookup */
+		// END: Message History Lookup
 
 		default: //Insert a character
 			if (IsFull()) return;

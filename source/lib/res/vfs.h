@@ -69,7 +69,7 @@ extern int vfs_mount(const char* v_mount_point, const char* p_real_dir, int flag
 // dir_watch reports changes; can also be called from the console after a
 // rebuild command. there is no provision for updating single VFS dirs -
 // it's not worth the trouble.
-extern int vfs_rebuild();
+extern int vfs_rebuild(void);
 
 // unmount a previously mounted item, and rebuild the VFS afterwards.
 extern int vfs_unmount(const char* name);
@@ -80,7 +80,7 @@ extern int vfs_unmount(const char* name);
 extern int vfs_make_vfs_path(const char* path, char* vfs_path);
 
 // write a representation of the VFS tree to stdout.
-extern void vfs_display();
+extern void vfs_display(void);
 
 
 //
@@ -236,6 +236,6 @@ extern int vfs_unmap(Handle hf);
 
 extern void vfs_enable_file_listing(bool want_enabled);
 
-extern void vfs_shutdown();
+extern void vfs_shutdown(void);
 
 #endif	// #ifndef __VFS_H__

@@ -43,17 +43,17 @@ struct TexInfo
 {
 	Handle hm;			// H_Mem handle to loaded file
 	size_t ofs;			// offset to image data in file
-	u32 w : 16;
-	u32 h : 16;
-	u32 bpp : 16;
-	u32 flags : 16;
+	uint w : 16;
+	uint h : 16;
+	uint bpp : 16;
+	uint flags : 16;
 };
 
 extern int tex_load(const char* fn, TexInfo* ti);
 extern int tex_load_mem(Handle hm, const char* fn, TexInfo* t);
 extern int tex_free(TexInfo* ti);
 
-extern int tex_write(const char* fn, int w, int h, int bpp, int flags, void* img);
+extern int tex_write(const char* fn, uint w, uint h, uint bpp, uint flags, void* img);
 
 extern int tex_is_known_fmt(void* p, size_t size_t);
 

@@ -27,7 +27,7 @@
 
 extern double _ceil(double);
 
-extern u64 rdtsc();
+extern u64 rdtsc(void);
 
 
 #ifndef _MCW_PC
@@ -39,7 +39,7 @@ extern u64 rdtsc();
 
 extern uint _control87(uint new_cw, uint mask);
 
-extern void ia32_debug_break();
+extern void ia32_debug_break(void);
 
 
 
@@ -72,7 +72,7 @@ enum CpuCap
 extern bool ia32_cap(CpuCap cap);
 
 
-extern void ia32_get_cpu_info();
+extern void ia32_get_cpu_info(void);
 
 
 #endif	// #ifndef IA32_H
