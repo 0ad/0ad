@@ -35,7 +35,7 @@ gee@pyro.nu
 #include "GUItext.h"
 #include <string>
 #include <vector>
-#include "input.h" // just for EV_PASS
+#include "lib/input.h" // just for EV_PASS
 
 #include "gui/scripting/JSInterface_IGUIObject.h"
 

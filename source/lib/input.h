@@ -18,9 +18,10 @@
  *   http://www.stud.uni-karlsruhe.de/~urkt/
  */
 
-#ifndef __INPUT_H__
-#define __INPUT_H__
+#ifndef INPUT_H__
+#define INPUT_H__
 
+#include "sdl.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -41,15 +42,12 @@ enum
 
 // declare functions to take SDL_Event*; in_add_handler converts to void*
 // (avoids header dependency on SDL)
-typedef int (*EventHandler)(const void* sdl_event);
+typedef int (*EventHandler)(const SDL_Event*);
 
 
-/*
- * register an input handler, which will receive all subsequent events first.
- * events are passed to other handlers if handler returns false.
- */
-extern int _in_add_handler(EventHandler handler);
-#define in_add_handler(h) _in_add_handler((EventHandler)h)
+// register an input handler, which will receive all subsequent events first.
+// events are passed to other handlers if handler returns EV_PASS.
+extern int in_add_handler(EventHandler handler);
 
 extern void in_get_events(void);
 
@@ -62,4 +60,4 @@ extern void in_stop(void);
 }
 #endif
 
-#endif	/* #ifndef __INPUT_H__ */
+#endif	// #ifndef INPUT_H__

@@ -28,7 +28,7 @@ ERROR_TYPE(GUI, JSOpenFailed);
 
 #include "GUITooltip.h"
 #include "Singleton.h"
-#include "input.h"	// JW: grr, classes suck in this case :P
+#include "lib/input.h"
 
 #include "Xeromyces.h"
 

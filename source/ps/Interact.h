@@ -7,12 +7,14 @@
 // Mark Thompson (mot20@cam.ac.uk / mark@wildfiregames.com)
 
 #include <vector>
+
 #include "Singleton.h"
 #include "Entity.h"
 #include "EntityManager.h"
 #include "EntityMessage.h"
 #include "Scheduler.h"
 #include "Camera.h"
+#include "lib/input.h"
 
 #define MAX_BOOKMARKS 10
 #define MAX_GROUPS    20

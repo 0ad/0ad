@@ -34,7 +34,7 @@ static EventHandler handler_stack[MAX_HANDLERS];
 static int handler_stack_top = 0;
 
 
-int _in_add_handler(EventHandler handler)
+int in_add_handler(EventHandler handler)
 {
 	if(handler_stack_top >= MAX_HANDLERS || !handler)
 	{
