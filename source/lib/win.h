@@ -87,6 +87,7 @@ extern int aio_open_winhandle(HANDLE);
 #endif
 
 extern __declspec(dllimport) int __stdcall WSAStartup(WORD, void*);
+extern __declspec(dllimport) int __stdcall WSAGetLastError();
 #endif
 }
 
