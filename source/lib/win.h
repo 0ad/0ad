@@ -73,12 +73,15 @@ extern "C" {
 extern int _get_osfhandle(int);
 extern int _open(const char* fn, int mode, ...);
 extern int _close(int);
+extern int aio_open_winhandle(HANDLE);
 
 #ifndef NO_WINSOCK
 #ifdef _MSC_VER
 #pragma comment(lib, "wsock32.lib")
 #endif
+#ifndef _WINSOCK2API_
 extern __declspec(dllimport) int __stdcall WSAStartup(WORD, char*);
+#endif
 #endif
 }
 
