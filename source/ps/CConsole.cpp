@@ -511,6 +511,8 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 
 extern CConsole* g_Console;
 
+extern void Die(int err, const wchar_t* fmt, ...);
+
 int conInputHandler(const SDL_Event* ev)
 {
 	if(ev->type != SDL_KEYDOWN)
