@@ -28,6 +28,10 @@
 #include <malloc.h>
 #include <shlobj.h>	// pick_dir
 
+#ifdef _MSC_VER
+#pragma comment(lib, "shell32.lib")	// for pick_directory SH* calls
+#endif
+
 
 void sle(int x)
 {
@@ -55,6 +59,7 @@ inline int get_executable_name(char* n_path, size_t buf_size)
 	DWORD nbytes = GetModuleFileName(0, n_path, (DWORD)buf_size);
 	return nbytes? 0 : -1;
 }
+
 
 static int CALLBACK browse_cb(HWND hWnd, unsigned int msg, LPARAM lParam, LPARAM ldata)
 {

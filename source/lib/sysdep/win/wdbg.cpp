@@ -33,6 +33,7 @@
 
 #ifdef _MSC_VER
 #pragma comment(lib, "dbghelp.lib")
+#pragma comment(lib, "oleaut32.lib")	// VariantChangeType
 #endif
 
 
