@@ -453,7 +453,15 @@ static int add_dirent_cb(const char* const fn, const uint flags, const ssize_t s
 
 	// directory
 	if(flags & LOC_DIR)
+	{
+		// leave out CVS dirs in debug builds. this makes possible
+		// user code that relies on a fixed data directory structure.
+#ifndef NDEBUG
+		if(!strcmp(fn, "CVS"))
+			return 0;
+#endif
 		err = cur_dir->add_subdir(fn);
+	}
 	// file
 	else
 		err = cur_dir->add_file(fn, cur_loc);
@@ -856,7 +864,11 @@ int vfs_next_dirent(const Handle hd, vfsDirEnt* ent, const char* const filter)
 			filter_no_ext = filter[1] == '\0';
 		}
 		else
-			goto invalid_filter;
+		{
+		invalid_filter:
+			debug_warn("vfs_next_dirent: invalid filter");
+			return -1;
+		}
 	}
 
 	const char* fn;
@@ -880,17 +892,25 @@ int vfs_next_dirent(const Handle hd, vfsDirEnt* ent, const char* const filter)
 		++vd->file_it;
 
 		char* const ext = strrchr(fn, '.');
-		if(!filter || (filter_no_ext && !ext) || strcmp(ext, filter) == 0)
-			goto have_match;
+		// file has an extension
+		if(ext)
+		{
+			// not filtering, or filter matches extension: match
+			if(!filter || strcmp(ext, filter) == 0)
+				goto have_match;
+		}
+		// file has no extension
+		else
+		{
+			// filter accepts files without an extension: match
+			if(filter_no_ext)
+				goto have_match;
+		}
 	}
 
 have_match:
 	ent->name = fn;
 	return 0;
-
-invalid_filter:
-	debug_warn("vfs_next_dirent: invalid filter");
-	return -1;
 }
 
 
