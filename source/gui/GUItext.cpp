@@ -14,6 +14,8 @@ gee@pyro.nu
 // TODO Gee: Remove, just for temp-output
 #include <fstream>
 
+using namespace std;
+
 static const TCHAR TagStart =	'[';
 static const TCHAR TagEnd =		']';
 

@@ -33,6 +33,8 @@
 #include "ogl.h"
 #include <stdlib.h>
 
+using namespace std;
+
 CParticleEmitter::CParticleEmitter() :
 	m_particles(NULL),
 	m_origin(0.0f, 0.0f, 0.0f),
