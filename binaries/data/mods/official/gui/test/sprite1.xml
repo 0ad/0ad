@@ -107,6 +107,14 @@
                 <image texture="ui_icon_resource_population_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
         </sprite>
 
+        <sprite name="resource_counter">
+                <image texture="ui_icon_resource_counter.png" texture-size="0 0 64 64" size="0 0 53 19" />
+        </sprite>
+
+        <sprite name="resource_counter_long">
+                <image texture="ui_icon_resource_counter_long.png" texture-size="0 0 64 64" size="0 0 62 19" />
+        </sprite>
+
         <!--
         ==========================================
         STATISTIC ICONS

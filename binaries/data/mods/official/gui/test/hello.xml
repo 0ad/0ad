@@ -172,23 +172,33 @@
 
   <object type="text" name="resource_food" sprite="resource_food" size="100%-456 4 20 20" z="100" hidden="false"></object>
 
-  <object type="text" name="resource_food_text" size="100%-437 -2 1 1" font="prospero16" textcolor="255 255 255" hidden="false"> 123,456</object>
+  <object type="text" name="resource_food_counter" sprite="resource_counter" size="100%-436 5 1 1" z="90" hidden="false"></object>
+
+  <object type="text" name="resource_food_text" size="100%-438 -3 1 1" font="prospero16" textcolor="255 255 255" z="100" hidden="false"> 123,456</object>
 
   <object type="text" name="resource_wood" sprite="resource_wood" size="100%-376 4 20 20" z="100" hidden="false"></object>
 
-  <object type="text" name="resource_wood_text" size="100%-357 -2 1 1" font="prospero16" textcolor="255 255 255" hidden="false"> 789,012</object>
+  <object type="text" name="resource_wood_counter" sprite="resource_counter" size="100%-356 5 1 1" z="90" hidden="false"></object>
+
+  <object type="text" name="resource_wood_text" size="100%-358 -3 1 1" font="prospero16" textcolor="255 255 255" z="100" hidden="false"> 789,012</object>
 
   <object type="text" name="resource_stone" sprite="resource_stone" size="100%-296 4 20 20" z="100" hidden="false"></object>
 
-  <object type="text" name="resource_stone_text" size="100%-277 -2 1 1" font="prospero16" textcolor="255 255 255" hidden="false"> 345,678</object>
+  <object type="text" name="resource_stone_counter" sprite="resource_counter" size="100%-276 5 1 1" z="90" hidden="false"></object>
+
+  <object type="text" name="resource_stone_text" size="100%-278 -3 1 1" font="prospero16" textcolor="255 255 255" z="100" hidden="false"> 345,678</object>
 
   <object type="text" name="resource_ore" sprite="resource_ore" size="100%-216 4 20 20" z="100" hidden="false"></object>
 
-  <object type="text" name="resource_ore_text" size="100%-197 -2 1 1" font="prospero16" textcolor="255 255 255" hidden="false"> 910,123</object>
+  <object type="text" name="resource_ore_counter" sprite="resource_counter" size="100%-196 5 1 1" z="90" hidden="false"></object>
+
+  <object type="text" name="resource_ore_text" size="100%-198 -3 1 1" font="prospero16" textcolor="255 255 255" z="100" hidden="false"> 910,123</object>
 
   <object type="text" name="resource_population" sprite="resource_population" size="100%-136 4 20 20" z="100" hidden="false"></object>
 
-  <object type="text" name="resource_population_text" size="100%-117 -2 1 1" font="prospero16" textcolor="255 255 255" hidden="false"> 100/150</object>
+  <object type="text" name="resource_population_counter" sprite="resource_counter_long" size="100%-116 5 1 1" z="90" hidden="false"></object>
+
+  <object type="text" name="resource_population_text" size="100%-118 -3 1 1" font="prospero16" textcolor="255 255 255" z="100" hidden="false"> 100/150</object>
 
 <!--
 ==========================================
