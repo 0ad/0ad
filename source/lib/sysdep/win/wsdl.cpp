@@ -727,6 +727,7 @@ __asm jmp	dword ptr [GetTickCount]
 
 __declspec(naked) void __stdcall SDL_Delay(Uint32 ms)
 {
+	UNUSED(ms);
 __asm jmp	dword ptr [Sleep]
 }
 

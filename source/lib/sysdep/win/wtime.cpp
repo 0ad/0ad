@@ -29,8 +29,6 @@
 #include <algorithm>
 #include <numeric>
 
-#include "wdbg.h"
-
 
 // define to disable time sources (useful for simulating other systems)
 //#define NO_QPC
@@ -510,6 +508,7 @@ static inline int shutdown_calibration_thread()
 	if(WaitForSingleObject(hThread, 250) != WAIT_OBJECT_0)
 		TerminateThread(hThread, 0);
 	CloseHandle(hThread);
+	CloseHandle(hExitEvent);
 	return 0;
 }
 

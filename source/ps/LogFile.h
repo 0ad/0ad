@@ -133,6 +133,9 @@ public:
 	PS_RESULT AddLink(string LinkText, string Link, string Colour);
 
 private:
+	CLogFile(const CLogFile& init);
+	CLogFile& operator=(const CLogFile& rhs);
+
 	bool m_IsFileOpen; //Is the file open.
 	bool m_HasFrame; //Have frames been enabled.
 	ofstream m_TheFile; //The main file.

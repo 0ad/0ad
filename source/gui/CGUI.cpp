@@ -1127,8 +1127,8 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 					// There is no harm if the object didn't have a "caption"
 				}
 			}
-			// else 
-			// TODO Gee: give warning
+			else 
+				debug_warn("Text is only okay if it's the first element i.e. <object>caption ... </object>");
 		}
 	} 
 

@@ -70,7 +70,7 @@ public:
     void Render();
 
     void InsertMessage(const wchar_t* szMessage, ...);
-	void InsertChar(const int szChar, const int cooked);
+	void InsertChar(const int szChar, const wchar_t cooked);
 
 	void SetBuffer(const wchar_t* szMessage, ...);
 	void FlushBuffer();

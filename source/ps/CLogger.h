@@ -39,6 +39,8 @@ public:
 private:
 	
 	CLogger();
+	CLogger(const CLogger& init);
+	CLogger& operator=(const CLogger& rhs);
 
 	//the two filestreams
 	std::ofstream m_MainLog;

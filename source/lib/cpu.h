@@ -10,8 +10,8 @@ extern double cpu_freq;
 extern int cpus;
 extern int cpu_speedstep;
 extern int cpu_smp;
-// are there actually multiple physical processors,
-// not only logical hyperthreaded CPUs? relevant for wtime.
+	// are there actually multiple physical processors,
+	// not only logical hyperthreaded CPUs? relevant for wtime.
 
 #ifdef __cplusplus
 }

@@ -222,6 +222,9 @@ struct DirEnt
 
 	DirEnt(const char* const _name, const uint _flags, const off_t _size)
 		: name(_name), flags(_flags), size(_size) {}
+
+private:
+	DirEnt& operator=(const DirEnt&);
 };
 
 // pointer to DirEnt: faster sorting, but more allocs.
@@ -1031,7 +1034,7 @@ debug_out("file_wait_io: hio=%I64x\n", hio);
 
 	size = io->user_size;
 
-	void* transfer_buf;
+	void* transfer_buf = 0;
 	ssize_t bytes_transferred;
 
 	// block's tag is in cache. need to check if its read is still pending.

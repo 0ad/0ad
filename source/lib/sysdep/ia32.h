@@ -65,7 +65,7 @@ enum CpuCap
 	_3DNOW     = 96+31
 };
 
-extern bool ia32_cpu_cap(CpuCap cap);
+extern bool ia32_cap(CpuCap cap);
 
 
 extern void ia32_get_cpu_info();

@@ -136,10 +136,10 @@ CStr CStr::GetSubstring(size_t start, size_t len) const
 //Search the string for another string 
 long CStr::Find(const CStr& Str) const
 {
-	long Pos = (long)m_String.find(Str.m_String, 0);
+	size_t Pos = m_String.find(Str.m_String, 0);
 
 	if (Pos != tstring::npos)
-		return Pos;
+		return (long)Pos;
 
 	return -1;
 }
@@ -147,10 +147,10 @@ long CStr::Find(const CStr& Str) const
 //Search the string for another string 
 long CStr::Find(const TCHAR &tchar) const
 {
-	long Pos = (long)m_String.find(tchar, 0);
+	size_t Pos = m_String.find(tchar, 0);
 
 	if (Pos != tstring::npos)
-		return Pos;
+		return (long)Pos;
 
 	return -1;
 }
@@ -158,20 +158,20 @@ long CStr::Find(const TCHAR &tchar) const
 //Search the string for another string 
 long CStr::Find(const int &start, const TCHAR &tchar) const
 {
-	long Pos = (long)m_String.find(tchar, start);
+	size_t Pos = m_String.find(tchar, start);
 
 	if (Pos != tstring::npos)
-		return Pos;
+		return (long)Pos;
 
 	return -1;
 }
 
 long CStr::ReverseFind(const CStr& Str) const
 {
-	long Pos = (long)m_String.rfind(Str.m_String, m_String.length() );
+	size_t Pos = m_String.rfind(Str.m_String, m_String.length() );
 
 	if (Pos != tstring::npos)
-		return Pos;
+		return (long)Pos;
 
 	return -1;
 
@@ -182,7 +182,7 @@ CStr CStr::LowerCase() const
 {
 	tstring NewTString = m_String;
 	for (size_t i = 0; i < m_String.length(); i++)
-		NewTString[i] = _totlower(m_String[i]);
+		NewTString[i] = (TCHAR)_totlower(m_String[i]);
 
 	return CStr(NewTString);
 }
@@ -191,7 +191,7 @@ CStr CStr::UpperCase() const
 {
 	tstring NewTString = m_String;
 	for (size_t i = 0; i < m_String.length(); i++)
-		NewTString[i] = _totlower(m_String[i]);
+		NewTString[i] = (TCHAR)_totlower(m_String[i]);
 
 	return CStr(NewTString);
 }
@@ -202,7 +202,7 @@ CStr CStr::LCase() const
 {
 	tstring NewTString = m_String;
 	for (size_t i = 0; i < m_String.length(); i++)
-		NewTString[i] = _totlower(m_String[i]);
+		NewTString[i] = (TCHAR)_totlower(m_String[i]);
 
 	return CStr(NewTString);
 }
@@ -211,7 +211,7 @@ CStr CStr::UCase() const
 {
 	tstring NewTString = m_String;
 	for (size_t i = 0; i < m_String.length(); i++)
-		NewTString[i] = _totlower(m_String[i]);
+		NewTString[i] = (TCHAR)_totlower(m_String[i]);
 
 	return CStr(NewTString);
 }
@@ -261,7 +261,7 @@ void CStr::Replace(const CStr& ToReplace, const CStr& ReplaceWith)
 // returns a trimed string, removes whitespace from the left/right/both
 CStr CStr::Trim(PS_TRIM_MODE Mode)
 {
-	size_t Left, Right;
+	size_t Left = 0, Right = 0;
 	
 	
 	switch (Mode)
@@ -292,6 +292,9 @@ CStr CStr::Trim(PS_TRIM_MODE Mode)
 				if (_istspace(m_String[Right]) == false)
 					break; // end found, trim len-1 to Right+1	inclusive
 		} break;
+
+		default:
+			debug_warn("CStr::Trim: invalid Mode");
 	}
 
 

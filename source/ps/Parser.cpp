@@ -3,6 +3,7 @@
 #include "precompiled.h"
 
 #include "Parser.h"
+#include "lib.h"
 
 #pragma warning(disable:4786)
 using namespace std;
@@ -117,11 +118,11 @@ bool CParserValue::GetDouble(double &ret)
 {
 	// locals
 	double			TempRet = 0.0;
-	int			Size = (int)m_String.size();
-	int			i;
+	size_t			Size = m_String.size();
+	size_t			i;
 	bool			AtLeastOne = false;		// Checked if at least one of the loops
-										//  run, otherwise "." would parse OK
-	int			DecimalPos;
+											//  run, otherwise "." would parse OK
+	size_t			DecimalPos;
 	bool			Negative = false;		// "-" is found
 
 	// Check if '-' is found
@@ -131,7 +132,7 @@ bool CParserValue::GetDouble(double &ret)
 	}
 	
 	// find decimal position
-	DecimalPos = (int)m_String.find(".");
+	DecimalPos = m_String.find(".");
 	if (DecimalPos == string::npos)	
 		DecimalPos = Size;
 
@@ -145,7 +146,8 @@ bool CParserValue::GetDouble(double &ret)
 		// Check if a digit is found
 		if (m_String[i] >= '0' && m_String[i] <= '9')
 		{
-			TempRet += (m_String[i]-'0')*pow(double(10),(DecimalPos-i-1));
+			double exp = (DecimalPos-i-1);	// disambiguate pow() argument type
+			TempRet += (m_String[i]-'0')*pow(10.0, exp);
 		}
 		else
 		{
@@ -164,7 +166,8 @@ bool CParserValue::GetDouble(double &ret)
 		// Check if a digit is found
 		if (m_String[i] >= '0' && m_String[i] <= '9')
 		{
-			TempRet += (m_String[i]-'0')*pow(double(10),DecimalPos-i);
+			double exp = DecimalPos-i;	// disambiguate pow() argument type
+			TempRet += (m_String[i]-'0')*pow(10.0,exp);
 		}
 		// It will accept and ending f, like 1.0f
 		else if (!(i==Size-1 && m_String[i] == 'f'))
@@ -308,12 +311,12 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 
 	// Locals
 	bool				Extract=false;
-	int				ExtractPos=0;
+	size_t				ExtractPos=0;
 	char				Buffer[256];
 	char				Letter[] = {'\0','\0'};		// Letter as string
 	vector<string>		Segments;
 	string				strSub;
-	int				i;
+	size_t				i;
 
 	// Set result to false, then if a match is found, turn it true
 	m_ParseOK = false;
@@ -330,7 +333,7 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 	// Divide string into smaller vectors, seperators are unusual signs
 	// * * * *
 
-	for (i=0; i<(int)strLine.size(); ++i)
+	for (i=0; i<strLine.size(); ++i)
 	{
 		// Check if we're trying to use some kind of type
 		if (!Extract)
@@ -347,7 +350,7 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 			if (strLine[i] == '\"')
 			{
 				// Extract a string, search for another "
-				int pos = (int)strLine.find("\"", i+1);
+				size_t pos = strLine.find("\"", i+1);
 
 				// If matching can't be found,
 				//  the parsing will fail!
@@ -423,15 +426,15 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 	// * * * *
 
 	// Locals
-	int Progress;						// progress in Segments index
-	int Lane=0;							// Have many alternative routes we are in
+	size_t Progress;						// progress in Segments index
+	size_t Lane=0;							// Have many alternative routes we are in
 	bool Match;							// If a task-type match has been found
 	// The vector of these three represents the different lanes
 	//  LastValidProgress[1] takes you back to lane 1 and how
 	//  the variables was set at that point
-	vector<int> LastValidProgress;		// When diving into a dynamic argument store store
+	vector<size_t> LastValidProgress;		// When diving into a dynamic argument store store
 										//  the last valid so you can go back to it
-	vector<int> LastValidArgCount;		// If an alternative route turns out to fail, we
+	vector<size_t> LastValidArgCount;		// If an alternative route turns out to fail, we
 										//  need to know the amount of arguments on the last
 										//  valid position, so we can remove them.
 	vector<bool> LastValidMatch;		// Match at that point
@@ -443,6 +446,7 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 										//  found and no further looking is required
 	CParserTaskTypeNode *CurNode=NULL;	// Current node on task type
 	CParserTaskTypeNode *PrevNode=NULL;	// Last node
+	UNUSED(PrevNode);
 
 	// Iterate all different TaskType, and all TaskTypeElements... 
 	//  start from left and go  to the right (prog), comparing 
@@ -490,7 +494,7 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 					CParserTaskTypeNode *OldNode = NULL;
 
 					// Go back to regular route!
-					while (1)
+					for(;;)
 					{
 						OldNode = CurNode;
 						CurNode = CurNode->m_ParentNode;
@@ -566,7 +570,7 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 					{
 						// Find blank space if any!
 						//  and jump to the next non-blankspace
-						if (Progress < (int)Segments.size())
+						if (Progress < Segments.size())
 						{	
 							// Skip blankspaces AND tabs!
 							while (Segments[Progress].size()==1 &&
@@ -586,7 +590,7 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 					else
 					// CHECK LETTER IF IT'S CORRECT
 					{
-						if (Progress < (int)Segments.size())
+						if (Progress < Segments.size())
 						{
 							// This should be 1-Letter long
 							if (Segments[Progress].size() != 1)
@@ -630,7 +634,7 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 						{
 							// Store argument in CParserValue!
 							CParserValue value;
-							int i;
+							size_t i;
 
 							switch(CurNode->m_Type)
 							{
@@ -683,7 +687,7 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 								// Reset, probably is but still
 								value.m_String = string();
 
-								for (i=Progress; i<(int)Segments.size(); ++i)
+								for (i=Progress; i<Segments.size(); ++i)
 								{
 									value.m_String += Segments[i];
 
@@ -716,7 +720,7 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 				CParserTaskTypeNode *OldNode = NULL;
 
 				// Go back to regular route!
-				while (1)
+				for(;;)
 				{
 					OldNode = CurNode;
 					CurNode = CurNode->m_ParentNode;
@@ -805,7 +809,7 @@ bool CParser::InputTaskType(const string& strName, const string& strSyntax)
 	size_t ExtractPos = 0;
 	bool Extract = false;
 	bool Error = false;
-	int i;
+	size_t i;
 	bool ConstructNew = false;	// If it's the first input, then don't
 								//  construct a new node, because we
 								//  we already have m_BaseNode
@@ -857,7 +861,7 @@ bool CParser::InputTaskType(const string& strName, const string& strSyntax)
 				CParserTaskTypeNode *OldNode = NULL;
 
 				// Jump out of this alternative route
-				while (1)
+				for(;;)
 				{
 					OldNode = CurNode;
 					CurNode = CurNode->m_ParentNode;

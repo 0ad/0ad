@@ -468,6 +468,9 @@ struct FileCBParams
 	const FileLoc* const loc;
 	FileCBParams(Dir* _dir, const FileLoc* _loc)
 		: dir(_dir), loc(_loc) {}
+
+private:
+	FileCBParams& operator=(const FileCBParams&);
 };
 
 // called for each OS dir ent.

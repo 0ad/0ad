@@ -119,7 +119,7 @@ public:
 	{
 		// add to front of LRU list, but not index
 		// (since we don't have an id yet)
-		lru_list.push_front(Line(0, e));
+		lru_list.push_front(Line(e));
 		return 0;
 	}
 
@@ -204,9 +204,9 @@ private:
 		Entry ent;
 		int refs;	// protect from displacement if > 0
 
-		Line(u64 _tag, Entry& _ent)
+		Line(Entry& _ent)
 		{
-			id  = 0;
+			id   = 0;
 			ent  = _ent;
 			refs = 0;
 		}

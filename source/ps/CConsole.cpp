@@ -245,7 +245,7 @@ void CConsole::DrawCursor(void)
 
 
 //Inserts a character into the buffer.
-void CConsole::InsertChar(const int szChar, const int cooked )
+void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 {
 	static int iHistoryPos = -1;
 
@@ -296,7 +296,7 @@ void CConsole::InsertChar(const int szChar, const int cooked )
 
 		/* BEGIN: Buffer History Lookup */
 		case SDLK_UP:
-			if (m_deqBufHistory.size() && iHistoryPos != m_deqBufHistory.size() - 1)
+			if (m_deqBufHistory.size() && iHistoryPos != (int)m_deqBufHistory.size() - 1)
 			{
 				iHistoryPos++;
 				SetBuffer(m_deqBufHistory.at(iHistoryPos).data());
@@ -314,7 +314,7 @@ void CConsole::InsertChar(const int szChar, const int cooked )
 
 		/* BEGIN: Message History Lookup */
 		case SDLK_PAGEUP:
-			if (m_iMsgHistPos != m_deqMsgHistory.size()) m_iMsgHistPos++;
+			if (m_iMsgHistPos != (int)m_deqMsgHistory.size()) m_iMsgHistPos++;
 			return;
 
 		case SDLK_PAGEDOWN:
@@ -490,6 +490,6 @@ bool conInputHandler(const SDL_Event& ev)
 	if(ev.type != SDL_KEYDOWN)
 		return false;
 
-	g_Console->InsertChar(ev.key.keysym.sym, ev.key.keysym.unicode );
+	g_Console->InsertChar(ev.key.keysym.sym, (wchar_t)ev.key.keysym.unicode );
 	return g_Console->IsActive();
 }

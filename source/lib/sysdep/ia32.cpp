@@ -423,20 +423,16 @@ static void check_hyperthread()
 	mov			log_cpus_per_package, ebx		; ebx[23:16]
 	}
 
-	// early out, don't have to go through on_each_cpu
-	if(log_cpus_per_package >= cpus)
-		return;
-
 	cpu_smp = 1;
 }
 
 
 static void check_speedstep()
 {
-	if(vendor == INTEL)
-	{
-	}
+	if(vendor == INTEL && ia32_cap(EST))
+		cpu_speedstep = true;
 }
+
 
 void ia32_get_cpu_info()
 {
@@ -453,6 +449,7 @@ void ia32_get_cpu_info()
 	get_cpu_type();
 	measure_cpu_freq();
 	check_hyperthread();
+	check_speedstep();
 }
 
 #endif	// #ifndef _M_IX86
