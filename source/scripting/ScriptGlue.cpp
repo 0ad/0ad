@@ -30,6 +30,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	{"getEntityTemplate", getEntityTemplate, 1, 0, 0 },
 	{"getGUIObjectByName", JSI_IGUIObject::getByName, 1, 0, 0 },
 	{"getGlobal", getGlobal, 0, 0, 0 },
+	{"exit", exitProgram, 0, 0, 0 },
 	{0, 0, 0, 0, 0}, 
 };
 
@@ -129,3 +130,11 @@ JSBool getGlobal( JSContext* context, JSObject* globalObject, unsigned int argc,
 	return( JS_TRUE );
 }
 
+
+extern void kill_mainloop(); // from main.cpp
+
+JSBool exitProgram(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval)
+{
+	kill_mainloop();
+	return JS_TRUE;
+}

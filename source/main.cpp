@@ -254,6 +254,12 @@ static void WriteScreenshot()
 bool active = true;
 static bool quit = false;	// break out of main loop
 
+// HACK: Let code from other files (i.e. the scripting system) quit
+void kill_mainloop()
+{
+	quit = true;
+}
+
 static int handler(const SDL_Event* ev)
 {
 	int c;
