@@ -732,8 +732,10 @@ static void InitVfs(char* argv0)
 //			L"argv[0] is probably incorrect. please start the game via command-line.");
 
 	vfs_mount("", "mods/official", 0);
-	vfs_mount("screenshots", "screenshots", 0);
-	vfs_mount("profiles", "profiles", 0 );
+	vfs_mount("screenshots/", "screenshots", 0);
+	vfs_mount("profiles/", "profiles", 0 );
+
+	// don't try vfs_display yet: SDL_Init hasn't yet redirected stdout
 }
 
 static void psInit()
@@ -956,7 +958,10 @@ sle(11340106);
 	SDL_WM_SetCaption("0 A.D.", "0 A.D.");
 
 	if(!g_Quickstart)
+	{
 		WriteSysInfo();
+		vfs_display();
+	}
 	else
 		// speed up startup by disabling all sound
 		// (OpenAL init will be skipped).

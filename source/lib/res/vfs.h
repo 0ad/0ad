@@ -64,6 +64,8 @@ extern int vfs_make_vfs_path(const char* path, char* vfs_path);
 extern int vfs_make_real_path(const char* vfs_path, char* path);
 
 
+extern int vfs_display();
+
 //
 // directory entry
 //
