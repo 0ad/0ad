@@ -1672,6 +1672,10 @@ debug_out("vfs_load v_fn=%s\n", v_fn);
 	p = 0; size = 0;	// zeroed in case vfs_open or H_DEREF fails
 
 	Handle hf = vfs_open(v_fn, flags);
+	CHECK_ERR(hf);
+		// note: if we skip this and have H_DEREF report the error,
+		// we get "invalid handle" instead of vfs_open's error code.
+
 	H_DEREF(hf, VFile, vf);
 
 	Handle hm = 0;	// return value - handle to memory or error code

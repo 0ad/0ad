@@ -26,6 +26,14 @@ CFileUnpacker::CFileUnpacker()
 // variety of exceptions for missing files etc
 void CFileUnpacker::Read(const char* filename,const char magicstr[4])
 {
+	// avoid vfs_load complaining about missing data files (which happens
+	// too often). better to check here than squelch internal VFS error
+	// reporting. we disable this in release mode to avoid a speed hit.
+#ifndef NDEBUG
+	if(!vfs_exists(filename))
+		throw CFileOpenError();
+#endif
+
 	// load the whole thing into memory
 	Handle hm = vfs_load(filename, m_Buf, m_Size);
 	if(hm <= 0)

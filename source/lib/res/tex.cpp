@@ -1174,8 +1174,7 @@ int tex_load(const char* fn, TexInfo* t)
 	void* _p = 0;
 	size_t size;
 	Handle hm = vfs_load(fn, _p, size);
-	if(hm <= 0)
-		return (int)hm;
+	CHECK_ERR(hm);	// (need handle below; can't test return value directly)
 	// guarantee *_valid routines 4 header bytes
 	if(size < 4)
 	{
