@@ -62,7 +62,9 @@ static bool fullscreen;		/* in fullscreen mode?
 
 static bool is_shutdown;
 
-static HWND hWnd = 0;		/* make available to the app for ShowWindow calls, etc.? */
+static HINSTANCE hInst = 0;
+
+static HWND hWnd = (HWND)INVALID_HANDLE_VALUE;		/* make available to the app for ShowWindow calls, etc.? */
 
 static DEVMODE dm;			/* current video mode */
 static HDC hDC;
@@ -398,6 +400,61 @@ int SDL_GL_SetAttribute(SDL_GLattr attr, int value)
 }
 
 
+//
+// keyboard hook - used to intercept PrintScreen and system keys (e.g. Alt+Tab)
+//
+
+// note: the LowLevel hooks are global, but a DLL isn't actually required
+// as stated in the docs. Windows apparently calls the handler in its original
+// context. see http://www.gamedev.net/community/forums/topic.asp?topic_id=255399 .
+
+static HHOOK hKeyboard_LL_Hook = (HHOOK)0;
+
+LRESULT CALLBACK keyboard_ll_hook(int nCode, WPARAM wParam, LPARAM lParam)
+{
+	if(nCode == HC_ACTION)
+	{
+		PKBDLLHOOKSTRUCT p = (PKBDLLHOOKSTRUCT)lParam;
+		DWORD vk = p->vkCode;
+
+		// replace Windows PrintScreen handler
+		if(vk == VK_SNAPSHOT)
+		{
+			// send to wndproc
+			UINT msg = (UINT)wParam;
+			PostMessage(hWnd, msg, vk, 0);
+				// specify hWnd to be safe.
+				// if window not yet created, it's INVALID_HANDLE_VALUE.
+
+			// don't pass it on to other handlers
+			return 1;
+		}
+	}
+
+	// pass it on to other hook handlers
+	return CallNextHookEx(hKeyboard_LL_Hook, nCode, wParam, lParam);
+}
+
+
+void enable_kbd_hook(bool enable)
+{
+	if(enable)
+	{
+		assert(hKeyboard_LL_Hook == 0);
+		hKeyboard_LL_Hook = SetWindowsHookEx(WH_KEYBOARD_LL, keyboard_ll_hook, hInst, 0);
+		assert(hKeyboard_LL_Hook != 0);
+	}
+	else
+	{
+		assert(hKeyboard_LL_Hook != 0);
+		UnhookWindowsHookEx(hKeyboard_LL_Hook);
+		hKeyboard_LL_Hook = 0;
+	}
+}
+
+
+
+
 // SDL redirects stdout.txt in its WinMain hook. we need to do this
 // here (before main is called), instead of in SDL_Init,
 // to completely emulate SDL; bonus: we don't miss output before SDL_Init.
@@ -454,11 +511,27 @@ static int wsdl_shutdown()
 int SDL_Init(Uint32 flags)
 {
 	UNUSED(flags);
+
+	enable_kbd_hook(true);
+
 	return 0;
 }
 
 
+void SDL_Quit()
+{
+	enable_kbd_hook(false);
+}
+
+
+
 #include "ogl.h"
+
+
+
+
+
+
 
 /*
  * set video mode wxh:bpp if necessary.
@@ -466,7 +539,7 @@ int SDL_Init(Uint32 flags)
  */
 int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 {
-	fullscreen = (flags & SDL_FULLSCREEN);
+	fullscreen = (flags & SDL_FULLSCREEN) != 0;
 
 	/* get current mode settings */
 	dm.dmSize = sizeof(DEVMODE);
@@ -498,7 +571,7 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 	 * pixel format isn't supposed to be changed more than once
 	 */
 
-	HINSTANCE hInst = GetModuleHandle(0);
+	hInst = GetModuleHandle(0);
 
 	/* register window class */
 	static WNDCLASS wc;
@@ -655,10 +728,6 @@ u64 SDL_Swap64(const u64 x)
 
 //////////////////////////////////////////////////////////////////////////////
 
-
-void SDL_Quit()
-{
-}
 
 
 void SDL_WM_SetCaption(const char* title, const char* icon)
