@@ -34,6 +34,7 @@ gee@pyro.nu
 
 // Includes used by the whole GUI
 #include <map>
+#include <string>
 #include <stddef.h>
 
 
