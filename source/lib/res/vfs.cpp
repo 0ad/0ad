@@ -1263,8 +1263,8 @@ int vfs_unmap(const Handle hf)
 Handle vfs_start_io(Handle hf, off_t ofs, size_t size, void* buf)
 {
 	H_DEREF(hf, VFile, vf);
-	if(vf_flags(vf) & VF_ZIP)
-		;
+//	if(vf_flags(vf) & VF_ZIP)
+//		;
 
 	return 0;
 }
