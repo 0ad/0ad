@@ -20,6 +20,7 @@
 #include <cassert>
 #include <cstdlib>
 #include <cmath>
+#include <string.h>
 
 #include "lib.h"
 #include "misc.h"
@@ -244,11 +245,12 @@ char *_ultoa(unsigned long int value, char *out, int radix)
 	char buf[21];
 	char *p=buf+21;
 	
-	while (value)
+	do
 	{
 		*(--p)=digits[value % radix];
 		value /= radix;
 	}
+	while (value);
 	
 	memcpy(out, p, (buf+21)-p);
 	out[(buf+21)-p]=0;
@@ -262,11 +264,12 @@ char *_ltoa(long val, char *out, int radix)
 	bool sign=val < 0;
 	if (sign) val=-val;
 	
-	while (val)
+	do
 	{
 		*(--p)=digits[val % radix];
 		val /= radix;
 	}
+	while (val);
 	
 	if (sign) *(--p) = '-';
 	
