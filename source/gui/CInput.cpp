@@ -973,7 +973,6 @@ void CInput::Draw()
 
 void CInput::UpdateText(int from, int to_before, int to_after)
 {
-	LOG(ERROR, LOG_CATEGORY, "1");
 	CStrW caption;
 	CStr font_name;
 	float buffer_zone;
@@ -999,7 +998,6 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 	if (to_before == -1)
 		to = caption.Length();
 
-	LOG(ERROR, LOG_CATEGORY, "2 %s", font_name.c_str());
 	CFont *font=NULL;
 	font = new CFont(font_name);
 
