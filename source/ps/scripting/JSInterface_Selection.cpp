@@ -46,6 +46,8 @@ JSBool JSI_Selection::getGroups( JSContext* context, JSObject* obj, jsval id, js
 {
 	JSObject* groupsArray = JS_NewArrayObject( context, 0, NULL );
 
+	JS_AddRoot( context, &groupsArray );
+
 	for( i8 groupId = 0; groupId < MAX_GROUPS; groupId++ )
 	{
 		jsval v = OBJECT_TO_JSVAL( EntityCollection::CreateReference( &( g_Selection.m_groups[groupId] ) ) );
@@ -53,6 +55,9 @@ JSBool JSI_Selection::getGroups( JSContext* context, JSObject* obj, jsval id, js
 	}
 
 	*vp = OBJECT_TO_JSVAL( groupsArray );
+
+	JS_RemoveRoot( context, &groupsArray );
+
 	return( JS_TRUE );
 }
 
