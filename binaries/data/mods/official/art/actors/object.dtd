@@ -6,6 +6,7 @@
 <!ELEMENT Animations (Animation)*>
 <!ELEMENT Animation (#PCDATA)*>
 <!ATTLIST Animation name CDATA #REQUIRED
-		    file CDATA #REQUIRED>
+		    file CDATA #REQUIRED
+			speed CDATA "100">
 
 
