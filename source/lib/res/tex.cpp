@@ -472,7 +472,7 @@ static int bmp_encode(TexInfo* t, const char* fn, const u8* img, size_t img_size
 	bih->biClrImportant  = 0;
 
 	memcpy(file+hdr_size, img, img_size);
-	vfs_uncached_store(fn, file, file_size);
+	vfs_store(fn, file, file_size, FILE_NO_AIO);
 	mem_free(file);
 	return 0;
 }
@@ -705,7 +705,7 @@ static void png_write(png_struct* const png_ptr, u8* const data, const png_size_
 {
 	void* p = (void*)data;
 	Handle hf = *(Handle*)png_ptr->io_ptr;
-	if(vfs_uncached_io(hf, length, &p) != length)
+	if(vfs_io(hf, length, &p) != length)
 		png_error(png_ptr, "png_write: !");
 }
 
@@ -759,7 +759,7 @@ fail:
 			break;
 		}
 
-		hf = vfs_open(fn, FILE_WRITE);
+		hf = vfs_open(fn, FILE_WRITE|FILE_NO_AIO);
 		if(hf < 0)
 		{
 			err = (int)hf;

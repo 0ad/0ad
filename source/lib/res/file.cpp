@@ -56,13 +56,13 @@ const size_t BLOCK_SIZE = 1ul << BLOCK_SIZE_LOG2;
 //   * requests for part of a block are usually followed by another.
 
 
-enum Conversion
+static enum Conversion
 {
 	TO_NATIVE,
 	TO_PORTABLE
 };
 
-static int convert_path(const char* src, char* dst, Conversion conv = TO_NATIVE)
+static int convert_path(char* dst, const char* src, Conversion conv = TO_NATIVE)
 {
 	/*
 	// if there's a platform with multiple-character DIR_SEP,
@@ -103,8 +103,28 @@ static int convert_path(const char* src, char* dst, Conversion conv = TO_NATIVE)
 }
 
 
+// set by file_rel_chdir
 static char n_root_dir[PATH_MAX];
 static size_t n_root_dir_len;
+
+
+// return the native equivalent of the given portable path
+// (i.e. convert all '/' to the platform's directory separator)
+// makes sure length < PATH_MAX.
+int file_make_native_path(const char* const path, char* const n_path)
+{
+	strcpy(n_path, n_root_dir);
+	return convert_path(n_path+n_root_dir_len, path, TO_NATIVE);
+}
+
+
+int file_make_portable_path(const char* const n_path, char* const path)
+{
+	if(strncmp(n_path, n_root_dir, n_root_dir_len) != 0)
+		return -1;
+	return convert_path(path, n_path+n_root_dir_len, TO_PORTABLE);
+}
+
 
 // set current directory to rel_path, relative to the path to the executable,
 // which is taken from argv0.
@@ -164,7 +184,7 @@ int file_rel_chdir(const char* argv0, const char* const rel_path)
 		msg = "realpath returned an invalid path?";
 		goto fail;
 	}
-	CHECK_ERR(convert_path(rel_path, fn+1));
+	CHECK_ERR(convert_path(fn+1, rel_path));
 
 	if(chdir(n_path) < 0)
 		goto fail;
@@ -192,25 +212,6 @@ fail:
 
 	return -errno;
 }
-
-
-// return the native equivalent of the given portable path
-// (i.e. convert all '/' to the platform's directory separator)
-// makes sure length < PATH_MAX.
-int file_make_native_path(const char* const path, char* const n_path)
-{
-	strcpy(n_path, n_root_dir);
-	return convert_path(path, n_path+n_root_dir_len, TO_NATIVE);
-}
-
-
-int file_make_portable_path(const char* const n_path, char* const path)
-{
-	if(strncmp(n_path, n_root_dir, n_root_dir_len) != 0)
-		return -1;
-	return convert_path(n_path+n_root_dir_len, path, TO_PORTABLE);
-}
-
 
 
 // need to store entries returned by readdir so they can be sorted.
@@ -245,7 +246,7 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 	n_path[PATH_MAX] = '\0';
 		// will append filename to this, hence "path".
 		// 0-terminate simplifies filename strncpy below.
-	CHECK_ERR(convert_path(dir, n_path));
+	CHECK_ERR(convert_path(n_path, dir));
 
 	// all entries are enumerated (adding to this container),
 	// std::sort-ed, then all passed to cb.
@@ -335,7 +336,7 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 int file_stat(const char* const path, struct stat* const s)
 {
 	char n_path[PATH_MAX+1];
-	CHECK_ERR(convert_path(path, n_path));
+	CHECK_ERR(convert_path(n_path, path));
 
 	return stat(n_path, s);
 }
@@ -427,7 +428,7 @@ int file_open(const char* const p_fn, const uint flags, File* const f)
 	memset(f, 0, sizeof(File));
 
 	char n_fn[PATH_MAX];
-	CHECK_ERR(convert_path(p_fn, n_fn));
+	CHECK_ERR(convert_path(n_fn, p_fn));
 
 	if(!f)
 		goto invalid_f;
@@ -1132,6 +1133,23 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, raw_size, raw_ofs);
 
 	const bool is_write = (f->flags & FILE_WRITE) != 0;
 
+	if(f->flags & FILE_NO_AIO)
+	{
+		// cut off at EOF if reading
+		if(!is_write)
+		{
+			const ssize_t bytes_left = f->size - raw_ofs;
+			if(bytes_left < 0)
+				return -1;
+			raw_size = MIN(raw_size, (size_t)bytes_left);
+		}
+
+		lseek(f->fd, raw_ofs, SEEK_SET);
+
+		return is_write? write(f->fd, *p, raw_size) : read(f->fd, *p, raw_size);
+	}
+
+
 	// sanity checks.
 	if(is_write)
 	{
@@ -1325,21 +1343,6 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, raw_size, raw_ofs);
 	assert(issue_cnt == raw_transferred_cnt && raw_transferred_cnt == raw_size); 
 
 	return (ssize_t)actual_transferred_cnt;
-}
-
-
-int file_uncached_io(File* f, off_t ofs, size_t size, void* p)
-{
-	CHECK_FILE(f);
-
-	int fd = f->fd;
-
-	lseek(fd, ofs, SEEK_SET);
-
-	if(f->flags & FILE_WRITE)
-		return write(fd, p, size);
-	else
-		return read(fd, p, size);
 }
 
 
