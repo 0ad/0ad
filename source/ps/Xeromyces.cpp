@@ -1,4 +1,4 @@
-// $Id: Xeromyces.cpp,v 1.11 2004/07/29 16:15:49 philip Exp $
+// $Id: Xeromyces.cpp,v 1.12 2004/08/03 10:17:08 philip Exp $
 
 #include "precompiled.h"
 
@@ -111,6 +111,13 @@ typedef struct XMLElement {
 class XeroHandler : public DefaultHandler
 {
 public:
+	XeroHandler() : Root(NULL), m_locator(NULL) {}
+	~XeroHandler()
+	{
+		if (Root)
+			DeallocateElement(Root);
+	}
+
 	// SAX2 event handlers:
 	virtual void startDocument();
 	virtual void endDocument();
@@ -130,6 +137,7 @@ public:
 	
 	void CreateXMB(unsigned long crc);
 	membuffer buffer;
+
 private:
 	std::set<std::string> ElementNames;
 	std::set<std::string> AttributeNames;
@@ -141,6 +149,9 @@ private:
 	std::map<std::string, int> AttributeID;
 
 	void OutputElement(XMLElement* el);
+
+	// Recursively frees memory
+	void DeallocateElement(XMLElement* el);
 };
 
 
@@ -250,17 +261,15 @@ PSRETURN CXeromyces::Load(const char* filename)
 
 	delete Parser;
 
-	// Convert the data structures into the XMB format
-	handler.CreateXMB(XMLChecksum);
-
-	// Only fail after having called CreateXMB, because CreateXMB
-	// frees all the memory that was allocated during parsing.
 	if (errorHandler.getSawErrors())
 	{
 		LOG(ERROR, "CXeromyces: Errors in XML file '%s'", filename);
 		return PSRETURN_Xeromyces_XMLParseError;
+		// The internal tree of the XeroHandler will be cleaned up automatically
 	}
 
+	// Convert the data structures into the XMB format
+	handler.CreateXMB(XMLChecksum);
 
 	// Save the file to disk, so it can be loaded quickly next time
 	vfs_store(filenameXMB, handler.buffer.buffer, handler.buffer.length, FILE_NO_AIO);
@@ -407,7 +416,9 @@ void XeroHandler::CreateXMB(unsigned long crc)
 	assert(Root->childs.size() == 1);
 
 	OutputElement(Root->childs[0]);
+
 	delete Root;
+	Root = NULL;
 }
 
 // Writes a whole element (recursively if it has children) into the buffer,
@@ -502,5 +513,12 @@ void XeroHandler::OutputElement(XMLElement* el)
 	buffer.write(&Length, 4, Pos_Length);
 
 	// Tidy up the parser's mess
+	delete el;
+}
+
+void XeroHandler::DeallocateElement(XMLElement* el)
+{
+	for (size_t i = 0; i < el->childs.size(); ++i)
+		DeallocateElement(el->childs[i]);
 	delete el;
 }
