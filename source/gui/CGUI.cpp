@@ -710,12 +710,12 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 			if (i==0)
 			{
 				// Thank you CStr =)
-				caption.Trim(PS_TRIM_BOTH);
+//				caption.Trim(PS_TRIM_BOTH);
 
 				// Set the setting caption to this
 				GUI<CStr>::SetSetting(object, "caption", caption);
 			}
-			// GeeTODO check invalid strings?
+			// else ... GeeTODO give warning
 		}
 	} 
 
