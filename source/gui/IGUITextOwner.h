@@ -66,7 +66,7 @@ public:
 	 * @param index Index value of text. Mostly this will be 0
 	 * @param pos Position
 	 * @param z Z value
-	 * @param clipping Clipping rectangle, don't even add a paramter
+	 * @param clipping Clipping rectangle, don't even add a parameter
 	 *		  to get no clipping.
 	 */
 	virtual void Draw(const int &index, const CColor &color, const CPos &pos, 
@@ -80,7 +80,7 @@ protected:
 	virtual void SetupText()=0;
 
 	/**
-	 * Texts that are generated and ready to be rendred.
+	 * Texts that are generated and ready to be rendered.
 	 */
 	std::vector<SGUIText*> m_GeneratedTexts;
 };
