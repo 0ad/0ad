@@ -13,7 +13,6 @@
 #define VECTOR3D_H
 
 #include <math.h>
-#include "res/res.h"
 #include "MathUtil.h"
 
 class CVector3D
