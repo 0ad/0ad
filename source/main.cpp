@@ -639,6 +639,10 @@ static void ParseArgs(int argc, char* argv[])
 					g_Gamma = 1.0f;
 			}
 			break;
+		case 'l':
+			if(strncmp(name, "listfiles", 9) == 0)
+				vfs_enable_file_listing(true);
+			break;
 		case 'm':
 			if(strncmp(name, "m=", 2) == 0)
 				g_GameAttributes.SetValue("mapFile", CStr(argv[i]+3));
