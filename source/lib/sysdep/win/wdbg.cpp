@@ -1293,18 +1293,21 @@ static long CALLBACK except_filter(EXCEPTION_POINTERS* except)
 }
 
 
+#ifndef EXCEPTION_HACK_0AD
+
 static void set_exception_handler()
 {
-	prev_except_filter = SetUnhandledExceptionFilter(except_filter);
+	prev_except_filter = SetUnhandledExceptionFilter(exception_filter);
 }
 
+#else
 
+LONG WINAPI debug_main_exception_filter(PEXCEPTION_POINTERS ep);
 
-
-#ifdef EXCEPTION_HACK_0AD
-
-
-
+static void set_exception_handler()
+{
+	prev_except_filter = SetUnhandledExceptionFilter(debug_main_exception_filter);
+}
 
 
 
@@ -1443,7 +1446,14 @@ static int write_crashlog(const char* file, const wchar_t* header, CONTEXT* cont
 // the crash log more useful, and takes the responsibility of
 // suiciding away from main.cpp.
 
-int debug_main_exception_filter(unsigned int UNUSEDPARAM(code), PEXCEPTION_POINTERS ep)
+/*
+TODO
+If the process is not being debugged, the function displays an Application Error message box, depending on the current error mode. The default behavior is to display the dialog box, but this can be disabled by specifying SEM_NOGPFAULTERRORBOX in a call to the SetErrorMode function.
+*/
+
+
+
+LONG WINAPI debug_main_exception_filter(PEXCEPTION_POINTERS ep)
 {
 	// If something crashes after we've already crashed (i.e. when shutting
 	// down everything), don't bother logging it, because the first crash
