@@ -46,7 +46,7 @@ static int wsock_shutdown()
 }
 
 
-u16_t htons(u16_t s)
+uint16_t htons(uint16_t s)
 {
 	return (s >> 8) | ((s & 0xff) << 8);
 }

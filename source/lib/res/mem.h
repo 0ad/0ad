@@ -19,7 +19,7 @@ enum
 	MEM_ZERO = 0x1000
 };
 
-extern void* mem_alloc(size_t size, uint align = 1, uint flags = 0, Handle* ph = 0);
+extern void* mem_alloc(size_t size, size_t align = 1, uint flags = 0, Handle* ph = 0);
 
 #define mem_free(p) mem_free_p((void*&)p)
 extern int mem_free_p(void*& p);

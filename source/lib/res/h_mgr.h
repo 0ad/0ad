@@ -19,16 +19,15 @@
 #ifndef H_MGR_H__
 #define H_MGR_H__
 
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #include <stdarg.h>		// type init routines get va_list of args
 
-#include "../types.h"
+#include "lib.h"
 
 
 // handle type (for 'type safety' - can't use a texture handle as a sound)
+
+	
 //
 // rationale: we could use the destructor passed to h_alloc to identify
 // the handle, but it's good to have a list of all types, and we avoid having
@@ -183,10 +182,6 @@ extern const char* h_filename(Handle h);
 extern int h_reload(const char* fn);
 
 extern int res_cur_scope;
-
-#ifdef __cplusplus
-}
-#endif
 
 
 #endif	// #ifndef H_MGR_H__

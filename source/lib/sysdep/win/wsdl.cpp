@@ -31,7 +31,6 @@
 #include "sdl.h"
 #include "lib.h"
 #include "win_internal.h"
-#include "misc.h"
 
 #include <SDL_vkeys.h>
 

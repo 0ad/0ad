@@ -26,6 +26,16 @@
 #include "win_internal.h"
 #include "hrt.h"
 
+// waio included via lib -> posix -> wposix
+
+
+static HANDLE mk_handle(intptr_t i)
+{
+	// passing in -1 (e.g. if _get_osfhandle fails),
+	// is fine, it ends up INVALID_HANDLE_VALUE.
+	return (HANDLE)((char*)0 + i);
+}
+
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -67,6 +77,7 @@ int open(const char* fn, int mode, ...)
 
 int close(int fd)
 {
+	assert(3 <= fd && fd < 256);
 	aio_close(fd);
 	return _close(fd);
 }
@@ -74,7 +85,7 @@ int close(int fd)
 
 int ioctl(int fd, int op, int* data)
 {
-	HANDLE h = (HANDLE)((char*)0 + _get_osfhandle(fd));
+	const HANDLE h = mk_handle(_get_osfhandle(fd));
 
 	switch(op)
 	{
@@ -212,7 +223,7 @@ int closedir(DIR* dir)
 //////////////////////////////////////////////////////////////////////////////
 
 
-static HANDLE std_h[2] = { (HANDLE)(((char*)0) + 3), (HANDLE)(((char*)0) + 7) };
+static HANDLE std_h[2] = { (HANDLE)((char*)0 + 3), (HANDLE)((char*)0 + 7) };
 
 
 __declspec(naked) void _get_console()
@@ -274,7 +285,7 @@ int pthread_getschedparam(pthread_t thread, int* policy, struct sched_param* par
 	}
 	if(param)
 	{
-		HANDLE hThread = (HANDLE)((char*)0 + thread);
+		const HANDLE hThread = mk_handle((intptr_t)thread);
 		param->sched_priority = GetThreadPriority(hThread);
 	}
 
@@ -286,8 +297,7 @@ int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param
 	if(policy == SCHED_FIFO)
 		SetPriorityClass(GetCurrentProcess(), HIGH_PRIORITY_CLASS);
 
-	HANDLE hThread = (HANDLE)((char*)0 + thread);
-
+	const HANDLE hThread = mk_handle((intptr_t)thread);
 	SetThreadPriority(hThread, param->sched_priority);
 	return 0;
 }
@@ -388,7 +398,7 @@ void* mmap(void* start, unsigned int len, int prot, int flags, int fd, long offs
 
 	DWORD len_hi = (DWORD)((u64)len >> 32), len_lo = (DWORD)len & 0xffffffff;
 
-	HANDLE hFile = (HANDLE)((char*)0 + _get_osfhandle(fd));
+	HANDLE hFile = mk_handle(_get_osfhandle(fd));
 	HANDLE hMap = CreateFileMapping(hFile, &sec, flProtect, len_hi, len_lo, 0);
 
 	void* ptr = MapViewOfFileEx(hMap, dwAccess, len_hi, offset, len_lo, start);

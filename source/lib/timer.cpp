@@ -17,10 +17,8 @@
 
 #include "precompiled.h"
 
-#include "timer.h"
-#include "types.h"
-#include "misc.h"
 #include "lib.h"
+#include "timer.h"
 
 #ifdef _WIN32
 #include "sysdep/win/hrt.h"

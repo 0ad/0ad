@@ -1,5 +1,4 @@
-// switch off warnings before including stl files
-#pragma warning(disable : 4786) // identifier truncated to 255 chars
+#include "precompiled.h"
 
 #include "Types.h"
 #include "MapReader.h"
@@ -16,8 +15,6 @@
 extern CTerrain g_Terrain;
 extern CLightEnv g_LightEnv;
 
-#include <set>
-#include <stdio.h>
 
 
 // CMapReader constructor: nothing to do at the minute

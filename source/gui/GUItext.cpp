@@ -216,10 +216,10 @@ void CGUIString::SetValue(const CStr &str)
 	Parser.InputTaskType("start", "$ident[_=_$value]");
 	Parser.InputTaskType("end", "/$ident");
 
-	_long position = 0;
-	_long from=0;			// the position in the raw string where the last tag ended
-	_long from_nonraw=0;	// like from only in position of the REAL string, with tags.
-	_long curpos = 0;
+	long position = 0;
+	long from=0;			// the position in the raw string where the last tag ended
+	long from_nonraw=0;	// like from only in position of the REAL string, with tags.
+	long curpos = 0;
 
 	// Current Text Chunk
 	CGUIString::TextChunk CurrentTextChunk;
@@ -246,8 +246,8 @@ void CGUIString::SetValue(const CStr &str)
 		{
 			// First check if there is another TagStart before a TagEnd,
 			//  in that case it's just a regular TagStart and we can continue.
-			_long pos_left = str.Find(curpos+1, TagStart);
-			_long pos_right = str.Find(curpos+1, TagEnd);
+			long pos_left = str.Find(curpos+1, TagStart);
+			long pos_right = str.Find(curpos+1, TagEnd);
 
 			if (pos_right == -1)
 			{
@@ -428,7 +428,7 @@ void CGUIString::SetValue(const CStr &str)
 	for (position=0, curpos=0;;position = curpos+1)
 	{
 		// Find the next word-delimiter.
-		_long dl = m_RawString.Find(position, ' ');
+		long dl = m_RawString.Find(position, ' ');
 
 		if (dl == -1)
 			break;
@@ -441,7 +441,7 @@ void CGUIString::SetValue(const CStr &str)
 	for (position=0, curpos=0;;position = curpos+1)
 	{
 		// Find the next word-delimiter.
-		_long dl = m_RawString.Find(position, '-');
+		long dl = m_RawString.Find(position, '-');
 
 		if (dl == -1)
 			break;
@@ -454,7 +454,7 @@ void CGUIString::SetValue(const CStr &str)
 	for (position=0, curpos=0;;position = curpos+1)
 	{
 		// Find the next word-delimiter.
-		_long dl = m_RawString.Find(position, '\n');
+		long dl = m_RawString.Find(position, '\n');
 
 		if (dl == -1)
 			break;

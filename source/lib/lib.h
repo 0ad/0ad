@@ -20,17 +20,10 @@
 #include <stddef.h>
 
 #include "config.h"
-
-#include "misc.h"
+#include "posix.h"
 #include "types.h"
 
 #include "sysdep/sysdep.h"
-
-
-// yikes! avoid template warning spew on VC6
-#if _MSC_VER <= 1200
-#pragma warning(disable:4786)
-#endif
 
 
 // tell STL not to generate exceptions, if compiling without exceptions
@@ -45,14 +38,16 @@
 
 
 
+
 #define STMT(STMT_code__) do { STMT_code__; } while(0)
 
 // must not be used before main entered! (i.e. not from NLS constructors / functions)
 #define ONCE(ONCE_code__)\
 STMT(\
-	static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;\
+/*	static pthread_mutex_t ONCE_mutex__ = PTHREAD_MUTEX_INITIALIZER;\
+	if(pthread_mutex_trylock(&ONCE_mutex__) == 0)\*/\
 	static bool ONCE_done__ = false;\
-	if(pthread_mutex_trylock(&(mutex)) == 0 && !ONCE_done__)\
+	if(!ONCE_done__)\
 	{\
 		ONCE_done__ = true;\
 		ONCE_code__;\
@@ -191,7 +186,105 @@ extern int atexit2(void* func, uintptr_t arg, CallConvention cc = CC_CDECL_1);
 // no parameters, cdecl (CC_CDECL_0)
 extern int atexit2(void* func);
 
-#include "posix.h"
+
+
+
+
+
+
+
+
+
+
+// FNV1-A hash - good for strings.
+// if len = 0 (default), treat buf as a C-string;
+// otherwise, hash <len> bytes of buf.
+extern u32 fnv_hash(const void* buf, const size_t len = 0);
+extern u64 fnv_hash64(const void* buf, const size_t len);
+
+// hash (currently FNV) of a filename
+typedef u32 FnHash;
+
+
+#ifndef min
+inline int min(int a, int b)
+{
+	return (a < b)? a : b;
+}
+
+inline int max(int a, int b)
+{
+	return (a > b)? a : b;
+}
+#endif
+
+extern u16 addusw(u16 x, u16 y);
+extern u16 subusw(u16 x, u16 y);
+
+
+
+
+static inline u16 read_le16(const void* p)
+{
+#ifdef BIG_ENDIAN
+	const u8* _p = (const u8*)p;
+	return (u16)_p[0] | (u16)_p[1] << 8;
+#else
+	return *(u16*)p;
+#endif
+}
+
+
+static inline u32 read_le32(const void* p)
+{
+#ifdef BIG_ENDIAN
+	u32 t = 0;
+	for(int i = 0; i < 4; i++)
+	{
+		t <<= 8;
+		t |= *((const u8*)p)++;
+	}
+	return t;
+#else
+	return *(u32*)p;
+#endif
+}
+
+
+extern bool is_pow2(long n);
+
+
+// return -1 if not an integral power of 2,
+// otherwise the base2 logarithm
+extern int ilog2(const int n);
+
+
+extern uintptr_t round_up(uintptr_t val, uintptr_t multiple);
+
+
+// provide fminf for non-C99 compilers
+#ifndef HAVE_C99
+extern float fminf(float, float);
+#endif
+
+
+
+extern long round(double);
+extern u16 fp_to_u16(double in);
+
+// big endian!
+extern void base32(const int len, const u8* in, u8* out);
+
+#ifndef _WIN32
+
+char *_itoa(int, char *, int radix);
+char *_ultoa(unsigned long int, char*, int radix);
+char *_ltoa(long, char *, int radix);
+
+#endif
+
+
+
 
 
 

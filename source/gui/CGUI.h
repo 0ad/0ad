@@ -418,7 +418,7 @@ private:
 
 	/// Used when reading in XML files
 	// TODO Gee: Used?
-	int16 m_Errors;
+	int16_t m_Errors;
 
 	//@}
 	//--------------------------------------------------------

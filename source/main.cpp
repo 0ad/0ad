@@ -109,14 +109,15 @@ static int write_sys_info()
 	// .. graphics card
 	fprintf(f, "%s\n", gfx_card);
 	fprintf(f, "%s\n", gfx_drv_ver);
+	fprintf(f, "%dx%d:%d@%d\n", g_xres, g_yres, g_bpp, g_freq);
 	// .. network name / ips
 	char hostname[100];	// possibly nodename != hostname
 	gethostname(hostname, sizeof(hostname));
 	fprintf(f, "%s\n", hostname);
-	hostent* h = gethostbyname(hostname);
-	if(h)
+	hostent* host = gethostbyname(hostname);
+	if(host)
 	{
-		struct in_addr** ips = (struct in_addr**)h->h_addr_list;
+		struct in_addr** ips = (struct in_addr**)host->h_addr_list;
 		for(int i = 0; ips && ips[i]; i++)
 			fprintf(f, "%s ", inet_ntoa(*ips[i]));
 		fprintf(f, "\n");
@@ -228,7 +229,7 @@ void RenderTerrain()
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-// SubmitModelRecursive: recurse down given model, submitting it and all it's descendents to the 
+// SubmitModelRecursive: recurse down given model, submitting it and all its descendents to the 
 // renderer
 void SubmitModelRecursive(CModel* model)
 {
@@ -433,6 +434,7 @@ int main(int argc, char* argv[])
 	_control87(_PC_24, _MCW_PC);
 #endif
 
+
 	detect();
 
 	// init SDL
@@ -476,7 +478,7 @@ int main(int argc, char* argv[])
 
 	// preferred video mode = current desktop settings
 	// (command line params may override these)
-	get_cur_resolution(g_xres, g_yres);
+	get_cur_vmode(&g_xres, &g_yres, &g_bpp, &g_freq);
 
 	for(int a = 1; a < argc; a++)
 		if(!strncmp(argv[a], "xres", 4))
@@ -513,9 +515,6 @@ int main(int argc, char* argv[])
 //	vfs_mount("gui", "gui", 0);
 	vfs_mount("", "mods/official/", 0);
 ////	dir_add_watch("mods\\official", false);
-
-
-//Handle xx = tex_load("art/textures/skins/structural/null.png");
 
 #ifndef NO_GUI
 	// GUI uses VFS, so this must come after VFS init.
@@ -639,10 +638,6 @@ if(!g_MapFile)
 #endif
 	}
 
-	// TODO MT: Move this to atexit() code? Capture original gamma ramp at initialization and restore it?
-
-	SDL_SetGamma( 1.0f, 1.0f, 1.0f );
-
 #ifndef NO_GUI
 	g_GUI.Destroy();
 	delete CGUI::GetSingletonPtr(); // again, we should have all singleton deletes somewhere
@@ -665,5 +660,6 @@ if(!g_MapFile)
 	// destroy renderer
 	delete CRenderer::GetSingletonPtr();
 
+	exit(0);
 	return 0;
 }

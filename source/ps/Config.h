@@ -47,13 +47,13 @@ TDD at http://forums.wildfiregames.com/0ad
 //  Includes / Compiler directives
 //--------------------------------------------------------
 
-#include "stdlib.h"
+#include <stdlib.h>
+
 #include "Prometheus.h"
 #include "Singleton.h"
 #include "CStr.h"
 #include "LogFile.h"
-#include "posix.h"
-#include "misc.h"
+#include "lib.h"
 
 #include <vector>
 

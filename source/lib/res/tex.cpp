@@ -21,12 +21,8 @@
 #include "precompiled.h"
 
 #include "lib.h"
-#include "vfs.h"
-#include "tex.h"
-#include "mem.h"
+#include "res.h"
 #include "ogl.h"
-#include "h_mgr.h"
-#include "misc.h"
 
 
 #define NO_JP2
@@ -37,14 +33,16 @@
 #include <jasper/jasper.h>
 #endif
 
-
+// libpng includes windows.h - prevent that, and define what it needs.
 #define _WINDOWS_
 #define WINAPI __stdcall
 #define WINAPIV __cdecl
 
 #ifndef NO_PNG
- #include <libpng10/png.h>
-#pragma comment(lib, "libpng10.lib")
+# include <libpng10/png.h>
+# ifdef _MSC_VER
+#  pragma comment(lib, "libpng10.lib")
+# endif
 #endif
 
 
@@ -469,7 +467,7 @@ struct MemRange
 };
 
 
-static void png_read_fn(png_struct* png_ptr, u8* data, png_size_t length)
+static void png_read_fn(png_struct* const png_ptr, u8* const data, const png_size_t length)
 {
 	MemRange* const mr = (MemRange*)png_ptr->io_ptr;
 	if(mr->size < length)
@@ -477,7 +475,7 @@ static void png_read_fn(png_struct* png_ptr, u8* data, png_size_t length)
 
 	memcpy(data, mr->p, length);
 	mr->p += length;
-	mr->size -= length;	// > 0 due to test above
+	mr->size -= length;	// >= 0 due to test above
 }
 
 
@@ -512,7 +510,8 @@ fail:
 		goto ret;
 	}
 
-	u8** rows;
+	const u8** rows;
+		// freed in cleanup code; need scoping on VC6 due to goto
 
 	{
 
@@ -524,7 +523,7 @@ fail:
 	int prec, color_type;
 	png_get_IHDR(png_ptr, info_ptr, &w, &h, &prec, &color_type, 0, 0, 0);
 
-	size_t pitch = png_get_rowbytes(png_ptr, info_ptr);
+	const size_t pitch = png_get_rowbytes(png_ptr, info_ptr);
 
 	const u32 fmts[8] = { 0, ~0, GL_RGB, ~0, GL_LUMINANCE_ALPHA, ~0, GL_RGBA, ~0 };
 	const u32 fmt = color_type < 8? fmts[color_type] : ~0;
@@ -542,25 +541,24 @@ fail:
 	}
 
 	// allocate mem for image - rows point into buffer (sequential)
-	rows = (u8**)malloc((h+1)*sizeof(void*));
+	rows = (const u8**)malloc(h*sizeof(void*));
 	if(!rows)
 		goto fail;
-	size_t img_size = pitch * (h+1);
+	const size_t img_size = pitch * h;
 	Handle img_hm;
-	u8* img = (u8*)mem_alloc(img_size, 64*KB, 0, &img_hm);
+	const u8* img = (const u8*)mem_alloc(img_size, 64*KB, 0, &img_hm);
 	if(!img)
 		goto fail;
-	u8* pos = img;
-	for(u32 i = 0; i < h+1; i++)
+	const u8* pos = img;
+	for(size_t i = 0; i < h; i++)
 	{
 		rows[i] = pos;
 		pos += pitch;
 	}
 
-	png_read_image(png_ptr, rows);
+	png_read_image(png_ptr, (png_bytepp)rows);
 
 	png_read_end(png_ptr, info_ptr);
-	
 
 	mem_free_h(t->hm);
 

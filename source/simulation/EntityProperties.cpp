@@ -49,7 +49,7 @@ CGenericProperty::operator void *()
 	return( toVoid() );
 }
 
-CGenericProperty& CGenericProperty::operator=( int32 value )
+CGenericProperty& CGenericProperty::operator=( int32_t value )
 {
 	if( m_type & PROP_TYPELOCKED )
 	{

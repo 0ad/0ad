@@ -49,7 +49,7 @@ CRect::CRect(const CPos &pos, const CSize &size) :
 {
 }
 
-CRect::CRect(const int32 &_l, const int32 &_t, const int32 &_r, const int32 &_b) : 
+CRect::CRect(const int32_t &_l, const int32_t &_t, const int32_t &_r, const int32_t &_b) : 
 	left(_l), top(_t), right(_r), bottom(_b) 
 {
 }
@@ -180,12 +180,12 @@ void CRect::operator -=(const CSize& a)
 	bottom -= a.cy;
 }
 
-int32 CRect::GetWidth() const 
+int32_t CRect::GetWidth() const 
 {
 	return right-left;
 }
 
-int32 CRect::GetHeight() const
+int32_t CRect::GetHeight() const
 {
 	return bottom-top;
 }
@@ -224,7 +224,7 @@ CPos::CPos() : x(0), y(0)
 {
 }
 
-CPos::CPos(const int32 &_x, const int32 &_y) : x(_x), y(_y)
+CPos::CPos(const int32_t &_x, const int32_t &_y) : x(_x), y(_y)
 {
 }
 
@@ -325,7 +325,7 @@ CSize::CSize(const CPos &pos) : cx(pos.x), cy(pos.y)
 {
 }
 
-CSize::CSize(const int32 &_cx, const int32 &_cy) : cx(_cx), cy(_cy)
+CSize::CSize(const int32_t &_cx, const int32_t &_cy) : cx(_cx), cy(_cy)
 {
 }
 

@@ -24,15 +24,21 @@
 
 // useful for choosing a video mode. not called by detect().
 // if we fail, outputs are unchanged (assumed initialized to defaults)
-int get_cur_resolution(int& xres, int& yres)
+int get_cur_vmode(int* xres, int* yres, int* bpp, int* freq)
 {
 	Display* disp = XOpenDisplay(0);
 	if(!disp)
 		return -1;
 
 	int screen = XDefaultScreen(disp);
-	xres = XDisplayWidth (disp, screen);
-	yres = XDisplayHeight(disp, screen);
+	if(xres)
+		*xres = XDisplayWidth (disp, screen);
+	if(yres)
+		*yres = XDisplayHeight(disp, screen);
+	if(bpp)
+		*bpp = 0;
+	if(freq)
+		*freq = 0;
 	XCloseDisplay(disp);
 	return 0;
 }

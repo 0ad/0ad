@@ -12,7 +12,7 @@ by Rich Cross, rich@0ad.wildfiregames.com
 #ifndef COVERLAY_H
 #define COVERLAY_H
 
-#include "types.h"
+#include "lib.h"
 
 struct CColor
 {
@@ -60,7 +60,7 @@ public:
 	CRect(const CSize &size);
 	CRect(const CPos &upperleft, const CPos &bottomright);
 	CRect(const CPos &pos, const CSize &size);
-	CRect(const int32 &_l, const int32 &_t, const int32 &_r, const int32 &_b);
+	CRect(const int32_t &_l, const int32_t &_t, const int32_t &_r, const int32_t &_b);
 
 	// Operators
 	void				operator =  (const CRect& a);
@@ -86,12 +86,12 @@ public:
 	/**
 	 * @return Width of Rectangle
 	 */
-	int32 GetWidth() const;
+	int32_t GetWidth() const;
 	
 	/**
 	 * @return Height of Rectangle
 	 */
-	int32 GetHeight() const;
+	int32_t GetHeight() const;
 
 	/**
 	 * Get Size
@@ -128,7 +128,7 @@ public:
 	/**
 	 * Dimensions
 	 */
-	int32 left, top, right, bottom;
+	int32_t left, top, right, bottom;
 };
 
 /**
@@ -142,7 +142,7 @@ class CPos
 {
 public:
 	CPos();
-	CPos(const int32 &_x, const int32 &_y);
+	CPos(const int32_t &_x, const int32_t &_y);
 
 	// Operators
 	void				operator =  (const CPos& a);
@@ -165,7 +165,7 @@ public:
 	/**
 	 * Position
 	 */
-	int32 x, y;
+	int32_t x, y;
 };
 
 /**
@@ -183,7 +183,7 @@ public:
 	CSize();
 	CSize(const CRect &rect);
 	CSize(const CPos &pos);
-	CSize(const int32 &_cx, const int32 &_cy);
+	CSize(const int32_t &_cx, const int32_t &_cy);
 
 	// Operators
 	void				operator =  (const CSize& a);
@@ -206,7 +206,7 @@ public:
 	/**
 	 * Size
 	 */
-	int32 cx, cy;
+	int32_t cx, cy;
 };
 
 

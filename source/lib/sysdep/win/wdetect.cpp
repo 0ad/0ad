@@ -51,18 +51,25 @@ static int import_EnumDisplayDevices()
 
 // useful for choosing a video mode. not called by detect().
 // if we fail, outputs are unchanged (assumed initialized to defaults)
-int get_cur_resolution(int& xres, int& yres)
+int get_cur_vmode(int* xres, int* yres, int* bpp, int* freq)
 {
-	DEVMODEA dm;
+	DEVMODEW dm;
 	memset(&dm, 0, sizeof(dm));
 	dm.dmSize = sizeof(dm);
 	// dm.dmDriverExtra already set to 0 by memset
 
-	if(!EnumDisplaySettingsA(0, ENUM_CURRENT_SETTINGS, &dm))
+	if(!EnumDisplaySettingsW(0, ENUM_CURRENT_SETTINGS, &dm))
 		return -1;
 
-	xres = dm.dmPelsWidth;
-	yres = dm.dmPelsHeight;
+	if(dm.dmFields & DM_PELSWIDTH && xres)
+		*xres = (int)dm.dmPelsWidth;
+	if(dm.dmFields & DM_PELSHEIGHT && yres)
+		*yres = (int)dm.dmPelsHeight;
+	if(dm.dmFields & DM_BITSPERPEL && bpp)
+		*bpp  = (int)dm.dmBitsPerPel;
+	if(dm.dmFields & DM_DISPLAYFREQUENCY && freq)
+		*freq = (int)dm.dmDisplayFrequency;
+
 	return 0;
 }
 

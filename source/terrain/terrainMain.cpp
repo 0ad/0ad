@@ -41,15 +41,13 @@ int mouse_x=50, mouse_y=50;
 
 void terr_init()
 {
-	int xres,yres;
-	get_cur_resolution(xres,yres);
-	g_Renderer.Open(xres,yres,32);
+	g_Renderer.Open(g_xres,g_yres,g_bpp);
 
 	SViewPort vp;
 	vp.m_X=0;
 	vp.m_Y=0;
-	vp.m_Width=xres;
-	vp.m_Height=yres;
+	vp.m_Width=g_xres;
+	vp.m_Height=g_yres;
 	g_Camera.SetViewPort(&vp);
 
 	InitResources ();

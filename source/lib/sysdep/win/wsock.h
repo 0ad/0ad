@@ -1,6 +1,10 @@
 #ifndef WSOCK_H__
 #define WSOCK_H__
 
+#define IMP(ret, name, param) extern "C" __declspec(dllimport) ret __stdcall name param;
+
+IMP(int, gethostname, (char* name, size_t namelen))
+
 
 //
 // <sys/socket.h>
@@ -9,10 +13,7 @@
 typedef unsigned long socklen_t;
 typedef unsigned short sa_family_t;
 
-//#ifndef _WINSOCKAPI_
-
 // Win32 values - do not change
-
 #define SOCK_STREAM 1
 #define SOCK_DGRAM 2
 #define AF_INET 2
@@ -178,7 +179,7 @@ struct addrinfo
 // <arpa/inet.h>
 //
 
-extern u16_t htons(u16_t hostshort);
+extern uint16_t htons(uint16_t hostshort);
 #define ntohs htons
 IMP(unsigned long, htonl, (unsigned long hostlong))
 
@@ -193,8 +194,8 @@ IMP(ssize_t, recv, (int, void*, size_t, int))
 IMP(ssize_t, send, (int, const void*, size_t, int))
 IMP(ssize_t, sendto, (int, const void*, size_t, int, const struct sockaddr*, socklen_t))
 IMP(ssize_t, recvfrom, (int, void*, size_t, int, struct sockaddr*, socklen_t*))
- 
-//#endif /* _WINSOCKAPI_ */
 
+
+#undef IMP
 
 #endif	// #ifndef WSOCK_H__

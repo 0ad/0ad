@@ -128,10 +128,10 @@ void CTerrain::CalcNormal(u32 i,u32 j,CVector3D& normal)
 ///////////////////////////////////////////////////////////////////////////////
 // GetPatch: return the patch at (x,z) in patch space, or null if the patch is 
 // out of bounds
-CPatch* CTerrain::GetPatch(int32 x,int32 z)
+CPatch* CTerrain::GetPatch(int32_t x,int32_t z)
 {
-	if (x<0 || x>=int32(m_MapSizePatches)) return 0;	
-	if (z<0 || z>=int32(m_MapSizePatches)) return 0;
+	if (x<0 || x>=int32_t(m_MapSizePatches)) return 0;	
+	if (z<0 || z>=int32_t(m_MapSizePatches)) return 0;
 	return &m_Patches[(z*m_MapSizePatches)+x]; 
 }
 
@@ -139,10 +139,10 @@ CPatch* CTerrain::GetPatch(int32 x,int32 z)
 ///////////////////////////////////////////////////////////////////////////////
 // GetPatch: return the tile at (x,z) in tile space, or null if the tile is out 
 // of bounds
-CMiniPatch* CTerrain::GetTile(int32 x,int32 z)
+CMiniPatch* CTerrain::GetTile(int32_t x,int32_t z)
 {
-	if (x<0 || x>=int32(m_MapSize)-1) return 0;	
-	if (z<0 || z>=int32(m_MapSize)-1) return 0;
+	if (x<0 || x>=int32_t(m_MapSize)-1) return 0;	
+	if (z<0 || z>=int32_t(m_MapSize)-1) return 0;
 
 	CPatch* patch=GetPatch(x/16,z/16);
 	return &patch->m_MiniPatches[z%16][x%16];

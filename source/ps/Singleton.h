@@ -20,7 +20,7 @@
 #define _TEMPLATE_SINGLETON
 
 #include <assert.h>
-#include "types.h"	// uintptr_t - not otherwise defined by VC6
+#include "lib.h"
 
 
 template<typename T>

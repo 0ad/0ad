@@ -51,10 +51,10 @@ public:
 
 	// get patch at given coordinates, expressed in patch-space; return 0 if
 	// coordinates represent patch off the edge of the map
-	CPatch* GetPatch(int32 x,int32 z); 
+	CPatch* GetPatch(int32_t x,int32_t z); 
 	// get tile at given coordinates, expressed in tile-space; return 0 if
 	// coordinates represent tile off the edge of the map
-	CMiniPatch* GetTile(int32 x,int32 z);
+	CMiniPatch* GetTile(int32_t x,int32_t z);
 
 	// calculate the position of a given vertex
 	void CalcPosition(u32 i,u32 j,CVector3D& pos);

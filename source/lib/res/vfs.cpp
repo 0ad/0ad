@@ -20,11 +20,7 @@
 #include "precompiled.h"
 
 #include "lib.h"
-#include "file.h"
-#include "zip.h"
-#include "misc.h"
-#include "vfs.h"
-#include "mem.h"
+#include "res.h"
 #include "adts.h"
 
 
@@ -183,10 +179,10 @@ ok:
 // this allows multiple search paths without having to check each one
 // when opening a file (slow).
 //
-// one Loc is allocated for each archive or directory mounted.
-// therefore, files only /point/ to a (possibly shared) Loc.
+// one FileLoc is allocated for each archive or directory mounted.
+// therefore, files only /point/ to a (possibly shared) FileLoc.
 // if a file's location changes (e.g. after mounting a higher-priority
-// directory), the VFS entry will point to the new Loc; the priority
+// directory), the VFS entry will point to the new FileLoc; the priority
 // of both locations is unchanged.
 //
 // allocate via mnt_create, passing the location. do not free!
@@ -197,122 +193,130 @@ ok:
 
 
 // not many instances => don't worry about struct size / alignment.
-struct Loc
+struct FileLoc
 {
 	Handle archive;
-
 	std::string dir;
-
 	uint pri;
 
-	Loc() {}
-	Loc(Handle _archive, const char* _dir, uint _pri)
+	FileLoc() {}
+	FileLoc(Handle _archive, const char* _dir, uint _pri)
 		: archive(_archive), dir(_dir), pri(_pri) {}
 };
 
 
-struct TreeDir;
+// rationale for separate file / subdir containers:
+// problems:
+// - more code for insertion (oh well);
+// - makes ordered output of all dirents difficult
+//   (but dirs and files are usually displayed separately)
+// advantages:
+// - simplifies lookup code: it can just check if a path is there,
+//   no need to check if the entry is actually a directory
+// - storing Dir objects directly in the map means less
+//   memory allocations / no need to free them.
+//
+// *_add guard against a subdir and file of the same name.
 
-typedef std::map<std::string, TreeDir*> SubDirs;
+typedef std::map<const std::string, FileLoc*> Files;
+typedef Files::iterator FileIt;
+	// notes:
+	// - FileLoc is allocated and owned by caller (the mount code)
+	// - priority is accessed by following the FileLoc pointer.
+	//   keeping a copy in the map would lead to better cache coherency,
+	//   but it's a bit more clumsy (map filename to struct {pri, FileLoc*}).
+	//   revisit if file lookup open is too slow (unlikely).
+
+struct Dir;
+typedef std::pair<const std::string, Dir> SubDir;
+typedef std::map<const std::string, Dir> SubDirs;
 typedef SubDirs::iterator SubDirIt;
 
-typedef std::map<std::string, const Loc*> Files;
-typedef Files::iterator FileIt;
-	// note: priority is accessed by following the Loc pointer.
-	// keeping a copy in the map would lead to better cache coherency,
-	// but it's a bit more clumsy (map filename to struct {pri, Loc*}).
-	// revisit if file lookup open is too slow (unlikely).
-
-struct TreeDir
+struct Dir
 {
-	std::string v_name;
+	int file_add(const char* name, const FileLoc* loc);
+	FileLoc* file_find(const char* name);
 
-	void* watch;
+	int subdir_add(const char* name);
+	Dir* subdir_find(const char* name);
 
+	void clearR();
 
-	int file_add(const char* const fn, const uint pri, const Loc* const loc)
-	{
-		std::string _fn(fn);
-
-		typedef std::pair<std::string, const Loc*> Ent;
-		Ent ent = std::make_pair(_fn, loc);
-		std::pair<FileIt, bool> ret;
-		ret = files.insert(ent);
-		// file already in dir
-		if(!ret.second)
-		{
-			FileIt it = ret.first;
-			const Loc*& old_loc = it->second;
-
-			// new Loc is of higher priority; replace pointer
-			if(old_loc->pri <= loc->pri)
-			{
-				old_loc = loc;
-				return 0;
-			}
-			// new Loc is of lower priority; keep old pointer
-			else
-				return 1;
-		}
-
-		return 0;
-	}
-
-	const Loc* file_find(const char* fn)
-	{
-		std::string _fn(fn);
-		FileIt it = files.find(_fn);
-		if(it == files.end())
-			return 0;
-		return it->second;
-	}
-
-	TreeDir* subdir_add(const char* name)
-	{
-		TreeDir* vdir = new TreeDir;
-		const std::string _name(name);
-		vdir->v_name = _name;
-
-		std::pair<std::string, TreeDir*> item = std::make_pair(_name, vdir);
-		std::pair<SubDirIt, bool> res;
-		res = subdirs.insert(item);
-		// already in container
-		if(!res.second)
-			debug_warn("already in subdir");
-
-		SubDirIt it = res.first;
-		return it->second;
-	}
-
-	TreeDir* subdir_find(const char* name)
-	{
-		const std::string _name(name);
-		SubDirIt it = subdirs.find(_name);
-		if(it == subdirs.end())
-			return 0;
-		return it->second;
-	}
-
-	void subdir_clear()
-	{
-		for(SubDirIt it = subdirs.begin(); it != subdirs.end(); ++it)
-			delete(it->second);
-		subdirs.clear();
-	}
-
-	friend void tree_clearR(TreeDir*);
-
-	SubDirs subdirs;	// can't make private; needed for iterator
+	SubDirs subdirs;
 	Files files;
-
-
-private:;
-
-
 };
 
 
-static TreeDir vfs_root;
+int Dir::subdir_add(const char* const fn)
+{
+	if(file_find(fn) || subdir_find(fn))
+	{
+		debug_warn("dir_add: file or subdirectory of same name already exists");
+		return -1;
+	}
+
+	subdirs[fn];
+		// side effect: maps <fn> to a newly constructed Dir()
+		// non-const => cannot be optimized away.
+	return 0;
+}
+
+
+Dir* Dir::subdir_find(const char* const fn)
+{
+	SubDirIt it = subdirs.find(fn);
+	if(it == subdirs.end())
+		return 0;
+	return &it->second;
+}
+
+
+int Dir::file_add(const char* const fn, const FileLoc* const loc)
+{
+	if(subdir_find(fn))
+	{
+		debug_warn("dir_add: file of same name already exists");
+		return -1;
+	}
+
+	// default pointer ctor sets it to 0 =>
+	// if fn wasn't already in the container, old_loc is 0.
+	const FileLoc*& old_loc = files[fn];
+	// old loc exists and is higher priority - keep it.
+	if(old_loc && old_loc->pri > loc->pri)
+		return 1;
+
+	old_loc = loc;
+	return 0;
+}
+
+
+FileLoc* Dir::file_find(const char* const fn)
+{
+	FileIt it = files.find(fn);
+	if(it == files.end())
+		return 0;
+	return it->second;
+}
+
+
+void Dir::clearR()
+{
+	SubDirIt it;
+	for(it = subdirs.begin(); it != subdirs.end(); ++it)
+	{
+		Dir& subdir = it->second;
+		subdir.clearR();
+	}
+
+	subdirs.clear();
+	files.clear();
+}
+
+
+
+
+static Dir vfs_root;
 
 
 enum LookupFlags
@@ -324,7 +328,7 @@ enum LookupFlags
 
 // starts in VFS root directory (path = "").
 // path doesn't need to, and shouldn't, start with '/'.
-static int tree_lookup(const char* path, const Loc** const loc = 0, TreeDir** const dir = 0, LookupFlags flags = LF_DEFAULT)
+static int tree_lookup(const char* path, const FileLoc** const loc = 0, Dir** const dir = 0, LookupFlags flags = LF_DEFAULT)
 {
 	CHECK_PATH(path);
 
@@ -337,76 +341,62 @@ static int tree_lookup(const char* path, const Loc** const loc = 0, TreeDir** co
 
 	const bool create_missing_components = flags & LF_CREATE_MISSING_COMPONENTS;
 
-	TreeDir* cur_dir = &vfs_root;
+	Dir* cur_dir = &vfs_root;
 
+	// for each path component:
 	for(;;)
 	{
 		char* slash = strchr(cur_component, '/');
-		// we have followed all path components.
-		// cur_component is the filename or ""
+		// done, cur_component is the filename or "" if <path> is a directory
 		if(!slash)
-		{
-			// caller wants pointer to file location returned
-			if(loc)
-			{
-				const char* fn = cur_component;
-				*loc = cur_dir->file_find(fn);
+			break;
+		*slash = 0;	// 0-terminate cur_component
+		const char* subdir_name = cur_component;
 
-				// user wanted its loc, but it's not found - fail
-				if(!*loc)
-					return ERR_FILE_NOT_FOUND;
-			}
-			// caller wants pointer to this dir returned
-			if(dir)
-				*dir = cur_dir;
-			return 0;
-		}
-		// cur_component is a subdirectory name; change to it
-		else
-		{
-			const char* subdir_name = cur_component;
-			*slash = 0;
+		// create <subdir_name>
+		// (note: no-op if it already exists
+		if(create_missing_components)
+			cur_dir->subdir_add(subdir_name);
 
-			TreeDir* subdir = cur_dir->subdir_find(subdir_name);
-			if(!subdir)
-			{
-				if(create_missing_components)
-					subdir = cur_dir->subdir_add(subdir_name);
-				else
-					return ERR_PATH_NOT_FOUND;
-			}
+		// switch to <subdir_name>
+		Dir* subdir = cur_dir->subdir_find(subdir_name);
+		if(!subdir)
+			return ERR_PATH_NOT_FOUND;
 
-			cur_dir = subdir;
-			cur_component = slash+1;
-		}
+		// next component
+		cur_dir = subdir;
+		cur_component = slash+1;
 	}
-}
 
+	// we have followed all path components.
 
-static void tree_clearR(TreeDir* const dir)
-{
-	SubDirIt it;
-	for(it = dir->subdirs.begin(); it != dir->subdirs.end(); ++it)
+	// caller wants pointer to file location returned
+	if(loc)
 	{
-		TreeDir* subdir = it->second;
-		tree_clearR(subdir);
+		*loc = cur_dir->file_find(cur_component);
+		// .. but the file doesn't exist
+		if(!*loc)
+			return ERR_FILE_NOT_FOUND;
 	}
-
-	dir->files.clear();
-	dir->subdir_clear();
+	// caller wants pointer to this dir returned
+	if(dir)
+		*dir = cur_dir;
+	return 0;
 }
 
 
 static inline void tree_clear()
 {
-	tree_clearR(&vfs_root);
+	vfs_root.clearR();
 }
+
+
 
 
 struct FileCBParams
 {
-	TreeDir* dir;
-	const Loc* loc;
+	Dir* const dir;
+	const FileLoc* loc;
 };
 
 // called for each OS dir ent.
@@ -423,58 +413,58 @@ struct FileCBParams
 static int add_dirent_cb(const char* const fn, const uint flags, const ssize_t size, const uintptr_t user)
 {
 	const FileCBParams* const params = (FileCBParams*)user;
-	TreeDir* const cur_dir      = params->dir;
-	const Loc* const cur_loc = params->loc;
+	Dir* const cur_dir = params->dir;
+	const FileLoc* const cur_loc = params->loc;
+
+	int err;
 
 	// directory
 	if(flags & LOC_DIR)
-		cur_dir->subdir_add(fn);
+		err = cur_dir->subdir_add(fn);
 	// file
 	else
-		CHECK_ERR(cur_dir->file_add(fn, cur_loc->pri, cur_loc));
+		err = cur_dir->file_add(fn, cur_loc);
 
+	if(err < 0)
+		return -EEXIST;
 	return 0;
 }
 
 
-static int tree_add_dirR(TreeDir* const vdir, const char* const f_path, const Loc* const loc)
+static int tree_add_dirR(Dir* const dir, const char* const f_path, const FileLoc* const loc)
 {
 	CHECK_PATH(f_path);
 
-	// add watch
-	if(!vdir->watch)
-		vdir->watch = 0;
-
 	// add files and subdirs to vdir
-	const FileCBParams params = { vdir, loc };
+	const FileCBParams params = { dir, loc };
 	file_enum(f_path, add_dirent_cb, (uintptr_t)&params);
 
-	for(SubDirIt it = vdir->subdirs.begin(); it != vdir->subdirs.end(); ++it)
+	for(SubDirIt it = dir->subdirs.begin(); it != dir->subdirs.end(); ++it)
 	{
-		TreeDir* const vsubdir = it->second;
+		Dir* const subdir = &it->second;
+		const char* const subdir_name_c = (it->first).c_str();
 
 		char f_subdir_path[VFS_MAX_PATH];
-		const char* const v_subdir_name_c = vsubdir->v_name.c_str();
-		CHECK_ERR(path_append(f_subdir_path, f_path, v_subdir_name_c));
+		CHECK_ERR(path_append(f_subdir_path, f_path, subdir_name_c));
 
-		tree_add_dirR(vsubdir, f_subdir_path, loc);
+		tree_add_dirR(subdir, f_subdir_path, loc);
 	}
 
 	return 0;
 }
 
 
-static int tree_add_loc(TreeDir* const vdir, const Loc* const loc)
+static int tree_add_loc(Dir* const dir, const FileLoc* const loc)
 {
 	if(loc->archive > 0)
 	{
-		FileCBParams params = { vdir, loc };
+		FileCBParams params = { dir, loc };
 		return zip_enum(loc->archive, add_dirent_cb, (uintptr_t)&params);
 	}
 	else
 	{
 		const char* f_path_c = loc->dir.c_str();
-		return tree_add_dirR(vdir, f_path_c, loc);
+		return tree_add_dirR(dir, f_path_c, loc);
 	}
 }
 
@@ -489,7 +479,7 @@ static int tree_add_loc(TreeDir* const vdir, const Loc* const loc)
 // container must not invalidate iterators after insertion!
 // (we keep and pass around pointers to Mount.archive_locs elements)
 // see below.
-typedef std::list<Loc> Locs;
+typedef std::list<FileLoc> Locs;
 typedef Locs::iterator LocIt;
 
 
@@ -505,14 +495,14 @@ struct Mount
 	uint pri;
 
 	// storage for all Locs ensuing from this mounting.
-	// the VFS tree only holds pointers to Loc, which is why the
+	// the VFS tree only holds pointers to FileLoc, which is why the
 	// Locs container must not invalidate its contents after adding,
 	// and also why the VFS tree must be rebuilt after unmounting something.
-	Loc dir_loc;
+	FileLoc dir_loc;
 	Locs archive_locs;
-		// if not is_single_archive, contains one Loc for every archive
+		// if not is_single_archive, contains one FileLoc for every archive
 		// in the directory (but not its children - see remount()).
-		// otherwise, contains exactly one Loc for the single archive.
+		// otherwise, contains exactly one FileLoc for the single archive.
 
 	// is f_name an archive filename? if not, it's a directory.
 	bool is_single_archive;
@@ -546,7 +536,7 @@ struct ArchiveCBParams
 	// because Locs are created const.
 	uint pri;
 
-	// will add one Loc to this container for
+	// will add one FileLoc to this container for
 	// every archive successfully opened.
 	Locs* archive_locs;
 };
@@ -573,7 +563,7 @@ static int archive_cb(const char* const fn, const uint flags, const ssize_t size
 	// just try to open the file.
 	const Handle archive = zip_archive_open(f_path);
 	if(archive > 0)
-		archive_locs->push_back(Loc(archive, "", pri));
+		archive_locs->push_back(FileLoc(archive, "", pri));
 
 	// only add archive to list; don't add its files into the VFS yet,
 	// to simplify debugging (we see which files are in which archive)
@@ -592,11 +582,11 @@ static int remount(Mount& m)
 	const char* const v_path = m.v_path.c_str();
 	const char* const f_name = m.f_name.c_str();
 	const uint pri           = m.pri;
-	Loc& dir_loc             = m.dir_loc;
+	FileLoc& dir_loc         = m.dir_loc;
 	Locs& archive_locs       = m.archive_locs;
 
-	TreeDir* vdir;
-	CHECK_ERR(tree_lookup(v_path, 0, &vdir, LF_CREATE_MISSING_COMPONENTS));
+	Dir* dir;
+	CHECK_ERR(tree_lookup(v_path, 0, &dir, LF_CREATE_MISSING_COMPONENTS));
 
 	// check if target is a single Zip archive
 	// order doesn't matter; can't have both an archive and dir
@@ -604,9 +594,9 @@ static int remount(Mount& m)
 	if(archive > 0)
 	{
 		m.is_single_archive = true;
-		archive_locs.push_back(Loc(archive, "", pri));
-		const Loc* loc = &archive_locs.front();
-		return tree_add_loc(vdir, loc);
+		archive_locs.push_back(FileLoc(archive, "", pri));
+		const FileLoc* loc = &archive_locs.front();
+		return tree_add_loc(dir, loc);
 	}
 
 	// enumerate all archives
@@ -615,13 +605,13 @@ static int remount(Mount& m)
 
 	for(LocIt it = archive_locs.begin(); it != archive_locs.end(); ++it)
 	{
-		const Loc* const loc = &*it;
-		tree_add_loc(vdir, loc);
+		const FileLoc* const loc = &*it;
+		tree_add_loc(dir, loc);
 	}
 
 
 	dir_loc.dir = f_name;
-	err = tree_add_loc(vdir, &dir_loc);
+	err = tree_add_loc(dir, &dir_loc);
 	if(err < 0)
 		err = err;
 
@@ -633,7 +623,7 @@ static int unmount(Mount& m)
 {
 	for(LocIt it = m.archive_locs.begin(); it != m.archive_locs.end(); ++it)
 	{
-		Loc& loc = *it;
+		FileLoc& loc = *it;
 		zip_archive_close(loc.archive);
 	}
 
@@ -649,7 +639,7 @@ static inline void remount_all()
 	{ std::for_each(mounts.begin(), mounts.end(), remount); }
 
 
-static void cleanup(void)
+void vfs_shutdown(void)
 {
 	tree_clear();
 	unmount_all();
@@ -658,7 +648,7 @@ static void cleanup(void)
 
 int vfs_mount(const char* const vfs_mount_point, const char* const name, const uint pri)
 {
-	ONCE(atexit2(cleanup));
+	ONCE(atexit2(vfs_shutdown));
 
 	// make sure it's not already mounted, i.e. in mounts
 	for(MountIt it = mounts.begin(); it != mounts.end(); ++it)
@@ -715,22 +705,14 @@ int vfs_unmount(const char* name)
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-//
+// directory
 //
 ///////////////////////////////////////////////////////////////////////////////
-
-// OLD
-// rationale for n-archives per PATH entry:
-// We need to be able to unmount specific paths (e.g. when switching mods).
-// Don't want to remount everything (slow), or specify a mod tag when mounting
-// (not this module's job). Instead, we include all archives in one path entry;
-// the game keeps track of what path(s) it mounted for a mod,
-// and unmounts those when needed.
 
 
 int vfs_realpath(const char* fn, char* full_path)
 {
-	const Loc* loc;
+	const FileLoc* loc;
 	CHECK_ERR(tree_lookup(fn, &loc));
 
 	if(loc->archive > 0)
@@ -751,7 +733,7 @@ int vfs_realpath(const char* fn, char* full_path)
 
 int vfs_stat(const char* fn, struct stat* s)
 {
-	const Loc* loc;
+	const FileLoc* loc;
 	CHECK_ERR(tree_lookup(fn, &loc));
 
 	if(loc->archive > 0)
@@ -766,13 +748,15 @@ int vfs_stat(const char* fn, struct stat* s)
 
 struct VDir
 {
-	TreeDir* dir;
-	FileIt it;
+	// we need to cache the complete contents of the directory:
+	// 
+	SubDirs* subdirs;
+	SubDirIt subdir_it;
+	Files* files;
+	FileIt file_it;
 };
 
 H_TYPE_DEFINE(VDir);
-
-
 
 static void VDir_init(VDir* vd, va_list args)
 {
@@ -780,18 +764,21 @@ static void VDir_init(VDir* vd, va_list args)
 
 static void VDir_dtor(VDir* vd)
 {
-	// remove reference to TreeDir, unlock it for further use
+	delete vd->subdirs;
+	delete vd->files;
 }
 
 static int VDir_reload(VDir* vd, const char* path)
 {
 	// check if actually reloaded, and why it happened?
-	// hmm, if TreeDir changes while handle is open, we are screwed.
-	// need a lock.
 
-	CHECK_ERR(tree_lookup(path, 0, &vd->dir));
+	Dir* dir;
+	CHECK_ERR(tree_lookup(path, 0, &dir));
 
-	vd->it = vd->dir->files.begin();
+	vd->subdirs = new SubDirs(dir->subdirs);
+	vd->subdir_it = vd->subdirs->begin();
+	vd->files = new Files(dir->files);
+	vd->file_it = vd->files->begin();
 	return 0;
 }
 
@@ -801,35 +788,75 @@ Handle vfs_open_dir(const char* const path)
 	return h_alloc(H_VDir, path, 0);
 }
 
+
 int vfs_close_dir(Handle& hd)
 {
 	return h_free(hd, H_VDir);
 }
 
+
+// filter:
+// 0: any file
+// ".": file without extension (filename doesn't contain '.')
+// ".ext": file with extension <ext> (which must not contain '.')
+// "/": subdirectory
 int vfs_next_dirent(const Handle hd, vfsDirEnt* ent, const char* const filter)
 {
-	// make sure filter is valid
-	// interpret filter, decide if they want files or subdirs
+	H_DEREF(hd, VDir, vd);
 
-	// until no more entries, or one matches filter
+	// interpret filter
+	bool filter_dir = false;
+	bool filter_no_ext = false;
+	if(filter)
+	{
+		if(filter[0] == '/')
+		{
+			if(filter[1] != '\0')
+				goto invalid_filter;
+			filter_dir = true;
+		}
+		else if(filter[0] == '.')
+		{
+			if(strchr(filter+1, '.'))
+				goto invalid_filter;
+			filter_no_ext = filter[1] == '\0';
+		}
+		else
+			goto invalid_filter;
+	}
+
+	const char* fn;
+
+	// caller wants a subdirectory; return the next one.
+	if(filter_dir)
+	{
+		if(vd->subdir_it == vd->subdirs->end())
+			return -1;
+		fn = vd->subdir_it->first.c_str();
+		++vd->subdir_it;
+		goto have_match;
+	}
+
+	// caller wants a file; loop until one matches or end of list.
 	for(;;)
 	{
-		H_DEREF(hd, VDir, vd);
-		if(vd->it == vd->dir->files.end())
-			return 1;
+		if(vd->file_it == vd->files->end())
+			return -1;
+		fn = vd->file_it->first.c_str();
+		++vd->file_it;
 
-		const std::string& fn_s = vd->it->first;
-		const char* const fn = fn_s.c_str();
-
-		if(filter)
-		{
-			char* ext = strrchr(fn, '.');
-			if(!ext || strcmp(ext, filter) != 0)
-				continue;
-		}
-
-		// found matching entry
+		char* const ext = strrchr(fn, '.');
+		if(!filter || (filter_no_ext && !ext) || strcmp(ext, filter) == 0)
+			goto have_match;
 	}
+
+have_match:
+	ent->name = fn;
+	return 0;
+
+invalid_filter:
+	debug_warn("vfs_next_dirent: invalid filter");
+	return -1;
 }
 
 
@@ -927,7 +954,7 @@ static int VFile_reload(VFile* vf, const char* path)
 	int err = -1;
 
 
-	const Loc* loc;
+	const FileLoc* loc;
 	CHECK_ERR(tree_lookup(path, &loc));
 
 	if(loc->archive <= 0)

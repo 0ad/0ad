@@ -1,4 +1,4 @@
-#pragma warning(disable:4786)
+#include "precompiled.h"
 
 #include <assert.h>
 #include <set>

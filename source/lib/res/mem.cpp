@@ -3,14 +3,8 @@
 #include "precompiled.h"
 
 #include "lib.h"
-#include "types.h"
-#include "mem.h"
+#include "res.h"
 #include "h_mgr.h"
-#include "misc.h"
-
-#include <map>
-
-
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -23,7 +17,7 @@ static void heap_free(void* const p, const size_t size, const uintptr_t ctx)
 }
 
 
-static void* heap_alloc(const size_t size, const int align, uintptr_t& ctx, MEM_DTOR& dtor)
+static void* heap_alloc(const size_t size, const size_t align, uintptr_t& ctx, MEM_DTOR& dtor)
 {
 	u8* org_p = (u8*)malloc(size+align-1);
 	u8* p = (u8*)round_up((uintptr_t)org_p, align);
@@ -55,7 +49,7 @@ static void pool_free(void* const p, const size_t size, const uintptr_t ctx)
 }
 
 
-static void* pool_alloc(const size_t size, const uint align, uintptr_t& ctx, MEM_DTOR& dtor)
+static void* pool_alloc(const size_t size, const size_t align, uintptr_t& ctx, MEM_DTOR& dtor)
 {
 	if(!pool)
 	{
@@ -208,7 +202,7 @@ Handle mem_assign(void* p, size_t size, uint flags /* = 0 */, MEM_DTOR dtor /* =
 {
 	// we've already allocated that pointer - returns its handle
 	Handle hm = find_alloc(p);
-	if(hm)
+	if(hm > 0)
 		return hm;
 
 	if(!p || !size)
@@ -233,7 +227,7 @@ Handle mem_assign(void* p, size_t size, uint flags /* = 0 */, MEM_DTOR dtor /* =
 }
 
 
-void* mem_alloc(size_t size, const uint align, uint flags, Handle* phm)
+void* mem_alloc(size_t size, const size_t align, uint flags, Handle* phm)
 {
 	if(phm)
 		*phm = 0;

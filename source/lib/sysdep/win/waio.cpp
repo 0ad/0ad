@@ -22,8 +22,6 @@
 
 #include "lib.h"
 #include "win_internal.h"
-#include "misc.h"
-#include "types.h"
 
 
 #define lock() win_lock(WAIO_CS)

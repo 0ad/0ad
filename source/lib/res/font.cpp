@@ -21,13 +21,8 @@
 #include "precompiled.h"
 
 #include "lib.h"
-#include "mem.h"
-#include "font.h"
-#include "h_mgr.h"
-#include "vfs.h"
-#include "tex.h"
+#include "res.h"
 #include "ogl.h"
-#include "misc.h"
 
 /*
 
@@ -108,7 +103,7 @@ int build_font(const char* in_ttf, const char* out_fnt, const char* out_raw, int
 
 struct Font
 {
-	Handle ht;
+	Handle ht;		// handle to font texture
 	uint list_base;
 };
 

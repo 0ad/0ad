@@ -19,7 +19,6 @@
 #include "precompiled.h"
 
 #include "lib.h"
-#include "misc.h"
 #include "h_mgr.h"
 #include "mem.h"
 
@@ -235,7 +234,7 @@ static HDATA* h_data(const Handle h, const H_Type type)
 
 
 
-static void cleanup(void)
+void h_mgr_shutdown(void)
 {
 	// close open handles
 	for(i32 i = 0; i < last_in_use; i++)
@@ -372,7 +371,7 @@ int h_free(Handle& h, H_Type type)
 // any further params are passed to type's init routine
 Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 {
-	ONCE(atexit2(cleanup));
+	ONCE(atexit2(h_mgr_shutdown));
 
 	Handle err;
 

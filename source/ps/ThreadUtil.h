@@ -66,8 +66,8 @@ CLocker usage 2:
 //  Includes / Compiler directives
 //--------------------------------------------------------
 
-#include "posix.h"
-#include "misc.h"
+#include "lib.h"
+
 #ifdef DEBUG_LOCKS
 
 #define LOCK_MUTEX(_mutex) STMT( \

@@ -19,7 +19,7 @@
 #ifndef __DETECT_H__
 #define __DETECT_H__
 
-#include "misc.h"
+#include "lib.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -28,7 +28,7 @@ extern "C" {
 
 // useful for choosing a video mode. not called by detect().
 // if we fail, outputs are unchanged (assumed initialized to defaults)
-extern int get_cur_resolution(int& xres, int& yres);
+extern int get_cur_vmode(int* xres, int* yres, int* bpp, int* freq);
 
 // useful for determining aspect ratio. not called by detect().
 // if we fail, outputs are unchanged (assumed initialized to defaults)

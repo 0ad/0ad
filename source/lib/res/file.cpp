@@ -753,7 +753,7 @@ struct Free
 };
 
 // free all allocated IOs, so they aren't seen as resource leaks.
-static void io_cleanup(void)
+static void io_shutdown(void)
 {
 	std::for_each(all_ios.begin(), all_ios.end(), Free());
 }
@@ -761,7 +761,7 @@ static void io_cleanup(void)
 
 static Handle io_alloc()
 {
-	ONCE(atexit(io_cleanup));
+	ONCE(atexit(io_shutdown));
 /*
 	// grab from freelist
 	if(!free_ios.empty())

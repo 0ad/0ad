@@ -228,7 +228,7 @@ public:
 	 * Set Width
 	 * @param width Width
 	 */
-	void SetWidth(const int16 &width) { m_Width = width; }
+	void SetWidth(const int16_t &width) { m_Width = width; }
 	
 	/**
 	 * Set X Position
