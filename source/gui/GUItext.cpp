@@ -141,7 +141,18 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 					TextCall.m_Size = size;
 					SpriteCall.m_Area = size;
 
-					// TODO Gee: (2004-08-16) Eventually shouldn't be hardcoded
+					// Now displace the sprite if the additional value in the tag
+					//  exists
+					if (itTextChunk->m_Tags[0].m_TagAdditionalValue != string())
+					{
+						CSize displacement;
+						// Parse the value
+						if (!GUI<CSize>::ParseString(itTextChunk->m_Tags[0].m_TagAdditionalValue, displacement))
+							LOG(ERROR, LOG_CATEGORY, "Error parsing 'displace' value for tag [ICON]");
+						else
+							SpriteCall.m_Area += displacement;
+					}
+
 					SpriteCall.m_TextureName = icon.m_TextureName;
 
 					// Add sprite call
@@ -288,7 +299,8 @@ void CGUIString::SetValue(const CStrW& str)
 	// Setup parser
 	// TODO Gee: (2004-08-16) Create and store this parser object somewhere to save loading time.
 	CParser Parser;
-	Parser.InputTaskType("start", "$ident[_=_$value]");
+	// I've added the option of an additional parameter. Only used for icons when writing this.
+	Parser.InputTaskType("start", "$ident[_=_$value_[$ident_=_$value_]]");
 	Parser.InputTaskType("end", "/$ident");
 
 	long position = 0;
@@ -354,7 +366,7 @@ void CGUIString::SetValue(const CStrW& str)
 				{
 					if (Line.m_TaskTypeName == "start")
 					{
-						// The tag
+                        // The tag
 						TextChunk::Tag tag;
 						std::string Str_TagType;
 
@@ -367,8 +379,25 @@ void CGUIString::SetValue(const CStrW& str)
 						else
 						{
 							// Check for possible value-strings
-							if (Line.GetArgCount() == 2)
+							if (Line.GetArgCount() >= 2)
 								Line.GetArgString(1, tag.m_TagValue);
+
+							// Check if an additional parameter was specified
+							if (Line.GetArgCount() == 4)
+							{
+								string str;
+								Line.GetArgString(2, str);
+
+								if (tag.m_TagType == TextChunk::Tag::TAG_ICON && 
+									str == "displace")
+								{
+									Line.GetArgString(3, tag.m_TagAdditionalValue);
+								}
+								else
+								{
+									LOG(WARNING, LOG_CATEGORY, "Trying to declare an additional attribute ('%s') in a [%s]-tag, which the tag isn't accepting", str.c_str(), Str_TagType.c_str());
+								}
+							}
 
 							// Finalize last
 							if (curpos != from_nonraw)

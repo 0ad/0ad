@@ -202,6 +202,11 @@ public:
 			 * m_TagValue is 'Hello'
 			 */
 			std::string m_TagValue;
+
+			/**
+			 * Some tags need an additional value
+			 */
+			std::string m_TagAdditionalValue;
 		};
 
 		/**

@@ -20,6 +20,7 @@ gee@pyro.nu
 #include "CText.h"
 #include "CCheckBox.h"
 #include "CRadioButton.h"
+#include "CProgressBar.h"
 #include "MiniMap.h"
 
 #include "ps/Xeromyces.h"
@@ -264,6 +265,7 @@ void CGUI::Initialize()
 	AddObjectType("text",			&CText::ConstructObject);
 	AddObjectType("checkbox",		&CCheckBox::ConstructObject);
 	AddObjectType("radiobutton",	&CRadioButton::ConstructObject);
+	AddObjectType("progressbar",	&CProgressBar::ConstructObject);
     AddObjectType("minimap",        &CMiniMap::ConstructObject);
 }
 
@@ -997,7 +999,6 @@ void CGUI::LoadXMLFile(const string &Filename)
 
 	try
 	{
-
 		if (root_name == "objects")
 		{
 			Xeromyces_ReadRootObjects(node, &XeroFile);
