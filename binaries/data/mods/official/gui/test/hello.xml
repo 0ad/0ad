@@ -13,11 +13,10 @@
   <script file="gui/test/basefunctions.js"><![CDATA[
     writeConsole("GUI file loading");
 
-    function MakeDude(x, y, z) {
+    function MakeUnit(x, y, z, MakeUnitName) {
       DudeSpawnPoint = new Vector3D(x, y, z);
-      new Entity(getEntityTemplate("Prometheus Dude"), DudeSpawnPoint, 1.0);
-      writeConsole("Dude created at " + DudeSpawnPoint);
-      writeConsole("Made MakeDude " + MakeDude);
+      new Entity(getEntityTemplate(MakeUnitName), DudeSpawnPoint, 1.0);
+      writeConsole(MakeUnitName + " created at " + DudeSpawnPoint);
     }
 
     function selected()
@@ -159,7 +158,7 @@
       rand_y = Math.round(Math.random()*100);
       rand_z = Math.round(Math.random()*100);
 
-      MakeDude(rand_x, rand_y, rand_z);
+      MakeUnit(rand_x, rand_y, rand_z, "Prometheus Dude");
     ]]></action>
   </object>
 
@@ -250,8 +249,8 @@
   
         <object type="text" name="session_panel_bg_left" sprite="session_panel_bg_left" size="0 100%-161 258 100%" z="50" hidden="false" />
         
-        <object type="text" name="session_panel_minimap_bg" sprite="session_panel_minimap_bg" size="0%-14 100%-235 242 100%+16" z="60" hidden="false" />
-        <object type="text" name="session_panel_minimap_dummy" sprite="session_panel_minimap_dummy" size="0%-14 100%-235 242 100%+16" z="60" hidden="false" />
+        <object type="text" name="session_panel_minimap_bg" sprite="session_panel_minimap_bg" size="0%-41 100%-217 1 1" z="60" hidden="false" />
+        <object type="text" name="session_panel_minimap_dummy" sprite="session_panel_minimap_dummy" size="0%-41 100%-217 1 1" z="60" hidden="false" />
 
         <object type="text" name="session_panel_bg_middle" sprite="session_panel_bg_middle" size="50%-257 100%-161 50%+274 100%" z="50" hidden="false">
                 <action on="Tick"><![CDATA[
@@ -271,9 +270,14 @@
         
         <object type="button" name="session_panel_tabs_command_activebg" sprite="session_panel_tabs_activetabbg"
                 size="100%-235 100%-152 100%-195 100%-112" z="62" hidden="false">
-                <object type="button" name="normal_mode_button" sprite="portrait_unit_dude_sml" sprite-over="portrait_unit_dude_sml_over" size="100%-190 100%-143 100%-158 100%-111" z="64" hidden="false">
+                <object type="button" name="normal_mode_button_dude" sprite="portrait_unit_dude_sml" sprite-over="portrait_unit_dude_sml_over" size="100%-190 100%-143 100%-158 100%-111" z="64" hidden="false">
                         <action on="Press"><![CDATA[
-                                MakeDude(15,0,15);
+                                MakeUnit(15,0,15,"Prometheus Dude");
+                        ]]></action>
+                </object>
+                <object type="button" name="normal_mode_button_dudette" sprite="portrait_unit_dudette_sml" sprite-over="portrait_unit_dudette_sml_over" size="100%-150 100%-143 100%-117 100%-111" z="64" hidden="false">
+                        <action on="Press"><![CDATA[
+                                MakeUnit(15,0,15,"Prometheus Dudette");
                         ]]></action>
                 </object>
         </object>
