@@ -23,7 +23,7 @@ public:
 		m_pGame(pGame),
 		m_Terrain(),
 		m_UnitManager(g_UnitMan),
-		m_EntityManager(*new CEntityManager())
+		m_EntityManager(*(new CEntityManager()))
 	{}
 
 	~CWorld();
