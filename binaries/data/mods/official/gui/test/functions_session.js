@@ -6,6 +6,7 @@ function initSession()
 	initStatusOrb();
 	initMapOrb();
 	initTeamTray();
+	initSubWindows();
 }
 
 // ====================================================================

@@ -1375,6 +1375,9 @@
 					crd_map_orb_segleft4_x, crd_map_orb_segleft4_y, crd_map_orb_segleft4_x+crd_map_orb_segleft4_width, crd_map_orb_segleft4_y+crd_map_orb_segleft4_height, right_screen, top_screen, right_screen, top_screen,
 					crd_map_orb_segleft4_x, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_segleft4_y, crd_map_orb_segleft4_x+crd_map_orb_segleft4_width, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_segleft4_y+crd_map_orb_segleft4_height, right_screen, bottom_screen, right_screen, bottom_screen);
 				]]></action>
+				<action on="Press"><![CDATA[
+					GUIObjectToggle("session_gui_subwindow_ingame_menu");
+	       	                ]]></action>
 			</object>
 
                         <object type="button" name="session_panel_minimap_segbottom1" sprite="session_panel_minimap_segbottom1" sprite-over="session_panel_minimap_segbottom1-lit" z="60" hidden="false">
@@ -1404,9 +1407,6 @@
 					crd_map_orb_segbottom4_x, crd_map_orb_segbottom4_y, crd_map_orb_segbottom4_x+crd_map_orb_segbottom4_width, crd_map_orb_segbottom4_y+crd_map_orb_segbottom4_height, right_screen, top_screen, right_screen, top_screen,
 					crd_map_orb_segbottom4_x, -crd_map_orb_minimap_y-crd_map_orb_segbottom4_y-crd_map_orb_segbottom4_height, crd_map_orb_segbottom4_x+crd_map_orb_segbottom4_width, -crd_map_orb_minimap_y-crd_map_orb_segbottom4_y, right_screen, bottom_screen, right_screen, bottom_screen);
 				]]></action>
-				<action on="Press"><![CDATA[
-					GUIObjectToggle("session_gui_subwindow_ingame_menu");
-	       	                ]]></action>
 			</object>
 
                 <!-- / GROUP: MAP ORB -->
@@ -1496,7 +1496,7 @@
                 ==========================================
                 -->
 
-	        <object type="empty" name="session_gui_subwindows" size="0 0 100% 100%" z="1" hidden="true">
+	        <object type="empty" name="session_gui_subwindows" size="0 0 100% 100%" z="1" hidden="false">
 
 			<!--
 			==========================================
@@ -1506,24 +1506,117 @@
 		        <object type="empty" name="session_gui_subwindow_ingame_menu" size="0 0 100% 100%" z="1" hidden="true">
 	
 				<!-- Background -->
-		        	<object type="text" name="subwindow_ingame_menu_bkg" sprite="tooltip-background" size="50%-200 0%+50 50%+200 100%-50" font="prospero16" textcolor="255 255 255" z="100" hidden="false" ghost="true"/>
+		        	<object type="image" name="subwindow_ingame_menu_bkg" sprite="message_box-gen-background" z="100" hidden="false" ghost="true">
+	                                <action on="Load"><![CDATA[
+						AddSizeCoord(this.name,
+						crd_ingame_menu_bkg_x, crd_ingame_menu_bkg_y, crd_ingame_menu_bkg_x+crd_ingame_menu_bkg_width, crd_ingame_menu_bkg_y+crd_ingame_menu_bkg_height, mid_screen, mid_screen, mid_screen, mid_screen,
+						crd_ingame_menu_bkg_x, crd_ingame_menu_bkg_y, crd_ingame_menu_bkg_x+crd_ingame_menu_bkg_width, crd_ingame_menu_bkg_y+crd_ingame_menu_bkg_height, mid_screen, mid_screen, mid_screen, mid_screen);
+	                                ]]></action>
+				</object>
+
+		                <!-- top -->
+				<object type="image" name="subwindow_ingame_menu_border_corner_lt" sprite="message_box-corner" z="161" ghost="true" hidden="false">
+	                                <action on="Load"><![CDATA[
+						AddSizeCoord(this.name,
+						crd_ingame_menu_border_corner_lt_x, crd_ingame_menu_border_corner_lt_y, crd_ingame_menu_border_corner_lt_x+crd_ingame_menu_border_corner_lt_width, crd_ingame_menu_border_corner_lt_y+crd_ingame_menu_border_corner_lt_height, mid_screen, mid_screen, mid_screen, mid_screen,
+						crd_ingame_menu_border_corner_lt_x, crd_ingame_menu_border_corner_lt_y, crd_ingame_menu_border_corner_lt_x+crd_ingame_menu_border_corner_lt_width, crd_ingame_menu_border_corner_lt_y+crd_ingame_menu_border_corner_lt_height, mid_screen, mid_screen, mid_screen, mid_screen);
+	                                ]]></action>
+				</object>
+				<object type="image" name="subwindow_ingame_menu_border_top" sprite="message_box-border-top" z="161" ghost="true" hidden="false">
+	                                <action on="Load"><![CDATA[
+						AddSizeCoord(this.name,
+						crd_ingame_menu_border_top_x, crd_ingame_menu_border_top_y, crd_ingame_menu_border_top_x+crd_ingame_menu_border_top_width, crd_ingame_menu_border_top_y+crd_ingame_menu_border_top_height, mid_screen, mid_screen, mid_screen, mid_screen,
+						crd_ingame_menu_border_top_x, crd_ingame_menu_border_top_y, crd_ingame_menu_border_top_x+crd_ingame_menu_border_top_width, crd_ingame_menu_border_top_y+crd_ingame_menu_border_top_height, mid_screen, mid_screen, mid_screen, mid_screen);
+	                                ]]></action>
+				</object>
+				<object type="image" name="subwindow_ingame_menu_border_corner_rt" sprite="message_box-corner" z="161" ghost="true" hidden="false">
+	                                <action on="Load"><![CDATA[
+						AddSizeCoord(this.name,
+						crd_ingame_menu_border_corner_rt_x, crd_ingame_menu_border_corner_rt_y, crd_ingame_menu_border_corner_rt_x+crd_ingame_menu_border_corner_rt_width, crd_ingame_menu_border_corner_rt_y+crd_ingame_menu_border_corner_rt_height, mid_screen, mid_screen, mid_screen, mid_screen,
+						crd_ingame_menu_border_corner_rt_x, crd_ingame_menu_border_corner_rt_y, crd_ingame_menu_border_corner_rt_x+crd_ingame_menu_border_corner_rt_width, crd_ingame_menu_border_corner_rt_y+crd_ingame_menu_border_corner_rt_height, mid_screen, mid_screen, mid_screen, mid_screen);
+	                                ]]></action>
+				</object>
+
+				<!-- left/right -->
+				<object type="image" name="subwindow_ingame_menu_border_left" sprite="message_box-border-left" z="162"  hidden="false">
+	                                <action on="Load"><![CDATA[
+						AddSizeCoord(this.name,
+						crd_ingame_menu_border_left_x, crd_ingame_menu_border_left_y, crd_ingame_menu_border_left_x+crd_ingame_menu_border_left_width, crd_ingame_menu_border_left_y+crd_ingame_menu_border_left_height, mid_screen, mid_screen, mid_screen, mid_screen,
+						crd_ingame_menu_border_left_x, crd_ingame_menu_border_left_y, crd_ingame_menu_border_left_x+crd_ingame_menu_border_left_width, crd_ingame_menu_border_left_y+crd_ingame_menu_border_left_height, mid_screen, mid_screen, mid_screen, mid_screen);
+	                                ]]></action>
+				</object>
+				<object type="image" name="subwindow_ingame_menu_border_right" sprite="message_box-border-right" z="161"  hidden="false">
+	                                <action on="Load"><![CDATA[
+						AddSizeCoord(this.name,
+						crd_ingame_menu_border_right_x, crd_ingame_menu_border_right_y, crd_ingame_menu_border_right_x+crd_ingame_menu_border_right_width, crd_ingame_menu_border_right_y+crd_ingame_menu_border_right_height, mid_screen, mid_screen, mid_screen, mid_screen,
+						crd_ingame_menu_border_right_x, crd_ingame_menu_border_right_y, crd_ingame_menu_border_right_x+crd_ingame_menu_border_right_width, crd_ingame_menu_border_right_y+crd_ingame_menu_border_right_height, mid_screen, mid_screen, mid_screen, mid_screen);
+	                                ]]></action>
+				</object>
+                        
+				<!-- bottom -->
+				<object type="image" name="subwindow_ingame_menu_border_corner_lb" sprite="message_box-corner" absolute="false" z="161" hidden="false">
+	                                <action on="Load"><![CDATA[
+						AddSizeCoord(this.name,
+						crd_ingame_menu_border_corner_lb_x, crd_ingame_menu_border_corner_lb_y, crd_ingame_menu_border_corner_lb_x+crd_ingame_menu_border_corner_lb_width, crd_ingame_menu_border_corner_lb_y+crd_ingame_menu_border_corner_lb_height, mid_screen, mid_screen, mid_screen, mid_screen,
+						crd_ingame_menu_border_corner_lb_x, crd_ingame_menu_border_corner_lb_y, crd_ingame_menu_border_corner_lb_x+crd_ingame_menu_border_corner_lb_width, crd_ingame_menu_border_corner_lb_y+crd_ingame_menu_border_corner_lb_height, mid_screen, mid_screen, mid_screen, mid_screen);
+	                                ]]></action>
+				</object>
+				<object type="image" name="subwindow_ingame_menu_border_bottom" sprite="message_box-border-bottom" absolute="false" z="162" hidden="false">
+	                                <action on="Load"><![CDATA[
+						AddSizeCoord(this.name,
+						crd_ingame_menu_border_bottom_x, crd_ingame_menu_border_bottom_y, crd_ingame_menu_border_bottom_x+crd_ingame_menu_border_bottom_width, crd_ingame_menu_border_bottom_y+crd_ingame_menu_border_bottom_height, mid_screen, mid_screen, mid_screen, mid_screen,
+						crd_ingame_menu_border_bottom_x, crd_ingame_menu_border_bottom_y, crd_ingame_menu_border_bottom_x+crd_ingame_menu_border_bottom_width, crd_ingame_menu_border_bottom_y+crd_ingame_menu_border_bottom_height, mid_screen, mid_screen, mid_screen, mid_screen);
+	                                ]]></action>
+				</object>
+				<object type="image" name="subwindow_ingame_menu_border_corner_rb" sprite="message_box-corner" absolute="false" z="161" hidden="false">
+	                                <action on="Load"><![CDATA[
+						AddSizeCoord(this.name,
+						crd_ingame_menu_border_corner_rb_x, crd_ingame_menu_border_corner_rb_y, crd_ingame_menu_border_corner_rb_x+crd_ingame_menu_border_corner_rb_width, crd_ingame_menu_border_corner_rb_y+crd_ingame_menu_border_corner_rb_height, mid_screen, mid_screen, mid_screen, mid_screen,
+						crd_ingame_menu_border_corner_rb_x, crd_ingame_menu_border_corner_rb_y, crd_ingame_menu_border_corner_rb_x+crd_ingame_menu_border_corner_rb_width, crd_ingame_menu_border_corner_rb_y+crd_ingame_menu_border_corner_rb_height, mid_screen, mid_screen, mid_screen, mid_screen);
+	                                ]]></action>
+				</object>
 	
 				<!-- End Game button -->
-				<object type="button" name="subwindow_ingame_menu_End_Game_Button" sprite="message_box-button-normal" sprite-over="message_box-button-over" size="50%-150 100%-120 50%+150 100%-86" hotkey="endgame" text-align="center" text-valign="center" z="105" hidden="false">
+				<object type="button" name="subwindow_ingame_menu_End_Game_Button" sprite="message_box-button-normal" sprite-over="message_box-button-over" hotkey="endgame" text-align="center" text-valign="center" z="170" hidden="false">
+	                                <action on="Load"><![CDATA[
+						this.caption = "Resign Game";
+						AddSizeCoord(this.name,
+						crd_ingame_menu_end_button_x, crd_ingame_menu_end_button_y, crd_ingame_menu_end_button_x+crd_ingame_menu_end_button_width, crd_ingame_menu_end_button_y+crd_ingame_menu_end_button_height, mid_screen, mid_screen, mid_screen, mid_screen,
+						crd_ingame_menu_end_button_x, crd_ingame_menu_end_button_y, crd_ingame_menu_end_button_x+crd_ingame_menu_end_button_width, crd_ingame_menu_end_button_y+crd_ingame_menu_end_button_height, mid_screen, mid_screen, mid_screen, mid_screen);
+	                                ]]></action>
 					<action on="Press"><![CDATA[
 						btCaptions = new Array("Yep, work's done!", "No, more slaughter!");
 						btCode = new Array("endGame();\ncurr_music = newRandomSound('music', 'theme');\nCrossFade(curr_session_playlist_1, curr_music, 0.0001);\nGUIObjectHide('session_gui');\nGUIObjectUnhide('pregame_gui');", "");
 						messageBox(600, 200, "Do you want to leave the current game? There might be more dudes to slaughter.", "Confirmation", 0, btCaptions, btCode);
 					]]></action>
 				End Game
-				</object> 
+				</object>
 
 				<!-- Exit button -->
-		                <object type="button" name="subwindow_ingame_menu_Exit_Button" sprite="message_box-button-normal" sprite-over="message_box-button-over" size="50%-150 100%-84 50%+150 100%-50" text-align="center" text-valign="center" z="105" hidden="false">
+		                <object type="button" name="subwindow_ingame_menu_Exit_Button" sprite="message_box-button-normal" sprite-over="message_box-button-over" text-align="center" text-valign="center" z="170" hidden="false">
+	                                <action on="Load"><![CDATA[
+						this.caption = "Exit Game";
+						AddSizeCoord(this.name,
+						crd_ingame_menu_exit_button_x, crd_ingame_menu_exit_button_y, crd_ingame_menu_exit_button_x+crd_ingame_menu_exit_button_width, crd_ingame_menu_exit_button_y+crd_ingame_menu_exit_button_height, mid_screen, mid_screen, mid_screen, mid_screen,
+						crd_ingame_menu_exit_button_x, crd_ingame_menu_exit_button_y, crd_ingame_menu_exit_button_x+crd_ingame_menu_exit_button_width, crd_ingame_menu_exit_button_y+crd_ingame_menu_exit_button_height, mid_screen, mid_screen, mid_screen, mid_screen);
+	                                ]]></action>
 	        	                <action on="Press"><![CDATA[
 	                	                btCaptions = new Array("Yes, let me out!", "Nooooo!");
 	                        	        btCode = new Array("exit();", "");
 		                               	messageBox(400, 200, "Do you really want to quit [icon=0ad_icon] A.D.? This will cause a sudden return to reality.", "Confirmation", 0, btCaptions, btCode);
+	        	                ]]></action>
+		                </object>
+
+				<!-- Return button -->
+		                <object type="button" name="subwindow_ingame_menu_Return_Button" sprite="message_box-button-normal" sprite-over="message_box-button-over" text-align="center" text-valign="center" z="170" hidden="false">
+	                                <action on="Load"><![CDATA[
+						this.caption = "Return to Game";
+						AddSizeCoord(this.name,
+						crd_ingame_menu_return_button_x, crd_ingame_menu_return_button_y, crd_ingame_menu_return_button_x+crd_ingame_menu_return_button_width, crd_ingame_menu_return_button_y+crd_ingame_menu_return_button_height, mid_screen, mid_screen, mid_screen, mid_screen,
+						crd_ingame_menu_return_button_x, crd_ingame_menu_return_button_y, crd_ingame_menu_return_button_x+crd_ingame_menu_return_button_width, crd_ingame_menu_return_button_y+crd_ingame_menu_return_button_height, mid_screen, mid_screen, mid_screen, mid_screen);
+	                                ]]></action>
+	        	                <action on="Press"><![CDATA[
+						GUIObjectToggle("session_gui_subwindow_ingame_menu");
 	        	                ]]></action>
 		                </object>
 
