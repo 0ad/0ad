@@ -287,11 +287,11 @@ static DWORD calc_timeout_length_ms(const struct timespec* abs_timeout,
 
 	timeout_is_valid = true;
 
-	// convert absolute deadline to relative length
-	// note: use i64 to avoid overflow in multiply
+	// convert absolute deadline to relative length, rounding up to [ms].
+	// note: use i64 to avoid overflow in multiply.
 	const i64  ds = abs_timeout->tv_sec  - cur_time.tv_sec;
 	const long dn = abs_timeout->tv_nsec - cur_time.tv_nsec;
-	i64 length_ms = ds*1000 + dn/1000000;
+	i64 length_ms = ds*1000 + (dn+500000)/1000000;
 	// .. deadline already reached; we'll still attempt to lock once
 	if(length_ms < 0)
 		return 0;

@@ -36,7 +36,7 @@
 //#define NO_QPC
 //#define NO_TSC
 
-static const int CALIBRATION_FREQ = 1000;
+static const int CALIBRATION_FREQ = 1;
 
 
 // automatic module init (before main) and shutdown (before termination)
