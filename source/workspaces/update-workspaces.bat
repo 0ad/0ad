@@ -23,5 +23,3 @@ move %PROJECT%.sln ..\vc2003
 move %PROJECT%.vcproj ..\vc2003
 
 cd ..
-
-pause
