@@ -794,13 +794,9 @@ static ssize_t block_issue(File* f, IOSlot* slot, const off_t issue_ofs, void* b
 		buf = slot->temp_buf = mem_alloc(BLOCK_SIZE, BLOCK_SIZE);
 
 
-	{
-		// if using buffer, set position in it; otherwise, use temp buffer
-		int err = file_start_io(f, issue_ofs, BLOCK_SIZE, buf, &slot->io);
+	// if using buffer, set position in it; otherwise, use temp buffer
+	CHECK_ERR(file_start_io(f, issue_ofs, BLOCK_SIZE, buf, &slot->io));
 
-		if(err < 0)
-			issue_size = (ssize_t)err;
-	}
 skip_issue:
 
 	return issue_size;
@@ -938,6 +934,7 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 		{
 			// get next free IO slot in ring buffer
 			IOSlot* slot = &ios[head];
+			memset(slot, 0, sizeof(IOSlot));
 			head = (head + 1) % MAX_IOS;
 			pending_ios++;
 
@@ -953,6 +950,7 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 			issue_cnt += issued;
 			if(issue_cnt >= actual_size)
 				all_issued = true;
+
 		}
 		// IO pending: wait for it to complete, and process it.
 		else if(pending_ios)
@@ -976,8 +974,6 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 					err = (ssize_t)ret;
 			}
 
-
-
 			// first time; skip past padding
 			void* data = block;
 			if(raw_transferred_cnt == 0)
@@ -989,6 +985,7 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 			// don't include trailing padding
 			if(raw_transferred_cnt + size > data_size)
 				size = data_size - raw_transferred_cnt;
+
 
 
 // we have useable data from a previous temp buffer,
@@ -1027,6 +1024,7 @@ if(from_cache && !temp)
 				if(!slot->cached_block)
 					block_add(slot->block_id, slot->temp_buf);
 			}
+
 		}
 		// (all issued OR error) AND no pending transfers - done.
 		else
