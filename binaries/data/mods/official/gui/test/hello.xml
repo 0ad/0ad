@@ -115,17 +115,17 @@
     ]]></action>
  </object>
 
- <object type="image" name="pregame-mainmenu-0ad-logo" sprite="pregame-mainmenu-0ad-logo-480x218" size="21.1914062% 3.125% 68.0664062% 31.5104166%" z="102" hidden="false">
+ <object type="image" name="pregame-mainmenu-0ad-logo" sprite="pregame-mainmenu-0ad-logo-480x218" size="21.1914062% 3.125% 68.0664062% 31.5104166%" z="102" hidden="false" ghost="true">
  </object>
  
- <object type="text" name="pregame-mainmenu-versionnumber" size="43% 24% 43%+282 24%+25" z="103" textcolor="237 227 167" font="prospero16" hidden="false">
+ <object type="text" name="pregame-mainmenu-versionnumber" size="43% 24% 43%+282 24%+25" z="103" textcolor="237 227 167" font="prospero16" hidden="false" ghost="true">
    {buildTime}
    <action on="Load"><![CDATA[
         this.caption = "Build: " + buildTime(0);
    ]]></action>
  </object>
  
- <object type="text" name="pregame-mainmenu-tooltip" sprite="tooltip-background" size="69% 6.3802% 97.0703125% 28.125%" font="prospero16" textcolor="255 255 255" z="104" hidden="true">
+ <object type="text" name="pregame-mainmenu-tooltip" sprite="tooltip-background" size="69% 6.3802% 97.0703125% 28.125%" font="prospero16" textcolor="255 255 255" z="104" hidden="true" ghost="true">
         tooltipText
  </object>
 
