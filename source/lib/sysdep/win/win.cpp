@@ -152,7 +152,10 @@ int clipboard_free(wchar_t* copy)
 ///////////////////////////////////////////////////////////////////////////////
 
 
-// each module has the linker add a pointer to its init and shutdown
+// init and shutdown mechanism: register a function to be called at
+// pre-main init or shutdown.
+//
+// each module has the linker add a pointer to its init or shutdown
 // function to a table (at a user-defined position).
 // zero runtime overhead, and there's no need for a central dispatcher
 // that knows about all the modules.
@@ -163,9 +166,23 @@ int clipboard_free(wchar_t* copy)
 // - initialize via constructor. however, that would leave the problem of
 //   shutdown order and timepoint, which is also taken care of here.
 // - register init/shutdown functions from a NLSO constructor:
-//   clunky, and setting order is more complicated.
+//   clunky, and setting order is more difficult.
 // - on-demand initialization: complicated; don't know in what order
 //   things happen. also, no way to determine how long init takes.
+//
+// the "segment name" determines when and in what order the functions are
+// called: "LIB$W{type}{group}", where {type} is either I for
+// (pre-main) initializers, or T for terminators (last of the atexit handlers).
+// {group} is [B, Y]; groups are called in alphabetical order, but
+// call order within the group itself is unspecified.
+//
+// define the segment via #pragma data_seg(name), register any functions
+// to be called via WIN_REGISTER_FUNC, and then restore the previous segment
+// with #pragma data_seg() .
+//
+// note: group must be [B, Y]. data declared in groups A or Z may
+// be placed beyond the table start/end by the linker, since the linker's
+// ordering WRT other source files' data is undefined within a segment.
 
 typedef int(*_PIFV)(void);
 

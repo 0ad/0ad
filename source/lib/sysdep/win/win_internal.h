@@ -313,7 +313,24 @@ extern void win_unlock(uint idx);
 }
 
 
+///////////////////////////////////////////////////////////////////////////////
+
+
+// init and shutdown mechanism: register a function to be called at
+// pre-main init or shutdown.
+// the "segment name" determines when and in what order the functions are
+// called: "LIB$W{type}{group}", where {type} is either I for
+// (pre-main) initializers, or T for terminators (last of the atexit handlers).
+// {group} is [B, Y]; groups are called in alphabetical order, but
+// call order within the group itself is unspecified.
+//
+// define the segment via #pragma data_seg(name), register any functions
+// to be called via WIN_REGISTER_FUNC, and then restore the previous segment
+// with #pragma data_seg() .
+
 #define WIN_REGISTER_FUNC(func) static int func(); static int(*p##func)(void) = func
+
+
 
 
 #define WIN_SAVE_LAST_ERROR DWORD last_err__ = GetLastError();
