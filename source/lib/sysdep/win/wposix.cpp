@@ -47,12 +47,17 @@ static inline HANDLE cast_to_HANDLE(intptr_t i)
 
 int open(const char* fn, int oflag, ...)
 {
-	bool is_com_port = strncmp(fn, "/dev/tty", 8) == 0;
+	const bool is_com_port = strncmp(fn, "/dev/tty", 8) == 0;
+		// also used later, before aio_reopen
 
-	// /dev/tty? => COM?
+	// "/dev/tty?" => "COM?"
 	if(is_com_port)
 	{
-		static char port[] = "COM ";
+		char port[] = "COM ";
+		// Windows only supports COM1..COM4.
+		char c = fn[8]+1;
+		if(!('1' <= c && c <= '4'))
+			return -1;
 		port[3] = (char)(fn[8]+1);
 		fn = port;
 	}
@@ -74,10 +79,11 @@ int open(const char* fn, int oflag, ...)
 debug_out("open %s = %d\n", fn, fd);
 #endif
 
-	// open it for async I/O as well (_open defaults to deny_none sharing)
+	// open it for async I/O as well (_open defaults to deny_none sharing):
+	// if not stdin/stdout/stderr and
 	if(fd > 2)
 	{
-		// .. unless it's a COM port. don't currently need aio access for those;
+		// not a COM port. don't currently need aio access for those;
 		// also, aio_reopen's CreateFile reports access denied when trying to open.
 		if(!is_com_port)
 			aio_reopen(fd, fn, oflag);
@@ -85,8 +91,10 @@ debug_out("open %s = %d\n", fn, fd);
 
 	// CRT doesn't like more than 255 files open.
 	// warn now, so that we notice why so many are open
+#ifndef NDEBUG
 	if(fd > 256)
 		debug_warn("wposix: too many files open (CRT limitation)");
+#endif
 
 	return fd;
 }
@@ -139,7 +147,7 @@ int ioctl(int fd, int op, int* data)
 	return 0;
 }
 
-
+/*
 // currently only sets st_mode (file or dir) and st_size.
 int stat(const char* fn, struct stat* s)
 {
@@ -148,6 +156,8 @@ int stat(const char* fn, struct stat* s)
 	WIN32_FILE_ATTRIBUTE_DATA fad;
 	if(!GetFileAttributesEx(fn, GetFileExInfoStandard, &fad))
 		return -1;
+
+	s->st_mtime = fad.ftLastAccessTime
 
 	// dir
 	if(fad.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
@@ -160,6 +170,7 @@ int stat(const char* fn, struct stat* s)
 
 	return 0;
 }
+*/
 
 
 //////////////////////////////////////////////////////////////////////////////

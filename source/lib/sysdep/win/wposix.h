@@ -167,6 +167,7 @@ typedef unsigned int mode_t;
 // VC libc includes stat, but it's quite slow.
 // we implement our own, but use the CRT struct definition.
 // rename the VC function definition to avoid conflict.
+/*
 #define stat vc_stat
 //
 // Extra hack for VC++ 2005, since it defines inline stat/fstat
@@ -180,11 +181,13 @@ typedef unsigned int mode_t;
 #  include <sys/stat.h>
 # endif
 #undef stat
+*/
+#  include <sys/stat.h>
 
 extern int mkdir(const char*, mode_t);
 
 // currently only sets st_mode (file or dir) and st_size.
-extern int stat(const char*, struct stat*);
+//extern int stat(const char*, struct stat*);
 
 #define S_IRWXO 0xffff
 #define S_IRWXU 0xffff
