@@ -209,6 +209,14 @@ extern int res_cur_scope;
 // at that point, all (cached) OpenAL resources must be freed.
 extern int h_force_free(Handle h, H_Type type);
 
+// increment Handle <h>'s refcount.
+// only meant to be used for objects that free a Handle in their dtor,
+// so that they are copy-equivalent and can be stored in a STL container.
+// do not use this to implement refcounting on top of the Handle scheme,
+// e.g. loading a Handle once and then passing it around. instead, have each
+// user load the resource; refcounting is done under the hood.
+extern void h_add_ref(Handle h);
+
 extern void h_mgr_shutdown();
 
 

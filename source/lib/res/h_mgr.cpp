@@ -444,6 +444,9 @@ void h_mgr_shutdown()
 		if(!hd->tag)
 			continue;
 
+//		if(hd->refs != 0)
+//			debug_out("leaked %s from %s\n", hd->type->name, hd->fn);
+
 		// disable caching; we need to release the resource now.
 		hd->keep_open = 0;
 		hd->refs = 0;
@@ -739,6 +742,26 @@ int h_force_free(Handle h, H_Type type)
 	return h_free_idx(idx, hd);
 }
 
+
+// increment Handle <h>'s refcount.
+// only meant to be used for objects that free a Handle in their dtor,
+// so that they are copy-equivalent and can be stored in a STL container.
+// do not use this to implement refcounting on top of the Handle scheme,
+// e.g. loading a Handle once and then passing it around. instead, have each
+// user load the resource; refcounting is done under the hood.
+void h_add_ref(Handle h)
+{
+	HDATA* hd = h_data_tag(h);
+	if(!hd)
+	{
+		debug_warn("h_add_ref: invalid handle");
+		return;
+	}
+
+	if(!hd->refs)
+		debug_warn("h_add_ref: no refs open - resource is cached");
+	hd->refs++;
+}
 
 
 int res_cur_scope;
