@@ -114,13 +114,13 @@ _bool CParserValue::GetBool(_bool &ret)
 _bool CParserValue::GetDouble(_double &ret)
 {
 	// locals
-	_double		TempRet = 0.0;
+	_double			TempRet = 0.0;
 	_int			Size = m_String.size();
 	_int			i;
-	_bool		AtLeastOne = false;		// Checked if at least one of the loops
+	_bool			AtLeastOne = false;		// Checked if at least one of the loops
 										//  run, otherwise "." would parse OK
 	_int			DecimalPos;
-	_bool		Negative = false;		// "-" is found
+	_bool			Negative = false;		// "-" is found
 
 	// Check if '-' is found
 	if (m_String[0]=='-')
@@ -304,11 +304,12 @@ _bool CParserLine::ParseString(const CParser& Parser, string strLine)
 
 	// Locals
 	_bool				Extract=false;
-	_int					ExtractPos=0;
+	_int				ExtractPos=0;
 	_char				Buffer[256];
 	_char				Letter[] = {'\0','\0'};		// Letter as string
 	vector<string>		Segments;
 	string				strSub;
+	_int				i;
 
 	// Set result to false, then if a match is found, turn it true
 	m_ParseOK = false;
@@ -325,7 +326,7 @@ _bool CParserLine::ParseString(const CParser& Parser, string strLine)
 	// Divide string into smaller vectors, seperators are unusual signs
 	// * * * *
 
-	for (_int i=0; i<strLine.size(); ++i)
+	for (i=0; i<strLine.size(); ++i)
 	{
 		// Check if we're trying to use some kind of type
 		if (!Extract)
@@ -753,7 +754,7 @@ _bool CParserLine::ParseString(const CParser& Parser, string strLine)
 	// if _minus is found as argument, remove it and add "-" to the one after that
 	// note, it's easier if std::iterator isn't used here
 	
-	for (_int i=1; i<GetArgCount(); ++i)
+	for (i=1; i<GetArgCount(); ++i)
 	{
 		if (m_Arguments[i-1].m_String == "_minus")
 		{
@@ -797,9 +798,10 @@ _bool CParser::InputTaskType(const string& strName, const string& strSyntax)
 	// Locals
 	CParserTaskType		TaskType;				// Object we acquire to create
 	_char				Buffer[REGULAR_MAX_LENGTH];
-	_int					ExtractPos = 0;
+	_int				ExtractPos = 0;
 	_bool				Extract = false;
 	_bool				Error = false;
+	_int				i;
 	_bool				ConstructNew = false;	// If it's the first input, then don't
 												//  construct a new node, because we
 												//  we already have m_BaseNode
@@ -812,7 +814,7 @@ _bool CParser::InputTaskType(const string& strName, const string& strSyntax)
 
 	// Loop through the string and construct nodes in the binary tree
 	//  when applicable
-	for (_int i=0; i<strSyntax.size(); ++i)
+	for (i=0; i<strSyntax.size(); ++i)
 	{
 		// Extract is a variable that is true when we want to extract
 		//  parts that is longer than one character.
