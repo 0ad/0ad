@@ -31,6 +31,7 @@
 #ifndef NO_ZLIB
 # define ZLIB_WINAPI
 # include <zlib.h>
+
 # ifdef _MSC_VER
 #  ifdef NDEBUG
 #   pragma comment(lib, "zlib1.lib")
@@ -45,14 +46,14 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// Zip-specific code
-// passes list of files in archive to lookup
+// z_*: Zip-specific code
+// passes the list of files in an archive to lookup.
 //
 ///////////////////////////////////////////////////////////////////////////////
 
 
 // convenience container for location / size of file in archive.
-struct ZFileLoc
+struct ZLoc
 {
 	off_t ofs;
 	off_t csize;	// = 0 if not compressed
@@ -64,38 +65,39 @@ struct ZFileLoc
 	// but not critical, since Zip files are compressed individually.
 	// (if we read too much, it's ignored by inflate).
 	//
-	// we also need a way to check if file compressed (e.g. to fail mmap
-	// requests if the file is compressed). packing a bit in ofs or
+	// we also need a way to check if a file is compressed (e.g. to fail
+	// mmap requests if the file is compressed). packing a bit in ofs or
 	// ucsize is error prone and ugly (1 bit less won't hurt though).
 	// any other way will mess up the nice 2^n byte size anyway, so
 	// might as well store csize.
 };
 
 
-static inline int zip_validate(const void* const file, const size_t size)
+// Zip file data structures and signatures
+static const char cdfh_id[] = "PK\1\2";
+static const char lfh_id[]  = "PK\3\4";
+static const char ecdr_id[] = "PK\5\6";
+const size_t CDFH_SIZE = 46;
+const size_t LFH_SIZE  = 30;
+const size_t ECDR_SIZE = 22;
+
+
+static inline int z_validate(const void* const file, const size_t size)
 {
-	if(size < 2)
+	// make sure it's big enough to check the header and for
+	// z_find_ecdr to succeed (if smaller, it's obviously bogus).
+	if(size < 22)
 		return -1;
 
-	const u8* p = (const u8*)file;
-	if(p[0] != 'P' || p[1] != 'K')
-		return -1;
-
-	return 0;
+	// check "header" (first CDFH) signature
+	return (*(u32*)file == *(u32*)&cdfh_id)? 0 : -1;
 }
 
 
 // find end of central dir record in file (loaded or mapped).
-static int zip_find_ecdr(const void* const file, const size_t size, const u8*& ecdr_)
+// z_validate ensures size >= 22.
+static int z_find_ecdr(const void* const file, const size_t size, const u8*& ecdr_)
 {
-	const char ecdr_id[] = "PK\5\6";	// signature
-	const size_t ECDR_SIZE = 22;
-
-	if(size < ECDR_SIZE)
-	{
-		debug_warn("zip_find_ecdr: size is way too small");
-		return -1;
-	}
 	const u8* ecdr = (const u8*)file + size - ECDR_SIZE;
 
 	// early out: check expected case (ECDR at EOF; no file comment)
@@ -137,11 +139,8 @@ found_ecdr:
 
 // make sure the LFH fields match those passed (from the CDFH).
 // only used in PARANOIA builds - costs time when opening archives.
-static int zip_verify_lfh(const void* const file, const off_t lfh_ofs, const off_t file_ofs)
+static int z_verify_lfh(const void* const file, const off_t lfh_ofs, const off_t file_ofs)
 {
-	const char lfh_id[] = "PK\3\4";	// signature
-	const size_t LFH_SIZE = 30;
-
 	assert(lfh_ofs < file_ofs);	// header comes before file
 
 	const u8* lfh = (const u8*)file + lfh_ofs;
@@ -173,12 +172,8 @@ static int zip_verify_lfh(const void* const file, const off_t lfh_ofs, const off
 // extract information from the current Central Directory File Header;
 // advance cdfh to point to the next; return -1 on unrecoverable error,
 // 0 on success (<==> output fields are valid), > 0 if file is invalid.
-static int zip_read_cdfh(const u8*& cdfh, const char*& fn, size_t& fn_len, ZFileLoc* const loc)
+static int z_read_cdfh(const u8*& cdfh, const char*& fn, size_t& fn_len, ZLoc* const loc)
 {
-	const char cdfh_id[] = "PK\1\2";	// signature
-	const size_t CDFH_SIZE = 46;
-	const size_t LFH_SIZE  = 30;
-
 	if(*(u32*)cdfh != *(u32*)cdfh_id)
 	{
 		debug_warn("CDFH corrupt! (signature doesn't match)");
@@ -204,8 +199,8 @@ static int zip_read_cdfh(const u8*& cdfh, const char*& fn, size_t& fn_len, ZFile
 		debug_warn("warning: unknown compression method");
 		goto skip_file;
 	}
-	// tell is_compressed that the file is stored by
-	// setting csize_ to 0.
+	// tell is_compressed that the file is uncompressed,
+	// by setting csize_ to 0.
 	if(method == 0)
 		csize_ = 0;
 
@@ -222,7 +217,7 @@ static int zip_read_cdfh(const u8*& cdfh, const char*& fn, size_t& fn_len, ZFile
 	// we don't bother checking for this in normal builds: if they were
 	// to be different, we'd notice: headers of files would end up corrupted.
 #ifdef PARANOIA
-	if(!zip_verify_lfh(file, lfh_ofs, file_ofs))
+	if(!z_verify_lfh(file, lfh_ofs, file_ofs))
 		goto skip_file;
 #endif
 
@@ -252,7 +247,7 @@ found_next_cdfh:
 
 // fn (filename) is not necessarily 0-terminated!
 // loc is only valid during the callback! must be copied or saved.
-typedef int(*ZipCdfhCB)(const uintptr_t user, const i32 idx, const char* const fn, const size_t fn_len, const ZFileLoc* const loc);
+typedef int(*CDFH_CB)(const uintptr_t user, const i32 idx, const char* const fn, const size_t fn_len, const ZLoc* const loc);
 
 // go through central directory of the Zip file (loaded or mapped into memory);
 // call back for each file.
@@ -262,16 +257,11 @@ typedef int(*ZipCdfhCB)(const uintptr_t user, const i32 idx, const char* const f
 // allocate memory. having lookup_init call zip_get_num_files and then
 // zip_enum_files would require passing around a ZipInfo struct,
 // or searching for the ECDR twice - both ways aren't nice.
-static int zip_enum_files(const void* const file, const size_t size, const ZipCdfhCB cb, const uintptr_t user)
+static int z_enum_files(const void* const file, const size_t size, const CDFH_CB cb, const uintptr_t user)
 {
-	int err;
-	ZFileLoc loc;
-
 	// find End of Central Directory Record
 	const u8* ecdr;
-	err = zip_find_ecdr(file, size, ecdr);
-	if(err < 0)
-		return err;
+	CHECK_ERR(z_find_ecdr(file, size, ecdr));
 
 	// call back with number of files in archive
 	const i32 num_files = read_le16(ecdr+10);
@@ -279,19 +269,18 @@ static int zip_enum_files(const void* const file, const size_t size, const ZipCd
 	//    if it's 0, the callback would treat it as an index => crash.
 	if(!num_files)
 		return -1;
-	err = cb(user, -num_files, 0, 0, 0);
-	if(err < 0)
-		return err;
+	CHECK_ERR(cb(user, -num_files, 0, 0, 0));
 
+	// call back for each (valid) CDFH entry
 	const u32 cd_ofs = read_le32(ecdr+16);
 	const u8* cdfh = (const u8*)file + cd_ofs;
 		// pointer is advanced in zip_read_cdfh
-
 	for(i32 idx = 0; idx < num_files; idx++)
 	{
 		const char* fn;
 		size_t fn_len;
-		err = zip_read_cdfh(cdfh, fn, fn_len, &loc);
+		ZLoc loc;
+		int err = z_read_cdfh(cdfh, fn, fn_len, &loc);
 		// .. non-recoverable error reading dir
 		if(err < 0)
 			return err;
@@ -311,33 +300,35 @@ static int zip_enum_files(const void* const file, const size_t size, const ZipCd
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// file lookup
-// per archive: find file information (e.g. location, size), given filename.
+// lookup_*: file lookup
+// per archive: retrieve file information (e.g. offset, size), given filename.
 //
 ///////////////////////////////////////////////////////////////////////////////
 
 
-// file lookup: store array of files in archive (ZEnt); lookup via linear
-//   search for hash of filename.
-// optimization: store index of last file opened; check the one after
-//   that first, and only then search the whole array. this is a big
-//   win if files are opened sequentially (they should be so ordered
-//   in the archive anyway, to reduce seeks)
+// current file-lookup implementation:
+// store each file's ZEnt in an array. check the next entry first; if that's
+// not what we're looking for, find its index via map<filename_hash, index>.
 //
+// rationale:
+// - we don't export a "key" (currently array index) that would allow faster
+//   file lookup. this would only be useful if higher-level code were to
+//   store the key and use it more than once. also, lookup is currently fast
+//   enough. finally, this would also make our file enumerate callback
+//   incompatible with the others (due to the extra key param).
+//
+// - we don't bother with a directory tree to speed up lookup. the above
+//   is currently fast enough, and will be O(1) if the files are arranged
+//   in order of access (which would also reduce seeks).
+//   this could easily be added though, if need be; Zip files include a CDFH
+//   entry for each dir.
 
-// rationale: added index because exposing index is bad (say we change lookup data struct)
-// much cleaner to only export handle
-
-// don't bother making a tree structure: first, it's a bit of work
-// (Zip files store paths as part of the file name - there's no extra
-// directory information); second, the VFS file location DB stores
-// handle and file index per file, making its lookup constant-time.
 
 struct ZEnt
 {
 	const char* fn;		// currently allocated individually
 
-	ZFileLoc loc;
+	ZLoc loc;
 };
 
 
@@ -361,24 +352,27 @@ struct LookupInfo
 		// we store index of next file instead of the last one opened
 		// to avoid trouble on first call (don't want last == -1).
 
-	// don't know size of std::map, and this is used in a control block.
-	// allocate dynamically to save size.
+	// don't know size of std::map, and this struct is
+	// included in a control block (ZArchive).
+	// allocate dynamically to be safe.
 	LookupIdx* idx;
 };
 
 
 // add file <fn> to the lookup data structure.
-// callback for zip_enum_files, in order (0 <= idx < num_files).
+// called from z_enum_files in order (0 <= idx < num_files).
+// the first call notifies us of # files, so we can allocate memory.
 //
-// fn (filename) is not necessarily 0-terminated!
-// loc is only valid during the callback! must be copied or saved.
-static int lookup_add_file_cb(const uintptr_t user, const i32 idx, const char* const fn, const size_t fn_len, const ZFileLoc* const loc)
+// notes:
+// - fn (filename) is not necessarily 0-terminated!
+// - loc is only valid during the callback! must be copied or saved.
+static int lookup_add_file_cb(const uintptr_t user, const i32 idx, const char* const fn, const size_t fn_len, const ZLoc* const loc)
 {
 	LookupInfo* li = (LookupInfo*)user;
 
 	// HACK: on first call, idx is negative and tells us how many
 	// files are in the archive (so we can allocate memory).
-	// see zip_enum_files for why it's done this way.
+	// see z_enum_files for why it's done this way.
 	if(idx < 0)
 	{
 		const i32 num_files = -idx;
@@ -431,12 +425,21 @@ static int lookup_add_file_cb(const uintptr_t user, const i32 idx, const char* c
 // initialize lookup data structure for Zip archive <file>
 static int lookup_init(LookupInfo* const li, const void* const file, const size_t size)
 {
+	int err;
+
+	// check if it's even a Zip file.
+	// the VFS blindly opens files when mounting; it needs to open
+	// all archives, but doesn't know their extension (e.g. ".pk3").
+	err = z_validate(file, size);
+	if(err < 0)		// don't CHECK_ERR - this can happen often.
+		return err;
+
 	// all other fields are initialized in lookup_add_file_cb
 	li->next_file = 0;
 
 	li->idx = new LookupIdx;
 
-	int err = zip_enum_files(file, size, lookup_add_file_cb, (uintptr_t)li);
+	err = z_enum_files(file, size, lookup_add_file_cb, (uintptr_t)li);
 	if(err < 0)
 	{
 		delete li->idx;
@@ -447,9 +450,11 @@ static int lookup_init(LookupInfo* const li, const void* const file, const size_
 }
 
 
-// free lookup data structure. no use-after-free checking.
+// free lookup data structure.
+// (no use-after-free checking - that's handled by the VFS)
 static int lookup_free(LookupInfo* const li)
 {
+	// free memory allocated for filenames
 	for(i32 i = 0; i < li->num_files; i++)
 	{
 		free((void*)li->ents[i].fn);
@@ -460,12 +465,13 @@ static int lookup_free(LookupInfo* const li)
 
 	delete li->idx;
 
+	// frees both ents and fn_hashes! (they share an allocation)
 	return mem_free(li->ents);
 }
 
 
-// return key of file <fn> for use in lookup_get_file_info.
-static int lookup_file(LookupInfo* const li, const char* const fn, i32& idx)
+// return file information of file <fn>.
+static int lookup_get_file_info(LookupInfo* const li, const char* fn, ZLoc* const loc)
 {
 	const FnHash fn_hash = fnv_hash(fn);
 	const FnHash* fn_hashes = li->fn_hashes;
@@ -483,24 +489,12 @@ static int lookup_file(LookupInfo* const li, const char* const fn, i32& idx)
 			return ERR_FILE_NOT_FOUND;
 
 		i = it->second;
+		assert(0 <= i && i < li->num_files);
 	}
-
+	
 	li->next_file = i+1;
-	idx = i;
-	return 0;
-}
 
-
-// return file information, given file key (from lookup_file).
-static int lookup_get_file_info(LookupInfo* const li, const i32 idx, const char*& fn, ZFileLoc* const loc)
-{
-	if(idx < 0 || idx > li->num_files-1)
-	{
-		debug_warn("lookup_get_file_info: index out of bounds");
-		return -1;
-	}
-
-	const ZEnt* const ent = &li->ents[idx];
+	const ZEnt* const ent = &li->ents[i];
 	fn   = ent->fn;
 	*loc = ent->loc;
 	return 0;
@@ -511,17 +505,15 @@ typedef ZipFileCB LookupFileCB;
 
 static int lookup_enum_files(LookupInfo* const li, LookupFileCB cb, uintptr_t user)
 {
-	int err;
-
 	const ZEnt* ent = li->ents;
 	for(i32 i = 0; i < li->num_files; i++, ent++)
 	{
-		int flags = LOC_ZIP;
+		// is this entry a directory?
+		int flags = 0;
 		if(ent->loc.csize == 0 && ent->loc.ucsize == 0)
 			flags |= LOC_DIR;
-		err = cb(ent->fn, flags, (ssize_t)ent->loc.ucsize, user);
-		if(err < 0)
-			return 0;
+
+		CHECK_ERR(cb(ent->fn, flags, (ssize_t)ent->loc.ucsize, user));
 	}
 
 	return 0;
@@ -577,21 +569,15 @@ static int ZArchive_reload(ZArchive* za, const char* fn, Handle h)
 	int err;
 
 	err = file_open(fn, 0, &za->f);
-	if(err < 0)
+	if(err < 0)		// don't CHECK_ERR; this happens often.
 		return err;
 
+	// map
 	void* file;
 	size_t size;
 	err = file_map(&za->f, file, size);
 	if(err < 0)
 		goto exit_close;
-
-	// early out: check if it's even a Zip file.
-	// (VFS checks if a file is an archive for mounting by attempting to
-	// open it with zip_archive_open)
-	err = zip_validate(file, size);
-	if(err < 0)
-		goto exit_unmap_close;
 
 	err = lookup_init(&za->li, file, size);
 	if(err < 0)
@@ -626,8 +612,7 @@ int zip_archive_close(Handle& ha)
 }
 
 
-// would be nice to pass along a key (allowing for O(1) lookup in archive),
-// but then the callback is no longer compatible to file / vfs enum files.
+// see lookup rationale for not passing along a key.
 int zip_enum(const Handle ha, const ZipFileCB cb, const uintptr_t user)
 {
 	H_DEREF(ha, ZArchive, za);
@@ -661,6 +646,7 @@ uintptr_t inf_init_ctx()
 }
 
 
+// we will later provide data that is to be unzipped into <out>.
 int inf_start_read(uintptr_t ctx, void* out, size_t out_size)
 {
 #ifdef NO_ZLIB
@@ -682,6 +668,8 @@ int inf_start_read(uintptr_t ctx, void* out, size_t out_size)
 }
 
 
+// unzip into output buffer. returns bytes written
+// (may be 0, if not enough data is passed in), or < 0 on error.
 ssize_t inf_inflate(uintptr_t ctx, void* in, size_t in_size)
 {
 #ifdef NO_ZLIB
@@ -699,6 +687,10 @@ ssize_t inf_inflate(uintptr_t ctx, void* in, size_t in_size)
 	int err = inflate(stream, Z_SYNC_FLUSH);
 
 	// check+return how much actual data was read
+	//
+	// note: zlib may not always output data, e.g. if passed very little
+	// data in one block (due to misalignment). return 0 ("no data output"),
+	// which doesn't abort the read.
 	size_t avail_out = stream->avail_out;
 	assert(avail_out <= prev_avail_out);
 		// make sure output buffer size didn't magically increase
@@ -706,13 +698,14 @@ ssize_t inf_inflate(uintptr_t ctx, void* in, size_t in_size)
 	if(!nread)
 		return (err < 0)? err : 0;
 		// try to pass along the ZLib error code, but make sure
-		// it isn't treated as 'bytes read', i.e. > 0.
+		// it isn't treated as 'bytes output', i.e. > 0.
 
 	return nread;
 #endif
 }
 
 
+// unzip complete; all input and output data should have been consumed.
 int inf_finish_read(uintptr_t ctx)
 {
 #ifdef NO_ZLIB
@@ -818,8 +811,12 @@ do\
 while(0);
 
 
-static int zip_open_idx(const Handle ha, const i32 idx, ZFile* zf)
+int zip_open(const Handle ha, const char* fn, ZFile* zf)
 {
+	H_DEREF(ha, ZArchive, za);
+	LookupInfo* li = (LookupInfo*)&za->li;
+
+	// zero output param in case we fail below.
 	memset(zf, 0, sizeof(ZFile));
 
 	if(!zf)
@@ -830,22 +827,19 @@ static int zip_open_idx(const Handle ha, const i32 idx, ZFile* zf)
 	H_DEREF(ha, ZArchive, za);
 	LookupInfo* li = (LookupInfo*)&za->li;
 
-	const char* fn;
-	ZFileLoc loc;
-		// don't want ZFile to contain a ZFileLoc struct -
+	ZLoc loc;
+		// don't want ZFile to contain a ZEnt struct -
 		// its ucsize member must be 'loose' for compatibility with File.
-		// => need to copy ZFileLoc fields into ZFile.
-	int err = lookup_get_file_info(li, idx, fn, &loc);
-	if(err < 0)
-		return err;
+		// => need to copy ZEnt fields into ZFile.
+	CHECK_ERR(lookup_get_file_info(li, fn, &loc));
 
 #ifdef PARANOIA
 	zf->magic    = ZFILE_MAGIC;
 #endif
 
-	zf->ucsize = loc.ucsize;
-	zf->ofs    = loc.ofs;
-	zf->csize  = loc.csize;
+	zf->ucsize   = loc.ucsize;
+	zf->ofs      = loc.ofs;
+	zf->csize    = loc.csize;
 
 	zf->ha       = ha;
 	zf->read_ctx = inf_init_ctx();
@@ -855,20 +849,6 @@ invalid_zf:
 	CHECK_ZFILE(zf);
 
 	return 0;
-}
-
-
-int zip_open(const Handle ha, const char* fn, ZFile* zf)
-{
-	H_DEREF(ha, ZArchive, za);
-	LookupInfo* li = (LookupInfo*)&za->li;
-
-	i32 idx;
-	int err = lookup_file(li, fn, idx);
-	if(err < 0)
-		return err;
-
-	return zip_open_idx(ha, idx, zf);
 }
 
 
@@ -884,18 +864,14 @@ int zip_close(ZFile* zf)
 // return file information for <fn> in archive <ha>
 int zip_stat(Handle ha, const char* fn, struct stat* s)
 {
+	// zero output param in case we fail below.
+	memset(s, 0, sizeof(struct stat));
+
 	H_DEREF(ha, ZArchive, za);
 	LookupInfo* li = &za->li;
 
-	i32 idx;
-	int err = lookup_file(li, fn, idx);
-	if(err < 0)
-		return err;
-
-	const char* fn2;	// unused
-	ZFileLoc loc;
-	lookup_get_file_info(li, idx, fn2, &loc);
-		// can't fail - returned valid index above
+	ZLoc loc;
+	CHECK_ERR(lookup_get_file_info(li, fn, &loc));
 
 	s->st_size = loc.ucsize;
 	return 0;
@@ -953,22 +929,32 @@ ssize_t zip_read(ZFile* zf, off_t raw_ofs, size_t size, void** p)
 		return -1;
 	}
 
-	void* our_buf = 0;		// buffer we allocated (if necessary)
-	if(!*p)
+	void* buf;
+	bool free_buf = true;
+
+	// user-specified buf
+	if(*p)
 	{
-		*p = our_buf = mem_alloc(size);
-		if(!*p)
+		buf = *p;
+		free_buf = false;
+	}
+	// we're going to allocate
+	else
+	{
+		buf = mem_alloc(size, 4096);
+		if(!buf)
 			return ERR_NO_MEM;
+		*p = buf;
 	}
 
-	err = (ssize_t)inf_start_read(zf->read_ctx, *p, size);
+	err = (ssize_t)inf_start_read(zf->read_ctx, buf, size);
 	if(err < 0)
 	{
 fail:
 		// we allocated it, so free it now
-		if(our_buf)
+		if(free_buf)
 		{
-			mem_free(our_buf);
+			mem_free(buf);
 			*p = 0;
 		}
 		return err;
