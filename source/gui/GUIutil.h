@@ -113,7 +113,8 @@ class IGUIObject;
  * Base class to only the class GUI. This superclass is 
  * kind of a templateless extention of the class GUI.
  * Used for other functions to friend with, because it
- * it can't friend with GUI since it's templated.
+ * it can't friend with GUI since it's templated (at least
+ * not on all compilers we're using).
  */
 class CInternalCGUIAccessorBase
 {
@@ -126,6 +127,10 @@ protected:
 
 	/// Wrapper for ResetStates
 	static void QueryResetting(IGUIObject *pObject);
+
+	static void * GetStructPointer(IGUIObject *pObject, const EGUISettingsStruct &SettingsStruct);
+
+	static void HandleMessage(IGUIObject *pObject, const SGUIMessage &message);
 };
 
 
@@ -164,7 +169,9 @@ public:
 
 		// Set value
 		Value = 
-			*(T*)((size_t)pObject->GetStructPointer(pObject->GetSettingsInfo()[Setting].m_SettingsStruct) +
+		//	*(T*)((size_t)pObject->GetStructPointer(pObject->GetSettingsInfo()[Setting].m_SettingsStruct) +
+		//		  pObject->GetSettingsInfo()[Setting].m_Offset);
+			*(T*)((size_t)GetStructPointer(pObject, pObject->GetSettingsInfo()[Setting].m_SettingsStruct) +
 				  pObject->GetSettingsInfo()[Setting].m_Offset);
 
 		return PS_OK;
@@ -189,7 +196,9 @@ public:
 			return PS_SETTING_FAIL;
 
 		// Set value
-		*(T*)((size_t)pObject->GetStructPointer(pObject->GetSettingsInfo()[Setting].m_SettingsStruct) +
+		//*(T*)((size_t)pObject->GetStructPointer(pObject->GetSettingsInfo()[Setting].m_SettingsStruct) +
+		//	   pObject->GetSettingsInfo()[Setting].m_Offset) = Value;
+		*(T*)((size_t)GetStructPointer(pObject, pObject->GetSettingsInfo()[Setting].m_SettingsStruct) +
 			   pObject->GetSettingsInfo()[Setting].m_Offset) = Value;
 
 		
@@ -198,19 +207,20 @@ public:
 		//
 
 		// If setting was "size", we need to re-cache itself and all children
-		if (Setting == CStr(_T("size")))
+		if (Setting == CStr("size"))
 		{
 			RecurseObject(0, pObject, &IGUIObject::UpdateCachedSize);
 		}
 		else
-		if (Setting == CStr(_T("hidden")))
+		if (Setting == CStr("hidden"))
 		{
 			// Hiding an object requires us to reset it and all children
 			QueryResetting(pObject);
 			//RecurseObject(0, pObject, IGUIObject::ResetStates);
 		}
 
-		pObject->HandleMessage(SGUIMessage(GUIM_SETTINGS_UPDATED, Setting));
+		//pObject->HandleMessage(SGUIMessage(GUIM_SETTINGS_UPDATED, Setting));
+		HandleMessage(pObject, SGUIMessage(GUIM_SETTINGS_UPDATED, Setting));
 
 		return PS_OK;
 	}

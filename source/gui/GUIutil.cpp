@@ -176,3 +176,13 @@ void CInternalCGUIAccessorBase::QueryResetting(IGUIObject *pObject)
 {
 	GUI<>::RecurseObject(0, pObject, &IGUIObject::ResetStates);
 }
+
+void * CInternalCGUIAccessorBase::GetStructPointer(IGUIObject *pObject, const EGUISettingsStruct &SettingsStruct)
+{
+	return pObject->GetStructPointer(SettingsStruct);
+}
+
+void CInternalCGUIAccessorBase::HandleMessage(IGUIObject *pObject, const SGUIMessage &message)
+{
+	pObject->HandleMessage(message);		
+}
