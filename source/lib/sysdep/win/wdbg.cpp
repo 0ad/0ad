@@ -1,5 +1,5 @@
-// stack walk, improved assert and exception handler
-// Copyright (c) 2002 Jan Wassenberg
+// stack trace, improved assert and exception handler
+// Copyright (c) 2002-2005 Jan Wassenberg
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -36,6 +36,7 @@
 #pragma comment(lib, "dbghelp.lib")
 #endif
 
+
 // automatic module init (before main) and shutdown (before termination)
 #pragma data_seg(".LIB$WCC")
 WIN_REGISTER_FUNC(wdbg_init);
@@ -44,41 +45,35 @@ WIN_REGISTER_FUNC(wdbg_shutdown);
 #pragma data_seg()
 
 
-//#define LOCALISED_TEXT
-
-#ifdef LOCALISED_TEXT
-#include "ps/i18n.h"
-#endif // LOCALISED_TEXT
-
-
-
-
-
-// dbghelp isn't thread-safe. lock is taken by walk_stack,
-// debug_resolve_symbol, and while dumping a stack frame (dump_frame_cb).
-static void lock() { win_lock(DBGHELP_CS); }
-static void unlock() { win_unlock(DBGHELP_CS); }
-
-
-static void DumpMiniDump(HANDLE hFile, PEXCEPTION_POINTERS excpInfo);
-
 static void set_exception_handler();
 
 
+//
+// globals, set by wdbg_init
+//
 
+// our instance (= load address = 0x400000 on Win32). used by
+// CreateDialogParam to locate the "program error" dialog resource.
 static HINSTANCE hInstance;
+
+// passed to all dbghelp symbol query functions. we're not interested in
+// resolving symbols in other processes; the purpose here is only to
+// generate a stack trace. if that changes, we need to init a local copy
+// of these in dump_sym_cb and pass them to all subsequent dump_*.
 static HANDLE hProcess;
-static uintptr_t mod_base;
+static ULONG64 mod_base;
 
+// for StackWalk64; taken from PE header by wdbg_init
 static WORD machine;
-	// needed by StackWalk
-
 
 
 static int wdbg_init()
 {
-	// main.cpp will have an exception handler, but this covers low-level init
-	// (before main is called)
+	// we don't want wrap the contents of main() in a __try block
+	// (platform-specific), and regular C++ exceptions don't catch
+	// everything. therefore, install an unhandled exception filter here.
+	// it won't be called if the program is being debugged, so to test it,
+	// wrap the call to main() in win.cpp!WinMain in a __try block.
 	set_exception_handler();
 
 	hProcess = GetCurrentProcess();
@@ -87,12 +82,13 @@ static int wdbg_init()
 	SymSetOptions(SYMOPT_DEFERRED_LOADS);
 	SymInitialize(hProcess, 0, TRUE);
 
-	u64 base = SymGetModuleBase64(hProcess, (u64)&wdbg_init);
-	IMAGE_NT_HEADERS* header = ImageNtHeader((void*)base);
+	mod_base = SymGetModuleBase64(hProcess, (u64)&wdbg_init);
+	IMAGE_NT_HEADERS* header = ImageNtHeader((void*)mod_base);
 	machine = header->FileHeader.Machine;
 
 	return 0;
 }
+
 
 static int wdbg_shutdown(void)
 {
@@ -101,14 +97,7 @@ static int wdbg_shutdown(void)
 }
 
 
-
-
-
-
-
-
 //////////////////////////////////////////////////////////////////////////////
-
 
 
 // need to shoehorn printf-style variable params into
@@ -121,9 +110,8 @@ static int wdbg_shutdown(void)
 //   allocate+expand_until_it_fits. these calls are for quick debug output,
 //   not loads of data, anyway.
 
-static const int MAX_CNT = 512;
 // max output size of 1 call of (w)debug_out (including \0)
-
+static const int MAX_CNT = 512;
 
 
 void debug_out(const char* fmt, ...)
@@ -160,6 +148,17 @@ void wdebug_out(const wchar_t* fmt, ...)
 //
 //////////////////////////////////////////////////////////////////////////////
 
+// dbghelp isn't thread-safe. lock is taken by walk_stack,
+// debug_resolve_symbol, and while dumping a stack frame (dump_frame_cb).
+static void lock()
+{
+	win_lock(DBGHELP_CS);
+}
+
+static void unlock()
+{
+	win_unlock(DBGHELP_CS);
+}
 
 // iterate over a call stack.
 // if <thread_context> != 0, we start there; otherwise, at the current
@@ -365,7 +364,7 @@ static void out(const wchar_t* fmt, ...)
 }
 
 
-// is an ASCII string apparently located at <addr>?
+// does it look like an ASCII string is located at <addr>?
 // set <stride> to 2 to search for WCS-2 strings (of western characters!).
 // called by dump_ptr and dump_array for their string special-cases.
 //
@@ -865,14 +864,21 @@ static int dump_data_sym(DWORD data_idx, const u8* p, uint level)
 
 	out(L"%s = ", sym->Name);
 
-	int ret = dump_type_sym(sym->TypeIndex, p, level);
-
-	// couldn't produce any reasonable output; value = "?"
-	if(ret < 0)
-		out(L"?");
+	int ret;
+	__try
+	{
+		ret = dump_type_sym(sym->TypeIndex, p, level);
+		// couldn't produce any reasonable output; value = "?"
+		if(ret < 0)
+			out(L"?");
+	}
+	__except(1)
+	{
+		ret = -1;
+		out(L"(internal error)");
+	}
 
 	out(L"\r\n");
-
 	return ret;
 }
 
@@ -896,7 +902,7 @@ static BOOL CALLBACK dump_sym_cb(SYMBOL_INFO* sym, ULONG sym_size, void* ctx)
 	UNUSED(sym_size);
 	DumpSymParams* p = (DumpSymParams*)ctx;
 
-	mod_base = (uintptr_t)sym->ModBase;
+	assert(mod_base == sym->ModBase);
 
 	// get address
 	ULONG64 addr = sym->Address;
@@ -1099,7 +1105,21 @@ static int dialog(DialogType type)
 }
 
 
-/*---------------------------------------------------------------------------*/
+int debug_assert_failed(const char* file, int line, const char* expr)
+{
+	pos = buf;
+	out(L"Assertion failed in %hs, line %d: \"%hs\"\r\n", file, line, expr);
+	dump_stack(1);	// skip this function's frame
+
+	return dialog(ASSERT);
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// exception handler
+//
+//////////////////////////////////////////////////////////////////////////////
 
 
 static PTOP_LEVEL_EXCEPTION_FILTER prev_except_filter;
@@ -1187,6 +1207,124 @@ void i18n_display_fatal_msg(const wchar_t* errortext) {
 
 #endif // LOCALISED_TEXT
 
+
+
+
+
+
+// from http://www.codeproject.com/debug/XCrashReportPt3.asp
+static void DumpMiniDump(HANDLE hFile, PEXCEPTION_POINTERS excpInfo)
+{
+/*
+	if (excpInfo == NULL) 
+	{
+		// Generate exception to get proper context in dump
+		__try 
+		{
+			OutputDebugString("RaiseException for MinidumpWriteDump\n");
+			RaiseException(EXCEPTION_BREAKPOINT, 0, 0, NULL);
+		} 
+		__except(DumpMiniDump(hFile, GetExceptionInformation()), EXCEPTION_CONTINUE_EXECUTION) 
+		{
+		}
+	}
+	else
+	{*/
+		MINIDUMP_EXCEPTION_INFORMATION eInfo;
+		eInfo.ThreadId = GetCurrentThreadId();
+		eInfo.ExceptionPointers = excpInfo;
+		eInfo.ClientPointers = FALSE;
+
+		// TODO: Store the crashlog.txt inside the UserStreamParam
+		// so that people only have to send us one file?
+
+		// note:  MiniDumpWithIndirectlyReferencedMemory does not work on Win98
+		if (!MiniDumpWriteDump(
+			GetCurrentProcess(),
+			GetCurrentProcessId(),
+			hFile,
+			MiniDumpNormal,
+			excpInfo ? &eInfo : NULL,
+			NULL,
+			NULL))
+		{
+			throw; // fail noisily
+		}
+//	}
+}
+
+static void cat_atow(FILE* in, FILE* out)
+{
+	const int bufsize = 1024;
+	char buffer[bufsize+1]; // bufsize+1 so there's space for a \0 at the end
+	while (!feof(in))
+	{
+		int r = (int)fread(buffer, 1, bufsize, in);
+		if (!r) break;
+		buffer[r] = 0; // ensure proper NULLness
+		fwprintf(out, L"%hs", buffer);
+	}
+}
+
+// Imported from sysdep.cpp
+extern wchar_t MicroBuffer[];
+extern size_t MicroBuffer_off;
+
+static int write_crashlog(const char* file, const wchar_t* header, CONTEXT* context)
+{
+	pos = buf;
+	out(L"Unhandled exception.\r\n");
+
+	dump_stack(0, context);
+
+	FILE* f = fopen(file, "wb");
+	u16 BOM = 0xFEFF;
+	fwrite(&BOM, 2, 1, f);
+	if (header)
+	{
+		fwrite(header, wcslen(header), sizeof(wchar_t), f);
+		fwrite(L"\r\n\r\n", 4, sizeof(wchar_t), f);
+	}
+	fwrite(buf, pos-buf, 2, f);
+
+	const wchar_t* divider = L"\r\n\r\n====================================\r\n\r\n";
+
+	fwrite(divider, wcslen(divider), sizeof(wchar_t), f);
+
+	// HACK: Insert the contents from a couple of other log files
+	// and one memory log. These really ought to be integrated better.
+
+	// Copy the contents of ../logs/systeminfo.txt
+	FILE* in;
+	in = fopen("../logs/system_info.txt", "rb");
+	if (in)
+	{
+		fwprintf(f, L"System info:\r\n\r\n");
+		cat_atow(in, f);
+		fclose(in);
+	}
+
+	fwrite(divider, wcslen(divider), sizeof(wchar_t), f);
+
+	// Copy the contents of ../logs/mainlog.html
+	in = fopen("../logs/mainlog.html", "rb");
+	if (in)
+	{
+		fwprintf(f, L"Main log:\r\n\r\n");
+		cat_atow(in, f);
+		fclose(in);
+	}
+
+	fwrite(divider, wcslen(divider), sizeof(wchar_t), f);
+
+	fwprintf(f, L"Last known activity:\r\n\r\n");
+	fwrite(MicroBuffer, MicroBuffer_off, sizeof(wchar_t), f);
+	fclose(f);
+
+	return 0;
+}
+
+
 // PT: Alternate version of the exception handler, which makes
 // the crash log more useful, and takes the responsibility of
 // suiciding away from main.cpp.
@@ -1225,14 +1363,14 @@ int debug_main_exception_filter(unsigned int UNUSEDPARAM(code), PEXCEPTION_POINT
 	{
 		if (ep->ExceptionRecord->NumberParameters == 3)
 		{
-/*/*
+			/*/*
 			PSERROR* err = (PSERROR*) ep->ExceptionRecord->ExceptionInformation[1];
 			if (err->magic == 0x45725221)
 			{
-				int code = err->code;
-				error = GetErrorString(code);
+			int code = err->code;
+			error = GetErrorString(code);
 			}
-*/
+			*/
 		}
 	}
 	__except (EXCEPTION_EXECUTE_HANDLER)
@@ -1315,7 +1453,7 @@ int debug_main_exception_filter(unsigned int UNUSEDPARAM(code), PEXCEPTION_POINT
 
 	__try
 	{
-		debug_write_crashlog("crashlog.txt", errortext, ep->ContextRecord);
+		write_crashlog("crashlog.txt", errortext, ep->ContextRecord);
 	}
 	__except (EXCEPTION_EXECUTE_HANDLER)
 	{
@@ -1342,134 +1480,4 @@ int debug_main_exception_filter(unsigned int UNUSEDPARAM(code), PEXCEPTION_POINT
 #endif
 
 	exit(EXIT_FAILURE);
-}
-
-
-
-
-
-int debug_assert_failed(const char* file, int line, const char* expr)
-{
-	pos = buf;
-	out(L"Assertion failed in %hs, line %d: \"%hs\"\r\n", file, line, expr);
-	dump_stack(1);	// skip this function's frame
-
-	return dialog(ASSERT);
-}
-
-
-
-
-// from http://www.codeproject.com/debug/XCrashReportPt3.asp
-static void DumpMiniDump(HANDLE hFile, PEXCEPTION_POINTERS excpInfo)
-{
-/*
-	if (excpInfo == NULL) 
-	{
-		// Generate exception to get proper context in dump
-		__try 
-		{
-			OutputDebugString("RaiseException for MinidumpWriteDump\n");
-			RaiseException(EXCEPTION_BREAKPOINT, 0, 0, NULL);
-		} 
-		__except(DumpMiniDump(hFile, GetExceptionInformation()), EXCEPTION_CONTINUE_EXECUTION) 
-		{
-		}
-	}
-	else
-	{*/
-		MINIDUMP_EXCEPTION_INFORMATION eInfo;
-		eInfo.ThreadId = GetCurrentThreadId();
-		eInfo.ExceptionPointers = excpInfo;
-		eInfo.ClientPointers = FALSE;
-
-		// TODO: Store the crashlog.txt inside the UserStreamParam
-		// so that people only have to send us one file?
-
-		// note:  MiniDumpWithIndirectlyReferencedMemory does not work on Win98
-		if (!MiniDumpWriteDump(
-			GetCurrentProcess(),
-			GetCurrentProcessId(),
-			hFile,
-			MiniDumpNormal,
-			excpInfo ? &eInfo : NULL,
-			NULL,
-			NULL))
-		{
-			throw; // fail noisily
-		}
-//	}
-}
-
-static void cat_atow(FILE* in, FILE* out)
-{
-	const int bufsize = 1024;
-	char buffer[bufsize+1]; // bufsize+1 so there's space for a \0 at the end
-	while (!feof(in))
-	{
-		int r = (int)fread(buffer, 1, bufsize, in);
-		if (!r) break;
-		buffer[r] = 0; // ensure proper NULLness
-		fwprintf(out, L"%hs", buffer);
-	}
-}
-
-// Imported from sysdep.cpp
-extern wchar_t MicroBuffer[];
-extern size_t MicroBuffer_off;
-
-int debug_write_crashlog(const char* file, const wchar_t* header, void* ctx)
-{
-	pos = buf;
-	out(L"Undefined state reached.\r\n");
-
-	CONTEXT* context = (CONTEXT*)ctx;
-	const uint skip = context? 0 : 2;
-	dump_stack(skip, context);
-
-	FILE* f = fopen(file, "wb");
-	u16 BOM = 0xFEFF;
-	fwrite(&BOM, 2, 1, f);
-	if (header)
-	{
-		fwrite(header, wcslen(header), sizeof(wchar_t), f);
-		fwrite(L"\r\n\r\n", 4, sizeof(wchar_t), f);
-	}
-	fwrite(buf, pos-buf, 2, f);
-
-	const wchar_t* divider = L"\r\n\r\n====================================\r\n\r\n";
-
-	fwrite(divider, wcslen(divider), sizeof(wchar_t), f);
-
-	// HACK: Insert the contents from a couple of other log files
-	// and one memory log. These really ought to be integrated better.
-
-	// Copy the contents of ../logs/systeminfo.txt
-	FILE* in;
-	in = fopen("../logs/system_info.txt", "rb");
-	if (in)
-	{
-		fwprintf(f, L"System info:\r\n\r\n");
-		cat_atow(in, f);
-		fclose(in);
-	}
-
-	fwrite(divider, wcslen(divider), sizeof(wchar_t), f);
-
-	// Copy the contents of ../logs/mainlog.html
-	in = fopen("../logs/mainlog.html", "rb");
-	if (in)
-	{
-		fwprintf(f, L"Main log:\r\n\r\n");
-		cat_atow(in, f);
-		fclose(in);
-	}
-
-	fwrite(divider, wcslen(divider), sizeof(wchar_t), f);
-
-	fwprintf(f, L"Last known activity:\r\n\r\n");
-	fwrite(MicroBuffer, MicroBuffer_off, sizeof(wchar_t), f);
-	fclose(f);
-
-	return 0;
 }
