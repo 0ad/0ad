@@ -12,6 +12,7 @@ namespace StringConvert
 
 	JSString* wstring_to_jsstring(JSContext* cx, const std::wstring& str);
 	JSString* wchars_to_jsstring(JSContext* cx, const wchar_t* chars);
+	JSString* wchars_to_jsstring(JSContext* cx, const wchar_t* chars, size_t len);
 
 	void jsstring_to_wstring(JSString* str, std::wstring& result);
 	void jschars_to_wstring(const jschar* chars, size_t len, std::wstring& result);
