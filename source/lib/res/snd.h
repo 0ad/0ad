@@ -46,8 +46,7 @@ extern int snd_set_loop(Handle hs, bool loop);
 
 extern int snd_set_master_gain(float gain);
 
-extern int snd_update(const float pos[3], const float dir[3], const float up[3]);
+extern int snd_update(const float* pos, const float* dir, const float* up);
 
 
-// call after h_mgr_shutdown!
 extern void snd_shutdown();
