@@ -189,7 +189,7 @@ struct Req
 // TODO: explain links between Req and cb
 
 
-const int MAX_REQS = 64;
+const int MAX_REQS = 16;
 static Req reqs[MAX_REQS];
 
 
