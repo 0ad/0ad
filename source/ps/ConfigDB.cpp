@@ -55,7 +55,7 @@ namespace ConfigNamespace_JS
 	}
 
 	JSClass Class = {
-		"ConfigNamespace", 0,
+		"ConfigNamespace", JSCLASS_HAS_PRIVATE,
 		JS_PropertyStub, JS_PropertyStub,
 		GetProperty, SetProperty,
 		JS_EnumerateStub, JS_ResolveStub,
