@@ -46,7 +46,7 @@ function loadSession()
 
 // ====================================================================
 
-function setPortrait(objectName, portraitString) 
+function setPortrait(objectName, portraitString, portraitCell) 
 {
 	// Use this function as a shortcut to change a portrait object to a different portrait image. 
 
@@ -64,6 +64,10 @@ function setPortrait(objectName, portraitString)
 	// Note we need to use a special syntax here (object["param"] instead of object.param because dashes aren't actually in JS's variable-naming conventions.
 	GUIObject["sprite-over"] = GUIObject.sprite + "-lit";
 	GUIObject["sprite-disabled"] = GUIObject.sprite + "-grey";
+
+	// If the source texture is a multi-frame image (icon sheet), specify correct cell.
+	if (portraitCell)
+		GUIObject["icon-id"] = portraitCell;
 }
 
 // ====================================================================

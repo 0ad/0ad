@@ -187,11 +187,11 @@ function UpdateGroupPane()
 			groupPanePortrait.hidden = false;
 			groupPaneBar.hidden = false;
 			// Set progress bar for hitpoints.
-			if (selection[groupPaneLoop-1].traits.health.curr && selection[groupPaneLoop-1].traits.health.hitpoints)
-				groupPaneBar.caption = ((Math.round(selection[groupPaneLoop-1].traits.health.curr) * 100 ) / Math.round(selection[groupPaneLoop-1].traits.health.hitpoints));
+			if (selection[groupPaneLoop-1].traits.health.curr && selection[groupPaneLoop-1].traits.health.max)
+				groupPaneBar.caption = ((Math.round(selection[groupPaneLoop-1].traits.health.curr) * 100 ) / Math.round(selection[groupPaneLoop-1].traits.health.max));
 			// Set portrait.
 			if (selection[groupPaneLoop-1].traits.id.icon_cell && selection[groupPaneLoop-1].traits.id.icon_cell != "")
-				setPortrait("session_group_pane_portrait_" + groupPaneLoop, selection[groupPaneLoop-1].traits.id.icon + "_" + selection[groupPaneLoop-1].traits.id.icon_cell);
+				setPortrait("session_group_pane_portrait_" + groupPaneLoop, selection[groupPaneLoop-1].traits.id.icon, selection[groupPaneLoop-1].traits.id.icon_cell);
 			else
 				setPortrait("session_group_pane_portrait_" + groupPaneLoop, selection[groupPaneLoop-1].traits.id.icon);
 		}

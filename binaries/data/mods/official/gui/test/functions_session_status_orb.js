@@ -619,7 +619,7 @@ function UpdateList(listIcon, listCol)
 				if (createLoop < listArray.length+1)
 				{
 					if (getEntityTemplate(listArray[createLoop-1]).traits.id.icon_cell && getEntityTemplate(listArray[createLoop-1]).traits.id.icon_cell != "")
-						setPortrait("session_panel_status_command_pri_" + listCol + "_" + createLoop, getEntityTemplate(listArray[createLoop-1]).traits.id.icon + "_" + getEntityTemplate(listArray[createLoop-1]).traits.id.icon_cell);
+						setPortrait("session_panel_status_command_pri_" + listCol + "_" + createLoop, getEntityTemplate(listArray[createLoop-1]).traits.id.icon, getEntityTemplate(listArray[createLoop-1]).traits.id.icon_cell);
 					else
 						setPortrait("session_panel_status_command_pri_" + listCol + "_" + createLoop, getEntityTemplate(listArray[createLoop-1]).traits.id.icon);
 					GUIObjectUnhide("session_panel_status_command_pri_" + listCol + "_" + createLoop);
@@ -734,7 +734,7 @@ function UpdateStatusOrb()
 	if (selection[0].traits.id.icon)
 	{
 		if (selection[0].traits.id.icon_cell && selection[0].traits.id.icon_cell != "")
-			setPortrait("session_panel_status_portrait", selection[0].traits.id.icon + "_" + selection[0].traits.id.icon_cell);
+			setPortrait("session_panel_status_portrait", selection[0].traits.id.icon, selection[0].traits.id.icon_cell);
 		else
 			setPortrait("session_panel_status_portrait", selection[0].traits.id.icon);
 	}
