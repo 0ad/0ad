@@ -160,28 +160,30 @@ const wchar_t* GetErrorString(PSRETURN code)
 
 for (sort keys %types) {
   (my $name = $_) =~ s/~/_/;
-  print $out qq{\tcase 0x}.unpack('H*',$types{$_}).qq{: return L"$name"; break;\n};
+  print $out qq{\tcase 0x}.unpack('H*',$types{$_}).qq{: return L"$name";\n};
 }
 
 print $out <<".";
+
+\tdefault: return L"Unrecognised error";
 \t}
-\treturn L"Unrecognised error";
 }
 
 void ThrowError(PSRETURN code)
 {
-\tswitch (code)
+\tswitch (code)  // Use 'break' in case someone tries to continue from the exception
 \t{
 .
 
 for (sort keys %types) {
   (my $name = $_) =~ s/~/_/;
-  print $out qq{\tcase 0x}.unpack('H*',$types{$_}).qq{: throw PSERROR_$name();\n};
+  print $out qq{\tcase 0x}.unpack('H*',$types{$_}).qq{: throw PSERROR_$name(); break;\n};
 }
 
 print $out <<".";
+
+\tdefault: throw PSERROR_Error_InvalidError(); // Hmm...
 \t}
-\tthrow PSERROR_Error_InvalidError(); // Hmm...
 }
 .
 
