@@ -175,14 +175,10 @@ extern int h_free(Handle& h, H_Type type);
 extern Handle h_find(H_Type type, uintptr_t key);
 */
 
-// return a pointer to handle data
+// return a pointer to handle data, or 0 on error
 extern void* h_user_data(Handle h, H_Type type);
 
 extern const char* h_filename(Handle h);
-
-// some resource types are heavyweight and reused between files (e.g. VRead).
-// this reassigns dst's (of type <type>) associated file to that of src.
-int h_reassign(const Handle dst, const H_Type dst_type, const Handle src);
 
 
 extern int res_cur_scope;
@@ -251,8 +247,8 @@ guide to defining and using resources
 2) declare its control block:
    struct Res1
    {
-       void* data1;	data loaded from file
-       int flags;	set when resource is created
+       void* data1;	// data loaded from file
+       int flags;	// set when resource is created
    };
 
 3) build its vtbl:
@@ -335,13 +331,28 @@ guide to defining and using resources
    int res1_free(Handle& h)
    {
        return h_free(h, H_Res1);
+       // zeroes h afterwards
    }
-
-   the h parameter is zeroed by h_free.
 
    (this layer allows a res_load interface on top of all the loaders,
    and is necessary because your module is the only one that knows H_Res1).
 
 6) done. the resource will be freed at exit (if not done already).
 
+   here's how to access the control block, given a handle:
+   Handle h;
+   a) H_DEREF(h, Res1, r);
+
+      creates a variable r of type Res1*, which points to the control block
+      of the resource referenced by h. returns "invalid handle"
+      (a negative error code) on failure.
+   b) Res1* r = h_user_data(h, H_Res1);
+      if(!r)
+          ; // bail
+
+      useful if H_DEREF's error return (of type signed integer) isn't
+      acceptable. otherwise, prefer a) - this is pretty clunky, and
+      we could switch H_DEREF to throwing an exception on error.
+
 */
+

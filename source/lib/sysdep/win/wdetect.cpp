@@ -50,9 +50,9 @@ void get_cur_resolution(int& xres, int& yres)
 int win_get_gfx_card()
 {
 	// EnumDisplayDevices is not available on Win95 or NT
-	HMODULE h = LoadLibrary("user32.dll");
+	HMODULE hUser32Dll = LoadLibrary("user32.dll");
 	int (WINAPI *pEnumDisplayDevicesA)(void*, DWORD, void*, DWORD);
-	*(void**)&pEnumDisplayDevicesA = GetProcAddress(h, "EnumDisplayDevicesA");
+	*(void**)&pEnumDisplayDevicesA = GetProcAddress(hUser32Dll, "EnumDisplayDevicesA");
 	if(pEnumDisplayDevicesA)
 	{
 		DISPLAY_DEVICEA dev;
@@ -63,6 +63,7 @@ int win_get_gfx_card()
 			return 0;
 		}
 	}
+	FreeLibrary(hUser32Dll);
 
 	return -1;
 }

@@ -333,6 +333,12 @@ inline void SDL_GL_SwapBuffers()
 
 void SDL_Quit()
 {
+	if(hDC != INVALID_HANDLE_VALUE)
+	{
+		ReleaseDC(hWnd, hDC);
+		hDC = (HDC)INVALID_HANDLE_VALUE;
+	}
+
 	if(hWnd != INVALID_HANDLE_VALUE)
 	{
 		DestroyWindow(hWnd);
