@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "MaxInc.h"
-#include "res/res.h"
+#include "lib/types.h"
 #include "Matrix3D.h"
 #include "Vector3D.h"
 #include "Quaternion.h"

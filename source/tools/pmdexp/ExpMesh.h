@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "MaxInc.h"
-#include "lib\types.h"
+#include "lib/types.h"
 #include "Vector3D.h"
 
 #include "ExpVertex.h"
