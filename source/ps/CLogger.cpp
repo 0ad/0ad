@@ -196,7 +196,7 @@ int CLogger::Interestedness(const char* category)
 		return 2;
 
 	// If the config DB hasn't been loaded, assume the default
-	if (!g_ConfigDB.IsInitialised())
+	if (! CConfigDB::IsInitialised())
 		return 1;
 
 	CConfigValue* v = g_ConfigDB.GetValue(CFG_SYSTEM, CStr("loginterest.")+category);
