@@ -209,7 +209,7 @@ bool IGUIObject::SettingExists(const CStr &Setting) const
 	return (m_Settings.count(Setting) >= 1);
 }
 
-#define ADD_TYPE(type)									\
+#define ADD_TYPE(type, type_name)									\
 	else												\
 	if (set.m_Type == GUIST_##type)						\
 	{													\
