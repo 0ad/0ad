@@ -142,7 +142,7 @@ class CPos
 {
 public:
 	CPos();
-	CPos(const int32_t &_x, const int32_t &_y);
+	CPos(const float &_x, const float &_y);
 
 	// Operators
 	void				operator =  (const CPos& a);
@@ -165,7 +165,7 @@ public:
 	/**
 	 * Position
 	 */
-	int32_t x, y;
+	float x, y;
 };
 
 /**
@@ -183,7 +183,7 @@ public:
 	CSize();
 	CSize(const CRect &rect);
 	CSize(const CPos &pos);
-	CSize(const int32_t &_cx, const int32_t &_cy);
+	CSize(const float &_cx, const float &_cy);
 
 	// Operators
 	void				operator =  (const CSize& a);
@@ -194,19 +194,19 @@ public:
 
 	CSize				operator +  (const CSize& a) const;
 	CSize				operator -  (const CSize& a) const;
-	CSize				operator /  (const int &a) const;
-	CSize				operator *  (const int &a) const;
+	CSize				operator /  (const float &a) const;
+	CSize				operator *  (const float &a) const;
 
 	void				operator += (const CSize& a);
 	void				operator -= (const CSize& a);
-	void				operator /= (const int& a);
-	void				operator *= (const int& a);
+	void				operator /= (const float& a);
+	void				operator *= (const float& a);
 
 public:
 	/**
 	 * Size
 	 */
-	int32_t cx, cy;
+	float cx, cy;
 };
 
 

@@ -50,7 +50,7 @@ struct CGUIScrollBarStyle
 	/**
 	 * Width of bar, also both sides of the edge buttons.
 	 */
-	int m_Width;
+	float m_Width;
 
 	/**
 	 * Scrollable with the wheel.
@@ -74,7 +74,7 @@ struct CGUIScrollBarStyle
 	 * from being almost invisible (or ugly), you can set a minimum in pixel
 	 * size.
 	 */
-	int m_MinimumBarSize;
+	float m_MinimumBarSize;
 
 	//@}
 	//--------------------------------------------------------

@@ -13,10 +13,10 @@ using namespace std;
 //	IGUIScrollBar
 //-------------------------------------------------------------------
 IGUIScrollBar::IGUIScrollBar() : m_pStyle(NULL), m_pGUI(NULL),
-								 m_X(300), m_Y(300),
-								 m_ScrollRange(1), m_ScrollSpace(0), // MaxPos: not 0, due to division.
-								 m_Length(200), m_Width(20), 
-								 m_BarSize(0.5), m_Pos(0),
+								 m_X(300.f), m_Y(300.f),
+								 m_ScrollRange(1.f), m_ScrollSpace(0.f), // MaxPos: not 0, due to division.
+								 m_Length(200.f), m_Width(20.f), 
+								 m_BarSize(0.5f), m_Pos(0.f),
 								 m_UseEdgeButtons(true),
 								 m_ButtonPlusPressed(false),
 								 m_ButtonMinusPressed(false),
@@ -54,9 +54,9 @@ CGUI *IGUIScrollBar::GetGUI() const
 
 void IGUIScrollBar::UpdatePosBoundaries()
 {
-	if (m_Pos < 0 ||
+	if (m_Pos < 0.f ||
 		m_ScrollRange < m_ScrollSpace) // <= scrolling not applicable
-		m_Pos = 0;
+		m_Pos = 0.f;
 	else
 	if (m_Pos > m_ScrollRange - m_ScrollSpace)
 		m_Pos = m_ScrollRange - m_ScrollSpace;
@@ -105,7 +105,7 @@ void IGUIScrollBar::HandleMessage(const SGUIMessage &Message)
 			{
 				m_BarPressed = true;
 				m_BarPressedAtPos = mouse;
-				m_PosWhenPressed = (float)m_Pos;
+				m_PosWhenPressed = m_Pos;
 			}
 			else
 			// if button-minus is pressed

@@ -75,7 +75,10 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 
 	if(ev->type == SDL_MOUSEMOTION)
 	{
-		m_MousePos = CPos(ev->motion.x, ev->motion.y);
+		// Yes the mouse position is stored as float to avoid
+		//  constant conversations when operating in a
+		//  float-based environment.
+		m_MousePos = CPos((float)ev->motion.x, (float)ev->motion.y);
 
 		GUI<SGUIMessage>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject, 
 										&IGUIObject::HandleMessage, 
@@ -440,12 +443,14 @@ void CGUI::DrawSprite(const CStr& SpriteName,
 				int t_w, t_h;
 				tex_info(cit->m_Texture, &t_w, &t_h, NULL, NULL, NULL);
 
-				// notice left done after right, so that left is still unchanged, that is important.
-				TexCoords.right = TexCoords.left + width * cit->m_TexturePlacementInFile.right/(float)t_w;
-				TexCoords.left += width * cit->m_TexturePlacementInFile.left/(float)t_w;
+				float fTW=(float)t_w, fTH=(float)t_h;
 
-				TexCoords.bottom = TexCoords.top + height * cit->m_TexturePlacementInFile.bottom/(float)t_h;
-				TexCoords.top += height * cit->m_TexturePlacementInFile.top/(float)t_h;
+				// notice left done after right, so that left is still unchanged, that is important.
+				TexCoords.right = TexCoords.left + width * cit->m_TexturePlacementInFile.right/fTW;
+				TexCoords.left += width * cit->m_TexturePlacementInFile.left/fTW;
+
+				TexCoords.bottom = TexCoords.top + height * cit->m_TexturePlacementInFile.bottom/fTH;
+				TexCoords.top += height * cit->m_TexturePlacementInFile.top/fTH;
 			}
 
 			glBegin(GL_QUADS);
@@ -465,10 +470,10 @@ void CGUI::DrawSprite(const CStr& SpriteName,
 			CRect real = cit->m_Size.GetClientArea(Rect);
 
 			glBegin(GL_QUADS);
-			glVertex3f((float)real.right,	(float)real.bottom,	cit->m_DeltaZ);
-			glVertex3f((float)real.left,	(float)real.bottom,	cit->m_DeltaZ);
-			glVertex3f((float)real.left,	(float)real.top,	cit->m_DeltaZ);
-			glVertex3f((float)real.right,	(float)real.top,	cit->m_DeltaZ);
+			glVertex3f(real.right,	real.bottom,	cit->m_DeltaZ);
+			glVertex3f(real.left,	real.bottom,	cit->m_DeltaZ);
+			glVertex3f(real.left,	real.top,		cit->m_DeltaZ);
+			glVertex3f(real.right,	real.top,		cit->m_DeltaZ);
 			glEnd();
 		}
 	}
@@ -570,16 +575,16 @@ IGUIObject* CGUI::FindObjectByName(const CStr& Name) const
 // private struct used only in GenerateText(...)
 struct SGenerateTextImage
 {
-	int m_YFrom,		// The images starting location in Y
-		m_YTo,			// The images end location in Y
-		m_Indentation;	// The image width in other words
+	float m_YFrom,			// The images starting location in Y
+		  m_YTo,			// The images end location in Y
+		  m_Indentation;	// The image width in other words
 
 	// Some help functions
 	// TODO Gee: CRect => CPoint ?
 	void SetupSpriteCall(const bool &Left, SGUIText::SSpriteCall &SpriteCall, 
-						 const int &width, const int &y,
+						 const float &width, const float &y,
 						 const CSize &Size, const CStr& TextureName, 
-						 const int &BufferZone)
+						 const float &BufferZone)
 	{
 		// TODO Gee: Temp hardcoded values
 		SpriteCall.m_Area.top = y+BufferZone;
@@ -605,7 +610,7 @@ struct SGenerateTextImage
 };
 
 SGUIText CGUI::GenerateText(const CGUIString &string,
-							const CStr& Font, const int &Width, const int &BufferZone, 
+							const CStr& Font, const float &Width, const float &BufferZone, 
 							const IGUIObject *pObject)
 {
 	SGUIText Text; // object we're generating
@@ -613,7 +618,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 	if (string.m_Words.size() == 0)
 		return Text;
 
-	int x=BufferZone, y=BufferZone; // drawing pointer
+	float x=BufferZone, y=BufferZone; // drawing pointer
 	int from=0;
 	bool done=false;
 
@@ -635,7 +640,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 		CGUIString::SFeedback Feedback;
 
 		// Preliminary line_height, used for word-wrapping with floating images.
-		int prelim_line_height=0;
+		float prelim_line_height=0.f;
 
 		// Width and height of all text calls generated.
 		string.GenerateTextCall(Feedback, Font,
@@ -659,9 +664,9 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 
 					// Y is if no other floating images is above, y. Else it is placed
 					//  after the last image, like a stack downwards.
-					int _y;
+					float _y;
 					if (Images[j].size() > 0)
-						_y = max(y, Images[j].back().m_YTo);
+						_y = MAX(y, Images[j].back().m_YTo);
 					else
 						_y = y; 
 
@@ -672,7 +677,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 					Image.SetupSpriteCall((j==CGUIString::SFeedback::Left), SpriteCall, Width, _y, size, icon.m_TextureName, BufferZone);
 
 					// Check if image is the lowest thing.
-					Text.m_Size.cy = max(Text.m_Size.cy, Image.m_YTo);
+					Text.m_Size.cy = MAX(Text.m_Size.cy, Image.m_YTo);
 
 					Images[j].push_back(Image);
 					Text.m_SpriteCalls.push_back(SpriteCall);
@@ -680,10 +685,10 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 			}
 		}
 
-		pos_last_img = max(pos_last_img, i);
+		pos_last_img = MAX(pos_last_img, i);
 
 		x += Feedback.m_Size.cx;
-		prelim_line_height = max(prelim_line_height, Feedback.m_Size.cy);
+		prelim_line_height = MAX(prelim_line_height, Feedback.m_Size.cy);
 
 		// If Width is 0, then there's no word-wrapping, disable NewLine.
 		if ((WordWrapping && (x > Width-BufferZone || Feedback.m_NewLine)) || i == (int)string.m_Words.size()-2)
@@ -694,7 +699,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 
 			static const int From=0, To=1;
 			//int width_from=0, width_to=width;
-			int width_range[2];
+			float width_range[2];
 			width_range[From] = BufferZone;
 			width_range[To] = Width - BufferZone;
 
@@ -717,18 +722,18 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 					{
 						// We're working with two intervals here, the image's and the line height's.
 						//  let's find the union of these two.
-						int union_from, union_to;
+						float union_from, union_to;
 
-						union_from = max(y, it->m_YFrom);
-						union_to = min(y+prelim_line_height, it->m_YTo);
+						union_from = MAX(y, it->m_YFrom);
+						union_to = MIN(y+prelim_line_height, it->m_YTo);
 						
 						// The union is not empty
 						if (union_to > union_from)
 						{
 							if (j == From)
-								width_range[From] = max(width_range[From], it->m_Indentation);
+								width_range[From] = MAX(width_range[From], it->m_Indentation);
 							else
-								width_range[To] = min(width_range[To], Width - it->m_Indentation);
+								width_range[To] = MIN(width_range[To], Width - it->m_Indentation);
 						}
 					}
 				}
@@ -743,7 +748,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 			//  because it didn't regard images, so we don't know
 			//  if all characters processed, will actually be involved
 			//  in that line.
-			int line_height=0;
+			float line_height=0.f;
 			for (int j=temp_from; j<=i; ++j)
 			{
 				// We don't want to use Feedback now, so we'll have to use
@@ -763,7 +768,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 					break;
 
 				// Let line_height be the maximum m_Height we encounter.
-				line_height = max(line_height, Feedback2.m_Size.cy);
+				line_height = MAX(line_height, Feedback2.m_Size.cy);
 
 				if (WordWrapping && Feedback2.m_NewLine)
 					break;
@@ -790,7 +795,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 				// Since X values are not set, we need to make an internal
 				//  iteration with an increment that will append the internal
 				//  x, that is what x_pointer is for.
-				int x_pointer=0;
+				float x_pointer=0.f;
 
 				vector<SGUIText::STextCall>::iterator it;
 				for (it = Feedback2.m_TextCalls.begin(); it != Feedback2.m_TextCalls.end(); ++it)
@@ -808,7 +813,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 				// Append X value.
 				x += Feedback2.m_Size.cx;
 
-				Text.m_Size.cx = max(Text.m_Size.cx, x+BufferZone);
+				Text.m_Size.cx = MAX(Text.m_Size.cx, x+BufferZone);
 
 				// The first word overrides the width limit, what we
 				//  do, in those cases, are just drawing that word even
@@ -847,10 +852,10 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 			}
 
 			// Reset X
-			x = 0;
+			x = 0.f;
 
 			// Update height of all
-			Text.m_Size.cy = max(Text.m_Size.cy, y+BufferZone);
+			Text.m_Size.cy = MAX(Text.m_Size.cy, y+BufferZone);
 
 			// Now if we entered as from = i, then we want
 			//  i being one minus that, so that it will become
@@ -866,6 +871,10 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 void CGUI::DrawText(const SGUIText &Text, const CColor &DefaultColor, 
 					const CPos &pos, const float &z)
 {
+	// TODO Gee: All these really necessary? Some
+	//  are deafults and if you changed them
+	//  the opposite value at the end of the functions,
+	//  some things won't be drawn correctly. 
 	glEnable(GL_TEXTURE_2D);
 	glDisable(GL_CULL_FACE);
 
@@ -915,6 +924,11 @@ void CGUI::DrawText(const SGUIText &Text, const CColor &DefaultColor,
 	{
 		DrawSprite(it->m_TextureName, z, it->m_Area + pos);
 	}
+
+	// TODO To whom it may concern: Thing were not reset, so
+	//  I added this line, modify if incorrect --
+	glDisable(GL_TEXTURE_2D);
+	// -- GL
 }
 
 void CGUI::ReportParseError(const char *str, ...)
@@ -1521,12 +1535,12 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		else
 		if (attr_name == "z-level")
 		{
-			int z_level;
-			if (!GUI<int>::ParseString(attr_value, z_level))
+			float z_level;
+			if (!GUI<float>::ParseString(attr_value, z_level))
 			{
 				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
 			}
-			else image.m_DeltaZ = (float)z_level/100.f;
+			else image.m_DeltaZ = z_level/100.f;
 		}
 		else
 		if (attr_name == "backcolor")
@@ -1607,22 +1621,22 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 		else
 		if (attr_name == "width")
 		{
-			int i;
-			if (!GUI<int>::ParseString(attr_value, i))
+			float f;
+			if (!GUI<float>::ParseString(attr_value, f))
 			{
 				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
 			}
-			scrollbar.m_Width = i;
+			scrollbar.m_Width = f;
 		}
 		else
 		if (attr_name == "minimum-bar-size")
 		{
-			int i;
-			if (!GUI<int>::ParseString(attr_value, i))
+			float f;
+			if (!GUI<float>::ParseString(attr_value, f))
 			{
 				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
 			}
-			scrollbar.m_MinimumBarSize = i;
+			scrollbar.m_MinimumBarSize = f;
 		}
 		else
 		if (attr_name == "sprite-button-top")

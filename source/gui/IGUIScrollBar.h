@@ -51,7 +51,7 @@ struct SGUIScrollBarStyle
 	/**
 	 * Width of bar, also both sides of the edge buttons.
 	 */
-	int m_Width;
+	float m_Width;
 
 	/**
 	 * Scrollable with the wheel.
@@ -75,7 +75,7 @@ struct SGUIScrollBarStyle
 	 * from being almost invisible (or ugly), you can set a minimum in pixel
 	 * size.
 	 */
-	int m_MinimumBarSize;
+	float m_MinimumBarSize;
 
 	//@}
 	//--------------------------------------------------------
@@ -184,27 +184,27 @@ public:
 	/**
 	 * Get scroll-position
 	 */
-	int GetPos() const { return m_Pos; }
+	float GetPos() const { return m_Pos; }
 
 	/**
 	 * Scroll towards 1.0 one step
 	 */
-	virtual void ScrollPlus() { m_Pos += 30; UpdatePosBoundaries(); }
+	virtual void ScrollPlus() { m_Pos += 30.f; UpdatePosBoundaries(); }
 
 	/**
 	 * Scroll towards 0.0 one step
 	 */
-	virtual void ScrollMinus() { m_Pos -= 30; UpdatePosBoundaries(); }
+	virtual void ScrollMinus() { m_Pos -= 30.f; UpdatePosBoundaries(); }
 
 	/**
 	 * Scroll towards 1.0 one step
 	 */
-	virtual void ScrollPlusPlenty() { m_Pos += 90; UpdatePosBoundaries(); }
+	virtual void ScrollPlusPlenty() { m_Pos += 90.f; UpdatePosBoundaries(); }
 
 	/**
 	 * Scroll towards 0.0 one step
 	 */
-	virtual void ScrollMinusPlenty() { m_Pos -= 90; UpdatePosBoundaries(); }
+	virtual void ScrollMinusPlenty() { m_Pos -= 90.f; UpdatePosBoundaries(); }
 
 	/**
 	 * Set host object, must be done almost at creation of scroll bar.
@@ -228,19 +228,19 @@ public:
 	 * Set Width
 	 * @param width Width
 	 */
-	void SetWidth(const int16_t &width) { m_Width = width; }
+	void SetWidth(const float &width) { m_Width = width; }
 	
 	/**
 	 * Set X Position
 	 * @param x Position in this axis
 	 */
-	void SetX(const int &x) { m_X = x; }
+	void SetX(const float &x) { m_X = x; }
 
 	/**
 	 * Set Y Position
 	 * @param y Position in this axis
 	 */
-	void SetY(const int &y) { m_Y = y; }
+	void SetY(const float &y) { m_Y = y; }
 
 	/**
 	 * Set Z Position
@@ -252,19 +252,19 @@ public:
 	 * Set Length of scroll bar
 	 * @param length Length
 	 */
-	void SetLength(const int &length) { m_Length = length; }
+	void SetLength(const float &length) { m_Length = length; }
 
 	/**
 	 * Set content length
 	 * @param range Maximum scrollable range
 	 */
-	void SetScrollRange(const int &range) { m_ScrollRange = max(range,1); SetupBarSize(); }
+	void SetScrollRange(const float &range) { m_ScrollRange = MAX(range, 1.f); SetupBarSize(); }
 
 	/**
 	 * Set space that is visible in the scrollable control.
 	 * @param space Visible area in the scrollable control.
 	 */
-	void SetScrollSpace(const int &space) { m_ScrollSpace = space; SetupBarSize(); }
+	void SetScrollSpace(const float &space) { m_ScrollSpace = space; SetupBarSize(); }
 
 	/**
 	 * Set bar pressed
@@ -330,17 +330,17 @@ protected:
 	/**
 	 * Width of the scroll bar
 	 */
-	int m_Width;	
+	float m_Width;	
 
 	/**
 	 * Absolute X Position
 	 */
-	int m_X;
+	float m_X;
 
 	/**
 	 * Absolute Y Position
 	 */
-	int m_Y;
+	float m_Y;
 
 	/**
 	 * Absolute Z Position
@@ -350,17 +350,17 @@ protected:
 	/**
 	 * Total length of scrollbar, including edge buttons.
 	 */
-	int m_Length;
+	float m_Length;
 
 	/**
 	 * Content that can be scrolled, in pixels
 	 */
-	int m_ScrollRange;
+	float m_ScrollRange;
 
 	/**
 	 * Content that can be viewed at a time, in pixels
 	 */
-	int m_ScrollSpace;
+	float m_ScrollSpace;
 
 	/**
 	 * Use input from the scroll-wheel? True or false.
@@ -423,7 +423,7 @@ protected:
 	 * It is meassured in pixels, it is up to the host to make it actually
 	 * apply in pixels.
 	 */
-	int m_Pos;
+	float m_Pos;
 
 	/**
 	 * Position from 0.f to 1.f it had when the bar was pressed.

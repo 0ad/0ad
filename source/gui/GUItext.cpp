@@ -196,8 +196,12 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 
 			// Calculate the size of the font
 			CSize size;
+			int cx, cy;
 			CFont font (TextCall.m_Font);
-			font.CalculateStringSize(TextCall.m_String, size.cx, size.cy);
+			font.CalculateStringSize(TextCall.m_String, cx, cy);
+
+			size.cx = (float)cx;
+			size.cy = (float)cy;
 
 			// Append width, and make maximum height the height.
 			Feedback.m_Size.cx += size.cx;

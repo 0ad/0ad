@@ -69,21 +69,21 @@ void CText::SetupText()
 	GUI<CGUIString>::GetSetting(this, "caption", caption);
 	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
 
-	int width = (int)m_CachedActualSize.GetWidth();
+	float width = m_CachedActualSize.GetWidth();
 	// remove scrollbar if applicable
 	if (scrollbar && GetScrollBar(0).GetStyle())
 		width -= GetScrollBar(0).GetStyle()->m_Width;
 
 
-    int buffer_zone=0;
-	GUI<int>::GetSetting(this, "buffer-zone", buffer_zone);
+    float buffer_zone=0.f;
+	GUI<float>::GetSetting(this, "buffer-zone", buffer_zone);
 	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, width, buffer_zone, this);
 
 	// Setup scrollbar
 	if (scrollbar)
 	{
 		GetScrollBar(0).SetScrollRange( m_GeneratedTexts[0]->m_Size.cy );
-		GetScrollBar(0).SetScrollSpace( (int)m_CachedActualSize.GetHeight() );
+		GetScrollBar(0).SetScrollSpace( m_CachedActualSize.GetHeight() );
 	}
 }
 
@@ -106,8 +106,8 @@ void CText::HandleMessage(const SGUIMessage &Message)
 			 Message.value == CStr("absolute")))
 		{
 			
-			GetScrollBar(0).SetX( (int)m_CachedActualSize.right );
-			GetScrollBar(0).SetY( (int)m_CachedActualSize.top );
+			GetScrollBar(0).SetX( m_CachedActualSize.right );
+			GetScrollBar(0).SetY( m_CachedActualSize.top );
 			GetScrollBar(0).SetZ( GetBufferedZ() );
 			GetScrollBar(0).SetLength( m_CachedActualSize.bottom - m_CachedActualSize.top );
 		}
@@ -163,7 +163,7 @@ void CText::Draw()
 
 		GetGUI()->DrawSprite(sprite, bz, m_CachedActualSize);
 
-		int scroll=0;
+		float scroll=0.f;
 		if (scrollbar)
 		{
 			scroll = GetScrollBar(0).GetPos();
@@ -173,6 +173,6 @@ void CText::Draw()
 		GUI<CColor>::GetSetting(this, "textcolor", color);
 
 		// Draw text
-		IGUITextOwner::Draw(0, color, m_CachedActualSize.TopLeft() - CPos(0,scroll), bz+0.1f);
+		IGUITextOwner::Draw(0, color, m_CachedActualSize.TopLeft() - CPos(0.f, scroll), bz+0.1f);
 	}
 }

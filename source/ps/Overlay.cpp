@@ -9,7 +9,7 @@ rich@0ad.wildfiregames.com
 #include "Overlay.h"
 
 COverlay::COverlay()
-	: m_Rect(CRect(0,0,0,0)), m_Z(0), m_Color(CColor(0,0,0,0)), m_Texture(""), m_HasBorder(false), m_BorderColor(CColor(0,0,0,0))
+	: m_Rect(CRect(0.f,0.f,0.f,0.f)), m_Z(0), m_Color(CColor(0,0,0,0)), m_Texture(""), m_HasBorder(false), m_BorderColor(CColor(0,0,0,0))
 {
 }
 
@@ -32,22 +32,22 @@ CRect::CRect() :
 }
 
 CRect::CRect(const CPos &pos) :
-	left((float)pos.x), top((float)pos.y), right((float)pos.x), bottom((float)pos.y)
+	left(pos.x), top(pos.y), right(pos.x), bottom(pos.y)
 {
 }
 
 CRect::CRect(const CSize &size) :
-	left(0.f), top(0.f), right((float)size.cx), bottom((float)size.cy)
+	left(0.f), top(0.f), right(size.cx), bottom(size.cy)
 {
 }
 
 CRect::CRect(const CPos &upperleft, const CPos &bottomright) :
-	left((float)upperleft.x), top((float)upperleft.y), right((float)bottomright.x), bottom((float)bottomright.y)
+	left(upperleft.x), top(upperleft.y), right(bottomright.x), bottom(bottomright.y)
 {
 }
 
 CRect::CRect(const CPos &pos, const CSize &size) :
-	left((float)pos.x), top((float)pos.y), right((float)(pos.x+size.cx)), bottom((float)(pos.y+size.cy))
+	left(pos.x), top(pos.y), right((pos.x+size.cx)), bottom((pos.y+size.cy))
 {
 }
 
@@ -101,13 +101,13 @@ CRect CRect::operator + (const CRect& a) const
 // +
 CRect CRect::operator + (const CPos& a) const
 {
-	return CRect(left+(float)a.x, top+(float)a.y, right+(float)a.x, bottom+(float)a.y);
+	return CRect(left+a.x, top+a.y, right+a.x, bottom+a.y);
 }
 
 // +
 CRect CRect::operator + (const CSize& a) const
 {
-	return CRect(left+(float)a.cx, top+(float)a.cy, right+(float)a.cx, bottom+(float)a.cy);
+	return CRect(left+a.cx, top+a.cy, right+a.cx, bottom+a.cy);
 }
 
 // -
@@ -119,13 +119,13 @@ CRect CRect::operator - (const CRect& a) const
 // -
 CRect CRect::operator - (const CPos& a) const
 { 
-	return CRect(left-(float)a.x, top-(float)a.y, right-(float)a.x, bottom-(float)a.y);
+	return CRect(left-a.x, top-a.y, right-a.x, bottom-a.y);
 }
 
 // -
 CRect CRect::operator - (const CSize& a) const
 { 
-	return CRect(left-(float)a.cx, top-(float)a.cy, right-(float)a.cx, bottom-(float)a.cy);
+	return CRect(left-a.cx, top-a.cy, right-a.cx, bottom-a.cy);
 }
 
 // +=
@@ -140,19 +140,19 @@ void CRect::operator +=(const CRect& a)
 // +=
 void CRect::operator +=(const CPos& a)
 {
-	left += (float)a.x;
-	top += (float)a.y;
-	right += (float)a.x;
-	bottom += (float)a.y;
+	left += a.x;
+	top += a.y;
+	right += a.x;
+	bottom += a.y;
 }
 
 // +=
 void CRect::operator +=(const CSize& a)
 {
-	left += (float)a.cx;
-	top += (float)a.cy;
-	right += (float)a.cx;
-	bottom += (float)a.cy;
+	left += a.cx;
+	top += a.cy;
+	right += a.cx;
+	bottom += a.cy;
 }
 
 // -=
@@ -167,19 +167,19 @@ void CRect::operator -=(const CRect& a)
 // -=
 void CRect::operator -=(const CPos& a)
 {
-	left -= (float)a.x;
-	top -= (float)a.y;
-	right -= (float)a.x;
-	bottom -= (float)a.y;
+	left -= a.x;
+	top -= a.y;
+	right -= a.x;
+	bottom -= a.y;
 }
 
 // -=
 void CRect::operator -=(const CSize& a)
 {
-	left -= (float)a.cx;
-	top -= (float)a.cy;
-	right -= (float)a.cx;
-	bottom -= (float)a.cy;
+	left -= a.cx;
+	top -= a.cy;
+	right -= a.cx;
+	bottom -= a.cy;
 }
 
 float CRect::GetWidth() const 
@@ -194,7 +194,7 @@ float CRect::GetHeight() const
 
 CSize CRect::GetSize() const
 {
-	return CSize((int)right-left, (int)bottom-top);
+	return CSize(right-left, bottom-top);
 }
 
 CPos CRect::TopLeft() const
@@ -204,12 +204,12 @@ CPos CRect::TopLeft() const
 
 CPos CRect::BottomRight() const
 {
-	return CPos((int)right, (int)right);
+	return CPos(right, right);
 }
 
 CPos CRect::CenterPoint() const
 {
-	return CPos(int((left+right)/2.f), int((top+bottom)/2.f));
+	return CPos((left+right)/2.f, (top+bottom/2.f));
 }
 
 bool CRect::PointInside(const CPos &point) const
@@ -222,11 +222,11 @@ bool CRect::PointInside(const CPos &point) const
 
 /*************************************************************************/
 
-CPos::CPos() : x(0), y(0) 
+CPos::CPos() : x(0.f), y(0.f)
 {
 }
 
-CPos::CPos(const int32_t &_x, const int32_t &_y) : x(_x), y(_y)
+CPos::CPos(const float &_x, const float &_y) : x(_x), y(_y)
 {
 }
 
@@ -315,7 +315,7 @@ void CPos::operator -=(const CSize& a)
 
 /*************************************************************************/
 
-CSize::CSize() : cx(0), cy(0) 
+CSize::CSize() : cx(0.f), cy(0.f) 
 {
 }
 
@@ -327,7 +327,7 @@ CSize::CSize(const CPos &pos) : cx(pos.x), cy(pos.y)
 {
 }
 
-CSize::CSize(const int32_t &_cx, const int32_t &_cy) : cx(_cx), cy(_cy)
+CSize::CSize(const float &_cx, const float &_cy) : cx(_cx), cy(_cy)
 {
 }
 
@@ -375,13 +375,13 @@ CSize CSize::operator - (const CSize& a) const
 }
 
 // /
-CSize CSize::operator / (const int& a) const
+CSize CSize::operator / (const float& a) const
 {
 	return CSize(cx/a, cy/a);
 }
 
 // *
-CSize CSize::operator * (const int& a) const
+CSize CSize::operator * (const float& a) const
 { 
 	return CSize(cx*a, cy*a);
 }
@@ -401,14 +401,14 @@ void CSize::operator -=(const CSize& a)
 }
 
 // /=
-void CSize::operator /=(const int& a)
+void CSize::operator /=(const float& a)
 {
 	cx /= a;
 	cy /= a;
 }
 
 // *=
-void CSize::operator *=(const int& a)
+void CSize::operator *=(const float& a)
 {
 	cx *= a;
 	cy *= a;

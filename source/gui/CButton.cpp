@@ -134,6 +134,5 @@ void CButton::Draw()
 			   sprite_disabled);
 
 	CColor color = ChooseColor();
-
 	IGUITextOwner::Draw(0, color, m_TextPos, bz+0.1f);
 }

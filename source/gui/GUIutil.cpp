@@ -61,10 +61,10 @@ bool __ParseString<CRect>(const CStr& Value, CRect &Output)
 		// Parsing failed
 		return false;
 	}
-	int values[4];
+	float values[4];
 	for (int i=0; i<4; ++i)
 	{
-		if (!line.GetArgInt(i, values[i]))
+		if (!line.GetArgFloat(i, values[i]))
 		{
 			// Parsing failed
 			return false;
@@ -134,17 +134,17 @@ bool __ParseString<CSize>(const CStr& Value, CSize &Output)
 		return false;
 	}
 
-	int x, y;
+	float x, y;
 
 	// x
-	if (!line.GetArgInt(0, x))
+	if (!line.GetArgFloat(0, x))
 	{
 		// TODO Gee: Parsing failed
 		return false;
 	}
 
 	// y
-	if (!line.GetArgInt(1, y))
+	if (!line.GetArgFloat(1, y))
 	{
 		// TODO Gee: Parsing failed
 		return false;
@@ -299,10 +299,7 @@ bool CClientArea::SetClientArea(const CStr& Value)
 	// 4 arguments = INVALID
 
   	// Default to 0
-	//int values[4][2] = {{0,0},{0,0},{0,0},{0,0}};
-	int i_values[4] = {0,0,0,0};
-	float f_values[4] = {0.f, 0.f, 0.f, 0.f};
-
+	float values[4][2] = {{0.f,0.f},{0.f,0.f},{0.f,0.f},{0.f,0.f}};
 	for (int v=0; v<4; ++v)
 	{
 		if (arg_count[v] == 1)
@@ -310,20 +307,20 @@ bool CClientArea::SetClientArea(const CStr& Value)
 			string str;
 			line.GetArgString(arg_start[v], str);
 
-			if (!line.GetArgInt(arg_start[v], i_values[v]))
+			if (!line.GetArgFloat(arg_start[v], values[v][1]))
 				return false;
 		}
 		else
 		if (arg_count[v] == 2)
 		{
-			if (!line.GetArgFloat(arg_start[v], f_values[v]))
+			if (!line.GetArgFloat(arg_start[v], values[v][0]))
 				return false;
 		}
 		else
 		if (arg_count[v] == 3)
 		{
-			if (!line.GetArgFloat(arg_start[v], f_values[v]) ||
-				!line.GetArgInt(arg_start[v]+2, i_values[v]))
+			if (!line.GetArgFloat(arg_start[v], values[v][0]) ||
+				!line.GetArgFloat(arg_start[v]+2, values[v][1]))
 				return false;
 
 		}
@@ -331,14 +328,14 @@ bool CClientArea::SetClientArea(const CStr& Value)
 	}
 
 	// Now store the values[][] in the right place
-	pixel.left =		i_values[0];
-	pixel.top =			i_values[1];
-	pixel.right =		i_values[2];
-	pixel.bottom =		i_values[3];
-	percent.left =		f_values[0];
-	percent.top =		f_values[1];
-	percent.right =		f_values[2];
-	percent.bottom =	f_values[3];
+	pixel.left =		values[0][1];
+	pixel.top =			values[1][1];
+	pixel.right =		values[2][1];
+	pixel.bottom =		values[3][1];
+	percent.left =		values[0][0];
+	percent.top =		values[1][0];
+	percent.right =		values[2][0];
+	percent.bottom =	values[3][0];
 	return true;
 }
 

@@ -113,7 +113,7 @@ void CCheckBox::Draw()
 
 	// Get square
 	// TODO Gee: edit below when CRect has got "height()"
-	int middle = (m_CachedActualSize.bottom - m_CachedActualSize.top)/2;
+	float middle = (m_CachedActualSize.bottom - m_CachedActualSize.top)/2;
 	CRect rect;
 	rect.left =		m_CachedActualSize.left + middle - square_side/2;
 	rect.right =	rect.left + square_side;

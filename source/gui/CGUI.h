@@ -210,8 +210,8 @@ public:
 	 * which object the error occured in to aid the user. The parameter is completely
 	 * optional.
 	 */
-	SGUIText GenerateText(const CGUIString &Text,
-						  const CStr& Font, const int &Width, const int &BufferZone,
+	SGUIText GenerateText(const CGUIString &Text, const CStr& Font, 
+						  const float &Width, const float &BufferZone,
 						  const IGUIObject *pObject=NULL);
 
 	/**
