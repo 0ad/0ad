@@ -20,6 +20,7 @@
 
 #include "detect.h"
 #include "lib.h"
+#include "lib/res/file.h"	// file_enum
 
 #include "win_internal.h"
 
@@ -27,13 +28,88 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// these are all delay-loaded - they're not needed if these
-// routines are never called (to return system info).
+#include <set>
+#include <string>
+
+// DirectSound header
+// HACK: workaround for "subwtype.h not found" errors on VC6/7 hybrid.
+// (subwtype.h <- d3dtypes.h <- dsound.h)
+// since we're only using one DS function (DirectSoundEnumerate),
+// we forward-declare it rather than fix/mess with the system headers.
+#if 0
+// mmsystem.h is necessary for dsound.h; we cut out unnecessary junk
+# define MMNODRV         // Installable driver support
+# define MMNOSOUND       // Sound support
+//# define MMNOWAVE        // Waveform support
+# define MMNOMIDI        // MIDI support
+# define MMNOAUX         // Auxiliary audio support
+# define MMNOMIXER       // Mixer support
+# define MMNOTIMER       // Timer support
+# define MMNOJOY         // Joystick support
+# define MMNOMCI         // MCI support
+# define MMNOMMIO        // Multimedia file I/O support
+# define MMNOMMSYSTEM    // General MMSYSTEM functions
+# include <MMSystem.h>
+# define DIRECTSOUND_VERSION 0x0500
+# include <dsound.h>
+#else
+# define DS_OK 0
+  typedef BOOL (CALLBACK* LPDSENUMCALLBACKA)(void*, const char*, const char*, void*);
+  extern "C" __declspec(dllimport) HRESULT WINAPI DirectSoundEnumerateA(LPDSENUMCALLBACKA, void*);
+#endif
+
+
+// these are all delay-loaded - they're not needed if
+// system information is never queried.
 #ifdef _MSC_VER
 #pragma comment(lib, "version.lib")		// DLL version
 #pragma comment(lib, "advapi32.lib")	// registry
 #pragma comment(lib, "dsound.lib")		// sound card name
 #endif
+
+
+
+static int get_ver(const char* module, char* out_ver, size_t out_ver_len)
+{
+	WIN_SAVE_LAST_ERROR;	// GetFileVersion*, Ver*
+
+	// allocate as much mem as required
+	DWORD unused;
+	const DWORD ver_size = GetFileVersionInfoSize(module, &unused);
+	if(!ver_size)
+		return -1;
+	void* const buf = malloc(ver_size);
+	if(!buf)
+		return ERR_NO_MEM;
+
+	// from here on, we set and later return this variable -
+	// can't return directly, since we've allocated memory.
+	int ret = -1;
+
+	if(GetFileVersionInfo(module, 0, ver_size, buf))
+	{
+		u16* lang;	// -> 16 bit language ID, 16 bit codepage
+		uint lang_len;
+		const BOOL ok = VerQueryValue(buf, "\\VarFileInfo\\Translation", (void**)&lang, &lang_len);
+		if(ok && lang && lang_len == 4)
+		{
+			char subblock[64];
+			sprintf(subblock, "\\StringFileInfo\\%04X%04X\\FileVersion", lang[0], lang[1]);
+			const char* in_ver;
+			uint in_ver_len;
+			if(VerQueryValue(buf, subblock, (void**)&in_ver, &in_ver_len))
+			{
+				strncpy(out_ver, in_ver, out_ver_len);
+				ret = 0;	// success
+			}
+		}
+	}
+	free(buf);
+
+	WIN_RESTORE_LAST_ERROR;
+
+	return ret;
+}
 
 
 // EnumDisplayDevices is not available on Win95 or NT.
@@ -98,22 +174,11 @@ int get_monitor_size(int& width_mm, int& height_mm)
 }
 
 
-static int win_get_gfx_card()
-{
-	if(gfx_card[0] != '\0')
-		return -1;
-
-	// make sure EnumDisplayDevices is available (as pEnumDisplayDevicesA)
-	if(import_EnumDisplayDevices() < 0)
-		return -1;
-
-	DISPLAY_DEVICEA dev = { sizeof(dev) };
-	if(!pEnumDisplayDevicesA(0, 0, &dev, 0))
-		return -1;
-
-	strncpy(gfx_card, (const char*)dev.DeviceString, GFX_CARD_LEN-1);
-	return 0;
-}
+//////////////////////////////////////////////////////////////////////////////
+//
+// graphics card / driver version
+//
+//////////////////////////////////////////////////////////////////////////////
 
 
 // get the name of the OpenGL driver DLL (used to determine driver version).
@@ -165,50 +230,27 @@ static int get_ogl_drv_name(char* const ogl_drv_name, const size_t max_name_len)
 }
 
 
-static int get_ver(const char* module, char* out_ver, size_t out_ver_len)
+static int win_get_gfx_card()
 {
-	WIN_SAVE_LAST_ERROR;	// GetFileVersion*, Ver*
-
-	// allocate as much mem as required
-	DWORD unused;
-	const DWORD ver_size = GetFileVersionInfoSize(module, &unused);
-	if(!ver_size)
+	if(gfx_card[0] != '\0')
 		return -1;
-	void* const buf = malloc(ver_size);
-	if(!buf)
-		return ERR_NO_MEM;
 
-	// from here on, we set and later return this variable -
-	// can't return directly, since we've allocated memory.
-	int ret = -1;
-
-	if(GetFileVersionInfo(module, 0, ver_size, buf))
+	// make sure EnumDisplayDevices is available (as pEnumDisplayDevicesA)
+	if(import_EnumDisplayDevices() >= 0)
 	{
-		u16* lang;	// -> 16 bit language ID, 16 bit codepage
-		uint lang_len;
-		const BOOL ok = VerQueryValue(buf, "\\VarFileInfo\\Translation", (void**)&lang, &lang_len);
-		if(ok && lang && lang_len == 4)
+		DISPLAY_DEVICEA dev = { sizeof(dev) };
+		if(pEnumDisplayDevicesA(0, 0, &dev, 0))
 		{
-			char subblock[64];
-			sprintf(subblock, "\\StringFileInfo\\%04X%04X\\FileVersion", lang[0], lang[1]);
-			const char* in_ver;
-			uint in_ver_len;
-			if(VerQueryValue(buf, subblock, (void**)&in_ver, &in_ver_len))
-			{
-				strncpy(out_ver, in_ver, out_ver_len);
-				ret = 0;	// success
-			}
+			strncpy(gfx_card, (const char*)dev.DeviceString, GFX_CARD_LEN-1);
+			return 0;
 		}
 	}
-	free(buf);
 
-	WIN_RESTORE_LAST_ERROR;
-
-	return ret;
+	return -1;
 }
 
 
-int win_get_gfx_drv_ver()
+static int win_get_gfx_drv_ver()
 {
 	if(gfx_drv_ver[0] != '\0')
 		return -1;
@@ -231,106 +273,147 @@ int win_get_gfx_info()
 }
 
 
-
+//////////////////////////////////////////////////////////////////////////////
+//
+// sound card / driver version
+//
+//////////////////////////////////////////////////////////////////////////////
 
 // note: OpenAL alGetString is worthless: it only returns OpenAL API version
 // and renderer (e.g. "Software").
 
 
-// problem when including dsound.h: subwtype.h
-// (included via d3dtypes.h and dsound.h) isn't present on VC6/7 hybrid.
-// we're only using one DirectSound function ATM, so we'll declare it here.
+//
+// write list of sound driver DLLs and their versions into snd_drv_ver.
+//
+// be careful to respect library search order: DLLs in the executable's
+// starting directory hide those of the same name in the system directory.
+//
 
-#if 0
-// mmsystem.h is necessary for dsound.h; we cut out unnecessary junk
-# define MMNODRV         // Installable driver support
-# define MMNOSOUND       // Sound support
-//# define MMNOWAVE      // Waveform support
-# define MMNOMIDI        // MIDI support
-# define MMNOAUX         // Auxiliary audio support
-# define MMNOMIXER       // Mixer support
-# define MMNOTIMER       // Timer support
-# define MMNOJOY         // Joystick support
-# define MMNOMCI         // MCI support
-# define MMNOMMIO        // Multimedia file I/O support
-# define MMNOMMSYSTEM    // General MMSYSTEM functions
-# include <MMSystem.h>
-# define DIRECTSOUND_VERSION 0x0500
-# include <dsound.h>
-#else
-typedef BOOL (CALLBACK* LPDSENUMCALLBACKA)(void*, const char*, const char*, void*);
-extern "C" __declspec(dllimport) HRESULT WINAPI DirectSoundEnumerateA(LPDSENUMCALLBACKA, void*);
-#define DS_OK 0
-#endif
+static std::set<std::string> dlls_already_added;
 
+static char* snd_drv_ver_pos = snd_drv_ver;
+	// driver strings will be appended here.
+
+// if we haven't seen this DLL yet, read its file version and
+// append that and its name to the list.
+//
+// dll_path: complete path to DLL (ensures we don't inadvertently
+// load another one that's on the library search path). no trailing '\\'.
+static void list_add_dll(const char* dll_path)
+{
+	// read file version.
+	char dll_ver[32];
+	if(get_ver(dll_path, dll_ver, sizeof(dll_ver)) < 0)
+		strcpy(dll_ver, "unknown version");
+
+	// get filename for "already added" check.
+	const char* dll_fn = strrchr(dll_path, '\\')+1;
+	assert(dll_fn != (const char*)1);	// fires if dll_path was a filename
+
+	// make sure it hasn't been added yet.
+	if(dlls_already_added.find(dll_fn) != dlls_already_added.end())
+		return;
+	dlls_already_added.insert(dll_fn);
+
+	// not first time: prepend comma to string.
+	if(snd_drv_ver_pos != snd_drv_ver)
+		snd_drv_ver_pos += sprintf(snd_drv_ver_pos, ", ");
+	snd_drv_ver_pos += sprintf(snd_drv_ver_pos, "%s (%s)", dll_fn, dll_ver);
+}
+
+
+// check_if_oal_dll needs to prepend directory to the filename it gets
+// (for list_add_dll). it appends filename to directory in a buffer allocated
+// list_check_dir (more efficient, less memory use than copying).
+struct PathInfo
+{
+	const char* path;
+	char* end;
+	size_t remaining;
+};
+
+// if this file is an OpenAL DLL, add it to our list.
+// (match "*oal.dll" and "*OpenAL*", as with OpenAL router's search).
+static int check_if_oal_dll(const char* fn, const ssize_t size, const uintptr_t user)
+{
+	PathInfo* pi = (PathInfo*)user;
+	strncpy(pi->end, fn, pi->remaining);
+
+	const size_t len = strlen(fn);
+	const bool oal = len >= 7 && !stricmp(fn+len-7, "oal.dll");
+	const bool openal = strstr(fn, "OpenAL") != 0;
+	if(oal || openal)
+		list_add_dll(pi->path);
+	return 0;	// continue calling
+}
+
+
+// find all OpenAL DLLs in a dir (via file_enum and check_if_oal_dll).
+// call in library search order (exe dir, then win sys dir).
+//
+// dir: no trailing '\\'.
+static void list_check_dir(const char* dir)
+{
+	char path[MAX_PATH+1]; path[MAX_PATH] = '\0';
+	const int len = snprintf(path, MAX_PATH, "%s\\", dir);
+	if(len < 0)
+	{
+		assert(0);
+		return;
+	}
+	const PathInfo pi = { path, path+len, MAX_PATH-len };
+	file_enum(path, check_if_oal_dll, (uintptr_t)&pi);
+}
+
+
+// free memory used while building the list;
+// required before again building a new list.
+static void list_free_mem()
+{
+	dlls_already_added.clear();
+	snd_drv_ver_pos = snd_drv_ver;
+}
+
+
+
+
+// path to DS3D driver; filled by callback, used when checking version.
 static char ds_drv_name[MAX_PATH+1];
 
-static int __stdcall ds_enum(void* guid, const char* description, const char* module, void* ctx)
+// store sound card name and path to DirectSound driver.
+// called for each DirectSound driver, but aborts after first valid driver.
+static BOOL CALLBACK ds_enum(void* guid, const char* description, const char* module, void* ctx)
 {
-	// skip if description == "Primary Sound Driver"
+	// skip first (dummy) entry, where description == "Primary Sound Driver".
 	if(module[0] == '\0')
-		return true;	// continue calling
+		return TRUE;	// continue calling
 
 	// stick with the first "driver name" (sound card) we get;
 	// in case there are several, we assume this is the one we want.
 
 	strncpy(snd_card, description, SND_CARD_LEN-1);
 
-	// .. DirectSound driver is in "$system\drivers\";
-	//    save its path for version check later.
+	// store DirectSound driver name for version check later
+	// (it's in "win_sys_dir\drivers\").
 	snprintf(ds_drv_name, MAX_PATH, "%s\\drivers\\%s", win_sys_dir, module);
 
-	return false;	// stop calling
-}
-
-static char* snd_drv_ver_pos = snd_drv_ver;
-
-// module: complete path or filename only (if on default library search path)
-static void add_drv(const char* module)
-{
-	char ver[32];
-	if(get_ver(module, ver, sizeof(ver)) < 0)
-		strcpy(ver, "unknown version");
-
-	const char* module_fn = strrchr(module, '\\');
-	if(!module_fn)
-		module_fn = module;
-	else
-		module_fn++;
-
-	// not first time: prepend comma
-	if(snd_drv_ver_pos != snd_drv_ver)
-		snd_drv_ver_pos += sprintf(snd_drv_ver_pos, ", ");
-	snd_drv_ver_pos += sprintf(snd_drv_ver_pos, "%s (%s)", module_fn, ver);
+	return FALSE;	// stop calling
 }
 
 
 int win_get_snd_info()
 {
+	// get sound card name
 	if(DirectSoundEnumerateA((LPDSENUMCALLBACKA)ds_enum, (void*)0) != DS_OK)
 		debug_warn("DirectSoundEnumerate failed");
 
-	// find all DLLs related to OpenAL and retrieve their versions.
-	// (search system dir for *oal.dll and *OpenAL*,
-	// which is also how the router finds implementations).
-	add_drv(ds_drv_name);
-	DIR* dir = opendir(win_sys_dir);
-	if(!dir)
-	{
-		assert(0);
-		return -1;
-	}
-	while(dirent* ent = readdir(dir))
-	{
-		const char* fn = ent->d_name;
-		const size_t len = strlen(fn);
-
-		const bool oal = len > 7 && !stricmp(fn+len-7, "oal.dll");
-		const bool openal = strstr(fn, "OpenAL") != 0;
-		if(oal || openal)
-			add_drv(fn);
-	}
-	closedir(dir);
+	// find all DLLs related to OpenAL, retrieve their versions,
+	// and store in snd_drv_ver string.
+	list_add_dll(ds_drv_name);
+	list_check_dir(win_exe_dir);
+	list_check_dir(win_sys_dir);
+	list_free_mem();
 
 	return 0;
 }
