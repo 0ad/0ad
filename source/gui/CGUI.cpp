@@ -376,12 +376,25 @@ void CGUI::DrawSprite(const CStr& SpriteName,
 	{
 		if (cit->m_Texture)
 		{
+			// TODO: Handle the GL state in a nicer way
+
 			glEnable(GL_TEXTURE_2D);
 			glDisable(GL_COLOR);
 			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 
+			int fmt;
+			tex_info(cit->m_Texture, NULL, NULL, &fmt, NULL, NULL);
+			if (fmt == GL_RGBA || fmt == GL_BGRA)
+			{
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+				glEnable(GL_BLEND);
+			}
+			else
+			{
+				glDisable(GL_BLEND);
+			}
+
 			tex_bind(cit->m_Texture);
-			//glColor3f(1.0f, 1.0f, 1.0f);
 
 			CRect real = cit->m_Size.GetClientArea(Rect);
 
@@ -891,8 +904,9 @@ void CGUI::LoadXMLFile(const string &Filename)
 	{
 		XeroFile.Load(Filename.c_str());
 	}
-	catch (...) {
-		// Failed
+	catch (PSERROR_Xeromyces& err) {
+		UNUSED(err);
+		// Fail silently
 		return;
 	}
 

@@ -1,4 +1,4 @@
-// $Id: Xeromyces.cpp,v 1.7 2004/07/12 15:49:31 philip Exp $
+// $Id: Xeromyces.cpp,v 1.8 2004/07/15 19:08:28 philip Exp $
 
 #include "precompiled.h"
 
@@ -10,7 +10,7 @@
 
 #include "ps/Xeromyces.h"
 #include "ps/CLogger.h"
-#include "lib/res/file.h"
+#include "lib/res/vfs.h"
 
 // Because I (and Xerces) don't like these being redefined by wposix.h:
 #ifdef HAVE_PCH
@@ -175,8 +175,6 @@ void CXeromyces::Terminate()
 	}
 }
 
-
-
 void CXeromyces::Load(const char* filename)
 {
 	// HACK: This is only done so early because CVFSInputSource
@@ -193,7 +191,7 @@ void CXeromyces::Load(const char* filename)
 	if (source.OpenFile(filename))
 	{
 		LOG(ERROR, "CXeromyces: Failed to load XML file '%s'", filename);
-		throw "Failed to load XML file";
+		throw PSERROR_Xeromyces_XMLOpenFailed();
 	}
 
 	// Start the checksum with a particular seed value, so the XMBs will
@@ -250,7 +248,7 @@ void CXeromyces::Load(const char* filename)
 	if (errorHandler.getSawErrors())
 	{
 		LOG(ERROR, "CXeromyces: Errors in XML file '%s'", filename);
-		throw "Failed";
+		throw PSERROR_Xeromyces_XMLParseError();
 	}
 
 

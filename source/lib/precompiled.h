@@ -53,3 +53,6 @@
 #endif // HAVE_DEBUGALLOC
 
 #endif // #ifdef HAVE_PCH
+
+// Macros for declaring new exception groups/types
+#include "ps/Errors.h"

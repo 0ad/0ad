@@ -1,4 +1,4 @@
-/* $Id: Xeromyces.h,v 1.2 2004/07/10 18:57:13 olsner Exp $
+/* $Id: Xeromyces.h,v 1.3 2004/07/15 19:08:28 philip Exp $
 
   Xeromyces file-loading interface.
   Automatically creates and caches relatively
@@ -11,9 +11,12 @@
 #ifndef _XEROMYCES_H_
 #define _XEROMYCES_H_
 
-#include "ps/XeroXMB.h"
+ERROR_GROUP(PSERROR, Xeromyces);
+ERROR_TYPE(PSERROR_Xeromyces, XMLOpenFailed);
+ERROR_TYPE(PSERROR_Xeromyces, XMLParseError);
 
-#include "lib/res/vfs.h"
+#include "ps/XeroXMB.h"
+#include "lib/res/h_mgr.h"
 
 class CXeromyces : public XMBFile
 {
@@ -27,9 +30,6 @@ public:
 
 	// Call once when shutting down the program.
 	static void Terminate();
-
-	// Get the XMBFile after having called Load
-//	XMBFile* GetXMB() { assert(XMB); return XMB; }
 
 
 private:
