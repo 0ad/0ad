@@ -48,6 +48,7 @@
 #include "CLogger.h"
 
 
+
 #ifndef NO_GUI
 #include "gui/GUI.h"
 #endif
@@ -219,8 +220,8 @@ static int set_vmode(int w, int h, int bpp)
 }
 
 
-// break out of main loop
-static bool quit = false;
+bool active = true;
+static bool quit = false;	// break out of main loop
 
 static bool handler(const SDL_Event& ev)
 {
@@ -228,6 +229,10 @@ static bool handler(const SDL_Event& ev)
 
 	switch(ev.type)
 	{
+	case SDL_ACTIVE:
+		active = ev.active.gain != 0;
+		break;
+
 	case SDL_KEYDOWN:
 		c = ev.key.keysym.sym;
 		keys[c] = true;
@@ -248,11 +253,15 @@ static bool handler(const SDL_Event& ev)
 		c = ev.button.button;
 		if( c < 5 )
 			mouseButtons[c] = true;
+		else
+			debug_warn("SDL mouse button defs changed; fix mouseButton array def");
 		break;
 	case SDL_MOUSEBUTTONUP:
 		c = ev.button.button;
 		if( c < 5 )
 			mouseButtons[c] = false;
+		else
+			debug_warn("SDL mouse button defs changed; fix mouseButton array def");
 		break;
 	}
 
@@ -516,8 +525,48 @@ void ParseArgs(int argc, char* argv[])
 }
 
 
-extern u64 PREVTSC;
 
+
+static void psInit()
+{
+	// start up Xerces - only needs to be done once (unless locale changes mid-game, for
+	// some reason), not on every XML file load; multiple initialization calls are ok, though,
+	// provided there are a matching number of XMLPlatformUtils::Terminate calls
+	XMLPlatformUtils::Initialize();
+
+	g_Font_Console = unifont_load("fonts/console");
+	g_Font_Misc = unifont_load("fonts/verdana16");
+
+	g_Console = new CConsole(0, g_yres-600.f, (float)g_xres, 600.f);
+	g_Console->m_iFontHeight = unifont_linespacing(g_Font_Console);
+	g_Console->m_iFontOffset = 9;
+
+#ifndef NO_GUI
+	// GUI uses VFS, so this must come after VFS init.
+	g_GUI.Initialize();
+	g_GUI.LoadXMLFile("gui/styles.xml");
+	g_GUI.LoadXMLFile("gui/hello.xml");
+	g_GUI.LoadXMLFile("gui/sprite1.xml");
+#endif
+}
+
+
+static void psShutdown()
+{
+#ifndef NO_GUI
+	g_GUI.Destroy();
+	delete &g_GUI;
+#endif
+
+	delete g_Console;
+
+	// close down Xerces
+	XMLPlatformUtils::Terminate();
+}
+
+
+
+extern u64 PREVTSC;
 int main(int argc, char* argv[])
 {
 #ifdef _MSC_VER
@@ -575,7 +624,7 @@ PREVTSC=TSC;
 	new CConfigDB;
 	g_ConfigDB.SetConfigFile(CFG_SYSTEM, false, "config/system.cfg");
 	g_ConfigDB.Reload(CFG_SYSTEM);
-	
+
 	g_ConfigDB.SetConfigFile(CFG_MOD, true, "config/mod.cfg");
 	// No point in reloading mod.cfg here - we haven't mounted mods yet
 	
@@ -616,11 +665,6 @@ PREVTSC=TSC;
 		debug_warn("SDL_SetGamma failed");
 	}
 
-	// start up Xerces - only needs to be done once (unless locale changes mid-game, for
-	// some reason), not on every XML file load; multiple initialization calls are ok, though,
-	// provided there are a matching number of XMLPlatformUtils::Terminate calls
-	XMLPlatformUtils::Initialize();
-
 
 	vfs_mount("", "mods/official/", 0);
 
@@ -633,22 +677,7 @@ debug_out(
 PREVTSC=CURTSC;
 #endif
 
-
-#ifndef NO_GUI
-	// GUI uses VFS, so this must come after VFS init.
-	g_GUI.Initialize();
-	g_GUI.LoadXMLFile("gui/styles.xml");
-	g_GUI.LoadXMLFile("gui/hello.xml");
-	g_GUI.LoadXMLFile("gui/sprite1.xml");
-#endif
-
-
-	g_Font_Console = unifont_load("fonts/console");
-	g_Font_Misc = unifont_load("fonts/verdana16");
-
-	g_Console = new CConsole(0, g_yres-600.f, (float)g_xres, 600.f);
-	g_Console->m_iFontHeight = unifont_linespacing(g_Font_Console);
-	g_Console->m_iFontOffset = 9;
+	psInit();
 
 	// create renderer
 	new CRenderer;
@@ -771,47 +800,47 @@ PREVTSC=CURTSC;
 		while((time1-time0) > TICK_TIME)
 		{
 			game_ticks++;
+
 			in_get_events();
 			do_tick();
 			time0 += TICK_TIME;
 		}
-		UpdateWorld(float(time1-time0));
-		terr_update(float(time1-time0));
-		Render();
-		SDL_GL_SwapBuffers();
-
-		calc_fps();
-
-#else
+#endif
 
 		double time1 = get_time();
 
+		// ugly, but necessary. these are one-shot events, have to be reset.
 		mouseButtons[SDL_BUTTON_WHEELUP] = false;
 		mouseButtons[SDL_BUTTON_WHEELDOWN] = false;
 
-		float TimeSinceLastFrame = (float)(time1-time0);
 		in_get_events();
+
+		float TimeSinceLastFrame = (float)(time1-time0);
+		assert(TimeSinceLastFrame >= 0.0f);
+		if(TimeSinceLastFrame == 0.0f)
+			continue;
+
 		UpdateWorld(TimeSinceLastFrame);
-		if (!g_FixedFrameTiming) terr_update(float(TimeSinceLastFrame));
+		if (!g_FixedFrameTiming)
+			terr_update(float(TimeSinceLastFrame));
 		g_Console->Update(TimeSinceLastFrame);
-		Render();
-		SDL_GL_SwapBuffers();
+
+		if(active)
+		{
+			Render();
+			SDL_GL_SwapBuffers();
+		}
+		// inactive; relinquish CPU for a little while
+		// don't use SDL_WaitEvent: don't want the main loop to freeze until app focus is restored
+		else
+			SDL_Delay(10);
 
 		calc_fps();
 		time0=time1;
 		frameCount++;
 		if (g_FixedFrameTiming && frameCount==100) quit=true;
-#endif
 	}	// main loop, while(!quit)
 
-
-
-#ifndef NO_GUI
-	g_GUI.Destroy();
-	delete &g_GUI;
-#endif
-
-	delete g_Console;
 	delete &g_ScriptingHost;
 	delete &g_Pathfinder;
 	delete &g_EntityManager;
@@ -830,8 +859,7 @@ PREVTSC=CURTSC;
 
 	delete &g_ConfigDB;
 
-	// close down Xerces
-	XMLPlatformUtils::Terminate();
+	psShutdown();
 
 	exit(0);
 	return 0;
