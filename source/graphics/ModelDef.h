@@ -13,6 +13,7 @@
 #include "CStr.h"
 #include "Vector3D.h"
 #include "SkeletonAnimDef.h"
+#include <vector>
 
 ///////////////////////////////////////////////////////////////////////////////
 // SPropPoint: structure describing a prop point

@@ -18,6 +18,7 @@
 #define LIB_H
 
 #include <stddef.h>
+#include <assert.h>
 
 #include "config.h"
 #include "posix.h"

@@ -24,7 +24,7 @@
 #ifndef __WPOSIX_H__
 #define __WPOSIX_H__
 
-
+#include <wchar.h> // for the stat struct
 #include <sys/types.h>
 #include <stddef.h>
 

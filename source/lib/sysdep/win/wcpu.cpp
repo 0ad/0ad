@@ -1,5 +1,7 @@
 #include "precompiled.h"
 
+#include <stdlib.h> // for malloc, free
+
 #include "lib.h"
 #include "win_internal.h"
 
