@@ -155,10 +155,10 @@ protected:
 };
 
 
-//#ifndef NDEBUG
+#ifndef NDEBUG
 // Used to ensure type-safety, sort of 
 template<typename T> void CheckType(const IGUIObject* obj, const CStr& setting);
-//#endif
+#endif
 
 
 /**
@@ -197,7 +197,9 @@ public:
 		if (!pObject->m_Settings.find(Setting)->second.m_pSetting)
 			return PS_FAIL;
 
+#ifndef NDEBUG
 		CheckType<T>(pObject, Setting);
+#endif
 
 		// Get value
 		Value = *(T*)pObject->m_Settings.find(Setting)->second.m_pSetting;
@@ -223,7 +225,9 @@ public:
 		if (!pObject->SettingExists(Setting))
 			return PS_SETTING_FAIL;
 
+#ifndef NDEBUG
 		CheckType<T>(pObject, Setting);
+#endif
 
 		// Set value
 		*(T*)pObject->m_Settings[Setting].m_pSetting = Value;
