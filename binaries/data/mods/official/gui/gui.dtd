@@ -132,7 +132,7 @@
 <!ATTLIST image
   texture				CDATA #IMPLIED
   size					CDATA #IMPLIED
-  texture_size				CDATA #IMPLIED
+  texture-size				CDATA #IMPLIED
   backcolor				CDATA #IMPLIED
   bordercolor				CDATA #IMPLIED
   border				%bool; #IMPLIED
