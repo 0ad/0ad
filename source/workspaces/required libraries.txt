@@ -1,0 +1,12 @@
+- glext.h:
+  download from http://oss.sgi.com/projects/ogl-sample/ABI/glext.h ;
+  put it in GL subdir of compiler's include dir
+
+- ZLib:
+  download from http://www.stud.uni-karlsruhe.de/~urkt/zlib.zip ; 
+  put the DLL in binaries\, put header and lib into compiler dirs
+  Note: this is version 1.1.4.8751
+
+- Xerces:
+  download Xerces binary from http://xml.apache.org/xerces-c/download.cgi ;
+  put the DLL in binaries\, put include\ contents into compiler include dir
