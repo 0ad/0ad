@@ -9,7 +9,7 @@
 #include "precompiled.h"
 
 #include "FileUnpacker.h"
-#include <stdio.h>
+#include "res/vfs.h"
  
 ////////////////////////////////////////////////////////////////////////////////////////
 // CFileUnpacker constructor
@@ -22,6 +22,44 @@ CFileUnpacker::CFileUnpacker() : m_UnpackPos(0), m_Version(0)
 // variety of exceptions for missing files etc
 void CFileUnpacker::Read(const char* filename,const char magicstr[4])
 {
+	// load the whole thing into memory
+	void* file;
+	size_t size;
+	Handle hm = vfs_load(filename, file, size);
+	if(hm <= 0)
+		throw CFileOpenError();
+
+	// make sure we read enough for the header
+	if(size < 12)
+	{
+		mem_free_h(hm);
+		throw CFileReadError();
+	}
+
+	// extract data from header
+	u8* header = (u8*)file;
+	char* magic = (char*)(header+0);
+	m_Version = *(u32*)(header+4);
+	u32 datasize = *(u32*)(header+8);
+	void* data = (header+12);
+
+	// check we've got the right kind of file
+	// .. and that we read exactly headersize+datasize
+	if(strncmp(magic, magicstr, 4) != 0 ||
+	   size != 12+datasize)
+	{
+		mem_free_h(hm);
+		throw CFileTypeError();
+	}
+
+	// allocate memory and read in a big chunk of data
+	m_Data.resize(datasize);
+	memcpy(&m_Data[0], data, datasize);
+
+	mem_free_h(hm);
+
+
+/*
 	FILE* fp=fopen(filename,"rb");
 	if (!fp) {
 		throw CFileOpenError();
@@ -63,6 +101,7 @@ void CFileUnpacker::Read(const char* filename,const char magicstr[4])
 
 	// all done
 	fclose(fp);
+*/
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
