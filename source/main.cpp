@@ -104,7 +104,7 @@ static bool g_NoPBuffer=true;
 static bool g_FixedFrameTiming=false;
 static bool g_VSync = false;
 
-extern CLightEnv g_LightEnv;
+CLightEnv g_LightEnv;
 
 static bool g_EntGraph = false;
 
