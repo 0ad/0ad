@@ -147,7 +147,8 @@ function setuppackage (projectname)
 			"xerces",
 			"vorbis",
 			"boost",
-			"libjpg"
+			"libjpg",
+			"dbghelp"
 		}
 	
 		-- Add '<libraries root>/<libraryname>/lib' and '/include' to the includepaths and libpaths
@@ -176,6 +177,7 @@ function setuppackage (projectname)
 			"/DELAYLOAD:dsound.dll",
 			"/DELAYLOAD:glu32.dll",
 			"/DELAYLOAD:openal32.dll",
+			"/DELAYLOAD:dbghelp.dll",
 			"/DELAY:UNLOAD"		-- allow manual unload of delay-loaded DLLs
 		}
 	
