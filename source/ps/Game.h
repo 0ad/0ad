@@ -15,6 +15,9 @@ ERROR_GROUP(Game);
 
 #include <vector>
 
+// Hard player limit (not counting the Gaia player)
+#define PS_MAX_PLAYERS 6
+
 namespace PlayerArray_JS
 {
 	JSBool GetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );	
