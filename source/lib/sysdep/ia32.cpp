@@ -126,6 +126,7 @@ static int have_brand_string = 0;
 	// if false, need to detect cpu_type manually.
 	// int instead of bool for easier setting from asm
 
+// order in which registers are stored in regs array
 enum Regs
 {
 	EAX,
@@ -339,21 +340,22 @@ static void get_cpu_type()
 
 static void measure_cpu_freq()
 {
-	// set max priority, to avoid interference while measuring.
-	int old_policy;	static sched_param old_param;	// (static => 0-init)
+	// set max priority, to reduce interference while measuring.
+	int old_policy; static sched_param old_param;	// (static => 0-init)
 	pthread_getschedparam(pthread_self(), &old_policy, &old_param);
 	static sched_param max_param;
 	max_param.sched_priority = sched_get_priority_max(SCHED_RR);
 	pthread_setschedparam(pthread_self(), SCHED_RR, &max_param);
 
 	if(ia32_cap(TSC))
-		// we require the TSC to measure actual CPU cycles per clock tick.
+		// make sure the TSC is available, because we're going to
+		// measure actual CPU clocks per known time interval.
 		// counting loop iterations ("bogomips") is unreliable.
 	{
-		// rdtsc() uses cpuid to serialize instruction flow. the first
-		// few calls of this instruction are documented to take longer
-		// (no idea why), so we warm it up here.
-		__asm cpuid __asm cpuid __asm cpuid
+		// note: no need to "warm up" cpuid - it will already have been
+		// called several times by the time this code is reached.
+		// (background: it's used in rdtsc() to serialize instruction flow;
+		// the first call is documented to be slower on Intel CPUs)
 
 		int num_samples = 16;
 		// if clock is low-res, do less samples so it doesn't take too long.
@@ -371,45 +373,53 @@ static void measure_cpu_freq()
 				// i64 because VC6 can't convert u64 -> double,
 				// and we don't need all 64 bits.
 
-			// count # of clocks in max{1 tick, 1 ms}
-			// .. wait for start of tick
+			// count # of clocks in max{1 tick, 1 ms}:
+			// .. wait for start of tick.
 			const double t0 = get_time();
 			u64 c1; double t1;
 			do
 			{
-				c1 = rdtsc();	// changes quickly
+				// note: get_time effectively has a long delay (up to 5 µs)
+				// before returning the time. we call it before rdtsc to
+				// minimize the delay between actually sampling time / TSC,
+				// thus decreasing the chance for interference.
+				// (if unavoidable background activity, e.g. interrupts,
+				// delays the second reading, inaccuracy is introduced).
 				t1 = get_time();
+				c1 = rdtsc();
 			}
 			while(t1 == t0);
-			// .. wait until start of next tick and at least 1 ms
+			// .. wait until start of next tick and at least 1 ms elapsed.
 			do
 			{
-				const u64 c2 = rdtsc();
 				const double t2 = get_time();
+				const u64 c2 = rdtsc();
 				dc = (i64)(c2 - c1);
-					// i64 rationale: see decl
 				dt = t2 - t1;
 			}
 			while(dt < 1e-3);
 
 			// .. freq = (delta_clocks) / (delta_seconds);
-			//    cpuid/rdtsc/timer overhead is negligible
+			//    cpuid/rdtsc/timer overhead is negligible.
 			const double freq = dc / dt;
 			samples[i] = freq;
 		}
 
 		std::sort(samples.begin(), samples.end());
 
-		// median filter (remove upper and lower 25% and average the rest)
+		// median filter (remove upper and lower 25% and average the rest).
+		// note: don't just take the lowest value! it could conceivably be
+		// too low, if background processing delays reading c1 (see above).
 		double sum = 0.0;
 		const int lo = num_samples/4, hi = 3*num_samples/4;
 		for(i = lo; i < hi; i++)
 			sum += samples[i];
 		cpu_freq = sum / (hi-lo);
-	}
-	// else: TSC not available, can't measure
 
-	// restore previous policy and priority
+	}
+	// else: TSC not available, can't measure; cpu_freq remains unchanged.
+
+	// restore previous policy and priority.
 	pthread_setschedparam(pthread_self(), old_policy, &old_param);
 }
 
@@ -514,7 +524,10 @@ void ia32_get_cpu_info()
 	check_speedstep();
 	on_each_cpu(check_smp);
 
+for(int i = 0; i < 10; i++){
 	measure_cpu_freq();
+debug_out("%f\n", cpu_freq);
+}
 
 	// HACK: if _WIN32, the HRT makes its final implementation choice
 	// in the first calibrate call where cpu info is available.
