@@ -65,7 +65,7 @@ extern int aio_write(struct aiocb*);
 extern int lio_listio(int, struct aiocb* const[], int, struct sigevent*);
 
 extern int aio_close(int fd);
-extern int aio_open(const char* fn, int mode, int fd);
+extern int aio_reopen(int fd, const char* fn, int oflag, ...);
 
 // allocate and return a file descriptor 
 extern int aio_assign_handle(uintptr_t handle);
