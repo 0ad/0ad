@@ -249,25 +249,31 @@ static HDATA* h_data(const Handle h, const H_Type type)
 void h_mgr_shutdown(void)
 {
 	// close open handles
-	for(i32 i = 0; i < last_in_use; i++)
+	for(i32 i = 0; i <= last_in_use; i++)
 	{
 		HDATA* hd = h_data(i);
-		if(hd)
+		// can't fail - i is in bounds by definition, and
+		// each HDATA entry has already been allocated.
+		if(!hd)
 		{
-			// it's already been freed; don't free again so that this
-			// doesn't look like an error.
-			if(!hd->tag)
-				continue;
-
-			// somewhat messy, but this only happens on cleanup.
-			// better than an additional h_free(i32 idx) version though.
-			Handle h = handle(i, hd->tag);
-
-			// disable caching; we need to release the resource now.
-			hd->keep_open = 0;
-
-			h_free(h, hd->type);
+			debug_warn("h_mgr_shutdown: h_data failed - why?!");
+			continue;
 		}
+
+		// it's already been freed; don't free again so that this
+		// doesn't look like an error.
+		if(!hd->tag)
+			continue;
+
+		// somewhat messy, but this only happens on cleanup.
+		// better than an additional h_free(i32 idx) version though.
+		Handle h = handle(i, hd->tag);
+
+		// disable caching; we need to release the resource now.
+		hd->keep_open = 0;
+		hd->refs = 0;
+
+		h_free(h, hd->type);
 	}
 
 	// free HDATA array
@@ -406,7 +412,7 @@ int h_free(Handle& h, H_Type type)
 	if(!hd)
 		return ERR_INVALID_HANDLE;
 
-//debug_out("free %s %s\n", type->name, hd->fn);
+// debug_out("free %s %s\n", type->name, hd->fn);
 	
 	// only decrement if refcount not already 0.
 	if(hd->refs > 0)
