@@ -1068,7 +1068,7 @@ int zip_start_io(ZFile* const zf, off_t user_ofs, size_t max_output_size, void* 
 
 // indicates if the IO referenced by <io> has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
-inline int zip_io_complete(ZipIO* io)
+int zip_io_complete(ZipIO* io)
 {
 	if(io->already_inflated)
 		return 1;
@@ -1078,7 +1078,7 @@ inline int zip_io_complete(ZipIO* io)
 
 // wait until the transfer <io> completes, and return its buffer.
 // output parameters are zeroed on error.
-inline int zip_wait_io(ZipIO* io, void*& buf, size_t& size)
+int zip_wait_io(ZipIO* io, void*& buf, size_t& size)
 {
 	buf  = io->user_buf;
 	size = io->max_output_size;
@@ -1107,7 +1107,7 @@ inline int zip_wait_io(ZipIO* io, void*& buf, size_t& size)
 
 
 // finished with transfer <io> - free its buffer (returned by zip_wait_io)
-inline int zip_discard_io(ZipIO* io)
+int zip_discard_io(ZipIO* io)
 {
 	if(io->already_inflated)
 		return 0;

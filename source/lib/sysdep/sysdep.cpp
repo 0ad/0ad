@@ -36,7 +36,7 @@ void debug_out(const char* fmt, ...)
 }
 
 
-inline void debug_check_heap()
+void debug_check_heap()
 {
 }
 

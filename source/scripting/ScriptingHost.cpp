@@ -322,7 +322,9 @@ CStrW ScriptingHost::ValueToUCString( const jsval value )
 	if (string == NULL)
 		throw PSERROR_Scripting_ConversionFailed();
 
-	return CStrW(JS_GetStringChars(string), JS_GetStringLength(string));
+	jschar *strptr=JS_GetStringChars(string);
+	uint length=JS_GetStringLength(string);
+	return CStrW(std::wstring(strptr, strptr+length));
 }
 
 jsval ScriptingHost::UCStringToValue(const utf16string &str)

@@ -1317,7 +1317,7 @@ Handle vfs_open(const char* v_fn, uint file_flags /* = 0 */)
 		// pass file flags to init
 
 #ifdef PARANOIA
-debug_out("vfs_open fn=%s %I64x\n", v_fn, h);
+debug_out("vfs_open fn=%s %llx\n", v_fn, h);
 #endif
 
 	return h;
@@ -1325,10 +1325,10 @@ debug_out("vfs_open fn=%s %I64x\n", v_fn, h);
 
 
 // close the handle to a file.
-inline int vfs_close(Handle& h)
+int vfs_close(Handle& h)
 {
 #ifdef PARANOIA
-debug_out("vfs_close %I64x\n", h);
+debug_out("vfs_close %llx\n", h);
 #endif
 
 	return h_free(h, H_VFile);
@@ -1426,7 +1426,7 @@ static ssize_t vfs_timed_io(const Handle hf, const size_t size, void** p, FileIO
 Handle vfs_load(const char* const v_fn, void*& p, size_t& size, uint flags /* default 0 */)
 {
 #ifdef PARANOIA
-debug_out("vfs_load fn=%s\n", fn);
+debug_out("vfs_load v_fn=%s\n", v_fn);
 #endif
 
 	p = 0; size = 0;	// zeroed in case vfs_open or H_DEREF fails
@@ -1457,24 +1457,27 @@ debug_out("vfs_load fn=%s\n", fn);
 	// (padding), but it greatly simplifies returning the Handle
 	// (if we allow File to alloc, have to make sure the Handle references
 	// the actual data address, not that of the padding).
-	const size_t BLOCK_SIZE = 64*KB;
-	p = mem_alloc(size, BLOCK_SIZE, 0, &hm);
-	if(!p)
-		goto ret;
-
-	ssize_t nread = vfs_timed_io(hf, size, &p);
-	// failed
-	if(nread < 0)
 	{
-		mem_free_h(hm);
-		hm = nread;	// error code
-	}
-	else
-	{
-		if(flags & FILE_CACHE)
-			vf->hm = hm;
+		const size_t BLOCK_SIZE = 64*KB;
+		p = mem_alloc(size, BLOCK_SIZE, 0, &hm);
+		if(!p)
+			goto ret;
 	}
 
+	{
+		ssize_t nread = vfs_timed_io(hf, size, &p);
+		// failed
+		if(nread < 0)
+		{
+			mem_free_h(hm);
+			hm = nread;	// error code
+		}
+		else
+		{
+			if(flags & FILE_CACHE)
+				vf->hm = hm;
+		}
+	}
 ret:
 
 	vfs_close(hf);
@@ -1484,6 +1487,9 @@ ret:
 	// (they may have been assigned values above)
 	if(hm <= 0)
 		p = 0, size = 0;
+
+	if (hm == 0)
+		debug_out("hm == 0!!\n");
 
 	return hm;
 }
@@ -1573,7 +1579,7 @@ Handle vfs_start_io(Handle hf, off_t ofs, size_t size, void* buf)
 
 // indicates if the IO referenced by <io> has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
-inline int vfs_io_complete(Handle hio)
+int vfs_io_complete(Handle hio)
 {
 	H_DEREF(hio, IO, io);
 	if(io->is_zip)
@@ -1585,7 +1591,7 @@ inline int vfs_io_complete(Handle hio)
 
 // wait until the transfer <hio> completes, and return its buffer.
 // output parameters are zeroed on error.
-inline int vfs_wait_io(Handle hio, void*& p, size_t& size)
+int vfs_wait_io(Handle hio, void*& p, size_t& size)
 {
 	H_DEREF(hio, IO, io);
 	if(io->is_zip)
@@ -1596,7 +1602,7 @@ inline int vfs_wait_io(Handle hio, void*& p, size_t& size)
 
 
 // finished with transfer <hio> - free its buffer (returned by vfs_wait_io)
-inline int vfs_discard_io(Handle& hio)
+int vfs_discard_io(Handle& hio)
 {
 	return h_free(hio, H_IO);
 }

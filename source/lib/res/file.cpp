@@ -546,7 +546,7 @@ int file_start_io(File* const f, const off_t ofs, size_t size, void* const p, Fi
 	memset(io, 0, sizeof(FileIO));
 
 #ifdef PARANOIA
-	debug_out("file_start_io ofs=%d size=%d\n", ofs, size);
+	debug_out("file_start_io: ofs=%d size=%d\n", ofs, size);
 #endif
 
 
@@ -584,6 +584,7 @@ int file_start_io(File* const f, const off_t ofs, size_t size, void* const p, Fi
 	// pointer to a struct containing the aiocb*.
 
 	aiocb* cb = (aiocb*)malloc(sizeof(aiocb));
+	memset(cb, 0, sizeof(aiocb));
 	if(!cb)
 		return ERR_NO_MEM;
 	io->cb = cb;
@@ -594,9 +595,15 @@ int file_start_io(File* const f, const off_t ofs, size_t size, void* const p, Fi
 	cb->aio_fildes     = f->fd;
 	cb->aio_offset     = ofs;
 	cb->aio_nbytes     = size;
+#ifdef PARANOIA
+	debug_out("file_start_io: io=%p nbytes=%d\n", io, cb->aio_nbytes);
+#endif
 	int err = lio_listio(LIO_NOWAIT, &cb, 1, (struct sigevent*)0);
 	if(err < 0)
 	{
+#ifdef PARANOIA
+		debug_out("file_start_io: lio_listio: %d, %d[%s]\n", err, errno, strerror(errno));
+#endif
 		file_discard_io(io);
 		return err;
 	}
@@ -624,7 +631,7 @@ int file_io_complete(FileIO* io)
 int file_wait_io(FileIO* io, void*& p, size_t& size)
 {
 #ifdef PARANOIA
-debug_out("file_wait_io: hio=%I64x\n", hio);
+debug_out("file_wait_io: hio=%p\n", io);
 #endif
 
 	// zero output params in case something (e.g. H_DEREF) fails.
@@ -640,6 +647,10 @@ debug_out("file_wait_io: hio=%I64x\n", hio);
 
 	// query number of bytes transferred (-1 if the transfer failed)
 	const ssize_t bytes_transferred = aio_return(cb);
+#ifdef PARANOIA
+	debug_out("file_wait_io: bytes_transferred=%d aio_nbytes=%d\n",
+		bytes_transferred, cb->aio_nbytes);
+#endif
 	if(bytes_transferred < (ssize_t)cb->aio_nbytes)
 		return -1;
 
@@ -942,6 +953,9 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 
 			void* buf = (temp)? 0 : (char*)actual_buf + issue_cnt;
 			ssize_t issued = block_issue(f, slot, issue_ofs, buf);
+#ifdef PARANOIA
+			debug_out("file_io: block_issue: %d\n", issued);
+#endif
 			if(issued < 0)
 				err = issued;
 				// transfer failed - loop will now terminate after
@@ -1030,6 +1044,10 @@ if(from_cache && !temp)
 		else
 			break;
 	}
+
+#ifdef PARANOIA
+	debug_out("file_io: err=%d, actual_transferred_cnt=%d\n", err, actual_transferred_cnt);
+#endif
 
 	// failed (0 means callback reports it's finished)
 	if(err < 0)

@@ -397,7 +397,7 @@ JSBool getLanguageID(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigne
 	return JS_TRUE;
 }
 
-extern "C" extern int fps;
+extern "C" int fps;
 JSBool getFPS(JSContext* UNUSEDPARAM(cx), JSObject* UNUSEDPARAM(globalObject), unsigned int UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* rval)
 {
 	*rval = INT_TO_JSVAL(fps);

@@ -10,12 +10,15 @@
 # include <AL/alut.h>
 #endif
 
+// Linux OpenAL puts the Ogg Vorbis extension enums in alexttypes.h
+#ifdef OS_LINUX
+# include <AL/alexttypes.h>
+#endif
+
 #ifdef _MSC_VER
 #pragma comment(lib, "openal32.lib")
 #pragma comment(lib, "alut.lib")
 #endif
-
-
 
 // called as late as possible, i.e. the first time sound/music is played
 // (either from module init there, or from the play routine itself).
@@ -319,7 +322,11 @@ static int ALBuffer_reload(ALBuffer* b, const char* fn, Handle)
 
 	// freed in bailout ladder
 	Handle hf = 0;
+	ssize_t file_size = 0;
 	void* file = 0;
+	
+	ssize_t bytes_read=0;
+	void *dst=0;
 
 	{
 
@@ -372,13 +379,13 @@ static int ALBuffer_reload(ALBuffer* b, const char* fn, Handle)
 	// note: freed after openal latches its contents in al_create_buffer.
 	// we don't know how much has already been read by wav_detect_format;
 	// allocate enough for the entire file.
-	ssize_t file_size = vfs_size(hf);
+	file_size = vfs_size(hf);
 	if(file_size < 0)
 	{
 		ret = file_size;
 		goto fail;
 	}
-	void* file = mem_alloc(file_size, 65536);	// freed soon after
+	file = mem_alloc(file_size, 65536);	// freed soon after
 	if(!file)
 	{
 		ret = ERR_NO_MEM;
@@ -389,8 +396,8 @@ memset(file, 0xe2, file_size);
 
 	// read from file. note: don't use vfs_load - detect_audio_fmt
 	// has seeked to the actual audio data in the file.
-	void* dst = file;	// for vfs_io
-	ssize_t bytes_read = vfs_io(hf, file_size, &dst);
+	dst = file;	// for vfs_io
+	bytes_read = vfs_io(hf, file_size, &dst);
 	if(bytes_read < 0)
 	{
 		ret = bytes_read;
