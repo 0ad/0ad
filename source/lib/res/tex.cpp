@@ -209,8 +209,8 @@ fail:
 		break;
 	}
 
-	if(file_size < hdr_size + img_size)
-		err = "image not completely loaded";
+	if(file_size != hdr_size + img_size)
+		err = "file size mismatch";
 	if(w % 4 || h % 4)
 		err = "image dimensions not padded to S3TC block size";
 	if(!w || !h)
