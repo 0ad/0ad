@@ -188,7 +188,7 @@ static int zip_read_cdfh(const u8*& cdfh, const char*& fn, size_t& fn_len, ZFile
 	{
 
 	const u8  method  = cdfh[10];
-	const u32 csize_  = read_le32(cdfh+20);
+	      u32 csize_  = read_le32(cdfh+20);
 	const u32 ucsize_ = read_le32(cdfh+24);
 	const u16 fn_len_ = read_le16(cdfh+28);
 	const u16 e_len   = read_le16(cdfh+30);
@@ -204,6 +204,10 @@ static int zip_read_cdfh(const u8*& cdfh, const char*& fn, size_t& fn_len, ZFile
 		debug_warn("warning: unknown compression method");
 		goto skip_file;
 	}
+	// tell is_compressed that the file is stored by
+	// setting csize_ to 0.
+	if(method == 0)
+		csize_ = 0;
 
 	fn     = fn_;
 	fn_len = fn_len_;
@@ -744,7 +748,7 @@ int inf_free_ctx(uintptr_t ctx)
 	assert(stream->next_out == 0);
 
 	inflateEnd(stream);
-	mem_free(stream);
+	free(stream);
 	return 0;
 #endif
 }

@@ -157,12 +157,11 @@ static int path_validate(const uint line, const char* const path)
 
 		// disallow:
 		// - ".." (prevent going above the VFS root dir)
-		// - "/." and "./" (security whole when mounting,
-		//   and not supported on Windows).
-		// - "//" (makes no sense)
-		if((c == '.' || c == '/') && (last_c == '.' || last_c == '/'))
+		// - "./" (security hole when mounting and not supported on Windows).
+		// allow "/.", because CVS backup files include it.
+		if(last_c == '.' && (c == '.' || c == '/'))
 		{
-			msg = "contains '..', '/.', './', or '//'";
+			msg = "contains '..' or './'";
 			goto fail;
 		}
 
@@ -245,6 +244,7 @@ struct Loc
 //
 // add_* aborts if a subdir or file of the same name already exists.
 
+typedef std::pair<const std::string, const Loc*> FileVal;
 typedef std::map<const std::string, const Loc*> Files;
 typedef Files::iterator FileIt;
 	// notes:
@@ -290,6 +290,13 @@ struct Dir
 	{
 		mounts = 0;
 	}
+
+void dump()
+{
+	FileIt it = files.begin();
+	for(; it != files.end(); ++it)
+		debug_out("%s\n", it->first.c_str());
+}
 };
 
 
@@ -305,6 +312,9 @@ int Dir::add_subdir(const char* const fn)
 	subdirs[fn_s];
 		// side effect: maps <fn> to a newly constructed Dir()
 		// non-const => cannot be optimized away.
+
+assert(find_subdir(fn));
+
 	return 0;
 }
 
@@ -333,9 +343,29 @@ int Dir::add_file(const char* const fn, const Loc* const loc)
 		// for absolute clarity; the container holds const Loc* objects.
 		// operator[] returns a reference to that.
 		// need this typedef to work around a GCC bug?
-	Data& old_loc = files[fn_s];
+//	Data& old_loc = files[fn_s];
 		// default pointer ctor sets it to 0 =>
 		// if fn wasn't already in the container, old_loc is 0.
+
+	FileVal val = std::make_pair(fn_s, loc);
+	std::pair<FileIt, bool> ret = files.insert(val);
+	FileIt it = ret.first;
+
+assert(!strcmp(it->first.c_str(), fn));
+assert(find_file(fn));
+
+	const Loc*& old_loc = it->second;
+	if(old_loc->pri > loc->pri)
+		return 1;
+	old_loc = loc;
+	return 0;
+/*
+	if(ret.first)	// insertion made
+	{
+
+	}
+
+
 
 	// old loc exists and is higher priority - keep it.
 	if(old_loc && old_loc->pri > loc->pri)
@@ -346,6 +376,7 @@ int Dir::add_file(const char* const fn, const Loc* const loc)
 	// patch archives; the one with the "largest" filename trumps the others.
 	old_loc = loc;
 	return 0;
+*/
 }
 
 
@@ -392,7 +423,11 @@ enum
 
 	LF_CREATE_MISSING_FILE       = 2,
 
-	LF_LAST                      = 2
+	// only valid with LF_CREATE_MISSING_FILE.
+	// *loc specifies the new file's loc
+	LF_HAVE_LOC                  = 4,
+
+	LF_LAST                      = 8
 };
 
 
@@ -402,10 +437,11 @@ static int tree_lookup(const char* path, const Loc** const loc = 0, Dir** const 
 {
 	CHECK_PATH(path);
 	assert(loc != 0 || dir != 0);
-	assert(flags <= LF_LAST);
+	assert(flags < LF_LAST);
 
 	const bool create_missing_components = !!(flags & LF_CREATE_MISSING_DIRS);
 	const bool create_missing_files      = !!(flags & LF_CREATE_MISSING_FILE);
+	const bool have_loc                  = !!(flags & LF_HAVE_LOC);
 
 	// copy into (writeable) buffer so we can 'tokenize' path components
 	// by replacing '/' with '\0'. length check done by CHECK_PATH.
@@ -467,12 +503,21 @@ static int tree_lookup(const char* path, const Loc** const loc = 0, Dir** const 
 
 		if(create_missing_files)
 		{
-			// dir wasn't populated via tree_add_dirR => don't know
-			// the dir's Loc => cannot add this file.
-			if(cur_dir->mounts != 1)
-				return -1;
+			const Loc* new_loc;
 
-			CHECK_ERR(cur_dir->add_file(fn, cur_dir->loc));
+			if(have_loc)
+				new_loc = *loc;
+			else
+			{
+				// dir wasn't populated via tree_add_dirR => don't know
+				// the dir's Loc => cannot add this file.
+				if(cur_dir->mounts != 1)
+					return -1;
+
+				new_loc = cur_dir->loc;
+			}
+
+			CHECK_ERR(cur_dir->add_file(fn, new_loc));
 		}
 
 		*loc = cur_dir->find_file(fn);
@@ -534,12 +579,22 @@ static int add_dirent_cb(const char* const path, const uint flags, const ssize_t
 
 	if(flags & LOC_ZIP)
 	{
-		Dir* dir;
-		if(tree_lookup(path, 0, &dir, LF_CREATE_MISSING_DIRS) >= 0)
+		if(!size)
 		{
-			const char* fn = strrchr(path, '/');
-			if(fn)
-				err = dir->add_file(fn+1, cur_loc);
+			if(!strchr(path, '.'))
+				debug_out("empty %s\n", path);
+		}
+		else
+		{
+			const Loc* loc = cur_loc;
+			Dir* dir;
+			if(tree_lookup(path, &loc, &dir, LF_CREATE_MISSING_DIRS|LF_CREATE_MISSING_FILE|LF_HAVE_LOC) < 0)
+				debug_out("failed to add %s\n", path);
+			else
+			{
+				const Loc* loc;
+				assert(tree_lookup(path, &loc) >= 0);
+			}
 		}
 	}
 	// directory

@@ -361,16 +361,15 @@ int file_stat(const char* const path, struct stat* const s)
 //   VFile handles in the VFS.
 // - we want the VFS open logic to be triggered on file invalidate
 //   (if the dev. file is deleted, we should use what's in the archives).
-//   we don't want to make this module depend on VFS, so we can't
-//   call up into vfs_foreach_path from reload here =>
-//   VFS needs to allocate the handle.
+//   we don't want to make this module depend on VFS, so we don't
+//   have access to the file location DB; VFS needs to allocate the handle.
 // - no problem exposing our internals via File struct -
 //   we're only used by the VFS and Zip modules. don't bother making
 //   an opaque struct - that'd have to be kept in sync with the real thing.
 // - when Zip opens its archives via file_open, a handle isn't needed -
 //   the Zip module hides its File struct (required to close the file),
 //   and the Handle approach doesn't guard against some idiot calling
-//   close(our_fd) directly, either.
+//   close(our_fd_value) directly, either.
 
 
 // marker for File struct, to make sure it's valid
@@ -486,7 +485,8 @@ int file_close(File* const f)
 	// regardless of how many references remain.
 	if(f->map_refs > 1)
 		f->map_refs = 1;
-	file_unmap(f);
+	if(f->mapping)	// only free if necessary (unmap complains if not mapped)
+		file_unmap(f);
 
 	// (check fd to avoid BoundsChecker warning about invalid close() param)
 	if(f->fd != -1)
@@ -559,9 +559,9 @@ static int IO_reload(IO* io, const char*, Handle)
 
 
 
-// pads the request up to BLOCK_SIZE, and stores the original parameters in IO.
-// transfers of more than 1 block (including padding) are allowed, but do not
-// go through the cache. don't see any case where that's necessary, though.
+			// pads the request up to BLOCK_SIZE, and stores the original parameters in IO.
+			// transfers of more than 1 block (including padding) are allowed, but do not
+			// go through the cache. don't see any case where that's necessary, though.
 Handle file_start_io(File* const f, const off_t user_ofs, size_t user_size, void* const user_p)
 {
 	int err;
@@ -720,111 +720,135 @@ int file_discard_io(Handle& hio)
 //
 // return (positive) number of raw bytes transferred if successful;
 // otherwise, an error code.
-ssize_t file_io(File* const f, const off_t raw_ofs, size_t raw_size, void** const p,
+
+
+
+// the underlying aio implementation likes buffer and offset to be
+// sector-aligned; if not, the transfer goes through an align buffer,
+// and requires an extra memcpy.
+//
+// if the user specifies an unaligned buffer, there's not much we can
+// do - we can't assume the buffer contains padding. therefore,
+// callers should let us allocate the buffer if possible.
+//
+// if ofs misalign = buffer, only the first and last blocks will need
+// to be copied by aio, since we read up to the next block boundary.
+// otherwise, everything will have to be copied; at least we split
+// the read into blocks, so aio's buffer won't have to cover the
+// whole file.
+
+ssize_t file_io(File* const f, const off_t data_ofs, size_t data_size, void** const p,
 	const FILE_IO_CB cb, const uintptr_t ctx) // optional
 {
 #ifdef PARANOIA
-debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, raw_size, raw_ofs);
+debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 #endif
 
 	CHECK_FILE(f);
 
-	const bool is_write = (f->flags & FILE_WRITE) != 0;
+	const bool is_write = !!(f->flags & FILE_WRITE);
+	const bool no_aio = !!(f->flags & FILE_NO_AIO);
 
-	// sanity checks
-	// .. for writes
-	if(is_write)
+	void* data_buf = 0;	// I/O source or sink buffer
+
+
+	// when reading:
+	if(!is_write)
 	{
-		// temp buffer OR supposed to be allocated here: invalid
-		if(!p || !*p)
-		{
-			debug_warn("file_io: write to file from 0 buffer");
-			return ERR_INVALID_PARAM;
-		}
-	}
-	// .. for reads
-	else
-	{
-		// cut off at EOF
-		const ssize_t bytes_left = f->size - raw_ofs;
+		// cut data_size off at EOF
+		const ssize_t bytes_left = f->size - data_ofs;
 		if(bytes_left < 0)
 			return -1;
-		raw_size = MIN(raw_size, (size_t)bytes_left);
+		data_size = MIN(data_size, (size_t)bytes_left);
 	}
+
+
+	//
+	// set buffer options
+	//
+
+	bool do_align  = true;		// => alloc_buf OR (NOT use_buf)
+	bool alloc_buf = false;		// <==> (use_buf AND do_align)
+	bool use_buf   = true;
+
+	// .. temp buffer:              do_align
+	if(!p)
+		use_buf = false;
+	// .. user-specified buffer:    use_buf
+	else if(*p)
+	{
+		data_buf = *p;
+		do_align = false;
+	}
+	// .. we allocate the buffer:   do_align, alloc_buf, use_buf
+	else
+	{
+		alloc_buf = true;
+		// data_buf will be set from padded_buf
+	}
+
+
+	// writes use_buf AND (NOT alloc_buf); otherwise, p is invalid.
+	if(is_write && (!use_buf || alloc_buf))
+	{
+		debug_warn("file_io: write to file from 0 buffer");
+		return ERR_INVALID_PARAM;
+	}
+
+
+	//
+	// calculate aligned transfer size (no change if !do_align)
+	//
+
+	off_t actual_ofs   = data_ofs;
+	size_t actual_size = data_size;
+	void* actual_buf   = data_buf;
+
+	// note: we go to the trouble of aligning the first block (instead of
+	// just reading up to the next block and letting aio realign it),
+	// so that it can be taken from the cache.
+	// this is not possible if !do_align, since we have to allocate
+	// extra buffer space for the padding.
+
+	const size_t ofs_misalign = data_ofs % BLOCK_SIZE;
+	const size_t lead_padding = do_align? ofs_misalign : 0;
+		// for convenience; used below.
+
+	if(do_align)
+	{
+		actual_ofs -= (off_t)ofs_misalign;
+		actual_size = round_up(ofs_misalign + data_size, BLOCK_SIZE);
+	}
+
+	if(alloc_buf)
+	{
+		actual_buf = mem_alloc(actual_size, BLOCK_SIZE);
+		if(!actual_buf)
+			return ERR_NO_MEM;
+		data_buf = (char*)actual_buf + lead_padding;
+	}
+
+	// warn in debug build if buffer and offset don't match
+	// (=> aio would have to realign every block).
+#ifndef NDEBUG
+	size_t buf_misalign = ((uintptr_t)actual_buf) % BLOCK_SIZE;
+	if(actual_buf && actual_ofs % BLOCK_SIZE != buf_misalign)
+		debug_out("file_io: warning: buffer %p and offset %x are misaligned", actual_buf, data_ofs);
+#endif
+
+
 
 
 	// FIXME: currently doesn't handle caller requesting we alloc buffer
-	if(f->flags & FILE_NO_AIO)
+	if(no_aio)
 	{
-		lseek(f->fd, raw_ofs, SEEK_SET);
+		lseek(f->fd, data_ofs, SEEK_SET);
 
-		return is_write? write(f->fd, *p, raw_size) : read(f->fd, *p, raw_size);
+		return is_write? write(f->fd, *p, data_size) : read(f->fd, *p, data_size);
 	}
 
 
-	//
-	// transfer parameters
-	//
 
-	const size_t misalign = raw_ofs % BLOCK_SIZE;
-
-	// actual transfer start offset
-	// not aligned! aio takes care of initial unalignment;
-	// next read will be aligned, because we read up to the next block.
-	const off_t start_ofs = raw_ofs;
-
-
-	void* buf = 0;				// I/O source or sink; assume temp buffer
-	void* our_buf = 0;			// buffer we allocate, if necessary
-
-	// check buffer param
-	// .. temp buffer requested
-	if(!p)
-		; // nothing to do - buf already initialized to 0
-	// .. user specified, or requesting we allocate the buffer
-	else
-	{
-		// the underlying aio implementation likes buffer and offset to be
-		// sector-aligned; if not, the transfer goes through an align buffer,
-		// and requires an extra memcpy.
-		//
-		// if the user specifies an unaligned buffer, there's not much we can
-		// do - we can't assume the buffer contains padding. therefore,
-		// callers should let us allocate the buffer if possible.
-		//
-		// if ofs misalign = buffer, only the first and last blocks will need
-		// to be copied by aio, since we read up to the next block boundary.
-		// otherwise, everything will have to be copied; at least we split
-		// the read into blocks, so aio's buffer won't have to cover the
-		// whole file.
-
-		// user specified buffer
-		if(*p)
-		{
-			buf = *p;
-
-			// warn in debug build if buffer not aligned
-#ifndef NDEBUG
-			size_t buf_misalign = ((uintptr_t)buf) % BLOCK_SIZE;
-			if(misalign != buf_misalign)
-				debug_out("file_io: warning: buffer %p and offset %x are misaligned", buf, raw_ofs);
-#endif
-		}
-		// requesting we allocate the buffer
-		else
-		{
-			size_t buf_size = round_up(misalign + raw_size, BLOCK_SIZE);
-			our_buf = mem_alloc(buf_size, BLOCK_SIZE);
-			if(!our_buf)
-				return ERR_NO_MEM;
-			buf = our_buf;
-			*p = (char*)buf + misalign;
-		}
-	}
-
-	// buf is now the source or sink, regardless of who allocated it.
-	// we need to keep our_buf (memory we allocated), so we can free
-	// it if we fail; it's 0 if the caller passed in a buffer.
 
 
 	//
@@ -860,17 +884,17 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, raw_size, raw_ofs);
 		{
 			// calculate issue_size:
 			// at most, transfer up to the next block boundary.
-			off_t issue_ofs = (off_t)(start_ofs + issue_cnt);
-			const size_t left_in_block = BLOCK_SIZE - (issue_ofs % BLOCK_SIZE);
-			const size_t total_left = raw_size - issue_cnt;
-			size_t issue_size = MIN(left_in_block, total_left);
+			off_t issue_ofs = (off_t)(actual_ofs + issue_cnt);
+			size_t issue_size = BLOCK_SIZE;
+			if(!do_align)
+			{
+				const size_t left_in_block = BLOCK_SIZE - (issue_ofs % BLOCK_SIZE);
+				const size_t total_left = data_size - issue_cnt;
+				issue_size = MIN(left_in_block, total_left);
+			}
 
-			// assume temp buffer allocated by file_start_io
-			void* data = 0;
-			// if transferring to/from normal file, use buf instead
-			if(buf)
-				data = (void*)((uintptr_t)buf + issue_cnt);
-
+			// if using buffer, set position in it; otherwise, 0 (temp)
+			void* data = use_buf? (char*)actual_buf + issue_cnt : 0;
 			Handle hio = file_start_io(f, issue_ofs, issue_size, data);
 			if(hio <= 0)
 				err = (ssize_t)hio;
@@ -878,7 +902,7 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, raw_size, raw_ofs);
 				// waiting for all pending transfers to complete.
 
 			issue_cnt += issue_size;
-			if(issue_cnt >= raw_size)
+			if(issue_cnt >= data_size)
 				all_issued = true;
 
 			// store IO in ring buffer
@@ -929,17 +953,20 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, raw_size, raw_ofs);
 	if(err < 0)
 	{
 		// user didn't specify output buffer - free what we allocated,
-		// and clear 'out', which points to the freed buffer.
-		if(our_buf)
+		// and clear p (value-return param)
+		if(alloc_buf)
 		{
-			mem_free(our_buf);
+			mem_free(actual_buf);
 			*p = 0;
-				// we only allocate if p && *p, but had set *p above.
+				// alloc_buf => p != 0
 		}
 		return err;
 	}
 
-	assert(issue_cnt == raw_transferred_cnt && raw_transferred_cnt == raw_size); 
+	if(p)
+		*p = data_buf;
+
+	assert(/*issue_cnt == raw_transferred_cnt &&*/ raw_transferred_cnt == data_size); 
 
 	return (ssize_t)actual_transferred_cnt;
 }
@@ -990,7 +1017,9 @@ int file_map(File* const f, void*& p, size_t& size)
 	}
 
 	// don't allow mapping zero-length files (doesn't make sense,
-	// and BoundsChecker complains about wposix mmap failing)
+	// and BoundsChecker warns about wposix mmap failing).
+	// then again, don't complain, because this might happen when mounting
+	// a dir containing empty files; each is opened as a Zip file.
 	if(f->size == 0)
 		return -1;
 
@@ -1019,7 +1048,10 @@ int file_unmap(File* const f)
 
 	// file is not currently mapped
 	if(f->map_refs == 0)
+	{
+		debug_warn("file_unmap: not currently mapped");
 		return -1;
+	}
 
 	// still more than one reference remaining - done.
 	if(--f->map_refs > 0)
