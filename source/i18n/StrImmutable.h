@@ -30,7 +30,7 @@ namespace I18n
 		// I'm lazy (elsewhere), so allow construction from a variety
 		// of data types:
 
-		const StrImW(const wchar_t* s)
+		StrImW(const wchar_t* s)
 		{
 			ref = new strImW_data;
 			size_t len = wcslen(s)+1;
@@ -38,7 +38,7 @@ namespace I18n
 			memcpy((void*)ref->data, s, len*sizeof(wchar_t));
 		}
 
-		const StrImW(const char* s)
+		StrImW(const char* s)
 		{
 			ref = new strImW_data;
 			size_t len = strlen(s)+1;
@@ -49,7 +49,7 @@ namespace I18n
 
 // On non-MSVC, or on MSVC with a native wchar_t type, define jschar separately
 #if !defined(_MSC_VER) || !defined(_WCHAR_T_DEFINED)
-		const StrImW(const jschar* s)
+		StrImW(const jschar* s)
 		{
 			ref = new strImW_data;
 			size_t len = 0;
@@ -61,7 +61,7 @@ namespace I18n
 		}
 #endif
 
-		const StrImW(const jschar* s, size_t len)
+		StrImW(const jschar* s, size_t len)
 		{
 			ref = new strImW_data;
 			ref->data = new wchar_t[len+1];
@@ -80,7 +80,7 @@ namespace I18n
 		}
 
 		// Copy constructor
-		const StrImW(const StrImW& s)
+		StrImW(const StrImW& s)
 		{
 			ref = s.ref;
 			++ref->refs;

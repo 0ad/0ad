@@ -23,6 +23,23 @@ All other methods are used internally by other I18n components.
 #include <map>
 #include <algorithm>
 
+#ifdef __GNUC__
+namespace __gnu_cxx
+{
+        template<> struct hash<I18n::Str>
+        {
+                size_t operator()(const I18n::Str& s) const
+                {
+                        const wchar_t* __s = s.c_str();
+                        unsigned long __h = 0;
+                        for ( ; *__s; ++__s)
+                                __h = 5*__h + *__s;
+                        return size_t(__h);
+                }
+        };
+}
+#endif // __GNUC__
+
 struct JSContext;
 
 namespace I18n
@@ -30,7 +47,7 @@ namespace I18n
 
 	class CLocale : public CLocale_interface
 	{
-		friend StringBuffer;
+		friend class StringBuffer;
 
 	private:
 		typedef STL_HASH_MAP<Str, TranslatedString*> StringsType;

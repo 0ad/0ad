@@ -10,6 +10,7 @@ before converting into a string.
 
 #include "Common.h"
 #include "TranslatedString.h"
+#include "ps/CStr.h"
 
 namespace I18n
 {
@@ -20,10 +21,12 @@ namespace I18n
 
 	class StringBuffer
 	{
-		friend CLocale;
+		friend class CLocale;
+
 	public:
 		// Builds and returns the finished string
 		operator Str();
+		operator CStrW() { return CStrW( (Str)*this ); }
 
 		// Stores the variable inside the StringBuffer,
 		// for later conversion into a string
@@ -46,4 +49,4 @@ namespace I18n
 
 }
 
-#endif I18N_STRINGBUF_H
+#endif // I18N_STRINGBUF_H

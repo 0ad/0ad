@@ -14,11 +14,11 @@ using namespace I18n;
 namespace I18n {
 	// These bits don't seem to work without the explicit namespace{}
 
-	BufferVariable* NewBufferVariable(int v) { return new BufferVariable_int(v); }
-	BufferVariable* NewBufferVariable(double v) { return new BufferVariable_double(v); }
-	BufferVariable* NewBufferVariable(const wchar_t* v) { return new BufferVariable_string(v); }
-	BufferVariable* NewBufferVariable(const char* v) { return new BufferVariable_string(v); }
-	BufferVariable* NewBufferVariable(I18n::Name v) { return new BufferVariable_rawstring(v.value); }
+	template<> BufferVariable* NewBufferVariable<int>(int v) { return new BufferVariable_int(v); }
+	template<> BufferVariable* NewBufferVariable<double>(double v) { return new BufferVariable_double(v); }
+	template<> BufferVariable* NewBufferVariable<const wchar_t*>(const wchar_t* v) { return new BufferVariable_string(v); }
+	template<> BufferVariable* NewBufferVariable<const char*>(const char* v) { return new BufferVariable_string(v); }
+	template<> BufferVariable* NewBufferVariable<I18n::Name>(I18n::Name v) { return new BufferVariable_rawstring(v.value); }
 }
 
 StrImW BufferVariable_int::ToString(CLocale*)
