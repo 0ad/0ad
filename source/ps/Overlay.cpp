@@ -209,7 +209,7 @@ CPos CRect::BottomRight() const
 
 CPos CRect::CenterPoint() const
 {
-	return CPos((left+right)/2.f, (top+bottom/2.f));
+	return CPos((left+right)/2.f, (top+bottom)/2.f);
 }
 
 bool CRect::PointInside(const CPos &point) const
