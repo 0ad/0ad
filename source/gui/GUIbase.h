@@ -25,7 +25,7 @@ gee@pyro.nu
 //--------------------------------------------------------
 //  Forward declarations
 //--------------------------------------------------------
-class CGUIObject;
+class IGUIObject;
 
 
 //--------------------------------------------------------
@@ -46,23 +46,24 @@ class CGUIObject;
 	m_SettingsInfo[str].m_Offset = offsetof(_class, name) + offsetof(_struct, var);	\
 	m_SettingsInfo[str].m_Type = type;
 
-// Declares the static variable in CGUISettingsObject<>
+// Declares the static variable in IGUISettingsObject<>
 #define DECLARE_SETTINGS_INFO(_struct) \
-	map_Settings CGUISettingsObject<_struct>::m_SettingsInfo;
+	map_Settings IGUISettingsObject<_struct>::m_SettingsInfo;
 
 // Setup an object's ConstructObject function
 #define GUI_OBJECT(obj)													\
 public:																	\
-	static CGUIObject *ConstructObject() { return new obj(); }
+	static IGUIObject *ConstructObject() { return new obj(); }
 
 
 //--------------------------------------------------------
 //  Types
 //--------------------------------------------------------
-/** \enum EGUIMessage
- * Message send to <code>CGUIObject::HandleMessage()</code> in order
+/** 
+ * @enum EGUIMessage
+ * Message send to IGUIObject::HandleMessage() in order
  * to give life to Objects manually with
- * a derived <code>HandleMessage()</code>.
+ * a derived HandleMessage().
  */
 enum EGUIMessage
 {
@@ -95,7 +96,7 @@ enum
 };
 
 // Typedefs
-typedef	std::map<CStr, CGUIObject*> map_pObjects;
+typedef	std::map<CStr, IGUIObject*> map_pObjects;
 
 
 //--------------------------------------------------------

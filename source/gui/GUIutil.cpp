@@ -12,7 +12,7 @@ using namespace std;
 //--------------------------------------------------------
 //  Utilities implementation
 //--------------------------------------------------------
-CGUIObject * CInternalCGUIAccessorBase::GetObjectPointer(CGUI &GUIinstance, const CStr &Object)
+IGUIObject * CInternalCGUIAccessorBase::GetObjectPointer(CGUI &GUIinstance, const CStr &Object)
 {
 //	if (!GUIinstance.ObjectExists(Object))
 //		return NULL;
@@ -20,7 +20,7 @@ CGUIObject * CInternalCGUIAccessorBase::GetObjectPointer(CGUI &GUIinstance, cons
 	return GUIinstance.m_pAllObjects.find(Object)->second;
 }
 
-const CGUIObject * CInternalCGUIAccessorBase::GetObjectPointer(const CGUI &GUIinstance, const CStr &Object)
+const IGUIObject * CInternalCGUIAccessorBase::GetObjectPointer(const CGUI &GUIinstance, const CStr &Object)
 {
 //	if (!GUIinstance.ObjectExists(Object))
 //		return NULL;

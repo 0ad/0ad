@@ -61,12 +61,12 @@ struct SButtonSettings
  *
  * Button
  * 
- * @see CGUIObject
- * @see CGUISettingsObject
- * @see CGUIButtonBehavior
+ * @see IGUIObject
+ * @see IGUISettingsObject
+ * @see IGUIButtonBehavior
  * @see SButtonSettings
  */
-class CButton : public CGUISettingsObject<SButtonSettings>, public CGUIButtonBehavior
+class CButton : public IGUISettingsObject<SButtonSettings>, public IGUIButtonBehavior
 {
 	GUI_OBJECT(CButton)
 
@@ -79,7 +79,7 @@ public:
 	 *
 	 * @return Settings infos
 	 */
-	virtual map_Settings GetSettingsInfo() const { return CGUISettingsObject<SButtonSettings>::m_SettingsInfo; }
+	virtual map_Settings GetSettingsInfo() const { return IGUISettingsObject<SButtonSettings>::m_SettingsInfo; }
 
 	/**
 	 * Handle Messages

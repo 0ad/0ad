@@ -50,7 +50,7 @@ void init()
 {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(0, xres, 0, yres, -1, 1);
+	glOrtho(0, g_xres, 0, g_yres, -1, 1);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 

@@ -15,14 +15,16 @@ gee@pyro.nu
 
 // Main page for GUI documentation
 /**
- * \mainpage
+ * @mainpage
  * Welcome to the Wildfire Games Graphical User Interface Documentation.
  *
  * Additional Downloads can be made from the link below.\n
  * <a href="http://gee.pyro.nu/GUIfiles/">Technical Design Document</a>
  *
+ * The GUI uses <a href="http://xml.apache.org/xerces-c/">Xerces C++ Parser</a>, 
+ * Current official version (ensured to work): 2.3.0
  * 
- * \dot
+ * @dot
  * digraph
  * {
  *	node [shape=record, fontname=Helvetica, fontsize=10];
@@ -34,7 +36,7 @@ gee@pyro.nu
  *	c -> email;
  *	s -> email;
  * }
- * \enddot
+ * @enddot
  */
 
 
@@ -72,9 +74,9 @@ gee@pyro.nu
 
 #include "GUIbase.h"
 #include "GUIutil.h"
-#include "CGUIObject.h"
-#include "CGUISettingsObject.h"
-#include "CGUIButtonBehavior.h"
+#include "IGUIObject.h"
+#include "IGUISettingsObject.h"
+#include "IGUIButtonBehavior.h"
 #include "CButton.h"
 #include "CGUISprite.h"
 #include "CGUI.h"

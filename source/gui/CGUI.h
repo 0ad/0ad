@@ -31,6 +31,7 @@ gee@pyro.nu
 
 class XERCES_CPP_NAMESPACE::DOMElement;
 
+extern bool gui_handler(const SDL_Event& ev);
 
 //--------------------------------------------------------
 //  Macros
@@ -53,17 +54,17 @@ class XERCES_CPP_NAMESPACE::DOMElement;
  *
  * The main object that includes the whole GUI. Is singleton
  * and accessed by g_GUI.
+ *
+ * No interfacial functions throws.
  */
 class CGUI : public Singleton<CGUI>
 {
-	// Only CGUIObject's leaf functions uses CGUI
-	//  freely.
-	friend class CGUIObject;
+	friend class IGUIObject;
 	friend class CInternalCGUIAccessorBase;
 
 private:
 	// Private typedefs
-	typedef CGUIObject *(*ConstructObjectFunction)();
+	typedef IGUIObject *(*ConstructObjectFunction)();
 
 public:
 	CGUI();
@@ -81,16 +82,12 @@ public:
 
 	/**
 	 * Displays the whole GUI
-	 *
-	 * @throws PS_RESULT from CGUIObject::Draw().
 	 */
 	void Draw();
 	
 	/**
 	 * Clean up, call this to clean up all memory allocated
 	 * within the GUI.
-	 *
-	 * @throws PS_RESULT from CGUIObject::Destroy().
 	 */
 	void Destroy();
 
@@ -121,7 +118,7 @@ public:
 	 * their constructors. Also it needs to associate a type
 	 * by a string name of the type.
 	 * 
-	 * To add a type:<br>
+	 * To add a type:\n
 	 * AddObjectType("button", &CButton::ConstructObject);
 	 *
 	 * @param str Reference name of object type
@@ -139,7 +136,7 @@ private:
 	 * This function is atomic, meaning if it throws anything, it will
 	 * have seen it through that nothing was ultimately changed.
 	 *
-	 * @throws PS_RESULT that is thrown from CGUIObject::AddToPointersMap().
+	 * @throws PS_RESULT that is thrown from IGUIObject::AddToPointersMap().
 	 */
 	void UpdateObjects();
 
@@ -149,10 +146,10 @@ private:
 	 * XML files. Why? Becasue it enables the GUI to
 	 * be much more encapsulated and safe.
 	 *
-	 * @throws	Rethrows PS_RESULT from CGUIObject::SetGUI() and
-	 *			CGUIObject::AddChild().
+	 * @throws	Rethrows PS_RESULT from IGUIObject::SetGUI() and
+	 *			IGUIObject::AddChild().
 	 */
-	void AddObject(CGUIObject* pObject);
+	void AddObject(IGUIObject* pObject);
 
 	/**
 	 * Report XML Reading Error, should be called from within the
@@ -168,9 +165,9 @@ private:
 	 * CGUIObjet* as a CButton.
 	 *
 	 * @param str Name of object type
-	 * @return Newly constructed CGUIObject (but constructed as a subclass)
+	 * @return Newly constructed IGUIObject (but constructed as a subclass)
 	 */
-	CGUIObject *ConstructObject(const CStr &str);
+	IGUIObject *ConstructObject(const CStr &str);
 
 	//--------------------------------------------------------
 	/** @name XML Reading Xerces C++ specific subroutines
@@ -192,7 +189,7 @@ private:
 			|
 			+-\<action\>
 			|
-			+-Optional Type Extensions (CGUIObject::ReadExtendedElement) TODO
+			+-Optional Type Extensions (IGUIObject::ReadExtendedElement) TODO
 			|
 			+-«object» *recursive*
 
@@ -224,18 +221,22 @@ private:
 	// Read Roots
 
 	/**
-	 * Reads in the root element "objects" (the DOMElement).
+	 * Reads in the root element \<objects\> (the DOMElement).
 	 *
 	 * @param pElement	The Xerces C++ Parser object that represents
 	 *					the objects-tag.
+	 *
+	 * @see LoadXMLFile()
 	 */
 	void Xerces_ReadRootObjects(XERCES_CPP_NAMESPACE::DOMElement *pElement);
 
 	/**
-	 * Reads in the root element "sprites" (the DOMElement).
+	 * Reads in the root element \<sprites\> (the DOMElement).
 	 *
 	 * @param pElement	The Xerces C++ Parser object that represents
 	 *					the sprites-tag.
+	 *
+	 * @see LoadXMLFile()
 	 */
 	void Xerces_ReadRootSprites(XERCES_CPP_NAMESPACE::DOMElement *pElement);
 
@@ -244,39 +245,46 @@ private:
 	/**
 	 * Notice! Recursive function!
 	 *
-	 * Read in an "object"-tag (the DOMElement) and stores it
+	 * Read in an \<object\> (the DOMElement) and stores it
 	 * as a child in the pParent.
 	 *
 	 * It will also check the object's children and call this function
 	 * on them too. Also it will call all other functions that reads
-	 * in other stuff that can be found within an object. Such as
-	 * "action"-tag will call Xerces_ReadAction (TODO, real funcion?).
+	 * in other stuff that can be found within an object. Such as a
+	 * \<action\> will call Xerces_ReadAction (TODO, real funcion?).
 	 *
-	 * Reads in the root element "sprites" (the DOMElement).
+	 * Reads in the root element \<sprites\> (the DOMElement).
 	 *
 	 * @param pElement	The Xerces C++ Parser object that represents
 	 *					the object-tag.
 	 * @param pParent	Parent to add this object as child in.
+	 *
+	 * @see LoadXMLFile()
 	 */
-	void Xerces_ReadObject(XERCES_CPP_NAMESPACE::DOMElement *, CGUIObject *pParent);
+	void Xerces_ReadObject(XERCES_CPP_NAMESPACE::DOMElement *, IGUIObject *pParent);
 
 	/**
-	 * Reads in the element "sprite" (the DOMElement) and store the
+	 * Reads in the element \<sprite\> (the DOMElement) and stores the
 	 * result in a new CGUISprite.
 	 *
 	 * @param pElement	The Xerces C++ Parser object that represents
 	 *					the sprite-tag.
+	 *
+	 * @see LoadXMLFile()
 	 */
-	void Xerces_ReadSprite(XERCES_CPP_NAMESPACE::DOMElement *);
+	void Xerces_ReadSprite(XERCES_CPP_NAMESPACE::DOMElement *pElement);
 
 	/**
-	 * Reads in the element "image" (the DOMElement) and store the
+	 * Reads in the element \<image\> (the DOMElement) and stores the
 	 * result within the CGUISprite.
 	 *
 	 * @param pElement	The Xerces C++ Parser object that represents
 	 *					the image-tag.
+	 * @param parent	Parent sprite.
+	 *
+	 * @see LoadXMLFile()
 	 */
-	void Xerces_ReadImage(XERCES_CPP_NAMESPACE::DOMElement *, CGUISprite &parent);
+	void Xerces_ReadImage(XERCES_CPP_NAMESPACE::DOMElement *pElement, CGUISprite &parent);
 
 	//@}
 
@@ -297,7 +305,7 @@ private:
 	u16 m_MouseX, m_MouseY;
 
 	/// Used when reading in XML files
-	int										m_Errors;
+	int16 m_Errors;
 
 	//@}
 	//--------------------------------------------------------
@@ -309,7 +317,7 @@ private:
 	 * Base Object, all its children are considered parentless
 	 * because this is no real object per se.
 	 */
-	CGUIObject*								m_BaseObject;
+	IGUIObject* m_BaseObject;
 
 	/** 
 	 * Just pointers for fast name access, each object
@@ -318,11 +326,11 @@ private:
 	 * Notice m_BaseObject won't belong here since it's
 	 * not considered a real object.
 	 */
-	map_pObjects							m_pAllObjects;
+	map_pObjects m_pAllObjects;
 
 	/**
 	 * Function pointers to functions that constructs
-	 * CGUIObjects by name... For instance m_ObjectTypes["button"]
+	 * IGUIObjects by name... For instance m_ObjectTypes["button"]
 	 * is filled with a function that will "return new CButton();"
 	 */
 	std::map<CStr, ConstructObjectFunction>	m_ObjectTypes;
@@ -333,7 +341,7 @@ private:
 	//--------------------------------------------------------
 	//@{
 
-	std::map<CStr, CGUISprite>				m_Sprites;
+	std::map<CStr, CGUISprite> m_Sprites;
 
 	//@}
 };

@@ -24,51 +24,77 @@ gee@pyro.nu
 #include <xercesc/sax/ErrorHandler.hpp>
 #include <iostream>
 
-
+/**
+ * @author Gustav Larsson
+ *
+ * Adapter function that catches Xerces Reading Exceptions
+ * and lets us output them in Prometheus CLogFile.
+ *
+ * Used for all Xerces C++ Parser reading.
+ *
+ * @see http://xml.apache.org/xerces-c/apiDocs/classErrorHandler.html
+ */
 class CXercesErrorHandler : public XERCES_CPP_NAMESPACE::ErrorHandler
 {
 public:
-    // -----------------------------------------------------------------------
-    //  Constructors and Destructor
-    // -----------------------------------------------------------------------
     CXercesErrorHandler() :
        fSawErrors(false)
-    {
-    }
+    {}
 
     ~CXercesErrorHandler()
-    {
-    }
-
+    {}
 
     // -----------------------------------------------------------------------
-    //  Implementation of the error handler interface
+    /** @name Implementation of the error handler interface */
     // -----------------------------------------------------------------------
+	//@{
+	/**
+	 * Sends warning exceptions here.
+	 */
 	void warning(const XERCES_CPP_NAMESPACE::SAXParseException& toCatch);
+
+	/**
+	 * Sends error exceptions here.
+	 */
 	void error(const XERCES_CPP_NAMESPACE::SAXParseException& toCatch);
+
+	/**
+	 * Sends fatal error exceptions here.
+	 */
 	void fatalError(const XERCES_CPP_NAMESPACE::SAXParseException& toCatch);
+
+	/**
+	 * Sets fSawError to false.
+	 */
     void resetErrors();
 
+	//@}
     // -----------------------------------------------------------------------
-    //  Getter methods
+    /** @name Access Functions */
     // -----------------------------------------------------------------------
-    bool getSawErrors() const;
+	//@{
+	/**
+	 * @return true if Errors Occured
+	 */
+	bool getSawErrors() const { return fSawErrors; }
 
+	//@}
 private:
     // -----------------------------------------------------------------------
-    //  Private data members
-    //
-    //  fSawErrors
-    //      This is set if we get any errors, and is queryable via a getter
-    //      method. Its used by the main code to suppress output if there are
-    //      errors.
+    /** @name  Private data members */
     // -----------------------------------------------------------------------
-    bool fSawErrors;
-};
+	//@{
 
-inline bool CXercesErrorHandler::getSawErrors() const
-{
-    return fSawErrors;
-}
+	/**
+	 * This is set if we get any errors, and is queryable via an access
+     * function. Its used by the main code to suppress output if there are
+     * errors.
+	 *
+	 * @see getSawErrors()
+	 */
+    bool fSawErrors;
+
+	//@}
+};
 
 #endif

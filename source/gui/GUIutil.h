@@ -27,9 +27,11 @@ gee@pyro.nu
 //  Forward declarations
 //--------------------------------------------------------
 class CGUI;
-class CGUIObject;
+class IGUIObject;
 
 /**
+ * @author Gustav Larsson
+ *
  * Base class to only the class GUI. This superclass is 
  * kind of a templateless extention of the class GUI.
  * Used for other functions to friend with, because it
@@ -39,14 +41,16 @@ class CInternalCGUIAccessorBase
 {
 protected:
 	/// Get object pointer
-	static CGUIObject * GetObjectPointer(CGUI &GUIinstance, const CStr &Object);
+	static IGUIObject * GetObjectPointer(CGUI &GUIinstance, const CStr &Object);
 	
 	/// const version
-	static const CGUIObject * GetObjectPointer(const CGUI &GUIinstance, const CStr &Object);
+	static const IGUIObject * GetObjectPointer(const CGUI &GUIinstance, const CStr &Object);
 };
 
 
 /**
+ * @author Gustav Larsson
+ *
  * Includes static functions that needs one template
  * argument.
  *
@@ -58,7 +62,7 @@ class GUI : public CInternalCGUIAccessorBase
 {
 	// Private functions further ahead
 	friend class CGUI;
-	friend class CGUIObject;
+	friend class IGUIObject;
 
 public:
 	/**
@@ -68,7 +72,7 @@ public:
 	 * @param Setting Setting by name
 	 * @param Value Stores value here, note type T!
 	 */
-	static PS_RESULT GetSetting(const CGUIObject *pObject, const CStr &Setting, T &Value)
+	static PS_RESULT GetSetting(const IGUIObject *pObject, const CStr &Setting, T &Value)
 	{
 		if (pObject == NULL)
 			return PS_OBJECT_FAIL;
@@ -89,7 +93,7 @@ public:
 	 * @param Setting Setting by name
 	 * @param Value Sets value to this, note type T!
 	 */
-	static PS_RESULT SetSetting(CGUIObject *pObject, const CStr &Setting, const T &Value)
+	static PS_RESULT SetSetting(IGUIObject *pObject, const CStr &Setting, const T &Value)
 	{
 		if (pObject == NULL)
 			return PS_OBJECT_FAIL;
@@ -122,7 +126,7 @@ public:
 			return PS_OBJECT_FAIL;
 
 		// Retrieve pointer and call sibling function
-		const CGUIObject *pObject = GetObjectPointer(GUIinstance, Object);
+		const IGUIObject *pObject = GetObjectPointer(GUIinstance, Object);
 
 		return GetSetting(pObject, Setting, Value);
 	}
@@ -148,7 +152,7 @@ public:
 		// Important, we don't want to use this T, we want
 		//  to use the standard T, since that will be the
 		//  one with the friend relationship
-		CGUIObject *pObject = GetObjectPointer(GUIinstance, Object);
+		IGUIObject *pObject = GetObjectPointer(GUIinstance, Object);
 
 		return SetSetting(pObject, Setting, Value);
 	}
@@ -233,32 +237,37 @@ public:
 
 private:
 	// templated typedef of function pointer
-	typedef void (CGUIObject::*void_Object_pFunction_argT)(const T &arg);
-	typedef void (CGUIObject::*void_Object_pFunction_argRefT)(T &arg);
-	typedef void (CGUIObject::*void_Object_pFunction)();
+	typedef void (IGUIObject::*void_Object_pFunction_argT)(const T &arg);
+	typedef void (IGUIObject::*void_Object_pFunction_argRefT)(T &arg);
+	typedef void (IGUIObject::*void_Object_pFunction)();
 
 	/**
-	 * If you want to call a <code>CGUIObject</code>-function
+	 * If you want to call a IGUIObject-function
 	 * on not just an object, but also on ALL of their children
 	 * you want to use this recursion system.
 	 * It recurses an object calling a function on itself
 	 * and all children (and so forth).
 	 *
-	 * <b>Restrictions:</b><br>
+	 * <b>Restrictions:</b>\n
 	 * You can also set restrictions, so that if the recursion
 	 * reaches an objects with certain setup, it just doesn't
 	 * call the function on the object, nor it's children for
 	 * that matter. i.e. it cuts that object off from the
 	 * recursion tree. What setups that can cause restrictions
 	 * are hardcoded and specific. Check out the defines
-	 * <code>GUIRR_*</code> for all different setups.
+	 * GUIRR_* for all different setups.
 	 *
-	 * @param RR Recurse Restrictions
-	 * @param pObject Object to iterate
+	 * Error reports are either logged or thrown out of RecurseObject.
+	 * Always use it with try/catch!
+	 *
+	 * @param RR Recurse Restrictions, set to 0 if no restrictions
+	 * @param pObject Top object, this is where the iteration starts
 	 * @param pFunc Function to recurse
-	 * @param Argument Argument of type T
+	 * @param Argument Argument for pFunc of type T
+	 * @throws PS_RESULT Depends on what pFunc might throw. PS_RESULT is standard.
+	 *			Itself doesn't throw anything.
 	*/
-	static void RecurseObject(const int &RR, CGUIObject *pObject, void_Object_pFunction_argT pFunc, const T &Argument)
+	static void RecurseObject(const int &RR, IGUIObject *pObject, void_Object_pFunction_argT pFunc, const T &Argument)
 	{
 		if (CheckIfRestricted(RR, pObject))
 			return;
@@ -278,7 +287,7 @@ private:
 	 *
 	 * @see RecurseObject()
 	 */
-	static void RecurseObject(const int &RR, CGUIObject *pObject, void_Object_pFunction_argRefT pFunc, T &Argument)
+	static void RecurseObject(const int &RR, IGUIObject *pObject, void_Object_pFunction_argRefT pFunc, T &Argument)
 	{
 		if (CheckIfRestricted(RR, pObject))
 			return;
@@ -298,7 +307,7 @@ private:
 	 *
 	 * @see RecurseObject()
 	 */
-	static void RecurseObject(const int &RR, CGUIObject *pObject, void_Object_pFunction pFunc)
+	static void RecurseObject(const int &RR, IGUIObject *pObject, void_Object_pFunction pFunc)
 	{
 		if (CheckIfRestricted(RR, pObject))
 			return;
@@ -324,7 +333,7 @@ private:
 	 * @param pObject Object
 	 * @return true if restricted
 	 */
-	static bool CheckIfRestricted(const int &RR, CGUIObject *pObject)
+	static bool CheckIfRestricted(const int &RR, IGUIObject *pObject)
 	{
 		if (RR & GUIRR_HIDDEN)
 		{

@@ -360,6 +360,11 @@ CStr::operator const TCHAR*()
 	return m_String.c_str();
 }
 
+CStr::operator const TCHAR*() const
+{
+	return m_String.c_str();
+}
+
 
 TCHAR &CStr::operator[](_int n)
 {

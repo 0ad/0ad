@@ -164,6 +164,7 @@ public:
 	CStr &operator+=(CStr &Str);
 	CStr  operator+(CStr &Str);
 	operator const TCHAR*();
+	operator const TCHAR*() const; // Gee, I've added this, Maybe the one above should be removed?
 	TCHAR &operator[](_int n);
 	TCHAR &operator[](_uint n);
 	TCHAR &operator[](_long n);

@@ -10,15 +10,15 @@ gee@pyro.nu
 #include <assert.h>
 #include <stdarg.h>
 
-///#include "nemesis.h"
-//#include incCONSOLE
-
 #include <xercesc/dom/DOM.hpp>
 #include <xercesc/parsers/XercesDOMParser.hpp>
 #include <xercesc/framework/LocalFileInputSource.hpp>
 #include <xercesc/util/XMLString.hpp>
 #include <xercesc/util/PlatformUtils.hpp>
+
 #include "XercesErrorHandler.h"
+#include "../ps/Prometheus.h"
+#include "input.h"
 
 // namespaces used
 XERCES_CPP_NAMESPACE_USE
@@ -29,8 +29,6 @@ using namespace std;
 #endif
 
 
-#include "input.h"
-
 //-------------------------------------------------------------------
 //	called from main loop when (input) events are received.
 //	event is passed to other handlers if false is returned.
@@ -39,8 +37,6 @@ using namespace std;
 bool gui_handler(const SDL_Event& ev)
 {
 	return g_GUI.HandleEvent(ev);
-
-//	return false;
 }
 
 bool CGUI::HandleEvent(const SDL_Event& ev)
@@ -51,22 +47,27 @@ bool CGUI::HandleEvent(const SDL_Event& ev)
 // JW: (pre|post)process omitted; what're they for? why would we need any special button_released handling?
 
 	// Only one object can be hovered
-	//  check which one it is, if any !
-	CGUIObject *pNearest = NULL;
+	IGUIObject *pNearest = NULL;
 
-	GUI<CGUIObject*>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, &CGUIObject::ChooseMouseOverAndClosest, pNearest);
+	// pNearest will after this point at the hovered object, possibly NULL
+	GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, 
+									&IGUIObject::ChooseMouseOverAndClosest, 
+									pNearest);
 	
 	// Now we'll call UpdateMouseOver on *all* objects,
 	//  we'll input the one hovered, and they will each
 	//  update their own data and send messages accordingly
-	GUI<CGUIObject*>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, &CGUIObject::UpdateMouseOver, pNearest);
+	GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, 
+									&IGUIObject::UpdateMouseOver, 
+									pNearest);
 
 	if(pNearest)
 	{
 		if(ev.type == SDL_MOUSEBUTTONDOWN)
-			pNearest->HandleMessage(GUIM_MOUSE_PRESS_LEFT);	// JW: want to pass SDL button value, or translate?
-		else if(ev.type == SDL_MOUSEBUTTONUP)
-			pNearest->HandleMessage(GUIM_MOUSE_RELEASE_LEFT);	// JW: want to pass SDL button value, or translate?
+			pNearest->HandleMessage(GUIM_MOUSE_PRESS_LEFT);
+		else 
+		if(ev.type == SDL_MOUSEBUTTONUP)
+			pNearest->HandleMessage(GUIM_MOUSE_RELEASE_LEFT);
 	}
 
 // JW: what's the difference between mPress and mDown? what's the code below responsible for?
@@ -101,19 +102,22 @@ CGUI::~CGUI()
 //-------------------------------------------------------------------
 //  Functions
 //-------------------------------------------------------------------
-CGUIObject *CGUI::ConstructObject(const CStr &str)
+IGUIObject *CGUI::ConstructObject(const CStr &str)
 {
 	if (m_ObjectTypes.count(str) > 0)
 		return (*m_ObjectTypes[str])();
 	else
+	{
+		// Report in log (GeeTODO)
 		return NULL;
+	}
 }
 
-void CGUI::Initialize(/*/*CInput *pInput*/)
+void CGUI::Initialize()
 {
-///	m_pInput = pInput;
-
 	// Add base types!
+	//  You can also add types outside the GUI to extend the flexibility of the GUI.
+	//  Prometheus though will have all the object types inserted from here.
 	AddObjectType("button", &CButton::ConstructObject);
 }
 
@@ -127,7 +131,7 @@ void CGUI::Process()
 	// Pre-process all objects
 	try
 	{
-		GUI<EGUIMessage>::RecurseObject(0, m_BaseObject, &CGUIObject::HandleMessage, GUIM_PREPROCESS);
+		GUI<EGUIMessage>::RecurseObject(0, m_BaseObject, &IGUIObject::HandleMessage, GUIM_PREPROCESS);
 	}
 	catch (PS_RESULT e)
 	{
@@ -139,14 +143,14 @@ void CGUI::Process()
 	{
 		// Only one object can be hovered
 		//  check which one it is, if any !
-		CGUIObject *pNearest = NULL;
+		IGUIObject *pNearest = NULL;
 
-		GUI<CGUIObject*>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, &CGUIObject::ChooseMouseOverAndClosest, pNearest);
+		GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, &IGUIObject::ChooseMouseOverAndClosest, pNearest);
 		
 		// Now we'll call UpdateMouseOver on *all* objects,
 		//  we'll input the one hovered, and they will each
 		//  update their own data and send messages accordingly
-		GUI<CGUIObject*>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, &CGUIObject::UpdateMouseOver, pNearest);
+		GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, &IGUIObject::UpdateMouseOver, pNearest);
 
 		// If pressed
 		if (m_pInput->mPress(NEMM_BUTTON1) && pNearest)
@@ -175,7 +179,7 @@ void CGUI::Process()
 	// Post-process all objects
 	try
 	{
-		GUI<EGUIMessage>::RecurseObject(0, m_BaseObject, &CGUIObject::HandleMessage, GUIM_POSTPROCESS);
+		GUI<EGUIMessage>::RecurseObject(0, m_BaseObject, &IGUIObject::HandleMessage, GUIM_POSTPROCESS);
 	}
 	catch (PS_RESULT e)
 	{
@@ -186,15 +190,28 @@ void CGUI::Process()
 
 void CGUI::Draw()
 {
+	glPushMatrix();
+	glLoadIdentity();
+
+	// Adapt (origio) to being in top left corner and down
+	//  just like the mouse position
+	glTranslatef(0.0f, g_yres, -1000.0f);
+	glScalef(1.0f, -1.f, 1.0f);
+
 	try
 	{
-		// Recurse CGUIObject::Draw()
-		GUI<>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, &CGUIObject::Draw);
+		// Recurse IGUIObject::Draw() with restriction: hidden
+		//  meaning all hidden objects won't call Draw (nor will it recurse its children)
+		GUI<>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, &IGUIObject::Draw);
 	}
 	catch (PS_RESULT e)
 	{
+		glPopMatrix();
+
+		// TODO
 		return;
 	}
+	glPopMatrix();
 }
 
 void CGUI::Destroy()
@@ -210,7 +227,7 @@ void CGUI::Destroy()
 		}
 		catch (PS_RESULT e)
 		{
-
+			// TODO
 		}
 		
 		delete it->second;
@@ -222,20 +239,20 @@ void CGUI::Destroy()
 	m_Sprites.clear();
 }
 
-void CGUI::AddObject(CGUIObject* pObject)
+void CGUI::AddObject(IGUIObject* pObject)
 {
-	try
-	{
+/*	try
+	{*/
 		// Add CGUI pointer
-		GUI<CGUI*>::RecurseObject(0, pObject, &CGUIObject::SetGUI, this);
+		GUI<CGUI*>::RecurseObject(0, pObject, &IGUIObject::SetGUI, this);
 
 		// Add child to base object
 		m_BaseObject->AddChild(pObject);
-	}
+/*	}
 	catch (PS_RESULT e)
 	{
 		throw e;
-	}
+	}*/
 }
 
 void CGUI::UpdateObjects()
@@ -247,7 +264,7 @@ void CGUI::UpdateObjects()
 	try
 	{
 		// Fill freshly
-		GUI< map_pObjects >::RecurseObject(0, m_BaseObject, &CGUIObject::AddToPointersMap, AllObjects );
+		GUI< map_pObjects >::RecurseObject(0, m_BaseObject, &IGUIObject::AddToPointersMap, AllObjects );
 	}
 	catch (PS_RESULT e)
 	{
@@ -289,6 +306,9 @@ void CGUI::ReportParseError(const CStr &str, ...)
 ///	g_nemLog(" %s", buffer);
 }
 
+/**
+ * @callgraph
+ */
 void CGUI::LoadXMLFile(const string &Filename)
 {
 	// Reset parse error
@@ -330,6 +350,9 @@ void CGUI::LoadXMLFile(const string &Filename)
 			ParseFailed = parser->getErrorCount() != 0;
 			if (ParseFailed)
 			{
+				int todo_remove = parser->getErrorCount();
+
+
 				// TODO report for real!
 ///				g_console.submit("echo Xerces XML Parsing Reports %d errors", parser->getErrorCount());
 			}
@@ -382,7 +405,6 @@ void CGUI::LoadXMLFile(const string &Filename)
 	XMLPlatformUtils::Terminate();
 }
 
-
 //===================================================================
 //	XML Reading Xerces Specific Sub-Routines
 //===================================================================
@@ -425,13 +447,13 @@ void CGUI::Xerces_ReadRootSprites(XERCES_CPP_NAMESPACE::DOMElement *pElement)
 	}
 }
 
-void CGUI::Xerces_ReadObject(DOMElement *pElement, CGUIObject *pParent)
+void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 {
 	assert(pParent && pElement);
 	int i;
 
 	// Our object we are going to create
-	CGUIObject *object = NULL;
+	IGUIObject *object = NULL;
 
 	// Well first of all we need to determine the type
 	string type = XMLString::transcode( pElement->getAttribute( XMLString::transcode("type") ) );

@@ -16,6 +16,10 @@ Standard declarations which are included in all projects.
 #include <math.h>
 #include <assert.h>
 
+// Globals
+extern int g_xres, g_yres;
+
+
 // Standard typedefs
 
 typedef int            _int;

@@ -63,7 +63,9 @@ struct SGUIImage
 
 	//CColor		m_BackColor;
 	//CColor		m_BorderColor;
-	int				m_BorderSize;
+
+//	int16			m_BorderSize;
+	bool			m_Border;		// I've decided to have only the 1 pixel available
 };
 
 /**

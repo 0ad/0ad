@@ -9,9 +9,6 @@ gee@pyro.nu
 
 using namespace std;
 
-// TEMP TODO Gee
-///extern nemFontNTF font;
-
 // Offsets
 DECLARE_SETTINGS_INFO(SButtonSettings)
 
@@ -75,7 +72,7 @@ void CButton::HandleMessage(const EGUIMessage &Message)
 // TODO REMOVE
 #define OUTPUT(x) g_console.submit("echo Object(<red>%s</>) <AADDFF>%s</>", m_Name.c_str(), #x);
 
-	CGUIButtonBehavior::HandleMessage(Message);
+	IGUIButtonBehavior::HandleMessage(Message);
 
 	switch (Message)
 	{
@@ -135,11 +132,17 @@ void CButton::Draw()
 
 		// Do this
 		glBegin(GL_QUADS);
+		//glBegin(GL_TRIANGLES);
 			glVertex2i(GetBaseSettings().m_Size.right, GetBaseSettings().m_Size.bottom);
 			glVertex2i(GetBaseSettings().m_Size.left, GetBaseSettings().m_Size.bottom);
 			glVertex2i(GetBaseSettings().m_Size.left, GetBaseSettings().m_Size.top);
 			glVertex2i(GetBaseSettings().m_Size.right, GetBaseSettings().m_Size.top);
-		glEnd();
+/*
+			glVertex2i(GetBaseSettings().m_Size.right, GetBaseSettings().m_Size.bottom);
+			glVertex2i(GetBaseSettings().m_Size.left, GetBaseSettings().m_Size.bottom);
+			glVertex2i(GetBaseSettings().m_Size.left, GetBaseSettings().m_Size.top);
+			//glVertex2i(GetBaseSettings().m_Size.right, GetBaseSettings().m_Size.top);
+*/		glEnd();
 
 		//glDisable(GL_DEPTH_TEST);
 
