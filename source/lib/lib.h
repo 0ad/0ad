@@ -125,8 +125,9 @@ enum LibError
 	ERR_INVALID_PARAM   = -1003,
 	ERR_FILE_NOT_FOUND  = -1004,
 	ERR_PATH_NOT_FOUND  = -1005,
+	ERR_AGAIN           = -1006,	// try again later
 
-	ERR_VFS_PATH_LENGTH = -1006,
+	ERR_VFS_PATH_LENGTH = -1007,
 
 	ERR_LAST
 };
