@@ -402,8 +402,19 @@ JSBool startGame(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned in
 	else if (!g_Game)
 	{
 		g_Game=new CGame();
-		g_Game->StartGame(&g_GameAttributes);
+		PSRETURN ret = g_Game->StartGame(&g_GameAttributes);
+		if (ret != PSRETURN_OK)
+		{
+			// Failed to start the game - destroy it, and return false
+
+			delete g_Game;
+			g_Game = NULL;
+
+			*rval=BOOLEAN_TO_JSVAL(JS_FALSE);
+			return JS_TRUE;
+		}
 	}
+
 	*rval=BOOLEAN_TO_JSVAL(JS_TRUE);
 	return JS_TRUE;
 }

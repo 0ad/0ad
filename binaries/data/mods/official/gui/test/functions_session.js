@@ -99,7 +99,14 @@ function startLoadingScreen()
 
 function loadSession()
 {
-        startGame();
+        if (! startGame())
+        {
+                // Failed to start the game; go back to the main menu. TODO: display an error message.
+                GUIObjectHide("loading_screen");
+                GUIObjectUnhide("pregame_gui");
+                return;
+        }
+        
         GUIObjectHide("loading_screen");
         GUIObjectUnhide("session_gui");
         FlipGUI(GUIType);
