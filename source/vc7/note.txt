@@ -1,0 +1,11 @@
+Tested with VS 7.0. I've never tried with 7.1, so if someone
+does, let me know how it works out.
+
+Known problems:
+- When reading files like xml files, its working directory is
+  vc7/, but when reading things like font it looks in
+  binaries/. I haven't investigated why, seems very odd.
+  Ultimately the xml file reading's root dir should be
+  binaries/ too.
+
+/Gee
