@@ -57,7 +57,7 @@ void CFilePacker::Write(const char* filename,u32 version,const char magicstr[4])
 
 ////////////////////////////////////////////////////////////////////////////////////////
 // PackRaw: pack given number of bytes onto the end of the data stream
-void CFilePacker::PackRaw(const void* rawdata,u32 rawdatalen)
+void CFilePacker::PackRaw(const void* rawdata,size_t rawdatalen)
 {
 	u32 start=(u32)m_Data.size();
 	m_Data.resize(m_Data.size()+rawdatalen);

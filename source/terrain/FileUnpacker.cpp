@@ -74,7 +74,7 @@ void CFileUnpacker::UnpackRaw(void* rawdata,size_t rawdatalen)
 		// yes .. copy over
 		memcpy(rawdata,&m_Data[m_UnpackPos],rawdatalen);
 		// advance pointer
-		m_UnpackPos+=rawdatalen;
+		m_UnpackPos+=(u32)rawdatalen;
 	} else {
 		// nope - throw exception
 		throw CFileEOFError();

@@ -73,7 +73,7 @@ void terr_update(const float DeltaTime)
 		g_Camera.m_Orientation.Translate(Up*-1);
 
 
-
+/*
 	const float s30 = sin(DEGTORAD(30.0f));
 	const float c30 = cos(DEGTORAD(30.0f));
 	const float s45 = sin(DEGTORAD(45.0f));
@@ -81,22 +81,27 @@ void terr_update(const float DeltaTime)
 	const float s60 = sin(DEGTORAD(60.0f));
 	const float c60 = cos(DEGTORAD(60.0f));
 
-	const CVector3D vert   (c30*c45, s45, -s30*c45);
+	const CVector3D viewer_back(c30*c45, s45, -s30*c45);
 
+janwas: grr, plotted the zoom vector on paper twice, but it appears
+to be completely wrong. sticking with the FOV hack for now.
+if anyone sees what's wrong, or knows how to correctly implement zoom,
+please put this code out of its misery :)
+
+*/
 
 	float fov = g_Camera.GetFOV();
-	float d = DEGTORAD(0.4f);
+	const float d = DEGTORAD(10.0f) * DeltaTime;
 	if(keys[SDLK_KP_MINUS])
 		if (fov < DEGTORAD(60.f))
 			fov += d;
-			g_Camera.SetProjection(1, 1000, fov + d);
 	if(keys[SDLK_KP_PLUS])
 		if (fov-d > DEGTORAD(10))
 			fov -= d;
-	g_Camera.SetProjection(1, 1000, fov);
 
 	ViewFOV = fov;
 
+	g_Camera.SetProjection(1, 1000, fov);
 	g_Camera.UpdateFrustum ();
 }
 

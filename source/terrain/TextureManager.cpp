@@ -136,7 +136,7 @@ void CTextureManager::LoadTerrainTextures(int terraintype,const char* fileext)
 {
 #ifdef _WIN32
 	struct _finddata_t file;
-	long handle;
+	intptr_t handle;
 	
 	// build pathname
 	CStr pathname("mods\\official\\art\\textures\\terrain\\types\\");
@@ -166,7 +166,7 @@ void CTextureManager::BuildTerrainTypes()
 {
 #ifdef _WIN32
 	struct _finddata_t file;
-	long handle;
+	intptr_t handle;
 	
 	// Find first matching directory in terrain\textures
     if ((handle=_findfirst("mods\\official\\art\\textures\\terrain\\types\\*",&file))!=-1) {

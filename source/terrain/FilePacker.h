@@ -31,7 +31,7 @@ public:
 	void Write(const char* filename,u32 version,const char magicstr[4]);
 
 	// PackRaw: pack given number of bytes onto the end of the data stream
-	void PackRaw(const void* rawdata,u32 rawdatalen);
+	void PackRaw(const void* rawdata,size_t rawdatalen);
 	// PackString: pack a string onto the end of the data stream
 	void PackString(const CStr& str);
 

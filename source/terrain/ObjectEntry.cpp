@@ -61,7 +61,7 @@ bool CObjectEntry::BuildModel()
 	CStr texturefilename(m_TextureName);	
 
 	m_Model->SetTexture(CTexture((const char*) texturefilename));
-	for( int t = 0; t < m_Animations.size(); t++ )	{		if( m_Animations[t].m_FileName.Length() > 0 )		{			CStr animfilename( "mods\\official\\" );			animfilename += m_Animations[t].m_FileName;			try			{				m_Animations[t].m_AnimData = CSkeletonAnim::Load( animfilename );			}			catch( ... )			{				m_Animations[t].m_AnimData = NULL;			}			if( m_Animations[t].m_AnimName.LowerCase() == CStr( "idle" ) )				m_IdleAnim = m_Animations[t].m_AnimData;			if( m_Animations[t].m_AnimName.LowerCase() == CStr( "walk" ) )				m_WalkAnim = m_Animations[t].m_AnimData;		}	}	m_Model->SetAnimation( m_IdleAnim );	/*
+	for( uint t = 0; t < m_Animations.size(); t++ )	{		if( m_Animations[t].m_FileName.Length() > 0 )		{			CStr animfilename( "mods\\official\\" );			animfilename += m_Animations[t].m_FileName;			try			{				m_Animations[t].m_AnimData = CSkeletonAnim::Load( animfilename );			}			catch( ... )			{				m_Animations[t].m_AnimData = NULL;			}			if( m_Animations[t].m_AnimName.LowerCase() == CStr( "idle" ) )				m_IdleAnim = m_Animations[t].m_AnimData;			if( m_Animations[t].m_AnimName.LowerCase() == CStr( "walk" ) )				m_WalkAnim = m_Animations[t].m_AnimData;		}	}	m_Model->SetAnimation( m_IdleAnim );	/*
 	if (m_Animations.size()) {
 		if (m_Animations[0].m_FileName.Length()>0) {
 			CStr animfilename("mods\\official\\");
@@ -76,7 +76,7 @@ bool CObjectEntry::BuildModel()
 		}
 	}
 	*/
-	// rebuild model bounds
+	// rebuild model bounds				// janwas: WTF? sign mismatch warning on this line?
 	m_Model->CalcBounds();
 
 	// replace any units using old model to now use new model

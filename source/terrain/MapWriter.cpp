@@ -85,7 +85,7 @@ void CMapWriter::EnumTerrainTextures(std::vector<CStr>& textures,
 					CMiniPatch& mp=g_Terrain.GetPatch(i,j)->m_MiniPatches[m][k];
 					u16 index=u16(GetHandleIndex(mp.Tex1,handles));
 					if (index==0xffff) {
-						index=handles.size();
+						index=(u16)handles.size();
 						handles.push_back(mp.Tex1);
 					}
 
@@ -131,7 +131,7 @@ void CMapWriter::EnumObjects(std::vector<CStr>& objectTypes,std::vector<SObjectD
 
 		u16 index=u16(GetObjectIndex(unit->m_Object,objectsInUse));
 		if (index==0xffff) {
-			index=objectsInUse.size();
+			index=(u16)objectsInUse.size();
 			objectsInUse.push_back(unit->m_Object);
 		}
 
@@ -181,14 +181,14 @@ void CMapWriter::PackObjects(CFilePacker& packer)
 	EnumObjects(objectTypes,objects);
 
 	// pack object types
-	u32 numObjTypes=objectTypes.size();
+	u32 numObjTypes=(u32)objectTypes.size();
 	packer.PackRaw(&numObjTypes,sizeof(numObjTypes));	
 	for (uint i=0;i<numObjTypes;i++) {
 		packer.PackString(objectTypes[i]);
 	}
 	
 	// pack object data
-	u32 numObjects=objects.size();
+	u32 numObjects=(u32)objects.size();
 	packer.PackRaw(&numObjects,sizeof(numObjects));	
 	packer.PackRaw(&objects[0],sizeof(SObjectDesc)*numObjects);	
 }
@@ -214,7 +214,7 @@ void CMapWriter::PackTerrain(CFilePacker& packer)
 	EnumTerrainTextures(terrainTextures,tiles);
 	
 	// pack texture names
-	u32 numTextures=terrainTextures.size();
+	u32 numTextures=(u32)terrainTextures.size();
 	packer.PackRaw(&numTextures,sizeof(numTextures));	
 	for (uint i=0;i<numTextures;i++) {
 		packer.PackString(terrainTextures[i]);

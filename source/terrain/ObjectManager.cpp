@@ -30,7 +30,7 @@ void CObjectManager::AddObjectType(const char* name)
 	m_ObjectTypes.resize(m_ObjectTypes.size()+1);
 	SObjectType& type=m_ObjectTypes.back();
 	type.m_Name=name;
-	type.m_Index=m_ObjectTypes.size()-1;
+	type.m_Index=(int)m_ObjectTypes.size()-1;
 }
 
 void CObjectManager::AddObject(CObjectEntry* object,int type)
@@ -66,7 +66,7 @@ void CObjectManager::LoadObjects()
 void CObjectManager::BuildObjectTypes()
 {
 	struct _finddata_t file;
-	long handle;
+	intptr_t handle;
 	
 	// Find first matching directory in terrain\textures
     if ((handle=_findfirst("mods\\official\\art\\actors\\*",&file))!=-1) {
@@ -89,7 +89,7 @@ void CObjectManager::BuildObjectTypes()
 void CObjectManager::LoadObjects(int type)
 {
 	struct _finddata_t file;
-	long handle;
+	intptr_t handle;
 
 	// build pathname
 	CStr pathname("mods\\official\\art\\actors\\");

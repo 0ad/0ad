@@ -171,7 +171,7 @@ void CPatchRData::BuildBlends()
 						int vsize=PATCH_SIZE+1;
 
 						SBlendVertex dst;
-						int vindex=m_BlendVertices.size();
+						int vindex=(int)m_BlendVertices.size();
 
 						const SBaseVertex& vtx0=m_Vertices[(j*vsize)+i];
 						dst.m_UVs[0]=i*0.125f;
@@ -235,7 +235,7 @@ void CPatchRData::BuildBlends()
 		Handle tex=*iter;
 
 		SSplat& splat=m_BlendSplats[splatCount];
-		splat.m_IndexStart=m_BlendIndices.size();
+		splat.m_IndexStart=(u32)m_BlendIndices.size();
 		splat.m_Texture=tex;
 
 		for (uint k=0;k<splats.size();k++) {
@@ -295,7 +295,7 @@ void CPatchRData::BuildIndices()
 
 		SSplat& splat=m_Splats[i];
 		splat.m_Texture=h;
-		splat.m_IndexStart=m_Indices.size();
+		splat.m_IndexStart=(u32)m_Indices.size();
 		
 		for (int j=0;j<PATCH_SIZE;j++) {
 			for (int i=0;i<PATCH_SIZE;i++) {
@@ -307,7 +307,7 @@ void CPatchRData::BuildIndices()
 				}
 			}
 		}
-		splat.m_IndexCount=m_Indices.size()-splat.m_IndexStart;
+		splat.m_IndexCount=(u32)(m_Indices.size()-splat.m_IndexStart);
 	}
 }
 
@@ -481,7 +481,7 @@ void CPatchRData::RenderStreams(u32 streamflags)
 
 	// bump stats
 	g_Renderer.m_Stats.m_DrawCalls++;
-	g_Renderer.m_Stats.m_TerrainTris+=m_Indices.size()/2;
+	g_Renderer.m_Stats.m_TerrainTris+=(u32)m_Indices.size()/2;
 }
 
 
