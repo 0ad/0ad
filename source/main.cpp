@@ -767,6 +767,7 @@ static void psInit()
 	g_GUI.LoadXMLFile("gui/test/2_mainmenu.xml");
 	g_GUI.LoadXMLFile("gui/test/3_session.xml");
 	g_GUI.LoadXMLFile("gui/test/4_manual.xml");
+	g_GUI.LoadXMLFile("gui/test/5_atlas.xml");
 
 	g_GUI.LoadXMLFile("gui/test/hello.xml");
 #endif
