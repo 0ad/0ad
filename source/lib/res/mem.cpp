@@ -249,6 +249,9 @@ int mem_free_h(Handle& hm)
 
 int mem_free_p(void*& p)
 {
+	if(!p)
+		return 0;
+
 	Handle hm = find_alloc(p);
 	p = 0;
 	if(hm <= 0)
