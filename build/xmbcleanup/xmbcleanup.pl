@@ -3,6 +3,8 @@ use warnings;
 
 use File::Find;
 
+my $remove_all = (grep /removeall/, @ARGV);
+
 ++$|;
 
 # Relative to build/bin or build/xmbcleanup
@@ -34,9 +36,16 @@ for (@xmlfiles) {
 
 	# Find all such files
 	my @xmbfiles = glob $f;
+	next unless @xmbfiles;
+
+	# Remove them all, if asked to do so
+	if ($remove_all) {
+		print "DELETING @xmbfiles\n";
+		unlink @xmbfiles;
+		$count += @xmbfiles;
 
 	# If there are two or more, delete all but the newest
-	if (@xmbfiles > 1) {
+	} elsif (@xmbfiles > 1) {
 		@xmbfiles = sort @xmbfiles; # files are "etc_<TIMESTAMP><SIZE><VERSION>xmb", with TIMESTAMP
 									#  hex-encoded, so sorting will put the oldest files first.
 		# Remove the newest
@@ -49,4 +58,4 @@ for (@xmlfiles) {
 }
 
 print "\n\nCompleted - $count ".($count==1?'file':'files')." deleted. Press enter to exit.";
-<>
+<STDIN>;
