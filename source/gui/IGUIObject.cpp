@@ -56,22 +56,12 @@ IGUIObject::IGUIObject() :
 IGUIObject::~IGUIObject()
 {
 // delete() needs to know the type of the variable - never delete a void*
-#define TYPE(t) case GUIST_##t: delete (t*)it->second.m_pSetting; break
+#define TYPE(t) case GUIST_##t: delete (t*)it->second.m_pSetting; break;
 	map<CStr, SGUISetting>::iterator it;
 	for (it = m_Settings.begin(); it != m_Settings.end(); ++it)
 		switch (it->second.m_Type)
 		{
-			TYPE(bool);
-			TYPE(int);
-			TYPE(float);
-			TYPE(CColor);
-			TYPE(CClientArea);
-			TYPE(CGUIString);
-			TYPE(CGUISpriteInstance);
-			TYPE(CStr);
-			TYPE(CStrW);
-			TYPE(EAlign);
-			TYPE(EVAlign);
+		#include "GUItypes.h"
 		default:
 			debug_warn("Invalid setting type");
 		}
@@ -146,7 +136,7 @@ void IGUIObject::Destroy()
 }
 
 // Notice if using this, the naming convention of GUIST_ should be strict.
-#define CASE_TYPE(type)								\
+#define TYPE(type)									\
 	case GUIST_##type:								\
 		m_Settings[Name].m_pSetting = new type();	\
 		break;
@@ -163,23 +153,15 @@ void IGUIObject::AddSetting(const EGUISettingType &Type, const CStr& Name)
 	switch (Type)
 	{
 		// Construct the setting.
-		CASE_TYPE(bool)
-		CASE_TYPE(int)
-		CASE_TYPE(float)
-		CASE_TYPE(CClientArea)
-		CASE_TYPE(CStr)
-		CASE_TYPE(CStrW)
-		CASE_TYPE(CColor)
-		CASE_TYPE(CGUIString)
-		CASE_TYPE(CGUISpriteInstance)
-		CASE_TYPE(EAlign)
-		CASE_TYPE(EVAlign)
+		#include "GUItypes.h"
 
 	default:
 		debug_warn("IGUIObject::AddSetting failed, type not recognized!");
 		break;
 	}
 }
+#undef TYPE
+
 
 bool IGUIObject::MouseOver()
 {
@@ -234,7 +216,7 @@ bool IGUIObject::SettingExists(const CStr& Setting) const
 	return (m_Settings.count(Setting) >= 1);
 }
 
-#define ADD_TYPE(type)									\
+#define TYPE(type)										\
 	else												\
 	if (set.m_Type == GUIST_##type)						\
 	{													\
@@ -255,20 +237,9 @@ PS_RESULT IGUIObject::SetSetting(const CStr& Setting, const CStr& Value)
 	// Get setting
 	SGUISetting set = m_Settings[Setting];
 
-	if (set.m_Type == GUIST_CStr)
-	{
-        GUI<CStr>::SetSetting(this, Setting, Value);
-	}
-	ADD_TYPE(CStrW)
-	ADD_TYPE(bool)
-	ADD_TYPE(float)
-	ADD_TYPE(int)
-	ADD_TYPE(CColor)
-	ADD_TYPE(CClientArea)
-	ADD_TYPE(CGUIString)
-	ADD_TYPE(CGUISpriteInstance)
-	ADD_TYPE(EAlign)
-	ADD_TYPE(EVAlign)
+	if (0);
+	// else...
+#include "GUItypes.h"
 	else
 	{
 		return PS_FAIL;
@@ -276,7 +247,7 @@ PS_RESULT IGUIObject::SetSetting(const CStr& Setting, const CStr& Value)
 	return PS_OK;
 }
 
-#undef ADD_TYPE
+#undef TYPE
 
 
 PS_RESULT IGUIObject::GetSettingType(const CStr& Setting, EGUISettingType &Type) const

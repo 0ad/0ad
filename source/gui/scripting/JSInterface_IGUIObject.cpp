@@ -186,9 +186,9 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 
 		case GUIST_CGUISpriteInstance:
 			{
-				CGUISpriteInstance value;
-				GUI<CGUISpriteInstance>::GetSetting(e, propName, value);
-				*vp = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, value.GetName()));
+				CGUISpriteInstance *value;
+				GUI<CGUISpriteInstance>::GetSettingPointer(e, propName, value);
+				*vp = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, value->GetName()));
 				break;
 			}
 

@@ -30,9 +30,9 @@ void CImage::Draw()
 	{
 		float bz = GetBufferedZ();
 
-		CGUISpriteInstance sprite;
-		GUI<CGUISpriteInstance>::GetSetting(this, "sprite", sprite);
+		CGUISpriteInstance *sprite;
+		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
 
-		GetGUI()->DrawSprite(sprite, bz, m_CachedActualSize);
+		GetGUI()->DrawSprite(*sprite, bz, m_CachedActualSize);
 	}
 }

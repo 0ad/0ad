@@ -192,6 +192,14 @@ bool __ParseString<CGUIString>(const CStr& Value, CGUIString &Output)
 }
 
 template <>
+bool __ParseString<CStr>(const CStr& Value, CStr &Output)
+{
+	// Do very little.
+	Output = Value;
+	return true;
+}
+
+template <>
 bool __ParseString<CStrW>(const CStr& Value, CStrW &Output)
 {
 	// Translate the Value and retrieve the localised string in
@@ -387,6 +395,7 @@ void CInternalCGUIAccessorBase::HandleMessage(IGUIObject *pObject, const SGUIMes
 }
 
 
+
 #ifndef NDEBUG
 	#define TYPE(T) \
 		template<> void CheckType<T>(const IGUIObject* obj, const CStr& setting) {	\
@@ -396,16 +405,93 @@ void CInternalCGUIAccessorBase::HandleMessage(IGUIObject *pObject, const SGUIMes
 				throw "EXCESSIVELY FATAL ERROR: Inconsistent types in GUI";	/* TODO: better reporting */ \
 			}	\
 		}
-	TYPE(bool)
-	TYPE(int)
-	TYPE(float)
-	TYPE(CClientArea)
-	TYPE(CStr)
-	TYPE(CStrW)
-	TYPE(CColor)
-	TYPE(CGUIString)
-	TYPE(CGUISpriteInstance)
-	TYPE(EAlign)
-	TYPE(EVAlign)
+	#include "GUItypes.h"
 	#undef TYPE
 #endif
+
+
+//--------------------------------------------------------------------
+
+template <typename T>
+PS_RESULT GUI<T>::GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, T* &Value)
+{
+	if (pObject == NULL)
+		return PS_OBJECT_FAIL;
+
+	if (!pObject->SettingExists(Setting))
+		return PS_SETTING_FAIL;
+
+	if (!pObject->m_Settings.find(Setting)->second.m_pSetting)
+		return PS_FAIL;
+
+#ifndef NDEBUG
+	CheckType<T>(pObject, Setting);
+#endif
+
+	// Get value
+	Value = (T*)pObject->m_Settings.find(Setting)->second.m_pSetting;
+
+	return PS_OK;
+}
+
+template <typename T>
+PS_RESULT GUI<T>::GetSetting(const IGUIObject *pObject, const CStr& Setting, T &Value)
+{
+	T* v;
+	PS_RESULT ret = GetSettingPointer(pObject, Setting, v);
+	if (ret == PS_OK)
+		Value = *v;
+	return ret;
+}
+
+template <typename T>
+PS_RESULT GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting, const T &Value)
+{
+	if (pObject == NULL)
+		return PS_OBJECT_FAIL;
+
+	if (!pObject->SettingExists(Setting))
+		return PS_SETTING_FAIL;
+
+#ifndef NDEBUG
+	CheckType<T>(pObject, Setting);
+#endif
+
+	// Set value
+	*(T*)pObject->m_Settings[Setting].m_pSetting = Value;
+
+	//
+	//	Some settings needs special attention at change
+	//
+
+	// If setting was "size", we need to re-cache itself and all children
+	if (Setting == CStr("size"))
+	{
+		RecurseObject(0, pObject, &IGUIObject::UpdateCachedSize);
+	}
+	else
+		if (Setting == CStr("hidden"))
+		{
+			// Hiding an object requires us to reset it and all children
+			QueryResetting(pObject);
+			//RecurseObject(0, pObject, IGUIObject::ResetStates);
+		}
+
+		HandleMessage(pObject, SGUIMessage(GUIM_SETTINGS_UPDATED, Setting));
+
+		return PS_OK;
+}
+
+#define TYPE(T) \
+	template PS_RESULT GUI<T>::GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, T* &Value); \
+	template PS_RESULT GUI<T>::GetSetting(const IGUIObject *pObject, const CStr& Setting, T &Value); \
+	template PS_RESULT GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting, const T &Value);
+#define GUITYPE_IGNORE_CGUISpriteInstance
+#include "GUItypes.h"
+
+// Don't instantiate GetSetting<CGUISpriteInstance> - this will cause linker errors if
+// you attempt to retrieve a sprite using GetSetting, since that copies the sprite
+// and will mess up the caching performed by DrawSprite. You have to use GetSettingPointer
+// instead. (This is mainly useful to stop me accidentally using the wrong function.)
+template PS_RESULT GUI<CGUISpriteInstance>::GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, CGUISpriteInstance* &Value);
+template PS_RESULT GUI<CGUISpriteInstance>::SetSetting(IGUIObject *pObject, const CStr& Setting, const CGUISpriteInstance &Value);

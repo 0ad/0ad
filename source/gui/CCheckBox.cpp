@@ -123,29 +123,29 @@ void CCheckBox::Draw()
 	bool checked;
 	GUI<bool>::GetSetting(this, "checked", checked);
 
-	CGUISpriteInstance sprite, sprite_over, sprite_pressed, sprite_disabled;
+	CGUISpriteInstance *sprite, *sprite_over, *sprite_pressed, *sprite_disabled;
 
 	if (checked)
 	{
-		GUI<CGUISpriteInstance>::GetSetting(this, "sprite2", sprite);
-		GUI<CGUISpriteInstance>::GetSetting(this, "sprite2-over", sprite_over);
-		GUI<CGUISpriteInstance>::GetSetting(this, "sprite2-pressed", sprite_pressed);
-		GUI<CGUISpriteInstance>::GetSetting(this, "sprite2-disabled", sprite_disabled);
+		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2", sprite);
+		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2-over", sprite_over);
+		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2-pressed", sprite_pressed);
+		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2-disabled", sprite_disabled);
 	}
 	else
 	{
-		GUI<CGUISpriteInstance>::GetSetting(this, "sprite", sprite);
-		GUI<CGUISpriteInstance>::GetSetting(this, "sprite-over", sprite_over);
-		GUI<CGUISpriteInstance>::GetSetting(this, "sprite-pressed", sprite_pressed);
-		GUI<CGUISpriteInstance>::GetSetting(this, "sprite-disabled", sprite_disabled);
+		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
+		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite-over", sprite_over);
+		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite-pressed", sprite_pressed);
+		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite-disabled", sprite_disabled);
 	}
 
-	DrawButton(	rect, 
-				bz,
-				sprite,
-				sprite_over,
-				sprite_pressed,
-				sprite_disabled);
+	DrawButton(rect, 
+			   bz,
+			   *sprite,
+			   *sprite_over,
+			   *sprite_pressed,
+			   *sprite_disabled);
 
 	CColor color = ChooseColor();
 

@@ -48,30 +48,30 @@ void CGUIScrollBarVertical::Draw()
 		if (m_UseEdgeButtons)
 		{
 			// Get Appropriate sprites
-			CGUISpriteInstance button_top, button_bottom;
+			CGUISpriteInstance *button_top, *button_bottom;
 
 			// figure out what sprite to use for top button
 			if (m_ButtonMinusHovered)
 			{
 				if (m_ButtonMinusPressed)
-					button_top = GUI<>::FallBackSprite(GetStyle()->m_SpriteButtonTopPressed, GetStyle()->m_SpriteButtonTop);
+					button_top = &GUI<>::FallBackSprite(GetStyle()->m_SpriteButtonTopPressed, GetStyle()->m_SpriteButtonTop);
 				else
-					button_top = GUI<>::FallBackSprite(GetStyle()->m_SpriteButtonTopOver, GetStyle()->m_SpriteButtonTop);
+					button_top = &GUI<>::FallBackSprite(GetStyle()->m_SpriteButtonTopOver, GetStyle()->m_SpriteButtonTop);
 			}
-			else button_top = GetStyle()->m_SpriteButtonTop;
+			else button_top = &GetStyle()->m_SpriteButtonTop;
 
 			// figure out what sprite to use for top button
 			if (m_ButtonPlusHovered)
 			{
 				if (m_ButtonPlusPressed)
-					button_bottom = GUI<>::FallBackSprite(GetStyle()->m_SpriteButtonBottomPressed, GetStyle()->m_SpriteButtonBottom);
+					button_bottom = &GUI<>::FallBackSprite(GetStyle()->m_SpriteButtonBottomPressed, GetStyle()->m_SpriteButtonBottom);
 				else
-					button_bottom = GUI<>::FallBackSprite(GetStyle()->m_SpriteButtonBottomOver, GetStyle()->m_SpriteButtonBottom);
+					button_bottom = &GUI<>::FallBackSprite(GetStyle()->m_SpriteButtonBottomOver, GetStyle()->m_SpriteButtonBottom);
 			}
-			else button_bottom = GetStyle()->m_SpriteButtonBottom;
+			else button_bottom = &GetStyle()->m_SpriteButtonBottom;
 			
 			// Draw top button
-			GetGUI()->DrawSprite(button_top,
+			GetGUI()->DrawSprite(*button_top,
 								 m_Z+0.2f, 
 								 CRect(outline.left, 
 									   outline.top, 
@@ -80,7 +80,7 @@ void CGUIScrollBarVertical::Draw()
 								);
 			
 			// Draw bottom button
-			GetGUI()->DrawSprite(button_bottom, 
+			GetGUI()->DrawSprite(*button_bottom, 
 								 m_Z+0.2f, 
 								 CRect(outline.left, 
 									   outline.bottom-GetStyle()->m_Width, 

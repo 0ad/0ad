@@ -147,6 +147,11 @@ class GUI : public CInternalCGUIAccessorBase
 	friend class CInternalCGUIAccessorBase;
 
 public:
+
+	// Like GetSetting (below), but doesn't make a copy of the value
+	// (so it can be modified later)
+	static PS_RESULT GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, T* &Value);
+
 	/**
 	 * Retrieves a setting by name from object pointer
 	 *
@@ -154,26 +159,7 @@ public:
 	 * @param Setting Setting by name
 	 * @param Value Stores value here, note type T!
 	 */
-	static PS_RESULT GetSetting(const IGUIObject *pObject, const CStr& Setting, T &Value)
-	{
-		if (pObject == NULL)
-			return PS_OBJECT_FAIL;
-
-		if (!pObject->SettingExists(Setting))
-			return PS_SETTING_FAIL;
-
-		if (!pObject->m_Settings.find(Setting)->second.m_pSetting)
-			return PS_FAIL;
-
-#ifndef NDEBUG
-		CheckType<T>(pObject, Setting);
-#endif
-
-		// Get value
-		Value = *(T*)pObject->m_Settings.find(Setting)->second.m_pSetting;
-			
-		return PS_OK;
-	}
+	static PS_RESULT GetSetting(const IGUIObject *pObject, const CStr& Setting, T &Value);
 
 	/**
 	 * Sets a value by name using a real datatype as input.
@@ -185,42 +171,7 @@ public:
 	 * @param Setting Setting by name
 	 * @param Value Sets value to this, note type T!
 	 */
-	static PS_RESULT SetSetting(IGUIObject *pObject, const CStr& Setting, const T &Value)
-	{
-		if (pObject == NULL)
-			return PS_OBJECT_FAIL;
-
-		if (!pObject->SettingExists(Setting))
-			return PS_SETTING_FAIL;
-
-#ifndef NDEBUG
-		CheckType<T>(pObject, Setting);
-#endif
-
-		// Set value
-		*(T*)pObject->m_Settings[Setting].m_pSetting = Value;
-		
-		//
-		//	Some settings needs special attention at change
-		//
-
-		// If setting was "size", we need to re-cache itself and all children
-		if (Setting == CStr("size"))
-		{
-			RecurseObject(0, pObject, &IGUIObject::UpdateCachedSize);
-		}
-		else
-		if (Setting == CStr("hidden"))
-		{
-			// Hiding an object requires us to reset it and all children
-			QueryResetting(pObject);
-			//RecurseObject(0, pObject, IGUIObject::ResetStates);
-		}
-
-		HandleMessage(pObject, SGUIMessage(GUIM_SETTINGS_UPDATED, Setting));
-
-		return PS_OK;
-	}
+	static PS_RESULT SetSetting(IGUIObject *pObject, const CStr& Setting, const T &Value);
 
 #ifdef g_GUI
 	/**

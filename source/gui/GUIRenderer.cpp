@@ -68,6 +68,10 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 	for (cit = it->second.m_Images.begin(); cit != it->second.m_Images.end(); ++cit)
 	{
 		SDrawCall Call;
+
+		CRect real = cit->m_Size.GetClientArea(Size);
+		Call.m_Vertices = real;
+
 		if (cit->m_TextureName.Length())
 		{
 			Handle h = tex_load(cit->m_TextureName);
@@ -89,8 +93,6 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 			int fmt, t_w, t_h;
 			tex_info(h, &t_w, &t_h, &fmt, NULL, NULL);
 			Call.m_EnableBlending = (fmt == GL_RGBA || fmt == GL_BGRA);
-
-			CRect real = cit->m_Size.GetClientArea(Size);
 
 			// Get the screen position/size of a single tiling of the texture
 			CRect TexSize = cit->m_TextureSize.GetClientArea(real);
@@ -123,11 +125,11 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 			}
 
 			Call.m_TexCoords = TexCoords;
-			Call.m_Vertices = real;
 		}
 		else
 		{
 			Call.m_TexHandle = 0;
+			Call.m_EnableBlending = !(fabs(cit->m_BackColor.a - 1.0f) < 0.0000001f);
 		}
 
 		Call.m_BackColor = cit->m_BackColor;
@@ -150,10 +152,6 @@ void GUIRenderer::Draw(DrawCalls &Calls)
 		{
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			glEnable(GL_BLEND);
-		}
-		else
-		{
-			glDisable(GL_BLEND);
 		}
 
 		if (cit->m_TexHandle.h)
@@ -181,11 +179,10 @@ void GUIRenderer::Draw(DrawCalls &Calls)
 
 			glEnd();
 
-			glDisable(GL_TEXTURE_2D);
-
 		}
 		else
 		{
+			glDisable(GL_TEXTURE_2D);
 
 			glBegin(GL_QUADS);
 				glVertex3f(cit->m_Vertices.right,	cit->m_Vertices.bottom,	cit->m_DeltaZ);
@@ -206,5 +203,11 @@ void GUIRenderer::Draw(DrawCalls &Calls)
 				glEnd();
 			}
 		}
+
+		if (cit->m_EnableBlending)
+		{
+			glDisable(GL_BLEND);
+		}
+
 	}
 }
