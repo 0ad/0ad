@@ -19,16 +19,14 @@
 #include <time.h>
 #include <cmath>
 
+#include "win.h"
+
 #include "ia32.h"
 #include "posix.h"
 #include "detect.h"
 #include "time.h"
 #include "types.h"
 #include "misc.h"
-
-#ifdef _WIN32
-#include "win.h"
-#endif
 
 
 

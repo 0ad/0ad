@@ -13,7 +13,6 @@
 #include "vfs.h"
 #include "mem.h"
 
-
 // We need to be able to unmount specific paths (e.g. when switching mods).
 // Don't want to remount everything (slow), or specify a mod tag when mounting
 // (not this module's job). Instead, we include all archives in one path entry;
@@ -67,7 +66,7 @@ int vfs_set_root(const char* argv0, const char* root)
 		return -1;
 	*fn = 0;
 
-	chdir(path);
+	chdir( fn + 1 );
 	chdir(root);
 
 	return vfs_mount(".");
@@ -181,10 +180,110 @@ Handle vfs_map(const char* fn)
 	return 0;
 }
 
+int vfs_access( char* fn )
+{
+	// Alters 'fn' to the path of the file, if we find it...
+	
+	// Mostly identical to vfs_stat, below.
 
+	struct stat dy;
+	
+	// Strim out the path, if provided.
+	char* name = strrchr( fn, '/' );
+	if( name ) { name++; } else name = fn;
+
+	char buf[PATH_MAX+1]; buf[PATH_MAX] = 0;
+
+	// for each search path:
+	for(PATH* entry = path_list; entry; entry = entry->next)
+	{
+		// dir
+		const char* path = name;
+		if(entry->dir[0] != '.' || entry->dir[1] != '\0')
+		{
+			// only prepend dir if not "." (root) - "./" isn't portable
+			snprintf(buf, PATH_MAX, "%s/%s", entry->dir, name);
+			path = buf;
+		}
+		if( !_stat( path, &dy ) )
+		{
+			strcpy( fn, path );
+			return( 0 );
+		}
+		
+		// archive
+		for(int i = 0; i < entry->num_archives; i++)
+		{
+			if( !zaccess(entry->archives[i], name) )
+				return( 0 );
+		}
+		
+	}
+
+	// not found
+	return -1;
+}
+
+int vfs_stat( const char* fn, struct stat *buffer )
+{
+	// Mostly identical to vfs_open, below.
+	
+	// Note: vfs_stat redefines the nlink member of stat for its own
+	// nefarious ends.
+
+	// Check the specific location 'fn' first.
+	// If the file's there, it's faster.
+
+	if( !_stat( fn, buffer ) )
+	{
+		buffer->st_nlink = 0;
+		return( 0 );
+	}
+
+	// Not there? Drop the old path.
+
+	char* name = strrchr( fn, '/' );
+	if( name )
+		fn = name + 1;
+
+	char buf[PATH_MAX+1]; buf[PATH_MAX] = 0;
+
+	// for each search path:
+	for(PATH* entry = path_list; entry; entry = entry->next)
+	{
+		// dir
+		const char* path = fn;
+		if(entry->dir[0] != '.' || entry->dir[1] != '\0')
+		{
+			// only prepend dir if not "." (root) - "./" isn't portable
+			snprintf(buf, PATH_MAX, "%s/%s", entry->dir, fn);
+			path = buf;
+		}
+		if( !_stat( path, buffer ) ) 
+		{
+			buffer->st_nlink = 1;
+			return( 0 );
+		}
+
+		// Ignore files in an archive.
+	}
+
+	// not found
+	return -1;
+}
+ 
 Handle vfs_open(const char* fn)
 {
 	char buf[PATH_MAX+1]; buf[PATH_MAX] = 0;
+
+	// If a path to an existing file is given, use it.
+
+	Handle h = vfs_map( fn );
+	if( h )
+		return( h );
+
+	char* name = strrchr( fn, '/' );
+	if( name ) fn = name + 1;
 
 	// for each search path:
 	for(PATH* entry = path_list; entry; entry = entry->next)

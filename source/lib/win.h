@@ -1,8 +1,11 @@
+#ifdef _WIN32
+
 #ifndef __WIN_H__
 #define __WIN_H__
 
 // Win32 socket decls aren't portable (e.g. problems with socklen_t)
 // => skip winsock.h; posix.h should be used instead
+
 #define _WINSOCKAPI_
 
 #define WIN32_LEAN_AND_MEAN
@@ -79,4 +82,5 @@ extern __declspec(dllimport) int __stdcall WSAStartup(WORD, char*);
 #endif
 }
 
-#endif	// #ifndef __WIN_H__
+#endif
+#endif

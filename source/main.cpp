@@ -14,6 +14,7 @@
 #include "tex.h"
 #include "vfs.h"
 #include "ia32.h"
+#include "Config.h"
 
 #ifndef NO_GUI
 #include "gui/GUI.h"
@@ -28,11 +29,8 @@ bool keys[256];
 
 #include <cmath>
 
-
-
 static Handle font;
 static Handle tex;
-
 
 extern void terr_init();
 extern void terr_update();
@@ -167,9 +165,14 @@ glColor3f(1.0f, 1.0f, 1.0f);
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 	glLoadIdentity();
+#ifndef NO_GUI
 	////// janwas: I changed to some more for the GUI, we can talk about how to set this up
 	glOrtho(0., xres, 0., yres, -1000., 1.);
 	//////
+#else
+	// (MT) Above line hides the frame counter behind the terrain.
+	glOrtho( 0., xres, 0., yres, -1., 1. );
+#endif
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 
@@ -200,7 +203,6 @@ const float x = 600.0f, y = 512.0f;
 	glLoadIdentity();
 	glTranslatef(10, 30, 0);
 	font_bind(font);
-
 	glprintf("%d FPS", fps);
 
 #ifndef NO_GUI
@@ -221,8 +223,6 @@ const float x = 600.0f, y = 512.0f;
 static void do_tick()
 {
 }
- 
-
 
 int main(int argc, char* argv[])
 {
@@ -269,7 +269,7 @@ glEnable (GL_DEPTH_TEST);
 
 	glEnable(GL_TEXTURE_2D);
 
-
+	new CConfig;
 
 // TODO: all loading should go through the VFS; for now, we allow normal access
 // this has to come before VFS init, as it changes the current dir
@@ -280,8 +280,8 @@ glEnable (GL_DEPTH_TEST);
 	//g_GUI.LoadXMLFile("sprite1.xml");
 #endif
 
-
 	vfs_set_root(argv[0], "data");
+
 //	tex = tex_load("0adlogo2.bmp");
 //	tex_upload(tex);
 	font = font_load("verdana.fnt");
@@ -295,12 +295,16 @@ terr_init();
 in_add_handler(handler);
 in_add_handler(terr_handler);
 
+
 // fixed timestep main loop
 	const double TICK_TIME = 30e-3;	// [s]
 	double time0 = get_time();
 
+	g_Config.Update();
 	while(!quit)
 	{
+		g_Config.Update();
+
 // TODO: limiter in case simulation can't keep up?
 		double time1 = get_time();
 		while((time1-time0) > TICK_TIME)
@@ -315,12 +319,15 @@ in_add_handler(terr_handler);
 		SDL_GL_SwapBuffers();
 
 		calc_fps();
+
 	}
 
 #ifndef NO_GUI
 	g_GUI.Destroy();
 	delete CGUI::GetSingletonPtr(); // again, we should have all singleton deletes somewhere
 #endif
+
+	delete &g_Config;
 
 	return 0;
 }

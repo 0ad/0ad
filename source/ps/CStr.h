@@ -16,7 +16,8 @@ Example:
 	MyString += _T(" I'm the number ") += CStr(MyNumber);
 	
 	// Prints "Hello, World. I'm the number 126"
-	_tcout << (LPCTSTR)MyString << endl;
+
+    _tcout << (LPCTSTR)MyString << endl;
 
 	MyString = _("2341");
 	MyNum = MyString.ToInt();
@@ -35,6 +36,9 @@ More Info:
 #include "Prometheus.h"
 #include <string>				// Used for basic string functionality
 #include <iostream>
+
+#include "..\lib\posix.h"
+
 #include <cstdlib>
 using namespace std;
 
@@ -56,7 +60,6 @@ typedef wchar_t TCHAR;
 #define _totlower towlower
 #define _istspace iswspace
 #define _tsprintf wsprintf
-#define _ultot _ultow
 #define _ltot _ltow
 
 #else
@@ -76,7 +79,6 @@ typedef char TCHAR;
 #define _ltot _ltoa
 
 #endif
-
 
 enum PS_TRIM_MODE {PS_TRIM_LEFT, PS_TRIM_RIGHT, PS_TRIM_BOTH};
 

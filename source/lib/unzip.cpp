@@ -221,6 +221,29 @@ Handle zopen(Handle hz, const char* fn)
 	return hf;
 }
 
+int zaccess(Handle hz, const char* fn)
+{
+	HDATA* hzd = h_data(hz, H_ZFILE);
+	if(!hzd)
+		return -1;
+	ZARCHIVE* za = (ZARCHIVE*)hzd->user;
+
+	// find its File descriptor
+	const u32 fn_hash = fnv_hash(fn, strlen(fn));
+	uint i = za->last_file+1;
+	if(i >= za->num_files || za->fn_hashs[i] != fn_hash)
+	{
+		for(i = 0; i < za->num_files; i++)
+		{
+			if(za->fn_hashs[i] == fn_hash)
+				break;
+		}
+		if(i == za->num_files)
+			return -1;
+	}
+	za->last_file = i;
+	return( 0 );
+}
 
 int zread(Handle hf, void*& p, size_t& size, size_t ofs)
 {

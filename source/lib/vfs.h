@@ -14,6 +14,9 @@ extern int vfs_umount(const char* path);
 
 extern Handle vfs_map(const char* fn);	// actual path in real FS
 
+extern int vfs_access( char* fn );
+extern int vfs_stat( const char* fn, struct stat *buffer );
+
 extern Handle vfs_open(const char* fn);
 extern int vfs_close(Handle h);
 

@@ -9,7 +9,6 @@
 // TODO: fix scrolling hack - framerate independent, use SDL
 #include "win.h"	// REMOVEME
 
-
 void InitScene ();
 void InitResources ();
 void RenderScene ();
@@ -46,7 +45,11 @@ extern int xres, yres;
 
 void terr_init()
 {
-	g_Renderer.Initialize (1280, 1024, 32);
+#ifdef WIDEASPECT
+	g_Renderer.Initialize( 1440, 900, 32 );
+#else
+	g_Renderer.Initialize (1600, 1200, 32);
+#endif
 
 	InitResources ();
 	InitScene ();
@@ -298,6 +301,7 @@ int cnt;
 "blendtwooppositecorners.raw",
 "blendushape.raw"
 	};
+
 /*
 //for(i = 0; i < NUM_ALPHA_MAPS;i++)
 i=5;
@@ -328,7 +332,7 @@ cnt=5;
 
 for(i = 0; i < cnt; i++)
 {
-	AlphaMaps[i] = tex_load(fns[i]);
+    AlphaMaps[i] = tex_load(fns[i]);
 	tex_upload(AlphaMaps[i], GL_LINEAR, GL_INTENSITY4);
 }
 

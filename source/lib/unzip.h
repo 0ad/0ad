@@ -28,6 +28,8 @@ extern Handle zopen(const char* fn);
 // open and return a handle to file <fn> in the zip archive <hz>
 extern Handle zopen(Handle hz, const char* fn);
 
+extern int zaccess( Handle hz, const char* fn );
+
 extern void zclose(Handle hz);
 
 extern int zread(Handle hf, void*& p, size_t& size, size_t ofs);

@@ -16,8 +16,13 @@ extern int xres, yres;
 
 CCamera::CCamera ()
 {
-	m_ViewPort.m_Width = 1280;
-	m_ViewPort.m_Height = 1024;
+#ifdef WIDEASPECT
+	m_ViewPort.m_Width = 1440;
+	m_ViewPort.m_Height = 900;
+#else
+	m_ViewPort.m_Width = 1600;
+	m_ViewPort.m_Height = 1200;
+#endif
 	m_ViewPort.m_X = 0;
 	m_ViewPort.m_Y = 0;
 }
