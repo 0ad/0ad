@@ -13,6 +13,11 @@
 #include "sound.h"
 #include "lib.h"
 
+#ifdef _MSC_VER
+#pragma comment(lib, "fmodvc.lib")
+#endif
+
+
 //define control block
 struct Sound
 {
@@ -24,7 +29,7 @@ H_TYPE_DEFINE(Sound)
 
 static void Sound_init(Sound* s, va_list args)
 {
-	s->channel = -1;	
+	s->channel = -1;
 }
 
 static int Sound_reload(Sound* s, const char* filename)
