@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "Prometheus.h"
 #include "Parser.h"
 #include "ConfigDB.h"
@@ -80,20 +82,21 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	
 	TConfigMap newMap;
 	
-	char *filebuf=(char *)malloc(buflen+1);
-	memcpy(filebuf, buffer, buflen);
-	filebuf[buflen]=0;
+	char *filebuf=(char *)buffer;
 	
 	// Read file line by line
-	char *ctxt=NULL;
-	// strtok is defined to skip empty tokens, so this neatly takes care of
-	// unix/windows file endings
-	const char *delim="\r\n";
-	char *line=strtok_r((char *)filebuf, delim, &ctxt);
+	char *next=filebuf-1;
 	do
 	{
+		char *pos=next+1;
+		next=strchr(pos, '\n');
+		if (!next) next=filebuf+buflen;
+
+		char *lend=next;
+		if (*(lend-1) == '\r') lend--;
+
 		// Send line to parser
-		parserLine.ParseString(parser, line);
+		parserLine.ParseString(parser, std::string(pos, lend));
 		// Get name and value from parser
 		string name;
 		string value;
@@ -107,11 +110,10 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 			LOG(NORMAL, "Loaded config string \"%s\" = \"%s\"", name.c_str(), value.c_str());
 		}
 	}
-	while (line = strtok_r(NULL, delim, &ctxt));
+	while (next < filebuf+buflen);
 	
 	m_Map[ns].swap(newMap);
 	
-	free(filebuf);
 	// Close the correct file handle
 	if (m_UseVFS[ns])
 	{
@@ -122,6 +124,8 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 		file_unmap(&f);
 		file_close(&f);
 	}
+
+	return true;
 }
 
 void CConfigDB::WriteFile(EConfigNamespace ns, bool useVFS, CStr path)
