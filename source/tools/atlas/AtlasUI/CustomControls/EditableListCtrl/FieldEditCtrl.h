@@ -39,11 +39,27 @@ private:
 class FieldEditCtrl_Dialog : public FieldEditCtrl
 {
 public:
-	FieldEditCtrl_Dialog(wxString dialogType);
+	FieldEditCtrl_Dialog(const wxString& dialogType);
 
 protected:
 	void StartEdit(wxWindow* parent, wxRect rect, long row, int col);
 
 private:
 	wxString m_DialogType;
+};
+
+//////////////////////////////////////////////////////////////////////////
+
+
+class FieldEditCtrl_File : public FieldEditCtrl
+{
+public:
+	FieldEditCtrl_File(const wxString& rootDir, const wxString& fileMask);
+
+protected:
+	void StartEdit(wxWindow* parent, wxRect rect, long row, int col);
+
+private:
+	wxString m_RootDir;
+	wxString m_FileMask;
 };
