@@ -688,6 +688,12 @@ void vfs_shutdown(void)
 }
 
 
+// mount either a single archive or a directory into the VFS at
+// <vfs_mount_point>, which is created if it does not yet exist.
+// new files override the previous VFS contents if pri(ority) is higher.
+// if <name> is a directory, all archives in that directory (but not
+// its subdirs - see add_dirent_cb) are also mounted in alphabetical order.
+// name = "." or "./" isn't allowed - see implementation for rationale.
 int vfs_mount(const char* const vfs_mount_point, const char* const name, const uint pri)
 {
 	ONCE(atexit2(vfs_shutdown));
@@ -699,6 +705,10 @@ int vfs_mount(const char* const vfs_mount_point, const char* const name, const u
 			debug_warn("vfs_mount: already mounted");
 			return -1;
 		}
+
+	CHECK_PATH(name);
+
+	// TODO: disallow mounting parent directory of a previous mounting
 
 	// disallow . because "./" isn't supported on Windows.
 	// the more important reason is that mount points must not overlap
@@ -718,6 +728,12 @@ int vfs_mount(const char* const vfs_mount_point, const char* const name, const u
 }
 
 
+// rebuild the VFS, i.e. re-mount everything. open files are not affected.
+// necessary after loose files or directories change, so that the VFS
+// "notices" the changes and updates file locations. res calls this after
+// FAM reports changes; can also be called from the console after a
+// rebuild command. there is no provision for updating single VFS dirs -
+// it's not worth the trouble.
 int vfs_rebuild()
 {
 	tree_clear();
@@ -728,6 +744,7 @@ int vfs_rebuild()
 }
 
 
+// unmount a previously mounted item, and rebuild the VFS afterwards.
 int vfs_unmount(const char* name)
 {
 	for(MountIt it = mounts.begin(); it != mounts.end(); ++it)
@@ -752,46 +769,13 @@ int vfs_unmount(const char* name)
 ///////////////////////////////////////////////////////////////////////////////
 
 
-int vfs_realpath(const char* fn, char* full_path)
-{
-	const FileLoc* loc;
-	CHECK_ERR(tree_lookup(fn, &loc));
-
-	if(loc->archive > 0)
-	{
-		const char* archive_fn = h_filename(loc->archive);
-		if(!archive_fn)
-			return -1;
-		strncpy(full_path, archive_fn, PATH_MAX);
-	}
-	else
-	{
-		strncpy(full_path, loc->dir.c_str(), PATH_MAX);
-	}
-
-	return 0;
-}
-
-
-int vfs_stat(const char* fn, struct stat* s)
-{
-	const FileLoc* loc;
-	CHECK_ERR(tree_lookup(fn, &loc));
-
-	if(loc->archive > 0)
-		return zip_stat(loc->archive, fn, s);
-	else
-	{
-		const char* dir = loc->dir.c_str(); 
-		return file_stat(dir, s);
-	}
-}
-
-
 struct VDir
 {
 	// we need to cache the complete contents of the directory:
-	// 
+	// if we reference the real directory and it changes,
+	// the c_str pointers may become invalid, and some files
+	// may be returned out of order / not at all.
+	// we copy the directory's subdirectory and file containers.
 	SubDirs* subdirs;
 	SubDirIt subdir_it;
 	Files* files;
@@ -817,6 +801,7 @@ static int VDir_reload(VDir* vd, const char* path)
 	Dir* dir;
 	CHECK_ERR(tree_lookup(path, 0, &dir));
 
+	// rationale for copy: see VDir definition
 	vd->subdirs = new SubDirs(dir->subdirs);
 	vd->subdir_it = vd->subdirs->begin();
 	vd->files = new Files(dir->files);
@@ -825,28 +810,34 @@ static int VDir_reload(VDir* vd, const char* path)
 }
 
 
-Handle vfs_open_dir(const char* const path)
+// open a directory for reading its entries via vfs_next_dirent.
+// directory contents are cached here; subsequent changes to the dir
+// are not returned by this handle. rationale: see VDir definition.
+Handle vfs_open_dir(const char* const dir)
 {
-	return h_alloc(H_VDir, path, 0);
+	return h_alloc(H_VDir, dir, 0);
 }
 
 
+// close the handle to a directory.
+// all vfsDirEnt.name strings are now invalid.
 int vfs_close_dir(Handle& hd)
 {
 	return h_free(hd, H_VDir);
 }
 
 
-// filter:
-// 0: any file
-// ".": file without extension (filename doesn't contain '.')
-// ".ext": file with extension <ext> (which must not contain '.')
-// "/": subdirectory
+// get the next directory entry (in alphabetical order) that matches filter.
+// return 0 on success. filter values:
+// - 0: any file;
+// - ".": any file without extension (filename doesn't contain '.');
+// - ".ext": any file with extension ".ext" (which must not contain '.');
+// - "/": any subdirectory
 int vfs_next_dirent(const Handle hd, vfsDirEnt* ent, const char* const filter)
 {
 	H_DEREF(hd, VDir, vd);
 
-	// interpret filter
+	// interpret filter (paranoid)
 	bool filter_dir = false;
 	bool filter_no_ext = false;
 	if(filter)
@@ -871,6 +862,13 @@ int vfs_next_dirent(const Handle hd, vfsDirEnt* ent, const char* const filter)
 		}
 	}
 
+	// rationale: the filename is currently stored internally as
+	// std::string (=> less manual memory allocation). we don't want to
+	// return a reference, because that would break C compatibility.
+	// we're trying to avoid fixed-size buffers, so that is out as well.
+	// finally, allocating a copy is not so good because it has to be
+	// freed by the user (won't happen). returning a volatile pointer
+	// to the string itself via c_str is the only remaining option.
 	const char* fn;
 
 	// caller wants a subdirectory; return the next one.
@@ -911,6 +909,50 @@ int vfs_next_dirent(const Handle hd, vfsDirEnt* ent, const char* const filter)
 have_match:
 	ent->name = fn;
 	return 0;
+}
+
+
+// return actual path to the specified file:
+// "<real_directory>/fn" or "<archive_name>/fn".
+int vfs_realpath(const char* fn, char* full_path)
+{
+	const FileLoc* loc;
+	CHECK_ERR(tree_lookup(fn, &loc));
+
+	const char* dir;
+
+	// file is in normal directory
+	if(loc->archive <= 0)
+		dir = loc->dir.c_str();
+	// file is in archive
+	{
+		// "dir" is the archive filename
+		dir = h_filename(loc->archive);
+		if(!dir)
+			return -1;
+	}
+
+	CHECK_ERR(path_append(full_path, dir, fn));
+	return 0;
+}
+
+
+// return information about the specified file as in stat(2),
+// most notably size. stat buffer is undefined on error.
+int vfs_stat(const char* fn, struct stat* s)
+{
+	const FileLoc* loc;
+	CHECK_ERR(tree_lookup(fn, &loc));
+
+	if(loc->archive > 0)
+		return zip_stat(loc->archive, fn, s);
+	else
+	{
+		// similar to realpath, but don't bother splitting it out.
+		char path[VFS_MAX_PATH];
+		path_append(path, loc->dir.c_str(), fn);
+		return file_stat(path, s);
+	}
 }
 
 
@@ -1038,6 +1080,8 @@ static int VFile_reload(VFile* vf, const char* path)
 }
 
 
+// open the file for synchronous or asynchronous IO. write access is
+// requested via VFS_WRITE flag, and is not possible for files in archives.
 Handle vfs_open(const char* fn, uint flags /* = 0 */)
 {
 	Handle h = h_alloc(H_VFile, fn, 0, flags);
@@ -1051,6 +1095,7 @@ debug_out("vfs_open fn=%s %I64x\n", fn, h);
 }
 
 
+// close the handle to a file.
 inline int vfs_close(Handle& h)
 {
 #ifdef PARANOIA
@@ -1061,7 +1106,11 @@ debug_out("vfs_close %I64x\n", h);
 }
 
 
-ssize_t vfs_io(Handle hf, off_t ofs, size_t size, void*& p)
+// try to transfer <size> bytes, starting at <ofs>, to/from the given file.
+// (read or write access was chosen at file-open time).
+// return bytes of actual data transferred, or a negative error code.
+// TODO: buffer types
+ssize_t vfs_io(const Handle hf, const off_t ofs, const size_t size, void*& p)
 {
 #ifdef PARANOIA
 debug_out("vfs_io ofs=%d size=%d\n", ofs, size);
@@ -1080,7 +1129,9 @@ debug_out("vfs_io ofs=%d size=%d\n", ofs, size);
 }
 
 
-Handle vfs_load(const char* fn, void*& p, size_t& size)
+// load the entire file <fn> into memory; return a handle to the memory
+// and the buffer address/size. output parameters are zeroed on failure.
+Handle vfs_load(const char* const fn, void*& p, size_t& size)
 {
 #ifdef PARANOIA
 debug_out("vfs_load fn=%s\n", fn);
@@ -1144,9 +1195,12 @@ int vfs_store(const char* const fn, void* p, const size_t size)
 }
 
 
+///////////////////////////////////////////////////////////////////////////////
 //
 // memory mapping
 //
+///////////////////////////////////////////////////////////////////////////////
+
 
 // map the entire file <hf> into memory. if already currently mapped,
 // return the previous mapping (reference-counted).
@@ -1184,4 +1238,41 @@ int vfs_unmap(const Handle hf)
 		return zip_unmap(&vf->zf);
 	else
 		return file_unmap(&vf->f);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// asynchronous I/O
+//
+///////////////////////////////////////////////////////////////////////////////
+
+
+// begin transferring <size> bytes, starting at <ofs>. get result
+// with vfs_wait_read; when no longer needed, free via vfs_discard_io.
+Handle vfs_start_io(Handle hf, off_t ofs, size_t size, void* buf)
+{
+	H_DEREF(hf, VFile, vf);
+	if(vf_flags(vf) & VF_ZIP)
+		;
+
+	return 0;
+}
+
+
+// wait until the transfer <hio> completes, and return its buffer.
+// output parameters are zeroed on error.
+int vfs_wait_io(Handle hio, void*& p, size_t& size)
+{
+	p = 0;
+	size = 0;
+
+	return 0;
+}
+
+
+// finished with transfer <hio> - free its buffer (returned by vfs_wait_read)
+int vfs_discard_io(Handle& hio)
+{
+	return 0;
 }
