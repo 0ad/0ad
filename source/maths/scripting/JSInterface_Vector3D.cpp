@@ -89,22 +89,28 @@ JSBool JSI_Vector3D::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval*
 	if( !vectorInfo ) return( JS_TRUE );
 	CVector3D* vectorData = vectorInfo->vector;
 
-	switch( g_ScriptingHost.ValueToInt( id ) )
+	try
 	{
-	case component_x: vectorData->X = (float)g_ScriptingHost.ValueToDouble( *vp ); break;
-	case component_y: vectorData->Y = (float)g_ScriptingHost.ValueToDouble( *vp ); break;
-	case component_z: vectorData->Z = (float)g_ScriptingHost.ValueToDouble( *vp ); break;
+		switch( g_ScriptingHost.ValueToInt( id ) )
+		{
+		case component_x: vectorData->X = (float)g_ScriptingHost.ValueToDouble( *vp ); break;
+		case component_y: vectorData->Y = (float)g_ScriptingHost.ValueToDouble( *vp ); break;
+		case component_z: vectorData->Z = (float)g_ScriptingHost.ValueToDouble( *vp ); break;
+		}
 	}
-
+	catch (...)
+	{
+		JS_ReportError(cx, "Invalid parameter value for Vector3D");
+		return( JS_FALSE );
+	}
+	
 	if( vectorInfo->owner && vectorInfo->updateFn ) ( (vectorInfo->owner)->*(vectorInfo->updateFn) )();
 
 	return( JS_TRUE );
-	return( JS_FALSE );	// janwas: which one is it? :)
 }
 
 JSBool JSI_Vector3D::construct( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
-	if( ( argc != 0 ) && ( argc != 3 ) ) return( JS_FALSE );
 	if( argc == 0 )
 	{
 		JS_SetPrivate( cx, obj, new Vector3D_Info() );
@@ -112,12 +118,26 @@ JSBool JSI_Vector3D::construct( JSContext* cx, JSObject* obj, uintN argc, jsval*
 	}
 	else if( argc == 3 )
 	{
-		float x = (float)g_ScriptingHost.ValueToDouble( argv[0] );
-		float y = (float)g_ScriptingHost.ValueToDouble( argv[1] );
-		float z = (float)g_ScriptingHost.ValueToDouble( argv[2] );
-		JS_SetPrivate( cx, obj, new Vector3D_Info( x, y, z ) );
+		try
+		{
+			float x = (float)g_ScriptingHost.ValueToDouble( argv[0] );
+			float y = (float)g_ScriptingHost.ValueToDouble( argv[1] );
+			float z = (float)g_ScriptingHost.ValueToDouble( argv[2] );
+			JS_SetPrivate( cx, obj, new Vector3D_Info( x, y, z ) );
+			return( JS_TRUE );
+		}
+		catch (...)
+		{
+			// Invalid input (i.e. can't be coerced into doubles) - fail
+			JS_ReportError( cx, "Invalid parameters to Vector3D constructor" );
+			return( JS_FALSE );
+		}
 	}
-	return( JS_TRUE );
+	else
+	{
+		JS_ReportError( cx, "Invalid number of parameters to Vector3D constructor" );
+		return( JS_FALSE );
+	}
 }
 
 void JSI_Vector3D::finalize( JSContext* cx, JSObject* obj )
