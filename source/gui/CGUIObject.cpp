@@ -6,6 +6,7 @@ gee@pyro.nu
 
 //#include "stdafx."
 #include "GUI.h"
+#include "cgui.h"
 ///#include "Parser/parser.h"
 #include <assert.h>
 
@@ -166,24 +167,22 @@ void CGUIObject::SetupBaseSettingsInfo(map_Settings &SettingsInfo)
 }
 
 
-extern int gui_mouse_x, gui_mouse_y;	// declared in cgui.cpp
-// JW: how about MouseOver(mouse_x, mouse_y) instead of accessing the global mouse pos?
 
 
 //-------------------------------------------------------------------
 //  Checks if mouse is over and returns result
-//  Input:
-//    x, y					Absolute mouse position
+//  mouse_x, mouse_y defined in CGUI
 //-------------------------------------------------------------------
 bool CGUIObject::MouseOver()
 {
-	if (!GetGUI())
+	CGUI* gui = GetGUI();
+	if(!gui)
 		throw PS_NEEDS_PGUI;
 
-	return (gui_mouse_x >= m_BaseSettings.m_Size.left &&
-			gui_mouse_x <= m_BaseSettings.m_Size.right &&
-			gui_mouse_y >= m_BaseSettings.m_Size.bottom &&
-			gui_mouse_y <= m_BaseSettings.m_Size.top);
+	return (gui->mouse_x >= m_BaseSettings.m_Size.left &&
+			gui->mouse_x <= m_BaseSettings.m_Size.right &&
+			gui->mouse_y >= m_BaseSettings.m_Size.bottom &&
+			gui->mouse_y <= m_BaseSettings.m_Size.top);
 }
 
 //-------------------------------------------------------------------

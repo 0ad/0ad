@@ -31,9 +31,6 @@ using namespace std;
 
 #include "input.h"
 
-// JW: how about having each object export hit_test(x,y),
-// instead of accessing the global mouse pos?
-int gui_mouse_x, gui_mouse_y;
 
 // called from main loop when (input) events are received.
 // event is passed to other handlers if false is returned.
@@ -49,7 +46,7 @@ bool gui_handler(const SDL_Event& ev)
 bool CGUI::HandleEvent(const SDL_Event& ev)
 {
 	if(ev.type == SDL_MOUSEMOTION)
-		gui_mouse_x = ev.motion.x, gui_mouse_y = ev.motion.y;
+		mouse_x = ev.motion.x, mouse_y = ev.motion.y;
 
 // JW: (pre|post)process omitted; what're they for? why would we need any special button_released handling?
 

@@ -56,6 +56,10 @@ private:
 	// Private typedefs
 	typedef CGUIObject *(*ConstructObjectFunction)();
 
+	// don't want to pass this around with the ChooseMouseOverAndClosest broadcast -
+	// we'd need to pack this and pNearest in a struct
+	u16 mouse_x, mouse_y;
+
 public:
 	CGUI();
 	~CGUI();
@@ -157,7 +161,6 @@ private:
 	void Xerces_ReadObject(XERCES_CPP_NAMESPACE::DOMElement *, CGUIObject *pParent);
 	void Xerces_ReadSprite(XERCES_CPP_NAMESPACE::DOMElement *);
 	void Xerces_ReadImage(XERCES_CPP_NAMESPACE::DOMElement *, CGUISprite &parent);
-
 
 private:
 
