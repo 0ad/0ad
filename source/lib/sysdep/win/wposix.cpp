@@ -69,7 +69,7 @@ int open(const char* fn, int oflag, ...)
 	WIN_SAVE_LAST_ERROR;
 
 	int fd = _open(fn, oflag, mode);
-
+debug_out("open %s = %d\n", fn, fd);
 	WIN_RESTORE_LAST_ERROR;
 
 
@@ -88,6 +88,7 @@ int open(const char* fn, int oflag, ...)
 
 int close(int fd)
 {
+debug_out("close %d\n", fd);
 	assert(3 <= fd && fd < 256);
 	aio_close(fd);
 	return _close(fd);
