@@ -279,8 +279,10 @@ DIR* opendir(const char* path)
 	if((fa == INVALID_FILE_ATTRIBUTES) || !(fa & FILE_ATTRIBUTE_DIRECTORY) || (fa & hs))
 		return 0;
 
-	WDIR* d = (WDIR*)calloc(sizeof(WDIR), 1);
-		// zero-initializes everything (required).
+	// note: zero-initializes everything (required).
+	WDIR* d = (WDIR*)calloc(1, sizeof(WDIR));
+	if(!d)
+		return 0;
 
 	// note: "path\\dir" only returns information about that directory;
 	// trailing slashes aren't allowed. we have to append "\\*" to find files.
@@ -531,75 +533,61 @@ void pthread_join(pthread_t thread, void** value_ptr)
 // DeleteCriticalSection currently doesn't complain if we double-free
 // (e.g. user calls destroy() and static initializer atexit runs),
 // and dox are ambiguous.
-/*
-struct CS
-{
-	CRITICAL_SECTION cs;
-	CS()
-	{
-		InitializeCriticalSection(&cs);
-	}
-	~CS()
-	{
-		DeleteCriticalSection(&cs);
-	}
-};*/
 
-cassert(sizeof(CRITICAL_SECTION) == sizeof(pthread_mutex_t));
-/*
-static std::list<CS> mutexes;
-
-static void destroy_mutexes()
-{
-	mutexes.clear();
-}
-*/
+// note: pthread_mutex_t must not be an opaque struct, because the
+// initializer returns pthread_mutex_t directly and CRITICAL_SECTIONS
+// shouldn't be copied.
+//
+// note: must not use new/malloc to allocate the critical section
+// because mmgr.cpp uses a mutex and must not be called to allocate
+// anything before it is initialized.
 
 pthread_mutex_t pthread_mutex_initializer()
 {
-	CRITICAL_SECTION cs;
-	InitializeCriticalSection(&cs);
-	return *(pthread_mutex_t*)&cs;
+	CRITICAL_SECTION* cs = (CRITICAL_SECTION*)HeapAlloc(GetProcessHeap(), 0, sizeof(CRITICAL_SECTION));
+	InitializeCriticalSection(cs);
+	return (pthread_mutex_t)cs;
 }
 
 int pthread_mutex_destroy(pthread_mutex_t* m)
 {
-	DeleteCriticalSection((CRITICAL_SECTION*)m);
+	CRITICAL_SECTION* cs = (CRITICAL_SECTION*)(*m);
+	DeleteCriticalSection(cs);
+	HeapFree(GetProcessHeap(), 0, cs);
 	return 0;
-/*
-	CS* cs = (CS*)m;
-	mutexes.erase(cs);
-	delete cs;
-	return 0;
-*/
 }
 
 int pthread_mutex_init(pthread_mutex_t* m, const pthread_mutexattr_t*)
 {
-	InitializeCriticalSection((CRITICAL_SECTION*)m);
+	*m = pthread_mutex_initializer();
 	return 0;
 }
 
 int pthread_mutex_lock(pthread_mutex_t* m)
 {
-	EnterCriticalSection((CRITICAL_SECTION*)m);
+	CRITICAL_SECTION* cs = (CRITICAL_SECTION*)(*m);
+	EnterCriticalSection(cs);
 	return 0;
 }
 
 int pthread_mutex_trylock(pthread_mutex_t* m)
 {
-	BOOL got_it = TryEnterCriticalSection((CRITICAL_SECTION*)m);
+	CRITICAL_SECTION* cs = (CRITICAL_SECTION*)(*m);
+	BOOL got_it = TryEnterCriticalSection(cs);
 	return got_it? 0 : -1;
 }
 
 int pthread_mutex_unlock(pthread_mutex_t* m)
 {
-	LeaveCriticalSection((CRITICAL_SECTION*)m);
+	CRITICAL_SECTION* cs = (CRITICAL_SECTION*)(*m);
+	LeaveCriticalSection(cs);
 	return 0;
 }
 
 int pthread_mutex_timedlock(pthread_mutex_t* m, const struct timespec* abs_timeout)
 {
+	UNUSED(m);
+	UNUSED(abs_timeout);
 	return -ENOSYS;
 }
 
@@ -608,6 +596,7 @@ int pthread_mutex_timedlock(pthread_mutex_t* m, const struct timespec* abs_timeo
 
 int sem_init(sem_t* sem, int pshared, unsigned value)
 {
+	UNUSED(pshared);
 	*sem = (uintptr_t)CreateSemaphore(0, (LONG)value, 0x7fffffff, 0);
 	return 0;
 }
@@ -869,11 +858,11 @@ long sysconf(int name)
 		// we have results from GlobalMemoryStatus anyway.
 
 		if(name == _SC_PHYS_PAGES)
-			return (long)(round_up((uintptr_t)total_phys_mem, 2*MB) / page_size);
+			return (long)(round_up((uintptr_t)total_phys_mem, 2*MiB) / page_size);
 				// Richter, "Programming Applications for Windows":
 				// reported value doesn't include non-paged pool reserved
 				// during boot; it's not considered available to kernel.
-				// it's 528 KB on my 512 MB machine (WinXP and Win2k).
+				// it's 528 KiB on my 512 MiB machine (WinXP and Win2k).
  		else
 			return (long)(avail_phys_mem / page_size);
 		}

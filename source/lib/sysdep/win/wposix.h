@@ -28,6 +28,13 @@
 #include <sys/types.h>
 #include <stddef.h>
 
+// split out of this module.
+// (actually included later, because they depend on some of our defs
+#include "waio.h"
+#include "wsock.h"
+#include "wtime.h"
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -44,53 +51,6 @@ extern "C" {
 #  define _CRTIMP
 # endif 
 #endif
-
-
-//
-// <inttypes.h>
-//
-
-typedef char int8_t;
-typedef short int16_t;
-typedef int int32_t;
-#if defined(_MSC_VER) || defined(__INTEL_COMPILER) || defined(__LCC__)
-typedef __int64 int64_t;
-#elif defined(__GNUC__) || defined(__MWERKS__) || defined(__SUNPRO_C) || defined(__DMC__)
-typedef long long int64_t;
-#else
-#error "port int64_t"
-#endif
-
-typedef unsigned char uint8_t;
-typedef unsigned short uint16_t;
-typedef unsigned int uint32_t;
-#if defined(_MSC_VER) || defined(__INTEL_COMPILER) || defined(__LCC__)
-typedef unsigned __int64 uint64_t;
-#elif defined(__GNUC__) || defined(__MWERKS__) || defined(__SUNPRO_C) || defined(__DMC__)
-typedef unsigned long long uint64_t;
-#else
-#error "port uint64_t"
-#endif
-
-#ifdef _MSC_VER
-# ifndef _UINTPTR_T_DEFINED
-#  define _UINTPTR_T_DEFINED
-#  define uintptr_t unsigned int
-# endif	// _UINTPTR_T_DEFINED
-# ifndef _INTPTR_T_DEFINED
-#  define _INTPTR_T_DEFINED
-#  define intptr_t signed int
-# endif	// _INTPTR_T_DEFINED
-#else	// _MSC_VER
-#include <stdint.h>
-#endif	// _MSC_VER
-
-
-//
-// <sys/types.h>
-//
-
-typedef long ssize_t;
 
 
 //
@@ -311,24 +271,6 @@ extern long sysconf(int name);
 extern char* realpath(const char*, char*);
 
 
-//
-// <signal.h>
-//
-
-union sigval
-{
-    int sival_int;				// Integer signal value.
-    void* sival_ptr;			// Pointer signal value.
-};
-
-struct sigevent
-{
-    int sigev_notify;			// notification mode
-    int sigev_signo;			// signal number
-    union sigval sigev_value;	// signal value
-	void(*sigev_notify_function)(union sigval);
-};
-
 
 //
 // <termios.h>
@@ -375,7 +317,7 @@ enum
 
 typedef unsigned int pthread_t;
 
-extern pthread_t pthread_self();
+extern pthread_t pthread_self(void);
 extern int pthread_getschedparam(pthread_t thread, int* policy, struct sched_param* param);
 extern int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param* param);
 
@@ -383,15 +325,10 @@ extern int pthread_create(pthread_t* thread, const void* attr, void*(*func)(void
 extern void pthread_cancel(pthread_t thread);
 extern void pthread_join(pthread_t thread, void** value_ptr);
 
-//typedef void* pthread_mutex_t;
-typedef struct
-{
-	char opaque[24];
-}
-pthread_mutex_t;
+typedef void* pthread_mutex_t;	// pointer to critical section
 typedef void pthread_mutexattr_t;
 
-extern pthread_mutex_t pthread_mutex_initializer();
+extern pthread_mutex_t pthread_mutex_initializer(void);
 #define PTHREAD_MUTEX_INITIALIZER pthread_mutex_initializer()
 
 extern int pthread_mutex_init(pthread_mutex_t*, const pthread_mutexattr_t*);
@@ -473,14 +410,8 @@ extern int ioctl(int fd, int op, int* data);
 #endif
 
 
-extern void _get_console();
-extern void _hide_console();
-
-
-// split out of this module
-#include "waio.h"
-#include "wsock.h"
-#include "wtime.h"
+extern void _get_console(void);
+extern void _hide_console(void);
 
 
 #ifdef __cplusplus
