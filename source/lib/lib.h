@@ -98,6 +98,25 @@ STMT(\
 	}
 
 
+// superassert
+// recommended use: assert2(expr && "descriptive string")
+#define assert2(expr)\
+{\
+	static int suppress__;\
+	if(!suppress__ && !expr)\
+		switch(debug_assert_failed(__FILE__, __LINE__, #expr))\
+		{\
+		case 1:\
+			suppress__ = 1;\
+			break;\
+		case 2:\
+			debug_break();\
+			break;\
+		}\
+}
+
+
+
 enum LibError
 {
 	ERR_INVALID_HANDLE  = -1000,
