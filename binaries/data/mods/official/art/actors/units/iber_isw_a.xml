@@ -23,11 +23,11 @@
 		<Animation name="Attack2" file="art/animation/biped/inf_sword_shield_atk_c.psa" speed="400"> </Animation>
 	</Animations>
 	<Props>
-		<Prop attachpoint="head_extra" model="I Sign ISW A"> </Prop>
-		<Prop attachpoint="helmet" model="Advanced Helmet"> </Prop>
-		<Prop attachpoint="head" model="Iberian Head"> </Prop>
-		<Prop attachpoint="shield" model="Test Tower Shield"> </Prop>
-		<Prop attachpoint="r_hand" model="Gladus A"> </Prop>
-		<Prop attachpoint="l_hip" model="Left Sheath"> </Prop>
+		<Prop attachpoint="head_extra" model="props/temp/iber_sign_isw_a.xml"> </Prop>
+		<Prop attachpoint="helmet" model="props/temp/plac_helmet_a.xml"> </Prop>
+		<Prop attachpoint="head" model="props/head/plac_head_iber.xml"> </Prop>
+		<Prop attachpoint="shield" model="props/shield/test_towershield.xml"> </Prop>
+		<Prop attachpoint="r_hand" model="props/weapon/weap_gladus_a.xml"> </Prop>
+		<Prop attachpoint="l_hip" model="props/temp/l_sheath.xml"> </Prop>
 	</Props>
 </Object>

@@ -22,8 +22,8 @@
 		<Animation name="Attack1" file="art/animation/biped/dudeattack1.psa" speed="300"> </Animation>
 	</Animations>
 	<Props>
-		<Prop attachpoint="PropHead" model="Dude Head"> </Prop>
-		<Prop attachpoint="PropShield" model="Shield Roman Small 6"> </Prop>
-		<Prop attachpoint="PropRHand" model="Celt Sword A"> </Prop>
+		<Prop attachpoint="PropHead" model="props/head/dude_head.xml"> </Prop>
+		<Prop attachpoint="PropShield" model="props/shield/shld_rome_sm_6.xml"> </Prop>
+		<Prop attachpoint="PropRHand" model="props/weapon/weap_csword_a.xml"> </Prop>
 	</Props>
 </Object>

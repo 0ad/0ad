@@ -22,8 +22,8 @@
 		<Animation name="Attack1" file="art/animation/biped/dudeattack1.psa" speed="300"> </Animation>
 	</Animations>
 	<Props>
-		<Prop attachpoint="PropHead" model="Helenes Helmet 1"> </Prop>
-		<Prop attachpoint="PropShield" model="Shield Roman Small 4"> </Prop>
-		<Prop attachpoint="PropRHand" model="Spear A"> </Prop>
+		<Prop attachpoint="PropHead" model="props/head/prop_hele_helm_1.xml"> </Prop>
+		<Prop attachpoint="PropShield" model="props/shield/shld_rome_sm_4.xml"> </Prop>
+		<Prop attachpoint="PropRHand" model="props/weapon/weap_spear_a.xml"> </Prop>
 	</Props>
 </Object>

@@ -21,9 +21,9 @@
 		<Animation name="Attack" file="art/animation/biped/inf_jav_atk_a.psa" speed="400"> </Animation>
 	</Animations>
 	<Props>
-		<Prop attachpoint="head_extra" model="R Sign IJV E"> </Prop>
-		<Prop attachpoint="helmet" model="Elite Helmet"> </Prop>
-		<Prop attachpoint="head" model="Roman Head"> </Prop>
-		<Prop attachpoint="r_hand" model="Javelin A"> </Prop>
+		<Prop attachpoint="head_extra" model="props/temp/rome_sign_ijv_e.xml"> </Prop>
+		<Prop attachpoint="helmet" model="props/temp/plac_helmet_e.xml"> </Prop>
+		<Prop attachpoint="head" model="props/head/plac_head_rome.xml"> </Prop>
+		<Prop attachpoint="r_hand" model="props/weapon/weap_jav_a.xml"> </Prop>
 	</Props>
 </Object>

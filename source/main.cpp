@@ -562,7 +562,7 @@ static void Render()
 
 	oglCheck();
 
-	if (g_Game)
+	if (g_Game && g_Game->IsGameStarted())
 	{
 		g_Mouseover.renderOverlays();
 		g_Selection.renderOverlays();

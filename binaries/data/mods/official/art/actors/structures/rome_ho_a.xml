@@ -12,18 +12,18 @@
 		castshadows="1"
 	></Properties>
 	<Props>
-		<Prop attachpoint="windowright1" model="Roman Window MC"> </Prop>
-		<Prop attachpoint="windowright02" model="Roman Window MC"> </Prop>
-		<Prop attachpoint="windowright03" model="Roman Window MC"> </Prop>
-		<Prop attachpoint="pot1" model="Basket Rome E"> </Prop>
-		<Prop attachpoint="pot2" model="Basket Rome D"> </Prop>
-		<Prop attachpoint="shield1" model="Shield Roman Small 5"> </Prop>
-		<Prop attachpoint="vase1" model="Basket Rome A"> </Prop>
-		<Prop attachpoint="barrel" model="Barrel A"> </Prop>
-		<Prop attachpoint="windowleft3" model="Roman Window MC"> </Prop>
-		<Prop attachpoint="windowleft2" model="Roman Window MC"> </Prop>
-		<Prop attachpoint="windowleft1" model="Roman Window MC"> </Prop>
-		<Prop attachpoint="wood_lumber_small" model="Wood Small Pile A"> </Prop>
-		<Prop attachpoint="spear" model="Spear A"> </Prop>
+		<Prop attachpoint="windowright1" model="props/romans/rome_window_mc.xml"> </Prop>
+		<Prop attachpoint="windowright02" model="props/romans/rome_window_mc.xml"> </Prop>
+		<Prop attachpoint="windowright03" model="props/romans/rome_window_mc.xml"> </Prop>
+		<Prop attachpoint="pot1" model="props/eyecandy/basket_rome_e.xml"> </Prop>
+		<Prop attachpoint="pot2" model="props/eyecandy/basket_rome_d.xml"> </Prop>
+		<Prop attachpoint="shield1" model="props/shield/shld_rome_sm_5.xml"> </Prop>
+		<Prop attachpoint="vase1" model="props/eyecandy/basket_rome_a.xml"> </Prop>
+		<Prop attachpoint="barrel" model="props/eyecandy/barrel_a.xml"> </Prop>
+		<Prop attachpoint="windowleft3" model="props/romans/rome_window_mc.xml"> </Prop>
+		<Prop attachpoint="windowleft2" model="props/romans/rome_window_mc.xml"> </Prop>
+		<Prop attachpoint="windowleft1" model="props/romans/rome_window_mc.xml"> </Prop>
+		<Prop attachpoint="wood_lumber_small" model="props/eyecandy/wood_sm_pile_a.xml"> </Prop>
+		<Prop attachpoint="spear" model="props/weapon/weap_spear_a.xml"> </Prop>
 	</Props>
 </Object>

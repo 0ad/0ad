@@ -22,8 +22,8 @@
 		<Animation name="Attack1" file="art/animation/biped/dudeattack1.psa" speed="300"> </Animation>
 	</Animations>
 	<Props>
-		<Prop attachpoint="head_extra" model="K Sign SU1"> </Prop>
-		<Prop attachpoint="helmet" model="Elite Helmet"> </Prop>
-		<Prop attachpoint="head" model="Carthaginian Head"> </Prop>
+		<Prop attachpoint="head_extra" model="props/temp/kart_sign_su1.xml"> </Prop>
+		<Prop attachpoint="helmet" model="props/temp/plac_helmet_e.xml"> </Prop>
+		<Prop attachpoint="head" model="props/head/plac_hele_kart.xml"> </Prop>
 	</Props>
 </Object>

@@ -22,10 +22,10 @@
 		<Animation name="Attack1" file="art/animation/biped/dudeattack1.psa" speed="300"> </Animation>
 	</Animations>
 	<Props>
-		<Prop attachpoint="head_extra" model="P Sign CSP E"> </Prop>
-		<Prop attachpoint="helmet" model="Elite Helmet"> </Prop>
-		<Prop attachpoint="head" model="Persian Head"> </Prop>
-		<Prop attachpoint="shield" model="Test Tower Shield"> </Prop>
-		<Prop attachpoint="r_hand" model="Spear A"> </Prop>
+		<Prop attachpoint="head_extra" model="props/temp/pers_sign_csp_e.xml"> </Prop>
+		<Prop attachpoint="helmet" model="props/temp/plac_helmet_e.xml"> </Prop>
+		<Prop attachpoint="head" model="props/head/plac_head_pers.xml"> </Prop>
+		<Prop attachpoint="shield" model="props/shield/test_towershield.xml"> </Prop>
+		<Prop attachpoint="r_hand" model="props/weapon/weap_spear_a.xml"> </Prop>
 	</Props>
 </Object>

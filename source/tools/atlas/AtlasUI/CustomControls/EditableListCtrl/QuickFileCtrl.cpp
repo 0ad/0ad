@@ -87,7 +87,7 @@ public:
 		m_RootDir(rootDir), m_FileMask(fileMask)
 	{}
 
-	void OnPress(wxCommandEvent& event)
+	void OnPress(wxCommandEvent& WXUNUSED(event))
 	{
 		QuickFileCtrl* parent = wxDynamicCast(GetParent(), QuickFileCtrl);
 		wxASSERT(parent);

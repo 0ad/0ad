@@ -22,7 +22,7 @@
 		<Animation name="Attack1" file="art/animation/biped/dudeattack1.psa" speed="300"> </Animation>
 	</Animations>
 	<Props>
-		<Prop attachpoint="head_extra" model="H Sign FEM"> </Prop>
-		<Prop attachpoint="head" model="Dudette Head"> </Prop>
+		<Prop attachpoint="head_extra" model="props/temp/hele_sign_fem.xml"> </Prop>
+		<Prop attachpoint="head" model="props/head/dudette_head.xml"> </Prop>
 	</Props>
 </Object>

@@ -171,7 +171,7 @@ bool AtNode::hasContent() const
 		return true;
 
 	for (child_maptype::const_iterator it = children.begin(); it != children.end(); ++it)
-		if (it->second->hasContent())
+		if (it->second && it->second->hasContent())
 			return true;
 
 	return false;
@@ -198,4 +198,24 @@ const AtNode::Ptr AtNode::addChild(const char* key, const AtNode::Ptr &data) con
 	AtNode* newNode = new AtNode(this);
 	newNode->children.insert(AtNode::child_pairtype(key, data));
 	return AtNode::Ptr(newNode);
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+AtObj AtlasObject::TrimEmptyChildren(AtObj& obj)
+{
+	AtObj ret;
+
+	for (AtNode::child_maptype::const_iterator it = obj.p->children.begin();
+			it != obj.p->children.end(); ++it)
+	{
+		if (it->second && it->second->hasContent())
+		{
+			AtObj node;
+			node.p = it->second;
+			ret.add(it->first.c_str(), node);
+		}
+	}
+
+	return ret;
 }

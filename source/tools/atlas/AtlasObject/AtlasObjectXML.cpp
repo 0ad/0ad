@@ -9,15 +9,48 @@
 # else
 #  pragma comment(lib, "xerces-c_2.lib")
 # endif
-#endif
+
+// Disable some warnings:
+//   "warning C4673: throwing 'blahblahException' the following types will not be considered at the catch site
+//    warning C4671: 'XMemory' : the copy constructor is inaccessible"
+# pragma warning(disable: 4673 4671)
+
+#endif // _MSC_VER
 
 #include <xercesc/parsers/XercesDOMParser.hpp>
 #include <xercesc/dom/DOM.hpp>
 #include <xercesc/util/PlatformUtils.hpp>
 #include <xercesc/util/XMLString.hpp>
 #include <xercesc/framework/LocalFileFormatTarget.hpp>
+#include <xercesc/sax/SAXParseException.hpp>
+#include <xercesc/sax/ErrorHandler.hpp>
 
 XERCES_CPP_NAMESPACE_USE
+
+
+class XercesErrorHandler : public ErrorHandler
+{
+public:
+	XercesErrorHandler() : fSawErrors(false) {}
+	~XercesErrorHandler() {}
+	void warning(const SAXParseException& err) { complain(err, "warning"); }
+	void error(const SAXParseException& err) { complain(err, "error"); }
+	void fatalError(const SAXParseException& err) { complain(err, "fatal error"); };
+	void resetErrors() { fSawErrors = false; }
+	bool getSawErrors() const { return fSawErrors; }
+private:
+	bool fSawErrors;
+
+	void complain(const SAXParseException& err, const char* severity)
+	{
+		char* systemId = XMLString::transcode(err.getSystemId());
+		char* message = XMLString::transcode(err.getMessage());
+		// TODO: do something
+		XMLString::release(&systemId);
+		XMLString::release(&message);
+	}
+};
+
 
 static AtSmartPtr<AtNode> ConvertNode(DOMElement* element);
 
@@ -31,7 +64,10 @@ AtObj AtlasObject::LoadFromXML(const wchar_t* filename)
 
 	XercesDOMParser* parser = new XercesDOMParser();
 
+	XercesErrorHandler ErrHandler;
+	parser->setErrorHandler(&ErrHandler);
 	parser->setValidationScheme(XercesDOMParser::Val_Never);
+	parser->setLoadExternalDTD(false); // because I really don't like bothering with them
 	parser->setCreateEntityReferenceNodes(false);
 
 	parser->parse((XMLCh*)filename);
@@ -85,7 +121,7 @@ static AtSmartPtr<AtNode> ConvertNode(DOMElement* element)
 			));
 
 			// Free memory
-			XMLString::release((char**)&name);
+			XMLString::release(&name);
 		}
 		else if (type == DOMNode::TEXT_NODE)
 		{
@@ -94,6 +130,37 @@ static AtSmartPtr<AtNode> ConvertNode(DOMElement* element)
 			// TODO: Make this work on GCC, where wchar_t != XMLCh
 			std::wstring value_wstr (node->getNodeValue());
 			obj->value += value_wstr;
+		}
+	}
+
+	DOMNamedNodeMap* attrs = element->getAttributes();
+	len = attrs->getLength();
+	for (XMLSize_t i = 0; i < len; ++i)
+	{
+		DOMNode* node = attrs->item(i);
+		if (node->getNodeType() == DOMNode::ATTRIBUTE_NODE)
+		{
+			DOMAttr* attr = (DOMAttr*)node;
+
+			// Get name and value. (TODO: GCC)
+			char* name = XMLString::transcode(attr->getName());
+			const wchar_t* value = attr->getValue();
+
+			// Prefix the name with an @, to differentiate it from an element
+			std::string newName ("@"); newName += name;
+
+			// Create new node
+			AtNode* newNode = new AtNode(value);
+
+			// Add to this node's list of children
+			obj->children.insert(AtNode::child_pairtype(newName.c_str(), AtNode::Ptr(newNode)));
+
+			// Free memory
+			XMLString::release(&name);
+		}
+		else
+		{
+			assert(! "Invalid attribute node");
 		}
 	}
 
@@ -113,20 +180,49 @@ static AtSmartPtr<AtNode> ConvertNode(DOMElement* element)
 
 
 // Build a DOM node from a given AtNode
-static DOMNode* BuildDOM(DOMDocument* doc, const XMLCh* name, AtNode::Ptr p)
+static DOMAttr* BuildDOMAttr(DOMDocument* doc, const XMLCh* name, AtNode::Ptr p)
+{
+	assert(p); // attributes must contain some data
+	assert(p->children.size() == 0); // attributes mustn't contain nested data
+
+	if (!p || p->children.size() != 0)
+	{
+		// Oops - invalid data
+		return NULL;
+	}
+
+	DOMAttr* attr = doc->createAttribute(name);
+
+	attr->setValue(p->value.c_str());
+
+	return attr;
+}
+
+// Build a DOM node from a given AtNode
+static DOMNode* BuildDOMNode(DOMDocument* doc, const XMLCh* name, AtNode::Ptr p)
 {
 	DOMElement* node = doc->createElement(name);
 
 	if (p)
 	{
 		// TODO: make this work on GCC
-		node->setTextContent(p->value.c_str());
+		if (p->value.length())
+			node->setTextContent(p->value.c_str());
 
 		XMLCh tempStr[256]; // urgh, nasty fixed-size buffer
 		for (AtNode::child_maptype::const_iterator it = p->children.begin(); it != p->children.end(); ++it)
 		{
-			XMLString::transcode(it->first.c_str(), tempStr, 255);
-			node->appendChild(BuildDOM(doc, tempStr, it->second));
+			// Test for attribute nodes (whose names start with @)
+			if (it->first.length() && it->first[0] == '@')
+			{
+				XMLString::transcode(it->first.c_str()+1, tempStr, 255);
+				node->setAttributeNode(BuildDOMAttr(doc, tempStr, it->second));
+			}
+			else
+			{
+				XMLString::transcode(it->first.c_str(), tempStr, 255);
+				node->appendChild(BuildDOMNode(doc, tempStr, it->second));
+			}
 		}
 	}
 
@@ -156,7 +252,7 @@ bool AtlasObject::SaveToXML(AtObj& obj, const wchar_t* filename)
 
 	// Find the root element of the object:
 
-	if (obj.p->children.size() != 1)
+	if (!obj.p || obj.p->children.size() != 1)
 	{
 		assert(! "SaveToXML: root must only have one child");
 		return false;
@@ -168,7 +264,7 @@ bool AtlasObject::SaveToXML(AtObj& obj, const wchar_t* filename)
 	try
 	{
 		DOMDocument* doc = impl->createDocument();
-		doc->appendChild(BuildDOM(doc, rootName, firstChild));
+		doc->appendChild(BuildDOMNode(doc, rootName, firstChild));
 
 		XMLFormatTarget* FormatTarget = new LocalFileFormatTarget((XMLCh*)filename);
 		writer->writeNode(FormatTarget, *doc);

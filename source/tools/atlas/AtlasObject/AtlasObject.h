@@ -109,7 +109,7 @@ public:
 	operator const wchar_t* () const;
 
 	// Check whether the object contains anything (even if those things are empty)
-	bool isNull() const { return !p; }
+	bool defined() const { return (bool)p; }
 	
 	// Check recursively whether there's actually any non-empty data in the object
 	bool hasContent() const;
@@ -134,6 +134,7 @@ namespace AtlasObject
 {
 	AtObj LoadFromXML(const wchar_t* filename);
 	bool SaveToXML(AtObj& obj, const wchar_t* filename);
+	AtObj TrimEmptyChildren(AtObj& obj);
 };
 
 #endif // ATLASOBJECT_H__

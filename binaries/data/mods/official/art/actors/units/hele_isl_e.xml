@@ -21,9 +21,9 @@
 		<Animation name="Attack" file="art/animation/biped/inf_sling_atk_a.psa" speed="200"> </Animation>
 	</Animations>
 	<Props>
-		<Prop attachpoint="head_extra" model="H Sign ISL E"> </Prop>
-		<Prop attachpoint="helmet" model="Elite Helmet"> </Prop>
-		<Prop attachpoint="head" model="Hellene Head"> </Prop>
-		<Prop attachpoint="r_hand" model="Sling A"> </Prop>
+		<Prop attachpoint="head_extra" model="props/temp/hele_sign_isl_e.xml"> </Prop>
+		<Prop attachpoint="helmet" model="props/temp/plac_helmet_e.xml"> </Prop>
+		<Prop attachpoint="head" model="props/head/plac_head_hele.xml"> </Prop>
+		<Prop attachpoint="r_hand" model="props/weapon/weap_sling_a.xml"> </Prop>
 	</Props>
 </Object>

@@ -38,8 +38,6 @@ public:
 		// list of objects of this type (found from the objects directory)
 		std::map<ObjectKey, CObjectEntry*> m_Objects;
 		std::map<CStr, CObjectBase*> m_ObjectBases;
-
-		std::map<CStr, CStr> m_ObjectNameToFilename;
 	};
 
 public:
@@ -62,9 +60,6 @@ public:
 	CBaseEntity* m_SelectedEntity;
 
 	std::vector<SObjectType> m_ObjectTypes;
-
-private:
-	void LoadObjectsIn(CStr& pathname);
 };
 
 

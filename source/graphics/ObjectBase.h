@@ -53,10 +53,6 @@ public:
 	void CalculateVariation(std::set<CStr>& strings, variation_key& variation);
 
 	bool Load(const char* filename);
-//	bool Save(const char* filename);
-
-	// TODO: Remove this, once all the actors are renamed properly
-	static bool LoadName(const CStr& filename, CStr& out);
 
 	// object name
 	CStr m_Name;

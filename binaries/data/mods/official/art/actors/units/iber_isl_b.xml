@@ -21,8 +21,8 @@
 		<Animation name="Attack" file="art/animation/biped/inf_sling_atk_a.psa" speed="200"> </Animation>
 	</Animations>
 	<Props>
-		<Prop attachpoint="head_extra" model="I Sign ISL B"> </Prop>
-		<Prop attachpoint="head" model="Iberian Head"> </Prop>
-		<Prop attachpoint="r_hand" model="Sling A"> </Prop>
+		<Prop attachpoint="head_extra" model="props/temp/iber_sign_isl_b.xml"> </Prop>
+		<Prop attachpoint="head" model="props/head/plac_head_iber.xml"> </Prop>
+		<Prop attachpoint="r_hand" model="props/weapon/weap_sling_a.xml"> </Prop>
 	</Props>
 </Object>

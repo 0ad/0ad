@@ -123,7 +123,7 @@ bool EditableListCtrl::IsRowBlank(int n)
 
 void EditableListCtrl::TrimBlankEnds()
 {
-	while (m_ListData.size() && m_ListData.back().isNull())
+	while (m_ListData.size() && !m_ListData.back().defined())
 		m_ListData.pop_back();
 }
 

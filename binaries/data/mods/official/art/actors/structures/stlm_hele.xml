@@ -8,15 +8,15 @@
 	<ModelName>art/meshes/structural/wrld_settlement_he_a.pmd</ModelName>
 	<TextureName>art/textures/skins/structural/wrld_settlements.dds</TextureName>
 	<Props>
-		<Prop attachpoint="grasscrab1" model="Plant Small5"> </Prop>
-		<Prop attachpoint="grassdry1" model="Grass Bush Dry1"> </Prop>
-		<Prop attachpoint="grasscrab2" model="Plant Large3"> </Prop>
-		<Prop attachpoint="grass_sprite01" model="Grass1"> </Prop>
-		<Prop attachpoint="grass_sprite02" model="Grass3"> </Prop>
-		<Prop attachpoint="grass_sprite04" model="Grass5"> </Prop>
-		<Prop attachpoint="grass_sprite06" model="Grass7"> </Prop>
-		<Prop attachpoint="grass_sprite07" model="Grass8"> </Prop>
-		<Prop attachpoint="grass_sprite08" model="Grass9"> </Prop>
-		<Prop attachpoint="waterbin" model="Waterbin A"> </Prop>
+		<Prop attachpoint="grasscrab1" model="foliage/wrld_fol_plant_sm5.xml"> </Prop>
+		<Prop attachpoint="grassdry1" model="foliage/bush_dry_a1.xml"> </Prop>
+		<Prop attachpoint="grasscrab2" model="foliage/wrld_fol_plant_lg3.xml"> </Prop>
+		<Prop attachpoint="grass_sprite01" model="foliage/wrld_fol_grass1.xml"> </Prop>
+		<Prop attachpoint="grass_sprite02" model="foliage/wrld_fol_grass3.xml"> </Prop>
+		<Prop attachpoint="grass_sprite04" model="foliage/wrld_fol_grass5.xml"> </Prop>
+		<Prop attachpoint="grass_sprite06" model="foliage/wrld_fol_grass7.xml"> </Prop>
+		<Prop attachpoint="grass_sprite07" model="foliage/wrld_fol_grass8.xml"> </Prop>
+		<Prop attachpoint="grass_sprite08" model="foliage/wrld_fol_grass9.xml"> </Prop>
+		<Prop attachpoint="waterbin" model="props/eyecandy/waterbin_a.xml"> </Prop>
 	</Props>
 </Object>

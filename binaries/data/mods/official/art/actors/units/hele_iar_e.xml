@@ -21,10 +21,10 @@
 		<Animation name="Attack" file="art/animation/biped/inf_arch_atk_a.psa" speed="400"> </Animation>
 	</Animations>
 	<Props>
-		<Prop attachpoint="head_extra" model="H Sign IAR E"> </Prop>
-		<Prop attachpoint="helmet" model="Elite Helmet"> </Prop>
-		<Prop attachpoint="head" model="Hellene Head"> </Prop>
-		<Prop attachpoint="l_hand" model="Bow A"> </Prop>
-		<Prop attachpoint="back" model="Quiver"> </Prop>
+		<Prop attachpoint="head_extra" model="props/temp/hele_sign_iar_e.xml"> </Prop>
+		<Prop attachpoint="helmet" model="props/temp/plac_helmet_e.xml"> </Prop>
+		<Prop attachpoint="head" model="props/head/plac_head_hele.xml"> </Prop>
+		<Prop attachpoint="l_hand" model="props/weapon/weap_bow_a.xml"> </Prop>
+		<Prop attachpoint="back" model="props/temp/quiver.xml"> </Prop>
 	</Props>
 </Object>

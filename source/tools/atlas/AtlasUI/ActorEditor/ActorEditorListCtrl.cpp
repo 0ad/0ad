@@ -21,8 +21,8 @@ ActorEditorListCtrl::ActorEditorListCtrl(wxWindow* parent)
 
 	#undef COLOUR
 
-	AddColumnType(_("Variant"),		100, "name",		new FieldEditCtrl_Text());
-	AddColumnType(_("Freq"),		50,  "frequency",	new FieldEditCtrl_Text());
+	AddColumnType(_("Variant"),		100, "@name",		new FieldEditCtrl_Text());
+	AddColumnType(_("Freq"),		50,  "@frequency",	new FieldEditCtrl_Text());
 	AddColumnType(_("Model"),		160, "mesh",		new FieldEditCtrl_File(_T("art/meshes"), _("All files (*.*)|*.*")));
 	AddColumnType(_("Texture"),		160, "texture",		new FieldEditCtrl_File(_T("art/textures"), _("All files (*.*)|*.*")));
 	AddColumnType(_("Animations"),	250, "animations",	new FieldEditCtrl_Dialog(_T("AnimListEditor")));
@@ -55,18 +55,18 @@ AtObj ActorEditorListCtrl::DoExport()
 	{
 		if (IsRowBlank((int)i))
 		{
-			if (! group.isNull())
+			if (group.defined())
 				out.add("group", group);
 			group = AtObj();
 		}
 		else
 		{
-			AtObj variant = m_ListData[i];
+			AtObj variant = AtlasObject::TrimEmptyChildren(m_ListData[i]);
 			group.add("variant", variant);
 		}
 	}
 
-	if (! group.isNull())
+	if (group.defined())
 		out.add("group", group);
 
 	return out;
