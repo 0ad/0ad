@@ -23,20 +23,21 @@ All other methods are used internally by other I18n components.
 #include <map>
 #include <algorithm>
 
+// GCC requires an explicit hash function for wide strings
 #ifdef __GNUC__
 namespace __gnu_cxx
 {
-        template<> struct hash<I18n::Str>
-        {
-                size_t operator()(const I18n::Str& s) const
-                {
-                        const wchar_t* __s = s.c_str();
-                        unsigned long __h = 0;
-                        for ( ; *__s; ++__s)
-                                __h = 5*__h + *__s;
-                        return size_t(__h);
-                }
-        };
+	template<> struct hash<I18n::Str>
+	{
+		size_t operator()(const I18n::Str& s) const
+		{
+			const wchar_t* __s = s.c_str();
+			unsigned long __h = 0;
+			for ( ; *__s; ++__s)
+					__h = 5*__h + *__s;
+			return size_t(__h);
+		}
+	};
 }
 #endif // __GNUC__
 
@@ -57,7 +58,7 @@ namespace I18n
 
 		bool LoadFunctions(const char* filedata, size_t len, const char* filename);
 		bool LoadStrings(const char* filedata);
-		bool LoadDictionary(const char* filedata, const wchar_t* name);
+		bool LoadDictionary(const char* filedata);
 
 		const StrImW CallFunction(const char* name, const std::vector<BufferVariable*>& vars, const std::vector<ScriptValue*>& params);
 

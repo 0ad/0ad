@@ -31,7 +31,7 @@ namespace I18n
 		virtual bool LoadStrings(const char* filedata) = 0;
 
 		// Needs .wrd files generated through tables.pl
-		virtual bool LoadDictionary(const char* filedata, const wchar_t* name) = 0;
+		virtual bool LoadDictionary(const char* filedata) = 0;
 
 		virtual ~CLocale_interface() {}
 	};

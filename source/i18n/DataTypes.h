@@ -13,6 +13,10 @@ namespace I18n
 		template<typename T> Name(T d) : value(d) {}
 		StrImW value;
 	};
+
+	// Also allow I18n::Raw("english message"), which does the same
+	// non-translation but makes more sense when writing e.g. error messages
+	typedef Name Raw;
 }
 
 

@@ -149,6 +149,10 @@ static JSClass JSI_class_scriptglobal = {
 ScriptObject::ScriptObject(CLocale* locale, JSContext* cx)
 	: Context(cx)
 {
+	// Don't do much if there's currently no scripting support
+	if (cx == NULL)
+		return;
+
 	// This should, in theory, never fail
 
 	Object = JS_NewObject(Context, &JSI_class_scriptglobal, NULL, NULL);
@@ -172,7 +176,8 @@ ScriptObject::ScriptObject(CLocale* locale, JSContext* cx)
 
 ScriptObject::~ScriptObject()
 {
-	JS_RemoveRoot(Context, &Object);
+	if (Context)
+		JS_RemoveRoot(Context, &Object);
 }
 
 bool ScriptObject::ExecuteCode(const jschar* data, size_t len, const char* filename)

@@ -185,12 +185,14 @@ bool CLocale::LoadFunctions(const char* data, size_t len, const char* filename)
 }
 
 
-bool CLocale::LoadDictionary(const char* data, const wchar_t* name)
+bool CLocale::LoadDictionary(const char* data)
 {
+	ReadWString8(DictName);
+
 	u8 PropertyCount = *(u8*)data;
 	data += 1;
 
-	DictData& dict = Dictionaries[name];
+	DictData& dict = Dictionaries[DictName];
 
 	// Read the names of the properties
 
