@@ -6,9 +6,12 @@
 <Object>
 	<Name>Persian House A</Name>
 	<ModelName>art/meshes/structural/pers_ho_a.pmd</ModelName>
-	<TextureName>art/textures/skins/structural/plac_pers.dds</TextureName>
+	<TextureName>art/textures/skins/structural/pers_struct_a.dds</TextureName>
 	<Properties
 		autoflatten="0"
 		castshadows="1"
 	></Properties>
+	<Props>
+		<Prop attachpoint="props_main" model="Persian House A Prop"> </Prop>
+	</Props>
 </Object>
