@@ -13,7 +13,7 @@
 #include "Model.h"
 
 extern CConsole* g_Console;
-extern int mouse_x, mouse_y;
+extern int g_mouse_x, g_mouse_y;
 extern bool keys[SDLK_LAST];
 extern bool g_active;
 extern CStr g_CursorName;
@@ -121,7 +121,7 @@ void CSelectedEntities::renderOverlays()
 	}
 
 	glLoadIdentity();
-	glTranslatef( (float)( mouse_x + 16 ), (float)( g_Renderer.GetHeight() - mouse_y - 8 ), 0.0f );
+	glTranslatef( (float)( g_mouse_x + 16 ), (float)( g_Renderer.GetHeight() - g_mouse_y - 8 ), 0.0f );
 	glScalef( 1.0f, -1.0f, 1.0f );
 	glColor4f( 1.0f, 1.0f, 1.0f, 0.5f );
 	switch( m_contextOrder )
@@ -612,8 +612,8 @@ void CMouseoverEntities::update( float timestep )
 	}
 	else if( m_bandbox )
 	{
-		m_x2 = mouse_x;
-		m_y2 = mouse_y;
+		m_x2 = g_mouse_x;
+		m_y2 = g_mouse_y;
 		// Here's the fun bit:
 		// Get the screen-space coordinates of all onscreen entities
 		// then find the ones falling within the box.
