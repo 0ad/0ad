@@ -176,6 +176,13 @@ extern int mkdir(const char*, mode_t);
 // currently only sets st_mode (file or dir) and st_size.
 extern int stat(const char*, struct stat*);
 
+#define S_IRWXO 0xffff
+	// stat.h _S_* values are wrong! disassembly shows _S_IWRITE is 0x80,
+	// instead of 0x100. define christmas-tree value to be safe.
+
+#define S_ISDIR(m) (m & S_IFDIR)
+#define S_ISREG(m) (m & S_IFREG)
+
 
 //
 // dirent.h
