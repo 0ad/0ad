@@ -1,4 +1,4 @@
-/* $Id: XeroXMB.h,v 1.1 2004/07/08 15:21:42 philip Exp $
+/* $Id: XeroXMB.h,v 1.2 2004/07/10 20:33:00 philip Exp $
 
 	Xeromyces - XMB reading library
 
@@ -36,10 +36,10 @@ XMB_File {
 	int Checksum; // CRC32 of original XML file, to detect changes
 
 	int ElementNameCount;
-	XMB_ZStr ElementNames[];
+	ZStrA ElementNames[];
 
 	int AttributeNameCount;
-	ZStr AttributeNames[];
+	ZStrA AttributeNames[];
 
 	XMB_Node Root;
 }
@@ -53,7 +53,7 @@ XMB_Node {
 12)	int ChildCount;
 
 16)	int ChildrenOffset; // == sizeof(Text)+sizeof(Attributes)
-20)	ZStr Text;
+20)	ZStrW Text;
 	XMB_Attribute Attributes[];
 	XMB_Node Children[];
 
@@ -61,12 +61,17 @@ XMB_Node {
 
 XMB_Attribute {
 	int Name;
-	XMB_ZStr Value;
+	ZStrW Value;
 }
 
-XMB_ZStr {
-	int Length; // in bytes (always a multiple of 2)
-	wchar_t* Text; // null-terminated, UTF16-LE
+XMB_ZStrA {
+	int Length; // in bytes
+	char* Text; // null-terminated ASCII
+}
+
+XMB_ZStrW {
+	int Length; // in bytes
+	char* Text; // null-terminated UTF16
 }
 
 
@@ -80,6 +85,8 @@ XMB_ZStr {
 //#define XERO_USEMAP 
 
 #include <string>
+
+#include "ps/utf16string.h"
 
 #ifdef XERO_USEMAP
 # include <map>
@@ -109,23 +116,22 @@ public:
 	XMBElement getRoot();
 
 	
-	// Returns internal ID for a given element/attribute string.
-	// Use getElementID(L"name") to get a wchar_t*
-	int getElementID(const wchar_t* Name);
-	int getAttributeID(const wchar_t* Name);
+	// Returns internal ID for a given ASCII element/attribute string.
+	int getElementID(const char* Name);
+	int getAttributeID(const char* Name);
 
 	// For lazy people (e.g. me) when speed isn't vital:
 
 	// Returns element/attribute string for a given internal ID
-	std::wstring getElementString(const int ID);
-	std::wstring getAttributeString(const int ID);
+	std::string getElementString(const int ID);
+	std::string getAttributeString(const int ID);
 
 private:
 	char* m_Pointer;
 
 #ifdef XERO_USEMAP
-	std::map<std::wstring, int> m_ElementNames;
-	std::map<std::wstring, int> m_AttributeNames;
+	std::map<std::string, int> m_ElementNames;
+	std::map<std::string, int> m_AttributeNames;
 #else
 	int m_ElementNameCount;
 	int m_AttributeNameCount;
@@ -133,7 +139,7 @@ private:
 	char* m_AttributePointer;
 #endif
 
-	std::wstring ReadZStr();
+	std::string ReadZStrA();
 };
 
 class XMBElement
@@ -142,10 +148,10 @@ public:
 	XMBElement(char* offset)
 		: m_Pointer(offset)	{}
 
-	int getNodeName(); // == ElementName
+	int getNodeName();
 	XMBElementList getChildNodes();
 	XMBAttributeList getAttributes();
-	std::wstring getText();
+	std::utf16string getText();
 
 private:
 	// Pointer to the start of the node
@@ -175,11 +181,11 @@ private:
 
 struct XMBAttribute
 {
-	XMBAttribute(int name, std::wstring value)
+	XMBAttribute(int name, std::utf16string value)
 		: Name(name), Value(value) {};
 
 	int Name;
-	std::wstring Value;
+	std::utf16string Value;
 };
 
 class XMBAttributeList
@@ -189,7 +195,7 @@ public:
 		: Count(count), m_Pointer(offset) {};
 
 	// Get the attribute value directly (unlike Xerces)
-	std::wstring getNamedItem(const int AttributeName);
+	std::utf16string getNamedItem(const int AttributeName);
 
 	// Returns an attribute by position in the list
 	XMBAttribute item(const int id);
@@ -208,6 +214,6 @@ private:
 
 
 #include "ps/CStr.h"
-CStr tocstr(std::wstring s);
+CStr tocstr(std::utf16string s);
 
 #endif // _XEROXMB_H_

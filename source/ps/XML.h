@@ -41,7 +41,7 @@
 # define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
 #endif
 
-#include "lib/crc32.h"
+#include "zlib.h" // for crc32
 
 #include "res/h_mgr.h"
 #include "lib.h"
@@ -78,7 +78,7 @@ public:
 	int OpenFile(const char *path);
 
 	// Calculate the CRC32 checksum of the file's contents
-	unsigned long CRC32() { return crc32_calculate((char*)m_pBuffer, (int)m_BufferSize); }
+	unsigned long CRC32(unsigned long seed) { return crc32(seed, (Bytef*)m_pBuffer, (int)m_BufferSize); }
 
 	virtual BinInputStream *makeStream() const;
 };

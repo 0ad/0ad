@@ -1,4 +1,4 @@
-// $Id: Xeromyces.cpp,v 1.3 2004/07/10 18:57:13 olsner Exp $
+// $Id: Xeromyces.cpp,v 1.4 2004/07/10 20:33:00 philip Exp $
 
 #include "precompiled.h"
 
@@ -95,13 +95,13 @@ private:
 
 // Convenient storage for the internal tree
 typedef struct {
-	std::wstring name;
-	std::wstring value;
+	std::string name;
+	std::utf16string value;
 } XMLAttribute;
 
 typedef struct XMLElement {
-	std::wstring name;
-	std::wstring text;
+	std::string name;
+	std::utf16string text;
 	std::vector<XMLElement*> childs;
 	std::vector<XMLAttribute*> attrs;
 } XMLElement;
@@ -122,14 +122,14 @@ public:
 	void CreateXMB(unsigned long crc);
 	membuffer buffer;
 private:
-	std::set<std::wstring> ElementNames;
-	std::set<std::wstring> AttributeNames;
+	std::set<std::string> ElementNames;
+	std::set<std::string> AttributeNames;
 	XMLElement* Root;
 	XMLElement* CurrentElement;
 	std::stack<XMLElement*> ElementStack;
 
-	std::map<std::wstring, int> ElementID;
-	std::map<std::wstring, int> AttributeID;
+	std::map<std::string, int> ElementID;
+	std::map<std::string, int> AttributeID;
 
 	void OutputElement(XMLElement* el);
 };
@@ -186,7 +186,12 @@ void CXeromyces::Load(const char* filename)
 		LOG(ERROR, "CXeromyces: Failed to load XML file '%s'", filename);
 		throw "Failed to load XML file";
 	}
-	unsigned long XMLChecksum = source.CRC32();
+
+	// Start the checksum with a particular seed value, so the XMBs will
+	// be recreated whenever the version/etc string has been changed, so
+	// the string can be changed whenever the file format's changed.
+	const char* ChecksumID = "version A";
+	unsigned long XMLChecksum = source.CRC32( crc32( crc32(0L, Z_NULL, 0), (Bytef*)ChecksumID, (int)strlen(ChecksumID) ) );
 
 	// Check whether the XMB file needs to be regenerated:
 
@@ -309,6 +314,7 @@ void XeroHandler::endDocument()
 {
 }
 
+/*
 std::wstring lowercase(const XMLCh *a)
 {
 	std::wstring b;
@@ -318,10 +324,22 @@ std::wstring lowercase(const XMLCh *a)
 		b[i] = towlower(a[i]);
 	return b;
 }
+*/
+
+// Silently clobbers non-ASCII characters
+std::string lowercase_ascii(const XMLCh *a)
+{
+	std::string b;
+	uint len=XMLString::stringLen(a);
+	b.resize(len);
+	for (uint i = 0; i < len; ++i)
+		b[i] = (char)towlower(a[i]);
+	return b;
+}
 
 void XeroHandler::startElement(const XMLCh* const uri, const XMLCh* const localname, const XMLCh* const qname, const Attributes& attrs)
 {
-	std::wstring elementName = lowercase(localname);
+	std::string elementName = lowercase_ascii(localname);
 	ElementNames.insert(elementName);
 
 	// Create a new element
@@ -331,12 +349,12 @@ void XeroHandler::startElement(const XMLCh* const uri, const XMLCh* const localn
 	// Store all the attributes in the new element
 	for (unsigned int i = 0; i < attrs.getLength(); ++i)
 	{
-		std::wstring attrName = lowercase(attrs.getLocalName(i));
+		std::string attrName = lowercase_ascii(attrs.getLocalName(i));
 		AttributeNames.insert(attrName);
 		XMLAttribute* a = new XMLAttribute;
 		a->name = attrName;
 		const XMLCh *tmp = attrs.getValue(i);
-		a->value = std::wstring(tmp, tmp+XMLString::stringLen(tmp));
+		a->value = std::utf16string(tmp, tmp+XMLString::stringLen(tmp));
 		e->attrs.push_back(a);
 	}
 
@@ -354,7 +372,7 @@ void XeroHandler::endElement(const XMLCh* const uri, const XMLCh* const localnam
 
 void XeroHandler::characters(const XMLCh* const chars, const unsigned int length)
 {
-	ElementStack.top()->text += std::wstring(chars, chars+XMLString::stringLen(chars));
+	ElementStack.top()->text += std::utf16string(chars, chars+XMLString::stringLen(chars));
 }
 
 
@@ -366,7 +384,7 @@ void XeroHandler::CreateXMB(unsigned long crc)
 	// Checksum
 	buffer.write(&crc, 4);
 
-	std::set<std::wstring>::iterator it;
+	std::set<std::string>::iterator it;
 	int i;
 
 	// Element names
@@ -375,7 +393,7 @@ void XeroHandler::CreateXMB(unsigned long crc)
 	buffer.write(&ElementCount, 4);
 	for (it = ElementNames.begin(); it != ElementNames.end(); ++it)
 	{
-		int TextLen = 2*((int)it->length()+1);
+		int TextLen = (int)it->length()+1;
 		buffer.write(&TextLen, 4);
 		buffer.write((void*)it->c_str(), TextLen);
 		ElementID[*it] = i++;
@@ -387,7 +405,7 @@ void XeroHandler::CreateXMB(unsigned long crc)
 	buffer.write(&AttributeCount, 4);
 	for (it = AttributeNames.begin(); it != AttributeNames.end(); ++it)
 	{
-		int TextLen = 2*((int)it->length()+1);
+		int TextLen = (int)it->length()+1;
 		buffer.write(&TextLen, 4);
 		buffer.write((void*)it->c_str(), TextLen);
 		AttributeID[*it] = i++;
@@ -422,10 +440,11 @@ void XeroHandler::OutputElement(XMLElement* el)
 	buffer.write("????", 4);
 
 	// Trim excess whitespace
-	std::wstring whitespace = L" \t\r\n";
+	std::wstring whitespaceW = L" \t\r\n";
+	std::utf16string whitespace (whitespaceW.begin(), whitespaceW.end());
 	size_t first = el->text.find_first_not_of(whitespace);
 	if (first == -1) // entirely whitespace
-		el->text = L"";
+		el->text = std::utf16string();
 	else
 	{
 		size_t last = el->text.find_last_not_of(whitespace);

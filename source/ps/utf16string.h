@@ -5,6 +5,16 @@
 #ifndef utf16string_H
 #define utf16string_H
 
+// On Windows, wchar_t is 16-bit, so just use std::wstring
+#ifdef _MSC_VER
+
+namespace std {
+	typedef wstring utf16string;
+}
+
+// On Linux, wchar_t is 32-bit, so define a new version of it
+#else
+
 #include <string>
 #include "types.h"
 
@@ -88,5 +98,7 @@ namespace std {
 		{ return (c == -1) ? 0 : c; }
 	};
 }
+
+#endif // #ifdef _MSC_VER / #else
 
 #endif

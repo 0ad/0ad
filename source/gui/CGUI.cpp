@@ -394,23 +394,49 @@ void CGUI::DrawSprite(const CStr& SpriteName,
 		std::vector<SGUIImage>::const_iterator cit;
 		for (cit=Sprite.m_Images.begin(); cit!=Sprite.m_Images.end(); ++cit)
 		{
+			if (cit->m_Texture)
+			{
+				// HACK: Please ignore all this texture code
+				glEnable(GL_TEXTURE_2D);
+				glDisable(GL_COLOR);
+				glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+				// Urgh
+				Handle x = tex_load(cit->m_TextureName);
+				assert(x>0);
+				tex_upload(x);
+				tex_bind(x);
+				glColor3f(1.0f, 1.0f, 1.0f);
+			}
+			else
+			{
+				glColor3f(cit->m_BackColor.r , cit->m_BackColor.g, cit->m_BackColor.b);
+			}
+
 			CRect real = cit->m_Size.GetClientArea(Rect);
 
 			glPushMatrix();
 			glTranslatef(0.f, 0.f, cit->m_DeltaZ);
 
-			glColor3f(cit->m_BackColor.r , cit->m_BackColor.g, cit->m_BackColor.b);
 			//glColor3f((float)real.right/1000.f, 0.5f, 0.5f);
 
 			// Do this
 			glBegin(GL_QUADS);
-				glVertex2i(real.right,			real.bottom);
-				glVertex2i(real.left,			real.bottom);
-				glVertex2i(real.left,			real.top);
-				glVertex2i(real.right,			real.top);
+				//glTexCoord2i(0, 1);
+				glVertex2i(real.right,	real.bottom);
+				//glTexCoord2i(1, 1);
+				glVertex2i(real.left,	real.bottom);
+				//glTexCoord2i(1, 0);
+				glVertex2i(real.left,	real.top);	
+				//glTexCoord2i(0, 0);
+				glVertex2i(real.right,	real.top);	
 			glEnd();
 
 			glPopMatrix();
+
+			if (cit->m_Texture)
+			{
+				glDisable(GL_TEXTURE_2D);
+			}
 		}
 	glPopMatrix();
 }
@@ -855,9 +881,9 @@ void CGUI::LoadXMLFile(const string &Filename)
 
 	// Check root element's (node) name so we know what kind of
 	//  data we'll be expecting
-	std::wstring root_name = XeroFile.getElementString(node.getNodeName());
+	std::string root_name = XeroFile.getElementString(node.getNodeName());
 
-	if (root_name == L"objects")
+	if (root_name == "objects")
 	{
 		Xeromyces_ReadRootObjects(node, &XeroFile);
 
@@ -865,17 +891,17 @@ void CGUI::LoadXMLFile(const string &Filename)
 		//UpdateResolution();
 	}
 	else
-	if (root_name == L"sprites")
+	if (root_name == "sprites")
 	{
 		Xeromyces_ReadRootSprites(node, &XeroFile);
 	}
 	else
-	if (root_name == L"styles")
+	if (root_name == "styles")
 	{
 		Xeromyces_ReadRootStyles(node, &XeroFile);
 	}
 	else
-	if (root_name == L"setup")
+	if (root_name == "setup")
 	{
 		Xeromyces_ReadRootSetup(node, &XeroFile);
 	}
@@ -950,9 +976,9 @@ void CGUI::Xeromyces_ReadRootSetup(XMBElement Element, CXeromyces* pFile)
 
 		// Read in this whole object into the GUI
 
-		std::wstring name = pFile->getElementString(child.getNodeName());
+		std::string name = pFile->getElementString(child.getNodeName());
 
-		if (name == L"scrollbar")
+		if (name == "scrollbar")
 		{
 			Xeromyces_ReadScrollBarStyle(child, pFile);
 		}
@@ -971,7 +997,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	XMBAttributeList attributes = Element.getAttributes();
 
 	// Well first of all we need to determine the type
-	std::wstring type = attributes.getNamedItem( pFile->getAttributeID(L"type") );
+	std::wstring type = attributes.getNamedItem( pFile->getAttributeID("type") );
 
 	// Construct object from specified type
 	//  henceforth, we need to do a rollback before aborting.
@@ -988,8 +1014,8 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	}
 
 	// Cache some IDs for element attribute names, to avoid string comparisons
-	#define ELMT(x) int elmt_##x = pFile->getElementID(L#x)
-	#define ATTR(x) int attr_##x = pFile->getAttributeID(L#x)
+	#define ELMT(x) int elmt_##x = pFile->getElementID(#x)
+	#define ATTR(x) int attr_##x = pFile->getAttributeID(#x)
 	ELMT(object);
 	ELMT(action);
 	ATTR(style);
@@ -1055,12 +1081,12 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		// Try setting the value
 		try
 		{
-			object->SetSetting(tocstr(pFile->getAttributeString(attr.Name)), tocstr(attr.Value));
+			object->SetSetting(pFile->getAttributeString(attr.Name), tocstr(attr.Value));
 		}
 		catch (PS_RESULT e)
 		{
 			UNUSED(e);
-			ReportParseError(CStr("Can't set \"") + tocstr(pFile->getAttributeString(attr.Name)) + CStr("\" to \"") + tocstr(attr.Value) + CStr("\""));
+			ReportParseError(CStr("Can't set \"") + pFile->getAttributeString(attr.Name) + CStr("\" to \"") + tocstr(attr.Value) + CStr("\""));
 
 			// This is not a fatal error
 		}
@@ -1180,7 +1206,7 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 	//
 
 	// Get name, we know it exists because of DTD requirements
-	name = tocstr( Element.getAttributes().getNamedItem( pFile->getAttributeID(L"name") ) );
+	name = tocstr( Element.getAttributes().getNamedItem( pFile->getAttributeID("name") ) );
 
 	//
 	//	Read Children (the images)
@@ -1224,16 +1250,16 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 	for (int i=0; i<attributes.Count; ++i)
 	{
 		XMBAttribute attr = attributes.item(i);
-		std::wstring attr_name = pFile->getAttributeString(attr.Name);
+		std::string attr_name = pFile->getAttributeString(attr.Name);
 		CStr attr_value = tocstr( attr.Value );
 
 		// This is the only attribute we want
-		if (attr_name == L"texture")
+		if (attr_name == "texture")
 		{
-			image.m_Texture = attr_value;
+			image.m_TextureName = attr_value;
 		}
 		else
-		if (attr_name == L"size")
+		if (attr_name == "size")
 		{
 			CClientArea ca;
 			if (!GUI<CClientArea>::ParseString(attr_value, ca))
@@ -1243,7 +1269,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			else image.m_Size = ca;
 		}
 		else
-		if (attr_name == L"z-level")
+		if (attr_name == "z-level")
 		{
 			int z_level;
 			if (!GUI<int>::ParseString(attr_value, z_level))
@@ -1253,7 +1279,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			else image.m_DeltaZ = (float)z_level/100.f;
 		}
 		else
-		if (attr_name == L"backcolor")
+		if (attr_name == "backcolor")
 		{
 			CColor color;
 			if (!GUI<CColor>::ParseString(attr_value, color))
@@ -1292,15 +1318,15 @@ void CGUI::Xeromyces_ReadStyle(XMBElement Element, CXeromyces* pFile)
 	for (int i=0; i<attributes.Count; ++i)
 	{
 		XMBAttribute attr = attributes.item(i);
-		std::wstring attr_name = pFile->getAttributeString(attr.Name);
+		std::string attr_name = pFile->getAttributeString(attr.Name);
 		CStr attr_value = tocstr( attr.Value );
 
 		// The "name" setting is actually the name of the style
 		//  and not a new default
-		if (attr_name == L"name")
+		if (attr_name == "name")
 			name = attr_value;
 		else
-			style.m_SettingsDefaults[tocstr(attr_name)] = attr_value;
+			style.m_SettingsDefaults[attr_name] = attr_value;
 	}
 
 	//
@@ -1325,16 +1351,16 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 	for (int i=0; i<attributes.Count; ++i)
 	{
 		XMBAttribute attr = attributes.item(i);
-		std::wstring attr_name = pFile->getAttributeString(attr.Name);
+		std::string attr_name = pFile->getAttributeString(attr.Name);
 		CStr attr_value = tocstr( attr.Value );
 
 		if (attr_value == CStr("null"))
 			continue;
 
-		if (attr_name == L"name")
+		if (attr_name == "name")
 			name = attr_value;
 		else
-		if (attr_name == L"width")
+		if (attr_name == "width")
 		{
 			int i;
 			if (!GUI<int>::ParseString(attr_value, i))
@@ -1344,7 +1370,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 			scrollbar.m_Width = i;
 		}
 		else
-		if (attr_name == L"minimum-bar-size")
+		if (attr_name == "minimum-bar-size")
 		{
 			int i;
 			if (!GUI<int>::ParseString(attr_value, i))
@@ -1354,40 +1380,40 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 			scrollbar.m_MinimumBarSize = i;
 		}
 		else
-		if (attr_name == L"sprite-button-top")
+		if (attr_name == "sprite-button-top")
 			scrollbar.m_SpriteButtonTop = attr_value;
 		else
-		if (attr_name == L"sprite-button-top-pressed")
+		if (attr_name == "sprite-button-top-pressed")
 			scrollbar.m_SpriteButtonTopPressed = attr_value;
 		else
-		if (attr_name == L"sprite-button-top-disabled")
+		if (attr_name == "sprite-button-top-disabled")
 			scrollbar.m_SpriteButtonTopDisabled = attr_value;
 		else
-		if (attr_name == L"sprite-button-top-over")
+		if (attr_name == "sprite-button-top-over")
 			scrollbar.m_SpriteButtonTopOver = attr_value;
 		else
-		if (attr_name == L"sprite-button-bottom")
+		if (attr_name == "sprite-button-bottom")
 			scrollbar.m_SpriteButtonBottom = attr_value;
 		else
-		if (attr_name == L"sprite-button-bottom-pressed")
+		if (attr_name == "sprite-button-bottom-pressed")
 			scrollbar.m_SpriteButtonBottomPressed = attr_value;
 		else
-		if (attr_name == L"sprite-button-bottom-disabled")
+		if (attr_name == "sprite-button-bottom-disabled")
 			scrollbar.m_SpriteButtonBottomDisabled = attr_value;
 		else
-		if (attr_name == L"sprite-button-bottom-over")
+		if (attr_name == "sprite-button-bottom-over")
 			scrollbar.m_SpriteButtonBottomOver = attr_value;
 		else
-		if (attr_name == L"sprite-back-vertical")
+		if (attr_name == "sprite-back-vertical")
 			scrollbar.m_SpriteBackVertical = attr_value;
 		else
-		if (attr_name == L"sprite-bar-vertical")
+		if (attr_name == "sprite-bar-vertical")
 			scrollbar.m_SpriteBarVertical = attr_value;
 		else
-		if (attr_name == L"sprite-bar-vertical-over")
+		if (attr_name == "sprite-bar-vertical-over")
 			scrollbar.m_SpriteBarVerticalOver = attr_value;
 		else
-		if (attr_name == L"sprite-bar-vertical-pressed")
+		if (attr_name == "sprite-bar-vertical-pressed")
 			scrollbar.m_SpriteBarVerticalPressed = attr_value;
 
 /*

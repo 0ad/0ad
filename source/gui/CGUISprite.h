@@ -27,6 +27,7 @@ gee@pyro.nu
 //--------------------------------------------------------
 #include "GUI.h"
 #include "Overlay.h"
+#include "lib/res/tex.h"
 
 //--------------------------------------------------------
 //  Macros
@@ -52,10 +53,15 @@ gee@pyro.nu
  */
 struct SGUIImage
 {
-	SGUIImage() : m_Border(false), m_DeltaZ(0.f) {}
-	~SGUIImage() {}
+	SGUIImage() : m_Texture(0), m_Border(false), m_DeltaZ(0.f) {}
+	~SGUIImage()
+	{
+		if (m_Texture)
+			tex_free(m_Texture);
+	}
 
-	CStr			m_Texture;
+	CStr			m_TextureName;
+	Handle			m_Texture;
 
 	// Image placement
 	CClientArea		m_Size;

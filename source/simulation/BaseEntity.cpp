@@ -39,8 +39,8 @@ bool CBaseEntity::loadXML( CStr filename )
 	}
 
 	// Define all the elements and attributes used in the XML file
-	#define EL(x) int el_##x = XeroFile.getElementID(L#x)
-	#define AT(x) int at_##x = XeroFile.getAttributeID(L#x)
+	#define EL(x) int el_##x = XeroFile.getElementID(#x)
+	#define AT(x) int at_##x = XeroFile.getAttributeID(#x)
 	EL(entity);
 	EL(name);
 	EL(actor);
