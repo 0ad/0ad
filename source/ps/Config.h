@@ -4,7 +4,7 @@ Config.h
 CConfig dynamic data file manager class
 Mark Thompson (mot20@cam.ac.uk)
 
-Last modified: 6 November 2003 (Mark Thompson)
+Last modified: 22 November 2003 (Mark Thompson)
 
 --Overview--
 
@@ -89,8 +89,9 @@ struct SConfigData
 	CStr Filename;
 	LoaderFunction DynamicLoader;
 	void* Data;
+	bool Static;
 	time_t Timestamp;
-	SConfigData( CStr _Filename, void* _Data, LoaderFunction _DynamicLoader );
+	SConfigData( CStr _Filename, void* _Data, LoaderFunction _DynamicLoader, bool _Static );
 };
 
 class CConfig : public Singleton<CConfig>
@@ -98,12 +99,12 @@ class CConfig : public Singleton<CConfig>
 public:
 	CConfig();
 	//Register a new file with it's associated loader function
-	PS_RESULT Register( CStr Filename, void* Data, LoaderFunction DynamicLoader );
+	PS_RESULT Register( CStr Filename, void* Data, LoaderFunction DynamicLoader, bool Static = false );
 	//Check all registered files, reload as neccessary
 	PS_RESULT Update();
-	//Force an update of all files in the registered list.
+	//Force an update of all files in the registered and static lists.
 	PS_RESULT ReloadAll();
-	//Erase the entire list of registered files
+	//Erase the entire list of registered and static files
 	void Clear();
 	//Attach or detach a logfile class.
 	void Attach( CLogFile* LogFile );

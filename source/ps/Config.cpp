@@ -1,6 +1,7 @@
-// Last modified: 13 November 2003 (Mark Thompson)
+// Last modified: 22 November 2003 (Mark Thompson)
 
 // TODO: A few changes from VFS -> CFile usage if required.
+// TODO: Optimizations, when we've decided what needs to be done.
 
 #include "Config.h"
 #include "vfs.h"
@@ -19,11 +20,12 @@ running." );
 // SConfigData: Internal file representation
 //--------------------------------------------------------
 
-SConfigData::SConfigData( CStr _Filename, void* _Data, LoaderFunction _DynamicLoader )
+SConfigData::SConfigData( CStr _Filename, void* _Data, LoaderFunction _DynamicLoader, bool _Static )
 {
 	Filename = _Filename;
 	Data = _Data;
 	DynamicLoader = _DynamicLoader;
+	Static = _Static;
 	Timestamp = TIME_UNREGISTERED;
 }
 
@@ -48,7 +50,7 @@ CConfig::CConfig()
 //  Add a file to the registered list.
 //--------------------------------------------------------
 
-PS_RESULT CConfig::Register( CStr Filename, void* Data, LoaderFunction DynamicLoader )
+PS_RESULT CConfig::Register( CStr Filename, void* Data, LoaderFunction DynamicLoader, bool Static )
 {
 	assert( DynamicLoader != NULL );
 
@@ -76,16 +78,9 @@ PS_RESULT CConfig::Register( CStr Filename, void* Data, LoaderFunction DynamicLo
 		return( PS_FILE_NOT_FOUND );
 	}
 	
-	m_FileList.push_back( SConfigData( Filename, Data, DynamicLoader ) );
+	m_FileList.push_back( SConfigData( Filename, Data, DynamicLoader, Static ) );
 
 	i = m_FileList.begin();
-
-	if( m_LogFile )
-	{
-		CStr Report = _T( "Adding file: " );
-		Report += CStr( Filename );
-		m_LogFile->WriteText( (const TCHAR*)Report );
-	}
 
 	return( PS_OK );
 }
@@ -102,10 +97,16 @@ PS_RESULT CConfig::Update()
 	_int failed = 0;
 	struct stat FileInfo;
 
-	for( slice = 0; ( i != m_FileList.end() ) && ( slice < CONFIG_SLICE ); i++, slice++ )
+	for( slice = 0; ( i != m_FileList.end() ) && ( slice < CONFIG_SLICE ); i++ )
 	{
+		// Ignore static files
+
+		if( i->Static )
+			continue;
+		slice++;
+
 		// TODO: CFile change on following line.
-		
+
 		if( vfs_stat( i->Filename, &FileInfo ) )
 		{
 			// We can't find the file.
@@ -252,7 +253,7 @@ PS_RESULT CConfig::ReloadAll()
 			if( m_LogFile )
 			{
 				CStr Error = _T( "Load failed on: " );
-				Error += CStr( i->Filename );
+				Error += i->Filename;
 				Error += CStr( "Load function returned: " );
 				Error += CStr( Result );
 				m_LogFile->WriteError( (const TCHAR*)Error );
@@ -262,6 +263,9 @@ PS_RESULT CConfig::ReloadAll()
 				return( PS_FILE_LOAD_FAILURE ); // Oops. Serious problem, bail.
 		}
 	}
+
+	i = m_FileList.begin();
+
 	if( notfound )
 		return( PS_FILE_NOT_FOUND );
 	if( failed )
@@ -272,7 +276,7 @@ PS_RESULT CConfig::ReloadAll()
 //--------------------------------------------------------
 // CConfig::Clear()
 //
-//  Erases registered list.
+//  Erases registered and static lists.
 //--------------------------------------------------------
 
 void CConfig::Clear()
