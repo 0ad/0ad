@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity Tag="Deciduous Tree 2">
+<Entity Tag="Deciduous Tree 2" Parent="Generic Tree">
 	<Traits>
 		<Id
 			generic="Deciduous Tree 2"
@@ -9,12 +9,5 @@
 			version="0.1 pasap2"
 		/>
 	</Traits>
-	<Actions>
-		<Move
-			speed="0"
-			turningRadius="0"
-		/>
-	</Actions>
 	<Actor>Deciduous 2</Actor>
-	<Footprint Radius="1.0"/>
 </Entity>

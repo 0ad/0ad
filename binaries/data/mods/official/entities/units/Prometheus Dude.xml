@@ -8,6 +8,10 @@
 			icon="unit_dude"
 			version="0.1 pasap2"
 		/>
+		<Health
+			hitpoints="250"
+			initial="10"
+		/>
 	</Traits>
 	<Event On="Initialize">
 	<![CDATA[

@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity Tag="Generic Dude">
+<Entity Tag="Generic Tree">
 	<Traits>
 		<Id
-			generic="Generic Dude"
-			internal_only="true"
+			generic="Generic Tree"
+			internal_only="false"
 			version="0.1 pasap2"
 		/>
 		<Health
 			hitpoints="100"
-			initial="70"
+			initial="100"
 		/>
 	</Traits>
 	<Actions>
 		<Move
-			speed="3.0"
-			turningRadius="0.0"
+			speed="0"
+			turningRadius="0"
 		/>
-		<Patrol />
 	</Actions>
-	<Footprint Radius="0.5"/>
+	<Footprint Radius="1.0"/>
 </Entity>

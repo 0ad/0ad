@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity Tag="House" Parent="Generic Structure">
+<Entity Tag="Generic Structure">
 	<Traits>
 		<Id
-			generic="House"
+			generic="Generic Structure"
 			internal_only="false"
-			icon="structure_heleho"
 			version="0.1 pasap2"
 		/>
+		<Health
+			hitpoints="100"
+			initial="80"
+		/>
 	</Traits>
-	<Actor>Greek House</Actor>
+	<Actions>
+		<Move
+			speed="0"
+			turningRadius="0"
+		/>
+	</Actions>
 	<Footprint Width="12.0" Height="12.0"/>
 </Entity>
