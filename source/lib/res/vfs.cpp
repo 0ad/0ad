@@ -1028,6 +1028,7 @@ int vfs_realpath(const char* fn, char* full_path)
 	if(loc->archive <= 0)
 		dir = loc->dir.c_str();
 	// file is in archive
+	else
 	{
 		// "dir" is the archive filename
 		dir = h_filename(loc->archive);
