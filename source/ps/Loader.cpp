@@ -1,17 +1,26 @@
+// FIFO queue of load 'functors' with time limit; enables displaying
+// load progress without resorting to threads (complicated).
+//
+// Jan Wassenberg, initial implementation finished 2005-03-21
+// jan@wildfiregames.com
+
 #include "precompiled.h"
 
 #include <deque>
+#include <functional>
 
 #include "lib.h"	// error codes
 #include "timer.h"
-#include "loader.h"
 #include "CStr.h"
+#include "loader.h"
 
-// note: not thread-safe!
 
-
-// need to maintain this counter ourselves so we can reset after each load.
+// need a persistent counter so we can reset after each load,
+// and incrementally add "estimated/total".
 static int progress_percent = 0;
+
+// set by LDR_EndRegistering; used for progress % calculation. may be 0.
+static double total_estimated_duration;
 
 // main purpose is to indicate whether a load is in progress, so that
 // LDR_ProgressiveLoad can return 0 iff loading just completed.
@@ -34,24 +43,33 @@ struct LoadRequest
 	void* param;
 
 	const CStrW description;
-		// rationale:
+		// rationale for storing as CStrW here:
+		// - needs to be wide because it's user-visible and will be translated.
 		// - don't just store a pointer - the caller's string may be volatile.
 		// - the module interface must work in C, so we get/set as wchar_t*.
-
-	int progress_percent_after_completion;
 
 	int estimated_duration_ms;
 
 	// LDR_Register gets these as parameters; pack everything together.
-	LoadRequest(LoadFunc func_, void* param_, const wchar_t* desc_, int pc_, int ms_)
+	LoadRequest(LoadFunc func_, void* param_, const wchar_t* desc_, int ms_)
 		: func(func_), param(param_), description(desc_),
-		  progress_percent_after_completion(pc_), estimated_duration_ms(ms_)
+		  estimated_duration_ms(ms_)
 	{
 	}
 };
 
 typedef std::deque<const LoadRequest> LoadRequests;
 static LoadRequests load_requests;
+
+// std::accumulate binary op; used by LDR_EndRegistering to sum up all
+// estimated durations (for % progress calculation)
+struct DurationAdder: public std::binary_function<double, const LoadRequest&, double>
+{
+	double operator()(double partial_result, const LoadRequest& lr) const
+	{
+		return partial_result + lr.estimated_duration_ms*1e-3;
+	}
+};
 
 
 // call before starting to register load requests.
@@ -74,21 +92,21 @@ int LDR_BeginRegistering()
 // <param>: (optional) parameter/persistent state; must be freed by func.
 // <description>: user-visible description of the current task, e.g.
 //   "Loading map".
-// <progress_percent_after_completion>: optional; if non-zero, progress is
-//   set to this value after the current task completes.
-//   must increase monotonically.
-// <estimated_duration_ms>: optional; if non-zero, this task will be
-//   postponed until the next LDR_ProgressiveLoad timeslice if there's not
-//   much time left. this reduces overruns of the timeslice => main loop is
-//   more responsive.
+// <estimated_duration_ms>: used to calculate progress, and when checking
+//   whether there is enough of the time budget left to process this task
+//   (reduces timeslice overruns, making the main loop more responsive).
 int LDR_Register(LoadFunc func, void* param, const wchar_t* description,
-	int progress_percent_after_completion, int estimated_duration_ms)
+	int estimated_duration_ms)
 {
 	if(state != REGISTERING)
+	{
+		debug_warn("LDR_Register: not called between LDR_(Begin|End)Register - why?!");
+			// warn here instead of relying on the caller to CHECK_ERR because
+			// there will be lots of call sites spread around.
 		return -1;
+	}
 
-	const LoadRequest lr(func, param, description,
-		progress_percent_after_completion, estimated_duration_ms);
+	const LoadRequest lr(func, param, description, estimated_duration_ms);
 	load_requests.push_back(lr);
 	return 0;
 }
@@ -101,8 +119,12 @@ int LDR_EndRegistering()
 	if(state != REGISTERING)
 		return -1;
 
+	if(load_requests.empty())
+		debug_warn("LDR_EndRegistering: no LoadRequests queued");
+
 	state = LOADING;
 	progress_percent = 0;
+	total_estimated_duration = std::accumulate(load_requests.begin(), load_requests.end(), 0.0, DurationAdder());
 	return 0;
 }
 
@@ -128,16 +150,17 @@ int LDR_Cancel()
 // tries to prevent starting a long task when at the end of a timeslice.
 static bool HaveTimeForNextTask(double time_left, double time_budget, int estimated_duration_ms)
 {
-	// have already exceeded our time budget => stop for now.
+	// have already exceeded our time budget
 	if(time_left <= 0.0)
 		return false;
 
-	// we've already used up more than 60%
+	// we've already used up more than 60%:
 	// (if it's less than that, we won't check the next task length)
 	if(time_left < 0.40*time_budget)
 	{
 		const double estimated_duration = estimated_duration_ms * 1e-3;
-		// .. next task is expected to be long - do it next call
+		// .. and the upcoming task is expected to be long -
+		// leave it for the next timeslice.
 		if(estimated_duration > time_left + time_budget*0.20)
 			return false;
 	}
@@ -150,8 +173,9 @@ static bool HaveTimeForNextTask(double time_left, double time_budget, int estima
 // <time_budget> [s]. if a request is lengthy, the budget may be exceeded.
 // call from the main loop.
 //
-// passes back a description of the last task undertaken and the progress
-// value established by the last request to complete.
+// passes back a description of the next task that will be undertaken
+// ("" if finished) and the progress value established by the
+// last request to complete.
 //
 // return semantics:
 // - if loading just completed, return 0.
@@ -164,7 +188,7 @@ static bool HaveTimeForNextTask(double time_left, double time_budget, int estima
 // persistent, we can't just store a pointer. returning a pointer to
 // our copy of the description doesn't work either, since it's freed when
 // the request is de-queued. that leaves writing into caller's buffer.
-int LDR_ProgressiveLoad(double time_budget, wchar_t* current_description,
+int LDR_ProgressiveLoad(double time_budget, wchar_t* description_,
 	size_t max_chars, int* progress_percent_)
 {
 	// we're called unconditionally from the main loop, so this isn't
@@ -173,22 +197,15 @@ int LDR_ProgressiveLoad(double time_budget, wchar_t* current_description,
 		return 1;
 
 	const double end_time = get_time() + time_budget;
+	int ret;	// single exit; this is returned
 
-	// in case it's never set below (because all LoadRequests have
-	// progress_percent_after_completion = 0)
-	*progress_percent_ = progress_percent;
-
-	// (function will return immediately on failure or timeout)
 	while(!load_requests.empty())
 	{
 		const double time_left = end_time - get_time();
 		const LoadRequest& lr = load_requests.front();
 
-		// latch description of the current task now (it may be removed below)
-		wcscpy_s(current_description, max_chars, lr.description);
-
 		// do actual work of loading
-		int ret = lr.func(lr.param, time_left);
+		ret = lr.func(lr.param, time_left);
 		// .. either finished entirely, or failed => remove from queue
 		if(ret != ERR_TIMED_OUT)
 			load_requests.pop_front();
@@ -197,26 +214,41 @@ int LDR_ProgressiveLoad(double time_budget, wchar_t* current_description,
 		// rationale: bail immediately instead of remembering the first error
 		// that came up, so that we report can all errors that happen.
 		if(ret != 0)
-			return ret;
-		// .. completed normally:
-
-		// update progress
-		const int new_pc = lr.progress_percent_after_completion;
-		if(new_pc)
+			goto done;
+		// .. completed normally => update progress
+		//    note: during development, estimates won't yet be set,
+		//    so allow this to be 0 and don't fail in LDR_EndRegistering
+		if(total_estimated_duration != 0.0)	// prevent division by zero
 		{
-			assert(new_pc > progress_percent);
-			*progress_percent_ = progress_percent = new_pc;
+			const double fraction = lr.estimated_duration_ms*1e-3 / total_estimated_duration;
+			progress_percent += (int)(fraction * 100.0);
+			assert(0 <= progress_percent && progress_percent <= 100);
 		}
 
 		// check if we're out of time; take into account next task length.
 		// note: do this at the end of the loop to make sure there's
 		// progress even if the timer is low-resolution (=> time_left = 0).
 		if(!HaveTimeForNextTask(time_left, time_budget, lr.estimated_duration_ms))
-			return ERR_TIMED_OUT;
+		{
+			ret = ERR_TIMED_OUT;
+			goto done;
+		}
 	}
 
 	// queue is empty, we just finished.
 	state = IDLE;
 	assert(progress_percent == 100);
-	return 0;
+	ret = 0;
+
+	// set output params (there are several return points above)
+done:
+	*progress_percent_ = progress_percent;
+	// we want the next task, instead of what just completed:
+	// it will be displayed during the next load phase.
+	const wchar_t* description = L"";	// assume finished
+	if(!load_requests.empty())
+		description = load_requests.front().description.c_str();
+	wcscpy_s(description_, max_chars, description);
+
+	return ret;
 }

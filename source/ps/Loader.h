@@ -1,3 +1,24 @@
+// FIFO queue of load 'functors' with time limit; enables displaying
+// load progress without resorting to threads (complicated).
+//
+// Jan Wassenberg, initial implementation finished 2005-03-21
+// jan@wildfiregames.com
+
+
+// intended use:
+// replace the InitEverything function with the following:
+//   LDR_BeginRegistering()
+//   LDR_Register() for each sub-function (*)
+//   LDR_EndRegistering()
+// then in the main loop, call LDR_ProgressiveLoad().
+//
+// *: splitting up InitEverything is required so that control returns to
+// the main loop occasionally; that allows displaying the progress.
+// note that we can't interrupt loading without threads (complex).
+//
+// this module is not thread-safe!
+
+
 #include <wchar.h>
 
 
@@ -21,34 +42,34 @@ extern int LDR_BeginRegistering();
 typedef int (*LoadFunc)(void* param, double time_left);
 
 // register a load request (later processed in FIFO order).
-// <func>: function that will perform the actual work; see LoadFunc above.
+// <func>: function that will perform the actual work; see LoadFunc.
 // <param>: (optional) parameter/persistent state; must be freed by func.
 // <description>: user-visible description of the current task, e.g.
 //   "Loading map".
-// <progress_percent_after_completion>: optional; if non-zero, progress is
-//   set to this value after the current task completes.
-//   must increase monotonically.
-// <estimated_duration_ms>: optional; if non-zero, this task will be
-//   postponed until the next LDR_ProgressiveLoad timeslice if there's not
-//   much time left. this reduces overruns of the timeslice => main loop is
-//   more responsive.
+// <estimated_duration_ms>: used to calculate progress, and when checking
+//   whether there is enough of the time budget left to process this task
+//   (reduces timeslice overruns, making the main loop more responsive).
 extern int LDR_Register(LoadFunc func, void* param, const wchar_t* description,
-	int progress_percent_after_completion = 0, int estimated_duration_ms = 0);
+	int estimated_duration_ms);
+
 
 // call when finished registering load requests; subsequent calls to
 // LDR_ProgressiveLoad will then work off the queued entries.
 extern int LDR_EndRegistering();
 
+
 // immediately cancel the load. note: no special notification will be
 // returned by LDR_ProgressiveLoad.
 extern int LDR_Cancel();
+
 
 // process as many of the queued load requests as possible within
 // <time_budget> [s]. if a request is lengthy, the budget may be exceeded.
 // call from the main loop.
 //
-// passes back a description of the last task undertaken and the progress
-// value established by the last request to complete.
+// passes back a description of the next task that will be undertaken
+// ("" if finished) and the progress value established by the
+// last request to complete.
 //
 // return semantics:
 // - if loading just completed, return 0.
@@ -61,5 +82,5 @@ extern int LDR_Cancel();
 // persistent, we can't just store a pointer. returning a pointer to
 // our copy of the description doesn't work either, since it's freed when
 // the request is de-queued. that leaves writing into caller's buffer.
-extern int LDR_ProgressiveLoad(double time_budget, wchar_t* current_description,
+extern int LDR_ProgressiveLoad(double time_budget, wchar_t* next_description,
 	size_t max_chars, int* progress_percent);
