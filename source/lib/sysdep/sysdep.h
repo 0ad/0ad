@@ -11,6 +11,7 @@
 extern "C" {
 #endif
 
+
 extern void display_msg(const char* caption, const char* msg);
 extern void wdisplay_msg(const wchar_t* caption, const wchar_t* msg);
 extern void debug_out(const char* fmt, ...);
