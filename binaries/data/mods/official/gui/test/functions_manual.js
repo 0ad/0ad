@@ -11,10 +11,7 @@ function manualDisplay()
 					// Display portrait.
 					if (selection[0].traits.id.icon)
 					{
-						if (selection[0].traits.id.icon_cell && selection[0].traits.id.icon_cell != "")
-							setPortrait("manual_portrait", selection[0].traits.id.icon, selection[0].traits.id.icon_cell);
-						else
-							setPortrait("manual_portrait", selection[0].traits.id.icon);
+						setPortrait("manual_portrait", selection[0].traits.id.icon, selection[0].traits.id.civ_code, selection[0].traits.id.icon_cell);
 					}
 
 					// Display rollover text.

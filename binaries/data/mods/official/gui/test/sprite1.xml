@@ -64,7 +64,7 @@
                 <!-- Starting with top left corner continuing in a clockwise manner -->
                 <image backcolor="212 208 200" size="0 1 1 100%-1" />
                 <image backcolor="212 208 200" size="0 0 100%-1 1" />
-                <image backcolor="255 255 255" size="1 2 1 100%-2" />
+                <image backcolor="255 255 255" size="0 2 1 100%-2" />
                 <image backcolor="255 255 255" size="1 1 100%-2 2" />
                 <image backcolor="64 64 64" size="100%-1 0 100% 100%" />
                 <image backcolor="64 64 64" size="0 100%-1 100%-1 100%" />
@@ -511,7 +511,7 @@
                         <image texture="session/portraits/ui_portrait_default_circle.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_default_circle_lit">
-			<effect add_color="42 42 42"/>
+			<effect add_color="42 42 42 0"/>
                         <image texture="session/portraits/ui_portrait_default_circle.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_default_circle_grey">
@@ -524,7 +524,7 @@
                         <image texture="session/portraits/ui_portrait_default_square.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_default_square_lit">
-			<effect add_color="42 42 42"/>
+			<effect add_color="42 42 42 0"/>
                         <image texture="session/portraits/ui_portrait_default_square.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_default_square_grey">
@@ -542,7 +542,7 @@
                         <image texture="session/portraits/ui_portrait_sheet_action.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_action_lit">
-			<effect add_color="42 42 42"/>
+			<effect add_color="42 42 42 0"/>
 			<image texture="session/portraits/ui_portrait_sheet_action.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_action_grey">
@@ -561,7 +561,7 @@
                         <image texture="session/portraits/ui_portrait_unit_dude.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_unit_dude_lit">
-			<effect add_color="42 42 42"/>
+			<effect add_color="42 42 42 0"/>
                         <image texture="session/portraits/ui_portrait_unit_dude.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_unit_dude_grey">
@@ -574,7 +574,7 @@
                         <image texture="session/portraits/ui_portrait_unit_dudette.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_unit_dudette_lit">
-			<effect add_color="42 42 42"/>
+			<effect add_color="42 42 42 0"/>
                         <image texture="session/portraits/ui_portrait_unit_dudette.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_unit_dudette_grey">
@@ -587,7 +587,7 @@
                         <image texture="session/portraits/ui_portrait_flora_deciduotree.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_flora_deciduotree_lit">
-			<effect add_color="42 42 42"/>
+			<effect add_color="42 42 42 0"/>
                         <image texture="session/portraits/ui_portrait_flora_deciduotree.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_flora_deciduotree_grey">
@@ -609,7 +609,7 @@
                         <image texture="session/portraits/ui_portrait_sheet_civ_celt.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_celt_lit">
-			<effect add_color="42 42 42"/>
+			<effect add_color="42 42 42 0"/>
                         <image texture="session/portraits/ui_portrait_sheet_civ_celt.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
@@ -627,7 +627,7 @@
                         <image texture="session/portraits/ui_portrait_sheet_civ_hele.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_hele_lit">
-			<effect add_color="42 42 42"/>
+			<effect add_color="42 42 42 0"/>
                         <image texture="session/portraits/ui_portrait_sheet_civ_hele.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
@@ -645,7 +645,7 @@
                         <image texture="session/portraits/ui_portrait_sheet_civ_iber.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_iber_lit">
-			<effect add_color="42 42 42"/>
+			<effect add_color="42 42 42 0"/>
                         <image texture="session/portraits/ui_portrait_sheet_civ_iber.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
@@ -663,7 +663,7 @@
                         <image texture="session/portraits/ui_portrait_sheet_civ_kart.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_kart_lit">
-			<effect add_color="42 42 42"/>
+			<effect add_color="42 42 42 0"/>
                         <image texture="session/portraits/ui_portrait_sheet_civ_kart.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
@@ -681,7 +681,7 @@
                         <image texture="session/portraits/ui_portrait_sheet_civ_pers.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_pers_lit">
-			<effect add_color="42 42 42"/>
+			<effect add_color="42 42 42 0"/>
                         <image texture="session/portraits/ui_portrait_sheet_civ_pers.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
@@ -699,7 +699,7 @@
                         <image texture="session/portraits/ui_portrait_sheet_civ_rome.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_rome_lit">
-			<effect add_color="42 42 42"/>
+			<effect add_color="42 42 42 0"/>
                         <image texture="session/portraits/ui_portrait_sheet_civ_rome.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 

@@ -6,21 +6,10 @@
 			civ_code="hele"
 			civ="Hellenes"
 			internal_only="false"
-			icon="sheet_civ_hele"
 
 			specific="Apoikia"
 			history="During the Great Colonisation, the Hellenes built numerous colonies all over the shores of the Mediterranean and Black Seas, which became miniature versions of Greece on foreign soil."
-
 		/>
 	</Traits>
-	<Actions>
-		<Create
-			list=""
-			list.unit="hele_fem_b1;hele_isp_u1"
-			list.structciv="hele_cc;hele_fc;hele_ho_1;hele_rc;hele_tc;hele_hc"
-			list.structmil="hele_mc;hele_pc;hele_ff;hele_tf;hele_wc;hele_wg;hele_wt"
-			list.tech="hele_fem_b1"
-		/>
-	</Actions>
 	<Actor>Hellenes Civil Center</Actor>
 </Entity>

@@ -578,7 +578,7 @@ function UpdateList(listIcon, listCol)
 	// Returns an array of this selection.
 
 	// Build unit list.
-	if (selection[0].actions.create && selection[0].actions.create.list)
+	if (selection[0].traits.id.civ_code && selection[0].actions.create && selection[0].actions.create.list)
 	{
 		listName = "";
 		switch (listIcon)
@@ -607,7 +607,7 @@ function UpdateList(listIcon, listCol)
 		if (listName != "")
 		{
 			// Enable tab portrait.
-			setPortrait("session_panel_status_command_pri_" + listCol, "sheet_action", listIcon);
+			setPortrait("session_panel_status_command_pri_" + listCol, "sheet_action", "", listIcon);
 			GUIObjectUnhide("session_panel_status_command_pri_" + listCol);
 
 			// Extract entity list into an array.
@@ -618,10 +618,10 @@ function UpdateList(listIcon, listCol)
 			{
 				if (createLoop < listArray.length+1)
 				{
-					if (getEntityTemplate(listArray[createLoop-1]).traits.id.icon_cell && getEntityTemplate(listArray[createLoop-1]).traits.id.icon_cell != "")
-						setPortrait("session_panel_status_command_pri_" + listCol + "_" + createLoop, getEntityTemplate(listArray[createLoop-1]).traits.id.icon, getEntityTemplate(listArray[createLoop-1]).traits.id.icon_cell);
-					else
-						setPortrait("session_panel_status_command_pri_" + listCol + "_" + createLoop, getEntityTemplate(listArray[createLoop-1]).traits.id.icon);
+					// Get name of entity to display in list.
+					UpdateListEntityName = selection[0].traits.id.civ_code + "_" + listArray[createLoop-1];
+
+					setPortrait("session_panel_status_command_pri_" + listCol + "_" + createLoop, getEntityTemplate(UpdateListEntityName).traits.id.icon, selection[0].traits.id.civ_code, getEntityTemplate(UpdateListEntityName).traits.id.icon_cell);
 					GUIObjectUnhide("session_panel_status_command_pri_" + listCol + "_" + createLoop);
 				}
 				else
@@ -652,7 +652,7 @@ function UpdateCommand(listIcon, listCol)
          || (listIcon == action_gather_ore && selection[0].actions.gather && selection[0].actions.gather.ore)
            )
 	{	
-		setPortrait("session_panel_status_command_pri_" + listCol, "sheet_action", listIcon);
+		setPortrait("session_panel_status_command_pri_" + listCol, "sheet_action", "", listIcon);
 		GUIObjectUnhide("session_panel_status_command_pri_" + listCol);
 
 		return (listCol-1);
@@ -732,12 +732,7 @@ function UpdateStatusOrb()
 
 	// Update portrait
 	if (selection[0].traits.id.icon)
-	{
-		if (selection[0].traits.id.icon_cell && selection[0].traits.id.icon_cell != "")
-			setPortrait("session_panel_status_portrait", selection[0].traits.id.icon, selection[0].traits.id.icon_cell);
-		else
-			setPortrait("session_panel_status_portrait", selection[0].traits.id.icon);
-	}
+		setPortrait("session_panel_status_portrait", selection[0].traits.id.icon, selection[0].traits.id.civ_code, selection[0].traits.id.icon_cell);
 
 	// Update rank.
 	GUIObject = getGUIObjectByName("session_panel_status_icon_rank");

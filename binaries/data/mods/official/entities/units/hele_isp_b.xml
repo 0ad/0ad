@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="hele_isp_b" Parent="isp">
+	<Traits>
+		<Id
+			civ_code="hele"
+			civ="Hellenes"
+			internal_only="false"
+
+			specific="Hoplite"
+			ranked="Basic Hoplite"
+
+			history="Hoplites were the very symbol of Hellenistic prestige and citizenship, armed with a spear and a large round, bronze-coated shield known as a hoplon. Armor was heavy, with bronze helmets and a cuirass of either bronze or linen, in addition to greaves. Hoplites fought in a tight formation called a phalanx, guarding each other with their shields while they attacked the enemy with their spear or a short iron sword."
+		/>
+	</Traits>
+	<Actor>Hellene Basic Spearman Infantry</Actor>
+</Entity>
+

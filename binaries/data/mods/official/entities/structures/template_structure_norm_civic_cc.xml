@@ -24,5 +24,14 @@
 			add="10"
 		/>
 	</Traits>
+	<Actions>
+		<Create
+			list=""
+			list.unit="fem;isp_b"
+			list.structciv="cc;fc;ho_1;rc;tc;hc"
+			list.structmil="mc;pc;ff;tf;wc;wg;wt"
+			list.tech="fem"
+		/>
+	</Actions>
 	<Footprint Width="24.0" Height="24.0"/>
 </Entity>

@@ -190,10 +190,7 @@ function UpdateGroupPane()
 			if (selection[groupPaneLoop-1].traits.health.curr && selection[groupPaneLoop-1].traits.health.max)
 				groupPaneBar.caption = ((Math.round(selection[groupPaneLoop-1].traits.health.curr) * 100 ) / Math.round(selection[groupPaneLoop-1].traits.health.max));
 			// Set portrait.
-			if (selection[groupPaneLoop-1].traits.id.icon_cell && selection[groupPaneLoop-1].traits.id.icon_cell != "")
-				setPortrait("session_group_pane_portrait_" + groupPaneLoop, selection[groupPaneLoop-1].traits.id.icon, selection[groupPaneLoop-1].traits.id.icon_cell);
-			else
-				setPortrait("session_group_pane_portrait_" + groupPaneLoop, selection[groupPaneLoop-1].traits.id.icon);
+			setPortrait("session_group_pane_portrait_" + groupPaneLoop, selection[groupPaneLoop-1].traits.id.icon, selection[groupPaneLoop-1].traits.id.civ_code, selection[groupPaneLoop-1].traits.id.icon_cell);
 		}
 		// If it's empty, hide its group portrait.
 		else

@@ -7,12 +7,23 @@
 
 			class2="Infantry"
 
+			personal1="male_names_1st.csv"
+			personal2="male_names_2nd.csv"
+
 			type.unit.group.military="true"
 			type.unit.foot="true"
+			type.unit.weapon="true"
 			type.unit.material.organic="true"
 
 			type.unit.group.citizensoldier="true"
 			type.unit.group.worker="true"
+		/>
+		<!-- Should stop 3 hack, 1 pierce damage... -->
+		<Armour
+			value="4"
+			crush="0.0"
+			hack="0.75"
+			pierce="0.25"
 		/>
 		<Loot
 			up="100"
@@ -28,6 +39,19 @@
 		/>
 	</Traits>
 	<Actions>
+		<!-- 2 hack, 2 pierce damage... -->
+		<Attack
+			range="2.0"
+			damage="4"
+			crush="0.0"
+			hack="0.5"
+			pierce="0.5"
+		/>
+		<Create
+			list=""
+			list.structciv="cc;fc;ho_1;rc;tc;hc"
+			list.structmil="mc;pc;ff;tf;wc;wg;wt"
+		/>
 		<Gather
 			food="true"
 			food.meat="1"

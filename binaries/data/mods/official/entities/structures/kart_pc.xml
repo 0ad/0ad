@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="kart_pc" Parent="pc">
+	<Traits>
+		<Id
+			civ_code="kart"
+			civ="Carthaginians"
+			internal_only="false"
+
+			specific="(Name)"
+			history="(Insert History Here)"
+		/>
+	</Traits>
+	<Actor>Carthaginian Dock</Actor>
+</Entity>
