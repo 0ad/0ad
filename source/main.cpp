@@ -609,6 +609,9 @@ static void LoadGlobals()
 	if ((val=g_ConfigDB.GetValue(CFG_USER, "shadows")))
 		val->GetBool(g_Shadows);
 
+	if ((val=g_ConfigDB.GetValue(CFG_USER, "lodbias")))
+		val->GetFloat(g_LodBias);
+
 	if ((val=g_ConfigDB.GetValue(CFG_USER, "sound.mastergain")))
 	{
 		float gain;
@@ -1107,8 +1110,8 @@ sle(11340106);
 
 	// enable/disable VSync
 	// note: "GL_EXT_SWAP_CONTROL" is "historical" according to dox.
-	/*if(oglExtAvail("WGL_EXT_swap_control"))
-		wglSwapIntervalEXT(g_VSync? 1 : 0);*/
+	if(oglExtAvail("WGL_EXT_swap_control"))
+		wglSwapIntervalEXT(g_VSync? 1 : 0);
 
 #ifdef _MSC_VER
 u64 CURTSC=rdtsc();

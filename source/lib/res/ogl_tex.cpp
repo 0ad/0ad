@@ -1,7 +1,5 @@
 #include "precompiled.h"
 
-#define CHEEZY_NOMIPMAP
-
 #include "res.h"
 #include "ogl.h"
 #include "tex.h"
@@ -337,9 +335,6 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 	if(int_fmt_ovr) int_fmt = int_fmt_ovr;
 	if(fmt_ovr) fmt = fmt_ovr;
 
-#ifdef CHEEZY_NOMIPMAP
-	filter = GL_NEAREST_MIPMAP_LINEAR;
-#endif
 	CHECK_ERR(tex_bind(ht));
 		// we know ht is valid (H_DEREF above), but tex_bind can
 		// fail in debug builds if Tex.id isn't a valid texture name
