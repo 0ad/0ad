@@ -622,7 +622,7 @@ int file_io_complete(FileIO* io)
 		return 0;
 	if(ret == 0)
 		return 1;
-	
+
 	debug_warn("file_io_complete: unexpected aio_error return");
 	return -1;
 }
@@ -934,8 +934,6 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 	size_t actual_transferred_cnt = 0;
 
 	ssize_t err = +1;		// loop terminates if <= 0
-
-	size_t remaining_blocks = actual_size / BLOCK_SIZE;
 
 	for(;;)
 	{
