@@ -19,7 +19,7 @@ void InitScene ();
 void InitResources ();
 void RenderScene ();
 
-extern bool keys[256];
+extern bool keys[512];	// SDL also defines non-ascii keys; 512 should be enough
 
 
 CMatrix3D			g_WorldMat;
@@ -308,6 +308,7 @@ for (uint ii=0;ii<g_TexMan.m_TerrainTextures.size();ii++) {
         break;
     }
 }
+
 
 	// cover entire terrain with default texture
 	u32 patchesPerSide=g_Terrain.GetPatchesPerSide();

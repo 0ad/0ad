@@ -293,7 +293,7 @@ again:
 		}
 
 		std::sort(samples.begin(), samples.end());
-		double median = samples[num_samples/2];
+//		double median = samples[num_samples/2];
 
 		// median filter (remove upper and lower 25% and average the rest)
 		double sum = 0.0;

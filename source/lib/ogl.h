@@ -10,6 +10,7 @@ extern "C" {
 //
 
 #ifdef _WIN32
+
 #ifndef WINGDIAPI
 #define WINGDIAPI __declspec(dllimport)
 #endif
@@ -19,15 +20,17 @@ extern "C" {
 #ifndef APIENTRY
 #define APIENTRY __stdcall
 #endif
+
 typedef unsigned short wchar_t;	// for glu.h
+
 #endif	// #ifndef _WIN32
 
 #ifdef __APPLE__
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
+# include <OpenGL/gl.h>
+# include <OpenGL/glu.h>
 #else
-#include <GL/gl.h>
-#include <GL/glu.h>
+# include <GL/gl.h>
+# include <GL/glu.h>
 #endif
 
 
@@ -46,9 +49,9 @@ typedef unsigned short wchar_t;	// for glu.h
 
 #undef GL_GLEXT_PROTOTYPES
 #ifdef __APPLE__
-#include <OpenGL/glext.h>
+# include <OpenGL/glext.h>
 #else
-#include <GL/glext.h>
+# include <GL/glext.h>
 #endif
 
 #define GL_TEXTURE_IMAGE_SIZE_ARB 0x86A0
@@ -59,9 +62,9 @@ typedef unsigned short wchar_t;	// for glu.h
 //
 
 #ifdef _WIN32
-#define CALL_CONV __stdcall
+# define CALL_CONV __stdcall
 #else
-#define CALL_CONV
+# define CALL_CONV
 #endif
 
 #define FUNC(ret, name, params) extern ret (CALL_CONV *name) params;

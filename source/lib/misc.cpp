@@ -49,10 +49,12 @@ u32 fnv_hash(const void* buf, const size_t len)
 	else
 	{
 		size_t bytes_left = len;
-		while(bytes_left--)
+		while(bytes_left != 0)
 		{
 			h ^= *p++;
 			h *= 0x01000193;
+
+			bytes_left--;
 		}
 	}
 
@@ -61,37 +63,6 @@ u32 fnv_hash(const void* buf, const size_t len)
 
 
 
-
-u16 bswap16(u16 x)
-{
-	return (u16)(((x & 0xff) << 8) | (x >> 8));
-}
-
-
-u32 bswap32(u32 x)
-{
-#ifdef _M_IX86
-
-__asm
-{
-	mov		eax, [x]
-	bswap	eax
-	mov		[x], eax
-}
-
-#else
-
-	u32 t = x;
-
-	for(int i = 0; i < 4; i++)
-	{
-		x <<= 8;
-		x |= t & 0xff;
-	}
-
-#endif
-	return x;
-}
 
 
 void bswap32(const u8* data, int cnt)
@@ -164,7 +135,7 @@ int ilog2(const int n)
 }
 
 
-static int ilog2(const float x)
+int ilog2(const float x)
 {
 	u32 i = (u32&)x;
 	u32 exp = (i >> 23) & 0xff;
@@ -180,31 +151,17 @@ uintptr_t round_up(uintptr_t val, uintptr_t multiple)
 }
 
 
-//u16 addusw(u16 x, u16 y)
-//{
-//	u32 t = x;
-//	return (u16)MIN(t+y, 0xffff);
-//}
-//
-//
-//u16 subusw(u16 x, u16 y)
-//{
-//	long t = x;
-//	return MAX(t-y, 0);
-//}
-
-
 u16 addusw(u16 x, u16 y)
 {
-u32 t = x;
-return (u16)MIN(t+y, 0xffff);
+	u32 t = x;
+	return (u16)MIN(t+y, 0xffff);
 }
 
 
 u16 subusw(u16 x, u16 y)
 {
-long t = x;
-return (u16)(MAX(t-y, 0));
+	long t = x;
+	return (u16)(MAX(t-y, 0));
 }
 
 
@@ -243,7 +200,7 @@ void base32(const int len, const u8* in, u8* out)
 		*out++ = tbl[c];
 	}
 }
-
+/*
 #ifndef _WIN32
 
 char *_itoa(int value, char *out, int radix)
@@ -292,3 +249,5 @@ char *_ltoa(long val, char *out, int radix)
 }
 
 #endif
+*/
+

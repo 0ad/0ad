@@ -7,6 +7,7 @@
 #define snprintf _snprintf
 #define swprintf _snwprintf
 #define vsnprintf _vsnprintf
+#define vsnwprintf _vsnwprintf
 
 #include <stddef.h>	// wchar_t
 

@@ -97,6 +97,11 @@ int atexit2(void* func, uintptr_t arg, CallConvention cc)
 }
 
 
+int atexit2(void* func)
+{
+	return atexit2(func, 0, CC_CDECL_0);
+}
+
 
 
 // call from main as early as possible.

@@ -35,7 +35,7 @@ CNetMessage *CNetMessage::DeserializeMessage(ENetMessageType type, u8 *buffer, u
 		{
 			g_DeserializerMap.insert(std::make_pair(pReg->m_Type, pReg->m_pDeserializer));
 		}
-	)
+	);
 	}
 	
 	printf("DeserializeMessage: Finding for MT %d\n", type);

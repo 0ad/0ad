@@ -33,6 +33,9 @@
 // otherwise, hash <len> bytes of buf.
 extern u32 fnv_hash(const void* buf, const size_t len = 0);
 
+// hash (currently FNV) of a filename
+typedef u32 FnHash;
+
 
 #ifndef min
 inline int min(int a, int b)

@@ -43,8 +43,10 @@ extern int aio_close(int);
 
 int open(const char* fn, int mode, ...)
 {
+	bool is_com_port = strncmp(fn, "/dev/tty", 8) == 0;
+
 	// /dev/tty? => COM?
-	if(!strncmp(fn, "/dev/tty", 8))
+	if(is_com_port)
 	{
 		static char port[] = "COM ";
 		port[3] = (char)(fn[8]+1);
@@ -55,7 +57,12 @@ int open(const char* fn, int mode, ...)
 
 	// open it for async I/O as well (_open defaults to deny_none sharing)
 	if(fd > 2)
-		aio_open(fn, mode, fd);
+	{
+		// .. unless it's a COM port. don't currently need aio access for those;
+		// also, aio_open's CreateFile reports access denied when trying to open.
+		if(!is_com_port)
+			aio_open(fn, mode, fd);
+	}
 
 	return fd;
 }
@@ -331,8 +338,8 @@ int pthread_mutex_timedlock(pthread_mutex_t* m, const struct timespec* abs_timeo
 	{
 		struct timespec cur_ts;
 		clock_gettime(CLOCK_REALTIME, &cur_ts);
-		ms_timeout = (cur_ts.tv_sec  - abs_timeout->tv_sec ) * 1000 +
-		             (cur_ts.tv_nsec - abs_timeout->tv_nsec) / 1000000;
+		ms_timeout = DWORD((cur_ts.tv_sec  - abs_timeout->tv_sec ) * 1000 +
+		                   (cur_ts.tv_nsec - abs_timeout->tv_nsec) / 1000000);
 	}
 
 	return WaitForSingleObject(*m, ms_timeout) == WAIT_OBJECT_0? 0 : -1;
@@ -498,6 +505,8 @@ int nanosleep(const struct timespec* rqtp, struct timespec* /* rmtp */)
 
 int gettimeofday(struct timeval* tv, void* tzp)
 {
+	UNUSED(tzp);
+
 #ifndef NDEBUG
 	if(!tv)
 	{

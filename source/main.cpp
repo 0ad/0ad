@@ -82,7 +82,7 @@ static void display_startup_error(const wchar_t* msg)
 	const wchar_t* caption = L"0ad startup problem";
 
 	write_sys_info();
-	display_msg(caption, msg);
+	wdisplay_msg(caption, msg);
 	exit(1);
 }
 
@@ -214,8 +214,63 @@ static void do_tick()
 {
 }
 
+
+
+
 int main(int argc, char* argv[])
 {
+
+chdir("\\games\\bf\\ScreenShots");
+int a,b;
+char fn[100];
+__asm cpuid __asm rdtsc __asm mov a, eax
+int i=0;
+
+/*
+int guess=4;
+for(;;)
+{
+sprintf(fn, "ScreenShot%d.jpg", i);
+if(access(fn, F_OK) < 0)
+{
+	int lo = guess/2;
+	int hi = guess;
+	for(;;)
+	{
+		int test = (lo+hi)/2;
+		sprintf(fn, "ScreenShot%d.jpg", i);
+		if(access(fn, F_OK) < 0)
+			;
+	}
+}
+else
+	guess *= 2;
+break;
+
+}
+*/
+
+
+/*
+DIR* d = opendir(".");
+while(readdir(d))
+i++;
+closedir(d);
+*/
+
+/*
+for(i = 0; i < 100; i++)
+{
+sprintf(fn, "ScreenShot%d.jpg", i);
+if(access(fn, F_OK) < 0)
+break;
+}
+*/
+
+
+__asm cpuid __asm rdtsc __asm mov b, eax
+int c = b-a;
+
 	lib_init();
 
 	// set 24 bit (float) FPU precision for faster divides / sqrts
@@ -270,8 +325,8 @@ glEnable (GL_DEPTH_TEST);
 
 	new CConfig;
 
-	vfs_set_root(argv[0], "data");
-	vfs_mount("mods/official");
+	file_set_root_dir(argv[0], "../data");
+	vfs_mount("", "mods/official/", 0);
 
 #ifndef NO_GUI
 	// GUI uses VFS, so this must come after VFS init.
@@ -281,13 +336,10 @@ glEnable (GL_DEPTH_TEST);
 	g_GUI.LoadXMLFile("gui/sprite1.xml");
 #endif
 
+
 //	tex = tex_load("0adlogo2.bmp");
 //	tex_upload(tex);
 	font = font_load("verdana.fnt");
-
-
-
-
 
 terr_init();
 

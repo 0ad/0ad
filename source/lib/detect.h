@@ -27,8 +27,13 @@ extern "C" {
 
 
 // useful for choosing a video mode. not called by detect().
-// if we fail, don't change the outputs (assumed initialized to defaults)
-extern void get_cur_resolution(int& xres, int& yres);
+// if we fail, outputs are unchanged (assumed initialized to defaults)
+extern int get_cur_resolution(int& xres, int& yres);
+
+// useful for determining aspect ratio. not called by detect().
+// if we fail, outputs are unchanged (assumed initialized to defaults)
+extern int get_monitor_size(int& width_cm, int& height_cm);
+
 
 
 extern char gfx_card[64];	// default: "unknown"

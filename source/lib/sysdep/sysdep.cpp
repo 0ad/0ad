@@ -10,10 +10,17 @@
 #ifndef _WIN32
 
 // portable output routines (win.cpp overrides these)
-void display_msg(const wchar_t* caption, const wchar_t* msg)
+
+void display_msg(const char* caption, const char* msg)
+{
+	fprintf(stderr, "%s: %s\n", caption, msg);
+}
+
+void wdisplay_msg(const wchar_t* caption, const wchar_t* msg)
 {
 	fwprintf(stderr, L"%ws: %ws\n", caption, msg);
 }
+
 
 
 void debug_out(const char* fmt, ...)
@@ -22,6 +29,7 @@ void debug_out(const char* fmt, ...)
 	va_start(args, fmt);
 	vprintf(fmt, args);
 	va_end(args);
+	fflush(stdout);
 }
 
 

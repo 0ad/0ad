@@ -46,7 +46,9 @@ enum HRTOverride
 {
 	// allow use of this implementation if available,
 	// and we can work around its problems
-	HRT_DEFAULT,
+	//
+	// HACK: give it value 0 for easier static data initialization
+	HRT_DEFAULT = 0,
 
 	// override our 'safe to use' recommendation
 	// set by hrt_override_impl (via command line arg or console function)

@@ -21,17 +21,27 @@
 #include "detect.h"
 
 // useful for choosing a video mode. not called by detect().
-// if we fail, don't change the outputs (assumed initialized to defaults)
-void get_cur_resolution(int& xres, int& yres)
+// if we fail, outputs are unchanged (assumed initialized to defaults)
+int get_cur_resolution(int& xres, int& yres)
 {
 	Display* disp = XOpenDisplay(0);
 	if(!disp)
-		return;
+		return -1;
 
 	int screen = XDefaultScreen(disp);
 	xres = XDisplayWidth (disp, screen);
 	yres = XDisplayHeight(disp, screen);
 	XCloseDisplay(disp);
+	return 0;
 }
+
+
+// useful for determining aspect ratio. not called by detect().
+// if we fail, outputs are unchanged (assumed initialized to defaults)
+int get_monitor_size(int& width_cm, int& height_cm)
+{
+	return -1;
+}
+
 
 #endif	// #ifdef HAVE_X

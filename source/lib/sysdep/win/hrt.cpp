@@ -28,21 +28,24 @@
 #include "detect.h"
 
 #include "win_internal.h"
-#include <mmsystem.h>	// not included by win due to WIN32_LEAN_AND_MEAN
+#include <mmsystem.h>
+	// not included by win_internal due to its WIN32_LEAN_AND_MEAN define
 #ifdef _MSC_VER
 #pragma comment(lib, "winmm.lib")
 #endif
 
 
-// ticks per second; average of last few values measured in calibrate
+// ticks per second; average of last few values measured in calibrate()
 static double hrt_freq = -1.0;
 
-// used to start the hrt tick values near 0
+// used to rebase the hrt tick values to 0
 static i64 hrt_origin = 0;
 
 static HRTImpl hrt_impl = HRT_NONE;
-static HRTOverride overrides[3] = { HRT_DEFAULT, HRT_DEFAULT, HRT_DEFAULT };
+static HRTOverride overrides[HRT_NUM_IMPLS];
 	// HRTImpl enums as index
+	// HACK: no init needed - static data is zeroed (= HRT_DEFAULT)
+cassert(HRT_DEFAULT == 0);
 
 static i64 hrt_nominal_freq = -1;
 
@@ -160,10 +163,14 @@ static void choose_impl()
 	//
 	// TGT
 	//
-	hrt_impl = HRT_TGT;
-	hrt_nominal_freq = 1000;
-	return;
+	if(1)
+	{
+		hrt_impl = HRT_TGT;
+		hrt_nominal_freq = 1000;
+		return;
+	}
 
+	// no warning here - doesn't inspire confidence in VC dead code removal.
 	assert(0 && "hrt_choose_impl: no safe timer found!");
 	hrt_impl = HRT_NONE;
 	hrt_nominal_freq = -1;
@@ -174,6 +181,7 @@ static void choose_impl()
 // return ticks since first call. lock must be held.
 //
 // split to allow calling from reset_impl_lk without recursive locking.
+// (not a problem, but avoids a BoundsChecker warning)
 static i64 ticks_lk()
 {
 	i64 t;
@@ -231,8 +239,8 @@ static i64 ticks_lk()
 
 // choose a HRT implementation. lock must be held.
 //
-// don't want to saddle timer with the problem of initializing us
-// on first call - it wouldn't otherwise need to be thread-safe.
+// don't want to saddle timer module with the problem of initializing
+// us on first call - it wouldn't otherwise need to be thread-safe.
 static void reset_impl_lk()
 {
 	HRTImpl old_impl = hrt_impl;
@@ -414,14 +422,13 @@ lock();
 	hrt_cal_time = hrt_cur;
 	ms_cal_time = ms_cur;
 
-	//
-	// when we wake up, we don't know if timer has been updated yet.
-	// they may be off by 1 tick - try to compensate.
-	//
+	// we're called from a WinMM event, so the timer has just been updated.
+	// no need to determine tick / compensate.
 
-	double dt = ms_ds;	// actual elapsed time since last calibration
-	double hrt_err = ms_ds - hrt_ds;
-	double hrt_abs_err = fabs(hrt_err), hrt_rel_err = hrt_abs_err / ms_ds;
+//	double dt = ms_ds;	// actual elapsed time since last calibration
+//	double hrt_err = ms_ds - hrt_ds;
+//	double hrt_abs_err = fabs(hrt_err);
+//	double hrt_rel_err = hrt_abs_err / ms_ds;
 
 	double hrt_est_freq = hrt_ds / ms_ds;
 	// only add to buffer if within 10% of nominal
@@ -457,6 +464,12 @@ static UINT mm_event;
 // keep calibrate() portable, don't need args anyway
 static void CALLBACK trampoline(UINT uTimerID, UINT uMsg, DWORD_PTR dwUser, DWORD_PTR dw1, DWORD_PTR dw2)
 {
+	UNUSED(uTimerID);
+	UNUSED(uMsg);
+	UNUSED(dwUser);
+	UNUSED(dw1);
+	UNUSED(dw2);
+
 	calibrate();
 }
 
@@ -475,11 +488,11 @@ static void init_calibration_thread()
 	GetSystemTimeAdjustment(&adj, &incr, &adj_disabled);
 	DWORD res = adj / 10000;
 	mm_event = timeSetEvent(1000, res, trampoline, 0, TIME_PERIODIC);
-	atexit2(timeKillEvent, mm_event);
+	atexit2(timeKillEvent, mm_event, CC_STDCALL_1);
 
 #else
 
-	// TODO: port thread. no big deal, and the timer works without.
+	// TODO: port thread. it's no big deal, but the timer should work without.
 
 #endif
 }

@@ -40,41 +40,33 @@
 //
 // note: current Windows lowio handle limit is 2k
 
-class AioHandles
-{
-public:
-	AioHandles() : hs(0), size(0) {}
-	~AioHandles();
+static HANDLE* aio_hs;
+	// array; expanded when needed in aio_h_set
 
-	HANDLE get(int fd);
-	int set(int fd, HANDLE h);
-
-private:
-	HANDLE* hs;
-	uint size;
-};
+static int aio_hs_size;
 
 
-AioHandles::~AioHandles()
+static void aio_h_cleanup()
 {
 	win_lock(WAIO_CS);
 
-	for(int i = 0; (unsigned)i < size; i++)
-		if(hs[i] != INVALID_HANDLE_VALUE)
+	for(int i = 0; i < aio_hs_size; i++)
+		if(aio_hs[i] != INVALID_HANDLE_VALUE)
 		{
-			CloseHandle(hs[i]);
-			hs[i] = INVALID_HANDLE_VALUE;
+			CloseHandle(aio_hs[i]);
+			aio_hs[i] = INVALID_HANDLE_VALUE;
 		}
 
-	free(hs);
-	hs = 0;
-	size = 0;
+	free(aio_hs);
+	aio_hs = 0;
+
+	aio_hs_size = 0;
 
 	win_unlock(WAIO_CS);
 }
 
 
-bool is_valid_file_handle(HANDLE h)
+static bool is_valid_file_handle(HANDLE h)
 {
 	SetLastError(0);
 	bool valid = (GetFileSize(h, 0) != INVALID_FILE_SIZE);
@@ -82,20 +74,24 @@ bool is_valid_file_handle(HANDLE h)
 	return valid;
 }
 
+
 // get async capable handle to file <fd>
-HANDLE AioHandles::get(int fd)
+HANDLE aio_h_get(int fd)
 {
 	HANDLE h = INVALID_HANDLE_VALUE;
 
 	win_lock(WAIO_CS);
 
-	if((unsigned)fd < size)
-		h = hs[fd];
+	if(0 <= fd && fd < aio_hs_size)
+		h = aio_hs[fd];
 	else
+	{
 		assert(0);
+		h = INVALID_HANDLE_VALUE;
+	}
 
 	if(!is_valid_file_handle(h))
-		return INVALID_HANDLE_VALUE;
+		h = INVALID_HANDLE_VALUE;
 
 	win_unlock(WAIO_CS);
 
@@ -103,29 +99,34 @@ HANDLE AioHandles::get(int fd)
 }
 
 
-int AioHandles::set(int fd, HANDLE h)
+int aio_h_set(int fd, HANDLE h)
 {
 	win_lock(WAIO_CS);
 
+	WIN_ONCE(atexit2(aio_h_cleanup))
+
+	if(fd < 0)
+		goto fail;
+
 	// grow hs array to at least fd+1 entries
-	if((unsigned)fd >= size)
+	if(fd >= aio_hs_size)
 	{
 		uint size2 = (uint)round_up(fd+8, 8);
-		HANDLE* hs2 = (HANDLE*)realloc(hs, size2*sizeof(HANDLE));
+		HANDLE* hs2 = (HANDLE*)realloc(aio_hs, size2*sizeof(HANDLE));
 		if(!hs2)
 			goto fail;
 
-        for(uint i = size; i < size2; i++)
+		for(uint i = aio_hs_size; i < size2; i++)
 			hs2[i] = INVALID_HANDLE_VALUE;
-		hs = hs2;
-		size = size2;
+		aio_hs = hs2;
+		aio_hs_size = size2;
 	}
 
 	if(h == INVALID_HANDLE_VALUE)
 		;
 	else
 	{
-		if(hs[fd] != INVALID_HANDLE_VALUE)
+		if(aio_hs[fd] != INVALID_HANDLE_VALUE)
 		{
 			assert("AioHandles::set: handle already set!");
 			goto fail;
@@ -137,14 +138,14 @@ int AioHandles::set(int fd, HANDLE h)
 		}
 	}
 
-	hs[fd] = h;
+	aio_hs[fd] = h;
 
 	win_unlock(WAIO_CS);
 	return 0;
 
 fail:
 	win_unlock(WAIO_CS);
-	assert(0 && "AioHandles::set failed");
+	assert(0 && "aio_h_set failed");
 	return -1;
 }
 
@@ -171,37 +172,20 @@ struct Req
 	size_t buf_size;
 };
 
-class Reqs
-{
-public:
-	Reqs();
-	~Reqs();
-	Req* find(const aiocb* cb);
-	Req* alloc(const aiocb* cb);
 
-private:
-	enum { MAX_REQS = 8 };
-	Req reqs[MAX_REQS];
-};
+// TODO: explain links between Req and cb
 
 
-Reqs::Reqs()
-{
-	for(int i = 0; i < MAX_REQS; i++)
-	{
-		memset(&reqs[i], 0, sizeof(Req));
-		reqs[i].ovl.hEvent = CreateEvent(0,1,0,0);	// manual reset
-	}
-}
+const int MAX_REQS = 64;
+static Req reqs[MAX_REQS];
 
 
-Reqs::~Reqs()
+void req_cleanup(void)
 {
 	Req* r = reqs;
+
 	for(int i = 0; i < MAX_REQS; i++, r++)
 	{
-		r->cb = 0;
-
 		HANDLE& h = r->ovl.hEvent;
 		if(h != INVALID_HANDLE_VALUE)
 		{
@@ -209,44 +193,62 @@ Reqs::~Reqs()
 			h = INVALID_HANDLE_VALUE;
 		}
 
-		free(r->buf);
+		::free(r->buf);
 		r->buf = 0;
 	}
 }
 
 
-// find request slot currently in use by cb
-// cb = 0 => search for empty slot
-Req* Reqs::find(const aiocb* cb)
+void req_init()
 {
+	atexit(req_cleanup);
+
+	for(int i = 0; i < MAX_REQS; i++)
+		reqs[i].ovl.hEvent = CreateEvent(0,1,0,0);	// manual reset
+}
+
+
+Req* req_alloc(aiocb* cb)
+{
+	ONCE(req_init());
+
 	Req* r = reqs;
-
 	for(int i = 0; i < MAX_REQS; i++, r++)
-		if(r->cb == cb)
-			return r;
+		if(r->cb == 0)
+		{
+			r->cb = cb;
+			cb->req_ = r;
 
-	assert(0 && "Reqs::find failed");
+debug_out("req_alloc cb=%p r=%p\n", cb, r);
+			return r;
+		}
+
+
 	return 0;
 }
 
 
-Req* Reqs::alloc(const aiocb* cb)
+Req* req_find(const aiocb* cb)
 {
-	win_lock(WAIO_CS);
+debug_out("req_find  cb=%p r=%p\n", cb, cb->req_);
 
-	// find free request slot
-	Req* r = find(0);
-	if(!r)
+	return (Req*)cb->req_;
+}
+
+
+int req_free(Req* r)
+{
+debug_out("req_free  cb=%p r=%p\n", r->cb, r);
+
+	if(r->cb == 0)
 	{
-		win_unlock(WAIO_CS);
-		assert(0 && "Reqs::alloc: no request slot available!");
-		return 0;
+		assert(0);
+		return -1;
 	}
-	r->cb = (aiocb*)cb;
 
-	win_unlock(WAIO_CS);
-
-	return r;
+	r->cb->req_ = 0;
+	r->cb = 0;
+	return 0;
 }
 
 
@@ -256,30 +258,15 @@ Req* Reqs::alloc(const aiocb* cb)
 //
 //////////////////////////////////////////////////////////////////////////////
 
-static AioHandles* aio_hs;
-static Reqs* reqs;
-
 
 // Win32 functions require sector aligned transfers.
 // max of all drives' size is checked in init().
 static size_t sector_size = 4096;	// minimum: one page
 
 
-static void cleanup(void)
-{
-	delete aio_hs;
-	delete reqs;
-}
-
-
 // caller ensures this is not re-entered!
 static void init()
 {
-	reqs = new Reqs;
-	aio_hs = new AioHandles;
-
-	atexit(cleanup);
-
 	// Win32 requires transfers to be sector aligned.
 	// find maximum of all drive's sector sizes, then use that.
 	// (it's good to know this up-front, and checking every open() is slow).
@@ -291,7 +278,7 @@ static void init()
 		if(!(drives & (1ul << drive)))
 			continue;
 
-		drive_str[0] = 'A'+drive;
+		drive_str[0] = (char)('A'+drive);
 
 		DWORD spc, nfc, tnc;	// don't need these
 		DWORD sector_size2;
@@ -331,7 +318,7 @@ int aio_assign_handle(uintptr_t handle)
 		return fd;
 	}
 
-	return aio_hs->set(fd, (HANDLE)handle);
+	return aio_h_set(fd, (HANDLE)handle);
 }
 
 
@@ -364,20 +351,21 @@ WIN_ONCE(init());	// TODO: need to do this elsewhere in case other routines call
 		return -1;
 	}
 
-	if(aio_hs->set(fd, h) < 0)
+	if(aio_h_set(fd, h) < 0)
 	{
 		assert(0 && "aio_open failed");
 		CloseHandle(h);
 		return -1;
 	}
 
+debug_out("aio_open fn=%s fd=%d\n", fn, fd);
 	return 0;
 }
 
 
 int aio_close(int fd)
 {
-	HANDLE h = aio_hs->get(fd);
+	HANDLE h = aio_h_get(fd);
 	if(h == INVALID_HANDLE_VALUE)	// out of bounds or already closed
 	{
 		assert(0 && "aio_close failed");
@@ -387,7 +375,9 @@ int aio_close(int fd)
 	SetLastError(0);
 	if(!CloseHandle(h))
 		assert(0);
-	aio_hs->set(fd, INVALID_HANDLE_VALUE);
+	aio_h_set(fd, INVALID_HANDLE_VALUE);
+
+debug_out("aio_close fd=%d\n", fd);
 	return 0;
 }
 
@@ -401,6 +391,8 @@ int aio_close(int fd)
 // cb->aio_offset must be 0.
 static int aio_rw(struct aiocb* cb)
 {
+debug_out("aio_rw cb=%p\n", cb);
+
 	if(!cb)
 	{
 		assert(0);
@@ -412,17 +404,24 @@ static int aio_rw(struct aiocb* cb)
 		return 0;
 	}
 
-	HANDLE h = aio_hs->get(cb->aio_fildes);
+	HANDLE h = aio_h_get(cb->aio_fildes);
 	if(h == INVALID_HANDLE_VALUE)
 	{
 		assert(0 && "aio_rw: associated handle is invalid");
 		return -EINVAL;
 	}
 
-	Req* r = reqs->alloc(cb);
+	if(cb->req_)
+	{
+		// SUSv3 says this has undefined results; we fail the attempt.
+		assert(0 && "aio_rw: aiocb is already in use");
+		return -1;
+	}
+
+	Req* r = req_alloc(cb);
 	if(!r)
 	{
-		assert(0);
+		assert(0 && "aio_rw: cannot allocate a Req (too many concurrent IOs)");
 		return -1;
 	}
 
@@ -472,22 +471,17 @@ static int aio_rw(struct aiocb* cb)
 
 	r->ovl.Internal = r->ovl.InternalHigh = 0;
 
-//#if _MSC_VER >= 1300
-//	r->ovl.Pointer = (void*)ofs;
-//#else
-//	r->ovl.Offset = ofs;
-//#endif
+	// a bit tricky: this should work even if size_t grows to 64 bits.
+	//
+	// we don't use OVERLAPPED.Pointer because it's not defined in
+	// previous platform sdk versions, and i can't figure out how
+	// determine the sdk version installed. can't just check for the
+	// vc6/vc7 compiler - vc6 with the old sdk may have been upgraded
+	// to the vc7.1 compiler.
+	//
+	// this assumes little endian, but we're windows-specific here anyway.
+	*(size_t*)&r->ovl.Offset = ofs;
 
-// a bit tricky: this should work even if size_t grows to 64 bits.
-//
-// we don't use OVERLAPPED.Pointer because it's not defined in
-// previous platform sdk versions, and i can't figure out how
-// determine the sdk version installed. can't just check for the
-// vc6/vc7 compiler - vc6 with the old sdk may have been upgraded
-// to the vc7.1 compiler.
-//
-// this assumes little endian, but we're windows-specific here anyway.
-*(size_t*)&r->ovl.Offset = ofs;
 
 assert(cb->aio_buf != 0);
 
@@ -498,9 +492,14 @@ ResetEvent(r->ovl.hEvent);
 	BOOL ok = (cb->aio_lio_opcode == LIO_READ)?
 		ReadFile(h, buf, size32, 0, &r->ovl) : WriteFile(h, buf, size32, 0, &r->ovl);
 
-	if(ok || GetLastError() == ERROR_IO_PENDING)
-		return 0;
-	return -1;
+	if(GetLastError() == ERROR_IO_PENDING)
+	{
+		// clear annoying error
+		SetLastError(0);
+		ok = true;
+	}
+
+	return ok? 0 : -1;
 }
 
 
@@ -544,7 +543,8 @@ int lio_listio(int mode, struct aiocb* const cbs[], int n, struct sigevent* se)
 // return status of transfer
 int aio_error(const struct aiocb* cb)
 {
-	Req* const r = reqs->find(cb);
+debug_out("aio_error cb=%p\n", cb);
+	Req* const r = req_find(cb);
 	if(!r)
 		return -1;
 
@@ -565,7 +565,8 @@ int aio_error(const struct aiocb* cb)
 // get bytes transferred. call exactly once for each op.
 ssize_t aio_return(struct aiocb* cb)
 {
-	Req* const r = reqs->find(cb);
+debug_out("aio_return cb=%p\n", cb);
+	Req* const r = req_find(cb);
 	if(!r)
 		return -1;
 
@@ -576,8 +577,7 @@ ssize_t aio_return(struct aiocb* cb)
 	if(r->pad || _buf % sector_size)
 		memcpy(cb->aio_buf, (u8*)r->buf + r->pad, cb->aio_nbytes);
 
-	// free this request slot
-	r->cb = 0;
+	req_free(r);
 
 	return (ssize_t)cb->aio_nbytes;
 }
@@ -587,7 +587,7 @@ int aio_cancel(int fd, struct aiocb* cb)
 {
 	UNUSED(cb)
 
-	const HANDLE h = aio_hs->get(fd);
+	const HANDLE h = aio_h_get(fd);
 	if(h == INVALID_HANDLE_VALUE)
 		return -1;
 
@@ -608,6 +608,8 @@ int aio_suspend(const struct aiocb* const cbs[], int n, const struct timespec* t
 {
 	int i;
 
+debug_out("aio_suspend cb=%p\n", cbs[0]);
+
 	if(n <= 0 || n > MAXIMUM_WAIT_OBJECTS)
 		return -1;
 
@@ -620,7 +622,7 @@ int aio_suspend(const struct aiocb* const cbs[], int n, const struct timespec* t
 		if(!cbs[i])
 			continue;
 
-		Req* r = reqs->find(cbs[i]);
+		Req* r = req_find(cbs[i]);
 		if(r)
 		{
 			if(r->ovl.Internal == STATUS_PENDING)

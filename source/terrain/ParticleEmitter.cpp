@@ -27,7 +27,7 @@
 ==================================================================*/
 
 #include "ParticleEmitter.h"
-#include "time.h"
+#include "timer.h"
 #include "ogl.h"
 #include <stdlib.h>
 

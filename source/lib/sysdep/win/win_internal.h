@@ -22,6 +22,7 @@
 #define _WIN32_WINNT 0x0500
 
 
+
 #define NOGDICAPMASKS     // CC_*, LC_*, PC_*, CP_*, TC_*, RC_
 //#define NOVIRTUALKEYCODES // VK_*
 //#define NOWINMESSAGES     // WM_*, EM_*, LB_*, CB_*

@@ -26,7 +26,7 @@
 
 #include "Sprite.h"
 #include "ogl.h"
-#include "tex.h"
+#include "res/tex.h"
 
 CSprite::CSprite() :
 	m_texture(NULL) 

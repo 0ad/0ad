@@ -32,14 +32,11 @@
 #endif
 
 
-extern void log_out(char* fmt, ...);
-	extern void log_out2(char* fmt, ...);
-	extern void log_out3(char* fmt, ...);
-	extern "C" int _heapchk();
+#define STMT(STMT_code__) do { STMT_code__; } while(0)
 
 // must not be used before main entered! (i.e. not from NLS constructors / functions)
 #define ONCE(ONCE_code__)\
-{\
+STMT(\
 	static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;\
 	static bool ONCE_done__ = false;\
 	if(pthread_mutex_trylock(&(mutex)) == 0 && !ONCE_done__)\
@@ -47,7 +44,15 @@ extern void log_out(char* fmt, ...);
 		ONCE_done__ = true;\
 		ONCE_code__;\
 	}\
-}
+)
+
+
+#define CHECK_ERR(func)\
+STMT(\
+	int err = (int)(func);\
+	if(err < 0)\
+		return err;\
+)
 
 
 enum LibError
@@ -57,9 +62,9 @@ enum LibError
 	ERR_EOF            = -1002,	// attempted to read beyond EOF
 	ERR_INVALID_PARAM  = -1003,
 	ERR_FILE_NOT_FOUND = -1004,
+	ERR_PATH_NOT_FOUND = -1005,
 
-
-ERR_x
+	ERR_LAST
 };
 
 
@@ -83,8 +88,9 @@ ERR_x
 
 // generate a symbol containing the line number of the macro invocation.
 // used to give a unique name (per file) to types made by cassert.
-// we can't prepend __FILE__ to make it globally unique -
-// the filename may be enclosed in quotes.
+// we can't prepend __FILE__ to make it globally unique - the filename
+// may be enclosed in quotes. need the 2 macro expansions to make sure
+// __LINE__ is expanded correctly.
 #define MAKE_UID2__(l) LINE_ ## l
 #define MAKE_UID1__(l) MAKE_UID2__(l)
 #define UID__ MAKE_UID1__(__LINE__)
@@ -94,14 +100,14 @@ ERR_x
 #define cassert(expr) struct UID__ { int CASSERT_FAILURE: (expr); };
 
 // less helpful error message, but redefinition doesn't trigger warnings.
-#define cassert2(expr) extern char CASSERT_FAILURE[expr];
+#define cassert2(expr) extern char CASSERT_FAILURE[1][(expr)];
 
 // note: alternative method in C++: specialize a struct only for true;
-// sizeof will raise 'incomplete type' errors if instantiated with false.
+// using it will raise 'incomplete type' errors if instantiated with false.
 
 
 
-#define STMT(STMT_code__) do { STMT_code__; } while(0)
+
 
 
 // converts 4 character string to u32 for easy comparison
@@ -121,8 +127,8 @@ ERR_x
 
 
 
-const size_t KB = 1 << 10;
-const size_t MB = 1 << 20;
+const size_t KB = 1ul << 10;
+const size_t MB = 1ul << 20;
 
 
 #ifdef _WIN32
@@ -132,17 +138,16 @@ const size_t MB = 1 << 20;
 #endif
 
 
-
 #define BIT(n) (1ul << (n))
 
 
 
 
 // call from main as early as possible.
-void lib_init();
+extern void lib_init();
 
 
-enum CallConvention	// number of parameters
+enum CallConvention	// number of parameters and convention
 {
 	CC_CDECL_0,
 	CC_CDECL_1,
@@ -151,20 +156,18 @@ enum CallConvention	// number of parameters
 	CC_STDCALL_1,
 #endif
 
-	CC_UNUSED	// no trailing comma if !_WIN32
+	CC_UNUSED	// get rid of trailing comma when !_WIN32
 };
 
-#ifdef _WIN32
-#define CC_DEFAULT CC_STDCALL_1
-#else
-#define CC_DEFAULT CC_CDECL_1
-#endif
 
 // more powerful atexit: registers an exit handler, with 0 or 1 parameters.
 // callable before libc initialized, and frees up the real atexit table.
 // stdcall convention is provided on Windows to call APIs (e.g. WSACleanup).
 // for these to be called at exit, lib_main must be invoked after _cinit.
-extern int atexit2(void* func, uintptr_t arg, CallConvention cc = CC_DEFAULT);
+extern int atexit2(void* func, uintptr_t arg, CallConvention cc = CC_CDECL_1);
+
+// no parameters, cdecl (CC_CDECL_0)
+extern int atexit2(void* func);
 
 #include "posix.h"
 

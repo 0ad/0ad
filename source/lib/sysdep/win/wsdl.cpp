@@ -235,7 +235,7 @@ inline SDLKey vkmap(int vk)
 {
 	static SDLKey VK_SDLKMap[256]; /* VK_SDLKMap[vk] == SDLK */
 
-	ONCE( init_vkmap(VK_SDLKMap); )
+	ONCE( init_vkmap(VK_SDLKMap); );
 
 	assert(vk >= 0 && vk < 256);
 
@@ -306,16 +306,17 @@ return_char:
 				char_buf[num_chars]=0;
 				translated_keysym=vkmap(vk);
 				//wprintf(L"ToUnicode: Translated %02x to [%s], %d chars, SDLK %02x. Extended flag %d, scancode %d\n", vk, char_buf, num_chars, translated_keysym, msg.lParam & 0x01000000, scancode);
-				fflush(stdout);
+				//fflush(stdout);
 				goto return_char;
 			}
 			else if (num_chars == -1)
 			{
 				// Dead Key: Don't produce an event for this one
 				//printf("ToUnicode: Dead Key %02x [%c] [%c] SDLK %02x\n", vk, vk, char_buf[0], vkmap(vk));
-				fflush(stdout);
+				//fflush(stdout);
 				num_chars = 0;
 				break;
+					// leave the switch statement; get next message.
 			}
 			// num_chars == 0: No translation: Just produce a plain KEYDOWN event
 			
@@ -327,7 +328,7 @@ return_char:
 			ev->key.keysym.unicode = 0;
 
 			//printf("ToUnicode: No translation for %02x, extended flag %d, scancode %d, SDLK %02x [%c]\n", vk, msg.lParam & 0x01000000, scancode, ev->key.keysym.sym, ev->key.keysym.sym);
-			fflush(stdout);
+			//fflush(stdout);
 
 			return 1;
 		}
@@ -338,7 +339,7 @@ return_char:
 			// TODO Modifier statekeeping
 
 			ev->type = SDL_KEYUP;
-			ev->key.keysym.sym = vkmap(msg.wParam);
+			ev->key.keysym.sym = vkmap((int)msg.wParam);
 			ev->key.keysym.unicode = 0;
 			return 1;
 
@@ -360,7 +361,7 @@ return_char:
 			sdl_btn = SDL_BUTTON_LEFT + btn/3;	// assumes L,R,M
 		if(sdl_btn != -1)
 		{
-			ev->type = SDL_MOUSEBUTTONDOWN + btn%3;
+			ev->type = (u8)(SDL_MOUSEBUTTONDOWN + btn%3);
 			ev->button.button = (u8)sdl_btn;
 			ev->button.x = (u16)(msg.lParam & 0xffff);
 			ev->button.y = (u16)((msg.lParam >> 16) & 0xffff);
@@ -514,9 +515,11 @@ void SDL_Quit()
 }
 
 
-void SDL_WM_SetCaption(const char *title, const char *icon)
+void SDL_WM_SetCaption(const char* title, const char* icon)
 {
 	SetWindowText(hWnd, title);
+
+	UNUSED(icon);	// TODO: implement
 }
 
 

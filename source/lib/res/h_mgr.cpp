@@ -40,7 +40,7 @@
 // why fixed size control blocks, instead of just allocating dynamically?
 // it is expected that resources be created and freed often. this way is
 // much nicer to the memory manager. defining control blocks larger than
-// the alloted space is caught by h_alloc (made possible by the vtbl builder
+// the allotted space is caught by h_alloc (made possible by the vtbl builder
 // storing control block size). it is also efficient to have all CBs in an
 // more or less contiguous array (see below).
 //
@@ -69,19 +69,20 @@
 const uint TAG_SHIFT = 0;
 const u32 TAG_MASK = 0xffffffff;	// safer than (1 << 32) - 1
 
-// - index (0-based) points to control block in our array.
+// - index (0-based) of control block in our array.
 //   (field width determines maximum currently open handles)
 #define IDX_BITS 16
 const uint IDX_SHIFT = 32;
-const i32 IDX_MASK = (1l << IDX_BITS) - 1;
+const u32 IDX_MASK = (1l << IDX_BITS) - 1;
 
+// make sure both fields fit within a Handle variable
 cassert(IDX_BITS + TAG_BITS <= sizeof(Handle)*CHAR_BIT);
 
 
 // return the handle's index field (always non-negative).
 // no error checking!
-static inline i32 h_idx(const Handle h)
-{ return (i32)((h >> IDX_SHIFT) & IDX_MASK); }
+static inline u32 h_idx(const Handle h)
+{ return (u32)((h >> IDX_SHIFT) & IDX_MASK); }
 
 // return the handle's tag field.
 // no error checking!
@@ -89,7 +90,7 @@ static inline u32 h_tag(const Handle h)
 { return (u32)((h >> TAG_SHIFT) & TAG_MASK); }
 
 // build a handle from index and tag
-static inline Handle handle(const i32 idx, const i32 tag)
+static inline Handle handle(const u32 idx, const u32 tag)
 {
 	assert(idx <= IDX_MASK && tag <= TAG_MASK && "handle: idx or tag too big");
 	// somewhat clunky, but be careful with the shift:
@@ -104,16 +105,25 @@ static inline Handle handle(const i32 idx, const i32 tag)
 // internal per-resource-instance data
 //
 
+
 // determines maximum number of references to a resource.
-// a handle's idx field isn't stored in its HDATA entry (not needed);
-// to save space, this should take its place, i.e. it should fit in IDX_BITS.
-static const uint REF_BITS  = 12;
+static const uint REF_BITS  = 8;
 static const u32 REF_MAX = 1ul << REF_BITS;
+
+static const uint TYPE_BITS = 8;
+
+// a handle's idx field isn't stored in its HDATA entry (not needed);
+// to save space, these should take its place, i.e. they should fit in IDX_BITS.
+// if not, ignore + comment out this assertion.
+cassert(REF_BITS + TYPE_BITS <= IDX_BITS);
+
 
 // chosen so that all current resource structs are covered,
 // and so sizeof(HDATA) is a power of 2 (for more efficient array access
 // and array page usage).
 static const size_t HDATA_USER_SIZE = 48;
+
+static const size_t HDATA_MAX_PATH = 64;
 
 // 64 bytes
 struct HDATA
@@ -121,11 +131,12 @@ struct HDATA
 	uintptr_t key;
 	u32 tag  : TAG_BITS;
 	u32 refs : REF_BITS;
+	u32 type_idx : TYPE_BITS;
 	H_Type type;
 
-	const char* fn;
-
 	u8 user[HDATA_USER_SIZE];
+
+	char fn[HDATA_MAX_PATH];
 };
 
 
@@ -190,8 +201,8 @@ static HDATA* h_data_any_type(const Handle h)
 
 	i32 idx = h_idx(h);
 	// this function is only called for existing handles.
-	// they'd also fail the tag check below, but bail here
-	// to avoid needlessly allocating that entry's page.
+	// they'd also fail the tag check below, but bail out here
+	// already to avoid needlessly allocating that entry's page.
 	if(idx > last_in_use)
 		return 0;
 	HDATA* hd = h_data(idx);
@@ -282,7 +293,7 @@ static int alloc_idx(i32& idx, HDATA*& hd)
 			assert(!"alloc_idx: too many open handles (increase IDX_BITS)");
 			return -1;
 		}
-		idx = last_in_use+1;	// incrementing idx would start it at 1
+		idx = last_in_use+1;	// just incrementing idx would start it at 1
 		hd = h_data(idx);
 		if(!hd)
 			return ERR_NO_MEM;
@@ -325,7 +336,7 @@ int h_free(Handle& h, H_Type type)
 	if(!hd)
 		return ERR_INVALID_HANDLE;
 
-	// have valid refcount (don't decrement if alread 0)
+	// have valid refcount (don't decrement if already 0)
 	if(hd->refs > 0)
 	{
 		hd->refs--;
@@ -356,7 +367,7 @@ int h_free(Handle& h, H_Type type)
 // any further params are passed to type's init routine
 Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 {
-	ONCE(atexit(cleanup))
+	ONCE(atexit(cleanup));
 
 	Handle err;
 

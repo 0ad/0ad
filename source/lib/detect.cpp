@@ -30,22 +30,10 @@
 # include "sysdep/ia32.h"
 #endif
 #include "timer.h"
-#include "ogl.h"
-#include "sdl.h"
 
-// HACK
 extern int win_get_gfx_card();
 extern int win_get_gfx_drv();
 extern int win_get_cpu_info();
-
-/*
-// useful for choosing a video mode. not called by detect().
-void get_cur_resolution(int& xres, int& yres)
-{
-	// guess
-	xres = 1024; yres = 768;
-}
-*/
 
 //
 // memory

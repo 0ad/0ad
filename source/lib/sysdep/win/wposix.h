@@ -34,6 +34,13 @@ extern "C" {
 
 #define IMP(ret, name, param) extern "C" __declspec(dllimport) ret __stdcall name param;
 
+// for functions actually implemented in the CRT
+#ifdef _DLL
+#define _CRTIMP __declspec(dllimport)
+#else
+#define _CRTIMP
+#endif
+
 
 
 //
@@ -189,10 +196,13 @@ extern int open(const char* fn, int mode, ...);
 // <unistd.h>
 //
 
+// values from MS _access() implementation. do not change.
 #define F_OK 0
-#define R_OK 1
+#define R_OK 4
 #define W_OK 2
-#define X_OK 4
+#define X_OK 0
+	// MS implementation doesn't support this distinction.
+	// hence, the file is reported executable if it exists.
 
 #define read _read
 #define write _write

@@ -300,7 +300,7 @@ public:
 		// Copy from memory
 		tOutput = *(T*)mem;
 
-		delete [] mem;
+		free(mem);
 
 		// TODO Gee: Undefined type - maybe report in log
 		return true;

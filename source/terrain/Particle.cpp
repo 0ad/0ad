@@ -25,7 +25,7 @@
 ==================================================================*/
 
 #include "Particle.h"
-#include "time.h"
+#include "timer.h"
 #include "ogl.h"
 #include <assert.h>
 

@@ -83,15 +83,35 @@ static void* pool_alloc(const size_t size, const uint align, uintptr_t& ctx, MEM
 //////////////////////////////////////////////////////////////////////////////
 
 
+static bool has_shutdown = false;
+
 typedef std::map<void*, Handle> PtrToH;
+static PtrToH* _ptr_to_h;
+
+
+static void ptr_to_h_shutdown()
+{
+	has_shutdown = true;
+	delete _ptr_to_h;
+}
+
 
 // undefined NLSO init order fix
-static PtrToH& _ptr_to_h()
+static PtrToH& get_ptr_to_h()
 {
-	static PtrToH ptr_to_h_;
-	return ptr_to_h_;
+	if(!_ptr_to_h)
+	{
+		if(has_shutdown)
+			assert("mem.cpp: ptr -> handle lookup used after module shutdown");
+			// crash + burn
+
+		_ptr_to_h = new PtrToH;
+
+		atexit2(ptr_to_h_shutdown);
+	}
+	return *_ptr_to_h;
 }
-#define ptr_to_h _ptr_to_h()
+#define ptr_to_h get_ptr_to_h()
 
 
 // not needed by other modules - mem_get_size and mem_assign is enough.
@@ -268,11 +288,15 @@ void* mem_alloc(size_t size, const uint align, uint flags, Handle* phm)
 }
 
 
-void* mem_get_ptr(Handle hm, size_t* size)
+void* mem_get_ptr(Handle hm, size_t* size /* = 0 */)
 {
 	Mem* m = H_USER_DATA(hm, Mem);
 	if(!m)
+	{
+		if(size)
+			*size = 0;
 		return 0;
+	}
 
 	assert((!m->p || m->size) && "mem_get_ptr: mem corrupted (p valid =/=> size > 0)");
 

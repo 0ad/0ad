@@ -23,6 +23,7 @@
 #include <cassert>
 
 #include <crtdbg.h>	// malloc debug
+#include <malloc.h>
 
 
 //
@@ -37,62 +38,60 @@ void check_heap()
 }
 
 
-void display_msg(const wchar_t* caption, const wchar_t* msg)
+void display_msg(const char* caption, const char* msg)
+{
+	MessageBoxA(0, msg, caption, MB_ICONEXCLAMATION);
+}
+
+void wdisplay_msg(const wchar_t* caption, const wchar_t* msg)
 {
 	MessageBoxW(0, msg, caption, MB_ICONEXCLAMATION);
 }
 
 
-// fixing Win32 _vsnprintf to return # characters that would be written,
-// as required by C99, looks difficult and unnecessary. if any other code
-// needs that, generalize the following code into vasprintf.
+
+// need to shoehorn printf-style variable params into
+// the OutputDebugString call.
+// - don't want to split into multiple calls - would add newlines to output.
+// - fixing Win32 _vsnprintf to return # characters that would be written,
+//   as required by C99, looks difficult and unnecessary. if any other code
+//   needs that, implement GNU vasprintf.
+// - fixed size buffers aren't nice, but much simpler than vasprintf-style
+//   allocate+expand_until_it_fits. these calls are for quick debug output,
+//   not loads of data, anyway.
+
+
+static const int MAX_CNT = 512;
+	// max output size of 1 call of (w)debug_out (including \0)
+
+
 
 void debug_out(const char* fmt, ...)
 {
-	size_t size = 256;
-	void* buf = 0;
+	char buf[MAX_CNT];
+	buf[MAX_CNT-1] = '\0';
 
-	for(;;)
-	{
-		void* buf2 = realloc(buf, size);
-		// out of mem - free old buf and quit
-		if(!buf2)
-			goto fail;
-		buf = buf2;
-			// don't assign directly from realloc - if it fails,
-			// we'd leak memory.
+	va_list ap;
+	va_start(ap, fmt);
+	vsnprintf(buf, MAX_CNT-1, fmt, ap);
+	va_end(ap);
 
-		{
-		va_list args;
-		va_start(args, fmt);
-			// have to re-create every time. va_copy isn't portable.
-
-		int ret = vsnprintf((char*)buf, size, fmt, args);
-
-		// success
-		if(ret > -1 && ret < (int)size)
-			break;
-		// return value was required buffer size (without trailing '\0')
-		if(ret > (int)size)
-			size = ret+1;
-		// -1: increase buffer size
-		else
-			size *= 2;
-
-		va_end(args);
-		}
-
-		// prevent infinite loop
-		if(size > 64*KB)
-			goto fail;
-	}
-
-	OutputDebugString((const char*)buf);
-
-fail:
-	free(buf);
+	OutputDebugString(buf);
 }
-	
+
+
+void wdebug_out(const wchar_t* fmt, ...)
+{
+	wchar_t buf[MAX_CNT];
+	buf[MAX_CNT-1] = L'\0';
+
+	va_list ap;
+	va_start(ap, fmt);
+	vsnwprintf(buf, MAX_CNT-1, fmt, ap);
+	va_end(ap);
+
+	OutputDebugStringW(buf);
+}
 
 
 
