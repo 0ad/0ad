@@ -34,9 +34,6 @@ class CRadioButton : public CCheckBox
 {
 	GUI_OBJECT(CRadioButton)
 
-	// Let the class freely interact with its siblings
-	friend class CRadioButton;
-
 public:
 	/**
 	 * Handle Messages
