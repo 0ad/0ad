@@ -44,13 +44,19 @@ int res_reload_changed_files()
 
 		const char* fn = vfs_path;
 
+		char* ext = strrchr(fn, '.');
+
+		// slight optimization (and reduces output clutter):
+		// don't reload XMB output files
+		if(ext && !strcmp(ext, ".xmb"))
+			continue;
+
 		// many apps save by creating a temp file, deleting the original,
 		// and renaming the temp file. that leads to 2 reloads, which is slow.
 		// so:
 		// .. ignore temp files,
-		char* ext = strrchr(fn, '.');
 		if(ext && !strcmp(ext, ".tmp"))
-			continue;
+				continue;
 		// .. and directory change (more info is upcoming anyway)
 		if(!ext)	// dir changed
 			continue;
