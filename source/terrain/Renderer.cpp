@@ -135,8 +135,9 @@ void CRenderer::RenderTerrain (CTerrain *terrain, CCamera *camera)
 	else
 		glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
 
+	int j;
 
-	for (int j=0; j<NUM_PATCHES_PER_SIDE; j++)
+	for (j=0; j<NUM_PATCHES_PER_SIDE; j++)
 	{
 		for (int i=0; i<NUM_PATCHES_PER_SIDE; i++)
 		{

@@ -41,9 +41,9 @@ class CFrustum
 
 		//The following methods return true if the shape is
 		//partially or completely in front of the frustum planes
-		bool IsPointVisible (CVector3D &point);
-		bool IsSphereVisible (CVector3D &center, float radius);
-		bool IsBoxVisible (CVector3D &position, SBoundingBox &bounds);
+		bool IsPointVisible (const CVector3D &point);
+		bool IsSphereVisible (const CVector3D &center, float radius);
+		bool IsBoxVisible (const CVector3D &position, SBoundingBox &bounds);
 
 	public:
 		//make the planes public for ease of use

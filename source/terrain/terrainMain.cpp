@@ -8,7 +8,7 @@
 #include "tex.h"
 
 // TODO: fix scrolling hack - framerate independent, use SDL
-#include "win.h"	// REMOVEME
+//#include "win.h"	// REMOVEME
 
 void InitScene ();
 void InitResources ();
@@ -59,9 +59,9 @@ void terr_update()
 g_FrameCounter++;
 
 	/////////////////////////////////////////////
-		POINT MousePos;
+		/*POINT MousePos;
 
-		GetCursorPos (&MousePos);
+		GetCursorPos (&MousePos);*/
 		CVector3D right(1,0,1);
 		CVector3D up(1,0,-1);
 		right.Normalize ();
@@ -84,7 +84,7 @@ g_FrameCounter++;
 		if(keys[SDLK_KP_MINUS])
 			if (fov+d < DEGTORAD(90))
 				g_Camera.SetProjection (1, 1000, fov + d);
-		if(keys[SDLK_KP_ADD])
+		if(keys[SDLK_KP_PLUS])
 			if (fov-d > DEGTORAD(20))
 			g_Camera.SetProjection (1, 1000, fov - d);
 

@@ -40,10 +40,10 @@ class CPlane
 
 		//returns the side of the plane on which this point
 		//lies.
-		PLANESIDE ClassifyPoint (CVector3D &point);
+		PLANESIDE ClassifyPoint (const CVector3D &point) const;
 
 		//solves the plane equation for a particular point
-		float DistanceToPlane (CVector3D &point);
+		float DistanceToPlane (const CVector3D &point) const;
 
 		//calculates the intersection point of a line with this
 		//plane. Returns false if there is no intersection

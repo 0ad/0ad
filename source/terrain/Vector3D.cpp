@@ -57,7 +57,7 @@ int CVector3D::operator ! ()
 }
 
 //vector addition
-CVector3D CVector3D::operator + (CVector3D &vector)
+CVector3D CVector3D::operator + (const CVector3D &vector) const
 {
 	CVector3D Temp;
 
@@ -69,7 +69,7 @@ CVector3D CVector3D::operator + (CVector3D &vector)
 }
 
 //vector addition/assignment
-CVector3D &CVector3D::operator += (CVector3D &vector)
+CVector3D &CVector3D::operator += (const CVector3D &vector)
 {
 	X += vector.X;
 	Y += vector.Y;
@@ -79,7 +79,7 @@ CVector3D &CVector3D::operator += (CVector3D &vector)
 }
 
 //vector subtraction
-CVector3D CVector3D::operator - (CVector3D &vector)
+CVector3D CVector3D::operator - (const CVector3D &vector) const
 {
 	CVector3D Temp;
 
@@ -91,7 +91,7 @@ CVector3D CVector3D::operator - (CVector3D &vector)
 }
 
 //vector subtrcation/assignment
-CVector3D &CVector3D::operator -= (CVector3D &vector)
+CVector3D &CVector3D::operator -= (const CVector3D &vector)
 {
 	X -= vector.X;
 	Y -= vector.Y;
@@ -135,7 +135,7 @@ void CVector3D::Clear ()
 }
 
 //Dot product
-float CVector3D::Dot (CVector3D &vector)
+float CVector3D::Dot (const CVector3D &vector) const
 {
 	return ( X * vector.X +
 			 Y * vector.Y +
@@ -143,7 +143,7 @@ float CVector3D::Dot (CVector3D &vector)
 }
 
 //Cross product
-CVector3D CVector3D::Cross (CVector3D &vector)
+CVector3D CVector3D::Cross (const CVector3D &vector) const
 {
 	CVector3D Temp;
 

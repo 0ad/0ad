@@ -28,9 +28,9 @@ class CMatrix3D
 		CMatrix3D ();
 
 		//Matrix multiplication
-		CMatrix3D operator * (CMatrix3D &matrix);
+		CMatrix3D operator * (const CMatrix3D &matrix) const;
 		//Matrix multiplication/assignment
-		CMatrix3D &operator *= (CMatrix3D &matrix);
+		CMatrix3D &operator *= (const CMatrix3D &matrix);
 
 		//Sets the identity matrix
 		void SetIdentity ();
@@ -51,11 +51,11 @@ class CMatrix3D
 
 		//Sets the translation of the matrix
 		void SetTranslation (float x, float y, float z);
-		void SetTranslation (CVector3D &vector);
+		void SetTranslation (const CVector3D &vector);
 
 		//Applies a translation to the matrix
 		void Translate (float x, float y, float z);
-		void Translate (CVector3D &vector);
+		void Translate (const CVector3D &vector);
 
 		CVector3D GetTranslation ();
 

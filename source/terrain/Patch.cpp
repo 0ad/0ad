@@ -35,7 +35,9 @@ void CPatch::Initialize (STerrainVertex *first_vertex)
 
 	m_Bounds.m_BoxMin.Y = m_Bounds.m_BoxMin.Y = m_pVertices[0].m_Position.Y;
 
-	for (int j=0; j<PATCH_SIZE+1; j++)
+	int j;
+
+	for (j=0; j<PATCH_SIZE+1; j++)
 	{
 		for (int i=0; i<PATCH_SIZE+1; i++)
 		{

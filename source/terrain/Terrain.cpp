@@ -55,7 +55,9 @@ const u8* data = (const u8*)mem->p;
 	if (m_pVertices == NULL)
 		return false;
 
-	for (int j=0; j<MAP_SIZE; j++)
+	int j;
+
+	for (j=0; j<MAP_SIZE; j++)
 	{
 		for (int i=0; i<MAP_SIZE; i++)
 		{

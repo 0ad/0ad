@@ -63,7 +63,7 @@ void CPlane::Normalize ()
 
 //returns the side of the plane on which this point
 //lies.
-PLANESIDE CPlane::ClassifyPoint (CVector3D &point)
+PLANESIDE CPlane::ClassifyPoint (const CVector3D &point) const
 {
 	float Dist;
 
@@ -81,7 +81,7 @@ PLANESIDE CPlane::ClassifyPoint (CVector3D &point)
 }
 
 //solves the plane equation for a particular point
-float CPlane::DistanceToPlane (CVector3D &point)
+float CPlane::DistanceToPlane (const CVector3D &point) const
 {
 	float Dist;
 

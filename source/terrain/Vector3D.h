@@ -30,14 +30,14 @@ class CVector3D
 		int operator ! ();
 		
 		//vector addition
-		CVector3D operator + (CVector3D &vector);
+		CVector3D operator + (const CVector3D &vector) const;
 		//vector addition/assignment
-		CVector3D &operator += (CVector3D &vector);
+		CVector3D &operator += (const CVector3D &vector);
 
 		//vector subtraction
-		CVector3D operator - (CVector3D &vector);
+		CVector3D operator - (const CVector3D &vector) const;
 		//vector subtraction/assignment
-		CVector3D &operator -= (CVector3D &vector);
+		CVector3D &operator -= (const CVector3D &vector);
 		
 		//scalar multiplication
 		CVector3D operator * (float value);
@@ -49,9 +49,9 @@ class CVector3D
 		void Clear ();
 
 		//Dot product
-		float Dot (CVector3D &vector);
+		float Dot (const CVector3D &vector) const;
 		//Cross product
-		CVector3D Cross (CVector3D &vector);
+		CVector3D Cross (const CVector3D &vector) const;
 
 		//Returns length of the vector
 		float GetLength ();

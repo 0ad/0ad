@@ -17,7 +17,7 @@ CMatrix3D::CMatrix3D ()
 }
 
 //Matrix multiplication
-CMatrix3D CMatrix3D::operator * (CMatrix3D &matrix)
+CMatrix3D CMatrix3D::operator * (const CMatrix3D &matrix) const
 {
 	CMatrix3D Temp;
 
@@ -105,11 +105,11 @@ CMatrix3D CMatrix3D::operator * (CMatrix3D &matrix)
 }
 
 //Matrix multiplication/assignment
-CMatrix3D &CMatrix3D::operator *= (CMatrix3D &matrix)
+CMatrix3D &CMatrix3D::operator *= (const CMatrix3D &matrix)
 {
-	CMatrix3D &Temp = (*this) * matrix;
+	*this = (*this) * matrix;
 
-	return Temp;
+	return *this;
 }
 
 //Sets the identity matrix
@@ -202,7 +202,7 @@ void CMatrix3D::SetTranslation (float x, float y, float z)
 	_41=0.0f; _42=0.0f; _43=0.0f; _44=1.0f;
 }
 
-void CMatrix3D::SetTranslation (CVector3D &vector)
+void CMatrix3D::SetTranslation (const CVector3D &vector)
 {
 	SetTranslation (vector.X, vector.Y, vector.Z);	
 }
@@ -216,7 +216,7 @@ void CMatrix3D::Translate (float x, float y, float z)
 	(*this) = Temp * (*this);
 }
 
-void CMatrix3D::Translate (CVector3D &vector)
+void CMatrix3D::Translate (const CVector3D &vector)
 {
 	Translate (vector.X, vector.Y, vector.Z);
 }
