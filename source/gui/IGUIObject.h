@@ -135,7 +135,7 @@ class IGUIObject
 	friend class IGUIScrollBar;
 
 	// Allow getProperty to access things like GetParent()
-	friend JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval* vp);
+	friend JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval* vp);
 
 public:
 	IGUIObject();

@@ -1,4 +1,4 @@
-// $Id: JSInterface_IGUIObject.cpp,v 1.1 2004/07/08 15:19:45 philip Exp $
+// $Id: JSInterface_IGUIObject.cpp,v 1.2 2004/07/10 21:23:06 philip Exp $
 
 #include "precompiled.h"
 
@@ -244,7 +244,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 						jsval t; int32 s;
 						#define PROP(x) JS_GetProperty(cx, obj, #x, &t); \
 										JS_ValueToInt32(cx, t, &s); \
-										area.pixel.##x = s
+										area.pixel.x = s
 						PROP(left); PROP(top); PROP(right); PROP(bottom);
 						#undef PROP
 
@@ -270,7 +270,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 						jsval t; double s;
 						#define PROP(x) JS_GetProperty(cx, obj, #x, &t); \
 										JS_ValueToNumber(cx, t, &s); \
-										colour.##x = (float)s
+										colour.x = (float)s
 						PROP(r); PROP(g); PROP(b); PROP(a);
 						#undef PROP
 

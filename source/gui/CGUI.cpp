@@ -29,10 +29,8 @@ gee@pyro.nu
 #include <stdarg.h>
 
 // namespaces used
-//XERCES_CPP_NAMESPACE_USE
 using namespace std;
 
-#include "sysdep/ia32.h"
 #include "ps/CLogger.h"
 #define XERO_TIME
 

@@ -1,4 +1,4 @@
-// $Id: JSInterface_IGUIObject.h,v 1.1 2004/07/08 15:19:45 philip Exp $
+// $Id: JSInterface_IGUIObject.h,v 1.2 2004/07/10 21:23:06 philip Exp $
 
 #include "scripting/ScriptingHost.h"
 #include "gui/GUI.h"
