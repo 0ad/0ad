@@ -81,8 +81,17 @@ BasicType;
 static HANDLE hProcess;
 static uintptr_t mod_base;
 
-static char buf[64000];		/* buffer for stack trace */
-static char* out;			/* current pos in buf */
+static wchar_t buf[64000];		/* buffer for stack trace */
+static wchar_t* pos;			/* current pos in buf */
+
+
+static void out(wchar_t* fmt, ...)
+{
+	va_list args;
+	va_start(args, fmt);
+	pos += vswprintf(pos, 1000, fmt, args);
+	va_end(args);
+}
 
 
 static void dbg_cleanup(void)
@@ -180,9 +189,9 @@ static void print_var(u32 type_idx, uint level, u64 addr)
 	u32 elements;
 	_SymGetTypeInfo(hProcess, mod_base, level? real_typeid : type_idx, TI_GET_COUNT, &elements);
 
-	char* fmt = "%I64X";	/* default: 64 bit integer */
+	wchar_t* fmt = L"%I64X";	/* default: 64 bit integer */
 
-	out += sprintf(out, "= ");
+	out(L"= ");
 
 	/*
 	 * single string (character array)
@@ -190,7 +199,7 @@ static void print_var(u32 type_idx, uint level, u64 addr)
 	 */
 	if(len == elements && is_string_ptr(addr))
 	{
-		out += sprintf(out, "\"%s\"\r\n", (char*)addr);
+		out(L"\"%hs\"\r\n", (char*)addr);
 		return;
 	}
 
@@ -198,7 +207,7 @@ static void print_var(u32 type_idx, uint level, u64 addr)
 	if(elements)
 	{
 		len /= elements;
-		out += sprintf(out, "{ ");
+		out(L"{ ");
 	}
 
 next_element:
@@ -217,19 +226,19 @@ next_element:
 			double double_data = (double)(*(float*)addr);
 			data = *(u64*)&double_data;
 		}
-		fmt = "%lf";
+		fmt = L"%lf";
 	}
 	/* string (char*) */
 	else if(len == sizeof(void*) && is_string_ptr(data))
 	{
-		fmt = "\"%s\"";
+		fmt = L"\"%hs\"";
 	}
 
-	out += sprintf(out, fmt, data);
+	out(fmt, data);
 
 	/* ascii char */
 	if(data < 0x100 && isprint((int)data))
-		out += sprintf(out, " ('%c')", (char)data);
+		out(L" ('%hc')", (char)data);
 
 	if(elements)
 	{
@@ -237,15 +246,15 @@ next_element:
 		elements--;
 
 		if(elements == 0)
-			out += sprintf(out, " }");
+			out(L" }");
 		else
 		{
-			out += sprintf(out, ", ");
+			out(L", ");
 			goto next_element;
 		}
 	}
 
-	out += sprintf(out, "\r\n");
+	out(L"\r\n");
 }
 
 
@@ -259,7 +268,7 @@ static void dump_sym(u32 type_idx, uint level, u64 addr)
 	WCHAR* type_name;
 	if(_SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_SYMNAME, &type_name))
 	{
-		out += sprintf(out, "%ls ", (char*)type_name);	/* HACK: get rid of ICC warning */
+		out(L"%ls ", type_name);
 		LocalFree(type_name);
 	}
 
@@ -270,13 +279,18 @@ static void dump_sym(u32 type_idx, uint level, u64 addr)
 		return;
 	}
 
+	// bogus
+	if(num_children > 50)
+		return;
+
 	/* get children's type indices */
-	static char child_buf[sizeof(TI_FINDCHILDREN_PARAMS) + 256*4];
+	char child_buf[sizeof(TI_FINDCHILDREN_PARAMS) + 256*4];
 	TI_FINDCHILDREN_PARAMS* children = (TI_FINDCHILDREN_PARAMS*)child_buf;
 	children->Count = num_children;
+	children->Start = 0;
 	_SymGetTypeInfo(hProcess, mod_base, type_idx, TI_FINDCHILDREN, children);
 
-    out += sprintf(out, "\r\n");
+    out(L"\r\n");
 
 	/* recurse for each child */
 	for(uint child_idx = 0; child_idx < num_children; child_idx++)
@@ -285,7 +299,7 @@ static void dump_sym(u32 type_idx, uint level, u64 addr)
 
 		/* indent */
 		for(uint i = 0; i < level+3; i++)
-			out += sprintf(out, "  ");
+			out(L"  ");
 
 		u32 member_ofs;
 		_SymGetTypeInfo(hProcess, mod_base, child_id, TI_GET_OFFSET, &member_ofs);
@@ -321,17 +335,17 @@ static BOOL CALLBACK sym_callback(SYMBOL_INFO* sym, ULONG /* SymbolSize */, void
 			if(var_type != PARAMS)
 			{
 				var_type = PARAMS;
-				out += sprintf(out, "  params:\r\n");
+				out(L"  params:\r\n");
 			}
 		}
 		else
 			if(var_type != LOCALS)
 			{
 				var_type = LOCALS;
-				out += sprintf(out, "  locals:\r\n");
+				out(L"  locals:\r\n");
 			}
 
-		out += sprintf(out, "    %s ", sym->Name);
+		out(L"    %hs ", sym->Name);
 
 		u64 addr = sym->Address;	/* -> var's contents */
 		if(SYM_FLAG(REGRELATIVE))
@@ -343,7 +357,7 @@ static BOOL CALLBACK sym_callback(SYMBOL_INFO* sym, ULONG /* SymbolSize */, void
 	}
     __except(1)
     {
-		out += sprintf(out, "\r\nError reading symbol %s!\r\n", sym->Name);
+		out(L"\r\nError reading symbol %hs!\r\n", sym->Name);
     }
 
 	return 1;
@@ -354,25 +368,27 @@ static BOOL CALLBACK sym_callback(SYMBOL_INFO* sym, ULONG /* SymbolSize */, void
  * most recent <skip> stack frames will be skipped
  * (we don't want to show e.g. GetThreadContext / this call)
  */
-static void walk_stack(int skip, char* out_buf)
+static void walk_stack(int skip, wchar_t* out_buf)
 {
 	dbg_init();
 
 	bool type_avail = _SymFromAddr != 0;
 
-	out = out_buf;
-	out += sprintf(out, "\r\nCall stack:\r\n");
+	pos = out_buf;
+	out(L"\r\nCall stack:\r\n");
 
 	if(!type_avail)
-		out += sprintf(out, "warning: older dbghelp.dll loaded; no type information available.\r\n");
+		out(L"warning: older dbghelp.dll loaded; no type information available.\r\n");
 
 	HANDLE hThread = GetCurrentThread();
 
-	static CONTEXT context;
+	CONTEXT context;
+	memset(&context, 0, sizeof(context));
 	context.ContextFlags = CONTEXT_FULL;
 	GetThreadContext(hThread, &context);
 
-	static STACKFRAME64 frame;
+	STACKFRAME64 frame;
+	memset(&frame, 0, sizeof(frame));
 
 #ifdef _M_IX86
 	/* x86 only: init STACKFRAME for first StackWalk call (undocumented) */
@@ -388,13 +404,14 @@ static void walk_stack(int skip, char* out_buf)
 	IMAGE_NT_HEADERS* header = _ImageNtHeader((void*)base);
 	u32 machine = header->FileHeader.Machine;
 
-	static char sym_buf[sizeof(SYMBOL_INFO) + 1024];
+	char sym_buf[sizeof(SYMBOL_INFO) + 1024];
+	memset(sym_buf, 0, sizeof(sym_buf));
 	SYMBOL_INFO* sym = (SYMBOL_INFO*)sym_buf;
 	sym->SizeOfStruct = sizeof(SYMBOL_INFO);
 	sym->MaxNameLen = 1024;
 
-	static IMAGEHLP_LINE64 line = { sizeof(IMAGEHLP_LINE64) };
-	static IMAGEHLP_STACK_FRAME imghlp_frame;
+	IMAGEHLP_LINE64 line = { sizeof(IMAGEHLP_LINE64) };
+	IMAGEHLP_STACK_FRAME imghlp_frame;
 
     for(;;)
     {
@@ -408,23 +425,23 @@ static void walk_stack(int skip, char* out_buf)
 
 		if(!type_avail)
 		{
-			out += sprintf(out, "%I64X\r\n", pc);
+			out(L"%I64X\r\n", pc);
 			continue;
 		}
 
 		/* function name / address */
 		u64 sym_disp;
         if(type_avail && _SymFromAddr(hProcess, pc, &sym_disp, sym))
-			out += sprintf(out, "%s", sym->Name);
+			out(L"%hs", sym->Name);
 		else
-			out += sprintf(out, "%I64X", pc);
+			out(L"%I64X", pc);
 
 		/* source file + line number */
 		DWORD line_disp;
         if(_SymGetLineFromAddr64(hProcess, pc, &line_disp, &line))
-			out += sprintf(out, " (%s, line %lu)", line.FileName, line.LineNumber);
+			out(L" (%hs, line %lu)", line.FileName, line.LineNumber);
 
-		out += sprintf(out, "\r\n");
+		out(L"\r\n");
 
 		/* params + vars */
 		var_type = NONE;
@@ -433,7 +450,7 @@ static void walk_stack(int skip, char* out_buf)
 		_SymSetContext(hProcess, &imghlp_frame, 0);
 		_SymEnumSymbols(hProcess, 0, 0, sym_callback, &frame);
 
-		out += sprintf(out, "\r\n");
+		out(L"\r\n");
     }
 	
 }
@@ -473,7 +490,7 @@ static int CALLBACK dlgproc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM l
 			EnableWindow(h, 0);
 		}
 
-		SetDlgItemText(hDlg, IDC_EDIT1, buf);
+		SetDlgItemTextW(hDlg, IDC_EDIT1, buf);
 		return 1;	/* allow focus to be set */
 	}
 
@@ -486,14 +503,7 @@ static int CALLBACK dlgproc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM l
 		switch(wParam)
 		{
 		case IDC_COPY:
-			if(OpenClipboard(NULL))
-			{
-				EmptyClipboard();
-				HANDLE text = GlobalAlloc(GMEM_FIXED, strlen(buf)+1);
-				strcpy((char*)text, buf);
-                SetClipboardData(CF_TEXT, text);
-				CloseClipboard();
-			}
+			clipboard_set(buf);
 			break;
 
 		case IDC_CONTINUE:	/* 2000 */
@@ -583,7 +593,7 @@ static long CALLBACK except_filter(EXCEPTION_POINTERS* except)
 	}
 
 
-	int pos = sprintf(buf, "Exception %s at %s!%08lX\r\n", except_str, module, addr-base);
+	int pos = swprintf(buf, 1000, L"Exception %hs at %hs!%08lX\r\n", except_str, module, addr-base);
 	walk_stack(0, buf+pos);
 
 	dialog(EXCEPTION);
@@ -606,7 +616,7 @@ int wdbg_show_assert_dlg(char* file, int line, char* expr)
 {
 	ONCE(dbg_init());
 
-	int pos = sprintf(buf, "Assertion failed in %s, line %d: %s\r\n", file, line, expr);
+	int pos = swprintf(buf, 1000, L"Assertion failed in %hs, line %d: %hs\r\n", file, line, expr);
 	walk_stack(2, buf+pos);
 
 	return dialog(ASSERT);
