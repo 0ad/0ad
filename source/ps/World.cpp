@@ -9,7 +9,7 @@
 #include "Game.h"
 #include "Terrain.h"
 
-CTerrain g_Terrain;
+CTerrain* g_Terrain_ptr = NULL;
 
 void CWorld::Initialize(CGameAttributes *pAttribs)
 {

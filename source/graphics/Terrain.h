@@ -77,6 +77,9 @@ private:
 	u16* m_Heightmap;	
 };
 
-extern CTerrain g_Terrain;
+extern CTerrain* g_Terrain_ptr;
+#ifndef g_Terrain
+#define g_Terrain (*g_Terrain_ptr)
+#endif
 
 #endif

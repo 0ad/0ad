@@ -662,6 +662,8 @@ static void Shutdown()
 {
 	psShutdown(); // Must delete g_GUI before g_ScriptingHost
 
+	delete g_Game;
+
 	delete &g_Scheduler;
 
 	delete &g_Mouseover;
@@ -679,6 +681,7 @@ static void Shutdown()
 
 	// destroy terrain related stuff
 	delete &g_TexMan;
+	delete &g_Terrain;
 
 	// destroy renderer
 	delete &g_Renderer;
@@ -827,6 +830,8 @@ PREVTSC=CURTSC;
 
 	MICROLOG(L"init renderer");
 	g_Renderer.Open(g_xres,g_yres,g_bpp);
+	
+	g_Terrain_ptr = new CTerrain;
 
 	// terr_init loads a bunch of resources as well as setting up the terrain
 	terr_init();

@@ -5,7 +5,8 @@ class CGame;
 class CGameAttributes;
 
 class CTerrain;
-extern CTerrain g_Terrain;
+extern CTerrain* g_Terrain_ptr;
+#define g_Terrain (*g_Terrain_ptr)
 
 #include "UnitManager.h"
 
