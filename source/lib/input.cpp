@@ -79,7 +79,7 @@ state = INIT;
 
 static FILE* f;
 
-extern u32 game_ticks;
+u32 game_ticks;
 
 static u32 time_adjust = 0;
 static u32 next_event_time;

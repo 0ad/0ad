@@ -112,13 +112,13 @@ int fps;
 
 void calc_fps()
 {
-	static double avg_fps = 30.0;
+	static double avg_fps = 60.0;
 	double cur_fps = avg_fps;
 
 	// get elapsed time [s] since last update
 	static double last_t;
 	const double t = get_time();
-	ONCE(last_t = t - 33e-3);	// first call: 30 FPS
+	ONCE(last_t = t - 1.0/60.0);	// first call: 60 FPS
 	const double dt = t - last_t;
 
 	// (in case timer resolution is low): count frames until
@@ -229,5 +229,7 @@ void calc_fps()
 	const double difference = fabs(avg_fps-fps);
 	const double threshold = fminf(5.f, 0.05f*fps);
 	if(difference > threshold)
-		fps = (int)avg_fps;
+		fps = (int)(avg_fps + 0.99);
+			// C float -> int rounds down; we want to round up to
+			// hit vsync-locked framerates exactly.
 }

@@ -19,6 +19,8 @@
 #ifndef TIMER_H
 #define TIMER_H
 
+#include "sysdep/debug.h"	// debug_out
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -67,7 +69,7 @@ public:
 		else if(dt > 1e-3)
 			scale = 1e3, unit = 'm';
 
-		printf("TIMER %s: %g %cs\n", name.c_str(), dt*scale, unit);
+		debug_out("TIMER %s: %g %cs\n", name.c_str(), dt*scale, unit);
 	}
 };
 

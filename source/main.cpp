@@ -84,8 +84,6 @@ extern int conInputHandler(const SDL_Event* ev);
 
 // Globals
 
-u32 game_ticks;
-
 bool keys[SDLK_LAST];
 bool mouseButtons[5];
 int mouse_x=50, mouse_y=50;
@@ -961,6 +959,7 @@ static void Shutdown()
 	vfs_shutdown();
 
 	h_mgr_shutdown();
+	mem_shutdown();
 }
 
 static void Init(int argc, char* argv[])
