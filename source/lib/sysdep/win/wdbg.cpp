@@ -684,7 +684,9 @@ int debug_write_crashlog(const char* file)
 	int len = swprintf(buf, 1000, L"Undefined state reached.\r\n");
 	walk_stack(2, buf+len);
 
-	FILE* f = fopen(file, "w");
+	FILE* f = fopen(file, "wb");
+	int BOM = 0xFEFF;
+	fwrite(&BOM, 2, 1, f);
 	fwrite(buf, pos-buf, 2, f);
 	fclose(f);
 
