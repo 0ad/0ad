@@ -542,7 +542,7 @@ int aio_error(const struct aiocb* cb)
 	case 0:
 		return 0;
 	case STATUS_PENDING:
-		return -EINPROGRESS;
+		return EINPROGRESS;
 
 	// TODO: errors
 	default:
