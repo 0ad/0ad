@@ -79,6 +79,8 @@ function GUIUpdateObjectInfo() {
 			// Update portrait (temporary if/else statement until entity icons are implemented).
 			if (selection[0].name == "Prometheus Dude") ObjectPortrait.sprite="portrait_unit_dude_lrg";
 			else
+			if (selection[0].name == "Prometheus Dudette") ObjectPortrait.sprite="portrait_unit_dudette_lrg";
+			else
 			if (selection[0].name == "Deciduous Tree 1" || selection[0].name == "Deciduous Tree 2") ObjectPortrait.sprite="portrait_flora_deciduotree_lrg";
 			else
 			if (selection[0].name == "House") ObjectPortrait.sprite="portrait_structure_heleho_lrg";
