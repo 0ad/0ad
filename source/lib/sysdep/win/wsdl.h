@@ -96,6 +96,39 @@ extern int SDL_SetGamma(float r, float g, float b);
 #define SDL_GetError() ""
 
 
+//////////////////////////////////////////////////////////////////////////////
+
+
+#ifdef linux
+# include <asm/byteorder.h>
+# ifdef __arch__swab16
+#  define SDL_Swap16  __arch__swab16
+# endif
+# ifdef __arch__swab32
+#  define SDL_Swap32  __arch__swab32
+# endif
+#endif
+
+#ifdef _MSC_VER
+# define SDL_Swap16 _byteswap_ushort
+# define SDL_Swap32 _byteswap_ulong
+# define SDL_Swap64 _byteswap_uint64
+#endif
+
+#ifndef SDL_Swap16
+extern u16 SDL_Swap16(u16);
+#endif
+
+#ifndef SDL_Swap32
+extern u32 SDL_Swap32(u32);
+#endif
+
+#ifndef SDL_Swap64
+extern u64 SDL_Swap64(u64);
+#endif
+
+
+//////////////////////////////////////////////////////////////////////////////
 
 
 /************************************************************************************************

@@ -57,6 +57,10 @@ static int z_depth = 24;	/* depth buffer size; set via SDL_GL_SetAttribute */
 
 static u16 mouse_x, mouse_y;
 
+
+static void gamma_swap(bool restore_org);
+
+
 /*
  * shared msg handler
  * SDL and GLUT have separate pumps; messages are handled there
@@ -76,6 +80,8 @@ static LRESULT CALLBACK wndproc(HWND hWnd, unsigned int uMsg, WPARAM wParam, LPA
 
 	case WM_ACTIVATE:
 		app_active = (wParam & 0xffff) != 0;
+
+		gamma_swap(!app_active);
 
 		if(fullscreen)
 		{
@@ -373,6 +379,10 @@ WIN_REGISTER_MODULE(wsdl);
 
 static int wsdl_init()
 {
+	// ignore BoundsChecker warnings here. subsystem is set to "Windows"
+	// to avoid the OS opening a console on startup (ugly). that means
+	// stdout isn't associated with a lowio handle; _close ends up
+	// getting called with fd = -1. oh well, nothing we can do.
 	FILE* const ret = freopen("stdout.txt", "w", stdout);
 	if(!ret)
 		debug_warn("stdout freopen failed");
@@ -488,13 +498,21 @@ inline void SDL_GL_SwapBuffers()
 }
 
 
+//////////////////////////////////////////////////////////////////////////////
+
+
+static bool gamma_changed;
+static u16 org_ramp[3][256];
+static u16 cur_ramp[3][256];
+
+
 static int calc_gamma_ramp(float gamma, u16* ramp)
 {
 	if(gamma <= 0.0f)
 		return ERR_INVALID_PARAM;
 
 	// identity
-	// (special-case it to make sure we get the exact value)
+	// (special-case it to make sure we get exact values)
 	if(gamma == 1.0f)
 	{
 		for(u16 i = 0; i < 256; i++)
@@ -515,19 +533,76 @@ static int calc_gamma_ramp(float gamma, u16* ramp)
 }
 
 
-int SDL_SetGamma(float r, float g, float b)
+static void gamma_swap(bool restore_org)
 {
-	u16 ramp[3][256];
-	CHECK_ERR(calc_gamma_ramp(r, ramp[0]));
-	CHECK_ERR(calc_gamma_ramp(g, ramp[1]));
-	CHECK_ERR(calc_gamma_ramp(b, ramp[2]));
-	return SetDeviceGammaRamp(hDC, ramp)? 0 : -1;
+	if(gamma_changed)
+	{
+		void* ramp = (restore_org)? org_ramp : cur_ramp;
+		SetDeviceGammaRamp(hDC, ramp);
+	}
 }
 
+
+int SDL_SetGamma(float r, float g, float b)
+{
+	if(!gamma_changed)
+		if(!GetDeviceGammaRamp(hDC, org_ramp))
+			return -1;
+
+	CHECK_ERR(calc_gamma_ramp(r, cur_ramp[0]));
+	CHECK_ERR(calc_gamma_ramp(g, cur_ramp[1]));
+	CHECK_ERR(calc_gamma_ramp(b, cur_ramp[2]));
+
+	if(!SetDeviceGammaRamp(hDC, cur_ramp))
+		return -1;
+
+	gamma_changed = true;
+	return 0;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+// implement only if the header hasn't mapped SDL_Swap* to intrinsics
+
+#ifndef SDL_Swap16
+u16 SDL_Swap16(const u16 x)
+{
+	return (u16)(((x & 0xff) << 8) | (x >> 8));
+}
+#endif
+
+#ifndef SDL_Swap32
+u32 SDL_Swap32(const u32 x)
+{
+	return (x << 24) |
+	       (x >> 24) |
+	       ((x << 8) & 0x00ff0000) |
+	       ((x >> 8) & 0x0000ff00);
+}
+#endif
+
+#ifndef SDL_Swap64
+u64 SDL_Swap64(const u64 x)
+{
+	const u32 lo = (u32)(x & 0xffffffff);
+	const u32 hi = (u32)(x >> 32);
+	u64 ret = SDL_Swap32(lo);
+	ret <<= 32;
+		// careful: must shift var of type u64, not u32
+	ret |= SDL_Swap32(hi);
+	return ret;
+}
+#endif
+
+//////////////////////////////////////////////////////////////////////////////
 
 
 void SDL_Quit()
 {
+	gamma_swap(true);
+
 	if(hDC != INVALID_HANDLE_VALUE)
 	{
 		ReleaseDC(hWnd, hDC);
