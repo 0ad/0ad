@@ -39,6 +39,8 @@ friend class CHandle;
 	void destroy( u16 handle );
 public:
 	typedef bool (*EntityPredicate)( CEntity* target );
+	typedef bool (*EntityPredicateUD)( CEntity* target, void* userdata );
+
 	CEntityManager();
 	~CEntityManager();
 	HEntity create( CBaseEntity* base, CVector3D position, float orientation );
@@ -50,7 +52,9 @@ public:
 	void TickAll();
 	void renderAll();
 	std::vector<HEntity>* matches( EntityPredicate predicate );
+	std::vector<HEntity>* matches( EntityPredicateUD predicate, void* userdata );
 	std::vector<HEntity>* matches( EntityPredicate predicate1, EntityPredicate predicate2 );
+	std::vector<HEntity>* matches( EntityPredicateUD predicate1, EntityPredicateUD predicate2, void* userdata );
 	std::vector<HEntity>* getExtant();
 	static inline bool extant()	// True if the singleton is actively maintaining handles. When false, system is shutting down, handles are quietly dumped.
 	{
