@@ -1,13 +1,15 @@
 #include "CConsole.h"
 
-CConsole::CConsole(float X, float Y, float W, float H):
-					m_fX(X), m_fY(Y), m_fMaxWidth(W), m_fMaxHeight(H)
-{
-	m_fHeight = m_fMaxHeight;
-	m_fWidth = m_fMaxWidth;
+#include "prometheus.h"
+#include "sysdep/sysdep.h"
 
+CConsole::CConsole(float X, float Y, float W, float H)
+	: m_fX(X), m_fY(Y), m_fWidth(W), m_fHeight(H)
+{
 	m_bToggle = false;
 	m_bVisible = false;
+
+	m_VisibleFrac = 0.0f;
 
 	m_szBuffer = (char*)malloc(sizeof(char) * BUFFER_SIZE);
 	FlushBuffer();
@@ -106,24 +108,28 @@ void CConsole::RegisterFunc(fptr F, const char* szName)
 
 void CConsole::Update(const float DeltaTime)
 {
-	const float MoveSpeed = 10.0f;
-
-	if (m_bToggle)
+	if(m_bToggle)
 	{
-		if (m_fHeight > m_fY)
-			m_fHeight -= MoveSpeed * DeltaTime;
+		const float AnimateTime = .30f;
+		const float Delta = DeltaTime / AnimateTime;
+		if(m_bVisible)
+		{
+			m_VisibleFrac += Delta;
+			if(m_VisibleFrac > 1.0f)
+			{
+				m_VisibleFrac = 1.0f;
+				m_bToggle = false;
+			}
+		}
 		else
-			if (m_bVisible) m_bVisible = false;
-	}
-	else
-	{
-		if (!m_bVisible) m_bVisible = true;
-
-		if (m_fHeight < m_fMaxHeight)
-			m_fHeight += MoveSpeed * DeltaTime;
-		else
-			if (m_fHeight != m_fMaxHeight)
-				m_fHeight = m_fMaxHeight;
+		{
+			m_VisibleFrac -= Delta;
+			if(m_VisibleFrac < 0.0f)
+			{
+				m_VisibleFrac = 0.0f;
+				m_bToggle = false;
+			}
+		}
 	}
 }
 
@@ -132,7 +138,11 @@ void CConsole::Render()
 {
 	if (!m_bVisible) return;
 
-	glTranslatef(m_fX, m_fY, 0.0f); //Move to window position
+	// animation: slide in from top of screen
+	const float MaxY = m_fHeight;
+	const float DeltaY = (1.0f - m_VisibleFrac) * MaxY;
+
+	glTranslatef(m_fX, m_fY + DeltaY, 0.0f); //Move to window position
 
     DrawWindow();
     DrawHistory();
@@ -246,9 +256,10 @@ void CConsole::InsertChar(const int szChar)
 {
 	static int iHistoryPos = -1;
 
-	if (szChar == '`')
+	if (szChar == SDLK_F1)
 	{
-		m_bToggle = !m_bToggle;
+		m_bToggle = true;
+		m_bVisible = !m_bVisible;
 		return;
 	}
 
@@ -417,25 +428,12 @@ void CConsole::ProcessBuffer(const char* szLine){
 #include "sdl.h"
 
 extern CConsole* g_Console;
-static bool console_active = false;
 
 bool conInputHandler(const SDL_Event& ev)
 {
 	if(ev.type != SDL_KEYDOWN)
 		return false;
 
-	const int c = ev.key.keysym.sym;
-	if(c == SDLK_F1)
-	{
-		console_active = !console_active;
-//		g_Console->Toggle();
-	}
-
-	if(console_active)
-	{
-		g_Console->InsertChar(c);
-		return true;
-	}
-	else
-		return false;
+	g_Console->InsertChar(ev.key.keysym.sym);
+	return g_Console->IsActive();
 }

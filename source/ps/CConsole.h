@@ -23,11 +23,11 @@ private:
 	float m_fX;
 	float m_fY;
 
-	float m_fMaxHeight;
-	float m_fMaxWidth;
-
 	float m_fHeight;
 	float m_fWidth;
+
+	// show / hide animation
+	float m_VisibleFrac;
 
 	std::map<std::string, fptr> m_mapFuncList;
 
@@ -75,6 +75,8 @@ public:
 	void FlushBuffer();
 
 	void RegisterFunc(fptr F, const char* szName);
+
+	bool IsActive() { return m_bVisible; }
 };
 
 #endif

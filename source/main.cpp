@@ -543,7 +543,7 @@ int main(int argc, char* argv[])
 
 	font = font_load("fonts/verdana.fnt");
 
-	g_Console = new CConsole;
+	g_Console = new CConsole(0, g_yres-600.f, 800.f, 600.f);
 
 	// create renderer
 	new CRenderer;
@@ -649,9 +649,11 @@ g_Console->RegisterFunc(Testing, "Testing");
 		mouseButtons[SDL_BUTTON_WHEELUP] = false;
 		mouseButtons[SDL_BUTTON_WHEELDOWN] = false;
 
+		float TimeSinceLastFrame = (float)(time1-time0);
 		in_get_events();
-		UpdateWorld(float(time1-time0));
-		terr_update(float(time1-time0));
+		UpdateWorld(TimeSinceLastFrame);
+		terr_update(TimeSinceLastFrame);
+		g_Console->Update(TimeSinceLastFrame);
 		Render();
 		SDL_GL_SwapBuffers();
 
