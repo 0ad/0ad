@@ -39,6 +39,18 @@
 // in English: '/' as path separator; trailing '/' required for dir names;
 // no leading '/', since "" is the root dir.
 
+enum VfsMountFlags
+{
+	// the directory being mounted (but not its subdirs! see impl) will be
+	// searched for archives, and their contents added.
+	// use only if necessary, since this is slow (we need to check if
+	// each file is an archive, which entails reading the header).
+	VFS_MOUNT_ARCHIVES = 1,
+
+	// when mounting a directory, all directories beneath it are
+	// added recursively as well.
+	VFS_MOUNT_RECURSIVE = 2
+};
 
 // mount <p_real_dir> into the VFS at <vfs_mount_point>,
 //   which is created if it does not yet exist.
@@ -46,8 +58,10 @@
 //   <pri>(ority) is not lower.
 // all archives in <p_real_dir> are also mounted, in alphabetical order.
 //
+// flags determines extra actions to perform; see VfsMountFlags.
+//
 // p_real_dir = "." or "./" isn't allowed - see implementation for rationale.
-extern int vfs_mount(const char* v_mount_point, const char* p_real_dir, uint pri);
+extern int vfs_mount(const char* v_mount_point, const char* p_real_dir, int flags = 0, uint pri = 0);
 
 // rebuild the VFS, i.e. re-mount everything. open files are not affected.
 // necessary after loose files or directories change, so that the VFS

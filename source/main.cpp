@@ -740,9 +740,9 @@ TIMER(InitVfs)
 //		display_startup_error(L"error setting current directory.\n"\
 //			L"argv[0] is probably incorrect. please start the game via command-line.");
 
-	vfs_mount("", "mods/official", 0);
-	vfs_mount("screenshots/", "screenshots", 0);
-	vfs_mount("profiles/", "profiles", 0);
+	vfs_mount("", "mods/official", VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES);
+	vfs_mount("screenshots/", "screenshots");
+	vfs_mount("profiles/", "profiles");
 
 	// don't try vfs_display yet: SDL_Init hasn't yet redirected stdout
 }

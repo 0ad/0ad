@@ -430,7 +430,7 @@ struct TDir
 	TDir* find_subdir(const char* d_name);
 	void clearR();
 	void displayR(int indent_level = 0);
-	int addR(const char* p_path, const TLoc* dir_loc, TLocs* archive_locs = 0);
+	int addR(const char* p_path, const TLoc* dir_loc, bool recursive, TLocs* archive_locs);
 };
 
 
@@ -583,6 +583,8 @@ enum TreeLookupFlags
 //
 // if <flags> & LF_CREATE_MISSING, all missing subdirectory components are
 //   added to the VFS.
+// if <flags> & LF_START_DIR, traversal starts at *pdir
+//   (used when looking up paths relative to a mount point).
 // if <exact_path> != 0, it receives a copy of <path> with
 //   the exact case of each component as returned by the OS
 //   (useful for calling external case-sensitive code).
@@ -894,11 +896,13 @@ static int dirent_cb(const char* name, const struct stat* s, uintptr_t user)
 }
 
 
-// add the directory <p_path>, its files, and all subdirectories
-// (recursively) to this TDir, marking location as <dir_loc>.
-// if archive_locs != 0, all archives found in this directory
-// (but not subdirs! see below) are opened and their TLoc stored there.
-int TDir::addR(const char* p_path, const TLoc* dir_loc, TLocs* archive_locs)
+// add the contents of directory <p_path> to this TDir,
+// marking the files' locations as <dir_loc>.
+// if desired, we recursively add the contents of subdirectories as well.
+// if <archive_locs> != 0, all archives found in this directory only
+//   (not its subdirs! see below) are opened in alphabetical order,
+//   their files added, and a TLoc appended to <*archive_locs>.
+int TDir::addR(const char* p_path, const TLoc* dir_loc, bool recursive, TLocs* archive_locs)
 {
 	// more than one real dir mounted into VFS dir
 	// (=> can't create files for writing here)
@@ -911,38 +915,41 @@ int TDir::addR(const char* p_path, const TLoc* dir_loc, TLocs* archive_locs)
 	res_watch_dir(p_path, &watch);
 #endif
 
-	// add files and subdirs to vdir
+	// add files and subdirs to this dir;
+	// also adds the contents of archives if archive_locs != 0.
 	const DirentCBParams params(this, dir_loc, archive_locs);
 	file_enum(p_path, dirent_cb, (uintptr_t)&params);
 
 	// recurse over all subdirs
-	for(TDirIt it = subdirs.begin(); it != subdirs.end(); ++it)
-	{
-		TDir* subdir = &it->second;
-		const char* d_subdir_name = (it->first).c_str();
+	if(recursive)
+		for(TDirIt it = subdirs.begin(); it != subdirs.end(); ++it)
+		{
+			TDir* subdir = &it->second;
+			const char* d_subdir_name = (it->first).c_str();
 
-		// don't clutter the tree with versioning system dirs.
-		// only applicable for normal dirs; the archive builder
-		// takes care of removing these there.
-		if(!strcmp(d_subdir_name, "CVS") || !strcmp(d_subdir_name, ".svn"))
-			continue;
+			// don't clutter the tree with versioning system dirs.
+			// only applicable for normal dirs; the archive builder
+			// takes care of removing these there.
+			if(!strcmp(d_subdir_name, "CVS") || !strcmp(d_subdir_name, ".svn"))
+				continue;
 
-		char p_subdir_path[PATH_MAX];
-		CHECK_ERR(path_append(p_subdir_path, p_path, d_subdir_name));
+			char p_subdir_path[PATH_MAX];
+			CHECK_ERR(path_append(p_subdir_path, p_path, d_subdir_name));
 
-		subdir->addR(p_subdir_path, dir_loc, (TLocs*)0);
-			// note: archive_locs = 0 means we won't search for archives
-			// in subdirectories (slow!). this is currently required by
-			// the dirent_cb implementation anyway; see above.
-	}
+			subdir->addR(p_subdir_path, dir_loc, true, (TLocs*)0);
+				// note: archive_locs = 0 means we won't search for archives
+				// in subdirectories (slow!). this is currently required by
+				// the dirent_cb implementation anyway; see above.
+		}
 
 	return 0;
 }
 
 
-static int tree_add_dir(TDir* dir, const char* p_path, const TLoc* dir_loc, TLocs* archive_locs)
+static int tree_add_dir(TDir* dir, const char* p_path, const TLoc* dir_loc,
+	bool recursive, TLocs* archive_locs)
 {
-	return dir->addR(p_path, dir_loc, archive_locs);
+	return dir->addR(p_path, dir_loc, recursive, archive_locs);
 }
 
 
@@ -969,9 +976,12 @@ struct Mount
 	// real directory being mounted
 	const std::string p_real_path;
 
+	// see enum VfsMountFlags
+	int flags;
+
 	uint pri;
 
-	// storage for all Locs ensuing from this mounting.
+	// storage for all TLocs ensuing from this mounting.
 	// it's safe to store pointers to them: the Mount and Locs containers
 	// are std::lists, and all pointers are reset after unmounting something.
 	TLoc dir_loc;
@@ -983,12 +993,17 @@ struct Mount
 		// multiple archives per dir support is required for patches.
 
 
-	Mount(const char* _v_mount_point, const char* _p_real_path, uint _pri)
-		: v_mount_point(_v_mount_point), p_real_path(_p_real_path),
-		  dir_loc(0, _v_mount_point, _p_real_path, _pri), archive_locs()
+	Mount(const char* v_mount_point_, const char* p_real_path_, int flags_, uint pri_)
+		: v_mount_point(v_mount_point_), p_real_path(p_real_path_),
+		  dir_loc(0, v_mount_point_, p_real_path_, pri_), archive_locs()
 	{
-		pri = _pri;
+		flags = flags_;
+		pri = pri_;
 	}
+
+	// no copy ctor, since some members are const
+private:
+	Mount& operator=(const Mount&);
 };
 
 typedef std::list<Mount> Mounts;
@@ -1005,6 +1020,7 @@ TIMER(remount);
 
 	const char* v_mount_point = m.v_mount_point.c_str();
 	const char* p_real_path   = m.p_real_path.c_str();
+	const int flags           = m.flags;
 	const uint pri            = m.pri;
 	TLoc* dir_loc             = &m.dir_loc;
 	TLocs& archive_locs       = m.archive_locs;
@@ -1012,7 +1028,7 @@ TIMER(remount);
 	// callers have a tendency to forget required trailing '/';
 	// complain if it's not there, unless path = "" (root dir).
 #ifndef NDEBUG
-	size_t len = strlen(v_mount_point);
+	const size_t len = strlen(v_mount_point);
 	if(len && v_mount_point[len-1] != '/')
 		debug_warn("remount: path doesn't end in '/'");
 #endif
@@ -1020,9 +1036,12 @@ TIMER(remount);
 	TDir* dir;
 	CHECK_ERR(tree_lookup_dir(v_mount_point, &dir, LF_CREATE_MISSING));
 
+	const bool recursive = !!(flags & VFS_MOUNT_RECURSIVE);
+	TLocs* parchive_locs = (flags & VFS_MOUNT_ARCHIVES)? &archive_locs : 0;
+
 	// add all loose files and subdirectories (recursive).
 	// also mounts all archives in p_real_path and adds to archive_locs.
-	return tree_add_dir(dir, p_real_path, dir_loc, &archive_locs);
+	return tree_add_dir(dir, p_real_path, dir_loc, recursive, parchive_locs);
 }
 
 
@@ -1082,8 +1101,10 @@ static bool is_subpath(const char* s1, const char* s2)
 //   <pri>(ority) is not lower.
 // all archives in <p_real_path> are also mounted, in alphabetical order.
 //
+// flags determines extra actions to perform; see VfsMountFlags.
+//
 // p_real_path = "." or "./" isn't allowed - see implementation for rationale.
-int vfs_mount(const char* v_mount_point, const char* p_real_path, const uint pri)
+int vfs_mount(const char* v_mount_point, const char* p_real_path, int flags, uint pri)
 {
 	// make sure it's not already mounted, i.e. in mounts.
 	// also prevents mounting a parent directory of a previously mounted
@@ -1107,7 +1128,7 @@ int vfs_mount(const char* v_mount_point, const char* p_real_path, const uint pri
 		return -1;
 	}
 
-	mounts.push_back(Mount(v_mount_point, p_real_path, pri));
+	mounts.push_back(Mount(v_mount_point, p_real_path, flags, pri));
 
 	// actually mount the entry
 	Mount& m = mounts.back();
