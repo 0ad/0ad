@@ -60,16 +60,15 @@ struct ZFile
 	size_t ucsize;
 		// size of logical file
 
-	off_t ofs;
+	off_t ofs;	// in archive
 	off_t csize;
-	off_t last_raw_ofs;
+	off_t last_read_ofs;	// in compressed file
 
 	Handle ha;
 	uintptr_t inf_ctx;
 };
 
-// get file status (currently only size).
-// return < 0 on error (output param zeroed).
+// get file status (currently only size). output param is zeroed on error.
 extern int zip_stat(Handle ha, const char* fn, struct stat* s);
 
 // open file, and fill *zf with information about it.
@@ -84,6 +83,7 @@ extern int zip_close(ZFile* zf);
 // asynchronous read
 //
 
+//
 // currently only supported for compressed files to keep things simple.
 // see rationale in source.
 
@@ -107,13 +107,31 @@ extern int zip_discard_io(FileIO io);
 // synchronous read
 //
 
-// read from file <zf>, starting at offset <ofs> in the compressed data.
-extern ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void* p, FileIOCB cb = 0, uintptr_t ctx = 0);
+// read from the (possibly compressed) file <zf> as if it were a normal file.
+// starting at the beginning of the logical (decompressed) file,
+// skip <ofs> bytes of data; read the next <size> bytes into <buf>.
+//
+// if non-NULL, <cb> is called for each block read, passing <ctx>.
+// if it returns a negative error code,
+// the read is aborted and that value is returned.
+// the callback mechanism is useful for user progress notification or
+// processing data while waiting for the next I/O to complete
+// (quasi-parallel, without the complexity of threads).
+//
+// return bytes read, or a negative error code.
+extern ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void* buf, FileIOCB cb = 0, uintptr_t ctx = 0);
 
 
 //
 // memory mapping
 //
+
+// useful for files that are too large to be loaded into memory,
+// or if only (non-sequential) portions of a file are needed at a time.
+//
+// this is of course only possible for uncompressed files - compressed files
+// would have to be inflated sequentially, which defeats the point of mapping.
+
 
 // map the entire file <zf> into memory. mapping compressed files
 // isn't allowed, since the compression algorithm is unspecified.

@@ -877,7 +877,7 @@ int vfs_mount(const char* const v_mount_point, const char* const p_dir, const ui
 // rebuild the VFS, i.e. re-mount everything. open files are not affected.
 // necessary after loose files or directories change, so that the VFS
 // "notices" the changes and updates file locations. res calls this after
-// FAM reports changes; can also be called from the console after a
+// dir_watch reports changes; can also be called from the console after a
 // rebuild command. there is no provision for updating single VFS dirs -
 // it's not worth the trouble.
 int vfs_rebuild()
@@ -1145,8 +1145,7 @@ bool vfs_exists(const char* v_fn)
 }
 
 
-// return information about the specified file as in stat(2),
-// most notably size. stat buffer is undefined on error.
+// get file status (currently only size). output param is zeroed on error.
 int vfs_stat(const char* v_fn, struct stat* s)
 {
 	const Loc* loc;
@@ -1328,10 +1327,26 @@ debug_out("vfs_close %I64x\n", h);
 }
 
 
-// try to transfer the next <size> bytes to/from the given file.
+// transfer the next <size> bytes to/from the given file.
 // (read or write access was chosen at file-open time).
-// return bytes of actual data transferred, or a negative error code.
-// TODO: buffer types
+//
+// if non-NULL, <cb> is called for each block transferred, passing <ctx>.
+// it returns how much data was actually transferred, or a negative error
+// code (in which case we abort the transfer and return that value).
+// the callback mechanism is useful for user progress notification or
+// processing data while waiting for the next I/O to complete
+// (quasi-parallel, without the complexity of threads).
+//
+// p (value-return) indicates the buffer mode:
+// - *p == 0: read into buffer we allocate; set *p.
+//   caller should mem_free it when no longer needed.
+// - *p != 0: read into or write into the buffer *p.
+// - p == 0: only read into temp buffers. useful if the callback
+//   is responsible for processing/copying the transferred blocks.
+//   since only temp buffers can be added to the cache,
+//   this is the preferred read method.
+//
+// return number of bytes transferred (see above), or a negative error code.
 ssize_t vfs_io(const Handle hf, const size_t size, void** p, FileIOCB cb, uintptr_t ctx)
 {
 #ifdef PARANOIA
@@ -1378,6 +1393,8 @@ void dump()
 
 // load the entire file <fn> into memory; return a handle to the memory
 // and the buffer address/size. output parameters are zeroed on failure.
+// in addition to the regular file cache, the entire buffer is kept in memory
+// if flags & FILE_CACHE.
 Handle vfs_load(const char* const v_fn, void*& p, size_t& size, uint flags /* default 0 */)
 {
 ONCE(atexit(dump));
@@ -1481,52 +1498,6 @@ int vfs_store(const char* const v_fn, void* p, const size_t size, uint flags /* 
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// memory mapping
-//
-///////////////////////////////////////////////////////////////////////////////
-
-
-// map the entire file <hf> into memory. if already currently mapped,
-// return the previous mapping (reference-counted).
-// output parameters are zeroed on failure.
-//
-// the mapping will be removed (if still open) when its file is closed.
-// however, map/unmap calls should still be paired so that the mapping
-// may be removed when no longer needed.
-int vfs_map(const Handle hf, const uint flags, void*& p, size_t& size)
-{
-	UNUSED(flags);
-
-	p = 0;
-	size = 0;
-		// need to zero these here in case H_DEREF fails
-
-	H_DEREF(hf, VFile, vf);
-	if(vf_flags(vf) & VF_ZIP)
-		return zip_map(&vf->zf, p, size);
-	else
-		return file_map(&vf->f, p, size);
-}
-
-
-// decrement the reference count for the mapping belonging to file <f>.
-// fail if there are no references; remove the mapping if the count reaches 0.
-//
-// the mapping will be removed (if still open) when its file is closed.
-// however, map/unmap calls should still be paired so that the mapping
-// may be removed when no longer needed.
-int vfs_unmap(const Handle hf)
-{
-	H_DEREF(hf, VFile, vf);
-	if(vf_flags(vf) & VF_ZIP)
-		return zip_unmap(&vf->zf);
-	else
-		return file_unmap(&vf->f);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////
-//
 // asynchronous I/O
 //
 ///////////////////////////////////////////////////////////////////////////////
@@ -1601,4 +1572,50 @@ inline int vfs_wait_io(Handle hio, void*& p, size_t& size)
 inline int vfs_discard_io(Handle& hio)
 {
 	return h_free(hio, H_IO);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// memory mapping
+//
+///////////////////////////////////////////////////////////////////////////////
+
+
+// map the entire (uncompressed!) file <hf> into memory. if currently
+// already mapped, return the previous mapping (reference-counted).
+// output parameters are zeroed on failure.
+//
+// the mapping will be removed (if still open) when its file is closed.
+// however, map/unmap calls should still be paired so that the mapping
+// may be removed when no longer needed.
+int vfs_map(const Handle hf, const uint flags, void*& p, size_t& size)
+{
+	UNUSED(flags);
+
+	p = 0;
+	size = 0;
+	// need to zero these here in case H_DEREF fails
+
+	H_DEREF(hf, VFile, vf);
+	if(vf_flags(vf) & VF_ZIP)
+		return zip_map(&vf->zf, p, size);
+	else
+		return file_map(&vf->f, p, size);
+}
+
+
+// decrement the reference count for the mapping belonging to file <f>.
+// fail if there are no references; remove the mapping if the count reaches 0.
+//
+// the mapping will be removed (if still open) when its file is closed.
+// however, map/unmap calls should still be paired so that the mapping
+// may be removed when no longer needed.
+int vfs_unmap(const Handle hf)
+{
+	H_DEREF(hf, VFile, vf);
+	if(vf_flags(vf) & VF_ZIP)
+		return zip_unmap(&vf->zf);
+	else
+		return file_unmap(&vf->f);
 }

@@ -915,8 +915,7 @@ static inline bool zfile_compressed(ZFile* zf)
 
 
 
-// get file status (currently only size).
-// return < 0 on error (output param zeroed).
+// get file status (currently only size). output param is zeroed on error.
 int zip_stat(Handle ha, const char* fn, struct stat* s)
 {
 	// zero output param in case we fail below.
@@ -1064,47 +1063,53 @@ static ssize_t io_cb(uintptr_t ctx, void* buf, size_t size)
 {
 	IOCBParams* p = (IOCBParams*)ctx;
 
-	ssize_t ret = inf_inflate(p->inf_ctx, p->compressed, buf, size);
+	ssize_t ucsize = inf_inflate(p->inf_ctx, p->compressed, buf, size);
 
 	if(p->user_cb)
-		return p->user_cb(p->user_ctx, buf, size);
+	{
+		ssize_t user_ret = p->user_cb(p->user_ctx, buf, size);
+		// only pass on error codes - we need to return number of actual
+		// bytes inflated to file_io in the normal case.
+		if(user_ret < 0)
+			return user_ret;
+	}
 
-	return ret;
+	return ucsize;
 }
 
 #include "timer.h"
 
-ssize_t zip_read(ZFile* zf, off_t raw_ofs, size_t size, void* p, FileIOCB cb, uintptr_t ctx)
+// read from the (possibly compressed) file <zf> as if it were a normal file.
+// starting at the beginning of the logical (decompressed) file,
+// skip <ofs> bytes of data; read the next <size> bytes into <buf>.
+//
+// if non-NULL, <cb> is called for each block read, passing <ctx>.
+// if it returns a negative error code,
+// the read is aborted and that value is returned.
+// the callback mechanism is useful for user progress notification or
+// processing data while waiting for the next I/O to complete
+// (quasi-parallel, without the complexity of threads).
+//
+// return bytes read, or a negative error code.
+ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void* p, FileIOCB cb, uintptr_t ctx)
 {
 	CHECK_ZFILE(zf);
 
 	const bool compressed = zfile_compressed(zf);
 
-	ssize_t raw_bytes_read;
-
 	ZArchive* za = H_USER_DATA(zf->ha, ZArchive);
 	if(!za)
 		return ERR_INVALID_HANDLE;
 
-	const off_t ofs = zf->ofs + raw_ofs;
+	ofs += zf->ofs;
 
 	// not compressed - just pass it on to file_io
 	// (avoid the Zip inflate start/finish stuff below)
 //	if(!compressed)
-//		return file_io(&za->f, ofs, size, p);
+//		return file_io(&za->f, ofs, csize, p);
 		// no need to set last_raw_ofs - only checked if compressed.
 
 	// compressed
-
-	// make sure we continue where we left off
-	// (compressed data must be read in one stream / sequence)
-	//
-	// problem: partial reads 
-	if(raw_ofs != zf->last_raw_ofs)
-	{
-		debug_warn("zip_read: compressed read offset is non-continuous");
-		return -1;
-	}
 
 	CHECK_ERR(inf_set_dest(zf->inf_ctx, p, size));
 
@@ -1129,24 +1134,19 @@ ssize_t zip_read(ZFile* zf, off_t raw_ofs, size_t size, void* p, FileIOCB cb, ui
 
 	const IOCBParams params = { zf->inf_ctx, compressed, cb, ctx };
 
-	// read blocks from the archive's file starting at ofs and pass them to
-	// inf_inflate, until all compressed data has been read, or it indicates
-	// the desired output amount has been reached.
-	size_t raw_size = zf->csize;
-
-	// we had set csize to 0 to indicate the file isn't compressed.
-	// see zfile_compressed implementation.
-	if(!compressed)
-		raw_size = zf->ucsize;
+	// HACK: shouldn't read the whole thing into mem
+	size_t csize = zf->csize;
+	if(!csize)
+		csize = zf->ucsize;	// HACK on HACK: csize = 0 if file not compressed
 
 
-	raw_bytes_read = file_io(&za->f, ofs, raw_size, (void**)0, io_cb, (uintptr_t)&params);
+	ssize_t uc_transferred = file_io(&za->f, ofs, csize, (void**)0, io_cb, (uintptr_t)&params);
 
-	zf->last_raw_ofs = raw_ofs + (off_t)raw_bytes_read;
+	zf->last_read_ofs += (off_t)csize;
 
 	CHECK_ERR(inf_finish(zf->inf_ctx));
 
-	return raw_bytes_read;
+	return uc_transferred;
 }
 
 

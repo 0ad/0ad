@@ -335,8 +335,11 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 }
 
 
+// get file status. output param is zeroed on error.
 int file_stat(const char* const path, struct stat* const s)
 {
+	memset(s, 0, sizeof(struct stat));
+
 	char n_path[PATH_MAX+1];
 	CHECK_ERR(convert_path(n_path, path));
 
@@ -799,24 +802,6 @@ skip_issue:
 	return issue_size;
 }
 
-
-
-// transfer modes:
-// *p != 0: *p is the source/destination address for the transfer.
-//          (FILE_MEM_READONLY?)
-// *p == 0: allocate a buffer, read into it, and return it in *p.
-//          when no longer needed, it must be freed via file_free_buf.
-//  p == 0: read raw_size bytes from file, starting at offset raw_ofs,
-//          into temp buffers; each block read is passed to cb, which is
-//          expected to write actual_size bytes total to its output buffer
-//          (for which it is responsible).
-//          useful for reading compressed data.
-//
-// return (positive) number of raw bytes transferred if successful;
-// otherwise, an error code.
-
-
-
 // the underlying aio implementation likes buffer and offset to be
 // sector-aligned; if not, the transfer goes through an align buffer,
 // and requires an extra memcpy.
@@ -833,8 +818,17 @@ skip_issue:
 
 
 
-
-
+// transfer <size> bytes, starting at <ofs>, to/from the given file.
+// (read or write access was chosen at file-open time).
+//
+// if non-NULL, <cb> is called for each block transferred, passing <ctx>.
+// it returns how much data was actually transferred, or a negative error
+// code (in which case we abort the transfer and return that value).
+// the callback mechanism is useful for user progress notification or
+// processing data while waiting for the next I/O to complete
+// (quasi-parallel, without the complexity of threads).
+//
+// return number of bytes transferred (see above), or a negative error code.
 ssize_t file_io(File* const f, const off_t data_ofs, size_t data_size, void* const data_buf,
 	const FileIOCB cb, const uintptr_t ctx) // optional
 {

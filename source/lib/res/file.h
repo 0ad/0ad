@@ -91,6 +91,7 @@ typedef int(*FileCB)(const char* const name, const ssize_t size, const uintptr_t
 // call <cb>, passing <user> and the entries's name (not path!)
 extern int file_enum(const char* dir, FileCB cb, uintptr_t user);
 
+// get file status. output param is zeroed on error.
 extern int file_stat(const char* path, struct stat*);
 
 extern int file_open(const char* fn, uint flags, File* f);
@@ -98,8 +99,52 @@ extern int file_close(File* f);
 
 
 //
+// asynchronous IO
+//
+
+typedef void* FileIO;
+
+extern int file_start_io(File* f, off_t ofs, size_t size, void* buf, FileIO* io);
+
+// indicates if the given IO has completed.
+// return value: 0 if pending, 1 if complete, < 0 on error.
+extern int file_io_complete(FileIO io);
+
+extern int file_wait_io(FileIO io, void*& p, size_t& size);
+
+extern int file_discard_io(FileIO io);
+
+
+//
+// synchronous IO
+//
+
+// return value:
+// < 0: failed; abort transfer.
+// >= 0: bytes output; continue.
+typedef ssize_t(*FileIOCB)(uintptr_t ctx, void* p, size_t size);
+
+// transfer <size> bytes, starting at <ofs>, to/from the given file.
+// (read or write access was chosen at file-open time).
+//
+// if non-NULL, <cb> is called for each block transferred, passing <ctx>.
+// it returns how much data was actually transferred, or a negative error
+// code (in which case we abort the transfer and return that value).
+// the callback mechanism is useful for user progress notification or
+// processing data while waiting for the next I/O to complete
+// (quasi-parallel, without the complexity of threads).
+//
+// return number of bytes transferred (see above), or a negative error code.
+extern ssize_t file_io(File* f, off_t ofs, size_t size, void* buf, FileIOCB cb = 0, uintptr_t ctx = 0);
+
+
+//
 // memory mapping
 //
+
+// useful for files that are too large to be loaded into memory,
+// or if only (non-sequential) portions of a file are needed at a time.
+
 
 // map the entire file <f> into memory. if already currently mapped,
 // return the previous mapping (reference-counted).
@@ -121,32 +166,5 @@ extern int file_map(File* f, void*& p, size_t& size);
 // however, map/unmap calls should still be paired so that the mapping
 // may be removed when no longer needed.
 extern int file_unmap(File* f);
-
-
-//
-// async IO
-//
-
-typedef void* FileIO;
-
-extern int file_start_io(File* f, off_t ofs, size_t size, void* buf, FileIO* io);
-
-// indicates if the given IO has completed.
-// return value: 0 if pending, 1 if complete, < 0 on error.
-extern int file_io_complete(FileIO io);
-
-extern int file_wait_io(FileIO io, void*& p, size_t& size);
-
-extern int file_discard_io(FileIO io);
-
-
-
-// return value:
-// < 0: failed; abort transfer.
-// >= 0: bytes output; continue.
-typedef ssize_t(*FileIOCB)(uintptr_t ctx, void* p, size_t size);
-
-extern ssize_t file_io(File* f, off_t ofs, size_t size, void* buf, FileIOCB cb = 0, uintptr_t ctx = 0);
-
 
 #endif	// #ifndef FILE_H
