@@ -45,38 +45,89 @@ function initResourcePool()
 
 // ====================================================================
 
+function AddResource(resourceName, resourceQty)
+{
+	// Creates a resource type.
+
+	if (!localPlayer.resource)
+	{
+		// Define the base resource group if it does not exist.
+		localPlayer.resource = new Array();
+
+		// Define resource total.
+		localPlayer.resource.last = new Object();
+		localPlayer.resource.last = 0;
+	}
+	
+	// Set resource name to upper-case to ensure it matches resource control name.
+	resourceName = resourceName.toUpperCase();
+
+	// Store resource's name and starting value.
+	localPlayer.resource[localPlayer.resource.last] = new Object();
+	localPlayer.resource[localPlayer.resource.last].name = resourceName;
+	localPlayer.resource[localPlayer.resource.last].qty  = resourceQty;
+	localPlayer.resource.last++;
+	
+	console.write("Added " + resourceName + " (" + localPlayer.resource.last + ")");
+}
+
+// ====================================================================
+
+function CreateResources()
+{
+	// Defines all resource types for future use.
+
+	AddResource("Food", 0);
+	AddResource("Wood", 0);
+	AddResource("Stone", 0);
+	AddResource("Ore", 0);
+	AddResource("Population", 0);
+	AddResource("Housing", 0);
+}
+
+// ====================================================================
+
 function GiveResources(resourceName, resourceQty)
 {
 	// Generic function to add resources to the player's Pool.
 
-	switch (resourceName)
-	{
-		case "Food":
-			localPlayer.resource.food += resourceQty;
-		break;
-		case "Wood":
-			localPlayer.resource.wood += resourceQty;
-		break;
-		case "Stone":
-			localPlayer.resource.stone += resourceQty;
-		break;
-		case "Ore":
-			localPlayer.resource.ore += resourceQty;
-		break;
-		default:
-		break;
-	}
+	// Find the resource in the list.
+	resourceSeek = 0;
+	while (resourceName != localPlayer.resource[resourceSeek].name && resourceSeek < localPlayer.resource.last)
+		resourceSeek++;
 
+	// If the resource wasn't in the list, report an error.
+	return false;
+
+	// Add the quantity to the resource.
+	localPlayer.resource[resourceSeek].qty += resourceQty;
+	
 	console.write("Earned " + resourceQty + " resources.");
+
+	return true;
 }
 
 // ====================================================================
 
 function UpdateResourcePool()
 {
-	getGUIObjectByName("SN_RESOURCE_COUNTER_FOOD").caption = localPlayer.resource.food;
-	getGUIObjectByName("SN_RESOURCE_COUNTER_WOOD").caption = localPlayer.resource.wood;
-	getGUIObjectByName("SN_RESOURCE_COUNTER_STONE").caption = localPlayer.resource.stone;
-	getGUIObjectByName("SN_RESOURCE_COUNTER_ORE").caption = localPlayer.resource.ore;
-	getGUIObjectByName("SN_RESOURCE_COUNTER_POPULATION").caption = localPlayer.resource.pop.curr  + "/" + localPlayer.resource.pop.housing;
+	// Populate the resource pool with current quantities.
+
+	for (resourceSeek = 0; resourceSeek < localPlayer.resource.last; resourceSeek++)
+	{
+		switch (localPlayer.resource[resourceSeek].name.toString())
+		{
+			case "POPULATION":
+				// If it's population, combine population and housing in one string.
+				getGUIObjectByName("SN_RESOURCE_COUNTER_POPULATION").caption = localPlayer.resource[resourceSeek].qty + "/" + localPlayer.resource[resourceSeek].qty;
+			break;
+			case "HOUSING":
+				// Skip housing, as it's handled as a component of population.
+			break;
+			default:
+				// Set the value of a normal resource caption.
+				getGUIObjectByName("SN_RESOURCE_COUNTER_" + localPlayer.resource[resourceSeek].name).caption = localPlayer.resource[resourceSeek].qty.toString();
+			break;
+		}
+	}
 }

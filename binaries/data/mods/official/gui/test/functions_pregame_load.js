@@ -38,44 +38,23 @@ function startLoadingScreen()
         getGUIObjectByName("loading_screen_titlebar_text").caption = "Loading Scenario ...";
         getGUIObjectByName("loading_screen_progress_bar_text").caption = "... Reticulating splines ...";
         getGUIObjectByName("loading_screen_progress_bar").caption = 80;
-        getGUIObjectByName("loading_screen_text").caption = "LOADING " + g_GameAttributes.mapFile + " ...\nPlease wait ...\n(Yes, we know the progress bar doesn't do diddly squat right now)\nJust keep waiting ...\nIt'll get there ...\nAlmost done ...\nTrust me!";
+        getGUIObjectByName("loading_screen_text").caption = "LOADING " + g_GameAttributes.mapFile + " ...\nPlease wait ...";
         getGUIObjectByName("loading_screen_tip").caption = "Wise man once say ...\nHe who thinks slow, he act in haste, be rash and quick and foolish. But he that thinks too much, acts too slowly. The stupid always win, Commandersan. Remember that. You are tiny grasshopper.";
 
         // Begin game session.
-//        setTimeout( loadSession, 200 );
-        startGame(); // new version returns quickly; we will hit the main loop
-                     // occasionally, so need for evil timeout hack
+        if (! startGame())
+	{
+		// Failed to start the game; go back to the main menu.
+		GUIObjectHide("loading_screen");
+		GUIObjectUnhide("PREGAME_GUI");
+		// Show an error message
+		btCaptions = new Array("OK");
+		btCode = new Array("");
+		messageBox(400, 200, "The game could not be started with the given parameters. You probably have entered an invalid map name.", "Error", 0, btCaptions, btCode);
+        }            
 }
 
 // ====================================================================
-
-//function loadSession()
-//{
-//        if (! startGame())
-//        {
-//                // Failed to start the game; go back to the main menu. TODO: display an error message.
-//                GUIObjectHide("loading_screen");
-//                GUIObjectUnhide("PREGAME_GUI");
-//                // Show an error message
-//                btCaptions = new Array("OK");
-//                btCode = new Array("");
-//                messageBox(400, 200, "The game could not be started with the given parameters. You probably have entered an invalid map name.", "Error", 0, btCaptions, btCode);
-//        }
-//
-//        // Create resource pools for each player, etc.
-//        setupSession();
-//
-//        FlipGUI(GUIType);
-//
-//        // Select session peace track.
-//        curr_session_playlist_1 = newRandomSound("music", "peace");
-//        // Fade out main theme and fade in session theme.
-//        CrossFade(curr_music, curr_session_playlist_1, 0.0001);
-//
-//        // Switch GUI from main menu to game session.
-//        GUIObjectHide("loading_screen");
-//        GUIObjectUnhide("SESSION_GUI");
-//}
 
 function reallyStartGame()
 {
@@ -104,15 +83,7 @@ function setupSession()
         // For example, create the resource types.
         // Initialise Resource Pools by attaching them to the Player object.
         // (CPlayer code takes care of giving a copy to each player.)
-//        player = new Object(); // I shouldn't need to do this. Need to find the existing Player to add these to.
-        localPlayer.resource = new Object();
-        localPlayer.resource.food = 0;
-        localPlayer.resource.wood = 0;
-        localPlayer.resource.stone = 0;
-        localPlayer.resource.ore = 0;
-        localPlayer.resource.pop = new Object();
-        localPlayer.resource.pop.curr = 0;
-        localPlayer.resource.pop.housing = 0;
+	CreateResources();
 
         // Start refreshing the session controls.
         setInterval( getObjectInfo, 1, 1000 );

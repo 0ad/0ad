@@ -122,6 +122,18 @@ function AddSizeGroupPaneBar(objectName)
 
 // ====================================================================
 
+function SelectUnit(unitNumber)
+{
+	// Sets the current unit selection to a given number in the selection[] array (selects a unit in the current selection).
+	// Occurs when clicking a portrait in the Group Pane.
+
+	clickedUnit = selection[unitNumber-1];
+	selection.clear();
+	selection.push(clickedUnit); 
+}
+
+// ====================================================================
+
 function UpdateGroupPane()
 {
 	// Reveal Group Pane.

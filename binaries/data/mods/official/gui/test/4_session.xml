@@ -148,8 +148,10 @@
 					{
 						for (colLoop = 0; colLoop < crd_grppane_prt_col.last; colLoop++)
 						{
+							// Set size, caption, and onPress function for each button.
 							AddSizeGroupPane("SESSION_GROUP_PANE_PORTRAIT_" + groupPaneCounter, rowLoop, colLoop);
 							getGUIObjectByName("SESSION_GROUP_PANE_PORTRAIT_" + groupPaneCounter).caption = groupPaneCounter;
+							getGUIObjectByName("SESSION_GROUP_PANE_PORTRAIT_" + groupPaneCounter).onPress = function() { SelectUnit(groupPaneCounter); }
 							AddSizeGroupPaneBar("SESSION_GROUP_PANE_PORTRAIT_" + groupPaneCounter + "_BAR");
 							groupPaneCounter++;
 						}
@@ -166,7 +168,11 @@
 
 			<object type="text" name="SN_STATUS_PANE_BG" style="session_ghost_object" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_BG]); ]]></action></object>
 			<object type="text" name="SN_STATUS_PANE_HEADING" style="session_ghost_subheading_center_object" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_HEADING], Crd[SN_STATUS_PANE_HEADING_FLP]); ]]></action></object>
-			<object type="button" name="SN_STATUS_PANE_PORTRAIT" style="portrait" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_PORTRAIT], Crd[SN_STATUS_PANE_PORTRAIT_FLP]); ]]></action></object>
+			<object type="button" name="SN_STATUS_PANE_PORTRAIT" hotkey="selection.snap" style="portrait" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_PORTRAIT], Crd[SN_STATUS_PANE_PORTRAIT_FLP]); ]]></action>
+				<action on="Press"><![CDATA[
+					setCameraTarget(selection[0].position); // Focus the camera on the unit when his portrait is clicked.
+				]]></action>
+			</object>
 			<object type="text" name="SN_STATUS_PANE_ICON_RANK" style="session_ghost_object" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_ICON_RANK], Crd[SN_STATUS_PANE_ICON_RANK_FLP]); ]]></action></object>
 			<object type="progressbar" name="SN_STATUS_PANE_ICON_HP_BAR" style="group_portrait_bar" sprite_background="back_bar" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_ICON_HP_BAR], Crd[SN_STATUS_PANE_ICON_HP_BAR_FLP]); ]]></action></object>
 			<object type="text" name="SN_STATUS_PANE_ICON_HP_TEXT" style="session_ghost_text_left_centre_object" textcolor="0 255 0" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_ICON_HP_TEXT], Crd[SN_STATUS_PANE_ICON_HP_TEXT_FLP]); ]]></action></object>
@@ -846,11 +852,12 @@
 			<object type="button" name="SN_TEAM_TRAY_8" style="action_left" />
 			<object type="button" name="SN_TEAM_TRAY_9" style="action_left" >
 				<action on="Load"><![CDATA[
-					// Seek through ALL objects and set their sizes at once. (So make sure this always goes in the last control.)
+					// Seek through ALL objects and set their sizes, captions and onpresses at once. (So make sure this always goes in the last control.)
 					for (SN_TEAM_TRAY.curr = 1; SN_TEAM_TRAY.curr < SN_TEAM_TRAY.last; SN_TEAM_TRAY.curr++)
 					{
 						addSizeCoordArray("SN_TEAM_TRAY_" + SN_TEAM_TRAY.curr, Crd[SN_TEAM_TRAY[SN_TEAM_TRAY.curr]]);
 						GUIObjectSetCaption("SN_TEAM_TRAY_" + SN_TEAM_TRAY.curr, SN_TEAM_TRAY.curr);
+						getGUIObjectByName("SN_TEAM_TRAY_" + SN_TEAM_TRAY.curr).onPress = function() { SelectGroup(this.name.substring(this.name.length-1, this.name.length)); }
 					}
 				]]></action>
 			</object>
