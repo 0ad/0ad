@@ -33,9 +33,11 @@ extern void ia32_get_cpu_info();
 #ifdef _WIN32
 extern int win_get_gfx_info();
 extern int win_get_cpu_info();
+extern int win_get_snd_info();
 #endif
 
 extern "C" int ogl_get_gfx_info();
+
 
 //
 // memory
@@ -71,12 +73,13 @@ void get_mem_status()
 #endif
 }
 
+
 //
 // graphics card
 //
 
-char gfx_card[64] = "";
-char gfx_drv_ver[64] = "";
+char gfx_card[GFX_CARD_LEN] = "";
+char gfx_drv_ver[GFX_DRV_VER_LEN] = "";
 
 
 // attempt to detect graphics card without OpenGL (in case ogl init fails,
@@ -106,7 +109,7 @@ void get_gfx_info()
 // CPU
 //
 
-char cpu_type[64] = "";	// processor brand string is 48 chars
+char cpu_type[49] = "";	// processor brand string is <= 48 chars
 double cpu_freq = 0.f;
 
 // -1 if detect not yet called, or cannot be determined
@@ -116,7 +119,7 @@ int cpu_smp = -1;
 	// are there actually multiple physical processors,
 	// not only logical hyperthreaded CPUs? relevant for wtime.
 
-static inline void get_cpu_info()
+inline void get_cpu_info()
 {
 #ifdef _WIN32
 	win_get_cpu_info();
@@ -128,11 +131,16 @@ static inline void get_cpu_info()
 }
 
 
+//
+// sound
+//
 
+char snd_card[SND_CARD_LEN];
+char snd_drv_ver[SND_DRV_VER_LEN];
 
-void detect()
+inline void get_snd_info()
 {
-	get_mem_status();
-	get_gfx_info();
-	get_cpu_info();
+#ifdef _WIN32
+	win_get_snd_info();
+#endif
 }
