@@ -1,4 +1,4 @@
-// $Id: wxapp.cpp,v 1.3 2004/06/19 12:56:09 philip Exp $
+// $Id: wxapp.cpp,v 1.4 2004/08/10 16:01:18 philip Exp $
 
 #include "stdafx.h"
 
@@ -31,8 +31,12 @@ bool FontBuilderApp::OnInit()
 	return true;
 }
 
+
+extern void FreeDLLs();
+
 int FontBuilderApp::OnExit()
 {
 	ConfigDestroy();
+	FreeDLLs();
 	return 0;
 }
