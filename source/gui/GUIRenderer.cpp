@@ -28,7 +28,6 @@ DrawCalls::DrawCalls()
 DrawCalls::~DrawCalls()
 {
 	clear();
-//	std::vector<SDrawCall>::~vector();
 }
 
 // Never copy anything (to avoid losing track of who owns various pointers):
@@ -388,7 +387,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 				return;
 			}
 
-			int err = tex_upload(h);
+			int err = tex_upload(h, GL_LINEAR);
 			if (err < 0)
 			{
 				LOG(ERROR, LOG_CATEGORY, "Error uploading texture '%s': %d", (const char*)cit->m_TextureName, err);

@@ -212,7 +212,7 @@ static int Cursor_reload(Cursor* c, const char* name, Handle)
 #endif // _WIN32
 	{
 
-		int err = tex_upload(tex);
+		int err = tex_upload(tex, GL_NEAREST);
 		CHECK_ERR(err);
 
 		c->cursor = new ogl_cursor;
