@@ -13,6 +13,9 @@ class CObjectEntry
 {
 public:
 	struct Anim {
+		// constructor
+		Anim() : m_Speed(1), m_AnimData(0) {}
+
 		// name of the animation - "Idle", "Run", etc
 		CStr m_AnimName;
 		// filename of the animation - manidle.psa, manrun.psa, etc
