@@ -29,7 +29,6 @@
 
 #include "wdbg.h"
 #include "assert_dlg.h"
-#include "lib/timer.h"
 
 
 #ifdef _MSC_VER
@@ -1301,6 +1300,16 @@ static void set_exception_handler()
 
 
 
+
+#ifndef NO_0AD_EXCEPTION
+
+
+
+
+
+
+
+
 #ifdef LOCALISED_TEXT
 
 // Split this into a separate function because destructors and __try don't mix
@@ -1434,8 +1443,6 @@ static int write_crashlog(const char* file, const wchar_t* header, CONTEXT* cont
 // the crash log more useful, and takes the responsibility of
 // suiciding away from main.cpp.
 
-void abort_timer(); // from wtime.cpp
-
 int debug_main_exception_filter(unsigned int UNUSEDPARAM(code), PEXCEPTION_POINTERS ep)
 {
 	// If something crashes after we've already crashed (i.e. when shutting
@@ -1448,6 +1455,7 @@ int debug_main_exception_filter(unsigned int UNUSEDPARAM(code), PEXCEPTION_POINT
 	}
 	already_crashed = true;
 
+/*
 	// The timer thread sometimes dies from EXCEPTION_PRIV_INSTRUCTION
 	// when debugging this exception handler code (which gets quite
 	// annoying), so kill it before it gets a chance.
@@ -1458,6 +1466,7 @@ int debug_main_exception_filter(unsigned int UNUSEDPARAM(code), PEXCEPTION_POINT
 	__except (EXCEPTION_EXECUTE_HANDLER)
 	{
 	}
+*/
 
 	const wchar_t* error = NULL;
 
@@ -1586,3 +1595,6 @@ int debug_main_exception_filter(unsigned int UNUSEDPARAM(code), PEXCEPTION_POINT
 
 	exit(EXIT_FAILURE);
 }
+
+#endif	// #ifndef NO_0AD_EXCEPTION
+
