@@ -787,12 +787,13 @@ static ssize_t block_issue(File* f, IOSlot* slot, const off_t issue_ofs, void* b
 		buf = slot->temp_buf = mem_alloc(BLOCK_SIZE, BLOCK_SIZE);
 
 
-	// if using buffer, set position in it; otherwise, use temp buffer
-	int err = file_start_io(f, issue_ofs, BLOCK_SIZE, buf, &slot->io);
+	{
+		// if using buffer, set position in it; otherwise, use temp buffer
+		int err = file_start_io(f, issue_ofs, BLOCK_SIZE, buf, &slot->io);
 
-
-	if(err < 0)
-		issue_size = (ssize_t)err;
+		if(err < 0)
+			issue_size = (ssize_t)err;
+	}
 skip_issue:
 
 	return issue_size;
