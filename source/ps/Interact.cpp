@@ -4,6 +4,8 @@
 #include "input.h"
 #include "CConsole.h"
 #include "HFTracer.h"
+#include "Hotkey.h"
+#include "timer.h"
 
 extern CCamera g_Camera;
 extern CConsole* g_Console;
@@ -12,9 +14,6 @@ extern bool keys[SDLK_LAST];
 
 static const float SELECT_DBLCLICK_RATE = 0.5f;
 static const int ORDER_DELAY = 5;
-
-
-#include "timer.h"
 
 void CSelectedEntities::addSelection( CEntity* entity )
 {
@@ -312,7 +311,7 @@ CVector3D CSelectedEntities::getGroupPosition( u8 groupid )
 	return( avg * ( 1.0f / m_groups[groupid].size() ) );
 }
 
-void CSelectedEntities::updateContextSet()
+void CSelectedEntities::update()
 {
 	if( !isContextValid( m_contextOrder ) )
 	{
@@ -324,6 +323,8 @@ void CSelectedEntities::updateContextSet()
 			}
 		m_contextOrder = -1;
 	}
+	if( ( m_group_highlight != 255 ) && getGroupCount( m_group_highlight ) )
+		setCameraTarget( getGroupPosition( m_group_highlight ) );
 }
 
 bool CSelectedEntities::nextContext()
@@ -540,7 +541,6 @@ void CMouseoverEntities::update( float timestep )
 			m_mouseover.push_back( SMouseoverFader( m_target, initial ) );
 		}
 	}
-	g_Selection.updateContextSet();
 }
 
 void CMouseoverEntities::addSelection()
@@ -666,21 +666,22 @@ int interactInputHandler( const SDL_Event* ev )
 
 	static u16 button_down_x, button_down_y;
 	static bool button_down = false;
+
 	switch( ev->type )
 	{
 	case SDL_KEYDOWN:
 		if( ( ev->key.keysym.sym >= SDLK_0 ) && ( ev->key.keysym.sym <= SDLK_9 ) )
 		{
 			u8 groupid = ev->key.keysym.sym - SDLK_0;
-			if( keys[SDLK_LSHIFT] || keys[SDLK_RSHIFT] )
+			if( hotkeys[HOTKEY_SELECTION_GROUP_ADD] )
 			{
 				g_Selection.addGroup( groupid );
 			}
-			else if( keys[SDLK_LCTRL] || keys[SDLK_RCTRL] )
+			else if( hotkeys[HOTKEY_SELECTION_GROUP_SAVE] )
 			{
 				g_Selection.saveGroup( groupid );
 			}
-			else if( keys[SDLK_LALT] || keys[SDLK_RALT] )
+			else if( hotkeys[HOTKEY_SELECTION_GROUP_SNAP] )
 			{
 				g_Selection.highlightGroup( groupid );
 			}
@@ -694,32 +695,39 @@ int interactInputHandler( const SDL_Event* ev )
 					g_Selection.loadGroup( groupid );
 			}
 		}
-		else
-		{
-			switch( ev->key.keysym.sym )
-			{
-			case SDLK_o:
-				g_Mouseover.m_viewall = true;
-				break;
-			case SDLK_HOME:
-				if( g_Selection.m_selected.size() )
-					setCameraTarget( g_Selection.getSelectionPosition() );
-			}
-		}
 		break;
-	case SDL_KEYUP:
-		switch( ev->key.keysym.sym )
+	case SDL_HOTKEYDOWN:
+		switch( ev->user.code )
 		{
-		case SDLK_LALT:
-		case SDLK_RALT:
+		case HOTKEY_HIGHLIGHTALL:
+			g_Mouseover.m_viewall = true;
+			break;
+		case HOTKEY_SELECTION_SNAP:
+			if( g_Selection.m_selected.size() )
+				setCameraTarget( g_Selection.getSelectionPosition() );
+			break;
+		case HOTKEY_CONTEXTORDER_NEXT:
+			g_Selection.nextContext();
+			break;
+		case HOTKEY_CONTEXTORDER_PREVIOUS:
+			g_Selection.previousContext();
+			break;
+		default:
+			return( EV_PASS );
+		}
+		return( EV_HANDLED );
+	case SDL_HOTKEYUP:
+		switch( ev->user.code )
+		{
+		case HOTKEY_SELECTION_GROUP_SNAP:
 			if( g_Selection.m_group_highlight != 255 )
 				g_Selection.highlightNone();
 			break;
-		case SDLK_o:
+		case HOTKEY_HIGHLIGHTALL:
 			g_Mouseover.m_viewall = false;
 			break;
 		}
-		break;
+		return( EV_HANDLED );
 	case SDL_MOUSEBUTTONUP:
 		switch( ev->button.button )
 		{
@@ -752,11 +760,11 @@ int interactInputHandler( const SDL_Event* ev )
 
 			button_down = false;
 			g_Mouseover.stopBandbox();
-			if( keys[SDLK_LSHIFT] || keys[SDLK_RSHIFT] )
+			if( hotkeys[HOTKEY_SELECTION_ADD] )
 			{
 				g_Mouseover.addSelection();
 			}
-			else if( keys[SDLK_LCTRL] || keys[SDLK_RCTRL] )
+			else if( hotkeys[HOTKEY_SELECTION_REMOVE] )
 			{
 				g_Mouseover.removeSelection();
 			}
@@ -776,16 +784,6 @@ int interactInputHandler( const SDL_Event* ev )
 			button_down_x = ev->button.x;
 			button_down_y = ev->button.y;
 			break;
-#ifdef CONTEXT_VIA_MOUSEWHEEL
-		case SDL_BUTTON_WHEELDOWN:
-			if( g_Selection.nextContext() )
-				return( EV_HANDLED );
-			break;
-		case SDL_BUTTON_WHEELUP:
-			if( g_Selection.previousContext() )
-				return( EV_HANDLED );
-			break;
-#endif
 		}
 		break;
 	case SDL_MOUSEMOTION:

@@ -47,11 +47,13 @@ enum EConfigNamespace
 };
 
 typedef CParserValue CConfigValue;
+typedef std::vector<CParserValue> CConfigValueSet;
+
 #define g_ConfigDB CConfigDB::GetSingleton()
 
 class CConfigDB: public Singleton<CConfigDB>
 {
-	static std::map <CStr, CConfigValue> m_Map[];
+	static std::map <CStr, CConfigValueSet> m_Map[];
 	static CStr m_ConfigFile[];
 	static bool m_UseVFS[];
 
@@ -68,6 +70,13 @@ public:
 	// NULL if such a variable could not be found
 	CConfigValue *GetValue(EConfigNamespace ns, CStr name);
 	
+	// GetValues()
+	// Attempt to retrieve a vector of values corresponding to the given setting
+	// in the specified namespace
+	// 
+	// Returns a pointer to the vector, or NULL if the setting could not be found.
+	CConfigValueSet *GetValues(EConfigNamespace ns, CStr name);
+
 	// CreateValue()
 	// Create a new config value in the specified namespace. If such a
 	// variable already exists, the old value is returned and the effect is

@@ -6,6 +6,7 @@
 #include "Prometheus.h"
 #include "sysdep/sysdep.h"
 #include "input.h"
+#include "Hotkey.h"
 
 #include "scripting/ScriptingHost.h"
 
@@ -513,21 +514,19 @@ extern void Die(int err, const wchar_t* fmt, ...);
 
 int conInputHandler(const SDL_Event* ev)
 {
-	if(ev->type != SDL_KEYDOWN)
+	if( ev->type == SDL_HOTKEYDOWN )
+	{
+		if( ev->user.code == HOTKEY_CONSOLE_TOGGLE )
+		{
+			g_Console->ToggleVisible();
+			return( EV_HANDLED );
+		}
+	}
+
+	if( ev->type != SDL_KEYDOWN)
 		return EV_PASS;
 
 	SDLKey sym = ev->key.keysym.sym;
-
-	// toggle
-	if(sym == SDLK_F1)
-	{
-		g_Console->ToggleVisible();
-		return EV_HANDLED;
-			// bail, because we'd fall under if(sym) .. else below
-	}
-
-	if( sym == SDLK_ESCAPE )
-		return EV_PASS; // Not being able to quit while the console is up is annoying.
 	
 	if(!g_Console->IsActive())
 		return EV_PASS;

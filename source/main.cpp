@@ -31,6 +31,7 @@
 #include "UnitManager.h"
 
 #include "Interact.h"
+#include "Hotkey.h"
 #include "BaseEntityCollection.h"
 #include "Entity.h"
 #include "EntityHandles.h"
@@ -327,18 +328,24 @@ static int handler(const SDL_Event* ev)
 	case SDL_KEYDOWN:
 		c = ev->key.keysym.sym;
 		keys[c] = true;
+		break;
 
-		switch(c)
+	case SDL_HOTKEYDOWN:
+
+		switch( ev->user.code )
 		{
-		case SDLK_ESCAPE:
+		case HOTKEY_EXIT:
 			quit = true;
 			break;
 
-		case SDLK_PRINT:
+		case HOTKEY_SCREENSHOT:
 			WriteScreenshot();
 			break;
+
+		default:
+			return( EV_PASS );
 		}
-		break;
+		return( EV_HANDLED );
 
 	case SDL_KEYUP:
 		c = ev->key.keysym.sym;
@@ -970,7 +977,9 @@ if(!g_MapFile)
 	in_add_handler(gui_handler);
 #endif
 
-	
+	in_add_handler(hotkeyInputHandler);
+
+	loadHotkeys();
 
 	MICROLOG(L"render blank");
 	// render everything to a blank frame to force renderer to load everything
@@ -1115,12 +1124,28 @@ static void Frame()
 
 	if (!g_FixedFrameTiming)
 		terr_update(float(TimeSinceLastFrame));
+
 	g_Mouseover.update( TimeSinceLastFrame );
+	g_Selection.update();
+
 	g_Console->Update(TimeSinceLastFrame);
 
 	// ugly, but necessary. these are one-shot events, have to be reset.
+
+	// Spoof mousebuttonup events for the hotkey system
+	SDL_Event spoof;
+	spoof.type = SDL_MOUSEBUTTONUP;
+	spoof.button.button = SDL_BUTTON_WHEELUP;
+	if( mouseButtons[SDL_BUTTON_WHEELUP] )
+		hotkeyInputHandler( &spoof );
+	spoof.button.button = SDL_BUTTON_WHEELDOWN;
+	if( mouseButtons[SDL_BUTTON_WHEELDOWN] )
+		hotkeyInputHandler( &spoof );
+
 	mouseButtons[SDL_BUTTON_WHEELUP] = false;
 	mouseButtons[SDL_BUTTON_WHEELDOWN] = false;
+
+	
 
 	if(g_active)
 	{

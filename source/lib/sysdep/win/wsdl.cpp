@@ -340,6 +340,14 @@ return_char:
 		case WM_MOUSEWHEEL:
 			sdl_btn = (msg.wParam & BIT(31))? SDL_BUTTON_WHEELUP : SDL_BUTTON_WHEELDOWN;
 			break;	// event filled in mouse code below
+		default:
+			if( msg.message >= WM_APP )
+			{
+				ev->type = SDL_USEREVENT + ( msg.message - WM_APP );
+				ev->user.code = (int)msg.wParam;
+				return 1;
+			}
+			break;
 		}
 
 		// mouse button
@@ -389,7 +397,14 @@ return_char:
 	return 0;
 }
 
-
+int SDL_PushEvent(SDL_Event* ev)
+{
+	if( ev->type < SDL_USEREVENT )
+		return -1;
+	// Use Windows app-global user events.
+	PostMessage(NULL, WM_APP + ( ev->type - SDL_USEREVENT ), ev->user.code, 0);
+	return 0;
+}
 
 int SDL_GL_SetAttribute(SDL_GLattr attr, int value)
 {

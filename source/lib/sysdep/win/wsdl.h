@@ -193,6 +193,12 @@ typedef struct
 }
 SDL_ActiveEvent;
 
+typedef struct
+{
+	u16 code;
+}
+SDL_UserEvent;
+
 /* SDL_Event.type */
 enum
 {
@@ -201,7 +207,8 @@ enum
 	SDL_MOUSEMOTION,
 	SDL_MOUSEBUTTONDOWN,
 	SDL_MOUSEBUTTONUP,
-	SDL_ACTIVEEVENT
+	SDL_ACTIVEEVENT,
+	SDL_USEREVENT,
 };
 
 typedef struct
@@ -213,6 +220,7 @@ typedef struct
 		SDL_MouseMotionEvent motion;
 		SDL_MouseButtonEvent button;
 		SDL_ActiveEvent active;
+		SDL_UserEvent user;
 	};
 }
 SDL_Event;
@@ -221,6 +229,7 @@ SDL_Event;
 extern int SDL_EnableUNICODE(int enable);
 extern int SDL_WaitEvent(SDL_Event*);
 extern int SDL_PollEvent(SDL_Event* ev);
+extern int SDL_PushEvent(SDL_Event* ev);
 
 extern void SDL_WM_SetCaption(const char *title, const char *icon);
 

@@ -1,6 +1,7 @@
 // Interact.h
 //
 // Manages main-screen interaction (screen->worldspace mapping, unit selection, ordering, etc.)
+// and the hotkey message processor.
 // Does this belong in GUI?
 
 // Mark Thompson (mot20@cam.ac.uk / mark@wildfiregames.com)
@@ -47,7 +48,7 @@ struct CSelectedEntities : public Singleton<CSelectedEntities>
 	int getGroupCount( u8 groupid );
 	CVector3D getGroupPosition( u8 groupid );
 
-	void updateContextSet();
+	void update();
 	bool isContextValid( int contextOrder );
 	void contextOrder( bool pushQueue = false );
 	bool nextContext();
@@ -104,7 +105,6 @@ struct CMouseoverEntities : public Singleton<CMouseoverEntities>
 	void stopBandbox();
 };
 
-int interactInputHandler( const SDL_Event* ev );
 bool isMouseoverType( CEntity* ev );
 bool isOnScreen( CEntity* ev );
 
@@ -112,9 +112,10 @@ void pushCameraTarget( const CVector3D& target );
 void setCameraTarget( const CVector3D& target );
 void popCameraTarget();
 
+int interactInputHandler( const SDL_Event* ev );
+
 extern std::vector<CVector3D> cameraTargets;
 extern CVector3D cameraDelta;
-
 
 #define g_Selection CSelectedEntities::GetSingleton()
 #define g_Mouseover CMouseoverEntities::GetSingleton()

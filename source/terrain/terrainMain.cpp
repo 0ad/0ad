@@ -7,6 +7,7 @@
 #include "TextureManager.h"
 #include "ObjectManager.h"
 #include "Prometheus.h"
+#include "Hotkey.h"
 
 #include "sdl.h"
 #include "res/tex.h"
@@ -39,7 +40,7 @@ const float ViewScrollSpeed = 60;
 const float ViewRotateSensitivity = 0.002f;
 const float ViewDragSensitivity = 0.5f;
 const float ViewZoomSensitivityWheel = 16.0f;
-const float ViewZoomSensitivityKey = 256.0f;
+const float ViewZoomSensitivity = 256.0f;
 const float ViewZoomSmoothness = 0.02f; // 0.0 = instantaneous zooming, 1.0 = so slow it never moves
 const float ViewSnapSmoothness = 0.02f; // Just the same.
 float ViewFOV;
@@ -92,8 +93,11 @@ static void move_camera(float DeltaTime)
 	forwards_horizontal.Y = 0.0f;
 	forwards_horizontal.Normalize();
 
+	/*
 	if ((mouseButtons[SDL_BUTTON_MIDDLE] && (keys[SDLK_LCTRL] || keys[SDLK_RCTRL]))
 	 || (mouseButtons[SDL_BUTTON_LEFT] && mouseButtons[SDL_BUTTON_RIGHT]) )
+	*/
+	if( hotkeys[HOTKEY_CAMERA_ROTATE] )
 	{
 		// Ctrl + middle-drag or left-and-right-drag to rotate view
 
@@ -113,7 +117,10 @@ static void move_camera(float DeltaTime)
 		g_Camera.m_Orientation.Translate(position);
 
 	}
+	/*
 	else if (mouseButtons[SDL_BUTTON_MIDDLE])
+	*/
+	else if( hotkeys[HOTKEY_CAMERA_PAN] )
 	{
 		// Middle-drag to pan
 		g_Camera.m_Orientation.Translate(rightwards * (ViewDragSensitivity * mouse_dx));
@@ -135,14 +142,14 @@ static void move_camera(float DeltaTime)
 
 	// Keyboard movement (added to mouse movement, so you can go faster if you want)
 
-	if (keys[SDLK_RIGHT])
+	if( hotkeys[HOTKEY_CAMERA_PAN_RIGHT] )
 		g_Camera.m_Orientation.Translate(rightwards * (ViewScrollSpeed * DeltaTime));
-	if (keys[SDLK_LEFT])
+	if( hotkeys[HOTKEY_CAMERA_PAN_LEFT] )
 		g_Camera.m_Orientation.Translate(-rightwards * (ViewScrollSpeed * DeltaTime));
 
-	if (keys[SDLK_DOWN])
+	if( hotkeys[HOTKEY_CAMERA_PAN_BACKWARD] )
 		g_Camera.m_Orientation.Translate(-forwards_horizontal * (ViewScrollSpeed * DeltaTime));
-	if (keys[SDLK_UP])
+	if( hotkeys[HOTKEY_CAMERA_PAN_FORWARD] )
 		g_Camera.m_Orientation.Translate(forwards_horizontal * (ViewScrollSpeed * DeltaTime));
 
 
@@ -150,15 +157,15 @@ static void move_camera(float DeltaTime)
 
 	static float zoom_delta = 0.0f;
 
-	if (mouseButtons[SDL_BUTTON_WHEELUP])
-		zoom_delta -= ViewZoomSensitivityWheel;
-	else if (mouseButtons[SDL_BUTTON_WHEELDOWN])
+	if( hotkeys[HOTKEY_CAMERA_ZOOM_WHEEL_IN] )
 		zoom_delta += ViewZoomSensitivityWheel;
+	else if( hotkeys[HOTKEY_CAMERA_ZOOM_WHEEL_OUT] )
+		zoom_delta -= ViewZoomSensitivityWheel;
 
-	if (keys[SDLK_MINUS] || keys[SDLK_KP_MINUS])
-		zoom_delta -= ViewZoomSensitivityKey*DeltaTime;
-	else if (keys[SDLK_EQUALS] || keys[SDLK_PLUS] || keys[SDLK_KP_PLUS])
-		zoom_delta += ViewZoomSensitivityKey*DeltaTime;
+	if( hotkeys[HOTKEY_CAMERA_ZOOM_IN] )
+		zoom_delta += ViewZoomSensitivity*DeltaTime;
+	else if( hotkeys[HOTKEY_CAMERA_ZOOM_OUT] )
+		zoom_delta -= ViewZoomSensitivity*DeltaTime;
 
 	if (zoom_delta)
 	{
@@ -299,24 +306,24 @@ int terr_handler(const SDL_Event* ev)
 	switch(ev->type)
 	{
 
-	case SDL_KEYDOWN:
-		switch(ev->key.keysym.sym)
+	case SDL_HOTKEYDOWN:
+		switch(ev->user.code)
 		{
-		case SDLK_w:
+		case HOTKEY_WIREFRAME:
 			if (g_Renderer.GetTerrainRenderMode()==WIREFRAME) {
 				g_Renderer.SetTerrainRenderMode(SOLID);
 			} else {
 				g_Renderer.SetTerrainRenderMode(WIREFRAME);
 			}
-			break;
+			return( EV_HANDLED );
 
-		case SDLK_h:
+		case HOTKEY_CAMERA_RESET:
 			// quick hack to return camera home, for screenshots (after alt+tabbing)
 			g_Camera.SetProjection (1, 5000, DEGTORAD(20));
 			g_Camera.m_Orientation.SetXRotation(DEGTORAD(30));
 			g_Camera.m_Orientation.RotateY(DEGTORAD(-45));
 			g_Camera.m_Orientation.Translate (100, 150, -100);
-			break;
+			return( EV_HANDLED );
 
 		}
 	}

@@ -11,7 +11,7 @@
 
 using namespace std;
 
-typedef map <CStr, CConfigValue> TConfigMap;
+typedef map <CStr, CConfigValueSet> TConfigMap;
 TConfigMap CConfigDB::m_Map[CFG_LAST];
 CStr CConfigDB::m_ConfigFile[CFG_LAST];
 bool CConfigDB::m_UseVFS[CFG_LAST];
@@ -192,13 +192,29 @@ CConfigDB::CConfigDB()
 
 CConfigValue *CConfigDB::GetValue(EConfigNamespace ns, CStr name)
 {
+	/*
 	assert(ns < CFG_LAST && ns >= 0);
 	
 	TConfigMap::iterator it=m_Map[ns].find(name);
 	if (it == m_Map[ns].end())
 		return NULL;
 	else
-		return &(it->second);
+		return &(it->second[0] );
+	*/
+	CConfigValueSet* values = GetValues( ns, name );
+	if( !values ) return( NULL );
+	return &( (*values)[0] );
+}
+
+CConfigValueSet *CConfigDB::GetValues(EConfigNamespace ns, CStr name )
+{
+	assert(ns < CFG_LAST && ns >= 0);
+	
+	TConfigMap::iterator it=m_Map[ns].find(name);
+	if (it == m_Map[ns].end())
+		return NULL;
+	else
+		return &(it->second );
 }
 
 CConfigValue *CConfigDB::CreateValue(EConfigNamespace ns, CStr name)
@@ -208,8 +224,8 @@ CConfigValue *CConfigDB::CreateValue(EConfigNamespace ns, CStr name)
 	CConfigValue *ret=GetValue(ns, name);
 	if (ret) return ret;
 	
-	TConfigMap::iterator it=m_Map[ns].insert(m_Map[ns].begin(), make_pair(name, CConfigValue()));
-	return &(it->second);
+	TConfigMap::iterator it=m_Map[ns].insert(m_Map[ns].begin(), make_pair(name, CConfigValueSet( 1 )));
+	return &(it->second[0]);
 }
 
 void CConfigDB::SetConfigFile(EConfigNamespace ns, bool useVFS, CStr path)
@@ -225,7 +241,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	// Set up CParser
 	CParser parser;
 	CParserLine parserLine;
-	parser.InputTaskType("Assignment", "_$ident_=_[-$arg(_minus)]_$value_[[;]$rest]");
+	parser.InputTaskType("Assignment", "_$ident_=<_[-$arg(_minus)]_$value_,>_[-$arg(_minus)]_$value[[;]$rest]");
 	parser.InputTaskType("CommentOrBlank", "_[;[$rest]]");
 
 	void *buffer;
@@ -283,8 +299,19 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 			parserLine.GetArgString(1, value))
 		{
 			// Add name and value to the map
-			newMap[name].m_String=value;
-			LOG(NORMAL, "Loaded config string \"%s\" = \"%s\"", name.c_str(), value.c_str());
+			size_t argCount = parserLine.GetArgCount();
+
+			newMap[name].clear();
+
+			for( size_t t = 0; t < argCount; t++ )
+			{
+				if( !parserLine.GetArgString( t + 1, value ) )
+					continue;
+				CConfigValue argument;
+				argument.m_String = value;
+				newMap[name].push_back( argument );
+				LOG(NORMAL, "Loaded config string \"%s\" = \"%s\"", name.c_str(), value.c_str());
+			}
 		}
 	}
 	while (next < filebuf+buflen);
@@ -337,7 +364,7 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, bool useVFS, CStr path)
 	TConfigMap::const_iterator it=map.begin();
 	while (it != map.end())
 	{
-		fprintf(fp, "%s = \"%s\"\n", it->first.c_str(), it->second.m_String.c_str());
+		fprintf(fp, "%s = \"%s\"\n", it->first.c_str(), it->second[0].m_String.c_str());
 		++it;
 	}
 
