@@ -26,7 +26,7 @@
 #include <limits.h>	// CHAR_BIT
 #include <string.h>
 #include <stdlib.h>
-#include <new> // std::bad_alloc
+#include <new>		// std::bad_alloc
 
 
 // rationale
@@ -105,15 +105,10 @@ static inline Handle handle(const u32 _idx, const u32 tag)
 
 
 // determines maximum number of references to a resource.
-static const uint REF_BITS  = 8;
+static const uint REF_BITS  = 16;
 static const u32 REF_MAX = (1ul << REF_BITS)-1;
 
 static const uint TYPE_BITS = 8;
-
-// a handle's idx field isn't stored in its HDATA entry (not needed);
-// to save space, these should take its place, i.e. they should fit in IDX_BITS.
-// if not, ignore + comment out this assertion.
-cassert(REF_BITS + TYPE_BITS <= IDX_BITS);
 
 
 // chosen so that all current resource structs are covered,
@@ -134,8 +129,8 @@ struct HDATA
 	u32 refs : REF_BITS;
 	u32 type_idx : TYPE_BITS;
 	u32 keep_open : 1;
-		// regardless of refs, do not actually release the resource
-		// (i.e. call dtor) when the handle is h_free-d.
+		// if set, do not actually release the resource (i.e. call dtor)
+		// when the handle is h_free-d, regardless of the refcount.
 		// set by h_alloc; reset on exit and by housekeeping.
 
 	H_Type type;
