@@ -31,17 +31,17 @@
 #include <numeric>
 
 
-// define to disable time sources (useful for simulating other systems)
-//#define NO_QPC
-//#define NO_TSC
-
-
 // automatic module init (before main) and shutdown (before termination)
-#pragma data_seg(".LIB$WIB")
+#pragma data_seg(".LIB$WCB")
 WIN_REGISTER_FUNC(wtime_init);
 #pragma data_seg(".LIB$WTB")
 WIN_REGISTER_FUNC(wtime_shutdown);
 #pragma data_seg()
+
+
+// define to disable time sources (useful for simulating other systems)
+//#define NO_QPC
+//#define NO_TSC
 
 
 // see http://www.gamedev.net/reference/programming/features/timing/ .
@@ -128,13 +128,13 @@ enum HRTOverride
 static HRTOverride overrides[HRT_NUM_IMPLS];
 	// HRTImpl enums as index
 	// HACK: no init needed - static data is zeroed (= HRT_DEFAULT)
-cassert(HRT_DEFAULT == 0);
+cassert((int)HRT_DEFAULT == 0);
 
 
 
 
-#define lock() win_lock(HRT_CS)
-#define unlock() win_unlock(HRT_CS)
+static inline void lock(void) { win_lock(HRT_CS); }
+static inline void unlock(void) { win_unlock(HRT_CS); }
 
 
 // decide upon a HRT implementation, checking if we can work around
@@ -255,13 +255,13 @@ static int choose_impl()
 	{
 		hrt_impl = HRT_GTC;
 		hrt_nominal_freq = 1000.0;	// units returned
+		hrt_res = 1e-2;	// guess, in case the following fails
 
 		// get actual resolution
-		DWORD adj; BOOL adj_disabled;
-			// unused, but must be passed to GSTA
-		DWORD timer_period;	// in hectonanoseconds
-		GetSystemTimeAdjustment(&adj, &timer_period, &adj_disabled);
-		hrt_res = (timer_period / 1e7);
+		DWORD adj; BOOL adj_disabled; // unused, but must be passed to GSTA
+		DWORD timer_period;	// [hectonanoseconds]
+		if(GetSystemTimeAdjustment(&adj, &timer_period, &adj_disabled))
+			hrt_res = (timer_period / 1e7);
 		return 0;
 	}
 
@@ -283,15 +283,18 @@ static i64 ticks_lk()
 // TSC
 #if defined(_M_IX86) && !defined(NO_TSC)
 	case HRT_TSC:
-		return rdtsc();
+		return (i64)rdtsc();
 #endif
 
 // QPC
 #if defined(_WIN32) && !defined(NO_QPC)
 	case HRT_QPC:
+		{
 		LARGE_INTEGER i;
-		QueryPerformanceCounter(&i);
+		BOOL ok = QueryPerformanceCounter(&i);
+		assert(ok);	// shouldn't fail if it was chosen above
 		return i.QuadPart;
+		}
 #endif
 
 // TGT
@@ -302,9 +305,10 @@ static i64 ticks_lk()
 
 	// add further timers here.
 
+	case HRT_NUM_IMPLS:
 	default:
 		debug_warn("ticks_lk: invalid impl");
-		// fall through
+		//-fallthrough
 
 	case HRT_NONE:
 		return 0;
@@ -519,7 +523,8 @@ static void calibrate_lk()
 
 		// average all samples in buffer
 		double freq_sum = std::accumulate(samples.begin(), samples.end(), 0.0);
-		hrt_cur_freq = freq_sum / (int)samples.size();
+		const int num = (int)samples.size();	// divide-by-0 paranoia
+		hrt_cur_freq = (num == 0)? 0.0 : freq_sum / num;
 	}
 	else
 	{
@@ -541,8 +546,6 @@ static void calibrate_lk()
 
 static HANDLE hThread;
 static HANDLE hExitEvent;
-
-#include <process.h>
 
 static unsigned __stdcall calibration_thread(void* data)
 {
@@ -655,11 +658,11 @@ time_t local_filetime_to_time_t(FILETIME* ft)
 
 	struct tm t;
 	t.tm_sec   = st.wSecond;
-    t.tm_min   = st.wMinute;
-    t.tm_hour  = st.wHour;
-    t.tm_mday  = st.wDay;
-    t.tm_mon   = st.wMonth-1;
-    t.tm_year  = st.wYear-1900;
+	t.tm_min   = st.wMinute;
+	t.tm_hour  = st.wHour;
+	t.tm_mday  = st.wDay;
+	t.tm_mon   = st.wMonth-1;
+	t.tm_year  = st.wYear-1900;
 	t.tm_isdst = -1;
 		// let the CRT determine whether this local time
 		// falls under DST by the US rules.
