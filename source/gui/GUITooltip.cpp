@@ -66,8 +66,8 @@ const double CooldownTime = 0.25; // TODO: Don't hard-code this value
 
 static bool GetTooltip(IGUIObject* obj, CStr &style)
 {
-	if (obj && obj->SettingExists("tooltip-style")
-		&& GUI<CStr>::GetSetting(obj, "tooltip-style", style) == PS_OK)
+	if (obj && obj->SettingExists("tooltip_style")
+		&& GUI<CStr>::GetSetting(obj, "tooltip_style", style) == PS_OK)
 	{
 		if (style.Length() == 0)
 		{
@@ -95,7 +95,7 @@ static void ShowTooltip(IGUIObject* obj, CPos pos, CStr& style, CGUI* gui)
 {
 	assert(obj);
 
-	// Get the object referenced by 'tooltip-style'
+	// Get the object referenced by 'tooltip_style'
 	IGUIObject* tooltipobj = gui->FindObjectByName("__tooltip_"+style);
 	if (! tooltipobj)
 	{
@@ -106,7 +106,7 @@ static void ShowTooltip(IGUIObject* obj, CPos pos, CStr& style, CGUI* gui)
 	IGUIObject* usedobj = tooltipobj; // object actually used to display the tooltip in
 
 	CStr usedObjectName;
-	if (GUI<CStr>::GetSetting(tooltipobj, "use-object", usedObjectName) == PS_OK
+	if (GUI<CStr>::GetSetting(tooltipobj, "use_object", usedObjectName) == PS_OK
 		&& usedObjectName.Length())
 	{
 		usedobj = gui->FindObjectByName(usedObjectName);
@@ -116,7 +116,7 @@ static void ShowTooltip(IGUIObject* obj, CPos pos, CStr& style, CGUI* gui)
 			return;
 		}
 
-		// Unhide the object. (If it had use-object and hide-object="true",
+		// Unhide the object. (If it had use_object and hide_object="true",
 		// still unhide it, because the used object might be hidden by default)
 		GUI<bool>::SetSetting(usedobj, "hidden", false);
 	}
@@ -156,7 +156,7 @@ static void HideTooltip(CStr& style, CGUI* gui)
 	}
 
 	CStr usedObjectName;
-	if (GUI<CStr>::GetSetting(tooltipobj, "use-object", usedObjectName) == PS_OK
+	if (GUI<CStr>::GetSetting(tooltipobj, "use_object", usedObjectName) == PS_OK
 		&& usedObjectName.Length())
 	{
 		IGUIObject* usedobj = gui->FindObjectByName(usedObjectName);
@@ -172,9 +172,9 @@ static void HideTooltip(CStr& style, CGUI* gui)
 
 
 		bool hideobject = true;
-		GUI<bool>::GetSetting(tooltipobj, "hide-object", hideobject);
+		GUI<bool>::GetSetting(tooltipobj, "hide_object", hideobject);
 
-		// If hide-object was enabled, hide it
+		// If hide_object was enabled, hide it
 		if (hideobject)
 			GUI<bool>::SetSetting(usedobj, "hidden", true);
 	}

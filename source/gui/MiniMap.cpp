@@ -31,9 +31,9 @@ CMiniMap::CMiniMap()
     : m_Handle(0), m_Data(NULL), m_MapSize(0), m_Terrain(0),
     m_UnitManager(0)
 {
-    AddSetting(GUIST_CColor,	"fov-wedge-color");
+    AddSetting(GUIST_CColor,	"fov_wedge_color");
 	AddSetting(GUIST_CStr,		"tooltip");
-	AddSetting(GUIST_CStr,		"tooltip-style");
+	AddSetting(GUIST_CStr,		"tooltip_style");
 }
 
 CMiniMap::~CMiniMap()

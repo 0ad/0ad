@@ -64,9 +64,9 @@ CColor IGUIButtonBehavior::ChooseColor()
 
 	// Yes, the object must possess these settings. They are standard
 	GUI<CColor>::GetSetting(this, "textcolor", color);
-	GUI<CColor>::GetSetting(this, "textcolor-over", color_over);
-	GUI<CColor>::GetSetting(this, "textcolor-pressed", color_pressed);
-	GUI<CColor>::GetSetting(this, "textcolor-disabled", color_disabled);
+	GUI<CColor>::GetSetting(this, "textcolor_over", color_over);
+	GUI<CColor>::GetSetting(this, "textcolor_pressed", color_pressed);
+	GUI<CColor>::GetSetting(this, "textcolor_disabled", color_disabled);
 
 	bool enabled;
 	GUI<bool>::GetSetting(this, "enabled", enabled);

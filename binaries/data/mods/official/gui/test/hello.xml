@@ -48,7 +48,7 @@
       ]]></action>
     </object>
 
-    <object type="button" name="arena-button" sprite="sprite1" size="710 32 726 48" z="200" hotkey="orbital.toggle" font="prospero14" text-align="center" text-valign="center" hidden="true">v
+    <object type="button" name="arena_button" sprite="sprite1" size="710 32 726 48" z="200" hotkey="orbital.toggle" font="prospero14" text_align="center" text_valign="center" hidden="true">v
       <action on="Press"><![CDATA[
         var arena = getGUIObjectByName('arena');
         arena.hidden = !arena.hidden;

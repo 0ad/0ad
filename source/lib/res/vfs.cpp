@@ -437,11 +437,15 @@ struct TDir
 
 int TDir::add_subdir(const char* dir_name)
 {
-	if(find_file(dir_name))
+// ######################## TODO: Fix this ###########################
+/*
+	if(find_subdir(dir_name))
 	{
 		debug_warn("TDir::add_subdir: file of same name already exists");
 		return -1;
 	}
+*/
+	// The above code fails frequently and makes the game unplayable
 
 	TDirPair pair = std::make_pair(dir_name, TDir());
 	std::pair<TDirIt, bool> ret = subdirs.insert(pair);

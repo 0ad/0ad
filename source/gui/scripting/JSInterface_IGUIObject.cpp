@@ -76,12 +76,6 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 	// Handle all other properties
 	else
 	{
-		// Allow e.g. "cell_id" as a synonym for "cell-id", because
-		// object.cell_id is nicer than object["cell-id"] (and object.cell-id
-		// is a syntax error)
-		propName.Replace("_", "-");
-
-
 		// Retrieve the setting's type (and make sure it actually exists)
 		EGUISettingType Type;
 		if (e->GetSettingType(propName, Type) != PS_OK)
@@ -253,12 +247,6 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 
 		return JS_TRUE;
 	}
-
-	// Allow e.g. "cell_id" as a synonym for "cell-id", because
-	// object.cell_id is nicer than object["cell-id"] (and object.cell-id
-	// is a syntax error)
-	propName.Replace("_", "-");
-
 
 	// Retrieve the setting's type (and make sure it actually exists)
 	EGUISettingType Type;

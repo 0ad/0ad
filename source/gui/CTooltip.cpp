@@ -10,7 +10,7 @@
 CTooltip::CTooltip()
 {
 	// If the tooltip is an object by itself:
-	AddSetting(GUIST_float,					"buffer-zone");
+	AddSetting(GUIST_float,					"buffer_zone");
 	AddSetting(GUIST_CGUIString,			"caption");
 	AddSetting(GUIST_CStr,					"font");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
@@ -21,8 +21,8 @@ CTooltip::CTooltip()
 	AddSetting(GUIST_EVAlign,				"anchor");
 
 	// If the tooltip is just a reference to another object:
-	AddSetting(GUIST_CStr,					"use-object");
-	AddSetting(GUIST_bool,					"hide-object");
+	AddSetting(GUIST_CStr,					"use_object");
+	AddSetting(GUIST_bool,					"hide_object");
 
 	// Private settings:
 	AddSetting(GUIST_CPos,					"_mousepos");
@@ -52,7 +52,7 @@ void CTooltip::SetupText()
 		font = "default";
 
 	float buffer_zone = 0.f;
-	GUI<float>::GetSetting(this, "buffer-zone", buffer_zone);
+	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
 
 	CGUIString caption;
 	GUI<CGUIString>::GetSetting(this, "caption", caption);
@@ -124,7 +124,7 @@ void CTooltip::HandleMessage(const SGUIMessage &Message)
 		// Don't update the text when the size changes, because the size is
 		// changed whenever the text is updated ( => infinite recursion)
 		if (/*Message.value == "size" ||*/ Message.value == "caption" ||
-			Message.value == "font" || Message.value == "buffer-zone")
+			Message.value == "font" || Message.value == "buffer_zone")
 		{
 			SetupText();
 		}

@@ -68,22 +68,22 @@ function newRandomSound(soundType, soundSubType, soundPrePath)
 					switch (randomSound)
 					{
 						case 1:
-							randomFileName = "Attack-Attackx.ogg"
+							randomFileName = "Attack_Attackx.ogg"
 						break;
 						case 2:
-							randomFileName = "Attack-Chargex.ogg"
+							randomFileName = "Attack_Chargex.ogg"
 						break;
 						case 3:
-							randomFileName = "Attack-Engagex.ogg"
+							randomFileName = "Attack_Engagex.ogg"
 						break;
 						case 4:
-							randomFileName = "Attack-ForMyFamily.ogg"
+							randomFileName = "Attack_ForMyFamily.ogg"
 						break;
 						case 5:
-							randomFileName = "Attack-Warcry.ogg"
+							randomFileName = "Attack_Warcry.ogg"
 						break;
 						case 6:
-							randomFileName = "Attack-ZeusSaviourandVictory.ogg"
+							randomFileName = "Attack_ZeusSaviourandVictory.ogg"
 						break;
 					}
 				break;
@@ -95,28 +95,28 @@ function newRandomSound(soundType, soundSubType, soundPrePath)
 					switch (randomSound)
 					{
 						case 1:
-							randomFileName = "Command-AsYouWish.ogg"
+							randomFileName = "Command_AsYouWish.ogg"
 						break;
 						case 2:
-							randomFileName = "Command-ByYourCommand.ogg"
+							randomFileName = "Command_ByYourCommand.ogg"
 						break;
 						case 3:
-							randomFileName = "Command-ImComing.ogg"
+							randomFileName = "Command_ImComing.ogg"
 						break;
 						case 4:
-							randomFileName = "Command-IObey.ogg"
+							randomFileName = "Command_IObey.ogg"
 						break;
 						case 5:
-							randomFileName = "Command-MyLiege.ogg"
+							randomFileName = "Command_MyLiege.ogg"
 						break;
 						case 6:
-							randomFileName = "Command-OnMyWay.ogg"
+							randomFileName = "Command_OnMyWay.ogg"
 						break;
 						case 7:
-							randomFileName = "Command-WithMyHonour.ogg"
+							randomFileName = "Command_WithMyHonour.ogg"
 						break;
 						case 8:
-							randomFileName = "Command-YesMyLord.ogg"
+							randomFileName = "Command_YesMyLord.ogg"
 						break;
 					}
 				break;
@@ -128,34 +128,34 @@ function newRandomSound(soundType, soundSubType, soundPrePath)
 					switch (randomSound)
 					{
 						case 1:
-							randomFileName = "Select-AtYourService.ogg"
+							randomFileName = "Select_AtYourService.ogg"
 						break;
 						case 2:
-							randomFileName = "Select-HowMayIServeYouq.ogg"
+							randomFileName = "Select_HowMayIServeYouq.ogg"
 						break;
 						case 3:
-							randomFileName = "Select-MyLiegeq.ogg"
+							randomFileName = "Select_MyLiegeq.ogg"
 						break;
 						case 4:
-							randomFileName = "Select-MyLordq.ogg"
+							randomFileName = "Select_MyLordq.ogg"
 						break;
 						case 5:
-							randomFileName = "Select-OrdersSireq.ogg"
+							randomFileName = "Select_OrdersSireq.ogg"
 						break;
 						case 6:
-							randomFileName = "Select-Ready.ogg"
+							randomFileName = "Select_Ready.ogg"
 						break;
 						case 7:
-							randomFileName = "Select-ReadySire.ogg"
+							randomFileName = "Select_ReadySire.ogg"
 						break;
 						case 8:
-							randomFileName = "Select-Yesq.ogg"
+							randomFileName = "Select_Yesq.ogg"
 						break;
 						case 9:
-							randomFileName = "Select-YourOrdersq.ogg"
+							randomFileName = "Select_YourOrdersq.ogg"
 						break;
 						case 10:
-							randomFileName = "Select-YourWishq.ogg"
+							randomFileName = "Select_YourWishq.ogg"
 						break;
 					}
 				break;

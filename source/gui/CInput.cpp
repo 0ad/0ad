@@ -25,16 +25,16 @@ using namespace std;
 //-------------------------------------------------------------------
 CInput::CInput() : m_iBufferPos(0)
 {
-	AddSetting(GUIST_float,					"buffer-zone");
+	AddSetting(GUIST_float,					"buffer_zone");
 	AddSetting(GUIST_CStrW,					"caption");
 	AddSetting(GUIST_CStr,					"font");
 	AddSetting(GUIST_bool,					"scrollbar");
-	AddSetting(GUIST_CStr,					"scrollbar-style");
+	AddSetting(GUIST_CStr,					"scrollbar_style");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
-	AddSetting(GUIST_int,					"cell-id");
+	AddSetting(GUIST_int,					"cell_id");
 	AddSetting(GUIST_CColor,				"textcolor");
 	AddSetting(GUIST_CStr,					"tooltip");
-	AddSetting(GUIST_CStr,					"tooltip-style");
+	AddSetting(GUIST_CStr,					"tooltip_style");
 	// TODO Gee: (2004-08-14)
 	//  Add a setting for buffer zone
 	//AddSetting(GUIST_int,			"
@@ -213,7 +213,7 @@ void CInput::HandleMessage(const SGUIMessage &Message)
 		}
 
 		// Update scrollbar
-		if (Message.value == CStr("scrollbar-style"))
+		if (Message.value == CStr("scrollbar_style"))
 		{
 			CStr scrollbar_style;
 			GUI<CStr>::GetSetting(this, Message.value, scrollbar_style);
@@ -346,7 +346,7 @@ void CInput::Draw()
 		CGUISpriteInstance *sprite;
 		int cell_id;
 		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
-		GUI<int>::GetSetting(this, "cell-id", cell_id);
+		GUI<int>::GetSetting(this, "cell_id", cell_id);
 
 		GetGUI()->DrawSprite(*sprite, cell_id, bz, m_CachedActualSize);
 

@@ -81,7 +81,7 @@ public:
 		// Otherwise, complain.
 		else
 		{
-			LOG(WARNING, "gui", "add-color effect has some components >127 and some <127 - colours will be clamped");
+			LOG(WARNING, "gui", "add_color effect has some components >127 and some <127 - colours will be clamped");
 			m_Color = CColor(c.r+0.5f, c.g+0.5f, c.b+0.5f, c.a+0.5f);
 			m_Method = ADD_SIGNED;
 		}
@@ -160,7 +160,7 @@ public:
 				;
 			else
 				// Oops - trying to multiply by >4
-				LOG(WARNING, "gui", "multiply-color effect has a component >1020 - colours will be clamped");
+				LOG(WARNING, "gui", "multiply_color effect has a component >1020 - colours will be clamped");
 
 			m_Color = CColor(c.r/4.f, c.g/4.f, c.b/4.f, c.a);
 			m_Scale = 4;
@@ -417,12 +417,12 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 			// Get the texture's position/size for the block:
 			CRect BlockTex;
 
-			// "real-texture-placement" overrides everything
+			// "real_texture_placement" overrides everything
 			if (cit->m_TexturePlacementInFile != CRect())
 			{
 				BlockTex = cit->m_TexturePlacementInFile;
 			}
-			// Check whether this sprite has "cell-size" set
+			// Check whether this sprite has "cell_size" set
 			else if (cit->m_CellSize != CSize())
 			{
 				int cols = t_w / (int)cit->m_CellSize.cx;

@@ -27,36 +27,36 @@
 <!-- Defaults are not put in here, because it ruins the concept of styles -->
 
 <!ENTITY % ex_settings
- "buffer-zone				CDATA #IMPLIED
+ "buffer_zone				CDATA #IMPLIED
   checked				%bool; #IMPLIED
   font					CDATA #IMPLIED
-  fov-wedge-color			CDATA #IMPLIED
+  fov_wedge_color			CDATA #IMPLIED
   hotkey				CDATA #IMPLIED
-  cell-id				CDATA #IMPLIED
-  input-initvalue-destroyed-at-focus	%bool; #IMPLIED
-  rectcolor-selected			CDATA #IMPLIED
+  cell_id				CDATA #IMPLIED
+  input_initvalue_destroyed_at_focus	%bool; #IMPLIED
+  rectcolor_selected			CDATA #IMPLIED
   scrollbar				%bool; #IMPLIED
-  scrollbar-style			CDATA #IMPLIED
+  scrollbar_style			CDATA #IMPLIED
   sprite				CDATA #IMPLIED
   sprite2				CDATA #IMPLIED
-  sprite-bar				CDATA #IMPLIED
-  sprite-background			CDATA #IMPLIED
-  sprite-disabled			CDATA #IMPLIED
-  sprite2-disabled			CDATA #IMPLIED
-  sprite-over				CDATA #IMPLIED
-  sprite2-over				CDATA #IMPLIED
-  sprite-pressed			CDATA #IMPLIED
-  sprite2-pressed			CDATA #IMPLIED
-  square-side				CDATA #IMPLIED
+  sprite_bar				CDATA #IMPLIED
+  sprite_background			CDATA #IMPLIED
+  sprite_disabled			CDATA #IMPLIED
+  sprite2_disabled			CDATA #IMPLIED
+  sprite_over				CDATA #IMPLIED
+  sprite2_over				CDATA #IMPLIED
+  sprite_pressed			CDATA #IMPLIED
+  sprite2_pressed			CDATA #IMPLIED
+  square_side				CDATA #IMPLIED
   textcolor				CDATA #IMPLIED
-  textcolor-disabled			CDATA #IMPLIED
-  textcolor-over			CDATA #IMPLIED
-  textcolor-pressed			CDATA #IMPLIED
-  textcolor-selected			CDATA #IMPLIED
-  text-align				%align; #IMPLIED
-  text-valign				%valign; #IMPLIED
+  textcolor_disabled			CDATA #IMPLIED
+  textcolor_over			CDATA #IMPLIED
+  textcolor_pressed			CDATA #IMPLIED
+  textcolor_selected			CDATA #IMPLIED
+  text_align				%align; #IMPLIED
+  text_valign				%valign; #IMPLIED
   tooltip				CDATA #IMPLIED
-  tooltip-style				CDATA #IMPLIED"
+  tooltip_style				CDATA #IMPLIED"
 >
 
 <!--
@@ -106,22 +106,22 @@
 <!ATTLIST scrollbar
   name					CDATA #REQUIRED
   width					CDATA #IMPLIED
-  scroll-wheel				%bool; #IMPLIED
+  scroll_wheel				%bool; #IMPLIED
   alwaysshown				%bool; #IMPLIED
-  scroll-speed				CDATA #IMPLIED
-  sprite-button-top			CDATA #IMPLIED
-  sprite-button-top-pressed		CDATA #IMPLIED
-  sprite-button-top-disabled		CDATA #IMPLIED
-  sprite-button-top-over		CDATA #IMPLIED
-  sprite-button-bottom			CDATA #IMPLIED
-  sprite-button-bottom-pressed		CDATA #IMPLIED
-  sprite-button-bottom-disabled		CDATA #IMPLIED
-  sprite-button-bottom-over		CDATA #IMPLIED
-  sprite-bar-vertical			CDATA #IMPLIED
-  sprite-bar-vertical-over		CDATA #IMPLIED
-  sprite-bar-vertical-pressed		CDATA #IMPLIED
-  sprite-back-vertical			CDATA #IMPLIED
-  minimum-bar-size			CDATA #IMPLIED
+  scroll_speed				CDATA #IMPLIED
+  sprite_button_top			CDATA #IMPLIED
+  sprite_button_top_pressed		CDATA #IMPLIED
+  sprite_button_top_disabled		CDATA #IMPLIED
+  sprite_button_top_over		CDATA #IMPLIED
+  sprite_button_bottom			CDATA #IMPLIED
+  sprite_button_bottom_pressed		CDATA #IMPLIED
+  sprite_button_bottom_disabled		CDATA #IMPLIED
+  sprite_button_bottom_over		CDATA #IMPLIED
+  sprite_bar_vertical			CDATA #IMPLIED
+  sprite_bar_vertical_over		CDATA #IMPLIED
+  sprite_bar_vertical_pressed		CDATA #IMPLIED
+  sprite_back_vertical			CDATA #IMPLIED
+  minimum_bar_size			CDATA #IMPLIED
 >
 
 <!--
@@ -131,7 +131,7 @@
   name					CDATA #REQUIRED
   texture				CDATA #REQUIRED
   size					CDATA #REQUIRED
-  cell-id				CDATA #IMPLIED
+  cell_id				CDATA #IMPLIED
 >
 
 <!--
@@ -141,14 +141,14 @@
   name					CDATA #REQUIRED
   sprite				CDATA #IMPLIED
   anchor				CDATA #IMPLIED
-  buffer-zone				CDATA #IMPLIED
+  buffer_zone				CDATA #IMPLIED
   font					CDATA #IMPLIED
   maxwidth				CDATA #IMPLIED
   offset				CDATA #IMPLIED
   textcolor				CDATA #IMPLIED
   delay					CDATA #IMPLIED
-  use-object				CDATA #IMPLIED
-  hide-object				CDATA #IMPLIED
+  use_object				CDATA #IMPLIED
+  hide_object				CDATA #IMPLIED
 >
 
 
@@ -167,17 +167,17 @@
 <!ATTLIST image
   texture				CDATA #IMPLIED
   size					CDATA #IMPLIED
-  texture-size				CDATA #IMPLIED
-  real-texture-placement		CDATA #IMPLIED
-  cell-size				CDATA #IMPLIED
+  texture_size				CDATA #IMPLIED
+  real_texture_placement		CDATA #IMPLIED
+  cell_size				CDATA #IMPLIED
   backcolor				CDATA #IMPLIED
   bordercolor				CDATA #IMPLIED
   border				%bool; #IMPLIED
-  z-level				CDATA #IMPLIED
+  z_level				CDATA #IMPLIED
 >
 
 <!ATTLIST effect
-  add-color				CDATA #IMPLIED
-  multiply-color			CDATA #IMPLIED
+  add_color				CDATA #IMPLIED
+  multiply_color			CDATA #IMPLIED
   grayscale				CDATA #IMPLIED
 >

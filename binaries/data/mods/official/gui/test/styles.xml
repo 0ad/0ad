@@ -9,74 +9,74 @@
 		enabled="true"
 		z="0"
 		absolute="true"
-		scrollbar-style="sb2"
-		buffer-zone="5"
+		scrollbar_style="sb2"
+		buffer_zone="5"
 	/>
 
 	<style name="button"
 		sprite="sprite1"
-		sprite-pressed="sprite1-pressed"
-		sprite-disabled="sprite1-disabled"
-		sprite-over="sprite1-over"
-		sprite2="sprite1-ch"
-		sprite2-pressed="sprite2-pressed"
-		sprite2-disabled="sprite2-disabled"
+		sprite_pressed="sprite1_pressed"
+		sprite_disabled="sprite1_disabled"
+		sprite_over="sprite1_over"
+		sprite2="sprite1_ch"
+		sprite2_pressed="sprite2_pressed"
+		sprite2_disabled="sprite2_disabled"
 	/>
 
 	<style name="resource_counter"
-		text-valign="bottom"
-		text-align="right"
+		text_valign="bottom"
+		text_align="right"
 		font="prospero16"
 		textcolor="255 255 255"
-		tooltip-style="session-tooltip"
+		tooltip_style="session_tooltip"
 		ghost="false"
 	/>
 
 	<!-- Empty entity portrait. -->
 	<style name="portrait"
 		sprite="ui_portrait_default_square"
-		sprite-over="ui_portrait_default_square-lit"
-		sprite-disabled="ui_portrait_default_square-grey"
-		tooltip-style="session-tooltip"
-		text-align="right"
+		sprite_over="ui_portrait_default_square_lit"
+		sprite_disabled="ui_portrait_default_square_grey"
+		tooltip_style="session_tooltip"
+		text_align="right"
 		textcolor="255 255 255"
 	/>
 
 	<style name="action"
 		sprite="ui_portrait_default_circle"
-		sprite-over="ui_portrait_default_circle-lit"
-		sprite-disabled="ui_portrait_default_circle-grey"
-		tooltip-style="session-tooltip"
-		text-align="right"
+		sprite_over="ui_portrait_default_circle_lit"
+		sprite_disabled="ui_portrait_default_circle_grey"
+		tooltip_style="session_tooltip"
+		text_align="right"
 		textcolor="255 255 255"
 	/>
 
 	<!-- Entity progress bar. -->
 	<style name="group_portrait_bar"
-		sprite-background=""
-		sprite-bar="green-bar"
-		tooltip-style="session-tooltip"
+		sprite_background=""
+		sprite_bar="green_bar"
+		tooltip_style="session_tooltip"
 		ghost="true"
 	/>
 
 	<style name="up_bar"
-		sprite-background=""
-		sprite-bar="yellow-bar"
-		tooltip-style="session-tooltip"
+		sprite_background=""
+		sprite_bar="yellow_bar"
+		tooltip_style="session_tooltip"
 		ghost="true"
 	/>
 
 	<style name="blue_bar"
-		sprite-background=""
-		sprite-bar="blue-bar"
-		tooltip-style="session-tooltip"
+		sprite_background=""
+		sprite_bar="blue_bar"
+		tooltip_style="session_tooltip"
 		ghost="true"
 	/>
 
 	<style name="blue_bar_outlined"
-		sprite-background="only-black-border"
-		sprite-bar="blue-bar-outlined"
-		tooltip-style="session-tooltip"
+		sprite_background="only_black_border"
+		sprite_bar="blue_bar_outlined"
+		tooltip_style="session_tooltip"
 		ghost="true"
 	/>
 </styles>

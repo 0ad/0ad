@@ -1447,7 +1447,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			else image.m_Size = ca;
 		}
 		else
-		if (attr_name == "texture-size")
+		if (attr_name == "texture_size")
 		{
 			CClientArea ca;
 			if (!GUI<CClientArea>::ParseString(attr_value, ca))
@@ -1455,7 +1455,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			else image.m_TextureSize = ca;
 		}
 		else
-		if (attr_name == "real-texture-placement")
+		if (attr_name == "real_texture_placement")
 		{
 			CRect rect;
 			if (!GUI<CRect>::ParseString(attr_value, rect))
@@ -1463,7 +1463,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			else image.m_TexturePlacementInFile = rect;
 		}
 		else
-		if (attr_name == "cell-size")
+		if (attr_name == "cell_size")
 		{
 			CSize size;
 			if (!GUI<CSize>::ParseString(attr_value, size))
@@ -1471,7 +1471,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			else image.m_CellSize = size;
 		}
 		else
-		if (attr_name == "z-level")
+		if (attr_name == "z_level")
 		{
 			float z_level;
 			if (!GUI<float>::ParseString(attr_value, z_level))
@@ -1559,8 +1559,8 @@ void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImag
 		} \
 		else
 
-		COLOR("add-color", AddColor)
-		COLOR("multiply-color", MultiplyColor)
+		COLOR("add_color", AddColor)
+		COLOR("multiply_color", MultiplyColor)
 		BOOL("grayscale", Greyscale)
 
 		{
@@ -1636,7 +1636,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 			scrollbar.m_Width = f;
 		}
 		else
-		if (attr_name == "minimum-bar-size")
+		if (attr_name == "minimum_bar_size")
 		{
 			float f;
 			if (!GUI<float>::ParseString(attr_value, f))
@@ -1646,40 +1646,40 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 			scrollbar.m_MinimumBarSize = f;
 		}
 		else
-		if (attr_name == "sprite-button-top")
+		if (attr_name == "sprite_button_top")
 			scrollbar.m_SpriteButtonTop = attr_value;
 		else
-		if (attr_name == "sprite-button-top-pressed")
+		if (attr_name == "sprite_button_top-pressed")
 			scrollbar.m_SpriteButtonTopPressed = attr_value;
 		else
-		if (attr_name == "sprite-button-top-disabled")
+		if (attr_name == "sprite_button_top-disabled")
 			scrollbar.m_SpriteButtonTopDisabled = attr_value;
 		else
-		if (attr_name == "sprite-button-top-over")
+		if (attr_name == "sprite_button_top-over")
 			scrollbar.m_SpriteButtonTopOver = attr_value;
 		else
-		if (attr_name == "sprite-button-bottom")
+		if (attr_name == "sprite_button_bottom")
 			scrollbar.m_SpriteButtonBottom = attr_value;
 		else
-		if (attr_name == "sprite-button-bottom-pressed")
+		if (attr_name == "sprite_button_bottom-pressed")
 			scrollbar.m_SpriteButtonBottomPressed = attr_value;
 		else
-		if (attr_name == "sprite-button-bottom-disabled")
+		if (attr_name == "sprite_button_bottom-disabled")
 			scrollbar.m_SpriteButtonBottomDisabled = attr_value;
 		else
-		if (attr_name == "sprite-button-bottom-over")
+		if (attr_name == "sprite_button_bottom-over")
 			scrollbar.m_SpriteButtonBottomOver = attr_value;
 		else
-		if (attr_name == "sprite-back-vertical")
+		if (attr_name == "sprite_back_vertical")
 			scrollbar.m_SpriteBackVertical = attr_value;
 		else
-		if (attr_name == "sprite-bar-vertical")
+		if (attr_name == "sprite_bar-vertical")
 			scrollbar.m_SpriteBarVertical = attr_value;
 		else
-		if (attr_name == "sprite-bar-vertical-over")
+		if (attr_name == "sprite_bar-vertical-over")
 			scrollbar.m_SpriteBarVerticalOver = attr_value;
 		else
-		if (attr_name == "sprite-bar-vertical-pressed")
+		if (attr_name == "sprite_bar-vertical-pressed")
 			scrollbar.m_SpriteBarVerticalPressed = attr_value;
 	}
 
@@ -1720,7 +1720,7 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 			icon.m_Size = size;
 		}
 		else
-		if (attr_name == "cell-id")
+		if (attr_name == "cell_id")
 		{
 			int cell_id;
 			if (!GUI<int>::ParseString(attr_value, cell_id))

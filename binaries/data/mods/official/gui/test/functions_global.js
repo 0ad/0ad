@@ -40,7 +40,7 @@ TODO: Make button code work for any number of buttons without extending the code
 function messageBox(mbWidth, mbHeight, mbMessage, mbTitle, mbMode, mbButtonCaptions, mbButtonsCode) {
 
         mbMainObj = getGUIObjectByName("mb_main");
-        mbTitleObj = getGUIObjectByName("mb_titlebar-text");
+        mbTitleObj = getGUIObjectByName("mb_titlebar_text");
         mbTextObj = getGUIObjectByName("mb_text");
         
         mbButton1Obj = getGUIObjectByName("mb_button1");

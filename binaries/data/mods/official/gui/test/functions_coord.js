@@ -117,22 +117,22 @@ function FlipGUI(NewGUIType)
 					switch (SizeCoord[FlipGUILoop].name){
 						case "session_panel_minimap_segbottom1":
 							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = SizeCoord[FlipGUILoop].name;
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name)["sprite-over"] = SizeCoord[FlipGUILoop].name + "-lit";
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = SizeCoord[FlipGUILoop].name + "_lit";
 						break;
 						case "session_panel_minimap_segbottom2":
 							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = SizeCoord[FlipGUILoop].name;
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name)["sprite-over"] = SizeCoord[FlipGUILoop].name + "-lit";
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = SizeCoord[FlipGUILoop].name + "_lit";
 						break;
 						case "session_panel_minimap_segbottom3":
 							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = SizeCoord[FlipGUILoop].name;
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name)["sprite-over"] = SizeCoord[FlipGUILoop].name + "-lit";
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = SizeCoord[FlipGUILoop].name + "_lit";
 						break;
 						case "session_panel_minimap_segbottom4":
 							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = SizeCoord[FlipGUILoop].name;
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name)["sprite-over"] = SizeCoord[FlipGUILoop].name + "-lit";
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = SizeCoord[FlipGUILoop].name + "_lit";
 						break;
 						case "session_panel_status_bg":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_status_bg-top";
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_status_bg_top";
 						break;
 						default:
 						break;
@@ -143,22 +143,22 @@ function FlipGUI(NewGUIType)
 					switch (SizeCoord[FlipGUILoop].name){
 						case "session_panel_minimap_segbottom1":
 							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop1";
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name)["sprite-over"] = "session_panel_minimap_segtop1-lit";
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segtop1_lit";
 						break;
 						case "session_panel_minimap_segbottom2":
 							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop2";
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name)["sprite-over"] = "session_panel_minimap_segtop2-lit";
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segtop2_lit";
 						break;
 						case "session_panel_minimap_segbottom3":
 							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop3";
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name)["sprite-over"] = "session_panel_minimap_segtop3-lit";
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segtop3_lit";
 						break;
 						case "session_panel_minimap_segbottom4":
 							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop4";
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name)["sprite-over"] = "session_panel_minimap_segtop4-lit";
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segtop4_lit";
 						break;
 						case "session_panel_status_bg":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_status_bg-bottom";
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_status_bg_bottom";
 						break;
 						default:
 						break;

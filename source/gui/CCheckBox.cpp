@@ -38,16 +38,16 @@ CCheckBox::CCheckBox()
 	AddSetting(GUIST_CGUIString,			"caption");
 	AddSetting(GUIST_bool,					"checked");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite-over");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite-pressed");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite-disabled");
+	AddSetting(GUIST_CGUISpriteInstance,	"sprite_over");
+	AddSetting(GUIST_CGUISpriteInstance,	"sprite_pressed");
+	AddSetting(GUIST_CGUISpriteInstance,	"sprite_disabled");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite2");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite2-over");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite2-pressed");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite2-disabled");
-	AddSetting(GUIST_int,					"square-side");
+	AddSetting(GUIST_CGUISpriteInstance,	"sprite2_over");
+	AddSetting(GUIST_CGUISpriteInstance,	"sprite2_pressed");
+	AddSetting(GUIST_CGUISpriteInstance,	"sprite2_disabled");
+	AddSetting(GUIST_int,					"square_side");
 	AddSetting(GUIST_CStr,					"tooltip");
-	AddSetting(GUIST_CStr,					"tooltip-style");
+	AddSetting(GUIST_CStr,					"tooltip_style");
 
 	// Add text
 	AddText(new SGUIText());
@@ -68,7 +68,7 @@ void CCheckBox::SetupText()
 	CGUIString caption;
 	//int square_side;
 	GUI<CGUIString>::GetSetting(this, "caption", caption);
-	//GUI<CGUIString>::GetSetting(this, "square-side", square_side);
+	//GUI<CGUIString>::GetSetting(this, "square_side", square_side);
 
 	// TODO Gee: Establish buffer zones
 	// TODO Gee: research if even "default" should be hardcoded.
@@ -109,7 +109,7 @@ void CCheckBox::Draw()
 	//////////
 
 	int square_side;
-	GUI<int>::GetSetting(this, "square-side", square_side);
+	GUI<int>::GetSetting(this, "square_side", square_side);
 
 	float bz = GetBufferedZ();
 
@@ -130,16 +130,16 @@ void CCheckBox::Draw()
 	if (checked)
 	{
 		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2", sprite);
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2-over", sprite_over);
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2-pressed", sprite_pressed);
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2-disabled", sprite_disabled);
+		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2_over", sprite_over);
+		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2_pressed", sprite_pressed);
+		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2_disabled", sprite_disabled);
 	}
 	else
 	{
 		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite-over", sprite_over);
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite-pressed", sprite_pressed);
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite-disabled", sprite_disabled);
+		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_over", sprite_over);
+		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_pressed", sprite_pressed);
+		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_disabled", sprite_disabled);
 	}
 
 	DrawButton(rect, 

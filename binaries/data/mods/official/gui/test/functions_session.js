@@ -85,7 +85,7 @@ function startLoadingScreen()
         GUIObjectUnhide("loading_screen");
         console.write("Loading " + g_GameAttributes.mapFile + " (" + g_GameAttributes.numPlayers + " players) ...");
 
-        getGUIObjectByName("loading_screen_titlebar-text").caption = "Loading Scenario ...";
+        getGUIObjectByName("loading_screen_titlebar_text").caption = "Loading Scenario ...";
         getGUIObjectByName("loading_screen_progress_bar_text").caption = "... Reticulating splines ...";
         getGUIObjectByName("loading_screen_progress_bar").caption = 80;
         getGUIObjectByName("loading_screen_text").caption = "LOADING " + g_GameAttributes.mapFile + " ...\nPlease wait ...\n(Yes, we know the progress bar doesn't do diddly squat right now)\nJust keep waiting ...\nIt'll get there ...\nAlmost done ...\nTrust me!";
@@ -118,8 +118,8 @@ function setPortrait(objectName, portraitString, portraitCell)
 
         // Accepts an object and specifies its default, rollover (lit) and disabled (grey) sprites.
         // Sprite Format: "ui_portrait_"portraitString
-        // Sprite Format: "ui_portrait_"portraitString"-lit"
-        // Sprite Format: "ui_portrait_"portraitString"-grey"
+        // Sprite Format: "ui_portrait_"portraitString"_lit"
+        // Sprite Format: "ui_portrait_"portraitString"_grey"
         // Note: Make sure the file follows this naming convention or bad things could happen.
 
         // Get GUI object
@@ -128,12 +128,12 @@ function setPortrait(objectName, portraitString, portraitCell)
         // Set the three portraits.
         GUIObject.sprite = "ui_portrait_" + portraitString;
         // Note we need to use a special syntax here (object["param"] instead of object.param because dashes aren't actually in JS's variable-naming conventions.
-        GUIObject["sprite-over"] = GUIObject.sprite + "-lit";
-        GUIObject["sprite-disabled"] = GUIObject.sprite + "-grey";
+        GUIObject.sprite_over = GUIObject.sprite + "_lit";
+        GUIObject.sprite_disabled = GUIObject.sprite + "_grey";
 
         // If the source texture is a multi-frame image (icon sheet), specify correct cell.
         if (portraitCell)
-                GUIObject["cell-id"] = portraitCell;
+                GUIObject.cell_id = portraitCell;
 }
 
 // ====================================================================

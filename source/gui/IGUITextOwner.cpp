@@ -46,7 +46,7 @@ void IGUITextOwner::HandleMessage(const SGUIMessage &Message)
 		if (Message.value == "size" || Message.value == "z" ||
 			Message.value == "absolute" || Message.value == "caption" ||
 			Message.value == "font" || Message.value == "textcolor" ||
-			Message.value == "buffer-zone")
+			Message.value == "buffer_zone")
 		{
 			SetupText();
 		}
@@ -80,8 +80,8 @@ void IGUITextOwner::CalculateTextPosition(CRect &ObjSize, CPos &TextPos, SGUITex
 {
 	EAlign align;
 	EVAlign valign;
-	GUI<EAlign>::GetSetting(this, "text-align", align);
-	GUI<EVAlign>::GetSetting(this, "text-valign", valign);
+	GUI<EAlign>::GetSetting(this, "text_align", align);
+	GUI<EVAlign>::GetSetting(this, "text_valign", valign);
 
 	switch (align)
 	{

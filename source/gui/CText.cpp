@@ -20,18 +20,18 @@ using namespace std;
 //-------------------------------------------------------------------
 CText::CText()
 {
-	AddSetting(GUIST_float,					"buffer-zone");
+	AddSetting(GUIST_float,					"buffer_zone");
 	AddSetting(GUIST_CGUIString,			"caption");
 	AddSetting(GUIST_CStr,					"font");
 	AddSetting(GUIST_bool,					"scrollbar");
-	AddSetting(GUIST_CStr,					"scrollbar-style");
+	AddSetting(GUIST_CStr,					"scrollbar_style");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
-	AddSetting(GUIST_int,					"cell-id");
-	AddSetting(GUIST_EAlign,				"text-align");
-	AddSetting(GUIST_EVAlign,				"text-valign");
+	AddSetting(GUIST_int,					"cell_id");
+	AddSetting(GUIST_EAlign,				"text_align");
+	AddSetting(GUIST_EVAlign,				"text_valign");
 	AddSetting(GUIST_CColor,				"textcolor");
 	AddSetting(GUIST_CStr,					"tooltip");
-	AddSetting(GUIST_CStr,					"tooltip-style");
+	AddSetting(GUIST_CStr,					"tooltip_style");
 
 	//GUI<bool>::SetSetting(this, "ghost", true);
 	GUI<bool>::SetSetting(this, "scrollbar", false);
@@ -75,7 +75,7 @@ void CText::SetupText()
 
 
     float buffer_zone=0.f;
-	GUI<float>::GetSetting(this, "buffer-zone", buffer_zone);
+	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
 	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, width, buffer_zone, this);
 
 	if (! scrollbar)
@@ -115,7 +115,7 @@ void CText::HandleMessage(const SGUIMessage &Message)
 		}
 
 		// Update scrollbar
-		if (Message.value == CStr("scrollbar-style"))
+		if (Message.value == CStr("scrollbar_style"))
 		{
 			CStr scrollbar_style;
 			GUI<CStr>::GetSetting(this, Message.value, scrollbar_style);
@@ -166,7 +166,7 @@ void CText::Draw()
 		CGUISpriteInstance *sprite;
 		int cell_id;
 		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
-		GUI<int>::GetSetting(this, "cell-id", cell_id);
+		GUI<int>::GetSetting(this, "cell_id", cell_id);
 
 		GetGUI()->DrawSprite(*sprite, cell_id, bz, m_CachedActualSize);
 

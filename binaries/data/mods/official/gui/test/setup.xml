@@ -3,93 +3,93 @@
 <!DOCTYPE setup SYSTEM "..\gui.dtd">
 
 <setup>
-        <scrollbar name="sb" width="18" minimum-bar-size="5"
-                sprite-button-top="sprite2"
-                sprite-button-top-over="null"
-                sprite-button-bottom="sprite2"
-                sprite-button-bottom-over="null"
-                sprite-back-vertical="grey"
-                sprite-bar-vertical="sprite2"
-                sprite-bar-vertical-over="null"
-                sprite-bar-vertical-pressed="null"
-                sprite-button-bottom-pressed="sprite2-pressed"
-                sprite-button-top-pressed="sprite2-pressed"
+        <scrollbar name="sb" width="18" minimum_bar_size="5"
+                sprite_button_top="sprite2"
+                sprite_button_top_over="null"
+                sprite_button_bottom="sprite2"
+                sprite_button_bottom_over="null"
+                sprite_back_vertical="grey"
+                sprite_bar_vertical="sprite2"
+                sprite_bar_vertical_over="null"
+                sprite_bar_vertical_pressed="null"
+                sprite_button_bottom_pressed="sprite2_pressed"
+                sprite_button_top_pressed="sprite2_pressed"
         />
 
-        <scrollbar name="sb2" width="37" minimum-bar-size="5"
-                sprite-button-top="scroll"
-                sprite-button-top-over="null"
-                sprite-button-bottom="scroll"
-                sprite-button-bottom-over="null"
-                sprite-back-vertical="null"
-                sprite-bar-vertical="scroll-bar"
-                sprite-bar-vertical-over="null"
-                sprite-bar-vertical-pressed="null"
-                sprite-button-bottom-pressed="scroll"
-                sprite-button-top-pressed="scroll"
+        <scrollbar name="sb2" width="37" minimum_bar_size="5"
+                sprite_button_top="scroll"
+                sprite_button_top_over="null"
+                sprite_button_bottom="scroll"
+                sprite_button_bottom_over="null"
+                sprite_back_vertical="null"
+                sprite_bar_vertical="scroll_bar"
+                sprite_bar_vertical_over="null"
+                sprite_bar_vertical_pressed="null"
+                sprite_button_bottom_pressed="scroll"
+                sprite_button_top_pressed="scroll"
         />
 
-        <scrollbar name="manual_scrollbar" width="12" minimum-bar-size="4" alwaysshown="false"
-                sprite-button-top="sprite2"
-                sprite-button-top-over="scroll"
-                sprite-button-bottom="sprite2"
-                sprite-button-bottom-over="scroll"
-                sprite-back-vertical="grey"
-                sprite-bar-vertical="sprite2"
-                sprite-bar-vertical-over="scroll"
-                sprite-bar-vertical-pressed="sprite2-pressed"
-                sprite-button-bottom-pressed="sprite2-pressed"
-                sprite-button-top-pressed="sprite2-pressed"
+        <scrollbar name="manual_scrollbar" width="12" minimum_bar_size="4" alwaysshown="false"
+                sprite_button_top="sprite2"
+                sprite_button_top_over="scroll"
+                sprite_button_bottom="sprite2"
+                sprite_button_bottom_over="scroll"
+                sprite_back_vertical="grey"
+                sprite_bar_vertical="sprite2"
+                sprite_bar_vertical_over="scroll"
+                sprite_bar_vertical_pressed="sprite2_pressed"
+                sprite_button_bottom_pressed="sprite2_pressed"
+                sprite_button_top_pressed="sprite2_pressed"
         />
 
         <!-- Resource Icons -->
-        <icon name="icon_resource_food" texture="ui_icon_sheet_statistic" cell-id="16" size="20 20" />
-        <icon name="icon_resource_wood" texture="ui_icon_sheet_statistic" cell-id="17" size="20 20" />
-        <icon name="icon_resource_stone" texture="ui_icon_sheet_statistic" cell-id="18" size="20 20" />
-        <icon name="icon_resource_ore" texture="ui_icon_sheet_statistic" cell-id="19" size="20 20" />
-        <icon name="icon_resource_population" texture="ui_icon_sheet_statistic" cell-id="20" size="20 20" />
+        <icon name="icon_resource_food" texture="ui_icon_sheet_statistic" cell_id="16" size="20 20" />
+        <icon name="icon_resource_wood" texture="ui_icon_sheet_statistic" cell_id="17" size="20 20" />
+        <icon name="icon_resource_stone" texture="ui_icon_sheet_statistic" cell_id="18" size="20 20" />
+        <icon name="icon_resource_ore" texture="ui_icon_sheet_statistic" cell_id="19" size="20 20" />
+        <icon name="icon_resource_population" texture="ui_icon_sheet_statistic" cell_id="20" size="20 20" />
 
         <!-- Statistic Icons -->
-        <icon name="icon_statistic_garrison" texture="ui_icon_sheet_statistic" cell-id="12" size="20 20" />
-        <icon name="icon_statistic_rank1" texture="ui_icon_sheet_statistic" cell-id="9" size="20 20" />
-        <icon name="icon_statistic_rank2" texture="ui_icon_sheet_statistic" cell-id="10" size="20 20" />
-        <icon name="icon_statistic_rank3" texture="ui_icon_sheet_statistic" cell-id="11" size="20 20" />
-        <icon name="icon_statistic_hp" texture="ui_icon_sheet_statistic" cell-id="13" size="20 20" />
-        <icon name="icon_statistic_accuracy" texture="ui_icon_sheet_statistic" cell-id="0" size="20 20" />
-        <icon name="icon_statistic_armour" texture="ui_icon_sheet_statistic" cell-id="2" size="20 20" />
-        <icon name="icon_statistic_attack" texture="ui_icon_sheet_statistic" cell-id="1" size="20 20" />
-        <icon name="icon_statistic_crush" texture="ui_icon_sheet_statistic" cell-id="8" size="20 20" />
-        <icon name="icon_statistic_hack" texture="ui_icon_sheet_statistic" cell-id="6" size="20 20" />
-        <icon name="icon_statistic_los" texture="ui_icon_sheet_statistic" cell-id="3" size="20 20" />
-        <icon name="icon_statistic_pierce" texture="ui_icon_sheet_statistic" cell-id="7" size="20 20" />
-        <icon name="icon_statistic_range" texture="ui_icon_sheet_statistic" cell-id="5" size="20 20" />
-        <icon name="icon_statistic_speed" texture="ui_icon_sheet_statistic" cell-id="4" size="20 20" />
+        <icon name="icon_statistic_garrison" texture="ui_icon_sheet_statistic" cell_id="12" size="20 20" />
+        <icon name="icon_statistic_rank1" texture="ui_icon_sheet_statistic" cell_id="9" size="20 20" />
+        <icon name="icon_statistic_rank2" texture="ui_icon_sheet_statistic" cell_id="10" size="20 20" />
+        <icon name="icon_statistic_rank3" texture="ui_icon_sheet_statistic" cell_id="11" size="20 20" />
+        <icon name="icon_statistic_hp" texture="ui_icon_sheet_statistic" cell_id="13" size="20 20" />
+        <icon name="icon_statistic_accuracy" texture="ui_icon_sheet_statistic" cell_id="0" size="20 20" />
+        <icon name="icon_statistic_armour" texture="ui_icon_sheet_statistic" cell_id="2" size="20 20" />
+        <icon name="icon_statistic_attack" texture="ui_icon_sheet_statistic" cell_id="1" size="20 20" />
+        <icon name="icon_statistic_crush" texture="ui_icon_sheet_statistic" cell_id="8" size="20 20" />
+        <icon name="icon_statistic_hack" texture="ui_icon_sheet_statistic" cell_id="6" size="20 20" />
+        <icon name="icon_statistic_los" texture="ui_icon_sheet_statistic" cell_id="3" size="20 20" />
+        <icon name="icon_statistic_pierce" texture="ui_icon_sheet_statistic" cell_id="7" size="20 20" />
+        <icon name="icon_statistic_range" texture="ui_icon_sheet_statistic" cell_id="5" size="20 20" />
+        <icon name="icon_statistic_speed" texture="ui_icon_sheet_statistic" cell_id="4" size="20 20" />
         
         <!-- Generic Icons / malte, 15th nov -->
         <icon name="0ad_icon" texture="0ad_icon" size="16 16" />
         <icon name="bullet_icon" texture="bullet_icon" size="8 8" />
         <icon name="infinity_icon" texture="infinity_icon" size="16 16" />
 
-        <tooltip name="pregame-mainmenu-tooltip"
-                use-object="pregame-mainmenu-tooltip"
-                hide-object="true"
+        <tooltip name="pregame_mainmenu_tooltip"
+                use_object="pregame_mainmenu_tooltip"
+                hide_object="true"
                 delay="0"
         />
 
         <tooltip name="atlas_tooltip"
-                use-object="atlas_tooltip"
-                hide-object="true"
+                use_object="atlas_tooltip"
+                hide_object="true"
                 delay="0"
 	/>
 
-        <tooltip name="session-tooltip"
+        <tooltip name="session_tooltip"
                 maxwidth="300"
                 offset="16 32"
                 anchor="top"
                 delay="500"
-                sprite="session-tooltip-background"
+                sprite="session_tooltip_background"
                 font="tahoma12"
-                buffer-zone="4"
+                buffer_zone="4"
                 textcolor="0 0 0"
         />
 

@@ -18,9 +18,9 @@ using namespace std;
 CImage::CImage()
 {
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
-	AddSetting(GUIST_int,					"cell-id");
+	AddSetting(GUIST_int,					"cell_id");
 	AddSetting(GUIST_CStr,				"tooltip");
-	AddSetting(GUIST_CStr,				"tooltip-style");
+	AddSetting(GUIST_CStr,				"tooltip_style");
 }
 
 CImage::~CImage()
@@ -36,7 +36,7 @@ void CImage::Draw()
 		CGUISpriteInstance *sprite;
 		int cell_id;
 		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
-		GUI<int>::GetSetting(this, "cell-id", cell_id);
+		GUI<int>::GetSetting(this, "cell_id", cell_id);
 
 		GetGUI()->DrawSprite(*sprite, cell_id, bz, m_CachedActualSize);
 	}

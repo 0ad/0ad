@@ -17,11 +17,11 @@ using namespace std;
 //-------------------------------------------------------------------
 CProgressBar::CProgressBar()
 {
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite-background");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite-bar");
+	AddSetting(GUIST_CGUISpriteInstance,	"sprite_background");
+	AddSetting(GUIST_CGUISpriteInstance,	"sprite_bar");
 	AddSetting(GUIST_float,					"caption"); // aka value from 0 to 100
 	AddSetting(GUIST_CStr,					"tooltip");
-	AddSetting(GUIST_CStr,					"tooltip-style");
+	AddSetting(GUIST_CStr,					"tooltip_style");
 }
 
 CProgressBar::~CProgressBar()
@@ -63,9 +63,9 @@ void CProgressBar::Draw()
 		CGUISpriteInstance *sprite_background, *sprite_bar;
 		int cell_id;
 		float value;
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite-background", sprite_background);
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite-bar", sprite_bar);
-		GUI<int>::GetSetting(this, "cell-id", cell_id);
+		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_background", sprite_background);
+		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_bar", sprite_bar);
+		GUI<int>::GetSetting(this, "cell_id", cell_id);
 		GUI<float>::GetSetting(this, "caption", value);
 
 		GetGUI()->DrawSprite(*sprite_background, cell_id, bz, m_CachedActualSize);
