@@ -36,53 +36,57 @@ function getObjectInfo()
 {
 	// Updated each tick to extract entity information from selected unit(s).
 
-	if (!selection.length) 	// If no entity selected,
+	// Don't process GUI when we're full-screen.
+	if (GUIType != "none")
 	{
-		// Hide Status Orb
-		getGUIObjectByName("session_status_orb").hidden = true;
-
-		// Hide Group Pane.
-		getGUIObjectByName("session_group_pane").hidden = true;
-
-		getGlobal().MultipleEntitiesSelected = 0;
-	}
-	else			// If at least one entity selected,
-	{
-		// Store globals for entity information.
-//		strString = "" + selection[0].position;
-//		EntityPos = strString.substring(20,strString.length-3);
-
-		UpdateStatusOrb();
-
-	        // Check if a group of entities selected
-	        if (selection.length > 1) 
+		if (!selection.length) 	// If no entity selected,
 		{
-			// If a group pane isn't already open, and we don't have the same set as last time,
-			// NOTE: This "if" is an optimisation because the game crawls if this set of processing occurs every frame.
-			// It's quite possible for the player to select another group of the same size and for it to not be recognised.
-			// Best solution would be to base this off a "new entities selected" instead of an on-tick.
-			if (
-				// getGUIObjectByName("session_group_pane").hidden == true || 
-				selection.length != getGlobal().MultipleEntitiesSelected)
-			{
-				UpdateGroupPane();
-		                getGlobal().MultipleEntitiesSelected = selection.length;
-			}
-	        } 
-		else
-		{
-	                getGlobal().MultipleEntitiesSelected = 0;
+			// Hide Status Orb
+			getGUIObjectByName("session_status_orb").hidden = true;
 
 			// Hide Group Pane.
 			getGUIObjectByName("session_group_pane").hidden = true;
+
+			getGlobal().MultipleEntitiesSelected = 0;
 		}
-        }
+		else			// If at least one entity selected,
+		{
+			// Store globals for entity information.
+//			strString = "" + selection[0].position;
+//			EntityPos = strString.substring(20,strString.length-3);
 
-	// Modify any resources given/taken (later, we need to base this on a resource-changing event).
-	UpdateResourcePool();
+			UpdateStatusOrb(); // (later, we need to base this on the selected unit's stats changing)
 
-	// Update Team Tray (later, we need to base this on the player creating a group).
-	UpdateTeamTray();
+		        // Check if a group of entities selected
+		        if (selection.length > 1) 
+			{
+				// If a group pane isn't already open, and we don't have the same set as last time,
+				// NOTE: This "if" is an optimisation because the game crawls if this set of processing occurs every frame.
+				// It's quite possible for the player to select another group of the same size and for it to not be recognised.
+				// Best solution would be to base this off a "new entities selected" instead of an on-tick.
+				if (
+					// getGUIObjectByName("session_group_pane").hidden == true || 
+					selection.length != getGlobal().MultipleEntitiesSelected)
+				{
+					UpdateGroupPane(); // (later, we need to base this on the selection changing)
+			                getGlobal().MultipleEntitiesSelected = selection.length;
+				}
+		        } 
+			else
+			{
+		                getGlobal().MultipleEntitiesSelected = 0;
+
+				// Hide Group Pane.
+				getGUIObjectByName("session_group_pane").hidden = true;
+			}
+	        }
+
+		// Modify any resources given/taken (later, we need to base this on a resource-changing event).
+		UpdateResourcePool();
+
+		// Update Team Tray (later, we need to base this on the player creating a group).
+		UpdateTeamTray();
+	}
 }
 
 // ====================================================================
