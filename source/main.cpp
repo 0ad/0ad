@@ -17,9 +17,12 @@
 #ifdef _M_IX86
 #include "sysdep/ia32.h"
 #endif
-#include "ps/Config.h"
+#include "Config.h"
 #include "MapReader.h"
 #include "Terrain.h"
+#include "TextureManager.h"
+#include "ObjectManager.h"
+#include "SkeletonAnimManager.h"
 #include "Renderer.h"
 #include "Model.h"
 #include "UnitManager.h"
@@ -47,7 +50,10 @@ bool mouseButtons[5];
 // flag to disable extended GL extensions until fix found - specifically, crashes
 // using VBOs on laptop Radeon cards
 static bool g_NoGLVBO=false;
-
+// flag to switch on shadows
+static bool g_Shadows=false;
+// flag to switch off pbuffers
+static bool g_NoPBuffer=false;
 static bool g_VSync = false;
 
 static bool g_EntGraph = false;
@@ -222,6 +228,19 @@ void RenderTerrain()
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
+// SubmitModelRecursive: recurse down given model, submitting it and all it's descendents to the 
+// renderer
+void SubmitModelRecursive(CModel* model)
+{
+	g_Renderer.Submit(model);
+
+	const std::vector<CModel::Prop>& props=model->GetProps();
+	for (uint i=0;i<props.size();i++) {
+		SubmitModelRecursive(props[i].m_Model);
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
 // RenderModels: iterate through model list and submit all models in viewing frustum to the 
 // Renderer
 void RenderModels()
@@ -229,10 +248,9 @@ void RenderModels()
 	CFrustum frustum=g_Camera.GetFustum();
 
 	const std::vector<CUnit*>& units=g_UnitMan.GetUnits();
-	uint i;
-	for (i=0;i<units.size();++i) {
-		if (frustum.IsBoxVisible(CVector3D(0,0,0),units[i]->m_Model->GetBounds())) {
-			g_Renderer.Submit(units[i]->m_Model);
+	for (uint i=0;i<units.size();++i) {
+		if (frustum.IsBoxVisible(CVector3D(0,0,0),units[i]->GetModel()->GetBounds())) {
+			SubmitModelRecursive(units[i]->GetModel());
 		}
 	}
 }
@@ -248,7 +266,7 @@ void RenderNoCull()
 	uint i,j;
 	const std::vector<CUnit*>& units=g_UnitMan.GetUnits();
 	for (i=0;i<units.size();++i) {
-		g_Renderer.Submit(units[i]->m_Model);
+		SubmitModelRecursive(units[i]->GetModel());
 	}
 	
 	u32 patchesPerSide=g_Terrain.GetPatchesPerSide();
@@ -353,7 +371,7 @@ void UpdateWorld(float time)
 {
 	const std::vector<CUnit*>& units=g_UnitMan.GetUnits();
 	for (uint i=0;i<units.size();++i) {
-		units[i]->m_Model->Update(time);
+		units[i]->GetModel()->Update(time);
 	}
 
 	g_EntityManager.updateAll( time );
@@ -386,6 +404,15 @@ void ParseArgs(int argc, char* argv[])
 				case 'n':
 					if (strncmp(argv[i]+1,"novbo",5)==0) {
 						g_NoGLVBO=true;
+					}
+					else if (strncmp(argv[i]+1,"nopbuffer",9)==0) {
+						g_NoPBuffer=true;
+					}
+					break;
+
+				case 's':
+					if (strncmp(argv[i]+1,"shadows",7)==0) {
+						g_Shadows=true;
 					}
 					break;
 			}
@@ -504,8 +531,21 @@ int main(int argc, char* argv[])
 
 	font = font_load("fonts/verdana.fnt");
 
+	// create renderer
+	new CRenderer;
+
 	// set renderer options from command line options - NOVBO must be set before opening the renderer
-	g_Renderer.SetOption(CRenderer::OPT_NOVBO,g_NoGLVBO);
+	g_Renderer.SetOptionBool(CRenderer::OPT_NOVBO,g_NoGLVBO);
+	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS,g_Shadows);
+	g_Renderer.SetOptionBool(CRenderer::OPT_NOPBUFFER,g_NoPBuffer);
+
+	// create terrain related stuff
+	new CTextureManager;
+
+	// create actor related stuff
+	new CSkeletonAnimManager;
+	new CObjectManager;
+	new CUnitManager;
 
 	// terr_init actually opens the renderer and loads a bunch of resources as well as setting up
 	// the terrain
@@ -618,6 +658,17 @@ if(!g_MapFile)
 	delete &g_Pathfinder;
 	delete &g_EntityManager;
 	delete &g_EntityTemplateCollection;
+
+	// destroy actor related stuff
+	delete CUnitManager::GetSingletonPtr();
+	delete CObjectManager::GetSingletonPtr();
+	delete CSkeletonAnimManager::GetSingletonPtr();
+
+	// destroy terrain related stuff
+	delete CTextureManager::GetSingletonPtr();
+
+	// destroy renderer
+	delete CRenderer::GetSingletonPtr();
 
 	return 0;
 }
