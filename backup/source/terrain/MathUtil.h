@@ -1,0 +1,27 @@
+//***********************************************************
+//
+// Name:		MathUtil.H
+// Last Update:	28/1/02
+// Author:		Poya Manouchehri
+//
+// Description: This file contains some maths related
+//				utility macros and fucntions.
+//
+//***********************************************************
+
+#ifndef MATHUTIL_H
+#define MATHUTIL_H
+
+#ifndef PI
+#define PI							3.14159265358979323846f
+#endif
+
+#define DEGTORAD(a)					((a) * (PI/180.0f))
+#define RADTODEG(a)					((a) * (180.0f/PI))
+#define SQR(x)						((x) * (x))
+#define MAX3(a,b,c)					( MAX (MAX(a,b), c) )
+#define ABS(a)						((a > 0) ? (a) : (-a))
+
+//extern unsigned int F2DW (float f);
+
+#endif
