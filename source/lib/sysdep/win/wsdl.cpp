@@ -34,6 +34,10 @@
 
 #include <SDL_vkeys.h>
 
+#include <assert.h>
+#include <stdio.h>
+#include <math.h>
+
 #ifdef _MSC_VER
 #pragma comment(lib, "user32.lib")
 #pragma comment(lib, "gdi32.lib")
@@ -243,7 +247,8 @@ return_char:
 			next_char_idx++;
 
 			ev->type = SDL_KEYDOWN;
-			ev->key.keysym.sym = (SDLKey)translated_keysym;
+			//ev->key.keysym.sym = (SDLKey)translated_keysym;
+			ev->key.keysym.sym = (SDLKey)((c < 256)? c : 0);
 			ev->key.keysym.unicode = c;
 			return 1;
 		}
@@ -277,16 +282,14 @@ return_char:
 			{
 				// Translation complete: Produce one or more Unicode chars
 				char_buf[num_chars]=0;
-				translated_keysym=vkmap(vk);
+				///translated_keysym=vkmap(vk);
 				//wprintf(L"ToUnicode: Translated %02x to [%s], %d chars, SDLK %02x. Extended flag %d, scancode %d\n", vk, char_buf, num_chars, translated_keysym, msg.lParam & 0x01000000, scancode);
-				//fflush(stdout);
 				goto return_char;
 			}
 			else if (num_chars == -1)
 			{
 				// Dead Key: Don't produce an event for this one
 				//printf("ToUnicode: Dead Key %02x [%c] [%c] SDLK %02x\n", vk, vk, char_buf[0], vkmap(vk));
-				//fflush(stdout);
 				num_chars = 0;
 				break;
 					// leave the switch statement; get next message.
@@ -301,7 +304,6 @@ return_char:
 			ev->key.keysym.unicode = 0;
 
 			//printf("ToUnicode: No translation for %02x, extended flag %d, scancode %d, SDLK %02x [%c]\n", vk, msg.lParam & 0x01000000, scancode, ev->key.keysym.sym, ev->key.keysym.sym);
-			//fflush(stdout);
 
 			return 1;
 		}

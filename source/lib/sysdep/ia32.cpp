@@ -29,6 +29,13 @@
 #include "win/wtime.h"
 #endif
 
+#include <assert.h>
+#include <string.h>
+#include <stdio.h>
+
+#include <vector>
+#include <algorithm>
+
 
 // replace pathetic MS libc implementation
 #ifdef _WIN32

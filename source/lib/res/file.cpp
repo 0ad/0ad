@@ -26,6 +26,8 @@
 #include "detect.h"
 #include "adts.h"
 
+#include <vector>
+#include <algorithm>
 
 // block := power-of-two sized chunk of a file.
 // all transfers are expanded to naturally aligned, whole blocks

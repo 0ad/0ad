@@ -21,7 +21,11 @@
 #include "lib.h"
 #include "wsock.h"
 
+#include <assert.h>
+
+#ifdef _MSC_VER
 #pragma comment(lib, "ws2_32.lib")
+#endif
 
 
 fp_getnameinfo_t getnameinfo;

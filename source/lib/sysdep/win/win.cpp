@@ -21,8 +21,11 @@
 #include "win_internal.h"
 
 #include <crtdbg.h>	// malloc debug
-#include <malloc.h>
 
+#include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>	// __argc
+#include <malloc.h>
 
 //
 // these override the portable stdio versions in sysdep.cpp

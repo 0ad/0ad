@@ -5,6 +5,10 @@
 #include "ogl.h"
 #include "detect.h"
 
+#include <assert.h>
+#include <stdio.h>
+#include <string.h>
+
 #ifdef _MSC_VER
 #pragma comment(lib, "opengl32.lib")
 #pragma comment(lib, "glu32.lib")

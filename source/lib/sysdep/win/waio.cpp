@@ -18,10 +18,13 @@
 
 #include "precompiled.h"
 
-#include <io.h>
-
 #include "lib.h"
 #include "win_internal.h"
+
+#include <io.h>
+
+#include <assert.h>
+#include <stdlib.h>
 
 
 #define lock() win_lock(WAIO_CS)

@@ -1,13 +1,12 @@
 #ifndef ADTS_H__
 #define ADTS_H__
 
-#include "precompiled.h"
-
 #include "lib.h"
-
 
 #include <cassert>
 
+#include <list>
+#include <map>
 
 
 static struct BIT_BUF

@@ -24,6 +24,12 @@
 
 #include "win_internal.h"
 
+#include <math.h>
+
+#include <algorithm>
+#include <numeric>
+
+
 // we no longer use TGT, due to issues on Win9x; GTC is just as good.
 // (don't want to accelerate the tick rate, because performance will suffer).
 // still need the header for the event timer (triggers periodic recalibration).

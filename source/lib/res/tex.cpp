@@ -24,6 +24,10 @@
 #include "res.h"
 #include "ogl.h"
 
+#include <math.h>
+#include <stdlib.h>
+#include <assert.h>
+
 
 #define NO_JP2
 //#define NO_PNG

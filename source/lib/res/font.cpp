@@ -24,6 +24,9 @@
 #include "res.h"
 #include "ogl.h"
 
+#include <string.h>
+#include <stdio.h>
+
 /*
 
 #include <ft2build.h>

@@ -20,6 +20,7 @@
 #include "lib.h"
 #include "timer.h"
 
+#include <math.h>
 
 // wrapper over gettimeofday, instead of emulating it for Windows,
 // because double return type allows higher resolution (e.g. if using TSC),

@@ -6,6 +6,10 @@
 #include "res.h"
 #include "h_mgr.h"
 
+#include <stdlib.h>
+#include <assert.h>
+
+#include <map>
 
 //////////////////////////////////////////////////////////////////////////////
 

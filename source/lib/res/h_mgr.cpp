@@ -22,12 +22,10 @@
 #include "h_mgr.h"
 #include "mem.h"
 
-// TODO: h_find - required for caching
-
-
-
-
-
+#include <assert.h>
+#include <limits.h>	// CHAR_BIT
+#include <string.h>
+#include <stdlib.h>
 
 
 // rationale

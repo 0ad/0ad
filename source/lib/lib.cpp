@@ -21,6 +21,8 @@
 
 #include "sdl.h"	// endian functions
 
+#include <assert.h>
+
 
 // more powerful atexit, with 0 or 1 parameters.
 // callable before libc initialized, frees up the real atexit table,

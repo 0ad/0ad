@@ -23,6 +23,14 @@
 #include "res.h"
 #include "adts.h"
 
+#include <string.h>
+
+#include <map>
+#include <list>
+#include <vector>
+#include <string>
+#include <algorithm>
+
 
 // currently not thread safe. will have to change that if
 // a prefetch thread is to be used.

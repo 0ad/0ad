@@ -23,6 +23,10 @@
 
 #include "win_internal.h"
 
+#include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 #ifdef _MSC_VER
 #pragma comment(lib, "version.lib")
 #pragma comment(lib, "advapi32.lib")

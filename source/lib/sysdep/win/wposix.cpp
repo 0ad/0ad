@@ -20,10 +20,14 @@
 
 #include "precompiled.h"
 
-#include <process.h>
-
 #include "lib.h"
 #include "win_internal.h"
+
+#include <process.h>
+
+#include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 
 static HANDLE mk_handle(intptr_t i)

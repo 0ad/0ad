@@ -20,6 +20,8 @@
 #undef HAVE_GETTIMEOFDAY
 #undef HAVE_X
 
+#undef HAVE_PCH
+
 #undef CONFIG_DISABLE_EXCEPTIONS
 
 
@@ -29,6 +31,7 @@
 
 #ifdef _MSC_VER
 # define HAVE_ASM
+//# define HAVE_PCH
 #endif
 
 #ifdef OS_UNIX
