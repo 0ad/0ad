@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <cmath>
 
+#include <fmod.h>
 
 // Alan: For some reason if this gets included after anything else some 
 // compile time errors get thrown up todo with javascript internal typedefs
@@ -43,6 +44,7 @@
 #ifndef NO_GUI
 #include "gui/GUI.h"
 #endif
+
 
 CConsole* g_Console = 0;
 extern bool conInputHandler(const SDL_Event& ev);
@@ -471,6 +473,11 @@ int main(int argc, char* argv[])
 	SDL_EnableUNICODE(1);
 
 
+	if(FSOUND_Init(44100, 32, 0) == 0)
+	{
+		swprintf(err_msg, ERR_MSG_SIZE, L"Failed to initialise FMOD");
+		display_startup_error(err_msg);
+	}
 
 	// set current directory to "$game_dir/data".
 	// this is necessary because it is otherwise unknown,
@@ -692,6 +699,9 @@ g_Console->RegisterFunc(Testing, "Testing");
 
 	// destroy renderer
 	delete CRenderer::GetSingletonPtr();
+
+	//shut down FMOD - needs adding to the atexit calls above
+	FSOUND_Close();
 
 	exit(0);
 	return 0;
