@@ -611,7 +611,7 @@ static int ZArchive_reload(ZArchive* za, const char* fn, Handle h)
 
 	int err;
 
-	err = file_open(fn, 0, &za->f);
+	err = file_open(fn, FILE_CACHE_BLOCK, &za->f);
 	if(err < 0)
 		// don't complain - this happens when vfs_mount blindly
 		// zip_archive_opens a dir.
@@ -961,12 +961,12 @@ static ssize_t io_cb(uintptr_t ctx, void* buf, size_t size)
 {
 	IOCBParams* p = (IOCBParams*)ctx;
 
-	CHECK_ERR(inf_inflate(p->inf_ctx, buf, size));
+	ssize_t ret = inf_inflate(p->inf_ctx, buf, size);
 
 	if(p->user_cb)
 		return p->user_cb(p->user_ctx, buf, size);
 
-	return 0;
+	return ret;
 }
 
 
@@ -1070,7 +1070,7 @@ fail:
 
 // begin transferring <size> bytes, starting at <ofs>. get result
 // with zip_wait_io; when no longer needed, free via zip_discard_io.
-Handle zip_start_io(ZFile* const zf, off_t ofs, size_t size, void* buf)
+int zip_start_io(ZFile* const zf, off_t ofs, size_t size, void* buf, FileIO* io)
 {
 	CHECK_ZFILE(zf);
 	if(zfile_compressed(zf))
@@ -1080,22 +1080,22 @@ Handle zip_start_io(ZFile* const zf, off_t ofs, size_t size, void* buf)
 	}
 
 	H_DEREF(zf->ha, ZArchive, za);
-	return file_start_io(&za->f, zf->ofs+ofs, size, buf);
+	return file_start_io(&za->f, zf->ofs+ofs, size, buf, io);
 }
 
 
 // wait until the transfer <hio> completes, and return its buffer.
 // output parameters are zeroed on error.
-inline int zip_wait_io(Handle hio, void*& p, size_t& size)
+inline int zip_wait_io(FileIO* io, void*& p, size_t& size)
 {
-	return file_wait_io(hio, p, size);
+	return file_wait_io(io, p, size);
 }
 
 
 // finished with transfer <hio> - free its buffer (returned by vfs_wait_io)
-inline int zip_discard_io(Handle& hio)
+inline int zip_discard_io(FileIO* io)
 {
-	return file_discard_io(hio);
+	return file_discard_io(io);
 }
 
 
