@@ -244,5 +244,10 @@ void glprintf(const char* fmt, ...)
 	vsnprintf(buf, sizeof(buf)-1, fmt, args);
 	va_end(args);
 
-	glCallLists((GLsizei)strlen(buf), GL_UNSIGNED_BYTE, buf);
+	// avoid BoundsChecker warning
+	const size_t len = strlen(buf);
+	if(!len)
+		return;
+
+	glCallLists((GLsizei)len, GL_UNSIGNED_BYTE, buf);
 }
