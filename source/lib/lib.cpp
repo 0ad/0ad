@@ -241,6 +241,21 @@ int ilog2(const int n)
 }
 
 
+// return log base 2, rounded up.
+uint log2(uint x)
+{
+	uint bit = 1;
+	uint l = 0;
+	while(bit < x)
+	{
+		l++;
+		bit *= 2;
+	}
+
+	return l;
+}
+
+
 int ilog2(const float x)
 {
 	u32 i = (u32&)x;

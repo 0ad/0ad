@@ -264,10 +264,12 @@ extern u32 read_le32(const void* p);
 
 extern bool is_pow2(long n);
 
-
 // return -1 if not an integral power of 2,
 // otherwise the base2 logarithm
 extern int ilog2(const int n);
+
+// return log base 2, rounded up.
+extern uint log2(uint x);
 
 
 extern uintptr_t round_up(uintptr_t val, uintptr_t multiple);
