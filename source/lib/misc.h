@@ -29,8 +29,8 @@
 // check if compiler supports C99
 // nested #if to avoid ICC warning about undefined macro value
 #undef HAVE_C99
-#ifdef __STDC_VERSION__
-#if __STDC_VERSION__ >= 199901L)
+#if defined(__STDC_VERSION__)
+#if __STDC_VERSION__ >= 199901L
 #define HAVE_C99
 #endif
 #endif
@@ -38,7 +38,17 @@
 
 #define UNUSED(param) (void)param;
 
-#define ONCE(code) { static pthread_mutex_t mutex=PTHREAD_MUTEX_INITIALIZER; if(pthread_mutex_trylock(&(mutex))==0) { code; } }
+#define ONCE(code) \
+{ \
+	static pthread_mutex_t mutex=PTHREAD_MUTEX_INITIALIZER; \
+	static bool done=false; \
+	if(pthread_mutex_lock(&(mutex))==0 && !done) \
+	{ \
+		code; \
+		done=true; \
+	} \
+	pthread_mutex_unlock(&mutex); \
+}
 
 
 template<bool>
@@ -86,6 +96,14 @@ extern u32 fnv_hash(const char* str, size_t len);
 #define vsnprintf _vsnprintf
 #endif
 
+#ifndef _WIN32
+
+extern char *_itoa(int value, char* buffer, int radix);
+extern char *_ultoa(unsigned long int value, char *buffer, int radix);
+extern char *_ltoa(long value, char *buffer, int radix);
+
+#endif
+
 #define BIT(n) (1ul << (n))
 
 #ifndef min
@@ -125,10 +143,11 @@ static inline u32 read_le32(const void* p)
 {
 #ifdef BIG_ENDIAN
 	u32 t = 0;
+	const u8 *_p=(const u8 *)p;
 	for(int i = 0; i < 4; i++)
 	{
 		t <<= 8;
-		t |= *(const u8*)p++;
+		t |= *(_p++);
 	}
 	return t;
 #else
@@ -146,7 +165,6 @@ extern int ilog2(const int n);
 
 
 extern uintptr_t round_up(uintptr_t val, uintptr_t multiple);
-
 
 // provide fminf for non-C99 compilers
 #ifndef HAVE_C99
