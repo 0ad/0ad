@@ -1327,7 +1327,7 @@ int file_map(File* const f, void*& p, size_t& size)
 	}
 
 	const int prot = (f->flags & FILE_WRITE)? PROT_WRITE : PROT_READ;
-	f->mapping = mmap((void*)0, size, prot, MAP_PRIVATE, f->fd, (off_t)0);
+	f->mapping = mmap((void*)0, f->size, prot, MAP_PRIVATE, f->fd, (off_t)0);
 	if(!f->mapping)
 		return ERR_NO_MEM;
 
