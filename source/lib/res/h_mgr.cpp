@@ -353,6 +353,8 @@ int h_free(Handle& h, H_Type type)
 	if(vtbl->dtor)
 		vtbl->dtor(hd->user);
 
+	free((void*)hd->fn);
+
 	memset(hd, 0, sizeof(HDATA));
 
 	i32 idx = h_idx(h);

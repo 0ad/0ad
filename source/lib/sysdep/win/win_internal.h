@@ -278,7 +278,7 @@ enum
 	ONCE_CS,
 	HRT_CS,
 	WAIO_CS,
-	WFAM_CS,
+	WIN_CS,
 
 	NUM_CS
 };
@@ -300,6 +300,45 @@ extern void win_unlock(uint idx);
 	} \
 	win_unlock(ONCE_CS); \
 }
+
+
+struct ModuleCallbacks
+{
+	int(*pre_main)();
+	int(*at_exit)();
+};
+
+const size_t MAX_MODULES = 8;
+
+struct Modules
+{
+	ModuleCallbacks cbs[MAX_MODULES];
+	size_t count;
+};
+
+extern int add_module(int(*pre_main)(), int(*at_exit)());
+
+struct RegisterModuleHelper
+{
+	RegisterModuleHelper(int(*pre_main)(), int(*at_exit)())
+	{
+		add_module(pre_main, at_exit);
+	}
+};
+
+// could just do init in a ctor, instead of registering the function to be called before main
+// however, that leaves the problem of shutdown order and timepoint, which is also taken care of here
+// another advantage: we can see how long startup takes, instead of having the overhead incurred on first call
+
+// currently no order (requires implicit knowledge of the systems, which is what we're trying to avoid)
+// they better be independent.
+// could add an init_priority value, but that's messy.
+
+#define WIN_REGISTER_MODULE(mod)\
+	static int mod##_init();\
+	static int mod##_shutdown();\
+	static RegisterModuleHelper module__(mod##_init, mod##_shutdown);
+
 
 
 #endif	// #ifndef WIN_INTERNAL_H

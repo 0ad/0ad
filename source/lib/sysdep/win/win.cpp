@@ -93,9 +93,48 @@ void wdebug_out(const wchar_t* fmt, ...)
 
 
 
-#ifndef NO_WINSOCK
-#pragma comment(lib, "ws2_32.lib")
-#endif
+
+
+
+static Modules modules;
+
+
+int add_module(int(*pre_main)(), int(*at_exit)())
+{
+	win_lock(WIN_CS);
+	struct ModuleCallbacks cbs = { pre_main, at_exit };
+	if(modules.count >= MAX_MODULES)
+		debug_warn("increase MAX_MODULES");
+	else
+		modules.cbs[modules.count++] = cbs;
+	win_unlock(WIN_CS);
+	return 0;
+}
+
+static int call_module_funcs(bool pre_main)
+{
+	if(pre_main)
+	{
+		for(size_t i = 0; i < modules.count; i++)
+			modules.cbs[i].pre_main();
+	}
+	else
+	{
+		size_t i = modules.count;
+		for(;;)
+		{
+			modules.cbs[--i].at_exit();
+			if(!i)
+				break;
+		}
+	}
+
+	return 0;
+}
+
+
+
+
 
 // locking for win-specific code
 // several init functions are called on-demand, possibly from constructors.
@@ -129,6 +168,8 @@ void win_unlock(uint idx)
 
 static void at_exit(void)
 {
+	call_module_funcs(false);
+
 	for(int i = 0; i < NUM_CS; i++)
 		DeleteCriticalSection(&cs[i]);
 }
@@ -137,12 +178,6 @@ static void at_exit(void)
 // be very careful to avoid non-stateless libc functions!
 static inline void pre_libc_init()
 {
-#ifndef NO_WINSOCK
-	char d[1024];
-	WSAStartup(0x0002, d);	// want 2.0
-	atexit2(WSACleanup, 0, CC_STDCALL_0);
-#endif
-
 	for(int i = 0; i < NUM_CS; i++)
 		InitializeCriticalSection(&cs[i]);
 }
@@ -157,6 +192,8 @@ static inline void pre_main_init()
 	flags |= _CRTDBG_CHECK_ALWAYS_DF | _CRTDBG_DELAY_FREE_MEM_DF;
 	_CrtSetDbgFlag(flags);
 #endif
+
+	call_module_funcs(true);
 
 	atexit(at_exit);
 

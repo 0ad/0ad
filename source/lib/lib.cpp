@@ -49,6 +49,9 @@ exit_funcs[MAX_EXIT_FUNCS];
 static int num_exit_funcs;
 
 
+
+
+
 // call all registered exit handlers in LIFO order.
 // called from exit, so don't worry about thread safety.
 static void call_exit_funcs(void)

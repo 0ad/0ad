@@ -26,13 +26,16 @@
 #include "types.h"
 
 
+#define lock() win_lock(WAIO_CS)
+#define unlock() win_unlock(WAIO_CS)
+
+
 //////////////////////////////////////////////////////////////////////////////
 //
-// AioHandles
+// associate async-capable handle with POSIX file descriptor (int)
 //
 //////////////////////////////////////////////////////////////////////////////
 
-// async-capable handles to each lowio file
 // current implementation: open both versions of the file on open()
 //   wastes 1 handle/file, but we don't have to remember the filename/mode
 //
@@ -42,16 +45,20 @@ static HANDLE* aio_hs;
 	// array; expanded when needed in aio_h_set
 
 static int aio_hs_size;
+	// often compared against fd => int
 
+
+// no init needed.
 
 static void aio_h_cleanup()
 {
-	win_lock(WAIO_CS);
+	lock();
 
 	for(int i = 0; i < aio_hs_size; i++)
 		if(aio_hs[i] != INVALID_HANDLE_VALUE)
 		{
-			CloseHandle(aio_hs[i]);
+			if(!CloseHandle(aio_hs[i]))
+				debug_warn("CloseHandle failed");
 			aio_hs[i] = INVALID_HANDLE_VALUE;
 		}
 
@@ -60,11 +67,11 @@ static void aio_h_cleanup()
 
 	aio_hs_size = 0;
 
-	win_unlock(WAIO_CS);
+	unlock();
 }
 
 
-static bool is_valid_file_handle(HANDLE h)
+static bool is_valid_file_handle(const HANDLE h)
 {
 	SetLastError(0);
 	bool valid = (GetFileSize(h, 0) != INVALID_FILE_SIZE);
@@ -74,34 +81,33 @@ static bool is_valid_file_handle(HANDLE h)
 
 
 // get async capable handle to file <fd>
-HANDLE aio_h_get(int fd)
+HANDLE aio_h_get(const int fd)
 {
 	HANDLE h = INVALID_HANDLE_VALUE;
 
-	win_lock(WAIO_CS);
+	lock();
 
-	if(0 <= fd && fd < aio_hs_size)
-		h = aio_hs[fd];
-	else
+	if(0 <= fd && fd < (int)aio_hs_size)
 	{
-		assert(0);
-		h = INVALID_HANDLE_VALUE;
+		h = aio_hs[fd];
+		if(!is_valid_file_handle(h))
+			h = INVALID_HANDLE_VALUE;
 	}
+	else
+		debug_warn("aio_h_get: fd's aio handle not set");
+		// h already INVALID_HANDLE_VALUE
 
-	if(!is_valid_file_handle(h))
-		h = INVALID_HANDLE_VALUE;
-
-	win_unlock(WAIO_CS);
+	unlock();
 
 	return h;
 }
 
 
-int aio_h_set(int fd, HANDLE h)
+int aio_h_set(const int fd, const HANDLE h)
 {
-	win_lock(WAIO_CS);
+	lock();
 
-	WIN_ONCE(atexit2(aio_h_cleanup))
+	const char* msg = 0;
 
 	if(fd < 0)
 		goto fail;
@@ -109,10 +115,12 @@ int aio_h_set(int fd, HANDLE h)
 	// grow hs array to at least fd+1 entries
 	if(fd >= aio_hs_size)
 	{
-		uint size2 = (uint)round_up(fd+8, 8);
-		HANDLE* hs2 = (HANDLE*)realloc(aio_hs, size2*sizeof(HANDLE));
+		const uint size2 = (uint)round_up(fd+8, 8);
+		HANDLE* const hs2 = (HANDLE*)realloc(aio_hs, size2*sizeof(HANDLE));
 		if(!hs2)
 			goto fail;
+		// don't assign directly from realloc -
+		// we'd leak the previous array if realloc fails.
 
 		for(uint i = aio_hs_size; i < size2; i++)
 			hs2[i] = INVALID_HANDLE_VALUE;
@@ -120,29 +128,30 @@ int aio_h_set(int fd, HANDLE h)
 		aio_hs_size = size2;
 	}
 
+	// nothing to do; will set aio_hs[fd] to INVALID_HANDLE_VALUE below.
 	if(h == INVALID_HANDLE_VALUE)
 		;
 	else
 	{
 		if(aio_hs[fd] != INVALID_HANDLE_VALUE)
 		{
-			debug_warn("AioHandles::set: handle already set!");
+			msg = "aio_h_set: handle already set!";
 			goto fail;
 		}
 		if(!is_valid_file_handle(h))
 		{
-			debug_warn("AioHandles::set: setting invalid handle");
+			msg = "aio_h_set: setting invalid handle";
 			goto fail;
 		}
 	}
 
 	aio_hs[fd] = h;
 
-	win_unlock(WAIO_CS);
+	unlock();
 	return 0;
 
 fail:
-	win_unlock(WAIO_CS);
+	unlock();
 	debug_warn("aio_h_set failed");
 	return -1;
 }
@@ -153,6 +162,7 @@ fail:
 // Req
 //
 //////////////////////////////////////////////////////////////////////////////
+
 
 // information about active transfers (reused)
 struct Req
@@ -178,7 +188,7 @@ const int MAX_REQS = 64;
 static Req reqs[MAX_REQS];
 
 
-void req_cleanup(void)
+static void req_cleanup(void)
 {
 	Req* r = reqs;
 
@@ -197,19 +207,17 @@ void req_cleanup(void)
 }
 
 
-void req_init()
+static void req_init()
 {
-	atexit(req_cleanup);
-
 	for(int i = 0; i < MAX_REQS; i++)
 		reqs[i].ovl.hEvent = CreateEvent(0,1,0,0);	// manual reset
+
+	// buffers are allocated on-demand.
 }
 
 
-Req* req_alloc(aiocb* cb)
+static Req* req_alloc(aiocb* cb)
 {
-	ONCE(req_init());
-
 	Req* r = reqs;
 	for(int i = 0; i < MAX_REQS; i++, r++)
 		if(r->cb == 0)
@@ -229,7 +237,7 @@ debug_out("req_alloc cb=%p r=%p\n", cb, r);
 }
 
 
-Req* req_find(const aiocb* cb)
+static Req* req_find(const aiocb* cb)
 {
 #ifdef PARANOIA
 debug_out("req_find  cb=%p r=%p\n", cb, cb->req_);
@@ -239,7 +247,7 @@ debug_out("req_find  cb=%p r=%p\n", cb, cb->req_);
 }
 
 
-int req_free(Req* r)
+static int req_free(Req* r)
 {
 #ifdef PARANOIA
 debug_out("req_free  cb=%p r=%p\n", r->cb, r);
@@ -269,9 +277,13 @@ debug_out("req_free  cb=%p r=%p\n", r->cb, r);
 static size_t sector_size = 4096;	// minimum: one page
 
 
+WIN_REGISTER_MODULE(waio);
+
 // caller ensures this is not re-entered!
-static void init()
+static int waio_init()
 {
+	req_init();
+
 	const UINT old_err_mode = SetErrorMode(SEM_FAILCRITICALERRORS);
 
 	// Win32 requires transfers to be sector aligned.
@@ -302,8 +314,17 @@ static void init()
 	SetErrorMode(old_err_mode);
 
 	assert(is_pow2((long)sector_size));
+
+	return 0;
 }
 
+
+static int waio_shutdown()
+{
+	req_cleanup();
+	aio_h_cleanup();
+	return 0;
+}
 
 
 
@@ -337,8 +358,6 @@ int aio_assign_handle(uintptr_t handle)
 // open fn in async mode; associate with fd (retrieve via aio_h(fd))
 int aio_open(const char* fn, int mode, int fd)
 {
-WIN_ONCE(init());	// TODO: need to do this elsewhere in case other routines called first?
-
 	// interpret mode
 	DWORD access = GENERIC_READ;	// assume O_RDONLY
 	DWORD share = 0;

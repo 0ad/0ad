@@ -41,7 +41,6 @@
 #endif
 
 
-
 /* state */
 static bool app_active;		/* is window active & on top?
 							   if not, msg loop should yield */
@@ -366,12 +365,32 @@ int SDL_GL_SetAttribute(SDL_GLattr attr, int value)
 }
 
 
-int SDL_Init(Uint32 flags)
+WIN_REGISTER_MODULE(wsdl);
+
+// SDL redirects stdout.txt in its WinMain hook. we need to do this
+// here (before main is called), instead of in SDL_Init,
+// to completely emulate SDL; bonus: we don't miss output before SDL_Init.
+
+static int wsdl_init()
 {
 	FILE* const ret = freopen("stdout.txt", "w", stdout);
 	if(!ret)
-		debug_warn("SDL_Init freopen failed");
+		debug_warn("stdout freopen failed");
+	return 0;
+}
 
+
+static int wsdl_shutdown()
+{
+	// redirected to stdout.txt in SDL_Init;
+	// close to avoid BoundsChecker warning.
+	fclose(stdout);
+	return 0;
+}
+
+
+int SDL_Init(Uint32 flags)
+{
 	return 0;
 }
 
@@ -508,10 +527,6 @@ int SDL_SetGamma(float r, float g, float b)
 
 void SDL_Quit()
 {
-	// redirected to stdout.txt in SDL_Init;
-	// close to avoid BoundsChecker warning.
-	fclose(stdout);
-
 	if(hDC != INVALID_HANDLE_VALUE)
 	{
 		ReleaseDC(hWnd, hDC);

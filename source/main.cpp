@@ -387,19 +387,35 @@ int main(int argc, char* argv[])
 	const int ERR_MSG_SIZE = 1000;
 	wchar_t err_msg[ERR_MSG_SIZE];
 
-char cwd[100];
-_getcwd(cwd, 100);
-char xbuf[1000];
-sprintf(xbuf, "%s\t%s\n", cwd, argv[0]);
-//display_startup_error(xbuf);
 
 
-freopen("stdout2.txt", "w", stdout);
-setvbuf(stdout, 0, _IONBF, 0);
+
+
+	lib_init();
+
+	// set 24 bit (float) FPU precision for faster divides / sqrts
+#ifdef _M_IX86
+	_control87(_PC_24, _MCW_PC);
+#endif
+
+	detect();
+
+
+
+	// init SDL
+	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
+	{
+		swprintf(err_msg, ERR_MSG_SIZE, L"SDL library initialization failed: %s\n", SDL_GetError());
+		display_startup_error(err_msg);
+	}
+	atexit(SDL_Quit);
+	SDL_EnableUNICODE(1);
+
+
 
 	// set current directory to "$game_dir/data".
 	// this is necessary because it is otherwise unknown,
-	// especially if run from a shortcut, batch file, or symlink.
+	// especially if run from a shortcut / symlink.
 	//
 	// "../data" is relative to the executable (in "$game_dir/system").
 	//
@@ -418,30 +434,10 @@ setvbuf(stdout, 0, _IONBF, 0);
 
 
 
-	lib_init();
-
-	// set 24 bit (float) FPU precision for faster divides / sqrts
-#ifdef _M_IX86
-	_control87(_PC_24, _MCW_PC);
-#endif
-
-	detect();
-
 	// GUI is notified in set_vmode, so this must come before that.
 #ifndef NO_GUI
 	new CGUI;
 #endif
-
-
-	// init SDL
-	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
-	{
-		swprintf(err_msg, ERR_MSG_SIZE, L"SDL library initialization failed: %s\n", SDL_GetError());
-		display_startup_error(err_msg);
-	}
-	atexit(SDL_Quit);
-	SDL_EnableUNICODE(1);
-
 
 	// preferred video mode = current desktop settings
 	// (command line params may override these)

@@ -239,8 +239,8 @@ int win_get_cpu_info()
 	// CallNtPowerInformation
 	// (manual import because it's not supported on Win95)
 	NTSTATUS (WINAPI *pCNPI)(POWER_INFORMATION_LEVEL, PVOID, ULONG, PVOID, ULONG) = 0;
-	HMODULE hPowrProfDll = LoadLibrary("powrprof.dll");
-	*(void**)&pCNPI = GetProcAddress(hPowrProfDll, "CallNtPowerInformation");
+	HMODULE hPowrprofDll = LoadLibrary("powrprof.dll");
+	*(void**)&pCNPI = GetProcAddress(hPowrprofDll, "CallNtPowerInformation");
 	if(pCNPI)
 	{
 		// most likely not speedstep-capable if these aren't supported
@@ -280,7 +280,9 @@ int win_get_cpu_info()
 			// ia32 code gets a second crack at it.
 			cpu_speedstep = (is_laptop)? 1 : 0;
 	}
-	FreeLibrary(hPowrProfDll);
+	FreeLibrary(hPowrprofDll);
+		// this is most likely the only reference,
+		// so don't free it (=> unload) until done with the DLL.
 
 	return 0;
 }
