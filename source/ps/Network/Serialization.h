@@ -5,7 +5,7 @@
 #include "lib.h"
 
 #define Serialize_int_1(_pos, _val) \
-	STMT( *((_pos)++) = _val&0xff; )
+	STMT( *((_pos)++) = (u8)(_val&0xff); )
 
 #define Serialize_int_2(_pos, _val) STMT(\
 	Serialize_int_1(_pos, _val>>8); \
@@ -27,38 +27,30 @@
 	Serialize_int_4(_pos, _val); \
 )
 
-#define Deserialize_int_1(_pos, _val) STMT(\
-	(_val) -= (_val) & 0xff; \
+#define __shift_de(_pos, _val) STMT( \
+	(_val) <<= 8; \
 	(_val) += *((_pos)++); )
+
+#define Deserialize_int_1(_pos, _val) STMT(\
+	(_val) = *((_pos)++); )
 
 #define Deserialize_int_2(_pos, _val) STMT(\
 	Deserialize_int_1(_pos, _val); \
-	_val <<= 8; \
-	Deserialize_int_1(_pos, _val); )
+	__shift_de(_pos, _val); )
 
 #define Deserialize_int_3(_pos, _val) STMT(\
 	Deserialize_int_2(_pos, _val); \
-	_val <<= 8; \
-	Deserialize_int_1(_pos, _val); )
+	__shift_de(_pos, _val); )
 
 #define Deserialize_int_4(_pos, _val) STMT(\
 	Deserialize_int_3(_pos, _val); \
-	_val <<= 8; \
-	Deserialize_int_1(_pos, _val); )
+	__shift_de(_pos, _val); )
 
 #define Deserialize_int_8(_pos, _val) STMT(\
-	Deserialize_int_4(_pos, _val); \
-	_val <<= 8; \
-	Deserialize_int_4(_pos, _val); )
-
-/*#define Serialize_CStr(_pos, _str) STMT( \
-	uint len=_str.Length(); \
-	Serialize_int_4(_pos, len); \
-	memcpy(_pos, _str, len+1); _pos += len+1; )
-
-#define Deserialize_CStr(_pos, _str) STMT( \
-	uint len; Deserialize_int_4(_pos, len); \
-	_str=CStr((char *)_pos); _pos += len+1; )*/
+	uint32 _v1; uint32 _v2; \
+	Deserialize_int_4(_pos, _v1); \
+	Deserialize_int_4(_pos, _v2); \
+	_val=_v1<<32 | _v2; )
 
 /**
  * An interface for serializable objects. For a serializable object to be usable
