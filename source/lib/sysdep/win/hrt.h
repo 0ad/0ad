@@ -28,8 +28,8 @@ enum HRTImpl
 	// Windows QueryPerformanceCounter
 	HRT_QPC,
 
-	// Windows timeGetTime
-	HRT_TGT,
+	// Windows GetTickCount
+	HRT_GTC,
 
 	// there will always be a valid timer in use.
 	// this is only used with hrt_override_impl.

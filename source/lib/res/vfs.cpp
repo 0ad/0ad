@@ -1,7 +1,7 @@
 // virtual file system - transparent access to files in archives;
-// allows multiple search paths
+// allows multiple mount points
 //
-// Copyright (c) 2003 Jan Wassenberg
+// Copyright (c) 2004 Jan Wassenberg
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -28,8 +28,8 @@
 #include "adts.h"
 
 
-// currently not thread safe, but that will most likely change
-// (if prefetch thread is to be used).
+// currently not thread safe. will have to change that if
+// a prefetch thread is to be used.
 // not safe to call before main!
 
 
@@ -62,8 +62,6 @@
 //   version - that's what they're for).
 
 
-
-
 ///////////////////////////////////////////////////////////////////////////////
 //
 // path
@@ -71,24 +69,35 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 // path types:
-// portable (/ as directory separator; no ':' or '\\')
-// v_* : VFS
-// f_* : no path at all, filename only
+// fn  : filename only, no path at all.
+// f_* : path intended directly for underlying file layer.
+//       component separator is '/'; no ':' or '\\' allowed.
+// *   : as above, but path within the VFS.
 
 
-static int path_append(char* dst, const char* path, const char* path2)
+// path1 and path2 may be empty, filenames, or full paths.
+static int path_append(char* dst, const char* path1, const char* path2)
 {
-	const size_t path_len = strlen(path);
+	const size_t path1_len = strlen(path1);
 	const size_t path2_len = strlen(path2);
 
-	if(path_len+path2_len+1 > VFS_MAX_PATH)
-		return -1;
+	bool need_separator = false;
+
+	size_t total_len = path1_len + path2_len + 1;	// includes '\0'
+	if(path1_len > 0 && path1[path1_len-1] != '/')
+	{
+		total_len++;	// for '/'
+		need_separator = true;
+	}
+
+	if(total_len+1 > VFS_MAX_PATH)
+		return ERR_VFS_PATH_LENGTH;
 
 	char* p = dst;
 
-	strcpy(p, path);
-	p += path_len;
-	if(path_len > 0 && p[-1] != '/')
+	strcpy(p, path1);
+	p += path1_len;
+	if(need_separator)
 		*p++ = '/';
 	strcpy(p, path2);
 	return 0;
@@ -102,7 +111,7 @@ static int path_validate(const uint line, const char* const path)
 	const char* msg = 0;	// error occurred <==> != 0
 	int err = -1;			// pass error code to caller
 
-	// disallow absolute path
+	// disallow absolute path for safety, in case of *nix systems.
 	if(path[0] == '/')
 	{
 		msg = "absolute path";
@@ -169,7 +178,6 @@ ok:
 ///////////////////////////////////////////////////////////////////////////////
 
 
-
 // the VFS stores the location (archive or directory) of each file;
 // this allows multiple search paths without having to check each one
 // when opening a file (slow).
@@ -202,14 +210,12 @@ struct Loc
 };
 
 
-
-
 struct VDir;
 
 typedef std::map<std::string, VDir*> SubDirs;
 typedef SubDirs::iterator SubDirIt;
 
-typedef std::map<std::string, Loc*> Files;
+typedef std::map<std::string, const Loc*> Files;
 typedef Files::iterator FileIt;
 	// note: priority is accessed by following the Loc pointer.
 	// keeping a copy in the map would lead to better cache coherency,
@@ -223,11 +229,11 @@ struct VDir
 	void* watch;
 
 
-	int file_add(const char* const fn, const uint pri, Loc* const loc)
+	int file_add(const char* const fn, const uint pri, const Loc* const loc)
 	{
 		std::string _fn(fn);
 
-		typedef std::pair<std::string, Loc*> Ent;
+		typedef std::pair<std::string, const Loc*> Ent;
 		Ent ent = std::make_pair(_fn, loc);
 		std::pair<FileIt, bool> ret;
 		ret = files.insert(ent);
@@ -235,7 +241,7 @@ struct VDir
 		if(!ret.second)
 		{
 			FileIt it = ret.first;
-			Loc*& old_loc = it->second;
+			const Loc*& old_loc = it->second;
 
 			// new Loc is of higher priority; replace pointer
 			if(old_loc->pri <= loc->pri)
@@ -251,7 +257,7 @@ struct VDir
 		return 0;
 	}
 
-	Loc* file_find(const char* fn)
+	const Loc* file_find(const char* fn)
 	{
 		std::string _fn(fn);
 		FileIt it = files.find(_fn);
@@ -263,7 +269,7 @@ struct VDir
 	VDir* subdir_add(const char* name)
 	{
 		VDir* vdir = new VDir;
-		std::string _name(name);
+		const std::string _name(name);
 		vdir->v_name = _name;
 
 		std::pair<std::string, VDir*> item = std::make_pair(_name, vdir);
@@ -277,13 +283,20 @@ struct VDir
 		return it->second;
 	}
 
-	VDir* subdir_find(const char* fn)
+	VDir* subdir_find(const char* name)
 	{
-		std::string _fn(fn);
-		SubDirIt it = subdirs.find(_fn);
+		const std::string _name(name);
+		SubDirIt it = subdirs.find(_name);
 		if(it == subdirs.end())
 			return 0;
 		return it->second;
+	}
+
+	void subdir_clear()
+	{
+		for(SubDirIt it = subdirs.begin(); it != subdirs.end(); ++it)
+			delete(it->second);
+		subdirs.clear();
 	}
 
 	friend void tree_clearR(VDir*);
@@ -303,11 +316,12 @@ static VDir vfs_root;
 
 enum LookupFlags
 {
-	LF_DEFAULT,
+	LF_DEFAULT                   = 0,
 	LF_CREATE_MISSING_COMPONENTS = 1
 };
 
-static int tree_lookup(const char* vfs_path, Loc** loc = 0, VDir** dir = 0, LookupFlags flags = LF_DEFAULT)
+
+static int tree_lookup(const char* vfs_path, const Loc** const loc = 0, VDir** const dir = 0, LookupFlags flags = LF_DEFAULT)
 {
 	CHECK_PATH(vfs_path);
 
@@ -376,7 +390,7 @@ static void tree_clearR(VDir* const dir)
 	}
 
 	dir->files.clear();
-	dir->subdirs.clear();
+	dir->subdir_clear();
 }
 
 
@@ -386,24 +400,11 @@ static inline void tree_clear()
 }
 
 
-
-
-
-
-
-
 struct FileCBParams
 {
 	VDir* dir;
-	Loc* loc;
+	const Loc* loc;
 };
-
-	// somewhat of a hack. which archives are mounted into the VFS is stored
-	// in an Archives list in the Mount struct; they don't have anything to
-	// do with a VFS dir. we want to enumerate the archives in a dir via the
-	// normal populate(), though, so have to pass this to its callback.
-
-
 
 // called for each OS dir ent.
 // add each file and directory to the VFS dir.
@@ -416,60 +417,61 @@ struct FileCBParams
 // to try to open it as an archive - not good.
 // this restriction also simplifies the code a bit, but if it's a problem,
 // just generate a list of archives here and mount them from the caller.
-static int add_dirent_cb(const char* fn, uint flags, ssize_t size, uintptr_t user)
+static int add_dirent_cb(const char* const fn, const uint flags, const ssize_t size, const uintptr_t user)
 {
-	FileCBParams* params = (FileCBParams*)user;
-	VDir* cur_dir      = params->dir;
-	Loc* cur_loc   = params->loc;
+	const FileCBParams* const params = (FileCBParams*)user;
+	VDir* const cur_dir      = params->dir;
+	const Loc* const cur_loc = params->loc;
 
 	// directory
 	if(flags & LOC_DIR)
 		cur_dir->subdir_add(fn);
 	// file
 	else
-		cur_dir->file_add(fn, cur_loc->pri, cur_loc);
+		CHECK_ERR(cur_dir->file_add(fn, cur_loc->pri, cur_loc));
 
 	return 0;
 }
 
 
-static int tree_add_dirR(VDir* vdir, const char* dir, Loc* loc)
+static int tree_add_dirR(VDir* const vdir, const char* const f_path, const Loc* const loc)
 {
+	CHECK_PATH(f_path);
+
 	// add watch
 	if(!vdir->watch)
 		vdir->watch = 0;
 
-	// add files and subdirs to dir
-	FileCBParams params = { vdir, loc };
-	file_enum(dir, add_dirent_cb, (uintptr_t)&params);
+	// add files and subdirs to vdir
+	const FileCBParams params = { vdir, loc };
+	file_enum(f_path, add_dirent_cb, (uintptr_t)&params);
 
 	for(SubDirIt it = vdir->subdirs.begin(); it != vdir->subdirs.end(); ++it)
 	{
-		VDir* subdir = it->second;
+		VDir* const vsubdir = it->second;
 
-		char v_subdir_path[PATH_MAX];
-		const char* v_subdir_name_c = subdir->v_name.c_str();
-		CHECK_ERR(path_append(v_subdir_path, dir, v_subdir_name_c));
+		char f_subdir_path[VFS_MAX_PATH];
+		const char* const v_subdir_name_c = vsubdir->v_name.c_str();
+		CHECK_ERR(path_append(f_subdir_path, f_path, v_subdir_name_c));
 
-		tree_add_dirR(subdir, v_subdir_path, loc);
+		tree_add_dirR(vsubdir, f_subdir_path, loc);
 	}
 
 	return 0;
 }
 
 
-static int tree_add_loc(VDir* vdir, Loc* loc)
+static int tree_add_loc(VDir* const vdir, const Loc* const loc)
 {
-	const char* dir = loc->dir.c_str();
-
-	FileCBParams params = { vdir, loc };
-
 	if(loc->archive > 0)
+	{
+		FileCBParams params = { vdir, loc };
 		return zip_enum(loc->archive, add_dirent_cb, (uintptr_t)&params);
+	}
 	else
 	{
-		CHECK_PATH(dir);
-		return tree_add_dirR(vdir, dir, loc);
+		const char* f_path_c = loc->dir.c_str();
+		return tree_add_dirR(vdir, f_path_c, loc);
 	}
 }
 
@@ -481,23 +483,43 @@ static int tree_add_loc(VDir* vdir, Loc* loc)
 ///////////////////////////////////////////////////////////////////////////////
 
 
-
-typedef std::vector<Loc> Locs;
+// container must not invalidate iterators after insertion!
+// (we keep and pass around pointers to Mount.archive_locs elements)
+// see below.
+typedef std::list<Loc> Locs;
 typedef Locs::iterator LocIt;
+
 
 struct Mount
 {
-	std::string vfs_mount_point;
-	std::string name;
+	// mounting into this VFS directory ("" for root)
+	std::string v_path;
+
+	// what is being mounted; either directory,
+	// or archive filename (=> is_single_archive = true)
+	std::string f_name;
 
 	uint pri;
 
-	Loc loc;
+	// storage for all Locs ensuing from this mounting.
+	// the VFS tree only holds pointers to Loc, which is why the
+	// Locs container must not invalidate its contents after adding,
+	// and also why the VFS tree must be rebuilt after unmounting something.
+	Loc dir_loc;
 	Locs archive_locs;
+		// if not is_single_archive, contains one Loc for every archive
+		// in the directory (but not its children - see remount()).
+		// otherwise, contains exactly one Loc for the single archive.
+
+	// is f_name an archive filename? if not, it's a directory.
+	bool is_single_archive;
 
 	Mount() {}
-	Mount(const char* _vfs_mount_point, const char* _name, uint _pri)
-		: vfs_mount_point(_vfs_mount_point), name(_name), pri(_pri) {}
+	Mount(const char* _v_path, const char* _f_name, uint _pri)
+		: v_path(_v_path), f_name(_f_name), pri(_pri),
+		dir_loc(0, "", 0), archive_locs(), is_single_archive(false)
+	{
+	}
 };
 
 typedef std::vector<Mount> Mounts;
@@ -505,32 +527,56 @@ typedef Mounts::iterator MountIt;
 static Mounts mounts;
 
 
+// support for mounting multiple archives in a directory
+// (useful for mix-in mods and patches).
+// all archives are enumerated, added to a Locs list,
+// and mounted (in alphabetical order!)
 
-
-// called for each OS dir ent.
-// add each archive to list.
-static int archive_cb(const char* fn, uint flags, ssize_t size, uintptr_t user)
+struct ArchiveCBParams
 {
-	Locs* archive_locs = (Locs*)user;
-	// only add to list; don't enumerate its files yet for easier debugging
-	// (we see which files are in a dir / archives)
-	// also somewhat faster, due to better locality.
-	//
+	// we need a full path to open the archive, and only receive
+	// the filename, so prepend this (the directory being searched).
+	const char* f_dir;
+
+	// priority at which the archive is to be mounted.
+	// specify here, instead of when actually adding the archive,
+	// because Locs are created const.
+	uint pri;
+
+	// will add one Loc to this container for
+	// every archive successfully opened.
+	Locs* archive_locs;
+};
+
+// called for each directory entry.
+// add each successfully opened archive to list.
+static int archive_cb(const char* const fn, const uint flags, const ssize_t size, const uintptr_t user)
+{
+	// not interested in subdirectories
+	if(flags & LOC_DIR)
+		return 0;
+
+	const ArchiveCBParams* const params = (ArchiveCBParams*)user;
+	const char* const f_dir  = params->f_dir;
+	const uint pri           = params->pri;
+	Locs* const archive_locs = params->archive_locs;
+
+	// get full path (fn is filename only)
+	char f_path[VFS_MAX_PATH];
+	CHECK_ERR(path_append(f_path, f_dir, fn));
+
 	// don't check filename extension - archives won't necessarily
 	// be called .zip (example: Quake III .pk3).
 	// just try to open the file.
-	const Handle archive = zip_archive_open(fn);
+	const Handle archive = zip_archive_open(f_path);
 	if(archive > 0)
-		archive_locs->push_back(Loc(archive, "", 0));
+		archive_locs->push_back(Loc(archive, "", pri));
 
-/// HACK HACK HACK pass along pri
-
-
-	// tree_add_loc them here?
+	// only add archive to list; don't add its files into the VFS yet,
+	// to simplify debugging (we see which files are in which archive)
 
 	return 0;
 }
-
 
 
 // actually mount the specified entry (either Zip archive or dir).
@@ -540,32 +586,43 @@ static int remount(Mount& m)
 {
 	int err;
 
-	const char* vfs_mount_point = m.vfs_mount_point.c_str();
-	const char* name = m.name.c_str();
-	const uint pri = m.pri;
+	const char* const v_path = m.v_path.c_str();
+	const char* const f_name = m.f_name.c_str();
+	const uint pri           = m.pri;
+	Loc& dir_loc             = m.dir_loc;
+	Locs& archive_locs       = m.archive_locs;
 
 	VDir* vdir;
-	CHECK_ERR(tree_lookup(vfs_mount_point, 0, &vdir, LF_CREATE_MISSING_COMPONENTS));
+	CHECK_ERR(tree_lookup(v_path, 0, &vdir, LF_CREATE_MISSING_COMPONENTS));
 
 	// check if target is a single Zip archive
 	// order doesn't matter; can't have both an archive and dir
-
-	const Handle archive = zip_archive_open(name);
+	const Handle archive = zip_archive_open(f_name);
 	if(archive > 0)
 	{
-		m.archive_locs.push_back(Loc(archive, "", pri));
-		LocIt it = m.archive_locs.end();
-		Loc* loc = &*(--it);
+		m.is_single_archive = true;
+		archive_locs.push_back(Loc(archive, "", pri));
+		const Loc* loc = &archive_locs.front();
 		return tree_add_loc(vdir, loc);
 	}
 
-	m.loc.dir.assign(m.name);
-	err = tree_add_loc(vdir, &m.loc);
+	// enumerate all archives
+	ArchiveCBParams params = { f_name, pri, &archive_locs };
+	file_enum(f_name, archive_cb, (uintptr_t)&params);
+
+	for(LocIt it = archive_locs.begin(); it != archive_locs.end(); ++it)
+	{
+		const Loc* const loc = &*it;
+		tree_add_loc(vdir, loc);
+	}
+
+
+	dir_loc.dir = f_name;
+	err = tree_add_loc(vdir, &dir_loc);
 	if(err < 0)
 		err = err;
 
-	// enumerate all archives
-	return file_enum(name, archive_cb, (uintptr_t)&m.archive_locs);
+return 0;
 }
 
 
@@ -582,22 +639,27 @@ static int unmount(Mount& m)
 }
 
 
-static void unmount_all(void)
+static inline void unmount_all(void)
 	{ std::for_each(mounts.begin(), mounts.end(), unmount); }
 
-static void remount_all()
+static inline void remount_all()
 	{ std::for_each(mounts.begin(), mounts.end(), remount); }
+
+
+static void cleanup(void)
+{
+	tree_clear();
+	unmount_all();
+}
 
 
 int vfs_mount(const char* const vfs_mount_point, const char* const name, const uint pri)
 {
-	ONCE(atexit(unmount_all));
-
-	MountIt it;
+	ONCE(atexit2(cleanup));
 
 	// make sure it's not already mounted, i.e. in mounts
-	for(it = mounts.begin(); it != mounts.end(); ++it)
-		if(it->name == name)
+	for(MountIt it = mounts.begin(); it != mounts.end(); ++it)
+		if(it->f_name == name)
 		{
 			debug_warn("vfs_mount: already mounted");
 			return -1;
@@ -606,8 +668,7 @@ int vfs_mount(const char* const vfs_mount_point, const char* const name, const u
 	mounts.push_back(Mount(vfs_mount_point, name, pri));
 
 	// actually mount the entry
-	it = mounts.end();
-	Mount& m = *(--it);
+	Mount& m = mounts.back();
 	return remount(m);
 }
 
@@ -626,7 +687,7 @@ int vfs_unmount(const char* name)
 {
 	for(MountIt it = mounts.begin(); it != mounts.end(); ++it)
 		// found the corresponding entry
-		if(it->name == name)
+		if(it->f_name == name)
 		{
 			Mount& m = *it;
 			unmount(m);
@@ -637,8 +698,6 @@ int vfs_unmount(const char* name)
 
 	return ERR_PATH_NOT_FOUND;
 }
-
-
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -656,9 +715,15 @@ int vfs_unmount(const char* name)
 // and unmounts those when needed.
 
 
+int vfs_reload(const char* fn)
+{
+	return h_reload(fn);
+}
+
+
 int vfs_realpath(const char* fn, char* full_path)
 {
-	Loc* loc;
+	const Loc* loc;
 	CHECK_ERR(tree_lookup(fn, &loc));
 
 	if(loc->archive > 0)
@@ -679,7 +744,7 @@ int vfs_realpath(const char* fn, char* full_path)
 
 int vfs_stat(const char* fn, struct stat* s)
 {
-	Loc* loc;
+	const Loc* loc;
 	CHECK_ERR(tree_lookup(fn, &loc));
 
 	if(loc->archive > 0)
@@ -774,7 +839,7 @@ static void VFile_dtor(VFile* vf)
 
 
 
-static int VFile_reload(VFile* vf, const char* fn)
+static int VFile_reload(VFile* vf, const char* path)
 {
 	int& flags = vf_flags(vf);
 
@@ -786,15 +851,15 @@ static int VFile_reload(VFile* vf, const char* fn)
 	int err = -1;
 
 
-	Loc* loc;
-	CHECK_ERR(tree_lookup(fn, &loc));
+	const Loc* loc;
+	CHECK_ERR(tree_lookup(path, &loc));
 
 	if(loc->archive <= 0)
 	{
-		char path[PATH_MAX];
+		char f_path[PATH_MAX];
 		const char* dir = loc->dir.c_str();
-		CHECK_ERR(path_append(path, dir, fn));
-		CHECK_ERR(file_open(path, vf_flags(vf), &vf->f));
+		CHECK_ERR(path_append(f_path, dir, path));
+		CHECK_ERR(file_open(f_path, vf_flags(vf), &vf->f));
 	}
 	else
 	{
@@ -804,7 +869,7 @@ static int VFile_reload(VFile* vf, const char* fn)
 			return -1;
 		}
 
-		CHECK_ERR(zip_open(loc->archive, fn, &vf->zf));
+		CHECK_ERR(zip_open(loc->archive, path, &vf->zf));
 
 		flags |= VF_ZIP;
 	}

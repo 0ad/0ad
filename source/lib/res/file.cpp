@@ -162,6 +162,10 @@ typedef DirEnts::iterator DirEntsIt;
 static bool dirent_less(DirEnt& d1, DirEnt& d2)
 	{ return d1.name.compare(d2.name) < 0; }
 
+// rationale: we pass the directory entry name only to the callback -
+// not the absolute path, nor <dir> prepended. some users don't need it,
+// and would need to strip it. this routine generates the absolute path,
+// but in native form - can't use that.
 int file_enum(const char* dir, FileCB cb, uintptr_t user)
 {
 	char n_path[PATH_MAX+1];

@@ -24,6 +24,9 @@
 #include "detect.h"
 
 #include "win_internal.h"
+
+// we no longer use TGT, due to issues on Win9x; GTC is just as good.
+// still need the header for the event timer (triggers periodic recalibration)
 #include <mmsystem.h>
 	// not included by win_internal due to its WIN32_LEAN_AND_MEAN define
 #ifdef _MSC_VER
@@ -53,7 +56,7 @@ static i64 hrt_nominal_freq = -1;
 // decide upon a HRT implementation, checking if we can work around
 // each timer's issues on this platform, but allow user override
 // in case there are unforeseen problems with one of them.
-// order of preference (due to resolution and speed): TSC, QPC, TGT.
+// order of preference (due to resolution and speed): TSC, QPC, GTC.
 // split out of reset_impl so we can just return when impl is chosen.
 static void choose_impl()
 {
@@ -157,11 +160,11 @@ static void choose_impl()
 #endif	// QPC
 
 	//
-	// TGT
+	// GTC
 	//
 	if(1)
 	{
-		hrt_impl = HRT_TGT;
+		hrt_impl = HRT_GTC;
 		hrt_nominal_freq = 1000;
 		return;
 	}
@@ -202,8 +205,8 @@ static i64 ticks_lk()
 
 // TGT
 #ifdef _WIN32
-	case HRT_TGT:
-		t = (i64)timeGetTime();
+	case HRT_GTC:
+		t = (i64)GetTickCount();
 		break;
 #endif
 
@@ -369,7 +372,7 @@ unlock();
 int hrt_override_impl(HRTOverride ovr, HRTImpl impl)
 {
 	if((ovr != HRT_DISABLE && ovr != HRT_FORCE && ovr != HRT_DEFAULT) ||
-	   (impl != HRT_TSC && impl != HRT_QPC && impl != HRT_TGT && impl != HRT_NONE))
+	   (impl != HRT_TSC && impl != HRT_QPC && impl != HRT_GTC && impl != HRT_NONE))
 	{
 		debug_warn("hrt_override: invalid ovr or impl param");
 		return -1;
@@ -452,7 +455,7 @@ unlock();
 
 // setup calibration thread
 // note: winmm event is better than a thread or just checking elapsed time
-// in hrt_ticks, because it's called right after TGT is updated;
+// in hrt_ticks, because it's called right after GTC is updated;
 // otherwise, we may be in the middle of a tick.
 
 static UINT mm_event;

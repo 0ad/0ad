@@ -36,7 +36,7 @@
 // - call atexit (our exit handler would be called before its handler,
 //   so we may have shut down something important already).
 
-const int MAX_EXIT_FUNCS = 32;
+const int MAX_EXIT_FUNCS = 64;
 
 
 static struct ExitFunc

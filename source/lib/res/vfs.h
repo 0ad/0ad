@@ -1,7 +1,7 @@
 // virtual file system - transparent access to files in archives;
-// allows multiple search paths
+// allows multiple mount points
 //
-// Copyright (c) 2003 Jan Wassenberg
+// Copyright (c) 2004 Jan Wassenberg
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -23,7 +23,12 @@
 #include "h_mgr.h"
 #include "posix.h"	// struct stat
 
-#define VFS_MAX_PATH 256	// includes trailing '\0'
+// the VFS doesn't require this length restriction - VFS internal storage
+// is not fixed-length. the purpose here is to allow fixed-sized path buffers
+// allocated on the stack.
+//
+// length includes trailing '\0'.
+#define VFS_MAX_PATH 256
 
 extern int vfs_mount(const char* vfs_mount_point, const char* name, uint pri);
 extern int vfs_umount(const char* name);
@@ -37,6 +42,11 @@ extern Handle vfs_open(const char* fn, uint flags = 0);
 extern int vfs_close(Handle& h);
 
 extern Handle vfs_map(Handle hf, uint flags, void*& p, size_t& size);
+
+
+extern int vfs_reload(const char* fn);
+extern int vfs_rebuild();
+
 
 
 

@@ -58,6 +58,8 @@ struct Tex
 	size_t ofs;			// offset to image data in file
 	Handle hm;			// H_MEM handle to loaded file
 	uint id;
+
+bool uploaded;
 };
 
 H_TYPE_DEFINE(Tex)
@@ -673,9 +675,11 @@ fail:
 
 #endif
 
+
 static void Tex_init(Tex* t, va_list args)
 {
 }
+
 
 static void Tex_dtor(Tex* t)
 {
@@ -684,6 +688,9 @@ static void Tex_dtor(Tex* t)
 	glDeleteTextures(1, &t->id);
 }
 
+
+// HACK HACK
+static int tex_upload_t(Tex* t, int filter, int int_fmt);
 
 // TEX output param is invalid if function fails
 static int Tex_reload(Tex* t, const char* fn)
@@ -748,11 +755,15 @@ static int Tex_reload(Tex* t, const char* fn)
 		// TODO: check file name, go to 32 bit if wrong
 	}
 
+
 	uint id;
 	glGenTextures(1, &id);
 	t->id = id;
 	// this can't realistically fail, just note that the already_loaded
 	// check above assumes (id > 0) <==> texture is loaded and valid
+
+if(t->uploaded)
+tex_upload_t(t, 0,0);
 
 	return 0;
 }
@@ -789,9 +800,9 @@ int tex_bind(const Handle h)
 int tex_filter = GL_LINEAR;
 uint tex_bpp = 32;				// 16 or 32
 
-int tex_upload(const Handle ht, int filter, int int_fmt)
+static int tex_upload_t(Tex* t, int filter, int int_fmt)
 {
-	H_DEREF(ht, Tex, t);
+t->uploaded = true;
 
 	// data we will take from Tex
 	GLsizei w;
@@ -846,22 +857,25 @@ int tex_upload(const Handle ht, int filter, int int_fmt)
 
 	if(err)
 	{
-		const char* fn = h_filename(ht);
+/*		const char* fn = h_filename(ht);
 		if(!fn)
 		{
 			fn = "(could not determine filename)";
 			assert(0);
 		}
 		debug_out("tex_upload: %s: %s\n", fn, err);
+*/
 		debug_warn("tex_upload failed");
 		return -1;
 	}
 
-	int ret = tex_bind(ht);
+//	CHECK_ERR(tex_bind(ht));
 	// we know ht is valid (H_DEREF above), but tex_bind can
 	// fail in debug builds if Tex.id isn't a valid texture name
-	if(ret < 0)
-		return ret;
+
+	
+glBindTexture(GL_TEXTURE_2D, t->id);
+// HACK HACK HACK
 
 	// set filter
 	if(!filter)
@@ -974,6 +988,12 @@ int tex_upload(const Handle ht, int filter, int int_fmt)
 	mem_free_h(t->hm);
 
 	return 0;
+}
+
+int tex_upload(const Handle ht, int filter, int int_fmt)
+{
+	H_DEREF(ht, Tex, t);
+	return tex_upload_t(t, filter, int_fmt);
 }
 
 

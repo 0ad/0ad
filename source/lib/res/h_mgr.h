@@ -181,6 +181,8 @@ extern void* h_user_data(Handle h, H_Type type);
 extern const char* h_filename(Handle h);
 
 
+extern int h_reload(const char* fn);
+
 extern int res_cur_scope;
 
 #ifdef __cplusplus

@@ -51,18 +51,24 @@ STMT(\
 STMT(\
 	int err = (int)(func);\
 	if(err < 0)\
+	{\
+		assert(0 && "FYI: CHECK_ERR reports that a function failed."\
+		            "feel free to ignore or suppress this warning.");\
 		return err;\
+	}\
 )
 
 
 enum LibError
 {
-	ERR_INVALID_HANDLE = -1000,
-	ERR_NO_MEM         = -1001,
-	ERR_EOF            = -1002,	// attempted to read beyond EOF
-	ERR_INVALID_PARAM  = -1003,
-	ERR_FILE_NOT_FOUND = -1004,
-	ERR_PATH_NOT_FOUND = -1005,
+	ERR_INVALID_HANDLE  = -1000,
+	ERR_NO_MEM          = -1001,
+	ERR_EOF             = -1002,	// attempted to read beyond EOF
+	ERR_INVALID_PARAM   = -1003,
+	ERR_FILE_NOT_FOUND  = -1004,
+	ERR_PATH_NOT_FOUND  = -1005,
+
+	ERR_VFS_PATH_LENGTH = -1006,
 
 	ERR_LAST
 };

@@ -58,6 +58,19 @@ struct ZFileLoc
 };
 
 
+static inline int zip_validate(const void* const file, const size_t size)
+{
+	if(size < 2)
+		return -1;
+
+	const u8* p = (const u8*)file;
+	if(p[0] != 'P' || p[1] != 'K')
+		return -1;
+
+	return 0;
+}
+
+
 // find end of central dir record in file (loaded or mapped).
 static int zip_find_ecdr(const void* const file, const size_t size, const u8*& ecdr_)
 {
@@ -356,7 +369,7 @@ static int lookup_add_file_cb(const uintptr_t user, const i32 idx, const char* c
 
 	ZEnt* ent = li->ents + idx;
 
-	FnHash fn_hash = fnv_hash(fn);
+	FnHash fn_hash = fnv_hash(fn, fn_len);
 
 	(*li->idx)[fn_hash] = idx;
 	li->fn_hashes[idx] = fn_hash;
@@ -367,7 +380,8 @@ static int lookup_add_file_cb(const uintptr_t user, const i32 idx, const char* c
 		ent->fn = (const char*)malloc(fn_len+1);
 		if(!ent->fn)
 			return ERR_NO_MEM;
-		strcpy((char*)ent->fn, fn);
+		strncpy((char*)ent->fn, fn, fn_len);
+		((char*)ent->fn)[fn_len] = '\0';
 
 		ent->loc = *loc;
 	}
@@ -388,7 +402,14 @@ static int lookup_init(LookupInfo* const li, const void* const file, const size_
 
 	li->idx = new LookupIdx;
 
-	return zip_enum_files(file, size, lookup_add_file_cb, (uintptr_t)li);
+	int err = zip_enum_files(file, size, lookup_add_file_cb, (uintptr_t)li);
+	if(err < 0)
+	{
+		delete li->idx;
+		return err;
+	}
+
+	return 0;
 }
 
 
@@ -439,7 +460,7 @@ static int lookup_file(LookupInfo* const li, const char* const fn, i32& idx)
 // return file information, given file key (from lookup_file).
 static int lookup_get_file_info(LookupInfo* const li, const i32 idx, const char*& fn, ZFileLoc* const loc)
 {
-	if(idx < 0 || idx >= li->num_files-1)
+	if(idx < 0 || idx > li->num_files-1)
 	{
 		debug_warn("lookup_get_file_info: index out of bounds");
 		return -1;
@@ -524,9 +545,18 @@ static int ZArchive_reload(ZArchive* za, const char* fn)
 	if(err < 0)
 		goto exit_close;
 
+	// early out: check if it's even a Zip file
+	err = zip_validate(file, size);
+	if(err < 0)
+		goto exit_unmap_close;
+
 	err = lookup_init(&za->li, file, size);
 	if(err < 0)
 		goto exit_unmap_close;
+
+	// we map the file only for convenience when loading;
+	// extraction is via aio (faster, better mem use).
+	file_unmap(&za->f);
 
 	za->is_open = true;
 	return 0;

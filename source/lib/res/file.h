@@ -68,6 +68,7 @@ extern int file_set_root_dir(const char* argv0, const char* root);
 
 typedef int(*FileCB)(const char* name, uint flags, ssize_t size, uintptr_t user);
 
+// not recursive - only the files in <dir>!
 extern int file_enum(const char* dir, FileCB cb, uintptr_t user);
 
 extern int file_stat(const char* path, struct stat*);

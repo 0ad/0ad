@@ -78,7 +78,7 @@ cassert(IDX_BITS + TAG_BITS <= sizeof(Handle)*CHAR_BIT);
 // return the handle's index field (always non-negative).
 // no error checking!
 static inline u32 h_idx(const Handle h)
-{ return (u32)((h >> IDX_SHIFT) & IDX_MASK); }
+{ return (u32)((h >> IDX_SHIFT) & IDX_MASK) - 1; }
 
 // return the handle's tag field.
 // no error checking!
@@ -86,14 +86,15 @@ static inline u32 h_tag(const Handle h)
 { return (u32)((h >> TAG_SHIFT) & TAG_MASK); }
 
 // build a handle from index and tag
-static inline Handle handle(const u32 idx, const u32 tag)
+static inline Handle handle(const u32 _idx, const u32 tag)
 {
+	const u32 idx = _idx+1;
 	assert(idx <= IDX_MASK && tag <= TAG_MASK && "handle: idx or tag too big");
 	// somewhat clunky, but be careful with the shift:
 	// *_SHIFT may be larger than its field's type.
-	Handle _idx = idx & IDX_MASK; _idx <<= IDX_SHIFT;
-	Handle _tag = tag & TAG_MASK; _tag <<= TAG_SHIFT;
-	return _idx | _tag;
+	Handle h_idx = idx & IDX_MASK; h_idx <<= IDX_SHIFT;
+	Handle h_tag = tag & TAG_MASK; h_tag <<= TAG_SHIFT;
+	return h_idx | h_tag;
 }
 
 
@@ -119,9 +120,10 @@ cassert(REF_BITS + TYPE_BITS <= IDX_BITS);
 // and array page usage).
 static const size_t HDATA_USER_SIZE = 48;
 
-static const size_t HDATA_MAX_PATH = 64;
+///static const size_t HDATA_MAX_PATH = 64;
 
 // 64 bytes
+// TODO: not anymore, fix later
 struct HDATA
 {
 	uintptr_t key;
@@ -132,7 +134,7 @@ struct HDATA
 
 	u8 user[HDATA_USER_SIZE];
 
-	char fn[HDATA_MAX_PATH];
+	const char* fn;
 };
 
 
@@ -363,7 +365,7 @@ int h_free(Handle& h, H_Type type)
 // any further params are passed to type's init routine
 Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 {
-	ONCE(atexit(cleanup));
+	ONCE(atexit2(cleanup));
 
 	Handle err;
 
@@ -437,6 +439,20 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 	hd->type = type;
 	Handle h = handle(idx, tag);
 
+// regular filename
+hd->fn = 0;
+if(!(flags & RES_KEY))
+{
+	if(fn)
+	{
+		const size_t fn_len = strlen(fn);
+		hd->fn = (const char*)malloc(fn_len+1);
+		strcpy((char*)hd->fn, fn);
+	}
+}
+
+
+
 	H_VTbl* vtbl = type;
 
 	va_list args;
@@ -475,7 +491,6 @@ const char* h_filename(const Handle h)
 		// even if the caller doesn't know its type.
 	return hd? hd->fn : 0;
 }
-
 
 int h_reload(const char* fn)
 {
