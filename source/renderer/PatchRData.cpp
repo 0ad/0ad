@@ -571,11 +571,13 @@ void CPatchRData::RenderBaseSplats()
 	const std::list<CVertexBuffer*>& buffers=g_VBMan.GetBufferList();
 	std::list<CVertexBuffer*>::const_iterator iter;
 	for (iter=buffers.begin();iter!=buffers.end();++iter) {
+		MICROLOG(L"bu");
 		CVertexBuffer* buffer=*iter;
 		
 		// any batches in this VB?
 		const std::vector<CVertexBuffer::Batch*>& batches=buffer->GetBatches();
 		if (batches.size()>0) {
+			MICROLOG(L"bind");
 			u8* base=buffer->Bind();
 
 			// setup data pointers
@@ -588,13 +590,14 @@ void CPatchRData::RenderBaseSplats()
 			// render each batch
 			MICROLOG(L"render batches");
 			for (i=0;i<batches.size();++i) {
-				MICROLOG(L"b");
+				MICROLOG(L"ba");
 				const CVertexBuffer::Batch* batch=batches[i];
 				if (batch->m_IndexData.size()>0) {
 					g_Renderer.BindTexture(0,tex_id(batch->m_Texture));
 					for (uint j=0;j<batch->m_IndexData.size();j++) {
-						MICROLOG(L"e");
+						MICROLOG(L"el");
 						glDrawElements(GL_QUADS,(GLsizei)batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);
+						MICROLOG(L".");
 						g_Renderer.m_Stats.m_DrawCalls++;
 						g_Renderer.m_Stats.m_TerrainTris+=(u32)batch->m_IndexData[j].first/2;
 					}

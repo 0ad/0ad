@@ -88,9 +88,9 @@ static wchar_t* pos;			/* current pos in buf */
 
 static void out(wchar_t* fmt, ...)
 {
-	// Don't overflow the buffer
+	// Don't overflow the buffer (and abort if we're about to)
 	if (pos-buf+1000 > bufsize)
-		return;
+		throw;
 
 	va_list args;
 	va_start(args, fmt);
@@ -453,7 +453,7 @@ static void walk_stack(int skip, wchar_t* out_buf, CONTEXT* override_context = N
 
 	for(;;)
     {
-        if(!_StackWalk64(machine, hProcess, hThread, &frame, &context, 0, _SymFunctionTableAccess64, _SymGetModuleBase64, 0))
+		if(!_StackWalk64(machine, hProcess, hThread, &frame, &context, 0, _SymFunctionTableAccess64, _SymGetModuleBase64, 0))
             break;
 
 		if(skip-- > 0)
@@ -653,7 +653,7 @@ static void set_exception_handler()
 
 void abort_timer(); // from wtime.cpp
 
-int debug_main_exception_filter(unsigned int code, struct _EXCEPTION_POINTERS *ep)
+int debug_main_exception_filter(unsigned int code, PEXCEPTION_POINTERS ep)
 {
 	// If something crashes after we've already crashed (i.e. when shutting
 	// down everything), don't bother logging it, because the first crash
@@ -705,28 +705,28 @@ int debug_main_exception_filter(unsigned int code, struct _EXCEPTION_POINTERS *e
 	{
 		switch (ep->ExceptionRecord->ExceptionCode)
 		{
-		case EXCEPTION_ACCESS_VIOLATION:		error = L"Access Violation"; break;
-		case EXCEPTION_DATATYPE_MISALIGNMENT:	error = L"Datatype Misalignment"; break;
+		case EXCEPTION_ACCESS_VIOLATION:		error = L"Access violation"; break;
+		case EXCEPTION_DATATYPE_MISALIGNMENT:	error = L"Datatype misalignment"; break;
 		case EXCEPTION_BREAKPOINT:				error = L"Breakpoint"; break;
-		case EXCEPTION_SINGLE_STEP:				error = L"Single Step"; break;
-		case EXCEPTION_ARRAY_BOUNDS_EXCEEDED:	error = L"Array Bounds Exceeded"; break;
-		case EXCEPTION_FLT_DENORMAL_OPERAND:	error = L"Float Denormal Operand"; break;
-		case EXCEPTION_FLT_DIVIDE_BY_ZERO:		error = L"Float Divide By Zero"; break;
-		case EXCEPTION_FLT_INEXACT_RESULT:		error = L"Float Inexact Result"; break;
-		case EXCEPTION_FLT_INVALID_OPERATION:	error = L"Float Invalid Operation"; break;
-		case EXCEPTION_FLT_OVERFLOW:			error = L"Float Overflow"; break;
-		case EXCEPTION_FLT_STACK_CHECK:			error = L"Float Stack Check"; break;
-		case EXCEPTION_FLT_UNDERFLOW:			error = L"Float Underflow"; break;
-		case EXCEPTION_INT_DIVIDE_BY_ZERO:		error = L"Integer Divide By Zero"; break;
-		case EXCEPTION_INT_OVERFLOW:			error = L"Integer Overflow"; break;
-		case EXCEPTION_PRIV_INSTRUCTION:		error = L"Privileged Instruction"; break;
-		case EXCEPTION_IN_PAGE_ERROR:			error = L"In Page Error"; break;
-		case EXCEPTION_ILLEGAL_INSTRUCTION:		error = L"Illegal Instruction"; break;
-		case EXCEPTION_NONCONTINUABLE_EXCEPTION:error = L"Noncontinuable Exception"; break;
-		case EXCEPTION_STACK_OVERFLOW:			error = L"Stack Overflow"; break;
-		case EXCEPTION_INVALID_DISPOSITION:		error = L"Invalid Disposition"; break;
-		case EXCEPTION_GUARD_PAGE:				error = L"Guard Page"; break;
-		case EXCEPTION_INVALID_HANDLE:			error = L"Invalid Handle"; break;
+		case EXCEPTION_SINGLE_STEP:				error = L"Single step"; break;
+		case EXCEPTION_ARRAY_BOUNDS_EXCEEDED:	error = L"Array bounds exceeded"; break;
+		case EXCEPTION_FLT_DENORMAL_OPERAND:	error = L"Float denormal operand"; break;
+		case EXCEPTION_FLT_DIVIDE_BY_ZERO:		error = L"Float divide by zero"; break;
+		case EXCEPTION_FLT_INEXACT_RESULT:		error = L"Float inexact result"; break;
+		case EXCEPTION_FLT_INVALID_OPERATION:	error = L"Float invalid operation"; break;
+		case EXCEPTION_FLT_OVERFLOW:			error = L"Float overflow"; break;
+		case EXCEPTION_FLT_STACK_CHECK:			error = L"Float stack check"; break;
+		case EXCEPTION_FLT_UNDERFLOW:			error = L"Float underflow"; break;
+		case EXCEPTION_INT_DIVIDE_BY_ZERO:		error = L"Integer divide by zero"; break;
+		case EXCEPTION_INT_OVERFLOW:			error = L"Integer overflow"; break;
+		case EXCEPTION_PRIV_INSTRUCTION:		error = L"Privileged instruction"; break;
+		case EXCEPTION_IN_PAGE_ERROR:			error = L"In page error"; break;
+		case EXCEPTION_ILLEGAL_INSTRUCTION:		error = L"Illegal instruction"; break;
+		case EXCEPTION_NONCONTINUABLE_EXCEPTION:error = L"Noncontinuable exception"; break;
+		case EXCEPTION_STACK_OVERFLOW:			error = L"Stack overflow"; break;
+		case EXCEPTION_INVALID_DISPOSITION:		error = L"Invalid disposition"; break;
+		case EXCEPTION_GUARD_PAGE:				error = L"Guard page"; break;
+		case EXCEPTION_INVALID_HANDLE:			error = L"Invalid handle"; break;
 		default: error = L"[unknown exception]";
 		}
 	}
@@ -748,7 +748,7 @@ int debug_main_exception_filter(unsigned int code, struct _EXCEPTION_POINTERS *e
 	swprintf(message, 1024, L"A fatal error has occurred: %ls.\nPlease report this to http://bugs.wildfiregames.com/ and attach the crashlog.txt and crashlog.dmp files from your 'data' folder.", errortext);
 	message[1023] = 0;
 
-	wdisplay_msg(L"0 A.D. failure", message);
+	wdisplay_msg(L"Prometheus failure", message);
 
 	__try
 	{
@@ -756,22 +756,23 @@ int debug_main_exception_filter(unsigned int code, struct _EXCEPTION_POINTERS *e
 	}
 	__except (EXCEPTION_EXECUTE_HANDLER)
 	{
-		wdisplay_msg(L"0 A.D. failure", L"Error generating crash log.");
+		wdisplay_msg(L"Prometheus failure", L"Error generating crash log.");
 	}
 
 	__try
 	{
 		HANDLE hFile = CreateFile("crashlog.dmp", GENERIC_WRITE, FILE_SHARE_WRITE, 0, CREATE_ALWAYS, 0, 0);
+		if (hFile == INVALID_HANDLE_VALUE) throw;
 		DumpMiniDump(hFile, ep);
 		CloseHandle(hFile);
 	}
 	__except (EXCEPTION_EXECUTE_HANDLER)
 	{
-		wdisplay_msg(L"0 A.D. failure", L"Error generating crash dump.");
+		wdisplay_msg(L"Prometheus failure", L"Error generating crash dump.");
 	}
 
 	// Disable memory-leak reporting, because it's going to
-	// leak like an upside-down bucket when it crashes.
+	// leak like a bucket with a missing bottom when it crashes.
 #ifdef HAVE_DEBUGALLOC
 	_CrtSetDbgFlag( _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & ~_CRTDBG_LEAK_CHECK_DF );
 #endif
@@ -838,15 +839,31 @@ static void DumpMiniDump(HANDLE hFile, PEXCEPTION_POINTERS excpInfo)
 		eInfo.ClientPointers = FALSE;
 
 		// note:  MiniDumpWithIndirectlyReferencedMemory does not work on Win98
-		_MiniDumpWriteDump(
+		if (!_MiniDumpWriteDump(
 			GetCurrentProcess(),
 			GetCurrentProcessId(),
 			hFile,
 			MiniDumpNormal,
 			excpInfo ? &eInfo : NULL,
 			NULL,
-			NULL);
+			NULL))
+		{
+			throw; // fail noisily
+		}
 //	}
+}
+
+static void cat_atow(FILE* in, FILE* out)
+{
+	const int bufsize = 1024;
+	char buffer[bufsize+1]; // bufsize+1 so there's space for a \0 at the end
+	while (!feof(in))
+	{
+		int r = (int)fread(buffer, 1, bufsize, in);
+		if (!r) break;
+		buffer[r] = 0; // ensure proper NULLness
+		fwprintf(out, L"%hs", &buffer);
+	}
 }
 
 // Imported from sysdep.cpp
@@ -859,10 +876,17 @@ int debug_write_crashlog(const char* file, wchar_t* header, void* context)
 
 	int len = swprintf(buf, 1000, L"Undefined state reached.\r\n");
 
-	if (context)
-		walk_stack(0, buf+len, (CONTEXT*)context);
-	else
-		walk_stack(2, buf+len);
+	__try
+	{
+		if (context)
+			walk_stack(0, buf+len, (CONTEXT*)context);
+		else
+			walk_stack(2, buf+len);
+	}
+	__except(EXCEPTION_EXECUTE_HANDLER)
+	{
+		// Probably caught a buffer overflow
+	}
 
 	FILE* f = fopen(file, "wb");
 	int BOM = 0xFEFF;
@@ -873,9 +897,38 @@ int debug_write_crashlog(const char* file, wchar_t* header, void* context)
 		fwrite(L"\r\n\r\n", 4, sizeof(wchar_t), f);
 	}
 	fwrite(buf, pos-buf, 2, f);
-	
-	const wchar_t* footer = L"\r\n====================================\r\n\r\nLast known activity:\r\n\r\n";
-	fwrite(footer, wcslen(footer), sizeof(wchar_t), f);
+
+	const wchar_t* divider = L"\r\n\r\n====================================\r\n\r\n";
+
+	fwrite(divider, wcslen(divider), sizeof(wchar_t), f);
+
+	// HACK: Insert the contents from a couple of other log files
+	// and one memory log. These really ought to be integrated better.
+
+	// Copy the contents of ../logs/systeminfo.txt
+	FILE* in;
+	in = fopen("../logs/system_info.txt", "rb");
+	if (in)
+	{
+		fwprintf(f, L"System info:\r\n\r\n");
+		cat_atow(in, f);
+		fclose(in);
+	}
+
+	fwrite(divider, wcslen(divider), sizeof(wchar_t), f);
+
+	// Copy the contents of ../logs/mainlog.html
+	in = fopen("../logs/mainlog.html", "rb");
+	if (in)
+	{
+		fwprintf(f, L"Main log:\r\n\r\n");
+		cat_atow(in, f);
+		fclose(in);
+	}
+
+	fwrite(divider, wcslen(divider), sizeof(wchar_t), f);
+
+	fwprintf(f, L"Last known activity:\r\n\r\n");
 	fwrite(MicroBuffer, MicroBuffer_off, sizeof(wchar_t), f);
 	fclose(f);
 

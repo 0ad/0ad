@@ -92,7 +92,7 @@ void CLogger::WriteMessage(const char *message)
 	if (g_Console) g_Console->InsertMessage(L"LOG: %hs", message);
 #endif
 	m_NumberOfMessages++;
-	m_MainLog << "<P>" << message << "</P>";
+	m_MainLog << "<P>" << message << "</P>\n";
 									
 	m_MainLog.flush();
 	

@@ -6,16 +6,11 @@
 
 class PSERROR_GUI : public PSERROR {};
 class PSERROR_Scripting : public PSERROR {};
-class PSERROR_Test1 : public PSERROR {};
-class PSERROR_Test2 : public PSERROR {};
+class PSERROR_System : public PSERROR {};
 class PSERROR_Xeromyces : public PSERROR {};
 
 class PSERROR_Scripting_DefineType : public PSERROR_Scripting {};
 class PSERROR_Scripting_LoadFile : public PSERROR_Scripting {};
-class PSERROR_Test1_Grp1 : public PSERROR_Test1 {};
-class PSERROR_Test1_Grp2 : public PSERROR_Test1 {};
-class PSERROR_Test2_Grp1 : public PSERROR_Test2 {};
-class PSERROR_Test2_Grp2 : public PSERROR_Test2 {};
 
 class PSERROR_GUI_JSOpenFailed : public PSERROR_GUI { public: PSERROR_GUI_JSOpenFailed(); };
 class PSERROR_GUI_TextureLoadFailed : public PSERROR_GUI { public: PSERROR_GUI_TextureLoadFailed(); };
@@ -34,18 +29,10 @@ class PSERROR_Scripting_RegisterFunctionFailed : public PSERROR_Scripting { publ
 class PSERROR_Scripting_RuntimeCreationFailed : public PSERROR_Scripting { public: PSERROR_Scripting_RuntimeCreationFailed(); };
 class PSERROR_Scripting_StandardClassSetupFailed : public PSERROR_Scripting { public: PSERROR_Scripting_StandardClassSetupFailed(); };
 class PSERROR_Scripting_TypeDoesNotExist : public PSERROR_Scripting { public: PSERROR_Scripting_TypeDoesNotExist(); };
-class PSERROR_Test1_Err1 : public PSERROR_Test1 { public: PSERROR_Test1_Err1(); };
-class PSERROR_Test1_Err2 : public PSERROR_Test1 { public: PSERROR_Test1_Err2(); };
-class PSERROR_Test1_Grp1_Err1 : public PSERROR_Test1_Grp1 { public: PSERROR_Test1_Grp1_Err1(); };
-class PSERROR_Test1_Grp1_Err2 : public PSERROR_Test1_Grp1 { public: PSERROR_Test1_Grp1_Err2(); };
-class PSERROR_Test1_Grp2_Err1 : public PSERROR_Test1_Grp2 { public: PSERROR_Test1_Grp2_Err1(); };
-class PSERROR_Test1_Grp2_Err2 : public PSERROR_Test1_Grp2 { public: PSERROR_Test1_Grp2_Err2(); };
-class PSERROR_Test2_Err1 : public PSERROR_Test2 { public: PSERROR_Test2_Err1(); };
-class PSERROR_Test2_Err2 : public PSERROR_Test2 { public: PSERROR_Test2_Err2(); };
-class PSERROR_Test2_Grp1_Err1 : public PSERROR_Test2_Grp1 { public: PSERROR_Test2_Grp1_Err1(); };
-class PSERROR_Test2_Grp1_Err2 : public PSERROR_Test2_Grp1 { public: PSERROR_Test2_Grp1_Err2(); };
-class PSERROR_Test2_Grp2_Err1 : public PSERROR_Test2_Grp2 { public: PSERROR_Test2_Grp2_Err1(); };
-class PSERROR_Test2_Grp2_Err2 : public PSERROR_Test2_Grp2 { public: PSERROR_Test2_Grp2_Err2(); };
+class PSERROR_System_MapLoadFailed : public PSERROR_System { public: PSERROR_System_MapLoadFailed(); };
+class PSERROR_System_RequiredExtensionsMissing : public PSERROR_System { public: PSERROR_System_RequiredExtensionsMissing(); };
+class PSERROR_System_SDLInitFailed : public PSERROR_System { public: PSERROR_System_SDLInitFailed(); };
+class PSERROR_System_VmodeFailed : public PSERROR_System { public: PSERROR_System_VmodeFailed(); };
 class PSERROR_Xeromyces_XMLOpenFailed : public PSERROR_Xeromyces { public: PSERROR_Xeromyces_XMLOpenFailed(); };
 class PSERROR_Xeromyces_XMLParseError : public PSERROR_Xeromyces { public: PSERROR_Xeromyces_XMLParseError(); };
 
@@ -53,8 +40,8 @@ extern const PSRETURN PSRETURN_GUI_JSOpenFailed = 0x01000001;
 extern const PSRETURN PSRETURN_GUI_TextureLoadFailed = 0x01000002;
 extern const PSRETURN PSRETURN_Scripting_DefineType_AlreadyExists = 0x02010001;
 extern const PSRETURN PSRETURN_Scripting_DefineType_CreationFailed = 0x02010002;
-extern const PSRETURN PSRETURN_Scripting_LoadFile_EvalErrors = 0x02040001;
-extern const PSRETURN PSRETURN_Scripting_LoadFile_OpenFailed = 0x02040002;
+extern const PSRETURN PSRETURN_Scripting_LoadFile_EvalErrors = 0x02020001;
+extern const PSRETURN PSRETURN_Scripting_LoadFile_OpenFailed = 0x02020002;
 extern const PSRETURN PSRETURN_Scripting_CallFunctionFailed = 0x02000001;
 extern const PSRETURN PSRETURN_Scripting_ContextCreationFailed = 0x02000002;
 extern const PSRETURN PSRETURN_Scripting_ConversionFailed = 0x02000003;
@@ -66,43 +53,25 @@ extern const PSRETURN PSRETURN_Scripting_RegisterFunctionFailed = 0x02000008;
 extern const PSRETURN PSRETURN_Scripting_RuntimeCreationFailed = 0x02000009;
 extern const PSRETURN PSRETURN_Scripting_StandardClassSetupFailed = 0x0200000a;
 extern const PSRETURN PSRETURN_Scripting_TypeDoesNotExist = 0x0200000b;
-extern const PSRETURN PSRETURN_Test1_Grp1_Err1 = 0x03020001;
-extern const PSRETURN PSRETURN_Test1_Grp1_Err2 = 0x03020002;
-extern const PSRETURN PSRETURN_Test1_Grp2_Err1 = 0x03030001;
-extern const PSRETURN PSRETURN_Test1_Grp2_Err2 = 0x03030002;
-extern const PSRETURN PSRETURN_Test1_Err1 = 0x03000001;
-extern const PSRETURN PSRETURN_Test1_Err2 = 0x03000002;
-extern const PSRETURN PSRETURN_Test2_Grp1_Err1 = 0x04020001;
-extern const PSRETURN PSRETURN_Test2_Grp1_Err2 = 0x04020002;
-extern const PSRETURN PSRETURN_Test2_Grp2_Err1 = 0x04030001;
-extern const PSRETURN PSRETURN_Test2_Grp2_Err2 = 0x04030002;
-extern const PSRETURN PSRETURN_Test2_Err1 = 0x04000001;
-extern const PSRETURN PSRETURN_Test2_Err2 = 0x04000002;
-extern const PSRETURN PSRETURN_Xeromyces_XMLOpenFailed = 0x05000001;
-extern const PSRETURN PSRETURN_Xeromyces_XMLParseError = 0x05000002;
+extern const PSRETURN PSRETURN_System_MapLoadFailed = 0x03000001;
+extern const PSRETURN PSRETURN_System_RequiredExtensionsMissing = 0x03000002;
+extern const PSRETURN PSRETURN_System_SDLInitFailed = 0x03000003;
+extern const PSRETURN PSRETURN_System_VmodeFailed = 0x03000004;
+extern const PSRETURN PSRETURN_Xeromyces_XMLOpenFailed = 0x04000001;
+extern const PSRETURN PSRETURN_Xeromyces_XMLParseError = 0x04000002;
 
 extern const PSRETURN MASK__PSRETURN_GUI = 0xff000000;
 extern const PSRETURN CODE__PSRETURN_GUI = 0x01000000;
 extern const PSRETURN MASK__PSRETURN_Scripting = 0xff000000;
 extern const PSRETURN CODE__PSRETURN_Scripting = 0x02000000;
-extern const PSRETURN MASK__PSRETURN_Test1 = 0xff000000;
-extern const PSRETURN CODE__PSRETURN_Test1 = 0x03000000;
-extern const PSRETURN MASK__PSRETURN_Test2 = 0xff000000;
-extern const PSRETURN CODE__PSRETURN_Test2 = 0x04000000;
+extern const PSRETURN MASK__PSRETURN_System = 0xff000000;
+extern const PSRETURN CODE__PSRETURN_System = 0x03000000;
 extern const PSRETURN MASK__PSRETURN_Xeromyces = 0xff000000;
-extern const PSRETURN CODE__PSRETURN_Xeromyces = 0x05000000;
+extern const PSRETURN CODE__PSRETURN_Xeromyces = 0x04000000;
 extern const PSRETURN MASK__PSRETURN_Scripting_DefineType = 0xffff0000;
 extern const PSRETURN CODE__PSRETURN_Scripting_DefineType = 0x02010000;
 extern const PSRETURN MASK__PSRETURN_Scripting_LoadFile = 0xffff0000;
-extern const PSRETURN CODE__PSRETURN_Scripting_LoadFile = 0x02040000;
-extern const PSRETURN MASK__PSRETURN_Test1_Grp1 = 0xffff0000;
-extern const PSRETURN CODE__PSRETURN_Test1_Grp1 = 0x03020000;
-extern const PSRETURN MASK__PSRETURN_Test1_Grp2 = 0xffff0000;
-extern const PSRETURN CODE__PSRETURN_Test1_Grp2 = 0x03030000;
-extern const PSRETURN MASK__PSRETURN_Test2_Grp1 = 0xffff0000;
-extern const PSRETURN CODE__PSRETURN_Test2_Grp1 = 0x04020000;
-extern const PSRETURN MASK__PSRETURN_Test2_Grp2 = 0xffff0000;
-extern const PSRETURN CODE__PSRETURN_Test2_Grp2 = 0x04030000;
+extern const PSRETURN CODE__PSRETURN_Scripting_LoadFile = 0x02020000;
 
 extern const PSRETURN MASK__PSRETURN_GUI_JSOpenFailed = 0xffffffff;
 extern const PSRETURN CODE__PSRETURN_GUI_JSOpenFailed = 0x01000001;
@@ -113,9 +82,9 @@ extern const PSRETURN CODE__PSRETURN_Scripting_DefineType_AlreadyExists = 0x0201
 extern const PSRETURN MASK__PSRETURN_Scripting_DefineType_CreationFailed = 0xffffffff;
 extern const PSRETURN CODE__PSRETURN_Scripting_DefineType_CreationFailed = 0x02010002;
 extern const PSRETURN MASK__PSRETURN_Scripting_LoadFile_EvalErrors = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Scripting_LoadFile_EvalErrors = 0x02040001;
+extern const PSRETURN CODE__PSRETURN_Scripting_LoadFile_EvalErrors = 0x02020001;
 extern const PSRETURN MASK__PSRETURN_Scripting_LoadFile_OpenFailed = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Scripting_LoadFile_OpenFailed = 0x02040002;
+extern const PSRETURN CODE__PSRETURN_Scripting_LoadFile_OpenFailed = 0x02020002;
 extern const PSRETURN MASK__PSRETURN_Scripting_CallFunctionFailed = 0xffffffff;
 extern const PSRETURN CODE__PSRETURN_Scripting_CallFunctionFailed = 0x02000001;
 extern const PSRETURN MASK__PSRETURN_Scripting_ContextCreationFailed = 0xffffffff;
@@ -138,41 +107,25 @@ extern const PSRETURN MASK__PSRETURN_Scripting_StandardClassSetupFailed = 0xffff
 extern const PSRETURN CODE__PSRETURN_Scripting_StandardClassSetupFailed = 0x0200000a;
 extern const PSRETURN MASK__PSRETURN_Scripting_TypeDoesNotExist = 0xffffffff;
 extern const PSRETURN CODE__PSRETURN_Scripting_TypeDoesNotExist = 0x0200000b;
-extern const PSRETURN MASK__PSRETURN_Test1_Grp1_Err1 = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Test1_Grp1_Err1 = 0x03020001;
-extern const PSRETURN MASK__PSRETURN_Test1_Grp1_Err2 = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Test1_Grp1_Err2 = 0x03020002;
-extern const PSRETURN MASK__PSRETURN_Test1_Grp2_Err1 = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Test1_Grp2_Err1 = 0x03030001;
-extern const PSRETURN MASK__PSRETURN_Test1_Grp2_Err2 = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Test1_Grp2_Err2 = 0x03030002;
-extern const PSRETURN MASK__PSRETURN_Test1_Err1 = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Test1_Err1 = 0x03000001;
-extern const PSRETURN MASK__PSRETURN_Test1_Err2 = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Test1_Err2 = 0x03000002;
-extern const PSRETURN MASK__PSRETURN_Test2_Grp1_Err1 = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Test2_Grp1_Err1 = 0x04020001;
-extern const PSRETURN MASK__PSRETURN_Test2_Grp1_Err2 = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Test2_Grp1_Err2 = 0x04020002;
-extern const PSRETURN MASK__PSRETURN_Test2_Grp2_Err1 = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Test2_Grp2_Err1 = 0x04030001;
-extern const PSRETURN MASK__PSRETURN_Test2_Grp2_Err2 = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Test2_Grp2_Err2 = 0x04030002;
-extern const PSRETURN MASK__PSRETURN_Test2_Err1 = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Test2_Err1 = 0x04000001;
-extern const PSRETURN MASK__PSRETURN_Test2_Err2 = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Test2_Err2 = 0x04000002;
+extern const PSRETURN MASK__PSRETURN_System_MapLoadFailed = 0xffffffff;
+extern const PSRETURN CODE__PSRETURN_System_MapLoadFailed = 0x03000001;
+extern const PSRETURN MASK__PSRETURN_System_RequiredExtensionsMissing = 0xffffffff;
+extern const PSRETURN CODE__PSRETURN_System_RequiredExtensionsMissing = 0x03000002;
+extern const PSRETURN MASK__PSRETURN_System_SDLInitFailed = 0xffffffff;
+extern const PSRETURN CODE__PSRETURN_System_SDLInitFailed = 0x03000003;
+extern const PSRETURN MASK__PSRETURN_System_VmodeFailed = 0xffffffff;
+extern const PSRETURN CODE__PSRETURN_System_VmodeFailed = 0x03000004;
 extern const PSRETURN MASK__PSRETURN_Xeromyces_XMLOpenFailed = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Xeromyces_XMLOpenFailed = 0x05000001;
+extern const PSRETURN CODE__PSRETURN_Xeromyces_XMLOpenFailed = 0x04000001;
 extern const PSRETURN MASK__PSRETURN_Xeromyces_XMLParseError = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Xeromyces_XMLParseError = 0x05000002;
+extern const PSRETURN CODE__PSRETURN_Xeromyces_XMLParseError = 0x04000002;
 
 PSERROR_GUI_JSOpenFailed::PSERROR_GUI_JSOpenFailed() { magic=0x45725221; code=0x01000001; }
 PSERROR_GUI_TextureLoadFailed::PSERROR_GUI_TextureLoadFailed() { magic=0x45725221; code=0x01000002; }
 PSERROR_Scripting_DefineType_AlreadyExists::PSERROR_Scripting_DefineType_AlreadyExists() { magic=0x45725221; code=0x02010001; }
 PSERROR_Scripting_DefineType_CreationFailed::PSERROR_Scripting_DefineType_CreationFailed() { magic=0x45725221; code=0x02010002; }
-PSERROR_Scripting_LoadFile_EvalErrors::PSERROR_Scripting_LoadFile_EvalErrors() { magic=0x45725221; code=0x02040001; }
-PSERROR_Scripting_LoadFile_OpenFailed::PSERROR_Scripting_LoadFile_OpenFailed() { magic=0x45725221; code=0x02040002; }
+PSERROR_Scripting_LoadFile_EvalErrors::PSERROR_Scripting_LoadFile_EvalErrors() { magic=0x45725221; code=0x02020001; }
+PSERROR_Scripting_LoadFile_OpenFailed::PSERROR_Scripting_LoadFile_OpenFailed() { magic=0x45725221; code=0x02020002; }
 PSERROR_Scripting_CallFunctionFailed::PSERROR_Scripting_CallFunctionFailed() { magic=0x45725221; code=0x02000001; }
 PSERROR_Scripting_ContextCreationFailed::PSERROR_Scripting_ContextCreationFailed() { magic=0x45725221; code=0x02000002; }
 PSERROR_Scripting_ConversionFailed::PSERROR_Scripting_ConversionFailed() { magic=0x45725221; code=0x02000003; }
@@ -184,20 +137,12 @@ PSERROR_Scripting_RegisterFunctionFailed::PSERROR_Scripting_RegisterFunctionFail
 PSERROR_Scripting_RuntimeCreationFailed::PSERROR_Scripting_RuntimeCreationFailed() { magic=0x45725221; code=0x02000009; }
 PSERROR_Scripting_StandardClassSetupFailed::PSERROR_Scripting_StandardClassSetupFailed() { magic=0x45725221; code=0x0200000a; }
 PSERROR_Scripting_TypeDoesNotExist::PSERROR_Scripting_TypeDoesNotExist() { magic=0x45725221; code=0x0200000b; }
-PSERROR_Test1_Grp1_Err1::PSERROR_Test1_Grp1_Err1() { magic=0x45725221; code=0x03020001; }
-PSERROR_Test1_Grp1_Err2::PSERROR_Test1_Grp1_Err2() { magic=0x45725221; code=0x03020002; }
-PSERROR_Test1_Grp2_Err1::PSERROR_Test1_Grp2_Err1() { magic=0x45725221; code=0x03030001; }
-PSERROR_Test1_Grp2_Err2::PSERROR_Test1_Grp2_Err2() { magic=0x45725221; code=0x03030002; }
-PSERROR_Test1_Err1::PSERROR_Test1_Err1() { magic=0x45725221; code=0x03000001; }
-PSERROR_Test1_Err2::PSERROR_Test1_Err2() { magic=0x45725221; code=0x03000002; }
-PSERROR_Test2_Grp1_Err1::PSERROR_Test2_Grp1_Err1() { magic=0x45725221; code=0x04020001; }
-PSERROR_Test2_Grp1_Err2::PSERROR_Test2_Grp1_Err2() { magic=0x45725221; code=0x04020002; }
-PSERROR_Test2_Grp2_Err1::PSERROR_Test2_Grp2_Err1() { magic=0x45725221; code=0x04030001; }
-PSERROR_Test2_Grp2_Err2::PSERROR_Test2_Grp2_Err2() { magic=0x45725221; code=0x04030002; }
-PSERROR_Test2_Err1::PSERROR_Test2_Err1() { magic=0x45725221; code=0x04000001; }
-PSERROR_Test2_Err2::PSERROR_Test2_Err2() { magic=0x45725221; code=0x04000002; }
-PSERROR_Xeromyces_XMLOpenFailed::PSERROR_Xeromyces_XMLOpenFailed() { magic=0x45725221; code=0x05000001; }
-PSERROR_Xeromyces_XMLParseError::PSERROR_Xeromyces_XMLParseError() { magic=0x45725221; code=0x05000002; }
+PSERROR_System_MapLoadFailed::PSERROR_System_MapLoadFailed() { magic=0x45725221; code=0x03000001; }
+PSERROR_System_RequiredExtensionsMissing::PSERROR_System_RequiredExtensionsMissing() { magic=0x45725221; code=0x03000002; }
+PSERROR_System_SDLInitFailed::PSERROR_System_SDLInitFailed() { magic=0x45725221; code=0x03000003; }
+PSERROR_System_VmodeFailed::PSERROR_System_VmodeFailed() { magic=0x45725221; code=0x03000004; }
+PSERROR_Xeromyces_XMLOpenFailed::PSERROR_Xeromyces_XMLOpenFailed() { magic=0x45725221; code=0x04000001; }
+PSERROR_Xeromyces_XMLParseError::PSERROR_Xeromyces_XMLParseError() { magic=0x45725221; code=0x04000002; }
 
 const wchar_t* GetErrorString(PSRETURN code)
 {
@@ -207,8 +152,8 @@ const wchar_t* GetErrorString(PSRETURN code)
 	case 0x01000002: return L"GUI_TextureLoadFailed"; break;
 	case 0x02010001: return L"Scripting_DefineType_AlreadyExists"; break;
 	case 0x02010002: return L"Scripting_DefineType_CreationFailed"; break;
-	case 0x02040001: return L"Scripting_LoadFile_EvalErrors"; break;
-	case 0x02040002: return L"Scripting_LoadFile_OpenFailed"; break;
+	case 0x02020001: return L"Scripting_LoadFile_EvalErrors"; break;
+	case 0x02020002: return L"Scripting_LoadFile_OpenFailed"; break;
 	case 0x02000001: return L"Scripting_CallFunctionFailed"; break;
 	case 0x02000002: return L"Scripting_ContextCreationFailed"; break;
 	case 0x02000003: return L"Scripting_ConversionFailed"; break;
@@ -220,20 +165,12 @@ const wchar_t* GetErrorString(PSRETURN code)
 	case 0x02000009: return L"Scripting_RuntimeCreationFailed"; break;
 	case 0x0200000a: return L"Scripting_StandardClassSetupFailed"; break;
 	case 0x0200000b: return L"Scripting_TypeDoesNotExist"; break;
-	case 0x03020001: return L"Test1_Grp1_Err1"; break;
-	case 0x03020002: return L"Test1_Grp1_Err2"; break;
-	case 0x03030001: return L"Test1_Grp2_Err1"; break;
-	case 0x03030002: return L"Test1_Grp2_Err2"; break;
-	case 0x03000001: return L"Test1_Err1"; break;
-	case 0x03000002: return L"Test1_Err2"; break;
-	case 0x04020001: return L"Test2_Grp1_Err1"; break;
-	case 0x04020002: return L"Test2_Grp1_Err2"; break;
-	case 0x04030001: return L"Test2_Grp2_Err1"; break;
-	case 0x04030002: return L"Test2_Grp2_Err2"; break;
-	case 0x04000001: return L"Test2_Err1"; break;
-	case 0x04000002: return L"Test2_Err2"; break;
-	case 0x05000001: return L"Xeromyces_XMLOpenFailed"; break;
-	case 0x05000002: return L"Xeromyces_XMLParseError"; break;
+	case 0x03000001: return L"System_MapLoadFailed"; break;
+	case 0x03000002: return L"System_RequiredExtensionsMissing"; break;
+	case 0x03000003: return L"System_SDLInitFailed"; break;
+	case 0x03000004: return L"System_VmodeFailed"; break;
+	case 0x04000001: return L"Xeromyces_XMLOpenFailed"; break;
+	case 0x04000002: return L"Xeromyces_XMLParseError"; break;
 	}
 	return L"Unrecognised error";
 }
