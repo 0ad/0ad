@@ -78,21 +78,21 @@
 //					evt.inflictor.template = getEntityTemplate(evt.inflictor.traits.up.newentity);
 				}
 			}
-/*
+
 			// If the fallen is worth any loot,
 			if (this.traits.loot && (this.traits.loot.food || this.traits.loot.wood || this.traits.loot.stone || this.traits.loot.ore))
 			{
 				// Give the inflictor his resources.
 				if (this.traits.loot.food)
-					GiveResources("Food", this.traits.loot.food);
+					getGUIGlobal().GiveResources("Food", parseInt(this.traits.loot.food));
 				if (this.traits.loot.wood)
-					GiveResources("Wood", this.traits.loot.wood);
+					getGUIGlobal().GiveResources("Wood", parseInt(this.traits.loot.wood));
 				if (this.traits.loot.stone)
-					GiveResources("Stone", this.traits.loot.stone);
+					getGUIGlobal().GiveResources("Stone", parseInt(this.traits.loot.stone));
 				if (this.traits.loot.ore)
-					GiveResources("Ore", this.traits.loot.ore);
+					getGUIGlobal().GiveResources("Ore", parseInt(this.traits.loot.ore));
 			}
-*/
+
 			// Notify player.
 			if( evt.inflictor )
 				console.write( this.traits.id.generic + " got the point of " + evt.inflictor.traits.id.generic + "'s Gladius." );
