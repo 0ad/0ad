@@ -23,7 +23,7 @@ CConsole::CConsole(float X, float Y, float W, float H)
 
 	m_iMsgHistPos = 1;
 
-	InsertMessage(L"[ 0 A.D. Console v0.11 ]   type \"\\info\" for help");
+	InsertMessage(L"[ 0 A.D. Console v0.12 ]   type \"\\info\" for help");
 	InsertMessage(L"");
 }
 
@@ -349,9 +349,6 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 		default: //Insert a character
 			if (IsFull()) return;
 			if (cooked == 0) return;
-			// Don't do these because the console now likes Unicode:
-			//if( cooked >= 255 ) return;
-			//if (!isprint( cooked )) return;
 
 			if (IsEOB()) //are we at the end of the buffer?
 				m_szBuffer[m_iBufferPos] = cooked; //cat char onto end
@@ -373,14 +370,27 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 void CConsole::InsertMessage(const wchar_t* szMessage, ...)
 {
 	va_list args;
-	wchar_t* szBuffer = new wchar_t[BUFFER_SIZE];
+	wchar_t* szBuffer = new wchar_t[MESSAGE_SIZE];
 
 	va_start(args, szMessage);
-	if (vswprintf(szBuffer, BUFFER_SIZE, szMessage, args) == -1)
+	if (vswprintf(szBuffer, MESSAGE_SIZE, szMessage, args) == -1)
+	{
 		debug_out("Error printfing console message (buffer size exceeded?)\n");
+
+		// Make it obvious that the text was trimmed (assuming it was)
+		wcscpy(szBuffer+MESSAGE_SIZE-4, L"...");
+	}
 	va_end(args);
 
-	m_deqMsgHistory.push_front(szBuffer);
+	// Split into lines and add each one individually
+	wchar_t* lineStart = szBuffer;
+	wchar_t* lineEnd;
+	while ( (lineEnd = wcschr(lineStart, '\n')) != NULL)
+	{
+		m_deqMsgHistory.push_front(std::wstring(lineStart, lineEnd));
+		lineStart = lineEnd+1;
+	}
+	m_deqMsgHistory.push_front(std::wstring(lineStart));
 
 	delete[] szBuffer;
 }

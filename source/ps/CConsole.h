@@ -12,8 +12,8 @@
 #ifndef CCONSOLE_H
 #define CCONSOLE_H
 
-#define BUFFER_SIZE 100
-//#define FONT_HEIGHT 18
+#define BUFFER_SIZE 256 // for text being typed into the console
+#define MESSAGE_SIZE 1024 // for messages being printed into the console
 
 typedef void(*fptr)(void);
 
