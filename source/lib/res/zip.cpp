@@ -451,6 +451,13 @@ static void strcpy_lower(char* dst, const char* src)
 	while(c != '\0');
 }
 
+static void strncpy_lower(char* dst, const char* src, size_t count)
+{
+	int n = (int)count;
+	while (--n >= 0)
+		*dst++ = tolower(*src++);
+}
+
 
 // add file <fn> to the lookup data structure.
 // called from z_enum_files in order (0 <= idx < num_entries).
@@ -492,7 +499,7 @@ static int lookup_add_file_cb(uintptr_t user, i32 idx,
 
 	// hash (lower case!) filename
 	char lc_fn[PATH_MAX];
-	strcpy_lower(lc_fn, fn);
+	strncpy_lower(lc_fn, fn, fn_len);
 	FnHash fn_hash = fnv_hash(lc_fn, fn_len);
 
 	// fill ZEnt
