@@ -219,11 +219,35 @@ static int set_vmode(int w, int h, int bpp)
 }
 
 
-static void write_screenshot()
+static void WriteScreenshot()
 {
-	const size_t size = g_xres * g_yres * 3;
-	void* img = malloc(size);
-	glReadPixels(0, 0, g_xres, g_yres, GL_BGR_EXT, GL_UNSIGNED_BYTE, img);
+	// determine next screenshot number.
+	//
+	// current approach: increment number until that file doesn't yet exist.
+	// this is fairly slow, but it's typically only done once, since the last
+	// number is cached. binary search shouldn't be necessary.
+	//
+	// known bug: after program restart, holes in the number series are
+	// filled first. example: add 1st and 2nd; [exit] delete 1st; [restart]
+	// add 3rd -> it gets number 1, not 3. 
+	// could fix via enumerating all files, but it's not worth it ATM.
+	char fn[VFS_MAX_PATH];
+	static int next_num = 1;
+	do
+		sprintf(fn, "screenshot%04d.png", next_num++);
+	while(vfs_exists(fn));
+
+	const int w = g_xres, h = g_yres;
+	const int bpp = 24;
+	const size_t size = w * h * bpp;
+	void* img = mem_alloc(size);
+
+	glReadPixels(0, 0, w, h, GL_RGB, GL_UNSIGNED_BYTE, img);
+
+	if(tex_write(fn, w, h, bpp, 0, img) < 0)
+		debug_warn("WriteScreenshot: tex_write failed");
+
+	mem_free(img);
 }
 
 
@@ -251,7 +275,7 @@ static int handler(const SDL_Event* ev)
 			break;
 
 		case SDLK_PRINT:
-			write_screenshot();
+			WriteScreenshot();
 			break;
 		}
 		break;
@@ -661,6 +685,9 @@ PREVTSC=TSC;
 	
 	ParseArgs(argc, argv);
 
+//g_xres = 800;
+//g_yres = 600;
+
 	// GUI is notified in set_vmode, so this must come before that.
 #ifndef NO_GUI
 	new CGUI;
@@ -671,6 +698,7 @@ PREVTSC=TSC;
 		swprintf(err_msg, ERR_MSG_SIZE, L"could not set %dx%d graphics mode: %s\n", g_xres, g_yres, SDL_GetError());
 		display_startup_error(err_msg);
 	}
+
 
 	write_sys_info();
 
@@ -689,7 +717,8 @@ PREVTSC=TSC;
 	}
 
 
-	vfs_mount("", "mods/official/", 0);
+	vfs_mount("", "mods/official", 0);
+	vfs_mount("screenshots", "screenshots", 0);
 
 #ifdef _MSC_VER
 u64 CURTSC=rdtsc();
@@ -699,6 +728,7 @@ debug_out(
 "----------------------------------------\n", (CURTSC-PREVTSC)/2e9*1e3);
 PREVTSC=CURTSC;
 #endif
+
 
 	psInit();
 
