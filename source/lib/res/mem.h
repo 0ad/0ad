@@ -1,7 +1,7 @@
 #ifndef MEM_H
 #define MEM_H
 
-#include "h_mgr.h"
+#include "handle.h"
 
 
 #ifdef __cplusplus

@@ -20,7 +20,7 @@
 #ifndef __VFS_H__
 #define __VFS_H__
 
-#include "h_mgr.h"	// Handle
+#include "handle.h"	// Handle def
 #include "posix.h"	// struct stat
 #include "file.h"	// file open flags (renamed)
 

@@ -24,6 +24,7 @@
 #include "zip.h"
 #include "file.h"
 #include "adts.h"
+#include "hotload.h"	// see NO_DIR_WATCH
 
 #include <string.h>
 

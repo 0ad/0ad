@@ -1,12 +1,14 @@
 #include "precompiled.h"
 
 #include "res.h"
-#include "file.h"
+#include "file.h"		// file_make_native_path
 #include "timer.h"
+#include "hotload.h"	// we implement that interface
 
 #include "sysdep/dir_watch.h"
 
 #include <string.h>
+
 
 int res_reload(const char* const fn)
 {

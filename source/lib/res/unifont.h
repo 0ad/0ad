@@ -1,15 +1,14 @@
-// $Id: unifont.h,v 1.6 2004/09/06 02:24:05 gee Exp $
+// $Id: unifont.h,v 1.7 2004/10/06 14:00:43 janwas Exp $
 
 #ifndef __UNIFONT_H__
 #define __UNIFONT_H__
 
-//#include "types.h"
-#include "h_mgr.h"
+#include "handle.h"
 
 
 // Load and return a handle to the font defined
 // in fn+".fnt" with texture fn+".tga"
-Handle unifont_load(const char* fn, int scope = RES_STATIC);
+Handle unifont_load(const char* fn, int scope = 0);
 
 // Release a handle to a previously loaded font
 int unifont_unload(Handle& h);

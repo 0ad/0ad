@@ -1,7 +1,7 @@
 #include "precompiled.h"
 
-#include "ogl.h"
 #include "res.h"
+#include "ogl.h"
 #include "tex.h"
 #include "ogl_tex.h"
 

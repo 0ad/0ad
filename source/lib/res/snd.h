@@ -1,4 +1,4 @@
-#include "res/h_mgr.h"
+#include "handle.h"
 
 
 // prepare to enumerate all device names (this resets the list returned by

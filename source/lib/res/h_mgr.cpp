@@ -19,8 +19,7 @@
 #include "precompiled.h"
 
 #include "lib.h"
-#include "h_mgr.h"
-#include "mem.h"
+#include "res.h"
 
 #include <assert.h>
 #include <limits.h>	// CHAR_BIT

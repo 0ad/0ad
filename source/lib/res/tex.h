@@ -19,7 +19,7 @@
 #ifndef __TEX_H__
 #define __TEX_H__
 
-#include "h_mgr.h"
+#include "handle.h"
 
 
 

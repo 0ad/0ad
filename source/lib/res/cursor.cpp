@@ -9,8 +9,8 @@
 #include "lib/sysdep/win/win_internal.h"
 #endif
 
-#include "lib/res/res.h"
-#include "lib/res/ogl_tex.h"
+#include "res.h"
+#include "ogl_tex.h"
 #include "lib/ogl.h"
 #include "CVFSFile.h"
 

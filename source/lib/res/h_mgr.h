@@ -19,18 +19,18 @@
 #ifndef H_MGR_H__
 #define H_MGR_H__
 
+// do not include from public header files!
+// handle.h declares type Handle, and avoids making
+// everything dependent on this (rather often updated) header.
+
 
 #include <stdarg.h>		// type init routines get va_list of args
 
 #include "lib.h"
 
-
-// 0 = invalid handle value; < 0 is an error code.
-// 64 bits, because we want tags to remain unique: tag overflow may
-// let handle use errors slip through, or worse, cause spurious errors.
-// with 32 bits, we'd need >= 12 for the index, leaving < 512K tags -
-// not a lot.
-typedef i64 Handle;
+#ifndef HANDLE_DEFINED
+#include "handle.h"
+#endif
 
 
 

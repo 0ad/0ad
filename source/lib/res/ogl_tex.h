@@ -1,7 +1,7 @@
 #ifndef OGL_TEX_H__
 #define OGL_TEX_H__
 
-#include "lib/res/h_mgr.h"
+#include "handle.h"
 
 // load and return a handle to the texture given in <fn>.
 // supports RAW, BMP, JP2, PNG, TGA, DDS
