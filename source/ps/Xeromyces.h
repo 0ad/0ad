@@ -1,4 +1,4 @@
-/* $Id: Xeromyces.h,v 1.4 2004/07/17 17:06:21 philip Exp $
+/* $Id: Xeromyces.h,v 1.5 2004/07/18 11:50:34 philip Exp $
 
   Xeromyces file-loading interface.
   Automatically creates and caches relatively
@@ -11,9 +11,9 @@
 #ifndef _XEROMYCES_H_
 #define _XEROMYCES_H_
 
-ERROR_GROUP(PSERROR, Xeromyces);
-ERROR_TYPE(PSERROR_Xeromyces, XMLOpenFailed);
-ERROR_TYPE(PSERROR_Xeromyces, XMLParseError);
+ERROR_GROUP(Xeromyces);
+ERROR_TYPE(Xeromyces, XMLOpenFailed);
+ERROR_TYPE(Xeromyces, XMLParseError);
 
 #include "ps/XeroXMB.h"
 #include "lib/res/h_mgr.h"

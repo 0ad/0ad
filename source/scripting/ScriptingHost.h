@@ -12,27 +12,27 @@
 # endif
 #endif
 
-ERROR_GROUP(PSERROR, Scripting);
-ERROR_TYPE(PSERROR_Scripting, RuntimeCreationFailed);
-ERROR_TYPE(PSERROR_Scripting, ContextCreationFailed);
-ERROR_TYPE(PSERROR_Scripting, GlobalObjectCreationFailed);
-ERROR_TYPE(PSERROR_Scripting, StandardClassSetupFailed);
-ERROR_TYPE(PSERROR_Scripting, NativeFunctionSetupFailed);
+ERROR_GROUP(Scripting);
+ERROR_TYPE(Scripting, RuntimeCreationFailed);
+ERROR_TYPE(Scripting, ContextCreationFailed);
+ERROR_TYPE(Scripting, GlobalObjectCreationFailed);
+ERROR_TYPE(Scripting, StandardClassSetupFailed);
+ERROR_TYPE(Scripting, NativeFunctionSetupFailed);
 
-ERROR_GROUP(PSERROR_Scripting, LoadFile);
-ERROR_TYPE(PSERROR_Scripting_LoadFile, OpenFailed);
-ERROR_TYPE(PSERROR_Scripting_LoadFile, EvalErrors);
+ERROR_SUBGROUP(Scripting, LoadFile);
+ERROR_TYPE(Scripting_LoadFile, OpenFailed);
+ERROR_TYPE(Scripting_LoadFile, EvalErrors);
 
-ERROR_TYPE(PSERROR_Scripting, ConversionFailed);
-ERROR_TYPE(PSERROR_Scripting, CallFunctionFailed);
-ERROR_TYPE(PSERROR_Scripting, RegisterFunctionFailed);
-ERROR_TYPE(PSERROR_Scripting, DefineConstantFailed);
-ERROR_TYPE(PSERROR_Scripting, CreateObjectFailed);
-ERROR_TYPE(PSERROR_Scripting, TypeDoesNotExist);
+ERROR_TYPE(Scripting, ConversionFailed);
+ERROR_TYPE(Scripting, CallFunctionFailed);
+ERROR_TYPE(Scripting, RegisterFunctionFailed);
+ERROR_TYPE(Scripting, DefineConstantFailed);
+ERROR_TYPE(Scripting, CreateObjectFailed);
+ERROR_TYPE(Scripting, TypeDoesNotExist);
 
-ERROR_GROUP(PSERROR_Scripting, DefineType);
-ERROR_TYPE(PSERROR_Scripting_DefineType, AlreadyExists);
-ERROR_TYPE(PSERROR_Scripting_DefineType, CreationFailed);
+ERROR_SUBGROUP(Scripting, DefineType);
+ERROR_TYPE(Scripting_DefineType, AlreadyExists);
+ERROR_TYPE(Scripting_DefineType, CreationFailed);
 
 #include <jsapi.h>
 
