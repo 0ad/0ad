@@ -15,8 +15,16 @@ template<typename T> void delete_fn(T* v) { delete v; }
 
 using namespace I18n;
 
+#ifdef I18NDEBUG
+namespace I18n { bool g_UsedCache; }
+#endif
+
 I18n::StringBuffer::operator Str()
 {
+	#ifdef I18NDEBUG
+	g_UsedCache = false;
+	#endif
+
 	if (Variables.size() != String.VarCount)
 	{
 		LOG(ERROR, LOG_CATEGORY, "I18n: Incorrect number of parameters passed to Translate");
@@ -35,6 +43,10 @@ I18n::StringBuffer::operator Str()
 	if (Locale->ReadCached(this, ret))
 	{
 		// Found in cache
+
+		#ifdef I18NDEBUG
+		g_UsedCache = true;
+		#endif
 
 		// Clean up the current allocated data
 		std::for_each(Variables.begin(), Variables.end(), delete_fn<BufferVariable>);

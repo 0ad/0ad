@@ -34,6 +34,8 @@ namespace I18n
 		// Needs .wrd files generated through tables.pl
 		virtual bool LoadDictionary(const char* filedata) = 0;
 
+		virtual void UnloadDictionaries() = 0;
+
 		virtual ~CLocale_interface() {}
 	};
 

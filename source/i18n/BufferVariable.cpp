@@ -15,6 +15,7 @@ namespace I18n {
 	// These bits don't seem to work without the explicit namespace{}
 
 	template<> BufferVariable* NewBufferVariable<int>(int v) { return new BufferVariable_int(v); }
+	template<> BufferVariable* NewBufferVariable<float>(float v) { return new BufferVariable_double(v); }
 	template<> BufferVariable* NewBufferVariable<double>(double v) { return new BufferVariable_double(v); }
 	template<> BufferVariable* NewBufferVariable<Noun>(Noun v) { return new BufferVariable_string(v.value); }
 	template<> BufferVariable* NewBufferVariable<Name>(Name v) { return new BufferVariable_rawstring(v.value); }

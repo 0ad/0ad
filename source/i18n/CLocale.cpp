@@ -194,9 +194,18 @@ bool CLocale::LoadDictionary(const char* data)
 
 	DictData& dict = Dictionaries[DictName];
 
+	if (dict.DictProperties.size() && PropertyCount != dict.DictProperties.size())
+	{
+		LOG(ERROR, LOG_CATEGORY, "I18n: Multiple dictionary files loaded with the name ('%ls') and different properties", DictName.c_str());
+		return false;
+		// TODO: Check headings to make sure they're identical (or handle them more cleverly)
+	}
+
 	// Read the names of the properties
 
-	for (int i = 0; i < PropertyCount; ++i)
+	int i;
+
+	for (i = 0; i < PropertyCount; ++i)
 	{
 		ReadWString8(Property);
 		dict.DictProperties[Property] = i;
@@ -207,7 +216,7 @@ bool CLocale::LoadDictionary(const char* data)
 
 	// Read each 'value' (word + properties)
 
-	for (int i = 0; i < ValueCount; ++i)
+	for (i = 0; i < ValueCount; ++i)
 	{
 		ReadWString8(Word);
 
@@ -223,13 +232,18 @@ bool CLocale::LoadDictionary(const char* data)
 	return true;
 }
 
+void CLocale::UnloadDictionaries()
+{
+	Dictionaries.clear();
+}
+
 
 const CLocale::LookupType* CLocale::LookupWord(const Str& dictname, const Str& word)
 {
 	std::map<Str, DictData>::const_iterator dictit = Dictionaries.find(dictname);
 	if (dictit == Dictionaries.end())
 	{
-		assert(! "invalid dictionary");
+		LOG(WARNING, LOG_CATEGORY, "I18n: Non-loaded dictionary '%ls' accessed", dictname.c_str());
 		return NULL;
 	}
 	std::map<Str, std::vector<Str> >::const_iterator wordit = dictit->second.DictWords.find(word);

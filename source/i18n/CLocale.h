@@ -59,6 +59,7 @@ namespace I18n
 		bool LoadFunctions(const char* filedata, size_t len, const char* filename);
 		bool LoadStrings(const char* filedata);
 		bool LoadDictionary(const char* filedata);
+		void UnloadDictionaries();
 
 		const StrImW CallFunction(const char* name, const std::vector<BufferVariable*>& vars, const std::vector<ScriptValue*>& params);
 
