@@ -1,7 +1,7 @@
 #ifndef HANDLE_H__
 #define HANDLE_H__
 
-#include "types.h"
+#include "lib/types.h"
 
 // define type Handle. split out of h_mgr.h to reduce dependencies.
 
