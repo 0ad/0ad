@@ -21,6 +21,8 @@ package.config["Release"].target = "ps"
 package.files = {
 	-- ps/
         { sourcesfromdirs("../../ps") },
+	-- ps/Network/
+	{ sourcesfromdirs("../../ps/Network") },
 	-- simulation/
 	{ sourcesfromdirs("../../simulation") },
         { sourcesfromdirs("../../simulation/scripting") },
