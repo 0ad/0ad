@@ -70,7 +70,22 @@ static bool GetTooltip(IGUIObject* obj, CStr &style)
 		&& GUI<CStr>::GetSetting(obj, "tooltip-style", style) == PS_OK)
 	{
 		if (style.Length() == 0)
-			style = "default";
+		{
+			// If there's no style, there's probably no tooltip
+
+			CStr text;
+			if (GUI<CStr>::GetSetting(obj, "tooltip", text) == PS_OK && text.Length())
+			{
+				// There is a tooltip, so just use the default style;
+				style = "default";
+				return true;
+			}
+			else
+			{
+				// No tooltip
+				return false;
+			}
+		}
 		return true;
 	}
 	return false;
@@ -121,7 +136,7 @@ static void ShowTooltip(IGUIObject* obj, CPos pos, CStr& style, CGUI* gui)
 		debug_warn("Failed to retrieve tooltip text"); // shouldn't fail
 
 	// Do some minimal processing ("\n" -> newline, etc)
-	text.Replace("\\n", "\n"); // TODO: Allow tooltip="\\n" etc
+	text = text.UnescapeBackslashes();
 
 	// Set tooltip's caption
 	if (usedobj->SetSetting("caption", text) != PS_OK)

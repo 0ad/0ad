@@ -220,6 +220,34 @@ void CStr::Replace(const CStr& ToReplace, const CStr& ReplaceWith)
 	}
 }
 
+CStr CStr::UnescapeBackslashes()
+{
+	// Currently only handle \n and \\, because they're the only interesting ones
+	CStr NewString;
+	bool escaping = false;
+	for (size_t i = 0; i < length(); i++)
+	{
+		TCHAR ch = (*this)[i];
+		if (escaping)
+		{
+			switch (ch)
+			{
+			case _T('n'): NewString += _T('\n'); break;
+			default: NewString += ch; break;
+			}
+			escaping = false;
+		}
+		else
+		{
+			if (ch == _T('\\'))
+				escaping = true;
+			else
+				NewString += ch;
+		}
+	}
+	return NewString;
+}
+
 // Returns a trimmed string, removes whitespace from the left/right/both
 CStr CStr::Trim(PS_TRIM_MODE Mode) const
 {

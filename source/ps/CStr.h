@@ -181,6 +181,9 @@ public:
 	// Replace all occurrences of some substring by another 
 	void Replace(const CStr& StrToReplace, const CStr& ReplaceWith);
 
+	// Convert strings like  \\\n  into <backslash><newline>
+	CStr UnescapeBackslashes();
+
 	// Returns a trimmed string, removes whitespace from the left/right/both
 	CStr Trim(PS_TRIM_MODE Mode) const;
 
