@@ -141,7 +141,7 @@ public:
 	// Updates graphical information for a point between the last and current simulation frame; 0 < relativeoffset < 1.
 	void interpolate( float relativeoffset );
 
-	// Removes entity from the gameworld and deallocates it, but not neccessarily immediately.
+	// Removes entity from the gameworld and deallocates it, but not necessarily immediately.
 	void kill();
 
 	// Process initialization
@@ -153,7 +153,7 @@ public:
 	// Store the player associated with this entity
 	void SetPlayer(CPlayer *pPlayer);
 
-	// Retrieve the player associated with this entitiy
+	// Retrieve the player associated with this entity
 	CPlayer* GetPlayer() { return m_player; } 
 
 	// Process damage
