@@ -123,39 +123,41 @@ void CPlayerRenderer::Render()
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
 
-	if (g_Renderer.m_ModelRenderMode==WIREFRAME) {
-		// switch wireframe off again
-		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
-	} else if (g_Renderer.m_ModelRenderMode==EDGED_FACES) {
-		// edged faces: need to make a second pass over the data:
-		// first switch on wireframe
-		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
-		
-		// setup some renderstate ..
-		glDepthMask(0);
-		g_Renderer.SetTexture(0,0);
-		glColor4f(1,1,1,0.75f);
-		glLineWidth(1.0f);
 
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+	//TODO: Wireframe correctly for players
+	//if (g_Renderer.m_ModelRenderMode==WIREFRAME) {
+	//	// switch wireframe off again
+	//	glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+	//} else if (g_Renderer.m_ModelRenderMode==EDGED_FACES) {
+	//	// edged faces: need to make a second pass over the data:
+	//	// first switch on wireframe
+	//	glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+	//	
+	//	// setup some renderstate ..
+	//	glDepthMask(0);
+	//	g_Renderer.SetTexture(0,0);
+	//	glColor4f(1,1,1,0.75f);
+	//	glLineWidth(1.0f);
 
-		// .. and some client states
-		glEnableClientState(GL_VERTEX_ARRAY);
+	//	glEnable(GL_BLEND);
+	//	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 
-		// render each model
-		RenderObjectsStreams(STREAM_POS);
+	//	// .. and some client states
+	//	glEnableClientState(GL_VERTEX_ARRAY);
 
-		// .. and switch off the client states
-		glDisableClientState(GL_VERTEX_ARRAY);
+	//	// render each model
+	//	RenderObjectsStreams(STREAM_POS);
 
-		// .. and restore the renderstates
-		glDisable(GL_BLEND);
-		glDepthMask(1);
+	//	// .. and switch off the client states
+	//	glDisableClientState(GL_VERTEX_ARRAY);
 
-		// restore fill mode, and we're done
-		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
-	}
+	//	// .. and restore the renderstates
+	//	glDisable(GL_BLEND);
+	//	glDepthMask(1);
+
+	//	// restore fill mode, and we're done
+	//	glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+	//}
 }
 
 void CPlayerRenderer::Clear()
@@ -225,7 +227,7 @@ void CPlayerRenderer::RenderObjectsStreams(u32 streamflags,u32 mflags)
 			CModelRData* modeldata=(CModelRData*) m_Objects[i].m_Model->GetRenderData();
 
 			// Get the models player ID
-			const PS_uint playerid = m_Objects[i].m_Model->GetPlayerID();
+			PS_uint playerid = m_Objects[i].m_Model->GetPlayerID();
 
 			// Get the player color
 			const SPlayerColour& colour = g_Game->GetPlayer( playerid )->GetColour();
