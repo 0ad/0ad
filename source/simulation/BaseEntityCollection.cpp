@@ -31,17 +31,6 @@ void CBaseEntityCollection::loadTemplates()
 	CBaseEntity* dude = getTemplate( "Prometheus Dude" );
 	dude->m_speed *= 10.0f;
 
-/*
-
-	// Nasty evil wicked hardcoding.
-	CBaseEntity dude;
-	dude.m_name = CStr( "Prometheus Dude" );
-	dude.m_actorObject = g_ObjMan.FindObject( "The Dude" );
-	dude.m_actorObject->m_Model->GetAnimation()->m_FrameTime /= 3.0f;
-	dude.speed = 0.3f;
-
-	addTemplate( dude );
-*/
 }
 
 void CBaseEntityCollection::addTemplate( CBaseEntity& temp )

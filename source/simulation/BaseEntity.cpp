@@ -15,6 +15,14 @@
 // automatically use namespace ..
 XERCES_CPP_NAMESPACE_USE
 
+CBaseEntity::~CBaseEntity()
+{
+	if( m_bound_box )
+		delete( m_bound_box );
+	if( m_bound_circle )
+		delete( m_bound_circle );
+}
+
 bool CBaseEntity::loadXML( CStr filename )
 {
 	bool parseOK = false;
@@ -126,7 +134,7 @@ bool CBaseEntity::loadXML( CStr filename )
 			}
 
 		}
-
+		delete errorHandler;
 		delete parser;
 	}
 	XMLPlatformUtils::Terminate();

@@ -9,8 +9,11 @@ CEntityManager::CEntityManager()
 }
 
 CEntityManager::~CEntityManager()
-{
+{	
 	m_extant = false;
+	for( int i = 0; i < MAX_HANDLES; i++ )
+		if( m_entities[i].m_refcount )
+			delete( m_entities[i].m_entity );
 }
 
 HEntity CEntityManager::create( CBaseEntity* base, CVector3D position, float orientation )
