@@ -13,7 +13,7 @@ void CBaseEntityCollection::loadTemplates()
 	handle=vfs_open_dir("entities/templates/");
 	if (handle > 0)
 	{
-		while (vfs_next_dirent(handle, &dent, ".xml"))
+		while (vfs_next_dirent(handle, &dent, ".xml") == 0)
 		{
 			CBaseEntity newTemplate;
 			if( newTemplate.loadXML( pathname + dent.name ) )

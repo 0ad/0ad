@@ -10,7 +10,7 @@
 #include <xercesc/util/PlatformUtils.hpp>
 
 // Gee's custom error handler
-#include <ps/XercesErrorHandler.h>
+#include "ps/XercesErrorHandler.h"
 
 // automatically use namespace ..
 XERCES_CPP_NAMESPACE_USE
