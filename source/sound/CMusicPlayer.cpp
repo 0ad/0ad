@@ -112,6 +112,11 @@ CMusicPlayer::~CMusicPlayer(void)
 
 void CMusicPlayer::open(char *filename)
 {
+	// If a new file is opened while another is already in memory,
+	// close the old one first.
+	if (is_open)
+		release();
+
 	int ret = 0;
 	format = 0;
 	info = NULL;
@@ -125,7 +130,6 @@ void CMusicPlayer::open(char *filename)
 	}
 	else
 		LOG(NORMAL, "CMusicPlayer::open(): file %s loaded successfully\n", filename);
-	// TODO maybe: Free the mem handle returned by vfs_load (using mem_free_h) ??
 
 	memFile.dataPtr = (char*)p;
 	memFile.dataRead = 0;
