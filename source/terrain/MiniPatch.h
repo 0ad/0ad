@@ -1,13 +1,15 @@
 #ifndef MINIPATCH_H
 #define MINIPATCH_H
 
-#include "Vector3D.h"
 #include "res.h"
+#include "Color.h"
+#include "Vector3D.h"
 
 struct STerrainVertex
 {
 	CVector3D m_Position;
-	float	  m_Color[2][3];
+	CVector3D m_Normal;
+	RGBColor m_Color;
 };
 
 
