@@ -27,7 +27,8 @@
 #include "win_internal.h"
 #include <dbghelp.h>
 
-#include "debug.h"
+#include "wdbg.h"
+#include "assert_dlg.h"
 
 
 /*
