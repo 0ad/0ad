@@ -94,16 +94,19 @@ void CModelDef::SetupBones()
 	for (i=0; i<m_NumVertices; i++)
 	{
 		SModelVertex *pVertex = &m_pVertices[i];
-		SModelBone *pBone = &m_pBones[pVertex->m_Bone];
+		if (pVertex->m_Bone>=0) {
+			SModelBone *pBone = &m_pBones[pVertex->m_Bone];
 
-		CVector3D BonePos = pBone->m_Absolute.GetTranslation();
+			CVector3D BonePos = pBone->m_Absolute.GetTranslation();
 
-		pVertex->m_Coords.X -= BonePos.X;
-		pVertex->m_Coords.Y -= BonePos.Y;
-		pVertex->m_Coords.Z -= BonePos.Z;
+			pVertex->m_Coords.X -= BonePos.X;
+			pVertex->m_Coords.Y -= BonePos.Y;
+			pVertex->m_Coords.Z -= BonePos.Z;
 
-		CMatrix3D BoneInvMat = pBone->m_Absolute.GetTranspose();
+			CMatrix3D BoneInvMat;
+			pBone->m_Absolute.Invert(BoneInvMat);
 
-		pVertex->m_Coords = BoneInvMat.Rotate (pVertex->m_Coords);
+			pVertex->m_Coords = BoneInvMat.Rotate (pVertex->m_Coords);
+		}
 	}
 }

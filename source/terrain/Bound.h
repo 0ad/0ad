@@ -14,6 +14,7 @@
 
 // necessary includes
 #include "Vector3D.h"
+#include "Matrix3D.h"
 
 class CBound
 {
@@ -22,6 +23,8 @@ public:
     CBound(const CVector3D& min,const CVector3D& max) {
 		m_Data[0]=min; m_Data[1]=max;
 	}
+	
+	void Transform(const CMatrix3D& m,CBound& result) const;
 
 	CVector3D& operator[](int index) {	return m_Data[index]; }
     const CVector3D& operator[](int index) const { return m_Data[index]; }

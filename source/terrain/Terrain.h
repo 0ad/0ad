@@ -17,34 +17,62 @@
 #ifndef TERRAIN_H
 #define TERRAIN_H
 
-#include <stdio.h>
-
 #include "Patch.h"
 #include "Vector3D.h"
+#include "TerrGlobals.h"
 
 class CLightEnv;
+class CSHCoeffs;
 
-extern bool g_HillShading;
 
 class CTerrain
 {
-	public:
-		CTerrain ();
-		~CTerrain ();
+public:
+	CTerrain();
+	~CTerrain();
 
-		bool Load(char *filename);
-		bool InitFromHeightmap(const u8* data);
+	bool Initialize(u32 size,const u16* ptr);
 
-//	protected:
-		//the patches currently loaded
-		CPatch				m_Patches[NUM_PATCHES_PER_SIDE][NUM_PATCHES_PER_SIDE];
-		STerrainVertex		*m_pVertices;
+	// return number of vertices along edge of the terrain
+	u32 GetVerticesPerSide() { return m_MapSize; }
+	// return number of patches along edge of the terrain
+	u32 GetPatchesPerSide() { return m_MapSizePatches; }
 
+	// resize this terrain such that each side has given number of patches
+	void Resize(u32 size);
 
-//	protected:
-		void CalcNormals();
-		void CalcLighting(const CLightEnv& env);
-		void SetNeighbors();
+	// set up a new heightmap from 16 bit data; assumes heightmap matches current terrain size
+	void SetHeightMap(u16* heightmap);
+	// return a pointer to the heightmap
+	u16* GetHeightMap() const { return m_Heightmap; }
+
+	// get patch at given coordinates, expressed in patch-space; return 0 if
+	// coordinates represent patch off the edge of the map
+	CPatch* GetPatch(int32 x,int32 z); 
+	// get tile at given coordinates, expressed in tile-space; return 0 if
+	// coordinates represent tile off the edge of the map
+	CMiniPatch* GetTile(int32 x,int32 z);
+
+	// calculate the position of a given vertex
+	void CalcPosition(u32 i,u32 j,CVector3D& pos);
+	// calculate the normal at a given vertex
+	void CalcNormal(u32 i,u32 j,CVector3D& normal);
+
+private:
+	// clean up terrain data
+	void Reset();
+	// setup patch pointers etc
+	void InitialisePatches();
+
+	// size of this map in each direction, in vertices; ie. total tiles = sqr(m_MapSize-1)
+	u32 m_MapSize;
+	// size of this map in each direction, in patches; total patches = sqr(m_MapSizePatches)
+	u32 m_MapSizePatches;
+	// the patches comprising this terrain
+	CPatch*	m_Patches;
+	// 16-bit heightmap data
+	u16* m_Heightmap;	
+
 };
 
 #endif

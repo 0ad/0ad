@@ -80,7 +80,7 @@ CTextureEntry* CTextureManager::AddTexture(const char* filename,int type)
 {
 	assert(type<m_TerrainTextures.size());
 	
-	CStr pathname("terrains/textures/");
+	CStr pathname("art/textures/terrain/types/");
 	pathname+=m_TerrainTextures[type].m_Name;
 	pathname+='/';
 	pathname+=filename;
@@ -151,7 +151,7 @@ void CTextureManager::LoadTerrainTextures(int terraintype,const char* fileext)
 	long handle;
 	
 	// build pathname
-	CStr pathname("terrains\\textures\\");
+	CStr pathname("mods\\official\\art\\textures\\terrain\\types\\");
 	pathname+=m_TerrainTextures[terraintype].m_Name;
 	pathname+="\\";
 	
@@ -181,7 +181,7 @@ void CTextureManager::BuildTerrainTypes()
 	long handle;
 	
 	// Find first matching directory in terrain\textures
-    if ((handle=_findfirst("terrains\\textures\\*",&file))!=-1) {
+	if ((handle=_findfirst("mods\\official\\art\\textures\\terrain\\types\\*",&file))!=-1) {
 		
 		if ((file.attrib & _A_SUBDIR) && file.name[0]!='.' && file.name[0]!='_') {
 			AddTextureType(file.name);

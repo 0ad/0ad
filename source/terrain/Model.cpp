@@ -11,11 +11,13 @@
 
 #include "Model.h"
 #include "Quaternion.h"
+#include "Bound.h"
 
 CModel::CModel()
 {
 	m_pModelDef = NULL;
 	m_pBonePoses = NULL;
+	m_RenderData = 0;
 }
 
 CModel::~CModel()
@@ -125,4 +127,20 @@ void RotateX (CMatrix3D *mat, float angle1, float angle2, float factor)
 	RotX._41=0.0f; RotX._42=0.0f; RotX._43=0.0f; RotX._44=1.0f;
 
 	*mat = RotX * (*mat);
+}
+
+void CModel::CalcBounds(CBound& bound)
+{
+	bound.SetEmpty();
+
+	for (int i=0; i<m_pModelDef->GetNumVertices(); i++)
+	{
+		SModelVertex *pVertex = &m_pModelDef->GetVertices()[i];
+		CVector3D coord;
+		if (pVertex->m_Bone!=-1) {
+			bound+=GetBonePoses()[pVertex->m_Bone].Transform(pVertex->m_Coords);
+		} else {
+			bound+=pVertex->m_Coords;
+		}
+	}
 }

@@ -15,20 +15,31 @@
 #define RENDERER_H
 
 #include <vector>
+#include "res/res.h"
 #include "ogl.h"
+#include "Camera.h"
 #include "Frustum.h"
+#include "PatchRData.h"
+#include "ModelRData.h"
+#include "SHCoeffs.h"
+#include "Terrain.h"
 
 // necessary declarations
 class CCamera;
 class CPatch;
-class CModel;
+class CVisual;
 class CSprite;
 class CParticleSys;
 class COverlay;
 class CMaterial;
 class CLightEnv;
-class SPatchRData;
 class CTexture;
+class CTerrain;
+
+
+// rendering modes
+enum ERenderMode { WIREFRAME, SOLID, EDGED_FACES };
+
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // SSubmission: generalised class representating a submission of objects to renderer
@@ -63,8 +74,36 @@ struct SVertex2D
 class CRenderer
 {
 public:
-	// various enumerations 
-	enum ETerrainMode { WIREFRAME, FILL };
+	// various enumerations and renderer related constants
+	enum { NumAlphaMaps=14 };
+
+	// stats class - per frame counts of number of draw calls, poly counts etc
+	struct Stats {
+		// set all stats to zero
+		void Reset() { memset(this,0,sizeof(*this)); }
+		// add given stats to this stats
+		Stats& operator+=(const Stats& rhs) {
+			m_Counter++;
+			m_DrawCalls+=rhs.m_DrawCalls;
+			m_TerrainTris+=rhs.m_TerrainTris;
+			m_ModelTris+=rhs.m_ModelTris;
+			m_TransparentTris+=rhs.m_TransparentTris;
+			m_BlendSplats+=rhs.m_BlendSplats;
+			return *this;
+		}
+		// count of the number of stats added together 
+		u32 m_Counter;
+		// number of draw calls per frame - total DrawElements + Begin/End immediate mode loops
+		u32 m_DrawCalls;
+		// number of terrain triangles drawn
+		u32 m_TerrainTris;
+		// number of (non-transparent) model triangles drawn
+		u32 m_ModelTris;
+		// number of transparent model triangles drawn
+		u32 m_TransparentTris;
+		// number of splat passes for alphamapping
+		u32 m_BlendSplats;
+	};
 
 public:
 	// constructor, destructor
@@ -95,12 +134,11 @@ public:
 	// submission of objects for rendering; the passed matrix indicating the transform must be scoped such that it is valid beyond
 	// the call to frame end, as must the object itself
 	void Submit(CPatch* patch);
-	void Submit(CModel* model,CMatrix3D* transform);
+	void Submit(CVisual* visual);
 	void Submit(CSprite* sprite,CMatrix3D* transform);
 	void Submit(CParticleSys* psys,CMatrix3D* transform);
 	void Submit(COverlay* overlay);
 
-#if 0
 	// basic primitive rendering operations in 2 and 3D; handy for debugging stuff, but also useful in 
 	// editor tools (eg for highlighting specific terrain patches) 
 	// note: 
@@ -115,30 +153,53 @@ public:
 	void RenderLineLoop(int len,const SVertex3D* vertices);
 	void RenderTri(const SVertex3D* vertices);
 	void RenderQuad(const SVertex3D* vertices);
-#endif
 
 	// set the current lighting environment; (note: the passed pointer is just copied to a variable within the renderer,
 	// so the lightenv passed must be scoped such that it is not destructed until after the renderer is no longer rendering)
-	void SetLightEnv(CLightEnv* lightenv);
+	void SetLightEnv(CLightEnv* lightenv) {
+		m_LightEnv=lightenv;
+	}
 
 	// set the mode to render subsequent terrain patches
-	void SetTerrainMode(ETerrainMode mode) { m_TerrainMode=mode; }
+	void SetTerrainRenderMode(ERenderMode mode) { m_TerrainRenderMode=mode; }
 	// get the mode to render subsequent terrain patches
-	ETerrainMode GetTerrainMode() const { return m_TerrainMode; }
+	ERenderMode GetTerrainRenderMode() const { return m_TerrainRenderMode; }
+
+	// set the mode to render subsequent models
+	void SetModelRenderMode(ERenderMode mode) { m_ModelRenderMode=mode; }
+	// get the mode to render subsequent models
+	ERenderMode GetModelRenderMode() const { return m_ModelRenderMode; }
 
 	// try and load the given texture
 	bool LoadTexture(CTexture* texture);
 	// set the given unit to reference the given texture; pass a null texture to disable texturing on any unit
 	// note - active texture always set to given unit on exit
-	void SetTexture(int unit,CTexture* texture);
+	void SetTexture(int unit,CTexture* texture,u32 wrapflags=0);
+	// query transparency of given texture
+	bool IsTextureTransparent(CTexture* texture);
+
+	// load the default set of alphamaps; return false if any alphamap fails to load, true otherwise
+	bool LoadAlphaMaps(const char* fnames[]);
+
+	// return stats accumulated for current frame
+	const Stats& GetStats() { return m_Stats; }
+	
+	inline int GetWidth() const { return m_Width; }
+	inline int GetHeight() const { return m_Height; }
 
 protected:
+	friend class CPatchRData;
+	friend class CModelRData;
+	friend class CTransparencyRenderer;
+
 	// patch rendering stuff
-	void RenderPatchBase(CPatch* patch);
-	void RenderPatchTrans(CPatch* patch);
+	void RenderPatchSubmissions();
+	void RenderPatches();
 
 	// model rendering stuff
-	void RenderModel(SSubmission<CModel*>& modelsub);
+	void BuildTransparentPasses(CVisual* visual);
+	void RenderModelSubmissions();
+	void RenderModels();
 
 	// RENDERER DATA:
 	// view width
@@ -150,15 +211,40 @@ protected:
 	// frame counter
 	int m_FrameCounter;
 	// current terrain rendering mode
-	ETerrainMode m_TerrainMode;
+	ERenderMode m_TerrainRenderMode;
+	// current model rendering mode
+	ERenderMode m_ModelRenderMode;
+	// current view camera
+	CCamera m_Camera;
 	// submitted object lists for batching
 	std::vector<SSubmission<CPatch*> > m_TerrainPatches;
-	std::vector<SSubmission<CModel*> > m_Models;
+	std::vector<SSubmission<CVisual*> > m_Models;
 	std::vector<SSubmission<CSprite*> > m_Sprites;
 	std::vector<SSubmission<CParticleSys*> > m_ParticleSyses;
 	std::vector<SSubmission<COverlay*> > m_Overlays;
 	// current lighting setup
 	CLightEnv* m_LightEnv;
+	// current spherical harmonic coefficients (for unit lighting), derived from lightenv
+	CSHCoeffs m_SHCoeffsUnits;
+	// current spherical harmonic coefficients (for terrain lighting), derived from lightenv
+	CSHCoeffs m_SHCoeffsTerrain;
+	// default alpha maps
+	//Handle m_AlphaMaps[NumAlphaMaps];
+	// all the alpha maps packed into one texture
+	unsigned int m_CompositeAlphaMap;
+	// coordinates of each (untransformed) alpha map within the packed texture
+	struct {
+		float u0,u1,v0,v1;
+	} m_AlphaMapCoords[NumAlphaMaps];
+
+	// card capabilities
+	struct Caps {
+		bool m_VBO;
+	} m_Caps;
+	// build card cap bits
+	void EnumCaps();
+	// per-frame renderer stats
+	Stats m_Stats;
 };
 
 

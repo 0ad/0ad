@@ -12,26 +12,31 @@
 #ifndef PATCH_H
 #define PATCH_H
 
-#include "Bound.h"
+#include "Matrix3D.h"
+#include "Camera.h"
 #include "TerrGlobals.h"
 #include "MiniPatch.h"
+#include "RenderableObject.h"
 
-class CPatch
+
+class CPatch : public CRenderableObject
 {
-	public:
-		CPatch ();
-		~CPatch ();
+public:
+	CPatch();
+	~CPatch();
 
-		//initialize the patch
-		void Initialize (STerrainVertex *first_vertex);
+	//initialize the patch
+	void Initialize(CTerrain* parent,u32 x,u32 z);
 
-//	protected:
-		CMiniPatch		m_MiniPatches[16][16];
+	// calculate and store bounds of this patch
+	void CalcBounds();
 
-		CBound	m_Bounds;
-		unsigned int	m_LastVisFrame;
-		
-		STerrainVertex	*m_pVertices;
+	// minipatches (tiles) making up the patch
+	CMiniPatch m_MiniPatches[16][16];
+	// position of patch in parent terrain grid
+	u32 m_X,m_Z;
+	// parent terrain
+	CTerrain* m_Parent;
 };
 
 

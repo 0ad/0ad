@@ -84,7 +84,7 @@ class CMatrix3D
 
 		//Returns the transpose of the matrix. For orthonormal
 		//matrices, this is the same is the inverse matrix
-		CMatrix3D GetTranspose() const;
+		void GetTranspose(CMatrix3D& result) const;
 
 		//Get a vector which points to the left of the matrix
 		CVector3D GetLeft () const;

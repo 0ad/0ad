@@ -10,21 +10,90 @@
 //	types - terrain, models, sprites, particles etc
 //----------------------------------------------------------------
 
+
+#include <map>
+#include <set>
+#include <algorithm>
 #include "Renderer.h"
+#include "TransparencyRenderer.h"
 #include "Terrain.h"
 #include "Matrix3D.h"
 #include "Camera.h"
+#include "PatchRData.h"
 #include "Texture.h"
+#include "LightEnv.h"
+#include "Visual.h"
 
 #include "Model.h"
 #include "ModelDef.h"
 
 #include "types.h"
 #include "ogl.h"
-#include "res/res.h"
+#include "res/mem.h"
+#include "res/tex.h"
 
-#define		RENDER_STAGE_BASE		(1)
-#define		RENDER_STAGE_TRANS		(2)
+
+struct TGAHeader {
+	// header stuff
+	unsigned char  iif_size;            
+	unsigned char  cmap_type;           
+	unsigned char  image_type;          
+	unsigned char  pad[5];
+
+	// origin : unused
+	unsigned short d_x_origin;
+	unsigned short d_y_origin;
+	
+	// dimensions
+	unsigned short width;
+	unsigned short height;
+
+	// bits per pixel : 16, 24 or 32
+	unsigned char  bpp;          
+
+	// image descriptor : Bits 3-0: size of alpha channel
+	//					  Bit 4: must be 0 (reserved)
+	//					  Bit 5: should be 0 (origin)
+	//					  Bits 6-7: should be 0 (interleaving)
+   unsigned char image_descriptor;    
+};
+
+static bool saveTGA(const char* filename,int width,int height,unsigned char* data) 
+{
+	FILE* fp=fopen(filename,"wb");
+	if (!fp) return false;
+
+	// fill file header
+	TGAHeader header;
+	header.iif_size=0;
+	header.cmap_type=0;
+	header.image_type=2;
+	memset(header.pad,0,sizeof(header.pad));
+	header.d_x_origin=0;
+	header.d_y_origin=0;
+	header.width=width;
+	header.height=height;
+	header.bpp=24;
+	header.image_descriptor=0;
+
+	if (fwrite(&header,sizeof(TGAHeader),1,fp)!=1) {
+		fclose(fp);
+		return false;
+	}
+
+	// write data 
+	if (fwrite(data,width*height*3,1,fp)!=1) {
+		fclose(fp);
+		return false;
+	}
+
+	// return success ..
+    fclose(fp);
+	return true;
+}
+
+extern CTerrain g_Terrain;
+
 
 CRenderer::CRenderer ()
 {
@@ -32,7 +101,8 @@ CRenderer::CRenderer ()
 	m_Height=0;
 	m_Depth=0;
 	m_FrameCounter=0;
-	m_TerrainMode=FILL;
+	m_TerrainRenderMode=SOLID;
+	m_ModelRenderMode=SOLID;
 }
 
 CRenderer::~CRenderer ()
@@ -40,17 +110,37 @@ CRenderer::~CRenderer ()
 }
 
 	
+// EnumCaps: build card cap bits
+void CRenderer::EnumCaps()
+{
+	// assume support for nothing
+	m_Caps.m_VBO=false;
+#if 1
+	// now start querying extensions
+	if (oglExtAvail("GL_ARB_vertex_buffer_object")) {
+		m_Caps.m_VBO=true;
+	}
+#endif
+}
+
 bool CRenderer::Open(int width, int height, int depth)
 {
 	m_Width = width;
 	m_Height = height;
 	m_Depth = depth;
 
+	// set packing parameters
+	glPixelStorei(GL_PACK_ALIGNMENT,1);
+	glPixelStorei(GL_UNPACK_ALIGNMENT,1);
+
 	// setup default state
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glClearColor(0.0f,0.0f,0.0f,0.0f);
+
+	// query card capabilities
+	EnumCaps();
 
 	return true;
 }
@@ -72,35 +162,199 @@ void CRenderer::BeginFrame()
 	// bump frame counter
 	m_FrameCounter++;
 
+	// zero out all the per-frame stats
+	m_Stats.Reset();
+
+	// calculate coefficients for terrain and unit lighting
+	m_SHCoeffsUnits.Clear();
+	m_SHCoeffsTerrain.Clear();
+
+	if (m_LightEnv) {
+		CVector3D dirlight;
+		m_LightEnv->GetSunDirection(dirlight);
+		m_SHCoeffsUnits.AddDirectionalLight(dirlight,m_LightEnv->m_SunColor);
+		m_SHCoeffsTerrain.AddDirectionalLight(dirlight,m_LightEnv->m_SunColor);
+
+		m_SHCoeffsUnits.AddAmbientLight(m_LightEnv->m_UnitsAmbientColor);
+		m_SHCoeffsTerrain.AddAmbientLight(m_LightEnv->m_TerrainAmbientColor);		
+	}
+
 	// clear buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+void CRenderer::RenderPatches()
+{
+	// switch on wireframe if we need it
+	if (m_TerrainRenderMode==WIREFRAME) {
+		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+	} 
+
+	// render all the patches, including blend pass
+	RenderPatchSubmissions();
+	
+	if (m_TerrainRenderMode==WIREFRAME) {
+		// switch wireframe off again
+		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+	} else if (m_TerrainRenderMode==EDGED_FACES) {
+		// edged faces: need to make a second pass over the data:
+		// first switch on wireframe
+		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+		
+		// setup some renderstate ..
+		glDepthMask(0);
+		SetTexture(0,0);
+		glColor4f(1,1,1,0.35f);
+		glLineWidth(2.0f);
+		
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+
+		// .. and some client states
+		glEnableClientState(GL_VERTEX_ARRAY);
+
+		uint i;
+
+		// render each patch in wireframe
+		for (i=0;i<m_TerrainPatches.size();++i) {
+			CPatch* patch=m_TerrainPatches[i].m_Object;
+			CPatchRData* patchdata=(CPatchRData*) patch->m_RenderData;
+			patchdata->RenderWireframe();
+		}
+
+		// set color for outline
+		glColor3f(0,0,1);
+		glLineWidth(4.0f);
+	
+		// render outline of each patch 
+		for (i=0;i<m_TerrainPatches.size();++i) {
+			CPatch* patch=m_TerrainPatches[i].m_Object;
+			CPatchRData* patchdata=(CPatchRData*) patch->m_RenderData;
+			patchdata->RenderOutline();
+		}
+
+		// .. and switch off the client states
+		glDisableClientState(GL_VERTEX_ARRAY);
+
+		// .. and restore the renderstates
+		glDisable(GL_BLEND);
+		glDepthMask(1);
+
+		// restore fill mode, and we're done
+		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+	}
+}
+
+void CRenderer::RenderModelSubmissions()
+{
+	uint i;
+
+	// first ensure all patches have up to date renderdata built for them; build up transparent passes
+	// along the way
+	for (i=0;i<m_Models.size();++i) {
+		CVisual* visual=m_Models[i].m_Object;
+		CModelRData* data=(CModelRData*) visual->m_Model->m_RenderData;
+		if (data==0) {
+			// no renderdata for model, create it now
+			data=new CModelRData(visual->m_Model);
+		} else {
+			data->Update();
+		}
+
+		BuildTransparentPasses(visual);
+	}
+
+	// setup texture environment to modulate diffuse color with texture color
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+
+	// just pass through texture's alpha
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+
+	// setup client states
+	glClientActiveTexture(GL_TEXTURE0);
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_COLOR_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+	// render models
+	for (i=0;i<m_Models.size();++i) {
+		CVisual* visual=m_Models[i].m_Object;
+		CModelRData* modeldata=(CModelRData*) visual->m_Model->m_RenderData;
+		modeldata->Render(visual->GetTransform());
+	}
+
+	// switch off client states
+	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_COLOR_ARRAY);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+}
+
+void CRenderer::RenderModels()
+{
+	// switch on wireframe if we need it
+	if (m_ModelRenderMode==WIREFRAME) {
+		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+	} 
+
+	// render all the models
+	RenderModelSubmissions();
+	
+	if (m_ModelRenderMode==WIREFRAME) {
+		// switch wireframe off again
+		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+	} else if (m_ModelRenderMode==EDGED_FACES) {
+		// edged faces: need to make a second pass over the data:
+		// first switch on wireframe
+		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+		
+		// setup some renderstate ..
+		glDepthMask(0);
+		SetTexture(0,0);
+		glColor4f(1,1,1,0.75f);
+		glLineWidth(1.0f);
+	
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+
+		// .. and some client states
+		glEnableClientState(GL_VERTEX_ARRAY);
+
+		// render each model
+		for (uint i=0;i<m_Models.size();++i) {
+			CVisual* visual=m_Models[i].m_Object;
+			CModelRData* modeldata=(CModelRData*) visual->m_Model->m_RenderData;
+			modeldata->RenderWireframe(visual->GetTransform());
+		}
+
+		// .. and switch off the client states
+		glDisableClientState(GL_VERTEX_ARRAY);
+
+		// .. and restore the renderstates
+		glDisable(GL_BLEND);
+		glDepthMask(1);
+
+		// restore fill mode, and we're done
+		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+	}
 }
 
 // force rendering of any batched objects
 void CRenderer::FlushFrame()
 {	
-	unsigned i;
+	// render submitted patches and models
+	RenderPatches();
 
-	// render base terrain
-	if (m_TerrainMode==WIREFRAME) {
-		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
-	}
+	RenderModels();
 
-	for (i=0;i<m_TerrainPatches.size();++i) {
-		RenderPatchBase(m_TerrainPatches[i].m_Object);
-	}
-	for (i=0;i<m_TerrainPatches.size();++i) {
-		RenderPatchTrans(m_TerrainPatches[i].m_Object);
-	}
-
-	if (m_TerrainMode==WIREFRAME) {
-		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
-	}
-
-	// render models
-	for (i=0;i<m_Models.size();++i) {
-		RenderModel(m_Models[i]);
-	}
+	// call on the transparency renderer to render all the transparent stuff
+	g_TransparencyRenderer.Render();
 
 	// empty lists
 	m_TerrainPatches.clear();
@@ -115,7 +369,8 @@ void CRenderer::EndFrame()
 
 void CRenderer::SetCamera(CCamera& camera)
 {
-	CMatrix3D view = camera.m_Orientation.GetTranspose();
+	CMatrix3D view;
+	camera.m_Orientation.Invert(view);
 	CMatrix3D proj = camera.GetProjection();
 
 	float gl_view[16] = {view._11, view._21, view._31, view._41,
@@ -137,21 +392,21 @@ void CRenderer::SetCamera(CCamera& camera)
 
 	const SViewPort& vp = camera.GetViewPort();
 	glViewport (vp.m_X, vp.m_Y, vp.m_Width, vp.m_Height);
+
+	m_Camera=camera;
 }
 
 void CRenderer::Submit(CPatch* patch)
 {
 	SSubmission<CPatch*> sub;
-	patch->m_LastVisFrame=m_FrameCounter;
 	sub.m_Object=patch;
 	m_TerrainPatches.push_back(sub);
 }
 
-void CRenderer::Submit(CModel* model,CMatrix3D* transform)
+void CRenderer::Submit(CVisual* visual)
 {
-	SSubmission<CModel*> sub;
-	sub.m_Object=model;
-	sub.m_Transform=transform;
+	SSubmission<CVisual*> sub;
+	sub.m_Object=visual;
 	m_Models.push_back(sub);
 }
 
@@ -167,74 +422,109 @@ void CRenderer::Submit(COverlay* overlay)
 {
 }
 
-
-
-/*
-void CRenderer::RenderTileOutline (CMiniPatch *mpatch)
+void CRenderer::RenderPatchSubmissions()
 {
-	glActiveTexture (GL_TEXTURE0);
-	glDisable (GL_DEPTH_TEST);
-	glDisable (GL_TEXTURE_2D);
-	glLineWidth (4);
-
-	STerrainVertex V[4];
-	V[0] = mpatch->m_pVertices[0];
-	V[1] = mpatch->m_pVertices[1];
-	V[2] = mpatch->m_pVertices[MAP_SIZE*1 + 1];
-	V[3] = mpatch->m_pVertices[MAP_SIZE*1];
-	
-	glColor3f (0,1.0f,0);
-
-	glBegin (GL_LINE_LOOP);
-		
-		for(int i = 0; i < 4; i++)
-			glVertex3fv(&V[i].m_Position.X);
-
-	glEnd ();
-
-	glEnable (GL_DEPTH_TEST);
-	glEnable (GL_TEXTURE_2D);
-}
-*/
-
-void CRenderer::RenderModel(SSubmission<CModel*>& modelsub)
-{
-	glPushMatrix();
-	glMultMatrixf(modelsub.m_Transform->_data);
-
-	SetTexture(0,modelsub.m_Object->GetTexture());
-	glColor3f(1.0f,1.0f,1.0f);
-
-	CModel* mdl=(CModel*) modelsub.m_Object;
-	CModelDef* mdldef=(CModelDef*) mdl->GetModelDef();
-	
-	glBegin(GL_TRIANGLES);
-	for (int fi=0; fi<mdldef->GetNumFaces(); fi++)
-	{
-		SModelFace *pFace = &mdldef->GetFaces()[fi];
-
-		for (int vi=0; vi<3; vi++)
-		{
-			SModelVertex *pVertex = &mdldef->GetVertices()[pFace->m_Verts[vi]];
-			CVector3D Coord = mdl->GetBonePoses()[pVertex->m_Bone].Transform(pVertex->m_Coords);
-
-			glTexCoord2f (pVertex->m_U, pVertex->m_V);
-
-			glVertex3f (Coord.X, Coord.Y, Coord.Z);
+	uint i;
+	// first ensure all patches have up to date renderdata built for them
+	for (i=0;i<m_TerrainPatches.size();++i) {
+		CPatch* patch=m_TerrainPatches[i].m_Object;
+		CPatchRData* data=(CPatchRData*) patch->m_RenderData;
+		if (data==0) {
+			// no renderdata for patch, create it now
+			data=new CPatchRData(patch);
+		} else {
+			data->Update();
 		}
 	}
-	glEnd();
 
-	glPopMatrix();
+	// set up client states for base pass
+	glClientActiveTexture(GL_TEXTURE0);
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_COLOR_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+	// set up texture environment for base pass
+	glActiveTexture(GL_TEXTURE0);
+	glEnable(GL_TEXTURE_2D);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_ZERO);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_ONE_MINUS_SRC_ALPHA);
+
+	// render base passes for each patch
+	for (i=0;i<m_TerrainPatches.size();++i) {
+		CPatch* patch=m_TerrainPatches[i].m_Object;
+		CPatchRData* patchdata=(CPatchRData*) patch->m_RenderData;
+		patchdata->RenderBase();
+	}
+
+	// switch on the composite alpha map texture
+	glActiveTexture(GL_TEXTURE1);
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D,m_CompositeAlphaMap);
+
+	// setup additional texenv required by blend pass
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_ONE_MINUS_SRC_ALPHA);
+
+	// switch on blending
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+
+	// no need to write to the depth buffer a second time
+	glDepthMask(0);
+
+	glClientActiveTexture(GL_TEXTURE1);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+	// render blend passes for each patch
+	for (i=0;i<m_TerrainPatches.size();++i) {
+		CPatch* patch=m_TerrainPatches[i].m_Object;
+		CPatchRData* patchdata=(CPatchRData*) patch->m_RenderData;
+		patchdata->RenderBlends();
+	}
+
+	glClientActiveTexture(GL_TEXTURE1);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+	// restore depth writes
+	glDepthMask(1);
+
+	// restore default state: switch off blending
+	glDisable(GL_BLEND);
+
+	// switch off texture unit 1, make unit 0 active texture
+	glActiveTexture(GL_TEXTURE1);
+	glDisable(GL_TEXTURE_2D);
+	glActiveTexture(GL_TEXTURE0);
+
+	// switch off all client states
+	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_COLOR_ARRAY);
+	glClientActiveTexture(GL_TEXTURE0);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
+
+
 
 // try and load the given texture
 bool CRenderer::LoadTexture(CTexture* texture)
 {
 	Handle h=texture->GetHandle();
 	if (h) {
-		// already tried to load this texture, nothing to do here - just return accord to whether this
-		// is a valid handle
+		// already tried to load this texture, nothing to do here - just return success according 
+		// to whether this is a valid handle or not
 		return h==0xfffffff ? true : false;
 	} else {
 		h=tex_load(texture->GetName());
@@ -250,7 +540,7 @@ bool CRenderer::LoadTexture(CTexture* texture)
 }
 
 // set the given unit to reference the given texture; pass a null texture to disable texturing on any unit
-void CRenderer::SetTexture(int unit,CTexture* texture)
+void CRenderer::SetTexture(int unit,CTexture* texture,u32 wrapflags)
 {
 	glActiveTexture(GL_TEXTURE0+unit);
 	if (texture) {
@@ -258,6 +548,11 @@ void CRenderer::SetTexture(int unit,CTexture* texture)
 		if (!h) {
 			LoadTexture(texture);
 			h=texture->GetHandle();
+
+			if (wrapflags) {
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrapflags);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrapflags);
+			}
 		} 
 
 		// disable texturing if invalid handle
@@ -273,247 +568,147 @@ void CRenderer::SetTexture(int unit,CTexture* texture)
 	}
 }
 
-void CRenderer::RenderPatchBase (CPatch *patch)
+bool CRenderer::IsTextureTransparent(CTexture* texture)
 {
-	CMiniPatch *MPatch, *MPCurrent;
-
-	float StartU, StartV;
-	
-
-	for (int j=0; j<16; j++)
-	{
-		for (int i=0; i<16; i++)
-		{
-			MPatch = &(patch->m_MiniPatches[j][i]);
-
-			if (MPatch->m_LastRenderedFrame == m_FrameCounter)
-				continue;
-
-			glActiveTexture (GL_TEXTURE0);
-			glEnable(GL_TEXTURE_2D);
-
-tex_bind(MPatch->Tex1);
-
-			glTexParameterf (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-			glTexParameterf (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-/////////////////////////////////////
-			glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-
-			glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-			glTexEnvi (GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
-			glTexEnvi (GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-			glTexEnvi (GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
-			glTexEnvi (GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
-
-			glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-			glTexEnvf (GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
-			glTexEnvf (GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-/////////////////////////////////////
-
-			StartU = 0.125f * (float)(i%8);
-			StartV = 0.125f * (float)(j%8);
-
-			float tu[2], tv[2];
-			tu[0] = tu[1] = StartU;
-			tv[0] = StartV+0.125f;
-			tv[1] = StartV;
-
-			MPCurrent = MPatch;
-			glBegin (GL_TRIANGLE_STRIP);
-
-			int start = 0;
-
-			while (MPCurrent)
-			{
-				for (int x=start; x<2; x++)
-				{
-					int v1 = MAP_SIZE + x;
-					int v2 = x;
-
-					glTexCoord2f (tu[0], tv[0]);
-
-					if (g_HillShading)
-						glColor3fv(&MPCurrent->m_pVertices[v1].m_Color.X);
-					else
-						glColor3f (1,1,1);
-
-					glVertex3f (MPCurrent->m_pVertices[v1].m_Position.X,
-								MPCurrent->m_pVertices[v1].m_Position.Y,
-								MPCurrent->m_pVertices[v1].m_Position.Z);
-
-					glTexCoord2f (tu[1], tv[1]);
-
-					if (g_HillShading)
-						glColor3fv(&MPCurrent->m_pVertices[v2].m_Color.X);
-					else
-						glColor3f (1,1,1);
-					
-					glVertex3f (MPCurrent->m_pVertices[v2].m_Position.X,
-								MPCurrent->m_pVertices[v2].m_Position.Y,
-								MPCurrent->m_pVertices[v2].m_Position.Z);
-
-					tu[0]+=0.125f;
-					tu[1]+=0.125f;
-				}
-
-				MPCurrent->m_LastRenderedFrame = m_FrameCounter;
-				MPCurrent->m_RenderStage = RENDER_STAGE_BASE;
-
-				if (!MPCurrent->m_pRightNeighbor)
-					break;
-				else
-				{
-					if (MPCurrent->m_pRightNeighbor->Tex1 != MPCurrent->Tex1 ||
-						MPCurrent->m_pRightNeighbor->m_pParrent->m_LastVisFrame != m_FrameCounter)
-						break;
-				}
-
-				MPCurrent = MPCurrent->m_pRightNeighbor;
-				start = 1;
+	if (texture) {
+		Handle h=texture->GetHandle();
+		if (!h) {
+			LoadTexture(texture);
+			h=texture->GetHandle();
+			if (h!=0xffffffff) {
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
 			}
-
-			glEnd ();
+		} 
+		if (h!=0xffffffff && h) {
+			int fmt;
+			int bpp;
+			
+			tex_info(h, NULL, NULL, &fmt, &bpp, NULL);
+			if (bpp==24 || fmt == GL_COMPRESSED_RGB_S3TC_DXT1_EXT)
+			{
+				return false;
+			}
+			return true;
+		} else {
+			return false;
 		}
+	} else {
+		return false;
 	}
 }
 
-void CRenderer::RenderPatchTrans (CPatch *patch)
+static int RoundUpToPowerOf2(int x)
 {
-	CMiniPatch *MPatch, *MPCurrent;
+	if ((x & (x-1))==0) return x;
+	int d=x;
+	while (d & (d-1)) {
+		d&=(d-1);
+	}
+	return d<<1;
+}
 
-	float StartU, StartV;
+
+inline void CopyTriple(unsigned char* dst,const unsigned char* src)
+{
+	dst[0]=src[0];
+	dst[1]=src[1];
+	dst[2]=src[2];
+}
+
+// LoadAlphaMaps: load the 14 default alpha maps, pack them into one composite texture and 
+// calculate the coordinate of each alphamap within this packed texture .. need to add
+// validation that all maps are the same size
+bool CRenderer::LoadAlphaMaps(const char* fnames[])
+{
+	glActiveTexture(GL_TEXTURE0_ARB);
 	
-	glEnable (GL_BLEND);
-	glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+	Handle textures[NumAlphaMaps];
+	
+	int i;
 
-	for (int j=0; j<16; j++)
-	{
-		for (int i=0; i<16; i++)
-		{
-			MPatch = &(patch->m_MiniPatches[j][i]);
-
-			if (MPatch->m_LastRenderedFrame == m_FrameCounter &&
-				MPatch->m_RenderStage == RENDER_STAGE_TRANS)
-				continue;
-
-			//now for transition
-			if (MPatch->Tex2 && MPatch->m_AlphaMap)
-			{
-
-				glActiveTexture (GL_TEXTURE0);
-				glEnable(GL_TEXTURE_2D);
-
-tex_bind(MPatch->Tex2);
-
-				glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-				glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-/////////////////////////////////////
-				glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-
-				glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-				glTexEnvi (GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
-				glTexEnvi (GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-				glTexEnvi (GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
-				glTexEnvi (GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
-					
-				glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-				glTexEnvi (GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
-				glTexEnvi (GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-/////////////////////////////////////
-				
-
-				glActiveTexture (GL_TEXTURE1);
-				glEnable(GL_TEXTURE_2D);
-tex_bind(MPatch->m_AlphaMap);				
-				glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-				glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-/////////////////////////////////////
-				glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-
-				glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-				glTexEnvi (GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
-				glTexEnvi (GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-				glTexEnvi (GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_TEXTURE);
-				glTexEnvi (GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
-				
-				glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-				glTexEnvi (GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
-				glTexEnvi (GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-/////////////////////////////////////
-
-				StartU = 0.125f * (float)(i%8);
-				StartV = 0.125f * (float)(j%8);
-
-				float tu[2], tv[2];
-				tu[0] = tu[1] = StartU;
-				tv[0] = StartV+0.125f;
-				tv[1] = StartV;
-				
-				glBegin (GL_TRIANGLE_STRIP);
-				MPCurrent = MPatch;
-
-				int start = 0;
-
-				while (MPCurrent)
-				{
-					for (int x=start; x<2; x++)
-					{
-						int v1 = MAP_SIZE + x;
-						int v2 = x;
-
-						glMultiTexCoord2f (GL_TEXTURE0_ARB, tu[0], tv[0]);
-						glMultiTexCoord2f (GL_TEXTURE1_ARB, tu[0]*2, tv[0]*2);
-						
-						if (g_HillShading)
-							glColor3fv(&MPCurrent->m_pVertices[v1].m_Color.X);
-						else
-							glColor3f (1,1,1);
-
-						glVertex3f (MPCurrent->m_pVertices[v1].m_Position.X,
-									MPCurrent->m_pVertices[v1].m_Position.Y,
-									MPCurrent->m_pVertices[v1].m_Position.Z);
-
-						glMultiTexCoord2f (GL_TEXTURE0_ARB, tu[1], tv[1]);
-						glMultiTexCoord2f (GL_TEXTURE1_ARB, tu[1]*2, tv[1]*2);
-						
-						if (g_HillShading)
-							glColor3fv(&MPCurrent->m_pVertices[v1].m_Color.X);
-						else
-							glColor3f (1,1,1);
-						
-						glVertex3f (MPCurrent->m_pVertices[v2].m_Position.X,
-									MPCurrent->m_pVertices[v2].m_Position.Y,
-									MPCurrent->m_pVertices[v2].m_Position.Z);
-
-						tu[0]+=0.125f;
-						tu[1]+=0.125f;
-					}
-
-					MPCurrent->m_LastRenderedFrame = m_FrameCounter;
-					MPCurrent->m_RenderStage = RENDER_STAGE_TRANS;
-
-					if (!MPCurrent->m_pRightNeighbor)
-						break;
-					else
-					{
-						if (MPCurrent->m_pRightNeighbor->Tex2 != MPCurrent->Tex2 ||
-						    MPCurrent->m_pRightNeighbor->m_AlphaMap != MPCurrent->m_AlphaMap ||
-							MPCurrent->m_pRightNeighbor->m_pParrent->m_LastVisFrame != m_FrameCounter)
-							break;
-					}
-
-					MPCurrent = MPCurrent->m_pRightNeighbor;
-					start=1;
-				}
-
-				glEnd ();
-			}
+	for (i=0;i<NumAlphaMaps;i++) {
+		textures[i]=tex_load(fnames[i]);
+		if (textures[i] <= 0) {
+			return false;
 		}
 	}
-	glDisable (GL_BLEND);
-	glActiveTexture (GL_TEXTURE1);
-	glDisable(GL_TEXTURE_2D);
-	glActiveTexture (GL_TEXTURE0);
+
+	int base;//=textures[0].width;
+	
+	i=tex_info(textures[0], &base, NULL, NULL, NULL, NULL);
+	
+	int size=(base+4)*NumAlphaMaps;
+	int texsize=RoundUpToPowerOf2(size);
+	
+	unsigned char* data=new unsigned char[texsize*base*3];
+	
+	// for each tile on row
+	for (i=0;i<NumAlphaMaps;i++) {
+		//TEX& tex=textures[i];
+		int bpp;
+		// get src of copy
+		const unsigned char* src;
+		
+		tex_info(textures[i], NULL, NULL, NULL, &bpp, (void **)&src);
+		
+		int srcstep=bpp/8;
+
+		// get destination of copy
+		unsigned char* dst=data+3*(i*(base+4));
+		
+		// for each row of image
+		for (int j=0;j<base;j++) {
+			// duplicate first pixel
+			CopyTriple(dst,src);
+			dst+=3;
+			CopyTriple(dst,src);
+			dst+=3;
+
+			// copy a row
+			for (int k=0;k<base;k++) {
+				CopyTriple(dst,src);
+				dst+=3;
+				src+=srcstep;
+			}
+			// duplicate last pixel
+			CopyTriple(dst,(src-bpp/8));
+			dst+=3;
+			CopyTriple(dst,(src-bpp/8));
+			dst+=3;
+
+			// advance write pointer for next row
+			dst+=3*(texsize-(base+4));
+		}
+
+		m_AlphaMapCoords[i].u0=float(i*(base+4)+2)/float(texsize);
+		m_AlphaMapCoords[i].u1=float((i+1)*(base+4)-2)/float(texsize);
+		m_AlphaMapCoords[i].v0=0.0f;
+		m_AlphaMapCoords[i].v1=1.0f;
+	}
+
+	glGenTextures(1,&m_CompositeAlphaMap);
+	glBindTexture(GL_TEXTURE_2D,m_CompositeAlphaMap);
+	glTexImage2D(GL_TEXTURE_2D,0,GL_INTENSITY,texsize,base,0,GL_RGB,GL_UNSIGNED_BYTE,data);
+
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
+
+	delete[] data;
+	return true;
 }
+
+void CRenderer::BuildTransparentPasses(CVisual* visual)
+{
+	if (!IsTextureTransparent(visual->m_Model->GetTexture())) {
+		// ok, no transparency on this model .. ignore it here
+		return;
+	}
+
+	// add this visual to the transparency renderer for later processing
+	g_TransparencyRenderer.Add(visual);
+}
+
+

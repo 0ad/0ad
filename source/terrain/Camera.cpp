@@ -26,21 +26,21 @@ CCamera::CCamera ()
 CCamera::~CCamera ()
 {
 }
-
+		
 void CCamera::SetProjection (float nearp, float farp, float fov)
 {
 	float    h, w, Q;
-
+ 
 	m_NearPlane = nearp;
 	m_FarPlane = farp;
 	m_FOV = fov;
-
+	
 	float Aspect = (float)m_ViewPort.m_Width/(float)m_ViewPort.m_Height;
 
     w = 1/tanf (fov*0.5f*Aspect);
 	h = 1/tanf (fov*0.5f);
     Q = m_FarPlane / (m_FarPlane - m_NearPlane);
-
+ 
     m_ProjMat.SetZero ();
 	m_ProjMat._11 = w;
     m_ProjMat._22 = h;
@@ -57,8 +57,8 @@ void CCamera::UpdateFrustum ()
 	CMatrix3D MatFinal;
 	CMatrix3D MatView;
 
-	MatView = m_Orientation.GetTranspose ();
-
+	m_Orientation.Invert(MatView);
+	
 	MatFinal = m_ProjMat * MatView;
 
 	//get the RIGHT plane

@@ -13,6 +13,11 @@
 
 CSHCoeffs::CSHCoeffs()
 {
+	Clear();
+}
+
+void CSHCoeffs::Clear()
+{
 	for (int i=0;i<9;i++) {
 		_data[i].Clear();
 	}
@@ -45,7 +50,7 @@ void CSHCoeffs::AddDirectionalLight(const CVector3D& lightDir,const RGBColor& li
 	_data[8]+=lightColor*c5*(SQR(dirToLight.X)-SQR(dirToLight.Y));
 }
 
-void CSHCoeffs::Evaluate(const CVector3D& normal,RGBColor& color)
+void CSHCoeffs::Evaluate(const CVector3D& normal,RGBColor& color) const
 {
 #if 1
 	color=_data[0];

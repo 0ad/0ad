@@ -10,6 +10,7 @@
 //-----------------------------------------------------------
 
 // necessary includes
+#include <assert.h>
 #include <float.h>
 #include "Bound.h"
 
@@ -138,3 +139,27 @@ void CBound::SetEmpty()
 }
 
 
+void CBound::Transform(const CMatrix3D& m,CBound& result) const
+{
+	assert(this!=&result);
+
+    for (int i=0;i<3;++i) {
+        // handle translation 
+        result[0][i]=result[1][i]=m(3,i);
+		
+        // Now find the extreme points by considering the product of the 
+        // min and max with each component of matrix  
+        for(int j=0;j<3;j++) {
+            float a=m(i,j)*m_Data[0][j];
+            float b=m(i,j)*m_Data[1][j];
+
+            if (a<b) {
+                result[0][i]+=a;
+                result[1][i]+=b;
+            } else {
+                result[0][i]+=b;
+                result[1][i]+=a;
+            }
+        }
+    }
+}

@@ -14,8 +14,12 @@
 
 #include "Texture.h"
 #include "ModelDef.h"
+#include "RenderableObject.h"
 
-class CModel
+
+class CBound;
+
+class CModel 
 {
 	public:
 		CModel();
@@ -26,6 +30,10 @@ class CModel
 
 		void SetPose (const char *anim_name, float time);
 		void ClearPose ();
+
+		void CalcBounds(CBound& bound);
+
+		CRenderData* m_RenderData;
 
 	//access functions
 	public:

@@ -14,182 +14,267 @@
 //
 //***********************************************************
 
-#include "res/res.h"
 
+#include "res/tex.h"
+#include "res/mem.h"
+
+#include <string.h>
 #include "Terrain.h"
-#include "LightEnv.h"
-#include "SHCoeffs.h"
 
-bool g_HillShading = true;
 
-CVector3D			SeasonLight[2];
-float				SeasonColor[2][3];
-
-CTerrain::CTerrain ()
+CTerrain::CTerrain()
 {
-	m_pVertices = NULL;
+	m_Heightmap = NULL;
+	m_Patches = NULL;
+	m_MapSize = 0;
+	m_MapSizePatches = 0;
 }
 
-CTerrain::~CTerrain ()
+CTerrain::~CTerrain()
 {
-	delete [] m_pVertices;
+	Reset();
 }
 
-bool CTerrain::Load(char *filename)
-{
-	Handle ht = tex_load(filename);
-	if(!ht)
-		return false;
-    void* p;
-	tex_info(ht, 0, 0, &p);
 
-	return InitFromHeightmap((const u8*)p);
+void CTerrain::Reset()
+{
+	delete[] m_Heightmap;
+	delete[] m_Patches;
 }
 
-bool CTerrain::InitFromHeightmap(const u8* data)
+
+bool CTerrain::Initialize(u32 size,const u16* data)
 {
-	int j;
+	// clean up any previous terrain
+	Reset();
 
-	delete[] m_pVertices;
+	// store terrain size
+	m_MapSize=(size*PATCH_SIZE)+1;
+	m_MapSizePatches=size;
 
-	m_pVertices = new STerrainVertex[MAP_SIZE*MAP_SIZE];
-	if (m_pVertices == NULL)
-		return false;
+	// allocate data for new terrain
+	m_Heightmap=new u16[m_MapSize*m_MapSize];
+	m_Patches=new CPatch[m_MapSizePatches*m_MapSizePatches];
 
-	for (j=0; j<MAP_SIZE; j++)
-	{
-		for (int i=0; i<MAP_SIZE; i++)
-		{
-			int pos = j*MAP_SIZE + i;
-
-			m_pVertices[pos].m_Position.X = ((float)i)*CELL_SIZE;
-			m_pVertices[pos].m_Position.Y = (*data++)*HEIGHT_SCALE;
-			m_pVertices[pos].m_Position.Z = ((float)j)*CELL_SIZE;
-		}
+	// given a heightmap?
+	if (data) {
+		// yes; keep a copy of it
+		memcpy(m_Heightmap,data,m_MapSize*m_MapSize*sizeof(u16));
+	} else {
+		// build a flat terrain
+		memset(m_Heightmap,0,m_MapSize*m_MapSize*sizeof(u16));
 	}
 
-	for (j=0; j<NUM_PATCHES_PER_SIDE; j++)
-	{
-		for (int i=0; i<NUM_PATCHES_PER_SIDE; i++)
-		{
-			int pos = j*MAP_SIZE*PATCH_SIZE;
-			pos += i*PATCH_SIZE;
-
-			m_Patches[j][i].Initialize ( &(m_pVertices[pos]) );
-		}
-	}
-
-	CalcNormals();
-	SetNeighbors();
+	// setup patch parents, indices etc
+	InitialisePatches();
 
 	return true;
 }
 
-void CTerrain::CalcLighting(const CLightEnv& lightEnv)
+void CTerrain::CalcPosition(u32 i,u32 j,CVector3D& pos)
 {
-	CSHCoeffs coeffs;
-	coeffs.AddAmbientLight(lightEnv.m_TerrainAmbientColor);
-	
-	CVector3D dirlight;
-	lightEnv.GetSunDirection(dirlight);
-	coeffs.AddDirectionalLight(dirlight,lightEnv.m_SunColor);
-
-	for (int k=0;k<MAP_SIZE*MAP_SIZE;++k) {
-		coeffs.Evaluate(m_pVertices[k].m_Normal,m_pVertices[k].m_Color);
-	}
+	u16 height=m_Heightmap[j*m_MapSize + i];
+	pos.X = float(i)*CELL_SIZE;
+	pos.Y = float(height)*HEIGHT_SCALE;
+	pos.Z = float(j)*CELL_SIZE;
 }
 
-void CTerrain::CalcNormals()
-{		
-	CVector3D left, right, up, down, n[4];
+
+void CTerrain::CalcNormal(u32 i,u32 j,CVector3D& normal)
+{
+	CVector3D left, right, up, down;
 	
-	for (int j=0; j<MAP_SIZE; j++)
-	{
-		for (int i=0; i<MAP_SIZE; i++)
-		{
-			left.Clear();
-			right.Clear();
-			up.Clear();
-			down.Clear();
-			
-			if (i>0)
-				left = m_pVertices[j*MAP_SIZE + i - 1].m_Position - 
-					   m_pVertices[j*MAP_SIZE + i].m_Position;
+	left.Clear();
+	right.Clear();
+	up.Clear();
+	down.Clear();
+	
+	// get position of vertex where normal is being evaluated
+	CVector3D basepos;
+	CalcPosition(i,j,basepos);
 
-			if (i<MAP_SIZE-1)
-				right = m_pVertices[j*MAP_SIZE + i + 1].m_Position - 
-					    m_pVertices[j*MAP_SIZE + i].m_Position;
+	CVector3D tmp;
+	if (i>0) {
+		CalcPosition(i-1,j,tmp);
+		left=tmp-basepos;
+	}
 
-			if (j>0)
-				up = m_pVertices[(j-1)*MAP_SIZE + i].m_Position - 
-				     m_pVertices[j*MAP_SIZE + i].m_Position;
+	if (i<m_MapSize-1) {
+		CalcPosition(i+1,j,tmp);
+		right=tmp-basepos;
+	}
 
-			if (j<MAP_SIZE-1)
-				down = m_pVertices[(j+1)*MAP_SIZE + i].m_Position - 
-					   m_pVertices[j*MAP_SIZE + i].m_Position;
+	if (j>0) {
+		CalcPosition(i,j-1,tmp);
+		up=tmp-basepos;
+	}
 
-			n[0] = up.Cross(left);
-			n[1] = left.Cross(down);
-			n[2] = down.Cross(right);
-			n[3] = right.Cross(up);
+	if (j<m_MapSize-1) {
+		CalcPosition(i,j+1,tmp);
+		down=tmp-basepos;
+	}
 
-			float n0len=n[0].GetLength();
-			if (n0len>0.0001f) n[0]*=1.0f/n0len;
+	CVector3D n0 = up.Cross(left);
+	CVector3D n1 = left.Cross(down);
+	CVector3D n2 = down.Cross(right);
+	CVector3D n3 = right.Cross(up);	
 
-			float n1len=n[1].GetLength();
-			if (n1len>0.0001f) n[1]*=1.0f/n1len;
+	normal = n0 + n1 + n2 + n3;
+	float nlen=normal.GetLength();
+	if (nlen>0.00001f) normal*=1.0f/nlen;
+}
 
-			float n2len=n[2].GetLength();
-			if (n2len>0.0001f) n[2]*=1.0f/n2len;
 
-			float n3len=n[3].GetLength();
-			if (n3len>0.0001f) n[3]*=1.0f/n3len;
+CPatch* CTerrain::GetPatch(int32 x,int32 z)
+{
+	if (x<0 || x>=int32(m_MapSizePatches)) return 0;	
+	if (z<0 || z>=int32(m_MapSizePatches)) return 0;
+	return &m_Patches[(z*m_MapSizePatches)+x]; 
+}
 
-			CVector3D Normal = n[0] + n[1] + n[2] + n[3];
-			float nlen=Normal.GetLength();
-			if (nlen>0.00001f) Normal*=1.0f/nlen;
-			
-			m_pVertices[j*MAP_SIZE + i].m_Normal=Normal;
+CMiniPatch* CTerrain::GetTile(int32 x,int32 z)
+{
+	if (x<0 || x>=int32(m_MapSize)-1) return 0;	
+	if (z<0 || z>=int32(m_MapSize)-1) return 0;
+
+	CPatch* patch=GetPatch(x/16,z/16);
+	return &patch->m_MiniPatches[z%16][x%16];
+}
+
+
+void CTerrain::Resize(u32 size)
+{
+	if (size==m_MapSizePatches) {
+		// inexplicable request to resize terrain to the same size .. ignore it
+		return;
+	}
+
+	if (!m_Heightmap) {
+		// not yet created a terrain; build a default terrain of the given size now
+		Initialize(size,0);
+		return;
+	}
+
+	// allocate data for new terrain
+	u32 newMapSize=(size*PATCH_SIZE)+1;
+	u16* newHeightmap=new u16[newMapSize*newMapSize];
+	CPatch* newPatches=new CPatch[size*size];
+
+	if (size>m_MapSizePatches) {
+		// new map is bigger than old one - zero the heightmap so we don't get uninitialised
+		// height data along the expanded edges
+		memset(newHeightmap,0,newMapSize*newMapSize);
+	}
+
+	// now copy over rows of data
+	u32 j;
+  	u16* src=m_Heightmap;
+	u16* dst=newHeightmap;
+	u32 copysize=newMapSize>m_MapSize ? m_MapSize : newMapSize;
+	for (j=0;j<copysize;j++) {
+		memcpy(dst,src,copysize*sizeof(u16));
+		dst+=copysize;
+		src+=m_MapSize;
+		if (newMapSize>m_MapSize) {
+			// entend the last height to the end of the row
+			for (u32 i=0;i<newMapSize-m_MapSize;i++) {
+				*dst++=*(src-1);
+			}
+		}		
+	}
+
+
+	if (newMapSize>m_MapSize) {
+		// copy over heights of the last row to any remaining rows
+		src=newHeightmap+((m_MapSize-1)*newMapSize);
+		dst=src+newMapSize;
+		for (u32 i=0;i<newMapSize-m_MapSize;i++) {
+			memcpy(dst,src,newMapSize*sizeof(u16));
+			dst+=newMapSize;
 		}
 	}
-}
 
-void CTerrain::SetNeighbors ()
-{
-	CPatch *ThisPatch, *RightPatch;
+	// now build new patches
+	for (j=0;j<size;j++) {
+		for (u32 i=0;i<size;i++) {
+			// copy over texture data from existing tiles, if possible
+			if (i<m_MapSizePatches && j<m_MapSizePatches) {
+				memcpy(newPatches[j*size+i].m_MiniPatches,m_Patches[j*m_MapSizePatches+i].m_MiniPatches,sizeof(CMiniPatch)*16*16);
+			} 
+		}
 
-	for (int pj=0; pj<NUM_PATCHES_PER_SIDE; pj++)
-	{
-		for (int pi=0; pi<NUM_PATCHES_PER_SIDE; pi++)
-		{
-			ThisPatch = &m_Patches[pj][pi];
-			
-			if (pi < NUM_PATCHES_PER_SIDE-1)
-				RightPatch = &m_Patches[pj][pi+1]; 
-			else
-				RightPatch = NULL;
-
-
-			for (int tj=0; tj<16; tj++)
-			{
-				for (int ti=0; ti<16; ti++)
-				{
-					CMiniPatch *MPatch = &ThisPatch->m_MiniPatches[tj][ti];
-
-					MPatch->m_pParrent = ThisPatch;
-
-					if (ti < 15)
-						MPatch->m_pRightNeighbor = &ThisPatch->m_MiniPatches[tj][ti+1];
-					else
-					{
-						if (RightPatch)
-							MPatch->m_pRightNeighbor = &RightPatch->m_MiniPatches[tj][0];
-						else
-							MPatch->m_pRightNeighbor = NULL;
+		if (j<m_MapSizePatches && size>m_MapSizePatches) {
+			// copy over the last tile from each column
+			for (u32 n=0;n<size-m_MapSizePatches;n++) {
+				for (int m=0;m<16;m++) {
+					CMiniPatch& src=m_Patches[j*m_MapSizePatches+m_MapSizePatches-1].m_MiniPatches[m][15];
+					for (int k=0;k<16;k++) {
+						CMiniPatch& dst=newPatches[j*size+m_MapSizePatches+n].m_MiniPatches[m][k];
+						dst.Tex1=src.Tex1;
+						dst.Tex1Priority=src.Tex1Priority;
 					}
 				}
 			}
 		}
 	}
+	
+	if (size>m_MapSizePatches) {
+		// copy over the last tile from each column
+		CPatch* srcpatch=&newPatches[(m_MapSizePatches-1)*size];
+		CPatch* dstpatch=srcpatch+size;
+		for (u32 p=0;p<size-m_MapSizePatches;p++) {
+			for (u32 n=0;n<size;n++) {
+				for (int m=0;m<16;m++) {
+					for (int k=0;k<16;k++) {
+						CMiniPatch& src=srcpatch->m_MiniPatches[15][k];
+						CMiniPatch& dst=dstpatch->m_MiniPatches[m][k];
+						dst.Tex1=src.Tex1;
+						dst.Tex1Priority=src.Tex1Priority;
+					}
+				}
+				srcpatch++;
+				dstpatch++;
+			}
+		}
+	}
 
+
+	// release all the original data
+	Reset();
+
+	// store new data
+	m_Heightmap=newHeightmap;
+	m_Patches=newPatches;
+	m_MapSize=newMapSize;
+	m_MapSizePatches=size;
+
+	// initialise all the new patches
+	InitialisePatches();
+}
+
+void CTerrain::InitialisePatches()
+{
+	for (u32 j=0;j<m_MapSizePatches;j++) {
+		for (u32 i=0;i<m_MapSizePatches;i++) {
+			CPatch* patch=GetPatch(i,j);
+			patch->Initialize(this,i,j);
+		}
+	}
+}
+
+// SetHeightMap: set up a new heightmap from 16-bit source data; 
+// assumes heightmap matches current terrain size
+void CTerrain::SetHeightMap(u16* heightmap)
+{
+	// keep a copy of the given heightmap
+	memcpy(m_Heightmap,heightmap,m_MapSize*m_MapSize*sizeof(u16));
+
+	// recalculate patch bounds, invalidate vertices
+	for (u32 j=0;j<m_MapSizePatches;j++) {
+		for (u32 i=0;i<m_MapSizePatches;i++) {
+			CPatch* patch=GetPatch(i,j);
+			patch->CalcBounds();
+			if (patch->m_RenderData) patch->m_RenderData->m_UpdateFlags|=RENDERDATA_UPDATE_VERTICES;
+		}
+	}
 }

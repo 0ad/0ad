@@ -19,10 +19,12 @@ class CSHCoeffs
 public:
 	CSHCoeffs();
 
+	void Clear();
+
 	void AddAmbientLight(const RGBColor& color);
 	void AddDirectionalLight(const CVector3D& lightDir,const RGBColor& lightColor);
 
-	void Evaluate(const CVector3D& normal,RGBColor& color);
+	void Evaluate(const CVector3D& normal,RGBColor& color) const;
 
 	const RGBColor* GetCoefficients() const { return _data; }
 

@@ -12,12 +12,13 @@
 #ifndef MATHUTIL_H
 #define MATHUTIL_H
 
+#ifndef PI
 #define PI							3.14159265358979323846f
+#endif
 
 #define DEGTORAD(a)					((a) * (PI/180.0f))
 #define RADTODEG(a)					((a) * (180.0f/PI))
 #define SQR(x)						((x) * (x))
-
 #define MAX3(a,b,c)					( MAX (MAX(a,b), c) )
 #define ABS(a)						((a > 0) ? (a) : (-a))
 

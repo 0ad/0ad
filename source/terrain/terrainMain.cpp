@@ -1,14 +1,16 @@
 #include "Matrix3D.h"
 #include "Renderer.h"
 #include "Terrain.h"
-#include "Camera.h"
 #include "LightEnv.h"
+#include "TextureManager.h"
 #include "Prometheus.h"
 
-#include "detect.h"
 #include "time.h"
 #include "sdl.h"
-#include "res/res.h"
+#include "res/tex.h"
+#include "detect.h"
+
+#include <malloc.h>
 
 // TODO: fix scrolling hack - framerate independent, use SDL
 //#include "win.h"	// REMOVEME
@@ -37,14 +39,7 @@ double				g_LastTime;
 
 const int NUM_ALPHA_MAPS = 13;
 
-//CTexture			g_BaseTexture[5];
-Handle BaseTexs[5];
-
-Handle AlphaMaps[NUM_ALPHA_MAPS];
-//CTexture			g_TransitionTexture[NUM_ALPHA_MAPS];
-
 int mouse_x=50, mouse_y=50;
-
 
 void terr_init()
 {
@@ -69,10 +64,10 @@ void terr_update()
 	g_Renderer.BeginFrame();
 	g_Renderer.SetCamera(g_Camera);
 
-	/////////////////////////////////////////////
-		/*POINT MousePos;
+	// switch on wireframe for terrain if we want it
+	g_Renderer.SetTerrainRenderMode(SOLID);
 
-		GetCursorPos (&MousePos);*/
+	/////////////////////////////////////////////
 		CVector3D right(1,0,1);
 		CVector3D up(1,0,-1);
 		right.Normalize ();
@@ -106,22 +101,21 @@ void terr_update()
 	CFrustum frustum=g_Camera.GetFustum();
 
 	// iterate through patches; cull everything not visible
-	for (int j=0; j<NUM_PATCHES_PER_SIDE; j++)
+	for (uint j=0; j<g_Terrain.GetPatchesPerSide(); j++)
 	{
-		for (int i=0; i<NUM_PATCHES_PER_SIDE; i++)
+		for (uint i=0; i<g_Terrain.GetPatchesPerSide(); i++)
 		{
-			if (frustum.IsBoxVisible (CVector3D(0,0,0),g_Terrain.m_Patches[j][i].m_Bounds)) {
-				g_Renderer.Submit(&g_Terrain.m_Patches[j][i]);
+			if (frustum.IsBoxVisible (CVector3D(0,0,0),g_Terrain.GetPatch(j, i)->GetBounds())) {
+				g_Renderer.Submit(g_Terrain.GetPatch(j, i));
 			}
 		}
 	}
 
 	// flush the frame to force terrain to be renderered before overlays
 	g_Renderer.FlushFrame();
-
+	
 		//	g_Renderer.RenderTileOutline (&(g_Terrain.m_Patches[SelPY][SelPX].m_MiniPatches[SelTY][SelTX]));
 
-	// mark end of frame
 	g_Renderer.EndFrame();
 }
 
@@ -142,11 +136,11 @@ bool terr_handler(const SDL_Event& ev)
 	case SDL_KEYDOWN:
 		switch(ev.key.keysym.sym)
 		{
-		case 'W': 
-			if (g_Renderer.GetTerrainMode()==CRenderer::WIREFRAME) {
-				g_Renderer.SetTerrainMode(CRenderer::FILL);
+		case 'W':
+			if (g_Renderer.GetTerrainRenderMode()==WIREFRAME) {
+				g_Renderer.SetTerrainRenderMode(SOLID);
 			} else {
-				g_Renderer.SetTerrainMode(CRenderer::WIREFRAME);
+				g_Renderer.SetTerrainRenderMode(WIREFRAME);
 			}
 			break;
 
@@ -158,14 +152,14 @@ bool terr_handler(const SDL_Event& ev)
 			g_Camera.m_Orientation.Translate (100, 150, -100);
 			break;
 
-		case 'L':
+/*		case 'L':
 			g_HillShading = !g_HillShading;
-			break;
+			break;*/
 
 // tile selection
 		case SDLK_DOWN:
 			if(++SelTX > 15)
-				if(SelPX == NUM_PATCHES_PER_SIDE-1)
+				if(SelPX == g_Terrain.GetPatchesPerSide()-1)
 					SelTX = 15;
 				else
 					SelTX = 0, SelPX++;
@@ -180,7 +174,7 @@ bool terr_handler(const SDL_Event& ev)
 			break;
 		case SDLK_RIGHT:
 			if(++SelTY > 15)
-				if(SelPY == NUM_PATCHES_PER_SIDE-1)
+				if(SelPY == g_Terrain.GetPatchesPerSide()-1)
 					SelTY = 15;
 				else
 					SelTY = 0, SelPY++;
@@ -197,8 +191,8 @@ bool terr_handler(const SDL_Event& ev)
 
 		case SDLK_KP0:
 				{
-					CMiniPatch *MPatch = &g_Terrain.m_Patches[SelPY][SelPX].m_MiniPatches[SelTY][SelTX];
-					if (!MPatch->Tex2)
+					CMiniPatch *MPatch = &g_Terrain.GetPatch(SelPY, SelPX)->m_MiniPatches[SelTY][SelTX];
+					/*if (!MPatch->Tex2)
 					{
 						MPatch->m_AlphaMap = AlphaMaps[g_TransTexCounter];
 						MPatch->Tex2 = BaseTexs[g_SecTexCounter];
@@ -207,13 +201,13 @@ bool terr_handler(const SDL_Event& ev)
 					{
 						MPatch->Tex2 = 0;
 						MPatch->m_AlphaMap = 0;
-					}
+					}*/
 					break;
 				}
 
-		case SDLK_KP1:
+		/*case SDLK_KP1:
 				{
-					CMiniPatch *MPatch = &g_Terrain.m_Patches[SelPY][SelPX].m_MiniPatches[SelTY][SelTX];
+					CMiniPatch *MPatch = &g_Terrain.GetPatch(SelPY, SelPX)->m_MiniPatches[SelTY][SelTX];
 
 					g_BaseTexCounter++;
 					if (g_BaseTexCounter > 4)
@@ -243,7 +237,7 @@ bool terr_handler(const SDL_Event& ev)
 				{
 					CMiniPatch *MPatch = &g_Terrain.m_Patches[SelPY][SelPX].m_MiniPatches[SelTY][SelTX];
 					
-					if (MPatch->/*m_pTransitionTexture*/m_AlphaMap)
+					if (MPatch->m_AlphaMap)
 					{
 						g_TransTexCounter++;
 						if (g_TransTexCounter >= NUM_ALPHA_MAPS)
@@ -253,7 +247,7 @@ bool terr_handler(const SDL_Event& ev)
 					}
 
 					break;
-				}
+				}*/
 
 		}
 	}
@@ -267,31 +261,60 @@ bool terr_handler(const SDL_Event& ev)
 void InitScene ()
 {
 	// setup default lighting environment
-	g_LightEnv.m_SunColor=RGBColor(0.75f,0.70f,0.65f);
-	g_LightEnv.m_Rotation=270;
-	g_LightEnv.m_Elevation=DEGTORAD(30);
-	g_LightEnv.m_TerrainAmbientColor=RGBColor(0.0f,0.0f,0.0f);
+	g_LightEnv.m_SunColor=RGBColor(1,1,1);
+	g_LightEnv.m_Rotation=DEGTORAD(270);
+	g_LightEnv.m_Elevation=DEGTORAD(45);
+	g_LightEnv.m_TerrainAmbientColor=RGBColor(0,0,0);
+	g_LightEnv.m_UnitsAmbientColor=RGBColor(0.4f,0.4f,0.4f);
+	g_Renderer.SetLightEnv(&g_LightEnv);
 
-	g_Terrain.Load("terrain.raw");
-
-	for (int pj=0; pj<NUM_PATCHES_PER_SIDE; pj++)
+	// load terrain
+	Handle ht = tex_load("terrain.raw");
+	if(ht > 0)
 	{
-		for (int pi=0; pi<NUM_PATCHES_PER_SIDE; pi++)
-		{
-			for (int tj=0; tj<16; tj++)
-			{
-				for (int ti=0; ti<16; ti++)
-				{
-					g_Terrain.m_Patches[pj][pi].m_MiniPatches[tj][ti].Tex1 = BaseTexs[0];//rand()%5];
-					g_Terrain.m_Patches[pj][pi].m_MiniPatches[tj][ti].Tex2 = NULL;//&g_BaseTexture[rand()%5];
-					g_Terrain.m_Patches[pj][pi].m_MiniPatches[tj][ti].m_AlphaMap = 0;//&g_TransitionTexture[rand()%5];
+		const u8* p;
+		int w;
+		int h;
+
+		tex_info(ht, &w, &h, NULL, NULL, (void **)&p);
+
+		printf("terrain.raw: %dx%d\n", w, h);
+
+		u16 *p16=new u16[w*h];
+		u16 *p16p=p16;
+		while (p16p < p16+(w*h))
+			*p16p++ = (*p++) << 8;
+
+		g_Terrain.Resize(20);
+		g_Terrain.SetHeightMap(p16);
+
+		delete[] p16;
+		
+		tex_free(ht);
+	}
+
+	// get default texture to apply to terrain
+	CTextureEntry* texture=0;
+	if (g_TexMan.m_TerrainTextures.size()>0) {
+		if (g_TexMan.m_TerrainTextures[0].m_Textures.size()) {
+			texture=g_TexMan.m_TerrainTextures[0].m_Textures[0];
+		}
+	}
+
+	// cover entire terrain with default texture
+	u32 patchesPerSide=g_Terrain.GetPatchesPerSide();
+	for (uint pj=0; pj<patchesPerSide; pj++) {
+		for (uint pi=0; pi<patchesPerSide; pi++) {
+			
+			CPatch* patch=g_Terrain.GetPatch(pi,pj);
+			
+			for (int j=0;j<16;j++) {
+				for (int i=0;i<16;i++) {
+					patch->m_MiniPatches[j][i].Tex1=texture ? texture->m_Handle :0;
 				}
 			}
 		}
 	}
-
-	// calculate terrain lighting
-	g_Terrain.CalcLighting(g_LightEnv);
 
 	g_Camera.SetProjection (1, 1000, DEGTORAD(20));
 	g_Camera.m_Orientation.SetXRotation(DEGTORAD(30));
@@ -304,75 +327,29 @@ void InitScene ()
 
 void InitResources()
 {
-	int i;
-	char* base_fns[] =
-	{
-	"Base1.bmp",
-	"Base2.bmp",
-	"Base3.bmp",
-	"Base4.bmp",
-	"Base5.bmp"
-	};
-
-	for(i = 0; i < 5; i++)
-	{
-		BaseTexs[i] = tex_load(base_fns[i]);
-		tex_upload(BaseTexs[i], GL_LINEAR_MIPMAP_LINEAR);
-	}
-
-
-int cnt;
-#if 1
-
-	char* fns[NUM_ALPHA_MAPS] = {
-"blendcircle.raw",
-"blendcorner.raw",
-"blendedge.raw",
-"blendedgecorner.raw",
-"blendedgetwocorners.raw",
-"blendfourcorners.raw",
-"blendlshape.raw",
-"blendlshapecorner.raw",
-"blendthreecorners.raw",
-"blendtwocorners.raw",
-"blendtwoedges.raw",
-"blendtwooppositecorners.raw",
-"blendushape.raw"
-	};
-
-/*
-//for(i = 0; i < NUM_ALPHA_MAPS;i++)
-i=5;
-{
-FILE* f = fopen(fns[i],"rb");
-u8 buf[5000],buf2[5000];
-fread(buf,5000,1,f);
-fclose(f);
-for(int j = 0; j < 1024; j++)
-buf2[2*j] = buf2[2*j+1] = buf[j];
-f=fopen(fns[i],"wb");
-fwrite(buf2,2048,1,f);
-fclose(f);
-}
-/**/
-cnt=13;
+#ifndef _WIN32
+	g_TexMan.AddTextureType("grass");
+	g_TexMan.AddTexture("Base1.tga", 0);
 #else
-
-	char* fns[NUM_ALPHA_MAPS] = {
-"Transition1.bmp",
-"Transition2.bmp",
-"Transition3.bmp",
-"Transition4.bmp",
-"Transition5.bmp",
-	};
-cnt=5;
+	g_TexMan.LoadTerrainTextures();
 #endif
 
-for(i = 0; i < cnt; i++)
-{
-    AlphaMaps[i] = tex_load(fns[i]);
-	tex_upload(AlphaMaps[i], GL_LINEAR, GL_INTENSITY4);
-}
+	const char* fns[CRenderer::NumAlphaMaps] = {
+		"art/textures/terrain/alphamaps/special/blendcircle.png",
+		"art/textures/terrain/alphamaps/special/blendlshape.png",
+		"art/textures/terrain/alphamaps/special/blendedge.png",
+		"art/textures/terrain/alphamaps/special/blendedgecorner.png",
+		"art/textures/terrain/alphamaps/special/blendedgetwocorners.png",
+		"art/textures/terrain/alphamaps/special/blendfourcorners.png",
+		"art/textures/terrain/alphamaps/special/blendtwooppositecorners.png",
+		"art/textures/terrain/alphamaps/special/blendlshapecorner.png",
+		"art/textures/terrain/alphamaps/special/blendtwocorners.png",
+		"art/textures/terrain/alphamaps/special/blendcorner.png",
+		"art/textures/terrain/alphamaps/special/blendtwoedges.png",
+		"art/textures/terrain/alphamaps/special/blendthreecorners.png",
+		"art/textures/terrain/alphamaps/special/blendushape.png",
+		"art/textures/terrain/alphamaps/special/blendbad.png"
+	};
 
+	assert(g_Renderer.LoadAlphaMaps(fns));
 }
-

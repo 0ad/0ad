@@ -2,35 +2,27 @@
 #define MINIPATCH_H
 
 #include "res/res.h"
-#include "Color.h"
-#include "Vector3D.h"
 
-struct STerrainVertex
-{
-	CVector3D m_Position;
-	CVector3D m_Normal;
-	RGBColor m_Color;
-};
-
+class CPatch;
 
 class CMiniPatch
 {
-	public:
-		CMiniPatch();
-		~CMiniPatch();
+public:
+	CMiniPatch();
+	~CMiniPatch();
 
-		void Initialize (STerrainVertex *first_vertex);
+	// get the index of this tile in the root terrain object; x,y in [0,MapSize)
+	void GetTileIndex(u32& x,u32& z);
+
+	Handle Tex1;
+	int Tex1Priority;
+
+//	Handle Tex2;
+//	Handle m_AlphaMap;
+//	unsigned int m_AlphaMapFlags;
 		
-Handle Tex1, Tex2;
-Handle m_AlphaMap;
-		CMiniPatch		*m_pRightNeighbor;
-		CPatch			*m_pParrent;
-		unsigned char	m_RenderStage;
-		unsigned int	m_LastRenderedFrame;
-
-		unsigned char	m_Rotation;
-
-		STerrainVertex	*m_pVertices;
+	CPatch	*m_Parent;
+//		STerrainVertex	*m_pVertices;
 };
 
 

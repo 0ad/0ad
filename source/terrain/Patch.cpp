@@ -11,40 +11,51 @@
 //***********************************************************
 
 #include "Patch.h"
+#include "Terrain.h"
 
 
-CPatch::CPatch ()
+CPatch::CPatch()
 {
-	m_pVertices = NULL;
+	m_Parent = NULL;
 }
 
-CPatch::~CPatch ()
+CPatch::~CPatch()
 {
 }
 
-//Initialize the patch
-void CPatch::Initialize (STerrainVertex *first_vertex)
+void CPatch::Initialize(CTerrain* parent,u32 x,u32 z)
 {
-	int j;
+	delete m_RenderData;
+	m_RenderData;
 
-	m_pVertices = first_vertex;
+	m_Parent=parent;
+	m_X=x;
+	m_Z=z;
 
-	m_Bounds.SetEmpty();
+	u32 mapSize=m_Parent->GetVerticesPerSide();
 
-	for (j=0; j<PATCH_SIZE+1; j++)
-	{
-		for (int i=0; i<PATCH_SIZE+1; i++)
-		{
-			m_Bounds+=m_pVertices[j*MAP_SIZE + i].m_Position;
+	for (int j=0; j<16; j++) {
+		for (int i=0; i<16; i++) {
+			m_MiniPatches[j][i].m_Parent=this;
 		}
 	}
 
-	for (j=0; j<16; j++)
+	CalcBounds();
+}
+
+void CPatch::CalcBounds()
+{
+	u32 mapSize=m_Parent->GetVerticesPerSide();
+
+	m_Bounds.SetEmpty();
+
+	for (int j=0; j<PATCH_SIZE+1; j++)
 	{
-		for (int i=0; i<16; i++)
+		for (int i=0; i<PATCH_SIZE+1; i++)
 		{
-			int pos = (j*MAP_SIZE) + (i);
-			m_MiniPatches[j][i].Initialize ( &m_pVertices[pos] );
+			CVector3D pos;
+			m_Parent->CalcPosition(m_X*PATCH_SIZE+i,m_Z*PATCH_SIZE+j,pos);
+			m_Bounds+=pos;
 		}
 	}
 }

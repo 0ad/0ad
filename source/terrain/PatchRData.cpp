@@ -106,7 +106,7 @@ void CPatchRData::BuildBlends()
 				}
 			}
 			if (neighbourTextures.size()>0) {
-				u32 count=neighbourTextures.size();
+				size_t count=neighbourTextures.size();
 				// sort textures from lowest to highest priority
 				std::sort(neighbourTextures.begin(),neighbourTextures.end());
 
@@ -175,7 +175,7 @@ void CPatchRData::BuildBlends()
 						int vsize=PATCH_SIZE+1;
 
 						SBlendVertex dst;
-						int vindex=m_BlendVertices.size();
+						size_t vindex=m_BlendVertices.size();
 
 						const SBaseVertex& vtx0=m_Vertices[(j*vsize)+i];
 						dst.m_UVs[0]=i*0.125f;

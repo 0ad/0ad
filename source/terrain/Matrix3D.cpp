@@ -277,36 +277,27 @@ void CMatrix3D::Scale (float x_scale, float y_scale, float z_scale)
 
 //Returns the transpose of the matrix. For orthonormal
 //matrices, this is the same is the inverse matrix
-CMatrix3D CMatrix3D::GetTranspose() const
+void CMatrix3D::GetTranspose(CMatrix3D& result) const
 {
-	CMatrix3D Temp;
+	result._11 = _11;
+	result._21 = _12;
+	result._31 = _13;
+	result._41 = _14;
 
-	Temp._11 = _11;
-	Temp._21 = _12;
-	Temp._31 = _13;
-	Temp._41 = 0.0f;
+	result._12 = _21;
+	result._22 = _22;
+	result._32 = _23;
+	result._42 = _24;
 
-	Temp._12 = _21;
-	Temp._22 = _22;
-	Temp._32 = _23;
-	Temp._42 = 0.0f;
+	result._13 = _31;
+	result._23 = _32;
+	result._33 = _33;
+	result._43 = _34;
 
-	Temp._13 = _31;
-	Temp._23 = _32;
-	Temp._33 = _33;
-	Temp._43 = 0.0f;
-
-	Temp._14 = 0.0f;
-	Temp._24 = 0.0f;
-	Temp._34 = 0.0f;
-	Temp._44 = 1.0f;
-
-	CMatrix3D Trans;
-	Trans.SetTranslation (-_14, -_24, -_34);
-
-	Temp = Temp * Trans;
-
-	return Temp;
+	result._14 = _41;
+	result._24 = _42;
+	result._34 = _43;
+	result._44 = _44;
 }
 
 //Get a vector which points to the left of the matrix

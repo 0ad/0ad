@@ -99,7 +99,7 @@ class CModelDef
 		int						GetNumAnimationFrames() { return m_NumAnimationFrames; }
 		int						GetNumAnimations() { return m_NumAnimations; }
 
-	protected:
+	public:
 		SModelVertex			*m_pVertices;
 		SModelFace				*m_pFaces;
 		SModelBone				*m_pBones;
