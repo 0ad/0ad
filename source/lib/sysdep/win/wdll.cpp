@@ -384,7 +384,9 @@ extern "C" FARPROC WINAPI __delayLoadHelper2(PCImgDelayDescr pidd, FARPROC* ppfn
         if (hmodT != hmod) {
             // add lib to unload list if we have unload data
             if (pidd->rvaUnloadIAT) {
+#include "nommgr.h"
                 new ULI(pidd);
+#include "mmgr.h"
                 }
             }
         else {
