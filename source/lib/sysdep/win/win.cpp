@@ -38,6 +38,26 @@ void sle(int x)
 	SetLastError((DWORD)x);
 }
 
+
+//
+// safe allocator that may be used independently of libc malloc
+// (in particular, before _cinit and while calling static dtors).
+// used by wpthread critical section code.
+//
+
+void* win_alloc(size_t size)
+{
+	const DWORD flags = HEAP_ZERO_MEMORY;
+	return HeapAlloc(GetProcessHeap(), flags, size);
+}
+
+void win_free(void* p)
+{
+	const DWORD flags = 0;
+	HeapFree(GetProcessHeap(), flags, p);
+}
+
+
 char win_sys_dir[MAX_PATH+1];
 char win_exe_dir[MAX_PATH+1];
 

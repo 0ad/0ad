@@ -158,7 +158,7 @@ void pthread_join(pthread_t thread, void** value_ptr)
 
 pthread_mutex_t pthread_mutex_initializer()
 {
-	CRITICAL_SECTION* cs = (CRITICAL_SECTION*)HeapAlloc(GetProcessHeap(), 0, sizeof(CRITICAL_SECTION));
+	CRITICAL_SECTION* cs = (CRITICAL_SECTION*)win_alloc(sizeof(CRITICAL_SECTION));
 	InitializeCriticalSection(cs);
 	return (pthread_mutex_t)cs;
 }
@@ -167,7 +167,7 @@ int pthread_mutex_destroy(pthread_mutex_t* m)
 {
 	CRITICAL_SECTION* cs = (CRITICAL_SECTION*)(*m);
 	DeleteCriticalSection(cs);
-	HeapFree(GetProcessHeap(), 0, cs);
+	win_free(cs);
 	return 0;
 }
 

@@ -404,6 +404,11 @@ extern void win_lock(uint idx);
 extern void win_unlock(uint idx);
 
 
+
+extern void* win_alloc(size_t size);
+extern void win_free(void* p);
+
+
 // thread safe, useable in constructors
 #define WIN_ONCE(code) \
 { \
