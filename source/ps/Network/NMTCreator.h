@@ -1,4 +1,5 @@
 #include "Serialization.h"
+#include <vector>
 
 // If included from within the NMT Creation process, perform a pass
 #ifdef CREATING_NMT
@@ -10,12 +11,18 @@
 #undef START_NMT_CLASS
 #undef NMT_FIELD_INT
 #undef NMT_FIELD
+#undef NMT_START_ARRAY
+#undef NMT_END_ARRAY
 #undef END_NMT_CLASS
 
 #else
 // If not within the creation process, and called with argument, perform the
 // creation process with the header specified
 #ifdef NMT_CREATE_HEADER_NAME
+
+#ifndef ARRAY_STRUCT_PREFIX
+#define ARRAY_STRUCT_PREFIX S_
+#endif
 
 #define CREATING_NMT
 
@@ -29,7 +36,7 @@
  * Start the definition of a network message type.
  *
  * @param _nm The name of the class
- * @param _tp The NetMessageType associated with the class. IT is *not* safe to
+ * @param _tp The NetMessageType associated with the class. It is *not* safe to
  * have several classes with the same value of _tp in the same executable
  */
 #define START_NMT_CLASS(_nm, _tp) \
@@ -38,7 +45,11 @@ struct _nm: public CNetMessage \
 { \
 	_nm(): CNetMessage(_tp) {} \
 	virtual uint GetSerializedLength() const; \
-	virtual void Serialize(u8 *buffer) const;
+	virtual u8 *Serialize(u8 *buffer) const; \
+	virtual const u8 *Deserialize(const u8 *pos, const u8 *end); \
+	virtual CStr GetString() const; \
+	inline operator CStr () const \
+	{ return GetString(); }
 
 /**
  * Add an integer field to the message type.
@@ -64,6 +75,14 @@ struct _nm: public CNetMessage \
 #define NMT_FIELD(_tp, _nm) \
 	_tp _nm;
 
+#define NMT_START_ARRAY(_nm) \
+	struct ARRAY_STRUCT_PREFIX ## _nm; \
+	std::vector <ARRAY_STRUCT_PREFIX ## _nm> _nm; \
+	struct ARRAY_STRUCT_PREFIX ## _nm {
+
+#define NMT_END_ARRAY() \
+	};
+
 #define END_NMT_CLASS() };
 
 #include "NMTCreator.h"
@@ -80,13 +99,24 @@ struct _nm: public CNetMessage \
 #define START_NMT_CLASS(_nm, _tp) \
 uint _nm::GetSerializedLength() const \
 { \
-	uint ret=0;
+	uint ret=0; \
+	const _nm *thiz=this;
+
+#define NMT_START_ARRAY(_nm) \
+	vector <ARRAY_STRUCT_PREFIX##_nm>::const_iterator it=_nm.begin(); \
+	while (it != _nm.end()) \
+	{ \
+		const ARRAY_STRUCT_PREFIX##_nm *thiz=&*it;
+
+#define NMT_END_ARRAY() \
+		++it; \
+	}
 
 #define NMT_FIELD_INT(_nm, _hosttp, _netsz) \
 	ret += _netsz;
 
 #define NMT_FIELD(_tp, _nm) \
-	ret += _nm.GetSerializedLength();
+	ret += thiz->_nm.GetSerializedLength();
 
 #define END_NMT_CLASS() \
 	return ret; \
@@ -104,18 +134,31 @@ uint _nm::GetSerializedLength() const \
 #define END_NMTS()
 
 #define START_NMT_CLASS(_nm, _tp) \
-void _nm::Serialize(u8 *buffer) const \
+u8 *_nm::Serialize(u8 *buffer) const \
 { \
 	/*printf("In " #_nm "::Serialize()\n");*/ \
 	u8 *pos=buffer; \
+	const _nm *thiz=this;
+
+#define NMT_START_ARRAY(_nm) \
+	vector <ARRAY_STRUCT_PREFIX##_nm>::const_iterator it=_nm.begin(); \
+	while (it != _nm.end()) \
+	{ \
+		const ARRAY_STRUCT_PREFIX##_nm *thiz=&*it;
+
+#define NMT_END_ARRAY() \
+		++it; \
+	}
 
 #define NMT_FIELD_INT(_nm, _hosttp, _netsz) \
-	Serialize_int_##_netsz(pos, _nm); \
+	Serialize_int_##_netsz(pos, thiz->_nm); \
 
 #define NMT_FIELD(_tp, _nm) \
-	pos=_nm.Serialize(pos);
+	pos=thiz->_nm.Serialize(pos);
 
-#define END_NMT_CLASS() }
+#define END_NMT_CLASS() \
+	return pos; \
+}
 
 #include "NMTCreator.h"
 
@@ -129,26 +172,40 @@ void _nm::Serialize(u8 *buffer) const \
 #define START_NMTS()
 #define END_NMTS()
 
-#define BAIL_DESERIALIZER STMT( delete ret; return NULL; )
+#define BAIL_DESERIALIZER return NULL
 
 #define START_NMT_CLASS(_nm, _tp) \
 CNetMessage *Deserialize##_nm(const u8 *buffer, uint length) \
 { \
-	/*printf("In Deserialize" #_nm "\n"); */\
 	_nm *ret=new _nm(); \
-	const u8 *pos=buffer; \
-	const u8 *end=buffer+length; \
+	if (ret->Deserialize(buffer, buffer+length)) \
+		return ret; \
+	else \
+	{ delete ret; return NULL; } \
+} \
+const u8 *_nm::Deserialize(const u8 *pos, const u8 *end) \
+{ \
+	_nm *thiz=this; \
+	/*printf("In Deserialize" #_nm "\n"); */
+
+#define NMT_START_ARRAY(_nm) \
+	while (pos < end) \
+	{ \
+		ARRAY_STRUCT_PREFIX##_nm *thiz=&*_nm.insert(_nm.end(), ARRAY_STRUCT_PREFIX##_nm());
+
+#define NMT_END_ARRAY() \
+	}
 
 #define NMT_FIELD_INT(_nm, _hosttp, _netsz) \
-	if (pos+_netsz >= end) BAIL_DESERIALIZER; \
-	Deserialize_int_##_netsz(pos, (ret->_nm)); \
-	/*printf("\t" #_nm " == 0x%x\n", ret->_nm);*/
+	if (pos+_netsz > end) BAIL_DESERIALIZER; \
+	Deserialize_int_##_netsz(pos, thiz->_nm); \
+	/*printf("\t" #_nm " == 0x%x\n", thiz->_nm);*/
 
 #define NMT_FIELD(_tp, _nm) \
-	if ((pos=ret->_nm.Deserialize(pos, end)) == NULL) BAIL_DESERIALIZER;
+	if ((pos=thiz->_nm.Deserialize(pos, end)) == NULL) BAIL_DESERIALIZER;
 
 #define END_NMT_CLASS() \
-	return ret; \
+	return pos; \
 }
 
 #include "NMTCreator.h"
@@ -168,6 +225,10 @@ CNetMessage *Deserialize##_nm(const u8 *buffer, uint length) \
 #define START_NMT_CLASS(_nm, _tp) \
 	{ _tp, Deserialize##_nm },
 
+#define NMT_START_ARRAY(_nm)
+
+#define NMT_END_ARRAY()
+
 #define NMT_FIELD_INT(_nm, _hosttp, _netsz)
 
 #define NMT_FIELD(_tp, _nm)
@@ -177,6 +238,47 @@ CNetMessage *Deserialize##_nm(const u8 *buffer, uint length) \
 #include "NMTCreator.h"
 
 #undef NMT_CREATOR_PASS_REGISTRATION
+
+/*************************************************************************/
+// Pass 6, String Representation
+#define START_NMTS()
+#define END_NMTS()
+
+#define START_NMT_CLASS(_nm, _tp) \
+CStr _nm::GetString() const \
+{ \
+	CStr ret=#_nm _T(" { "); \
+	const _nm *thiz=this;
+
+#define NMT_START_ARRAY(_nm) \
+	ret+=#_nm _T(": { "); \
+	std::vector < ARRAY_STRUCT_PREFIX ## _nm >::const_iterator it=_nm.begin(); \
+	while (it != _nm.end()) \
+	{ \
+		ret+=_T(" { "); \
+		const ARRAY_STRUCT_PREFIX##_nm *thiz=&*it;
+
+#define NMT_END_ARRAY() \
+		++it; \
+		ret=ret.GetSubstring(0, ret.Length()-2)+_T(" }, "); \
+	} \
+	ret=ret.GetSubstring(0, ret.Length()-2)+_T(" }, ");
+
+#define NMT_FIELD_INT(_nm, _hosttp, _netsz) \
+	ret += #_nm _T(": "); \
+	ret += CStr(thiz->_nm); \
+	ret += _T(", ");
+
+#define NMT_FIELD(_tp, _nm) \
+	ret += #_nm _T(": "); \
+	ret += thiz->_nm; \
+	ret += _T(", ");
+
+#define END_NMT_CLASS() \
+	return ret.GetSubstring(0, ret.Length()-2)+_T(" }"); \
+}
+
+#include "NMTCreator.h"
 
 #endif // #ifdef NMT_CREATOR_IMPLEMENT
 
