@@ -699,43 +699,71 @@ int zip_enum(const Handle ha, const FileCB cb, const uintptr_t user)
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+// must be dynamically allocated - need one for every open ZFile,
+// and z_stream is large.
+struct InfCtx
+{
+	z_stream zs;
+
+	void* in_buf;
+		// 0 until inf_inflate called with free_in_buf = true.
+		// mem_free-d after consumed by inf_inflate, or by inf_free.
+		// note: necessary; can't just use next_in-total_in, because
+		// we may inflate in chunks.
+		//
+		// can't have this owned (i.e. allocated) by inf_, because
+		// there can be several IOs in-flight and therefore buffers of
+		// compressed data. we'd need a list if stored here; having the
+		// IOs store them and pass them to us is more convenient.
+
+	bool compressed;
+};
 
 // allocate a new context.
-uintptr_t inf_init_ctx()
+static uintptr_t inf_init_ctx(bool compressed)
 {
 #ifdef NO_ZLIB
 	return 0;
 #else
 	// allocate ZLib stream
-	const size_t size = round_up(sizeof(z_stream), 32);
+	const size_t size = round_up(sizeof(InfCtx), 32);
 		// be nice to allocator
-	z_stream* stream = (z_stream*)calloc(size, 1);
-	if(inflateInit2(stream, -MAX_WBITS) != Z_OK)
+	InfCtx* ctx = (InfCtx*)calloc(size, 1);
+	if(inflateInit2(&ctx->zs, -MAX_WBITS) != Z_OK)
 		// -MAX_WBITS indicates no zlib header present
 		return 0;
 
-	return (uintptr_t)stream;
+	ctx->compressed = compressed;
+
+	return (uintptr_t)ctx;
 #endif
 }
 
 
-// we will later provide data that is to be unzipped into <out>.
-int inf_set_dest(uintptr_t ctx, void* out, size_t out_size)
+// convenience - both inf_inflate and inf_free use this.
+static void free_in_buf(InfCtx* ctx)
+{
+	mem_free(ctx->in_buf);
+	ctx->in_buf = 0;
+}
+
+
+// subsequent calls to inf_inflate will unzip into <out>.
+int inf_set_dest(uintptr_t _ctx, void* out, size_t out_size)
 {
 #ifdef NO_ZLIB
 	return -1;
 #else
-	if(!ctx)
-		return ERR_INVALID_PARAM;
-	z_stream* stream = (z_stream*)ctx;
+	InfCtx* ctx = (InfCtx*)_ctx;
+	z_stream* zs = &ctx->zs;
 
-	if(stream->next_out || stream->avail_out)
+	if(zs->next_out || zs->avail_out)
 	{
 		debug_warn("zip_set_dest: ctx already in use!");
 		return -1;
 	}
-	stream->next_out  = (Byte*)out;
-	stream->avail_out = (uInt)out_size;
+	zs->next_out  = (Byte*)out;
+	zs->avail_out = (uInt)out_size;
 	return 0;
 #endif
 }
@@ -743,34 +771,42 @@ int inf_set_dest(uintptr_t ctx, void* out, size_t out_size)
 
 // unzip into output buffer. returns bytes written
 // (may be 0, if not enough data is passed in), or < 0 on error.
-ssize_t inf_inflate(uintptr_t ctx, bool compressed, void* in, size_t in_size)
+ssize_t inf_inflate(uintptr_t _ctx, void* in, size_t in_size, bool free_in_buf = false)
 {
 #ifdef NO_ZLIB
 	return -1;
 #else
-	if(!ctx)
-		return ERR_INVALID_PARAM;
-	z_stream* stream = (z_stream*)ctx;
+	InfCtx* ctx = (InfCtx*)_ctx;
+	z_stream* zs = &ctx->zs;
 
-	size_t prev_avail_out = stream->avail_out;
 
-	stream->avail_in = (uInt)in_size;
-	stream->next_in = (Byte*)in;
+	size_t prev_avail_out = zs->avail_out;
+
+	if(in)
+	{
+		if(zs->avail_in || ctx->in_buf)
+			debug_warn("inf_inflate: previous input buffer not empty");
+		zs->avail_in = (uInt)in_size;
+		zs->next_in = (Byte*)in;
+
+		if(free_in_buf)
+			ctx->in_buf = in;
+	}
 
 	int err = 0;
 
-	if(compressed)
-		err = inflate(stream, Z_SYNC_FLUSH);
+	if(ctx->compressed)
+		err = inflate(zs, Z_SYNC_FLUSH);
 	else
 	{
-		memcpy(stream->next_out, stream->next_in, stream->avail_in);
-		uInt size = stream->avail_in;
-		stream->avail_out -= size;
-		stream->avail_in = 0;
-		stream->next_in += size;
-		stream->next_out += size;
-		stream->total_in += size;
-		stream->total_out += size;
+		memcpy(zs->next_out, zs->next_in, zs->avail_in);
+		uInt size = zs->avail_in;
+		zs->avail_out -= size;
+		zs->avail_in -= size;	// => = 0
+		zs->next_in += size;
+		zs->next_out += size;
+		zs->total_in += size;
+		zs->total_out += size;
 	}
 
 	// check+return how much actual data was read
@@ -778,7 +814,7 @@ ssize_t inf_inflate(uintptr_t ctx, bool compressed, void* in, size_t in_size)
 	// note: zlib may not always output data, e.g. if passed very little
 	// data in one block (due to misalignment). return 0 ("no data output"),
 	// which doesn't abort the read.
-	size_t avail_out = stream->avail_out;
+	size_t avail_out = zs->avail_out;
 	assert(avail_out <= prev_avail_out);
 		// make sure output buffer size didn't magically increase
 	ssize_t nread = (ssize_t)(prev_avail_out - avail_out);
@@ -792,46 +828,22 @@ ssize_t inf_inflate(uintptr_t ctx, bool compressed, void* in, size_t in_size)
 }
 
 
-// unzip complete; all input and output data should have been consumed.
-// do not release the ctx yet: the user may be reading a file in chunks,
-// calling inf_finish after each.
-int inf_finish(uintptr_t ctx)
-{
-#ifdef NO_ZLIB
-	return -1;
-#else
-	if(!ctx)
-		return ERR_INVALID_PARAM;
-	z_stream* stream = (z_stream*)ctx;
-
-	if(stream->avail_in || stream->avail_out)
-	{
-		debug_warn("zip_finish: input or output buffer has space remaining");
-		stream->avail_in = stream->avail_out = 0;
-		return -1;
-	}
-
-	stream->next_in  = 0;
-	stream->next_out = 0;
-	return 0;
-#endif
-}
-
-
 // free the given context.
-int inf_free_ctx(uintptr_t ctx)
+int inf_free_ctx(uintptr_t _ctx)
 {
 #ifdef NO_ZLIB
 	return -1;
 #else
-	if(!ctx)
-		return ERR_INVALID_PARAM;
-	z_stream* stream = (z_stream*)ctx;
+	InfCtx* ctx = (InfCtx*)_ctx;
+	z_stream* zs = &ctx->zs;
 
-	assert(stream->next_out == 0);
+	free_in_buf(ctx);
 
-	inflateEnd(stream);
-	free(stream);
+	// can have both input or output data remaining
+	// (if not all data in uncompressed stream was needed)
+
+	inflateEnd(zs);
+	free(ctx);
 	return 0;
 #endif
 }
@@ -875,8 +887,10 @@ static int zfile_validate(uint line, ZFile* zf)
 		msg = "ZFile corrupted (magic field incorrect)";
 #endif
 #ifndef NDEBUG
-	else if(!h_user_data(zf->ha, H_ZArchive))
-		msg = "invalid archive handle";
+//	else if(!h_user_data(zf->ha, H_ZArchive))
+//		msg = "invalid archive handle";
+	// disabled: happens at shutdown because handles are freed out-of order;
+	// archive is freed before its files, making its Handle invalid
 #endif
 	else if(!zf->ucsize)
 		msg = "ucsize = 0";
@@ -936,17 +950,9 @@ int zip_stat(Handle ha, const char* fn, struct stat* s)
 // return < 0 on error (output param zeroed). 
 int zip_open(const Handle ha, const char* fn, ZFile* zf)
 {
-	H_DEREF(ha, ZArchive, za);
-	LookupInfo* li = (LookupInfo*)&za->li;
-
 	// zero output param in case we fail below.
 	memset(zf, 0, sizeof(ZFile));
 
-	if(!zf)
-		goto invalid_zf;
-		// jump to CHECK_ZFILE post-check, which will handle this.
-
-{
 	H_DEREF(ha, ZArchive, za);
 	LookupInfo* li = (LookupInfo*)&za->li;
 
@@ -965,10 +971,8 @@ int zip_open(const Handle ha, const char* fn, ZFile* zf)
 	zf->csize    = loc.csize;
 
 	zf->ha       = ha;
-	zf->inf_ctx  = inf_init_ctx();
-}
+	zf->inf_ctx  = inf_init_ctx(zfile_compressed(zf));
 
-invalid_zf:
 	CHECK_ZFILE(zf);
 
 	return 0;
@@ -1000,42 +1004,114 @@ int zip_close(ZFile* zf)
 // which is already compressed.
 
 
+static const size_t CHUNK_SIZE = 16*KB;
+
 // begin transferring <size> bytes, starting at <ofs>. get result
 // with zip_wait_io; when no longer needed, free via zip_discard_io.
-int zip_start_io(ZFile* const zf, off_t ofs, size_t size, void* buf, FileIO* io)
+int zip_start_io(ZFile* const zf, off_t user_ofs, size_t max_output_size, void* user_buf, ZipIO* io)
 {
+	// not needed, since ZFile tells us the last read offset in the file.
+	UNUSED(user_ofs);
+
+	// zero output param in case we fail below.
+	memset(io, 0, sizeof(ZipIO));
+
 	CHECK_ZFILE(zf);
+	H_DEREF(zf->ha, ZArchive, za);
+
+	// transfer params that differ if compressed
+	size_t size = max_output_size;
+	void* buf = user_buf;
+
+	const off_t ofs = zf->ofs + zf->last_read_ofs;
+		// needed before align check below
+
 	if(zfile_compressed(zf))
 	{
-		debug_warn("Zip aio doesn't currently support compressed files (see rationale above)");
-		return -1;
-	}
+		io->inf_ctx = zf->inf_ctx;
+		io->max_output_size = max_output_size;
+		io->user_buf = user_buf;
 
-	H_DEREF(zf->ha, ZArchive, za);
-	return file_start_io(&za->f, zf->ofs+ofs, size, buf, io);
+		// if there's anything left in the inf_ctx buffer, return that.
+		// required! if data remaining in buffer expands to fill max output,
+		// we must not read more cdata - nowhere to store it.
+		CHECK_ERR(inf_set_dest(io->inf_ctx, io->user_buf, io->max_output_size));
+		ssize_t bytes_inflated = inf_inflate(io->inf_ctx, 0, 0);
+		CHECK_ERR(bytes_inflated);
+		if(bytes_inflated == max_output_size)
+		{
+			io->already_inflated = true;
+			io->max_output_size = bytes_inflated;
+			return 0;
+		}
+
+		// read up to next chunk (so that the next read is aligned -
+		// less work for aio) or up to EOF.
+		const ssize_t left_in_chunk = CHUNK_SIZE - (ofs % CHUNK_SIZE);
+		const ssize_t left_in_file = zf->csize - ofs;
+		size = MIN(left_in_chunk, left_in_file);
+
+		// note: only need to clamp if compressed
+
+		buf = mem_alloc(size, 4*KB);
+	}
+	// else: not compressed; we'll just read directly from the archive file.
+	// no need to clamp to EOF - that's done already by the VFS.
+
+	zf->last_read_ofs += (off_t)size;
+
+	CHECK_ERR(file_start_io(&za->f, ofs, size, buf, &io->io));
+
+	return 0;
 }
 
 
 // indicates if the IO referenced by <io> has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
-inline int zip_io_complete(FileIO io)
+inline int zip_io_complete(ZipIO* io)
 {
-	return file_io_complete(io);
+	if(io->already_inflated)
+		return 1;
+	return file_io_complete(&io->io);
 }
 
 
 // wait until the transfer <io> completes, and return its buffer.
 // output parameters are zeroed on error.
-inline int zip_wait_io(FileIO io, void*& p, size_t& size)
+inline int zip_wait_io(ZipIO* io, void*& buf, size_t& size)
 {
-	return file_wait_io(io, p, size);
+	buf  = io->user_buf;
+	size = io->max_output_size;
+	if(io->already_inflated)
+		return 0;
+
+	void* raw_buf;
+	size_t raw_size;
+	CHECK_ERR(file_wait_io(&io->io, raw_buf, raw_size));
+
+	if(io->inf_ctx)
+	{
+		inf_set_dest(io->inf_ctx, buf, size);
+		ssize_t bytes_inflated = inf_inflate(io->inf_ctx, raw_buf, raw_size, true);
+			// true: we allocated the compressed data input buffer, and
+			// want it freed when it's consumed.
+	}
+	else
+	{
+		buf  = raw_buf;
+		size = raw_size;
+	}
+
+	return 0;
 }
 
 
 // finished with transfer <io> - free its buffer (returned by zip_wait_io)
-inline int zip_discard_io(FileIO io)
+inline int zip_discard_io(ZipIO* io)
 {
-	return file_discard_io(io);
+	if(io->already_inflated)
+		return 0;
+	return file_discard_io(&io->io);
 }
 
 
@@ -1049,21 +1125,20 @@ inline int zip_discard_io(FileIO io)
 // allow user-specified callbacks: "chain" them, because file_io's
 // callback mechanism is already used to return blocks.
 
-struct IOCBParams
+struct CBParams
 {
 	uintptr_t inf_ctx;
-	bool compressed;
 
 	FileIOCB user_cb;
 	uintptr_t user_ctx;
 };
 
 
-static ssize_t io_cb(uintptr_t ctx, void* buf, size_t size)
+static ssize_t read_cb(uintptr_t ctx, void* buf, size_t size)
 {
-	IOCBParams* p = (IOCBParams*)ctx;
+	CBParams* p = (CBParams*)ctx;
 
-	ssize_t ucsize = inf_inflate(p->inf_ctx, p->compressed, buf, size);
+	ssize_t ucsize = inf_inflate(p->inf_ctx, buf, size);
 
 	if(p->user_cb)
 	{
@@ -1078,6 +1153,8 @@ static ssize_t io_cb(uintptr_t ctx, void* buf, size_t size)
 }
 
 #include "timer.h"
+
+
 
 // read from the (possibly compressed) file <zf> as if it were a normal file.
 // starting at the beginning of the logical (decompressed) file,
@@ -1102,6 +1179,11 @@ ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void* p, FileIOCB cb, uintpt
 		return ERR_INVALID_HANDLE;
 
 	ofs += zf->ofs;
+
+	// pump all previous cdata out of inflate context
+	// if that satisfied the request, we're done
+
+
 
 	// not compressed - just pass it on to file_io
 	// (avoid the Zip inflate start/finish stuff below)
@@ -1132,7 +1214,7 @@ ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void* p, FileIOCB cb, uintpt
 	}
 	*/
 
-	const IOCBParams params = { zf->inf_ctx, compressed, cb, ctx };
+	const CBParams params = { zf->inf_ctx, cb, ctx };
 
 	// HACK: shouldn't read the whole thing into mem
 	size_t csize = zf->csize;
@@ -1140,11 +1222,9 @@ ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void* p, FileIOCB cb, uintpt
 		csize = zf->ucsize;	// HACK on HACK: csize = 0 if file not compressed
 
 
-	ssize_t uc_transferred = file_io(&za->f, ofs, csize, (void**)0, io_cb, (uintptr_t)&params);
+	ssize_t uc_transferred = file_io(&za->f, ofs, csize, (void**)0, read_cb, (uintptr_t)&params);
 
 	zf->last_read_ofs += (off_t)csize;
-
-	CHECK_ERR(inf_finish(zf->inf_ctx));
 
 	return uc_transferred;
 }

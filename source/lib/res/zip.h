@@ -83,24 +83,32 @@ extern int zip_close(ZFile* zf);
 // asynchronous read
 //
 
-//
-// currently only supported for compressed files to keep things simple.
-// see rationale in source.
+struct ZipIO
+{
+	FileIO io;
+
+	uintptr_t inf_ctx;
+
+	size_t max_output_size;
+	void* user_buf;
+
+	bool already_inflated;
+};
 
 // begin transferring <size> bytes, starting at <ofs>. get result
 // with zip_wait_io; when no longer needed, free via zip_discard_io.
-extern int zip_start_io(ZFile* const zf, off_t ofs, size_t size, void* buf, FileIO* io);
+extern int zip_start_io(ZFile* const zf, off_t ofs, size_t size, void* buf, ZipIO* io);
 
 // indicates if the IO referenced by <io> has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
-extern int zip_io_complete(FileIO io);
+extern int zip_io_complete(ZipIO* io);
 
 // wait until the transfer <io> completes, and return its buffer.
 // output parameters are zeroed on error.
-extern int zip_wait_io(FileIO io, void*& p, size_t& size);
+extern int zip_wait_io(ZipIO* io, void*& p, size_t& size);
 
 // finished with transfer <io> - free its buffer (returned by zip_wait_io)
-extern int zip_discard_io(FileIO io);
+extern int zip_discard_io(ZipIO* io);
 
 
 //
