@@ -90,6 +90,11 @@ extern void* mmgr_calloc_dbg (size_t num, size_t size, const char* file, int lin
 extern void* mmgr_realloc_dbg(void* p, size_t size,    const char* file, int line, const char* func);
 extern void  mmgr_free_dbg   (void* p,                 const char* file, int line, const char* func);
 
+extern char* mmgr_strdup_dbg(const char*,                  const char* file, int line, const char* func);
+extern wchar_t* mmgr_wcsdup_dbg(const wchar_t*,            const char* file, int line, const char* func);
+extern char* mmgr_getcwd_dbg(char*, size_t,                const char* file, int line, const char* func);
+
+
 // .. global operator new (to catch allocs from STL/external libs)
 extern void* operator new  (size_t size);
 extern void* operator new[](size_t size);
@@ -137,6 +142,9 @@ extern void operator delete[](void* p, const char* file, int line, const char* f
 #define	realloc(p,size)   mmgr_realloc_dbg(p,size,  __FILE__,__LINE__,__FUNCTION__)
 #define	free(p)           mmgr_free_dbg   (p,       __FILE__,__LINE__,__FUNCTION__)
 
+#define strdup(p)              mmgr_strdup_dbg(p,       __FILE__,__LINE__,__FUNCTION__)
+#define wcsdup(p)              mmgr_wcsdup_dbg(p,       __FILE__,__LINE__,__FUNCTION__)
+#define getcwd(p,size)         mmgr_getcwd_dbg(p, size, __FILE__,__LINE__,__FUNCTION__)
 
 #endif	// #ifdef USE_MMGR
 

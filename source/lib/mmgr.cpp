@@ -84,6 +84,38 @@ static void unlock() throw()
 
 
 //////////////////////////////////////////////////////////////////////////////
+// init/shutdown hook - notifies us when ctor/dtor are called
+//////////////////////////////////////////////////////////////////////////////
+
+static bool static_dtor_called = false;
+
+static struct NonLocalStaticObject
+{
+	NonLocalStaticObject()
+	{
+		// by calling now instead of on first lock() call,
+		// we ensure no threads have been spawned yet.
+		lock_init();
+
+		// note: don't init log here - current directory hasn't yet been set.
+		// the log file may otherwise be split between 2 files.
+	}
+	~NonLocalStaticObject()
+	{
+		// if the app requested a leak report before now, the deallocator
+		// will update its leak report on every call (since dtors are now
+		// being called, each may be the last). note that there is no
+		// portable way to make sure a mmgr_shutdown() would be called
+		// as the very last thing before exit.
+		static_dtor_called = true;
+
+		// don't shutdown the lock - some threads may still be active.
+		// do so in shutdown() - see call site.
+	}
+} nlso;
+
+
+//////////////////////////////////////////////////////////////////////////////
 // options (enable/disable additional checks)
 //////////////////////////////////////////////////////////////////////////////
 
@@ -105,7 +137,7 @@ static const size_t padding_size  = 256 * sizeof(ulong);
 #else
 static uint options = MMGR_FILL;	// required for unused memory tracking
 static bool random_fill = false;
-static const size_t padding_size = 2 * sizeof(ulong);
+static const size_t padding_size = 1 * sizeof(ulong);
 #endif
 
 
@@ -135,26 +167,146 @@ const size_t OWNER_SIZE = 92+400;
 	// specific size chosen such that sizeof(Alloc) == 128
 	// (power-of-two for more efficient allocation)
 
+
+
+// strip off uninteresting parts of func in-place.
+// e.g. "std::basic_string<char, char_traits<char>, std::allocator<char> >" =>
+//  "string".
+static void simplify_stl_func(char* func)
+{
+	int nesting = 0;
+
+	const char* src = func-1;
+	char* dst = func;
+	for(;;)
+	{
+		int c = *(++src);
+
+		// end of string reached - we're done.
+		if(c == '\0')
+		{
+			*dst = '\0';
+			break;
+		}
+
+		if(nesting)
+		{
+			if(c == '<')
+				nesting++;
+			else if(c == '>')
+			{
+				nesting--;
+				assert(nesting >= 0);
+			}
+			continue;
+		}
+
+
+#define REPLACE(what, to)\
+	else if(!strncmp(src, (what), sizeof(what)-1))\
+	{\
+		src += sizeof(what)-1;\
+		strcpy(dst, (to));\
+		dst += sizeof(to)-1;\
+	}
+
+#define STRIP(what)\
+	else if(!strncmp(src, (what), sizeof(what)-1))\
+	{\
+		src += sizeof(what)-1;\
+	}
+
+
+		// start if chain (REPLACE and STRIP use else if)
+		if(0) {}
+		else if(!strncmp(src, "::_Node", 7))
+		{
+			// add a space if not already preceded by one
+			if(src != func && src[-1] != ' ')
+				*dst++ = ' ';
+			src += 7;
+		}
+		REPLACE("unsigned short", "u16")
+		REPLACE("unsigned int", "uint")
+		REPLACE("unsigned __int64", "u64")
+		STRIP(",0> ")
+		// early out: all tests after this start with s, so skip them
+		else if(c != 's')
+		{
+			*dst++ = c;
+			continue;
+		}
+		REPLACE("std::_List_nod", "list")
+		REPLACE("std::_Tree_nod", "map")
+		REPLACE("std::basic_string<char,", "string<")
+		REPLACE("std::basic_string<unsigned short,", "wstring<")
+		STRIP("std::char_traits<char>,")
+		STRIP("std::char_traits<unsigned short>,")
+		STRIP("std::_Tmap_traits")
+		STRIP("std::_Tset_traits")
+		else if(!strncmp(src, "std::allocator<", 15))
+		{
+			// remove preceding comma (if present)
+			if(src != func && src[-1] == ',')
+				dst--;
+			src += 15;
+			// strip everything until trailing > is matched
+			assert(nesting == 0);
+			nesting = 1;
+		}
+		else if(!strncmp(src, "std::less<", 10))
+		{
+			// remove preceding comma (if present)
+			if(src != func && src[-1] == ',')
+				dst--;
+			src += 10;
+			// strip everything until trailing > is matched
+			assert(nesting == 0);
+			nesting = 1;
+		}
+		STRIP("std::")
+		else
+			*dst++ = c;
+	}
+}
+
+
+
+
+
 static void store_owner(char* owner, const char* path, int line, const char* func)
 {
-	// the others won't be valid either, and we wouldn't want to
-	// display "(NULL)(0)(NULL)"
-	if(!line)
+	// we don't know jack, and an 'unknown' string is nicer than '?(0)?'
+	if((!path || path[0] == '\0') && !line && (!func || func[0] == '\0'))
 	{
 		strcpy(owner, "(unknown)");
 		return;
 	}
 
-	// strip path
 	const char* file = path;
-	const char* slash = strrchr(path, '\\');
-	if(slash)
-		file = slash+1;
-	slash = strrchr(file, '/');
-	if(slash)
-		file = slash+1;
+	// filename is unknown
+	if(!file || file[0] == '\0')
+		file = "??";
+	// strip path (if present)
+	else
+	{
+		const char* slash = strrchr(path, '\\');
+		if(slash)
+			file = slash+1;
+		slash = strrchr(file, '/');
+		if(slash)
+			file = slash+1;
+	}
 
-	(void)snprintf(owner, OWNER_SIZE-1, "%s(%05d)%s", file, line, func);
+	// if function is unknown (NULL or == ""), don't display anything
+	if(!func)
+		func = "";
+
+	int len = snprintf(owner, OWNER_SIZE-1, "%s(%05d)", file, line);
+	snprintf(owner+len, OWNER_SIZE-1-len, "%s", func);
+
+	simplify_stl_func(owner+len);
+
 	owner[OWNER_SIZE-1] = '\0';
 }
 
@@ -569,16 +721,25 @@ static void vlog(const char* fmt, va_list args)
 {
 	log_init();
 
-	FILE* fp = fopen(log_filename, "a");
+	static FILE* fp;
+	// first call, or FLUSH option set
 	if(!fp)
 	{
-		assert2(0 && "log file open failed");
-		return;
+		fp = fopen(log_filename, "a");
+		if(!fp)
+		{
+			assert2(0 && "log file open failed");
+			return;
+		}
 	}
 
 	(void)vfprintf(fp, fmt, args);
 
-	fclose(fp);
+	if(0 || static_dtor_called)
+	{
+		fclose(fp);
+		fp = 0;
+	}
 }
 
 static void log(const char* fmt, ...)
@@ -869,36 +1030,8 @@ bool mmgr_are_all_valid()
 }
 
 
-//////////////////////////////////////////////////////////////////////////////
-// init/shutdown hook - notifies us when ctor/dtor are called
-//////////////////////////////////////////////////////////////////////////////
 
-static bool static_dtor_called = false;
 
-static struct NonLocalStaticObject
-{
-	NonLocalStaticObject()
-	{
-		// by calling now instead of on first lock() call,
-		// we ensure no threads have been spawned yet.
-		lock_init();
-
-		// note: don't init log here - current directory hasn't yet been set.
-		// the log file may otherwise be split between 2 files.
-	}
-	~NonLocalStaticObject()
-	{
-		// if the app requested a leak report before now, the deallocator
-		// will update its leak report on every call (since dtors are now
-		// being called, each may be the last). note that there is no
-		// portable way to make sure a mmgr_shutdown() would be called
-		// as the very last thing before exit.
-		static_dtor_called = true;
-
-		// don't shutdown the lock - some threads may still be active.
-		// do so in shutdown() - see call site.
-	}
-} nlso;
 
 
 static void shutdown(void)
@@ -986,9 +1119,18 @@ void* alloc_dbg(size_t user_size, AllocType type, const char* file, int line, co
 		if(options & MMGR_RESOLVE_OWNER)
 		{
 			void* pfunc = debug_get_nth_caller(1+stack_frames);
-			debug_resolve_symbol(pfunc, func_buf, file_buf, &line);
-			file = file_buf;
-			func = func_buf;
+			int line_buf;
+			int ret = debug_resolve_symbol(pfunc, func_buf, file_buf, &line_buf);
+			//assert2(ret == 0);
+			// only set if debug_resolve_symbol returned meaningful values
+			// (otherwise, stick with what we got, even if 0; store_owner will
+			// sort it out).
+			if(line_buf)
+				line = line_buf;
+			if(file_buf[0])
+				file = file_buf;
+			if(func_buf[0])
+				func = func_buf;
 		}
 	}
 
@@ -1081,9 +1223,18 @@ void free_dbg(const void* user_p, AllocType type, const char* file, int line, co
 		if(options & MMGR_RESOLVE_OWNER)
 		{
 			void* pfunc = debug_get_nth_caller(1+stack_frames);
-			debug_resolve_symbol(pfunc, func_buf, file_buf, &line);
-			file = file_buf;
-			func = func_buf;
+			int line_buf;
+			int ret = debug_resolve_symbol(pfunc, func_buf, file_buf, &line_buf);
+			//assert2(ret == 0);
+			// only set if debug_resolve_symbol returned meaningful values
+			// (otherwise, stick with what we got, even if 0; store_owner will
+			// sort it out).
+			if(line_buf)
+				line = line_buf;
+			if(file_buf[0])
+				file = file_buf;
+			if(func_buf[0])
+				func = func_buf;
 		}
 	}
 
@@ -1184,9 +1335,18 @@ void* realloc_dbg(const void* user_p, size_t user_size, AllocType type, const ch
 		if(options & MMGR_RESOLVE_OWNER)
 		{
 			void* pfunc = debug_get_nth_caller(1+stack_frames);
-			debug_resolve_symbol(pfunc, func_buf, file_buf, &line);
-			file = file_buf;
-			func = func_buf;
+			int line_buf;
+			int ret = debug_resolve_symbol(pfunc, func_buf, file_buf, &line_buf);
+			//assert2(ret == 0);
+			// only set if debug_resolve_symbol returned meaningful values
+			// (otherwise, stick with what we got, even if 0; store_owner will
+			// sort it out).
+			if(line_buf)
+				line = line_buf;
+			if(file_buf[0])
+				file = file_buf;
+			if(func_buf[0])
+				func = func_buf;
 		}
 	}
 
@@ -1267,8 +1427,55 @@ void mmgr_free_dbg(void* p, const char* file, int line, const char* func)
 }
 
 
+//
+// note: we can call mmgr_malloc_dbg because the macro hook has set
+// file+line+func, so the stack trace info won't be used and frames-to-skip
+// is irrelevant.
+//
 
+char* mmgr_strdup_dbg(const char* s, const char* file, int line, const char* func)
+{
+	const size_t size = strlen(s);
+	char* copy = (char*)mmgr_malloc_dbg(size, file,line,func);
+	if(!copy)
+		return 0;
+	strcpy(copy, s);
+	return copy;
+}
+
+wchar_t* mmgr_wcsdup_dbg(const wchar_t* s, const char* file, int line, const char* func)
+{
+	const size_t size = wcslen(s) * sizeof(wchar_t);
+	wchar_t* copy = (wchar_t*)mmgr_malloc_dbg(size, file,line,func);
+	if(!copy)
+		return 0;
+	wcscpy(copy, s);
+	return copy;
+}
+
+
+//
+// wrappers for more complicated functions that allocate memory.
+// instead of reimplementing them entirely, we just make sure the memory
+// returned here was allocated from our functions, so the user can call
+// the hooked free().
+//
+
+char* mmgr_getcwd_dbg(char* buf, size_t buf_size, const char* file, int line, const char* func)
+{
+	char* ret = getcwd(buf, buf_size);
+	// user already had a buffer or CRT version failed - pass on return value.
+	if(buf || !ret)
+		return ret;
+	char* copy = mmgr_strdup_dbg(ret, file,line,func);
+	free(ret);
+	return copy;
+}
+
+
+//
 // note: separate versions for new/new[], and the VC debug new(file, line).
+//
 
 static void* new_common(size_t size, AllocType type,
 						const char* file, int line, const char* func)

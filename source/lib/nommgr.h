@@ -6,3 +6,7 @@
 #undef calloc
 #undef realloc
 #undef free
+
+#undef strdup
+#undef wcsdup
+#undef getcwd
