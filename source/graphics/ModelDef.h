@@ -9,7 +9,6 @@
 #ifndef _MODELDEF_H
 #define _MODELDEF_H
 
-#include "res/res.h"
 #include "CStr.h"
 #include "Vector3D.h"
 #include "SkeletonAnimDef.h"

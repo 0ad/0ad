@@ -9,7 +9,6 @@
 #ifndef _SKELETONANIMDEF_H
 #define _SKELETONANIMDEF_H
 
-#include "res/res.h"
 #include "CStr.h"
 #include "Vector3D.h"
 #include "Quaternion.h"
