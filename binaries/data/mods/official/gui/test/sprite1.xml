@@ -1055,6 +1055,20 @@
 		<image texture="atlas/atlas_sheet_icon_15x15.png" cell_size="15 15" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
 	</sprite>
 
+	<sprite name="atlas_sheet_icon_border">
+		<!-- Starting with top left corner continuing in a clockwise manner -->
+		<!-- Top border -->
+		<image backcolor="0 255 0" size="0 0 100%-1 1" />
+		<!-- Right border -->
+		<image backcolor="0 255 0" size="100%-1 0 100% 100%" />
+		<!-- Bottom border -->
+		<image backcolor="0 255 0" size="0 100%-1 100% 100%" />
+		<!-- Left border -->
+		<image backcolor="0 255 0" size="0 0 1 100%-1" />
+
+		<image texture="atlas/atlas_sheet_icon_15x15.png" cell_size="15 15" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+	</sprite>
+
         <!--
         ==========================================
         TEMPORARY IMAGES

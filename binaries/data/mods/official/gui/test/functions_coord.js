@@ -148,7 +148,7 @@ function setSizeArray(objectName, objectArrayElement, rleft, rtop, rright, rbott
 	else
 	if (rleft == left_screen && rtop == top_screen && rright == left_screen && rbottom == bottom_screen)
 		// Object is aligned between left top and left bottom.
-		getGUIObjectByName(objectName).size = new GUISize(objectArrayElement.x, objectArrayElement.y, objectArrayElement.x+objectArrayElement.width, 0, rleft, rtop, rright, rbottom);
+		getGUIObjectByName(objectName).size = new GUISize(objectArrayElement.x, objectArrayElement.y, objectArrayElement.x+objectArrayElement.width, -objectArrayElement.height, rleft, rtop, rright, rbottom);
 	else
 	if (rleft == left_screen && rtop == mid_screen && rright == left_screen && rbottom == mid_screen)
 		// Object is aligned to middle left.
