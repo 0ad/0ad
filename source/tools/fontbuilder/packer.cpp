@@ -1,4 +1,4 @@
-// $Id: packer.cpp,v 1.3 2004/07/13 22:48:17 philip Exp $
+// $Id: packer.cpp,v 1.4 2004/08/24 14:54:10 philip Exp $
 
 #include "stdafx.h"
 
@@ -64,10 +64,10 @@ inline bool TryFittingInternal(const int &x, const int &y, GlyphsInfo& glyphs, c
 	{
 		// Test for collisions - effectively trying to find a line that
 		// can fit between the two rectangles
-		if (x <= OtherGlyph->x+OtherGlyph->w
-		 && x+ThisGlyph->w >= OtherGlyph->x
-		 && y <= OtherGlyph->y+OtherGlyph->h
-		 && y+ThisGlyph->h >= OtherGlyph->y) return true;
+		if (x < OtherGlyph->x+OtherGlyph->w
+		 && x+ThisGlyph->w > OtherGlyph->x
+		 && y < OtherGlyph->y+OtherGlyph->h
+		 && y+ThisGlyph->h > OtherGlyph->y) return true;
 	}
 	return false;
 }
@@ -143,19 +143,19 @@ bool TryFitting(const int packing_precision, const int texture_width, const int 
 			// Alternate between fitting glyphs at the top and bottom
 			// to make things go a bit faster by minimising collisions
 			if (count & 1)
-				starty = texture_height-ThisGlyph->h-1, stepy = -packing_precision;
+				starty = texture_height-ThisGlyph->h, stepy = -packing_precision;
 			else
-				starty = 1, stepy = packing_precision;
+				starty = 0, stepy = packing_precision;
 		}
 
-		for (int y = starty; y > 0 && y < texture_height-ThisGlyph->h; y += stepy)
+		for (int y = starty; y >= 0 && y <= texture_height-ThisGlyph->h; y += stepy)
 		{
 			// and alternate between left and right
 			int startx, stepx;
 			if (count & 2)
-				startx = 1, stepx = packing_precision;
+				startx = 0, stepx = packing_precision;
 			else
-				startx = texture_width-ThisGlyph->w-1, stepx = -packing_precision;
+				startx = texture_width-ThisGlyph->w, stepx = -packing_precision;
 
 			int x;
 
@@ -205,9 +205,9 @@ bool TryFitting(const int packing_precision, const int texture_width, const int 
 				goto fitted;
 			}
 */
-			if (startx == 1)
+			if (startx == 0)
 			{
-				for (x = startx; x < texture_width-ThisGlyph->w; x += stepx)
+				for (x = startx; x <= texture_width-ThisGlyph->w; x += stepx)
 				{
 					if (! TryFittingInternal(x, y, glyphs, ThisGlyph))
 					{
@@ -219,7 +219,7 @@ bool TryFitting(const int packing_precision, const int texture_width, const int 
 			}
 			else
 			{
-				for (x = startx; x > 0; x += stepx)
+				for (x = startx; x >= 0; x += stepx)
 				{
 					if (! TryFittingInternal(x, y, glyphs, ThisGlyph))
 					{

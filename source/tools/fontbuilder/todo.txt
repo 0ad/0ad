@@ -1,4 +1,4 @@
-$Id: todo.txt,v 1.2 2004/08/10 15:51:06 philip Exp $
+$Id: todo.txt,v 1.3 2004/08/24 14:54:10 philip Exp $
 
 * Optimise storage of duplicated bitmaps (e.g. e and e-with-some-accent,
   comma and semicolon, anything and fullwidth versions, etc)
@@ -10,10 +10,6 @@ $Id: todo.txt,v 1.2 2004/08/10 15:51:06 philip Exp $
 * Optional outlining (text with e.g. yellow fill and black outline
   is made by drawing the black outline font and then the yellow
   normal font)
-  
-* Are the one-pixel black borders necessary? I don't trust graphics
-  cards not to leak a little bit, especially when they force texture
-  compression and filtering and antialiasing
   
 * Work out when I should say 'character', when 'code point', and when 'glyph'
 
