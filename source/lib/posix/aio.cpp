@@ -360,7 +360,7 @@ int aio_fsync(int, struct aiocb*)
 
 int aio_suspend(const struct aiocb* const cbs[], int n, const struct timespec* ts)
 {
-	if(n > MAXIMUM_WAIT_OBJECTS)
+	if(n <= 0 || n > MAXIMUM_WAIT_OBJECTS)
 		return -1;
 
 	int cnt = 0;	// actual number of valid cbs
@@ -375,8 +375,15 @@ int aio_suspend(const struct aiocb* const cbs[], int n, const struct timespec* t
 
 		Req* r = find_req(cbs[i]);
 		if(r)
-			hs[cnt++] = r->ovl.hEvent;
+		{
+			if(r->ovl.Internal == STATUS_PENDING)
+				hs[cnt++] = r->ovl.hEvent;
+		}
 	}
+
+	// no valid, pending transfers - done
+	if(!cnt)
+		return 0;
 
 	// timeout: convert timespec to ms (NULL ptr -> no timeout)
 	u32 timeout = INFINITE;
