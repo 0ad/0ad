@@ -31,8 +31,8 @@
 
 
 // define to disable time sources (useful for simulating other systems)
-#define NO_QPC
-#define NO_TSC
+//#define NO_QPC
+//#define NO_TSC
 
 
 // automatic module init (before main) and shutdown (before termination)
