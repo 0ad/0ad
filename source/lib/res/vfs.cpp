@@ -449,7 +449,7 @@ static int tree_lookup(const char* _c_path, const Loc** const loc = 0, Dir** con
 	Dir* cur_dir = &vfs_root;
 	if(start_dir)
 		cur_dir = *dir;
-	const char* cur_component = v_path;
+	char* cur_component = v_path;
 
 	// subdirectory traverse logic
 	// valid:
@@ -469,7 +469,7 @@ static int tree_lookup(const char* _c_path, const Loc** const loc = 0, Dir** con
 	for(;;)
 	{
 		// "extract" cur_component string (0-terminate by replacing '/')
-		const char* slash = strchr(cur_component, '/');
+		char* slash = strchr(cur_component, '/');
 		if(slash)
 			*slash = 0;
 
