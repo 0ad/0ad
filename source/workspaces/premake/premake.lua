@@ -2,8 +2,8 @@ dofile("functions.lua")
 
 -- Set up the Project
 project.name = "prometheus"
-project.bindir = "../../binaries/system"
-project.libdir = "../../binaries/system"
+project.bindir = "../../../binaries/system"
+project.libdir = "../../../binaries/system"
 
 -- Start the package part
 package = newpackage()
