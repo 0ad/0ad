@@ -128,9 +128,12 @@ enum LibError
 	ERR_AGAIN           = -1006,	// try again later
 
 	ERR_VFS_PATH_LENGTH = -1007,
+	ERR_VFS_DIR_END     = -1008,
 
 	ERR_LAST
 };
+
+
 
 
 #ifndef MIN
