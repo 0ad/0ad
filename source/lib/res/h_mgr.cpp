@@ -186,7 +186,7 @@ static HDATA* h_data(const i32 idx)
 			return 0;
 	}
 
-	// note: VC7.1 optimizes the divisions to shift and mask.
+	// note: VC7.1 optimizes the divides to shift and mask.
 
 	return &page[idx % hdata_per_page];
 }
@@ -346,6 +346,12 @@ static int free_idx(i32 idx)
 }
 
 
+// speed up h_find (called every h_alloc)
+// multimap, because we want to add handles of differing type but same key
+// (e.g. a VFile and Tex object for the same underlying filename hash key)
+typedef STL_HASH_MULTIMAP<uintptr_t, i32> Key2Idx;
+typedef Key2Idx::iterator It;
+static Key2Idx key2idx;
 
 
 int h_free(Handle& h, H_Type type)
@@ -377,6 +383,26 @@ int h_free(Handle& h, H_Type type)
 	// note: H_TYPE_DEFINE currently always defines a dtor, but play it safe
 	if(vtbl->dtor)
 		vtbl->dtor(hd->user);
+
+	if(hd->key)
+	{
+		It it = key2idx.find(hd->key);
+		// not found in mapping
+		if(it == key2idx.end())
+			debug_warn("h_free: not in key2idx");
+		It end = key2idx.upper_bound(hd->key);
+		for(; it != end; ++it)
+		{
+			i32 idx = it->second;
+			HDATA* hd2 = h_data(idx);
+			// found match
+			if(hd2 && hd2->type == type && hd2->key == hd->key)
+			{
+				key2idx.erase(it);
+				break;
+			}
+		}
+	}
 
 	free((void*)hd->fn);
 
@@ -444,13 +470,11 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 
 //debug_out("alloc %s %s\n", type->name, fn);
 	
-	// disable caching if no key, because it would never be found
+	// no key => can never be found. disallow caching
 	if(!key)
 		flags |= RES_NO_CACHE;	// changes scope to RES_TEMP
-
-	const uint scope = flags & RES_SCOPE_MASK;
-
-	if(key)
+	// check if already loaded (cached)
+	else
 	{
 		// object already loaded?
 		h = h_find(type, key);
@@ -480,6 +504,8 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 	CHECK_ERR(alloc_idx(idx, hd));
 skip_alloc:
 
+	const uint scope = flags & RES_SCOPE_MASK;
+
 	// generate next tag value.
 	// don't want to do this before the add-reference exit,
 	// so as not to waste tags for often allocated handles.
@@ -505,7 +531,8 @@ skip_alloc:
 		return h;
 	}
 
-
+	if(key)
+		key2idx.insert(std::make_pair(key, idx));
 
 	// one-time init
 	hd->tag  = tag;
@@ -636,19 +663,29 @@ int h_reload(const char* fn)
 }
 
 
-// TODO: more efficient search; currently linear
 Handle h_find(H_Type type, uintptr_t key)
 {
-	for(i32 i = 0; i < last_in_use; i++)
+	It it = key2idx.find(key);
+	// not found in mapping
+	if(it == key2idx.end())
+		return -1;
+	It end = key2idx.upper_bound(key);
+	for(; it != end; ++it)
 	{
-		HDATA* hd = h_data(i);
-		if(hd)
-			if(hd->type == type && hd->key == key)
-				return handle(i, hd->tag);
+		i32 idx = it->second;
+		HDATA* hd = h_data(idx);
+		// found match
+		if(hd && hd->type == type && hd->key == key)
+			return handle(idx, hd->tag);
 	}
 
+	// key is in the mapping, but it's of the wrong type.
+	// this happens when called by h_alloc to check if
+	// e.g. a Tex object already exists; at that time,
+	// only the corresponding VFile exists.
 	return -1;
 }
+
 
 
 
