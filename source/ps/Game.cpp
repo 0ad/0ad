@@ -54,7 +54,7 @@ namespace PlayerArray_JS
 	}
 };
 
-/*namespace PlayerAttribs_JS
+namespace PlayerAttribs_JS
 {
 	void Finalize(JSContext *cx, JSObject *obj)
 	{
@@ -70,15 +70,15 @@ namespace PlayerArray_JS
 		JS_ConvertStub, Finalize
 	};
 
-};*/
+};
 
 void CGameAttributes::CPlayerAttributes::CreateJSObject()
 {
-	/*ONCE(
+	ONCE(
 		g_ScriptingHost.DefineCustomObjectType(&PlayerAttribs_JS::Class, AttributeMap_JS::Construct, 0, NULL, NULL, NULL, NULL);
 	);
 	m_JSObject=g_ScriptingHost.CreateCustomObject("PlayerAttributes");
-	JS_SetPrivate(g_ScriptingHost.getContext(), m_JSObject, (CAttributeMap *)this);*/
+	JS_SetPrivate(g_ScriptingHost.getContext(), m_JSObject, (CAttributeMap *)this);
 	CAttributeMap::CreateJSObject();
 }
 
@@ -158,6 +158,17 @@ PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 		m_Players.resize(m_NumPlayers);
 		for (uint i=0;i<m_NumPlayers;i++)
 			m_Players[i]=new CPlayer(i);
+		
+		// FIXME If the GUI hasn't set attributes for all players, the CPlayer
+		// object's state will be whatever is set by the CPlayer constructor.
+		for (uint i=0;i<m_NumPlayers && i<pAttribs->m_PlayerAttribs.size();i++)
+		{
+			CGameAttributes::CPlayerAttributes *pPlayerAttribs=
+				pAttribs->m_PlayerAttribs[i];
+			// TODO Set player attributes in the player object
+		}
+			
+		m_pLocalPlayer=m_Players[0];
 
 		// RC, 040804 - GameView needs to be initialised before World, otherwise GameView initialisation
 		// overwrites anything stored in the map file that gets loaded by CWorld::Initialize with default

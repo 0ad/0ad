@@ -44,8 +44,8 @@ class CGame
 	CSimulation m_Simulation;
 	CGameView m_GameView;
 	
-	std::vector<CPlayer *> m_Players;
 	CPlayer *m_pLocalPlayer;
+	std::vector<CPlayer *> m_Players;
 	uint m_NumPlayers;
 
 	bool m_GameStarted;
@@ -69,7 +69,11 @@ public:
 	
 	inline CPlayer *GetLocalPlayer()
 	{	return m_pLocalPlayer; }
-
+	inline void SetLocalPlayer(CPlayer *pLocalPlayer)
+	{	m_pLocalPlayer=pLocalPlayer; }
+	
+	inline CPlayer *GetPlayer(uint idx)
+	{	return m_Players[idx]; }
 	inline uint GetNumPlayers()
 	{	return m_NumPlayers; }
 
