@@ -10,9 +10,11 @@
 
 #include "res/res.h"
 #include "Model.h"
-#include "Entity.h"
 #include "UnitManager.h"
 #include "Unit.h"
+#include "CConsole.h"
+
+extern CConsole* g_Console;
 
 #include <algorithm>
 
