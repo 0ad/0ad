@@ -132,7 +132,7 @@ extern int vfs_close(Handle& h);
 
 // begin transferring <size> bytes, starting at <ofs>. get result
 // with vfs_wait_read; when no longer needed, free via vfs_discard_io.
-extern Handle vfs_start_io(Handle hf, off_t ofs, size_t size, void* buf);
+extern Handle vfs_start_io(Handle hf, size_t size, void* buf);
 
 // indicates if the given IO has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.

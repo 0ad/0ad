@@ -1563,12 +1563,15 @@ static int IO_reload(IO* io, const char*, Handle)
 
 // begin transferring <size> bytes, starting at <ofs>. get result
 // with vfs_wait_io; when no longer needed, free via vfs_discard_io.
-Handle vfs_start_io(Handle hf, off_t ofs, size_t size, void* buf)
+Handle vfs_start_io(Handle hf, size_t size, void* buf)
 {
 	Handle hio = h_alloc(H_IO, 0);
 	H_DEREF(hio, IO, io);
 
 	H_DEREF(hf, VFile, vf);
+	off_t ofs = vf->ofs;
+	vf->ofs += (off_t)size;
+
 	if(vf_flags(vf) & VF_ZIP)
 	{
 		io->is_zip = true;
