@@ -1,4 +1,4 @@
-/* $Id: Xeromyces.h,v 1.1 2004/07/08 15:21:42 philip Exp $
+/* $Id: Xeromyces.h,v 1.2 2004/07/10 18:57:13 olsner Exp $
 
   Xeromyces file-loading interface.
   Automatically creates and caches relatively

@@ -1,4 +1,5 @@
 #include "precompiled.h"
+#include <wctype.h>
 
 #include "CConsole.h"
 

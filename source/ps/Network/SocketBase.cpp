@@ -1,5 +1,8 @@
 #include "precompiled.h"
+
+#ifdef _WIN32
 #include "sysdep/win/win_internal.h"
+#endif
 
 #include "Network.h"
 #include "NetworkInternal.h"

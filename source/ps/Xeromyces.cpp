@@ -1,4 +1,4 @@
-// $Id: Xeromyces.cpp,v 1.2 2004/07/09 19:59:19 janwas Exp $
+// $Id: Xeromyces.cpp,v 1.3 2004/07/10 18:57:13 olsner Exp $
 
 #include "precompiled.h"
 
@@ -55,14 +55,14 @@ public:
 		free(buffer);
 	}
 
-	void write(void* data, int size)
+	void write(const void* data, int size)
 	{
 		while (length + size >= allocated) grow();
 		memcpy(&buffer[length], data, size);
 		length += size;
 	}
 
-	void write(void* data, int size, int offset)
+	void write(const void* data, int size, int offset)
 	{
 		assert(offset >= 0 && offset+size <= length);
 		memcpy(&buffer[offset], data, size);
@@ -220,8 +220,8 @@ void CXeromyces::Load(const char* filename)
 	SAX2XMLReader* Parser = XMLReaderFactory::createXMLReader();
 
 	// Enable validation
-	Parser->setFeature(L"http://xml.org/sax/features/validation", true);
-	Parser->setFeature(L"http://apache.org/xml/features/validation/dynamic", true);
+	Parser->setFeature(XMLUni::fgSAX2CoreValidation, true);
+	Parser->setFeature(XMLUni::fgXercesDynamic, true);
 
 	XeroHandler handler;
 	Parser->setContentHandler(&handler);
@@ -309,11 +309,12 @@ void XeroHandler::endDocument()
 {
 }
 
-std::wstring lowercase(std::wstring a)
+std::wstring lowercase(const XMLCh *a)
 {
 	std::wstring b;
-	b.resize(a.length());
-	for (size_t i = 0; i < a.length(); ++i)
+	uint len=XMLString::stringLen(a);
+	b.resize(len);
+	for (uint i = 0; i < len; ++i)
 		b[i] = towlower(a[i]);
 	return b;
 }
@@ -334,7 +335,8 @@ void XeroHandler::startElement(const XMLCh* const uri, const XMLCh* const localn
 		AttributeNames.insert(attrName);
 		XMLAttribute* a = new XMLAttribute;
 		a->name = attrName;
-		a->value = attrs.getValue(i);
+		const XMLCh *tmp = attrs.getValue(i);
+		a->value = std::wstring(tmp, tmp+XMLString::stringLen(tmp));
 		e->attrs.push_back(a);
 	}
 
@@ -352,7 +354,7 @@ void XeroHandler::endElement(const XMLCh* const uri, const XMLCh* const localnam
 
 void XeroHandler::characters(const XMLCh* const chars, const unsigned int length)
 {
-	ElementStack.top()->text += chars;
+	ElementStack.top()->text += std::wstring(chars, chars+XMLString::stringLen(chars));
 }
 
 
