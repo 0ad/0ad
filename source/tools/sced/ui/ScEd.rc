@@ -169,6 +169,7 @@ BEGIN
     BEGIN
         POPUP "&Player"
         BEGIN
+            MENUITEM "Player &0",                   ID_PLAYER_PLAYER0
             MENUITEM "Player &1",                   ID_PLAYER_PLAYER1
             MENUITEM "Player &2",                   ID_PLAYER_PLAYER2
             MENUITEM "Player &3",                   ID_PLAYER_PLAYER3

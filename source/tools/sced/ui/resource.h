@@ -101,14 +101,15 @@
 #define ID_TEST_GO                      32798
 #define ID_RANDOM_MAP                   32799
 #define ID_ENTITY_PLAYER                32800
-#define ID_PLAYER_PLAYER1               32801
-#define ID_PLAYER_PLAYER2               32802
-#define ID_PLAYER_PLAYER3               32803
-#define ID_PLAYER_PLAYER4               32804
-#define ID_PLAYER_PLAYER5               32805
-#define ID_PLAYER_PLAYER6               32806
-#define ID_PLAYER_PLAYER7               32807
-#define ID_PLAYER_PLAYER8               32808
+#define ID_PLAYER_PLAYER0               32801
+#define ID_PLAYER_PLAYER1               32802
+#define ID_PLAYER_PLAYER2               32803
+#define ID_PLAYER_PLAYER3               32804
+#define ID_PLAYER_PLAYER4               32805
+#define ID_PLAYER_PLAYER5               32806
+#define ID_PLAYER_PLAYER6               32807
+#define ID_PLAYER_PLAYER7               32808
+#define ID_PLAYER_PLAYER8               32809
 
 // Next default values for new objects
 // 
@@ -116,7 +117,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        156
-#define _APS_NEXT_COMMAND_VALUE         32809
+#define _APS_NEXT_COMMAND_VALUE         32810
 #define _APS_NEXT_CONTROL_VALUE         1044
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

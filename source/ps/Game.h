@@ -73,7 +73,7 @@ public:
 	{	m_pLocalPlayer=pLocalPlayer; }
 	
 	inline CPlayer *GetPlayer(uint idx)
-	{	return m_Players[idx]; }
+	{	if (idx >= 0 && idx < m_NumPlayers) return m_Players[idx]; else { debug_warn("Invalid player ID"); return m_Players[0]; } }
 
 	inline std::vector<CPlayer*>* GetPlayers()
 	{	return( &m_Players ); }

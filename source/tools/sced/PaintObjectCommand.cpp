@@ -42,7 +42,7 @@ void CPaintObjectCommand::Finalize()
 		CVector3D position = m_Unit->GetModel()->GetTransform().GetTranslation();
 		g_UnitMan.RemoveUnit(m_Unit);
 		HEntity ent = g_EntityManager.create( templateObject, position, atan2( -orient.X, -orient.Z ) );
-		ent->m_player = 1;
+		ent->m_player = (CPlayer*)1;
 	}
 }
 

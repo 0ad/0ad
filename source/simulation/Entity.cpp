@@ -20,7 +20,7 @@
 #include "scripting/JSInterface_Vector3D.h"
 
 // TODO: don't hardcode player-colours
-static const float PlayerColours[8][3] = { {1,1,1}, {1,0,0}, {0,1,0}, {0,0,1}, {1,1,0}, {1,0,1}, {0,1,1}, {1,0.5,0} };
+static const float PlayerColours[9][3] = { {1,1,1}, {1,0,0}, {0,1,0}, {0,0,1}, {1,1,0}, {1,0,1}, {0,1,1}, {1,0.5,0}, {1,0,0.5} };
 
 CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 {
@@ -71,7 +71,11 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 
 	m_grouped = -1;
 
+#ifdef SCED // HACK: ScEd doesn't have a g_Game, so we can't use its CPlayers
+	m_player = (CPlayer*)0;
+#else
 	m_player = g_Game->GetPlayer( 0 );
+#endif
 }
 
 CEntity::~CEntity()
@@ -514,8 +518,12 @@ void CEntity::renderSelectionOutline( float alpha )
 		glColor4f( 1.0f, 0.5f, 0.5f, alpha );
 	else
 	{
+#ifdef SCED // HACK: ScEd doesn't have a g_Game, so we can't use its CPlayers
+		glColor3fv(PlayerColours[ (intptr_t)m_player ]);
+#else
 		SColour& col = m_player->m_Colour;
 		glColor3f( col.r, col.g, col.b );
+#endif
 	}
 	
 	glBegin( GL_LINE_LOOP );

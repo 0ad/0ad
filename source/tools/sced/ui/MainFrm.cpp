@@ -93,6 +93,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_COMMAND(IDR_UNIT_TOOLS, OnUnitTools)
 	ON_COMMAND(ID_RANDOM_MAP, OnRandomMap)
 	//}}AFX_MSG_MAP
+	ON_COMMAND(ID_PLAYER_PLAYER0, OnEntityPlayer0)
 	ON_COMMAND(ID_PLAYER_PLAYER1, OnEntityPlayer1)
 	ON_COMMAND(ID_PLAYER_PLAYER2, OnEntityPlayer2)
 	ON_COMMAND(ID_PLAYER_PLAYER3, OnEntityPlayer3)
@@ -865,12 +866,12 @@ void CMainFrame::OnRandomMap()
 }
 
 #define P(n) void CMainFrame::OnEntityPlayer##n() { return OnEntityPlayerX(n); }
-P(1)  P(2)  P(3)  P(4)  P(5)  P(6)  P(7)  P(8)
+P(0); P(1); P(2); P(3); P(4); P(5); P(6); P(7); P(8);
 #undef P
 
 void CMainFrame::OnEntityPlayerX(int x)
 {
 	CEntity* entity = CSelectObjectTool::GetTool()->GetFirstEntity();
 	if (entity)
-		entity->m_player = x;
+		entity->m_player = (CPlayer*)(intptr_t)x; // HACK: ScEd doesn't have a g_Game, so we can't use its CPlayers
 }

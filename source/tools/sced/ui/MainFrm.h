@@ -109,6 +109,7 @@ protected:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 public:
+	afx_msg void OnEntityPlayer0();
 	afx_msg void OnEntityPlayer1();
 	afx_msg void OnEntityPlayer2();
 	afx_msg void OnEntityPlayer3();
