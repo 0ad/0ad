@@ -473,11 +473,13 @@ void ParseArgs(int argc, char* argv[])
 				case 'e':
 					g_EntGraph = true; break;
 				case 'v':
-					g_VSync = true;
+					g_ConfigDB.CreateValue(CFG_SYSTEM, "vsync")
+									->m_String="true";
 					break;
 				case 'n':
 					if (strncmp(argv[i]+1,"novbo",5)==0) {
-						g_NoGLVBO=true;
+						g_ConfigDB.CreateValue(CFG_SYSTEM, "novbo")
+									->m_String="true";
 					}
 					else if (strncmp(argv[i]+1,"nopbuffer",9)==0) {
 						g_NoPBuffer=true;
@@ -492,7 +494,8 @@ void ParseArgs(int argc, char* argv[])
 
 				case 's':
 					if (strncmp(argv[i]+1,"shadows",7)==0) {
-						g_Shadows=true;
+						g_ConfigDB.CreateValue(CFG_SYSTEM, "shadows")
+									->m_String="true";
 					}
 					break;
 				case 'x':
@@ -532,6 +535,13 @@ void ParseArgs(int argc, char* argv[])
 		val->GetInt(g_xres);
 	if (val=g_ConfigDB.GetValue(CFG_SYSTEM, "yres"))
 		val->GetInt(g_yres);
+
+	if (val=g_ConfigDB.GetValue(CFG_SYSTEM, "vsync"))
+		val->GetBool(g_VSync);
+	if (val=g_ConfigDB.GetValue(CFG_SYSTEM, "novbo"))
+		val->GetBool(g_NoGLVBO);
+	if (val=g_ConfigDB.GetValue(CFG_SYSTEM, "shadows"))
+		val->GetBool(g_Shadows);
 		
 	LOG(NORMAL, "g_x/yres is %dx%d\n", g_xres, g_yres);
 }
