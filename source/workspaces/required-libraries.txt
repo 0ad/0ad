@@ -42,6 +42,11 @@ Instructions:
   download http://www.wildfiregames.com/~code/libraries/fmodapi372win.zip
   ... extract contents of include/ into $include, and .lib files into $lib 
 
+- dbghelp: [debug PDB symbol access]
+  download http://www.wildfiregames.com/~code/libraries/DbgHelp.h
+  ... and put it in $include.
+  note: no .lib file needed - we import manually at runtime.
+
 
 Note: these libraries are stored in the codepit; access via SCP:
 host = wildfiregames.com
