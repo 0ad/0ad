@@ -723,6 +723,34 @@ static void vfs_shutdown(void)
 }
 
 
+static bool is_subpath(const char* s1, const char* s2)
+{
+	// make sure s1 is the shorter string
+	if(strlen(s1) > strlen(s2))
+		std::swap(s1, s2);
+
+	int c1 = 0, last_c1, c2;
+	for(;;)
+	{
+		last_c1 = c1;
+		c1 = *s1++, c2 = *s2++;
+
+		// end of s1 reached
+		if(c1 == '\0')
+		{
+			// s1 matched s2 up until:
+			if(c2 == '\0' ||	// its end (i.e. they're equal length)
+			   c2 == '/' ||		// start of next component
+			   last_c1 == '/')	// ", but both have a trailing slash
+				return true;
+		}
+
+		if(c1 != c2)
+			return false;
+	}
+}
+
+
 // mount either a single archive or a directory into the VFS at
 // <vfs_mount_point>, which is created if it does not yet exist.
 // new files override the previous VFS contents if pri(ority) is higher.
@@ -733,35 +761,20 @@ int vfs_mount(const char* const vfs_mount_point, const char* const name, const u
 {
 	ONCE(atexit2(vfs_shutdown));
 
-	const size_t name_len = strlen(name);
-
-// PROBLEM! rejects valid (but stupid) paths
-
-// aa/bbb/cccc
-// aa/bbb/cccc/		NO
-// aa/bbb/cccc/d	NO
-// aa/bbb/c 		YES
-// aa/bbb/d			YES
-// aa/bbb
-
-// mods/offical
-// mods/of
+	CHECK_PATH(name);
 
 	// make sure it's not already mounted, i.e. in mounts.
 	// also prevents mounting a parent directory of a previously mounted
 	// directory, or vice versa. example: mount $install/data and then
 	// $install/data/mods/official - mods/official would also be accessible
 	// from the first mount point - bad.
+	// no matter if it's an archive - still shouldn't be a "subpath".
 	for(MountIt it = mounts.begin(); it != mounts.end(); ++it)
-///	{
-		const size_t cmp_len = MIN(it->f_name.length(), name_len);
-		if(strncmp(name, it->f_name.c_str(), cmp_len) == 0)
+		if(is_subpath(name, it->f_name.c_str()))
 		{
 			debug_warn("vfs_mount: already mounted");
 			return -1;
 		}
-
-	CHECK_PATH(name);
 
 	// disallow "." because "./" isn't supported on Windows.
 	// it would also create a loophole for the parent dir check above.
