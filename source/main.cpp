@@ -122,7 +122,7 @@ static bool quit = false;	// break out of main loop
 
 const wchar_t* HardcodedErrorString(int err)
 {
-#define E(sym) case sym: return L#sym;
+#define E(sym) case sym: return L ## #sym;
 
 	switch(err)
 	{
@@ -748,8 +748,9 @@ static void Shutdown()
 
 static void Init(int argc, char* argv[])
 {
+#ifdef _WIN32
 sle(1134);
-
+#endif
 
 	// If you ever want to catch a particular allocation:
 	//_CrtSetBreakAlloc(4128);
@@ -792,7 +793,7 @@ PREVTSC=TSC;
 
 
 	InitScripting();	// before GUI
-
+	
 	new CConfigDB;
 	g_ConfigDB.SetConfigFile(CFG_SYSTEM, false, "config/system.cfg");
 	g_ConfigDB.Reload(CFG_SYSTEM);
@@ -821,8 +822,9 @@ PREVTSC=TSC;
 
 	write_sys_info();
 
+#ifdef _WIN32
 sle(11340106);
-
+#endif
 
 	if(set_vmode(g_xres, g_yres, 32, !windowed) < 0)
 		Die(0, STR_SET_VMODE_FAILED, g_xres, g_yres, SDL_GetError());
@@ -960,10 +962,7 @@ static void Frame()
 		// first call: set last_time and return
 	assert(TimeSinceLastFrame >= 0.0f);
 
-
-
 	res_reload_changed_files();
-
 
 // TODO: limiter in case simulation can't keep up?
 	const double TICK_TIME = 30e-3;	// [s]
@@ -1006,8 +1005,6 @@ static void Frame()
 	frameCount++;
 	if (g_FixedFrameTiming && frameCount==100) quit=true;
 }
-
-
 
 int main(int argc, char* argv[])
 {
