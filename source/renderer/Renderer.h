@@ -221,6 +221,7 @@ protected:
 	friend class CPatchRData;
 	friend class CModelRData;
 	friend class CTransparencyRenderer;
+	friend class CPlayerRenderer;
 
 	// update renderdata of everything submitted
 	void UpdateSubmittedObjectData();

@@ -19,6 +19,7 @@
 #include <algorithm>
 #include "Renderer.h"
 #include "TransparencyRenderer.h"
+#include "PlayerRenderer.h"
 #include "Terrain.h"
 #include "Matrix3D.h"
 #include "Camera.h"
@@ -798,109 +799,27 @@ void CRenderer::RenderModelSubmissions()
 	// Set the proper LOD bias
 	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, m_Options.m_LodBias);
 
-	// TODO: do this properly
-	const bool playercolor=true;
+	// pass one through as alpha; transparent textures handled specially by CTransparencyRenderer
+	// (gl_constant means the colour comes from the gl_texture_env_color)
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_CONSTANT);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 
-	if (! playercolor)
-	{
+	float color[] = { 1.0, 1.0, 1.0, 1.0 };
+	glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, color);
 
-		// pass one through as alpha; transparent textures handled specially by CTransparencyRenderer
-		// (gl_constant means the colour comes from the gl_texture_env_color)
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_CONSTANT);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+	// setup client states
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	glEnableClientState(GL_COLOR_ARRAY);
 
-		float color[] = { 1.0, 1.0, 1.0, 1.0 };
-		glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, color);
+	// render models
+	CModelRData::RenderModels(STREAM_POS|STREAM_COLOR|STREAM_UV0);
 
-		// setup client states
-		glEnableClientState(GL_VERTEX_ARRAY);
-		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-		glEnableClientState(GL_COLOR_ARRAY);
-
-		// render models
-		CModelRData::RenderModels(STREAM_POS|STREAM_COLOR|STREAM_UV0);
-
-		// switch off client states
-		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-		glDisableClientState(GL_VERTEX_ARRAY);
-		glDisableClientState(GL_COLOR_ARRAY);
-	}
-	else
-	{
-		// Render two passes: first, render the unit as normal. Second,
-		// render it again but modulated with the player-colour, using
-		// the alpha channel as a mask.
-		//
-		// Assume the alpha channel is 1-bit, so there's no need for blending.
-		//
-		// This probably ought to be done in a single pass on hardware that
-		// supports register combiners / fragment programs / etc.
-
-		float color[] = { 1.0, 0.0, 0.0, 1.0 };
-
-		glEnableClientState(GL_VERTEX_ARRAY);
-		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-		glEnableClientState(GL_COLOR_ARRAY);
-
-		glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, color);
-
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_CONSTANT);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-
-		glDisable(GL_ALPHA_TEST);
-
-		// Render first pass
-		CModelRData::RenderModels(STREAM_POS|STREAM_COLOR|STREAM_UV0);
-
-		// Set up second pass: first texture unit carries on doing texture*lighting,
-		// but passes alpha through inverted; the second texture unit modulates
-		// with the player colour.
-
-		glActiveTexture(GL_TEXTURE0);
-
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_ONE_MINUS_SRC_ALPHA);
-
-		glActiveTexture(GL_TEXTURE1);
-
-		glEnable(GL_TEXTURE_2D);
-
-		// t1 = t0 * playercolor
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_CONSTANT);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
-		glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, color);
-
-		// Continue passing through alpha from texture
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-
-		// Only render high-alpha parts
-		glEnable(GL_ALPHA_TEST);
-		glAlphaFunc(GL_GREATER,0.5f);
-
-		// Render second pass
-		CModelRData::RenderModels(STREAM_POS|STREAM_COLOR|STREAM_UV0);
-
-		// Restore states
-		glActiveTexture(GL_TEXTURE1);
-		glDisable(GL_TEXTURE_2D);
-		glDisable(GL_ALPHA_TEST);
-
-		glActiveTexture(GL_TEXTURE0);
-
-		// switch off client states
-		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-		glDisableClientState(GL_VERTEX_ARRAY);
-		glDisableClientState(GL_COLOR_ARRAY);
-	}
+	// switch off client states
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_COLOR_ARRAY);
 }
 
 void CRenderer::RenderModels()
@@ -990,6 +909,10 @@ void CRenderer::FlushFrame()
 	RenderPatches();
 	oglCheck();
 
+	MICROLOG(L"render player models");
+	g_PlayerRenderer.Render();
+	oglCheck();
+
 	MICROLOG(L"render models");
 	RenderModels();
 	oglCheck();
@@ -1009,6 +932,7 @@ void CRenderer::FlushFrame()
 	// empty lists
 	MICROLOG(L"empty lists");
 	g_TransparencyRenderer.Clear();
+	g_PlayerRenderer.Clear();
 	CPatchRData::ClearSubmissions();
 	CModelRData::ClearSubmissions();
 }

@@ -154,7 +154,7 @@ public:
 	void SetPlayer(CPlayer *pPlayer);
 
 	// Retrieve the player associated with this entity
-	inline CPlayer* GetPlayer() { return m_player; } 
+	CPlayer* GetPlayer() { return m_player; } 
 
 	// Process damage
 	void Damage( CDamageType& damage, CEntity* inflictor = NULL );

@@ -5,6 +5,7 @@
 #include "res/ogl_tex.h"
 #include "Renderer.h"
 #include "TransparencyRenderer.h"
+#include "PlayerRenderer.h"
 #include "ModelRData.h"
 #include "Model.h"
 #include "ModelDef.h"
@@ -49,7 +50,9 @@ void CModelRData::Build()
 	/*if (g_Renderer.IsTextureTransparent(m_Model->GetTexture())) {
 		m_Flags|=MODELRDATA_FLAG_TRANSPARENT;
 	}*/
-    if(m_Model->GetMaterial().UsesAlpha())
+	if(m_Model->GetPlayerID() + 1)
+		m_Flags |= MODELRDATA_FLAG_PLAYERCOLOR;
+    else if(m_Model->GetMaterial().UsesAlpha())
         m_Flags |= MODELRDATA_FLAG_TRANSPARENT;
 }
 
@@ -176,13 +179,17 @@ void CModelRData::BuildVertices()
 }
 
 
-void CModelRData::RenderStreams(u32 streamflags)
+void CModelRData::RenderStreams(u32 streamflags, bool isplayer)
 {	
 	CModelDefPtr mdldef=m_Model->GetModelDef();
 	
 	if (streamflags & STREAM_UV0)
     {
-        m_Model->GetMaterial().Bind();
+		if(!isplayer)
+			m_Model->GetMaterial().Bind();
+		else
+			g_Renderer.SetTexture(1,m_Model->GetTexture());
+
         g_Renderer.SetTexture(0,m_Model->GetTexture());
     }
 
@@ -199,8 +206,8 @@ void CModelRData::RenderStreams(u32 streamflags)
 //	glDrawRangeElements(GL_TRIANGLES,0,mdldef->GetNumVertices(),numFaces*3,GL_UNSIGNED_SHORT,m_Indices);
 	glDrawElements(GL_TRIANGLES,numFaces*3,GL_UNSIGNED_SHORT,m_Indices);
 
-    if(streamflags & STREAM_UV0)
-        m_Model->GetMaterial().Unbind();
+    if(streamflags & STREAM_UV0 & !isplayer)
+		m_Model->GetMaterial().Unbind();
 	
 	// bump stats
 	g_Renderer.m_Stats.m_DrawCalls++;
@@ -330,7 +337,7 @@ void CModelRData::RenderModels(u32 streamflags,u32 flags)
 						// TODO: If not doing player-colours, only bind this to
 						// the first texture unit
 						g_Renderer.BindTexture(0,tex_id(batch->m_Texture));
-						g_Renderer.BindTexture(1,tex_id(batch->m_Texture));
+						//g_Renderer.BindTexture(1,tex_id(batch->m_Texture));
 					}
 					for (uint j=0;j<batch->m_IndexData.size();j++) {
 						glDrawElements(GL_TRIANGLES,(GLsizei)batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);
@@ -370,6 +377,9 @@ void CModelRData::Submit(CModel* model)
 		// add this mode to the transparency renderer for later processing - calculate
 		// transform matrix
 		g_TransparencyRenderer.Add(model);
+	} else if (data->GetFlags() & MODELRDATA_FLAG_PLAYERCOLOR) {
+		// add this model to the player renderer
+		g_PlayerRenderer.Add(model);
 	} else {
 		// add to regular model list
 		m_Models.push_back(model);

@@ -7,6 +7,7 @@
 #include "RenderableObject.h"
 
 #define MODELRDATA_FLAG_TRANSPARENT		(1<<0)
+#define MODELRDATA_FLAG_PLAYERCOLOR		(1<<1)
 
 class CModel;
 
@@ -17,7 +18,7 @@ public:
 	~CModelRData();
 
 	void Update();
-	void RenderStreams(u32 streamflags);
+	void RenderStreams(u32 streamflags, bool isplayer = false);
 
 	// return render flags for this model
 	u32 GetFlags() const { return m_Flags; }
