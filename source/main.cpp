@@ -468,6 +468,9 @@ static void Render()
 	// Use the GL_ALPHA texture as the alpha channel with a flat colouring
 	glDisable(GL_ALPHA_TEST);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	// Added --
+	glEnable(GL_TEXTURE_2D);
+	// -- GL
 
 	oglCheck();
 
