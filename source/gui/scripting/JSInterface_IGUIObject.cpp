@@ -1,4 +1,4 @@
-// $Id: JSInterface_IGUIObject.cpp,v 1.11 2004/09/02 03:03:13 gee Exp $
+// $Id: JSInterface_IGUIObject.cpp,v 1.12 2004/09/03 14:12:43 philip Exp $
 
 #include "precompiled.h"
 
@@ -131,8 +131,10 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				CClientArea area;
 				GUI<CClientArea>::GetSetting(e, propName, area);
 				JSObject* obj = JS_NewObject(cx, &JSI_GUISize::JSI_class, NULL, NULL);
-
-				#define P(x, y, z) jsval z = INT_TO_JSVAL(area.x.y); JS_SetProperty(cx, obj, #z, &z)
+				JS_AddRoot(cx, obj);
+				try
+				{
+				#define P(x, y, z) g_ScriptingHost.SetObjectProperty_Double(obj, #z, area.x.y)
 					P(pixel,	left,	left);
 					P(pixel,	top,	top);
 					P(pixel,	right,	right);
@@ -142,8 +144,16 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 					P(percent,	right,	rright);
 					P(percent,	bottom,	rbottom);
 				#undef P
+				}
+				catch (PSERROR_Scripting_ConversionFailed)
+				{
+					debug_warn("Error creating size object!");
+					JS_RemoveRoot(cx, obj);
+					break;
+				}
 
 				*vp = OBJECT_TO_JSVAL(obj);
+				JS_RemoveRoot(cx, obj);
 				break;
 			}
 
@@ -169,7 +179,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 
 		default:
 			JS_ReportError(cx, "Setting '%s' uses an unimplemented type", propName.c_str());
-			assert(! "This shouldn't happen");
+			debug_warn("This shouldn't happen");
 			return JS_FALSE;
 		}
 
@@ -267,12 +277,16 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 						GUI<CClientArea>::GetSetting(e, propName, area);
 
 						JSObject* obj = JSVAL_TO_OBJECT(*vp);
-						jsval t; int32 s;
-						#define PROP(x) JS_GetProperty(cx, obj, #x, &t); \
-										JS_ValueToInt32(cx, t, &s); \
-										area.pixel.x = s
-						PROP(left); PROP(top); PROP(right); PROP(bottom);
-						#undef PROP
+						#define P(x, y, z) area.x.y = (float)g_ScriptingHost.GetObjectProperty_Double(obj, #z)
+							P(pixel,	left,	left);
+							P(pixel,	top,	top);
+							P(pixel,	right,	right);
+							P(pixel,	bottom,	bottom);
+							P(percent,	left,	rleft);
+							P(percent,	top,	rtop);
+							P(percent,	right,	rright);
+							P(percent,	bottom,	rbottom);
+						#undef P
 
 						GUI<CClientArea>::SetSetting(e, propName, area);
 					}

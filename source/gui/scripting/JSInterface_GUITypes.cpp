@@ -1,4 +1,4 @@
-// $Id: JSInterface_GUITypes.cpp,v 1.5 2004/07/24 14:03:16 philip Exp $
+// $Id: JSInterface_GUITypes.cpp,v 1.6 2004/09/03 14:12:43 philip Exp $
 
 #include "precompiled.h"
 
@@ -77,28 +77,37 @@ JSBool JSI_GUISize::construct(JSContext* cx, JSObject* obj, unsigned int argc, j
 }
 
 // Produces "10", "-10", "50%", "50%-10", "50%+10", etc
-CStr ToPercentString(int pix, int per)
+CStr ToPercentString(double pix, double per)
 {
 	if (per == 0)
 		return CStr(pix);
 	else
-		return CStr(per)+CStr("%")+( pix == 0 ? CStr() : pix > 0 ? CStr("+")+CStr(pix) : CStr(pix) );
+		return CStr(per)+CStr("%")+( pix == 0.0 ? CStr() : pix > 0.0 ? CStr("+")+CStr(pix) : CStr(pix) );
 }
 
 JSBool JSI_GUISize::toString(JSContext* cx, JSObject* obj, uintN UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* rval)
 {
-	char buffer[256];
-	snprintf(buffer, 256, "%s %s %s %s",
-		ToPercentString(JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "left"		)),
-						JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "rleft"		))).c_str(),
-		ToPercentString(JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "top"		)),
-						JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "rtop"		))).c_str(),
-		ToPercentString(JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "right"		)),
-						JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "rright"	))).c_str(),
-		ToPercentString(JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "bottom"	)),
-						JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "rbottom"	))).c_str() );
+	CStr buffer;
 
-	*rval = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, buffer));
+	try
+	{
+#define SIDE(side) buffer += ToPercentString(g_ScriptingHost.GetObjectProperty_Double(obj, #side), g_ScriptingHost.GetObjectProperty_Double(obj, "r"#side));
+		SIDE(left);
+		buffer += " ";
+		SIDE(top);
+		buffer += " ";
+		SIDE(right);
+		buffer += " ";
+		SIDE(bottom);
+#undef SIDE
+	}
+	catch (PSERROR_Scripting_ConversionFailed)
+	{
+		*rval = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, "<Error converting value to numbers>"));
+		return JS_TRUE;
+	}
+
+	*rval = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, buffer.c_str()));
 	return JS_TRUE;
 }
 
