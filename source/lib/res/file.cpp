@@ -204,7 +204,7 @@ int file_rel_chdir(const char* argv0, const char* rel_path)
 
 	// get actual root dir - previous n_path may include ..
 	// (slight optimization, speeds up path lookup)
-	if(getcwd(n_root_dir, sizeof(n_root_dir)) < 0)
+	if(getcwd(n_root_dir, sizeof(n_root_dir)) == 0)
 		goto fail;
 	n_root_dir_len = strlen(n_root_dir)+1;	// +1 for trailing DIR_SEP
 	n_root_dir[n_root_dir_len-1] = DIR_SEP;

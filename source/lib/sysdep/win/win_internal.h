@@ -318,21 +318,23 @@ enum BasicType
 #endif
 
 extern "C" {
-_CRTIMP intptr_t _get_osfhandle(int);
-_CRTIMP int _open_osfhandle(intptr_t, int);
-_CRTIMP int _open(const char* fn, int mode, ...);
-_CRTIMP int _close(int);
+extern _CRTIMP intptr_t _get_osfhandle(int);
+extern _CRTIMP int _open_osfhandle(intptr_t, int);
+extern _CRTIMP int _open(const char* fn, int mode, ...);
+extern _CRTIMP int _close(int);
+
+extern _CRTIMP char* _getcwd(char*, size_t);
 
 // can't include malloc.h or crtdbg due to conflicts with mmgr.h
-_CRTIMP int _heapchk(void);
+extern _CRTIMP int _heapchk(void);
 #ifndef NDEBUG
-_CRTIMP int _CrtSetDbgFlag(int);
+extern _CRTIMP int _CrtSetDbgFlag(int);
 #else
 #define _CrtSetDbgFlag(f)
 #endif
-_CRTIMP void  _aligned_free(void *);
-_CRTIMP void* _aligned_malloc(size_t, size_t);
-_CRTIMP void* _aligned_realloc(void *, size_t, size_t);
+extern _CRTIMP void  _aligned_free(void *);
+extern _CRTIMP void* _aligned_malloc(size_t, size_t);
+extern _CRTIMP void* _aligned_realloc(void *, size_t, size_t);
 
 
 
