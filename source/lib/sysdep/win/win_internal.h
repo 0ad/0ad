@@ -1,9 +1,11 @@
+#ifndef WIN_INTERNAL_H
+#define WIN_INTERNAL_H
+
 #ifndef _WIN32
 #error "including win_internal.h without _WIN32 defined"
 #endif
 
-#ifndef WIN_INTERNAL_H
-#define WIN_INTERNAL_H
+#include "lib/types.h"	// intptr_t
 
 
 // Win32 socket decls aren't portable (e.g. problems with socklen_t)
@@ -236,9 +238,6 @@ typedef struct _SYSTEM_POWER_INFORMATION
 ///////////////////////////////////////////////////////////////////////////////
 
 
-#include "types.h"	// intptr_t
-
-
 /* Define _CRTIMP */
 
 #ifndef _CRTIMP
@@ -255,14 +254,51 @@ _CRTIMP int _open_osfhandle(intptr_t, int);
 _CRTIMP int _open(const char* fn, int mode, ...);
 _CRTIMP int _close(int);
 
+// can't include malloc.h or crtdbg due to conflicts with mmgr.h
+_CRTIMP int _heapchk(void);
+#ifndef NDEBUG
+_CRTIMP int _CrtSetDbgFlag(int);
+#else
+#define _CrtSetDbgFlag(f)
+#endif
+_CRTIMP void  _aligned_free(void *);
+_CRTIMP void* _aligned_malloc(size_t, size_t);
+_CRTIMP void* _aligned_realloc(void *, size_t, size_t);
+
+
+
+/*
+* Bit values for _crtDbgFlag flag:
+*
+* These bitflags control debug heap behavior.
+*/
+
+#define _CRTDBG_ALLOC_MEM_DF        0x01  /* Turn on debug allocation */
+#define _CRTDBG_DELAY_FREE_MEM_DF   0x02  /* Don't actually free memory */
+#define _CRTDBG_CHECK_ALWAYS_DF     0x04  /* Check heap every alloc/dealloc */
+#define _CRTDBG_RESERVED_DF         0x08  /* Reserved - do not use */
+#define _CRTDBG_CHECK_CRT_DF        0x10  /* Leak check/diff CRT blocks */
+#define _CRTDBG_LEAK_CHECK_DF       0x20  /* Leak check at program exit */
+
+/*
+We do not check the heap by default at this point because the cost was too high
+for some applications. You can still turn this feature on manually.
+*/
+#define _CRTDBG_CHECK_DEFAULT_DF    0           
+
+#define _CRTDBG_REPORT_FLAG         -1    /* Query bitflag status */
+
+
+
+
 #ifndef NO_WINSOCK
 extern __declspec(dllimport) int __stdcall WSAStartup(unsigned short, void*);
-extern __declspec(dllimport) int __stdcall WSACleanup();
+extern __declspec(dllimport) int __stdcall WSACleanup(void);
 extern __declspec(dllimport) int __stdcall WSAAsyncSelect(int s, HANDLE hWnd, unsigned int wMsg, long lEvent);
-extern __declspec(dllimport) int __stdcall WSAGetLastError();
+extern __declspec(dllimport) int __stdcall WSAGetLastError(void);
 #endif	// #ifndef NO_WINSOCK
 
-extern int WinMainCRTStartup();
+extern int WinMainCRTStartup(void);
 extern int main(int, char*[]);
 }
 
@@ -276,9 +312,6 @@ extern int main(int, char*[]);
 
 
 
-
-#include "types.h"
-
 //
 // locking
 //
@@ -290,6 +323,7 @@ enum
 	HRT_CS,
 	WAIO_CS,
 	WIN_CS,
+	DBGHELP_CS,
 
 	NUM_CS
 };
@@ -328,7 +362,7 @@ extern void win_unlock(uint idx);
 // to be called via WIN_REGISTER_FUNC, and then restore the previous segment
 // with #pragma data_seg() .
 
-#define WIN_REGISTER_FUNC(func) static int func(); static int(*p##func)(void) = func
+#define WIN_REGISTER_FUNC(func) static int func(void); static int(*p##func)(void) = func
 
 
 

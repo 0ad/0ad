@@ -104,7 +104,8 @@ static Handle find_alloc(void* target_p, It* out_it = 0)
 static void remove_alloc(void* raw_p)
 {
 	size_t num_removed = ptr_to_h.erase(raw_p);
-	assert(num_removed == 1 && "remove_alloc: not in map");
+	if(num_removed != 1)
+		assert(num_removed == 1 && "remove_alloc: not in map");
 }
 
 
@@ -189,7 +190,7 @@ static void* heap_alloc(size_t raw_size, uintptr_t& ctx)
 
 static u8* pool;
 static size_t pool_pos;
-static const size_t POOL_CAP = 8*MB;	// TODO: user editable
+static const size_t POOL_CAP = 8*MiB;	// TODO: user editable
 
 
 static void pool_free(void* raw_p, size_t raw_size, uintptr_t ctx)
@@ -216,7 +217,7 @@ static void* pool_alloc(const size_t raw_size, uintptr_t& ctx)
 
 	if(!pool)
 	{
-		pool = (u8*)mem_alloc(POOL_CAP, 64*KB, RES_STATIC);
+		pool = (u8*)mem_alloc(POOL_CAP, 64*KiB, RES_STATIC);
 		if(!pool)
 			return 0;
 	}
@@ -379,8 +380,6 @@ void* mem_alloc(size_t size, const size_t align, uint flags, Handle* phm)
 
 void* mem_get_ptr(Handle hm, size_t* user_size /* = 0 */)
 {
-	h_add_ref(hm);
-
 	Mem* m = H_USER_DATA(hm, Mem);
 	if(!m)
 	{
