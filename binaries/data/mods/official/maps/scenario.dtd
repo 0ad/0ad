@@ -2,9 +2,10 @@
 
 	<!ELEMENT Entities (Entity*)>
 
-		<!ELEMENT Entity (Template,Position,Orientation)>
+		<!ELEMENT Entity (Template,Player,Position,Orientation)>
 
 			<!ELEMENT Template (#PCDATA)>
+			<!ELEMENT Player (#PCDATA)>
 
 			<!ELEMENT Position EMPTY>
 			<!ATTLIST Position

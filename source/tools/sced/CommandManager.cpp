@@ -38,7 +38,7 @@ void CCommandManager::Append(CCommand* cmd)
 		}
 
 		// update history position to point at last command executed
-		m_HistoryPos=m_CommandHistory.size()-1;
+		m_HistoryPos=(i32)m_CommandHistory.size()-1;
 	}
 }
 

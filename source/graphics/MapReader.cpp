@@ -214,6 +214,7 @@ void CMapReader::ReadXML(const char* filename)
 	EL(entities);
 	EL(entity);
 	EL(template);
+	EL(player);
 	EL(position);
 	EL(orientation);
 	AT(x);
@@ -245,6 +246,7 @@ void CMapReader::ReadXML(const char* filename)
 				// <entity>
 
 				CStrW TemplateName;
+				int PlayerID;
 				CVector3D Position;
 				float Orientation;
 
@@ -258,6 +260,11 @@ void CMapReader::ReadXML(const char* filename)
 					{
 						// <template>
 						TemplateName = child.getText();
+					}
+					else if (element_name == el_player)
+					{
+						// <player>
+						PlayerID = CStr(child.getText()).ToInt();
 					}
 					else if (element_name == el_position)
 					{
@@ -279,7 +286,8 @@ void CMapReader::ReadXML(const char* filename)
 						debug_warn("Invalid XML data - DTD shouldn't allow this");
 				}
 
-				g_EntityManager.create(g_EntityTemplateCollection.getTemplate(TemplateName), Position, Orientation);
+				HEntity ent = g_EntityManager.create(g_EntityTemplateCollection.getTemplate(TemplateName), Position, Orientation);
+				ent->m_player = PlayerID;
 			}
 		}
 		else

@@ -68,6 +68,9 @@ public:
 	bool m_selected;
 	i32 m_grouped;
 
+	// The player that owns this entity. TODO: do this properly (if this way is wrong)
+	int m_player;
+
 	// If this unit has been removed from the gameworld but has still
 	// has references.
 	bool m_destroyed;
@@ -165,7 +168,7 @@ public:
 	void teleport(); // Fixes things if the position is changed by something externally.
 	void checkSelection(); // In case anyone tries to select/deselect this through JavaScript.
 	void checkGroup(); // Groups
-	void checkExtant(); // Existance
+	void checkExtant(); // Existence
 
 	// Returns the default action of the entity upon the target (or -1 if none apply)
 	int CEntity::defaultOrder( CEntity* orderTarget );

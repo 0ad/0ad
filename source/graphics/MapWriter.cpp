@@ -279,6 +279,8 @@ void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan)
 
 				XML_Setting("Template", entity->m_base->m_Tag);
 
+				XML_Setting("Player", entity->m_player);
+
 				{
 					CVector3D position = entity->m_position;
 

@@ -112,3 +112,12 @@ void CSelectObjectTool::RenderUnitBounds(CUnit* unit)
 	glPopMatrix();
 }
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+// GetFirstEntity: return the entity of the first selected object
+CEntity* CSelectObjectTool::GetFirstEntity()
+{
+	if (m_SelectedUnits.size() == 0)
+		return NULL;
+	return m_SelectedUnits[0]->GetEntity();
+}

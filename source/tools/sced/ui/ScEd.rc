@@ -165,6 +165,20 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Ra&ndom Map",                 ID_RANDOM_MAP
     END
+    POPUP "E&ntity"
+    BEGIN
+        POPUP "&Player"
+        BEGIN
+            MENUITEM "Player &1",                   ID_PLAYER_PLAYER1
+            MENUITEM "Player &2",                   ID_PLAYER_PLAYER2
+            MENUITEM "Player &3",                   ID_PLAYER_PLAYER3
+            MENUITEM "Player &4",                   ID_PLAYER_PLAYER4
+            MENUITEM "Player &5",                   ID_PLAYER_PLAYER5
+            MENUITEM "Player &6",                   ID_PLAYER_PLAYER6
+            MENUITEM "Player &7",                   ID_PLAYER_PLAYER7
+            MENUITEM "Player &8",                   ID_PLAYER_PLAYER8
+        END
+    END
     POPUP "&Tools"
     BEGIN
         MENUITEM "&Options",                    ID_TOOLS_OPTIONS

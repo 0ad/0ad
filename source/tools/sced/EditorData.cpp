@@ -347,7 +347,7 @@ void CEditorData::OnScreenShot(const char* filename)
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-// SubmitModelRecursive: recurse down given model, submitting it and all it's descendents to the 
+// SubmitModelRecursive: recurse down given model, submitting it and all its descendants to the 
 // renderer
 void SubmitModelRecursive(CModel* model)
 {
@@ -407,7 +407,7 @@ void CEditorData::RenderWorld()
 	// render all the units
 	RenderModels();
 	
-	// flush prior to rendering overlays etc	
+	// flush prior to rendering overlays etc
 	g_Renderer.FlushFrame();
 }
 
@@ -495,6 +495,12 @@ void CEditorData::OnDraw()
 		// .. and here's the overlays
 		g_MiniMap.Render();
 		m_InfoBox.Render();
+
+		const std::vector<CUnit*>& units=g_UnitMan.GetUnits();
+		for (size_t i=0;i<units.size();++i)
+			if (units[i]->GetEntity())
+				units[i]->GetEntity()->renderSelectionOutline();
+
 	} else {
 		g_Renderer.SetClearColor(0x00453015);
 		g_Renderer.BeginFrame();

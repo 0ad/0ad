@@ -10,6 +10,7 @@
 #include "Model.h"
 
 class CUnit;
+class CEntity;
 
 class CSelectObjectTool : public CBrushTool
 {
@@ -20,6 +21,10 @@ public:
 
 	// tool triggered via left mouse button; paint current selection
 	void OnLButtonDown(unsigned int flags,int px,int py) { SelectObject(flags,px,py); }
+
+	// return the entity of the first selected object, or null if it can't
+	// (TODO: less hackiness, for the whole player-selection system)
+	CEntity* GetFirstEntity();
 
 	// get the default select object instance
 	static CSelectObjectTool* GetTool() { return &m_SelectObjectTool; }

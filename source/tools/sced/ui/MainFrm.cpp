@@ -43,6 +43,9 @@
 #include "RaiseElevationTool.h"
 #include "BrushShapeEditorTool.h"
 
+#include "SelectObjectTool.h"
+#include "simulation/Entity.h"
+
 extern CTerrain g_Terrain;
 extern CLightEnv g_LightEnv;
 
@@ -90,6 +93,14 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_COMMAND(IDR_UNIT_TOOLS, OnUnitTools)
 	ON_COMMAND(ID_RANDOM_MAP, OnRandomMap)
 	//}}AFX_MSG_MAP
+	ON_COMMAND(ID_PLAYER_PLAYER1, OnEntityPlayer1)
+	ON_COMMAND(ID_PLAYER_PLAYER2, OnEntityPlayer2)
+	ON_COMMAND(ID_PLAYER_PLAYER3, OnEntityPlayer3)
+	ON_COMMAND(ID_PLAYER_PLAYER4, OnEntityPlayer4)
+	ON_COMMAND(ID_PLAYER_PLAYER5, OnEntityPlayer5)
+	ON_COMMAND(ID_PLAYER_PLAYER6, OnEntityPlayer6)
+	ON_COMMAND(ID_PLAYER_PLAYER7, OnEntityPlayer7)
+	ON_COMMAND(ID_PLAYER_PLAYER8, OnEntityPlayer8)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -851,4 +862,15 @@ void CMainFrame::OnRandomMap()
 	}
 	g_MiniMap.Rebuild();
 */
+}
+
+#define P(n) void CMainFrame::OnEntityPlayer##n() { return OnEntityPlayerX(n); }
+P(1)  P(2)  P(3)  P(4)  P(5)  P(6)  P(7)  P(8)
+#undef P
+
+void CMainFrame::OnEntityPlayerX(int x)
+{
+	CEntity* entity = CSelectObjectTool::GetTool()->GetFirstEntity();
+	if (entity)
+		entity->m_player = x;
 }

@@ -108,6 +108,17 @@ protected:
 	afx_msg void OnRandomMap();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnEntityPlayer1();
+	afx_msg void OnEntityPlayer2();
+	afx_msg void OnEntityPlayer3();
+	afx_msg void OnEntityPlayer4();
+	afx_msg void OnEntityPlayer5();
+	afx_msg void OnEntityPlayer6();
+	afx_msg void OnEntityPlayer7();
+	afx_msg void OnEntityPlayer8();
+
+	afx_msg void OnEntityPlayerX(int x);
 };
 
 /////////////////////////////////////////////////////////////////////////////

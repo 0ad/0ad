@@ -19,6 +19,9 @@
 
 #include "scripting/JSInterface_Vector3D.h"
 
+// TODO: don't hardcode player-colours
+static const float PlayerColours[8][3] = { {1,1,1}, {1,0,0}, {0,1,0}, {0,0,1}, {1,1,0}, {1,0,1}, {0,1,1}, {1,0.5,0} };
+
 CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 {
 	m_position = position;
@@ -66,6 +69,8 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	m_selected = false;
 
 	m_grouped = -1;
+
+	m_player = 1;
 }
 
 CEntity::~CEntity()
@@ -495,12 +500,22 @@ void CEntity::render()
 
 void CEntity::renderSelectionOutline( float alpha )
 {
+#ifdef SCED
+	extern CTerrain g_Terrain;
+	CTerrain *pTerrain = &g_Terrain;
+#else
 	CTerrain *pTerrain = g_Game->GetWorld()->GetTerrain();
+#endif
 	
 	if( !m_bounds ) return;
 
-	glColor4f( 1.0f, 1.0f, 1.0f, alpha );
-	if( getCollisionObject( this ) ) glColor4f( 1.0f, 0.5f, 0.5f, alpha );
+	if( getCollisionObject( this ) )
+		glColor4f( 1.0f, 0.5f, 0.5f, alpha );
+	else
+	{
+		int player = min(max(1, m_player), 8) - 1;
+		glColor4f( PlayerColours[player][0], PlayerColours[player][1], PlayerColours[player][2], alpha);
+	}
 	
 	glBegin( GL_LINE_LOOP );
 
