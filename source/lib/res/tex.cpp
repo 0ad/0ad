@@ -1123,36 +1123,29 @@ int tex_free(TexInfo* t)
 }
 
 
-int tex_write(TexInfo* t, const char* fn)
+int tex_write(const char* fn, int w, int h, int bpp, int flags, void* img)
 {
-	u8* img = (u8*)mem_get_ptr(t->hm);
-	if(!img)
-		return -1;
-
-	const size_t img_size = t->w * t->h * t->bpp / 8;
+	const size_t img_size = w * h * bpp / 8;
 
 	char* ext = strrchr(fn, '.');
 	if(!ext)
 		return -1;
 
+	TexInfo t =
+	{
+		0,	// handle - not needed by encoders
+		0,	// image data offset
+		w, h, bpp, flags
+	};
+
 	Codec* c = codecs;
 	for(int i = 0; i < num_codecs; i++, c++)
 		if(c->is_ext(ext))
 		{
-			c->encode(t, fn, img, img_size);
+			c->encode(&t, fn, (u8*)img, img_size);
 			return 0;
 		}
 
 	// no codec found
 	return -1;
-}
-
-
-int tex_write(const char* fn, int w, int h, int bpp, int flags, void* img)
-{
-	size_t img_size = w * h * bpp / 8;
-	const Handle hm = mem_assign(img, img_size);
-	TexInfo t = { hm, 0, w, h, bpp, flags };
-
-	return tex_write(&t, fn);
 }
