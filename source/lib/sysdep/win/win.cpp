@@ -355,6 +355,23 @@ static void at_exit(void)
 // be very careful to avoid non-stateless libc functions!
 static inline void pre_libc_init()
 {
+#if WINVER >= 0x0501
+	// enable low-fragmentation heap
+	HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");
+	if(hKernel32Dll)
+	{
+		BOOL (WINAPI* pHeapSetInformation)(HANDLE, HEAP_INFORMATION_CLASS, void*, size_t);
+		*(void**)&pHeapSetInformation = GetProcAddress(hKernel32Dll, "HeapSetInformation");
+		if(pHeapSetInformation)
+		{
+			ULONG flags = 2;	// enable LFH
+			HeapSetInformation(GetProcessHeap(), HeapCompatibilityInformation, &flags, sizeof(flags));
+		}
+
+		FreeLibrary(hKernel32Dll);
+	}
+#endif	// #if WINVER >= 0x0501
+
 	cs_init();
 
 	GetSystemDirectory(win_sys_dir, sizeof(win_sys_dir));

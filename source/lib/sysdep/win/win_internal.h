@@ -38,7 +38,7 @@
 #undef _WINDOWS_
 
 // set version; needed for EnumDisplayDevices
-#define _WIN32_WINNT 0x0500
+#define _WIN32_WINNT 0x0501
 
 
 
