@@ -53,10 +53,12 @@ struct Req
 static const int MAX_REQS = 4;
 static Req reqs[MAX_REQS];
 
-static HANDLE open_mutex, reqs_mutex;
+// TODO: use pthread mutex
+static HANDLE open_mutex = INVALID_HANDLE_VALUE;
+static HANDLE reqs_mutex = INVALID_HANDLE_VALUE;
 #define LOCK(what)\
 {\
-if(!what##_mutex)\
+if(what##_mutex == INVALID_HANDLE_VALUE)\
 	what##_mutex = CreateMutex(0,0,"aio_"#what);\
 WaitForSingleObject(what##_mutex, INFINITE);\
 }
@@ -117,7 +119,10 @@ static void cleanup(void)
 	}
 
 	CloseHandle(open_mutex);
-	CloseHandle(reqs_mutex);
+	open_mutex = INVALID_HANDLE_VALUE;
+	if(reqs_mutex != INVALID_HANDLE_VALUE)	// happens if not initialized, i.e. aio_rw wasn't called
+		CloseHandle(reqs_mutex);
+	reqs_mutex = INVALID_HANDLE_VALUE;
 }
 
 // called by aio_open and aio_open_winhandle

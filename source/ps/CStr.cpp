@@ -219,7 +219,7 @@ void CStr::Replace(const CStr &ToReplace, const CStr &ReplaceWith)
 // returns a trimed string, removes whitespace from the left/right/both
 CStr CStr::Trim(PS_TRIM_MODE Mode)
 {
-	size_t Left, Right;
+	int Left, Right;
 	
 	
 	switch (Mode)
