@@ -3,7 +3,7 @@ REM Create Visual Studio Workspaces on Windows
 
 mkdir vc6
 mkdir vc7
-mkdir vc2003b
+mkdir vc2003
 
 REM Change to the lua project name, this must correspond to the base file name
 REM of the created project files
@@ -27,7 +27,7 @@ move *.sln    ..\..\workspaces\vc7
 move *.vcproj ..\..\workspaces\vc7
 
 ..\premake --target vs2003
-move *.sln    ..\..\workspaces\vc2003b
-move *.vcproj ..\..\workspaces\vc2003b
+move *.sln    ..\..\workspaces\vc2003
+move *.vcproj ..\..\workspaces\vc2003
 
 cd ..\..\workspaces

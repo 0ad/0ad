@@ -35,6 +35,15 @@ struct CColor
 	// For passing to glColor[34]fv:
 	const float* FloatArray() const { return &r; }
 
+	// For passing to CRenderer:
+	const u32 Int() const
+	{
+		return (((int)(a*255.0) & 0xff) << 24)
+			 + (((int)(b*255.0) & 0xff) << 16)
+			 + (((int)(g*255.0) & 0xff) <<  8)
+			 + (((int)(r*255.0) & 0xff));
+	}
+
 	float r, g, b, a;
 };
 

@@ -439,11 +439,16 @@ static void Render()
 
 	oglCheck();
 
+	CStr skystring = "61 193 255";
+	CConfigValue* val;
+	if ((val=g_ConfigDB.GetValue(CFG_USER, "skycolor")))
+		val->GetString(skystring);
+	CColor skycol;
+	GUI<CColor>::ParseString(skystring, skycol);
+	g_Renderer.SetClearColor(skycol.Int());
+
 	// start new frame
 	g_Renderer.BeginFrame();
-
-	// switch on wireframe for terrain if we want it
-	//g_Renderer.SetTerrainRenderMode( SOLID ); // (PT: If this is done here, the W key doesn't work)
 
 	oglCheck();
 
@@ -967,7 +972,7 @@ static void Init(int argc, char* argv[])
 	MICROLOG(L"In init");
 
 	// If you ever want to catch a particular allocation:
-	//_CrtSetBreakAlloc(32894);
+	//_CrtSetBreakAlloc(14246);
 
 #ifdef _MSC_VER
 u64 TSC=rdtsc();
@@ -1238,9 +1243,8 @@ static void Frame()
 	{
 		MICROLOG(L"render");
 		Render();
-		MICROLOG(L"swap buffers");
-		SDL_GL_SwapBuffers();
 		MICROLOG(L"finished render");
+		SDL_GL_SwapBuffers();
 	}
 	// inactive; relinquish CPU for a little while
 	// don't use SDL_WaitEvent: don't want the main loop to freeze until app focus is restored
