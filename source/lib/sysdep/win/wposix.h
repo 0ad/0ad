@@ -217,11 +217,14 @@ extern int closedir(DIR*);
 // <sys/mman.h>
 //
 
-#define PROT_READ	0x01	// page can be read
-#define PROT_WRITE	0x02	// page can be written
+// mmap prot flags
+#define PROT_NONE   0x00	// no access (not supported on Win32)
+#define PROT_READ	0x01
+#define PROT_WRITE	0x02
 
+// mmap flags
 #define MAP_SHARED	0x01	// share changes across processes
-#define MAP_PRIVATE	0x02	// private copy on write mapping
+#define MAP_PRIVATE	0x02	// private copy-on-write mapping
 #define MAP_FIXED	0x04
 
 #define MAP_FAILED 0

@@ -449,56 +449,103 @@ int pthread_mutex_timedlock(pthread_mutex_t* m, const struct timespec* abs_timeo
 //////////////////////////////////////////////////////////////////////////////
 
 
-void* mmap(void* start, size_t len, int prot, int flags, int fd, off_t offset)
+void* mmap(void* const user_start, const size_t len, const int prot, const int flags, const int fd, const off_t offset)
 {
+	{
 	WIN_SAVE_LAST_ERROR;
 
-	if(!(flags & MAP_FIXED))
-		start = 0;
+	// assume fd = -1 (requesting mapping backed by page file),
+	// so that we notice invalid file handles below.
+	HANDLE hFile = INVALID_HANDLE_VALUE;
+	if(fd != -1)
+	{
+		hFile = mk_handle(_get_osfhandle(fd));
+		if(hFile == INVALID_HANDLE_VALUE)
+		{
+			debug_warn("mmap: invalid file handle");
+			goto fail;
+		}
+	}
 
-	/* interpret protection/mapping flags. */
-	SECURITY_ATTRIBUTES sec = { sizeof(SECURITY_ATTRIBUTES), 0, 0 };
-	DWORD flProtect = PAGE_READONLY;	/* mapping object permission */
-	DWORD dwAccess = FILE_MAP_READ;		/* file map access permission */
+	// MapView.. will choose start address unless MAP_FIXED was specified.
+	void* start = 0;
+	if(flags & MAP_FIXED)
+	{
+		start = user_start;
+		if(start == 0)	// assert below would fire
+			goto fail;
+	}
+
+	// figure out access rights.
+	// note: reads are always allowed (Win32 limitation).
+
+	SECURITY_ATTRIBUTES sec = { sizeof(SECURITY_ATTRIBUTES), (void*)0, FALSE };
+	DWORD flProtect = PAGE_READONLY;
+	DWORD dwAccess = FILE_MAP_READ;
+
+	// .. no access: not possible on Win32.
+	if(prot == PROT_NONE)
+		goto fail;
+	// .. write or read/write (Win32 doesn't support write-only)
 	if(prot & PROT_WRITE)
 	{
 		flProtect = PAGE_READWRITE;
 
-		/* changes are shared & written to file */
-		if(flags & MAP_SHARED)
+		const bool shared = (flags & MAP_SHARED ) != 0;
+		const bool priv   = (flags & MAP_PRIVATE) != 0;
+		// .. both aren't allowed
+		if(shared && priv)
+			goto fail;
+		// .. changes are shared & written to file
+		else if(shared)
 		{
-			sec.bInheritHandle = 1;
+			sec.bInheritHandle = TRUE;
 			dwAccess = FILE_MAP_ALL_ACCESS;
 		}
-		/* private copy on write mapping */
-		else if(flags & MAP_PRIVATE)
+		// .. private copy-on-write mapping
+		else if(priv)
 		{
 			flProtect = PAGE_WRITECOPY;
 			dwAccess = FILE_MAP_COPY;
 		}
 	}
 
-	DWORD len_hi = (DWORD)((u64)len >> 32), len_lo = (DWORD)len & 0xffffffff;
-
-	HANDLE hFile = mk_handle(_get_osfhandle(fd));
-	HANDLE hMap = CreateFileMapping(hFile, &sec, flProtect, len_hi, len_lo, 0);
-
+	// now actually map.
+	const DWORD len_hi = (DWORD)((u64)len >> 32);
+		// careful! language doesn't allow shifting 32-bit types by 32 bits.
+	const DWORD len_lo = (DWORD)len & 0xffffffff;
+	const HANDLE hMap = CreateFileMapping(hFile, &sec, flProtect, len_hi, len_lo, (LPCSTR)0);
+	if(hMap == INVALID_HANDLE_VALUE)
+		// bail now so that MapView.. doesn't overwrite the last error value.
+		goto fail;
 	void* ptr = MapViewOfFileEx(hMap, dwAccess, len_hi, offset, len_lo, start);
 
-	/* file mapping object will be freed when ptr is unmapped */
-	CloseHandle(hMap);
+	// free the mapping object now, so that we don't have to hold on to its
+	// handle until munmap(). it's not actually released yet due to the
+	// reference held by MapViewOfFileEx (if it succeeded).
+	if(hMap != INVALID_HANDLE_VALUE)	// avoid "invalid handle" error
+		CloseHandle(hMap);
 
-	if(!ptr || (flags & MAP_FIXED && ptr != start))
-		return MAP_FAILED;
+	if(!ptr)
+		// bail now, before the last error value is restored,
+		// but after freeing the mapping object.
+		goto fail;
+
+	assert(!(flags & MAP_FIXED) || (ptr == start));
+		// fixed => ptr = start
 
 	WIN_RESTORE_LAST_ERROR;
 
 	return ptr;
+	}
+fail:
+	return MAP_FAILED;
 }
 
 
-int munmap(void* start, size_t /* len */)
+int munmap(void* const start, const size_t len)
 {
+	UNUSED(len);
 	BOOL ok = UnmapViewOfFile(start);
 	return ok? 0 : -1;
 }
