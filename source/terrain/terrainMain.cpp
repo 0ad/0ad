@@ -32,7 +32,7 @@ int					g_TransTexCounter = 0;
 int					g_TickCounter = 0;
 double				g_LastTime;
 
-static float g_CameraZoom = 10;
+float g_CameraZoom = 10;
 
 const int NUM_ALPHA_MAPS = 13;
 const float ViewScrollSpeed = 60;

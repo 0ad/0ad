@@ -367,8 +367,8 @@ static void Render()
 	// view params
 	glLoadIdentity();
 	glTranslatef(10, 90, 0);
-	extern float ViewFOV;
-	glprintf("FOV=%.1f", RADTODEG(ViewFOV));
+	extern float g_CameraZoom;
+	glprintf("zoom=%.1f", g_CameraZoom);
 
 #ifndef NO_GUI
 	// Temp GUI message GeeTODO
