@@ -27,27 +27,13 @@ void CPatch::Initialize (STerrainVertex *first_vertex)
 {
 	m_pVertices = first_vertex;
 
-	m_Bounds.m_BoxMin.X = m_pVertices[0].m_Position.X;
-	m_Bounds.m_BoxMin.Z = m_pVertices[0].m_Position.Z;
-	
-	m_Bounds.m_BoxMax.X = m_Bounds.m_BoxMin.X + PATCH_SIZE*CELL_SIZE;
-	m_Bounds.m_BoxMax.Z = m_Bounds.m_BoxMin.Z + PATCH_SIZE*CELL_SIZE;
+	m_Bounds.SetEmpty();
 
-	m_Bounds.m_BoxMin.Y = m_Bounds.m_BoxMin.Y = m_pVertices[0].m_Position.Y;
-
-	int j;
-
-	for (j=0; j<PATCH_SIZE+1; j++)
+	for (int j=0; j<PATCH_SIZE+1; j++)
 	{
 		for (int i=0; i<PATCH_SIZE+1; i++)
 		{
-			int pos = j*MAP_SIZE + i;
-
-			if (m_pVertices[pos].m_Position.Y < m_Bounds.m_BoxMin.Y)
-				m_Bounds.m_BoxMin.Y = m_pVertices[pos].m_Position.Y;
-
-			if (m_pVertices[pos].m_Position.Y > m_Bounds.m_BoxMax.Y)
-				m_Bounds.m_BoxMax.Y = m_pVertices[pos].m_Position.Y;
+			m_Bounds+=m_pVertices[j*MAP_SIZE + i].m_Position;
 		}
 	}
 

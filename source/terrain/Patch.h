@@ -12,8 +12,7 @@
 #ifndef PATCH_H
 #define PATCH_H
 
-#include "Matrix3D.h"
-#include "Camera.h"
+#include "Bound.h"
 #include "TerrGlobals.h"
 #include "MiniPatch.h"
 
@@ -29,7 +28,7 @@ class CPatch
 //	protected:
 		CMiniPatch		m_MiniPatches[16][16];
 
-		SBoundingBox	m_Bounds;
+		CBound	m_Bounds;
 		unsigned int	m_LastVisFrame;
 		
 		STerrainVertex	*m_pVertices;
