@@ -349,10 +349,6 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 		fmt <= GL_COMPRESSED_RGBA_S3TC_DXT5_EXT)
 	{
 		const int tex_size = w * h * bpp / 8;
-		// FIXME There's a bug in the file code that makes tex_file_size be
-		// rounded upwards to nearest multiple of 65536. Commented out until
-		// the file code has went through the neccessary changes.
-		//assert(4+sizeof(DDSURFACEDESC2)+tex_size == tex_file_size && "tex_upload: dds file size mismatch");
 
 		// RC, 020404: added mipmap generation for DDS textures using GL_SGIS_generate_mipmap - works fine
 		// on ATI cards, verified by others under NVIDIA
