@@ -17,6 +17,7 @@ extern unsigned int tex_bpp;	// 16 or 32; default: 32
 
 // upload the specified texture to OpenGL. Texture filter and internal format
 // may be specified to override the global defaults.
+// side effect: binds the texture to the currently active unit.
 extern int tex_upload(Handle ht, int filter_override = 0, int internal_fmt_override = 0, int format_override = 0);
 
 extern int tex_free(Handle& ht);
