@@ -5,7 +5,12 @@
 
 typedef char int8_t;
 typedef short int16_t;
+
+// already defined by MinGW
+#ifdef _MSC_VER
 typedef int int32_t;
+#endif
+
 #if defined(_MSC_VER) || defined(__INTEL_COMPILER) || defined(__LCC__)
 typedef __int64 int64_t;
 #elif defined(__GNUC__) || defined(__MWERKS__) || defined(__SUNPRO_C) || defined(__DMC__)

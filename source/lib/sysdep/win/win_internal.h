@@ -133,6 +133,9 @@ typedef struct _MEMORYSTATUSEX
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+// MinGW headers are already fixed; only change on VC
+#ifdef _MSC_VER
+
 #ifndef NTSTATUS
 #define NTSTATUS long
 #endif
@@ -229,16 +232,6 @@ typedef struct {
 
 #endif	// WINVER < 0x500
 
-typedef struct _PROCESSOR_POWER_INFORMATION
-{
-	ULONG Number;
-	ULONG MaxMhz;
-	ULONG CurrentMhz;
-	ULONG MhzLimit;
-	ULONG MaxIdleState;
-	ULONG CurrentIdleState;
-} PROCESSOR_POWER_INFORMATION, *PPROCESSOR_POWER_INFORMATION;
-
 typedef struct _SYSTEM_POWER_INFORMATION
 {
 	ULONG MaxIdlenessAllowed;
@@ -250,6 +243,19 @@ typedef struct _SYSTEM_POWER_INFORMATION
 // SPI.CoolingMode
 #define PO_TZ_INVALID_MODE 0 // The system does not support CPU throttling,
 	                         // or there is no thermal zone defined [..]
+
+#endif	// #ifdef _MSC_VER
+
+// neither VC7.1 nor MinGW define this
+typedef struct _PROCESSOR_POWER_INFORMATION
+{
+	ULONG Number;
+	ULONG MaxMhz;
+	ULONG CurrentMhz;
+	ULONG MhzLimit;
+	ULONG MaxIdleState;
+	ULONG CurrentIdleState;
+} PROCESSOR_POWER_INFORMATION, *PPROCESSOR_POWER_INFORMATION;
 
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -22,13 +22,18 @@
 #error "including win.h without _WIN32 defined"
 #endif
 
+#include "config.h"
+
 #include <wchar.h>
 
-// C99
-#define snprintf _snprintf
-#define swprintf _snwprintf
-#define vsnprintf _vsnprintf
-#define vsnwprintf _vsnwprintf
+// provide C99 *snprintf functions if compiler doesn't already
+// (MinGW does, VC7.1 doesn't).
+#ifndef HAVE_C99
+# define snprintf _snprintf
+# define swprintf _snwprintf
+# define vsnprintf _vsnprintf
+# define vsnwprintf _vsnwprintf
+#endif
 
 #include <stddef.h>	// wchar_t
 

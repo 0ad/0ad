@@ -122,7 +122,10 @@ EWOULDBLOCK    // Operation would block (may be the same value as EAGAIN]).
 // sys/stat.h
 //
 
+// already defined by MinGW
+#ifdef _MSC_VER
 typedef unsigned int mode_t;
+#endif
 
 // VC libc includes stat, but it's quite slow.
 // we implement our own, but use the CRT struct definition.
