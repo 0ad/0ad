@@ -56,7 +56,13 @@
 <!--
 	<objects>
 -->
-<!ELEMENT objects (object*)>
+<!ELEMENT objects (script|object)*>
+
+<!ELEMENT script (#PCDATA)>
+<!ATTLIST script
+  file					CDATA #IMPLIED
+>
+
 <!ELEMENT object (#PCDATA|object|action)*>
 <!ATTLIST object 
   %unique_settings;
@@ -66,6 +72,7 @@
 <!ELEMENT action (#PCDATA)>
 <!ATTLIST action 
   on					CDATA #REQUIRED
+  file					CDATA #IMPLIED
 >
 
 <!--
