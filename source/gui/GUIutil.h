@@ -303,6 +303,8 @@ public:
 		return __ParseString<T>(Value, tOutput);
 	}
 
+	static bool ParseColor(const CStr& Value, CColor &tOutput, float DefaultAlpha);
+
 private:
 
 	// templated typedef of function pointer

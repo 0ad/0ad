@@ -1548,15 +1548,16 @@ void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImag
 		CStr attr_name (pFile->getAttributeString(attr.Name));
 		CStr attr_value (attr.Value);
 
-#define COLOR(xml, mem) \
+#define COLOR(xml, mem, alpha) \
 		if (attr_name == xml) \
 		{ \
 			CColor color; \
-			if (!GUI<CColor>::ParseString(attr_value, color)) \
+			if (!GUI<int>::ParseColor(attr_value, color, alpha)) \
 				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str()); \
 			else effects.m_##mem = color; \
 		} \
 		else
+
 
 #define BOOL(xml, mem) \
 		if (attr_name == xml) \
@@ -1565,8 +1566,8 @@ void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImag
 		} \
 		else
 
-		COLOR("add_color", AddColor)
-		COLOR("multiply_color", MultiplyColor)
+		COLOR("add_color", AddColor, 0.f)
+		COLOR("multiply_color", MultiplyColor, 255.f)
 		BOOL("grayscale", Greyscale)
 
 		{
