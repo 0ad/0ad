@@ -128,7 +128,7 @@ void CRenderer::RenderTerrain (CTerrain *terrain, CCamera *camera)
 	glLoadMatrixf (gl_proj);
 
 	SViewPort vp = camera->GetViewPort();
-	glViewport (vp.m_X, vp.m_Y, vp.m_Width, vp.m_Height);
+	//glViewport (vp.m_X, vp.m_Y, vp.m_Width, vp.m_Height);
 
 	if (g_WireFrame)
 		glPolygonMode (GL_FRONT_AND_BACK, GL_LINE);

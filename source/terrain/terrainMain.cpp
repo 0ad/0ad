@@ -1,6 +1,7 @@
 #include "Matrix3D.H"
 #include "Renderer.H"
 #include "Terrain.H"
+#include "../ps/Prometheus.h"
 
 #include "time.h"
 #include "wsdl.h"
@@ -40,8 +41,6 @@ Handle AlphaMaps[NUM_ALPHA_MAPS];
 
 int mouse_x=50, mouse_y=50;
 
-extern int xres, yres;
-
 
 void terr_init()
 {
@@ -68,12 +67,12 @@ g_FrameCounter++;
 		right.Normalize ();
 		up.Normalize ();
 		
-		if (mouse_x >= xres-2)
+		if (mouse_x >= g_xres-2)
 			g_Camera.m_Orientation.Translate (right);
 		if (mouse_x <= 3)
 			g_Camera.m_Orientation.Translate (right*-1);
 
-		if (mouse_y >= yres-2)
+		if (mouse_y >= g_yres-2)
 			g_Camera.m_Orientation.Translate (up);
 		if (mouse_y <= 3)
 			g_Camera.m_Orientation.Translate (up*-1);

@@ -11,8 +11,7 @@
 //***********************************************************
 
 #include "Camera.H"
-
-extern int xres, yres;
+#include "../ps/Prometheus.h"
 
 CCamera::CCamera ()
 {
