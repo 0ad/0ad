@@ -9,6 +9,7 @@
 #undef END_NMTS
 #undef START_NMT_CLASS
 #undef NMT_FIELD_INT
+#undef NMT_FIELD
 #undef END_NMT_CLASS
 
 #else
@@ -23,16 +24,44 @@
 #define START_NMTS()
 #define END_NMTS()
 
+/**
+ * Start the definition of a network message type.
+ *
+ * @param _nm The name of the class
+ * @param _tp The NetMessageType associated with the class. IT is *not* safe to
+ * have several classes with the same value of _tp in the same executable
+ */
 #define START_NMT_CLASS(_nm, _tp) \
-CNetMessage *Deserialize##_nm(u8 *, uint); \
+CNetMessage *Deserialize##_nm(const u8 *, uint); \
 struct _nm: public CNetMessage \
 { \
 	_nm(): CNetMessage(_tp) {} \
 	virtual uint GetSerializedLength() const; \
 	virtual void Serialize(u8 *buffer) const;
 
+/**
+ * Add an integer field to the message type.
+ *
+ * @param _nm The name of the field
+ * @param _hosttp The local type of the field (the data type used in the field
+ * definition)
+ * @param _netsz The number of bytes that should be serialized. If the variable
+ * has a value larger than the maximum value of the specified network size,
+ * higher order bytes will be discarded.
+ */		
 #define NMT_FIELD_INT(_nm, _hosttp, _netsz) \
 	_hosttp _nm;
+
+/**
+ * Add a generic field to the message type. The data type must be a class
+ * implementing the ISerializable interface
+ *
+ * @param _tp The local data type of the field
+ * @param _nm The name of the field
+ * @see ISerializable
+ */
+#define NMT_FIELD(_tp, _nm) \
+	_tp _nm;
 
 #define END_NMT_CLASS() };
 
@@ -53,6 +82,9 @@ uint _nm::GetSerializedLength() const \
 #define NMT_FIELD_INT(_nm, _hosttp, _netsz) \
 	ret += _netsz;
 
+#define NMT_FIELD(_tp, _nm) \
+	ret += _nm.GetSerializedLength();
+
 #define END_NMT_CLASS() \
 	return ret; \
 };
@@ -67,11 +99,14 @@ uint _nm::GetSerializedLength() const \
 #define START_NMT_CLASS(_nm, _tp) \
 void _nm::Serialize(u8 *buffer) const \
 { \
-	printf("In " #_nm "::Serialize()\n"); \
+	/*printf("In " #_nm "::Serialize()\n");*/ \
 	u8 *pos=buffer; \
 
 #define NMT_FIELD_INT(_nm, _hosttp, _netsz) \
-	pos=SerializeInt<_hosttp, _netsz>(pos, _nm); \
+	Serialize_int_##_netsz(pos, _nm); \
+
+#define NMT_FIELD(_tp, _nm) \
+	pos=_nm.Serialize(pos);
 
 #define END_NMT_CLASS() }
 
@@ -82,23 +117,31 @@ void _nm::Serialize(u8 *buffer) const \
 #define START_NMTS()
 #define END_NMTS()
 
+#define BAIL_DESERIALIZER STMT( delete ret; return NULL; )
+
 #define START_NMT_CLASS(_nm, _tp) \
-CNetMessage *Deserialize##_nm(u8 *buffer, uint length) \
+CNetMessage *Deserialize##_nm(const u8 *buffer, uint length) \
 { \
-	printf("In Deserialize" #_nm "\n"); \
+	/*printf("In Deserialize" #_nm "\n"); */\
 	_nm *ret=new _nm(); \
-	u8 *pos=buffer; \
-	u8 *end=buffer+length; \
+	const u8 *pos=buffer; \
+	const u8 *end=buffer+length; \
 
 #define NMT_FIELD_INT(_nm, _hosttp, _netsz) \
-	ret->_nm=DeserializeInt<_hosttp, _netsz>(&pos); \
-	printf("\t" #_nm " == 0x%x\n", ret->_nm);
+	if (pos+_netsz >= end) BAIL_DESERIALIZER; \
+	Deserialize_int_##_netsz(pos, (ret->_nm)); \
+	/*printf("\t" #_nm " == 0x%x\n", ret->_nm);*/
+
+#define NMT_FIELD(_tp, _nm) \
+	if ((pos=ret->_nm.Deserialize(pos, end)) == NULL) BAIL_DESERIALIZER;
 
 #define END_NMT_CLASS() \
 	return ret; \
 }
 
 #include "NMTCreator.h"
+
+#undef BAIL_DESERIALIZER
 
 /*************************************************************************/
 // Pass 5, Deserializer Registration
@@ -109,6 +152,8 @@ CNetMessage *Deserialize##_nm(u8 *buffer, uint length) \
 	{ _tp, Deserialize##_nm },
 
 #define NMT_FIELD_INT(_nm, _hosttp, _netsz)
+
+#define NMT_FIELD(_tp, _nm)
 
 #define END_NMT_CLASS()
 

@@ -2,6 +2,7 @@
 #define _AllNetMessages_H
 
 #include "types.h"
+#include "CStr.h"
 
 enum NetMessageType
 {
@@ -40,11 +41,13 @@ enum NetMessageType
 START_NMTS()
 
 START_NMT_CLASS(AlohaMessage, NMT_Aloha)
-	NMT_FIELD_INT(m_AlohaCode, uint, 4)
+//	NMT_FIELD_INT(m_AlohaCode, u64, 8)
+	NMT_FIELD(CStr, m_AlohaCode)
 END_NMT_CLASS()
 
 START_NMT_CLASS(SayonaraMessage, NMT_Sayonara)
-	NMT_FIELD_INT(m_SayonaraCode, uint, 4)
+//	NMT_FIELD_INT(m_SayonaraCode, u64, 8)
+	NMT_FIELD(CStr, m_SayonaraCode)
 END_NMT_CLASS()
 
 END_NMTS()
