@@ -6,6 +6,7 @@ use warnings;
 my (%topgroups, %groups, %types);
 
 my @files = cpp_files('.');
+
 for (@files) {
   open my $f, $_ or die "Error opening file '$_' ($!)";
   while (<$f>) {
@@ -168,6 +169,6 @@ sub cpp_files {
   opendir my $d, $_[0] or die "Error opening directory '$_[0]' ($!)";
   my @f = readdir $d;
   my @files = map "$_[0]/$_", grep /\.(?:cpp|h)$/, @f;
-  push @files, cpp_files($_) for grep { /^[a-z]+$/ and -d } @f;
+  push @files, cpp_files("$_[0]/$_") for grep { /^[a-z]+$/ and -d "$_[0]/$_" } @f;
   return @files;
 }
