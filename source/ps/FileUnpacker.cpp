@@ -49,7 +49,6 @@ void CFileUnpacker::Read(const char* filename,const char magicstr[4])
 	char* magic = (char*)(header+0);
 	m_Version = *(u32*)(header+4);
 	u32 datasize = *(u32*)(header+8);
-	void* data = (header+12);
 
 	// check we've got the right kind of file
 	// .. and that we read exactly headersize+datasize
@@ -61,6 +60,8 @@ void CFileUnpacker::Read(const char* filename,const char magicstr[4])
 		m_Size = 0;
 		throw CFileTypeError();
 	}
+
+	m_UnpackPos = 12;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
