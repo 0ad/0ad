@@ -139,6 +139,14 @@ extern int snd_set_loop(Handle hs, bool loop);
 // sound engine
 //
 
+// call before first snd_open if all sound is to be disabled.
+// this is a quick'n dirty way of speeding up startup during development -
+// the caller's sound code need not be touched.
+//
+// can call later to reactivate sound; all settings ever set will be applied,
+// and subsequent sound load / play requests will work.
+extern int snd_disable(bool disabled);
+
 // perform housekeeping (e.g. streaming); call once a frame.
 //
 // additionally, if any parameter is non-NULL, we set the listener

@@ -970,6 +970,11 @@ sle(11340106);
 
 	if(!g_Quickstart)
 		WriteSysInfo();
+	else
+		// speed up startup by disabling all sound
+		// (OpenAL init will be skipped).
+		// must be called before first snd_open.
+		snd_disable(true);
 
 	if(!oglExtAvail("GL_ARB_multitexture") || !oglExtAvail("GL_ARB_texture_env_combine") ||
 		!glActiveTexture)	// prevent crashing later if multitexture support is falsely

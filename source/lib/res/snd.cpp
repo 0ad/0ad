@@ -80,13 +80,18 @@
 // - vm*: voice management
 //   grants the most currently 'important' sounds a hardware voice.
 
+
 static bool al_initialized = false;
 	// indicates OpenAL is ready for use. checked by other components
 	// when deciding if they can pass settings changes to OpenAL directly,
 	// or whether they need to be saved until init.
 
+
 // used by snd_dev_set to reset OpenAL after device has been changed.
 static int al_reinit();
+
+// used by VSrc_reload to init on demand.
+static int snd_init();
 	
 // used by al_shutdown to free all VSrc and SndData objects, respectively,
 // so that they release their OpenAL sources and buffers.
@@ -1405,7 +1410,12 @@ static int VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
 {
 	// cannot wait till play(), need to init here:
 	// must load OpenAL so that snd_data_load can check for OGG extension.
-	al_init();
+	int err = snd_init();
+	// .. don't complain if sound disabled; fail silently.
+	if(err == ERR_AGAIN)
+		return err;
+	// .. catch genuine errors during init.
+	CHECK_ERR(err);
 
 	//
 	// if extension is .txt, fn is a definition file containing the
@@ -1656,6 +1666,44 @@ int snd_update(const float* pos, const float* dir, const float* up)
 	vm_update();
 
 	return 0;
+}
+
+
+// prevent OpenAL from being initialized when snd_init is called.
+static bool snd_disabled = false;
+
+// extra layer on top of al_init that allows 'disabling' sound.
+// called from each snd_open. returns ERR_AGAIN if sound disabled,
+// otherwise the status returned by al_init.
+static inline int snd_init()
+{
+	// (note: each VSrc_reload and therefore snd_open will fail)
+	if(snd_disabled)
+		return ERR_AGAIN;
+
+	return al_init();
+}
+
+
+// call before first snd_open if all sound is to be disabled.
+// this is a quick'n dirty way of speeding up startup during development -
+// the caller's sound code need not be touched.
+//
+// can call later to reactivate sound; all settings ever set will be applied,
+// and subsequent sound load / play requests will work.
+int snd_disable(bool disabled)
+{
+	snd_disabled = disabled;
+
+	if(snd_disabled)
+	{
+		if(al_initialized)
+			debug_warn("snd_disable: already initialized => disable is pointless");
+		return 0;
+	}
+	else
+		return snd_init();
+			// note: won't return ERR_AGAIN, since snd_disabled == false
 }
 
 
