@@ -16,13 +16,13 @@ CVFSFile::~CVFSFile()
 		mem_free_h(m_Handle);
 }
 
-PSRETURN CVFSFile::Load(const char* filename)
+PSRETURN CVFSFile::Load(const char* filename, uint flags /* default 0 */)
 {
 	assert(!m_Handle && "Mustn't open files twice");
 	if (m_Handle)
 		throw PSERROR_CVFSFile_AlreadyLoaded();
 
-	m_Handle = vfs_load(filename, m_Buffer, m_BufferSize);
+	m_Handle = vfs_load(filename, m_Buffer, m_BufferSize, flags);
 	if (m_Handle <= 0)
 	{
 		LOG(ERROR, "CVFSFile: file %s couldn't be opened (vfs_load: %lld)", filename, m_Handle);

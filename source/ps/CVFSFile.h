@@ -17,7 +17,7 @@ public:
 
 	// Returns either PSRETURN_OK or PSRETURN_CVFSFile_LoadFailed.
 	// Dies if a file has already been successfully loaded.
-	PSRETURN Load(const char* filename);
+	PSRETURN Load(const char* filename, uint flags = 0);
 
 	// These die if called when no file has been successfully loaded.
 	const void* GetBuffer() const;
