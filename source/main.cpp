@@ -7,7 +7,7 @@
 
 #include <fmod.h>
 
-// Alan: For some reason if this gets included after anything else some 
+// Alan: For some reason if this gets included after anything else some
 // compile time errors get thrown up todo with javascript internal typedefs
 #include "scripting/ScriptingHost.h"
 
@@ -40,6 +40,7 @@
 #include "EntityHandles.h"
 #include "EntityManager.h"
 #include "PathfindEngine.h"
+#include "XML.h"
 
 
 #ifndef NO_GUI
@@ -69,7 +70,9 @@ static bool g_NoGLVBO=false;
 // flag to switch on shadows
 static bool g_Shadows=false;
 // flag to switch off pbuffers
-static bool g_NoPBuffer=false;
+static bool g_NoPBuffer=true;
+// flag to switch on fixed frame timing (RC: I'm using this for profiling purposes)
+static bool g_FixedFrameTiming=false;
 static bool g_VSync = false;
 
 static bool g_EntGraph = false;
@@ -147,7 +150,7 @@ static int write_sys_info()
 			fprintf(f, "%s ", inet_ntoa(*ips[i]));
 		fprintf(f, "\n");
 	}
-	
+
 	fclose(f);
 	return 0;
 }
@@ -255,7 +258,7 @@ void RenderTerrain()
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-// SubmitModelRecursive: recurse down given model, submitting it and all its descendents to the 
+// SubmitModelRecursive: recurse down given model, submitting it and all its descendents to the
 // renderer
 void SubmitModelRecursive(CModel* model)
 {
@@ -268,7 +271,7 @@ void SubmitModelRecursive(CModel* model)
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-// RenderModels: iterate through model list and submit all models in viewing frustum to the 
+// RenderModels: iterate through model list and submit all models in viewing frustum to the
 // Renderer
 void RenderModels()
 {
@@ -284,7 +287,7 @@ void RenderModels()
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // RenderNoCull: render absolutely everything to a blank frame to force renderer
-// to load required assets 
+// to load required assets
 void RenderNoCull()
 {
 	g_Renderer.BeginFrame();
@@ -295,7 +298,7 @@ void RenderNoCull()
 	for (i=0;i<units.size();++i) {
 		SubmitModelRecursive(units[i]->GetModel());
 	}
-	
+
 	u32 patchesPerSide=g_Terrain.GetPatchesPerSide();
 	for (j=0; j<patchesPerSide; j++) {
 		for (i=0; i<patchesPerSide; i++) {
@@ -339,7 +342,7 @@ static void Render()
 	// overlay mode
 	glPushAttrib(GL_ENABLE_BIT);
 	glDisable(GL_CULL_FACE);
-	glBlendFunc(GL_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_BLEND);
 	glAlphaFunc(GL_GREATER, 0.5);
 	glEnable(GL_ALPHA_TEST);
@@ -393,7 +396,7 @@ static void do_tick()
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
-// UpdateWorld: update time dependent data in the world to account for changes over 
+// UpdateWorld: update time dependent data in the world to account for changes over
 // the given time (in s)
 void UpdateWorld(float time)
 {
@@ -435,6 +438,12 @@ void ParseArgs(int argc, char* argv[])
 					}
 					else if (strncmp(argv[i]+1,"nopbuffer",9)==0) {
 						g_NoPBuffer=true;
+					}
+					break;
+
+				case 'f':
+					if (strncmp(argv[i]+1,"fixedframe",10)==0) {
+						g_FixedFrameTiming=true;
 					}
 					break;
 
@@ -541,6 +550,11 @@ int main(int argc, char* argv[])
 		debug_warn("SDL_SetGamma failed");
 	}
 
+	// start up Xerces - only needs to be done once (unless locale changes mid-game, for
+	// some reason), not on every XML file load; multiple initialization calls are ok, though,
+	// provided there are a matching number of XMLPlatformUtils::Terminate calls
+	XMLPlatformUtils::Initialize();
+
 
 	res_mount("", "mods/official/", 0);
 
@@ -604,10 +618,10 @@ if(!g_MapFile)
 		} catch (...) {
 			char errmsg[256];
 			sprintf(errmsg, "Failed to load map %s\n", mapfilename.c_str());
-			display_startup_error(errmsg);		
+			display_startup_error(errmsg);
 		}
 	}
-	
+
 	// Initialize entities
 
 	g_EntityManager.dispatchAll( &CMessage( CMessage::EMSG_INIT ) );
@@ -622,6 +636,22 @@ if(!g_MapFile)
 
 	// render everything to a blank frame to force renderer to load everything
 	RenderNoCull();
+
+	size_t frameCount=0;
+	if (g_FixedFrameTiming) {
+#if 0		// TOPDOWN
+		g_Camera.SetProjection(1.0f,10000.0f,DEGTORAD(90));
+		g_Camera.m_Orientation.SetIdentity();
+		g_Camera.m_Orientation.RotateX(DEGTORAD(90));
+		g_Camera.m_Orientation.Translate(CELL_SIZE*250*0.5, 250, CELL_SIZE*250*0.5);
+#else		// std view
+		g_Camera.SetProjection(1.0f,10000.0f,DEGTORAD(20));
+		g_Camera.m_Orientation.SetXRotation(DEGTORAD(30));
+		g_Camera.m_Orientation.RotateY(DEGTORAD(-45));
+		g_Camera.m_Orientation.Translate(350, 350, -275);
+#endif
+		g_Camera.UpdateFrustum();
+	}
 
 g_Console->RegisterFunc(Testing, "Testing");
 
@@ -662,13 +692,15 @@ g_Console->RegisterFunc(Testing, "Testing");
 		float TimeSinceLastFrame = (float)(time1-time0);
 		in_get_events();
 		UpdateWorld(TimeSinceLastFrame);
-		terr_update(TimeSinceLastFrame);
+		if (!g_FixedFrameTiming) terr_update(float(TimeSinceLastFrame));
 		g_Console->Update(TimeSinceLastFrame);
 		Render();
 		SDL_GL_SwapBuffers();
 
 		calc_fps();
 		time0=time1;
+		frameCount++;
+		if (g_FixedFrameTiming && frameCount==100) quit=true;
 #endif
 	}
 
@@ -692,6 +724,9 @@ g_Console->RegisterFunc(Testing, "Testing");
 
 	// destroy renderer
 	delete CRenderer::GetSingletonPtr();
+	
+	// close down Xerces
+	XMLPlatformUtils::Terminate();
 
 	//shut down FMOD - needs adding to the atexit calls above
 	FSOUND_Close();
