@@ -1,5 +1,5 @@
 /*
-$Id: unifont.cpp,v 1.19 2004/10/14 10:09:51 gee Exp $
+$Id: unifont.cpp,v 1.20 2004/11/24 23:47:48 gee Exp $
 
 Unicode OpenGL texture font
   
@@ -208,6 +208,17 @@ int unifont_height(const Handle h)
 {
 	H_DEREF(h, UniFont, f);
 	return f->Height;
+}
+
+int unifont_character_width(const Handle h, const wchar_t& c)
+{
+	H_DEREF(h, UniFont, f);
+	glyphmap_size::iterator it = f->glyphs_size->find(c);
+	
+	if (it == f->glyphs_size->end())
+		it = f->glyphs_size->find(0xFFFD); // Use the missing glyph symbol
+
+	return it->second;
 }
 
 void glwprintf(const wchar_t* fmt, ...)

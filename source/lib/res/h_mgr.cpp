@@ -137,7 +137,7 @@ struct HDATA
 		// which the index can't currently handle)
 
 	H_Type type;
-
+	
 	const char* fn;
 
 	u8 user[HDATA_USER_SIZE];

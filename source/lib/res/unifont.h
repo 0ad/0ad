@@ -1,4 +1,4 @@
-// $Id: unifont.h,v 1.8 2004/10/14 10:09:51 gee Exp $
+// $Id: unifont.h,v 1.9 2004/11/24 23:47:48 gee Exp $
 
 #ifndef __UNIFONT_H__
 #define __UNIFONT_H__
@@ -39,6 +39,9 @@ int unifont_stringsize(const Handle h, const wchar_t* text, int& width, int& hei
 
 // Get only the height
 int unifont_height(const Handle h);
+
+// Get only the width of one character
+int unifont_character_width(const Handle h, const wchar_t& c);
 
 // Return spacing in pixels from one line of text to the next
 int unifont_linespacing(const Handle h);

@@ -72,6 +72,11 @@ int CFont::GetHeight()
 	return unifont_height(h);
 }
 
+int CFont::GetCharacterWidth(const wchar_t& c)
+{
+	return unifont_character_width(h, c);
+}
+
 void CFont::CalculateStringSize(const CStrW& string, int& width, int& height)
 {
 	unifont_stringsize(h, (const wchar_t*)string, width, height);

@@ -30,6 +30,7 @@ public:
 	void Bind();
 	int GetLineSpacing();
 	int GetHeight();
+	int GetCharacterWidth(const wchar_t& c);
 	void CalculateStringSize(const CStrW& string, int& w, int& h);
 
 private:
