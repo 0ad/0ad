@@ -285,8 +285,9 @@ glEnable (GL_DEPTH_TEST);
 //  it works perfectly btw.
 #ifndef NO_GUI
 	g_GUI.Initialize();
+	g_GUI.LoadXMLFile("gui/styles.xml");
 	g_GUI.LoadXMLFile("gui/hello.xml");
-	//g_GUI.LoadXMLFile("sprite1.xml");
+	g_GUI.LoadXMLFile("gui/sprite1.xml");
 #endif
 
 //	tex = tex_load("0adlogo2.bmp");
