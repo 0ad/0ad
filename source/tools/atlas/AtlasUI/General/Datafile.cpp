@@ -8,6 +8,7 @@ AtObj Datafile::ReadList(const char* section)
 	const wxString relativePath (_T("../data/tools/atlas/lists.xml"));
 
 	wxFileName filename (relativePath, wxPATH_UNIX);
+	filename.MakeAbsolute(systemDir);
 
 	if (! filename.FileExists())
 	{
@@ -19,3 +20,10 @@ AtObj Datafile::ReadList(const char* section)
 
 	return lists["lists"][section];
 }
+
+void Datafile::SetSystemDirectory(const wxString& dir)
+{
+	systemDir = wxFileName(dir).GetPath();
+}
+
+wxString Datafile::systemDir;

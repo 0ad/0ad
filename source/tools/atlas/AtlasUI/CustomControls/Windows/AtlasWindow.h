@@ -3,6 +3,7 @@
 #include "IAtlasExporter.h"
 
 #include "wx/frame.h"
+#include "wx/filename.h"
 
 class AtObj;
 
@@ -17,21 +18,34 @@ public:
 
 	void OnQuit(wxCommandEvent& event);
 
-	void OnImport(wxCommandEvent& event);
-	void OnExport(wxCommandEvent& event);
+//	void OnImport(wxCommandEvent& event);
+//	void OnExport(wxCommandEvent& event);
+
+	// TODO: import/export vs open/save/saveas - how should it decide which to do?
+	void OnOpen(wxCommandEvent& event);
+	void OnSave(wxCommandEvent& event);
+	void OnSaveAs(wxCommandEvent& event);
 
 	void OnUndo(wxCommandEvent& event);
 	void OnRedo(wxCommandEvent& event);
 
+	void OnClose(wxCloseEvent& event);
+
+
 protected:
-	// Call with the name of the currently opened file, or with the
-	// empty string for new unnamed documents
-	void SetDisplayedFilename(wxString filename);
+	void SetCurrentFilename(wxFileName filename = wxString());
+	wxFileName GetCurrentFilename() { return m_CurrentFilename; }
+
+	bool SaveChanges(bool forceSaveAs);
+public:
+	bool OpenFile(wxString filename);
 
 private:
 	AtlasWindowCommandProc m_CommandProc;
 
-	wxString m_DisplayedFilename;
+	wxMenuItem* m_menuItem_Save;
+
+	wxFileName m_CurrentFilename;
 	wxString m_WindowTitle;
 
 	DECLARE_EVENT_TABLE();

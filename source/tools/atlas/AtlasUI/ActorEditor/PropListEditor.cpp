@@ -38,7 +38,7 @@ PropListEditorListCtrl::PropListEditorListCtrl(wxWindow* parent)
 					wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_SINGLE_SEL)
 {
 	AddColumnType(_("Attachment point"), 100, "@attachpoint",	new FieldEditCtrl_List("attachpoints"));
-	AddColumnType(_("Prop model"),		 200, "@actor",			new FieldEditCtrl_File(_T("art/actors"), _("Actor files (*.xml)|*.xml"))); // not *.*, in order to hide all the *.xmb files
+	AddColumnType(_("Prop model"),		 200, "@actor",			new FieldEditCtrl_File(_T("art/actors"), _("Actor files (*.xml)|*.xml|All files (*.*)|*.*")));
 }
 
 void PropListEditorListCtrl::DoImport(AtObj& in)
