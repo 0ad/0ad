@@ -238,16 +238,16 @@ bool IGUIObject::SettingExists(const CStr& Setting) const
 	{													\
 		type _Value;									\
 		if (!GUI<type>::ParseString(Value, _Value))		\
-			throw PS_FAIL;								\
+			return PS_FAIL;								\
 														\
 		GUI<type>::SetSetting(this, Setting, _Value);	\
 	}
 
-void IGUIObject::SetSetting(const CStr& Setting, const CStr& Value)
+PS_RESULT IGUIObject::SetSetting(const CStr& Setting, const CStr& Value)
 {
 	if (!SettingExists(Setting))
 	{
-		throw PS_FAIL;
+		return PS_FAIL;
 	}
 
 	// Get setting
@@ -268,9 +268,13 @@ void IGUIObject::SetSetting(const CStr& Setting, const CStr& Value)
 	ADD_TYPE(EVAlign)
 	else
 	{
-		throw PS_FAIL;
+		return PS_FAIL;
 	}
+	return PS_OK;
 }
+
+#undef ADD_TYPE
+
 
 PS_RESULT IGUIObject::GetSettingType(const CStr& Setting, EGUISettingType &Type) const
 {
@@ -357,19 +361,14 @@ void IGUIObject::LoadStyle(const SGUIStyle &Style)
 	for (cit = Style.m_SettingsDefaults.begin(); cit != Style.m_SettingsDefaults.end(); ++cit)
 	{
 		// Try set setting in object
-		try
-		{
-			SetSetting(cit->first, cit->second);
-		}
+		SetSetting(cit->first, cit->second);
+
 		// It doesn't matter if it fail, it's not suppose to be able to set every setting.
 		//  since it's generic.
-		catch (PS_RESULT e) 
-		{
-			UNUSED(e);
-			// The beauty with styles is that it can contain more settings
-			//  than exists for the objects using it. So if the SetSetting
-			//  fails, don't care.
-		}
+
+		// The beauty with styles is that it can contain more settings
+		//  than exists for the objects using it. So if the SetSetting
+		//  fails, don't care.
 	}
 }
 

@@ -578,7 +578,7 @@ void CGUI::AddObject(IGUIObject* pObject)
 		GUI<CGUI*>::RecurseObject(0, pObject, &IGUIObject::SetGUI, this);
 
 		// Add child to base object
-		m_BaseObject->AddChild(pObject);
+		m_BaseObject->AddChild(pObject); // can throw
 
 		// Cache tree
 		GUI<>::RecurseObject(0, pObject, &IGUIObject::UpdateCachedSize);
@@ -1301,13 +1301,8 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		}
 
 		// Try setting the value
-		try
+		if (object->SetSetting(pFile->getAttributeString(attr.Name), (CStr)attr.Value) != PS_OK)
 		{
-			object->SetSetting(pFile->getAttributeString(attr.Name), (CStr)attr.Value);
-		}
-		catch (PS_RESULT e)
-		{
-			UNUSED(e);
 			ReportParseError("Can't set \"%s\" to \"%s\"", pFile->getAttributeString(attr.Name).c_str(), CStr(attr.Value).c_str());
 
 			// This is not a fatal error
@@ -1328,15 +1323,10 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	CStrW caption (Element.getText());
 	if (caption.Length())
 	{
-		try
-		{
-			// Set the setting caption to this
-			object->SetSetting("caption", caption);
-		}
-		catch (PS_RESULT)
-		{
-			// There is no harm if the object didn't have a "caption"
-		}
+		// Set the setting caption to this
+		object->SetSetting("caption", caption);
+
+		// There is no harm if the object didn't have a "caption"
 	}
 
 

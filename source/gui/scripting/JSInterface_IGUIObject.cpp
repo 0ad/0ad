@@ -207,160 +207,159 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 	{
 		CStr propValue = JS_GetStringBytes(JS_ValueToString(cx, *vp));
 		e->SetName(propValue);
+
+		return JS_TRUE;
 	}
-	else
+
+	EGUISettingType Type;
+	if (e->GetSettingType(propName, Type) != PS_OK)
 	{
-		EGUISettingType Type;
-		if (e->GetSettingType(propName, Type) != PS_OK)
-		{
-			JS_ReportError(cx, "Invalid setting '%s'", propName.c_str());
-			return JS_TRUE;
-		}
-
-		try
-		{
-			switch (Type)
-			{
-
-			case GUIST_CStr:
-				{
-					CStr value = JS_GetStringBytes(JS_ValueToString(cx, *vp));
-					GUI<CStr>::SetSetting(e, propName, value);
-					break;
-				}
-
-			case GUIST_CStrW:
-				{
-					utf16string value (JS_GetStringChars(JS_ValueToString(cx, *vp)));
-					GUI<CStrW>::SetSetting(e, propName, value);
-					break;
-				}
-
-			case GUIST_CGUIString:
-				{
-					std::wstring value;
-					StringConvert::jsstring_to_wstring(JS_ValueToString(cx, *vp), value);
-
-					CGUIString str;
-					str.SetValue(value);
-					GUI<CGUIString>::SetSetting(e, propName, str);
-					break;
-				}
-
-			case GUIST_int:
-				{
-					int32 value;
-					if (JS_ValueToInt32(cx, *vp, &value) == JS_TRUE)
-						GUI<int>::SetSetting(e, propName, value);
-					else
-					{
-						JS_ReportError(cx, "Cannot convert value to int");
-						return JS_FALSE;
-					}
-					break;
-				}
-
-			case GUIST_float:
-				{
-					jsdouble value;
-					if (JS_ValueToNumber(cx, *vp, &value) == JS_TRUE)
-						GUI<float>::SetSetting(e, propName, (float)value);
-					else
-					{
-						JS_ReportError(cx, "Cannot convert value to float");
-						return JS_FALSE;
-					}
-					break;
-				}
-
-			case GUIST_bool:
-				{
-					JSBool value;
-					if (JS_ValueToBoolean(cx, *vp, &value) == JS_TRUE)
-						GUI<bool>::SetSetting(e, propName, value||0); // ||0 to avoid int-to-bool compiler warnings
-					else
-					{
-						JS_ReportError(cx, "Cannot convert value to bool");
-						return JS_FALSE;
-					}
-					break;
-				}
-
-			case GUIST_CClientArea:
-				{
-					if (JSVAL_IS_STRING(*vp))
-					{
-						e->SetSetting(propName, JS_GetStringBytes(JS_ValueToString(cx, *vp)) );
-					}
-					else if (JSVAL_IS_OBJECT(*vp) && JS_GetClass(JSVAL_TO_OBJECT(*vp)) == &JSI_GUISize::JSI_class)
-					{
-						CClientArea area;
-						GUI<CClientArea>::GetSetting(e, propName, area);
-
-						JSObject* obj = JSVAL_TO_OBJECT(*vp);
-						#define P(x, y, z) area.x.y = (float)g_ScriptingHost.GetObjectProperty_Double(obj, #z)
-							P(pixel,	left,	left);
-							P(pixel,	top,	top);
-							P(pixel,	right,	right);
-							P(pixel,	bottom,	bottom);
-							P(percent,	left,	rleft);
-							P(percent,	top,	rtop);
-							P(percent,	right,	rright);
-							P(percent,	bottom,	rbottom);
-						#undef P
-
-						GUI<CClientArea>::SetSetting(e, propName, area);
-					}
-					else
-					{
-						JS_ReportError(cx, "Size only accepts strings or GUISize objects");
-						return JS_FALSE;
-					}
-					break;
-				}
-
-			case GUIST_CColor:
-				{
-					if (JSVAL_IS_STRING(*vp))
-					{
-						e->SetSetting(propName, JS_GetStringBytes(JS_ValueToString(cx, *vp)) );
-					}
-					else if (JSVAL_IS_OBJECT(*vp) && JS_GetClass(JSVAL_TO_OBJECT(*vp)) == &JSI_GUIColor::JSI_class)
-					{
-						CColor colour;
-						JSObject* obj = JSVAL_TO_OBJECT(*vp);
-						jsval t; double s;
-						#define PROP(x) JS_GetProperty(cx, obj, #x, &t); \
-										JS_ValueToNumber(cx, t, &s); \
-										colour.x = (float)s
-						PROP(r); PROP(g); PROP(b); PROP(a);
-						#undef PROP
-
-						GUI<CColor>::SetSetting(e, propName, colour);
-					}
-					else
-					{
-						JS_ReportError(cx, "Color only accepts strings or GUIColor objects");
-						return JS_FALSE;
-					}
-					break;
-				}
-
-				// TODO Gee: (2004-09-01) EAlign and EVAlign too.
-
-			default:
-				JS_ReportError(cx, "Setting '%s' uses an unimplemented type", propName.c_str());
-				break;
-			}
-		}
-
-		// Catch failed calls to SetSetting (the string and templated versions)
-		catch (PS_RESULT)
-		{
-			JS_ReportError(cx, "Invalid value for setting '%s'", propName.c_str());
-			return JS_FALSE;
-		}
+		JS_ReportError(cx, "Invalid setting '%s'", propName.c_str());
+		return JS_TRUE;
 	}
+
+	switch (Type)
+	{
+
+	case GUIST_CStr:
+		{
+			CStr value = JS_GetStringBytes(JS_ValueToString(cx, *vp));
+			GUI<CStr>::SetSetting(e, propName, value);
+			break;
+		}
+
+	case GUIST_CStrW:
+		{
+			utf16string value (JS_GetStringChars(JS_ValueToString(cx, *vp)));
+			GUI<CStrW>::SetSetting(e, propName, value);
+			break;
+		}
+
+	case GUIST_CGUIString:
+		{
+			std::wstring value;
+			StringConvert::jsstring_to_wstring(JS_ValueToString(cx, *vp), value);
+
+			CGUIString str;
+			str.SetValue(value);
+			GUI<CGUIString>::SetSetting(e, propName, str);
+			break;
+		}
+
+	case GUIST_int:
+		{
+			int32 value;
+			if (JS_ValueToInt32(cx, *vp, &value) == JS_TRUE)
+				GUI<int>::SetSetting(e, propName, value);
+			else
+			{
+				JS_ReportError(cx, "Cannot convert value to int");
+				return JS_FALSE;
+			}
+			break;
+		}
+
+	case GUIST_float:
+		{
+			jsdouble value;
+			if (JS_ValueToNumber(cx, *vp, &value) == JS_TRUE)
+				GUI<float>::SetSetting(e, propName, (float)value);
+			else
+			{
+				JS_ReportError(cx, "Cannot convert value to float");
+				return JS_FALSE;
+			}
+			break;
+		}
+
+	case GUIST_bool:
+		{
+			JSBool value;
+			if (JS_ValueToBoolean(cx, *vp, &value) == JS_TRUE)
+				GUI<bool>::SetSetting(e, propName, value||0); // ||0 to avoid int-to-bool compiler warnings
+			else
+			{
+				JS_ReportError(cx, "Cannot convert value to bool");
+				return JS_FALSE;
+			}
+			break;
+		}
+
+	case GUIST_CClientArea:
+		{
+			if (JSVAL_IS_STRING(*vp))
+			{
+				if (e->SetSetting(propName, JS_GetStringBytes(JS_ValueToString(cx, *vp))) != PS_OK)
+				{
+					JS_ReportError(cx, "Invalid value for setting '%s'", propName.c_str());
+					return JS_FALSE;
+				}
+			}
+			else if (JSVAL_IS_OBJECT(*vp) && JS_GetClass(JSVAL_TO_OBJECT(*vp)) == &JSI_GUISize::JSI_class)
+			{
+				CClientArea area;
+				GUI<CClientArea>::GetSetting(e, propName, area);
+
+				JSObject* obj = JSVAL_TO_OBJECT(*vp);
+				#define P(x, y, z) area.x.y = (float)g_ScriptingHost.GetObjectProperty_Double(obj, #z)
+					P(pixel,	left,	left);
+					P(pixel,	top,	top);
+					P(pixel,	right,	right);
+					P(pixel,	bottom,	bottom);
+					P(percent,	left,	rleft);
+					P(percent,	top,	rtop);
+					P(percent,	right,	rright);
+					P(percent,	bottom,	rbottom);
+				#undef P
+
+				GUI<CClientArea>::SetSetting(e, propName, area);
+			}
+			else
+			{
+				JS_ReportError(cx, "Size only accepts strings or GUISize objects");
+				return JS_FALSE;
+			}
+			break;
+		}
+
+	case GUIST_CColor:
+		{
+			if (JSVAL_IS_STRING(*vp))
+			{
+				if (e->SetSetting(propName, JS_GetStringBytes(JS_ValueToString(cx, *vp))) != PS_OK)
+				{
+					JS_ReportError(cx, "Invalid value for setting '%s'", propName.c_str());
+					return JS_FALSE;
+				}
+			}
+			else if (JSVAL_IS_OBJECT(*vp) && JS_GetClass(JSVAL_TO_OBJECT(*vp)) == &JSI_GUIColor::JSI_class)
+			{
+				CColor colour;
+				JSObject* obj = JSVAL_TO_OBJECT(*vp);
+				jsval t; double s;
+				#define PROP(x) JS_GetProperty(cx, obj, #x, &t); \
+								JS_ValueToNumber(cx, t, &s); \
+								colour.x = (float)s
+				PROP(r); PROP(g); PROP(b); PROP(a);
+				#undef PROP
+
+				GUI<CColor>::SetSetting(e, propName, colour);
+			}
+			else
+			{
+				JS_ReportError(cx, "Color only accepts strings or GUIColor objects");
+				return JS_FALSE;
+			}
+			break;
+		}
+
+		// TODO Gee: (2004-09-01) EAlign and EVAlign too.
+
+	default:
+		JS_ReportError(cx, "Setting '%s' uses an unimplemented type", propName.c_str());
+		break;
+	}
+
 	return JS_TRUE;
 }
 

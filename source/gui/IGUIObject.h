@@ -259,9 +259,9 @@ public:
 	 * @param Setting Setting by name
 	 * @param Value Value to set to
 	 *
-	 * @throws PS_RESULT
+	 * @return PS_RESULT (PS_OK if successful)
 	 */
-	void SetSetting(const CStr& Setting, const CStr& Value);
+	PS_RESULT SetSetting(const CStr& Setting, const CStr& Value);
 
 	/**
 	 * Retrieves the type of a named setting.
