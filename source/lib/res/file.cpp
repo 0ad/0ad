@@ -680,6 +680,11 @@ debug_out("file_wait_io: hio=%I64x\n", hio);
 
 	p = (void*)cb->aio_buf;	// cast from volatile void*
 	size = io->user_size;
+
+	// padding optimization: we rounded the start offset down
+	// to avoid a buffer memcpy in waio. skip past that
+	(char*&)p += io->padding;
+
 	return 0;
 }
 
