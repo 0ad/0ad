@@ -88,14 +88,6 @@ CEntity::~CEntity()
 	if( m_bounds ) delete( m_bounds );
 }
 
-void CEntity::SetPlayer(CPlayer *pPlayer)
-{
-	m_player=pPlayer;
-
-	// Store the ID of the player in the associated model
-	m_actor->GetModel()->SetPlayerID( m_player->GetPlayerID() );
-}
-
 void CEntity::loadBase()
 {
 	if( m_actor )
@@ -146,6 +138,14 @@ void CEntity::kill()
 	}
 
 	me = HEntity(); // will deallocate the entity, assuming nobody else has a reference to it
+}
+
+void CEntity::SetPlayer(CPlayer *pPlayer)
+{
+	m_player=pPlayer;
+
+	// Store the ID of the player in the associated model
+	m_actor->GetModel()->SetPlayerID( m_player->GetPlayerID() );
 }
 
 void CEntity::updateActorTransforms()
