@@ -150,7 +150,7 @@ JSBool exitProgram(JSContext* context, JSObject* globalObject, unsigned int argc
 
 JSBool crash(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval)
 {
-	MICROLOG(L"Crashing.");
+	MICROLOG(L"Crashing at user's request.");
 	uintptr_t ptr = 0xDEADC0DE;
 	return *(JSBool*) ptr;
 }
