@@ -13,7 +13,7 @@ CConsole::CConsole(float X, float Y, float W, float H)
 
 	m_fVisibleFrac = 0.0f;
 
-	m_szBuffer = (char*)malloc(sizeof(char) * BUFFER_SIZE);
+	m_szBuffer = new char[BUFFER_SIZE];
 	FlushBuffer();
 
 	m_iMsgHistPos = 1;
@@ -40,72 +40,60 @@ void CConsole::FlushBuffer(void)
 }
 
 
-char* CConsole::ToLower(const char* szMessage, uint iSize)
+// returns ptr to allocated mem!
+void CConsole::ToLower(char* szMessage, uint iSize)
 {
 	uint L = (uint)strlen(szMessage);
 
-	if (L <= 0) return NULL;
+	if (L <= 0) return;
 
 	if (iSize && iSize < L) L = iSize;
 
-	char* szTemp = (char*)malloc(sizeof(char) * (L + 1));
-	memset(szTemp, '\0', sizeof(char) * (L + 1));
-
     for(uint i = 0; i < L; i++)
-		szTemp[i] = tolower(szMessage[i]);
-
-	return szTemp;
+		szMessage[i] = tolower(szMessage[i]);
 }
 
 
-char* CConsole::Trim(const char* szMessage, const char cChar, uint iSize)
+void CConsole::Trim(char* szMessage, const char cChar, uint iSize)
 {
-	uint L = (uint)strlen(szMessage);
-
-	/* return NULL if szMessage is invalid */
-	if (L <= 0) return NULL;
+	size_t L = strlen(szMessage);
+	if(!L)
+		return;
 
 	if (iSize && iSize < L) L = iSize;
 
-	char szChar[1];
-	szChar[0] = cChar;
+	char szChar[2] = { cChar, 0 };
 
 	/* Find the first point at which szChar does not */
 	/* exist in the message */
-	uint iResult = (uint)strspn(szMessage, szChar);
-	if (iResult <= 0) return (char*)szMessage;
+	size_t ofs = strspn(szMessage, szChar);
+	if(ofs == 0)	// no leading <cChar> chars - we're done
+		return;
 
-	/* Create a temp buffer for the remaining characters */
-	char* szTemp = (char*)malloc(sizeof(char) * (L - iResult + 1));
-	memset(szTemp, '\0', sizeof(char) * (L - iResult + 1));
+	// move everything <ofs> chars left, replacing leading cChar chars
+	L -= ofs;
+	memmove(szMessage, szMessage+ofs, L);
 
-	/* Store the remaining characters in a temp buffer */
-	for (uint i = iResult; i < L; i++)
-		szTemp[i - iResult] = szMessage[i];
-
-	L = (i - iResult);
-
-	for (i = L; i >= 0; i--)
+	for(ssize_t i = (ssize_t)L; i >= 0; i--)
 	{
-		szTemp[i] = '\0';
-		if (szTemp[i - 1] != cChar) break;
+		szMessage[i] = '\0';
+		if (szMessage[i - 1] != cChar) break;
 	}
-
-	return szTemp;
 }
 
 
 void CConsole::RegisterFunc(fptr F, const char* szName)
 {
-	char* szTemp = (char*) malloc(sizeof(char) * (BUFFER_SIZE - 1));
-	memset(szTemp, '\0', sizeof(char) * (BUFFER_SIZE - 1));
+	// need to allocate a copy - szName may be a const string literal
+	// (we'll change it - stripping out spaces and converting to lowercase).
+	char* copy = new char[BUFFER_SIZE];
+	copy[BUFFER_SIZE-1] = '\0';
+	strncpy(copy, szName, BUFFER_SIZE-1);
 
-	szTemp = Trim(szName, (BUFFER_SIZE - 1));
-	szTemp = ToLower(szTemp, (BUFFER_SIZE - 1));
+	Trim(copy);
+	ToLower(copy);
 
-	m_mapFuncList.insert(std::pair<char*, fptr>(szTemp, F));
-
-	delete[] szTemp;
+	m_mapFuncList.insert(std::pair<char*, fptr>(copy, F));
 }
 
 void CConsole::Update(const float DeltaTime)
@@ -354,7 +342,7 @@ void CConsole::InsertChar(const int szChar)
 void CConsole::InsertMessage(const char* szMessage, ...)
 {
 	va_list args;
-	char* szBuffer = (char*)malloc(sizeof(char)*(BUFFER_SIZE));
+	char* szBuffer = new char[BUFFER_SIZE];
 
 	va_start(args, szMessage);
 		_vsnprintf(szBuffer, BUFFER_SIZE, szMessage, args);
@@ -367,7 +355,7 @@ void CConsole::InsertMessage(const char* szMessage, ...)
 void CConsole::SetBuffer(const char* szMessage, ...)
 {
 	va_list args;
-	char* szBuffer = (char*)malloc(sizeof(char)*(BUFFER_SIZE));
+	char* szBuffer = new char[BUFFER_SIZE];
 
 	va_start(args, szMessage);
 		_vsnprintf(szBuffer, BUFFER_SIZE, szMessage, args);
@@ -386,15 +374,15 @@ void CConsole::ProcessBuffer(const char* szLine){
 
 	m_deqBufHistory.push_front(szLine);
 
-	char* szCommand = (char*)malloc(sizeof(char));
-    memset(szCommand, '\0', sizeof(char));
+	char* szCommand = new char[BUFFER_SIZE];
+    memset(szCommand, '\0', BUFFER_SIZE);
 
 	std::map<std::string, fptr>::iterator Iter;
 
 	if (szLine[0] == '\\'){
 		sscanf(szLine, "\\%s", szCommand);
-		szCommand = Trim(szCommand);
-		szCommand = ToLower(szCommand);
+		Trim(szCommand);
+		ToLower(szCommand);
 
 		if (!strcmp(szCommand, "info")){
 			InsertMessage("\0");
