@@ -322,6 +322,13 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 	// Clean up the old data
 	Calls.clear();
 
+	// If this object has zero size, there's nothing to render. (This happens
+	// with e.g. tooltips that have zero size before they're first drawn, so
+	// it isn't necessarily an error.)
+	if (Size.left==Size.right && Size.top==Size.bottom)
+		return;
+
+
 	std::map<CStr, CGUISprite>::iterator it (Sprites.find(SpriteName));
 	if (it == Sprites.end())
 	{
@@ -353,7 +360,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 		}
 	}
 
-    Calls.reserve(it->second.m_Images.size());
+	Calls.reserve(it->second.m_Images.size());
 
 	// Iterate through all the sprite's images, loading the texture and
 	// calculating the texture coordinates
@@ -363,6 +370,13 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 		SDrawCall Call;
 
 		CRect ObjectSize = cit->m_Size.GetClientArea(Size);
+
+		if (ObjectSize.GetWidth() == 0 || ObjectSize.GetHeight() == 0)
+		{
+			LOG(ERROR, LOG_CATEGORY, "Error drawing sprite '%s': size %dx%d is partly zero", (const char*)SpriteName, (int)ObjectSize.GetWidth(), (int)ObjectSize.GetHeight());
+			continue; // as in, don't continue with this image
+		}
+
 		Call.m_Vertices = ObjectSize;
 
 		if (cit->m_TextureName.Length())
