@@ -16,89 +16,21 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
+
+// !!!!!!!!!! see user guide / documentation at end of file !!!!!!!!!!
+
+
+// provide for completely disabling the memory manager
+// (e.g. when using other debug packages)
+//
+// note: checking here messes up include guard detection, but we need to
+// cover both the guarded part (constants+externs) and the macros.
+#ifdef USE_MMGR
+
 #ifndef	MMGR_H__
 #define	MMGR_H__
 
 #include "types.h"
-
-
-// purpose and history
-// -------------------
-
-// our goal is to expose any memory handling bugs in the
-// application as early as possible, by triggering
-// breakpoints when a problem is detected.
-// if all options are on, we can spot the following:
-//   memory leaks, double-free, allocation over/underruns,
-//   unused memory, and use-after-free.
-//
-// this code started life as Paul Nettle's memory manager (available
-// at http://www.fluidstudios.com), and has been completely overhauled.
-// in particular, it is now thread-safe and modularized;
-// duplicated code has been eliminated.
-//
-//
-// instructions for integrating into your project
-// ----------------------------------------------
-//
-// 1) #include this from all project source files [that will allocate memory].
-// 2) all system headers must be #include-d before this header, so that
-//    we don't mess with any of their local operator new/delete.
-// 3) if project source/headers also use local operator new/delete, #include
-//    "nommgr.h" before that spot, and re-#include "mmgr.h" afterwards.
-//
-// 4) if using MFC:
-//    - set linker option /FORCE - works around conflict between our global
-//      operator new and that of MFC. be sure to check for other errors.
-//    - remove any #define new DEBUG_NEW from all source files.
-//
-//
-// effects
-// -------
-//
-// many bugs are caught and announced with no further changes
-// required, due to integrity checks inside the allocator.
-//
-// at exit, three report files are generated: a listing of leaks,
-// various statistics (e.g. total unused memory), and the log.
-// this lists (depending on settings) all allocations, enter/exit
-// indications for our functions, and failure notifications.
-//
-//
-// digging deeper
-// --------------
-//
-// when tracking down hard-to-find bugs, more stringent checks can be
-// activated via mmgr_set_option, or by changing the initial value of
-// options in mmgr.cpp. however, they slow down the app considerably
-// and need not always be enabled. see option declarations below.
-//
-// you can also change padding_size in mmgr.cpp at compile-time to provide
-// more safety vs. overruns, at the cost of wasting lots of memory per
-// allocation (which must also be cleared). this is only done in
-// PARANOIA builds, because overruns seldom 'skip' padding.
-//
-// finally, you can induce memory allocations to fail a certain percentage
-// of the time - this tests your application's error handling.
-// adjust the RANDOM_FAILURE #define in mmgr.cpp.
-//
-//
-// fixing your bugs
-// ----------------
-//
-// if this code crashes or fails an assert, it is most likely due to a bug
-// in your application. consult the current Alloc for information;
-// search the log for its address to determine what operation failed,
-// and what piece of code owns the allocation.
-//
-// if the cause isn't visible (i.e. the error is reported after the fact),
-// you can try activating the more stringent checks to catch the problem
-// earlier. you may also call the validation routines at checkpoints
-// in your code to narrow the cause down. if all else fails, break on
-// the allocation number to see what's happening.
-//
-// good luck!
-
 
 //
 // optional additional checks, enabled via mmgr_set_options.
@@ -205,5 +137,83 @@ extern void operator delete[](void* p, const char* file, int line, const char* f
 #define	realloc(p,size)   mmgr_realloc_dbg(p,size,  __FILE__,__LINE__,__FUNCTION__)
 #define	free(p)           mmgr_free_dbg   (p,       __FILE__,__LINE__,__FUNCTION__)
 
-// avoid macro replacement of new for local operator new
-#define operator_new operator n##ew
+
+#endif	// #ifdef USE_MMGR
+
+
+// purpose and history
+// -------------------
+
+// our goal is to expose any memory handling bugs in the
+// application as early as possible, by triggering
+// breakpoints when a problem is detected.
+// if all options are on, we can spot the following:
+//   memory leaks, double-free, allocation over/underruns,
+//   unused memory, and use-after-free.
+//
+// this code started life as Paul Nettle's memory manager (available
+// at http://www.fluidstudios.com), and has been completely overhauled.
+// in particular, it is now thread-safe and modularized;
+// duplicated code has been eliminated.
+//
+//
+// instructions for integrating into your project
+// ----------------------------------------------
+//
+// 1) #include this from all project source files [that will allocate memory].
+// 2) all system headers must be #include-d before this header, so that
+//    we don't mess with any of their local operator new/delete.
+// 3) if project source/headers also use local operator new/delete, #include
+//    "nommgr.h" before that spot, and re-#include "mmgr.h" afterwards.
+//
+// 4) if using MFC:
+//    - set linker option /FORCE - works around conflict between our global
+//      operator new and that of MFC. be sure to check for other errors.
+//    - remove any #define new DEBUG_NEW from all source files.
+//
+//
+// effects
+// -------
+//
+// many bugs are caught and announced with no further changes
+// required, due to integrity checks inside the allocator.
+//
+// at exit, three report files are generated: a listing of leaks,
+// various statistics (e.g. total unused memory), and the log.
+// this lists (depending on settings) all allocations, enter/exit
+// indications for our functions, and failure notifications.
+//
+//
+// digging deeper
+// --------------
+//
+// when tracking down hard-to-find bugs, more stringent checks can be
+// activated via mmgr_set_option, or by changing the initial value of
+// options in mmgr.cpp. however, they slow down the app considerably
+// and need not always be enabled. see option declarations below.
+//
+// you can also change padding_size in mmgr.cpp at compile-time to provide
+// more safety vs. overruns, at the cost of wasting lots of memory per
+// allocation (which must also be cleared). this is only done in
+// PARANOIA builds, because overruns seldom 'skip' padding.
+//
+// finally, you can induce memory allocations to fail a certain percentage
+// of the time - this tests your application's error handling.
+// adjust the RANDOM_FAILURE #define in mmgr.cpp.
+//
+//
+// fixing your bugs
+// ----------------
+//
+// if this code crashes or fails an assert, it is most likely due to a bug
+// in your application. consult the current Alloc for information;
+// search the log for its address to determine what operation failed,
+// and what piece of code owns the allocation.
+//
+// if the cause isn't visible (i.e. the error is reported after the fact),
+// you can try activating the more stringent checks to catch the problem
+// earlier. you may also call the validation routines at checkpoints
+// in your code to narrow the cause down. if all else fails, break on
+// the allocation number to see what's happening.
+//
+// good luck!

@@ -56,16 +56,16 @@ extern void debug_check_heap(void);
 #define assert2(expr)\
 {\
 	static int suppress__ = 0;\
-	if(!suppress__ && !expr)\
+	if(!suppress__ && !(expr))\
 	switch(debug_assert_failed(__FILE__, __LINE__, #expr))\
-{\
+	{\
 	case 1:\
-	suppress__ = 1;\
-	break;\
-		case 2:\
+		suppress__ = 1;\
+		break;\
+	case 2:\
 		debug_break();\
 		break;\
-}\
+	}\
 }
 
 

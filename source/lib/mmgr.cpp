@@ -60,7 +60,7 @@ static void lock_init() throw()
 static void lock_shutdown() throw()
 {
 	int ret = pthread_mutex_destroy(&mutex);
-	assert(ret == 0);
+	assert2(ret == 0);
 	lock_initialized = false;
 }
 
@@ -69,7 +69,7 @@ static void lock() throw()
 	if(lock_initialized)
 	{
 		int ret = pthread_mutex_lock(&mutex);
-		assert(ret == 0);
+		assert2(ret == 0);
 	}
 }
 
@@ -78,7 +78,7 @@ static void unlock() throw()
 	if(lock_initialized)
 	{
 		int ret = pthread_mutex_unlock(&mutex);
-		assert(ret == 0);
+		assert2(ret == 0);
 	}
 }
 
@@ -115,7 +115,7 @@ uint mmgr_set_options(uint new_options)
 
 	if(new_options != MMGR_QUERY)
 	{
-		assert(!(new_options & ~MMGR_ALL) && "unrecognized options set");
+		assert2(!(new_options & ~MMGR_ALL) && "unrecognized options set");
 		options = new_options;
 	}
 	uint ret = options;
@@ -164,7 +164,7 @@ static const char* insert_commas(char* out, size_t value)
 	char num[NUM_SIZE];
 	sprintf(num, "%u", value);
 	const size_t num_len = strlen(num);
-	assert(num_len != 0);	// messes up #comma calc below
+	assert2(num_len != 0);	// messes up #comma calc below
 
 	const size_t out_len = num_len + (num_len-1)/3;
 	char* pos = out+out_len;
@@ -259,7 +259,7 @@ static Alloc* alloc_new()
 		freelist = (Alloc*)calloc(256, sizeof(Alloc));
 		if(!freelist)
 		{
-			assert(0 && "mmgr: failed to allocate freelist (out of memory)");
+			assert2(0 && "mmgr: failed to allocate freelist (out of memory)");
 			return 0;
 		}
 
@@ -268,7 +268,7 @@ static Alloc* alloc_new()
 
 		const size_t bytes = (num_reservoirs + 1) * sizeof(Alloc*);
 		Alloc* *temp = (Alloc* *) realloc(reservoirs, bytes);
-		assert(temp);
+		assert2(temp);
 		if(temp)
 		{
 			reservoirs = temp;
@@ -359,7 +359,7 @@ static void allocs_add(Alloc* a)
 static Alloc* allocs_find(const void* user_p)
 {
 	if(!user_p)
-		assert(user_p);
+		assert2(user_p);
 
 	Alloc* a = hash_chain(user_p);
 	while(a)
@@ -572,7 +572,7 @@ static void vlog(const char* fmt, va_list args)
 	FILE* fp = fopen(log_filename, "a");
 	if(!fp)
 	{
-		assert(0 && "log file open failed");
+		assert2(0 && "log file open failed");
 		return;
 	}
 
@@ -696,7 +696,7 @@ void mmgr_write_report(void)
 	FILE* f = fopen("mem_report.txt", "w");
 	if(!f)
 	{
-		assert(0 && "open of memory report file failed");
+		assert2(0 && "open of memory report file failed");
 		return;
 	}
 
@@ -763,7 +763,7 @@ void mmgr_write_leak_report(void)
 	FILE* f = fopen("mem_leaks.txt", "w");
 	if(!f)
 	{
-		assert(0 && "open of memory leak report file failed");
+		assert2(0 && "open of memory leak report file failed");
 		return;
 	}
 
@@ -812,7 +812,7 @@ static bool alloc_is_valid(const Alloc* a)
 
 	// this allocation has been over/underrun, i.e. modified outside the
 	// allocation's memory range.
-	assert(0);
+	assert2(0);
 	log("[!] Memory over/underrun:\n");
 	log_alloc(a);
 	return false;
@@ -846,13 +846,13 @@ static bool validate_all()
 		// enable MMGR_VALIDATE_ALL, trigger this condition again,
 		// and check the log for the last successful operation. the problem
 		// will have occurred between then and now.
-		assert(0);
+		assert2(0);
 		log("[!] Memory tracking hash table corrupt!\n");
 	}
 
 	if(params.num_invalid)
 	{
-		assert(0);
+		assert2(0);
 		log("[!] %d allocations are corrupt\n", params.num_invalid);
 	}
 
@@ -933,13 +933,13 @@ void mmgr_break_on_realloc(const void* p)
 	Alloc* a = allocs_find(p);
 	if(!a)
 	{
-		assert(0 && "setting realloc breakpoint on invalid pointer");
+		assert2(0 && "setting realloc breakpoint on invalid pointer");
 		return;
 	}
 
 	// setting realloc breakpoint on an allocation that
 	// doesn't support realloc.
-	assert(a->type == m_alloc_malloc || a->type == m_alloc_calloc ||
+	assert2(a->type == m_alloc_malloc || a->type == m_alloc_calloc ||
 	       a->type == m_alloc_realloc);
 
 	a->break_on_realloc = true;
@@ -955,7 +955,7 @@ void mmgr_break_on_free(const void* p)
 	Alloc* a = allocs_find(p);
 	if(!a)
 	{
-		assert(0 && "setting free breakpoint on invalid pointer");
+		assert2(0 && "setting free breakpoint on invalid pointer");
 		return;
 	}
 
@@ -1001,7 +1001,7 @@ void* alloc_dbg(size_t user_size, AllocType type, const char* file, int line, co
 
 	// you requested a breakpoint on this allocation number
 	++cur_alloc_count;
-	assert(cur_alloc_count != break_on_count);
+	assert2(cur_alloc_count != break_on_count);
 
 	// simulate random failures
 #ifdef RANDOM_FAILURE
@@ -1020,7 +1020,7 @@ void* alloc_dbg(size_t user_size, AllocType type, const char* file, int line, co
 	void* p = malloc(size);
 	if(!p)
 	{
-		assert(0);
+		assert2(0);
 		log("[!] Allocation failed (out of memory)\n");
 		goto fail;
 	}
@@ -1038,7 +1038,7 @@ void* alloc_dbg(size_t user_size, AllocType type, const char* file, int line, co
 	store_owner(a->owner, file, line, func);
 
 	// caller's source file didn't include "mmgr.h"
-	assert(type != m_alloc_unknown);
+	assert2(type != m_alloc_unknown);
 
 	allocs_add(a);
 	stats_add(a);
@@ -1108,16 +1108,16 @@ void free_dbg(const void* user_p, AllocType type, const char* file, int line, co
 	if(!a)
 	{
 		// you tried to free a pointer mmgr didn't allocate
-		assert(0);
+		assert2(0);
 		log("[!] mmgr_free: not allocated by this memory manager\n");
 		goto fail;
 	}
 	// .. overrun? (note: alloc_is_valid already asserts if invalid)
 	alloc_is_valid(a);
 	// .. the owner wasn't compiled with mmgr.h
-	assert(type != m_alloc_unknown);
+	assert2(type != m_alloc_unknown);
 	// .. allocator / deallocator type mismatch
-	assert(
+	assert2(
 		(type == m_alloc_delete       && a->type == m_alloc_new      ) ||
 		(type == m_alloc_delete_array && a->type == m_alloc_new_array) ||
 		(type == m_alloc_free         && a->type == m_alloc_malloc   ) ||
@@ -1125,7 +1125,7 @@ void free_dbg(const void* user_p, AllocType type, const char* file, int line, co
 		(type == m_alloc_free         && a->type == m_alloc_realloc  )
 	);
 	// .. you requested a breakpoint when freeing this allocation
-	assert(!a->break_on_free);
+	assert2(!a->break_on_free);
 
 
 	// "poison" the allocation's memory, to catch use-after-free bugs.
@@ -1169,7 +1169,7 @@ void* realloc_dbg(const void* user_p, size_t user_size, AllocType type, const ch
 {
 	void* ret = 0;
 
-	assert(type == m_alloc_realloc);
+	assert2(type == m_alloc_realloc);
 
 	lock();
 
@@ -1202,18 +1202,18 @@ void* realloc_dbg(const void* user_p, size_t user_size, AllocType type, const ch
 		if(!a)
 		{
 			// you called realloc for a pointer mmgr didn't allocate
-			assert(0);
+			assert2(0);
 			log("[!] realloc: wasn't previously allocated\n");
 			goto fail;
 		}
 		// .. the owner wasn't compiled with mmgr.h
-		assert(a->type != m_alloc_unknown);
+		assert2(a->type != m_alloc_unknown);
 		// .. realloc for an allocation type that doesn't support it.
-		assert(a->type == m_alloc_malloc || a->type == m_alloc_calloc ||
+		assert2(a->type == m_alloc_malloc || a->type == m_alloc_calloc ||
 			a->type == m_alloc_realloc);
 		// .. you requested a breakpoint when reallocating this allocation
 		// (it will continue to be triggered unless you clear a->break_on_realloc)
-		assert(!a->break_on_realloc);
+		assert2(!a->break_on_realloc);
 	}
 	// else: skip security checks; realloc(0, size) is equivalent to malloc
 
