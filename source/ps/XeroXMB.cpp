@@ -1,4 +1,4 @@
-// $Id: XeroXMB.cpp,v 1.6 2004/07/24 14:03:44 philip Exp $
+// $Id: XeroXMB.cpp,v 1.7 2004/10/07 20:49:25 philip Exp $
 
 #include "precompiled.h"
 
@@ -57,7 +57,7 @@ std::string XMBFile::ReadZStrA()
 	return String;
 }
 
-XMBElement XMBFile::getRoot()
+XMBElement XMBFile::getRoot() const
 {
 	return XMBElement(m_Pointer);
 }
@@ -65,19 +65,19 @@ XMBElement XMBFile::getRoot()
 
 #ifdef XERO_USEMAP
 
-int XMBFile::getElementID(const char* Name)
+int XMBFile::getElementID(const char* Name) const
 {
 	return m_ElementNames[Name];
 }
 
-int XMBFile::getAttributeID(const char* Name)
+int XMBFile::getAttributeID(const char* Name) const
 {
 	return m_AttributeNames[Name];
 }
 
 #else // #ifdef XERO_USEMAP
 
-int XMBFile::getElementID(const char* Name)
+int XMBFile::getElementID(const char* Name) const
 {
 	char* Pos = m_ElementPointer;
 
@@ -97,7 +97,7 @@ int XMBFile::getElementID(const char* Name)
 	return -1;
 }
 
-int XMBFile::getAttributeID(const char* Name)
+int XMBFile::getAttributeID(const char* Name) const
 {
 	char* Pos = m_AttributePointer;
 
@@ -121,7 +121,7 @@ int XMBFile::getAttributeID(const char* Name)
 
 // Relatively inefficient, so only use when
 // laziness overcomes the need for speed
-std::string XMBFile::getElementString(const int ID)
+std::string XMBFile::getElementString(const int ID) const
 {
 	char* Pos = m_ElementPointer;
 	for (int i = 0; i < ID; ++i)
@@ -129,7 +129,7 @@ std::string XMBFile::getElementString(const int ID)
 	return std::string(Pos+4);
 }
 
-std::string XMBFile::getAttributeString(const int ID)
+std::string XMBFile::getAttributeString(const int ID) const
 {
 	char* Pos = m_AttributePointer;
 	for (int i = 0; i < ID; ++i)
@@ -139,12 +139,12 @@ std::string XMBFile::getAttributeString(const int ID)
 
 
 
-int XMBElement::getNodeName()
+int XMBElement::getNodeName() const
 {
 	return *(int*)(m_Pointer + 4); // == ElementName
 }
 
-XMBElementList XMBElement::getChildNodes()
+XMBElementList XMBElement::getChildNodes() const
 {
 	return XMBElementList(
 		m_Pointer + 20 + *(int*)(m_Pointer + 16), // == Children[]
@@ -152,7 +152,7 @@ XMBElementList XMBElement::getChildNodes()
 	);
 }
 
-XMBAttributeList XMBElement::getAttributes()
+XMBAttributeList XMBElement::getAttributes() const
 {
 	return XMBAttributeList(
 		m_Pointer + 24 + *(int*)(m_Pointer + 20), // == Attributes[]
@@ -160,7 +160,7 @@ XMBAttributeList XMBElement::getAttributes()
 	);
 }
 
-utf16string XMBElement::getText()
+utf16string XMBElement::getText() const
 {
 	// Return empty string if there's no text
 	if (*(int*)(m_Pointer + 20) == 0)
@@ -169,9 +169,9 @@ utf16string XMBElement::getText()
 		return utf16string((utf16_t*)(m_Pointer + 28));
 }
 
-int XMBElement::getLineNumber()
+int XMBElement::getLineNumber() const
 {
-	// Make sure there actually *was* some text to record the line of
+	// Make sure there actually was some text to record the line of
 	if (*(int*)(m_Pointer + 20) == 0)
 		return -1;
 	else
@@ -204,7 +204,7 @@ XMBElement XMBElementList::item(const int id)
 	return XMBElement(Pos);
 }
 
-utf16string XMBAttributeList::getNamedItem(const int AttributeName)
+utf16string XMBAttributeList::getNamedItem(const int AttributeName) const
 {
 	char* Pos = m_Pointer;
 

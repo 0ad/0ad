@@ -35,9 +35,7 @@ public:
 	// Load from XML
 	bool loadXML( CStr filename );
 	// Load a tree of properties from an XML (XMB) node.
-	// MT: XeroFile/Source seem to me like they should be const, but the functions they require aren't const members
-	// and I'm reluctant to go messing round with xerophilic fungi I don't understand.
-	void XMLLoadProperty( CXeromyces& XeroFile, XMBElement& Source, CStrW BasePropertyName );
+	void XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement& Source, CStrW BasePropertyName );
 
 	// Base stats
 

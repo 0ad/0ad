@@ -1,4 +1,4 @@
-/* $Id: XeroXMB.h,v 1.5 2004/07/12 15:49:31 philip Exp $
+/* $Id: XeroXMB.h,v 1.6 2004/10/07 20:49:25 philip Exp $
 
 	Xeromyces - XMB reading library
 
@@ -120,18 +120,18 @@ public:
 	void Initialise(char* FileData);
 
 	// Returns the root element
-	XMBElement getRoot();
+	XMBElement getRoot() const;
 
 	
 	// Returns internal ID for a given ASCII element/attribute string.
-	int getElementID(const char* Name);
-	int getAttributeID(const char* Name);
+	int getElementID(const char* Name) const;
+	int getAttributeID(const char* Name) const;
 
 	// For lazy people (e.g. me) when speed isn't vital:
 
 	// Returns element/attribute string for a given internal ID
-	std::string getElementString(const int ID);
-	std::string getAttributeString(const int ID);
+	std::string getElementString(const int ID) const;
+	std::string getAttributeString(const int ID) const;
 
 private:
 	char* m_Pointer;
@@ -155,11 +155,11 @@ public:
 	XMBElement(char* offset)
 		: m_Pointer(offset)	{}
 
-	int getNodeName();
-	XMBElementList getChildNodes();
-	XMBAttributeList getAttributes();
-	utf16string getText();
-	int getLineNumber();
+	int getNodeName() const;
+	XMBElementList getChildNodes() const;
+	XMBAttributeList getAttributes() const;
+	utf16string getText() const;
+	int getLineNumber() const;
 
 private:
 	// Pointer to the start of the node
@@ -203,7 +203,7 @@ public:
 		: Count(count), m_Pointer(offset) {};
 
 	// Get the attribute value directly (unlike Xerces)
-	utf16string getNamedItem(const int AttributeName);
+	utf16string getNamedItem(const int AttributeName) const;
 
 	// Returns an attribute by position in the list
 	XMBAttribute item(const int id);

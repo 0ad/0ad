@@ -180,7 +180,7 @@ bool CBaseEntity::loadXML( CStr filename )
 	return true;
 }
 
-void CBaseEntity::XMLLoadProperty( CXeromyces& XeroFile, XMBElement& Source, CStrW BasePropertyName )
+void CBaseEntity::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement& Source, CStrW BasePropertyName )
 {
 	// Add a property, put the node text into it.
 	CStrW PropertyName = BasePropertyName + CStr8( XeroFile.getElementString( Source.getNodeName() ) );
