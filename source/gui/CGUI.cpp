@@ -603,7 +603,8 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 			// Text is only okay if it's the first element i.e. <object>caption ... </object>
 			if (i==0)
 			{
-				// GeeTODO !!!!! CROP STRING!
+				// Thank you CStr =)
+				caption.Trim(PS_TRIM_BOTH);
 
 				// Set the setting caption to this
 				GUI<CStr>::SetSetting(object, "caption", caption);

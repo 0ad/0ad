@@ -314,9 +314,7 @@ void IGUIObject::UpdateCachedSize()
 	//  use its cached size instead of the screen. Notice
 	//  it must have just been cached for it to work.
 	if (m_BaseSettings.m_Absolute == false && m_pParent)
-	{
 		m_CachedActualSize = m_BaseSettings.m_Size.GetClientArea( m_pParent->m_CachedActualSize );
-	}
 	else
 		m_CachedActualSize = m_BaseSettings.m_Size.GetClientArea( CRect(0, 0, g_xres, g_yres) );
 }

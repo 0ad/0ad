@@ -86,7 +86,6 @@ struct SGUIBaseSettings
 	bool			m_Hidden;
 	bool			m_Enabled;
 	bool			m_Absolute;
-//	CRect			m_Size2;
 	CClientArea		m_Size;
 	CStr			m_Style;
 	float			m_Z;

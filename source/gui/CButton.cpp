@@ -135,13 +135,10 @@ void CButton::Draw()
 		// Do this
 		glBegin(GL_QUADS);
 		//glBegin(GL_TRIANGLES);
-			//CRect ca = GetBaseSettings().m_Size.GetClientArea(CRect(0, 0, g_xres, g_yres));
-			CRect ca = m_CachedActualSize;
-
-			glVertex2i(ca.right, ca.bottom);
-			glVertex2i(ca.left, ca.bottom);
-			glVertex2i(ca.left, ca.top);
-			glVertex2i(ca.right, ca.top);
+			glVertex2i(m_CachedActualSize.right, m_CachedActualSize.bottom);
+			glVertex2i(m_CachedActualSize.left, m_CachedActualSize.bottom);
+			glVertex2i(m_CachedActualSize.left, m_CachedActualSize.top);
+			glVertex2i(m_CachedActualSize.right, m_CachedActualSize.top);
 
 /*			glVertex2i(GetBaseSettings().m_Size.right, GetBaseSettings().m_Size.bottom);
 			glVertex2i(GetBaseSettings().m_Size.left, GetBaseSettings().m_Size.bottom);
