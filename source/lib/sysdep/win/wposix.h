@@ -77,8 +77,6 @@ typedef unsigned long long uint64_t;
 // <sys/types.h>
 //
 
-typedef unsigned long useconds_t;
-typedef long suseconds_t;
 typedef long ssize_t;
 
 
@@ -86,7 +84,8 @@ typedef long ssize_t;
 // <limits.h>
 //
 
-#define PATH_MAX 260
+#define PATH_MAX 256
+// Win32 MAX_PATH is 260
 
 
 //
@@ -236,10 +235,6 @@ extern int access(const char*, int);
 extern int chdir(const char*);
 #define getcwd _getcwd
 
-
-extern unsigned int sleep(unsigned int sec);
-extern int usleep(useconds_t us);
-
 // user tests if available via #ifdef; can't use enum.
 #define _SC_PAGESIZE      1
 #define _SC_PAGE_SIZE     1
@@ -339,36 +334,6 @@ extern int pthread_mutex_unlock(pthread_mutex_t*);
 extern int pthread_mutex_timedlock(pthread_mutex_t*, const struct timespec*);
 
 
-//
-// <time.h>
-//
-
-typedef enum
-{
-	CLOCK_REALTIME
-}
-clockid_t;
-
-// BSD gettimeofday
-struct timeval
-{
-	time_t tv_sec;
-	suseconds_t tv_usec;
-};
-
-// POSIX realtime clock_*
-struct timespec
-{
-	time_t tv_sec;
-	long   tv_nsec;
-};
-
-extern int gettimeofday(struct timeval* tv, void* tzp);
-
-extern int nanosleep(const struct timespec* rqtp, struct timespec* rmtp);
-extern int clock_gettime(clockid_t clock, struct timespec* ts);
-extern int clock_getres(clockid_t clock, struct timespec* res);
-
 
 
 
@@ -437,6 +402,7 @@ extern void _hide_console();
 // split out of this module
 #include "waio.h"
 #include "wsock.h"
+#include "wtime.h"
 
 
 #ifdef __cplusplus
