@@ -247,6 +247,7 @@ enum
 	ONCE_CS,
 	HRT_CS,
 	WAIO_CS,
+	WFAM_CS,
 
 	NUM_CS
 };

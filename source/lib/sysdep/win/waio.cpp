@@ -217,7 +217,10 @@ Req* req_alloc(aiocb* cb)
 			r->cb = cb;
 			cb->req_ = r;
 
+#ifdef PARANOIA
 debug_out("req_alloc cb=%p r=%p\n", cb, r);
+#endif
+
 			return r;
 		}
 
@@ -228,7 +231,9 @@ debug_out("req_alloc cb=%p r=%p\n", cb, r);
 
 Req* req_find(const aiocb* cb)
 {
+#ifdef PARANOIA
 debug_out("req_find  cb=%p r=%p\n", cb, cb->req_);
+#endif
 
 	return (Req*)cb->req_;
 }
@@ -236,7 +241,9 @@ debug_out("req_find  cb=%p r=%p\n", cb, cb->req_);
 
 int req_free(Req* r)
 {
+#ifdef PARANOIA
 debug_out("req_free  cb=%p r=%p\n", r->cb, r);
+#endif
 
 	if(r->cb == 0)
 	{
@@ -356,7 +363,10 @@ WIN_ONCE(init());	// TODO: need to do this elsewhere in case other routines call
 		return -1;
 	}
 
+#ifdef PARANOIA
 debug_out("aio_open fn=%s fd=%d\n", fn, fd);
+#endif
+
 	return 0;
 }
 
@@ -375,7 +385,10 @@ int aio_close(int fd)
 		assert(0);
 	aio_h_set(fd, INVALID_HANDLE_VALUE);
 
+#ifdef PARANOIA
 debug_out("aio_close fd=%d\n", fd);
+#endif
+
 	return 0;
 }
 
@@ -389,7 +402,9 @@ debug_out("aio_close fd=%d\n", fd);
 // cb->aio_offset must be 0.
 static int aio_rw(struct aiocb* cb)
 {
+#ifdef PARANOIA
 debug_out("aio_rw cb=%p\n", cb);
+#endif
 
 	if(!cb)
 	{
@@ -541,7 +556,10 @@ int lio_listio(int mode, struct aiocb* const cbs[], int n, struct sigevent* se)
 // return status of transfer
 int aio_error(const struct aiocb* cb)
 {
+#ifdef PARANOIA
 debug_out("aio_error cb=%p\n", cb);
+#endif
+
 	Req* const r = req_find(cb);
 	if(!r)
 		return -1;
@@ -563,7 +581,10 @@ debug_out("aio_error cb=%p\n", cb);
 // get bytes transferred. call exactly once for each op.
 ssize_t aio_return(struct aiocb* cb)
 {
+#ifdef PARANOIA
 debug_out("aio_return cb=%p\n", cb);
+#endif
+
 	Req* const r = req_find(cb);
 	if(!r)
 		return -1;
@@ -606,7 +627,9 @@ int aio_suspend(const struct aiocb* const cbs[], int n, const struct timespec* t
 {
 	int i;
 
+#ifdef PARANOIA
 debug_out("aio_suspend cb=%p\n", cbs[0]);
+#endif
 
 	if(n <= 0 || n > MAXIMUM_WAIT_OBJECTS)
 		return -1;

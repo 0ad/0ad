@@ -92,6 +92,7 @@ static void ptr_to_h_shutdown()
 {
 	has_shutdown = true;
 	delete _ptr_to_h;
+	_ptr_to_h = 0;
 }
 
 

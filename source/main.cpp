@@ -346,6 +346,10 @@ glEnable (GL_DEPTH_TEST);
 //	tex_upload(tex);
 	font = font_load("verdana.fnt");
 
+
+extern int dir_add_watch(const char* const dir, bool watch_subdirs);
+dir_add_watch("mods\\official", false);
+
 terr_init();
 
 
@@ -379,6 +383,9 @@ in_add_handler(terr_handler);
 		SDL_GL_SwapBuffers();
 
 		calc_fps();
+
+extern int allow_reload();
+allow_reload();
 
 	}
 
