@@ -2,6 +2,7 @@
 
 #include "ObjectBase.h"
 
+#include "ObjectManager.h"
 #include "Xeromyces.h"
 #include "CLogger.h"
 
@@ -352,9 +353,41 @@ void CObjectBase::CalculateVariation(std::set<CStr>& strings, variation_key& cho
 			}
 		}
 
-		assert(randNum < 0); // which should always happen; otherwise it
-		                     // wouldn't have chosen any of the variants.
+		assert(randNum < 0);
+			// This should always happen; otherwise it
+			// wouldn't have chosen any of the variants.
 	}
 
 	assert(choices.size() == m_Variants.size());
+
+
+	// Also, make choices for all props:
+
+	// Work out which props have been chosen
+	std::map<CStr, CStr> chosenProps;
+	CObjectBase::variation_key::const_iterator choice_it = choices.begin();
+	for (std::vector<std::vector<CObjectBase::Variant> >::iterator grp = m_Variants.begin();
+		grp != m_Variants.end();
+		++grp)
+	{
+		CObjectBase::Variant& var (grp->at(*(choice_it++)));
+		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
+		{
+			chosenProps[it->m_PropPointName] = it->m_ModelName;
+		}
+	}
+
+	// Load each prop, and call CalculateVariation on them:
+	for (std::map<CStr, CStr>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
+	{
+		CObjectBase* prop = g_ObjMan.FindObjectBase(it->second);
+		if (prop)
+		{
+			variation_key propChoices;
+			prop->CalculateVariation(strings, propChoices);
+			choices.insert(choices.end(), propChoices.begin(), propChoices.end());
+		}
+	}
+
+	// (TODO: This seems rather fragile, e.g. if props fail to load)
 }

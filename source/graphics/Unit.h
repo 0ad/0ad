@@ -13,10 +13,10 @@ class CUnit
 {
 public:
 	// constructor - unit invalid without a model and object
-	CUnit(CObjectEntry* object,CModel* model) : m_Object(object), m_Model(model), m_Entity( NULL ) {
+	CUnit(CObjectEntry* object,CModel* model) : m_Object(object), m_Model(model), m_Entity(NULL) {
 		assert(object && model);
 	}
-	CUnit(CObjectEntry* object,CModel* model, CEntity* entity) : m_Object(object), m_Model(model), m_Entity( entity ) {
+	CUnit(CObjectEntry* object,CModel* model, CEntity* entity) : m_Object(object), m_Model(model), m_Entity(entity) {
 		assert(object && model);
 	}
 

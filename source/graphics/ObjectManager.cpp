@@ -49,6 +49,7 @@ CObjectManager::~CObjectManager()
 			delete_pair_2nd<CStr, CObjectBase*>
 		);
 	}
+	delete m_SelectedThing;
 }
 
 
@@ -81,7 +82,7 @@ CObjectBase* CObjectManager::FindObjectBase(const char* objectname)
 			delete obj;
 	}
 
-	LOG(ERROR, LOG_CATEGORY, "CObjectManager::FindObject(): Cannot find object '%s'", objectname);
+	LOG(ERROR, LOG_CATEGORY, "CObjectManager::FindObjectBase(): Cannot find object '%s'", objectname);
 
 	return 0;
 }
@@ -100,9 +101,24 @@ CObjectEntry* CObjectManager::FindObject(const char* objname)
 	CObjectBase::variation_key var;
 	base->CalculateVariation(choices, var);
 
+	return FindObjectVariation(base, var, var.begin());
+}
+
+CObjectEntry* CObjectManager::FindObjectVariation(const char* objname, CObjectBase::variation_key vars, CObjectBase::variation_key::iterator& vars_it)
+{
+	CObjectBase* base = FindObjectBase(objname);
+
+	if (! base)
+		return NULL;
+
+	return FindObjectVariation(base, vars, vars_it);
+}
+
+CObjectEntry* CObjectManager::FindObjectVariation(CObjectBase* base, CObjectBase::variation_key vars, CObjectBase::variation_key::iterator& vars_it)
+{
 	// Look to see whether this particular variation has already been loaded
 
-	ObjectKey key (CStr(objname), var);
+	ObjectKey key (base->m_Name, vars);
 
 	std::map<ObjectKey, CObjectEntry*>::iterator it = m_ObjectTypes[0].m_Objects.find(key);
 	if (it != m_ObjectTypes[0].m_Objects.end())
@@ -110,11 +126,9 @@ CObjectEntry* CObjectManager::FindObject(const char* objname)
 
 	// If it hasn't been loaded, load it now
 
-	CObjectEntry* obj = new CObjectEntry(0, base); // TODO: type ???
+	CObjectEntry* obj = new CObjectEntry(0, base); // TODO: type ?
 
-	obj->ApplyRandomVariant(var);
-
-	if (! obj->BuildModel())
+	if (! obj->BuildRandomVariant(vars, vars_it))
 	{
 		DeleteObject(obj);
 		return NULL;
@@ -161,6 +175,9 @@ void CObjectManager::LoadObjects()
 }
 
 
+//////////////////////////////////////////////////////////////////////////
+// For ScEd:
+
 static void GetObjectThunk(const char* path, const vfsDirEnt* ent, void* context)
 {
 	std::vector<CStr>* names = (std::vector<CStr>*)context;
@@ -172,13 +189,13 @@ void CObjectManager::GetAllObjectNames(std::vector<CStr>& names)
 	VFSUtil::EnumDirEnts("art/actors/", "*.xml", true, GetObjectThunk, &names);
 }
 
-
 struct CObjectThing_Entity : public CObjectThing
 {
-	CObjectThing_Entity(CBaseEntity* b) : base(b) {}
+	CObjectThing_Entity(CBaseEntity* b)	: base(b), obj(g_ObjMan.FindObject((CStr)b->m_actorName)), ent(NULL) {}
 	~CObjectThing_Entity() {}
 	CBaseEntity* base;
 	CEntity* ent;
+	CObjectEntry* obj;
 	void Create(CMatrix3D& transform, int playerID)
 	{
 		CVector3D orient = transform.GetIn();
@@ -191,7 +208,7 @@ struct CObjectThing_Entity : public CObjectThing
 		CVector3D orient = transform.GetIn();
 		CVector3D position = transform.GetTranslation();
 
-		// This is quite yucky, but nothing else seems to actually work:
+		// This looks quite yucky, but nothing else seems to actually work:
 		ent->m_position =
 		ent->m_position_previous =
 		ent->m_graphics_position = position;
@@ -203,7 +220,7 @@ struct CObjectThing_Entity : public CObjectThing
 	}
 	CObjectEntry* GetObjectEntry()
 	{
-		return g_ObjMan.FindObject((CStr)base->m_actorName);
+		return obj;
 	}
 };
 struct CObjectThing_Object : public CObjectThing

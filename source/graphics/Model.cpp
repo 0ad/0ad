@@ -17,6 +17,7 @@
 #include "SkeletonAnimManager.h"
 #include "MeshManager.h"
 #include "lib/res/ogl_tex.h"
+#include "lib/res/h_mgr.h"
 
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "graphics"
@@ -366,6 +367,7 @@ CModel* CModel::Clone() const
 	clone->m_ObjectBounds=m_ObjectBounds;
 	clone->InitModel(m_pModelDef);
 	clone->SetTexture(m_Texture);
+	if (m_Texture.GetHandle()) h_add_ref(m_Texture.GetHandle());
 	clone->SetMaterial(m_Material);
 	clone->SetAnimation(m_Anim);
 	clone->SetPlayerID(m_PlayerID);

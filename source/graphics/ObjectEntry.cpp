@@ -40,20 +40,68 @@ CObjectEntry::~CObjectEntry()
 	delete m_Model;
 }
 
-bool CObjectEntry::BuildModel()
+bool CObjectEntry::BuildRandomVariant(CObjectBase::variation_key& vars, CObjectBase::variation_key::iterator& vars_it)
 {
-	// check we've enough data to consider building the object
-	if (m_ModelName.Length()==0 || m_TextureName.Length()==0) {
-		return false;
+	CStr chosenTexture;
+	CStr chosenModel;
+	std::map<CStr, CObjectBase::Prop> chosenProps;
+	std::map<CStr, CObjectBase::Anim> chosenAnims;
+
+	// For each group in m_Base->m_Variants, take whichever variant is specified
+	// by 'vars', and then store its data into the 'chosen' variables. If data
+	// is specified more than once, the last value overrides all previous ones.
+
+	for (std::vector<std::vector<CObjectBase::Variant> >::iterator grp = m_Base->m_Variants.begin();
+		grp != m_Base->m_Variants.end();
+		++grp)
+	{
+		if (vars_it == vars.end())
+		{
+			debug_warn("BuildRandomVariant is using too many vars");
+			return false;
+		}
+
+		// Get the correct variant
+		CObjectBase::Variant& var (grp->at(*(vars_it++)));
+
+		// Apply its data:
+
+		if (var.m_TextureFilename.Length())
+			chosenTexture = var.m_TextureFilename;
+
+		if (var.m_ModelFilename.Length())
+			chosenModel = var.m_ModelFilename;
+
+		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
+			chosenProps[it->m_PropPointName] = *it;
+
+		for (std::vector<CObjectBase::Anim>::iterator it = var.m_Anims.begin(); it != var.m_Anims.end(); ++it)
+			chosenAnims[it->m_AnimName] = *it;
 	}
 
+	// Copy the chosen data onto this model:
+
+	m_TextureName = chosenTexture;
+	m_ModelName = chosenModel;
+
+	for (std::map<CStr, CObjectBase::Prop>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
+		m_Props.push_back(it->second);
+
+	for (std::map<CStr, CObjectBase::Anim>::iterator it = chosenAnims.begin(); it != chosenAnims.end(); ++it)
+		m_Animations.push_back(it->second);
+
+
+
+	// Build the model:
+
+
 	// get the root directory of this object
-	CStr dirname=g_ObjMan.m_ObjectTypes[m_Type].m_Name;
+	CStr dirname = g_ObjMan.m_ObjectTypes[m_Type].m_Name;
 
 	// remember the old model so we can replace any models using it later on
-	CModelDefPtr oldmodeldef=m_Model ? m_Model->GetModelDef() : CModelDefPtr();
+	CModelDefPtr oldmodeldef = m_Model ? m_Model->GetModelDef() : CModelDefPtr();
 
-	const char* modelfilename = m_ModelName.c_str();
+	const char* modelfilename = m_ModelName;
 
 	// try and create a model
 	CModelDefPtr modeldef (g_MeshManager.GetMesh(modelfilename));
@@ -65,7 +113,7 @@ bool CObjectEntry::BuildModel()
 
 	// delete old model, create new 
 	delete m_Model;
-	m_Model=new CModel;
+	m_Model = new CModel;
 	m_Model->SetTexture((const char*) m_TextureName);
 	m_Model->SetMaterial(g_MaterialManager.LoadMaterial(m_Base->m_Material));
 	m_Model->InitModel(modeldef);
@@ -74,12 +122,12 @@ bool CObjectEntry::BuildModel()
 	m_Model->CalcObjectBounds();
 
 	// load animations
-	for (uint t = 0; t < m_Animations.size(); t++)
+	for (size_t t = 0; t < m_Animations.size(); t++)
 	{
 		if (m_Animations[t].m_FileName.Length() > 0)
 		{
-			const char* animfilename = m_Animations[t].m_FileName.c_str();
-			m_Animations[t].m_AnimData = m_Model->BuildAnimation(animfilename,m_Animations[t].m_Speed);
+			const char* animfilename = m_Animations[t].m_FileName;
+			m_Animations[t].m_AnimData = m_Model->BuildAnimation(animfilename, m_Animations[t].m_Speed);
 
 			CStr AnimNameLC = m_Animations[t].m_AnimName.LowerCase();
 
@@ -103,7 +151,7 @@ bool CObjectEntry::BuildModel()
 		else
 		{
 			// FIXME, RC - don't store invalid animations (possible?)
-			m_Animations[t].m_AnimData=0;
+			m_Animations[t].m_AnimData = NULL;
 		}
 	}
 	// start up idling
@@ -111,117 +159,92 @@ bool CObjectEntry::BuildModel()
 		LOG(ERROR, LOG_CATEGORY, "Failed to set idle animation in model \"%s\"", modelfilename);
 
 	// build props - TODO, RC - need to fix up bounds here
-	for (uint p=0;p<m_Props.size();p++) {
-		const CObjectBase::Prop& prop=m_Props[p];
-		SPropPoint* proppoint=modeldef->FindPropPoint((const char*) prop.m_PropPointName);
-		if (proppoint) {
-			CObjectEntry* oe=g_ObjMan.FindObject(prop.m_ModelName);
-			if (oe) {
-				// try and build model if we haven't already got it
-				if (!oe->m_Model) oe->BuildModel();
-				if (oe->m_Model) {
-					CModel* propmodel=oe->m_Model->Clone();
-					m_Model->AddProp(proppoint,propmodel);
-					if (oe->m_WalkAnim) propmodel->SetAnimation(oe->m_WalkAnim);
-				} else {
-					LOG(ERROR, LOG_CATEGORY, "Failed to build prop model \"%s\" on actor \"%s\"", (const char*)prop.m_ModelName, (const char*)m_Base->m_ShortName);
-				}
+	// TODO: Make sure random variations get handled correctly when a prop fails
+	for (size_t p = 0; p < m_Props.size(); p++)
+	{
+		const CObjectBase::Prop& prop = m_Props[p];
+		SPropPoint* proppoint = modeldef->FindPropPoint((const char*) prop.m_PropPointName);
+		if (proppoint)
+		{
+			CObjectEntry* oe = g_ObjMan.FindObjectVariation(prop.m_ModelName, vars, vars_it);
+			if (oe)
+			{
+				CModel* propmodel = oe->m_Model->Clone();
+				m_Model->AddProp(proppoint, propmodel);
+				if (oe->m_WalkAnim)
+					propmodel->SetAnimation(oe->m_WalkAnim);
 			}
-		} else {
+			else
+			{
+				LOG(ERROR, LOG_CATEGORY, "Failed to build prop model \"%s\" on actor \"%s\"", (const char*)prop.m_ModelName, (const char*)m_Base->m_ShortName);
+			}
+		}
+		else
+		{
 			LOG(ERROR, LOG_CATEGORY, "Failed to find matching prop point called \"%s\" in model \"%s\" on actor \"%s\"", (const char*)prop.m_PropPointName, modelfilename, (const char*)prop.m_ModelName);
 		}
 	}
 
 	// setup flags
-	if (m_Base->m_Properties.m_CastShadows) {
+	if (m_Base->m_Properties.m_CastShadows)
+	{
 		m_Model->SetFlags(m_Model->GetFlags()|MODELFLAG_CASTSHADOWS);
 	}
 
 	// replace any units using old model to now use new model; also reprop models, if necessary
 	// FIXME, RC - ugh, doesn't recurse correctly through props
-	const std::vector<CUnit*>& units=g_UnitMan.GetUnits();
-	for (uint i=0;i<units.size();++i) {
+/*	
+	// (PT: Removed this, since I'm not entirely sure what it's useful for, and it
+	//  gets a bit confusing with randomised actors)
+
+	const std::vector<CUnit*>& units = g_UnitMan.GetUnits();
+	for (size_t i = 0; i < units.size(); ++i)
+	{
 		CModel* unitmodel=units[i]->GetModel();
-		if (unitmodel->GetModelDef()==oldmodeldef) {			
+		if (unitmodel->GetModelDef() == oldmodeldef)
+		{
 			unitmodel->InitModel(m_Model->GetModelDef());
 			unitmodel->SetFlags(m_Model->GetFlags());
 
-			const std::vector<CModel::Prop>& newprops=m_Model->GetProps();
-			for (uint j=0;j<newprops.size();j++) {
-				unitmodel->AddProp(newprops[j].m_Point,newprops[j].m_Model->Clone());
-			}
+			const std::vector<CModel::Prop>& newprops = m_Model->GetProps();
+			for (size_t j = 0; j < newprops.size(); j++)
+				unitmodel->AddProp(newprops[j].m_Point, newprops[j].m_Model->Clone());
 		}
 
-		std::vector<CModel::Prop>& mdlprops=unitmodel->GetProps();
-		for (uint j=0;j<mdlprops.size();j++) {
-			CModel::Prop& prop=mdlprops[j];
-			if (prop.m_Model) {
-				if (prop.m_Model->GetModelDef()==oldmodeldef) {
+		std::vector<CModel::Prop>& mdlprops = unitmodel->GetProps();
+		for (size_t j = 0; j < mdlprops.size(); j++)
+		{
+			CModel::Prop& prop = mdlprops[j];
+			if (prop.m_Model)
+			{
+				if (prop.m_Model->GetModelDef() == oldmodeldef)
+				{
 					delete prop.m_Model;
-					prop.m_Model=m_Model->Clone();
+					prop.m_Model = m_Model->Clone();
 				}
 			}
 		}
 	}
-
+*/
 	return true;
 }
 
-void CObjectEntry::ApplyRandomVariant(CObjectBase::variation_key& vars)
+
+CSkeletonAnim* CObjectEntry::GetNamedAnimation(CStr animationName)
 {
-	CStr chosenTexture;
-	CStr chosenModel;
-	std::map<CStr, CObjectBase::Prop> chosenProps;
-	std::map<CStr, CObjectBase::Anim> chosenAnims;
+	for (size_t t = 0; t < m_Animations.size(); t++)
+		if (m_Animations[t].m_AnimName == animationName)
+			return m_Animations[t].m_AnimData;
 
-	CObjectBase::variation_key::const_iterator vars_it = vars.begin();
-
-	for (std::vector<std::vector<CObjectBase::Variant> >::iterator grp = m_Base->m_Variants.begin();
-		grp != m_Base->m_Variants.end();
-		++grp)
-	{
-		CObjectBase::Variant& var (grp->at(*(vars_it++)));
-
-		if (var.m_TextureFilename.Length())
-			chosenTexture = var.m_TextureFilename;
-
-		if (var.m_ModelFilename.Length())
-			chosenModel = var.m_ModelFilename;
-
-		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
-			chosenProps[it->m_PropPointName] = *it;
-
-		for (std::vector<CObjectBase::Anim>::iterator it = var.m_Anims.begin(); it != var.m_Anims.end(); ++it)
-			chosenAnims[it->m_AnimName] = *it;
-	}
-
-	m_TextureName = chosenTexture;
-	m_ModelName = chosenModel;
-
-	for (std::map<CStr, CObjectBase::Prop>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
-		m_Props.push_back(it->second);
-
-	for (std::map<CStr, CObjectBase::Anim>::iterator it = chosenAnims.begin(); it != chosenAnims.end(); ++it)
-		m_Animations.push_back(it->second);
-}
-
-
-CSkeletonAnim* CObjectEntry::GetNamedAnimation( CStr animationName )
-{
-	for( uint t = 0; t < m_Animations.size(); t++ )
-	{
-		if( m_Animations[t].m_AnimName == animationName )
-			return( m_Animations[t].m_AnimData );
-	}
-	return( NULL );
+	return NULL;
 }
 
 
 CObjectBase::Prop* CObjectEntry::FindProp(const char* proppointname)
 {
-	for (size_t i=0;i<m_Props.size();i++) {
-		if (strcmp(proppointname,m_Props[i].m_PropPointName)==0) return &m_Props[i];
-	}
+	for (size_t i = 0; i < m_Props.size(); i++)
+		if (strcmp(proppointname, m_Props[i].m_PropPointName) == 0)
+			return &m_Props[i];
 
-	return 0;
+	return NULL;
 }

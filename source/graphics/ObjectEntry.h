@@ -14,11 +14,9 @@ public:
 	CObjectEntry(int type, CObjectBase* base);
 	~CObjectEntry();
 
-	bool BuildModel();
+	bool BuildRandomVariant(CObjectBase::variation_key& vars, CObjectBase::variation_key::iterator& vars_it);
 
-	void ApplyRandomVariant(CObjectBase::variation_key& var);
-
-	// base actor. Contains all the things that don't change between
+	// Base actor. Contains all the things that don't change between
 	// different variations of the actor.
 	CObjectBase* m_Base;
 

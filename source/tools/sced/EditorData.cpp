@@ -165,6 +165,9 @@ bool CEditorData::Init()
 	// Set attributes for the game
 	g_GameAttributes.m_MapFile = L""; // start without a map
 
+	for (int i=1; i<8; ++i) 
+		g_GameAttributes.GetSlot(i)->AssignLocal();
+
 	// Set up the actual game
 	g_Game = new CGame();
 	PSRETURN ret = g_Game->StartGame(&g_GameAttributes);
@@ -603,9 +606,9 @@ void CEditorData::UpdateWorld(float time)
 		for (uint i=0;i<units.size();++i) {
 			units[i]->GetModel()->Update(time);
 		}
-		if (m_Mode==TEST_MODE) {
-			g_EntityManager.updateAll( time );
-		}
+//		if (m_Mode==TEST_MODE) {
+//			g_EntityManager.updateAll( time );
+//		}
 	} else {
 //		CObjectEntry* selobject=g_ObjMan.GetSelectedObject();
 //		if (selobject && selobject->m_Model) {

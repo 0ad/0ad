@@ -7,7 +7,6 @@
 #include "CStr.h"
 #include "ObjectBase.h"
 
-class CObjectBase;
 class CObjectEntry;
 class CBaseEntity;
 class CMatrix3D;
@@ -67,6 +66,9 @@ public:
 	void DeleteObject(CObjectEntry* entry);
 	
 	CObjectBase* FindObjectBase(const char* objname);
+
+	CObjectEntry* FindObjectVariation(const char* objname, CObjectBase::variation_key vars, CObjectBase::variation_key::iterator& vars_it);
+	CObjectEntry* FindObjectVariation(CObjectBase* base, CObjectBase::variation_key vars, CObjectBase::variation_key::iterator& vars_it);
 
 	// Get all names, quite slowly. (Intended only for ScEd.)
 	void GetAllObjectNames(std::vector<CStr>& names);

@@ -26,6 +26,8 @@ public:
 	// (TODO: less hackiness, for the whole player-selection system)
 	CEntity* GetFirstEntity();
 
+	void DeleteSelected();
+
 	// get the default select object instance
 	static CSelectObjectTool* GetTool() { return &m_SelectObjectTool; }
 

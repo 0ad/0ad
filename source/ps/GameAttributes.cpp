@@ -132,6 +132,11 @@ void CPlayerSlot::AssignToSessionID(int id)
 	SetAssignment(SLOT_SESSION, NULL, id);
 }
 
+void CPlayerSlot::AssignLocal()
+{
+	AssignToSessionID(1);
+}
+
 namespace PlayerSlotArray_JS
 {
 	JSBool GetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )

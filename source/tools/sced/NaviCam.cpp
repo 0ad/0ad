@@ -22,18 +22,21 @@ void CNaviCam::OnMouseWheelScroll(u32 flags,int px,int py,float dir)
 	float factor=dir*dir;
 	if (dir<0) factor=-factor;
 	
-	// check we're not going to zoom into the terrain, or too far out into space
-	float h=m_Camera.m_Orientation.GetTranslation().Y+forward.Y*factor*m_CameraZoom;
-	float minh=65536*HEIGHT_SCALE*1.05f;
-	
-	if (h<minh || h>1500) {
-		// yup, we will; don't move anywhere (do clamped move instead, at some point)
-	} else {
-		// do a full move
-		m_CameraZoom-=(factor)*0.1f;
-		if (m_CameraZoom<0.01f) m_CameraZoom=0.01f;
-		m_Camera.m_Orientation.Translate(forward*(factor*m_CameraZoom));
-	}
+//	// check we're not going to zoom into the terrain, or too far out into space
+//	float h=m_Camera.m_Orientation.GetTranslation().Y+forward.Y*factor*m_CameraZoom;
+//	float minh=65536*HEIGHT_SCALE*1.05f;
+//	
+//	if (h<minh || h>1500) {
+//		// yup, we will; don't move anywhere (do clamped move instead, at some point)
+//	} else {
+//		// do a full move
+//		m_CameraZoom-=(factor)*0.1f;
+//		if (m_CameraZoom<0.1f) m_CameraZoom=0.01f;
+//		m_Camera.m_Orientation.Translate(forward*(factor*m_CameraZoom));
+//	}
+
+	m_Camera.m_Orientation.Translate(forward*(factor*2.5f));
+
 	g_EditorData.OnCameraChanged();
 }
 

@@ -21,6 +21,7 @@ void CSmoothElevationTool::SmoothSelection()
 	double curtime=1000*get_time();
 	double elapsed=(curtime-m_LastTriggerTime);
 	
+	if (elapsed > 1000.0) elapsed = 1000.0;
 	while (elapsed>=m_SmoothPower) {
 		CSmoothElevationCommand* smoothCmd=new CSmoothElevationCommand(MAX_SMOOTH_POWER,m_BrushSize,m_SelectionCentre);
 		g_CmdMan.Execute(smoothCmd);

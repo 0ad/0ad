@@ -1446,13 +1446,9 @@ int main(int argc, char* argv[])
 	MICROLOG(L"Init");
 	Init(argc, argv, true);
 
-	// Do some limited tests to ensure things aren't broken
-#ifndef NDEBUG
-	{
-	extern void PerformTests();
-	PerformTests();
-	}
-#endif
+	// Optionally, do some simple tests to ensure things aren't broken
+//	extern void PerformTests();
+//	PerformTests();
 
 	while(!quit)
 	{
@@ -1472,6 +1468,8 @@ int main(int argc, char* argv[])
 
 void ScEd_Init()
 {
+	new CProfileManager;
+
 	g_Quickstart = true;
 
 	Init(0, NULL, false);
@@ -1480,6 +1478,8 @@ void ScEd_Init()
 void ScEd_Shutdown()
 {
 	Shutdown();
+
+	delete &g_Profiler;
 }
 
 #endif // SCED

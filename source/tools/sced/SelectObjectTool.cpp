@@ -8,6 +8,7 @@
 #include "Renderer.h"
 #include "UnitManager.h"
 #include "SelectObjectTool.h"
+#include "Entity.h"
 #include <algorithm>
 
 // default tool instance
@@ -104,6 +105,19 @@ void CSelectObjectTool::RenderUnitBounds(CUnit* unit)
 	glVertex3f(bounds[1].X,bounds[1].Y,bounds[1].Z);
 	glVertex3f(bounds[1].X,bounds[1].Y,bounds[0].Z);
 	glEnd();
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+void CSelectObjectTool::DeleteSelected()
+{
+	for (std::vector<CUnit*>::iterator iter = m_SelectedUnits.begin(); iter != m_SelectedUnits.end(); ++iter)
+	{
+		if ((*iter)->GetEntity())
+			(*iter)->GetEntity()->kill();
+		else
+			g_UnitMan.DeleteUnit(*iter);
+	}
+	m_SelectedUnits.clear();
 }
 
 

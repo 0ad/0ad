@@ -1236,6 +1236,12 @@ int debug_assert_failed(const char* file, int line, const char* expr)
 	out(L"Assertion failed in %hs, line %d: \"%hs\"\r\n", file, line, expr);
 	dump_stack(1);	// skip this function's frame
 
+#if defined(SCED) && !(defined(NDEBUG)||defined(TESTING))
+	// ScEd keeps running while the dialog is showing, and tends to crash before
+	// there's a chance to read the assert message. So, just break immediately.
+	debug_break();
+#endif
+
 	return dialog(ASSERT);
 }
 

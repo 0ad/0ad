@@ -95,7 +95,10 @@ public:
 
 	// Reset any assignment the slot might have before and mark the slot as free
 	void AssignOpen();
-	
+
+	// Assign to the local player in SP or Server Player in MP
+	void AssignLocal();
+
 // TODO This will wait until there actually is AI to set up
 //	void AssignAI();
 };

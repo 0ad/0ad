@@ -17,6 +17,7 @@
 #include "ogl.h"
 #undef _IGNORE_WGL_H_
 
+#include "SelectObjectTool.h"
 #include "Game.h"
 
 #include "res/vfs.h"
@@ -571,6 +572,9 @@ BOOL CScEdView::PreTranslateMessage(MSG* pMsg)
 				case 'Y':
 					if (GetAsyncKeyState(VK_CONTROL)) 
 						mainfrm->OnEditRedo();
+					break;
+				case VK_DELETE:
+					CSelectObjectTool::GetTool()->DeleteSelected();
 					break;
 			}
 		}
