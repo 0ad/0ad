@@ -157,7 +157,11 @@ void CLogger::Log(ELogMethod method, const char* category, const char *fmt, ...)
 	memset(buffer,0,sizeof(buffer));
 	
 	va_start(argp, fmt);
-	vsnprintf2(buffer, sizeof(buffer), fmt, argp);
+	if (vsnprintf2(buffer, sizeof(buffer)-1, fmt, argp) == -1)
+	{
+		// Buffer too small - ensure the string is nicely terminated
+		strcpy(buffer+sizeof(buffer)-4, "...");
+	}
 	va_end(argp);
 
 	LogUsingMethod(method, category, buffer);
@@ -172,7 +176,11 @@ void CLogger::LogOnce(ELogMethod method, const char* category, const char *fmt, 
 	memset(buffer,0,sizeof(buffer));
 
 	va_start(argp, fmt);
-	vsnprintf2(buffer, sizeof(buffer), fmt, argp);
+	if (vsnprintf2(buffer, sizeof(buffer)-1, fmt, argp) == -1)
+	{
+		// Buffer too small - ensure the string is nicely terminated
+		strcpy(buffer+sizeof(buffer)-4, "...");
+	}
 	va_end(argp);
 
 	std::string message (buffer);
