@@ -8,7 +8,7 @@
 #endif
 #include <algorithm>
 
-const char* SupportedTextureFormats[] = { "png", "dds", "tga", "bmp" };
+const char* SupportedTextureFormats[] = { ".png", ".dds", ".tga", ".bmp" };
 
 
 
@@ -73,7 +73,8 @@ CTextureEntry* CTextureManager::AddTexture(const char* filename,int type)
 	pathname+=filename;
 
 	Handle h=tex_load((const char*) pathname);
-	if (!h) {
+	if (h <= 0) {
+		LOG(ERROR, "CTextureManager::AddTexture(): texture %s failed loading\n", pathname.c_str());
 		return 0;
 	} else {
 		int tw;
@@ -141,57 +142,40 @@ void CTextureManager::DeleteTexture(CTextureEntry* entry)
 
 void CTextureManager::LoadTerrainTextures(int terraintype,const char* fileext)
 {
-#ifdef _WIN32
-	struct _finddata_t file;
-	long handle;
-	
-	// build pathname
-	CStr pathname("mods\\official\\art\\textures\\terrain\\types\\");
+	CStr pathname("art/textures/terrain/types/");
 	pathname+=m_TerrainTextures[terraintype].m_Name;
-	pathname+="\\";
+	pathname+="/";
 	
-	CStr findname(pathname);
-	findname+="*.";
-	findname+=fileext;
-
-	// Find first matching file in directory for this terrain type
-    if ((handle=_findfirst((const char*) findname,&file))!=-1) {
-		
-		AddTexture(file.name,terraintype);
-
-		// Find the rest of the matching files
-        while( _findnext(handle,&file)==0) {
-			AddTexture((const char*) file.name,terraintype);
+	Handle dir=vfs_open_dir(pathname.c_str());
+	vfsDirEnt dent;
+	
+	if (dir > 0)
+	{
+		while (vfs_next_dirent(dir, &dent, fileext) == 0)
+		{
+			LOG(NORMAL, "CTextureManager::LoadTerrainTextures(): texture %s added to type %s\n", dent.name, m_TerrainTextures[terraintype].m_Name.c_str());
+			AddTexture(dent.name, terraintype);
 		}
-
-        _findclose(handle);
+		
+		vfs_close_dir(dir);
 	}
-#endif
 }
 
 void CTextureManager::BuildTerrainTypes()
 {
-#ifdef _WIN32
-	struct _finddata_t file;
-	long handle;
+	Handle dir=vfs_open_dir("art/textures/terrain/types/");
+	vfsDirEnt dent;
 	
-	// Find first matching directory in terrain\textures
-    if ((handle=_findfirst("mods\\official\\art\\textures\\terrain\\types\\*",&file))!=-1) {
+	if (dir > 0)
+	{
+		while (vfs_next_dirent(dir, &dent, "/") == 0)
+		{
+			AddTextureType(dent.name);
+		}
 		
-		if ((file.attrib & _A_SUBDIR) && file.name[0]!='.') {
-			AddTextureType(file.name);
-		}
-
-		// Find the rest of the matching files
-        while( _findnext(handle,&file)==0) {
-			if ((file.attrib & _A_SUBDIR) && file.name[0]!='.') {
-				AddTextureType(file.name);
-			}
-		}
-
-        _findclose(handle);
+		vfs_close_dir(dir);
 	}
-#endif
+
 }
 
 void CTextureManager::LoadTerrainTextures()
