@@ -236,6 +236,60 @@ typedef struct _SYSTEM_POWER_INFORMATION
 
 
 ///////////////////////////////////////////////////////////////////////////////
+//
+// fixes for dbghelp.h 6.3
+//
+///////////////////////////////////////////////////////////////////////////////
+
+// the macros defined "for those without specstrings.h" are incorrect -
+// parameter definition is missing.
+#ifndef __specstrings
+# define __specstrings	// prevent dbghelp from changing these
+
+# define __in
+# define __out
+# define __inout
+# define __in_opt
+# define __out_opt
+# define __inout_opt
+# define __in_ecount(s)
+# define __out_ecount(s)
+# define __inout_ecount(s)
+# define __in_bcount(s)
+# define __out_bcount(s)
+# define __inout_bcount(s)
+# define __deref_opt_out
+# define __deref_out
+#endif
+
+// missing from dbghelp's list
+#define __out_xcount(s)
+
+
+// not defined by dbghelp; these values are taken from DIA cvconst.h
+enum BasicType
+{
+	btNoType    = 0,
+	btVoid      = 1,
+	btChar      = 2,
+	btWChar     = 3,
+	btInt       = 6,
+	btUInt      = 7,
+	btFloat     = 8,
+	btBCD       = 9,
+	btBool      = 10,
+	btLong      = 13,
+	btULong     = 14,
+	btCurrency  = 25,
+	btDate      = 26,
+	btVariant   = 27,
+	btComplex   = 28,
+	btBit       = 29,
+	btBSTR      = 30,
+	btHresult   = 31
+};
+
+///////////////////////////////////////////////////////////////////////////////
 
 
 /* Define _CRTIMP */

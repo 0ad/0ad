@@ -24,7 +24,7 @@
 
 #include "win_internal.h"
 #define _NO_CVCONST_H	// request SymTagEnum be defined
-#include "dbghelp63.h"
+#include "dbghelp.h"
 #include <OAIdl.h>	// VARIANT
 
 #include "wdbg.h"

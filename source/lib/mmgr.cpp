@@ -969,9 +969,6 @@ void mmgr_break_on_free(const void* p)
 // actual allocator, making use of all of the above :)
 //////////////////////////////////////////////////////////////////////////////
 
-
-#include "sysdep/win/wdbg.h"
-
 void* alloc_dbg(size_t user_size, AllocType type, const char* file, int line, const char* func, uint stack_frames)
 {
 	void* ret = 0;
@@ -988,8 +985,8 @@ void* alloc_dbg(size_t user_size, AllocType type, const char* file, int line, co
 	{
 		if(options & MMGR_RESOLVE_OWNER)
 		{
-			void* pfunc = wdbg_get_nth_caller(1+stack_frames);
-			wdbg_resolve_symbol(pfunc, func_buf, file_buf, &line);
+			void* pfunc = debug_get_nth_caller(1+stack_frames);
+			debug_resolve_symbol(pfunc, func_buf, file_buf, &line);
 			file = file_buf;
 			func = func_buf;
 		}
@@ -1083,8 +1080,8 @@ void free_dbg(const void* user_p, AllocType type, const char* file, int line, co
 	{
 		if(options & MMGR_RESOLVE_OWNER)
 		{
-			void* pfunc = wdbg_get_nth_caller(1+stack_frames);
-			wdbg_resolve_symbol(pfunc, func_buf, file_buf, &line);
+			void* pfunc = debug_get_nth_caller(1+stack_frames);
+			debug_resolve_symbol(pfunc, func_buf, file_buf, &line);
 			file = file_buf;
 			func = func_buf;
 		}
@@ -1186,8 +1183,8 @@ void* realloc_dbg(const void* user_p, size_t user_size, AllocType type, const ch
 	{
 		if(options & MMGR_RESOLVE_OWNER)
 		{
-			void* pfunc = wdbg_get_nth_caller(1+stack_frames);
-			wdbg_resolve_symbol(pfunc, func_buf, file_buf, &line);
+			void* pfunc = debug_get_nth_caller(1+stack_frames);
+			debug_resolve_symbol(pfunc, func_buf, file_buf, &line);
 			file = file_buf;
 			func = func_buf;
 		}
