@@ -115,29 +115,36 @@ InputSource *CVFSEntityResolver::resolveEntity(const XMLCh *const publicId,
 	
 	char abspath[VFS_MAX_PATH];
 	const char *end=strchr(m_DocName, '\0');
-	
-	// Remove one path component for each opening ../ (or ..\)
-	// Note that this loop will stop when all path components from the
-	// document name have been stripped - the resulting path will be invalid, but
-	// so was the input path.
-	// Also note that this will not handle ../ path components in the middle of
-	// the input path.
-	while (strncmp(path, "..", 2) == 0 && IS_PATH_SEP(path[2]) && end > m_DocName)
+	const char *orgend=end;
+
+	if (IS_PATH_SEP(*path))
+		path++;
+	else
 	{
+		// We know that we have a relative path here:
+		// - Remove the file name
+		// - If we have a ../ components - remove them and remove one component
+		// off the end of the document path for each ../ component
+		// - prefix of document path + suffix of input path => the VFS path
+
+		// Remove the file name
 		end=prevpathcomp(end, m_DocName);
-		path += 3;
-	}
-
-	// The ../ loop has found opening ../'s
-	if (path != orgpath)
-	{
-		// Remove one more path component
-		if (end > m_DocName)
+	
+		// Remove one path component for each opening ../ (or ..\)
+		// Note that this loop will stop when all path components from the
+		// document name have been stripped - the resulting path will be invalid, but
+		// so was the input path.
+		// Also note that this will not handle ../ path components in the middle of
+		// the input path.
+		while (strncmp(path, "..", 2) == 0 && IS_PATH_SEP(path[2]) && end > m_DocName)
+		{
 			end=prevpathcomp(end, m_DocName);
+			path += 3;
+		}
 
-		// include one slash from suffix
-		--path;
-		
+		// include one slash from prefix
+		end++;
+
 		const ptrdiff_t prefixlen=end-m_DocName;
 		
 		memcpy(abspath, m_DocName, prefixlen);
@@ -145,17 +152,20 @@ InputSource *CVFSEntityResolver::resolveEntity(const XMLCh *const publicId,
 		// strncpy might not have terminated, if path was too long
 		abspath[VFS_MAX_PATH-1]=0;
 		
-		char *pos=abspath;		
-		if ((pos=strchr(pos, '\\')) != NULL)
-		{
-			LOG(WARNING, "While resolving XML entities for %s: path %s [%s] contains non-portable path separator \\", m_DocName, orgpath, abspath);
-			do
-				*pos='/';
-			while ((pos=strchr(pos+1, '\\')) != NULL);
-		}
 		path=abspath;
 	}
-	
+
+	LOG(NORMAL, "EntityResolver: path \"%s\" translated to \"%s\"", orgpath, path);
+
+	char *pos=path;		
+	if ((pos=strchr(pos, '\\')) != NULL)
+	{
+		LOG(WARNING, "While resolving XML entities for %s: path %s [%s] contains non-portable path separator \\", m_DocName, orgpath, path);
+		do
+			*pos='/';
+		while ((pos=strchr(pos+1, '\\')) != NULL);
+	}
+
 	if (ret->OpenFile(path)!=0)
 	{
 		delete ret;
