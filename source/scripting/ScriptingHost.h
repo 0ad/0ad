@@ -2,8 +2,12 @@
 #ifndef _SCRIPTINGHOST_H_
 #define _SCRIPTINGHOST_H_
 
-#ifdef _WIN32
+#ifdef OS_WIN
 # define XP_WIN
+#endif
+
+#ifdef OS_UNIX
+# define XP_UNIX
 #endif
 
 #include <jsapi.h>
