@@ -882,7 +882,7 @@ static void hsd_list_free_all()
 
 static void SndData_init(SndData* sd, va_list args)
 {
-	sd->is_stream = va_arg(args, bool);
+	sd->is_stream = va_arg(args, int);
 }
 
 static void SndData_dtor(SndData* sd)
@@ -1003,7 +1003,7 @@ static Handle snd_data_load(const char* const fn, const bool stream)
 	// (both references would read from the same file handle).
 	const uint flags = stream? RES_UNIQUE : 0;
 
-	return h_alloc(H_SndData, fn, flags, stream);
+	return h_alloc(H_SndData, fn, flags, (int)stream);
 }
 
 

@@ -1,7 +1,6 @@
 // Supporting data types for CEntity and related
 
 class CEntityManager;
-enum EGotoSituation;
 
 class CDamageType : public CJSObject<CDamageType>
 {

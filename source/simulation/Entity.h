@@ -116,7 +116,7 @@ public:
 private:
 	CEntity( CBaseEntity* base, CVector3D position, float orientation );
 
-	EGotoSituation processGotoHelper( CEntityOrder* current, size_t timestep_milli, HEntity& collide );
+	/*EGotoSituation*/ uint processGotoHelper( CEntityOrder* current, size_t timestep_milli, HEntity& collide );
 	bool processAttackMelee( CEntityOrder* current, size_t timestep_milli );
 	bool processAttackMeleeNoPathing( CEntityOrder* current, size_t timestep_milli );
 	bool processGotoNoPathing( CEntityOrder* current, size_t timestep_milli );

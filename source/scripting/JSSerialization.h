@@ -2,7 +2,7 @@
 //
 // Mark Thompson (mark@wildfiregames.com / mot20@cam.ac.uk)
 
-#include "Serialization.h"
+#include "Network/Serialization.h"
 #include "JSConversions.h"
 #include "CStr.h"
 

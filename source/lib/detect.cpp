@@ -119,7 +119,7 @@ int cpu_smp = -1;
 	// are there actually multiple physical processors,
 	// not only logical hyperthreaded CPUs? relevant for wtime.
 
-inline void get_cpu_info()
+void get_cpu_info()
 {
 #ifdef _WIN32
 	win_get_cpu_info();
@@ -138,9 +138,14 @@ inline void get_cpu_info()
 char snd_card[SND_CARD_LEN];
 char snd_drv_ver[SND_DRV_VER_LEN];
 
-inline void get_snd_info()
+void get_snd_info()
 {
 #ifdef _WIN32
 	win_get_snd_info();
+#else
+	// At least reset the values for unhandled platforms. Should perhaps do
+	// something like storing the OpenAL version or similar.
+	strcpy(snd_card, "Unknown");
+	strcpy(snd_drv_ver, "Unknown");
 #endif
 }

@@ -25,7 +25,7 @@ enum EGotoSituation
 
 // Does all the shared processing for line-of-sight gotos
 
-EGotoSituation CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, HEntity& collide )
+uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, HEntity& collide )
 {
 	float timestep=timestep_millis/1000.0f;
 

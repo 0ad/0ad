@@ -587,12 +587,12 @@ void CEntity::renderSelectionOutline( float alpha )
 
 void CEntity::ScriptingInit()
 {
-	AddMethod<jsval, ToString>( "toString", 0 );
-	AddMethod<bool, OrderSingle>( "order", 1 );
-	AddMethod<bool, OrderQueued>( "orderQueued", 1 );
-	AddMethod<bool, Kill>( "kill", 0 );
-	AddMethod<bool, Damage>( "damage", 1 );
-	AddMethod<bool, IsIdle>( "isIdle", 0 );
+	AddMethod<jsval, &CEntity::ToString>( "toString", 0 );
+	AddMethod<bool, &CEntity::OrderSingle>( "order", 1 );
+	AddMethod<bool, &CEntity::OrderQueued>( "orderQueued", 1 );
+	AddMethod<bool, &CEntity::Kill>( "kill", 0 );
+	AddMethod<bool, &CEntity::Damage>( "damage", 1 );
+	AddMethod<bool, &CEntity::IsIdle>( "isIdle", 0 );
 	CJSObject<CEntity>::ScriptingInit( "Entity", Construct, 2 );
 }
 
@@ -745,7 +745,8 @@ bool CEntity::Damage( JSContext* cx, uintN argc, jsval* argv )
 
 	if( argc >= 3 )
 	{
-		Damage( CDamageType( ToPrimitive<float>( argv[0] ), ToPrimitive<float>( argv[1] ), ToPrimitive<float>( argv[2] ) ), inflictor );
+		CDamageType dmgType( ToPrimitive<float>( argv[0] ), ToPrimitive<float>( argv[1] ), ToPrimitive<float>( argv[2] ) );
+		Damage( dmgType, inflictor );
 		return( true );
 	}
 	
@@ -762,8 +763,10 @@ bool CEntity::Damage( JSContext* cx, uintN argc, jsval* argv )
 		float dmgN;
 		if( !ToPrimitive<float>( cx, argv[0], dmgN ) )
 			return( false );
+			
+		CDamageType dmgType( dmgN );
 
-		Damage(	CDamageType( dmgN ), inflictor );
+		Damage(	dmgType, inflictor );
 		return( true );	
 	}
 

@@ -48,6 +48,13 @@ public:
 	bool m_AllowsInheritance;
 	bool m_Inherited;
 	bool m_Intrinsic;
+	
+	// This is to make sure that all the fields are initialized at construction
+	inline IJSProperty():
+		m_AllowsInheritance(true),
+		m_Inherited(true),
+		m_Intrinsic(true)
+	{}
 
 	virtual jsval Get( JSContext* cx ) = 0;
 	virtual void Set( JSContext* cx, jsval Value ) = 0;

@@ -30,7 +30,7 @@ CBaseEntity::CBaseEntity()
 
 	// Initialize, make life a little easier on the scriptors
 	m_speed = m_turningRadius = m_meleeRange = m_meleeRangeMin = 0.0f;
-	m_extant = true; m_corpse = NULL;
+	m_extant = true; m_corpse = CStrW();
 
 	m_bound_type = CBoundingObject::BOUND_NONE;
 	m_bound_circle = NULL;
@@ -226,6 +226,7 @@ void CBaseEntity::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement&
 		XMBAttribute Attribute = AttributeSet.item( AttributeID );
 		CStrW AttributeName = PropertyName + CStr8( XeroFile.getAttributeString( Attribute.Name ) );
 		Existing = HasProperty( AttributeName );
+		
 		if( Existing )
 		{
 			Existing->Set( ToJSVal<CStrW>( Attribute.Value ) );
@@ -253,7 +254,7 @@ void CBaseEntity::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement&
 
 void CBaseEntity::ScriptingInit()
 {
-	AddMethod<jsval, ToString>( "toString", 0 );
+	AddMethod<jsval, &CBaseEntity::ToString>( "toString", 0 );
 	CJSObject<CBaseEntity>::ScriptingInit( "EntityTemplate" );
 }
 

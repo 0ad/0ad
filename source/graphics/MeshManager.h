@@ -1,7 +1,7 @@
 #ifndef __H_MESHMANAGER_H__
 #define __H_MESHMANAGER_H__
 
-#include "singleton.h"
+#include "Singleton.h"
 #include "graphics/ModelDef.h"
 
 #define g_MeshManager CMeshManager::GetSingleton()
