@@ -178,11 +178,11 @@ struct addrinfo
 
 	// Note that these are function pointers. They will be initialized by the
 	// wsock_init in wsock.cpp
-	typedef int (*fp_getnameinfo_t)(const struct sockaddr *sa, socklen_t salen, char *node,
+	typedef int (__stdcall *fp_getnameinfo_t)(const struct sockaddr *sa, socklen_t salen, char *node,
 									socklen_t nodelen, char *serv, socklen_t servlen, unsigned int flags);
-	typedef int (*fp_getaddrinfo_t)(const char	*nodename, const char *servname,
+	typedef int (__stdcall *fp_getaddrinfo_t)(const char	*nodename, const char *servname,
 									const struct addrinfo *hints, struct addrinfo **res);
-	typedef void (*fp_freeaddrinfo_t)(struct addrinfo *ai);
+	typedef void (__stdcall *fp_freeaddrinfo_t)(struct addrinfo *ai);
 
 	extern fp_getnameinfo_t import_getnameinfo();
 	extern fp_getaddrinfo_t import_getaddrinfo();
