@@ -1,6 +1,7 @@
 #include "precompiled.h"
 
 #include "sysdep.h"
+#include <memory.h>
 
 // portable debug output routines. Win32 offers better versions, which
 // override these.
@@ -68,7 +69,7 @@ void debug_microlog(const wchar_t *fmt, ...)
 	int count = 0;
 
 	va_start(argp, fmt);
-	vsnwprintf(buffer, sizeof(buffer), fmt, argp);
+	vswprintf(buffer, sizeof(buffer), fmt, argp);
 	va_end(argp);
 
 	wcscat(buffer, L"\r\n");

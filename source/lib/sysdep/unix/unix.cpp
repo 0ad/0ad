@@ -96,3 +96,11 @@ int debug_assert_failed(const char *file, int line, const char *expr)
 		}
 	} while (false);
 }
+
+int debug_write_crashlog(const char* file, wchar_t* header, void* context)
+{
+	// TODO: Do this properly. (I don't know what I'm doing; I just
+	// know that this function is required in order to compile...)
+
+	abort();
+}

@@ -7,7 +7,9 @@
 #endif
 
 #ifdef OS_UNIX
-# define XP_UNIX
+# ifndef XP_UNIX
+#  define XP_UNIX
+# endif
 #endif
 
 #include <jsapi.h>
