@@ -1,6 +1,15 @@
 #ifndef __OGL_H__
 #define __OGL_H__
 
+
+// Enable oglCheck(), which breaks into the debugger whenever
+// an OpenGL call fails. (Then insert dozens of calls to oglCheck()
+// to locate the cause of the problem.)
+#if !( defined(NDEBUG) || defined(TESTING) )
+# define OGL_CHECKS
+#endif
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -83,6 +92,12 @@ extern bool oglExtAvail(const char* ext);
 
 // print all OpenGL errors
 extern void oglPrintErrors();
+
+#ifdef OGL_CHECKS
+extern void oglCheck();
+#else
+# define oglCheck()
+#endif
 
 // call before using any of the above, and after each mode change.
 //

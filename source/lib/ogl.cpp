@@ -56,6 +56,29 @@ bool oglExtAvail(const char* ext)
 	}
 }
 
+#ifdef OGL_CHECKS
+void oglCheck()
+{
+	unsigned int err = glGetError();
+	if (err != GL_NO_ERROR)
+	{
+		debug_out("GL errors!\n");
+
+		#define E(e) case e: debug_out("%s\n", #e); break;
+		switch (err)
+		{
+			E(GL_INVALID_ENUM)
+			E(GL_INVALID_VALUE)
+			E(GL_INVALID_OPERATION)
+			E(GL_STACK_OVERFLOW)
+			E(GL_STACK_UNDERFLOW)
+			E(GL_OUT_OF_MEMORY)
+		}
+		#undef E
+		debug_break();
+	}
+}
+#endif // #ifdef OGL_CHECKS
 
 void oglPrintErrors()
 {
