@@ -131,10 +131,6 @@ static void at_exit(void)
 {
 	for(int i = 0; i < NUM_CS; i++)
 		DeleteCriticalSection(&cs[i]);
-
-	// redirected to stdout.txt in pre_main_init;
-	// close to avoid BoundsChecker warning.
-	fclose(stdout);
 }
 
 

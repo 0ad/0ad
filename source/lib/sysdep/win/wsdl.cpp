@@ -376,6 +376,8 @@ int SDL_Init(Uint32 flags)
 }
 
 
+
+
 /*
  * set video mode wxh:bpp if necessary.
  * w = h = bpp = 0 => no change.
@@ -466,7 +468,7 @@ inline void SDL_GL_SwapBuffers()
 }
 
 
-static int calc_gamma(float gamma, u16* ramp)
+static int calc_gamma_ramp(float gamma, u16* ramp)
 {
 	if(gamma <= 0.0f)
 		return ERR_INVALID_PARAM;
@@ -496,9 +498,9 @@ static int calc_gamma(float gamma, u16* ramp)
 int SDL_SetGamma(float r, float g, float b)
 {
 	u16 ramp[3][256];
-	CHECK_ERR(calc_gamma(r, ramp[0]));
-	CHECK_ERR(calc_gamma(g, ramp[1]));
-	CHECK_ERR(calc_gamma(b, ramp[2]));
+	CHECK_ERR(calc_gamma_ramp(r, ramp[0]));
+	CHECK_ERR(calc_gamma_ramp(g, ramp[1]));
+	CHECK_ERR(calc_gamma_ramp(b, ramp[2]));
 	return SetDeviceGammaRamp(hDC, ramp)? 0 : -1;
 }
 
@@ -506,6 +508,10 @@ int SDL_SetGamma(float r, float g, float b)
 
 void SDL_Quit()
 {
+	// redirected to stdout.txt in SDL_Init;
+	// close to avoid BoundsChecker warning.
+	fclose(stdout);
+
 	if(hDC != INVALID_HANDLE_VALUE)
 	{
 		ReleaseDC(hWnd, hDC);

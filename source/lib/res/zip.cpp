@@ -21,6 +21,8 @@
 #include "lib.h"
 #include "res.h"
 
+// provision for removing all ZLib code (all inflate calls will fail).
+// used for checking DLL dependency; might also simulate corrupt Zip files.
 //#define NO_ZLIB
 
 #ifndef NO_ZLIB

@@ -71,7 +71,7 @@ static int write_sys_info()
 	struct utsname un;
 	uname(&un);
 
-	FILE* const f = fopen("../system/system_info.txt", "w");
+	FILE* const f = fopen("../logs/system_info.txt", "w");
 	if(!f)
 		return -1;
 
@@ -410,6 +410,7 @@ int main(int argc, char* argv[])
 	ParseArgs(argc, argv);
 
 
+
 	lib_init();
 
 	// set 24 bit (float) FPU precision for faster divides / sqrts
@@ -433,6 +434,7 @@ int main(int argc, char* argv[])
 	}
 	atexit(SDL_Quit);
 	SDL_EnableUNICODE(1);
+
 
 	// preferred video mode = current desktop settings
 	// (command line params may override these)
@@ -469,6 +471,7 @@ int main(int argc, char* argv[])
 
 	new CConfig;
 
+//	vfs_mount("gui", "gui", 0);
 	vfs_mount("", "mods/official/", 0);
 ////	dir_add_watch("mods\\official", false);
 
