@@ -10,7 +10,6 @@
 #define _RENDERABLEOBJECT_H
 
 #include <assert.h>
-#include "res/res.h"
 #include "Bound.h"
 #include "Matrix3D.h"
 

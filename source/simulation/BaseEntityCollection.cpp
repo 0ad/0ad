@@ -4,6 +4,7 @@
 #include "ObjectManager.h"
 #include "Model.h"
 #include "CLogger.h"
+#include "res/res.h"
 
 #define LOG_CATEGORY "entity"
 

@@ -9,7 +9,7 @@
 #ifndef _MINIPATCH_H
 #define _MINIPATCH_H
 
-#include "res/res.h"
+#include "res/handle.h"
 
 class CPatch;
 

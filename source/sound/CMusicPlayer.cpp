@@ -6,6 +6,8 @@
 #include <sstream>
 #include <list>
 
+#include <res/res.h>
+
 #define LOG_CATEGORY "audio"
 
 

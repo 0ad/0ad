@@ -3,7 +3,7 @@
 #include <algorithm>
 
 #include "TextureManager.h"
-#include "lib.h"
+#include "res/res.h"
 #include "ogl.h"
 #include "res/ogl_tex.h"
 #include "CLogger.h"

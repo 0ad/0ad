@@ -2,7 +2,6 @@
 #define _MODELRDATA_H
 
 #include <vector>
-#include "res/res.h"
 #include "Vector3D.h"
 #include "Color.h"
 #include "RenderableObject.h"

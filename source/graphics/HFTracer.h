@@ -12,8 +12,6 @@
 class CVector3D;
 class CTerrain;
 
-#include "res/res.h"
-
 ///////////////////////////////////////////////////////////////////////////////
 // CHFTracer: a class for determining ray intersections with a heightfield
 class CHFTracer

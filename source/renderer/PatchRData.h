@@ -2,7 +2,6 @@
 #define _PATCHRDATA_H
 
 #include <vector>
-#include "res/res.h"
 #include "Color.h"
 #include "Vector3D.h"
 #include "RenderableObject.h"

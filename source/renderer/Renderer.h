@@ -14,7 +14,6 @@
 #define RENDERER_H
 
 #include <vector>
-#include "res/res.h"
 #include "ogl.h"
 #include "Camera.h"
 #include "Frustum.h"
