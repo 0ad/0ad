@@ -197,13 +197,7 @@ bool __ParseString<CGUIString>(const CStr& Value, CGUIString &Output)
 	// Translate the Value and retrieve the locilised string in
 	//  Unicode.
 
-	// TODO Gee: (2004-09-05) This conversion is UGLY, but I couldn't find any built into CStr.
-	//  Although I assume some easier way will be implemented (or is implemented
-	//  and I just don't know about it), so this is ONLY TEMPORARY.
-	std::string str = Value;
-	std::wstring strw(str.begin(), str.end());
-
-	Output.SetValue((CStrW)translate(CStrW(strw)));	
+	Output.SetValue(translate((CStrW)Value));
 	return true;
 }
 
