@@ -56,6 +56,8 @@
 #include "ConfigDB.h"
 #include "CLogger.h"
 
+#define LOG_CATEGORY "main"
+
 #ifndef NO_GUI
 #include "gui/GUI.h"
 #endif
@@ -616,7 +618,7 @@ static void ParseArgs(int argc, char* argv[])
 	if ((val=g_ConfigDB.GetValue(CFG_SYSTEM, "shadows")))
 		val->GetBool(g_Shadows);
 		
-	LOG(NORMAL, "g_x/yres is %dx%d", g_xres, g_yres);
+	LOG(NORMAL, LOG_CATEGORY, "g_x/yres is %dx%d", g_xres, g_yres);
 }
 
 
@@ -778,7 +780,7 @@ PREVTSC=TSC;
 	// init SDL
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
 	{
-		LOG(ERROR, "SDL library initialization failed: %s", SDL_GetError());
+		LOG(ERROR, LOG_CATEGORY, "SDL library initialization failed: %s", SDL_GetError());
 		throw PSERROR_System_SDLInitFailed();
 	}
 	atexit(SDL_Quit);
@@ -828,7 +830,7 @@ sle(11340106);
 
 	if(set_vmode(g_xres, g_yres, 32, !windowed) < 0)
 	{
-		LOG(ERROR, "Could not set %dx%d graphics mode: %s", g_xres, g_yres, SDL_GetError());
+		LOG(ERROR, LOG_CATEGORY, "Could not set %dx%d graphics mode: %s", g_xres, g_yres, SDL_GetError());
 		throw PSERROR_System_VmodeFailed();
 	}
 	SDL_WM_SetCaption("0 A.D.", "0 A.D.");
@@ -837,7 +839,7 @@ sle(11340106);
 
 	if(!oglExtAvail("GL_ARB_multitexture") || !oglExtAvail("GL_ARB_texture_env_combine"))
 	{
-		LOG(ERROR, "Required ARB_multitexture or ARB_texture_env_combine extension not available");
+		LOG(ERROR, LOG_CATEGORY, "Required ARB_multitexture or ARB_texture_env_combine extension not available");
 		throw PSERROR_System_RequiredExtensionsMissing();
 	}
 

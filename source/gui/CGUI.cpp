@@ -35,6 +35,9 @@ using namespace std;
 #include "ps/CLogger.h"
 #define XERO_TIME
 
+#define LOG_CATEGORY "gui"
+
+
 // Class for global JavaScript object
 JSClass GUIClass = {
 	"GUIClass", 0,
@@ -892,13 +895,13 @@ void CGUI::ReportParseError(const CStr& str)
 	// Print header
 	if (m_Errors==0)
 	{
-		LOG(ERROR, "*** GUI Tree Creation Errors:");
+		LOG(ERROR, LOG_CATEGORY, "*** GUI Tree Creation Errors:");
 	}
 
 	// Important, set ParseError to true
 	++m_Errors;
 
-	LOG(ERROR, str);
+	LOG(ERROR, LOG_CATEGORY, str);
 }
 
 /**
@@ -954,7 +957,7 @@ void CGUI::LoadXMLFile(const string &Filename)
 	}
 	catch (PSERROR_GUI)
 	{
-		LOG(ERROR, "Errors loading GUI file %s", Filename.c_str());
+		LOG(ERROR, LOG_CATEGORY, "Errors loading GUI file %s", Filename.c_str());
 		return;
 	}
 
@@ -1173,7 +1176,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 				Handle tex = tex_load(TexFilename.c_str());
 				if (tex <= 0)
 				{
-					LOG(ERROR, "Error opening texture '%s': %lld", TexFilename.c_str(), tex);
+					LOG(ERROR, LOG_CATEGORY, "Error opening texture '%s': %lld", TexFilename.c_str(), tex);
 					throw PSERROR_GUI_TextureLoadFailed();
 				}
 				image.m_Texture = tex;
@@ -1268,7 +1271,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 				CVFSFile scriptfile;
 				if (scriptfile.Load(file) != PSRETURN_OK)
 				{
-					LOG(ERROR, "Error opening action file '%s'", file.c_str());
+					LOG(ERROR, LOG_CATEGORY, "Error opening action file '%s'", file.c_str());
 					throw PSERROR_GUI_JSOpenFailed();
 				}
 
@@ -1343,7 +1346,7 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile)
 		CVFSFile scriptfile;
 		if (scriptfile.Load(file) != PSRETURN_OK)
 		{
-			LOG(ERROR, "Error opening script file '%s'", file.c_str());
+			LOG(ERROR, LOG_CATEGORY, "Error opening script file '%s'", file.c_str());
 			throw PSERROR_GUI_JSOpenFailed();
 		}
 
@@ -1436,7 +1439,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			Handle tex = tex_load(TexFilename.c_str());
 			if (tex <= 0)
 			{
-				LOG(ERROR, "Error opening texture '%s': %lld", TexFilename.c_str(), tex);
+				LOG(ERROR, LOG_CATEGORY, "Error opening texture '%s': %lld", TexFilename.c_str(), tex);
 				throw PSERROR_GUI_TextureLoadFailed();
 			}
 			image.m_Texture = tex;

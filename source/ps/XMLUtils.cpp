@@ -10,6 +10,8 @@
 
 #include "res/vfs.h"
 
+#define LOG_CATEGORY "xml"
+
 /*
 // but static Xerces => tons of warnings due to missing debug info,
 // and warnings about invalid pointers (conflicting CRT heaps?) in parser => allow for now
@@ -56,14 +58,14 @@ int CVFSInputSource::OpenFile(const char *path)
 	m_hFile=vfs_open(path);
 	if (m_hFile <= 0)
 	{
-		LOG(ERROR, "CVFSInputSource: file %s couldn't be opened (vfs_open: %lld)", path, m_hFile);
+		LOG(ERROR, LOG_CATEGORY, "CVFSInputSource: file %s couldn't be opened (vfs_open: %lld)", path, m_hFile);
 		return -1;
 	}
 	
 	int err;
 	if ((err=vfs_map(m_hFile, 0, m_pBuffer, m_BufferSize)) != 0)
 	{
-		LOG(ERROR, "CVFSInputSource: file %s couldn't be opened (vfs_map: %d)", path, err);
+		LOG(ERROR, LOG_CATEGORY, "CVFSInputSource: file %s couldn't be opened (vfs_map: %d)", path, err);
 		vfs_close(m_hFile);
 		m_hFile=0;
 		return -1;
@@ -166,12 +168,12 @@ InputSource *CVFSEntityResolver::resolveEntity(const XMLCh *const UNUSEDPARAM(pu
 		path=abspath;
 	}
 
-	LOG(NORMAL, "EntityResolver: path \"%s\" translated to \"%s\"", orgpath, path);
+	LOG(NORMAL, LOG_CATEGORY, "EntityResolver: path \"%s\" translated to \"%s\"", orgpath, path);
 
 	char *pos=path;		
 	if ((pos=strchr(pos, '\\')) != NULL)
 	{
-		LOG(WARNING, "While resolving XML entities for %s: path %s [%s] contains non-portable path separator \\", m_DocName, orgpath, path);
+		LOG(WARNING, LOG_CATEGORY, "While resolving XML entities for %s: path %s [%s] contains non-portable path separator \\", m_DocName, orgpath, path);
 		do
 			*pos='/';
 		while ((pos=strchr(pos+1, '\\')) != NULL);

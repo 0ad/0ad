@@ -10,6 +10,8 @@
 
 #include "ps/Xeromyces.h"
 
+#define LOG_CATEGORY "graphics"
+
 CObjectEntry::CObjectEntry(int type) : m_Model(0), m_Type(type)
 {
 	m_IdleAnim=0;
@@ -50,7 +52,7 @@ bool CObjectEntry::BuildModel()
 	try {
 		modeldef=CModelDef::Load(modelfilename);
 	} catch (...) {
-		LOG(ERROR, "CObjectEntry::BuildModel(): Model %s failed to load", modelfilename);
+		LOG(ERROR, LOG_CATEGORY, "CObjectEntry::BuildModel(): Model %s failed to load", modelfilename);
 		return false;
 	}
 
@@ -98,11 +100,11 @@ bool CObjectEntry::BuildModel()
 					m_Model->AddProp(proppoint,propmodel);
 					if (oe->m_WalkAnim) propmodel->SetAnimation(oe->m_WalkAnim);
 				} else {
-					LOG(ERROR,"Failed to build prop model \"%s\" on actor \"%s\"",(const char*) m_Name,(const char*) prop.m_ModelName);
+					LOG(ERROR, LOG_CATEGORY, "Failed to build prop model \"%s\" on actor \"%s\"",(const char*) m_Name,(const char*) prop.m_ModelName);
 				}
 			}
 		} else {
-			LOG(ERROR,"Failed to matching prop point called \"%s\" in model \"%s\"", (const char*)prop.m_PropPointName, modelfilename);
+			LOG(ERROR, LOG_CATEGORY, "Failed to matching prop point called \"%s\" in model \"%s\"", (const char*)prop.m_PropPointName, modelfilename);
 		}
 	}
 

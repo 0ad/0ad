@@ -16,6 +16,7 @@
 # endif
 #endif
 
+#define LOG_CATEGORY "audio"
 
 #include "res/res.h"
 
@@ -127,11 +128,11 @@ void CMusicPlayer::open(char *filename)
 	size_t sizeOfFile;
 	if(vfs_load(filename, p, sizeOfFile) <= 0)
 	{
-		LOG(ERROR, "CMusicPlayer::open(): vfs_load for %s failed!\n", filename);
+		LOG(ERROR, LOG_CATEGORY, "CMusicPlayer::open(): vfs_load for %s failed!\n", filename);
 		return;
 	}
 	else
-		LOG(NORMAL, "CMusicPlayer::open(): file %s loaded successfully\n", filename);
+		LOG(NORMAL, LOG_CATEGORY, "CMusicPlayer::open(): file %s loaded successfully\n", filename);
 
 	memFile.dataPtr = (char*)p;
 	memFile.dataRead = 0;
@@ -147,7 +148,7 @@ void CMusicPlayer::open(char *filename)
 	//start file to from memory
 	if (ov_open_callbacks(&memFile, &oggStream, NULL, 0, vorbisCallbacks) != 0)
 	{
-		LOG(ERROR, "Could not decode ogg into memory\n");
+		LOG(ERROR, LOG_CATEGORY, "Could not decode ogg into memory\n");
 		return;
 	}
 	
@@ -300,7 +301,7 @@ void CMusicPlayer::check()
 	if(error != AL_NO_ERROR)
 	{
 		std::string str = errorString(error);
-		LOG(ERROR, "OpenAL error: %s\n", str.c_str());
+		LOG(ERROR, LOG_CATEGORY, "OpenAL error: %s\n", str.c_str());
 	}
 }
 
@@ -336,7 +337,7 @@ bool CMusicPlayer::stream(ALuint buffer)
 		// error
 		else if(ret < 0)
 		{
-			LOG(ERROR, "Error reading from ogg file: %s\n", errorString(ret).c_str());
+			LOG(ERROR, LOG_CATEGORY, "Error reading from ogg file: %s\n", errorString(ret).c_str());
 			return false;
 		}
 		// EOF

@@ -12,6 +12,8 @@
 #include "BaseEntityCollection.h"
 #include "EntityManager.h"
 
+#define LOG_CATEGORY "world"
+
 extern CLightEnv g_LightEnv;
 
 void CWorld::Initialize(CGameAttributes *pAttribs)
@@ -24,7 +26,7 @@ void CWorld::Initialize(CGameAttributes *pAttribs)
 		CMapReader reader;
 		reader.LoadMap(mapfilename, &m_Terrain, &m_UnitManager, &g_LightEnv);
 	} catch (...) {
-		LOG(ERROR, "Failed to load map %s", mapfilename.c_str());
+		LOG(ERROR, LOG_CATEGORY, "Failed to load map %s", mapfilename.c_str());
 		throw PSERROR_Game_World_MapLoadFailed();
 	}
 }

@@ -2,8 +2,8 @@
 
 /*
 	See http://www.opengroup.org/onlinepubs/009695399/functions/fprintf.html
-	for the specification (an extension to ISO C) that was used when creating
-	this code.
+	for the specification (apparently an extension to ISO C) that was used
+	when creating this code.
 */
 
 /*
@@ -19,6 +19,8 @@
 		*m$ <-- positional precision parameters, because they're not worthwhile
 		portability	<-- just use GCC
 		efficiency	<-- nothing in the spec says it should be as fast as possible
+						(the code could be made a lot faster if speed mattered more
+						than non-fixed size buffers)
 
 */
 

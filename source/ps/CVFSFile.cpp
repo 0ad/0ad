@@ -6,6 +6,8 @@
 #include "lib/res/vfs.h"
 #include "ps/CLogger.h"
 
+#define LOG_CATEGORY "file"
+
 CVFSFile::CVFSFile() : m_Handle(0) {}
 
 CVFSFile::~CVFSFile()
@@ -25,7 +27,7 @@ PSRETURN CVFSFile::Load(const char* filename, uint flags /* default 0 */)
 	m_Handle = vfs_load(filename, m_Buffer, m_BufferSize, flags);
 	if (m_Handle <= 0)
 	{
-		LOG(ERROR, "CVFSFile: file %s couldn't be opened (vfs_load: %lld)", filename, m_Handle);
+		LOG(ERROR, LOG_CATEGORY, "CVFSFile: file %s couldn't be opened (vfs_load: %lld)", filename, m_Handle);
 		return PSRETURN_CVFSFile_LoadFailed;
 	}
 
@@ -36,9 +38,11 @@ const void* CVFSFile::GetBuffer() const
 {
 	// Die in a very obvious way, to avoid problems caused by
 	// accidentally forgetting to check that the open succeeded
-	assert(m_Handle && "GetBuffer() called with no file loaded");
 	if (!m_Handle)
+	{
+		debug_warn("GetBuffer() called with no file loaded");
 		throw PSERROR_CVFSFile_InvalidBufferAccess();
+	}
 
 	return m_Buffer;
 }
@@ -52,9 +56,11 @@ CStr CVFSFile::GetAsString() const
 {
 	// Die in a very obvious way, to avoid subtle problems caused by
 	// accidentally forgetting to check that the open succeeded
-	assert(m_Handle && "GetBuffer() called with no file loaded");
 	if (!m_Handle)
+	{
+		debug_warn("GetBuffer() called with no file loaded");
 		throw PSERROR_CVFSFile_InvalidBufferAccess();
+	}
 
 	return std::string((char*)m_Buffer, m_BufferSize);
 }

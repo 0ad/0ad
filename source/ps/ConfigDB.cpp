@@ -10,6 +10,8 @@
 #include "scripting/ScriptingHost.h"
 #include "types.h"
 
+#define LOG_CATEGORY "config"
+
 using namespace std;
 
 typedef map <CStr, CConfigValueSet> TConfigMap;
@@ -255,7 +257,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 		fh=vfs_load(m_ConfigFile[ns], buffer, buflen);
 		if (fh <= 0)
 		{
-			LOG(ERROR, "vfs_load for \"%s\" failed: return was %lld", m_ConfigFile[ns].c_str(), fh);
+			LOG(ERROR, LOG_CATEGORY, "vfs_load for \"%s\" failed: return was %lld", m_ConfigFile[ns].c_str(), fh);
 			return false;
 		}
 	}
@@ -263,12 +265,12 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	{
 		if (file_open(m_ConfigFile[ns], 0, &f)!=0)
 		{
-			LOG(ERROR, "file_open for \"%s\" failed", m_ConfigFile[ns].c_str());
+			LOG(ERROR, LOG_CATEGORY, "file_open for \"%s\" failed", m_ConfigFile[ns].c_str());
 			return false;
 		}
 		if (file_map(&f, buffer, buflen) != 0)
 		{
-			LOG(ERROR, "file_map for \"%s\" failed", m_ConfigFile[ns].c_str());
+			LOG(ERROR, LOG_CATEGORY, "file_map for \"%s\" failed", m_ConfigFile[ns].c_str());
 			return false;
 		}
 	}
@@ -311,7 +313,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 				CConfigValue argument;
 				argument.m_String = value;
 				newMap[name].push_back( argument );
-				LOG(NORMAL, "Loaded config string \"%s\" = \"%s\"", name.c_str(), value.c_str());
+				LOG(NORMAL, LOG_CATEGORY, "Loaded config string \"%s\" = \"%s\"", name.c_str(), value.c_str());
 			}
 		}
 	}
@@ -347,7 +349,7 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, bool useVFS, CStr path)
 	{
 		if ((err=vfs_realpath(filepath, realpath))!=0)
 		{
-			LOG(ERROR, "CConfigDB::WriteFile(): vfs_realpath for VFS path \"%s\" failed (error: %d)", filepath, err);
+			LOG(ERROR, LOG_CATEGORY, "CConfigDB::WriteFile(): vfs_realpath for VFS path \"%s\" failed (error: %d)", filepath, err);
 			return false;
 		}
 		filepath=realpath;
@@ -355,7 +357,7 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, bool useVFS, CStr path)
 	file_make_native_path(filepath, nativepath);
 	if ((fp = fopen(nativepath, "w")) == NULL)
 	{
-		LOG(ERROR, "CConfigDB::WriteFile(): fopen for path \"%s\" failed (error: %d)", filepath, errno);
+		LOG(ERROR, LOG_CATEGORY, "CConfigDB::WriteFile(): fopen for path \"%s\" failed (error: %d)", filepath, errno);
 		return false;
 	}
 	

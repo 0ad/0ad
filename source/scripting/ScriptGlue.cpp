@@ -1,8 +1,8 @@
 #include "precompiled.h"
 
 #include "ScriptGlue.h"
-#include "CConsole.h"
 #include "CLogger.h"
+#include "CConsole.h"
 #include "CStr.h"
 #include "EntityHandles.h"
 #include "Entity.h"
@@ -89,7 +89,7 @@ JSBool WriteLog(JSContext* context, JSObject* UNUSEDPARAM(globalObject), unsigne
 
 	// We should perhaps unicodify (?) the logger at some point.
 
-	LOG( NORMAL, logMessage );
+	LOG( NORMAL, "script", logMessage );
 
 	return JS_TRUE;
 }
@@ -304,11 +304,11 @@ JSBool js_mem(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObjec
 	int left, total;
 	extern int GetVRAMInfo(int&, int&);
 	if (GetVRAMInfo(left, total))
-		LOG(WARNING, "VRAM: used %d, total %d, free %d", total-left, total, left);
+		g_Console->InsertMessage(L"VRAM: used %d, total %d, free %d", total-left, total, left);
 	else
-		LOG(WARNING, "VRAM: failed to detect");
+		g_Console->InsertMessage(L"VRAM: failed to detect");
 #else
-	LOG(WARNING, "VRAM: [not available on non-Windows]");
+	g_Console->InsertMessage(L"VRAM: [not available on non-Windows]");
 #endif
 	return JS_TRUE;
 }

@@ -34,6 +34,8 @@
 #include "res/mem.h"
 #include "res/tex.h"
 
+#define LOG_CATEGORY "graphics"
+
 struct TGAHeader {
 	// header stuff
 	unsigned char  iif_size;
@@ -168,11 +170,11 @@ bool CRenderer::Open(int width, int height, int depth)
 
 	GLint bits;
 	glGetIntegerv(GL_DEPTH_BITS,&bits);
-	LOG(NORMAL,"CRenderer::Open: depth bits %d",bits);
+	LOG(NORMAL, LOG_CATEGORY, "CRenderer::Open: depth bits %d",bits);
 	glGetIntegerv(GL_STENCIL_BITS,&bits);
-	LOG(NORMAL,"CRenderer::Open: stencil bits %d",bits);
+	LOG(NORMAL, LOG_CATEGORY, "CRenderer::Open: stencil bits %d",bits);
 	glGetIntegerv(GL_ALPHA_BITS,&bits);
-	LOG(NORMAL,"CRenderer::Open: alpha bits %d",bits);
+	LOG(NORMAL, LOG_CATEGORY, "CRenderer::Open: alpha bits %d",bits);
 
 	return true;
 }
@@ -933,7 +935,7 @@ void CRenderer::EndFrame()
 
 	static bool once=false;
 	if (!once && glGetError()) {
-		LOG(ERROR,"CRenderer::EndFrame: GL errors occurred");
+		LOG(ERROR, LOG_CATEGORY, "CRenderer::EndFrame: GL errors occurred");
 		once=true;
 	}
 }
@@ -1027,7 +1029,7 @@ bool CRenderer::LoadTexture(CTexture* texture,u32 wrapflags)
 	} else {
 		h=tex_load(texture->GetName());
 		if (!h) {
-			LOG(ERROR,"LoadTexture failed on \"%s\"",(const char*) texture->GetName());
+			LOG(ERROR, LOG_CATEGORY, "LoadTexture failed on \"%s\"",(const char*) texture->GetName());
 			texture->SetHandle(0xffffffff);
 			return false;
 		} else {
@@ -1038,7 +1040,7 @@ bool CRenderer::LoadTexture(CTexture* texture,u32 wrapflags)
 			th&=(th-1);
 			if (tw || th) {
 				texture->SetHandle(0xffffffff);
-				LOG(ERROR,"LoadTexture failed on \"%s\" : not a power of 2 texture",(const char*) texture->GetName());
+				LOG(ERROR, LOG_CATEGORY, "LoadTexture failed on \"%s\" : not a power of 2 texture",(const char*) texture->GetName());
 				return false;
 			} else {
 				BindTexture(0,tex_id(h));

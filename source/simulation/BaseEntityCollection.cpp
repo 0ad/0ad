@@ -5,6 +5,8 @@
 #include "Model.h"
 #include "CLogger.h"
 
+#define LOG_CATEGORY "entity"
+
 void CBaseEntityCollection::loadTemplates()
 {
 	Handle handle;
@@ -35,23 +37,23 @@ void CBaseEntityCollection::loadTemplates()
 					if( newTemplate->loadXML( pathname + file.name ) )
 					{
 						addTemplate( newTemplate );
-						LOG(NORMAL, "CBaseEntityCollection::loadTemplates(): Loaded template \"%s%s\"", pathname.c_str(), file.name);
+						LOG(NORMAL, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Loaded template \"%s%s\"", pathname.c_str(), file.name);
 					}
 					else
-						LOG(ERROR, "CBaseEntityCollection::loadTemplates(): Couldn't load template \"%s%s\"", pathname.c_str(), file.name);
+						LOG(ERROR, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Couldn't load template \"%s%s\"", pathname.c_str(), file.name);
 				}
 				vfs_close_dir( handle );
 			}
 			else
 			{
-				LOG(ERROR, "CBaseEntityCollection::loadTemplates(): Failed to enumerate entity template directory");
+				LOG(ERROR, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Failed to enumerate entity template directory");
 				return;
 			}
 		}
 		vfs_close_dir( maindir );
 	}
 	else
-		LOG(ERROR, "CBaseEntityCollection::loadTemplates(): Unable to open directory entities/");	
+		LOG(ERROR, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Unable to open directory entities/");	
 }
 
 void CBaseEntityCollection::addTemplate( CBaseEntity* temp )

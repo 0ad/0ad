@@ -1,4 +1,4 @@
-// $Id: Xeromyces.cpp,v 1.12 2004/08/03 10:17:08 philip Exp $
+// $Id: Xeromyces.cpp,v 1.13 2004/08/15 20:57:31 philip Exp $
 
 #include "precompiled.h"
 
@@ -11,6 +11,8 @@
 #include "ps/Xeromyces.h"
 #include "ps/CLogger.h"
 #include "lib/res/vfs.h"
+
+#define LOG_CATEGORY "xml"
 
 // Because I (and Xerces) don't like these being redefined by wposix.h:
 #ifdef HAVE_PCH
@@ -193,7 +195,7 @@ PSRETURN CXeromyces::Load(const char* filename)
 	CVFSFile file;
 	if (file.Load(filename) != PSRETURN_OK)
 	{
-		LOG(ERROR, "CXeromyces: XML open of %s failed", filename);
+		LOG(ERROR, LOG_CATEGORY, "CXeromyces: XML open of %s failed", filename);
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
@@ -263,7 +265,7 @@ PSRETURN CXeromyces::Load(const char* filename)
 
 	if (errorHandler.getSawErrors())
 	{
-		LOG(ERROR, "CXeromyces: Errors in XML file '%s'", filename);
+		LOG(ERROR, LOG_CATEGORY, "CXeromyces: Errors in XML file '%s'", filename);
 		return PSRETURN_Xeromyces_XMLParseError;
 		// The internal tree of the XeroHandler will be cleaned up automatically
 	}
