@@ -1,45 +1,70 @@
-//***********************************************************
-//
-// Name:		Particle.h
-// Last Update: 03/04/04
-// Author:		Ben Vinegar
-//
-// Description: Particle class header
-//
-//***********************************************************
+/*==================================================================
+| 
+| Name: Particle.h
+|
+|===================================================================
+|
+| Author: Ben Vinegar
+| Contact: benvinegar () hotmail ! com
+|
+|
+| Last Modified: 03/08/04
+|
+| Overview: A single particle, currently only utilized by
+|           CParticleEmitter. Public variables are for performance
+|           reasons.
+|
+|
+| Usage: Instantiate a particle, set public variables, then call
+|        Frame() every frame.
+|
+| To do: TBA
+|
+| More Information: TBA
+|
+==================================================================*/
 
 #ifndef PARTICLE_H
 #define PARTICLE_H
 
+//--------------------------------------------------------
+//  Includes / Compiler directives
+//--------------------------------------------------------
+
 #include "Vector3D.h"
 #include "Sprite.h"
 
-class CParticle {
-	public:
-		CParticle();
-		~CParticle();
+//--------------------------------------------------------
+//  Declarations
+//--------------------------------------------------------
 
-		// necessary pre-processing immediately before first update call
-		void Init();
+class CParticle 
+{
+public:
+	CParticle();
+	~CParticle();
 
-		void Frame();
-		void Update();
-		void Render();
+	// necessary pre-processing immediately before first update call
+	void Init();
 
-		void SetColour(float r, float g, float b, float a);
+	void Frame();
+	void Update();
+	void Render();
 
-		CSprite * m_sprite;
+	void SetColour(float r, float g, float b, float a);
 
-		float m_duration;
-		double m_timeOfLastFrame;
-		double m_timeElapsedTotal;
+	CSprite * m_sprite;
 
-		CVector3D m_position;
-		CVector3D m_velocity;
-		CVector3D m_gravity;
+	float m_duration;
+	double m_timeOfLastFrame;
+	double m_timeElapsedTotal;
 
-		float m_colour[4];
-		float m_colourInc[3];
+	CVector3D m_position;
+	CVector3D m_velocity;
+	CVector3D m_gravity;
+
+	float m_colour[4];
+	float m_colourInc[3];
 };
 
 

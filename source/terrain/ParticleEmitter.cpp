@@ -1,16 +1,30 @@
-//***********************************************************
-//
-// Name:		ParticleEmitter.cpp
-// Last Update: 03/02/04
-// Author:		Ben Vinegar
-//
-// Description: Particle class header
-//
-//
-// To-do: - estimate particles to release / second
-//        - randomness, range still needs to be implemented
-//        - colour issues
-//***********************************************************
+/*==================================================================
+| 
+| Name: ParticleEmitter.cpp
+|
+|===================================================================
+|
+| Author: Ben Vinegar
+| Contact: benvinegar () hotmail ! com
+|
+|
+| Last Modified: 03/08/04
+|
+| Overview: Particle emitter class that emits particles from
+|           an origin (or area) with a variety of set colours,
+|		    durations, forces and a single common sprite.
+|
+|
+| Usage: Instantiate one emitter per desired effect. Set the
+|        various fields (preferably all, the defaults are rather
+|		 boring) and then call Frame() - you guessed it - every
+|		 frame. 
+|
+| To do: TBA
+|
+| More Information: TBA
+|
+==================================================================*/
 
 #include "ParticleEmitter.h"
 #include "time.h"
@@ -30,19 +44,23 @@ CParticleEmitter::CParticleEmitter() :
 	m_maxLifetime(0),
 	m_minLifetime(0),
 	m_timeOfLastFrame(0.0f),
-	m_timeSinceLastEmit(0.0f) {
-		m_particles.clear();
+	m_timeSinceLastEmit(0.0f) 
+{
+	m_particles.clear();
 }
 
-CParticleEmitter::~CParticleEmitter() {
+CParticleEmitter::~CParticleEmitter() 
+{
 }
 
-void CParticleEmitter::Frame() {
+void CParticleEmitter::Frame() 
+{
 	Update();
 	Render();
 }
 
-void CParticleEmitter::Render() {
+void CParticleEmitter::Render() 
+{
 	
 	glEnable(GL_ALPHA_TEST);
 	glEnable(GL_BLEND);
@@ -52,7 +70,8 @@ void CParticleEmitter::Render() {
 	glBlendFunc(GL_SRC_ALPHA,GL_ONE);
 
 	vector<CParticle *>::iterator itor = m_particles.begin();
-	while (itor != m_particles.end()) {
+	while (itor != m_particles.end()) 
+	{
 		CParticle * curParticle = (*itor);
 		
 		curParticle->Frame();
@@ -63,18 +82,21 @@ void CParticleEmitter::Render() {
 	glEnable(GL_DEPTH_TEST);
 }
 
-void CParticleEmitter::Update() {
+void CParticleEmitter::Update() 
+{
 	float timeElapsed = get_time() - m_timeOfLastFrame;
 
 	// update existing particles
 	vector<CParticle *>::iterator itor = m_particles.begin();
-	while (itor != m_particles.end()) {
+	while (itor != m_particles.end()) 
+	{
 		CParticle * curParticle = (*itor);
 
 		curParticle->Update();
 
 		// destroy particle if it has lived beyond its duration
-		if (curParticle->m_timeElapsedTotal >= curParticle->m_duration) {
+		if (curParticle->m_timeElapsedTotal >= curParticle->m_duration) 
+		{
 			m_particles.erase(itor);
 			delete curParticle;
 			--m_numParticles;
@@ -85,7 +107,8 @@ void CParticleEmitter::Update() {
 
 	float secondsPerEmit = 1 / (m_minParticles / m_minLifetime);
 
-	if (m_timeSinceLastEmit > secondsPerEmit) {
+	if (m_timeSinceLastEmit > secondsPerEmit) 
+	{
 		
 		int duration;
 		CVector3D position, velocity;
@@ -134,7 +157,8 @@ void CParticleEmitter::Update() {
 			m_particles.push_back(newParticle);
 
 			timeElapsed -= secondsPerEmit;
-			if (timeElapsed < secondsPerEmit) {
+			if (timeElapsed < secondsPerEmit) 
+			{
 				moreParticlesToEmit = false;
 			}
 
@@ -149,88 +173,105 @@ void CParticleEmitter::Update() {
 	m_timeOfLastFrame = get_time();
 }
 
-void CParticleEmitter::SetSprite(CSprite * sprite) {
+void CParticleEmitter::SetSprite(CSprite * sprite) 
+{
 	m_sprite = sprite;
 }
 
-void CParticleEmitter::SetOrigin(CVector3D origin) {
+void CParticleEmitter::SetOrigin(CVector3D origin) 
+{
 	m_origin = origin;
 }
 
-void CParticleEmitter::SetOrigin(float x, float y, float z) {
+void CParticleEmitter::SetOrigin(float x, float y, float z) 
+{
 	m_origin.X = x;
 	m_origin.Y = y;
 	m_origin.Z = z;
 }
 
-void CParticleEmitter::SetOriginSpread(CVector3D spread) {
+void CParticleEmitter::SetOriginSpread(CVector3D spread) 
+{
 	m_originSpread = spread;
 }
 
-void CParticleEmitter::SetOriginSpread(float x, float y, float z) {
+void CParticleEmitter::SetOriginSpread(float x, float y, float z) 
+{
 	m_originSpread.X = x;
 	m_originSpread.Y = y;
 	m_originSpread.Z = z;
 }
 
-void CParticleEmitter::SetGravity(CVector3D gravity) {
+void CParticleEmitter::SetGravity(CVector3D gravity) 
+{
 	m_gravity = gravity;
 }
 
-void CParticleEmitter::SetGravity(float x, float y, float z) {
+void CParticleEmitter::SetGravity(float x, float y, float z) 
+{
 	m_gravity.X = x;
 	m_gravity.Y = y;
 	m_gravity.Z = z;
 
 }
 
-void CParticleEmitter::SetVelocity(CVector3D velocity) {
+void CParticleEmitter::SetVelocity(CVector3D velocity) 
+{
 	m_velocity = velocity;
 }
 
-void CParticleEmitter::SetVelocity(float x, float y, float z) {
+void CParticleEmitter::SetVelocity(float x, float y, float z) 
+{
 	m_velocity.X = x;
 	m_velocity.Y = y;
 	m_velocity.Z = z;
 }
 
 
-void CParticleEmitter::SetVelocitySpread(CVector3D spread) {
+void CParticleEmitter::SetVelocitySpread(CVector3D spread) 
+{
 	m_velocitySpread = spread;
 }
 
-void CParticleEmitter::SetVelocitySpread(float x, float y, float z) {
+void CParticleEmitter::SetVelocitySpread(float x, float y, float z) 
+{
 	m_velocitySpread.X = x;
 	m_velocitySpread.Y = y;
 	m_velocitySpread.Z = z;
 }
 
-void CParticleEmitter::SetStartColour(float r, float g, float b, float a) {
+void CParticleEmitter::SetStartColour(float r, float g, float b, float a) 
+{
 	m_startColour[0] = r;
 	m_startColour[1] = g;
 	m_startColour[2] = b;
 	m_startColour[3] = a;
 }
 
-void CParticleEmitter::SetEndColour(float r, float g, float b, float a) {
+void CParticleEmitter::SetEndColour(float r, float g, float b, float a) 
+{
 	m_endColour[0] = r;
 	m_endColour[1] = g;
 	m_endColour[2] = b;
 	m_endColour[3] = a;
 }
 
-void CParticleEmitter::SetMaxLifetime(double maxLife) {
+void CParticleEmitter::SetMaxLifetime(double maxLife) 
+{
 	m_maxLifetime = maxLife;
 }
 
-void CParticleEmitter::SetMinLifetime(double minLife) {
+void CParticleEmitter::SetMinLifetime(double minLife) 
+{
 	m_minLifetime = minLife;
 }
 
-void CParticleEmitter::SetMaxParticles(int maxParticles) {
+void CParticleEmitter::SetMaxParticles(int maxParticles) 
+{
 	m_maxParticles = maxParticles;
 }
 
-void CParticleEmitter::SetMinParticles(int minParticles) {
+void CParticleEmitter::SetMinParticles(int minParticles) 
+{
 	m_minParticles = minParticles;
 }

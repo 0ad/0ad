@@ -1,21 +1,36 @@
-//***********************************************************
-//
-// Name:		Sprite.cpp
-// Last Update: 26/02/04
-// Author:		Ben Vinegar
-//
-// Description: 3D Sprite class implementation.
-//
-// To-do: 
-//
-//***********************************************************
+/*==================================================================
+| 
+| Name: Sprite.cpp
+|
+|===================================================================
+|
+| Author: Ben Vinegar
+| Contact: benvinegar () hotmail ! com
+|
+|
+| Last Modified: 03/08/04
+|
+| Overview: Billboarding sprite class - always faces the camera. It
+|           does this by getting the current model view matrix state.
+|
+|
+| Usage: The functions speak for themselves. Instantiate, then be
+|        sure to pass a loaded (using tex_load()) texture before 
+|        calling Render().
+|
+| To do: TBA
+|
+| More Information: TBA
+|
+==================================================================*/
 
 #include "Sprite.h"
 #include "ogl.h"
 #include "tex.h"
 
 CSprite::CSprite() :
-	m_texture(NULL) {
+	m_texture(NULL) 
+{
 
 	// default scale 1:1
 	m_scale.X = m_scale.Y = m_scale.Z = 1.0f;
@@ -30,10 +45,12 @@ CSprite::CSprite() :
 	m_colour[0] = m_colour[1] = m_colour[2] = m_colour[3] = 1.0f;
 }
 
-CSprite::~CSprite() {
+CSprite::~CSprite() 
+{
 }
 
-void CSprite::Render() {	
+void CSprite::Render() 
+{	
 	BeginBillboard();
 
 	glDisable(GL_CULL_FACE);
@@ -68,14 +85,16 @@ void CSprite::Render() {
 	EndBillboard();
 }
 
-int CSprite::SetTexture(CTexture *texture) {
+int CSprite::SetTexture(CTexture *texture) 
+{
 	if (texture == NULL) return -1;
 	
 	m_texture = texture;
 	return 0;
 }
 
-void CSprite::SetSize(float width, float height) {
+void CSprite::SetSize(float width, float height) 
+{
 	m_width = width;
 	m_height = height;
 
@@ -103,51 +122,62 @@ void CSprite::SetSize(float width, float height) {
 	m_coords[3].Z = 0.0f;
 }
 
-float CSprite::GetWidth() {
+float CSprite::GetWidth() 
+{
 	return m_width;
 }
 
-void CSprite::SetWidth(float width) {
+void CSprite::SetWidth(float width) 
+{
 	SetSize(width, m_height);	
 }
 
-float CSprite::GetHeight() {
+float CSprite::GetHeight() 
+{
 	return m_height;
 }
 
-void CSprite::SetHeight(float height) {
+void CSprite::SetHeight(float height) 
+{
 	SetSize(m_width, height);
 }
 
-CVector3D CSprite::GetTranslation() {
+CVector3D CSprite::GetTranslation() 
+{
 	return m_translation;
 }
 
-void CSprite::SetTranslation(CVector3D trans) {
+void CSprite::SetTranslation(CVector3D trans) 
+{
 	m_translation = trans;
 }
 
-void CSprite::SetTranslation(float x, float y, float z) {
+void CSprite::SetTranslation(float x, float y, float z) 
+{
 	m_translation.X = x;
 	m_translation.Y = y;
 	m_translation.Z = z;
 }
 
-CVector3D CSprite::GetScale() {
+CVector3D CSprite::GetScale() 
+{
 	return m_scale;
 }
 
-void CSprite::SetScale(CVector3D scale) {
+void CSprite::SetScale(CVector3D scale) 
+{
 	m_scale = scale;
 }
 
-void CSprite::SetScale(float x, float y, float z) {
+void CSprite::SetScale(float x, float y, float z) 
+{
 	m_scale.X = x;
 	m_scale.Y = y;
 	m_scale.Z = z;
 }
 
-void CSprite::SetColour(float * colour) {
+void CSprite::SetColour(float * colour) 
+{
 	m_colour[0] = colour[0];
 	m_colour[1] = colour[1];
 	m_colour[2] = colour[2];
@@ -155,7 +185,8 @@ void CSprite::SetColour(float * colour) {
 }
 
 // should be called before any other gl calls
-void CSprite::BeginBillboard() {
+void CSprite::BeginBillboard() 
+{
 	float newMatrix[16] = { 1.0f, 0.0f, 0.0f, 0.0f, 
 							0.0f, 1.0f, 0.0f, 0.0f, 
 							0.0f, 0.0f, 1.0f, 0.0f, 
@@ -177,6 +208,7 @@ void CSprite::BeginBillboard() {
 	glMultMatrixf(newMatrix);
 }
 
-void CSprite::EndBillboard() {
+void CSprite::EndBillboard() 
+{
 	glPopMatrix();
 }
