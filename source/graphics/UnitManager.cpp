@@ -10,6 +10,7 @@
 
 #include "res/res.h"
 #include "Model.h"
+#include "Entity.h"
 #include "UnitManager.h"
 #include "Unit.h"
 
@@ -33,6 +34,7 @@ CUnitManager::~CUnitManager()
 // AddUnit: add given unit to world
 void CUnitManager::AddUnit(CUnit* unit)
 {
+	unit->GetModel()->SetPlayerID(unit->GetEntity()->m_player->GetPlayerID());
 	m_Units.push_back(unit);
 }
 

@@ -21,7 +21,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Constructor
 CModel::CModel() 
-	: m_Flags(0), m_Anim(0), m_AnimTime(0), 
+	: m_Flags(0), m_PlayerID(-1), m_Anim(0), m_AnimTime(0), 
 	m_BoneMatrices(0), m_InvBoneMatrices(0), m_BoneMatricesValid(false)
 {
 }
@@ -331,6 +331,7 @@ CModel* CModel::Clone() const
 	clone->SetTexture(m_Texture);
     clone->SetMaterial(m_Material);
 	clone->SetAnimation(m_Anim);
+	clone->SetPlayerID(m_PlayerID);
 	clone->SetFlags(m_Flags);
 	for (uint i=0;i<m_Props.size();i++) {
 		// eek!  TODO, RC - need to investigate shallow clone here
