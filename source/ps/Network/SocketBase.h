@@ -9,6 +9,7 @@
 #include "types.h"
 #include "Prometheus.h"
 #include <string.h>
+#include "CStr.h"
 
 //-------------------------------------------------
 // Error Codes
@@ -44,9 +45,7 @@ enum SocketProtocol
 	// you don't accidentally use an UNSPEC SocketAddress
 	UNSPEC=((sa_family_t)-1),
 	IPv4=PF_INET,
-#ifdef USE_INET6
 	IPv6=PF_INET6,
-#endif
 	/* More protocols */
 };
 
@@ -57,20 +56,24 @@ enum SocketProtocol
 // Modifiers Note: Each member must contain a first field, compatible with the
 // sin_family field of sockaddr_in. The field contains the SocketProtocol value
 // for the address, and it is returned by GetProtocol()
-union SocketAddress
+struct SocketAddress
 {
-	sockaddr_in m_IPv4;
-	sockaddr_in6 m_IPv6;
+	union
+	{
+		sa_family_t m_Family;
+		sockaddr_in m_IPv4;
+		sockaddr_in6 m_IPv6;
+	} m_Union;
 
 	inline SocketProtocol GetProtocol() const
 	{
-		return (SocketProtocol)m_IPv4.sin_family;
+		return (SocketProtocol)m_Union.m_Family;
 	}
 
 	inline SocketAddress()
 	{
-		memset(this, 0, sizeof(SocketAddress));
-		m_IPv4.sin_family=UNSPEC;
+		memset(&m_Union, 0, sizeof(m_Union));
+		m_Union.m_Family=UNSPEC;
 	}
 
 	/**
@@ -93,16 +96,34 @@ union SocketAddress
 	SocketAddress(u8 address[4], int port);
 
 	/**
-	 * Resolve the name using the systems name resolution service (i.e. DNS),
-	 * and store the resulting address. When multiple addresses are found, the
+	 * Resolve the name using the system name resolution service (i.e. DNS) and
+	 * store the resulting address. When multiple addresses are found, the
 	 * first result is returned.
+	 *
+	 * Note that this call will block until the name resolution attempt is
+	 * either completed successfully or timed out.
 	 *
 	 * @param name The name to resolve
 	 * @param addr A reference to the variable to hold the address
 	 *
-	 * @return An error code; PS_OK for success
+	 * @return The result of the operation
+	 * @retval PS_OK The hostname was successfully retrieved
+	 * @retval NO_SUCH_HOST The hostname was not found
 	 */
 	static PS_RESULT Resolve(const char *name, int port, SocketAddress &addr);
+
+	/**
+	 * Returns the string representation of the address, i.e. the IP (v4 or v6)
+	 * address. Note that the port is not included in the string (mostly due to
+	 * the fact that the port representation differs wildly between address
+	 * families, and that Resolve does not take port as part of the hostname)
+	 */
+	CStr GetString() const;
+
+	/**
+	 * Returns the port number part of the address
+	 */
+	int GetPort() const;
 };
 
 /**
@@ -278,6 +299,9 @@ public:
 	 */
 	PS_RESULT Connect(const SocketAddress &addr);
 
+	/** @name Functions for Server Sockets */
+	//@{
+
 	/**
 	 * Bind the socket to the specified address and start listening for
 	 * incoming connections. You must initialize the socket for the correct
@@ -313,6 +337,10 @@ public:
 	 * May only be called after a successful PreAccept call
 	 */
 	void Reject();
+
+	//@}
+	/** @name Status and Options */
+	//@{
 
 	/**
 	 * Set or reset non-blocking operation. When non-blocking, all socket
@@ -365,21 +393,22 @@ public:
 	 */
 	const SocketAddress &GetRemoteAddress();
 
+	//@}
+	/** @name Stream I/O */
+	//@{
+
 	/**
 	 * Attempt to read data from the socket. Any data available without blocking
 	 * will be returned. Note that a successful return does not mean that the
 	 * whole buffer was filled.
 	 *
-	 * Inputs
-	 *	buf		A pointer to the buffer where the data should be written
-	 *	len		The length of the buffer. The amount of data the function should
-	 *			try to read.
-	 *	bytesRead	A pointer to an uint where the amount of bytes read should
-	 *				be stored
+	 * @param buf A pointer to the buffer where the data should be written
+	 * @param len The amount of data that should be read.
+	 * @param bytesRead The number of bytes read will be stored in the variable
+	 * pointed to by bytesRead
 	 *
-	 * Returns
-	 *	PS_OK	Some or all data was successfully read.
-	 *	CONNECTION_BROKEN	The socket is not connected or a server socket
+	 * @retval PS_OK Some or all data was successfully read.
+	 * @retval CONNECTION_BROKEN The socket is not connected or a server socket
 	 */
 	PS_RESULT Read(void *buf, uint len, uint *bytesRead);
 	
@@ -387,20 +416,33 @@ public:
 	 * Attempt to write data to the socket. All data that can be sent without
 	 * blocking will be buffered.
 	 *
-	 * Inputs
-	 *	buf				A pointer to the buffer of data to write
-	 *	len				The length of the buffer.
-	 *	bytesWritten	A pointer to an uint to store the bytes written
+	 * @param buf A pointer to the data that should be written
+	 * @param len The length of the buffer.
+	 * @param bytesWritten The number of bytes written will be stored in the
+	 * variable pointed to by bytesWritten
 	 *
-	 * Returns
-	 *	PS_OK	Some or all data was successfully read.
-	 *	CONNECTION_BROKEN	The socket is not connected or a server socket
+	 * @retval PS_OK Some or all data was successfully read.
+	 * @retval CONNECTION_BROKEN The socket is not connected or a server socket
 	 */	
 	PS_RESULT Write(void *buf, uint len, uint *bytesWritten);
 
-// CALLBACKS
+	//@}
+	/** @name Callbacks */
+	//@{
 
+	/**
+	 * Called by the Network Thread when data is available for reading. Use
+	 * SetOpMask with the READ bit set to enable calling of this function.
+	 *
+	 * For server sockets, "data is available for reading" means "incoming
+	 * connections are pending".
+	 */
 	virtual void OnRead()=0;
+	/**
+	 * Called by the Network Thread when data can be written to the socket.
+	 * Will only be called when the WRITE bit is set in the Op Mask of the
+	 * socket.
+	 */
 	virtual void OnWrite()=0;
 
 	/**
@@ -408,8 +450,8 @@ public:
 	 * provides meaningful diagnostics. CONNECTION_BROKEN is the generic catch-
 	 * all for erroneous closures, PS_OK for clean closures.
 	 *
-	 * Inputs
-	 *	errorCode	The reason for closure.
+	 * @param errorCode A result code describing the reason why the socket was
+	 * closed
 	 */	
 	virtual void OnClose(PS_RESULT errorCode)=0;
 };

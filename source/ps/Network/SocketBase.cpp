@@ -2,6 +2,7 @@
 #include "NetworkInternal.h"
 
 #include "misc.h"
+#include "CStr.h"
 
 #include <errno.h>
 
@@ -41,46 +42,106 @@ PS_RESULT GetPS_RESULT(int error)
 
 SocketAddress::SocketAddress(int port, SocketProtocol proto)
 {
+	memset(&m_Union, 0, sizeof(m_Union));
 	switch (proto)
 	{
 	case IPv4:
-		memset(&m_IPv4, 0, sizeof(m_IPv4));
-		m_IPv4.sin_family=PF_INET;
-		m_IPv4.sin_addr.s_addr=htonl(INADDR_ANY);
-		m_IPv4.sin_port=htons(port);
+		m_Union.m_IPv4.sin_family=PF_INET;
+		m_Union.m_IPv4.sin_addr.s_addr=htonl(INADDR_ANY);
+		m_Union.m_IPv4.sin_port=htons(port);
 		break;
-#ifdef USE_INET6
 	case IPv6:
+		m_Union.m_IPv6.sin6_family=PF_INET6;
+		memcpy(&m_Union.m_IPv6.sin6_addr, &in6addr_any, sizeof(in6addr_any));
+		m_Union.m_IPv6.sin6_port=htons(port);
 		break;
-#endif
 	}
 }
 
 PS_RESULT SocketAddress::Resolve(const char *name, int port, SocketAddress &addr)
 {
-	hostent *he;
-
-	//FIXME IPv6 compatibilitise
-
-	// Construct address
-	// Try to parse dot-notation IP
-	addr.m_IPv4.sin_addr.s_addr=inet_addr(name);
-	if (addr.m_IPv4.sin_addr.s_addr==INADDR_NONE) // Not a dotted IP, try name resolution
+	if ((getaddrinfo) != NULL)
 	{
-		// gethostbyname should be replaced by getaddrinfo, and all of this
-		// should be done so that IPv6 is just a manner of entering an IPv6
-		// address in the box.
-		he=gethostbyname(name);
-		if (!he)
+		addrinfo *ai;
+		int res=getaddrinfo(name, NULL, NULL, &ai);
+		if (res == 0)
 		{
-			return NO_SUCH_HOST;
+			if (ai->ai_addrlen < sizeof(addr.m_Union))
+				memcpy(&addr.m_Union, ai->ai_addr, ai->ai_addrlen);
+			switch (addr.m_Union.m_Family)
+			{
+			case IPv4:
+				addr.m_Union.m_IPv4.sin_port=htons(port);
+				break;
+			case IPv6:
+				addr.m_Union.m_IPv6.sin6_port=htons(port);
+				break;
+			}
+			freeaddrinfo(ai);
+			return PS_OK;
 		}
-		addr.m_IPv4.sin_addr=*(struct in_addr *)(he->h_addr_list[0]);
+		else
+			return NO_SUCH_HOST;
 	}
-	addr.m_IPv4.sin_family=AF_INET;
-	addr.m_IPv4.sin_port=htons(port);
+	else
+	{
+ 		hostent *he;
+	 
+  		addr.m_Union.m_IPv4.sin_family=AF_INET;
+ 		addr.m_Union.m_IPv4.sin_port=htons(port);
+		// Try to parse dot-notation IP
+ 		addr.m_Union.m_IPv4.sin_addr.s_addr=inet_addr(name);
+ 		if (addr.m_Union.m_IPv4.sin_addr.s_addr==INADDR_NONE) // Not a dotted IP, try name resolution
+ 		{
+ 			he=gethostbyname(name);
+ 			if (!he)
+ 			{
+ 				return NO_SUCH_HOST;
+			}
+ 			addr.m_Union.m_IPv4.sin_addr=*(struct in_addr *)(he->h_addr_list[0]);
+		}
+		return PS_OK;
+	}
+}
 
-	return PS_OK;
+CStr SocketAddress::GetString() const
+{
+	char convBuf[NI_MAXHOST];
+	if ((getnameinfo) != NULL)
+	{
+		int res=getnameinfo((sockaddr *)&m_Union, sizeof(m_Union), convBuf, NI_MAXHOST, NULL, 0, NI_NUMERICHOST);
+		if (res == 0)
+		{
+			return CStr(convBuf);
+		}
+		// getnameinfo won't return a string for the IPv6 unspecified address
+		else if (m_Union.m_Family == IPv6 && res==EAI_NONAME)
+			return "::";
+		else
+			return "";
+	}
+	else if (m_Union.m_Family == IPv4)
+	{
+		sprintf(convBuf, "%d.%d.%d.%d",
+			m_Union.m_IPv4.sin_addr.s_addr&0xff,
+			(m_Union.m_IPv4.sin_addr.s_addr>>8)&0xff,
+			(m_Union.m_IPv4.sin_addr.s_addr>>16)&0xff,
+			(m_Union.m_IPv4.sin_addr.s_addr>>24)&0xff);
+		return CStr(convBuf);
+	}
+	else
+		return CStr();
+}
+
+int SocketAddress::GetPort() const
+{
+	switch (m_Union.m_Family)
+	{
+	case IPv4:
+	case IPv6:
+		return ntohs(m_Union.m_IPv4.sin_port);
+	}
+	return -1;
 }
 
 CSocketBase::CSocketBase()
@@ -345,8 +406,8 @@ PS_RESULT CSocketBase::Bind(const SocketAddress &address)
 
 PS_RESULT CSocketBase::PreAccept(SocketAddress &addr)
 {
-	socklen_t addrLen=sizeof(SocketAddress);
-	int fd=accept(m_pInternal->m_fd, (struct sockaddr *)&addr, &addrLen);
+	socklen_t addrLen=sizeof(addr.m_Union);
+	int fd=accept(m_pInternal->m_fd, (struct sockaddr *)&addr.m_Union, &addrLen);
 	m_pInternal->m_AcceptFd=fd;
 	m_pInternal->m_AcceptAddr=addr;
 	if (fd != -1)
@@ -716,7 +777,7 @@ void CSocketBase::RunWaitLoop()
 	printf("Commencing message loop. hWnd %p\n", g_SocketSetInternal.m_hWnd);
 	while ((ret=GetMessage(&msg, g_SocketSetInternal.m_hWnd, 0, 0))!=0)
 	{
-		printf("RunWaitLoop(): Windows message: %d:%d:%d\n", msg.message, msg.wParam, msg.lParam);
+		//printf("RunWaitLoop(): Windows message: %d:%d:%d\n", msg.message, msg.wParam, msg.lParam);
 		if (ret == -1)
 		{
 			ret=GetLastError();
@@ -756,12 +817,12 @@ void CSocketBase::SendWaitLoopUpdate()
 		if (m_pInternal->m_Ops & WRITE)
 			wsaOps |= FD_WRITE|FD_CONNECT;
 		pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
-		printf("SendWaitLoopUpdate: %d: %u %x -> %p\n", m_pInternal->m_fd, m_pInternal->m_Ops, wsaOps, g_SocketSetInternal.m_hWnd);
+		//printf("SendWaitLoopUpdate: %d: %u %x -> %p\n", m_pInternal->m_fd, m_pInternal->m_Ops, wsaOps, g_SocketSetInternal.m_hWnd);
 		WSAAsyncSelect(m_pInternal->m_fd, g_SocketSetInternal.m_hWnd, MSG_SOCKET_READY, wsaOps);
 	}
 	else
 	{
-		printf("SendWaitLoopUpdate: No WaitLoop Running.\n");
+		//printf("SendWaitLoopUpdate: No WaitLoop Running.\n");
 		pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
 	}
 }
@@ -786,10 +847,11 @@ void CSocketBase::SetOpMask(uint ops)
 	g_SocketSetInternal.m_HandleMap[m_pInternal->m_fd]=this;
 	m_pInternal->m_Ops=ops;
 	
-	printf("SetOpMask(fd %d, ops %u) %u\n",
+	/*printf("SetOpMask(fd %d, ops %u) %u\n",
 		m_pInternal->m_fd,
 		ops,
-		g_SocketSetInternal.m_HandleMap[m_pInternal->m_fd]->m_pInternal->m_Ops);
+		g_SocketSetInternal.m_HandleMap[m_pInternal->m_fd]->m_pInternal->m_Ops);*/
+
 	pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
 	
 	SendWaitLoopUpdate();
