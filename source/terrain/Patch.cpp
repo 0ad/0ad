@@ -25,11 +25,13 @@ CPatch::~CPatch ()
 //Initialize the patch
 void CPatch::Initialize (STerrainVertex *first_vertex)
 {
+	int j;
+
 	m_pVertices = first_vertex;
 
 	m_Bounds.SetEmpty();
 
-	for (int j=0; j<PATCH_SIZE+1; j++)
+	for (j=0; j<PATCH_SIZE+1; j++)
 	{
 		for (int i=0; i<PATCH_SIZE+1; i++)
 		{
@@ -37,7 +39,7 @@ void CPatch::Initialize (STerrainVertex *first_vertex)
 		}
 	}
 
-	for (int j=0; j<16; j++)
+	for (j=0; j<16; j++)
 	{
 		for (int i=0; i<16; i++)
 		{

@@ -79,15 +79,17 @@ void CRenderer::BeginFrame()
 // force rendering of any batched objects
 void CRenderer::FlushFrame()
 {	
+	int i;
+
 	// render base terrain
 	if (m_TerrainMode==WIREFRAME) {
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 	}
 
-	for (int i=0;i<m_TerrainPatches.size();++i) {
+	for (i=0;i<m_TerrainPatches.size();++i) {
 		RenderPatchBase(m_TerrainPatches[i].m_Object);
 	}
-	for (int i=0;i<m_TerrainPatches.size();++i) {
+	for (i=0;i<m_TerrainPatches.size();++i) {
 		RenderPatchTrans(m_TerrainPatches[i].m_Object);
 	}
 
@@ -96,7 +98,7 @@ void CRenderer::FlushFrame()
 	}
 
 	// render models
-	for (int i=0;i<m_Models.size();++i) {
+	for (i=0;i<m_Models.size();++i) {
 		RenderModel(m_Models[i]);
 	}
 

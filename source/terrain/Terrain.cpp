@@ -52,13 +52,15 @@ bool CTerrain::Load(char *filename)
 
 bool CTerrain::InitFromHeightmap(const u8* data)
 {
+	int j;
+
 	delete[] m_pVertices;
 
 	m_pVertices = new STerrainVertex[MAP_SIZE*MAP_SIZE];
 	if (m_pVertices == NULL)
 		return false;
 
-	for (int j=0; j<MAP_SIZE; j++)
+	for (j=0; j<MAP_SIZE; j++)
 	{
 		for (int i=0; i<MAP_SIZE; i++)
 		{
@@ -70,7 +72,7 @@ bool CTerrain::InitFromHeightmap(const u8* data)
 		}
 	}
 
-	for (int j=0; j<NUM_PATCHES_PER_SIDE; j++)
+	for (j=0; j<NUM_PATCHES_PER_SIDE; j++)
 	{
 		for (int i=0; i<NUM_PATCHES_PER_SIDE; i++)
 		{
