@@ -118,7 +118,7 @@ int stat(const char* fn, struct stat* s)
 		return -1;
 
 	// dir
-	if(fad.dwFileAttributes == FILE_ATTRIBUTE_DIRECTORY)
+	if(fad.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 		s->st_mode = S_IFDIR;
 	else
 	{
