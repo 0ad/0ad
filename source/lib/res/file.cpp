@@ -25,6 +25,7 @@
 #include "mem.h"
 #include "detect.h"
 #include "adts.h"
+#include "sysdep/sysdep.h"
 
 #include <vector>
 #include <algorithm>
@@ -160,25 +161,18 @@ int file_rel_chdir(const char* argv0, const char* const rel_path)
 
 	{
 
-	// Win32-specific: append ".exe" if necessary.
-	// (required for access and realpath; not necessarily there if started
-	// via batch file. in that case, we don't get the full path either,
-	// but realpath takes care of it).
-#ifdef _WIN32
-	char fixed_argv0[PATH_MAX];
-	if(!strchr(argv0, '.'))
-	{
-		strncpy(fixed_argv0, argv0, PATH_MAX-5);
-		strcat(fixed_argv0, ".exe");
-		argv0 = fixed_argv0;
-	}
-#endif
-
 	// get full path to executable
 	char n_path[PATH_MAX];
+	// .. first try safe, but system-dependent version
+	if(get_executable_name(n_path, PATH_MAX) < 0)
+	{
+		// .. failed; use argv[0]
+		if(!realpath(argv0, n_path))
+			goto fail;
+	}
+
+	// make sure it's valid
 	if(access(argv0, X_OK) < 0)
-		goto fail;
-	if(!realpath(argv0, n_path))
 		goto fail;
 
 	// strip executable name and append rel_path
