@@ -1,4 +1,4 @@
-// $Id: JSInterface_IGUIObject.cpp,v 1.7 2004/07/24 14:03:16 philip Exp $
+// $Id: JSInterface_IGUIObject.cpp,v 1.8 2004/07/24 14:11:12 philip Exp $
 
 #include "precompiled.h"
 
@@ -169,6 +169,8 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 			assert(! "This shouldn't happen");
 			return JS_FALSE;
 		}
+
+		return JS_TRUE;
 	}
 }
 
