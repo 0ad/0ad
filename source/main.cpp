@@ -42,6 +42,9 @@
 #include "PathfindEngine.h"
 #include "XML.h"
 
+#include "ConfigDB.h"
+
+#include "CLogger.h"
 
 #ifndef NO_GUI
 #include "gui/GUI.h"
@@ -452,9 +455,45 @@ void ParseArgs(int argc, char* argv[])
 						g_Shadows=true;
 					}
 					break;
+				case 'x':
+					if (strncmp(argv[i], "-xres=", 6)==0) {
+						g_ConfigDB.CreateValue(CFG_SYSTEM, "xres")
+									->m_String=argv[i]+6;
+					}
+					break;
+				case 'y':
+					if (strncmp(argv[i], "-yres=", 6)==0) {
+						g_ConfigDB.CreateValue(CFG_SYSTEM, "yres")
+									->m_String=argv[i]+6;
+					}
+					break;
+				case 'c':
+					if (strcmp(argv[i], "-conf") == 0) {
+						if (argc-i >= 1) // At least one arg left
+						{
+							i++;
+							char *arg=argv[i];
+							char *equ=strchr(arg, '=');
+							if (equ)
+							{
+								*equ=0;
+								g_ConfigDB.CreateValue(CFG_SYSTEM, arg)
+									->m_String=(equ+1);
+							}
+						}
+					}
+					break;
 			}
 		}
 	}
+	
+	CConfigValue *val;
+	if (val=g_ConfigDB.GetValue(CFG_SYSTEM, "xres"))
+		val->GetInt(g_xres);
+	if (val=g_ConfigDB.GetValue(CFG_SYSTEM, "yres"))
+		val->GetInt(g_yres);
+		
+	LOG(NORMAL, "g_x/yres is %dx%d\n", g_xres, g_yres);
 }
 
 
@@ -493,6 +532,9 @@ PREVTSC=TSC;
 	atexit(SDL_Quit);
 	SDL_EnableUNICODE(1);
 
+	// preferred video mode = current desktop settings
+	// (command line params may override these)
+	get_cur_vmode(&g_xres, &g_yres, &g_bpp, &g_freq);
 
 	if(FSOUND_Init(44100, 32, 0) == 0)
 	{
@@ -516,9 +558,20 @@ PREVTSC=TSC;
 			L"argv[0] is probably incorrect. please start the game via command-line.");
 		display_startup_error(err_msg);
 	}
-
+	
+	new CConfigDB;
+	g_ConfigDB.SetConfigFile(CFG_SYSTEM, false, "config/system.cfg");
+	g_ConfigDB.Reload(CFG_SYSTEM);
+	
+	g_ConfigDB.SetConfigFile(CFG_MOD, true, "config/mod.cfg");
+	// No point in reloading mod.cfg here - we haven't mounted mods yet
+	
+	g_ConfigDB.SetConfigFile(CFG_USER, true, "config/user.cfg");
+	// Same thing here; we haven't even started up yet - this will wait until
+	// the profile dir is VFS mounted (or we will do a new SetConfigFile with
+	// a generated profile path)
+	
 	ParseArgs(argc, argv);
-
 
 	// Create the scripting host.  This needs to be done before the GUI is created.
 	new ScriptingHost;
@@ -527,17 +580,6 @@ PREVTSC=TSC;
 #ifndef NO_GUI
 	new CGUI;
 #endif
-
-	// preferred video mode = current desktop settings
-	// (command line params may override these)
-	get_cur_vmode(&g_xres, &g_yres, &g_bpp, &g_freq);
-
-	for(int a = 1; a < argc; a++)
-		if(!strncmp(argv[a], "xres", 4))
-			g_xres = atoi(argv[a]+4);
-		else if(!strncmp(argv[a], "yres", 4))
-			g_yres = atoi(argv[a]+4);
-		// TODO: other command line options
 
 	if(set_vmode(g_xres, g_yres, 32) < 0)
 	{
@@ -729,6 +771,7 @@ PREVTSC=CURTSC;
 	delete CGUI::GetSingletonPtr();
 #endif
 
+	delete g_Console;
 	delete &g_ScriptingHost;
 	delete &g_Pathfinder;
 	delete &g_EntityManager;
