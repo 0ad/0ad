@@ -34,5 +34,6 @@ const PSRETURN MASK__PSRETURN_OK = 0xffffffff;
 const PSRETURN CODE__PSRETURN_OK = 0;
 
 const wchar_t* GetErrorString(PSRETURN code);
+void ThrowError(PSRETURN code);
 
 #endif
