@@ -98,6 +98,9 @@ if (OS == "windows") then
 	package.pchHeader = "precompiled.h"
 	package.pchSource = "precompiled.cpp"
 else -- Non-Windows, = Unix
+
+	tinsert(package.files, sourcesfromdirs("../../lib/sysdep/unix"))
+
 	-- Libraries
 	package.links = {
 		-- OpenGL and X-Windows
