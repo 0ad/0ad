@@ -116,8 +116,7 @@ void CObjectManager::LoadObjects(int type)
 		while (vfs_next_dirent(dir, &dent, ".xml")==0)
 		{
 			CObjectEntry* object=new CObjectEntry(type);
-			CStr filename("mods/official/");
-			filename+=pathname;
+			CStr filename(pathname);
 			filename+=dent.name;
 			if (!object->Load((const char*) filename)) {
 				LOG(ERROR, "CObjectManager::LoadObjects(): %s: XML Load failed\n", filename.c_str());
