@@ -1,4 +1,4 @@
-// $Id: Xeromyces.cpp,v 1.1 2004/07/08 15:21:42 philip Exp $
+// $Id: Xeromyces.cpp,v 1.2 2004/07/09 19:59:19 janwas Exp $
 
 #include "precompiled.h"
 
@@ -247,7 +247,7 @@ void CXeromyces::Load(const char* filename)
 	handler.CreateXMB(XMLChecksum);
 
 	// Save the file to disk, so it can be loaded quickly next time
-	vfs_uncached_store(filenameXMB, handler.buffer.buffer, handler.buffer.length);
+	vfs_store(filenameXMB, handler.buffer.buffer, handler.buffer.length, FILE_NO_AIO);
 
 	XMBBuffer = handler.buffer.steal_buffer();
 
