@@ -50,10 +50,29 @@
 		ghost="true"
 	/>
 
-	<style name="session_ghost_heading_object"
+	<style name="session_ghost_subheading_object"
 		font="verdana10"
 		textcolor="200 200 200"
 		text_align="center"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_ghost_heading_object"
+		font="verdana12"
+		textcolor="200 200 200"
+		text_align="left"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_ghost_left_centre_text_object"
+		font="verdana10"
+		textcolor="255 255 255"
+		text_align="left"
+		text_valign="center"
 		tooltip_style="session_tooltip"
 		tooltip="(TBA)"
 		ghost="true"
