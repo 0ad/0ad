@@ -4,7 +4,15 @@
 
 <objects>
 
-	<object name="Child" type="button" size="100%-50 100%-50 100%-5 100%-5" z="22">
+	<object name="a little button" type="button" size="100%-50 100%-50 100%-5 100%-5" z="22">
+	</object>
+
+	<object name="a little fella'" type="button" size="100%-100 100%-100 100%-20 100%-20" z="200" />
+
+	<object name="weird thing that shouldn't be a button" type="button" size="0 0 100% 50" z="20">
+		<object name="child1" type="button" size="100%-100 10 100%-10 40" z="22" />
+		<object name="child2" type="button" size="100%-200 10 100%-110 40" z="22" />
+		<object name="child3" type="button" size="100%-300 10 100%-210 40" z="22" />
 	</object>
 
 </objects>
