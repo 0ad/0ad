@@ -1,17 +1,15 @@
 #ifndef WDBG_H__
 #define WDBG_H__
 
-#include "win.h"
-
-int debug_main_exception_filter(unsigned int code, struct _EXCEPTION_POINTERS *ep);
+#include "lib/types.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 
-
-
+extern void* wdbg_get_nth_caller(uint n);
+extern int wdbg_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line);
 
 
 #ifdef __cplusplus

@@ -1,21 +1,19 @@
-/*
- * stack walk, improved assert and exception handler
- * Copyright (c) 2002 Jan Wassenberg
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * General Public License for more details.
- *
- * Contact info:
- *   Jan.Wassenberg@stud.uni-karlsruhe.de
- *   http://www.stud.uni-karlsruhe.de/~urkt/
- */
+// stack walk, improved assert and exception handler
+// Copyright (c) 2002 Jan Wassenberg
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License as
+// published by the Free Software Foundation; either version 2 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// General Public License for more details.
+//
+// Contact info:
+//   Jan.Wassenberg@stud.uni-karlsruhe.de
+//   http://www.stud.uni-karlsruhe.de/~urkt/
 
 #include "precompiled.h"
 
@@ -29,6 +27,19 @@
 
 #include "wdbg.h"
 #include "assert_dlg.h"
+#include "lib/timer.h"
+
+
+#ifdef _MSC_VER
+#pragma comment(lib, "dbghelp.lib")
+#endif
+
+// automatic module init (before main) and shutdown (before termination)
+#pragma data_seg(".LIB$WCC")
+WIN_REGISTER_FUNC(wdbg_init);
+#pragma data_seg(".LIB$WTB")
+WIN_REGISTER_FUNC(wdbg_shutdown);
+#pragma data_seg()
 
 
 //#define LOCALISED_TEXT
@@ -36,8 +47,6 @@
 #ifdef LOCALISED_TEXT
 #include "ps/i18n.h"
 #endif // LOCALISED_TEXT
-
-
 
 
 void win_debug_break()
@@ -61,6 +70,103 @@ void win_debug_break()
 static const int MAX_CNT = 512;
 // max output size of 1 call of (w)debug_out (including \0)
 
+
+
+// voodoo programming. PDB debug info is a poorly documented mess.
+// see http://msdn.microsoft.com/msdnmag/issues/02/03/hood/default.aspx
+
+
+
+// from DIA cvconst.h
+typedef enum
+{
+    btNoType    = 0,
+    btVoid      = 1,
+    btChar      = 2,
+    btWChar     = 3,
+    btInt       = 6,
+    btUInt      = 7,
+    btFloat     = 8,
+    btBCD       = 9,
+    btBool      = 10,
+    btLong      = 13,
+    btULong     = 14,
+    btCurrency  = 25,
+    btDate      = 26,
+    btVariant   = 27,
+    btComplex   = 28,
+    btBit       = 29,
+    btBSTR      = 30,
+    btHresult   = 31
+}
+BasicType;
+
+static void DumpMiniDump(HANDLE hFile, PEXCEPTION_POINTERS excpInfo);
+
+static void set_exception_handler();
+
+// function pointers
+//
+// we need to link against dbghelp dynamically - some systems may not
+// have v5.1. (if <= 5.0, type information is unavailable).
+
+
+static HANDLE hProcess;
+static uintptr_t mod_base;
+
+const int bufsize = 64000;
+static wchar_t buf[bufsize];	// buffer for stack trace
+static wchar_t* pos;			// current pos in buf
+
+static WORD machine;
+	// needed by StackWalk
+
+
+
+static int wdbg_init()
+{
+	// main.cpp will have an exception handler, but this covers low-level init
+	// (before main is called)
+	set_exception_handler();
+
+	hProcess = GetCurrentProcess();
+
+	SymSetOptions(SYMOPT_DEFERRED_LOADS);
+	SymInitialize(hProcess, 0, TRUE);
+
+	u64 base = SymGetModuleBase64(hProcess, (u64)&wdbg_init);
+	IMAGE_NT_HEADERS* header = ImageNtHeader((void*)base);
+	machine = header->FileHeader.Machine;
+
+	return 0;
+}
+
+static int wdbg_shutdown(void)
+{
+	SymCleanup(hProcess);
+	return 0;
+}
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+static void out(wchar_t* fmt, ...)
+{
+	// Don't overflow the buffer (and abort if we're about to)
+	if (pos-buf+1000 > bufsize)
+		throw;
+
+	va_list args;
+	va_start(args, fmt);
+	pos += vswprintf(pos, 1000, fmt, args);
+	va_end(args);
+}
 
 
 void debug_out(const char* fmt, ...)
@@ -91,116 +197,22 @@ void wdebug_out(const wchar_t* fmt, ...)
 }
 
 
+//////////////////////////////////////////////////////////////////////////////
 
 
 
 
 
 
-/*
- * voodoo programming. PDB debug info is a poorly documented mess.
- * see http://msdn.microsoft.com/msdnmag/issues/02/03/hood/default.aspx
- */
 
 
-/* from DIA cvconst.h */
-typedef enum
-{
-    btNoType    = 0,
-    btVoid      = 1,
-    btChar      = 2,
-    btWChar     = 3,
-    btInt       = 6,
-    btUInt      = 7,
-    btFloat     = 8,
-    btBCD       = 9,
-    btBool      = 10,
-    btLong      = 13,
-    btULong     = 14,
-    btCurrency  = 25,
-    btDate      = 26,
-    btVariant   = 27,
-    btComplex   = 28,
-    btBit       = 29,
-    btBSTR      = 30,
-    btHresult   = 31
-}
-BasicType;
+// guess if addr points to a string
+// algorithm:
+//   scan string; count # text chars vs. garbage
 
-static void DumpMiniDump(HANDLE hFile, PEXCEPTION_POINTERS excpInfo);
-
-// function pointers
-//
-// we need to link against dbghelp dynamically - some systems may not
-// have v5.1. (if <= 5.0, type information is unavailable).
-//
-// don't delay-load: requires the .lib file, which may not be present
-// on all compilers.
-//
-// can't skip the dbghelp.h function prototypes, so we need to
-// name the function pointers differently (prepend _). Grr.
-//
-#define FUNC(ret, name, params) static ret (WINAPI *_##name) params;
-#include "dbghelp_funcs.h"
-#undef FUNC
-
-
-static HANDLE hProcess;
-static uintptr_t mod_base;
-
-const int bufsize = 64000;
-static wchar_t buf[bufsize];	/* buffer for stack trace */
-static wchar_t* pos;			/* current pos in buf */
-
-
-static void out(wchar_t* fmt, ...)
-{
-	// Don't overflow the buffer (and abort if we're about to)
-	if (pos-buf+1000 > bufsize)
-		throw;
-
-	va_list args;
-	va_start(args, fmt);
-	pos += vswprintf(pos, 1000, fmt, args);
-	va_end(args);
-}
-
-
-static void dbg_cleanup(void)
-{
-	_SymCleanup(hProcess);
-}
-
-static void dbg_init()
-{
-	/* already initialized */
-	if(hProcess)
-		return;
-
-	HMODULE hdbghelp = LoadLibrary("dbghelp.dll");
-
-// import functions
-#define FUNC(ret, name, params) *(void**)&_##name = (void*)GetProcAddress(hdbghelp, #name);
-#include "dbghelp_funcs.h"
-#undef FUNC
-
-	hProcess = GetCurrentProcess();
-
-	_SymSetOptions(SYMOPT_DEFERRED_LOADS);
-	_SymInitialize(hProcess, 0, TRUE);
-
-	atexit(dbg_cleanup);
-}
-
-
-/*
- * guess if addr points to a string
- * algorithm:
- *   scan string; count # text chars vs. garbage
- */
 static bool is_string_ptr(u64 addr)
 {
-	/* early out for x86 */
+	// early out for x86
 #ifdef _WIN32
 	if(addr < 0x10000 || addr > 0x80000000)
 		return false;
@@ -213,15 +225,15 @@ static bool is_string_ptr(u64 addr)
 		int score = 0;
 		for(;;)
 		{
-			const int c = *str++ & 0xff;	/* signed char => promoted */
+			const int c = *str++ & 0xff;	// signed char => promoted
 			if(isalnum(c))
 				score += 1;
 			else if(!c)
-				return (score > 0);			/* end of string reached */
+				return (score > 0);			// end of string reached
 			else if(!isprint(c))
 				score -= 5;
 
-			/* give up */
+			// give up
 			if(score <= -10)
 				return false;
 		}
@@ -233,48 +245,44 @@ static bool is_string_ptr(u64 addr)
 }
 
 
-/*
- * output the value of 'basic' types: string, (array of) float, int
- *
- * not reliably supported, due to broken debug info / bad documentation:
- * - multidimensional arrays (e.g. int[2][2] => len 16, elements 2)
- * - arrays of character arrays (would have rely on is_string_ptr)
- * - nested structures (invalid base type index)
- */
+// output the value of 'basic' types: string, (array of) float, int
+//
+// not reliably supported, due to broken debug info / bad documentation:
+// - multidimensional arrays (e.g. int[2][2] => len 16, elements 2)
+// - arrays of character arrays (would have rely on is_string_ptr)
+// - nested structures (invalid base type index)
 static void print_var(u32 type_idx, uint level, u64 addr)
 {
 	// successful with index we were given?
 	BasicType type = btNoType;
 	u32 real_typeid = 0;
-	if(!_SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_BASETYPE, &type))
+	if(!SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_BASETYPE, &type))
 	{
 		// no; try to get the "real" index first
-		BOOL ok = _SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_TYPEID, &real_typeid);
+		BOOL ok = SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_TYPEID, &real_typeid);
 		if(ok && real_typeid != type_idx)
-			_SymGetTypeInfo(hProcess, mod_base, real_typeid, TI_GET_BASETYPE, &type);
+			SymGetTypeInfo(hProcess, mod_base, real_typeid, TI_GET_BASETYPE, &type);
 	}
 
 	u64 len;
-	_SymGetTypeInfo(hProcess, mod_base, level? real_typeid : type_idx, TI_GET_LENGTH, &len);
+	SymGetTypeInfo(hProcess, mod_base, level? real_typeid : type_idx, TI_GET_LENGTH, &len);
 
 	u32 elements;
-	_SymGetTypeInfo(hProcess, mod_base, level? real_typeid : type_idx, TI_GET_COUNT, &elements);
+	SymGetTypeInfo(hProcess, mod_base, level? real_typeid : type_idx, TI_GET_COUNT, &elements);
 
-	wchar_t* fmt = L"%I64X";	/* default: 64 bit integer */
+	wchar_t* fmt = L"%I64X";	// default: 64 bit integer
 
 	out(L"= ");
 
-	/*
-	 * single string (character array)
-	 * len == elements => bool array | character array (probably string)
-	 */
+	// single string (character array)
+	// len == elements => bool array | character array (probably string)
 	if(len == elements && is_string_ptr(addr))
 	{
 		out(L"\"%hs\"\r\n", (char*)addr);
 		return;
 	}
 
-	/* array */
+	// array
 	if(elements)
 	{
 		len /= elements;
@@ -285,15 +293,15 @@ static void print_var(u32 type_idx, uint level, u64 addr)
 
 next_element:
 
-	/* zero extend to 64 bit (little endian) */
+	// zero extend to 64 bit (little endian)
 	u64 data = 0;
 	for(u64 i = 0; i < MIN(len,8); i++)
 		data |= (u64)(*(u8*)(addr+i)) << (i*8);
 
-	/* float / double */
+	// float / double
 	if(type == btFloat)
 	{
-		/* convert floats to double (=> single printf call) */
+		// convert floats to double (=> single printf call)
 		if(len == 4)
 		{
 			double double_data = (double)(*(float*)addr);
@@ -301,7 +309,7 @@ next_element:
 		}
 		fmt = L"%lf";
 	}
-	/* string (char*) */
+	// string (char*)
 	else if(len == sizeof(void*) && is_string_ptr(data))
 	{
 		fmt = L"\"%hs\"";
@@ -309,16 +317,16 @@ next_element:
 
 	out(fmt, data);
 
-	/* ascii char */
+	// ascii char
 	if(data < 0x100 && isprint((int)data))
 		out(L" ('%hc')", (char)data);
 
 	if(elements)
 	{
-		addr += len;	/* add stride */
+		addr += len;	// add stride
 		elements--;
 
-		/* don't display too many elements of huge arrays */
+		// don't display too many elements of huge arrays
 		if (totalelements-elements > 32)
 			out(L" ... }");
 		
@@ -336,29 +344,29 @@ next_element:
 }
 
 
-/* print sym name; if not a basic type, recurse for each child */
+// print sym name; if not a basic type, recurse for each child
 static void dump_sym(u32 type_idx, uint level, u64 addr)
 {
-	/* print type name / member name */
+	// print type name / member name
 	WCHAR* type_name;
-	if(_SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_SYMNAME, &type_name))
+	if(SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_SYMNAME, &type_name))
 	{
-		/* ignore things that look like member functions, because
-		   there's no point in outputting them */
+		// ignore things that look like member functions, because
+		// there's no point in outputting them
 		if (wcsstr(type_name, L"::"))
 		{
 			LocalFree(type_name);
 			return;
 		}
 
-		/* indent */
+		// indent
 		for(uint i = 0; i < level+2; i++)
 			out(L"  ");
 
 		out(L"%ls ", type_name);
 
-		/* exclude some specific variable types, because
-		   they just fill the stack trace with rubbish */
+		// exclude some specific variable types, because
+		// they just fill the stack trace with rubbish
 		if (!wcscmp(type_name, L"JSType")
 		 || !wcscmp(type_name, L"JSVersion")
 			)
@@ -373,8 +381,8 @@ static void dump_sym(u32 type_idx, uint level, u64 addr)
 
 	u32 num_children = 0;
 
-	/* built-in type? yes - show its value, terminate recursion */
-	if (! _SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_CHILDRENCOUNT, &num_children)
+	// built-in type? yes - show its value, terminate recursion
+	if (! SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_CHILDRENCOUNT, &num_children)
 		|| num_children == 0)
 	{
 		print_var(type_idx, level, addr);
@@ -385,22 +393,22 @@ static void dump_sym(u32 type_idx, uint level, u64 addr)
 	if(num_children > 50)
 		return;
 
-	/* get children's type indices */
+	// get children's type indices
 	char child_buf[sizeof(TI_FINDCHILDREN_PARAMS) + 256*4];
 	TI_FINDCHILDREN_PARAMS* children = (TI_FINDCHILDREN_PARAMS*)child_buf;
 	children->Count = num_children;
 	children->Start = 0;
-	_SymGetTypeInfo(hProcess, mod_base, type_idx, TI_FINDCHILDREN, children);
+	SymGetTypeInfo(hProcess, mod_base, type_idx, TI_FINDCHILDREN, children);
 
     out(L"\r\n");
 
-	/* recurse for each child */
+	// recurse for each child
 	for(uint child_idx = 0; child_idx < num_children; child_idx++)
 	{
 		u32 child_id = children->ChildId[child_idx];
 
 		u32 member_ofs;
-		_SymGetTypeInfo(hProcess, mod_base, child_id, TI_GET_OFFSET, &member_ofs);
+		SymGetTypeInfo(hProcess, mod_base, child_id, TI_GET_OFFSET, &member_ofs);
 
 		dump_sym(child_id, level+1, addr+member_ofs);
     }
@@ -419,10 +427,10 @@ var_type;
 #define SYM_FLAG(flag) (sym->Flags & (IMAGEHLP_SYMBOL_INFO_##flag))
 
 
-/* called for each local symbol */
-static BOOL CALLBACK sym_callback(SYMBOL_INFO* sym, ULONG /* SymbolSize */, void* ctx)
+// called for each local symbol
+static BOOL CALLBACK sym_callback(SYMBOL_INFO* sym, ULONG SymbolSize, void* ctx)
 {
-	STACKFRAME64* frame = (STACKFRAME64*)ctx;
+	UNUSED(SymbolSize);
 
 	mod_base = (uintptr_t)sym->ModBase;
 
@@ -445,11 +453,11 @@ static BOOL CALLBACK sym_callback(SYMBOL_INFO* sym, ULONG /* SymbolSize */, void
 
 		out(L"    %hs ", sym->Name);
 
-		u64 addr = sym->Address;	/* -> var's contents */
-		if(SYM_FLAG(REGRELATIVE))
-			addr += frame->AddrFrame.Offset;
-		else if(SYM_FLAG(REGISTER))
-			return 0;
+		u64 addr = sym->Address;	//* -> var's contents
+//		if(SYM_FLAG(REGRELATIVE))
+//			addr += frame->AddrFrame.Offset;
+//		else if(SYM_FLAG(REGISTER))
+//			return 0;
 
 		dump_sym(sym->TypeIndex, 0, addr);
 	}
@@ -462,101 +470,179 @@ static BOOL CALLBACK sym_callback(SYMBOL_INFO* sym, ULONG /* SymbolSize */, void
 }
 
 
-/*
- * most recent <skip> stack frames will be skipped
- * (we don't want to show e.g. GetThreadContext / this call)
- */
-static void walk_stack(int skip, wchar_t* out_buf, CONTEXT* override_context = NULL)
+
+
+
+
+
+static int foreach_caller(int (*cb)(void*, void*), void* ctx, CONTEXT* thread_context = 0)
 {
-	dbg_init();
-
-	bool type_avail = _SymFromAddr != 0;
-
-	pos = out_buf;
-	out(L"\r\nCall stack:\r\n\r\n");
-
-	if(!type_avail)
-		out(L"warning: older dbghelp.dll loaded; no type information available.\r\n");
-
 	HANDLE hThread = GetCurrentThread();
 
 	CONTEXT context;
-	if(override_context)
-	{
-		memcpy(&context, override_context, sizeof(CONTEXT));
-	}
-	else
+	// user knows the thread state (e.g. if called from exception handler)
+	if(thread_context)
+		context = *thread_context;
+	// we have to retrieve it ourselves
+	// dox say this isn't possible unless the thread is suspended.
+	// it appears to work fine, though; this is common practice.
+	// looking at http://dotnet.di.unipi.it/Content/sscli/docs/doxygen/pal/context_8c-source.html#l00119 ,
+	// which is derived from the Windows code, this should work.
+	// suspending this thread and having a helper thread call this
+	// is overdoing it, not worth the effort.
+/*	else
 	{
 		memset(&context, 0, sizeof(context));
 		context.ContextFlags = CONTEXT_FULL;
 		GetThreadContext(hThread, &context);
 	}
+*/
+	DWORD eip_, ebp_;
+	__asm
+	{
+cur_eip:
+		mov		eax, offset cur_eip
+		mov		[eip_], eax
+		mov		[ebp_], ebp
+	}
+
 
 	STACKFRAME64 frame;
 	memset(&frame, 0, sizeof(frame));
 
+	// AddrPC and AddrFrame must be initialized for the first StackWalk call.
 #ifdef _M_IX86
-	/* x86 only: init STACKFRAME for first StackWalk call (undocumented) */
-	frame.AddrPC.Offset     = context.Eip;
+	frame.AddrPC.Offset     = eip_;//context.Eip;
 	frame.AddrPC.Mode       = AddrModeFlat;
-	frame.AddrStack.Offset  = context.Esp;
-	frame.AddrStack.Mode    = AddrModeFlat;
-	frame.AddrFrame.Offset  = context.Ebp;
+	frame.AddrFrame.Offset  = ebp_;//context.Ebp;
 	frame.AddrFrame.Mode    = AddrModeFlat;
 #endif
 
-	u64 base = _SymGetModuleBase64(hProcess, (u64)&walk_stack);
-	IMAGE_NT_HEADERS* header = _ImageNtHeader((void*)base);
-	u32 machine = header->FileHeader.Machine;
-
-	char sym_buf[sizeof(SYMBOL_INFO) + 1024];
-	memset(sym_buf, 0, sizeof(sym_buf));
-	SYMBOL_INFO* sym = (SYMBOL_INFO*)sym_buf;
-	sym->SizeOfStruct = sizeof(SYMBOL_INFO);
-	sym->MaxNameLen = 1024;
-
-	IMAGEHLP_LINE64 line = { sizeof(IMAGEHLP_LINE64) };
-	IMAGEHLP_STACK_FRAME imghlp_frame;
-
 	for(;;)
-    {
-		if(!_StackWalk64(machine, hProcess, hThread, &frame, &context, 0, _SymFunctionTableAccess64, _SymGetModuleBase64, 0))
-            break;
+	{
+		win_lock(DBGHELP_CS);
+		BOOL ok = StackWalk64(machine, hProcess, hThread, &frame, /*&context*/thread_context, 0, SymFunctionTableAccess64, SymGetModuleBase64, 0);
+		win_unlock(DBGHELP_CS);
 
-		if(skip-- > 0)
-			continue;
+		if(!ok)
+			return -1;
 
-		u64 pc = frame.AddrPC.Offset;
+		void* func = (void*)frame.AddrPC.Offset;
 
-		if(!type_avail)
-		{
-			out(L"%I64X\r\n", pc);
-			continue;
-		}
+		int ret = cb(func, ctx);
+		if(ret <= 0)
+			return ret;
+	}
+}
 
-		/* function name / address */
-		u64 sym_disp;
-        if(type_avail && _SymFromAddr(hProcess, pc, &sym_disp, sym))
-			out(L"%hs", sym->Name);
-		else
-			out(L"%I64X", pc);
 
-		/* source file + line number */
-		DWORD line_disp;
-        if(_SymGetLineFromAddr64(hProcess, pc, &line_disp, &line))
-			out(L" (%hs, line %lu)", line.FileName, line.LineNumber);
 
-		out(L"\r\n");
+// ~500µs
+int wdbg_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
+{
+	DWORD64 addr = (DWORD64)ptr_of_interest;
 
-		/* params + vars */
-		var_type = NONE;
+	win_lock(DBGHELP_CS);
 
-		imghlp_frame.InstructionOffset = pc;
-		_SymSetContext(hProcess, &imghlp_frame, 0);
-		_SymEnumSymbols(hProcess, 0, 0, sym_callback, &frame);
+	// get symbol name
+	char sym_buf[sizeof(SYMBOL_INFO) + 1000];
+		// C++ decorated names can be hundreds of characters long!
+	memset(sym_buf, 0, sizeof(sym_buf));
+	SYMBOL_INFO* sym_info = (SYMBOL_INFO*)sym_buf;
+	sym_info->SizeOfStruct = sizeof(SYMBOL_INFO);
+	sym_info->MaxNameLen = 1000;
+	if(SymFromAddr(hProcess, addr, 0, sym_info))
+		sprintf(sym_name, "%s", sym_info->Name);
+	else
+		sprintf(sym_name, "%I64X", addr);
 
-		out(L"\r\n");
-    }
+	// get source file + line number
+	IMAGEHLP_LINE64 line_info = { sizeof(IMAGEHLP_LINE64) };
+	DWORD displacement;	// required by SymGetLineFromAddr64!
+	if(SymGetLineFromAddr64(hProcess, addr, &displacement, &line_info))
+	{
+		sprintf(file, "%s", line_info.FileName);
+		*line = line_info.LineNumber;
+	}
+
+	win_unlock(DBGHELP_CS);
+	return 0;
+}
+
+
+
+struct NthCallerParams
+{
+	uint left_to_skip;
+	void* func;
+};
+
+static int nth_caller_cb(void* func, void* ctx)
+{
+	NthCallerParams* p = (NthCallerParams*)ctx;
+
+	// not the one we want yet
+	if(p->left_to_skip-- != 0)
+		return 1;
+
+	// return its address
+	p->func = func;
+	return 0;
+}
+
+
+// n starts at 1
+void* wdbg_get_nth_caller(uint n)
+{
+	NthCallerParams params = { n-1+3, 0 };
+		// should be n-1, but we skip foreach_caller, this function and its caller as well
+	if(foreach_caller(nth_caller_cb, &params) == 0)
+		return params.func;
+	return 0;
+}
+
+
+
+
+static int dump_caller(void* func, void* ctx)
+{
+	uint& skip = *(uint*)ctx;
+	if(skip-- != 0)
+		return 1;	// keep calling
+
+	char func_name[1000];
+	char file[100];
+	int line;
+	if(wdbg_resolve_symbol(func, func_name, file, &line) == 0)
+		out(L"%hs (%hs:%lu)", func_name, file, line);
+	else
+		out(L"%p", func);
+
+
+	out(L"\r\n");
+
+	// params + vars
+	var_type = NONE;
+
+	IMAGEHLP_STACK_FRAME imghlp_frame;
+	imghlp_frame.InstructionOffset = (DWORD64)func;
+	SymSetContext(hProcess, &imghlp_frame, 0);
+	SymEnumSymbols(hProcess, 0, 0, sym_callback, 0);
+
+	out(L"\r\n");
+	return 1;	// keep calling
+}
+
+
+// most recent <skip> stack frames will be skipped
+// (we don't want to show e.g. GetThreadContext / this call)
+
+static void walk_stack(uint skip, wchar_t* out_buf, CONTEXT* thread_context = NULL)
+{
+	pos = out_buf;
+	out(L"\r\nCall stack:\r\n\r\n");
+
+	foreach_caller(dump_caller, 0, thread_context);
 }
 
 
@@ -579,7 +665,7 @@ static int CALLBACK dlgproc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM l
 	{
 		DLG_TYPE type = (DLG_TYPE)lParam;
 
-		/* disable inappropriate buttons */
+		// disable inappropriate buttons
 		if(type != ASSERT)
 		{
 			HWND h;
@@ -592,13 +678,13 @@ static int CALLBACK dlgproc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM l
 		}
 
 		SetDlgItemTextW(hDlg, IDC_EDIT1, buf);
-		return 1;	/* allow focus to be set */
+		return 1;	// allow focus to be set
 	}
 
 	case WM_SYSCOMMAND:
 		if(wParam == SC_CLOSE)
 			EndDialog(hDlg, 0);
-		return 0;	/* allows dragging; don't understand why. */
+		return 0;	// allows dragging; don't understand why.
 
 	case WM_COMMAND:
 		switch(wParam)
@@ -607,9 +693,9 @@ static int CALLBACK dlgproc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM l
 			clipboard_set(buf);
 			break;
 
-		case IDC_CONTINUE:	/* 2000 */
+		case IDC_CONTINUE:	// 2000
 		case IDC_SUPPRESS:
-		case IDC_BREAK:		/* 2002 */
+		case IDC_BREAK:		// 2002
 			EndDialog(hDlg, wParam-2000);
 			break;
 
@@ -619,21 +705,20 @@ static int CALLBACK dlgproc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM l
 		return 1;
 	}
 
-	return 0;	/* do default processing for msg */
+	return 0;	// do default processing for msg
 }
 
 
 
 
-/*
- * show error dialog, with stack trace (must be stored in buf[])
- * exits directly if 'exit' is clicked.
- *
- * return values:
- *   0 - continue
- *   1 - suppress
- *   2 - break
- */
+// show error dialog, with stack trace (must be stored in buf[])
+// exits directly if 'exit' is clicked.
+//
+// return values:
+//   0 - continue
+//   1 - suppress
+//   2 - break
+
 static int dialog(DLG_TYPE type)
 {
 	return (int)DialogBoxParam(0, MAKEINTRESOURCE(IDD_DIALOG1), 0, dlgproc, (LPARAM)type);
@@ -651,7 +736,7 @@ static long CALLBACK except_filter(EXCEPTION_POINTERS* except)
 	uintptr_t addr = (uintptr_t)except_record->ExceptionAddress;
 
 	DWORD code = except_record->ExceptionCode;
-	char* except_str = "(unknown)";
+	const char* except_str;
 #define X(e) case EXCEPTION_##e: except_str = #e; break;
 	switch(code)
 	{
@@ -677,12 +762,14 @@ static long CALLBACK except_filter(EXCEPTION_POINTERS* except)
 		X(INVALID_DISPOSITION)
 		X(GUARD_PAGE)
 		X(INVALID_HANDLE)
+	default:
+		except_str = "(unknown)";
 	}
 #undef X
 
 	MEMORY_BASIC_INFORMATION mbi;
 	char module_buf[100];
-	char* module = "???";
+	const char* module = "???";
 	uintptr_t base = 0;
 
 	if(VirtualQuery((void*)addr, &mbi, sizeof(mbi)))
@@ -885,16 +972,9 @@ int debug_main_exception_filter(unsigned int UNUSEDPARAM(code), PEXCEPTION_POINT
 
 
 
-static void init()
-{
-	ONCE(dbg_init());
-}
-
 
 int debug_assert_failed(const char* file, int line, const char* expr)
 {
-	init();
-
 	int pos = swprintf(buf, 1000, L"Assertion failed in %hs, line %d: %hs\r\n", file, line, expr);
 	walk_stack(2, buf+pos);
 
@@ -902,18 +982,6 @@ int debug_assert_failed(const char* file, int line, const char* expr)
 }
 
 
-// main.cpp will have an exception handler, but this covers low-level init
-// (before main is called)
-static int wdbg_init()
-{
-	set_exception_handler();
-	return 0;
-}
-
-
-#pragma data_seg(".LIB$WIB")	// first
-WIN_REGISTER_FUNC(wdbg_init);
-#pragma data_seg()
 
 
 // from http://www.codeproject.com/debug/XCrashReportPt3.asp
@@ -943,7 +1011,7 @@ static void DumpMiniDump(HANDLE hFile, PEXCEPTION_POINTERS excpInfo)
 		// so that people only have to send us one file?
 
 		// note:  MiniDumpWithIndirectlyReferencedMemory does not work on Win98
-		if (!_MiniDumpWriteDump(
+		if (!MiniDumpWriteDump(
 			GetCurrentProcess(),
 			GetCurrentProcessId(),
 			hFile,
@@ -966,18 +1034,16 @@ static void cat_atow(FILE* in, FILE* out)
 		int r = (int)fread(buffer, 1, bufsize, in);
 		if (!r) break;
 		buffer[r] = 0; // ensure proper NULLness
-		fwprintf(out, L"%hs", &buffer);
+		fwprintf(out, L"%hs", buffer);
 	}
 }
 
 // Imported from sysdep.cpp
 extern wchar_t MicroBuffer[];
-extern int MicroBuffer_off;
+extern size_t MicroBuffer_off;
 
-int debug_write_crashlog(const char* file, wchar_t* header, void* context)
+int debug_write_crashlog(const char* file, const wchar_t* header, void* context)
 {
-	init();
-
 	int len = swprintf(buf, 1000, L"Undefined state reached.\r\n");
 
 	__try
@@ -993,7 +1059,7 @@ int debug_write_crashlog(const char* file, wchar_t* header, void* context)
 	}
 
 	FILE* f = fopen(file, "wb");
-	int BOM = 0xFEFF;
+	u16 BOM = 0xFEFF;
 	fwrite(&BOM, 2, 1, f);
 	if (header)
 	{
