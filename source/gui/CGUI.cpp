@@ -31,16 +31,17 @@ using namespace std;
 
 #include "input.h"
 
-// called from main loop when (input) events are received.
-// event is passed to other handlers if false is returned.
-// trampoline: we don't want to make the implementation (in CGUI) static
+//-------------------------------------------------------------------
+//	called from main loop when (input) events are received.
+//	event is passed to other handlers if false is returned.
+//	trampoline: we don't want to make the implementation (in CGUI) static
+//-------------------------------------------------------------------
 bool gui_handler(const SDL_Event& ev)
 {
 	return g_GUI.HandleEvent(ev);
 
 //	return false;
 }
-
 
 bool CGUI::HandleEvent(const SDL_Event& ev)
 {
@@ -97,7 +98,9 @@ CGUI::~CGUI()
 		delete m_BaseObject;
 }
 
-//	Construct an object
+//-------------------------------------------------------------------
+//  Functions
+//-------------------------------------------------------------------
 CGUIObject *CGUI::ConstructObject(const CStr &str)
 {
 	if (m_ObjectTypes.count(str) > 0)
@@ -106,11 +109,6 @@ CGUIObject *CGUI::ConstructObject(const CStr &str)
 		return NULL;
 }
 
-//-------------------------------------------------------------------
-//  Initializes the GUI
-//  Inputs:
-//    
-//-------------------------------------------------------------------
 void CGUI::Initialize(/*/*CInput *pInput*/)
 {
 ///	m_pInput = pInput;
@@ -119,10 +117,6 @@ void CGUI::Initialize(/*/*CInput *pInput*/)
 	AddObjectType("button", &CButton::ConstructObject);
 }
 
-//-------------------------------------------------------------------
-//  Process the GUI, this should be run every loop after CInput
-//   has been processed
-//-------------------------------------------------------------------
 void CGUI::Process()
 {
 /*/*
@@ -190,9 +184,6 @@ void CGUI::Process()
 */
 }
 
-//-------------------------------------------------------------------
-//  Make all drawing calls of the GUI
-//-------------------------------------------------------------------
 void CGUI::Draw()
 {
 	try
@@ -206,13 +197,10 @@ void CGUI::Draw()
 	}
 }
 
-//-------------------------------------------------------------------
-//  Shutdown all memory
-//-------------------------------------------------------------------
 void CGUI::Destroy()
 {
 	// We can use the map to delete all
-	//  now we don't want to cancel all if one Destory fails
+	//  now we don't want to cancel all if one Destroy fails
 	map_pObjects::iterator it;
 	for (it = m_pAllObjects.begin(); it != m_pAllObjects.end(); ++it)
 	{
@@ -234,15 +222,6 @@ void CGUI::Destroy()
 	m_Sprites.clear();
 }
 
-//-------------------------------------------------------------------
-//  Adds an object to the GUI's object database
-//  Input:
-//	  Name				Name of object
-//	  pObject			Object's pointer
-//
-//  Return:
-//	  Throws PS_RESULT
-//-------------------------------------------------------------------
 void CGUI::AddObject(CGUIObject* pObject)
 {
 	try
@@ -259,13 +238,6 @@ void CGUI::AddObject(CGUIObject* pObject)
 	}
 }
 
-//-------------------------------------------------------------------
-//  Should be called when an object has been
-//	This function is atomic, meaning if it throws anything, it will
-//	 have seen it through that nothing was ultimately changed.
-//	Throws:
-//	  Whatever AddToPointersMap throws
-//-------------------------------------------------------------------
 void CGUI::UpdateObjects()
 {
 	// We'll fill a temporary map until we know everything
@@ -287,11 +259,6 @@ void CGUI::UpdateObjects()
 	m_pAllObjects = AllObjects;
 }
 
-//-------------------------------------------------------------------
-//  Check if an object exists by name
-//  Input:
-//    Name				Object reference name
-//-------------------------------------------------------------------
 bool CGUI::ObjectExists(const CStr &Name) const
 {
 	if (m_pAllObjects.count(Name))
@@ -300,12 +267,6 @@ bool CGUI::ObjectExists(const CStr &Name) const
 		return false;
 }
 
-//-------------------------------------------------------------------
-//	Report XML Reading Error, should be called from within the
-//	 Xerces_* functions.
-//	Input:
-//	  str				String explaining error
-//-------------------------------------------------------------------
 void CGUI::ReportParseError(const CStr &str, ...)
 {
 	// Print header
@@ -328,11 +289,6 @@ void CGUI::ReportParseError(const CStr &str, ...)
 ///	g_nemLog(" %s", buffer);
 }
 
-//-------------------------------------------------------------------
-//  Adds an object to the GUI's object database
-//  Input:
-//	  Filename			XML filename
-//-------------------------------------------------------------------
 void CGUI::LoadXMLFile(const string &Filename)
 {
 	// Reset parse error
@@ -431,12 +387,6 @@ void CGUI::LoadXMLFile(const string &Filename)
 //	XML Reading Xerces Specific Sub-Routines
 //===================================================================
 
-//-------------------------------------------------------------------
-//  Reads in the root element <objects></objects> (the DOMElement).
-//  Input:
-//    pElement			The Xerces C++ Parser object that represents
-//						 the <objects>.
-//-------------------------------------------------------------------
 void CGUI::Xerces_ReadRootObjects(XERCES_CPP_NAMESPACE::DOMElement *pElement)
 {
 	// Iterate main children
@@ -456,12 +406,6 @@ void CGUI::Xerces_ReadRootObjects(XERCES_CPP_NAMESPACE::DOMElement *pElement)
 	}
 }
 
-//-------------------------------------------------------------------
-//  Reads in the root element <sprites></sprites> (the DOMElement).
-//  Input:
-//    pElement			The Xerces C++ Parser object that represents
-//						 the <sprites>.
-//-------------------------------------------------------------------
 void CGUI::Xerces_ReadRootSprites(XERCES_CPP_NAMESPACE::DOMElement *pElement)
 {
 	// Iterate main children
@@ -481,21 +425,6 @@ void CGUI::Xerces_ReadRootSprites(XERCES_CPP_NAMESPACE::DOMElement *pElement)
 	}
 }
 
-
-//-------------------------------------------------------------------
-//	Notice! Recursive function!
-//
-//  Reads in an <object></object> (the DOMElement) and stores it
-//	 as a child in the pParent.
-//	It will also check the object's children and call this function
-//	 on them too. Also it will call all other functions that reads
-//	 in other stuff that can be found within an object. Such as
-//	 <action> will call Xerces_ReadAction (TODO, real funcion?)
-//  Input:
-//    pParent			Parent to add this object as child in
-//    pElement			The Xerces C++ Parser object that represents
-//						 the <object>.
-//-------------------------------------------------------------------
 void CGUI::Xerces_ReadObject(DOMElement *pElement, CGUIObject *pParent)
 {
 	assert(pParent && pElement);
@@ -631,13 +560,6 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, CGUIObject *pParent)
 	}
 }
 
-
-//-------------------------------------------------------------------
-//  Reads in a <sprite></sprite> (the DOMElement).
-//  Input:
-//    pElement			The Xerces C++ Parser object that represents
-//						 the <sprite>.
-//-------------------------------------------------------------------
 void CGUI::Xerces_ReadSprite(XERCES_CPP_NAMESPACE::DOMElement *pElement)
 {
 	assert(pElement);
@@ -689,14 +611,6 @@ void CGUI::Xerces_ReadSprite(XERCES_CPP_NAMESPACE::DOMElement *pElement)
 	m_Sprites[name] = sprite;
 }
 
-
-//-------------------------------------------------------------------
-//  Reads in a <image></image> (the DOMElement) to parent
-//  Input:
-//    parent			Sprite to add this image too
-//    pElement			The Xerces C++ Parser object that represents
-//						 the <image>.
-//-------------------------------------------------------------------
 void CGUI::Xerces_ReadImage(XERCES_CPP_NAMESPACE::DOMElement *pElement, CGUISprite &parent)
 {
 	assert(pElement);

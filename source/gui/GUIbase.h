@@ -59,7 +59,7 @@ public:																	\
 //--------------------------------------------------------
 //  Types
 //--------------------------------------------------------
-/**
+/** \enum EGUIMessage
  * Message send to <code>CGUIObject::HandleMessage()</code> in order
  * to give life to Objects manually with
  * a derived <code>HandleMessage()</code>.

@@ -94,6 +94,8 @@ enum EAlign { EAlign_Left, EAlign_Right, EAlign_Center };
 enum EValign { EValign_Top, EValign_Bottom, EValign_Center };
 
 /**
+ * @author Gustav Larsson
+ *
  * Stores the information where to find a variable
  * in a GUI-Object object, also what type it is.
  */
@@ -104,6 +106,8 @@ struct SGUISetting
 };
 
 /**
+ * @author Gustav Larsson
+ *
  * Base settings, all objects possess these settings
  * in their <code>m_BaseSettings</code>
  * Instructions can be found in the documentations.
@@ -144,22 +148,22 @@ public:
 	virtual map_Settings GetSettingsInfo() const { return m_SettingsInfo; }
 
 	/**
-	 * Is mouse over
-	 * because it's virtual you can change the
-	 * mouse over demands, such as making a round
-	 * button, or just modifying it when changed,
-	 * like for a combo box.
+	 * Checks if mouse is hovering this object.
+     * The mouse position is cached in CGUI.
 	 *
-	 * The default one uses <code>m_Size</code>.
+	 * This function checks if the mouse is hovering the
+	 * rectangle that the base setting "size" makes.
+	 * Although it is virtual, so one could derive
+	 * an object from CButton, which changes only this
+	 * to checking the circle that "size" makes.
 	 *
-	 * @return true if mouse is over
+	 * @return true if mouse is hovering
 	 */
 	virtual bool MouseOver();
 
 	//--------------------------------------------------------
-	//	Leaf Functions
-	//--------------------------------------------------------
 	/** @name Leaf Functions */
+	//--------------------------------------------------------
 	//@{
 
 	/// Get object name, name is unique
@@ -169,24 +173,38 @@ public:
 	void SetName(const CStr &Name) { m_Name = Name; }
 
 	/**
-	 * Fill a map_pObjects with this object (does not include recursion)
+	 * Adds object and its children to the map, it's name being the
+	 * first part, and the second being itself.
 	 *
 	 * @param ObjectMap Adds <code>this</code> to the <code>map_pObjects</code>.
+	 *
+	 * @throws PS_NEEDS_NAME Name is missing
+	 * @throws PS_NAME_AMBIGUITY Name is already taken
 	 */
 	void AddToPointersMap(map_pObjects &ObjectMap);
 
 	/**
-	 * Add child
+	 * Notice nothing will be returned or thrown if the child hasn't 
+	 * been inputted into the GUI yet. This is because that's were 
+	 * all is checked. Now we're just linking two objects, but
+	 * it's when we're inputting them into the GUI we'll check
+	 * validity! Notice also when adding it to the GUI this function
+	 * will inevitably have been called by CGUI::AddObject which
+	 * will catch the throw and return the error code.
+	 * i.e. The user will never put in the situation wherein a throw
+	 * must be caught, the GUI's internal error handling will be
+	 * completely transparent to the interfacially sequential model.
 	 *
-	 * @param pChild Add child by pointer
+	 * @param pChild Child to add
+	 *
+	 * @throws PS_RESULT from CGUI::UpdateObjects().
 	 */
 	void AddChild(CGUIObject *pChild);
 
 	//@}
 	//--------------------------------------------------------
-	//	Iterate
-	//--------------------------------------------------------
 	/** @name Iterate */
+	//--------------------------------------------------------
 	//@{
 
 	vector_pObjects::iterator ChildrenItBegin()	{ return m_Children.begin(); }
@@ -194,57 +212,71 @@ public:
 
 	//@}
 	//--------------------------------------------------------
-	//	Settings Management
-	//--------------------------------------------------------
 	/** @name Settings Management */
+	//--------------------------------------------------------
 	//@{
 
 	SGUIBaseSettings GetBaseSettings() const { return m_BaseSettings; }
 	void SetBaseSettings(const SGUIBaseSettings &Set);
-
+	
 	/**
 	 * Checks if settings exists, only available for derived
 	 * classes that has this set up, that's why the base
 	 * class just returns false
 	 *
 	 * @param Setting setting name
-	 * @return true if settings exist
+	 * @return True if settings exist.
 	 */
 	bool SettingExists(const CStr &Setting) const;
-
-	/// Setup base pointers
-	void SetupBaseSettingsInfo(map_Settings &SettingsInfo);
-
-	/// Set Setting by string
-	void SetSetting(const CStr &Setting, const CStr &Value);
-
+	
 	/**
 	 * Should be called every time the settings has been updated
-	 * will also send a message <code>GUIM_SETTINGS_UPDATED</code>, so that
+	 * will also send a message GUIM_SETTINGS_UPDATED, so that
 	 * if a derived object wants to add things to be updated,
 	 * they add it in that message part, this is a better solution
 	 * than making this virtual, since the updates that the base
 	 * class does, are the most essential.
 	 * This is not private since there should be no harm in
 	 * checking validity.
+	 *
+	 * @throws GeeTODO not quite settled yet.
 	 */
 	void CheckSettingsValidity();
+
+	/**
+	 * Sets up a map_size_t to include the variables in m_BaseSettings
+	 *
+	 * @param SettingsInfo Pointers that should be filled with base variables
+	 */
+	void SetupBaseSettingsInfo(map_Settings &SettingsInfo);
+
+	/**
+	 * Set a setting by string, regardless of what type it is.
+	 *
+	 * example a CRect(10,10,20,20) would be "10 10 20 20"
+	 *
+	 * @param Setting Setting by name
+	 * @param Value Value to set to
+	 */
+	void SetSetting(const CStr &Setting, const CStr &Value);
 
 	//@}
 protected:
 	//--------------------------------------------------------
-	//	Methods that the CGUI will call using
-	//   its friendship, these should not
-	//	 be called by user.
-	//
-	//	These functions' security are a lot
-	//	 what constitutes the GUI's
+	/** @name Called by CGUI and friends
+	 *
+	 * Methods that the CGUI will call using
+	 * its friendship, these should not
+	 * be called by user.
+	 * These functions' security are a lot
+	 * what constitutes the GUI's
+	 */
 	//--------------------------------------------------------
-	/** @name Internal methods that uses friendship */
 	//@{
 
 	/**
-	 * Calls Destroy on all children, and deallocates all memory
+	 * Calls Destroy on all children, and deallocates all memory.
+	 * BIG TODO Should it destroy it's children?
 	 */
 	virtual void Destroy();
 	
@@ -252,12 +284,17 @@ protected:
      * This function is called with different messages
 	 * for instance when the mouse enters the object.
 	 *
-	 * @param Message <code>EGUIMessage</code>.
+	 * @param Message EGUIMessage
 	 */
 	virtual void HandleMessage(const EGUIMessage &Message)=0;
 
 	/**
-	 * Draws the object
+	 * Draws the object.
+	 *
+	 * @throws	PS_RESULT if any. But this will mostlikely be
+	 *			very rare since if an object is drawn unsuccessfully
+	 *			it'll probably only output in the Error log, and not
+	 *			disrupt the whole GUI drawing.
 	 */
 	virtual void Draw()=0;
 
@@ -270,46 +307,52 @@ protected:
 	void SetParent(CGUIObject *pParent) { m_pParent = pParent; }
 	
 	/**
-	 * <b>NOTE!</b> This will not just return <code>m_pParent</code>, when that is need
-	 * use it! There is one exception to it, when the parent is
+	 * <b>NOTE!</b> This will not just return m_pParent, when that is
+	 * need use it! There is one exception to it, when the parent is
 	 * the top-node (the object that isn't a real object), this
-	 * will return <code>NULL</code>, so that the top-node's children are
+	 * will return NULL, so that the top-node's children are
 	 * seemingly parentless.
 	 *
 	 * @return Pointer to parent
 	 */
 	CGUIObject *GetParent();
 
-	/**
-	 * Clear children, removes all children
-	 * Update objects, will basically use the this base class
-	 * to access a private member in <code>CGUI</code>, this base
-	 * class will be only one with permission
-	 */
-//	void UpdateObjects();
-
 	// Get cached mouse x/y from CGUI
 	u16 GetMouseX() const;
 	u16 GetMouseY() const;
 
+	//@}
 private:
-	// Functions used fully private and by friends (mainly the CGUI)
+	//--------------------------------------------------------
+	/** @name Internal functions */
+	//--------------------------------------------------------
+	//@{
 	
 	/**
-	 * You input pointer, and if the Z value of this object
-	 * is greater than the one inputted, the pointer is changed to this.
+	 * Inputs a reference pointer, checks if the new inputted object
+	 * if hovered, if so, then check if <code>this</code>'s Z value is greater
+	 * than the inputted object... If so then the object is closer
+	 * and we'll replace the pointer with <code>this</code>.
+	 * Also Notice input can be NULL, which means the Z value demand
+	 *  is out. NOTICE you can't input NULL as const so you'll have
+	 * to set an object to NULL.
 	 *
-	 * @param pObject Object pointer
+	 * @param pObject	Object pointer, can be either the old one, or
+	 *					the new one.
 	 */
 	void ChooseMouseOverAndClosest(CGUIObject* &pObject);
 
 	/**
-	 * Update Mouse Over (for this object only)
+	 * Inputes the object that is currently hovered, this function
+	 * updates this object accordingly (i.e. if it's the object
+	 * being inputted one thing happens, and not, another).
 	 *
-	 * @param pMouseOver
+	 * @param pMouseOver	Object that is currently hovered,
+	 *						can OF COURSE be NULL too!
 	 */
 	void UpdateMouseOver(CGUIObject * const &pMouseOver);
 
+	//@}
 
 	// Variables
 
@@ -317,7 +360,7 @@ protected:
 	/// Name of object
 	CStr									m_Name;
 
-	/// Constructed on the heap, will be destroyed along with the the object
+	/// Constructed on the heap, will be destroyed along with the the object TODO Really?
 	vector_pObjects							m_Children;
 
 	/// Pointer to parent
@@ -332,8 +375,7 @@ protected:
 	bool									m_MouseHovering;
 
 	/**	
-	 * Offset database
-	 * tells us where a variable by a string name is
+	 * Tells us where a variable by a string name is
 	 * located hardcoded, in order to acquire a pointer
 	 * for that variable... Say "frozen" gives
 	 * the offset from CGUIObject to m_Frozen.

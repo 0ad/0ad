@@ -9,14 +9,6 @@ gee@pyro.nu
 
 using namespace std;
 
-//-------------------------------------------------------------------
-//  Draw this sprite
-//	Input:
-//	  rect				Rectangle where the sprite should be drawn
-//	  z					Same as above only with Z-value
-//	  clipping			The clipping rectangle, things should only 
-//						 be drawn within these perimeters.
-//-------------------------------------------------------------------
 void CGUISprite::Draw(const float &z, const CRect &rect, const CRect &clipping=CRect(0,0,0,0))
 {
 	bool DoClipping = (clipping != CRect(0,0,0,0));

@@ -7,10 +7,6 @@ gee@pyro.nu
 //#include "stdafx."
 #include "GUI.h"
 
-///// janwas: you addded this? not needed
-//#include "cgui.h"
-/////
-
 ///// janwas: again, including etiquette?
 #include "../ps/Parser.h"
 #include <assert.h>
@@ -20,12 +16,6 @@ using namespace std;
 
 // Offsets
 map_Settings CGUIObject::m_SettingsInfo;
-
-// This must be placed after the line above defining
-//  m_SettingsInfo, GeeTODO, I'm not sure if this is
-//  the appropriate file, but it crashes if it's not
-//  in this file.
-//CGUI g_GUI;
 
 //-------------------------------------------------------------------
 //  Implementation Macros
@@ -60,9 +50,7 @@ CGUIObject::~CGUIObject()
 }
 
 //-------------------------------------------------------------------
-//  Change the base settings
-//	Input:
-//	  Set						Setting struct
+//  Functions
 //-------------------------------------------------------------------
 void CGUIObject::SetBaseSettings(const SGUIBaseSettings &Set)
 { 
@@ -70,21 +58,6 @@ void CGUIObject::SetBaseSettings(const SGUIBaseSettings &Set)
 	CheckSettingsValidity(); 
 }
 
-//-------------------------------------------------------------------
-//  Adds a child
-//	Notice nothing will be returned or thrown if the child hasn't
-//	 been inputted into the GUI yet. This is because that's were
-//	 all is checked. Now we're just linking two objects, but
-//	 it's when we're inputting them into the GUI we'll check
-//	 validity! Notice also when adding it to the GUI this function
-//	 will inevitably have been called by CGUI::AddObject which
-//	 will catch the throw and return the error code.
-//	i.e. The user will never put in the situation wherein a throw
-//	 must be caught, the GUI's internal error handling will be
-//	 completely transparent to the interfacially sequential model.
-//	Input:
-//	  pChild				Child to add
-//-------------------------------------------------------------------
 void CGUIObject::AddChild(CGUIObject *pChild)
 {
 	// 
@@ -121,16 +94,6 @@ void CGUIObject::AddChild(CGUIObject *pChild)
 	// else do nothing
 }
 
-//-------------------------------------------------------------------
-//  Adds object and its children to the map, it's name being the
-//	 first part, and the second being itself.
-//	Input:
-//	  ObjectMap				Checks to see if the name's already taken
-//	Output:
-//	  ObjectMap				Fills it with more
-//	Throws:
-//	  PS_NAME_AMBIGUITY
-//-------------------------------------------------------------------
 void CGUIObject::AddToPointersMap(map_pObjects &ObjectMap)
 {
 	// Just don't do anything about the top node
@@ -154,20 +117,11 @@ void CGUIObject::AddToPointersMap(map_pObjects &ObjectMap)
 	}
 }
 
-//-------------------------------------------------------------------
-//  Destroys all children and the current object too
-//-------------------------------------------------------------------
 void CGUIObject::Destroy()
 {
 	// Is there anything besides the children to destroy?
 }
 
-//-------------------------------------------------------------------
-//  Sets up a map_size_t to include the variables in m_BaseSettings
-//  Input:
-//    p						Pointers that should be filled with base
-//							 variables
-//-------------------------------------------------------------------
 void CGUIObject::SetupBaseSettingsInfo(map_Settings &SettingsInfo)
 {
 	SettingsInfo["hejsan"].m_Offset = 0;
@@ -181,10 +135,6 @@ void CGUIObject::SetupBaseSettingsInfo(map_Settings &SettingsInfo)
 	_GUI_ADD_OFFSET("string",	"caption",		m_Caption)
 }
 
-//-------------------------------------------------------------------
-//  Checks if mouse is over and returns result
-//  mouse_x, mouse_y defined in CGUI
-//-------------------------------------------------------------------
 bool CGUIObject::MouseOver()
 {
 	if(!GetGUI())
@@ -199,9 +149,6 @@ bool CGUIObject::MouseOver()
 			mouse_y <= m_BaseSettings.m_Size.top);
 }
 
-//-------------------------------------------------------------------
-//  Get Mouse X/Y from CGUI
-//-------------------------------------------------------------------
 u16 CGUIObject::GetMouseX() const
 { 
 	return ((GetGUI())?(GetGUI()->m_MouseX):0); 
@@ -212,14 +159,6 @@ u16 CGUIObject::GetMouseY() const
 	return ((GetGUI())?(GetGUI()->m_MouseY):0); 
 }
 
-//-------------------------------------------------------------------
-//  Inputes the object that is currently hovered, this function
-//	 updates this object accordingly (i.e. if it's the object
-//	 being inputted one thing happens, and not, another).
-//	Input:
-//	  pMouseOver				Object that is currently hovered
-//								 can OF COURSE be NULL too!
-//-------------------------------------------------------------------
 void CGUIObject::UpdateMouseOver(CGUIObject * const &pMouseOver)
 {
 	// Check if this is the object being hovered.
@@ -247,11 +186,6 @@ void CGUIObject::UpdateMouseOver(CGUIObject * const &pMouseOver)
 	}
 }
 
-//-------------------------------------------------------------------
-//  Check if setting exists by name
-//  Input:
-//    Setting				Setting by name
-//-------------------------------------------------------------------
 bool CGUIObject::SettingExists(const CStr &Setting) const
 {
 	// Because GetOffsets will direct dynamically defined
@@ -261,13 +195,6 @@ bool CGUIObject::SettingExists(const CStr &Setting) const
 	return (GetSettingsInfo().count(Setting) == 1)?true:false;
 }
 
-//-------------------------------------------------------------------
-//  Set a setting by string, regardless of what type it is...
-//	 example a CRect(10,10,20,20) would be "10 10 20 20"
-//  Input:
-//    Setting				Setting by name
-//    Value					Value
-//-------------------------------------------------------------------
 void CGUIObject::SetSetting(const CStr &Setting, const CStr &Value)
 {
 	if (!SettingExists(Setting))
@@ -349,20 +276,6 @@ void CGUIObject::SetSetting(const CStr &Setting, const CStr &Value)
 	}
 }
 
-
-//-------------------------------------------------------------------
-//  Inputs a reference pointer, checks if the new inputted object
-//	 if hovered, if so, then check if (this)'s Z value is greater
-//	 than the inputted object... If so then the object is closer
-//	 and we'll replace the pointer with (this)
-//	Also Notice input can be NULL, which means the Z value demand
-//	 is out. NOTICE you can't input NULL as const so you'll have
-//	 to set an object to NULL.
-//  Input:
-//    pObject				Object pointer
-//  Input:
-//    pObject				Object pointer, either old or (this)
-//-------------------------------------------------------------------
 void CGUIObject::ChooseMouseOverAndClosest(CGUIObject* &pObject)
 {
 	if (MouseOver())
@@ -383,13 +296,6 @@ void CGUIObject::ChooseMouseOverAndClosest(CGUIObject* &pObject)
 	}
 }
 
-//-------------------------------------------------------------------
-//  Get Object's parent, notice that if the parent is the top-node
-//	 then, we'll return NULL, because we don't want the top-node
-//   taken into account.
-//	Return:
-//	  The Parent
-//-------------------------------------------------------------------
 CGUIObject *CGUIObject::GetParent()
 {
 	// Important, we're not using GetParent() for these
@@ -404,13 +310,6 @@ CGUIObject *CGUIObject::GetParent()
 }
 
 // GeeTODO keep this function and all???
-//-------------------------------------------------------------------
-//  Called every time settings are change, this is where you check
-//	 validity (not syntactical, that's already check) of your values.
-//	 perhaps you can't have Z being below 0. Anyway this is where
-//	 all is checked, and if you wanbt to add more in a derived object
-//	 do that in GUIM_SETTINGS_UPDATED
-//-------------------------------------------------------------------
 void CGUIObject::CheckSettingsValidity()
 {
 	// If we hide an object, reset many of its parts

@@ -82,8 +82,10 @@ public:
 	/**
 	 * Execute a drawing request for this sprite
 	 *
-	 * @param z Draw in what depth.
-	 * @param rect Outer rectangle to draw the collage.
+	 * @param z				Draw in what depth.
+	 * @param rect			Outer rectangle to draw the collage.
+	 * @param clipping		The clipping rectangle, things should only 
+	 *						be drawn within these perimeters.
 	 */
 	void Draw(const float &z, const CRect &rect, const CRect &clipping);
 

@@ -9,9 +9,34 @@ gee@pyro.nu
 
 --More info--
 
-	http://gee.pyro.nu/wfg/GUI/
+	http://gee.pyro.nu/GUI/
 
 */
+
+// Main page for GUI documentation
+/**
+ * \mainpage
+ * Welcome to the Wildfire Games Graphical User Interface Documentation.
+ *
+ * Additional Downloads can be made from the link below.\n
+ * <a href="http://gee.pyro.nu/GUIfiles/">Technical Design Document</a>
+ *
+ * 
+ * \dot
+ * digraph
+ * {
+ *	node [shape=record, fontname=Helvetica, fontsize=10];
+ *	q [ label="Questions?"];
+ *  c [ label="Comments?"];
+ *  s [ label="Suggestions?"];
+ *	email [label="E-mail Me" URL="mailto:slimgee@bredband.net"];
+ *	q -> email;
+ *	c -> email;
+ *	s -> email;
+ * }
+ * \enddot
+ */
+
 
 #ifndef GUI_H
 #define GUI_H

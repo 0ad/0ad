@@ -52,7 +52,9 @@ public:
 	CGUIButtonBehavior();
 	virtual ~CGUIButtonBehavior();
 
-	/// Handle Messages
+	/**
+	 * @see CGUIObject#HandleMessage()
+	 */
 	virtual void HandleMessage(const EGUIMessage &Message);
 
 protected:

@@ -20,11 +20,6 @@ CGUIButtonBehavior::~CGUIButtonBehavior()
 {
 }
 
-//-------------------------------------------------------------------
-//  Handles messages send from the CGUI
-//  Input:
-//    Message					Message ID, GUIM_*
-//-------------------------------------------------------------------
 void CGUIButtonBehavior::HandleMessage(const EGUIMessage &Message)
 {
 	switch (Message)

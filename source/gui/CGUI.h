@@ -81,12 +81,16 @@ public:
 
 	/**
 	 * Displays the whole GUI
+	 *
+	 * @throws PS_RESULT from CGUIObject::Draw().
 	 */
 	void Draw();
 	
 	/**
 	 * Clean up, call this to clean up all memory allocated
 	 * within the GUI.
+	 *
+	 * @throws PS_RESULT from CGUIObject::Destroy().
 	 */
 	void Destroy();
 
@@ -131,6 +135,11 @@ private:
 	/**
 	 * Updates the object pointers, needs to be called each
 	 * time an object has been added or removed.
+	 *
+	 * This function is atomic, meaning if it throws anything, it will
+	 * have seen it through that nothing was ultimately changed.
+	 *
+	 * @throws PS_RESULT that is thrown from CGUIObject::AddToPointersMap().
 	 */
 	void UpdateObjects();
 
@@ -139,11 +148,15 @@ private:
 	 * Private, since you can only add objects through 
 	 * XML files. Why? Becasue it enables the GUI to
 	 * be much more encapsulated and safe.
+	 *
+	 * @throws	Rethrows PS_RESULT from CGUIObject::SetGUI() and
+	 *			CGUIObject::AddChild().
 	 */
 	void AddObject(CGUIObject* pObject);
 
 	/**
-	 * Report an XML parsing error
+	 * Report XML Reading Error, should be called from within the
+	 * Xerces_* functions.
 	 *
 	 * @param str Error message
 	 */
@@ -160,10 +173,7 @@ private:
 	CGUIObject *ConstructObject(const CStr &str);
 
 	//--------------------------------------------------------
-	// XML Reading Xerces C++ specific subroutines
-	//--------------------------------------------------------
-	/** 
-	 * @name Xerces_* Read Function 
+	/** @name XML Reading Xerces C++ specific subroutines
 	 *
 	 * These does not throw!
 	 * Because when reading in XML files, it won't be fatal
@@ -171,54 +181,101 @@ private:
 	 * fails, but it'll still continue reading in the next.
 	 * All Error are reported with ReportParseError
 	 */
-	//@{
+	//--------------------------------------------------------
 
-	/*
+	/**
 		Xerces_* functions tree
-
-		==========================
-
-		<objects> (ReadRootObjects)
+		<code>
+		\<objects\> (ReadRootObjects)
 		 |
-		 +-<object> (ReadObject)
+		 +-\<object\> (ReadObject)
 			|
-			+-<action>
+			+-\<action\>
 			|
 			+-Optional Type Extensions (CGUIObject::ReadExtendedElement) TODO
 			|
 			+-«object» *recursive*
 
 
-		<styles> (ReadRootStyles)
+		\<styles\> (ReadRootStyles)
 		 |
-		 +-<style> (ReadStyle)
+		 +-\<style\> (ReadStyle)
 
 
-		<sprites> (ReadRootSprites)
+		\<sprites\> (ReadRootSprites)
 		 |
-		 +-<sprite> (ReadSprite)
+		 +-\<sprite\> (ReadSprite)
 			|
-			+-<image> (ReadImage)
+			+-\<image\> (ReadImage)
 
 
-		<setup> (ReadRootSetup)
+		\<setup>\ (ReadRootSetup)
 		 |
-		 +-<tooltip> (ReadToolTip)
+		 +-\<tooltip>\ (ReadToolTip)
 		 |
-		 +-<scrollbar> (ReadScrollBar)
+		 +-\<scrollbar>\ (ReadScrollBar)
 		 |
-		 +-<icon> (ReadIcon)
+		 +-\<icon>\ (ReadIcon)
 
-		==========================
+		</code>
 	*/
+	//@{
 
-	// Read roots
+	// Read Roots
+
+	/**
+	 * Reads in the root element "objects" (the DOMElement).
+	 *
+	 * @param pElement	The Xerces C++ Parser object that represents
+	 *					the objects-tag.
+	 */
 	void Xerces_ReadRootObjects(XERCES_CPP_NAMESPACE::DOMElement *pElement);
+
+	/**
+	 * Reads in the root element "sprites" (the DOMElement).
+	 *
+	 * @param pElement	The Xerces C++ Parser object that represents
+	 *					the sprites-tag.
+	 */
 	void Xerces_ReadRootSprites(XERCES_CPP_NAMESPACE::DOMElement *pElement);
 
-	// Read subs
+	// Read Subs
+
+	/**
+	 * Notice! Recursive function!
+	 *
+	 * Read in an "object"-tag (the DOMElement) and stores it
+	 * as a child in the pParent.
+	 *
+	 * It will also check the object's children and call this function
+	 * on them too. Also it will call all other functions that reads
+	 * in other stuff that can be found within an object. Such as
+	 * "action"-tag will call Xerces_ReadAction (TODO, real funcion?).
+	 *
+	 * Reads in the root element "sprites" (the DOMElement).
+	 *
+	 * @param pElement	The Xerces C++ Parser object that represents
+	 *					the object-tag.
+	 * @param pParent	Parent to add this object as child in.
+	 */
 	void Xerces_ReadObject(XERCES_CPP_NAMESPACE::DOMElement *, CGUIObject *pParent);
+
+	/**
+	 * Reads in the element "sprite" (the DOMElement) and store the
+	 * result in a new CGUISprite.
+	 *
+	 * @param pElement	The Xerces C++ Parser object that represents
+	 *					the sprite-tag.
+	 */
 	void Xerces_ReadSprite(XERCES_CPP_NAMESPACE::DOMElement *);
+
+	/**
+	 * Reads in the element "image" (the DOMElement) and store the
+	 * result within the CGUISprite.
+	 *
+	 * @param pElement	The Xerces C++ Parser object that represents
+	 *					the image-tag.
+	 */
 	void Xerces_ReadImage(XERCES_CPP_NAMESPACE::DOMElement *, CGUISprite &parent);
 
 	//@}
@@ -228,9 +285,8 @@ private:
 	// Variables
 
 	//--------------------------------------------------------
-	//	Misc
-	//--------------------------------------------------------
 	/** @name Miscellaneous */
+	//--------------------------------------------------------
 	//@{
 
 	/**
@@ -245,9 +301,8 @@ private:
 
 	//@}
 	//--------------------------------------------------------
-	//	Objects
-	//--------------------------------------------------------
 	/** @name Objects */
+	//--------------------------------------------------------
 	//@{
 
 	/**
@@ -274,9 +329,8 @@ private:
 
 	//@}
 	//--------------------------------------------------------
-	//	Sprites
-	//--------------------------------------------------------
 	/** @name Sprites */
+	//--------------------------------------------------------
 	//@{
 
 	std::map<CStr, CGUISprite>				m_Sprites;

@@ -70,11 +70,6 @@ CButton::~CButton()
 {
 }
 
-//-------------------------------------------------------------------
-//  Handles messages send from the CGUI
-//  Input:
-//    Message					Message ID, GUIM_*
-//-------------------------------------------------------------------
 void CButton::HandleMessage(const EGUIMessage &Message)
 {
 // TODO REMOVE
@@ -118,11 +113,6 @@ void CButton::HandleMessage(const EGUIMessage &Message)
 	}
 }
 
-//-------------------------------------------------------------------
-//  Draws the object
-//  Input:
-//    pInput					Handler of keyboard and mouse
-//-------------------------------------------------------------------
 void CButton::Draw()
 {
 	if (m_MouseHovering)
