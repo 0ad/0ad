@@ -424,8 +424,6 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 	i32 idx;
 	HDATA* hd;
 
-	const uint scope = flags & RES_SCOPE_MASK;
-
 	// get key (either hash of filename, or fn param)
 	uintptr_t key = 0;
 	// not backed by file; fn is the key
@@ -439,6 +437,12 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 		if(fn)
 			key = fnv_hash(fn);
 	}
+
+	// disable caching if no key, because it would never be found
+	if(!key)
+		flags |= RES_NO_CACHE;	// changes scope to RES_TEMP
+
+	const uint scope = flags & RES_SCOPE_MASK;
 
 	if(key)
 	{
