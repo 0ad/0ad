@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <group>
+    <variant frequency="10" name="a">
+      <mesh>props/head_longhair.pmd</mesh>
+      <texture>props/head/celt_a.dds</texture>
+    </variant>
+    <variant frequency="10" name="b">
+      <mesh>props/head_longhair.pmd</mesh>
+      <texture>props/head/celt_b.dds</texture>
+    </variant>
+    <variant frequency="5" name="c">
+      <mesh>props/head_longhair.pmd</mesh>
+      <texture>props/head/celt_c.dds</texture>
+    </variant>
+    <variant frequency="10" name="d">
+      <mesh>props/head_longhair.pmd</mesh>
+      <texture>props/head/celt_d.dds</texture>
+    </variant>
+  </group>
+
+</actor>
