@@ -548,7 +548,8 @@ void CSelectedEntities::contextOrder( bool pushQueue )
 			contextRandomized.m_data[0].location.y += _y * radius;
 
 			// Clamp it to within the map, just in case.
-			float mapsize = (float)g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
+			float mapsize = (float)g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide() * CELL_SIZE;
+
 			if( contextRandomized.m_data[0].location.x < 0.0f )
 				contextRandomized.m_data[0].location.x = 0.0f;
 			if( contextRandomized.m_data[0].location.x >= mapsize )
@@ -557,7 +558,7 @@ void CSelectedEntities::contextOrder( bool pushQueue )
 				contextRandomized.m_data[0].location.y = 0.0f;
 			if( contextRandomized.m_data[0].location.y >= mapsize )
 				contextRandomized.m_data[0].location.y = mapsize;
-
+			
 			if( !pushQueue )
 				(*it)->clearOrders();
 			

@@ -8,6 +8,27 @@ CScriptObject::CScriptObject()
 	Function = NULL;
 }
 
+CScriptObject::~CScriptObject()
+{
+	Uproot();
+}
+
+void CScriptObject::Root()
+{
+	if( !Function )
+		return;
+
+	FunctionObject = JS_GetFunctionObject( Function );
+
+	JS_AddRoot( g_ScriptingHost.GetContext(), &FunctionObject );
+}
+
+void CScriptObject::Uproot()
+{
+	if( Function )
+		JS_RemoveRoot( g_ScriptingHost.GetContext(), &FunctionObject );
+}
+
 CScriptObject::CScriptObject( JSFunction* _Function )
 {
 	SetFunction( _Function );
@@ -20,7 +41,11 @@ CScriptObject::CScriptObject( jsval v )
 
 void CScriptObject::SetFunction( JSFunction* _Function )
 {
+	Uproot();
+
 	Function = _Function;
+	
+	Root();
 }
 
 void CScriptObject::SetJSVal( jsval v )
@@ -43,7 +68,7 @@ void CScriptObject::SetJSVal( jsval v )
 JSObject* CScriptObject::GetFunctionObject()
 {
 	if( Function )
-		return( JS_GetFunctionObject( Function ) );
+		return( FunctionObject );
 	return( NULL );
 }
 
@@ -78,7 +103,12 @@ bool CScriptObject::DispatchEvent( JSObject* Context, CScriptEvent* evt )
 
 void CScriptObject::Compile( CStrW FileNameTag, CStrW FunctionBody )
 {
+	if( Function )
+		JS_RemoveRoot( g_ScriptingHost.GetContext(), &Function );
+
 	const char* argnames[] = { "evt" };
 	utf16string str16=FunctionBody.utf16();
 	Function = JS_CompileUCFunction( g_ScriptingHost.GetContext(), NULL, NULL, 1, argnames, str16.c_str(), str16.size(), (CStr)FileNameTag, 0 );
+	
+	Root();
 }

@@ -40,7 +40,8 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	AddProperty( L"actions.attack.rangemin", &m_meleeRangeMin );
 	AddProperty( L"position", &m_graphics_position, false, (NotifyFn)&CEntity::teleport );
 	AddProperty( L"orientation", &m_graphics_orientation, false, (NotifyFn)&CEntity::reorient );
-	
+	AddProperty( L"player", &m_player );
+
 	for( int t = 0; t < EVENT_LAST; t++ )
 		AddProperty( EventNames[t], &m_EventHandlers[t] );
 	
@@ -70,7 +71,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 
 	m_grouped = -1;
 
-	m_player = 1;
+	m_player = g_Game->GetPlayer( 0 );
 }
 
 CEntity::~CEntity()
@@ -513,8 +514,8 @@ void CEntity::renderSelectionOutline( float alpha )
 		glColor4f( 1.0f, 0.5f, 0.5f, alpha );
 	else
 	{
-		int player = min(max(1, m_player), 8) - 1;
-		glColor4f( PlayerColours[player][0], PlayerColours[player][1], PlayerColours[player][2], alpha);
+		SColour& col = m_player->m_Colour;
+		glColor3f( col.r, col.g, col.b );
 	}
 	
 	glBegin( GL_LINE_LOOP );

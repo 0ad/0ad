@@ -33,6 +33,7 @@
 
 #include <deque>
 #include "scripting/ScriptableObject.h"
+#include "Player.h"
 
 #include "Vector2D.h"
 #include "Vector3D.h"
@@ -68,8 +69,8 @@ public:
 	bool m_selected;
 	i32 m_grouped;
 
-	// The player that owns this entity. TODO: do this properly (if this way is wrong)
-	int m_player;
+	// The player that owns this entity
+	CPlayer* m_player;
 
 	// If this unit has been removed from the gameworld but has still
 	// has references.

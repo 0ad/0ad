@@ -173,8 +173,16 @@ PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 			delete m_Players[i];
 
 		m_NumPlayers=pAttribs->GetValue("numPlayers").ToUInt();
-		m_Players.resize(m_NumPlayers);
-		for (uint i=0;i<m_NumPlayers;i++)
+
+		// Note: If m_Players is resized after this point (causing a reallocation)
+		// various bits of code will still contain pointers to data at the original
+		// locations. This is seldom a good thing. Make it big enough here.
+
+		// Player 0 = Gaia
+
+		m_Players.resize(m_NumPlayers + 1);
+
+		for (uint i=0;i <= m_NumPlayers;i++)
 			m_Players[i]=new CPlayer(i);
 		
 		// FIXME If the GUI hasn't set attributes for all players, the CPlayer
@@ -186,7 +194,22 @@ PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 			// TODO Set player attributes in the player object
 		}
 			
-		m_pLocalPlayer=m_Players[0];
+		m_Players[0]->m_Name = L"Gaia";
+		m_Players[0]->m_Colour.r = 0.2f;
+		m_Players[0]->m_Colour.g = 0.7f;
+		m_Players[0]->m_Colour.b = 0.2f;
+
+		m_Players[1]->m_Name = L"Acumen";
+		m_Players[1]->m_Colour.r = 1.0f;
+		m_Players[1]->m_Colour.g = 0.0f;
+		m_Players[1]->m_Colour.b = 0.0f;
+
+		m_Players[2]->m_Name = L"Boco the Insignificant";
+		m_Players[2]->m_Colour.r = 0.0f;
+		m_Players[2]->m_Colour.g = 0.0f;
+		m_Players[2]->m_Colour.b = 1.0f;
+
+		m_pLocalPlayer=m_Players[1];
 
 		// RC, 040804 - GameView needs to be initialised before World, otherwise GameView initialisation
 		// overwrites anything stored in the map file that gets loaded by CWorld::Initialize with default

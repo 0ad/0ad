@@ -74,6 +74,10 @@ public:
 	
 	inline CPlayer *GetPlayer(uint idx)
 	{	return m_Players[idx]; }
+
+	inline std::vector<CPlayer*>* GetPlayers()
+	{	return( &m_Players ); }
+
 	inline uint GetNumPlayers()
 	{	return m_NumPlayers; }
 

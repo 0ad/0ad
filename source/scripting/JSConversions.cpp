@@ -19,6 +19,21 @@ template<> JSObject* ToScript<HEntity>( HEntity* Native )
 	return( ToScript<CEntity>( &( **Native ) ) );
 }
 
+// CPlayer*
+template<> bool ToPrimitive<CPlayer*>( JSContext* cx, jsval v, CPlayer*& Storage )
+{
+	if( !JSVAL_IS_OBJECT( v ) ) return( false );
+	CPlayer* Data = (CPlayer*)JS_GetInstancePrivate( cx, JSVAL_TO_OBJECT( v ), &CPlayer::JSI_class, NULL );
+	if( !Data ) return( false );
+	Storage = Data;
+	return( true );
+}
+
+template<> JSObject* ToScript<CPlayer*>( CPlayer** Native )
+{
+	return( ToScript<CPlayer>( *Native ) );
+}
+
 // CBaseEntity*
 
 template<> bool ToPrimitive<CBaseEntity*>( JSContext* cx, jsval v, CBaseEntity*& Storage )

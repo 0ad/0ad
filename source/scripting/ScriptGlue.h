@@ -15,6 +15,9 @@ JSFunc getEntityByHandle;
 JSFunc getEntityTemplate;
 JSBool GetEntitySet( JSContext* context, JSObject* globalObject, jsval argv, jsval* vp );
 
+// Player
+JSBool GetPlayerSet( JSContext* context, JSObject* globalObject, jsval argv, jsval* vp );
+
 // Timer
 JSFunc setTimeout;
 JSFunc setInterval;
@@ -45,6 +48,7 @@ JSFunc loadLanguage;
 JSFunc getLanguageID;
 
 JSFunc getFPS;
+JSFunc getCursorPosition;
 JSFunc v3dist;
 
 // Returns a string that says when ScriptGlue.cpp was last recompiled

@@ -91,6 +91,7 @@ JSPropertySpec ScriptGlobalTable[] =
 	{ "camera", GLOBAL_CAMERA, JSPROP_PERMANENT, JSI_Camera::getCamera, JSI_Camera::setCamera },
 	{ "console", GLOBAL_CONSOLE, JSPROP_PERMANENT | JSPROP_READONLY, JSI_Console::getConsole, NULL },
 	{ "entities", 0, JSPROP_PERMANENT | JSPROP_READONLY, GetEntitySet, NULL },
+	{ "players", 0, JSPROP_PERMANENT | JSPROP_READONLY, GetPlayerSet, NULL },
 	{ 0, 0, 0, 0, 0 },
 };
 
@@ -182,6 +183,15 @@ JSBool GetEntitySet( JSContext* context, JSObject* globalObject, jsval argv, jsv
 
 	*vp = OBJECT_TO_JSVAL( EntityCollection::Create( *extant ) );
 	delete( extant );
+
+	return( JS_TRUE );
+}
+
+JSBool GetPlayerSet( JSContext* cx, JSObject* globalObject, jsval argv, jsval* vp )
+{
+	std::vector<CPlayer*>* players = g_Game->GetPlayers();
+
+	*vp = OBJECT_TO_JSVAL( PlayerCollection::Create( *players ) );
 
 	return( JS_TRUE );
 }

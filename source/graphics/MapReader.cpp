@@ -4,6 +4,7 @@
 #include "MapReader.h"
 #include "UnitManager.h"
 #include "Unit.h"
+#include "Game.h"
 #include "ObjectManager.h"
 #include "BaseEntity.h"
 #include "BaseEntityCollection.h"
@@ -287,7 +288,7 @@ void CMapReader::ReadXML(const char* filename)
 				}
 
 				HEntity ent = g_EntityManager.create(g_EntityTemplateCollection.getTemplate(TemplateName), Position, Orientation);
-				ent->m_player = PlayerID;
+				ent->m_player = g_Game->GetPlayer( PlayerID );
 			}
 		}
 		else

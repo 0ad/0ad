@@ -15,11 +15,17 @@
 class CScriptObject
 {
 	JSFunction* Function;
+	JSObject* FunctionObject;
+	void Root();
+	void Uproot();
+
 public:
 
 	CScriptObject();
 	CScriptObject( JSFunction* _Function );
 	CScriptObject( jsval v );
+
+	~CScriptObject();
 
 	// Initialize in various ways: from a JS function, a string to be compiled, or a jsval containing either.
 	void SetFunction( JSFunction* _Function );

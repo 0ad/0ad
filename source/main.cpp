@@ -718,10 +718,14 @@ TIMER(InitScripting)
 #endif
 	JSI_Vector3D::init();
 	EntityCollection::Init( "EntityCollection" );
-	// PlayerCollection::Init( "PlayerCollection" );
+	SColour::ScriptingInit();
+	CPlayer::ScriptingInit();
+	
+	PlayerCollection::Init( "PlayerCollection" );
 	CDamageType::ScriptingInit();
 	CJSPropertyAccessor<CEntity>::ScriptingInit(); // <-- Doesn't really matter which we use, but we know CJSPropertyAccessor<T> is already being compiled for T = CEntity.
 	CScriptEvent::ScriptingInit();
+	
 
 	g_ScriptingHost.DefineConstant( "ORDER_NONE", -1 );
 	g_ScriptingHost.DefineConstant( "ORDER_GOTO", CEntityOrder::ORDER_GOTO );
