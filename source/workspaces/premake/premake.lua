@@ -84,7 +84,6 @@ if (OS == "windows") then
 "/DELAYLOAD:glu32.dll",
 "/DELAY:UNLOAD"		-- allow manual unload of delay-loaded DLLs
 }
-	package.linkflags = { "static-runtime" }
 	package.buildflags = { "no-main" }
 	package.pchHeader = "precompiled.h"
 	package.pchSource = "precompiled.cpp"
