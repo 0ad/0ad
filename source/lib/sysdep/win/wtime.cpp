@@ -489,7 +489,6 @@ static unsigned __stdcall calibration_thread(void* data)
 		calibrate();
 	}
 
-	CloseHandle(hExitEvent);
 	return 0;
 }
 
