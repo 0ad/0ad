@@ -1,272 +1,158 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<actor>
-  <castshadow>true</castshadow>
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
 
   <group>
-    <variant>
-      <name>Base</name>
-      <frequency>100</frequency>
-      <mesh>art/meshes/skeletal/m_dress_a.pmd</mesh>
-      <material>art/materials/player_trans.xml</material>
-      <texture>art/textures/skins/skeletal/plac_rome_e.dds</texture>
+    <variant frequency="100" name="Base">
       <animations>
-        <animation>
-          <name>Idle</name>
-          <file>art/animation/biped/dudeidle.psa</file>
-          <speed>200</speed>
-        </animation>
-        <animation>
-          <name>Walk</name>
-          <file>art/animation/biped/dudewalk_swordshield.psa</file>
-          <speed>700</speed>
-        </animation>
-        <animation>
-          <name>Build</name>
-          <file>art/animation/biped/dudebuild.psa</file>
-          <speed>150</speed>
-        </animation>
-        <animation>
-          <name>Chop</name>
-          <file>art/animation/biped/dudechop.psa</file>
-          <speed>150</speed>
-        </animation>
-        <animation>
-          <name>Death</name>
-          <file>art/animation/biped/dudedeath_sword.psa</file>
-          <speed>200</speed>
-        </animation>
-        <animation>
-          <name>Decay</name>
-          <file>art/animation/biped/dudedecay_sword.psa</file>
-          <speed>100</speed>
-        </animation>
-        <animation>
-          <name>Attack</name>
-          <file>art/animation/biped/dudeattack.psa</file>
-          <speed>300</speed>
-        </animation>
-        <animation>
-          <name>Attack1</name>
-          <file>art/animation/biped/dudeattack1.psa</file>
-          <speed>300</speed>
-        </animation>
+        <animation file="biped/dudeidle.psa" name="Idle" speed="200"/>
+        <animation file="biped/dudewalk_swordshield.psa" name="Walk" speed="700"/>
+        <animation file="biped/dudebuild.psa" name="Build" speed="150"/>
+        <animation file="biped/dudechop.psa" name="Chop" speed="150"/>
+        <animation file="biped/dudedeath_sword.psa" name="Death" speed="200"/>
+        <animation file="biped/dudedecay_sword.psa" name="Decay" speed="100"/>
+        <animation file="biped/dudeattack.psa" name="Attack" speed="300"/>
+        <animation file="biped/dudeattack1.psa" name="Attack1" speed="300"/>
       </animations>
+      <mesh>skeletal/m_dress_a.pmd</mesh>
+      <texture>skeletal/plac_rome_e.dds</texture>
     </variant>
   </group>
 
+  <group>
+    <variant name="Helmet">
+      <props>
+        <prop actor="props/temp/plac_helmet_e.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant name="None"/>
+  </group>
+
+  <group>
+    <variant frequency="50" name="Head">
+      <props>
+        <prop actor="props/head/dude_head.xml" attachpoint="head"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="None"/>
+  </group>
 
   <group>
     <variant>
-      <name>Helmet</name>
       <props>
-        <prop>
-          <attachpoint>helmet</attachpoint>
-          <model>Elite Helmet</model>
-        </prop>
+        <prop actor="props/weapon/weap_axe_b.xml" attachpoint="l_hand"/>
       </props>
     </variant>
-    <variant>
-      <name>None</name>
-    </variant>
-   </group>
-   
-   <group>
-    <variant>
-      <name>Head</name>
-      <frequency>50</frequency>
-      <props>
-        <prop>
-          <attachpoint>head</attachpoint>
-          <model>Dude Head</model>
-        </prop>
-      </props>
-    </variant>
-    <variant>
-      <name>None</name>
-      <frequency>1</frequency>
-    </variant>
-   </group>
-   
-   <group>
+    <variant name="None"/>
+  </group>
+
+  <group>
     <variant>
       <props>
-        <prop>
-          <attachpoint>l_hand</attachpoint>
-          <model>Axe B</model>
-        </prop>
+        <prop actor="props/temp/l_glove.xml" attachpoint="l_forearm"/>
       </props>
     </variant>
-    <variant>
-      <name>None</name>
-    </variant>
-   </group>
-   
-   <group>
+    <variant name="None"/>
+  </group>
+
+  <group>
     <variant>
       <props>
-        <prop>
-          <attachpoint>l_forearm</attachpoint>
-          <model>Left Glove</model>
-        </prop>
+        <prop actor="props/temp/l_shoulder.xml" attachpoint="l_shoulder"/>
       </props>
     </variant>
-    <variant>
-      <name>None</name>
-    </variant>
-   </group>
-   
-   <group>
+    <variant name="None"/>
+  </group>
+
+  <group>
     <variant>
       <props>
-        <prop>
-          <attachpoint>l_shoulder</attachpoint>
-          <model>Left Shoulder</model>
-        </prop>
+        <prop actor="props/weapon/weap_axe_a.xml" attachpoint="r_hand"/>
       </props>
     </variant>
-    <variant>
-      <name>None</name>
-    </variant>
-   </group>
-   
-   <group>
+    <variant name="None"/>
+  </group>
+
+  <group>
     <variant>
       <props>
-        <prop>
-          <attachpoint>r_hand</attachpoint>
-          <model>Axe A</model>
-        </prop>
+        <prop actor="props/temp/r_glove.xml" attachpoint="r_forearm"/>
       </props>
     </variant>
-    <variant>
-      <name>None</name>
-    </variant>
-   </group>
-   
-   <group>
+    <variant name="None"/>
+  </group>
+
+  <group>
     <variant>
       <props>
-        <prop>
-          <attachpoint>r_forearm</attachpoint>
-          <model>Right Glove</model>
-        </prop>
+        <prop actor="props/temp/r_shoulder.xml" attachpoint="r_shoulder"/>
       </props>
     </variant>
-    <variant>
-      <name>None</name>
-    </variant>
-   </group>
-   
-   <group>
+    <variant name="None"/>
+  </group>
+
+  <group>
     <variant>
       <props>
-        <prop>
-          <attachpoint>r_shoulder</attachpoint>
-          <model>Right Shoulder</model>
-        </prop>
+        <prop actor="props/temp/breastplate.xml" attachpoint="chest"/>
       </props>
     </variant>
-    <variant>
-      <name>None</name>
-    </variant>
-   </group>
-   
-   <group>
+    <variant name="None"/>
+  </group>
+
+  <group>
     <variant>
       <props>
-        <prop>
-          <attachpoint>chest</attachpoint>
-          <model>Breastplate</model>
-        </prop>
+        <prop actor="props/temp/quiver.xml" attachpoint="back"/>
       </props>
     </variant>
-    <variant>
-      <name>None</name>
-    </variant>
-   </group>
-   
-   <group>
+    <variant name="None"/>
+  </group>
+
+  <group>
     <variant>
       <props>
-        <prop>
-          <attachpoint>back</attachpoint>
-          <model>Quiver</model>
-        </prop>
+        <prop actor="props/temp/cape.xml" attachpoint="shoulders"/>
       </props>
     </variant>
-    <variant>
-      <name>None</name>
-    </variant>
-   </group>
-   
-   <group>
+    <variant name="None"/>
+  </group>
+
+  <group>
     <variant>
       <props>
-        <prop>
-          <attachpoint>shoulders</attachpoint>
-          <model>Cape</model>
-        </prop>
+        <prop actor="props/temp/l_boot.xml" attachpoint="l_leg"/>
       </props>
     </variant>
-    <variant>
-      <name>None</name>
-    </variant>
-   </group>
-   
-   <group>
+    <variant name="None"/>
+  </group>
+
+  <group>
     <variant>
       <props>
-        <prop>
-          <attachpoint>l_leg</attachpoint>
-          <model>Left Boot</model>
-        </prop>
+        <prop actor="props/temp/r_boot.xml" attachpoint="r_leg"/>
       </props>
     </variant>
-    <variant>
-      <name>None</name>
-    </variant>
-   </group>
-   
-   <group>
+    <variant name="None"/>
+  </group>
+
+  <group>
     <variant>
       <props>
-        <prop>
-          <attachpoint>r_leg</attachpoint>
-          <model>Right Boot</model>
-        </prop>
+        <prop actor="props/temp/l_sheath.xml" attachpoint="l_hip"/>
       </props>
     </variant>
-    <variant>
-      <name>None</name>
-    </variant>
-   </group>
-   
-   <group>
+    <variant name="None"/>
+  </group>
+
+  <group>
     <variant>
       <props>
-        <prop>
-          <attachpoint>l_hip</attachpoint>
-          <model>Left Sheath</model>
-        </prop>
+        <prop actor="props/temp/r_sheath.xml" attachpoint="r_hip"/>
       </props>
     </variant>
-    <variant>
-      <name>None</name>
-    </variant>
-   </group>
-   
-   <group>
-    <variant>
-      <props>
-        <prop>
-          <attachpoint>r_hip</attachpoint>
-          <model>Right Sheath</model>
-        </prop>
-      </props>
-    </variant>
-    <variant>
-      <name>None</name>
-    </variant>
+    <variant name="None"/>
   </group>
 
 </actor>

@@ -140,22 +140,24 @@ bool CObjectBase::Load(const char* filename)
 
 		// Define all the elements used in the XML file
 		#define EL(x) int el_##x = XeroFile.getElementID(#x)
+		#define AT(x) int at_##x = XeroFile.getAttributeID(#x)
 		EL(castshadow);
 		EL(material);
 		EL(group);
 		EL(variant);
 		EL(animations);
 		EL(animation);
-		EL(file);
-		EL(name);
-		EL(speed);
 		EL(props);
 		EL(prop);
-		EL(attachpoint);
-		EL(model);
-		EL(frequency);
 		EL(mesh);
 		EL(texture);
+		AT(file);
+		AT(name);
+		AT(speed);
+		AT(attachpoint);
+		AT(actor);
+		AT(frequency);
+		#undef AT
 		#undef EL
 
 		// (This code is rather worryingly verbose...)
@@ -172,21 +174,25 @@ bool CObjectBase::Load(const char* filename)
 				{
 					m_Variants.back().resize(m_Variants.back().size()+1);
 
+					XERO_ITER_ATTR(variant, attr)
+					{
+						if (attr.Name == at_name)
+							m_Variants.back().back().m_VariantName = attr.Value;
+
+						else if (attr.Name == at_frequency)
+							m_Variants.back().back().m_Frequency = CStr(attr.Value).ToInt();
+					}
+
+
 					XERO_ITER_EL(variant, option)
 					{
 						int option_name = option.getNodeName();
 
-						if (option_name == el_name)
-							m_Variants.back().back().m_VariantName = option.getText();
-
-						else if (option_name == el_frequency)
-							m_Variants.back().back().m_Frequency = CStr(option.getText()).ToInt();
-
-						else if (option_name == el_mesh)
+						if (option_name == el_mesh)
 							m_Variants.back().back().m_ModelFilename = "art/meshes/" + CStr(option.getText());
 
 						else if (option_name == el_texture)
-							m_Variants.back().back().m_TextureFilename = "art/textures/" + CStr(option.getText());
+							m_Variants.back().back().m_TextureFilename = "art/textures/skins/" + CStr(option.getText());
 
 						else if (option_name == el_animations)
 						{
@@ -194,16 +200,15 @@ bool CObjectBase::Load(const char* filename)
 							{
 								Anim anim;
 
-								XERO_ITER_EL(anim_element, ae)
+								XERO_ITER_ATTR(anim_element, ae)
 								{
-									int ae_name = ae.getNodeName();
-									if (ae_name == el_name)
-										anim.m_AnimName = ae.getText();
-									else if (ae_name == el_file)
-										anim.m_FileName = "art/animation/" + CStr(ae.getText());
-									else if (ae_name == el_speed)
+									if (ae.Name == at_name)
+										anim.m_AnimName = ae.Value;
+									else if (ae.Name == at_file)
+										anim.m_FileName = "art/animation/" + CStr(ae.Value);
+									else if (ae.Name == at_speed)
 									{
-										anim.m_Speed = CStr(ae.getText()).ToInt() / 100.f;
+										anim.m_Speed = CStr(ae.Value).ToInt() / 100.f;
 										if (anim.m_Speed <= 0.0) anim.m_Speed = 1.0f;
 									}
 									else
@@ -219,13 +224,12 @@ bool CObjectBase::Load(const char* filename)
 							{
 								Prop prop;
 
-								XERO_ITER_EL(prop_element, pe)
+								XERO_ITER_ATTR(prop_element, pe)
 								{
-									int pe_name = pe.getNodeName();
-									if (pe_name == el_attachpoint)
-										prop.m_PropPointName = pe.getText();
-									else if (pe_name == el_model)
-										prop.m_ModelName = pe.getText();
+									if (pe.Name == at_attachpoint)
+										prop.m_PropPointName = pe.Value;
+									else if (pe.Name == at_actor)
+										prop.m_ModelName = pe.Value;
 									else
 										; // unrecognised element
 								}

@@ -124,11 +124,11 @@ bool CObjectEntry::BuildModel()
 					m_Model->AddProp(proppoint,propmodel);
 					if (oe->m_WalkAnim) propmodel->SetAnimation(oe->m_WalkAnim);
 				} else {
-					LOG(ERROR, LOG_CATEGORY, "Failed to build prop model \"%s\" on actor \"%s\"",(const char*) m_Base->m_Name,(const char*) prop.m_ModelName);
+					LOG(ERROR, LOG_CATEGORY, "Failed to build prop model \"%s\" on actor \"%s\"", (const char*)prop.m_ModelName, (const char*)m_Base->m_Name);
 				}
 			}
 		} else {
-			LOG(ERROR, LOG_CATEGORY, "Failed to matching prop point called \"%s\" in model \"%s\"", (const char*)prop.m_PropPointName, modelfilename);
+			LOG(ERROR, LOG_CATEGORY, "Failed to find matching prop point called \"%s\" in model \"%s\" on actor \"%s\"", (const char*)prop.m_PropPointName, modelfilename, (const char*)prop.m_ModelName);
 		}
 	}
 
