@@ -187,20 +187,18 @@ private:
 	bool m_NonBlocking;
 
 	/**
-	 * Initialize any data needed to communicate to the RunWaitLoop(). After
-	 * the call to InitWaitLoop, it should be safe to call any IPC function
-	 * that expects to talk to the wait loop.
-	 */
-	static void InitWaitLoop();
-
-	/**
 	 * Loop forever, waiting for events and calling the callbacks on sockets,
-	 * according to their Op mask.
+	 * according to their Op mask. This loop may be aborted by calling
+	 * AbortWaitLoop.
+	 *
+	 * The global lock must be held when calling this function, and will be held
+	 * upon return from it.
 	 */
 	static void RunWaitLoop();
 
 	/**
-	 * The network thread entry point. Simply calls RunWaitLoop()
+	 * The network thread entry point. Simply locks the global lock and calls
+	 * RunWaitLoop.
 	 */
 	friend void *WaitLoopThreadMain(void *);
 
@@ -211,11 +209,11 @@ private:
 	friend void WaitLoop_SocketUpdateProc(int fd, int error, uint eventmask);
 
 #else
-
-	/**
-	 * An internal utility function used by the UNIX select loop
-	 */
-	friend bool ConnectError(CSocketBase *, CSocketInternal *);
+	// These are utility functions for the unix select loop. Dox can be found in
+	// the source file.
+	static bool ConnectError(CSocketBase *);
+	static void SocketWritable(CSocketBase *);
+	static void SocketReadable(CSocketBase *);
 #endif
 		
 	/**

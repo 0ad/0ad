@@ -13,9 +13,22 @@ CPlayer::CPlayer(uint playerID):
 	m_UpdateCB(0)
 {
 	AddReadOnlyProperty( L"id", &m_PlayerID );
-	AddProperty( L"controlled", (IJSObject::GetFn)&CPlayer::GetControlledEntities_JS );
+	AddProperty( L"controlled", (GetFn)&CPlayer::JSI_GetControlledEntities);
 	AddSynchedProperty( L"name", &m_Name );
-	AddSynchedProperty( L"colour", &m_Colour );
+	// HACK - since we have to use setColour to update this, we don't want to
+	// expose a colour property. Meanwhile, we want to have a property "colour"
+	// available to be able to use the update/sync system.
+	// So, this is only added to the SynchedProperties list and not also passed
+	// to CJSObject's list
+	ISynchedJSProperty *prop=new CSynchedJSProperty<SPlayerColour>(L"colour", &m_Colour, this);
+	m_SynchedProperties[L"colour"]=prop;
+}
+
+void CPlayer::ScriptingInit()
+{
+	AddMethod<jsval, &CPlayer::JSI_ToString>( "toString", 0 );
+	AddMethod<jsval, &CPlayer::JSI_SetColour>( "setColour", 1);
+	CJSObject<CPlayer>::ScriptingInit( "Player" );
 }
 
 void CPlayer::Update(CStrW name, ISynchedJSProperty *prop)
@@ -48,7 +61,7 @@ std::vector<HEntity>* CPlayer::GetControlledEntities()
 	return( g_EntityManager.matches( ControllerPredicate, this ) );
 }
 
-jsval CPlayer::ToString( JSContext* cx, uintN argc, jsval* argv )
+jsval CPlayer::JSI_ToString( JSContext* cx, uintN argc, jsval* argv )
 {
 	wchar_t buffer[256];
 	swprintf( buffer, 256, L"[object Player: %ls]", m_Name.c_str() );
@@ -57,7 +70,7 @@ jsval CPlayer::ToString( JSContext* cx, uintN argc, jsval* argv )
 	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, str16.c_str() ) ) );
 }
 
-jsval CPlayer::GetControlledEntities_JS()
+jsval CPlayer::JSI_GetControlledEntities()
 {
 	std::vector<HEntity>* controlledSet = GetControlledEntities();
 	jsval vp = OBJECT_TO_JSVAL( EntityCollection::Create( *controlledSet ) );
@@ -65,8 +78,12 @@ jsval CPlayer::GetControlledEntities_JS()
 	return( vp );
 }
 
-void CPlayer::ScriptingInit()
+jsval CPlayer::JSI_SetColour( JSContext* cx, uintN argc, jsval* argv )
 {
-	AddMethod<jsval, &CPlayer::ToString>( "toString", 0 );
-	CJSObject<CPlayer>::ScriptingInit( "Player" );
+	if (argc != 1)
+		return JSVAL_NULL;
+	
+	m_Colour=*( ToNative<SPlayerColour>(argv[0]) );
+	ISynchedJSProperty *prop=GetSynchedProperty(L"colour");
+	Update(L"colour", prop);
 }

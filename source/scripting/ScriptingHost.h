@@ -117,7 +117,8 @@ public:
 	utf16string ValueToUTF16( const jsval value );
     double ValueToDouble(const jsval value);
 
-	jsval UCStringToValue(const utf16string &str);
+	jsval UTF16ToValue(const utf16string &str);
+	jsval UCStringToValue(const CStrW &str);
 
 	static void ErrorReporter(JSContext * context, const char * message, JSErrorReport * report);
 };

@@ -12,6 +12,8 @@ enum ENetMessageType
 		list.
 		First, all negative types are only for internal/local use and may never
 		be sent over the network.
+		After that, all "real" network messages are listed, giving them a value
+		from 0 and upwards (*unique* value)
 	*/
 	/**
 	 * A special message that contains a PS_RESULT code, used for delivery of
@@ -31,19 +33,20 @@ enum ENetMessageType
 	 */
 	NMT_NONE=0,
 	
-	/* Handshake State */
+	/* Handshake Stage */
 	NMT_ServerHandshake,
 	NMT_ClientHandshake,
 	NMT_ServerHandshakeResponse,
-	/* Common Messages, state 2-5 */
-	NMT_Result,
-	/* Authentication State */
+	/* Authentication Stage */
 	NMT_Authenticate,
-	/* Common Messages, state 3-5 */
+	NMT_AuthenticationResult,
+	/* Common Messages, stage 3-5 */
 	NMT_ChatMessage,
-	/* Pre-Game State */
-	NMT_PlayerConnect,
+	/* Pre-Game Stage */
+	NMT_ClientConnect,
+	NMT_ClientDisconnect,
 	NMT_SetGameConfig,
+	NMT_AssignPlayerSlot,
 	NMT_SetPlayerConfig,
 	NMT_FilesRequired,
 	NMT_FileRequest,
@@ -51,12 +54,12 @@ enum ENetMessageType
 	NMT_FileChunkAck,
 	NMT_FileProgress,
 	NMT_StartGame,
-	/* In-Game State */
+	/* In-Game Stage */
 	NMT_EndCommandBatch,
 	NMT_COMMAND_FIRST,
 	NMT_GotoCommand=NMT_COMMAND_FIRST,
 	NMT_COMMAND_LAST=NMT_GotoCommand,
-	/* Post-Game State */
+	/* Post-Game Stage */
 
 	/**
 	 * One higher than the highest value of any message type
@@ -64,6 +67,9 @@ enum ENetMessageType
 	NMT_LAST // Always put this last in the list
 };
 
+/**
+	Only applies to NMT_AuthenticationResult (as of now).
+*/
 enum ENetResultCodes
 {
 	NRC_OK,
@@ -82,8 +88,8 @@ enum ENetResultCodes
 
 // At a later date, there should be a standard for assigning protocol version
 // numbers. For now, this also highly arbitrary number will hold its place
-// 1.1.1.1
-#define PS_PROTOCOL_VERSION 0x01010101
+// 1.1.2
+#define PS_PROTOCOL_VERSION 0x01010002
 
 // 0x5073 = decimal 20595
 // The "symbolism" is that the two bytes of the port number in network byte
@@ -93,9 +99,19 @@ enum ENetResultCodes
 // Chat Recipient Constants
 enum
 {
+	// Any chat recipients lower than this one is an actual session ID
+	PS_CHAT_RCP_FIRST_SPECIAL=0xfffd,
 	PS_CHAT_RCP_ENEMIES=0xfffd,
 	PS_CHAT_RCP_ALLIES=0xfffe,
 	PS_CHAT_RCP_ALL=0xffff,
+};
+
+enum
+{
+	PS_ASSIGN_OPEN,
+	PS_ASSIGN_CLOSED,
+	PS_ASSIGN_AI,
+	PS_ASSIGN_SESSION
 };
 
 #endif // #ifndef _AllNetMessage_H
@@ -125,8 +141,9 @@ START_NMT_CLASS_(ServerHandshakeResponse)
 	NMT_FIELD(CStrW, m_Message)
 END_NMT_CLASS()
 
-START_NMT_CLASS_(Result)
+START_NMT_CLASS_(AuthenticationResult)
 	NMT_FIELD_INT(m_Code, u32, 4)
+	NMT_FIELD_INT(m_SessionID, u32, 2)
 	NMT_FIELD(CStrW, m_Message)
 END_NMT_CLASS()
 
@@ -142,6 +159,17 @@ START_NMT_CLASS_(ChatMessage)
 	NMT_FIELD(CStrW, m_Message)
 END_NMT_CLASS()
 
+START_NMT_CLASS_(ClientConnect)
+	NMT_START_ARRAY(m_Clients)
+		NMT_FIELD_INT(m_SessionID, u32, 2)
+		NMT_FIELD(CStrW, m_Name)
+	NMT_END_ARRAY()
+END_NMT_CLASS()
+
+START_NMT_CLASS_(ClientDisconnect)
+	NMT_FIELD_INT(m_SessionID, u32, 2)
+END_NMT_CLASS()
+
 START_NMT_CLASS_(SetGameConfig)
 	NMT_START_ARRAY(m_Values)
 		NMT_FIELD(CStrW, m_Name)
@@ -149,18 +177,17 @@ START_NMT_CLASS_(SetGameConfig)
 	NMT_END_ARRAY()
 END_NMT_CLASS()
 
+START_NMT_CLASS_(AssignPlayerSlot)
+	NMT_FIELD_INT(m_SlotID, u32, 2)
+	NMT_FIELD_INT(m_Assignment, u32, 1)
+	NMT_FIELD_INT(m_SessionID, u32, 2) // Only applicable for PS_ASSIGN_SESSION
+END_NMT_CLASS()
+
 START_NMT_CLASS_(SetPlayerConfig)
 	NMT_FIELD_INT(m_PlayerID, u32, 2)
 	NMT_START_ARRAY(m_Values)
 		NMT_FIELD(CStrW, m_Name)
 		NMT_FIELD(CStrW, m_Value)
-	NMT_END_ARRAY()
-END_NMT_CLASS()
-
-START_NMT_CLASS_(PlayerConnect)
-	NMT_START_ARRAY(m_Players)
-		NMT_FIELD_INT(m_PlayerID, u32, 2)
-		NMT_FIELD(CStrW, m_Nick)
 	NMT_END_ARRAY()
 END_NMT_CLASS()
 

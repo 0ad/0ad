@@ -55,13 +55,18 @@ public:
 
 	char *m_pConnectHost;
 	int m_ConnectPort;
+	
+	u64 m_SentBytes;
+	u64 m_RecvBytes;
 
 	inline CSocketInternal():
 		m_fd(-1),
 		m_AcceptFd(-1),
 		m_Ops(0),
 		m_pConnectHost(NULL),
-		m_ConnectPort(-1)
+		m_ConnectPort(-1),
+		m_SentBytes(0),
+		m_RecvBytes(0)
 	{
 	}
 };
@@ -82,6 +87,9 @@ struct CSocketSetInternal
 	int m_Pipe[2];
 #endif
 
+	u64 m_GlobalSentBytes;
+	u64 m_GlobalRecvBytes;
+
 public:
 	inline CSocketSetInternal()
 	{
@@ -94,6 +102,8 @@ public:
 		pthread_mutex_init(&m_Mutex, NULL);
 		m_Thread=0;
 		m_NumSockets=0;
+		m_GlobalSentBytes=0;
+		m_GlobalRecvBytes=0;
 	}
 };
 

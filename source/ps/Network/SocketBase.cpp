@@ -12,8 +12,16 @@
 // ERROR is defined by some windows header. Undef it
 #undef ERROR
 #include "CLogger.h"
+#include "NetLog.h"
 
 #include <errno.h>
+
+// Record global transfer statistics (sent/recvd bytes). This will put a lock
+// /unlock pair in all read and write operations.
+#define RECORD_GLOBAL_STATS 1
+
+#define GLOBAL_LOCK() pthread_mutex_lock(&g_SocketSetInternal.m_Mutex)
+#define GLOBAL_UNLOCK() pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex)
 
 CSocketSetInternal g_SocketSetInternal;
 
@@ -46,7 +54,7 @@ PS_RESULT GetPS_RESULT(int error)
 	default:
 		char buf[256];
 		Network_GetErrorString(error, buf, sizeof(buf));
-		LOG(ERROR, LOG_CAT_NET, "SocketBase.cpp::GetPS_RESULT(): Untranslated error %s[%d]", buf, error);
+		LOG(ERROR, LOG_CAT_NET, "SocketBase.cpp::GetPS_RESULT(): Unrecognized error %s[%d]", buf, error);
 		return PS_FAIL;
 	}
 }
@@ -190,42 +198,52 @@ CSocketBase::CSocketBase(CSocketInternal *pInt)
 	m_State=SS_CONNECTED;
 	m_Error=PS_OK;
 	SetNonBlocking(true);
+	
+	NET_LOG("CSocketBase::CSocketBase(): Created socket from fd %d", pInt->m_fd);
 }
 
 CSocketBase::~CSocketBase()
 {
-	// Remove any associated data from the CSocketSet
-	pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
-	
-	g_SocketSetInternal.m_HandleMap.erase(m_pInternal->m_fd);
-	
-	pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
+	NET_LOG("CSocketBase::~CSocketBase(): fd is %d. "
+		"Received: %lld bytes. Sent: %lld bytes.", m_pInternal->m_fd,
+		m_pInternal->m_RecvBytes, m_pInternal->m_SentBytes);
+
 	Destroy();
 	delete m_pInternal;
 }
 
 void CSocketBase::Shutdown()
 {
-	pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
+	GLOBAL_LOCK();
 	
 	if (g_SocketSetInternal.m_NumSockets)
 	{
-		LOG(WARNING, LOG_CAT_NET, "CSocketBase::Shutdown(): Sockets still open! (forcing shutdown)");
+		NET_LOG("CSocketBase::Shutdown(): %d sockets still open! (forcing network shutdown)", g_SocketSetInternal.m_NumSockets);
 	}
-	
+
+#if RECORD_GLOBAL_STATS
+	NET_LOG("GLOBAL SOCKET STATISTICS: "
+		"Received: %lld bytes. Sent: %lld bytes.",
+		g_SocketSetInternal.m_GlobalRecvBytes,
+		g_SocketSetInternal.m_GlobalSentBytes);
+#endif
+
+	GLOBAL_UNLOCK();
 	if (g_SocketSetInternal.m_Thread)
 	{
 		AbortWaitLoop();
 		pthread_join(g_SocketSetInternal.m_Thread, NULL);
-		g_SocketSetInternal.m_Thread=0;
 	}
-	
-	pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
 }
 
 void *WaitLoopThreadMain(void *)
 {
+	GLOBAL_LOCK();
 	CSocketBase::RunWaitLoop();
+	
+	g_SocketSetInternal.m_Thread=0;
+	
+	GLOBAL_UNLOCK();
 	return NULL;
 }
 
@@ -233,7 +251,7 @@ PS_RESULT CSocketBase::Initialize(ESocketProtocol proto)
 {
 	int res=socket(proto, SOCK_STREAM, 0);
 
-	printf("CSocketBase::Initialize(): socket() res: %d\n", res);
+	NET_LOG("CSocketBase::Initialize(): socket() res: %d", res);
 
 	if (res == -1)
 	{
@@ -243,13 +261,11 @@ PS_RESULT CSocketBase::Initialize(ESocketProtocol proto)
 	m_pInternal->m_fd=res;
 	m_Proto=proto;
 
-	ONCE(
+	GLOBAL_LOCK();
+	if (g_SocketSetInternal.m_NumSockets == 0)
 		pthread_create(&g_SocketSetInternal.m_Thread, NULL, WaitLoopThreadMain, NULL);
-	);
-	
-	pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
 	g_SocketSetInternal.m_NumSockets++;
-	pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
+	GLOBAL_UNLOCK();
 
 	SetNonBlocking(true);
 
@@ -270,12 +286,16 @@ void CSocketBase::Destroy()
 		return;
 	}
 
-	pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
-	assert(g_SocketSetInternal.m_NumSockets > 0);
+	// Remove any data associated with the file descriptor
+	GLOBAL_LOCK();
+	assert2(g_SocketSetInternal.m_NumSockets > 0);
+
 	g_SocketSetInternal.m_NumSockets--;
+	g_SocketSetInternal.m_HandleMap.erase(m_pInternal->m_fd);
+
 	if (!g_SocketSetInternal.m_NumSockets)
 		AbortWaitLoop();
-	pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
+	GLOBAL_UNLOCK();
 
 	// Disconnect the socket, if it is still connected
 	if (m_State == SS_CONNECTED || m_State == SS_CLOSED_LOCALLY)
@@ -297,7 +317,7 @@ void CSocketBase::SetNonBlocking(bool nonblocking)
 	unsigned long nb=nonblocking;
 	int res=ioctlsocket(m_pInternal->m_fd, FIONBIO, &nb);
 	if (res == -1)
-		printf("SetNonBlocking: res %d\n", res);
+		NET_LOG("SetNonBlocking: res %d", res);
 #else
 	int oldflags=fcntl(m_pInternal->m_fd, F_GETFL, 0);
 	if (oldflags != -1)
@@ -342,7 +362,7 @@ PS_RESULT CSocketBase::Read(void *buf, uint len, uint *bytesRead)
 		case ETIMEDOUT:*/
 		default:
 			Network_GetErrorString(error, errbuf, sizeof(errbuf));
-			printf("Read error %s [%d]\n", errbuf, error);
+			NET_LOG("Read error %s [%d]", errbuf, error);
 			m_State=SS_UNCONNECTED;
 			m_Error=GetPS_RESULT(error);
 			return m_Error;
@@ -358,6 +378,14 @@ PS_RESULT CSocketBase::Read(void *buf, uint len, uint *bytesRead)
 	}
 	
 	*bytesRead=res;
+	
+	m_pInternal->m_RecvBytes += res;
+#if RECORD_GLOBAL_STATS
+	GLOBAL_LOCK();
+	g_SocketSetInternal.m_GlobalRecvBytes += res;
+	GLOBAL_UNLOCK();
+#endif
+	
 	return PS_OK;
 }
 
@@ -385,13 +413,21 @@ PS_RESULT CSocketBase::Write(void *buf, uint len, uint *bytesWritten)
 		case EHOSTUNREACH:*/
 		default:
 			Network_GetErrorString(err, errbuf, sizeof(errbuf));
-			printf("Write error %s [%d]\n", errbuf, err);
+			NET_LOG("Write error %s [%d]", errbuf, err);
 			m_State=SS_UNCONNECTED;
 			return CONNECTION_BROKEN;
 		}
 	}
 
 	*bytesWritten=res;
+
+	m_pInternal->m_SentBytes += res;
+#if RECORD_GLOBAL_STATS
+	GLOBAL_LOCK();
+	g_SocketSetInternal.m_GlobalSentBytes += res;
+	GLOBAL_UNLOCK();
+#endif
+	
 	return PS_OK;
 }
 
@@ -492,6 +528,10 @@ CSocketInternal *CSocketBase::Accept()
 		CSocketInternal *pInt=new CSocketInternal();
 		pInt->m_fd=m_pInternal->m_AcceptFd;
 		pInt->m_RemoteAddr=m_pInternal->m_AcceptAddr;
+		
+		GLOBAL_LOCK();
+		g_SocketSetInternal.m_NumSockets++;		
+		GLOBAL_UNLOCK();
 
 		m_pInternal->m_AcceptFd=-1;
 		return pInt;
@@ -511,9 +551,11 @@ void CSocketBase::Reject()
 // ConnectError is called on a socket the first time it selects as ready
 // after the BeginConnect, to check errors on the socket and update the
 // connection status information
+//
 // Returns: true if error callback should be called, false if it should not
-bool ConnectError(CSocketBase *pSocket, CSocketInternal *pInt)
+bool CSocketBase::ConnectError(CSocketBase *pSocket)
 {
+	CSocketInternal *pInt=pSocket->m_pInternal;
 	uint buf;
 	int res;
 	PS_RESULT connErr;
@@ -527,7 +569,7 @@ bool ConnectError(CSocketBase *pSocket, CSocketInternal *pInt)
 		{
 			pSocket->m_State=SS_UNCONNECTED;
 			PS_RESULT connErr=GetPS_RESULT(errno);
-			printf("Connect error: %s [%d:%s]\n", connErr, errno, strerror(errno));
+			NET_LOG("Connect error: %s [%d:%s]", connErr, errno, strerror(errno));
 			pSocket->m_Error=connErr;
 			return true;
 		}
@@ -541,47 +583,113 @@ bool ConnectError(CSocketBase *pSocket, CSocketInternal *pInt)
 	return false;
 }
 
+// SocketWritable is called whenever a socket selects as writable in the unix
+// select loop. This will call the callback after checking for a connect error
+// if there's a connect in progress, as well as update the socket's state.
+//
+// Locking: The global mutex must be held when entering this function, and it
+// will be held upon return.
+void CSocketBase::SocketWritable(CSocketBase *pSock)
+{
+	CSocketInternal *pInt=pSock->m_pInternal;
+	bool isConnectError=false;
+
+	if (pSock->m_State != SS_CONNECTED)
+		isConnectError=ConnectError(pSock);
+
+	GLOBAL_UNLOCK();
+
+	if (isConnectError)
+		pSock->OnClose(pSock->m_Error);
+	else
+		pSock->OnWrite();
+
+	GLOBAL_LOCK();
+}
+
+// SocketReadable is called whenever a socket selects as writable in the unix
+// select loop. This will call the callback after checking for a connect error
+// if there's a connect in progress, as well as update the socket's state.
+//
+// Locking: The global mutex must be held when entering this function, and it
+// will be held upon return.
+void CSocketBase::SocketReadable(CSocketBase *pSock)
+{
+	bool isError=false;
+
+	if (pSock->m_State == SS_CONNECT_STARTED)
+		isError=ConnectError(pSock);
+	else if (pSock->m_State == SS_UNCONNECTED)
+	{
+		// UNCONNECTED sockets don't get callbacks
+		// Note that server sockets that are bound have state==SS_CONNECTED
+		return;
+	}
+	else if (pSock->m_State != SS_UNCONNECTED)
+	{
+		uint nRead;
+		errno=0;
+		int res=ioctl(pSock->m_pInternal->m_fd, FIONREAD, &nRead);
+		// failure, errno=EINVAL means server socket
+		// success, nRead != 0 means alive stream socket
+		if ((res == -1 && errno != EINVAL) ||
+			(res == 0 && nRead == 0))
+		{
+			NET_LOG("RunWaitLoop:ioctl: Connection broken [%d:%s]", errno, strerror(errno));
+			// Don't use API function - we both hold a lock and
+			// it is unnecessary to SendWaitLoopUpdate at this
+			// stage
+			pSock->m_pInternal->m_Ops=0;
+			pSock->m_State=SS_UNCONNECTED;
+			if (errno)
+				pSock->m_Error=GetPS_RESULT(errno);
+			else
+				pSock->m_Error=PS_OK;
+			isError=true;
+		}
+	}
+
+	GLOBAL_UNLOCK();
+
+	if (isError)
+		pSock->OnClose(pSock->m_Error);
+	else
+		pSock->OnRead();
+
+	GLOBAL_LOCK();
+}
+
 void CSocketBase::RunWaitLoop()
 {
 	int res;
 
 	signal(SIGPIPE, SIG_IGN);
 
-	pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
-
 	// Create Control Pipe
 	res=pipe(g_SocketSetInternal.m_Pipe);
 	if (res != 0)
-	{
-		g_SocketSetInternal.m_Pipe[0] == -1;
 		return;
-	}
 	
-	if (g_SocketSetInternal.m_Pipe[0] == -1)
-	{
-		pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
-		return;
-	}
-	
+	// The lock is held upon entry and exit of this loop. There are a few places
+	// where the lock is released and then re-acquired: when calling callbacks
+	// and when calling select().
 	while (true)
 	{
-		
 		std::map<int, CSocketBase *>::iterator it;
 		fd_set rfds;
 		fd_set wfds;
 		int fd_max=g_SocketSetInternal.m_Pipe[0];
 
-		// Prepare fd_set: Read + Control Pipe
+		// Prepare fd_set: Read
 		FD_ZERO(&rfds);
-		FD_SET(fd_max, &rfds);
+		FD_SET(g_SocketSetInternal.m_Pipe[0], &rfds);
+
 		// Prepare fd_set: Write
 		FD_ZERO(&wfds);
 
 		it=g_SocketSetInternal.m_HandleMap.begin();
 		while (it != g_SocketSetInternal.m_HandleMap.end())
 		{
-			//printf("Pre select: fd %d has %d\n", it->first, it->second->m_pInternal->m_Ops);
-	
 			uint ops=it->second->m_pInternal->m_Ops;
 
 			if (ops && it->first > fd_max)
@@ -593,21 +701,21 @@ void CSocketBase::RunWaitLoop()
 
 			++it;
 		}
-		
-		pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
-
-		//printf("Pre select: fd_max is %d\n", fd_max);
+		GLOBAL_UNLOCK();
 
 		// select, timeout infinite
 		res=select(fd_max+1, &rfds, &wfds, NULL, NULL);
 
-		//printf("Post select: res is %d\n", res);
-
+		GLOBAL_LOCK();
 		// Check select error
 		if (res == -1)
 		{
+			// It is possible for a socket to be deleted between preparing the
+			// fd_sets and actually performing the select - in which case it
+			// will fire a Bad file descriptor error. Simply retry.
+			if (Network_LastError == EBADF)
+				continue;
 			perror("CSocketSet::RunWaitLoop(), select");
-			pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
 			continue;
 		}
 
@@ -618,12 +726,10 @@ void CSocketBase::RunWaitLoop()
 			if (read(g_SocketSetInternal.m_Pipe[0], &bt, 1) == 1)
 			{
 				if (bt=='q')
-					// Way out is here, and no locks are held
-					return;
+					break;
 				else if (bt=='r')
 				{
-					pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
-					//printf("Op mask reload after select\n");
+					// Reload sockets - just skip to the beginning of the loop
 					continue;
 				}
 			}
@@ -631,14 +737,10 @@ void CSocketBase::RunWaitLoop()
 			FD_CLR(g_SocketSetInternal.m_Pipe[0], &rfds);
 		}
 
-		pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
-
 		// Go through sockets
 		int i=-1;
 		while (++i <= fd_max)
 		{
-			//printf("Trying socket %d\n", it->first);
-			
 			if (!FD_ISSET(i, &rfds) && !FD_ISSET(i, &wfds))
 				continue;
 			
@@ -647,78 +749,28 @@ void CSocketBase::RunWaitLoop()
 				continue;
 			
 			CSocketBase *pSock=it->second;
-			CSocketInternal *pInt=pSock->m_pInternal;
 			
 			if (FD_ISSET(i, &wfds))
 			{
-				bool callWrite=true;
-				
-				if (pSock->m_State != SS_CONNECTED)
-					callWrite=!ConnectError(pSock, pInt);
-				
-				pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
-				
-				if (callWrite)
-					pSock->OnWrite();
-				else
-					pSock->OnClose(pSock->m_Error);
-	
-				pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
+				SocketWritable(pSock);
 			}
 
 			// After the callback is called, we must check if the socket
-			// still exists
+			// still exists (sockets may delete themselves in the callback)
 			it=g_SocketSetInternal.m_HandleMap.find(i);
 			if (it == g_SocketSetInternal.m_HandleMap.end())
 				continue;
 
 			if (FD_ISSET(i, &rfds))
 			{
-				bool callRead;
-				
-				if (pSock->m_State == SS_CONNECT_STARTED)
-					callRead=!ConnectError(pSock, pInt);
-				else if (pSock->m_State == SS_CONNECTED)
-				{
-					uint nRead;
-					errno=0;
-					res=ioctl(i, FIONREAD, &nRead);
-					// failure, errno=EINVAL means server socket
-					// success, nRead!=0 means alive stream socket
-					if ((res == -1 && errno != EINVAL) ||
-						(res == 0 && nRead == 0))
-					{
-						printf("RunWaitLoop:ioctl: Connection broken [%d:%s]\n", errno, strerror(errno));
-						// Don't use API function - we both hold a lock and
-						// it is unnecessary to SendWaitLoopUpdate at this
-						// stage
-						pSock->m_pInternal->m_Ops=0;
-						pSock->m_State=SS_UNCONNECTED;
-						if (errno)
-							pSock->m_Error=GetPS_RESULT(errno);
-						else
-							pSock->m_Error=PS_OK;
-						callRead=false;
-					}
-					else
-						callRead=true;
-				}
-				else
-					// UNCONNECTED sockets don't get callbacks
-					// Note that server sockets that are bound have state==SS_CONNECTED
-					continue;
-				
-				pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
-			
-				if (callRead)
-					pSock->OnRead();
-				else
-					pSock->OnClose(pSock->m_Error);
-			
-				pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
+				SocketReadable(pSock);
 			}
 		}
 	}
+	
+	// Close control pipe
+	close(g_SocketSetInternal.m_Pipe[0]);
+	close(g_SocketSetInternal.m_Pipe[1]);
 
 	return;
 }
@@ -731,7 +783,7 @@ void CSocketBase::SendWaitLoopAbort()
 
 void CSocketBase::SendWaitLoopUpdate()
 {
-	printf("SendWaitLoopUpdate: fd %d, ops %u\n", m_pInternal->m_fd, m_pInternal->m_Ops);
+//	NET_LOG("SendWaitLoopUpdate: fd %d, ops %u\n", m_pInternal->m_fd, m_pInternal->m_Ops);
 	char msg='r';
 	write(g_SocketSetInternal.m_Pipe[1], &msg, 1);
 }
@@ -744,9 +796,11 @@ void CSocketBase::SendWaitLoopUpdate()
 
 void WaitLoop_SocketUpdateProc(int fd, int error, uint event)
 {
-	pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
+	GLOBAL_LOCK();
 	CSocketBase *pSock=g_SocketSetInternal.m_HandleMap[fd];
-	pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
+	GLOBAL_UNLOCK();
+	
+	// FIXME What if the fd isn't in the handle map?
 
 	if (error)
 	{
@@ -801,6 +855,7 @@ LRESULT WINAPI WaitLoop_WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lP
 	}
 }
 
+// Locked on entry, must be locked on exit
 void CSocketBase::RunWaitLoop()
 {
 	int ret;
@@ -819,28 +874,20 @@ void CSocketBase::RunWaitLoop()
 	{
 		ret=GetLastError();
 		Network_GetErrorString(ret, errBuf, sizeof(errBuf));
-		printf("RegisterClass: %s [%d]\n", errBuf, ret);
+		NET_LOG("RegisterClass: %s [%d]", errBuf, ret);
+		return;
 	}
 
-	pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
 	// Create message window
 	g_SocketSetInternal.m_hWnd=CreateWindow((LPCTSTR)atom, "Network Event Window", WS_POPUP, 0, 0, 0, 0, NULL, NULL, NULL, NULL);
+
 	if (!g_SocketSetInternal.m_hWnd)
 	{
 		ret=GetLastError();
 		Network_GetErrorString(ret, errBuf, sizeof(errBuf));
-		printf("CreateWindowEx: %s [%d]\n", errBuf, ret);
-	}
-	//pthread_cond_signal(&g_SocketSetInternal.m_CondVar);
-	pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
-
-	if (!g_SocketSetInternal.m_hWnd)
-	{
-		//TODO Some kind of error message, and exit
+		NET_LOG("CreateWindowEx: %s [%d]", errBuf, ret);
 		return;
 	}
-	
-	pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
 	
 	// If OpMasks where set in another thread before we got this far,
 	// WSAAsyncSelect will need to be called again
@@ -852,9 +899,9 @@ void CSocketBase::RunWaitLoop()
 		++it;
 	}
 
-	pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
+	NET_LOG("Commencing message loop. hWnd %p", g_SocketSetInternal.m_hWnd);
+	GLOBAL_UNLOCK();
 	
-	printf("Commencing message loop. hWnd %p\n", g_SocketSetInternal.m_hWnd);
 	while ((ret=GetMessage(&msg, g_SocketSetInternal.m_hWnd, 0, 0))!=0)
 	{
 		//printf("RunWaitLoop(): Windows message: %d:%d:%d\n", msg.message, msg.wParam, msg.lParam);
@@ -862,7 +909,7 @@ void CSocketBase::RunWaitLoop()
 		{
 			ret=GetLastError();
 			Network_GetErrorString(ret, errBuf, sizeof(errBuf));
-			printf("GetMessage: %s [%d]\n", errBuf, ret);
+			NET_LOG("GetMessage: %s [%d]", errBuf, ret);
 		}
 		{
 			TranslateMessage(&msg);
@@ -870,9 +917,12 @@ void CSocketBase::RunWaitLoop()
 		}
 	}
 
-	//TODO Destroy window, reset m_hWnd
+	GLOBAL_LOCK();
+	g_SocketSetInternal.m_Thread=0;
+	// FIXME Leak: Destroy window
+	g_SocketSetInternal.m_hWnd=0;
 
-	printf("RunWaitLoop returning\n");
+	NET_LOG("RunWaitLoop returning");
 	return;
 }
 
@@ -883,12 +933,12 @@ void CSocketBase::SendWaitLoopAbort()
 		PostMessage(g_SocketSetInternal.m_hWnd, WM_QUIT, 0, 0);
 	}
 	else
-		printf("SendWaitLoopUpdate: No WaitLoop Running.\n");
+		NET_LOG("SendWaitLoopUpdate: No WaitLoop Running.");
 }
 
 void CSocketBase::SendWaitLoopUpdate()
 {
-	pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
+	GLOBAL_LOCK();
 	if (g_SocketSetInternal.m_hWnd)
 	{
 		long wsaOps=FD_CLOSE;
@@ -896,14 +946,14 @@ void CSocketBase::SendWaitLoopUpdate()
 			wsaOps |= FD_READ|FD_ACCEPT;
 		if (m_pInternal->m_Ops & WRITE)
 			wsaOps |= FD_WRITE|FD_CONNECT;
-		pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
+		GLOBAL_UNLOCK();
 		//printf("SendWaitLoopUpdate: %d: %u %x -> %p\n", m_pInternal->m_fd, m_pInternal->m_Ops, wsaOps, g_SocketSetInternal.m_hWnd);
 		WSAAsyncSelect(m_pInternal->m_fd, g_SocketSetInternal.m_hWnd, MSG_SOCKET_READY, wsaOps);
 	}
 	else
 	{
 		//printf("SendWaitLoopUpdate: No WaitLoop Running.\n");
-		pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
+		GLOBAL_UNLOCK();
 	}
 }
 #endif
@@ -921,7 +971,7 @@ uint CSocketBase::GetOpMask()
 
 void CSocketBase::SetOpMask(uint ops)
 {
-	pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
+	GLOBAL_LOCK();
 	g_SocketSetInternal.m_HandleMap[m_pInternal->m_fd]=this;
 	m_pInternal->m_Ops=ops;
 	
@@ -930,7 +980,7 @@ void CSocketBase::SetOpMask(uint ops)
 		ops,
 		g_SocketSetInternal.m_HandleMap[m_pInternal->m_fd]->m_pInternal->m_Ops);*/
 
-	pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
+	GLOBAL_UNLOCK();
 	
 	SendWaitLoopUpdate();
 }

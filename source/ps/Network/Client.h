@@ -7,14 +7,33 @@
 #include "TurnManager.h"
 #include "Game.h"
 #include "scripting/ScriptableObject.h"
+#include "scripting/JSMap.h"
+
+#include <map>
 
 class CPlayer;
 
 class CNetClient: public CNetSession, protected CTurnManager, public CJSObject<CNetClient>
 {
-	CStrW m_Password;
+	class CServerSession: public CJSObject<CServerSession>
+	{
+		static void ScriptingInit();
+		
+	public:
+		CServerSession(int sessionID, const CStrW &name);
+	
+		int m_SessionID;
+		CStrW m_Name;
+	};
+	typedef std::map<int, CServerSession *> SessionMap;
+	
+	SessionMap m_ServerSessions;
+	CJSMap<SessionMap> m_JSI_ServerSessions;
 
-	CPlayer *m_pLocalPlayer;
+	CStrW m_Password;
+	int m_SessionID;
+
+	CPlayerSlot *m_pLocalPlayerSlot;
 	CGame *m_pGame;
 	CGameAttributes *m_pGameAttributes;
 
@@ -23,6 +42,15 @@ class CNetClient: public CNetSession, protected CTurnManager, public CJSObject<C
 	CScriptObject m_OnChat;
 	CScriptObject m_OnConnectComplete;
 	CScriptObject m_OnDisconnect;
+	CScriptObject m_OnClientConnect;
+	CScriptObject m_OnClientDisconnect;
+
+	void OnClientConnect(int sessionID, const CStrW &name);
+	void OnClientDisconnect(int sessionID);
+
+	// JS Interface Functions
+	bool JSI_BeginConnect(JSContext *cx, uintN argc, jsval *argv);
+	static void ScriptingInit();
 
 protected:
 	virtual void NewTurn();
@@ -34,12 +62,6 @@ public:
 	CNetClient(CGame *pGame, CGameAttributes *pGameAttribs);
 	virtual ~CNetClient();
 
-	inline void SetLoginInfo(CStrW nick, CStr password)
-	{
-		m_Name=nick;
-		m_Password=password;
-	}
-	
 	static MessageHandler ConnectHandler;
 
 	static MessageHandler BaseHandler; // Common to all connected states
@@ -49,8 +71,6 @@ public:
 	static MessageHandler ChatHandler; // Common to pre-game and later
 	static MessageHandler PreGameHandler;
 	static MessageHandler InGameHandler;
-	
-	bool JSI_BeginConnect(JSContext *cx, uintN argc, jsval *argv);
 };
 
 extern CNetClient *g_NetClient;

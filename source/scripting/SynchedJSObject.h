@@ -63,19 +63,26 @@ public:
 // non-templated base class
 struct CSynchedJSObjectBase
 {
+	typedef void (*UpdateFn)(CSynchedJSObjectBase *owner);
+
 	template <typename PropType, bool ReadOnly = false>
 	class CSynchedJSProperty: public ISynchedJSProperty
 	{
 		PropType *m_Data;
 		CStrW m_Name;
 		CSynchedJSObjectBase *m_Owner;
+		UpdateFn m_Update;
 		
 		virtual void Set(JSContext *cx, jsval value)
 		{
 			if (!ReadOnly)
 			{
 				if (ToPrimitive(cx, value, *m_Data))
+				{
 					m_Owner->Update(m_Name, this);
+					if (m_Update)
+						m_Update(m_Owner);
+				}
 			}
 		}
 		virtual jsval Get(JSContext *cx)
@@ -91,6 +98,8 @@ struct CSynchedJSObjectBase
 		virtual void FromString(CStrW value)
 		{
 			SetFromNetString(*m_Data, value);
+			if (m_Update)
+				m_Update(m_Owner);
 		}
 		
 		virtual CStrW ToString()
@@ -99,10 +108,11 @@ struct CSynchedJSObjectBase
 		}
 		
 	public:
-		inline CSynchedJSProperty(CStrW name, PropType* native, CSynchedJSObjectBase *owner):
+		inline CSynchedJSProperty(CStrW name, PropType* native, CSynchedJSObjectBase *owner, UpdateFn update=NULL):
 			m_Data(native),
 			m_Name(name),
-			m_Owner(owner)
+			m_Owner(owner),
+			m_Update(update)
 		{
 			m_AllowsInheritance = false;
 			m_Intrinsic = true;
@@ -127,9 +137,9 @@ template <typename Class>
 class CSynchedJSObject: public CJSObject<Class>, public CSynchedJSObjectBase
 {
 protected:
-	template <typename T> void AddSynchedProperty(CStrW name, T *native)
+	template <typename T> void AddSynchedProperty(CStrW name, T *native, UpdateFn update=NULL)
 	{
-		ISynchedJSProperty *prop=new CSynchedJSProperty<T>(name, native, this);
+		ISynchedJSProperty *prop=new CSynchedJSProperty<T>(name, native, this, update);
 		m_Properties[name]=prop;
 		m_SynchedProperties[name]=prop;
 	}

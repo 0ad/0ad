@@ -2,9 +2,9 @@
 #define _Network_NetServer_H
 
 #include "Network/Session.h"
-#include "Network/ServerSession.h"
 #include "Game.h"
 #include "TurnManager.h"
+#include "scripting/JSMap.h"
 
 enum ENetServerState
 {
@@ -22,21 +22,22 @@ enum ENetServerState
 	NSS_PostGame
 };
 
+class CNetServerSession;
+
 class CNetServer:
 	protected CServerSocket,
 	protected CTurnManager,
 	public CJSObject<CNetServer>
 {
 private:
+	typedef std::map<int, CNetServerSession *> SessionMap;
+
 	/*
 		Every connected session is in m_Sessions as soon as the Handshake and
 		Authentication stages are complete.
 	*/
-	std::vector <CNetServerSession *> m_Sessions;
-	/*
-		All sessions currently associated with a player. Subset of m_Sessions.
-	*/
-	std::vector <CNetServerSession *> m_PlayerSessions;
+	SessionMap m_Sessions;
+	CJSMap<SessionMap> m_JSI_Sessions;
 	/*
 		All sessions that have observer status (observer as in watcher - simple
 		chatters don't have an entry here, only in m_Sessions).
@@ -45,8 +46,8 @@ private:
 	*/
 	std::vector <CNetServerSession *> m_Observers;
 	
-	uint m_NumPlayers;
 	uint m_MaxObservers;
+	int m_LastSessionID;
 
 	ENetServerState m_ServerState;
 
@@ -63,34 +64,42 @@ private:
 	int m_Port;
 	
 	CScriptObject m_OnChat;
+	CScriptObject m_OnClientConnect;
+	CScriptObject m_OnClientDisconnect;
 	
 	static CGameAttributes::UpdateCallback AttributeUpdate;
 	static CPlayer::UpdateCallback PlayerAttributeUpdate;
+	static PlayerSlotAssignmentCB PlayerSlotAssignmentCallback;
 	
 	void FillSetGameConfig(CSetGameConfig *pMsg);
 	void FillSetPlayerConfig(CSetPlayerConfig *pMsg, CPlayer *pPlayer);
+	static CNetMessage *CreatePlayerSlotAssignmentMessage(CPlayerSlot *slot);
+	
+	// JS Interface Methods
+	bool JSI_Open(JSContext *cx, uintN argc, jsval *argv);
+	static void ScriptingInit();
 
 protected:
 	friend class CNetServerSession;
 
-	// Try to add the session as a newly connected player. If that is not
-	// possible, make the session an observer.
-	//
-	// Returns:
-	//	true. The session has been allocated a player slot
-	//	false: All player slots busy, the session should be made an observer
-	bool AddNewPlayer(CNetServerSession *pSession);
+	// Assign a session ID to the session. Do this just before calling AddSession
+	void AssignSessionID(CNetServerSession *pSession);
+	// Add the session. This will be called after the session passes the
+	// handshake and authentication stages. AssignSessionID should've been called
+	// on the session prior to calling this method.
+	void AddSession(CNetServerSession *pSession);
 
-	// Remove the session from all the relevant lists.
-	// NOTE: Currently unsafe to call for observers or players
+	// Remove the session from the server
 	void RemoveSession(CNetServerSession *pSession);
 
 	// Queue a command coming in from the wire. The command has been validated
 	// by the caller.
 	void QueueIncomingCommand(CNetMessage *pMsg);
 	
-	// Call the JS callback for incoming chat messages
+	// Call the JS callback for incoming events
 	void OnChat(CStrW from, CStrW message);
+	void OnClientConnect(CNetServerSession *pSession);
+	void OnClientDisconnect(CNetServerSession *pSession);
 	
 	// OVERRIDES FROM CServerSocket
 	virtual void OnAccept(const CSocketAddress &);
@@ -129,9 +138,6 @@ public:
 	int StartGame();
 
 	void Broadcast(CNetMessage *);
-
-	// JS Interface Methods
-	bool JSI_Open(JSContext *cx, uintN argc, jsval *argv);
 };
 
 extern CNetServer *g_NetServer;

@@ -17,20 +17,29 @@ CNetClient *g_NetClient=NULL;
 extern "C" int fps;
 extern CConsole *g_Console;
 
+CNetClient::CServerSession::CServerSession(int sessionID, const CStrW &name):
+	m_SessionID(sessionID),
+	m_Name(name)
+{
+	ONCE( ScriptingInit(); );
+	
+	AddReadOnlyProperty(L"id", &m_SessionID);
+	AddReadOnlyProperty(L"name", &m_Name);
+}
+
+void CNetClient::CServerSession::ScriptingInit()
+{
+	CJSObject<CServerSession>::ScriptingInit("NetClient_ServerSession");
+}
+
 CNetClient::CNetClient(CGame *pGame, CGameAttributes *pGameAttribs):
 	CNetSession(ConnectHandler),
-	m_pLocalPlayer(NULL),
+	m_JSI_ServerSessions(&m_ServerSessions),
+	m_pLocalPlayerSlot(NULL),
 	m_pGame(pGame),
 	m_pGameAttributes(pGameAttribs)
 {
-	ONCE(
-		// This one's funny: if you remove the parantheses around this stmt
-		// the preprocessor will take the comma inside the template decl and
-		// interpret it as a macro argument delimiter ;-)
-		(AddMethod<bool, &CNetClient::JSI_BeginConnect>("beginConnect", 1));
-
-		CJSObject<CNetClient>::ScriptingInit("NetClient");
-	);
+	ONCE( ScriptingInit(); );
 
 	m_pGame->GetSimulation()->SetTurnManager(this);
 	
@@ -38,9 +47,12 @@ CNetClient::CNetClient(CGame *pGame, CGameAttributes *pGameAttribs):
 	AddProperty(L"onChat", &m_OnChat);
 	AddProperty(L"onConnectComplete", &m_OnConnectComplete);
 	AddProperty(L"onDisconnect", &m_OnDisconnect);
+	AddProperty(L"onClientConnect", &m_OnClientConnect);
+	AddProperty(L"onClientDisconnect", &m_OnClientDisconnect);
 	
 	AddProperty(L"password", &m_Password);
 	AddProperty(L"playerName", &m_Name);
+	AddProperty(L"sessions", &m_JSI_ServerSessions);
 	
 	g_ScriptingHost.SetGlobal("g_NetClient", OBJECT_TO_JSVAL(GetScript()));
 }
@@ -48,6 +60,14 @@ CNetClient::CNetClient(CGame *pGame, CGameAttributes *pGameAttribs):
 CNetClient::~CNetClient()
 {
 	g_ScriptingHost.SetGlobal("g_NetClient", JSVAL_NULL);
+}
+
+void CNetClient::ScriptingInit()
+{
+	AddMethod<bool, &CNetClient::JSI_BeginConnect>("beginConnect", 1);
+
+	CJSMap<SessionMap>::ScriptingInit("NetClient_SessionMap");
+	CJSObject<CNetClient>::ScriptingInit("NetClient");
 }
 
 bool CNetClient::JSI_BeginConnect(JSContext *cx, uintN argc, jsval *argv)
@@ -78,7 +98,6 @@ bool CNetClient::JSI_BeginConnect(JSContext *cx, uintN argc, jsval *argv)
 bool CNetClient::<X>Handler(CNetMessage *pMsg, CNetSession *pSession)
 {
 	CNetClient *pClient=(CNetClient *)pSession;
-	LOG(NORMAL, LOG_CAT_NET, "CNetClient::<X>Handler(): %s.", pMsg->GetString().c_str());
 	switch (pMsg->GetType())
 	{
 	case XXX:
@@ -101,7 +120,6 @@ bool CNetClient::ConnectHandler(CNetMessage *pMsg, CNetSession *pSession)
 {
 	CNetClient *pClient=(CNetClient *)pSession;
 
-	LOG(NORMAL, LOG_CAT_NET, "CNetClient::ConnectHandler(): %s.", pMsg->GetString().c_str());
 	switch (pMsg->GetType())
 	{
 	case NMT_CONNECT_COMPLETE:
@@ -132,7 +150,6 @@ bool CNetClient::ConnectHandler(CNetMessage *pMsg, CNetSession *pSession)
 bool CNetClient::BaseHandler(CNetMessage *pMsg, CNetSession *pSession)
 {
 	CNetClient *pClient=(CNetClient *)pSession;
-	LOG(NORMAL, LOG_CAT_NET, "CNetClient::BaseHandler(): %s.", pMsg->GetString().c_str());
 	switch (pMsg->GetType())
 	{
 	case NMT_ERROR:
@@ -159,7 +176,6 @@ bool CNetClient::HandshakeHandler(CNetMessage *pMsg, CNetSession *pSession)
 	
 	CHAIN(BaseHandler);
 	
-	LOG(NORMAL, LOG_CAT_NET, "CNetClient::HandshakeHandler(): %s.", pMsg->GetString().c_str());
 	switch (pMsg->GetType())
 	{
 	case NMT_ServerHandshake:
@@ -194,12 +210,11 @@ bool CNetClient::AuthenticateHandler(CNetMessage *pMsg, CNetSession *pSession)
 	
 	CHAIN(BaseHandler);
 	
-	LOG(NORMAL, LOG_CAT_NET, "CNetClient::AuthenticateHandler(): %s.", pMsg->GetString().c_str());
 	switch (pMsg->GetType())
 	{
-	case NMT_Result:
+	case NMT_AuthenticationResult:
 		{
-			CResult *msg=(CResult *)pMsg;
+			CAuthenticationResult *msg=(CAuthenticationResult *)pMsg;
 			if (msg->m_Code != NRC_OK)
 			{
 				LOG(ERROR, LOG_CAT_NET, "CNetClient::AuthenticateHandler(): Authentication failed: %ls", msg->m_Message.c_str());
@@ -207,6 +222,7 @@ bool CNetClient::AuthenticateHandler(CNetMessage *pMsg, CNetSession *pSession)
 			else
 			{
 				LOG(NORMAL, LOG_CAT_NET, "CNetClient::AuthenticateHandler(): Authenticated!");
+				pClient->m_SessionID=msg->m_SessionID;
 				pClient->m_pMessageHandler=PreGameHandler;
 			}
 			break;
@@ -224,8 +240,6 @@ bool CNetClient::PreGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 	CHAIN(BaseHandler);
 	CHAIN(ChatHandler);
 	
-	LOG(NORMAL, LOG_CAT_NET, "CNetClient::PreGameHandler(): %s.", pMsg->GetString().c_str());
-
 	switch (pMsg->GetType())
 	{
 		case NMT_StartGame:
@@ -233,9 +247,20 @@ bool CNetClient::PreGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 			pClient->StartGame();
 			HANDLED(pMsg);
 		}
-		case NMT_PlayerConnect:
+		case NMT_ClientConnect:
 		{
-			// Add players to local client list
+			CClientConnect *msg=(CClientConnect *)pMsg;
+			for (uint i=0;i<msg->m_Clients.size();i++)
+			{
+				pClient->OnClientConnect(msg->m_Clients[i].m_SessionID,
+					msg->m_Clients[i].m_Name);
+			}
+			HANDLED(pMsg);
+		}
+		case NMT_ClientDisconnect:
+		{
+			CClientDisconnect *msg=(CClientDisconnect *)pMsg;
+			pClient->OnClientDisconnect(msg->m_SessionID);
 			HANDLED(pMsg);
 		}
 		case NMT_SetGameConfig:
@@ -247,11 +272,36 @@ bool CNetClient::PreGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 			}
 			HANDLED(pMsg);
 		}
+		case NMT_AssignPlayerSlot:
+		{
+			CAssignPlayerSlot *msg=(CAssignPlayerSlot *)pMsg;
+			// FIXME Validate slot id to prevent us from going boom
+			CPlayerSlot *pSlot=pClient->m_pGameAttributes->GetSlot(msg->m_SlotID);
+			if (pSlot == pClient->m_pLocalPlayerSlot)
+				pClient->m_pLocalPlayerSlot=NULL;
+			switch (msg->m_Assignment)
+			{
+				case PS_ASSIGN_SESSION:
+					if (msg->m_SessionID == pClient->m_SessionID)
+						pClient->m_pLocalPlayerSlot=pSlot;
+					pSlot->AssignToSessionID(msg->m_SessionID);
+					break;
+				case PS_ASSIGN_CLOSED:
+					pSlot->AssignClosed();
+					break;
+				case PS_ASSIGN_OPEN:
+					pSlot->AssignOpen();
+					break;
+				default:
+					LOG(WARNING, LOG_CAT_NET, "CNetClient::PreGameHandler(): Received an invalid slot assignment %s", msg->GetString().c_str());
+			}
+			HANDLED(pMsg);
+		}
 		case NMT_SetPlayerConfig:
 		{
 			CSetPlayerConfig *msg=(CSetPlayerConfig *)pMsg;
 			// FIXME Check player ID
-			CPlayer *pPlayer=pClient->m_pGameAttributes->m_Players[msg->m_PlayerID];
+			CPlayer *pPlayer=pClient->m_pGameAttributes->GetPlayer(msg->m_PlayerID);
 			for (uint i=0;i<msg->m_Values.size();i++)
 			{
 				pPlayer->SetValue(msg->m_Values[i].m_Name, msg->m_Values[i].m_Value);
@@ -270,9 +320,6 @@ bool CNetClient::InGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 
 	CHAIN(BaseHandler);
 	CHAIN(ChatHandler);
-
-	if (msgType != NMT_EndCommandBatch)
-		LOG(NORMAL, LOG_CAT_NET, "CNetClient::InGameHandler(): %s.", pMsg->GetString().c_str());
 
 	if (msgType >= NMT_COMMAND_FIRST && msgType <= NMT_COMMAND_LAST)
 	{
@@ -321,6 +368,47 @@ bool CNetClient::ChatHandler(CNetMessage *pMsg, CNetSession *pSession)
 	}
 	}
 	UNHANDLED(pMsg);
+}
+
+void CNetClient::OnClientConnect(int sessionID, const CStrW &name)
+{
+	// Find existing server session, if any, and delete it
+	SessionMap::iterator it=m_ServerSessions.find(sessionID);
+	if (it != m_ServerSessions.end())
+	{
+		delete it->second;
+		m_ServerSessions.erase(it);
+	}
+	
+	// Insert new serversession
+	m_ServerSessions[sessionID]=new CServerSession(sessionID, name);
+	
+	// Call JS Callback
+	if (m_OnClientConnect.Defined())
+	{
+		CClientConnectEvent evt(sessionID, name);
+		m_OnClientConnect.DispatchEvent(GetScript(), &evt);
+	}
+}
+
+void CNetClient::OnClientDisconnect(int sessionID)
+{
+	SessionMap::iterator it=m_ServerSessions.find(sessionID);
+	if (it == m_ServerSessions.end())
+	{
+		LOG(WARNING, LOG_CAT_NET, "Server said session %d disconnected. I don't know of such a session.");
+	}
+	
+	// Call JS Callback
+	if (m_OnClientConnect.Defined())
+	{
+		CClientDisconnectEvent evt(it->second->m_SessionID, it->second->m_Name);
+		m_OnClientConnect.DispatchEvent(GetScript(), &evt);
+	}
+	
+	// Delete server session and remove from map
+	delete it->second;
+	m_ServerSessions.erase(it);
 }
 
 void CNetClient::StartGame()

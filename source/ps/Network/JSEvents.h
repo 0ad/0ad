@@ -1,12 +1,16 @@
 #ifndef _Network_JSEvents_H
 #define _Network_JSEvents_H
 
+#include "Network/ServerSession.h"
+
 enum ENetworkJSEvents
 {
 	NET_JS_EVENT_START_GAME,
 	NET_JS_EVENT_CHAT,
 	NET_JS_EVENT_CONNECT_COMPLETE,
 	NET_JS_EVENT_DISCONNECT,
+	NET_JS_EVENT_CLIENT_CONNECT,
+	NET_JS_EVENT_CLIENT_DISCONNECT,
 	NET_JS_EVENT_LAST
 };
 
@@ -61,6 +65,69 @@ public:
 	{
 		AddReadOnlyProperty(L"message", &m_Message);
 	}
+};
+
+class CClientConnectDisconnectCommon: public CScriptEvent
+{
+	int m_SessionID;
+	CStrW m_Name;
+	CNetServerSession *m_pSession;
+	
+public:
+	CClientConnectDisconnectCommon(const wchar_t* eventName, int eventType,
+			int sessionID, const CStrW &name, CNetServerSession *pSession):
+		CScriptEvent(L"clientConnect", false, NET_JS_EVENT_CLIENT_CONNECT),
+		m_SessionID(sessionID),
+		m_Name(name),
+		m_pSession(pSession)
+	{
+		AddReadOnlyProperty(L"id", &m_SessionID);
+		AddReadOnlyProperty(L"name", &m_Name);
+		if (m_pSession)
+			AddReadOnlyProperty(L"session", &m_pSession);
+	}
+};
+
+struct CClientConnectEvent: public CClientConnectDisconnectCommon
+{
+	CClientConnectEvent(int sessionID, const CStrW &name):
+		CClientConnectDisconnectCommon(
+			L"clientConnect",
+			NET_JS_EVENT_CLIENT_CONNECT,
+			sessionID,
+			name,
+			NULL)
+	{}
+
+	CClientConnectEvent(CNetServerSession *pSession):
+		CClientConnectDisconnectCommon(
+			L"clientConnect",
+			NET_JS_EVENT_CLIENT_CONNECT,
+			pSession->GetID(),
+			pSession->GetName(),
+			pSession)
+	{}
+};
+
+struct CClientDisconnectEvent: public CClientConnectDisconnectCommon
+{
+	CClientDisconnectEvent(int sessionID, const CStrW &name):
+		CClientConnectDisconnectCommon(
+			L"clientDisconnect",
+			NET_JS_EVENT_CLIENT_DISCONNECT,
+			sessionID,
+			name,
+			NULL)
+	{}
+
+	CClientDisconnectEvent(CNetServerSession *pSession):
+		CClientConnectDisconnectCommon(
+			L"clientDisconnect",
+			NET_JS_EVENT_CLIENT_DISCONNECT,
+			pSession->GetID(),
+			pSession->GetName(),
+			pSession)
+	{}
 };
 
 #endif

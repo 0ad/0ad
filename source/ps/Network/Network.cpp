@@ -5,6 +5,7 @@
 #include <errno.h>
 
 #include <CLogger.h>
+#include "NetLog.h"
 
 DEFINE_ERROR(CONFLICTING_OP_IN_PROGRESS, "A conflicting operation is already in progress");
 
@@ -102,7 +103,7 @@ CStr CCloseRequestMessage::GetString() const
 
 void CMessageSocket::Push(CNetMessage *msg)
 {
-	printf("CMessageSocket::Push(): %s\n", msg->GetString().c_str());
+	NET_LOG("CMessageSocket::Push(): %s", msg->GetString().c_str());
 
 	m_OutQ.Lock();
 	m_OutQ.push_back(msg);
@@ -184,7 +185,7 @@ void CMessageSocket::StartWriteNextMessage()
 		PS_RESULT res=Write(m_pWrBuffer, hdr.m_MsgLength+HEADER_LENGTH);
 		if (res != PS_OK)
 		{
-			printf("CMessageSocket::StartWriteNextMessage(): %s\n", res);
+			NET_LOG("CMessageSocket::StartWriteNextMessage(): %s", res);
 			// Queue Error Message
 			m_InQ.Lock();
 			m_InQ.push_back(new CNetErrorMessage(res, GetState()));
@@ -194,16 +195,16 @@ void CMessageSocket::StartWriteNextMessage()
 	else
 	{
 		if (m_IsWriting)
-			printf("CMessageSocket::StartWriteNextMessage(): Already writing\n");
+			NET_LOG("CMessageSocket::StartWriteNextMessage(): Already writing");
 		else
-			printf("CMessageSocket::StartWriteNextMessage(): Nothing to write\n");
+			NET_LOG("CMessageSocket::StartWriteNextMessage(): Nothing to write");
 		m_OutQ.Unlock();
 	}
 }
 
 void CMessageSocket::WriteComplete(PS_RESULT ec)
 {
-	printf("CMessageSocket::WriteComplete(): %s\n", ec);
+	NET_LOG("CMessageSocket::WriteComplete(): %s", ec);
 	if (ec == PS_OK)
 	{
 		if (m_IsWriting)
@@ -214,7 +215,7 @@ void CMessageSocket::WriteComplete(PS_RESULT ec)
 			StartWriteNextMessage();
 		}
 		else
-			printf("CMessageSocket::WriteComplete(): Was not writing\n");
+			NET_LOG("CMessageSocket::WriteComplete(): Was not writing");
 	}
 	else
 	{
@@ -238,7 +239,7 @@ void CMessageSocket::StartReadHeader()
 	PS_RESULT res=Read(m_pRdBuffer, HEADER_LENGTH);
 	if (res != PS_OK)
 	{
-		printf("CMessageSocket::StartReadHeader(): %s\n", res);
+		NET_LOG("CMessageSocket::StartReadHeader(): %s", res);
 		// Push an error message
 		CScopeLock scopeLock(m_InQ.m_Mutex);
 		m_InQ.push_back(new CNetErrorMessage(res, GetState()));
@@ -271,7 +272,7 @@ void CMessageSocket::StartReadMessage()
 		PS_RESULT res=Read(m_pRdBuffer+HEADER_LENGTH, hdr.m_MsgLength);
 		if (res != PS_OK)
 		{
-			printf("CMessageSocket::StartReadMessage(): %s\n", res);
+			NET_LOG("CMessageSocket::StartReadMessage(): %s", res);
 			// Queue an error message
 			CScopeLock scopeLock(m_InQ);
 			m_InQ.push_back(new CNetErrorMessage(res, GetState()));
@@ -281,7 +282,7 @@ void CMessageSocket::StartReadMessage()
 
 void CMessageSocket::ReadComplete(PS_RESULT ec)
 {
-	printf("CMessageSocket::ReadComplete(%s): %s\n", m_ReadingData?"data":"header", ec);
+	NET_LOG("CMessageSocket::ReadComplete(%s): %s", m_ReadingData?"data":"header", ec);
 	// Check if we were reading header or message
 	// If header:
 	if (!m_ReadingData)
@@ -300,13 +301,13 @@ void CMessageSocket::ReadComplete(PS_RESULT ec)
 		}
 		else
 		{
-			printf("CMessageSocket::ReadComplete(): Deserialization failed! (type %d, length %d)\n", hdr.m_MsgType, hdr.m_MsgLength);
-			printf("Data: {\n");
+			NET_LOG("CMessageSocket::ReadComplete(): Deserialization failed! (type %d, length %d)", hdr.m_MsgType, hdr.m_MsgLength);
+			NET_LOG("Data: {");
 			for (int i=HEADER_LENGTH;i<hdr.m_MsgLength+HEADER_LENGTH;i++)
 			{
-				printf("\t0x%x [%c]\n", m_pRdBuffer[i], isalnum(m_pRdBuffer[i])?m_pRdBuffer[i]:'.');
+				NET_LOG("\t0x%x [%c]", m_pRdBuffer[i], isalnum(m_pRdBuffer[i])?m_pRdBuffer[i]:'.');
 			}
-			printf("};\n");
+			NET_LOG("};");
 		}
 		StartReadHeader();
 	}
@@ -316,8 +317,8 @@ void CMessageSocket::OnMessage(CNetMessage *pMsg)
 {
 	m_InQ.Lock();
 	m_InQ.push_back(pMsg);
-	printf("CMessageSocket::OnMessage(): %s\n", pMsg->GetString().c_str());
-	printf("CMessageSocket::OnMessage(): Queue size now %u\n", m_InQ.size());
+	NET_LOG("CMessageSocket::OnMessage(): %s", pMsg->GetString().c_str());
+	NET_LOG("CMessageSocket::OnMessage(): Queue size now %u", m_InQ.size());
 	m_InQ.Unlock();
 }
 
@@ -374,6 +375,7 @@ CMessageSocket::~CMessageSocket()
 
 PS_RESULT CMessageSocket::BeginConnect(const char *address, int port)
 {
+	StartReadHeader();
 	return CStreamSocket::BeginConnect(address, port);
 }
 

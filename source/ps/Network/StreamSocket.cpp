@@ -3,7 +3,7 @@
 #include "Network.h"
 #include "StreamSocket.h"
 
-#include <CLogger.h>
+#include "NetLog.h"
 
 CStreamSocket::CStreamSocket()
 {}
@@ -23,14 +23,18 @@ void *CStreamSocket_ConnectThread(void *data)
 	CSocketAddress addr;
 
 	res=CSocketAddress::Resolve(pSock->m_pConnectHost, pSock->m_ConnectPort, addr);
-	LOG(NORMAL, LOG_CAT_NET, "CStreamSocket_ConnectThread: Resolve: %s -> %s", res, addr.GetString().c_str());
+	NET_LOG("CStreamSocket_ConnectThread: Resolve: %s -> %s [%s]", pSock->m_pConnectHost, addr.GetString().c_str(), res);
 	if (res == PS_OK)
 	{
 		pSock->Initialize();
 		pSock->SetNonBlocking(false);
+		// If we don't do this we'll get spurious callbacks called since our
+		// network thread will notice the socket getting connected (and
+		// potentially receiving data) while we might not yet have called the
+		// ConnectComplete callback
+		pSock->SetOpMask(0);
 		res=pSock->Connect(addr);
-		if (res != PS_OK)
-			LOG(ERROR, LOG_CAT_NET, "CStreamSocket_ConnectThread: Connect: %s", res);
+		NET_LOG("CStreamSocket_ConnectThread: Connect: %s", res);
 	}
 	
 	if (res == PS_OK)
@@ -45,6 +49,7 @@ void *CStreamSocket_ConnectThread(void *data)
 	pSock->ConnectComplete(res);
 
 	free(pSock->m_pConnectHost);
+	pSock->m_pConnectHost=NULL;
 
 	return NULL;
 }
@@ -104,7 +109,7 @@ PS_RESULT CStreamSocket::Write(void *buf, uint len)
 }
 
 #define MakeDefaultCallback(_nm) void CStreamSocket::_nm(PS_RESULT error) \
-	{ printf("CStreamSocket::"#_nm"(): %s\n", error); }
+	{ NET_LOG("CStreamSocket::"#_nm"(): %s", error); }
 
 MakeDefaultCallback(OnClose)
 MakeDefaultCallback(ConnectComplete)
@@ -128,7 +133,7 @@ void CStreamSocket::OnWrite()
 		WriteComplete(res);
 		return;
 	}
-	printf("CStreamSocket::OnWrite(): %u bytes\n", bytes);
+	NET_LOG("CStreamSocket::OnWrite(): %u bytes", bytes);
 	m_WriteContext.m_Completed+=bytes;
 	if (m_WriteContext.m_Completed == m_WriteContext.m_Length)
 	{
@@ -141,16 +146,15 @@ void CStreamSocket::OnRead()
 {
 	if (!m_ReadContext.m_Valid)
 	{
-		printf("CStreamSocket::OnRead(): No Read request in progress\n");
-		//SetOpMask(GetOpMask() & (~READ));
+		NET_LOG("CStreamSocket::OnRead(): No Read request in progress");
 		return;
 	}
 	uint bytes=0;
 	PS_RESULT res=CSocketBase::Read(
-		((char *)m_ReadContext.m_pBuffer)+m_ReadContext.m_Completed,
+		((u8 *)m_ReadContext.m_pBuffer)+m_ReadContext.m_Completed,
 		m_ReadContext.m_Length-m_ReadContext.m_Completed,
 		&bytes);
-	printf("CStreamSocket::OnRead(): %s, %u bytes read of %u\n", res, bytes,
+	NET_LOG("CStreamSocket::OnRead(): %s, %u bytes read of %u", res, bytes,
 		m_ReadContext.m_Length-m_ReadContext.m_Completed);
 	if (res != PS_OK)
 	{

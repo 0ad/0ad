@@ -33,6 +33,8 @@ public:
 
 	inline PS_uint GetPlayerID() const
 	{	return m_PlayerID; }
+	inline void SetPlayerID(PS_uint id)
+	{	m_PlayerID=id; }
 	
 	inline const CStrW &GetName() const
 	{	return m_Name; }
@@ -54,10 +56,10 @@ public:
 	// Caller frees...
 	std::vector<HEntity>* GetControlledEntities();
 
-// Scripting functions
-	
-	jsval ToString( JSContext* context, uintN argc, jsval* argv );	
-	jsval GetControlledEntities_JS();
+	// JS Interface Functions
+	jsval JSI_ToString( JSContext* context, uintN argc, jsval* argv );
+	jsval JSI_GetControlledEntities();
+	jsval JSI_SetColour(JSContext *context, uintN argc, jsval *argv);
 
 	static void ScriptingInit();
 };

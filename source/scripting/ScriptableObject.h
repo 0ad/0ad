@@ -384,7 +384,7 @@ template<typename T, bool ReadOnly, typename RType, RType (T::*NativeFunction)( 
 public:
 	static JSBool JSFunction( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 	{
-		T* Native = (T*)ToNative< CJSObject<T, ReadOnly> >( cx, obj );
+		T* Native = ToNative<T>( cx, obj );
 		if( !Native )
 			return( JS_TRUE );
 
@@ -455,7 +455,7 @@ public:
 	// 
 	static JSBool JSGetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
 	{
-		CJSObject<T, ReadOnly>* Instance = ToNative< CJSObject<T, ReadOnly> >( cx, obj );
+		T* Instance = ToNative<T>( cx, obj );
 		if( !Instance )
 			return( JS_TRUE );
 
@@ -467,7 +467,7 @@ public:
 	}
 	static JSBool JSSetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
 	{
-		CJSObject<T, ReadOnly>* Instance = ToNative< CJSObject<T, ReadOnly> >( cx, obj );
+		T* Instance = ToNative<T>( cx, obj );
 		if( !Instance )
 			return( JS_TRUE );
 
@@ -494,7 +494,7 @@ public:
 
 	static void DefaultFinalize( JSContext *cx, JSObject *obj )
 	{
-		CJSObject<T, ReadOnly>* Instance = ToNative< CJSObject<T,ReadOnly> >( cx, obj );
+		T* Instance = ToNative<T>( cx, obj );
 		if( !Instance || Instance->m_EngineOwned )
 			return;
 		
@@ -525,7 +525,7 @@ public:
 				JS_AddRoot( g_ScriptingHost.GetContext(), (void*)&m_JS );		
 #endif
 			}
-			JS_SetPrivate( g_ScriptingHost.GetContext(), m_JS, this );
+			JS_SetPrivate( g_ScriptingHost.GetContext(), m_JS, (T*)this );
 		}
 	}
 	void ReleaseScriptObject()

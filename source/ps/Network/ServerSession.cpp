@@ -7,9 +7,25 @@
 
 extern CConsole *g_Console;
 
+CNetServerSession::CNetServerSession(CNetServer *pServer, CSocketInternal *pInt,
+		MessageHandler *pMsgHandler):
+	CNetSession(pInt, pMsgHandler),
+	m_pServer(pServer),
+	m_pPlayer(NULL),
+	m_pPlayerSlot(NULL),
+	m_IsObserver(false),
+	m_ID(-1)
+{
+	ONCE(
+		ScriptingInit();
+	);
+
+	AddProperty(L"id", &m_ID);
+	AddProperty(L"name", &m_Name);
+}
+
 CNetServerSession::~CNetServerSession()
 {
-	m_pServer->RemoveSession(this);
 }
 
 void CNetServerSession::StartGame()
@@ -30,35 +46,14 @@ bool CNetServerSession::BaseHandler(CNetMessage *pMsg, CNetSession *pNetSession)
 		case NMT_ERROR:
 		{
 			CNetErrorMessage *msg=(CNetErrorMessage *)pMsg;
-			LOG(WARNING, LOG_CAT_NET, "CNetServerSession::BaseHandler(): NMT_ERROR: %s", msg->GetString().c_str());
 			if (msg->m_State == SS_UNCONNECTED)
 			{
-				/* We were disconnected... What happens with our session?
-				 * 
-				 * Note that deleting a session also removes it from m_Sessions
-				 * in CNetServer. If the session is an observer it is also
-				 * removed from m_Observers.
-				 *
-				 * Sessions that are observers or chatters should perhaps
-				 * generate an exit message that is sent to all other sessions.
-				 *
-				 * Player sessions require more care.
-				 * Pre-Game: each player session has an associated CPlayer
-				 * object and player session slot requiring special care when
-				 * deleting.
-				 * In-Game: Revert all player's entities to Gaia control,
-				 * awaiting the client's reconnect attempts [IF we implement it]
-				 * Post-Game: Just do your basic clean-up
-				 */
-				if (!pSession->m_pPlayer)
-				{
-					delete pSession;
-				}
-				else
-				{
-					LOG(ERROR, LOG_CAT_NET, "CNetServerSession::BaseHandler(): Player disconnection not implemented!!");
-				}
+				if (pSession->m_ID != -1)
+					pSession->m_pServer->RemoveSession(pSession);
+				delete pSession;
 			}
+			else // error, but not disconnected? something weird is up...
+				LOG(WARNING, LOG_CAT_NET, "CNetServerSession::BaseHandler(): NMT_ERROR: %s", msg->GetString().c_str());
 			HANDLED(pMsg);
 		}
 	}
@@ -109,22 +104,18 @@ bool CNetServerSession::AuthenticateHandler(CNetMessage *pMsg, CNetSession *pNet
 			LOG(NORMAL, LOG_CAT_NET, "CNetServerSession::AuthenticateHandler(): Login Successful");
 			pSession->m_Name=msg->m_Name;
 
-			pSession->m_pServer->m_Sessions.push_back(pSession);
-
-			CResult *msg=new CResult();
+			pServer->AssignSessionID(pSession);
+			
+			CAuthenticationResult *msg=new CAuthenticationResult();
 			msg->m_Code=NRC_OK;
+			msg->m_SessionID=pSession->m_ID;
 			msg->m_Message=L"Logged in";
 			pSession->Push(msg);
+			
+			pServer->AddSession(pSession);
 			if (pServer->GetServerState() == NSS_PreGame)
 			{
-				// We're in pre-game. The connected client becomes a Player.
-				// Find the first free player slot and assign the player to the
-				// client.
-				// If no free player slots could be found - demote to chatter/
-				// observer.
 				pSession->m_pMessageHandler=PreGameHandler;
-				if (!pServer->AddNewPlayer(pSession))
-					pSession->m_pMessageHandler=ObserverHandler;
 			}
 			else // We're not in pre-game. The session becomes a chatter/observer here.
 			{
@@ -134,8 +125,9 @@ bool CNetServerSession::AuthenticateHandler(CNetMessage *pMsg, CNetSession *pNet
 		else
 		{
 			LOG(WARNING, LOG_CAT_NET, "CNetServerSession::AuthenticateHandler(): Login Failed");
-			CResult *msg=new CResult();
+			CAuthenticationResult *msg=new CAuthenticationResult();
 			msg->m_Code=NRC_PasswordInvalid;
+			msg->m_SessionID=0;
 			msg->m_Message=L"Invalid Password";
 			pSession->Push(msg);
 		}
@@ -148,7 +140,6 @@ bool CNetServerSession::AuthenticateHandler(CNetMessage *pMsg, CNetSession *pNet
 bool CNetServerSession::PreGameHandler(CNetMessage *pMsg, CNetSession *pNetSession)
 {
 	CNetServerSession *pSession=(CNetServerSession *)pNetSession;
-	LOG(NORMAL, LOG_CAT_NET, "CNetServerSession::PreGameHandler(): %s.", pMsg->GetString().c_str());
 
 	return ChatHandler(pMsg, pNetSession);
 }
@@ -211,4 +202,16 @@ bool CNetServerSession::InGameHandler(CNetMessage *pMsg, CNetSession *pNetSessio
 	default:
 		UNHANDLED(pMsg);
 	}
+}
+
+void CNetServerSession::ScriptingInit()
+{
+	AddMethod<bool, &CNetServerSession::JSI_Close>("close", 0);
+
+	CJSObject<CNetServerSession>::ScriptingInit("NetSession");
+}
+
+bool CNetServerSession::JSI_Close(JSContext *cx, uintN argc, jsval *argv)
+{
+	return false;
 }

@@ -326,8 +326,10 @@ JSBool setCursor(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalOb
 
 JSBool createServer(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* rval)
 {
-	g_Game=new CGame();
-	g_NetServer=new CNetServer(g_Game, &g_GameAttributes);
+	if (!g_Game)
+		g_Game=new CGame();
+	if (!g_NetServer)
+		g_NetServer=new CNetServer(g_Game, &g_GameAttributes);
 	
 	*rval=OBJECT_TO_JSVAL(g_NetServer->GetScript());
 	return JS_TRUE;
@@ -338,13 +340,10 @@ extern void StartGame();
 
 JSBool createClient(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* rval)
 {
-	if (g_Game)
-	{
-		return JS_FALSE;
-	}
-
-	g_Game=new CGame();
-	g_NetClient=new CNetClient(g_Game, &g_GameAttributes);
+	if (!g_Game)
+		g_Game=new CGame();
+	if (!g_NetClient)
+		g_NetClient=new CNetClient(g_Game, &g_GameAttributes);
 	
 	*rval=OBJECT_TO_JSVAL(g_NetClient->GetScript());
 	return JS_TRUE;

@@ -36,6 +36,7 @@ CScriptObject::CScriptObject( JSFunction* _Function )
 
 CScriptObject::CScriptObject( jsval v )
 {
+	Function = NULL;
 	SetJSVal( v );
 }
 

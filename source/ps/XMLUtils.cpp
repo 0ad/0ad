@@ -1,8 +1,7 @@
 #include "precompiled.h"
 
-#include "XML.h"
-
 #include "nommgr.h"
+#include "XML.h"
 
 #include "CStr.h"
 #include "CLogger.h"

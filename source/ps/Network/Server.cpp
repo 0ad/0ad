@@ -3,8 +3,11 @@
 #include <algorithm>
 
 #include "Network/Server.h"
+#include "Network/ServerSession.h"
 #include "Network/Network.h"
 #include "Network/JSEvents.h"
+
+#include "scripting/ScriptableObject.h"
 
 #include "Game.h"
 #include "Player.h"
@@ -19,6 +22,7 @@ CNetServer *g_NetServer=NULL;
 
 using namespace std;
 
+// NOTE: Called in network thread
 CNetServerSession *CNetServer::CreateSession(CSocketInternal *pInt)
 {
 	CNetServerSession *pRet=new CNetServerSession(this, pInt);
@@ -32,6 +36,7 @@ CNetServerSession *CNetServer::CreateSession(CSocketInternal *pInt)
 	return pRet;
 }
 
+// NOTE: Called in network thread
 void CNetServer::OnAccept(const CSocketAddress &addr)
 {
 	LOG(NORMAL, LOG_CAT_NET, "CNetServer::OnAccept(): Accepted connection from %s port %d", addr.GetString().c_str(), addr.GetPort());
@@ -41,20 +46,21 @@ void CNetServer::OnAccept(const CSocketAddress &addr)
 }
 
 CNetServer::CNetServer(CGame *pGame, CGameAttributes *pGameAttribs):
+	m_JSI_Sessions(&m_Sessions),
 	m_pGame(pGame),
 	m_pGameAttributes(pGameAttribs),
-	m_NumPlayers(pGameAttribs->m_NumPlayers),
 	m_MaxObservers(5),
+	m_LastSessionID(1),
 	m_ServerPlayerName(L"Noname Server Player"),
 	m_ServerName(L"Noname Server"),
 	m_WelcomeMessage(L"Noname Server Welcome Message"),
 	m_Port(-1)
 {
 	ONCE(
-		(AddMethod<bool, &CNetServer::JSI_Open>("open", 0));
-	
-		CJSObject<CNetServer>::ScriptingInit("NetServer");
+		ScriptingInit();
 	);
+
+	AddProperty(L"sessions", &m_JSI_Sessions);
 
 	AddProperty(L"serverPlayerName", &m_ServerPlayerName);
 	AddProperty(L"serverName", &m_ServerName);
@@ -63,9 +69,12 @@ CNetServer::CNetServer(CGame *pGame, CGameAttributes *pGameAttribs):
 	AddProperty(L"port", &m_Port);
 	
 	AddProperty(L"onChat", &m_OnChat);
+	AddProperty(L"onClientConnect", &m_OnClientConnect);
+	AddProperty(L"onClientDisconnect", &m_OnClientDisconnect);
 
 	m_pGameAttributes->SetUpdateCallback(AttributeUpdate, this);
 	m_pGameAttributes->SetPlayerUpdateCallback(PlayerAttributeUpdate, this);
+	m_pGameAttributes->SetPlayerSlotAssignmentCallback(PlayerSlotAssignmentCallback, this);
 
 	m_pGame->GetSimulation()->SetTurnManager(this);
 	// Set an incredibly long turn length - less command batch spam that way
@@ -78,6 +87,22 @@ CNetServer::CNetServer(CGame *pGame, CGameAttributes *pGameAttribs):
 CNetServer::~CNetServer()
 {
 	g_ScriptingHost.SetGlobal("g_NetServer", JSVAL_NULL);
+	
+	while (m_Sessions.size() > 0)
+	{
+		SessionMap::iterator it=m_Sessions.begin();
+		delete it->second;
+		m_Sessions.erase(it);
+	}
+}
+
+void CNetServer::ScriptingInit()
+{
+	CJSMap<SessionMap>::ScriptingInit("NetServer_SessionMap");
+
+	AddMethod<bool, &CNetServer::JSI_Open>("open", 0);
+
+	CJSObject<CNetServer>::ScriptingInit("NetServer");
 }
 
 bool CNetServer::JSI_Open(JSContext *cx, uintN argc, jsval *argv)
@@ -86,7 +111,7 @@ bool CNetServer::JSI_Open(JSContext *cx, uintN argc, jsval *argv)
 	if (m_Port == -1)
 		GetDefaultListenAddress(addr);
 	else
-		addr=CSocketAddress(m_Port, /*m_UseIPv6?IPv6:*/IPv4);
+		addr=CSocketAddress(m_Port, /* m_UseIPv6 ? IPv6 : */ IPv4);
 	
 	PS_RESULT res=Bind(addr);
 	if (res != PS_OK)
@@ -135,73 +160,67 @@ void CNetServer::FillSetPlayerConfig(CSetPlayerConfig *pMsg, CPlayer *pPlayer)
 	pPlayer->IterateSynchedProperties(FillSetPlayerConfigCB, pMsg);
 }
 
-bool CNetServer::AddNewPlayer(CNetServerSession *pSession)
+void CNetServer::AssignSessionID(CNetServerSession *pSession)
 {
-	CSetGameConfig *pMsg=new CSetGameConfig();
-	FillSetGameConfig(pMsg);
+	int newID=++m_LastSessionID;
+	pSession->SetID(newID);
+	m_Sessions[newID]=pSession;
+}
+
+void CNetServer::AddSession(CNetServerSession *pSession)
+{
+	{
+		CSetGameConfig *pMsg=new CSetGameConfig();
+		FillSetGameConfig(pMsg);
+		pSession->Push(pMsg);
+	}
+
+	// Broadcast a message for the newly added player session
+	CClientConnect *pMsg=new CClientConnect();
+	pMsg->m_Clients.resize(1);
+	pMsg->m_Clients[0].m_SessionID=pSession->GetID();
+	pMsg->m_Clients[0].m_Name=pSession->GetName();
+	Broadcast(pMsg);
+
+	pMsg=new CClientConnect();
+
+	// Server "client"
+	pMsg->m_Clients.resize(1);
+	pMsg->m_Clients.back().m_SessionID=1; // Server is always 1
+	pMsg->m_Clients.back().m_Name=m_ServerPlayerName;
+
+	// All the other clients
+	SessionMap::iterator it=m_Sessions.begin();
+	for (;it!=m_Sessions.end();++it)
+	{
+		pMsg->m_Clients.push_back(CClientConnect::S_m_Clients());
+		pMsg->m_Clients.back().m_SessionID=it->second->GetID();
+		pMsg->m_Clients.back().m_Name=it->second->GetName();
+	}
 	pSession->Push(pMsg);
 
-	if (m_PlayerSessions.size() < m_NumPlayers-1)
+	// Sync player slot assignments and player attributes
+	for (uint i=0;i<m_pGameAttributes->GetSlotCount();i++)
 	{
-		// First two players are Gaia and Server player, so assign new player
-		// ID's starting from 2
-		uint newPlayerID=2+(uint)m_PlayerSessions.size();
-		m_PlayerSessions.push_back(pSession);
-		pSession->m_pPlayer=m_pGameAttributes->m_Players[newPlayerID];
-		pSession->m_pPlayer->SetName(pSession->GetName());
-
-		// Broadcast a message for the newly added player session
-		CPlayerConnect *pMsg=new CPlayerConnect();
-		pMsg->m_Players.resize(1);
-		pMsg->m_Players[0].m_PlayerID=newPlayerID;
-		pMsg->m_Players[0].m_Nick=pSession->GetName();
-		Broadcast(pMsg);
-
-		pMsg=new CPlayerConnect();
-		
-		// Server Player
-		pMsg->m_Players.resize(1);
-		pMsg->m_Players.back().m_PlayerID=1; // Server is always 1
-		pMsg->m_Players.back().m_Nick=m_ServerPlayerName;
-		
-		// All the other players
-		for (uint i=0;i<m_PlayerSessions.size()-1;i++)
+		CPlayerSlot *pSlot=m_pGameAttributes->GetSlot(i);
+	
+		pSession->Push(CreatePlayerSlotAssignmentMessage(pSlot));
+	
+		if (pSlot->GetAssignment() == SLOT_SESSION)
 		{
-			if (m_PlayerSessions[i])
-			{
-				pMsg->m_Players.push_back(CPlayerConnect::S_m_Players());
-				pMsg->m_Players.back().m_PlayerID=i+2;
-				pMsg->m_Players.back().m_Nick=m_PlayerSessions[i]->GetName();
-			}
+			CSetPlayerConfig *pMsg=new CSetPlayerConfig();
+			FillSetPlayerConfig(pMsg, pSlot->GetPlayer());
+			pSession->Push(pMsg);
 		}
-		pSession->Push(pMsg);
-
-		// Sync other player's attributes
-		for (uint i=0;i<m_PlayerSessions.size()-1;i++)
-		{
-			if (m_PlayerSessions[i])
-			{
-				CSetPlayerConfig *pMsg=new CSetPlayerConfig();
-				FillSetPlayerConfig(pMsg, m_PlayerSessions[i]->GetPlayer());
-				pSession->Push(pMsg);
-			}
-		}
-		
-		return true;
 	}
-	else
-		return false;
+	
+	OnClientConnect(pSession);
 }
 
 void CNetServer::AttributeUpdate(CStrW name, CStrW newValue, void *userdata)
 {
 	CNetServer *pServer=(CNetServer *)userdata;
 	g_Console->InsertMessage(L"AttributeUpdate: %ls = \"%ls\"", name.c_str(), newValue.c_str());
-
-	if (name == CStrW(L"numPlayers"))
-	{
-		pServer->m_NumPlayers=newValue.ToUInt();
-	}
 
 	CSetGameConfig *pMsg=new CSetGameConfig;
 	pMsg->m_Values.resize(1);
@@ -225,6 +244,32 @@ void CNetServer::PlayerAttributeUpdate(CStrW name, CStrW newValue, CPlayer *pPla
 	pServer->Broadcast(pMsg);
 }
 
+CNetMessage *CNetServer::CreatePlayerSlotAssignmentMessage(CPlayerSlot *pSlot)
+{
+	CAssignPlayerSlot *pMsg=new CAssignPlayerSlot();
+	pMsg->m_SlotID=pSlot->GetSlotID();
+	pMsg->m_SessionID=pSlot->GetSessionID();
+	switch (pSlot->GetAssignment())
+	{
+#define CASE(_a, _b) case _a: pMsg->m_Assignment=_b; break;
+		CASE(SLOT_CLOSED, PS_ASSIGN_CLOSED)
+		CASE(SLOT_OPEN, PS_ASSIGN_OPEN)
+		CASE(SLOT_SESSION, PS_ASSIGN_SESSION)
+		//CASE(SLOT_AI, PS_ASSIGN_AI)
+	}
+	return pMsg;
+}
+
+void CNetServer::PlayerSlotAssignmentCallback(void *userdata, CPlayerSlot *pSlot)
+{
+	CNetServer *pInstance=(CNetServer *)userdata;
+	if (pSlot->GetAssignment() == SLOT_SESSION)
+		pSlot->GetSession()->SetPlayerSlot(pSlot);
+	CNetMessage *pMsg=CreatePlayerSlotAssignmentMessage(pSlot);
+	g_Console->InsertMessage(L"Player Slot Assignment: %ls\n", pMsg->GetString().c_str());
+	pInstance->Broadcast(pMsg);
+}
+
 bool CNetServer::AllowObserver(CNetServerSession *pSession)
 {
 	return m_Observers.size() < m_MaxObservers;
@@ -232,17 +277,42 @@ bool CNetServer::AllowObserver(CNetServerSession *pSession)
 
 void CNetServer::RemoveSession(CNetServerSession *pSession)
 {
-	vector<CNetServerSession*>::iterator it=find(m_Sessions.begin(), m_Sessions.end(), pSession);
+	SessionMap::iterator it=m_Sessions.find(pSession->GetID());
 	if (it != m_Sessions.end())
 		m_Sessions.erase(it);
 
+	/*
+	 * Player sessions require some extra care:
+	 *
+	 * Pre-Game: dissociate the slot that was used by the session and
+	 * synchronize the disconnection of the client.
+	 *
+	 * In-Game: Revert all player's entities to Gaia control, awaiting the
+	 * client's reconnect attempts [if/when we implement that]
+	 *
+	 * Post-Game: Just sync disconnection - we don't have any players anymore
+	 * and all is fine.
+	 *
+	 * After this is done, call the JS callback if it's been set.
+	 */
 	if (pSession->GetPlayer())
 	{
-		uint playerID=pSession->GetPlayer()->GetPlayerID();
-		m_PlayerSessions[playerID-2]=NULL;
-		CTurnManager::SetClientPipe(playerID-2, NULL);
+		if (m_ServerState == NSS_PreGame)
+		{
+			pSession->GetPlayerSlot()->AssignClosed();
+		}
+		else if (m_ServerState == NSS_InGame)
+		{
+			LOG(ERROR, LOG_CAT_NET, "CNetServer::RemoveSession(): In-Game Player Disconnection not implemented!");
+		}
 	}
-	
+		
+	CClientDisconnect *pMsg=new CClientDisconnect();
+	pMsg->m_SessionID=pSession->GetID();
+	Broadcast(pMsg);
+
+	OnClientDisconnect(pSession);
+
 	// TODO Correct handling of observers
 }
 
@@ -258,45 +328,44 @@ void CNetServer::Broadcast(CNetMessage *pMsg)
 		return;
 	}
 
-	size_t i=0;
-	for (;i<m_Sessions.size()-1;i++)
+	SessionMap::iterator it=m_Sessions.begin();
+	// Skip one session
+	++it;
+	// Send a *copy* to all remaining sessions
+	for (;it != m_Sessions.end();++it)
 	{
-		m_Sessions[i]->Push(pMsg->Copy());
+		it->second->Push(pMsg->Copy());
 	}
-	m_Sessions[i]->Push(pMsg);
+	// Now send to the first session, *not* copying the message
+	m_Sessions.begin()->second->Push(pMsg);
 }
 
 int CNetServer::StartGame()
 {
-	if (m_PlayerSessions.size() < m_pGameAttributes->m_NumPlayers-1)
-	{
-		return -1;
-	}
-
 	Broadcast(new CStartGame());
-
+	
 	if (m_pGame->StartGame(m_pGameAttributes) != PSRETURN_OK)
 		return -1;
 	else
 	{
-		for (uint i=0;i<m_PlayerSessions.size();i++)
+		CTurnManager::Initialize(m_pGameAttributes->GetSlotCount());
+		for (uint i=0;i<m_pGameAttributes->GetSlotCount();i++)
 		{
-			m_PlayerSessions[i]->SetPlayer(m_pGame->GetPlayer(i+1));
-		}
-
-		CTurnManager::Initialize(m_PlayerSessions.size());
-		for (uint i=0;i<m_PlayerSessions.size();i++)
-		{
-			CTurnManager::SetClientPipe(i, m_PlayerSessions[i]);
+			CPlayerSlot *pSlot=m_pGameAttributes->GetSlot(i);
+			if (pSlot->GetAssignment() == SLOT_SESSION)
+				CTurnManager::SetClientPipe(i, pSlot->GetSession());
 		}
 		m_ServerState=NSS_InGame;
 
-		vector<CNetServerSession*>::iterator it=m_Sessions.begin();
+		SessionMap::iterator it=m_Sessions.begin();
 		while (it != m_Sessions.end())
 		{
-			(*it)->StartGame();
+			it->second->StartGame();
 			++it;
 		}
+		
+		// This is the signal for everyone to start their simulations.
+		SendBatch(1);
 
 		return 0;
 	}
@@ -336,5 +405,23 @@ void CNetServer::OnChat(CStrW from, CStrW message)
 	{
 		CChatEvent evt(from, message);
 		m_OnChat.DispatchEvent(GetScript(), &evt);
+	}
+}
+
+void CNetServer::OnClientConnect(CNetServerSession *pSession)
+{
+	if (m_OnClientConnect.Defined())
+	{
+		CClientConnectEvent evt(pSession);
+		m_OnClientConnect.DispatchEvent(GetScript(), &evt);
+	}
+}
+
+void CNetServer::OnClientDisconnect(CNetServerSession *pSession)
+{
+	if (m_OnClientDisconnect.Defined())
+	{
+		CClientDisconnectEvent evt(pSession->GetID(), pSession->GetName());
+		m_OnClientDisconnect.DispatchEvent(GetScript(), &evt);
 	}
 }
