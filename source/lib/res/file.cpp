@@ -899,14 +899,6 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 		actual_size = round_up(ofs_misalign + data_size, BLOCK_SIZE);
 	}
 
-	// warn in debug build if buffer and offset don't match
-	// (=> aio would have to realign every block).
-#ifndef NDEBUG
-	size_t buf_misalign = ((uintptr_t)actual_buf) % BLOCK_SIZE;
-	if(actual_buf && actual_ofs % BLOCK_SIZE != buf_misalign)
-		debug_out("file_io: warning: buffer %p and offset %x are misaligned\n", actual_buf, data_ofs);
-#endif
-
 
 	// skip aio code, use lowio
 	if(no_aio)
