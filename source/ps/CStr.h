@@ -84,6 +84,9 @@ typedef char TCHAR;
 
 enum PS_TRIM_MODE {PS_TRIM_LEFT, PS_TRIM_RIGHT, PS_TRIM_BOTH};
 
+// yuck - MAX already defines a CStr class...
+#define CStr PS_CStr
+
 
 // CStr class, the mother of all strings
 class CStr: public ISerializable
