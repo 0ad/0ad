@@ -76,7 +76,7 @@ void CConsole::ToLower(wchar_t* szMessage, uint iSize)
 
 	if (iSize && iSize < L) L = iSize;
 
-    for(uint i = 0; i < L; i++)
+	for(uint i = 0; i < L; i++)
 		szMessage[i] = towlower(szMessage[i]);
 }
 
@@ -163,8 +163,8 @@ void CConsole::Render()
 
 	glTranslatef(m_fX, m_fY + DeltaY, 0.0f); //Move to window position
 
-    DrawWindow();
-    DrawHistory();
+	DrawWindow();
+	DrawHistory();
 	DrawBuffer();
 }
 
@@ -288,7 +288,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 		case '\n':
 			iHistoryPos = -1;
 			m_iMsgHistPos = 1;
-            ProcessBuffer(m_szBuffer);
+			ProcessBuffer(m_szBuffer);
 			FlushBuffer();
 			return;
 
@@ -302,10 +302,10 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 			if (m_iBufferPos == m_iBufferLength)
 				m_szBuffer[m_iBufferPos - 1] = '\0';
 			else{
-                for(int j=m_iBufferPos-1; j<m_iBufferLength-1; j++)
+				for(int j=m_iBufferPos-1; j<m_iBufferLength-1; j++)
 					m_szBuffer[j] = m_szBuffer[j+1]; // move chars to left
 				m_szBuffer[m_iBufferLength-1] = '\0';
-            }
+			}
 
 			m_iBufferPos--;
 			m_iBufferLength--;
@@ -451,7 +451,7 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 	m_deqBufHistory.push_front(szLine);
 
 	wchar_t* szCommand = new wchar_t[BUFFER_SIZE];
-    memset(szCommand, '\0', sizeof(wchar_t) * BUFFER_SIZE);
+	memset(szCommand, '\0', sizeof(wchar_t) * BUFFER_SIZE);
 
 	std::map<std::wstring, fptr>::iterator Iter;
 
