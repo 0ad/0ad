@@ -16,6 +16,13 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 
 	float len = delta.length();
 
+	// janwas added EVIL HACK: BoundsChecker complains about NaNs
+	// in atan2 and fabs => delta must be 0 somewhere.
+	// currently skip over all math code that would break.
+	// what's the real solution?
+	if(len == 0.0f)
+		goto small_delta;
+
 	// Curve smoothing.
 	// Here there be trig.
 
@@ -63,6 +70,7 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 
 	if( len < 0.1f )
 	{
+small_delta:
 		if( current->m_type == CEntityOrder::ORDER_GOTO_COLLISION )
 		{
 			// Repath.
