@@ -3,7 +3,7 @@
 #include "Terrain.h"
 #include "Camera.h"
 #include "LightEnv.h"
-#include "../ps/Prometheus.h"
+#include "Prometheus.h"
 
 #include "detect.h"
 #include "time.h"

@@ -11,7 +11,7 @@
 //***********************************************************
 
 #include "Camera.h"
-#include "../ps/Prometheus.h"
+#include "Prometheus.h"
 
 CCamera::CCamera ()
 {
