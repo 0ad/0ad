@@ -30,7 +30,7 @@ static const char* exts = NULL;
 
 
 // check if the extension <ext> is supported by the OpenGL implementation
-bool oglExtAvail(const char* ext)
+bool oglHaveExtension(const char* ext)
 {
 	assert(exts && "call oglInit before using this function");
 
@@ -55,6 +55,30 @@ bool oglExtAvail(const char* ext)
 		p = end;
 	}
 }
+
+
+// check if the OpenGL implementation is at least at <version>.
+// (format: "%d.%d" major minor)
+bool oglHaveVersion(const char* desired_version)
+{
+	int desired_major, desired_minor;
+	if(sscanf(desired_version, "%d.%d", &desired_major, &desired_minor) != 2)
+	{
+		debug_warn("oglHaveVersion: invalid version string");
+		return false;
+	}
+
+	int major, minor;
+	const char* version = (const char*)glGetString(GL_VERSION);
+	if(!version || sscanf(version, "%d.%d", &major, &minor) != 2)
+	{
+		debug_warn("oglHaveVersion: GL_VERSION invalid");
+		return false;
+	}
+
+	return (major > desired_major || minor >= desired_minor);
+}
+
 
 #ifdef OGL_CHECKS
 void oglCheck()
@@ -166,11 +190,11 @@ void oglInit()
 	glGetIntegerv(GL_MAX_TEXTURE_SIZE, &max_tex_size);
 	glGetIntegerv(GL_MAX_TEXTURE_UNITS, &tex_units);
 	// make sure value is -1 if not supported
-	if(oglExtAvail("GL_NV_vertex_array_range"))
+	if(oglHaveExtension("GL_NV_vertex_array_range"))
 		glGetIntegerv(GL_MAX_VERTEX_ARRAY_RANGE_ELEMENT_NV, &max_VAR_elements);
 
-	tex_compression_avail = oglExtAvail("GL_ARB_texture_compression") &&
-						   (oglExtAvail("GL_EXT_texture_compression_s3tc") || oglExtAvail("GL_S3_s3tc"));
+	tex_compression_avail = oglHaveExtension("GL_ARB_texture_compression") &&
+						   (oglHaveExtension("GL_EXT_texture_compression_s3tc") || oglHaveExtension("GL_S3_s3tc"));
 
 	video_mem = (SDL_GetVideoInfo()->video_mem) / 1048576;	// [MiB]
 	// TODO: add sizeof(FB)?

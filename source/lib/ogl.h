@@ -88,7 +88,11 @@ extern int video_mem;					// [MiB]; approximate
 
 
 // check if the extension <ext> is supported by the OpenGL implementation
-extern bool oglExtAvail(const char* ext);
+extern bool oglHaveExtension(const char* ext);
+
+// check if the OpenGL implementation is at least at <version>.
+// (format: "%d.%d" major minor)
+extern bool oglHaveVersion(const char* version);
 
 // print all OpenGL errors
 extern void oglPrintErrors(void);

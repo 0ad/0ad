@@ -138,14 +138,14 @@ void CRenderer::EnumCaps()
 
 	// now start querying extensions
 	if (!m_Options.m_NoVBO) {
-		if (oglExtAvail("GL_ARB_vertex_buffer_object")) {
+		if (oglHaveExtension("GL_ARB_vertex_buffer_object")) {
 			m_Caps.m_VBO=true;
 		}
 	}
-	if (oglExtAvail("GL_ARB_texture_border_clamp")) {
+	if (oglHaveExtension("GL_ARB_texture_border_clamp")) {
 		m_Caps.m_TextureBorderClamp=true;
 	}
-	if (oglExtAvail("GL_SGIS_generate_mipmap")) {
+	if (oglHaveExtension("GL_SGIS_generate_mipmap")) {
 		m_Caps.m_GenerateMipmaps=true;
 	}
 }

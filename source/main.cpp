@@ -296,8 +296,10 @@ static int set_vmode(int w, int h, int bpp, bool fullscreen)
 }
 
 
-// use_bmp is for when you want high-speed output at the expense of huge files
-static void WriteScreenshot(bool use_bmp = false)
+// <extension> identifies the file format that is to be written
+// (case-insensitive). examples: "bmp", "png", "jpg".
+// BMP is good for quick output at the expense of large files.
+static void WriteScreenshot(const char* extension = "png")
 {
 	// determine next screenshot number.
 	//
@@ -313,7 +315,6 @@ static void WriteScreenshot(bool use_bmp = false)
 
 	const char* file_format_string = "screenshots/screenshot%04d.%s";
 		// %04d -> always 4 digits, so sorting by filename works correctly.
-	const char* extension = use_bmp? "bmp" : "png";
 
 	static int next_num = 1;
 	do
@@ -322,10 +323,16 @@ static void WriteScreenshot(bool use_bmp = false)
 
 	const int w = g_xres, h = g_yres;
 	const int bpp = 24;
-	const GLenum fmt = use_bmp? GL_BGR : GL_RGB;
-	const int flags = use_bmp? TEX_BGR|TEX_BOTTOM_UP : TEX_BOTTOM_UP;
-		// we want writing BMP to be as fast as possible,
-		// so read data from OpenGL in BMP format to obviate conversion.
+	GLenum fmt = GL_RGB;
+	int flags = TEX_BOTTOM_UP;
+	// we want writing BMP to be as fast as possible,
+	// so read data from OpenGL in BMP format to obviate conversion.
+	if(!stricmp(extension, "bmp"))
+	{
+		fmt = GL_BGR;
+		flags |= TEX_BGR;
+	}
+		
 	const size_t size = w * h * bpp;
 	void* img = mem_alloc(size);
 
@@ -1100,7 +1107,7 @@ sle(11340106);
 		// must be called before first snd_open.
 		snd_disable(true);
 
-	if(!oglExtAvail("GL_ARB_multitexture") || !oglExtAvail("GL_ARB_texture_env_combine") ||
+	if(!oglHaveExtension("GL_ARB_multitexture") || !oglHaveExtension("GL_ARB_texture_env_combine") ||
 		!glActiveTexture)	// prevent crashing later if multitexture support is falsely
 							// advertised (janwas 2004-08-25, for bug #18)
 	{
@@ -1110,7 +1117,7 @@ sle(11340106);
 
 	// enable/disable VSync
 	// note: "GL_EXT_SWAP_CONTROL" is "historical" according to dox.
-	if(oglExtAvail("WGL_EXT_swap_control"))
+	if(oglHaveExtension("WGL_EXT_swap_control"))
 		wglSwapIntervalEXT(g_VSync? 1 : 0);
 
 #ifdef _MSC_VER
