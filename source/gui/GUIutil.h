@@ -40,11 +40,16 @@ bool __ParseString(const CStr& Value, T &tOutput);
 //  you use them in text owned by different objects... Such as CText.
 struct SGUIIcon
 {
+	SGUIIcon() : m_CellID(0) {}
+
 	// Texture name of icon
 	CStr m_TextureName;
 
 	// Size
 	CSize m_Size;
+
+	// Cell of texture to use; ignored unless the texture has specified cell-size
+	int m_CellID;
 };
 
 

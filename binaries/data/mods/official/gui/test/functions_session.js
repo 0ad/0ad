@@ -133,7 +133,7 @@ function setPortrait(objectName, portraitString, portraitCell)
 
 	// If the source texture is a multi-frame image (icon sheet), specify correct cell.
 	if (portraitCell)
-		GUIObject["icon-id"] = portraitCell;
+		GUIObject["cell-id"] = portraitCell;
 }
 
 // ====================================================================

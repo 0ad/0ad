@@ -32,7 +32,7 @@
   font					CDATA #IMPLIED
   fov-wedge-color			CDATA #IMPLIED
   hotkey				CDATA #IMPLIED
-  icon-id				CDATA #IMPLIED
+  cell-id				CDATA #IMPLIED
   input-initvalue-destroyed-at-focus	%bool; #IMPLIED
   rectcolor-selected			CDATA #IMPLIED
   scrollbar				%bool; #IMPLIED
@@ -131,14 +131,16 @@
   name					CDATA #REQUIRED
   texture				CDATA #REQUIRED
   size					CDATA #REQUIRED
+  cell-id				CDATA #IMPLIED
 >
 
 <!--
 	<sprites>
 -->
 <!ELEMENT sprites (sprite*)>
-<!ELEMENT sprite (image+)>
-<!ELEMENT image EMPTY>
+<!ELEMENT sprite (effect?,image+)>
+<!ELEMENT image (effect?)>
+<!ELEMENT effect EMPTY>
 
 <!ATTLIST sprite 
   name 					CDATA #REQUIRED
@@ -149,9 +151,14 @@
   size					CDATA #IMPLIED
   texture-size				CDATA #IMPLIED
   real-texture-placement		CDATA #IMPLIED
-  icon-size				CDATA #IMPLIED
+  cell-size				CDATA #IMPLIED
   backcolor				CDATA #IMPLIED
   bordercolor				CDATA #IMPLIED
   border				%bool; #IMPLIED
   z-level				CDATA #IMPLIED
+>
+
+<!ATTLIST effect
+  add-color				CDATA #IMPLIED
+  multiply-color			CDATA #IMPLIED
 >

@@ -32,6 +32,9 @@ struct CColor
 		return !(*this==color);
 	}
 
+	// For passing to glColor[34]fv:
+	const float* FloatArray() const { return &r; }
+
 	float r, g, b, a;
 };
 

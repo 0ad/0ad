@@ -108,13 +108,13 @@ public:
 	 *
 	 * @param Sprite Object refering to the sprite (which also caches
 	 *        calculations for faster rendering)
-	 * @param IconID Number of the icon to use. (Ignored if this sprite doesn't
-	 *        have any images with "icon-size")
+	 * @param CellID Number of the icon cell to use. (Ignored if this sprite doesn't
+	 *        have any images with "cell-size")
 	 * @param Z Drawing order, depth value
 	 * @param Rect Position and Size
 	 * @param Clipping The sprite shouldn't be drawn outside this rectangle
 	 */
-	void DrawSprite(CGUISpriteInstance& Sprite, int IconID, const float &Z, 
+	void DrawSprite(CGUISpriteInstance& Sprite, int CellID, const float &Z, 
 					const CRect &Rect, const CRect &Clipping=CRect());
 
 	/**
@@ -436,6 +436,9 @@ private:
 	 * @see LoadXMLFile()
 	 */
 	void Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite &parent);
+
+	// TODO: Documentation. (I'm feeling lazy at the moment.)
+	void Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImageEffects &effects);
 
 	/**
 	 * Reads in the element <style> (the XMBElement) and stores the

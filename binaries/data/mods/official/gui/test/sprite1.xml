@@ -159,27 +159,27 @@
                 <image backcolor="0 0 0" size="100% 0 100%+1 100%" />
         </sprite>
 
-	<!-- Standard 0 A.D.-style framed window -->
+        <!-- Standard 0 A.D.-style framed window -->
         <sprite name="0ad_window">
                 <!-- middle -->
                 <image texture="global/ui_gen_background_paper.png" texture-size="0 0 128 128" size="0%-10 0%-10 100%+10 100%+10" />
                 <!-- Starting with top left corner continuing in a clockwise manner -->
-		<image texture="global/ui_gen_border-corner-15px.png" real-texture-placement="0 0 15 15" size="0%-25 0%-25 0%-10 0%-10" />
-		<image texture="global/ui_gen_border-top-20px.png" texture-size="0 0 128 32" size="0%-10 0%-25 100%+10 0%+7" />
-		<image texture="global/ui_gen_border-corner-15px.png" real-texture-placement="0 0 15 15" size="100%+10 0%-25 100%+25 0%-10" />
-		<image texture="global/ui_gen_border-right-20px.png" texture-size="0 0 32 128" size="100%-6 0%-10 100%+26 100%+10" />
-		<image texture="global/ui_gen_border-corner-15px.png" real-texture-placement="0 0 15 15" size="100%+10 100%+10 100%+25 100%+25" />
-		<image texture="global/ui_gen_border-bottom-20px.png" texture-size="0 0 128 32" size="0%-10 100%-7 100%+10 100%+25" />
-		<image texture="global/ui_gen_border-corner-15px.png" real-texture-placement="0 0 15 15" size="0%-25 100%+10 0%-10 100%+25" />
-		<image texture="global/ui_gen_border-left-20px.png" texture-size="0 0 32 128" size="0%-25 0%-10 0%+7 100%+10" />
+                <image texture="global/ui_gen_border-corner-15px.png" real-texture-placement="0 0 15 15" size="0%-25 0%-25 0%-10 0%-10" />
+                <image texture="global/ui_gen_border-top-20px.png" texture-size="0 0 128 32" size="0%-10 0%-25 100%+10 0%+7" />
+                <image texture="global/ui_gen_border-corner-15px.png" real-texture-placement="0 0 15 15" size="100%+10 0%-25 100%+25 0%-10" />
+                <image texture="global/ui_gen_border-right-20px.png" texture-size="0 0 32 128" size="100%-6 0%-10 100%+26 100%+10" />
+                <image texture="global/ui_gen_border-corner-15px.png" real-texture-placement="0 0 15 15" size="100%+10 100%+10 100%+25 100%+25" />
+                <image texture="global/ui_gen_border-bottom-20px.png" texture-size="0 0 128 32" size="0%-10 100%-7 100%+10 100%+25" />
+                <image texture="global/ui_gen_border-corner-15px.png" real-texture-placement="0 0 15 15" size="0%-25 100%+10 0%-10 100%+25" />
+                <image texture="global/ui_gen_border-left-20px.png" texture-size="0 0 32 128" size="0%-25 0%-10 0%+7 100%+10" />
         </sprite>
 
-	<!-- Standard 0 A.D.-style window's title bar -->
+        <!-- Standard 0 A.D.-style window's title bar -->
         <sprite name="0ad_window_title">
                 <image texture="global/ui_gen_titlebar-left.png" real-texture-placement="0 0 64 32" size="0%+0 0%-10 5%+64 0%+22" />
                 <image texture="global/ui_gen_titlebar-middle.png" real-texture-placement="0 0 64 32" size="5%+64 0%-10 95%-64 0%+22" />
                 <image texture="global/ui_gen_titlebar-right.png" real-texture-placement="0 0 64 32" size="95%-64 0%-10 100%+0 0%+22" />
-	</sprite>
+        </sprite>
 
         <!--
         ==========================================
@@ -208,7 +208,7 @@
         </sprite>
         
         <sprite name="tooltip-background">
-                <image texture="black_16x16.png" texture-size="0 0 16 16" size="0 0 100% 100%" />
+                <image backcolor="0 0 0 85" size="0 0 100% 100%" />
         </sprite>
 
         <!--
@@ -411,7 +411,7 @@
                 -->
 
                 <sprite name="ui_icon_sheet_statistic">
-                        <image texture="ui_icon_sheet_statistic.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <image texture="ui_icon_sheet_statistic.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
                 <!--
@@ -425,7 +425,8 @@
                         <image texture="ui_portrait_default_circle.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_default_circle-lit">
-                        <image texture="ui_portrait_default_circle-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                        <effect add-color="26 26 26"/>
+                        <image texture="ui_portrait_default_circle.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_default_circle-grey">
                         <image texture="ui_portrait_default_circle-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
@@ -436,7 +437,8 @@
                         <image texture="ui_portrait_default_square.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_default_square-lit">
-                        <image texture="ui_portrait_default_square-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                        <effect add-color="26 26 26"/>
+                        <image texture="ui_portrait_default_square.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_default_square-grey">
                         <image texture="ui_portrait_default_square-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
@@ -449,13 +451,14 @@
                 -->
 
                 <sprite name="ui_portrait_sheet_action">
-                        <image texture="ui_portrait_sheet_action.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <image texture="ui_portrait_sheet_action.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_action-lit">
-                        <image texture="ui_portrait_sheet_action-lit.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <effect add-color="42 42 42"/>
+                        <image texture="ui_portrait_sheet_action.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_action-grey">
-                        <image texture="ui_portrait_sheet_action-grey.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <image texture="ui_portrait_sheet_action-grey.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
                 <!--
@@ -469,7 +472,8 @@
                         <image texture="ui_portrait_unit_dude.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_unit_dude-lit">
-                        <image texture="ui_portrait_unit_dude-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                        <effect add-color="42 42 42"/>
+                        <image texture="ui_portrait_unit_dude.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_unit_dude-grey">
                         <image texture="ui_portrait_unit_dude-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
@@ -480,7 +484,8 @@
                         <image texture="ui_portrait_unit_dudette.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_unit_dudette-lit">
-                        <image texture="ui_portrait_unit_dudette-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                        <effect add-color="42 42 42"/>
+                        <image texture="ui_portrait_unit_dudette.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_unit_dudette-grey">
                         <image texture="ui_portrait_unit_dudette-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
@@ -491,7 +496,8 @@
                         <image texture="ui_portrait_flora_deciduotree.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_flora_deciduotree-lit">
-                        <image texture="ui_portrait_flora_deciduotree-lit.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
+                        <effect add-color="42 42 42"/>
+                        <image texture="ui_portrait_flora_deciduotree.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_flora_deciduotree-grey">
                         <image texture="ui_portrait_flora_deciduotree-grey.png" texture-size="0 0 100% 100%" size="0 0 100% 100%" />
@@ -504,13 +510,14 @@
                 -->
 
                 <sprite name="ui_portrait_sheet_civ_celt">
-                        <image texture="ui_portrait_sheet_civ_celt.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <image texture="ui_portrait_sheet_civ_celt.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_celt-grey">
-                        <image texture="ui_portrait_sheet_civ_celt-grey.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <image texture="ui_portrait_sheet_civ_celt-grey.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_celt-lit">
-                        <image texture="ui_portrait_sheet_civ_celt-lit.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <effect add-color="100 100 100"/>
+                        <image texture="ui_portrait_sheet_civ_celt.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
                 <!--
@@ -520,13 +527,14 @@
                 -->
 
                 <sprite name="ui_portrait_sheet_civ_hele">
-                        <image texture="ui_portrait_sheet_civ_hele.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <image texture="ui_portrait_sheet_civ_hele.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_hele-grey">
-                        <image texture="ui_portrait_sheet_civ_hele-grey.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <image texture="ui_portrait_sheet_civ_hele-grey.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_hele-lit">
-                        <image texture="ui_portrait_sheet_civ_hele-lit.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <effect add-color="100 100 100"/>
+                        <image texture="ui_portrait_sheet_civ_hele.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
                 <!--
@@ -536,13 +544,14 @@
                 -->
 
                 <sprite name="ui_portrait_sheet_civ_iber">
-                        <image texture="ui_portrait_sheet_civ_iber.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <image texture="ui_portrait_sheet_civ_iber.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_iber-grey">
-                        <image texture="ui_portrait_sheet_civ_iber-grey.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <image texture="ui_portrait_sheet_civ_iber-grey.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_iber-lit">
-                        <image texture="ui_portrait_sheet_civ_iber-lit.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <effect add-color="100 100 100"/>
+                        <image texture="ui_portrait_sheet_civ_iber.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
                 <!--
@@ -552,13 +561,14 @@
                 -->
 
                 <sprite name="ui_portrait_sheet_civ_kart">
-                        <image texture="ui_portrait_sheet_civ_kart.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <image texture="ui_portrait_sheet_civ_kart.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_kart-grey">
-                        <image texture="ui_portrait_sheet_civ_kart-grey.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <image texture="ui_portrait_sheet_civ_kart-grey.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_kart-lit">
-                        <image texture="ui_portrait_sheet_civ_kart-lit.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <effect add-color="100 100 100"/>
+                        <image texture="ui_portrait_sheet_civ_kart.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
                 <!--
@@ -568,13 +578,14 @@
                 -->
 
                 <sprite name="ui_portrait_sheet_civ_pers">
-                        <image texture="ui_portrait_sheet_civ_pers.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <image texture="ui_portrait_sheet_civ_pers.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_pers-grey">
-                        <image texture="ui_portrait_sheet_civ_pers-grey.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <image texture="ui_portrait_sheet_civ_pers-grey.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_pers-lit">
-                        <image texture="ui_portrait_sheet_civ_pers-lit.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <effect add-color="100 100 100"/>
+                        <image texture="ui_portrait_sheet_civ_pers.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
                 <!--
@@ -584,13 +595,14 @@
                 -->
 
                 <sprite name="ui_portrait_sheet_civ_rome">
-                        <image texture="ui_portrait_sheet_civ_rome.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <image texture="ui_portrait_sheet_civ_rome.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_rome-grey">
-                        <image texture="ui_portrait_sheet_civ_rome-grey.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <image texture="ui_portrait_sheet_civ_rome-grey.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_rome-lit">
-                        <image texture="ui_portrait_sheet_civ_rome-lit.png" icon-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <effect add-color="100 100 100"/>
+                        <image texture="ui_portrait_sheet_civ_rome.png" cell-size="64 64" texture-size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
         <!--

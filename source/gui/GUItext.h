@@ -55,6 +55,8 @@ struct SGUIText
 	 */
 	struct SSpriteCall
 	{
+		SSpriteCall() : m_CellID(0) {}
+
 		/**
 		 * Size and position of sprite
 		 */
@@ -64,6 +66,8 @@ struct SGUIText
 		 * Sprite from global GUI sprite database.
 		 */
 		CGUISpriteInstance m_Sprite;
+
+		int m_CellID;
 	};
 
 	/**

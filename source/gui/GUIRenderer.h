@@ -6,6 +6,8 @@
 #include "ps/CStr.h"
 #include <vector>
 
+struct SGUIImageEffects;
+
 namespace GUIRenderer
 {
 	struct Handle_rfcnt_tex
@@ -24,6 +26,8 @@ namespace GUIRenderer
 
 		bool m_EnableBlending;
 
+		SGUIImageEffects* m_Effects;
+
 		CRect m_Vertices;
 		CRect m_TexCoords;
 		float m_DeltaZ;
@@ -39,7 +43,7 @@ namespace GUIRenderer
 
 namespace GUIRenderer
 {
-	void UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect& Size, int IconID, std::map<CStr, CGUISprite> &Sprites);
+	void UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect& Size, int CellID, std::map<CStr, CGUISprite> &Sprites);
 
 	void Draw(DrawCalls &Calls);
 }

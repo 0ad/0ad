@@ -18,7 +18,7 @@ using namespace std;
 CImage::CImage()
 {
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
-	AddSetting(GUIST_int,					"icon-id");
+	AddSetting(GUIST_int,					"cell-id");
 }
 
 CImage::~CImage()
@@ -32,10 +32,10 @@ void CImage::Draw()
 		float bz = GetBufferedZ();
 
 		CGUISpriteInstance *sprite;
-		int icon_id;
+		int cell_id;
 		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
-		GUI<int>::GetSetting(this, "icon-id", icon_id);
+		GUI<int>::GetSetting(this, "cell-id", cell_id);
 
-		GetGUI()->DrawSprite(*sprite, icon_id, bz, m_CachedActualSize);
+		GetGUI()->DrawSprite(*sprite, cell_id, bz, m_CachedActualSize);
 	}
 }

@@ -408,7 +408,7 @@ void CGUI::Draw()
 }
 
 void CGUI::DrawSprite(CGUISpriteInstance& Sprite,
-					  int IconID,
+					  int CellID,
 					  const float &Z,
 					  const CRect &Rect,
 					  const CRect &Clipping)
@@ -422,7 +422,7 @@ void CGUI::DrawSprite(CGUISpriteInstance& Sprite,
 	glPushMatrix();
 	glTranslatef(0.0f, 0.0f, Z);
 
-	Sprite.Draw(Rect, IconID, m_Sprites);
+	Sprite.Draw(Rect, CellID, m_Sprites);
 
 	glPopMatrix();
 
@@ -448,6 +448,10 @@ void CGUI::Destroy()
 		
 		delete it->second;
 	}
+
+	for (std::map<CStr, CGUISprite>::iterator it2 = m_Sprites.begin(); it2 != m_Sprites.end(); ++it2)
+		for (std::vector<SGUIImage>::iterator it3 = it2->second.m_Images.begin(); it3 != it2->second.m_Images.end(); ++it3)
+			delete it3->m_Effects;
 
 	// Clear all
 	m_pAllObjects.clear();
@@ -523,16 +527,16 @@ IGUIObject* CGUI::FindObjectByName(const CStr& Name) const
 // private struct used only in GenerateText(...)
 struct SGenerateTextImage
 {
-	float m_YFrom,			// The images starting location in Y
-		  m_YTo,			// The images end location in Y
+	float m_YFrom,			// The image's starting location in Y
+		  m_YTo,			// The image's end location in Y
 		  m_Indentation;	// The image width in other words
 
 	// Some help functions
 	// TODO Gee: CRect => CPoint ?
-	void SetupSpriteCall(const bool &Left, SGUIText::SSpriteCall &SpriteCall, 
-						 const float &width, const float &y,
-						 const CSize &Size, const CStr& TextureName, 
-						 const float &BufferZone)
+	void SetupSpriteCall(const bool Left, SGUIText::SSpriteCall &SpriteCall, 
+						 const float width, const float y,
+						 const CSize &Size, const CStr &TextureName, 
+						 const float BufferZone, const int CellID)
 	{
 		// TODO Gee: Temp hardcoded values
 		SpriteCall.m_Area.top = y+BufferZone;
@@ -549,6 +553,7 @@ struct SGenerateTextImage
 			SpriteCall.m_Area.right = width-BufferZone;
 		}
 
+		SpriteCall.m_CellID = CellID;
 		SpriteCall.m_Sprite = TextureName;
 
 		m_YFrom = SpriteCall.m_Area.top-BufferZone;
@@ -626,7 +631,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 					SGUIIcon icon = GetIcon(*it);
 
 					CSize size = icon.m_Size;
-					Image.SetupSpriteCall((j==CGUIString::SFeedback::Left), SpriteCall, Width, _y, size, icon.m_TextureName, BufferZone);
+					Image.SetupSpriteCall((j==CGUIString::SFeedback::Left), SpriteCall, Width, _y, size, icon.m_TextureName, BufferZone, icon.m_CellID);
 
 					// Check if image is the lowest thing.
 					Text.m_Size.cy = MAX(Text.m_Size.cy, Image.m_YTo);
@@ -878,7 +883,7 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 		 it!=Text.m_SpriteCalls.end(); 
 		 ++it)
 	{
-		DrawSprite(it->m_Sprite, 0, z, it->m_Area + pos);
+		DrawSprite(it->m_Sprite, it->m_CellID, z, it->m_Area + pos);
 	}
 
 	// TODO To whom it may concern: Thing were not reset, so
@@ -1375,6 +1380,8 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 	//	Read Children (the images)
 	//
 
+	SGUIImageEffects* effects = NULL;
+
 	// Iterate children
 	XMBElementList children = Element.getChildNodes();
 
@@ -1383,11 +1390,32 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 		// Get node
 		XMBElement child = children.item(i);
 
-		// All Elements will be of type "image" by DTD law
+		CStr ElementName (pFile->getElementString(child.getNodeName()));
 
-		// Call this function on the child
-		Xeromyces_ReadImage(child, pFile, sprite);
+		if (ElementName == "image")
+		{
+			Xeromyces_ReadImage(child, pFile, sprite);
+		}
+		else if (ElementName == "effect")
+		{
+			assert(! effects); // DTD should only allow one effect per sprite
+			effects = new SGUIImageEffects;
+			Xeromyces_ReadEffects(child, pFile, *effects);
+		}
+		else
+		{
+			debug_warn("Oops"); // DTD shouldn't allow this
+		}
 	}
+
+	// Apply the effects to every image (unless the image overrides it with
+	// different effects)
+	if (effects)
+		for (std::vector<SGUIImage>::iterator it = sprite.m_Images.begin(); it != sprite.m_Images.end(); ++it)
+			if (! it->m_Effects)
+				it->m_Effects = new SGUIImageEffects(*effects); // do a copy just so it can be deleted correctly later
+
+	delete effects;
 
 	//
 	//	Add Sprite
@@ -1452,12 +1480,12 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			else image.m_TexturePlacementInFile = rect;
 		}
 		else
-		if (attr_name == "icon-size")
+		if (attr_name == "cell-size")
 		{
 			CSize size;
 			if (!GUI<CSize>::ParseString(attr_value, size))
 				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
-			else image.m_IconSize = size;
+			else image.m_CellSize = size;
 		}
 		else
 		if (attr_name == "z-level")
@@ -1491,7 +1519,28 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
 			else image.m_Border = b;
 		}
-		// We don't need no else when we're using DTDs.
+		else
+		{
+			debug_warn("Oops"); // DTD shouldn't allow this
+		}
+	}
+
+	// Look for effects
+	XMBElementList children = Element.getChildNodes();
+	for (int i=0; i<children.Count; ++i)
+	{
+		XMBElement child = children.item(i);
+		CStr ElementName (pFile->getElementString(child.getNodeName()));
+		if (ElementName == "effect")
+		{
+			assert(! image.m_Effects); // DTD should only allow one effect per sprite
+			image.m_Effects = new SGUIImageEffects;
+			Xeromyces_ReadEffects(child, pFile, *image.m_Effects);
+		}
+		else
+		{
+			debug_warn("Oops"); // DTD shouldn't allow this
+		}
 	}
 
 	//
@@ -1499,6 +1548,34 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 	//
 
 	parent.AddImage(image);	
+}
+
+void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImageEffects &effects)
+{
+	XMBAttributeList attributes = Element.getAttributes();
+	for (int i=0; i<attributes.Count; ++i)
+	{
+		XMBAttribute attr = attributes.item(i);
+		CStr attr_name (pFile->getAttributeString(attr.Name));
+		CStr attr_value (attr.Value);
+
+#define COLOR(xml, mem) \
+		if (attr_name == xml) \
+		{ \
+			CColor color; \
+			if (!GUI<CColor>::ParseString(attr_value, color)) \
+				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str()); \
+			else effects.m_##mem = color; \
+		} \
+		else
+
+		COLOR("add-color", AddColor)
+		COLOR("multiply-color", MultiplyColor)
+
+		{
+			debug_warn("Oops"); // DTD shouldn't allow this
+		}
+	}
 }
 
 void CGUI::Xeromyces_ReadStyle(XMBElement Element, CXeromyces* pFile)
@@ -1648,10 +1725,20 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 		{
 			CSize size;
 			if (!GUI<CSize>::ParseString(attr_value, size))
-			{
-				ReportParseError("Error parsing '%s' (\"%s\") when reading and <icon>.", attr_name.c_str(), attr_value.c_str());
-			}
+				ReportParseError("Error parsing '%s' (\"%s\") inside <icon>.", attr_name.c_str(), attr_value.c_str());
 			icon.m_Size = size;
+		}
+		else
+		if (attr_name == "cell-id")
+		{
+			int cell_id;
+			if (!GUI<int>::ParseString(attr_value, cell_id))
+				ReportParseError("Error parsing '%s' (\"%s\") inside <icon>.", attr_name.c_str(), attr_value.c_str());
+			icon.m_CellID = cell_id;
+		}
+		else
+		{
+			debug_warn("Oops"); // DTD shouldn't allow this
 		}
 	}
 

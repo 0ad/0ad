@@ -1,4 +1,4 @@
-/* $Id: XeroXMB.h,v 1.7 2004/11/11 07:09:32 markt Exp $
+/* $Id$
 
 	Xeromyces - XMB reading library
 
@@ -32,8 +32,6 @@ Theoretical file structure:
 
 XMB_File {
 	char Header[4]; // because everyone has one; currently "XMB0"
-
-	int Checksum; // CRC32 of original XML file, to detect changes
 
 	int ElementNameCount;
 	ZStrA ElementNames[];

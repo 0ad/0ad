@@ -744,7 +744,7 @@ function UpdateStatusOrb()
 	if (selection[0].traits.up.rank > 1)
 	{
 		GUIObject.sprite = "ui_icon_sheet_statistic";
-		GUIObject["icon-id"] = stat_rank1 + (selection[0].traits.up.rank-2);
+		GUIObject["cell-id"] = stat_rank1 + (selection[0].traits.up.rank-2);
 	}
 	else
 		GUIObject.sprite = "";

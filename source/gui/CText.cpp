@@ -26,7 +26,7 @@ CText::CText()
 	AddSetting(GUIST_bool,					"scrollbar");
 	AddSetting(GUIST_CStr,					"scrollbar-style");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
-	AddSetting(GUIST_int,					"icon-id");
+	AddSetting(GUIST_int,					"cell-id");
 	AddSetting(GUIST_CColor,				"textcolor");
 	// TODO Gee: (2004-08-14)
 	//  Add a setting for buffer zone
@@ -163,11 +163,11 @@ void CText::Draw()
 	if (GetGUI())
 	{
 		CGUISpriteInstance *sprite;
-		int icon_id;
+		int cell_id;
 		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
-		GUI<int>::GetSetting(this, "icon-id", icon_id);
+		GUI<int>::GetSetting(this, "cell-id", cell_id);
 
-		GetGUI()->DrawSprite(*sprite, icon_id, bz, m_CachedActualSize);
+		GetGUI()->DrawSprite(*sprite, cell_id, bz, m_CachedActualSize);
 
 		float scroll=0.f;
 		if (scrollbar)

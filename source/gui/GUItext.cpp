@@ -154,6 +154,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 					}
 
 					SpriteCall.m_Sprite = icon.m_TextureName;
+					SpriteCall.m_CellID = icon.m_CellID;
 
 					// Add sprite call
 					Feedback.m_SpriteCalls.push_back(SpriteCall);

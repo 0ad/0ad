@@ -42,7 +42,7 @@ Handle_rfcnt_tex& Handle_rfcnt_tex::operator=(Handle h_)
 
 // Functions to perform drawing-related actions:
 
-void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect &Size, int IconID, std::map<CStr, CGUISprite> &Sprites)
+void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect &Size, int CellID, std::map<CStr, CGUISprite> &Sprites)
 {
 	// This is called only when something has changed (like the size of the
 	// sprite), so it doesn't need to be particularly efficient.
@@ -114,14 +114,14 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 			if (cit->m_TexturePlacementInFile != CRect())
 				BlockTex = cit->m_TexturePlacementInFile;
 
-			// Check whether this sprite has "icon-size" set
-			else if (cit->m_IconSize != CSize())
+			// Check whether this sprite has "cell-size" set
+			else if (cit->m_CellSize != CSize())
 			{
-				int cols = t_w / (int)cit->m_IconSize.cx;
-				int col = IconID % cols;
-				int row = IconID / cols;
-				BlockTex = CRect(cit->m_IconSize.cx*col, cit->m_IconSize.cy*row,
-								 cit->m_IconSize.cx*(col+1), cit->m_IconSize.cy*(row+1));
+				int cols = t_w / (int)cit->m_CellSize.cx;
+				int col = CellID % cols;
+				int row = CellID / cols;
+				BlockTex = CRect(cit->m_CellSize.cx*col, cit->m_CellSize.cy*row,
+								 cit->m_CellSize.cx*(col+1), cit->m_CellSize.cy*(row+1));
 			}
 
 			// Use the whole texture
@@ -167,6 +167,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 		Call.m_BackColor = cit->m_BackColor;
 		Call.m_BorderColor = cit->m_Border ? cit->m_BorderColor : CColor();
 		Call.m_DeltaZ = cit->m_DeltaZ;
+		Call.m_Effects = cit->m_Effects;
 
 		Calls.push_back(Call);
 	}
@@ -180,8 +181,6 @@ void GUIRenderer::Draw(DrawCalls &Calls)
 	// Iterate through each DrawCall, and execute whatever drawing code is being called
 	for (DrawCalls::const_iterator cit = Calls.begin(); cit != Calls.end(); ++cit)
 	{
-		glColor4f(cit->m_BackColor.r, cit->m_BackColor.g, cit->m_BackColor.b, cit->m_BackColor.a);
-
 		if (cit->m_EnableBlending)
 		{
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -193,7 +192,26 @@ void GUIRenderer::Draw(DrawCalls &Calls)
 			// TODO: Handle the GL state in a nicer way
 
 			glEnable(GL_TEXTURE_2D);
-			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+
+			bool done = false;
+			if (cit->m_Effects)
+			{
+				if (cit->m_Effects->m_MultiplyColor != CColor())
+				{
+					glColor4fv(cit->m_Effects->m_MultiplyColor.FloatArray());
+					glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+					done = true;
+				}
+				else if (cit->m_Effects && cit->m_Effects->m_AddColor != CColor())
+				{
+					glColor4fv(cit->m_Effects->m_AddColor.FloatArray());
+					glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_ADD);
+					done = true;
+				}
+			}
+
+			if (! done)
+				glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 
 			tex_bind(cit->m_TexHandle.h);
 
@@ -218,6 +236,8 @@ void GUIRenderer::Draw(DrawCalls &Calls)
 		{
 			glDisable(GL_TEXTURE_2D);
 
+			glColor4fv(cit->m_BackColor.FloatArray());
+
 			glBegin(GL_QUADS);
 				glVertex3f(cit->m_Vertices.right,	cit->m_Vertices.bottom,	cit->m_DeltaZ);
 				glVertex3f(cit->m_Vertices.left,	cit->m_Vertices.bottom,	cit->m_DeltaZ);
@@ -228,7 +248,7 @@ void GUIRenderer::Draw(DrawCalls &Calls)
 
 			if (cit->m_BorderColor != CColor())
 			{
-				glColor4f(cit->m_BorderColor.r, cit->m_BorderColor.g, cit->m_BorderColor.b, cit->m_BorderColor.a);
+				glColor4fv(cit->m_BorderColor.FloatArray());
 				glBegin(GL_LINE_LOOP);
 					glVertex3f(cit->m_Vertices.left,		cit->m_Vertices.top+1.f,	cit->m_DeltaZ);
 					glVertex3f(cit->m_Vertices.right-1.f,	cit->m_Vertices.top+1.f,	cit->m_DeltaZ);

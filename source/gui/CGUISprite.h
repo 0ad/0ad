@@ -46,6 +46,14 @@ gee@pyro.nu
 //  Declarations
 //--------------------------------------------------------
 
+
+struct SGUIImageEffects
+{
+	CColor m_AddColor;
+	CColor m_MultiplyColor;
+};
+
+
 /**
  * @author Gustav Larsson
  *
@@ -54,7 +62,7 @@ gee@pyro.nu
  */
 struct SGUIImage
 {
-	SGUIImage() : m_Border(false), m_DeltaZ(0.f) {}
+	SGUIImage() : m_Effects(NULL), m_Border(false), m_DeltaZ(0.f) {}
 
 	// Filename of the texture
 	CStr			m_TextureName;
@@ -71,10 +79,13 @@ struct SGUIImage
 	CRect			m_TexturePlacementInFile;
 
 	// For textures that contain a collection of icons (e.g. unit portraits), this
-	//  will be set to the size of one icon. An object's icon-id will determine
+	//  will be set to the size of one icon. An object's cell-id will determine
 	//  which part of the texture is used.
-	//  Equal to CSize(0,0) for non-icon textures.
-	CSize			m_IconSize;
+	//  Equal to CSize(0,0) for non-celled textures.
+	CSize			m_CellSize;
+
+	// Visual effects (e.g. colour modulation)
+	SGUIImageEffects* m_Effects;
 
 	// Color
 	CColor			m_BackColor;
@@ -90,6 +101,7 @@ struct SGUIImage
 	 */
 	float			m_DeltaZ;
 };
+
 
 /**
  * @author Gustav Larsson
@@ -130,7 +142,7 @@ public:
 	CGUISpriteInstance();
 	CGUISpriteInstance(CStr SpriteName);
 	CGUISpriteInstance &operator=(CStr SpriteName);
-	void Draw(CRect Size, int IconID, std::map<CStr, CGUISprite> &Sprites);
+	void Draw(CRect Size, int CellID, std::map<CStr, CGUISprite> &Sprites);
 	void Invalidate();
 	bool IsEmpty() const;
 	CStr GetName() { return m_SpriteName; }
@@ -143,7 +155,7 @@ private:
 	// Relevant details of previously rendered sprite; the cache is invalidated
 	// whenever any of these values changes.
 	CRect m_CachedSize;
-	int m_CachedIconID;
+	int m_CachedCellID;
 };
 
 #endif

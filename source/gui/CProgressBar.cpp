@@ -59,19 +59,19 @@ void CProgressBar::Draw()
 		float bz = GetBufferedZ();
 
 		CGUISpriteInstance *sprite_background, *sprite_bar;
-		int icon_id;
+		int cell_id;
 		float value;
 		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite-background", sprite_background);
 		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite-bar", sprite_bar);
-		GUI<int>::GetSetting(this, "icon-id", icon_id);
+		GUI<int>::GetSetting(this, "cell-id", cell_id);
 		GUI<float>::GetSetting(this, "caption", value);
 
-		GetGUI()->DrawSprite(*sprite_background, icon_id, bz, m_CachedActualSize);
+		GetGUI()->DrawSprite(*sprite_background, cell_id, bz, m_CachedActualSize);
 
 
 		// Get size of bar (notice it is drawn slightly closer, to appear above the background)
 		CRect bar_size(m_CachedActualSize.left, m_CachedActualSize.top,
 					   m_CachedActualSize.left+m_CachedActualSize.GetWidth()*(value/100.f), m_CachedActualSize.bottom);
-		GetGUI()->DrawSprite(*sprite_bar, icon_id, bz+0.01f, bar_size);
+		GetGUI()->DrawSprite(*sprite_bar, cell_id, bz+0.01f, bar_size);
 	}
 }
