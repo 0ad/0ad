@@ -19,7 +19,7 @@ static FAMConnection fc;
 static bool initialized;
 
 
-int res_watch_dir(const char* const dir)
+int res_mount(const char* const mount_point, const char* const name, const uint pri)
 {
 	if(!initialized)
 	{
@@ -28,7 +28,16 @@ int res_watch_dir(const char* const dir)
 		initialized = true;
 	}
 
-	//
+	CHECK_ERR(vfs_mount(mount_point, name, pri));
+
+	// if is directory
+	// get full path
+	// convert to native
+
+	static FAMRequest req;
+	FAMMonitorDirectory(&fc, "d:\\projects\\0ad\\cvs\\binaries\\data\\mods\\official\\", &req, 0);
+//FAMCancelMonitor(&fc, &req);
+	// add request somewhere - have to be able to cancel watch
 
 	return 0;
 }

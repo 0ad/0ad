@@ -7,6 +7,10 @@
 
 extern int res_reload(const char* fn);
 
-extern int res_watch_dir(const char* dir);
+
+// the following functions must be called from the same thread!
+// (wfam limitation)
+
+extern int res_mount(const char* mount_point, const char* name, uint pri);
 
 extern int res_reload_changed_files();
