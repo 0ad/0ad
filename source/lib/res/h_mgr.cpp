@@ -226,6 +226,9 @@ static HDATA* h_data_any_type(const Handle h)
 // used by most functions accessing handle data.
 static HDATA* h_data(const Handle h, const H_Type type)
 {
+	if(!h)
+		return 0;
+
 	HDATA* hd = h_data_any_type(h);
 	if(!hd)
 		return 0;
@@ -249,6 +252,11 @@ void h_mgr_shutdown(void)
 		HDATA* hd = h_data(i);
 		if(hd)
 		{
+			// it's already been freed; don't free again so that this
+			// doesn't look like an error.
+			if(!hd->tag)
+				continue;
+
 			// somewhat messy, but this only happens on cleanup.
 			// better than an additional h_free(i32 idx) version though.
 			Handle h = handle(i, hd->tag);
@@ -449,9 +457,14 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 				return h;
 			}
 
-			// we re-activated a cached resource. will reset tag below, then bail.
+			// we re-activated a cached resource. still need to reset tag:
+			idx = h_idx(h);
+			goto skip_alloc;
 		}
 	}
+
+	CHECK_ERR(alloc_idx(idx, hd));
+skip_alloc:
 
 	// generate next tag value.
 	// don't want to do this before the add-reference exit,
@@ -464,18 +477,21 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 		tag = 1;
 	}
 
+	h = handle(idx, tag);
+		// can't fail.
+
 	// we are reactivating a closed but cached handle.
 	// need to reset tag, so that copies of the previous
 	// handle can no longer access the resource.
 	// (we don't need to reset the tag in h_free, because
 	// use before this fails due to refs > 0 check in h_user_data).
-	if(h > 0)
+	if(hd->refs == 1)
 	{
 		hd->tag = tag;
 		return h;
 	}
 
-	CHECK_ERR(alloc_idx(idx, hd));
+
 
 	// one-time init
 	hd->tag  = tag;
@@ -494,9 +510,6 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 	}
 	else
 		hd->fn = 0;
-
-	h = handle(idx, tag);
-		// can't fail.
 
 	H_VTbl* vtbl = type;
 
