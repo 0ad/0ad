@@ -406,10 +406,9 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 
 	if(key)
 	{
-/*
 		// object already loaded?
 		Handle h = h_find(type, key);
-		if(h)
+		if(h > 0)
 		{
 			hd = h_data(h, type);
 			if(hd->refs == REF_MAX)
@@ -421,7 +420,6 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 
 			return h;
 		}
-*/
 	}
 
 	err = alloc_idx(idx, hd);
@@ -539,6 +537,20 @@ int h_reload(const char* fn)
 	return ret;
 }
 
+
+// TODO: more efficient search; currently linear
+Handle h_find(H_Type type, uintptr_t key)
+{
+	for(i32 i = 0; i < last_in_use; i++)
+	{
+		HDATA* hd = h_data(i);
+		if(hd)
+			if(hd->type == type && hd->key == key)
+				return handle(i, hd->tag);
+	}
+
+	return -1;
+}
 
 
 

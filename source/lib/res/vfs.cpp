@@ -211,9 +211,9 @@ struct Loc
 };
 
 
-struct VDir;
+struct TreeDir;
 
-typedef std::map<std::string, VDir*> SubDirs;
+typedef std::map<std::string, TreeDir*> SubDirs;
 typedef SubDirs::iterator SubDirIt;
 
 typedef std::map<std::string, const Loc*> Files;
@@ -223,7 +223,7 @@ typedef Files::iterator FileIt;
 	// but it's a bit more clumsy (map filename to struct {pri, Loc*}).
 	// revisit if file lookup open is too slow (unlikely).
 
-struct VDir
+struct TreeDir
 {
 	std::string v_name;
 
@@ -267,13 +267,13 @@ struct VDir
 		return it->second;
 	}
 
-	VDir* subdir_add(const char* name)
+	TreeDir* subdir_add(const char* name)
 	{
-		VDir* vdir = new VDir;
+		TreeDir* vdir = new TreeDir;
 		const std::string _name(name);
 		vdir->v_name = _name;
 
-		std::pair<std::string, VDir*> item = std::make_pair(_name, vdir);
+		std::pair<std::string, TreeDir*> item = std::make_pair(_name, vdir);
 		std::pair<SubDirIt, bool> res;
 		res = subdirs.insert(item);
 		// already in container
@@ -284,7 +284,7 @@ struct VDir
 		return it->second;
 	}
 
-	VDir* subdir_find(const char* name)
+	TreeDir* subdir_find(const char* name)
 	{
 		const std::string _name(name);
 		SubDirIt it = subdirs.find(_name);
@@ -300,7 +300,7 @@ struct VDir
 		subdirs.clear();
 	}
 
-	friend void tree_clearR(VDir*);
+	friend void tree_clearR(TreeDir*);
 
 	SubDirs subdirs;	// can't make private; needed for iterator
 	Files files;
@@ -312,7 +312,7 @@ private:;
 };
 
 
-static VDir vfs_root;
+static TreeDir vfs_root;
 
 
 enum LookupFlags
@@ -324,7 +324,7 @@ enum LookupFlags
 
 // starts in VFS root directory (path = "").
 // path doesn't need to, and shouldn't, start with '/'.
-static int tree_lookup(const char* path, const Loc** const loc = 0, VDir** const dir = 0, LookupFlags flags = LF_DEFAULT)
+static int tree_lookup(const char* path, const Loc** const loc = 0, TreeDir** const dir = 0, LookupFlags flags = LF_DEFAULT)
 {
 	CHECK_PATH(path);
 
@@ -337,7 +337,7 @@ static int tree_lookup(const char* path, const Loc** const loc = 0, VDir** const
 
 	const bool create_missing_components = flags & LF_CREATE_MISSING_COMPONENTS;
 
-	VDir* cur_dir = &vfs_root;
+	TreeDir* cur_dir = &vfs_root;
 
 	for(;;)
 	{
@@ -367,7 +367,7 @@ static int tree_lookup(const char* path, const Loc** const loc = 0, VDir** const
 			const char* subdir_name = cur_component;
 			*slash = 0;
 
-			VDir* subdir = cur_dir->subdir_find(subdir_name);
+			TreeDir* subdir = cur_dir->subdir_find(subdir_name);
 			if(!subdir)
 			{
 				if(create_missing_components)
@@ -383,12 +383,12 @@ static int tree_lookup(const char* path, const Loc** const loc = 0, VDir** const
 }
 
 
-static void tree_clearR(VDir* const dir)
+static void tree_clearR(TreeDir* const dir)
 {
 	SubDirIt it;
 	for(it = dir->subdirs.begin(); it != dir->subdirs.end(); ++it)
 	{
-		VDir* subdir = it->second;
+		TreeDir* subdir = it->second;
 		tree_clearR(subdir);
 	}
 
@@ -405,7 +405,7 @@ static inline void tree_clear()
 
 struct FileCBParams
 {
-	VDir* dir;
+	TreeDir* dir;
 	const Loc* loc;
 };
 
@@ -423,7 +423,7 @@ struct FileCBParams
 static int add_dirent_cb(const char* const fn, const uint flags, const ssize_t size, const uintptr_t user)
 {
 	const FileCBParams* const params = (FileCBParams*)user;
-	VDir* const cur_dir      = params->dir;
+	TreeDir* const cur_dir      = params->dir;
 	const Loc* const cur_loc = params->loc;
 
 	// directory
@@ -437,7 +437,7 @@ static int add_dirent_cb(const char* const fn, const uint flags, const ssize_t s
 }
 
 
-static int tree_add_dirR(VDir* const vdir, const char* const f_path, const Loc* const loc)
+static int tree_add_dirR(TreeDir* const vdir, const char* const f_path, const Loc* const loc)
 {
 	CHECK_PATH(f_path);
 
@@ -451,7 +451,7 @@ static int tree_add_dirR(VDir* const vdir, const char* const f_path, const Loc* 
 
 	for(SubDirIt it = vdir->subdirs.begin(); it != vdir->subdirs.end(); ++it)
 	{
-		VDir* const vsubdir = it->second;
+		TreeDir* const vsubdir = it->second;
 
 		char f_subdir_path[VFS_MAX_PATH];
 		const char* const v_subdir_name_c = vsubdir->v_name.c_str();
@@ -464,7 +464,7 @@ static int tree_add_dirR(VDir* const vdir, const char* const f_path, const Loc* 
 }
 
 
-static int tree_add_loc(VDir* const vdir, const Loc* const loc)
+static int tree_add_loc(TreeDir* const vdir, const Loc* const loc)
 {
 	if(loc->archive > 0)
 	{
@@ -595,7 +595,7 @@ static int remount(Mount& m)
 	Loc& dir_loc             = m.dir_loc;
 	Locs& archive_locs       = m.archive_locs;
 
-	VDir* vdir;
+	TreeDir* vdir;
 	CHECK_ERR(tree_lookup(v_path, 0, &vdir, LF_CREATE_MISSING_COMPONENTS));
 
 	// check if target is a single Zip archive
@@ -667,6 +667,16 @@ int vfs_mount(const char* const vfs_mount_point, const char* const name, const u
 			debug_warn("vfs_mount: already mounted");
 			return -1;
 		}
+
+	// disallow . because "./" isn't supported on Windows.
+	// the more important reason is that mount points must not overlap
+	// (i.e. mount $install/data and then $install/data/mods/official -
+	// mods/official would also be accessible from the first mount point).
+	if(!strcmp(name, ".") || !strcmp(name, "./"))
+	{
+		debug_warn("vfs_mount: mounting . not allowed");
+		return -1;
+	}
 
 	mounts.push_back(Mount(vfs_mount_point, name, pri));
 
@@ -750,6 +760,75 @@ int vfs_stat(const char* fn, struct stat* s)
 	{
 		const char* dir = loc->dir.c_str(); 
 		return file_stat(dir, s);
+	}
+}
+
+
+struct VDir
+{
+	TreeDir* dir;
+	FileIt it;
+};
+
+H_TYPE_DEFINE(VDir);
+
+
+
+static void VDir_init(VDir* vd, va_list args)
+{
+}
+
+static void VDir_dtor(VDir* vd)
+{
+	// remove reference to TreeDir, unlock it for further use
+}
+
+static int VDir_reload(VDir* vd, const char* path)
+{
+	// check if actually reloaded, and why it happened?
+	// hmm, if TreeDir changes while handle is open, we are screwed.
+	// need a lock.
+
+	CHECK_ERR(tree_lookup(path, 0, &vd->dir));
+
+	vd->it = vd->dir->files.begin();
+	return 0;
+}
+
+
+Handle vfs_open_dir(const char* const path)
+{
+	return h_alloc(H_VDir, path, 0);
+}
+
+int vfs_close_dir(Handle& hd)
+{
+	return h_free(hd, H_VDir);
+}
+
+int vfs_next_dirent(const Handle hd, vfsDirEnt* ent, const char* const filter)
+{
+	// make sure filter is valid
+	// interpret filter, decide if they want files or subdirs
+
+	// until no more entries, or one matches filter
+	for(;;)
+	{
+		H_DEREF(hd, VDir, vd);
+		if(vd->it == vd->dir->files.end())
+			return 1;
+
+		const std::string& fn_s = vd->it->first;
+		const char* const fn = fn_s.c_str();
+
+		if(filter)
+		{
+			char* ext = strrchr(fn, '.');
+			if(!ext || strcmp(ext, filter) != 0)
+				continue;
+		}
+
+		// found matching entry
 	}
 }
 

@@ -693,6 +693,10 @@ static void Tex_dtor(Tex* t)
 
 static int tex_upload(Tex* t, const char* const fn)
 {
+	// someone's requesting upload, but has already been uploaded.
+	// this happens if a cached texture is "loaded". no work to do.
+	if(t->id && t->hm <= 0)
+		return 0;
 
 	// data we will take from Tex
 	GLsizei w;

@@ -44,6 +44,23 @@ extern int vfs_close(Handle& h);
 extern Handle vfs_map(Handle hf, uint flags, void*& p, size_t& size);
 
 
+struct vfsDirEnt
+{
+	// the filename is currently stored internally as std::string. returning as char* for C compat
+	// stored internally as std::string. returning as char* for C compat
+	// would mean we have to return a copy. we try to avoid fixed-size
+	// buffers, so that leaves a reference.
+	const char* name;
+};
+
+
+extern Handle vfs_open_dir(const char* path);
+extern int vfs_close_dir(Handle& hd);
+extern int vfs_next_dirent(Handle hd, vfsDirEnt* ent, const char* filter);
+
+
+
+
 extern int vfs_rebuild();
 
 

@@ -169,11 +169,10 @@ enum
 extern Handle h_alloc(H_Type type, const char* fn, uint flags = 0, ...);
 extern int h_free(Handle& h, H_Type type);
 
-/*
+
 // find and return a handle by key (typically filename hash)
 // currently O(n).
 extern Handle h_find(H_Type type, uintptr_t key);
-*/
 
 // return a pointer to handle data, or 0 on error
 extern void* h_user_data(Handle h, H_Type type);
