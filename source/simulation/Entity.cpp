@@ -46,9 +46,11 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	updateActorTransforms();
 
 	// Register the addresses of our native properties with the properties table
-	m_properties["speed"] = &m_speed;
-	m_properties["orientation"] = &m_orientation;
-	m_properties["position"] = &m_position;
+	/*
+	m_properties["speed"].associate( &m_speed );
+	m_properties["orientation"].associate( &m_orientation );
+	m_properties["position"].associate( &m_position );
+	*/
 }
 
 bool isWaypoint( CEntity* e )

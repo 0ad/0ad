@@ -99,6 +99,7 @@ public:
 	CGenericProperty& operator=( CStr& value );
 	CGenericProperty& operator=( CVector3D& value );
 	CGenericProperty& operator=( void* value ); // Be careful with this one. A lot of things will cast to void*.
+												// Especially pointers you meant to associate().
 
 	// Typelock functions. Use these when you want to make sure the property has the given type.
 	void typelock( EPropTypes type );
