@@ -3,6 +3,7 @@
 
 #ifdef _WIN32
 #include "win/win.h"
+#include "win/wdbg.h"
 #endif
 
 #include "config.h"
@@ -15,6 +16,8 @@ extern "C" {
 extern void display_msg(const char* caption, const char* msg);
 extern void wdisplay_msg(const wchar_t* caption, const wchar_t* msg);
 extern void debug_out(const char* fmt, ...);
+
+extern void debug_break();
 
 extern void check_heap();
 

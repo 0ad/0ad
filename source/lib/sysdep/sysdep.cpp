@@ -41,6 +41,21 @@ void check_heap()
 
 #endif	// #ifndef _WIN32
 
+
+void debug_break()
+{
+#ifndef NDEBUG
+# if defined(_WIN32)
+	win_debug_break();
+# elif defined(_M_IX86)
+	ia32_debug_break();
+# else
+#  error "port"
+# endif
+#endif
+}
+
+
 #ifdef _MSC_VER
 
 double round(double x)
