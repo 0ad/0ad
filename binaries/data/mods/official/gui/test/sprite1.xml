@@ -275,27 +275,27 @@
                 </sprite>
 
                 <sprite name="resource_food_counter">
-			<image texture="ui_icon_resource_food_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                        <image texture="ui_icon_resource_food_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
                         <image texture="ui_icon_resource_counter.png" texture-size="0 0 64 64" size="21 0 100% 100%" />
                 </sprite>
 
                 <sprite name="resource_wood_counter">
-			<image texture="ui_icon_resource_wood_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                        <image texture="ui_icon_resource_wood_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
                         <image texture="ui_icon_resource_counter.png" texture-size="0 0 64 64" size="21 0 100% 100%" />
                 </sprite>
 
                 <sprite name="resource_stone_counter">
-			<image texture="ui_icon_resource_stone_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                        <image texture="ui_icon_resource_stone_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
                         <image texture="ui_icon_resource_counter.png" texture-size="0 0 64 64" size="21 0 100% 100%" />
                 </sprite>
 
                 <sprite name="resource_ore_counter">
-			<image texture="ui_icon_resource_ore_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                        <image texture="ui_icon_resource_ore_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
                         <image texture="ui_icon_resource_counter.png" texture-size="0 0 64 64" size="21 0 100% 100%" />
                 </sprite>
 
                 <sprite name="resource_population_counter">
-			<image texture="ui_icon_resource_population_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
+                        <image texture="ui_icon_resource_population_20.png" texture-size="0 0 32 32" size="0 0 20 20" />
                         <image texture="ui_icon_resource_counter_long.png" texture-size="0 0 64 64" size="21 0 100% 100%" />
                 </sprite>
 
@@ -430,6 +430,16 @@
 
         <sprite name="test2">
                 <image size="0 0 100% 100%" backcolor="200 100 050" />
+        </sprite>
+        
+        <!--
+        ==========================================
+        GENERIC ICONS
+        ==========================================
+        -->
+
+        <sprite name="0ad_icon">
+                <image texture="global/ui_gen_0ad-icon-black.png" texture-size="0 0 16 16" size="0 0 100% 100%" />
         </sprite>
 
         <!--
