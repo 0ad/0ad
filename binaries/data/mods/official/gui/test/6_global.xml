@@ -4,51 +4,108 @@
 
 <objects>
 
-	<!--
-	==========================================
-	 - GLOBAL OBJECTS -
-	==========================================
-	-->
+        <!--
+        ==========================================
+         - GLOBAL OBJECTS -
+        ==========================================
+        -->
 
-	<object type="empty" name="always_on" hotkey="alwayson.toggle" size="0 0 100% 100%" z="1" hidden="false">
-		<action on="Press"><![CDATA[
-			GUIObjectToggle("always_on");
-		]]></action>
+        <object type="empty" name="always_on" hotkey="alwayson.toggle" size="0 0 100% 100%" z="1" hidden="false">
+                <action on="Press"><![CDATA[
+                        GUIObjectToggle("always_on");
+                ]]></action>
 
-		<object type="button" name="exit_button" sprite="exit_sprite" sprite-over="exit_sprite-over" size="100%-18 2 100%-2 18" z="1000" hidden="false">
-			<action on="Press"><![CDATA[
-				exit();
-			]]></action>
+                <object type="button" name="exit_button" sprite="exit_sprite" sprite-over="exit_sprite-over" size="100%-18 2 100%-2 18" z="1000" hidden="false">
+                        <action on="Press"><![CDATA[
+                                btCaptions = new Array("Yes, let me out!", "Nooooo!");
+                                btCode = new Array("exit();", "GUIObjectHide('mb_main');");
+                                messageBox(400, 200, "Do you really want to quit 0 A.D.? This will cause a sudden return into reality.", "Confirmation", 0, btCaptions, btCode);
+                        ]]></action>
 
-			<!--  START temporary code
-			This code only applies to the main menu, I don't know how it'll behave ingame. It is temporary and should be removed as soon as we got proper tooltip support implemented. -->
-			<action on="MouseEnter"><![CDATA[
-				tooltipObject = getGUIObjectByName("pregame-mainmenu-tooltip");
-				tooltipObject.caption = "Tired of 0 A.D. ? Click here to leave and reenter the real world.";
-				GUIObjectUnhide("pregame-mainmenu-tooltip");
-			]]></action>
-			<action on="MouseLeave"><![CDATA[
-				GUIObjectHide("pregame-mainmenu-tooltip");
-			]]></action>
-			<!-- END temporary code -->
-		</object>
+                        <!--  START temporary code
+                        This code only applies to the main menu, I don't know how it'll behave ingame. It is temporary and should be removed as soon as we got proper tooltip support implemented. -->
+                        <action on="MouseEnter"><![CDATA[
+                                tooltipObject = getGUIObjectByName("pregame-mainmenu-tooltip");
+                                tooltipObject.caption = "Tired of 0 A.D. ? Click here to leave and reenter the real world.";
+                                GUIObjectUnhide("pregame-mainmenu-tooltip");
+                        ]]></action>
+                        <action on="MouseLeave"><![CDATA[
+                                GUIObjectHide("pregame-mainmenu-tooltip");
+                        ]]></action>
+                        <!-- END temporary code -->
+                </object>
 
-		<!-- TEMPORARY END GAME BUTTON; REMOVE WHEN GAME MENU IMPLEMENTED; BUTTON IS OUTSIDE OF pregame_gui IN ORDER TO BE VISIBLE DURING GAME -->
+                <!-- TEMPORARY END GAME BUTTON; REMOVE WHEN GAME MENU IMPLEMENTED; BUTTON IS OUTSIDE OF pregame_gui IN ORDER TO BE VISIBLE DURING GAME -->
 
-		<object type="button" name="End_Game_Button" sprite="sprite1" sprite-over="sprite1-over" sprite-pressed="sprite1-pressed" z="105" textcolor="0 0 0" text-align="center" text-valign="center" hidden="true">End Game
-			<action on="Load"><![CDATA[
-				AddSizeString(this.name,
-				"100%-150 100%-53 100%-30 100%-32", 
-				"100%-150 0%+32 100%-30 0%+53");
-			]]></action>
-			<action on="Press"><![CDATA[
-				endGame();
-				GUIObjectHide("session_gui");
-				GUIObjectHide("End_Game_Button");
-				GUIObjectUnhide("pregame_gui");
-			]]></action>
-		</object> 
+                <object type="button" name="End_Game_Button" sprite="sprite1" sprite-over="sprite1-over" sprite-pressed="sprite1-pressed" z="105" textcolor="0 0 0" text-align="center" text-valign="center" hidden="true">End Game
+                        <action on="Load"><![CDATA[
+                                AddSize(this.name,
+                                "100%-150 100%-53 100%-30 100%-32", 
+                                "100%-150 0%+32 100%-30 0%+53");
+                        ]]></action>
+                        <action on="Press"><![CDATA[
+                                endGame();
+                                GUIObjectHide("session_gui");
+                                GUIObjectHide("End_Game_Button");
+                                GUIObjectUnhide("pregame_gui");
+                        ]]></action>
+                </object> 
+                
+                <!--
+                ==========================================
+                 - MESSAGE BOX -
+                ==========================================
+                -->
+        
+                <object type="image" size="50%-400 50%-200 50%+400 50%+200" name="mb_main" z="149" hidden="true">
 
-	</object>
+                        <!-- control for blocking access to other controls in background -->
+                        <object type="image" size="0 0 100% 100%" name="mb_blocker" hidden="false" />
+                        
+                        <!-- background -->
+                        <object type="image" size="0 10 100% 100%" name="mb_background" sprite="message_box-gen-background" absolute="false" z="160" />
+
+                        <!-- top -->
+                        <object type="image" name="mb_border-corner-lt" size="0 10 15 25" sprite="message_box-corner" absolute="false" z="161" />
+                        <object type="image" name="mb_border-top" size="15 10 100%-15 42" sprite="message_box-border-top" absolute="false" z="161" />
+                        <object type="image" name="mb_border-corner-rt" size="100%-15 10 100% 25" sprite="message_box-corner" absolute="false" z="161" />
+
+                        <!-- left/right -->
+                        <object type="image" name="mb_border-left" size="0 25 20 100%-15" sprite="message_box-border-left" absolute="false" z="162" />
+                        <object type="image" name="mb_border-right" size="100%-32 25 100% 100%-15" sprite="message_box-border-right" absolute="false" z="161" />
+                        
+                        <!-- bottom -->
+                        <object type="image" name="mb_border-corner-lb" size="0 100%-15 15 100%" sprite="message_box-corner" absolute="false" z="161" />
+                        <object type="image" name="mb_border-bottom" size="15 100%-32 100%-15 100%" sprite="message_box-border-bottom" absolute="false" z="162" />
+                        <object type="image" name="mb_border-corner-rb" size="100%-15 100%-15 100% 100%" sprite="message_box-corner" absolute="false" z="161" />
+                        
+                        <!-- titlebar -->
+                        <object type="image" name="mb_titlebar-left" size="15% 0 15%+64 32" sprite="message_box-titlebar-left" absolute="false" z="164" />
+                        <object type="image" name="mb_titlebar-middle" size="15%+64 0 85%-64 32" sprite="message_box-titlebar-middle" absolute="false" z="164" />
+                        <object type="image" name="mb_titlebar-right" size="85%-64 0 85% 32" sprite="message_box-titlebar-right" absolute="false" z="164" />
+                        <object type="text" name="mb_titlebar-text" size="15%+54 4 85%-54 32" absolute="false" font="prospero16" z="165">mbTitle</object>
+                        
+                        <!-- text -->
+                        <object type="text" name="mb_text" size="32 40 100%-32 100%-100" absolute="false" font="prospero16" z="165" ghost="true" text-align="center">
+                                mbMessage
+                        </object>
+                        
+                        <!-- buttons -->
+                        <object type="button" name="mb_button1" size="40 100%-80 50%-30 100%-50" absolute="false" sprite="message_box-button-normal" sprite-over="message_box-button-over" font="prospero16" z="165" text-align="center" text-valign="center">
+                                mbButton1Caption
+                                <action on="Press"><![CDATA[
+                                        eval(getGUIGlobal().mbButton1Code);
+                                ]]></action>
+                        </object>
+                        <object type="button" name="mb_button2" size="50%+30 100%-80 100%-40 100%-50" absolute="false" sprite="message_box-button-normal" sprite-over="message_box-button-over" font="prospero16" z="165" text-align="center" text-valign="center">
+                                mbButton2Caption
+                                <action on="Press"><![CDATA[
+                                        eval(getGUIGlobal().mbButton2Code);
+                                ]]></action>
+                        </object>
+
+                </object>
+
+        </object>
 
 </objects>
