@@ -50,6 +50,7 @@
 	pthread_mutex_unlock(&mutex); \
 }
 
+#define STMT(_code) do { _code ; } while (0)
 
 template<bool>
 struct cassert_checker
