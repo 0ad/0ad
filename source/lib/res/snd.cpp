@@ -31,7 +31,7 @@
 #endif
 
 
-
+#include "ogghack.h"
 
 #include "timer.h"
 
@@ -44,7 +44,7 @@ static const char* alc_dev_name = "MMSYSTEM";
 
 
 
-static float listener_pos[3];
+
 
 
 // rationale for "buffer" handle and separate handle for each sound instance:
@@ -59,7 +59,7 @@ static float listener_pos[3];
 
 
 
-static void al_check()
+static void al_check(const char* caller = "unknown")
 {
 	assert(al_initialized);
 
@@ -68,28 +68,95 @@ static void al_check()
 		return;
 
 	const char* str = (const char*)alGetString(err);
-	debug_out("openal error: %s", str);
+	debug_out("openal error: %s; called from %s", str, caller);
 	debug_warn("OpenAL error");
 }
 
 
+///////////////////////////////////////////////////////////////////////////////
 //
-// buf 'suballocator': can just return buffers directly,
-// since allocation overhead is very low. however, this is useful for checking
-// if all buffers have been freed, and a bit more convenient for the caller.
+// listener: owns position/orientation and master gain.
+// if they're set before al_initialized, we pass the saved values to
+// OpenAL immediately after init (instead of waiting until next update).
 //
+///////////////////////////////////////////////////////////////////////////////
+
+static float al_listener_gain = 1.0;
+static float al_listener_pos[3];
+static float al_listener_orientation[6];
+	// float view_direction[3], up_vector[3]; passed directly to OpenAL
+
+
+// also called from al_init.
+static void al_listener_latch()
+{
+	if(al_initialized)
+	{
+		alListenerf(AL_GAIN, al_listener_gain);
+		alListenerfv(AL_POSITION, al_listener_pos);
+		alListenerfv(AL_ORIENTATION, al_listener_orientation);
+		al_check("al_listener_latch");
+	}
+}
+
+
+int snd_set_master_gain(float gain)
+{
+	if(gain < 0)
+	{
+		debug_warn("snd_set_master_gain: gain < 0");
+		return ERR_INVALID_PARAM;
+	}
+
+	al_listener_gain = gain;
+
+	al_listener_latch();
+		// position will get sent too. this isn't called often, so we don't care.
+
+	return 0;
+}
+
+
+static void al_listener_set_pos(const float pos[3], const float dir[3], const float up[3])
+{
+	int i;
+	for(i = 0; i < 3; i++)
+		al_listener_pos[i] = pos[i];
+	for(i = 0; i < 3; i++)
+		al_listener_orientation[i] = dir[i];
+	for(i = 0; i < 3; i++)
+		al_listener_orientation[3+i] = up[i];
+
+	al_listener_latch();
+}
+
+
+static float al_listener_dist_2(const float point[3])
+{
+	const float dx = al_listener_pos[0] - point[0];
+	const float dy = al_listener_pos[1] - point[1];
+	const float dz = al_listener_pos[2] - point[2];
+	return dx*dx + dy*dy + dz*dz;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// AL buffer suballocator: allocates buffers as needed (alGenBuffers is fast).
+// this interface is a bit more convenient than the OpenAL routines, and we
+// verify that all buffers have been freed at exit.
+//
+///////////////////////////////////////////////////////////////////////////////
 
 static int al_bufs_outstanding;
 
-// convenience function (this is called from 2 places)
-// buffer allocation overhead is very low -> no suballocator needed
 static ALuint al_buf_alloc(ALvoid* data, ALsizei size, ALenum al_fmt, ALsizei al_freq)
 {
-debug_out("buf alloc\n");
 	ALuint al_buf;
 	alGenBuffers(1, &al_buf);
 	alBufferData(al_buf, al_fmt, data, size, al_freq);
-	al_check();
+	al_check("al_buf_alloc");
+
 	al_bufs_outstanding++;
 	return al_buf;
 }
@@ -97,19 +164,19 @@ debug_out("buf alloc\n");
 
 static void al_buf_free(ALuint al_buf)
 {
-debug_out("buf free\n");
 	assert(alIsBuffer(al_buf));
-//	alDeleteBuffers(1, &al_buf);
-	al_check();
+	alDeleteBuffers(1, &al_buf);
+	al_check("al_buf_free");
+
 	al_bufs_outstanding--;
 }
 
 
+// called from al_shutdown.
 static void al_buf_shutdown()
 {
 	assert(al_bufs_outstanding == 0);
 }
-
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -121,16 +188,17 @@ static void al_buf_shutdown()
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-// stack
 static const int AL_SRC_MAX = 64;
 	// regardless of sound card caps, we won't use more than this
 	// (64 is just overkill).
 static ALuint al_srcs[AL_SRC_MAX];
+	// FIFO stack of sources (first allocated is #0)
+static int al_src_allocated;
+	// number of valid sources in al_srcs[] (set by al_src_init)
 static int al_src_used = 0;
+	// number of sources currently in use
 static int al_src_cap = AL_SRC_MAX;
 	// user-set limit on how many sources may be used
-static int al_src_allocated;
-	// how many valid sources in al_srcs we got
 
 
 // called from al_init.
@@ -145,7 +213,6 @@ static void al_src_init()
 			break;
 		assert(alIsSource(al_srcs[i]));
 		al_src_allocated++;
-debug_out("list src %p\n", al_srcs[i]);
 	}
 
 	// limit user's cap to what we actually got.
@@ -164,7 +231,7 @@ static void al_src_shutdown()
 {
 	assert(al_src_used == 0);
 	alDeleteSources(al_src_allocated, al_srcs);
-	al_check();
+	al_check("al_src_shutdown");
 }
 
 
@@ -222,7 +289,6 @@ int snd_set_max_src(int cap)
 // called as late as possible, i.e. the first time sound/music is played
 // (either from module init there, or from the play routine itself).
 // this delays library load, leading to faster perceived app startup.
-// registers an atexit routine for cleanup.
 // no harm if called more than once.
 
 static ALCcontext* alc_ctx;
@@ -263,7 +329,7 @@ static int alc_init()
 	ALCenum err = alcGetError(alc_dev);
 	if(err != ALC_NO_ERROR || !alc_dev || !alc_ctx)
 	{
-		debug_out("alc_init failed. alc_dev=%p alc_ctx=%p err=%d", alc_dev, alc_ctx, err);
+		debug_out("alc_init failed. alc_dev=%p alc_ctx=%p err=%d\n", alc_dev, alc_ctx, err);
 		ret = -1;
 	}
 
@@ -292,6 +358,8 @@ static int al_init()
 	CHECK_ERR(alc_init());
 	al_src_init();	// can't fail
 
+	al_listener_latch();	// can't fail
+
 	return 0;
 }
 
@@ -318,6 +386,8 @@ static int al_reinit()
 {
 	if(!al_initialized)
 		return 0;
+
+	al_shutdown();
 
 	// was already using another device; now re-init
 	// (stops all currently playing sounds)
@@ -404,11 +474,21 @@ int snd_dev_set(const char* new_alc_dev_name)
 }
 
 
-///////////////////////////////////////////////////////////////////////////////
-//
-// streams
-//
-///////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // rationale: could make a case for a separate IO layer, but there's a
 // problem: IOs need to be discarded after their data has been processed.
@@ -435,23 +515,61 @@ static const int TOTAL_IOS = MAX_STREAMS * MAX_IOS;
 static const size_t RAW_BUF_SIZE = 32*KB;
 
 
-// suballocator, so that we aren't constantly allocating/freeing large buffers.
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
 //
+// I/O buffer suballocator for streamed sounds, to avoid
+// frequent alloc/frees and therefore heap fragmentation.
+//
+///////////////////////////////////////////////////////////////////////////////
+
 // note: snd_shutdown is called after h_mgr_shutdown,
-// so all memory blocks will already have been freed.
+// so all mem_alloc-ed blocks will already have been freed.
 // we don't want our alloc to show up as a leak,
-// so we use malloc and align ourselves.
+// so we use malloc and do the alignment ourselves.
+
+static const size_t TOTAL_BUF_SIZE = TOTAL_IOS*RAW_BUF_SIZE;
+	// (not including padding for alignment)
 
 static void* io_bufs_raw;
-	// raw, unaligned mem returned by malloc
+	// raw, unaligned memory for all buffers (from malloc)
 
 static void* io_buf_freelist;
+	// list of free buffers. start of buffer holds pointer to next in list.
 
+
+static void io_buf_free(void* p)
+{
+	assert(io_bufs_raw <= p && p <= (char*)io_bufs_raw+TOTAL_BUF_SIZE);
+	*(void**)p = io_buf_freelist;
+	io_buf_freelist = p;
+}
+
+
+// called from first io_buf_alloc.
 static void io_buf_init()
 {
+	// allocate 1 big aligned block for all buffers
 	const size_t align = 4*KB;
-	io_bufs_raw = malloc(TOTAL_IOS*RAW_BUF_SIZE + align-1);
+	io_bufs_raw = malloc(TOTAL_BUF_SIZE + align-1);
+	// .. failed; io_buf_alloc calls will return 0
+	if(!io_bufs_raw)
+		return;
 	void* bufs = (void*)round_up((uintptr_t)io_bufs_raw, align);
+
+	// build freelist
+	char* p = (char*)bufs;
+	for(int i = 0; i < TOTAL_IOS; i++)
+	{
+		io_buf_free(p);
+		p += RAW_BUF_SIZE;
+	}
 }
 
 
@@ -460,10 +578,13 @@ static void* io_buf_alloc()
 	ONCE(io_buf_init());
 
 	void* buf = io_buf_freelist;
-	// note: we have to bail; can't update io_buf_freelist
+	// note: we have to bail now; can't update io_buf_freelist.
 	if(!buf)
 	{
-		debug_warn("io_buf_alloc: no memory or #streams exceeded");
+		if(!io_bufs_raw)
+			debug_warn("io_buf_alloc: not enough memory to allocate buffer pool");
+		else
+			debug_warn("io_buf_alloc: max #streams exceeded");
 		return 0;
 	}
 
@@ -472,14 +593,8 @@ static void* io_buf_alloc()
 }
 
 
-static void io_buf_free(void* p)
-{
-	*(void**)p = io_buf_freelist;
-	io_buf_freelist = p;
-}
-
-
-// no-op if io_buf_alloc was never called
+// no-op if io_buf_alloc was never called.
+// called by snd_shutdown.
 static void io_buf_shutdown()
 {
 	free(io_bufs_raw);
@@ -505,26 +620,27 @@ struct SndData
 	ALsizei al_freq;
 	Handle ios[MAX_IOS];
 	int active_ios;
+
+void* o;
 };
 
 H_TYPE_DEFINE(SndData);
 
 
+// called from SndData_reload and snd_data_get_buf.
 static int stream_issue(SndData* sd, Handle hf)
 {
 	if(sd->active_ios >= MAX_IOS)
 		return 0;
 
-return 0;
-/*
-	Handle h = vfs_stream(hf, RAW_BUF_SIZE, io->raw_buf);
+	void* buf = io_buf_alloc();
+	if(!buf)
+		return ERR_NO_MEM;
+	Handle h = vfs_start_io(hf, RAW_BUF_SIZE, buf);
 	CHECK_ERR(h);
 	sd->ios[sd->active_ios++] = h;
 	return 0;
-*/
 }
-
-
 
 
 static void SndData_init(SndData* sd, va_list args)
@@ -565,12 +681,12 @@ static int SndData_reload(SndData* sd, const char* fn, Handle)
 	{
 		// first use of OGG: check if OpenAL extension is available.
 		// note: this is required! OpenAL does its init here.
-		static int ogg_supported = -1;
+/*		static int ogg_supported = -1;
 		if(ogg_supported == -1)
 			ogg_supported = alIsExtensionPresent((ALubyte*)"AL_EXT_vorbis")? 1 : 0;
 		if(!ogg_supported)
 			return -1;
-
+*/
 		sd->al_fmt  = AL_FORMAT_VORBIS_EXT;
 		sd->al_freq = 0;
 
@@ -613,6 +729,31 @@ static int SndData_reload(SndData* sd, const char* fn, Handle)
 			ALboolean al_loop;	// unused
 			alutLoadWAVMemory(memory, &sd->al_fmt, &al_data, &al_size, &sd->al_freq, &al_loop);
 		}
+
+
+std::vector<u8> data;
+if(file_type == FT_OGG)
+{
+sd->o = ogg_create();
+ogg_give_raw(sd->o, file, file_size);
+ogg_open(sd->o, sd->al_fmt, sd->al_freq);
+
+size_t datasize=0;
+size_t bytes_read;
+do
+{
+	const size_t bufsize = 32*KB;
+	char buf[bufsize];
+	bytes_read = ogg_read(sd->o, buf, bufsize);
+	data.resize(data.size() + bytes_read);
+	for(size_t i = 0; i < bytes_read; i++)
+		data[datasize+i] = buf[i];
+	datasize += bytes_read;
+}
+while(bytes_read > 0);
+al_data = &data[0];
+al_size = (ALsizei)datasize;
+}
 
 		sd->al_buf = al_buf_alloc(al_data, al_size, sd->al_fmt, sd->al_freq);
 
@@ -688,6 +829,10 @@ static int snd_data_get_buf(Handle hsd, ALuint& al_buf)
 	size_t size;
 	CHECK_ERR(vfs_wait_io(hio, data, size));
 		// returns immediately, since vfs_io_complete == 1
+
+
+
+
 
 	al_buf = al_buf_alloc(data, (ALsizei)size, sd->al_fmt, sd->al_freq);
 
@@ -792,7 +937,7 @@ return 0;
 	// no more buffers left, and EOF reached
 	ALint num_queued;
 	alGetSourcei(vs->al_src, AL_BUFFERS_QUEUED, &num_queued);
-	al_check();
+	al_check("vsrc_update alGetSourcei");
 
 	if(num_queued == 0 && vs->eof)
 	{
@@ -818,7 +963,7 @@ debug_out("%g: reached end, closing vs=%p src=%p    hvs=%I64x\n", get_time(), vs
 debug_out("%g: got buf: buf=%p vs=%p src=%p   hvs=%I64x\n", get_time(), al_buf, vs, vs->al_src, vs->hvs);
 
 			alSourceQueueBuffers(vs->al_src, 1, &al_buf);
-			al_check();
+			al_check("vsrc_update SourceQueueBuffers");
 		}
 		while(to_fill-- && ret == BUF_OK);
 
@@ -858,7 +1003,6 @@ debug_out("grant couldn't alloc src!\n");
 	alSourcefv(vs->al_src, AL_DIRECTION, zero3);
 	alSourcef(vs->al_src, AL_ROLLOFF_FACTOR, 0.0f);
 	alSourcei(vs->al_src, AL_SOURCE_RELATIVE, AL_TRUE);
-	al_check();
 
 	// we only now got a source, so latch previous settings
 	// don't use snd_set*; this way is easiest
@@ -866,11 +1010,13 @@ debug_out("grant couldn't alloc src!\n");
 	alSourcefv(vs->al_src, AL_POSITION, vs->pos);
 	alSourcei(vs->al_src, AL_LOOPING, vs->loop);
 
+	al_check("vsrc_grant_src Source*");
+
 	CHECK_ERR(vsrc_update(vs));
 
 debug_out("play vs=%p src=%p    hvs=%I64x\n", vs, vs->al_src, vs->hvs);
 	alSourcePlay(vs->al_src);
-	al_check();
+	al_check("vsrc_grant_src SourcePlay");
 	return 0;
 }
 
@@ -885,7 +1031,7 @@ debug_out("reclaim vs=%p src=%p\n", vs, vs->al_src);
 
 debug_out("stop\n");
 	alSourceStop(vs->al_src);
-	al_check();
+	al_check("vsrc_reclaim_src SourceStop");
 
 vs->closing = true;
 	CHECK_ERR(vsrc_update(vs));
@@ -954,10 +1100,6 @@ std::string snd_data_fn = def_fn;
 // stream: default false
 Handle snd_open(const char* const fn, const bool stream)
 {
-static int seq;
-if(++seq == 2)
-seq = 2;
-
 	return h_alloc(H_VSrc, fn, RES_UNIQUE, stream);
 }
 
@@ -980,7 +1122,7 @@ int snd_set_pos(Handle hvs, float x, float y, float z, bool relative /* = false 
 	{
 		alSourcefv(vs->al_src, AL_POSITION, vs->pos);
 		alSourcei(vs->al_src, AL_SOURCE_RELATIVE, vs->relative);
-		al_check();
+		al_check("snd_set_pos");
 	}
 
 	return 0;
@@ -996,7 +1138,7 @@ int snd_set_gain(Handle hvs, float gain)
 	if(vs->al_src)
 	{
 		alSourcef(vs->al_src, AL_GAIN, vs->gain);
-		al_check();
+		al_check("snd_set_gain");
 	}
 
 	return 0;
@@ -1012,7 +1154,7 @@ int snd_set_loop(Handle hvs, bool loop)
 	if(vs->al_src)
 	{
 		alSourcei(vs->al_src, AL_LOOPING, vs->loop);
-		al_check();
+		al_check("snd_set_loop");
 	}
 
 	return 0;
@@ -1025,18 +1167,11 @@ int snd_set_loop(Handle hvs, bool loop)
 
 
 
-static float norm(const float* v)
+static float norm(const float v[3])
 {
 	return v[0]*v[0] + v[1]*v[1] + v[2]*v[2];
 }
 
-static float dist3d_sqr(const float* v1, const float* v2)
-{
-	const float dx = v1[0] - v2[0];
-	const float dy = v1[1] - v2[1];
-	const float dz = v1[2] - v2[2];
-	return dx*dx + dy*dy + dz*dz;
-}
 
 
 const float MAX_DIST2 = 1000.0f;
@@ -1047,7 +1182,7 @@ static void vsrc_calc_cur_pri(VSrc* vs)
 	if(vs->relative)
 		d2 = norm(vs->pos);
 	else
-		d2 = dist3d_sqr(vs->pos, listener_pos);
+		d2 = al_listener_dist_2(vs->pos);
 
 	// farther away than OpenAL cutoff - no sound contribution
 	if(d2 > MAX_DIST2)
@@ -1221,26 +1356,9 @@ Handle tmp = vs->hvs;
 	snd_free(/*vs->hvs*/tmp);
 }
 
-int snd_update(float listener_orientation[16])
+int snd_update(const float pos[3], const float dir[3], const float up[3])
 {
-	int i;
-
-	float* pos = &listener_orientation[12];
-	float* in  = &listener_orientation[8];
-	float* up  = &listener_orientation[4];
-
-	for(i = 0; i < 3; i++)
-		listener_pos[i] = pos[i];
-
-	float al_orientation[6];
-	for(i = 0; i < 3; i++)
-		al_orientation[i] = in[i];
-	for(i = 0; i < 3; i++)
-		al_orientation[3+i] = up[i];
-
-
-	alListenerfv(AL_POSITION, pos);
-	alListenerfv(AL_ORIENTATION, al_orientation);
+	al_listener_set_pos(pos, dir, up);
 
 	list_update();
 
