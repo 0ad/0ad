@@ -239,11 +239,10 @@ void CInput::HandleMessage(const SGUIMessage &Message)
 		CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
 
 		// Now get the height of the font.
-		CFont *font=NULL;
-		font = new CFont("Console");
+		CFont font ("Console");
 
-		float spacing = (float)font->GetLineSpacing();
-		float height = (float)font->GetHeight();
+		float spacing = (float)font.GetLineSpacing();
+		float height = (float)font.GetHeight();
 
 		// Change mouse position relative to text.
 		//  Include scrolling.
@@ -292,9 +291,6 @@ void CInput::HandleMessage(const SGUIMessage &Message)
 		//  character of that line.
 		if (i == current->m_ListOfX.size())
 			m_iBufferPos += i;
-
-		// clean up
-		delete font;
 
 		break;
 		}
@@ -358,8 +354,6 @@ void CInput::Draw()
 		CColor color;
 		GUI<CColor>::GetSetting(this, "textcolor", color);
 
-		CFont *font=NULL;
-
 		glEnable(GL_TEXTURE_2D);
 		glDisable(GL_CULL_FACE);
 
@@ -369,8 +363,8 @@ void CInput::Draw()
 
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
-		font = new CFont("Console");
-		font->Bind();
+		CFont font ("Console");
+		font.Bind();
 
 		glPushMatrix();
 
@@ -378,8 +372,8 @@ void CInput::Draw()
 		GUI<CStrW>::GetSetting(this, "caption", caption);
 
 		// Get the height of this font.
-		float h = (float)font->GetHeight();
-		float ls = (float)font->GetLineSpacing();
+		float h = (float)font.GetHeight();
+		float ls = (float)font.GetLineSpacing();
 
 		glTranslatef((GLfloat)int(m_CachedActualSize.left), (GLfloat)int(m_CachedActualSize.top+h), bz);
 		glColor4f(1.f, 1.f, 1.f, 1.f);
@@ -424,8 +418,6 @@ void CInput::Draw()
 		glPopMatrix();
 
 		glDisable(GL_TEXTURE_2D);
-
-		delete font;
 	}
 }
 
@@ -442,8 +434,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 	if (to_before == -1)
 		to = (int)caption.Length();
 
-	CFont *font=NULL;
-	font = new CFont("Console");
+	CFont font ("Console");
 
 
 	//LOG(ERROR, LOG_CATEGORY, "Point 1 %d %d", to_before, to_after);
@@ -637,7 +628,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 				caption[i] == wchar_t('-')*/)
 				last_word_started = i+1;
 
-			x_pos += (float)font->GetCharacterWidth(caption[i]);
+			x_pos += (float)font.GetCharacterWidth(caption[i]);
 
 			//LOG(ERROR, LOG_CATEGORY, "%c %f", (char)caption[i], (float)font->GetCharacterWidth(caption[i]));
 
@@ -835,6 +826,4 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 
 	m_CharacterPositions.insert( current_line, row );
 	//++current_line;
-
-	delete font;
 }

@@ -871,8 +871,7 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 
 	}
 
-	if (font)
-		delete font;
+	delete font;
 
 	for (list<SGUIText::SSpriteCall>::iterator it=Text.m_SpriteCalls.begin(); 
 		 it!=Text.m_SpriteCalls.end(); 

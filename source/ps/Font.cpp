@@ -4,7 +4,6 @@
 
 #include "ps/ConfigDB.h"
 #include "lib/res/unifont.h"
-#include "lib/res/h_mgr.h"	// h_filename, needed for refcnt hack below
 
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "graphics"
@@ -48,13 +47,6 @@ CFont::CFont(const char* name)
 CFont::~CFont()
 {
 	unifont_unload(h);
-}
-
-// Copy constructor
-CFont::CFont(const CFont& font)
-{
-	// Reload the font, to maintain the ref count
-	h = unifont_load( h_filename(font.h) );
 }
 
 void CFont::Bind()

@@ -25,8 +25,6 @@ public:
 	CFont(const char* name);
 	~CFont();
 
-	CFont(const CFont&);
-
 	void Bind();
 	int GetLineSpacing();
 	int GetHeight();
