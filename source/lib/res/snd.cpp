@@ -334,7 +334,7 @@ static int ALBuffer_reload(ALBuffer* b, const char* fn, Handle)
 	ALenum al_format;
 	ALsizei al_sample_rate;
 
-	char* ext = strrchr(fn, '.');
+	const char* ext = strrchr(fn, '.');
 	// .. OGG (data will be passed directly to OpenAL)
 	if(ext && !stricmp(ext, ".ogg"))
 	{
@@ -378,12 +378,14 @@ static int ALBuffer_reload(ALBuffer* b, const char* fn, Handle)
 		ret = file_size;
 		goto fail;
 	}
-	void* file = malloc(file_size);	// freed soon after
+	void* file = mem_alloc(file_size, 65536);	// freed soon after
 	if(!file)
 	{
 		ret = ERR_NO_MEM;
 		goto fail;
 	}
+memset(file, 0xe2, file_size);
+
 
 	// read from file. note: don't use vfs_load - detect_audio_fmt
 	// has seeked to the actual audio data in the file.
@@ -399,7 +401,7 @@ static int ALBuffer_reload(ALBuffer* b, const char* fn, Handle)
 
 	ret = 0;
 fail:
-	free(file);
+	mem_free(file);
 	vfs_close(hf);
 
 	}
@@ -672,8 +674,8 @@ static int Sound_reload(Sound* s, const char* fn, Handle hs)
 	CHECK_ERR(vfs_stat(fn, &stat_buf));
 	off_t file_size = stat_buf.st_size;
 	// big enough to warrant streaming
-	if(file_size > CLIP_MAX_SIZE)
-		s->flags = SF_STREAMING;
+//	if(file_size > CLIP_MAX_SIZE)
+//		s->flags = SF_STREAMING;
 
 	// TODO: let caller decide as well
 
@@ -702,7 +704,7 @@ static int Sound_reload(Sound* s, const char* fn, Handle hs)
 }
 
 
-// open and return a handle to the sound clip <fn>.
+// open and return a handle to the sound <fn>.
 Handle sound_open(const char* const fn)
 {
 	snd_init();

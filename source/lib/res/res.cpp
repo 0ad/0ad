@@ -46,7 +46,7 @@ int res_reload_changed_files()
 
 		const char* fn = vfs_path;
 
-		char* ext = strrchr(fn, '.');
+		const char* ext = strrchr(fn, '.');
 
 		// slight optimization (and reduces output clutter):
 		// don't reload XMB output files

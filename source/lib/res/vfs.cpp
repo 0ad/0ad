@@ -469,7 +469,7 @@ static int tree_lookup(const char* _c_path, const Loc** const loc = 0, Dir** con
 	for(;;)
 	{
 		// "extract" cur_component string (0-terminate by replacing '/')
-		char* slash = strchr(cur_component, '/');
+		const char* slash = strchr(cur_component, '/');
 		if(slash)
 			*slash = 0;
 
@@ -1090,7 +1090,7 @@ int vfs_next_dirent(const Handle hd, vfsDirEnt* ent, const char* const filter)
 		fn = vd->file_it->first.c_str();
 		++vd->file_it;
 
-		char* const ext = strrchr(fn, '.');
+		const char* ext = strrchr(fn, '.');
 		// file has an extension
 		if(ext)
 		{

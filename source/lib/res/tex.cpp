@@ -1128,7 +1128,7 @@ int tex_write(const char* fn, int w, int h, int bpp, int flags, void* img)
 {
 	const size_t img_size = w * h * bpp / 8;
 
-	char* ext = strrchr(fn, '.');
+	const char* ext = strrchr(fn, '.');
 	if(!ext)
 		return -1;
 
