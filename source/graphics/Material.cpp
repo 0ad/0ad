@@ -93,7 +93,7 @@ SMaterialColor CMaterial::GetSpecular()
 	if(!m_Specular)
 		return IdentitySpecular;
 
-	return *m_Ambient;
+	return *m_Specular;
 }
 
 SMaterialColor CMaterial::GetEmissive()
