@@ -161,16 +161,11 @@ static bool HaveTimeForNextTask(double time_left, double time_budget, int estima
 	if(time_left <= 0.0)
 		return false;
 
-	// we've already used up more than 60%:
-	// (if it's less than that, we won't check the next task length)
-	if(time_left < 0.40*time_budget)
-	{
-		const double estimated_duration = estimated_duration_ms*1e-3;
-		// .. and the upcoming task is expected to be long -
-		// leave it for the next timeslice.
-		if(estimated_duration > time_left + time_budget*0.20)
-			return false;
-	}
+	// check next task length. we want a lengthy task to happen in its own
+	// timeslice so that its description is displayed beforehand.
+	const double estimated_duration = estimated_duration_ms*1e-3;
+	if(time_left+estimated_duration > time_budget*1.20)
+		return false;
 
 	return true;
 }
@@ -252,7 +247,7 @@ int LDR_ProgressiveLoad(double time_budget, wchar_t* description_,
 		// check if we're out of time; take into account next task length.
 		// note: do this at the end of the loop to make sure there's
 		// progress even if the timer is low-resolution (=> time_left = 0).
-//		if(!HaveTimeForNextTask(time_left, time_budget, lr.estimated_duration_ms))
+		if(!HaveTimeForNextTask(time_left, time_budget, lr.estimated_duration_ms))
 		{
 			ret = ERR_TIMED_OUT;
 			goto done;

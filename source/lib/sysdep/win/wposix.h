@@ -266,6 +266,7 @@ extern int close(int);
 _CRTIMP int access(const char*, int);
 
 extern int chdir(const char*);
+#undef getcwd
 extern char* getcwd(char*, size_t);
 
 // user tests if available via #ifdef; can't use enum.
