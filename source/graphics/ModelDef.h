@@ -127,8 +127,7 @@ public:
 	SPropPoint* m_PropPoints;
 protected:
     static CModelDef* Load(const char* filename);
-    int m_RefCount;
-    CStr m_Filename;
+    //CStr m_Filename;
 };
 
 #endif

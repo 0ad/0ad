@@ -19,7 +19,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Constructor
 CModel::CModel() 
-	: m_pModelDef(0), m_Flags(0), m_Anim(0), m_AnimTime(0), 
+	: m_Flags(0), m_Anim(0), m_AnimTime(0), 
 	m_BoneMatrices(0), m_InvBoneMatrices(0), m_BoneMatricesValid(false)
 {
 }
@@ -41,13 +41,12 @@ void CModel::ReleaseData()
 		delete m_Props[i].m_Model;
 	}
 	m_Props.clear();
-    if(m_pModelDef)
-        g_MeshManager.ReleaseMesh(m_pModelDef);
+	m_pModelDef = CModelDefPtr();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // InitModel: setup model from given geometry
-bool CModel::InitModel(CModelDef* modeldef)
+bool CModel::InitModel(CModelDefPtr modeldef)
 {
 	// clean up any existing data first
 	ReleaseData();
@@ -289,6 +288,7 @@ void CModel::AddProp(SPropPoint* point,CModel* model)
 	uint i;
 	for (i=0;i<m_Props.size();i++) {
 		if (m_Props[i].m_Point==point) {
+			delete m_Props[i].m_Model;
 			m_Props[i].m_Model=model;
 			return;
 		}

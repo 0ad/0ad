@@ -54,7 +54,7 @@ void CModelRData::Build()
 
 void CModelRData::BuildIndices()
 {	
-	CModelDef* mdef=m_Model->GetModelDef();
+	CModelDefPtr mdef=m_Model->GetModelDef();
 	assert(mdef);
 	
 	// must have a valid vertex buffer by this point so we know where indices are supposed to start
@@ -138,7 +138,7 @@ static void SkinNormal(const SModelVertex& vertex,const CMatrix3D* invmatrices,C
 
 void CModelRData::BuildVertices()
 {
-	CModelDef* mdef=m_Model->GetModelDef();
+	CModelDefPtr mdef=m_Model->GetModelDef();
 
 	// allocate vertices if we haven't got any already
 	if (!m_Vertices) {
@@ -184,7 +184,7 @@ void CModelRData::BuildVertices()
 
 void CModelRData::RenderStreams(u32 streamflags)
 {	
-	CModelDef* mdldef=(CModelDef*) m_Model->GetModelDef();
+	CModelDefPtr mdldef=m_Model->GetModelDef();
 	
 	if (streamflags & STREAM_UV0)
     {
@@ -243,7 +243,7 @@ float CModelRData::BackToFrontIndexSort(CMatrix3D& objToCam)
 	float mindist=1.0e30f;
 	CVector3D osvtx,csvtx;
 
-	CModelDef* mdldef=(CModelDef*) m_Model->GetModelDef();
+	CModelDefPtr mdldef=m_Model->GetModelDef();
 
 	SModelVertex* vtxs=mdldef->GetVertices();
 	

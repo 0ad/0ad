@@ -106,7 +106,8 @@ if (OS == "windows") then
 		"openal",
 		"spidermonkey",
 		"xerces",
-		"vorbis"
+		"vorbis",
+		"boost"
 	}
 
 	-- Add '<libraries root>/<libraryname>/lib' and '/include' to the includepaths and libpaths

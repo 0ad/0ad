@@ -13,6 +13,7 @@
 
 #include "Texture.h"
 #include "ModelDef.h"
+#include "MeshManager.h"
 #include "RenderableObject.h"
 #include "SkeletonAnim.h"
 #include "Material.h"
@@ -40,14 +41,14 @@ public:
 	~CModel();
 
 	// setup model from given geometry
-	bool InitModel(CModelDef *modeldef);
+	bool InitModel(CModelDefPtr modeldef);
 	// calculate the world space bounds of this model
 	void CalcBounds();
 	// update this model's state; 'time' is the time since the last update, in MS
 	void Update(float time);
 
 	// get the model's geometry data
-	CModelDef *GetModelDef() { return m_pModelDef; }
+	CModelDefPtr GetModelDef() { return m_pModelDef; }
 
 	// set the model's texture
 	void SetTexture(const CTexture& tex) { m_Texture=tex; }
@@ -125,7 +126,7 @@ private:
     // model's material
     CMaterial m_Material;
 	// pointer to the model's raw 3d data
-	CModelDef* m_pModelDef;
+	CModelDefPtr m_pModelDef;
 	// object space bounds of model - accounts for bounds of all possible animations
 	// that can play on a model
 	CBound m_ObjectBounds;

@@ -1,6 +1,7 @@
 #include "precompiled.h"
 #include "graphics/MeshManager.h"
 #include "CLogger.h"
+#include "FileUnpacker.h" // to get access to its CError
 
 CMeshManager::CMeshManager()
 {
@@ -10,71 +11,38 @@ CMeshManager::~CMeshManager()
 {
 }
 
-CModelDef *CMeshManager::GetMesh(const char *filename)
+CModelDefPtr CMeshManager::GetMesh(const char *filename)
 {
-    mesh_map::iterator iter;
     CStr fn(filename);
-    if((iter = m_MeshMap.find(fn)) == m_MeshMap.end())
+	mesh_map::iterator iter = m_MeshMap.find(fn);
+    if (iter != m_MeshMap.end())
     {
-        try
-        {
-            CModelDef *model = CModelDef::Load(filename);
-            if(!model)
-                return NULL;
-
-            LOG(MESSAGE, "mesh", "Loading mesh '%s'...\n", filename);
-            model->m_Filename = fn;
-            model->m_RefCount = 1;
-            m_MeshMap[fn] = model;
-            return model;
-        }
-        catch(...)
-        {
-            LOG(ERROR, "mesh", "Could not load mesh '%s'\n!", filename);
-            return NULL;
-        }
-    }
-    else
-    {
-        LOG(MESSAGE, "mesh", "Loading mesh '%s%' (cached)...\n", filename);
-        CModelDef *model = (CModelDef *)(*iter).second;
-        model->m_RefCount++;
-        return model;
-    }
-}
-
-int CMeshManager::ReleaseMesh(CModelDef* mesh)
-{
-	if(!mesh)
-        return 0;
-
-	// FIXME: Someone sort this out. I'm tired.
-	// Looks like it might be a multiple delete; not sure best way
-	// to resolve it. MT.
-
-	mesh_map::iterator iter;
+		try
+		{
+			CModelDefPtr model (iter->second);
+			LOG(MESSAGE, "mesh", "Loading mesh '%s%' (cached)...\n", filename);
+			return model;
+		}
+		// If the mesh has already been deleted, the weak_ptr -> shared_ptr
+		// conversion will throw bad_weak_ptr (and we need to reload the mesh)
+		catch (boost::bad_weak_ptr)
+		{
+		}
+	}
 
 	try
 	{
-		iter = m_MeshMap.find(mesh->m_Filename);
+		CModelDefPtr model (CModelDef::Load(filename));
+		if (!model)
+			return CModelDefPtr();
+
+		LOG(MESSAGE, "mesh", "Loading mesh '%s'...\n", filename);
+		m_MeshMap[fn] = model;
+		return model;
 	}
-	catch( ... )
+	catch (CFileUnpacker::CError)
 	{
-		debug_out( "FIXME: Do something with %s(%d)", __FILE__, __LINE__ );
-		return( 0 );
+		LOG(ERROR, "mesh", "Could not load mesh '%s'\n!", filename);
+		return CModelDefPtr();
 	}
-
-	if(iter == m_MeshMap.end())
-		return 0;
-
-    mesh->m_RefCount--;
-    if(mesh->m_RefCount <= 0)
-    {
-        m_MeshMap.erase(iter);
-        delete mesh;
-        mesh = NULL;
-        return 0;
-    }
-
-    return mesh->m_RefCount;
 }

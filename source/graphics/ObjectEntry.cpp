@@ -46,19 +46,14 @@ bool CObjectEntry::BuildModel()
 	CStr dirname=g_ObjMan.m_ObjectTypes[m_Type].m_Name;
 
 	// remember the old model so we can replace any models using it later on
-	CModelDef* oldmodeldef=m_Model ? m_Model->GetModelDef() : 0;
-
-	// try and create a model
-	CModelDef* modeldef;
+	CModelDefPtr oldmodeldef=m_Model ? m_Model->GetModelDef() : CModelDefPtr();
 
 	const char* modelfilename = m_ModelName.c_str();
 
-	try {
-		//modeldef=CModelDef::Load(modelfilename);
-        modeldef = g_MeshManager.GetMesh(modelfilename);
-        if(!modeldef)
-            throw false;
-	} catch (...) {
+	// try and create a model
+	CModelDefPtr modeldef (g_MeshManager.GetMesh(modelfilename));
+	if (!modeldef)
+	{
 		LOG(ERROR, LOG_CATEGORY, "CObjectEntry::BuildModel(): Model %s failed to load", modelfilename);
 		return false;
 	}
@@ -81,15 +76,15 @@ bool CObjectEntry::BuildModel()
 			const char* animfilename = m_Animations[t].m_FileName.c_str();
 			m_Animations[t].m_AnimData = m_Model->BuildAnimation(animfilename,m_Animations[t].m_Speed);
 
-			if( m_Animations[t].m_AnimName.LowerCase() == CStr( "idle" ) )
+			if( m_Animations[t].m_AnimName.LowerCase() == "idle" )
 				m_IdleAnim = m_Animations[t].m_AnimData;
-			if( m_Animations[t].m_AnimName.LowerCase() == CStr( "walk" ) )
+			if( m_Animations[t].m_AnimName.LowerCase() == "walk" )
 				m_WalkAnim = m_Animations[t].m_AnimData;
-			if( m_Animations[t].m_AnimName.LowerCase() == CStr( "attack" ) )
+			if( m_Animations[t].m_AnimName.LowerCase() == "attack" )
 				m_MeleeAnim = m_Animations[t].m_AnimData;
-			if( m_Animations[t].m_AnimName.LowerCase() == CStr( "death" ) )
+			if( m_Animations[t].m_AnimName.LowerCase() == "death" )
 				m_DeathAnim = m_Animations[t].m_AnimData;
-			if( m_Animations[t].m_AnimName.LowerCase() == CStr( "decay" ) )
+			if( m_Animations[t].m_AnimName.LowerCase() == "decay" )
 				m_CorpseAnim = m_Animations[t].m_AnimData;
 		}
 		else
@@ -157,9 +152,6 @@ bool CObjectEntry::BuildModel()
 			}
 		}
 	}
-
-	// and were done with the old model ..
-	delete oldmodeldef;
 
 	return true;
 }
