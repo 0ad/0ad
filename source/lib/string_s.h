@@ -1,7 +1,7 @@
 #ifndef STRINGS_S_H__
 #define STRINGS_S_H__
 
-#include "posix.h"	// size_t
+#include "posix_types.h"	// size_t
 
 // these are already shipped with VC2005
 #if _MSC_VER < 1400

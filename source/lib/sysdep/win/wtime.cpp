@@ -18,6 +18,7 @@
 #include "precompiled.h"
 
 #include "lib.h"
+#include "posix.h"
 #include "adts.h"
 #include "sysdep/ia32.h"
 #include "detect.h"

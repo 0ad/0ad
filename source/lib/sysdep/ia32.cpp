@@ -19,8 +19,9 @@
 
 #ifdef _M_IX86
 
-#include "ia32.h"
 #include "lib.h"
+#include "posix.h"
+#include "ia32.h"
 #include "detect.h"
 #include "timer.h"
 

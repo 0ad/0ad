@@ -3,6 +3,10 @@
 // included from lib/types.h in place of posix.h; this helps avoid conflicts
 // due to incompatible winsock definitions.
 
+#include <wchar.h>
+#include <sys/types.h>
+#include <stddef.h>
+
 #ifdef _WIN32
 # include "sysdep/win/wposix_types.h"
 #else

@@ -19,6 +19,7 @@
 #include "precompiled.h"
 
 #include "lib.h"
+#include "posix.h"
 #include "win_internal.h"
 
 #include "sysdep/cpu.h"

@@ -31,6 +31,7 @@
 
 #include "sdl.h"
 #include "lib.h"
+#include "posix.h"
 #include "win_internal.h"
 
 #include "ogl.h"	// needed to pull in the delay-loaded opengl32.dll

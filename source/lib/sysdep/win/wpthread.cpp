@@ -23,8 +23,8 @@
 #include <process.h>
 
 #include "lib.h"
+#include "posix.h"
 #include "win_internal.h"
-#include "wpthread.h"
 
 
 static HANDLE pthread_t_to_HANDLE(pthread_t p)

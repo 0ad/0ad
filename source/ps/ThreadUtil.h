@@ -67,6 +67,7 @@ CLocker usage 2:
 //--------------------------------------------------------
 
 #include "lib.h"
+#include "posix.h"
 
 #ifdef DEBUG_LOCKS
 
