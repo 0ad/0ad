@@ -238,11 +238,22 @@ typedef struct _SYSTEM_POWER_INFORMATION
 
 #include "types.h"	// intptr_t
 
+
+/* Define _CRTIMP */
+
+#ifndef _CRTIMP
+#ifdef  _DLL
+#define _CRTIMP __declspec(dllimport)
+#else   /* ndef _DLL */
+#define _CRTIMP
+#endif  /* _DLL */
+#endif  /* _CRTIMP */
+
 extern "C" {
-extern intptr_t _get_osfhandle(int);
-extern int _open_osfhandle(intptr_t, int);
-extern int _open(const char* fn, int mode, ...);
-extern int _close(int);
+_CRTIMP intptr_t _get_osfhandle(int);
+_CRTIMP int _open_osfhandle(intptr_t, int);
+_CRTIMP int _open(const char* fn, int mode, ...);
+_CRTIMP int _close(int);
 
 #ifndef NO_WINSOCK
 extern __declspec(dllimport) int __stdcall WSAStartup(unsigned short, void*);

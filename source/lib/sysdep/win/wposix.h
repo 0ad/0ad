@@ -33,6 +33,17 @@ extern "C" {
 #endif
 
 
+
+/* Define _CRTIMP */
+
+#ifndef _CRTIMP
+#ifdef  _DLL
+#define _CRTIMP __declspec(dllimport)
+#else   /* ndef _DLL */
+#define _CRTIMP
+#endif  /* _DLL */
+#endif  /* _CRTIMP */
+
 //
 // <inttypes.h>
 //
@@ -211,7 +222,7 @@ extern int munmap(void* start, size_t len);
 
 #define O_NONBLOCK     0x1000000
 
-extern int open(const char* fn, int mode, ...);
+_CRTIMP int open(const char* fn, int mode, ...);
 
 
 //
@@ -229,12 +240,12 @@ extern int open(const char* fn, int mode, ...);
 #define read _read
 #define write _write
 
-extern int close(int);
-extern int access(const char*, int);
+_CRTIMP int close(int);
+_CRTIMP int access(const char*, int);
 
 extern int chdir(const char*);
 #define getcwd _getcwd
-extern char* getcwd(char*, int);
+_CRTIMP char* getcwd(char*, int);
 
 // user tests if available via #ifdef; can't use enum.
 #define _SC_PAGESIZE      1
