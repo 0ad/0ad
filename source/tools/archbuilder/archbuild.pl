@@ -1,3 +1,5 @@
+#!/usr/bin/perl
+
 use strict;
 use warnings;
 
@@ -68,10 +70,23 @@ struct( FileData => [
 my $XMB_VERSION = 'A'; # TODO: Find a way of not having to update this manually
 
 
-
-my $bin_dir = get_opt('bindir', '../../../binaries');
+my $bin_dir = get_opt('bindir', undef);
 my $mod_name = get_opt('mod', 'official');
 
+if (not defined $bin_dir) {
+	# We might be running from binaries/system
+	if (-e "../../binaries") {
+		$bin_dir = "../../binaries";
+
+	# or maybe sources/tools/archbuilder
+	} elsif (-e "../../../binaries") {
+		$bin_dir = "../../../binaries";
+
+	# or maybe we have no idea
+	} else {
+		$bin_dir = ".";
+	}
+}
 
 generate_archive($bin_dir, $mod_name);
 
@@ -360,7 +375,7 @@ sub get_opt {
 
 	for (@ARGV) {
 		if (/^--\Q$name\E="?(.*)"?$/) {
-			return $1;	
+			return $1;
 		}
 	}
 	return $default;
