@@ -11,11 +11,11 @@
 <objects>
 
 	<object type="empty" name="loading_screen" size="0 0 100% 100%" z="1" ghost="true" hidden="true">
-                <!-- background -->
+    <!-- background -->
 		<object type="image" name="loading_screen_background_black" sprite="black_bkg" size="0 0 100% 10" z="99" hidden="false" />
 		<object type="image" name="loading_screen_background_image" sprite="message_box_gen_background" size="0 10 100% 100%" z="100" hidden="false" />
 
-                <!-- top -->
+    <!-- top -->
 		<object type="image" name="loading_screen_border_corner_lt" size="0 10 15 25" sprite="message_box_corner" absolute="false" z="161"  hidden="false"/>
 		<object type="image" name="loading_screen_border_top" size="15 10 100%-15 42" sprite="message_box_border_top" absolute="false" z="161"  hidden="false"/>
 		<object type="image" name="loading_screen_border_corner_rt" size="100%-15 10 100% 25" sprite="message_box_corner" absolute="false" z="161"  hidden="false"/>
@@ -39,8 +39,11 @@
 		<object type="button" name="loading_screen_progress_bar_text" size="0%+32 100%-205 100%-32 100%-185" font="tahoma14" textcolor="0 0 0" text_align="center" text_valign="center" z="165" hidden="false"/>
 		<object type="progressbar" name="loading_screen_progress_bar" style="blue_bar_outlined" size="0%+32 100%-185 100%-32 100%-160" z="165" hidden="false"/>
                         
+		<!-- concept image -->
+		<object type="image" name="loading_screen_background_concept" sprite="black_bkg" size="32 32 33.3008%+32 88.9323%+32" z="110" hidden="false" />
+
 		<!-- text -->
-		<object type="text" name="loading_screen_text" size="32 40 100%-32 100%-100" absolute="false" font="prospero18" z="165" hidden="false"/>
+		<object type="text" name="loading_screen_text" size="23.571428% 40 100%-32 100%-100" absolute="false" font="prospero18" z="165" hidden="false"/>
 
 		<object type="button" name="loading_screen_tip" sprite="only_white_border" size="32 100%-150 100%-32 100%-32" font="tahoma18" text_valign="center" textcolor="0 0 0" z="165" hidden="false"/>
 	</object>

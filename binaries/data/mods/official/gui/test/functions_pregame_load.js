@@ -8,6 +8,33 @@ function startLoadingScreen()
         GUIObjectUnhide("loading_screen");
         console.write("Loading " + g_GameAttributes.mapFile + " (" + g_GameAttributes.numPlayers + " players) ...");
 
+        // Generate random number for random concept art (should be depending on the selected civ later)
+        randvar = getRandom(1, 6);
+        
+        switch (randvar) {
+          case 1:
+            sprite = "load_concept_he";
+            break;
+          case 2:
+            sprite = "load_concept_ce";
+            break;
+          case 3:
+            sprite = "load_concept_pe";
+            break;
+          case 4:
+            sprite = "load_concept_ro";
+            break;
+          case 5:
+            sprite = "load_concept_ca";
+            break;
+          case 6:
+            sprite = "load_concept_ib";
+            break;
+        }
+        
+        getGUIObjectByName("loading_screen_background_concept").sprite = sprite;
+        console.write(getGUIObjectByName("loading_screen_background_concept").sprite);
+
         getGUIObjectByName("loading_screen_titlebar_text").caption = "Loading Scenario ...";
         getGUIObjectByName("loading_screen_progress_bar_text").caption = "... Reticulating splines ...";
         getGUIObjectByName("loading_screen_progress_bar").caption = 80;
