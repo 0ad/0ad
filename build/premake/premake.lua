@@ -168,6 +168,10 @@ function setuppackage (projectname)
 			tinsert(package.files, {sourceroot.."tools/sced/ui/ScEd.rc"})
 		end
 	
+		if (projectname ~= "sced") then
+			tinsert(package.files, {sourceroot.."lib/sysdep/win/icon.rc"})
+		end
+	
 		tinsert(package.defines, "EXCEPTION_HACK_0AD")
 
 		package.linkoptions = { "/ENTRY:entry",
