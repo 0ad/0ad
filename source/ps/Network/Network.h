@@ -108,8 +108,8 @@ public:
 };
 
 /**
- * A message pipe with two ends, communication flowing in both directions
- * The two ends are indexed with the [] operator or the GetEnd() method
+ * A message pipe with two ends, communication flowing in both directions.
+ * The two ends are indexed with the [] operator or the GetEnd() method.
  * Each end has two associated queues, one input and one output queue. The
  * input queue of one End is the output queue of the other End and vice versa.
  */
@@ -216,24 +216,9 @@ protected:
 	virtual void WriteComplete(PS_RESULT);
 	
 public:
-	inline CMessageSocket(CSocketInternal *pInt):
-		CStreamSocket(pInt),
-		m_IsWriting(false),
-		m_pWrBuffer(NULL),
-		m_WrBufferSize(0),
-		m_ReadingData(false),
-		m_pRdBuffer(NULL),
-		m_RdBufferSize(0)
-	{}
-	inline CMessageSocket():
-		CStreamSocket(),
-		m_IsWriting(false),
-		m_pWrBuffer(NULL),
-		m_WrBufferSize(0),
-		m_ReadingData(false),
-		m_pRdBuffer(NULL),
-		m_RdBufferSize(0)
-	{}
+	CMessageSocket(CSocketInternal *pInt);
+	CMessageSocket();
+
 	virtual ~CMessageSocket();
 
 	/**

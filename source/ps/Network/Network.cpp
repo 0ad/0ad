@@ -12,16 +12,17 @@ struct SNetHeader
 	u8 m_MsgType;
 	u16 m_MsgLength;
 
-	inline void Deserialize(u8 *buf)
+	inline u8 *Deserialize(u8 *pos)
 	{
-		m_MsgType=DeserializeInt<u8, 1>(&buf);
-		m_MsgLength=DeserializeInt<u16, 2>(&buf);
+		Deserialize_int_1(pos, m_MsgType);
+		Deserialize_int_2(pos, m_MsgLength);
+		return pos;
 	}
 
 	inline u8 *Serialize(u8 *pos)
 	{
-		pos=SerializeInt<u8, 1>(pos, m_MsgType);
-		pos=SerializeInt<u16, 2>(pos, m_MsgLength);
+		Serialize_int_1(pos, m_MsgType);
+		Serialize_int_2(pos, m_MsgLength);
 		return pos;
 	}
 };
@@ -104,7 +105,7 @@ void CMessageSocket::StartWriteNextMessage()
 		hdr.m_MsgLength=pMsg->GetSerializedLength();
 
 		// Allocate buffer space
-		if (hdr.m_MsgLength+HEADER_LENGTH > m_WrBufferSize)
+		if (uint(hdr.m_MsgLength+HEADER_LENGTH) > m_WrBufferSize)
 		{
 			m_WrBufferSize = (hdr.m_MsgLength+HEADER_LENGTH);
 			m_WrBufferSize += m_WrBufferSize % 256;
@@ -123,24 +124,24 @@ void CMessageSocket::StartWriteNextMessage()
 		delete pMsg;
 
 		// Start Write Operation
-		printf("StartWriteNextMessage(): Writing an MT %d, length %u\n", hdr.m_MsgType, hdr.m_MsgLength+HEADER_LENGTH);
+		printf("CMessageSocket::StartWriteNextMessage(): Writing an MT %d, length %u\n", hdr.m_MsgType, hdr.m_MsgLength+HEADER_LENGTH);
 		PS_RESULT res=Write(m_pWrBuffer, hdr.m_MsgLength+HEADER_LENGTH);
 		if (res != PS_OK)
-			; // Queue Error Message
+			printf("CMessageSocket::StartWriteNextMessage(): %s\n", res); // Queue Error Message
 	}
 	else
 	{
 		if (m_IsWriting)
-			printf("StartWriteNextMessage(): Already writing\n");
+			printf("CMessageSocket::StartWriteNextMessage(): Already writing\n");
 		else
-			printf("StartWriteNextMessage(): Nothing to write\n");
+			printf("CMessageSocket::StartWriteNextMessage(): Nothing to write\n");
 		m_OutQ.Unlock();
 	}
 }
 
 void CMessageSocket::WriteComplete(PS_RESULT ec)
 {
-	printf("WriteComplete(): %s\n", ec);
+	printf("CMessageSocket::WriteComplete(): %s\n", ec);
 	if (ec == PS_OK)
 	{
 		if (m_IsWriting)
@@ -151,7 +152,7 @@ void CMessageSocket::WriteComplete(PS_RESULT ec)
 			StartWriteNextMessage();
 		}
 		else
-			printf("WriteComplete(): Was not writing\n");
+			printf("CMessageSocket::WriteComplete(): Was not writing\n");
 	}
 	else
 	{
@@ -171,10 +172,10 @@ void CMessageSocket::StartReadHeader()
 			m_pRdBuffer=(u8 *)malloc(m_RdBufferSize);
 	}
 	m_ReadingData=false;
-	printf("StartReadHeader(): Trying to read %u\n", HEADER_LENGTH);
+	printf("CMessageSocket::StartReadHeader(): Trying to read %u\n", HEADER_LENGTH);
 	PS_RESULT res=Read(m_pRdBuffer, HEADER_LENGTH);
 	if (res != PS_OK)
-		; // Push an error message
+		printf("CMessageSocket::StartReadHeader(): %s\n", res); // Push an error message
 }
 
 void CMessageSocket::StartReadMessage()
@@ -191,15 +192,15 @@ void CMessageSocket::StartReadMessage()
 			m_pRdBuffer=(u8 *)malloc(m_RdBufferSize);
 	}
 	m_ReadingData=true;
-	printf("StartReadMessage(): Got type %d, trying to read %u\n", hdr.m_MsgType, hdr.m_MsgLength);
+	printf("CMessageSocket::StartReadMessage(): Got type %d, trying to read %u\n", hdr.m_MsgType, hdr.m_MsgLength);
 	PS_RESULT res=Read(m_pRdBuffer+HEADER_LENGTH, hdr.m_MsgLength);
 	if (res != PS_OK)
-		; // Queue an error message
+		printf("CMessageSocket::StartReadMessage(): %s\n", res); // Queue an error message
 }
 
 void CMessageSocket::ReadComplete(PS_RESULT ec)
 {
-	printf("ReadComplete(%s): %s\n", m_ReadingData?"true":"false", ec);
+	printf("CMessageSocket::ReadComplete(%s): %s\n", m_ReadingData?"true":"false", ec);
 	// Check if we were reading header or message
 	// If header:
 	if (!m_ReadingData)
@@ -216,7 +217,7 @@ void CMessageSocket::ReadComplete(PS_RESULT ec)
 		{
 			m_InQ.Lock();
 			m_InQ.push_back(pMsg);
-			printf("ReadComplete() has pushed, queue size %u\n", m_InQ.size());
+			printf("CMessageSocket::ReadComplete() has pushed, queue size %u\n", m_InQ.size());
 			m_InQ.Unlock();
 		}
 		StartReadHeader();
@@ -227,6 +228,27 @@ void CMessageSocket::ConnectComplete(PS_RESULT ec)
 {
 	StartReadHeader();
 }
+
+CMessageSocket::CMessageSocket(CSocketInternal *pInt):
+		CStreamSocket(pInt),
+		m_IsWriting(false),
+		m_pWrBuffer(NULL),
+		m_WrBufferSize(0),
+		m_ReadingData(false),
+		m_pRdBuffer(NULL),
+		m_RdBufferSize(0)
+{
+	StartReadHeader();
+}
+
+CMessageSocket::CMessageSocket():
+		m_IsWriting(false),
+		m_pWrBuffer(NULL),
+		m_WrBufferSize(0),
+		m_ReadingData(false),
+		m_pRdBuffer(NULL),
+		m_RdBufferSize(0)
+{}
 
 CMessageSocket::~CMessageSocket()
 {
