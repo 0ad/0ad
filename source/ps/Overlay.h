@@ -12,39 +12,199 @@ by Rich Cross, rich@0ad.wildfiregames.com
 #ifndef COVERLAY_H
 #define COVERLAY_H
 
+#include "types.h"
+
 struct CColor
 {
-	CColor() {}
+	CColor() : r(-1.f), g(-1.f), b(-1.f), a(1.f) {}
 	CColor(float cr,float cg,float cb,float ca) : r(cr), g(cg), b(cb), a(ca) {}
+
+	bool operator == (const CColor &color) const
+	{
+		return r==color.r && 
+			   g==color.g &&
+			   b==color.b &&
+			   a==color.a;
+	}
+
+	bool operator != (const CColor &color) const
+	{
+		return !(*this==color);
+	}
 
 	float r, g, b, a;
 };
 
+class CPos;
+class CSize;
+
 // yuck - MFC already defines a CRect class...
 #define CRect PS_CRect
 
-struct CRect
+/**
+ * @author Gustav Larsson
+ *
+ * Rectangle class used for screen rectangles. It's very similiar to the MS
+ * CRect, but be aware it is not identical.
+ * Works with CPos.
+ * @see CSize
+ * @see CPos
+ */
+class CRect
 {
-	CRect() {}
-	CRect(int _l, int _t, int _r, int _b) :
-		left(_l),
-		top(_t),
-		right(_r),
-		bottom(_b) {}
-	int bottom, top, left, right;
+public:
+	CRect();
+	CRect(const CPos &pos);
+	CRect(const CSize &size);
+	CRect(const CPos &upperleft, const CPos &bottomright);
+	CRect(const CPos &pos, const CSize &size);
+	CRect(const int32 &_l, const int32 &_t, const int32 &_r, const int32 &_b);
 
-	bool operator ==(const CRect &rect) const
-	{
-		return	(bottom==rect.bottom) &&
-				(top==rect.top) &&
-				(left==rect.left) &&
-				(right==rect.right);
-	}
+	// Operators
+	void				operator =  (const CRect& a);
+	bool				operator == (const CRect& a) const;
+	bool				operator != (const CRect& a) const;
+	CRect				operator -	(void) const;
+	CRect				operator +	(void) const;
 
-	bool operator !=(const CRect &rect) const
-	{
-		return	!(*this==rect);
-	}
+	CRect				operator +  (const CRect& a) const;
+	CRect				operator +  (const CPos& a) const;
+	CRect				operator +  (const CSize& a) const;
+	CRect				operator -  (const CRect& a) const;
+	CRect				operator -  (const CPos& a) const;
+	CRect				operator -  (const CSize& a) const;
+
+	void				operator += (const CRect& a);
+	void				operator += (const CPos& a);
+	void				operator += (const CSize& a);
+	void				operator -= (const CRect& a);
+	void				operator -= (const CPos& a);
+	void				operator -= (const CSize& a);
+
+	/**
+	 * @return Width of Rectangle
+	 */
+	int32 GetWidth() const;
+	
+	/**
+	 * @return Height of Rectangle
+	 */
+	int32 GetHeight() const;
+
+	/**
+	 * Get Size
+	 */
+	CSize GetSize() const;
+
+	/**
+	 * Get Position equivalent to top/left corner
+	 */
+	CPos TopLeft() const;
+
+	/**
+	 * Get Position equivalent to bottom/right corner
+	 */
+	CPos BottomRight() const;
+	
+	/**
+	 * Get Position equivalent to the center of the rectangle
+	 */
+	CPos CenterPoint() const;
+
+	/**
+	 * Evalutates if point is within the rectangle
+	 * @param point CPos representing point
+	 * @return true if inside.
+	 */
+	bool PointInside(const CPos &point) const;
+
+	/**
+	 * Returning CPos representing each corner.
+	 */
+
+public:
+	/**
+	 * Dimensions
+	 */
+	int32 left, top, right, bottom;
+};
+
+/**
+ * @author Gustav Larsson
+ *
+ * Made to represent screen positions and delta values.
+ * @see CRect
+ * @see CSize
+ */
+class CPos
+{
+public:
+	CPos();
+	CPos(const int32 &_x, const int32 &_y);
+
+	// Operators
+	void				operator =  (const CPos& a);
+	bool				operator == (const CPos& a) const;
+	bool				operator != (const CPos& a) const;
+	CPos				operator -	(void) const;
+	CPos				operator +	(void) const;
+
+	CPos				operator +  (const CPos& a) const;
+	CPos				operator +  (const CSize& a) const;
+	CPos				operator -  (const CPos& a) const;
+	CPos				operator -  (const CSize& a) const;
+
+	void				operator += (const CPos& a);
+	void				operator += (const CSize& a);
+	void				operator -= (const CPos& a);
+	void				operator -= (const CSize& a);
+
+public:
+	/**
+	 * Position
+	 */
+	int32 x, y;
+};
+
+/**
+ * @author Gustav Larsson
+ *
+ * Made to represent a screen size, should in philosophy
+ * be made of unsigned ints, but for the sake of compatibility
+ * with CRect and CPos it's not.
+ * @see CRect
+ * @see CPos
+ */
+class CSize
+{
+public:
+	CSize();
+	CSize(const CRect &rect);
+	CSize(const CPos &pos);
+	CSize(const int32 &_cx, const int32 &_cy);
+
+	// Operators
+	void				operator =  (const CSize& a);
+	bool				operator == (const CSize& a) const;
+	bool				operator != (const CSize& a) const;
+	CSize				operator -	(void) const;
+	CSize				operator +	(void) const;
+
+	CSize				operator +  (const CSize& a) const;
+	CSize				operator -  (const CSize& a) const;
+	CSize				operator /  (const int &a) const;
+	CSize				operator *  (const int &a) const;
+
+	void				operator += (const CSize& a);
+	void				operator -= (const CSize& a);
+	void				operator /= (const int& a);
+	void				operator *= (const int& a);
+
+public:
+	/**
+	 * Size
+	 */
+	int32 cx, cy;
 };
 
 
