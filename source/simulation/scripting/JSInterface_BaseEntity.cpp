@@ -9,7 +9,7 @@ JSClass JSI_BaseEntity::JSI_class = {
 	JS_PropertyStub, JS_PropertyStub,
 	JSI_BaseEntity::getProperty, JSI_BaseEntity::setProperty,
 	JS_EnumerateStub, JS_ResolveStub,
-	JS_ConvertStub, NULL,
+	JS_ConvertStub, JS_FinalizeStub,
 	NULL, NULL, NULL, NULL 
 };
 
