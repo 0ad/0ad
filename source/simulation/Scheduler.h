@@ -26,7 +26,7 @@ struct SDispatchObject
 		: deliveryTime( _deliveryTime ), isRecurrent( true ), delay( _recurrence ) {}
 	inline bool operator<( const SDispatchObject& compare ) const
 	{
-		return( deliveryTime < compare.deliveryTime );
+		return( deliveryTime > compare.deliveryTime );
 	}
 };
 

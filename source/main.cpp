@@ -1076,7 +1076,7 @@ static void Frame()
 
 // TODO: limiter in case simulation can't keep up?
 	const double TICK_TIME = 30e-3;	// [s]
-	const float SIM_UPDATE_INTERVAL = 1.0f / (float)SIM_FRAMERATE; // Simulation runs at 50 fps.
+	const float SIM_UPDATE_INTERVAL = 1.0f / (float)SIM_FRAMERATE; // Simulation runs at 10 fps.
 
 	MICROLOG(L"input");
 
