@@ -120,7 +120,8 @@ public:
 #if !(defined(_MSC_VER) && defined(_UNICODE))
 	CStr(utf16string String);	// Creates CStr from UTF16 string, potentially losing data in UTF16->ASCII conversions
 #endif
-	CStr(const TCHAR* String);	// Creates CStr from C-Style TCHAR string
+	CStr(const TCHAR* String);	// Creates CStr from null-terminated C-Style TCHAR string
+	CStr(const TCHAR* String, size_t Length);	// Creates CStr from TCHAR string of specified length
 	CStr(TCHAR Char);		// Creates CStr from a TCHAR
 	CStr(int Number);		// Creates CStr from a int
 	CStr(unsigned int Number);		// Creates CStr from a uint

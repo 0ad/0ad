@@ -29,8 +29,14 @@ CStr::CStr(const CStr& Str)
 
 CStr::CStr(const TCHAR* String)
 {
-	// Creates CStr from C-Style TCHAR string
+	// Creates CStr from null-terminated C-Style TCHAR string
 	m_String = String;
+}
+
+CStr::CStr(const TCHAR* String, size_t Length)
+{
+	// Creates CStr from TCHAR string of specified length
+	m_String = tstring(String, Length);
 }
 
 CStr::CStr(tstring String)
