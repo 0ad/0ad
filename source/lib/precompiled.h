@@ -110,8 +110,6 @@
 # define free(p)       _free_dbg(p, _NORMAL_BLOCK)
 #endif	// #ifdef HAVE_DEBUGALLOC
 
-#define _INC_CRTDBG
-#define _INC_MALLOC
 // use custom memory tracker (lib/mmgr.cpp)
 #ifdef USE_MMGR
 # include "mmgr.h"
