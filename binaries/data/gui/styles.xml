@@ -9,13 +9,16 @@
 		enabled="true"
 		z="0"
 		absolute="true"
+		scrollbar-style="sb2"
 	/>
 
 	<style name="button"
 		sprite="sprite1" 
-		sprite-over="sprite1-over"
  		sprite-pressed="sprite1-pressed"
-		sprite2="hejsan"
 		sprite-disabled="sprite1-disabled"
+		sprite-over="sprite1-over"
+		sprite2="sprite1-ch" 
+ 		sprite2-pressed="sprite2-pressed"
+		sprite2-disabled="sprite2-disabled"
 	/>
 </styles>
