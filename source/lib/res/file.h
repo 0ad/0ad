@@ -63,7 +63,19 @@ enum FILE_CB_FLAGS
 	LOC_DIR = BIT(0),
 };
 
-extern int file_set_root_dir(const char* argv0, const char* root);
+
+// set current directory to rel_path, relative to the path to the executable,
+// which is taken from argv0.
+//
+// example: executable in "$install_dir/system"; desired root dir is
+// "$install_dir/data" => rel_path = "../data".
+//
+// this is necessary because the current directory is unknown at startup
+// (e.g. it isn't set when invoked via batch file), and this is the
+// easiest portable way to find our install directory.
+//
+// can only be called once, by design (see source). rel_path is trusted.
+extern int file_rel_chdir(const char* argv0, const char* rel_path);
 
 
 typedef int(*FileCB)(const char* name, uint flags, ssize_t size, uintptr_t user);

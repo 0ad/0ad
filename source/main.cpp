@@ -39,7 +39,7 @@ static const char* g_MapFile=0;
 
 
 static Handle font;
-static Handle tex;
+
 
 extern CCamera g_Camera;
 
@@ -95,6 +95,7 @@ static int write_sys_info()
 	}
 	
 	fclose(f);
+	return 0;
 }
 
 
@@ -231,7 +232,8 @@ void RenderNoCull()
 	g_Renderer.EndFrame();
 }
 
-static void render()
+
+static void Render()
 {
 	// start new frame
 	g_Renderer.BeginFrame();
@@ -262,29 +264,6 @@ static void render()
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 
-	// logo
-/*	glLoadIdentity();
-	glTranslatef(50, 100, 0);
-	tex_bind(tex);
-	glBegin(GL_QUADS);
-
-const float u = 0.585f, v = 1.0f;
-const float x = 600.0f, y = 512.0f;
-	glTexCoord2f(0, 0); glVertex2f(0, 0);
-	glTexCoord2f(u, 0); glVertex2f(x, 0);
-	glTexCoord2f(u, v); glVertex2f(x, y);
-	glTexCoord2f(0, v); glVertex2f(0, y);
-	glEnd();
-*/
-/*	glDisable(GL_TEXTURE_2D);
-	glLoadIdentity();
-	glBegin(GL_QUADS);
-		glVertex2i(0, 0);
-		glVertex2i(111, 0);
-		glVertex2i(111, 111);
-		glVertex2i(0, 111);
-	glEnd();
-*/
 	// FPS counter
 	glLoadIdentity();
 	glTranslatef(10, 30, 0);
@@ -349,67 +328,41 @@ void ParseArgs(int argc, char* argv[])
 	}
 }
 
+
 int main(int argc, char* argv[])
 {
-file_set_root_dir(argv[0], "../data");
+	const int ERR_MSG_SIZE = 1000;
+	wchar_t err_msg[ERR_MSG_SIZE];
 
-argc=2;
-	argv[1] = "-m=test01.pmp";
 
-	ParseArgs(argc,argv);
-/*
-chdir("\\games\\bf\\ScreenShots");
-int a,b;
-char fn[100];
-__asm cpuid __asm rdtsc __asm mov a, eax
-int i=0;
-
-/*
-int guess=4;
-for(;;)
-{
-sprintf(fn, "ScreenShot%d.jpg", i);
-if(access(fn, F_OK) < 0)
-{
-	int lo = guess/2;
-	int hi = guess;
-	for(;;)
+	// set current directory to "$game_dir/data".
+	// this is necessary because it is otherwise unknown,
+	// especially if run from a shortcut, batch file, or symlink.
+	//
+	// "../data" is relative to the executable (in "$game_dir/system").
+	//
+	// rationale for data/ being root: untrusted scripts must not be
+	// allowed to overwrite critical game (or worse, OS) files.
+	// the VFS prevents any accesses to files above this directory.
+	int err = file_rel_chdir(argv[0], "../data");
+	if(err < 0)
 	{
-		int test = (lo+hi)/2;
-		sprintf(fn, "ScreenShot%d.jpg", i);
-		if(access(fn, F_OK) < 0)
-			;
+		swprintf(err_msg, ERR_MSG_SIZE, L"error setting current directory.\n"\
+			L"argv[0] is probably incorrect. please start the game via command-line.");
+		display_startup_error(err_msg);
 	}
-}
-else
-	guess *= 2;
-break;
-
-}
-*/
 
 
-/*
-DIR* d = opendir(".");
-while(readdir(d))
-i++;
-closedir(d);
-*/
-
-/*
-for(i = 0; i < 100; i++)
+// default to loading map for convenience during development
+// override by passing any parameter.
+if(argc < 2)
 {
-sprintf(fn, "ScreenShot%d.jpg", i);
-if(access(fn, F_OK) < 0)
-break;
+	argc = 2;
+	argv[1] = "-m=test01.pmp";
 }
 
+	ParseArgs(argc, argv);
 
-
-__asm cpuid __asm rdtsc __asm mov b, eax
-int c = b-a;
-
-*/
 
 	lib_init();
 
@@ -425,8 +378,6 @@ int c = b-a;
 	new CGUI;
 #endif
 
-	const int ERR_MSG_SIZE = 1000;
-	wchar_t err_msg[ERR_MSG_SIZE];
 
 	// init SDL
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
@@ -473,8 +424,6 @@ int c = b-a;
 #endif
 
 
-//	tex = tex_load("0adlogo2.bmp");
-//	tex_upload(tex);
 	font = font_load("verdana.fnt");
 
 	// set renderer options from command line options - NOVBO must be set before opening the renderer
@@ -532,7 +481,7 @@ in_add_handler(terr_handler);
 		}
 		UpdateWorld(float(time1-time0));
 		terr_update(float(time1-time0));
-		render();
+		Render();
 		SDL_GL_SwapBuffers();
 
 		calc_fps();
@@ -544,7 +493,7 @@ in_add_handler(terr_handler);
 		in_get_events();
 		UpdateWorld(float(time1-time0));
 		terr_update(float(time1-time0));
-		render();
+		Render();
 		SDL_GL_SwapBuffers();
 
 		calc_fps();

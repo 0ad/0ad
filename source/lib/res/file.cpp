@@ -96,49 +96,67 @@ static int mk_native_path(const char* const path, char* const n_path)
 }
 
 
-// rationale for data dir being root: untrusted scripts must not be allowed
-// to overwrite critical game (or worse, OS) files. the VFS prevents any
-// accesses to files above this directory.
-int file_set_root_dir(const char* argv0, const char* root_dir)
+// set current directory to rel_path, relative to the path to the executable,
+// which is taken from argv0.
+//
+// example: executable in "$install_dir/system"; desired root dir is
+// "$install_dir/data" => rel_path = "../data".
+//
+// this is necessary because the current directory is unknown at startup
+// (e.g. it isn't set when invoked via batch file), and this is the
+// easiest portable way to find our install directory.
+//
+// can only be called once, by design (see below). rel_path is trusted.
+int file_rel_chdir(const char* argv0, const char* rel_path)
 {
-	// security check: only allow attempting to set root dir once
-	// (this is called early at startup, so any subsequent
-	// call is most likely malicious).
+	const char* msg = 0;
+
+	// security check: only allow attempting to chdir once, so that malicious
+	// code cannot circumvent the VFS checks that disallow access to anything
+	// above the current directory (set here).
+	// this routine is called early at startup, so any subsequent attempts
+	// are likely bogus.
 	static bool already_attempted;
 	if(already_attempted)
 	{
-		debug_warn("vfs_set_root called more than once");
-		return -1;
+		msg = "called more than once";
+		goto fail;
 	}
 	already_attempted = true;
 
-
+	// get full path to executable
 	if(access(argv0, X_OK) < 0)
-		return -errno;
+		goto fail;
+	char n_path[PATH_MAX+1];
+	n_path[PATH_MAX] = '\0';
+	if(!realpath(argv0, n_path))
+		goto fail;
+	const size_t n_path_len = strlen(n_path);
 
-	char path[PATH_MAX+1];
-	path[PATH_MAX] = '\0';
-	if(!realpath(argv0, path))
-		return -errno;
-
-	// remove executable name
-	char* fn = strrchr(path, DIR_SEP);
+	// strip executable name and append rel_path
+	char* fn = strrchr(n_path, DIR_SEP);
 	if(!fn)
-		return -1;
-	*fn = 0;
+	{
+		msg = "realpath returned an invalid path?";
+		goto fail;
+	}
+	char* pos = fn+1;	// will overwrite executable name
+	CHECK_ERR(mk_native_path(rel_path, pos));
 
-	// path is now the absolute path to the executable.
-
-	if(chdir(path) < 0)
-		return -errno;
-
-	char* n_root = path;	// reuse path[] (no longer needed)
-	CHECK_ERR(mk_native_path(root_dir, n_root));
-
-	if(chdir(n_root) < 0)
-		return -errno;
+	if(chdir(n_path) < 0)
+		goto fail;
 
 	return 0;
+
+fail:
+	debug_warn("file_rel_chdir failed");
+	if(msg)
+	{
+		debug_out("file_rel_chdir: %s\n", msg);
+		return -1;
+	}
+
+	return -errno;
 }
 
 

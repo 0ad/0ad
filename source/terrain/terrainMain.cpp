@@ -23,24 +23,19 @@ void RenderScene ();
 extern bool keys[512];	// SDL also defines non-ascii keys; 512 should be enough
 
 
-CMatrix3D			g_WorldMat;
+//CMatrix3D			g_WorldMat;
 CRenderer			g_Renderer;
 CTerrain			g_Terrain;
 CCamera				g_Camera;
 CLightEnv			g_LightEnv;
 
-int					SelPX, SelPY, SelTX, SelTY;
-int					g_BaseTexCounter = 0;
-int					g_SecTexCounter = 1;
-int					g_TransTexCounter = 0;
-
-int					g_TickCounter = 0;
-double				g_LastTime;
-
-
-const int NUM_ALPHA_MAPS = 13;
 
 int mouse_x=50, mouse_y=50;
+
+
+float ViewScrollSpeed = 60.0f;
+float ViewZoomFactor = 1.0f;
+
 
 void terr_init()
 {
@@ -59,31 +54,46 @@ void terr_init()
 	InitScene ();
 }
 
-void terr_update(float time)
+
+void terr_update(const float DeltaTime)
 {
-	CVector3D right(time*60,0,time*60);
-	CVector3D up(time*60,0,-time*60);
-	
+	const float dx = ViewScrollSpeed * DeltaTime;
+	const CVector3D Right(dx,0, dx);
+	const CVector3D Up   (dx,0,-dx);
+
 	if (mouse_x >= g_xres-2)
-		g_Camera.m_Orientation.Translate(right);
+		g_Camera.m_Orientation.Translate(Right);
 	if (mouse_x <= 3)
-		g_Camera.m_Orientation.Translate(right*-1);
+		g_Camera.m_Orientation.Translate(Right*-1);
 
 	if (mouse_y >= g_yres-2)
-		g_Camera.m_Orientation.Translate(up);
+		g_Camera.m_Orientation.Translate(Up);
 	if (mouse_y <= 3)
-		g_Camera.m_Orientation.Translate(up*-1);
+		g_Camera.m_Orientation.Translate(Up*-1);
 
+
+	const float s30 = sin(DEGTORAD(30.0f));
+	const float c30 = cos(DEGTORAD(30.0f));
+	const float s45 = sin(DEGTORAD(45.0f));
+	const float c45 = cos(DEGTORAD(45.0f));
+	const float s60 = sin(DEGTORAD(60.0f));
+	const float c60 = cos(DEGTORAD(60.0f));
+
+	const CVector3D vert   (c30*c45, s45*0, -s30*c45*0);
 
 
 	float fov = g_Camera.GetFOV();
 	float d = DEGTORAD(0.4f);
 	if(keys[SDLK_KP_MINUS])
-		if (fov+d < DEGTORAD(90))
+//		g_Camera.m_Orientation.Translate(vert);
+		if (fov < DEGTORAD(90.f))
 			g_Camera.SetProjection(1, 1000, fov + d);
 	if(keys[SDLK_KP_PLUS])
+//			g_Camera.m_Orientation.Translate(vert*-1);
 		if (fov-d > DEGTORAD(20))
 		g_Camera.SetProjection(1, 1000, fov - d);
+
+
 
 	g_Camera.UpdateFrustum ();
 }
@@ -118,104 +128,6 @@ bool terr_handler(const SDL_Event& ev)
 			g_Camera.m_Orientation.RotateY(DEGTORAD(-45));
 			g_Camera.m_Orientation.Translate (100, 150, -100);
 			break;
-
-/*		case 'L':
-			g_HillShading = !g_HillShading;
-			break;*/
-
-// tile selection
-		case SDLK_DOWN:
-			if(++SelTX > 15)
-				if(SelPX == g_Terrain.GetPatchesPerSide()-1)
-					SelTX = 15;
-				else
-					SelTX = 0, SelPX++;
-			break;
-
-		case SDLK_UP:
-			if(--SelTX < 0)
-				if(SelPX == 0)
-					SelTX = 0;
-				else
-					SelTX = 15, SelPX--;
-			break;
-		case SDLK_RIGHT:
-			if(++SelTY > 15)
-				if(SelPY == g_Terrain.GetPatchesPerSide()-1)
-					SelTY = 15;
-				else
-					SelTY = 0, SelPY++;
-			break;
-
-		case SDLK_LEFT:
-			if(--SelTY < 0)
-				if(SelPY == 0)
-					SelTY = 0;
-				else
-					SelTY = 15, SelPY--;
-			break;
-
-
-		case SDLK_KP0:
-				{
-					CMiniPatch *MPatch = &g_Terrain.GetPatch(SelPY, SelPX)->m_MiniPatches[SelTY][SelTX];
-					/*if (!MPatch->Tex2)
-					{
-						MPatch->m_AlphaMap = AlphaMaps[g_TransTexCounter];
-						MPatch->Tex2 = BaseTexs[g_SecTexCounter];
-					}
-					else
-					{
-						MPatch->Tex2 = 0;
-						MPatch->m_AlphaMap = 0;
-					}*/
-					break;
-				}
-
-		/*case SDLK_KP1:
-				{
-					CMiniPatch *MPatch = &g_Terrain.GetPatch(SelPY, SelPX)->m_MiniPatches[SelTY][SelTX];
-
-					g_BaseTexCounter++;
-					if (g_BaseTexCounter > 4)
-						g_BaseTexCounter = 0;
-					
-					MPatch->Tex1 = BaseTexs[g_BaseTexCounter];
-					break;
-				}
-
-		case SDLK_KP2:
-				{
-					CMiniPatch *MPatch = &g_Terrain.m_Patches[SelPY][SelPX].m_MiniPatches[SelTY][SelTX];
-					
-					if (MPatch->Tex2)
-					{
-						g_SecTexCounter++;
-						if (g_SecTexCounter > 4)
-							g_SecTexCounter = 0;
-
-						MPatch->Tex2 = BaseTexs[g_SecTexCounter];
-					}
-
-					break;
-				}
-						
-		case SDLK_KP3:
-				{
-					CMiniPatch *MPatch = &g_Terrain.m_Patches[SelPY][SelPX].m_MiniPatches[SelTY][SelTX];
-					
-					if (MPatch->m_AlphaMap)
-					{
-						g_TransTexCounter++;
-						if (g_TransTexCounter >= NUM_ALPHA_MAPS)
-							g_TransTexCounter = 0;
-
-						MPatch->m_AlphaMap = AlphaMaps[g_TransTexCounter];
-					}
-
-					break;
-				}*/
-
 		}
 	}
 
@@ -243,7 +155,7 @@ void InitScene ()
 		int w;
 		int h;
 
-		tex_info(ht, &w, &h, NULL, NULL, (void **)&p);
+		tex_info(ht, &w, &h, NULL, NULL, (void**)&p);
 
 		printf("terrain.raw: %dx%d\n", w, h);
 
@@ -290,8 +202,6 @@ for (uint ii=0;ii<g_TexMan.m_TerrainTextures.size();ii++) {
 	g_Camera.m_Orientation.RotateY(DEGTORAD(-45));
 
 	g_Camera.m_Orientation.Translate (100, 150, -100);
-
-	SelPX = SelPY = SelTX = SelTY = 0;
 }
 
 void InitResources()
