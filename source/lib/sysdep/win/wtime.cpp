@@ -31,8 +31,8 @@
 
 
 // define to disable time sources (useful for simulating other systems)
-//#define NO_QPC
-//#define NO_TSC
+#define NO_QPC
+#define NO_TSC
 
 
 // automatic module init (before main) and shutdown (before termination)
@@ -61,7 +61,11 @@ WIN_REGISTER_FUNC(wtime_shutdown);
 
 // initial measurement of the time source's tick rate. not necessarily
 // correct (e.g. when using TSC; cpu_freq isn't exact).
-static i64 hrt_nominal_freq = -1;
+static double hrt_nominal_freq = -1.0;
+
+// actual resolution of the time source (may differ from hrt_nominal_freq
+// for timers with adjustment > 1 tick).
+static double hrt_res = -1.0;
 
 // current ticks per second; average of last few values measured in
 // calibrate(). needed to prevent long-term drift, and because
@@ -176,7 +180,8 @@ static int choose_impl()
 		if(safe)
 		{
 			hrt_impl = HRT_TSC;
-			hrt_nominal_freq = (i64)cpu_freq;
+			hrt_nominal_freq = cpu_freq;
+			hrt_res = (1.0 / hrt_nominal_freq);
 			return 0;
 		}
 	}
@@ -234,7 +239,8 @@ static int choose_impl()
 		if(safe)
 		{
 			hrt_impl = HRT_QPC;
-			hrt_nominal_freq = qpc_freq;
+			hrt_nominal_freq = (double)qpc_freq;
+			hrt_res = (1.0 / hrt_nominal_freq);
 			return 0;
 		}
 	}
@@ -248,13 +254,20 @@ static int choose_impl()
 	if(safe)
 	{
 		hrt_impl = HRT_GTC;
-		hrt_nominal_freq = 1000;
+		hrt_nominal_freq = 1000.0;	// units returned
+
+		// get actual resolution
+		DWORD adj; BOOL adj_disabled;
+			// unused, but must be passed to GSTA
+		DWORD timer_period;	// in hectonanoseconds
+		GetSystemTimeAdjustment(&adj, &timer_period, &adj_disabled);
+		hrt_res = (timer_period / 1e7);
 		return 0;
 	}
 
 	debug_warn("hrt_choose_impl: no safe timer found!");
 	hrt_impl = HRT_NONE;
-	hrt_nominal_freq = -1;
+	hrt_nominal_freq = -1.0;
 	return -1;
 }
 
@@ -350,12 +363,12 @@ static int reset_impl_lk()
 		old_time = time_lk();		
 
 	CHECK_ERR(choose_impl());
-	assert(hrt_impl != HRT_NONE && hrt_nominal_freq > 0);
+	assert(hrt_impl != HRT_NONE && hrt_nominal_freq > 0.0);
 
 	// impl has changed; reset timer state.
 	if(old_impl != hrt_impl)
 	{
-		hrt_cur_freq = (double)hrt_nominal_freq;
+		hrt_cur_freq = hrt_nominal_freq;
 		hrt_cal_time = old_time;
 		hrt_cal_ticks = ticks_lk();
 	}
@@ -406,16 +419,17 @@ unlock();
 // implementation only changes after hrt_override_impl.
 //
 // may be called before first hrt_ticks / hrt_time, so do init here also.
-static void hrt_query_impl(HRTImpl& impl, i64& nominal_freq)
+static void hrt_query_impl(HRTImpl& impl, double& nominal_freq, double& res)
 {
 lock();
 
 	impl = hrt_impl;
 	nominal_freq = hrt_nominal_freq;
+	res = hrt_res;
 
 unlock();
 
-	assert(nominal_freq > 0 && "hrt_query_impl: invalid hrt_nominal_freq");
+	assert(nominal_freq > 0.0 && "hrt_query_impl: invalid hrt_nominal_freq");
 }
 
 
@@ -511,7 +525,7 @@ static void calibrate_lk()
 	{
 		samples.clear();
 
-		hrt_cur_freq = (double)hrt_nominal_freq;
+		hrt_cur_freq = hrt_nominal_freq;
 	}
 
 	assert(hrt_cur_freq > 0);
@@ -698,10 +712,10 @@ int clock_gettime(clockid_t clock, struct timespec* t)
 }
 
 
-int clock_getres(clockid_t clock, struct timespec* res)
+int clock_getres(clockid_t clock, struct timespec* ts)
 {
 #ifndef NDEBUG
-	if(clock != CLOCK_REALTIME || !res)
+	if(clock != CLOCK_REALTIME || !ts)
 	{
 		debug_warn("clock_getres: invalid clock or res param");
 		return -1;
@@ -709,11 +723,11 @@ int clock_getres(clockid_t clock, struct timespec* res)
 #endif
 
 	HRTImpl impl;
-	i64 nominal_freq;
-	hrt_query_impl(impl, nominal_freq);
+	double nominal_freq, res;
+	hrt_query_impl(impl, nominal_freq, res);
 
-	res->tv_sec  = 0;
-	res->tv_nsec = (long)(1e9 / nominal_freq);
+	ts->tv_sec  = 0;
+	ts->tv_nsec = (long)(res * 1e9);
 	return 0;
 }
 
