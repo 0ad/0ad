@@ -15,7 +15,7 @@ by Rich Cross, rich@0ad.wildfiregames.com
 //--------------------------------------------------------
 //  Includes / Compiler directives
 //--------------------------------------------------------
-#include "terrain/Texture.h"
+#include "Texture.h"
 #include "Overlay.h"		// just for CColor at the mo
 
 
