@@ -110,6 +110,87 @@ void wdebug_out(const wchar_t* fmt, ...)
 
 
 
+
+
+
+
+
+
+int clipboard_set(const wchar_t* text)
+{
+	int err = -1;
+
+	if(!OpenClipboard(0))
+		return err;
+	EmptyClipboard();
+
+	const size_t len = wcslen(text);
+
+	HGLOBAL hMem = GlobalAlloc(GMEM_MOVEABLE, (len+1) * sizeof(wchar_t));
+	if(!hMem)
+		goto fail;
+
+	wchar_t* copy = (wchar_t*)GlobalLock(hMem);
+	if(copy)
+	{
+		wcscpy(copy, text);
+
+		GlobalUnlock(hMem);
+
+		if(SetClipboardData(CF_TEXT, hMem) != 0)
+			err = 0;	// success
+	}
+
+fail:
+	CloseClipboard();
+	return err;
+}
+
+
+wchar_t* clipboard_get()
+{
+	wchar_t* ret = 0;
+
+	if(!OpenClipboard(0))
+		return 0;
+
+	// Windows NT/2000+ auto convert UNICODETEXT <-> TEXT
+	HGLOBAL hMem = GetClipboardData(CF_UNICODETEXT);
+	if(hMem != 0)
+	{
+		wchar_t* text = (wchar_t*)GlobalLock(hMem);
+		if(text)
+		{
+			SIZE_T size = GlobalSize(hMem);
+			wchar_t* copy = (wchar_t*)malloc(size);
+			if(copy)
+			{
+				wcscpy(copy, text);
+				ret = copy;
+			}
+
+			GlobalUnlock(hMem);
+		}
+	}
+
+	CloseClipboard();
+
+	return ret;
+}
+
+
+int clipboard_free(wchar_t* copy)
+{
+	free(copy);
+	return 0;
+}
+
+
+
+
+
+
+
 ///////////////////////////////////////////////////////////////////////////////
 //
 // init and shutdown mechanism
