@@ -37,7 +37,7 @@
 #include "Model.h"
 #include "UnitManager.h"
 #include "MaterialManager.h"
-#include "ProgramManager.h"
+#include "MeshManager.h"
 
 #include "Interact.h"
 #include "Hotkey.h"
@@ -238,7 +238,6 @@ static int write_sys_info()
 
 	fprintf(f, "%dx%d:%d@%d\n", g_xres, g_yres, g_bpp, g_freq);
 
-    g_ProgramManager.WritePPInfo(f);
     fprintf(f, "OpenGL: %s\n", glGetString(GL_VERSION));
 
 	// .. network name / ips
@@ -820,7 +819,7 @@ static void Shutdown()
 	delete &g_SkelAnimMan;
 
 	delete &g_MaterialManager;
-    delete &g_ProgramManager;
+    delete &g_MeshManager;
 
 	// destroy terrain related stuff
 	delete &g_TexMan;
@@ -944,12 +943,6 @@ sle(11340106);
 	}
 	SDL_WM_SetCaption("0 A.D.", "0 A.D.");
 
-    
-    // create the program manager
-    // NOTE: We need to create this BEFORE we write the sys-info, so the PP stuff
-    // will be written to the system_info.txt file
-    new CProgramManager;
-
 	write_sys_info();
 
 	if(!oglExtAvail("GL_ARB_multitexture") || !oglExtAvail("GL_ARB_texture_env_combine") ||
@@ -962,8 +955,8 @@ sle(11340106);
 
 	// enable/disable VSync
 	// note: "GL_EXT_SWAP_CONTROL" is "historical" according to dox.
-	if(oglExtAvail("WGL_EXT_swap_control"))
-		wglSwapIntervalEXT(g_VSync? 1 : 0);
+    /*if(oglExtAvail("WGL_EXT_swap_control"))
+		wglSwapIntervalEXT(g_VSync? 1 : 0);*/
 
 #ifdef _MSC_VER
 u64 CURTSC=rdtsc();
@@ -991,6 +984,7 @@ PREVTSC=CURTSC;
 
 	// create the material manager
 	new CMaterialManager;
+    new CMeshManager;
 
 	// create actor related stuff
 	new CSkeletonAnimManager;
