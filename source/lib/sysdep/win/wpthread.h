@@ -21,6 +21,8 @@
 #ifndef WPTHREAD_H__
 #define WPTHREAD_H__
 
+#include "wtime.h"	// sem_timedwait
+
 
 //
 // <sched.h>
@@ -54,8 +56,8 @@ extern int pthread_getschedparam(pthread_t thread, int* policy, struct sched_par
 extern int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param* param);
 
 extern int pthread_create(pthread_t* thread, const void* attr, void*(*func)(void*), void* arg);
-extern void pthread_cancel(pthread_t thread);
-extern void pthread_join(pthread_t thread, void** value_ptr);
+extern int pthread_cancel(pthread_t thread);
+extern int pthread_join(pthread_t thread, void** value_ptr);
 
 typedef void* pthread_mutex_t;	// pointer to critical section
 typedef void pthread_mutexattr_t;
@@ -81,6 +83,7 @@ typedef uintptr_t sem_t;
 extern int sem_init(sem_t*, int pshared, unsigned value);
 extern int sem_post(sem_t*);
 extern int sem_wait(sem_t*);
+extern int sem_timedwait(sem_t*, const struct timespec*);
 extern int sem_destroy(sem_t*);
 
 #endif	// #ifndef WPTHREAD_H__

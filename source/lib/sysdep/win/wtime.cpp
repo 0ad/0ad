@@ -31,17 +31,19 @@
 #include <numeric>
 
 
+// define to disable time sources (useful for simulating other systems)
+//#define NO_QPC
+//#define NO_TSC
+
+static const int CALIBRATION_FREQ = 1000;
+
+
 // automatic module init (before main) and shutdown (before termination)
 #pragma data_seg(".LIB$WCB")
 WIN_REGISTER_FUNC(wtime_init);
 #pragma data_seg(".LIB$WTB")
 WIN_REGISTER_FUNC(wtime_shutdown);
 #pragma data_seg()
-
-
-// define to disable time sources (useful for simulating other systems)
-//#define NO_QPC
-//#define NO_TSC
 
 
 // see http://www.gamedev.net/reference/programming/features/timing/ .
@@ -131,6 +133,10 @@ static HRTOverride overrides[HRT_NUM_IMPLS];
 cassert((int)HRT_DEFAULT == 0);
 
 
+// convenience
+static const long _1e6 = 1000000;
+static const long _1e7 = 10000000;
+static const i64  _1e9 = 1000000000;
 
 
 static inline void lock(void) { win_lock(HRT_CS); }
@@ -544,17 +550,33 @@ static void calibrate_lk()
 // however, we want to avoid dependency on WinMM to shorten startup time.
 // hence, start a thread.
 
-static HANDLE hThread;
-static HANDLE hExitEvent;
+static pthread_t thread;
+static sem_t exit_flag;
 
-static unsigned __stdcall calibration_thread(void* data)
+static void* calibration_thread(void* data)
 {
 	UNUSED(data);
 
 	for(;;)
 	{
-		if(WaitForSingleObject(hExitEvent, 1000) != WAIT_TIMEOUT)
+		// calculate absolute timeout for sem_timedwait
+		struct timespec abs_timeout;
+		clock_gettime(CLOCK_REALTIME, &abs_timeout);
+		abs_timeout.tv_nsec += _1e9 / CALIBRATION_FREQ;
+		// .. handle nanosecond wraparound (must not be > 1000m)
+		if(abs_timeout.tv_nsec >= _1e9)
+		{
+			abs_timeout.tv_nsec -= _1e9;
+			abs_timeout.tv_sec++;
+		}
+
+		errno = 0;
+		// if we acquire the semaphore, exit was requested.
+		if(sem_timedwait(&exit_flag, &abs_timeout) == 0)
 			break;
+		// actual error: warn
+		if(errno != ETIMEDOUT)
+			debug_warn("wtime calibration_thread: sem_timedwait failed");
 
 		lock();
 		calibrate_lk();
@@ -565,21 +587,19 @@ static unsigned __stdcall calibration_thread(void* data)
 }
 
 
-static inline int init_calibration_thread()
+static inline int init_calibration_thread_lk()
 {
-	hExitEvent = CreateEvent(0, 0, 0, 0);
-	hThread = (HANDLE)_beginthreadex(0, 0, calibration_thread, 0, 0, 0);
+	sem_init(&exit_flag, 0, 0);
+	pthread_create(&thread, 0, calibration_thread, 0);
 	return 0;
 }
 
 
-static inline int shutdown_calibration_thread()
+static inline int shutdown_calibration_thread_lk()
 {
-	SetEvent(hExitEvent);
-	if(WaitForSingleObject(hThread, 100) != WAIT_OBJECT_0)
-		TerminateThread(hThread, 0);
-	CloseHandle(hThread);
-	CloseHandle(hExitEvent);
+	sem_post(&exit_flag);
+	pthread_join(thread, 0);
+	sem_destroy(&exit_flag);
 	return 0;
 }
 
@@ -591,7 +611,7 @@ static int hrt_init()
 lock();
 
 	reset_impl_lk();
-	int err = init_calibration_thread();
+	int err = init_calibration_thread_lk();
 
 unlock();
 	return err;
@@ -602,7 +622,7 @@ static int hrt_shutdown()
 {
 lock();
 
-	int err = shutdown_calibration_thread();
+	int err = shutdown_calibration_thread_lk();
 
 unlock();
 	return err;
@@ -617,10 +637,6 @@ unlock();
 
 // NT system time and FILETIME are hectonanoseconds since Jan. 1, 1601 UTC.
 // SYSTEMTIME is a struct containing month, year, etc.
-
-static const long _1e6 = 1000000;
-static const long _1e7 = 10000000;
-static const i64  _1e9 = 1000000000;
 
 
 //

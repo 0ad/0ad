@@ -118,31 +118,44 @@ int pthread_create(pthread_t* thread, const void* attr, void*(*func)(void*), voi
 }
 
 
-void pthread_cancel(pthread_t thread)
+int pthread_cancel(pthread_t thread)
 {
 	HANDLE hThread = pthread_t_to_HANDLE(thread);
 	TerminateThread(hThread, 0);
+	debug_out("WARNING: pthread_cancel is unsafe\n");
+	return 0;
 }
 
 
-void pthread_join(pthread_t thread, void** value_ptr)
+int pthread_join(pthread_t thread, void** value_ptr)
 {
 	HANDLE hThread = pthread_t_to_HANDLE(thread);
 
-	// clean exit
-	if(WaitForSingleObject(hThread, 100) == WAIT_OBJECT_0)
+	// note: pthread_join doesn't call for a timeout. if this wait
+	// locks up the process, at least it'll be easy to see why.
+	DWORD ret = WaitForSingleObject(hThread, INFINITE);
+	if(ret != WAIT_OBJECT_0)
 	{
-		if(value_ptr)
-			GetExitCodeThread(hThread, (LPDWORD)value_ptr);
+		debug_warn("pthread_join: WaitForSingleObject failed");
+		return -1;
 	}
-	// force close
-	else
-		TerminateThread(hThread, 0);
+
+	// pass back the code that was passed to pthread_exit.
+	// SUS says <*value_ptr> need only be set on success!
 	if(value_ptr)
-		*value_ptr = (void*)-1;
-	CloseHandle(hThread);	
+		GetExitCodeThread(hThread, (LPDWORD)value_ptr);
+
+	CloseHandle(hThread);
+	return 0;
 }
 
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+// rationale: CRITICAL_SECTIONS have less overhead than Win32 Mutex.
+// disadvantage is that pthread_mutex_timedlock isn't supported, but
+// the user can switch to semaphores if this facility is important.
 
 // DeleteCriticalSection currently doesn't complain if we double-free
 // (e.g. user calls destroy() and static initializer atexit runs),
@@ -198,6 +211,8 @@ int pthread_mutex_unlock(pthread_mutex_t* m)
 	return 0;
 }
 
+// not implemented - pthread_mutex is based on CRITICAL_SECTION,
+// which doesn't support timeouts. use sem_timedwait instead.
 int pthread_mutex_timedlock(pthread_mutex_t* m, const struct timespec* abs_timeout)
 {
 	UNUSED(m);
@@ -206,7 +221,13 @@ int pthread_mutex_timedlock(pthread_mutex_t* m, const struct timespec* abs_timeo
 }
 
 
+//////////////////////////////////////////////////////////////////////////////
 
+
+HANDLE sem_t_to_HANDLE(sem_t* sem)
+{
+	return (HANDLE)*sem;
+}
 
 int sem_init(sem_t* sem, int pshared, unsigned value)
 {
@@ -217,18 +238,82 @@ int sem_init(sem_t* sem, int pshared, unsigned value)
 
 int sem_post(sem_t* sem)
 {
-	ReleaseSemaphore((HANDLE)*sem, 1, 0);
+	HANDLE h = sem_t_to_HANDLE(sem);
+	ReleaseSemaphore(h, 1, 0);
 	return 0;
 }
 
 int sem_wait(sem_t* sem)
 {
-	WaitForSingleObject((HANDLE)*sem, INFINITE);
+	HANDLE h = sem_t_to_HANDLE(sem);
+	WaitForSingleObject(h, INFINITE);
 	return 0;
 }
 
 int sem_destroy(sem_t* sem)
 {
-	CloseHandle((HANDLE)*sem);
+	HANDLE h = sem_t_to_HANDLE(sem);
+	CloseHandle(h);
 	return 0;
+}
+
+
+// helper function for sem_timedwait - multiple return is convenient.
+// converts an absolute timeout deadline into a relative length for use with
+// WaitForSingleObject with the following peculiarity: if the semaphore
+// could be locked immediately, abs_timeout must be ignored (see SUS).
+// to that end, we return a timeout of 0 and pass back <valid> = false if
+// abs_timeout is invalid.
+static DWORD calc_timeout_length_ms(const struct timespec* abs_timeout,
+	bool& timeout_is_valid)
+{
+	timeout_is_valid = false;
+
+	if(!abs_timeout)
+		return 0;
+
+	// SUS requires we fail if not normalized
+	if(abs_timeout->tv_nsec >= 1000000000)
+		return 0;
+
+	struct timespec cur_time;
+	if(clock_gettime(CLOCK_REALTIME, &cur_time) != 0)
+		return 0;
+
+	timeout_is_valid = true;
+
+	i64 ds = abs_timeout->tv_sec - cur_time.tv_sec;	// i64 to avoid overflow
+	long dn = abs_timeout->tv_nsec - cur_time.tv_nsec;
+	i64 length_ms = ds*1000 + dn/1000000;
+	// > 49 days -> result doesn't fit in 32 bits; most likely bogus.
+	// also be careful to avoid returning exactly -1,
+	// because that's the Win32 INFINITE value.
+	if(length_ms >= 0xffffffff)
+	{
+		debug_warn("calc_timeout_length_ms: 32-bit overflow");
+		length_ms = 0xfffffffe;
+	}
+	return (DWORD)(length_ms & 0xffffffff);
+}
+
+int sem_timedwait(sem_t* sem, const struct timespec* abs_timeout)
+{
+	bool timeout_is_valid;
+	DWORD timeout_ms = calc_timeout_length_ms(abs_timeout, timeout_is_valid);
+
+	HANDLE h = sem_t_to_HANDLE(sem);
+	DWORD ret = WaitForSingleObject(h, timeout_ms);
+	// succesfully decremented semaphore; bail.
+	if(ret == WAIT_OBJECT_0)
+		return 0;
+
+	// we're going to return -1. decide what happened:
+	// .. abs_timeout was invalid (must not check this before trying to lock)
+	if(!timeout_is_valid)
+		errno = EINVAL;
+	// .. timeout reached (not a failure)
+	else if(ret == WAIT_TIMEOUT)
+		errno = ETIMEDOUT;
+
+	return -1;
 }

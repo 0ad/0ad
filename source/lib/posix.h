@@ -13,6 +13,7 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <pthread.h>
+#include <semaphore.h>
 #include <sys/mman.h>
 #include <aio.h>
 #include <errno.h>

@@ -71,9 +71,11 @@ extern "C" {
 // <errno.h>
 //
 
-#define EINPROGRESS 100000
-
 #include <errno.h>
+
+// not defined there:
+#define EINPROGRESS 100000
+#define ETIMEDOUT            (60)	// matches NetworkInternal.h def
 
 /*
 enum
