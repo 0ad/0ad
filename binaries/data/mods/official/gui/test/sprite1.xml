@@ -160,10 +160,6 @@
                 <image texture="black_16x16.png" texture-size="0 0 16 16" size="0 0 100% 100%" />
         </sprite>
 
-        <sprite name="0ad_icon">
-                <image texture="global/ui_gen_0ad-icon.png" size="0 0 100% 100%" texture-size="0 0 16 16" />
-        </sprite>
-
                 <!--
                 ==========================================
                 MAP ORB
@@ -518,6 +514,9 @@
         ==========================================
         -->
 
+        <sprite name="0ad_icon">
+                <image texture="global/ui_gen_0ad-icon-black.png" size="0 0 100% 100%" texture-size="0 0 16 16" />
+        </sprite>
 
         <!--
         ==========================================
