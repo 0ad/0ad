@@ -735,8 +735,6 @@
 					AddSizeCoord(this.name,
 					crd_status_orb_armour_x, crd_status_orb_armour_y, crd_status_orb_armour_x+crd_status_orb_armour_width, crd_status_orb_armour_y+crd_status_orb_armour_height, left_screen, top_screen, left_screen, top_screen,
 					crd_status_orb_armour_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_armour_y, crd_status_orb_armour_x+crd_status_orb_armour_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_armour_y+crd_status_orb_armour_height, left_screen, bottom_screen, left_screen, bottom_screen);
-
-					getGUIObjectByName("session_panel_status_armour").caption = "Attack:\nArmour:\n";
 				]]></action>
 			</object>
 

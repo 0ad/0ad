@@ -26,7 +26,7 @@
                 GUIObjectHide("pregame_gui");
                 FlipGUI(GUIType);
 //		curr_music.free(); // Close main theme when starting game session.
-		curr_session_music = new Sound("audio/music/germanic_peace_1.ogg");
+		curr_session_music = new Sound("audio/music/germanic_peace_2.ogg");
 		curr_session_music.play();
             ]]></action>
             <action on="MouseEnter"><![CDATA[

@@ -306,7 +306,7 @@
                 -->
 
                 <sprite name="statistic_hp">
-                        <image texture="ui_icon_statistic_hp_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
+                        <image texture="ui_icon_statistic_hp_128.png" texture-size="0 0 128 128" size="0 0 100% 100%" />
                 </sprite>
 
                 <sprite name="statistic_rank1">
@@ -323,6 +323,38 @@
 
                 <sprite name="statistic_garrison">
                         <image texture="ui_icon_statistic_garrison_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="statistic_accuracy">
+                        <image texture="ui_icon_statistic_accuracy_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="statistic_armour">
+                        <image texture="ui_icon_statistic_hack_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="statistic_attack">
+                        <image texture="ui_icon_statistic_attack_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="statistic_crush">
+                        <image texture="ui_icon_statistic_crush_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="statistic_hack">
+                        <image texture="ui_icon_statistic_hack_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="statistic_los">
+                        <image texture="ui_icon_statistic_los_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="statistic_pierce">
+                        <image texture="ui_icon_statistic_pierce_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
+                </sprite>
+
+                <sprite name="statistic_speed">
+                        <image texture="ui_icon_statistic_speed_20.png" texture-size="0 0 32 32" size="0 0 100% 100%" />
                 </sprite>
 
                 <!--
