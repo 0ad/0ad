@@ -14,10 +14,9 @@ extern int cpu_smp;
 	// not only logical hyperthreaded CPUs? relevant for wtime.
 
 
-// set cpu_smp if there's more than 1 physical CPU -
-// need to know this for wtime's TSC safety check.
-// call on each processor (via on_each_cpu).
-extern void cpu_check_smp();
+// not possible with POSIX calls.
+// called from ia32.cpp check_smp
+extern int on_each_cpu(void(*cb)());
 
 
 #ifdef __cplusplus

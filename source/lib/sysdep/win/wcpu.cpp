@@ -7,7 +7,8 @@
 
 
 // not possible with POSIX calls.
-static int on_each_cpu(void(*cb)())
+// called from ia32.cpp check_smp
+int on_each_cpu(void(*cb)())
 {
 	const HANDLE hProcess = GetCurrentProcess();
 
@@ -42,12 +43,6 @@ static int on_each_cpu(void(*cb)())
 	SetProcessAffinityMask(hProcess, process_affinity);
 
 	return 0;
-}
-
-
-static void check_smp()
-{
-	on_each_cpu(cpu_check_smp);
 }
 
 
@@ -135,7 +130,6 @@ int win_get_cpu_info()
 	}
 
 	check_speedstep();
-	check_smp();
 
 	return 0;
 }

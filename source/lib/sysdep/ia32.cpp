@@ -44,13 +44,13 @@ double _ceil(double f)
 	double r;
 
 	const float _49 = 0.499999f;
-	__asm
-	{
-		fld			[f]
-		fadd		[_49]
-		frndint
-		fstp		[r]
-	}
+__asm
+{
+	fld			[f]
+	fadd		[_49]
+	frndint
+	fstp		[r]
+}
 
 	UNUSED(f)
 
@@ -68,8 +68,8 @@ __asm
 {
 	cpuid
 	rdtsc
-	mov		dword ptr [c], eax
-	mov		dword ptr [c+4], edx
+	mov			dword ptr [c], eax
+	mov			dword ptr [c+4], edx
 }
 	return c;
 }
@@ -80,18 +80,18 @@ uint _control87(uint new_cw, uint mask)
 {
 __asm
 {
-	push	eax
-	fnstcw	[esp]
-	pop		eax					; old_cw
-	mov		ecx, [new_cw]
-	mov		edx, [mask]
-	and		ecx, edx			; new_cw & mask
-	not		edx					; ~mask
-	and		eax, edx			; old_cw & ~mask
-	or		eax, ecx			; (old_cw & ~mask) | (new_cw & mask)
-	push	eax
-	fldcw	[esp]
-	pop		eax
+	push		eax
+	fnstcw		[esp]
+	pop			eax								; old_cw
+	mov			ecx, [new_cw]
+	mov			edx, [mask]
+	and			ecx, edx						; new_cw & mask
+	not			edx								; ~mask
+	and			eax, edx						; old_cw & ~mask
+	or			eax, ecx						; (old_cw & ~mask) | (new_cw & mask)
+	push		eax
+	fldcw		[esp]
+	pop			eax
 }
 
 	UNUSED(new_cw)
@@ -109,6 +109,7 @@ __asm
 static char vendor_str[13];
 static int family, model, ext_family;
 	// used in manual cpu_type detect
+static u32 max_ext_func;
 
 // caps
 // treated as 128 bit field; order: std ecx, std edx, ext ecx, ext edx
@@ -118,6 +119,37 @@ u32 caps[4];
 static int have_brand_string = 0;
 	// if false, need to detect cpu_type manually.
 	// int instead of bool for easier setting from asm
+
+enum Regs
+{
+	EAX,
+	EBX,
+	ECX,
+	EDX
+};
+
+static bool cpuid(u32 func, u32* regs)
+{
+	if(func > max_ext_func)
+		return false;
+
+__asm
+{
+	mov			eax, [func]
+	cpuid
+	mov			edi, [regs]
+	stosd
+	xchg		eax, ebx
+	stosd
+	xchg		eax, ecx
+	stosd
+	xchg		eax, edx
+	stosd
+}
+
+	return true;
+}
+
 
 // (optimized for size)
 static void __declspec(naked) cpuid()
@@ -168,6 +200,7 @@ __asm
 	mov			esi, 0x80000000
 	mov			eax, esi
 	cpuid
+	mov			[max_ext_func], eax
 	cmp			eax, esi						; max ext <= 0x80000000?
 	jbe			no_ext_funcs					; yes - no ext funcs at all
 	lea			esi, [esi+4]					; esi = 0x80000004
@@ -300,63 +333,63 @@ static void get_cpu_type()
 
 static void measure_cpu_freq()
 {
-	// get old policy and priority
-	int old_policy;
-	static sched_param old_param;
+	// set max priority, to avoid interference while measuring.
+	int old_policy;	static sched_param old_param;	// (static => 0-init)
 	pthread_getschedparam(pthread_self(), &old_policy, &old_param);
-	// set max priority
 	static sched_param max_param;
 	max_param.sched_priority = sched_get_priority_max(SCHED_RR);
 	pthread_setschedparam(pthread_self(), SCHED_RR, &max_param);
 
-	// measure CPU frequency.
-	// balance measuring time (~ 10 ms) and accuracy (< 1 0/00 error -
-	// ok for using the TSC as a time reference)
-	if(ia32_cap(TSC))	// needed to calculate freq; bogomips are a WAG
+	if(ia32_cap(TSC))
+		// we require the TSC to measure actual CPU cycles per clock tick.
+		// counting loop iterations ("bogomips") is unreliable.
 	{
-		// stabilize CPUID for timing (first few calls take longer)
+		// rdtsc() uses cpuid to serialize instruction flow. the first
+		// few calls of this instruction are documented to take longer
+		// (no idea why), so we warm it up here.
 		__asm cpuid __asm cpuid __asm cpuid
 
-			u64 c0, c1;
-
-		std::vector<double> samples;
 		int num_samples = 16;
-		// if clock is low-res, do less samples so it doesn't take too long
+		// if clock is low-res, do less samples so it doesn't take too long.
+		// balance measuring time (~ 10 ms) and accuracy (< 1 0/00 error -
+		// ok for using the TSC as a time reference)
 		if(timer_res() >= 1e-3)
 			num_samples = 8;
+		std::vector<double> samples(num_samples);
 
 		int i;
 		for(i = 0; i < num_samples; i++)
 		{
-again:
+			double dt;
+			i64 dc;
+				// i64 because VC6 can't convert u64 -> double,
+				// and we don't need all 64 bits.
+
 			// count # of clocks in max{1 tick, 1 ms}
-			double t0;
-			double t1 = get_time();
 			// .. wait for start of tick
+			const double t0 = get_time();
+			u64 c1; double t1;
 			do
 			{
-				c0 = rdtsc();	// changes quickly
-				t0 = get_time();
+				c1 = rdtsc();	// changes quickly
+				t1 = get_time();
 			}
-			while(t0 == t1);
+			while(t1 == t0);
 			// .. wait until start of next tick and at least 1 ms
 			do
 			{
-				c1 = rdtsc();
-				t1 = get_time();
+				const u64 c2 = rdtsc();
+				const double t2 = get_time();
+				dc = (i64)(c2 - c1);
+					// i64 rationale: see decl
+				dt = t2 - t1;
 			}
-			while(t1 < t0 + 1e-3);
-
-			double ds = t1 - t0;
-			if(ds < 0.0)		// bogus time delta - take another sample
-				goto again;
+			while(dt < 1e-3);
 
 			// .. freq = (delta_clocks) / (delta_seconds);
 			//    cpuid/rdtsc/timer overhead is negligible
-			double freq = (i64)(c1-c0) / ds;
-			// VC6 can't convert u64 -> double, and we don't need full range
-
-			samples.push_back(freq);
+			const double freq = dc / dt;
+			samples[i] = freq;
 		}
 
 		std::sort(samples.begin(), samples.end());
@@ -401,8 +434,7 @@ int get_cur_processor_id()
 
 // set cpu_smp if there's more than 1 physical CPU -
 // need to know this for wtime's TSC safety check.
-// call on each processor (via on_each_cpu).
-void cpu_check_smp()
+static void check_smp()
 {
 	assert(cpus > 0 && "must know # CPUs (call OS-specific detect first)");
 
@@ -447,15 +479,24 @@ void cpu_check_smp()
 
 	// more than 1 physical CPU found
 	static int last_phys_id = -1;
-	if(last_phys_id != phys_id)
+	if(last_phys_id != -1 && last_phys_id != phys_id)
 		cpu_smp = 1;
+	last_phys_id = phys_id;
 }
 
 
 static void check_speedstep()
 {
 	if(vendor == INTEL && ia32_cap(EST))
-		cpu_speedstep = true;
+		cpu_speedstep = 1;
+
+	if(vendor == AMD)
+	{
+		u32 regs[4];
+		if(cpuid(0x80000007, regs))
+			if(regs[EDX] & 2)	// frequency ID control
+				cpu_speedstep = 1;
+	}
 }
 
 
@@ -474,6 +515,7 @@ void ia32_get_cpu_info()
 	get_cpu_type();
 	measure_cpu_freq();
 	check_speedstep();
+	on_each_cpu(check_smp);
 }
 
 #endif	// #ifndef _M_IX86
