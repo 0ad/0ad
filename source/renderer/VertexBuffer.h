@@ -66,6 +66,9 @@ public:
 	// return this VBs batch list
 	const std::vector<Batch*>& GetBatches() const { return m_Batches; }
 
+	// free memory
+	static void CVertexBuffer::Shutdown();
+
 protected:
 	friend class CVertexBufferManager;		// allow allocate only via CVertexBufferManager
 	

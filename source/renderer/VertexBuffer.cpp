@@ -16,6 +16,14 @@
 std::vector<CVertexBuffer::Batch*> CVertexBuffer::m_FreeBatches;
 
 ///////////////////////////////////////////////////////////////////////////////
+// Call at shutdown to free memory
+void CVertexBuffer::Shutdown()
+{
+	for(std::vector<Batch*>::iterator iter=m_FreeBatches.begin();iter!=m_FreeBatches.end();++iter)
+		delete *iter;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 // CVertexBuffer constructor 
 CVertexBuffer::CVertexBuffer(size_t vertexSize,bool dynamic) 
 	: m_VertexSize(vertexSize), m_Dynamic(dynamic), m_SysMem(0), m_Handle(0)

@@ -56,10 +56,7 @@ IGUIObject::~IGUIObject()
 {
 	map<CStr, SGUISetting>::iterator it;
 	for (it = m_Settings.begin(); it != m_Settings.end(); ++it)
-	{
-		if (!it->second.m_pSetting)
-			delete it->second.m_pSetting;
-	}
+		delete it->second.m_pSetting;
 }
 
 //-------------------------------------------------------------------

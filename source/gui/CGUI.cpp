@@ -883,6 +883,7 @@ void CGUI::LoadXMLFile(const string &Filename)
 	///		g_console.submit("echo GUI Tree Creation Reports %d errors", m_Errors);
 		}
 
+		delete parser->getErrorHandler();
 		delete parser;
 	}
 	XMLPlatformUtils::Terminate();

@@ -19,6 +19,8 @@ CVertexBufferManager::~CVertexBufferManager()
 	typedef std::list<CVertexBuffer*>::iterator Iter;
 	for (Iter iter=m_Buffers.begin();iter!=m_Buffers.end();++iter)
 		delete *iter;
+
+	CVertexBuffer::Shutdown();
 }
 
 
