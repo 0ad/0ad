@@ -2,7 +2,7 @@
 
 cd premake
 
-premake --target gnu
+./premake --target gnu
 
 cd ../gcc
 mv -f ../premake/Makefile ../premake/prometheus.make .
