@@ -22,8 +22,11 @@
 #ifndef _XercesVFS_H
 #define _XercesVFS_H
 
-#include <xercesc/dom/DOM.hpp>
-#include <xercesc/parsers/XercesDOMParser.hpp>
+// Temporarily undefine new, because the Xerces headers don't like it
+#ifdef HAVE_DEBUGALLOC
+# undef new
+#endif
+
 #include <xercesc/util/XMLString.hpp>
 #include <xercesc/util/PlatformUtils.hpp>
 
@@ -32,12 +35,13 @@
 #include <xercesc/util/BinMemInputStream.hpp>
 
 #include <xercesc/sax/SAXParseException.hpp>
-#include <xercesc/util/XercesDefs.hpp>
 #include <xercesc/sax/ErrorHandler.hpp>
 
-#include <xercesc/framework/LocalFileInputSource.hpp>
+#ifdef HAVE_DEBUGALLOC
+# define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
+#endif
 
-
+#include "lib/crc32.h"
 
 #include "res/h_mgr.h"
 #include "lib.h"
@@ -72,6 +76,9 @@ public:
 	// Open a VFS path for XML parsing
 	// returns 0 if successful, -1 on failure
 	int OpenFile(const char *path);
+
+	// Calculate the CRC32 checksum of the file's contents
+	unsigned long CRC32() { return crc32_calculate((char*)m_pBuffer, (int)m_BufferSize); }
 
 	virtual BinInputStream *makeStream() const;
 };

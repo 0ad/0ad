@@ -1,5 +1,4 @@
 #include "precompiled.h"
-#undef new // if it was redefined for leak detection, since xerces doesn't like it
 
 #include "ObjectEntry.h"
 #include "ObjectManager.h"
@@ -9,12 +8,7 @@
 
 #include "UnitManager.h"
 
-#include "XML.h"
-
-
-// automatically use namespace ..
-XERCES_CPP_NAMESPACE_USE
-
+#include "ps/Xeromyces.h"
 
 CObjectEntry::CObjectEntry(int type) : m_Model(0), m_Type(type)
 {
@@ -36,6 +30,7 @@ CObjectEntry::~CObjectEntry()
 
 bool CObjectEntry::BuildModel()
 {
+
 	// check we've enough data to consider building the object
 	if (m_ModelName.Length()==0 || m_TextureName.Length()==0) {
 		return false;
@@ -149,137 +144,97 @@ CSkeletonAnim* CObjectEntry::GetNamedAnimation( CStr animationName )
 
 bool CObjectEntry::Load(const char* filename)
 {
-	bool parseOK = false;
 
-
-	// Initialize XML library
+	CXeromyces XeroFile;
+	try
 	{
-		XMLCh* attachpointtext=XMLString::transcode("attachpoint");
-		XMLCh* modeltext=XMLString::transcode("model");
-		XMLCh* nametext=XMLString::transcode("name");
-		XMLCh* filetext=XMLString::transcode("file");
-		XMLCh* speedtext=XMLString::transcode("speed");
+		XeroFile.Load(filename);
+	}
+	catch (...)
+	{
+		return false;
+	}
 
-		// Create parser instance
-		XercesDOMParser *parser = new XercesDOMParser();
+	// Define all the elements and attributes used in the XML file
+	#define EL(x) int el_##x = XeroFile.getElementID(L#x)
+	#define AT(x) int at_##x = XeroFile.getAttributeID(L#x)
+	EL(name);
+	EL(modelname);
+	EL(texturename);
+	EL(animations);
+	EL(props);
+	AT(attachpoint);
+	AT(model);
+	AT(name);
+	AT(file);
+	AT(speed);
+	#undef AT
+	#undef EL
 
-		// Setup parser
-		parser->setValidationScheme(XercesDOMParser::Val_Auto);
-		parser->setDoNamespaces(false);
-		parser->setDoSchema(false);
-		parser->setCreateEntityReferenceNodes(false);
+	XMBElement root = XeroFile.getRoot();
 
-		// Set customized error handler
-		CXercesErrorHandler *errorHandler = new CXercesErrorHandler();
-		parser->setErrorHandler(errorHandler);
+	XMBElementList children = root.getChildNodes();
 
-		CVFSEntityResolver *entityResolver = new CVFSEntityResolver(filename);
-		parser->setEntityResolver(entityResolver);
+	for (int i = 0; i < children.Count; ++i) {
+		// Get node
+		XMBElement child = children.item(i);
 
-		// Push the CLogger to mark it's reading this file.
+		int element_name = child.getNodeName();
+		CStr element_value=tocstr(child.getText());
 
-		// Get main node
-		CVFSInputSource source;
-		parseOK = source.OpenFile(filename) == 0;
-		if (parseOK)
+		if (element_name == el_name)
+			m_Name=element_value;
+
+		else if (element_name == el_modelname)
+			m_ModelName=element_value;
+
+		else if (element_name == el_texturename)
+			m_TextureName=element_value;
+
+		else if (element_name == el_animations)
 		{
-			// Parse file
-			parser->parse(source);
+			XMBElementList animations=child.getChildNodes();
 
-			// Check how many errors
-			parseOK = parser->getErrorCount() == 0;
-		}
-		if (parseOK) {
-			// parsed successfully - grab our data
-			DOMDocument *doc = parser->getDocument();
-			DOMElement *element = doc->getDocumentElement();
+			for (int j = 0; j < animations.Count; ++j) {
+				XMBElement anim_element = animations.item(j);
+				XMBAttributeList attributes=anim_element.getAttributes();
+				if (attributes.Count) {
+					Anim anim;
 
-			// root_name should be Object
-			CStr root_name = XMLTranscode( element->getNodeName() );
+					anim.m_AnimName=tocstr(attributes.getNamedItem(at_name));
+					anim.m_FileName=tocstr(attributes.getNamedItem(at_file));
+					CStr16 speedstr=attributes.getNamedItem(at_speed);
 
-			// should have at least 3 children - Name, ModelName and TextureName
-			DOMNodeList *children = element->getChildNodes();
-			int numChildren=children->getLength();
-			for (int i=0; i<numChildren; ++i) {
-				// Get node
-				DOMNode *child = children->item(i);
+					anim.m_Speed=float(speedstr.ToInt())/100.0f;
+					if (anim.m_Speed<=0.0) anim.m_Speed=1.0f;
 
-				// A child element
-				if (child->getNodeType() == DOMNode::ELEMENT_NODE)
-				{
-					// First get element and not node
-					DOMElement *child_element = (DOMElement*)child;
-
-					CStr element_name = XMLTranscode( child_element->getNodeName() );
-					DOMNode *value_node= child_element->getChildNodes()->item(0);
-					CStr element_value=value_node ? XMLTranscode(value_node->getNodeValue()) : "";
-
-					if (element_name==CStr("Name")) {
-						m_Name=element_value;
-					} else if (element_name==CStr("ModelName")) {
-						m_ModelName=element_value;
-					} else if (element_name==CStr("TextureName")) {
-						m_TextureName=element_value;
-					} else if (element_name==CStr("Animations")) {
-						DOMNodeList* animations=(DOMNodeList*) child_element->getChildNodes();
-
-						for (uint j=0; j<animations->getLength(); ++j) {
-							DOMElement *anim_element = (DOMElement*) animations->item(j);
-							CStr element_name = XMLTranscode( anim_element->getNodeName() );
-							DOMNamedNodeMap* attributes=anim_element->getAttributes();
-							if (attributes) {
-								Anim anim;
-
-								DOMNode *nameattr=attributes->getNamedItem(nametext);
-								anim.m_AnimName=XMLTranscode(nameattr->getChildNodes()->item(0)->getNodeValue());
-								DOMNode *fileattr=attributes->getNamedItem(filetext);
-								anim.m_FileName=XMLTranscode(fileattr->getChildNodes()->item(0)->getNodeValue());
-
-								DOMNode *speedattr=attributes->getNamedItem(speedtext);
-								CStr speedstr=XMLTranscode(speedattr->getChildNodes()->item(0)->getNodeValue());
-
-								anim.m_Speed=float(atoi((const char*) speedstr))/100.0f;
-								if (anim.m_Speed<=0) anim.m_Speed=1.0f;
-
-								m_Animations.push_back(anim);
-							}
-						}
-					} else if (element_name==CStr("Props")) {
-						DOMNodeList* props=(DOMNodeList*) child_element->getChildNodes();
-
-						for (uint j=0; j<props->getLength(); ++j) {
-							DOMElement *prop_element = (DOMElement*) props->item(j);
-							CStr element_name = XMLTranscode( prop_element->getNodeName() );
-							DOMNamedNodeMap* attributes=prop_element->getAttributes();
-							if (attributes) {
-								Prop prop;
-
-								DOMNode *nameattr=attributes->getNamedItem(attachpointtext);
-								prop.m_PropPointName=XMLTranscode(nameattr->getChildNodes()->item(0)->getNodeValue());
-								DOMNode *modelattr=attributes->getNamedItem(modeltext);
-								prop.m_ModelName=XMLTranscode(modelattr->getChildNodes()->item(0)->getNodeValue());
-
-								m_Props.push_back(prop);
-							}
-						}
-					}
+					m_Animations.push_back(anim);
 				}
 			}
 		}
+		else if (element_name == el_props)
+		{
+			XMBElementList props=child.getChildNodes();
 
-		XMLString::release(&attachpointtext);
-		XMLString::release(&modeltext);
-		XMLString::release(&nametext);
-		XMLString::release(&filetext);
-		XMLString::release(&speedtext);
+			for (int j = 0; j < props.Count; ++j) {
+				XMBElement prop_element = props.item(j);
+				XMBAttributeList attributes=prop_element.getAttributes();
+				if (attributes.Count) {
+					Prop prop;
 
-		delete parser;
-		delete errorHandler;
-		delete entityResolver;
+					prop.m_PropPointName=tocstr(attributes.getNamedItem(at_attachpoint));
+					prop.m_ModelName=tocstr(attributes.getNamedItem(at_model));
+
+					m_Props.push_back(prop);
+				}
+			}
+		}
 	}
 
-	return parseOK;
+	return true;
+
 }
+
 
 bool CObjectEntry::Save(const char* filename)
 {

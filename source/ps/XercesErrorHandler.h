@@ -22,10 +22,6 @@ gee@pyro.nu
 
 #include "XML.h"
 
-//#include <xercesc/util/XercesDefs.hpp>
-//#include <xercesc/sax/ErrorHandler.hpp>
-
-
 #include <iostream>
 
 /**

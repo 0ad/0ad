@@ -1,7 +1,9 @@
 #include "precompiled.h"
-#undef new // if it was redefined for leak detection, since xerces doesn't like it
 
 #include "XML.h"
+
+#undef new // if it was redefined for leak detection, since xerces doesn't like it
+
 #include "CStr.h"
 #include "CLogger.h"
 #include "posix.h"		// ptrdiff_t

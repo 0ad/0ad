@@ -38,16 +38,15 @@
 #include "EntityHandles.h"
 #include "EntityManager.h"
 #include "PathfindEngine.h"
-#include "XML.h"
 
 #include "scripting/JSInterface_Entity.h"
 #include "scripting/JSInterface_BaseEntity.h"
 #include "scripting/JSInterface_Vector3D.h"
+#include "gui/scripting/JSInterface_IGUIObject.h"
+#include "gui/scripting/JSInterface_GUITypes.h"
 
 #include "ConfigDB.h"
 #include "CLogger.h"
-
-
 
 #ifndef NO_GUI
 #include "gui/GUI.h"
@@ -548,14 +547,8 @@ void ParseArgs(int argc, char* argv[])
 
 
 
-
 static void psInit()
 {
-	// start up Xerces - only needs to be done once (unless locale changes mid-game, for
-	// some reason), not on every XML file load; multiple initialization calls are ok, though,
-	// provided there are a matching number of XMLPlatformUtils::Terminate calls
-	XMLPlatformUtils::Initialize();
-
 	g_Font_Console = unifont_load("fonts/console");
 	g_Font_Misc = unifont_load("fonts/verdana16");
 
@@ -566,9 +559,11 @@ static void psInit()
 #ifndef NO_GUI
 	// GUI uses VFS, so this must come after VFS init.
 	g_GUI.Initialize();
-	g_GUI.LoadXMLFile("gui/styles.xml");
-	g_GUI.LoadXMLFile("gui/hello.xml");
-	g_GUI.LoadXMLFile("gui/sprite1.xml");
+
+	g_GUI.LoadXMLFile("gui/test/styles.xml");
+	g_GUI.LoadXMLFile("gui/test/hello.xml");
+	g_GUI.LoadXMLFile("gui/test/sprite1.xml");
+
 #endif
 }
 
@@ -582,15 +577,14 @@ static void psShutdown()
 
 	delete g_Console;
 
-	// close down Xerces
-	XMLPlatformUtils::Terminate();
+	// close down Xerces if it was loaded
+	CXeromyces::Terminate();
 }
-
-
 
 extern u64 PREVTSC;
 int main(int argc, char* argv[])
 {
+
 #ifdef _MSC_VER
 u64 TSC=rdtsc();
 debug_out(
@@ -599,6 +593,7 @@ debug_out(
 "----------------------------------------\n", (TSC-PREVTSC)/2e9*1e3);
 PREVTSC=TSC;
 #endif
+
 
 	const int ERR_MSG_SIZE = 1000;
 	wchar_t err_msg[ERR_MSG_SIZE];
@@ -612,6 +607,13 @@ PREVTSC=TSC;
 
 	// Create the scripting host.  This needs to be done before the GUI is created.
 	new ScriptingHost;
+
+	// Register the JavaScript interfaces with the runtime
+	JSI_Entity::init();
+	JSI_BaseEntity::init();
+	JSI_IGUIObject::init();
+	JSI_GUITypes::init();
+	JSI_Vector3D::init();
 
 	detect();
 
@@ -729,11 +731,6 @@ PREVTSC=CURTSC;
 
 	g_EntityTemplateCollection.loadTemplates();
 
-	// Register the JavaScript interfaces with the runtime
-	JSI_Entity::init();
-//	JSI_BaseEntity::init();		// janwas: commented this out to avoid crash in JS_DestroyContext
-	JSI_Vector3D::init();
-
 // if no map name specified, load test01.pmp (for convenience during
 // development. that means loading no map at all is currently impossible.
 // is that a problem?
@@ -833,7 +830,6 @@ PREVTSC=CURTSC;
 		// ugly, but necessary. these are one-shot events, have to be reset.
 		mouseButtons[SDL_BUTTON_WHEELUP] = false;
 		mouseButtons[SDL_BUTTON_WHEELDOWN] = false;
-
 		in_get_events();
 
 		float TimeSinceLastFrame = (float)(time1-time0);
@@ -862,6 +858,8 @@ PREVTSC=CURTSC;
 		if (g_FixedFrameTiming && frameCount==100) quit=true;
 	}	// main loop, while(!quit)
 
+	psShutdown(); // Must delete g_GUI before g_ScriptingHost
+
 	delete &g_ScriptingHost;
 	delete &g_Pathfinder;
 	delete &g_EntityManager;
@@ -879,8 +877,6 @@ PREVTSC=CURTSC;
 	delete &g_Renderer;
 
 	delete &g_ConfigDB;
-
-	psShutdown();
 
 	exit(0);
 	return 0;

@@ -37,22 +37,6 @@
 #include <algorithm>
 #include <numeric>
 
-
-#include <xercesc/dom/DOM.hpp>
-#include <xercesc/parsers/XercesDOMParser.hpp>
-#include <xercesc/util/XMLString.hpp>
-#include <xercesc/util/PlatformUtils.hpp>
-
-#include <xercesc/sax/InputSource.hpp>
-#include <xercesc/sax/EntityResolver.hpp>
-#include <xercesc/util/BinMemInputStream.hpp>
-
-#include <xercesc/sax/SAXParseException.hpp>
-#include <xercesc/util/XercesDefs.hpp>
-#include <xercesc/sax/ErrorHandler.hpp>
-
-#include <xercesc/framework/LocalFileInputSource.hpp>
-
 // Nicer memory leak reporting in MSVC:
 // (You've got to include all STL headers first to avoid lots of errors,
 // so make sure they're in the list above and you compile with PCH)
