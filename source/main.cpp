@@ -458,8 +458,19 @@ void ParseArgs(int argc, char* argv[])
 }
 
 
+extern u64 PREVTSC;
+
 int main(int argc, char* argv[])
 {
+#ifdef _MSC_VER
+u64 TSC=rdtsc();
+debug_out(
+"----------------------------------------\n"\
+"MAIN (elapsed = %f ms)\n"\
+"----------------------------------------\n", (TSC-PREVTSC)/2e9*1e3);
+PREVTSC=TSC;
+#endif
+
 	const int ERR_MSG_SIZE = 1000;
 	wchar_t err_msg[ERR_MSG_SIZE];
 
@@ -556,7 +567,7 @@ int main(int argc, char* argv[])
 	XMLPlatformUtils::Initialize();
 
 
-	res_mount("", "mods/official/", 0);
+	vfs_mount("", "mods/official/", 0);
 
 #ifndef NO_GUI
 	// GUI uses VFS, so this must come after VFS init.
@@ -654,6 +665,15 @@ if(!g_MapFile)
 	}
 
 g_Console->RegisterFunc(Testing, "Testing");
+
+#ifdef _MSC_VER
+u64 CURTSC=rdtsc();
+debug_out(
+"----------------------------------------\n"\
+"READY (elapsed = %f ms)\n"\
+"----------------------------------------\n", (CURTSC-PREVTSC)/2e9*1e3);
+PREVTSC=CURTSC;
+#endif
 
 
 // fixed timestep main loop
