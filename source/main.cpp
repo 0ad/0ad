@@ -271,6 +271,7 @@ glEnable (GL_DEPTH_TEST);
 	new CConfig;
 
 	vfs_set_root(argv[0], "data");
+	vfs_mount("mods/official");
 
 #ifndef NO_GUI
 	// GUI uses VFS, so this must come after VFS init.
