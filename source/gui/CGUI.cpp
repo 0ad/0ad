@@ -22,6 +22,7 @@ gee@pyro.nu
 #include "CRadioButton.h"
 #include "CInput.h"
 #include "CProgressBar.h"
+#include "CTooltip.h"
 #include "MiniMap.h"
 
 #include "ps/Xeromyces.h"
@@ -183,8 +184,9 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 		else 
 		if (ev->type == SDL_MOUSEBUTTONUP)
 		{
-			if (ev->button.button == SDL_BUTTON_LEFT)
+			switch (ev->button.button)
 			{
+			case SDL_BUTTON_LEFT:
 				if (pNearest)
 				{
 					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_RELEASE_LEFT));
@@ -192,6 +194,7 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 
 					ret = EV_HANDLED;
 				}
+				break;
 			}
 
 			// Reset all states on all visible objects
@@ -249,6 +252,16 @@ void CGUI::TickObjects()
 	CStr action = "tick";
 	GUI<CStr>::RecurseObject(0, m_BaseObject, 
 							&IGUIObject::ScriptEvent, action);
+
+	// Also update tooltips:
+
+	// TODO: Efficiency
+	IGUIObject* pNearest = NULL;
+	GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject, 
+		&IGUIObject::ChooseMouseOverAndClosest, 
+		pNearest);
+
+	m_Tooltip.Update(pNearest, m_MousePos, this);
 }
 
 //-------------------------------------------------------------------
@@ -667,8 +680,8 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 				//  this won't be exact because we're assuming the line_height
 				//  will be as our preliminary calculation said. But that may change,
 				//  although we'd have to add a couple of more loops to try straightening
-				//  this problem out, and it is very unlikely to happen noticably if one
-				//  stuctures his text in a stylistically pure fashion. Even if not, it
+				//  this problem out, and it is very unlikely to happen noticeably if one
+				//  structures his text in a stylistically pure fashion. Even if not, it
 				//  is still quite unlikely it will happen.
 				// Loop through left and right side, from and to.
 				for (int j=0; j<2; ++j)
@@ -832,7 +845,7 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 					const CPos &pos, const float &z)
 {
 	// TODO Gee: All these really necessary? Some
-	//  are deafults and if you changed them
+	//  are defaults and if you changed them
 	//  the opposite value at the end of the functions,
 	//  some things won't be drawn correctly. 
 	glEnable(GL_TEXTURE_2D);
@@ -1054,7 +1067,15 @@ void CGUI::Xeromyces_ReadRootSetup(XMBElement Element, CXeromyces* pFile)
 		{
 			Xeromyces_ReadIcon(child, pFile);
 		}
-		// No need for else, we're using DTD.
+		else
+		if (name == "tooltip")
+		{
+			Xeromyces_ReadTooltip(child, pFile);
+		}
+		else
+		{
+			debug_warn("Invalid data - DTD shouldn't allow this");
+		}
 	}
 }
 
@@ -1105,8 +1126,8 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	//
 	CStr argStyle (attributes.getNamedItem(attr_style));
 
-	if (m_Styles.count(CStr("default")) == 1)
-		object->LoadStyle(*this, CStr("default"));
+	if (m_Styles.count("default") == 1)
+		object->LoadStyle(*this, "default");
 
     if (argStyle.Length())
 	{
@@ -1134,7 +1155,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		XMBAttribute attr = attributes.item(i);
 
 		// If value is "null", then it is equivalent as never being entered
-		if ((CStr)attr.Value == (CStr)"null")
+		if ((CStr)attr.Value == "null")
 			continue;
 
 		// Ignore "type" and "style", we've already checked it
@@ -1156,47 +1177,6 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		if (attr.Name == attr_z)
 			ManuallySetZ = true;
 
-		
-/*	TODO: Reimplement this inside GUIRenderer.cpp
-
-		// Generate "stretched:filename" sprites.
-		//
-		// Check whether it's actually one of the many sprite... parameters.
-		if (pFile->getAttributeString(attr.Name).substr(0, 6) == "sprite")
-		{
-			// Check whether it's a special stretched one
-			CStr SpriteName (attr.Value);
-			if (SpriteName.substr(0, 10) == "stretched:" &&
-				m_Sprites.find(SpriteName) == m_Sprites.end() )
-			{
-
-				CStr TexFilename ("art/textures/ui/");
-				TexFilename += SpriteName.substr(10);
-
-				Handle tex = tex_load(TexFilename);
-				if (tex <= 0)
-				{
-					LOG(ERROR, LOG_CATEGORY, "Error opening texture '%s': %lld", TexFilename.c_str(), tex);
-				}
-				else
-				{
-					CGUISprite sprite;
-					SGUIImage image;
-
-					CStr DefaultSize ("0 0 100% 100%");
-					image.m_TextureSize = CClientArea(DefaultSize);
-					image.m_Size = CClientArea(DefaultSize);
-
-					image.m_TextureName = TexFilename;
-					image.m_Texture = tex;
-					tex_upload(tex);
-
-					sprite.AddImage(image);	
-					m_Sprites[SpriteName] = sprite;
-				}
-			}
-		}
-*/
 		// Try setting the value
 		if (object->SetSetting(pFile->getAttributeString(attr.Name), (CStr)attr.Value) != PS_OK)
 		{
@@ -1214,8 +1194,8 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	}
 
 	// Attempt to register the hotkey tag, if one was provided
-	if( hotkeyTag.Length() )
-		hotkeyRegisterGUIObject( object->GetName(), hotkeyTag );
+	if (hotkeyTag.Length())
+		hotkeyRegisterGUIObject(object->GetName(), hotkeyTag);
 
 	CStrW caption (Element.getText());
 	if (caption.Length())
@@ -1376,6 +1356,9 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 	// Get name, we know it exists because of DTD requirements
 	name = Element.getAttributes().getNamedItem( pFile->getAttributeID("name") );
 
+	if (m_Sprites.find(name) != m_Sprites.end())
+		LOG(WARNING, LOG_CATEGORY, "Sprite name '%s' used more than once; first definition will be discarded", (const char*)name);
+
 	//
 	//	Read Children (the images)
 	//
@@ -1404,7 +1387,7 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 		}
 		else
 		{
-			debug_warn("Oops"); // DTD shouldn't allow this
+			debug_warn("Invalid data - DTD shouldn't allow this");
 		}
 	}
 
@@ -1521,7 +1504,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		}
 		else
 		{
-			debug_warn("Oops"); // DTD shouldn't allow this
+			debug_warn("Invalid data - DTD shouldn't allow this");
 		}
 	}
 
@@ -1539,7 +1522,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		}
 		else
 		{
-			debug_warn("Oops"); // DTD shouldn't allow this
+			debug_warn("Invalid data - DTD shouldn't allow this");
 		}
 	}
 
@@ -1581,7 +1564,7 @@ void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImag
 		BOOL("grayscale", Greyscale)
 
 		{
-			debug_warn("Oops"); // DTD shouldn't allow this
+			debug_warn("Invalid data - DTD shouldn't allow this");
 		}
 	}
 }
@@ -1746,9 +1729,36 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 		}
 		else
 		{
-			debug_warn("Oops"); // DTD shouldn't allow this
+			debug_warn("Invalid data - DTD shouldn't allow this");
 		}
 	}
 
 	m_Icons[name] = icon;
+}
+
+void CGUI::Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile)
+{
+	IGUIObject* object = new CTooltip;
+
+	object->SetName(CStr("__internal(") + CStr(m_InternalNameNumber) + CStr(")"));
+	++m_InternalNameNumber;
+
+	XMBAttributeList attributes = Element.getAttributes();
+	for (int i=0; i<attributes.Count; ++i)
+	{
+		XMBAttribute attr = attributes.item(i);
+		CStr attr_name (pFile->getAttributeString(attr.Name));
+		CStr attr_value (attr.Value);
+
+		if (attr_name == "name")
+		{
+			object->SetName(attr_value);
+		}
+		else
+		{
+			object->SetSetting(attr_name, attr_value);
+		}
+	}
+
+	AddObject(object);
 }

@@ -5,6 +5,9 @@
 #include "JSInterface_IGUIObject.h"
 #include "JSInterface_GUITypes.h"
 
+#include "gui/IGUIObject.h"
+#include "gui/CGUI.h"
+
 #include "ps/StringConvert.h"
 
 JSClass JSI_IGUIObject::JSI_class = {

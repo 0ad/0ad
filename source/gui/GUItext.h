@@ -132,7 +132,7 @@ struct SGUIText
 	 * List of sprites, or "icons" that should be rendered
 	 * along with the text.
 	 */
-	std::list<SSpriteCall> m_SpriteCalls; // list for consistant mem addresses
+	std::list<SSpriteCall> m_SpriteCalls; // list for consistent mem addresses
 										  // so that we can point to elements.
 
 	/**
@@ -145,7 +145,7 @@ struct SGUIText
 /**
  * @author Gustav Larsson
  *
- * String class, substitue for CStr, but that parses
+ * String class, substitute for CStr, but that parses
  * the tags and builds up a list of all text that will
  * be different when outputted.
  *
@@ -287,7 +287,7 @@ public:
 	 * @param Feedback contains all info that is generated.
 	 * @param DefaultFont Default Font
 	 * @param from From character n,
-	 * @param to to chacter n.
+	 * @param to to character n.
 	 * @param FirstLine Whether this is the first line of text, to calculate its height correctly
 	 * 
 	 * pObject Only for Error outputting, optional! If NULL

@@ -33,6 +33,8 @@ CInput::CInput() : m_iBufferPos(0)
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
 	AddSetting(GUIST_int,					"cell-id");
 	AddSetting(GUIST_CColor,				"textcolor");
+	AddSetting(GUIST_CStr,					"tooltip");
+	AddSetting(GUIST_CStr,					"tooltip-style");
 	// TODO Gee: (2004-08-14)
 	//  Add a setting for buffer zone
 	//AddSetting(GUIST_int,			"

@@ -35,17 +35,19 @@ CCheckBox::CCheckBox()
 	CStr				m_ToolTip;
 	CStr				m_ToolTipStyle;
 */
-	AddSetting(GUIST_CGUIString,		"caption");
-	AddSetting(GUIST_bool,				"checked");
-	AddSetting(GUIST_CGUISpriteInstance,"sprite");
-	AddSetting(GUIST_CGUISpriteInstance,"sprite-over");
-	AddSetting(GUIST_CGUISpriteInstance,"sprite-pressed");
-	AddSetting(GUIST_CGUISpriteInstance,"sprite-disabled");
-	AddSetting(GUIST_CGUISpriteInstance,"sprite2");
-	AddSetting(GUIST_CGUISpriteInstance,"sprite2-over");
-	AddSetting(GUIST_CGUISpriteInstance,"sprite2-pressed");
-	AddSetting(GUIST_CGUISpriteInstance,"sprite2-disabled");
-	AddSetting(GUIST_int,				"square-side");
+	AddSetting(GUIST_CGUIString,			"caption");
+	AddSetting(GUIST_bool,					"checked");
+	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
+	AddSetting(GUIST_CGUISpriteInstance,	"sprite-over");
+	AddSetting(GUIST_CGUISpriteInstance,	"sprite-pressed");
+	AddSetting(GUIST_CGUISpriteInstance,	"sprite-disabled");
+	AddSetting(GUIST_CGUISpriteInstance,	"sprite2");
+	AddSetting(GUIST_CGUISpriteInstance,	"sprite2-over");
+	AddSetting(GUIST_CGUISpriteInstance,	"sprite2-pressed");
+	AddSetting(GUIST_CGUISpriteInstance,	"sprite2-disabled");
+	AddSetting(GUIST_int,					"square-side");
+	AddSetting(GUIST_CStr,					"tooltip");
+	AddSetting(GUIST_CStr,					"tooltip-style");
 
 	// Add text
 	AddText(new SGUIText());

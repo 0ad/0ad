@@ -31,7 +31,8 @@ gee@pyro.nu
 //--------------------------------------------------------
 //  Includes / Compiler directives
 //--------------------------------------------------------
-#include "GUI.h"
+#include "GUIbase.h"
+#include "GUItext.h"
 #include <string>
 #include <vector>
 #include "input.h" // just for EV_PASS
@@ -70,20 +71,12 @@ struct JSObject;
  * For use of later macros, all names should be GUIST_ followed
  * by the code name (case sensitive!).
  */
+#define TYPE(T) GUIST_##T,
 enum EGUISettingType
 {
-	GUIST_bool,
-	GUIST_int,
-	GUIST_float,
-	GUIST_CColor,
-	GUIST_CClientArea,
-	GUIST_CGUIString,
-	GUIST_CStr,
-	GUIST_CStrW,
-	GUIST_CGUISpriteInstance,
-	GUIST_EAlign,
-	GUIST_EVAlign
+	#include "GUItypes.h"
 };
+#undef TYPE
 
 /**
  * @author Gustav Larsson
@@ -135,6 +128,7 @@ class IGUIObject
 	friend class CGUI;
 	friend class CInternalCGUIAccessorBase;
 	friend class IGUIScrollBar;
+	friend class GUITooltip;
 
 	// Allow getProperty to access things like GetParent()
 	friend JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval* vp);
@@ -502,7 +496,7 @@ protected:
 	/**
 	 * Settings pool, all an object's settings are located here
 	 * If a derived object has got more settings that the base
-	 * settings, it's becasue they have a new version of the
+	 * settings, it's because they have a new version of the
 	 * function SetupSettings().
 	 *
 	 * @see SetupSettings()

@@ -135,6 +135,23 @@
 >
 
 <!--
+	<tooltip>
+-->
+<!ATTLIST tooltip
+  name					CDATA #REQUIRED
+  sprite				CDATA #REQUIRED
+
+  anchor				CDATA #IMPLIED
+  buffer-zone				CDATA #IMPLIED
+  font					CDATA #IMPLIED
+  maxwidth				CDATA #IMPLIED
+  pos					CDATA #IMPLIED
+  textcolor				CDATA #IMPLIED
+  time					CDATA #IMPLIED
+>
+
+
+<!--
 	<sprites>
 -->
 <!ELEMENT sprites (sprite*)>

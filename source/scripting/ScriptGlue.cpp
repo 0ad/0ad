@@ -15,6 +15,8 @@
 #include "Network/Server.h"
 #include "Network/Client.h"
 
+#include "gui/CGUI.h"
+
 #include "ps/i18n.h"
 
 #include "scripting/JSInterface_Entity.h"

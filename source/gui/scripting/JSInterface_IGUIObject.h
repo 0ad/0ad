@@ -1,7 +1,6 @@
 // $Id$
 
 #include "scripting/ScriptingHost.h"
-#include "gui/GUI.h"
 
 #ifndef JSI_IGUIOBJECT_INCLUDED
 #define JSI_IGUIOBJECT_INCLUDED

@@ -231,6 +231,10 @@ CPos::CPos() : x(0.f), y(0.f)
 {
 }
 
+CPos::CPos(const CSize& s) : x(s.cx), y(s.cy)
+{
+}
+
 CPos::CPos(const float &_x, const float &_y) : x(_x), y(_y)
 {
 }

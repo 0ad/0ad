@@ -20,6 +20,8 @@ CProgressBar::CProgressBar()
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite-background");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite-bar");
 	AddSetting(GUIST_float,					"caption"); // aka value from 0 to 100
+	AddSetting(GUIST_CStr,					"tooltip");
+	AddSetting(GUIST_CStr,					"tooltip-style");
 }
 
 CProgressBar::~CProgressBar()

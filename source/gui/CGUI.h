@@ -25,6 +25,7 @@ ERROR_TYPE(GUI, JSOpenFailed);
 //--------------------------------------------------------
 #include "GUI.h"
 
+#include "GUITooltip.h"
 #include "Singleton.h"
 #include "input.h"	// JW: grr, classes suck in this case :P
 
@@ -476,6 +477,8 @@ private:
 	 */
 	void Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile);
 
+	void Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile);
+
 	//@}
 
 private:
@@ -510,6 +513,8 @@ private:
 	/// Used when reading in XML files
 	// TODO Gee: Used?
 	int16_t m_Errors;
+
+	GUITooltip m_Tooltip;
 
 	//@}
 	//--------------------------------------------------------

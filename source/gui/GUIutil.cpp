@@ -148,6 +148,19 @@ bool __ParseString<CSize>(const CStr& Value, CSize &Output)
 }
 
 template <>
+bool __ParseString<CPos>(const CStr& Value, CPos &Output)
+{
+	CSize temp;
+	if (__ParseString<CSize>(Value, temp))
+	{
+		Output = CPos(temp);
+		return true;
+	}
+	else
+		return false;
+}
+
+template <>
 bool __ParseString<EAlign>(const CStr &Value, EAlign &Output)
 {
 	if (Value == "left")

@@ -299,6 +299,8 @@ void CGUIString::SetValue(const CStrW& str)
 
 	// Setup parser
 	// TODO Gee: (2004-08-16) Create and store this parser object somewhere to save loading time.
+	// TODO PT: Extended CParserCache so that the above is possible (since it currently only
+	// likes one-task parsers)
 	CParser Parser;
 	// I've added the option of an additional parameter. Only used for icons when writing this.
 	Parser.InputTaskType("start", "$ident[_=_$value_[$ident_=_$value_]]");

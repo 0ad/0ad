@@ -31,7 +31,9 @@ CMiniMap::CMiniMap()
     : m_Handle(0), m_Data(NULL), m_MapSize(0), m_Terrain(0),
     m_UnitManager(0)
 {
-    AddSetting(GUIST_CColor, "fov-wedge-color");
+    AddSetting(GUIST_CColor,	"fov-wedge-color");
+	AddSetting(GUIST_CStr,		"tooltip");
+	AddSetting(GUIST_CStr,		"tooltip-style");
 }
 
 CMiniMap::~CMiniMap()
@@ -189,12 +191,12 @@ void CMiniMap::Destroy()
 /*
  * Calefaction
  * TODO: Speed this up. There has to be some mathematical way to make
- * this more effecient. This works for now.
+ * this more efficient. This works for now.
  */
 CVector2D CMiniMap::GetMapSpaceCoords(CVector3D worldPos)
 {
     u32 x = (u32)(worldPos.X / CELL_SIZE);
-    // Entities Z coordinate is really it's longitutinale coordinate on the terrain
+    // Entity's Z coordinate is really its longitudinal coordinate on the terrain
     u32 y = (u32)(worldPos.Z / CELL_SIZE);
 
     // Calculate map space scale

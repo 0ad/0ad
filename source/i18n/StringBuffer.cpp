@@ -36,7 +36,10 @@ I18n::StringBuffer::operator Str()
 	}
 
 	if (String.VarCount == 0)
-		return String.Parts[0]->ToString(Locale, Variables).str();
+		if (String.Parts.size())
+			return String.Parts[0]->ToString(Locale, Variables).str();
+		else
+			return Str();
 
 	Str ret;
 

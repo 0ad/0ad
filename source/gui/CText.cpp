@@ -28,6 +28,8 @@ CText::CText()
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
 	AddSetting(GUIST_int,					"cell-id");
 	AddSetting(GUIST_CColor,				"textcolor");
+	AddSetting(GUIST_CStr,					"tooltip");
+	AddSetting(GUIST_CStr,					"tooltip-style");
 	// TODO Gee: (2004-08-14)
 	//  Add a setting for buffer zone
 	//AddSetting(GUIST_int,			"
@@ -56,8 +58,6 @@ void CText::SetupText()
 
 	assert(m_GeneratedTexts.size()>=1);
 
-	CColor color;
-
 	CStr font;
 	if (GUI<CStr>::GetSetting(this, "font", font) != PS_OK || font.Length()==0)
 		// Use the default if none is specified
@@ -66,7 +66,6 @@ void CText::SetupText()
 
 	CGUIString caption;
 	bool scrollbar;
-	GUI<CColor>::GetSetting(this, "textcolor", color);
 	GUI<CGUIString>::GetSetting(this, "caption", caption);
 	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
 

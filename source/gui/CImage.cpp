@@ -19,6 +19,8 @@ CImage::CImage()
 {
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
 	AddSetting(GUIST_int,					"cell-id");
+	AddSetting(GUIST_CStr,				"tooltip");
+	AddSetting(GUIST_CStr,				"tooltip-style");
 }
 
 CImage::~CImage()

@@ -147,6 +147,7 @@ class CPos
 {
 public:
 	CPos();
+	CPos(const CSize &pos);
 	CPos(const float &_x, const float &_y);
 
 	// Operators
