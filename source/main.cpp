@@ -474,22 +474,6 @@ static void Render()
 
 	oglCheck();
 
-	glColor4f(1.0f, 0.8f, 0.0f, 1.0f);
-
-	glLoadIdentity();
-	glTranslatef(10.0f, 10.0f, 0.0f);
-
-	glScalef(1.0, -1.0, 1.0);
-
-	CStrW fps_display = translate(L"$num FPS") << fps;
-	{
-		CFont font("misc");
-		font.Bind();
-		glwprintf(fps_display);
-	}
-
-	oglCheck();
-
 	{
 		glLoadIdentity();
 
@@ -1101,6 +1085,8 @@ int main(int argc, char* argv[])
 			MICROLOG(L"(Simulation) Frame");
 			Frame();
 		}
+
+		//_CrtMemDumpAllObjectsSince(NULL);
 
 		MICROLOG(L"Shutdown");
 		Shutdown();
