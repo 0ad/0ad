@@ -18,9 +18,7 @@
                 <object type="button" name="exit_button" sprite="exit_sprite" sprite-over="exit_sprite-over" size="100%-18 2 100%-2 18" z="1000" hidden="false">
                         <action on="Press"><![CDATA[
                                 btCaptions = new Array("Yes, let me out!", "Nooooo!");
-                                //btCode = new Array("curr_music.free(); exit();", "GUIObjectHide('mb_main');");
-                                // Button stopped working after "curr_music.free();" got inserted. Commented it out - Malte, 15 Nov
-                                btCode = new Array("exit();", "GUIObjectHide('mb_main');");
+                                btCode = new Array("curr_music.free();\nexit();", "");
                                 messageBox(400, 200, "Do you really want to quit [icon=0ad_icon] A.D.? This will cause a sudden return to reality.", "Confirmation", 0, btCaptions, btCode);
                         ]]></action>
 
@@ -39,12 +37,14 @@
 
                 <!-- TEMPORARY END GAME BUTTON; REMOVE WHEN GAME MENU IMPLEMENTED; BUTTON IS OUTSIDE OF pregame_gui IN ORDER TO BE VISIBLE DURING GAME -->
 
-                <object type="button" name="End_Game_Button" hotkey="endgame" z="105" hidden="true">
+                <object type="button" name="End_Game_Button" sprite="message_box-button-normal" sprite-over="message_box-button-over" hotkey="endgame" text-align="center" text-valign="center" size="100%-200 2 100%-100 36" z="105" hidden="true">
                         <action on="Press"><![CDATA[
-                                endGame();
-                                GUIObjectHide("session_gui");
-                                GUIObjectUnhide("pregame_gui");
+                                btCaptions = new Array("Yepp, work's done!", "No, more slaughter!");
+                                //btCode = new Array("endGame();", "GUIObjectHide('mb_main');");
+                                btCode = new Array("endGame();\nGUIObjectHide('session_gui');\nGUIObjectUnhide('pregame_gui');\nGUIObjectHide('End_Game_Button');", "");
+                                messageBox(600, 200, "Do you want to leave the current game? There might be more dudes to slaughter.", "Confirmation", 0, btCaptions, btCode);
                         ]]></action>
+                        End Game
                 </object> 
                 
                 <!--
@@ -91,18 +91,21 @@
                                 mbButton1Caption
                                 <action on="Press"><![CDATA[
                                         eval(getGUIGlobal().mbButton1Code);
+                                        GUIObjectHide('mb_main');
                                 ]]></action>
                         </object>
                         <object type="button" name="mb_button2" size="33%+30 100%-80 66%-40 100%-50" absolute="false" sprite="message_box-button-normal" sprite-over="message_box-button-over" font="prospero18" z="165" text-align="center" text-valign="center">
                                 mbButton2Caption
                                 <action on="Press"><![CDATA[
                                         eval(getGUIGlobal().mbButton2Code);
+                                        GUIObjectHide('mb_main');
                                 ]]></action>
                         </object>
                         <object type="button" name="mb_button3" size="66%+30 100%-80 100%-40 100%-50" absolute="false" sprite="message_box-button-normal" sprite-over="message_box-button-over" font="prospero18" z="165" text-align="center" text-valign="center">
                                 mbButton3Caption
                                 <action on="Press"><![CDATA[
                                         eval(getGUIGlobal().mbButton2Code);
+                                        GUIObjectHide('mb_main');
                                 ]]></action>
                         </object>
 
