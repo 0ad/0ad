@@ -54,8 +54,8 @@ DECLARE_ERROR(ERRONEOUS_BOUND_ERROR);
 
 namespace MathUtil
 {
-	const _double PI = 3.14159265358932384;
-	const _double FL_FP_TOLERANCE = .000000001;
+	const double PI = 3.14159265358932384;
+	const double FL_FP_TOLERANCE = .000000001;
 
 
 	//--------------------------------------------------------
@@ -85,7 +85,7 @@ namespace MathUtil
 	// PURPOSE: Forces num to be between lowerBound and upperBound
 	//
 	template <typename T>
-	T Clamp(T &num, const _int &lowerBound,const _int &upperBound)
+	T Clamp(T &num, const int &lowerBound,const int &upperBound)
 	{
 		if(num <= lowerBound)
 			num = static_cast<T>(lowerBound);
@@ -128,7 +128,7 @@ namespace MathUtil
 	//            otherwise returns 0.
 	//
 	template <typename T>
-	_int Sign(const T &num)
+	int Sign(const T &num)
 	{
 		if( num > 0 )
 			return 1;
@@ -146,7 +146,7 @@ namespace MathUtil
 	//            maximum representable number for the data type.
 	//
 	template <typename T>
-	inline _double Square(const T &num)
+	inline double Square(const T &num)
 	{
 		return num*num;
 	}
@@ -191,27 +191,27 @@ namespace MathUtil
 	//  Non-template functions
 	//--------------------------------------------------------
 
-	_int Ceiling(const float &num);
-	_int Ceiling(const double &num);
+	int Ceiling(const float &num);
+	int Ceiling(const double &num);
 
-	_bool CompareFloat(const _double &, const _double &);
+	bool CompareFloat(const double &, const double &);
 
-	_int Floor(const float &num);
-	_int Floor(const double &num);
+	int Floor(const float &num);
+	int Floor(const double &num);
 
-	inline _double RadiansToDegrees(const _double &num);
-	inline _double DegreesToRadians(const _double &num);
+	inline double RadiansToDegrees(const double &num);
+	inline double DegreesToRadians(const double &num);
 
-	_float Random(const _float &, const _float &);
-	_int Random(const _int &,const _int &);	
+	float Random(const float &, const float &);
+	int Random(const int &,const int &);	
 
-	_int Round(const float &num);
-	_int Round(const double &num);
+	int Round(const float &num);
+	int Round(const double &num);
 
-	_int SignedModulus(const _int &num, const _int &n);
-	_long SignedModulus(const _long &num, const _long &n);
-	_float SignedModulus(const _float &num, const _float &n);
-	_double SignedModulus(const _double &num, const _double &n);
+	int SignedModulus(const int &num, const int &n);
+	long SignedModulus(const long &num, const long &n);
+	float SignedModulus(const float &num, const float &n);
+	double SignedModulus(const double &num, const double &n);
 }
 
 #endif

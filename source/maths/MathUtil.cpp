@@ -17,7 +17,7 @@ DEFINE_ERROR(ERRONEOUS_BOUND_ERROR, "Lower Bound is >= Upper Bound");
 // PURPOSE: Returns true if two floating point numbers are within
 //            FL_FP_TOLERANCE of each other.
 //
-_bool MathUtil::CompareFloat(const _double &num1, const _double &num2)
+bool MathUtil::CompareFloat(const double &num1, const double &num2)
 {
 	if( Abs(num1 - num2) < FL_FP_TOLERANCE )
 		return true;
@@ -30,7 +30,7 @@ _bool MathUtil::CompareFloat(const _double &num1, const _double &num2)
 //    NAME: RadiansToDegrees
 // PURPOSE: Converts from Radians to Degrees
 //
-inline _double MathUtil::RadiansToDegrees(const _double &num)
+inline double MathUtil::RadiansToDegrees(const double &num)
 {
 	return num*(PI/180);
 }
@@ -40,7 +40,7 @@ inline _double MathUtil::RadiansToDegrees(const _double &num)
 //    NAME: RadiansToDegrees
 // PURPOSE: Converts from Degrees to Radians
 //
-inline _double MathUtil::DegreesToRadians(const _double &num)
+inline double MathUtil::DegreesToRadians(const double &num)
 {
 	return (num*180)/PI;
 }
@@ -52,7 +52,7 @@ inline _double MathUtil::DegreesToRadians(const _double &num)
 //            and upperBound
 //   NOTES: returns -1 if lowerBound >= upperBound
 //
-_float MathUtil::Random(const _float &lowerBound, const _float &upperBound)
+float MathUtil::Random(const float &lowerBound, const float &upperBound)
 {
 
 	if( lowerBound >= upperBound)
@@ -63,7 +63,7 @@ _float MathUtil::Random(const _float &lowerBound, const _float &upperBound)
 		srand( static_cast<unsigned>( time(NULL) ) );
 
 		// finds a floating point number between 0 and 1.0
-		_float randVar = ( static_cast<_float>( rand() )/RAND_MAX );
+		float randVar = ( static_cast<float>( rand() )/RAND_MAX );
 
 		// maps the number onto the set from 0 to upperBound
 		randVar *= Abs(lowerBound - upperBound ) + 1;
@@ -81,7 +81,7 @@ _float MathUtil::Random(const _float &lowerBound, const _float &upperBound)
 // PURPOSE: returns a random number between lowerBound and upperBound
 //   NOTES: returns -1 if lowerBound >= upperBound
 //
-_int MathUtil::Random(const _int &lowerBound,const _int &upperBound)
+int MathUtil::Random(const int &lowerBound,const int &upperBound)
 {
 	if( lowerBound >= upperBound)
 		return -1;
@@ -91,7 +91,7 @@ _int MathUtil::Random(const _int &lowerBound,const _int &upperBound)
 		srand( static_cast<unsigned>( time(NULL) ) );
 
 		// find a random variable between 0 and range size
-		_int randVar = rand()%( Abs(upperBound - lowerBound) + 1);
+		int randVar = rand()%( Abs(upperBound - lowerBound) + 1);
 
 		// translate to proper range
 		randVar += lowerBound;
@@ -107,12 +107,12 @@ _int MathUtil::Random(const _int &lowerBound,const _int &upperBound)
 //   NOTES: Round rounds to the nearest representable number
 //           float version.
 //
-_int MathUtil::Round(const float &num)
+int MathUtil::Round(const float &num)
 {
 	if( num > 0 )
-		return static_cast<_int>(num + .5);
+		return static_cast<int>(num + .5);
 	else if (num < 0 )
-		return static_cast<_int>(num - .5);
+		return static_cast<int>(num - .5);
 	else
 		return 0;
 }
@@ -124,12 +124,12 @@ _int MathUtil::Round(const float &num)
 //   NOTES: Round rounds to the nearest representable number
 //           double version.
 //
-_int MathUtil::Round(const double &num)
+int MathUtil::Round(const double &num)
 {
 	if( num > 0 )
-		return static_cast<_int>(num + .5);
+		return static_cast<int>(num + .5);
 	else if (num < 0 )
-		return static_cast<_int>(num - .5);
+		return static_cast<int>(num - .5);
 	else
 		return 0;
 }
@@ -139,7 +139,7 @@ _int MathUtil::Round(const double &num)
 //    NAME: SignedModulus
 // PURPOSE: returns a mathematically correct modulus for int
 //
-_int MathUtil::SignedModulus(const _int &num, const _int &n)
+int MathUtil::SignedModulus(const int &num, const int &n)
 {
 	if( num >= 0 )
 		return num%n;
@@ -148,7 +148,7 @@ _int MathUtil::SignedModulus(const _int &num, const _int &n)
 		// the % operator reflects the range if num < 0, so
 		// we have to multiply by -1 to reflect it back.  This method
 		// is faster than calling Abs() and then doing the modulus.
-		_int Tnum = -1*(num%n);
+		int Tnum = -1*(num%n);
 		
 		// if num%n equals 0, then n - Tnum will be n, which, logically
 		// speaking, is 0 in a different form, but we have to make sure it's
@@ -166,7 +166,7 @@ _int MathUtil::SignedModulus(const _int &num, const _int &n)
 //    NAME: SignedModulus
 // PURPOSE: returns a mathematically correct modulus for long
 //
-_long MathUtil::SignedModulus(const _long &num, const _long &n)
+long MathUtil::SignedModulus(const long &num, const long &n)
 {
 	if( num >= 0 )
 		return num%n;
@@ -175,7 +175,7 @@ _long MathUtil::SignedModulus(const _long &num, const _long &n)
 		// the % operator reflects the range if num < 0, so
 		// we have to multiply by -1 to reflect it back.  This method
 		// is faster than calling Abs() and then doing the modulus.
-		_long Tnum = -1*(num%n);
+		long Tnum = -1*(num%n);
 
 		// if num%n equals 0, then n - Tnum will be n, which, logically
 		// speaking, is 0 in a different form, but we have to make sure it's
@@ -194,16 +194,16 @@ _long MathUtil::SignedModulus(const _long &num, const _long &n)
 // PURPOSE: returns a mathematically correct modulus for float
 //   NOTES: uses fmod() in math.h, which returns the modulus of floats
 //
-_float MathUtil::SignedModulus(const _float &num, const _float &n)
+float MathUtil::SignedModulus(const float &num, const float &n)
 {
 	if( num >=0 )
-		return static_cast<_float>( fmod(num,n) );
+		return static_cast<float>( fmod(num,n) );
 	else
 	{
 		// the % operator reflects the range if num < 0, so
 		// we have to multiply by -1 to reflect it back.  This method
 		// is faster than calling Abs() and then doing the modulus.
-		_float Tnum = -1*( static_cast<_float>( fmod(num,n) ) );
+		float Tnum = -1*( static_cast<float>( fmod(num,n) ) );
 
 		// if num%n equals 0, then n - Tnum will be n, which, logically
 		// speaking, is 0 in a different form, but we have to make sure it's
@@ -223,7 +223,7 @@ _float MathUtil::SignedModulus(const _float &num, const _float &n)
 // PURPOSE: returns a mathematically correct modulus for double
 //   NOTES: uses fmod() in math.h, which returns the modulus of floats
 //
-_double MathUtil::SignedModulus(const _double &num, const _double &n)
+double MathUtil::SignedModulus(const double &num, const double &n)
 {
 	if( num >=0 )
 		return fmod(num,n);
@@ -232,7 +232,7 @@ _double MathUtil::SignedModulus(const _double &num, const _double &n)
 		// the % operator reflects the range if num < 0, so
 		// we have to multiply by -1 to reflect it back.  This method
 		// is faster than calling Abs() and then doing the modulus.
-		_double Tnum = -1*( fmod(num,n) );
+		double Tnum = -1*( fmod(num,n) );
 
 		// if num%n equals 0, then n - Tnum will be n, which, logically
 		// speaking, is 0 in a different form, but we have to make sure it's

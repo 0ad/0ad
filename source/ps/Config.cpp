@@ -110,8 +110,8 @@ PS_RESULT CConfig::Register( CStr Filename, void* Data, LoaderFunction DynamicLo
 
 PS_RESULT CConfig::Update()
 {
-	_int slice = 0;
-	_int failed = 0;
+	int slice = 0;
+	int failed = 0;
 	struct stat FileInfo;
 
 	for( slice = 0; ( i != m_FileList.end() ) && ( slice < CONFIG_SLICE ); i++ )
@@ -211,8 +211,8 @@ PS_RESULT CConfig::Update()
 PS_RESULT CConfig::ReloadAll()
 {
 	// Mostly identical to Update(), above.
-	_int failed = 0;
-	_int notfound = 0; 
+	int failed = 0;
+	int notfound = 0; 
 	struct stat FileInfo;
 
 	for( i = m_FileList.begin(); i != m_FileList.end(); i++ )

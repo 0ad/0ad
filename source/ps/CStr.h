@@ -12,7 +12,7 @@ Overview:
 Example:
 	
 	CStr MyString = _T("Hello, World.");
-	_int MyNum = 126;
+	int MyNum = 126;
 	MyString += _T(" I'm the number ") += CStr(MyNumber);
 	
 	// Prints "Hello, World. I'm the number 126"
@@ -102,37 +102,37 @@ public:
 	CStr(tstring String);	// Creates CStr from C++ string
 	CStr(const TCHAR* String);	// Creates CStr from C-Style TCHAR string
 	CStr(TCHAR Char);		// Creates CStr from a TCHAR
-	CStr(_int Number);		// Creates CStr from a int
-	CStr(_uint Number);		// Creates CStr from a uint
-	CStr(_long Number);		// Creates CStr from a long 
-	CStr(_ulong Number);	// Creates CStr from a ulong 
-	CStr(_float Number);	// Creates CStr from a float
-	CStr(_double Number);	// Creates CStr from a double
+	CStr(int Number);		// Creates CStr from a int
+	CStr(unsigned int Number);		// Creates CStr from a uint
+	CStr(long Number);		// Creates CStr from a long 
+	CStr(unsigned long Number);	// Creates CStr from a ulong 
+	CStr(float Number);	// Creates CStr from a float
+	CStr(double Number);	// Creates CStr from a double
 	~CStr();				// Destructor
 
 	// Conversions
-	_int	ToInt() const;
-	_uint	ToUInt() const;
-	_long	ToLong() const;
-	_ulong	ToULong() const;
-	_float	ToFloat() const;
-	_double	ToDouble() const;
+	int	ToInt() const;
+	unsigned int	ToUInt() const;
+	long	ToLong() const;
+	unsigned long	ToULong() const;
+	float	ToFloat() const;
+	double	ToDouble() const;
 
 	size_t Length() const {return m_String.length();}
 	// Retrieves the substring within the string 
 	CStr GetSubstring(size_t start, size_t len) const;
 
 	//Search the string for another string 
-	_long Find(const CStr &Str) const;
+	long Find(const CStr &Str) const;
 
 	//Search the string for another string 
-	_long Find(const TCHAR &tchar) const;
+	long Find(const TCHAR &tchar) const;
 
 	//Search the string for another string 
-	_long Find(const int &start, const TCHAR &tchar) const;
+	long Find(const int &start, const TCHAR &tchar) const;
 
 	//You can also do a "ReverseFind"- i.e. search starting from the end 
-	_long ReverseFind(const CStr &Str) const;
+	long ReverseFind(const CStr &Str) const;
 
 	// Lowercase and uppercase 
 	CStr LowerCase() const;
@@ -143,10 +143,10 @@ public:
 	CStr UCase() const;
 
 	// Retreive the substring of the first n characters 
-	CStr Left(_long len) const;
+	CStr Left(long len) const;
 
 	// Retreive the substring of the last n characters
-	CStr Right(_long len) const;
+	CStr Right(long len) const;
 	
 	//Remove all occurences of some character or substring 
 	void Remove(const CStr &Str);
@@ -161,27 +161,27 @@ public:
 	CStr &operator=(const CStr &Str);
 	CStr &operator=(const TCHAR* String);
 	CStr &operator=(TCHAR Char);
-	CStr &operator=(_int Number);
-	CStr &operator=(_long Number);
-	CStr &operator=(_uint Number);
-	CStr &operator=(_ulong Number);
-	CStr &operator=(_float Number);
-	CStr &operator=(_double Number);
+	CStr &operator=(int Number);
+	CStr &operator=(long Number);
+	CStr &operator=(unsigned int Number);
+	CStr &operator=(unsigned long Number);
+	CStr &operator=(float Number);
+	CStr &operator=(double Number);
 
-	_bool operator==(const CStr &Str) const;
-	_bool operator!=(const CStr &Str) const;
-	_bool operator<(const CStr &Str) const;
-	_bool operator<=(const CStr &Str) const;
-	_bool operator>(const CStr &Str) const;
-	_bool operator>=(const CStr &Str) const;
+	bool operator==(const CStr &Str) const;
+	bool operator!=(const CStr &Str) const;
+	bool operator<(const CStr &Str) const;
+	bool operator<=(const CStr &Str) const;
+	bool operator>(const CStr &Str) const;
+	bool operator>=(const CStr &Str) const;
 	CStr &operator+=(const CStr &Str);
 	CStr  operator+(const CStr &Str);
 	operator const TCHAR*();
 	operator const TCHAR*() const; // Gee, I've added this, Maybe the one above should be removed?
-	TCHAR &operator[](_int n);
-	TCHAR &operator[](_uint n);
-	TCHAR &operator[](_long n);
-	TCHAR &operator[](_ulong n);
+	TCHAR &operator[](int n);
+	TCHAR &operator[](unsigned int n);
+	TCHAR &operator[](long n);
+	TCHAR &operator[](unsigned long n);
 
 	inline const char *c_str()
 	{	return m_String.c_str(); }

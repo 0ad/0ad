@@ -8,19 +8,19 @@
 // for the encrypted copy of the data via new[], It is the responsiblity of the user
 // to call delete[]. 
 //--------------------------------------------------------------------
-_byte *EncryptData(_byte *Data, _long DataLength, _byte *Key, _long KeyLength)
+char *EncryptData(char *Data, long DataLength, char *Key, long KeyLength)
 {
 	// Allocate space for new Encrypted data
-	_byte *NewData = new _byte[DataLength];
+	char *NewData = new char[DataLength];
 
 	// A counter to hold our absolute position in data
-	_long DataOffset = 0;
+	long DataOffset = 0;
 
 	// Loop through Data until end is reached
 	while (DataOffset < DataLength)
 	{
 		// Loop through the key
-		for (_long KeyOffset = 0; KeyOffset < KeyLength; KeyOffset++)
+		for (long KeyOffset = 0; KeyOffset < KeyLength; KeyOffset++)
 		{
 			// If were at end of data break and the the while loop should end as well.
 			if (DataOffset >= DataLength)
@@ -50,19 +50,19 @@ _byte *EncryptData(_byte *Data, _long DataLength, _byte *Key, _long KeyLength)
 // for the decrypted copy of the data via new[], It is the responsiblity of the user
 // to call delete[]. 
 //--------------------------------------------------------------------
-_byte *DecryptData(_byte *Data, _long DataLength, _byte *Key, _long KeyLength)
+char *DecryptData(char *Data, long DataLength, char *Key, long KeyLength)
 {
 	// Allocate space for new Decrypted data
-	_byte *NewData = new _byte[DataLength];
+	char *NewData = new char[DataLength];
 
 	// A counter to hold our absolute position in data
-	_long DataOffset = 0;
+	long DataOffset = 0;
 
 	// Loop through Data until end is reached
 	while (DataOffset < DataLength)
 	{
 		// Loop through the key
-		for (_long KeyOffset = 0; KeyOffset < KeyLength; KeyOffset++)
+		for (long KeyOffset = 0; KeyOffset < KeyLength; KeyOffset++)
 		{
 			// If were at end of data break and the the while loop should end as well.
 			if (DataOffset >= DataLength)

@@ -75,17 +75,17 @@ public:
 	~CParserValue();
 
 	// return is error status
-	_bool GetString(std::string &ret);
-	_bool GetBool(_bool &ret);
-	_bool GetChar(_char &ret);	// As number! otherwise use GetString make sure size=1
-	_bool GetShort(_short &ret);
-	_bool GetInt(_int &ret);
-	_bool GetLong(_long &ret);
-	_bool GetUnsignedShort(_ushort &ret);
-	_bool GetUnsignedInt(_uint &ret);
-	_bool GetUnsignedLong(_ulong &ret);
-	_bool GetFloat(float &ret);
-	_bool GetDouble(double &ret);
+	bool GetString(std::string &ret);
+	bool GetBool(bool &ret);
+	bool GetChar(char &ret);	// As number! otherwise use GetString make sure size=1
+	bool GetShort(short &ret);
+	bool GetInt(int &ret);
+	bool GetLong(long &ret);
+	bool GetUnsignedShort(unsigned short &ret);
+	bool GetUnsignedInt(unsigned int &ret);
+	bool GetUnsignedLong(unsigned long &ret);
+	bool GetFloat(float &ret);
+	bool GetDouble(double &ret);
 
 	// Memory regardless if it's an int, real, string or whatever
 	std::string	m_String;
@@ -116,7 +116,7 @@ public:
 
 	// Either the node is a letter or a type, if m_Leter is '\0'
 	//  then check m_Type what it is
-	_char							m_Letter;
+	char							m_Letter;
 	_ParserValueType				m_Type;
 	std::string						m_String;	// Used for diverse storage
 												//  mainly for the typeAddArg
@@ -129,7 +129,7 @@ public:
 
 	// true means AltNode can be looped <...>
 	// false means AltNode is just an optional part [...]
-	_bool							m_AltNodeRepeatable;
+	bool							m_AltNodeRepeatable;
 
 	// Whenever a dynamic argument is used, it's first node is stored in this
 	//  as an alternative node. The parser first checks if there is an
@@ -170,29 +170,29 @@ public:
 	~CParserLine();
 
 	std::deque<CParserValue>			m_Arguments;
-	_bool							m_ParseOK;		// same as ParseString will return
+	bool							m_ParseOK;		// same as ParseString will return
 	std::string						m_TaskTypeName;	// Name of the task type found
 
 protected:
-	_bool ClearArguments();
+	bool ClearArguments();
 
 public:
 	// Interface
-	_bool ParseString(const CParser& parser, std::string line);
+	bool ParseString(const CParser& parser, std::string line);
 
 	// Methods for getting arguments
 	//  it returns success
-	_bool GetArgString			(const _int& arg, std::string &ret);
-	_bool GetArgBool				(const _int& arg, _bool &ret);
-	_bool GetArgChar				(const _int& arg, _char &ret);
-	_bool GetArgShort			(const _int& arg, _short &ret);
-	_bool GetArgInt				(const _int& arg, _int &ret);
-	_bool GetArgLong				(const _int& arg, _long &ret);
-	_bool GetArgUnsignedShort	(const _int& arg, _ushort &ret);
-	_bool GetArgUnsignedInt		(const _int& arg, _uint &ret);
-	_bool GetArgUnsignedLong		(const _int& arg, _ulong &ret);
-	_bool GetArgFloat			(const _int& arg, float &ret);
-	_bool GetArgDouble			(const _int& arg, double &ret);
+	bool GetArgString			(const int& arg, std::string &ret);
+	bool GetArgBool				(const int& arg, bool &ret);
+	bool GetArgChar				(const int& arg, char &ret);
+	bool GetArgShort			(const int& arg, short &ret);
+	bool GetArgInt				(const int& arg, int &ret);
+	bool GetArgLong				(const int& arg, long &ret);
+	bool GetArgUnsignedShort	(const int& arg, unsigned short &ret);
+	bool GetArgUnsignedInt		(const int& arg, unsigned int &ret);
+	bool GetArgUnsignedLong		(const int& arg, unsigned long &ret);
+	bool GetArgFloat			(const int& arg, float &ret);
+	bool GetArgDouble			(const int& arg, double &ret);
 
 	// Get Argument count
 	size_t GetArgCount() const { return m_Arguments.size(); }
@@ -210,7 +210,7 @@ public:
 	std::vector<CParserTaskType>	m_TaskTypes;
 
 	// Interface
-	_bool InputTaskType(const std::string& strName, const std::string& strSyntax);
+	bool InputTaskType(const std::string& strName, const std::string& strSyntax);
 };
 
 

@@ -7,10 +7,10 @@ Two simple functions for encrypting and decrypting data. The KeyLength is
 specified in bytes, therefore Keys must be in multiples of 8 bits. I'd
 advice using 128bit keys which you can define as such.
 
-_byte MyKey[16] = { _byte(0xAF), _byte(0x2B), _byte(0x80), _byte(0x7E),
-					_byte(0x09), _byte(0x23), _byte(0xCC), _byte(0x95),
-					_byte(0xB4), _byte(0x2D), _byte(0xF4), _byte(0x90),
-					_byte(0xB3), _byte(0xC4), _byte(0x2A), _byte(0x3B) };
+char MyKey[16] = { char(0xAF), char(0x2B), char(0x80), char(0x7E),
+					char(0x09), char(0x23), char(0xCC), char(0x95),
+					char(0xB4), char(0x2D), char(0xF4), char(0x90),
+					char(0xB3), char(0xC4), char(0x2A), char(0x3B) };
 
 There may be a better way to do this but this looks alright to me.
 */
@@ -22,9 +22,9 @@ There may be a better way to do this but this looks alright to me.
 #define ENCRYPTION_H
 
 // Simple Encryption function
-_byte *EncryptData(_byte *Data, _long DataLength, _byte *Key, _long KeyLength);
+char *EncryptData(char *Data, long DataLength, char *Key, long KeyLength);
 
 // Simple Decryption function
-_byte *DecryptData(_byte *Data, _long DataLength, _byte *Key, _long KeyLength);
+char *DecryptData(char *Data, long DataLength, char *Key, long KeyLength);
 
 #endif

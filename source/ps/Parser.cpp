@@ -20,7 +20,7 @@ using namespace std;
 #define FUNC_IMPL_CAST_GETDOUBLE(func_name,type)		\
 bool CParserValue::func_name(type &ret)					\
 {														\
-	_double d;											\
+	double d;											\
 	if (GetDouble(d))									\
 		return ret = (type)d, true;						\
 	else												\
@@ -42,15 +42,15 @@ bool CParserLine::func_name(const int & arg, type &ret)	\
 // Function definitions
 //-------------------------------------------------
 
-static bool _IsStrictNameChar(const _char& c);
-static bool _IsValueChar(const _char& c);
+static bool _IsStrictNameChar(const char& c);
+static bool _IsValueChar(const char& c);
 
 
 // Functions used for checking a character if it belongs to a value
 //  or not
 
 // Checks ident
-static bool _IsStrictNameChar(const _char& c)
+static bool _IsStrictNameChar(const char& c)
 {
 	return ((c >= 'a' && c <= 'z') ||
 			(c >= 'A' && c <= 'Z') ||
@@ -58,7 +58,7 @@ static bool _IsStrictNameChar(const _char& c)
 }
 
 // Checks value
-static bool _IsValueChar(const _char& c)
+static bool _IsValueChar(const char& c)
 {
 	return ((c >= 'a' && c <= 'z') ||
 			(c >= 'A' && c <= 'Z') ||
@@ -111,10 +111,10 @@ bool CParserValue::GetBool(bool &ret)
 }
 
 // double
-bool CParserValue::GetDouble(_double &ret)
+bool CParserValue::GetDouble(double &ret)
 {
 	// locals
-	_double			TempRet = 0.0;
+	double			TempRet = 0.0;
 	int			Size = (int)m_String.size();
 	int			i;
 	bool			AtLeastOne = false;		// Checked if at least one of the loops
@@ -189,14 +189,14 @@ bool CParserValue::GetString(std::string &ret)
 // These macros include the IMPLEMENTATION of the 
 // the function in the macro argument for CParserValue
 // They use GetDouble, and then type-cast it
-FUNC_IMPL_CAST_GETDOUBLE(GetFloat,			_float)
-FUNC_IMPL_CAST_GETDOUBLE(GetChar,			_char)
-FUNC_IMPL_CAST_GETDOUBLE(GetShort,			_short)
+FUNC_IMPL_CAST_GETDOUBLE(GetFloat,			float)
+FUNC_IMPL_CAST_GETDOUBLE(GetChar,			char)
+FUNC_IMPL_CAST_GETDOUBLE(GetShort,			short)
 FUNC_IMPL_CAST_GETDOUBLE(GetInt,			int)
-FUNC_IMPL_CAST_GETDOUBLE(GetLong,			_long)
-FUNC_IMPL_CAST_GETDOUBLE(GetUnsignedShort,	_ushort)
-FUNC_IMPL_CAST_GETDOUBLE(GetUnsignedInt,	_uint)
-FUNC_IMPL_CAST_GETDOUBLE(GetUnsignedLong,	_ulong)
+FUNC_IMPL_CAST_GETDOUBLE(GetLong,			long)
+FUNC_IMPL_CAST_GETDOUBLE(GetUnsignedShort,	unsigned short)
+FUNC_IMPL_CAST_GETDOUBLE(GetUnsignedInt,	unsigned int)
+FUNC_IMPL_CAST_GETDOUBLE(GetUnsignedLong,	unsigned long)
 
 // CParserTaskTypeNode
 // ---------------------------------------------------------------------| Class
@@ -276,15 +276,15 @@ bool CParserLine::ClearArguments()
 //  then it uses the the respective function in CParserValue
 FUNC_IMPL_GETARG(GetArgString,			GetString,			string)
 FUNC_IMPL_GETARG(GetArgBool,			GetBool,			bool)
-FUNC_IMPL_GETARG(GetArgChar,			GetChar,			_char)
-FUNC_IMPL_GETARG(GetArgShort,			GetShort,			_short)
+FUNC_IMPL_GETARG(GetArgChar,			GetChar,			char)
+FUNC_IMPL_GETARG(GetArgShort,			GetShort,			short)
 FUNC_IMPL_GETARG(GetArgInt,				GetInt,				int)
-FUNC_IMPL_GETARG(GetArgLong,			GetLong,			_long)
-FUNC_IMPL_GETARG(GetArgUnsignedShort,	GetUnsignedShort,	_ushort)
-FUNC_IMPL_GETARG(GetArgUnsignedInt,		GetUnsignedInt,		_uint)
-FUNC_IMPL_GETARG(GetArgUnsignedLong,	GetUnsignedLong,	_ulong)
-FUNC_IMPL_GETARG(GetArgFloat,			GetFloat,			_float)
-FUNC_IMPL_GETARG(GetArgDouble,			GetDouble,			_double)
+FUNC_IMPL_GETARG(GetArgLong,			GetLong,			long)
+FUNC_IMPL_GETARG(GetArgUnsignedShort,	GetUnsignedShort,	unsigned short)
+FUNC_IMPL_GETARG(GetArgUnsignedInt,		GetUnsignedInt,		unsigned int)
+FUNC_IMPL_GETARG(GetArgUnsignedLong,	GetUnsignedLong,	unsigned long)
+FUNC_IMPL_GETARG(GetArgFloat,			GetFloat,			float)
+FUNC_IMPL_GETARG(GetArgDouble,			GetDouble,			double)
 
 // ParseString
 // ------------------------------------------------------------------| Function
@@ -307,8 +307,8 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 	// Locals
 	bool				Extract=false;
 	int				ExtractPos=0;
-	_char				Buffer[256];
-	_char				Letter[] = {'\0','\0'};		// Letter as string
+	char				Buffer[256];
+	char				Letter[] = {'\0','\0'};		// Letter as string
 	vector<string>		Segments;
 	string				strSub;
 	int				i;
@@ -338,7 +338,7 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 			{
 				Extract = true;
 				ExtractPos = i;
-				memset((void*)Buffer, '\0', sizeof(_char)*256);
+				memset((void*)Buffer, '\0', sizeof(char)*256);
 			}
 			else
 			// GET STRING BETWEEN QUOTES	
@@ -826,7 +826,7 @@ bool CParser::InputTaskType(const string& strName, const string& strSyntax)
 			{
 				Extract = true;
 				ExtractPos = i+1; // Skip $
-				memset((void*)Buffer, '\0', sizeof(_char)*REGULAR_MAX_LENGTH);
+				memset((void*)Buffer, '\0', sizeof(char)*REGULAR_MAX_LENGTH);
 
 				// We don't want to extract '$' so we'll just continue to next loop run
 				continue;

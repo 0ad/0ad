@@ -9,8 +9,6 @@ Standard declarations which are included in all projects.
 #ifndef PROMETHEUS_H
 #define PROMETHEUS_H
 
-#pragma warning (disable : 4786)	// VC6 template warning spew
-#pragma warning (disable : 4291)
 
 #include <stdio.h>
 #include <math.h>
@@ -19,32 +17,9 @@ Standard declarations which are included in all projects.
 
 // Globals
 extern int g_xres, g_yres;
+extern int g_bpp;
+extern int g_freq;
 
-
-// Standard typedefs
-
-typedef int            _int;
-typedef unsigned int   _unsigned_int;
-
-typedef long           _long;
-typedef unsigned long  _unsigned_long;
-
-typedef bool           _bool;
-
-typedef char           _char;
-typedef unsigned char  _unsigned_char;
-
-typedef char           _byte;
-typedef unsigned char  _unsigned_byte;
-
-typedef float          _float;
-typedef double         _double;
-
-typedef unsigned short _unsigned_short;
-typedef unsigned short _ushort;
-typedef short _short;
-typedef unsigned long _ulong;
-typedef unsigned int _uint;
 
 // Error handling
 

@@ -52,7 +52,7 @@ CLogFile::CLogFile()
 // Constructor that opens a file.
 // 3rd parameter determines whether the error frame is shown.
 //-------------------------------------------------
-CLogFile::CLogFile(string FileName, string PageTitle, _bool WithFrame)
+CLogFile::CLogFile(string FileName, string PageTitle, bool WithFrame)
 {
 	
 	Open(FileName,PageTitle,WithFrame);
@@ -104,7 +104,7 @@ PS_RESULT CLogFile::InsertDivide()
 //-------------------------------------------------
 //Opens an error file. If WithFrame is true then it constructs a framed page.
 //-------------------------------------------------
-PS_RESULT CLogFile::Open(string FileName, string PageTitle, _bool WithFrame)
+PS_RESULT CLogFile::Open(string FileName, string PageTitle, bool WithFrame)
 {
 	if(m_IsFileOpen)
 		return PS_FAIL;

@@ -69,7 +69,7 @@ class PS_DISPLAY_SETTINGS
 {
 public:
 
-	PS_DISPLAY_SETTINGS(_int Line, _char *File, _char *Date, PS_DISPLAY_MODE DisplayMode)
+	PS_DISPLAY_SETTINGS(int Line, char *File, char *Date, PS_DISPLAY_MODE DisplayMode)
 	{
 		line=Line;
 		file=File;
@@ -77,9 +77,9 @@ public:
 		displayMode=DisplayMode;
 	}
 
-	_int line;
-	_char *file;
-	_char *date;
+	int line;
+	char *file;
+	char *date;
 	PS_DISPLAY_MODE displayMode;
 };
 
@@ -94,10 +94,10 @@ public:
 	//Standard Constructor and destructor.
 	CLogFile();
 	~CLogFile();
-	CLogFile(string FileName, string PageTitle, _bool WithFrame=false);
+	CLogFile(string FileName, string PageTitle, bool WithFrame=false);
 	
 	//Opens a file for output the 3rd parameter can be set to true to enable the error frame.
-	PS_RESULT Open(string FileName, string PageTitle, _bool WithFrame=false);
+	PS_RESULT Open(string FileName, string PageTitle, bool WithFrame=false);
 
 	//Closes the file.
 	PS_RESULT Close();
@@ -133,13 +133,13 @@ public:
 	PS_RESULT AddLink(string LinkText, string Link, string Colour);
 
 private:
-	_bool m_IsFileOpen; //Is the file open.
-	_bool m_HasFrame; //Have frames been enabled.
+	bool m_IsFileOpen; //Is the file open.
+	bool m_HasFrame; //Have frames been enabled.
 	ofstream m_TheFile; //The main file.
 	ofstream m_ErrorFile; //The error link file, used only for frames.
 	string m_CurrentColour; //The current colour.
 	string m_FileName; //The name of the main file.
-	_int m_ErrNo; //The error number.
+	int m_ErrNo; //The error number.
 
 	//Sets the current alignment of the text.
 	PS_RESULT SetAlignment(PS_TEXT_ALIGN Align);

@@ -29,41 +29,41 @@ CStr::CStr(TCHAR Char)
 	m_String = Char;
 }
 
-CStr::CStr(_int Number)
+CStr::CStr(int Number)
 {
 	// Creates CStr from a int
 	m_String = _itot(Number, m_ConversionBuffer, 10);
 }
 
-CStr::CStr(_uint Number)
+CStr::CStr(unsigned int Number)
 {
 	// Creates CStr from a uint
 	m_String = _ultot(Number, m_ConversionBuffer, 10);
 }
 
 
-CStr::CStr(_long Number)
+CStr::CStr(long Number)
 {
 	// Creates CStr from a long 
 	m_String = _ltot(Number, m_ConversionBuffer, 10);
 }
 
 
-CStr::CStr(_ulong Number)
+CStr::CStr(unsigned long Number)
 {
 	// Creates CStr from a ulong 
 	m_String = _ultot(Number, m_ConversionBuffer, 10);
 }
 
 
-CStr::CStr(_float Number)
+CStr::CStr(float Number)
 {
 	// Creates CStr from a float
 	_tsprintf(m_ConversionBuffer, FLOAT_CONVERSION, Number);
 	m_String = m_ConversionBuffer;
 }
 
-CStr::CStr(_double Number)
+CStr::CStr(double Number)
 {
 	// Creates CStr from a double
 	_tsprintf(m_ConversionBuffer, FLOAT_CONVERSION, Number);
@@ -76,33 +76,33 @@ CStr::~CStr()
 }
 
 
-_int CStr::ToInt() const
+int CStr::ToInt() const
 {
 	return _ttoi(m_String.c_str());
 }
 
-_uint CStr::ToUInt() const
+unsigned int CStr::ToUInt() const
 {
-	return _uint(_ttoi(m_String.c_str()));
+	return unsigned int(_ttoi(m_String.c_str()));
 }
 
-_long CStr::ToLong() const
+long CStr::ToLong() const
 {
 	return _ttol(m_String.c_str());
 }
 
-_ulong CStr::ToULong() const
+unsigned long CStr::ToULong() const
 {
-	return _ulong(_ttol(m_String.c_str()));
+	return unsigned long(_ttol(m_String.c_str()));
 }
 
 
-_float CStr::ToFloat() const
+float CStr::ToFloat() const
 {
-	return (_float)_tstod(m_String.c_str(), NULL);
+	return (float)_tstod(m_String.c_str(), NULL);
 }
 
-_double	CStr::ToDouble() const
+double	CStr::ToDouble() const
 {
 	return _tstod(m_String.c_str(), NULL);
 }
@@ -115,9 +115,9 @@ CStr CStr::GetSubstring(size_t start, size_t len) const
 
 
 //Search the string for another string 
-_long CStr::Find(const CStr &Str) const
+long CStr::Find(const CStr &Str) const
 {
-	_long Pos = (_long)m_String.find(Str.m_String, 0);
+	long Pos = (long)m_String.find(Str.m_String, 0);
 
 	if (Pos != tstring::npos)
 		return Pos;
@@ -126,9 +126,9 @@ _long CStr::Find(const CStr &Str) const
 }
 
 //Search the string for another string 
-_long CStr::Find(const TCHAR &tchar) const
+long CStr::Find(const TCHAR &tchar) const
 {
-	_long Pos = (_long)m_String.find(tchar, 0);
+	long Pos = (long)m_String.find(tchar, 0);
 
 	if (Pos != tstring::npos)
 		return Pos;
@@ -137,9 +137,9 @@ _long CStr::Find(const TCHAR &tchar) const
 }
 
 //Search the string for another string 
-_long CStr::Find(const int &start, const TCHAR &tchar) const
+long CStr::Find(const int &start, const TCHAR &tchar) const
 {
-	_long Pos = (_long)m_String.find(tchar, start);
+	long Pos = (long)m_String.find(tchar, start);
 
 	if (Pos != tstring::npos)
 		return Pos;
@@ -147,9 +147,9 @@ _long CStr::Find(const int &start, const TCHAR &tchar) const
 	return -1;
 }
 
-_long CStr::ReverseFind(const CStr &Str) const
+long CStr::ReverseFind(const CStr &Str) const
 {
-	_long Pos = (_long)m_String.rfind(Str.m_String, m_String.length() );
+	long Pos = (long)m_String.rfind(Str.m_String, m_String.length() );
 
 	if (Pos != tstring::npos)
 		return Pos;
@@ -198,13 +198,13 @@ CStr CStr::UCase() const
 }
 
 //Retreive the substring of the first n characters 
-CStr CStr::Left(_long len) const
+CStr CStr::Left(long len) const
 {
 	return CStr( m_String.substr(0, len) );
 }
 
 //Retreive the substring of the last n characters
-CStr CStr::Right(_long len) const
+CStr CStr::Right(long len) const
 {
 	return CStr( m_String.substr(m_String.length()-len, len) );
 }
@@ -298,71 +298,71 @@ CStr &CStr::operator=(TCHAR Char)
 	return *this;
 }
 
-CStr &CStr::operator=(_int Number)
+CStr &CStr::operator=(int Number)
 {
 	m_String = _itot(Number, m_ConversionBuffer, 10);
 	return *this;
 }
 
-CStr &CStr::operator=(_long Number)
+CStr &CStr::operator=(long Number)
 {
 	m_String = _ltot(Number, m_ConversionBuffer, 10);
 	return *this;
 }
 
-CStr &CStr::operator=(_uint Number)
+CStr &CStr::operator=(unsigned int Number)
 {
 	m_String = _ultot(Number, m_ConversionBuffer, 10);
 	return *this;
 }
 
-CStr &CStr::operator=(_ulong Number)
+CStr &CStr::operator=(unsigned long Number)
 {
 	m_String = _ultot(Number, m_ConversionBuffer, 10);
 	return *this;
 }
 
 
-CStr &CStr::operator=(_float Number)
+CStr &CStr::operator=(float Number)
 {
 	_tsprintf(m_ConversionBuffer, FLOAT_CONVERSION, Number);
 	m_String = m_ConversionBuffer;
 	return *this;
 }
 
-CStr &CStr::operator=(_double Number)
+CStr &CStr::operator=(double Number)
 {
 	_tsprintf(m_ConversionBuffer, FLOAT_CONVERSION, Number);
 	m_String = m_ConversionBuffer;
 	return *this;
 }
 
-_bool CStr::operator==(const CStr &Str) const
+bool CStr::operator==(const CStr &Str) const
 {
 	return (m_String == Str.m_String);
 }
 
-_bool CStr::operator!=(const CStr &Str) const
+bool CStr::operator!=(const CStr &Str) const
 {
 	return (m_String != Str.m_String);
 }
 
-_bool CStr::operator<(const CStr &Str) const
+bool CStr::operator<(const CStr &Str) const
 {
 	return (m_String < Str.m_String);
 }
 
-_bool CStr::operator<=(const CStr &Str) const
+bool CStr::operator<=(const CStr &Str) const
 {
 	return (m_String <= Str.m_String);
 }
 
-_bool CStr::operator>(const CStr &Str) const
+bool CStr::operator>(const CStr &Str) const
 {
 	return (m_String > Str.m_String);
 }
 
-_bool CStr::operator>=(const CStr &Str) const
+bool CStr::operator>=(const CStr &Str) const
 {
 	return (m_String >= Str.m_String);
 }
@@ -391,24 +391,24 @@ CStr::operator const TCHAR*() const
 }
 
 
-TCHAR &CStr::operator[](_int n)
+TCHAR &CStr::operator[](int n)
 {
 	assert((size_t)n < m_String.length());
 	return m_String[n];
 }
 
-TCHAR &CStr::operator[](_uint n)
+TCHAR &CStr::operator[](unsigned int n)
 {
 	assert(n < m_String.length());
 	return m_String[n];
 }
-TCHAR &CStr::operator[](_long n)
+TCHAR &CStr::operator[](long n)
 {
 	assert((size_t)n < m_String.length());
 	return m_String[n];
 }
 
-TCHAR &CStr::operator[](_ulong n)
+TCHAR &CStr::operator[](unsigned long n)
 {
 	assert(n < m_String.length());
 	return m_String[n];
