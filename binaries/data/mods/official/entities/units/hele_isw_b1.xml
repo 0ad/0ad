@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity Tag="Prometheus Dude" Parent="Generic Dude">
+<Entity Tag="Hellenic Infantry Swordsman" Parent="Generic Unit">
 	<Traits>
 		<Id
-			generic="Prometheus Dude"
-			internal_only="false"
+			civ="hele"
+			class2="Infantry"
+			class3="Melee"
+			generic="Infantry Swordsman"
+			specific="Dude"
+			ranked="Basic Dude"
+			personal="hele_names.csv"
 			icon="unit_dude"
-			version="0.1 pasap2"
+			rollover="The Dude is hiding among the Hellenic forces, since the Greeks have no swordsmen."
+			type="UnitSwordsman, UnitNonMechanical, UnitMilitary, UnitCitizenSoldier"
 		/>
 		<Health
 			hitpoints="250"
-			initial="10"
+			hpcurr="10"
 		/>
 	</Traits>
 	<Event On="Initialize">

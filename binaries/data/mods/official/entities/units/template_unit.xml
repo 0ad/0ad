@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity Tag="Generic Dude">
+<Entity Tag="Generic Unit">
 	<Traits>
 		<Id
-			generic="Generic Dude"
+			generic="Generic Unit"
 			internal_only="true"
 			version="0.1 pasap2"
+			class1="Unit"
 		/>
 		<Health
 			hitpoints="100"
-			initial="70"
+			hpcurr="70"
 		/>
 	</Traits>
 	<Actions>

@@ -6,10 +6,11 @@
 			generic="Generic Structure"
 			internal_only="false"
 			version="0.1 pasap2"
+			class1="Structure"
 		/>
 		<Health
 			hitpoints="100"
-			initial="80"
+			hpcurr="80"
 		/>
 	</Traits>
 	<Actions>
