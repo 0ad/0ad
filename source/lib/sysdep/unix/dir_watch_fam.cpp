@@ -6,12 +6,10 @@
 #include "lib.h"
 #include "res/file.h"
 
-//#include <fam.h>
-#include <sysdep/win/wfam.h>
+#include <fam.h>
 
 static FAMConnection fc;
 static bool initialized;
-
 
 static std::map<intptr_t, std::string> dirs;
 
@@ -55,7 +53,6 @@ int dir_cancel_watch(const intptr_t watch)
 	req.reqnum = (int)watch;
 	return FAMCancelMonitor(&fc, &req);
 }
-
 
 int dir_get_changed_file(char* fn)
 {
