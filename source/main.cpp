@@ -542,11 +542,7 @@ int main(int argc, char* argv[])
 	}
 
 
-///	new CConfig;
-
-//	vfs_mount("gui", "gui", 0);
-	vfs_mount("", "mods/official/", 0);
-////	dir_add_watch("mods\\official", false);
+	res_mount("", "mods/official/", 0);
 
 #ifndef NO_GUI
 	// GUI uses VFS, so this must come after VFS init.
@@ -634,12 +630,9 @@ g_Console->RegisterFunc(Testing, "Testing");
 	const double TICK_TIME = 30e-3;	// [s]
 	double time0 = get_time();
 
-//	g_Config.Update();
 	while(!quit)
 	{
-		//g_Config.Update();
-
-////		allow_reload();
+		res_reload_changed_files();
 
 
 // TODO: limiter in case simulation can't keep up?
@@ -685,7 +678,6 @@ g_Console->RegisterFunc(Testing, "Testing");
 #endif
 
 	delete &g_ScriptingHost;
-///	delete &g_Config;
 	delete &g_Pathfinder;
 	delete &g_EntityManager;
 	delete &g_EntityTemplateCollection;
