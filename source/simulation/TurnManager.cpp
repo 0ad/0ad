@@ -4,6 +4,7 @@
 #include "Network/NetMessage.h"
 #include "Network/Network.h"
 #include "GameRecord.h"
+#include "CLogger.h"
 
 #include <vector>
 
@@ -17,7 +18,15 @@ CTurnManager::CTurnManager()
 
 void CTurnManager::ClearBatch(uint batch)
 {
-	m_Batches[batch].m_Messages.clear();
+	typedef std::vector<SMessageSyncEntry> MsgVector;
+	MsgVector &messages=m_Batches[batch].m_Messages;
+	MsgVector::iterator it=messages.begin();
+	while (it != messages.end())
+	{
+		delete it->m_pMessage;
+		++it;
+	}
+	messages.clear();
 }
 
 void CTurnManager::SBatch::Swap(SBatch &other)
@@ -28,12 +37,12 @@ void CTurnManager::SBatch::Swap(SBatch &other)
 
 void CTurnManager::RotateBatches()
 {
-	// {0, 1, 2} => {1, 2, 0}:
-		// {0, 1, 2}
+	// {a, b, c} => {b, c, a}:
+		// {a, b, c}
 		// -- swap (0, 1)
-		// {1, 0, 2}
+		// {b, a, c}
 		// -- swap (1, 2)
-		// {1, 2, 0}
+		// {b, c, a}
 
 	m_Batches[0].Swap(m_Batches[1]);
 	m_Batches[1].Swap(m_Batches[2]);
@@ -46,7 +55,7 @@ void CTurnManager::IterateBatch(uint batch, BatchIteratorFunc *fp, void *userdat
 	MsgVector::iterator it=messages.begin();
 	while (it != messages.end())
 	{
-		(*fp)(it->m_pMessage, it->m_ClientMask, userdata);
+		it->m_ClientMask=(*fp)(it->m_pMessage, it->m_ClientMask, userdata);
 		++it;
 	}
 }
@@ -59,28 +68,19 @@ void CTurnManager::SendBatch(uint batch)
 	while (it != messages.end())
 	{
 		SendMessage(it->m_pMessage, it->m_ClientMask);
-		it=messages.erase(it);
+		++it;
 	}
+	SendMessage(new CEndCommandBatch(), -1);
 }
 
 void CTurnManager::SendMessage(CNetMessage *pMsg, uint clientMask)
 {
-	uint sendToCount=0;
-	for (uint i=0;i<m_Clients.size();i++)
-	{
-		if (clientMask & (1<<i))
-			sendToCount++;
-	}
 	for (uint i=0;i<m_Clients.size();i++)
 	{
 		if (clientMask & (1<<i))
 		{
-			CNetMessage *sendMsg;
-			if (--sendToCount)
-				sendMsg=pMsg->Copy();
-			else // Last message - send original message instead of copying it
-				sendMsg=pMsg;
-			m_Clients[i].m_Pipe->Push(sendMsg);
+			if (m_Clients[i].m_Pipe)
+				m_Clients[i].m_Pipe->Push(pMsg->Copy());
 		}
 	}
 }

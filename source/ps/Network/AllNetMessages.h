@@ -172,6 +172,19 @@ START_NMT_CLASS_(GotoCommand)
 	NMT_FIELD_INT(m_TargetY, u32, 2)
 END_NMT_CLASS()
 
+/*
+#define NMT_FIELD_MAPPOS(_nm) NMT_FIELD_INT(_nm##X, u32, 2)	NMT_FIELD_INT(_nm##Y, u32, 2)
+	
+START_NMT_CLASS_(SetWaypoint)
+	NMT_FIELD(HEntity, m_Entity)
+	NMT_FIELD_MAPPOS(m_Target)
+END_NMT_CLASS()
+
+START_NMT_CLASS_(AddWaypoint)
+	NMT_FIELD(HEntity, m_Entity)
+	NMT_FIELD_MAPPOS(m_Target)
+END_NMY_CLASS()*/
+
 // #include "../EventTypes.h"
 
 END_NMTS()

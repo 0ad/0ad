@@ -23,6 +23,8 @@ protected:
 	{}
 
 public:
+	virtual ~CNetMessage();
+
 	inline ENetMessageType GetType() const
 	{ return m_Type; }
 

@@ -132,7 +132,8 @@ CGame::CGame():
 	m_World(this),
 	m_Simulation(this),
 	m_GameView(this),
-	m_pLocalPlayer(NULL)
+	m_pLocalPlayer(NULL),
+	m_GameStarted(false)
 {
 	debug_out("CGame::CGame(): Game object CREATED\n");
 }
@@ -166,6 +167,8 @@ PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 		m_GameView.Initialize(pAttribs);
 		m_World.Initialize(pAttribs);
 		m_Simulation.Initialize(pAttribs);
+
+		m_GameStarted=true;
 	}
 	catch (PSERROR_Game e)
 	{

@@ -40,7 +40,7 @@ void CSessionManager::Poll()
 			m_Mutex.Unlock();
 			if (!pSess->HandleMessage(pMsg))
 			{
-				LOG(WARNING, "CSessionManager::Poll(): Unhandled message %s.\n", pMsg->GetString().c_str());
+				LOG(WARNING, LOG_CAT_NET, "CSessionManager::Poll(): Unhandled message %s.", pMsg->GetString().c_str());
 				delete pMsg;
 			}
 			m_Mutex.Lock();

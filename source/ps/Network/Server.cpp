@@ -34,22 +34,15 @@ CNetServerSession *CNetServer::CreateSession(CSocketInternal *pInt)
 
 void CNetServer::OnAccept(const CSocketAddress &addr)
 {
-	LOG(NORMAL, "CNetServer::OnAccept(): Accepted connection from %s port %d\n", addr.GetString().c_str(), addr.GetPort());
+	LOG(NORMAL, LOG_CAT_NET, "CNetServer::OnAccept(): Accepted connection from %s port %d", addr.GetString().c_str(), addr.GetPort());
 
 	CSocketInternal *pInt=Accept();
 	CNetServerSession *pSession=CreateSession(pInt);
-	{
-		CScopeLock scopeLock(m_Mutex);
-		m_Sessions.push_back(pSession);
-	}
 }
 
 CNetServerSession::~CNetServerSession()
 {
-	CScopeLock scopeLock(m_pServer->m_Mutex);
-	vector<CNetServerSession*>::iterator it=find(m_pServer->m_Sessions.begin(), m_pServer->m_Sessions.end(), this);
-	if (it != m_pServer->m_Sessions.end())
-		m_pServer->m_Sessions.erase(it);
+	m_pServer->RemoveSession(this);
 }
 
 void CNetServerSession::StartGame()
@@ -62,16 +55,54 @@ void CNetServerSession::StartGame()
 #define HANDLED(_pMsg) delete _pMsg; return true;
 #define TAKEN(_pMsg) return true;
 
+bool CNetServerSession::BaseHandler(CNetMessage *pMsg, CNetSession *pNetSession)
+{
+	CNetServerSession *pSession=(CNetServerSession *)pNetSession;
+	switch (pMsg->GetType())
+	{
+		case NMT_ERROR:
+		{
+			CNetErrorMessage *msg=(CNetErrorMessage *)pMsg;
+			LOG(WARNING, LOG_CAT_NET, "CNetServerSession::BaseHandler(): NMT_ERROR: %s", msg->GetString().c_str());
+			if (msg->m_State == SS_UNCONNECTED)
+			{
+				/* We were disconnected... What happens with our session?
+				 * 
+				 * Note that deleting a session also removes it from m_Sessions
+				 * in CNetServer. If the session is an observer it is also
+				 * removed from m_Observers.
+				 *
+				 * Sessions that are observers or chatters should perhaps
+				 * generate an exit message that is sent to all other sessions.
+				 *
+				 * Player sessions require more care. In Pre-Game, each player
+				 * session has an associated CPlayer object and player session
+				 * slot requiring special care when deleting.
+				 */
+				if (!pSession->m_pPlayer)
+				{
+					delete pSession;
+				}
+				else
+				{
+					LOG(ERROR, LOG_CAT_NET, "CNetServerSession::BaseHandler(): Player disconnection not implemented!!");
+				}
+			}
+			HANDLED(pMsg);
+		}
+	}
+	UNHANDLED(pMsg);
+}
+
 bool CNetServerSession::HandshakeHandler(CNetMessage *pMsg, CNetSession *pNetSession)
 {
 	CNetServerSession *pSession=(CNetServerSession *)pNetSession;
-	printf("CNetServerSession::HandshakeHandler(): %s.\n", pMsg->GetString().c_str());
+	LOG(NORMAL, LOG_CAT_NET, "CNetServerSession::HandshakeHandler(): %s.", pMsg->GetString().c_str());
 	switch (pMsg->GetType())
 	{
 	case NMT_ClientHandshake:
 		{
 			CClientHandshake * /*SmartPointer<CClientHandshake>*/ msg=(CClientHandshake *)pMsg/*.GetRawPointer()*/;
-			printf("ClientHandshake: %s.\n", pMsg->GetString().c_str());
 		
 			if (msg->m_ProtocolVersion != PS_PROTOCOL_VERSION)
 				do {} while(0); // This will never happen to us here, but anyways ;-)
@@ -86,25 +117,25 @@ bool CNetServerSession::HandshakeHandler(CNetMessage *pMsg, CNetSession *pNetSes
 
 			HANDLED(pMsg);
 		}
-	default:
-		UNHANDLED(pMsg);
 	}
+	return BaseHandler(pMsg, pNetSession);
 }
 
 bool CNetServerSession::AuthenticateHandler(CNetMessage *pMsg, CNetSession *pNetSession)
 {
 	CNetServerSession *pSession=(CNetServerSession *)pNetSession;
 	CNetServer *pServer=pSession->m_pServer;
-	printf("CNetServerSession::AuthenticateHandler(): %s.\n", pMsg->GetString().c_str());
+	LOG(NORMAL, LOG_CAT_NET, "CNetServerSession::AuthenticateHandler(): %s.", pMsg->GetString().c_str());
 	if (pMsg->GetType() == NMT_Authenticate)
 	{
 		CAuthenticate *msg=(CAuthenticate *)pMsg;
-		LOG(NORMAL, LOG_CAT_NET, "CNetServerSession::AuthenticateHandler(): Client Authentication Received: username: %ls password: \"%hs\"", msg->m_Name.c_str(), msg->m_Password.c_str());
 
 		if (msg->m_Password == pSession->m_pServer->m_Password)
 		{
 			LOG(NORMAL, LOG_CAT_NET, "CNetServerSession::AuthenticateHandler(): Login Successful");
 			pSession->m_Name=msg->m_Name;
+
+			pSession->m_pServer->m_Sessions.push_back(pSession);
 
 			CResult *msg=new CResult();
 			msg->m_Code=NRC_OK;
@@ -137,13 +168,13 @@ bool CNetServerSession::AuthenticateHandler(CNetMessage *pMsg, CNetSession *pNet
 
 		HANDLED(pMsg);
 	}
-	UNHANDLED(pMsg);
+	return BaseHandler(pMsg, pNetSession);
 }
 
 bool CNetServerSession::PreGameHandler(CNetMessage *pMsg, CNetSession *pNetSession)
 {
 	CNetServerSession *pSession=(CNetServerSession *)pNetSession;
-	printf("CNetServerSession::PreGameHandler(): %s.\n", pMsg->GetString().c_str());
+	LOG(NORMAL, LOG_CAT_NET, "CNetServerSession::PreGameHandler(): %s.", pMsg->GetString().c_str());
 
 	return ChatHandler(pMsg, pNetSession);
 }
@@ -173,13 +204,18 @@ bool CNetServerSession::ChatHandler(CNetMessage *pMsg, CNetSession *pNetSession)
 
 		TAKEN(pMsg);
 	}
-	UNHANDLED(pMsg);
+	
+	return BaseHandler(pMsg, pNetSession);
 }
 
 bool CNetServerSession::InGameHandler(CNetMessage *pMsg, CNetSession *pNetSession)
 {
 	CNetServerSession *pSession=(CNetServerSession *)pNetSession;
-	printf("CNetServerSession::InGameHandler(): %s.\n", pMsg->GetString().c_str());
+	if (pMsg->GetType() != NMT_EndCommandBatch)
+		LOG(NORMAL, LOG_CAT_NET, "CNetServerSession::InGameHandler(): %s.", pMsg->GetString().c_str());
+
+	if (BaseHandler(pMsg, pNetSession))
+		return true;
 
 	if (ChatHandler(pMsg, pNetSession))
 		return true;
@@ -191,6 +227,10 @@ bool CNetServerSession::InGameHandler(CNetMessage *pMsg, CNetSession *pNetSessio
 		//pSession->m_pPlayer->ValidateCommand(pMsg);
 		pSession->m_pServer->QueueIncomingCommand(pMsg);
 		TAKEN(pMsg);
+
+	case NMT_EndCommandBatch:
+		// TODO Update client timing information here.
+		HANDLED(pMsg);
 
 	default:
 		UNHANDLED(pMsg);
@@ -213,6 +253,8 @@ CNetServer::CNetServer(CNetServerAttributes *pServerAttribs, CGame *pGame, CGame
 	m_pGameAttributes->SetUpdateCallback(AttributeUpdate, this);
 	m_ServerPlayerName=m_pServerAttributes->GetValue("serverPlayerName");
 	m_NumPlayers=m_pGameAttributes->GetValue("numPlayers").ToUInt();
+
+	m_pGame->GetSimulation()->SetTurnManager(this);
 }
 
 PS_RESULT CNetServer::Bind(const CSocketAddress &address)
@@ -225,8 +267,6 @@ PS_RESULT CNetServer::Bind(const CSocketAddress &address)
 
 bool CNetServer::AddNewPlayer(CNetServerSession *pSession)
 {
-	CScopeLock scopeLock(m_Mutex);
-
 	CAttributeMap::MapType &attribs=m_pGameAttributes->GetInternalValueMap();
 	CAttributeMap::MapType::iterator it=attribs.begin();
 
@@ -249,7 +289,7 @@ bool CNetServer::AddNewPlayer(CNetServerSession *pSession)
 		pMsg->m_Players.resize(1);
 		pMsg->m_Players[0].m_PlayerID=(u32)m_PlayerSessions.size();
 		pMsg->m_Players[0].m_Nick=pSession->GetName();
-		BroadcastUnsafe(pMsg);
+		Broadcast(pMsg);
 
 		pMsg=new CPlayerConnect();
 		for (uint i=0;i<m_PlayerSessions.size()-1;i++)
@@ -285,21 +325,23 @@ void CNetServer::AttributeUpdate(CStr name, CStrW newValue, void *userdata)
 
 bool CNetServer::AllowObserver(CNetServerSession *pSession)
 {
-	CScopeLock scopeLock(m_Mutex);
 	return m_Observers.size() < m_MaxObservers;
+}
+
+void CNetServer::RemoveSession(CNetServerSession *pSession)
+{
+	vector<CNetServerSession*>::iterator it=find(m_Sessions.begin(), m_Sessions.end(), pSession);
+	if (it != m_Sessions.end())
+		m_Sessions.erase(it);
+
+	// TODO Correct handling of player and observers
 }
 
 // Unfortunately, the message queueing model is made so that each message has
 // to be copied once for each socket its sent over, messages are deleted when
-// sent by CMessageSocket
+// sent by CMessageSocket. We could ref-count, but that requires a lot of
+// thread safety stuff => hard work
 void CNetServer::Broadcast(CNetMessage *pMsg)
-{
-	CScopeLock scopeLock(m_Mutex);
-
-	BroadcastUnsafe(pMsg);
-}
-
-void CNetServer::BroadcastUnsafe(CNetMessage *pMsg)
 {
 	if (m_Sessions.empty())
 		return;
@@ -344,11 +386,14 @@ void CNetServer::GetDefaultListenAddress(CSocketAddress &address)
 
 void CNetServer::NewTurn()
 {
+	RecordBatch(2);
+
 	RotateBatches();
 	ClearBatch(2);
 
 	IterateBatch(1, CSimulation::GetMessageMask, m_pGame->GetSimulation());
 	SendBatch(1);
+	//SendBatchToList(1, m_Observers);
 }
 
 void CNetServer::QueueLocalCommand(CNetMessage *pMsg)
@@ -358,6 +403,6 @@ void CNetServer::QueueLocalCommand(CNetMessage *pMsg)
 
 void CNetServer::QueueIncomingCommand(CNetMessage *pMsg)
 {
-	CScopeLock scopeLock(m_Mutex);
+	LOG(NORMAL, LOG_CAT_NET, "CNetServer::QueueIncomingCommand(): %s.", pMsg->GetString().c_str());
 	QueueMessage(2, pMsg);
 }

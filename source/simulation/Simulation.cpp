@@ -9,8 +9,11 @@
 #include "Scheduler.h"
 #include "Network/NetMessage.h"
 #include "CLogger.h"
+#include "CConsole.h"
 
 #include "gui/CGUI.h"
+
+extern CConsole *g_Console;
 
 CSimulation::CSimulation(CGame *pGame):
 	m_pGame(pGame),

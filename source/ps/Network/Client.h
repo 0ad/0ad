@@ -36,6 +36,7 @@ public:
 	static MessageHandler AuthenticateHandler;
 	static MessageHandler PreGameHandler;
 	static MessageHandler ChatHandler;
+	static MessageHandler InGameHandler;
 };
 
 extern CNetClient *g_NetClient;

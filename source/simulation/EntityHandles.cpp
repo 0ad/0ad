@@ -91,7 +91,7 @@ uint HEntity::GetSerializedLength() const
 u8 *HEntity::Serialize(u8 *buffer) const
 {
 	Serialize_int_2(buffer, m_handle);
-	return buffer+2;
+	return buffer;
 }
 
 const u8 *HEntity::Deserialize(const u8 *buffer, const u8 *end)
@@ -100,7 +100,7 @@ const u8 *HEntity::Deserialize(const u8 *buffer, const u8 *end)
 	// We can't let addRef assert just because someone sent us bogus data
 	if (m_handle < 4096 && m_handle != INVALID_HANDLE)
 		addRef();
-	return buffer+2;
+	return buffer;
 }
 
 HEntity::operator CStr() const

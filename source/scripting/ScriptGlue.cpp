@@ -323,6 +323,11 @@ JSBool joinGame(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned int
 		connectPort=g_ScriptingHost.ValueToInt(argv[2]);
 	}
 
+	if (g_Game)
+	{
+		return JS_FALSE;
+	}
+
 	g_Game=new CGame();
 	g_NetClient=new CNetClient(g_Game, &g_GameAttributes);
 	g_NetClient->SetLoginInfo(username, password);

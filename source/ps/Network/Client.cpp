@@ -24,7 +24,7 @@ CNetClient::CNetClient(CGame *pGame, CGameAttributes *pGameAttribs):
 bool CNetClient::<X>Handler(CNetMessage *pMsg, CNetSession *pSession)
 {
 	CNetClient *pClient=(CNetClient *)pSession;
-	printf("CNetClient::<X>Handler(): %s.\n", pMsg->GetString().c_str());
+	LOG(NORMAL, LOG_CAT_NET, "CNetClient::<X>Handler(): %s.", pMsg->GetString().c_str());
 	switch (pMsg->GetType())
 	{
 	case XXX:
@@ -43,7 +43,7 @@ bool CNetClient::<X>Handler(CNetMessage *pMsg, CNetSession *pSession)
 bool CNetClient::ConnectHandler(CNetMessage *pMsg, CNetSession *pSession)
 {
 	CNetClient *pClient=(CNetClient *)pSession;
-	LOG(NORMAL, "CNetClient::ConnectHandler(): %s.\n", pMsg->GetString().c_str());
+	LOG(NORMAL, LOG_CAT_NET, "CNetClient::ConnectHandler(): %s.", pMsg->GetString().c_str());
 	switch (pMsg->GetType())
 	{
 	case NMT_CONNECT_COMPLETE:
@@ -52,7 +52,7 @@ bool CNetClient::ConnectHandler(CNetMessage *pMsg, CNetSession *pSession)
 	case NMT_ERROR:
 	{
 		CNetErrorMessage *msg=(CNetErrorMessage *)pMsg;
-		LOG(ERROR, "CNetClient::ConnectHandler(): Connect Failed: %s\n", msg->m_Error);
+		LOG(ERROR, LOG_CAT_NET, "CNetClient::ConnectHandler(): Connect Failed: %s", msg->m_Error);
 		break;
 	}
 	default:
@@ -64,7 +64,7 @@ bool CNetClient::ConnectHandler(CNetMessage *pMsg, CNetSession *pSession)
 bool CNetClient::HandshakeHandler(CNetMessage *pMsg, CNetSession *pSession)
 {
 	CNetClient *pClient=(CNetClient *)pSession;
-	LOG(NORMAL, "CNetClient::HandshakeHandler(): %s.\n", pMsg->GetString().c_str());
+	LOG(NORMAL, LOG_CAT_NET, "CNetClient::HandshakeHandler(): %s.", pMsg->GetString().c_str());
 	switch (pMsg->GetType())
 	{
 	case NMT_ServerHandshake:
@@ -96,7 +96,7 @@ bool CNetClient::HandshakeHandler(CNetMessage *pMsg, CNetSession *pSession)
 bool CNetClient::AuthenticateHandler(CNetMessage *pMsg, CNetSession *pSession)
 {
 	CNetClient *pClient=(CNetClient *)pSession;
-	printf("CNetClient::AuthenticateHandler(): %s.\n", pMsg->GetString().c_str());
+	LOG(NORMAL, LOG_CAT_NET, "CNetClient::AuthenticateHandler(): %s.", pMsg->GetString().c_str());
 	switch (pMsg->GetType())
 	{
 	case NMT_Result:
@@ -107,8 +107,10 @@ bool CNetClient::AuthenticateHandler(CNetMessage *pMsg, CNetSession *pSession)
 				LOG(ERROR, LOG_CAT_NET, "CNetClient::AuthenticateHandler(): Authentication failed: %ls", msg->m_Message.c_str());
 			}
 			else
+			{
 				LOG(NORMAL, LOG_CAT_NET, "CNetClient::AuthenticateHandler(): Authenticated!");
-			pClient->m_pMessageHandler=PreGameHandler;
+				pClient->m_pMessageHandler=PreGameHandler;
+			}
 			break;
 		}
 	default:
@@ -120,7 +122,7 @@ bool CNetClient::AuthenticateHandler(CNetMessage *pMsg, CNetSession *pSession)
 bool CNetClient::PreGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 {
 	CNetClient *pClient=(CNetClient *)pSession;
-	printf("CNetClient::PreGameHandler(): %s.\n", pMsg->GetString().c_str());
+	LOG(NORMAL, LOG_CAT_NET, "CNetClient::PreGameHandler(): %s.", pMsg->GetString().c_str());
 
 	if (ChatHandler(pMsg, pSession))
 		return true;
@@ -151,10 +153,46 @@ bool CNetClient::PreGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 	UNHANDLED(pMsg);
 }
 
+bool CNetClient::InGameHandler(CNetMessage *pMsg, CNetSession *pSession)
+{
+	CNetClient *pClient=(CNetClient *)pSession;
+	ENetMessageType msgType=pMsg->GetType();
+
+	if (msgType != NMT_EndCommandBatch)
+		LOG(NORMAL, LOG_CAT_NET, "CNetClient::InGameHandler(): %s.", pMsg->GetString().c_str());
+
+	if (msgType >= NMT_COMMAND_FIRST && msgType <= NMT_COMMAND_LAST)
+	{
+		pClient->QueueMessage(1, pMsg);
+		TAKEN(pMsg);
+	}
+
+	switch (msgType)
+	{
+	case NMT_EndCommandBatch:
+		// FIXME When the command batch has ended, we should start accepting
+		// commands for the next turn. This will be accomplished by calling
+		// NewTurn. *BUT* we shouldn't prematurely proceed game simulation
+		// since this will produce jerky playback (everything expects a sim
+		// turn to have a certain duration).
+
+		// We should make sure that any commands received after this message
+		// are queued in the next batch (#2 instead of #1). If we're already
+		// putting everything new in batch 2 - we should fast-forward a bit to
+		// catch up with the server.
+
+		HANDLED(pMsg);
+	}
+
+	if (ChatHandler(pMsg, pSession))
+		return true;
+
+	UNHANDLED(pMsg);
+}
+
 bool CNetClient::ChatHandler(CNetMessage *pMsg, CNetSession *pSession)
 {
 	CNetClient *pClient=(CNetClient *)pSession;
-	printf("CNetClient::ChatHandler(): %s.\n", pMsg->GetString().c_str());
 	switch (pMsg->GetType())
 	{
 	case NMT_ChatMessage:
@@ -169,7 +207,7 @@ bool CNetClient::ChatHandler(CNetMessage *pMsg, CNetSession *pSession)
 
 void CNetClient::StartGame()
 {
-	m_pGame->GetSimulation()->SetTurnManager(this);
+	m_pMessageHandler=InGameHandler;
 	m_pGame->StartGame(m_pGameAttributes);
 }
 
@@ -178,11 +216,11 @@ void CNetClient::NewTurn()
 	RotateBatches();
 	ClearBatch(2);
 
-	//Push(new CEndCommandBatch());
+	Push(new CEndCommandBatch());
 }
 
 void CNetClient::QueueLocalCommand(CNetMessage *pMsg)
 {
-	// We don't save these locally, since they will be bounced by the server anyway
+	// Don't save these locally, since they'll be bounced by the server anyway
 	Push(pMsg);
 }

@@ -21,7 +21,7 @@
 #ifdef NMT_CREATE_HEADER_NAME
 
 #ifndef ARRAY_STRUCT_PREFIX
-#define ARRAY_STRUCT_PREFIX S_
+#define ARRAY_STRUCT_PREFIX(_nm) S_##_nm
 #endif
 
 #define CREATING_NMT
@@ -80,9 +80,9 @@ struct _nm: public CNetMessage \
 	_tp _nm;
 
 #define NMT_START_ARRAY(_nm) \
-	struct ARRAY_STRUCT_PREFIX ## _nm; \
-	std::vector <ARRAY_STRUCT_PREFIX ## _nm> _nm; \
-	struct ARRAY_STRUCT_PREFIX ## _nm {
+	struct ARRAY_STRUCT_PREFIX(_nm); \
+	std::vector <ARRAY_STRUCT_PREFIX(_nm)> _nm; \
+	struct ARRAY_STRUCT_PREFIX(_nm) {
 
 #define NMT_END_ARRAY() \
 	};
@@ -107,10 +107,10 @@ uint _nm::GetSerializedLength() const \
 	const _nm *thiz=this;
 
 #define NMT_START_ARRAY(_nm) \
-	std::vector <ARRAY_STRUCT_PREFIX##_nm>::const_iterator it=_nm.begin(); \
+	std::vector <ARRAY_STRUCT_PREFIX(_nm)>::const_iterator it=_nm.begin(); \
 	while (it != _nm.end()) \
 	{ \
-		const ARRAY_STRUCT_PREFIX##_nm *thiz=&*it;
+		const ARRAY_STRUCT_PREFIX(_nm) *thiz=&*it;
 
 #define NMT_END_ARRAY() \
 		++it; \
@@ -145,10 +145,10 @@ u8 *_nm::Serialize(u8 *buffer) const \
 	const _nm *thiz=this;
 
 #define NMT_START_ARRAY(_nm) \
-	std::vector <ARRAY_STRUCT_PREFIX##_nm>::const_iterator it=_nm.begin(); \
+	std::vector <ARRAY_STRUCT_PREFIX(_nm)>::const_iterator it=_nm.begin(); \
 	while (it != _nm.end()) \
 	{ \
-		const ARRAY_STRUCT_PREFIX##_nm *thiz=&*it;
+		const ARRAY_STRUCT_PREFIX(_nm) *thiz=&*it;
 
 #define NMT_END_ARRAY() \
 		++it; \
@@ -195,7 +195,7 @@ const u8 *_nm::Deserialize(const u8 *pos, const u8 *end) \
 #define NMT_START_ARRAY(_nm) \
 	while (pos < end) \
 	{ \
-		ARRAY_STRUCT_PREFIX##_nm *thiz=&*_nm.insert(_nm.end(), ARRAY_STRUCT_PREFIX##_nm());
+		ARRAY_STRUCT_PREFIX(_nm) *thiz=&*_nm.insert(_nm.end(), ARRAY_STRUCT_PREFIX(_nm)());
 
 #define NMT_END_ARRAY() \
 	}
@@ -256,11 +256,11 @@ CStr _nm::GetString() const \
 
 #define NMT_START_ARRAY(_nm) \
 	ret+=#_nm _T(": { "); \
-	std::vector < ARRAY_STRUCT_PREFIX ## _nm >::const_iterator it=_nm.begin(); \
+	std::vector < ARRAY_STRUCT_PREFIX(_nm) >::const_iterator it=_nm.begin(); \
 	while (it != _nm.end()) \
 	{ \
 		ret+=_T(" { "); \
-		const ARRAY_STRUCT_PREFIX##_nm *thiz=&*it;
+		const ARRAY_STRUCT_PREFIX(_nm) *thiz=&*it;
 
 #define NMT_END_ARRAY() \
 		++it; \

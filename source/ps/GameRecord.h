@@ -17,6 +17,10 @@ public:
 
 	bool IsRecording();
 
+	/*
+		NOTE: The message will not be deleted by this method. Ownership remains
+		the caller's.
+	*/
 	void WriteMessage(CNetMessage *pMsg);
 
 	CTurnManager *GetPlaybackTurnManager();

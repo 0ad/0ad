@@ -102,7 +102,7 @@ CStr CCloseRequestMessage::GetString() const
 
 void CMessageSocket::Push(CNetMessage *msg)
 {
-	printf("CMessageSocket::Push(): %s", msg->GetString().c_str());
+	printf("CMessageSocket::Push(): %s\n", msg->GetString().c_str());
 
 	m_OutQ.Lock();
 	m_OutQ.push_back(msg);

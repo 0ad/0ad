@@ -47,6 +47,8 @@ class CGame
 	std::vector<CPlayer *> m_Players;
 	CPlayer *m_pLocalPlayer;
 	uint m_NumPlayers;
+
+	bool m_GameStarted;
 	
 public:
 	CGame();
@@ -70,6 +72,11 @@ public:
 
 	inline uint GetNumPlayers()
 	{	return m_NumPlayers; }
+
+	inline bool IsGameStarted()
+	{
+		return m_GameStarted;
+	}
 
 	inline CWorld *GetWorld()
 	{	return &m_World; }

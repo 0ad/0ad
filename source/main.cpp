@@ -1040,7 +1040,7 @@ static void Frame()
 	in_get_events();
 	g_SessionManager.Poll();
 	
-	if (g_Game)
+	if (g_Game && g_Game->IsGameStarted())
 	{
 		g_Game->Update(TimeSinceLastFrame);
 		

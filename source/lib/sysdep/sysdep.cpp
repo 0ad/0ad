@@ -75,7 +75,7 @@ void debug_microlog(const wchar_t *fmt, ...)
 	wchar_t buffer[512];
 
 	va_start(argp, fmt);
-	vswprintf(buffer, sizeof(buffer), fmt, argp);
+	vswprintf(buffer, sizeof(buffer)-2, fmt, argp);
 	va_end(argp);
 
 	wcscat(buffer, L"\r\n");

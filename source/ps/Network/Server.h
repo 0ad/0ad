@@ -29,6 +29,7 @@ public:
 	// all connected clients.
 	void StartGame();
 
+	static MessageHandler BaseHandler;
 	static MessageHandler HandshakeHandler;
 	static MessageHandler AuthenticateHandler;
 	static MessageHandler PreGameHandler;
@@ -39,9 +40,16 @@ public:
 
 enum ENetServerState
 {
+	// We haven't opened the port yet, we're just setting some stuff up.
+	// This is probably equivalent to the first "Start Network Game" screen
 	NSS_PreBind,
+	// The server is open and accepting connections. This is the screen where
+	// rules are set up by the operator and where players join and select civs
+	// and stuff.
 	NSS_PreGame,
 	NSS_InGame,
+	// The game is over and someone has won. Players might linger to chat or
+	// download the replay log.
 	NSS_PostGame
 };
 
@@ -54,16 +62,27 @@ public:
 class CNetServer: protected CServerSocket, protected CTurnManager
 {
 private:
+	/*
+		Every connected session is in m_Sessions as soon as the Handshake and
+		Authentication stages are complete.
+	*/
 	std::vector <CNetServerSession *> m_Sessions;
-	
+	/*
+		All sessions currently associated with a player. Subset of m_Sessions.
+	*/
 	std::vector <CNetServerSession *> m_PlayerSessions;
-	uint m_NumPlayers;
-
-	CMutex m_Mutex;
-	ENetServerState m_ServerState;
-
+	/*
+		All sessions that have observer status (observer as in watcher - simple
+		chatters don't have an entry here, only in m_Sessions).
+		Sessions are added here after they have successfully requested observer
+		status.
+	*/
 	std::vector <CNetServerSession *> m_Observers;
+	
+	uint m_NumPlayers;
 	uint m_MaxObservers;
+
+	ENetServerState m_ServerState;
 
 	CGame *m_pGame;
 	CGameAttributes *m_pGameAttributes;
@@ -80,17 +99,17 @@ protected:
 	// Try to add the session as a newly connected player. If that is not
 	// possible, make the session an observer.
 	//
-	// Synchronized, safe to call from any thread
-	//
 	// Returns:
 	//	true. The session has been allocated a player slot
 	//	false: All player slots busy, the session should be made an observer
 	bool AddNewPlayer(CNetServerSession *pSession);
 
+	// Remove the session from all the relevant lists.
+	// NOTE: Currently unsafe to call for observers or players
+	void RemoveSession(CNetServerSession *pSession);
+
 	// Queue a command coming in from the wire. The command has been validated
 	// by the caller.
-	//
-	// Synchronized, safe from any thread
 	void QueueIncomingCommand(CNetMessage *pMsg);
 
 	// OVERRIDES FROM CServerSocket
@@ -106,14 +125,10 @@ protected:
 
 	// Ask the server if the session is allowed to start observing.
 	//
-	// Synchronized, safe to call from any thread
-	//
 	// Returns:
 	//	true if the session should be made an observer
 	//	false otherwise
 	virtual bool AllowObserver(CNetServerSession *pSession);
-
-	void BroadcastUnsafe(CNetMessage *);
 
 public:
 	CNetServer(CNetServerAttributes *pServerAttribs, CGame *pGame, CGameAttributes *pGameAttribs);

@@ -62,6 +62,8 @@ MORE INFO
 // Typedefs and Macros
 //-------------------------------------------------
 
+#define LOG_CAT_NET "net"
+
 typedef CLocker<std::deque <CNetMessage *> > CLockedMessageDeque;
 
 //-------------------------------------------------
