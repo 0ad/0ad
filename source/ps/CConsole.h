@@ -3,7 +3,7 @@
 #include <deque>
 #include <map>
 
-#include "res\font.h"
+#include "res/font.h"
 #include "ogl.h"
 #include "lib.h"
 #include "sdl.h"

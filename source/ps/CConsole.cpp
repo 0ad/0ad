@@ -2,7 +2,7 @@
 
 #include "CConsole.h"
 
-#include "prometheus.h"
+#include "Prometheus.h"
 #include "sysdep/sysdep.h"
 
 CConsole::CConsole(float X, float Y, float W, float H)
@@ -326,7 +326,8 @@ void CConsole::InsertChar(const int szChar)
 			if (IsEOB()) //are we at the end of the buffer?
 				m_szBuffer[m_iBufferPos] = szChar; //cat char onto end
 			else{ //we need to insert
-				for(int i=m_iBufferLength; i>m_iBufferPos; i--)
+				int i;
+				for(i=m_iBufferLength; i>m_iBufferPos; i--)
 					m_szBuffer[i] = m_szBuffer[i-1]; // move chars to right
 				m_szBuffer[i] = szChar;
 			}
@@ -345,7 +346,7 @@ void CConsole::InsertMessage(const char* szMessage, ...)
 	char* szBuffer = new char[BUFFER_SIZE];
 
 	va_start(args, szMessage);
-		_vsnprintf(szBuffer, BUFFER_SIZE, szMessage, args);
+		vsnprintf(szBuffer, BUFFER_SIZE, szMessage, args);
 	va_end(args);
 
 	m_deqMsgHistory.push_front(szBuffer);
@@ -358,7 +359,7 @@ void CConsole::SetBuffer(const char* szMessage, ...)
 	char* szBuffer = new char[BUFFER_SIZE];
 
 	va_start(args, szMessage);
-		_vsnprintf(szBuffer, BUFFER_SIZE, szMessage, args);
+		vsnprintf(szBuffer, BUFFER_SIZE, szMessage, args);
 	va_end(args);
 
 	FlushBuffer();
