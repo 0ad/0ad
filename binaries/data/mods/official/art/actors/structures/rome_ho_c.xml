@@ -7,7 +7,7 @@
 	<Name>Roman House C</Name>
 	<ModelName>art/meshes/structural/rome_ho_3.pmd</ModelName>
 	<TextureName>art/textures/skins/structural/rome_struct_1.dds</TextureName>
-	<Properties
+		<Properties
 		autoflatten="0"
 		castshadows="1"
 	></Properties>
@@ -25,5 +25,7 @@
 		<Prop attachpoint="grass04" model="Bush Highlands1"> </Prop>
 		<Prop attachpoint="shield1" model="Shield Roman Small 11"> </Prop>
 		<Prop attachpoint="shield2" model="Shield Roman Small 8"> </Prop>
+		<Prop attachpoint="pot1" model="Rome Basket E"> </Prop>
+		<Prop attachpoint="pot02" model="Rome Basket C"> </Prop>
 	</Props>
 </Object>
