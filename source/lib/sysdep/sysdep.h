@@ -46,11 +46,6 @@ void debug_microlog(const wchar_t *fmt, ...);
 
 extern void check_heap();
 
-// Probably only a temporary solution, since it needs to allow an
-// OpenGL fallback where pretty 32-bit cursors aren't supported
-// by the OS.
-extern void cursor_set(const char* filename);
-
 extern int clipboard_set(const wchar_t* text);
 extern wchar_t* clipboard_get();
 extern int clipboard_free(wchar_t* copy);

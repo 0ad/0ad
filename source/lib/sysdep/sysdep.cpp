@@ -41,15 +41,7 @@ void check_heap()
 }
 
 
-void cursor_set(const char* name)
-{
-	// TODO: Do a boring OpenGL cursor. Or find a way to
-	// use nice X cursors, because limiting mouse motion to the
-	// OpenGL framerate is a rather horrible thing to do.
-}
-
 #endif	// #ifndef _WIN32
-
 
 void debug_break()
 {

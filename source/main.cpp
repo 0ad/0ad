@@ -17,6 +17,7 @@
 #ifdef _M_IX86
 #include "sysdep/ia32.h"	// _control87
 #endif
+#include "lib/res/cursor.h"
 
 #include "ps/CConsole.h"
 
@@ -528,6 +529,9 @@ static void Render()
 	g_Mouseover.renderOverlays();
 	g_Selection.renderOverlays();
 
+	// Draw the cursor (or set the Windows cursor, on Windows)
+	cursor_draw("test");
+
 	// restore
 	glMatrixMode(GL_PROJECTION);
 	glPopMatrix();
@@ -546,6 +550,7 @@ static void Render()
 
 void UpdateWorld(float time)
 {
+	g_GUI.TickObjects();
 	g_Scheduler.update();
 	simulationTime += (size_t)( time * 1000.0f );
 	frameCount++;
@@ -730,6 +735,9 @@ static void psShutdown()
 
 	delete g_Console;
 
+	// disable the special Windows cursor, or free textures for OGL cursors
+	cursor_draw(NULL);
+
 	// close down Xerces if it was loaded
 	CXeromyces::Terminate();
 }
@@ -763,8 +771,6 @@ static void Shutdown()
 	delete &g_Renderer;
 
 	delete &g_ConfigDB;
-
-	cursor_set(NULL);
 }
 
 static void Init(int argc, char* argv[])
@@ -1028,8 +1034,6 @@ PREVTSC=CURTSC;
 static void Frame()
 {
 	MICROLOG(L"In frame");
-
-	cursor_set("test");
 
 #if defined(MOVIE_RECORD) || defined(MOVIE_CREATE)
 
