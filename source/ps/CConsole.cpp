@@ -517,7 +517,7 @@ int conInputHandler(const SDL_Event* ev)
 		return EV_PASS;
 
 	SDLKey sym = ev->key.keysym.sym;
-assert2(0);
+
 	// toggle
 	if(sym == SDLK_F1)
 	{
