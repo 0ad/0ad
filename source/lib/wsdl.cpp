@@ -27,6 +27,12 @@
 #include "win.h"
 #include "misc.h"
 
+#ifdef _MSC_VER
+#pragma comment(lib, "user32.lib")
+#pragma comment(lib, "gdi32.lib")
+#endif
+
+
 
 /* state */
 static bool app_active;		/* is window active & on top?
