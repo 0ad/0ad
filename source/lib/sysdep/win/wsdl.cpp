@@ -518,6 +518,16 @@ static int wsdl_shutdown()
 
 	gamma_swap(true);
 
+	if(fullscreen)
+		ChangeDisplaySettings(0, 0);
+
+	if(hGLRC != INVALID_HANDLE_VALUE)
+	{
+		wglMakeCurrent(0, 0);
+		wglDeleteContext(hGLRC);
+		hGLRC = (HGLRC)INVALID_HANDLE_VALUE;
+	}
+
 	if(hDC != INVALID_HANDLE_VALUE)
 	{
 		ReleaseDC(hWnd, hDC);
@@ -530,14 +540,6 @@ static int wsdl_shutdown()
 		hWnd = (HWND)INVALID_HANDLE_VALUE;
 	}
 
-	if(hGLRC != INVALID_HANDLE_VALUE)
-	{
-		wglMakeCurrent(0, 0);
-		wglDeleteContext(hGLRC);
-		ChangeDisplaySettings(0, 0);
-
-		hGLRC = (HGLRC)INVALID_HANDLE_VALUE;
-	}
 
 	return 0;
 }
