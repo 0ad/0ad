@@ -89,9 +89,7 @@ function setuppackage (projectname)
 
 	package.files = sourcesfromdirs(sourceroot, source_dirs)
 	
-	if (projectname ~= "sced") then
-		tinsert(package.files, sourceroot.."main.cpp")
-	end
+	tinsert(package.files, sourceroot.."main.cpp")
 
 	
 	include_dirs = {
