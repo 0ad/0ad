@@ -138,10 +138,13 @@ int ogl_get_gfx_info()
 	return 0;
 }
 
+
 const char* oglExtList()
 {
+	assert(exts && "call oglInit before using this function");
 	return exts;
 }
+
 
 // call after each video mode change
 void oglInit()
