@@ -760,6 +760,17 @@ int file_discard_io(FileIO* io)
 
 
 
+ssize_t lowio(int fd, bool is_write, off_t ofs, size_t size, void* buf)
+{
+	lseek(fd, ofs, SEEK_SET);
+
+	if(is_write)
+		return write(fd, buf, size);
+	else
+		return read (fd, buf, size);
+}
+
+
 
 
 // L3 cache: intended to cache raw compressed data, since files aren't aligned
@@ -805,22 +816,11 @@ static u64 block_make_id(const u32 fn_hash, const off_t ofs)
 }
 
 
+typedef std::pair<u64, void*> BlockCacheEntry;
 typedef std::map<u64, void*> BlockCache;
 typedef BlockCache::iterator BlockIt;
 static BlockCache block_cache;
 
-
-
-
-ssize_t lowio(int fd, bool is_write, off_t ofs, size_t size, void* buf)
-{
-	lseek(fd, ofs, SEEK_SET);
-
-	if(is_write)
-		return write(fd, buf, size);
-	else
-		return read (fd, buf, size);
-}
 
 
 
@@ -896,6 +896,28 @@ skip_issue:
 
 	return issue_size;
 }
+
+
+// remove all blocks loaded from the file <fn>. used when reloading the file.
+int file_invalidate_cache(const char* fn)
+{
+	// convert to native path to match fn_hash set by file_open
+	char n_fn[PATH_MAX];
+	file_make_native_path(fn, n_fn);
+
+	const u32 fn_hash = fnv_hash(fn);
+	// notes:
+	// - don't use remove_if, because std::pair doesn't have operator=.
+	// - erasing elements during loop is ok because map iterators aren't
+	//   invalidated.
+	for(BlockIt it = block_cache.begin(); it != block_cache.end(); ++it)
+		if((it->first >> 32) == fn_hash)
+			block_cache.erase(it);
+
+	return 0;
+}
+
+
 
 // the underlying aio implementation likes buffer and offset to be
 // sector-aligned; if not, the transfer goes through an align buffer,

@@ -1,7 +1,7 @@
 #include "precompiled.h"
 
 #include "res.h"
-#include "file.h"		// file_make_native_path
+#include "file.h"		// file_make_native_path, file_invalidate_cache
 #include "timer.h"
 #include "hotload.h"	// we implement that interface
 
@@ -10,9 +10,17 @@
 #include <string.h>
 
 
+// called from res_reload_changed_files and via console.
 int res_reload(const char* fn)
 {
+	// if <fn> currently maps to an archive, the VFS must switch
+	// over to using the loose file (that was presumably changed).
 	vfs_rebuild();
+
+	// invalidate this file's cached blocks to make sure its contents are
+	// loaded anew.
+	file_invalidate_cache(fn);
+
 	return h_reload(fn);
 }
 
@@ -31,51 +39,40 @@ int res_cancel_watch(const intptr_t watch)
 }
 
 
-// purpose of this routine (intended to be called once a frame):
-// file notification may come at any time. by forcing the reloads
-// to take place here, we don't require everything to be thread-safe.
+// get directory change notifications, and reload all affected files.
+// must be called regularly (e.g. once a frame). this is much simpler
+// than asynchronous notifications: everything would need to be thread-safe.
 int res_reload_changed_files()
 {
 	char n_path[PATH_MAX];
 	while(dir_get_changed_file(n_path) == 0)
 	{
+		// convert to VFS path
 		char p_path[PATH_MAX];
 		CHECK_ERR(file_make_full_portable_path(n_path, p_path));
 		char vfs_path[VFS_MAX_PATH];
 		CHECK_ERR(vfs_make_vfs_path(p_path, vfs_path));
 
-		const char* fn = vfs_path;
-
-		const char* ext = strrchr(fn, '.');
-
-		// slight optimization (and reduces output clutter):
-		// don't reload XMB output files
-		if(ext && !strcmp(ext, ".xmb"))
+		// various early-out checks that reduce debug output clutter,
+		// avoid the overhead of searching through all Handles, and
+		// try to eliminate repeated reloads:
+		const char* ext = strrchr(vfs_path, '.');
+		// .. ignore directory change notifications, because we get
+		// per-file notifications anyway. (note: assume no extension =>
+		// it's a directory). this also protects the strcmp calls below.
+		if(!ext)
+			continue;
+		// .. ignore files that can't be reloaded anyway.
+		if(!strcmp(ext, ".xmb"))
+			continue;
+		// .. skip temp files, because many apps save by creating a temp
+		// file, deleting the original, and renaming the temp file.
+		// => avoids 2 redundant reloads.
+		if(!strcmp(ext, ".tmp"))
 			continue;
 
-		// many apps save by creating a temp file, deleting the original,
-		// and renaming the temp file. that leads to 2 reloads, which is slow.
-		// so:
-		// .. ignore temp files,
-		if(ext && !strcmp(ext, ".tmp"))
-				continue;
-		// .. and directory change (more info is upcoming anyway)
-		if(!ext)	// dir changed
-			continue;
-		// .. and reloads for the same file within a small timeframe.
-		static double last_time;
-		static char last_fn[VFS_MAX_PATH];
-		double cur_time = get_time();
-		if(cur_time - last_time < 50e-3 && !strcmp(last_fn, fn))
-			continue;
-		strcpy(last_fn, fn);
-
-debug_out("res_reload %s\n\n", fn);
-		res_reload(fn);
-
-		// only update after reloading, so that long load times
-		// (or delay induced by debugging) don't trigger another reload.
-		last_time = get_time();
+		int ret = res_reload(vfs_path);
+		assert(ret == 0);
 	}
 
 	return 0;

@@ -121,6 +121,10 @@ extern int file_open(const char* fn, uint flags, File* f);
 extern int file_close(File* f);
 
 
+// remove all blocks loaded from the file <fn>. used when reloading the file.
+extern int file_invalidate_cache(const char* fn);
+
+
 //
 // asynchronous IO
 //
