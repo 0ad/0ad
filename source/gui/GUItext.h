@@ -276,6 +276,7 @@ public:
 	 * @param DefaultFont Default Font
 	 * @param from From character n,
 	 * @param to to chacter n.
+	 * @param FirstLine Whether this is the first line of text, to calculate its height correctly
 	 * 
 	 * pObject Only for Error outputting, optional! If NULL
 	 * then no Errors will be reported! Useful when you need
@@ -285,6 +286,7 @@ public:
 	void GenerateTextCall(SFeedback &Feedback,
 						  const CStr& DefaultFont,
 						  const int &from, const int &to,
+						  const bool FirstLine,
 						  const IGUIObject *pObject=NULL) const;
 
 	/**

@@ -621,6 +621,9 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 	int from=0;
 	bool done=false;
 
+	bool FirstLine = true;	// Necessary because text in the first line is shorter
+							// (it doesn't count the line spacing)
+
 	// Images on the left or the right side.
 	vector<SGenerateTextImage> Images[2];
 	int pos_last_img=-1;	// Position in the string where last img (either left or right) were encountered.
@@ -643,7 +646,8 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 
 		// Width and height of all text calls generated.
 		string.GenerateTextCall(Feedback, Font,
-								string.m_Words[i], string.m_Words[i+1]);
+								string.m_Words[i], string.m_Words[i+1],
+								FirstLine);
 
 		// Loop through our images queues, to see if images has been added.
 		
@@ -758,7 +762,8 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 				//  we want them to be reported in the final GenerateTextCall()
 				//  so that we don't get duplicates.
 				string.GenerateTextCall(Feedback2, Font,
-										string.m_Words[j], string.m_Words[j+1]);
+										string.m_Words[j], string.m_Words[j+1],
+										FirstLine);
 
 				// Append X value.
 				x += Feedback2.m_Size.cx;
@@ -788,7 +793,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 				// Defaults
 				string.GenerateTextCall(Feedback2, Font,
 										string.m_Words[j], string.m_Words[j+1], 
-										pObject);
+										FirstLine, pObject);
 
 				// Iterate all and set X/Y values
 				// Since X values are not set, we need to make an internal
@@ -855,6 +860,8 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 
 			// Update height of all
 			Text.m_Size.cy = MAX(Text.m_Size.cy, y+BufferZone);
+
+			FirstLine = false;
 
 			// Now if we entered as from = i, then we want
 			//  i being one minus that, so that it will become

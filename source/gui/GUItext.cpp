@@ -33,7 +33,8 @@ void CGUIString::SFeedback::Reset()
 
 void CGUIString::GenerateTextCall(SFeedback &Feedback,
 								  const CStr& DefaultFont,
-								  const int &from, const int &to, 
+								  const int &from, const int &to,
+								  const bool FirstLine,
 								  const IGUIObject *pObject) const
 {
 	// Reset width and height, because they will be determined with incrementation
@@ -199,6 +200,10 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 			int cx, cy;
 			CFont font (TextCall.m_Font);
 			font.CalculateStringSize(TextCall.m_String, cx, cy);
+			// For anything other than the first line, the line spacing
+			// needs to be considered rather than just the height of the text
+			if (! FirstLine)
+				cy = font.GetLineSpacing();
 
 			size.cx = (float)cx;
 			size.cy = (float)cy;

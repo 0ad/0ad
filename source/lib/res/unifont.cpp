@@ -1,5 +1,5 @@
 /*
-$Id: unifont.cpp,v 1.14 2004/08/27 22:07:34 philip Exp $
+$Id: unifont.cpp,v 1.15 2004/09/04 20:34:57 philip Exp $
 
 Unicode OpenGL texture font
   
@@ -34,11 +34,14 @@ glyphmap_id* BoundGlyphs = NULL;
 
 struct UniFont
 {
-	Handle ht; // handle to font texture
-	glyphmap_id* glyphs_id;
+	Handle ht; // Handle to font texture
+
+	glyphmap_id* glyphs_id; // Stored as pointers to keep the struct's size down. (sizeof(std::map)==12, though that's probably not enough to matter)
 	glyphmap_size* glyphs_size;
+
 	uint ListBase;
 	int LineSpacing;
+	int Height; // of a capital letter, roughly
 };
 
 H_TYPE_DEFINE(UniFont);
@@ -100,6 +103,11 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSEDPARAM(h))
 
 	FNTStream >> f->LineSpacing;
 
+	if (Version >= 101)
+		FNTStream >> f->Height;
+	else
+		f->Height = 0;
+
 	f->ListBase = glGenLists(NumGlyphs);
 	if (f->ListBase == 0) // My Voodoo2 drivers didn't support display lists (although I'd be surprised if they got this far)
 	{
@@ -109,8 +117,8 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSEDPARAM(h))
 
 	for (int i = 0; i < NumGlyphs; ++i)
 	{
-		int Codepoint, TextureX, TextureY, Width, Height, OffsetX, OffsetY, Advance;
-		FNTStream >> Codepoint >> TextureX >> TextureY >> Width >> Height >> OffsetX >> OffsetY >> Advance;
+		int          Codepoint, TextureX, TextureY, Width, Height, OffsetX, OffsetY, Advance;
+		FNTStream >> Codepoint>>TextureX>>TextureY>>Width>>Height>>OffsetX>>OffsetY>>Advance;
 
 		if (Codepoint > 0xffff)
 		{
@@ -118,10 +126,22 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSEDPARAM(h))
 			continue;
 		}
 
+		if (Version < 101 && Codepoint == 'I')
+		{
+			f->Height = Height;
+		}
+
 		GLfloat u = (GLfloat)TextureX / (GLfloat)TextureWidth;
 		GLfloat v = (GLfloat)TextureY / (GLfloat)TextureHeight;
 		GLfloat w = (GLfloat)Width  / (GLfloat)TextureWidth;
 		GLfloat h = (GLfloat)Height / (GLfloat)TextureHeight;
+
+		/*
+
+		It might be better to use vertex arrays instead of display lists,
+		but this works well enough for now.
+
+		*/
 
 		glNewList(f->ListBase+i, GL_COMPILE);
 			glBegin(GL_QUADS);
@@ -136,6 +156,8 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSEDPARAM(h))
 		(*f->glyphs_id)[(wchar_t)Codepoint] = (unsigned short)i;
 		(*f->glyphs_size)[(wchar_t)Codepoint] = Advance;
 	}
+
+	assert(f->Height); // Ensure the height has been found (which should always happen if the font includes an 'I')
 
 	// Load glyph texture
 	std::string FilenameTex = FilenameBase+".tga";  
@@ -184,16 +206,16 @@ int unifont_linespacing(const Handle h)
 
 void glwprintf(const wchar_t* fmt, ...)
 {
-	va_list args;
 	const int buf_size = 1024;
 	wchar_t buf[buf_size];
 
+	va_list args;
 	va_start(args, fmt);
 	if (vswprintf(buf, buf_size-1, fmt, args) < 0)
 		debug_out("glwprintf failed (buffer size exceeded?)\n");
 	va_end(args);
 
-	// Make sure there's always NULL termination
+	// Make sure there's always null termination
 	buf[buf_size-1] = 0;
 
 	assert(BoundGlyphs != NULL); // You always need to bind something first
@@ -211,11 +233,11 @@ void glwprintf(const wchar_t* fmt, ...)
 		
 		if (it == BoundGlyphs->end()) // Missing the missing glyph symbol - give up
 		{
-			debug_out("Missing the missing glyph in a unifont!\n");
+			debug_warn("Missing the missing glyph in a unifont!\n");
 			return;
 		}
 
-		buf[i] = (*it).second; // Replace with the display list offset
+		buf[i] = it->second; // Replace with the display list offset
 	}
 
 	// 0 glyphs -> nothing to do (avoid BoundsChecker warning)
@@ -232,7 +254,7 @@ int unifont_stringsize(const Handle h, const char* text, int& width, int& height
 	H_DEREF(h, UniFont, f);
 
 	width = 0;
-	height = f->LineSpacing;
+	height = f->Height;
 
 	size_t len = strlen(text);
 
@@ -245,11 +267,11 @@ int unifont_stringsize(const Handle h, const char* text, int& width, int& height
 
 		if (it == f->glyphs_size->end()) // Missing the missing glyph symbol - give up
 		{
-			debug_out("Missing the missing glyph in a unifont!\n");
+			debug_warn("Missing the missing glyph in a unifont!\n");
 			return 0;
 		}
 
-		width += (*it).second; // Add the character's advance distance
+		width += it->second; // Add the character's advance distance
 	}
 
 	return 0;
