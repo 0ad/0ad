@@ -415,6 +415,29 @@ struct ip_mreq
 	struct in_addr imr_interface;   /* interface to join on    */
 };
 
+// IPv6 Structures
+
+struct in_addr6 {
+	unsigned char 		s6_addr[16];
+};
+
+struct sockaddr_in6 {
+	sa_family_t			sin6_family;     /* AF_INET6 */
+	in_port_t			sin6_port;       /* Transport level port number */
+	unsigned long		sin6_flowinfo;   /* IPv6 flow information */
+	struct in_addr6		sin6_addr;       /* IPv6 address */
+	unsigned long		sin6_scope_id;   /* set of interfaces for a scope */
+};
+
+// IPv6 Defines and Constants
+
+extern const struct in6_addr in6addr_any;        /* :: */
+extern const struct in6_addr in6addr_loopback;   /* ::1 */
+#define IN6ADDR_ANY_INIT { { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 } } }
+#define IN6ADDR_LOOPBACK_INIT { { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 } } }
+
+#define INET6_ADDRSTRLEN 46
+
 //
 // <netdb.h>
 //
