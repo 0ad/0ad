@@ -39,25 +39,33 @@ extern u64 rdtsc();
 
 extern uint _control87(uint new_cw, uint mask);
 
-
-enum
+// CPU caps (128 bits)
+// do not change the order! (breaks cpuid())
+enum CpuCap
 {
-	TSC  = BIT(4),
-	CMOV = BIT(15),
-	MMX  = BIT(23),
-	SSE  = BIT(25),
-	SSE2 = BIT(26),
-	HT   = BIT(28)
+	// standard (ecx)
+	// currently only defined by Intel
+	SSE3 = 0+0,	// Streaming SIMD Extensions 3
+	EST  = 0+7,	// Enhanced Speedstep Technology
+
+	// standard (edx)
+	TSC  = 32+4,	// TimeStamp Counter
+	CMOV = 32+15,	// Conditional MOVe
+	MMX  = 32+23,	// MultiMedia eXtensions
+	SSE  = 32+25,	// Streaming SIMD Extensions
+	SSE2 = 32+26,	// Streaming SIMD Extensions 2
+	HT   = 32+28,	// HyperThreading
+
+	// extended (ecx)
+
+	// extended (edx)
+	// currently only defined by AMD
+	MP         = 96+19,	// MultiProcessing capable; reserved on AMD64
+	_3DNOW_PRO = 96+30,
+	_3DNOW     = 96+31
 };
 
-extern long cpu_caps;
-
-// define instead of enum to avoid stupid sign conversion warning
-#define EXT_MP_CAPABLE BIT(19)
-#define	EXT_3DNOW_PRO  BIT(30)
-#define EXT_3DNOW      BIT(31)
-
-extern long cpu_ext_caps;
+extern bool ia32_cpu_cap(CpuCap cap);
 
 
 extern void ia32_get_cpu_info();

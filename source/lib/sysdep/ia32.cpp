@@ -101,27 +101,30 @@ __asm
 }
 
 
-long cpu_caps = 0;
-long cpu_ext_caps = 0;
+//
+// data returned by cpuid()
+// each function using this data must call cpuid (no-op if already called)
+//
 
+static char vendor_str[13];
+static int family, model, ext_family;
+	// used in manual cpu_type detect
 
-enum CpuVendor { UNKNOWN, INTEL, AMD };
-static CpuVendor cpu_vendor = UNKNOWN;
-static char cpu_vendor_str[13];
-static int family, model, ext_family;	// used to detect cpu_type
+// caps
+// treated as 128 bit field; order: std ecx, std edx, ext ecx, ext edx
+// keep in sync with enum CpuCap and cpuid() code!
+u32 caps[4];
 
 static int have_brand_string = 0;
+	// if false, need to detect cpu_type manually.
 	// int instead of bool for easier setting from asm
 
-static bool hyperthreading_supported;
-
-
-// optimized for size
+// (optimized for size)
 static void __declspec(naked) cpuid()
 {
 __asm
 {
-	pushad
+	pushad										; save ebx, esi, edi, ebp
 		; ICC7: pusha is the 16-bit form!
 
 ; make sure CPUID is supported
@@ -136,7 +139,7 @@ __asm
 ; get vendor string
 	xor			eax, eax
 	cpuid
-	mov			edi, offset cpu_vendor_str
+	mov			edi, offset vendor_str
 	xchg		eax, ebx
 	stosd
 	xchg		eax, edx
@@ -149,7 +152,8 @@ __asm
 	push		1
 	pop			eax
 	cpuid
-	mov			[cpu_caps], edx
+	mov			[caps+0], ecx
+	mov			[caps+4], edx
 	movzx		edx, al
 	shr			edx, 4
 	mov			[model], edx					; eax[7:4]
@@ -194,7 +198,8 @@ no_brand_str:
 ; get extended feature flags
 	lea			eax, [esi-3]					; 0x80000001
 	cpuid
-	mov			[cpu_ext_caps], edx
+	mov			[caps+8], ecx
+	mov			[caps+12], edx
 
 no_ext_funcs:
 
@@ -204,6 +209,29 @@ no_cpuid:
 	ret
 }	// __asm
 }	// cpuid()
+
+
+bool ia32_cap(CpuCap cap)
+{
+	u32 idx = cap >> 5;
+	if(idx > 3)
+	{
+		debug_warn("cap invalid");
+		return false;
+	}
+	u32 bit = 1ul << (cap & 0x1f);
+
+	return (caps[idx] & bit) != 0;
+}
+
+
+
+enum Vendor { UNKNOWN, INTEL, AMD };
+static Vendor vendor = UNKNOWN;
+
+
+
+
 
 
 static void get_cpu_type()
@@ -218,7 +246,7 @@ static void get_cpu_type()
 		// "Unknow[n] CPU Type" on CPUs the BIOS doesn't recognize.
 		// in that case, we ignore the brand string and detect manually.
 	{
-		if(cpu_vendor == AMD)
+		if(vendor == AMD)
 		{
 			// everything else is either too old, or should have a brand string.
 			if(family == 6)
@@ -229,14 +257,14 @@ static void get_cpu_type()
 					strcpy(cpu_type, "AMD Athlon");
 				else
 				{
-					if(cpu_ext_caps & EXT_MP_CAPABLE)
+					if(ia32_cap(MP))
 						strcpy(cpu_type, "AMD Athlon MP");
 					else
 						strcpy(cpu_type, "AMD Athlon XP");
 				}
 			}
 		}
-		else if(cpu_vendor == INTEL)
+		else if(vendor == INTEL)
 		{
 			// everything else is either too old, or should have a brand string.
 			if(family == 6)
@@ -284,7 +312,7 @@ static void measure_cpu_freq()
 	// measure CPU frequency.
 	// balance measuring time (~ 10 ms) and accuracy (< 1 0/00 error -
 	// ok for using the TSC as a time reference)
-	if(cpu_caps & TSC)	// needed to calculate freq; bogomips are a WAG
+	if(ia32_cap(TSC))	// needed to calculate freq; bogomips are a WAG
 	{
 		// stabilize CPUID for timing (first few calls take longer)
 		__asm cpuid __asm cpuid __asm cpuid
@@ -341,8 +369,8 @@ again:
 		cpu_freq = sum / (hi-lo);
 
 		// HACK: if _WIN32, the HRT makes its final implementation choice
-		// in the first calibrate call where cpu_freq and cpu_caps are
-		// available. call wtime_reset_impl here to have that happen now,
+		// in the first calibrate call where cpu_freq is available.
+		// call wtime_reset_impl here to have that happen now,
 		// so app code isn't surprised by a timer change, although the HRT
 		// does try to keep the timer continuous.
 #ifdef _WIN32
@@ -381,7 +409,7 @@ static void check_hyperthread()
 	// on other CPUs in future. haven't come across a processor that
 	// incorrectly sets the HT feature bit.
 
-	if(!(cpu_caps & HT))
+	if(!ia32_cap(HT))
 		return;
 
 	// get number of logical CPUs per package
@@ -403,17 +431,24 @@ static void check_hyperthread()
 }
 
 
+static void check_speedstep()
+{
+	if(vendor == INTEL)
+	{
+	}
+}
+
 void ia32_get_cpu_info()
 {
 	cpuid();
-	if(cpu_caps == 0)	// cpuid not supported - can't do the rest
+	if(family == 0)	// cpuid not supported - can't do the rest
 		return;
 
 	// (for easier comparison)
-	if(!strcmp(cpu_vendor_str, "AuthenticAMD"))
-		cpu_vendor = AMD;
-	else if(!strcmp(cpu_vendor_str, "GenuineIntel"))
-		cpu_vendor = INTEL;
+	if(!strcmp(vendor_str, "AuthenticAMD"))
+		vendor = AMD;
+	else if(!strcmp(vendor_str, "GenuineIntel"))
+		vendor = INTEL;
 
 	get_cpu_type();
 	measure_cpu_freq();
