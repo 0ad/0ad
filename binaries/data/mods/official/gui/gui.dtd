@@ -27,7 +27,8 @@
 <!-- Defaults are not put in here, because it ruins the concept of styles -->
 
 <!ENTITY % ex_settings
- "checked				%bool; #IMPLIED
+ "buffer-zone				CDATA #IMPLIED
+  checked				%bool; #IMPLIED
   font					CDATA #IMPLIED
   hotkey				CDATA #IMPLIED
   input-initvalue-destroyed-at-focus	%bool; #IMPLIED
