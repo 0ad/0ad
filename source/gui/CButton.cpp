@@ -70,7 +70,7 @@ void CButton::HandleMessage(const SGUIMessage &Message)
 	// Important
 	IGUIButtonBehavior::HandleMessage(Message);
 	IGUITextOwner::HandleMessage(Message);
-
+/*
 	switch (Message.type)
 	{
 	case GUIM_PRESSED:
@@ -80,6 +80,7 @@ void CButton::HandleMessage(const SGUIMessage &Message)
 	default:
 		break;
 	}
+*/
 }
 
 void CButton::Draw() 

@@ -20,37 +20,36 @@ gee@pyro.nu
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "gui"
 
+extern bool keys[SDLK_LAST];
+extern bool mouseButtons[5];
+
 using namespace std;
 
 //-------------------------------------------------------------------
 //  Constructor / Destructor
 //-------------------------------------------------------------------
-CInput::CInput() : m_iBufferPos(0)
+CInput::CInput() : m_iBufferPos(-1), m_iBufferPos_Tail(-1), m_SelectingText(false), m_HorizontalScroll(0.f)
 {
 	AddSetting(GUIST_float,					"buffer_zone");
 	AddSetting(GUIST_CStrW,					"caption");
+	AddSetting(GUIST_int,					"cell_id");
 	AddSetting(GUIST_CStr,					"font");
+	AddSetting(GUIST_int,					"max_length");
+	AddSetting(GUIST_bool,					"multiline");
 	AddSetting(GUIST_bool,					"scrollbar");
 	AddSetting(GUIST_CStr,					"scrollbar_style");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
-	AddSetting(GUIST_int,					"cell_id");
+	AddSetting(GUIST_CGUISpriteInstance,	"sprite_selectarea");
 	AddSetting(GUIST_CColor,				"textcolor");
+	AddSetting(GUIST_CColor,				"textcolor_selected");
 	AddSetting(GUIST_CStr,					"tooltip");
 	AddSetting(GUIST_CStr,					"tooltip_style");
-	// TODO Gee: (2004-08-14)
-	//  Add a setting for buffer zone
-	//AddSetting(GUIST_int,			"
-
-	//GUI<bool>::SetSetting(this, "ghost", true);
-	GUI<bool>::SetSetting(this, "scrollbar", false);
 
 	// Add scroll-bar
 	CGUIScrollBarVertical * bar = new CGUIScrollBarVertical();
 	bar->SetRightAligned(true);
 	bar->SetUseEdgeButtons(true);
 	AddScrollBar(bar);
-
-	UpdateText(); // will create an empty row, just so we have somewhere to position the insertion marker
 }
 
 CInput::~CInput()
@@ -91,107 +90,345 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 	}
 	else if (ev->type == SDL_KEYDOWN)
 	{
-
 		int szChar = ev->key.keysym.sym;
 		wchar_t cooked = (wchar_t)ev->key.keysym.unicode;
 
-		switch (szChar){
-			//TODOcase '\r':
-		/*	case '\n':
-				// TODO Gee: (2004-09-07) New line? I should just add '\n'
-				*pCaption += wchar_t('\n');
-				++m_iBufferPos;
-				break;
-	*/
-		/*	case '\r':
-				// TODO Gee: (2004-09-07) New line? I should just add '\n'
-				*pCaption += wchar_t('\n');
-				++m_iBufferPos;
-				break;
-	*/
+		switch (szChar)
+		{
 			case '\t':
 				/* Auto Complete */
 				// TODO Gee: (2004-09-07) What to do with tab?
 				break;
 
 			case '\b':
-				// TODO Gee: (2004-09-07) What is this?
-				if (pCaption->Length() == 0 ||
-					m_iBufferPos == 0)
-					break;
+				m_WantedX=0.f;
 
-				if (m_iBufferPos == pCaption->Length())
-					*pCaption = pCaption->Left( (long) pCaption->Length()-1);
+				if (SelectingText())
+					DeleteCurSelection();
 				else
-					*pCaption = pCaption->Left( m_iBufferPos-1 ) + 
-								pCaption->Right( (long) pCaption->Length()-m_iBufferPos );
+				{
+					m_iBufferPos_Tail = -1;
 
-				UpdateText(m_iBufferPos-1, m_iBufferPos, m_iBufferPos-1);
-				
-				--m_iBufferPos;
+					if (pCaption->Length() == 0 ||
+						m_iBufferPos == 0)
+						break;
+
+					if (m_iBufferPos == pCaption->Length())
+						*pCaption = pCaption->Left( (long) pCaption->Length()-1);
+					else
+						*pCaption = pCaption->Left( m_iBufferPos-1 ) + 
+									pCaption->Right( (long) pCaption->Length()-m_iBufferPos );
+
+					UpdateText(m_iBufferPos-1, m_iBufferPos, m_iBufferPos-1);
+					
+					--m_iBufferPos;
+				}
+
+				UpdateAutoScroll();
 				break;
 
 			case SDLK_DELETE:
-				if (pCaption->Length() == 0 ||
-					m_iBufferPos == pCaption->Length())
-					break;
+				m_WantedX=0.f;
+				// If selection:
+				if (SelectingText())
+				{
+					DeleteCurSelection();
+				}
+				else
+				{
+					if (pCaption->Length() == 0 ||
+						m_iBufferPos == pCaption->Length())
+						break;
 
-				*pCaption = pCaption->Left( m_iBufferPos ) + 
-							pCaption->Right( (long) pCaption->Length()-(m_iBufferPos+1) );
+					*pCaption = pCaption->Left( m_iBufferPos ) + 
+								pCaption->Right( (long) pCaption->Length()-(m_iBufferPos+1) );
 
-				UpdateText(m_iBufferPos, m_iBufferPos+1, m_iBufferPos);
+					UpdateText(m_iBufferPos, m_iBufferPos+1, m_iBufferPos);
+				}
+
+				UpdateAutoScroll();
 				break;
 
 			case SDLK_HOME:
+				// If there's not a selection, we should create one now
+				if (!keys[SDLK_RSHIFT] && !keys[SDLK_LSHIFT])
+				{
+					// Make sure a selection isn't created.
+					m_iBufferPos_Tail = -1;
+				}
+				else if (!SelectingText())
+				{
+					// Place tail at the current point:
+					m_iBufferPos_Tail = m_iBufferPos;
+				}
+
 				m_iBufferPos = 0;
+				m_WantedX=0.f;
+
+				UpdateAutoScroll();
 				break;
 
 			case SDLK_END:
+				// If there's not a selection, we should create one now
+				if (!keys[SDLK_RSHIFT] && !keys[SDLK_LSHIFT])
+				{
+					// Make sure a selection isn't created.
+					m_iBufferPos_Tail = -1;
+				}
+				else if (!SelectingText())
+				{
+					// Place tail at the current point:
+					m_iBufferPos_Tail = m_iBufferPos;
+				}
+
 				m_iBufferPos = (long) pCaption->Length();
+				m_WantedX=0.f;
+
+				UpdateAutoScroll();
 				break;
 
+			/**
+				Conventions for Left/Right when text is selected:
+
+				References:
+
+				Visual Studio
+					Visual Studio has the 'newer' approach, used by newer versions of
+					things, and in newer applications. A left press will always place
+					the pointer on the left edge of the selection, and then of course
+					remove the selection. Right will do the exakt same thing.
+					If you have the pointer on the right edge and press right, it will
+					in other words just remove the selection.
+
+				Windows (eg. Notepad)
+					A left press always takes the pointer a step to the left and
+					removes the selection as if it were never there in the first place.
+					Right of course does the same thing but to the right.
+
+				I chose the Visual Studio convention. Used also in Word, gtk 2.0, MSN
+				Messenger.
+
+			**/
 			case SDLK_LEFT:
-				if (m_iBufferPos) 
-					--m_iBufferPos;
+				// reset m_WantedX, very important
+				m_WantedX=0.f;
+
+				if (keys[SDLK_RSHIFT] || keys[SDLK_LSHIFT] ||
+					!SelectingText())
+				{
+					// If there's not a selection, we should create one now
+					if (!SelectingText() && !keys[SDLK_RSHIFT] && !keys[SDLK_LSHIFT])
+					{
+						// Make sure a selection isn't created.
+						m_iBufferPos_Tail = -1;
+					}
+					else if (!SelectingText())
+					{
+						// Place tail at the current point:
+						m_iBufferPos_Tail = m_iBufferPos;
+					}
+
+					if (m_iBufferPos) 
+						--m_iBufferPos;
+				}
+				else
+				{
+					if (m_iBufferPos_Tail < m_iBufferPos)
+						m_iBufferPos = m_iBufferPos_Tail;
+
+					m_iBufferPos_Tail = -1;
+				}
+
+				UpdateAutoScroll();
 				break;
 
 			case SDLK_RIGHT:
-				if (m_iBufferPos != pCaption->Length())
-					++m_iBufferPos;
+				m_WantedX=0.f;
+
+				if (keys[SDLK_RSHIFT] || keys[SDLK_LSHIFT] || 
+					!SelectingText())
+				{
+					// If there's not a selection, we should create one now
+					if (!SelectingText() && !keys[SDLK_RSHIFT] && !keys[SDLK_LSHIFT])
+					{
+						// Make sure a selection isn't created.
+						m_iBufferPos_Tail = -1;
+					}
+					else if (!SelectingText())
+					{
+						// Place tail at the current point:
+						m_iBufferPos_Tail = m_iBufferPos;
+					}
+
+
+					if (m_iBufferPos != pCaption->Length())
+						++m_iBufferPos;
+				}
+				else
+				{
+					if (m_iBufferPos_Tail > m_iBufferPos)
+						m_iBufferPos = m_iBufferPos_Tail;
+
+					m_iBufferPos_Tail = -1;
+				}			
+
+				UpdateAutoScroll();
 				break;
 
+			/**
+				Conventions for Up/Down when text is selected:
+
+				References:
+
+				Visual Studio
+					Visual Studio has a very strange approach, down takes you below the
+					selection to the next row, and up to the one prior to the whole
+					selection. The weird part is that it is always aligned as the
+					'pointer'. I decided this is to much work for something that is
+					a bit arbitrary
+
+				Windows (eg. Notepad)
+					Just like with left/right, the selection is destroyed and it moves
+					just as if there never were a selection.
+
+				I chose the Notepad convention even though I use the VS convention with
+				left/right.
+
+			**/
 			case SDLK_UP:
-				/*if (m_deqBufHistory.size() && iHistoryPos != (int)m_deqBufHistory.size() - 1)
+			{
+				// If there's not a selection, we should create one now
+				if (!keys[SDLK_RSHIFT] && !keys[SDLK_LSHIFT])
 				{
-					iHistoryPos++;
-					SetBuffer(m_deqBufHistory.at(iHistoryPos).data());
-				}*/
+					// Make sure a selection isn't created.
+					m_iBufferPos_Tail = -1;
+				}
+				else if (!SelectingText())
+				{
+					// Place tail at the current point:
+					m_iBufferPos_Tail = m_iBufferPos;
+				}
+
+				list<SRow>::iterator current = m_CharacterPositions.begin();
+				while (current != m_CharacterPositions.end())
+				{
+					if (m_iBufferPos >= current->m_ListStart &&
+						m_iBufferPos <= current->m_ListStart+current->m_ListOfX.size())
+						break;
+					
+					++current;
+				}
+
+				float pos_x;
+
+				if (m_iBufferPos-current->m_ListStart == 0)
+					pos_x = 0.f;
+				else
+					pos_x = current->m_ListOfX[m_iBufferPos-current->m_ListStart-1];
+
+				if (m_WantedX > pos_x)
+					pos_x = m_WantedX;
+
+				// Now change row:
+				if (current != m_CharacterPositions.begin())
+				{
+					--current;
+
+					// Find X-position:
+					m_iBufferPos = current->m_ListStart + GetXTextPosition(current, pos_x, m_WantedX);
+				}
+				// else we can't move up
+				
+				UpdateAutoScroll();
+			}
 				break;
 
 			case SDLK_DOWN:
-				/*if (iHistoryPos != -1) iHistoryPos--;
+			{
+				// If there's not a selection, we should create one now
+				if (!keys[SDLK_RSHIFT] && !keys[SDLK_LSHIFT])
+				{
+					// Make sure a selection isn't created.
+					m_iBufferPos_Tail = -1;
+				}
+				else if (!SelectingText())
+				{
+					// Place tail at the current point:
+					m_iBufferPos_Tail = m_iBufferPos;
+				}
 
-				if (iHistoryPos != -1)
-					SetBuffer(m_deqBufHistory.at(iHistoryPos).data());
-				else FlushBuffer();*/
+				list<SRow>::iterator current = m_CharacterPositions.begin();
+				while (current != m_CharacterPositions.end())
+				{
+					if (m_iBufferPos >= current->m_ListStart &&
+						m_iBufferPos <= current->m_ListStart+current->m_ListOfX.size())
+						break;
+					
+					++current;
+				}
+
+				float pos_x;
+
+				if (m_iBufferPos-current->m_ListStart == 0)
+					pos_x = 0.f;
+				else
+					pos_x = current->m_ListOfX[m_iBufferPos-current->m_ListStart-1];
+
+				if (m_WantedX > pos_x)
+					pos_x = m_WantedX;
+
+				// Now change row:
+				// Add first, so we can check if it's .end()
+				++current;
+				if (current != m_CharacterPositions.end())
+				{
+					// Find X-position:
+					m_iBufferPos = current->m_ListStart + GetXTextPosition(current, pos_x, m_WantedX);
+				}
+				// else we can't move up
+
+				UpdateAutoScroll();
+			}
 				break;
 
 			case SDLK_PAGEUP:
-				//if (m_iMsgHistPos != (int)m_deqMsgHistory.size()) m_iMsgHistPos++;
+				GetScrollBar(0).ScrollMinusPlenty();
 				break;
 
 			case SDLK_PAGEDOWN:
-				//if (m_iMsgHistPos != 1) m_iMsgHistPos--;
+				GetScrollBar(0).ScrollPlusPlenty();
 				break;
 			/* END: Message History Lookup */
 
 			case '\r':
+				// 'Return' should do nothing for singe liners
+				//  otherwise a '\n' character will be added.
+				{
+				bool multiline;
+				GUI<bool>::GetSetting(this, "multiline", multiline);
+				if (!multiline)
+					break;
+
 				cooked = '\n'; // Change to '\n' and do default:
 				// NOTE: Fall-through
-
+				}
 			default: //Insert a character
+				{
+				// If there's a selection, delete if first.
 				if (cooked == 0)
 					return EV_PASS; // Important, because we didn't use any key
+
+				// check max length
+				int max_length;
+				GUI<int>::GetSetting(this, "max_length", max_length);
+				if (max_length != 0 && pCaption->Length() >= max_length)
+					break;
+
+				m_WantedX=0.f;
+
+				if (SelectingText())
+					DeleteCurSelection();
+				m_iBufferPos_Tail = -1;
 
 				if (m_iBufferPos == pCaption->Length())
 					*pCaption += cooked;
@@ -203,20 +440,13 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 
 				++m_iBufferPos;
 
-				// TODO
-				//UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+4);
-
-				//m_iBufferPos+=4;
-
+				UpdateAutoScroll();
+				}
 				break;
 		}
-
-		//UpdateText();
-
-		return EV_HANDLED;
 	}
-	
-	return EV_PASS;
+
+	return EV_HANDLED;
 }
 
 void CInput::HandleMessage(const SGUIMessage &Message)
@@ -227,16 +457,17 @@ void CInput::HandleMessage(const SGUIMessage &Message)
 	switch (Message.type)
 	{
 	case GUIM_SETTINGS_UPDATED:
+		{
 		bool scrollbar;
 		GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
 
 		// Update scroll-bar
 		// TODO Gee: (2004-09-01) Is this really updated each time it should?
 		if (scrollbar && 
-			(Message.value == CStr("size") || Message.value == CStr("z") ||
+		    (Message.value == CStr("size") || 
+			 Message.value == CStr("z") ||
 			 Message.value == CStr("absolute")))
-		{
-			
+		{		
 			GetScrollBar(0).SetX( m_CachedActualSize.right );
 			GetScrollBar(0).SetY( m_CachedActualSize.top );
 			GetScrollBar(0).SetZ( GetBufferedZ() );
@@ -252,82 +483,95 @@ void CInput::HandleMessage(const SGUIMessage &Message)
 			GetScrollBar(0).SetScrollBarStyle( scrollbar_style );
 		}
 
-		if (Message.value == CStr("caption"))
+		if (Message.value == CStr("size") || 
+			Message.value == CStr("z") ||
+			Message.value == CStr("font") || 
+			Message.value == CStr("absolute") ||
+			Message.value == CStr("caption") ||
+			Message.value == CStr("scrollbar") ||
+			Message.value == CStr("scrollbar_style"))
 		{
 			UpdateText();
 		}
 
-		break;
+		if (Message.value == CStr("multiline"))
+		{
+			bool multiline;
+			GUI<bool>::GetSetting(this, "multiline", multiline);
+
+			if (multiline == false)
+			{
+				GetScrollBar(0).SetLength(0.f);
+			}
+			else
+			{
+				GetScrollBar(0).SetLength( m_CachedActualSize.bottom - m_CachedActualSize.top );
+			}
+
+			UpdateText();
+		}
+		
+		}break;
 
 	case GUIM_MOUSE_PRESS_LEFT:
+		// Check if we're selecting the scrollbar:
+		{
+		bool scrollbar, multiline;
+		GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
+		GUI<bool>::GetSetting(this, "multiline", multiline);
+
+		if (GetScrollBar(0).GetStyle() && multiline)
+		{
+			if (GetMousePos().x > m_CachedActualSize.right - GetScrollBar(0).GetStyle()->m_Width)
+				break;
+		}
+
 		// Okay, this section is about pressing the mouse and
 		//  choosing where the point should be placed. For
 		//  instance, if we press between a and b, the point
 		//  should of course be placed accordingly. Other
 		//  special cases are handled like the input box norms.
+		if (keys[SDLK_RSHIFT] || keys[SDLK_LSHIFT])
 		{
-
-		CPos mouse = GetMousePos();
-
-		// Pointer to caption, will come in handy
-		CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
-
-		// Now get the height of the font.
-		CFont font ("Console");
-
-		float spacing = (float)font.GetLineSpacing();
-		float height = (float)font.GetHeight();
-
-		// Change mouse position relative to text.
-		//  Include scrolling.
-		mouse -= m_CachedActualSize.TopLeft();
-
-		//if ((m_CharacterPositions.size()-1) * spacing + height < mouse.y)
-		//	m_iBufferPos = pCaption->Length();
-		int row = (int)(mouse.y / spacing);//m_CharachterPositions.size()
-
-		if (row > (int)m_CharacterPositions.size()-1)
-			row = (int)m_CharacterPositions.size()-1;
-
-		// TODO Gee (2004-11-21): Okay, I need a 'list' for some reasons, but I would really
-		//  be able to get the specific element here. This is hopefully a temporary hack.
-
-		list<SRow>::iterator current = m_CharacterPositions.begin();
-		advance(current, row);
-
-		//m_iBufferPos = m_CharacterPositions.get.m_ListStart;
-		m_iBufferPos = current->m_ListStart;
-
-		// Okay, no loop through the glyphs to find the appropriate X position
-		float previous=0.f;
-		int i=0;
-		for (vector<float>::iterator it=current->m_ListOfX.begin();
-			 it!=current->m_ListOfX.end();
-			 ++it, ++i)
-		{
-			if (*it >= mouse.x)
-			{
-				if (i != 0)
-				{
-					if (mouse.x - previous > *it - mouse.x)
-						m_iBufferPos += i+1;
-					else
-						m_iBufferPos += i;
-				}
-				// else let the value be current->m_ListStart which it already is.
-
-				// check if the previous or the current is closest.
-				break;
-			}
-			previous = *it;
+			m_iBufferPos = GetMouseHoveringTextPosition();
 		}
-		// If a position wasn't found, we will assume the last
-		//  character of that line.
-		if (i == current->m_ListOfX.size())
-			m_iBufferPos += i;
+		else
+		{
+			m_iBufferPos = m_iBufferPos_Tail = GetMouseHoveringTextPosition();
+		}
+
+		m_SelectingText = true;
+		
+		UpdateAutoScroll();
+
+		// If we immediately release the button it will just be seen as a click
+		//  for the user though.
+
+		}break;
+
+	case GUIM_MOUSE_RELEASE_LEFT:
+		if (m_SelectingText)
+		{
+			m_SelectingText = false;
+		}
+		break;
+	case GUIM_MOUSE_MOTION:
+		// If we just pressed down and started to move before releasing
+		//  this is one way of selecting larger portions of text.
+		if (m_SelectingText)
+		{
+			// Actually, first we need to re-check that the mouse button is
+			//  really pressed (it can be released while outside the control.
+			if (!mouseButtons[SDL_BUTTON_LEFT])
+				m_SelectingText = false;
+			else
+				m_iBufferPos = GetMouseHoveringTextPosition();
+
+			UpdateAutoScroll();
+		}
 
 		break;
-		}
+
 	case GUIM_MOUSE_WHEEL_DOWN:
 		GetScrollBar(0).ScrollMinus();
 		// Since the scroll was changed, let's simulate a mouse movement
@@ -343,14 +587,28 @@ void CInput::HandleMessage(const SGUIMessage &Message)
 		break;
 
 	case GUIM_LOAD:
-		//SetFocus();
+		{
+		GetScrollBar(0).SetX( m_CachedActualSize.right );
+		GetScrollBar(0).SetY( m_CachedActualSize.top );
+		GetScrollBar(0).SetZ( GetBufferedZ() );
+		GetScrollBar(0).SetLength( m_CachedActualSize.bottom - m_CachedActualSize.top );
+
+		CStr scrollbar_style;
+		GUI<CStr>::GetSetting(this, "scrollbar_style", scrollbar_style);
+		GetScrollBar(0).SetScrollBarStyle( scrollbar_style );
+
+		UpdateText();
+		}
+		break;
 
 	case GUIM_GOT_FOCUS:
-		m_iBufferPos = 0;
+		//m_iBufferPos = 0; // TODO, a keeper?
+		
 		break;
 
 	case GUIM_LOST_FOCUS:
 		m_iBufferPos = -1;
+		m_iBufferPos_Tail = -1;
 		break;
 
 	default:
@@ -364,31 +622,48 @@ void CInput::Draw()
 
 	// First call draw on ScrollBarOwner
 	bool scrollbar;
+	float buffer_zone;
+	bool multiline;
 	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
+	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
+	GUI<bool>::GetSetting(this, "multiline", multiline);
 
-	if (scrollbar)
+	if (scrollbar && multiline)
 	{
 		// Draw scrollbar
 		IGUIScrollBarOwner::Draw();
 	}
 
 	if (GetGUI())
-	{
-		CGUISpriteInstance *sprite;
+	{	
+		CStr font_name;
+		CColor color, color_selected;
+		//CStrW caption;
+		GUI<CStr>::GetSetting(this, "font", font_name);
+		GUI<CColor>::GetSetting(this, "textcolor", color);
+		GUI<CColor>::GetSetting(this, "textcolor_selected", color_selected);
+		
+		// Get pointer of caption, it might be very large, and we don't
+		//  want to copy it continuously.
+		CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
+
+		CGUISpriteInstance *sprite=NULL, *sprite_selectarea=NULL;
 		int cell_id;
+		
 		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
+		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_selectarea", sprite_selectarea);
+	
 		GUI<int>::GetSetting(this, "cell_id", cell_id);
 
 		GetGUI()->DrawSprite(*sprite, cell_id, bz, m_CachedActualSize);
 
 		float scroll=0.f;
-		if (scrollbar)
+		if (scrollbar && multiline)
 		{
 			scroll = GetScrollBar(0).GetPos();
 		}
 
-		CColor color (1.f, 1.f, 1.f, 1.f);
-		GUI<CColor>::GetSetting(this, "textcolor", color);
+		CFont *font=NULL;
 
 		glEnable(GL_TEXTURE_2D);
 		glDisable(GL_CULL_FACE);
@@ -399,68 +674,322 @@ void CInput::Draw()
 
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
-		CFont font ("Console");
-		font.Bind();
+		font = new CFont(font_name);
+		font->Bind();
 
 		glPushMatrix();
 
-		CStrW caption;
-		GUI<CStrW>::GetSetting(this, "caption", caption);
+
+		// These are useful later.
+		int VirtualFrom, VirtualTo;
+
+		if (m_iBufferPos_Tail >= m_iBufferPos)
+		{
+			VirtualFrom = m_iBufferPos;
+			VirtualTo = m_iBufferPos_Tail;
+		}
+		else
+		{
+			VirtualFrom = m_iBufferPos_Tail;
+			VirtualTo = m_iBufferPos;
+		}
 
 		// Get the height of this font.
-		float h = (float)font.GetHeight();
-		float ls = (float)font.GetLineSpacing();
+		float h = (float)font->GetHeight();
+		float ls = (float)font->GetLineSpacing();
 
-		glTranslatef((GLfloat)int(m_CachedActualSize.left), (GLfloat)int(m_CachedActualSize.top+h), bz);
-		glColor4fv(color.FloatArray());
+		// Set the Z to somewhat more, so we can draw a selected area between the
+		//  the control and the text.
+		glTranslatef((GLfloat)int(m_CachedActualSize.left) + buffer_zone, 
+					 (GLfloat)int(m_CachedActualSize.top+h) + buffer_zone, bz+0.1f);
 		
-		float buffered_y=0.f;
+		//glColor4f(1.f, 1.f, 1.f, 1.f);
+		
+		// U+FE33: PRESENTATION FORM FOR VERTICAL LOW LINE
+		// (sort of like a | which is aligned to the left of most characters)
 
-		for (list<SRow>::const_iterator it = m_CharacterPositions.begin();
-			 it != m_CharacterPositions.end();
-			 ++it)
+		float buffered_y = -scroll+buffer_zone;
+
+		// When selecting larger areas, we need to draw a rectangle box
+		//  around it, and this is to keep track of where the box
+		//  started, because we need to follow the iteration until we
+		//  reach the end, before we can actually draw it.
+		bool drawing_box = false;
+		float box_x=0.f;
+
+		float x_pointer=0.f;
+
+		// If we have a selecting box (i.e. when you have selected letters, not just when
+		//  the pointer is between two letters) we need to process all letters once
+		//  before we do it the second time and render allt he text. We can't do it
+		//  in the same loop because text will have been drawn, so it will disappear when
+		//  drawn behind the text that has already been drawn. Confusing, well it's necessary
+		//  (I think).
+
+		if (SelectingText())
 		{
-			if (buffered_y > m_CachedActualSize.GetHeight())
-				break;
+			// Now m_iBufferPos_Tail can be of both sides of m_iBufferPos,
+			//  just like you can select from right to left, as you can
+			//  left to right. Is there a difference? Yes, the pointer
+			//  be placed accordingly, so that if you select shift and
+			//  expand this selection, it will expand on appropriate side.
+			// Anyway, since the drawing procedure needs "To" to be
+			//  greater than from, we need virtual values that might switch
+			//  place.
 
-			glPushMatrix();
-			// We might as well use 'i' here, because we need it
-			for (int i=0; i < (int)it->m_ListOfX.size(); ++i)
+			int VirtualFrom, VirtualTo;
+
+			if (m_iBufferPos_Tail >= m_iBufferPos)
 			{
-				if (it->m_ListStart + i == m_iBufferPos)
+				VirtualFrom = m_iBufferPos;
+				VirtualTo = m_iBufferPos_Tail;
+			}
+			else
+			{
+				VirtualFrom = m_iBufferPos_Tail;
+				VirtualTo = m_iBufferPos;
+			}
+
+
+			bool done = false;
+			for (list<SRow>::const_iterator it = m_CharacterPositions.begin();
+				it != m_CharacterPositions.end();
+				++it, buffered_y += ls, x_pointer = 0.f)
+			{
+				if (multiline)
 				{
-					// U+FE33: PRESENTATION FORM FOR VERTICAL LOW LINE
-					// (sort of like a | which is aligned to the left of most characters)
-					glPushMatrix();
-					glwprintf(L"%lc", 0xFE33);
-					glPopMatrix();
+					if (buffered_y > m_CachedActualSize.GetHeight())
+						break;
 				}
 
-				glwprintf(L"%lc", caption[it->m_ListStart + i]);
-			}
+				// We might as well use 'i' here to iterate, because we need it
+				for (int i=0; i < it->m_ListOfX.size()+2; ++i)
+				{
+					if (it->m_ListStart + i == VirtualFrom)
+					{
+						// we won't actually draw it now, because we don't
+						//  know the width of each glyph to that position. 
+						//  we need to go along with the iteration, and
+						//  make a mark where the box started:
+						drawing_box = true; // will turn false when finally rendered.
 
-			if (it->m_ListStart + it->m_ListOfX.size() == m_iBufferPos)
+						// Get current x position
+						box_x = x_pointer;
+					}
+
+					// no else!
+
+					if (drawing_box == true &&
+						(it->m_ListStart + i == VirtualTo ||
+						 i == it->m_ListOfX.size()+1))
+					{
+						// Depending on if it's just a row change, or if it's
+						//  the end of the select box, do slightly different things.
+						if (i == it->m_ListOfX.size()+1)
+						{
+							if (it->m_ListStart + i != VirtualFrom)
+							{
+								// and actually add a white space! yes, this is done in any common input
+								x_pointer += (float)font->GetCharacterWidth(wchar_t(' '));
+							}
+							// TODO: Make sure x_pointer isn't sticking out of the edge!
+						}
+						else
+						{
+							drawing_box = false;
+							done = true;
+						}
+
+						CRect rect;
+						// Set 'rect' depending on if it's a multiline control, or a one-line control
+						if (multiline)
+						{
+							rect = CRect(m_CachedActualSize.left+box_x+buffer_zone, 
+									   m_CachedActualSize.top+buffered_y, 
+									   m_CachedActualSize.left+x_pointer+buffer_zone, 
+									   m_CachedActualSize.top+buffered_y+ls);
+
+							if (rect.bottom < m_CachedActualSize.top)
+								continue;
+
+							if (rect.top < m_CachedActualSize.top)
+								rect.top = m_CachedActualSize.top;
+
+							if (rect.bottom > m_CachedActualSize.bottom)
+								rect.bottom = m_CachedActualSize.bottom;
+						}
+						else // if one-line
+						{
+							rect = CRect(m_CachedActualSize.left+box_x+buffer_zone-m_HorizontalScroll, 
+									   m_CachedActualSize.top+buffered_y, 
+									   m_CachedActualSize.left+x_pointer+buffer_zone-m_HorizontalScroll, 
+									   m_CachedActualSize.top+buffered_y+ls);
+
+							if (rect.left < m_CachedActualSize.left)
+								rect.left = m_CachedActualSize.left;
+
+							if (rect.right > m_CachedActualSize.right)
+								rect.right = m_CachedActualSize.right;
+						}
+
+						glPushMatrix();
+						guiLoadIdentity();
+
+						glEnable(GL_ALPHA_TEST);
+						glDisable(GL_TEXTURE_2D);
+
+						if (sprite_selectarea)
+							GetGUI()->DrawSprite(*sprite_selectarea, cell_id, bz+0.05f, rect);
+
+						glEnable(GL_TEXTURE_2D);
+						glDisable(GL_ALPHA_TEST);
+
+						glPopMatrix();
+					}
+
+					if (i < it->m_ListOfX.size())
+                        x_pointer += (float)font->GetCharacterWidth((*pCaption)[it->m_ListStart + i]);
+				}
+
+				if (done)
+					break;
+
+				// If we're about to draw a box, and all of a sudden changes
+				//  line, we need to draw that line's box, and then reset
+				//  the box drawing to the beginning of the new line.
+				if (drawing_box)
+				{
+					box_x = 0.f;
+				}
+			}
+		}
+
+		// Reset some from previous run
+		buffered_y = -scroll;
+		
+		// Setup initial color (then it might change and change back, when drawing selected area)
+		glColor4f(color.r, color.g, color.b, color.a);
+
+		bool using_selected_color = false;
+		
+		for (list<SRow>::const_iterator it = m_CharacterPositions.begin();
+			 it != m_CharacterPositions.end();
+			 ++it, buffered_y += ls)
+		{
+			if (buffered_y + buffer_zone >= -ls || !multiline)
 			{
-				glwprintf(L"%lc", 0xFE33);
+				if (multiline)
+				{
+                    if (buffered_y + buffer_zone > m_CachedActualSize.GetHeight())
+						break;
+				}
+
+				glPushMatrix();
+				
+				// Text must always be drawn in integer values. So we have to convert scroll
+				if (multiline)
+                    glTranslatef(0.f, -(float)(int)scroll, 0.f);
+				else
+					glTranslatef(-(float)(int)m_HorizontalScroll, 0.f, 0.f);
+
+				// We might as well use 'i' here, because we need it
+				for (int i=0; i < it->m_ListOfX.size()+1; ++i)
+				{
+					if (!multiline && i < it->m_ListOfX.size())
+					{
+						if (it->m_ListOfX[i] - m_HorizontalScroll < -buffer_zone)
+						{
+							// We still need to translate the OpenGL matrix
+							if (i == 0)
+								glTranslatef(it->m_ListOfX[i], 0.f, 0.f);
+							else
+								glTranslatef(it->m_ListOfX[i] - it->m_ListOfX[i-1], 0.f, 0.f);
+
+							continue;
+						}
+					}
+
+					// End of selected area, change back color
+					if (SelectingText() && 
+						it->m_ListStart + i == VirtualTo)
+					{
+						using_selected_color = false;
+						glColor4f(color.r, color.g, color.b, color.a);
+					}
+
+					if (i != it->m_ListOfX.size() &&
+						it->m_ListStart + i == m_iBufferPos)
+					{
+						// selecting only one, then we need only to draw a vertical line glyph.
+						glPushMatrix();
+						glwprintf(L"%lc", 0xFE33);
+						glPopMatrix();
+					}
+
+					// Drawing selected area
+					if (SelectingText() && 
+						it->m_ListStart + i >= VirtualFrom &&
+						it->m_ListStart + i < VirtualTo &&
+						using_selected_color == false)
+					{
+						using_selected_color = true;
+						glColor4f(color_selected.r, color_selected.g, color_selected.b, color_selected.a);
+					}
+
+					if (i != it->m_ListOfX.size())
+						glwprintf(L"%lc", (*pCaption)[it->m_ListStart + i]);
+
+					// check it's now outside a one-liner, then we'll break
+					if (!multiline && i < it->m_ListOfX.size())				
+					{
+						if (it->m_ListOfX[i] - m_HorizontalScroll > m_CachedActualSize.GetWidth()-buffer_zone)
+							break;
+					}
+				}
+
+				if (it->m_ListStart + it->m_ListOfX.size() == m_iBufferPos)
+				{
+					glColor4f(color.r, color.g, color.b, color.a);
+					glwprintf(L"%lc", 0xFE33);
+
+					if (using_selected_color)
+					{
+						glColor4f(color_selected.r, color_selected.g, color_selected.b, color_selected.a);
+					}
+				}
+
+				glPopMatrix();
 			}
-
-			glPopMatrix();
-			glTranslatef(0.f, ls, 0.f);
-
-			buffered_y += ls;
-
+			glTranslatef(0.f, ls, 0.f);	
 		}
 
 		glPopMatrix();
 
 		glDisable(GL_TEXTURE_2D);
+
+		delete font;
 	}
 }
 
 void CInput::UpdateText(int from, int to_before, int to_after)
 {
+	LOG(ERROR, LOG_CATEGORY, "1");
 	CStrW caption;
+	CStr font_name;
+	float buffer_zone;
+	bool multiline;
+	GUI<CStr>::GetSetting(this, "font", font_name);
 	GUI<CStrW>::GetSetting(this, "caption", caption);
+	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
+	GUI<bool>::GetSetting(this, "multiline", multiline);
+
+	if (font_name == CStr())
+	{
+		// Destroy everything stored, there's no font, so there can be
+		//  no data.
+		m_CharacterPositions.clear();
+		return;
+	}
 
 	SRow row;
 	row.m_ListStart = 0;
@@ -468,14 +997,20 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 	int to;
 
 	if (to_before == -1)
-		to = (int)caption.Length();
+		to = caption.Length();
 
-	CFont font ("Console");
-
-
-	//LOG(ERROR, LOG_CATEGORY, "Point 1 %d %d", to_before, to_after);
+	LOG(ERROR, LOG_CATEGORY, "2 %s", font_name.c_str());
+	CFont *font=NULL;
+	font = new CFont(font_name);
 
 	list<SRow>::iterator current_line;
+
+	// used to replace the last updated copy, because it might contain a "space"
+	//  in the end, which shouldn't be there because of word-wrapping. the only
+	//  way to know is to keep on going, but we don't want that, so we'll store
+	//  a copy.
+	SRow copy;
+	bool copy_used=false;
 
 	// Used to ... TODO
 	int check_point_row_start = -1;
@@ -491,9 +1026,12 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 	{
 		assert(to_before != -1);
 
-		//LOG(ERROR, LOG_CATEGORY, "Point 2 - %d %d", from, to_before);
-
 		list<SRow>::iterator destroy_row_from, destroy_row_to;
+		// Used to check if the above has been set to anything, 
+		//  previously a comparison like:
+		//  destroy_row_from == list<SRow>::iterator()
+		// ... was used, but it didn't work with GCC.
+		bool destroy_row_from_used=false, destroy_row_to_used=false;
 
 		// Iterate, and remove everything between 'from' and 'to_before'
 		//  actually remove the entire lines they are on, it'll all have
@@ -503,29 +1041,29 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 		for (list<SRow>::iterator it=m_CharacterPositions.begin(); 
 			 it!=m_CharacterPositions.end(); ++it, ++i)
 		{
-			if (destroy_row_from == list<SRow>::iterator() &&
+			if (destroy_row_from_used == false &&
 				it->m_ListStart > from)
 			{
 				// Destroy the previous line, and all to 'to_before'
-				//if (i >= 2)
-				//	destroy_row_from = it-2;
-				//else
-				//	destroy_row_from = it-1;
 				destroy_row_from = it;
 				--destroy_row_from;
 
+				destroy_row_from_used = true;
+
 				// For the rare case that we might remove characters to a word
-				//  so that it should go on the previous line, we need to
-				//  by standards re-do the whole previous line too (if one
-				//  exists)
+				//  so that it suddenly fits on the previous row,
+				//  we need to by standards re-do the whole previous line too 
+				//  (if one exists)
 				if (destroy_row_from != m_CharacterPositions.begin())
 					--destroy_row_from;
 			}
 
-			if (destroy_row_to == list<SRow>::iterator() &&
+			if (destroy_row_to_used == false &&
 				it->m_ListStart > to_before)
 			{
 				destroy_row_to = it;
+
+				destroy_row_to_used = true;
 
 				// If it isn't the last row, we'll add another row to delete,
 				//  just so we can see if the last restorted line is 
@@ -536,7 +1074,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 				if (destroy_row_to != m_CharacterPositions.end())
 				{
 					check_point_row_start = destroy_row_to->m_ListStart;
-					check_point_row_end = check_point_row_start + (int)destroy_row_to->m_ListOfX.size();
+					check_point_row_end = check_point_row_start + destroy_row_to->m_ListOfX.size();
 					if (destroy_row_to->m_ListOfX.empty())
 						++check_point_row_end;
 				}
@@ -546,18 +1084,26 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 			}
 		}
 
-		if (destroy_row_from == list<SRow>::iterator())
+		if (destroy_row_from_used == false)
 		{
 			destroy_row_from = m_CharacterPositions.end();
 			--destroy_row_from;
 
+			// As usual, let's destroy another row back
+			if (destroy_row_from != m_CharacterPositions.begin())
+				--destroy_row_from;
+
+			destroy_row_from_used = true;
+
 			current_line = destroy_row_from;
 		}
 
-		if (destroy_row_to == list<SRow>::iterator())
+		if (destroy_row_to_used == false)
 		{
-			destroy_row_to = m_CharacterPositions.end();
+            destroy_row_to = m_CharacterPositions.end();
 			check_point_row_start = -1;
+
+			destroy_row_from_used = true;
 		}
 
 		// set 'from' to the row we'll destroy from
@@ -565,15 +1111,13 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 		from = destroy_row_from->m_ListStart;
 		
 		if (destroy_row_to != m_CharacterPositions.end())
-			to = destroy_row_to->m_ListStart; // notice it will iterate [from, to), so it will never reach to.
+            to = destroy_row_to->m_ListStart; // notice it will iterate [from, to), so it will never reach to.
 		else
-			to = (int)caption.Length();
+			to = caption.Length();
 
 
 		// Setup the first row
 		row.m_ListStart = destroy_row_from->m_ListStart;
-
-		//LOG(ERROR, LOG_CATEGORY, "Point 3 %d", to);
 
 		// Set current line, new rows will be added before current_line, so
 		//  we'll choose the destroy_row_to, because it won't be deleted
@@ -584,14 +1128,9 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 		--temp_it;
 
 		CStr c_caption1(caption.GetSubstring(destroy_row_from->m_ListStart, (temp_it->m_ListStart + temp_it->m_ListOfX.size()) -destroy_row_from->m_ListStart));
-		//LOG(ERROR, LOG_CATEGORY, "Now destroying: \"%s\"", c_caption1.c_str());
 
 		m_CharacterPositions.erase(destroy_row_from, destroy_row_to);
 		
-		//LOG(ERROR, LOG_CATEGORY, "--> %d %d", from, to);
-		////CStr c_caption(caption.GetSubstring(from, to-from));
-		//LOG(ERROR, LOG_CATEGORY, "Re-doing string: \"%s\"", c_caption.c_str());
-
 		// If there has been a change in number of characters
 		//  we need to change all m_ListStart that comes after
 		//  the interval we just destroyed. We'll change all
@@ -622,27 +1161,14 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 	//if (to_before != -1)
 	//	return;
 
-	//LOG(ERROR, LOG_CATEGORY, "%d %d", from, to);
-
 	for (int i=from; i<to; ++i)
 	{
-		if (caption[i] == wchar_t('\n'))
+		if (caption[i] == wchar_t('\n') && multiline)
 		{
-			// Input row, and clear it.
-			//m_CharacterPositions.push_back(row);
-			/*if (m_CharacterPositions.empty())
-				m_CharacterPositions.push_back( row );
-			else
-			{
-				vector<SRow>::iterator pos( &m_CharacterPositions[current_line] );
-				m_CharacterPositions.insert( pos, row );
-				++current_line;
-			}*/
-			if (i==to-1)
+			if (i==to-1 && to != caption.Length())
 				break; // it will be added outside
 			
 			CStr c_caption1(caption.GetSubstring(row.m_ListStart, row.m_ListOfX.size()));
-			//LOG(ERROR, LOG_CATEGORY, "Adding1: \"%s\" (%d,%d,%d)", c_caption1.c_str(), from, to, i);
 
 			current_line = m_CharacterPositions.insert( current_line, row );
 			++current_line;
@@ -653,10 +1179,6 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 			row.m_ListStart = i+1;
 			x_pos = 0.f;
 
-			// If it's done now, no more word-wrapping
-			//  needs to be done.
-			//if (i==to-1)
-			//	break;
 		}
 		else
 		{
@@ -664,11 +1186,9 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 				caption[i] == wchar_t('-')*/)
 				last_word_started = i+1;
 
-			x_pos += (float)font.GetCharacterWidth(caption[i]);
+			x_pos += (float)font->GetCharacterWidth(caption[i]);
 
-			//LOG(ERROR, LOG_CATEGORY, "%c %f", (char)caption[i], (float)font->GetCharacterWidth(caption[i]));
-
-			if (x_pos >= m_CachedActualSize.GetWidth())
+			if (x_pos >= GetTextAreaWidth() && multiline)
 			{
 				// The following decides whether it will word-wrap a word,
 				//  or if it's only one word on the line, where it has to
@@ -692,7 +1212,6 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 				//  rows. With automatic word-wrapping, that is not possible. Which
 				//  is intuitively correct.
 				CStr c_caption1(caption.GetSubstring(row.m_ListStart, row.m_ListOfX.size()));
-				//LOG(ERROR, LOG_CATEGORY, "Adding2: \"%s\" - %d [%d, %d[", c_caption1.c_str(), last_word_started, from, to);
 
 				current_line = m_CharacterPositions.insert( current_line, row );
 				++current_line;
@@ -715,151 +1234,394 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 		//  also check if the current line isn't the end
 		if (to_before != -1 && i == to-1 && current_line != m_CharacterPositions.end())
 		{
-			//LOG(ERROR, LOG_CATEGORY, "row.m_ListStart = %d", row.m_ListStart);
-			//LOG(ERROR, LOG_CATEGORY, "check_point_row_start = %d", check_point_row_start);
-			//LOG(ERROR, LOG_CATEGORY, "last_list_start = %d", last_list_start);
-
-		/*	if (last_list_start != -1 &&
-				last_list_start == row.m_ListStart)
+			// check all rows and see if any existing 
+			if (row.m_ListStart != check_point_row_start)
 			{
-				to = current_line->m_ListStart;
-				LOG(ERROR, LOG_CATEGORY, "*** %d %d", i, to);
-			}
-			else
-			{
-*/
-				// check all rows and see if any existing 
+				list<SRow>::iterator destroy_row_from, destroy_row_to;
+				// Are used to check if the above has been set to anything, 
+				//  previously a comparison like:
+				//  destroy_row_from == list<SRow>::iterator()
+				//  was used, but it didn't work with GCC.
+				bool destroy_row_from_used=false, destroy_row_to_used=false;
 
-			//LOG(ERROR, LOG_CATEGORY, "(%d %d) (%d %d)", i, to, row.m_ListStart, check_point_row_start);
-
-				if (row.m_ListStart != check_point_row_start)
+				// Iterate, and remove everything between 'from' and 'to_before'
+				//  actually remove the entire lines they are on, it'll all have
+				//  to be redone. And when going along, we'll delete a row at a time
+				//  when continuing to see how much more after 'to' we need to remake.
+				int i=0;
+				for (list<SRow>::iterator it=m_CharacterPositions.begin(); 
+					it!=m_CharacterPositions.end(); ++it, ++i)
 				{
-
-					list<SRow>::iterator destroy_row_from, destroy_row_to;
-
-					// Iterate, and remove everything between 'from' and 'to_before'
-					//  actually remove the entire lines they are on, it'll all have
-					//  to be redone. And when going along, we'll delete a row at a time
-					//  when continuing to see how much more after 'to' we need to remake.
-					int i=0;
-					for (list<SRow>::iterator it=m_CharacterPositions.begin(); 
-						it!=m_CharacterPositions.end(); ++it, ++i)
+					if (destroy_row_from_used == false &&
+						it->m_ListStart > check_point_row_start)
 					{
-						if (destroy_row_from == list<SRow>::iterator() &&
-							it->m_ListStart > check_point_row_start)
-						{
-							// Destroy the previous line, and all to 'to_before'
-							//if (i >= 2)
-							//	destroy_row_from = it-2;
-							//else
-							//	destroy_row_from = it-1;
-							destroy_row_from = it;
-							//--destroy_row_from;
-
-							//LOG(ERROR, LOG_CATEGORY, "[ %d %d %d", i, it->m_ListStart, check_point_row_start);
-						}
-
-						if (destroy_row_to == list<SRow>::iterator() &&
-							it->m_ListStart > check_point_row_end)
-						{
-							destroy_row_to = it;
-
-							// If it isn't the last row, we'll add another row to delete,
-							//  just so we can see if the last restorted line is 
-							//  identical to what it was before. If it isn't, then we'll
-							//  have to continue.
-							// 'check_point_row_start' is where we store how the that
-							//  line looked.
-				//			if (destroy_row_to != 
-							if (destroy_row_to != m_CharacterPositions.end())
-							{
-								check_point_row_start = destroy_row_to->m_ListStart;
-								check_point_row_end = check_point_row_start + (int)destroy_row_to->m_ListOfX.size();
-								if (destroy_row_to->m_ListOfX.empty())
-									++check_point_row_end;
-
-								//LOG(ERROR, LOG_CATEGORY, "] %d %d %d", i, destroy_row_to->m_ListStart, check_point_row_end);
-							}
-							else
-								check_point_row_start = check_point_row_end = -1;
-
-							++destroy_row_to;
-							break;
-						}
+						// Destroy the previous line, and all to 'to_before'
+						//if (i >= 2)
+						//	destroy_row_from = it-2;
+						//else
+						//	destroy_row_from = it-1;
+						destroy_row_from = it;
+						destroy_row_from_used = true;
+						//--destroy_row_from;
 					}
 
-					if (destroy_row_from == list<SRow>::iterator())
+					if (destroy_row_to_used == false &&
+						it->m_ListStart > check_point_row_end)
 					{
-						destroy_row_from = m_CharacterPositions.end();
-						--destroy_row_from;
+						destroy_row_to = it;
+						destroy_row_to_used = true;
 
-						current_line = destroy_row_from;
-					}
-
-					if (destroy_row_to == list<SRow>::iterator())
-					{
-						destroy_row_to = m_CharacterPositions.end();
-						check_point_row_start = check_point_row_end = -1;
-					}
-
-					// set 'from' to the from row we'll destroy
-					//  and 'to' to 'to_after'
-					from = destroy_row_from->m_ListStart;
-					
-					if (destroy_row_to != m_CharacterPositions.end())
-						to = destroy_row_to->m_ListStart; // notice it will iterate [from, to[, so it will never reach to.
-					else
-						to = (int)caption.Length();
-
-
-					//LOG(ERROR, LOG_CATEGORY, "Point 3 %d", to);
-
-					// Set current line, new rows will be added before current_line, so
-					//  we'll choose the destroy_row_to, because it won't be deleted
-					//  in the coming erase.
-					current_line = destroy_row_to;
-
-					m_CharacterPositions.erase(destroy_row_from, destroy_row_to);
-
-					//LOG(ERROR, LOG_CATEGORY, "--> %d %d", from, to);
-					CStr c_caption(caption.GetSubstring(from, to-from));
-					//LOG(ERROR, LOG_CATEGORY, "Re-doing string: \"%s\"", c_caption.c_str());
-
-					/*if (current_line != m_CharacterPositions.end())
-					{
-						current_line = m_CharacterPositions.erase(current_line);
-
-						if (current_line != m_CharacterPositions.end())
+						// If it isn't the last row, we'll add another row to delete,
+						//  just so we can see if the last restorted line is 
+						//  identical to what it was before. If it isn't, then we'll
+						//  have to continue.
+						// 'check_point_row_start' is where we store how the that
+						//  line looked.
+			//			if (destroy_row_to != 
+						if (destroy_row_to != m_CharacterPositions.end())
 						{
-							check_point_row_start = current_line->m_ListStart;
-							to = check_point_row_start;
+							check_point_row_start = destroy_row_to->m_ListStart;
+							check_point_row_end = check_point_row_start + destroy_row_to->m_ListOfX.size();
+							if (destroy_row_to->m_ListOfX.empty())
+								++check_point_row_end;
 						}
 						else
-						{
-							to = caption.Length();
-						}
+							check_point_row_start = check_point_row_end = -1;
+
+						++destroy_row_to;
+						break;
 					}
-					else
-					{
-						check_point_row_start = -1; // just one more row, which is the last, we don't need this anymore
-						to = caption.Length();
-					}*/
-
-					/*if (destroy_row_to != m_CharacterPositions.end())
-						to = destroy_row_to->m_ListStart-1;
-					else
-						to = caption.Length();*/
 				}
-				// else, the for loop will end naturally.
-			//}
 
-			//last_list_start = row.m_ListStart;
+				if (destroy_row_from_used == false)
+				{
+					destroy_row_from = m_CharacterPositions.end();
+					--destroy_row_from;
+
+					destroy_row_from_used = true;
+
+					current_line = destroy_row_from;
+				}
+
+				if (destroy_row_to_used == false)
+				{
+					destroy_row_to = m_CharacterPositions.end();
+					check_point_row_start = check_point_row_end = -1;
+
+					destroy_row_to_used = true;
+				}
+
+				// set 'from' to the from row we'll destroy
+				//  and 'to' to 'to_after'
+				from = destroy_row_from->m_ListStart;
+				
+				if (destroy_row_to != m_CharacterPositions.end())
+					to = destroy_row_to->m_ListStart; // notice it will iterate [from, to[, so it will never reach to.
+				else
+					to = caption.Length();
+
+
+				// Set current line, new rows will be added before current_line, so
+				//  we'll choose the destroy_row_to, because it won't be deleted
+				//  in the coming erase.
+				current_line = destroy_row_to;
+
+				copy_used = true;
+
+				list<SRow>::iterator temp = destroy_row_to;
+
+				--temp;
+
+				copy = *temp;
+
+				m_CharacterPositions.erase(destroy_row_from, destroy_row_to);
+
+				CStr c_caption(caption.GetSubstring(from, to-from));
+			}
+			// else, the for loop will end naturally.
 		}
 	}
-	// add the final row (even if empty)
-	CStr c_caption1(caption.GetSubstring(row.m_ListStart, row.m_ListOfX.size()));
-	//LOG(ERROR, LOG_CATEGORY, "Adding3: \"%s\"", c_caption1.c_str());
+	// This is kind of special, when we renew a some lines, then the last
+	//  one will sometimes end with a space (' '), that really should
+	//  be omitted when word-wrapping. So we'll check if the last row
+	//  we'll add has got the same value as the next row.
+	if (current_line != m_CharacterPositions.end())
+	{
+		if (row.m_ListStart + row.m_ListOfX.size() == current_line->m_ListStart)
+			row.m_ListOfX.resize( row.m_ListOfX.size()-1 );
+	}
 
+	// add the final row (even if empty)
 	m_CharacterPositions.insert( current_line, row );
-	//++current_line;
+
+	bool scrollbar;
+	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
+	// Update scollbar
+	if (scrollbar)
+	{
+		GetScrollBar(0).SetScrollRange( m_CharacterPositions.size() * font->GetLineSpacing() + buffer_zone*2.f );
+		GetScrollBar(0).SetScrollSpace( m_CachedActualSize.GetHeight() );
+	}
+	
+	delete font;
+}
+
+int CInput::GetMouseHoveringTextPosition()
+{
+	if (m_CharacterPositions.empty())
+		return 0;
+
+	// Return position
+	int RetPosition;
+
+	float buffer_zone;
+	bool multiline;
+	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
+	GUI<bool>::GetSetting(this, "multiline", multiline);
+
+	list<SRow>::iterator current = m_CharacterPositions.begin();
+
+	CPos mouse = GetMousePos();
+
+	if (multiline)
+	{
+		CStr font_name;
+		bool scrollbar;
+		GUI<CStr>::GetSetting(this, "font", font_name);
+		GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
+		
+		float scroll=0.f;
+		if (scrollbar)
+		{
+			scroll = GetScrollBar(0).GetPos();
+		}
+
+		// Pointer to caption, will come in handy
+		CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
+
+		// Now get the height of the font.
+		CFont *font=NULL;
+						// TODO: Get the real font
+		font = new CFont(font_name);
+		float spacing = font->GetLineSpacing();
+		float height = font->GetHeight();
+		delete font;
+
+		// Change mouse position relative to text.
+		mouse -= m_CachedActualSize.TopLeft();
+		mouse.x -= buffer_zone;
+		mouse.y += scroll - buffer_zone;
+
+		//if ((m_CharacterPositions.size()-1) * spacing + height < mouse.y)
+		//	m_iBufferPos = pCaption->Length();
+		int row = (int)((mouse.y) / spacing);//m_CharachterPositions.size()
+
+		if (row < 0)
+			row = 0;
+
+		if (row > m_CharacterPositions.size()-1)
+			row = m_CharacterPositions.size()-1;
+
+		// TODO Gee (2004-11-21): Okay, I need a 'list' for some reasons, but I would really like to
+		//  be able to get the specific element here. This is hopefully a temporary hack.
+
+		for (int i=0; i<row; ++i)
+			++current;
+	}
+	else
+	{
+		// current is already set to begin,
+		//  but we'll change the mouse.x to fit our horizontal scrolling
+		mouse -= m_CachedActualSize.TopLeft();
+		mouse.x -= buffer_zone - m_HorizontalScroll;
+		// mouse.y is moot
+	}
+
+	//m_iBufferPos = m_CharacterPositions.get.m_ListStart;
+	RetPosition = current->m_ListStart;
+	
+	// Okay, now loop through the glyphs to find the appropriate X position
+	float dummy;
+	RetPosition += GetXTextPosition(current, mouse.x, dummy);
+
+	return RetPosition;
+}
+
+// Does not process horizontal scrolling, 'x' must be modified before inputted.
+int CInput::GetXTextPosition(const list<SRow>::iterator &current, const float &x, float &wanted)
+{
+	int Ret=0;
+
+	float previous=0.f;
+	int i=0;
+
+	for (vector<float>::iterator it=current->m_ListOfX.begin();
+			it!=current->m_ListOfX.end();
+			++it, ++i)
+	{
+		if (*it >= x)
+		{
+			if (x - previous >= *it - x)
+				Ret += i+1;
+			else
+				Ret += i;
+
+			break;
+		}
+		previous = *it;
+	}
+	// If a position wasn't found, we will assume the last
+	//  character of that line.
+	if (i == current->m_ListOfX.size())
+	{
+		Ret += i;
+		wanted = x;
+	}
+	else wanted = 0.f;
+
+	return Ret;
+}
+
+void CInput::DeleteCurSelection()
+{
+	CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
+
+	int VirtualFrom, VirtualTo;
+
+	if (m_iBufferPos_Tail >= m_iBufferPos)
+	{
+		VirtualFrom = m_iBufferPos;
+		VirtualTo = m_iBufferPos_Tail;
+	}
+	else
+	{
+		VirtualFrom = m_iBufferPos_Tail;
+		VirtualTo = m_iBufferPos;
+	}
+
+	*pCaption = pCaption->Left( VirtualFrom ) + 
+				pCaption->Right( (long) pCaption->Length()-(VirtualTo) );
+
+	UpdateText(VirtualFrom, VirtualTo, VirtualFrom);
+
+	// Remove selection
+	m_iBufferPos_Tail = -1;
+	m_iBufferPos = VirtualFrom;
+}
+
+bool CInput::SelectingText() const
+{
+	return m_iBufferPos_Tail != -1 &&
+		   m_iBufferPos_Tail != m_iBufferPos;
+}
+
+float CInput::GetTextAreaWidth()
+{
+	bool scrollbar;
+	float buffer_zone;
+	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
+	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
+
+	if (scrollbar && GetScrollBar(0).GetStyle())
+		return m_CachedActualSize.GetWidth() - buffer_zone*2.f - GetScrollBar(0).GetStyle()->m_Width;
+	else
+		return m_CachedActualSize.GetWidth() - buffer_zone*2.f;
+}
+
+void CInput::UpdateAutoScroll()
+{
+	float buffer_zone;
+	bool multiline;
+	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
+	GUI<bool>::GetSetting(this, "multiline", multiline);
+
+	// Autoscrolling up and down
+	if (multiline)
+	{
+		CStr font_name;
+		bool scrollbar;
+		GUI<CStr>::GetSetting(this, "font", font_name);
+		GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
+		
+		float scroll=0.f;
+		if (!scrollbar)
+			return;
+
+		scroll = GetScrollBar(0).GetPos();
+		
+		// Now get the height of the font.
+		CFont *font=NULL;
+						// TODO: Get the real font
+		font = new CFont(font_name);
+		float spacing = font->GetLineSpacing();
+		//float height = font->GetHeight();
+		delete font;
+
+		// TODO Gee (2004-11-21): Okay, I need a 'list' for some reasons, but I would really like to
+		//  be able to get the specific element here. This is hopefully a temporary hack.
+
+		list<SRow>::iterator current = m_CharacterPositions.begin();
+		int row=0;
+		while (current != m_CharacterPositions.end())
+		{
+			if (m_iBufferPos >= current->m_ListStart &&
+				m_iBufferPos <= current->m_ListStart+(int)current->m_ListOfX.size())
+				break;
+			
+			++current;
+			++row;
+		}
+
+		// If scrolling down
+		if (-scroll + (float)(row+1) * spacing + buffer_zone*2.f > m_CachedActualSize.GetHeight())
+		{
+			// Scroll so the selected row is shown completely, also with buffer_zone length to the edge.
+			GetScrollBar(0).SetPos((float)(row+1) * spacing - m_CachedActualSize.GetHeight() + buffer_zone*2.f);
+		}
+		else
+		// If scrolling up
+		if (-scroll + (float)row * spacing < 0.f)
+		{
+			// Scroll so the selected row is shown completely, also with buffer_zone length to the edge.
+			GetScrollBar(0).SetPos((float)row * spacing);
+		}
+	}
+	else // autoscrolling left and right
+	{
+		// Get X position of position:
+		if (m_CharacterPositions.empty())
+			return;
+
+		float x_position = 0.f;
+		float x_total = 0.f;
+		if (!m_CharacterPositions.begin()->m_ListOfX.empty())
+		{
+
+			// Get position of m_iBufferPos
+			if (m_CharacterPositions.begin()->m_ListOfX.size() >= m_iBufferPos &&
+				m_iBufferPos != 0)
+				x_position = m_CharacterPositions.begin()->m_ListOfX[m_iBufferPos-1];
+
+			// Get complete length:
+			x_total = m_CharacterPositions.begin()->m_ListOfX[ m_CharacterPositions.begin()->m_ListOfX.size()-1 ];
+		}
+
+		// Check if outside to the right
+		if (x_position - m_HorizontalScroll + buffer_zone*2.f > m_CachedActualSize.GetWidth())
+			m_HorizontalScroll = x_position - m_CachedActualSize.GetWidth() + buffer_zone*2.f;
+
+		// Check if outside to the left
+		if (x_position - m_HorizontalScroll < 0.f)
+			m_HorizontalScroll = x_position;
+
+		// Check if the text doesn't even fill up to the right edge even though scrolling is done.
+		if (m_HorizontalScroll != 0.f &&
+			x_total - m_HorizontalScroll + buffer_zone*2.f < m_CachedActualSize.GetWidth())
+			m_HorizontalScroll = x_total - m_CachedActualSize.GetWidth() + buffer_zone*2.f;
+
+		// Now this is the fail-safe, if x_total isn't even the length of the control,
+		//  remove all scrolling
+		if (x_total + buffer_zone*2.f < m_CachedActualSize.GetWidth())
+			m_HorizontalScroll = 0.f;
+	}
 }

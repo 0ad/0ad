@@ -224,10 +224,10 @@ bool IGUIObject::SettingExists(const CStr& Setting) const
 		if (!GUI<type>::ParseString(Value, _Value))		\
 			return PS_FAIL;								\
 														\
-		GUI<type>::SetSetting(this, Setting, _Value);	\
+		GUI<type>::SetSetting(this, Setting, _Value, SkipMessage);	\
 	}
 
-PS_RESULT IGUIObject::SetSetting(const CStr& Setting, const CStr& Value)
+PS_RESULT IGUIObject::SetSetting(const CStr& Setting, const CStr& Value, const bool& SkipMessage)
 {
 	if (!SettingExists(Setting))
 	{

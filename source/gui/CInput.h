@@ -51,11 +51,23 @@ class CInput : public IGUIScrollBarOwner
 {
 	GUI_OBJECT(CInput)
 
+protected: // forwards
+	struct SRow;
+
 public:
 	CInput();
 	virtual ~CInput();
 
 	virtual void ResetStates() { IGUIScrollBarOwner::ResetStates(); }
+
+	// Check where the mouse is hovering, and get the appropriate text position.
+	//  return is the text-position index.
+	// const in philosophy, but I need to retrieve the caption in a non-const way.
+	int GetMouseHoveringTextPosition();
+
+	// Same as above, but only on one row in X, and a given value, not the mouse's
+	//  wanted is filled with x if the row didn't extend as far as we 
+	int GetXTextPosition(const std::list<SRow>::iterator &c, const float &x, float &wanted);
 
 protected:
 	/**
@@ -88,9 +100,34 @@ protected:
 	//  that.
 	void UpdateText(int from=0, int to_before=-1, int to_after=-1);
 
+	// Delete the current selection. Also places the pointer at the
+	//  crack between the two segments kept.
+	void DeleteCurSelection();
+
+	// Is text selected? It can be denote two ways, m_iBufferPos_Tail
+	//  being -1 or the same as m_iBufferPos. This makes for clearer
+	//  code.
+	bool SelectingText() const;
+
+	// Get area of where text can be drawn.
+	float GetTextAreaWidth();
+
+	// Called every time the auto-scrolling should be checked.
+	void UpdateAutoScroll();
+
 protected:
-	// Cursor position
-	int m_iBufferPos;
+	// Cursor position 
+	//  (the second one is for selection of larger areas, -1 if not used)
+	// A note on 'Tail', it was first called 'To', and the natural order
+	//  of X and X_To was X then X_To. Now Tail is called so, because it
+	//  can be placed both before and after, but the important things is
+	//  that m_iBufferPos is ALWAYS where the edit pointer is. Yes, there
+	//  is an edit pointer even though you select a larger area. For instance
+	//  if you want to resize the selection with Shift+Left/Right, there
+	//  are always two ways a selection can look. Check any OS GUI and you'll
+	//  see.
+	int m_iBufferPos,
+		m_iBufferPos_Tail;
 
 	// the outer vector is lines, and the inner is X positions
 	//  in a row. So that we can determine where characters are
@@ -105,7 +142,25 @@ protected:
 	// List of rows, list because I use a lot of iterators, and change
 	//  its size continuously, it's easier and safer if I know the
 	//  iterators never gets invalidated.
+	// For one-liners, only one row is used.
 	std::list< SRow > m_CharacterPositions;
+
+	// *** Things for a multi-lined input control *** //
+
+	// This is when you change row with up/down, and the row you jump
+	//  to doesn't have anything at that X position, then it will
+	//  keep the WantedX position in mind when switching to the next
+	//  row. It will keep on being used until it reach a row which meets
+	//  the requirements.
+	//  0.0f means not in use.
+	float m_WantedX;
+
+	// If we are in the process of selecting a larger selection of text
+	//  using the mouse click (hold) and drag, this is true.
+	bool m_SelectingText;
+
+	// *** Things for one-line input control *** //
+	float m_HorizontalScroll;
 };
 
 #endif

@@ -91,9 +91,8 @@ void CText::SetupText()
 
 void CText::HandleMessage(const SGUIMessage &Message)
 {
-	// TODO Gee:
 	IGUIScrollBarOwner::HandleMessage(Message);
-	IGUITextOwner::HandleMessage(Message);
+	//IGUITextOwner::HandleMessage(Message); <== placed it after the switch instead!
 
 	switch (Message.type)
 	{
@@ -104,7 +103,8 @@ void CText::HandleMessage(const SGUIMessage &Message)
 		// Update scroll-bar
 		// TODO Gee: (2004-09-01) Is this really updated each time it should?
 		if (scrollbar && 
-		    (Message.value == CStr("size") || Message.value == CStr("z") ||
+		    (Message.value == CStr("size") || 
+			 Message.value == CStr("z") ||
 			 Message.value == CStr("absolute")))
 		{
 			
@@ -114,6 +114,11 @@ void CText::HandleMessage(const SGUIMessage &Message)
 			GetScrollBar(0).SetLength( m_CachedActualSize.bottom - m_CachedActualSize.top );
 		}
 
+		if (Message.value == CStr("scrollbar"))
+		{
+			SetupText();
+		}
+
 		// Update scrollbar
 		if (Message.value == CStr("scrollbar_style"))
 		{
@@ -121,9 +126,6 @@ void CText::HandleMessage(const SGUIMessage &Message)
 			GUI<CStr>::GetSetting(this, Message.value, scrollbar_style);
 
 			GetScrollBar(0).SetScrollBarStyle( scrollbar_style );
-
-			// Update text
-			SetupText();
 		}
 
 		break;
@@ -142,9 +144,24 @@ void CText::HandleMessage(const SGUIMessage &Message)
 		HandleMessage(SGUIMessage(GUIM_MOUSE_MOTION));
 		break;
 
+	case GUIM_LOAD:
+		{
+		GetScrollBar(0).SetX( m_CachedActualSize.right );
+		GetScrollBar(0).SetY( m_CachedActualSize.top );
+		GetScrollBar(0).SetZ( GetBufferedZ() );
+		GetScrollBar(0).SetLength( m_CachedActualSize.bottom - m_CachedActualSize.top );
+
+		CStr scrollbar_style;
+		GUI<CStr>::GetSetting(this, "scrollbar_style", scrollbar_style);
+		GetScrollBar(0).SetScrollBarStyle( scrollbar_style );
+		}
+		break;
+
 	default:
 		break;
 	}
+
+	IGUITextOwner::HandleMessage(Message);
 }
 
 void CText::Draw() 

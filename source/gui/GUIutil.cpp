@@ -9,6 +9,8 @@ gee@pyro.nu
 #include "Parser.h"
 #include "i18n.h"
 
+extern int g_yres;
+
 using namespace std;
 
 template <>
@@ -237,6 +239,15 @@ bool __ParseString<CGUISpriteInstance>(const CStr& Value, CGUISpriteInstance &Ou
 }
 
 //--------------------------------------------------------
+
+void guiLoadIdentity()
+{
+	glLoadIdentity();
+	glTranslatef(0.0f, (GLfloat)g_yres, -1000.0f);
+	glScalef(1.0f, -1.f, 1.0f);
+}
+
+//--------------------------------------------------------
 //  Help Classes/Structs for the GUI implementation
 //--------------------------------------------------------
 
@@ -434,7 +445,7 @@ void CInternalCGUIAccessorBase::HandleMessage(IGUIObject *pObject, const SGUIMes
 
 
 //--------------------------------------------------------------------
-
+#include "ps/CLogger.h"
 template <typename T>
 PS_RESULT GUI<T>::GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, T* &Value)
 {
@@ -468,7 +479,8 @@ PS_RESULT GUI<T>::GetSetting(const IGUIObject *pObject, const CStr& Setting, T &
 }
 
 template <typename T>
-PS_RESULT GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting, const T &Value)
+PS_RESULT GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting, 
+							 const T &Value, const bool& SkipMessage)
 {
 	if (pObject == NULL)
 		return PS_OBJECT_FAIL;
@@ -500,7 +512,8 @@ PS_RESULT GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting, const T &
 		//RecurseObject(0, pObject, IGUIObject::ResetStates);
 	}
 
-	HandleMessage(pObject, SGUIMessage(GUIM_SETTINGS_UPDATED, Setting));
+	if (!SkipMessage)
+		HandleMessage(pObject, SGUIMessage(GUIM_SETTINGS_UPDATED, Setting));
 
 	return PS_OK;
 }
@@ -509,7 +522,7 @@ PS_RESULT GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting, const T &
 #define TYPE(T) \
 	template PS_RESULT GUI<T>::GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, T* &Value); \
 	template PS_RESULT GUI<T>::GetSetting(const IGUIObject *pObject, const CStr& Setting, T &Value); \
-	template PS_RESULT GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting, const T &Value);
+	template PS_RESULT GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting, const T &Value, const bool& SkipMessage);
 #define GUITYPE_IGNORE_CGUISpriteInstance
 #include "GUItypes.h"
 
@@ -518,4 +531,4 @@ PS_RESULT GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting, const T &
 // and will mess up the caching performed by DrawSprite. You have to use GetSettingPointer
 // instead. (This is mainly useful to stop me accidentally using the wrong function.)
 template PS_RESULT GUI<CGUISpriteInstance>::GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, CGUISpriteInstance* &Value);
-template PS_RESULT GUI<CGUISpriteInstance>::SetSetting(IGUIObject *pObject, const CStr& Setting, const CGUISpriteInstance &Value);
+template PS_RESULT GUI<CGUISpriteInstance>::SetSetting(IGUIObject *pObject, const CStr& Setting, const CGUISpriteInstance &Value, const bool& SkipMessage);

@@ -187,6 +187,11 @@ public:
 	float GetPos() const { return m_Pos; }
 
 	/**
+	 * Set scroll-position by hand
+	 */
+	virtual void SetPos(const float &f) { m_Pos = f; UpdatePosBoundaries(); }
+
+	/**
 	 * Scroll towards 1.0 one step
 	 */
 	virtual void ScrollPlus() { m_Pos += 30.f; UpdatePosBoundaries(); }

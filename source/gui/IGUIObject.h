@@ -261,7 +261,7 @@ public:
 	 *
 	 * @return PS_RESULT (PS_OK if successful)
 	 */
-	PS_RESULT SetSetting(const CStr& Setting, const CStr& Value);
+	PS_RESULT SetSetting(const CStr& Setting, const CStr& Value, const bool& SkipMessage=false);
 
 	/**
 	 * Retrieves the type of a named setting.

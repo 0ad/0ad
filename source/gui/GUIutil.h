@@ -36,6 +36,10 @@ class CGUIString;
 template <typename T>
 bool __ParseString(const CStr& Value, T &tOutput);
 
+// Load Identity matrix and
+//  adapt (origio) to being in top left corner and down
+//  just like the mouse position
+void guiLoadIdentity();
 
 // Icon, you create them in the XML file with root element <setup>
 //  you use them in text owned by different objects... Such as CText.
@@ -176,8 +180,10 @@ public:
 	 * @param pObject Object pointer
 	 * @param Setting Setting by name
 	 * @param Value Sets value to this, note type T!
+	 * @param SkipMessage Does not send a GUIM_SETTINGS_UPDATED if true
 	 */
-	static PS_RESULT SetSetting(IGUIObject *pObject, const CStr& Setting, const T &Value);
+	static PS_RESULT SetSetting(IGUIObject *pObject, const CStr& Setting, 
+								const T &Value, const bool &SkipMessage=false);
 
 #ifdef g_GUI
 	/**
@@ -219,9 +225,9 @@ public:
 	 * Can safely be removed.
 	 */
 	static PS_RESULT SetSetting(
-		const CStr& Object, const CStr& Setting, const T &Value)
+		const CStr& Object, const CStr& Setting, const T &Value, const bool& SkipMessage=false)
 	{
-		return SetSetting(g_GUI, Object, Setting, Value);		
+		return SetSetting(g_GUI, Object, Setting, Value, SkipMessage);		
 	}
 #endif // g_GUI
 
@@ -239,7 +245,8 @@ public:
 	 */
 	static PS_RESULT SetSetting(
 		CGUI &GUIinstance, const CStr& Object, 
-		const CStr& Setting, const T &Value)
+		const CStr& Setting, const T &Value,
+		const bool& SkipMessage=false)
 	{
 		if (!GUIinstance.ObjectExists(Object))
 			return PS_OBJECT_FAIL;
@@ -251,7 +258,7 @@ public:
 		//  one with the friend relationship
 		IGUIObject *pObject = GetObjectPointer(GUIinstance, Object);
 
-		return SetSetting(pObject, Setting, Value);
+		return SetSetting(pObject, Setting, Value, SkipMessage);
 	}
 	
 	/**

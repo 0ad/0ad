@@ -403,14 +403,9 @@ void CGUI::Draw()
 	// Clear the depth buffer, so the GUI is
 	// drawn on top of everything else
 	glClear(GL_DEPTH_BUFFER_BIT);
-
 	glPushMatrix();
-	glLoadIdentity();
 
-	// Adapt (origio) to being in top left corner and down
-	//  just like the mouse position
-	glTranslatef(0.0f, (GLfloat)g_yres, -1000.0f);
-	glScalef(1.0f, -1.f, 1.0f);
+	guiLoadIdentity();
 
 	try
 	{
@@ -899,7 +894,8 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 
 	}
 
-	delete font;
+	if (font)
+		delete font;
 
 	for (list<SGUIText::SSpriteCall>::iterator it=Text.m_SpriteCalls.begin(); 
 		 it!=Text.m_SpriteCalls.end(); 
@@ -1187,9 +1183,9 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			ManuallySetZ = true;
 
 		// Try setting the value
-		if (object->SetSetting(pFile->getAttributeString(attr.Name), (CStr)attr.Value) != PS_OK)
+		if (object->SetSetting(pFile->getAttributeString(attr.Name), (CStr)attr.Value, true) != PS_OK)
 		{
-			ReportParseError("Can't set \"%s\" to \"%s\"", pFile->getAttributeString(attr.Name).c_str(), CStr(attr.Value).c_str());
+			ReportParseError("(object: %s) Can't set \"%s\" to \"%s\"", object->GetPresentableName().c_str(), pFile->getAttributeString(attr.Name).c_str(), CStr(attr.Value).c_str());
 
 			// This is not a fatal error
 		}
@@ -1210,7 +1206,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	if (caption.Length())
 	{
 		// Set the setting caption to this
-		object->SetSetting("caption", caption);
+		object->SetSetting("caption", caption, true);
 
 		// There is no harm if the object didn't have a "caption"
 	}
@@ -1291,12 +1287,12 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			//  and add to that!
 			if (absolute)
 			{
-				GUI<float>::SetSetting(object, "z", pParent->GetBufferedZ() + 10.f);
+				GUI<float>::SetSetting(object, "z", pParent->GetBufferedZ() + 10.f, true);
 			}
 			else
 			// If the object is relative, then we'll just store Z as "10"
 			{
-				GUI<float>::SetSetting(object, "z", 10.f);
+				GUI<float>::SetSetting(object, "z", 10.f, true);
 			}
 		}
 	}
