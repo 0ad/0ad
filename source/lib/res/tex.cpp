@@ -49,6 +49,7 @@ extern "C" {
 # include "jpeglib.h"
 // extensions
 EXTERN(void) jpeg_mem_src(j_decompress_ptr cinfo, void* p, size_t size);
+EXTERN(void) jpeg_vfs_dst(j_compress_ptr cinfo, Handle hf);
 }
 # ifdef _MSC_VER
 #  ifdef NDEBUG
@@ -1375,8 +1376,8 @@ fail:
 		goto ret;
 	}
 
-// "jump to label crosses initialization" - B'ah
-{
+	// goto scoping
+	{
 	jpeg_create_decompress(&cinfo);
 
 	jpeg_mem_src(&cinfo, file, file_size);
@@ -1480,13 +1481,14 @@ fail:
 
 	err = 0;
 
-}
+	}
+
 	// shared cleanup
 ret:
-	free(rows);
-
 	jpeg_destroy_decompress(&cinfo);
 		// releases a "good deal" of memory
+
+	free(rows);
 
 	return err;
 }
@@ -1496,8 +1498,6 @@ ret:
 // limitation: palette images aren't supported
 static int jpg_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 {
-return -1;//VFS dest not implemented yet
-
 	const char* msg = 0;
 	int err = -1;
 
@@ -1511,7 +1511,7 @@ return -1;//VFS dest not implemented yet
 		// so we need an output loop anyway, but passing at least 2..4
 		// rows is more efficient in low-quality modes (due to less copying).
 
-	// freed when fail is reached:
+	Handle hf = 0;
 
 	// set up our error handler, which overrides jpeg's default
 	// write-to-stderr-and-exit behavior.
@@ -1534,11 +1534,19 @@ fail:
 		goto ret;
 	}
 
-// "jump to label crosses initialization" - B'ah
-{
+	// goto scoping
+	{
+
 	jpeg_create_compress(&cinfo);
 
-///	jpeg_vfs_dest(&cinfo, file, file_size);
+	hf = vfs_open(fn, FILE_WRITE|FILE_NO_AIO);
+	if(hf <= 0)
+	{
+		err = (int)hf;
+		goto fail;
+	}
+	jpeg_vfs_dst(&cinfo, hf);
+
 
 	//
 	// describe input image
@@ -1595,13 +1603,15 @@ fail:
 
 	err = 0;
 
-}
+	}
+
 	// shared cleanup
 ret:
-	free(rows);
-
 	jpeg_destroy_compress(&cinfo);
 		// releases a "good deal" of memory
+
+	free(rows);
+	vfs_close(hf);
 
 	return err;
 }
