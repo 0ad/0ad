@@ -1,4 +1,4 @@
-// $Id: wxframe.cpp,v 1.2 2004/06/18 22:50:34 philip Exp $
+// $Id: wxframe.cpp,v 1.3 2004/06/18 22:52:34 philip Exp $
 
 #include "stdafx.h"
 
@@ -212,7 +212,6 @@ void MainFrame::OnClose(wxCloseEvent& event)
 
 void MainFrame::LoadSettings(wxString& filename)
 {
-/*
 	wxExprDatabase db;
 
 	db.Read(filename);
@@ -262,12 +261,10 @@ void MainFrame::LoadSettings(wxString& filename)
 	PreviewTextCtrl->SetValue(PreviewText);
 
 	Changes = false;
-*/
 }
 
 void MainFrame::SaveSettings(wxString& filename)
 {
-/*
 	wxExprDatabase db;
 
 	wxTextCtrl* PreviewTextCtrl		= (wxTextCtrl*)wxWindow::FindWindowById(ID_PreviewText);
@@ -299,7 +296,6 @@ void MainFrame::SaveSettings(wxString& filename)
 	db.Write(filename);
 
 	Changes = false;
-*/
 }
 
 
@@ -347,7 +343,7 @@ void MainFrame::OnMRUFile(wxCommandEvent& event)
 
 void MainFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
 {
-	wxMessageBox(wxString::Format(wxT("Unicode Font Builder %s - created by Philip Taylor for WildFire Games"), version), wxT("About"), wxOK | wxICON_INFORMATION );
+	wxMessageBox(wxString::Format(wxT("Unicode Font Builder %s - created by Philip Taylor for WildFire Games"), version.c_str()), wxT("About"), wxOK | wxICON_INFORMATION );
 }
 
 
@@ -406,7 +402,7 @@ void MainFrame::GeneratePreview()
 		}
 	}
 	catch (const char* m) {
-		wxLogError(wxString::Format(wxT("Failed to generate preview: %s"), wxString::FromAscii(m)));
+		wxLogError(wxString::Format(wxT("Failed to generate preview: %s"), wxString::FromAscii(m).c_str()));
 		return;
 	}
 
@@ -466,7 +462,7 @@ void MainFrame::GenerateTexture(wxString TextureFilename, wxString FontDefnFilen
 			Chars = AnalyseChars(CharFilename);
 		}
 		catch (const char* m) {
-			wxLogError(wxString::Format(wxT("Failed to analyse character file: %s"), wxString::FromAscii(m)));
+			wxLogError(wxString::Format(wxT("Failed to analyse character file: %s"), wxString::FromAscii(m).c_str()));
 			return;
 		}
 	}
@@ -496,7 +492,7 @@ void MainFrame::GenerateTexture(wxString TextureFilename, wxString FontDefnFilen
 			Packed.Generate(&ProgressDialogCallback, &ProgressDialog);
 		}
 		catch (const char* m) {
-			wxLogError(wxString::Format(wxT("Failed to generate texture: %s"), wxString::FromAscii(m)));
+			wxLogError(wxString::Format(wxT("Failed to generate texture: %s"), wxString::FromAscii(m).c_str()));
 			return;
 		}
 
@@ -527,7 +523,7 @@ void MainFrame::GenerateTexture(wxString TextureFilename, wxString FontDefnFilen
 		FntFile.Close();
 	}
 	catch (const char* m) {
-		wxLogError(wxString::Format(wxT("Failed to generate texture: %s"), wxString::FromAscii(m)));
+		wxLogError(wxString::Format(wxT("Failed to generate texture: %s"), wxString::FromAscii(m).c_str()));
 		return;
 	}
 
