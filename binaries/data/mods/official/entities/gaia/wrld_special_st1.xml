@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity Tag="wrld_flora_pine_9" Parent="template_gaia_flora_tree_pine">
+<Entity Tag="wrld_special_building_st1" Parent="template_gaia_special_building">
 	<Traits>
 		<Id
-			icon="flora_deciduotree"
+			icon="gaia_st"
 			internal_only="false"
 		/>
 	</Traits>
-	<Actor>Pine9</Actor>
+	<Actor>Settlement</Actor>
 </Entity>

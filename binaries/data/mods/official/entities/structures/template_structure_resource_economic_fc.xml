@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="fc" Parent="template_structure_resource">
+	<Traits>
+		<Id
+			generic="Corral"
+
+			rollover="Herd domestic animals into a Corral, and they will provide Food for your civilisation."
+			
+			type.structure.phase.vp="true"
+		/>
+		<Health
+			curr="50"
+			hitpoints="50"
+		/>
+	</Traits>
+	<Footprint Width="12.0" Height="12.0"/>
+</Entity>

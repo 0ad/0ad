@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="cc" Parent="template_structure_norm_civic">
+	<Traits>
+		<Id
+			generic="Civilian Centre"
+
+			rollover="The heart of the player's empire. Trains economic units, and can only be built on settlements."
+			
+			type.structure.group.housing="true"
+			type.structure.phase.vp="true"
+		/>
+		<Health
+			curr="1000"
+			hitpoints="1000"
+		/>
+		<Population
+			add="10"
+		/>
+	</Traits>
+	<Footprint Width="24.0" Height="24.0"/>
+</Entity>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="wg" Parent="template_structure_norm_civic">
+	<Traits>
+		<Id
+			generic="Gate"
+
+			rollover="Gates allow allied units access through a wall, but are also its most vulnerable point."
+			
+			type.structure.phase.vp="true"
+		/>
+		<Health
+			curr="100"
+			hitpoints="100"
+		/>
+	</Traits>
+	<Footprint Width="6.0" Height="6.0"/>
+</Entity>

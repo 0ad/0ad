@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="combat_dude_iberian" Parent="isw">
+	<Actor>Carthaginian Dude</Actor>
+	<Traits>
+		<Id
+			civ_code="kart"
+			civ="The Carthaginians"
+			internal_only="false"
+
+			specific="Dude"
+			ranked="Basic Dude"
+			icon="unit_dude"
+			rollover="Carthaginian Dudes have strong armour, but weaker attack than the other dudes."
+			history="Carthaginian Dude is actually a spy from foreign powers seeking to infiltrate the 0 A.D. development team. Fortunately, the abbreviation of 'Carthaginian' to 'Kart' so confused the Dude that he now spends his days wandering through the Pyrogenesian wastes postulating an entirely new system of philosophy in an effort to understand this seemingly inexplicable act."
+		/>
+		<!-- Should stop 3 hack, 1 pierce damage... -->
+		<Armour
+			value="4"
+			crush="0.0"
+			hack="0.75"
+			pierce="0.25"
+		/>
+	</Traits>
+	<Actions>
+		<!-- 2 hack, 2 pierce damage... -->
+		<Attack
+			range="1.5"
+			damage="4"
+			crush="0.0"
+			hack="0.5"
+			pierce="0.5"
+		/>
+	</Actions>
+</Entity>
+

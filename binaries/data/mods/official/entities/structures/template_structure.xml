@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="template_structure" Parent="template_entity">
+	<Traits>
+		<Id
+			generic="Generic Structure"
+
+			internal_only="true"
+			version="0.1 pasap2"
+
+			class1="Structure"
+			type.structure="true"
+			type.structure.group="true"
+			type.structure.phase="true"
+			type.structure.material="true"
+		/>
+	</Traits>
+</Entity>

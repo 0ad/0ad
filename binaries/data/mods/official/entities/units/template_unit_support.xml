@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="template_unit_support" Parent="template_unit">
+	<Traits>
+		<Id
+			generic="Generic Support Unit"
+
+			class2="Support"
+			type.unit.support="true"
+		/>
+	</Traits>
+</Entity>

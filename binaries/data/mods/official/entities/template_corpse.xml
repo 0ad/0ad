@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="template_corpse">
+	<!-- Beware! The string "false" maps to 'true'. The only string that maps to 'false' is "". -->
+
+	<Traits	extant="">
+		<Id
+			type="true"
+			generic="Corpse"
+		/>
+		<!-- Defaults to no armour -->
+		<Armour
+			Value="0"
+			Crush="0.0"
+			Hack="0.0"
+			Pierce="0.0"
+		/>
+	</Traits>
+	<Actions>
+	</Actions>
+</Entity>

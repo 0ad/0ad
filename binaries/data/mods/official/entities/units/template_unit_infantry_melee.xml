@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="template_unit_infantry_melee" Parent="template_unit_infantry">
+	<Traits>
+		<Id
+			generic="Generic Melee Infantry Unit"
+
+			class3="Melee"
+
+			type.unit.attack.melee="true"
+		/>
+	</Traits>
+	<Event On="Initialize">
+	<![CDATA[
+	    // PASAP wander-between-houses script
+	    
+	    houses = entities.subset( "this.template.tag == \"House\"" );
+	    while( houses.length )
+	    {
+			index = Math.floor( Math.random() * houses.length );
+			house = houses[index];
+			console.write( house.position ); 
+			this.orderQueued( 4 /* patrol */, house.position.x, house.position.z );
+			houses.remove( index );
+		}
+		console.write( "A new Dude has entered your dungeon." );
+	]]>	
+	</Event>
+</Entity>

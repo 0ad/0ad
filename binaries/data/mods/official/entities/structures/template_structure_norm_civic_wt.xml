@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="wt" Parent="template_structure_norm_civic">
+	<Traits>
+		<Id
+			generic="Tower"
+
+			rollover="Towers can be garrisoned to defend a city wall against attackers."
+			
+			type.structure.phase.vp="true"
+		/>
+		<Health
+			curr="80"
+			hitpoints="80"
+		/>
+	</Traits>
+	<Footprint Width="6.0" Height="6.0"/>
+</Entity>

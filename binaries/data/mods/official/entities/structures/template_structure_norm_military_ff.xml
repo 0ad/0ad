@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="ff" Parent="template_structure_norm_military">
+	<Traits>
+		<Id
+			generic="Fortress"
+
+			rollover="The Fortress represents the pinnacle of a civilisation's military prowess. Heroes, powerful advanced units, and unique technologies are available from this structure."
+			
+			type.structure.phase.cp="true"
+		/>
+		<Health
+			curr="1000"
+			hitpoints="1000"
+		/>
+	</Traits>
+	<Footprint Width="24.0" Height="24.0"/>
+</Entity>

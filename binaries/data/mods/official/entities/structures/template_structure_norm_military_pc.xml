@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="pc" Parent="template_structure_norm_military">
+	<Traits>
+		<Id
+			generic="Dock"
+
+			rollover="Naval vessels are manufactured at this building. A Dock must be built on the shoreline of a body of water."
+			
+			type.structure.phase.tp="true"
+		/>
+		<Health
+			curr="600"
+			hitpoints="600"
+		/>
+	</Traits>
+	<Footprint Width="18.0" Height="18.0"/>
+</Entity>

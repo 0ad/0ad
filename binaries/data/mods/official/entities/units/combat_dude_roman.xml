@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="combat_dude_roman" Parent="isw">
+	<Actor>Roman Dude</Actor>
+	<Traits>
+		<Id
+			civ_code="rome"
+			civ="Pre-Imperial Roman"
+			internal_only="false"
+
+			specific="Dude"
+			ranked="Basic Dude"
+			icon="unit_dude"
+			rollover="Roman Dudes deal more damage, but have less armour compared to other Dudes."
+			history="The Dude has little history, since he's only been in the game for a few months."
+		/>
+		<!-- Should stop 1 hack, 1 pierce damage... -->
+		<Armour
+			value="2"
+			crush="0.0"
+			hack="0.5"
+			pierce="0.5"
+		/>
+	</Traits>
+	<Actions>
+		<!-- 5 hack, 3 pierce damage... -->
+		<Attack
+			range="1.5"
+			damage="8"
+			crush="0.0"
+			hack="0.625"
+			pierce="0.375"
+		/>
+	</Actions>
+</Entity>
+

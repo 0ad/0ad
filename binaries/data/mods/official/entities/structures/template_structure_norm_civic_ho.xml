@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="ho" Parent="template_structure_norm_civic">
+	<Traits>
+		<Id
+			generic="House"
+
+			rollover="A civic building that increases the player's population."
+			
+			type.structure.group.housing="true"
+			type.structure.phase.vp="true"
+		/>
+		<Health
+			curr="250"
+			hitpoints="250"
+		/>
+		<Population
+			add="5"
+		/>
+	</Traits>
+	<Footprint Width="12.0" Height="12.0"/>
+</Entity>

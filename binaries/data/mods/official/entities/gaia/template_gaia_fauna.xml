@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="template_gaia_fauna" Parent="template_gaia">
+	<Traits>
+		<Id
+			generic="Generic Fauna"
+			class2="Fauna"
+
+			type.gaia.group.fauna="true"
+		/>
+	</Traits>
+	<Footprint Radius="1.0"/>
+</Entity>

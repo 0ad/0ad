@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="template_gaia" Parent="template_entity">
+	<Traits>
+		<Id
+			civ_code="gaia"
+			civ="Gaia"
+
+			generic="Generic Gaia"
+
+			internal_only="true"
+			version="0.1 pasap2"
+
+			class1="Gaia"
+			type.gaia="true"
+			type.gaia.group="true"
+		/>
+	</Traits>
+</Entity>

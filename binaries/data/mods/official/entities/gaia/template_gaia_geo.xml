@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="template_gaia_geo" Parent="template_gaia">
+	<Traits>
+		<Id
+			generic="Generic Geology"
+			class2="Geo"
+
+			type.gaia.group.geo="true"
+		/>
+	</Traits>
+	<Footprint Radius="1.0"/>
+</Entity>

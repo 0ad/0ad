@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="isl" Parent="template_unit_infantry_ranged">
+	<Traits>
+		<Id
+			generic="Infantry Slinger"
+
+			type.unit.foot.sling="true"
+			type.unit.weapon.sling="true"
+		/>
+	</Traits>
+</Entity>

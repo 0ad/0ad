@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="template_unit_mechanical" Parent="template_unit">
+	<Traits>
+		<Id
+			generic="Generic Mechanical Unit"
+
+			class2="Mechanical"
+
+			type.unit.group.military="true"
+			type.unit.material.mechanical="true"
+		/>
+	</Traits>
+</Entity>

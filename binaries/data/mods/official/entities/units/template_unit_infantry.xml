@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="template_unit_infantry" Parent="template_unit">
+	<Traits>
+		<Id
+			generic="Generic Infantry Unit"
+
+			class2="Infantry"
+
+			type.unit.group_military="true"
+			type.unit.foot="true"
+			type.unit.material_organic="true"
+
+			type.unit.group.citizensoldier="true"
+			type.unit.group.worker="true"
+		/>
+	</Traits>
+</Entity>

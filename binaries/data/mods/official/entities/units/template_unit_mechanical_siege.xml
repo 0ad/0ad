@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="template_unit_mechanical_siege" Parent="template_unit_mechanical">
+	<Traits>
+		<Id
+			generic="Generic Siege Unit"
+
+			class3="Siege"
+
+			type.unit.group.siege="true"
+		/>
+	</Traits>
+</Entity>

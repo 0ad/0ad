@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="template_unit_hero" Parent="template_unit">
+	<Traits>
+		<Id
+			generic="Hero"
+
+			class2="Hero"
+
+			type.unit.group.military="true"
+			type.unit.group.hero="true"
+			type.unit.material.organic="true"
+		/>
+	</Traits>
+</Entity>

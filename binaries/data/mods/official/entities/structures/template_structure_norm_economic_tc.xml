@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="tc" Parent="template_structure_norm_civic">
+	<Traits>
+		<Id
+			generic="Market"
+
+			rollover="The Market creates trade units and allows resources to be bartered. Traders travel between Markets, generating resources on a successful round-trip."
+			
+			type.structure.phase.tp="true"
+		/>
+		<Health
+			curr="600"
+			hitpoints="600"
+		/>
+	</Traits>
+	<Footprint Width="18.0" Height="18.0"/>
+</Entity>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="sb" Parent="template_structure_norm_sb">
+	<Traits>
+		<Id
+			generic="Special Building"
+
+			rollover="This is a special building unique to a particular civilisation."
+			
+			type.structure.phase.cp="true"
+		/>
+	</Traits>
+	<Footprint Width="24.0" Height="24.0"/>
+</Entity>

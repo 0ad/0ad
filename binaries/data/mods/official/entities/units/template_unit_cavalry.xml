@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="template_unit_cavalry" Parent="template_unit">
+	<Traits>
+		<Id
+			generic="Generic Cavalry Unit"
+
+			class2="Cavalry"
+
+			type.unit.group.military="true"
+			type.unit.mounted="true"
+			type.unit.material.organic="true"
+
+			type.unit.group.citizensoldier="true"
+			type.unit.group.worker="true"
+		/>
+	</Traits>
+	<Footprint Radius="1.5"/>
+	<Actions>
+		<Move
+			speed="8.0"
+			turningRadius="1.0"
+		/>
+	</Actions>
+</Entity>

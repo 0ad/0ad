@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="wc" Parent="template_structure_norm_civic">
+	<Traits>
+		<Id
+			generic="Wall"
+
+			rollover="Build walls to protect a town, close off choke points, and defend resource sites."
+			
+			type.structure.phase.vp="true"
+		/>
+		<Health
+			curr="500"
+			hitpoints="500"
+		/>
+	</Traits>
+	<Footprint Width="6.0" Height="6.0"/>
+</Entity>

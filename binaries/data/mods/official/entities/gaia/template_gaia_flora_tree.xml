@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="template_gaia_flora_tree" Parent="template_gaia_flora">
+	<Traits>
+		<Id
+			generic="Tree"
+			class3="Tree"
+
+			type.gaia.group.resource="true"
+
+			rollover="Chop these down to accumulate Wood."
+		/>
+		<Health
+			hitpoints="100"
+			curr="100"
+		/>
+	</Traits>
+</Entity>

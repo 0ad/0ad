@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Tag="csp" Parent="template_unit_cavalry_melee">
+	<Traits>
+		<Id
+			generic="Cavalry Spearman"
+
+			type.unit.mounted.spear="true"
+			type.unit.weapon.spear="true"
+		/>
+	</Traits>
+</Entity>
