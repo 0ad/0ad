@@ -132,9 +132,9 @@ CMatrix3D CMatrix3D::operator * (const CMatrix3D &matrix) const
 //Matrix multiplication/assignment
 CMatrix3D &CMatrix3D::operator *= (const CMatrix3D &matrix)
 {
-	CMatrix3D &Temp = (*this) * matrix;
+	(*this) = (*this) * matrix;
 
-	return Temp;
+	return *this;
 }
 
 //Sets the identity matrix
