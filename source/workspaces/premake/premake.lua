@@ -73,6 +73,8 @@ if (OS == "windows") then
 	package.linkoptions = { "/ENTRY:entry" }
 	package.linkflags = { "static-runtime" }
 	package.buildflags = { "no-main" }
+	package.pchHeader = "precompiled.h"
+	package.pchSource = "precompiled.cpp"
 else -- Non-Windows, = Unix
 	-- Libraries
 	package.links = {
