@@ -825,18 +825,15 @@ void CGUI::LoadXMLFile(const string &Filename)
 	///		g_nemLog("*** Xerces XML Parsing Errors");
 
 			// Get main node
-			LocalFileInputSource source( XMLString::transcode( Filename.c_str() ) );
+			XMLCh *fname=XMLString::transcode(Filename.c_str());
+			LocalFileInputSource source(fname);
+			XMLString::release(&fname);
 
 			// parse
 			parser->parse(source);
 
 			// Check how many errors
 			ParseFailed = parser->getErrorCount() != 0;
-			if (ParseFailed)
-			{
-				// TODO Gee: Report for real!
-	///				g_console.submit("echo Xerces XML Parsing Reports %d errors", parser->getErrorCount());
-			}
 			
 			// Parse Failed?
 			if (!ParseFailed)
@@ -846,9 +843,9 @@ void CGUI::LoadXMLFile(const string &Filename)
 
 				// Check root element's (node) name so we know what kind of
 				//  data we'll be expecting
-				string root_name = XMLString::transcode( node->getNodeName() );
+				CStr root_name = XMLTranscode( node->getNodeName() );
 
-				if (root_name == "objects")
+				if (root_name == CStr("objects"))
 				{
 					Xerces_ReadRootObjects(node);
 
@@ -856,17 +853,17 @@ void CGUI::LoadXMLFile(const string &Filename)
 					//UpdateResolution();
 				}
 				else
-				if (root_name == "sprites")
+				if (root_name == CStr("sprites"))
 				{
 					Xerces_ReadRootSprites(node);
 				}
 				else
-				if (root_name == "styles")
+				if (root_name == CStr("styles"))
 				{
 					Xerces_ReadRootStyles(node);
 				}
 				else
-				if (root_name == "setup")
+				if (root_name == CStr("setup"))
 				{
 					Xerces_ReadRootSetup(node);
 				}
@@ -874,6 +871,7 @@ void CGUI::LoadXMLFile(const string &Filename)
 				{
 					// TODO Gee: Output in log
 				}
+
 			}
 		}
 
@@ -960,7 +958,7 @@ void CGUI::Xerces_ReadRootSetup(DOMElement *pElement)
 			// Read in this whole object into the GUI
 			DOMElement *element = (DOMElement*)child;
 
-			CStr name = XMLString::transcode( element->getNodeName() );
+			CStr name = XMLTranscode( element->getNodeName() );
 
 			if (name == CStr("scrollbar"))
 			{
@@ -980,7 +978,7 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 	IGUIObject *object = NULL;
 
 	// Well first of all we need to determine the type
-	CStr type = XMLString::transcode( pElement->getAttribute( XMLString::transcode("type") ) );
+	CStr type = XMLTranscode( pElement->getAttribute( L"type" ) );
 
 	// Construct object from specified type
 	//  henceforth, we need to do a rollback before aborting.
@@ -1003,7 +1001,7 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 	//
 	//	Always load default (if it's available) first!
 	//
-	CStr argStyle = XMLString::transcode( pElement->getAttribute( XMLString::transcode("style") ) );
+	CStr argStyle = XMLTranscode( pElement->getAttribute( L"style" ) );
 
 	if (m_Styles.count(CStr("default")) == 1)
 		object->LoadStyle(*this, CStr("default"));
@@ -1031,8 +1029,8 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 	for (i=0; i<attributes->getLength(); ++i)
 	{
 		DOMAttr *attr = (DOMAttr*)attributes->item(i);
-		CStr attr_name = XMLString::transcode( attr->getName() );
-		CStr attr_value = XMLString::transcode( attr->getValue() );
+		CStr attr_name = XMLTranscode( attr->getName() );
+		CStr attr_value = XMLTranscode( attr->getValue() );
 
 		// If value is "null", then it is equivalent as never being entered
 		if (attr_value == CStr("null"))
@@ -1092,9 +1090,9 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 		if (child->getNodeType() == DOMNode::ELEMENT_NODE)
 		{
 			// Check what name the elements got
-			string element_name = XMLString::transcode( child->getNodeName() );
+			CStr element_name = XMLTranscode( child->getNodeName() );
 
-			if (element_name == "object")
+			if (element_name == CStr("object"))
 			{
 				// First get element and not node
 				DOMElement *element = (DOMElement*)child;
@@ -1108,7 +1106,7 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 		else 
 		if (child->getNodeType() == DOMNode::TEXT_NODE)
 		{
-			CStr caption = XMLString::transcode( child->getNodeValue() );
+			CStr caption = XMLTranscode( child->getNodeValue() );
 
 			// Text is only okay if it's the first element i.e. <object>caption ... </object>
 			if (i==0)
@@ -1193,7 +1191,7 @@ void CGUI::Xerces_ReadSprite(DOMElement *pElement)
 	//
 
 	// Get name, we know it exists because of DTD requirements
-	name = XMLString::transcode( pElement->getAttribute( XMLString::transcode("name") )  );
+	name = XMLTranscode( pElement->getAttribute( L"name" )  );
 
 	//
 	//	Read Children (the images)
@@ -1247,8 +1245,8 @@ void CGUI::Xerces_ReadImage(DOMElement *pElement, CGUISprite &parent)
 	for (u16 i=0; i<attributes->getLength(); ++i)
 	{
 		DOMAttr *attr = (DOMAttr*)attributes->item(i);
-		CStr attr_name = XMLString::transcode( attr->getName() );
-		CStr attr_value(XMLString::transcode( attr->getValue() ));
+		CStr attr_name = XMLTranscode( attr->getName() );
+		CStr attr_value(XMLTranscode( attr->getValue() ));
 
 		// This is the only attribute we want
 		if (attr_name == CStr("texture"))
@@ -1317,8 +1315,8 @@ void CGUI::Xerces_ReadStyle(DOMElement *pElement)
 	for (u16 i=0; i<attributes->getLength(); ++i)
 	{
 		DOMAttr *attr = (DOMAttr*)attributes->item(i);
-		CStr attr_name = XMLString::transcode( attr->getName() );
-		CStr attr_value = XMLString::transcode( attr->getValue() );
+		CStr attr_name = XMLTranscode( attr->getName() );
+		CStr attr_value = XMLTranscode( attr->getValue() );
 
 		// The "name" setting is actually the name of the style
 		//  and not a new default
@@ -1352,8 +1350,8 @@ void CGUI::Xerces_ReadScrollBarStyle(DOMElement *pElement)
 	for (u16 i=0; i<attributes->getLength(); ++i)
 	{
 		DOMAttr *attr = (DOMAttr*)attributes->item(i);
-		CStr attr_name = XMLString::transcode( attr->getName() );
-		CStr attr_value = XMLString::transcode( attr->getValue() );
+		CStr attr_name = XMLTranscode( attr->getName() );
+		CStr attr_value = XMLTranscode( attr->getValue() );
 
 		if (attr_value == CStr("null"))
 			continue;
