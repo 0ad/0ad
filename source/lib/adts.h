@@ -77,27 +77,32 @@ template<class T, size_t n> struct RingBuf
 		const T& operator[](int idx) const
 			{ return data[(pos+idx) % n]; }
 		const T& operator*() const
-			{ return data[pos]; }
+			{ return data[pos % n]; }
 		const T* operator->() const
 			{ return &**this; }
 		const_iterator& operator++()	// pre
-			{ pos = (pos+1) % n; return (*this); }
+			{ ++pos; return (*this); }
 		const_iterator operator++(int)	// post
 			{ const_iterator tmp =  *this; ++*this; return tmp; }
 		bool operator==(const const_iterator& rhs) const
-			{ return pos == rhs.pos && data == rhs.data; }
+			{ return data == rhs.data && pos == rhs.pos; }
 		bool operator!=(const const_iterator& rhs) const
 			{ return !(*this == rhs); }
 	protected:
 		const T* data;
 		size_t pos;
+			// not mod-N so that begin != end when buffer is full.
 	};
 
 	const_iterator begin() const
-	{ return const_iterator(data, (size_ < n)? 0 : pos); }
+	{
+		return const_iterator(data, (size_ < n)? 0 : pos);
+	}
 
 	const_iterator end() const
-	{ return const_iterator(data, (size_ < n)? size_ : pos); }
+	{
+		return const_iterator(data, (size_ < n)? size_ : pos+n);
+	}
 };
 
 
