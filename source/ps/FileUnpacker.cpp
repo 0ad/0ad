@@ -13,8 +13,12 @@
  
 ////////////////////////////////////////////////////////////////////////////////////////
 // CFileUnpacker constructor
-CFileUnpacker::CFileUnpacker() : m_UnpackPos(0), m_Version(0)
+CFileUnpacker::CFileUnpacker()
 {
+	m_Buf = 0;
+	m_Size = 0;
+	m_UnpackPos = 0;
+	m_Version = 0;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -23,21 +27,25 @@ CFileUnpacker::CFileUnpacker() : m_UnpackPos(0), m_Version(0)
 void CFileUnpacker::Read(const char* filename,const char magicstr[4])
 {
 	// load the whole thing into memory
-	void* file;
-	size_t size;
-	Handle hm = vfs_load(filename, file, size);
+	Handle hm = vfs_load(filename, m_Buf, m_Size);
 	if(hm <= 0)
+	{
+		m_Buf = 0;
+		m_Size = 0;
 		throw CFileOpenError();
+	}
 
 	// make sure we read enough for the header
-	if(size < 12)
+	if(m_Size < 12)
 	{
 		mem_free_h(hm);
+		m_Buf = 0;
+		m_Size = 0;
 		throw CFileReadError();
 	}
 
 	// extract data from header
-	u8* header = (u8*)file;
+	u8* header = (u8*)m_Buf;
 	char* magic = (char*)(header+0);
 	m_Version = *(u32*)(header+4);
 	u32 datasize = *(u32*)(header+8);
@@ -46,62 +54,13 @@ void CFileUnpacker::Read(const char* filename,const char magicstr[4])
 	// check we've got the right kind of file
 	// .. and that we read exactly headersize+datasize
 	if(strncmp(magic, magicstr, 4) != 0 ||
-	   size != 12+datasize)
+	   m_Size != 12+datasize)
 	{
 		mem_free_h(hm);
+		m_Buf = 0;
+		m_Size = 0;
 		throw CFileTypeError();
 	}
-
-	// allocate memory and read in a big chunk of data
-	m_Data.resize(datasize);
-	memcpy(&m_Data[0], data, datasize);
-
-	mem_free_h(hm);
-
-
-/*
-	FILE* fp=fopen(filename,"rb");
-	if (!fp) {
-		throw CFileOpenError();
-	}
-
-	// read magic bits
-	char magic[4];
-	if (fread(magic,sizeof(char)*4,1,fp)!=1) {
-		fclose(fp);
-		throw CFileReadError();
-	}
-
-	// check we've got the right kind of file
-	if (strncmp(magic,magicstr,4)!=0) {
-		// nope ..
-		fclose(fp);
-		throw CFileTypeError();
-	}
-
-	// get version
-	if (fread(&m_Version,sizeof(m_Version),1,fp)!=1) {
-		fclose(fp);
-		throw CFileReadError();
-	}
-
-	// get size of anim data
-	u32 datasize;
-	if (fread(&datasize,sizeof(datasize),1,fp)!=1) {
-		fclose(fp);
-		throw CFileReadError();
-	}
-
-	// allocate memory and read in a big chunk of data
-	m_Data.resize(datasize);
-	if (fread(&m_Data[0],datasize,1,fp)!=1) {
-		fclose(fp);
-		throw CFileReadError();
-	}
-
-	// all done
-	fclose(fp);
-*/
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -111,15 +70,16 @@ void CFileUnpacker::Read(const char* filename,const char magicstr[4])
 void CFileUnpacker::UnpackRaw(void* rawdata,u32 rawdatalen)
 {
 	// got enough data to unpack?
-	if (m_UnpackPos+rawdatalen<=m_Data.size()) {
+	if (m_UnpackPos+rawdatalen<=m_Size)
+	{
 		// yes .. copy over
-		memcpy(rawdata,&m_Data[m_UnpackPos],rawdatalen);
-		// advance pointer
-		m_UnpackPos+=rawdatalen;
-	} else {
+		void* src = (char*)m_Buf + m_UnpackPos;
+		memcpy(rawdata, src, rawdatalen);
+		m_UnpackPos += rawdatalen;
+	}
+	else
 		// nope - throw exception
 		throw CFileEOFError();
-	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////

@@ -45,8 +45,9 @@ public:
 	void UnpackString(CStr& result);
 
 private:
-	// the input data stream read from file and used during unpack operations
-	std::vector<u8> m_Data;
+	// the data read from file and used during unpack operations
+	void* m_Buf;
+	size_t m_Size;
 	// current unpack position in stream
 	u32 m_UnpackPos;
 	// version of the file currently being read
