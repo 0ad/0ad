@@ -68,15 +68,22 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 {
 	int ret = EV_PASS;
 
-	if( ev->type == SDL_GUIHOTKEYPRESS )
+	if (ev->type == SDL_GUIHOTKEYPRESS)
 	{
-		const CStr& objectName = *( (CStr*)ev->user.code );
-		IGUIObject* object = FindObjectByName( objectName );
-		object->HandleMessage( SGUIMessage( GUIM_PRESSED ) );
-		object->ScriptEvent( "press" );
+		const CStr& objectName = *(CStr*) ev->user.code;
+		IGUIObject* object = FindObjectByName(objectName);
+		if (! object)
+		{
+			LOG(ERROR, LOG_CATEGORY, "Cannot find hotkeyed object '%s'", objectName.c_str());
+		}
+		else
+		{
+			object->HandleMessage( SGUIMessage( GUIM_PRESSED ) );
+			object->ScriptEvent("press");
+		}
 	}
 
-	if(ev->type == SDL_MOUSEMOTION)
+	else if (ev->type == SDL_MOUSEMOTION)
 	{
 		// Yes the mouse position is stored as float to avoid
 		//  constant conversations when operating in a
@@ -89,7 +96,7 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 	}
 
 	// Update m_MouseButtons. (BUTTONUP is handled later.)
-	if (ev->type == SDL_MOUSEBUTTONDOWN)
+	else if (ev->type == SDL_MOUSEBUTTONDOWN)
 	{
 		// (0,1,2) = (LMB,RMB,MMB)
 		if (ev->button.button < 3)
@@ -1177,7 +1184,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	if (!object)
 	{
 		// Report error that object was unsuccessfully loaded
-		ReportParseError(CStr("Unrecognized type: ") + CStr(type));
+		ReportParseError("Unrecognized type \"%s\"", type.c_str());
 		return;
 	}
 
@@ -1307,7 +1314,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		catch (PS_RESULT e)
 		{
 			UNUSED(e);
-			ReportParseError(CStr("Can't set \"") + pFile->getAttributeString(attr.Name) + CStr("\" to \"") + (CStr)attr.Value + CStr("\""));
+			ReportParseError("Can't set \"%s\" to \"%s\"", pFile->getAttributeString(attr.Name).c_str(), attr.Value.c_str());
 
 			// This is not a fatal error
 		}

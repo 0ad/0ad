@@ -452,6 +452,7 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 
 	// Make a 'this', allowing access to the IGUIObject
 	JSObject* jsGuiObject = JS_ConstructObjectWithArguments(g_ScriptingHost.getContext(), &JSI_IGUIObject::JSI_class, NULL, m_pGUI->m_ScriptObject, 1, &guiObject);
+//	assert(jsGuiObject); // TODO (URGENT): Work out why this fails
 
 	// Prevent it from being garbage-collected before
 	// it's passed into the function

@@ -275,7 +275,7 @@ CStr _nm::GetString() const \
 
 #define NMT_FIELD(_tp, _nm) \
 	ret += #_nm _T(": "); \
-	ret += thiz->_nm; \
+	ret += CStr(thiz->_nm); \
 	ret += _T(", ");
 
 #define END_NMT_CLASS() \
