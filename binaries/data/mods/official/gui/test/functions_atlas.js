@@ -65,7 +65,7 @@ function initAtlas()
 	crd_atlas_mainborder_toolbar_maximise_arrow_x = crd_atlas_mainborder_toolbar_fully_minimise_arrow_x;
 	crd_atlas_mainborder_toolbar_maximise_arrow_y = crd_atlas_mainborder_menu_bkg_y+crd_atlas_mainborder_menu_bkg_height-crd_atlas_mainborder_toolbar_maximise_arrow_height-crd_atlas_mainborder_toolbar_maximise_arrow_height-1;
 
-	// Toolbar button.
+	// Toolbar button: Row 1.
 	crd_atlas_mainborder_toolbar_button_span = 4;
 	crd_atlas_mainborder_toolbar_button_1_width = 15;
 	crd_atlas_mainborder_toolbar_button_1_height = 15;
@@ -162,11 +162,311 @@ function initAtlas()
 	crd_atlas_mainborder_toolbar_button_19_x = crd_atlas_mainborder_toolbar_button_18_x+crd_atlas_mainborder_toolbar_button_18_width+crd_atlas_mainborder_toolbar_button_span;
 	crd_atlas_mainborder_toolbar_button_19_y = crd_atlas_mainborder_toolbar_button_18_y;
 
-	// Toolbar button.
+	crd_atlas_mainborder_toolbar_button_20_width = crd_atlas_mainborder_toolbar_button_19_width;
+	crd_atlas_mainborder_toolbar_button_20_height = crd_atlas_mainborder_toolbar_button_19_height;
+	crd_atlas_mainborder_toolbar_button_20_x = crd_atlas_mainborder_toolbar_button_19_x+crd_atlas_mainborder_toolbar_button_19_width+crd_atlas_mainborder_toolbar_button_span;
+	crd_atlas_mainborder_toolbar_button_20_y = crd_atlas_mainborder_toolbar_button_19_y;
+
+	crd_atlas_mainborder_toolbar_button_21_width = crd_atlas_mainborder_toolbar_button_20_width;
+	crd_atlas_mainborder_toolbar_button_21_height = crd_atlas_mainborder_toolbar_button_20_height;
+	crd_atlas_mainborder_toolbar_button_21_x = crd_atlas_mainborder_toolbar_button_20_x+crd_atlas_mainborder_toolbar_button_20_width+crd_atlas_mainborder_toolbar_button_span;
+	crd_atlas_mainborder_toolbar_button_21_y = crd_atlas_mainborder_toolbar_button_20_y;
+
+	crd_atlas_mainborder_toolbar_button_22_width = crd_atlas_mainborder_toolbar_button_21_width;
+	crd_atlas_mainborder_toolbar_button_22_height = crd_atlas_mainborder_toolbar_button_21_height;
+	crd_atlas_mainborder_toolbar_button_22_x = crd_atlas_mainborder_toolbar_button_21_x+crd_atlas_mainborder_toolbar_button_21_width+crd_atlas_mainborder_toolbar_button_span;
+	crd_atlas_mainborder_toolbar_button_22_y = crd_atlas_mainborder_toolbar_button_21_y;
+
+	crd_atlas_mainborder_toolbar_button_23_width = crd_atlas_mainborder_toolbar_button_22_width;
+	crd_atlas_mainborder_toolbar_button_23_height = crd_atlas_mainborder_toolbar_button_22_height;
+	crd_atlas_mainborder_toolbar_button_23_x = crd_atlas_mainborder_toolbar_button_22_x+crd_atlas_mainborder_toolbar_button_22_width+crd_atlas_mainborder_toolbar_button_span;
+	crd_atlas_mainborder_toolbar_button_23_y = crd_atlas_mainborder_toolbar_button_22_y;
+
+	crd_atlas_mainborder_toolbar_button_24_width = crd_atlas_mainborder_toolbar_button_23_width;
+	crd_atlas_mainborder_toolbar_button_24_height = crd_atlas_mainborder_toolbar_button_23_height;
+	crd_atlas_mainborder_toolbar_button_24_x = crd_atlas_mainborder_toolbar_button_23_x+crd_atlas_mainborder_toolbar_button_23_width+crd_atlas_mainborder_toolbar_button_span;
+	crd_atlas_mainborder_toolbar_button_24_y = crd_atlas_mainborder_toolbar_button_23_y;
+
+	crd_atlas_mainborder_toolbar_button_25_width = crd_atlas_mainborder_toolbar_button_24_width;
+	crd_atlas_mainborder_toolbar_button_25_height = crd_atlas_mainborder_toolbar_button_24_height;
+	crd_atlas_mainborder_toolbar_button_25_x = crd_atlas_mainborder_toolbar_button_24_x+crd_atlas_mainborder_toolbar_button_24_width+crd_atlas_mainborder_toolbar_button_span;
+	crd_atlas_mainborder_toolbar_button_25_y = crd_atlas_mainborder_toolbar_button_24_y;
+
+	crd_atlas_mainborder_toolbar_button_26_width = crd_atlas_mainborder_toolbar_button_25_width;
+	crd_atlas_mainborder_toolbar_button_26_height = crd_atlas_mainborder_toolbar_button_25_height;
+	crd_atlas_mainborder_toolbar_button_26_x = crd_atlas_mainborder_toolbar_button_25_x+crd_atlas_mainborder_toolbar_button_25_width+crd_atlas_mainborder_toolbar_button_span;
+	crd_atlas_mainborder_toolbar_button_26_y = crd_atlas_mainborder_toolbar_button_25_y;
+
+	crd_atlas_mainborder_toolbar_button_27_width = crd_atlas_mainborder_toolbar_button_26_width;
+	crd_atlas_mainborder_toolbar_button_27_height = crd_atlas_mainborder_toolbar_button_26_height;
+	crd_atlas_mainborder_toolbar_button_27_x = crd_atlas_mainborder_toolbar_button_26_x+crd_atlas_mainborder_toolbar_button_26_width+crd_atlas_mainborder_toolbar_button_span;
+	crd_atlas_mainborder_toolbar_button_27_y = crd_atlas_mainborder_toolbar_button_26_y;
+
+	crd_atlas_mainborder_toolbar_button_28_width = crd_atlas_mainborder_toolbar_button_27_width;
+	crd_atlas_mainborder_toolbar_button_28_height = crd_atlas_mainborder_toolbar_button_27_height;
+	crd_atlas_mainborder_toolbar_button_28_x = crd_atlas_mainborder_toolbar_button_27_x+crd_atlas_mainborder_toolbar_button_27_width+crd_atlas_mainborder_toolbar_button_span;
+	crd_atlas_mainborder_toolbar_button_28_y = crd_atlas_mainborder_toolbar_button_27_y;
+
+	crd_atlas_mainborder_toolbar_button_29_width = crd_atlas_mainborder_toolbar_button_28_width;
+	crd_atlas_mainborder_toolbar_button_29_height = crd_atlas_mainborder_toolbar_button_28_height;
+	crd_atlas_mainborder_toolbar_button_29_x = crd_atlas_mainborder_toolbar_button_28_x+crd_atlas_mainborder_toolbar_button_28_width+crd_atlas_mainborder_toolbar_button_span;
+	crd_atlas_mainborder_toolbar_button_29_y = crd_atlas_mainborder_toolbar_button_28_y;
+
+	crd_atlas_mainborder_toolbar_button_30_width = crd_atlas_mainborder_toolbar_button_29_width;
+	crd_atlas_mainborder_toolbar_button_30_height = crd_atlas_mainborder_toolbar_button_29_height;
+	crd_atlas_mainborder_toolbar_button_30_x = crd_atlas_mainborder_toolbar_button_29_x+crd_atlas_mainborder_toolbar_button_29_width+crd_atlas_mainborder_toolbar_button_span;
+	crd_atlas_mainborder_toolbar_button_30_y = crd_atlas_mainborder_toolbar_button_29_y;
+
+	crd_atlas_mainborder_toolbar_button_31_width = crd_atlas_mainborder_toolbar_button_30_width;
+	crd_atlas_mainborder_toolbar_button_31_height = crd_atlas_mainborder_toolbar_button_30_height;
+	crd_atlas_mainborder_toolbar_button_31_x = crd_atlas_mainborder_toolbar_button_30_x+crd_atlas_mainborder_toolbar_button_30_width+crd_atlas_mainborder_toolbar_button_span;
+	crd_atlas_mainborder_toolbar_button_31_y = crd_atlas_mainborder_toolbar_button_30_y;
+
+	crd_atlas_mainborder_toolbar_button_32_width = crd_atlas_mainborder_toolbar_button_31_width;
+	crd_atlas_mainborder_toolbar_button_32_height = crd_atlas_mainborder_toolbar_button_31_height;
+	crd_atlas_mainborder_toolbar_button_32_x = crd_atlas_mainborder_toolbar_button_31_x+crd_atlas_mainborder_toolbar_button_31_width+crd_atlas_mainborder_toolbar_button_span;
+	crd_atlas_mainborder_toolbar_button_32_y = crd_atlas_mainborder_toolbar_button_31_y;
+
+	crd_atlas_mainborder_toolbar_button_33_width = crd_atlas_mainborder_toolbar_button_32_width;
+	crd_atlas_mainborder_toolbar_button_33_height = crd_atlas_mainborder_toolbar_button_32_height;
+	crd_atlas_mainborder_toolbar_button_33_x = crd_atlas_mainborder_toolbar_button_32_x+crd_atlas_mainborder_toolbar_button_32_width+crd_atlas_mainborder_toolbar_button_span;
+	crd_atlas_mainborder_toolbar_button_33_y = crd_atlas_mainborder_toolbar_button_32_y;
+
+	crd_atlas_mainborder_toolbar_button_34_width = crd_atlas_mainborder_toolbar_button_33_width;
+	crd_atlas_mainborder_toolbar_button_34_height = crd_atlas_mainborder_toolbar_button_33_height;
+	crd_atlas_mainborder_toolbar_button_34_x = crd_atlas_mainborder_toolbar_button_33_x+crd_atlas_mainborder_toolbar_button_33_width+crd_atlas_mainborder_toolbar_button_span;
+	crd_atlas_mainborder_toolbar_button_34_y = crd_atlas_mainborder_toolbar_button_33_y;
+
+	crd_atlas_mainborder_toolbar_button_35_width = crd_atlas_mainborder_toolbar_button_34_width;
+	crd_atlas_mainborder_toolbar_button_35_height = crd_atlas_mainborder_toolbar_button_34_height;
+	crd_atlas_mainborder_toolbar_button_35_x = crd_atlas_mainborder_toolbar_button_34_x+crd_atlas_mainborder_toolbar_button_34_width+crd_atlas_mainborder_toolbar_button_span;
+	crd_atlas_mainborder_toolbar_button_35_y = crd_atlas_mainborder_toolbar_button_34_y;
+
+	crd_atlas_mainborder_toolbar_button_36_width = crd_atlas_mainborder_toolbar_button_35_width;
+	crd_atlas_mainborder_toolbar_button_36_height = crd_atlas_mainborder_toolbar_button_35_height;
+	crd_atlas_mainborder_toolbar_button_36_x = crd_atlas_mainborder_toolbar_button_35_x+crd_atlas_mainborder_toolbar_button_35_width+crd_atlas_mainborder_toolbar_button_span;
+	crd_atlas_mainborder_toolbar_button_36_y = crd_atlas_mainborder_toolbar_button_35_y;
+
+	crd_atlas_mainborder_toolbar_button_37_width = crd_atlas_mainborder_toolbar_button_36_width;
+	crd_atlas_mainborder_toolbar_button_37_height = crd_atlas_mainborder_toolbar_button_36_height;
+	crd_atlas_mainborder_toolbar_button_37_x = crd_atlas_mainborder_toolbar_button_36_x+crd_atlas_mainborder_toolbar_button_36_width+crd_atlas_mainborder_toolbar_button_span;
+	crd_atlas_mainborder_toolbar_button_37_y = crd_atlas_mainborder_toolbar_button_36_y;
+
+	crd_atlas_mainborder_toolbar_button_38_width = crd_atlas_mainborder_toolbar_button_27_width;
+	crd_atlas_mainborder_toolbar_button_38_height = crd_atlas_mainborder_toolbar_button_27_height;
+	crd_atlas_mainborder_toolbar_button_38_x = crd_atlas_mainborder_toolbar_button_37_x+crd_atlas_mainborder_toolbar_button_37_width+crd_atlas_mainborder_toolbar_button_span;
+	crd_atlas_mainborder_toolbar_button_38_y = crd_atlas_mainborder_toolbar_button_37_y;
+
+	crd_atlas_mainborder_toolbar_button_39_width = crd_atlas_mainborder_toolbar_button_38_width;
+	crd_atlas_mainborder_toolbar_button_39_height = crd_atlas_mainborder_toolbar_button_38_height;
+	crd_atlas_mainborder_toolbar_button_39_x = crd_atlas_mainborder_toolbar_button_38_x+crd_atlas_mainborder_toolbar_button_38_width+crd_atlas_mainborder_toolbar_button_span;
+	crd_atlas_mainborder_toolbar_button_39_y = crd_atlas_mainborder_toolbar_button_38_y;
+
+	crd_atlas_mainborder_toolbar_button_40_width = crd_atlas_mainborder_toolbar_button_39_width;
+	crd_atlas_mainborder_toolbar_button_40_height = crd_atlas_mainborder_toolbar_button_39_height;
+	crd_atlas_mainborder_toolbar_button_40_x = crd_atlas_mainborder_toolbar_button_39_x+crd_atlas_mainborder_toolbar_button_39_width+crd_atlas_mainborder_toolbar_button_span;
+	crd_atlas_mainborder_toolbar_button_40_y = crd_atlas_mainborder_toolbar_button_39_y;
+
+	// Toolbar button: Row 2.
 	crd_atlas_mainborder_toolbar_button_41_width = crd_atlas_mainborder_toolbar_button_1_width;
 	crd_atlas_mainborder_toolbar_button_41_height = crd_atlas_mainborder_toolbar_button_1_height;
 	crd_atlas_mainborder_toolbar_button_41_x = crd_atlas_mainborder_toolbar_button_1_x;
 	crd_atlas_mainborder_toolbar_button_41_y = crd_atlas_mainborder_toolbar_button_1_y+crd_atlas_mainborder_toolbar_button_1_height;
+
+	crd_atlas_mainborder_toolbar_button_42_width = crd_atlas_mainborder_toolbar_button_41_width;
+	crd_atlas_mainborder_toolbar_button_42_height = crd_atlas_mainborder_toolbar_button_41_height;
+	crd_atlas_mainborder_toolbar_button_42_x = crd_atlas_mainborder_toolbar_button_41_x+crd_atlas_mainborder_toolbar_button_41_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_42_y = crd_atlas_mainborder_toolbar_button_41_y;
+
+	crd_atlas_mainborder_toolbar_button_43_width = crd_atlas_mainborder_toolbar_button_42_width;
+	crd_atlas_mainborder_toolbar_button_43_height = crd_atlas_mainborder_toolbar_button_42_height;
+	crd_atlas_mainborder_toolbar_button_43_x = crd_atlas_mainborder_toolbar_button_42_x+crd_atlas_mainborder_toolbar_button_42_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_43_y = crd_atlas_mainborder_toolbar_button_42_y;
+
+	crd_atlas_mainborder_toolbar_button_44_width = crd_atlas_mainborder_toolbar_button_43_width;
+	crd_atlas_mainborder_toolbar_button_44_height = crd_atlas_mainborder_toolbar_button_43_height;
+	crd_atlas_mainborder_toolbar_button_44_x = crd_atlas_mainborder_toolbar_button_43_x+crd_atlas_mainborder_toolbar_button_43_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_44_y = crd_atlas_mainborder_toolbar_button_43_y;
+
+	crd_atlas_mainborder_toolbar_button_45_width = crd_atlas_mainborder_toolbar_button_44_width;
+	crd_atlas_mainborder_toolbar_button_45_height = crd_atlas_mainborder_toolbar_button_44_height;
+	crd_atlas_mainborder_toolbar_button_45_x = crd_atlas_mainborder_toolbar_button_44_x+crd_atlas_mainborder_toolbar_button_44_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_45_y = crd_atlas_mainborder_toolbar_button_44_y;
+
+	crd_atlas_mainborder_toolbar_button_46_width = crd_atlas_mainborder_toolbar_button_45_width;
+	crd_atlas_mainborder_toolbar_button_46_height = crd_atlas_mainborder_toolbar_button_45_height;
+	crd_atlas_mainborder_toolbar_button_46_x = crd_atlas_mainborder_toolbar_button_45_x+crd_atlas_mainborder_toolbar_button_45_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_46_y = crd_atlas_mainborder_toolbar_button_45_y;
+
+	crd_atlas_mainborder_toolbar_button_47_width = crd_atlas_mainborder_toolbar_button_46_width;
+	crd_atlas_mainborder_toolbar_button_47_height = crd_atlas_mainborder_toolbar_button_46_height;
+	crd_atlas_mainborder_toolbar_button_47_x = crd_atlas_mainborder_toolbar_button_46_x+crd_atlas_mainborder_toolbar_button_46_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_47_y = crd_atlas_mainborder_toolbar_button_46_y;
+
+	crd_atlas_mainborder_toolbar_button_48_width = crd_atlas_mainborder_toolbar_button_47_width;
+	crd_atlas_mainborder_toolbar_button_48_height = crd_atlas_mainborder_toolbar_button_47_height;
+	crd_atlas_mainborder_toolbar_button_48_x = crd_atlas_mainborder_toolbar_button_47_x+crd_atlas_mainborder_toolbar_button_47_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_48_y = crd_atlas_mainborder_toolbar_button_47_y;
+
+	crd_atlas_mainborder_toolbar_button_49_width = crd_atlas_mainborder_toolbar_button_48_width;
+	crd_atlas_mainborder_toolbar_button_49_height = crd_atlas_mainborder_toolbar_button_48_height;
+	crd_atlas_mainborder_toolbar_button_49_x = crd_atlas_mainborder_toolbar_button_48_x+crd_atlas_mainborder_toolbar_button_48_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_49_y = crd_atlas_mainborder_toolbar_button_48_y;
+
+	crd_atlas_mainborder_toolbar_button_50_width = crd_atlas_mainborder_toolbar_button_49_width;
+	crd_atlas_mainborder_toolbar_button_50_height = crd_atlas_mainborder_toolbar_button_49_height;
+	crd_atlas_mainborder_toolbar_button_50_x = crd_atlas_mainborder_toolbar_button_49_x+crd_atlas_mainborder_toolbar_button_49_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_50_y = crd_atlas_mainborder_toolbar_button_49_y;
+
+	crd_atlas_mainborder_toolbar_button_51_width = crd_atlas_mainborder_toolbar_button_50_width;
+	crd_atlas_mainborder_toolbar_button_51_height = crd_atlas_mainborder_toolbar_button_50_height;
+	crd_atlas_mainborder_toolbar_button_51_x = crd_atlas_mainborder_toolbar_button_50_x+crd_atlas_mainborder_toolbar_button_50_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_51_y = crd_atlas_mainborder_toolbar_button_50_y;
+
+	crd_atlas_mainborder_toolbar_button_52_width = crd_atlas_mainborder_toolbar_button_51_width;
+	crd_atlas_mainborder_toolbar_button_52_height = crd_atlas_mainborder_toolbar_button_51_height;
+	crd_atlas_mainborder_toolbar_button_52_x = crd_atlas_mainborder_toolbar_button_51_x+crd_atlas_mainborder_toolbar_button_51_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_52_y = crd_atlas_mainborder_toolbar_button_51_y;
+
+	crd_atlas_mainborder_toolbar_button_53_width = crd_atlas_mainborder_toolbar_button_52_width;
+	crd_atlas_mainborder_toolbar_button_53_height = crd_atlas_mainborder_toolbar_button_52_height;
+	crd_atlas_mainborder_toolbar_button_53_x = crd_atlas_mainborder_toolbar_button_52_x+crd_atlas_mainborder_toolbar_button_52_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_53_y = crd_atlas_mainborder_toolbar_button_52_y;
+
+	crd_atlas_mainborder_toolbar_button_54_width = crd_atlas_mainborder_toolbar_button_53_width;
+	crd_atlas_mainborder_toolbar_button_54_height = crd_atlas_mainborder_toolbar_button_53_height;
+	crd_atlas_mainborder_toolbar_button_54_x = crd_atlas_mainborder_toolbar_button_53_x+crd_atlas_mainborder_toolbar_button_53_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_54_y = crd_atlas_mainborder_toolbar_button_53_y;
+
+	crd_atlas_mainborder_toolbar_button_55_width = crd_atlas_mainborder_toolbar_button_54_width;
+	crd_atlas_mainborder_toolbar_button_55_height = crd_atlas_mainborder_toolbar_button_54_height;
+	crd_atlas_mainborder_toolbar_button_55_x = crd_atlas_mainborder_toolbar_button_54_x+crd_atlas_mainborder_toolbar_button_54_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_55_y = crd_atlas_mainborder_toolbar_button_54_y;
+
+	crd_atlas_mainborder_toolbar_button_56_width = crd_atlas_mainborder_toolbar_button_55_width;
+	crd_atlas_mainborder_toolbar_button_56_height = crd_atlas_mainborder_toolbar_button_55_height;
+	crd_atlas_mainborder_toolbar_button_56_x = crd_atlas_mainborder_toolbar_button_55_x+crd_atlas_mainborder_toolbar_button_55_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_56_y = crd_atlas_mainborder_toolbar_button_55_y;
+
+	crd_atlas_mainborder_toolbar_button_57_width = crd_atlas_mainborder_toolbar_button_56_width;
+	crd_atlas_mainborder_toolbar_button_57_height = crd_atlas_mainborder_toolbar_button_56_height;
+	crd_atlas_mainborder_toolbar_button_57_x = crd_atlas_mainborder_toolbar_button_56_x+crd_atlas_mainborder_toolbar_button_56_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_57_y = crd_atlas_mainborder_toolbar_button_56_y;
+
+	crd_atlas_mainborder_toolbar_button_58_width = crd_atlas_mainborder_toolbar_button_57_width;
+	crd_atlas_mainborder_toolbar_button_58_height = crd_atlas_mainborder_toolbar_button_57_height;
+	crd_atlas_mainborder_toolbar_button_58_x = crd_atlas_mainborder_toolbar_button_57_x+crd_atlas_mainborder_toolbar_button_57_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_58_y = crd_atlas_mainborder_toolbar_button_57_y;
+
+	crd_atlas_mainborder_toolbar_button_59_width = crd_atlas_mainborder_toolbar_button_58_width;
+	crd_atlas_mainborder_toolbar_button_59_height = crd_atlas_mainborder_toolbar_button_58_height;
+	crd_atlas_mainborder_toolbar_button_59_x = crd_atlas_mainborder_toolbar_button_58_x+crd_atlas_mainborder_toolbar_button_58_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_59_y = crd_atlas_mainborder_toolbar_button_58_y;
+
+	crd_atlas_mainborder_toolbar_button_60_width = crd_atlas_mainborder_toolbar_button_59_width;
+	crd_atlas_mainborder_toolbar_button_60_height = crd_atlas_mainborder_toolbar_button_59_height;
+	crd_atlas_mainborder_toolbar_button_60_x = crd_atlas_mainborder_toolbar_button_59_x+crd_atlas_mainborder_toolbar_button_59_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_60_y = crd_atlas_mainborder_toolbar_button_59_y;
+
+	crd_atlas_mainborder_toolbar_button_61_width = crd_atlas_mainborder_toolbar_button_60_width;
+	crd_atlas_mainborder_toolbar_button_61_height = crd_atlas_mainborder_toolbar_button_60_height;
+	crd_atlas_mainborder_toolbar_button_61_x = crd_atlas_mainborder_toolbar_button_60_x+crd_atlas_mainborder_toolbar_button_60_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_61_y = crd_atlas_mainborder_toolbar_button_60_y;
+
+	crd_atlas_mainborder_toolbar_button_62_width = crd_atlas_mainborder_toolbar_button_61_width;
+	crd_atlas_mainborder_toolbar_button_62_height = crd_atlas_mainborder_toolbar_button_61_height;
+	crd_atlas_mainborder_toolbar_button_62_x = crd_atlas_mainborder_toolbar_button_61_x+crd_atlas_mainborder_toolbar_button_61_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_62_y = crd_atlas_mainborder_toolbar_button_61_y;
+
+	crd_atlas_mainborder_toolbar_button_63_width = crd_atlas_mainborder_toolbar_button_62_width;
+	crd_atlas_mainborder_toolbar_button_63_height = crd_atlas_mainborder_toolbar_button_62_height;
+	crd_atlas_mainborder_toolbar_button_63_x = crd_atlas_mainborder_toolbar_button_62_x+crd_atlas_mainborder_toolbar_button_62_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_63_y = crd_atlas_mainborder_toolbar_button_62_y;
+
+	crd_atlas_mainborder_toolbar_button_64_width = crd_atlas_mainborder_toolbar_button_63_width;
+	crd_atlas_mainborder_toolbar_button_64_height = crd_atlas_mainborder_toolbar_button_63_height;
+	crd_atlas_mainborder_toolbar_button_64_x = crd_atlas_mainborder_toolbar_button_63_x+crd_atlas_mainborder_toolbar_button_63_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_64_y = crd_atlas_mainborder_toolbar_button_63_y;
+
+	crd_atlas_mainborder_toolbar_button_65_width = crd_atlas_mainborder_toolbar_button_64_width;
+	crd_atlas_mainborder_toolbar_button_65_height = crd_atlas_mainborder_toolbar_button_64_height;
+	crd_atlas_mainborder_toolbar_button_65_x = crd_atlas_mainborder_toolbar_button_64_x+crd_atlas_mainborder_toolbar_button_64_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_65_y = crd_atlas_mainborder_toolbar_button_64_y;
+
+	crd_atlas_mainborder_toolbar_button_66_width = crd_atlas_mainborder_toolbar_button_65_width;
+	crd_atlas_mainborder_toolbar_button_66_height = crd_atlas_mainborder_toolbar_button_65_height;
+	crd_atlas_mainborder_toolbar_button_66_x = crd_atlas_mainborder_toolbar_button_65_x+crd_atlas_mainborder_toolbar_button_65_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_66_y = crd_atlas_mainborder_toolbar_button_65_y;
+
+	crd_atlas_mainborder_toolbar_button_67_width = crd_atlas_mainborder_toolbar_button_66_width;
+	crd_atlas_mainborder_toolbar_button_67_height = crd_atlas_mainborder_toolbar_button_66_height;
+	crd_atlas_mainborder_toolbar_button_67_x = crd_atlas_mainborder_toolbar_button_66_x+crd_atlas_mainborder_toolbar_button_66_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_67_y = crd_atlas_mainborder_toolbar_button_66_y;
+
+	crd_atlas_mainborder_toolbar_button_68_width = crd_atlas_mainborder_toolbar_button_67_width;
+	crd_atlas_mainborder_toolbar_button_68_height = crd_atlas_mainborder_toolbar_button_67_height;
+	crd_atlas_mainborder_toolbar_button_68_x = crd_atlas_mainborder_toolbar_button_67_x+crd_atlas_mainborder_toolbar_button_67_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_68_y = crd_atlas_mainborder_toolbar_button_67_y;
+
+	crd_atlas_mainborder_toolbar_button_69_width = crd_atlas_mainborder_toolbar_button_68_width;
+	crd_atlas_mainborder_toolbar_button_69_height = crd_atlas_mainborder_toolbar_button_68_height;
+	crd_atlas_mainborder_toolbar_button_69_x = crd_atlas_mainborder_toolbar_button_68_x+crd_atlas_mainborder_toolbar_button_68_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_69_y = crd_atlas_mainborder_toolbar_button_68_y;
+
+	crd_atlas_mainborder_toolbar_button_70_width = crd_atlas_mainborder_toolbar_button_69_width;
+	crd_atlas_mainborder_toolbar_button_70_height = crd_atlas_mainborder_toolbar_button_69_height;
+	crd_atlas_mainborder_toolbar_button_70_x = crd_atlas_mainborder_toolbar_button_69_x+crd_atlas_mainborder_toolbar_button_69_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_70_y = crd_atlas_mainborder_toolbar_button_69_y;
+
+	crd_atlas_mainborder_toolbar_button_71_width = crd_atlas_mainborder_toolbar_button_70_width;
+	crd_atlas_mainborder_toolbar_button_71_height = crd_atlas_mainborder_toolbar_button_70_height;
+	crd_atlas_mainborder_toolbar_button_71_x = crd_atlas_mainborder_toolbar_button_70_x+crd_atlas_mainborder_toolbar_button_70_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_71_y = crd_atlas_mainborder_toolbar_button_70_y;
+
+	crd_atlas_mainborder_toolbar_button_72_width = crd_atlas_mainborder_toolbar_button_71_width;
+	crd_atlas_mainborder_toolbar_button_72_height = crd_atlas_mainborder_toolbar_button_71_height;
+	crd_atlas_mainborder_toolbar_button_72_x = crd_atlas_mainborder_toolbar_button_71_x+crd_atlas_mainborder_toolbar_button_71_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_72_y = crd_atlas_mainborder_toolbar_button_71_y;
+
+	crd_atlas_mainborder_toolbar_button_73_width = crd_atlas_mainborder_toolbar_button_72_width;
+	crd_atlas_mainborder_toolbar_button_73_height = crd_atlas_mainborder_toolbar_button_72_height;
+	crd_atlas_mainborder_toolbar_button_73_x = crd_atlas_mainborder_toolbar_button_72_x+crd_atlas_mainborder_toolbar_button_72_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_73_y = crd_atlas_mainborder_toolbar_button_72_y;
+
+	crd_atlas_mainborder_toolbar_button_74_width = crd_atlas_mainborder_toolbar_button_73_width;
+	crd_atlas_mainborder_toolbar_button_74_height = crd_atlas_mainborder_toolbar_button_73_height;
+	crd_atlas_mainborder_toolbar_button_74_x = crd_atlas_mainborder_toolbar_button_73_x+crd_atlas_mainborder_toolbar_button_73_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_74_y = crd_atlas_mainborder_toolbar_button_73_y;
+
+	crd_atlas_mainborder_toolbar_button_75_width = crd_atlas_mainborder_toolbar_button_74_width;
+	crd_atlas_mainborder_toolbar_button_75_height = crd_atlas_mainborder_toolbar_button_74_height;
+	crd_atlas_mainborder_toolbar_button_75_x = crd_atlas_mainborder_toolbar_button_74_x+crd_atlas_mainborder_toolbar_button_74_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_75_y = crd_atlas_mainborder_toolbar_button_74_y;
+
+	crd_atlas_mainborder_toolbar_button_76_width = crd_atlas_mainborder_toolbar_button_75_width;
+	crd_atlas_mainborder_toolbar_button_76_height = crd_atlas_mainborder_toolbar_button_75_height;
+	crd_atlas_mainborder_toolbar_button_76_x = crd_atlas_mainborder_toolbar_button_75_x+crd_atlas_mainborder_toolbar_button_75_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_76_y = crd_atlas_mainborder_toolbar_button_75_y;
+
+	crd_atlas_mainborder_toolbar_button_77_width = crd_atlas_mainborder_toolbar_button_76_width;
+	crd_atlas_mainborder_toolbar_button_77_height = crd_atlas_mainborder_toolbar_button_76_height;
+	crd_atlas_mainborder_toolbar_button_77_x = crd_atlas_mainborder_toolbar_button_76_x+crd_atlas_mainborder_toolbar_button_76_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_77_y = crd_atlas_mainborder_toolbar_button_76_y;
+
+	crd_atlas_mainborder_toolbar_button_78_width = crd_atlas_mainborder_toolbar_button_77_width;
+	crd_atlas_mainborder_toolbar_button_78_height = crd_atlas_mainborder_toolbar_button_77_height;
+	crd_atlas_mainborder_toolbar_button_78_x = crd_atlas_mainborder_toolbar_button_77_x+crd_atlas_mainborder_toolbar_button_77_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_78_y = crd_atlas_mainborder_toolbar_button_77_y;
+
+	crd_atlas_mainborder_toolbar_button_79_width = crd_atlas_mainborder_toolbar_button_78_width;
+	crd_atlas_mainborder_toolbar_button_79_height = crd_atlas_mainborder_toolbar_button_78_height;
+	crd_atlas_mainborder_toolbar_button_79_x = crd_atlas_mainborder_toolbar_button_78_x+crd_atlas_mainborder_toolbar_button_78_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_79_y = crd_atlas_mainborder_toolbar_button_78_y;
+
+	crd_atlas_mainborder_toolbar_button_80_width = crd_atlas_mainborder_toolbar_button_79_width;
+	crd_atlas_mainborder_toolbar_button_80_height = crd_atlas_mainborder_toolbar_button_79_height;
+	crd_atlas_mainborder_toolbar_button_80_x = crd_atlas_mainborder_toolbar_button_79_x+crd_atlas_mainborder_toolbar_button_79_width+crd_atlas_mainborder_toolbar_button_span;;
+	crd_atlas_mainborder_toolbar_button_80_y = crd_atlas_mainborder_toolbar_button_79_y;
 
 	// Left-hand selection pane.
 	crd_atlas_left_pane_bkg_width = 187;
@@ -419,7 +719,427 @@ function atlasToolbarButton_19()
 
 // ====================================================================
 
+function atlasToolbarButton_20()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_21()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_22()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_23()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_24()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_25()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_26()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_27()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_28()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_29()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_30()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_31()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_32()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_33()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_34()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_35()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_36()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_37()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_38()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_39()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_40()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
 function atlasToolbarButton_41()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_42()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_43()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_44()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_45()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_46()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_47()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_48()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_49()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_50()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_51()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_52()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_53()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_54()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_55()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_56()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_57()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_58()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_59()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_60()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_61()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_62()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_63()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_64()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_65()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_66()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_67()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_68()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_69()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_70()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_71()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_72()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_73()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_74()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_75()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_76()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_77()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_78()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_79()
+{
+	// Perform action associated with this toolbar button.
+}
+
+// ====================================================================
+
+function atlasToolbarButton_80()
 {
 	// Perform action associated with this toolbar button.
 }
