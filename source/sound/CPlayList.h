@@ -8,10 +8,10 @@
 class CPlayList
 {
 public:
-	CPlayList(void);
-	CPlayList(char *file);
-	~CPlayList(void);
-	void load(char *file);
+	CPlayList();
+	CPlayList(const char* file);
+	~CPlayList();
+	void load(const char* file);
 	void list();
 	void add(std::string name);
 

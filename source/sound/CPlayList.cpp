@@ -1,14 +1,15 @@
 #include "precompiled.h"
 
 #include "CPlayList.h"
-#include <iostream>
+#include <stdio.h>	// sscanf
+#include "lib/res/res.h"
 
 CPlayList::CPlayList(void)
 {
 	tracks.clear();
 }
 
-CPlayList::CPlayList(char *file)
+CPlayList::CPlayList(const char* file)
 {
 	load(file);
 }
@@ -18,26 +19,22 @@ CPlayList::~CPlayList(void)
 
 }
 
-void CPlayList::load(char *file)
+void CPlayList::load(const char* file)
 {
-	std::ifstream input(file);
-
 	tracks.clear();
 
-	if(input.is_open())
-	{
-		std::string temp;
+	void* p;
+	size_t size;
+	Handle hm = vfs_load(file, p, size);
+	if(hm <= 0)
+		throw "CPlaylist::Load failed";
 
-		while(getline(input,temp))
-		{
-			tracks.push_back(temp);
-		}
-		input.close();
-	}
-	else
-	{
-		std::cout << "Error opening file.";
-	}
+	const char* playlist = (const char*)p;
+	const char* track;
+	while(sscanf(playlist, "%s\n", &track) == 1)
+		tracks.push_back(track);
+
+	mem_free_h(hm);
 }
 
 
@@ -45,7 +42,7 @@ void CPlayList::list()
 {
 	for(unsigned int i = 0; i < tracks.size(); i++)
 	{
-		std::cout << tracks.at(i) << std::endl;
+		debug_out("%s\n", tracks.at(i).c_str());
 	}
 }
 
