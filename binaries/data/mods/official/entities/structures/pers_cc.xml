@@ -7,9 +7,14 @@
 			civ="Persians"
 			internal_only="false"
 
-			specific="(Name)"
-			history="(Insert History Here)"
+			specific="Satrapy"
+			history="Possibly of Median origin, the word 'satrapy' means province. Soon after coming to the throne, Darius the Great carried out a vast administrative reform, dividing the huge empire into 20 satrapies governed by satraps."
 		/>
 	</Traits>
+	<Actions>
+		<Create
+			list.unit="isp_b;iar_b;cjv_b;fem"
+		/>
+	</Actions>
 	<Actor>Persian Civil Center</Actor>
 </Entity>

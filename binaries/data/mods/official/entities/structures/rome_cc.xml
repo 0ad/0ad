@@ -7,9 +7,14 @@
 			civ="Pre-Imperial Romans"
 			internal_only="false"
 
-			specific="(Name)"
+			specific="Municipium"
 			history="(Insert History Here)"
 		/>
 	</Traits>
+	<Actions>
+		<Create
+			list.unit="isp_b;ijv_b;csp_b;fem"
+		/>
+	</Actions>
 	<Actor>Roman Civil Center</Actor>
 </Entity>

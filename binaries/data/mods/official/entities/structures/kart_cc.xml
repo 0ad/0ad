@@ -7,9 +7,14 @@
 			civ="Carthaginians"
 			internal_only="false"
 
-			specific="(Name)"
+			specific="Merkáz"
 			history="(Insert History Here)"
 		/>
 	</Traits>
+	<Actions>
+		<Create
+			list.unit="isp_b;isl_b;cjv_b;fem"
+		/>
+	</Actions>
 	<Actor>Carthaginian Civil Center</Actor>
 </Entity>
