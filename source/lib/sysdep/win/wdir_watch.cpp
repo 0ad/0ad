@@ -164,7 +164,7 @@ static int get_packet();
 
 // path: portable and relative, must add current directory and convert to native
 // better to use a cached string from rel_chdir - secure
-int dir_add_watch(const char* const dir, intptr_t* const _reqnum)
+int dir_add_watch(const char* dir, intptr_t* _reqnum)
 {
 	int err = -1;
 	WIN_SAVE_LAST_ERROR;	// Create*
@@ -278,7 +278,7 @@ static int extract_events(Watch* w)
 	// for every packet in buffer: (there's at least one)
 	for(;;)
 	{
-		const FILE_NOTIFY_INFORMATION* const fni = (const FILE_NOTIFY_INFORMATION*)pos;
+		const FILE_NOTIFY_INFORMATION* fni = (const FILE_NOTIFY_INFORMATION*)pos;
 
 		// convert filename from Windows BSTR
 		// (can't use wcstombs - FileName isn't 0-terminated)

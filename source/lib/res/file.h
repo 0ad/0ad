@@ -73,13 +73,13 @@ enum
 //
 
 // relative paths (relative to root, established with file_rel_chdir)
-extern int file_make_native_path(const char* const path, char* const n_path);
-extern int file_make_portable_path(const char* const n_path, char* const path);
+extern int file_make_native_path(const char* path, char* n_path);
+extern int file_make_portable_path(const char* n_path, char* path);
 
 // as above, but with full native paths (portable paths are always relative).
 // prepends current directory, resp. makes sure it matches the given path.
-extern int file_make_full_native_path(const char* const path, char* const n_full_path);
-extern int file_make_full_portable_path(const char* const n_full_path, char* const path);
+extern int file_make_full_native_path(const char* path, char* n_full_path);
+extern int file_make_full_portable_path(const char* n_full_path, char* path);
 
 
 // set current directory to rel_path, relative to the path to the executable,
@@ -99,7 +99,7 @@ extern int file_rel_chdir(const char* argv0, const char* rel_path);
 // called by file_enum for each entry in the directory.
 // name doesn't include path!
 // return non-zero to immediately abort; file_enum will return that value.
-typedef int(*FileCB)(const char* const name, const struct stat* s, const uintptr_t user);
+typedef int(*FileCB)(const char* name, const struct stat* s, const uintptr_t user);
 
 // call <cb> for each file and subdirectory in <dir> (alphabetical order),
 // passing the entry name (not full path!), stat info, and <user>.

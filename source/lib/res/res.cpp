@@ -10,13 +10,13 @@
 #include <string.h>
 
 
-int res_reload(const char* const fn)
+int res_reload(const char* fn)
 {
 	return h_reload(fn);
 }
 
 
-int res_watch_dir(const char* const path, intptr_t* const watch)
+int res_watch_dir(const char* path, intptr_t* watch)
 {
 	char n_path[PATH_MAX];
 	CHECK_ERR(file_make_full_native_path(path, n_path));

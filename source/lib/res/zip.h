@@ -97,7 +97,7 @@ struct ZipIO
 
 // begin transferring <size> bytes, starting at <ofs>. get result
 // with zip_wait_io; when no longer needed, free via zip_discard_io.
-extern int zip_start_io(ZFile* const zf, off_t ofs, size_t size, void* buf, ZipIO* io);
+extern int zip_start_io(ZFile* zf, off_t ofs, size_t size, void* buf, ZipIO* io);
 
 // indicates if the IO referenced by <io> has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.

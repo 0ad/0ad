@@ -116,7 +116,7 @@ static int Tex_reload(Tex* t, const char* fn, Handle h)
 }
 
 
-Handle tex_load(const char* const fn, int scope)
+Handle tex_load(const char* fn, int scope)
 {
 	return h_alloc(H_Tex, fn, scope);
 }
@@ -158,7 +158,7 @@ int tex_id(const Handle h)
 
 
 
-static int tex_validate(const uint line, const Tex* const t)
+static int tex_validate(const uint line, const Tex* t)
 {
 	const char* msg = 0;
 	int err = -1;

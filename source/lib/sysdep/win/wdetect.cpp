@@ -78,7 +78,7 @@ static int get_ver(const char* module, char* out_ver, size_t out_ver_len)
 	const DWORD ver_size = GetFileVersionInfoSize(module, &unused);
 	if(!ver_size)
 		return -1;
-	void* const buf = malloc(ver_size);
+	void* buf = malloc(ver_size);
 	if(!buf)
 		return ERR_NO_MEM;
 
@@ -189,7 +189,7 @@ int get_monitor_size(int& width_mm, int& height_mm)
 // and check for a glBegin export. this requires OpenGL to be initialized,
 // though - the DLLs aren't loaded at startup. it'd also be a bit of work
 // to sort out MCD, ICD, and opengl32.dll.
-static int get_ogl_drv_name(char* const ogl_drv_name, const size_t max_name_len)
+static int get_ogl_drv_name(char* ogl_drv_name, const size_t max_name_len)
 {
 	// need single point of exit so that we can close all keys; return this.
 	int ret = -1;

@@ -124,7 +124,7 @@ CStr g_CursorName = "test";
 CStr g_ActiveProfile = "default";
 
 extern int allow_reload();
-extern int dir_add_watch(const char* const dir, bool watch_subdirs);
+extern int dir_add_watch(const char* dir, bool watch_subdirs);
 
 extern void sle(int);
 
@@ -206,7 +206,7 @@ debug_out("SYS DETECT TIME %g\n\n", t2-t1);
 	struct utsname un;
 	uname(&un);
 
-	FILE* const f = fopen("../logs/system_info.txt", "w");
+	FILE* f = fopen("../logs/system_info.txt", "w");
 	if(!f)
 		return;
 
@@ -263,6 +263,7 @@ debug_out("SYS DETECT TIME %g\n\n", t2-t1);
 	fprintf(f, "\nSupported extensions: \n%s\n", SplitExts(exts).c_str());
 
 	fclose(f);
+	f = 0;
 }
 
 

@@ -129,7 +129,7 @@ int aio_h_set(const int fd, const HANDLE h)
 	if(fd >= aio_hs_size)
 	{
 		const uint size2 = (uint)round_up(fd+8, 8);
-		HANDLE* const hs2 = (HANDLE*)realloc(aio_hs, size2*sizeof(HANDLE));
+		HANDLE* hs2 = (HANDLE*)realloc(aio_hs, size2*sizeof(HANDLE));
 		if(!hs2)
 			goto fail;
 		// don't assign directly from realloc -
@@ -363,7 +363,7 @@ static int aio_rw(struct aiocb* cb)
 	const int fd        = cb->aio_fildes;
 	const size_t size   = cb->aio_nbytes;
 	const off_t ofs     = cb->aio_offset;
-	void* const buf     = (void*)cb->aio_buf; // from volatile void*
+	void* buf     = (void*)cb->aio_buf; // from volatile void*
 	assert(buf);
 
 	// allocate IO request
@@ -500,7 +500,7 @@ fail:
 // return status of transfer
 int aio_error(const struct aiocb* cb)
 {
-	Req* const r = req_find(cb);
+	Req* r = req_find(cb);
 	if(!r)
 		return -1;
 
@@ -519,7 +519,7 @@ int aio_error(const struct aiocb* cb)
 // get bytes transferred. call exactly once for each op.
 ssize_t aio_return(struct aiocb* cb)
 {
-	Req* const r = req_find(cb);
+	Req* r = req_find(cb);
 	if(!r)
 	{
 		debug_warn("aio_return: cb not found (already called aio_return?)");
@@ -549,7 +549,7 @@ ssize_t aio_return(struct aiocb* cb)
 }
 
 
-int aio_suspend(const struct aiocb* const cbs[], int n, const struct timespec* ts)
+int aio_suspend(const struct aiocb* cbs[], int n, const struct timespec* ts)
 {
 	int i;
 

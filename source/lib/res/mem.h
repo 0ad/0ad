@@ -8,8 +8,7 @@
 extern "C" {
 #endif
 
-typedef void(*MEM_DTOR)(void* const p, const size_t size, const uintptr_t ctx);
-	// VC6 requires const here if the actual implementations define as such.
+typedef void(*MEM_DTOR)(void* p, size_t size, uintptr_t ctx);
 
 // mem_alloc flags
 enum

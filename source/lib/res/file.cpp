@@ -109,7 +109,7 @@ static size_t n_root_dir_len;
 // return the native equivalent of the given relative portable path
 // (i.e. convert all '/' to the platform's directory separator)
 // makes sure length < PATH_MAX.
-int file_make_native_path(const char* const path, char* const n_path)
+int file_make_native_path(const char* path, char* n_path)
 {
 	return convert_path(n_path, path, TO_NATIVE);
 }
@@ -117,7 +117,7 @@ int file_make_native_path(const char* const path, char* const n_path)
 // return the portable equivalent of the given relative native path
 // (i.e. convert the platform's directory separators to '/')
 // makes sure length < PATH_MAX.
-int file_make_portable_path(const char* const n_path, char* const path)
+int file_make_portable_path(const char* n_path, char* path)
 {
 	return convert_path(path, n_path, TO_PORTABLE);
 }
@@ -127,7 +127,7 @@ int file_make_portable_path(const char* const n_path, char* const path)
 // (i.e. convert all '/' to the platform's directory separator).
 // also prepends current directory => n_full_path is absolute.
 // makes sure length < PATH_MAX.
-int file_make_full_native_path(const char* const path, char* const n_full_path)
+int file_make_full_native_path(const char* path, char* n_full_path)
 {
 	strcpy(n_full_path, n_root_dir);
 	return convert_path(n_full_path+n_root_dir_len, path, TO_NATIVE);
@@ -138,7 +138,7 @@ int file_make_full_native_path(const char* const path, char* const n_full_path)
 // n_full_path is absolute; if it doesn't match the current dir, fail.
 // (note: portable paths are always relative to file_rel_chdir root).
 // makes sure length < PATH_MAX.
-int file_make_full_portable_path(const char* const n_full_path, char* const path)
+int file_make_full_portable_path(const char* n_full_path, char* path)
 {
 	if(strncmp(n_full_path, n_root_dir, n_root_dir_len) != 0)
 		return -1;
@@ -157,7 +157,7 @@ int file_make_full_portable_path(const char* const n_full_path, char* const path
 // easiest portable way to find our install directory.
 //
 // can only be called once, by design (see below). rel_path is trusted.
-int file_rel_chdir(const char* argv0, const char* const rel_path)
+int file_rel_chdir(const char* argv0, const char* rel_path)
 {
 	const char* msg = 0;
 
@@ -256,26 +256,8 @@ typedef std::vector<const DirEnt*> DirEnts;
 typedef DirEnts::const_iterator DirEntCIt;
 typedef DirEnts::reverse_iterator DirEntRIt;
 
-static bool dirent_less(const DirEnt* const d1, const DirEnt* const d2)
+static bool dirent_less(const DirEnt* d1, const DirEnt* d2)
 	{ return d1->name.compare(d2->name) < 0; }
-
-
-
-
-#include "timer.h"
-static double totstat;
-static double totpush;
-static double totclose;
-void dump2(void)
-{
-	debug_out("TOTAL TIME %g ms\n\n", totstat*1e3);
-	debug_out("TOTAL TIME %g ms\n\n", totpush*1e3);
-	debug_out("TOTAL TIME %g ms\n\n", totclose*1e3);
-}
-
-
-
-
 
 
 // call <cb> for each file and subdirectory in <dir> (alphabetical order),
@@ -294,10 +276,8 @@ void dump2(void)
 //   special-case Zip files anyway.
 //   the advantage here is simplicity, and sparing callbacks the trouble
 //   of converting from/to native path (we just give 'em the dirent name).
-int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
+int file_enum(const char* dir, const FileCB cb, const uintptr_t user)
 {
-double t0,t1;
-
 	// full path for stat
 	char n_path[PATH_MAX];
 	n_path[PATH_MAX-1] = '\0';
@@ -314,7 +294,7 @@ double t0,t1;
 	int ret;
 
 	// [16.6ms]
-	DIR* const os_dir = opendir(n_path);
+	DIR* os_dir = opendir(n_path);
 	if(!os_dir)
 		return ERR_PATH_NOT_FOUND;
 
@@ -379,11 +359,6 @@ double t0,t1;
 	// [2.5ms]
 	closedir(os_dir);
 
-
-
-ONCE(atexit(dump2));
-
-
 	// [5.8ms]
 	std::sort(dirents.begin(), dirents.end(), dirent_less);
 
@@ -391,7 +366,7 @@ ONCE(atexit(dump2));
 	memset(&s, 0, sizeof(s));
 	for(DirEntCIt it = dirents.begin(); it != dirents.end(); ++it)
 	{
-		const DirEnt* const ent = *it;
+		const DirEnt* ent = *it;
 		const char* name_c = ent->name.c_str();
 		s.st_mode  = ent->st_mode;
 		s.st_size  = ent->st_size;
@@ -417,7 +392,7 @@ ONCE(atexit(dump2));
 
 
 // get file status. output param is zeroed on error.
-int file_stat(const char* const path, struct stat* const s)
+int file_stat(const char* path, struct stat* s)
 {
 	memset(s, 0, sizeof(struct stat));
 
@@ -464,7 +439,7 @@ static const u32 FILE_MAGIC = FOURCC('F','I','L','E');
 #endif
 
 
-static int file_validate(const uint line, File* const f)
+static int file_validate(const uint line, File* f)
 {
 	const char* msg = "";
 	int err = -1;
@@ -508,7 +483,7 @@ do\
 while(0);
 
 
-int file_open(const char* const p_fn, const uint flags, File* const f)
+int file_open(const char* p_fn, const uint flags, File* f)
 {
 	// zero output param in case we fail below.
 	memset(f, 0, sizeof(File));
@@ -564,7 +539,7 @@ invalid_f:
 }
 
 
-int file_close(File* const f)
+int file_close(File* f)
 {
 	CHECK_FILE(f);
 
@@ -621,7 +596,7 @@ int file_close(File* const f)
 
 // starts transferring to/from the given buffer.
 // no attempt is made at aligning or padding the transfer.
-int file_start_io(File* const f, const off_t ofs, size_t size, void* const p, FileIO* io)
+int file_start_io(File* f, off_t ofs, size_t size, void* p, FileIO* io)
 {
 	// zero output param in case we fail below.
 	memset(io, 0, sizeof(FileIO));
@@ -922,8 +897,8 @@ skip_issue:
 // (quasi-parallel, without the complexity of threads).
 //
 // return number of bytes transferred (see above), or a negative error code.
-ssize_t file_io(File* const f, const off_t data_ofs, size_t data_size, void* const data_buf,
-	const FileIOCB cb, const uintptr_t ctx) // optional
+ssize_t file_io(File* f, off_t data_ofs, size_t data_size, void* data_buf,
+	FileIOCB cb, uintptr_t ctx) // optional
 {
 #ifdef PARANOIA
 debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
@@ -1161,7 +1136,7 @@ static const uint MAX_MAP_REFS = 255;
 // rationale: reference counting is required for zip_map: several
 // Zip "mappings" each reference one ZArchive's actual file mapping.
 // implement it here so that we also get refcounting for normal files.
-int file_map(File* const f, void*& p, size_t& size)
+int file_map(File* f, void*& p, size_t& size)
 {
 	p = 0;
 	size = 0;
@@ -1209,7 +1184,7 @@ have_mapping:
 // the mapping will be removed (if still open) when its file is closed.
 // however, map/unmap calls should still be paired so that the mapping
 // may be removed when no longer needed.
-int file_unmap(File* const f)
+int file_unmap(File* f)
 {
 	CHECK_FILE(f);
 
@@ -1225,7 +1200,7 @@ int file_unmap(File* const f)
 		return 0;
 
 	// no more references: remove the mapping
-	void* const p = f->mapping;
+	void* p = f->mapping;
 	f->mapping = 0;
 	// don't clear f->size - the file is still open.
 

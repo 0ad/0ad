@@ -1001,7 +1001,7 @@ if(file_type == FT_OGG)
 
 
 // open and return a handle to a sound file's data.
-static Handle snd_data_load(const char* const fn, const bool stream)
+static Handle snd_data_load(const char* fn, bool stream)
 {
 	// don't allow reloading stream objects
 	// (both references would read from the same file handle).
@@ -1187,7 +1187,7 @@ static void list_foreach(void(*cb)(VSrc*), uint skip = 0, uint end_idx = 0)
 }
 
 
-static bool is_greater(const VSrc* const s1, const VSrc* const s2)
+static bool is_greater(const VSrc* s1, const VSrc* s2)
 {
 	return s1->cur_pri > s2->cur_pri;
 }
@@ -1477,7 +1477,7 @@ static int VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
 //
 // note: RES_UNIQUE forces each instance to get a new resource
 // (which is of course what we want).
-Handle snd_open(const char* const snd_fn, const bool is_stream)
+Handle snd_open(const char* snd_fn, bool is_stream)
 {
 	uint flags = 0;
 	if(is_stream)

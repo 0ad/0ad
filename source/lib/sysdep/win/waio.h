@@ -57,7 +57,7 @@ extern int aio_error(const struct aiocb*);
 extern int aio_fsync(int, struct aiocb*);
 extern int aio_read(struct aiocb*);
 extern ssize_t aio_return(struct aiocb*);
-extern int aio_suspend(const struct aiocb* const[], int, const struct timespec*);
+extern int aio_suspend(const struct aiocb* const [], int, const struct timespec*);
 extern int aio_write(struct aiocb*);
 extern int lio_listio(int, struct aiocb* const[], int, struct sigevent*);
 

@@ -501,7 +501,7 @@ static int wsdl_init()
 	// to avoid the OS opening a console on startup (ugly). that means
 	// stdout isn't associated with a lowio handle; _close ends up
 	// getting called with fd = -1. oh well, nothing we can do.
-	FILE* const ret = freopen("stdout.txt", "w", stdout);
+	FILE* ret = freopen("stdout.txt", "w", stdout);
 	if(!ret)
 		debug_warn("stdout freopen failed");
 	setvbuf(stdout, 0, _IONBF, 0);

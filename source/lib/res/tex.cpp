@@ -294,7 +294,7 @@ static inline bool dds_fmt(u8* ptr, size_t size)
 }
 
 
-static inline bool dds_ext(const char* const ext)
+static inline bool dds_ext(const char* ext)
 {
 	return !strcmp(ext, ".dds");
 }
@@ -466,7 +466,7 @@ static inline bool tga_fmt(u8* ptr, size_t size)
 }
 
 
-static inline bool tga_ext(const char* const ext)
+static inline bool tga_ext(const char* ext)
 {
 	return !strcmp(ext, ".tga");
 }
@@ -612,7 +612,7 @@ static inline bool bmp_fmt(u8* p, size_t size)
 }
 
 
-static inline bool bmp_ext(const char* const ext)
+static inline bool bmp_ext(const char* ext)
 {
 	return !strcmp(ext, ".bmp");
 }
@@ -726,7 +726,7 @@ static inline bool raw_fmt(u8* p, size_t size)
 }
 
 
-static inline bool raw_ext(const char* const ext)
+static inline bool raw_ext(const char* ext)
 {
 	return !strcmp(ext, ".raw");
 }
@@ -787,7 +787,7 @@ static inline bool png_fmt(u8* ptr, size_t size)
 }
 
 
-static inline bool png_ext(const char* const ext)
+static inline bool png_ext(const char* ext)
 {
 	return !strcmp(ext, ".png");
 }
@@ -825,9 +825,9 @@ struct PngMemFile
 };
 
 // pass data from PNG file in memory to libpng
-static void png_read(png_struct* const png_ptr, u8* const data, const png_size_t length)
+static void png_read(png_struct* png_ptr, u8* data, png_size_t length)
 {
-	PngMemFile* const f = (PngMemFile*)png_ptr->io_ptr;
+	PngMemFile* f = (PngMemFile*)png_ptr->io_ptr;
 
 	void* src = (u8*)(f->p + f->pos);
 
@@ -937,7 +937,7 @@ ret:
 
 
 // write libpng output to PNG file
-static void png_write(png_struct* const png_ptr, u8* const data, const png_size_t length)
+static void png_write(png_struct* png_ptr, u8* data, png_size_t length)
 {
 	void* p = (void*)data;
 	Handle hf = *(Handle*)png_ptr->io_ptr;
@@ -1051,7 +1051,7 @@ static inline bool jp2_fmt(u8* p, size_t size)
 }
 
 
-static inline bool jp2_ext(const char* const ext)
+static inline bool jp2_ext(const char* ext)
 {
 	return !strcmp(ext, ".jp2");
 }
@@ -1168,7 +1168,7 @@ static const int num_codecs = sizeof(codecs) / sizeof(codecs[0]);
 
 
 
-int tex_load(const char* const fn, TexInfo* t)
+int tex_load(const char* fn, TexInfo* t)
 {
 	// load file
 	void* _p = 0;

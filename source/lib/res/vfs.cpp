@@ -120,7 +120,7 @@
 // if path is invalid (see source for criteria), print a diagnostic message
 // (indicating line number of the call that failed) and
 // return a negative error code. used by CHECK_PATH.
-static int path_validate(const uint line, const char* const path)
+static int path_validate(const uint line, const char* path)
 {
 	size_t path_len = 0;	// counted as we go; checked against max.
 
@@ -184,6 +184,13 @@ ok:
 }
 
 #define CHECK_PATH(path) CHECK_ERR(path_validate(__LINE__, path))
+
+
+// convenience function
+static inline void path_copy(char* dst, const char* src)
+{
+	strncpy(dst, src, VFS_MAX_PATH);
+}
 
 
 // combine <path1> and <path2> into one path, and write to <dst>.
@@ -428,7 +435,7 @@ struct TDir
 };
 
 
-int TDir::add_subdir(const char* const dir_name)
+int TDir::add_subdir(const char* dir_name)
 {
 	if(find_file(dir_name))
 	{
@@ -532,7 +539,7 @@ void TDir::displayR(int indent_level)
 	// recurse over all subdirs
 	for(TDirIt dir_it = subdirs.begin(); dir_it != subdirs.end(); ++dir_it)
 	{
-		TDir* const subdir = &dir_it->second;
+		TDir* subdir = &dir_it->second;
 		const char* subdir_name = dir_it->first.c_str();
 
 		// write subdir's name
@@ -765,7 +772,7 @@ private:
 // [total time 21ms, with ~2000 file's (includes add_file cost)]
 static int zip_cb(const char* path, const struct stat* s, uintptr_t user)
 {
-	ZipCBParams* const params = (ZipCBParams*)user;
+	ZipCBParams* params = (ZipCBParams*)user;
 	const TLoc* loc        = params->loc;
 	char* last_path        = params->last_path;
 	size_t& last_path_len  = params->last_path_len;
@@ -793,7 +800,7 @@ static int zip_cb(const char* path, const struct stat* s, uintptr_t user)
 			// archiver placing directories before subdirs or files that
 			// reference them (WinZip doesn't).
 
-		strncpy(last_path, path, VFS_MAX_PATH);
+		path_copy(last_path, path);
 		last_path_len = path_len;
 		last_dir = dir;
 	}
@@ -1132,7 +1139,7 @@ int vfs_unmount(const char* p_real_path)
 // if <path> or its ancestors are mounted,
 // return a VFS path that accesses it.
 // used when receiving paths from external code.
-int vfs_make_vfs_path(const char* const path, char* const vfs_path)
+int vfs_make_vfs_path(const char* path, char* vfs_path)
 {
 	for(MountIt it = mounts.begin(); it != mounts.end(); ++it)
 	{
@@ -1226,7 +1233,7 @@ static int VDir_reload(VDir* vd, const char* path, Handle)
 // <v_dir> need not end in '/'; we add it if not present.
 // directory contents are cached here; subsequent changes to the dir
 // are not returned by this handle. rationale: see VDir definition.
-Handle vfs_open_dir(const char* const v_dir)
+Handle vfs_open_dir(const char* v_dir)
 {
 	return h_alloc(H_VDir, v_dir, RES_NO_CACHE);
 		// must not cache, since the position in file array
@@ -1257,7 +1264,7 @@ int vfs_close_dir(Handle& hd)
 // finally, allocating a copy is not so good because it has to be
 // freed by the user (won't happen). returning a volatile pointer
 // to the string itself via c_str is the only remaining option.
-int vfs_next_dirent(const Handle hd, vfsDirEnt* ent, const char* const filter)
+int vfs_next_dirent(const Handle hd, vfsDirEnt* ent, const char* filter)
 {
 	H_DEREF(hd, VDir, vd);
 
@@ -1656,7 +1663,7 @@ static ssize_t vfs_timed_io(const Handle hf, const size_t size, void** p, FileIO
 //
 // note: we need the Handle return value for Tex.hm - the data pointer
 // must be protected against being accidentally free-d in that case.
-Handle vfs_load(const char* const v_fn, void*& p, size_t& size, uint flags /* default 0 */)
+Handle vfs_load(const char* v_fn, void*& p, size_t& size, uint flags /* default 0 */)
 {
 #ifdef PARANOIA
 debug_out("vfs_load v_fn=%s\n", v_fn);
@@ -1731,7 +1738,7 @@ ret:
 // caveat: pads file to next max(4kb, sector_size) boundary
 // (due to limitation of Win32 FILE_FLAG_NO_BUFFERING I/O).
 // if that's a problem, specify FILE_NO_AIO when opening.
-int vfs_store(const char* const v_fn, void* p, const size_t size, uint flags /* default 0 */)
+int vfs_store(const char* v_fn, void* p, const size_t size, uint flags /* default 0 */)
 {
 	Handle hf = vfs_open(v_fn, flags|FILE_WRITE);
 	if(hf <= 0)

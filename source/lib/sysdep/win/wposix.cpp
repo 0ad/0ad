@@ -503,7 +503,7 @@ int pthread_mutex_timedlock(pthread_mutex_t* m, const struct timespec* abs_timeo
 //////////////////////////////////////////////////////////////////////////////
 
 
-void* mmap(void* const user_start, const size_t len, const int prot, const int flags, const int fd, const off_t offset)
+void* mmap(void* user_start, size_t len, int prot, int flags, int fd, off_t offset)
 {
 	{
 	WIN_SAVE_LAST_ERROR;
@@ -597,7 +597,7 @@ fail:
 }
 
 
-int munmap(void* const start, const size_t len)
+int munmap(void* start, size_t len)
 {
 	UNUSED(len);
 	BOOL ok = UnmapViewOfFile(start);

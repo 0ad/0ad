@@ -102,7 +102,7 @@ const size_t ECDR_SIZE = 22;
 
 // return -1 if file is obviously not a valid Zip archive,
 // otherwise 0. used as early-out test in lookup_init (see call site).
-static inline int z_validate(const void* const file, const size_t size)
+static inline int z_validate(const void* file, size_t size)
 {
 	// make sure it's big enough to check the header and for
 	// z_find_ecdr to succeed (if smaller, it's definitely bogus).
@@ -117,7 +117,7 @@ static inline int z_validate(const void* const file, const size_t size)
 // find "End of Central Dir Record" in file.
 // z_validate has made sure size >= ECDR_SIZE.
 // return -1 on failure (output param invalid), otherwise 0.
-static int z_find_ecdr(const void* const file, const size_t size, const u8*& ecdr_)
+static int z_find_ecdr(const void* file, size_t size, const u8*& ecdr_)
 {
 	// early out: check expected case (ECDR at EOF; no file comment)
 	const u8* ecdr = (const u8*)file + size - ECDR_SIZE;
@@ -159,7 +159,7 @@ found_ecdr:
 // make sure the LFH fields match those passed (from the CDFH).
 // only used in PARANOIA builds - costs time when opening archives.
 // return -1 on error or mismatch, otherwise 0.
-static int z_verify_lfh(const void* const file, const off_t lfh_ofs, const off_t file_ofs)
+static int z_verify_lfh(const void* file, const off_t lfh_ofs, const off_t file_ofs)
 {
 	assert(lfh_ofs < file_ofs);	// header comes before file
 
@@ -225,7 +225,7 @@ static time_t convert_dos_date(u16 fatdate, u16 fattime)
 // if cdfh is valid and describes a file, extract its name, offset and size
 // for use in z_enum_files (passes it to lookup).
 // return -1 on error (output params invalid), or 0 on success.
-static int z_extract_cdfh(const u8* cdfh, const ssize_t bytes_left, const char*& fn, size_t& fn_len, ZLoc* const loc)
+static int z_extract_cdfh(const u8* cdfh, ssize_t bytes_left, const char*& fn, size_t& fn_len, ZLoc* loc)
 {
 	// sanity check: did we even read the CDFH?
 	if(bytes_left < CDFH_SIZE)
@@ -305,9 +305,9 @@ static int z_extract_cdfh(const u8* cdfh, const ssize_t bytes_left, const char*&
 
 // fn (filename) is not necessarily 0-terminated!
 // loc is only valid during the callback! must be copied or saved.
-typedef int(*CDFH_CB)(const uintptr_t user, const i32 idx, const char* const fn, const size_t fn_len, const ZLoc* const loc);
+typedef int(*CDFH_CB)(uintptr_t user, i32 idx, const char* fn, size_t fn_len, const ZLoc* loc);
 
-static int z_enum_files(const void* const file, const size_t size, const CDFH_CB cb, const uintptr_t user)
+static int z_enum_files(const void* file, const size_t size, const CDFH_CB cb, const uintptr_t user)
 {
 	// find "End of Central Directory Record"
 	const u8* ecdr;
@@ -459,8 +459,8 @@ static void strcpy_lower(char* dst, const char* src)
 // notes:
 // - fn (filename) is not necessarily 0-terminated!
 // - loc is only valid during the callback! must be copied or saved.
-static int lookup_add_file_cb(const uintptr_t user, const i32 idx,
-	const char* const fn, const size_t fn_len, const ZLoc* const loc)
+static int lookup_add_file_cb(uintptr_t user, i32 idx,
+	const char* fn, size_t fn_len, const ZLoc* loc)
 {
 	LookupInfo* li = (LookupInfo*)user;
 
@@ -499,6 +499,7 @@ static int lookup_add_file_cb(const uintptr_t user, const i32 idx,
 	ZEnt* ent = li->ents + idx;
 	ent->loc = *loc;
 	// .. copy filename (needs to be 0-terminated)
+	//    note: Zip paths only have '/' terminators; no need to convert.
 	char* fn_copy = (char*)malloc(fn_len+1);
 	if(!fn_copy)
 		return ERR_NO_MEM;
@@ -516,7 +517,7 @@ static int lookup_add_file_cb(const uintptr_t user, const i32 idx,
 
 // initialize lookup data structure for the given Zip archive:
 // adds all files to the index.
-static int lookup_init(LookupInfo* const li, const void* const file, const size_t size)
+static int lookup_init(LookupInfo* li, const void* file, const size_t size)
 {
 	int err;
 
@@ -544,7 +545,7 @@ static int lookup_init(LookupInfo* const li, const void* const file, const size_
 
 // free lookup data structure.
 // (no use-after-free checking - that's handled by the VFS)
-static int lookup_free(LookupInfo* const li)
+static int lookup_free(LookupInfo* li)
 {
 	// free memory allocated for filenames
 	for(i32 i = 0; i < li->num_files; i++)
@@ -563,7 +564,7 @@ static int lookup_free(LookupInfo* const li)
 
 
 // look up ZLoc, given filename.
-static int lookup_get_file_info(LookupInfo* const li, const char* fn, ZLoc* const loc)
+static int lookup_get_file_info(LookupInfo* li, const char* fn, ZLoc* loc)
 {
 	// hash (lower case!) filename
 	char lc_fn[PATH_MAX];
@@ -602,7 +603,7 @@ have_idx:
 // successively call <cb> for each valid file in the index,
 // passing the complete path and <user>.
 // if it returns a nonzero value, abort and return that, otherwise 0.
-static int lookup_enum_files(LookupInfo* const li, FileCB cb, uintptr_t user)
+static int lookup_enum_files(LookupInfo* li, FileCB cb, uintptr_t user)
 {
 	struct stat s;
 	memset(&s, 0, sizeof(s));
@@ -712,7 +713,7 @@ exit_close:
 
 // open and return a handle to the zip archive indicated by <fn>.
 // somewhat slow - each file is added to an internal index.
-Handle zip_archive_open(const char* const fn)
+Handle zip_archive_open(const char* fn)
 {
 	return h_alloc(H_ZArchive, fn);
 }
@@ -1053,7 +1054,7 @@ static const size_t CHUNK_SIZE = 16*KB;
 
 // begin transferring <size> bytes, starting at <ofs>. get result
 // with zip_wait_io; when no longer needed, free via zip_discard_io.
-int zip_start_io(ZFile* const zf, off_t user_ofs, size_t max_output_size, void* user_buf, ZipIO* io)
+int zip_start_io(ZFile* zf, off_t user_ofs, size_t max_output_size, void* user_buf, ZipIO* io)
 {
 	// not needed, since ZFile tells us the last read offset in the file.
 	UNUSED(user_ofs);
@@ -1289,7 +1290,7 @@ ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void* p, FileIOCB cb, uintpt
 // the mapping will be removed (if still open) when its file is closed.
 // however, map/unmap calls should still be paired so that the mapping
 // may be removed when no longer needed.
-int zip_map(ZFile* const zf, void*& p, size_t& size)
+int zip_map(ZFile* zf, void*& p, size_t& size)
 {
 	p = 0;
 	size = 0;
@@ -1325,7 +1326,7 @@ int zip_map(ZFile* const zf, void*& p, size_t& size)
 // the mapping will be removed (if still open) when its archive is closed.
 // however, map/unmap calls should be paired so that the archive mapping
 // may be removed when no longer needed.
-int zip_unmap(ZFile* const zf)
+int zip_unmap(ZFile* zf)
 {
 	CHECK_ZFILE(zf);
 

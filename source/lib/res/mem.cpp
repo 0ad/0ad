@@ -169,7 +169,7 @@ static int Mem_reload(Mem* m, const char* fn, Handle hm)
 //////////////////////////////////////////////////////////////////////////////
 
 
-static void heap_free(void* const raw_p, const size_t raw_size, const uintptr_t ctx)
+static void heap_free(void* raw_p, size_t raw_size, uintptr_t ctx)
 {
 	UNUSED(raw_size);
 	UNUSED(ctx);
@@ -178,7 +178,7 @@ static void heap_free(void* const raw_p, const size_t raw_size, const uintptr_t 
 }
 
 
-static void* heap_alloc(const size_t raw_size, uintptr_t& ctx)
+static void* heap_alloc(size_t raw_size, uintptr_t& ctx)
 {
 	ctx = 0;
 	void* raw_p = malloc(raw_size);
@@ -194,7 +194,7 @@ static size_t pool_pos;
 static const size_t POOL_CAP = 8*MB;	// TODO: user editable
 
 
-static void pool_free(void* const raw_p, const size_t raw_size, const uintptr_t ctx)
+static void pool_free(void* raw_p, size_t raw_size, uintptr_t ctx)
 {
 	UNUSED(raw_p);
 
