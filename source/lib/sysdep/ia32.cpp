@@ -76,7 +76,7 @@ __asm
 
 
 // change FPU control word (used to set precision)
-uint _control87(uint new_cw, uint mask)
+uint ia32_control87(uint new_cw, uint mask)
 {
 __asm
 {

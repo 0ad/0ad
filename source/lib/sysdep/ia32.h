@@ -15,14 +15,14 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
+#ifndef IA32_H
+#define IA32_H
+
 #ifndef _M_IX86
 #error "including ia32.h without _M_IX86 defined"
 #endif
 
-#ifndef IA32_H
-#define IA32_H
-
-#include "lib.h"
+#include "lib/types.h"
 
 
 extern double _ceil(double);
@@ -37,7 +37,8 @@ extern u64 rdtsc(void);
 #define	_PC_24		0x0000		// 24 bits
 #endif
 
-extern uint _control87(uint new_cw, uint mask);
+#define _control87 ia32_control87
+extern uint ia32_control87(uint new_cw, uint mask);
 
 extern void ia32_debug_break(void);
 
