@@ -404,16 +404,22 @@ static int aio_rw(struct aiocb* cb)
 	const bool is_file = (GetFileType(h) == FILE_TYPE_DISK);
 	if(is_file)
 	{
-		const size_t ofs_misalign = ofs % sector_size;
+		// round offset down to start of previous sector, and total
+		// transfer size up to an integral multiple of sector_size.
+		r->pad = ofs % sector_size;
+		actual_ofs = ofs - r->pad;
+		actual_size = round_up(size + r->pad, sector_size);
+
+		// now decide if any of the original parameters was unaligned,
+		// and whether it was ofs or buf in particular
+		// (needed for unaligned write handling below).
+		const bool ofs_misaligned = r->pad != 0;
 		const bool buf_misaligned = (uintptr_t)buf % sector_size != 0;
-		const size_t size_misalign = (size + ofs_misalign) % sector_size;
+		const bool misaligned = ofs_misaligned || buf_misaligned || actual_size != size;
+			// note: actual_size != size if ofs OR size is unaligned
 
-		r->pad = ofs_misalign;
-		actual_ofs = ofs - ofs_misalign;
-		actual_size = size + (size_misalign? sector_size : 0);
-
-		// need to realign if ofs, size, or buf % sector_size != 0
-		bool misaligned = ofs_misalign || buf_misaligned || size_misalign;
+		// misaligned => will need to go through align buffer
+		// (we fail some types of misalignment for convenience; see below).
 		if(misaligned)
 		{
 			// expand current align buffer if too small
@@ -438,7 +444,7 @@ static int aio_rw(struct aiocb* cb)
 			{
 				// unaligned offset: not supported.
 				// (we'd have to read padding, then write our data. ugh.)
-				if(ofs_misalign)
+				if(ofs_misaligned)
 				{
 					ret = -EINVAL;
 					goto fail;
