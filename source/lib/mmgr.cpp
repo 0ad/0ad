@@ -129,149 +129,7 @@ uint mmgr_set_options(uint new_options)
 // string formatting routines for log and reports
 //////////////////////////////////////////////////////////////////////////////
 
-
-// strip off uninteresting parts of func in-place.
-// e.g. "std::basic_string<char, char_traits<char>, std::allocator<char> >" =>
-//  "string".
-static void simplify_stl_func(char* func)
-{
-	int nesting = 0;
-
-	const char* src = func-1;
-	char* dst = func;
-	for(;;)
-	{
-		int c = *(++src);
-
-		// end of string reached - we're done.
-		if(c == '\0')
-		{
-			*dst = '\0';
-			break;
-		}
-
-		if(nesting)
-		{
-			if(c == '<')
-				nesting++;
-			else if(c == '>')
-			{
-				nesting--;
-				assert(nesting >= 0);
-			}
-			continue;
-		}
-
-
-#define REPLACE(what, to)\
-	else if(!strncmp(src, (what), sizeof(what)-1))\
-	{\
-		src += sizeof(what)-1;\
-		strcpy(dst, (to));\
-		dst += sizeof(to)-1;\
-	}
-
-#define STRIP(what)\
-	else if(!strncmp(src, (what), sizeof(what)-1))\
-	{\
-		src += sizeof(what)-1;\
-	}
-
-
-		// start if chain (REPLACE and STRIP use else if)
-		if(0) {}
-		else if(!strncmp(src, "::_Node", 7))
-		{
-			// add a space if not already preceded by one
-			if(src != func && src[-1] != ' ')
-				*dst++ = ' ';
-			src += 7;
-		}
-		REPLACE("unsigned short", "u16")
-		REPLACE("unsigned int", "uint")
-		REPLACE("unsigned __int64", "u64")
-		STRIP(",0> ")
-		// early out: all tests after this start with s, so skip them
-		else if(c != 's')
-		{
-			*dst++ = c;
-			continue;
-		}
-		REPLACE("std::_List_nod", "list")
-		REPLACE("std::_Tree_nod", "map")
-		REPLACE("std::basic_string<char,", "string<")
-		REPLACE("std::basic_string<unsigned short,", "wstring<")
-		STRIP("std::char_traits<char>,")
-		STRIP("std::char_traits<unsigned short>,")
-		STRIP("std::_Tmap_traits")
-		STRIP("std::_Tset_traits")
-		else if(!strncmp(src, "std::allocator<", 15))
-		{
-			// remove preceding comma (if present)
-			if(src != func && src[-1] == ',')
-				dst--;
-			src += 15;
-			// strip everything until trailing > is matched
-			assert(nesting == 0);
-			nesting = 1;
-		}
-		else if(!strncmp(src, "std::less<", 10))
-		{
-			// remove preceding comma (if present)
-			if(src != func && src[-1] == ',')
-				dst--;
-			src += 10;
-			// strip everything until trailing > is matched
-			assert(nesting == 0);
-			nesting = 1;
-		}
-		STRIP("std::")
-		else
-			*dst++ = c;
-	}
-}
-
-
-const size_t OWNER_SIZE = 92+400;
-	// specific size chosen such that sizeof(Alloc) == 128
-	// (power-of-two for more efficient allocation)
-
-static void store_owner(char* owner, const char* path, int line, const char* func)
-{
-	// we don't know jack, and an 'unknown' string is nicer than '?(0)?'
-	if((!path || path[0] == '\0') && !line && (!func || func[0] == '\0'))
-	{
-		strcpy(owner, "(unknown)");
-		return;
-	}
-
-	const char* file = path;
-	// filename is unknown
-	if(!file || file[0] == '\0')
-		file = "??";
-	// strip path (if present)
-	else
-	{
-		const char* slash = strrchr(path, '\\');
-		if(slash)
-			file = slash+1;
-		slash = strrchr(file, '/');
-		if(slash)
-			file = slash+1;
-	}
-
-	// if function is unknown (NULL or == ""), don't display anything
-	if(!func)
-		func = "";
-
-	int len = snprintf(owner, OWNER_SIZE-1, "%s(%05d)", file, line);
-	snprintf(owner+len, OWNER_SIZE-1-len, "%s", func);
-
-	simplify_stl_func(owner+len);
-
-	owner[OWNER_SIZE-1] = '\0';
-}
-
+extern const char* debug_get_symbol_string(void* symbol, const char* name, const char* file, int line);
 
 const size_t NUM_SIZE = 32;
 	// enough to cover even 64 bit numbers
@@ -324,45 +182,52 @@ static const char* format_size_string(char* str, size_t value)
 
 enum AllocType
 {
-	m_alloc_unknown       = 0,
-	m_alloc_new           = 1,
-	m_alloc_new_array     = 2,
-	m_alloc_malloc        = 3,
-	m_alloc_calloc        = 4,
-	m_alloc_realloc       = 5,
-	m_alloc_delete        = 6,
-	m_alloc_delete_array  = 7,
-	m_alloc_free          = 8
+	AT_UNKNOWN      = 0,
+
+	AT_MALLOC       = 1,
+	AT_CALLOC       = 2,
+	AT_REALLOC      = 3,
+	AT_FREE         = 4,
+
+	AT_NEW          = 5,
+	AT_NEW_ARRAY    = 6,
+	AT_DELETE       = 7,
+	AT_DELETE_ARRAY = 8,
+
+	AT_INVALID      = 9
 };
 
 // must match enum AllocType!
 static const char* types[] =
 {
-	"Unknown",
-	"new",
-	"new[]",
+	"unknown",
 	"malloc",
 	"calloc",
 	"realloc",
+	"free",
+	"new",
+	"new[]",
 	"delete",
 	"delete[]",
-	"free"
 };
 
 struct Alloc
 {
 	void* p;
 	size_t size;
-	void* user_p;
-	size_t user_size;
-	char owner[OWNER_SIZE];
-	AllocType type;
-	uint alloc_num;
+	uint num;
 	Alloc* next;
 	Alloc* prev;
-	bool break_on_free;
-	bool break_on_realloc;
+	const char* owner;
+
+	uint type : 4;
+	uint break_on_free : 1;
+	uint break_on_realloc : 1;
+
+	void* user_p() const { return (char*)p + padding_size; }
+	size_t user_size() const { return size - padding_size*2; }
 };
+
 
 static Alloc* freelist;
 static Alloc** reservoirs = 0;	// array of pointers to runs of 256 Allocs
@@ -449,7 +314,7 @@ static Alloc*& hash_chain(const void* pointer)
 
 static void allocs_remove(const Alloc* a)
 {
-	Alloc*& chain = hash_chain(a->user_p);
+	Alloc*& chain = hash_chain(a->user_p());
 	// it was at head of chain
 	if(chain == a)
 		chain = a->next;
@@ -465,7 +330,7 @@ static void allocs_remove(const Alloc* a)
 
 static void allocs_add(Alloc* a)
 {
-	Alloc*& chain = hash_chain(a->user_p);
+	Alloc*& chain = hash_chain(a->user_p());
 	if(chain)
 		chain->prev = a;
 	a->next = chain;
@@ -481,7 +346,7 @@ static Alloc* allocs_find(const void* user_p)
 	Alloc* a = hash_chain(user_p);
 	while(a)
 	{
-		if(a->user_p == user_p)
+		if(a->user_p() == user_p)
 			break;
 		a = a->next;
 	}
@@ -541,10 +406,10 @@ static void pattern_set(const Alloc* a, ulong pattern)
 
 	// fill user's data (optional)
 	// note: don't use memset, because we want multi-byte patterns
-	if(options & MMGR_FILL && a->user_size > 0)
+	if(options & MMGR_FILL && a->user_size() > 0)
 	{
-		u8* p = (u8*)a->user_p;
-		const size_t size = a->user_size;
+		u8* p = (u8*)a->user_p();
+		const size_t size = a->user_size();
 
 		// write whole ulongs
 		for(size_t i = 0; i < size / sizeof(ulong); i++)
@@ -602,17 +467,18 @@ static inline void* calc_user_p(const void* actual_p)
 
 // return byte size of all the ulongs in the allocation whose contents
 // haven't changed from the "unused" pattern since allocation.
-size_t calc_unused(const Alloc* a)
+// called from calc_all_unused_cb and log_this_alloc.
+static size_t calc_unused(const Alloc* a)
 {
-	const unsigned long* ptr = (const unsigned long*)a->user_p;
-	uint count = 0;
+	size_t total = 0;
+	const ulong* p = (const ulong*)a->user_p();
+	for(uint i = 0; i < a->user_size(); i += sizeof(ulong))
+		if(*p++ == unusedPattern)
+			total += sizeof(long);
 
-	for(uint i = 0; i < a->user_size; i += sizeof(long), ptr++)
-		if(*ptr == unusedPattern)
-			count += sizeof(long);
-
-	return count;
+	return total;
 }
+
 
 static void calc_all_unused_cb(const Alloc* a, void* arg)
 {
@@ -620,7 +486,7 @@ static void calc_all_unused_cb(const Alloc* a, void* arg)
 	*ptotal += calc_unused(a);
 }
 
-// return total accumulated by calc_unused over all allocations.
+// return total unused size in all allocations.
 static size_t calc_all_unused()
 {
 	size_t total = 0;
@@ -652,12 +518,15 @@ static struct Stats
 // will increase, but that makes sense.
 static void stats_add(const Alloc* a)
 {
-	stats.cur_user_mem += a->user_size;
-	stats.cur_mem      += a->size;
+	const size_t size = a->size;
+	const size_t user_size = a->user_size();
+
+	stats.cur_user_mem += user_size;
+	stats.cur_mem      += size;
 	stats.cur_allocs++;
 
-	stats.total_user_mem += a->user_size;
-	stats.total_mem      += a->size;
+	stats.total_user_mem += user_size;
+	stats.total_mem      += size;
 	stats.total_allocs++;
 
 	stats.peak_user_mem = MAX(stats.peak_user_mem, stats.cur_user_mem);
@@ -667,8 +536,11 @@ static void stats_add(const Alloc* a)
 
 static void stats_remove(const Alloc* a)
 {
-	stats.cur_user_mem -= a->user_size;
-	stats.cur_mem      -= a->size;
+	const size_t size = a->size;
+	const size_t user_size = a->user_size();
+
+	stats.cur_user_mem -= user_size;
+	stats.cur_mem      -= size;
 	stats.cur_allocs--;
 }
 
@@ -776,8 +648,8 @@ static void log_this_alloc(const Alloc* a)
 {
 	// duplicated in write_alloc_cb(); factoring out isn't worth it
 	log("%06d 0x%08p 0x%08X 0x%08p 0x%08X 0x%08X %-8s    %c       %c    %s\n",
-		a->alloc_num,
-		a->user_p, a->user_size,
+		a->num,
+		a->user_p(), a->user_size(),
 		a->p, a->size,
 		calc_unused(a),
 		types[a->type],
@@ -798,8 +670,8 @@ static void write_alloc_cb(const Alloc* a, void* arg)
 
 	// duplicated in log_this_alloc(Alloc*); factoring out isn't worth it
 	fprintf(f, "%06d 0x%08p 0x%08X 0x%08p 0x%08X 0x%08X %-8s    %c       %c    %s\n",
-		a->alloc_num,
-		a->user_p, a->user_size,
+		a->num,
+		a->user_p(), a->user_size(),
 		a->p, a->size,
 		calc_unused(a),
 		types[a->type],
@@ -1068,8 +940,8 @@ void mmgr_break_on_realloc(const void* p)
 
 	// setting realloc breakpoint on an allocation that
 	// doesn't support realloc.
-	assert2(a->type == m_alloc_malloc || a->type == m_alloc_calloc ||
-	       a->type == m_alloc_realloc);
+	assert2(a->type == AT_MALLOC || a->type == AT_CALLOC ||
+	        a->type == AT_REALLOC);
 
 	a->break_on_realloc = true;
 
@@ -1107,35 +979,14 @@ void* alloc_dbg(size_t user_size, AllocType type, const char* file, int line, co
 	if(options & MMGR_TRACE)
 		log("[D] ENTER: alloc_dbg\n");
 
-	// if passed incomplete owner information, determine via call stack
-	char file_buf[DBG_FILE_LEN];
-	char func_buf[DBG_SYMBOL_LEN];
-	if(!file || !line || !func)
-	{
-		if(options & MMGR_RESOLVE_OWNER)
-		{
-			void* pfunc = debug_get_nth_caller(1+stack_frames);
-			int line_buf;
-			int ret = debug_resolve_symbol(pfunc, func_buf, file_buf, &line_buf);
-			//assert2(ret == 0);
-			// only set if debug_resolve_symbol returned meaningful values
-			// (otherwise, stick with what we got, even if 0; store_owner will
-			// sort it out).
-			if(line_buf)
-				line = line_buf;
-			if(file_buf[0])
-				file = file_buf;
-			if(func_buf[0])
-				func = func_buf;
-		}
-	}
+	void* caller = debug_get_nth_caller(1+stack_frames);
+	const char* caller_string = debug_get_symbol_string(caller, func, file, line);
 
 	if(options & MMGR_LOG_ALL)
-	{
-		char owner[OWNER_SIZE];
-		store_owner(owner, file, line, func);
-		log("[+] %05d %8s of size 0x%08X(%08d) by %s\n", cur_alloc_count, types[type], user_size, user_size, owner);
-	}
+		log("[+] %05d %8s of size 0x%08X(%08d) by %s\n", cur_alloc_count, types[type], user_size, user_size, caller_string);
+
+	// caller's source file didn't include "mmgr.h"
+	assert2(type != AT_UNKNOWN);
 
 	// you requested a breakpoint on this allocation number
 	++cur_alloc_count;
@@ -1166,17 +1017,12 @@ void* alloc_dbg(size_t user_size, AllocType type, const char* file, int line, co
 	Alloc* a = alloc_new();
 	if(!a)
 		goto fail;
-	memset(a, 0, sizeof(Alloc));
-	a->size      = size;
-	a->p         = p;
-	a->user_size = user_size;
-	a->user_p    = calc_user_p(a->p);
-	a->type      = type;
-	a->alloc_num = cur_alloc_count;
-	store_owner(a->owner, file, line, func);
-
-	// caller's source file didn't include "mmgr.h"
-	assert2(type != m_alloc_unknown);
+	a->p     = p;
+	a->size  = size;
+	a->num   = cur_alloc_count;
+	a->owner = caller_string;
+	a->type  = type;
+	a->break_on_free = a->break_on_realloc = 0;
 
 	allocs_add(a);
 	stats_add(a);
@@ -1184,13 +1030,13 @@ void* alloc_dbg(size_t user_size, AllocType type, const char* file, int line, co
 	pattern_set(a, unusedPattern);
 
 	// calloc() must zero the memory
-	if(type == m_alloc_calloc)
-		memset(a->user_p, 0, a->user_size);
+	if(type == AT_CALLOC)
+		memset(a->user_p(), 0, a->user_size());
 
 	if(options & MMGR_LOG_ALL)
-		log("[+] ---->             addr 0x%08p\n", a->user_p);
+		log("[+] ---->             addr 0x%08p\n", a->user_p());
 
-	ret = a->user_p;
+	ret = a->user_p();
 
 fail:
 	if(options & MMGR_VALIDATE_ALL)
@@ -1211,36 +1057,11 @@ void free_dbg(const void* user_p, AllocType type, const char* file, int line, co
 	if(options & MMGR_TRACE)
 		log("[D] ENTER: free_dbg\n");
 
-	// if passed incomplete owner information, determine via call stack
-	char file_buf[DBG_FILE_LEN];
-	char func_buf[DBG_SYMBOL_LEN];
-	if(!file || !line || !func)
-	{
-		if(options & MMGR_RESOLVE_OWNER)
-		{
-			void* pfunc = debug_get_nth_caller(1+stack_frames);
-			int line_buf;
-			int ret = debug_resolve_symbol(pfunc, func_buf, file_buf, &line_buf);
-			//assert2(ret == 0);
-			// only set if debug_resolve_symbol returned meaningful values
-			// (otherwise, stick with what we got, even if 0; store_owner will
-			// sort it out).
-			if(line_buf)
-				line = line_buf;
-			if(file_buf[0])
-				file = file_buf;
-			if(func_buf[0])
-				func = func_buf;
-		}
-	}
-
+	void* caller = debug_get_nth_caller(1+stack_frames);
+	const char* caller_string = debug_get_symbol_string(caller, func, file, line);
 
 	if(options & MMGR_LOG_ALL)
-	{
-		char owner[OWNER_SIZE];
-		store_owner(owner, file, line, func);
-		log("[-] ----- %8s of addr 0x%08p           by %s\n", types[type], user_p, owner);
-	}
+		log("[-] ----- %8s of addr 0x%08p           by %s\n", types[type], user_p, caller_string);
 
 	// freeing a zero pointer is allowed by C and C++, and a no-op.
 	if(!user_p)
@@ -1262,14 +1083,14 @@ void free_dbg(const void* user_p, AllocType type, const char* file, int line, co
 	// .. overrun? (note: alloc_is_valid already asserts if invalid)
 	alloc_is_valid(a);
 	// .. the owner wasn't compiled with mmgr.h
-	assert2(type != m_alloc_unknown);
+	assert2(type != AT_UNKNOWN);
 	// .. allocator / deallocator type mismatch
 	assert2(
-		(type == m_alloc_delete       && a->type == m_alloc_new      ) ||
-		(type == m_alloc_delete_array && a->type == m_alloc_new_array) ||
-		(type == m_alloc_free         && a->type == m_alloc_malloc   ) ||
-		(type == m_alloc_free         && a->type == m_alloc_calloc   ) ||
-		(type == m_alloc_free         && a->type == m_alloc_realloc  )
+		(type == AT_DELETE       && a->type == AT_NEW      ) ||
+		(type == AT_DELETE_ARRAY && a->type == AT_NEW_ARRAY) ||
+		(type == AT_FREE         && a->type == AT_MALLOC   ) ||
+		(type == AT_FREE         && a->type == AT_CALLOC   ) ||
+		(type == AT_FREE         && a->type == AT_REALLOC  )
 	);
 	// .. you requested a breakpoint when freeing this allocation
 	assert2(!a->break_on_free);
@@ -1282,9 +1103,9 @@ void free_dbg(const void* user_p, AllocType type, const char* file, int line, co
 
 	free(a->p);
 
-	stats_remove(a);
 	allocs_remove(a);
 	alloc_delete(a);
+	stats_remove(a);
 
 	// we're being called from destructors. each call may be the last.
 	if(static_dtor_called)
@@ -1316,36 +1137,12 @@ void* realloc_dbg(const void* user_p, size_t user_size, AllocType type, const ch
 {
 	void* ret = 0;
 
-	assert2(type == m_alloc_realloc);
+	assert2(type == AT_REALLOC);
 
 	lock();
 
 	if(options & MMGR_TRACE)
 		log("[D] ENTER: realloc_dbg\n");
-
-	// if passed incomplete owner information, determine via call stack
-	char file_buf[DBG_FILE_LEN];
-	char func_buf[DBG_SYMBOL_LEN];
-	if(!file || !line || !func)
-	{
-		if(options & MMGR_RESOLVE_OWNER)
-		{
-			void* pfunc = debug_get_nth_caller(1+stack_frames);
-			int line_buf;
-			int ret = debug_resolve_symbol(pfunc, func_buf, file_buf, &line_buf);
-			//assert2(ret == 0);
-			// only set if debug_resolve_symbol returned meaningful values
-			// (otherwise, stick with what we got, even if 0; store_owner will
-			// sort it out).
-			if(line_buf)
-				line = line_buf;
-			if(file_buf[0])
-				file = file_buf;
-			if(func_buf[0])
-				func = func_buf;
-		}
-	}
-
 
 
 	//
@@ -1363,10 +1160,10 @@ void* realloc_dbg(const void* user_p, size_t user_size, AllocType type, const ch
 			goto fail;
 		}
 		// .. the owner wasn't compiled with mmgr.h
-		assert2(a->type != m_alloc_unknown);
+		assert2(a->type != AT_UNKNOWN);
 		// .. realloc for an allocation type that doesn't support it.
-		assert2(a->type == m_alloc_malloc || a->type == m_alloc_calloc ||
-			a->type == m_alloc_realloc);
+		assert2(a->type == AT_MALLOC || a->type == AT_CALLOC ||
+			a->type == AT_REALLOC);
 		// .. you requested a breakpoint when reallocating this allocation
 		// (it will continue to be triggered unless you clear a->break_on_realloc)
 		assert2(!a->break_on_realloc);
@@ -1376,10 +1173,10 @@ void* realloc_dbg(const void* user_p, size_t user_size, AllocType type, const ch
 	unlock();	// avoid recursive lock
 
 	if(user_size)
-		ret = alloc_dbg(user_size, type, file,line,func, 2);
+		ret = alloc_dbg(user_size, type, file,line,func, stack_frames+1);
 
 	if(user_p)
-		free_dbg(user_p, type, file,line,func, 2);
+		free_dbg(user_p, type, file,line,func, stack_frames+1);
 
 	lock();
 
@@ -1407,19 +1204,19 @@ fail:
 
 void* mmgr_malloc_dbg(size_t size, const char* file, int line, const char* func)
 {
-	return alloc_dbg(size, m_alloc_malloc, file,line,func, 1);
+	return alloc_dbg(size, AT_MALLOC, file,line,func, 1);
 }
 void* mmgr_calloc_dbg(size_t num, size_t size, const char* file, int line, const char* func)
 {
-	return alloc_dbg(num*size, m_alloc_calloc, file,line,func, 1);
+	return alloc_dbg(num*size, AT_CALLOC, file,line,func, 1);
 }
 void* mmgr_realloc_dbg(void* p, size_t size, const char* file, int line, const char* func)
 {
-	return realloc_dbg(p, size, m_alloc_realloc, file,line,func, 1);
+	return realloc_dbg(p, size, AT_REALLOC, file,line,func, 1);
 }
 void mmgr_free_dbg(void* p, const char* file, int line, const char* func)
 {
-	return free_dbg(p, m_alloc_free, file,line,func, 1);
+	return free_dbg(p, AT_FREE, file,line,func, 1);
 }
 
 
@@ -1517,44 +1314,44 @@ static void* new_common(size_t size, AllocType type,
 
 void* operator new(size_t size)
 {
-	return new_common(size, m_alloc_new, 0, 0, 0);
+	return new_common(size, AT_NEW, 0,0,0);
 }
 
 void* operator new[](size_t size)
 {
-	return new_common(size, m_alloc_new_array, 0, 0, 0);
+	return new_common(size, AT_NEW_ARRAY, 0,0,0);
 }
 
 void* operator new(size_t size, const char* file, int line)
 {
 	locked_log("[?] Overloaded(file,line) global operator new called - check call site");
-	return new_common(size, m_alloc_new, file, (uint)line, 0);
+	return new_common(size, AT_NEW, file,line,0);
 }
 
 void* operator new[](size_t size, const char* file, int line)
 {
-	locked_log("[?] Overloaded(file,line) global operator new called - check call site");
-	return new_common(size, m_alloc_new_array, file, (uint)line, 0);
+	locked_log("[?] Overloaded(file,line) global operator new[] called - check call site");
+	return new_common(size, AT_NEW_ARRAY, file,line,0);
 }
 
 void* operator new(size_t size, const char* file, int line, const char* func)
 {
-	return new_common(size, m_alloc_new, file, line, func);
+	return new_common(size, AT_NEW, file,line,func);
 }
 
 void* operator new[](size_t size, const char* file, int line, const char* func)
 {
-	return new_common(size, m_alloc_new_array, file, line, func);
+	return new_common(size, AT_NEW_ARRAY, file,line,func);
 }
 
 
 void operator delete(void* p) throw()
 {
-	free_dbg(p, m_alloc_delete, 0,0,0, 1);
+	free_dbg(p, AT_DELETE, 0,0,0, 1);
 }
 void operator delete[](void* p) throw()
 {
-	free_dbg(p, m_alloc_delete_array, 0,0,0, 1);
+	free_dbg(p, AT_DELETE_ARRAY, 0,0,0, 1);
 }
 
 //
@@ -1565,23 +1362,23 @@ void operator delete[](void* p) throw()
 void operator delete(void* p, const char* file, int line) throw()
 {
 	locked_log("[?] Overloaded(file,line) global operator delete called, i.e. exception raised in a ctor");
-	free_dbg(p, m_alloc_delete, file,(uint)line,0, 1);
+	free_dbg(p, AT_DELETE, file,line,0, 1);
 }
 void operator delete[](void* p, const char* file, int line) throw()
 {
-	locked_log("[?] Overloaded(file,line) global operator delete called, i.e. exception raised in a ctor");
-	free_dbg(p, m_alloc_delete_array, file,(uint)line,0, 1);
+	locked_log("[?] Overloaded(file,line) global operator delete[] called, i.e. exception raised in a ctor");
+	free_dbg(p, AT_DELETE_ARRAY, file,line,0, 1);
 }
 
 void operator delete(void* p, const char* file, int line, const char* func) throw()
 {
 	locked_log("[?] Overloaded(file,line,func) global operator delete called, i.e. exception raised in a ctor");
-	free_dbg(p, m_alloc_delete, file,line,func, 1);
+	free_dbg(p, AT_DELETE, file,line,func, 1);
 }
 void operator delete[](void* p, const char* file, int line, const char* func) throw()
 {
-	locked_log("[?] Overloaded(file,line,func) global operator delete called, i.e. exception raised in a ctor");
-	free_dbg(p, m_alloc_delete_array, file,line,func, 1);
+	locked_log("[?] Overloaded(file,line,func) global operator delete[] called, i.e. exception raised in a ctor");
+	free_dbg(p, AT_DELETE_ARRAY, file,line,func, 1);
 }
 
 #endif	// #ifdef USE_MMGR

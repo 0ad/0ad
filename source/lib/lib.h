@@ -198,15 +198,6 @@ enum LibError
 // note: alternative method in C++: specialize a struct only for true;
 // using it will raise 'incomplete type' errors if instantiated with false.
 
-#ifdef _WIN32
-
-#define debug_warn(str) assert(0 && (str))
-
-#else
-
-#define debug_warn(str) debug_out("Debug Warning Fired at %s:%d: %s\n", __FILE__, __LINE__, str)
-
-#endif
 
 
 

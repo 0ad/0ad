@@ -174,13 +174,14 @@ static int walk_stack(int (*cb)(STACKFRAME64*, void*), void* ctx, CONTEXT* threa
 	HANDLE hThread = GetCurrentThread();
 
 	// we need to set STACKFRAME64.AddrPC and AddrFrame for the initial
-	// StackWalk call in our loop. there is no portable way to do this,
-	// since CONTEXT is platform-specific. if the caller passed in a thread
-	// context (e.g. if calling from an exception handler), we use that;
-	// otherwise, determine the current PC / frame pointer ourselves.
+	// StackWalk call in our loop. if the caller passed in a thread context
+	// (e.g. if calling from an exception handler), we use that; otherwise,
+	// determine the current PC / frame pointer ourselves.
 	// GetThreadContext is documented not to work if the current thread
-	// is running, but that seems to be current practice. Regardless, we
-	// avoid using it, since simple asm code is safer.
+	// is running, but that seems to be widespread practice. regardless, we
+	// avoid using it, since simple asm code is safer. deliberately raising
+	// an exception to retrieve the CONTEXT is too slow (due to jump to
+	// ring0), since this is called from mmgr for each allocation.
 	STACKFRAME64 frame;
 	memset(&frame, 0, sizeof(frame));
 
@@ -862,11 +863,10 @@ static int dump_data_sym(DWORD data_idx, const u8* p, uint level)
 	if(!SymFromIndexW(hProcess, mod_base, data_idx, sym))
 		return -1;
 
+	// one case where this happens is when called for all children of UDT:
+	// that includes 'BaseClass' nodes.
 	if(sym->Tag != SymTagData)
-	{
-		assert(sym->Tag == SymTagData);
 		return -1;
-	}
 
 
 	// indent
