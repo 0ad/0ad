@@ -49,7 +49,8 @@ public:
 		m_UpdateCB=cb;
 		m_UpdateCBData=userdata;
 	}
-
+	void SetValue(CStrW name, CStrW value);
+	
 	// Caller frees...
 	std::vector<HEntity>* GetControlledEntities();
 

@@ -39,6 +39,8 @@ public:
 
 	inline bool IsObserver()
 	{	return m_IsObserver; }
+	inline CPlayer *GetPlayer()
+	{	return m_pPlayer; }
 
 	// Called by server when starting the game, after sending NMT_StartGame to
 	// all connected clients.

@@ -200,18 +200,27 @@ CSocketBase::~CSocketBase()
 	g_SocketSetInternal.m_HandleMap.erase(m_pInternal->m_fd);
 	
 	pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
-	// Disconnect the socket, if it is still connected
-	if (m_State == SS_CONNECTED)
-	{
-		// This makes the other end receive a RST, but since
-		// we've had no chance to close cleanly and the socket must
-		// be destroyed immediately, we've got no choice
-		shutdown(m_pInternal->m_fd, SHUT_RDWR);
-	}
-	// Destroy the socket
-	closesocket(m_pInternal->m_fd);
-	// Deallocate internal pointer
+	Destroy();
 	delete m_pInternal;
+}
+
+void CSocketBase::Shutdown()
+{
+	pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
+	
+	if (g_SocketSetInternal.m_NumSockets)
+	{
+		LOG(WARNING, LOG_CAT_NET, "CSocketBase::Shutdown(): Sockets still open! (forcing shutdown)");
+	}
+	
+	if (g_SocketSetInternal.m_Thread)
+	{
+		AbortWaitLoop();
+		pthread_join(g_SocketSetInternal.m_Thread, NULL);
+		g_SocketSetInternal.m_Thread=0;
+	}
+	
+	pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
 }
 
 void *WaitLoopThreadMain(void *)
@@ -222,10 +231,6 @@ void *WaitLoopThreadMain(void *)
 
 PS_RESULT CSocketBase::Initialize(ESocketProtocol proto)
 {
-	ONCE(
-		pthread_create(&g_SocketSetInternal.m_Thread, NULL, WaitLoopThreadMain, NULL);
-	);
-
 	int res=socket(proto, SOCK_STREAM, 0);
 
 	printf("CSocketBase::Initialize(): socket() res: %d\n", res);
@@ -237,6 +242,14 @@ PS_RESULT CSocketBase::Initialize(ESocketProtocol proto)
 	
 	m_pInternal->m_fd=res;
 	m_Proto=proto;
+
+	ONCE(
+		pthread_create(&g_SocketSetInternal.m_Thread, NULL, WaitLoopThreadMain, NULL);
+	);
+	
+	pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
+	g_SocketSetInternal.m_NumSockets++;
+	pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
 
 	SetNonBlocking(true);
 
@@ -252,7 +265,18 @@ void CSocketBase::Close()
 void CSocketBase::Destroy()
 {
 	if (m_pInternal->m_fd == -1)
+	{
 		m_State=SS_UNCONNECTED;
+		return;
+	}
+
+	pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
+	assert(g_SocketSetInternal.m_NumSockets > 0);
+	g_SocketSetInternal.m_NumSockets--;
+	if (!g_SocketSetInternal.m_NumSockets)
+		AbortWaitLoop();
+	pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
+
 	// Disconnect the socket, if it is still connected
 	if (m_State == SS_CONNECTED || m_State == SS_CLOSED_LOCALLY)
 	{
@@ -886,9 +910,7 @@ void CSocketBase::SendWaitLoopUpdate()
 
 void CSocketBase::AbortWaitLoop()
 {
-	pthread_mutex_lock(&g_SocketSetInternal.m_Mutex);
 	SendWaitLoopAbort();
-	pthread_mutex_unlock(&g_SocketSetInternal.m_Mutex);
 //	pthread_join(g_SocketSetInternal.m_Thread);
 }
 

@@ -71,6 +71,8 @@ struct CSocketSetInternal
 	// Any access to the global variables should be protected using m_Mutex
 	pthread_mutex_t m_Mutex;
 	pthread_t m_Thread;
+	
+	uint m_NumSockets;
 
 	std::map <socket_t, CSocketBase * > m_HandleMap;
 #ifdef _WIN32
@@ -91,6 +93,7 @@ public:
 #endif
 		pthread_mutex_init(&m_Mutex, NULL);
 		m_Thread=0;
+		m_NumSockets=0;
 	}
 };
 

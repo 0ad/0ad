@@ -117,6 +117,21 @@ void CNetServer::FillSetGameConfig(CSetGameConfig *pMsg)
 	m_pGameAttributes->IterateSynchedProperties(FillSetGameConfigCB, pMsg);
 }
 
+void FillSetPlayerConfigCB(CStrW name, ISynchedJSProperty *prop, void *userdata)
+{
+	CSetPlayerConfig *pMsg=(CSetPlayerConfig *)userdata;
+	size_t size=pMsg->m_Values.size();
+	pMsg->m_Values.resize(size+1);
+	pMsg->m_Values[size].m_Name=name;
+	pMsg->m_Values[size].m_Value=prop->ToString();
+}
+
+void CNetServer::FillSetPlayerConfig(CSetPlayerConfig *pMsg, CPlayer *pPlayer)
+{
+	pMsg->m_PlayerID=pPlayer->GetPlayerID();
+	pPlayer->IterateSynchedProperties(FillSetPlayerConfigCB, pMsg);
+}
+
 bool CNetServer::AddNewPlayer(CNetServerSession *pSession)
 {
 	CSetGameConfig *pMsg=new CSetGameConfig();
@@ -129,13 +144,13 @@ bool CNetServer::AddNewPlayer(CNetServerSession *pSession)
 		// ID's starting from 2
 		uint newPlayerID=2+(uint)m_PlayerSessions.size();
 		m_PlayerSessions.push_back(pSession);
-		pSession->m_pPlayer=m_pGame->GetPlayer(newPlayerID);
+		pSession->m_pPlayer=m_pGameAttributes->m_Players[newPlayerID];
 		pSession->m_pPlayer->SetName(pSession->GetName());
 
 		// Broadcast a message for the newly added player session
 		CPlayerConnect *pMsg=new CPlayerConnect();
 		pMsg->m_Players.resize(1);
-		pMsg->m_Players[0].m_PlayerID=pSession->m_pPlayer->GetPlayerID();
+		pMsg->m_Players[0].m_PlayerID=newPlayerID;
 		pMsg->m_Players[0].m_Nick=pSession->GetName();
 		Broadcast(pMsg);
 
@@ -149,12 +164,26 @@ bool CNetServer::AddNewPlayer(CNetServerSession *pSession)
 		// All the other players
 		for (uint i=0;i<m_PlayerSessions.size()-1;i++)
 		{
-			pMsg->m_Players.resize(i+2);
-			pMsg->m_Players.back().m_PlayerID=i+2;
-			pMsg->m_Players.back().m_Nick=m_PlayerSessions[i]->GetName();
+			if (m_PlayerSessions[i])
+			{
+				pMsg->m_Players.push_back(CPlayerConnect::S_m_Players());
+				pMsg->m_Players.back().m_PlayerID=i+2;
+				pMsg->m_Players.back().m_Nick=m_PlayerSessions[i]->GetName();
+			}
 		}
 		pSession->Push(pMsg);
 
+		// Sync other player's attributes
+		for (uint i=0;i<m_PlayerSessions.size()-1;i++)
+		{
+			if (m_PlayerSessions[i])
+			{
+				CSetPlayerConfig *pMsg=new CSetPlayerConfig();
+				FillSetPlayerConfig(pMsg, m_PlayerSessions[i]->GetPlayer());
+				pSession->Push(pMsg);
+			}
+		}
+		
 		return true;
 	}
 	else
@@ -204,7 +233,14 @@ void CNetServer::RemoveSession(CNetServerSession *pSession)
 	if (it != m_Sessions.end())
 		m_Sessions.erase(it);
 
-	// TODO Correct handling of players and observers
+	if (pSession->GetPlayer())
+	{
+		uint playerID=pSession->GetPlayer()->GetPlayerID();
+		m_PlayerSessions[playerID-2]=NULL;
+		CTurnManager::SetClientPipe(playerID-2, NULL);
+	}
+	
+	// TODO Correct handling of observers
 }
 
 // Unfortunately, the message queueing model is made so that each message has
@@ -277,7 +313,7 @@ void CNetServer::NewTurn()
 
 	IterateBatch(1, CSimulation::GetMessageMask, m_pGame->GetSimulation());
 	SendBatch(1);
-	//SendBatchToList(1, m_Observers);
+	//IterateBatch(1, SendToObservers, this);
 }
 
 void CNetServer::QueueLocalCommand(CNetMessage *pMsg)

@@ -66,6 +66,7 @@ private:
 	static CPlayer::UpdateCallback PlayerAttributeUpdate;
 	
 	void FillSetGameConfig(CSetGameConfig *pMsg);
+	void FillSetPlayerConfig(CSetPlayerConfig *pMsg, CPlayer *pPlayer);
 
 protected:
 	friend class CNetServerSession;

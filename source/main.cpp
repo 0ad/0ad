@@ -967,6 +967,9 @@ static void Shutdown()
 
 	delete &g_ConfigDB;
 
+	// Shut down the network loop
+	CSocketBase::Shutdown();
+
 	// Really shut down the i18n system. Any future calls
 	// to translate() will crash.
 	I18n::Shutdown();

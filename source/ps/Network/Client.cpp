@@ -307,6 +307,17 @@ bool CNetClient::PreGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 			}
 			HANDLED(pMsg);
 		}
+		case NMT_SetPlayerConfig:
+		{
+			CSetPlayerConfig *msg=(CSetPlayerConfig *)pMsg;
+			// FIXME Check player ID
+			CPlayer *pPlayer=pClient->m_pGameAttributes->m_Players[msg->m_PlayerID];
+			for (uint i=0;i<msg->m_Values.size();i++)
+			{
+				pPlayer->SetValue(msg->m_Values[i].m_Name, msg->m_Values[i].m_Value);
+			}
+			HANDLED(pMsg);
+		}
 	}
 
 	UNHANDLED(pMsg);

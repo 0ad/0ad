@@ -24,6 +24,15 @@ void CPlayer::Update(CStrW name, ISynchedJSProperty *prop)
 		m_UpdateCB(name, prop->ToString(), this, m_UpdateCBData);
 }
 
+void CPlayer::SetValue(CStrW name, CStrW value)
+{
+	ISynchedJSProperty *prop=GetSynchedProperty(name);
+	if (prop)
+	{
+		prop->FromString(value);
+	}
+}
+
 bool CPlayer::ValidateCommand(CNetMessage *pMsg)
 {
 	return true;

@@ -28,7 +28,7 @@ namespace PlayerArray_JS
 		// reclaimed in the end - it's just simpler that way ;-) )
 		if (pInstance->m_NumPlayers+1 > pInstance->m_Players.size())
 		{
-			for (size_t i=pInstance->m_Players.size();i<=index;i++)
+			for (size_t i=pInstance->m_Players.size();i<=pInstance->m_NumPlayers;i++)
 			{
 				CPlayer *pNewPlayer=new CPlayer((uint)i);
 				pNewPlayer->SetUpdateCallback(pInstance->m_PlayerUpdateCB, pInstance->m_PlayerUpdateCBData);
@@ -70,7 +70,7 @@ namespace PlayerArray_JS
 CGameAttributes::CGameAttributes():
 	m_UpdateCB(NULL),
 	m_MapFile("test01.pmp"),
-	m_NumPlayers(2)
+	m_NumPlayers(8)
 {
 	ONCE(
 		g_ScriptingHost.DefineCustomObjectType(&PlayerArray_JS::Class,

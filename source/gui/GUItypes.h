@@ -50,7 +50,7 @@ $out .= "/********/\n";
 $out .= "#ifndef GUITYPE_IGNORE_$_\nTYPE($_)\n#endif\n" for @types;
 
 #// and some minor hacks to make autocompleting things happier:
-$out .= "#ifdef PLEASE_DO_NOT_DEFINE_THIS\n// See IGUIObject.h for 'enum EGUISettingType'\nenum {" . (join ',', map "GUIST_$_", @types) . "};\n#endif";
+$out .= "#ifdef PLEASE_DO_NOT_DEFINE_THIS\n// See IGUIObject.h for 'enum EGUISettingType'\nenum {" . (join ',', map "GUIST_$_", @types) . "};\n#endif\n";
 
 #// Overwrite the current program with the newly-generated contents
 close IN;

@@ -483,7 +483,7 @@ void CSelectedEntities::contextOrder( bool pushQueue )
 	{
 		context.m_data[0].location = g_Mouseover.m_worldposition;
 		break;
-/*		
+/*
 		CGotoCommand *msg=new CGotoCommand();
 		msg->m_Entity=m_selected[0]->me;
 		msg->m_TargetX=(u32)g_Mouseover.m_worldposition.x;

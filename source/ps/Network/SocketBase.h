@@ -285,7 +285,13 @@ public:
 	 * @see Bind
 	 */
 	CSocketBase();
-
+	
+	/**
+	 * Forcibly shuts down the network wait loop. This should happen
+	 * automatically as soon as all sockets are closed.
+	 */
+	static void Shutdown();
+	
 	/**
 	 * Returns the protocol set by Initialize. All SocketAddresses used with
 	 * the socket must have the same SocketProtocol
