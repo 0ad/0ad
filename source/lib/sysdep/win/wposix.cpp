@@ -262,7 +262,7 @@ int poll(struct pollfd /* fds */[], int /* nfds */, int /* timeout */)
 
 
 __declspec(naked) pthread_t pthread_self(void)
-{ __asm jmp		dword ptr [GetCurrentThreadId] }
+{ __asm jmp		dword ptr [GetCurrentThread] }
 
 
 int pthread_getschedparam(pthread_t thread, int* policy, struct sched_param* param)

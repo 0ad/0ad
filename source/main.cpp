@@ -420,16 +420,11 @@ void ParseArgs(int argc, char* argv[])
 	}
 }
 
-extern "C" char* _getcwd(char*, int);
 
 int main(int argc, char* argv[])
 {
 	const int ERR_MSG_SIZE = 1000;
 	wchar_t err_msg[ERR_MSG_SIZE];
-
-
-
-
 
 	lib_init();
 
@@ -439,8 +434,6 @@ int main(int argc, char* argv[])
 #endif
 
 	detect();
-
-
 
 	// init SDL
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
@@ -514,11 +507,15 @@ int main(int argc, char* argv[])
 		debug_warn("SDL_SetGamma failed");
 	}
 
+
 	new CConfig;
 
 //	vfs_mount("gui", "gui", 0);
 	vfs_mount("", "mods/official/", 0);
 ////	dir_add_watch("mods\\official", false);
+
+
+//Handle xx = tex_load("art/textures/skins/structural/null.png");
 
 #ifndef NO_GUI
 	// GUI uses VFS, so this must come after VFS init.
@@ -558,8 +555,6 @@ int main(int argc, char* argv[])
 	new CPathfindEngine;
 
 	g_EntityTemplateCollection.loadTemplates();
-
-
 
 
 // if no map name specified, load test01.pmp (for convenience during
