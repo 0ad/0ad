@@ -71,6 +71,13 @@ public:
 
 class IJSObject
 {
+	// Make copy constructor and assignment operator private - since copying of
+	// these objects is unsafe unless done specially.
+	// These will never be implemented (they are, after all, here to *prevent*
+	// copying)
+	IJSObject(const IJSObject &other);
+	IJSObject& operator=(const IJSObject &other);
+
 public:
 	typedef STL_HASH_MAP<CStrW, IJSProperty*, CStrW_hash_compare> PropertyTable;
 	typedef std::vector<IJSObject*> InheritorsList;
@@ -106,6 +113,8 @@ public:
 	// Add a property (with immediate value)
 	virtual void AddProperty( CStrW PropertyName, jsval Value ) = 0;
 	virtual void AddProperty( CStrW PropertyName, CStrW Value ) = 0;
+	
+	inline IJSObject() {}
 };
 
 template<typename T, bool ReadOnly = false> class CJSObject;

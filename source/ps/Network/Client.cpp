@@ -21,6 +21,7 @@ enum CClientEvents
 	CLIENT_EVENT_START_GAME,
 	CLIENT_EVENT_CHAT,
 	CLIENT_EVENT_CONNECT_COMPLETE,
+	CLIENT_EVENT_DISCONNECT,
 	CLIENT_EVENT_LAST
 };
 
@@ -36,6 +37,7 @@ class CChatEvent: public CScriptEvent
 {
 	CStrW m_Sender;
 	CStrW m_Message;
+	
 public:
 	CChatEvent(CStrW sender, CStrW message):
 		CScriptEvent(L"chat", false, CLIENT_EVENT_CHAT),
@@ -51,6 +53,7 @@ class CConnectCompleteEvent: public CScriptEvent
 {
 	CStrW m_Message;
 	bool m_Success;
+	
 public:
 	CConnectCompleteEvent(CStrW message, bool success):
 		CScriptEvent(L"connectComplete", false, CLIENT_EVENT_CONNECT_COMPLETE),
@@ -59,6 +62,19 @@ public:
 	{
 		AddReadOnlyProperty(L"message", &m_Message);
 		AddReadOnlyProperty(L"success", &m_Success);
+	}
+};
+
+class CDisconnectEvent: public CScriptEvent
+{
+	CStrW m_Message;
+	
+public:
+	CDisconnectEvent(CStrW message):
+		CScriptEvent(L"disconnect", false, CLIENT_EVENT_DISCONNECT),
+		m_Message(message)
+	{
+		AddReadOnlyProperty(L"message", &m_Message);
 	}
 };
 
@@ -137,6 +153,9 @@ bool CNetClient::<X>Handler(CNetMessage *pMsg, CNetSession *pSession)
 #define UNHANDLED(_pMsg) return false;
 #define HANDLED(_pMsg) delete _pMsg; return true;
 #define TAKEN(_pMsg) return true;
+// Uglily assumes the arguments are called pMsg and pSession (which they are
+// all through this file)
+#define CHAIN(_chainHandler) STMT(if (_chainHandler(pMsg, pSession)) return true;)
 
 bool CNetClient::ConnectHandler(CNetMessage *pMsg, CNetSession *pSession)
 {
@@ -149,7 +168,7 @@ bool CNetClient::ConnectHandler(CNetMessage *pMsg, CNetSession *pSession)
 		pClient->m_pMessageHandler=HandshakeHandler;
 		if (pClient->m_OnConnectComplete.Defined())
 		{
-			CConnectCompleteEvent evt=CConnectCompleteEvent(CStr(PS_OK), true);
+			CConnectCompleteEvent evt(CStr((char *)PS_OK), true);
 			pClient->m_OnConnectComplete.DispatchEvent(pClient->GetScript(), &evt);
 		}
 		break;
@@ -159,8 +178,32 @@ bool CNetClient::ConnectHandler(CNetMessage *pMsg, CNetSession *pSession)
 		LOG(ERROR, LOG_CAT_NET, "CNetClient::ConnectHandler(): Connect Failed: %s", msg->m_Error);
 		if (pClient->m_OnConnectComplete.Defined())
 		{
-			CConnectCompleteEvent evt=CConnectCompleteEvent(CStr(msg->m_Error), false);
+			CConnectCompleteEvent evt(CStr(msg->m_Error), false);
 			pClient->m_OnConnectComplete.DispatchEvent(pClient->GetScript(), &evt);
+		}
+		break;
+	}
+	default:
+		UNHANDLED(pMsg);
+	}
+	HANDLED(pMsg);
+}
+
+bool CNetClient::BaseHandler(CNetMessage *pMsg, CNetSession *pSession)
+{
+	CNetClient *pClient=(CNetClient *)pSession;
+	LOG(NORMAL, LOG_CAT_NET, "CNetClient::BaseHandler(): %s.", pMsg->GetString().c_str());
+	switch (pMsg->GetType())
+	{
+	case NMT_ERROR:
+	{
+		CNetErrorMessage *msg=(CNetErrorMessage *)pMsg;
+		if (msg->m_State == SS_UNCONNECTED)
+		{
+			CStr message=msg->m_Error;
+			CDisconnectEvent evt(message);
+			if (pClient->m_OnDisconnect.Defined())
+				pClient->m_OnDisconnect.DispatchEvent(pClient->GetScript(), &evt);
 		}
 		break;
 	}
@@ -173,6 +216,9 @@ bool CNetClient::ConnectHandler(CNetMessage *pMsg, CNetSession *pSession)
 bool CNetClient::HandshakeHandler(CNetMessage *pMsg, CNetSession *pSession)
 {
 	CNetClient *pClient=(CNetClient *)pSession;
+	
+	CHAIN(BaseHandler);
+	
 	LOG(NORMAL, LOG_CAT_NET, "CNetClient::HandshakeHandler(): %s.", pMsg->GetString().c_str());
 	switch (pMsg->GetType())
 	{
@@ -205,6 +251,9 @@ bool CNetClient::HandshakeHandler(CNetMessage *pMsg, CNetSession *pSession)
 bool CNetClient::AuthenticateHandler(CNetMessage *pMsg, CNetSession *pSession)
 {
 	CNetClient *pClient=(CNetClient *)pSession;
+	
+	CHAIN(BaseHandler);
+	
 	LOG(NORMAL, LOG_CAT_NET, "CNetClient::AuthenticateHandler(): %s.", pMsg->GetString().c_str());
 	switch (pMsg->GetType())
 	{
@@ -231,10 +280,11 @@ bool CNetClient::AuthenticateHandler(CNetMessage *pMsg, CNetSession *pSession)
 bool CNetClient::PreGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 {
 	CNetClient *pClient=(CNetClient *)pSession;
+	
+	CHAIN(BaseHandler);
+	CHAIN(ChatHandler);
+	
 	LOG(NORMAL, LOG_CAT_NET, "CNetClient::PreGameHandler(): %s.", pMsg->GetString().c_str());
-
-	if (ChatHandler(pMsg, pSession))
-		return true;
 
 	switch (pMsg->GetType())
 	{
@@ -267,6 +317,9 @@ bool CNetClient::InGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 	CNetClient *pClient=(CNetClient *)pSession;
 	ENetMessageType msgType=pMsg->GetType();
 
+	CHAIN(BaseHandler);
+	CHAIN(ChatHandler);
+
 	if (msgType != NMT_EndCommandBatch)
 		LOG(NORMAL, LOG_CAT_NET, "CNetClient::InGameHandler(): %s.", pMsg->GetString().c_str());
 
@@ -295,9 +348,6 @@ bool CNetClient::InGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 
 		HANDLED(pMsg);
 	}
-
-	if (ChatHandler(pMsg, pSession))
-		return true;
 
 	UNHANDLED(pMsg);
 }

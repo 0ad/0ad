@@ -22,6 +22,8 @@ public:
 	SColour( float r, float g, float b ) { SColourInit( r, g, b, 1.0f ); }
 	SColour( float r, float g, float b, float a ) { SColourInit( r, g, b, a ); }
 	void SColourInit( float r, float g, float b, float a );
+	
+	SColour &operator = (const SColour &o);
 
 	jsval ToString( JSContext* cx, uintN argc, jsval* argv );
 	static void ScriptingInit();

@@ -178,10 +178,13 @@ static ALCdevice* alc_dev=NULL;
 
 static void alc_shutdown()
 {
-	if (alc_ctx && alc_dev)
+	if (alc_dev)
 	{
-		alcMakeContextCurrent(0);
-		alcDestroyContext(alc_ctx);
+		if (alc_ctx)
+		{
+			alcMakeContextCurrent(0);
+			alcDestroyContext(alc_ctx);
+		}
 		alcCloseDevice(alc_dev);
 	}
 }

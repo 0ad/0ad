@@ -42,6 +42,7 @@ void CNetServer::OnAccept(const CSocketAddress &addr)
 CNetServer::CNetServer(CGame *pGame, CGameAttributes *pGameAttribs):
 	m_pGame(pGame),
 	m_pGameAttributes(pGameAttribs),
+	m_NumPlayers(pGameAttribs->m_NumPlayers),
 	m_MaxObservers(5),
 	m_ServerPlayerName(L"Noname Server Player"),
 	m_ServerName(L"Noname Server"),
@@ -62,7 +63,6 @@ CNetServer::CNetServer(CGame *pGame, CGameAttributes *pGameAttribs):
 
 	m_pGameAttributes->SetUpdateCallback(AttributeUpdate, this);
 	m_pGameAttributes->SetPlayerUpdateCallback(PlayerAttributeUpdate, this);
-	m_NumPlayers=m_pGameAttributes->m_NumPlayers;
 
 	m_pGame->GetSimulation()->SetTurnManager(this);
 	// Set an incredibly long turn length - less command batch spam that way
@@ -70,6 +70,11 @@ CNetServer::CNetServer(CGame *pGame, CGameAttributes *pGameAttribs):
 		CTurnManager::SetTurnLength(i, 3000);
 
 	g_ScriptingHost.SetGlobal("g_NetServer", OBJECT_TO_JSVAL(GetScript()));
+}
+
+CNetServer::~CNetServer()
+{
+	g_ScriptingHost.SetGlobal("g_NetServer", JSVAL_NULL);
 }
 
 bool CNetServer::JSI_Open(JSContext *cx, uintN argc, jsval *argv)
@@ -120,7 +125,12 @@ bool CNetServer::AddNewPlayer(CNetServerSession *pSession)
 
 	if (m_PlayerSessions.size() < m_NumPlayers-1)
 	{
+		// First two players are Gaia and Server player, so assign new player
+		// ID's starting from 2
+		uint newPlayerID=2+m_PlayerSessions.size();
 		m_PlayerSessions.push_back(pSession);
+		pSession->m_pPlayer=m_pGame->GetPlayer(newPlayerID);
+		pSession->m_pPlayer->SetName(pSession->GetName());
 
 		// Broadcast a message for the newly added player session
 		CPlayerConnect *pMsg=new CPlayerConnect();
@@ -133,14 +143,14 @@ bool CNetServer::AddNewPlayer(CNetServerSession *pSession)
 		
 		// Server Player
 		pMsg->m_Players.resize(1);
-		pMsg->m_Players.back().m_PlayerID=m_pServerPlayer->GetPlayerID();
+		pMsg->m_Players.back().m_PlayerID=1; // Server is always 1
 		pMsg->m_Players.back().m_Nick=m_ServerPlayerName;
 		
 		// All the other players
 		for (uint i=0;i<m_PlayerSessions.size()-1;i++)
 		{
 			pMsg->m_Players.resize(i+2);
-			pMsg->m_Players.back().m_PlayerID=i+1;
+			pMsg->m_Players.back().m_PlayerID=i+2;
 			pMsg->m_Players.back().m_Nick=m_PlayerSessions[i]->GetName();
 		}
 		pSession->Push(pMsg);
@@ -204,7 +214,10 @@ void CNetServer::RemoveSession(CNetServerSession *pSession)
 void CNetServer::Broadcast(CNetMessage *pMsg)
 {
 	if (m_Sessions.empty())
+	{
+		delete pMsg;
 		return;
+	}
 
 	size_t i=0;
 	for (;i<m_Sessions.size()-1;i++)
@@ -216,8 +229,10 @@ void CNetServer::Broadcast(CNetMessage *pMsg)
 
 int CNetServer::StartGame()
 {
-	// TODO Check for the case where we haven't yet filled all player slots
-	// CGame expects to have numPlayer players when it starts the game...
+	if (m_PlayerSessions.size() < m_pGameAttributes->m_NumPlayers-1)
+	{
+		return -1;
+	}
 
 	Broadcast(new CStartGame());
 

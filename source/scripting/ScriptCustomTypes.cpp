@@ -85,3 +85,16 @@ JSBool SColour::Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsva
 
 	return( JS_TRUE );
 }
+
+// (Simon) Added this to prevent a deep copy, which evidently makes direct
+// copies of the heap allocated objects within CJSObject, which eventually
+// goes boom
+SColour &SColour::operator = (const SColour &o)
+{
+	r=o.r;
+	g=o.g;
+	b=o.b;
+	a=o.a;
+
+	return *this;
+}

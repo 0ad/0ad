@@ -16,9 +16,17 @@ namespace PlayerArray_JS
 		if (!JSVAL_IS_INT(id))
 			return JS_FALSE;
 		uint index=g_ScriptingHost.ValueToInt(id);
-		uint numPlayers=pInstance->m_NumPlayers;
+		
+		// Clamp to a preset upper bound.
+		// FIXME I guess we'll ultimately have max players as a config variable
+		if (pInstance->m_NumPlayers > PS_MAX_PLAYERS)
+			pInstance->m_NumPlayers = PS_MAX_PLAYERS;
 
-		if (numPlayers+1 > pInstance->m_Players.size())
+		// Resize array according to new number of players (note that the array
+		// size will go up to PS_MAX_PLAYERS, but will never be made smaller -
+		// this to avoid losing player pointers and make sure they are all
+		// reclaimed in the end - it's just simpler that way ;-) )
+		if (pInstance->m_NumPlayers+1 > pInstance->m_Players.size())
 		{
 			for (size_t i=pInstance->m_Players.size();i<=index;i++)
 			{
@@ -28,7 +36,7 @@ namespace PlayerArray_JS
 			}
 		}
 
-		if (index > numPlayers)
+		if (index > pInstance->m_NumPlayers)
 			return JS_FALSE;
 
 		*vp=OBJECT_TO_JSVAL(pInstance->m_Players[index]->GetScript());
@@ -185,9 +193,6 @@ CGame::CGame():
 
 CGame::~CGame()
 {
-	for (size_t i=0; i<m_Players.size(); ++i)
-		delete m_Players[i];
-
 	debug_out("CGame::~CGame(): Game object DESTROYED\n");
 }
 
@@ -195,19 +200,13 @@ PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 {
 	try
 	{
-		// Free old memory
-		for (size_t i=0; i<m_Players.size(); ++i)
-			delete m_Players[i];
-
-		//m_NumPlayers=pAttribs->GetValue("numPlayers").ToUInt();
 		m_NumPlayers=pAttribs->m_NumPlayers;
 
 		// Note: If m_Players is resized after this point (causing a reallocation)
 		// various bits of code will still contain pointers to data at the original
 		// locations. This is seldom a good thing. Make it big enough here.
 
-		// Player 0 = Gaia
-
+		// Player 0 = Gaia - allocate one extra
 		m_Players.resize(m_NumPlayers + 1);
 
 		for (uint i=0;i <= m_NumPlayers;i++)

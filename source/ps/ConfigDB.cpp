@@ -276,14 +276,15 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	TConfigMap newMap;
 	
 	char *filebuf=(char *)buffer;
+	char *filebufend=filebuf+buflen;
 	
 	// Read file line by line
 	char *next=filebuf-1;
 	do
 	{
 		char *pos=next+1;
-		next=strchr(pos, '\n');
-		if (!next) next=filebuf+buflen;
+		next=(char *)memchr(pos, '\n', filebufend-pos);
+		if (!next) next=filebufend;
 
 		char *lend=next;
 		if (*(lend-1) == '\r') lend--;
@@ -315,7 +316,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 			}
 		}
 	}
-	while (next < filebuf+buflen);
+	while (next < filebufend);
 	
 	m_Map[ns].swap(newMap);
 	

@@ -106,6 +106,7 @@ protected:
 
 public:
 	CNetServer(CGame *pGame, CGameAttributes *pGameAttribs);
+	virtual ~CNetServer();
 
 	static void GetDefaultListenAddress(CSocketAddress &address);
 	PS_RESULT Bind(const CSocketAddress &address);

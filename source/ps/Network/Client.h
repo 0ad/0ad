@@ -22,6 +22,7 @@ class CNetClient: public CNetSession, protected CTurnManager, public CJSObject<C
 	CScriptObject m_OnStartGame;
 	CScriptObject m_OnChat;
 	CScriptObject m_OnConnectComplete;
+	CScriptObject m_OnDisconnect;
 
 protected:
 	virtual void NewTurn();
@@ -40,10 +41,13 @@ public:
 	}
 	
 	static MessageHandler ConnectHandler;
+
+	static MessageHandler BaseHandler; // Common to all connected states
 	static MessageHandler HandshakeHandler;
 	static MessageHandler AuthenticateHandler;
+
+	static MessageHandler ChatHandler; // Common to pre-game and later
 	static MessageHandler PreGameHandler;
-	static MessageHandler ChatHandler;
 	static MessageHandler InGameHandler;
 	
 	bool JSI_BeginConnect(JSContext *cx, uintN argc, jsval *argv);

@@ -422,6 +422,17 @@ static int handler(const SDL_Event* ev)
 
 void EndGame()
 {
+	if (g_NetServer)
+	{
+		delete g_NetServer;
+		g_NetServer=NULL;
+	}
+	else if (g_NetClient)
+	{
+		delete g_NetClient;
+		g_NetServer=NULL;
+	}
+
 	delete g_Game;
 	g_Game=NULL;
 }
@@ -921,7 +932,7 @@ static void Shutdown()
 	psShutdown(); // Must delete g_GUI before g_ScriptingHost
 
 	if (g_Game)
-		delete g_Game;
+		EndGame();
 
 	delete &g_Scheduler;
 
