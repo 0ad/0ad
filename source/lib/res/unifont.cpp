@@ -1,5 +1,5 @@
 /*
-$Id: unifont.cpp,v 1.12 2004/07/31 01:57:26 janwas Exp $
+$Id: unifont.cpp,v 1.13 2004/08/24 21:07:20 philip Exp $
 
 Unicode OpenGL texture font
   
@@ -19,6 +19,9 @@ Unicode OpenGL texture font
 
 #include <stdio.h>
 #include <assert.h>
+
+#include <ps/CLogger.h>
+#define LOG_CATEGORY "graphics"
 
 // This isn't particularly efficient - it can be improved if we
 // (a) care enough, and (b) know about fixed ranges of characters
@@ -57,7 +60,7 @@ static void UniFont_dtor(UniFont* f)
 
 static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSEDPARAM(h))
 {
-	// fn is the base filename, like "console"
+	// fn is the base filename, e.g. "console"
 	// The font definition file is "fonts/"+fn+".fnt" and the texture is "fonts/"+fn+".tga"
 
 	std::string FilenameBase = "fonts/"; FilenameBase += fn;
@@ -77,7 +80,11 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSEDPARAM(h))
 
 	int Version;
 	FNTStream >> Version;
-	assert (Version == 100); // Make sure this is from a recent version of the font builder
+	if (Version != 100) // Make sure this is from a recent version of the font builder
+	{
+		LOG(ERROR, LOG_CATEGORY, "Invalid .fnt version number");
+		return -1;
+	}
 
 	int TextureWidth, TextureHeight;
 	FNTStream >> TextureWidth >> TextureHeight;
@@ -88,14 +95,22 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSEDPARAM(h))
 	FNTStream >> f->LineSpacing;
 
 	f->ListBase = glGenLists(NumGlyphs);
-	assert(f->ListBase != 0); // My Voodoo2 drivers didn't support display lists (although I'd be surprised if they got this far)
+	if (f->ListBase == 0) // My Voodoo2 drivers didn't support display lists (although I'd be surprised if they got this far)
+	{
+		LOG(ERROR, LOG_CATEGORY, "Display list creation failed");
+		return -1;
+	}
 
 	for (int i = 0; i < NumGlyphs; ++i)
 	{
 		int Codepoint, TextureX, TextureY, Width, Height, OffsetX, OffsetY, Advance;
 		FNTStream >> Codepoint >> TextureX >> TextureY >> Width >> Height >> OffsetX >> OffsetY >> Advance;
 
-		assert(Codepoint <= 0xffff);
+		if (Codepoint > 0xffff)
+		{
+			debug_warn("Invalid codepoint");
+			continue;
+		}
 
 		GLfloat u = (GLfloat)TextureX / (GLfloat)TextureWidth;
 		GLfloat v = (GLfloat)TextureY / (GLfloat)TextureHeight;
@@ -197,12 +212,12 @@ void glwprintf(const wchar_t* fmt, ...)
 		buf[i] = (*it).second; // Replace with the display list offset
 	}
 
-	// 0 gylphs -> nothing to do (avoid BoundsChecker warning)
-	if(!len)
+	// 0 glyphs -> nothing to do (avoid BoundsChecker warning)
+	if (!len)
 		return;
 
 	// Execute all the display lists
-	glCallLists((GLsizei)len, sizeof(wchar_t)==4?GL_INT:GL_UNSIGNED_SHORT, buf);
+	glCallLists((GLsizei)len, sizeof(wchar_t)==4 ? GL_INT : GL_UNSIGNED_SHORT, buf);
 }
 
 
