@@ -168,7 +168,17 @@ typedef unsigned int mode_t;
 // we implement our own, but use the CRT struct definition.
 // rename the VC function definition to avoid conflict.
 #define stat vc_stat
-#include <sys/stat.h>
+//
+// Extra hack for VC++ 2005, since it defines inline stat/fstat
+// functions inside stat.h (which get confused by the
+// macro-renaming of "stat")
+# if _MSC_VER >= 1400
+#  define RC_INVOKED // stat.h only includes stat.inl if "!defined(RC_INVOKED) && !defined(__midl)"
+#  include <sys/stat.h>
+#  undef RC_INVOKED
+# else
+#  include <sys/stat.h>
+# endif
 #undef stat
 
 extern int mkdir(const char*, mode_t);
