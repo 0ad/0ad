@@ -1,0 +1,56 @@
+#include "stdafx.h"
+
+#include "PropListEditor.h"
+
+#include "FieldEditCtrl.h"
+#include "AtlasObject/AtlasObject.h"
+
+//////////////////////////////////////////////////////////////////////////
+
+IMPLEMENT_DYNAMIC_CLASS(PropListEditor, AtlasDialog);
+
+PropListEditor::PropListEditor()
+	: AtlasDialog(NULL, _("Prop editor"))
+{
+	m_MainListBox = new PropListEditorListCtrl(m_MainPanel);
+
+	wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+	sizer->Add(m_MainListBox,
+		wxSizerFlags().Proportion(1).Expand().Border(wxALL, 5));
+
+	m_MainPanel->SetSizer(sizer);
+}
+
+void PropListEditor::Import(AtObj& in)
+{
+	m_MainListBox->Import(in);
+}
+
+void PropListEditor::Export(AtObj& out)
+{
+	m_MainListBox->Export(out);
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+PropListEditorListCtrl::PropListEditorListCtrl(wxWindow* parent)
+: DraggableListCtrl(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+					wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_SINGLE_SEL)
+{
+	AddColumnType(_("Attachment point"), 100, "attachpoint", new FieldEditCtrl_Text());
+	AddColumnType(_("Prop model"),		 200, "model",       new FieldEditCtrl_Text());
+}
+
+void PropListEditorListCtrl::Import(AtObj& in)
+{
+	for (AtIter prop = in["prop"]; prop.defined(); ++prop)
+		AddRow(prop);
+
+	UpdateDisplay();
+}
+
+void PropListEditorListCtrl::Export(AtObj& out)
+{
+	for (size_t i = 0; i < m_ListData.size(); ++i)
+		out.add("prop", m_ListData[i]);
+}

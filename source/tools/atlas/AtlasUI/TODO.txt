@@ -1,0 +1,23 @@
+* Copy and paste
+
+* s/PropListEditor/PropListEditor/
+
+* Rearrange directory structure
+
+* Don't hardcode "actor" in XML files (urgh)
+
+* Document lots
+
+* Make import undoable
+
+* wxListItemAttr* OnGetItemAttr(long item) >>>const<<< - wx documentation??
+
+* Better widths
+
+* Combo boxes for prop/anim names, loaded from file
+
+* Input validation?
+
+* Better input controls (=> export nicely, support undo, etc)
+
+* Handle undo correctly after importing
