@@ -46,5 +46,7 @@ struct TexInfo
 extern int tex_load(const char* fn, TexInfo* ti);
 extern int tex_free(TexInfo* ti);
 
+extern int tex_write(const char* fn, int w, int h, int bpp, int flags, void* img);
+
 
 #endif	// __TEX_H__
