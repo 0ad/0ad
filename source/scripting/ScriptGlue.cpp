@@ -52,6 +52,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	{"joinGame", joinGame, 0, 0, 0 },
 	{"startServer", startServer, 0, 0, 0 },
 	{"loadLanguage", loadLanguage, 1, 0, 0 },
+	{"buildTime", buildTime, 0, 0, 0 },
 
 	{"exit", exitProgram, 0, 0, 0 },
 	{"crash", crash, 0, 0, 0 },
@@ -373,6 +374,26 @@ JSBool loadLanguage(JSContext* cx, JSObject* UNUSEDPARAM(globalObject), unsigned
 
 	return JS_TRUE;
 }
+
+JSBool buildTime(JSContext* context, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* rval)
+{
+	if (argc > 1)
+	{
+		JS_ReportError(context, "buildTime: needs 0 or 1 parameter");
+		return JS_FALSE;
+	}
+	// buildTime( ) = "date time"
+	// buildTime(0) = "date"
+	// buildTime(1) = "time"
+	JSString* s = JS_NewStringCopyZ(context,
+		argc && argv[0]==JSVAL_ONE ? __TIME__
+	  :	argc ? __DATE__
+	  : __DATE__" "__TIME__
+	);
+	*rval = STRING_TO_JSVAL(s);
+	return JS_TRUE;
+}
+
 
 
 extern void kill_mainloop(); // from main.cpp

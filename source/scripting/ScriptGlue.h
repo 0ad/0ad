@@ -30,6 +30,9 @@ JSBool endGame(JSContext* context, JSObject* globalObject, unsigned int argc, js
 // Replaces the current language (locale) with a new one
 JSBool loadLanguage(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
 
+// Returns a string that says when ScriptGlue.cpp was last recompiled
+JSBool buildTime(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
+
 // Tells the main loop to stop looping
 JSBool exitProgram(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval);
 
