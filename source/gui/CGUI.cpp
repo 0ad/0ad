@@ -148,6 +148,8 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 
 					// Block event, so things on the map (behind the GUI) won't be pressed
 					LOG(ERROR, LOG_CATEGORY, "Left click blocked");
+
+					ret = EV_HANDLED;
 				}
 				break;
 
@@ -156,6 +158,8 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 				{
 					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_WHEEL_DOWN));
 					pNearest->ScriptEvent("mousewheeldown");
+
+					ret = EV_HANDLED;
 				}
 				break;
 
@@ -164,14 +168,14 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 				{
 					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_WHEEL_UP));
 					pNearest->ScriptEvent("mousewheelup");
+
+					ret = EV_HANDLED;
 				}
 				break;
 
 			default:
 				break;
 			}
-			
-			ret = EV_HANDLED;
 		}
 		else 
 		if (ev->type == SDL_MOUSEBUTTONUP)
