@@ -199,7 +199,7 @@ extern int atexit2(void* func, uintptr_t arg, CallConvention cc = CC_CDECL_1);
 extern int atexit2(void* func);
 inline int atexit2(void (*func)())
 {
-	atexit2((void *)func);
+	return atexit2((void *)func);
 }
 
 
@@ -238,33 +238,8 @@ extern u16 addusw(u16 x, u16 y);
 extern u16 subusw(u16 x, u16 y);
 
 
-
-
-static inline u16 read_le16(const void* p)
-{
-#if __BYTE_ORDER == __BIG_ENDIAN
-	const u8* _p = (const u8*)p;
-	return (u16)_p[0] | (u16)_p[1] << 8;
-#else
-	return *(u16*)p;
-#endif
-}
-
-
-static inline u32 read_le32(const void* p)
-{
-#if __BYTE_ORDER == __BIG_ENDIAN
-	u32 t = 0;
-	for(int i = 0; i < 4; i++)
-	{
-		t <<= 8;
-		t |= *((const u8*)p)++;
-	}
-	return t;
-#else
-	return *(u32*)p;
-#endif
-}
+extern u16 read_le16(const void* p);
+extern u32 read_le32(const void* p);
 
 
 extern bool is_pow2(long n);

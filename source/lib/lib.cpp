@@ -19,6 +19,8 @@
 #include "types.h"
 #include "lib.h"
 
+#include "sdl.h"	// endian functions
+
 
 // more powerful atexit, with 0 or 1 parameters.
 // callable before libc initialized, frees up the real atexit table,
@@ -291,7 +293,7 @@ u8 fp_to_u8(double in)
 		return 255;
 	}
 
-	int l = round(in * 255.0);
+	int l = (int)(in * 255.0);
 	assert((unsigned int)l <= 255);
 	return (u8)l;
 }
@@ -306,11 +308,34 @@ u16 fp_to_u16(double in)
 		return 65535;
 	}
 
-	long l = round(in * 65535.0);
+	long l = (long)(in * 65535.0);
 	assert((unsigned long)l <= 65535);
 	return (u16)l;
 }
 
+
+
+
+
+inline u16 read_le16(const void* p)
+{
+#if SDL_BYTE_ORDER == SDL_BIG_ENDIAN
+	const u8* _p = (const u8*)p;
+	return (u16)_p[0] | (u16)_p[1] << 8;
+#else
+	return *(u16*)p;
+#endif
+}
+
+
+inline u32 read_le32(const void* p)
+{
+#if SDL_BYTE_ORDER == SDL_BIG_ENDIAN
+	return SDL_Swap32(*(u32*)p);
+#else
+	return *(u32*)p;
+#endif
+}
 
 
 // big endian!

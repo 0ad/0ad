@@ -13,7 +13,7 @@
 #include <xercesc/util/PlatformUtils.hpp>
 
 // Gee's custom error handler
-#include <ps/XercesErrorHandler.h>
+#include "ps/XercesErrorHandler.h"
 
 #ifdef _MSC_VER
 #pragma comment(lib, "xerces-c_2.lib")
