@@ -470,7 +470,7 @@ int SDL_GL_SetAttribute(SDL_GLattr attr, int value)
 
 static HHOOK hKeyboard_LL_Hook = (HHOOK)0;
 
-LRESULT CALLBACK keyboard_ll_hook(int nCode, WPARAM wParam, LPARAM lParam)
+static LRESULT CALLBACK keyboard_ll_hook(int nCode, WPARAM wParam, LPARAM lParam)
 {
 	if(nCode == HC_ACTION)
 	{
@@ -482,7 +482,7 @@ LRESULT CALLBACK keyboard_ll_hook(int nCode, WPARAM wParam, LPARAM lParam)
 		{
 			// check whether PrintScreen should be taking screenshots -- if
 			// not, allow the standard Windows clipboard to work
-			if(/*/*keyRespondsTo(HOTKEY_SCREENSHOT, SDLK_PRINT) &&*/ app_active)
+			if(/*keyRespondsTo(HOTKEY_SCREENSHOT, SDLK_PRINT) &&*/ app_active)
 			{
 				// send to wndproc
 				UINT msg = (UINT)wParam;
@@ -501,8 +501,9 @@ LRESULT CALLBACK keyboard_ll_hook(int nCode, WPARAM wParam, LPARAM lParam)
 }
 
 
-void enable_kbd_hook(bool enable)
+static void enable_kbd_hook(bool enable)
 {
+/*
 	if(enable)
 	{
 		assert(hKeyboard_LL_Hook == 0);
@@ -515,6 +516,7 @@ void enable_kbd_hook(bool enable)
 		UnhookWindowsHookEx(hKeyboard_LL_Hook);
 		hKeyboard_LL_Hook = 0;
 	}
+*/
 }
 
 
