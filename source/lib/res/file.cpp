@@ -656,11 +656,10 @@ int file_wait_io(const Handle hio, void*& p, size_t& size)
 
 	// wait for transfer to complete
 	{
-		while(aio_error(cb) == -EINPROGRESS)
+		while(aio_error(cb) == EINPROGRESS)
 			aio_suspend(&cb, 1, NULL);
 
 		bytes_transferred = aio_return(cb);
-		assert(bytes_transferred == BLOCK_SIZE);
 		ret = bytes_transferred? 0 : -1;
 	}
 skip_wait:
