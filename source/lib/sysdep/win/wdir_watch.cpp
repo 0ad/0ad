@@ -321,17 +321,6 @@ static int extract_events(Watch* w)
 		for(int i = 0; i < (int)fni->FileNameLength/2; i++)
 			fn += (char)fni->FileName[i];
 
-		const char* action;
-		switch(fni->Action)
-		{
-		case FILE_ACTION_ADDED: action = "FILE_ACTION_ADDED"; break;
-		case FILE_ACTION_REMOVED: action = "FILE_ACTION_REMOVED"; break;
-		case FILE_ACTION_MODIFIED: action = "FILE_ACTION_MODIFIED"; break;
-		case FILE_ACTION_RENAMED_OLD_NAME: action = "FILE_ACTION_RENAMED_OLD_NAME"; break;
-		case FILE_ACTION_RENAMED_NEW_NAME: action = "FILE_ACTION_RENAMED_NEW_NAME"; break;
-		}
-		debug_out("PACKET %s %s\n", fn.c_str(), action);
-
 		pending_events.push_back(fn);
 
 		// advance to next entry in buffer (variable length)
@@ -386,7 +375,9 @@ static int get_packet()
 }
 
 
-// fn must hold at least PATH_MAX chars.
+// if a file change notification is pending, store its filename in <fn> and
+// return 0; otherwise, return 1 ('none currently pending') or an error code.
+// <fn> must hold at least PATH_MAX chars.
 int dir_get_changed_file(char* fn)
 {
 	// queue one or more events, or return 1 if none pending.
@@ -394,7 +385,7 @@ int dir_get_changed_file(char* fn)
 
 	// nothing to return; call again later.
 	if(pending_events.empty())
-		return ERR_AGAIN;
+		return 1;
 
 	const std::string& fn_s = pending_events.front();
 	strcpy_s(fn, PATH_MAX, fn_s.c_str());
