@@ -26,7 +26,7 @@ extern const char* snd_dev_next();
 extern int snd_dev_set(const char* new_alc_dev_name);
 
 
-extern int snd_set_max_src(int cap);
+extern int snd_set_max_src(uint cap);
 
 
 

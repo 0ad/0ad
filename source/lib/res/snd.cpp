@@ -299,7 +299,8 @@ static void al_buf_free(ALuint al_buf)
 // called from al_shutdown.
 static void al_buf_shutdown()
 {
-	assert(al_bufs_outstanding == 0);
+	if(al_bufs_outstanding != 0)
+		debug_warn("al_buf_shutdown: not all buffers freed!");
 }
 
 
@@ -312,16 +313,16 @@ static void al_buf_shutdown()
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-static const int AL_SRC_MAX = 64;
+static const uint AL_SRC_MAX = 64;
 	// regardless of sound card caps, we won't use more than this ("enough").
 	// necessary in case OpenAL doesn't limit #sources (e.g. if SW mixing).
 static ALuint al_srcs[AL_SRC_MAX];
 	// stack of sources (first allocated is #0)
-static int al_src_allocated;
+static uint al_src_allocated;
 	// number of valid sources in al_srcs[] (set by al_src_init)
-static int al_src_used = 0;
+static uint al_src_used = 0;
 	// number of sources currently in use
-static int al_src_cap = AL_SRC_MAX;
+static uint al_src_cap = AL_SRC_MAX;
 	// user-set limit on how many sources may be used
 
 
@@ -329,7 +330,7 @@ static int al_src_cap = AL_SRC_MAX;
 static void al_src_init()
 {
 	// grab as many sources as possible and count how many we get.
-	for(int i = 0; i < AL_SRC_MAX; i++)
+	for(uint i = 0; i < AL_SRC_MAX; i++)
 	{
 		alGenSources(1, &al_srcs[i]);
 		// we've reached the limit, no more are available.
@@ -380,15 +381,8 @@ static void al_src_free(ALuint al_src)
 }
 
 
-int snd_set_max_src(int cap)
+int snd_set_max_src(uint cap)
 {
-	// non-positive - bogus.
-	if(cap <= 0)
-	{
-		debug_warn("snd_set_max_src: cap <= 0");
-		return -1;
-	}
-
 	// either cap is legit (less than what we allocated in al_src_init),
 	// or al_src_init hasn't been called yet. note: we accept anything
 	// in the second case, as al_src_init will sanity-check al_src_cap.
@@ -437,13 +431,21 @@ static void al_shutdown()
 	if(!al_initialized)
 		return;
 
-	// free all active sounds
+	// somewhat tricky: go through gyrations to free OpenAL resources.
+
+	// .. free all active sounds so that they release their source.
+	//    the SndData reference is also removed, but these
+	//    remain open, since they are cached.
 	list_free_all();
-	// actually free (they're cached) all SndData instances ever allocated.
+
+	// .. actually free all (still cached) SndData instances.
 	hsd_list_free_all();
 
+	// .. all sources and buffers have been returned to their suballocators.
+	//    now free them all.
 	al_src_shutdown();
 	al_buf_shutdown();
+
 	alc_shutdown();
 
 	al_initialized = false;
@@ -779,24 +781,30 @@ static int snd_data_free(Handle& hsd)
 }
 
 
+//
+// list of all SndData instances allocated since last al_shutdown.
+// ensures these instances are actually freed at al_shutdown -
+// they are cached, and we otherwise lose track of them after their
+// associated VSrc finishes playing and frees itself (and its SD reference).
+//
 ///////////////////////////////////////////////////////////////////////////////
 
-// rationale: must free before OpenAL shuts down. no longer know of buffers
-// after sound completes - already removed from list.
-// can't rely on h_mgr_shutdown cleaning up all leaked handles (i.e.
-// snd_shutdown after h_mgr_shutdown) - same problem when resetting
-// OpenAL at runtime.
+// rationale: we cannot rely on h_mgr_shutdown's cleanup of leaked handles
+// to actually free these (for the most part) cached instances.
+// they must be freed when al_shutdown is called, and this may happen
+// at runtime (if we are re-initializing OpenAL).
+//
+// note that we never need to delete single entries: hsd_list_free_all
+// (called by al_shutdown) frees each entry and clears the entire list.
 
 typedef std::vector<Handle> Handles;
 static Handles hsd_list;
 
+// called from SndData_reload; will later be removed via hsd_list_free_all.
 static void hsd_list_add(Handle hsd)
 {
 	hsd_list.push_back(hsd);
 }
-
-// rationale: no need to remove single entries - they are all wiped out
-// during al_shutdown; afterwards, the list is cleared.
 
 
 // called by al_shutdown (at exit, or when reinitializing OpenAL).
@@ -805,14 +813,13 @@ static void hsd_list_free_all()
 	for(Handles::iterator it = hsd_list.begin(); it != hsd_list.end(); ++it)
 	{
 		Handle& hsd = *it;
-		int err1 = h_allow_free(hsd, H_SndData);
-		// already freed via list_free_all
-		if(err1 == ERR_INVALID_HANDLE)
-			continue;
 
-		int err2 = snd_data_free(hsd);
-		if(err1 < 0 || err2 < 0)
-			debug_warn("sd_list_free_all: error while freeing a handle");
+		h_force_free(hsd, H_SndData);
+		// ignore errors - if hsd was a stream, and its associated source
+		// was active when al_shutdown was called, it will already have been
+		// freed (list_free_all would free the source; it then releases
+		// its SndData reference, which closes the instance because it's
+		// RES_UNIQUE).
 	}
 
 	// leave its memory intact, so we don't have to reallocate it later
@@ -1018,9 +1025,51 @@ static int snd_data_buf_free(Handle hsd, ALuint al_buf)
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-struct VSrc
+struct Src
 {
 	ALuint al_src;
+
+	ALfloat pos[3];
+	ALfloat gain;
+	ALboolean loop;
+	ALboolean relative;
+};
+
+
+static void src_latch(Src* s)
+{
+	if(!s->al_src)
+		return;
+
+	alSourcefv(s->al_src, AL_POSITION,        s->pos);
+	alSourcei (s->al_src, AL_SOURCE_RELATIVE, s->relative);
+	alSourcef (s->al_src, AL_GAIN,            s->gain);
+	alSourcei (s->al_src, AL_LOOPING,         s->loop);
+	al_check("src_latch");
+}
+
+
+static void src_init(Src* s)
+{
+	// OpenAL docs don't specify default values, so initialize everything
+	// ourselves to be sure. note: alSourcefv param is not const.
+	float zero3[3] = { 0.0f, 0.0f, 0.0f };
+	alSourcefv(s->al_src, AL_VELOCITY,        zero3);
+	alSourcefv(s->al_src, AL_DIRECTION,       zero3);
+	alSourcef (s->al_src, AL_ROLLOFF_FACTOR,  0.0f);
+	alSourcei (s->al_src, AL_SOURCE_RELATIVE, AL_TRUE);
+	al_check("src_init");
+
+	src_latch(s);
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+
+struct VSrc
+{
+	Src s;
 
 	// handle to this VSrc, so that it can close itself
 	Handle hvs;
@@ -1035,10 +1084,6 @@ struct VSrc
 	bool eof;
 	bool closing;
 
-	ALfloat pos[3];
-	ALfloat gain;
-	ALboolean loop;
-	ALboolean relative;
 
 	float static_pri;
 	float cur_pri;
@@ -1048,33 +1093,19 @@ H_TYPE_DEFINE(VSrc);
 
 
 
-#include "timer.h"
 
 
-
-static void vsrc_latch(VSrc* vs)
-{
-	if(!vs->al_src)
-		return;
-
-	alSourcefv(vs->al_src, AL_POSITION,        vs->pos);
-	alSourcei (vs->al_src, AL_SOURCE_RELATIVE, vs->relative);
-	alSourcef (vs->al_src, AL_GAIN,            vs->gain);
-	alSourcei (vs->al_src, AL_LOOPING,         vs->loop);
-	al_check("vsrc_latch");
-}
 
 
 static int vsrc_update(VSrc* vs)
 {
 	// remove all finished buffers
 	int num_processed;
-	alGetSourcei(vs->al_src, AL_BUFFERS_PROCESSED, &num_processed);
+	alGetSourcei(vs->s.al_src, AL_BUFFERS_PROCESSED, &num_processed);
 	for(int i = 0; i < num_processed;  i++)
 	{
 		ALuint al_buf;
-		alSourceUnqueueBuffers(vs->al_src, 1, &al_buf);
-debug_out("removing processed buf=%p vs=%p src=%p   hvs=%I64x\n", al_buf, vs, vs->al_src, vs->hvs);
+		alSourceUnqueueBuffers(vs->s.al_src, 1, &al_buf);
 		CHECK_ERR(snd_data_buf_free(vs->hsd, al_buf));
 	}
 
@@ -1083,12 +1114,12 @@ return 0;
 
 	// no more buffers left, and EOF reached
 	ALint num_queued;
-	alGetSourcei(vs->al_src, AL_BUFFERS_QUEUED, &num_queued);
+	alGetSourcei(vs->s.al_src, AL_BUFFERS_QUEUED, &num_queued);
 	al_check("vsrc_update alGetSourcei");
 
 	if(num_queued == 0 && vs->eof)
 	{
-debug_out("%g: reached end, closing vs=%p src=%p    hvs=%I64x\n", get_time(), vs, vs->al_src, vs->hvs);
+//debug_out("reached end, closing vs=%p src=%p    hvs=%I64x\n", vs, vs->s.al_src, vs->hvs);
 		snd_free(vs->hvs);
 		return 0;
 	}
@@ -1106,18 +1137,13 @@ debug_out("%g: reached end, closing vs=%p src=%p    hvs=%I64x\n", get_time(), vs
 			ret = snd_data_buf_get(vs->hsd, al_buf);
 			CHECK_ERR(ret);
 
-debug_out("%g: got buf: buf=%p vs=%p src=%p   hvs=%I64x\n", get_time(), al_buf, vs, vs->al_src, vs->hvs);
-
-			alSourceQueueBuffers(vs->al_src, 1, &al_buf);
+			alSourceQueueBuffers(vs->s.al_src, 1, &al_buf);
 			al_check("vsrc_update SourceQueueBuffers");
 		}
 		while(to_fill-- && ret == BUF_OK);
 
 		if(ret == BUF_EOF)
-		{
 			vs->eof = true;
-debug_out("EOF reported for vs=%p src=%p   hvs=%I64x\n", vs, vs->al_src, vs->hvs);
-		}
 	}
 
 	return 0;
@@ -1126,38 +1152,27 @@ debug_out("EOF reported for vs=%p src=%p   hvs=%I64x\n", vs, vs->al_src, vs->hvs
 
 static int vsrc_grant_src(VSrc* vs)
 {
-debug_out("grant vs=%p src=%p\n", vs, vs->al_src);
+//debug_out("grant vs=%p src=%p\n", vs, vs->s.al_src);
 
 	// already playing - bail
-	if(vs->al_src)
+	if(vs->s.al_src)
 		return 0;
 
 	// try to alloc source
-	vs->al_src = al_src_alloc();
+	vs->s.al_src = al_src_alloc();
 	// called from 2 places: sound_play can't know if a source is available,
 	// so this isn't an error
-	if(!vs->al_src)
+	if(!vs->s.al_src)
 	{
 debug_out("grant couldn't alloc src!\n");
 		return -1;
 	}
 
-	// OpenAL docs don't specify default values, so initialize everything
-	// ourselves to be sure. note: alSourcefv param is not const.
-	float zero3[3] = { 0.0f, 0.0f, 0.0f };
-	alSourcefv(vs->al_src, AL_VELOCITY, zero3);
-	alSourcefv(vs->al_src, AL_DIRECTION, zero3);
-	alSourcef(vs->al_src, AL_ROLLOFF_FACTOR, 0.0f);
-	alSourcei(vs->al_src, AL_SOURCE_RELATIVE, AL_TRUE);
-	al_check("vsrc_grant_src Source*");
-
-	// we only now got a source, so latch previous settings
-	vsrc_latch(vs);	// can't fail
+	src_init(&vs->s);	// can't fail
 
 	CHECK_ERR(vsrc_update(vs));
 
-debug_out("play vs=%p src=%p    hvs=%I64x\n", vs, vs->al_src, vs->hvs);
-	alSourcePlay(vs->al_src);
+	alSourcePlay(vs->s.al_src);
 	al_check("vsrc_grant_src SourcePlay");
 	return 0;
 }
@@ -1165,23 +1180,66 @@ debug_out("play vs=%p src=%p    hvs=%I64x\n", vs, vs->al_src, vs->hvs);
 
 static int vsrc_reclaim_src(VSrc* vs)
 {
-debug_out("reclaim vs=%p src=%p\n", vs, vs->al_src);
+//debug_out("reclaim vs=%p src=%p\n", vs, vs->s.al_src);
 
 	// not playing - bail
-	if(!vs->al_src)
+	if(!vs->s.al_src)
 		return 0;
 
-debug_out("stop\n");
-	alSourceStop(vs->al_src);
+	alSourceStop(vs->s.al_src);
 	al_check("vsrc_reclaim_src SourceStop");
 
-vs->closing = true;
+	vs->closing = true;
 	CHECK_ERR(vsrc_update(vs));
 	// (note: all buffers are now considered 'processed', since src is stopped)
 
-	al_src_free(vs->al_src);
+	al_src_free(vs->s.al_src);
 	return 0;
 }
+
+
+
+
+
+
+
+// relative: default false.
+int snd_set_pos(Handle hvs, float x, float y, float z, bool relative)
+{
+	H_DEREF(hvs, VSrc, vs);
+
+	vs->s.pos[0] = x; vs->s.pos[1] = y; vs->s.pos[2] = z;
+	vs->s.relative = relative;
+
+	src_latch(&vs->s);
+	return 0;
+}
+
+
+int snd_set_gain(Handle hvs, float gain)
+{
+	H_DEREF(hvs, VSrc, vs);
+
+	vs->s.gain = gain;
+
+	src_latch(&vs->s);
+	return 0;
+}
+
+
+int snd_set_loop(Handle hvs, bool loop)
+{
+	H_DEREF(hvs, VSrc, vs);
+
+	vs->s.loop = loop;
+
+	src_latch(&vs->s);
+	return 0;
+}
+
+
+
+
 
 
 
@@ -1227,7 +1285,7 @@ float gain_percent = 100.0;
 std::string snd_data_fn = def_fn;
 #endif
 
-	vs->gain = gain_percent / 100.0f;
+	vs->s.gain = gain_percent / 100.0f;
 		// can legitimately be > 1.0 - don't clamp.
 
 	vs->hvs = hvs;
@@ -1258,7 +1316,6 @@ int snd_free(Handle& hvs)
 
 int snd_play(Handle hs)
 {
-	debug_out("snd_play\n");
 	H_DEREF(hs, VSrc, vs);
 
 	list_add(vs);
@@ -1271,116 +1328,40 @@ int snd_play(Handle hs)
 }
 
 
-
-
-// relative: default false.
-int snd_set_pos(Handle hvs, float x, float y, float z, bool relative)
-{
-	H_DEREF(hvs, VSrc, vs);
-
-	vs->pos[0] = x; vs->pos[1] = y; vs->pos[2] = z;
-	vs->relative = relative;
-
-	vsrc_latch(vs);
-	return 0;
-}
-
-
-int snd_set_gain(Handle hvs, float gain)
-{
-	H_DEREF(hvs, VSrc, vs);
-
-	vs->gain = gain;
-
-	vsrc_latch(vs);
-	return 0;
-}
-
-
-int snd_set_loop(Handle hvs, bool loop)
-{
-	H_DEREF(hvs, VSrc, vs);
-
-	vs->loop = loop;
-
-	vsrc_latch(vs);
-	return 0;
-}
-
-
-
-
-
-
-
-
-static float magnitude_2(const float v[3])
-{
-	return v[0]*v[0] + v[1]*v[1] + v[2]*v[2];
-}
-
-
-static float calc_pri(const float pos[3], ALboolean relative, float static_pri)
-{
-	const float MAX_DIST_2 = 1000.0f;
-	const float falloff = 10.0f;
-
-	float d_2;	// euclidean distance to listener (squared)
-	if(relative)
-		d_2 = magnitude_2(pos);
-	else
-		d_2 = al_listener_dist_2(pos);
-
-	// scale priority down exponentially
-	float e = d_2 / MAX_DIST_2;	// 0.0f (close) .. 1.0f (far)
-
-	// farther away than OpenAL cutoff - no sound contribution
-	if(e > 1.0f)
-		return -1;
-	return static_pri / pow(falloff, e);
-}
-
-
-
-
-
-
-
 ///////////////////////////////////////////////////////////////////////////////
 //
-// list of sounds
+// list of active sounds. used by voice management component,
+// and to have each VSrc update itself (queue new buffers).
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+// sorted in descending order of current priority
+// (we sometimes remove low pri items, which requires moving down
+// everything that comes after them, so we want those to come last).
+//
+// don't use list, to avoid lots of allocs (expect thousands of VSrcs).
+typedef std::vector<VSrc*> VSrcs;
+typedef VSrcs::iterator It;
+static VSrcs vsrcs;
 
-static bool vsrc_greater(const VSrc* const s1, const VSrc* const s2)
-{
-	return s1->cur_pri > s2->cur_pri;
-}
-
-// currently active sounds - needed to update them, i.e. remove old buffers
-// and enqueue just finished async buffers. this can't happen from
-// io_check_complete alone - see dox there.
-
-
-// sorted in ascending order of current priority
-// (we remove low pri items, and have to move down everything after them,
-// so they should come last)
-typedef std::vector<VSrc*> VSources;
-typedef VSources::iterator It;
-static VSources vsources;
-
-// don't need to sort - that's done during full update
+// don't need to sort now - caller will list_sort() during update.
 static void list_add(VSrc* vs)
 {
-	vsources.push_back(vs);
+	vsrcs.push_back(vs);
 }
 
-static void list_foreach(void(*cb)(VSrc*))
+
+// skip past <skip> entries; if end_idx != 0, stop before that entry.
+static void list_foreach(void(*cb)(VSrc*), uint skip = 0, uint end_idx = 0)
 {
+	It begin = vsrcs.begin() + skip;
+	It end = vsrcs.end();
+	if(end_idx)
+		end = vsrcs.begin()+end_idx;
+
 	// can't use std::for_each: some entries may have been deleted
 	// (i.e. set to 0) since last update.
-	for(It it = vsources.begin(); it != vsources.end(); ++it)
+	for(It it = begin; it != end; ++it)
 	{
 		VSrc* vs = *it;
 		if(vs)
@@ -1389,101 +1370,145 @@ static void list_foreach(void(*cb)(VSrc*))
 }
 
 
-// O(N)!
-//
-// TODO: replace with last list entry, resize -1
-//
+static bool is_greater(const VSrc* const s1, const VSrc* const s2)
+{
+	return s1->cur_pri > s2->cur_pri;
+}
 
+static void list_sort()
+{
+	std::sort(vsrcs.begin(), vsrcs.end(), is_greater);
+}
+
+
+// O(N)!
 static void list_remove(VSrc* vs)
 {
-debug_out("list_remove vs=%p\n", vs);
-
-	for(size_t i = 0; i < vsources.size(); i++)
-		if(vsources[i] == vs)
+	for(size_t i = 0; i < vsrcs.size(); i++)
+		if(vsrcs[i] == vs)
 		{
-			vsources[i] = 0;
+			// found it; several ways we could remove:
+			// - shift everything else down (slow) -> no
+			// - fill the hole with e.g. the last element
+			//   (vsrcs would no longer be sorted by priority) -> no
+			// - replace with 0 (will require prune_removed and
+			//   more work in foreach) -> best alternative
+			vsrcs[i] = 0;
 			return;
 		}
 
-//	debug_warn("list_remove: VSrc not found");
-debug_out("NOT FOUND!\n");
+	debug_warn("list_remove: VSrc not found");
 }
 
-static bool vsrc_is_null(VSrc* vs)
+
+static bool is_null(VSrc* vs)
 {
 	return vs == 0;
 }
 
+static void list_prune_removed()
+{
+	// prune removed entries (value 0), so code below can grant the first
+	// al_src_cap entries a soure. see rationale in list_remove.
+	It new_end = remove_if(vsrcs.begin(), vsrcs.end(), is_null);
+	vsrcs.erase(new_end, vsrcs.end());
+}
 
-static void vsrc_free(VSrc* vs)
+
+static void free(VSrc* vs)
 {
 	snd_free(vs->hvs);
 }
 
-static void vsrc_calc_cur_pri(VSrc* vs)
-{
-	vs->cur_pri = calc_pri(vs->pos, vs->relative, vs->static_pri);
-}
-
-
-// no-op if OpenAL not yet initialized.
-static int list_update()
-{
-	// prune NULL-entries, so code below doesn't have to check if non-NULL
-	// (these were removed, but we didn't shuffle everything down to save time)
-	It new_end = remove_if(vsources.begin(), vsources.end(), vsrc_is_null);
-	vsources.erase(new_end, vsources.end());
-
-	// update current priorities (a function of static priority and distance)
-	std::for_each(vsources.begin(), vsources.end(), vsrc_calc_cur_pri);
-
-	// sort by descending current priority
-	std::sort(vsources.begin(), vsources.end(), vsrc_greater);
-
-	It it;
-	It first_unimportant = vsources.begin() + min((int)vsources.size(), al_src_cap); 
-
-	// reclaim source from the less important vsources
-	for(it = first_unimportant; it != vsources.end(); ++it)
-	{
-		VSrc* vs = *it;
-		if(vs->al_src)
-		{
-debug_out("reclaiming from low-pri\n");
-			vsrc_reclaim_src(vs);
-		}
-
-		if(!vs->loop)
-		{
-debug_out("kicking out low-pri\n");
-			snd_free(vs->hvs);
-		}
-	}
-
-	// grant each of the most important vsources a source
-	for(it = vsources.begin(); it != first_unimportant; ++it)
-	{
-		VSrc* vs = *it;
-		if(!vs->al_src)
-		{
-debug_out("now granting high-pri a new src\n");
-			vsrc_grant_src(vs);
-		}
-	}
-
-
-	std::for_each(vsources.begin(), vsources.end(), vsrc_update);
-
-	return 0;
-}
-
-
 static int list_free_all()
 {
-	list_foreach(vsrc_free);
+	list_foreach(free);
 	return 0;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// voice management: responsible for granting the most 'important'
+// (as determined by current priority) sounds a hardware voice.
+//
+///////////////////////////////////////////////////////////////////////////////
+
+
+static float magnitude_2(const float v[3])
+{
+	return v[0]*v[0] + v[1]*v[1] + v[2]*v[2];
+}
+
+
+// list_foreach callback
+static void calc_cur_pri(VSrc* vs)
+{
+	const float MAX_DIST_2 = 1000.0f;
+	const float falloff = 10.0f;
+
+	float d_2;	// euclidean distance to listener (squared)
+	if(vs->s.relative)
+		d_2 = magnitude_2(vs->s.pos);
+	else
+		d_2 = al_listener_dist_2(vs->s.pos);
+
+	// scale priority down exponentially
+	float e = d_2 / MAX_DIST_2;	// 0.0f (close) .. 1.0f (far)
+
+	// assume farther away than OpenAL cutoff - no sound contribution
+	float cur_pri = -1.0f;
+	if(e < 1.0f)
+		cur_pri = vs->static_pri / pow(falloff, e);
+	vs->cur_pri = cur_pri;
+}
+
+static void reclaim(VSrc* vs)
+{
+	if(vs->s.al_src)
+	{
+debug_out("reclaiming from low-pri\n");
+		vsrc_reclaim_src(vs);
+	}
+
+	if(!vs->s.loop)
+	{
+debug_out("kicking out low-pri\n");
+		snd_free(vs->hvs);
+	}
+}
+
+static void grant(VSrc* vs)
+{
+	if(!vs->s.al_src)
+	{
+debug_out("now granting high-pri a new src\n");
+		vsrc_grant_src(vs);
+	}
+}
+
+// no-op if OpenAL not yet initialized.
+static int voice_management_update()
+{
+	list_prune_removed();
+
+	// update current priorities (a function of static priority and distance).
+	list_foreach(calc_cur_pri);
+
+	// sort by descending current priority.
+	list_sort();
+
+	// partition list; the first al_src_cap will be granted a source
+	// (if they don't have one already), after reclaiming all sources from
+	// the remainder of the VSrc list entries.
+	uint first_unimportant = min((uint)vsrcs.size(), al_src_cap); 
+	list_foreach(reclaim, first_unimportant, 0);
+	list_foreach(grant, 0, first_unimportant);
+
+	list_foreach((void(*)(VSrc*))vsrc_update);
+
+	return 0;
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -1494,7 +1519,7 @@ int snd_update(const float* pos, const float* dir, const float* up)
 	if(pos || dir || up)
 		al_listener_set_pos(pos, dir, up);
 
-	list_update();
+	voice_management_update();
 
 	return 0;
 }
@@ -1502,7 +1527,6 @@ int snd_update(const float* pos, const float* dir, const float* up)
 
 void snd_shutdown()
 {
-debug_out("SND_SHUTDOWN\n");
 	io_buf_shutdown();
 
 	al_shutdown();
