@@ -1,8 +1,8 @@
 #include "precompiled.h"
 
-#include "XML.h"
+#include "nommgr.h"
 
-#undef new // if it was redefined for leak detection, since xerces doesn't like it
+#include "XML.h"
 
 #include "CStr.h"
 #include "CLogger.h"

@@ -2,6 +2,8 @@
 
 #include "precompiled.h"
 
+#include "nommgr.h"
+
 #include <vector>
 #include <set>
 #include <map>

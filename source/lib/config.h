@@ -70,7 +70,7 @@
 #endif
 
 #if defined(_MSC_VER) && defined(HAVE_PCH) && !( defined(NDEBUG) || defined(TESTING) )
-# define HAVE_DEBUGALLOC
+// # define HAVE_DEBUGALLOC
 #endif
 
 #ifdef OS_UNIX

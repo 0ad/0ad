@@ -9,6 +9,7 @@ gee@pyro.nu
 // ---------------------------------------------------------------------------
 
 #include "precompiled.h"
+#include "nommgr.h"
 
 #include "XercesErrorHandler.h"
 #include <iostream>
