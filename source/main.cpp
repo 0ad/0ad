@@ -817,13 +817,13 @@ PREVTSC=CURTSC;
 
 		float TimeSinceLastFrame = (float)(time1-time0);
 		assert(TimeSinceLastFrame >= 0.0f);
-		if(TimeSinceLastFrame == 0.0f)
-			continue;
-
-		UpdateWorld(TimeSinceLastFrame);
-		if (!g_FixedFrameTiming)
-			terr_update(float(TimeSinceLastFrame));
-		g_Console->Update(TimeSinceLastFrame);
+		if(TimeSinceLastFrame > 0.0f)
+		{
+			UpdateWorld(TimeSinceLastFrame);
+			if (!g_FixedFrameTiming)
+				terr_update(float(TimeSinceLastFrame));
+			g_Console->Update(TimeSinceLastFrame);
+		}
 
 		if(active)
 		{
