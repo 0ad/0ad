@@ -320,11 +320,10 @@ void* mem_alloc(size_t size, const size_t align, uint flags, Handle* phm)
 	if(phm)
 		*phm = ERR_NO_MEM;
 
+	// note: this is legitimate. vfs_load on 0-length files must return
+	// a valid and unique pointer to an (at least) 0-length buffer.
 	if(size == 0)
-	{
-		debug_warn("mem_alloc: why is size = 0?");
 		size = 1;
-	}
 
 	// no scope indicated
 	if(!flags)
