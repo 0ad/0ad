@@ -31,6 +31,7 @@
 #include <string>
 #include <set>
 #include <deque>
+#include <fstream>
 
 #include <functional>
 #include <algorithm>
@@ -52,7 +53,10 @@
 
 #include <xercesc/framework/LocalFileInputSource.hpp>
 
+// Nicer memory leak reporting in MSVC
+// (except you've got to include all STL headers first to avoid
+//  nasty complaints, so make sure they're in the list above)
+#include <crtdbg.h>
+#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
+
 #endif
-
-
-

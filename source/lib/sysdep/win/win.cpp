@@ -199,13 +199,17 @@ static inline void pre_libc_init()
 
 static inline void pre_main_init()
 {
+#ifndef NDEBUG
+	uint flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
+	// Always enable leak detection in debug builds
+	flags |= _CRTDBG_LEAK_CHECK_DF;
 #ifdef PARANOIA
 	// force malloc et al. to check the heap every call.
 	// slower, but reports errors closer to where they occur.
-	uint flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
 	flags |= _CRTDBG_CHECK_ALWAYS_DF | _CRTDBG_DELAY_FREE_MEM_DF;
+#endif // PARANOIA
 	_CrtSetDbgFlag(flags);
-#endif
+#endif // !NDEBUG
 
 	call_func_tbl(init_begin, init_end);
 
