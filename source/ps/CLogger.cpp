@@ -36,10 +36,8 @@ CLogger::CLogger()
 	m_NumberOfErrors = 0;
 	m_NumberOfWarnings = 0;
 	
-	m_MemoryLogBuffer = (char *) malloc(MEMORY_BUFFER_SIZE);
+	m_MemoryLogBuffer = (char *)calloc(MEMORY_BUFFER_SIZE, 1);
 	m_CurrentPosition = m_MemoryLogBuffer;
-
-	memset(m_MemoryLog,0,MEMORY_BUFFER_SIZE);
 
 	// current directory is $install_dir/data, we want $install_dir/logs.
 	// TODO: make sure we are called after file_rel_chdir,
@@ -198,7 +196,7 @@ int CLogger::Interestedness(const char* category)
 		return 2;
 
 	// If the config DB hasn't been loaded, assume the default
-	if (! g_ConfigDB.IsInitialised())
+	if (!g_ConfigDB.IsInitialised())
 		return 1;
 
 	CConfigValue* v = g_ConfigDB.GetValue(CFG_SYSTEM, CStr("loginterest.")+category);
