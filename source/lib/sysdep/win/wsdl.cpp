@@ -262,8 +262,8 @@ return_char:
 			next_char_idx++;
 
 			ev->type = SDL_KEYDOWN;
-			//ev->key.keysym.sym = (SDLKey)translated_keysym;
-			ev->key.keysym.sym = (SDLKey)((c < 256)? c : 0);
+			ev->key.keysym.sym = (SDLKey)translated_keysym;
+			//ev->key.keysym.sym = (SDLKey)((c < 256)? c : 0);
 			ev->key.keysym.unicode = c;
 			return 1;
 		}
@@ -298,7 +298,7 @@ return_char:
 			{
 				// Translation complete: Produce one or more Unicode chars
 				char_buf[num_chars]=0;
-				///translated_keysym=vkmap(vk);
+				translated_keysym=vkmap(vk);
 				//wprintf(L"ToUnicode: Translated %02x to [%s], %d chars, SDLK %02x. Extended flag %d, scancode %d\n", vk, char_buf, num_chars, translated_keysym, msg.lParam & 0x01000000, scancode);
 				goto return_char;
 			}
