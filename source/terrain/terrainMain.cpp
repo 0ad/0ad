@@ -91,8 +91,6 @@ void terr_update(float time)
 
 
 
-
-
 bool terr_handler(const SDL_Event& ev)
 {
 	switch(ev.type)

@@ -883,21 +883,30 @@ Handle vfs_open(const char* fn, uint flags /* = 0 */)
 	Handle h = h_alloc(H_VFile, fn, 0, flags);
 		// pass file flags to init
 
+#ifdef PARANOIA
 debug_out("vfs_open fn=%s %I64x\n", fn, h);
-return h;
+#endif
+
+	return h;
 }
 
 
 inline int vfs_close(Handle& h)
 {
+#ifdef PARANOIA
 debug_out("vfs_close %I64x\n", h);
+#endif
+
 	return h_free(h, H_VFile);
 }
 
 
 ssize_t vfs_io(Handle hf, size_t ofs, size_t size, void*& p)
 {
+#ifdef PARANOIA
 debug_out("vfs_io ofs=%d size=%d\n", ofs, size);
+#endif
+
 	H_DEREF(hf, VFile, vf);
 
 	// (vfs_open makes sure it's not opened for writing if zip)
@@ -913,7 +922,10 @@ debug_out("vfs_io ofs=%d size=%d\n", ofs, size);
 
 Handle vfs_load(const char* fn, void*& p, size_t& size)
 {
+#ifdef PARANOIA
 debug_out("vfs_load fn=%s\n", fn);
+#endif
+
 	p = 0;		// vfs_io needs initial 0 value
 	size = 0;	// in case open or deref fails
 

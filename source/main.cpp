@@ -47,45 +47,54 @@ extern void terr_init();
 extern void terr_update(float time);
 extern bool terr_handler(const SDL_Event& ev);
 
+extern int allow_reload();
+extern int dir_add_watch(const char* const dir, bool watch_subdirs);
 
-static void write_sys_info()
+
+
+static int write_sys_info()
 {
 	get_gfx_info();
 
 	struct utsname un;
 	uname(&un);
-	freopen("stdout.txt", "w", stdout);
+
+	FILE* const f = fopen("../system/system_info.txt", "w");
+	if(!f)
+		return -1;
+
 	// .. OS
-	printf("%s %s (%s)\n", un.sysname, un.release, un.version);
+	fprintf(f, "%s %s (%s)\n", un.sysname, un.release, un.version);
 	// .. CPU
-	printf("%s, %s", un.machine, cpu_type);
+	fprintf(f, "%s, %s", un.machine, cpu_type);
 	if(cpu_freq != 0.0f)
 	{
 		if(cpu_freq < 1e9)
-			printf(", %.2f MHz\n", cpu_freq*1e-6);
+			fprintf(f, ", %.2f MHz\n", cpu_freq*1e-6);
 		else
-			printf(", %.2f GHz\n", cpu_freq*1e-9);
+			fprintf(f, ", %.2f GHz\n", cpu_freq*1e-9);
 	}
 	else
-		printf("\n");
+		fprintf(f, "\n");
 	// .. memory
-	printf("%lu MB RAM; %lu MB free\n", tot_mem/MB, avl_mem/MB);
+	fprintf(f, "%lu MB RAM; %lu MB free\n", tot_mem/MB, avl_mem/MB);
 	// .. graphics card
-	printf("%s\n", gfx_card);
-	printf("%s\n", gfx_drv);
+	fprintf(f, "%s\n", gfx_card);
+	fprintf(f, "%s\n", gfx_drv);
 	// .. network name / ips
 	char hostname[100];	// possibly nodename != hostname
 	gethostname(hostname, sizeof(hostname));
-	printf("%s\n", hostname);
+	fprintf(f, "%s\n", hostname);
 	hostent* h = gethostbyname(hostname);
 	if(h)
 	{
 		struct in_addr** ips = (struct in_addr**)h->h_addr_list;
 		for(int i = 0; ips && ips[i]; i++)
-			printf("%s ", inet_ntoa(*ips[i]));
-		printf("\n");
+			fprintf(f, "%s ", inet_ntoa(*ips[i]));
+		fprintf(f, "\n");
 	}
-	fflush(stdout);
+	
+	fclose(f);
 }
 
 
@@ -148,12 +157,6 @@ static bool handler(const SDL_Event& ev)
 		{
 		case SDLK_ESCAPE:
 			quit = true;
-			break;
-
-
-		case '1':
-		case SDLK_F1:
-			res_reload("art/textures/terrain/types/grass/Base1.tga");
 			break;
 		}
 		break;
@@ -348,8 +351,13 @@ void ParseArgs(int argc, char* argv[])
 
 int main(int argc, char* argv[])
 {
-	ParseArgs(argc,argv);
+file_set_root_dir(argv[0], "../data");
 
+argc=2;
+	argv[1] = "-m=test01.pmp";
+
+	ParseArgs(argc,argv);
+/*
 chdir("\\games\\bf\\ScreenShots");
 int a,b;
 char fn[100];
@@ -395,11 +403,13 @@ sprintf(fn, "ScreenShot%d.jpg", i);
 if(access(fn, F_OK) < 0)
 break;
 }
-*/
+
 
 
 __asm cpuid __asm rdtsc __asm mov b, eax
 int c = b-a;
+
+*/
 
 	lib_init();
 
@@ -451,8 +461,8 @@ int c = b-a;
 
 	new CConfig;
 
-	file_set_root_dir(argv[0], "../data");
 	vfs_mount("", "mods/official/", 0);
+	dir_add_watch("mods\\official", false);
 
 #ifndef NO_GUI
 	// GUI uses VFS, so this must come after VFS init.
@@ -506,6 +516,9 @@ in_add_handler(terr_handler);
 	while(!quit)
 	{
 		g_Config.Update();
+
+		allow_reload();
+
 
 // TODO: limiter in case simulation can't keep up?
 #if 0

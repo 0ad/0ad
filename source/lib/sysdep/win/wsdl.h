@@ -14,11 +14,16 @@
 extern "C" {
 #endif
 
+
+#define Uint32 u32
+
 /* SDL_Init flags */
 #define SDL_INIT_VIDEO 0
 #define SDL_INIT_AUDIO 0
 #define SDL_INIT_TIMER 0
 #define SDL_INIT_NOPARACHUTE 0
+
+extern int SDL_Init(Uint32 flags);
 
 extern void SDL_Quit();
 
@@ -85,8 +90,6 @@ extern int __stdcall SDL_WarpMouse(int, int);
 
 
 /* macros */
-
-#define SDL_Init
 
 #define SDL_GRAB_ON 0
 #define SDL_WM_GrabInput(a)

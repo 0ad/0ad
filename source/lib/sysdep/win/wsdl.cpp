@@ -366,6 +366,16 @@ int SDL_GL_SetAttribute(SDL_GLattr attr, int value)
 }
 
 
+int SDL_Init(Uint32 flags)
+{
+	FILE* const ret = freopen("stdout.txt", "w", stdout);
+	if(!ret)
+		debug_warn("SDL_Init freopen failed");
+
+	return 0;
+}
+
+
 /*
  * set video mode wxh:bpp if necessary.
  * w = h = bpp = 0 => no change.

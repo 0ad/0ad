@@ -164,9 +164,9 @@ static inline void pre_main_init()
 
 	atexit(at_exit);
 
-	// real SDL will do this as well. no matter.
-	// ignore BoundsChecker warning here.
-	freopen("stdout.txt", "wt", stdout);
+	// no point redirecting stdout yet - the current directory
+	// may be incorrect (file_set_root not yet called).
+	// (w)sdl will take care of it anyway.
 }
 
 

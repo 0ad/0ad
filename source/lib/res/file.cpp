@@ -96,13 +96,14 @@ static int mk_native_path(const char* const path, char* const n_path)
 }
 
 
-// rationale for data dir being root:
-// xxxxxxxx yyyyyyyyy zzzzzzzzzz sandbox; vfs users (untrusted scripts) can't overwrite critical game files
+// rationale for data dir being root: untrusted scripts must not be allowed
+// to overwrite critical game (or worse, OS) files. the VFS prevents any
+// accesses to files above this directory.
 int file_set_root_dir(const char* argv0, const char* root_dir)
 {
 	// security check: only allow attempting to set root dir once
-	// (prevents malicious scripts from overwriting important files
-	//  above the intended VFS root)
+	// (this is called early at startup, so any subsequent
+	// call is most likely malicious).
 	static bool already_attempted;
 	if(already_attempted)
 	{
@@ -131,10 +132,10 @@ int file_set_root_dir(const char* argv0, const char* root_dir)
 	if(chdir(path) < 0)
 		return -errno;
 
-	char* native_root = path;	// reuse path[] (no longer needed)
-	CHECK_ERR(mk_native_path(root_dir, native_root));
+	char* n_root = path;	// reuse path[] (no longer needed)
+	CHECK_ERR(mk_native_path(root_dir, n_root));
 
-	if(chdir(native_root) < 0)
+	if(chdir(n_root) < 0)
 		return -errno;
 
 	return 0;
@@ -148,25 +149,26 @@ int file_set_root_dir(const char* argv0, const char* root_dir)
 // need to store entries returned by readdir so they can be sorted.
 struct DirEnt
 {
-	std::string name;
-	uint flags;
-	ssize_t size;
+	const std::string name;
+	const uint flags;
+	const ssize_t size;
 
-	DirEnt(const char* _name, uint _flags, ssize_t _size)
+	DirEnt(const char* const _name, const uint _flags, const ssize_t _size)
 		: name(_name), flags(_flags), size(_size) {}
 };
 
-typedef std::vector<DirEnt> DirEnts;
-typedef DirEnts::iterator DirEntsIt;
+typedef std::vector<const DirEnt*> DirEnts;
+typedef DirEnts::const_iterator DirEntIt;
 
-static bool dirent_less(DirEnt& d1, DirEnt& d2)
-	{ return d1.name.compare(d2.name) < 0; }
+static bool dirent_less(const DirEnt* const d1, const DirEnt* const d2)
+	{ return d1->name.compare(d2->name) < 0; }
 
-// rationale: we pass the directory entry name only to the callback -
-// not the absolute path, nor <dir> prepended. some users don't need it,
-// and would need to strip it. this routine generates the absolute path,
-// but in native form - can't use that.
-int file_enum(const char* dir, FileCB cb, uintptr_t user)
+// we give the callback the directory-entry-name only - not the
+// absolute path, nor <dir> prepended. rationale: some users don't need it,
+// and would need to strip it. there are not enough users requiring it to
+// justify that. this routine does actually generate the absolute path
+// for use with stat, but in native form - can't use that.
+int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 {
 	char n_path[PATH_MAX+1];
 	n_path[PATH_MAX] = '\0';
@@ -174,14 +176,15 @@ int file_enum(const char* dir, FileCB cb, uintptr_t user)
 		// 0-terminate simplifies filename strncpy below.
 	CHECK_ERR(mk_native_path(dir, n_path));
 
-	// all entries are enumerated (adding to list), sorted, then passed to cb
+	// all entries are enumerated (adding to this container),
+	// std::sort-ed, then all passed to cb.
 	DirEnts dirents;
 
 	int stat_err = 0;
 	int cb_err = 0;
 	int ret;
 
-	DIR* os_dir = opendir(n_path);
+	DIR* const os_dir = opendir(n_path);
 	if(!os_dir)
 		return -1;
 
@@ -190,15 +193,19 @@ int file_enum(const char* dir, FileCB cb, uintptr_t user)
 	char* fn_start = n_path + n_path_len;
 	*fn_start++ = DIR_SEP;
 
-	struct dirent* ent;
-	while((ent = readdir(os_dir)))
+	struct dirent* os_ent;
+	while((os_ent = readdir(os_dir)))
 	{
-		const char* fn = ent->d_name;
+		const char* fn = os_ent->d_name;
 
 		strncpy(fn_start, fn, PATH_MAX-n_path_len);
-			// stat needs the relative path. this is easier than changing
+			// stat needs the full path. this is easier than changing
 			// directory every time, and should be fast enough.
+			// BTW, direct strcpy is faster than path_append -
+			// we save a strlen every iteration.
 
+		// no need to go through file_stat -
+		// we already have the native path.
 		struct stat s;
 		ret = stat(n_path, &s);
 		if(ret < 0)
@@ -225,22 +232,28 @@ int file_enum(const char* dir, FileCB cb, uintptr_t user)
 		else if(!(s.st_mode & S_IFREG))
 			continue;
 
-		dirents.push_back(DirEnt(fn, flags, size));
+		const DirEnt* const ent = new DirEnt(fn, flags, size);
+		dirents.push_back(ent);
 	}
 	closedir(os_dir);
 
 	std::sort(dirents.begin(), dirents.end(), dirent_less);
 
-	for(DirEntsIt it = dirents.begin(); it != dirents.end(); ++it)
+	DirEntIt it;
+	for(it = dirents.begin(); it != dirents.end(); ++it)
 	{
-		const char* name_c = it->name.c_str();
-		const uint flags   = it->flags;
-		const ssize_t size = it->size;
+		const DirEnt* const ent = *it;
+		const char* name_c = ent->name.c_str();
+		const uint flags   = ent->flags;
+		const ssize_t size = ent->size;
 		ret = cb(name_c, flags, size, user);
 		if(ret < 0)
 			if(cb_err == 0)
 				cb_err = ret;
 	}
+
+	for(it = dirents.begin(); it != dirents.end(); ++it)
+		delete *it;
 
 	if(cb_err < 0)
 		return cb_err;
@@ -832,7 +845,7 @@ Handle file_start_io(File* f, size_t user_ofs, size_t user_size, void* user_p)
 		return -1;
 	}
 
-	size_t bytes_left = f->size - user_ofs;	// > 0
+	const size_t bytes_left = f->size - user_ofs;	// > 0
 	int op = (f->flags & FILE_WRITE)? LIO_WRITE : LIO_READ;
 
 	// don't read beyond EOF
@@ -841,6 +854,7 @@ Handle file_start_io(File* f, size_t user_ofs, size_t user_size, void* user_p)
 
 
 	u64 block_id = block_make_id(f->fn_hash, user_ofs);
+		// reset to 0 if transferring more than 1 block.
 
 	// allocate IO slot
 	Handle hio = io_alloc();
@@ -852,8 +866,9 @@ Handle file_start_io(File* f, size_t user_ofs, size_t user_size, void* user_p)
 		// notes: io->cached, io->pending and io->block are already zeroed;
 		// cb will receive the actual IO request (aligned offset and size).
 
-
+#ifdef PARANOIA
 debug_out("file_start_io hio=%I64x ofs=%d size=%d\n", hio, user_ofs, user_size);
+#endif
 
 	// aio already safely handles unaligned buffers or offsets.
 	// when reading zip files, we don't want to repeat a read
@@ -875,7 +890,9 @@ debug_out("file_start_io hio=%I64x ofs=%d size=%d\n", hio, user_ofs, user_size);
 	// if already cached, we're done
 	if(size == BLOCK_SIZE && block_retrieve(block_id, io->block) == 0)
 	{
-		debug_out("file_start_io: cached! block # = %d\n", block_id & 0xffffffff);
+#ifdef PARANOIA
+debug_out("file_start_io: cached! block # = %d\n", block_id & 0xffffffff);
+#endif
 		io->cached = 1;
 		return hio;
 	}
@@ -922,7 +939,9 @@ fail:
 
 int file_wait_io(const Handle hio, void*& p, size_t& size)
 {
+#ifdef PARANOIA
 debug_out("file_wait_io: hio=%I64x\n", hio);
+#endif
 
 	int ret = 0;
 
@@ -1003,7 +1022,9 @@ int file_discard_io(Handle& hio)
 ssize_t file_io(File* const f, const size_t raw_ofs, size_t raw_size, void** const p,
 	const FILE_IO_CB cb, const uintptr_t ctx) // optional
 {
+#ifdef PARANOIA
 debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, raw_size, raw_ofs);
+#endif
 
 	CHECK_FILE(f)
 
@@ -1100,8 +1121,6 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, raw_size, raw_ofs);
 	const int MAX_IOS = 2;
 	Handle ios[MAX_IOS] = { 0 };
 
-if(ios[0] || ios[1])abort();
-
 	int head = 0;
 	int tail = 0;
 	int pending_ios = 0;
@@ -1118,11 +1137,6 @@ if(ios[0] || ios[1])abort();
 
 	ssize_t err = +1;		// loop terminates if <= 0
 
-
-static int seq;
-seq++;
-if(seq == 4)
-seq=4;
 
 	for(;;)
 	{
