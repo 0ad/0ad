@@ -407,134 +407,24 @@ void CGUI::Draw()
 	glPopMatrix();
 }
 
-void CGUI::DrawSprite(const CStr& SpriteName, 
-					  const float &Z, 
-					  const CRect &Rect, 
+void CGUI::DrawSprite(CGUISpriteInstance& Sprite,
+					  const float &Z,
+					  const CRect &Rect,
 					  const CRect &Clipping)
 {
-	// This is not an error, it's just a choice not to draw any sprite.
-	if (SpriteName == CStr())
+	// If the sprite doesn't exist (name == ""), don't bother drawing anything
+	if (Sprite.IsEmpty())
 		return;
 
 	// TODO: Clipping?
-	bool DoClipping = (Clipping != CRect());
-
-	CGUISprite Sprite;
-
-	// Fetch real sprite from name
-	if (m_Sprites.count(SpriteName) == 0)
-	{
-		LOG_ONCE(ERROR, LOG_CATEGORY, "Trying to use a sprite that doesn't exist (\"%s\").", SpriteName.c_str());
-		return;
-	}
-	else Sprite = m_Sprites[SpriteName];
 
 	glPushMatrix();
 	glTranslatef(0.0f, 0.0f, Z);
 
-	// Iterate all images and request them being drawn be the
-	//  CRenderer
-	std::vector<SGUIImage>::const_iterator cit;
-	for (cit=Sprite.m_Images.begin(); cit!=Sprite.m_Images.end(); ++cit)
-	{
-		if (cit->m_Texture)
-		{
-			// TODO: Handle the GL state in a nicer way
+	Sprite.Draw(Rect, m_Sprites);
 
-			glEnable(GL_TEXTURE_2D);
-			glColor3f(1.0f, 1.0f, 1.0f);
-			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-
-			int fmt;
-			tex_info(cit->m_Texture, NULL, NULL, &fmt, NULL, NULL);
-			if (fmt == GL_RGBA || fmt == GL_BGRA)
-			{
-				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-				glEnable(GL_BLEND);
-			}
-			else
-			{
-				glDisable(GL_BLEND);
-			}
-
-			tex_bind(cit->m_Texture);
-
-			CRect real = cit->m_Size.GetClientArea(Rect);
-
-			// Get the screen position/size of a single tiling of the texture
-			CRect TexSize = cit->m_TextureSize.GetClientArea(real);
-
-			// Actual texture coordinates we'll send to OGL.
-			CRect TexCoords;
-
-			TexCoords.left = (TexSize.left - real.left) / TexSize.GetWidth();
-			TexCoords.right = TexCoords.left + real.GetWidth() / TexSize.GetWidth();
-
-			// 'Bottom' is actually the top in screen-space (I think),
-			// because the GUI puts (0,0) at the top-left
-			TexCoords.bottom = (TexSize.bottom - real.bottom) / TexSize.GetHeight();
-			TexCoords.top = TexCoords.bottom + real.GetHeight() / TexSize.GetHeight();
-
-			if (cit->m_TexturePlacementInFile != CRect())
-			{
-				// Save the width/height, because we'll change the values one at a time and need
-				//  to be able to use the unchanged width/height
-				float width = TexCoords.GetWidth(),
-					  height = TexCoords.GetHeight();
-
-				// Get texture width/height
-				int t_w, t_h;
-				tex_info(cit->m_Texture, &t_w, &t_h, NULL, NULL, NULL);
-
-				float fTW=(float)t_w, fTH=(float)t_h;
-
-				// notice left done after right, so that left is still unchanged, that is important.
-				TexCoords.right = TexCoords.left + width * cit->m_TexturePlacementInFile.right/fTW;
-				TexCoords.left += width * cit->m_TexturePlacementInFile.left/fTW;
-
-				TexCoords.bottom = TexCoords.top + height * cit->m_TexturePlacementInFile.bottom/fTH;
-				TexCoords.top += height * cit->m_TexturePlacementInFile.top/fTH;
-			}
-
-			glBegin(GL_QUADS);
-			glTexCoord2f(TexCoords.right,	TexCoords.bottom);	glVertex3f(real.right,	real.bottom,	cit->m_DeltaZ);
-			glTexCoord2f(TexCoords.left,	TexCoords.bottom);	glVertex3f(real.left,	real.bottom,	cit->m_DeltaZ);
-			glTexCoord2f(TexCoords.left,	TexCoords.top);		glVertex3f(real.left,	real.top,		cit->m_DeltaZ);
-			glTexCoord2f(TexCoords.right,	TexCoords.top);		glVertex3f(real.right,	real.top,		cit->m_DeltaZ);
-			glEnd();
-
-			glDisable(GL_TEXTURE_2D);
-
-		}
-		else
-		{
-			//glDisable(GL_TEXTURE_2D);
-
-			// TODO Gee: (2004-09-04) Shouldn't untextured sprites be able to be transparent too?
-			glColor4f(cit->m_BackColor.r, cit->m_BackColor.g, cit->m_BackColor.b, cit->m_BackColor.a);
-
-			CRect real = cit->m_Size.GetClientArea(Rect);
-
-			glBegin(GL_QUADS);
-			glVertex3f(real.right,	real.bottom,	cit->m_DeltaZ);
-			glVertex3f(real.left,	real.bottom,	cit->m_DeltaZ);
-			glVertex3f(real.left,	real.top,		cit->m_DeltaZ);
-			glVertex3f(real.right,	real.top,		cit->m_DeltaZ);
-			glEnd();
-
-			if (cit->m_Border)
-			{
-				glColor3f(cit->m_BorderColor.r, cit->m_BorderColor.g, cit->m_BorderColor.b);
-				glBegin(GL_LINE_LOOP);
-				glVertex3f(real.left,		real.top+1.f,	cit->m_DeltaZ);
-				glVertex3f(real.right-1.f,	real.top+1.f,	cit->m_DeltaZ);
-				glVertex3f(real.right-1.f,	real.bottom,	cit->m_DeltaZ);
-				glVertex3f(real.left,		real.bottom,	cit->m_DeltaZ);
-				glEnd();
-			}
-		}
-	}
 	glPopMatrix();
+
 }
 
 void CGUI::Destroy()
@@ -658,7 +548,7 @@ struct SGenerateTextImage
 			SpriteCall.m_Area.right = width-BufferZone;
 		}
 
-		SpriteCall.m_TextureName = TextureName;
+		SpriteCall.m_Sprite = TextureName;
 
 		m_YFrom = SpriteCall.m_Area.top-BufferZone;
 		m_YTo = SpriteCall.m_Area.bottom+BufferZone;
@@ -932,7 +822,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 	return Text;
 }
 
-void CGUI::DrawText(const SGUIText &Text, const CColor &DefaultColor, 
+void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor, 
 					const CPos &pos, const float &z)
 {
 	// TODO Gee: All these really necessary? Some
@@ -984,11 +874,11 @@ void CGUI::DrawText(const SGUIText &Text, const CColor &DefaultColor,
 	if (font)
 		delete font;
 
-	for (list<SGUIText::SSpriteCall>::const_iterator it=Text.m_SpriteCalls.begin(); 
+	for (list<SGUIText::SSpriteCall>::iterator it=Text.m_SpriteCalls.begin(); 
 		 it!=Text.m_SpriteCalls.end(); 
 		 ++it)
 	{
-		DrawSprite(it->m_TextureName, z, it->m_Area + pos);
+		DrawSprite(it->m_Sprite, z, it->m_Area + pos);
 	}
 
 	// TODO To whom it may concern: Thing were not reset, so
@@ -1213,7 +1103,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	if (m_Styles.count(CStr("default")) == 1)
 		object->LoadStyle(*this, CStr("default"));
 
-    if (argStyle != CStr())
+    if (argStyle.Length())
 	{
 		// additional check
 		if (m_Styles.count(argStyle) == 0)
@@ -1262,6 +1152,8 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			ManuallySetZ = true;
 
 		
+/*	TODO: Reimplement this inside GUIRenderer.cpp
+
 		// Generate "stretched:filename" sprites.
 		//
 		// Check whether it's actually one of the many sprite... parameters.
@@ -1299,7 +1191,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 				}
 			}
 		}
-
+*/
 		// Try setting the value
 		if (object->SetSetting(pFile->getAttributeString(attr.Name), (CStr)attr.Value) != PS_OK)
 		{
@@ -1531,23 +1423,10 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		// This is the only attribute we want
 		if (attr_name == "texture")
 		{
-			// Load the texture from disk now, because now's as good a time as any
 			CStr TexFilename ("art/textures/ui/");
 			TexFilename += attr_value;
 
-			Handle tex = tex_load(TexFilename.c_str());
-			if (tex <= 0)
-			{
-				// Don't use ReportParseError, because this is not a *parsing* error
-				//  and has ultimately nothing to do with the actual sprite we're reading.
-				LOG(ERROR, LOG_CATEGORY, "Error opening texture '%s': %lld", TexFilename.c_str(), tex);
-			}
-			else
-			{
-				image.m_TextureName = TexFilename;
-				image.m_Texture = tex;
-				tex_upload(tex);
-			}
+			image.m_TextureName = TexFilename;
 		}
 		else
 		if (attr_name == "size")

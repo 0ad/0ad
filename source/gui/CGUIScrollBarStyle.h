@@ -82,33 +82,33 @@ struct CGUIScrollBarStyle
 	//--------------------------------------------------------
 	//@{
 
-	CStr m_SpriteButtonTop;
-	CStr m_SpriteButtonTopPressed;
-	CStr m_SpriteButtonTopDisabled;
+	CGUISpriteInstance m_SpriteButtonTop;
+	CGUISpriteInstance m_SpriteButtonTopPressed;
+	CGUISpriteInstance m_SpriteButtonTopDisabled;
 
-	CStr m_SpriteButtonBottom;
-	CStr m_SpriteButtonBottomPressed;
-	CStr m_SpriteButtonBottomDisabled;
+	CGUISpriteInstance m_SpriteButtonBottom;
+	CGUISpriteInstance m_SpriteButtonBottomPressed;
+	CGUISpriteInstance m_SpriteButtonBottomDisabled;
 
-	CStr m_SpriteScrollBackHorizontal;
-	CStr m_SpriteScrollBarHorizontal;
+	CGUISpriteInstance m_SpriteScrollBackHorizontal;
+	CGUISpriteInstance m_SpriteScrollBarHorizontal;
 
 	//@}
 	//--------------------------------------------------------
-	/** @name Verical Sprites */
+	/** @name Vertical Sprites */
 	//--------------------------------------------------------
 	//@{
 
-	CStr m_SpriteButtonLeft;
-	CStr m_SpriteButtonLeftPressed;
-	CStr m_SpriteButtonLeftDisabled;
+	CGUISpriteInstance m_SpriteButtonLeft;
+	CGUISpriteInstance m_SpriteButtonLeftPressed;
+	CGUISpriteInstance m_SpriteButtonLeftDisabled;
 
-	CStr m_SpriteButtonRight;
-	CStr m_SpriteButtonRightPressed;
-	CStr m_SpriteButtonRightDisabled;
+	CGUISpriteInstance m_SpriteButtonRight;
+	CGUISpriteInstance m_SpriteButtonRightPressed;
+	CGUISpriteInstance m_SpriteButtonRightDisabled;
 
-	CStr m_SpriteScrollBackVertical;
-	CStr m_SpriteScrollBarVertical;
+	CGUISpriteInstance m_SpriteScrollBackVertical;
+	CGUISpriteInstance m_SpriteScrollBarVertical;
 
 	//@}
 };

@@ -53,6 +53,8 @@ class CGUI;
 // Map with pointers
 typedef std::map<CStr, SGUISetting> map_Settings;
 
+struct JSObject;
+
 //--------------------------------------------------------
 //  Error declarations
 //--------------------------------------------------------
@@ -78,6 +80,7 @@ enum EGUISettingType
 	GUIST_CGUIString,
 	GUIST_CStr,
 	GUIST_CStrW,
+	GUIST_CGUISpriteInstance,
 	GUIST_EAlign,
 	GUIST_EVAlign
 };
@@ -433,7 +436,7 @@ protected:
 	/**
 	 * Internal storage for registered script handlers.
 	 */
-	std::map<CStr, void*> m_ScriptHandlers;
+	std::map<CStr, JSFunction*> m_ScriptHandlers;
 
 	//@}
 private:

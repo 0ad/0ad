@@ -20,13 +20,13 @@ using namespace std;
 //-------------------------------------------------------------------
 CText::CText()
 {
-	AddSetting(GUIST_float,			"buffer-zone");
-	AddSetting(GUIST_CGUIString,	"caption");
-	AddSetting(GUIST_CStr,			"font");
-	AddSetting(GUIST_bool,			"scrollbar");
-	AddSetting(GUIST_CStr,			"scrollbar-style");
-	AddSetting(GUIST_CStr,			"sprite");
-	AddSetting(GUIST_CColor,		"textcolor");
+	AddSetting(GUIST_float,					"buffer-zone");
+	AddSetting(GUIST_CGUIString,			"caption");
+	AddSetting(GUIST_CStr,					"font");
+	AddSetting(GUIST_bool,					"scrollbar");
+	AddSetting(GUIST_CStr,					"scrollbar-style");
+	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
+	AddSetting(GUIST_CColor,				"textcolor");
 	// TODO Gee: (2004-08-14)
 	//  Add a setting for buffer zone
 	//AddSetting(GUIST_int,			"
@@ -161,8 +161,8 @@ void CText::Draw()
 
 	if (GetGUI())
 	{
-		CStr sprite;
-		GUI<CStr>::GetSetting(this, "sprite", sprite);
+		CGUISpriteInstance sprite;
+		GUI<CGUISpriteInstance>::GetSetting(this, "sprite", sprite);
 
 		GetGUI()->DrawSprite(sprite, bz, m_CachedActualSize);
 

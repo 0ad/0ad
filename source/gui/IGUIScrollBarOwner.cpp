@@ -44,7 +44,7 @@ void IGUIScrollBarOwner::AddScrollBar(IGUIScrollBar * scrollbar)
 	m_ScrollBars.push_back(scrollbar);
 }
 
-const SGUIScrollBarStyle * IGUIScrollBarOwner::GetScrollBarStyle(const CStr& style) const
+SGUIScrollBarStyle * IGUIScrollBarOwner::GetScrollBarStyle(const CStr& style) const
 {
 	if (!GetGUI())
 	{
@@ -58,7 +58,7 @@ const SGUIScrollBarStyle * IGUIScrollBarOwner::GetScrollBarStyle(const CStr& sty
 		return NULL;
 	}
 
- 	return &GetGUI()->m_ScrollBarStyles.find(style)->second;
+ 	return &((CGUI*)GetGUI())->m_ScrollBarStyles.find(style)->second;
 }
 
 void IGUIScrollBarOwner::HandleMessage(const SGUIMessage &Message)

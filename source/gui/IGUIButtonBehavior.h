@@ -25,6 +25,8 @@ gee@pyro.nu
 //--------------------------------------------------------
 #include "GUI.h"
 
+class CGUISpriteInstance;
+
 //--------------------------------------------------------
 //  Macros
 //--------------------------------------------------------
@@ -74,10 +76,10 @@ public:
 	 */
 	void DrawButton(const CRect &rect,
 					const float &z,
-					const CStr& sprite,
-					const CStr& sprite_over,
-					const CStr& sprite_pressed,
-					const CStr& sprite_disabled);
+					CGUISpriteInstance& sprite,
+					CGUISpriteInstance& sprite_over,
+					CGUISpriteInstance& sprite_pressed,
+					CGUISpriteInstance& sprite_disabled);
 
 	/**
 	 * Choosing which color of the following according to 

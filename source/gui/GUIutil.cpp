@@ -184,7 +184,7 @@ bool __ParseString<EVAlign>(const CStr &Value, EVAlign &Output)
 template <>
 bool __ParseString<CGUIString>(const CStr& Value, CGUIString &Output)
 {
-	// Translate the Value and retrieve the locilised string in
+	// Translate the Value and retrieve the localised string in
 	//  Unicode.
 
 	Output.SetValue(translate((CStrW)Value));
@@ -194,10 +194,17 @@ bool __ParseString<CGUIString>(const CStr& Value, CGUIString &Output)
 template <>
 bool __ParseString<CStrW>(const CStr& Value, CStrW &Output)
 {
-	// Translate the Value and retrieve the locilised string in
+	// Translate the Value and retrieve the localised string in
 	//  Unicode.
 
 	Output = translate((CStrW)Value);
+	return true;
+}
+
+template <>
+bool __ParseString<CGUISpriteInstance>(const CStr& Value, CGUISpriteInstance &Output)
+{
+	Output = Value;
 	return true;
 }
 
@@ -397,6 +404,7 @@ void CInternalCGUIAccessorBase::HandleMessage(IGUIObject *pObject, const SGUIMes
 	TYPE(CStrW)
 	TYPE(CColor)
 	TYPE(CGUIString)
+	TYPE(CGUISpriteInstance)
 	TYPE(EAlign)
 	TYPE(EVAlign)
 	#undef TYPE

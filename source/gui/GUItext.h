@@ -23,6 +23,8 @@ gee@pyro.nu
 //--------------------------------------------------------
 #include <list>
 
+#include "CGUISprite.h"
+
 //--------------------------------------------------------
 //  Declarations
 //--------------------------------------------------------
@@ -59,9 +61,9 @@ struct SGUIText
 		CRect m_Area;
 
 		/**
-		 * Texture name from texture database.
+		 * Sprite from global GUI sprite database.
 		 */
-		CStr m_TextureName;
+		CGUISpriteInstance m_Sprite;
 	};
 
 	/**

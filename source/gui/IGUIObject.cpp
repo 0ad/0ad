@@ -67,12 +67,13 @@ IGUIObject::~IGUIObject()
 			TYPE(CColor);
 			TYPE(CClientArea);
 			TYPE(CGUIString);
+			TYPE(CGUISpriteInstance);
 			TYPE(CStr);
 			TYPE(CStrW);
 			TYPE(EAlign);
 			TYPE(EVAlign);
 		default:
-			assert(!"Invalid setting type");
+			debug_warn("Invalid setting type");
 		}
 #undef TYPE
 }
@@ -170,6 +171,7 @@ void IGUIObject::AddSetting(const EGUISettingType &Type, const CStr& Name)
 		CASE_TYPE(CStrW)
 		CASE_TYPE(CColor)
 		CASE_TYPE(CGUIString)
+		CASE_TYPE(CGUISpriteInstance)
 		CASE_TYPE(EAlign)
 		CASE_TYPE(EVAlign)
 
@@ -225,7 +227,7 @@ void IGUIObject::UpdateMouseOver(IGUIObject * const &pMouseOver)
 bool IGUIObject::SettingExists(const CStr& Setting) const
 {
 	// Because GetOffsets will direct dynamically defined
-	//  classes with polymorifsm to respective ms_SettingsInfo
+	//  classes with polymorphism to respective ms_SettingsInfo
 	//  we need to make no further updates on this function
 	//  in derived classes.
 	//return (GetSettingsInfo().count(Setting) >= 1);
@@ -264,6 +266,7 @@ PS_RESULT IGUIObject::SetSetting(const CStr& Setting, const CStr& Value)
 	ADD_TYPE(CColor)
 	ADD_TYPE(CClientArea)
 	ADD_TYPE(CGUIString)
+	ADD_TYPE(CGUISpriteInstance)
 	ADD_TYPE(EAlign)
 	ADD_TYPE(EVAlign)
 	else
@@ -438,7 +441,7 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 
 void IGUIObject::ScriptEvent(const CStr& Action)
 {
-	map<CStr, void*>::iterator it = m_ScriptHandlers.find(Action);
+	map<CStr, JSFunction*>::iterator it = m_ScriptHandlers.find(Action);
 	if (it == m_ScriptHandlers.end())
 		return;
 
@@ -474,7 +477,7 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	paramData[0] = OBJECT_TO_JSVAL(mouseObj);
 
 	jsval result;
-	JSBool ok = JS_CallFunction(g_ScriptingHost.getContext(), jsGuiObject, (JSFunction*)((*it).second), 1, paramData, &result);
+	JSBool ok = JS_CallFunction(g_ScriptingHost.getContext(), jsGuiObject, it->second, 1, paramData, &result);
 	if (!ok)
 	{
 		JS_ReportError(g_ScriptingHost.getContext(), "Errors executing script action \"%s\"", Action.c_str());

@@ -153,7 +153,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 							SpriteCall.m_Area += displacement;
 					}
 
-					SpriteCall.m_TextureName = icon.m_TextureName;
+					SpriteCall.m_Sprite = icon.m_TextureName;
 
 					// Add sprite call
 					Feedback.m_SpriteCalls.push_back(SpriteCall);

@@ -48,7 +48,7 @@ void CGUIScrollBarVertical::Draw()
 		if (m_UseEdgeButtons)
 		{
 			// Get Appropriate sprites
-			CStr button_top, button_bottom;
+			CGUISpriteInstance button_top, button_bottom;
 
 			// figure out what sprite to use for top button
 			if (m_ButtonMinusHovered)

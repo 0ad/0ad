@@ -36,7 +36,7 @@ void IGUIScrollBar::SetupBarSize()
 	m_BarSize = min((float)m_ScrollSpace/(float)m_ScrollRange, 1.f);
 }
 
-const SGUIScrollBarStyle *IGUIScrollBar::GetStyle() const
+SGUIScrollBarStyle *IGUIScrollBar::GetStyle() const
 {
 	if (!m_pHostObject)
 		return NULL;

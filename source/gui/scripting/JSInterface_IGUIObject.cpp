@@ -37,17 +37,17 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 	// the private IGUIObject* has been set (and thus crash). The others are
 	// just for efficiency, and to allow correct reporting of attempts to access
 	// nonexistent properties.)
-	if (propName == (CStr)"constructor" ||
-		propName == (CStr)"prototype"   ||
-		propName == (CStr)"toString"    ||
-		propName == (CStr)"getByName"
+	if (propName == "constructor" ||
+		propName == "prototype"   ||
+		propName == "toString"    ||
+		propName == "getByName"
 	   )
 		return JS_TRUE;
 
 	IGUIObject* e = (IGUIObject*)JS_GetPrivate(cx, obj);
 
 	// Handle the "parent" property specially
-	if (propName == (CStr)"parent")
+	if (propName == "parent")
 	{
 		IGUIObject* parent = e->GetParent();
 		if (parent)
@@ -65,7 +65,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 		return JS_TRUE;
 	}
 	// Also handle "name" specially
-	else if (propName == (CStr)"name")
+	else if (propName == "name")
 	{
 		*vp = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, e->GetName()));
 		return JS_TRUE;
@@ -163,7 +163,6 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 			{
 				CGUIString value;
 				GUI<CGUIString>::GetSetting(e, propName, value);
-				// Create a garbage-collectable copy of the string
 				JSString* s = StringConvert::wchars_to_jsstring(cx, value.GetRawString().c_str());
 				*vp = STRING_TO_JSVAL(s);
 				break;
@@ -173,8 +172,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 			{
 				CStr value;
 				GUI<CStr>::GetSetting(e, propName, value);
-				// Create a garbage-collectible copy of the string
-				*vp = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, value.c_str() ));
+				*vp = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, value));
 				break;
 			}
 
@@ -182,8 +180,15 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 			{
 				CStrW value;
 				GUI<CStrW>::GetSetting(e, propName, value);
-				// Create a garbage-collectible copy of the string
-				*vp = STRING_TO_JSVAL(JS_NewUCStringCopyZ(cx, value.utf16().c_str() ));
+				*vp = STRING_TO_JSVAL(JS_NewUCStringCopyZ(cx, value.utf16().c_str()));
+				break;
+			}
+
+		case GUIST_CGUISpriteInstance:
+			{
+				CGUISpriteInstance value;
+				GUI<CGUISpriteInstance>::GetSetting(e, propName, value);
+				*vp = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, value.GetName()));
 				break;
 			}
 
@@ -203,7 +208,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 {
 	IGUIObject* e = (IGUIObject*)JS_GetPrivate(cx, obj);
 	CStr propName = g_ScriptingHost.ValueToString(id);
-	if (propName == (CStr)"name")
+	if (propName == "name")
 	{
 		CStr propValue = JS_GetStringBytes(JS_ValueToString(cx, *vp));
 		e->SetName(propValue);
@@ -223,7 +228,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 
 	case GUIST_CStr:
 		{
-			CStr value = JS_GetStringBytes(JS_ValueToString(cx, *vp));
+			CStr value (JS_GetStringBytes(JS_ValueToString(cx, *vp)));
 			GUI<CStr>::SetSetting(e, propName, value);
 			break;
 		}
@@ -232,6 +237,13 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 		{
 			utf16string value (JS_GetStringChars(JS_ValueToString(cx, *vp)));
 			GUI<CStrW>::SetSetting(e, propName, value);
+			break;
+		}
+
+	case GUIST_CGUISpriteInstance:
+		{
+			CStr value (JS_GetStringBytes(JS_ValueToString(cx, *vp)));
+			GUI<CGUISpriteInstance>::SetSetting(e, propName, value);
 			break;
 		}
 

@@ -104,14 +104,15 @@ public:
 	void Draw();
 
 	/**
-	 * Draw GUI Sprite, cooperates with CRenderer.
+	 * Draw GUI Sprite
 	 *
-	 * @param SpriteName By name! The GUI will fetch the real object itself.
+	 * @param Sprite Object refering to the sprite (which also caches
+	 *        calculations for faster rendering)
 	 * @param Z Drawing order, depth value
 	 * @param Rect Position and Size
 	 * @param Clipping The sprite shouldn't be drawn outside this rectangle
 	 */
-	void DrawSprite(const CStr& SpriteName, const float &Z, 
+	void DrawSprite(CGUISpriteInstance& Sprite, const float &Z, 
 					const CRect &Rect, const CRect &Clipping=CRect());
 
 	/**
@@ -122,7 +123,7 @@ public:
 	 * @param pos position
 	 * @param z z value.
 	 */
-	void DrawText(const SGUIText &Text, const CColor &DefaultColor, 
+	void DrawText(SGUIText &Text, const CColor &DefaultColor, 
 				  const CPos &pos, const float &z);
 
 	/**
@@ -185,7 +186,7 @@ public:
 
 	/**
 	 * Update Resolution, should be called every time the resolution
-	 * of the opengl screen has been changed, this is becuase it needs
+	 * of the OpenGL screen has been changed, this is because it needs
 	 * to re-cache all its actual sizes
 	 *
 	 * Needs no input since screen resolution is global.
@@ -203,7 +204,7 @@ public:
 	 * Done through the CGUI since it can communicate with 
 	 *
 	 * @param Text Text to generate SGUIText object from
-	 * @param Font Default font, notice both Default color and defult font
+	 * @param Font Default font, notice both Default color and default font
 	 *		  can be changed by tags.
 	 * @param Width Width, 0 if no word-wrapping.
 	 * @param BufferZone space between text and edge, and space between text and images.
@@ -248,7 +249,7 @@ private:
 	/**
 	 * Adds an object to the GUI's object database
 	 * Private, since you can only add objects through 
-	 * XML files. Why? Becasue it enables the GUI to
+	 * XML files. Why? Because it enables the GUI to
 	 * be much more encapsulated and safe.
 	 *
 	 * @throws	Rethrows PS_RESULT from IGUIObject::SetGUI() and

@@ -17,9 +17,9 @@ using namespace std;
 //-------------------------------------------------------------------
 CProgressBar::CProgressBar()
 {
-	AddSetting(GUIST_CStr,			"sprite-background");
-	AddSetting(GUIST_CStr,			"sprite-bar");
-	AddSetting(GUIST_float,			"caption"); // aka value from 0 to 100
+	AddSetting(GUIST_CGUISpriteInstance,	"sprite-background");
+	AddSetting(GUIST_CGUISpriteInstance,	"sprite-bar");
+	AddSetting(GUIST_float,					"caption"); // aka value from 0 to 100
 }
 
 CProgressBar::~CProgressBar()
@@ -58,10 +58,10 @@ void CProgressBar::Draw()
 	{
 		float bz = GetBufferedZ();
 
-		CStr sprite_background, sprite_bar;
+		CGUISpriteInstance sprite_background, sprite_bar;
 		float value;
-		GUI<CStr>::GetSetting(this, "sprite-background", sprite_background);
-		GUI<CStr>::GetSetting(this, "sprite-bar", sprite_bar);
+		GUI<CGUISpriteInstance>::GetSetting(this, "sprite-background", sprite_background);
+		GUI<CGUISpriteInstance>::GetSetting(this, "sprite-bar", sprite_bar);
 		GUI<float>::GetSetting(this, "caption", value);
 
 		GetGUI()->DrawSprite(sprite_background, bz, m_CachedActualSize);

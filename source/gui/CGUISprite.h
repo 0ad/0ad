@@ -25,7 +25,8 @@ gee@pyro.nu
 //--------------------------------------------------------
 //  Includes / Compiler directives
 //--------------------------------------------------------
-#include "GUI.h"
+#include "GUIutil.h"
+
 #include "Overlay.h"
 #include "lib/res/ogl_tex.h"
 
@@ -53,42 +54,27 @@ gee@pyro.nu
  */
 struct SGUIImage
 {
-	SGUIImage() : m_Texture(0), m_Border(false), m_DeltaZ(0.f), m_TexturePlacementInFile() {}
-	~SGUIImage() {
-		if (m_Texture)
-			tex_free(m_Texture);
-	}
+	SGUIImage() : m_Border(false), m_DeltaZ(0.f) {}
 
-	// Copy constructor, which increments the refcount of the texture.
-	// Slightly inefficient, but makes sure things get destructed
-	// at the right times.
-	SGUIImage(const SGUIImage& s)
-	{
-		#define C(x) m_##x = s.m_##x
-		C(TextureName); C(Texture);
-		C(Size); C(TextureSize);
-		C(BackColor); C(BorderColor);
-		C(Border); C(DeltaZ);
-		C(TexturePlacementInFile);
-		#undef C
-		// 'Load' the texture (but don't do any work because it's cached)
-		if (m_Texture)
-			tex_load(m_TextureName);
-	}
-
+	// Filename of the texture
 	CStr			m_TextureName;
-	Handle			m_Texture;
 
-	// Image placement
+	// Image placement (relative to object)
 	CClientArea		m_Size;
 
-	// Texture placement
+	// Texture placement (relative to image placement)
 	CClientArea		m_TextureSize;
 
 	// Because OpenGL wants textures in squares with a power of 2 (64x64, 256x256)
-	//  it's sometimes tediuos to adjust this. So this value simulates which area
+	//  it's sometimes tedious to adjust this. So this value simulates which area
 	//  is the real texture
 	CRect			m_TexturePlacementInFile;
+
+	// For textures that contain a collection of icons (e.g. unit portraits), this
+	//  will be set to the size of one icon. An object's icon-id will determine
+	//  which part of the texture is used.
+	//  Equal to CPos(0,0) for non-icon textures.
+	CSize			m_IconSize;
 
 	// Color
 	CColor			m_BackColor;
@@ -118,9 +104,6 @@ struct SGUIImage
  */
 class CGUISprite
 {
-	// For CGUI::DrawSprite()
-	friend class CGUI;
-
 public:
 	CGUISprite() {}
 	virtual ~CGUISprite() {}
@@ -132,9 +115,34 @@ public:
 	 */
 	void AddImage(const SGUIImage &image) { m_Images.push_back(image); }
 
-private:
 	/// List of images
 	std::vector<SGUIImage> m_Images;
+};
+
+#include "GUIRenderer.h"
+
+// An instance of a sprite, usually stored in IGUIObjects - basically a string
+// giving the sprite's name, but with some extra data to cache rendering
+// calculations between draw calls.
+class CGUISpriteInstance
+{
+public:
+	CGUISpriteInstance();
+	CGUISpriteInstance(CStr SpriteName);
+	CGUISpriteInstance &operator=(CStr SpriteName);
+	void Draw(CRect Size, std::map<CStr, CGUISprite> &Sprites);
+	void Invalidate();
+	bool IsEmpty() const;
+	CStr GetName() { return m_SpriteName; }
+
+private:
+	CStr m_SpriteName;
+
+	// Stored drawing calls, for more efficient rendering
+	GUIRenderer::DrawCalls m_DrawCallCache;
+	// Size of previously rendered sprite; the cache is invalidated
+	// whenever this changes.
+	CRect m_CachedSize;
 };
 
 #endif

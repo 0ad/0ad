@@ -21,7 +21,6 @@ gee@pyro.nu
 //--------------------------------------------------------
 //  Includes / Compiler directives
 //--------------------------------------------------------
-#include "GUI.h"
 #include "Parser.h"
 // TODO Gee: New
 #include "Overlay.h"
@@ -35,39 +34,6 @@ class CGUIString;
 
 template <typename T>
 bool __ParseString(const CStr& Value, T &tOutput);
-
-template <>
-bool __ParseString<bool>(const CStr& Value, bool &Output);
-
-template <>
-bool __ParseString<int>(const CStr& Value, int &Output);
-
-template <>
-bool __ParseString<float>(const CStr& Value, float &Output);
-
-template <>
-bool __ParseString<CRect>(const CStr& Value, CRect &Output);
-
-template <>
-bool __ParseString<CClientArea>(const CStr& Value, CClientArea &Output);
-
-template <>
-bool __ParseString<CColor>(const CStr& Value, CColor &Output);
-
-template <>
-bool __ParseString<CSize>(const CStr& Value, CSize &Output);
-
-template <>
-bool __ParseString<EAlign>(const CStr& Value, EAlign &Output);
-
-template <>
-bool __ParseString<EVAlign>(const CStr& Value, EVAlign &Output);
-
-template <>
-bool __ParseString<CGUIString>(const CStr& Value, CGUIString &Output);
-
-template <>
-bool __ParseString<CStrW>(const CStr& Value, CStrW &Output);
 
 
 // Icon, you create them in the XML file with root element <setup>
@@ -129,6 +95,8 @@ public:
 //--------------------------------------------------------
 class CGUI;
 class IGUIObject;
+struct SGUIMessage;
+class CGUISpriteInstance;
 
 /**
  * @author Gustav Larsson
@@ -211,7 +179,7 @@ public:
 	 * Sets a value by name using a real datatype as input.
 	 *
 	 * This is the official way of setting a setting, no other
-	 *  way should only causiously be used!
+	 *  way should only cautiously be used!
 	 *
 	 * @param pObject Object pointer
 	 * @param Setting Setting by name
@@ -338,10 +306,12 @@ public:
 	 * @param sec Secondary sprite if Primary should fail
 	 * @return Resulting string
 	 */
-	static CStr FallBackSprite(const CStr& prim, const CStr& sec)
+	static CGUISpriteInstance& FallBackSprite(
+									CGUISpriteInstance& prim,
+									CGUISpriteInstance& sec)
 	{
 		// CStr() == empty string, null
-		return ((prim!=CStr())?(prim):(sec));
+		return (prim.IsEmpty() ? sec : prim);
 	}
 
 	/**

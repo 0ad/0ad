@@ -83,38 +83,38 @@ struct SGUIScrollBarStyle
 	//--------------------------------------------------------
 	//@{
 
-	CStr m_SpriteButtonTop;
-	CStr m_SpriteButtonTopPressed;
-	CStr m_SpriteButtonTopDisabled;
-	CStr m_SpriteButtonTopOver;
+	CGUISpriteInstance m_SpriteButtonTop;
+	CGUISpriteInstance m_SpriteButtonTopPressed;
+	CGUISpriteInstance m_SpriteButtonTopDisabled;
+	CGUISpriteInstance m_SpriteButtonTopOver;
 
-	CStr m_SpriteButtonBottom;
-	CStr m_SpriteButtonBottomPressed;
-	CStr m_SpriteButtonBottomDisabled;
-	CStr m_SpriteButtonBottomOver;
+	CGUISpriteInstance m_SpriteButtonBottom;
+	CGUISpriteInstance m_SpriteButtonBottomPressed;
+	CGUISpriteInstance m_SpriteButtonBottomDisabled;
+	CGUISpriteInstance m_SpriteButtonBottomOver;
 
-	CStr m_SpriteBarVertical;
-	CStr m_SpriteBarVerticalOver;
-	CStr m_SpriteBarVerticalPressed;
+	CGUISpriteInstance m_SpriteBarVertical;
+	CGUISpriteInstance m_SpriteBarVerticalOver;
+	CGUISpriteInstance m_SpriteBarVerticalPressed;
 
-	CStr m_SpriteBackVertical;
+	CGUISpriteInstance m_SpriteBackVertical;
 
 	//@}
 	//--------------------------------------------------------
-	/** @name Verical Sprites */
+	/** @name Vertical Sprites */
 	//--------------------------------------------------------
 	//@{
 
-	CStr m_SpriteButtonLeft;
-	CStr m_SpriteButtonLeftPressed;
-	CStr m_SpriteButtonLeftDisabled;
+	CGUISpriteInstance m_SpriteButtonLeft;
+	CGUISpriteInstance m_SpriteButtonLeftPressed;
+	CGUISpriteInstance m_SpriteButtonLeftDisabled;
 
-	CStr m_SpriteButtonRight;
-	CStr m_SpriteButtonRightPressed;
-	CStr m_SpriteButtonRightDisabled;
+	CGUISpriteInstance m_SpriteButtonRight;
+	CGUISpriteInstance m_SpriteButtonRightPressed;
+	CGUISpriteInstance m_SpriteButtonRightDisabled;
 
-	CStr m_SpriteBackHorizontal;
-	CStr m_SpriteBarHorizontal;
+	CGUISpriteInstance m_SpriteBackHorizontal;
+	CGUISpriteInstance m_SpriteBarHorizontal;
 
 	//@}
 };
@@ -288,7 +288,7 @@ public:
 	 * Get style used by the scrollbar
 	 * @return Scroll bar style struct.
 	 */
-	const SGUIScrollBarStyle * GetStyle() const;
+	SGUIScrollBarStyle * GetStyle() const;
 
 protected:
 	/**

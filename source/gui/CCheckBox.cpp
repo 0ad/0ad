@@ -15,36 +15,36 @@ using namespace std;
 //-------------------------------------------------------------------
 CCheckBox::CCheckBox()
 {
-/*	bool			m_Checked;
-	CStr			m_Font;
-	CStr			m_Sprite;
-	CStr			m_SpriteDisabled;
-	CStr			m_SpriteOver;
-	CStr			m_SpritePressed;
-	CStr			m_Sprite2;
-	CStr			m_Sprite2Disabled;
-	CStr			m_Sprite2Over;
-	CStr			m_Sprite2Pressed;
-	int				m_SquareSide;
-	EAlign			m_TextAlign;
-	CColor			m_TextColor;
-	CColor			m_TextColorDisabled;
-	CColor			m_TextColorOver;
-	CColor			m_TextColorPressed;
-	EVAlign			m_TextValign;
-	CStr			m_ToolTip;
-	CStr			m_ToolTipStyle;
+/*	bool				m_Checked;
+	CStr				m_Font;
+	CGUISpriteInstance	m_Sprite;
+	CGUISpriteInstance	m_SpriteDisabled;
+	CGUISpriteInstance	m_SpriteOver;
+	CGUISpriteInstance	m_SpritePressed;
+	CGUISpriteInstance	m_Sprite2;
+	CGUISpriteInstance	m_Sprite2Disabled;
+	CGUISpriteInstance	m_Sprite2Over;
+	CGUISpriteInstance	m_Sprite2Pressed;
+	int					m_SquareSide;
+	EAlign				m_TextAlign;
+	CColor				m_TextColor;
+	CColor				m_TextColorDisabled;
+	CColor				m_TextColorOver;
+	CColor				m_TextColorPressed;
+	EVAlign				m_TextValign;
+	CStr				m_ToolTip;
+	CStr				m_ToolTipStyle;
 */
 	AddSetting(GUIST_CGUIString,		"caption");
 	AddSetting(GUIST_bool,				"checked");
-	AddSetting(GUIST_CStr,				"sprite");
-	AddSetting(GUIST_CStr,				"sprite-over");
-	AddSetting(GUIST_CStr,				"sprite-pressed");
-	AddSetting(GUIST_CStr,				"sprite-disabled");
-	AddSetting(GUIST_CStr,				"sprite2");
-	AddSetting(GUIST_CStr,				"sprite2-over");
-	AddSetting(GUIST_CStr,				"sprite2-pressed");
-	AddSetting(GUIST_CStr,				"sprite2-disabled");
+	AddSetting(GUIST_CGUISpriteInstance,"sprite");
+	AddSetting(GUIST_CGUISpriteInstance,"sprite-over");
+	AddSetting(GUIST_CGUISpriteInstance,"sprite-pressed");
+	AddSetting(GUIST_CGUISpriteInstance,"sprite-disabled");
+	AddSetting(GUIST_CGUISpriteInstance,"sprite2");
+	AddSetting(GUIST_CGUISpriteInstance,"sprite2-over");
+	AddSetting(GUIST_CGUISpriteInstance,"sprite2-pressed");
+	AddSetting(GUIST_CGUISpriteInstance,"sprite2-disabled");
 	AddSetting(GUIST_int,				"square-side");
 
 	// Add text
@@ -123,21 +123,21 @@ void CCheckBox::Draw()
 	bool checked;
 	GUI<bool>::GetSetting(this, "checked", checked);
 
-	CStr sprite, sprite_over, sprite_pressed, sprite_disabled;
+	CGUISpriteInstance sprite, sprite_over, sprite_pressed, sprite_disabled;
 
 	if (checked)
 	{
-		GUI<CStr>::GetSetting(this, "sprite2", sprite);
-		GUI<CStr>::GetSetting(this, "sprite2-over", sprite_over);
-		GUI<CStr>::GetSetting(this, "sprite2-pressed", sprite_pressed);
-		GUI<CStr>::GetSetting(this, "sprite2-disabled", sprite_disabled);
-  	}
+		GUI<CGUISpriteInstance>::GetSetting(this, "sprite2", sprite);
+		GUI<CGUISpriteInstance>::GetSetting(this, "sprite2-over", sprite_over);
+		GUI<CGUISpriteInstance>::GetSetting(this, "sprite2-pressed", sprite_pressed);
+		GUI<CGUISpriteInstance>::GetSetting(this, "sprite2-disabled", sprite_disabled);
+	}
 	else
 	{
-		GUI<CStr>::GetSetting(this, "sprite", sprite);
-		GUI<CStr>::GetSetting(this, "sprite-over", sprite_over);
-		GUI<CStr>::GetSetting(this, "sprite-pressed", sprite_pressed);
-		GUI<CStr>::GetSetting(this, "sprite-disabled", sprite_disabled);
+		GUI<CGUISpriteInstance>::GetSetting(this, "sprite", sprite);
+		GUI<CGUISpriteInstance>::GetSetting(this, "sprite-over", sprite_over);
+		GUI<CGUISpriteInstance>::GetSetting(this, "sprite-pressed", sprite_pressed);
+		GUI<CGUISpriteInstance>::GetSetting(this, "sprite-disabled", sprite_disabled);
 	}
 
 	DrawButton(	rect, 
