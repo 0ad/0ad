@@ -15,779 +15,186 @@
 			FlipGUI();
 		]]></action>
 
+		<!-- GROUP: RESOURCE BAR -->
+		<object type="empty" name="session_top_bar" hotkey="resourcepool.toggle" size="0 0 100% 100%" z="1" >
+			<action on="Press"><![CDATA[
+				GUIObjectToggle("session_top_bar");
+			]]></action>
+
+			<object type="button" name="SN_RESOURCE_COUNTER_FOOD" style="resource_counter" sprite="resource_food_counter" tooltip="Food, plus some word-wrapping: Material, usually of plant or animal origin, that contains or consists of essential body nutrients, such as carbohydrates, fats, proteins, vitamins, or minerals, and is ingested and assimilated by an organism to produce energy, stimulate growth, and maintain life."><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_RESOURCE_COUNTER_FOOD]); ]]></action></object>
+			<object type="button" name="SN_RESOURCE_COUNTER_WOOD" style="resource_counter" sprite="resource_wood_counter" tooltip="Wood"><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_RESOURCE_COUNTER_WOOD]); ]]></action></object>
+			<object type="button" name="SN_RESOURCE_COUNTER_STONE" style="resource_counter" sprite="resource_stone_counter" tooltip="Stone"><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_RESOURCE_COUNTER_STONE]); ]]></action></object>
+			<object type="button" name="SN_RESOURCE_COUNTER_ORE" style="resource_counter" sprite="resource_ore_counter" tooltip="Ore"><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_RESOURCE_COUNTER_ORE]); ]]></action></object>
+			<object type="button" name="SN_RESOURCE_COUNTER_POPULATION" style="resource_counter" sprite="resource_population_counter" tooltip="Population"><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_RESOURCE_COUNTER_POPULATION]); ]]></action></object>
+		<!-- / GROUP: RESOURCE BAR -->
+		</object>
+
 		<!-- GROUP: GROUP PANE -->
 		<object type="empty" name="session_group_pane" hotkey="grouppane.toggle" size="0 0 100% 100%" z="1" hidden="true">
 			<action on="Press"><![CDATA[
 				GUIObjectToggle("session_group_pane");
 			]]></action>
 <!--
-			<object type="text" name="session_group_pane_bg" sprite="sprite1" z="60" ghost="true" hidden="false"/>
+			<object type="text" name="session_group_pane_bg" sprite="sprite1" z="60" ghost="true" />
 -->
-
-			<!-- First row. -->
-			<object type="button" name="session_group_pane_portrait_1" style="portrait" z="60" hidden="false">1
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 0, 0);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_1_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_2" style="portrait" z="60" hidden="false">2
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 0, 1);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_2_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_3" style="portrait" z="60" hidden="false">3
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 0, 2);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_3_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_4" style="portrait" z="60" hidden="false">4
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 0, 3);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_4_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_5" style="portrait" z="60" hidden="false">5
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 0, 4);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_5_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_6" style="portrait" z="60" hidden="false">6
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 0, 5);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_6_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_7" style="portrait" z="60" hidden="false">7
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 0, 6);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_7_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_8" style="portrait" z="60" hidden="false">8
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 0, 7);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_8_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_9" style="portrait" z="60" hidden="false">9
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 0, 8);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_9_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_10" style="portrait" z="60" hidden="false">10
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 0, 9);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_10_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_11" style="portrait" z="60" hidden="false">11
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 0, 10);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_11_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_12" style="portrait" z="60" hidden="false">12
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 0, 11);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_12_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_13" style="portrait" z="60" hidden="false">13
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 0, 12);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_13_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-
-			<!-- Second row. -->
-			<object type="button" name="session_group_pane_portrait_14" style="portrait" z="60" hidden="false">14
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 1, 0);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_14_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_15" style="portrait" z="60" hidden="false">15
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 1, 1);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_15_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_16" style="portrait" z="60" hidden="false">16
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 1, 2);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_16_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_17" style="portrait" z="60" hidden="false">17
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 1, 3);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_17_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_18" style="portrait" z="60" hidden="false">18
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 1, 4);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_18_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_19" style="portrait" z="60" hidden="false">19
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 1, 5);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_19_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_20" style="portrait" z="60" hidden="false">20
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 1, 6);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_20_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_21" style="portrait" z="60" hidden="false">21
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 1, 7);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_21_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_22" style="portrait" z="60" hidden="false">22
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 1, 8);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_22_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_23" style="portrait" z="60" hidden="false">23
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 1, 9);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_23_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_24" style="portrait" z="60" hidden="false">24
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 1, 10);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_24_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_25" style="portrait" z="60" hidden="false">25
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 1, 11);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_25_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<!-- Third row. -->
-			<object type="button" name="session_group_pane_portrait_26" style="portrait" z="60" hidden="false">26
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 1, 12);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_26_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_27" style="portrait" z="60" hidden="false">27
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 2, 0);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_27_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_28" style="portrait" z="60" hidden="false">28
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 2, 1);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_28_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_29" style="portrait" z="60" hidden="false">29
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 2, 2);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_29_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_30" style="portrait" z="60" hidden="false">30
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 2, 3);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_30_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_31" style="portrait" z="60" hidden="false">31
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 2, 4);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_31_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_32" style="portrait" z="60" hidden="false">32
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 2, 5);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_32_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_33" style="portrait" z="60" hidden="false">33
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 2, 6);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_33_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_34" style="portrait" z="60" hidden="false">34
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 2, 7);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_34_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_35" style="portrait" z="60" hidden="false">35
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 2, 8);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_35_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_36" style="portrait" z="60" hidden="false">36
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 2, 9);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_36_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_37" style="portrait" z="60" hidden="false">37
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 2, 10);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_37_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_38" style="portrait" z="60" hidden="false">38
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 2, 11);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_38_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<!-- Fourth row. -->
-			<object type="button" name="session_group_pane_portrait_39" style="portrait" z="60" hidden="false">39
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 2, 12);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_39_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_40" style="portrait" z="60" hidden="false">40
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 3, 0);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_40_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_41" style="portrait" z="60" hidden="false">41
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 3, 1);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_41_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_42" style="portrait" z="60" hidden="false">42
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 3, 2);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_42_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_43" style="portrait" z="60" hidden="false">43
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 3, 3);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_43_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_44" style="portrait" z="60" hidden="false">44
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 3, 4);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_44_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_45" style="portrait" z="60" hidden="false">45
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 3, 5);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_45_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_46" style="portrait" z="60" hidden="false">46
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 3, 6);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_46_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_47" style="portrait" z="60" hidden="false">47
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 3, 7);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_47_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_48" style="portrait" z="60" hidden="false">48
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 3, 8);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_48_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_49" style="portrait" z="60" hidden="false">49
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 3, 9);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_49_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-
-			<object type="button" name="session_group_pane_portrait_50" style="portrait" z="60" hidden="false">50
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 3, 10);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_50_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_51" style="portrait" z="60" hidden="false">51
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 3, 11);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_51_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-			<object type="button" name="session_group_pane_portrait_52" style="portrait" z="60" hidden="false">51
-				<action on="Load"><![CDATA[
-					AddSizeGroupPane(this.name, 3, 12);
-				]]></action>
-			</object>
-			<object type="progressbar" name="session_group_pane_portrait_52_bar" style="group_portrait_bar" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeGroupPaneBar(this.name);
-				]]></action>
-			</object>
-
-		</object>
-
-		<!-- GROUP: RESOURCE BAR -->
-		<object type="empty" name="session_top_bar" hotkey="resourcepool.toggle" size="0 0 100% 100%" z="1" hidden="false">
-			<action on="Press"><![CDATA[
-				GUIObjectToggle("session_top_bar");
-			]]></action>
-
-			<object type="button" name="resource_food_counter" sprite="resource_food_counter" style="resource_counter" z="70" tooltip="Food, plus some word-wrapping: Material, usually of plant or animal origin, that contains or consists of essential body nutrients, such as carbohydrates, fats, proteins, vitamins, or minerals, and is ingested and assimilated by an organism to produce energy, stimulate growth, and maintain life.">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_resource_food_x, -crd_resource_food_y-crd_resource_counter_height, crd_resource_food_x+crd_resource_counter_width, -crd_resource_food_y, mid_screen, bottom_screen, mid_screen, bottom_screen,
-					crd_resource_food_x, crd_resource_food_y, crd_resource_food_x+crd_resource_counter_width, crd_resource_food_y+crd_resource_counter_height, mid_screen, top_screen, mid_screen, top_screen);
-				]]></action>
-			</object>
-
-			<object type="button" name="resource_wood_counter" sprite="resource_wood_counter" style="resource_counter" z="70" tooltip="Wood">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_resource_wood_x, -crd_resource_wood_y-crd_resource_counter_height, crd_resource_wood_x+crd_resource_counter_width, -crd_resource_wood_y, mid_screen, bottom_screen, mid_screen, bottom_screen,
-					crd_resource_wood_x, crd_resource_wood_y, crd_resource_wood_x+crd_resource_counter_width, crd_resource_wood_y+crd_resource_counter_height, mid_screen, top_screen, mid_screen, top_screen);
-				]]></action>
-			</object>
-
-			<object type="button" name="resource_stone_counter" sprite="resource_stone_counter" style="resource_counter" z="70" tooltip="Stone">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_resource_stone_x, -crd_resource_stone_y-crd_resource_counter_height, crd_resource_stone_x+crd_resource_counter_width, -crd_resource_stone_y, mid_screen, bottom_screen, mid_screen, bottom_screen,
-					crd_resource_stone_x, crd_resource_stone_y, crd_resource_stone_x+crd_resource_counter_width, crd_resource_stone_y+crd_resource_counter_height, mid_screen, top_screen, mid_screen, top_screen);
-				]]></action>
-			</object>
-
-			<object type="button" name="resource_ore_counter" sprite="resource_ore_counter" style="resource_counter" z="70" tooltip="Ore">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_resource_ore_x, -crd_resource_ore_y-crd_resource_counter_height, crd_resource_ore_x+crd_resource_counter_width, -crd_resource_ore_y, mid_screen, bottom_screen, mid_screen, bottom_screen,
-					crd_resource_ore_x, crd_resource_ore_y, crd_resource_ore_x+crd_resource_counter_width, crd_resource_ore_y+crd_resource_counter_height, mid_screen, top_screen, mid_screen, top_screen);
-				]]></action>
-			</object>
-
-			<object type="button" name="resource_population_counter" sprite="resource_population_counter" style="resource_counter" z="70" tooltip="Population">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_resource_population_x, -crd_resource_population_y-crd_resource_counter_height, crd_resource_population_x+crd_resource_counter_long_width, -crd_resource_population_y, mid_screen, bottom_screen, mid_screen, bottom_screen,
-					crd_resource_population_x, crd_resource_population_y, crd_resource_population_x+crd_resource_counter_long_width, crd_resource_population_y+crd_resource_counter_height, mid_screen, top_screen, mid_screen, top_screen);
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_1" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_1_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_2" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_2_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_3" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_3_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_4" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_4_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_5" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_5_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_6" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_6_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_7" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_7_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_8" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_8_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_9" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_9_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_10" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_10_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_11" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_11_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_12" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_12_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_13" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_13_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_14" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_14_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_15" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_15_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_16" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_16_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_17" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_17_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_18" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_18_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_19" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_19_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_20" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_20_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_21" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_21_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_22" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_22_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_23" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_23_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_24" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_24_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_25" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_25_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_26" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_26_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_27" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_27_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_28" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_28_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_29" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_29_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_30" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_30_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_31" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_31_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_32" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_32_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_33" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_33_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_34" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_34_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_35" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_35_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_36" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_36_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_37" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_37_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_38" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_38_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_39" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_39_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_40" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_40_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_41" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_41_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_42" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_42_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_43" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_43_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_44" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_44_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_45" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_45_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_46" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_46_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_47" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_47_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_48" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_48_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_49" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_49_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_50" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_50_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_51" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_51_BAR" style="group_portrait_bar" />
+			<object type="button" name="SESSION_GROUP_PANE_PORTRAIT_52" style="portrait" />
+			<object type="progressbar" name="SESSION_GROUP_PANE_PORTRAIT_52_BAR" style="group_portrait_bar" >
+				<action on="Load"><![CDATA[
+					// Seek through ALL group portraits and set their sizes at once. (So make sure this always goes in the last menu button.)
+					groupPaneCounter = 1;
+					for (rowLoop = 0; rowLoop < crd_grppane_prt_row.last; rowLoop++)
+					{
+						for (colLoop = 0; colLoop < crd_grppane_prt_col.last; colLoop++)
+						{
+							AddSizeGroupPane("SESSION_GROUP_PANE_PORTRAIT_" + groupPaneCounter, rowLoop, colLoop);
+							getGUIObjectByName("SESSION_GROUP_PANE_PORTRAIT_" + groupPaneCounter).caption = groupPaneCounter;
+							AddSizeGroupPaneBar("SESSION_GROUP_PANE_PORTRAIT_" + groupPaneCounter + "_BAR");
+							groupPaneCounter++;
+						}
+					}
 				]]></action>
 			</object>
-
-		<!-- / GROUP: RESOURCE BAR -->
 		</object>
 
 		<!-- GROUP: STATUS ORB -->
-		<object type="empty" name="session_status_orb" hotkey="statusorb.toggle" size="0 0 100% 100%" z="1" hidden="false">
+		<object type="empty" name="session_status_orb" hotkey="statusorb.toggle" size="0 0 100% 100%" z="1" >
 			<action on="Press"><![CDATA[
 				GUIObjectToggle("session_status_orb");
 			]]></action>
 
-			<!-- STATUS ORB BACKGROUND -->
-			<object type="button" name="session_panel_status_bg" z="69" ghost="true" hidden="false">
+			<object type="text" name="SN_STATUS_PANE_BG" style="session_ghost_object" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_BG]); ]]></action></object>
+			<object type="text" name="SN_STATUS_PANE_HEADING" style="session_ghost_subheading_center_object" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_HEADING], Crd[SN_STATUS_PANE_HEADING_FLP]); ]]></action></object>
+			<object type="button" name="SN_STATUS_PANE_PORTRAIT" style="portrait" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_PORTRAIT], Crd[SN_STATUS_PANE_PORTRAIT_FLP]); ]]></action></object>
+			<object type="text" name="SN_STATUS_PANE_ICON_RANK" style="session_ghost_object" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_ICON_RANK], Crd[SN_STATUS_PANE_ICON_RANK_FLP]); ]]></action></object>
+			<object type="progressbar" name="SN_STATUS_PANE_ICON_HP_BAR" style="group_portrait_bar" sprite_background="back_bar" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_ICON_HP_BAR], Crd[SN_STATUS_PANE_ICON_HP_BAR_FLP]); ]]></action></object>
+			<object type="text" name="SN_STATUS_PANE_ICON_HP_TEXT" style="session_ghost_text_left_centre_object" textcolor="0 255 0" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_ICON_HP_TEXT], Crd[SN_STATUS_PANE_ICON_HP_TEXT_FLP]); ]]></action></object>
+			<object type="progressbar" name="SN_STATUS_PANE_ICON_XP_BAR" style="up_bar" sprite_background="back_bar" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_ICON_XP_BAR], Crd[SN_STATUS_PANE_ICON_XP_BAR_FLP]); ]]></action></object>
+			<object type="text" name="SN_STATUS_PANE_ICON_XP_TEXT" style="session_ghost_text_left_centre_object" textcolor="255 255 0" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_ICON_XP_TEXT], Crd[SN_STATUS_PANE_ICON_XP_TEXT_FLP]); ]]></action></object>
+			<object type="text" name="SN_STATUS_PANE_NAME1" style="session_ghost_heading_left_object" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_NAME1], Crd[SN_STATUS_PANE_NAME1_FLP]); ]]></action></object>
+			<object type="text" name="SN_STATUS_PANE_2STAT" style="session_ghost_midheading_center_bottom_object" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_2STAT], Crd[SN_STATUS_PANE_2STAT_FLP]); GUIObjectSetCaption("SN_STATUS_PANE_2STAT", "[icon=icon_statistic_garrison] 23/30 [icon=icon_resource_wood] 1575"); ]]></action></object>
+			<object type="text" name="SN_STATUS_PANE_STAT1" style="session_ghost_subheading_object" />
+			<object type="text" name="SN_STATUS_PANE_STAT2" style="session_ghost_miniheading_object" />
+			<object type="text" name="SN_STATUS_PANE_STAT3" style="session_ghost_miniheading_object" />
+			<object type="text" name="SN_STATUS_PANE_STAT4" style="session_ghost_miniheading_object" />
+			<object type="text" name="SN_STATUS_PANE_STAT5" style="session_ghost_subheading_object" />
+			<object type="text" name="SN_STATUS_PANE_STAT6" style="session_ghost_subheading_object" />
+			<object type="text" name="SN_STATUS_PANE_STAT7" style="session_ghost_subheading_object" />
+			<object type="text" name="SN_STATUS_PANE_STAT8" style="session_ghost_miniheading_object" />
+			<object type="text" name="SN_STATUS_PANE_STAT9" style="session_ghost_miniheading_object" />
+			<object type="text" name="SN_STATUS_PANE_STAT10" style="session_ghost_miniheading_object" />
+			<object type="text" name="SN_STATUS_PANE_STAT11" style="session_ghost_subheading_left_object" />
+			<object type="text" name="SN_STATUS_PANE_STAT12" style="session_ghost_subheading_left_object">
 				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_status_orb_bkg_x, crd_status_orb_bkg_y, crd_status_orb_bkg_x+crd_status_orb_bkg_width, crd_status_orb_bkg_y+crd_status_orb_bkg_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_bkg_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height, crd_status_orb_bkg_x+crd_status_orb_bkg_width, -crd_status_orb_bkg_y, left_screen, bottom_screen, left_screen, bottom_screen);
-				]]></action>
-			</object>
-
-			<!-- PLAYER / CIV NAME HEADING -->
-			<object type="button" name="session_panel_status_heading" font="verdana10" textcolor="200 200 200" text_align="center" ghost="true" z="70" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_status_orb_heading_x, crd_status_orb_heading_y, crd_status_orb_heading_x+crd_status_orb_heading_width, crd_status_orb_heading_y+crd_status_orb_heading_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_heading_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_heading_y, crd_status_orb_heading_x+crd_status_orb_heading_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_heading_y+crd_status_orb_heading_height, left_screen, bottom_screen, left_screen, bottom_screen);
-				]]></action>
-			</object>
-
-			<!-- SELECTED UNIT LARGE PORTRAIT -->
-			<object type="button" name="session_panel_status_portrait" style="portrait" z="70" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_status_orb_portrait_x, crd_status_orb_portrait_y, crd_status_orb_portrait_x+crd_status_orb_portrait_width, crd_status_orb_portrait_y+crd_status_orb_portrait_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_portrait_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_portrait_y, crd_status_orb_portrait_x+crd_status_orb_portrait_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_portrait_y+crd_status_orb_portrait_height, left_screen, bottom_screen, left_screen, bottom_screen);
-				]]></action>
-			</object>
-
-			<!-- RANK ICON -->
-			<object type="button" name="session_panel_status_icon_rank" ghost="true" z="70" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_status_orb_rank_x, crd_status_orb_rank_y, crd_status_orb_rank_x+crd_status_orb_rank_width, crd_status_orb_rank_y+crd_status_orb_rank_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_rank_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_rank_y, crd_status_orb_rank_x+crd_status_orb_rank_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_rank_y+crd_status_orb_rank_height, left_screen, bottom_screen, left_screen, bottom_screen);
-				]]></action>
-			</object>
-
-			<!-- HITPOINTS BAR -->
-			<object type="progressbar" name="session_panel_status_icon_hp_bar" style="group_portrait_bar" sprite_background="back_bar" ghost="true" z="70" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_status_orb_hpbar_x, crd_status_orb_hpbar_y, crd_status_orb_hpbar_x+crd_status_orb_hpbar_width, crd_status_orb_hpbar_y+crd_status_orb_hpbar_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_hpbar_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_hpbar_y, crd_status_orb_portrait_x+crd_status_orb_hpbar_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_hpbar_y+crd_status_orb_hpbar_height, left_screen, bottom_screen, left_screen, bottom_screen);
-				]]></action>
-			</object>
-
-			<!-- HITPOINTS TEXT -->
-			<object type="button" name="session_panel_status_icon_hp_text" font="verdana10" textcolor="0 255 0" text_align="left" text_valign="center" ghost="true" z="70" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_status_orb_hpbar_text_x, crd_status_orb_hpbar_text_y, crd_status_orb_hpbar_text_x+crd_status_orb_hpbar_text_width, crd_status_orb_hpbar_text_y+crd_status_orb_hpbar_text_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_hpbar_text_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_hpbar_text_y, crd_status_orb_hpbar_text_x+crd_status_orb_hpbar_text_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_hpbar_text_y+crd_status_orb_hpbar_text_height, left_screen, bottom_screen, left_screen, bottom_screen);
-				]]></action>
-			</object>
-
-			<!-- EXPERIENCE BAR -->
-			<object type="progressbar" name="session_panel_status_icon_xp_bar" style="up_bar" sprite_background="back_bar" ghost="true" z="70" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_status_orb_xpbar_x, crd_status_orb_xpbar_y, crd_status_orb_xpbar_x+crd_status_orb_xpbar_width, crd_status_orb_xpbar_y+crd_status_orb_xpbar_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_xpbar_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_xpbar_y, crd_status_orb_portrait_x+crd_status_orb_xpbar_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_xpbar_y+crd_status_orb_xpbar_height, left_screen, bottom_screen, left_screen, bottom_screen);
-				]]></action>
-			</object>
-
-			<!-- EXPERIENCE TEXT -->
-			<object type="button" name="session_panel_status_icon_xp_text" font="verdana10" textcolor="255 255 0" text_align="left" text_valign="center" ghost="true" z="70" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_status_orb_xpbar_text_x, crd_status_orb_xpbar_text_y, crd_status_orb_xpbar_text_x+crd_status_orb_xpbar_text_width, crd_status_orb_xpbar_text_y+crd_status_orb_xpbar_text_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_xpbar_text_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_xpbar_text_y, crd_status_orb_xpbar_text_x+crd_status_orb_xpbar_text_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_xpbar_text_y+crd_status_orb_xpbar_text_height, left_screen, bottom_screen, left_screen, bottom_screen);
-				]]></action>
-			</object>
-
-			<!-- NAME TEXT -->
-			<object type="button" name="session_panel_status_name1" font="verdana12" textcolor="200 200 200" ghost="true" z="70" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_status_orb_name1_x, crd_status_orb_name1_y, crd_status_orb_name1_x+crd_status_orb_name1_width, crd_status_orb_name1_y+crd_status_orb_name1_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_name1_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_name1_y, crd_status_orb_name1_x+crd_status_orb_name1_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_name1_y+crd_status_orb_name1_height, left_screen, bottom_screen, left_screen, bottom_screen);
-				]]></action>
-			</object>
-
-			<!-- GARRISON/SUPPLY COUNTER -->
-			<object type="button" name="session_panel_status_stat1" font="verdana11" textcolor="255 255 255" text_align="center" text_valign="bottom" ghost="true" z="70" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_status_orb_stat1_x, crd_status_orb_stat1_y, crd_status_orb_stat1_x+crd_status_orb_stat1_width, crd_status_orb_stat1_y+crd_status_orb_stat1_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_stat1_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat1_y, crd_status_orb_stat1_x+crd_status_orb_stat1_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat1_y+crd_status_orb_stat1_height, left_screen, bottom_screen, left_screen, bottom_screen);
-
-					getGUIObjectByName("session_panel_status_stat1").caption = "[icon=icon_statistic_garrison] 23/30 [icon=icon_resource_wood] 1575";
-				]]></action>
-			</object>
-
-			<!-- STATS -->
-			<object type="text" name="session_panel_status_stat1_1" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_status_orb_stat1_1_x, crd_status_orb_stat1_1_y, crd_status_orb_stat1_1_x+crd_status_orb_stat1_1_width, crd_status_orb_stat1_1_y+crd_status_orb_stat1_1_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_stat1_1_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat1_1_y, crd_status_orb_stat1_1_x+crd_status_orb_stat1_1_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat1_1_y+crd_status_orb_stat1_1_height, left_screen, bottom_screen, left_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="text" name="session_panel_status_stat2_1" font="verdana8" textcolor="200 200 200" ghost="true" z="70" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_status_orb_stat2_1_x, crd_status_orb_stat2_1_y, crd_status_orb_stat2_1_x+crd_status_orb_stat2_1_width, crd_status_orb_stat2_1_y+crd_status_orb_stat2_1_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_stat2_1_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat2_1_y, crd_status_orb_stat2_1_x+crd_status_orb_stat2_1_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat2_1_y+crd_status_orb_stat2_1_height, left_screen, bottom_screen, left_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="text" name="session_panel_status_stat3_1" font="verdana8" textcolor="200 200 200" ghost="true" z="70" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_status_orb_stat3_1_x, crd_status_orb_stat3_1_y, crd_status_orb_stat3_1_x+crd_status_orb_stat3_1_width, crd_status_orb_stat3_1_y+crd_status_orb_stat3_1_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_stat3_1_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat3_1_y, crd_status_orb_stat3_1_x+crd_status_orb_stat3_1_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat3_1_y+crd_status_orb_stat3_1_height, left_screen, bottom_screen, left_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="text" name="session_panel_status_stat4_1" font="verdana8" textcolor="200 200 200" ghost="true" z="70" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_status_orb_stat4_1_x, crd_status_orb_stat4_1_y, crd_status_orb_stat4_1_x+crd_status_orb_stat4_1_width, crd_status_orb_stat4_1_y+crd_status_orb_stat4_1_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_stat4_1_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat4_1_y, crd_status_orb_stat4_1_x+crd_status_orb_stat4_1_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat4_1_y+crd_status_orb_stat4_1_height, left_screen, bottom_screen, left_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="text" name="session_panel_status_stat5_1" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_status_orb_stat5_1_x, crd_status_orb_stat5_1_y, crd_status_orb_stat5_1_x+crd_status_orb_stat5_1_width, crd_status_orb_stat5_1_y+crd_status_orb_stat5_1_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_stat5_1_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat5_1_y, crd_status_orb_stat5_1_x+crd_status_orb_stat5_1_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat5_1_y+crd_status_orb_stat5_1_height, left_screen, bottom_screen, left_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="text" name="session_panel_status_stat6_1" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_status_orb_stat6_1_x, crd_status_orb_stat6_1_y, crd_status_orb_stat6_1_x+crd_status_orb_stat6_1_width, crd_status_orb_stat6_1_y+crd_status_orb_stat6_1_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_stat6_1_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat6_1_y, crd_status_orb_stat6_1_x+crd_status_orb_stat6_1_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat6_1_y+crd_status_orb_stat6_1_height, left_screen, bottom_screen, left_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="text" name="session_panel_status_stat1_2" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_status_orb_stat1_2_x, crd_status_orb_stat1_2_y, crd_status_orb_stat1_2_x+crd_status_orb_stat1_2_width, crd_status_orb_stat1_2_y+crd_status_orb_stat1_2_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_stat1_2_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat1_2_y, crd_status_orb_stat1_2_x+crd_status_orb_stat1_2_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat1_2_y+crd_status_orb_stat1_2_height, left_screen, bottom_screen, left_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="text" name="session_panel_status_stat2_2" font="verdana8" textcolor="200 200 200" ghost="true" z="70" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_status_orb_stat2_2_x, crd_status_orb_stat2_2_y, crd_status_orb_stat2_2_x+crd_status_orb_stat2_2_width, crd_status_orb_stat2_2_y+crd_status_orb_stat2_2_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_stat2_2_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat2_2_y, crd_status_orb_stat2_2_x+crd_status_orb_stat2_2_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat2_2_y+crd_status_orb_stat2_2_height, left_screen, bottom_screen, left_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="text" name="session_panel_status_stat3_2" font="verdana8" textcolor="200 200 200" ghost="true" z="70" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_status_orb_stat3_2_x, crd_status_orb_stat3_2_y, crd_status_orb_stat3_2_x+crd_status_orb_stat3_2_width, crd_status_orb_stat3_2_y+crd_status_orb_stat3_2_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_stat3_2_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat3_2_y, crd_status_orb_stat3_2_x+crd_status_orb_stat3_2_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat3_2_y+crd_status_orb_stat3_2_height, left_screen, bottom_screen, left_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="text" name="session_panel_status_stat4_2" font="verdana8" textcolor="200 200 200" ghost="true" z="70" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_status_orb_stat4_2_x, crd_status_orb_stat4_2_y, crd_status_orb_stat4_2_x+crd_status_orb_stat4_2_width, crd_status_orb_stat4_2_y+crd_status_orb_stat4_2_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_stat4_2_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat4_2_y, crd_status_orb_stat4_2_x+crd_status_orb_stat4_2_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat4_2_y+crd_status_orb_stat4_2_height, left_screen, bottom_screen, left_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="text" name="session_panel_status_stat5_2" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_status_orb_stat5_2_x, crd_status_orb_stat5_2_y, crd_status_orb_stat5_2_x+crd_status_orb_stat5_2_width, crd_status_orb_stat5_2_y+crd_status_orb_stat5_2_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_stat5_2_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat5_2_y, crd_status_orb_stat5_2_x+crd_status_orb_stat5_2_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat5_2_y+crd_status_orb_stat5_2_height, left_screen, bottom_screen, left_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="text" name="session_panel_status_stat6_2" font="verdana10" textcolor="200 200 200" ghost="true" z="70" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_status_orb_stat6_2_x, crd_status_orb_stat6_2_y, crd_status_orb_stat6_2_x+crd_status_orb_stat6_2_width, crd_status_orb_stat6_2_y+crd_status_orb_stat6_2_height, left_screen, top_screen, left_screen, top_screen,
-					crd_status_orb_stat6_2_x, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat6_2_y, crd_status_orb_stat6_2_x+crd_status_orb_stat6_2_width, -crd_status_orb_bkg_y-crd_status_orb_bkg_height+crd_status_orb_stat6_2_y+crd_status_orb_stat6_2_height, left_screen, bottom_screen, left_screen, bottom_screen);
+					// Seek through ALL objects and set their sizes at once. (So make sure this always goes in the last control.)
+					for (SN_STATUS_PANE_STAT.curr = 1; SN_STATUS_PANE_STAT.curr < SN_STATUS_PANE_STAT.last; SN_STATUS_PANE_STAT.curr++)
+						addSizeCoordArray("SN_STATUS_PANE_STAT" + SN_STATUS_PANE_STAT.curr, Crd[SN_STATUS_PANE_STAT[SN_STATUS_PANE_STAT.curr]], Crd[SN_STATUS_PANE_STAT_FLP[SN_STATUS_PANE_STAT.curr]]);
 				]]></action>
 			</object>
 
 			<!-- PRIMARY COMMAND BUTTONS (arcs the Status Orb) -->
-			<object type="button" name="session_panel_status_command_pri_1" style="action" textcolor="255 255 255" z="70" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_1" style="action" textcolor="255 255 255" z="70" >
 				<action on="Load"><![CDATA[
 					AddSizeCoord(this.name,
 					crd_status_orb_command_1_x, crd_status_orb_command_1_y, crd_status_orb_command_1_x+crd_status_orb_command_1_width, crd_status_orb_command_1_y+crd_status_orb_command_1_height, left_screen, top_screen, left_screen, top_screen,
@@ -798,9 +205,9 @@
 				]]></action>
 			</object>
 
-			<object type="empty" name="session_panel_status_command_pri_1_group" size="0 0 100% 100%" z="1" hidden="false">
+			<object type="empty" name="session_panel_status_command_pri_1_group" size="0 0 100% 100%" z="1" >
 
-				<object type="button" name="session_panel_status_command_pri_1_1" style="action" textcolor="255 255 255" z="70" hidden="false">1
+				<object type="button" name="session_panel_status_command_pri_1_1" style="action" textcolor="255 255 255" z="70" >1
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_1_1_x, crd_status_orb_command_1_1_y, crd_status_orb_command_1_1_x+crd_status_orb_command_1_1_width, crd_status_orb_command_1_1_y+crd_status_orb_command_1_1_height, left_screen, top_screen, left_screen, top_screen,
@@ -808,7 +215,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_1_2" style="action" textcolor="255 255 255" z="70" hidden="false">2
+				<object type="button" name="session_panel_status_command_pri_1_2" style="action" textcolor="255 255 255" z="70" >2
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_1_2_x, crd_status_orb_command_1_2_y, crd_status_orb_command_1_2_x+crd_status_orb_command_1_2_width, crd_status_orb_command_1_2_y+crd_status_orb_command_1_2_height, left_screen, top_screen, left_screen, top_screen,
@@ -816,7 +223,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_1_3" style="action" textcolor="255 255 255" z="70" hidden="false">3
+				<object type="button" name="session_panel_status_command_pri_1_3" style="action" textcolor="255 255 255" z="70" >3
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_1_3_x, crd_status_orb_command_1_3_y, crd_status_orb_command_1_3_x+crd_status_orb_command_1_3_width, crd_status_orb_command_1_3_y+crd_status_orb_command_1_3_height, left_screen, top_screen, left_screen, top_screen,
@@ -824,7 +231,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_1_4" style="action" textcolor="255 255 255" z="70" hidden="false">4
+				<object type="button" name="session_panel_status_command_pri_1_4" style="action" textcolor="255 255 255" z="70" >4
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_1_4_x, crd_status_orb_command_1_4_y, crd_status_orb_command_1_4_x+crd_status_orb_command_1_4_width, crd_status_orb_command_1_4_y+crd_status_orb_command_1_4_height, left_screen, top_screen, left_screen, top_screen,
@@ -832,7 +239,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_1_5" style="action" textcolor="255 255 255" z="70" hidden="false">5
+				<object type="button" name="session_panel_status_command_pri_1_5" style="action" textcolor="255 255 255" z="70" >5
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_1_5_x, crd_status_orb_command_1_5_y, crd_status_orb_command_1_5_x+crd_status_orb_command_1_5_width, crd_status_orb_command_1_5_y+crd_status_orb_command_1_5_height, left_screen, top_screen, left_screen, top_screen,
@@ -840,7 +247,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_1_6" style="action" textcolor="255 255 255" z="70" hidden="false">6
+				<object type="button" name="session_panel_status_command_pri_1_6" style="action" textcolor="255 255 255" z="70" >6
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_1_6_x, crd_status_orb_command_1_6_y, crd_status_orb_command_1_6_x+crd_status_orb_command_1_6_width, crd_status_orb_command_1_6_y+crd_status_orb_command_1_6_height, left_screen, top_screen, left_screen, top_screen,
@@ -848,7 +255,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_1_7" style="action" textcolor="255 255 255" z="70" hidden="false">7
+				<object type="button" name="session_panel_status_command_pri_1_7" style="action" textcolor="255 255 255" z="70" >7
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_1_7_x, crd_status_orb_command_1_7_y, crd_status_orb_command_1_7_x+crd_status_orb_command_1_7_width, crd_status_orb_command_1_7_y+crd_status_orb_command_1_7_height, left_screen, top_screen, left_screen, top_screen,
@@ -856,7 +263,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_1_8" style="action" textcolor="255 255 255" z="70" hidden="false">8
+				<object type="button" name="session_panel_status_command_pri_1_8" style="action" textcolor="255 255 255" z="70" >8
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_1_8_x, crd_status_orb_command_1_8_y, crd_status_orb_command_1_8_x+crd_status_orb_command_1_8_width, crd_status_orb_command_1_8_y+crd_status_orb_command_1_8_height, left_screen, top_screen, left_screen, top_screen,
@@ -864,7 +271,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_1_9" style="action" textcolor="255 255 255" z="70" hidden="false">9
+				<object type="button" name="session_panel_status_command_pri_1_9" style="action" textcolor="255 255 255" z="70" >9
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_1_9_x, crd_status_orb_command_1_9_y, crd_status_orb_command_1_9_x+crd_status_orb_command_1_9_width, crd_status_orb_command_1_9_y+crd_status_orb_command_1_9_height, left_screen, top_screen, left_screen, top_screen,
@@ -872,7 +279,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_1_10" style="action" textcolor="255 255 255" z="70" hidden="false">10
+				<object type="button" name="session_panel_status_command_pri_1_10" style="action" textcolor="255 255 255" z="70" >10
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_1_10_x, crd_status_orb_command_1_10_y, crd_status_orb_command_1_10_x+crd_status_orb_command_1_10_width, crd_status_orb_command_1_10_y+crd_status_orb_command_1_10_height, left_screen, top_screen, left_screen, top_screen,
@@ -880,7 +287,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_1_11" style="action" textcolor="255 255 255" z="70" hidden="false">11
+				<object type="button" name="session_panel_status_command_pri_1_11" style="action" textcolor="255 255 255" z="70" >11
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_1_11_x, crd_status_orb_command_1_11_y, crd_status_orb_command_1_11_x+crd_status_orb_command_1_11_width, crd_status_orb_command_1_11_y+crd_status_orb_command_1_11_height, left_screen, top_screen, left_screen, top_screen,
@@ -888,7 +295,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_1_12" style="action" textcolor="255 255 255" z="70" hidden="false">12
+				<object type="button" name="session_panel_status_command_pri_1_12" style="action" textcolor="255 255 255" z="70" >12
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_1_12_x, crd_status_orb_command_1_12_y, crd_status_orb_command_1_12_x+crd_status_orb_command_1_12_width, crd_status_orb_command_1_12_y+crd_status_orb_command_1_12_height, left_screen, top_screen, left_screen, top_screen,
@@ -897,7 +304,7 @@
 				</object>
 			</object>
 
-			<object type="button" name="session_panel_status_command_pri_2" style="action" textcolor="255 255 255" z="70" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_2" style="action" textcolor="255 255 255" z="70" >
 				<action on="Load"><![CDATA[
 					AddSizeCoord(this.name,
 					crd_status_orb_command_2_x, crd_status_orb_command_2_y, crd_status_orb_command_2_x+crd_status_orb_command_2_width, crd_status_orb_command_2_y+crd_status_orb_command_2_height, left_screen, top_screen, left_screen, top_screen,
@@ -908,9 +315,9 @@
 				]]></action>
 			</object>
 
-			<object type="empty" name="session_panel_status_command_pri_2_group" size="0 0 100% 100%" z="1" hidden="false">
+			<object type="empty" name="session_panel_status_command_pri_2_group" size="0 0 100% 100%" z="1" >
 
-				<object type="button" name="session_panel_status_command_pri_2_1" style="action" textcolor="255 255 255" z="70" hidden="false">1
+				<object type="button" name="session_panel_status_command_pri_2_1" style="action" textcolor="255 255 255" z="70" >1
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_2_1_x, crd_status_orb_command_2_1_y, crd_status_orb_command_2_1_x+crd_status_orb_command_2_1_width, crd_status_orb_command_2_1_y+crd_status_orb_command_2_1_height, left_screen, top_screen, left_screen, top_screen,
@@ -918,7 +325,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_2_2" style="action" textcolor="255 255 255" z="70" hidden="false">2
+				<object type="button" name="session_panel_status_command_pri_2_2" style="action" textcolor="255 255 255" z="70" >2
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_2_2_x, crd_status_orb_command_2_2_y, crd_status_orb_command_2_2_x+crd_status_orb_command_2_2_width, crd_status_orb_command_2_2_y+crd_status_orb_command_2_2_height, left_screen, top_screen, left_screen, top_screen,
@@ -926,7 +333,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_2_3" style="action" textcolor="255 255 255" z="70" hidden="false">3
+				<object type="button" name="session_panel_status_command_pri_2_3" style="action" textcolor="255 255 255" z="70" >3
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_2_3_x, crd_status_orb_command_2_3_y, crd_status_orb_command_2_3_x+crd_status_orb_command_2_3_width, crd_status_orb_command_2_3_y+crd_status_orb_command_2_3_height, left_screen, top_screen, left_screen, top_screen,
@@ -934,7 +341,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_2_4" style="action" textcolor="255 255 255" z="70" hidden="false">4
+				<object type="button" name="session_panel_status_command_pri_2_4" style="action" textcolor="255 255 255" z="70" >4
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_2_4_x, crd_status_orb_command_2_4_y, crd_status_orb_command_2_4_x+crd_status_orb_command_2_4_width, crd_status_orb_command_2_4_y+crd_status_orb_command_2_4_height, left_screen, top_screen, left_screen, top_screen,
@@ -942,7 +349,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_2_5" style="action" textcolor="255 255 255" z="70" hidden="false">5
+				<object type="button" name="session_panel_status_command_pri_2_5" style="action" textcolor="255 255 255" z="70" >5
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_2_5_x, crd_status_orb_command_2_5_y, crd_status_orb_command_2_5_x+crd_status_orb_command_2_5_width, crd_status_orb_command_2_5_y+crd_status_orb_command_2_5_height, left_screen, top_screen, left_screen, top_screen,
@@ -950,7 +357,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_2_6" style="action" textcolor="255 255 255" z="70" hidden="false">6
+				<object type="button" name="session_panel_status_command_pri_2_6" style="action" textcolor="255 255 255" z="70" >6
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_2_6_x, crd_status_orb_command_2_6_y, crd_status_orb_command_2_6_x+crd_status_orb_command_2_6_width, crd_status_orb_command_2_6_y+crd_status_orb_command_2_6_height, left_screen, top_screen, left_screen, top_screen,
@@ -958,7 +365,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_2_7" style="action" textcolor="255 255 255" z="70" hidden="false">7
+				<object type="button" name="session_panel_status_command_pri_2_7" style="action" textcolor="255 255 255" z="70" >7
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_2_7_x, crd_status_orb_command_2_7_y, crd_status_orb_command_2_7_x+crd_status_orb_command_2_7_width, crd_status_orb_command_2_7_y+crd_status_orb_command_2_7_height, left_screen, top_screen, left_screen, top_screen,
@@ -966,7 +373,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_2_8" style="action" textcolor="255 255 255" z="70" hidden="false">8
+				<object type="button" name="session_panel_status_command_pri_2_8" style="action" textcolor="255 255 255" z="70" >8
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_2_8_x, crd_status_orb_command_2_8_y, crd_status_orb_command_2_8_x+crd_status_orb_command_2_8_width, crd_status_orb_command_2_8_y+crd_status_orb_command_2_8_height, left_screen, top_screen, left_screen, top_screen,
@@ -974,7 +381,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_2_9" style="action" textcolor="255 255 255" z="70" hidden="false">9
+				<object type="button" name="session_panel_status_command_pri_2_9" style="action" textcolor="255 255 255" z="70" >9
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_2_9_x, crd_status_orb_command_2_9_y, crd_status_orb_command_2_9_x+crd_status_orb_command_2_9_width, crd_status_orb_command_2_9_y+crd_status_orb_command_2_9_height, left_screen, top_screen, left_screen, top_screen,
@@ -982,7 +389,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_2_10" style="action" textcolor="255 255 255" z="70" hidden="false">10
+				<object type="button" name="session_panel_status_command_pri_2_10" style="action" textcolor="255 255 255" z="70" >10
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_2_10_x, crd_status_orb_command_2_10_y, crd_status_orb_command_2_10_x+crd_status_orb_command_2_10_width, crd_status_orb_command_2_10_y+crd_status_orb_command_2_10_height, left_screen, top_screen, left_screen, top_screen,
@@ -990,7 +397,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_2_11" style="action" textcolor="255 255 255" z="70" hidden="false">11
+				<object type="button" name="session_panel_status_command_pri_2_11" style="action" textcolor="255 255 255" z="70" >11
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_2_11_x, crd_status_orb_command_2_11_y, crd_status_orb_command_2_11_x+crd_status_orb_command_2_11_width, crd_status_orb_command_2_11_y+crd_status_orb_command_2_11_height, left_screen, top_screen, left_screen, top_screen,
@@ -998,7 +405,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_2_12" style="action" textcolor="255 255 255" z="70" hidden="false">12
+				<object type="button" name="session_panel_status_command_pri_2_12" style="action" textcolor="255 255 255" z="70" >12
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_2_12_x, crd_status_orb_command_2_12_y, crd_status_orb_command_2_12_x+crd_status_orb_command_2_12_width, crd_status_orb_command_2_12_y+crd_status_orb_command_2_12_height, left_screen, top_screen, left_screen, top_screen,
@@ -1007,7 +414,7 @@
 				</object>
 			</object>
 
-			<object type="button" name="session_panel_status_command_pri_3" style="action" textcolor="255 255 255" z="70" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_3" style="action" textcolor="255 255 255" z="70" >
 				<action on="Load"><![CDATA[
 					AddSizeCoord(this.name,
 					crd_status_orb_command_3_x, crd_status_orb_command_3_y, crd_status_orb_command_3_x+crd_status_orb_command_3_width, crd_status_orb_command_3_y+crd_status_orb_command_3_height, left_screen, top_screen, left_screen, top_screen,
@@ -1018,9 +425,9 @@
 				]]></action>
 			</object>
 
-			<object type="empty" name="session_panel_status_command_pri_3_group" size="0 0 100% 100%" z="1" hidden="false">
+			<object type="empty" name="session_panel_status_command_pri_3_group" size="0 0 100% 100%" z="1" >
 
-				<object type="button" name="session_panel_status_command_pri_3_1" style="action" textcolor="255 255 255" z="70" hidden="false">1
+				<object type="button" name="session_panel_status_command_pri_3_1" style="action" textcolor="255 255 255" z="70" >1
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_3_1_x, crd_status_orb_command_3_1_y, crd_status_orb_command_3_1_x+crd_status_orb_command_3_1_width, crd_status_orb_command_3_1_y+crd_status_orb_command_3_1_height, left_screen, top_screen, left_screen, top_screen,
@@ -1028,7 +435,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_3_2" style="action" textcolor="255 255 255" z="70" hidden="false">2
+				<object type="button" name="session_panel_status_command_pri_3_2" style="action" textcolor="255 255 255" z="70" >2
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_3_2_x, crd_status_orb_command_3_2_y, crd_status_orb_command_3_2_x+crd_status_orb_command_3_2_width, crd_status_orb_command_3_2_y+crd_status_orb_command_3_2_height, left_screen, top_screen, left_screen, top_screen,
@@ -1036,7 +443,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_3_3" style="action" textcolor="255 255 255" z="70" hidden="false">3
+				<object type="button" name="session_panel_status_command_pri_3_3" style="action" textcolor="255 255 255" z="70" >3
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_3_3_x, crd_status_orb_command_3_3_y, crd_status_orb_command_3_3_x+crd_status_orb_command_3_3_width, crd_status_orb_command_3_3_y+crd_status_orb_command_3_3_height, left_screen, top_screen, left_screen, top_screen,
@@ -1044,7 +451,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_3_4" style="action" textcolor="255 255 255" z="70" hidden="false">4
+				<object type="button" name="session_panel_status_command_pri_3_4" style="action" textcolor="255 255 255" z="70" >4
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_3_4_x, crd_status_orb_command_3_4_y, crd_status_orb_command_3_4_x+crd_status_orb_command_3_4_width, crd_status_orb_command_3_4_y+crd_status_orb_command_3_4_height, left_screen, top_screen, left_screen, top_screen,
@@ -1052,7 +459,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_3_5" style="action" textcolor="255 255 255" z="70" hidden="false">5
+				<object type="button" name="session_panel_status_command_pri_3_5" style="action" textcolor="255 255 255" z="70" >5
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_3_5_x, crd_status_orb_command_3_5_y, crd_status_orb_command_3_5_x+crd_status_orb_command_3_5_width, crd_status_orb_command_3_5_y+crd_status_orb_command_3_5_height, left_screen, top_screen, left_screen, top_screen,
@@ -1060,7 +467,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_3_6" style="action" textcolor="255 255 255" z="70" hidden="false">6
+				<object type="button" name="session_panel_status_command_pri_3_6" style="action" textcolor="255 255 255" z="70" >6
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_3_6_x, crd_status_orb_command_3_6_y, crd_status_orb_command_3_6_x+crd_status_orb_command_3_6_width, crd_status_orb_command_3_6_y+crd_status_orb_command_3_6_height, left_screen, top_screen, left_screen, top_screen,
@@ -1068,7 +475,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_3_7" style="action" textcolor="255 255 255" z="70" hidden="false">7
+				<object type="button" name="session_panel_status_command_pri_3_7" style="action" textcolor="255 255 255" z="70" >7
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_3_7_x, crd_status_orb_command_3_7_y, crd_status_orb_command_3_7_x+crd_status_orb_command_3_7_width, crd_status_orb_command_3_7_y+crd_status_orb_command_3_7_height, left_screen, top_screen, left_screen, top_screen,
@@ -1076,7 +483,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_3_8" style="action" textcolor="255 255 255" z="70" hidden="false">8
+				<object type="button" name="session_panel_status_command_pri_3_8" style="action" textcolor="255 255 255" z="70" >8
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_3_8_x, crd_status_orb_command_3_8_y, crd_status_orb_command_3_8_x+crd_status_orb_command_3_8_width, crd_status_orb_command_3_8_y+crd_status_orb_command_3_8_height, left_screen, top_screen, left_screen, top_screen,
@@ -1084,7 +491,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_3_9" style="action" textcolor="255 255 255" z="70" hidden="false">9
+				<object type="button" name="session_panel_status_command_pri_3_9" style="action" textcolor="255 255 255" z="70" >9
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_3_9_x, crd_status_orb_command_3_9_y, crd_status_orb_command_3_9_x+crd_status_orb_command_3_9_width, crd_status_orb_command_3_9_y+crd_status_orb_command_3_9_height, left_screen, top_screen, left_screen, top_screen,
@@ -1092,7 +499,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_3_10" style="action" textcolor="255 255 255" z="70" hidden="false">10
+				<object type="button" name="session_panel_status_command_pri_3_10" style="action" textcolor="255 255 255" z="70" >10
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_3_10_x, crd_status_orb_command_3_10_y, crd_status_orb_command_3_10_x+crd_status_orb_command_3_10_width, crd_status_orb_command_3_10_y+crd_status_orb_command_3_10_height, left_screen, top_screen, left_screen, top_screen,
@@ -1100,7 +507,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_3_11" style="action" textcolor="255 255 255" z="70" hidden="false">11
+				<object type="button" name="session_panel_status_command_pri_3_11" style="action" textcolor="255 255 255" z="70" >11
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_3_11_x, crd_status_orb_command_3_11_y, crd_status_orb_command_3_11_x+crd_status_orb_command_3_11_width, crd_status_orb_command_3_11_y+crd_status_orb_command_3_11_height, left_screen, top_screen, left_screen, top_screen,
@@ -1108,7 +515,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_3_12" style="action" textcolor="255 255 255" z="70" hidden="false">12
+				<object type="button" name="session_panel_status_command_pri_3_12" style="action" textcolor="255 255 255" z="70" >12
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_3_12_x, crd_status_orb_command_3_12_y, crd_status_orb_command_3_12_x+crd_status_orb_command_3_12_width, crd_status_orb_command_3_12_y+crd_status_orb_command_3_12_height, left_screen, top_screen, left_screen, top_screen,
@@ -1117,7 +524,7 @@
 				</object>
 			</object>
 
-			<object type="button" name="session_panel_status_command_pri_4" style="action" textcolor="255 255 255" z="70" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_4" style="action" textcolor="255 255 255" z="70" >
 				<action on="Load"><![CDATA[
 					AddSizeCoord(this.name,
 					crd_status_orb_command_4_x, crd_status_orb_command_4_y, crd_status_orb_command_4_x+crd_status_orb_command_4_width, crd_status_orb_command_4_y+crd_status_orb_command_4_height, left_screen, top_screen, left_screen, top_screen,
@@ -1128,9 +535,9 @@
 				]]></action>
 			</object>
 
-			<object type="empty" name="session_panel_status_command_pri_4_group" size="0 0 100% 100%" z="1" hidden="false">
+			<object type="empty" name="session_panel_status_command_pri_4_group" size="0 0 100% 100%" z="1" >
 
-				<object type="button" name="session_panel_status_command_pri_4_1" style="action" textcolor="255 255 255" z="70" hidden="false">1
+				<object type="button" name="session_panel_status_command_pri_4_1" style="action" textcolor="255 255 255" z="70" >1
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_4_1_x, crd_status_orb_command_4_1_y, crd_status_orb_command_4_1_x+crd_status_orb_command_4_1_width, crd_status_orb_command_4_1_y+crd_status_orb_command_4_1_height, left_screen, top_screen, left_screen, top_screen,
@@ -1138,7 +545,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_4_2" style="action" textcolor="255 255 255" z="70" hidden="false">2
+				<object type="button" name="session_panel_status_command_pri_4_2" style="action" textcolor="255 255 255" z="70" >2
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_4_2_x, crd_status_orb_command_4_2_y, crd_status_orb_command_4_2_x+crd_status_orb_command_4_2_width, crd_status_orb_command_4_2_y+crd_status_orb_command_4_2_height, left_screen, top_screen, left_screen, top_screen,
@@ -1146,7 +553,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_4_3" style="action" textcolor="255 255 255" z="70" hidden="false">3
+				<object type="button" name="session_panel_status_command_pri_4_3" style="action" textcolor="255 255 255" z="70" >3
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_4_3_x, crd_status_orb_command_4_3_y, crd_status_orb_command_4_3_x+crd_status_orb_command_4_3_width, crd_status_orb_command_4_3_y+crd_status_orb_command_4_3_height, left_screen, top_screen, left_screen, top_screen,
@@ -1154,7 +561,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_4_4" style="action" textcolor="255 255 255" z="70" hidden="false">4
+				<object type="button" name="session_panel_status_command_pri_4_4" style="action" textcolor="255 255 255" z="70" >4
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_4_4_x, crd_status_orb_command_4_4_y, crd_status_orb_command_4_4_x+crd_status_orb_command_4_4_width, crd_status_orb_command_4_4_y+crd_status_orb_command_4_4_height, left_screen, top_screen, left_screen, top_screen,
@@ -1162,7 +569,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_4_5" style="action" textcolor="255 255 255" z="70" hidden="false">5
+				<object type="button" name="session_panel_status_command_pri_4_5" style="action" textcolor="255 255 255" z="70" >5
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_4_5_x, crd_status_orb_command_4_5_y, crd_status_orb_command_4_5_x+crd_status_orb_command_4_5_width, crd_status_orb_command_4_5_y+crd_status_orb_command_4_5_height, left_screen, top_screen, left_screen, top_screen,
@@ -1170,7 +577,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_4_6" style="action" textcolor="255 255 255" z="70" hidden="false">6
+				<object type="button" name="session_panel_status_command_pri_4_6" style="action" textcolor="255 255 255" z="70" >6
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_4_6_x, crd_status_orb_command_4_6_y, crd_status_orb_command_4_6_x+crd_status_orb_command_4_6_width, crd_status_orb_command_4_6_y+crd_status_orb_command_4_6_height, left_screen, top_screen, left_screen, top_screen,
@@ -1178,7 +585,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_4_7" style="action" textcolor="255 255 255" z="70" hidden="false">7
+				<object type="button" name="session_panel_status_command_pri_4_7" style="action" textcolor="255 255 255" z="70" >7
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_4_7_x, crd_status_orb_command_4_7_y, crd_status_orb_command_4_7_x+crd_status_orb_command_4_7_width, crd_status_orb_command_4_7_y+crd_status_orb_command_4_7_height, left_screen, top_screen, left_screen, top_screen,
@@ -1186,7 +593,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_4_8" style="action" textcolor="255 255 255" z="70" hidden="false">8
+				<object type="button" name="session_panel_status_command_pri_4_8" style="action" textcolor="255 255 255" z="70" >8
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_4_8_x, crd_status_orb_command_4_8_y, crd_status_orb_command_4_8_x+crd_status_orb_command_4_8_width, crd_status_orb_command_4_8_y+crd_status_orb_command_4_8_height, left_screen, top_screen, left_screen, top_screen,
@@ -1194,7 +601,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_4_9" style="action" textcolor="255 255 255" z="70" hidden="false">9
+				<object type="button" name="session_panel_status_command_pri_4_9" style="action" textcolor="255 255 255" z="70" >9
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_4_9_x, crd_status_orb_command_4_9_y, crd_status_orb_command_4_9_x+crd_status_orb_command_4_9_width, crd_status_orb_command_4_9_y+crd_status_orb_command_4_9_height, left_screen, top_screen, left_screen, top_screen,
@@ -1202,7 +609,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_4_10" style="action" textcolor="255 255 255" z="70" hidden="false">10
+				<object type="button" name="session_panel_status_command_pri_4_10" style="action" textcolor="255 255 255" z="70" >10
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_4_10_x, crd_status_orb_command_4_10_y, crd_status_orb_command_4_10_x+crd_status_orb_command_4_10_width, crd_status_orb_command_4_10_y+crd_status_orb_command_4_10_height, left_screen, top_screen, left_screen, top_screen,
@@ -1210,7 +617,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_4_11" style="action" textcolor="255 255 255" z="70" hidden="false">11
+				<object type="button" name="session_panel_status_command_pri_4_11" style="action" textcolor="255 255 255" z="70" >11
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_4_11_x, crd_status_orb_command_4_11_y, crd_status_orb_command_4_11_x+crd_status_orb_command_4_11_width, crd_status_orb_command_4_11_y+crd_status_orb_command_4_11_height, left_screen, top_screen, left_screen, top_screen,
@@ -1218,7 +625,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_4_12" style="action" textcolor="255 255 255" z="70" hidden="false">12
+				<object type="button" name="session_panel_status_command_pri_4_12" style="action" textcolor="255 255 255" z="70" >12
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_4_12_x, crd_status_orb_command_4_12_y, crd_status_orb_command_4_12_x+crd_status_orb_command_4_12_width, crd_status_orb_command_4_12_y+crd_status_orb_command_4_12_height, left_screen, top_screen, left_screen, top_screen,
@@ -1227,7 +634,7 @@
 				</object>
 			</object>
 
-			<object type="button" name="session_panel_status_command_pri_5" style="action" textcolor="255 255 255" z="70" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_5" style="action" textcolor="255 255 255" z="70" >
 				<action on="Load"><![CDATA[
 					AddSizeCoord(this.name,
 					crd_status_orb_command_5_x, crd_status_orb_command_5_y, crd_status_orb_command_5_x+crd_status_orb_command_5_width, crd_status_orb_command_5_y+crd_status_orb_command_5_height, left_screen, top_screen, left_screen, top_screen,
@@ -1235,9 +642,9 @@
 				]]></action>
 			</object>
 
-			<object type="empty" name="session_panel_status_command_pri_5_group" size="0 0 100% 100%" z="1" hidden="false">
+			<object type="empty" name="session_panel_status_command_pri_5_group" size="0 0 100% 100%" z="1" >
 
-				<object type="button" name="session_panel_status_command_pri_5_1" style="action" textcolor="255 255 255" z="70" hidden="false">1
+				<object type="button" name="session_panel_status_command_pri_5_1" style="action" textcolor="255 255 255" z="70" >1
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_5_1_x, crd_status_orb_command_5_1_y, crd_status_orb_command_5_1_x+crd_status_orb_command_5_1_width, crd_status_orb_command_5_1_y+crd_status_orb_command_5_1_height, left_screen, top_screen, left_screen, top_screen,
@@ -1245,7 +652,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_5_2" style="action" textcolor="255 255 255" z="70" hidden="false">2
+				<object type="button" name="session_panel_status_command_pri_5_2" style="action" textcolor="255 255 255" z="70" >2
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_5_2_x, crd_status_orb_command_5_2_y, crd_status_orb_command_5_2_x+crd_status_orb_command_5_2_width, crd_status_orb_command_5_2_y+crd_status_orb_command_5_2_height, left_screen, top_screen, left_screen, top_screen,
@@ -1253,7 +660,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_5_3" style="action" textcolor="255 255 255" z="70" hidden="false">3
+				<object type="button" name="session_panel_status_command_pri_5_3" style="action" textcolor="255 255 255" z="70" >3
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_5_3_x, crd_status_orb_command_5_3_y, crd_status_orb_command_5_3_x+crd_status_orb_command_5_3_width, crd_status_orb_command_5_3_y+crd_status_orb_command_5_3_height, left_screen, top_screen, left_screen, top_screen,
@@ -1261,7 +668,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_5_4" style="action" textcolor="255 255 255" z="70" hidden="false">4
+				<object type="button" name="session_panel_status_command_pri_5_4" style="action" textcolor="255 255 255" z="70" >4
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_5_4_x, crd_status_orb_command_5_4_y, crd_status_orb_command_5_4_x+crd_status_orb_command_5_4_width, crd_status_orb_command_5_4_y+crd_status_orb_command_5_4_height, left_screen, top_screen, left_screen, top_screen,
@@ -1269,7 +676,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_5_5" style="action" textcolor="255 255 255" z="70" hidden="false">5
+				<object type="button" name="session_panel_status_command_pri_5_5" style="action" textcolor="255 255 255" z="70" >5
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_5_5_x, crd_status_orb_command_5_5_y, crd_status_orb_command_5_5_x+crd_status_orb_command_5_5_width, crd_status_orb_command_5_5_y+crd_status_orb_command_5_5_height, left_screen, top_screen, left_screen, top_screen,
@@ -1277,7 +684,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_5_6" style="action" textcolor="255 255 255" z="70" hidden="false">6
+				<object type="button" name="session_panel_status_command_pri_5_6" style="action" textcolor="255 255 255" z="70" >6
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_5_6_x, crd_status_orb_command_5_6_y, crd_status_orb_command_5_6_x+crd_status_orb_command_5_6_width, crd_status_orb_command_5_6_y+crd_status_orb_command_5_6_height, left_screen, top_screen, left_screen, top_screen,
@@ -1285,7 +692,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_5_7" style="action" textcolor="255 255 255" z="70" hidden="false">7
+				<object type="button" name="session_panel_status_command_pri_5_7" style="action" textcolor="255 255 255" z="70" >7
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_5_7_x, crd_status_orb_command_5_7_y, crd_status_orb_command_5_7_x+crd_status_orb_command_5_7_width, crd_status_orb_command_5_7_y+crd_status_orb_command_5_7_height, left_screen, top_screen, left_screen, top_screen,
@@ -1293,7 +700,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_5_8" style="action" textcolor="255 255 255" z="70" hidden="false">8
+				<object type="button" name="session_panel_status_command_pri_5_8" style="action" textcolor="255 255 255" z="70" >8
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_5_8_x, crd_status_orb_command_5_8_y, crd_status_orb_command_5_8_x+crd_status_orb_command_5_8_width, crd_status_orb_command_5_8_y+crd_status_orb_command_5_8_height, left_screen, top_screen, left_screen, top_screen,
@@ -1301,7 +708,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_5_9" style="action" textcolor="255 255 255" z="70" hidden="false">9
+				<object type="button" name="session_panel_status_command_pri_5_9" style="action" textcolor="255 255 255" z="70" >9
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_5_9_x, crd_status_orb_command_5_9_y, crd_status_orb_command_5_9_x+crd_status_orb_command_5_9_width, crd_status_orb_command_5_9_y+crd_status_orb_command_5_9_height, left_screen, top_screen, left_screen, top_screen,
@@ -1309,7 +716,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_5_10" style="action" textcolor="255 255 255" z="70" hidden="false">10
+				<object type="button" name="session_panel_status_command_pri_5_10" style="action" textcolor="255 255 255" z="70" >10
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_5_10_x, crd_status_orb_command_5_10_y, crd_status_orb_command_5_10_x+crd_status_orb_command_5_10_width, crd_status_orb_command_5_10_y+crd_status_orb_command_5_10_height, left_screen, top_screen, left_screen, top_screen,
@@ -1317,7 +724,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_5_11" style="action" textcolor="255 255 255" z="70" hidden="false">11
+				<object type="button" name="session_panel_status_command_pri_5_11" style="action" textcolor="255 255 255" z="70" >11
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_5_11_x, crd_status_orb_command_5_11_y, crd_status_orb_command_5_11_x+crd_status_orb_command_5_11_width, crd_status_orb_command_5_11_y+crd_status_orb_command_5_11_height, left_screen, top_screen, left_screen, top_screen,
@@ -1325,7 +732,7 @@
 					]]></action>
 				</object>
 
-				<object type="button" name="session_panel_status_command_pri_5_12" style="action" textcolor="255 255 255" z="70" hidden="false">12
+				<object type="button" name="session_panel_status_command_pri_5_12" style="action" textcolor="255 255 255" z="70" >12
 					<action on="Load"><![CDATA[
 						AddSizeCoord(this.name,
 						crd_status_orb_command_5_12_x, crd_status_orb_command_5_12_y, crd_status_orb_command_5_12_x+crd_status_orb_command_5_12_width, crd_status_orb_command_5_12_y+crd_status_orb_command_5_12_height, left_screen, top_screen, left_screen, top_screen,
@@ -1334,7 +741,7 @@
 				</object>
 			</object>
 
-			<object type="button" name="session_panel_status_command_pri_6" style="action" textcolor="255 255 255" z="70" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_6" style="action" textcolor="255 255 255" z="70" >
 				<action on="Load"><![CDATA[
 					AddSizeCoord(this.name,
 					crd_status_orb_command_6_x, crd_status_orb_command_6_y, crd_status_orb_command_6_x+crd_status_orb_command_6_width, crd_status_orb_command_6_y+crd_status_orb_command_6_height, left_screen, top_screen, left_screen, top_screen,
@@ -1342,7 +749,7 @@
 				]]></action>
 			</object>
 
-			<object type="button" name="session_panel_status_command_pri_7" style="action" textcolor="255 255 255" z="70" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_7" style="action" textcolor="255 255 255" z="70" >
 				<action on="Load"><![CDATA[
 					AddSizeCoord(this.name,
 					crd_status_orb_command_7_x, crd_status_orb_command_7_y, crd_status_orb_command_7_x+crd_status_orb_command_7_width, crd_status_orb_command_7_y+crd_status_orb_command_7_height, left_screen, top_screen, left_screen, top_screen,
@@ -1350,7 +757,7 @@
 				]]></action>
 			</object>
 
-			<object type="button" name="session_panel_status_command_pri_8" style="action" textcolor="255 255 255" z="70" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_8" style="action" textcolor="255 255 255" z="70" >
 				<action on="Load"><![CDATA[
 					AddSizeCoord(this.name,
 					crd_status_orb_command_8_x, crd_status_orb_command_8_y, crd_status_orb_command_8_x+crd_status_orb_command_8_width, crd_status_orb_command_8_y+crd_status_orb_command_8_height, left_screen, top_screen, left_screen, top_screen,
@@ -1358,7 +765,7 @@
 				]]></action>
 			</object>
 
-			<object type="button" name="session_panel_status_command_pri_9" style="action" textcolor="255 255 255" z="70" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_9" style="action" textcolor="255 255 255" z="70" >
 				<action on="Load"><![CDATA[
 					AddSizeCoord(this.name,
 					crd_status_orb_command_9_x, crd_status_orb_command_9_y, crd_status_orb_command_9_x+crd_status_orb_command_9_width, crd_status_orb_command_9_y+crd_status_orb_command_9_height, left_screen, top_screen, left_screen, top_screen,
@@ -1366,7 +773,7 @@
 				]]></action>
 			</object>
 
-			<object type="button" name="session_panel_status_command_pri_10" style="action" textcolor="255 255 255" z="70" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_10" style="action" textcolor="255 255 255" z="70" >
 				<action on="Load"><![CDATA[
 					AddSizeCoord(this.name,
 					crd_status_orb_command_10_x, crd_status_orb_command_10_y, crd_status_orb_command_10_x+crd_status_orb_command_10_width, crd_status_orb_command_10_y+crd_status_orb_command_10_height, left_screen, top_screen, left_screen, top_screen,
@@ -1374,7 +781,7 @@
 				]]></action>
 			</object>
 
-			<object type="button" name="session_panel_status_command_pri_11" style="action" textcolor="255 255 255" z="70" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_11" style="action" textcolor="255 255 255" z="70" >
 				<action on="Load"><![CDATA[
 					AddSizeCoord(this.name,
 					crd_status_orb_command_11_x, crd_status_orb_command_11_y, crd_status_orb_command_11_x+crd_status_orb_command_11_width, crd_status_orb_command_11_y+crd_status_orb_command_11_height, left_screen, top_screen, left_screen, top_screen,
@@ -1382,7 +789,7 @@
 				]]></action>
 			</object>
 
-			<object type="button" name="session_panel_status_command_pri_12" style="action" textcolor="255 255 255" z="70" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_12" style="action" textcolor="255 255 255" z="70" >
 				<action on="Load"><![CDATA[
 					AddSizeCoord(this.name,
 					crd_status_orb_command_12_x, crd_status_orb_command_12_y, crd_status_orb_command_12_x+crd_status_orb_command_12_width, crd_status_orb_command_12_y+crd_status_orb_command_12_height, left_screen, top_screen, left_screen, top_screen,
@@ -1390,7 +797,7 @@
 				]]></action>
 			</object>
 
-			<object type="button" name="session_panel_status_command_pri_13" style="action" textcolor="255 255 255" z="70" hidden="false">
+			<object type="button" name="session_panel_status_command_pri_13" style="action" textcolor="255 255 255" z="70" >
 				<action on="Load"><![CDATA[
 					AddSizeCoord(this.name,
 					crd_status_orb_command_13_x, crd_status_orb_command_13_y, crd_status_orb_command_13_x+crd_status_orb_command_13_width, crd_status_orb_command_13_y+crd_status_orb_command_13_height, left_screen, top_screen, left_screen, top_screen,
@@ -1402,80 +809,24 @@
 		</object>
 
 		<!-- GROUP: MAP ORB -->
-		<object type="empty" name="session_map_orb" hotkey="maporb.toggle" size="0 0 100% 100%" z="1" hidden="false">
+		<object type="empty" name="session_map_orb" hotkey="maporb.toggle" size="0 0 100% 100%" z="1" >
 			<action on="Press"><![CDATA[
 				GUIObjectToggle("session_map_orb");
 			]]></action>
 
-			<object type="minimap" name="session_panel_minimap" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_map_orb_minimap_x, crd_map_orb_minimap_y, crd_map_orb_minimap_x+crd_map_orb_minimap_width, crd_map_orb_minimap_y+crd_map_orb_minimap_height, right_screen, top_screen, right_screen, top_screen,
-					crd_map_orb_minimap_x, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_minimap_y, crd_map_orb_minimap_x+crd_map_orb_minimap_width, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_minimap_y+crd_map_orb_minimap_height, right_screen, bottom_screen, right_screen, bottom_screen);
-				]]></action>
-			</object>
-
-			<object type="button" name="session_panel_minimap_segleft1" sprite="session_panel_minimap_segleft1" sprite_over="session_panel_minimap_segleft1_lit" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_map_orb_segleft1_x, crd_map_orb_segleft1_y, crd_map_orb_segleft1_x+crd_map_orb_segleft1_width, crd_map_orb_segleft1_y+crd_map_orb_segleft1_height, right_screen, top_screen, right_screen, top_screen,
-					crd_map_orb_segleft1_x, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_segleft1_y, crd_map_orb_segleft1_x+crd_map_orb_segleft1_width, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_segleft1_y+crd_map_orb_segleft1_height, right_screen, bottom_screen, right_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="button" name="session_panel_minimap_segleft2" sprite="session_panel_minimap_segleft2" sprite_over="session_panel_minimap_segleft2_lit" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_map_orb_segleft2_x, crd_map_orb_segleft2_y, crd_map_orb_segleft2_x+crd_map_orb_segleft2_width, crd_map_orb_segleft2_y+crd_map_orb_segleft2_height, right_screen, top_screen, right_screen, top_screen,
-					crd_map_orb_segleft2_x, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_segleft2_y, crd_map_orb_segleft2_x+crd_map_orb_segleft2_width, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_segleft2_y+crd_map_orb_segleft2_height, right_screen, bottom_screen, right_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="button" name="session_panel_minimap_segleft3" sprite="session_panel_minimap_segleft3" sprite_over="session_panel_minimap_segleft3_lit" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_map_orb_segleft3_x, crd_map_orb_segleft3_y, crd_map_orb_segleft3_x+crd_map_orb_segleft3_width, crd_map_orb_segleft3_y+crd_map_orb_segleft3_height, right_screen, top_screen, right_screen, top_screen,
-					crd_map_orb_segleft3_x, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_segleft3_y, crd_map_orb_segleft3_x+crd_map_orb_segleft3_width, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_segleft3_y+crd_map_orb_segleft3_height, right_screen, bottom_screen, right_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="button" name="session_panel_minimap_segleft4" hotkey="menu.game" sprite="session_panel_minimap_segleft4" sprite_over="session_panel_minimap_segleft4_lit" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_map_orb_segleft4_x, crd_map_orb_segleft4_y, crd_map_orb_segleft4_x+crd_map_orb_segleft4_width, crd_map_orb_segleft4_y+crd_map_orb_segleft4_height, right_screen, top_screen, right_screen, top_screen,
-					crd_map_orb_segleft4_x, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_segleft4_y, crd_map_orb_segleft4_x+crd_map_orb_segleft4_width, -crd_map_orb_minimap_y-crd_map_orb_minimap_height+crd_map_orb_segleft4_y+crd_map_orb_segleft4_height, right_screen, bottom_screen, right_screen, bottom_screen);
-				]]></action>
+			<object type="minimap" name="SN_MINIMAP" style="session_minimap" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_MINIMAP]); ]]></action></object>
+			<object type="button" name="SN_MAP_ORB_SEGLEFT1" sprite="session_panel_minimap_segleft1" sprite_over="session_panel_minimap_segleft1_lit" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_MAP_ORB_SEGLEFT1], Crd[SN_MAP_ORB_SEGLEFT1_FLP]); ]]></action></object>
+			<object type="button" name="SN_MAP_ORB_SEGLEFT2" sprite="session_panel_minimap_segleft2" sprite_over="session_panel_minimap_segleft2_lit" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_MAP_ORB_SEGLEFT2], Crd[SN_MAP_ORB_SEGLEFT2_FLP]); ]]></action></object>
+			<object type="button" name="SN_MAP_ORB_SEGLEFT3" sprite="session_panel_minimap_segleft3" sprite_over="session_panel_minimap_segleft3_lit" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_MAP_ORB_SEGLEFT3], Crd[SN_MAP_ORB_SEGLEFT3_FLP]); ]]></action></object>
+			<object type="button" name="SN_MAP_ORB_SEGLEFT4" sprite="session_panel_minimap_segleft4" sprite_over="session_panel_minimap_segleft4_lit" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_MAP_ORB_SEGLEFT4], Crd[SN_MAP_ORB_SEGLEFT4_FLP]); ]]></action>
 				<action on="Press"><![CDATA[
 					GUIObjectToggle("session_gui_subwindow_ingame_menu");
 				]]></action>
 			</object>
-
-			<object type="button" name="session_panel_minimap_segbottom1" sprite="session_panel_minimap_segbottom1" sprite_over="session_panel_minimap_segbottom1_lit" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_map_orb_segbottom1_x, crd_map_orb_segbottom1_y, crd_map_orb_segbottom1_x+crd_map_orb_segbottom1_width, crd_map_orb_segbottom1_y+crd_map_orb_segbottom1_height, right_screen, top_screen, right_screen, top_screen,
-					crd_map_orb_segbottom1_x, -crd_map_orb_minimap_y-crd_map_orb_segbottom1_y-crd_map_orb_segbottom1_height, crd_map_orb_segbottom1_x+crd_map_orb_segbottom1_width, -crd_map_orb_minimap_y-crd_map_orb_segbottom1_y, right_screen, bottom_screen, right_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="button" name="session_panel_minimap_segbottom2" sprite="session_panel_minimap_segbottom2" sprite_over="session_panel_minimap_segbottom2_lit" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_map_orb_segbottom2_x, crd_map_orb_segbottom2_y, crd_map_orb_segbottom2_x+crd_map_orb_segbottom2_width, crd_map_orb_segbottom2_y+crd_map_orb_segbottom2_height, right_screen, top_screen, right_screen, top_screen,
-					crd_map_orb_segbottom2_x, -crd_map_orb_minimap_y-crd_map_orb_segbottom2_y-crd_map_orb_segbottom2_height, crd_map_orb_segbottom2_x+crd_map_orb_segbottom2_width, -crd_map_orb_minimap_y-crd_map_orb_segbottom2_y, right_screen, bottom_screen, right_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="button" name="session_panel_minimap_segbottom3" sprite="session_panel_minimap_segbottom3" sprite_over="session_panel_minimap_segbottom3_lit" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_map_orb_segbottom3_x, crd_map_orb_segbottom3_y, crd_map_orb_segbottom3_x+crd_map_orb_segbottom3_width, crd_map_orb_segbottom3_y+crd_map_orb_segbottom3_height, right_screen, top_screen, right_screen, top_screen,
-					crd_map_orb_segbottom3_x, -crd_map_orb_minimap_y-crd_map_orb_segbottom3_y-crd_map_orb_segbottom3_height, crd_map_orb_segbottom3_x+crd_map_orb_segbottom3_width, -crd_map_orb_minimap_y-crd_map_orb_segbottom3_y, right_screen, bottom_screen, right_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="button" name="session_panel_minimap_segbottom4" sprite="session_panel_minimap_segbottom4" sprite_over="session_panel_minimap_segbottom4_lit" hotkey="menu.game" z="60" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_map_orb_segbottom4_x, crd_map_orb_segbottom4_y, crd_map_orb_segbottom4_x+crd_map_orb_segbottom4_width, crd_map_orb_segbottom4_y+crd_map_orb_segbottom4_height, right_screen, top_screen, right_screen, top_screen,
-					crd_map_orb_segbottom4_x, -crd_map_orb_minimap_y-crd_map_orb_segbottom4_y-crd_map_orb_segbottom4_height, crd_map_orb_segbottom4_x+crd_map_orb_segbottom4_width, -crd_map_orb_minimap_y-crd_map_orb_segbottom4_y, right_screen, bottom_screen, right_screen, bottom_screen);
-				]]></action>
-			</object>
-
+			<object type="button" name="SN_MAP_ORB_SEGBOTTOM1" sprite="session_panel_minimap_segbottom1" sprite_over="session_panel_minimap_segleft1_lit" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_MAP_ORB_SEGBOTTOM1], Crd[SN_MAP_ORB_SEGBOTTOM1_FLP]); ]]></action></object>
+			<object type="button" name="SN_MAP_ORB_SEGBOTTOM2" sprite="session_panel_minimap_segbottom2" sprite_over="session_panel_minimap_segleft2_lit" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_MAP_ORB_SEGBOTTOM2], Crd[SN_MAP_ORB_SEGBOTTOM2_FLP]); ]]></action></object>
+			<object type="button" name="SN_MAP_ORB_SEGBOTTOM3" sprite="session_panel_minimap_segbottom3" sprite_over="session_panel_minimap_segleft3_lit" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_MAP_ORB_SEGBOTTOM3], Crd[SN_MAP_ORB_SEGBOTTOM3_FLP]); ]]></action></object>
+			<object type="button" name="SN_MAP_ORB_SEGBOTTOM4" sprite="session_panel_minimap_segbottom4" sprite_over="session_panel_minimap_segleft4_lit" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_MAP_ORB_SEGBOTTOM4], Crd[SN_MAP_ORB_SEGBOTTOM4_FLP]); ]]></action></object>
 		<!-- / GROUP: MAP ORB -->
 		</object>
 
@@ -1485,67 +836,22 @@
 				GUIObjectToggle("session_team_tray");
 			]]></action>
 
-			<object type="button" name="session_team_tray_1" style="action" text_align="left" z="70">1
+			<object type="button" name="SN_TEAM_TRAY_1" style="action_left" />
+			<object type="button" name="SN_TEAM_TRAY_2" style="action_left" />
+			<object type="button" name="SN_TEAM_TRAY_3" style="action_left" />
+			<object type="button" name="SN_TEAM_TRAY_4" style="action_left" />
+			<object type="button" name="SN_TEAM_TRAY_5" style="action_left" />
+			<object type="button" name="SN_TEAM_TRAY_6" style="action_left" />
+			<object type="button" name="SN_TEAM_TRAY_7" style="action_left" />
+			<object type="button" name="SN_TEAM_TRAY_8" style="action_left" />
+			<object type="button" name="SN_TEAM_TRAY_9" style="action_left" >
 				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_team_tray_1_x, crd_team_tray_1_y, crd_team_tray_1_x+crd_team_tray_1_width, crd_team_tray_1_y+crd_team_tray_1_height, right_screen, top_screen, right_screen, top_screen,
-					crd_team_tray_1_x, -crd_team_tray_1_y-crd_team_tray_1_height, crd_team_tray_1_x+crd_team_tray_1_width, -crd_team_tray_1_y, right_screen, bottom_screen, right_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="button" name="session_team_tray_2" style="action" text_align="left" z="70">2
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_team_tray_2_x, crd_team_tray_2_y, crd_team_tray_2_x+crd_team_tray_2_width, crd_team_tray_2_y+crd_team_tray_2_height, right_screen, top_screen, right_screen, top_screen,
-					crd_team_tray_2_x, -crd_team_tray_2_y-crd_team_tray_2_height, crd_team_tray_2_x+crd_team_tray_2_width, -crd_team_tray_2_y, right_screen, bottom_screen, right_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="button" name="session_team_tray_3" style="action" text_align="left" z="70">3
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_team_tray_3_x, crd_team_tray_3_y, crd_team_tray_3_x+crd_team_tray_3_width, crd_team_tray_3_y+crd_team_tray_3_height, right_screen, top_screen, right_screen, top_screen,
-					crd_team_tray_3_x, -crd_team_tray_3_y-crd_team_tray_3_height, crd_team_tray_3_x+crd_team_tray_3_width, -crd_team_tray_3_y, right_screen, bottom_screen, right_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="button" name="session_team_tray_4" style="action" text_align="left" z="70">4
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_team_tray_4_x, crd_team_tray_4_y, crd_team_tray_4_x+crd_team_tray_4_width, crd_team_tray_4_y+crd_team_tray_4_height, right_screen, top_screen, right_screen, top_screen,
-					crd_team_tray_4_x, -crd_team_tray_4_y-crd_team_tray_4_height, crd_team_tray_4_x+crd_team_tray_4_width, -crd_team_tray_4_y, right_screen, bottom_screen, right_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="button" name="session_team_tray_5" style="action" text_align="left" z="70">5
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_team_tray_5_x, crd_team_tray_5_y, crd_team_tray_5_x+crd_team_tray_5_width, crd_team_tray_5_y+crd_team_tray_5_height, right_screen, top_screen, right_screen, top_screen,
-					crd_team_tray_5_x, -crd_team_tray_5_y-crd_team_tray_5_height, crd_team_tray_5_x+crd_team_tray_5_width, -crd_team_tray_5_y, right_screen, bottom_screen, right_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="button" name="session_team_tray_6" style="action" text_align="left" z="70">6
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_team_tray_6_x, crd_team_tray_6_y, crd_team_tray_6_x+crd_team_tray_6_width, crd_team_tray_6_y+crd_team_tray_6_height, right_screen, top_screen, right_screen, top_screen,
-					crd_team_tray_6_x, -crd_team_tray_6_y-crd_team_tray_6_height, crd_team_tray_6_x+crd_team_tray_6_width, -crd_team_tray_6_y, right_screen, bottom_screen, right_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="button" name="session_team_tray_7" style="action" text_align="left" z="70">7
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_team_tray_7_x, crd_team_tray_7_y, crd_team_tray_7_x+crd_team_tray_7_width, crd_team_tray_7_y+crd_team_tray_7_height, right_screen, top_screen, right_screen, top_screen,
-					crd_team_tray_7_x, -crd_team_tray_7_y-crd_team_tray_7_height, crd_team_tray_7_x+crd_team_tray_7_width, -crd_team_tray_7_y, right_screen, bottom_screen, right_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="button" name="session_team_tray_8" style="action" text_align="left" z="70">8
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_team_tray_8_x, crd_team_tray_8_y, crd_team_tray_8_x+crd_team_tray_8_width, crd_team_tray_8_y+crd_team_tray_8_height, right_screen, top_screen, right_screen, top_screen,
-					crd_team_tray_8_x, -crd_team_tray_8_y-crd_team_tray_8_height, crd_team_tray_8_x+crd_team_tray_8_width, -crd_team_tray_8_y, right_screen, bottom_screen, right_screen, bottom_screen);
-				]]></action>
-			</object>
-			<object type="button" name="session_team_tray_9" style="action" text_align="left" z="70">9
-				<action on="Load"><![CDATA[
-					AddSizeCoord(this.name,
-					crd_team_tray_9_x, crd_team_tray_9_y, crd_team_tray_9_x+crd_team_tray_9_width, crd_team_tray_9_y+crd_team_tray_9_height, right_screen, top_screen, right_screen, top_screen,
-					crd_team_tray_9_x, -crd_team_tray_9_y-crd_team_tray_9_height, crd_team_tray_9_x+crd_team_tray_9_width, -crd_team_tray_9_y, right_screen, bottom_screen, right_screen, bottom_screen);
+					// Seek through ALL objects and set their sizes at once. (So make sure this always goes in the last control.)
+					for (SN_TEAM_TRAY.curr = 1; SN_TEAM_TRAY.curr < SN_TEAM_TRAY.last; SN_TEAM_TRAY.curr++)
+					{
+						addSizeCoordArray("SN_TEAM_TRAY_" + SN_TEAM_TRAY.curr, Crd[SN_TEAM_TRAY[SN_TEAM_TRAY.curr]]);
+						GUIObjectSetCaption("SN_TEAM_TRAY_" + SN_TEAM_TRAY.curr, SN_TEAM_TRAY.curr);
+					}
 				]]></action>
 			</object>
 		<!-- / GROUP: TRAY -->
@@ -1563,7 +869,7 @@
 		==========================================
 		-->
 
-		<object type="empty" name="session_gui_subwindows" size="0 0 100% 100%" z="1" hidden="false">
+		<object type="empty" name="session_gui_subwindows" size="0 0 100% 100%" z="1" >
 
 			<!--
 			==========================================
@@ -1571,60 +877,26 @@
 			==========================================
 			-->
 			<object type="empty" name="session_gui_subwindow_ingame_menu" size="0 0 100% 100%" z="1" hidden="true">
-	
-				<!-- Background -->
-				<object type="image" name="subwindow_ingame_menu_bkg" sprite="0ad_window" z="100" hidden="false" ghost="true">
-					<action on="Load"><![CDATA[
-						AddSizeCoord(this.name,
-						crd_ingame_menu_bkg_x, crd_ingame_menu_bkg_y, crd_ingame_menu_bkg_x+crd_ingame_menu_bkg_width, crd_ingame_menu_bkg_y+crd_ingame_menu_bkg_height, mid_screen, mid_screen, mid_screen, mid_screen,
-						crd_ingame_menu_bkg_x, crd_ingame_menu_bkg_y, crd_ingame_menu_bkg_x+crd_ingame_menu_bkg_width, crd_ingame_menu_bkg_y+crd_ingame_menu_bkg_height, mid_screen, mid_screen, mid_screen, mid_screen);
-					]]></action>
-				</object>
-
-				<!-- End Game button -->
-				<object type="button" name="subwindow_ingame_menu_End_Game_Button" sprite="message_box_button_normal" sprite_over="message_box_button_over" hotkey="endgame" text_align="center" text_valign="center" z="170" hidden="false">
-					<action on="Load"><![CDATA[
-						this.caption = "Resign Game";
-						AddSizeCoord(this.name,
-						crd_ingame_menu_end_button_x, crd_ingame_menu_end_button_y, crd_ingame_menu_end_button_x+crd_ingame_menu_end_button_width, crd_ingame_menu_end_button_y+crd_ingame_menu_end_button_height, mid_screen, mid_screen, mid_screen, mid_screen,
-						crd_ingame_menu_end_button_x, crd_ingame_menu_end_button_y, crd_ingame_menu_end_button_x+crd_ingame_menu_end_button_width, crd_ingame_menu_end_button_y+crd_ingame_menu_end_button_height, mid_screen, mid_screen, mid_screen, mid_screen);
-					]]></action>
+				<object type="image" name="SN_INGAME_MENU_BG" style="session_ghost_object" sprite="0ad_window" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_INGAME_MENU_BG]); ]]></action></object>
+				<object type="button" name="SN_INGAME_MENU_BTN_RETURN" style="session_button_object" hotkey="menu.toggle" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_INGAME_MENU_BTN_RETURN]); GUIObjectSetCaption(this.name, "Return to Game"); ]]></action>
 					<action on="Press"><![CDATA[
-						btCaptions = new Array("Yep, work's done!", "No, more slaughter!");
-						btCode = new Array("endSession('return');", "");
-						messageBox(600, 200, "Do you want to leave the current game? There might be more dudes to slaughter.", "Confirmation", 0, btCaptions, btCode);
+						GUIObjectToggle("session_gui_subwindow_ingame_menu");
 					]]></action>
-				End Game
 				</object>
-
-				<!-- Exit button -->
-				<object type="button" name="subwindow_ingame_menu_Exit_Button" sprite="message_box_button_normal" sprite_over="message_box_button_over" text_align="center" text_valign="center" z="170" hidden="false">
-					<action on="Load"><![CDATA[
-						this.caption = "Exit Game";
-						AddSizeCoord(this.name,
-						crd_ingame_menu_exit_button_x, crd_ingame_menu_exit_button_y, crd_ingame_menu_exit_button_x+crd_ingame_menu_exit_button_width, crd_ingame_menu_exit_button_y+crd_ingame_menu_exit_button_height, mid_screen, mid_screen, mid_screen, mid_screen,
-						crd_ingame_menu_exit_button_x, crd_ingame_menu_exit_button_y, crd_ingame_menu_exit_button_x+crd_ingame_menu_exit_button_width, crd_ingame_menu_exit_button_y+crd_ingame_menu_exit_button_height, mid_screen, mid_screen, mid_screen, mid_screen);
-					]]></action>
+				<object type="button" name="SN_INGAME_MENU_BTN_EXIT" style="session_button_object" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_INGAME_MENU_BTN_EXIT]); GUIObjectSetCaption(this.name, "Exit Game"); ]]></action>
 					<action on="Press"><![CDATA[
 						btCaptions = new Array("Yes, let me out!", "Nooooo!");
 						btCode = new Array("endSession('exit');", "");
 						messageBox(400, 200, "Do you really want to quit [icon=0ad_icon] A.D.? This will cause a sudden return to reality.", "Confirmation", 0, btCaptions, btCode);
 					]]></action>
 				</object>
-
-				<!-- Return button -->
-				<object type="button" name="subwindow_ingame_menu_Return_Button" sprite="message_box_button_normal" sprite_over="message_box_button_over" text_align="center" text_valign="center" z="170" hidden="false">
-					<action on="Load"><![CDATA[
-						this.caption = "Return to Game";
-						AddSizeCoord(this.name,
-						crd_ingame_menu_return_button_x, crd_ingame_menu_return_button_y, crd_ingame_menu_return_button_x+crd_ingame_menu_return_button_width, crd_ingame_menu_return_button_y+crd_ingame_menu_return_button_height, mid_screen, mid_screen, mid_screen, mid_screen,
-						crd_ingame_menu_return_button_x, crd_ingame_menu_return_button_y, crd_ingame_menu_return_button_x+crd_ingame_menu_return_button_width, crd_ingame_menu_return_button_y+crd_ingame_menu_return_button_height, mid_screen, mid_screen, mid_screen, mid_screen);
-					]]></action>
+				<object type="button" name="SN_INGAME_MENU_BTN_RESIGN" style="session_button_object" hotkey="menu.resign" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_INGAME_MENU_BTN_RESIGN]); GUIObjectSetCaption(this.name, "Resign Game"); ]]></action>
 					<action on="Press"><![CDATA[
-						GUIObjectToggle("session_gui_subwindow_ingame_menu");
+						btCaptions = new Array("Yep, work's done!", "No, more slaughter!");
+						btCode = new Array("endSession('return');", "");
+						messageBox(600, 200, "Do you want to leave the current game? There might be more dudes to slaughter.", "Confirmation", 0, btCaptions, btCode);
 					]]></action>
 				</object>
-
 			</object>
 		</object>
 

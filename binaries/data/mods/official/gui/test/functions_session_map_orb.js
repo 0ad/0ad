@@ -1,68 +1,140 @@
 function initMapOrb()
 {
-	// Mini Map.
-	crd_map_orb_minimap_width = 176;
-	crd_map_orb_minimap_height = crd_map_orb_minimap_width;
-	crd_map_orb_minimap_x = -crd_map_orb_minimap_width;
-	crd_map_orb_minimap_y = 0;
+	SN_MINIMAP = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= right_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= 180; 
+	Crd[Crd.last-1].height	= Crd[Crd.last-1].width; 
+	Crd[Crd.last-1].x	= 0; 
+	Crd[Crd.last-1].y	= 0; 
 
-	// Map Button Seg Left 1.
-	crd_map_orb_segleft1_span_x = 2;
-	crd_map_orb_segleft1_span_y = -1;
-	crd_map_orb_segleft1_width = 32;
-	crd_map_orb_segleft1_height = 46;
-	crd_map_orb_segleft1_x = -crd_map_orb_minimap_width-crd_map_orb_segleft1_width+crd_map_orb_segleft1_span_x;
-	crd_map_orb_segleft1_y = 0;
+	SN_MAP_ORB_SEGLEFT1 = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= right_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= 32; 
+	Crd[Crd.last-1].height	= 46; 
+	Crd[Crd.last-1].x	= Crd[SN_MINIMAP].width;
+	Crd[Crd.last-1].y	= Crd[SN_MINIMAP].height-Crd[Crd.last-1].height; 
 
-	// Map Button Seg Left 2.
-	crd_map_orb_segleft2_span_y = -1;
-	crd_map_orb_segleft2_width = 40;
-	crd_map_orb_segleft2_height = 44;
-	crd_map_orb_segleft2_x = -crd_map_orb_minimap_width-crd_map_orb_segleft2_width+crd_map_orb_segleft1_span_x;
-	crd_map_orb_segleft2_y = crd_map_orb_segleft1_y+crd_map_orb_segleft1_height+crd_map_orb_segleft1_span_y;
+	SN_MAP_ORB_SEGLEFT1_FLP = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= Crd[Crd.last-2].rleft;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= Crd[Crd.last-2].rright;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[Crd.last-2].width; 
+	Crd[Crd.last-1].height	= Crd[Crd.last-2].height; 
+	Crd[Crd.last-1].x	= Crd[SN_MINIMAP].width;
+	Crd[Crd.last-1].y	= 0; 
 
-	// Map Button Seg Left 3.
-	crd_map_orb_segleft3_span_y = -1;
-	crd_map_orb_segleft3_width = crd_map_orb_segleft2_width;
-	crd_map_orb_segleft3_height = crd_map_orb_segleft2_height;
-	crd_map_orb_segleft3_x = -crd_map_orb_minimap_width-crd_map_orb_segleft3_width+crd_map_orb_segleft1_span_x;
-	crd_map_orb_segleft3_y = crd_map_orb_segleft2_y+crd_map_orb_segleft2_height+crd_map_orb_segleft2_span_y;
+	SN_MAP_ORB_SEGLEFT2 = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= right_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= 40; 
+	Crd[Crd.last-1].height	= 44; 
+	Crd[Crd.last-1].x	= Crd[SN_MAP_ORB_SEGLEFT1].x; 
+	Crd[Crd.last-1].y	= Crd[SN_MAP_ORB_SEGLEFT1].y-Crd[Crd.last-1].height;
 
-	// Map Button Seg Left 4.
-	crd_map_orb_segleft4_width = crd_map_orb_segleft1_width;
-	crd_map_orb_segleft4_height = crd_map_orb_segleft1_height;
-	crd_map_orb_segleft4_x = -crd_map_orb_minimap_width-crd_map_orb_segleft4_width+crd_map_orb_segleft1_span_x;
-	crd_map_orb_segleft4_y = crd_map_orb_segleft3_y+crd_map_orb_segleft3_height+crd_map_orb_segleft3_span_y;
+	SN_MAP_ORB_SEGLEFT2_FLP = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= Crd[Crd.last-2].rleft;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= Crd[Crd.last-2].rright;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[Crd.last-2].width; 
+	Crd[Crd.last-1].height	= Crd[Crd.last-2].height; 
+	Crd[Crd.last-1].x	= Crd[SN_MAP_ORB_SEGLEFT1].x; 
+	Crd[Crd.last-1].y	= Crd[SN_MAP_ORB_SEGLEFT2].y-Crd[Crd.last-1].height;
 
-	// Map Button Seg Bottom 1.
-	crd_map_orb_segbottom1_span_x = 0;
-	crd_map_orb_segbottom1_span_y = -3;
-	crd_map_orb_segbottom1_width = 46;
-	crd_map_orb_segbottom1_height = 32;
-	crd_map_orb_segbottom1_x = -crd_map_orb_minimap_width+crd_map_orb_segbottom1_span_x;
-	crd_map_orb_segbottom1_y = crd_map_orb_minimap_y+crd_map_orb_minimap_height+crd_map_orb_segbottom1_span_y;
+	SN_MAP_ORB_SEGLEFT3 = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= right_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= Crd[SN_MAP_ORB_SEGLEFT2].width; 
+	Crd[Crd.last-1].height	= Crd[SN_MAP_ORB_SEGLEFT2].height; 
+	Crd[Crd.last-1].x	= Crd[SN_MAP_ORB_SEGLEFT2].x;
+	Crd[Crd.last-1].y	= Crd[SN_MAP_ORB_SEGLEFT2].y-Crd[Crd.last-1].height;
 
-	// Map Button Seg Bottom 2.
-	crd_map_orb_segbottom2_span_x = -1;
-	crd_map_orb_segbottom2_span_y = -3;
-	crd_map_orb_segbottom2_width = 44;
-	crd_map_orb_segbottom2_height = 40;
-	crd_map_orb_segbottom2_x = crd_map_orb_segbottom1_x+crd_map_orb_segbottom1_width+crd_map_orb_segbottom2_span_x;
-	crd_map_orb_segbottom2_y = crd_map_orb_minimap_y+crd_map_orb_minimap_height+crd_map_orb_segbottom2_span_y;
+	SN_MAP_ORB_SEGLEFT3_FLP = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= Crd[Crd.last-2].rleft;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= Crd[Crd.last-2].rright;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[Crd.last-2].width; 
+	Crd[Crd.last-1].height	= Crd[Crd.last-2].height; 
+	Crd[Crd.last-1].x	= Crd[SN_MAP_ORB_SEGLEFT2].x;
+	Crd[Crd.last-1].y	= Crd[SN_MAP_ORB_SEGLEFT1].y-Crd[Crd.last-1].height;
 
-	// Map Button Seg Bottom 3.
-	crd_map_orb_segbottom3_span_x = -1;
-	crd_map_orb_segbottom3_span_y = -3;
-	crd_map_orb_segbottom3_width = crd_map_orb_segbottom2_width;
-	crd_map_orb_segbottom3_height = crd_map_orb_segbottom2_height;
-	crd_map_orb_segbottom3_x = crd_map_orb_segbottom2_x+crd_map_orb_segbottom2_width+crd_map_orb_segbottom3_span_x;
-	crd_map_orb_segbottom3_y = crd_map_orb_minimap_y+crd_map_orb_minimap_height+crd_map_orb_segbottom3_span_y;
+	SN_MAP_ORB_SEGLEFT4 = new Object();
+	SN_MAP_ORB_SEGLEFT4 = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= right_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= Crd[SN_MAP_ORB_SEGLEFT1].width; 
+	Crd[Crd.last-1].height	= Crd[SN_MAP_ORB_SEGLEFT1].height; 
+	Crd[Crd.last-1].x	= Crd[SN_MAP_ORB_SEGLEFT2].x;
+	Crd[Crd.last-1].y	= Crd[SN_MAP_ORB_SEGLEFT3].y-Crd[Crd.last-1].height;
 
-	// Map Button Seg Bottom 4.
-	crd_map_orb_segbottom4_span_x = -1;
-	crd_map_orb_segbottom4_span_y = -3;
-	crd_map_orb_segbottom4_width = crd_map_orb_segbottom1_width;
-	crd_map_orb_segbottom4_height = crd_map_orb_segbottom1_height;
-	crd_map_orb_segbottom4_x = crd_map_orb_segbottom3_x+crd_map_orb_segbottom3_width+crd_map_orb_segbottom4_span_x;
-	crd_map_orb_segbottom4_y = crd_map_orb_minimap_y+crd_map_orb_minimap_height+crd_map_orb_segbottom4_span_y;
+	SN_MAP_ORB_SEGLEFT4_FLP = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= Crd[Crd.last-2].rleft;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= Crd[Crd.last-2].rright;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[Crd.last-2].width; 
+	Crd[Crd.last-1].height	= Crd[Crd.last-2].height; 
+	Crd[Crd.last-1].x	= Crd[SN_MAP_ORB_SEGLEFT2].x;
+	Crd[Crd.last-1].y	= Crd[SN_MINIMAP].height-Crd[Crd.last-1].height;
+
+	SN_MAP_ORB_SEGBOTTOM1 = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= right_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= 46; 
+	Crd[Crd.last-1].height	= 32; 
+	Crd[Crd.last-1].x	= Crd[SN_MINIMAP].width-Crd[Crd.last-1].width;
+	Crd[Crd.last-1].y	= Crd[SN_MINIMAP].height; 
+
+	SN_MAP_ORB_SEGBOTTOM1_FLP = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= Crd[Crd.last-2].rleft;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= Crd[Crd.last-2].rright;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[Crd.last-2].width; 
+	Crd[Crd.last-1].height	= Crd[Crd.last-2].height; 
+	Crd[Crd.last-1].x	= Crd[SN_MINIMAP].width-Crd[Crd.last-1].width;
+	Crd[Crd.last-1].y	= Crd[SN_MINIMAP].height; 
+
+	SN_MAP_ORB_SEGBOTTOM2 = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= right_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= 44; 
+	Crd[Crd.last-1].height	= 40; 
+	Crd[Crd.last-1].x	= Crd[SN_MAP_ORB_SEGBOTTOM1].x-Crd[Crd.last-1].width; 
+	Crd[Crd.last-1].y	= Crd[SN_MAP_ORB_SEGBOTTOM1].y;
+
+	SN_MAP_ORB_SEGBOTTOM2_FLP = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= Crd[Crd.last-2].rleft;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= Crd[Crd.last-2].rright;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[Crd.last-2].width; 
+	Crd[Crd.last-1].height	= Crd[Crd.last-2].height; 
+	Crd[Crd.last-1].x	= Crd[SN_MAP_ORB_SEGBOTTOM1].x-Crd[Crd.last-1].width; 
+	Crd[Crd.last-1].y	= Crd[SN_MAP_ORB_SEGBOTTOM1].y;
+
+	SN_MAP_ORB_SEGBOTTOM3 = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= right_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= Crd[SN_MAP_ORB_SEGBOTTOM2].width; 
+	Crd[Crd.last-1].height	= Crd[SN_MAP_ORB_SEGBOTTOM2].height; 
+	Crd[Crd.last-1].x	= Crd[SN_MAP_ORB_SEGBOTTOM2].x-Crd[Crd.last-1].width;
+	Crd[Crd.last-1].y	= Crd[SN_MAP_ORB_SEGBOTTOM2].y;
+
+	SN_MAP_ORB_SEGBOTTOM3_FLP = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= Crd[Crd.last-2].rleft;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= Crd[Crd.last-2].rright;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[Crd.last-2].width; 
+	Crd[Crd.last-1].height	= Crd[Crd.last-2].height; 
+	Crd[Crd.last-1].x	= Crd[SN_MAP_ORB_SEGBOTTOM2].x-Crd[Crd.last-1].width;
+	Crd[Crd.last-1].y	= Crd[SN_MAP_ORB_SEGBOTTOM2].y;
+
+	SN_MAP_ORB_SEGBOTTOM4 = new Object();
+	SN_MAP_ORB_SEGBOTTOM4 = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= right_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= Crd[SN_MAP_ORB_SEGBOTTOM1].width; 
+	Crd[Crd.last-1].height	= Crd[SN_MAP_ORB_SEGBOTTOM1].height; 
+	Crd[Crd.last-1].x	= Crd[SN_MAP_ORB_SEGBOTTOM3].x-Crd[Crd.last-1].width;
+	Crd[Crd.last-1].y	= Crd[SN_MAP_ORB_SEGBOTTOM2].y;
+
+	SN_MAP_ORB_SEGBOTTOM4_FLP = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= Crd[Crd.last-2].rleft;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= Crd[Crd.last-2].rright;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[Crd.last-2].width; 
+	Crd[Crd.last-1].height	= Crd[Crd.last-2].height; 
+	Crd[Crd.last-1].x	= 0;
+	Crd[Crd.last-1].y	= Crd[SN_MAP_ORB_SEGBOTTOM2].y;
 }

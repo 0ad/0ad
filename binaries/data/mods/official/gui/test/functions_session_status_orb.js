@@ -1,5 +1,216 @@
 function initStatusOrb()
 {
+	SN_STATUS_PANE_BG = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= 255; 
+	Crd[Crd.last-1].height	= 170; 
+	Crd[Crd.last-1].x	= 0; 
+	Crd[Crd.last-1].y	= 0; 
+
+	SN_STATUS_PANE_HEADING = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= Crd[SN_STATUS_PANE_BG].width; 
+	Crd[Crd.last-1].height	= 14; 
+	Crd[Crd.last-1].x	= Crd[SN_STATUS_PANE_BG].x+2; 
+	Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_BG].y+Crd[SN_STATUS_PANE_BG].height-Crd[Crd.last-1].height-3;
+
+	SN_STATUS_PANE_HEADING_FLP = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= Crd[Crd.last-2].rleft;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= Crd[Crd.last-2].rright;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[Crd.last-2].width; 
+	Crd[Crd.last-1].height	= Crd[Crd.last-2].height; 
+	Crd[Crd.last-1].x	= Crd[Crd.last-2].x; 
+	Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_BG].y+3;
+
+	SN_STATUS_PANE_PORTRAIT = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= crd_portrait_lrg_width; 
+	Crd[Crd.last-1].height	= crd_portrait_lrg_height; 
+	Crd[Crd.last-1].x	= Crd[SN_STATUS_PANE_HEADING].x+5; 
+	Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_HEADING].y-Crd[Crd.last-1].height-7;
+
+	SN_STATUS_PANE_PORTRAIT_FLP = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= Crd[Crd.last-2].rleft;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= Crd[Crd.last-2].rright;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[Crd.last-2].width; 
+	Crd[Crd.last-1].height	= Crd[Crd.last-2].height; 
+	Crd[Crd.last-1].x	= Crd[Crd.last-2].x; 
+	Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_HEADING_FLP].y+Crd[SN_STATUS_PANE_HEADING_FLP].height+7;
+
+	SN_STATUS_PANE_ICON_RANK = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= crd_mini_icon_width; 
+	Crd[Crd.last-1].height	= crd_mini_icon_height; 
+	Crd[Crd.last-1].x	= Crd[SN_STATUS_PANE_PORTRAIT].x+Crd[SN_STATUS_PANE_PORTRAIT].width-Crd[Crd.last-1].width; 
+	Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_PORTRAIT].y;
+
+	SN_STATUS_PANE_ICON_RANK_FLP = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= Crd[Crd.last-2].rleft;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= Crd[Crd.last-2].rright;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[Crd.last-2].width; 
+	Crd[Crd.last-1].height	= Crd[Crd.last-2].height; 
+	Crd[Crd.last-1].x	= Crd[Crd.last-2].x; 
+	Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_PORTRAIT_FLP].y;
+
+	SN_STATUS_PANE_NAME1 = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= Crd[SN_STATUS_PANE_BG].width-Crd[SN_STATUS_PANE_PORTRAIT].width-10; 
+	Crd[Crd.last-1].height	= Crd[SN_STATUS_PANE_PORTRAIT].height; 
+	Crd[Crd.last-1].x	= Crd[SN_STATUS_PANE_PORTRAIT].x+Crd[SN_STATUS_PANE_PORTRAIT].width+2; 
+	Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_PORTRAIT].y;
+
+	SN_STATUS_PANE_NAME1_FLP = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= Crd[Crd.last-2].rleft;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= Crd[Crd.last-2].rright;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[Crd.last-2].width; 
+	Crd[Crd.last-1].height	= Crd[Crd.last-2].height; 
+	Crd[Crd.last-1].x	= Crd[Crd.last-2].x; 
+	Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_PORTRAIT_FLP].y;
+
+	SN_STATUS_PANE_ICON_HP_BAR_SPAN = 2;
+	SN_STATUS_PANE_ICON_HP_TEXT_X_SPAN = 4;
+	SN_STATUS_PANE_ICON_HP_TEXT_Y_SPAN = 0;
+
+	SN_STATUS_PANE_ICON_HP_BAR = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= Crd[SN_STATUS_PANE_PORTRAIT].width; 
+	Crd[Crd.last-1].height	= 6; 
+	Crd[Crd.last-1].x	= Crd[SN_STATUS_PANE_PORTRAIT].x; 
+	Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_PORTRAIT].y-Crd[Crd.last-1].height-SN_STATUS_PANE_ICON_HP_BAR_SPAN;
+
+	SN_STATUS_PANE_ICON_HP_BAR_FLP = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= Crd[Crd.last-2].rleft;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= Crd[Crd.last-2].rright;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[Crd.last-2].width; 
+	Crd[Crd.last-1].height	= Crd[Crd.last-2].height; 
+	Crd[Crd.last-1].x	= Crd[Crd.last-2].x; 
+	Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_PORTRAIT_FLP].y+Crd[SN_STATUS_PANE_PORTRAIT_FLP].height+SN_STATUS_PANE_ICON_HP_BAR_SPAN;
+
+	SN_STATUS_PANE_ICON_HP_TEXT = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= 55; 
+	Crd[Crd.last-1].height	= Crd[SN_STATUS_PANE_ICON_HP_BAR].height; 
+	Crd[Crd.last-1].x	= Crd[SN_STATUS_PANE_NAME1].x; 
+	Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_ICON_HP_BAR].y+SN_STATUS_PANE_ICON_HP_TEXT_Y_SPAN;
+
+	SN_STATUS_PANE_ICON_HP_TEXT_FLP = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= Crd[Crd.last-2].rleft;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= Crd[Crd.last-2].rright;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[Crd.last-2].width; 
+	Crd[Crd.last-1].height	= Crd[Crd.last-2].height; 
+	Crd[Crd.last-1].x	= Crd[Crd.last-2].x; 
+	Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_ICON_HP_BAR_FLP].y+SN_STATUS_PANE_ICON_HP_TEXT_Y_SPAN;
+
+	SN_STATUS_PANE_ICON_XP_BAR = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= Crd[SN_STATUS_PANE_ICON_HP_BAR].width; 
+	Crd[Crd.last-1].height	= Crd[SN_STATUS_PANE_ICON_HP_BAR].height;
+	Crd[Crd.last-1].x	= Crd[SN_STATUS_PANE_ICON_HP_BAR].x; 
+	Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_ICON_HP_BAR].y-Crd[SN_STATUS_PANE_ICON_HP_BAR].height-SN_STATUS_PANE_ICON_HP_BAR_SPAN-1;
+
+	SN_STATUS_PANE_ICON_XP_BAR_FLP = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= Crd[Crd.last-2].rleft;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= Crd[Crd.last-2].rright;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[Crd.last-2].width; 
+	Crd[Crd.last-1].height	= Crd[Crd.last-2].height; 
+	Crd[Crd.last-1].x	= Crd[Crd.last-2].x; 
+	Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_ICON_HP_BAR_FLP].y+Crd[SN_STATUS_PANE_ICON_HP_BAR_FLP].height+SN_STATUS_PANE_ICON_HP_BAR_SPAN+1;
+
+	SN_STATUS_PANE_ICON_XP_TEXT = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= Crd[SN_STATUS_PANE_ICON_HP_TEXT].width; 
+	Crd[Crd.last-1].height	= Crd[SN_STATUS_PANE_ICON_HP_TEXT].height; 
+	Crd[Crd.last-1].x	= Crd[SN_STATUS_PANE_ICON_HP_TEXT].x; 
+	Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_ICON_XP_BAR].y+SN_STATUS_PANE_ICON_HP_TEXT_Y_SPAN;
+
+	SN_STATUS_PANE_ICON_XP_TEXT_FLP = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= Crd[Crd.last-2].rleft;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= Crd[Crd.last-2].rright;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[Crd.last-2].width; 
+	Crd[Crd.last-1].height	= Crd[Crd.last-2].height; 
+	Crd[Crd.last-1].x	= Crd[Crd.last-2].x; 
+	Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_ICON_XP_BAR_FLP].y+SN_STATUS_PANE_ICON_HP_TEXT_Y_SPAN;
+
+	SN_STATUS_PANE_2STAT = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= 126; 
+	Crd[Crd.last-1].height	= 30; 
+	Crd[Crd.last-1].x	= Crd[SN_STATUS_PANE_ICON_HP_TEXT].x+Crd[SN_STATUS_PANE_ICON_HP_TEXT].width; 
+	Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_ICON_HP_BAR].y+crd_mini_icon_width+1;
+
+	SN_STATUS_PANE_2STAT_FLP = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= Crd[Crd.last-2].rleft;	Crd[Crd.last-1].rtop	= top_screen; 
+	Crd[Crd.last-1].rright	= Crd[Crd.last-2].rright;	Crd[Crd.last-1].rbottom	= top_screen; 
+	Crd[Crd.last-1].width	= Crd[Crd.last-2].width; 
+	Crd[Crd.last-1].height	= Crd[Crd.last-2].height; 
+	Crd[Crd.last-1].x	= Crd[Crd.last-2].x; 
+	Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_ICON_HP_BAR_FLP].y+crd_mini_icon_width+1;
+
+	SN_STATUS_PANE_STAT = new Array();
+	SN_STATUS_PANE_STAT_FLP = new Array();
+	SN_STATUS_PANE_STAT.last = 0;
+	SN_STATUS_PANE_STAT.row_curr  = 1;
+	SN_STATUS_PANE_STAT.col_curr  = 1;
+	SN_STATUS_PANE_STAT.row  = 2;
+	SN_STATUS_PANE_STAT.col  = 6;
+	SN_STATUS_PANE_STAT.max	 = 12;
+	for (SN_STATUS_PANE_STAT.curr = 1; SN_STATUS_PANE_STAT.curr <= SN_STATUS_PANE_STAT.max; SN_STATUS_PANE_STAT.curr++)
+	{
+		SN_STATUS_PANE_STAT[SN_STATUS_PANE_STAT.curr] = addArrayElement(Crd, Crd.last); 
+		Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+		Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+		Crd[Crd.last-1].width	= (Crd[SN_STATUS_PANE_BG].width-14)/6; 
+		Crd[Crd.last-1].height	= 30; 
+
+		if (SN_STATUS_PANE_STAT.col_curr == 1)
+			Crd[Crd.last-1].x	= Crd[SN_STATUS_PANE_PORTRAIT].x; 
+		else
+			Crd[Crd.last-1].x	= Crd[Crd.last-3].x+Crd[Crd.last-3].width;
+
+		if (SN_STATUS_PANE_STAT.row_curr == 1)
+			Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_ICON_XP_BAR].y-Crd[Crd.last-1].height; 
+		else
+			Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_ICON_XP_BAR].y-Crd[Crd.last-1].height-Crd[Crd.last-3].height;
+
+		SN_STATUS_PANE_STAT_FLP[SN_STATUS_PANE_STAT.curr] = addArrayElement(Crd, Crd.last); 
+		Crd[Crd.last-1].rleft	= Crd[Crd.last-2].rleft;	Crd[Crd.last-1].rtop	= top_screen; 
+		Crd[Crd.last-1].rright	= Crd[Crd.last-2].rright;	Crd[Crd.last-1].rbottom	= top_screen; 
+		Crd[Crd.last-1].width	= Crd[Crd.last-2].width; 
+		Crd[Crd.last-1].height	= Crd[Crd.last-2].height; 
+
+		if (SN_STATUS_PANE_STAT.col_curr == 1)
+			Crd[Crd.last-1].x	= Crd[SN_STATUS_PANE_PORTRAIT_FLP].x; 
+		else
+			Crd[Crd.last-1].x	= Crd[Crd.last-3].x+Crd[Crd.last-3].width;
+
+		if (SN_STATUS_PANE_STAT.row_curr == 1)
+			Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_ICON_XP_BAR_FLP].y+Crd[SN_STATUS_PANE_ICON_XP_BAR_FLP].height; 
+		else
+			Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_ICON_XP_BAR_FLP].y+Crd[SN_STATUS_PANE_ICON_XP_BAR_FLP].height+Crd[Crd.last-3].height;
+
+		if (SN_STATUS_PANE_STAT.col_curr == SN_STATUS_PANE_STAT.col)
+		{
+			SN_STATUS_PANE_STAT.row_curr++;
+			SN_STATUS_PANE_STAT.col_curr = 0;
+		}
+		SN_STATUS_PANE_STAT.col_curr++;
+	}
+	SN_STATUS_PANE_STAT.last = SN_STATUS_PANE_STAT.curr;
+
+
+
+
+/*
 	// Status Orb background.
 	crd_status_orb_bkg_x = 0;
 	crd_status_orb_bkg_y = 0;
@@ -126,6 +337,12 @@ function initStatusOrb()
 	crd_status_orb_stat6_2_height = crd_status_orb_stat1_2_height;
 	crd_status_orb_stat6_2_x = crd_status_orb_stat5_2_x+crd_status_orb_stat5_2_width;
 	crd_status_orb_stat6_2_y = crd_status_orb_stat1_2_y;
+*/
+	// Status Orb background.
+	crd_status_orb_bkg_x = 0;
+	crd_status_orb_bkg_y = 0;
+	crd_status_orb_bkg_width = 255;
+	crd_status_orb_bkg_height = 170;
 
 	// Command Button 1.
 	command_sub_max = 12;	// Maximum number of entries in a command button list.
@@ -699,13 +916,13 @@ function UpdateCommandButtons()
 function UpdateStatusOrb()
 {
 	// Update heading.
-	GUIObject = getGUIObjectByName("session_panel_status_heading");
+	GUIObject = getGUIObjectByName("SN_STATUS_PANE_HEADING");
 	GUIObject.caption = selection[0].player.name; // Player name (placeholder; replace with proper callsign).
 	if (selection[0].traits.id.civ)
 		GUIObject.caption += " [icon=bullet_icon] " + selection[0].traits.id.civ;
 
 	// Update name text.
-	GUIObject = getGUIObjectByName("session_panel_status_name1");
+	GUIObject = getGUIObjectByName("SN_STATUS_PANE_NAME1");
 	GUIObject.caption = "";
 	// Personal name.
 	if (selection[0].traits.id.personal && selection[0].traits.id.personal != "")
@@ -720,7 +937,7 @@ function UpdateStatusOrb()
 	// Specific/ranked name.
 	if (selection[0].traits.id.ranked)
 	{
-		GUIObject = getGUIObjectByName("session_panel_status_name1");
+		GUIObject = getGUIObjectByName("SN_STATUS_PANE_NAME1");
 		GUIObject.caption += selection[0].traits.id.ranked + "\n";
 	}
 	else{
@@ -732,10 +949,10 @@ function UpdateStatusOrb()
 
 	// Update portrait
 	if (selection[0].traits.id.icon)
-		setPortrait("session_panel_status_portrait", selection[0].traits.id.icon, selection[0].traits.id.civ_code, selection[0].traits.id.icon_cell);
+		setPortrait("SN_STATUS_PANE_PORTRAIT", selection[0].traits.id.icon, selection[0].traits.id.civ_code, selection[0].traits.id.icon_cell);
 
 	// Update rank.
-	GUIObject = getGUIObjectByName("session_panel_status_icon_rank");
+	GUIObject = getGUIObjectByName("SN_STATUS_PANE_ICON_RANK");
 	if (selection[0].traits.up.rank > 1)
 	{
 		GUIObject.sprite = "ui_icon_sheet_statistic";
@@ -747,33 +964,33 @@ function UpdateStatusOrb()
 	// Update hitpoints
 	if (selection[0].traits.health.curr && selection[0].traits.health.max)
 	{
-		getGUIObjectByName("session_panel_status_icon_hp_text").caption = Math.round(selection[0].traits.health.curr) + "/" + Math.round(selection[0].traits.health.max);
-		getGUIObjectByName("session_panel_status_icon_hp_text").hidden = false;
-		getGUIObjectByName("session_panel_status_icon_hp_bar").caption = ((Math.round(selection[0].traits.health.curr) * 100 ) / Math.round(selection[0].traits.health.max));
-		getGUIObjectByName("session_panel_status_icon_hp_bar").hidden = false;
+		getGUIObjectByName("SN_STATUS_PANE_ICON_HP_TEXT").caption = Math.round(selection[0].traits.health.curr) + "/" + Math.round(selection[0].traits.health.max);
+		getGUIObjectByName("SN_STATUS_PANE_ICON_HP_TEXT").hidden = false;
+		getGUIObjectByName("SN_STATUS_PANE_ICON_HP_BAR").caption = ((Math.round(selection[0].traits.health.curr) * 100 ) / Math.round(selection[0].traits.health.max));
+		getGUIObjectByName("SN_STATUS_PANE_ICON_HP_BAR").hidden = false;
 	}
 	else
 	{
-		getGUIObjectByName("session_panel_status_icon_hp_text").hidden = true;
-		getGUIObjectByName("session_panel_status_icon_hp_bar").hidden = true;
+		getGUIObjectByName("SN_STATUS_PANE_ICON_HP_TEXT").hidden = true;
+		getGUIObjectByName("SN_STATUS_PANE_ICON_HP_BAR").hidden = true;
 	}
 
 	// Update upgrade points
 	if (selection[0].traits.up && selection[0].traits.up.curr && selection[0].traits.up.req)
 	{
-		getGUIObjectByName("session_panel_status_icon_xp_text").caption = Math.round(selection[0].traits.up.curr) + "/" + Math.round(selection[0].traits.up.req);
-		getGUIObjectByName("session_panel_status_icon_xp_text").hidden = false;
-		getGUIObjectByName("session_panel_status_icon_xp_bar").caption = ((Math.round(selection[0].traits.up.curr) * 100 ) / Math.round(selection[0].traits.up.req));
-		getGUIObjectByName("session_panel_status_icon_xp_bar").hidden = false;
+		getGUIObjectByName("SN_STATUS_PANE_ICON_XP_TEXT").caption = Math.round(selection[0].traits.up.curr) + "/" + Math.round(selection[0].traits.up.req);
+		getGUIObjectByName("SN_STATUS_PANE_ICON_XP_TEXT").hidden = false;
+		getGUIObjectByName("SN_STATUS_PANE_ICON_XP_BAR").caption = ((Math.round(selection[0].traits.up.curr) * 100 ) / Math.round(selection[0].traits.up.req));
+		getGUIObjectByName("SN_STATUS_PANE_ICON_XP_BAR").hidden = false;
 	}
 	else
 	{
-		getGUIObjectByName("session_panel_status_icon_xp_text").hidden = true;
-		getGUIObjectByName("session_panel_status_icon_xp_bar").hidden = true;
+		getGUIObjectByName("SN_STATUS_PANE_ICON_XP_TEXT").hidden = true;
+		getGUIObjectByName("SN_STATUS_PANE_ICON_XP_BAR").hidden = true;
 	}
 
 	// Update Supply/Garrison
-	GUIObject = getGUIObjectByName("session_panel_status_stat1");
+	GUIObject = getGUIObjectByName("SN_STATUS_PANE_2STAT");
 	GUIObject.caption = '';
 
 	if (selection[0].traits.garrison)
@@ -798,55 +1015,55 @@ function UpdateStatusOrb()
 
 	// Update Attack stats
 		if (selection[0].actions.attack && selection[0].actions.attack.damage && selection[0].actions.attack.damage > 0)
-			getGUIObjectByName("session_panel_status_stat1_1").caption = '[icon="icon_statistic_attack"]' + selection[0].actions.attack.damage;
+			getGUIObjectByName("SN_STATUS_PANE_STAT1").caption = '[icon="icon_statistic_attack"]' + selection[0].actions.attack.damage;
 		else
-			getGUIObjectByName("session_panel_status_stat1_1").caption = "";
+			getGUIObjectByName("SN_STATUS_PANE_STAT1").caption = "";
 
 		if (selection[0].actions.attack && selection[0].actions.attack.hack && selection[0].actions.attack.hack > 0)
-			getGUIObjectByName("session_panel_status_stat2_1").caption = '[icon="icon_statistic_hack"]' + Math.round(selection[0].actions.attack.hack*100) + '%';
+			getGUIObjectByName("SN_STATUS_PANE_STAT2").caption = '[icon="icon_statistic_hack"]' + Math.round(selection[0].actions.attack.hack*100) + '%';
 		else
-			getGUIObjectByName("session_panel_status_stat2_1").caption = "";
+			getGUIObjectByName("SN_STATUS_PANE_STAT2").caption = "";
 
 		if (selection[0].actions.attack && selection[0].actions.attack.pierce && selection[0].actions.attack.pierce > 0)
-			getGUIObjectByName("session_panel_status_stat3_1").caption = '[icon="icon_statistic_pierce"]' + Math.round(selection[0].actions.attack.pierce*100) + '%';
+			getGUIObjectByName("SN_STATUS_PANE_STAT3").caption = '[icon="icon_statistic_pierce"]' + Math.round(selection[0].actions.attack.pierce*100) + '%';
 		else
-			getGUIObjectByName("session_panel_status_stat3_1").caption = "";
+			getGUIObjectByName("SN_STATUS_PANE_STAT3").caption = "";
 
 		if (selection[0].actions.attack && selection[0].actions.attack.crush && selection[0].actions.attack.crush > 0)
-			getGUIObjectByName("session_panel_status_stat4_1").caption = '[icon="icon_statistic_crush"]' + Math.round(selection[0].actions.attack.crush*100) + '%';
+			getGUIObjectByName("SN_STATUS_PANE_STAT4").caption = '[icon="icon_statistic_crush"]' + Math.round(selection[0].actions.attack.crush*100) + '%';
 		else
-			getGUIObjectByName("session_panel_status_stat4_1").caption = "";
+			getGUIObjectByName("SN_STATUS_PANE_STAT4").caption = "";
 
 		if (selection[0].actions.attack && selection[0].actions.attack.range && selection[0].actions.attack.range > 0)
-			getGUIObjectByName("session_panel_status_stat5_1").caption = '[icon="icon_statistic_range"]' + selection[0].actions.attack.range;
+			getGUIObjectByName("SN_STATUS_PANE_STAT5").caption = '[icon="icon_statistic_range"]' + selection[0].actions.attack.range;
 		else
-			getGUIObjectByName("session_panel_status_stat5_1").caption = "";
+			getGUIObjectByName("SN_STATUS_PANE_STAT5").caption = "";
 
 		if (selection[0].actions.attack && selection[0].actions.attack.accuracy && selection[0].actions.attack.accuracy > 0)
-			getGUIObjectByName("session_panel_status_stat6_1").caption = '[icon="icon_statistic_accuracy"]' + Math.round(selection[0].actions.attack.accuracy*100) + '%';
+			getGUIObjectByName("SN_STATUS_PANE_STAT6").caption = '[icon="icon_statistic_accuracy"]' + Math.round(selection[0].actions.attack.accuracy*100) + '%';
 		else
-			getGUIObjectByName("session_panel_status_stat6_1").caption = "";
+			getGUIObjectByName("SN_STATUS_PANE_STAT6").caption = "";
 
 	// Update Armour & Other stats
 		if (selection[0].traits.armour && selection[0].traits.armour.value && selection[0].traits.armour.value > 0)
-			getGUIObjectByName("session_panel_status_stat1_2").caption = '[icon="icon_statistic_armour"]' + selection[0].traits.armour.value;
-		else getGUIObjectByName("session_panel_status_stat1_2").caption = "";
+			getGUIObjectByName("SN_STATUS_PANE_STAT7").caption = '[icon="icon_statistic_armour"]' + selection[0].traits.armour.value;
+		else getGUIObjectByName("SN_STATUS_PANE_STAT7").caption = "";
 		if (selection[0].traits.armour && selection[0].traits.armour.hack && selection[0].traits.armour.hack > 0)
-			getGUIObjectByName("session_panel_status_stat2_2").caption = '[icon="icon_statistic_hack"]' + Math.round(selection[0].traits.armour.hack*100) + '%';
-		else getGUIObjectByName("session_panel_status_stat2_2").caption = "";
+			getGUIObjectByName("SN_STATUS_PANE_STAT8").caption = '[icon="icon_statistic_hack"]' + Math.round(selection[0].traits.armour.hack*100) + '%';
+		else getGUIObjectByName("SN_STATUS_PANE_STAT8").caption = "";
 		if (selection[0].traits.armour && selection[0].traits.armour.pierce && selection[0].traits.armour.pierce > 0)
-			getGUIObjectByName("session_panel_status_stat3_2").caption = '[icon="icon_statistic_pierce"]' + Math.round(selection[0].traits.armour.pierce*100) + '%';
-		else getGUIObjectByName("session_panel_status_stat3_2").caption = "";
+			getGUIObjectByName("SN_STATUS_PANE_STAT9").caption = '[icon="icon_statistic_pierce"]' + Math.round(selection[0].traits.armour.pierce*100) + '%';
+		else getGUIObjectByName("SN_STATUS_PANE_STAT9").caption = "";
 		if (selection[0].traits.armour && selection[0].traits.armour.crush && selection[0].traits.armour.crush > 0)
-			getGUIObjectByName("session_panel_status_stat4_2").caption = '[icon="icon_statistic_crush"]' + Math.round(selection[0].traits.armour.crush*100) + '%';
-		else getGUIObjectByName("session_panel_status_stat4_2").caption = "";
+			getGUIObjectByName("SN_STATUS_PANE_STAT10").caption = '[icon="icon_statistic_crush"]' + Math.round(selection[0].traits.armour.crush*100) + '%';
+		else getGUIObjectByName("SN_STATUS_PANE_STAT10").caption = "";
 
 	if (selection[0].actions.move && selection[0].actions.move.speed)
-		getGUIObjectByName("session_panel_status_stat5_2").caption = '[icon="icon_statistic_speed"]' + selection[0].actions.move.speed;
-		else getGUIObjectByName("session_panel_status_stat5_2").caption = "";
+		getGUIObjectByName("SN_STATUS_PANE_STAT11").caption = '[icon="icon_statistic_speed"]' + selection[0].actions.move.speed;
+		else getGUIObjectByName("SN_STATUS_PANE_STAT11").caption = "";
 	if (selection[0].traits.vision && selection[0].traits.vision.los)
-		getGUIObjectByName("session_panel_status_stat6_2").caption = '[icon="icon_statistic_los"]' + selection[0].traits.vision.los;
-		else getGUIObjectByName("session_panel_status_stat6_2").caption = "";
+		getGUIObjectByName("SN_STATUS_PANE_STAT12").caption = '[icon="icon_statistic_los"]' + selection[0].traits.vision.los;
+		else getGUIObjectByName("SN_STATUS_PANE_STAT12").caption = "";
 
 	// Reveal Status Orb
 	getGUIObjectByName("session_status_orb").hidden = false;

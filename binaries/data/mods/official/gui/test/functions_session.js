@@ -246,52 +246,52 @@ function FlipGUI(NewGUIType)
 			// Set each object to the other size.
 			switch (GUIType)
 			{
-				case "top":
+				case "bottom":
 					setSize(SizeCoord[FlipGUILoop].name, SizeCoord[FlipGUILoop].size1);
 					switch (SizeCoord[FlipGUILoop].name){
-						case "session_panel_minimap_segbottom1":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = SizeCoord[FlipGUILoop].name;
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = SizeCoord[FlipGUILoop].name + "_lit";
+						case "SN_MAP_ORB_SEGBOTTOM1":
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop1";
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segtop1" + "_lit";
 						break;
-						case "session_panel_minimap_segbottom2":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = SizeCoord[FlipGUILoop].name;
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = SizeCoord[FlipGUILoop].name + "_lit";
+						case "SN_MAP_ORB_SEGBOTTOM2":
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop2";
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segtop2" + "_lit";
 						break;
-						case "session_panel_minimap_segbottom3":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = SizeCoord[FlipGUILoop].name;
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = SizeCoord[FlipGUILoop].name + "_lit";
+						case "SN_MAP_ORB_SEGBOTTOM3":
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop3";
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segtop3" + "_lit";
 						break;
-						case "session_panel_minimap_segbottom4":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = SizeCoord[FlipGUILoop].name;
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = SizeCoord[FlipGUILoop].name + "_lit";
+						case "SN_MAP_ORB_SEGBOTTOM4":
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop4";
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segtop4" + "_lit";
 						break;
-						case "session_panel_status_bg":
+						case "SN_STATUS_PANE_BG":
 							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_status_bg_top";
 						break;
 						default:
 						break;
 					}
 				break;
-				case "bottom":
+				case "top":
 					setSize(SizeCoord[FlipGUILoop].name, SizeCoord[FlipGUILoop].size2);
 					switch (SizeCoord[FlipGUILoop].name){
-						case "session_panel_minimap_segbottom1":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop1";
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segtop1_lit";
+						case "SN_MAP_ORB_SEGBOTTOM1":
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segbottom1";
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segbottom1_lit";
 						break;
-						case "session_panel_minimap_segbottom2":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop2";
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segtop2_lit";
+						case "SN_MAP_ORB_SEGBOTTOM2":
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segbottom2";
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segbottom2_lit";
 						break;
-						case "session_panel_minimap_segbottom3":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop3";
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segtop3_lit";
+						case "SN_MAP_ORB_SEGBOTTOM3":
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segbottom3";
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segbottom3_lit";
 						break;
-						case "session_panel_minimap_segbottom4":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop4";
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segtop4_lit";
+						case "SN_MAP_ORB_SEGBOTTOM4":
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segbottom4";
+							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segbottom4_lit";
 						break;
-						case "session_panel_status_bg":
+						case "SN_STATUS_PANE_BG":
 							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_status_bg_bottom";
 						break;
 						default:

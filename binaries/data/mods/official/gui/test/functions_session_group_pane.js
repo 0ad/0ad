@@ -25,6 +25,9 @@ function initGroupPaneTable()
 	AddGroupPaneRow(0, 70, 		100, -102);	// Row 1
 	AddGroupPaneRow(0, 116,		100, -148);	// Row 2
 	AddGroupPaneRow(0, 162,		100, -194);	// Row 3
+//	AddGroupPaneRow(0, 208,		100, -240);	// Row 4
+//	AddGroupPaneRow(0, 254,		100, -286);	// Row 5
+//	AddGroupPaneRow(0, 300,		100, -332);	// Row 6
 	AddGroupPaneCol(50, -16, 	50, -16);	// Col 0
 	AddGroupPaneCol(50, -52, 	50, -52);	// Col 1
 	AddGroupPaneCol(50, 20, 	50, 20);	// Col 2
@@ -48,11 +51,11 @@ function AddGroupPaneCol(rleft1, left1, rleft2, left2)
 
 	crd_grppane_prt_col[crd_grppane_prt_col.last] = new Array();
 
-	style=0;
+	style=1;
 	crd_grppane_prt_col[crd_grppane_prt_col.last][style] = new Array(); 
 	crd_grppane_prt_col[crd_grppane_prt_col.last][style].size = new GUISize(left1, 0, left1 + crd_portrait_sml_width, 0, rleft1, 0, rleft1, 0);
 
-	style=1;
+	style=0;
 	crd_grppane_prt_col[crd_grppane_prt_col.last][style] = new Array(); 
 	crd_grppane_prt_col[crd_grppane_prt_col.last][style].size = new GUISize(left2, 0, left2 + crd_portrait_sml_width, 0, rleft2, 0, rleft2, 0);
 
@@ -67,11 +70,11 @@ function AddGroupPaneRow(rtop1, top1, rtop2, top2)
 
 	crd_grppane_prt_row[crd_grppane_prt_row.last] = new Array();
 
-	style=0;
+	style=1;
 	crd_grppane_prt_row[crd_grppane_prt_row.last][style] = new Array();
 	crd_grppane_prt_row[crd_grppane_prt_row.last][style].size = new GUISize(0, top1, 0, top1 + crd_portrait_sml_height, 0, rtop1, 0, rtop1);
 
-	style=1;
+	style=0;
 	crd_grppane_prt_row[crd_grppane_prt_row.last][style] = new Array();
 	crd_grppane_prt_row[crd_grppane_prt_row.last][style].size = new GUISize(0, top2, 0, top2 + crd_portrait_sml_height, 0, rtop2, 0, rtop2);
 
@@ -179,8 +182,8 @@ function UpdateGroupPane()
 	// Display appropriate portraits.						
 	for (groupPaneLoop = 1; groupPaneLoop <= crd_grppane_prt.last; groupPaneLoop++)
 	{
-		groupPanePortrait = getGUIObjectByName("session_group_pane_portrait_" + groupPaneLoop);
-		groupPaneBar = getGUIObjectByName("session_group_pane_portrait_" + groupPaneLoop + "_bar");
+		groupPanePortrait = getGUIObjectByName("SESSION_GROUP_PANE_PORTRAIT_" + groupPaneLoop);
+		groupPaneBar = getGUIObjectByName("SESSION_GROUP_PANE_PORTRAIT_" + groupPaneLoop + "_BAR");
 
 		// If it's a valid entity,
 		if (groupPaneLoop <= selection.length){
@@ -191,7 +194,7 @@ function UpdateGroupPane()
 			if (selection[groupPaneLoop-1].traits.health.curr && selection[groupPaneLoop-1].traits.health.max)
 				groupPaneBar.caption = ((Math.round(selection[groupPaneLoop-1].traits.health.curr) * 100 ) / Math.round(selection[groupPaneLoop-1].traits.health.max));
 			// Set portrait.
-			setPortrait("session_group_pane_portrait_" + groupPaneLoop, selection[groupPaneLoop-1].traits.id.icon, selection[groupPaneLoop-1].traits.id.civ_code, selection[groupPaneLoop-1].traits.id.icon_cell);
+			setPortrait("SESSION_GROUP_PANE_PORTRAIT_" + groupPaneLoop, selection[groupPaneLoop-1].traits.id.icon, selection[groupPaneLoop-1].traits.id.civ_code, selection[groupPaneLoop-1].traits.id.icon_cell);
 		}
 		// If it's empty, hide its group portrait.
 		else

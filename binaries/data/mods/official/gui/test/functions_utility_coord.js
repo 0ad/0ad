@@ -244,6 +244,7 @@ function addSizeCoordArray(objectName, objectArrayElement, objectArrayElement_Fl
 	SizeCoord[SizeCoord.last].size2 = calcSizeArray(objectName, addSizeContainer);
 
 	SizeCoord.last++; // Increment counter for next entry.
+
 }
 
 // ====================================================================

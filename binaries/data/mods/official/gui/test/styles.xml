@@ -44,7 +44,24 @@
 		tooltip="(TBA)"
 	/>
 
+	<style name="session_button_object"
+		text_align="center"
+		text_valign="center"
+		sprite="message_box_button_normal"
+		sprite_over="message_box_button_over"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+	/>
+
 	<style name="session_ghost_object"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_ghost_miniheading_object"
+		font="verdana8"
+		textcolor="200 200 200"
 		tooltip_style="session_tooltip"
 		tooltip="(TBA)"
 		ghost="true"
@@ -53,7 +70,44 @@
 	<style name="session_ghost_subheading_object"
 		font="verdana10"
 		textcolor="200 200 200"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_ghost_subheading_center_object"
+		font="verdana10"
+		textcolor="200 200 200"
 		text_align="center"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_ghost_subheading_left_object"
+		font="verdana10"
+		textcolor="200 200 200"
+		text_align="left"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_ghost_midheading_object"
+		font="verdana11"
+		textcolor="255 255 255"
+		text_align="center"
+		text_valign="bottom"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_ghost_midheading_center_bottom_object"
+		font="verdana11"
+		textcolor="255 255 255"
+		text_align="center"
+		text_valign="bottom"
 		tooltip_style="session_tooltip"
 		tooltip="(TBA)"
 		ghost="true"
@@ -62,13 +116,38 @@
 	<style name="session_ghost_heading_object"
 		font="verdana12"
 		textcolor="200 200 200"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_ghost_heading_left_object"
+		font="verdana12"
+		textcolor="200 200 200"
 		text_align="left"
 		tooltip_style="session_tooltip"
 		tooltip="(TBA)"
 		ghost="true"
 	/>
 
-	<style name="session_ghost_left_centre_text_object"
+	<style name="session_ghost_text_object"
+		font="verdana10"
+		textcolor="255 255 255"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_ghost_text_left_object"
+		font="verdana10"
+		textcolor="255 255 255"
+		text_align="left"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_ghost_text_left_centre_object"
 		font="verdana10"
 		textcolor="255 255 255"
 		text_align="left"
@@ -76,6 +155,11 @@
 		tooltip_style="session_tooltip"
 		tooltip="(TBA)"
 		ghost="true"
+	/>
+
+	<style name="session_minimap"
+		tooltip_style="session_tooltip"
+		tooltip=""
 	/>
 
 	<!-- Empty entity portrait. -->
@@ -94,6 +178,16 @@
 		sprite_over="ui_portrait_default_circle_lit"
 		sprite_disabled="ui_portrait_default_circle_grey"
 		text_align="right"
+		textcolor="255 255 255"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+	/>
+
+	<style name="action_left"
+		sprite="ui_portrait_default_circle"
+		sprite_over="ui_portrait_default_circle_lit"
+		sprite_disabled="ui_portrait_default_circle_grey"
+		text_align="left"
 		textcolor="255 255 255"
 		tooltip_style="session_tooltip"
 		tooltip="(TBA)"
