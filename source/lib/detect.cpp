@@ -36,6 +36,9 @@
 #include "ogl.h"
 #include "wsdl.h"
 
+#ifdef HAVE_X_WINDOWS
+#include <Xlib.h>
+#endif
 
 // useful for choosing a video mode. not called by detect().
 // currently not implemented for non-Win32 systems (returns 800x600).
@@ -50,6 +53,16 @@ void get_cur_resolution(int& xres, int& yres)
 	EnumDisplaySettings(0, ENUM_CURRENT_SETTINGS, &dm);
 	xres = dm.dmPelsWidth;
 	yres = dm.dmPelsHeight;
+#endif
+#ifdef HAVE_X_WINDOWS
+	Display *disp=XOpenDisplay(NULL);
+	if (disp)
+	{
+		int screen=XDefaultScreen(disp);
+		xres=XDisplayWidth(disp, screen);
+		yres=XDisplayHeight(disp, screen);
+		XCloseDisplay(disp);
+	}
 #endif
 }
 
