@@ -75,9 +75,9 @@ static void check_speedstep()
 		// definitely speedstep if a CPU has thermal throttling active.
 		// note that we don't care about user-defined throttles
 		// (see ppi.CurrentMhz) - they don't change often.
-		ULONG ppi_buf_size = cpus * sizeof(PROCESSOR_POWER_INFORMATION);
+		const size_t ppi_buf_size = cpus * sizeof(PROCESSOR_POWER_INFORMATION);
 		void* ppi_buf = malloc(ppi_buf_size);
-		if(pCNPI(ProcessorInformation, 0, 0, ppi_buf, ppi_buf_size) == STATUS_SUCCESS)
+		if(pCNPI(ProcessorInformation, 0, 0, ppi_buf, (ULONG)ppi_buf_size) == STATUS_SUCCESS)
 		{
 			PROCESSOR_POWER_INFORMATION* ppi = (PROCESSOR_POWER_INFORMATION*)ppi_buf;
 			for(int i = 0; i < cpus; i++)
@@ -120,7 +120,7 @@ int win_get_cpu_info()
 	// get number of CPUs (can't fail)
 	SYSTEM_INFO si;
 	GetSystemInfo(&si);
-	cpus = si.dwNumberOfProcessors;
+	cpus = (int)si.dwNumberOfProcessors;
 
 	// read CPU frequency from registry
 	HKEY hKey;

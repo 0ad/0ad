@@ -166,7 +166,7 @@ static int z_find_ecdr(const u8* file, size_t size, const u8*& ecdr_)
 		// scan the last 66000 bytes of file for ecdr_id signature
 		// (the Zip archive comment field, up to 64k, may follow ECDR).
 		// if the zip file is < 66000 bytes, scan the whole file.
-		const u8* start = file + size - MIN(66000, size);
+		const u8* start = file + size - MIN(66000u, size);
 		ecdr = z_find_id(file, size, start, ecdr_id, ECDR_SIZE);
 		if(!ecdr)
 			return ERR_CORRUPTED;
@@ -432,7 +432,7 @@ static void copy_lower_case(char* dst, const char* src, size_t buf_size)
 		// loop will exit below after writing 0-terminator.
 		if(--buf_size == 0)
 			c = '\0';
-		*dst++ = tolower(c);
+		*dst++ = (char)tolower(c);
 	}
 	while(c != '\0');
 }
@@ -460,7 +460,7 @@ static int lookup_add_file_cb(uintptr_t user, i32 idx,
 		// both arrays in one allocation (more efficient)
 		const size_t ents_size = (num_entries * sizeof(ZEnt));
 		const size_t array_size = ents_size + (num_entries * sizeof(FnHash));
-		void* p = mem_alloc(array_size, 4*KB);
+		void* p = mem_alloc(array_size, 4*KiB);
 		if(!p)
 			return ERR_NO_MEM;
 
@@ -762,7 +762,7 @@ static uintptr_t inf_init_ctx(bool compressed)
 	// allocate ZLib stream
 	const size_t size = round_up(sizeof(InfCtx), 32);
 		// be nice to allocator
-	InfCtx* ctx = (InfCtx*)calloc(size, 1);
+	InfCtx* ctx = (InfCtx*)calloc(1, size);
 	if(inflateInit2(&ctx->zs, -MAX_WBITS) != Z_OK)
 		// -MAX_WBITS indicates no zlib header present
 		return 0;
@@ -834,7 +834,7 @@ ssize_t inf_inflate(uintptr_t _ctx, void* in, size_t in_size, bool free_in_buf =
 	else
 	{
 		memcpy(zs->next_out, zs->next_in, zs->avail_in);
-		uInt size = min(zs->avail_in, zs->avail_out);
+		uInt size = MIN(zs->avail_in, zs->avail_out);
 		zs->avail_out -= size;
 		zs->avail_in -= size;	// => = 0
 		zs->next_in += size;
@@ -1040,7 +1040,7 @@ int zip_close(ZFile* zf)
 // which is already compressed.
 
 
-static const size_t CHUNK_SIZE = 16*KB;
+static const size_t CHUNK_SIZE = 16*KiB;
 
 // begin transferring <size> bytes, starting at <ofs>. get result
 // with zip_wait_io; when no longer needed, free via zip_discard_io.
@@ -1074,7 +1074,7 @@ int zip_start_io(ZFile* zf, off_t user_ofs, size_t max_output_size, void* user_b
 		CHECK_ERR(inf_set_dest(io->inf_ctx, io->user_buf, io->max_output_size));
 		ssize_t bytes_inflated = inf_inflate(io->inf_ctx, 0, 0);
 		CHECK_ERR(bytes_inflated);
-		if(bytes_inflated == max_output_size)
+		if(bytes_inflated == (ssize_t)max_output_size)
 		{
 			io->already_inflated = true;
 			io->max_output_size = bytes_inflated;
@@ -1089,7 +1089,7 @@ int zip_start_io(ZFile* zf, off_t user_ofs, size_t max_output_size, void* user_b
 
 		// note: only need to clamp if compressed
 
-		buf = mem_alloc(size, 4*KB);
+		buf = mem_alloc(size, 4*KiB);
 	}
 	// else: not compressed; we'll just read directly from the archive file.
 	// no need to clamp to EOF - that's done already by the VFS.
@@ -1188,9 +1188,6 @@ static ssize_t read_cb(uintptr_t ctx, void* buf, size_t size)
 	return ucsize;
 }
 
-#include "timer.h"
-
-
 
 // read from the (possibly compressed) file <zf> as if it were a normal file.
 // starting at the beginning of the logical (decompressed) file,
@@ -1245,7 +1242,7 @@ ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void* p, FileIOCB cb, uintpt
 	double t1 = get_time();
 	file_io(&za->f,0, xsize, 0, io_cb, (uintptr_t)&xparams);
 	double t2 = get_time();
-	debug_out("\n\ntime to load whole archive %f\nthroughput %f MB/s\n", t2-t1, xsize / (t2-t1) / 1e6);
+	debug_out("\n\ntime to load whole archive %f\nthroughput %f MiB/s\n", t2-t1, xsize / (t2-t1) / 1e6);
 	mem_free(xbuf);
 	}
 	*/

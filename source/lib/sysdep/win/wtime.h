@@ -75,7 +75,7 @@ extern int clock_getres(clockid_t clock, struct timespec* res);
 // provide a routine that makes the choice when called,
 // so app code isn't surprised by a timer change, although the HRT
 // does try to keep the timer continuous.
-extern void wtime_reset_impl();
+extern void wtime_reset_impl(void);
 
 
 #endif	// #ifndef WTIME_H__

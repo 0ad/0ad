@@ -41,8 +41,10 @@ void debug_check_heap()
 }
 
 
-int get_executable_name(char* /*n_path*/, size_t /*buf_size*/)
+int get_executable_name(char* n_path, size_t buf_size)
 {
+	UNUSED(n_path);
+	UNUSED(buf_size);
 	return -ENOSYS;
 }
 
@@ -64,9 +66,9 @@ void debug_break()
 }
 
 
-const int MICROLOG_SIZE = 16384;
+const size_t MICROLOG_SIZE = 16384;
 wchar_t MicroBuffer[MICROLOG_SIZE];
-int MicroBuffer_off = 0;
+size_t MicroBuffer_off = 0;
 
 void debug_microlog(const wchar_t *fmt, ...)
 {

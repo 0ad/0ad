@@ -37,13 +37,13 @@ double get_time()
 
 #ifdef HAVE_CLOCK_GETTIME
 
-	static struct timespec start;
+	static struct timespec start = {0};
 	struct timespec ts;
 
 	if(!start.tv_sec)
-		clock_gettime(CLOCK_REALTIME, &start);
+		(void)clock_gettime(CLOCK_REALTIME, &start);
 
-	clock_gettime(CLOCK_REALTIME, &ts);
+	(void)clock_gettime(CLOCK_REALTIME, &ts);
 	t = (ts.tv_sec - start.tv_sec) + (ts.tv_nsec - start.tv_nsec)*1e-9;
 
 #elif defined(HAVE_GETTIMEOFDAY)
@@ -64,7 +64,7 @@ double get_time()
 #endif
 
 	// make sure time is monotonic (never goes backwards)
-	static double t_last;
+	static double t_last = 0.0;
 	if(t < t_last)
 		t = t_last;
 	t_last = t;
@@ -76,17 +76,17 @@ double get_time()
 double timer_res()
 {
 	// may take a while to determine, so cache it
-	static double cached_res;
+	static double cached_res = 0.0;
 	if(cached_res != 0.0)
 		return cached_res;
 
-	double res;
+	double res = 0.0;
 
 #ifdef HAVE_CLOCK_GETTIME
 
 	struct timespec ts;
-	clock_getres(CLOCK_REALTIME, &ts);
-	res = ts.tv_nsec * 1e-9;
+	if(clock_getres(CLOCK_REALTIME, &ts) == 0)
+		res = ts.tv_nsec * 1e-9;
 
 #else
 
@@ -136,7 +136,7 @@ void calc_fps()
 	// dt is big enough => we will update.
 	// calculate approximate current FPS (= 1 / elapsed time per frame).
 	last_t = t;
-	cur_fps = 1.0 / dt * num_frames;
+	cur_fps = (1.0 / dt) * num_frames;
 	num_frames = 1;	// reset for next time
 
 
@@ -163,7 +163,7 @@ void calc_fps()
 	// cur_fps history and changes over past few frames
 	static double h2, h1 = 30.0, h0 = 30.0;
 	h2 = h1; h1 = h0; h0 = cur_fps;
-	const double d21 = h1 - h2, d10 = h0 - h1, d20 = h0 - h2;
+	const double d21 = h1 - h2, d10 = h0 - h1;
 	const double e20 = REL_ERR(h2, h0), e10 = REL_ERR(h1, h0);
 	const double e0 = REL_ERR(avg_fps, h0);
 
@@ -172,7 +172,7 @@ void calc_fps()
 		// /\ or \/
 	const bool jumped = e10 > 0.30;
 		// large change (have seen semi-legitimate changes of 25%)
-	const bool close = e0 < 0.02;
+	const bool is_close = e0 < 0.02;
 		// cur_fps - avg_fps is "small"
 
 	// "same-side" check for rapid tracking of the function.
@@ -184,7 +184,7 @@ void calc_fps()
 		same_side = 0;					// reset counter
 	// (only increase if not too close to average,
 	// so that this isn't triggered by jitter alone)
-	if(!close)
+	if(!is_close)
 		same_side++;
 
 
@@ -208,8 +208,8 @@ void calc_fps()
 		// note: check close again so we aren't too loose if the function
 		// comes closer to the average again (meaning it probably
 		// wasn't really changing).
-		if(same_side >= 2 && !close)
-			bias += min(same_side, 4);
+		if(same_side >= 2 && !is_close)
+			bias += MIN(same_side, 4);
 	}
 
 	// bias = 0: no change. > 0: increase (n-th root). < 0: decrease (^n)

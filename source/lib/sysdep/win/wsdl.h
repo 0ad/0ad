@@ -2,7 +2,7 @@
 #define __WSDL_H__
 
 
-#include "types.h"
+#include "lib/types.h"
 #include "SDL_keysym.h"
 
 /* allow apps to override window name */
@@ -24,7 +24,7 @@ extern "C" {
 
 extern int SDL_Init(Uint32 flags);
 
-extern void SDL_Quit();
+extern void SDL_Quit(void);
 
 
 typedef enum
@@ -50,7 +50,7 @@ typedef struct
 }
 SDL_Surface;
 
-extern SDL_Surface* SDL_GetVideoSurface();
+extern SDL_Surface* SDL_GetVideoSurface(void);
 
 
 typedef struct
@@ -59,7 +59,7 @@ typedef struct
 }
 SDL_VideoInfo;
 
-extern SDL_VideoInfo* SDL_GetVideoInfo();
+extern SDL_VideoInfo* SDL_GetVideoInfo(void);
 
 
 /*
@@ -71,9 +71,9 @@ typedef void SDL_Thread;
 
 extern void* SDL_GL_GetProcAddress(const char*);
 
-extern void SDL_GL_SwapBuffers();
+extern void SDL_GL_SwapBuffers(void);
 
-extern u32 SDL_GetTicks();
+extern u32 SDL_GetTicks(void);
 extern void SDL_Delay(u32 ms);
 
 extern SDL_sem* SDL_CreateSemaphore(int cnt);
@@ -324,10 +324,10 @@ extern int glutGameModeString(const char* str);
 
 extern void glutInit(int* argc, char* argv[]);
 extern int glutGet(int arg);
-extern int glutEnterGameMode();
-extern void glutMainLoop();
+extern int glutEnterGameMode(void);
+extern void glutMainLoop(void);
 
-extern void glutPostRedisplay();
+extern void glutPostRedisplay(void);
 
 extern void glutSetCursor(int);
 

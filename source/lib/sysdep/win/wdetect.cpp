@@ -147,13 +147,13 @@ int get_cur_vmode(int* xres, int* yres, int* bpp, int* freq)
 	if(!EnumDisplaySettingsA(0, ENUM_CURRENT_SETTINGS, &dm))
 		return -1;
 
-	if(dm.dmFields & DM_PELSWIDTH && xres)
+	if(dm.dmFields & (DWORD)DM_PELSWIDTH && xres)
 		*xres = (int)dm.dmPelsWidth;
-	if(dm.dmFields & DM_PELSHEIGHT && yres)
+	if(dm.dmFields & (DWORD)DM_PELSHEIGHT && yres)
 		*yres = (int)dm.dmPelsHeight;
-	if(dm.dmFields & DM_BITSPERPEL && bpp)
+	if(dm.dmFields & (DWORD)DM_BITSPERPEL && bpp)
 		*bpp  = (int)dm.dmBitsPerPel;
-	if(dm.dmFields & DM_DISPLAYFREQUENCY && freq)
+	if(dm.dmFields & (DWORD)DM_DISPLAYFREQUENCY && freq)
 		*freq = (int)dm.dmDisplayFrequency;
 
 	return 0;
@@ -307,14 +307,14 @@ static void list_add_dll(const char* dll_path)
 	if(get_ver(dll_path, dll_ver, sizeof(dll_ver)) < 0)
 		strcpy(dll_ver, "unknown version");
 
-	// get filename for "already added" check.
-	const char* dll_fn = strrchr(dll_path, '\\')+1;
-
-	if(dll_fn == (const char*)1)	// if dll_path was a filename
+	// extract filename component for "already added" check.
+	const char* slash = strrchr(dll_path, '\\');
+	if(!slash)	// dll_path was a filename
 	{
-		debug_warn("list_add_dll: invalid path");
+		debug_warn("list_add_dll: full path not given");
 		return;
 	}
+	const char* dll_fn = slash+1;
 
 	// make sure it hasn't been added yet.
 	if(dlls_already_added.find(dll_fn) != dlls_already_added.end())
@@ -342,6 +342,8 @@ struct PathInfo
 // (match "*oal.dll" and "*OpenAL*", as with OpenAL router's search).
 static int check_if_oal_dll(const char* fn, const struct stat* s, const uintptr_t user)
 {
+	UNUSED(s);
+
 	PathInfo* pi = (PathInfo*)user;
 	strncpy(pi->end, fn, pi->remaining);
 
@@ -390,6 +392,9 @@ static char ds_drv_name[MAX_PATH+1];
 // called for each DirectSound driver, but aborts after first valid driver.
 static BOOL CALLBACK ds_enum(void* guid, const char* description, const char* module, void* ctx)
 {
+	UNUSED(guid);
+	UNUSED(ctx);
+
 	// skip first (dummy) entry, where description == "Primary Sound Driver".
 	if(module[0] == '\0')
 		return TRUE;	// continue calling

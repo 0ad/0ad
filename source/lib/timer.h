@@ -19,6 +19,8 @@
 #ifndef TIMER_H
 #define TIMER_H
 
+#include <string>
+
 #include "sysdep/debug.h"	// debug_out
 
 #ifdef __cplusplus
@@ -26,9 +28,9 @@ extern "C" {
 #endif
 
 // high resolution (> 1 µs) timestamp [s], starting at or near 0 s.
-extern double get_time();
+extern double get_time(void);
 
-extern double timer_res();
+extern double timer_res(void);
 
 // calculate fps (call once per frame)
 // several smooth filters (tuned for ~100 FPS)
@@ -36,13 +38,13 @@ extern double timer_res();
 
 extern int fps;
 
-extern void calc_fps();
+extern void calc_fps(void);
 
 #ifdef __cplusplus
 }
 #endif
 
-#include <string>
+
 
 class ScopedTimer
 {
@@ -71,8 +73,12 @@ public:
 
 		debug_out("TIMER %s: %g %cs\n", name.c_str(), dt*scale, unit);
 	}
+
+	// no copy ctor, since some members are const
+private:
+	ScopedTimer& operator=(const ScopedTimer&);
 };
 
-#define TIMER(name) ScopedTimer name(#name);
+#define TIMER(name) ScopedTimer st##name##instance(#name);
 
 #endif	// #ifndef TIMER_H

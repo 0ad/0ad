@@ -28,7 +28,7 @@ extern void wdisplay_msg(const wchar_t* caption, const wchar_t* msg);
 
 
 extern int clipboard_set(const wchar_t* text);
-extern wchar_t* clipboard_get();
+extern wchar_t* clipboard_get(void);
 extern int clipboard_free(wchar_t* copy);
 
 
