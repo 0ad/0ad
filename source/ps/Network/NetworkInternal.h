@@ -10,40 +10,13 @@
 #define Network_LastError errno
 
 #define closesocket(_fd) close(_fd)
-// WSA error codes, with their POSIX counterpart.
-#define mkec(_nm) Network_##_nm = _nm
-
 #else
 
 #include "win.h"
-IMP(int, WSAAsyncSelect, (int s, HANDLE hWnd, uint wMsg, long lEvent))
 
-#define FD_READ_BIT      0
-#define FD_READ          (1 << FD_READ_BIT)
-
-#define FD_WRITE_BIT     1
-#define FD_WRITE         (1 << FD_WRITE_BIT)
-
-#define FD_ACCEPT_BIT    3
-#define FD_ACCEPT        (1 << FD_ACCEPT_BIT)
-
-#define FD_CONNECT_BIT   4
-#define FD_CONNECT       (1 << FD_CONNECT_BIT)
-
-#define FD_CLOSE_BIT     5
-#define FD_CLOSE         (1 << FD_CLOSE_BIT)
-
-// Under linux/posix, these have defined values of 0, 1 and 2
-// but the WS docs say nothing - so we treat them as unknown
-/*enum {
-	SHUT_RD=SD_RECEIVE,
-	SHUT_WR=SD_SEND,
-	SHUT_RDWR=SD_BOTH
-};*/
 #define Network_GetErrorString(_error, _buf, _buflen) \
 	FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, NULL, _error+WSABASEERR, 0, _buf, _buflen, NULL)
 #define Network_LastError (WSAGetLastError() - WSABASEERR)
-#define mkec(_nm) Network_##_nm = /*WSA##*/_nm
 // These are defined so that WSAGLE - WSABASEERR = E*
 // i.e. the same error name can be used in winsock and posix
 #define WSABASEERR			10000
