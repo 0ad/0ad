@@ -61,13 +61,13 @@ XMLCh *XMLTranscode(const char *);
 */
 class CVFSInputSource: public InputSource
 {
-	Handle m_hFile;
+	Handle m_hMem;	// from vfs_load
 	void *m_pBuffer;
 	size_t m_BufferSize;
 	
 public:
 	CVFSInputSource():
-		m_hFile(0),
+		m_hMem(0),
 		m_pBuffer(NULL),
 		m_BufferSize(0)
 	{}

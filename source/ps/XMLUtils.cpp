@@ -9,6 +9,7 @@
 #include "posix.h"		// ptrdiff_t
 
 #include "res/vfs.h"
+#include "res/mem.h"
 
 #define LOG_CATEGORY "xml"
 
@@ -55,22 +56,13 @@ int CVFSInputSource::OpenFile(const char *path)
 {
 	debug_out("CVFSInputSource::OpenFile(): opening file %s.\n", path);
 
-	m_hFile=vfs_open(path);
-	if (m_hFile <= 0)
+	m_hMem = vfs_load(path, m_pBuffer, m_BufferSize);
+	if(m_hMem <= 0)
 	{
-		LOG(ERROR, LOG_CATEGORY, "CVFSInputSource: file %s couldn't be opened (vfs_open: %lld)", path, m_hFile);
+		LOG(ERROR, LOG_CATEGORY, "CVFSInputSource: file %s couldn't be loaded (vfs_load: %lld)", path, m_hMem);
 		return -1;
 	}
-	
-	int err;
-	if ((err=vfs_map(m_hFile, 0, m_pBuffer, m_BufferSize)) != 0)
-	{
-		LOG(ERROR, LOG_CATEGORY, "CVFSInputSource: file %s couldn't be opened (vfs_map: %d)", path, err);
-		vfs_close(m_hFile);
-		m_hFile=0;
-		return -1;
-	}
-	
+
 	XMLCh *sysId=XMLString::transcode(path);
 	setSystemId(sysId);
 	XMLString::release(&sysId);
@@ -90,11 +82,9 @@ void CVFSInputSource::OpenBuffer(const char* path, const void* buffer, const siz
 
 CVFSInputSource::~CVFSInputSource()
 {
-	if (m_hFile > 0)
-	{
-		vfs_unmap(m_hFile);
-		vfs_close(m_hFile);
-	}
+	// our buffer was vfs_load-ed; free it now
+	if(m_hMem > 0)
+		mem_free_h(m_hMem);
 }
 
 BinInputStream *CVFSInputSource::makeStream() const
