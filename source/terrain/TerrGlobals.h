@@ -1,6 +1,6 @@
 //***********************************************************
 //
-// Name:		TerrGlobals.h
+// Name:		TerrGlobals.H
 // Last Update: 27/2/02
 // Author:		Poya Manouchehri
 //
@@ -14,7 +14,7 @@
 
 const int PATCH_SIZE = 16;
 const int  CELL_SIZE = 4;	//horizontal scale of the patches
-const float HEIGHT_SCALE = 1.0f;
+const float HEIGHT_SCALE = 0.35f;
 
 //only 3x3 patches loaded at a time
 const int NUM_PATCHES_PER_SIDE = 20;
