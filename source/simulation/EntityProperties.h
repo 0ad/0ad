@@ -15,20 +15,25 @@
 #ifndef ENTITY_PROPERTIES_INCLUDED
 #define ENTITY_PROPERTIES_INCLUDED
 
-#if( defined( _MSC_VER ) && ( _MSC_VER >= 1300 ) )
-
-#define STL_HASH_MAP stdext::hash_map
-
-#else
-
-#define STL_HASH_MAP std::hash_map
-
-#endif //( defined( _MSC_VER ) && ( _MSC_VER >= 1300 ) )
-
 #include "CStr.h"
 #include "Vector3D.h"
 
-#include <hash_map>
+#ifndef __GNUC__
+
+# include <hash_map>
+
+# if( defined( _MSC_VER ) && ( _MSC_VER >= 1300 ) )
+#  define STL_HASH_MAP stdext::hash_map
+# else
+#  define STL_HASH_MAP std::hash_map
+# endif //( defined( _MSC_VER ) && ( _MSC_VER >= 1300 ) )
+
+#else // #ifndef __GNUC__
+
+# include <ext/hash_map>
+# define STL_HASH_MAP __gnu_cxx::hash_map
+
+#endif
 
 class CGenericProperty
 {
