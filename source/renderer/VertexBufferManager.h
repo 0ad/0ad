@@ -17,10 +17,13 @@
 class CVertexBufferManager
 {
 public:
+	CVertexBufferManager() {}
+	~CVertexBufferManager();
+
 	// try to allocate a buffer of given number of vertices (each of given size), 
 	// and with the given type - return null if no free chunks available
 	CVertexBuffer::VBChunk* Allocate(size_t vertexSize,size_t numVertices,bool dynamic);
-	
+
 	// return given chunk to it's owner
 	void CVertexBufferManager::Release(CVertexBuffer::VBChunk* chunk);
 

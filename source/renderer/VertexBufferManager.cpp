@@ -12,6 +12,15 @@
 
 CVertexBufferManager g_VBMan;
 
+// janwas 2004-06-14: added dtor
+
+CVertexBufferManager::~CVertexBufferManager()
+{
+	typedef std::list<CVertexBuffer*>::iterator Iter;
+	for (Iter iter=m_Buffers.begin();iter!=m_Buffers.end();++iter)
+		delete *iter;
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // Allocate: try to allocate a buffer of given number of vertices (each of 
