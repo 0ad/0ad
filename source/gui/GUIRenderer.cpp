@@ -459,9 +459,8 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 			// mapped onto (1,1)
 			TexCoords.left   /= TexWidth;
 			TexCoords.right  /= TexWidth;
-			// and flip it vertically, because of some confusion between coordinate systems
-			TexCoords.top    /= -TexHeight;
-			TexCoords.bottom /= -TexHeight;
+			TexCoords.top    /= TexHeight;
+			TexCoords.bottom /= TexHeight;
 
 			Call.m_TexCoords = TexCoords;
 		}

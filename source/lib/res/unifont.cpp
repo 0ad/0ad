@@ -146,10 +146,10 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSEDPARAM(h))
 
 		glNewList(f->ListBase+i, GL_COMPILE);
 			glBegin(GL_QUADS);
-				glTexCoord2f(u,   v);	glVertex2i(OffsetX,       -OffsetY);
-				glTexCoord2f(u+w, v);	glVertex2i(OffsetX+Width, -OffsetY);
-				glTexCoord2f(u+w, v-h);	glVertex2i(OffsetX+Width, -OffsetY+Height);
-				glTexCoord2f(u,   v-h);	glVertex2i(OffsetX,       -OffsetY+Height);
+				glTexCoord2f(u,   -v);   glVertex2i(OffsetX,       -OffsetY);
+				glTexCoord2f(u+w, -v);   glVertex2i(OffsetX+Width, -OffsetY);
+				glTexCoord2f(u+w, -v+h); glVertex2i(OffsetX+Width, -OffsetY+Height);
+				glTexCoord2f(u,   -v+h); glVertex2i(OffsetX,       -OffsetY+Height);
 			glEnd();
 			glTranslatef((GLfloat)Advance, 0, 0);
 		glEndList();

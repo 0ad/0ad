@@ -27,10 +27,10 @@ struct ogl_cursor {
 		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 
 		glBegin(GL_QUADS);
-		glTexCoord2i(0, 1); glVertex2i( x-hotspotx,   y+hotspoty   );
-		glTexCoord2i(1, 1); glVertex2i( x-hotspotx+w, y+hotspoty   );
-		glTexCoord2i(1, 0); glVertex2i( x-hotspotx+w, y+hotspoty-h );
-		glTexCoord2i(0, 0); glVertex2i( x-hotspotx,   y+hotspoty-h );
+		glTexCoord2i(0, 0); glVertex2i( x-hotspotx,   y+hotspoty   );
+		glTexCoord2i(1, 0); glVertex2i( x-hotspotx+w, y+hotspoty   );
+		glTexCoord2i(1, 1); glVertex2i( x-hotspotx+w, y+hotspoty-h );
+		glTexCoord2i(0, 1); glVertex2i( x-hotspotx,   y+hotspoty-h );
 		glEnd();
 	}
 };
@@ -160,7 +160,7 @@ static int Cursor_reload(Cursor* c, const char* name, Handle)
 		BITMAPINFOHEADER dibheader = {
 			sizeof(BITMAPINFOHEADER), // biSize
 				w,	// biWidth
-				h,	// biHeight (positive means bottom-up)
+				-h,	// biHeight (positive means bottom-up)
 				1,	// biPlanes
 				32,	// biBitCount
 				BI_RGB,	// biCompression
