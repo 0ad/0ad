@@ -50,14 +50,14 @@ enum
 	// write-only access; otherwise, read only
 	FILE_WRITE        = 0x01,
 
-	// buffers returned may be read-only (allows some caching optimizations)
-	FILE_MEM_READONLY = 0x02,
-
-	// don't cache the whole file, e.g. if kept in memory elsewhere anyway.
-	FILE_NO_CACHE     = 0x04,
+	
+	// the file's contents aren't cached at a higher level; do so here.
+	// we keep the file open (until the cache is "full enough"). if it
+	// is loaded, we keep the buffer there to satisfy later loads.
+	FILE_CACHE        = 0x04,
 
 	// random access hint
-	FILE_RANDOM       = 0x08,
+//	FILE_RANDOM       = 0x08,
 
 	FILE_NO_AIO       = 0x10
 };

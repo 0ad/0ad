@@ -1275,11 +1275,11 @@ static int VFile_reload(VFile* vf, const char* path, Handle)
 // requested via FILE_WRITE flag, and is not possible for files in archives.
 Handle vfs_open(const char* fn, uint file_flags /* = 0 */)
 {
-	// do not cache handles for file writes
-	// (avoids h_reload reloading it, thereby wiping out the file contents)
-	uint res_flags = 0;
-	if(file_flags & FILE_WRITE)
-		res_flags = RES_TEMP;
+	// keeping files open doesn't make sense in most cases (because the
+	// file is used to load resources, which are cached at a higher level).
+	uint res_flags = RES_NO_CACHE;
+	if(file_flags & FILE_CACHE)
+		res_flags = 0;
 
 	Handle h = h_alloc(H_VFile, fn, res_flags, file_flags);
 		// pass file flags to init
@@ -1331,7 +1331,7 @@ debug_out("vfs_io size=%d\n", size);
 
 // load the entire file <fn> into memory; return a handle to the memory
 // and the buffer address/size. output parameters are zeroed on failure.
-Handle vfs_load(const char* const fn, void*& p, size_t& size)
+Handle vfs_load(const char* const fn, void*& p, size_t& size, uint flags /* default 0 */)
 {
 #ifdef PARANOIA
 debug_out("vfs_load fn=%s\n", fn);
@@ -1340,7 +1340,7 @@ debug_out("vfs_load fn=%s\n", fn);
 	p = 0;		// vfs_io needs initial 0 value
 	size = 0;	// in case open or deref fails
 
-	Handle hf = vfs_open(fn);
+	Handle hf = vfs_open(fn, flags);
 	if(hf <= 0)
 		return hf;	// error code
 	H_DEREF(hf, VFile, vf);
@@ -1386,7 +1386,7 @@ skip_read:
 // caveat: pads file to next max(4kb, sector_size) boundary
 // (due to limitation of Win32 FILE_FLAG_NO_BUFFERING I/O).
 // if that's a problem, specify FILE_NO_AIO when opening.
-int vfs_store(const char* const fn, void* p, const size_t size, uint flags)
+int vfs_store(const char* const fn, void* p, const size_t size, uint flags /* default 0 */)
 {
 	Handle hf = vfs_open(fn, flags|FILE_WRITE);
 	if(hf <= 0)
