@@ -94,6 +94,8 @@ struct _nm: public CNetMessage \
 
 #ifdef NMT_CREATOR_IMPLEMENT
 
+#include "StringConverters.h"
+
 /*************************************************************************/
 // Pass 2, GetSerializedLength
 #define NMT_CREATOR_PASS_GETLENGTH
@@ -270,12 +272,12 @@ CStr _nm::GetString() const \
 
 #define NMT_FIELD_INT(_nm, _hosttp, _netsz) \
 	ret += #_nm _T(": "); \
-	ret += CStr(thiz->_nm); \
+	ret += NetMessageStringConvert(thiz->_nm); \
 	ret += _T(", ");
 
 #define NMT_FIELD(_tp, _nm) \
 	ret += #_nm _T(": "); \
-	ret += CStr(thiz->_nm); \
+	ret += NetMessageStringConvert(thiz->_nm); \
 	ret += _T(", ");
 
 #define END_NMT_CLASS() \
