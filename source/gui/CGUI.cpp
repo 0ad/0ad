@@ -1111,24 +1111,27 @@ void CGUI::Xerces_ReadObject(DOMElement *pElement, IGUIObject *pParent)
 		{
 			CStr caption = XMLTranscode( child->getNodeValue() );
 
-			// Text is only okay if it's the first element i.e. <object>caption ... </object>
-			if (i==0)
-			{
-				// Thank you CStr =)
-				caption.Trim(PS_TRIM_BOTH);
+			caption = caption.Trim(PS_TRIM_BOTH);
 
-				try
+			if (caption.Length())
+			{
+				// Text is only okay if it's the first element i.e. <object>caption ... </object>
+				if (i==0)
 				{
-					// Set the setting caption to this
-					object->SetSetting("caption", caption);
+
+					try
+					{
+						// Set the setting caption to this
+						object->SetSetting("caption", caption);
+					}
+					catch (...)
+					{
+						// There is no harm if the object didn't have a "caption"
+					}
 				}
-				catch (...)
-				{
-					// There is no harm if the object didn't have a "caption"
-				}
+				else 
+					debug_warn("Text is only okay if it's the first element i.e. <object>caption ... </object>");
 			}
-			else 
-				debug_warn("Text is only okay if it's the first element i.e. <object>caption ... </object>");
 		}
 	} 
 
