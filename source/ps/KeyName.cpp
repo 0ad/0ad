@@ -13,6 +13,8 @@ struct SKeycodeMapping
 	const char* altkeyname;
 };
 
+// You can use either key name in the config file...
+
 static SKeycodeMapping keycodeMapping[] =
 {
 	/* Just a tad friendlier than SDL_GetKeyName's name */
