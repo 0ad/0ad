@@ -32,6 +32,7 @@ void CPlayerSlot::ScriptingInit()
 {
 	AddMethod<bool, &CPlayerSlot::JSI_AssignClosed>("assignClosed", 0);
 	AddMethod<bool, &CPlayerSlot::JSI_AssignToSession>("assignToSession", 1);
+	AddMethod<bool, &CPlayerSlot::JSI_AssignLocal>("assignLocal", 0);
 	AddMethod<bool, &CPlayerSlot::JSI_AssignOpen>("assignOpen", 0);
 	AddClassProperty(L"assignment", (GetFn)&CPlayerSlot::JSI_GetAssignment);
 //	AddMethod<bool, &CPlayerSlot::JSI_AssignAI>("assignAI", <num_args>);
@@ -59,7 +60,7 @@ jsval CPlayerSlot::JSI_GetAssignment()
 			return g_ScriptingHost.UCStringToValue(L"session");
 /*		case SLOT_AI:*/
 		default:
-			return JSVAL_NULL;
+			return INT_TO_JSVAL(m_Assignment);
 	}
 }
 
@@ -86,6 +87,12 @@ bool CPlayerSlot::JSI_AssignToSession(JSContext *cx, uintN argc, jsval *argv)
 	}
 	else
 		return true;
+}
+
+bool CPlayerSlot::JSI_AssignLocal(JSContext *cx, uintN argc, jsval *argv)
+{
+	AssignToSessionID(1);
+	return true;
 }
 
 void CPlayerSlot::CallCallback()
@@ -303,7 +310,9 @@ void CGameAttributes::OnNumSlotsUpdate(CSynchedJSObjectBase *owner)
 CPlayer *CGameAttributes::GetPlayer(int id)
 {
 	if (id >= 0 && id < (int)m_Players.size())
+	{
 		return m_Players[id];
+	}
 	else
 	{
 		LOG(ERROR, "", "CGameAttributes::GetPlayer(): Attempt to get player %d (while there only are %d players)", id, m_Players.size());
@@ -347,6 +356,7 @@ void CGameAttributes::FinalizeSlots()
 		}
 		else
 		{
+			LOG(ERROR, "", "CGameAttributes::FinalizeSlots(): slot %d deleted", i);
 			delete slot->GetPlayer();
 			delete slot;
 		}

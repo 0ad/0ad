@@ -35,6 +35,8 @@ class CPlayerSlot: public CJSObject<CPlayerSlot>
 	
 	// Assign to a session, takes one argument (a NetSession object)
 	bool JSI_AssignToSession(JSContext *cx, uintN argc, jsval *argv);
+	// Assign to the local player in SP or Server Player in MP
+	bool JSI_AssignLocal(JSContext *cx, uintN argc, jsval *argv);
 	
 	bool JSI_AssignOpen(JSContext *cx, uintN argc, jsval *argv);
 
