@@ -68,27 +68,22 @@ CBaseEntity* CBaseEntityCollection::getTemplate( CStrW name )
 			newTemplate->loadBase();
 		}
 		else
+		{
 			LOG( WARNING, LOG_CATEGORY, "Parent template \"%ls\" does not exist in template \"%ls\"", newTemplate->m_Base_Name.c_str(), newTemplate->m_Tag.c_str() );
 			// (The requested entity will still be returned, but with no parent.
 			// Is this a reasonable thing to do?)
+		}
 	}
 
 	return newTemplate;
 }
 
-void CBaseEntityCollection::getTemplateNames( std::vector<CStrW>& names )
+void CBaseEntityCollection::getBaseEntityNames( std::vector<CStrW>& names )
 {
 	for( templateFilenameMap::iterator it = m_templateFilenames.begin(); it != m_templateFilenames.end(); ++it )
-		names.push_back( it->first );
+		if( ! (it->first.Length() > 8 && it->first.Left(8) == L"template"))
+			names.push_back( it->first );
 }
-
-#ifdef SCED
-// TODO: Fix ScEd, so that it works
-CBaseEntity* CBaseEntityCollection::getTemplateByID( int n )
-{
-	return m_templates[n];
-}
-#endif
 
 CBaseEntityCollection::~CBaseEntityCollection()
 {

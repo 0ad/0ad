@@ -38,14 +38,9 @@ public:
 	void loadTemplates();
 	void LoadFile( const char* path );
 
-	// Create a list of the names of all templates, for display in ScEd's
-	// entity-selection box. (This isn't really very good, since it includes
-	// 'abstract' entity classes that should never be created, and it doesn't
-	// split them into useful categories or give them readable names.)
-	void getTemplateNames( std::vector<CStrW>& names );
-#ifdef SCED // a slightly unpleasant hack, since ScEd can only remember numbers:
-	CBaseEntity* getTemplateByID( int n );
-#endif
+	// Create a list of the names of all base entities, excluding template_*,
+	// for display in ScEd's entity-selection box.
+	void getBaseEntityNames( std::vector<CStrW>& names );
 };
 
 #endif
