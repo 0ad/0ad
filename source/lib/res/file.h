@@ -71,6 +71,9 @@ enum FILE_CB_FLAGS
 };
 
 
+// convert to/from our portable path representation,
+// e.g. for external libraries that require the real filename.
+// note: also removes/adds current directory.
 extern int file_make_native_path(const char* path, char* n_path);
 extern int file_make_portable_path(const char* n_path, char* path);
 
