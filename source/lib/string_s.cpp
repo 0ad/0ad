@@ -194,9 +194,6 @@ int tcat_s(tchar* dst, size_t max_dst_chars, const tchar* src)
 
 static int test()
 {
-debug_out("%s\n", __FILE__);
-TIMER(stringtest);
-
 	const tchar* s0 = T("");
 	const tchar* s1 = T("a");
 	const tchar* s5 = T("abcde");
@@ -300,7 +297,7 @@ STMT(                                                                        \
 	int ret = tcat_s((dst), dst_max, (src));                                 \
 	assert2(ret == expected_ret);                                            \
 	if(dst != 0)                                                             \
-		assert2(!tcmp(dst, expected_dst));                                   \
+		assert2(!tcmp(dst, T(expected_dst)));                                \
 )
 #define TEST_CAT2(dst, dst_val, src, expected_ret, expected_dst)             \
 STMT(                                                                        \
@@ -324,7 +321,7 @@ STMT(                                                                        \
 	TEST_CAT(0 ,1,s1, EINVAL,"");	// dst = 0, max > 0
 	TEST_CAT(d1,1,0 , EINVAL,"");	// src = 0
 	TEST_CAT(d1,0,s1, ERANGE,"");	// max_dst_chars = 0
-	TEST_CAT(no_null,5,s1, ERANGE,T(""));	// dst not terminated
+	TEST_CAT(no_null,5,s1, ERANGE,"");	// dst not terminated
 
 	TEST_CAT2(d1 ,"" ,s1, ERANGE,"");
 	TEST_CAT2(d1 ,"" ,s5, ERANGE,"");

@@ -16,6 +16,10 @@
 #pragma warning(disable:4786)	// identifier truncated to 255 chars
 #endif
 
+// make string_s (secure CRT string functions) available everywhere
+#include "lib/string_s.h"
+
+
 //
 // memory headers
 //
@@ -33,6 +37,7 @@
 #include <memory>
 #include <cstring>	// uses placement new
 #include <string>
+
 
 //
 // headers to be precompiled
