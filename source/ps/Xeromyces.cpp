@@ -1,4 +1,4 @@
-// $Id: Xeromyces.cpp,v 1.5 2004/07/11 11:51:10 philip Exp $
+// $Id: Xeromyces.cpp,v 1.6 2004/07/11 16:05:10 philip Exp $
 
 #include "precompiled.h"
 
@@ -190,7 +190,7 @@ void CXeromyces::Load(const char* filename)
 	// Start the checksum with a particular seed value, so the XMBs will
 	// be recreated whenever the version/etc string has been changed, so
 	// the string can be changed whenever the file format's changed.
-	const char* ChecksumID = "version A";
+	const char* ChecksumID = "version B";
 	unsigned long XMLChecksum = source.CRC32( crc32( crc32(0L, Z_NULL, 0), (Bytef*)ChecksumID, (int)strlen(ChecksumID) ) );
 
 	// Check whether the XMB file needs to be regenerated:
@@ -251,6 +251,14 @@ void CXeromyces::Load(const char* filename)
 	// Convert the data structures into the XMB format
 	handler.CreateXMB(XMLChecksum);
 
+	// Only fail after having called CreateXMB, because CreateXMB frees all the memory
+	if (errorHandler.getSawErrors())
+	{
+		LOG(ERROR, "CXeromyces: Errors in XML file '%s'", filename);
+		throw "Failed";
+	}
+
+
 	// Save the file to disk, so it can be loaded quickly next time
 	vfs_store(filenameXMB, handler.buffer.buffer, handler.buffer.length, FILE_NO_AIO);
 
@@ -264,7 +272,7 @@ bool CXeromyces::ReadXMBFile(const char* filename, bool CheckCRC, unsigned long 
 	Handle file = vfs_open(filename);
 	if (file <= 0)
 	{
-		LOG(ERROR, "CXeromyces: file '%s' couldn't be opened (vfs_open: %lld)\n", filename, file);
+		LOG(ERROR, "CXeromyces: file '%s' couldn't be opened (vfs_open: %lld)", filename, file);
 		return false;
 	}
 
@@ -273,7 +281,7 @@ bool CXeromyces::ReadXMBFile(const char* filename, bool CheckCRC, unsigned long 
 	int err;
 	if ( (err=vfs_map(file, 0, buffer, bufferSize)) )
 	{
-		LOG(ERROR, "CXeromyces: file '%s' couldn't be read (vfs_map: %d)\n", filename, err);
+		LOG(ERROR, "CXeromyces: file '%s' couldn't be read (vfs_map: %d)", filename, err);
 		vfs_close(file);
 		return false;
 	}

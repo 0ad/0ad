@@ -32,7 +32,7 @@ void CBaseEntityCollection::loadTemplates()
 	}
 	else
 	{
-		LOG(ERROR, "CBaseEntityCollection::loadTemplates(): Failed to enumerate entity template directory\n");
+		LOG(ERROR, "CBaseEntityCollection::loadTemplates(): Failed to enumerate entity template directory");
 		return;
 	}
 }

@@ -59,12 +59,12 @@ CSkeletonAnimDef* CSkeletonAnimManager::GetAnimation(const char* filename)
 	}
 
 	if (!def) {
-		LOG(ERROR, "CSkeletonAnimManager::GetAnimation(%s): Failed loading, marked file as bad\n", filename);
+		LOG(ERROR, "CSkeletonAnimManager::GetAnimation(%s): Failed loading, marked file as bad", filename);
 		// add this file as bad
 		m_BadAnimationFiles.insert(fname);
 		return 0;
 	} else {
-		LOG(NORMAL, "CSkeletonAnimManager::GetAnimation(%s): Loaded successfully\n", filename);
+		LOG(NORMAL, "CSkeletonAnimManager::GetAnimation(%s): Loaded successfully", filename);
 		// add mapping for this file
 		m_Animations[fname]=def;
 		return def;

@@ -103,7 +103,7 @@ void CTextureManager::LoadTerrainTextures(int terraintype,const char* fileext)
 	{
 		while (vfs_next_dirent(dir, &dent, fileext) == 0)
 		{
-			LOG(NORMAL, "CTextureManager::LoadTerrainTextures(): texture %s added to type %s\n", dent.name, m_TerrainTextures[terraintype].m_Name.c_str());
+			LOG(NORMAL, "CTextureManager::LoadTerrainTextures(): texture %s added to type %s", dent.name, m_TerrainTextures[terraintype].m_Name.c_str());
 			AddTexture(dent.name, terraintype);
 		}
 

@@ -907,7 +907,7 @@ void CRenderer::EndFrame()
 
 	static bool once=false;
 	if (!once && glGetError()) {
-		LOG(ERROR,"CRenderer::EndFrame: GL errors occurred\n");
+		LOG(ERROR,"CRenderer::EndFrame: GL errors occurred");
 		once=true;
 	}
 }

@@ -56,14 +56,14 @@ int CVFSInputSource::OpenFile(const char *path)
 	m_hFile=vfs_open(path);
 	if (m_hFile <= 0)
 	{
-		LOG(ERROR, "CVFSInputSource: file %s couldn't be opened (vfs_open: %lld)\n", path, m_hFile);
+		LOG(ERROR, "CVFSInputSource: file %s couldn't be opened (vfs_open: %lld)", path, m_hFile);
 		return -1;
 	}
 	
 	int err;
 	if ((err=vfs_map(m_hFile, 0, m_pBuffer, m_BufferSize)) != 0)
 	{
-		LOG(ERROR, "CVFSInputSource: file %s couldn't be opened (vfs_map: %d)\n", path, err);
+		LOG(ERROR, "CVFSInputSource: file %s couldn't be opened (vfs_map: %d)", path, err);
 		vfs_close(m_hFile);
 		m_hFile=0;
 		return -1;

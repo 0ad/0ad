@@ -124,15 +124,15 @@ void CObjectManager::LoadObjects(int type)
 			CStr filename(pathname);
 			filename+=dent.name;
 			if (!object->Load((const char*) filename)) {
-				LOG(ERROR, "CObjectManager::LoadObjects(): %s: XML Load failed\n", filename.c_str());
+				LOG(ERROR, "CObjectManager::LoadObjects(): %s: XML Load failed", filename.c_str());
 				delete object;
 			} else {
 				AddObject(object,type);
-				LOG(NORMAL, "CObjectManager::LoadObjects(): %s: XML Loaded\n", filename.c_str());
+				LOG(NORMAL, "CObjectManager::LoadObjects(): %s: XML Loaded", filename.c_str());
 			}
 		}
 		vfs_close_dir(dir);
 	}
 	else
-		LOG(ERROR, "CObjectManager::LoadObjects(): Unable to open dir %s.\n", pathname.c_str());
+		LOG(ERROR, "CObjectManager::LoadObjects(): Unable to open dir %s.", pathname.c_str());
 }
