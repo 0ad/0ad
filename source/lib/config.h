@@ -36,9 +36,10 @@
 #ifdef _MSC_VER
 # define HAVE_ASM
 # define HAVE_PCH
-# ifndef NDEBUG
-#  define HAVE_DEBUGALLOC
-# endif
+#endif
+
+#if defined(_MSC_VER) && defined(HAVE_PCH) && !defined(NDEBUG)
+# define HAVE_DEBUGALLOC
 #endif
 
 #ifdef OS_UNIX
