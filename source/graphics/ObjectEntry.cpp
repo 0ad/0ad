@@ -5,15 +5,7 @@
 
 #include "UnitManager.h"
 
-// xerces XML stuff
-#include <xercesc/dom/DOM.hpp>
-#include <xercesc/parsers/XercesDOMParser.hpp>
-#include <xercesc/framework/LocalFileInputSource.hpp>
-#include <xercesc/util/XMLString.hpp>
-#include <xercesc/util/PlatformUtils.hpp>
-
-// Gee's custom error handler
-#include "ps/XercesErrorHandler.h"
+#include "XML.h"
 
 #ifdef _MSC_VER
 #pragma comment(lib, "xerces-c_2.lib")
@@ -58,7 +50,7 @@ bool CObjectEntry::BuildModel()
 	CModelDef* oldmodel=m_Model ? m_Model->GetModelDef() : 0;
 
 	// build filename
-	CStr modelfilename("mods\\official\\");
+	CStr modelfilename("mods/official/");
 	modelfilename+=m_ModelName;	
 	
 	// try and create a model
@@ -67,6 +59,7 @@ bool CObjectEntry::BuildModel()
 	try {
 		modeldef=CModelDef::Load((const char*) modelfilename);
 	} catch (...) {
+		LOG(ERROR, "CObjectEntry::BuildModel(): Model %s failed to load\n", modelfilename.c_str());
 		return false;
 	}
 		
@@ -83,7 +76,7 @@ bool CObjectEntry::BuildModel()
 	{
 		if( m_Animations[t].m_FileName.Length() > 0 )
 		{
-			CStr animfilename( "mods\\official\\" );
+			CStr animfilename( "mods/official/" );
 			animfilename += m_Animations[t].m_FileName;
 			m_Animations[t].m_AnimData = m_Model->BuildAnimation((const char*) animfilename,m_Animations[t].m_Speed);
 
@@ -152,14 +145,6 @@ CSkeletonAnim* CObjectEntry::GetNamedAnimation( CStr animationName )
 	return( NULL );
 }
 
-CStr Transcode(const XMLCh* xmltext)
-{
-	char* str=XMLString::transcode(xmltext);
-	CStr result(str);
-	XMLString::release(&str);
-	return result;
-}
-
 bool CObjectEntry::Load(const char* filename)
 {
 	bool parseOK = false;
@@ -186,27 +171,30 @@ bool CObjectEntry::Load(const char* filename)
 		// Set customized error handler
 		CXercesErrorHandler *errorHandler = new CXercesErrorHandler();
 		parser->setErrorHandler(errorHandler);
+		
+		CVFSEntityResolver *entityResolver = new CVFSEntityResolver(filename);
+		parser->setEntityResolver(entityResolver);
 
 		// Push the CLogger to mark it's reading this file.
 
 		// Get main node
-		XMLCh* xfilename=XMLString::transcode(filename);
-		LocalFileInputSource source(xfilename);
-		XMLString::release(&xfilename);
+		CVFSInputSource source;
+		parseOK = source.OpenFile(filename) == 0;
+		if (parseOK)
+		{
+			// Parse file
+			parser->parse(source);
 
-		// Parse file
-		parser->parse(source);
-
-		// Check how many errors
-		parseOK = parser->getErrorCount() == 0;
-
+			// Check how many errors
+			parseOK = parser->getErrorCount() == 0;
+		}
 		if (parseOK) {
 			// parsed successfully - grab our data
 			DOMDocument *doc = parser->getDocument(); 
 			DOMElement *element = doc->getDocumentElement(); 
 
 			// root_name should be Object
-			CStr root_name = Transcode( element->getNodeName() );
+			CStr root_name = XMLTranscode( element->getNodeName() );
 
 			// should have at least 3 children - Name, ModelName and TextureName
 			DOMNodeList *children = element->getChildNodes();
@@ -221,9 +209,9 @@ bool CObjectEntry::Load(const char* filename)
 					// First get element and not node
 					DOMElement *child_element = (DOMElement*)child;
 
-					CStr element_name = Transcode( child_element->getNodeName() );
+					CStr element_name = XMLTranscode( child_element->getNodeName() );
 					DOMNode *value_node= child_element->getChildNodes()->item(0);
-					CStr element_value=value_node ? Transcode(value_node->getNodeValue()) : "";
+					CStr element_value=value_node ? XMLTranscode(value_node->getNodeValue()) : "";
 
 					if (element_name==CStr("Name")) {
 						m_Name=element_value;
@@ -236,18 +224,18 @@ bool CObjectEntry::Load(const char* filename)
 
 						for (uint j=0; j<animations->getLength(); ++j) {
 							DOMElement *anim_element = (DOMElement*) animations->item(j);
-							CStr element_name = Transcode( anim_element->getNodeName() );
+							CStr element_name = XMLTranscode( anim_element->getNodeName() );
 							DOMNamedNodeMap* attributes=anim_element->getAttributes();
 							if (attributes) {
 								Anim anim;
 
 								DOMNode *nameattr=attributes->getNamedItem(nametext);
-								anim.m_AnimName=Transcode(nameattr->getChildNodes()->item(0)->getNodeValue());
+								anim.m_AnimName=XMLTranscode(nameattr->getChildNodes()->item(0)->getNodeValue());
 								DOMNode *fileattr=attributes->getNamedItem(filetext);
-								anim.m_FileName=Transcode(fileattr->getChildNodes()->item(0)->getNodeValue());
+								anim.m_FileName=XMLTranscode(fileattr->getChildNodes()->item(0)->getNodeValue());
 								
 								DOMNode *speedattr=attributes->getNamedItem(speedtext);
-								CStr speedstr=Transcode(speedattr->getChildNodes()->item(0)->getNodeValue());			
+								CStr speedstr=XMLTranscode(speedattr->getChildNodes()->item(0)->getNodeValue());			
 
 								anim.m_Speed=float(atoi((const char*) speedstr))/100.0f;
 								if (anim.m_Speed<=0) anim.m_Speed=1.0f;
@@ -260,13 +248,13 @@ bool CObjectEntry::Load(const char* filename)
 
 						for (uint j=0; j<props->getLength(); ++j) {
 							DOMElement *prop_element = (DOMElement*) props->item(j);
-							CStr element_name = Transcode( prop_element->getNodeName() );
+							CStr element_name = XMLTranscode( prop_element->getNodeName() );
 							DOMNamedNodeMap* attributes=prop_element->getAttributes();
 							if (attributes) {
 								Prop prop;
 
 								DOMNode *nameattr=attributes->getNamedItem(attachpointtext);
-								prop.m_PropPointName=Transcode(nameattr->getChildNodes()->item(0)->getNodeValue());
+								prop.m_PropPointName=XMLTranscode(nameattr->getChildNodes()->item(0)->getNodeValue());
 								DOMNode *modelattr=attributes->getNamedItem(modeltext);
 								prop.m_ModelName=XMLString::transcode(modelattr->getChildNodes()->item(0)->getNodeValue());
 								
@@ -286,6 +274,7 @@ bool CObjectEntry::Load(const char* filename)
 
 		delete parser;
 		delete errorHandler;
+		delete entityResolver;
 	}
 	XMLPlatformUtils::Terminate();
 
@@ -299,7 +288,7 @@ bool CObjectEntry::Save(const char* filename)
 
 	// write XML header
 	fprintf(fp,"<?xml version=\"1.0\" encoding=\"iso-8859-1\" standalone=\"no\"?>\n\n");
-	fprintf(fp,"<!DOCTYPE Object SYSTEM \"..\\object.dtd\">\n\n");
+	fprintf(fp,"<!DOCTYPE Object SYSTEM \"../object.dtd\">\n\n");
 
 	// write the object itself
 	fprintf(fp,"<!-- File automatically generated by ScEd -->\n");
