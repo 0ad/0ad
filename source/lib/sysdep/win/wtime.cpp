@@ -173,7 +173,7 @@ static int choose_impl()
 	//   frequency changes are too often and drastic to correct,
 	//   and we don't want to mess with the system power settings.
 	//   => unsafe.
-	if(ia32_cap(TSC) && cpu_freq > 0.0)
+	if(cpu_freq > 0.0 && ia32_cap(TSC))
 	{
 		safe = (cpu_smp == 0 && cpu_speedstep == 0);
 		SAFETY_OVERRIDE(HRT_TSC);
