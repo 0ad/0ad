@@ -1,4 +1,4 @@
-// $Id: font.cpp,v 1.4 2004/08/10 15:51:06 philip Exp $
+// $Id: font.cpp,v 1.5 2004/08/27 20:24:15 philip Exp $
 
 #include "stdafx.h"
 
@@ -10,7 +10,7 @@
 
 #include "freetypedll.h"
 
-FontRenderer::FontRenderer(const char* filename0, const char* filename1, int ptsize, bool unpatented_hinting, bool hinting)
+FontRenderer::FontRenderer(const char* filename0, const char* filename1, double ptsize, bool unpatented_hinting, bool hinting)
 {
 	if (SelectDLL(hinting ? 0 : 1))
 	{
@@ -94,9 +94,9 @@ FontRenderer::FontRenderer(const char* filename0, const char* filename1, int pts
 	error = DLLFT_Set_Char_Size(
 		FontFace0,
 		0,			// char_width in 1/64th of points
-		ptsize*64,	// char_height in 1/64th of points
-		72,	// horizontal device resolution
-		72	// vertical device resolution
+		(int)(ptsize*64.0 + 0.5),	// char_height in 1/64th of points
+		96,	// horizontal device resolution
+		96	// vertical device resolution
 	);
 	if (error)
 	{
@@ -110,9 +110,9 @@ FontRenderer::FontRenderer(const char* filename0, const char* filename1, int pts
 	error = DLLFT_Set_Char_Size(
 		FontFace1,
 		0,			// char_width in 1/64th of points
-		ptsize*64,	// char_height in 1/64th of points
-		72,	// horizontal device resolution
-		72	// vertical device resolution
+		(int)(ptsize*64.0 + 0.5),	// char_height in 1/64th of points
+		96,	// horizontal device resolution
+		96	// vertical device resolution
 	);
 	if (error)
 	{
@@ -225,6 +225,7 @@ void FontRenderer::LoadGlyph(const int charcode)
 	else
 	{
 		// Simple version:
+
 		error = DLLFT_Render_Glyph(FontFace->glyph, FT_RENDER_MODE_NORMAL);
 		if (error)
 			throw "Error rendering glyph";
@@ -281,7 +282,8 @@ void FontRenderer::RenderGlyph(unsigned char* rgb_buffer, int& pos_left, int& po
 			continue;
 		}
 
-		for (int GlyphX = -Boldness; GlyphX < bmp->width+Boldness; ++GlyphX)
+
+		for (int GlyphX = 0; GlyphX < bmp->width+Boldness; ++GlyphX)
 		{
 			// Clip horizontally
 			if (Left+GlyphX < 0 || Left+GlyphX >= width)
@@ -295,15 +297,22 @@ void FontRenderer::RenderGlyph(unsigned char* rgb_buffer, int& pos_left, int& po
 			}
 			else
 			{
-				// Pretend to be bold - add lots of adjacent images
-				// Calculate value =~ sum(in[x-n] .. in[x+n])
-				
-				// Work out valid limits for summing
-				// (with weird shifts so that it does precisely
-				// Boldness pixels)
-				int min = GlyphX - ( Boldness >> 1);
+				// Glyph: 001122221100
+				//
+				// Calc:  001122221100
+				//      +  001122221100
+				//      = 0012344432100
+				//        ||__     __||
+				//   row[0]+row[1] row[10]+row[11]
+				//      __|           |__
+				//     row[0]       row[11]
+				//
+				// output[x] = sum row[x-boldness .. x]
+
+
+				int min = GlyphX - Boldness; // inclusive
 				if (min < 0) min = 0;
-				int max = GlyphX + ( (Boldness+1) >> 1) + 1;
+				int max = GlyphX+1; // not inclusive
 				if (max > bmp->width) max = bmp->width;
 
 				for (int x = min; x < max; ++x)
