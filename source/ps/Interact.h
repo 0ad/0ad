@@ -14,12 +14,6 @@
 #include "Scheduler.h"
 #include "Camera.h"
 
-// In it's current incarnation, inefficient but pretty
-#define SELECTION_TERRAIN_CONFORMANCE 
-
-#define SELECTION_CIRCLE_POINTS 25
-#define SELECTION_BOX_POINTS 10
-
 // CSelectedEntities: the singleton containing entities currently selected on the local machine.
 // (including group allocations on the local machine)
 
@@ -51,6 +45,7 @@ struct CSelectedEntities : public Singleton<CSelectedEntities>
 	void update();
 	bool isContextValid( int contextOrder );
 	void contextOrder( bool pushQueue = false );
+	void setContext( int contextOrder );
 	bool nextContext();
 	bool previousContext();
 
@@ -115,6 +110,9 @@ void popCameraTarget();
 int interactInputHandler( const SDL_Event* ev );
 
 extern std::vector<CVector3D> cameraTargets;
+extern CVector3D cameraBookmarks[10];
+extern bool bookmarkInUse[10];
+extern u8 currentBookmark;
 extern CVector3D cameraDelta;
 
 #define g_Selection CSelectedEntities::GetSingleton()

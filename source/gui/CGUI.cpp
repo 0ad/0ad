@@ -23,6 +23,7 @@ gee@pyro.nu
 #include "Overlay.h"
 
 #include "scripting/ScriptingHost.h"
+#include "Hotkey.h"
 
 #include <string>
 #include <assert.h>
@@ -63,6 +64,18 @@ int gui_handler(const SDL_Event* ev)
 
 int CGUI::HandleEvent(const SDL_Event* ev)
 {
+	// MT: If something's gone wrong, check this block... (added for hotkey support)
+
+	if( ev->type == SDL_GUIHOTKEYPRESS )
+	{
+		const CStr& objectName = *( (CStr*)ev->user.code );
+		IGUIObject* object = FindObjectByName( objectName );
+		object->HandleMessage( SGUIMessage( GUIM_PRESSED ) );
+		object->ScriptEvent( "press" );
+	}
+
+	// -- MT
+
 	if(ev->type == SDL_MOUSEMOTION)
 	{
 		m_MousePos = CPos(ev->motion.x, ev->motion.y);
@@ -106,6 +119,7 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 		// Now we'll call UpdateMouseOver on *all* objects,
 		//  we'll input the one hovered, and they will each
 		//  update their own data and send messages accordingly
+		
 		GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject, 
 										&IGUIObject::UpdateMouseOver, 
 										pNearest);
@@ -1067,6 +1081,9 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	ATTR(style);
 	ATTR(type);
 	ATTR(name);
+// MT - temp tag
+	ATTR(hotkey);
+// -- MT
 	ATTR(z);
 	ATTR(on);
 	ATTR(file);
@@ -1101,6 +1118,10 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	bool NameSet = false;
 	bool ManuallySetZ = false; // if z has been manually set, this turn true
 
+// MT - temp tag
+	CStr hotkeyTag( "" );
+// -- MT
+
 	// Now we can iterate all attributes and store
 	for (i=0; i<attributes.Count; ++i)
 	{
@@ -1121,6 +1142,12 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			NameSet = true;
 			continue;
 		}
+
+// MT - temp tag
+		// Wire up the hotkey tag, if it has one
+		if( attr.Name == attr_hotkey )
+			hotkeyTag = attr.Value;
+// -- MT
 
 		if (attr.Name == attr_z)
 			ManuallySetZ = true;
@@ -1184,6 +1211,11 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		++m_InternalNameNumber;
 	}
 
+// MT - temp tag
+	// Attempt to register the hotkey tag, if one was provided
+	if( hotkeyTag.Length() )
+		hotkeyRegisterGUIObject( object->GetName(), hotkeyTag );
+// -- MT
 
 	CStr caption = (CStr)Element.getText();
 	caption.Trim(PS_TRIM_BOTH);

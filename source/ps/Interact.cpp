@@ -327,6 +327,12 @@ void CSelectedEntities::update()
 		setCameraTarget( getGroupPosition( m_group_highlight ) );
 }
 
+void CSelectedEntities::setContext( int contextOrder )
+{
+	assert( isContextValid( contextOrder ) );
+	m_contextOrder = contextOrder;
+}
+
 bool CSelectedEntities::nextContext()
 {
 	// No valid orders? 
@@ -342,8 +348,6 @@ bool CSelectedEntities::nextContext()
 		return( false );
 	m_contextOrder = t;
 	return( true );
-
-
 }
 
 bool CSelectedEntities::previousContext()
@@ -672,27 +676,53 @@ int interactInputHandler( const SDL_Event* ev )
 	case SDL_KEYDOWN:
 		if( ( ev->key.keysym.sym >= SDLK_0 ) && ( ev->key.keysym.sym <= SDLK_9 ) )
 		{
-			u8 groupid = ev->key.keysym.sym - SDLK_0;
-			if( hotkeys[HOTKEY_SELECTION_GROUP_ADD] )
+			u8 id = ev->key.keysym.sym - SDLK_0;
+			// This competes with the camera bookmarks for the top-row number keys
+			// Find out which this is, and act accordingly
+			if( !hotkeys[HOTKEY_CAMERA_BOOKMARK_MODIFIER] )
 			{
-				g_Selection.addGroup( groupid );
-			}
-			else if( hotkeys[HOTKEY_SELECTION_GROUP_SAVE] )
-			{
-				g_Selection.saveGroup( groupid );
-			}
-			else if( hotkeys[HOTKEY_SELECTION_GROUP_SNAP] )
-			{
-				g_Selection.highlightGroup( groupid );
+				if( hotkeys[HOTKEY_SELECTION_GROUP_ADD] )
+				{
+					g_Selection.addGroup( id );
+				}
+				else if( hotkeys[HOTKEY_SELECTION_GROUP_SAVE] )
+				{
+					g_Selection.saveGroup( id );
+				}
+				else if( hotkeys[HOTKEY_SELECTION_GROUP_SNAP] )
+				{
+					g_Selection.highlightGroup( id );
+				}
+				else
+				{
+					if( ( g_Selection.m_group == id ) && g_Selection.getGroupCount( id ) )
+					{
+						setCameraTarget( g_Selection.getGroupPosition( id ) );
+					}
+					else
+						g_Selection.loadGroup( id );
+				}
 			}
 			else
 			{
-				if( ( g_Selection.m_group == groupid ) && g_Selection.getGroupCount( groupid ) )
+				if( hotkeys[HOTKEY_CAMERA_BOOKMARK_SAVE] )
 				{
-					setCameraTarget( g_Selection.getGroupPosition( groupid ) );
+					cameraBookmarks[id] = g_Camera.m_Orientation.GetTranslation() + g_Camera.m_Orientation.GetIn() * 160.0f;
+					bookmarkInUse[id] = true;
+				}
+				else if( hotkeys[HOTKEY_CAMERA_BOOKMARK_SNAP] )
+				{
+					if( bookmarkInUse[id] && ( currentBookmark == 255 ) )
+					{
+						pushCameraTarget( cameraBookmarks[id] );
+						currentBookmark = id;
+					}
 				}
 				else
-					g_Selection.loadGroup( groupid );
+				{
+					if( bookmarkInUse[id] )
+						setCameraTarget( cameraBookmarks[id] );
+				}
 			}
 		}
 		break;
@@ -722,6 +752,11 @@ int interactInputHandler( const SDL_Event* ev )
 		case HOTKEY_SELECTION_GROUP_SNAP:
 			if( g_Selection.m_group_highlight != 255 )
 				g_Selection.highlightNone();
+			break;
+		case HOTKEY_CAMERA_BOOKMARK_SNAP:
+			if( currentBookmark != 255 )
+				popCameraTarget();
+			currentBookmark = 255;
 			break;
 		case HOTKEY_HIGHLIGHTALL:
 			g_Mouseover.m_viewall = false;
@@ -772,7 +807,7 @@ int interactInputHandler( const SDL_Event* ev )
 				g_Mouseover.setSelection();
 			break;
 		case SDL_BUTTON_RIGHT:
-			g_Selection.contextOrder( keys[SDLK_LSHIFT] || keys[SDLK_RSHIFT] );
+			g_Selection.contextOrder( hotkeys[HOTKEY_ORDER_QUEUE] );
 			break;
 		}
 		break;

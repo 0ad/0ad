@@ -120,4 +120,15 @@ public:
 	void pushOrder( CEntityOrder& order );
 };
 
+// General entity globals
+
+
+// In it's current incarnation, inefficient but pretty
+#define SELECTION_TERRAIN_CONFORMANCE 
+
+extern int SELECTION_CIRCLE_POINTS;
+extern int SELECTION_BOX_POINTS;
+extern int SELECTION_SMOOTHNESS_UNIFIED;
+
+
 #endif

@@ -2,12 +2,22 @@
 
 #include "EntityManager.h"
 #include "BaseEntityCollection.h"
+#include "ConfigDB.h"
 
+int SELECTION_CIRCLE_POINTS;
+int SELECTION_BOX_POINTS;
+int SELECTION_SMOOTHNESS_UNIFIED;
 
 CEntityManager::CEntityManager()
 {
 	m_nextalloc = 0;
 	m_extant = true;
+	// Also load a couple of global entity settings
+	CConfigValue* cfg = g_ConfigDB.GetValue( CFG_SYSTEM, "selection.outline.quality" );
+	if( cfg ) cfg->GetInt( SELECTION_SMOOTHNESS_UNIFIED );
+	if( SELECTION_SMOOTHNESS_UNIFIED < 0 ) SELECTION_SMOOTHNESS_UNIFIED = 0;
+	SELECTION_CIRCLE_POINTS = 7 + 2 * SELECTION_SMOOTHNESS_UNIFIED;
+	SELECTION_BOX_POINTS = 1 + SELECTION_SMOOTHNESS_UNIFIED;
 }
 
 CEntityManager::~CEntityManager()

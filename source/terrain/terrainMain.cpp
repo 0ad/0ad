@@ -4,10 +4,12 @@
 #include "Renderer.h"
 #include "Terrain.h"
 #include "LightEnv.h"
+#include "HFTracer.h"
 #include "TextureManager.h"
 #include "ObjectManager.h"
 #include "Prometheus.h"
 #include "Hotkey.h"
+#include "ConfigDB.h"
 
 #include "sdl.h"
 #include "res/tex.h"
@@ -34,15 +36,23 @@ CLightEnv			g_LightEnv;
 float g_CameraZoom = 10;
 
 std::vector<CVector3D> cameraTargets;
+CVector3D cameraBookmarks[10];
+bool bookmarkInUse[10] = { false, false, false, false, false, false, false, false, false, false };
+u8 currentBookmark = 255;
 CVector3D cameraDelta;
+CVector3D cameraPivot;
 
-const float ViewScrollSpeed = 60;
-const float ViewRotateSensitivity = 0.002f;
-const float ViewDragSensitivity = 0.5f;
-const float ViewZoomSensitivityWheel = 16.0f;
-const float ViewZoomSensitivity = 256.0f;
-const float ViewZoomSmoothness = 0.02f; // 0.0 = instantaneous zooming, 1.0 = so slow it never moves
-const float ViewSnapSmoothness = 0.02f; // Just the same.
+// These were 'const'; loaded from config now.
+
+float ViewScrollSpeed = 60;
+float ViewRotateSensitivity = 0.002f;
+float ViewRotateAboutTargetSensitivity = 0.010f;
+float ViewDragSensitivity = 0.5f;
+float ViewZoomSensitivityWheel = 16.0f;
+float ViewZoomSensitivity = 256.0f;
+float ViewZoomSmoothness = 0.02f; // 0.0 = instantaneous zooming, 1.0 = so slow it never moves
+float ViewSnapSmoothness = 0.02f; // Just the same.
+
 float ViewFOV;
 
 extern int g_xres, g_yres;
@@ -55,6 +65,26 @@ void terr_init()
 	vp.m_Width=g_xres;
 	vp.m_Height=g_yres;
 	g_Camera.SetViewPort(&vp);
+
+	CConfigValue* cfg;
+	
+#define getViewParameter( name, value ) STMT( \
+	cfg = g_ConfigDB.GetValue( CFG_SYSTEM, name );\
+	if( cfg ) cfg->GetFloat( value ); )
+
+	getViewParameter( "view.scroll.speed", ViewScrollSpeed );
+	getViewParameter( "view.rotate.speed", ViewRotateSensitivity );
+	getViewParameter( "view.rotate.abouttarget.speed", ViewRotateAboutTargetSensitivity );
+	getViewParameter( "view.drag.speed", ViewDragSensitivity );
+	getViewParameter( "view.zoom.speed", ViewZoomSensitivity );
+	getViewParameter( "view.zoom.wheel.speed", ViewZoomSensitivityWheel );
+	getViewParameter( "view.zoom.smoothness", ViewZoomSmoothness );
+	getViewParameter( "view.snap.smoothness", ViewSnapSmoothness );
+	
+	if( ( ViewZoomSmoothness < 0.0f ) || ( ViewZoomSmoothness > 1.0f ) ) ViewZoomSmoothness = 0.02f;
+	if( ( ViewSnapSmoothness < 0.0f ) || ( ViewSnapSmoothness > 1.0f ) ) ViewSnapSmoothness = 0.02f;
+
+#undef getViewParameter
 
 	InitResources ();
 	InitScene ();
@@ -85,9 +115,9 @@ static void move_camera(float DeltaTime)
 
 	// Miscellaneous vectors
 	CVector3D forwards = g_Camera.m_Orientation.GetIn();
-	CVector3D upwards (0.0f, 1.0f, 0.0f);
-	CVector3D rightwards = upwards.Cross(forwards);
-	rightwards.Normalize();
+	CVector3D rightwards = g_Camera.m_Orientation.GetLeft() * -1.0f; // upwards.Cross(forwards);
+	CVector3D upwards( 0.0f, 1.0f, 0.0f );
+	// rightwards.Normalize();
 	
 	CVector3D forwards_horizontal = forwards;
 	forwards_horizontal.Y = 0.0f;
@@ -117,9 +147,39 @@ static void move_camera(float DeltaTime)
 		g_Camera.m_Orientation.Translate(position);
 
 	}
-	/*
-	else if (mouseButtons[SDL_BUTTON_MIDDLE])
-	*/
+	else if( hotkeys[HOTKEY_CAMERA_ROTATE_ABOUT_TARGET] )
+	{
+		CVector3D origin = g_Camera.m_Orientation.GetTranslation();
+		CVector3D delta = origin - cameraPivot;
+		
+		CQuaternion rotateH, rotateV; CMatrix3D rotateM;
+
+		// Side-to-side rotation
+		rotateH.FromAxisAngle( upwards, ViewRotateAboutTargetSensitivity * (float)mouse_dx );
+
+		// Up-down rotation
+		rotateV.FromAxisAngle( rightwards, ViewRotateAboutTargetSensitivity * (float)mouse_dy );
+
+		rotateH *= rotateV;
+		rotateH.ToMatrix( rotateM );
+
+		delta = rotateM.Rotate( delta );
+
+		// Lock the inclination to a rather arbitrary values (for the sake of graphical decency)
+
+		float scan = sqrt( delta.X * delta.X + delta.Z * delta.Z ) / delta.Y;
+		if( ( scan >= 0.5f ) ) 
+		{
+			// Move the camera to the origin (in preparation for rotation )
+			g_Camera.m_Orientation.Translate( origin * -1.0f );
+
+			g_Camera.m_Orientation.Rotate( rotateH );
+
+			// Move the camera back to where it belongs
+			g_Camera.m_Orientation.Translate( cameraPivot + delta );
+		}
+		
+	}
 	else if( hotkeys[HOTKEY_CAMERA_PAN] )
 	{
 		// Middle-drag to pan
@@ -129,15 +189,18 @@ static void move_camera(float DeltaTime)
 
 	// Mouse movement
 
-	if (mouse_x >= g_xres-2)
-		g_Camera.m_Orientation.Translate(rightwards * (ViewScrollSpeed * DeltaTime));
-	else if (mouse_x <= 3)
-		g_Camera.m_Orientation.Translate(-rightwards * (ViewScrollSpeed * DeltaTime));
+	if( !hotkeys[HOTKEY_CAMERA_ROTATE] && !hotkeys[HOTKEY_CAMERA_ROTATE_ABOUT_TARGET] )
+	{
+		if (mouse_x >= g_xres-2)
+			g_Camera.m_Orientation.Translate(rightwards * (ViewScrollSpeed * DeltaTime));
+		else if (mouse_x <= 3)
+			g_Camera.m_Orientation.Translate(-rightwards * (ViewScrollSpeed * DeltaTime));
 
-	if (mouse_y >= g_yres-2)
-		g_Camera.m_Orientation.Translate(-forwards_horizontal * (ViewScrollSpeed * DeltaTime));
-	else if (mouse_y <= 3)
-		g_Camera.m_Orientation.Translate(forwards_horizontal * (ViewScrollSpeed * DeltaTime));
+		if (mouse_y >= g_yres-2)
+			g_Camera.m_Orientation.Translate(-forwards_horizontal * (ViewScrollSpeed * DeltaTime));
+		else if (mouse_y <= 3)
+			g_Camera.m_Orientation.Translate(forwards_horizontal * (ViewScrollSpeed * DeltaTime));
+	}
 
 
 	// Keyboard movement (added to mouse movement, so you can go faster if you want)
@@ -151,7 +214,6 @@ static void move_camera(float DeltaTime)
 		g_Camera.m_Orientation.Translate(-forwards_horizontal * (ViewScrollSpeed * DeltaTime));
 	if( hotkeys[HOTKEY_CAMERA_PAN_FORWARD] )
 		g_Camera.m_Orientation.Translate(forwards_horizontal * (ViewScrollSpeed * DeltaTime));
-
 
 	// Smoothed zooming (move a certain percentage towards the desired zoom distance every frame)
 
@@ -325,7 +387,22 @@ int terr_handler(const SDL_Event* ev)
 			g_Camera.m_Orientation.Translate (100, 150, -100);
 			return( EV_HANDLED );
 
+		case HOTKEY_CAMERA_ROTATE_ABOUT_TARGET:
+			{
+			int x, z;
+			CHFTracer tracer( g_Terrain.GetHeightMap(), g_Terrain.GetVerticesPerSide(), CELL_SIZE, HEIGHT_SCALE );
+			CVector3D origin, dir;
+			origin = g_Camera.m_Orientation.GetTranslation();
+			dir = g_Camera.m_Orientation.GetIn();
+			g_Camera.BuildCameraRay( origin, dir );
+
+			if( !tracer.RayIntersect( origin, dir, x, z, cameraPivot ) )
+				cameraPivot = origin - dir * ( origin.Y / dir.Y );
+			}
+			return( EV_HANDLED );
+
 		}
+
 	}
 
 	return EV_PASS;

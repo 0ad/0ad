@@ -195,7 +195,7 @@ SDL_ActiveEvent;
 
 typedef struct
 {
-	u16 code;
+	intptr_t code;
 }
 SDL_UserEvent;
 

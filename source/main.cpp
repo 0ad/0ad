@@ -714,6 +714,8 @@ static void psInit()
 	g_Console->m_iFontHeight = unifont_linespacing(g_Font_Console);
 	g_Console->m_iFontOffset = 9;
 
+	loadHotkeys();
+
 #ifndef NO_GUI
 	// GUI uses VFS, so this must come after VFS init.
 	g_GUI.Initialize();
@@ -971,14 +973,13 @@ if(!g_MapFile)
 
 	in_add_handler(interactInputHandler);
 
-	in_add_handler(conInputHandler);
 #ifndef NO_GUI
 	in_add_handler(gui_handler);
 #endif
 
-	in_add_handler(hotkeyInputHandler);
+	in_add_handler(conInputHandler);
 
-	loadHotkeys();
+	in_add_handler(hotkeyInputHandler); // <- Leave this one until after all the others.
 
 	MICROLOG(L"render blank");
 	// render everything to a blank frame to force renderer to load everything

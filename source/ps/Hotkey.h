@@ -3,8 +3,11 @@
 // Constant definitions and a couple of exports for the hotkey processor
 //
 // Mark Thompson (mot20@cam.ac.uk / mark@wildfiregames.com)
-
-// Adding a hotkey:
+//
+// Hotkeys can be mapped onto SDL events (for use internal to the engine),
+// or used to trigger activation of GUI buttons.
+//
+// Adding a hotkey (SDL event type):
 //
 // - Define your constant in the enum, just below;
 // - Add an entry to hotkeyInfo[], in Hotkey.cpp
@@ -20,6 +23,7 @@
 
 const int SDL_HOTKEYDOWN = SDL_USEREVENT;
 const int SDL_HOTKEYUP = SDL_USEREVENT + 1;
+const int SDL_GUIHOTKEYPRESS = SDL_USEREVENT + 2;
 
 enum
 {
@@ -32,11 +36,15 @@ enum
 	HOTKEY_CAMERA_ZOOM_WHEEL_IN,
 	HOTKEY_CAMERA_ZOOM_WHEEL_OUT,
 	HOTKEY_CAMERA_ROTATE,
+	HOTKEY_CAMERA_ROTATE_ABOUT_TARGET,
 	HOTKEY_CAMERA_PAN,
 	HOTKEY_CAMERA_PAN_LEFT,
 	HOTKEY_CAMERA_PAN_RIGHT,
 	HOTKEY_CAMERA_PAN_FORWARD,
 	HOTKEY_CAMERA_PAN_BACKWARD,
+	HOTKEY_CAMERA_BOOKMARK_MODIFIER,
+	HOTKEY_CAMERA_BOOKMARK_SAVE,
+	HOTKEY_CAMERA_BOOKMARK_SNAP,
 	HOTKEY_CONSOLE_TOGGLE,
 	HOTKEY_SELECTION_ADD,
 	HOTKEY_SELECTION_REMOVE,
@@ -44,6 +52,7 @@ enum
 	HOTKEY_SELECTION_GROUP_SAVE,
 	HOTKEY_SELECTION_GROUP_SNAP,
 	HOTKEY_SELECTION_SNAP,
+	HOTKEY_ORDER_QUEUE,
 	HOTKEY_CONTEXTORDER_NEXT,
 	HOTKEY_CONTEXTORDER_PREVIOUS,
 	HOTKEY_HIGHLIGHTALL,
@@ -52,6 +61,7 @@ enum
 
 void loadHotkeys();
 int hotkeyInputHandler( const SDL_Event* ev );
+void hotkeyRegisterGUIObject( const CStr& objName, const CStr& hotkeyName );
 
 void initKeyNameMap();
 CStr getKeyName( int keycode );

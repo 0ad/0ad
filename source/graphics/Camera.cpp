@@ -186,3 +186,15 @@ void CCamera::GetScreenCoordinates( const CVector3D& world, float& x, float& y )
 	x = ( x + 1 ) * 0.5f * g_Renderer.GetWidth();
 	y = ( 1 - y ) * 0.5f * g_Renderer.GetHeight();
 }
+
+void CCamera::LookAt( const CVector3D& camera, const CVector3D& target, const CVector3D& up )
+{
+	CVector3D delta = target - camera;
+	delta.Normalize();
+	CVector3D s = delta.Cross( up );
+	CVector3D u = s.Cross( delta );
+	m_Orientation._11 = -s.X;	m_Orientation._12 = up.X;	m_Orientation._13 = delta.X;	m_Orientation._14 = camera.X;
+	m_Orientation._21 = -s.Y;	m_Orientation._22 = up.Y;	m_Orientation._23 = delta.Y;	m_Orientation._24 = camera.Y;
+	m_Orientation._31 = -s.Z;	m_Orientation._32 = up.Z;	m_Orientation._33 = delta.Z;	m_Orientation._34 = camera.Z;
+	m_Orientation._41 = 0.0f;	m_Orientation._42 = 0.0f;	m_Orientation._43 = 0.0f;		m_Orientation._44 = 1.0f;
+}

@@ -35,7 +35,6 @@ JSBool JSI_Entity::getProperty( JSContext* cx, JSObject* obj, jsval id, jsval* v
 	if( !e )
 	{
 		*vp = JSVAL_NULL;
-		JS_ReportError( cx, "[Entity] Invalid reference" );
 		return( JS_TRUE );
 	}
 	CStr propName = g_ScriptingHost.ValueToString( id );
@@ -69,17 +68,13 @@ JSBool JSI_Entity::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* v
 JSBool JSI_Entity::construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
 {
 	assert( argc >= 2 );
-	CBaseEntity* baseEntity;
+	CBaseEntity* baseEntity = NULL;
 	CVector3D position;
 	float orientation = 0.0f;
 	JSObject* jsBaseEntity = JSVAL_TO_OBJECT( argv[0] );
 	CStr templateName;
 
-	if( !JSVAL_IS_NULL( argv[0] ) && JSVAL_IS_OBJECT( argv[0] ) && ( JS_GetClass( jsBaseEntity ) == &JSI_BaseEntity::JSI_class ) )
-	{
-		baseEntity = (CBaseEntity*)JS_GetPrivate( cx, jsBaseEntity );
-	}
-	else
+	if( !JSVAL_IS_OBJECT( argv[0] ) || !( baseEntity = (CBaseEntity*)JS_GetInstancePrivate( cx, jsBaseEntity, &JSI_BaseEntity::JSI_class, NULL ) ) )
 	{	
 		try
 		{
@@ -99,10 +94,10 @@ JSBool JSI_Entity::construct( JSContext* cx, JSObject* obj, unsigned int argc, j
 		JS_ReportError( cx, "No such template: %s", (const char*)templateName );
 		return( JS_TRUE );
 	}
-	JSObject* jsVector3D = JSVAL_TO_OBJECT( argv[1] );
-	if( !JSVAL_IS_NULL( argv[1] ) && JSVAL_IS_OBJECT( argv[1] ) && ( JS_GetClass( jsVector3D ) == &JSI_Vector3D::JSI_class ) )
+	JSI_Vector3D::Vector3D_Info* jsVector3D = NULL;
+	if( JSVAL_IS_OBJECT( argv[1] ) && ( jsVector3D = (JSI_Vector3D::Vector3D_Info*)JS_GetInstancePrivate( cx, JSVAL_TO_OBJECT( argv[1] ), &JSI_Vector3D::JSI_class, NULL ) ) )
 	{
-		position = *( ( (JSI_Vector3D::Vector3D_Info*)JS_GetPrivate( cx, jsVector3D ) )->vector );
+		position = *( jsVector3D->vector );
 	}
 	if( argc >= 3 )
 	{

@@ -262,6 +262,7 @@ void CRenderer::BeginFrame()
 	if (m_LightEnv) {
 		CVector3D dirlight;
 		m_LightEnv->GetSunDirection(dirlight);
+
 		m_SHCoeffsUnits.AddDirectionalLight(dirlight,m_LightEnv->m_SunColor);
 		m_SHCoeffsTerrain.AddDirectionalLight(dirlight,m_LightEnv->m_SunColor);
 
@@ -363,6 +364,7 @@ void CRenderer::CalcShadowMatrices()
 	CVector3D lightdir;
 	// ??? RC using matrix rotation to get sun direction?
 	m_LightEnv->GetSunDirection(lightdir);
+
 	// ??? RC more optimal light placement?
 	CVector3D lightpos=centre-(lightdir*1000);
 

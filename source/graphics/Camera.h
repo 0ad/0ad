@@ -71,6 +71,10 @@ class CCamera
 		}
 
 		void GetScreenCoordinates( const CVector3D& world, float& x, float& y );
+
+		// Build an orientation matrix from camera position, camera target, and up-vector
+		void LookAt( const CVector3D& camera, const CVector3D& target, const CVector3D& up );
+
 	public:
 		//This is the orientation matrix. The inverse of this
 		//is the view matrix

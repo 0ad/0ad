@@ -305,7 +305,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 
 			for( size_t t = 0; t < argCount; t++ )
 			{
-				if( !parserLine.GetArgString( t + 1, value ) )
+				if( !parserLine.GetArgString( (int)t + 1, value ) )
 					continue;
 				CConfigValue argument;
 				argument.m_String = value;

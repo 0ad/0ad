@@ -77,7 +77,6 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 	if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
 		((CBoundingBox*)m_bounds)->setOrientation( m_ahead );
 
-	
 	float scale = m_speed * timestep;
 
 	if( scale > len )
@@ -112,6 +111,9 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 			// Oh dear. Most likely explanation is that this unit was created
 			// within the bounding area of another entity.
 			// Try a little boost of speed, to help resolve the situation more quickly.
+
+			// This really shouldn't happen in the current build.
+
 			m_position.X += delta.x * 2.0f;
 			m_position.Z += delta.y * 2.0f;
 			m_bounds->setPosition( m_position.X, m_position.Z );

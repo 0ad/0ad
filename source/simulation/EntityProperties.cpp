@@ -314,16 +314,17 @@ CProperty_CVector3D& CProperty_CVector3D::operator =( const CVector3D& value )
 void CProperty_CVector3D::set( jsval value )
 {
 	JSObject* vector3d = JSVAL_TO_OBJECT( value );
-	if( JSVAL_IS_NULL( value ) || !JSVAL_IS_OBJECT( value ) || ( JS_GetClass( vector3d ) != &JSI_Vector3D::JSI_class ) )
+	JSI_Vector3D::Vector3D_Info* v = NULL;
+	if( JSVAL_IS_OBJECT( value ) && ( v = (JSI_Vector3D::Vector3D_Info*)JS_GetInstancePrivate( g_ScriptingHost.getContext(), vector3d, &JSI_Vector3D::JSI_class, NULL ) ) )
 	{
-		X = 0.0f; Y = 0.0f; Z = 0.0f;
-	}
-	else
-	{
-		CVector3D* copy = ( (JSI_Vector3D::Vector3D_Info*)JS_GetPrivate( g_ScriptingHost.getContext(), vector3d ) )->vector;
+		CVector3D* copy = v->vector;
 		X = copy->X;
 		Y = copy->Y;
 		Z = copy->Z;
+	}
+	else
+	{
+		X = 0.0f; Y = 0.0f; Z = 0.0f;
 	}
 }
 
@@ -349,9 +350,10 @@ CProperty_CBaseEntityPtr& CProperty_CBaseEntityPtr::operator =( CBaseEntity* val
 void CProperty_CBaseEntityPtr::set( jsval value )
 {
 	JSObject* baseEntity = JSVAL_TO_OBJECT( value );
-	if( !JSVAL_IS_NULL( value ) && JSVAL_IS_OBJECT( value ) && ( JS_GetClass( baseEntity ) == &JSI_BaseEntity::JSI_class ) )
+	CBaseEntity* base = NULL;
+	if( JSVAL_IS_OBJECT( value ) && ( base = (CBaseEntity*)JS_GetInstancePrivate( g_ScriptingHost.getContext(), baseEntity, &JSI_BaseEntity::JSI_class, NULL ) ) )
 	{
-		data = (CBaseEntity*)JS_GetPrivate( g_ScriptingHost.getContext(), baseEntity );
+		data = base;
 	}
 	else
 		JS_ReportError( g_ScriptingHost.getContext(), "[BaseEntity] Invalid reference" );

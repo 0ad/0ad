@@ -9,11 +9,11 @@
 #include "EntityManager.h"
 #include "BaseEntityCollection.h"
 #include "Scheduler.h"
-#include "Interact.h"
 #include "scripting/JSInterface_Entity.h"
 #include "scripting/JSInterface_BaseEntity.h"
 #include "scripting/JSInterface_Vector3D.h"
 #include "gui/scripting/JSInterface_IGUIObject.h"
+#include "scripting/JSInterface_Selection.h"
 
 extern CConsole* g_Console;
 
@@ -50,8 +50,8 @@ enum ScriptGlobalTinyIDs
 
 JSPropertySpec ScriptGlobalTable[] =
 {
-	{ "selected", GLOBAL_SELECTED, JSPROP_PERMANENT, getSelected, setSelected },
-	{ "selection", GLOBAL_SELECTIONARRAY, JSPROP_PERMANENT, getSelection, setSelection },
+	{ "selected", GLOBAL_SELECTED, JSPROP_PERMANENT, JSI_Selected::getProperty, JSI_Selected::setProperty },
+	{ "selection", GLOBAL_SELECTIONARRAY, JSPROP_PERMANENT, JSI_Selection::getProperty, JSI_Selection::setProperty },
 	{ 0, 0, 0, 0, 0 },
 };
 
@@ -230,82 +230,6 @@ JSBool setInterval( JSContext* context, JSObject* globalObject, unsigned int arg
 JSBool cancelInterval( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval )
 {
 	g_Scheduler.m_abortInterval = true;
-	return( JS_TRUE );
-}
-
-JSBool getSelected( JSContext* context, JSObject* globalObject, jsval id, jsval* vp )
-{
-	if( g_Selection.m_selected.size() )
-	{
-		JSObject* entity = JS_NewObject( context, &JSI_Entity::JSI_class, NULL, NULL );
-		JS_SetPrivate( context, entity, new HEntity( g_Selection.m_selected[0]->me ) );
-		*vp = OBJECT_TO_JSVAL( entity );
-		return( JS_TRUE );
-	}
-	else
-	{
-		*vp = JSVAL_NULL;
-		return( JS_TRUE );
-	}
-}
-
-JSBool setSelected( JSContext* context, JSObject* globalObject, jsval id, jsval* vp )
-{
-	g_Selection.clearSelection();
-	JSObject* selection = JSVAL_TO_OBJECT( *vp );
-	if( !JSVAL_IS_NULL( *vp ) && JSVAL_IS_OBJECT( *vp ) && ( JS_GetClass( selection ) == &JSI_Entity::JSI_class ) )
-	{
-		HEntity* entity = (HEntity*)JS_GetPrivate( context, selection );
-		g_Selection.addSelection( *entity );
-	}
-	else
-		JS_ReportError( context, "[Entity] Invalid reference" );
-	return( JS_TRUE );
-}
-
-JSBool getSelection( JSContext* context, JSObject* globalObject, jsval id, jsval* vp )
-{
-	JSObject* selectionArray = JS_NewArrayObject( context, 0, NULL );
-	std::vector<CEntity*>::iterator it; int i;
-	for( it = g_Selection.m_selected.begin(), i = 0; it < g_Selection.m_selected.end(); it++, i++ )
-	{
-		JSObject* entity = JS_NewObject( context, &JSI_Entity::JSI_class, NULL, NULL );
-		JS_SetPrivate( context, entity, new HEntity( (*it)->me ) );
-		jsval j = OBJECT_TO_JSVAL( entity );
-		JS_SetElement( context, selectionArray, i, &j );
-	}
-	*vp = OBJECT_TO_JSVAL( selectionArray );
-	return( JS_TRUE );
-}
-
-JSBool setSelection( JSContext* context, JSObject* globalObject, jsval id, jsval* vp )
-{
-	g_Selection.clearSelection();
-	JSObject* selectionArray = JSVAL_TO_OBJECT( *vp );
-	if( JSVAL_IS_NULL( *vp ) || !JSVAL_IS_OBJECT( *vp ) || !JS_IsArrayObject( context, selectionArray ) )
-	{
-		JS_ReportError( context, "Not an array" );
-		return( JS_TRUE );
-	}
-	jsuint selectionCount;
-	if( !JS_GetArrayLength( context, selectionArray, &selectionCount ) )
-	{
-		JS_ReportError( context, "Not an array" );
-		return( JS_TRUE );
-	}
-	for( jsuint i = 0; i < selectionCount; i++ )
-	{
-		jsval entry;
-		JS_GetElement( context, selectionArray, i, &entry );
-		JSObject* selection = JSVAL_TO_OBJECT( entry );
-		if( !JSVAL_IS_NULL( entry ) && JSVAL_IS_OBJECT( entry ) && ( JS_GetClass( selection ) == &JSI_Entity::JSI_class ) )
-		{
-			HEntity* entity = (HEntity*)JS_GetPrivate( context, JSVAL_TO_OBJECT( entry ) );
-			g_Selection.addSelection( &(**entity) );
-		}
-		else
-			JS_ReportError( context, "[Entity] Invalid reference" );
-	}
 	return( JS_TRUE );
 }
 
