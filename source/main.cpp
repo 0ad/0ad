@@ -29,6 +29,7 @@
 #endif
 
 
+
 u32 game_ticks;
 
 bool keys[SDLK_LAST];
