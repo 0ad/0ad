@@ -1,0 +1,11 @@
+<!ELEMENT Object
+  (Name,ModelName,TextureName,Animations?)>
+<!ELEMENT Name (#PCDATA)>
+<!ELEMENT ModelName (#PCDATA)>
+<!ELEMENT TextureName (#PCDATA)>
+<!ELEMENT Animations (Animation)*>
+<!ELEMENT Animation (#PCDATA)*>
+<!ATTLIST Animation name CDATA #REQUIRED
+		    file CDATA #REQUIRED>
+
+
