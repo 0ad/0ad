@@ -19,18 +19,14 @@ void RenderScene ();
 extern bool keys[512];	// SDL also defines non-ascii keys; 512 should be enough
 extern bool mouseButtons[5];
 
+extern bool active;
+
+
 CMatrix3D			g_WorldMat;
 CTerrain			g_Terrain;
 CCamera				g_Camera;
 CLightEnv			g_LightEnv;
 
-int					SelPX, SelPY, SelTX, SelTY;
-int					g_BaseTexCounter = 0;
-int					g_SecTexCounter = 1;
-int					g_TransTexCounter = 0;
-
-int					g_TickCounter = 0;
-double				g_LastTime;
 
 float g_CameraZoom = 10;
 
@@ -60,7 +56,8 @@ void terr_init()
 	InitScene ();
 }
 
-void terr_update(const float DeltaTime)
+
+static void move_camera(float DeltaTime)
 {
 
 #define CAMERASTYLE 2 // 0 = old style, 1 = relatively new style, 2 = newest style
@@ -280,12 +277,24 @@ void terr_update(const float DeltaTime)
 }
 
 
+void terr_update(const float DeltaTime)
+{
+	if(active)
+		move_camera(DeltaTime);
+}
+
+
 
 
 
 
 bool terr_handler(const SDL_Event& ev)
 {
+	// put any events that must be processed even if inactive here
+
+	if(!active)
+		return false;
+
 	switch(ev.type)
 	{
 	case SDL_MOUSEMOTION:
