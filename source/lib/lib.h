@@ -81,6 +81,25 @@ STMT(\
 )
 #endif
 
+
+
+// useful because VC6 returns 0 on failure, instead of throwing.
+// causes calling function to return a negative error code on failure.
+#define SAFE_NEW(type, ptr)\
+	type* ptr;\
+	try\
+	{\
+		ptr = new type();\
+	}\
+	catch(std::bad_alloc)\
+	{\
+		ptr = 0;\
+	}\
+	if(!ptr)\
+		return ERR_NO_MEM;
+
+
+
 enum LibError
 {
 	ERR_INVALID_HANDLE  = -1000,

@@ -1,3 +1,5 @@
+#include "precompiled.h"
+
 #include "ogl.h"
 #include "res/tex.h"
 #include "TextureEntry.h"

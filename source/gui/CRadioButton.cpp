@@ -18,6 +18,7 @@ void CRadioButton::HandleMessage(const SGUIMessage &Message)
 	switch (Message.type)
 	{
 	case GUIM_PRESSED:
+	{ // janwas added scoping to squelch ICC var decl warning
 		for (vector_pObjects::iterator it = GetParent()->ChildrenItBegin(); it != GetParent()->ChildrenItEnd(); ++it)
 		{
 			// Notice, if you use other objects within the parent object that has got
@@ -30,6 +31,7 @@ void CRadioButton::HandleMessage(const SGUIMessage &Message)
 		
 		//GetGUI()->TEMPmessage = "Check box " + string((const TCHAR*)m_Name) + " was " + (m_Settings.m_Checked?"checked":"unchecked");
 		break;
+	}
 
 	default:
 		break;
