@@ -41,7 +41,9 @@ extern "C" {
 # include <OpenGL/glext.h>
 #else
 # include <GL/glext.h>
-# include <GL/wglext.h>
+# ifdef _WIN32
+#  include <GL/wglext.h>
+# endif 
 #endif
 
 #define GL_TEXTURE_IMAGE_SIZE_ARB 0x86A0
