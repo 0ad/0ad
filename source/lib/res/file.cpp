@@ -197,7 +197,7 @@ int file_rel_chdir(const char* argv0, const char* const rel_path)
 		msg = "realpath returned an invalid path?";
 		goto fail;
 	}
-	CHECK_ERR(convert_path(fn+1, rel_path));
+	CHECK_ERR(file_make_native_path(rel_path, fn+1));
 
 	if(chdir(n_path) < 0)
 		goto fail;
@@ -231,18 +231,29 @@ fail:
 struct DirEnt
 {
 	const std::string name;
-	const off_t size;
 
-	DirEnt(const char* const _name, const off_t _size)
-		: name(_name), size(_size) {}
+	// store only required fields from struct stat to save space.
+	// in order of decl in VC2003 sys/stat.h.
+	mode_t st_mode;
+	off_t  st_size;
+	time_t st_mtime;
 
+	DirEnt(const char* _name, mode_t _st_mode, off_t _st_size, time_t _st_mtime)
+		: name(_name)
+	{
+		st_mode  = _st_mode;
+		st_size  = _st_size;
+		st_mtime = _st_mtime;
+	}
+
+	// no copy ctor, since some members are const
 private:
 	DirEnt& operator=(const DirEnt&);
 };
 
 // pointer to DirEnt: faster sorting, but more allocs.
 typedef std::vector<const DirEnt*> DirEnts;
-typedef DirEnts::const_iterator DirEntIt;
+typedef DirEnts::const_iterator DirEntCIt;
 typedef DirEnts::reverse_iterator DirEntRIt;
 
 static bool dirent_less(const DirEnt* const d1, const DirEnt* const d2)
@@ -250,7 +261,7 @@ static bool dirent_less(const DirEnt* const d1, const DirEnt* const d2)
 
 
 // call <cb> for each file and subdirectory in <dir> (alphabetical order),
-// passing <user> and the entry name (not full path!).
+// passing the entry name (not full path!), stat info, and <user>.
 //
 // first builds a list of entries (sorted) and remembers if an error occurred.
 // if <cb> returns non-zero, abort immediately and return that; otherwise,
@@ -297,8 +308,9 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 		const char* fn = os_ent->d_name;
 
 		strncpy(fn_start, fn, PATH_MAX-n_path_len-1);
-			// stat needs the full path. this is easier than changing
-			// directory every time, and should be fast enough.
+			// need path for stat (we only have filename ATM).
+			// this is easier than changing directory every time,
+			// and should be fast enough.
 			// BTW, direct strcpy is faster than path_append -
 			// we save a strlen every iteration.
 
@@ -313,34 +325,33 @@ int file_enum(const char* const dir, const FileCB cb, const uintptr_t user)
 			continue;
 		}
 
-		off_t size = s.st_size;
-
 		// dir
 		if(S_ISDIR(s.st_mode))
 		{
 			// skip . and ..
 			if(fn[0] == '.' && (fn[1] == '\0' || (fn[1] == '.' && fn[2] == '\0')))
 				continue;
-
-			size = -1;
 		}
 		// skip if neither dir nor file
 		else if(!S_ISREG(s.st_mode))
 			continue;
 
-		const DirEnt* const ent = new DirEnt(fn, size);
-		dirents.push_back(ent);
+		dirents.push_back(new DirEnt(fn, s.st_mode, s.st_size, s.st_mtime));
 	}
 	closedir(os_dir);
 
 	std::sort(dirents.begin(), dirents.end(), dirent_less);
 
-	for(DirEntIt it = dirents.begin(); it != dirents.end(); ++it)
+	struct stat s;
+	memset(&s, 0, sizeof(s));
+	for(DirEntCIt it = dirents.begin(); it != dirents.end(); ++it)
 	{
 		const DirEnt* const ent = *it;
 		const char* name_c = ent->name.c_str();
-		const ssize_t size = ent->size;
-		ret = cb(name_c, size, user);
+		s.st_mode  = ent->st_mode;
+		s.st_size  = ent->st_size;
+		s.st_mtime = ent->st_mtime;
+		ret = cb(name_c, &s, user);
 		if(ret != 0)
 		{
 			cb_err = ret;	// first error (since we now abort)
@@ -364,7 +375,7 @@ int file_stat(const char* const path, struct stat* const s)
 	memset(s, 0, sizeof(struct stat));
 
 	char n_path[PATH_MAX+1];
-	CHECK_ERR(convert_path(n_path, path));
+	CHECK_ERR(file_make_native_path(path, n_path));
 
 	return stat(n_path, s);
 }
@@ -456,7 +467,7 @@ int file_open(const char* const p_fn, const uint flags, File* const f)
 	memset(f, 0, sizeof(File));
 
 	char n_fn[PATH_MAX];
-	CHECK_ERR(convert_path(n_fn, p_fn));
+	CHECK_ERR(file_make_native_path(p_fn, n_fn));
 
 	if(!f)
 		goto invalid_f;

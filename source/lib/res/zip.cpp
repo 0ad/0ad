@@ -38,6 +38,8 @@
 #include "zip.h"
 #include "res.h"
 
+#include <map>
+
 #include <assert.h>
 
 // provision for removing all ZLib code (all inflate calls will fail).
@@ -56,8 +58,6 @@
 #  endif
 # endif
 #endif
-
-#include <map>
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -190,14 +190,6 @@ static int z_verify_lfh(const void* const file, const off_t lfh_ofs, const off_t
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-static inline uint is_leap_year(uint year)
-{
-	if(year % 4 != 0)
-		return 0;
-	return (year % 100 != 0 || year % 400 == 0)? 1 : 0;
-}
-
-
 static uint bits(uint num, uint lo_idx, uint hi_idx)
 {
 	uint result = num;
@@ -211,39 +203,19 @@ static uint bits(uint num, uint lo_idx, uint hi_idx)
 
 static time_t convert_dos_date(u16 fatdate, u16 fattime)
 {
-	time_t result = 0;
+	struct tm t;
+	t.tm_sec   = bits(fattime, 0,4) * 2;	// [0,59]
+	t.tm_min   = bits(fattime, 5,10);		// [0,59]
+	t.tm_hour  = bits(fattime, 11,15);		// [0,23]
+	t.tm_mday  = bits(fatdate, 0,4);		// [1,31]
+	t.tm_mon   = bits(fatdate, 5,8)-1;		// [0,11]
+	t.tm_year  = bits(fatdate, 9,15) + 80;	// since 1900
+	t.tm_isdst = -1;	// unknown - let libc determine
 
-	uint second = bits(fattime, 0,4) * 2;
-	uint minute = bits(fattime, 5,10);	// 0..59
-	uint hour   = bits(fattime, 11,15);	// 0..23
-	uint day    = bits(fatdate, 0,4);	// of month; 1..31
-	uint month  = bits(fatdate, 5,8);	// 1..12
-	uint year   = bits(fatdate, 9,15) + 1980;
-
-	if(second >= 60 || minute >= 60 || hour >= 24 || !day || day > 31 || !month || month > 12)
-	{
-		debug_warn("convert_dos_date: not normalized");
-		return 0;
-	}
-
-	// add days in previous years
-	for(uint y = 1970; y < year; y++)
-	{
-		result += 365;
-		if(is_leap_year(y))
-			result++;
-	}
-
-	// add days in previous months
-	static uint days_in_month[12] = { 31, 0, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-	days_in_month[1] = is_leap_year(year)? 29 : 28;
-	for(uint m = 1; m < month; m++)
-		result += days_in_month[m-1];
-
-	result += day-1;	// total days since 1970
-	result *= 86400;	// now seconds
-	result += hour*3600 + minute*60 + second;	// total seconds since 1970
-	return result;
+	time_t ret = mktime(&t);
+	if(ret == (time_t)-1)
+		debug_warn("convert_dos_date: mktime failed");
+	return ret;
 }
 
 
@@ -283,7 +255,6 @@ static int z_extract_cdfh(const u8* cdfh, const ssize_t bytes_left, const char*&
 	const char* fn_ = (const char*)cdfh+CDFH_SIZE;
 		// not 0-terminated!
 
-
 	//
 	// check if valid and data should actually be returned
 	//
@@ -296,7 +267,7 @@ static int z_extract_cdfh(const u8* cdfh, const ssize_t bytes_left, const char*&
 	}
 	// .. this is a directory entry; we only want files.
 	if(!csize_ && !ucsize_)
-		return -1;
+        return -1;
 #ifdef PARANOIA
 	// .. CDFH's file ofs doesn't match that reported by LFH.
 	// don't check this in normal builds - seeking between LFHs and
@@ -633,10 +604,17 @@ have_idx:
 // if it returns a nonzero value, abort and return that, otherwise 0.
 static int lookup_enum_files(LookupInfo* const li, FileCB cb, uintptr_t user)
 {
+	struct stat s;
+	memset(&s, 0, sizeof(s));
+
 	const ZEnt* ent = li->ents;
 	for(i32 i = 0; i < li->num_files; i++, ent++)
 	{
-		int ret = cb(ent->fn, (ssize_t)ent->loc.ucsize, user);
+		s.st_mode  = S_IFREG;
+		s.st_size  = (off_t)ent->loc.ucsize;
+		s.st_mtime = ent->loc.mtime;
+
+		int ret = cb(ent->fn, &s, user);
 		if(ret != 0)
 			return ret;
 	}

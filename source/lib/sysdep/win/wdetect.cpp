@@ -335,7 +335,7 @@ struct PathInfo
 
 // if this file is an OpenAL DLL, add it to our list.
 // (match "*oal.dll" and "*OpenAL*", as with OpenAL router's search).
-static int check_if_oal_dll(const char* fn, const ssize_t size, const uintptr_t user)
+static int check_if_oal_dll(const char* fn, const struct stat* s, const uintptr_t user)
 {
 	PathInfo* pi = (PathInfo*)user;
 	strncpy(pi->end, fn, pi->remaining);

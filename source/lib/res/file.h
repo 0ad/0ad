@@ -20,6 +20,8 @@
 #ifndef FILE_H
 #define FILE_H
 
+#include "posix.h"		// struct stat
+
 
 struct File
 {
@@ -95,12 +97,12 @@ extern int file_rel_chdir(const char* argv0, const char* rel_path);
 
 
 // called by file_enum for each entry in the directory.
-// name doesn't include path! it's a directory <==> size < 0.
+// name doesn't include path!
 // return non-zero to immediately abort; file_enum will return that value.
-typedef int(*FileCB)(const char* const name, const ssize_t size, const uintptr_t user);
+typedef int(*FileCB)(const char* const name, const struct stat* s, const uintptr_t user);
 
 // call <cb> for each file and subdirectory in <dir> (alphabetical order),
-// passing <user> and the entry name (not full path!).
+// passing the entry name (not full path!), stat info, and <user>.
 //
 // first builds a list of entries (sorted) and remembers if an error occurred.
 // if <cb> returns non-zero, abort immediately and return that; otherwise,
