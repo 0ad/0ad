@@ -533,13 +533,6 @@ static int dialog(DLG_TYPE type)
 
 
 static PTOP_LEVEL_EXCEPTION_FILTER prev_except_filter;
-static long CALLBACK except_filter(EXCEPTION_POINTERS* except);
-
-
-void dbg_init_except_handler()
-{
-	prev_except_filter = SetUnhandledExceptionFilter(except_filter);
-}
 
 
 static long CALLBACK except_filter(EXCEPTION_POINTERS* except)
@@ -602,7 +595,14 @@ static long CALLBACK except_filter(EXCEPTION_POINTERS* except)
 }
 
 
-int show_assert_dlg(char* file, int line, char* expr)
+static void set_exception_handler()
+{
+	prev_except_filter = SetUnhandledExceptionFilter(except_filter);
+}
+
+
+
+int wdbg_show_assert_dlg(char* file, int line, char* expr)
 {
 	ONCE(dbg_init());
 
@@ -611,3 +611,17 @@ int show_assert_dlg(char* file, int line, char* expr)
 
 	return dialog(ASSERT);
 }
+
+
+// main.cpp will have an exception handler, but this covers low-level init
+// (before main is called)
+static int wdbg_init()
+{
+	set_exception_handler();
+	return 0;
+}
+
+
+#pragma data_seg(".LIB$WIB")	// first
+WIN_REGISTER_FUNC(wdbg_init);
+#pragma data_seg()
