@@ -112,7 +112,7 @@ public:
 	/**
 	 * Draw GUI Sprite
 	 *
-	 * @param Sprite Object refering to the sprite (which also caches
+	 * @param Sprite Object referring to the sprite (which also caches
 	 *        calculations for faster rendering)
 	 * @param CellID Number of the icon cell to use. (Ignored if this sprite doesn't
 	 *        have any images with "cell-size")
