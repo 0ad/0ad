@@ -14,6 +14,8 @@
 #include "SkeletonAnimDef.h"
 #include <vector>
 
+class CMeshManager;
+
 ///////////////////////////////////////////////////////////////////////////////
 // SPropPoint: structure describing a prop point
 struct SPropPoint
@@ -71,6 +73,7 @@ struct SModelFace
 // information of a model
 class CModelDef
 {
+friend class CMeshManager;
 public:
 	// current file version given to saved animations
 	enum { FILE_VERSION = 2 };
@@ -84,11 +87,7 @@ public:
 	// destructor
 	virtual ~CModelDef();
 
-	// shutdown memory-freer
-	static void Shutdown();
-
 	// model I/O functions
-	static CModelDef* Load(const char* filename);
 	static void Save(const char* filename,const CModelDef* mdef);
 	
 public:
@@ -126,9 +125,10 @@ public:
 	// prop point data
 	u32 m_NumPropPoints;
 	SPropPoint* m_PropPoints;
-
-	// all loaded models, to be freed on shutdown
-	static std::vector<CModelDef*> m_LoadedModelDefs;
+protected:
+    static CModelDef* Load(const char* filename);
+    int m_RefCount;
+    size_t m_Hash;
 };
 
 #endif

@@ -14,7 +14,7 @@
 #include "SkeletonAnim.h"
 #include "SkeletonAnimDef.h"
 #include "SkeletonAnimManager.h"
-#include "ProgramManager.h"
+#include "MeshManager.h"
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Constructor
@@ -42,6 +42,8 @@ void CModel::ReleaseData()
 		delete m_Props[i].m_Model;
 	}
 	m_Props.clear();
+    if(m_pModelDef)
+        g_MeshManager.ReleaseMesh(m_pModelDef);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -356,6 +358,4 @@ void CModel::SetMaterial(const CMaterial &material)
     if(m_Material.GetTexture().Trim(PS_TRIM_BOTH).Length() > 0)
     {
     }
-    if(m_Material.GetVertexProgram().Trim(PS_TRIM_BOTH).Length() > 0)
-        m_VertexProgram = g_ProgramManager.FindVertexProgram(m_Material.GetVertexProgram().Trim(PS_TRIM_BOTH).c_str());
 }

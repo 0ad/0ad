@@ -20,8 +20,6 @@ CObjectManager::~CObjectManager()
 			delete m_ObjectTypes[i].m_Objects[j];
 		}
 	}
-
-	CModelDef::Shutdown();
 }
 
 CObjectEntry* CObjectManager::FindObject(const char* objectname)

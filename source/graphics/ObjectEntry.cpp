@@ -6,6 +6,7 @@
 #include "ModelDef.h"
 #include "CLogger.h"
 #include "MaterialManager.h"
+#include "MeshManager.h"
 
 #include "UnitManager.h"
 
@@ -52,7 +53,10 @@ bool CObjectEntry::BuildModel()
 	const char* modelfilename = m_ModelName.c_str();
 
 	try {
-		modeldef=CModelDef::Load(modelfilename);
+		//modeldef=CModelDef::Load(modelfilename);
+        modeldef = g_MeshManager.GetMesh(modelfilename);
+        if(!modeldef)
+            throw false;
 	} catch (...) {
 		LOG(ERROR, LOG_CATEGORY, "CObjectEntry::BuildModel(): Model %s failed to load", modelfilename);
 		return false;
