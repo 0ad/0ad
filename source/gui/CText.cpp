@@ -21,6 +21,7 @@ using namespace std;
 CText::CText()
 {
 	AddSetting(GUIST_CGUIString,	"caption");
+	AddSetting(GUIST_CStr,			"font");
 	AddSetting(GUIST_bool,			"scrollbar");
 	AddSetting(GUIST_CStr,			"scrollbar-style");
 	AddSetting(GUIST_CStr,			"sprite");
@@ -51,7 +52,12 @@ void CText::SetupText()
 	assert(m_GeneratedTexts.size()>=1);
 
 	CColor color;
+
 	CStr font;
+	if (GUI<CStr>::GetSetting(this, "font", font) != PS_OK || font.Length()==0)
+		// Use the default if none is specified
+		font = "palatino12";
+
 	CGUIString caption;
 	bool scrollbar;
 	GUI<CColor>::GetSetting(this, "textcolor", color);
@@ -63,7 +69,7 @@ void CText::SetupText()
 	if (scrollbar && GetScrollBar(0).GetStyle())
 		width -= GetScrollBar(0).GetStyle()->m_Width;
 
-	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, /*color,*/ CStr("palatino12"), width, 4);
+	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, /*color,*/ font, width, 4);
 
 	// Setup scrollbar
 	if (scrollbar)
