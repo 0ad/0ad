@@ -10,7 +10,6 @@ gee@pyro.nu
 
 #include "precompiled.h"
 
-//#include <xercesc/sax/SAXParseException.hpp>
 #include "XercesErrorHandler.h"
 #include <iostream>
 #include <stdlib.h>
@@ -21,53 +20,42 @@ gee@pyro.nu
 // Use namespace
 XERCES_CPP_NAMESPACE_USE
 
-
-void CXercesErrorHandler::warning(const SAXParseException&)
+void CXercesErrorHandler::warning(const SAXParseException &toCatch)
 {
-	//
-	// Ignore all warnings.
-	//
+	CStr systemId=XMLTranscode(toCatch.getSystemId());
+	CStr message=XMLTranscode(toCatch.getMessage());
+	
+	LOG(WARNING, "XML Parse Warning: %s:%d:%d: %s",
+		systemId.c_str(),
+		toCatch.getLineNumber(),
+		toCatch.getColumnNumber(),
+		message.c_str());
 }
 
 void CXercesErrorHandler::error(const SAXParseException& toCatch)
 {
-	char * buf = XMLString::transcode(toCatch.getMessage());
+	CStr systemId=XMLTranscode(toCatch.getSystemId());
+	CStr message=XMLTranscode(toCatch.getMessage());
 	fSawErrors = true;
 
-        XMLString::release(&buf);
-/*    cerr << "Error at file \"" << StrX(toCatch.getSystemId())
-		 << "\", line " << toCatch.getLineNumber()
-		 << ", column " << toCatch.getColumnNumber()
-         << "\n   Message: " << StrX(toCatch.getMessage()) << endl;
-
-*/
 	LOG(ERROR, "XML Parse Error: %s:%d:%d: %s",
-		XMLString::transcode(toCatch.getSystemId()),
+		systemId.c_str(),
 		toCatch.getLineNumber(),
 		toCatch.getColumnNumber(),
-		XMLString::transcode(toCatch.getMessage()));
-///	g_nemLog(" Error: %s", XMLString::transcode(toCatch.getMessage()));
+		message.c_str());
 }
 
 void CXercesErrorHandler::fatalError(const SAXParseException& toCatch)
 {
-	char * buf = XMLString::transcode(toCatch.getMessage());
+	CStr systemId=XMLTranscode(toCatch.getSystemId());
+	CStr message=XMLTranscode(toCatch.getMessage());
 	fSawErrors = true;
 
-
-        XMLString::release(&buf);
-
-/*    cerr << "Fatal Error at file \"" << StrX(toCatch.getSystemId())
-		 << "\", line " << toCatch.getLineNumber()
-		 << ", column " << toCatch.getColumnNumber()
-         << "\n   Message: " << StrX(toCatch.getMessage()) << endl;
-*/
-	LOG(ERROR, "XML Parse Error: %s:%d:%d: %s",
-		XMLString::transcode(toCatch.getSystemId()),
+	LOG(ERROR, "XML Parse Error (Fatal): %s:%d:%d: %s",
+		systemId.c_str(),
 		toCatch.getLineNumber(),
 		toCatch.getColumnNumber(),
-		XMLString::transcode(toCatch.getMessage()));
-///	g_nemLog(" Error: %s", XMLString::transcode(toCatch.getMessage()));
+		message.c_str());
 }
 
 void CXercesErrorHandler::resetErrors()
