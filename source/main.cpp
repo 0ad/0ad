@@ -1144,18 +1144,28 @@ TIMER(init_after_InitRenderer);
 
 	// register input handlers
 	{
-		in_add_handler(handler);
+		// This stack is constructed so the first added, will be the last
+		//  one called. This is important, because each of the handlers
+		//  has the potential to block events to go further down
+		//  in the chain. I.e. the last one in the list added, is the
+		//  only handler that can block all messages before they are
+		//  processed.
 		in_add_handler(game_view_handler);
 
 		in_add_handler(interactInputHandler);
 
+		in_add_handler(conInputHandler);
+
+		in_add_handler(hotkeyInputHandler); // <- Leave this one until after all the others.
+
+		// I don't know how much this screws up, but the gui_handler needs
+		//  to be after the hotkey, so that input boxes can be typed in
+		//  without setting off hotkeys.
 #ifndef NO_GUI
 		in_add_handler(gui_handler);
 #endif
 
-		in_add_handler(conInputHandler);
-
-		in_add_handler(hotkeyInputHandler); // <- Leave this one until after all the others.
+		in_add_handler(handler); // must be after gui_handler. Should mayhap even be last.
 	}
 
 #ifndef NO_GUI
