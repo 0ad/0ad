@@ -546,7 +546,7 @@ JSBool CEntity::Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsva
 	if( !baseEntity )
 	{
 		*rval = JSVAL_NULL;
-		JS_ReportError( cx, "No such template: %ls", CStr8(templateName).c_str() );
+		JS_ReportError( cx, "No such template: %s", CStr8(templateName).c_str() );
 		return( JS_TRUE );
 	}
 
@@ -619,8 +619,8 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 		}
 		try
 		{
-			newOrder.m_data[0].location.x = g_ScriptingHost.ValueToDouble( argv[1] );
-			newOrder.m_data[0].location.y = g_ScriptingHost.ValueToDouble( argv[2] );
+			newOrder.m_data[0].location.x = (float)g_ScriptingHost.ValueToDouble( argv[1] );
+			newOrder.m_data[0].location.y = (float)g_ScriptingHost.ValueToDouble( argv[2] );
 		}
 		catch( PSERROR_Scripting_ConversionFailed )
 		{

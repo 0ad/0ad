@@ -106,7 +106,7 @@ JSBool JSI_Entity::construct( JSContext* cx, JSObject* obj, unsigned int argc, j
 	if( !baseEntity )
 	{
 		*rval = JSVAL_NULL;
-		JS_ReportError( cx, "No such template: %ls", CStr8(templateName).c_str() );
+		JS_ReportError( cx, "No such template: %s", CStr8(templateName).c_str() );
 		return( JS_TRUE );
 	}
 	JSI_Vector3D::Vector3D_Info* jsVector3D = NULL;
