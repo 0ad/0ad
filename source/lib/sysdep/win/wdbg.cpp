@@ -1,4 +1,4 @@
-// stack trace, improved assert and exception handler
+// stack trace, improved assert and exception handler for Win32
 // Copyright (c) 2002-2005 Jan Wassenberg
 //
 // This program is free software; you can redistribute it and/or

@@ -1,3 +1,20 @@
+// shared header for Win32-specific code
+// Copyright (c) 2002-2005 Jan Wassenberg
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License as
+// published by the Free Software Foundation; either version 2 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// General Public License for more details.
+//
+// Contact info:
+//   Jan.Wassenberg@stud.uni-karlsruhe.de
+//   http://www.stud.uni-karlsruhe.de/~urkt/
+
 #ifndef WIN_INTERNAL_H
 #define WIN_INTERNAL_H
 
@@ -9,7 +26,7 @@
 
 
 // Win32 socket decls aren't portable (e.g. problems with socklen_t)
-// => skip winsock.h; lib.h should be used instead
+// => skip winsock.h; wsock.h should be used instead
 #define _WINSOCKAPI_
 
 #define WIN32_LEAN_AND_MEAN
@@ -292,15 +309,13 @@ enum BasicType
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/* Define _CRTIMP */
-
 #ifndef _CRTIMP
-#ifdef  _DLL
-#define _CRTIMP __declspec(dllimport)
-#else   /* ndef _DLL */
-#define _CRTIMP
-#endif  /* _DLL */
-#endif  /* _CRTIMP */
+# ifdef  _DLL
+#  define _CRTIMP __declspec(dllimport)
+# else
+#  define _CRTIMP
+# endif
+#endif
 
 extern "C" {
 _CRTIMP intptr_t _get_osfhandle(int);
@@ -406,9 +421,10 @@ extern void win_unlock(uint idx);
 
 // init and shutdown mechanism: register a function to be called at
 // pre-main init or shutdown.
+//
 // the "segment name" determines when and in what order the functions are
-// called: "LIB$W{type}{group}", where {type} is either I for
-// (pre-main) initializers, or T for terminators (last of the atexit handlers).
+// called: "LIB$W{type}{group}", where {type} is C for pre-libc init,
+// I for pre-main init, or T for terminators (last of the atexit handlers).
 // {group} is [B, Y]; groups are called in alphabetical order, but
 // call order within the group itself is unspecified.
 //

@@ -1,11 +1,28 @@
-#ifndef __WSDL_H__
-#define __WSDL_H__
+// emulation of a subset of SDL and GLUT for Win32
+//
+// Copyright (c) 2003 Jan Wassenberg
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License as
+// published by the Free Software Foundation; either version 2 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// General Public License for more details.
+//
+// Contact info:
+//   Jan.Wassenberg@stud.uni-karlsruhe.de
+//   http://www.stud.uni-karlsruhe.de/~urkt/
 
+#ifndef WSDL_H__
+#define WSDL_H__
 
 #include "lib/types.h"
 #include "SDL_keysym.h"
 
-/* allow apps to override window name */
+// allow apps to override window name
 #ifndef APP_NAME
 #define APP_NAME "ogl"
 #endif
@@ -16,7 +33,7 @@ extern "C" {
 
 #define Uint32 u32
 
-/* SDL_Init flags */
+// SDL_Init flags
 #define SDL_INIT_VIDEO 0
 #define SDL_INIT_AUDIO 0
 #define SDL_INIT_TIMER 0
@@ -30,14 +47,14 @@ extern void SDL_Quit(void);
 typedef enum
 {
 	SDL_GL_DEPTH_SIZE,
-	SDL_GL_DOUBLEBUFFER		/* ignored - always double buffered */
+	SDL_GL_DOUBLEBUFFER		// ignored - always double buffered
 }
 SDL_GLattr;
 
 extern int SDL_GL_SetAttribute(SDL_GLattr attr, int value);
 
 
-/* SDL_SetVideoMode() flags */
+// SDL_SetVideoMode() flags
 #define SDL_OPENGL 0
 #define SDL_FULLSCREEN 1
 
@@ -62,9 +79,9 @@ SDL_VideoInfo;
 extern SDL_VideoInfo* SDL_GetVideoInfo(void);
 
 
-/*
- * threads / sync
- */
+//
+// threads / sync
+//
 
 typedef void SDL_sem;
 typedef void SDL_Thread;
@@ -97,7 +114,7 @@ extern int SDL_ShowCursor(int toggle);
 
 extern int SDL_SetGamma(float r, float g, float b);
 
-/* macros */
+// macros
 
 #define SDL_GRAB_ON 0
 #define SDL_WM_GrabInput(a)
@@ -149,11 +166,10 @@ extern u64 SDL_Swap64(u64);
 #define SDL_BYTE_ORDER SDL_LIL_ENDIAN
 
 //////////////////////////////////////////////////////////////////////////////
-
-
-/************************************************************************************************
- * events
- ************************************************************************************************/
+//
+// events
+//
+//////////////////////////////////////////////////////////////////////////////
 
 typedef struct
 {
@@ -174,7 +190,7 @@ typedef struct
 }
 SDL_MouseMotionEvent;
 
-/* SDL_MouseButtonEvent.button */
+// SDL_MouseButtonEvent.button
 enum
 {
 	// do not change order
@@ -215,7 +231,7 @@ typedef struct
 }
 SDL_UserEvent;
 
-/* SDL_Event.type */
+// SDL_Event.type
 enum
 {
 	SDL_KEYDOWN,
@@ -261,43 +277,43 @@ extern void SDL_WM_SetCaption(const char *title, const char *icon);
 
 
 
-/* glutInitDisplayMode */
+// glutInitDisplayMode
 #define GLUT_RGB			0
 #define GLUT_DOUBLE			0
 #define GLUT_DEPTH			0
 
-/* mouse buttons */
+// mouse buttons
 enum
 {
 	GLUT_LEFT_BUTTON,
 	GLUT_RIGHT_BUTTON,
-	GLUT_MIDDLE_BUTTON		/* also wheel, if avail */
+	GLUT_MIDDLE_BUTTON		// also wheel, if avail
 };
 
-/* mouse button state */
+// mouse button state
 enum
 {
 	GLUT_DOWN,
 	GLUT_UP
 };
 
-/* keys */
+// keys
 enum
 {
-	GLUT_KEY_LEFT  = 0x25,			/* VK_* */
+	GLUT_KEY_LEFT  = 0x25,			// VK_*
 	GLUT_KEY_RIGHT = 0x27,
 	GLUT_KEY_UP    = 0x26,
 	GLUT_KEY_DOWN  = 0x28
 };
 
 
-/* glutSetCursor */
-#define GLUT_CURSOR_INHERIT	32512	/* IDC_* */
+// glutSetCursor
+#define GLUT_CURSOR_INHERIT	32512	// IDC_*
 #define GLUT_CURSOR_WAIT	32514
 #define GLUT_CURSOR_DESTROY	32648
 #define GLUT_CURSOR_NONE	0
 
-/* glutGet */
+// glutGet
 enum
 {
 GLUT_ELAPSED_TIME,
@@ -319,7 +335,7 @@ extern void glutSpecialFunc(void(*)(int, int, int));
 extern void glutMouseFunc(void(*)(int, int, int, int));
 
 
-#define glutInitDisplayMode(a)	/* pixel format is hardwired */
+#define glutInitDisplayMode(a)	// pixel format is hardwired
 
 extern int glutGameModeString(const char* str);
 
@@ -344,4 +360,4 @@ extern void glutSetCursor(int);
 }
 #endif
 
-#endif	// #ifndef __WSDL_H__
+#endif	// #ifndef WSDL_H__

@@ -1,4 +1,4 @@
-// Windows-specific code
+// Windows-specific code and program entry point
 // Copyright (c) 2003 Jan Wassenberg
 //
 // This program is free software; you can redistribute it and/or

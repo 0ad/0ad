@@ -1,4 +1,4 @@
-// POSIX asynchronous I/O for Win32
+// partial pthread implementation for Win32
 //
 // Copyright (c) 2003-2005 Jan Wassenberg
 //
