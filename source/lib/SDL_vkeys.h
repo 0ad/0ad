@@ -22,7 +22,7 @@
 
 #ifdef SAVE_RCSID
 static char rcsid =
- "@(#) $Id: SDL_vkeys.h,v 1.1 2004/03/29 13:06:44 olsner Exp $";
+ "@(#) $Id: SDL_vkeys.h,v 1.2 2004/04/09 12:34:28 olsner Exp $";
 #endif
 
 #ifndef VK_0
@@ -63,3 +63,19 @@ static char rcsid =
 #define VK_Y	'Y'
 #define VK_Z	'Z'
 #endif /* VK_0 */
+
+#ifndef VK_OEM_1
+#define VK_OEM_1 0xba
+#define VK_OEM_2 0xbf
+#define VK_OEM_3 0xc0
+#define VK_OEM_4 0xdb
+#define VK_OEM_5 0xdc
+#define VK_OEM_6 0xdd
+#define VK_OEM_7 0xde
+#define VK_OEM_8 0xdf
+#define VK_OEM_PLUS 0xbb
+#define VK_OEM_COMMA 0xbc
+#define VK_OEM_MINUS 0xbd
+#define VK_OEM_PERIOD 0xbe
+#endif
+
