@@ -469,7 +469,7 @@ static int tree_lookup(const char* _c_path, const Loc** const loc = 0, Dir** con
 	for(;;)
 	{
 		// "extract" cur_component string (0-terminate by replacing '/')
-		char* slash = strchr(cur_component, '/');
+		char* slash = (char*)strchr(cur_component, '/');
 		if(slash)
 			*slash = 0;
 
