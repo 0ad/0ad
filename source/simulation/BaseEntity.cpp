@@ -69,6 +69,8 @@ bool CBaseEntity::loadXML( CStr filename )
 					DOMNode *value_node= child_element->getChildNodes()->item(0);
 					CStr element_value=value_node ? XMLString::transcode(value_node->getNodeValue()) : "";
 
+					//m_properties[element_name] = element_value;
+
 					if( element_name == CStr( "Name" ) )
 					{
 						m_name = element_value;
@@ -80,7 +82,11 @@ bool CBaseEntity::loadXML( CStr filename )
 					else if( element_name == CStr( "Speed" ) )
 					{
 						m_speed = element_value.ToFloat();
-					} 
+					}
+					else if( element_name == CStr( "TurningRadius" ) )
+					{
+						m_turningRadius = element_value.ToFloat();
+					}
 					else if( element_name == CStr( "Size" ) )
 					{
 						if( !m_bound_circle )
@@ -113,9 +119,9 @@ bool CBaseEntity::loadXML( CStr filename )
 						m_bound_circle->m_offset.y = y.ToFloat();
 						m_bound_box->m_offset.x = x.ToFloat();
 						m_bound_box->m_offset.y = y.ToFloat();
-						
-						
+
 					}
+					
 				}
 			}
 

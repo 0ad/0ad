@@ -33,6 +33,7 @@ public:
 
 	// Base stats
 
+	
 	CObjectEntry* m_actorObject;
 
 	CStr m_name;
@@ -41,6 +42,8 @@ public:
 	CBoundingObject::EBoundingType m_bound_type;
 
 	float m_speed;
+	float m_turningRadius;
+	
 
 	// Extended properties table
 

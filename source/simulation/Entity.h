@@ -9,7 +9,14 @@
 //
 //			HEntity me: is a reference to this entity. Use instead of the address-of operator for
 //						non-temporary references. See EntityHandles.h
-//						When an entity dies, this should be set to refer to the bad-handle handle.
+//
+//			Destroying entities: An entity is destroyed when all references to it expire.
+//								 It is somewhat unfunny if this happens while a method from this
+//                               class is still executing. If you need to kill an entity,
+//								 use g_EntityManager.kill( entity ). If kill() releases the final handle,
+//								 the entity is placed in the reaper queue and is deleted immediately
+//								 prior to its next update cycle.
+//
 //			CUnit* m_actor: is the visible representation of this entity.
 //			std::hash_map m_properties: isn't yet used, is capable of storing properties defined by script.
 //			
@@ -48,6 +55,7 @@ private:
 public:
 	CStr m_name;
 	float m_speed;
+	float m_turningRadius;
 	CVector3D m_position;
 	CBoundingObject* m_bounds;
 	float m_targetorientation;
@@ -70,6 +78,7 @@ private:
 	bool processPatrol( CEntityOrder* current, float timestep );
 
 public:
+	~CEntity();
 
 	// Handle-to-self.
 	HEntity me;

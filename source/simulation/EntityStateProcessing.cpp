@@ -4,6 +4,7 @@
 #include "Model.h"
 
 #include "Collision.h"
+#include "PathfindEngine.h"
 
 bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 {
@@ -11,13 +12,20 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 	delta.x = (float)current->m_data[0].location.x - m_position.X;
 	delta.y = (float)current->m_data[0].location.y - m_position.Z;
 
-	m_ahead = delta.normalize();
+	float len = delta.length();
+
+	if( len < 0.1f )
+	{
+		m_orderQueue.pop_front();
+		return( false );
+	}
+
+	m_ahead = delta / len;
 
 	if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
 		((CBoundingBox*)m_bounds)->setOrientation( m_ahead );
 
-	float len = delta.length();
-
+	
 	float scale = timestep * m_speed;
 
 	if( scale > len )
@@ -99,23 +107,20 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, float timestep )
 
 	snapToGround();
 	updateActorTransforms();
-	if( len < 0.1f )
-		m_orderQueue.pop_front();
+
 	return( false );
 }
 
 bool CEntity::processGoto( CEntityOrder* current, float timestep )
 {
-	CEntityOrder pathfind_solution;
-	pathfind_solution.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;
-	pathfind_solution.m_data[0] = current->m_data[0];
+	CVector2D path_to = current->m_data[0].location;
 	m_orderQueue.pop_front();
-	m_orderQueue.push_front( pathfind_solution );
 	if( m_actor->m_Model->GetAnimation() != m_actor->m_Object->m_WalkAnim )
 	{
 		m_actor->m_Model->SetAnimation( m_actor->m_Object->m_WalkAnim );
 		m_actor->m_Model->Update( ( rand() * 1000.0f ) / 1000.0f );
 	}
+	g_Pathfinder.requestPath( me, path_to );
 	return( true );
 }
 

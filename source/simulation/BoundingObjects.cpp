@@ -13,12 +13,21 @@ bool CBoundingObject::intersects( CBoundingObject* obj )
 
 	if( obj->m_type > m_type )	// More complex types get the burden of processing.
 	{
-		return( obj->_intersects( this, &delta ) );
+		return( obj->_intersects( this, delta ) );
 	}
 	else
-		return( _intersects( obj, &delta ) );
+		return( _intersects( obj, delta ) );
 }
 
+bool CBoundingObject::contains( const CVector2D& point )
+{
+	CVector2D delta = m_pos - point;
+
+	if( !delta.within( m_radius ) )
+		return( false );
+
+	return( _contains( point, delta ) );
+}
 CBoundingCircle::CBoundingCircle( float x, float y, float radius )
 {
 	m_type = BOUND_CIRCLE;
@@ -45,11 +54,16 @@ void CBoundingCircle::setRadius( float radius )
 	m_radius = radius;
 }
 
-bool CBoundingCircle::_intersects( CBoundingObject* obj, CVector2D* delta )
+bool CBoundingCircle::_intersects( CBoundingObject* obj, const CVector2D& delta )
 {
 	assert( obj->m_type == BOUND_CIRCLE );
 	// Easy enough. The only time this gets called is a circle-circle collision,
 	// but we know the circles collide (they passed the trivial rejection step)
+	return( true );
+}
+
+bool CBoundingCircle::_contains( const CVector2D& point, const CVector2D& delta )
+{
 	return( true );
 }
 
@@ -107,16 +121,16 @@ void CBoundingBox::setOrientation( const CVector2D& u )
 	m_v.y = -m_u.x;
 }
 
-bool CBoundingBox::_intersects( CBoundingObject* obj, CVector2D* delta )
+bool CBoundingBox::_intersects( CBoundingObject* obj, const CVector2D& delta )
 {
 	if( obj->m_type == BOUND_CIRCLE )
 	{
 		// Imperfect but quick...
 
 		CBoundingCircle* c = (CBoundingCircle*)obj;
-		float deltah = fabs( delta->dot( m_u ) );
+		float deltah = fabs( delta.dot( m_u ) );
 		if( deltah > ( m_h + c->m_radius ) ) return( false );
-		float deltaw = fabs( delta->dot( m_v ) );
+		float deltaw = fabs( delta.dot( m_v ) );
 		if( deltaw > ( m_w + c->m_radius ) ) return( false );
 		return( true );
 	}
@@ -153,7 +167,7 @@ bool CBoundingBox::_intersects( CBoundingObject* obj, CVector2D* delta )
 
 		prj1 = fabs( vu * b->m_h + vv * b->m_w );
 		prj2 = fabs( vu * b->m_h - vv * b->m_h );
-		dm = delta->dot( m_v );
+		dm = delta.dot( m_v );
 
 		if( prj1 > prj2 )
 		{
@@ -166,7 +180,7 @@ bool CBoundingBox::_intersects( CBoundingObject* obj, CVector2D* delta )
 
 		prj1 = fabs( uu * b->m_h + uv * b->m_w );
 		prj2 = fabs( uu * b->m_h - uv * b->m_w );
-		dm = delta->dot( m_u );
+		dm = delta.dot( m_u );
 
 		if( prj1 > prj2 ) 
 		{
@@ -179,6 +193,7 @@ bool CBoundingBox::_intersects( CBoundingObject* obj, CVector2D* delta )
 
 		prj1 = fabs( uv * m_h + vv * m_w );
 		prj2 = fabs( uv * m_h - vv * m_w );
+		dm = delta.dot( b->m_v );
 
 		if( prj1 > prj2 )
 		{
@@ -191,6 +206,7 @@ bool CBoundingBox::_intersects( CBoundingObject* obj, CVector2D* delta )
 
 		prj1 = fabs( uu * m_h + vu * m_w );
 		prj2 = fabs( uu * m_h - vu * m_w );
+		dm = delta.dot( b->m_u );
 
 		if( prj1 > prj2 )
 		{
@@ -202,6 +218,15 @@ bool CBoundingBox::_intersects( CBoundingObject* obj, CVector2D* delta )
 		return( true );
 
 	}
+}
+
+bool CBoundingBox::_contains( const CVector2D& point, const CVector2D& delta )
+{
+	float deltah = fabs( delta.dot( m_u ) );
+	if( deltah > m_h ) return( false );
+	float deltaw = fabs( delta.dot( m_v ) );
+	if( deltaw > m_w ) return( false );
+	return( true );
 }
 
 void CBoundingBox::render( float height )

@@ -118,6 +118,11 @@ void CVector3D::Clear ()
 	X = Y = Z = 0.0f;
 }
 
+bool CVector3D::operator==( const CVector3D& vector ) const
+{
+	return( ( X == vector.X ) && ( Y == vector.Y ) && ( Z == vector.Z ) );
+}
+
 //Dot product
 float CVector3D::Dot (const CVector3D &vector) const 
 {

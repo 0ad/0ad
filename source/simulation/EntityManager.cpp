@@ -55,8 +55,18 @@ void CEntityManager::dispatchAll( CMessage* msg )
 			m_entities[i].m_entity->dispatch( msg );
 }
 
+void CEntityManager::kill( HEntity entity )
+{
+	m_reaper.push_back( entity );
+}
+
 void CEntityManager::updateAll( float timestep )
 {
+	std::vector<HEntity>::iterator it;
+	for( it = m_reaper.begin(); it < m_reaper.end(); it++ )
+		(*it)->me = HEntity();
+	m_reaper.clear();
+
 	for( int i = 0; i < MAX_HANDLES; i++ )
 		if( m_entities[i].m_refcount )
 			m_entities[i].m_entity->update( timestep );
@@ -67,6 +77,12 @@ void CEntityManager::renderAll()
 	for( int i = 0; i < MAX_HANDLES; i++ )
 		if( m_entities[i].m_refcount )
 			m_entities[i].m_entity->render();
+}
+
+void CEntityManager::destroy( u16 handle )
+{
+	m_entities[handle].m_entity->me.m_handle = INVALID_HANDLE;
+	delete( m_entities[handle].m_entity );
 }
 
 bool CEntityManager::m_extant = false;

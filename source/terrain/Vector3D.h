@@ -48,6 +48,8 @@ class CVector3D
 		// negation
 		CVector3D operator-() const;
 
+		bool operator==( const CVector3D& vector ) const;
+
 	public:
 		void Set (float x, float y, float z);
 		void Clear ();

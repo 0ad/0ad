@@ -1,6 +1,26 @@
 #include "Collision.h"
 #include "EntityManager.h"
 
+CBoundingObject* getContainingObject( const CVector2D& point )
+{
+	std::vector<HEntity>* entities = g_EntityManager.getActive();
+	std::vector<HEntity>::iterator it;
+
+	for( it = entities->begin(); it != entities->end(); it++ )
+	{
+		assert( (*it)->m_bounds );
+		if( (*it)->m_bounds->contains( point ) )
+		{
+			CBoundingObject* bounds = (*it)->m_bounds;
+			delete( entities );
+			return( bounds );
+		}
+	}
+
+	delete( entities );
+	return( NULL );
+}
+
 HEntity getCollisionObject( CEntity* entity )
 {
 	assert( entity->m_bounds ); 
@@ -32,4 +52,42 @@ HEntity getCollisionObject( CEntity* entity, float x, float y )
 	HEntity _e = getCollisionObject( entity );
 	entity->m_bounds->setPosition( _x, _y );
 	return( _e );
+}
+
+bool getRayIntersection( const CVector2D& source, const CVector2D& forward, const CVector2D& right, float length, float maxDistance, rayIntersectionResults* results )
+{
+	std::vector<HEntity>* entities = g_EntityManager.getActive();
+	std::vector<HEntity>::iterator it;
+
+	float closestApproach, dist;
+
+	CVector2D delta;
+
+	results->distance = length + maxDistance;
+	results->boundingObject = NULL;
+
+	for( it = entities->begin(); it != entities->end(); it++ )
+	{
+		assert( (*it)->m_bounds );
+		if( (*it)->m_speed ) continue;
+		CBoundingObject* obj = (*it)->m_bounds;
+		delta = obj->m_pos - source;
+		closestApproach = delta.dot( right );
+		dist = delta.dot( forward );
+
+		if( ( fabs( closestApproach ) < maxDistance + obj->m_radius ) && ( dist > -maxDistance ) && ( dist < length + maxDistance ) ) 
+		{
+			if( dist < results->distance )
+			{
+				results->boundingObject = obj;
+				results->closestApproach = closestApproach;
+				results->distance = dist;
+				results->hEntity = (*it);
+				results->position = obj->m_pos;
+			}
+		}
+	}
+	delete( entities );
+	if( results->boundingObject ) return( true );
+	return( false );
 }

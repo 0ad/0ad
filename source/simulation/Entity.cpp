@@ -27,6 +27,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	// Set up our instance data
 
 	m_speed = m_base->m_speed;
+	m_turningRadius = m_base->m_turningRadius;
 	m_position = position;
 	m_orientation = orientation;
 
@@ -46,13 +47,24 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	updateActorTransforms();
 
 	// Register the addresses of our native properties with the properties table
-	/*
+	
 	m_properties["speed"].associate( &m_speed );
 	m_properties["orientation"].associate( &m_orientation );
 	m_properties["position"].associate( &m_position );
-	*/
+	
 }
 
+CEntity::~CEntity()
+{
+	if( m_actor )
+	{
+		if( m_actor->m_Model ) delete( m_actor->m_Model );
+		g_UnitMan.RemoveUnit( m_actor );
+		delete( m_actor );
+	}
+	if( m_bounds ) delete( m_bounds );
+}
+	
 bool isWaypoint( CEntity* e )
 {
 	return( e->m_base->m_name == CStr( "Waypoint" ) );
@@ -162,6 +174,12 @@ void CEntity::dispatch( CMessage* msg )
 	case CMessage::EMSG_INIT:
 		if( m_base->m_name == CStr( "Prometheus Dude" ) )
 		{
+			if( getCollisionObject( this ) )
+			{
+				// Prometheus telefragging. (Appeared inside another object)
+				g_EntityManager.kill( me );
+				return;
+			}
 			std::vector<HEntity>* waypoints = g_EntityManager.matches( isWaypoint );
 			while( !waypoints->empty() )
 			{
@@ -191,10 +209,44 @@ void CEntity::render()
 {
 	// Rich! Help! ;)
 	// We can loose this later on, I just need a way to see collision boxes temporarily
+	
+	if( !m_orderQueue.empty() )
+	{
+		glShadeModel( GL_FLAT );
+		glBegin( GL_LINE_STRIP );
+		
+		std::deque<CEntityOrder>::iterator it;
 
+		glVertex3f( m_position.X, m_position.Y + 0.25f /* 20.0f */, m_position.Z );
+
+		for( it = m_orderQueue.begin(); it < m_orderQueue.end(); it++ )
+		{
+			float x = it->m_data[0].location.x;
+			float y = it->m_data[0].location.y;
+			switch( it->m_type )
+			{
+			case CEntityOrder::ORDER_GOTO:
+				glColor3f( 1.0f, 0.0f, 0.0f ); break;
+			case CEntityOrder::ORDER_GOTO_COLLISION:
+				glColor3f( 1.0f, 0.5f, 0.5f ); break;
+			case CEntityOrder::ORDER_GOTO_NOPATHING:
+				glColor3f( 0.5f, 0.5f, 0.5f ); break;
+			default:
+				glColor3f( 1.0f, 1.0f, 1.0f ); break;
+			}
+			glVertex3f( x, getExactGroundLevel( x, y ) + 0.25f /* 20.0f */, y );
+		}
+
+		glEnd();
+		glShadeModel( GL_SMOOTH );
+	}
+	
 	glColor3f( 1.0f, 1.0f, 1.0f );
+	
+
 	if( getCollisionObject( this ) ) glColor3f( 0.5f, 0.5f, 1.0f );
-	m_bounds->render( m_position.Y + 0.25f );
+	m_bounds->render( m_position.Y + 0.25f /* 20.0f */ );
+
 }
 
 void PASAPScenario()

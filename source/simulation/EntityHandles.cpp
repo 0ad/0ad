@@ -54,25 +54,22 @@ void HEntity::decRef()
 {
 	if( m_handle != INVALID_HANDLE )
 	{
-		assert( g_EntityManager.m_entities[m_handle].m_refcount != 0 );
 		if( --g_EntityManager.m_entities[m_handle].m_refcount == 0 )
-		{
-			delete( g_EntityManager.m_entities[m_handle].m_entity );
-		}
+			g_EntityManager.destroy( m_handle );
 	}
 }
 
 CEntity* HEntity::operator->() const
 {
 	assert( m_handle != INVALID_HANDLE );
-	assert( g_EntityManager.m_entities[m_handle].m_refcount != 0 );
+	assert( g_EntityManager.m_entities[m_handle].m_refcount );
 	return( g_EntityManager.m_entities[m_handle].m_entity );
 }
 
 CEntity& HEntity::operator*() const
 {
 	assert( m_handle != INVALID_HANDLE );
-	assert( g_EntityManager.m_entities[m_handle].m_refcount != 0 );
+	assert( g_EntityManager.m_entities[m_handle].m_refcount );
 	return( *g_EntityManager.m_entities[m_handle].m_entity );
 }
 

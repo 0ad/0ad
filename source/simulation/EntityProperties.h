@@ -65,18 +65,6 @@ public:
 	~CGenericProperty();
 	void releaseData();
 
-	/*
-	CGenericProperty( i32 value ); // Create an integer property with a given value.
-	CGenericProperty( i32* value );  // Create an integer property that points to the given variable.
-	CGenericProperty( float value ); // Create a floating-point property with a given value.
-	CGenericProperty( float* value ); // Create a floating-point property that points to the given variable.
-	CGenericProperty( CStr& value ); // Create a string object property that's initialized to a copy of the given string.
-	CGenericProperty( CStr* value ); // Create a string object property that points to the given variable.
-	CGenericProperty( CVector3D& value ); // Create a vector object property that's initialized to a copy of the given vector.
-	CGenericProperty( CVector3D* value ); // Create a vector object property that points to the given variable.
-	CGenericProperty( void* value ); // Create a general property that points to the given value.
-	*/
-
 	// Associator functions: Links the property with the specified engine variable.
 	void associate( i32* value ); 
 	void associate( float* value ); 

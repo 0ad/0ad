@@ -28,6 +28,7 @@
 #include "Entity.h"
 #include "EntityHandles.h"
 #include "EntityManager.h"
+#include "PathfindEngine.h"
 
 
 #ifndef NO_GUI
@@ -48,6 +49,8 @@ bool mouseButtons[5];
 static bool g_NoGLVBO=false;
 
 static bool g_VSync = false;
+
+static bool g_EntGraph = false;
 
 static float g_Gamma = 1.0f;
 
@@ -274,16 +277,19 @@ static void Render()
 	RenderTerrain();
 	RenderModels();
 	g_Renderer.FlushFrame();
-/*
-	glPushAttrib( GL_ENABLE_BIT );
-	glDisable( GL_LIGHTING );
-	glDisable( GL_TEXTURE_2D );
-	glColor3f( 1.0f, 0.0f, 1.0f );
 
-	// g_EntityManager.renderAll(); // <-- collision outlines...
+	if( g_EntGraph )
+	{
+		glPushAttrib( GL_ENABLE_BIT );
+		glDisable( GL_LIGHTING );
+		glDisable( GL_TEXTURE_2D );
+		glDisable( GL_DEPTH_TEST );
+		glColor3f( 1.0f, 0.0f, 1.0f );
 
-	glPopAttrib();
-*/
+		g_EntityManager.renderAll(); // <-- collision outlines, pathing routes
+
+		glPopAttrib();
+	}
 
 	// overlay mode
 	glPushAttrib(GL_ENABLE_BIT);
@@ -372,6 +378,8 @@ void ParseArgs(int argc, char* argv[])
 						if( g_Gamma == 0.0f ) g_Gamma = 1.0f;
 					}
 					break;
+				case 'e':
+					g_EntGraph = true;
 				case 'v':
 					g_VSync = true;
 					break;
@@ -507,6 +515,7 @@ int main(int argc, char* argv[])
 	// This needs to be done after the renderer has loaded all its actors...
 	new CBaseEntityCollection;
 	new CEntityManager;
+	new CPathfindEngine;
 
 	g_EntityTemplateCollection.loadTemplates();
 
@@ -606,6 +615,7 @@ if(!g_MapFile)
 
 	delete &g_ScriptingHost;
 	delete &g_Config;
+	delete &g_Pathfinder;
 	delete &g_EntityManager;
 	delete &g_EntityTemplateCollection;
 

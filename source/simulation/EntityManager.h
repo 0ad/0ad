@@ -32,14 +32,17 @@ class CEntityManager : public Singleton<CEntityManager>
 friend HEntity;
 friend CHandle;
 	CHandle m_entities[MAX_HANDLES];
+	std::vector<HEntity> m_reaper;
 	int m_nextalloc;
 	static bool m_extant;
+	void destroy( u16 handle );
 public:
 	typedef bool (*EntityPredicate)( CEntity* target );
 	CEntityManager();
 	~CEntityManager();
 	HEntity create( CBaseEntity* base, CVector3D position, float orientation );
 	HEntity create( CStr templatename, CVector3D position, float orientation );
+	void kill( HEntity ent );
 	void updateAll( float timestep );
 	void dispatchAll( CMessage* msg );
 	void renderAll(); // TODO MT: What's the correct way to hook this up to the renderer?

@@ -130,7 +130,7 @@ void CGenericProperty::associate( i32* value )
 	releaseData();
 	m_type = (EPropTypes)( PROP_INTEGER | PROP_INTRINSIC | PROP_TYPELOCKED );
 	m_integerptr = value;
-	*m_integerptr = current;
+	//*m_integerptr = current;
 }
 
 void CGenericProperty::associate( float* value )
@@ -139,7 +139,7 @@ void CGenericProperty::associate( float* value )
 	releaseData();
 	m_type = (EPropTypes)( PROP_FLOAT | PROP_INTRINSIC | PROP_TYPELOCKED );
 	m_floatptr = value;
-	*m_floatptr = current;
+	//*m_floatptr = current;
 }
 
 void CGenericProperty::associate( CStr* value )
@@ -148,7 +148,7 @@ void CGenericProperty::associate( CStr* value )
 	releaseData();
 	m_type = (EPropTypes)( PROP_STRING | PROP_VECTOR | PROP_TYPELOCKED );
 	m_string = value;
-	*m_string = current;
+	//*m_string = current;
 }
 
 void CGenericProperty::associate( CVector3D* value )
@@ -157,7 +157,7 @@ void CGenericProperty::associate( CVector3D* value )
 	releaseData();
 	m_type = (EPropTypes)( PROP_VECTOR | PROP_INTRINSIC | PROP_TYPELOCKED );
 	m_vector = value;
-	*value = current;
+	//*value = current;
 }
 
 void CGenericProperty::typelock( EPropTypes type )

@@ -31,7 +31,7 @@ class CHandle
 {
 public:
 	CEntity* m_entity;
-	u16 m_refcount;
+	i16 m_refcount;
 	CHandle();
 };
 
