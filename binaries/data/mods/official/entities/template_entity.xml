@@ -78,7 +78,7 @@
 					evt.inflictor.traits.up.curr = 0; 
 
 					// Transmogrify him into his next rank.
-//					evt.inflictor.template = getEntityTemplate(evt.inflictor.traits.up.newentity);
+					evt.inflictor.template = getEntityTemplate(evt.inflictor.traits.up.newentity);
 				}
 			}
 

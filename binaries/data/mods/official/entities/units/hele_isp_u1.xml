@@ -20,7 +20,13 @@
 			hpcurr="10"
 		/>
 	</Traits>
-		
+	<Actions>
+		<Create
+			list=""
+			list.structciv="hele_cc;hele_fc;hele_ho_1;hele_rc;hele_tc;hele_hc"
+			list.structmil="hele_mc;hele_pc;hele_ff;hele_tf;hele_wc;hele_wg;hele_wt"
+		/>
+	</Actions>
 	<Actor>The Spartan</Actor>
 </Entity>
 

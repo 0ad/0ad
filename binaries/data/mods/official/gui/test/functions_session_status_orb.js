@@ -580,36 +580,38 @@ function UpdateList(listIcon, listCol)
 	// Build unit list.
 	if (selection[0].actions.create && selection[0].actions.create.list)
 	{
+		listName = "";
 		switch (listIcon)
 		{
 			case "tab_train":
-				listName = selection[0].actions.create.list.unit;
+				if (selection[0].actions.create.list.unit)
+					listName = selection[0].actions.create.list.unit.toString();
 			break;
 			case "tab_buildciv":
-				listName = selection[0].actions.create.list.structciv;
+				if (selection[0].actions.create.list.structciv)
+					listName = selection[0].actions.create.list.structciv.toString();
 			break;
 			case "tab_buildmil":
-				listName = selection[0].actions.create.list.structmil;
+				if (selection[0].actions.create.list.structmil)
+					listName = selection[0].actions.create.list.structmil.toString();
 			break;
 			case "tab_research":
-				listName = selection[0].actions.create.list.tech;
+				if (selection[0].actions.create.list.tech)
+					listName = selection[0].actions.create.list.tech.toString();
 			break;
 			default:
 				return 0;
 			break;
 		}
 
-		if (listName)
+		if (listName != "")
 		{
 			// Enable tab portrait.
 			setPortrait("session_panel_status_command_pri_" + listCol, listIcon);
 			GUIObjectUnhide("session_panel_status_command_pri_" + listCol);
 
 			// Extract entity list into an array.
-			// (Give it a string literally identical to the attribute, as for some reason it doesn't work right now. :(
-
-//			listArray = parseDelimiterString(listName, ";");
-			listArray = parseDelimiterString("hele_fem_b1;hele_isp_u1;hele_fem_b1;hele_fem_b1;hele_isp_u1;hele_isp_u1;hele_isp_u1;hele_isp_u1;hele_isp_u1;hele_isp_u1;hele_isp_u1;hele_isp_u1;hele_isp_u1", ";");
+			listArray = parseDelimiterString(listName, ";", listName.length);
 
 			// Populate appropriate command buttons.
 			for (createLoop = 1; createLoop <= command_sub_max; createLoop++)
@@ -629,8 +631,8 @@ function UpdateList(listIcon, listCol)
 			return listArray;
 		}
 	}
-	else
-		return 0;
+
+	return 0;
 }
 
 // ====================================================================
@@ -665,12 +667,12 @@ function UpdateCommandButtons()
 {
 	// Update train/research/build lists.
 	listCounter	= 1; 
-	unitArray 	= UpdateList("tab_train", listCounter); 	if (unitArray != "0")		 listCounter++;
-	structcivArray 	= UpdateList("tab_buildciv", listCounter);	if (structcivArray != "0")	 listCounter++;
-	structmilArray 	= UpdateList("tab_buildmil", listCounter);	if (structmilArray != "0")	 listCounter++;
-	techArray 	= UpdateList("tab_research", listCounter);	if (techArray != "0")		 listCounter++;
-	formationArray 	= UpdateList("tab_formation", listCounter);	if (formationArray != "0")	 listCounter++;
-	behaviourArray 	= UpdateList("tab_behaviour", listCounter);	if (behaviourArray != "0")	 listCounter++;
+	unitArray 	= UpdateList("tab_train", listCounter); 	if (unitArray != 0)		 listCounter++;
+	structcivArray 	= UpdateList("tab_buildciv", listCounter);	if (structcivArray != 0)	 listCounter++;
+	structmilArray 	= UpdateList("tab_buildmil", listCounter);	if (structmilArray != 0)	 listCounter++;
+	techArray 	= UpdateList("tab_research", listCounter);	if (techArray != 0)		 listCounter++;
+	formationArray 	= UpdateList("tab_formation", listCounter);	if (formationArray != 0)	 listCounter++;
+	behaviourArray 	= UpdateList("tab_behaviour", listCounter);	if (behaviourArray != 0)	 listCounter++;
 
 	// Update commands.
 	commandCounter = command_max;
@@ -798,55 +800,50 @@ function UpdateStatusOrb()
 	}
 
 	// Update Attack stats
-	if (selection[0].actions.attack)
-	{
-		if (selection[0].actions.attack.damage && selection[0].actions.attack.damage > 0)
+		if (selection[0].actions.attack && selection[0].actions.attack.damage && selection[0].actions.attack.damage > 0)
 			getGUIObjectByName("session_panel_status_stat1_1").caption = '[icon="icon_statistic_attack"]' + selection[0].actions.attack.damage;
 		else
 			getGUIObjectByName("session_panel_status_stat1_1").caption = "";
 
-		if (selection[0].actions.attack.hack && selection[0].actions.attack.hack > 0)
+		if (selection[0].actions.attack && selection[0].actions.attack.hack && selection[0].actions.attack.hack > 0)
 			getGUIObjectByName("session_panel_status_stat2_1").caption = '[icon="icon_statistic_hack"]' + Math.round(selection[0].actions.attack.hack*100) + '%';
 		else
 			getGUIObjectByName("session_panel_status_stat2_1").caption = "";
 
-		if (selection[0].actions.attack.pierce && selection[0].actions.attack.pierce > 0)
+		if (selection[0].actions.attack && selection[0].actions.attack.pierce && selection[0].actions.attack.pierce > 0)
 			getGUIObjectByName("session_panel_status_stat3_1").caption = '[icon="icon_statistic_pierce"]' + Math.round(selection[0].actions.attack.pierce*100) + '%';
 		else
 			getGUIObjectByName("session_panel_status_stat3_1").caption = "";
 
-		if (selection[0].actions.attack.crush && selection[0].actions.attack.crush > 0)
+		if (selection[0].actions.attack && selection[0].actions.attack.crush && selection[0].actions.attack.crush > 0)
 			getGUIObjectByName("session_panel_status_stat4_1").caption = '[icon="icon_statistic_crush"]' + Math.round(selection[0].actions.attack.crush*100) + '%';
 		else
 			getGUIObjectByName("session_panel_status_stat4_1").caption = "";
 
-		if (selection[0].actions.attack.range && selection[0].actions.attack.range > 0)
+		if (selection[0].actions.attack && selection[0].actions.attack.range && selection[0].actions.attack.range > 0)
 			getGUIObjectByName("session_panel_status_stat5_1").caption = '[icon="icon_statistic_range"]' + selection[0].actions.attack.range;
 		else
 			getGUIObjectByName("session_panel_status_stat5_1").caption = "";
 
-		if (selection[0].actions.attack.accuracy && selection[0].actions.attack.accuracy > 0)
+		if (selection[0].actions.attack && selection[0].actions.attack.accuracy && selection[0].actions.attack.accuracy > 0)
 			getGUIObjectByName("session_panel_status_stat6_1").caption = '[icon="icon_statistic_accuracy"]' + Math.round(selection[0].actions.attack.accuracy*100) + '%';
 		else
 			getGUIObjectByName("session_panel_status_stat6_1").caption = "";
-	}
 
 	// Update Armour & Other stats
-	if (selection[0].traits.armour)
-	{
-		if (selection[0].traits.armour.value && selection[0].traits.armour.value > 0)
+		if (selection[0].traits.armour && selection[0].traits.armour.value && selection[0].traits.armour.value > 0)
 			getGUIObjectByName("session_panel_status_stat1_2").caption = '[icon="icon_statistic_armour"]' + selection[0].traits.armour.value;
 		else getGUIObjectByName("session_panel_status_stat1_2").caption = "";
-		if (selection[0].traits.armour.hack && selection[0].traits.armour.hack > 0)
+		if (selection[0].traits.armour && selection[0].traits.armour.hack && selection[0].traits.armour.hack > 0)
 			getGUIObjectByName("session_panel_status_stat2_2").caption = '[icon="icon_statistic_hack"]' + Math.round(selection[0].traits.armour.hack*100) + '%';
 		else getGUIObjectByName("session_panel_status_stat2_2").caption = "";
-		if (selection[0].traits.armour.pierce && selection[0].traits.armour.pierce > 0)
+		if (selection[0].traits.armour && selection[0].traits.armour.pierce && selection[0].traits.armour.pierce > 0)
 			getGUIObjectByName("session_panel_status_stat3_2").caption = '[icon="icon_statistic_pierce"]' + Math.round(selection[0].traits.armour.pierce*100) + '%';
 		else getGUIObjectByName("session_panel_status_stat3_2").caption = "";
-		if (selection[0].traits.armour.crush && selection[0].traits.armour.crush > 0)
+		if (selection[0].traits.armour && selection[0].traits.armour.crush && selection[0].traits.armour.crush > 0)
 			getGUIObjectByName("session_panel_status_stat4_2").caption = '[icon="icon_statistic_crush"]' + Math.round(selection[0].traits.armour.crush*100) + '%';
 		else getGUIObjectByName("session_panel_status_stat4_2").caption = "";
-	}
+
 	if (selection[0].actions.move && selection[0].actions.move.speed)
 		getGUIObjectByName("session_panel_status_stat5_2").caption = '[icon="icon_statistic_speed"]' + selection[0].actions.move.speed;
 		else getGUIObjectByName("session_panel_status_stat5_2").caption = "";
