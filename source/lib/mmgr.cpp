@@ -798,6 +798,9 @@ void mmgr_write_leak_report(void)
 
 bool mmgr_is_valid_ptr(const void* p)
 {
+	// null pointer - won't even try ;-)
+	if (p == NULL)
+		return false;
 	lock();
 	bool found = allocs_find(p) != 0;
 	unlock();
@@ -812,7 +815,7 @@ static bool alloc_is_valid(const Alloc* a)
 
 	// this allocation has been over/underrun, i.e. modified outside the
 	// allocation's memory range.
-	assert2(0);
+	assert2(0 && "Memory over/underrun detected by mmgr");
 	log("[!] Memory over/underrun:\n");
 	log_this_alloc(a);
 	return false;
@@ -1077,7 +1080,7 @@ void free_dbg(const void* user_p, AllocType type, const char* file, int line, co
 		if(!a)
 		{
 			// you tried to free a pointer mmgr didn't allocate
-			assert2(0);
+			assert2(0 && "mmgr tried to free a pointer mmgr didn't allocate");
 			log("[!] mmgr_free: not allocated by this memory manager\n");
 			goto fail;
 		}
@@ -1230,7 +1233,7 @@ void mmgr_free_dbg(void* p, const char* file, int line, const char* func)
 
 char* mmgr_strdup_dbg(const char* s, const char* file, int line, const char* func)
 {
-	const size_t size = strlen(s);
+	const size_t size = strlen(s)+1;
 	char* copy = (char*)mmgr_malloc_dbg(size, file,line,func);
 	if(!copy)
 		return 0;
@@ -1240,7 +1243,7 @@ char* mmgr_strdup_dbg(const char* s, const char* file, int line, const char* fun
 
 wchar_t* mmgr_wcsdup_dbg(const wchar_t* s, const char* file, int line, const char* func)
 {
-	const size_t size = wcslen(s) * sizeof(wchar_t);
+	const size_t size = (wcslen(s) + 1) * sizeof(wchar_t);
 	wchar_t* copy = (wchar_t*)mmgr_malloc_dbg(size, file,line,func);
 	if(!copy)
 		return 0;

@@ -31,6 +31,12 @@
 #include "bfd.h"
 #include <cxxabi.h>
 
+#ifndef bfd_get_section_size
+#define bfd_get_section_size bfd_get_section_size_before_reloc
+#endif
+
+#define PROFILE_RESOLVE_SYMBOL 0
+
 // Hard-coded - yuck :P
 #ifdef TESTING
 #define EXE_NAME "ps_test"
@@ -224,7 +230,7 @@ void udbg_init(void)
 	if (read_symbols(EXE_NAME, &ps_dbg_context)==0)
 		udbg_initialized=true;
 
-#ifdef PROFILE_RESOLVE_SYMBOL
+#if PROFILE_RESOLVE_SYMBOL
 	{
 		TIMER(udbg_init_benchmark)
 		char symbol[DBG_SYMBOL_LEN];
@@ -258,7 +264,7 @@ static void find_address_in_section (bfd *abfd, asection *section, void *data)
 	if (pc < vma)
 		return;
 
-	size = bfd_get_section_size_before_reloc (section);
+	size = bfd_get_section_size (section);
 	if (pc >= vma + size)
 		return;
 
@@ -309,6 +315,7 @@ int debug_resolve_symbol_dladdr(void *ptr, char* sym_name, char* file, int* line
 	file[DBG_FILE_LEN-1]=0;
 	
 	*line=0;
+	return 0;
 }
 
 int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
