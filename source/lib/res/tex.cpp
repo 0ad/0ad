@@ -108,21 +108,26 @@ struct Codec
 
 //////////////////////////////////////////////////////////////////////////////
 //
-// texture orientation
+// image transformations
 //
 //////////////////////////////////////////////////////////////////////////////
 
-// TGA and BMP are normally bottom-up, while PNG and JPG are always top-down.
-// we don't want to dump the burden of flipping them to a common orientation
-// on the application - that would affect all drawing code.
-// instead, we flip the texture data to <global_orientation> when loading.
+// TexInfo.flags indicate deviations from the standard image format
+// (left-to-right, RGBA layout, up/down=global_orientation).
 //
-// codecs using libraries with a row-array mechanism (jpg, png) can
-// just invert the row array pointers; otherwise (e.g. tga, bmp),
-// we flip the texel rows in-place.
+// we don't want to dump the burden of dealing with that on
+// the app - that would affect all drawing code.
+// instead, we convert as much as is convenient at load-time.
 //
-// this is slow; in release builds, we should be using formats optimized
-// for their intended use that don't require preprocessing.
+// supported transforms: BGR<->RGB, row flip.
+// we don't bother providing a true S3TC aka DXTC codec -
+// they are always passed unmodified to OpenGL, and decoding is complicated.
+//
+// converting is slow; in release builds, we should be using formats
+// optimized for their intended use that don't require preprocessing.
+
+
+// switch between top-down and bottom-up orientation.
 //
 // the default top-down is to match the Photoshop DDS plugin's output.
 // DDS is the optimized format, so we don't want to have to flip that.
@@ -131,46 +136,97 @@ struct Codec
 //   we have to go with what the DDS encoder uses.
 // - flipping DDS is possible without re-encoding; we'd have to shuffle
 //   around the pixel values inside the 4x4 blocks.
+//
+// the app can change orientation, e.g. to speed up loading
+// "upside-down" formats, or to match OpenGL's bottom-up convention.
 
-static TexOrientation global_orientation = TEX_TOP_DOWN;
+static int global_orientation = TEX_TOP_DOWN;
 
-void tex_set_global_orientation(TexOrientation o)
+void tex_set_global_orientation(int o)
 {
-	global_orientation = o;
+	if(o == TEX_TOP_DOWN || o == TEX_BOTTOM_UP)
+		global_orientation = o;
+	else
+		debug_warn("tex_set_global_orientation: invalid param");
 }
 
 
-// if fmt_orientation doesn't match the desired global orientation,
-// tex will be flipped in-place. pitch is the total row width [bytes].
-void flip_tex_rows(void* tex, size_t pitch, size_t h, TexOrientation fmt_orientation)
+// somewhat optimized (loops are hoisted, cache associativity accounted for)
+int transform(TexInfo* t, u8* img, int transforms)
 {
-	// already correct, we're done
-	if(fmt_orientation == global_orientation)
-		return;
+	// nothing to do - bail.
+	if(!transforms)
+		return 0;
 
-	size_t line = 0;	// counter
-	const u8* src;
-	u8* dst;
+	const uint w = t->w, h = t->h, bpp_8 = t->bpp / 8;
+	const size_t pitch = w * bpp_8;
 
-	// L1 cache is typically A2 => swapping in-place with a line buffer
-	// leads to thrashing. we'll assume the whole texture*2 fits in cache,
-	// allocate a copy, and transfer directly from there.
-	//
-	// note: we don't want to return a new buffer: the user assumes
-	// buffer address will remain unchanged.
-
-	const size_t size = pitch * h;
-	void* clone_buf = mem_alloc(size, 32*KB);
-	memcpy(clone_buf, tex, size);
-	src = (const u8*)clone_buf + size-pitch;
-	dst = (u8*)tex;
-	for(; line < h; line++)
+	// setup row source/destination pointers (simplifies outer loop)
+	u8* dst = img;
+	const u8* src = img;
+	ssize_t row_ofs = (ssize_t)pitch;
+		// avoid y*pitch multiply in row loop; instead, add row_ofs.
+	void* clone_img = 0;
+	// flipping rows (0,1,2 -> 2,1,0)
+	if(transforms & TEX_ORIENTATION)
 	{
-		memcpy(dst, src, pitch);
-		src -= pitch;
-		dst += pitch;
+		// L1 cache is typically A2 => swapping in-place with a line buffer
+		// leads to thrashing. we'll assume the whole texture*2 fits in cache,
+		// allocate a copy, and transfer directly from there.
+		//
+		// note: we don't want to return a new buffer: the user assumes
+		// buffer address will remain unchanged.
+		const size_t size = h*pitch;
+		clone_img = mem_alloc(size, 32*KB);
+		if(!clone_img)
+			return ERR_NO_MEM;
+		memcpy(clone_img, img, size);
+		src = (const u8*)clone_img+size-pitch;	// last row
+		row_ofs = -(ssize_t)pitch;
 	}
-	mem_free(clone_buf);
+
+
+	// no BGR convert necessary
+	if(!(transforms & TEX_BGR))
+		for(uint y = 0; y < h; y++)
+		{
+			memcpy(dst, src, pitch);
+			dst += pitch;
+			src += row_ofs;
+		}
+	// RGB <-> BGR
+	else if(bpp_8 == 3)
+		for(uint y = 0; y < h; y++)
+		{
+			for(uint x = 0; x < w; x++)
+			{
+				// need temporaries in case src == dst (i.e. not flipping)
+				const u8 b = src[0], g = src[1], r = src[2];
+				dst[0] = r; dst[1] = g; dst[2] = b;
+				dst += 3;
+				src += 3;
+			}
+			src += row_ofs - pitch;	// flip? previous row : stay
+		}
+	// RGBA <-> BGRA
+	else
+		for(uint y = 0; y < h; y++)
+		{
+			for(uint x = 0; x < w; x++)
+			{
+				// need temporaries in case src == dst (i.e. not flipping)
+				const u8 b = src[0], g = src[1], r = src[2], a = src[3];
+				dst[0] = r; dst[1] = g; dst[2] = b; dst[3] = a;
+				dst += 4;
+				src += 4;
+			}
+			src += row_ofs - pitch;	// flip? previous row : stay
+		}
+
+	if(clone_img)
+		mem_free(clone_img);
+
+	return 0;
 }
 
 
@@ -178,16 +234,19 @@ typedef const u8* RowPtr;
 typedef RowPtr* RowArray;
 
 // allocate and set up rows to point into the given texture data.
-// invert if the format's orientation doesn't match the current global setting.
+// invert if transforms & TEX_ORIENTATION; caller is responsible for comparing
+// a file format's orientation with the global setting (when decoding) or
+// with the image format (when encoding).
+// caller must free() rows when done.
 static int alloc_rows(const u8* tex, size_t h, size_t pitch,
-	TexOrientation fmt_orientation, RowArray& rows)
+	int transforms, RowArray& rows)
 {
 	rows = (RowArray)malloc(h * sizeof(RowPtr));
 	if(!rows)
 		return ERR_NO_MEM;
 
 	// rows are inverted; current position pointer counts backwards.
-	if(fmt_orientation != global_orientation)
+	if(transforms & TEX_ORIENTATION)
 	{
 		RowPtr pos = tex + pitch*h;
 		for(size_t i = 0; i < h; i++)
@@ -215,10 +274,10 @@ static int alloc_rows(const u8* tex, size_t h, size_t pitch,
 
 
 // write header and image out to file <fn>.
-// pixels are BGR-flipped if desired. bpp can be 8, 24, or 32.
+// pixels are BGR-flipped if flags & TEX_BGR. bpp can be 8, 24, or 32.
 // note: if bpp=32, alpha is assumed to be the last component.
-static int write_img(const char* fn, const void* hdr, size_t hdr_size, const void* img, size_t img_size,
-					 bool flip_bgr, int bpp)
+static int write_img(const char* fn, const void* hdr, size_t hdr_size,
+	int bpp, const void* img, size_t img_size)
 {
 	const size_t file_size = hdr_size + img_size;
 	u8* file = (u8*)mem_alloc(file_size);
@@ -226,37 +285,7 @@ static int write_img(const char* fn, const void* hdr, size_t hdr_size, const voi
 		return ERR_NO_MEM;
 
 	memcpy(file, hdr, hdr_size);
-
-	// fast: no conversion necessary
-	if(!flip_bgr || bpp == 8)
-		memcpy((char*)file+hdr_size, img, img_size);
-	// slow: convert each pixel
-	else
-	{
-		size_t pixels_left = img_size / (bpp / 8);
-		u8* dst = (u8*)file+hdr_size;
-		const u8* src = (const u8*)img;
-
-		if(bpp == 24)
-			while(pixels_left--)
-			{
-				dst[0] = src[2];
-				dst[1] = src[1];
-				dst[2] = src[0];
-				dst += 3;
-				src += 3;
-			}
-		else
-			while(pixels_left--)
-			{
-				dst[0] = src[2];
-				dst[1] = src[1];
-				dst[2] = src[0];
-				dst[3] = src[3];
-				dst += 4;
-				src += 4;
-			}
-	}
+	memcpy((char*)file+hdr_size, img, img_size);
 
 	CHECK_ERR(vfs_store(fn, file, file_size, FILE_NO_AIO));
 	mem_free(file);
@@ -486,7 +515,8 @@ enum TgaImgType
 enum TgaImgDesc
 {
 	TGA_RIGHT_TO_LEFT = BIT(4),
-	TGA_TOP_DOWN      = BIT(5)
+	TGA_TOP_DOWN      = BIT(5),
+	TGA_BOTTOM_UP     = 0	// opposite of TGA_TOP_DOWN
 };
 
 typedef struct
@@ -556,20 +586,17 @@ fail:
 		return ERR_CORRUPTED;
 	}
 
-	const u8 type = hdr->img_type;
-	const u16 w   = read_le16(&hdr->w);
-	const u16 h   = read_le16(&hdr->h);
-	const u8 bpp  = hdr->bpp;
-	const u8 desc = hdr->img_desc;
+	const u8 type  = hdr->img_type;
+	const uint w   = read_le16(&hdr->w);
+	const uint h   = read_le16(&hdr->h);
+	const uint bpp = hdr->bpp;
+	const u8 desc  = hdr->img_desc;
 
 	const u8 alpha_bits = desc & 0x0f;
+	const int orientation = (desc & TGA_TOP_DOWN)? TEX_TOP_DOWN : TEX_BOTTOM_UP;
+	u8* const img = file + hdr_size;
+	const size_t img_size = w * h * bpp/8;
 
-	const size_t pitch = w *  bpp/8;
-	const size_t img_size = h * pitch;
-	void* img = file + hdr_size;
-
-	TexOrientation fo = (desc & TGA_TOP_DOWN)? TEX_TOP_DOWN : TEX_BOTTOM_UP;
-	flip_tex_rows(img, pitch, h, fo);
 
 	int flags = 0;
 	if(alpha_bits != 0)
@@ -595,6 +622,9 @@ fail:
 	t->bpp   = bpp;
 	t->flags = flags;
 
+	const int transforms = orientation ^ global_orientation;
+	transform(t, img, transforms);
+
 	return 0;
 }
 
@@ -603,20 +633,28 @@ static int tga_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 {
 	CHECK_ERR(fmt_8_or_24_or_32(t->bpp, t->flags));
 
+	TgaImgDesc img_desc = (t->flags & TEX_TOP_DOWN)? TGA_TOP_DOWN : TGA_BOTTOM_UP;
+	TgaImgType img_type = (t->flags & TEX_GRAY)? TGA_GRAY : TGA_TRUE_COLOR;
+
+	// transform
+	int transforms = t->flags;
+	transforms &= ~TEX_ORIENTATION;	// no flip needed - we can set top-down bit.
+	transforms ^= TEX_BGR;			// TGA is native BGR.
+	transform(t, img, transforms);
+
 	TgaHeader hdr =
 	{
 		0,				// no image identifier present
 		0,				// no color map present
-		(t->flags & TEX_GRAY)? TGA_GRAY : TGA_TRUE_COLOR,
+		img_type,
 		{0,0,0,0,0},	// unused (color map)
 		0, 0,			// unused (origin)
 		t->w,
 		t->h,
 		t->bpp,
-		0				// image descriptor (TgaImgDesc)
+		img_desc
 	};
-	const bool flip_bgr = !(t->flags & TEX_BGR);	// TGA is native BGR
-	return write_img(fn, &hdr, sizeof(hdr), img, img_size, flip_bgr, t->bpp);
+	return write_img(fn, &hdr, sizeof(hdr), t->bpp, img, img_size);
 }
 
 #endif	// #ifndef NO_TGA
@@ -686,7 +724,7 @@ static inline bool bmp_ext(const char* ext)
 
 
 // requirements: uncompressed, direct color, bottom up
-static int bmp_decode(TexInfo* t, const char* fn, u8* in, size_t file_size)
+static int bmp_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 {
 	const char* err = 0;
 
@@ -701,21 +739,19 @@ fail:
 		return ERR_CORRUPTED;
 	}
 
-	const BmpHeader* hdr = (const BmpHeader*)in;
+	const BmpHeader* hdr = (const BmpHeader*)file;
 	const long w       = (long)read_le32(&hdr->biWidth);
 	const long h_      = (long)read_le32(&hdr->biHeight);
 	const u16 bpp      = read_le16(&hdr->biBitCount);
 	const u32 compress = read_le32(&hdr->biCompression);
 	const u32 ofs      = read_le32(&hdr->bfOffBits);
 
-	const TexOrientation fo = (h_ < 0)? TEX_TOP_DOWN : TEX_BOTTOM_UP;
+	const int orientation = (h_ < 0)? TEX_TOP_DOWN : TEX_BOTTOM_UP;
 	const long h = abs(h_);
 
 	const size_t pitch = w * bpp/8;
 	const size_t img_size = h * pitch;
-	void* img = in + ofs;
-
-	flip_tex_rows(img, pitch, h, fo);
+	u8* const img = file + ofs;
 
 	int flags = TEX_BGR;
 	if(bpp == 32)
@@ -736,6 +772,9 @@ fail:
 	t->bpp   = bpp;
 	t->flags = flags;
 
+	const int transforms = orientation ^ global_orientation;
+	transform(t, img, transforms);
+
 	return 0;
 }
 
@@ -744,8 +783,14 @@ static int bmp_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 {
 	CHECK_ERR(fmt_8_or_24_or_32(t->bpp, t->flags));
 
-	const size_t hdr_size = sizeof(BmpHeader);
+	const size_t hdr_size = sizeof(BmpHeader);	// needed for BITMAPFILEHEADER
 	const size_t file_size = hdr_size + img_size;
+	const long h = (t->flags & TEX_TOP_DOWN)? -(int)t->h : t->h;
+
+	int transforms = t->flags;
+	transforms &= ~TEX_ORIENTATION;	// no flip needed - we can set top-down bit.
+	transforms ^= TEX_BGR;			// BMP is native BGR.
+	transform(t, img, transforms);
 
 	const BmpHeader hdr =
 	{
@@ -758,7 +803,7 @@ static int bmp_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 		// BITMAPINFOHEADER
 		40,					// biSize = sizeof(BITMAPINFOHEADER)
 		t->w,
-		t->h,
+		h,
 		1,					// biPlanes
 		t->bpp,
 		BI_RGB,				// biCompression
@@ -766,8 +811,7 @@ static int bmp_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 		0, 0, 0, 0			// unused (bi?PelsPerMeter, biClr*)
 	};
 
-	const bool flip_bgr = !(t->flags & TEX_BGR);	// BMP is native BGR
-	return write_img(fn, &hdr, sizeof(hdr), img, img_size, flip_bgr, t->bpp);
+	return write_img(fn, &hdr, sizeof(hdr), t->bpp, img, img_size);
 }
 
 #endif	// #ifndef NO_BMP
@@ -798,10 +842,8 @@ static inline bool raw_ext(const char* ext)
 }
 
 
-static int raw_decode(TexInfo* t, const char* fn, u8* in, size_t file_size)
+static int raw_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 {
-	UNUSED(in);
-
 	// TODO: allow 8 bit format. problem: how to differentiate from 32? filename?
 
 	for(uint i = 2; i <= 4; i++)
@@ -809,6 +851,9 @@ static int raw_decode(TexInfo* t, const char* fn, u8* in, size_t file_size)
 		const u32 dim = (u32)sqrtf((float)file_size/i);
 		if(dim*dim*i != file_size)
 			continue;
+
+		const int orientation = TEX_BOTTOM_UP;
+		u8* const img = file;
 
 		// formats are: GL_LUMINANCE_ALPHA, GL_RGB, GL_RGBA
 		int flags = (i == 3)? 0 : TEX_ALPHA;
@@ -818,6 +863,9 @@ static int raw_decode(TexInfo* t, const char* fn, u8* in, size_t file_size)
 		t->h   = dim;
 		t->bpp = i*8;
 		t->flags = flags;
+
+		const int transforms = orientation ^ global_orientation;
+		transform(t, img, transforms);
 
 		return 0;
 	}
@@ -831,8 +879,13 @@ static int raw_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 {
 	CHECK_ERR(fmt_8_or_24_or_32(t->bpp, t->flags));
 
-	const bool flip_bgr = !(t->flags & TEX_BGR);	// RAW is native BGR
-	return write_img(fn, 0, 0, img, img_size, flip_bgr, t->bpp);
+	// transforms
+	const int transforms = t->flags;
+	transforms ^= TEX_BOTTOM_UP;	// RAW is native bottom-up.
+	transforms ^= TEX_BGR;			// RAW is native BGR.
+	transform(t, img, transforms);
+
+	return write_img(fn, 0, 0, t->bpp, img, img_size);
 }
 
 #endif	// #ifndef NO_RAW
@@ -959,7 +1012,8 @@ fail:
 			goto fail;
 		}
 
-		int ret = alloc_rows(img, h, pitch, TEX_TOP_DOWN, rows);
+		const int transforms = TEX_TOP_DOWN ^ global_orientation;
+		int ret = alloc_rows(img, h, pitch, transforms, rows);
 		if(ret < 0)
 		{
 			err = ret;
@@ -1037,6 +1091,9 @@ fail:
 	}
 
 	{
+		const int png_transforms = (t->flags & TEX_BGR)? PNG_TRANSFORM_BGR : PNG_TRANSFORM_IDENTITY;
+			// PNG is native RGB.
+
 		const png_uint_32 w = t->w, h = t->h;
 		const size_t pitch = w * t->bpp / 8;
 
@@ -1068,7 +1125,8 @@ fail:
 		png_set_IHDR(png_ptr, info_ptr, w, h, 8, color_type,
 			PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
 
-		int ret = alloc_rows(img, h, pitch, TEX_TOP_DOWN, rows);
+		const int transforms = TEX_TOP_DOWN ^ t->flags;
+		int ret = alloc_rows(img, h, pitch, transforms, rows);
 		if(ret < 0)
 		{
 			err = ret;
@@ -1076,7 +1134,7 @@ fail:
 		}
 
 		png_set_rows(png_ptr, info_ptr, (png_bytepp)rows);
-		png_write_png(png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, 0);
+		png_write_png(png_ptr, info_ptr, png_transforms, 0);
 	
 		err = 0;
 
@@ -1433,83 +1491,110 @@ ret:
 // limitation: palette images aren't supported
 static int jpg_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 {
+return -1;//VFS dest not implemented yet
+
 	const char* msg = 0;
 	int err = -1;
 
-	// freed when ret is reached.
-	png_structp png_ptr = 0;
-	png_infop info_ptr = 0;
-	RowArray rows = 0; 
-	Handle hf = 0;
+	// freed when ret is reached:
+	struct jpeg_compress_struct cinfo;
+		// contains the JPEG compression parameters and pointers to
+		// working space (allocated as needed by the JPEG library).
+	RowArray rows = 0;
+		// array of pointers to scanlines in img, set by alloc_rows.
+		// jpeg won't output more than a few scanlines at a time,
+		// so we need an output loop anyway, but passing at least 2..4
+		// rows is more efficient in low-quality modes (due to less copying).
 
-	// allocate PNG structures; use default stderr and longjmp error handlers
-	png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
-	if(!png_ptr)
-		goto fail;
-	info_ptr = png_create_info_struct(png_ptr);
-	if(!info_ptr)
-		goto fail;
+	// freed when fail is reached:
 
-	// setup error handling
-	if(setjmp(png_jmpbuf(png_ptr)))
+	// set up our error handler, which overrides jpeg's default
+	// write-to-stderr-and-exit behavior.
+	// notes:
+	// - must be done before jpeg_create_compress, in case that fails
+	//   (unlikely, but possible if out of memory).
+	// - valid over cinfo lifetime (avoids dangling pointer in cinfo)
+	JpgErrMgr jerr;
+	cinfo.err = jpeg_std_error(&jerr.pub);
+	jerr.pub.error_exit = jpg_error_exit;
+	jerr.pub.output_message = jpg_output_message;
+	jerr.msg[0] = '\0';
+		// required for "already have message" check in output_message
+	if(setjmp(jerr.call_site))
 	{
 fail:
-		debug_out("png_encode: %s: %s\n", fn, msg? msg : "unknown");
+		// either JPEG has raised an error, or code below failed.
+		// warn user, and skip to cleanup code.
+		debug_out("jpg_encode: %s: %s\n", fn, msg? msg : "unknown");
 		goto ret;
 	}
 
+
+	jpeg_create_compress(&cinfo);
+
+///	jpeg_vfs_dest(&cinfo, file, file_size);
+
+	//
+	// describe input image
+	//
+
+	// required:
+	cinfo.image_width = t->w;
+	cinfo.image_height = t->h;
+	cinfo.input_components = t->bpp / 8;
+	cinfo.in_color_space = (t->bpp == 8)? JCS_GRAYSCALE : JCS_RGB;
+
+	// defaults depend on cinfo.in_color_space already having been set!
+	jpeg_set_defaults(&cinfo);
+
+	// more settings (e.g. quality)
+
+
+	jpeg_start_compress(&cinfo, TRUE);
+		// TRUE ensures that we will write a complete interchange-JPEG file.
+		// don't change unless you are very sure of what you're doing.
+
+
+	// make sure we have RGB
+	const int bgr_transform = t->flags & TEX_BGR;	// JPG is native RGB.
+	transform(t, img, bgr_transform);
+
+	const size_t pitch = t->w * t->bpp / 8;
+	const int transform = t->flags ^ TEX_TOP_DOWN;
+	int ret = alloc_rows(img, t->h, pitch, transform, rows);
+	if(ret < 0)
 	{
-		const png_uint_32 w = t->w, h = t->h;
-		const size_t pitch = w * t->bpp / 8;
-
-		int color_type;
-		switch(t->flags & (TEX_GRAY|TEX_ALPHA))
-		{
-		case TEX_GRAY|TEX_ALPHA:
-			color_type = PNG_COLOR_TYPE_GRAY_ALPHA;
-			break;
-		case TEX_GRAY:
-			color_type = PNG_COLOR_TYPE_GRAY;
-			break;
-		case TEX_ALPHA:
-			color_type = PNG_COLOR_TYPE_RGB_ALPHA;
-			break;
-		default:
-			color_type = PNG_COLOR_TYPE_RGB;
-			break;
-		}
-
-		hf = vfs_open(fn, FILE_WRITE|FILE_NO_AIO);
-		if(hf < 0)
-		{
-			err = (int)hf;
-			goto fail;
-		}
-		png_set_write_fn(png_ptr, &hf, png_write, png_flush);
-
-		png_set_IHDR(png_ptr, info_ptr, w, h, 8, color_type,
-			PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
-
-		int ret = alloc_rows(img, h, pitch, TEX_TOP_DOWN, rows);
-		if(ret < 0)
-		{
-			err = ret;
-			goto fail;
-		}
-
-		png_set_rows(png_ptr, info_ptr, (png_bytepp)rows);
-		png_write_png(png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, 0);
-
-		err = 0;
-
+		err = ret;
+		goto fail;
 	}
+
+
+	// could use cinfo.output_scanline to keep track of progress,
+	// but we need to count lines_left anyway (paranoia).
+	JSAMPARRAY row = (JSAMPARRAY)rows;
+	JDIMENSION lines_left = t->h;
+	while(lines_left != 0)
+	{
+		JDIMENSION lines_read = jpeg_write_scanlines(&cinfo, row, lines_left);
+		row += lines_read;
+		lines_left -= lines_read;
+
+		// we've decoded in-place; no need to further process
+	}
+
+	(void)jpeg_finish_compress(&cinfo);
+
+	if(jerr.pub.num_warnings != 0)
+		debug_out("jpg_encode: corrupt-data warning(s) occurred\n");
+
+	err = 0;
 
 	// shared cleanup
 ret:
-	png_destroy_write_struct(&png_ptr, &info_ptr);
-
 	free(rows);
-	vfs_close(hf);
+
+	jpeg_destroy_compress(&cinfo);
+		// releases a "good deal" of memory
 
 	return err;
 }

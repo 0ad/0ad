@@ -304,23 +304,27 @@ static void WriteScreenshot(bool use_bmp = false)
 	// could fix via enumerating all files, but it's not worth it ATM.
 	char fn[VFS_MAX_PATH];
 
-	const char* file_format =
-					use_bmp	? "screenshots/screenshot%04d.bmp"
-							: "screenshots/screenshot%04d.png";
+	const char* file_format_string = "screenshots/screenshot%04d.%s";
+		// %04d -> always 4 digits, so sorting by filename works correctly.
+	const char* extension = use_bmp? "bmp" : "png";
 
 	static int next_num = 1;
 	do
-		sprintf(fn, file_format, next_num++);
+		sprintf(fn, file_format_string, next_num++, extension);
 	while(vfs_exists(fn));
 
 	const int w = g_xres, h = g_yres;
 	const int bpp = 24;
+	const GLenum fmt = use_bmp? GL_BGR : GL_RGB;
+	const int flags = use_bmp? TEX_BGR|TEX_BOTTOM_UP : TEX_BOTTOM_UP;
+		// we want writing BMP to be as fast as possible,
+		// so read data from OpenGL in BMP format to obviate conversion.
 	const size_t size = w * h * bpp;
 	void* img = mem_alloc(size);
 
-	glReadPixels(0, 0, w, h, use_bmp?GL_BGR:GL_RGB, GL_UNSIGNED_BYTE, img);
+	glReadPixels(0, 0, w, h, fmt, GL_UNSIGNED_BYTE, img);
 
-	if(tex_write(fn, w, h, bpp, use_bmp?TEX_BGR:0, img) < 0)
+	if(tex_write(fn, w, h, bpp, flags, img) < 0)
 		debug_warn("WriteScreenshot: tex_write failed");
 
 	mem_free(img);

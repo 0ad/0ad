@@ -86,6 +86,14 @@ extern int SDL_KillThread(SDL_Thread*);
 
 extern int SDL_WarpMouse(int, int);
 
+enum ShowCursorToggle
+{
+	SDL_DISABLE = 0,
+	SDL_ENABLE  = 1,
+	SDL_QUERY   = 2
+};
+extern int SDL_ShowCursor(int toggle);
+
 
 extern int SDL_SetGamma(float r, float g, float b);
 
@@ -110,6 +118,9 @@ extern int SDL_SetGamma(float r, float g, float b);
 #endif
 
 #ifdef _MSC_VER
+#pragma intrinsic(_byteswap_ushort)
+#pragma intrinsic(_byteswap_ulong)
+#pragma intrinsic(_byteswap_uint64)
 # define SDL_Swap16 _byteswap_ushort
 # define SDL_Swap32 _byteswap_ulong
 # define SDL_Swap64 _byteswap_uint64

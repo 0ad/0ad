@@ -26,9 +26,16 @@
 enum TexInfoFlags
 {
 	TEX_DXT   = 0x07,	// mask; value = {1,3,5}
-	TEX_BGR   = 8,
-	TEX_ALPHA = 16,
-	TEX_GRAY  = 32,
+	TEX_BGR   = 0x08,
+	TEX_ALPHA = 0x10,
+	TEX_GRAY  = 0x20,
+
+	// orientation - never returned by tex_load, since it automatically
+	// flips to match global orientation. these are passed to tex_write
+	// to indicate the image orientation, or to tex_set_global_orientation.
+	TEX_BOTTOM_UP = 0x40,
+	TEX_TOP_DOWN  = 0x80,
+	TEX_ORIENTATION = TEX_BOTTOM_UP|TEX_TOP_DOWN	// mask
 };
 
 // minimize size - stored in ogl tex resource control block
@@ -49,13 +56,7 @@ extern int tex_free(TexInfo* ti);
 extern int tex_write(const char* fn, int w, int h, int bpp, int flags, void* img);
 
 
-enum TexOrientation
-{
-	// value doesn't matter; we XOR global and format's settings
-	TEX_BOTTOM_UP = 0,
-	TEX_TOP_DOWN  = 1
-};
-
-extern void tex_set_global_orientation(TexOrientation);
+// param: either TEX_BOTTOM_UP or TEX_TOP_DOWN
+extern void tex_set_global_orientation(int orientation);
 
 #endif	// __TEX_H__

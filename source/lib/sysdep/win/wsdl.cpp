@@ -114,14 +114,20 @@ static LRESULT CALLBACK wndproc(HWND hWnd, unsigned int uMsg, WPARAM wParam, LPA
 		app_active = (wParam & 0xffff) != 0;
 
 		gamma_swap(!app_active);
-debug_out("active=%d\n", app_active);
+
 		if(fullscreen)
-		{
+			// (re)activating
 			if(app_active)
+			{
 				ChangeDisplaySettings(&dm, CDS_FULLSCREEN);
+				ShowWindow(hWnd, SW_RESTORE);
+			}
+			// deactivating
 			else
+			{
 				ChangeDisplaySettings(0, 0);
-		}
+				ShowWindow(hWnd, SW_MINIMIZE);
+			}
 		break;
 
 	case WM_CLOSE:
@@ -970,7 +976,21 @@ inline int SDL_WarpMouse(int x, int y)
 }
 
 
-
+int SDL_ShowCursor(int toggle)
+{
+	static int cursor_visible = SDL_ENABLE;
+	if(toggle != SDL_QUERY)
+	{
+		// only call Windows ShowCursor if changing the visibility -
+		// it maintains a counter.
+		if(cursor_visible != toggle)
+		{
+			ShowCursor(toggle);
+			cursor_visible = toggle;
+		}
+	}
+	return cursor_visible;
+}
 
 
 

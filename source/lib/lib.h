@@ -336,6 +336,8 @@ extern u16 subusw(u16 x, u16 y);
 
 extern u16 read_le16(const void* p);
 extern u32 read_le32(const void* p);
+extern u16 read_be16(const void* p);
+extern u32 read_be32(const void* p);
 
 
 extern bool is_pow2(long n);
