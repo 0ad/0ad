@@ -280,9 +280,9 @@ void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan)
 				XML_Setting("Template", entity->m_base->m_Tag);
 
 				#ifdef SCED // HACK: ScEd doesn't have a g_Game, so we can't use its CPlayers
-					XML_Setting("Player", (int)(intptr_t)entity->m_player);
+					XML_Setting( "Player", (int)(intptr_t)entity->GetPlayer() );
 				#else
-					XML_Setting("Player", entity->m_player);
+					XML_Setting( "Player", entity->GetPlayer() );
 				#endif
 
 				{
