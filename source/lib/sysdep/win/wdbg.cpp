@@ -563,9 +563,6 @@ static void walk_stack(int skip, wchar_t* out_buf, CONTEXT* override_context = N
 /*---------------------------------------------------------------------------*/
 
 
-#include "resource.h"
-
-
 typedef enum
 {
 	ASSERT,
