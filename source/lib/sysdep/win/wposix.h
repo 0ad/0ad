@@ -358,8 +358,9 @@ enum
 	SCHED_OTHER
 };
 
-#define sched_get_priority_max(policy) 15		// TIME_CRITICAL
-#define sched_get_priority_min(policy) -15		// IDLE
+#define sched_get_priority_max(policy) +2
+#define sched_get_priority_min(policy) -2
+	// changing will break pthread_setschedparam
 
 
 //

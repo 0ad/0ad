@@ -344,8 +344,8 @@ static void measure_cpu_freq()
 	int old_policy; static sched_param old_param;	// (static => 0-init)
 	pthread_getschedparam(pthread_self(), &old_policy, &old_param);
 	static sched_param max_param;
-	max_param.sched_priority = sched_get_priority_max(SCHED_RR);
-	pthread_setschedparam(pthread_self(), SCHED_RR, &max_param);
+	max_param.sched_priority = sched_get_priority_max(SCHED_FIFO);
+	pthread_setschedparam(pthread_self(), SCHED_FIFO, &max_param);
 
 	if(ia32_cap(TSC))
 		// make sure the TSC is available, because we're going to

@@ -342,11 +342,21 @@ int pthread_getschedparam(pthread_t thread, int* policy, struct sched_param* par
 
 int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param* param)
 {
-	if(policy == SCHED_FIFO)
-		SetPriorityClass(GetCurrentProcess(), HIGH_PRIORITY_CLASS);
+	const int pri = param->sched_priority;
 
+	// additional boost for policy == SCHED_FIFO
+	DWORD pri_class = NORMAL_PRIORITY_CLASS;
+	if(policy == SCHED_FIFO)
+	{
+		pri_class = HIGH_PRIORITY_CLASS;
+		if(pri == 2)
+			pri_class = REALTIME_PRIORITY_CLASS;
+	}
+	SetPriorityClass(GetCurrentProcess(), pri_class);
+
+	// choose fixed Windows values from pri
 	const HANDLE hThread = cast_to_HANDLE((intptr_t)thread);
-	SetThreadPriority(hThread, param->sched_priority);
+	SetThreadPriority(hThread, pri);
 	return 0;
 }
 
