@@ -167,41 +167,41 @@
                 <image backcolor="0 0 0" size="0 0 100% 100%" />
         </sprite>
 
-	<!-- Standard 0 A.D.-style framed window -->
+        <!-- Standard 0 A.D.-style framed window -->
         <sprite name="0ad_window">
                 <!-- middle -->
                 <image texture="global/ui_gen_background_paper.png" texture_size="0 0 128 128" size="0%-10 0%-10 100%+10 100%+10" />
                 <!-- Starting with top left corner continuing in a clockwise manner -->
-		<image texture="global/ui_gen_border_corner_15px.png" real_texture_placement="0 0 15 15" size="0%-25 0%-25 0%-10 0%-10" />
-		<image texture="global/ui_gen_border_top_20px.png" texture_size="0 0 128 32" size="0%-10 0%-25 100%+10 0%+7" />
-		<image texture="global/ui_gen_border_corner_15px.png" real_texture_placement="0 0 15 15" size="100%+10 0%-25 100%+25 0%-10" />
-		<image texture="global/ui_gen_border_right_20px.png" texture_size="0 0 32 128" size="100%-6 0%-10 100%+26 100%+10" />
-		<image texture="global/ui_gen_border_corner_15px.png" real_texture_placement="0 0 15 15" size="100%+10 100%+10 100%+25 100%+25" />
-		<image texture="global/ui_gen_border_bottom_20px.png" texture_size="0 0 128 32" size="0%-10 100%-7 100%+10 100%+25" />
-		<image texture="global/ui_gen_border_corner_15px.png" real_texture_placement="0 0 15 15" size="0%-25 100%+10 0%-10 100%+25" />
-		<image texture="global/ui_gen_border_left_20px.png" texture_size="0 0 32 128" size="0%-25 0%-10 0%+7 100%+10" />
+                <image texture="global/ui_gen_border_corner_15px.png" real_texture_placement="0 0 15 15" size="0%-25 0%-25 0%-10 0%-10" />
+                <image texture="global/ui_gen_border_top_20px.png" texture_size="0 0 128 32" size="0%-10 0%-25 100%+10 0%+7" />
+                <image texture="global/ui_gen_border_corner_15px.png" real_texture_placement="0 0 15 15" size="100%+10 0%-25 100%+25 0%-10" />
+                <image texture="global/ui_gen_border_right_20px.png" texture_size="0 0 32 128" size="100%-6 0%-10 100%+26 100%+10" />
+                <image texture="global/ui_gen_border_corner_15px.png" real_texture_placement="0 0 15 15" size="100%+10 100%+10 100%+25 100%+25" />
+                <image texture="global/ui_gen_border_bottom_20px.png" texture_size="0 0 128 32" size="0%-10 100%-7 100%+10 100%+25" />
+                <image texture="global/ui_gen_border_corner_15px.png" real_texture_placement="0 0 15 15" size="0%-25 100%+10 0%-10 100%+25" />
+                <image texture="global/ui_gen_border_left_20px.png" texture_size="0 0 32 128" size="0%-25 0%-10 0%+7 100%+10" />
         </sprite>
 
-	<!-- Standard 0 A.D.-style window's title bar -->
+        <!-- Standard 0 A.D.-style window's title bar -->
         <sprite name="0ad_window_title">
                 <image texture="global/ui_gen_titlebar_left.png" real_texture_placement="0 0 64 32" size="0%+0 0%-10 5%+64 0%+22" />
                 <image texture="global/ui_gen_titlebar_middle.png" real_texture_placement="0 0 64 32" size="5%+64 0%-10 95%-64 0%+22" />
                 <image texture="global/ui_gen_titlebar_right.png" real_texture_placement="0 0 64 32" size="95%-64 0%-10 100%+0 0%+22" />
-	</sprite>
+        </sprite>
 
-	<sprite name="0ad_indent">
-		<!-- Starting with top left corner continuing in a clockwise manner -->
-		<!-- Top border -->
-		<image backcolor="109 122 146" size="0 0 100%-1 1" />
-		<!-- Right border -->
-		<image backcolor="220 223 228" size="100%-1 0 100% 100%" />
-		<!-- Bottom border -->
-		<image backcolor="220 223 228" size="0 100%-1 100% 100%" />
-		<!-- Left border -->
-		<image backcolor="109 122 146" size="0 0 1 100%-1" />
-		<!-- middle -->
-		<image backcolor="0 0 0 85" size="1 1 100%-1 100%-1"/>
-	</sprite>
+        <sprite name="0ad_indent">
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <!-- Top border -->
+                <image backcolor="109 122 146" size="0 0 100%-1 1" />
+                <!-- Right border -->
+                <image backcolor="220 223 228" size="100%-1 0 100% 100%" />
+                <!-- Bottom border -->
+                <image backcolor="220 223 228" size="0 100%-1 100% 100%" />
+                <!-- Left border -->
+                <image backcolor="109 122 146" size="0 0 1 100%-1" />
+                <!-- middle -->
+                <image backcolor="0 0 0 85" size="1 1 100%-1 100%-1"/>
+        </sprite>
 
         <sprite name="translucent_background">
                 <image backcolor="0 0 0 85" size="0 0 100% 100%"/>
@@ -326,7 +326,7 @@
         </sprite>
 
         <sprite name="pregame_mainmenu_edbt">
-                <image texture="pregame/ui_pregame_mainmenu_edbt_over.png" real_texture_placement="1 1 203 161" size="0 0 100% 100%" />
+                <image texture="pregame/ui_pregame_mainmenu_edbt_over.png" real_texture_placement="0 0 204 162" size="0 0 100% 100%" />
         </sprite>
 
         <!--
@@ -525,11 +525,11 @@
                         <image texture="session/portraits/ui_portrait_default_circle.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_default_circle_lit">
-			<effect add_color="42 42 42 0"/>
+                        <effect add_color="42 42 42 0"/>
                         <image texture="session/portraits/ui_portrait_default_circle.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_default_circle_grey">
-			<effect grayscale=""/>
+                        <effect grayscale=""/>
                         <image texture="session/portraits/ui_portrait_default_circle.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
 
@@ -538,11 +538,11 @@
                         <image texture="session/portraits/ui_portrait_default_square.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_default_square_lit">
-			<effect add_color="42 42 42 0"/>
+                        <effect add_color="42 42 42 0"/>
                         <image texture="session/portraits/ui_portrait_default_square.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_default_square_grey">
-			<effect grayscale=""/>
+                        <effect grayscale=""/>
                         <image texture="session/portraits/ui_portrait_default_square.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
 
@@ -556,11 +556,11 @@
                         <image texture="session/portraits/ui_portrait_sheet_action.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_action_lit">
-			<effect add_color="42 42 42 0"/>
-			<image texture="session/portraits/ui_portrait_sheet_action.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+                        <effect add_color="42 42 42 0"/>
+                        <image texture="session/portraits/ui_portrait_sheet_action.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_action_grey">
-			<effect grayscale=""/>
+                        <effect grayscale=""/>
                         <image texture="session/portraits/ui_portrait_sheet_action.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
@@ -575,11 +575,11 @@
                         <image texture="session/portraits/ui_portrait_unit_dude.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_unit_dude_lit">
-			<effect add_color="42 42 42 0"/>
+                        <effect add_color="42 42 42 0"/>
                         <image texture="session/portraits/ui_portrait_unit_dude.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_unit_dude_grey">
-			<effect grayscale=""/>
+                        <effect grayscale=""/>
                         <image texture="session/portraits/ui_portrait_unit_dude.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
 
@@ -588,11 +588,11 @@
                         <image texture="session/portraits/ui_portrait_unit_dudette.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_unit_dudette_lit">
-			<effect add_color="42 42 42 0"/>
+                        <effect add_color="42 42 42 0"/>
                         <image texture="session/portraits/ui_portrait_unit_dudette.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_unit_dudette_grey">
-			<effect grayscale=""/>
+                        <effect grayscale=""/>
                         <image texture="session/portraits/ui_portrait_unit_dudette.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
 
@@ -601,11 +601,11 @@
                         <image texture="session/portraits/ui_portrait_flora_deciduotree.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_flora_deciduotree_lit">
-			<effect add_color="42 42 42 0"/>
+                        <effect add_color="42 42 42 0"/>
                         <image texture="session/portraits/ui_portrait_flora_deciduotree.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
                 <sprite name="ui_portrait_flora_deciduotree_grey">
-			<effect grayscale=""/>
+                        <effect grayscale=""/>
                         <image texture="session/portraits/ui_portrait_flora_deciduotree.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
 
@@ -619,11 +619,11 @@
                         <image texture="session/portraits/ui_portrait_sheet_civ_celt.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_celt_grey">
-			<effect grayscale=""/>
+                        <effect grayscale=""/>
                         <image texture="session/portraits/ui_portrait_sheet_civ_celt.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_celt_lit">
-			<effect add_color="42 42 42 0"/>
+                        <effect add_color="42 42 42 0"/>
                         <image texture="session/portraits/ui_portrait_sheet_civ_celt.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
@@ -637,11 +637,11 @@
                         <image texture="session/portraits/ui_portrait_sheet_civ_hele.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_hele_grey">
-			<effect grayscale=""/>
+                        <effect grayscale=""/>
                         <image texture="session/portraits/ui_portrait_sheet_civ_hele.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_hele_lit">
-			<effect add_color="42 42 42 0"/>
+                        <effect add_color="42 42 42 0"/>
                         <image texture="session/portraits/ui_portrait_sheet_civ_hele.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
@@ -655,11 +655,11 @@
                         <image texture="session/portraits/ui_portrait_sheet_civ_iber.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_iber_grey">
-			<effect grayscale=""/>
+                        <effect grayscale=""/>
                         <image texture="session/portraits/ui_portrait_sheet_civ_iber.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_iber_lit">
-			<effect add_color="42 42 42 0"/>
+                        <effect add_color="42 42 42 0"/>
                         <image texture="session/portraits/ui_portrait_sheet_civ_iber.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
@@ -673,11 +673,11 @@
                         <image texture="session/portraits/ui_portrait_sheet_civ_kart.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_kart_grey">
-			<effect grayscale=""/>
+                        <effect grayscale=""/>
                         <image texture="session/portraits/ui_portrait_sheet_civ_kart.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_kart_lit">
-			<effect add_color="42 42 42 0"/>
+                        <effect add_color="42 42 42 0"/>
                         <image texture="session/portraits/ui_portrait_sheet_civ_kart.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
@@ -691,11 +691,11 @@
                         <image texture="session/portraits/ui_portrait_sheet_civ_pers.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_pers_grey">
-			<effect grayscale=""/>
+                        <effect grayscale=""/>
                         <image texture="session/portraits/ui_portrait_sheet_civ_pers.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_pers_lit">
-			<effect add_color="42 42 42 0"/>
+                        <effect add_color="42 42 42 0"/>
                         <image texture="session/portraits/ui_portrait_sheet_civ_pers.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
@@ -709,11 +709,11 @@
                         <image texture="session/portraits/ui_portrait_sheet_civ_rome.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_rome_grey">
-			<effect grayscale=""/>
+                        <effect grayscale=""/>
                         <image texture="session/portraits/ui_portrait_sheet_civ_rome.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
                 <sprite name="ui_portrait_sheet_civ_rome_lit">
-			<effect add_color="42 42 42 0"/>
+                        <effect add_color="42 42 42 0"/>
                         <image texture="session/portraits/ui_portrait_sheet_civ_rome.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
@@ -723,217 +723,217 @@
         ==========================================
         -->
 
-	<sprite name="atlas_window">
-		<!-- Starting with top left corner continuing in a clockwise manner -->
-		<!-- Top border -->
-		<image backcolor="129 134 142" size="0%+0 0%+0 100%-1 0%+1" />
-		<image backcolor="255 255 255" size="0%+1 0%+1 100%-1 0%+2" />
-		<image backcolor="80 97 127" size="2 0%+2 100%-2 0%+3" />
-		<!-- Right border -->
-		<image backcolor="80 97 127" size="100%-1 0%+0 100% 100%" />
-		<image backcolor="255 255 255" size="100%-1 0%+1 100%-2 100%-1" />
-		<image backcolor="129 134 142" size="100%-2 0%+3 100%-3 100%-2" />
-		<!-- Bottom border -->
-		<image backcolor="80 97 127" size="0%+1 100%-1 100% 100%" />
-		<image backcolor="255 255 255" size="0%+1 100%-1 100%-1 100%-2" />
-		<image backcolor="129 134 142" size="0%+2 100%-2 100%-2 100%-3" />
-		<!-- Left border -->
-		<image backcolor="129 134 142" size="0%+0 0%+0 0%+1 100%" />
-		<image backcolor="255 255 255" size="0%+1 0%+1 0%+2 100%-1" />
-		<image backcolor="80 97 127" size="0%+2 0%+2 0%+3 100%-3" />
-		<!-- middle -->
-		<image backcolor="184 190 201" size="3 3 100%-3 100%-3"/>
-	</sprite>
+        <sprite name="atlas_window">
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <!-- Top border -->
+                <image backcolor="129 134 142" size="0%+0 0%+0 100%-1 0%+1" />
+                <image backcolor="255 255 255" size="0%+1 0%+1 100%-1 0%+2" />
+                <image backcolor="80 97 127" size="2 0%+2 100%-2 0%+3" />
+                <!-- Right border -->
+                <image backcolor="80 97 127" size="100%-1 0%+0 100% 100%" />
+                <image backcolor="255 255 255" size="100%-1 0%+1 100%-2 100%-1" />
+                <image backcolor="129 134 142" size="100%-2 0%+3 100%-3 100%-2" />
+                <!-- Bottom border -->
+                <image backcolor="80 97 127" size="0%+1 100%-1 100% 100%" />
+                <image backcolor="255 255 255" size="0%+1 100%-1 100%-1 100%-2" />
+                <image backcolor="129 134 142" size="0%+2 100%-2 100%-2 100%-3" />
+                <!-- Left border -->
+                <image backcolor="129 134 142" size="0%+0 0%+0 0%+1 100%" />
+                <image backcolor="255 255 255" size="0%+1 0%+1 0%+2 100%-1" />
+                <image backcolor="80 97 127" size="0%+2 0%+2 0%+3 100%-3" />
+                <!-- middle -->
+                <image backcolor="184 190 201" size="3 3 100%-3 100%-3"/>
+        </sprite>
 
-	<sprite name="atlas_window_rt_border">
-		<!-- Starting with top left corner continuing in a clockwise manner -->
-		<!-- Top border -->
-		<image backcolor="129 134 142" size="0%+0 0%+0 100%-1 0%+1" />
-		<image backcolor="255 255 255" size="0%+1 0%+1 100%-1 0%+2" />
-		<image backcolor="80 97 127" size="2 0%+2 100%-2 0%+3" />
-		<!-- Right border -->
-		<image backcolor="80 97 127" size="100%-1 0%+0 100% 100%" />
-		<image backcolor="255 255 255" size="100%-1 0%+1 100%-2 100%-1" />
-		<image backcolor="129 134 142" size="100%-2 0%+3 100%-3 100%-2" />
-		<!-- Bottom border -->
-		<!-- Left border -->
-		<!-- middle -->
-		<image backcolor="184 190 201" size="0 3 100%-3 100%"/>
-	</sprite>
+        <sprite name="atlas_window_rt_border">
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <!-- Top border -->
+                <image backcolor="129 134 142" size="0%+0 0%+0 100%-1 0%+1" />
+                <image backcolor="255 255 255" size="0%+1 0%+1 100%-1 0%+2" />
+                <image backcolor="80 97 127" size="2 0%+2 100%-2 0%+3" />
+                <!-- Right border -->
+                <image backcolor="80 97 127" size="100%-1 0%+0 100% 100%" />
+                <image backcolor="255 255 255" size="100%-1 0%+1 100%-2 100%-1" />
+                <image backcolor="129 134 142" size="100%-2 0%+3 100%-3 100%-2" />
+                <!-- Bottom border -->
+                <!-- Left border -->
+                <!-- middle -->
+                <image backcolor="184 190 201" size="0 3 100%-3 100%"/>
+        </sprite>
 
-	<sprite name="atlas_window_t_border">
-		<!-- Starting with top left corner continuing in a clockwise manner -->
-		<!-- Top border -->
-		<image backcolor="129 134 142" size="0%+0 0%+0 100%-1 0%+1" />
-		<image backcolor="255 255 255" size="0%+1 0%+1 100%-1 0%+2" />
-		<image backcolor="80 97 127" size="2 0%+2 100%-2 0%+3" />
-		<!-- Right border -->
-		<!-- Bottom border -->
-		<!-- Left border -->
-		<!-- middle -->
-		<image backcolor="184 190 201" size="0 3 100% 100%"/>
-	</sprite>
+        <sprite name="atlas_window_t_border">
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <!-- Top border -->
+                <image backcolor="129 134 142" size="0%+0 0%+0 100%-1 0%+1" />
+                <image backcolor="255 255 255" size="0%+1 0%+1 100%-1 0%+2" />
+                <image backcolor="80 97 127" size="2 0%+2 100%-2 0%+3" />
+                <!-- Right border -->
+                <!-- Bottom border -->
+                <!-- Left border -->
+                <!-- middle -->
+                <image backcolor="184 190 201" size="0 3 100% 100%"/>
+        </sprite>
 
-	<sprite name="atlas_window_white">
-		<!-- Starting with top left corner continuing in a clockwise manner -->
-		<!-- Top border -->
-		<image backcolor="129 134 142" size="0%+0 0%+0 100%-1 0%+1" />
-		<image backcolor="255 255 255" size="0%+1 0%+1 100%-1 0%+2" />
-		<image backcolor="80 97 127" size="2 0%+2 100%-2 0%+3" />
-		<!-- Right border -->
-		<image backcolor="80 97 127" size="100%-1 0%+0 100% 100%" />
-		<image backcolor="255 255 255" size="100%-1 0%+1 100%-2 100%-1" />
-		<image backcolor="129 134 142" size="100%-2 0%+3 100%-3 100%-2" />
-		<!-- Bottom border -->
-		<image backcolor="80 97 127" size="0%+1 100%-1 100% 100%" />
-		<image backcolor="255 255 255" size="0%+1 100%-1 100%-1 100%-2" />
-		<image backcolor="129 134 142" size="0%+2 100%-2 100%-2 100%-3" />
-		<!-- Left border -->
-		<image backcolor="129 134 142" size="0%+0 0%+0 0%+1 100%" />
-		<image backcolor="255 255 255" size="0%+1 0%+1 0%+2 100%-1" />
-		<image backcolor="80 97 127" size="0%+2 0%+2 0%+3 100%-3" />
-		<!-- middle -->
-		<image backcolor="255 255 255" size="3 3 100%-3 100%-3"/>
-	</sprite>
+        <sprite name="atlas_window_white">
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <!-- Top border -->
+                <image backcolor="129 134 142" size="0%+0 0%+0 100%-1 0%+1" />
+                <image backcolor="255 255 255" size="0%+1 0%+1 100%-1 0%+2" />
+                <image backcolor="80 97 127" size="2 0%+2 100%-2 0%+3" />
+                <!-- Right border -->
+                <image backcolor="80 97 127" size="100%-1 0%+0 100% 100%" />
+                <image backcolor="255 255 255" size="100%-1 0%+1 100%-2 100%-1" />
+                <image backcolor="129 134 142" size="100%-2 0%+3 100%-3 100%-2" />
+                <!-- Bottom border -->
+                <image backcolor="80 97 127" size="0%+1 100%-1 100% 100%" />
+                <image backcolor="255 255 255" size="0%+1 100%-1 100%-1 100%-2" />
+                <image backcolor="129 134 142" size="0%+2 100%-2 100%-2 100%-3" />
+                <!-- Left border -->
+                <image backcolor="129 134 142" size="0%+0 0%+0 0%+1 100%" />
+                <image backcolor="255 255 255" size="0%+1 0%+1 0%+2 100%-1" />
+                <image backcolor="80 97 127" size="0%+2 0%+2 0%+3 100%-3" />
+                <!-- middle -->
+                <image backcolor="255 255 255" size="3 3 100%-3 100%-3"/>
+        </sprite>
 
-	<sprite name="atlas_window_grey">
-		<!-- Starting with top left corner continuing in a clockwise manner -->
-		<!-- Top border -->
-		<image backcolor="129 134 142" size="0%-3 0%-3 100%+2 0%+1" />
-		<image backcolor="255 255 255" size="0%-2 0%-2 100%+2 0%+2" />
-		<image backcolor="80 97 127"   size="0%-1 0%-1 100%+1 0%+3" />
-		<!-- Right border -->
-		<image backcolor="80 97 127"   size="100%+2 0%-3 100%+0 100%+3" />
-		<image backcolor="255 255 255" size="100%+2 0%-2 100%+1 100%+2" />
-		<image backcolor="129 134 142" size="100%+1 0%+0 100%+0 100%+1" />
-		<!-- Bottom border -->
-		<image backcolor="80 97 127"   size="0%-2 100%+2 100%+3 100%+3" />
-		<image backcolor="255 255 255" size="0%-2 100%+2 100%+2 100%+1" />
-		<image backcolor="129 134 142" size="0%-1 100%+1 100%+1 100%+0" />
-		<!-- Left border -->
-		<image backcolor="129 134 142" size="0%-3 0%-3 0%-2 100%+3" />
-		<image backcolor="255 255 255" size="0%-2 0%-2 0%-1 100%+2" />
-		<image backcolor="80 97 127"   size="0%-1 0%-1 0%+0 100%+1" />
-		<!-- middle -->
-		<image backcolor="220 223 228" size="0%+0 0%+0 100%+0 100%+0"/>
-	</sprite>
+        <sprite name="atlas_window_grey">
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <!-- Top border -->
+                <image backcolor="129 134 142" size="0%-3 0%-3 100%+2 0%+1" />
+                <image backcolor="255 255 255" size="0%-2 0%-2 100%+2 0%+2" />
+                <image backcolor="80 97 127"   size="0%-1 0%-1 100%+1 0%+3" />
+                <!-- Right border -->
+                <image backcolor="80 97 127"   size="100%+2 0%-3 100%+0 100%+3" />
+                <image backcolor="255 255 255" size="100%+2 0%-2 100%+1 100%+2" />
+                <image backcolor="129 134 142" size="100%+1 0%+0 100%+0 100%+1" />
+                <!-- Bottom border -->
+                <image backcolor="80 97 127"   size="0%-2 100%+2 100%+3 100%+3" />
+                <image backcolor="255 255 255" size="0%-2 100%+2 100%+2 100%+1" />
+                <image backcolor="129 134 142" size="0%-1 100%+1 100%+1 100%+0" />
+                <!-- Left border -->
+                <image backcolor="129 134 142" size="0%-3 0%-3 0%-2 100%+3" />
+                <image backcolor="255 255 255" size="0%-2 0%-2 0%-1 100%+2" />
+                <image backcolor="80 97 127"   size="0%-1 0%-1 0%+0 100%+1" />
+                <!-- middle -->
+                <image backcolor="220 223 228" size="0%+0 0%+0 100%+0 100%+0"/>
+        </sprite>
 
-	<sprite name="atlas_input_box">
-		<image backcolor="220 223 228" size="-4 -5 100%+2 100%+1" />
-		<image backcolor="109 122 146" size="-4 -5 100%+1 100%" />
-		<image backcolor="184 190 201" size="-3 -4 100%+1 100%" />
-		<image backcolor="0 0 0"       size="-3 -4 100%   100%-1" />
-		<!-- middle -->
-		<image backcolor="220 223 228" size="-2 -3 100%   100%-1"/>
-	</sprite>
+        <sprite name="atlas_input_box">
+                <image backcolor="220 223 228" size="-4 -5 100%+2 100%+1" />
+                <image backcolor="109 122 146" size="-4 -5 100%+1 100%" />
+                <image backcolor="184 190 201" size="-3 -4 100%+1 100%" />
+                <image backcolor="0 0 0"       size="-3 -4 100%   100%-1" />
+                <!-- middle -->
+                <image backcolor="220 223 228" size="-2 -3 100%   100%-1"/>
+        </sprite>
 
-	<sprite name="atlas_emboss">
-		<!-- Starting with top left corner continuing in a clockwise manner -->
-		<!-- Top border -->
-		<image backcolor="220 223 228" size="0 0 100% 1" />
-		<!-- Right border -->
-		<image backcolor="109 122 146" size="100%-1 1 100% 100%" />
-		<!-- Bottom border -->
-		<image backcolor="109 122 146" size="1 100%-1 100% 100%" />
-		<!-- Left border -->
-		<image backcolor="220 223 228" size="0 0 1 100%" />
-		<!-- middle -->
-		<image backcolor="184 190 201" size="1 1 100%-1 100%-1"/>
-	</sprite>
+        <sprite name="atlas_emboss">
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <!-- Top border -->
+                <image backcolor="220 223 228" size="0 0 100% 1" />
+                <!-- Right border -->
+                <image backcolor="109 122 146" size="100%-1 1 100% 100%" />
+                <!-- Bottom border -->
+                <image backcolor="109 122 146" size="1 100%-1 100% 100%" />
+                <!-- Left border -->
+                <image backcolor="220 223 228" size="0 0 1 100%" />
+                <!-- middle -->
+                <image backcolor="184 190 201" size="1 1 100%-1 100%-1"/>
+        </sprite>
 
-	<sprite name="atlas_indent">
-		<!-- Starting with top left corner continuing in a clockwise manner -->
-		<!-- Top border -->
-		<image backcolor="109 122 146" size="0 0 100%-1 1" />
-		<!-- Right border -->
-		<image backcolor="220 223 228" size="100%-1 0 100% 100%" />
-		<!-- Bottom border -->
-		<image backcolor="220 223 228" size="0 100%-1 100% 100%" />
-		<!-- Left border -->
-		<image backcolor="109 122 146" size="0 0 1 100%-1" />
-		<!-- middle -->
-		<image backcolor="220 223 228" size="1 1 100%-1 100%-1"/>
-	</sprite>
+        <sprite name="atlas_indent">
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <!-- Top border -->
+                <image backcolor="109 122 146" size="0 0 100%-1 1" />
+                <!-- Right border -->
+                <image backcolor="220 223 228" size="100%-1 0 100% 100%" />
+                <!-- Bottom border -->
+                <image backcolor="220 223 228" size="0 100%-1 100% 100%" />
+                <!-- Left border -->
+                <image backcolor="109 122 146" size="0 0 1 100%-1" />
+                <!-- middle -->
+                <image backcolor="220 223 228" size="1 1 100%-1 100%-1"/>
+        </sprite>
 
-	<sprite name="atlas_hline">
-		<image backcolor="109 122 146" size="0% 0 100% 1" />
-		<image backcolor="220 223 228" size="0% 1 100% 2" />
-	</sprite>
+        <sprite name="atlas_hline">
+                <image backcolor="109 122 146" size="0% 0 100% 1" />
+                <image backcolor="220 223 228" size="0% 1 100% 2" />
+        </sprite>
 
-	<sprite name="atlas_vline">
-		<image backcolor="109 122 146" size="0 0 1 100%" />
-		<image backcolor="220 223 228" size="1 0 2 100%" />
-	</sprite>
+        <sprite name="atlas_vline">
+                <image backcolor="109 122 146" size="0 0 1 100%" />
+                <image backcolor="220 223 228" size="1 0 2 100%" />
+        </sprite>
 
-	<sprite name="atlas_toolbar_bkg">
-		<image backcolor="184 190 201" size="0 0 100% 100%-3" />
-		<image backcolor="109 122 146" size="0 100%-2 100% 100%-1" />
-		<image backcolor="220 223 228" size="0 100% 100% 100%-1" />
-		<image backcolor="147 152 161" size="0 100%-1 100% 100%" />
-	</sprite>
+        <sprite name="atlas_toolbar_bkg">
+                <image backcolor="184 190 201" size="0 0 100% 100%-3" />
+                <image backcolor="109 122 146" size="0 100%-2 100% 100%-1" />
+                <image backcolor="220 223 228" size="0 100% 100% 100%-1" />
+                <image backcolor="147 152 161" size="0 100%-1 100% 100%" />
+        </sprite>
 
-	<sprite name="atlas_menubar_bkg">
-		<image backcolor="184 190 201" size="0 0 100% 100%-1" />
-		<image backcolor="0 0 0" size="0 100%-1 100% 100%" />
-	</sprite>
+        <sprite name="atlas_menubar_bkg">
+                <image backcolor="184 190 201" size="0 0 100% 100%-1" />
+                <image backcolor="0 0 0" size="0 100%-1 100% 100%" />
+        </sprite>
 
-	<sprite name="atlas_border">
-		<!-- Starting with top left corner continuing in a clockwise manner -->
-		<!-- Top border -->
-		<image backcolor="109 122 146" size="1 0 100%-1 1" />
-		<image backcolor="220 223 228" size="1 1 100%-3 2" />
-		<image backcolor="184 190 201" size="100%-1 1 100%-2 2" />
-		<!-- Right border -->
-		<image backcolor="220 223 228" size="100%-1 0 100% 100%" />
-		<image backcolor="109 122 146" size="100%-1 0 100%-2 100%-1" />
-		<!-- Bottom border -->
-		<image backcolor="220 223 228" size="0% 100%-1 100% 100%" />
-		<image backcolor="109 122 146" size="0% 100%-1 100% 100%-2" />
-		<!-- Left border -->
-		<image backcolor="109 122 146" size="0 1 1 100%-2" />
-		<image backcolor="220 223 228" size="1 1 2 100%-2" />
-	</sprite>
+        <sprite name="atlas_border">
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <!-- Top border -->
+                <image backcolor="109 122 146" size="1 0 100%-1 1" />
+                <image backcolor="220 223 228" size="1 1 100%-3 2" />
+                <image backcolor="184 190 201" size="100%-1 1 100%-2 2" />
+                <!-- Right border -->
+                <image backcolor="220 223 228" size="100%-1 0 100% 100%" />
+                <image backcolor="109 122 146" size="100%-1 0 100%-2 100%-1" />
+                <!-- Bottom border -->
+                <image backcolor="220 223 228" size="0% 100%-1 100% 100%" />
+                <image backcolor="109 122 146" size="0% 100%-1 100% 100%-2" />
+                <!-- Left border -->
+                <image backcolor="109 122 146" size="0 1 1 100%-2" />
+                <image backcolor="220 223 228" size="1 1 2 100%-2" />
+        </sprite>
 
-	<sprite name="atlas_button">
-		<!-- Starting with top left corner continuing in a clockwise manner -->
-		<!-- Top border -->
-		<image backcolor="184 190 201" size="0 0 100%-1 1" />
-		<image backcolor="220 223 228" size="1 1 100%-2 2" />
-		<!-- Right border -->
-		<image backcolor="0 0 0" size="100%-1 0 100% 100%" />
-		<image backcolor="109 122 146" size="100%-1 1 100%-2 100%-1" />
-		<!-- Bottom border -->
-		<image backcolor="0 0 0" size="0 100%-1 100% 100%" />
-		<image backcolor="109 122 146" size="1 100%-1 100%-1 100%" />
-		<!-- Left border -->
-		<image backcolor="184 190 201" size="0 0 1 100%-1" />
-		<image backcolor="220 223 228" size="1 1 2 100%-1" />
-		<!-- middle -->
-		<image backcolor="184 190 201" size="2 2 100%-2 100%-2"/>
-	</sprite>
+        <sprite name="atlas_button">
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <!-- Top border -->
+                <image backcolor="184 190 201" size="0 0 100%-1 1" />
+                <image backcolor="220 223 228" size="1 1 100%-2 2" />
+                <!-- Right border -->
+                <image backcolor="0 0 0" size="100%-1 0 100% 100%" />
+                <image backcolor="109 122 146" size="100%-1 1 100%-2 100%-1" />
+                <!-- Bottom border -->
+                <image backcolor="0 0 0" size="0 100%-1 100% 100%" />
+                <image backcolor="109 122 146" size="1 100%-1 100%-1 100%" />
+                <!-- Left border -->
+                <image backcolor="184 190 201" size="0 0 1 100%-1" />
+                <image backcolor="220 223 228" size="1 1 2 100%-1" />
+                <!-- middle -->
+                <image backcolor="184 190 201" size="2 2 100%-2 100%-2"/>
+        </sprite>
 
-	<sprite name="atlas_button_lit">
-		<effect add_color="42 42 42 0"/>
-		<!-- Starting with top left corner continuing in a clockwise manner -->
-		<!-- Top border -->
-		<image backcolor="184 190 201" size="0 0 100%-1 1" />
-		<image backcolor="220 223 228" size="1 1 100%-2 2" />
-		<!-- Right border -->
-		<image backcolor="0 0 0" size="100%-1 0 100% 100%" />
-		<image backcolor="109 122 146" size="100%-1 1 100%-2 100%-1" />
-		<!-- Bottom border -->
-		<image backcolor="0 0 0" size="0 100%-1 100% 100%" />
-		<image backcolor="109 122 146" size="1 100%-1 100%-1 100%" />
-		<!-- Left border -->
-		<image backcolor="184 190 201" size="0 0 1 100%-1" />
-		<image backcolor="220 223 228" size="1 1 2 100%-1" />
-		<!-- middle -->
-		<image backcolor="184 190 201" size="2 2 100%-2 100%-2"/>
-	</sprite>
+        <sprite name="atlas_button_lit">
+                <effect add_color="42 42 42 0"/>
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <!-- Top border -->
+                <image backcolor="184 190 201" size="0 0 100%-1 1" />
+                <image backcolor="220 223 228" size="1 1 100%-2 2" />
+                <!-- Right border -->
+                <image backcolor="0 0 0" size="100%-1 0 100% 100%" />
+                <image backcolor="109 122 146" size="100%-1 1 100%-2 100%-1" />
+                <!-- Bottom border -->
+                <image backcolor="0 0 0" size="0 100%-1 100% 100%" />
+                <image backcolor="109 122 146" size="1 100%-1 100%-1 100%" />
+                <!-- Left border -->
+                <image backcolor="184 190 201" size="0 0 1 100%-1" />
+                <image backcolor="220 223 228" size="1 1 2 100%-1" />
+                <!-- middle -->
+                <image backcolor="184 190 201" size="2 2 100%-2 100%-2"/>
+        </sprite>
 
-	<sprite name="atlas_bkgcol">
-		<image backcolor="184 190 201" size="0 0 100% 100%"/>
-	</sprite>
+        <sprite name="atlas_bkgcol">
+                <image backcolor="184 190 201" size="0 0 100% 100%"/>
+        </sprite>
 
         <sprite name="atlas_tooltip_background">
                 <image backcolor="255 255 255 95" size="0 0 100% 100%"/>
@@ -959,8 +959,8 @@
 
         <sprite name="atlas_rb_corner_x2">
                 <image texture="atlas/atlas_global_corner_rb_x2.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-		<image backcolor="184 190 201" size="0 100%-1 100% 100%"/>
-		<image backcolor="184 190 201" size="100%-1 0 100% 100%"/>
+                <image backcolor="184 190 201" size="0 100%-1 100% 100%"/>
+                <image backcolor="184 190 201" size="100%-1 0 100% 100%"/>
         </sprite>
 
         <sprite name="atlas_global_arrow_up">
@@ -979,35 +979,35 @@
                 <image texture="atlas/atlas_global_arrow_rt.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
         </sprite>
 
-	<sprite name="atlas_sheet_toolbar_button">
-		<image texture="atlas/atlas_sheet_toolbar_button.png" cell_size="15 15" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-	</sprite>
+        <sprite name="atlas_sheet_toolbar_button">
+                <image texture="atlas/atlas_sheet_toolbar_button.png" cell_size="15 15" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+        </sprite>
 
-	<sprite name="atlas_sheet_dropdown_button">
-		<image texture="atlas/atlas_global_sheet_dropdownbutton" cell_size="9 5" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-	</sprite>
+        <sprite name="atlas_sheet_dropdown_button">
+                <image texture="atlas/atlas_global_sheet_dropdownbutton" cell_size="9 5" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+        </sprite>
 
-	<sprite name="atlas_sheet_updown_button">
-		<image texture="atlas/atlas_global_sheet_dropdownbutton_updown.png" cell_size="9 5" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-	</sprite>
+        <sprite name="atlas_sheet_updown_button">
+                <image texture="atlas/atlas_global_sheet_dropdownbutton_updown.png" cell_size="9 5" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+        </sprite>
 
-	<sprite name="atlas_global_button_up">
-		<image texture="atlas/atlas_global_button_up.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-	</sprite>
+        <sprite name="atlas_global_button_up">
+                <image texture="atlas/atlas_global_button_up.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+        </sprite>
 
-	<sprite name="atlas_global_button_up_lit">
-		<effect add_color="42 42 42 0"/>
-		<image texture="atlas/atlas_global_button_up.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-	</sprite>
+        <sprite name="atlas_global_button_up_lit">
+                <effect add_color="42 42 42 0"/>
+                <image texture="atlas/atlas_global_button_up.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+        </sprite>
 
-	<sprite name="atlas_global_button_dn">
-		<image texture="atlas/atlas_global_button_dn.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-	</sprite>
+        <sprite name="atlas_global_button_dn">
+                <image texture="atlas/atlas_global_button_dn.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+        </sprite>
 
-	<sprite name="atlas_global_button_dn_lit">
-		<effect add_color="42 42 42 0"/>
-		<image texture="atlas/atlas_global_button_dn.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-	</sprite>
+        <sprite name="atlas_global_button_dn_lit">
+                <effect add_color="42 42 42 0"/>
+                <image texture="atlas/atlas_global_button_dn.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+        </sprite>
 
         <sprite name="atlas_global_slider_bar_h">
                 <image texture="atlas/atlas_global_slider_bar_h.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
@@ -1033,55 +1033,55 @@
                 <image texture="atlas/atlas_global_tab_lit.png" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
         </sprite>
 
-	<sprite name="atlas_sheet_icon">
-		<image texture="atlas/atlas_sheet_icon_15x15.png" cell_size="15 15" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-	</sprite>
+        <sprite name="atlas_sheet_icon">
+                <image texture="atlas/atlas_sheet_icon_15x15.png" cell_size="15 15" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+        </sprite>
 
-	<sprite name="atlas_sheet_icon_indent">
-		<!-- Starting with top left corner continuing in a clockwise manner -->
-		<!-- Top border -->
-		<image backcolor="109 122 146" size="0 0 100%-1 1" />
-		<!-- Right border -->
-		<image backcolor="220 223 228" size="100%-1 0 100% 100%" />
-		<!-- Bottom border -->
-		<image backcolor="220 223 228" size="0 100%-1 100% 100%" />
-		<!-- Left border -->
-		<image backcolor="109 122 146" size="0 0 1 100%-1" />
-		<!-- middle -->
-		<image backcolor="220 223 228" size="1 1 100%-1 100%-1"/>
+        <sprite name="atlas_sheet_icon_indent">
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <!-- Top border -->
+                <image backcolor="109 122 146" size="0 0 100%-1 1" />
+                <!-- Right border -->
+                <image backcolor="220 223 228" size="100%-1 0 100% 100%" />
+                <!-- Bottom border -->
+                <image backcolor="220 223 228" size="0 100%-1 100% 100%" />
+                <!-- Left border -->
+                <image backcolor="109 122 146" size="0 0 1 100%-1" />
+                <!-- middle -->
+                <image backcolor="220 223 228" size="1 1 100%-1 100%-1"/>
 
-		<image texture="atlas/atlas_sheet_icon_15x15.png" cell_size="15 15" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-	</sprite>
+                <image texture="atlas/atlas_sheet_icon_15x15.png" cell_size="15 15" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+        </sprite>
 
-	<sprite name="atlas_sheet_icon_emboss">
-		<!-- Starting with top left corner continuing in a clockwise manner -->
-		<!-- Top border -->
-		<image backcolor="220 223 228" size="0 0 100% 1" />
-		<!-- Right border -->
-		<image backcolor="109 122 146" size="100%-1 1 100% 100%" />
-		<!-- Bottom border -->
-		<image backcolor="109 122 146" size="1 100%-1 100% 100%" />
-		<!-- Left border -->
-		<image backcolor="220 223 228" size="0 0 1 100%" />
-		<!-- middle -->
-		<image backcolor="184 190 201" size="1 1 100%-1 100%-1"/>
+        <sprite name="atlas_sheet_icon_emboss">
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <!-- Top border -->
+                <image backcolor="220 223 228" size="0 0 100% 1" />
+                <!-- Right border -->
+                <image backcolor="109 122 146" size="100%-1 1 100% 100%" />
+                <!-- Bottom border -->
+                <image backcolor="109 122 146" size="1 100%-1 100% 100%" />
+                <!-- Left border -->
+                <image backcolor="220 223 228" size="0 0 1 100%" />
+                <!-- middle -->
+                <image backcolor="184 190 201" size="1 1 100%-1 100%-1"/>
 
-		<image texture="atlas/atlas_sheet_icon_15x15.png" cell_size="15 15" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-	</sprite>
+                <image texture="atlas/atlas_sheet_icon_15x15.png" cell_size="15 15" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+        </sprite>
 
-	<sprite name="atlas_sheet_icon_border">
-		<!-- Starting with top left corner continuing in a clockwise manner -->
-		<!-- Top border -->
-		<image backcolor="0 255 0" size="0 0 100%-1 1" />
-		<!-- Right border -->
-		<image backcolor="0 255 0" size="100%-1 0 100% 100%" />
-		<!-- Bottom border -->
-		<image backcolor="0 255 0" size="0 100%-1 100% 100%" />
-		<!-- Left border -->
-		<image backcolor="0 255 0" size="0 0 1 100%-1" />
+        <sprite name="atlas_sheet_icon_border">
+                <!-- Starting with top left corner continuing in a clockwise manner -->
+                <!-- Top border -->
+                <image backcolor="0 255 0" size="0 0 100%-1 1" />
+                <!-- Right border -->
+                <image backcolor="0 255 0" size="100%-1 0 100% 100%" />
+                <!-- Bottom border -->
+                <image backcolor="0 255 0" size="0 100%-1 100% 100%" />
+                <!-- Left border -->
+                <image backcolor="0 255 0" size="0 0 1 100%-1" />
 
-		<image texture="atlas/atlas_sheet_icon_15x15.png" cell_size="15 15" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-	</sprite>
+                <image texture="atlas/atlas_sheet_icon_15x15.png" cell_size="15 15" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
+        </sprite>
 
         <!--
         ==========================================
