@@ -5,7 +5,7 @@
 #include <sstream>
 
 #ifdef _MSC_VER
-# ifndef NDEBUG
+# ifdef NDEBUG
 #  pragma comment(lib, "ogg.lib")
 #  pragma comment(lib, "vorbis.lib")
 #  pragma comment(lib, "vorbisfile.lib")
