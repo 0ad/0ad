@@ -6,6 +6,7 @@
 #include "gui/CGUI.h"
 #endif
 #include "timer.h"
+#include "Loader.h"
 
 CGame *g_Game=NULL;
 
@@ -39,6 +40,42 @@ CGame::~CGame()
 	debug_out("CGame::~CGame(): Game object DESTROYED\n");
 }
 
+
+
+PSRETURN CGame::RegisterInit(CGameAttributes* pAttribs)
+{
+	LDR_BeginRegistering();
+
+	// RC, 040804 - GameView needs to be initialised before World, otherwise GameView initialisation
+	// overwrites anything stored in the map file that gets loaded by CWorld::Initialize with default
+	// values.  At the minute, it's just lighting settings, but could be extended to store camera position.  
+	// Storing lighting settings in the gameview seems a little odd, but it's no big deal; maybe move it at 
+	// some point to be stored in the world object?
+	m_GameView.RegisterInit(pAttribs);
+	m_World.RegisterInit(pAttribs);
+	m_Simulation.RegisterInit(pAttribs);
+
+	LDR_EndRegistering();
+	return 0;
+}
+
+PSRETURN CGame::ReallyStartGame()
+{
+	jsval rval;
+	JSBool ok = JS_CallFunctionName(g_ScriptingHost.getContext(),
+		g_GUI.GetScriptObject(), "reallyStartGame", 0, NULL, &rval);
+	assert(ok);
+
+	debug_out("GAME STARTED, ALL INIT COMPLETE\n");
+	m_GameStarted=true;
+
+#ifndef NO_GUI
+	g_GUI.SendEventToAll("sessionstart");
+#endif
+
+	return 0;
+}
+
 PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 {
 	try
@@ -54,21 +91,7 @@ PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 		
 		m_pLocalPlayer=m_Players[1];
 
-		// RC, 040804 - GameView needs to be initialised before World, otherwise GameView initialisation
-		// overwrites anything stored in the map file that gets loaded by CWorld::Initialize with default
-		// values.  At the minute, it's just lighting settings, but could be extended to store camera position.  
-		// Storing lighting settings in the gameview seems a little odd, but it's no big deal; maybe move it at 
-		// some point to be stored in the world object?
-		m_GameView.Initialize(pAttribs);
-		m_World.Initialize(pAttribs);
-		m_Simulation.Initialize(pAttribs);
-
-		debug_out("GAME STARTED, ALL INIT COMPLETE\n");
-		m_GameStarted=true;
-
-#ifndef NO_GUI
-		g_GUI.SendEventToAll("sessionstart");
-#endif
+		RegisterInit(pAttribs);
 	}
 	catch (PSERROR_Game e)
 	{

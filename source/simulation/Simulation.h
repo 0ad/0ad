@@ -33,8 +33,9 @@ public:
 	inline CTurnManager *GetTurnManager()
 	{	return m_pTurnManager; }
 
+	void RegisterInit(CGameAttributes *pGameAttributes);
 	void Initialize(CGameAttributes *pGameAttributes);
-	
+
 	// Perform all CSimulation updates for the specified elapsed time.
 	void Update(double frameTime);
 

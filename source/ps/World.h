@@ -18,6 +18,7 @@ class CWorld
 	// been converted
 	CUnitManager &m_UnitManager;
 	CEntityManager &m_EntityManager;
+
 public:
 	inline CWorld(CGame *pGame):
 		m_pGame(pGame),
@@ -28,11 +29,13 @@ public:
 
 	~CWorld();
 
+	void RegisterInit(CGameAttributes *pGameAttributes);
 	/*
-		Initialize the World - load the map and all objects
+	Initialize the World - load the map and all objects
 	*/
 	void Initialize(CGameAttributes *pGameAttributes);
-	
+
+
 	inline CTerrain *GetTerrain()
 	{	return &m_Terrain; }
 	inline CUnitManager *GetUnitManager()

@@ -36,8 +36,16 @@
 		<object type="button" name="loading_screen_titlebar_text" size="15%+54 4 85%-54 32" absolute="false" font="prospero18" z="165" text_align="center" text_valign="center" hidden="false"/>
 
 		<!-- progress bar -->
-		<object type="button" name="loading_screen_progress_bar_text" size="0%+32 100%-205 100%-32 100%-185" font="tahoma14" textcolor="0 0 0" text_align="center" text_valign="center" z="165" hidden="false"/>
-		<object type="progressbar" name="loading_screen_progress_bar" style="blue_bar_outlined" size="0%+32 100%-185 100%-32 100%-160" z="165" hidden="false"/>
+		<object type="button" name="loading_screen_progress_bar_text" size="0%+32 100%-205 100%-32 100%-185" font="tahoma14" textcolor="0 0 0" text_align="center" text_valign="center" z="165" hidden="false">
+			<action on="Progress">
+				this.caption = g_LoadDescription;
+			</action>
+		</object>
+		<object type="progressbar" name="loading_screen_progress_bar" style="blue_bar_outlined" size="0%+32 100%-185 100%-32 100%-160" z="165" hidden="false">  
+			<action on="Progress">  
+				this.caption = g_Progress;  
+			</action>  
+		</object>   
                         
 		<!-- concept image -->
 		<object type="image" name="loading_screen_background_concept" sprite="black_bkg" size="32 32 33.3008%+32 88.9323%+32" z="110" hidden="false" />

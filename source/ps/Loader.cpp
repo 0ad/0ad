@@ -158,7 +158,7 @@ static bool HaveTimeForNextTask(double time_left, double time_budget, int estima
 	// (if it's less than that, we won't check the next task length)
 	if(time_left < 0.40*time_budget)
 	{
-		const double estimated_duration = estimated_duration_ms * 1e-3;
+		const double estimated_duration = estimated_duration_ms*1e-3;
 		// .. and the upcoming task is expected to be long -
 		// leave it for the next timeslice.
 		if(estimated_duration > time_left + time_budget*0.20)
@@ -201,10 +201,10 @@ int LDR_ProgressiveLoad(double time_budget, wchar_t* description_,
 
 	while(!load_requests.empty())
 	{
-		const double time_left = end_time - get_time();
-		const LoadRequest& lr = load_requests.front();
+		double time_left = end_time - get_time();
 
 		// do actual work of loading
+		const LoadRequest& lr = load_requests.front();
 		ret = lr.func(lr.param, time_left);
 		// .. either finished entirely, or failed => remove from queue
 		if(ret != ERR_TIMED_OUT)
@@ -228,6 +228,7 @@ int LDR_ProgressiveLoad(double time_budget, wchar_t* description_,
 		// check if we're out of time; take into account next task length.
 		// note: do this at the end of the loop to make sure there's
 		// progress even if the timer is low-resolution (=> time_left = 0).
+		time_left = end_time - get_time();
 		if(!HaveTimeForNextTask(time_left, time_budget, lr.estimated_duration_ms))
 		{
 			ret = ERR_TIMED_OUT;
@@ -237,7 +238,6 @@ int LDR_ProgressiveLoad(double time_budget, wchar_t* description_,
 
 	// queue is empty, we just finished.
 	state = IDLE;
-	assert(progress_percent == 100);
 	ret = 0;
 
 	// set output params (there are several return points above)
@@ -249,6 +249,8 @@ done:
 	if(!load_requests.empty())
 		description = load_requests.front().description.c_str();
 	wcscpy_s(description_, max_chars, description);
+
+	debug_out("LDR_ProgressiveLoad RETURNING; desc=%ls progress=%d\n", description_, progress_percent);
 
 	return ret;
 }

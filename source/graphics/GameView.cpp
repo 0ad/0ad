@@ -16,6 +16,7 @@
 #include "Pyrogenesis.h"
 #include "Hotkey.h"
 #include "ConfigDB.h"
+#include "Loader.h"
 
 #include "Quaternion.h"
 #include "Unit.h"
@@ -69,6 +70,7 @@ CGameView::~CGameView()
 	UnloadResources();
 }
 
+
 void CGameView::Initialize(CGameAttributes *pAttribs)
 {
 	CConfigValue* cfg;
@@ -95,6 +97,32 @@ void CGameView::Initialize(CGameAttributes *pAttribs)
 
 	InitResources();
 }
+
+struct ThunkParams
+{
+	CGameView* const this_;
+	CGameAttributes* const pAttribs;
+	ThunkParams(CGameView* this__, CGameAttributes* pAttribs_)
+		: this_(this__), pAttribs(pAttribs_) {}
+};
+
+static int LoadThunk(void* param, double time_left)
+{
+	const ThunkParams* p = (const ThunkParams*)param;
+	CGameView* const this_          = p->this_;
+	CGameAttributes* const pAttribs = p->pAttribs;
+
+	this_->Initialize(pAttribs);
+	delete p;
+	return 0;
+}
+
+void CGameView::RegisterInit(CGameAttributes *pAttribs)
+{
+	void* param = new ThunkParams(this, pAttribs);
+	THROW_ERR(LDR_Register(LoadThunk, param, L"CGameView", 1000));
+}
+
 
 void CGameView::Render()
 {

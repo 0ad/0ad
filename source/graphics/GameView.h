@@ -60,8 +60,9 @@ public:
 	CGameView(CGame *pGame);
 	~CGameView();
 	
+	void RegisterInit(CGameAttributes *pAttribs);
 	void Initialize(CGameAttributes *pGameAttributes);
-	
+
 	// Update: Update all the view information (i.e. rotate camera, scroll, 
 	// whatever). This will *not* change any World information - only the
 	// *presentation*

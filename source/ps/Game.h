@@ -41,7 +41,8 @@ public:
 		Return: 0 on OK - a PSRETURN code otherwise
 	*/
 	PSRETURN StartGame(CGameAttributes *pGameAttributes);
-	
+	PSRETURN ReallyStartGame();
+
 	/*
 		Perform all per-frame updates
 	*/
@@ -74,6 +75,9 @@ public:
 	{	return &m_GameView; }
 	inline CSimulation *GetSimulation()
 	{	return &m_Simulation; }
+
+private:
+	PSRETURN RegisterInit(CGameAttributes* pAttribs);
 };
 
 extern CGame *g_Game;

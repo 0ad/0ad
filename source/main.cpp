@@ -26,8 +26,8 @@
 #endif
 #include "lib/res/cursor.h"
 
+#include "ps/Loader.h"
 #include "ps/Font.h"
-
 #include "ps/CConsole.h"
 
 #include "ps/Game.h"
@@ -53,6 +53,7 @@
 #include "EntityManager.h"
 #include "PathfindEngine.h"
 #include "Scheduler.h"
+#include "StringConvert.h"
 
 #include "scripting/ScriptingHost.h"
 #include "scripting/JSInterface_Entity.h"
@@ -481,7 +482,7 @@ static void Render()
 
 	oglCheck();
 
-	if (g_Game)
+	if (g_Game && g_Game->IsGameStarted())
 	{
 		g_Game->GetView()->Render();
 
@@ -943,6 +944,45 @@ TIMER(InitRenderer)
 	g_Renderer.SetViewport(vp);
 }
 
+
+static int ProgressiveLoad()
+{
+	wchar_t description[100];
+	int progress_percent;
+	int ret = LDR_ProgressiveLoad(100e-3, description, ARRAY_SIZE(description), &progress_percent);
+	switch(ret)
+	{
+	// no load active => no-op (skip code below)
+	case 1:
+		return 1;
+	// current task isn't complete (we don't care about this distinction)
+	case ERR_TIMED_OUT:
+		break;
+	// just finished loading
+	case 0:
+		g_Game->ReallyStartGame();
+		wcscpy_s(description, ARRAY_SIZE(description), L"Game is starting..");
+			// LDR_ProgressiveLoad returns L""; set to valid text to
+			// avoid problems in converting to JSString
+		break;
+	// error!
+	default:
+		CHECK_ERR(ret);
+			// can't do this above due to legit ERR_TIMED_OUT
+		break;
+	}
+
+	// display progress / description in loading screen
+	CStrW i18n_description = translate(description);
+	JSString* js_desc = StringConvert::wstring_to_jsstring(g_ScriptingHost.getContext(), i18n_description);
+	g_ScriptingHost.SetGlobal("g_Progress", INT_TO_JSVAL(progress_percent)); 
+	g_ScriptingHost.SetGlobal("g_LoadDescription", STRING_TO_JSVAL(js_desc));
+	g_GUI.SendEventToAll("progress");
+	return 0;
+}
+
+
+
 u64 PREVTSC;
 
 static void Shutdown()
@@ -1227,6 +1267,9 @@ PREVTSC=CURTSC;
 }
 #endif
 
+
+
+
 }
 
 static void Frame()
@@ -1244,11 +1287,11 @@ static void Frame()
 	assert(TimeSinceLastFrame >= 0.0f);
 
 	MICROLOG(L"reload files");
-
 	res_reload_changed_files();
 
-	MICROLOG(L"input");
+	ProgressiveLoad();
 
+	MICROLOG(L"input");
 	in_get_events();
 	g_SessionManager.Poll();
 	
@@ -1259,7 +1302,7 @@ static void Frame()
 	if (g_Game && g_Game->IsGameStarted())
 	{
 		g_Game->Update(TimeSinceLastFrame);
-		
+
 		if (!g_FixedFrameTiming)
 			g_Game->GetView()->Update(float(TimeSinceLastFrame));
 

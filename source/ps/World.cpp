@@ -12,6 +12,7 @@
 #include "BaseEntityCollection.h"
 #include "EntityManager.h"
 #include "timer.h"
+#include "Loader.h"
 
 #define LOG_CATEGORY "world"
 
@@ -40,6 +41,32 @@ void CWorld::Initialize(CGameAttributes *pAttribs)
 		}
 	}
 }
+
+struct ThunkParams
+{
+	CWorld* const this_;
+	CGameAttributes* const pAttribs;
+	ThunkParams(CWorld* this__, CGameAttributes* pAttribs_)
+		: this_(this__), pAttribs(pAttribs_) {}
+};
+
+static int LoadThunk(void* param, double time_left)
+{
+	const ThunkParams* p = (const ThunkParams*)param;
+	CWorld* const this_             = p->this_;
+	CGameAttributes* const pAttribs = p->pAttribs;
+
+	this_->Initialize(pAttribs);
+	delete p;
+	return 0;
+}
+
+void CWorld::RegisterInit(CGameAttributes *pAttribs)
+{
+	void* param = new ThunkParams(this, pAttribs);
+	THROW_ERR(LDR_Register(LoadThunk, param, L"CWorld", 1000));
+}
+
 
 CWorld::~CWorld()
 {

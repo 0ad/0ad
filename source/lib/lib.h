@@ -118,6 +118,17 @@ STMT(\
 )
 #endif
 
+#define THROW_ERR(func)\
+STMT(\
+	int err__ = (int)((func) & UINT_MAX);\
+	if(err__ < 0)\
+	{\
+		assert(0 && "FYI: CHECK_ERR reports that a function failed."\
+		            "feel free to ignore or suppress this warning.");\
+		throw err__;\
+	}\
+)
+
 
 
 // useful because VC6 may return 0 on failure, instead of throwing.
