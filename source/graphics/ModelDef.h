@@ -84,6 +84,9 @@ public:
 	// destructor
 	virtual ~CModelDef();
 
+	// shutdown memory-freer
+	static void Shutdown();
+
 	// model I/O functions
 	static CModelDef* Load(const char* filename);
 	static void Save(const char* filename,const CModelDef* mdef);
@@ -118,6 +121,9 @@ public:
 	// prop point data
 	u32 m_NumPropPoints;
 	SPropPoint* m_PropPoints;
+
+	// all loaded models, to be freed on shutdown
+	static std::vector<CModelDef*> m_LoadedModelDefs;
 };
 
 #endif

@@ -30,6 +30,16 @@ CModelDef::~CModelDef()
 	delete[] m_PropPoints;
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Call at shutdown to free memory
+void CModelDef::Shutdown()
+{
+	for (std::vector<CModelDef*>::iterator iter = m_LoadedModelDefs.begin(); iter != m_LoadedModelDefs.end(); ++iter)
+		delete *iter;
+}
+// The list of allocated models which are to be freed
+std::vector<CModelDef*> CModelDef::m_LoadedModelDefs;
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // FindPropPoint: find and return pointer to prop point matching given name; 
@@ -97,6 +107,7 @@ CModelDef* CModelDef::Load(const char* filename)
 		delete mdef;
 		throw CFileUnpacker::CFileEOFError();
 	}
+	m_LoadedModelDefs.push_back(mdef);
 
 	return mdef;
 }
