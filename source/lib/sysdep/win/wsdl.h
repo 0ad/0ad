@@ -3,6 +3,7 @@
 
 
 #include "types.h"
+#include <SDL_keysym.h>
 
 /* allow apps to override window name */
 #ifndef APP_NAME
@@ -97,39 +98,6 @@ extern int __stdcall SDL_WarpMouse(int, int);
 /************************************************************************************************
  * events
  ************************************************************************************************/
-
-/* SDLKey (mapped to VK_* codes) */
-typedef enum
-{
-	SDLK_ESCAPE	= 0x1b,
-	SDLK_8 = '8',
-	SDLK_9 = '9',
-	SDLK_0 = '0',
-	SDLK_p = 'P',
-	SDLK_r = 'R',
-	SDLK_s = 'S',
-
-	SDLK_KP_PLUS    = 0x6b,
-	SDLK_KP_MINUS   = 0x6d,
-	SDLK_LEFT       = 0x25,
-	SDLK_UP         = 0x26,
-	SDLK_RIGHT      = 0x27,
-	SDLK_DOWN       = 0x28,
-
-	SDLK_KP0        = 0x60,
-	SDLK_KP1        = 0x61,
-	SDLK_KP2        = 0x62,
-	SDLK_KP3        = 0x63,
-	SDLK_KP4        = 0x64,
-	SDLK_KP5        = 0x65,
-	SDLK_KP6        = 0x66,
-	SDLK_KP7        = 0x67,
-	SDLK_KP8        = 0x68,
-	SDLK_KP9        = 0x69,
-
-__SDLK	// hack to allow trailing comma
-}
-SDLKey;
 
 typedef struct
 {

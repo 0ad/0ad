@@ -28,6 +28,7 @@
 #include "lib.h"
 #include "win_internal.h"
 #include "misc.h"
+#include <SDL_vkeys.h>
 
 #ifdef _MSC_VER
 #pragma comment(lib, "user32.lib")
@@ -51,8 +52,6 @@ static HGLRC hGLRC;
 static int z_depth = 24;	/* depth buffer size; set via SDL_GL_SetAttribute */
 
 static u16 mouse_x, mouse_y;
-
-
 
 /*
  * shared msg handler
@@ -103,6 +102,146 @@ int SDL_EnableUNICODE(int enable)
 	return 1;
 }
 
+// Translate Windows VK's into our SDLK's for keys that must be translated
+static void init_vkmap(SDLKey (&VK_keymap)[256])
+{
+	int i;
+
+	/* Map the VK keysyms */
+	for ( i=0; i<sizeof(VK_keymap)/sizeof(VK_keymap[0]); ++i )
+		VK_keymap[i] = SDLK_UNKNOWN;
+
+	VK_keymap[VK_BACK] = SDLK_BACKSPACE;
+	VK_keymap[VK_TAB] = SDLK_TAB;
+	VK_keymap[VK_CLEAR] = SDLK_CLEAR;
+	VK_keymap[VK_RETURN] = SDLK_RETURN;
+	VK_keymap[VK_PAUSE] = SDLK_PAUSE;
+	VK_keymap[VK_ESCAPE] = SDLK_ESCAPE;
+	VK_keymap[VK_SPACE] = SDLK_SPACE;
+	VK_keymap[VK_OEM_7] = SDLK_QUOTE;
+	VK_keymap[VK_OEM_COMMA] = SDLK_COMMA;
+	VK_keymap[VK_OEM_MINUS] = SDLK_MINUS;
+	VK_keymap[VK_OEM_PERIOD] = SDLK_PERIOD;
+	VK_keymap[VK_OEM_2] = SDLK_SLASH;
+	VK_keymap[VK_0] = SDLK_0;
+	VK_keymap[VK_1] = SDLK_1;
+	VK_keymap[VK_2] = SDLK_2;
+	VK_keymap[VK_3] = SDLK_3;
+	VK_keymap[VK_4] = SDLK_4;
+	VK_keymap[VK_5] = SDLK_5;
+	VK_keymap[VK_6] = SDLK_6;
+	VK_keymap[VK_7] = SDLK_7;
+	VK_keymap[VK_8] = SDLK_8;
+	VK_keymap[VK_9] = SDLK_9;
+	VK_keymap[VK_OEM_1] = SDLK_SEMICOLON;
+	VK_keymap[VK_OEM_PLUS] = SDLK_EQUALS;
+	VK_keymap[VK_OEM_4] = SDLK_LEFTBRACKET;
+	VK_keymap[VK_OEM_5] = SDLK_BACKSLASH;
+	VK_keymap[VK_OEM_6] = SDLK_RIGHTBRACKET;
+	VK_keymap[VK_OEM_3] = SDLK_BACKQUOTE;
+	VK_keymap[VK_OEM_8] = SDLK_BACKQUOTE;
+	VK_keymap[VK_A] = SDLK_a;
+	VK_keymap[VK_B] = SDLK_b;
+	VK_keymap[VK_C] = SDLK_c;
+	VK_keymap[VK_D] = SDLK_d;
+	VK_keymap[VK_E] = SDLK_e;
+	VK_keymap[VK_F] = SDLK_f;
+	VK_keymap[VK_G] = SDLK_g;
+	VK_keymap[VK_H] = SDLK_h;
+	VK_keymap[VK_I] = SDLK_i;
+	VK_keymap[VK_J] = SDLK_j;
+	VK_keymap[VK_K] = SDLK_k;
+	VK_keymap[VK_L] = SDLK_l;
+	VK_keymap[VK_M] = SDLK_m;
+	VK_keymap[VK_N] = SDLK_n;
+	VK_keymap[VK_O] = SDLK_o;
+	VK_keymap[VK_P] = SDLK_p;
+	VK_keymap[VK_Q] = SDLK_q;
+	VK_keymap[VK_R] = SDLK_r;
+	VK_keymap[VK_S] = SDLK_s;
+	VK_keymap[VK_T] = SDLK_t;
+	VK_keymap[VK_U] = SDLK_u;
+	VK_keymap[VK_V] = SDLK_v;
+	VK_keymap[VK_W] = SDLK_w;
+	VK_keymap[VK_X] = SDLK_x;
+	VK_keymap[VK_Y] = SDLK_y;
+	VK_keymap[VK_Z] = SDLK_z;
+	VK_keymap[VK_DELETE] = SDLK_DELETE;
+
+	VK_keymap[VK_NUMPAD0] = SDLK_KP0;
+	VK_keymap[VK_NUMPAD1] = SDLK_KP1;
+	VK_keymap[VK_NUMPAD2] = SDLK_KP2;
+	VK_keymap[VK_NUMPAD3] = SDLK_KP3;
+	VK_keymap[VK_NUMPAD4] = SDLK_KP4;
+	VK_keymap[VK_NUMPAD5] = SDLK_KP5;
+	VK_keymap[VK_NUMPAD6] = SDLK_KP6;
+	VK_keymap[VK_NUMPAD7] = SDLK_KP7;
+	VK_keymap[VK_NUMPAD8] = SDLK_KP8;
+	VK_keymap[VK_NUMPAD9] = SDLK_KP9;
+	VK_keymap[VK_DECIMAL] = SDLK_KP_PERIOD;
+	VK_keymap[VK_DIVIDE] = SDLK_KP_DIVIDE;
+	VK_keymap[VK_MULTIPLY] = SDLK_KP_MULTIPLY;
+	VK_keymap[VK_SUBTRACT] = SDLK_KP_MINUS;
+	VK_keymap[VK_ADD] = SDLK_KP_PLUS;
+
+	VK_keymap[VK_UP] = SDLK_UP;
+	VK_keymap[VK_DOWN] = SDLK_DOWN;
+	VK_keymap[VK_RIGHT] = SDLK_RIGHT;
+	VK_keymap[VK_LEFT] = SDLK_LEFT;
+	VK_keymap[VK_INSERT] = SDLK_INSERT;
+	VK_keymap[VK_HOME] = SDLK_HOME;
+	VK_keymap[VK_END] = SDLK_END;
+	VK_keymap[VK_PRIOR] = SDLK_PAGEUP;
+	VK_keymap[VK_NEXT] = SDLK_PAGEDOWN;
+
+	VK_keymap[VK_F1] = SDLK_F1;
+	VK_keymap[VK_F2] = SDLK_F2;
+	VK_keymap[VK_F3] = SDLK_F3;
+	VK_keymap[VK_F4] = SDLK_F4;
+	VK_keymap[VK_F5] = SDLK_F5;
+	VK_keymap[VK_F6] = SDLK_F6;
+	VK_keymap[VK_F7] = SDLK_F7;
+	VK_keymap[VK_F8] = SDLK_F8;
+	VK_keymap[VK_F9] = SDLK_F9;
+	VK_keymap[VK_F10] = SDLK_F10;
+	VK_keymap[VK_F11] = SDLK_F11;
+	VK_keymap[VK_F12] = SDLK_F12;
+	VK_keymap[VK_F13] = SDLK_F13;
+	VK_keymap[VK_F14] = SDLK_F14;
+	VK_keymap[VK_F15] = SDLK_F15;
+
+	VK_keymap[VK_NUMLOCK] = SDLK_NUMLOCK;
+	VK_keymap[VK_CAPITAL] = SDLK_CAPSLOCK;
+	VK_keymap[VK_SCROLL] = SDLK_SCROLLOCK;
+	VK_keymap[VK_RSHIFT] = SDLK_RSHIFT;
+	VK_keymap[VK_LSHIFT] = SDLK_LSHIFT;
+	VK_keymap[VK_RCONTROL] = SDLK_RCTRL;
+	VK_keymap[VK_LCONTROL] = SDLK_LCTRL;
+	VK_keymap[VK_RMENU] = SDLK_RALT;
+	VK_keymap[VK_LMENU] = SDLK_LALT;
+	VK_keymap[VK_RWIN] = SDLK_RSUPER;
+	VK_keymap[VK_LWIN] = SDLK_LSUPER;
+
+	VK_keymap[VK_HELP] = SDLK_HELP;
+#ifdef VK_PRINT
+	VK_keymap[VK_PRINT] = SDLK_PRINT;
+#endif
+	VK_keymap[VK_SNAPSHOT] = SDLK_PRINT;
+	VK_keymap[VK_CANCEL] = SDLK_BREAK;
+	VK_keymap[VK_APPS] = SDLK_MENU;
+}
+
+inline SDLKey vkmap(int vk)
+{
+	static SDLKey VK_SDLKMap[256]; /* VK_SDLKMap[vk] == SDLK */
+
+	ONCE( init_vkmap(VK_SDLKMap); )
+
+	assert(vk >= 0 && vk < 256);
+
+	return VK_SDLKMap[vk];
+}
+
 // note: keysym.unicode is only returned for SDL_KEYDOWN, and is otherwise 0.
 int SDL_PollEvent(SDL_Event* ev)
 {
@@ -115,24 +254,23 @@ int SDL_PollEvent(SDL_Event* ev)
 
 	const int CHAR_BUF_SIZE = 8;
 	static wchar_t char_buf[CHAR_BUF_SIZE];
-	static uint next_char_idx;
-	static uint num_chars;
+	static uint next_char_idx=0;
+	static int num_chars=0;
+	static SDLKey translated_keysym=SDLK_UNKNOWN;
 
 	// input is waiting in buffer
 return_char:
 	assert(num_chars <= CHAR_BUF_SIZE);
-    if(num_chars != 0)
+	if(num_chars > 0)
 	{
 		num_chars--;
 		if(next_char_idx < CHAR_BUF_SIZE)
 		{
-			// ToUnicode returns lower case chars - make it uppercase
-			// to match the VK codes from WM_KEYDOWN.
-			wchar_t c = towupper(char_buf[next_char_idx]);
+			wchar_t c = char_buf[next_char_idx];
 			next_char_idx++;
 
 			ev->type = SDL_KEYDOWN;
-			ev->key.keysym.sym = (SDLKey)((c < 0x80)? c : 0);
+			ev->key.keysym.sym = (SDLKey)translated_keysym;
 			ev->key.keysym.unicode = c;
 			return 1;
 		}
@@ -145,7 +283,6 @@ return_char:
 	MSG msg;
 	while(PeekMessageW(&msg, 0, 0, 0, PM_REMOVE))
 	{
-		TranslateMessage(&msg);
 		DispatchMessageW(&msg);
 
 		int sdl_btn = -1;
@@ -156,31 +293,52 @@ return_char:
 
 		case WM_SYSKEYDOWN:
 		case WM_KEYDOWN:
-			{
+		{
 			UINT vk = (UINT)msg.wParam;
-			if(vk >= 0x6a && vk < 0x6f)
-				;
-			else
+			UINT scancode = (UINT)((msg.lParam >> 16) & 0xff);
+			u8 key_states[256];
+			GetKeyboardState(key_states);
+			num_chars = ToUnicode(vk, scancode, key_states, char_buf, CHAR_BUF_SIZE, 0);
+			next_char_idx = 0;
+			if(num_chars > 0)
 			{
-				UINT scancode = (UINT)((msg.lParam >> 16) & 0xff);
-				u8 key_states[256];
-				GetKeyboardState(key_states);
-				num_chars = ToUnicode(vk, scancode, key_states, char_buf, CHAR_BUF_SIZE, 0);
-				next_char_idx = 0;
-				if(num_chars)
-					goto return_char;
+				// Translation complete: Produce one or more Unicode chars
+				char_buf[num_chars]=0;
+				translated_keysym=vkmap(vk);
+				//wprintf(L"ToUnicode: Translated %02x to [%s], %d chars, SDLK %02x. Extended flag %d, scancode %d\n", vk, char_buf, num_chars, translated_keysym, msg.lParam & 0x01000000, scancode);
+				fflush(stdout);
+				goto return_char;
 			}
+			else if (num_chars == -1)
+			{
+				// Dead Key: Don't produce an event for this one
+				//printf("ToUnicode: Dead Key %02x [%c] [%c] SDLK %02x\n", vk, vk, char_buf[0], vkmap(vk));
+				fflush(stdout);
+				num_chars = 0;
+				break;
+			}
+			// num_chars == 0: No translation: Just produce a plain KEYDOWN event
+			
+			// TODO Mappings for left/right modifier keys
+			// TODO Modifier statekeeping
 
 			ev->type = SDL_KEYDOWN;
-			ev->key.keysym.sym = (SDLKey)vk;
+			ev->key.keysym.sym = vkmap(vk);
 			ev->key.keysym.unicode = 0;
+
+			//printf("ToUnicode: No translation for %02x, extended flag %d, scancode %d, SDLK %02x [%c]\n", vk, msg.lParam & 0x01000000, scancode, ev->key.keysym.sym, ev->key.keysym.sym);
+			fflush(stdout);
+
 			return 1;
-			}
+		}
 
 		case WM_SYSKEYUP:
 		case WM_KEYUP:
+			// TODO Mappings for left/right modifier keys
+			// TODO Modifier statekeeping
+
 			ev->type = SDL_KEYUP;
-			ev->key.keysym.sym = (SDLKey)msg.wParam;
+			ev->key.keysym.sym = vkmap(msg.wParam);
 			ev->key.keysym.unicode = 0;
 			return 1;
 
