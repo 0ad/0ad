@@ -499,6 +499,18 @@ static void Render()
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 
+#ifndef NO_GUI
+	// Temp GUI message GeeTODO
+	glLoadIdentity();
+	glTranslatef(10, 60, 0);
+	glwprintf( L"%hs", g_GUI.TEMPmessage.c_str() );
+
+	glLoadIdentity();
+	MICROLOG(L"render GUI");
+	g_GUI.Draw();
+#endif
+
+	// Text:
 
 	// Use the GL_ALPHA texture as the alpha channel with a flat colouring
 	glDisable(GL_ALPHA_TEST);
@@ -513,17 +525,6 @@ static void Render()
 
 	glScalef(1.0, -1.0, 1.0);
 	glwprintf( L"%d FPS", fps);
-
-#ifndef NO_GUI
-	// Temp GUI message GeeTODO
-	glLoadIdentity();
-	glTranslatef(10, 60, 0);
-	glwprintf( L"%hs", g_GUI.TEMPmessage.c_str() );
-
-	glLoadIdentity();
-	MICROLOG(L"render GUI");
-	g_GUI.Draw();
-#endif
 
 	unifont_bind(g_Font_Console);
 	glLoadIdentity();
