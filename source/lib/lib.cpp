@@ -23,6 +23,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "sysdep/sysdep.h"
+
 // more powerful atexit, with 0 or 1 parameters.
 // callable before libc initialized, frees up the real atexit table,
 // and often obviates a separate cleanup_everything function.
@@ -111,6 +113,9 @@ int atexit2(void* func)
 // call from main as early as possible.
 void lib_init()
 {
+/*#ifdef OS_UNIX
+	udbg_init();
+#endif*/
 	(void)atexit(call_exit_funcs);
 }
 

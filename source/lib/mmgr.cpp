@@ -1014,30 +1014,31 @@ void* alloc_dbg(size_t user_size, AllocType type, const char* file, int line, co
 		goto fail;
 	}
 
-	Alloc* a = alloc_new();
-	if(!a)
-		goto fail;
-	a->p     = p;
-	a->size  = size;
-	a->num   = cur_alloc_count;
-	a->owner = caller_string;
-	a->type  = type;
-	a->break_on_free = a->break_on_realloc = 0;
+	{
+		Alloc* a = alloc_new();
+		if(!a)
+			goto fail;
+		a->p     = p;
+		a->size  = size;
+		a->num   = cur_alloc_count;
+		a->owner = caller_string;
+		a->type  = type;
+		a->break_on_free = a->break_on_realloc = 0;
 
-	allocs_add(a);
-	stats_add(a);
+		allocs_add(a);
+		stats_add(a);
 
-	pattern_set(a, unusedPattern);
+		pattern_set(a, unusedPattern);
 
-	// calloc() must zero the memory
-	if(type == AT_CALLOC)
-		memset(a->user_p(), 0, a->user_size());
+		// calloc() must zero the memory
+		if(type == AT_CALLOC)
+			memset(a->user_p(), 0, a->user_size());
 
-	if(options & MMGR_LOG_ALL)
-		log("[+] ---->             addr 0x%08p\n", a->user_p());
+		if(options & MMGR_LOG_ALL)
+			log("[+] ---->             addr 0x%08p\n", a->user_p());
 
-	ret = a->user_p();
-
+		ret = a->user_p();
+	}
 fail:
 	if(options & MMGR_VALIDATE_ALL)
 		(void)validate_all();
@@ -1071,41 +1072,42 @@ void free_dbg(const void* user_p, AllocType type, const char* file, int line, co
 	//
 	// security checks
 	//
-
-	Alloc* a = allocs_find(user_p);
-	if(!a)
 	{
-		// you tried to free a pointer mmgr didn't allocate
-		assert2(0);
-		log("[!] mmgr_free: not allocated by this memory manager\n");
-		goto fail;
+		Alloc* a = allocs_find(user_p);
+		if(!a)
+		{
+			// you tried to free a pointer mmgr didn't allocate
+			assert2(0);
+			log("[!] mmgr_free: not allocated by this memory manager\n");
+			goto fail;
+		}
+		// .. overrun? (note: alloc_is_valid already asserts if invalid)
+		alloc_is_valid(a);
+		// .. the owner wasn't compiled with mmgr.h
+		assert2(type != AT_UNKNOWN);
+		// .. allocator / deallocator type mismatch
+		assert2(
+			(type == AT_DELETE       && a->type == AT_NEW      ) ||
+			(type == AT_DELETE_ARRAY && a->type == AT_NEW_ARRAY) ||
+			(type == AT_FREE         && a->type == AT_MALLOC   ) ||
+			(type == AT_FREE         && a->type == AT_CALLOC   ) ||
+			(type == AT_FREE         && a->type == AT_REALLOC  )
+		);
+		// .. you requested a breakpoint when freeing this allocation
+		assert2(!a->break_on_free);
+
+
+		// "poison" the allocation's memory, to catch use-after-free bugs.
+		// the VC7 debug heap does this also (in free), so we're wasting time
+		// in that case. oh well, better to be safe/consistent.
+		pattern_set(a, releasedPattern);
+
+		free(a->p);
+
+		allocs_remove(a);
+		alloc_delete(a);
+		stats_remove(a);
 	}
-	// .. overrun? (note: alloc_is_valid already asserts if invalid)
-	alloc_is_valid(a);
-	// .. the owner wasn't compiled with mmgr.h
-	assert2(type != AT_UNKNOWN);
-	// .. allocator / deallocator type mismatch
-	assert2(
-		(type == AT_DELETE       && a->type == AT_NEW      ) ||
-		(type == AT_DELETE_ARRAY && a->type == AT_NEW_ARRAY) ||
-		(type == AT_FREE         && a->type == AT_MALLOC   ) ||
-		(type == AT_FREE         && a->type == AT_CALLOC   ) ||
-		(type == AT_FREE         && a->type == AT_REALLOC  )
-	);
-	// .. you requested a breakpoint when freeing this allocation
-	assert2(!a->break_on_free);
-
-
-	// "poison" the allocation's memory, to catch use-after-free bugs.
-	// the VC7 debug heap does this also (in free), so we're wasting time
-	// in that case. oh well, better to be safe/consistent.
-	pattern_set(a, releasedPattern);
-
-	free(a->p);
-
-	allocs_remove(a);
-	alloc_delete(a);
-	stats_remove(a);
 
 	// we're being called from destructors. each call may be the last.
 	if(static_dtor_called)
@@ -1295,7 +1297,7 @@ static void* new_common(size_t size, AllocType type,
 		}
 
 		// is a handler set?
-		new_handler	nh = std::set_new_handler(0);
+		std::new_handler nh = std::set_new_handler(0);
 		(void)std::set_new_handler(nh);
 		// .. yes: call, and loop again (hoping it freed up memory)
 		if(nh)

@@ -215,7 +215,7 @@ static int Cursor_reload(Cursor* c, const char* name, Handle)
 		int err = tex_upload(tex);
 		CHECK_ERR(err);
 
-		c->cursor = new struct ogl_cursor;
+		c->cursor = new ogl_cursor;
 
 		c->cursor->tex = tex;
 		c->cursor->hotspotx = hotspotx;

@@ -17,10 +17,11 @@ extern "C" {
  */
 
 /* this is not a core library module, so it doesn't define JPEG_INTERNALS */
-#include "jinclude.h"
 #include "jpeglib.h"
 #include "jerror.h"
 
+// (Simon) Macros from jinclude.h, which isn't installed by default on my system
+#define SIZEOF(_a) ((size_t) sizeof(_a))
 
 /* Expanded data source object for memory input */
 typedef struct
