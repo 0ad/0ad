@@ -118,7 +118,7 @@
                                 Player Name (temporary):
                         </object>
                         
-                        <object type="input" name="pregame_mp_ip_playername" sprite="only_black" absolute="false" size="220 80 350 100" textcolor="0 0 0">
+                        <object type="input" name="pregame_mp_ip_playername" sprite="only_black" absolute="false" size="220 80 350 100" textcolor="255 255 255">
                                 Player
                         </object>
                         <!-- END PLAYER NAME controls -->
@@ -134,7 +134,7 @@
                                 Map Name:
                         </object>
 
-                        <object type="input" name="pregame_mp_ip_host_mapname" sprite="only_black" absolute="false" size="50 150 200 170" textcolor="0 0 0">
+                        <object type="input" name="pregame_mp_ip_host_mapname" sprite="only_black" absolute="false" size="50 150 200 170" textcolor="255 255 255">
                                 test01.pmp
                         </object>
 
@@ -160,7 +160,7 @@
                                 IP address:
                         </object>
 
-                        <object type="input" name="pregame_mp_ip_joinip" sprite="only_black" absolute="false" size="50 210 200 230" textcolor="0 0 0">
+                        <object type="input" name="pregame_mp_ip_joinip" sprite="only_black" absolute="false" size="50 210 200 230" textcolor="255 255 255">
                                 127.0.0.1
                         </object>
 

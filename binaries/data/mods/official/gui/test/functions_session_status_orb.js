@@ -700,7 +700,7 @@ function UpdateStatusOrb()
 {
 	// Update heading.
 	GUIObject = getGUIObjectByName("session_panel_status_heading");
-	GUIObject.caption = "Acumen"; // Player name (placeholder; replace with proper callsign).
+	GUIObject.caption = selection[0].player.name; // Player name (placeholder; replace with proper callsign).
 	if (selection[0].traits.id.civ)
 		GUIObject.caption += " [icon=bullet_icon] " + selection[0].traits.id.civ;
 

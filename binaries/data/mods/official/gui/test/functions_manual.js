@@ -44,6 +44,20 @@ function manualDisplay()
 						ManualRollover.caption += "Civilisation: " + selection[0].traits.id.civ + " (" + selection[0].traits.id.civ_code + ")" + "\n";
 					if (!selection[0].traits.id.civ_code)
 						ManualRollover.caption += "Civilisation: " + selection[0].traits.id.civ + "\n";
+
+					// Display player info.
+					if (selection[0].player){
+						if (selection[0].player.name)
+							ManualRollover.caption += "Player Name: " + selection[0].player.name + "\n";
+						if (selection[0].player.id)
+							ManualRollover.caption += "Player ID: " + selection[0].player.id + "\n";
+						if (selection[0].player.colour)
+							ManualRollover.caption += "Player Colour: " + selection[0].player.colour + "\n";
+						if (selection[0].player.controlled)
+							ManualRollover.caption += "Player Controlled: " + selection[0].player.controlled + "\n";
+//						if (players[])
+//							ManualRollover.caption += "Players[]: " + players[] + "\n";
+					}
 					
 					// Display hitpoints.
 					if (selection[0].traits.health.curr && selection[0].traits.health.max && selection[0].traits.health)
