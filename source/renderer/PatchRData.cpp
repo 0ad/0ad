@@ -584,6 +584,7 @@ void CPatchRData::RenderBaseSplats()
 			// setup data pointers
 			u32 stride=sizeof(SBaseVertex);
 			MICROLOG(L"data pointers");
+
 			glVertexPointer(3,GL_FLOAT,stride,base+offsetof(SBaseVertex,m_Position));
 			glColorPointer(4,GL_UNSIGNED_BYTE,stride,base+offsetof(SBaseVertex,m_Color));
 			glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SBaseVertex,m_UVs[0]));
@@ -598,6 +599,7 @@ void CPatchRData::RenderBaseSplats()
 					for (uint j=0;j<batch->m_IndexData.size();j++) {
 						MICROLOG(L"el");
 						glDrawElements(GL_QUADS,(GLsizei)batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);
+
 						MICROLOG(L".");
 						g_Renderer.m_Stats.m_DrawCalls++;
 						g_Renderer.m_Stats.m_TerrainTris+=(u32)batch->m_IndexData[j].first/2;
@@ -715,6 +717,11 @@ void CPatchRData::RenderBlendSplats()
 
 	// restore default state: switch off blending
 	glDisable(GL_BLEND);
+
+	// switch off second uv set
+	glClientActiveTexture(GL_TEXTURE1);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	glClientActiveTexture(GL_TEXTURE0);
 
 	// switch off texture unit 1, make unit 0 active texture
 	g_Renderer.BindTexture(1,0);
