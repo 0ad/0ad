@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding = "Windows-1252"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="7.10"
@@ -18,6 +18,7 @@
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="0"
 				AdditionalIncludeDirectories="..\lib; d:\apps\xerces-c_2_3_0-win32\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
@@ -26,18 +27,12 @@
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				DebugInformationFormat="4">
-				<IntelOptions
-					Optimization="0"
-					MinimalRebuild="1"
-					BasicRuntimeChecks="3"
-					RuntimeLibrary="1"
-					AllOptions="/c  /I &quot;../lib&quot; /I &quot;d:/apps/xerces-c_2_3_0-win32/include&quot; /ZI /nologo /W3 /Od /D &quot;WIN32&quot; /D &quot;_DEBUG&quot; /D &quot;_WINDOWS&quot; /D &quot;_MBCS&quot; /Gm /EHsc /RTC1 /MTd /Fo&quot;Debug/&quot; /Fd&quot;Debug/vc70.pdb&quot; /Gd /TP"/>
-			</Tool>
+				DebugInformationFormat="4"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalOptions=""
 				OutputFile="$(OutDir)/ps_dbg.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
@@ -45,10 +40,7 @@
 				ProgramDatabaseFile="$(OutDir)/ps_dbg.pdb"
 				SubSystem="2"
 				EntryPointSymbol="entry"
-				TargetMachine="1">
-				<IntelOptions
-					AllOptions="/NOLOGO /OUT:&quot;..\..\binaries/ps_dbg.exe&quot; /INCREMENTAL /DEBUG /PDB:&quot;..\..\binaries/ps_dbg.pdb&quot; /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:&quot;entry&quot; /MACHINE:IX86  kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib"/>
-			</Tool>
+				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
@@ -78,21 +70,19 @@
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				AdditionalIncludeDirectories="..\lib; d:\apps\xerces-c_2_3_0-win32\include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
 				RuntimeLibrary="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
-				DebugInformationFormat="3">
-				<IntelOptions
-					RuntimeLibrary="0"
-					AllOptions="/c  /I &quot;../lib&quot; /I &quot;d:/apps/xerces-c_2_3_0-win32/include&quot; /Zi /nologo /W3 /Wp64 /O2 /D &quot;WIN32&quot; /D &quot;NDEBUG&quot; /D &quot;_WINDOWS&quot; /D &quot;_MBCS&quot; /FD /EHsc /MT /Fo&quot;Release/&quot; /Fd&quot;Release/vc70.pdb&quot; /Gd /TP"/>
-			</Tool>
+				DebugInformationFormat="3"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalOptions=""
 				OutputFile="$(OutDir)/ps.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -101,10 +91,7 @@
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				EntryPointSymbol="entry"
-				TargetMachine="1">
-				<IntelOptions
-					AllOptions="/NOLOGO /OUT:&quot;..\..\binaries/ps.exe&quot; /INCREMENTAL:NO /DEBUG /PDB:&quot;..\..\binaries/ps.pdb&quot; /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /ENTRY:&quot;entry&quot; /MACHINE:IX86  kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib"/>
-			</Tool>
+				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
@@ -127,210 +114,294 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 	</Configurations>
-	<References/>
+	<References>
+	</References>
 	<Files>
 		<Filter
 			Name="terrain"
 			Filter="">
 			<File
-				RelativePath="..\terrain\Camera.cpp"/>
+				RelativePath="..\terrain\Camera.cpp">
+			</File>
 			<File
-				RelativePath="..\terrain\Camera.h"/>
+				RelativePath="..\terrain\Camera.h">
+			</File>
 			<File
-				RelativePath="..\terrain\Frustum.cpp"/>
+				RelativePath="..\terrain\Frustum.cpp">
+			</File>
 			<File
-				RelativePath="..\terrain\Frustum.h"/>
+				RelativePath="..\terrain\Frustum.h">
+			</File>
 			<File
-				RelativePath="..\terrain\MathUtil.h"/>
+				RelativePath="..\terrain\MathUtil.h">
+			</File>
 			<File
-				RelativePath="..\terrain\Matrix3D.cpp"/>
+				RelativePath="..\terrain\Matrix3D.cpp">
+			</File>
 			<File
-				RelativePath="..\terrain\Matrix3D.h"/>
+				RelativePath="..\terrain\Matrix3D.h">
+			</File>
 			<File
-				RelativePath="..\terrain\MiniPatch.cpp"/>
+				RelativePath="..\terrain\MiniPatch.cpp">
+			</File>
 			<File
-				RelativePath="..\terrain\MiniPatch.h"/>
+				RelativePath="..\terrain\MiniPatch.h">
+			</File>
 			<File
-				RelativePath="..\terrain\Patch.cpp"/>
+				RelativePath="..\terrain\Patch.cpp">
+			</File>
 			<File
-				RelativePath="..\terrain\Patch.h"/>
+				RelativePath="..\terrain\Patch.h">
+			</File>
 			<File
-				RelativePath="..\terrain\Plane.cpp"/>
+				RelativePath="..\terrain\Plane.cpp">
+			</File>
 			<File
-				RelativePath="..\terrain\Plane.h"/>
+				RelativePath="..\terrain\Plane.h">
+			</File>
 			<File
-				RelativePath="..\terrain\Renderer.cpp"/>
+				RelativePath="..\terrain\Renderer.cpp">
+			</File>
 			<File
-				RelativePath="..\terrain\Renderer.h"/>
+				RelativePath="..\terrain\Renderer.h">
+			</File>
 			<File
-				RelativePath="..\terrain\Terrain.cpp"/>
+				RelativePath="..\terrain\Terrain.cpp">
+			</File>
 			<File
-				RelativePath="..\terrain\Terrain.h"/>
+				RelativePath="..\terrain\Terrain.h">
+			</File>
 			<File
-				RelativePath="..\terrain\terrainMain.cpp"/>
+				RelativePath="..\terrain\terrainMain.cpp">
+			</File>
 			<File
-				RelativePath="..\terrain\TerrGlobals.h"/>
+				RelativePath="..\terrain\TerrGlobals.h">
+			</File>
 			<File
-				RelativePath="..\terrain\Types.h"/>
+				RelativePath="..\terrain\Types.h">
+			</File>
 			<File
-				RelativePath="..\terrain\Vector3D.cpp"/>
+				RelativePath="..\terrain\Vector3D.cpp">
+			</File>
 			<File
-				RelativePath="..\terrain\Vector3D.h"/>
+				RelativePath="..\terrain\Vector3D.h">
+			</File>
 		</Filter>
 		<Filter
 			Name="gui"
 			Filter="">
 			<File
-				RelativePath="..\gui\CButton.cpp"/>
+				RelativePath="..\gui\CButton.cpp">
+			</File>
 			<File
-				RelativePath="..\gui\CButton.h"/>
+				RelativePath="..\gui\CButton.h">
+			</File>
 			<File
-				RelativePath="..\gui\CGUI.cpp"/>
+				RelativePath="..\gui\CGUI.cpp">
+			</File>
 			<File
-				RelativePath="..\gui\CGUI.h"/>
+				RelativePath="..\gui\CGUI.h">
+			</File>
 			<File
-				RelativePath="..\gui\CGUIButtonBehavior.cpp"/>
+				RelativePath="..\gui\CGUIButtonBehavior.cpp">
+			</File>
 			<File
-				RelativePath="..\gui\CGUIButtonBehavior.h"/>
+				RelativePath="..\gui\CGUIButtonBehavior.h">
+			</File>
 			<File
-				RelativePath="..\gui\CGUIObject.cpp"/>
+				RelativePath="..\gui\CGUIObject.cpp">
+			</File>
 			<File
-				RelativePath="..\gui\CGUIObject.h"/>
+				RelativePath="..\gui\CGUIObject.h">
+			</File>
 			<File
-				RelativePath="..\gui\CGUISettingsObject.cpp"/>
+				RelativePath="..\gui\CGUISettingsObject.cpp">
+			</File>
 			<File
-				RelativePath="..\gui\CGUISettingsObject.h"/>
+				RelativePath="..\gui\CGUISettingsObject.h">
+			</File>
 			<File
-				RelativePath="..\gui\CGUISprite.cpp"/>
+				RelativePath="..\gui\CGUISprite.cpp">
+			</File>
 			<File
-				RelativePath="..\gui\CGUISprite.h"/>
+				RelativePath="..\gui\CGUISprite.h">
+			</File>
 			<File
-				RelativePath="..\gui\GUI.cpp"/>
+				RelativePath="..\gui\GUI.cpp">
+			</File>
 			<File
-				RelativePath="..\gui\GUI.h"/>
+				RelativePath="..\gui\GUI.h">
+			</File>
 			<File
-				RelativePath="..\gui\hello.xml"/>
+				RelativePath="..\gui\guimain.cpp">
+			</File>
 			<File
-				RelativePath="..\gui\objects.dtd"/>
+				RelativePath="..\gui\XercesErrorHandler.cpp">
+			</File>
 			<File
-				RelativePath="..\gui\sprite1.xml"/>
-			<File
-				RelativePath="..\gui\sprites.dtd"/>
-			<File
-				RelativePath="..\gui\XercesErrorHandler.cpp"/>
-			<File
-				RelativePath="..\gui\XercesErrorHandler.h"/>
+				RelativePath="..\gui\XercesErrorHandler.h">
+			</File>
 		</Filter>
 		<Filter
 			Name="ps"
 			Filter="">
 			<File
-				RelativePath="..\ps\BaseEntity.h"/>
+				RelativePath="..\ps\BaseEntity.h">
+			</File>
 			<File
-				RelativePath="..\ps\CStr.cpp"/>
+				RelativePath="..\ps\CStr.cpp">
+			</File>
 			<File
-				RelativePath="..\ps\CStr.h"/>
+				RelativePath="..\ps\CStr.h">
+			</File>
 			<File
-				RelativePath="..\ps\Encryption.cpp"/>
+				RelativePath="..\ps\Encryption.cpp">
+			</File>
 			<File
-				RelativePath="..\ps\Encryption.h"/>
+				RelativePath="..\ps\Encryption.h">
+			</File>
 			<File
-				RelativePath="..\ps\Error.h"/>
+				RelativePath="..\ps\Error.h">
+			</File>
 			<File
-				RelativePath="..\ps\LogFile.cpp"/>
+				RelativePath="..\ps\LogFile.cpp">
+			</File>
 			<File
-				RelativePath="..\ps\LogFile.h"/>
+				RelativePath="..\ps\LogFile.h">
+			</File>
 			<File
-				RelativePath="..\ps\MathUtil.cpp"/>
+				RelativePath="..\ps\MathUtil.cpp">
+			</File>
 			<File
-				RelativePath="..\ps\MathUtil.h"/>
+				RelativePath="..\ps\MathUtil.h">
+			</File>
 			<File
-				RelativePath="..\ps\Parser.cpp"/>
+				RelativePath="..\ps\Parser.cpp">
+			</File>
 			<File
-				RelativePath="..\ps\Parser.h"/>
+				RelativePath="..\ps\Parser.h">
+			</File>
 			<File
-				RelativePath="..\ps\Prometheus.cpp"/>
+				RelativePath="..\ps\Prometheus.cpp">
+			</File>
 			<File
-				RelativePath="..\ps\Prometheus.h"/>
+				RelativePath="..\ps\Prometheus.h">
+			</File>
 			<File
-				RelativePath="..\ps\Singleton.h"/>
+				RelativePath="..\ps\Singleton.h">
+			</File>
 			<File
-				RelativePath="..\ps\Sound.h"/>
+				RelativePath="..\ps\Sound.h">
+			</File>
 		</Filter>
 		<Filter
 			Name="lib"
 			Filter="">
 			<File
-				RelativePath="..\lib\detect.cpp"/>
+				RelativePath="..\lib\detect.cpp">
+			</File>
 			<File
-				RelativePath="..\lib\detect.h"/>
+				RelativePath="..\lib\detect.h">
+			</File>
 			<File
-				RelativePath="..\lib\font.cpp"/>
+				RelativePath="..\lib\font.cpp">
+			</File>
 			<File
-				RelativePath="..\lib\font.h"/>
+				RelativePath="..\lib\font.h">
+			</File>
 			<File
-				RelativePath="..\lib\glext_funcs.h"/>
+				RelativePath="..\lib\glext_funcs.h">
+			</File>
 			<File
-				RelativePath="..\lib\ia32.cpp"/>
+				RelativePath="..\lib\ia32.cpp">
+			</File>
 			<File
-				RelativePath="..\lib\ia32.h"/>
+				RelativePath="..\lib\ia32.h">
+			</File>
 			<File
-				RelativePath="..\lib\input.cpp"/>
+				RelativePath="..\lib\input.cpp">
+			</File>
 			<File
-				RelativePath="..\lib\input.h"/>
+				RelativePath="..\lib\input.h">
+			</File>
 			<File
-				RelativePath="..\lib\mem.cpp"/>
+				RelativePath="..\lib\mem.cpp">
+			</File>
 			<File
-				RelativePath="..\lib\mem.h"/>
+				RelativePath="..\lib\mem.h">
+			</File>
 			<File
-				RelativePath="..\lib\memcpy.cpp"/>
+				RelativePath="..\lib\memcpy.cpp">
+			</File>
 			<File
-				RelativePath="..\lib\misc.cpp"/>
+				RelativePath="..\lib\misc.cpp">
+			</File>
 			<File
-				RelativePath="..\lib\misc.h"/>
+				RelativePath="..\lib\misc.h">
+			</File>
 			<File
-				RelativePath="..\lib\ogl.cpp"/>
+				RelativePath="..\lib\ogl.cpp">
+			</File>
 			<File
-				RelativePath="..\lib\ogl.h"/>
+				RelativePath="..\lib\ogl.h">
+			</File>
 			<File
-				RelativePath="..\lib\posix.cpp"/>
+				RelativePath="..\lib\posix.cpp">
+			</File>
 			<File
-				RelativePath="..\lib\posix.h"/>
+				RelativePath="..\lib\posix.h">
+			</File>
 			<File
-				RelativePath="..\lib\res.cpp"/>
+				RelativePath="..\lib\res.cpp">
+			</File>
 			<File
-				RelativePath="..\lib\res.h"/>
+				RelativePath="..\lib\res.h">
+			</File>
 			<File
-				RelativePath="..\lib\tex.cpp"/>
+				RelativePath="..\lib\tex.cpp">
+			</File>
 			<File
-				RelativePath="..\lib\tex.h"/>
+				RelativePath="..\lib\tex.h">
+			</File>
 			<File
-				RelativePath="..\lib\time.cpp"/>
+				RelativePath="..\lib\time.cpp">
+			</File>
 			<File
-				RelativePath="..\lib\time.h"/>
+				RelativePath="..\lib\time.h">
+			</File>
 			<File
-				RelativePath="..\lib\types.h"/>
+				RelativePath="..\lib\types.h">
+			</File>
 			<File
-				RelativePath="..\lib\unzip.cpp"/>
+				RelativePath="..\lib\unzip.cpp">
+			</File>
 			<File
-				RelativePath="..\lib\unzip.h"/>
+				RelativePath="..\lib\unzip.h">
+			</File>
 			<File
-				RelativePath="..\lib\vfs.cpp"/>
+				RelativePath="..\lib\vfs.cpp">
+			</File>
 			<File
-				RelativePath="..\lib\vfs.h"/>
+				RelativePath="..\lib\vfs.h">
+			</File>
 			<File
-				RelativePath="..\lib\win.h"/>
+				RelativePath="..\lib\win.h">
+			</File>
 			<File
-				RelativePath="..\lib\wsdl.cpp"/>
+				RelativePath="..\lib\wsdl.cpp">
+			</File>
 			<File
-				RelativePath="..\lib\wsdl.h"/>
+				RelativePath="..\lib\wsdl.h">
+			</File>
 			<Filter
 				Name="posix"
 				Filter="">
 				<File
-					RelativePath="..\lib\posix\aio.cpp"/>
+					RelativePath="..\lib\posix\aio.cpp">
+				</File>
 				<File
-					RelativePath="..\lib\posix\aio.h"/>
+					RelativePath="..\lib\posix\aio.h">
+				</File>
 			</Filter>
 		</Filter>
 		<File
@@ -339,21 +410,18 @@
 				Name="Debug|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
-					ObjectFile="$(IntDir)/$(InputName)1.obj">
-					<IntelOptions
-						AllOptions="/c  /I &quot;../lib&quot; /I &quot;d:/apps/xerces-c_2_3_0-win32/include&quot; /ZI /nologo /W3 /Od /D &quot;WIN32&quot; /D &quot;_DEBUG&quot; /D &quot;_WINDOWS&quot; /D &quot;_MBCS&quot; /Gm /EHsc /RTC1 /MTd /Fo&quot;Debug/main1.obj&quot; /Fd&quot;Debug/vc70.pdb&quot; /Gd /TP"/>
-				</Tool>
+					AdditionalOptions=""
+					ObjectFile="$(IntDir)/$(InputName)1.obj"/>
 			</FileConfiguration>
 			<FileConfiguration
 				Name="Release|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
-					ObjectFile="$(IntDir)/$(InputName)1.obj">
-					<IntelOptions
-						AllOptions="/c  /I &quot;../lib&quot; /I &quot;d:/apps/xerces-c_2_3_0-win32/include&quot; /Zi /nologo /W3 /Wp64 /O2 /D &quot;WIN32&quot; /D &quot;NDEBUG&quot; /D &quot;_WINDOWS&quot; /D &quot;_MBCS&quot; /FD /EHsc /MT /Fo&quot;Release/main1.obj&quot; /Fd&quot;Release/vc70.pdb&quot; /Gd /TP"/>
-				</Tool>
+					AdditionalOptions=""
+					ObjectFile="$(IntDir)/$(InputName)1.obj"/>
 			</FileConfiguration>
 		</File>
 	</Files>
-	<Globals/>
+	<Globals>
+	</Globals>
 </VisualStudioProject>
