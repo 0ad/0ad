@@ -1,4 +1,4 @@
-// $Id: JSInterface_IGUIObject.cpp,v 1.4 2004/07/11 18:18:27 philip Exp $
+// $Id: JSInterface_IGUIObject.cpp,v 1.5 2004/07/12 15:52:53 philip Exp $
 
 #include "precompiled.h"
 
@@ -56,7 +56,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 		else
 		{
 			// Return null if there's no parent
-			*vp = JSVAL_VOID;
+			*vp = JSVAL_NULL;
 		}
 		return JS_TRUE;
 	}
@@ -73,8 +73,8 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 		{
 			// Possibly a function, but they should have been individually
 			// handled above, so complain about it
-			JS_ReportError(cx, "Invalid setting '%s'", propName.c_str());
-			return JS_TRUE;
+			JS_ReportError(cx, "Invalid GUIObject property '%s'", propName.c_str());
+			return JS_FALSE;
 		}
 
 		// (All the cases are in {...} to avoid scoping problems)
@@ -110,14 +110,15 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				CColor colour;
 				GUI<CColor>::GetSetting(e, propName, colour);
 				JSObject* obj = JS_NewObject(cx, &JSI_GUIColor::JSI_class, NULL, NULL);
-				jsval r = DOUBLE_TO_JSVAL(JS_NewDouble(cx, colour.r));
-				jsval g = DOUBLE_TO_JSVAL(JS_NewDouble(cx, colour.g));
-				jsval b = DOUBLE_TO_JSVAL(JS_NewDouble(cx, colour.b));
-				jsval a = DOUBLE_TO_JSVAL(JS_NewDouble(cx, colour.a));
-				JS_SetProperty(cx, obj, "r", &r);
-				JS_SetProperty(cx, obj, "g", &g);
-				JS_SetProperty(cx, obj, "b", &b);
-				JS_SetProperty(cx, obj, "a", &a);
+
+				// Attempt to minimise ugliness through macrosity
+				#define P(x) jsval x = DOUBLE_TO_JSVAL(JS_NewDouble(cx, colour.x)); JS_SetProperty(cx, obj, #x, &x)
+					P(r);
+					P(g);
+					P(b);
+					P(a);
+				#undef P
+
 				*vp = OBJECT_TO_JSVAL(obj);
 				break;
 			}
@@ -128,14 +129,14 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				GUI<CClientArea>::GetSetting(e, propName, area);
 				JSObject* obj = JS_NewObject(cx, &JSI_GUISize::JSI_class, NULL, NULL);
 				#define P(x, y, z) jsval z = INT_TO_JSVAL(area.x.y); JS_SetProperty(cx, obj, #z, &z)
-				P(pixel, left,		left);
-				P(pixel, top,		top);
-				P(pixel, right,		right);
-				P(pixel, bottom,	bottom);
-				P(percent, left,	rleft);
-				P(percent, top,		rtop);
-				P(percent, right,	rright);
-				P(percent, bottom,	rbottom);
+					P(pixel,	left,	left);
+					P(pixel,	top,	top);
+					P(pixel,	right,	right);
+					P(pixel,	bottom,	bottom);
+					P(percent,	left,	rleft);
+					P(percent,	top,	rtop);
+					P(percent,	right,	rright);
+					P(percent,	bottom,	rbottom);
 				#undef P
 				*vp = OBJECT_TO_JSVAL(obj);
 				break;
@@ -161,8 +162,8 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 
 		default:
 			JS_ReportError(cx, "Setting '%s' uses an unimplemented type", propName.c_str());
-			*vp = JSVAL_NULL;
-			break;
+			assert(! "This shouldn't happen");
+			return JS_FALSE;
 		}
 
 		return JS_TRUE;
@@ -206,7 +207,10 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 					if (JS_ValueToInt32(cx, *vp, &value) == JS_TRUE)
 						GUI<int>::SetSetting(e, propName, value);
 					else
+					{
 						JS_ReportError(cx, "Cannot convert value to int");
+						return JS_FALSE;
+					}
 					break;
 				}
 
@@ -216,7 +220,10 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 					if (JS_ValueToNumber(cx, *vp, &value) == JS_TRUE)
 						GUI<float>::SetSetting(e, propName, (float)value);
 					else
+					{
 						JS_ReportError(cx, "Cannot convert value to float");
+						return JS_FALSE;
+					}
 					break;
 				}
 
@@ -226,7 +233,10 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 					if (JS_ValueToBoolean(cx, *vp, &value) == JS_TRUE)
 						GUI<bool>::SetSetting(e, propName, value||0); // ||0 to avoid int-to-bool compiler warnings
 					else
+					{
 						JS_ReportError(cx, "Cannot convert value to bool");
+						return JS_FALSE;
+					}
 					break;
 				}
 
@@ -254,6 +264,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 					else
 					{
 						JS_ReportError(cx, "Size only accepts strings or GUISize objects");
+						return JS_FALSE;
 					}
 					break;
 				}
@@ -280,6 +291,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 					else
 					{
 						JS_ReportError(cx, "Color only accepts strings or GUIColor objects");
+						return JS_FALSE;
 					}
 					break;
 				}
@@ -289,10 +301,12 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				break;
 			}
 		}
+
+		// Catch failed calls to SetSetting (the string and templated versions)
 		catch (PS_RESULT)
 		{
 			JS_ReportError(cx, "Invalid value for setting '%s'", propName.c_str());
-			return JS_TRUE;
+			return JS_FALSE;
 		}
 	}
 	return JS_TRUE;

@@ -1,4 +1,4 @@
-// $Id: JSInterface_GUITypes.cpp,v 1.3 2004/07/11 18:18:27 philip Exp $
+// $Id: JSInterface_GUITypes.cpp,v 1.4 2004/07/12 15:52:53 philip Exp $
 
 #include "precompiled.h"
 
@@ -143,12 +143,12 @@ JSBool JSI_GUIColor::construct(JSContext* cx, JSObject* obj, unsigned int argc, 
 	{
 		// Nice magenta:
 		jsval r = DOUBLE_TO_JSVAL(JS_NewDouble(cx, 1.0));
-		jsval g = DOUBLE_TO_JSVAL(JS_NewDouble(cx, 0.0));
-		jsval b = DOUBLE_TO_JSVAL(JS_NewDouble(cx, 1.0));
-		jsval a = DOUBLE_TO_JSVAL(JS_NewDouble(cx, 1.0));
 		JS_SetProperty(cx, obj, "r", &r);
+		jsval g = DOUBLE_TO_JSVAL(JS_NewDouble(cx, 0.0));
 		JS_SetProperty(cx, obj, "g", &g);
+		jsval b = DOUBLE_TO_JSVAL(JS_NewDouble(cx, 1.0));
 		JS_SetProperty(cx, obj, "b", &b);
+		jsval a = DOUBLE_TO_JSVAL(JS_NewDouble(cx, 1.0));
 		JS_SetProperty(cx, obj, "a", &a);
 	}
 	return JS_TRUE;
