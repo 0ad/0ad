@@ -7,8 +7,5 @@
 	<Name>Roman House 3 Vines</Name>
 	<ModelName>art/meshes/props/rome_ho_3_vines.pmd</ModelName>
 	<TextureName>art/textures/skins/gaia/wrld_fol_vine.dds</TextureName>
-	<Properties
-		autoflatten="0"
-		castshadows="1"
-	></Properties>
+	<Material>art/materials/basic_trans.xml</Material>
 </Object>
