@@ -186,6 +186,8 @@ static HDATA* h_data(const i32 idx)
 			return 0;
 	}
 
+	// note: VC7.1 optimizes the divisions to shift and mask.
+
 	return &page[idx % hdata_per_page];
 }
 
@@ -356,6 +358,8 @@ int h_free(Handle& h, H_Type type)
 	if(!hd)
 		return ERR_INVALID_HANDLE;
 
+//debug_out("free %s %s\n", type->name, hd->fn);
+	
 	// only decrement if refcount not already 0.
 	if(hd->refs > 0)
 		hd->refs--;
@@ -438,6 +442,8 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 			key = fnv_hash(fn);
 	}
 
+//debug_out("alloc %s %s\n", type->name, fn);
+	
 	// disable caching if no key, because it would never be found
 	if(!key)
 		flags |= RES_NO_CACHE;	// changes scope to RES_TEMP
