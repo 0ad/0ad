@@ -1,0 +1,78 @@
+Linux Build Instructions
+
+Use the script in source/workspaces/update-workspaces.sh to generate the GNU/GCC
+makefile in the gcc subdirectory. The makefile supports the standard targets
+'all' and 'clean', and you may set CONFIG=Release to build a release version.
+Note that if you have previously built a Debug config you must 'make clean'
+before building a Release config.
+
+Required Libraries
+
+$lib := directory where the compiler looks for lib files;
+  typically = /usr/lib .
+$include := the same for header files (= /usr/include).
+$GL := directory containing OpenGL headers.
+  typically one of /usr/include/GL or /usr/X11R6/include/GL
+$binaries := directory containing system/ and data/
+
+- OpenGL extensions:
+  download http://www.wildfiregames.com/~code/libraries/glext.h
+  ... and put it in $GL.
+
+- SpiderMonkey [javascript]
+  The source is *not* compatible with the mozjs libraries included in mozilla
+  browser distributions (that is the multi-threaded version - we're using the
+  single-threaded version). The solution is to build your own version and make
+  sure that thread support is not enabled when you do it (non-threaded is the
+  default - so don't change it to threaded)
+  
+  ... download the source
+  either choose one from http://ftp.mozilla.org/pub/mozilla.org/js/
+  or take http://www.wildfiregames.com/~code/libraries/linux/js-1.5-rc6a.tar.gz
+  ... unpack in a temporary directory (let's call it $temp)
+  ... chdir into $temp/js/src/
+  ... make -f Makefile.ref all
+  ... make -f Makefile.ref export
+    This last step will have put all the built binaries, libraries and headers
+	in $temp/dist/Linux_All_DBG.OBJ
+  ... chdir into $temp/dist/Linux_All_DBG.OBJ
+  ... copy everything under include/ into $include
+  ... copy everything under lib/ into $lib
+  ... run ldconfig (if you don't, the library might not be found at runtime)
+	You are free to copy the binaries under bin/ into your path as well, but it
+	won't be neccessary to build the engine.
+
+- FMOD: [sound]
+  download http://www.wildfiregames.com/~code/libraries/linux/fmodapi373linux.tar.gz
+  ... unpack archive
+  ... copy libfmod373linux/api/libfmod-3.73.so to $lib
+  ... run ldconfig (if you don't, the library might not be found at runtime)
+  ... copy libfmod373linux/api/inc/* to $include
+
+
+These libraries should have packages available for your distribution. You will
+need to get the corresponding -dev or -devel package for each library.
+- SDL
+- zlib (libz) [resource decompression]
+- libpng [PNG texture loading]
+- FAM [file alteration monitor]
+  FAM consists of a daemon and a client library. Both will need to be installed
+  to build/run PS. You'll need the devel package for the library too.
+- Xerces-C++ (xercesc, xerces-c, xerces-c++, whatever your distro might call it)
+  If you have to build Xerces-C++ by yourself, just make sure that the headers
+  and libraries get installed in $lib and $include. No special config should be
+  necessary otherwise.
+
+
+*Notes for the Release Person*
+
+We should probably include a good bunch of these libraries in the final linux
+release - they should go in binaries/system/. zlib is really the only library
+we can rely on being installed.
+
+With the libraries in a non-standard location, LD_LIBRARY_PATH will need to be
+set by a script before launching the actual ps executable.
+
+FAM: Prometheus needs a running FAM daemon. Either we include the daemon exec
+in the distribution and launch it in the start script, or we just add it as a
+prereq (i.e. leave it to the user to install).
