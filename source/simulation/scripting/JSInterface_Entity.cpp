@@ -8,7 +8,9 @@
 #include "EntityManager.h"
 #include "BaseEntityCollection.h"
 #include "CConsole.h"
+#include "Scheduler.h"
 
+/*
 JSClass JSI_Entity::JSI_class = {
 	"Entity", JSCLASS_HAS_PRIVATE,
 	JS_PropertyStub, JS_PropertyStub,
@@ -26,6 +28,8 @@ JSPropertySpec JSI_Entity::JSI_props[] =
 JSFunctionSpec JSI_Entity::JSI_methods[] = 
 {
 	{ "toString", JSI_Entity::toString, 0, 0, 0 },
+	{ "order", JSI_Entity::orderSingle, 1, 0, 0 },
+	{ "orderQueued", JSI_Entity::orderQueued, 1, 0, 0 },
 	{ 0 }
 };
 
@@ -45,8 +49,18 @@ JSBool JSI_Entity::getProperty( JSContext* cx, JSObject* obj, jsval id, jsval* v
 		return( JS_TRUE );
 	}
 	else
-		JS_ReportError( cx, "No such property on %ls: %ls", (const wchar_t*)((*e)->m_name), (const wchar_t*)propName );
-	return( JS_TRUE );
+	{
+		// Don't show the message if we're using a function defined by the engine.
+		JSFunctionSpec* fnSpec = JSI_Entity::JSI_methods;
+		while( fnSpec->name )
+		{
+			if( CStr8( propName ) == CStr8( fnSpec->name ) )
+				return( JS_TRUE );
+			fnSpec++;
+		}
+		JS_ReportError( cx, "No such property on %s: %s", CStr8((*e)->m_name).c_str(), CStr8(propName).c_str() );
+		return( JS_TRUE );
+	}
 }
 
 JSBool JSI_Entity::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
@@ -58,10 +72,11 @@ JSBool JSI_Entity::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* v
 	{
 		(*e)->m_properties[propName]->fromjsval( *vp );
 		(*e)->rebuild( propName );
-		return( JS_TRUE );
 	}
 	else
-		JS_ReportError( cx, "No such property on %ls: %ls", (const wchar_t*)((*e)->m_name), (const wchar_t*)propName );
+	{
+		(*e)->addProperty( propName, *vp );
+	}
 	return( JS_TRUE );
 }
 
@@ -74,7 +89,7 @@ JSBool JSI_Entity::construct( JSContext* cx, JSObject* obj, unsigned int argc, j
 	JSObject* jsBaseEntity = JSVAL_TO_OBJECT( argv[0] );
 	CStrW templateName;
 
-	if( !JSVAL_IS_OBJECT( argv[0] ) || !( baseEntity = (CBaseEntity*)JS_GetInstancePrivate( cx, jsBaseEntity, &JSI_BaseEntity::JSI_class, NULL ) ) )
+	if( !JSVAL_IS_OBJECT( argv[0] ) || !( baseEntity = CBaseEntity::GetNative( cx, jsBaseEntity ) ) )
 	{	
 		try
 		{
@@ -91,7 +106,7 @@ JSBool JSI_Entity::construct( JSContext* cx, JSObject* obj, unsigned int argc, j
 	if( !baseEntity )
 	{
 		*rval = JSVAL_NULL;
-		JS_ReportError( cx, "No such template: %ls", (const wchar_t*)templateName );
+		JS_ReportError( cx, "No such template: %ls", CStr8(templateName).c_str() );
 		return( JS_TRUE );
 	}
 	JSI_Vector3D::Vector3D_Info* jsVector3D = NULL;
@@ -123,6 +138,7 @@ JSBool JSI_Entity::construct( JSContext* cx, JSObject* obj, unsigned int argc, j
 
 void JSI_Entity::finalize( JSContext* cx, JSObject* obj )
 {
+	JSClass* DebugInfo = JS_GetClass( obj );
 	delete( (HEntity*)JS_GetPrivate( cx, obj ) );
 }
 
@@ -143,3 +159,70 @@ JSBool JSI_Entity::toString( JSContext* cx, JSObject* obj, uintN argc, jsval* ar
 	*rval = STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, utfbuf ) );
 	return( JS_TRUE );
 }
+
+JSBool JSI_Entity::orderSingle( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+{
+	return( order( cx, obj, argc, argv, rval, false ) );
+}
+
+JSBool JSI_Entity::orderQueued( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+{
+	return( order( cx, obj, argc, argv, rval, true ) );
+}
+
+JSBool JSI_Entity::order( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval, bool queueOrder )
+{
+	HEntity* e = (HEntity*)JS_GetPrivate( cx, obj );
+
+	// This needs to be sorted (uses Scheduler rather than network messaging)
+	assert( argc >= 1 );
+
+	int orderCode;
+
+	try
+	{
+		orderCode = g_ScriptingHost.ValueToInt( argv[0] );
+	}
+	catch( PSERROR_Scripting_ConversionFailed )
+	{
+		*rval = JSVAL_FALSE;
+		JS_ReportError( cx, "Invalid order type" );
+		return( JS_TRUE );
+	}
+
+	CEntityOrder newOrder;
+
+	(int&)newOrder.m_type = orderCode;
+
+	switch( orderCode )
+	{
+	case CEntityOrder::ORDER_GOTO:
+	case CEntityOrder::ORDER_PATROL:
+		if( argc < 3 )
+		{
+			*rval = JSVAL_FALSE;
+			JS_ReportError( cx, "Too few parameters" );
+			return( JS_TRUE );
+		}
+		try
+		{
+			newOrder.m_data[0].location.x = g_ScriptingHost.ValueToDouble( argv[1] );
+			newOrder.m_data[0].location.y = g_ScriptingHost.ValueToDouble( argv[2] );
+		}
+		catch( PSERROR_Scripting_ConversionFailed )
+		{
+			*rval = JSVAL_FALSE;
+			JS_ReportError( cx, "Invalid location" );
+			return( JS_TRUE );
+		}
+		g_Scheduler.pushFrame( ORDER_DELAY, (*e)->me, new CMessageOrder( newOrder, queueOrder ) );
+		*rval = JSVAL_TRUE;
+		return( JS_TRUE );
+	default:
+		*rval = JSVAL_FALSE;
+		JS_ReportError( cx, "Invalid order type" );
+		return( JS_TRUE );
+	}
+}
+
+*/

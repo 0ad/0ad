@@ -48,17 +48,27 @@ JSI_Vector3D::Vector3D_Info::Vector3D_Info( const CVector3D& copy )
 	vector = new CVector3D( copy.X, copy.Y, copy.Z );
 }
 
-JSI_Vector3D::Vector3D_Info::Vector3D_Info( CVector3D* attach, IBoundPropertyOwner* _owner )
+JSI_Vector3D::Vector3D_Info::Vector3D_Info( CVector3D* attach, IPropertyOwner* _owner )
 {
 	owner = _owner;
 	updateFn = NULL;
+	freshenFn = NULL;
 	vector = attach;
 }
 
-JSI_Vector3D::Vector3D_Info::Vector3D_Info( CVector3D* attach, IBoundPropertyOwner* _owner, void( IBoundPropertyOwner::*_updateFn )(void) )
+JSI_Vector3D::Vector3D_Info::Vector3D_Info( CVector3D* attach, IPropertyOwner* _owner, void( IPropertyOwner::*_updateFn )(void) )
 {
 	owner = _owner;
 	updateFn = _updateFn;
+	freshenFn = NULL;
+	vector = attach;
+}
+
+JSI_Vector3D::Vector3D_Info::Vector3D_Info( CVector3D* attach, IPropertyOwner* _owner, void( IPropertyOwner::*_updateFn )(void), void( IPropertyOwner::*_freshenFn )(void) )
+{
+	owner = _owner;
+	updateFn = _updateFn;
+	freshenFn = _freshenFn;
 	vector = attach;
 }
 
@@ -78,8 +88,11 @@ JSBool JSI_Vector3D::getProperty( JSContext* cx, JSObject* obj, jsval id, jsval*
 		JS_ReportError( cx, "[Vector3D] Invalid reference" );
 		return( JS_TRUE );
 	}
+
  	CVector3D* vectorData = vectorInfo->vector;
 
+	if( vectorInfo->owner && vectorInfo->freshenFn ) ( (vectorInfo->owner)->*(vectorInfo->freshenFn) )();
+	
 	switch( g_ScriptingHost.ValueToInt( id ) )
 	{
 	case component_x: *vp = DOUBLE_TO_JSVAL( JS_NewDouble( cx, vectorData->X ) ); return( JS_TRUE );
@@ -103,6 +116,7 @@ JSBool JSI_Vector3D::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval*
 	}
 	CVector3D* vectorData = vectorInfo->vector;
 
+	if( vectorInfo->owner && vectorInfo->freshenFn ) ( (vectorInfo->owner)->*(vectorInfo->freshenFn) )();
 
 	switch( g_ScriptingHost.ValueToInt( id ) )
 	{
@@ -163,7 +177,11 @@ JSBool JSI_Vector3D::toString( JSContext* cx, JSObject* obj, uintN argc, jsval* 
 {
 	char buffer[256];
 	Vector3D_Info* vectorInfo = (Vector3D_Info*)JS_GetPrivate( cx, obj );
+
 	if( !vectorInfo ) return( JS_TRUE );
+
+	if( vectorInfo->owner && vectorInfo->freshenFn ) ( (vectorInfo->owner)->*(vectorInfo->freshenFn) )();
+
  	CVector3D* vectorData = vectorInfo->vector;
 	snprintf( buffer, 256, "[object Vector3D: ( %f, %f, %f )]", vectorData->X, vectorData->Y, vectorData->Z );
 	buffer[255] = 0;

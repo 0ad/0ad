@@ -17,7 +17,7 @@ extern bool g_active;
 static const float SELECT_DBLCLICK_RATE = 0.5f;
 static const int ORDER_DELAY = 5;
 
-void CSelectedEntities::addSelection( CEntity* entity )
+void CSelectedEntities::addSelection( HEntity entity )
 {
 	m_group = -1;
 	assert( !isSelected( entity ) );
@@ -25,12 +25,12 @@ void CSelectedEntities::addSelection( CEntity* entity )
 	entity->m_selected = true;
 }
 
-void CSelectedEntities::removeSelection( CEntity* entity )
+void CSelectedEntities::removeSelection( HEntity entity )
 {
 	m_group = -1;
 	assert( isSelected( entity ) );
 	entity->m_selected = false;
-	std::vector<CEntity*>::iterator it;
+	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
 	{
 		if( (*it) == entity ) 
@@ -43,7 +43,7 @@ void CSelectedEntities::removeSelection( CEntity* entity )
 
 void CSelectedEntities::renderSelectionOutlines()
 {
-	std::vector<CEntity*>::iterator it;
+	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
 		(*it)->renderSelectionOutline();
 
@@ -52,7 +52,7 @@ void CSelectedEntities::renderSelectionOutlines()
 		glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 		glEnable( GL_BLEND );
 
-		std::vector<CEntity*>::iterator it;
+		std::vector<HEntity>::iterator it;
 		for( it = m_groups[m_group_highlight].begin(); it < m_groups[m_group_highlight].end(); it++ )
 			(*it)->renderSelectionOutline( 0.5f );
 
@@ -67,7 +67,7 @@ void CSelectedEntities::renderOverlays()
 
 	glPushMatrix();
 	glEnable( GL_TEXTURE_2D );
-	std::vector<CEntity*>::iterator it;
+	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
 	{
 		if( (*it)->m_grouped != -1 )
@@ -93,7 +93,7 @@ void CSelectedEntities::renderOverlays()
 		glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 		glEnable( GL_BLEND );
 
-		std::vector<CEntity*>::iterator it;
+		std::vector<HEntity>::iterator it;
 		for( it = m_groups[m_group_highlight].begin(); it < m_groups[m_group_highlight].end(); it++ )
 		{
 			assert( (*it)->m_bounds );
@@ -132,7 +132,7 @@ void CSelectedEntities::renderOverlays()
 	glPopMatrix();
 }
 
-void CSelectedEntities::setSelection( CEntity* entity )
+void CSelectedEntities::setSelection( HEntity entity )
 {
 	m_group = -1;
 	clearSelection();
@@ -142,17 +142,17 @@ void CSelectedEntities::setSelection( CEntity* entity )
 void CSelectedEntities::clearSelection()
 {
 	m_group = -1;
-	std::vector<CEntity*>::iterator it;
+	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
 		(*it)->m_selected = false;
 	m_selected.clear();
 }
 
-void CSelectedEntities::removeAll( CEntity* entity )
+void CSelectedEntities::removeAll( HEntity entity )
 {
 	// Remove a reference to an entity from everywhere
 	// (for use when said entity is being destroyed)
-	std::vector<CEntity*>::iterator it;
+	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
 	{
 		if( (*it) == entity ) 
@@ -161,7 +161,7 @@ void CSelectedEntities::removeAll( CEntity* entity )
 			break;
 		}
 	}
-	for( u8 group = 0; group < 10; group++ )
+	for( u8 group = 0; group < MAX_GROUPS; group++ )
 	{
 		for( it = m_groups[group].begin(); it < m_groups[group].end(); it++ )
 		{
@@ -177,7 +177,7 @@ void CSelectedEntities::removeAll( CEntity* entity )
 CVector3D CSelectedEntities::getSelectionPosition()
 {
 	CVector3D avg;
-	std::vector<CEntity*>::iterator it;
+	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
 		avg += (*it)->m_graphics_position;
 	return( avg * ( 1.0f / m_selected.size() ) );
@@ -185,7 +185,7 @@ CVector3D CSelectedEntities::getSelectionPosition()
 
 void CSelectedEntities::saveGroup( i8 groupid )
 {
-	std::vector<CEntity*>::iterator it;
+	std::vector<HEntity>::iterator it;
 	// Clear all entities in the group...
 	for( it = m_groups[groupid].begin(); it < m_groups[groupid].end(); it++ )
 		(*it)->m_grouped = -1;
@@ -197,8 +197,8 @@ void CSelectedEntities::saveGroup( i8 groupid )
 	{
 		if( (*it)->m_grouped != -1 )
 		{
-			std::vector<CEntity*>& group = m_groups[(*it)->m_grouped];
-			std::vector<CEntity*>::iterator it2;
+			std::vector<HEntity>& group = m_groups[(*it)->m_grouped];
+			std::vector<HEntity>::iterator it2;
 			for( it2 = group.begin(); it2 < group.end(); it2++ )
 			{
 				if( (*it2) == &(**it) )
@@ -216,16 +216,16 @@ void CSelectedEntities::saveGroup( i8 groupid )
 	m_group = groupid;
 }
 
-void CSelectedEntities::addToGroup( i8 groupid, CEntity* entity )
+void CSelectedEntities::addToGroup( i8 groupid, HEntity entity )
 {
-	std::vector<CEntity*>::iterator it;
+	std::vector<HEntity>::iterator it;
 
 	// Remove selected entities from each group they're in, and flag them as
 	// members of the new group
 	if( entity->m_grouped != -1 )
 	{
-		std::vector<CEntity*>& group = m_groups[(*it)->m_grouped];
-		std::vector<CEntity*>::iterator it2;
+		std::vector<HEntity>& group = m_groups[(*it)->m_grouped];
+		std::vector<HEntity>::iterator it2;
 		for( it2 = group.begin(); it2 < group.end(); it2++ )
 		{
 			if( (*it2) == entity )
@@ -244,7 +244,7 @@ void CSelectedEntities::loadGroup( i8 groupid )
 {
 	clearSelection();
 	m_selected = m_groups[groupid];
-	std::vector<CEntity*>::iterator it;
+	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
 		(*it)->m_selected = true;
 	m_group = groupid;
@@ -252,7 +252,7 @@ void CSelectedEntities::loadGroup( i8 groupid )
 
 void CSelectedEntities::addGroup( i8 groupid )
 {
-	std::vector<CEntity*>::iterator it;
+	std::vector<HEntity>::iterator it;
 	for( it = m_groups[groupid].begin(); it < m_groups[groupid].end(); it++ )
 	{
 		if( !isSelected( *it ) )
@@ -262,13 +262,13 @@ void CSelectedEntities::addGroup( i8 groupid )
 		(*it)->m_selected = true;
 }
 
-void CSelectedEntities::changeGroup( CEntity* entity, i8 groupid )
+void CSelectedEntities::changeGroup( HEntity entity, i8 groupid )
 {
 	// Remove from current group
 	i32 current = entity->m_grouped;
 	if( current != -1 )
 	{
-		std::vector<CEntity*>::iterator it;
+		std::vector<HEntity>::iterator it;
 		for( it = m_groups[current].begin(); it < m_groups[current].end(); it++ )
 		{
 			if( (*it) == entity ) 
@@ -283,9 +283,9 @@ void CSelectedEntities::changeGroup( CEntity* entity, i8 groupid )
 	entity->m_grouped = groupid;
 }
 
-bool CSelectedEntities::isSelected( CEntity* entity )
+bool CSelectedEntities::isSelected( HEntity entity )
 {
-	std::vector<CEntity*>::iterator it;
+	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
 	{
 		if( (*it) == entity ) 
@@ -321,7 +321,7 @@ int CSelectedEntities::getGroupCount( i8 groupid )
 CVector3D CSelectedEntities::getGroupPosition( i8 groupid )
 {
 	CVector3D avg;
-	std::vector<CEntity*>::iterator it;
+	std::vector<HEntity>::iterator it;
 	for( it = m_groups[groupid].begin(); it < m_groups[groupid].end(); it++ )
 		avg += (*it)->m_graphics_position;
 	return( avg * ( 1.0f / m_groups[groupid].size() ) );
@@ -394,7 +394,7 @@ bool CSelectedEntities::isContextValid( int contextOrder )
 		return( false );
 
 	// Check to see if any member of the selection supports this order type.
-	std::vector<CEntity*>::iterator it;
+	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
 		if( (*it)->acceptsOrder( contextOrder, g_Mouseover.m_target ) )
 			return( true );
@@ -406,7 +406,7 @@ void CSelectedEntities::contextOrder( bool pushQueue )
 	CCamera *pCamera=g_Game->GetView()->GetCamera();
 	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
 
-	std::vector<CEntity*>::iterator it;
+	std::vector<HEntity>::iterator it;
 	CEntityOrder context, contextRandomized;
 	(int&)context.m_type = m_contextOrder;
 
@@ -492,13 +492,16 @@ void CMouseoverEntities::update( float timestep )
 	pCamera->BuildCameraRay( origin, dir );
 
 	CUnit* hit = g_UnitMan.PickUnit( origin, dir );
-
-	m_target = NULL;
 	
 	m_worldposition = pCamera->GetWorldCoordinates();
 
-	if( hit )
-		m_target = hit->GetEntity();
+	if( hit && hit->GetEntity() )
+	{
+		m_target = hit->GetEntity()->me;
+	}
+	else
+		m_target = HEntity();
+
 	if( m_viewall )
 	{
 		// 'O' key. Show selection outlines for all player units on screen
@@ -512,7 +515,7 @@ void CMouseoverEntities::update( float timestep )
 		std::vector<HEntity>::iterator it;
 		
 		for( it = onscreen->begin(); it < onscreen->end(); it++ )
-			m_mouseover.push_back( SMouseoverFader( &(**it), m_fademaximum, false ) );
+			m_mouseover.push_back( SMouseoverFader( *it, m_fademaximum, false ) );
 
 		delete( onscreen );
 	}
@@ -573,7 +576,7 @@ void CMouseoverEntities::update( float timestep )
 						it2->isActive = true;
 					}
 				if( !found )
-					m_mouseover.push_back( SMouseoverFader( &(**it), ( m_fadeinrate + m_fadeoutrate ) * timestep ) );
+					m_mouseover.push_back( SMouseoverFader( *it, ( m_fadeinrate + m_fadeoutrate ) * timestep ) );
 			}
 		}
 		delete( onscreen );
@@ -615,7 +618,7 @@ void CMouseoverEntities::update( float timestep )
 				it++; continue;
 			}
 		}
-		if( !found && m_target )
+		if( !found && (bool)m_target )
 		{
 			float initial = m_fadeinrate * timestep;
 			if( initial > m_fademaximum ) initial = m_fademaximum;
@@ -653,7 +656,7 @@ void CMouseoverEntities::expandAcrossScreen()
 	std::vector<HEntity>::iterator it;
 	for( it = activeset->begin(); it < activeset->end(); it++ )
 	{
-		m_mouseover.push_back( SMouseoverFader( &(**it) ) );
+		m_mouseover.push_back( SMouseoverFader( *it ) );
 	}
 	delete( activeset );
 }
@@ -665,7 +668,7 @@ void CMouseoverEntities::expandAcrossWorld()
 	std::vector<HEntity>::iterator it;
 	for( it = activeset->begin(); it < activeset->end(); it++ )
 	{
-		m_mouseover.push_back( SMouseoverFader( &(**it) ) );
+		m_mouseover.push_back( SMouseoverFader( *it ) );
 	}
 	delete( activeset );
 }
@@ -749,7 +752,7 @@ int interactInputHandler( const SDL_Event* ev )
 	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
 
 	static float lastclicktime = 0.0f;
-	static CEntity* lastclickobject = NULL;
+	static HEntity lastclickobject;
 	static u8 clicks = 0;
 
 	static u16 button_down_x, button_down_y;

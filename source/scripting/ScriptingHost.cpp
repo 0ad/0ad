@@ -72,7 +72,7 @@ ScriptingHost::~ScriptingHost()
 {
 	if (m_Context != NULL)
 	{
-		JS_DestroyContext(m_Context);
+ 		JS_DestroyContext(m_Context);
 		m_Context = NULL;
 	}
 
@@ -375,33 +375,6 @@ void ScriptingHost::ErrorReporter(JSContext * context, const char * message, JSE
 		std::cout << "No error message available" << std::endl;
 	}
 }
-
-/*
-void ScriptingHost::Tick(float timeElapsed)
-{
-	if (timeElapsed > 0.2f) timeElapsed = 0.2f;
-
-	for (int i = 0; i < (int)m_DelayedScripts.size(); )
-	{
-		m_DelayedScripts[i].m_SecondsToExecution -= timeElapsed;
-
-		if (m_DelayedScripts[i].m_SecondsToExecution <= 0.0f)
-		{
-			this->ExecuteScript(m_DelayedScripts[i].m_FunctionName);
-			m_DelayedScripts.erase(m_DelayedScripts.begin() + i);
-		}
-		else
-		{
-			i++;
-		}
-	}
-}
-
-void ScriptingHost::AddDelayedScript(const std::string & functionName, float delaySeconds)
-{
-	m_DelayedScripts.push_back(DelayedScriptExecutor(functionName, delaySeconds));
-}
-*/
 
 void ScriptingHost::_CollectGarbage()
 {

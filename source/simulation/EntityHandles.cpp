@@ -72,7 +72,9 @@ CEntity* HEntity::operator->() const
 
 HEntity::operator CEntity*() const
 {
-	assert( m_handle != INVALID_HANDLE );
+	if( m_handle == INVALID_HANDLE )
+		return( NULL );
+
 	assert( g_EntityManager.m_entities[m_handle].m_refcount );
 	return( g_EntityManager.m_entities[m_handle].m_entity );
 }

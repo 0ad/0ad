@@ -52,7 +52,7 @@ struct SHotkeyInfo
 
 // Will phase out the default shortcuts at sometime in the near future
 // (or, failing that, will update them so they can do the tricky stuff
-// the config file can.
+// the config file can.)
 
 static SHotkeyInfo hotkeyInfo[] =
 {

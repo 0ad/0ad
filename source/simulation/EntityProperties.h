@@ -11,35 +11,23 @@
 
 // Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 
+/*
 #ifndef ENTITY_PROPERTIES_INCLUDED
 #define ENTITY_PROPERTIES_INCLUDED
 
 #include "CStr.h"
 #include "Vector3D.h"
-#include "scripting/ScriptingHost.h"
+#include "ScriptObject.h"
+
 #include "scripting/JSInterface_Entity.h"
 #include "scripting/JSInterface_Vector3D.h"
 
 #ifndef __GNUC__
 
-# include <hash_map>
 
-# if( defined( _MSC_VER ) && ( _MSC_VER >= 1300 ) )
-#  define STL_HASH_MAP stdext::hash_map
-# else
-#  define STL_HASH_MAP std::hash_map
-# endif //( defined( _MSC_VER ) && ( _MSC_VER >= 1300 ) )
-
-#else // #ifndef __GNUC__
-
-# include <ext/hash_map>
-# define STL_HASH_MAP __gnu_cxx::hash_map
-
-#endif
 
 class IBoundPropertyOwner;
 class CBaseEntity;
-class CBoundPropertyModifier;
 
 // Property interface
 
@@ -55,6 +43,7 @@ public:
 	virtual bool rebuild( IBoundProperty* parent, bool triggerFn = true ) = 0; // Returns true if the rebuild changed the value of this property.
 	void associate( IBoundPropertyOwner* owner, const CStrW& name );
 	void associate( IBoundPropertyOwner* owner, const CStrW& name, void (IBoundPropertyOwner::*updateFn)() );
+	virtual ~IBoundProperty() {}
 };
 
 // Specialize at least:
@@ -66,7 +55,6 @@ template<typename T> class CBoundProperty : public IBoundProperty
 {
 	T m_data;
 	bool m_inherited;
-	void (IBoundPropertyOwner::*m_updateFn)();
 
 public:
 	CBoundProperty() { m_inherited = true; }
@@ -94,19 +82,40 @@ public:
 template<typename T> class CBoundObjectProperty : public IBoundProperty, public T
 {
 	bool m_inherited;
-	void (IBoundPropertyOwner::*m_updateFn)();
 
 public:
 	CBoundObjectProperty() { m_inherited = true; }
 	CBoundObjectProperty( const T& copy ) : T( copy ) { m_inherited = false; }
 
+	T& operator=( const T& copy )
+	{
+		IBoundPropertyOwner* sv_owner = m_owner;
+		void (IBoundPropertyOwner::*sv_updateFn)() = m_updateFn;
+
+		(T&)*this = copy;
+
+		m_owner = sv_owner;
+		m_updateFn = sv_updateFn;
+		m_inherited = false;
+
+		return( *this );
+	}
 	void set( const jsval value );
 	jsval tojsval();
 	bool rebuild( IBoundProperty* parent, bool triggerFn = true )
 	{
 		if( m_inherited && parent )
 		{
+			// Save some properties so they won't be overwritten
+			IBoundPropertyOwner* sv_owner = m_owner;
+			void (IBoundPropertyOwner::*sv_updateFn)() = m_updateFn;
+
 			*this = *( (CBoundObjectProperty<T>*)parent );
+
+			m_owner = sv_owner;
+			m_updateFn = sv_updateFn;
+			m_inherited = true;
+
 			if( triggerFn && m_updateFn )
 				(m_owner->*m_updateFn)();
 		}
@@ -119,7 +128,6 @@ public:
 template<> class CBoundProperty<CBaseEntity*> : public IBoundProperty
 {
 	CBaseEntity* m_data;
-	void (IBoundPropertyOwner::*m_updateFn)();
 
 public:
 	CBoundProperty() { m_data = NULL; }
@@ -129,16 +137,10 @@ public:
 	operator CBaseEntity*() const { return( m_data ); }
 	CBaseEntity*& operator=( CBaseEntity* copy ) { return( m_data = copy ); }
 
-// Standard pointerish things
+	// Standard pointerish things
 
 	CBaseEntity& operator*() { return( *m_data ); }
 	CBaseEntity* operator->() { return( m_data ); }
-	
-	/*
-	CBoundProperty( uintptr_t ptr ) { m_data = (CBaseEntity*)ptr; }
-	CBaseEntity*& operator=( uintptr_t ptr ) { m_data = (CBaseEntity*)ptr; }
-	operator uintptr_t() { return( (uintptr_t)m_data ); }
-	*/
 
 	void set( const jsval value );
 	jsval tojsval();
@@ -148,17 +150,38 @@ public:
 	}
 };
 
-// e.g. Entities and their templates.
-
-class IBoundPropertyOwner
+// A jsval property
+template<> class CBoundProperty<jsval> : public IBoundProperty
 {
+	jsval m_data;
+	bool m_inherited;
 public:
-	CBoundProperty<CBaseEntity*> m_base;
-	STL_HASH_MAP<CStrW,IBoundProperty*,CStrW_hash_compare> m_properties;
-	std::vector<IBoundPropertyOwner*> m_inheritors;
-	void rebuild( CStrW propName ); // Recursively rebuild just the named property over the inheritance tree.
-	void rebuild(); // Recursively rebuild everything over the inheritance tree.
+	CBoundProperty() { m_data = JSVAL_NULL; m_inherited = true; RootJSVal(); }
+	CBoundProperty( const jsval value ) { set( value ); m_inherited = false; RootJSVal(); }
+	CBoundProperty( CStrW value ) 
+	{
+		m_data = STRING_TO_JSVAL( JS_NewUCStringCopyZ( g_ScriptingHost.getContext(), value ) );
+		RootJSVal();
+	}
+	~CBoundProperty()
+	{
+		UprootJSVal();
+	}
+	void set( const jsval value ) { UprootJSVal(); m_data = value; m_inherited = false; RootJSVal(); }
+	jsval tojsval() { return( m_data ); }
+	bool rebuild( IBoundProperty* parent, bool triggerFn = true )
+	{
+		if( m_inherited && parent )
+		{
+			UprootJSVal();
+			m_data = ( (CBoundProperty<jsval>*)parent )->m_data;
+			RootJSVal();
+		}
+		return( !m_inherited );
+	}
+	void RootJSVal() { if( JSVAL_IS_GCTHING( m_data ) ) JS_AddRoot( g_ScriptingHost.GetContext(), &m_data ); }
+	void UprootJSVal() { if( JSVAL_IS_GCTHING( m_data ) ) JS_RemoveRoot( g_ScriptingHost.GetContext(), &m_data ); }
 };
 
 #endif
-
+*/

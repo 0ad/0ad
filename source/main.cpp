@@ -55,6 +55,7 @@
 #include "scripting/JSInterface_Camera.h"
 #include "scripting/JSInterface_Selection.h"
 #include "scripting/JSInterface_Console.h"
+#include "scripting/JSCollection.h"
 #include "gui/scripting/JSInterface_IGUIObject.h"
 #include "gui/scripting/JSInterface_GUITypes.h"
 
@@ -103,7 +104,7 @@ static bool g_NoPBuffer=true;
 static bool g_FixedFrameTiming=false;
 static bool g_VSync = false;
 
-CLightEnv g_LightEnv;
+extern CLightEnv g_LightEnv;
 
 static bool g_EntGraph = false;
 
@@ -636,12 +637,17 @@ static void InitScripting()
 	new CScheduler;
 
 	// Register the JavaScript interfaces with the runtime
-	JSI_Entity::init();
-	JSI_BaseEntity::init();
+	CEntity::ScriptingInit();
+
+	CBaseEntity::ScriptingInit();
+	
 	JSI_IGUIObject::init();
 	JSI_GUITypes::init();
 	JSI_Vector3D::init();
-	JSI_Selection::init();
+	// JSI_Selection::init();
+	EntityCollection::Init( "EntityCollection" );
+	CJSPropertyAccessor<CEntity>::ScriptingInit(); // <-- Doesn't really matter which we use, but we know CJSPropertyAccessor<T> is already being compiled for T = CEntity.
+
 	JSI_Camera::init();
 	JSI_Console::init();
 }
@@ -740,11 +746,13 @@ static void Shutdown()
 	delete &g_Mouseover;
 	delete &g_Selection;
 
-	delete &g_ScriptingHost;
 	delete &g_Pathfinder;
 	// Managed by CWorld
 	// delete &g_EntityManager;
+
 	delete &g_EntityTemplateCollection;
+
+	delete &g_ScriptingHost;
 
 	// destroy actor related stuff
 	delete &g_UnitMan;

@@ -16,6 +16,8 @@
 
 #include "Game.h"
 
+#include "scripting/JSInterface_Vector3D.h"
+
 CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 {
 	m_position = position;
@@ -24,49 +26,48 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	m_ahead.x = sin( m_orientation );
 	m_ahead.y = cos( m_orientation );
 	
-	m_base.associate( this, L"template", ( void( IBoundPropertyOwner::* )() )&CEntity::loadBase );
-	m_name.associate( this, L"name" );
-	m_speed.associate( this, L"speed" );
-	m_selected.associate( this, L"selected", ( void( IBoundPropertyOwner::* )() )&CEntity::checkSelection );
-	m_grouped.associate( this, L"group", ( void( IBoundPropertyOwner::* )() )&CEntity::checkGroup );
-	m_extant_mirror.associate( this, L"extant", ( void( IBoundPropertyOwner::* )() )&CEntity::checkExtant );
-	m_turningRadius.associate( this, L"turningRadius" );
-	m_graphics_position.associate( this, L"position", ( void( IBoundPropertyOwner::* )() )&CEntity::teleport );
-	m_graphics_orientation.associate( this, L"orientation", ( void( IBoundPropertyOwner::* )() )&CEntity::reorient );
+	AddProperty( L"template", (CBaseEntity**)&m_base, false, (NotifyFn)loadBase );
+	AddProperty( L"actions.move.speed", &m_speed );
+	AddProperty( L"selected", &m_selected, false, (NotifyFn)checkSelection );
+	AddProperty( L"group", &m_grouped, false, (NotifyFn)checkGroup );
+	AddProperty( L"extant", &m_extant, false, (NotifyFn)checkExtant );
+	AddProperty( L"actions.move.turningradius", &m_turningRadius );
+	AddProperty( L"position", &m_graphics_position, false, (NotifyFn)teleport );
+	AddProperty( L"orientation", &m_graphics_orientation, false, (NotifyFn)reorient );
 
+	
+	for( int t = 0; t < EVENT_LAST; t++ )
+		AddProperty( EventNames[t], &m_EventHandlers[t] );
+	
 	// Set our parent unit and build us an actor.
 	m_actor = NULL;
 	m_bounds = NULL;
+
 	m_moving = false;
 
 	m_base = base;
 	
 	loadBase();
-
-	// Nasty hackish correction for models that are off-centre.
-	// Bad artist. No cookie.
-
-	m_position.X += m_graphicsOffset.x;
-	m_position.Z += m_graphicsOffset.y;
+	
 	if( m_bounds )
 		m_bounds->setPosition( m_position.X, m_position.Z );
 	
 	m_position_previous = m_position;
 	m_orientation_previous = m_orientation;
 
+	m_graphics_position = m_position;
+	m_graphics_orientation = m_orientation;
+
 	m_extant = true;
 	m_extant_mirror = true;
 
 	m_selected = false;
+
 	m_grouped = -1;
 }
 
 CEntity::~CEntity()
 {
-	for( size_t i = 0; i < m_base->m_inheritors.size(); i++ )
-		if( m_base->m_inheritors[i] == this )
-			m_base->m_inheritors.erase( m_base->m_inheritors.begin() + i );
-
 	if( m_actor )
 	{
 		g_UnitMan.RemoveUnit( m_actor );
@@ -95,10 +96,7 @@ void CEntity::loadBase()
 
 	// Set up our instance data
 
-	m_base->m_inheritors.push_back( this );
-	rebuild();
-
-	m_graphicsOffset = m_base->m_graphicsOffset;
+	SetBase( m_base );
 
 	if( m_base->m_bound_type == CBoundingObject::BOUND_CIRCLE )
 	{
@@ -108,14 +106,11 @@ void CEntity::loadBase()
 	{
 		m_bounds = new CBoundingBox( m_position.X, m_position.Z, m_ahead, m_base->m_bound_box );
 	}
-
-
-
 }
 
 void CEntity::kill()
 {
-	g_Selection.removeAll( this );
+	g_Selection.removeAll( me );
 
 	if( m_bounds ) delete( m_bounds );
 	m_bounds = NULL;
@@ -133,11 +128,6 @@ void CEntity::kill()
 	me = HEntity(); // will deallocate the entity, assuming nobody else has a reference to it
 }
 
-bool isWaypoint( CEntity* e )
-{
-	return( e->m_base->m_name == CStrW( L"House" ) );
-}
-
 void CEntity::updateActorTransforms()
 {
 	CMatrix3D m;
@@ -145,9 +135,9 @@ void CEntity::updateActorTransforms()
 	float s = sin( m_graphics_orientation );
 	float c = cos( m_graphics_orientation );
 
-	m._11 = -c;		m._12 = 0.0f;	m._13 = -s;		m._14 = m_graphics_position.X - m_graphicsOffset.x;
+	m._11 = -c;		m._12 = 0.0f;	m._13 = -s;		m._14 = m_graphics_position.X;
 	m._21 = 0.0f;	m._22 = 1.0f;	m._23 = 0.0f;	m._24 = m_graphics_position.Y;
-	m._31 = s;		m._32 = 0.0f;	m._33 = -c;		m._34 = m_graphics_position.Z - m_graphicsOffset.y;
+	m._31 = s;		m._32 = 0.0f;	m._33 = -c;		m._34 = m_graphics_position.Z;
 	m._41 = 0.0f;	m._42 = 0.0f;	m._43 = 0.0f;	m._44 = 1.0f;
 
 	m_actor->GetModel()->SetTransform( m );
@@ -199,9 +189,11 @@ void CEntity::dispatch( const CMessage* msg )
 	switch( msg->type )
 	{
 	case CMessage::EMSG_TICK:
+		m_EventHandlers[EVENT_TICK].Run( GetScript() );
 		break;
 	case CMessage::EMSG_INIT:
-		if( m_base->m_name == CStrW( L"Prometheus Dude" ) )
+		m_EventHandlers[EVENT_INITIALIZE].Run( GetScript() );
+		if( m_base->m_Tag == CStrW( L"Prometheus Dude" ) )
 		{
 			if( getCollisionObject( this ) )
 			{
@@ -209,6 +201,7 @@ void CEntity::dispatch( const CMessage* msg )
 				kill();
 				return;
 			}
+			/*
 			std::vector<HEntity>* waypoints = g_EntityManager.matches( isWaypoint );
 			while( !waypoints->empty() )
 			{
@@ -224,6 +217,7 @@ void CEntity::dispatch( const CMessage* msg )
 				waypoints->erase( it );
 			}
 			delete( waypoints );
+			*/
 		}
 		break;
 	case CMessage::EMSG_ORDER:
@@ -295,21 +289,21 @@ void CEntity::checkSelection()
 {
 	if( m_selected )
 	{
-		if( !g_Selection.isSelected( this ) )
-			g_Selection.addSelection( this );
+		if( !g_Selection.isSelected( me ) )
+			g_Selection.addSelection( me );
 	}
 	else
 	{
-		if( g_Selection.isSelected( this ) )
-			g_Selection.removeSelection( this );
+		if( g_Selection.isSelected( me ) )
+			g_Selection.removeSelection( me );
 	}
 }
 
 void CEntity::checkGroup()
 {
-	g_Selection.changeGroup( this, -1 ); // Ungroup
+	g_Selection.changeGroup( me, -1 ); // Ungroup
 	if( ( m_grouped >= 0 ) && ( m_grouped < MAX_GROUPS ) )
-		g_Selection.changeGroup( this, m_grouped );		
+		g_Selection.changeGroup( me, m_grouped );		
 }
 
 void CEntity::checkExtant()
@@ -504,5 +498,140 @@ void CEntity::renderSelectionOutline( float alpha )
 
 	glEnd();
 	
+}
+/*
+
+	Scripting interface
+
+*/
+
+// Scripting initialization
+
+void CEntity::ScriptingInit()
+{
+	AddMethod<jsval, ToString>( "toString", 0 );
+	AddMethod<bool, OrderSingle>( "order", 1 );
+	AddMethod<bool, OrderQueued>( "orderQueued", 1 );
+	CJSObject<CEntity>::ScriptingInit( "Entity", Construct, 2 );
+}
+
+// Script constructor
+
+JSBool CEntity::Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
+{
+	assert( argc >= 2 );
+
+	CBaseEntity* baseEntity = NULL;
+	CVector3D position;
+	float orientation = 0.0f;
+
+	JSObject* jsBaseEntity = JSVAL_TO_OBJECT( argv[0] );
+	CStrW templateName;
+
+	if( !JSVAL_IS_OBJECT( argv[0] ) || !( baseEntity = ToNative<CBaseEntity>( cx, jsBaseEntity ) ) )
+	{	
+		try
+		{
+			templateName = g_ScriptingHost.ValueToUCString( argv[0] );
+		}
+		catch( PSERROR_Scripting_ConversionFailed )
+		{
+			*rval = JSVAL_NULL;
+			JS_ReportError( cx, "Invalid template identifier" );
+			return( JS_TRUE );
+		}
+		baseEntity = g_EntityTemplateCollection.getTemplate( templateName );
+	}
+
+	if( !baseEntity )
+	{
+		*rval = JSVAL_NULL;
+		JS_ReportError( cx, "No such template: %ls", CStr8(templateName).c_str() );
+		return( JS_TRUE );
+	}
+
+	JSI_Vector3D::Vector3D_Info* jsVector3D = NULL;
+	if( JSVAL_IS_OBJECT( argv[1] ) && ( jsVector3D = (JSI_Vector3D::Vector3D_Info*)JS_GetInstancePrivate( cx, JSVAL_TO_OBJECT( argv[1] ), &JSI_Vector3D::JSI_class, NULL ) ) )
+	{
+		position = *( jsVector3D->vector );
+	}
+	if( argc >= 3 )
+	{
+		try
+		{
+			orientation = (float)g_ScriptingHost.ValueToDouble( argv[2] );
+		}
+		catch( PSERROR_Scripting_ConversionFailed )
+		{
+			// TODO: Net-safe random for this parameter.
+			orientation = 0.0f;
+		}
+	}
+
+	HEntity handle = g_EntityManager.create( baseEntity, position, orientation );
+
+	CMessage message( CMessage::EMSG_INIT );
+	handle->dispatch( &message );
+
+	*rval = ToJSVal<CEntity>( *handle );
+	return( JS_TRUE );
+}
+
+// Script-bound methods
+
+jsval CEntity::ToString( JSContext* cx, uintN argc, jsval* argv )
+{
+	utf16_t buffer[256];
+	swprintf( buffer, 256, L"[object Entity: %ls]", m_base->m_Tag.c_str() );
+	buffer[255] = 0;
+	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, buffer ) ) );
+}
+
+bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
+{
+	// This needs to be sorted (uses Scheduler rather than network messaging)
+	assert( argc >= 1 );
+
+	int orderCode;
+
+	try
+	{
+		orderCode = g_ScriptingHost.ValueToInt( argv[0] );
+	}
+	catch( PSERROR_Scripting_ConversionFailed )
+	{
+		JS_ReportError( cx, "Invalid order type" );
+		return( false );
+	}
+
+	CEntityOrder newOrder;
+
+	(int&)newOrder.m_type = orderCode;
+
+	switch( orderCode )
+	{
+	case CEntityOrder::ORDER_GOTO:
+	case CEntityOrder::ORDER_PATROL:
+		if( argc < 3 )
+		{
+			JS_ReportError( cx, "Too few parameters" );
+			return( false );
+		}
+		try
+		{
+			newOrder.m_data[0].location.x = g_ScriptingHost.ValueToDouble( argv[1] );
+			newOrder.m_data[0].location.y = g_ScriptingHost.ValueToDouble( argv[2] );
+		}
+		catch( PSERROR_Scripting_ConversionFailed )
+		{
+			JS_ReportError( cx, "Invalid location" );
+			return( false );
+		}
+		g_Scheduler.pushFrame( ORDER_DELAY, me, new CMessageOrder( newOrder, Queued ) );
+		return( true );
+	default:
+		JS_ReportError( cx, "Invalid order type" );
+		return( false );
+	}
 }
 

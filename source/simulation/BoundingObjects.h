@@ -21,6 +21,7 @@ public:
 	CBoundingObject() {}
 	enum EBoundingType
 	{
+		BOUND_NONE,
 		BOUND_CIRCLE,
 		BOUND_OABB
 	};

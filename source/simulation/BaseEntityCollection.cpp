@@ -53,7 +53,26 @@ void CBaseEntityCollection::loadTemplates()
 		vfs_close_dir( maindir );
 	}
 	else
-		LOG(ERROR, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Unable to open directory entities/");	
+		LOG(ERROR, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Unable to open directory entities/");
+
+	// Fix up parent links in the templates.
+	
+	std::vector<CBaseEntity*>::iterator it;
+	for( it = m_templates.begin(); it != m_templates.end(); it++ )
+	{
+		if( !( (*it)->m_Base_Name.Length() ) )
+			continue;
+
+		CBaseEntity* Base = getTemplate( (*it)->m_Base_Name );
+		if( Base )
+		{
+			(*it)->m_base = Base;
+			(*it)->loadBase();
+		}
+		else
+			LOG( WARNING, LOG_CATEGORY, "Parent template %s does not exist in template %s", CStr8( (*it)->m_Base_Name ).c_str(), CStr8( (*it)->m_Tag ).c_str() );
+	}
+
 }
 
 void CBaseEntityCollection::addTemplate( CBaseEntity* temp )
@@ -64,7 +83,7 @@ void CBaseEntityCollection::addTemplate( CBaseEntity* temp )
 CBaseEntity* CBaseEntityCollection::getTemplate( CStrW name )
 {
 	for( u16 t = 0; t < m_templates.size(); t++ )
-		if( m_templates[t]->m_name == name ) return( m_templates[t] );
+		if( m_templates[t]->m_Tag == name ) return( m_templates[t] );
 
 	return( NULL );
 }

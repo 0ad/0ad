@@ -15,6 +15,7 @@
 #include <math.h>
 #include "MathUtil.h"
 
+
 class CVector3D
 {
 	public:
@@ -24,7 +25,7 @@ class CVector3D
 		CVector3D () { X = 0.0f; Y = 0.0f; Z = 0.0f; }
 		CVector3D (float x, float y, float z);
 
-		int operator ! () const ; 
+		int operator!() const;
 
 		float& operator[](int index) { return *((&X)+index); }
 		const float& operator[](int index) const { return *((&X)+index); }
@@ -59,8 +60,6 @@ class CVector3D
 		//Returns length of the vector
 		float GetLength () const;
 		void Normalize ();
-
 };
-
 
 #endif

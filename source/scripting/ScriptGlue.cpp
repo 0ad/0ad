@@ -9,6 +9,7 @@
 #include "EntityManager.h"
 #include "BaseEntityCollection.h"
 #include "Scheduler.h"
+#include "timer.h"
 
 #include "Game.h"
 #include "Network/Server.h"
@@ -17,6 +18,7 @@
 #include "ps/i18n.h"
 
 #include "scripting/JSInterface_Entity.h"
+#include "scripting/JSCollection.h"
 #include "scripting/JSInterface_BaseEntity.h"
 #include "scripting/JSInterface_Vector3D.h"
 #include "gui/scripting/JSInterface_IGUIObject.h"
@@ -58,6 +60,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 
 	{"exit", exitProgram, 0, 0, 0 },
 	{"crash", crash, 0, 0, 0 },
+	{"forceGC", forceGC, 0, 0, 0 },
 	{"_mem", js_mem, 0, 0, 0 }, // Intentionally undocumented
 	{0, 0, 0, 0, 0}, 
 };
@@ -76,6 +79,7 @@ JSPropertySpec ScriptGlobalTable[] =
 	{ "groups", GLOBAL_GROUPSARRAY, JSPROP_PERMANENT, JSI_Selection::getGroups, JSI_Selection::setGroups },
 	{ "camera", GLOBAL_CAMERA, JSPROP_PERMANENT, JSI_Camera::getCamera, JSI_Camera::setCamera },
 	{ "console", GLOBAL_CONSOLE, JSPROP_PERMANENT | JSPROP_READONLY, JSI_Console::getConsole, NULL },
+	{ "entities", 0, JSPROP_PERMANENT | JSPROP_READONLY, GetEntitySet, NULL },
 	{ 0, 0, 0, 0, 0 },
 };
 
@@ -128,8 +132,8 @@ JSBool getEntityByHandle( JSContext* context, JSObject* UNUSEDPARAM(globalObject
 		*rval = JSVAL_NULL;
 		return( JS_TRUE );
 	}
-	JSObject* entity = JS_NewObject( context, &JSI_Entity::JSI_class, NULL, NULL );
-	JS_SetPrivate( context, entity, v );
+	JSObject* entity = (*v)->GetScript();
+
 	*rval = OBJECT_TO_JSVAL( entity );
 	return( JS_TRUE );
 }
@@ -152,12 +156,22 @@ JSBool getEntityTemplate( JSContext* context, JSObject* UNUSEDPARAM(globalObject
 	if( !v )
 	{
 		*rval = JSVAL_NULL;
-		JS_ReportError( context, "No such template: %ls", (const wchar_t*)templateName );
+		JS_ReportError( context, "No such template: %s", CStr8(templateName).c_str() );
 		return( JS_TRUE );
 	}
-	JSObject* baseEntity = JS_NewObject( context, &JSI_BaseEntity::JSI_class, NULL, NULL );
-	JS_SetPrivate( context, baseEntity, v );
-	*rval = OBJECT_TO_JSVAL( baseEntity );
+	
+	*rval = OBJECT_TO_JSVAL( v->GetScript() );
+
+	return( JS_TRUE );
+}
+
+JSBool GetEntitySet( JSContext* context, JSObject* globalObject, jsval argv, jsval* vp )
+{
+	std::vector<HEntity>* extant = g_EntityManager.getExtant();
+
+	*vp = OBJECT_TO_JSVAL( EntityCollection::Create( *extant ) );
+	delete( extant );
+
 	return( JS_TRUE );
 }
 
@@ -242,6 +256,17 @@ JSBool setInterval( JSContext* context, JSObject* UNUSEDPARAM(globalObject), uns
 JSBool cancelInterval( JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject), unsigned int UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* UNUSEDPARAM(rval) )
 {
 	g_Scheduler.m_abortInterval = true;
+	return( JS_TRUE );
+}
+
+
+JSBool forceGC( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
+{
+	double time = get_time();
+	JS_GC( cx );
+	time = get_time() - time;
+	g_Console->InsertMessage( L"Garbage collection completed in: %f", time );
+	*rval = JSVAL_TRUE;
 	return( JS_TRUE );
 }
 

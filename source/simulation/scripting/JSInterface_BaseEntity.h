@@ -11,6 +11,7 @@
 #ifndef JSI_BASEENTITY_INCLUDED
 #define JSI_BASEENTITY_INCLUDED
 
+/*
 namespace JSI_BaseEntity
 {
 	JSBool toString( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
@@ -24,5 +25,6 @@ namespace JSI_BaseEntity
 	void finalize( JSContext* cx, JSObject* obj );
     void init();
 }
+*/
 
 #endif

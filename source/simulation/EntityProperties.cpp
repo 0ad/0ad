@@ -1,5 +1,6 @@
 #include "precompiled.h"
 
+/*
 #include "EntityProperties.h"
 #include "BaseEntityCollection.h"
 #include "scripting/JSInterface_BaseEntity.h"
@@ -105,7 +106,7 @@ void CBoundObjectProperty<CStrW>::set( const jsval value )
 {
 	try
 	{
-		*this = g_ScriptingHost.ValueToUCString( value );
+		m_String = g_ScriptingHost.ValueToUCString( value );
 		m_inherited = false;
 	}
 	catch( ... )
@@ -153,11 +154,38 @@ bool CBoundObjectProperty<CVector3D>::rebuild( IBoundProperty* parent, bool trig
 	return( false );
 }
 
+//--
+
+void CBoundObjectProperty<CScriptObject>::set( const jsval value )
+{
+	switch( JS_TypeOfValue( g_ScriptingHost.GetContext(), value ) )
+	{
+	case JSTYPE_STRING:
+		CompileScript( L"", g_ScriptingHost.ValueToUCString( value ) );
+		m_inherited = false;
+		break;
+	case JSTYPE_FUNCTION:
+		Function = JS_ValueToFunction( g_ScriptingHost.GetContext(), value );
+		m_inherited = false;
+		break;
+	}
+}
+
+jsval CBoundObjectProperty<CScriptObject>::tojsval()
+{
+	if( Function )
+		return( OBJECT_TO_JSVAL( JS_GetFunctionObject( Function ) ) );
+	return( JSVAL_NULL );
+}
+
+//--
+
 void CBoundProperty<CBaseEntity*>::set( const jsval value )
 {
 	JSObject* baseEntity = JSVAL_TO_OBJECT( value );
 	CBaseEntity* base = NULL;
-	if( JSVAL_IS_OBJECT( value ) && ( base = (CBaseEntity*)JS_GetInstancePrivate( g_ScriptingHost.getContext(), baseEntity, &JSI_BaseEntity::JSI_class, NULL ) ) )
+
+	if( JSVAL_IS_OBJECT( value ) && ( base = ToNative<CBaseEntity>( g_ScriptingHost.GetContext(), baseEntity ) ) )
 	{
 		m_data = base;
 	}
@@ -167,50 +195,10 @@ void CBoundProperty<CBaseEntity*>::set( const jsval value )
 
 jsval CBoundProperty<CBaseEntity*>::tojsval()
 {
-	JSObject* baseEntity = JS_NewObject( g_ScriptingHost.getContext(), &JSI_BaseEntity::JSI_class, NULL, NULL );
-	JS_SetPrivate( g_ScriptingHost.getContext(), baseEntity, m_data );
+	JSObject* baseEntity = m_data->GetScript();
 	return( OBJECT_TO_JSVAL( baseEntity ) );
 }
 
 
-void IBoundPropertyOwner::rebuild( CStrW propertyName )
-{
-	IBoundProperty* thisProperty = m_properties[propertyName];
-	IBoundProperty* baseProperty = NULL;
-	if( m_base )
-	{
-		if( m_base->m_properties.find( propertyName ) != m_base->m_properties.end() )
-			baseProperty = m_base->m_properties[propertyName];
-	}
-	if( thisProperty->rebuild( baseProperty ) )
-	{
-		std::vector<IBoundPropertyOwner*>::iterator it;
-		for( it = m_inheritors.begin(); it != m_inheritors.end(); it++ )
-			(*it)->rebuild( propertyName );
-	}
-}
 
-void IBoundPropertyOwner::rebuild()
-{
-	STL_HASH_MAP<CStrW,IBoundProperty*,CStrW_hash_compare>::iterator property;
-	if( m_base )
-	{
-		for( property = m_properties.begin(); property != m_properties.end(); property++ )
-		{
-			IBoundProperty* baseProperty = NULL;
-			if( m_base->m_properties.find( property->first ) != m_base->m_properties.end() )
-				baseProperty = m_base->m_properties[property->first];
-			(property->second)->rebuild( baseProperty, false );
-		}
-	}
-	else
-	{
-		for( property = m_properties.begin(); property != m_properties.end(); property++ )
-			(property->second)->rebuild( NULL, false );
-	}
-
-	std::vector<IBoundPropertyOwner*>::iterator it;
-	for( it = m_inheritors.begin(); it != m_inheritors.end(); it++ )
-		(*it)->rebuild();
-
-}
+*/

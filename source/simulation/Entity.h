@@ -32,7 +32,7 @@
 #define ENTITY_INCLUDED
 
 #include <deque>
-#include "EntityProperties.h"
+#include "scripting/ScriptableObject.h"
 
 #include "BaseEntity.h"
 #include "Vector2D.h"
@@ -43,29 +43,29 @@
 #include "EntityOrders.h"
 #include "EntityHandles.h"
 #include "EntityMessage.h"
+#include "EventHandlers.h"
 
 class CEntityManager;
 
-class CEntity : public IBoundPropertyOwner
+class CEntity : public CJSObject<CEntity>
 {
 	friend class CEntityManager;
 public:
 	// Intrinsic properties
-	CBoundObjectProperty<CStrW> m_name;
-	CBoundProperty<float> m_speed;
-	CBoundProperty<float> m_turningRadius;
-	CBoundProperty<bool> m_selected;
-	CBoundProperty<i32> m_grouped;
+	CBaseEntity* m_base;
+
+	float m_speed;
+	float m_turningRadius;
+	bool m_selected;
+	i32 m_grouped;
 
 	bool m_extant; // Don't want JS to have direct write-access to these. (Things that should be done might not be)
-	CBoundProperty<bool> m_extant_mirror; // plus this way limits the number of nasty semantics to work around.
+	bool m_extant_mirror; // plus this way limits the number of nasty semantics to work around.
 
 	//-- Interpolated property
 	CVector3D m_position;
 	CVector3D m_position_previous;
-	CBoundObjectProperty<CVector3D> m_graphics_position;
-
-	CVector2D m_graphicsOffset;
+	CVector3D m_graphics_position;
 
 	CBoundingObject* m_bounds;
 	float m_targetorientation;
@@ -74,7 +74,10 @@ public:
 	//-- Interpolated property
 	float m_orientation;
 	float m_orientation_previous;
-	CBoundProperty<float> m_graphics_orientation;
+	float m_graphics_orientation;
+
+	//-- Scripts
+	CScriptObject m_EventHandlers[EVENT_LAST];
 
 	CUnit* m_actor;
 	bool m_moving;
@@ -118,6 +121,25 @@ public:
 
 	void clearOrders();
 	void pushOrder( CEntityOrder& order );
+
+	// Script constructor
+
+	static JSBool Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval );
+
+	// Script-bound functions
+
+	jsval ToString( JSContext* cx, uintN argc, jsval* argv );
+	bool Order( JSContext* cx, uintN argc, jsval* argv, bool Queued );
+	inline bool OrderSingle( JSContext* cx, uintN argc, jsval* argv )
+	{
+		return( Order( cx, argc, argv, false ) );
+	}
+	inline bool OrderQueued( JSContext* cx, uintN argc, jsval* argv )
+	{
+		return( Order( cx, argc, argv, true ) );
+	}
+
+	static void ScriptingInit();
 };
 
 // General entity globals

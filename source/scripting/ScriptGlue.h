@@ -10,11 +10,18 @@ typedef JSBool JSFunc(JSContext* /*context*/, JSObject* /*globalObject*/, unsign
 
 JSFunc WriteLog;
 
+// Entity
 JSFunc getEntityByHandle;
 JSFunc getEntityTemplate;
+JSBool GetEntitySet( JSContext* context, JSObject* globalObject, jsval argv, jsval* vp );
+
+// Timer
 JSFunc setTimeout;
 JSFunc setInterval;
 JSFunc cancelInterval;
+
+// Debug
+JSBool forceGC( JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval );
 
 // Returns the sort-of-global object associated with the current GUI
 JSFunc getGUIGlobal;

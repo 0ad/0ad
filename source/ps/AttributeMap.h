@@ -3,7 +3,7 @@
 
 #include "scripting/ScriptingHost.h"
 // Needed for STL_HASH_MAP detection
-#include "EntityProperties.h"
+//#include "scripting/JSProperty.h"
 
 namespace AttributeMap_JS
 {

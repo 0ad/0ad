@@ -13,7 +13,7 @@
 #ifndef JSI_VECTOR3_INCLUDED
 #define JSI_VECTOR3_INCLUDED
 
-class IBoundPropertyOwner;
+class IPropertyOwner;
 
 namespace JSI_Vector3D
 {
@@ -26,14 +26,16 @@ namespace JSI_Vector3D
 	JSBool toString( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
 	struct Vector3D_Info
 	{
-		IBoundPropertyOwner* owner;
-		void ( IBoundPropertyOwner::*updateFn )();
+		IPropertyOwner* owner;
+		void ( IPropertyOwner::*updateFn )();
+		void ( IPropertyOwner::*freshenFn )();
 		CVector3D* vector;
 		Vector3D_Info();
 		Vector3D_Info( float x, float y, float z );
 		Vector3D_Info( const CVector3D& copy );
-		Vector3D_Info( CVector3D* attach, IBoundPropertyOwner* _owner );
-		Vector3D_Info( CVector3D* attach, IBoundPropertyOwner* _owner, void (IBoundPropertyOwner::*_updateFn)() );
+		Vector3D_Info( CVector3D* attach, IPropertyOwner* _owner );
+		Vector3D_Info( CVector3D* attach, IPropertyOwner* _owner, void (IPropertyOwner::*_updateFn)() );
+		Vector3D_Info( CVector3D* attach, IPropertyOwner* _owner, void (IPropertyOwner::*_updateFn)(), void (IPropertyOwner::*_freshenFn)() );
 		~Vector3D_Info();
 	};
 	extern JSClass JSI_class;

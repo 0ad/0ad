@@ -23,24 +23,24 @@
 struct CSelectedEntities : public Singleton<CSelectedEntities>
 {
 	CSelectedEntities() { clearSelection(); m_group = -1; m_group_highlight = -1; m_contextOrder = -1; }
-	std::vector<CEntity*> m_selected;
-	std::vector<CEntity*> m_groups[MAX_GROUPS];
+	std::vector<HEntity> m_selected;
+	std::vector<HEntity> m_groups[MAX_GROUPS];
 	i8 m_group, m_group_highlight;
 	int m_contextOrder;
 
-	void addSelection( CEntity* entity );
-	void removeSelection( CEntity* entity );
-	void setSelection( CEntity* entity );
+	void addSelection( HEntity entity );
+	void removeSelection( HEntity entity );
+	void setSelection( HEntity entity );
 	void clearSelection();
-	void removeAll( CEntity* entity );
-	bool isSelected( CEntity* entity );
+	void removeAll( HEntity entity );
+	bool isSelected( HEntity entity );
 	CVector3D getSelectionPosition();
 
-	void addToGroup( i8 groupid, CEntity* entity );
+	void addToGroup( i8 groupid, HEntity entity );
 	void saveGroup( i8 groupid );
 	void loadGroup( i8 groupid );
 	void addGroup( i8 groupid );
-	void changeGroup( CEntity* entity, i8 groupid );
+	void changeGroup( HEntity entity, i8 groupid );
 	void highlightGroup( i8 groupid );
 	void highlightNone();
 	int getGroupCount( i8 groupid );
@@ -62,10 +62,10 @@ struct CSelectedEntities : public Singleton<CSelectedEntities>
 
 struct SMouseoverFader
 {
-	CEntity* entity;
+	HEntity entity;
 	float fade;
 	bool isActive;
-	SMouseoverFader( CEntity* _entity, float _fade = 0.0f, bool _active = true ) : entity( _entity ), fade( _fade ), isActive( _active ) {}
+	SMouseoverFader( HEntity _entity, float _fade = 0.0f, bool _active = true ) : entity( _entity ), fade( _fade ), isActive( _active ) {}
 };
 
 struct CMouseoverEntities : public Singleton<CMouseoverEntities>
@@ -74,7 +74,7 @@ struct CMouseoverEntities : public Singleton<CMouseoverEntities>
 	float m_fadeoutrate;
 	float m_fademaximum;
 	CVector2D m_worldposition;
-	CEntity* m_target;
+	HEntity m_target;
 
 	bool m_bandbox, m_viewall;
 	u16 m_x1, m_y1, m_x2, m_y2;
@@ -87,7 +87,7 @@ struct CMouseoverEntities : public Singleton<CMouseoverEntities>
 		m_fadeoutrate = 2.0f;
 		m_fademaximum = 0.5f;
 		m_mouseover.clear();
-		m_target = NULL;
+		m_target;
 	}
 	std::vector<SMouseoverFader> m_mouseover;
 	void update( float timestep );

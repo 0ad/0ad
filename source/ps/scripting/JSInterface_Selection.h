@@ -10,15 +10,6 @@
 
 namespace JSI_Selection
 {
-	JSBool toString( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
-	extern JSClass JSI_class;
-	extern JSPropertySpec JSI_props[];
-	extern JSFunctionSpec JSI_methods[];
-	JSBool addProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
-	JSBool removeProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
-	JSBool getProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
-	JSBool setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
-
 	void init();
 	void finalize( JSContext* cx, JSObject* obj );
 

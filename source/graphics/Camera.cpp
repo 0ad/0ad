@@ -237,7 +237,7 @@ void CCamera::LookAlong( CVector3D camera, CVector3D orientation, CVector3D up )
 	orientation.Normalize();
 	up.Normalize();
 	CVector3D s = orientation.Cross( up );
-	// CVector3D u = s.Cross( orientation );
+
 	m_Orientation._11 = -s.X;	m_Orientation._12 = up.X;	m_Orientation._13 = orientation.X;	m_Orientation._14 = camera.X;
 	m_Orientation._21 = -s.Y;	m_Orientation._22 = up.Y;	m_Orientation._23 = orientation.Y;	m_Orientation._24 = camera.Y;
 	m_Orientation._31 = -s.Z;	m_Orientation._32 = up.Z;	m_Orientation._33 = orientation.Z;	m_Orientation._34 = camera.Z;

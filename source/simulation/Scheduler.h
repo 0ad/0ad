@@ -82,4 +82,6 @@ struct CScheduler : public Singleton<CScheduler>
 
 #define g_Scheduler CScheduler::GetSingleton()
 
+extern const int ORDER_DELAY;
+
 #endif

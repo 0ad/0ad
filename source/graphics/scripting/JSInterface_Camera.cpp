@@ -8,6 +8,7 @@
 #include "Terrain.h"
 #include "Game.h"
 
+
 JSClass JSI_Camera::JSI_class = {
 	"Camera", JSCLASS_HAS_PRIVATE,
 	JS_PropertyStub, JS_PropertyStub,
@@ -39,45 +40,71 @@ void JSI_Camera::init()
 
 JSI_Camera::Camera_Info::Camera_Info()
 {
-	CMatrix3D orient;
-	orient.SetXRotation( DEGTORAD( 30 ) );
-	orient.RotateY( DEGTORAD( -45 ) );
-	orient.Translate( 100, 150, -100 );
+	CMatrix3D Orient;
+	Orient.SetXRotation( DEGTORAD( 30 ) );
+	Orient.RotateY( DEGTORAD( -45 ) );
+	Orient.Translate( 100, 150, -100 );
 
-	Camera_Info( orient.GetTranslation(), orient.GetIn(), orient.GetUp() );
+	Camera_Info( (const CMatrix3D&)Orient );
 }
 
-JSI_Camera::Camera_Info::Camera_Info( const CVector3D& _position )
+JSI_Camera::Camera_Info::Camera_Info( const CVector3D& Position )
+{
+	CMatrix3D Orient;
+	Orient.SetXRotation( DEGTORAD( 30 ) );
+	Orient.RotateY( DEGTORAD( -45 ) );
+	Orient.Translate( Position );
+
+	Camera_Info( (const CMatrix3D&)Orient );
+}
+
+JSI_Camera::Camera_Info::Camera_Info( const CVector3D& Position, const CVector3D& Orientation )
 {
 	Camera_Info();
-	position = _position;
+	m_Data->LookAlong( Position, Orientation, CVector3D( 0.0f, 1.0f, 0.0f ) );
 }
 
-JSI_Camera::Camera_Info::Camera_Info( const CVector3D& _position, const CVector3D& _orientation )
+JSI_Camera::Camera_Info::Camera_Info( const CVector3D& Position, const CVector3D& Orientation, const CVector3D& Up )
 {
-	Camera_Info( _position, _orientation, CVector3D( 0.0f, 1.0f, 0.0f ) );
+	Camera_Info();
+	m_Data->LookAlong( Position, Orientation, Up );
 }
 
-JSI_Camera::Camera_Info::Camera_Info( const CVector3D& _position, const CVector3D& _orientation, const CVector3D& _up )
+JSI_Camera::Camera_Info::Camera_Info( const CMatrix3D& Orientation )
 {
-	position = _position;
-	orientation = _orientation;
-	up = _up;
-	copy = NULL;
+	m_Data = new CCamera();
+	m_EngineOwned = false;
+
+	m_Data->LookAlong( Orientation.GetTranslation(), Orientation.GetIn(), Orientation.GetUp() );
 }
 
-JSI_Camera::Camera_Info::Camera_Info( CCamera* _copy )
+JSI_Camera::Camera_Info::Camera_Info( CCamera* Reference )
 {
-	copy = _copy;
-	position = copy->m_Orientation.GetTranslation();
-	orientation = copy->m_Orientation.GetIn();
-	up = copy->m_Orientation.GetUp();
+	m_Data = Reference;
+	m_EngineOwned = true;
 }
 
-void JSI_Camera::Camera_Info::update()
+JSI_Camera::Camera_Info::~Camera_Info()
 {
-	if( copy )
-		copy->LookAlong( position, orientation, up );	
+	if( !m_EngineOwned )
+		delete( m_Data );
+}
+
+void JSI_Camera::Camera_Info::Freshen()
+{
+	m_sv_Position = m_Data->m_Orientation.GetTranslation();
+	m_sv_Orientation = m_Data->m_Orientation.GetIn();
+	m_sv_Up = m_Data->m_Orientation.GetUp();
+}
+
+void JSI_Camera::Camera_Info::Update()
+{
+	m_Data->LookAlong( m_sv_Position, m_sv_Orientation, m_sv_Up );
+}
+
+void JSI_Camera::Camera_Info::FreshenTarget()
+{
+	m_sv_Target = m_Data->GetFocus();
 }
 
 JSBool JSI_Camera::getCamera( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
@@ -97,7 +124,9 @@ JSBool JSI_Camera::setCamera( JSContext* cx, JSObject* obj, jsval id, jsval* vp 
 		JS_ReportError( cx, "[Camera] Invalid object" );
 	}
 	else
-		g_Game->GetView()->GetCamera()->LookAlong( cameraInfo->position, cameraInfo->orientation, cameraInfo->up );	
+	{
+		g_Game->GetView()->GetCamera()->m_Orientation = cameraInfo->m_Data->m_Orientation;
+	}
 	return( JS_TRUE );
 }
 
@@ -117,14 +146,14 @@ JSBool JSI_Camera::getProperty( JSContext* cx, JSObject* obj, jsval id, jsval* v
 
 	switch( g_ScriptingHost.ValueToInt( id ) )
 	{
-	case vector_position: d = &cameraInfo->position; break;
-	case vector_orientation: d = &cameraInfo->orientation; break;
-	case vector_up: d = &cameraInfo->up; break;
-	default: return( JS_FALSE );
+	case vector_position: d = &cameraInfo->m_sv_Position; break;
+	case vector_orientation: d = &cameraInfo->m_sv_Orientation; break;
+	case vector_up: d = &cameraInfo->m_sv_Up; break;
+	default: return( JS_TRUE );
 	}
 
 	JSObject* vector3d = JS_NewObject( g_ScriptingHost.getContext(), &JSI_Vector3D::JSI_class, NULL, NULL );
-	JS_SetPrivate( g_ScriptingHost.getContext(), vector3d, new JSI_Vector3D::Vector3D_Info( d, cameraInfo, ( void( IBoundPropertyOwner::* )() )&Camera_Info::update ) );
+	JS_SetPrivate( g_ScriptingHost.getContext(), vector3d, new JSI_Vector3D::Vector3D_Info( *d /*, cameraInfo, ( void( IPropertyOwner::* )() )&Camera_Info::Update, ( void( IPropertyOwner::* )() )&Camera_Info::Freshen */ ) );
 	*vp = OBJECT_TO_JSVAL( vector3d );
 	return( JS_TRUE );
 }
@@ -146,14 +175,16 @@ JSBool JSI_Camera::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* v
 
 	if( JSVAL_IS_OBJECT( *vp ) && ( v = (JSI_Vector3D::Vector3D_Info*)JS_GetInstancePrivate( g_ScriptingHost.getContext(), vector3d, &JSI_Vector3D::JSI_class, NULL ) ) )
 	{
+		cameraInfo->Freshen();
+
 		switch( g_ScriptingHost.ValueToInt( id ) )
 		{
-		case vector_position: cameraInfo->position = *( v->vector ); break;
-		case vector_orientation: cameraInfo->orientation = *( v->vector ); break;
-		case vector_up: cameraInfo->up = *( v->vector ); break;
+		case vector_position: cameraInfo->m_sv_Position = *( v->vector ); break;
+		case vector_orientation: cameraInfo->m_sv_Orientation = *( v->vector ); break;
+		case vector_up: cameraInfo->m_sv_Up = *( v->vector ); break;
 		}
 
-		cameraInfo->update();
+		cameraInfo->Update();
 	}
 
 	return( JS_TRUE );
@@ -170,9 +201,9 @@ JSBool JSI_Camera::lookAt( JSContext* cx, JSObject* obj, unsigned int argc, jsva
 
 	if( argc <= 3 )
 	{
-		cameraInfo->position = GETVECTOR( argv[0] );
-		cameraInfo->orientation = ( GETVECTOR( argv[1] ) - GETVECTOR( argv[0] ) );
-		cameraInfo->orientation.Normalize();
+		cameraInfo->m_sv_Position = GETVECTOR( argv[0] );
+		cameraInfo->m_sv_Orientation = ( GETVECTOR( argv[1] ) - GETVECTOR( argv[0] ) );
+		cameraInfo->m_sv_Orientation.Normalize();
 	}
 	else
 	{
@@ -183,16 +214,16 @@ JSBool JSI_Camera::lookAt( JSContext* cx, JSObject* obj, unsigned int argc, jsva
 	
 	if( argc == 2 )
 	{
-		cameraInfo->up = CVector3D( 0.0f, 1.0f, 0.0f );
+		cameraInfo->m_sv_Up = CVector3D( 0.0f, 1.0f, 0.0f );
 	}
 	else if( argc == 3 )
 	{
-		cameraInfo->up = GETVECTOR( argv[2] );
+		cameraInfo->m_sv_Up = GETVECTOR( argv[2] );
 	}
 
 #undef GETVECTOR
 
-	cameraInfo->update();
+	cameraInfo->Update();
 
 	*rval = JSVAL_TRUE;
 	return( JS_TRUE );
@@ -204,20 +235,8 @@ JSBool JSI_Camera::getFocus( JSContext* cx, JSObject* obj, uintN argc, jsval* ar
 
 	Camera_Info* cameraInfo = (Camera_Info*)JS_GetPrivate( cx, obj );
 
-	CHFTracer tracer( g_Game->GetWorld()->GetTerrain() ); int x, z;
-
-	CVector3D currentTarget;
-	
-	if( !tracer.RayIntersect( cameraInfo->position, cameraInfo->orientation, x, z, currentTarget ) )
-	{
-		// Off the edge of the world?
-		// Work out where it /would/ hit, if the map were extended out to infinity with average height.
-
-		currentTarget = cameraInfo->position + cameraInfo->orientation * ( ( 50.0f - cameraInfo->position.Y ) / cameraInfo->orientation.Y );
-	}
-
 	JSObject* vector3d = JS_NewObject( g_ScriptingHost.getContext(), &JSI_Vector3D::JSI_class, NULL, NULL );
-	JS_SetPrivate( g_ScriptingHost.getContext(), vector3d, new JSI_Vector3D::Vector3D_Info( currentTarget ) );
+	JS_SetPrivate( g_ScriptingHost.getContext(), vector3d, new JSI_Vector3D::Vector3D_Info( cameraInfo->m_sv_Target /*, cameraInfo, NULL, ( void( IPropertyOwner::* )() )&Camera_Info::FreshenTarget */ ) );
 	*rval = OBJECT_TO_JSVAL( vector3d );
 	return( JS_TRUE );
 }

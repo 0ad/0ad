@@ -93,6 +93,9 @@ void CEntityManager::updateAll( size_t timestep )
 		delete( *it );
 	m_reaper.clear();
 
+	CMessage Tick_msg( CMessage::EMSG_TICK );
+	dispatchAll( &Tick_msg );
+
 	for( int i = 0; i < MAX_HANDLES; i++ )
 		if( m_entities[i].m_refcount && m_entities[i].m_entity->m_extant )
 			m_entities[i].m_entity->update( timestep );
