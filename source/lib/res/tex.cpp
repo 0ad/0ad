@@ -778,6 +778,12 @@ glBindTexture(GL_TEXTURE_2D, t->id);
 
 	const bool has_alpha = fmt == GL_RGBA || fmt == GL_BGRA || fmt == GL_LUMINANCE_ALPHA || fmt == GL_ALPHA;
 
+	// check if SGIS_generate_mipmap is available (once)
+	static int sgm_avl = -1;
+	if(sgm_avl == -1)
+		sgm_avl = oglExtAvail("GL_SGIS_generate_mipmap");
+
+
 	// S3TC compressed
 	if(fmt >= GL_COMPRESSED_RGB_S3TC_DXT1_EXT &&
 	   fmt <= GL_COMPRESSED_RGBA_S3TC_DXT5_EXT)
@@ -787,6 +793,19 @@ glBindTexture(GL_TEXTURE_2D, t->id);
 		// rounded upwards to nearest multiple of 65536. Commented out until
 		// the file code has went through the neccessary changes.
 		//assert(4+sizeof(DDSURFACEDESC2)+tex_size == tex_file_size && "tex_upload: dds file size mismatch");
+
+		// RC, 020404: added mipmap generation for DDS textures using GL_SGIS_generate_mipmap - works fine
+		// on ATI cards, verified by others under NVIDIA
+		if(mipmap) {
+			if (sgm_avl) {
+				glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP_SGIS, GL_TRUE);
+			} else {
+				// ack - no (easy) way of generating mipmaps for compressed textures; switch back
+				// to a linear minification filter
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			}
+		}
+
 		glCompressedTexImage2DARB(GL_TEXTURE_2D, 0, fmt, w, h, 0, tex_size, tex_data);
 	}
 	// normal
@@ -855,11 +874,6 @@ glBindTexture(GL_TEXTURE_2D, t->id);
 			if(!int_fmt)
 				int_fmt = bpp / 8;
 		}
-
-		// check if SGIS_generate_mipmap is available (once)
-		static int sgm_avl = -1;
-		if(sgm_avl == -1)
-			sgm_avl = oglExtAvail("GL_SGIS_generate_mipmap");
 
 		// manual mipmap gen via GLU (box filter)
 		if(mipmap && !sgm_avl)
