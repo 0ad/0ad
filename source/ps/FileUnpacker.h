@@ -29,6 +29,8 @@ public:
 public:
 	// constructor
 	CFileUnpacker();
+
+	~CFileUnpacker();
 	
 	// Read: open and read in given file, check magic bits against those given; throw 
 	// variety of exceptions for missing files etc
