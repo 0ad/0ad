@@ -3,6 +3,13 @@
 #include "CLogger.h"
 #include "lib.h"
 
+#define CONSOLE_DEBUG
+
+#ifdef CONSOLE_DEBUG
+ #include "CConsole.h"
+ extern CConsole* g_Console;
+#endif
+
 using namespace std;
 
 #define MAIN_HEADER		"<HTML>\n<HEAD>\n<LINK REL=StyleSheet HREF=" \
@@ -81,6 +88,9 @@ CLogger::~CLogger ()
 
 void CLogger::WriteMessage(const char *message)
 {
+#ifdef CONSOLE_DEBUG
+	g_Console->InsertMessage(L"LOG: %S", message);
+#endif
 	m_NumberOfMessages++;
 	m_MainLog << "<P>" << message << "</P>";
 									
@@ -90,6 +100,9 @@ void CLogger::WriteMessage(const char *message)
 
 void CLogger::WriteError(const char *message)
 {
+#ifdef CONSOLE_DEBUG
+	g_Console->InsertMessage(L"ERROR: %S", message);
+#endif
 	debug_out("ERROR: %s\n", message);
 	m_NumberOfErrors++;
 	m_MainLog << "<P class=\"error\">ERROR: "<< message << "</P>\n";
@@ -98,6 +111,9 @@ void CLogger::WriteError(const char *message)
 
 void CLogger::WriteWarning(const char *message)
 {
+#ifdef CONSOLE_DEBUG
+	g_Console->InsertMessage(L"WARNING: %S", message);
+#endif
 	m_NumberOfWarnings++;
 	m_MainLog << "<P class=\"warning\">WARNING: "<< message << "</P>\n";
 

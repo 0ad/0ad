@@ -62,8 +62,10 @@ private:
     void ProcessBuffer(const wchar_t* szLine);
 
 public:
-    CConsole(float X = 300, float Y = 0, float W = 800, float H = 600);  //1152x864
+    CConsole();
 	~CConsole();
+
+	void SetSize(float X = 300, float Y = 0, float W = 800, float H = 600);
 
 	void Update(float DeltaTime);
 

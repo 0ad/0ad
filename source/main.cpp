@@ -572,7 +572,7 @@ void ParseArgs(int argc, char* argv[])
 	if (val=g_ConfigDB.GetValue(CFG_SYSTEM, "shadows"))
 		val->GetBool(g_Shadows);
 		
-	LOG(NORMAL, "g_x/yres is %dx%d\n", g_xres, g_yres);
+	LOG(NORMAL, "g_x/yres is %dx%d", g_xres, g_yres);
 }
 
 
@@ -582,7 +582,7 @@ static void psInit()
 	g_Font_Console = unifont_load("fonts/console");
 	g_Font_Misc = unifont_load("fonts/verdana16");
 
-	g_Console = new CConsole(0, g_yres-600.f, (float)g_xres, 600.f);
+	g_Console->SetSize(0, g_yres-600.f, (float)g_xres, 600.f);
 	g_Console->m_iFontHeight = unifont_linespacing(g_Font_Console);
 	g_Console->m_iFontOffset = 9;
 
@@ -636,6 +636,11 @@ PREVTSC=TSC;
 #ifdef _M_IX86
 	_control87(_PC_24, _MCW_PC);
 #endif
+
+	// Set up the console early, so that debugging
+	// messages can be logged to it. (The console's size
+	// and fonts are set later in psInit())
+	g_Console = new CConsole();
 
 	// Create the scripting host.  This needs to be done before the GUI is created.
 	new ScriptingHost;

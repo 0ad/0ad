@@ -9,8 +9,7 @@
 
 #include "scripting/ScriptingHost.h"
 
-CConsole::CConsole(float X, float Y, float W, float H)
-	: m_fX(X), m_fY(Y), m_fWidth(W), m_fHeight(H)
+CConsole::CConsole()
 {
 
 	m_bToggle = false;
@@ -34,6 +33,15 @@ CConsole::~CConsole()
 	m_deqMsgHistory.clear();
 	m_deqBufHistory.clear();
 	delete[] m_szBuffer;
+}
+
+
+void CConsole::SetSize(float X, float Y, float W, float H)
+{
+	m_fX = X;
+	m_fY = Y;
+	m_fWidth = W;
+	m_fHeight = H;
 }
 
 
