@@ -54,7 +54,6 @@
 #include <xercesc/framework/LocalFileInputSource.hpp>
 
 // Nicer memory leak reporting in MSVC:
-
 // (You've got to include all STL headers first to avoid lots of errors,
 // so make sure they're in the list above and you compile with PCH)
 #ifdef HAVE_DEBUGALLOC
