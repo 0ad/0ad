@@ -83,8 +83,8 @@ STMT(\
 
 
 
-// useful because VC6 returns 0 on failure, instead of throwing.
-// causes calling function to return a negative error code on failure.
+// useful because VC may return 0 on failure, instead of throwing.
+// this wraps the exception handling, and creates a NULL pointer on failure.
 #define SAFE_NEW(type, ptr)\
 	type* ptr;\
 	try\
@@ -94,10 +94,7 @@ STMT(\
 	catch(std::bad_alloc)\
 	{\
 		ptr = 0;\
-	}\
-	if(!ptr)\
-		return ERR_NO_MEM;
-
+	}
 
 
 enum LibError
@@ -280,17 +277,12 @@ extern u16 fp_to_u16(double in);
 // big endian!
 extern void base32(const int len, const u8* in, u8* out);
 
-#ifndef _WIN32
-
-char *_itoa(int, char *, int radix);
-char *_ultoa(unsigned long int, char*, int radix);
-char *_ltoa(long, char *, int radix);
-
-#endif
 
 
-
-
+// design goals:
+// fast (including startup time)
+// portable
+// reusable across projects (i.e. no dependency on "parent" that calls modules)
 
 
 #endif	// #ifndef LIB_H
