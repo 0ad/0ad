@@ -27,6 +27,7 @@
 #include <stdlib.h>	// __argc
 #include <malloc.h>
 
+
 //
 // these override the portable stdio versions in sysdep.cpp
 // (they're more convenient)
@@ -93,6 +94,8 @@ void wdebug_out(const wchar_t* fmt, ...)
 
 	OutputDebugStringW(buf);
 }
+
+
 
 
 ///////////////////////////////////////////////////////////////////////////////
