@@ -199,7 +199,7 @@ public:
 			 * In [B=Hello][/B]
 			 * m_TagValue is 'Hello'
 			 */
-			CStr m_TagValue;
+			std::string m_TagValue;
 		};
 
 		/**

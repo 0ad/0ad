@@ -300,7 +300,7 @@ void CGUIString::SetValue(const CStr& str)
 						{
 							// Check for possible value-strings
 							if (Line.GetArgCount() == 2)
-								Line.GetArgString(1, (std::string &)tag.m_TagValue);
+								Line.GetArgString(1, tag.m_TagValue);
 
 							// Finalize last
 							if (curpos != from_nonraw)
@@ -478,11 +478,16 @@ void CGUIString::SetValue(const CStr& str)
 	// Remove duplicates
 	vector<int>::iterator it;
 	int last_word = -1;
-	for (it = m_Words.begin(); it != m_Words.end(); ++it)
+	for (it = m_Words.begin(); it != m_Words.end(); )
 	{
 		if (last_word == *it)
-			m_Words.erase(it);
-
-		last_word = *it;
+		{
+			it = m_Words.erase(it);
+		}
+		else
+		{
+			last_word = *it;
+			++it;
+		}
 	}
 }
