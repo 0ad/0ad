@@ -23,8 +23,7 @@
 
 
 
-// TexInfo.flags
-enum
+enum TexInfoFlags
 {
 	TEX_DXT   = 0x07,	// mask; value = {1,3,5}
 	TEX_BGR   = 8,
@@ -35,7 +34,7 @@ enum
 // minimize size - stored in ogl tex resource control block
 struct TexInfo
 {
-	Handle hm;			// H_MEM handle to loaded file
+	Handle hm;			// H_Mem handle to loaded file
 	size_t ofs;			// offset to image data in file
 	u32 w : 16;
 	u32 h : 16;
@@ -44,9 +43,19 @@ struct TexInfo
 };
 
 extern int tex_load(const char* fn, TexInfo* ti);
+extern int tex_load_mem(Handle hm, const char* fn, TexInfo* t);
 extern int tex_free(TexInfo* ti);
 
 extern int tex_write(const char* fn, int w, int h, int bpp, int flags, void* img);
 
+
+enum TexOrientation
+{
+	// value doesn't matter; we XOR global and format's settings
+	TEX_BOTTOM_UP = 0,
+	TEX_TOP_DOWN  = 1
+};
+
+extern void tex_set_global_orientation(TexOrientation);
 
 #endif	// __TEX_H__

@@ -35,26 +35,46 @@
 //#define NO_PNG
 #define NO_JP2
 //#define NO_RAW
+//#define NO_JPG
 
 
 #ifndef NO_JP2
 #include <jasper/jasper.h>
 #endif
 
+#ifndef NO_JPG
+extern "C" {
+# include "jpeglib.h"
+// extensions
+EXTERN(void) jpeg_mem_src(j_decompress_ptr cinfo, void* p, size_t size);
+}
+# ifdef _MSC_VER
+#  ifdef NDEBUG
+#   pragma comment(lib, "jpeg-6b.lib")
+#  else
+#   pragma comment(lib, "jpeg-6bd.lib")
+#  endif	// #ifdef NDEBUG
+# endif	// #ifdef _MSV_VER
+#endif	// #ifndef NO_JPG
+
 
 #ifndef NO_PNG
 # ifdef _WIN32
-#  define _WINDOWS_			// prevent libpng from including windows.h
-#  define WINAPI __stdcall	// .. and define what it needs
+   // to avoid conflicts, windows.h must not be included.
+   // libpng pulls it in for WINAPI; we prevent the include
+   // and define that here.
+#  define _WINDOWS_
+#  define WINAPI __stdcall
 #  define WINAPIV __cdecl
+   // different header name, too.
 #  include <libpng13/png.h>
 #  ifdef _MSC_VER
 #   ifdef NDEBUG
 #    pragma comment(lib, "libpng13.lib")
 #   else
 #    pragma comment(lib, "libpng13d.lib")
-#   endif
-#  endif
+#   endif	// NDEBUG
+#  endif	// _MSC_VER
 # else	// _WIN32
 #  include <png.h>
 # endif	// _WIN32
@@ -68,12 +88,12 @@
 struct Codec
 {
 	// pointers aren't const, because the textures
-	// may have to be flipped (in-place).
+	// may have to be flipped in-place - see "texture orientation".
 
 	// size is guaranteed to be >= 4.
 	// (usually enough to compare the header's "magic" field;
 	// anyway, no legitimate file will be smaller)
-	bool(*is_fmt)(u8* p, size_t size);
+	bool(*is_fmt)(const u8* p, size_t size);
 	bool(*is_ext)(const char* ext);
 	int(*decode)(TexInfo* t, const char* fn, u8* file, size_t file_size);
 	int(*encode)(TexInfo* t, const char* fn, u8* img, size_t img_size);
@@ -86,65 +106,104 @@ struct Codec
 };
 
 
+//////////////////////////////////////////////////////////////////////////////
+//
+// texture orientation
+//
+//////////////////////////////////////////////////////////////////////////////
 
-void flip_tex_rows(void* tex, size_t pitch, size_t h)
+// DDS and BMP are normally bottom-up, while PNG and JPG are always top-down.
+// we don't want to dump the burden of flipping them to a common orientation
+// on the application - that would affect all drawing code.
+// instead, we flip the texture data to <global_orientation> when loading.
+//
+// codecs using libraries with a row-array mechanism (jpg, png) can
+// just invert the row array pointers; otherwise (e.g. tga, bmp),
+// we flip the texel rows in-place.
+//
+// this is slow; in release builds, we should be using formats optimized
+// for their intended use that don't require preprocessing.
+
+static TexOrientation global_orientation = TEX_BOTTOM_UP;
+
+void tex_set_global_orientation(TexOrientation o)
 {
-	return;
+	global_orientation = o;
+}
+
+
+// if fmt_orientation doesn't match the desired global orientation,
+// tex will be flipped in-place. pitch is the total row width [bytes].
+void flip_tex_rows(void* tex, size_t pitch, size_t h, TexOrientation fmt_orientation)
+{
+	// already correct, we're done
+	if(fmt_orientation == global_orientation)
+		return;
 
 	size_t line = 0;	// counter
-	char* src;
-	char* dst;
+	const u8* src;
+	u8* dst;
 
 	// L1 cache is typically A2 => swapping in-place with a line buffer
-	// leads to thrashing. if the whole texture fits in L1, we allocate
-	// a copy and transfer directly.
+	// leads to thrashing. we'll assume the whole texture*2 fits in cache,
+	// allocate a copy, and transfer directly from there.
+	//
+	// note: we don't want to return a new buffer: the user assumes
+	// buffer address will remain unchanged.
 
-// document why can't return new buffer (refs, user assumes buffer addr unchanged)
-
-	size_t size = pitch * h;
+	const size_t size = pitch * h;
 	void* clone_buf = mem_alloc(size, 32*KB);
 	memcpy(clone_buf, tex, size);
-	src = (char*)clone_buf + (h-1)*pitch;
-	dst = (char*)tex;
+	src = (const u8*)clone_buf + size-pitch;
+	dst = (u8*)tex;
 	for(; line < h; line++)
 	{
 		memcpy(dst, src, pitch);
 		src -= pitch;
 		dst += pitch;
 	}
+	mem_free(clone_buf);
+}
 
-/*
-	// rationale: allocate second buffer vs 
-	we'll allocate 
-	// forget memory usage
 
-	char* line1 = (char*)tex;
-	char* line2 = line1 + pitch*(h-1);
+typedef const u8* RowPtr;
+typedef RowPtr* RowArray;
 
-	void* buf = mem_alloc(pitch, 4096);
+// allocate and set up rows to point into the given texture data.
+// invert if the format's orientation doesn't match the current global setting.
+static int alloc_rows(const u8* tex, size_t h, size_t pitch,
+	TexOrientation fmt_orientation, RowArray& rows)
+{
+	rows = (RowArray)malloc(h * sizeof(RowPtr));
+	if(!rows)
+		return ERR_NO_MEM;
 
-	for(size_t line = 0; line < h/2; line++)
+	// rows are inverted; current position pointer counts backwards.
+	if(fmt_orientation != global_orientation)
 	{
-		memcpy(buf, line1, pitch);		l1, buf		-+
-		memcpy(line1, line2);			l1, l2		+-
-		memcpy(line2, buf);				buf, l2     -+
-
-		line1 += pitch;
-		line2 += pitch;
+		RowPtr pos = tex + pitch*h;
+		for(size_t i = 0; i < h; i++)
+		{
+			pos -= pitch;
+			rows[i] = pos;
+		}
+	}
+	// normal; count ahead.
+	else
+	{
+		RowPtr pos = tex;
+		for(size_t i = 0; i < h; i++)
+		{
+			rows[i] = pos;
+			pos += pitch;
+		}
 	}
 
-t
-
-3		grab start+line put IN buf
-2		copy last-line to start+line
-1		
-
-1
-2
-3*/
-
-
+	return 0;
 }
+
+
+//////////////////////////////////////////////////////////////////////////////
 
 
 // write header and image out to file <fn>.
@@ -286,9 +345,9 @@ DDSURFACEDESC2;
 #pragma pack(pop)
 
 
-static inline bool dds_fmt(u8* ptr, size_t size)
+static inline bool dds_fmt(const u8* ptr, size_t size)
 {
-	UNUSED(size)	// only need first 4 chars
+	UNUSED(size);	// size >= 4, we only need 4 bytes
 	
 	return *(u32*)ptr == FOURCC('D','D','S',' ');
 }
@@ -296,7 +355,7 @@ static inline bool dds_fmt(u8* ptr, size_t size)
 
 static inline bool dds_ext(const char* ext)
 {
-	return !strcmp(ext, ".dds");
+	return !stricmp(ext, ".dds");
 }
 
 
@@ -396,7 +455,7 @@ static int dds_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 	return ERR_NOT_IMPLEMENTED;
 }
 
-#endif
+#endif	// #ifndef NO_DDS
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -448,7 +507,7 @@ TgaHeader;
 
 // the first TGA header doesn't have a magic field;
 // we can only check if the first 4 bytes are valid
-static inline bool tga_fmt(u8* ptr, size_t size)
+static inline bool tga_fmt(const u8* ptr, size_t size)
 {
 	UNUSED(size);
 
@@ -468,7 +527,7 @@ static inline bool tga_fmt(u8* ptr, size_t size)
 
 static inline bool tga_ext(const char* ext)
 {
-	return !strcmp(ext, ".tga");
+	return !stricmp(ext, ".tga");
 }
 
 
@@ -501,8 +560,8 @@ fail:
 	const size_t img_size = h * pitch;
 	void* img = file + hdr_size;
 
-	if(desc & TGA_TOP_DOWN)
-		flip_tex_rows(img, pitch, h);
+	TexOrientation fo = (desc & TGA_TOP_DOWN)? TEX_TOP_DOWN : TEX_BOTTOM_UP;
+	flip_tex_rows(img, pitch, h, fo);
 
 	int flags = 0;
 	if(alpha_bits != 0)
@@ -552,7 +611,7 @@ static int tga_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 	return write_img(fn, &hdr, sizeof(hdr), img, img_size, flip_bgr, t->bpp);
 }
 
-#endif
+#endif	// #ifndef NO_TGA
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -602,9 +661,9 @@ struct BmpHeader
 #define BI_RGB 0		// biCompression
 
 
-static inline bool bmp_fmt(u8* p, size_t size)
+static inline bool bmp_fmt(const u8* p, size_t size)
 {
-	UNUSED(size)
+	UNUSED(size);	// size >= 4, we only need 2 bytes
 
 	// check header signature (bfType == "BM"?).
 	// we compare single bytes to be endian-safe.
@@ -614,7 +673,7 @@ static inline bool bmp_fmt(u8* p, size_t size)
 
 static inline bool bmp_ext(const char* ext)
 {
-	return !strcmp(ext, ".bmp");
+	return !stricmp(ext, ".bmp");
 }
 
 
@@ -641,15 +700,14 @@ fail:
 	const u32 compress = read_le32(&hdr->biCompression);
 	const u32 ofs      = read_le32(&hdr->bfOffBits);
 
-	const bool top_down = (h_ < 0);
+	const TexOrientation fo = (h_ < 0)? TEX_TOP_DOWN : TEX_BOTTOM_UP;
 	const long h = abs(h_);
 
 	const size_t pitch = w * bpp/8;
 	const size_t img_size = h * pitch;
 	void* img = in + ofs;
 
-	if(top_down)
-		flip_tex_rows(img, pitch, h);
+	flip_tex_rows(img, pitch, h, fo);
 
 	int flags = TEX_BGR;
 	if(bpp == 32)
@@ -704,7 +762,7 @@ static int bmp_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 	return write_img(fn, &hdr, sizeof(hdr), img, img_size, flip_bgr, t->bpp);
 }
 
-#endif
+#endif	// #ifndef NO_BMP
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -717,9 +775,9 @@ static int bmp_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 
 // assume bottom-up
 
-static inline bool raw_fmt(u8* p, size_t size)
+static inline bool raw_fmt(const u8* p, size_t size)
 {
-	UNUSED(p)
+	UNUSED(p);
 	UNUSED(size)
 
 	return true;
@@ -728,7 +786,7 @@ static inline bool raw_fmt(u8* p, size_t size)
 
 static inline bool raw_ext(const char* ext)
 {
-	return !strcmp(ext, ".raw");
+	return !stricmp(ext, ".raw");
 }
 
 
@@ -769,7 +827,7 @@ static int raw_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 	return write_img(fn, 0, 0, img, img_size, flip_bgr, t->bpp);
 }
 
-#endif
+#endif	// #ifndef NO_RAW
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -780,40 +838,25 @@ static int raw_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 
 #ifndef NO_PNG
 
-
-static inline bool png_fmt(u8* ptr, size_t size)
+static inline bool png_fmt(const u8* ptr, size_t size)
 {
-	return png_sig_cmp((u8*)ptr, 0, MIN(size, 8)) == 0;
+	UNUSED(size);	// size >= 4, we only need 4 bytes
+
+	// don't use png_sig_cmp, so we don't pull in libpng for
+	// this check alone (it might not be used later).
+	return *(u32*)ptr == FOURCC('\x89','P','N','G');
 }
 
 
 static inline bool png_ext(const char* ext)
 {
-	return !strcmp(ext, ".png");
+	return !stricmp(ext, ".png");
 }
 
 
 // note: it's not worth combining png_encode and png_decode, due to
 // libpng read/write interface differences (grr). we at least split
 // out alloc_rows, though.
-
-// allocate and set up rows to point into image buffer.
-// invert, because libpng stores as top-down and our convention is bottom-up.
-static int alloc_rows(u8* img, size_t h, size_t pitch, png_bytepp& rows)
-{
-	rows = (png_bytepp)malloc(h * sizeof(void*));
-	if(!rows)
-		return -ENOMEM;
-
-	png_bytep pos = img + pitch*h;
-	for(size_t i = 0; i < h; i++)
-	{
-		pos -= pitch;
-		rows[i] = pos;
-	}
-
-	return 0;
-}
 
 
 struct PngMemFile
@@ -849,10 +892,10 @@ static int png_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 	// freed when ret is reached:
 	png_structp png_ptr = 0;
 	png_infop info_ptr = 0;
-	png_bytepp rows = 0;
+	RowArray rows = 0;
 
 	// freed when fail is reached:
-	u8* img = 0;
+	u8* img = 0;	// decompressed image memory
 
 
 	// allocate PNG structures; use default stderr and longjmp error handlers
@@ -903,12 +946,19 @@ fail:
 			// but need to set to this handle afterwards => need tmp var.
 		img = (u8*)mem_alloc(img_size, 64*KB, 0, &img_hm);
 		if(!img)
+		{
+			err = ERR_NO_MEM;
 			goto fail;
+		}
 
-		// rows are flipped
-		CHECK_ERR(alloc_rows(img, h, pitch, rows));
+		int ret = alloc_rows(img, h, pitch, TEX_TOP_DOWN, rows);
+		if(ret < 0)
+		{
+			err = ret;
+			goto fail;
+		}
 
-		png_read_image(png_ptr, rows);
+		png_read_image(png_ptr, (png_bytepp)rows);
 		png_read_end(png_ptr, info_ptr);
 
 		assert(f.p == file && f.size == file_size && f.pos == f.size);
@@ -926,7 +976,7 @@ fail:
 	}
 
 	// shared cleanup
-ret:
+	ret:
 	free(rows);
 
 	if(png_ptr)
@@ -959,7 +1009,7 @@ static int png_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 	// freed when ret is reached.
 	png_structp png_ptr = 0;
 	png_infop info_ptr = 0;
-	png_bytepp rows = 0; 
+	RowArray rows = 0; 
 	Handle hf = 0;
 
 	// allocate PNG structures; use default stderr and longjmp error handlers
@@ -1010,9 +1060,14 @@ fail:
 		png_set_IHDR(png_ptr, info_ptr, w, h, 8, color_type,
 			PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
 
-		CHECK_ERR(alloc_rows(img, h, pitch, rows));
+		int ret = alloc_rows(img, h, pitch, TEX_TOP_DOWN, rows);
+		if(ret < 0)
+		{
+			err = ret;
+			goto fail;
+		}
 
-		png_set_rows(png_ptr, info_ptr, rows);
+		png_set_rows(png_ptr, info_ptr, (png_bytepp)rows);
 		png_write_png(png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, 0);
 	
 		err = 0;
@@ -1020,7 +1075,7 @@ fail:
 	}
 
 	// shared cleanup
-ret:
+	ret:
 	png_destroy_write_struct(&png_ptr, &info_ptr);
 
 	free(rows);
@@ -1029,9 +1084,7 @@ ret:
 	return err;
 }
 
-
-
-#endif
+#endif	// #ifndef NO_PNG
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -1053,7 +1106,7 @@ static inline bool jp2_fmt(u8* p, size_t size)
 
 static inline bool jp2_ext(const char* ext)
 {
-	return !strcmp(ext, ".jp2");
+	return !stricmp(ext, ".jp2");
 }
 
 
@@ -1129,7 +1182,331 @@ static int jp2_encode(TexInfo* t, const char* fn, const u8* img, size_t img_size
 	return ERR_NOT_IMPLEMENTED;
 }
 
-#endif
+#endif	// #ifndef NO_JP2
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// JPG
+//
+//////////////////////////////////////////////////////////////////////////////
+
+#ifndef NO_JPG
+
+static inline bool jpg_fmt(const u8* p, size_t size)
+{
+	UNUSED(size);	// size >= 4, we only need 2 bytes
+
+	// JFIF requires SOI marker at start of stream.
+	// we compare single bytes to be endian-safe.
+	return p[0] == 0xff && p[1] == 0xd8;
+}
+
+
+static inline bool jpg_ext(const char* ext)
+{
+	return !stricmp(ext, ".jpg") || !stricmp(ext, ".jpeg");
+}
+
+
+//
+// error handler, shared by jpg_(en|de)code:
+//
+// the JPEG library's standard error handler (jerror.c) is divided into
+// several "methods" which we can override individually. This allows
+// adjusting the behavior without duplicating a lot of code, which may
+// have to be updated with each future release.
+//
+// we here override error_exit to return control to the library's caller
+// (i.e. jpg_(de|en)code) when a fatal error occurs, rather than calling exit.
+//
+// the replacement error_exit does a longjmp back to the caller's
+// setjmp return point. it needs access to the jmp_buf,
+// so we store it in a "subclass" of jpeg_error_mgr.
+//
+
+struct JpgErrMgr
+{
+	struct jpeg_error_mgr pub;	// "public" fields
+
+	jmp_buf call_site; // jump here (back to JPEG lib caller) on error 
+	char msg[JMSG_LENGTH_MAX];	// description of first error encountered
+		// must store per JPEG context for thread safety.
+		// initialized as part of JPEG context error setup.
+};
+
+METHODDEF(void) jpg_error_exit(j_common_ptr cinfo)
+{
+	// get subclass
+	JpgErrMgr* err_mgr = (JpgErrMgr*)cinfo->err;
+
+	// "output" error message (i.e. store in JpgErrMgr;
+	// call_site is responsible for displaying it via debug_out)
+	(*cinfo->err->output_message)(cinfo);
+
+	// jump back to call site, i.e. jpg_(de|en)code
+	longjmp(err_mgr->call_site, 1);
+}
+
+
+// stores message in JpgErrMgr for later output by jpg_(de|en)code.
+// note: don't display message here, so the caller can
+//   add some context (whether encoding or decoding, and filename).
+METHODDEF(void) jpg_output_message(j_common_ptr cinfo)
+{
+	// get subclass
+	JpgErrMgr* err_mgr = (JpgErrMgr*)cinfo->err;
+
+	// this context already had an error message; don't overwrite it.
+	// (subsequent errors probably aren't related to the real problem).
+	// note: was set to '\0' by JPEG context error setup.
+	if(err_mgr->msg[0] != '\0')
+		return;
+
+	// generate the message and store it
+	(*cinfo->err->format_message)(cinfo, err_mgr->msg);
+}
+
+
+static int jpg_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
+{
+	const char* msg = 0;
+	int err = -1;
+
+	// freed when ret is reached:
+	struct jpeg_decompress_struct cinfo;
+		// contains the JPEG decompression parameters and pointers to
+		// working space (allocated as needed by the JPEG library).
+	RowArray rows = 0;
+		// array of pointers to scanlines in img, set by alloc_rows.
+		// jpeg won't output more than a few scanlines at a time,
+		// so we need an output loop anyway, but passing at least 2..4
+		// rows is more efficient in low-quality modes (due to less copying).
+
+	// freed when fail is reached:
+	u8* img = 0;	// decompressed image memory
+
+	// set up our error handler, which overrides jpeg's default
+	// write-to-stderr-and-exit behavior.
+	// notes:
+	// - must be done before jpeg_create_decompress, in case that fails
+	//   (unlikely, but possible if out of memory).
+	// - valid over cinfo lifetime (avoids dangling pointer in cinfo)
+	JpgErrMgr jerr;
+	cinfo.err = jpeg_std_error(&jerr.pub);
+	jerr.pub.error_exit = jpg_error_exit;
+	jerr.pub.output_message = jpg_output_message;
+	jerr.msg[0] = '\0';
+		// required for "already have message" check in output_message
+	if(setjmp(jerr.call_site))
+	{
+fail:
+		// either JPEG has raised an error, or code below failed.
+		// warn user, and skip to cleanup code.
+		debug_out("jpg_decode: %s: %s\n", fn, msg? msg : "unknown");
+		goto ret;
+	}
+
+
+	jpeg_create_decompress(&cinfo);
+
+	jpeg_mem_src(&cinfo, file, file_size);
+
+
+	//
+	// read header, determine format
+	//
+
+	(void) jpeg_read_header(&cinfo, TRUE);
+		// we can ignore the return value since:
+		// - suspension is not possible with the mem data source
+		// - we passed TRUE to raise an error if table-only JPEG file
+
+	int bpp = cinfo.num_components * 8;
+		// preliminary; set below to reflect output params
+
+	// make sure we get a color format we know
+	// (exception: if bpp = 8, go grayscale below)
+	// necessary to support non-standard CMYK files written by Photoshop.
+	cinfo.out_color_space = JCS_RGB;
+
+	int flags = 0;
+	if(bpp == 8)
+	{
+		flags |= TEX_GRAY;
+		cinfo.out_color_space = JCS_GRAYSCALE;
+	}
+
+	// lower quality, but faster
+	cinfo.dct_method = JDCT_IFAST;
+	cinfo.do_fancy_upsampling = FALSE;
+
+
+	(void) jpeg_start_decompress(&cinfo);
+		// we can ignore the return value since
+		// suspension is not possible with the mem data source.
+
+	// scaled output image dimensions and final bpp are now available.
+	int w = cinfo.output_width;
+	int h = cinfo.output_height;
+	bpp = cinfo.output_components * 8;
+
+	// note: since we've set out_color_space, JPEG will always
+	// return an acceptable image format; no need to check.
+
+
+	//
+	// allocate memory for uncompressed image
+	//
+
+	size_t pitch = w * bpp / 8;
+		// needed by alloc_rows
+	const size_t img_size = pitch * h;
+	Handle img_hm;
+		// cannot free old t->hm until after jpeg_finish_decompress,
+		// but need to set to this handle afterwards => need tmp var.
+	img = (u8*)mem_alloc(img_size, 64*KB, 0, &img_hm);
+	if(!img)
+	{
+		err = ERR_NO_MEM;
+		goto fail;
+	}
+	int ret = alloc_rows(img, h, pitch, TEX_TOP_DOWN, rows);
+	if(ret < 0)
+	{
+		err = ret;
+		goto fail;
+	}
+
+
+	// could use cinfo.output_scanline to keep track of progress,
+	// but we need to count lines_left anyway (paranoia).
+	JSAMPARRAY row = (JSAMPARRAY)rows;
+	JDIMENSION lines_left = h;
+	while(lines_left != 0)
+	{
+		JDIMENSION lines_read = jpeg_read_scanlines(&cinfo, row, lines_left);
+		row += lines_read;
+		lines_left -= lines_read;
+
+		// we've decoded in-place; no need to further process
+	}
+
+	(void)jpeg_finish_decompress(&cinfo);
+		// we can ignore the return value since suspension
+		// is not possible with the mem data source.
+
+	if(jerr.pub.num_warnings != 0)
+		debug_out("jpg_decode: corrupt-data warning(s) occurred\n");
+
+	// store image info
+	mem_free_h(t->hm);
+	t->hm    = img_hm;
+	t->ofs   = 0;	// jpeg returns decoded image data; no header
+	t->w     = w;
+	t->h     = h;
+	t->bpp   = bpp;
+	t->flags = flags;
+
+	err = 0;
+
+	// shared cleanup
+	ret:
+	free(rows);
+
+	jpeg_destroy_decompress(&cinfo);
+		// releases a "good deal" of memory
+
+	return err;
+}
+
+
+
+// limitation: palette images aren't supported
+static int jpg_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
+{
+	const char* msg = 0;
+	int err = -1;
+
+	// freed when ret is reached.
+	png_structp png_ptr = 0;
+	png_infop info_ptr = 0;
+	RowArray rows = 0; 
+	Handle hf = 0;
+
+	// allocate PNG structures; use default stderr and longjmp error handlers
+	png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
+	if(!png_ptr)
+		goto fail;
+	info_ptr = png_create_info_struct(png_ptr);
+	if(!info_ptr)
+		goto fail;
+
+	// setup error handling
+	if(setjmp(png_jmpbuf(png_ptr)))
+	{
+fail:
+		debug_out("png_encode: %s: %s\n", fn, msg? msg : "unknown");
+		goto ret;
+	}
+
+	{
+		const png_uint_32 w = t->w, h = t->h;
+		const size_t pitch = w * t->bpp / 8;
+
+		int color_type;
+		switch(t->flags & (TEX_GRAY|TEX_ALPHA))
+		{
+		case TEX_GRAY|TEX_ALPHA:
+			color_type = PNG_COLOR_TYPE_GRAY_ALPHA;
+			break;
+		case TEX_GRAY:
+			color_type = PNG_COLOR_TYPE_GRAY;
+			break;
+		case TEX_ALPHA:
+			color_type = PNG_COLOR_TYPE_RGB_ALPHA;
+			break;
+		default:
+			color_type = PNG_COLOR_TYPE_RGB;
+			break;
+		}
+
+		hf = vfs_open(fn, FILE_WRITE|FILE_NO_AIO);
+		if(hf < 0)
+		{
+			err = (int)hf;
+			goto fail;
+		}
+		png_set_write_fn(png_ptr, &hf, png_write, png_flush);
+
+		png_set_IHDR(png_ptr, info_ptr, w, h, 8, color_type,
+			PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
+
+		int ret = alloc_rows(img, h, pitch, TEX_TOP_DOWN, rows);
+		if(ret < 0)
+		{
+			err = ret;
+			goto fail;
+		}
+
+		png_set_rows(png_ptr, info_ptr, (png_bytepp)rows);
+		png_write_png(png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, 0);
+
+		err = 0;
+
+	}
+
+	// shared cleanup
+	ret:
+	png_destroy_write_struct(&png_ptr, &info_ptr);
+
+	free(rows);
+	vfs_close(hf);
+
+	return err;
+}
+
+#endif	// #ifndef NO_JPG
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -1140,7 +1517,7 @@ static int jp2_encode(TexInfo* t, const char* fn, const u8* img, size_t img_size
 
 
 
-static Codec codecs[] =
+static const Codec codecs[] =
 {
 #ifndef NO_DDS
 	CODEC(dds),
@@ -1148,8 +1525,8 @@ static Codec codecs[] =
 #ifndef NO_PNG
 	CODEC(png),
 #endif
-#ifndef NO_JP2
-	CODEC(jp2),
+#ifndef NO_JPG
+	CODEC(jpg),
 #endif
 #ifndef NO_BMP
 	CODEC(bmp),
@@ -1157,55 +1534,59 @@ static Codec codecs[] =
 #ifndef NO_TGA
 	CODEC(tga),
 #endif
-#ifndef NO_RAW
-	CODEC(raw),
+#ifndef NO_JP2
+	CODEC(jp2),
 #endif
+
+// must be last, as raw_fmt always returns true!
+#ifndef NO_RAW
+	CODEC(raw)
+#endif
+
 };
 
-static const int num_codecs = sizeof(codecs) / sizeof(codecs[0]);
+static const int num_codecs = ARRAY_SIZE(codecs);
 
 
 
-
-
-int tex_load(const char* fn, TexInfo* t)
+int tex_load_mem(Handle hm, const char* fn, TexInfo* t)
 {
-	// load file
-	void* _p = 0;
 	size_t size;
-	Handle hm = vfs_load(fn, _p, size);
-	CHECK_ERR(hm);	// (need handle below; can't test return value directly)
+	void* _p = mem_get_ptr(hm, &size);
+
 	// guarantee *_valid routines 4 header bytes
 	if(size < 4)
-	{
-		mem_free_h(hm);
 		return ERR_CORRUPTED;
-	}
 	t->hm = hm;
 
 	int err = -1;
-		// initial value, in case no codec is found
+	// initial value, in case no codec is found
 
 	u8* p = (u8*)_p;
 		// more convenient to pass loaders u8 - less casting.
 		// not const, because image may have to be flipped (in-place).
 
 	// find codec that understands the data, and decode
-	Codec* c = codecs;
+	const Codec* c = codecs;
 	for(int i = 0; i < num_codecs; i++, c++)
 		if(c->is_fmt(p, size))
-		{
-			err = c->decode(t, fn, p, size);
-			break;
-		}
+			return c->decode(t, fn, p, size);
 
-	if(err < 0)
-	{
-		mem_free_h(hm);
-		return err;
-	}
+	return ERR_UNKNOWN_FORMAT;
+}
 
-	return 0;
+
+int tex_load(const char* fn, TexInfo* t)
+{
+	// load file
+	void* p; size_t size;	// unused
+	Handle hm = vfs_load(fn, p, size);
+	CHECK_ERR(hm);	// (need handle below; can't test return value directly)
+	int ret = tex_load_mem(hm, fn, t);
+	mem_free_h(hm);
+	if(ret < 0)
+		memset(t, 0, sizeof(TexInfo));
+	return ret;
 }
 
 
@@ -1231,7 +1612,7 @@ int tex_write(const char* fn, int w, int h, int bpp, int flags, void* img)
 		w, h, bpp, flags
 	};
 
-	Codec* c = codecs;
+	const Codec* c = codecs;
 	for(int i = 0; i < num_codecs; i++, c++)
 		if(c->is_ext(ext))
 		{
