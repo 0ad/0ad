@@ -5,8 +5,8 @@
 #include <iostream>
 #include <stdio.h>
 
-#include <al.h>
-#include <alut.h>
+#include "oal.h"
+
 #include <ogg/ogg.h>
 #include <vorbis/codec.h>
 #include <vorbis/vorbisfile.h>

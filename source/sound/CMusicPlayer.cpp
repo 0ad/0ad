@@ -2,6 +2,21 @@
 
 #include "CMusicPlayer.h"
 
+#ifdef _MSC_VER
+# ifndef NDEBUG
+#  pragma comment(lib, "ogg.lib")
+#  pragma comment(lib, "vorbis.lib")
+#  pragma comment(lib, "vorbisfile.lib")
+# else
+#  pragma comment(lib, "ogg_d.lib")
+#  pragma comment(lib, "vorbis_d.lib")
+#  pragma comment(lib, "vorbisfile_d.lib")
+# endif
+#endif
+
+
+#include "res/res.h"
+
 size_t VorbisRead(void *ptr, size_t byteSize, size_t sizeToRead, void *datasource)
 {
 	size_t spaceToEOF;			
@@ -85,10 +100,7 @@ CMusicPlayer::CMusicPlayer(void)
 	source = NULL;
 	format = NULL;
 
-	for(int i = 0; i < 2; i++)
-	{
-		buffers[i] = NULL;
-	}
+	buffers[0] = buffers[1] = ~0;
 }
 
 CMusicPlayer::~CMusicPlayer(void)
@@ -102,6 +114,7 @@ void CMusicPlayer::open(char *filename)
 	format = NULL;
 	info = NULL;
 
+/*
 	FILE*   tempOggFile;
 	int		sizeOfFile; 
 	char	tempChar;
@@ -129,7 +142,13 @@ void CMusicPlayer::open(char *filename)
 	}
 
 	fclose(tempOggFile);
+*/
+	void* p;
+	size_t sizeOfFile;
+	if(vfs_load(filename, p, sizeOfFile) <= 0)
+		return;
 
+	memFile.dataPtr = (char*)p;
 	memFile.dataRead = 0;
 	memFile.dataSize = sizeOfFile;	
 	
@@ -182,7 +201,6 @@ void CMusicPlayer::open(char *filename)
 	alSourcei(source,AL_SOURCE_RELATIVE,AL_TRUE);
 	check();
 	//printf("returned from S RELATIVE\n");
-	
 }
 
 void CMusicPlayer::release()
@@ -194,9 +212,7 @@ void CMusicPlayer::release()
 	alDeleteBuffers(1,buffers);
 	check();
 	ov_clear(&oggStream);
-	delete[] memFile.dataPtr;
-	memFile.dataPtr = NULL;
-
+	mem_free(memFile.dataPtr);
 }
 
 
