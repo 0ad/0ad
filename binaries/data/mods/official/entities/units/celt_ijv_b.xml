@@ -7,12 +7,16 @@
 			civ="Celts"
 			internal_only="false"
 
-			specific="(Name)"
-			ranked="Basic (Name)"
+			specific="Celtaidd Gaesata"
 
-			history="(Insert History Here)"
+			history="Gaesum means spear. Gaesatae were a group of warriors outside of 'normal' Celtic society. They typically fought naked. They were usually young warriors for hire, fighting wherever the wind took them. They typically carried 4 spears with them: one stout spear for hand to hand combat, and 3 smaller spears for throwing."
 		/>
 	</Traits>
+	<Actions>
+		<Create
+			list.structmil="mc;pc;ff;tf;wc"
+		/>
+	</Actions>
 	<Actor>Celtic Basic Javelinist Infantry</Actor>
 </Entity>
 

@@ -7,12 +7,16 @@
 			civ="Celts"
 			internal_only="false"
 
-			specific="(Name)"
-			ranked="Basic (Name)"
+			specific="Celtaidd Shleiyder"
 
-			history="(Insert History Here)"
+			history="This character actually should be a Gesatae, but for gameplay reasons his function was split. Shleiy is manx for spear. Shleiyder in manx means spearman. In order to visually make him distinct from the Gesata he will have the more armored appearance that the swordsman has."
 		/>
 	</Traits>
+	<Actions>
+		<Create
+			list.structmil="mc;pc;ff;tf;wc"
+		/>
+	</Actions>
 	<Actor>Celtic Basic Spearman Infantry</Actor>
 </Entity>
 

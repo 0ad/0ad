@@ -7,12 +7,16 @@
 			civ="Celts"
 			internal_only="false"
 
-			specific="(Name)"
-			ranked="Basic (Name)"
+			specific="Celtaidd Cleddyfwr"
 
-			history="(Insert History Here)"
+			history="The sword was actually not as common among Celts as most people would think. It was a weapon usually reserved for the wealthy or those who were able to plunder a sword from someone less fortunate than they. The Celts who did have swords were renowned for their power and skill with the blade. The blade was 2 sided, long, and usually single handed. It was said to be an extension of their arm."
 		/>
 	</Traits>
+	<Actions>
+		<Create
+			list.structmil="mc;pc;ff;tf;wc"
+		/>
+	</Actions>
 	<Actor>Celtic Basic Swordsman Infantry</Actor>
 </Entity>
 
