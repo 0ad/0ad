@@ -35,19 +35,19 @@
 #define VFS_MAX_PATH 256
 
 
-// VFS paths are of the form:
-// "[dir/{subdir/}]file" or "[dir/{subdir/}]dir[/]".
-// in English: '/' as path separator; trailing '/' allowed for dir names;
+// VFS paths are of the form: "(dir/)*file?"
+// in English: '/' as path separator; trailing '/' required for dir names;
 // no leading '/', since "" is the root dir.
 
 
-// mount either a single archive or a directory into the VFS at
-// <vfs_mount_point>, which is created if it does not yet exist.
-// new files override the previous VFS contents if pri(ority) is not lower.
-// if <name> is a directory, all archives in that directory (but not
-// its subdirs - see add_dirent_cb) are also mounted in alphabetical order.
-// name = "." or "./" isn't allowed - see implementation for rationale.
-extern int vfs_mount(const char* vfs_mount_point, const char* name, uint pri);
+// mount <p_real_dir> into the VFS at <vfs_mount_point>,
+//   which is created if it does not yet exist.
+// files in that directory override the previous VFS contents if
+//   <pri>(ority) is not lower.
+// all archives in <p_real_dir> are also mounted, in alphabetical order.
+//
+// p_real_dir = "." or "./" isn't allowed - see implementation for rationale.
+extern int vfs_mount(const char* v_mount_point, const char* p_real_dir, uint pri);
 
 // rebuild the VFS, i.e. re-mount everything. open files are not affected.
 // necessary after loose files or directories change, so that the VFS
@@ -60,11 +60,14 @@ extern int vfs_rebuild();
 // unmount a previously mounted item, and rebuild the VFS afterwards.
 extern int vfs_unmount(const char* name);
 
+// if <path> or its ancestors are mounted,
+// return a VFS path that accesses it.
+// used when receiving paths from external code.
 extern int vfs_make_vfs_path(const char* path, char* vfs_path);
-extern int vfs_make_real_path(const char* vfs_path, char* path);
 
+// write a representation of the VFS tree to stdout.
+extern void vfs_display();
 
-extern int vfs_display();
 
 //
 // directory entry
@@ -80,6 +83,7 @@ struct vfsDirEnt
 };
 
 // open the directory for reading its entries via vfs_next_dirent.
+// <v_dir> need not end in '/'; we add it if not present.
 // directory contents are cached here; subsequent changes to the dir
 // are not returned by this handle. rationale: see VDir definition.
 extern Handle vfs_open_dir(const char* dir);
@@ -215,6 +219,9 @@ extern int vfs_map(Handle hf, uint flags, void*& p, size_t& size);
 extern int vfs_unmap(Handle hf);
 
 
+
 extern void vfs_enable_file_listing(bool want_enabled);
+
+extern void vfs_shutdown();
 
 #endif	// #ifndef __VFS_H__

@@ -852,6 +852,8 @@ static void Shutdown()
 
 	snd_shutdown();
 
+	vfs_shutdown();
+
 	h_mgr_shutdown();
 }
 
