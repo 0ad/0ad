@@ -22,7 +22,8 @@
 		<object type="button" name="pregame-mainmenu-sp-button" sprite-over="pregame-mainmenu-spbt" size="52.9296875% 23.95833333% 67.578125% 42.317708333%" z="101" hidden="false"
 			tooltip-style="pregame-mainmenu-tooltip" tooltip="Want to move some Dudes around or test something ? Click here to start a new game on the default map.">
 			<action on="Press"><![CDATA[
-				startLoadingScreen();
+						GUIObjectUnhide("pregame_subwindow_bkg");
+						GUIObjectUnhide("pregame_sp_mapsel");
 			]]></action>
 		</object>
 
@@ -30,10 +31,9 @@
 			tooltip-style="pregame-mainmenu-tooltip" tooltip="Tired of playing with yourself? Fight against one or more human players in a multiplayer game.">
 			<action on="Press"><![CDATA[
 				getGUIObjectByName("pregame_subwindow_bkg").hidden = false;
-				getGUIObjectByName("pregame_ip_host").hidden = false;
+				getGUIObjectByName("pregame_mp_ip").hidden = false;
 			]]></action>
 		</object>
-
 
 		<object type="button" name="pregame-mainmenu-ed-button" sprite-over="pregame-mainmenu-edbt" size="44.00% 61.50% 62.45% 83.55%" z="101" hidden="false"
 			tooltip-style="pregame-mainmenu-tooltip" tooltip="Come forth and witness a totally non-functioning Editor, a mere shadow of its potential self!">
@@ -74,13 +74,19 @@
 
 	<object type="empty" name="pregame_subwindows" size="0 0 100% 100%" z="1" hidden="false">
 
-		<object type="image" name="pregame_subwindow_bkg" sprite="tooltip-background" size="0 0 100% 100%" z="105" hidden="true"/>
+		<object type="image" name="pregame_subwindow_bkg" sprite="pregame-mainmenu-tooltip-background" size="0 0 100% 100%" z="105" hidden="true"/>
 
-		<object type="button" name="pregame_ip_host" sprite="0ad_window" z="106" hidden="true">
-			<action on="Load"><![CDATA[
-				getGUIObjectByName("pregame_ip_host").caption = "Mary had a little lamb; her fleece was white as snow (the lamb's fleece; that is. Not Mary's. It'd be pretty silly if Mary had a fleece. Though I guess it's possible. I mean in this modern avant-garde world of ours, who am I to say that Mary doesn't come with a fleece at no additional cost? Ah, forget it.)";
-				setSizeCoord("pregame_ip_host",	crd_pregame_iphost_bkg_x, crd_pregame_iphost_bkg_y, crd_pregame_iphost_bkg_x+crd_pregame_iphost_bkg_width, crd_pregame_iphost_bkg_y+crd_pregame_iphost_bkg_height, mid_screen, mid_screen, mid_screen, mid_screen);
-			]]></action>
+			<object type="button" name="pregame_mp_ip" sprite="0ad_window" z="106" hidden="true">
+				<action on="Load"><![CDATA[
+					setSizeCoord("pregame_mp_ip",        crd_pregame_iphost_bkg_x, crd_pregame_iphost_bkg_y, crd_pregame_iphost_bkg_x+crd_pregame_iphost_bkg_width, crd_pregame_iphost_bkg_y+crd_pregame_iphost_bkg_height, mid_screen, mid_screen, mid_screen, mid_screen);
+				]]></action>
+
+			<object type="button" name="pregame_ip_host_titlebar" sprite="0ad_window_title" font="prospero18" z="165" text-align="center" text-valign="center">
+						<action on="Load"><![CDATA[
+							getGUIObjectByName("pregame_ip_host_titlebar").caption = "Direct IP Connect";
+							setSizeCoord("pregame_ip_host_titlebar", crd_pregame_iphost_titlebar_x, crd_pregame_iphost_titlebar_y, crd_pregame_iphost_titlebar_x+crd_pregame_iphost_titlebar_width, crd_pregame_iphost_titlebar_y+crd_pregame_iphost_titlebar_height, mid_screen, mid_screen, mid_screen, mid_screen);
+						]]></action>
+			</object>
 
 			<object type="button" name="pregame_ip_host_exit_button" sprite="exit_sprite" sprite-over="exit_sprite-over">
 				<action on="Load"><![CDATA[
@@ -88,18 +94,138 @@
 				]]></action>
 				<action on="Press"><![CDATA[
 					getGUIObjectByName("pregame_subwindow_bkg").hidden = true;
-					getGUIObjectByName("pregame_ip_host").hidden = true;
+					getGUIObjectByName("pregame_mp_ip").hidden = true;
 				]]></action>
 			</object>
 
-			<object type="button" name="pregame_ip_host_titlebar" sprite="0ad_window_title" font="prospero18" z="165" text-align="center" text-valign="center">
+			<object type="text" name="pregame_ip_infotext">
 				<action on="Load"><![CDATA[
-					getGUIObjectByName("pregame_ip_host_titlebar").caption = "Direct IP Connect";
-					setSizeCoord("pregame_ip_host_titlebar", crd_pregame_iphost_titlebar_x, crd_pregame_iphost_titlebar_y, crd_pregame_iphost_titlebar_x+crd_pregame_iphost_titlebar_width, crd_pregame_iphost_titlebar_y+crd_pregame_iphost_titlebar_height, mid_screen, mid_screen, mid_screen, mid_screen);
+					getGUIObjectByName("pregame_ip_infotext").caption = "You can start a multiplayer game by Direct-IP connect from here. Either \n- enter a map name and click 'Host Game' to host a game or \n- enter an IP and click 'Join Game' to join a game on the IP entered.";
+					setSizeCoord("pregame_ip_infotext",        crd_pregame_iphost_bkg_x, crd_pregame_iphost_bkg_y, crd_pregame_iphost_bkg_x+crd_pregame_iphost_bkg_width, crd_pregame_iphost_bkg_y+crd_pregame_iphost_bkg_height, mid_screen, mid_screen, mid_screen, mid_screen);
 				]]></action>
 			</object>
 
-		</object>
-	</object>
+                        <object type="image" name="pregame_mp_ip_divider1" sprite="only-black-border">
+                        <action on="Load"><![CDATA[
+                                setSizeCoord("pregame_mp_ip_divider1", -230, -130, 230, -130, mid_screen, mid_screen, mid_screen, mid_screen);
+                        ]]></action>
+                        </object>
+                        
+                        <!-- PLAYER NAME controls -->
+                        <object type="text" name="pregame_mp_ip_playername_txt" absolute="false" size="45 80 200 100" textcolor="0 0 0">
+                                Player Name (temporary):
+                        </object>
+                        
+                        <object type="input" name="pregame_mp_ip_playername" sprite="only-black" absolute="false" size="220 80 350 100" textcolor="0 0 0">
+                                Player
+                        </object>
+                        <!-- END PLAYER NAME controls -->
+
+                        <!-- HOST GAME controls -->
+                        <object type="image" name="pregame_mp_ip_divider2" sprite="only-black-border">
+                        <action on="Load"><![CDATA[
+                                setSizeCoord("pregame_mp_ip_divider2", -230, -75, 230, -75, mid_screen, mid_screen, mid_screen, mid_screen);
+                        ]]></action>
+                        </object>
+
+                        <object type="text" name="pregame_mp_ip_mapname_txt" absolute="false" size="45 130 200 150" textcolor="0 0 0">
+                                Map Name:
+                        </object>
+
+                        <object type="input" name="pregame_mp_ip_host_mapname" sprite="only-black" absolute="false" size="50 150 200 170" textcolor="0 0 0">
+                                test01
+                        </object>
+
+                        <object type="button" name="pregame_mp_ip_host_bt" sprite="message_box-button-normal" sprite-over="message_box-button-over" text-align="center" text-valign="center">
+                                Host Game
+                                <action on="Load"><![CDATA[
+                                        setSizeCoord("pregame_mp_ip_host_bt", 50, -60, 150, -30, mid_screen, mid_screen, mid_screen, mid_screen);
+                                ]]></action>
+                                <action on="Press"><![CDATA[
+                                        initMPSessionHost(getGUIObjectByName("pregame_mp_ip_playername").caption, getGUIObjectByName("pregame_mp_ip_host_mapname").caption);
+                                ]]></action>
+                        </object>
+                        <!-- END HOST GAME controls -->
+                        
+                        <!-- JOIN GAME controls -->
+                        <object type="image" name="pregame_mp_ip_divider3" sprite="only-black-border">
+                                <action on="Load"><![CDATA[
+                                        setSizeCoord("pregame_mp_ip_divider3", -230, -20, 230, -20, mid_screen, mid_screen, mid_screen, mid_screen);
+                                ]]></action>
+                        </object>
+
+                        <object type="text" name="pregame_mp_ip_joinip_txt" absolute="false" size="45 190 200 210" textcolor="0 0 0">
+                                IP address:
+                        </object>
+
+                        <object type="input" name="pregame_mp_ip_joinip" sprite="only-black" absolute="false" size="50 210 200 230" textcolor="0 0 0">
+                                127.0.0.1
+                        </object>
+
+                        <object type="button" name="pregame_mp_ip_join_bt" sprite="message_box-button-normal" sprite-over="message_box-button-over" text-align="center" text-valign="center">
+                                Join Game
+                                <action on="Load"><![CDATA[
+                                        setSizeCoord("pregame_mp_ip_join_bt", 50, 0, 150, 30, mid_screen, mid_screen, mid_screen, mid_screen);
+                                ]]></action>
+                                <action on="Press"><![CDATA[
+                                        initMPSessionClient(getGUIObjectByName("pregame_mp_ip_playername").caption, getGUIObjectByName("pregame_mp_ip_joinip").caption);
+                                ]]></action>
+                        </object>
+                        <!-- END JOIN GAME controls -->
+
+                </object>
+                
+                <!-- SINGLEPLAYER TEMPORARY MAP SELECTION DIALOG -->
+                <object type="button" name="pregame_sp_mapsel" sprite="0ad_window" z="106" hidden="true" size="50%-150 50%-90 50%+150 50%+90">
+
+                        <!-- The placement of this titlebar object is VERY hackish (see y-placement), but it doesn't work any other way so far, and this dialog will be temporary anyway -->
+                        <object type="button" name="pregame_sp_mapsel_titlebar" sprite="0ad_window_title" font="prospero18" z="165" text-align="center" text-valign="center" absolute="false" size="50%-130 0%-22 50%+130 0%-14">
+                                Map selection
+                        </object>
+
+                        <object type="text" name="pregame_sp_infotext" absolute="false" size="10 10 290 60">
+                                Type the name of the map you want to start the game at into the box. The name is realtive to /data/mods/official/maps/scenarios/.
+                        </object>
+
+                        <object type="text" name="pregame_sp_mapname_txt" absolute="false" textcolor="0 0 0" size="10 90 120 110">
+                                Map Name:
+                        </object>
+
+                        <object type="input" name="pregame_sp_mapname" sprite="only-black" absolute="false" size="130 90 290 110" textcolor="0 0 0">
+                                test01.pmp
+                        </object>
+
+                        <object type="button" name="pregame_sp_start_bt" sprite="message_box-button-normal" sprite-over="message_box-button-over" text-align="center" text-valign="center" absolute="false" size="50%-100 100%-50 50%-10 100%-20">
+                                Start Game
+                                <action on="Press"><![CDATA[
+                                        // Check wheter we have a correct file extension, to avoid crashes
+                                        var mapName = getGUIObjectByName("pregame_sp_mapname").caption;
+                                        var extension = mapName.substring(mapName.length, mapName.length-4);
+                                        
+                                        if(extension != ".pmp") {
+                                                // Add .pmp to the file name - shouldn't help if the name is mistyped, but may be useful in some cases
+                                                mapName =  mapName + ".pmp";
+                                                console.write("Trying to fix the map name (probably missing extension).");
+                                        }
+
+                                        // Set up game
+                                        GUIObjectHide("pregame_subwindow_bkg");
+                                        GUIObjectHide("pregame_sp_mapsel");
+                                        g_GameAttributes.mapFile = mapName;
+                                        startLoadingScreen();
+                                ]]></action>
+                        </object>
+
+                        <object type="button" name="pregame_sp_mapsel_abort_button" sprite="message_box-button-normal" sprite-over="message_box-button-over" text-align="center" text-valign="center" absolute="false" size="50%+10 100%-50 50%+90 100%-20">
+                                Abort
+                                <action on="Press"><![CDATA[
+                                        GUIObjectHide("pregame_subwindow_bkg");
+                                        GUIObjectHide("pregame_sp_mapsel");
+                                ]]></action>
+                        </object>
+
+                </object>
+
+        </object>
 
 </objects>
