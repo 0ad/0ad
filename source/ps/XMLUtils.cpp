@@ -3,6 +3,7 @@
 #include "XML.h"
 #include "CStr.h"
 #include "CLogger.h"
+#include "posix.h"		// ptrdiff_t
 
 #include "res/vfs.h"
 
@@ -67,7 +68,7 @@ BinInputStream *CVFSInputSource::makeStream() const
 {
 	if (m_hFile > 0)
 	{
-		return new BinMemInputStream((XMLByte *)m_pBuffer, m_BufferSize,
+		return new BinMemInputStream((XMLByte *)m_pBuffer, (unsigned int)m_BufferSize,
 			BinMemInputStream::BufOpt_Reference);
 	}
 	else
@@ -100,7 +101,8 @@ InputSource *CVFSEntityResolver::resolveEntity(const XMLCh *const publicId,
 		
 		--path;
 		
-		abspath=abspath.Left(end-m_DocName)+path;
+		const ptrdiff_t d = end-m_DocName;
+		abspath=abspath.Left((long)d)+path;
 		
 		int pos=0;
 		if (abspath.Find('\\') != -1)
@@ -117,7 +119,6 @@ InputSource *CVFSEntityResolver::resolveEntity(const XMLCh *const publicId,
 		ret=NULL;
 	}
 	
-success:
 	XMLString::release(&orgpath);
 	return ret;
 }
