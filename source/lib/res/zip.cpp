@@ -294,13 +294,13 @@ found_ecdr:
 
 
 // open and return a handle to the zip archive indicated by <fn>
-inline Handle zip_archive_open(const char* const fn)
+Handle zip_archive_open(const char* const fn)
 {
 	return h_alloc(H_ZArchive, fn);
 }
 
 // close the archive <ha> and set ha to 0
-inline int zip_archive_close(Handle& ha)
+int zip_archive_close(Handle& ha)
 {
 	return h_free(ha, H_ZArchive);
 }

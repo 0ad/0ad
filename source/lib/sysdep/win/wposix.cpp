@@ -338,7 +338,11 @@ int pthread_mutex_timedlock(pthread_mutex_t* m, const struct timespec* abs_timeo
 	return WaitForSingleObject(*m, ms_timeout) == WAIT_OBJECT_0? 0 : -1;
 }
 
-
+int pthread_mutex_destroy(pthread_mutex_t* m)
+{
+	CloseHandle(*m);
+	return 0;
+}
 
 //////////////////////////////////////////////////////////////////////////////
 //

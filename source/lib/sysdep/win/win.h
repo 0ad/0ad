@@ -1,9 +1,11 @@
 #if !defined(__WIN_H__) && defined(_WIN32)
 #define __WIN_H__
 
+#include <wchar.h>
+
 // C99
 #define snprintf _snprintf
-#define snwprintf _snwprintf
+#define swprintf _snwprintf
 #define vsnprintf _vsnprintf
 
 #include <stddef.h>	// wchar_t

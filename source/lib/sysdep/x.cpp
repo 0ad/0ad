@@ -18,6 +18,7 @@
 #ifdef HAVE_X
 
 #include <Xlib.h>
+#include "detect.h"
 
 // useful for choosing a video mode. not called by detect().
 // if we fail, don't change the outputs (assumed initialized to defaults)

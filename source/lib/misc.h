@@ -20,6 +20,7 @@
 #define __MISC_H__
 
 #include "types.h"
+#include "config.h"
 
 // bswap32 is overloaded!
 #ifdef __cplusplus
@@ -67,7 +68,7 @@ static inline u32 read_le32(const void* p)
 	for(int i = 0; i < 4; i++)
 	{
 		t <<= 8;
-		t |= *(const u8*)p++;
+		t |= *((const u8*)p)++;
 	}
 	return t;
 #else
@@ -98,6 +99,13 @@ extern float fminf(float, float);
 // big endian!
 extern void base32(const int len, const u8* in, u8* out);
 
+#ifndef _WIN32
+
+char *_itoa(int, char *, int radix);
+char *_ultoa(unsigned long int, char*, int radix);
+char *_ltoa(long, char *, int radix);
+
+#endif
 
 
 

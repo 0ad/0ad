@@ -88,7 +88,7 @@ double timer_res()
 #elif defined(HAVE_CLOCK_GETTIME)
 
 	struct timespec res;
-	clock_getres(CLOCK_REALTIME, res);
+	clock_getres(CLOCK_REALTIME, &res);
 	return res.tv_nsec * 1e-9;
 
 #else

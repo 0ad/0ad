@@ -26,7 +26,9 @@
 
 #include "lib.h"
 #include "detect.h"
-#include "sysdep/ia32.h"
+#ifdef _M_IX86
+# include "sysdep/ia32.h"
+#endif
 #include "timer.h"
 #include "ogl.h"
 #include "sdl.h"
@@ -79,7 +81,6 @@ void get_mem_status()
 #endif
 }
 
-
 //
 // graphics card
 //
@@ -90,7 +91,7 @@ char gfx_drv[128] = "unknown";
 
 // attempt to detect graphics card without OpenGL (in case ogl init fails,
 // or we want more detailed info). gfx_card[] is unchanged on failure.
-inline void get_gfx_info()
+void get_gfx_info()
 {
 #ifdef _WIN32
 	win_get_gfx_card();

@@ -746,7 +746,7 @@ static int Tex_reload(Tex* t, const char* fn)
 }
 
 
-inline Handle tex_load(const char* const fn, int scope)
+Handle tex_load(const char* const fn, int scope)
 {
 	return h_alloc(H_Tex, fn, scope);
 }

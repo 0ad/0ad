@@ -209,7 +209,7 @@ static int Font_reload(Font* f, const char* fn)
 }
 
 
-inline Handle font_load(const char* fn, int scope)
+Handle font_load(const char* fn, int scope)
 {
 	return h_alloc(H_Font, fn, scope);
 }

@@ -682,7 +682,7 @@ skip_wait:
 	}
 	// read directly into target buffer
 	else
-		p = cb->aio_buf;
+		p = (void *)cb->aio_buf; // cb->aio_buf is volatile, p is not
 
 	return ret;
 }
