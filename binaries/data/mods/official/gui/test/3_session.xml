@@ -24,13 +24,8 @@
 				GUIObjectToggle("session_group_pane");
 			]]></action>
 
-			<object type="text" name="session_group_pane_bg" sprite="tooltip-background" z="60" ghost="true" hidden="false">
-				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"0%+20 0% 100%-20 0%+127",
-					"0%+20 100%-127 100%-20 100%");
-				]]></action>
-			</object>
+			<object type="text" name="session_group_pane_bg" sprite="tooltip-background" z="60" ghost="true" hidden="false"/>
+
 			<!-- First row. -->
 			<object type="button" name="session_group_pane_portrait_1" style="portrait" z="60" hidden="false">1
 				<action on="Load"><![CDATA[
@@ -54,526 +49,439 @@
 			</object>
 			<object type="button" name="session_group_pane_portrait_3" style="portrait" z="60" hidden="false">3
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+20 32 50%+52 64",
-					"50%+20 100%-70 50%+52 100%-38");
+					AddSizeGroupPane(this.name, 0, 2);
 				]]></action>
 			</object>
 			<object type="progressbar" name="session_group_pane_portrait_3_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+20 66 50%+52 70",
-					"50%+20 100%-36 50%+52 100%-32");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_4" style="portrait" z="60" hidden="false">4
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-88 32 50%-56 64",
-					"50%-88 100%-70 50%-56 100%-38");
+					AddSizeGroupPane(this.name, 0, 3);
 				]]></action>
 			</object>
 			<object type="progressbar" name="session_group_pane_portrait_4_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-88 66 50%-56 70",
-					"50%-88 100%-36 50%-56 100%-32");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_5" style="portrait" z="60" hidden="false">5
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+56 32 50%+88 64",
-					"50%+56 100%-70 50%+88 100%-38");
+					AddSizeGroupPane(this.name, 0, 4);
 				]]></action>
 			</object>
 			<object type="progressbar" name="session_group_pane_portrait_5_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+56 66 50%+88 70",
-					"50%+56 100%-36 50%+88 100%-32");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_6" style="portrait" z="60" hidden="false">6
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-124 32 50%-92 64",
-					"50%-124 100%-70 50%-92 100%-38");
+					AddSizeGroupPane(this.name, 0, 5);
 				]]></action>
 			</object>
 			<object type="progressbar" name="session_group_pane_portrait_6_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-124 66 50%-92 70",
-					"50%-124 100%-36 50%-92 100%-32");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_7" style="portrait" z="60" hidden="false">7
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+92 32 50%+124 64",
-					"50%+92 100%-70 50%+124 100%-38");
+					AddSizeGroupPane(this.name, 0, 6);
 				]]></action>
 			</object>
 			<object type="progressbar" name="session_group_pane_portrait_7_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+92 66 50%+124 70",
-					"50%+92 100%-36 50%+124 100%-32");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_8" style="portrait" z="60" hidden="false">8
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-160 32 50%-128 64",
-					"50%-160 100%-70 50%-128 100%-38");
+					AddSizeGroupPane(this.name, 0, 7);
 				]]></action>
 			</object>
 			<object type="progressbar" name="session_group_pane_portrait_8_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-160 66 50%-128 70",
-					"50%-160 100%-36 50%-128 100%-32");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_9" style="portrait" z="60" hidden="false">9
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+128 32 50%+160 64",
-					"50%+128 100%-64 50%+160 100%-32");
+					AddSizeGroupPane(this.name, 0, 8);
 				]]></action>
 			</object>
 			<object type="progressbar" name="session_group_pane_portrait_9_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+128 66 50%+160 70",
-					"50%+128 100%-70 50%+160 100%-66");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_10" style="portrait" z="60" hidden="false">10
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-196 32 50%-164 64",
-					"50%-196 100%-64 50%-164 100%-32");
+					AddSizeGroupPane(this.name, 0, 9);
 				]]></action>
 			</object>
 			<object type="progressbar" name="session_group_pane_portrait_10_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-196 66 50%-164 70",
-					"50%-196 100%-70 50%-164 100%-66");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_11" style="portrait" z="60" hidden="false">11
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+164 32 50%+192 64",
-					"50%+164 100%-64 50%+192 100%-32");
+					AddSizeGroupPane(this.name, 0, 10);
 				]]></action>
 			</object>
 			<object type="progressbar" name="session_group_pane_portrait_11_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+164 66 50%+192 70",
-					"50%+164 100%-70 50%+192 100%-66");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_12" style="portrait" z="60" hidden="false">12
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-232 32 50%-200 64",
-					"50%-232 100%-64 50%-200 100%-32");
+					AddSizeGroupPane(this.name, 0, 11);
 				]]></action>
 			</object>
 			<object type="progressbar" name="session_group_pane_portrait_12_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-232 66 50%-200 70",
-					"50%-232 100%-70 50%-200 100%-66");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_13" style="portrait" z="60" hidden="false">13
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+200 32 50%+232 64",
-					"50%+200 100%-64 50%+232 100%-32");
+					AddSizeGroupPane(this.name, 0, 12);
 				]]></action>
 			</object>
 			<object type="progressbar" name="session_group_pane_portrait_13_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+200 66 50%+232 70",
-					"50%+200 100%-70 50%+232 100%-66");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
-
-			<!-- Second row. -->
 			<object type="button" name="session_group_pane_portrait_14" style="portrait" z="60" hidden="false">14
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-16 78 50%+16 110",
-					"50%-16 100%-110 50%+16 100%-78");
+					AddSizeGroupPane(this.name, 0, 13);
 				]]></action>
 			</object>
 			<object type="progressbar" name="session_group_pane_portrait_14_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-16 112 50%+16 116",
-					"50%-16 100%-116 50%+16 100%-112");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_15" style="portrait" z="60" hidden="false">15
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-52 78 50%-20 110",
-					"50%-52 100%-110 50%-20 100%-78");
+					AddSizeGroupPane(this.name, 0, 14);
 				]]></action>
 			</object>
 			<object type="progressbar" name="session_group_pane_portrait_15_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-52 112 50%-20 116",
-					"50%-52 100%-116 50%-20 100%-112");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
+
+			<!-- Second row. -->
 			<object type="button" name="session_group_pane_portrait_16" style="portrait" z="60" hidden="false">16
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+20 78 50%+52 110",
-					"50%+20 100%-110 50%+52 100%-78");
+					AddSizeGroupPane(this.name, 1, 0);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_16_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_16_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+20 112 50%+52 116",
-					"50%+20 100%-116 50%+52 100%-112");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_17" style="portrait" z="60" hidden="false">17
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-88 78 50%-56 110",
-					"50%-88 100%-110 50%-56 100%-78");
+					AddSizeGroupPane(this.name, 1, 1);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_17_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_17_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-88 112 50%-56 116",
-					"50%-88 100%-116 50%-56 100%-112");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_18" style="portrait" z="60" hidden="false">18
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+56 78 50%+88 110",
-					"50%+56 100%-110 50%+88 100%-78");
+					AddSizeGroupPane(this.name, 1, 2);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_18_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_18_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+56 112 50%+88 116",
-					"50%+56 100%-116 50%+88 100%-112");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_19" style="portrait" z="60" hidden="false">19
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-124 78 50%-92 110",
-					"50%-124 100%-110 50%-92 100%-78");
+					AddSizeGroupPane(this.name, 1, 3);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_19_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_19_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-124 112 50%-92 116",
-					"50%-124 100%-116 50%-92 100%-112");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_20" style="portrait" z="60" hidden="false">20
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+92 78 50%+124 110",
-					"50%+92 100%-110 50%+124 100%-78");
+					AddSizeGroupPane(this.name, 1, 4);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_20_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_20_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+92 112 50%+124 116",
-					"50%+92 100%-116 50%+124 100%-112");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_21" style="portrait" z="60" hidden="false">21
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-160 78 50%-128 110",
-					"50%-160 100%-110 50%-128 100%-78");
+					AddSizeGroupPane(this.name, 1, 5);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_21_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_21_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-160 112 50%-128 116",
-					"50%-160 100%-116 50%-128 100%-112");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_22" style="portrait" z="60" hidden="false">22
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+128 78 50%+160 110",
-					"50%+128 100%-110 50%+160 100%-78");
+					AddSizeGroupPane(this.name, 1, 6);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_22_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_22_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+128 112 50%+160 116",
-					"50%+128 100%-116 50%+160 100%-112");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_23" style="portrait" z="60" hidden="false">23
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-196 78 50%-164 110",
-					"50%-196 100%-110 50%-164 100%-78");
+					AddSizeGroupPane(this.name, 1, 7);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_23_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_23_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-196 112 50%-164 116",
-					"50%-196 100%-116 50%-164 100%-112");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_24" style="portrait" z="60" hidden="false">24
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+164 78 50%+192 110",
-					"50%+164 100%-110 50%+192 100%-78");
+					AddSizeGroupPane(this.name, 1, 8);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_24_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_24_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+164 112 50%+192 116",
-					"50%+164 100%-116 50%+192 100%-112");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_25" style="portrait" z="60" hidden="false">25
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-232 78 50%-200 110",
-					"50%-232 100%-110 50%-200 100%-78");
+					AddSizeGroupPane(this.name, 1, 9);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_25_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_25_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-232 112 50%-200 116",
-					"50%-232 100%-116 50%-200 100%-112");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_26" style="portrait" z="60" hidden="false">26
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+200 78 50%+232 110",
-					"50%+200 100%-110 50%+232 100%-78");
+					AddSizeGroupPane(this.name, 1, 10);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_26_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_26_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+200 112 50%+232 116",
-					"50%+200 100%-116 50%+232 100%-112");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
-
-			<!-- Third row. -->
 			<object type="button" name="session_group_pane_portrait_27" style="portrait" z="60" hidden="false">27
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-16 124 50%+16 156",
-					"50%-16 100%-156 50%+16 100%-124");
+					AddSizeGroupPane(this.name, 1, 11);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_27_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_27_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-16 158 50%+16 162",
-					"50%-16 100%-162 50%+16 100%-158");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_28" style="portrait" z="60" hidden="false">28
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-52 124 50%-20 156",
-					"50%-52 100%-156 50%-20 100%-124");
+					AddSizeGroupPane(this.name, 1, 12);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_28_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_28_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-52 158 50%-20 162",
-					"50%-52 100%-162 50%-20 100%-158");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_29" style="portrait" z="60" hidden="false">29
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+20 124 50%+52 156",
-					"50%+20 100%-156 50%+52 100%-124");
+					AddSizeGroupPane(this.name, 1, 13);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_29_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_29_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+20 158 50%+52 162",
-					"50%+20 100%-162 50%+52 100%-158");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_30" style="portrait" z="60" hidden="false">30
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-88 124 50%-56 156",
-					"50%-88 100%-156 50%-56 100%-124");
+					AddSizeGroupPane(this.name, 1, 14);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_30_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_30_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-88 158 50%-56 162",
-					"50%-88 100%-162 50%-56 100%-158");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
+
+			<!-- Third row. -->
 			<object type="button" name="session_group_pane_portrait_31" style="portrait" z="60" hidden="false">31
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+56 124 50%+88 156",
-					"50%+56 100%-156 50%+88 100%-124");
+					AddSizeGroupPane(this.name, 2, 0);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_31_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_31_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+56 158 50%+88 162",
-					"50%+56 100%-162 50%+88 100%-158");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_32" style="portrait" z="60" hidden="false">32
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-124 124 50%-92 156",
-					"50%-124 100%-156 50%-92 100%-124");
+					AddSizeGroupPane(this.name, 2, 1);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_32_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_32_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-124 158 50%-92 162",
-					"50%-124 100%-162 50%-92 100%-158");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_33" style="portrait" z="60" hidden="false">33
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+92 124 50%+124 156",
-					"50%+92 100%-156 50%+124 100%-124");
+					AddSizeGroupPane(this.name, 2, 2);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_33_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_33_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+92 158 50%+124 162",
-					"50%+92 100%-162 50%+124 100%-158");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_34" style="portrait" z="60" hidden="false">34
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-160 124 50%-128 156",
-					"50%-160 100%-156 50%-128 100%-124");
+					AddSizeGroupPane(this.name, 2, 3);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_34_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_34_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-160 158 50%-128 162",
-					"50%-160 100%-162 50%-128 100%-158");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_35" style="portrait" z="60" hidden="false">35
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+128 124 50%+160 156",
-					"50%+128 100%-156 50%+160 100%-124");
+					AddSizeGroupPane(this.name, 2, 4);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_35_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_35_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+128 158 50%+160 162",
-					"50%+128 100%-162 50%+160 100%-158");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_36" style="portrait" z="60" hidden="false">36
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-196 124 50%-164 156",
-					"50%-196 100%-156 50%-164 100%-124");
+					AddSizeGroupPane(this.name, 2, 5);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_36_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_36_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-196 158 50%-164 162",
-					"50%-196 100%-162 50%-164 100%-158");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_37" style="portrait" z="60" hidden="false">37
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+164 124 50%+192 156",
-					"50%+164 100%-156 50%+192 100%-124");
+					AddSizeGroupPane(this.name, 2, 6);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_37_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_37_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+164 158 50%+192 162",
-					"50%+164 100%-162 50%+192 100%-158");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_38" style="portrait" z="60" hidden="false">38
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-232 124 50%-200 156",
-					"50%-232 100%-156 50%-200 100%-124");
+					AddSizeGroupPane(this.name, 2, 7);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_38_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_38_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%-232 158 50%-200 162",
-					"50%-232 100%-162 50%-200 100%-158");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
 			<object type="button" name="session_group_pane_portrait_39" style="portrait" z="60" hidden="false">39
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+200 124 50%+232 156",
-					"50%+200 100%-156 50%+232 100%-124");
+					AddSizeGroupPane(this.name, 2, 8);
 				]]></action>
 			</object>
-			<object type="progressbar" name="session_group_pane_portrait_39_bar" style="group_portrait_bar" z="60" hidden="false" >
+			<object type="progressbar" name="session_group_pane_portrait_39_bar" style="group_portrait_bar" z="60" hidden="false">
 				<action on="Load"><![CDATA[
-					AddSizeString(this.name,
-					"50%+200 158 50%+232 162",
-					"50%+200 100%-162 50%+232 100%-158");
+					AddSizeGroupPaneBar(this.name);
 				]]></action>
 			</object>
+			<object type="button" name="session_group_pane_portrait_40" style="portrait" z="60" hidden="false">40
+				<action on="Load"><![CDATA[
+					AddSizeGroupPane(this.name, 2, 9);
+				]]></action>
+			</object>
+			<object type="progressbar" name="session_group_pane_portrait_40_bar" style="group_portrait_bar" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSizeGroupPaneBar(this.name);
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_41" style="portrait" z="60" hidden="false">41
+				<action on="Load"><![CDATA[
+					AddSizeGroupPane(this.name, 2, 10);
+				]]></action>
+			</object>
+			<object type="progressbar" name="session_group_pane_portrait_41_bar" style="group_portrait_bar" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSizeGroupPaneBar(this.name);
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_42" style="portrait" z="60" hidden="false">42
+				<action on="Load"><![CDATA[
+					AddSizeGroupPane(this.name, 2, 11);
+				]]></action>
+			</object>
+			<object type="progressbar" name="session_group_pane_portrait_42_bar" style="group_portrait_bar" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSizeGroupPaneBar(this.name);
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_43" style="portrait" z="60" hidden="false">43
+				<action on="Load"><![CDATA[
+					AddSizeGroupPane(this.name, 2, 12);
+				]]></action>
+			</object>
+			<object type="progressbar" name="session_group_pane_portrait_43_bar" style="group_portrait_bar" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSizeGroupPaneBar(this.name);
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_44" style="portrait" z="60" hidden="false">44
+				<action on="Load"><![CDATA[
+					AddSizeGroupPane(this.name, 2, 13);
+				]]></action>
+			</object>
+			<object type="progressbar" name="session_group_pane_portrait_44_bar" style="group_portrait_bar" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSizeGroupPaneBar(this.name);
+				]]></action>
+			</object>
+			<object type="button" name="session_group_pane_portrait_45" style="portrait" z="60" hidden="false">45
+				<action on="Load"><![CDATA[
+					AddSizeGroupPane(this.name, 2, 14);
+				]]></action>
+			</object>
+			<object type="progressbar" name="session_group_pane_portrait_45_bar" style="group_portrait_bar" z="60" hidden="false">
+				<action on="Load"><![CDATA[
+					AddSizeGroupPaneBar(this.name);
+				]]></action>
+			</object>
+
 		</object>
 
                 <!-- GROUP: TOP BAR -->

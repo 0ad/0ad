@@ -10,6 +10,7 @@
         ==========================================
         -->
 
+        <!-- Generic utilities -->
         <script file="gui/test/functions_utility_object.js"><![CDATA[
         ]]></script>
 
@@ -38,7 +39,14 @@
         <script file="gui/test/functions_global.js"><![CDATA[
         ]]></script>
 
+        <!-- Game Session GUI -->
+        <script file="gui/test/functions_session_coord.js"><![CDATA[
+        ]]></script>
+
         <script file="gui/test/functions_session_group_pane.js"><![CDATA[
+        ]]></script>
+
+        <script file="gui/test/functions_session_status_orb.js"><![CDATA[
         ]]></script>
 
         <script file="gui/test/functions_session.js"><![CDATA[
