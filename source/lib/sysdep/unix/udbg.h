@@ -1,4 +1,4 @@
-// sysdep/unix/debug.h: included from sysdep/debug.h and sysdep/unix/debug.cpp
+// sysdep/unix/udbg.h: included from sysdep/debug.h and sysdep/unix/debug.cpp
 
 #ifndef UDBG_H__
 #define UDBG_H__
