@@ -107,7 +107,8 @@ JSBool JSI_Entity::construct( JSContext* cx, JSObject* obj, unsigned int argc, j
 	}
 
 	HEntity* handle = new HEntity( g_EntityManager.create( baseEntity, position, orientation ) );
-	(*handle)->dispatch( &CMessage( CMessage::EMSG_INIT ) );
+	CMessage message( CMessage::EMSG_INIT );
+	(*handle)->dispatch( &message );
 	JSObject* entity = JS_NewObject( cx, &JSI_Entity::JSI_class, NULL, NULL );
 	JS_SetPrivate( cx, entity, handle );
 	*rval = OBJECT_TO_JSVAL( entity );

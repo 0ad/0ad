@@ -229,7 +229,7 @@ private:
 	// mark it as the most recently used line.
 	Line* find_line(u64 id)
 	{
-		Map::const_iterator i = idx.find(id);
+		typename Map::const_iterator i = idx.find(id);
 		// not found
 		if(i == idx.end())
 			return 0;

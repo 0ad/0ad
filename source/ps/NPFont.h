@@ -43,7 +43,7 @@ public:
 
 	// accessor for character data
 	const CharData& chardata(char c) const { 
-		assert(c>=0 && c<128);
+		assert( !(c&0x80) ); // only allow 7-bit ASCII
 		return _chars[c]; 
 	}
 

@@ -36,7 +36,6 @@
 using namespace std;
 
 CParticleEmitter::CParticleEmitter() :
-	m_particles(NULL),
 	m_origin(0.0f, 0.0f, 0.0f),
 	m_originSpread(0.0f, 0.0f, 0.0f),
 	m_velocity(0.0f, 0.0f, 0.0f),
