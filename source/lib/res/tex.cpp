@@ -855,6 +855,10 @@ static void png_write(png_struct* const png_ptr, u8* const data, const png_size_
 		png_error(png_ptr, "png_write: !");
 }
 
+static void png_flush(png_structp png_ptr)
+{
+}
+
 
 // limitation: palette images aren't supported
 static int png_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
@@ -911,16 +915,15 @@ fail:
 			err = (int)hf;
 			goto fail;
 		}
-		png_set_write_fn(png_ptr, &hf, png_write, 0);
+		png_set_write_fn(png_ptr, &hf, png_write, png_flush);
 
 		png_set_IHDR(png_ptr, info_ptr, w, h, 8, color_type,
-			PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
-		png_write_info(png_ptr, info_ptr);
-	
+			PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
+
 		CHECK_ERR(alloc_rows(img, h, pitch, rows));
 
-		png_write_image(png_ptr, (png_bytepp)rows);
-		png_write_end(png_ptr, info_ptr);
+		png_set_rows(png_ptr, info_ptr, rows);
+		png_write_png(png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, 0);
 	
 		err = 0;
 
@@ -928,10 +931,10 @@ fail:
 
 	// shared cleanup
 ret:
+	png_destroy_write_struct(&png_ptr, &info_ptr);
+
 	free(rows);
 	vfs_close(hf);
-
-	png_destroy_write_struct(&png_ptr, &info_ptr);
 
 	return err;
 }
