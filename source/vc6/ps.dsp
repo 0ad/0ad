@@ -357,18 +357,162 @@ SOURCE=..\gui\IGUISettingsObject.h
 # Begin Group "lib"
 
 # PROP Default_Filter ""
-# Begin Group "posix"
+# Begin Group "sysdep"
+
+# PROP Default_Filter ""
+# Begin Group "win"
 
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\lib\posix\aio.cpp
+SOURCE=..\lib\sysdep\win\hrt.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\posix\aio.h
+SOURCE=..\lib\sysdep\win\hrt.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\sysdep\win\waio.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\sysdep\win\waio.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\sysdep\win\wdetect.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\sysdep\win\win.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\sysdep\win\win.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\sysdep\win\win_internal.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\sysdep\win\wposix.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\sysdep\win\wposix.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\sysdep\win\wsdl.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\sysdep\win\wsdl.h
 # End Source File
 # End Group
+# Begin Source File
+
+SOURCE=..\lib\sysdep\ia32.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\sysdep\ia32.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\sysdep\sysdep.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\sysdep\sysdep.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\sysdep\x.cpp
+# End Source File
+# End Group
+# Begin Group "res"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\lib\res\file.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\res\file.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\res\font.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\res\font.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\res\h_mgr.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\res\h_mgr.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\res\mem.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\res\mem.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\res\res.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\res\res.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\res\tex.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\res\tex.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\res\vfs.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\res\vfs.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\res\zip.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\res\zip.h
+# End Source File
+# End Group
+# Begin Source File
+
+SOURCE=..\lib\adts.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\adts.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\config.h
+# End Source File
 # Begin Source File
 
 SOURCE=..\lib\detect.cpp
@@ -379,23 +523,7 @@ SOURCE=..\lib\detect.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\font.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\lib\font.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\lib\glext_funcs.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\lib\ia32.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\lib\ia32.h
 # End Source File
 # Begin Source File
 
@@ -407,11 +535,15 @@ SOURCE=..\lib\input.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\mem.cpp
+SOURCE=..\lib\lib.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\mem.h
+SOURCE=..\lib\lib.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\memcpy.cpp
 # End Source File
 # Begin Source File
 
@@ -431,67 +563,23 @@ SOURCE=..\lib\ogl.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\posix.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=..\lib\posix.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\res.cpp
+SOURCE=..\lib\sdl.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\res.h
+SOURCE=..\lib\timer.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\tex.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\lib\tex.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\lib\time.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\lib\time.h
+SOURCE=..\lib\timer.h
 # End Source File
 # Begin Source File
 
 SOURCE=..\lib\types.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\lib\vfs.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\lib\vfs.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\lib\win.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\lib\wsdl.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\lib\wsdl.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\lib\zip.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\lib\zip.h
 # End Source File
 # End Group
 # Begin Group "ps"
