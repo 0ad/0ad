@@ -101,7 +101,7 @@ PS_RESULT CNetServer::Bind(const CSocketAddress &address)
 void FillSetGameConfigCB(CStrW name, ISynchedJSProperty *prop, void *userdata)
 {
 	CSetGameConfig *pMsg=(CSetGameConfig *)userdata;
-	uint size=pMsg->m_Values.size();
+	size_t size=pMsg->m_Values.size();
 	pMsg->m_Values.resize(size+1);
 	pMsg->m_Values[size].m_Name=name;
 	pMsg->m_Values[size].m_Value=prop->ToString();

@@ -22,7 +22,7 @@ namespace PlayerArray_JS
 		{
 			for (size_t i=pInstance->m_Players.size();i<=index;i++)
 			{
-				CPlayer *pNewPlayer=new CPlayer(i);
+				CPlayer *pNewPlayer=new CPlayer((int)i);
 				pNewPlayer->SetUpdateCallback(pInstance->m_PlayerUpdateCB, pInstance->m_PlayerUpdateCBData);
 				pInstance->m_Players.push_back(pNewPlayer);
 			}
@@ -128,7 +128,7 @@ void CGameAttributes::SetPlayerUpdateCallback(CPlayer::UpdateCallback *cb, void 
 	m_PlayerUpdateCB=cb;
 	m_PlayerUpdateCBData=userdata;
 	
-	for (int i=0;i<m_Players.size();i++)
+	for (size_t i=0;i<m_Players.size();i++)
 	{
 		m_Players[i]->SetUpdateCallback(cb, userdata);
 	}
