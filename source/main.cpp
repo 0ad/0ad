@@ -853,7 +853,7 @@ static void Init(int argc, char* argv[])
 	MICROLOG(L"In init");
 
 	// If you ever want to catch a particular allocation:
-	//_CrtSetBreakAlloc(7239);
+	//_CrtSetBreakAlloc(32894);
 
 #ifdef _MSC_VER
 u64 TSC=rdtsc();
@@ -1212,6 +1212,9 @@ int main(int argc, char* argv[])
 #endif
 		MICROLOG(L"Init");
 		Init(argc, argv);
+
+		extern void PerformTests();
+		PerformTests();
 
 		while(!quit)
 		{

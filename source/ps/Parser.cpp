@@ -336,7 +336,7 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 		strLine = strLine.substr(0,pos);
 	*/
 
-	// Divide string into smaller vectors, seperators are unusual signs
+	// Divide string into smaller vectors, separators are unusual signs
 	// * * * *
 
 	for (i=0; i<strLine.size(); ++i)
@@ -612,6 +612,12 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 						else Match = false;
 					}
 				}
+
+				else if (CurNode->m_Type == typeNull)
+				{
+					// Match without doing anything (leaving Match==true)
+				}
+
 				// CHECK NAME
 				else
 				{
@@ -705,7 +711,7 @@ bool CParserLine::ParseString(const CParser& Parser, string strLine)
 								m_Arguments.push_back(value);
 
 								// Now BREAK EVERYTHING !
-								//  We're done, we found are match and let's get out
+								//  We're done, we found our match and let's get out
 								LookNoFurther = true;
 								//Match = true;
 								break;
@@ -846,7 +852,44 @@ bool CParser::InputTaskType(const string& strName, const string& strSyntax)
 			else
 			if (strSyntax[i] == START_DYNAMIC || strSyntax[i] == START_OPTIONAL)
 			{
+
+				// Slight hack: because things are stored in a binary tree,
+				// it can't handle "<[a][b]>" -- the <...> node has only
+				// one slot for an optional [...] node. To avoid this problem,
+				// typeNull nodes are used to indicate things that always
+				// succeed but can have altnodes attached:
+/*
+	parent			parent
+	  \		===>	  \
+	<...>	===>	<...>		<-- CurNode
+	/	\			/	\
+   /	 \		   /	 \
+next	[a]		Null	[a]		<-- added NewNode
+				/  \
+			  next	[b]
+*/
+				if (CurNode->m_AltNode)
+				{
+
+					// Rearrange the tree, as shown above:
+
+					// Create NewNode
+					CParserTaskTypeNode* NewNode = new CParserTaskTypeNode();
+					NewNode->m_ParentNode = CurNode;
+					NewNode->m_Letter = '\0';
+					NewNode->m_Type = typeNull;
+
+					// Copy 'next' into NewNode
+					NewNode->m_NextNode = CurNode->m_NextNode;
+					// Replace 'next' with NewNode inside CurNode
+					CurNode->m_NextNode = NewNode;
+		
+					// Update CurNode, so the following code inserts into [b]
+					CurNode = NewNode;
+				}
+
 				// Dive into the alternative node
+				assert(! CurNode->m_AltNode);
 				CurNode->m_AltNode = new CParserTaskTypeNode();
 				CurNode->m_AltNode->m_ParentNode = CurNode;
 
@@ -891,6 +934,7 @@ bool CParser::InputTaskType(const string& strName, const string& strSyntax)
 			{
 				// Check if this is the first input
 				// CONSTRUCT A CHILD NODE
+				assert(! CurNode->m_NextNode);
 				CurNode->m_NextNode = new CParserTaskTypeNode();
 				CurNode->m_NextNode->m_ParentNode = CurNode;
 
@@ -938,6 +982,7 @@ bool CParser::InputTaskType(const string& strName, const string& strSyntax)
 			if (Extract == false)
 			{
 				// CONSTRUCT A CHILD NODE
+				assert(! CurNode->m_NextNode);
 				CurNode->m_NextNode = new CParserTaskTypeNode();
 				CurNode->m_NextNode->m_ParentNode = CurNode;
 

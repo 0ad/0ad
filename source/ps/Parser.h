@@ -50,7 +50,8 @@ enum _ParserValueType
 	typeIdent,
 	typeValue,
 	typeRest,
-	typeAddArg
+	typeAddArg,
+	typeNull
 };
 
 //-------------------------------------------------
@@ -117,7 +118,7 @@ public:
 	// Free node pointers that are below this
 	void DeleteChildren();
 
-	// Either the node is a letter or a type, if m_Leter is '\0'
+	// Either the node is a letter or a type, if m_Letter is '\0'
 	//  then check m_Type what it is
 	char							m_Letter;
 	_ParserValueType				m_Type;
@@ -134,7 +135,7 @@ public:
 	// false means AltNode is just an optional part [...]
 	bool							m_AltNodeRepeatable;
 
-	// Whenever a dynamic argument is used, it's first node is stored in this
+	// Whenever a dynamic argument is used, its first node is stored in this
 	//  as an alternative node. The parser first checks if there is an
 	//  alternative route, and if it applies to the next node. If not, proceed
 	//  as usual with m_String and the next node
