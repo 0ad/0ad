@@ -33,7 +33,7 @@
 			]]></action>
 	        </object>
 
-		<object type="button" name="pregame-mainmenu-mp-button" sprite-over="pregame-mainmenu-mpbt" size="61.00% 48.50% 74.45% 66.55%" z="101" hidden="false">
+		<object type="button" name="pregame-mainmenu-mp-button" sprite-over="pregame-mainmenu-mpbt" size="60.80% 48.50% 74.40% 66.55%" z="101" hidden="false">
 			<action on="Press"><![CDATA[
 				getGUIObjectByName("pregame_subwindow_bkg").hidden = false;
 				getGUIObjectByName("pregame_ip_host").hidden = false;
@@ -41,6 +41,20 @@
 			<action on="MouseEnter"><![CDATA[
 				tooltipObject = getGUIObjectByName("pregame-mainmenu-tooltip");
 				tooltipObject.caption = "Tired of playing with yourself? Fight against one or more human players in a multiplayer game.";
+				GUIObjectUnhide("pregame-mainmenu-tooltip");
+			]]></action>
+			<action on="MouseLeave"><![CDATA[
+				GUIObjectHide("pregame-mainmenu-tooltip");
+			]]></action>
+		</object>
+
+
+		<object type="button" name="pregame-mainmenu-ed-button" sprite-over="pregame-mainmenu-edbt" size="44.00% 61.50% 62.45% 83.55%" z="101" hidden="false">
+			<action on="Press"><![CDATA[
+			]]></action>
+			<action on="MouseEnter"><![CDATA[
+				tooltipObject = getGUIObjectByName("pregame-mainmenu-tooltip");
+				tooltipObject.caption = "Come forth and witness a totally non-functioning Editor, a mere shadow of its potential self!";
 				GUIObjectUnhide("pregame-mainmenu-tooltip");
 			]]></action>
 			<action on="MouseLeave"><![CDATA[
