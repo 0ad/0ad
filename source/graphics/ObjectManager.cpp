@@ -36,7 +36,7 @@ void CObjectManager::AddObjectType(const char* name)
 	m_ObjectTypes.resize(m_ObjectTypes.size()+1);
 	SObjectType& type=m_ObjectTypes.back();
 	type.m_Name=name;
-	type.m_Index=m_ObjectTypes.size()-1;
+	type.m_Index=(int)m_ObjectTypes.size()-1;
 }
 
 void CObjectManager::AddObject(CObjectEntry* object,int type)

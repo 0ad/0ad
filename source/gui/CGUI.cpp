@@ -754,8 +754,8 @@ void CGUI::DrawText(const SGUIText &Text, const CColor &DefaultColor,
 		if (it->m_pSpriteCall)
 			continue;
 
-		COverlayText txt(pos.x+it->m_Pos.x, pos.y+it->m_Pos.y, 
-						 z, it->m_Font, it->m_String, 
+		COverlayText txt((float)pos.x+it->m_Pos.x, (float)pos.y+it->m_Pos.y, 
+						 (int)z, it->m_Font, it->m_String, 
 						 (it->m_UseCustomColor?it->m_Color:DefaultColor));
 		render(&txt);
 	}

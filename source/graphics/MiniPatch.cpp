@@ -27,7 +27,7 @@ CMiniPatch::~CMiniPatch()
 // on return, parameters x,y contain index in [0,MapSize)
 void CMiniPatch::GetTileIndex(u32& x,u32& z)
 {
-	u32 tindex=this-&m_Parent->m_MiniPatches[0][0];
+	const ptrdiff_t tindex = this - &m_Parent->m_MiniPatches[0][0];
 	x=(m_Parent->m_X*16)+tindex%16;
 	z=(m_Parent->m_Z*16)+tindex/16;
 }
