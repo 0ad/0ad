@@ -20,6 +20,8 @@ CObjectEntry::CObjectEntry(int type) : m_Model(0), m_Type(type)
 	m_DeathAnim=0;
 	m_MeleeAnim=0;
 	m_RangedAnim=0;
+	m_Properties.m_CastShadows=true;
+	m_Properties.m_AutoFlatten=false;
 }
 
 CObjectEntry::~CObjectEntry()
@@ -33,7 +35,6 @@ CObjectEntry::~CObjectEntry()
 
 bool CObjectEntry::BuildModel()
 {
-
 	// check we've enough data to consider building the object
 	if (m_ModelName.Length()==0 || m_TextureName.Length()==0) {
 		return false;
@@ -43,7 +44,7 @@ bool CObjectEntry::BuildModel()
 	CStr dirname=g_ObjMan.m_ObjectTypes[m_Type].m_Name;
 
 	// remember the old model so we can replace any models using it later on
-	CModelDef* oldmodel=m_Model ? m_Model->GetModelDef() : 0;
+	CModelDef* oldmodeldef=m_Model ? m_Model->GetModelDef() : 0;
 
 	// try and create a model
 	CModelDef* modeldef;
@@ -57,7 +58,8 @@ bool CObjectEntry::BuildModel()
 		return false;
 	}
 
-	// create new Model
+	// delete old model, create new 
+	delete m_Model;
 	m_Model=new CModel;
 	m_Model->SetTexture((const char*) m_TextureName);
     m_Model->SetMaterial(g_MaterialManager.LoadMaterial((const char *)m_Material));
@@ -110,25 +112,43 @@ bool CObjectEntry::BuildModel()
 		}
 	}
 
+	// setup flags
+	if (m_Properties.m_CastShadows) {
+		m_Model->SetFlags(m_Model->GetFlags()|MODELFLAG_CASTSHADOWS);
+	}
+
 	// build world space bounds
 	m_Model->CalcBounds();
 
 	// replace any units using old model to now use new model; also reprop models, if necessary
+	// FIXME, RC - ugh, doesn't recurse correctly through props
 	const std::vector<CUnit*>& units=g_UnitMan.GetUnits();
 	for (uint i=0;i<units.size();++i) {
 		CModel* unitmodel=units[i]->GetModel();
-		if (unitmodel->GetModelDef()==oldmodel) {
+		if (unitmodel->GetModelDef()==oldmodeldef) {			
 			unitmodel->InitModel(m_Model->GetModelDef());
+			unitmodel->SetFlags(m_Model->GetFlags());
 
 			const std::vector<CModel::Prop>& newprops=m_Model->GetProps();
 			for (uint j=0;j<newprops.size();j++) {
 				unitmodel->AddProp(newprops[j].m_Point,newprops[j].m_Model->Clone());
 			}
 		}
+
+		std::vector<CModel::Prop>& mdlprops=unitmodel->GetProps();
+		for (uint j=0;j<mdlprops.size();j++) {
+			CModel::Prop& prop=mdlprops[j];
+			if (prop.m_Model) {
+				if (prop.m_Model->GetModelDef()==oldmodeldef) {
+					delete prop.m_Model;
+					prop.m_Model=m_Model->Clone();
+				}
+			}
+		}
 	}
 
 	// and were done with the old model ..
-	delete oldmodel;
+	delete oldmodeldef;
 
 	return true;
 }
@@ -159,11 +179,14 @@ bool CObjectEntry::Load(const char* filename)
     EL(material);
 	EL(animations);
 	EL(props);
+	EL(properties);
 	AT(attachpoint);
 	AT(model);
 	AT(name);
 	AT(file);
 	AT(speed);
+	AT(autoflatten);
+	AT(castshadows);
 	#undef AT
 	#undef EL
 
@@ -189,6 +212,21 @@ bool CObjectEntry::Load(const char* filename)
 
         else if(element_name == el_material)
             m_Material = element_value;
+
+		else if (element_name == el_properties) {
+			XMBAttributeList attributes=child.getAttributes();
+			for (int j = 0; j < attributes.Count; ++j) {
+				XMBAttribute attrib=attributes.item(j);
+				int attrib_name = attrib.Name;
+				if (attrib_name == at_autoflatten) {
+					CStr str= (CStr) attrib.Value;
+					m_Properties.m_AutoFlatten=str.ToInt() ? true : false;
+				} else if (attrib_name == at_castshadows) {
+					CStr str= (CStr) attrib.Value;
+					m_Properties.m_CastShadows=str.ToInt() ? true : false;
+				} 
+			}
+		}
 
 		else if (element_name == el_animations)
 		{
@@ -252,15 +290,38 @@ bool CObjectEntry::Save(const char* filename)
 	fprintf(fp,"\t<TextureName>%s</TextureName>\n",(const char*) m_TextureName);
     if(m_Material.Trim(PS_TRIM_BOTH).Length())
         fprintf(fp,"\t<Material>%s</Material>\n", (const char*)m_Material);
+	
+	fprintf(fp,"\t<Properties\n");
+	fprintf(fp,"\t\tautoflatten=\"%d\"\n",m_Properties.m_AutoFlatten ? 1 : 0);
+	fprintf(fp,"\t\tcastshadows=\"%d\"\n",m_Properties.m_CastShadows ? 1 : 0);
+	fprintf(fp,"\t></Properties>\n");
 	if (m_Animations.size()>0) {
 		fprintf(fp,"\t<Animations>\n");
 		for (uint i=0;i<m_Animations.size();i++) {
-			fprintf(fp,"\t\t<Animation name=\"%s\" file=\"%s\"> </Animation>\n",(const char*) m_Animations[i].m_AnimName,(const char*) m_Animations[i].m_FileName);
+			fprintf(fp,"\t\t<Animation name=\"%s\" file=\"%s\" speed=\"%d\"> </Animation>\n",(const char*) m_Animations[i].m_AnimName,(const char*) m_Animations[i].m_FileName,int(m_Animations[i].m_Speed*100));
 		}
 		fprintf(fp,"\t</Animations>\n");
 	}
+	if (m_Props.size()>0) {
+		fprintf(fp,"\t<Props>\n");
+		for (uint i=0;i<m_Props.size();i++) {
+			fprintf(fp,"\t\t<Prop attachpoint=\"%s\" model=\"%s\"> </Prop>\n",(const char*) m_Props[i].m_PropPointName,(const char*) m_Props[i].m_ModelName);
+		}
+		fprintf(fp,"\t</Props>\n");
+	}
+
 	fprintf(fp,"</Object>\n");
 	fclose(fp);
 
 	return true;
+}
+
+
+CObjectEntry::Prop* CObjectEntry::FindProp(const char* proppointname)
+{
+	for (size_t i=0;i<m_Props.size();i++) {
+		if (strcmp(proppointname,m_Props[i].m_PropPointName)==0) return &m_Props[i];
+	}
+
+	return 0;
 }

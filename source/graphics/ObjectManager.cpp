@@ -39,6 +39,21 @@ CObjectEntry* CObjectManager::FindObject(const char* objectname)
 	return 0;
 }
 
+CObjectEntry* CObjectManager::FindObjectByFileName(const char* filename)
+{
+	for (uint k=0;k<m_ObjectTypes.size();k++) {
+		std::vector<CObjectEntry*>& objects=m_ObjectTypes[k].m_Objects;
+
+		for (uint i=0;i<objects.size();i++) {
+			if (strcmp(filename,(const char*) objects[i]->m_FileName)==0) {
+				return objects[i];
+			}
+		}
+	}
+
+	return 0;
+}
+
 void CObjectManager::AddObjectType(const char* name)
 {
 	m_ObjectTypes.resize(m_ObjectTypes.size()+1);
@@ -68,7 +83,7 @@ void CObjectManager::DeleteObject(CObjectEntry* entry)
 void CObjectManager::LoadObjects()
 {
 	// find all the object types by directory name
-	BuildObjectTypes();
+	BuildObjectTypes(0);
 
 	// now iterate through terrain types loading all textures of that type
 	uint i;
@@ -92,21 +107,35 @@ void CObjectManager::LoadObjects()
 	}
 }
 
-void CObjectManager::BuildObjectTypes()
+void CObjectManager::BuildObjectTypes(const char* base)
 {
-	Handle dir=vfs_open_dir("art/actors/");
+	CStr rootdir("art/actors/");
+	if (base) {
+		rootdir+=base;		
+		rootdir+='/';
+	}
+
+	Handle dir=vfs_open_dir(rootdir);
 	vfsDirEnt dent;
-	if (dir > 0)
-	{
+	if (dir > 0) {
 		// Iterate subdirs
 		while (vfs_next_dirent(dir, &dent, "/")==0)
 		{
-			AddObjectType(dent.name);
+			CStr groupname;
+			if (base) {
+				groupname=base;
+				groupname+='/';
+				groupname+=dent.name;
+			} else {
+				groupname=dent.name;
 		}
-		vfs_close_dir(dir);
+			AddObjectType(groupname);
+			BuildObjectTypes(groupname);
 	}
-	else
+		vfs_close_dir(dir);
+	} else {
 		LOG(ERROR, LOG_CATEGORY, "CObjectManager::BuildObjectTypes(): Unable to open dir art/actors/");
+	}
 }
 
 void CObjectManager::LoadObjects(int type)
@@ -129,6 +158,7 @@ void CObjectManager::LoadObjects(int type)
 				LOG(ERROR, LOG_CATEGORY, "CObjectManager::LoadObjects(): %s: XML Load failed", filename.c_str());
 				delete object;
 			} else {
+				object->m_FileName=dent.name;
 				AddObject(object,type);
 				LOG(NORMAL, LOG_CATEGORY, "CObjectManager::LoadObjects(): %s: XML Loaded", filename.c_str());
 			}

@@ -42,8 +42,12 @@ public:
 	bool Load(const char* filename);
 	bool Save(const char* filename);
 
+	Prop* FindProp(const char* proppointname);
+
 	// object name
 	CStr m_Name;
+	// file name
+	CStr m_FileName;
 	// texture name
 	CStr m_TextureName;
 	// model name
@@ -58,6 +62,12 @@ public:
 	CSkeletonAnim* GetNamedAnimation( CStr animationName );
 	// list of props attached to object
 	std::vector<Prop> m_Props;
+	struct {
+		// automatically flatten terrain when applying object
+		bool m_AutoFlatten;
+		// cast shadows from this object
+		bool m_CastShadows;
+	} m_Properties;
 	// corresponding model
 	CModel* m_Model;
 	// type of object; index into object managers types array

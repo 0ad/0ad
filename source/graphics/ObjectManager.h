@@ -33,6 +33,7 @@ public:
 	void AddObjectType(const char* name);
 
 	CObjectEntry* FindObject(const char* objname);
+	CObjectEntry* FindObjectByFileName(const char* filename);
 	void AddObject(CObjectEntry* entry,int type);
 	void DeleteObject(CObjectEntry* entry);
 
@@ -42,7 +43,7 @@ public:
 	std::vector<SObjectType> m_ObjectTypes;
 
 private:
-	void BuildObjectTypes();
+	void BuildObjectTypes(const char* basedir);
 	void LoadObjects(int type);
 
 	CObjectEntry* m_SelectedObject;
