@@ -2,7 +2,6 @@
 #define EDITABLELISTCTRL_H__
 
 #include "wx/listctrl.h"
-#include "wx/arrstr.h"
 
 #include "IAtlasExporter.h"
 

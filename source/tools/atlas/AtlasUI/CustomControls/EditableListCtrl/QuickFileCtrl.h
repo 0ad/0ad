@@ -1,3 +1,5 @@
+#include "wx/panel.h"
+
 class QuickFileCtrl : public wxPanel
 {
 	DECLARE_DYNAMIC_CLASS(QuickFileCtrl);

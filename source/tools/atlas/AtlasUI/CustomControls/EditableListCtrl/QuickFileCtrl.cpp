@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "QuickFileCtrl.h"
+
 #include "wx/filename.h"
 
 const int verticalPadding = 2;

@@ -1,6 +1,3 @@
-#include "wx/validate.h"
-#include "wx/listctrl.h"
-
 class EditableListCtrl;
 
 class ListCtrlValidator : public wxValidator

@@ -2,7 +2,6 @@
 #define ATLASWINDOWCOMMANDPROC_H__
 
 #include "wx/cmdproc.h"
-#include "wx/window.h"
 
 class AtlasWindowCommandProc : public wxCommandProcessor
 {

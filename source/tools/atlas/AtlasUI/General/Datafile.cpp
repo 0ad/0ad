@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "Datafile.h"
+
 #include "wx/filename.h"
 
 AtObj Datafile::ReadList(const char* section)

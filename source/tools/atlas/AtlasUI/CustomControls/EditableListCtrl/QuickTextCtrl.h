@@ -1,5 +1,3 @@
-#include "wx/textctrl.h"
-
 class QuickTextCtrl : public wxTextCtrl
 {
 public:

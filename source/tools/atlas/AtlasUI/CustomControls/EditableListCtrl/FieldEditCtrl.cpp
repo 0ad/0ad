@@ -36,8 +36,7 @@ void FieldEditCtrl_List::StartEdit(wxWindow* parent, wxRect rect, long row, int 
 	wxArrayString choices;
 	
 	AtObj list (Datafile::ReadList(m_ListType));
-	AtIter items (list["item"]);
-	for (AtIter it = items; it.defined(); ++it)
+	for (AtIter it = list["item"]; it.defined(); ++it)
 		 choices.Add(it);
 
 	new QuickComboBox(parent, rect, choices, ListCtrlValidator((EditableListCtrl*)parent, row, col));

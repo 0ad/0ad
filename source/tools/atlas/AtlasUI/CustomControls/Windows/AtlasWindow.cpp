@@ -4,9 +4,8 @@
 
 #include "AtlasObject/AtlasObject.h"
 
-#include "wx/intl.h"
-#include "wx/menu.h"
 #include "wx/artprov.h"
+#include "wx/config.h"
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -57,6 +56,7 @@ IMPLEMENT_CLASS(AtlasWindow, wxFrame);
 enum
 {
 	ID_Quit = 1,
+	ID_New,
 //	ID_Import,
 //	ID_Export,
 	ID_Open,
@@ -65,20 +65,24 @@ enum
 };
 
 BEGIN_EVENT_TABLE(AtlasWindow, wxFrame)
-	EVT_MENU(ID_Quit,  AtlasWindow::OnQuit)
+	EVT_MENU(ID_New, AtlasWindow::OnNew)
 //	EVT_MENU(ID_Import, AtlasWindow::OnImport)
 //	EVT_MENU(ID_Export, AtlasWindow::OnExport)
 	EVT_MENU(ID_Open, AtlasWindow::OnOpen)
 	EVT_MENU(ID_Save, AtlasWindow::OnSave)
 	EVT_MENU(ID_SaveAs, AtlasWindow::OnSaveAs)
+	EVT_MENU_RANGE(wxID_FILE1, wxID_FILE9, AtlasWindow::OnMRUFile)
+	EVT_MENU(ID_Quit,  AtlasWindow::OnQuit)
+
 	EVT_MENU(wxID_UNDO, AtlasWindow::OnUndo)
 	EVT_MENU(wxID_REDO, AtlasWindow::OnRedo)
+
 	EVT_CLOSE(AtlasWindow::OnClose)
 END_EVENT_TABLE()
 
 AtlasWindow::AtlasWindow(wxWindow* parent, const wxString& title, const wxSize& size)
-	: wxFrame(parent, wxID_ANY, _T(""), wxDefaultPosition, size)
-	, m_WindowTitle(title)
+	: wxFrame(parent, wxID_ANY, _T(""), wxDefaultPosition, size),
+	m_WindowTitle(title), m_FileHistory(9)
 {
 
 	wxMenuBar *menuBar = new wxMenuBar;
@@ -87,6 +91,7 @@ AtlasWindow::AtlasWindow(wxWindow* parent, const wxString& title, const wxSize& 
 	wxMenu *menuFile = new wxMenu;
 	menuBar->Append(menuFile, _("&File"));
 	{
+		menuFile->Append(ID_New, _("&New"));
 //		menuFile->Append(ID_Import, _("&Import..."));
 //		menuFile->Append(ID_Export, _("&Export..."));
 		menuFile->Append(ID_Open, _("&Open..."));
@@ -94,6 +99,8 @@ AtlasWindow::AtlasWindow(wxWindow* parent, const wxString& title, const wxSize& 
 		menuFile->Append(ID_SaveAs, _("Save &As..."));
 		menuFile->AppendSeparator();//-----------
 		menuFile->Append(ID_Quit,   _("E&xit"));
+		m_FileHistory.UseMenu(menuFile);//-------
+		m_FileHistory.AddFilesToMenu();
 	}
 
 	m_menuItem_Save = menuFile->FindItem(ID_Save); // to let it be greyed out
@@ -108,6 +115,8 @@ AtlasWindow::AtlasWindow(wxWindow* parent, const wxString& title, const wxSize& 
 
 	m_CommandProc.SetEditMenu(menuEdit);
 	m_CommandProc.Initialize();
+
+	m_FileHistory.Load(*wxConfigBase::Get());
 
 	CreateStatusBar();
 	//SetStatusText(_("Welcome to wxWidgets!"));
@@ -142,6 +151,9 @@ void AtlasWindow::OnClose(wxCloseEvent& event)
 		assert(ret == wxID_CANCEL);
 		event.Veto();
 	}
+
+	if (event.GetSkipped())
+		m_FileHistory.Save(*wxConfigBase::Get());
 }
 
 void AtlasWindow::OnUndo(wxCommandEvent& WXUNUSED(event))
@@ -165,6 +177,12 @@ void AtlasWindow::OnRedo(wxCommandEvent& WXUNUSED(event))
 //	...
 //}
 
+void AtlasWindow::OnNew(wxCommandEvent& WXUNUSED(event))
+{
+	AtObj blank;
+	Import(blank);
+	SetCurrentFilename();
+}
 
 void AtlasWindow::OnOpen(wxCommandEvent& WXUNUSED(event))
 {
@@ -185,6 +203,14 @@ void AtlasWindow::OnSaveAs(wxCommandEvent& WXUNUSED(event))
 {
 	SaveChanges(true);
 }
+
+void AtlasWindow::OnMRUFile(wxCommandEvent& event)
+{
+	wxString file (m_FileHistory.GetHistoryFile(event.GetId() - wxID_FILE1));
+	if (file.Length())
+		OpenFile(file);
+}
+
 
 
 void AtlasWindow::SetCurrentFilename(wxFileName filename)
@@ -213,7 +239,10 @@ bool AtlasWindow::SaveChanges(bool forceSaveAs)
 		if (dlg.ShowModal() != wxID_OK)
 			return false;
 
-		SetCurrentFilename(dlg.GetPath());
+		wxString filename(dlg.GetPath());
+
+		m_FileHistory.AddFileToHistory(filename);
+		SetCurrentFilename(filename);
 	}
 
 	if (! GetCurrentFilename().IsOk())
@@ -237,6 +266,7 @@ bool AtlasWindow::OpenFile(wxString filename)
 
 	Import(file);
 
+	m_FileHistory.AddFileToHistory(filename);
 	SetCurrentFilename(filename);
 
 	return true;

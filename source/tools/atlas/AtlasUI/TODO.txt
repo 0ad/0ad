@@ -1,5 +1,7 @@
 * Open from prop-actor selection
 
+* Make import undo work with multi-control windows, and update the title bar
+
 ===
 
 * 'Create entity' button (take name, parent)
@@ -16,13 +18,15 @@
 
 * Better colouring in test_dude.xml, where some variants have no data
 
+* Tab to move between fields
+
 ===
+
+* Correct undo menu entry when selecting 'New' (so it's not 'Import')
 
 * Save on exit: don't ask if no changes
 
 * Browse for meshes/actors/etc, in a more nice/correct/unbuggy way
-
-* Make import undo work with multi-control windows, and update the title bar
 
 * Window size memory
 
@@ -36,8 +40,6 @@
 
 * Customised AtObj->string conversion
 
-* Import/export filter, for validation(?) and for handling attributes
-
 * Undo in text-editing boxes
 
 * AtlasObjectXML error handling
@@ -46,13 +48,23 @@
 
 * Fix Escape in combo boxes inside dialogs
 
-===
+* Make wxFileHistory work when not at the very end of a menu
 
+===
 
 * Document lots
 
-* wxListItemAttr* OnGetItemAttr(long item) >>>const<<< - wx documentation??
+* wxListItemAttr* OnGetItemAttr(long item) >>>const<<< - wx documentation wrong?
 
 * Better column widths / window sizes
 
 * Don't create a row when editing a blank one then removing focus without typing anything
+
+
+======
+
+Done:
+
+* MRU file list
+* 'New' menu item
+* Import/export filter, for validation(?) and for handling attributes

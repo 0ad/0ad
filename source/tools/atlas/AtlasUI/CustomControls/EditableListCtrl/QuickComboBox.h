@@ -1,5 +1,3 @@
-#include "wx/combobox.h"
-
 class QuickComboBox : public wxComboBox
 {
 public:

@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+#include "AtlasWindowCommandProc.h"
+
 #include "AtlasWindow.h"
 #include "AtlasWindowCommand.h"
 #include "AtlasDialog.h"

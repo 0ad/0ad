@@ -12,8 +12,14 @@
 // Include useful wx headers
 #include "wx/wxprec.h"
 #include "wx/listctrl.h"
+#include "wx/docview.h"
+#include "wx/cmdproc.h"
+#include "wx/dialog.h"
+#include "wx/filename.h"
+#include "wx/artprov.h"
 
 #include <vector>
+#include <string>
 
 // Nicer memory-leak detection:
 #ifdef _DEBUG
@@ -22,3 +28,8 @@
 #endif
 
 #endif // HAVE_PCH
+
+#ifndef HAVE_PCH
+// If no PCH, just include a load of common headers anyway
+# include "wx/wx.h"
+#endif

@@ -5,13 +5,16 @@
 #include "ActorEditor/ActorEditor.h"
 #include "Datafile.h"
 
-#include "wx/app.h"
 #include "wx/file.h"
+#include "wx/config.h"
 
 class MyApp: public wxApp
 {
 	bool OnInit()
 	{
+		// Initialise the global config file
+		wxConfigBase::Set(new wxConfig(_T("Atlas Editor"), _T("Wildfire Games")));
+
 		// Display the Actor Editor window
 		AtlasWindow *frame = new ActorEditor(NULL);
 		frame->Show();
@@ -35,6 +38,7 @@ class MyApp: public wxApp
 
 		return true;
 	}
+
 };
 
 IMPLEMENT_APP(MyApp)

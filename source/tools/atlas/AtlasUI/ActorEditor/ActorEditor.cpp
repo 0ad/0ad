@@ -3,11 +3,7 @@
 #include "ActorEditor.h"
 
 #include "ActorEditorListCtrl.h"
-
 #include "AtlasObject/AtlasObject.h"
-
-#include "wx/panel.h"
-#include "wx/sizer.h"
 
 ActorEditor::ActorEditor(wxWindow* parent)
 	: AtlasWindow(parent, _("Actor Editor"), wxSize(1024, 450))
@@ -67,6 +63,14 @@ ActorEditor::ActorEditor(wxWindow* parent)
 
 void ActorEditor::Import(AtObj& in)
 {
+	if (! in.defined())
+	{
+		// 'Importing' a new blank file. Fill it in with default values:
+		AtObj actor;
+		actor.add("@version", L"1");
+		in.add("actor", actor);
+	}
+
 	// Determine the file format version
 	long version;
 
