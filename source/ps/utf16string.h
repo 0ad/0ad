@@ -5,7 +5,8 @@
 #ifndef utf16string_H
 #define utf16string_H
 
-// On Windows, wchar_t is 16-bit, so just use std::wstring
+// On Windows, wchar_t is typedef'ed to unsigned short, which conflicts
+// with uint16_t (which is also an unsigned short), so just use std::wstring
 #ifdef _MSC_VER
 
 namespace std {
