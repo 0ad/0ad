@@ -75,7 +75,7 @@ STMT(\
 	if(err < 0)\
 	{\
 		debug_out("%s:%d: FYI: CHECK_ERR reports that a function failed."\
-		            "feel free to ignore or suppress this warning.", __FILE__, __LINE__);\
+		            "feel free to ignore or suppress this warning.\n", __FILE__, __LINE__);\
 		return err;\
 	}\
 )
@@ -152,13 +152,15 @@ enum LibError
 // note: alternative method in C++: specialize a struct only for true;
 // using it will raise 'incomplete type' errors if instantiated with false.
 
-
-
+#ifdef _WIN32
 
 #define debug_warn(str) assert(0 && (str))
 
+#else
 
+#define debug_warn(str) debug_out("Debug Warning Fired at %s:%d: %s\n", __FILE__, __LINE__, str)
 
+#endif
 
 // converts 4 character string to u32 for easy comparison
 // can't pass code as string, and use s[0]..s[3], because
