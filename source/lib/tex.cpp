@@ -21,8 +21,11 @@
 #include <cassert>
 #include <cmath>
 #include <cstdio>
+#include <cstring>
 
+#include "vfs.h"
 #include "tex.h"
+#include "mem.h"
 #include "ogl.h"
 #include "res.h"
 #include "misc.h"
@@ -134,8 +137,6 @@ static int dds_load(const char* fn, const u8* ptr, size_t size, TEX* tex)
 		const u32 img_size  = read_le32(&surf->dwLinearSize);
 		const u32 mipmaps   = read_le32(&surf->dwMipMapCount);
 
-		const u8* img = ptr + hdr_size;
-
 		uint fmt = 0;
 		switch(surf->ddpfPixelFormat.dwFourCC)	// endian-independent
 		{
@@ -154,7 +155,7 @@ static int dds_load(const char* fn, const u8* ptr, size_t size, TEX* tex)
 		tex->height = h;
 		tex->fmt    = fmt;
 		tex->bpp    = img_size / (w * h);
-		tex->ptr    = img;
+		tex->ofs    = hdr_size;
 
 		if(sizeof(DDSURFACEDESC2) != ddsd_size)
 			err = "DDSURFACEDESC2 size mismatch";
@@ -214,7 +215,6 @@ static int tga_load(const char* fn, const u8* ptr, size_t size, TEX* tex)
 
 		const u8 alpha_bits = desc & 0x0f;
 
-		const u8* img = ptr + hdr_size;
 		const ulong img_size = (ulong)w * h * bpp / 8;
 
 		// determine format
@@ -240,7 +240,7 @@ static int tga_load(const char* fn, const u8* ptr, size_t size, TEX* tex)
 		tex->height = h;
 		tex->fmt    = fmt;
 		tex->bpp    = bpp;
-		tex->ptr    = img;
+		tex->ofs    = hdr_size;
 
 		if(fmt == -1)
 			err = "invalid format or bpp";
@@ -323,14 +323,13 @@ static int bmp_load(const char* fn, const u8* ptr, size_t size, TEX* tex)
 		const u32 compress = read_le32(&bch->biCompression);
 		const u32 ofs      = read_le32(&bfh->bfOffBits);
 
-		const u8* img = ptr + ofs;
 		const u32 img_size = w * h * bpp/8;
 
 		tex->width  = w;
 		tex->height = h;
 		tex->fmt    = (bpp == 24)? GL_BGR : GL_BGRA;
 		tex->bpp    = bpp;
-		tex->ptr    = img;
+		tex->ofs    = ofs;
 
 		if(h < 0)
 			err = "top-down";
@@ -386,7 +385,7 @@ static int raw_load(const char* fn, const u8* ptr, size_t size, TEX* tex)
 		tex->height = dim;
 		tex->fmt    = fmts[i];
 		tex->bpp    = i * 8;
-		tex->ptr    = ptr;
+		tex->ofs    = 0;
 
 		return 0;
 	}
@@ -591,6 +590,9 @@ static int jp2_load(const char* fn, const u8* ptr, size_t size, TEX* tex)
 static void tex_dtor(void* p)
 {
 	TEX* tex = (TEX*)p;
+
+	mem_free(tex->hm);
+
 	glDeleteTextures(1, &tex->id);
 }
 
@@ -598,21 +600,28 @@ static void tex_dtor(void* p)
 // TEX output param is invalid if function fails
 Handle tex_load(const char* fn, TEX* ptex)
 {
+	const u32 fn_hash = fnv_hash(fn, strlen(fn));
+
+	TEX* tex;
+	Handle ht = h_alloc(fn_hash, H_TEX, tex_dtor, (void**)&tex);
+	if(!ht)
+		return 0;
+	if(tex->id != 0)
+		goto already_loaded;
+
+{
 	// load file
 	const u8* p;
 	size_t size;
-	HDATA* hd;
-	Handle h = res_load(fn, H_TEX, tex_dtor, (void*&)p, size, hd);
-	if(!h)
-		return 0;
-
-	TEX* tex = (TEX*)hd->user;
-	if(!p)
-		goto already_loaded;
-	if(size < 4)	// guarantee xxx_valid routines 4 bytes
-		return 0;
-
+	Handle hm = vfs_load(fn, (void*&)p, size);
+	// .. note: xxx_valid routines assume 4 header bytes are available
+	if(!hm || !p || size < 4)
 	{
+		h_free(ht, H_TEX);
+		return 0;
+	}
+	tex->hm = hm;
+
 	int err = -1;
 
 #ifndef NO_DDS
@@ -643,7 +652,6 @@ Handle tex_load(const char* fn, TEX* ptex)
 
 	if(err < 0)
 		return err;
-	}
 
 	// loaders weren't able to determine type
 	if(tex->fmt == 0)
@@ -653,43 +661,45 @@ Handle tex_load(const char* fn, TEX* ptex)
 		// TODO: check file name, go to 32 bit if wrong
 	}
 
-	{
 	uint id;
 	glGenTextures(1, &id);
 	tex->id = id;
-	}
+	// this can't realistically fail, just note that the already_loaded
+	// check above assumes (id > 0) <==> texture is loaded and valid
+}
 
 already_loaded:
 	if(ptex)
 		*ptex = *tex;
 
-	return h;
+	return ht;
 }
 
 
 int tex_bind(const Handle h)
 {
-	HDATA* hd = h_data(h, H_TEX);
-	if(!hd)
+	TEX* tex = (TEX*)h_user_data(h, H_TEX);
+	if(!tex)
 	{
 		glBindTexture(GL_TEXTURE_2D, 0);
 		return -1;
 	}
-	TEX* tex = (TEX*)hd->user;
-	glBindTexture(GL_TEXTURE_2D, tex->id);
-	return 0;
+	else
+	{
+		glBindTexture(GL_TEXTURE_2D, tex->id);
+		return 0;
+	}
 }
 
 
 int tex_filter = GL_LINEAR;
 uint tex_bpp = 32;				// 16 or 32
 
-int tex_upload(const Handle h, int filter, int int_fmt)
+int tex_upload(const Handle ht, int filter, int int_fmt)
 {
-	HDATA* hd = h_data(h, H_TEX);
-	if(!hd)
+	TEX* tex = (TEX*)h_user_data(ht, H_TEX);
+	if(!tex)
 		return -1;
-	TEX* tex = (TEX*)hd->user;
 
 	// greater than max supported tex dimension?
 	// no-op if oglInit not yet called
@@ -708,7 +718,18 @@ int tex_upload(const Handle h, int filter, int int_fmt)
 		return 0;
 	}
 
-	tex_bind(h);
+	tex_bind(ht);
+
+	// get pointer to image data
+	MEM* mem = (MEM*)h_user_data(tex->hm, H_MEM);
+	if(!mem)
+		return 0;
+	void* p = mem->p;
+	if(!p)
+	{
+		assert(0 && "tex_upload: mem object is a NULL pointer");
+		return 0;
+	}
 
 	// set filter
 	if(!filter)
@@ -726,8 +747,9 @@ int tex_upload(const Handle h, int filter, int int_fmt)
 	if(tex->fmt >= GL_COMPRESSED_RGB_S3TC_DXT1_EXT &&
 	   tex->fmt <= GL_COMPRESSED_RGBA_S3TC_DXT5_EXT)
 	{
-		int img_size = tex->width * tex->height * tex->bpp;
-		glCompressedTexImage2DARB(GL_TEXTURE_2D, 0, tex->fmt, tex->width, tex->height, 0, img_size, tex->ptr);
+		const int img_size = tex->width * tex->height * tex->bpp;
+		assert(4+sizeof(DDSURFACEDESC2)+img_size == mem->size && "tex_upload: dds file size mismatch");
+		glCompressedTexImage2DARB(GL_TEXTURE_2D, 0, tex->fmt, tex->width, tex->height, 0, img_size, p);
 	}
 	// normal
 	else
@@ -756,16 +778,18 @@ int tex_upload(const Handle h, int filter, int int_fmt)
 
 		// manual mipmap gen via GLU (box filter)
 		if(mipmap && !sgm_avl)
-			gluBuild2DMipmaps(GL_TEXTURE_2D, int_fmt, tex->width, tex->height, tex->fmt, GL_UNSIGNED_BYTE, tex->ptr);
+			gluBuild2DMipmaps(GL_TEXTURE_2D, int_fmt, tex->width, tex->height, tex->fmt, GL_UNSIGNED_BYTE, p);
 		// auto mipmap gen, or no mipmap
 		else
 		{
 			if(mipmap)
 				glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP_SGIS, GL_TRUE);
 
-			glTexImage2D(GL_TEXTURE_2D, 0, int_fmt, tex->width, tex->height, 0, tex->fmt, GL_UNSIGNED_BYTE, tex->ptr);
+			glTexImage2D(GL_TEXTURE_2D, 0, int_fmt, tex->width, tex->height, 0, tex->fmt, GL_UNSIGNED_BYTE, p);
 		}
 	}
+
+	mem_free(tex->hm);
 
 	return 0;
 }

@@ -61,11 +61,10 @@ PS_RESULT CConfig::Register( CStr Filename, void* Data, LoaderFunction DynamicLo
 	
 	// Might as well check we can find the thing.
 	char filepath[PATH_MAX];
-	strcpy( filepath, Filename );
 
-	if( vfs_access( filepath ) )	// This changes filepath to the disk location
-									// of the file, if we know it, to speed up
-									// checks later.
+	if( vfs_realpath( Filename, filepath ) )	// This changes filepath to the disk location
+												// of the file, if we know it, to speed up
+												// checks later.
 	{
 		if( m_LogFile )
 		{
@@ -127,8 +126,7 @@ PS_RESULT CConfig::Update()
 				// Find its new path and copy it back to the data we maintain
 				// here to speed up future queries.
 				char filepath[PATH_MAX];
-				strcpy( filepath, i->Filename );
-				vfs_access( filepath );
+				vfs_realpath( i->Filename, filepath );
 				if( m_LogFile )
 				{
 					CStr Report = _T( "File " );
@@ -212,8 +210,7 @@ PS_RESULT CConfig::ReloadAll()
 			// We can't find the file. Seeing as this should reload everything, 
 			// check that it exists.
 			char filepath[PATH_MAX];
-			strcpy( filepath, i->Filename );
-			if( vfs_access( filepath ) )
+			if( vfs_realpath( i->Filename, filepath ) )
 			{
 				// Oops.
 				notfound++;
@@ -237,8 +234,7 @@ PS_RESULT CConfig::ReloadAll()
 				// Find its new path and copy it back to the data we maintain
 				// here to speed up future queries.
 				char filepath[PATH_MAX];
-				strcpy( filepath, i->Filename );
-				vfs_access( filepath );
+				vfs_realpath( i->Filename, filepath );
 				if( m_LogFile )
 				{
 					CStr Report = _T( "File " );

@@ -1,3 +1,22 @@
+// virtual file system - transparent access to files in archives;
+// allows multiple search paths
+//
+// Copyright (c) 2003 Jan Wassenberg
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License as
+// published by the Free Software Foundation; either version 2 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// General Public License for more details.
+//
+// Contact info:
+//   Jan.Wassenberg@stud.uni-karlsruhe.de
+//   http://www.stud.uni-karlsruhe.de/~urkt/
+
 #include <cstdio>
 #include <cassert>
 #include <cstdlib>
@@ -8,23 +27,44 @@
 #include <algorithm>
 
 #include "posix.h"
-#include "unzip.h"
+#include "zip.h"
 #include "misc.h"
 #include "vfs.h"
 #include "mem.h"
 
+
+// H_VFILE handle
+struct VFILE
+{
+	int fd;
+
+	size_t size;	// compressed size, if a Zip file
+
+	// Zip only:
+	size_t ucsize;
+	size_t ofs;
+
+	Handle hm;		// memory handle to the file or archive, if a Zip file
+};
+
+
+// rationale for n-archives per PATH entry:
 // We need to be able to unmount specific paths (e.g. when switching mods).
 // Don't want to remount everything (slow), or specify a mod tag when mounting
 // (not this module's job). Instead, we include all archives in one path entry;
-// the game keeps track of what paths it mounted for a mod, and unmounts those
-// when needed.
+// the game keeps track of what path(s) it mounted for a mod,
+// and unmounts those when needed.
 
 struct PATH
 {
-	char* dir;	// relative to root; points to space at end of this struct
-	struct PATH* next;
+	struct PATH* next;	// linked list
+
+	char* dir;			// relative to root dir;
+						// points to space at end of this struct
+
 	int num_archives;
 	Handle archives[1];
+
 	// space allocated here for archive Handles + dir string
 };
 static PATH* path_list;
@@ -34,19 +74,13 @@ static void vfile_dtor(void* p)
 {
 	VFILE* vf = (VFILE*)p;
 
-	// in archive
-	if(vf->ha && vf->hz)
-	{
-		zclose(vf->hz);
-		zclose(vf->ha);
-		vf->ha = vf->hz = 0;
-	}
-	// normal file
 	if(vf->fd > 0)
 	{
 		close(vf->fd);
 		vf->fd = -1;
 	}
+
+	mem_free(vf->hm);
 }
 
 
@@ -66,7 +100,7 @@ int vfs_set_root(const char* argv0, const char* root)
 		return -1;
 	*fn = 0;
 
-	chdir( fn + 1 );
+	chdir(path);
 	chdir(root);
 
 	return vfs_mount(".");
@@ -99,8 +133,8 @@ int vfs_mount(const char* path)
 
 	// alloc search path entry (add to front)
 	const int archives_size = num_archives*sizeof(Handle);
-	const int entry_size = round_up(sizeof(PATH)+archives_size+path_len+1, 8);
-	PATH* entry = (PATH*)mem_alloc(entry_size);
+	const int entry_size = round_up(sizeof(PATH)+archives_size+path_len+1, 32);
+	PATH* entry = (PATH*)mem_alloc(entry_size, 32, MEM_HEAP);
 	if(!entry)
 		return -1;
 	entry->next = path_list;
@@ -113,7 +147,7 @@ int vfs_mount(const char* path)
 	std::sort(archives.begin(), archives.end());
 	entry->num_archives = num_archives;
 	for(int i = 0; i < num_archives; i++)
-		entry->archives[i] = zopen(archives[i].c_str());
+		entry->archives[i] = zip_open(archives[i].c_str());
 
 	return 0;
 }
@@ -130,7 +164,7 @@ int vfs_umount(const char* path)
 		{
 			// close all archives
 			for(int i = 0; i < entry->num_archives; i++)
-				zclose(entry->archives[i]);
+				h_free(entry->archives[i], H_ZARCHIVE);
 
 			// remove from list
 			*prev = entry->next;
@@ -148,107 +182,12 @@ int vfs_umount(const char* path)
 }
 
 
-Handle vfs_map(const char* fn)
+// call func, passing the data argument, for each mounted path
+// fail if its return value is < 0, stop if it returns 0
+static int vfs_foreach_path(int (*func)(const char* path, Handle ha, void* data), const char* fn, void* data)
 {
-	struct stat stat_buf;
-	if(stat(fn, &stat_buf) != 0)
-		return 0;
- 	size_t size = stat_buf.st_size;
-
-	int fd = open(fn, O_RDONLY);
-	if(fd < 0)
-		return 0; 
-
-	u32 fn_hash = fnv_hash(fn, strlen(fn));
-
-	void* p = mmap(0, size, PROT_READ, MAP_PRIVATE, fd, 0);
-	close(fd);
-	if(p != MAP_FAILED)
-	{
-		HDATA* hd;
-		Handle h = h_alloc(0, H_VFILE, vfile_dtor, &hd);
-		if(h)
-		{
-			hd->p = p;
-			hd->size = size;
-//			VFILE* vf = (VFILE*)hd->user;
-//			vf->fd = fd;
-			return h;
-		}
-	}
-
-	return 0;
-}
-
-int vfs_access( char* fn )
-{
-	// Alters 'fn' to the path of the file, if we find it...
-	
-	// Mostly identical to vfs_stat, below.
-
-	struct stat dy;
-	
-	// Strim out the path, if provided.
-	char* name = strrchr( fn, '/' );
-	if( name ) { name++; } else name = fn;
-
 	char buf[PATH_MAX+1]; buf[PATH_MAX] = 0;
 
-	// for each search path:
-	for(PATH* entry = path_list; entry; entry = entry->next)
-	{
-		// dir
-		const char* path = name;
-		if(entry->dir[0] != '.' || entry->dir[1] != '\0')
-		{
-			// only prepend dir if not "." (root) - "./" isn't portable
-			snprintf(buf, PATH_MAX, "%s/%s", entry->dir, name);
-			path = buf;
-		}
-		if( !_stat( path, &dy ) )
-		{
-			strcpy( fn, path );
-			return( 0 );
-		}
-		
-		// archive
-		for(int i = 0; i < entry->num_archives; i++)
-		{
-			if( !zaccess(entry->archives[i], name) )
-				return( 0 );
-		}
-		
-	}
-
-	// not found
-	return -1;
-}
-
-int vfs_stat( const char* fn, struct stat *buffer )
-{
-	// Mostly identical to vfs_open, below.
-	
-	// Note: vfs_stat redefines the nlink member of stat for its own
-	// nefarious ends.
-
-	// Check the specific location 'fn' first.
-	// If the file's there, it's faster.
-
-	if( !_stat( fn, buffer ) )
-	{
-		buffer->st_nlink = 0;
-		return( 0 );
-	}
-
-	// Not there? Drop the old path.
-
-	char* name = strrchr( fn, '/' );
-	if( name )
-		fn = name + 1;
-
-	char buf[PATH_MAX+1]; buf[PATH_MAX] = 0;
-
-	// for each search path:
 	for(PATH* entry = path_list; entry; entry = entry->next)
 	{
 		// dir
@@ -259,59 +198,148 @@ int vfs_stat( const char* fn, struct stat *buffer )
 			snprintf(buf, PATH_MAX, "%s/%s", entry->dir, fn);
 			path = buf;
 		}
-		if( !_stat( path, buffer ) ) 
-		{
-			buffer->st_nlink = 1;
-			return( 0 );
-		}
 
-		// Ignore files in an archive.
+		int err = func(path, 0, data);
+		if(err <= 0)
+			return err;
+		
+		// archive
+		for(int i = 0; i < entry->num_archives; i++)
+		{
+			err = func(path, entry->archives[i], data);
+			if(err <= 0)
+				return err;
+		}
 	}
 
-	// not found
-	return -1;
+	return -1;	// func never returned 0
 }
- 
+
+
+
+static int realpath_cb(const char* path, Handle ha, void* data)
+{
+	char* full_path = (char*)data;
+	struct stat s;
+
+	if(!path && !ha)
+	{
+		assert(0 && "realpath_cb: called with invalid path and archive handle");
+		return 1;
+	}
+
+	if(path)
+	{
+		if(!stat(path, &s))
+		{
+			strncpy(full_path, path, PATH_MAX);
+			return 0;
+		}
+	}
+	else if(ha)
+	{
+		if(!zip_stat(ha, path, &s))
+		{
+			zip_archive_info(ha, full_path, 0);
+			return 0;
+		}
+	}
+
+	return 1;
+}
+
+int vfs_realpath(const char* fn, char* full_path)
+{
+	return vfs_foreach_path(realpath_cb, fn, full_path);
+}
+
+
+static int stat_cb(const char* path, Handle ha, void* data)
+{
+	struct stat* s = (struct stat*)data;
+
+	if(path)
+		return stat(path, s)? 1 : 0;
+	else if(ha)
+		return zip_stat(ha, path, s)? 1 : 0;
+
+	assert(0 && "stat_cb: called with invalid path and archive handle");
+	return 1;
+}
+
+int vfs_stat(const char* fn, struct stat* s)
+{
+	return vfs_foreach_path(stat_cb, fn, s);
+}
+
+
+
+static int open_cb(const char* path, Handle ha, void* data)
+{
+	struct stat s;
+	VFILE* vf = (VFILE*)data;
+
+	// normal file
+	if(path)
+	{
+		if(stat(path, &s) < 0)
+			return 1;
+
+		int fd = open(path, O_RDONLY);
+		if(fd < 0)
+			return 1;
+
+		vf->fd   = fd;
+		vf->size = s.st_size;
+	}
+	// from archive
+	else if(ha)
+	{
+		ZFILE* zf = zip_lookup(ha, path);
+		if(!zf)
+			return 1;
+
+		Handle hm;
+		if(zip_archive_info(ha, 0, &hm) < 0)
+			return 1;
+
+		vf->ofs    = zf->ofs;
+		vf->size   = zf->csize;
+		vf->ucsize = zf->ucsize;
+		vf->fd     = -1;
+		vf->hm     = hm;
+	}
+	else
+	{
+		assert(0 && "open_cb: called with invalid path and archive handle");
+		return 1;
+	}
+
+	return 0;
+}
+
 Handle vfs_open(const char* fn)
 {
-	char buf[PATH_MAX+1]; buf[PATH_MAX] = 0;
+	u32 fn_hash = fnv_hash(fn, strlen(fn));
 
-	// If a path to an existing file is given, use it.
+	VFILE* vf;
+	Handle hv = h_alloc(fn_hash, H_VFILE, vfile_dtor, (void**)&vf);
+	if(!hv)
+		return 0;
 
-	Handle h = vfs_map( fn );
-	if( h )
-		return( h );
+	// already open
+	if(vf->size)
+		return hv;
 
-	char* name = strrchr( fn, '/' );
-	if( name ) fn = name + 1;
-
-	// for each search path:
-	for(PATH* entry = path_list; entry; entry = entry->next)
+	if(vfs_foreach_path(open_cb, fn, vf) < 0)
 	{
-		// dir
-		const char* path = fn;
-		if(entry->dir[0] != '.' || entry->dir[1] != '\0')
-		{
-			// only prepend dir if not "." (root) - "./" isn't portable
-			snprintf(buf, PATH_MAX, "%s/%s", entry->dir, fn);
-			path = buf;
-		}
-		Handle h = vfs_map(path);
-		if(h)
-			return h;
-
-		// archive
-		for(int i = 0; i < entry->num_archives; i++)
-		{
-			Handle h = zopen(entry->archives[i], fn);
-			if(h)
-				return h;
-		}
+		h_free(hv, H_VFILE);
+		return 0;
 	}
 
-	// not found
-	return 0;
+	return hv;
 }
+
 
 
 const uint IDX_BITS = 4;
@@ -326,12 +354,11 @@ slots[NUM_SLOTS];
 
 u32 vfs_start_read(const Handle hf, size_t& ofs, void** buf)
 {
-	HDATA* hfd = h_data(hf, 0);
-	if(!hfd)
+	VFILE* vf = (VFILE*)h_user_data(hf, H_VFILE);
+	if(!vf)
 		return 0;
-	VFILE* vf = (VFILE*)hfd->user;
 
-	ssize_t bytes_left = hfd->size - ofs;
+	ssize_t bytes_left = vf->size - ofs;
 	if(bytes_left < 0)
 		return 0;
 
@@ -362,12 +389,12 @@ u32 vfs_start_read(const Handle hf, size_t& ofs, void** buf)
 
 	// use the buffer given (e.g. read directly into output buffer)
 	if(buf)
-		cb->aio_buf = buf;
+		cb->aio_buf = *buf;
 	// allocate our own (reused for subsequent requests)
 	else
 		if(!cb->aio_buf)
 		{
-			cb->aio_buf = mem_alloc(64*KB, MEM_HEAP, 64*KB);
+			cb->aio_buf = mem_alloc(64*KB, 64*KB, MEM_HEAP);
 			if(!cb->aio_buf)
 				return 0;
 		}
@@ -419,29 +446,120 @@ int vfs_finish_read(const u32 slot, void*& p, size_t& size)
 
 
 
-int vfs_read(Handle h, void*& p, size_t& size, size_t ofs)
+Handle vfs_load(const char* fn, void*& _p, size_t& _size, bool dont_map)
 {
-	p = 0;
-	size = 0;
+	_p = 0;
+	_size = 0;
 
-	HDATA* hd = h_data(h, H_VFILE);
-	if(hd)
+	Handle hf = vfs_open(fn);
+	if(!hf)
+		return 0;
+
+	VFILE* vf = (VFILE*)h_user_data(hf, H_VFILE);
+
+	const bool deflated = vf->fd == -1 && vf->size != vf->ucsize;
+	const size_t in_size = vf->size;
+	const size_t out_size = deflated? vf->ucsize : vf->size;
+
+	// already mapped or read
+	if(vf->hm)
 	{
-		if(ofs+size > hd->size)
-			return -1;
-		p = (u8*)hd->p + ofs;
-		if(!size)
-			size = hd->size - ofs;
+		MEM* m = (MEM*)h_user_data(vf->hm, H_MEM);
+		if(m)
+		{
+			assert(out_size == m->size && "vfs_load: mismatch between VFILE and MEM size");
+
+			_p = m->p;
+			_size = m->size;
+			return vf->hm;
+		}
+		else
+			assert(0 && "vfs_load: invalid MEM attached to VFILE");
+	}
+
+	// decide whether to map the file, or read it
+	MemType mt = MEM_MAPPED;
+	if(deflated || dont_map)
+		mt = MEM_POOL;
+
+	// allocate memory / map the file
+	Handle hm;
+	void* out = mem_alloc(out_size, 64*KB, mt, vf->fd, &hm);
+	if(!out)
+	{
+		vfs_close(hf);
 		return 0;
 	}
-	// H_ZFILE
-	else
-		return zread(h, p, size, ofs);
+
+	if(mt == MEM_MAPPED)
+	{
+		_p = out;
+		_size = out_size;
+		return vf->hm = hm;
+	}
+
+	// now we read the file in 64 KB chunks (double buffered);
+	// if in an archive, we inflate while waiting for the next chunk to finish
+	u32 slots[2];
+	int active_read = 0;
+
+	void* pos = out;	// if not inflating, read directly into output buffer
+	size_t ofs = vf->ofs;
+
+	void* ctx;
+	if(deflated)
+	{
+		pos = 0;	// read into separate buffer
+		ctx = zip_inflate_start(out, out_size);
+	}
+
+	bool first = true;
+	bool done = false;
+
+	for(;;)
+	{
+		// start reading next block
+		if(!done)
+			slots[active_read] = vfs_start_read(hf, ofs, &pos);
+
+		active_read ^= 1;
+
+		// process block read in previous iteration
+		if(!first)
+		{
+			void* p;
+			size_t bytes_read;
+			vfs_finish_read(slots[active_read], p, bytes_read);
+
+			// inflate what we read
+			if(deflated)
+				zip_inflate_process(ctx, p, bytes_read);
+		}
+
+		first = false;
+		if(done)
+			break;
+		// one more iteration to process the last pending block
+		if(ofs >= in_size)
+			done = true;
+	}
+
+	if(deflated)
+	{
+		if(zip_inflate_end(ctx) < 0)
+		{
+			mem_free(out);
+			return 0;
+		}
+	}
+
+	_p = out;
+	_size = out_size;
+	return vf->hm = hm;
 }
 
 
 int vfs_close(Handle h)
 {
-	h_free(h, 0);
-	return 0;
+	return h_free(h, H_VFILE);
 }

@@ -14,7 +14,7 @@
 #include "tex.h"
 #include "vfs.h"
 #include "ia32.h"
-#include "Config.h"
+#include "ps/Config.h"
 
 #ifndef NO_GUI
 #include "gui/GUI.h"

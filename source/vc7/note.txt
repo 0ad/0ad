@@ -9,3 +9,13 @@ Known problems:
   binaries/ too.
 
 /Gee
+
+Known solution :))
+- I put the GUI init code before VFS init (which changes the dir
+  as you mention to binaries/data), so that it'd work as you had it.
+  When you're ready, just move all data to binaries/data, move
+  the GUI init after vfs_set_root in main.cpp, and we're go.
+
+p.s. we only need .vsproj and .sln in CVS; .ncb is built by VC.
+
+janwas

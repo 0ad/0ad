@@ -29,7 +29,8 @@ struct TEX
 	u32 height : 16;
 	u32 fmt    : 16;
 	u32 bpp    : 16;
-	const u8* ptr;
+	Handle hm;			// H_MEM handle to loaded file
+	size_t ofs;			// WRT image data in file
 	uint id;
 };
 

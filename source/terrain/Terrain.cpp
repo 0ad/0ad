@@ -16,6 +16,7 @@
 
 #include "Terrain.H"
 #include "tex.h"
+#include "mem.h"
 
 bool g_HillShading = true;
 
@@ -46,7 +47,9 @@ TEX tex;
 Handle h = tex_load(filename, &tex);
 if(!h)
 return false;
-const u8* data = tex.ptr;
+Handle hm = tex.hm;
+MEM* mem = (MEM*)h_user_data(hm, H_MEM);
+const u8* data = (const u8*)mem->p;
 
 	m_pVertices = new STerrainVertex[MAP_SIZE*MAP_SIZE];
 	if (m_pVertices == NULL)

@@ -57,6 +57,8 @@ void get_cur_resolution(int& xres, int& yres)
 size_t tot_mem = 0;
 size_t avl_mem = 0;
 
+size_t page_size = 0;
+
 void get_mem_status()
 {
 // Win32
@@ -68,10 +70,19 @@ void get_mem_status()
 		// fixes results for my machine - off by 528 KB. why?!
 	avl_mem = ms.dwAvailPhys;
 
-// Sys V derived (GNU/Linux, Solaris)
-#elif defined(_SC_PAGESIZE) && defined(_SC_AVPHYS_PAGES)
+	SYSTEM_INFO si;
+	GetSystemInfo(&si);
+	page_size = si.dwPageSize;
 
-	long page_size = sysconf(_SC_PAGESIZE);
+#else	// !_WIN32
+
+#ifdef _SC_PAGESIZE
+	page_size = (size_t)sysconf(_SC_PAGESIZE);
+#endif
+
+// Sys V derived (GNU/Linux, Solaris)
+#ifdef _SC_AVPHYS_PAGES
+
 	tot_mem = sysconf(_SC_PHYS_PAGES  ) * page_size;
 	avl_mem = sysconf(_SC_AVPHYS_PAGES) * page_size;
 
@@ -85,6 +96,8 @@ void get_mem_status()
 	sysctl(mib, 2, &avl_mem, &len, 0, 0);
 
 #endif
+
+#endif	// _WIN32
 }
 
 

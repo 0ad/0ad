@@ -299,14 +299,6 @@ SOURCE=..\lib\types.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\lib\unzip.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\lib\unzip.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\lib\vfs.cpp
 # End Source File
 # Begin Source File
@@ -325,6 +317,14 @@ SOURCE=..\lib\wsdl.cpp
 
 SOURCE=..\lib\wsdl.h
 # End Source File
+# Begin Source File
+
+SOURCE=..\lib\zip.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\lib\zip.h
+# End Source File
 # End Group
 # Begin Group "ps"
 
@@ -332,6 +332,14 @@ SOURCE=..\lib\wsdl.h
 # Begin Source File
 
 SOURCE=..\ps\BaseEntity.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\Config.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\ps\Config.h
 # End Source File
 # Begin Source File
 

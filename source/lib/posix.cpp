@@ -477,7 +477,6 @@ int uname(struct utsname* un)
 	// hardware type
 	static SYSTEM_INFO si;
 	GetSystemInfo(&si);
-
 	if(si.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64)
 		strcpy(un->machine, "AMD64");
 	else

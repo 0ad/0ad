@@ -1,6 +1,7 @@
 // malloc layer for less fragmentation, alignment, and automatic release
 
 #include <cstdlib>
+#include <cassert>
 
 #include <map>
 
@@ -11,36 +12,23 @@
 #include "posix.h"
 
 
-struct MEM
+static void heap_free(MEM* m)
 {
-	uint type;
-
-	// MEM_HEAP only
-	void* org_p;
-
-	// MEM_POOL only
-	size_t ofs;
-	size_t size;
-};
-
-
-
-static void heap_dtor(void* p)
-{
-	MEM* mem = (MEM*)p;
-	free(mem->org_p);
+	free(m->org_p);
 }
 
 
-static void* heap_alloc(const size_t size, const int align, MEM& mem)
+static void* heap_alloc(const size_t size, const int align, MEM* mem)
 {
 	u8* org_p = (u8*)malloc(size+align-1);
 	u8* p = (u8*)round_up((long)org_p, align);
 
-	mem.org_p = org_p;	
+	mem->org_p = org_p;	
 	return p;
 }
 
+
+//////////////////////////////////////////////////////////////////////////////
 
 
 static u8* pool;
@@ -48,21 +36,19 @@ static size_t pool_pos;
 static const size_t POOL_CAP = 64*MB;	// TODO: user editable
 
 
-static void pool_dtor(void* p)
+static void pool_free(MEM* m)
 {
-	MEM* mem = (MEM*)p;
-
 	// at end of pool? if so, 'free' it
-	if(mem->ofs + mem->size == pool_pos)
-		pool_pos -= mem->size;
+	if(m->ofs + m->size == pool_pos)
+		pool_pos -= m->size;
 }
 
 
-static void* pool_alloc(const size_t size, const uint align, MEM& mem)
+static void* pool_alloc(const size_t size, const uint align, MEM* mem)
 {
 	if(!pool)
 	{
-		pool = (u8*)mem_alloc(size, MEM_HEAP, align);
+		pool = (u8*)mem_alloc(size, align, MEM_HEAP);
 		if(!pool)
 			return 0;
 	}
@@ -73,52 +59,47 @@ static void* pool_alloc(const size_t size, const uint align, MEM& mem)
 
 	void* p = (u8*)pool + ofs;
 
-	mem.size = size;
-	mem.ofs = ofs;
+	mem->size = size;
+	mem->ofs = ofs;
 
 	pool_pos = ofs+size;
 	return p;
 }
 
 
+//////////////////////////////////////////////////////////////////////////////
 
-static void mem_dtor(void* p)
+
+static void mmap_free(MEM* m)
 {
-	MEM* mem = (MEM*)p;
-	if(mem->type == MEM_HEAP)
-		heap_dtor(p);
-	else if(mem->type == MEM_POOL)
-		pool_dtor(p);
+	munmap(m->p, m->size);
 }
 
 
-void* mem_alloc(size_t size, const MemType type, const uint align, Handle* ph)
+static void* mmap_alloc(const size_t size, const int fd, MEM* mem)
 {
-	if(size == 0)
-		size = 1;
+	mem->p = mmap(0, size, PROT_READ, MAP_PRIVATE, fd, 0);
+	mem->size = size;
+	mem->fd = fd;
 
-	HDATA* hd;
-	Handle h = h_alloc(0, H_MEM, mem_dtor, &hd);
-	if(!h)
-		return 0;
+	return mem->p;
+}
 
-	MEM& mem = (MEM&)hd->user;
 
-	void* p;
-	if(type == MEM_HEAP)
-		p = heap_alloc(size, align, mem);
-	else if(type == MEM_POOL)
-		p = pool_alloc(size, align, mem);
+//////////////////////////////////////////////////////////////////////////////
+
+
+static void mem_dtor(void* p)
+{
+	MEM* m = (MEM*)p;
+	if(m->type == MEM_HEAP)
+		heap_free(m);
+	else if(m->type == MEM_POOL)
+		pool_free(m);
+	else if(m->type == MEM_MAPPED)
+		mmap_free(m);
 	else
-	{
-		h_free(h, H_MEM);
-		return 0;
-	}
-
-	if(ph)
-		*ph = h;
-
-	return p;
+		assert(0 && "mem_dtor: MEM.type invalid!");
 }
 
 
@@ -127,9 +108,60 @@ int mem_free(void* p)
 	if(!p)
 		return 1;
 
-	HDATA* hd;
-	Handle h = h_find(p, H_MEM, &hd);
+	Handle h = h_find((u32)p, H_MEM, 0);
 	if(h)
 		return h_free(h, H_MEM);
 	return -1;
+}
+
+
+int mem_free(Handle hm)
+{
+	return h_free(hm, H_MEM);
+}
+
+
+void* mem_alloc(size_t size, const uint align, const MemType type, const int fd, Handle* ph)
+{
+	assert(size != 0 && "mem_alloc: why is size = 0?");
+
+	// bit of a hack: the allocators require space for bookkeeping,
+	// but we can't allocate a handle until we know the key
+	// (the pointer address), which is used to find the corresponding
+	// handle when freeing memory.
+	// we fill a temp MEM, and then copy it into the handle's user data space
+	MEM mem;
+
+	void* p;
+	if(type == MEM_HEAP)
+		p = heap_alloc(size, align, &mem);
+	else if(type == MEM_POOL)
+		p = pool_alloc(size, align, &mem);
+	else if(type == MEM_MAPPED)
+		p = mmap_alloc(size, fd, &mem);
+	else
+	{
+		assert(0 && "mem_alloc: invalid type parameter");
+		return 0;
+	}
+
+	if(!p)
+		return 0;
+
+	MEM* pmem;
+	Handle h = h_alloc((u32)p, H_MEM, mem_dtor, (void**)&pmem);
+	if(!h)	// failed to allocate a handle
+	{
+		mem_dtor(&mem);
+		return 0;
+	}
+	*pmem = mem;	// copy our memory info into the handle's user data space
+
+	// caller is asking for the handle
+	// (freeing the memory via handle is faster than mem_free, because
+	//  we wouldn't have to scan all handles looking for the pointer)
+	if(ph)
+		*ph = h;
+
+	return p;
 }

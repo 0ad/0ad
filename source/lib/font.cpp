@@ -25,6 +25,7 @@
 
 #include "font.h"
 #include "res.h"
+#include "vfs.h"
 #include "tex.h"
 #include "ogl.h"
 #include "posix.h"
@@ -126,13 +127,21 @@ static void font_dtor(void* p)
 }
 
 
-u32 font_load(const char* fn)
+Handle font_load(const char* fn)
 {
+	const u32 fn_hash = fnv_hash(fn, strlen(fn));
+
+	FONT* font;
+	Handle h = h_alloc(fn_hash, H_FONT, font_dtor, (void**)&font);
+	if(!h)
+		return 0;
+	if(font->tex)
+		return h;
+
 	void* p;
 	size_t size;
-	HDATA* hd;
-	Handle h = res_load(fn, H_FONT, font_dtor, p, size, hd);
-	if(!h)
+	Handle hm = vfs_load(fn, p, size);
+	if(!hm)
 		return 0;
 
 	int pos;	// current position in the file
@@ -158,6 +167,8 @@ u32 font_load(const char* fn)
 			return 0;
 		}
 	}
+
+	h_free(hm, H_MEM);
 
 	// load glyph texture
 	const Handle tex = tex_load(tex_filename);
@@ -191,7 +202,6 @@ u32 font_load(const char* fn)
 			u = 0.f, v += th;
 	}
 
-	FONT* font = (FONT*)hd->user;
 	font->tex = tex;
 	font->list_base = list_base;
 
@@ -201,10 +211,9 @@ u32 font_load(const char* fn)
 
 int font_bind(const Handle h)
 {
-	HDATA* hd = h_data(h, H_FONT);
-	if(!hd)
+	FONT* font = (FONT*)h_user_data(h, H_FONT);
+	if(!font)
 		return -1;
-	FONT* font = (FONT*)hd->user;
 
 	tex_bind(font->tex);
 	glListBase(font->list_base);

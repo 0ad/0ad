@@ -226,6 +226,10 @@
 			<File
 				RelativePath="..\ps\BaseEntity.h"/>
 			<File
+				RelativePath="..\ps\Config.cpp"/>
+			<File
+				RelativePath="..\ps\Config.h"/>
+			<File
 				RelativePath="..\ps\CStr.cpp"/>
 			<File
 				RelativePath="..\ps\CStr.h"/>
@@ -310,10 +314,6 @@
 			<File
 				RelativePath="..\lib\types.h"/>
 			<File
-				RelativePath="..\lib\unzip.cpp"/>
-			<File
-				RelativePath="..\lib\unzip.h"/>
-			<File
 				RelativePath="..\lib\vfs.cpp"/>
 			<File
 				RelativePath="..\lib\vfs.h"/>
@@ -323,6 +323,10 @@
 				RelativePath="..\lib\wsdl.cpp"/>
 			<File
 				RelativePath="..\lib\wsdl.h"/>
+			<File
+				RelativePath="..\lib\zip.cpp"/>
+			<File
+				RelativePath="..\lib\zip.h"/>
 			<Filter
 				Name="posix"
 				Filter="">

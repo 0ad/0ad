@@ -52,9 +52,9 @@ TDD at http://forums.wildfiregames.com/0ad
 #include "Singleton.h"
 #include "CStr.h"
 #include "LogFile.h"
-#include "..\lib\posix.h"
-#include "..\lib\unzip.h"
-#include "..\lib\misc.h"
+#include "posix.h"
+#include "zip.h"
+#include "misc.h"
 
 #include <vector>
 
