@@ -23,6 +23,8 @@ typedef struct _Config
 	const char** links;
 	const char* pchHeader;
 	const char* pchSource;
+	char* objdir;
+	int build; // 0 or 1, to indicate whether to include it in the default build
 	int numBuildFlags;
 	int numBuildOptions;
 	int numDefines;

@@ -35,6 +35,7 @@ static int  getDeepArraySize(int ref);
 static int  getObjectFromArray(int ref, int i);
 static const char* getString(int ref, char* name);
 static const char* getStringFromArray(int ref, int index);
+static double getNumber(int ref, char* name);
 
 static int  addoption(lua_State* L);
 static int  copyfile(lua_State* L);
@@ -337,6 +338,7 @@ static int finishProject()
 		for (j = 0; j < package->numConfigs; ++j)
 		{
 			int cfg;
+			const char* objdir;
 
 			Config* config = (Config*)malloc(sizeof(Config));
 			package->config[j] = config;
@@ -349,6 +351,17 @@ static int finishProject()
 			if (config->target == NULL) config->target = getString(pkg, "target");
 			if (config->target == NULL) config->target = package->name;
 
+			objdir = getString(cfg, "objdir");
+			if (objdir == NULL)
+			{
+				config->objdir = (char*)malloc(4+strlen(config->name)+1);
+				sprintf(config->objdir, "obj\\%s", config->name);
+			}
+			else
+			{
+				config->objdir = strdup(translatePath(objdir, NATIVE));
+			}
+
 			config->pchHeader = getString(cfg, "pchHeader");
 			if (!config->pchHeader)
 				config->pchHeader = getString(pkg, "pchHeader");
@@ -356,6 +369,13 @@ static int finishProject()
 			config->pchSource = getString(cfg, "pchSource");
 			if (!config->pchSource)
 				config->pchSource = getString(pkg, "pchSource");
+
+			if (getString(cfg, "build"))
+				config->build = (getNumber(cfg, "build") != 0.0);
+			else if (getString(pkg, "build"))
+				config->build = (getNumber(pkg, "build") != 0.0);
+			else
+				config->build = 1;
 
 			getConfigList(pkg, cfg, "buildflags", &config->buildFlags, &config->numBuildFlags);
 			getConfigList(pkg, cfg, "buildoptions", &config->buildOptions, &config->numBuildOptions);
@@ -392,6 +412,7 @@ void closeProject()
 			free((char**)config->linkFlags);
 			free((char**)config->linkOptions);
 			free((char**)config->links);
+			free((char*)config->objdir);
 			free(package->config[j]);
 		}
 		free(package->config);
@@ -483,6 +504,20 @@ static const char* getString(int ref, char* name)
 	lua_pop(L, 2);
 
 	return str;
+}
+
+//-----------------------------------------------------------------------------
+
+static double getNumber(int ref, char* name)
+{
+	double num;
+	lua_getref(L, ref);
+	lua_pushstring(L, name);
+	lua_gettable(L, -2);
+	num = lua_tonumber(L, -1);
+	lua_pop(L, 2);
+
+	return num;
 }
 
 //-----------------------------------------------------------------------------

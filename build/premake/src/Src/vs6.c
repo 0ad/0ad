@@ -292,7 +292,7 @@ static int writeVcProject(Package* package)
 			fprintf(file, reversePath(package->path, outdir, WIN32));
 			insertPath(file, getDirectory(config->target), WIN32);
 			fprintf(file, "\"\n");
-		fprintf(file, "# PROP Intermediate_Dir \"obj\\%s\\\"\n", config->name);
+		fprintf(file, "# PROP Intermediate_Dir \"%s\\\"\n", config->objdir);
 		if (strcmp(package->kind, "lib") != 0)
 			fprintf(file, "# PROP Ignore_Export_Lib %d\n", importlib ? 0 : 1);
 		fprintf(file, "# PROP Target_Dir \"\"\n");
@@ -470,7 +470,7 @@ static int writeCsProject(Package* package)
 			fprintf(file, reversePath(package->path, project->binaries, WIN32));
 			insertPath(file, getDirectory(config->target), WIN32);
 			fprintf(file, "\"\n");
-		fprintf(file, "# PROP Intermediate_Dir \"obj\\%s\"\n", config->name);
+		fprintf(file, "# PROP Intermediate_Dir \"%s\"\n", config->objdir);
 		fprintf(file, "# PROP Target_Dir \"\"\n");
 		fprintf(file, "# Begin Special Build Tool\n");
 		fprintf(file, "SOURCE=\"$(InputPath)\"\n");
@@ -484,7 +484,7 @@ static int writeCsProject(Package* package)
 			if (unsafe) fprintf(file, " /unsafe");
 			fprintf(file, " /lib:\"%s\"", reversePath(package->path, project->binaries, WIN32));
 			writeList(file, config->links, " /r:", ".dll", "", checkRef, &i);
-			fprintf(file, " obj\\%s\\*.cs\n", config->name);
+			fprintf(file, " %s\\*.cs\n", config->objdir);
 
 		fprintf(file, "# End Special Build Tool\n");
 		fprintf(file, "\n");
@@ -512,7 +512,7 @@ static int writeCsProject(Package* package)
 			fprintf(file, "!%s  \"$(CFG)\" == \"%s - Win32 %s\"", (i == 0 ? "IF" : "ELSEIF"), replaceChars(package->name,"-"), config->name);
 			fprintf(file, "\n");
 			fprintf(file, "# Begin Custom Build - %s\n", source);
-			fprintf(file, "IntDir=.\\obj\\%s\n", config->name);
+			fprintf(file, "IntDir=.\\%s\n", config->objdir);
 			fprintf(file, "InputPath=.\\%s\n", translatePath(source, WIN32));
 			fprintf(file, "\n");
 			fprintf(file, "\"$(INTDIR)\\%s\" : $(SOURCE) \"$(INTDIR)\" \"$(OUTDIR)\"\n", translatePath(source, WIN32));

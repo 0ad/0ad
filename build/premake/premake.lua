@@ -15,11 +15,12 @@ function setuppackage (projectname)
 	if (projectname == "sced") then
 		package.name = "sced"
 		exename = "sced"
-		objdirprefix = "ScEd_"
+		objdirprefix = "obj/ScEd_"
+		package.build = 0   -- Don't build Sced by default
 	else
 		package.name = "pyrogenesis"
 		exename = "ps"
-		objdirprefix = ""
+		objdirprefix = "obj/"
 	end
 
 	-- Windowed executable on windows, "exe" on all other platforms
@@ -32,7 +33,6 @@ function setuppackage (projectname)
 	package.config["Release"].target = exename
 	package.config["Testing"].target = exename.."_test"
 
-	-- TODO: Implement objdir in Premake
 	package.config["Debug"].objdir = objdirprefix.."Debug"
 	package.config["Release"].objdir  = objdirprefix.."Release"
 	package.config["Testing"].objdir = objdirprefix.."Testing"
@@ -225,4 +225,4 @@ function setuppackage (projectname)
 end
 
 setuppackage("pyrogenesis")
--- setuppackage("sced")
+setuppackage("sced")

@@ -205,7 +205,8 @@ static int writeSolution(int version)
 			Config* config = package->config[j];
 			PkgData* data = (PkgData*)package->data;
             fprintf(file, "\t\t{%s}.%s.ActiveCfg = %s|%s\n", data->projGuid, config->name, config->name, data->projType);
-			fprintf(file, "\t\t{%s}.%s.Build.0 = %s|%s\n", data->projGuid, config->name, config->name, data->projType);
+			if (config->build)
+				fprintf(file, "\t\t{%s}.%s.Build.0 = %s|%s\n", data->projGuid, config->name, config->name, data->projType);
 		}
 	}
 	fprintf(file, "\tEndGlobalSection\n");
@@ -411,7 +412,7 @@ static int writeVcProject(int version, Package* package)
 			fprintf(file, reversePath(path, (configType != 4 ? project->binaries : project->libraries), WIN32));
 			insertPath(file, getDirectory(config->target), WIN32);
 			fprintf(file, "\"\n");
-		fprintf(file, "            IntermediateDirectory=\"obj\\%s\\\"\n", config->name);
+		fprintf(file, "            IntermediateDirectory=\"%s\\\"\n", config->objdir);
 		fprintf(file, "            ConfigurationType=\"%d\"\n", configType);
 		fprintf(file, "            CharacterSet=\"2\"");
 		if (managed) fprintf(file, "\n            ManagedExtensions=\"TRUE\"");
@@ -490,7 +491,7 @@ static int writeVcProject(int version, Package* package)
 				}
 				else
 				{
-					fprintf(file, "                ProgramDatabaseFile=\"obj\\%s\\%s.pdb\"\n", config->name, getFilename(config->target, 0));
+					fprintf(file, "                ProgramDatabaseFile=\"%s\\%s.pdb\"\n", config->objdir, getFilename(config->target, 0));
 				}
 			}
 			fprintf(file, "                SubSystem=\"%d\"\n", subsystem);
