@@ -33,16 +33,18 @@ extern "C" {
 #endif
 
 
-
-/* Define _CRTIMP */
-
+// we define some CRT functions (e.g. access), because they're otherwise
+// only brought in by win-specific headers (here, <io.h>).
+// define correctly for static or DLL CRT in case the original header
+// is included, to avoid conflict warnings.
 #ifndef _CRTIMP
-#ifdef  _DLL
-#define _CRTIMP __declspec(dllimport)
-#else   /* ndef _DLL */
-#define _CRTIMP
-#endif  /* _DLL */
-#endif  /* _CRTIMP */
+# ifdef  _DLL
+#  define _CRTIMP __declspec(dllimport)
+# else
+#  define _CRTIMP
+# endif 
+#endif
+
 
 //
 // <inttypes.h>
@@ -164,7 +166,10 @@ typedef unsigned int mode_t;
 
 // VC libc includes stat, but it's quite slow.
 // we implement our own, but use the CRT struct definition.
+// rename the VC function definition to avoid conflict.
+#define stat vc_stat
 #include <sys/stat.h>
+#undef stat
 
 extern int mkdir(const char*, mode_t);
 
@@ -222,7 +227,11 @@ extern int munmap(void* start, size_t len);
 
 #define O_NONBLOCK     0x1000000
 
-_CRTIMP int open(const char* fn, int mode, ...);
+// redefinition error here => io.h is getting included somewhere.
+// we implement this function, so the io.h definition conflicts if
+// compiling against the DLL CRT. either rename the io.h def
+// (as with vc_stat), or don't include io.h.
+extern int open(const char* fn, int mode, ...);
 
 
 //
@@ -240,7 +249,11 @@ _CRTIMP int open(const char* fn, int mode, ...);
 #define read _read
 #define write _write
 
-_CRTIMP int close(int);
+// redefinition error here => io.h is getting included somewhere.
+// we implement this function, so the io.h definition conflicts if
+// compiling against the DLL CRT. either rename the io.h def
+// (as with vc_stat), or don't include io.h.
+extern int close(int);
 _CRTIMP int access(const char*, int);
 
 extern int chdir(const char*);

@@ -95,48 +95,57 @@ void wdebug_out(const wchar_t* fmt, ...)
 }
 
 
+///////////////////////////////////////////////////////////////////////////////
+//
+// init and shutdown mechanism
+//
+///////////////////////////////////////////////////////////////////////////////
 
 
+// each module has the linker add a pointer to its init and shutdown
+// function to a table (at a user-defined position).
+// zero runtime overhead, and there's no need for a central dispatcher
+// that knows about all the modules.
+//
+// disadvantage: requires compiler support (MS VC-specific).
+//
+// alternatives:
+// - initialize via constructor. however, that would leave the problem of
+//   shutdown order and timepoint, which is also taken care of here.
+// - register init/shutdown functions from a NLSO constructor:
+//   clunky, and setting order is more complicated.
+// - on-demand initialization: complicated; don't know in what order
+//   things happen. also, no way to determine how long init takes.
 
+typedef int(*_PIFV)(void);
 
-static Modules modules;
+// pointers to start and end of function tables.
+// note: COFF throws out empty segments, so we have to put in one value
+// (zero, because call_func_tbl has to ignore NULL entries anyway).
+#pragma data_seg(".LIB$WIA")
+_PIFV init_begin[] = { 0 };
+#pragma data_seg(".LIB$WIZ")
+_PIFV init_end[] = { 0 };
+#pragma data_seg(".LIB$WTA")
+_PIFV shutdown_begin[] = { 0 };
+#pragma data_seg(".LIB$WTZ")
+_PIFV shutdown_end[] = { 0 };
+#pragma data_seg()
 
+#pragma comment(linker, "/merge:.LIB=.data")
 
-int add_module(int(*pre_main)(), int(*at_exit)())
+// call all non-NULL function pointers in [begin, end).
+// note: the range may be larger than expected due to section padding.
+// that (and the COFF empty section problem) is why we need to ignore zeroes.
+static void call_func_tbl(_PIFV* begin, _PIFV* end)
 {
-	win_lock(WIN_CS);
-	struct ModuleCallbacks cbs = { pre_main, at_exit };
-	if(modules.count >= MAX_MODULES)
-		debug_warn("increase MAX_MODULES");
-	else
-		modules.cbs[modules.count++] = cbs;
-	win_unlock(WIN_CS);
-	return 0;
+	for(_PIFV* p = begin; p < end; p++)
+		if(*p)
+			(*p)();
 }
 
-static int call_module_funcs(bool pre_main)
-{
-	if(pre_main)
-	{
-		for(size_t i = 0; i < modules.count; i++)
-			modules.cbs[i].pre_main();
-	}
-	else
-	{
-		size_t i = modules.count;
-		for(;;)
-		{
-			modules.cbs[--i].at_exit();
-			if(!i)
-				break;
-		}
-	}
 
-	return 0;
-}
-
-
-
+///////////////////////////////////////////////////////////////////////////////
 
 
 // locking for win-specific code
@@ -160,6 +169,8 @@ void win_unlock(uint idx)
 }
 
 
+///////////////////////////////////////////////////////////////////////////////
+
 
 // entry -> pre_libc -> WinMainCRTStartup -> WinMain -> pre_main -> main
 // at_exit is called as the last of the atexit handlers
@@ -171,7 +182,7 @@ void win_unlock(uint idx)
 
 static void at_exit(void)
 {
-	call_module_funcs(false);
+	call_func_tbl(shutdown_begin, shutdown_end);
 
 	for(int i = 0; i < NUM_CS; i++)
 		DeleteCriticalSection(&cs[i]);
@@ -189,14 +200,14 @@ static inline void pre_libc_init()
 static inline void pre_main_init()
 {
 #ifdef PARANOIA
-	// force malloc et al to check the heap every call.
+	// force malloc et al. to check the heap every call.
 	// slower, but reports errors closer to where they occur.
 	uint flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
 	flags |= _CRTDBG_CHECK_ALWAYS_DF | _CRTDBG_DELAY_FREE_MEM_DF;
 	_CrtSetDbgFlag(flags);
 #endif
 
-	call_module_funcs(true);
+	call_func_tbl(init_begin, init_end);
 
 	atexit(at_exit);
 
@@ -231,11 +242,3 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	pre_main_init();
 	return main(__argc, __argv);
 }
-
-
-
-
-
-
-
-#pragma comment(lib, "delayimp.lib")

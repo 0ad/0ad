@@ -21,14 +21,19 @@
 #include "lib.h"
 #include "win_internal.h"
 
-#include <io.h>
-
 #include <assert.h>
 #include <stdlib.h>
 
 
 #define lock() win_lock(WAIO_CS)
 #define unlock() win_unlock(WAIO_CS)
+
+
+#pragma data_seg(".LIB$WIC")
+WIN_REGISTER_FUNC(waio_init);
+#pragma data_seg(".LIB$WTX")
+WIN_REGISTER_FUNC(waio_shutdown);
+#pragma data_seg()
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -278,8 +283,6 @@ debug_out("req_free  cb=%p r=%p\n", r->cb, r);
 static size_t sector_size = 4096;	// minimum: one page
 
 
-WIN_REGISTER_MODULE(waio);
-
 // caller ensures this is not re-entered!
 static int waio_init()
 {
@@ -326,7 +329,6 @@ static int waio_shutdown()
 	aio_h_cleanup();
 	return 0;
 }
-
 
 
 int aio_assign_handle(uintptr_t handle)

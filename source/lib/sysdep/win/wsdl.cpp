@@ -44,6 +44,13 @@
 #endif
 
 
+#pragma data_seg(".LIB$WIA")
+WIN_REGISTER_FUNC(wsdl_init);
+#pragma data_seg(".LIB$WTA")
+WIN_REGISTER_FUNC(wsdl_shutdown);
+#pragma data_seg()
+
+
 /* state */
 static bool app_active;		/* is window active & on top?
 							   if not, msg loop should yield */
@@ -380,10 +387,6 @@ int SDL_GL_SetAttribute(SDL_GLattr attr, int value)
 	return 0;
 }
 
-
-WIN_REGISTER_MODULE(wsdl);
-
-#include <io.h>
 
 // SDL redirects stdout.txt in its WinMain hook. we need to do this
 // here (before main is called), instead of in SDL_Init,

@@ -30,6 +30,13 @@
 #include <numeric>
 
 
+#pragma data_seg(".LIB$WIA")
+WIN_REGISTER_FUNC(wtime_init);
+#pragma data_seg(".LIB$WTA")
+WIN_REGISTER_FUNC(wtime_shutdown);
+#pragma data_seg()
+
+
 // we no longer use TGT, due to issues on Win9x; GTC is just as good.
 // (don't want to accelerate the tick rate, because performance will suffer).
 // avoid dependency on WinMM (event timer) to shorten startup time;
@@ -569,8 +576,6 @@ static i64 hrt_time_ns()
 
 
 
-
-WIN_REGISTER_MODULE(wtime);
 
 static int wtime_init()
 {

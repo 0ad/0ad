@@ -20,12 +20,19 @@
 #include "win_internal.h"
 #include "lib.h"
 #include "wsock.h"
+#include "wdll.h"
 
 #include <assert.h>
 
 #ifdef _MSC_VER
 #pragma comment(lib, "ws2_32.lib")
 #endif
+
+
+#pragma data_seg(".LIB$WTA")
+WIN_REGISTER_FUNC(wsock_shutdown);
+#pragma data_seg()
+
 
 static bool wsock_initialized;
 
@@ -43,8 +50,6 @@ const struct in6_addr in6addr_any = IN6ADDR_ANY_INIT;        /* :: */
 const struct in6_addr in6addr_loopback = IN6ADDR_LOOPBACK_INIT;   /* ::1 */
 
 
-WIN_REGISTER_MODULE(wsock);
-
 static int wsock_init()
 {
 /*
@@ -60,6 +65,11 @@ static int wsock_init()
 		// doesn't complain. it won't actually be unloaded anyway -
 		// there is at least one other reference.
 */
+	char d[1024];
+	if(WSAStartup(0x0002, d) == 0)	// want 2.0
+		wsock_initialized = true;
+
+
 	return 0;
 }
 
@@ -76,23 +86,4 @@ uint16_t htons(uint16_t s)
 	return (s >> 8) | ((s & 0xff) << 8);
 }
 
-
-
-
-
-
-#include <delayimp.h>
-
-static FARPROC WINAPI delay_load_hook(unsigned dliNotify, PDelayLoadInfo pdli)
-{
-	if(dliNotify == dliNoteEndProcessing && !strncmp(pdli->szDll, "ws2_32", 6))
-	{
-		char d[1024];
-		if(WSAStartup(0x0002, d) == 0)	// want 2.0
-			wsock_initialized = true;
-	}
-
-	return 0;
-}
-
-ExternC PfnDliHook __pfnDliNotifyHook2 = delay_load_hook;
+WDLL_LOAD_NOTIFY("ws2_32", wsock_init);
