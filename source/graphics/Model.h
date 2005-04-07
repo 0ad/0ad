@@ -52,16 +52,16 @@ public:
 
 	// set the model's texture
 	void SetTexture(const CTexture& tex) { m_Texture=tex; }
-    // set the model's material
-    void SetMaterial(const CMaterial &material);
-	// set the model's player ID
-	void SetPlayerID(PS_uint id) { m_PlayerID=id; }
+	// set the model's material
+	void SetMaterial(const CMaterial &material);
+	// set the model's player ID, recursively through props
+	void SetPlayerID(int id);
+	// set the model's player colour
+	void SetPlayerColor(CColor& colour);
 	// get the model's texture
 	CTexture* GetTexture() { return &m_Texture; }
-    // get the models material
-    CMaterial &GetMaterial() { return m_Material; }
-	// get the model's player ID
-	PS_uint GetPlayerID() { return m_PlayerID; }
+	// get the models material
+	CMaterial &GetMaterial() { return m_Material; }
 
 	// set the given animation as the current animation on this model
 	bool SetAnimation(CSkeletonAnim* anim, bool once = false); 
@@ -125,10 +125,8 @@ private:
 	u32 m_Flags;
 	// texture used by model
 	CTexture m_Texture;
-    // model's material
-    CMaterial m_Material;
-	// model's player ID - used for entities in the renderer
-	PS_uint m_PlayerID;
+	// model's material
+	CMaterial m_Material;
 	// pointer to the model's raw 3d data
 	CModelDefPtr m_pModelDef;
 	// object space bounds of model - accounts for bounds of all possible animations

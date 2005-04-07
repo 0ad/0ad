@@ -39,6 +39,7 @@ public:
 		int m_Frequency;
 		CStr m_ModelFilename;
 		CStr m_TextureFilename;
+		CStr m_Color;
 
 		std::vector<Anim> m_Anims;
 		std::vector<Prop> m_Props;

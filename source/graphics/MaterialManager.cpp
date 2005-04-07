@@ -169,26 +169,26 @@ CMaterialManager::~CMaterialManager()
 
 CMaterial &CMaterialManager::LoadMaterial(const char *file)
 {
-    if(!strlen(file))
-        return NullMaterial;
+	if(!strlen(file))
+		return NullMaterial;
 
-    std::map<std::string, CMaterial *>::iterator iter;
-    if((iter = m_Materials.find(std::string(file))) != m_Materials.end())
-    {
-        if((*iter).second)
-            return *(*iter).second;
-    }
+	std::map<std::string, CMaterial *>::iterator iter;
+	if((iter = m_Materials.find(std::string(file))) != m_Materials.end())
+	{
+		if((*iter).second)
+			return *(*iter).second;
+	}
 
 	CXeromyces xeroFile;
 	if(xeroFile.Load(file) != PSRETURN_OK)
-        return NullMaterial;
+		return NullMaterial;
 
 	#define EL(x) int el_##x = xeroFile.getElementID(#x)
 	#define AT(x) int at_##x = xeroFile.getAttributeID(#x)
 	EL(texture);
-    EL(vertexprogram);
-    EL(fragmentprogram);
-	
+	EL(vertexprogram);
+	EL(fragmentprogram);
+
 	EL(colors);
 	AT(diffuse);
 	AT(ambient);
@@ -209,65 +209,66 @@ CMaterial &CMaterialManager::LoadMaterial(const char *file)
 		XMBElementList childNodes = root.getChildNodes();
 		material = new CMaterial();
 
-		for(i32 i = 0; i < childNodes.Count; i++)
+		for(int i = 0; i < childNodes.Count; i++)
 		{
 			XMBElement node = childNodes.item(i);
 			int token = node.getNodeName();
-            XMBAttributeList attrs = node.getAttributes();
-            CStr temp;
-            if(token == el_texture)
-            {
-                CStr value(node.getText());
-                material->SetTexture(value);
-            
-            }
-            else if(token == el_vertexprogram)
-            {
-                CStr value(node.getText());
-                material->SetVertexProgram(value);
-            }
-            else if(token == el_fragmentprogram)
-            {
-                CStr value(node.getText());
-                material->SetFragmentProgram(value);
-            }
+			XMBAttributeList attrs = node.getAttributes();
+			CStr temp;
+			if(token == el_texture)
+			{
+				CStr value(node.getText());
+				material->SetTexture(value);
+			}
+			else if(token == el_vertexprogram)
+			{
+				CStr value(node.getText());
+				material->SetVertexProgram(value);
+			}
+			else if(token == el_fragmentprogram)
+			{
+				CStr value(node.getText());
+				material->SetFragmentProgram(value);
+			}
 			else if(token == el_colors)
 			{
 				temp = (CStr)attrs.getNamedItem(at_diffuse);
 				if(temp.Length() > 0)
 					material->SetDiffuse(ParseColor(temp));
 
-                temp = (CStr)attrs.getNamedItem(at_ambient);
-                if(temp.Length() > 0)
-                    material->SetAmbient(ParseColor(temp));
+				temp = (CStr)attrs.getNamedItem(at_ambient);
+				if(temp.Length() > 0)
+					material->SetAmbient(ParseColor(temp));
 
-                temp = (CStr)attrs.getNamedItem(at_specular);
-                if(temp.Length() > 0)
-                    material->SetSpecular(ParseColor(temp));
+				temp = (CStr)attrs.getNamedItem(at_specular);
+				if(temp.Length() > 0)
+					material->SetSpecular(ParseColor(temp));
 
-                temp = (CStr)attrs.getNamedItem(at_specularpower);
-                if(temp.Length() > 0)
-                    material->SetSpecularPower(ClampFloat(temp.ToFloat(), 0.0f, 1.0f));
+				temp = (CStr)attrs.getNamedItem(at_specularpower);
+				if(temp.Length() > 0)
+					material->SetSpecularPower(ClampFloat(temp.ToFloat(), 0.0f, 1.0f));
 			}
-            else if(token == el_alpha)
-            {
-                temp = (CStr)attrs.getNamedItem(at_usage);
+			else if(token == el_alpha)
+			{
+				temp = (CStr)attrs.getNamedItem(at_usage);
 
 				// Determine whether the alpha is used for basic transparency or player color
-				if (temp == CStr("playercolor"))
-					material->SetIsPlayer(true);
+				if (temp == "playercolor")
+					material->SetPlayerColor_PerPlayer();
+				else if (temp == "objectcolor")
+					material->SetPlayerColor_PerObject();
 				else
 					material->SetUsesAlpha(ParseUsage(temp));
-            }
+			}
 		}
 
-        m_Materials[std::string(file)] = material;
+		m_Materials[file] = material;
 	}
-    catch(...)
-    {
-        SAFE_DELETE(material);
-        throw;
-    }
+	catch(...)
+	{
+		SAFE_DELETE(material);
+		throw;
+	}
 
-    return *material;
+	return *material;
 }

@@ -25,7 +25,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Constructor
 CModel::CModel() 
-	: m_Flags(0), m_PlayerID(0), m_Anim(0), m_AnimTime(0), 
+	: m_Flags(0), m_Anim(0), m_AnimTime(0), 
 	m_BoneMatrices(0), m_InvBoneMatrices(0), m_BoneMatricesValid(false)
 {
 }
@@ -370,11 +370,10 @@ CModel* CModel::Clone() const
 	if (m_Texture.GetHandle()) h_add_ref(m_Texture.GetHandle());
 	clone->SetMaterial(m_Material);
 	clone->SetAnimation(m_Anim);
-	clone->SetPlayerID(m_PlayerID);
 	clone->SetFlags(m_Flags);
 	for (uint i=0;i<m_Props.size();i++) {
 		// eek!  TODO, RC - need to investigate shallow clone here
-		clone->AddProp(m_Props[i].m_Point,m_Props[i].m_Model->Clone());
+		clone->AddProp(m_Props[i].m_Point, m_Props[i].m_Model->Clone());
 	}
 	return clone;
 }
@@ -404,10 +403,24 @@ void CModel::SetTransform(const CMatrix3D& transform)
 	}
 }
 
+//////////////////////////////////////////////////////////////////////////
+
 void CModel::SetMaterial(const CMaterial &material)
 {
 	m_Material = material;
 	if(m_Material.GetTexture().Trim(PS_TRIM_BOTH).Length() > 0)
 	{
 	}
+}
+
+void CModel::SetPlayerID(int id)
+{
+	m_Material.SetPlayerColor(id);
+	for (std::vector<Prop>::iterator it = m_Props.begin(); it != m_Props.end(); ++it)
+		it->m_Model->SetPlayerID(id);
+}
+
+void CModel::SetPlayerColor(CColor& colour)
+{
+	m_Material.SetPlayerColor(colour);
 }

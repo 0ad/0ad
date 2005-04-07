@@ -12,7 +12,7 @@ by Rich Cross, rich@0ad.wildfiregames.com
 #ifndef COVERLAY_H
 #define COVERLAY_H
 
-#include "lib.h"
+#include "types.h"
 
 struct CColor
 {
@@ -52,7 +52,7 @@ class CSize;
 /**
  * @author Gustav Larsson
  *
- * Rectangle class used for screen rectangles. It's very similiar to the MS
+ * Rectangle class used for screen rectangles. It's very similar to the MS
  * CRect, but with FLOATS because it's meant to be used with OpenGL which
  * takes float values.
  *

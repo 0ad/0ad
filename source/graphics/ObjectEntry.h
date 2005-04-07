@@ -7,6 +7,7 @@ class CSkeletonAnim;
 #include <vector>
 #include "CStr.h"
 #include "ObjectBase.h"
+#include "Overlay.h"
 
 class CObjectEntry
 {
@@ -26,6 +27,8 @@ public:
 	CStr m_TextureName;
 	// model name
 	CStr m_ModelName;
+	// colour (used when doing alpha-channel colouring, but not doing player-colour)
+	CColor m_Color;
 	// list of valid animations for this object
 	std::vector<CObjectBase::Anim> m_Animations;
 	CSkeletonAnim* m_IdleAnim;

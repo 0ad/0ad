@@ -75,7 +75,7 @@ void CPlayerRenderer::Render()
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
 
 	// Set the proper LOD bias
-	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS,  g_Renderer.m_Options.m_LodBias);
+	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
 
 	// Render two passes: first, render the unit as normal. Second,
 	// render it again but modulated with the player-colour, using
@@ -207,12 +207,9 @@ void CPlayerRenderer::RenderObjectsStreams(u32 streamflags, bool iscolorpass, u3
 				// If I am wrong, then just move everything except for the 
 				// SetupColorRenderStates() below this if statement.
 
-				// Get the models player ID
-				PS_uint playerid = m_Objects[i].m_Model->GetPlayerID();
-
 				// Get the player color
-				const SPlayerColour& colour = g_Game->GetPlayer( playerid )->GetColour();
-				float color[] = { colour.r, colour.g, colour.b, colour.a };
+				SMaterialColor colour = m_Objects[i].m_Model->GetMaterial().GetPlayerColor();
+				float* color = &colour.r; // because it's stored RGBA
 
 				// Just like it says, Sets up the player color render states
 				SetupColorRenderStates();

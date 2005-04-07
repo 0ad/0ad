@@ -21,7 +21,7 @@
 
 
 CObjectEntry::CObjectEntry(int type, CObjectBase* base)
-: m_Model(0), m_Type(type), m_Base(base)
+: m_Model(0), m_Type(type), m_Base(base), m_Color(1.0f, 1.0f, 1.0f, 1.0f)
 {
 	m_IdleAnim=0;
 	m_WalkAnim=0;
@@ -44,6 +44,7 @@ bool CObjectEntry::BuildRandomVariant(CObjectBase::variation_key& vars, CObjectB
 {
 	CStr chosenTexture;
 	CStr chosenModel;
+	CStr chosenColor;
 	std::map<CStr, CObjectBase::Prop> chosenProps;
 	std::map<CStr, CObjectBase::Anim> chosenAnims;
 
@@ -72,6 +73,9 @@ bool CObjectEntry::BuildRandomVariant(CObjectBase::variation_key& vars, CObjectB
 		if (var.m_ModelFilename.Length())
 			chosenModel = var.m_ModelFilename;
 
+		if (var.m_Color.Length())
+			chosenColor = var.m_Color;
+
 		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 			chosenProps[it->m_PropPointName] = *it;
 
@@ -83,6 +87,17 @@ bool CObjectEntry::BuildRandomVariant(CObjectBase::variation_key& vars, CObjectB
 
 	m_TextureName = chosenTexture;
 	m_ModelName = chosenModel;
+
+	if (chosenColor.Length())
+	{
+		std::stringstream str;
+		str << chosenColor;
+		int r, g, b;
+		if (! (str >> r >> g >> b)) // Any trailing data is ignored
+			LOG(ERROR, LOG_CATEGORY, "Invalid RGB colour '%s'", chosenColor.c_str());
+		else
+			m_Color = CColor(r/255.0f, g/255.0f, b/255.0f, 1.0f);
+	}
 
 	for (std::map<CStr, CObjectBase::Prop>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
 		m_Props.push_back(it->second);
@@ -117,6 +132,7 @@ bool CObjectEntry::BuildRandomVariant(CObjectBase::variation_key& vars, CObjectB
 	m_Model->SetTexture((const char*) m_TextureName);
 	m_Model->SetMaterial(g_MaterialManager.LoadMaterial(m_Base->m_Material));
 	m_Model->InitModel(modeldef);
+	m_Model->SetPlayerColor(m_Color);
 
 	// calculate initial object space bounds, based on vertex positions
 	m_Model->CalcObjectBounds();
