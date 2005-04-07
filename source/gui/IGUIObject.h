@@ -37,6 +37,8 @@ gee@pyro.nu
 #include <vector>
 #include "lib/input.h" // just for EV_PASS
 
+#include "ps/Xeromyces.h"
+
 #include "gui/scripting/JSInterface_IGUIObject.h"
 
 struct SGUISetting;
@@ -316,7 +318,7 @@ protected:
 	 *
 	 * @param Message GUI Message
 	 */
-	virtual void HandleMessage(const SGUIMessage& UNUSEDPARAM(Message)) {};
+	virtual void HandleMessage(const SGUIMessage& UNUSEDPARAM(Message)) {}
 
 	/**
 	 * Draws the object.
@@ -415,6 +417,17 @@ protected:
 	 * Get Mouse from CGUI.
 	 */
 	CPos GetMousePos() const;
+
+	/**
+	 * Handle additional children to the <object>-tag. In IGUIObject, this function does
+	 * nothing. In CList and CDropDown, it handles the <item>, used to build the data.
+	 *
+	 * Returning false means the object doesn't recognize the child. Should be reported.
+	 * Notice 'false' is default, because an object not using this function, should not
+	 * have any additional children (and this function should never be called).
+	 */
+	virtual bool HandleAdditionalChildren(const XMBElement& UNUSEDPARAM(child), 
+										  CXeromyces* UNUSEDPARAM(pFile)) { return false; }
 
 	/**
 	 * Cached size, real size m_Size is actually dependent on resolution

@@ -18,7 +18,7 @@ IGUITextOwner::IGUITextOwner()
 
 IGUITextOwner::~IGUITextOwner()
 {
-	// Delete scroll-bars
+	// Delete all generated texts.
 	vector<SGUIText*>::iterator it;
 	for (it=m_GeneratedTexts.begin(); it!=m_GeneratedTexts.end(); ++it)
 	{

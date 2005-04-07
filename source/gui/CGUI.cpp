@@ -21,6 +21,7 @@ gee@pyro.nu
 #include "CCheckBox.h"
 #include "CRadioButton.h"
 #include "CInput.h"
+#include "CList.h"
 #include "CProgressBar.h"
 #include "CTooltip.h"
 #include "MiniMap.h"
@@ -329,6 +330,7 @@ void CGUI::Initialize()
 	AddObjectType("progressbar",	&CProgressBar::ConstructObject);
     AddObjectType("minimap",        &CMiniMap::ConstructObject);
 	AddObjectType("input",			&CInput::ConstructObject);
+	AddObjectType("list",			&CList::ConstructObject);
 }
 
 void CGUI::Process()
@@ -1229,11 +1231,6 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 
 		if (element_name == elmt_object)
 		{
-			//debug_warn("CGUI::Xeromyces_ReadObject error");
-				// janwas: this happens but looks to be handled
-
-			// TODO Gee: REPORT ERROR
-
 			// Call this function on the child
 			Xeromyces_ReadObject(child, pFile, object);
 		}
@@ -1264,6 +1261,14 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 
 			CStr action = (CStr)child.getAttributes().getNamedItem(attr_on);
 			object->RegisterScriptHandler(action.LowerCase(), code, this);
+		}
+		else
+		{
+			// Try making the object read the tag.
+			if (!object->HandleAdditionalChildren(child, pFile))
+			{
+				LOG(ERROR, LOG_CATEGORY, "(object: %s) Reading unknown children for its type");
+			}
 		}
 	} 
 
@@ -1655,42 +1660,42 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 		if (attr_name == "sprite_button_top")
 			scrollbar.m_SpriteButtonTop = attr_value;
 		else
-		if (attr_name == "sprite_button_top-pressed")
+		if (attr_name == "sprite_button_top_pressed")
 			scrollbar.m_SpriteButtonTopPressed = attr_value;
 		else
-		if (attr_name == "sprite_button_top-disabled")
+		if (attr_name == "sprite_button_top_disabled")
 			scrollbar.m_SpriteButtonTopDisabled = attr_value;
 		else
-		if (attr_name == "sprite_button_top-over")
+		if (attr_name == "sprite_button_top_over")
 			scrollbar.m_SpriteButtonTopOver = attr_value;
 		else
 		if (attr_name == "sprite_button_bottom")
 			scrollbar.m_SpriteButtonBottom = attr_value;
 		else
-		if (attr_name == "sprite_button_bottom-pressed")
+		if (attr_name == "sprite_button_bottom_pressed")
 			scrollbar.m_SpriteButtonBottomPressed = attr_value;
 		else
-		if (attr_name == "sprite_button_bottom-disabled")
+		if (attr_name == "sprite_button_bottom_disabled")
 			scrollbar.m_SpriteButtonBottomDisabled = attr_value;
 		else
-		if (attr_name == "sprite_button_bottom-over")
+		if (attr_name == "sprite_button_bottom_over")
 			scrollbar.m_SpriteButtonBottomOver = attr_value;
 		else
 		if (attr_name == "sprite_back_vertical")
 			scrollbar.m_SpriteBackVertical = attr_value;
 		else
-		if (attr_name == "sprite_bar-vertical")
+		if (attr_name == "sprite_bar_vertical")
 			scrollbar.m_SpriteBarVertical = attr_value;
 		else
-		if (attr_name == "sprite_bar-vertical-over")
+		if (attr_name == "sprite_bar_vertical_over")
 			scrollbar.m_SpriteBarVerticalOver = attr_value;
 		else
-		if (attr_name == "sprite_bar-vertical-pressed")
+		if (attr_name == "sprite_bar_vertical_pressed")
 			scrollbar.m_SpriteBarVerticalPressed = attr_value;
 	}
 
 	//
-	//	Add to CGUI
+	//	Add to CGUI 
 	//
 
 	m_ScrollBarStyles[name] = scrollbar;

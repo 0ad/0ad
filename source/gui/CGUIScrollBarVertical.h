@@ -82,7 +82,6 @@ public:
 	 */
 	void SetRightAligned(const bool &align) { m_RightAligned = align; }
 
-protected:
 	/**
 	 * Get the rectangle of the actual BAR.
 	 * @return Rectangle, CRect
@@ -96,6 +95,7 @@ protected:
 	 */
 	virtual CRect GetOuterRect() const;
 
+protected:
 	/**
 	 * Should the scroll bar proceed to the left or to the right of the m_X value.
 	 * Notice, this has nothing to do with where the owner places it.

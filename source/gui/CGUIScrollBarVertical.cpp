@@ -7,6 +7,9 @@ gee@pyro.nu
 #include "precompiled.h"
 #include "GUI.h"
 
+#include "ps/CLogger.h"
+#define LOG_CATEGORY "gui"
+
 using namespace std;
 
 CGUIScrollBarVertical::CGUIScrollBarVertical()
@@ -38,7 +41,7 @@ void CGUIScrollBarVertical::Draw()
 		CRect outline = GetOuterRect();
 
 		// Draw background
-		GetGUI()->DrawSprite(GetStyle()->m_SpriteBackVertical,
+		/*GetGUI()->DrawSprite(GetStyle()->m_SpriteBackVertical,
 							 0,
 							 m_Z+0.1f, 
 							 CRect(outline.left,
@@ -46,7 +49,7 @@ void CGUIScrollBarVertical::Draw()
 								   outline.right,
 								   outline.bottom-(m_UseEdgeButtons?GetStyle()->m_Width:0))
 							 );
-
+*/
 		if (m_UseEdgeButtons)
 		{
 			// Get Appropriate sprites
@@ -93,8 +96,12 @@ void CGUIScrollBarVertical::Draw()
 								);
 		}
 
+		LOG(ERROR, LOG_CATEGORY, "GetBarRect(%f,%f,%f,%f)", GetBarRect().left, GetBarRect().top, GetBarRect().right, GetBarRect().bottom);
+		LOG(ERROR, LOG_CATEGORY, "m_SpriteBarVertical = %s", GetStyle()->m_SpriteBarVertical.GetName().c_str());
+		LOG(ERROR, LOG_CATEGORY, "m_SpriteBackVertical = %s", GetStyle()->m_SpriteBackVertical.GetName().c_str());
+
 		// Draw bar
-		if (m_BarPressed)
+		/*if (m_BarPressed)
 			GetGUI()->DrawSprite(GUI<>::FallBackSprite(GetStyle()->m_SpriteBarVerticalPressed, GetStyle()->m_SpriteBarVertical),
 								 0,
 								 m_Z+0.2f,
@@ -105,7 +112,7 @@ void CGUIScrollBarVertical::Draw()
 								 0,
 								 m_Z+0.2f,
 								 GetBarRect());
-		else
+		else*/
 			GetGUI()->DrawSprite(GetStyle()->m_SpriteBarVertical,
 								 0,
 								 m_Z+0.2f,

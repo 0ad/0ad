@@ -295,12 +295,6 @@ public:
 	 */
 	SGUIScrollBarStyle * GetStyle() const;
 
-protected:
-	/**
-	 * Sets up bar size
-	 */
-	void SetupBarSize();
-
 	/**
 	 * Get the rectangle of the actual BAR. not the whole scroll-bar.
 	 * @return Rectangle, CRect
@@ -313,6 +307,12 @@ protected:
 	 * @return Rectangle, CRect
 	 */
 	virtual CRect GetOuterRect() const = 0;
+
+protected:
+	/**
+	 * Sets up bar size
+	 */
+	void SetupBarSize();
 
 	/**
 	 * Call every time m_Pos has been updated.
