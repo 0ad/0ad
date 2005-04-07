@@ -72,7 +72,7 @@
   file					CDATA #IMPLIED
 >
 
-<!ELEMENT object (#PCDATA|object|action)*>
+<!ELEMENT object (#PCDATA|object|action|item)*> <!-- 'item' is used by "list" and "dropdown" -->
 <!ATTLIST object 
   %unique_settings;
   %base_settings;
@@ -83,6 +83,11 @@
   on					CDATA #REQUIRED
   file					CDATA #IMPLIED
 >
+<!ELEMENT item (#PCDATA)>
+<!ATTLIST item
+  enabled				%bool; #IMPLIED
+>
+
 
 <!--
 	<styles>
