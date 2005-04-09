@@ -34,96 +34,7 @@ enum TNodeType
 
 //////////////////////////////////////////////////////////////////////////////
 //
-//
-//
-//////////////////////////////////////////////////////////////////////////////
-
-
-class TChildren
-{
-public: // xxx
-	TNode** tbl;
-	short num_entries;
-	short max_entries;	// when initialized, = 2**n for faster modulo
-
-public:
-	void init();
-	void clear();
-	TNode** get_slot(const char* fn);
-	bool expand_tbl();
-	TNode* add(const char* fn);
-	TNode* find(const char* fn);
-
-	size_t size()
-	{
-		return num_entries;
-	}
-
-	class iterator;
-	iterator begin() const;
-	iterator end() const;
-};
-
-typedef TChildren::iterator TChildIt;
-
-
-
-
-class TDir
-{
-public:
-
-	// if exactly one real directory is mounted into this virtual dir,
-	// this points to its location. used to add files to VFS when writing.
-	//
-	// the TMountPoint is actually in the mount info and is invalid when
-	// that's unmounted, but the VFS would then be rebuilt anyway.
-	//
-	// = 0 if no real dir mounted here; = -1 if more than one.
-	const TMountPoint* mount_point;
-
-#ifndef NO_DIR_WATCH
-	intptr_t watch;
-#endif
-	TChildren children;
-
-	// documented below
-	void init();
-	TNode* find(const char* fn, TNodeType desired_type);
-	TNode* add(const char* fn, TNodeType new_type);
-	int mount(const char* path, const TMountPoint*, bool watch);
-	int lookup(const char* path, uint flags, TNode** pnode, char* exact_path);
-	void clearR();
-	void displayR(int indent_level);
-};
-
-
-
-// can't inherit, since exact_name must come at end of record
-struct TNode
-{
-	// must be at start of TNode to permit casting back and forth!
-	// (see TDir::lookup)
-	union TNodeUnion
-	{
-		TDir dir;
-		TFile file;
-	} u;
-
-	TNodeType type;
-
-	//used by callers needing the exact case,
-	// e.g. for case-sensitive syscalls; also key for lookup
-	// set by TChildren
-	char exact_name[1];
-};
-
-
-
-
-//////////////////////////////////////////////////////////////////////////////
-//
-// "bucket" allocator for TNodes; used by TChildren
+// "bucket" allocator for TNodes; used by DynHashTbl
 //
 //////////////////////////////////////////////////////////////////////////////
 
@@ -143,7 +54,7 @@ TNode* node_alloc(size_t size)
 	}
 
 	size = round_up(size, 8);
-		// ensure alignment, since size includes a string
+	// ensure alignment, since size includes a string
 	const uintptr_t addr = (uintptr_t)bucket_pos;
 	const size_t bytes_used = addr % BUCKET_SIZE;
 	// addr = 0 on first call (no bucket yet allocated)
@@ -179,185 +90,278 @@ void node_free_all()
 }
 
 
+
 //////////////////////////////////////////////////////////////////////////////
 //
-// TChildren implementation
+//
 //
 //////////////////////////////////////////////////////////////////////////////
 
+typedef TNode* T;
+typedef const char* Key;
 
+static const size_t n = 16;
 
-class TChildren::iterator
+static inline Key GetKey(const T t);
+static inline bool Eq(const Key k1, const Key k2);
+static inline u32 Hash(const Key key);
+
+class DynHashTbl
 {
+	T* tbl;
+	short num_entries;
+	short max_entries;	// when initialized, = 2**n for faster modulo
+
+	bool expand_tbl()
+	{
+		// alloc a new table (but don't assign it to <tbl> unless successful)
+		T* old_tbl = tbl;
+		tbl = (T*)calloc(max_entries*2, sizeof(T));
+		if(!tbl)
+		{
+			tbl = old_tbl;
+			return false;
+		}
+
+		max_entries += max_entries;
+		// must be set before get_slot
+
+		// newly initialized, nothing to copy - done
+		if(!old_tbl)
+			return true;
+
+		// re-hash from old table into the new one
+		for(int i = 0; i < max_entries/2; i++)
+		{
+			T const t = old_tbl[i];
+			if(t)
+				*get_slot(GetKey(t)) = t;
+		}
+		free(old_tbl);
+
+		return true;
+	}
+
+
 public:
-	typedef std::forward_iterator_tag iterator_category;
-	typedef TNode* T;
-	typedef T value_type;
-	typedef ptrdiff_t difference_type;
-	typedef const T* pointer;
-	typedef const T& reference;
 
-	iterator()
+	void init()
 	{
+		tbl = 0;
+		num_entries = 0;
+		max_entries = n/2;	// will be doubled in expand_tbl
+		expand_tbl();
 	}
-	iterator(T* pos_, T* end_) : pos(pos_), end(end_)
+
+	void clear()
 	{
+		free(tbl);
+		tbl = 0;
+		num_entries = max_entries = 0;
 	}
-	T& operator*() const
+
+	// note: add is only called once per file, so we can do the hash
+	// here without duplication
+	T* get_slot(Key key)
 	{
-		return *pos;
+		u32 hash = Hash(key);
+		const uint mask = max_entries-1;
+		T* p;
+		for(;;)
+		{
+			p = &tbl[hash & mask];
+			hash++;
+			const T t = *p;
+			if(!t)
+				break;
+			if(Eq(key, GetKey(t)))
+				break;
+		}
+
+		return p;
 	}
-	iterator& operator++()	// pre
+
+	bool add(const Key key, const T t)
 	{
-		do
+		// expand before determining slot; this will invalidate previous pnodes.
+		if(num_entries*4 >= max_entries*3)
+		{
+			if(!expand_tbl())
+				return false;
+		}
+
+		// commit
+		*get_slot(key) = t;
+		num_entries++;
+		return true;
+	}
+
+
+	T find(Key key)
+	{
+		return *get_slot(key);
+	}
+
+	size_t size()
+	{
+		return num_entries;
+	}
+
+
+
+
+
+	class iterator
+	{
+	public:
+		typedef std::forward_iterator_tag iterator_category;
+		typedef T T;
+		typedef T value_type;
+		typedef ptrdiff_t difference_type;
+		typedef const T* pointer;
+		typedef const T& reference;
+
+		iterator()
+		{
+		}
+		iterator(T* pos_, T* end_) : pos(pos_), end(end_)
+		{
+		}
+		T& operator*() const
+		{
+			return *pos;
+		}
+		iterator& operator++()	// pre
+		{
+			do
 			pos++;
-		while(pos != end && *pos == 0);
-		return (*this);
-	}
-	bool operator==(const iterator& rhs) const
-	{
-		return pos == rhs.pos;
-	}
-	bool operator<(const iterator& rhs) const
-	{
-		return (pos < rhs.pos);
-	}
+			while(pos != end && *pos == 0);
+			return (*this);
+		}
+		bool operator==(const iterator& rhs) const
+		{
+			return pos == rhs.pos;
+		}
+		bool operator<(const iterator& rhs) const
+		{
+			return (pos < rhs.pos);
+		}
 
-	// derived
-	const T* operator->() const
-	{
-		return &**this;
-	}
-	bool operator!=(const iterator& rhs) const
-	{
-		return !(*this == rhs);
-	}
-	iterator operator++(int)	// post
-	{
-		iterator tmp =  *this; ++*this; return tmp;
-	}
+		// derived
+		const T* operator->() const
+		{
+			return &**this;
+		}
+		bool operator!=(const iterator& rhs) const
+		{
+			return !(*this == rhs);
+		}
+		iterator operator++(int)	// post
+		{
+			iterator tmp =  *this; ++*this; return tmp;
+		}
 
-protected:
-	T* pos;
-	T* end;
+	protected:
+		T* pos;
+		T* end;
 		// only used when incrementing (avoid going beyond end of table)
+	};
+
+	iterator begin() const
+	{
+		T* pos = tbl;
+		while(pos != tbl+max_entries && *pos == 0)
+			pos++;
+		return iterator(pos, tbl+max_entries);
+	}
+	iterator end() const
+	{
+		return iterator(tbl+max_entries, 0);
+	}
 };
 
-TChildren::iterator TChildren::begin() const
+typedef DynHashTbl::iterator TChildIt;
+
+
+
+
+
+
+
+
+
+
+
+class TDir
 {
-	TNode** pos = tbl;
-	while(pos != tbl+max_entries && *pos == 0)
-		pos++;
-	return iterator(pos, tbl+max_entries);
-}
-TChildren::iterator TChildren::end() const
+public:
+
+	// if exactly one real directory is mounted into this virtual dir,
+	// this points to its location. used to add files to VFS when writing.
+	//
+	// the TMountPoint is actually in the mount info and is invalid when
+	// that's unmounted, but the VFS would then be rebuilt anyway.
+	//
+	// = 0 if no real dir mounted here; = -1 if more than one.
+	const TMountPoint* mount_point;
+
+#ifndef NO_DIR_WATCH
+	intptr_t watch;
+#endif
+	DynHashTbl children;
+
+	// documented below
+	void init();
+	TNode* find(const char* fn, TNodeType desired_type);
+	TNode* add(const char* fn, TNodeType new_type);
+	int mount(const char* path, const TMountPoint*, bool watch);
+	int lookup(const char* path, uint flags, TNode** pnode, char* exact_path);
+	void clearR();
+	void displayR(int indent_level);
+};
+
+
+
+// can't inherit, since exact_name must come at end of record
+struct TNode
 {
-	return iterator(tbl+max_entries, 0);
-}
-
-
-void TChildren::init()
-{
-	tbl = 0;
-	num_entries = 0;
-	max_entries = 16;	// will be doubled in expand_tbl
-	expand_tbl();
-}
-
-
-void TChildren::clear()
-{
-	free(tbl);
-	tbl = 0;
-	num_entries = max_entries = 0;
-}
-
-
-// note: add is only called once per file, so we can do the hash
-// here without duplication
-TNode** TChildren::get_slot(const char* fn)
-{
-	const uint mask = max_entries-1;
-	u32 hash = fnv_lc_hash(fn);
-	TNode** pnode;
-	for(;;)
+	// must be at start of TNode to permit casting back and forth!
+	// (see TDir::lookup)
+	union TNodeUnion
 	{
-		pnode = &tbl[hash & mask];
-		hash++;
-		TNode* const node = *pnode;
-		if(!node)
-			break;
-		if(!stricmp(node->exact_name, fn))
-			break;
-	}
+		TDir dir;
+		TFile file;
+	} u;
 
-	return pnode;
-}
+	TNodeType type;
+
+	//used by callers needing the exact case,
+	// e.g. for case-sensitive syscalls; also key for lookup
+	// set by DynHashTbl
+	char exact_name[1];
+};
 
 
-bool TChildren::expand_tbl()
+
+static inline bool Eq(const Key k1, const Key k2)
 {
-	// alloc a new table (but don't assign it to <tbl> unless successful)
-	TNode** old_tbl = tbl;
-	tbl = (TNode**)calloc(max_entries*2, sizeof(TNode*));
-	if(!tbl)
-	{
-		tbl = old_tbl;
-		return false;
-	}
-
-	max_entries += max_entries;
-	// must be set before get_slot
-
-	// newly initialized, nothing to copy - done
-	if(!old_tbl)
-		return true;
-
-	// re-hash from old table into the new one
-	for(int i = 0; i < max_entries/2; i++)
-	{
-		TNode* const node = old_tbl[i];
-		if(node)
-			*get_slot(node->exact_name) = node;
-	}
-	free(old_tbl);
-
-	return true;
+	return strcmp(k1, k2) == 0;
 }
 
-
-// return existing, or add if not present
-TNode* TChildren::add(const char* fn)
+static u32 Hash(const Key key)
 {
-	// expand before determining slot; this will invalidate previous pnodes.
-	if(num_entries*4 >= max_entries*3)
-	{
-		if(!expand_tbl())
-			return 0;
-	}
-
-	TNode** pnode = get_slot(fn);
-	if(*pnode)
-		return *pnode;
-
-	const size_t size = sizeof(TNode)+strlen_s(fn, VFS_MAX_PATH)+1;
-	TNode* node = node_alloc(size);
-	if(!node)
-		return 0;
-
-	// commit
-	*pnode = node;
-	num_entries++;
-	strcpy(node->exact_name, fn);	// safe
-	node->type = N_NONE;
-	return node;
+	return fnv_lc_hash(key);
 }
 
-
-TNode* TChildren::find(const char* fn)
+static inline Key GetKey(const T t)
 {
-	return *get_slot(fn);
+	return t->exact_name;
 }
+
+
+
+
+
 
 
 
@@ -388,14 +392,25 @@ TNode* TDir::add(const char* name, TNodeType new_type)
 	if(!path_component_valid(name))
 		return 0;
 
-	TNode* node = children.add(name);
-	if(!node)
-		return 0;
-	// already initialized
-	if(node->type != N_NONE)
+	// this is legit - when looking up a directory, LF_CREATE_IF_MISSING
+	// calls this *instead of* find (as opposed to only if not found)
+	TNode* node = children.find(name);
+	if(node)
 		return node;
 
+	const size_t size = sizeof(TNode)+strlen_s(name, VFS_MAX_PATH)+1;
+	node = node_alloc(size);
+	if(!node)
+		return 0;
+	strcpy(node->exact_name, name);	// safe
 	node->type = new_type;
+
+	if(!children.add(name, node))
+	{
+		debug_warn("failed to expand table");
+		// node will be freed by node_free_all
+		return 0;
+	}
 
 	// note: this is called from lookup, which needs to create nodes.
 	// therefore, we need to initialize here.
@@ -683,7 +698,7 @@ struct NodeLatch
 		return stricmp(n1->exact_name, n2->exact_name) < 0;
 	}
 
-	NodeLatch(TChildren& c)
+	NodeLatch(DynHashTbl& c)
 	{
 		i = 0;
 
