@@ -25,6 +25,7 @@
 #include "lib.h"
 #include "posix.h"
 #include "win_internal.h"
+#include "lockless.h"
 
 
 static HANDLE pthread_t_to_HANDLE(pthread_t p)
@@ -38,9 +39,23 @@ static pthread_t HANDLE_to_pthread_t(HANDLE h)
 }
 
 
+//////////////////////////////////////////////////////////////////////////////
+//
+// misc
+//
+//////////////////////////////////////////////////////////////////////////////
+
 pthread_t pthread_self(void)
 {
 	return HANDLE_to_pthread_t(GetCurrentThread());
+}
+
+
+int pthread_once(pthread_once_t* once, void (*init_routine)(void))
+{
+	if(CAS(once, 0, 1))
+		init_routine();
+	return 0;
 }
 
 
@@ -81,6 +96,139 @@ int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param
 }
 
 
+//////////////////////////////////////////////////////////////////////////////
+//
+// thread-local storage
+//
+//////////////////////////////////////////////////////////////////////////////
+
+// greatest amount of TLS slots any Windows version provides;
+// used to validate indices.
+static const uint TLS_LIMIT = 1088;
+
+// rationale: don't use an array of dtors for every possible TLS slot.
+// other DLLs may allocate any number of them in their DllMain, so the
+// array would have to be quite large. instead, store both key and dtor -
+// we are thus limited only by pthread_key_create calls (which we control).
+static const uint MAX_DTORS = 4;
+static struct
+{
+	pthread_key_t key;
+	void(*dtor)(void*);
+}
+dtors[MAX_DTORS];
+
+
+int pthread_key_create(pthread_key_t* key, void (*dtor)(void*))
+{
+	DWORD idx = TlsAlloc();
+	if(idx == TLS_OUT_OF_INDEXES)
+		return -ENOMEM;
+
+	assert2(idx < TLS_LIMIT);
+	*key = (pthread_key_t)idx;
+
+	// store dtor
+	for(uint i = 0; i < MAX_DTORS; i++)
+		// .. successfully acquired the slot
+		if(CAS(&dtors[i].dtor, 0, dtor))
+		{
+			dtors[i].key = *key;
+			return 0;
+		}
+
+		// not enough slots; we have a valid key, but its dtor won't be called.
+		debug_warn("increase pthread MAX_DTORS");
+		return 0;
+}
+
+
+int pthread_key_delete(pthread_key_t key)
+{
+	DWORD idx = (DWORD)key;
+	assert2(idx < TLS_LIMIT);
+
+	BOOL ret = TlsFree(idx);
+	assert2(ret != 0);
+	return 0;
+}
+
+
+void* pthread_getspecific(pthread_key_t key)
+{
+	DWORD idx = (DWORD)key;
+	assert2(idx < TLS_LIMIT);
+
+	// TlsGetValue sets last error to 0 on success (boo).
+	// don't want this to hide previous error, so restore.
+	DWORD last_err = GetLastError();
+
+	void* data = TlsGetValue(idx);
+
+	// no error
+	if(GetLastError() == 0)
+	{
+		// we care about performance here. SetLastError is low overhead,
+		// but last error = 0 is expected.
+		if(last_err != 0)
+			SetLastError(last_err);
+	}
+	else
+		debug_warn("pthread_getspecific: TlsGetValue failed");
+
+	return data;
+}
+
+
+int pthread_setspecific(pthread_key_t key, const void* value)
+{
+	DWORD idx = (DWORD)key;
+	assert2(idx < TLS_LIMIT);
+
+	BOOL ret = TlsSetValue(idx, (void*)value);
+	assert2(ret != 0);
+	return 0;
+}
+
+
+static void call_tls_dtors()
+{
+	bool had_valid_tls = false;
+	// until all TLS slots have been reset:
+	do
+	{
+		// for each registered dtor: (call order unspecified by SUSv3)
+		for(uint i = 0; i < MAX_DTORS; i++)
+		{
+			void(*dtor)(void*) = dtors[i].dtor;
+			if(!dtor)
+				continue;
+
+			const pthread_key_t key = dtors[i].key;
+			void* tls = pthread_getspecific(key);
+			if(tls)
+			{
+				int ret = pthread_setspecific(key, 0);
+				assert2(ret == 0);
+
+				dtor(tls);
+				had_valid_tls = true;
+			}
+		}
+	}
+	while(had_valid_tls);
+
+	// rationale: SUSv3 says we're allowed to loop infinitely. we do so to
+	// expose any dtor bugs - this shouldn't normally happen.
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// threads
+//
+//////////////////////////////////////////////////////////////////////////////
+
 struct ThreadParam
 {
 	void*(*func)(void*);
@@ -102,6 +250,9 @@ static unsigned __stdcall thread_start(void* param)
 	// workaround for stupid "void* -> unsigned cast" warning
 	union { void* p; unsigned u; } v;
 	v.p = func(user_arg);
+
+	call_tls_dtors();
+
 	return v.u;
 }
 
@@ -156,7 +307,10 @@ int pthread_join(pthread_t thread, void** value_ptr)
 
 
 //////////////////////////////////////////////////////////////////////////////
-
+//
+// locks
+//
+//////////////////////////////////////////////////////////////////////////////
 
 // rationale: CRITICAL_SECTIONS have less overhead than Win32 Mutex.
 // disadvantage is that pthread_mutex_timedlock isn't supported, but

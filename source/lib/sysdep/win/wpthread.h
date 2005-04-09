@@ -40,38 +40,51 @@ enum
 	SCHED_OTHER
 };
 
+// changing will break pthread_setschedparam:
 #define sched_get_priority_max(policy) +2
 #define sched_get_priority_min(policy) -2
-// changing will break pthread_setschedparam
 
 
 //
 // <pthread.h>
 //
 
+// one-time init
+typedef uintptr_t pthread_once_t;
+#define PTHREAD_ONCE_INIT 0	// static pthread_once_t x = PTHREAD_ONCE_INIT;
+
+extern int pthread_once(pthread_once_t*, void (*init_routine)(void));
+
+// thread
 typedef unsigned int pthread_t;
 
 extern pthread_t pthread_self(void);
 extern int pthread_getschedparam(pthread_t thread, int* policy, struct sched_param* param);
 extern int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param* param);
-
 extern int pthread_create(pthread_t* thread, const void* attr, void*(*func)(void*), void* arg);
 extern int pthread_cancel(pthread_t thread);
 extern int pthread_join(pthread_t thread, void** value_ptr);
 
+// mutex
 typedef void* pthread_mutex_t;	// pointer to critical section
 typedef void pthread_mutexattr_t;
-
-extern pthread_mutex_t pthread_mutex_initializer(void);
 #define PTHREAD_MUTEX_INITIALIZER pthread_mutex_initializer()
 
+extern pthread_mutex_t pthread_mutex_initializer(void);
 extern int pthread_mutex_init(pthread_mutex_t*, const pthread_mutexattr_t*);
 extern int pthread_mutex_destroy(pthread_mutex_t*);
-
 extern int pthread_mutex_lock(pthread_mutex_t*);
 extern int pthread_mutex_trylock(pthread_mutex_t*);
 extern int pthread_mutex_unlock(pthread_mutex_t*);
 extern int pthread_mutex_timedlock(pthread_mutex_t*, const struct timespec*);
+
+// thread-local storage
+typedef unsigned int pthread_key_t;
+
+extern int pthread_key_create(pthread_key_t*, void (*dtor)(void*));
+extern int pthread_key_delete(pthread_key_t);
+extern void* pthread_getspecific(pthread_key_t);
+extern int   pthread_setspecific(pthread_key_t, const void* value);
 
 
 //
