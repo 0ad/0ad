@@ -207,584 +207,72 @@ function initStatusOrb()
 	}
 	SN_STATUS_PANE_STAT.last = SN_STATUS_PANE_STAT.curr;
 
-
-
-
-/*
-	// Status Orb background.
-	crd_status_orb_bkg_x = 0;
-	crd_status_orb_bkg_y = 0;
-	crd_status_orb_bkg_width = 255;
-	crd_status_orb_bkg_height = 170;
-
-	// Heading.
-	crd_status_orb_heading_width = crd_status_orb_bkg_width;
-	crd_status_orb_heading_height = 14;
-	crd_status_orb_heading_x = crd_status_orb_bkg_x+2;
-	crd_status_orb_heading_y = crd_status_orb_bkg_y+3;
-
-	// Status Orb large portrait.
-	crd_status_orb_portrait_x = crd_status_orb_heading_x+5;
-	crd_status_orb_portrait_y = crd_status_orb_heading_y+crd_status_orb_heading_height+7;
-	crd_status_orb_portrait_width = crd_portrait_lrg_width;
-	crd_status_orb_portrait_height = crd_portrait_lrg_height;
-
-	// Status Orb rank icon.
-	crd_status_orb_rank_width = crd_mini_icon_width;
-	crd_status_orb_rank_height = crd_mini_icon_width;
-	crd_status_orb_rank_x = crd_status_orb_portrait_x+crd_status_orb_portrait_width-crd_status_orb_rank_width;
-	crd_status_orb_rank_y = crd_status_orb_portrait_y;
-
-	// Name1.
-	crd_status_orb_name1_width = crd_status_orb_bkg_width-crd_status_orb_portrait_width-10;
-	crd_status_orb_name1_height = crd_status_orb_portrait_height;
-	crd_status_orb_name1_x = crd_status_orb_portrait_x+crd_status_orb_portrait_width+2;
-	crd_status_orb_name1_y = crd_status_orb_portrait_y;
-
-	// Status Orb health bar.
-	crd_status_orb_hpbar_span = 2;
-	crd_status_orb_hpbar_x = crd_status_orb_portrait_x;
-	crd_status_orb_hpbar_y = crd_status_orb_portrait_y+crd_status_orb_portrait_height+crd_status_orb_hpbar_span;
-	crd_status_orb_hpbar_width = crd_status_orb_portrait_width;
-	crd_status_orb_hpbar_height = 6;
-
-	// Status Orb health text.
-	crd_status_orb_hpbar_text_span_x = 4;
-	crd_status_orb_hpbar_text_span_y = 0;
-	crd_status_orb_hpbar_text_x = crd_status_orb_name1_x;
-	crd_status_orb_hpbar_text_y = crd_status_orb_hpbar_y+crd_status_orb_hpbar_text_span_y;
-	crd_status_orb_hpbar_text_width = 55;
-	crd_status_orb_hpbar_text_height = crd_status_orb_hpbar_height;
-
-	// Status Orb xp bar.
-	crd_status_orb_xpbar_x = crd_status_orb_hpbar_x;
-	crd_status_orb_xpbar_y = crd_status_orb_hpbar_y+crd_status_orb_hpbar_height+crd_status_orb_hpbar_span+1;
-	crd_status_orb_xpbar_width = crd_status_orb_hpbar_width;
-	crd_status_orb_xpbar_height = crd_status_orb_hpbar_height;
-
-	// Status Orb xp text.
-	crd_status_orb_xpbar_text_x = crd_status_orb_hpbar_text_x;
-	crd_status_orb_xpbar_text_y = crd_status_orb_xpbar_y+crd_status_orb_hpbar_text_span_y;
-	crd_status_orb_xpbar_text_width = crd_status_orb_hpbar_text_width;
-	crd_status_orb_xpbar_text_height = crd_status_orb_hpbar_text_height;
-
-	// Garrison/Supply counter.
-	crd_status_orb_stat1_span_x = 5;
-	crd_status_orb_stat1_span_y = 2;
-	crd_status_orb_stat1_width = 126;
-	crd_status_orb_stat1_height = 30;
-	crd_status_orb_stat1_x = crd_status_orb_hpbar_text_x+crd_status_orb_hpbar_text_width;
-	crd_status_orb_stat1_y = crd_status_orb_hpbar_y-crd_mini_icon_width+1;
-
-	// Stats.
-
-	crd_status_orb_stat1_1_x = crd_status_orb_portrait_x;
-	crd_status_orb_stat1_1_y = crd_status_orb_xpbar_y+crd_status_orb_xpbar_height+2;
-	crd_status_orb_stat1_1_width = (crd_status_orb_bkg_width-14)/6;
-	crd_status_orb_stat1_1_height = (crd_status_orb_bkg_y+crd_status_orb_bkg_height-8-crd_status_orb_stat1_1_y)/2;
-
-	crd_status_orb_stat2_1_width = crd_status_orb_stat1_1_width;
-	crd_status_orb_stat2_1_height = crd_status_orb_stat1_1_height;
-	crd_status_orb_stat2_1_x = crd_status_orb_stat1_1_x+crd_status_orb_stat1_1_width;
-	crd_status_orb_stat2_1_y = crd_status_orb_stat1_1_y;
-
-	crd_status_orb_stat3_1_width = crd_status_orb_stat1_1_width;
-	crd_status_orb_stat3_1_height = crd_status_orb_stat1_1_height;
-	crd_status_orb_stat3_1_x = crd_status_orb_stat2_1_x+crd_status_orb_stat2_1_width;
-	crd_status_orb_stat3_1_y = crd_status_orb_stat1_1_y;
-
-	crd_status_orb_stat4_1_width = crd_status_orb_stat1_1_width;
-	crd_status_orb_stat4_1_height = crd_status_orb_stat1_1_height;
-	crd_status_orb_stat4_1_x = crd_status_orb_stat3_1_x+crd_status_orb_stat3_1_width;
-	crd_status_orb_stat4_1_y = crd_status_orb_stat1_1_y;
-
-	crd_status_orb_stat5_1_width = crd_status_orb_stat1_1_width;
-	crd_status_orb_stat5_1_height = crd_status_orb_stat1_1_height;
-	crd_status_orb_stat5_1_x = crd_status_orb_stat4_1_x+crd_status_orb_stat4_1_width;
-	crd_status_orb_stat5_1_y = crd_status_orb_stat1_1_y;
-
-	crd_status_orb_stat6_1_width = crd_status_orb_stat1_1_width;
-	crd_status_orb_stat6_1_height = crd_status_orb_stat1_1_height;
-	crd_status_orb_stat6_1_x = crd_status_orb_stat5_1_x+crd_status_orb_stat5_1_width;
-	crd_status_orb_stat6_1_y = crd_status_orb_stat1_1_y;
-
-	crd_status_orb_stat1_2_width = crd_status_orb_stat1_1_width;
-	crd_status_orb_stat1_2_height = crd_status_orb_stat1_1_height;
-	crd_status_orb_stat1_2_x = crd_status_orb_stat1_1_x;
-	crd_status_orb_stat1_2_y = crd_status_orb_stat1_1_y+crd_status_orb_stat1_1_height;
-
-	crd_status_orb_stat2_2_width = crd_status_orb_stat1_2_width;
-	crd_status_orb_stat2_2_height = crd_status_orb_stat1_2_height;
-	crd_status_orb_stat2_2_x = crd_status_orb_stat1_2_x+crd_status_orb_stat1_2_width;
-	crd_status_orb_stat2_2_y = crd_status_orb_stat1_2_y;
-
-	crd_status_orb_stat3_2_width = crd_status_orb_stat1_2_width;
-	crd_status_orb_stat3_2_height = crd_status_orb_stat1_2_height;
-	crd_status_orb_stat3_2_x = crd_status_orb_stat2_2_x+crd_status_orb_stat2_2_width;
-	crd_status_orb_stat3_2_y = crd_status_orb_stat1_2_y;
-
-	crd_status_orb_stat4_2_width = crd_status_orb_stat1_2_width;
-	crd_status_orb_stat4_2_height = crd_status_orb_stat1_2_height;
-	crd_status_orb_stat4_2_x = crd_status_orb_stat3_2_x+crd_status_orb_stat3_2_width;
-	crd_status_orb_stat4_2_y = crd_status_orb_stat1_2_y;
-
-	crd_status_orb_stat5_2_width = crd_status_orb_stat1_2_width;
-	crd_status_orb_stat5_2_height = crd_status_orb_stat1_2_height;
-	crd_status_orb_stat5_2_x = crd_status_orb_stat4_2_x+crd_status_orb_stat4_2_width;
-	crd_status_orb_stat5_2_y = crd_status_orb_stat1_2_y;
-
-	crd_status_orb_stat6_2_width = crd_status_orb_stat1_2_width;
-	crd_status_orb_stat6_2_height = crd_status_orb_stat1_2_height;
-	crd_status_orb_stat6_2_x = crd_status_orb_stat5_2_x+crd_status_orb_stat5_2_width;
-	crd_status_orb_stat6_2_y = crd_status_orb_stat1_2_y;
-*/
-	// Status Orb background.
-	crd_status_orb_bkg_x = 0;
-	crd_status_orb_bkg_y = 0;
-	crd_status_orb_bkg_width = 255;
-	crd_status_orb_bkg_height = 170;
-
-	// Command Button 1.
-	command_sub_max = 12;	// Maximum number of entries in a command button list.
-	command_list_max = 5;	// The maximum number of command button lists.
-	command_max = 13;	// Maximum number of command buttons.
-	crd_status_orb_command_1_width = crd_portrait_sml_width;
-	crd_status_orb_command_1_height = crd_portrait_sml_height;
-	crd_status_orb_command_1_x = 0;
-	crd_status_orb_command_1_y = crd_status_orb_bkg_height+1;
-	crd_status_orb_command_span = 2;
-
-	// Command Button 1_1.
-	crd_status_orb_command_1_1_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_1_1_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_1_1_x = crd_status_orb_command_1_x;
-	crd_status_orb_command_1_1_y = crd_status_orb_command_1_y+crd_status_orb_command_1_height+crd_status_orb_command_span;
-
-	// Command Button 1_2.
-	crd_status_orb_command_1_2_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_1_2_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_1_2_x = crd_status_orb_command_1_x;
-	crd_status_orb_command_1_2_y = crd_status_orb_command_1_1_y+crd_status_orb_command_1_1_height+crd_status_orb_command_span;
-
-	// Command Button 1_3.
-	crd_status_orb_command_1_3_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_1_3_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_1_3_x = crd_status_orb_command_1_x;
-	crd_status_orb_command_1_3_y = crd_status_orb_command_1_2_y+crd_status_orb_command_1_2_height+crd_status_orb_command_span;
-
-	// Command Button 1_4.
-	crd_status_orb_command_1_4_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_1_4_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_1_4_x = crd_status_orb_command_1_x;
-	crd_status_orb_command_1_4_y = crd_status_orb_command_1_3_y+crd_status_orb_command_1_3_height+crd_status_orb_command_span;
-
-	// Command Button 1_5.
-	crd_status_orb_command_1_5_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_1_5_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_1_5_x = crd_status_orb_command_1_x;
-	crd_status_orb_command_1_5_y = crd_status_orb_command_1_4_y+crd_status_orb_command_1_4_height+crd_status_orb_command_span;
-
-	// Command Button 1_6.
-	crd_status_orb_command_1_6_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_1_6_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_1_6_x = crd_status_orb_command_1_x;
-	crd_status_orb_command_1_6_y = crd_status_orb_command_1_5_y+crd_status_orb_command_1_5_height+crd_status_orb_command_span;
-
-	// Command Button 1_7.
-	crd_status_orb_command_1_7_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_1_7_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_1_7_x = crd_status_orb_command_1_x;
-	crd_status_orb_command_1_7_y = crd_status_orb_command_1_6_y+crd_status_orb_command_1_6_height+crd_status_orb_command_span;
-
-	// Command Button 1_8.
-	crd_status_orb_command_1_8_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_1_8_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_1_8_x = crd_status_orb_command_1_x;
-	crd_status_orb_command_1_8_y = crd_status_orb_command_1_7_y+crd_status_orb_command_1_7_height+crd_status_orb_command_span;
-
-	// Command Button 1_9.
-	crd_status_orb_command_1_9_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_1_9_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_1_9_x = crd_status_orb_command_1_x;
-	crd_status_orb_command_1_9_y = crd_status_orb_command_1_8_y+crd_status_orb_command_1_8_height+crd_status_orb_command_span;
-
-	// Command Button 1_10.
-	crd_status_orb_command_1_10_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_1_10_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_1_10_x = crd_status_orb_command_1_x;
-	crd_status_orb_command_1_10_y = crd_status_orb_command_1_9_y+crd_status_orb_command_1_9_height+crd_status_orb_command_span;
-
-	// Command Button 1_11.
-	crd_status_orb_command_1_11_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_1_11_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_1_11_x = crd_status_orb_command_1_x;
-	crd_status_orb_command_1_11_y = crd_status_orb_command_1_10_y+crd_status_orb_command_1_10_height+crd_status_orb_command_span;
-
-	// Command Button 1_12.
-	crd_status_orb_command_1_12_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_1_12_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_1_12_x = crd_status_orb_command_1_x;
-	crd_status_orb_command_1_12_y = crd_status_orb_command_1_11_y+crd_status_orb_command_1_11_height+crd_status_orb_command_span;
-
-	// Command Button 2.
-	crd_status_orb_command_2_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_2_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_2_x = crd_status_orb_command_1_x+crd_status_orb_command_1_width+crd_status_orb_command_span;
-	crd_status_orb_command_2_y = crd_status_orb_command_1_y;
-
-	// Command Button 2_1.
-	crd_status_orb_command_2_1_width = crd_status_orb_command_2_width;
-	crd_status_orb_command_2_1_height = crd_status_orb_command_2_height;
-	crd_status_orb_command_2_1_x = crd_status_orb_command_2_x;
-	crd_status_orb_command_2_1_y = crd_status_orb_command_2_y+crd_status_orb_command_2_height+crd_status_orb_command_span;
-
-	// Command Button 2_2.
-	crd_status_orb_command_2_2_width = crd_status_orb_command_2_width;
-	crd_status_orb_command_2_2_height = crd_status_orb_command_2_height;
-	crd_status_orb_command_2_2_x = crd_status_orb_command_2_x;
-	crd_status_orb_command_2_2_y = crd_status_orb_command_2_1_y+crd_status_orb_command_2_1_height+crd_status_orb_command_span;
-
-	// Command Button 2_3.
-	crd_status_orb_command_2_3_width = crd_status_orb_command_2_width;
-	crd_status_orb_command_2_3_height = crd_status_orb_command_2_height;
-	crd_status_orb_command_2_3_x = crd_status_orb_command_2_x;
-	crd_status_orb_command_2_3_y = crd_status_orb_command_2_2_y+crd_status_orb_command_2_2_height+crd_status_orb_command_span;
-
-	// Command Button 2_4.
-	crd_status_orb_command_2_4_width = crd_status_orb_command_2_width;
-	crd_status_orb_command_2_4_height = crd_status_orb_command_2_height;
-	crd_status_orb_command_2_4_x = crd_status_orb_command_2_x;
-	crd_status_orb_command_2_4_y = crd_status_orb_command_2_3_y+crd_status_orb_command_2_3_height+crd_status_orb_command_span;
-
-	// Command Button 2_5.
-	crd_status_orb_command_2_5_width = crd_status_orb_command_2_width;
-	crd_status_orb_command_2_5_height = crd_status_orb_command_2_height;
-	crd_status_orb_command_2_5_x = crd_status_orb_command_2_x;
-	crd_status_orb_command_2_5_y = crd_status_orb_command_2_4_y+crd_status_orb_command_2_4_height+crd_status_orb_command_span;
-
-	// Command Button 2_6.
-	crd_status_orb_command_2_6_width = crd_status_orb_command_2_width;
-	crd_status_orb_command_2_6_height = crd_status_orb_command_2_height;
-	crd_status_orb_command_2_6_x = crd_status_orb_command_2_x;
-	crd_status_orb_command_2_6_y = crd_status_orb_command_2_5_y+crd_status_orb_command_2_5_height+crd_status_orb_command_span;
-
-	// Command Button 2_7.
-	crd_status_orb_command_2_7_width = crd_status_orb_command_2_width;
-	crd_status_orb_command_2_7_height = crd_status_orb_command_2_height;
-	crd_status_orb_command_2_7_x = crd_status_orb_command_2_x;
-	crd_status_orb_command_2_7_y = crd_status_orb_command_2_6_y+crd_status_orb_command_2_6_height+crd_status_orb_command_span;
-
-	// Command Button 2_8.
-	crd_status_orb_command_2_8_width = crd_status_orb_command_2_width;
-	crd_status_orb_command_2_8_height = crd_status_orb_command_2_height;
-	crd_status_orb_command_2_8_x = crd_status_orb_command_2_x;
-	crd_status_orb_command_2_8_y = crd_status_orb_command_2_7_y+crd_status_orb_command_2_7_height+crd_status_orb_command_span;
-
-	// Command Button 2_9.
-	crd_status_orb_command_2_9_width = crd_status_orb_command_2_width;
-	crd_status_orb_command_2_9_height = crd_status_orb_command_2_height;
-	crd_status_orb_command_2_9_x = crd_status_orb_command_2_x;
-	crd_status_orb_command_2_9_y = crd_status_orb_command_2_8_y+crd_status_orb_command_2_8_height+crd_status_orb_command_span;
-
-	// Command Button 2_10.
-	crd_status_orb_command_2_10_width = crd_status_orb_command_2_width;
-	crd_status_orb_command_2_10_height = crd_status_orb_command_2_height;
-	crd_status_orb_command_2_10_x = crd_status_orb_command_2_x;
-	crd_status_orb_command_2_10_y = crd_status_orb_command_2_9_y+crd_status_orb_command_2_9_height+crd_status_orb_command_span;
-
-	// Command Button 2_11.
-	crd_status_orb_command_2_11_width = crd_status_orb_command_2_width;
-	crd_status_orb_command_2_11_height = crd_status_orb_command_2_height;
-	crd_status_orb_command_2_11_x = crd_status_orb_command_2_x;
-	crd_status_orb_command_2_11_y = crd_status_orb_command_2_10_y+crd_status_orb_command_2_10_height+crd_status_orb_command_span;
-
-	// Command Button 2_12.
-	crd_status_orb_command_2_12_width = crd_status_orb_command_2_width;
-	crd_status_orb_command_2_12_height = crd_status_orb_command_2_height;
-	crd_status_orb_command_2_12_x = crd_status_orb_command_2_x;
-	crd_status_orb_command_2_12_y = crd_status_orb_command_2_11_y+crd_status_orb_command_2_11_height+crd_status_orb_command_span;
-
-	// Command Button 3.
-	crd_status_orb_command_3_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_3_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_3_x = crd_status_orb_command_2_x+crd_status_orb_command_2_width+crd_status_orb_command_span;
-	crd_status_orb_command_3_y = crd_status_orb_command_2_y;
-
-	// Command Button 3_1.
-	crd_status_orb_command_3_1_width = crd_status_orb_command_3_width;
-	crd_status_orb_command_3_1_height = crd_status_orb_command_3_height;
-	crd_status_orb_command_3_1_x = crd_status_orb_command_3_x;
-	crd_status_orb_command_3_1_y = crd_status_orb_command_3_y+crd_status_orb_command_3_height+crd_status_orb_command_span;
-
-	// Command Button 3_2.
-	crd_status_orb_command_3_2_width = crd_status_orb_command_3_width;
-	crd_status_orb_command_3_2_height = crd_status_orb_command_3_height;
-	crd_status_orb_command_3_2_x = crd_status_orb_command_3_x;
-	crd_status_orb_command_3_2_y = crd_status_orb_command_3_1_y+crd_status_orb_command_3_1_height+crd_status_orb_command_span;
-
-	// Command Button 3_3.
-	crd_status_orb_command_3_3_width = crd_status_orb_command_3_width;
-	crd_status_orb_command_3_3_height = crd_status_orb_command_3_height;
-	crd_status_orb_command_3_3_x = crd_status_orb_command_3_x;
-	crd_status_orb_command_3_3_y = crd_status_orb_command_3_2_y+crd_status_orb_command_3_2_height+crd_status_orb_command_span;
-
-	// Command Button 3_4.
-	crd_status_orb_command_3_4_width = crd_status_orb_command_3_width;
-	crd_status_orb_command_3_4_height = crd_status_orb_command_3_height;
-	crd_status_orb_command_3_4_x = crd_status_orb_command_3_x;
-	crd_status_orb_command_3_4_y = crd_status_orb_command_3_3_y+crd_status_orb_command_3_3_height+crd_status_orb_command_span;
-
-	// Command Button 3_5.
-	crd_status_orb_command_3_5_width = crd_status_orb_command_3_width;
-	crd_status_orb_command_3_5_height = crd_status_orb_command_3_height;
-	crd_status_orb_command_3_5_x = crd_status_orb_command_3_x;
-	crd_status_orb_command_3_5_y = crd_status_orb_command_3_4_y+crd_status_orb_command_3_4_height+crd_status_orb_command_span;
-
-	// Command Button 3_6.
-	crd_status_orb_command_3_6_width = crd_status_orb_command_3_width;
-	crd_status_orb_command_3_6_height = crd_status_orb_command_3_height;
-	crd_status_orb_command_3_6_x = crd_status_orb_command_3_x;
-	crd_status_orb_command_3_6_y = crd_status_orb_command_3_5_y+crd_status_orb_command_3_5_height+crd_status_orb_command_span;
-
-	// Command Button 3_7.
-	crd_status_orb_command_3_7_width = crd_status_orb_command_3_width;
-	crd_status_orb_command_3_7_height = crd_status_orb_command_3_height;
-	crd_status_orb_command_3_7_x = crd_status_orb_command_3_x;
-	crd_status_orb_command_3_7_y = crd_status_orb_command_3_6_y+crd_status_orb_command_3_6_height+crd_status_orb_command_span;
-
-	// Command Button 3_8.
-	crd_status_orb_command_3_8_width = crd_status_orb_command_3_width;
-	crd_status_orb_command_3_8_height = crd_status_orb_command_3_height;
-	crd_status_orb_command_3_8_x = crd_status_orb_command_3_x;
-	crd_status_orb_command_3_8_y = crd_status_orb_command_3_7_y+crd_status_orb_command_3_7_height+crd_status_orb_command_span;
-
-	// Command Button 3_9.
-	crd_status_orb_command_3_9_width = crd_status_orb_command_3_width;
-	crd_status_orb_command_3_9_height = crd_status_orb_command_3_height;
-	crd_status_orb_command_3_9_x = crd_status_orb_command_3_x;
-	crd_status_orb_command_3_9_y = crd_status_orb_command_3_8_y+crd_status_orb_command_3_8_height+crd_status_orb_command_span;
-
-	// Command Button 3_10.
-	crd_status_orb_command_3_10_width = crd_status_orb_command_3_width;
-	crd_status_orb_command_3_10_height = crd_status_orb_command_3_height;
-	crd_status_orb_command_3_10_x = crd_status_orb_command_3_x;
-	crd_status_orb_command_3_10_y = crd_status_orb_command_3_9_y+crd_status_orb_command_3_9_height+crd_status_orb_command_span;
-
-	// Command Button 3_11.
-	crd_status_orb_command_3_11_width = crd_status_orb_command_3_width;
-	crd_status_orb_command_3_11_height = crd_status_orb_command_3_height;
-	crd_status_orb_command_3_11_x = crd_status_orb_command_3_x;
-	crd_status_orb_command_3_11_y = crd_status_orb_command_3_10_y+crd_status_orb_command_3_10_height+crd_status_orb_command_span;
-
-	// Command Button 3_12.
-	crd_status_orb_command_3_12_width = crd_status_orb_command_3_width;
-	crd_status_orb_command_3_12_height = crd_status_orb_command_3_height;
-	crd_status_orb_command_3_12_x = crd_status_orb_command_3_x;
-	crd_status_orb_command_3_12_y = crd_status_orb_command_3_11_y+crd_status_orb_command_3_11_height+crd_status_orb_command_span;
-
-	// Command Button 4.
-	crd_status_orb_command_4_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_4_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_4_x = crd_status_orb_command_3_x+crd_status_orb_command_3_width+crd_status_orb_command_span;
-	crd_status_orb_command_4_y = crd_status_orb_command_3_y;
-
-	// Command Button 4_1.
-	crd_status_orb_command_4_1_width = crd_status_orb_command_4_width;
-	crd_status_orb_command_4_1_height = crd_status_orb_command_4_height;
-	crd_status_orb_command_4_1_x = crd_status_orb_command_4_x;
-	crd_status_orb_command_4_1_y = crd_status_orb_command_4_y+crd_status_orb_command_4_height+crd_status_orb_command_span;
-
-	// Command Button 4_2.
-	crd_status_orb_command_4_2_width = crd_status_orb_command_4_width;
-	crd_status_orb_command_4_2_height = crd_status_orb_command_4_height;
-	crd_status_orb_command_4_2_x = crd_status_orb_command_4_x;
-	crd_status_orb_command_4_2_y = crd_status_orb_command_4_1_y+crd_status_orb_command_4_1_height+crd_status_orb_command_span;
-
-	// Command Button 4_3.
-	crd_status_orb_command_4_3_width = crd_status_orb_command_4_width;
-	crd_status_orb_command_4_3_height = crd_status_orb_command_4_height;
-	crd_status_orb_command_4_3_x = crd_status_orb_command_4_x;
-	crd_status_orb_command_4_3_y = crd_status_orb_command_4_2_y+crd_status_orb_command_4_2_height+crd_status_orb_command_span;
-
-	// Command Button 4_4.
-	crd_status_orb_command_4_4_width = crd_status_orb_command_4_width;
-	crd_status_orb_command_4_4_height = crd_status_orb_command_4_height;
-	crd_status_orb_command_4_4_x = crd_status_orb_command_4_x;
-	crd_status_orb_command_4_4_y = crd_status_orb_command_4_3_y+crd_status_orb_command_4_3_height+crd_status_orb_command_span;
-
-	// Command Button 4_5.
-	crd_status_orb_command_4_5_width = crd_status_orb_command_4_width;
-	crd_status_orb_command_4_5_height = crd_status_orb_command_4_height;
-	crd_status_orb_command_4_5_x = crd_status_orb_command_4_x;
-	crd_status_orb_command_4_5_y = crd_status_orb_command_4_4_y+crd_status_orb_command_4_4_height+crd_status_orb_command_span;
-
-	// Command Button 4_6.
-	crd_status_orb_command_4_6_width = crd_status_orb_command_4_width;
-	crd_status_orb_command_4_6_height = crd_status_orb_command_4_height;
-	crd_status_orb_command_4_6_x = crd_status_orb_command_4_x;
-	crd_status_orb_command_4_6_y = crd_status_orb_command_4_5_y+crd_status_orb_command_4_5_height+crd_status_orb_command_span;
-
-	// Command Button 4_7.
-	crd_status_orb_command_4_7_width = crd_status_orb_command_4_width;
-	crd_status_orb_command_4_7_height = crd_status_orb_command_4_height;
-	crd_status_orb_command_4_7_x = crd_status_orb_command_4_x;
-	crd_status_orb_command_4_7_y = crd_status_orb_command_4_6_y+crd_status_orb_command_4_6_height+crd_status_orb_command_span;
-
-	// Command Button 4_8.
-	crd_status_orb_command_4_8_width = crd_status_orb_command_4_width;
-	crd_status_orb_command_4_8_height = crd_status_orb_command_4_height;
-	crd_status_orb_command_4_8_x = crd_status_orb_command_4_x;
-	crd_status_orb_command_4_8_y = crd_status_orb_command_4_7_y+crd_status_orb_command_4_7_height+crd_status_orb_command_span;
-
-	// Command Button 4_9.
-	crd_status_orb_command_4_9_width = crd_status_orb_command_4_width;
-	crd_status_orb_command_4_9_height = crd_status_orb_command_4_height;
-	crd_status_orb_command_4_9_x = crd_status_orb_command_4_x;
-	crd_status_orb_command_4_9_y = crd_status_orb_command_4_8_y+crd_status_orb_command_4_8_height+crd_status_orb_command_span;
-
-	// Command Button 4_10.
-	crd_status_orb_command_4_10_width = crd_status_orb_command_4_width;
-	crd_status_orb_command_4_10_height = crd_status_orb_command_4_height;
-	crd_status_orb_command_4_10_x = crd_status_orb_command_4_x;
-	crd_status_orb_command_4_10_y = crd_status_orb_command_4_9_y+crd_status_orb_command_4_9_height+crd_status_orb_command_span;
-
-	// Command Button 4_11.
-	crd_status_orb_command_4_11_width = crd_status_orb_command_4_width;
-	crd_status_orb_command_4_11_height = crd_status_orb_command_4_height;
-	crd_status_orb_command_4_11_x = crd_status_orb_command_4_x;
-	crd_status_orb_command_4_11_y = crd_status_orb_command_4_10_y+crd_status_orb_command_4_10_height+crd_status_orb_command_span;
-
-	// Command Button 4_12.
-	crd_status_orb_command_4_12_width = crd_status_orb_command_4_width;
-	crd_status_orb_command_4_12_height = crd_status_orb_command_4_height;
-	crd_status_orb_command_4_12_x = crd_status_orb_command_4_x;
-	crd_status_orb_command_4_12_y = crd_status_orb_command_4_11_y+crd_status_orb_command_4_11_height+crd_status_orb_command_span;
-
-	// Command Button 5.
-	crd_status_orb_command_5_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_5_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_5_x = crd_status_orb_command_4_x+crd_status_orb_command_4_width+crd_status_orb_command_span;
-	crd_status_orb_command_5_y = crd_status_orb_command_4_y;
-
-	// Command Button 5_1.
-	crd_status_orb_command_5_1_width = crd_status_orb_command_5_width;
-	crd_status_orb_command_5_1_height = crd_status_orb_command_5_height;
-	crd_status_orb_command_5_1_x = crd_status_orb_command_5_x;
-	crd_status_orb_command_5_1_y = crd_status_orb_command_5_y+crd_status_orb_command_5_height+crd_status_orb_command_span;
-
-	// Command Button 5_2.
-	crd_status_orb_command_5_2_width = crd_status_orb_command_5_width;
-	crd_status_orb_command_5_2_height = crd_status_orb_command_5_height;
-	crd_status_orb_command_5_2_x = crd_status_orb_command_5_x;
-	crd_status_orb_command_5_2_y = crd_status_orb_command_5_1_y+crd_status_orb_command_5_1_height+crd_status_orb_command_span;
-
-	// Command Button 5_3.
-	crd_status_orb_command_5_3_width = crd_status_orb_command_5_width;
-	crd_status_orb_command_5_3_height = crd_status_orb_command_5_height;
-	crd_status_orb_command_5_3_x = crd_status_orb_command_5_x;
-	crd_status_orb_command_5_3_y = crd_status_orb_command_5_2_y+crd_status_orb_command_5_2_height+crd_status_orb_command_span;
-
-	// Command Button 5_4.
-	crd_status_orb_command_5_4_width = crd_status_orb_command_5_width;
-	crd_status_orb_command_5_4_height = crd_status_orb_command_5_height;
-	crd_status_orb_command_5_4_x = crd_status_orb_command_5_x;
-	crd_status_orb_command_5_4_y = crd_status_orb_command_5_3_y+crd_status_orb_command_5_3_height+crd_status_orb_command_span;
-
-	// Command Button 5_5.
-	crd_status_orb_command_5_5_width = crd_status_orb_command_5_width;
-	crd_status_orb_command_5_5_height = crd_status_orb_command_5_height;
-	crd_status_orb_command_5_5_x = crd_status_orb_command_5_x;
-	crd_status_orb_command_5_5_y = crd_status_orb_command_5_4_y+crd_status_orb_command_5_4_height+crd_status_orb_command_span;
-
-	// Command Button 5_6.
-	crd_status_orb_command_5_6_width = crd_status_orb_command_5_width;
-	crd_status_orb_command_5_6_height = crd_status_orb_command_5_height;
-	crd_status_orb_command_5_6_x = crd_status_orb_command_5_x;
-	crd_status_orb_command_5_6_y = crd_status_orb_command_5_5_y+crd_status_orb_command_5_5_height+crd_status_orb_command_span;
-
-	// Command Button 5_7.
-	crd_status_orb_command_5_7_width = crd_status_orb_command_5_width;
-	crd_status_orb_command_5_7_height = crd_status_orb_command_5_height;
-	crd_status_orb_command_5_7_x = crd_status_orb_command_5_x;
-	crd_status_orb_command_5_7_y = crd_status_orb_command_5_6_y+crd_status_orb_command_5_6_height+crd_status_orb_command_span;
-
-	// Command Button 5_8.
-	crd_status_orb_command_5_8_width = crd_status_orb_command_5_width;
-	crd_status_orb_command_5_8_height = crd_status_orb_command_5_height;
-	crd_status_orb_command_5_8_x = crd_status_orb_command_5_x;
-	crd_status_orb_command_5_8_y = crd_status_orb_command_5_7_y+crd_status_orb_command_5_7_height+crd_status_orb_command_span;
-
-	// Command Button 5_9.
-	crd_status_orb_command_5_9_width = crd_status_orb_command_5_width;
-	crd_status_orb_command_5_9_height = crd_status_orb_command_5_height;
-	crd_status_orb_command_5_9_x = crd_status_orb_command_5_x;
-	crd_status_orb_command_5_9_y = crd_status_orb_command_5_8_y+crd_status_orb_command_5_8_height+crd_status_orb_command_span;
-
-	// Command Button 5_10.
-	crd_status_orb_command_5_10_width = crd_status_orb_command_5_width;
-	crd_status_orb_command_5_10_height = crd_status_orb_command_5_height;
-	crd_status_orb_command_5_10_x = crd_status_orb_command_5_x;
-	crd_status_orb_command_5_10_y = crd_status_orb_command_5_9_y+crd_status_orb_command_5_9_height+crd_status_orb_command_span;
-
-	// Command Button 5_11.
-	crd_status_orb_command_5_11_width = crd_status_orb_command_5_width;
-	crd_status_orb_command_5_11_height = crd_status_orb_command_5_height;
-	crd_status_orb_command_5_11_x = crd_status_orb_command_5_x;
-	crd_status_orb_command_5_11_y = crd_status_orb_command_5_10_y+crd_status_orb_command_5_10_height+crd_status_orb_command_span;
-
-	// Command Button 5_12.
-	crd_status_orb_command_5_12_width = crd_status_orb_command_5_width;
-	crd_status_orb_command_5_12_height = crd_status_orb_command_5_height;
-	crd_status_orb_command_5_12_x = crd_status_orb_command_5_x;
-	crd_status_orb_command_5_12_y = crd_status_orb_command_5_11_y+crd_status_orb_command_5_11_height+crd_status_orb_command_span;
-
-	// Command Button 6.
-	crd_status_orb_command_6_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_6_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_6_x = crd_status_orb_command_5_x+crd_status_orb_command_5_width+crd_status_orb_command_span;
-	crd_status_orb_command_6_y = crd_status_orb_command_5_y;
-
-	// Command Button 7.
-	crd_status_orb_command_7_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_7_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_7_x = crd_status_orb_command_6_x+crd_status_orb_command_6_width+crd_status_orb_command_span;
-	crd_status_orb_command_7_y = crd_status_orb_command_6_y;
-
-	// Command Button 8.
-	crd_status_orb_command_8_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_8_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_8_x = crd_status_orb_command_7_x+crd_status_orb_command_7_width+crd_status_orb_command_span;
-	crd_status_orb_command_8_y = crd_status_orb_command_7_y-crd_status_orb_command_span-8;
-
-	// Command Button 9.
-	crd_status_orb_command_9_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_9_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_9_x = crd_status_orb_command_8_x+(crd_status_orb_command_8_width/2)+crd_status_orb_command_span;
-	crd_status_orb_command_9_y = crd_status_orb_command_8_y+4-crd_status_orb_command_8_height-crd_status_orb_command_span;
-
-	// Command Button 10.
-	crd_status_orb_command_10_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_10_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_10_x = crd_status_orb_command_9_x;
-	crd_status_orb_command_10_y = crd_status_orb_command_9_y-crd_status_orb_command_9_height-(crd_status_orb_command_span/2);
-
-	// Command Button 11.
-	crd_status_orb_command_11_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_11_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_11_x = crd_status_orb_command_10_x;
-	crd_status_orb_command_11_y = crd_status_orb_command_10_y-crd_status_orb_command_10_height-(crd_status_orb_command_span/2);
-
-	// Command Button 12.
-	crd_status_orb_command_12_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_12_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_12_x = crd_status_orb_command_11_x;
-	crd_status_orb_command_12_y = crd_status_orb_command_11_y-crd_status_orb_command_11_height-(crd_status_orb_command_span/2);
-
-	// Command Button 13.
-	crd_status_orb_command_13_width = crd_status_orb_command_1_width;
-	crd_status_orb_command_13_height = crd_status_orb_command_1_height;
-	crd_status_orb_command_13_x = crd_status_orb_command_12_x;
-	crd_status_orb_command_13_y = crd_status_orb_command_12_y-crd_status_orb_command_12_height-(crd_status_orb_command_span/2);
+	SN_STATUS_PANE_COMMAND = new Array();
+	SN_STATUS_PANE_COMMAND.tab = new Object();
+	SN_STATUS_PANE_COMMAND.list = new Object();
+	SN_STATUS_PANE_COMMAND.button = new Object();
+	SN_STATUS_PANE_COMMAND.tab.max = 13;		// Maximum number of buttons (either single or lists).
+	SN_STATUS_PANE_COMMAND.list.max = 11;		// Maximum number of entries in a list.
+	SN_STATUS_PANE_COMMAND.button.max = 5;		// Number of tabs that are single buttons (no list).
+	SN_STATUS_PANE_COMMAND.span = 2;
+	for (loop = 0; loop < SN_STATUS_PANE_COMMAND.list.max+1; loop++)
+		SN_STATUS_PANE_COMMAND[loop] = new Array();
+		
+	SN_STATUS_PANE_COMMAND_FLP = new Array();
+	for (loop = 0; loop < SN_STATUS_PANE_COMMAND.list.max+1; loop++)
+		SN_STATUS_PANE_COMMAND_FLP[loop] = new Array();
+
+	for (SN_STATUS_PANE_COMMAND.tab.curr = 1; SN_STATUS_PANE_COMMAND.tab.curr <= SN_STATUS_PANE_COMMAND.tab.max; SN_STATUS_PANE_COMMAND.tab.curr++)
+	{
+		for (SN_STATUS_PANE_COMMAND.list.curr = 1; SN_STATUS_PANE_COMMAND.list.curr <= SN_STATUS_PANE_COMMAND.list.max; SN_STATUS_PANE_COMMAND.list.curr++)
+		{
+			SN_STATUS_PANE_COMMAND[SN_STATUS_PANE_COMMAND.list.curr][SN_STATUS_PANE_COMMAND.tab.curr] = addArrayElement(Crd, Crd.last); 
+			Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+			Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+			Crd[Crd.last-1].width	= crd_portrait_sml_width; 
+			Crd[Crd.last-1].height	= crd_portrait_sml_height; 
+			
+			SN_STATUS_PANE_COMMAND[SN_STATUS_PANE_COMMAND.list.curr][SN_STATUS_PANE_COMMAND.tab.curr].type = new Object();
+			SN_STATUS_PANE_COMMAND[SN_STATUS_PANE_COMMAND.list.curr][SN_STATUS_PANE_COMMAND.tab.curr].name = new Object();
+			SN_STATUS_PANE_COMMAND[SN_STATUS_PANE_COMMAND.list.curr][SN_STATUS_PANE_COMMAND.tab.curr].last = new Object();
+
+			if (SN_STATUS_PANE_COMMAND.list.curr == 1)
+			{
+				if (SN_STATUS_PANE_COMMAND.tab.curr == 1 && SN_STATUS_PANE_COMMAND.list.curr == 1)
+					Crd[Crd.last-1].x	= Crd[SN_STATUS_PANE_BG].x; 
+				else
+					Crd[Crd.last-1].x	= Crd[Crd.last-3].x+Crd[Crd.last-3].width; 		
+
+				Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_BG].y+Crd[SN_STATUS_PANE_BG].height; 
+			}
+			else
+			{
+				Crd[Crd.last-1].x	= Crd[Crd.last-3].x; 				
+				Crd[Crd.last-1].y	= Crd[Crd.last-3].y+Crd[Crd.last-3].height+SN_STATUS_PANE_COMMAND.span;
+			}
+
+			SN_STATUS_PANE_COMMAND_FLP[SN_STATUS_PANE_COMMAND.list.curr][SN_STATUS_PANE_COMMAND.tab.curr] = addArrayElement(Crd, Crd.last); 
+			Crd[Crd.last-1].rleft	= Crd[Crd.last-2].rleft;	Crd[Crd.last-1].rtop	= top_screen; 
+			Crd[Crd.last-1].rright	= Crd[Crd.last-2].rright;	Crd[Crd.last-1].rbottom	= top_screen; 
+			Crd[Crd.last-1].width	= Crd[Crd.last-2].width; 
+			Crd[Crd.last-1].height	= Crd[Crd.last-2].height; 
+
+			if (SN_STATUS_PANE_COMMAND.list.curr == 1)
+			{
+				if (SN_STATUS_PANE_COMMAND.tab.curr == 1 && SN_STATUS_PANE_COMMAND.list.curr == 1)
+					Crd[Crd.last-1].x	= Crd[SN_STATUS_PANE_BG].x; 
+				else
+					Crd[Crd.last-1].x	= Crd[Crd.last-3].x+Crd[Crd.last-3].width; 		
+
+				Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_BG].y+Crd[SN_STATUS_PANE_BG].height; 
+			}
+			else
+			{
+				Crd[Crd.last-1].x	= Crd[Crd.last-3].x; 				
+				Crd[Crd.last-1].y	= Crd[Crd.last-3].y+Crd[Crd.last-3].height+SN_STATUS_PANE_COMMAND.span;
+			}
+		}
+	}
 }
 
 // ====================================================================
@@ -824,25 +312,35 @@ function UpdateList(listIcon, listCol)
 		if (listName != "")
 		{
 			// Enable tab portrait.
-			setPortrait("session_panel_status_command_pri_" + listCol, "sheet_action", "", listIcon);
-			GUIObjectUnhide("session_panel_status_command_pri_" + listCol);
+			setPortrait("SN_STATUS_PANE_COMMAND_" + listCol + "_1", "sheet_action", "", listIcon);
+			GUIObjectUnhide("SN_STATUS_PANE_COMMAND_" + listCol + "_1");
+
+			// Store content info in tab button for future reference.
+			SN_STATUS_PANE_COMMAND[1][listCol].type = "list";
 
 			// Extract entity list into an array.
 			listArray = parseDelimiterString(listName, ";", listName.length);
 
+			// Reset list length.
+			SN_STATUS_PANE_COMMAND[1][listCol].last = 0;
+
 			// Populate appropriate command buttons.
-			for (createLoop = 0; createLoop < command_sub_max; createLoop++)
+			for (createLoop = 0; createLoop < SN_STATUS_PANE_COMMAND.list.max; createLoop++)
 			{
 				if (createLoop < listArray.length)
 				{
 					// Get name of entity to display in list.
 					UpdateListEntityName = selection[0].traits.id.civ_code + "_" + listArray[createLoop];
 
-					setPortrait("session_panel_status_command_pri_" + listCol + "_" + parseInt(createLoop+1), getEntityTemplate(UpdateListEntityName).traits.id.icon, selection[0].traits.id.civ_code, getEntityTemplate(UpdateListEntityName).traits.id.icon_cell);
-					GUIObjectUnhide("session_panel_status_command_pri_" + listCol + "_" + parseInt(createLoop+1));
+					setPortrait("SN_STATUS_PANE_COMMAND_" + listCol + "_" + parseInt(createLoop+2), getEntityTemplate(UpdateListEntityName).traits.id.icon, selection[0].traits.id.civ_code, getEntityTemplate(UpdateListEntityName).traits.id.icon_cell);
+					GUIObjectUnhide("SN_STATUS_PANE_COMMAND_" + listCol + "_" + parseInt(createLoop+2));
+
+					// Store content info in tab button for future reference.
+					SN_STATUS_PANE_COMMAND[parseInt(createLoop+2)][listCol].name = listArray[createLoop];
+					SN_STATUS_PANE_COMMAND[parseInt(createLoop+2)][listCol].last++;
 				}
 				else
-					GUIObjectHide("session_panel_status_command_pri_" + listCol + "_" + parseInt(createLoop+1));
+					GUIObjectHide("SN_STATUS_PANE_COMMAND_" + listCol + "_" + parseInt(createLoop+2));
 			}
 
 			return listArray;
@@ -869,8 +367,13 @@ function UpdateCommand(listIcon, listCol)
          || (listIcon == action_gather_ore && selection[0].actions.gather && selection[0].actions.gather.ore)
            )
 	{	
-		setPortrait("session_panel_status_command_pri_" + listCol, "sheet_action", "", listIcon);
-		GUIObjectUnhide("session_panel_status_command_pri_" + listCol);
+		setPortrait("SN_STATUS_PANE_COMMAND_" + listCol + "_1", "sheet_action", "", listIcon);
+		GUIObjectUnhide("SN_STATUS_PANE_COMMAND_" + listCol + "_1");
+
+		// Store content info in tab button for future reference.
+		SN_STATUS_PANE_COMMAND[1][listCol].type = "command";
+		SN_STATUS_PANE_COMMAND[1][listCol].last = 0;
+		SN_STATUS_PANE_COMMAND[1][listCol].name = listIcon;
 
 		return (listCol-1);
 	}
@@ -880,19 +383,46 @@ function UpdateCommand(listIcon, listCol)
 
 // ====================================================================
 
+function PressCommandButton(list, tab)
+{
+	switch (list)
+	{
+		case 1:
+			tempListObject.caption = "";
+//			if (SN_STATUS_PANE_COMMAND[list][tab].type == "list")
+//			{
+//console.write("Clicked [" + list + "," + tab + "]: tab of type " + SN_STATUS_PANE_COMMAND[list][tab].type + "; " + SN_STATUS_PANE_COMMAND[list][tab].last + "; " + SN_STATUS_PANE_COMMAND[list][tab].name);
+//				// Click the tab button to toggle visibility of its list (if it's of a list type).
+				GUIObjectToggle("SN_STATUS_PANE_COMMAND_" + tab + "_GROUP");
+//			}
+//			else
+//			{
+//				// Perform appropriate actions for different command buttons.
+//console.write("Clicked [" + list + "," + tab + "]: command of type " + SN_STATUS_PANE_COMMAND[list][tab].type + "; " + SN_STATUS_PANE_COMMAND[list][tab].last + "; " + SN_STATUS_PANE_COMMAND[list][tab].name);
+//			}
+		break;
+		default:
+			tempListObject.caption = list-1;
+//console.write("Clicked [" + list + "," + tab + "]: list of type " + SN_STATUS_PANE_COMMAND[list][tab].type + "; " + SN_STATUS_PANE_COMMAND[list][tab].last + "; " + SN_STATUS_PANE_COMMAND[list][tab].name);
+		break;
+	}
+}	
+
+// ====================================================================
+
 function UpdateCommandButtons()
 {
 	// Update train/research/build lists.
-	listCounter	= 1; 
-	unitArray 	= UpdateList(action_tab_train, listCounter); 		if (unitArray != 0)	 listCounter++;
+	listCounter		= 1; 
+	unitArray 		= UpdateList(action_tab_train, listCounter); 		if (unitArray != 0)		 listCounter++;
 	structcivArray 	= UpdateList(action_tab_buildciv, listCounter);		if (structcivArray != 0) listCounter++;
 	structmilArray 	= UpdateList(action_tab_buildmil, listCounter);		if (structmilArray != 0) listCounter++;
-	techArray 	= UpdateList(action_tab_research, listCounter);		if (techArray != 0)	 listCounter++;
+	techArray 		= UpdateList(action_tab_research, listCounter);		if (techArray != 0)		 listCounter++;
 	formationArray 	= UpdateList(action_tab_formation, listCounter);	if (formationArray != 0) listCounter++;
 	stanceArray 	= UpdateList(action_tab_stance, listCounter);		if (stanceArray != 0)	 listCounter++;
 
 	// Update commands.
-	commandCounter = command_max;
+	commandCounter = SN_STATUS_PANE_COMMAND.tab.max;
 	commandCounter = UpdateCommand(action_attack, commandCounter);
 	commandCounter = UpdateCommand(action_patrol, commandCounter);
 	commandCounter = UpdateCommand(action_repair, commandCounter);
@@ -904,10 +434,9 @@ function UpdateCommandButtons()
 	// Clear remaining buttons between them.
 	for (commandClearLoop = listCounter; commandClearLoop <= commandCounter; commandClearLoop++)
 	{
-		GUIObjectHide("session_panel_status_command_pri_" + commandClearLoop);
+		GUIObjectHide("SN_STATUS_PANE_COMMAND_" + commandClearLoop + "_1");
 		// If this slot could possibly contain a list, hide that too.
-		if (commandClearLoop <= command_list_max)
-			GUIObjectHide("session_panel_status_command_pri_" + commandClearLoop + "_group");
+		GUIObjectHide("SN_STATUS_PANE_COMMAND_" + commandClearLoop + "_GROUP");
 	}
 }
 
