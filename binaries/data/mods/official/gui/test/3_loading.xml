@@ -53,7 +53,7 @@
 		<!-- text -->
 		<object type="text" name="loading_screen_text" size="23.571428% 40 100%-32 100%-100" absolute="false" font="prospero18" z="165" hidden="false"/>
 
-		<object type="button" name="loading_screen_tip" sprite="only_white_border" size="32 100%-150 100%-32 100%-32" font="tahoma18" text_valign="center" textcolor="0 0 0" z="165" hidden="false"/>
+		<object type="text" name="loading_screen_tip" sprite="0ad_indent_lite" size="32 100%-150 100%-32 100%-32" font="trebuchet16" text_align="left" text_valign="center" textcolor="0 0 0" z="165" hidden="false"/>
 	</object>
 
 </objects>

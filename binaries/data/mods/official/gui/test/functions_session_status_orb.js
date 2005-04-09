@@ -214,7 +214,8 @@ function initStatusOrb()
 	SN_STATUS_PANE_COMMAND.tab.max = 13;		// Maximum number of buttons (either single or lists).
 	SN_STATUS_PANE_COMMAND.list.max = 11;		// Maximum number of entries in a list.
 	SN_STATUS_PANE_COMMAND.button.max = 5;		// Number of tabs that are single buttons (no list).
-	SN_STATUS_PANE_COMMAND.span = 2;
+	SN_STATUS_PANE_COMMAND.split = 9;			// When we reach this button, split the rows (remainder are vertical, not horizontal).
+	SN_STATUS_PANE_COMMAND.span = 2;			// Spacing between lists.
 	for (loop = 0; loop < SN_STATUS_PANE_COMMAND.list.max+1; loop++)
 		SN_STATUS_PANE_COMMAND[loop] = new Array();
 		
@@ -236,19 +237,39 @@ function initStatusOrb()
 			SN_STATUS_PANE_COMMAND[SN_STATUS_PANE_COMMAND.list.curr][SN_STATUS_PANE_COMMAND.tab.curr].name = new Object();
 			SN_STATUS_PANE_COMMAND[SN_STATUS_PANE_COMMAND.list.curr][SN_STATUS_PANE_COMMAND.tab.curr].last = new Object();
 
-			if (SN_STATUS_PANE_COMMAND.list.curr == 1)
+			if (SN_STATUS_PANE_COMMAND.tab.curr >= SN_STATUS_PANE_COMMAND.split)
 			{
-				if (SN_STATUS_PANE_COMMAND.tab.curr == 1 && SN_STATUS_PANE_COMMAND.list.curr == 1)
-					Crd[Crd.last-1].x	= Crd[SN_STATUS_PANE_BG].x; 
-				else
-					Crd[Crd.last-1].x	= Crd[Crd.last-3].x+Crd[Crd.last-3].width; 		
+				if (SN_STATUS_PANE_COMMAND.list.curr == 1)
+				{
+					Crd[Crd.last-1].x	= Crd[SN_STATUS_PANE_BG].x+Crd[SN_STATUS_PANE_BG].width; 
 
-				Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_BG].y+Crd[SN_STATUS_PANE_BG].height; 
+					if (SN_STATUS_PANE_COMMAND.tab.curr == SN_STATUS_PANE_COMMAND.split && SN_STATUS_PANE_COMMAND.list.curr == 1)
+						Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_BG].y; 
+					else
+						Crd[Crd.last-1].y	= Crd[Crd.last-3].y+Crd[Crd.last-3].height; 		
+				}
+				else
+				{
+					Crd[Crd.last-1].x	= Crd[Crd.last-3].x+Crd[Crd.last-3].width+SN_STATUS_PANE_COMMAND.span; 				
+					Crd[Crd.last-1].y	= Crd[Crd.last-3].y;
+				}
 			}
 			else
 			{
-				Crd[Crd.last-1].x	= Crd[Crd.last-3].x; 				
-				Crd[Crd.last-1].y	= Crd[Crd.last-3].y+Crd[Crd.last-3].height+SN_STATUS_PANE_COMMAND.span;
+				if (SN_STATUS_PANE_COMMAND.list.curr == 1)
+				{
+					if (SN_STATUS_PANE_COMMAND.tab.curr == 1 && SN_STATUS_PANE_COMMAND.list.curr == 1)
+						Crd[Crd.last-1].x	= Crd[SN_STATUS_PANE_BG].x; 
+					else
+						Crd[Crd.last-1].x	= Crd[Crd.last-3].x+Crd[Crd.last-3].width; 		
+	
+					Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_BG].y+Crd[SN_STATUS_PANE_BG].height; 
+				}
+				else
+				{
+					Crd[Crd.last-1].x	= Crd[Crd.last-3].x; 				
+					Crd[Crd.last-1].y	= Crd[Crd.last-3].y+Crd[Crd.last-3].height+SN_STATUS_PANE_COMMAND.span;
+				}
 			}
 
 			SN_STATUS_PANE_COMMAND_FLP[SN_STATUS_PANE_COMMAND.list.curr][SN_STATUS_PANE_COMMAND.tab.curr] = addArrayElement(Crd, Crd.last); 
@@ -257,19 +278,39 @@ function initStatusOrb()
 			Crd[Crd.last-1].width	= Crd[Crd.last-2].width; 
 			Crd[Crd.last-1].height	= Crd[Crd.last-2].height; 
 
-			if (SN_STATUS_PANE_COMMAND.list.curr == 1)
+			if (SN_STATUS_PANE_COMMAND.tab.curr >= SN_STATUS_PANE_COMMAND.split)
 			{
-				if (SN_STATUS_PANE_COMMAND.tab.curr == 1 && SN_STATUS_PANE_COMMAND.list.curr == 1)
-					Crd[Crd.last-1].x	= Crd[SN_STATUS_PANE_BG].x; 
-				else
-					Crd[Crd.last-1].x	= Crd[Crd.last-3].x+Crd[Crd.last-3].width; 		
+				if (SN_STATUS_PANE_COMMAND.list.curr == 1)
+				{
+					Crd[Crd.last-1].x	= Crd[SN_STATUS_PANE_BG].x+Crd[SN_STATUS_PANE_BG].width; 
 
-				Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_BG].y+Crd[SN_STATUS_PANE_BG].height; 
+					if (SN_STATUS_PANE_COMMAND.tab.curr == SN_STATUS_PANE_COMMAND.split && SN_STATUS_PANE_COMMAND.list.curr == 1)
+						Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_BG].y; 
+					else
+						Crd[Crd.last-1].y	= Crd[Crd.last-3].y+Crd[Crd.last-3].height; 		
+				}
+				else
+				{
+					Crd[Crd.last-1].x	= Crd[Crd.last-3].x+Crd[Crd.last-3].width+SN_STATUS_PANE_COMMAND.span; 				
+					Crd[Crd.last-1].y	= Crd[Crd.last-3].y;
+				}
 			}
 			else
 			{
-				Crd[Crd.last-1].x	= Crd[Crd.last-3].x; 				
-				Crd[Crd.last-1].y	= Crd[Crd.last-3].y+Crd[Crd.last-3].height+SN_STATUS_PANE_COMMAND.span;
+				if (SN_STATUS_PANE_COMMAND.list.curr == 1)
+				{
+					if (SN_STATUS_PANE_COMMAND.tab.curr == 1 && SN_STATUS_PANE_COMMAND.list.curr == 1)
+						Crd[Crd.last-1].x	= Crd[SN_STATUS_PANE_BG].x; 
+					else
+						Crd[Crd.last-1].x	= Crd[Crd.last-3].x+Crd[Crd.last-3].width; 		
+	
+					Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_BG].y+Crd[SN_STATUS_PANE_BG].height; 
+				}
+				else
+				{
+					Crd[Crd.last-1].x	= Crd[Crd.last-3].x; 				
+					Crd[Crd.last-1].y	= Crd[Crd.last-3].y+Crd[Crd.last-3].height+SN_STATUS_PANE_COMMAND.span;
+				}
 			}
 		}
 	}
