@@ -76,11 +76,10 @@ scope
 
 #define STMT(STMT_code__) do { STMT_code__; } while(0)
 
-// must not be used before main entered! (i.e. not from NLS constructors / functions)
+// may be called at any time (in particular before main), but is not
+// thread-safe. if that's important, use pthread_once() instead.
 #define ONCE(ONCE_code__)\
 STMT(\
-/*	static pthread_mutex_t ONCE_mutex__ = PTHREAD_MUTEX_INITIALIZER;\
-	if(pthread_mutex_trylock(&ONCE_mutex__) == 0)\*/\
 	static bool ONCE_done__ = false;\
 	if(!ONCE_done__)\
 	{\
@@ -88,6 +87,7 @@ STMT(\
 		ONCE_code__;\
 	}\
 )
+
 
 // note: UINT_MAX is necessary when testing a Handle value and
 // also returning Handle. the negative value (error return)

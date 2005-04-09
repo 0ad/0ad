@@ -9,7 +9,11 @@
 #include <map>
 
 
-struct BIT_BUF
+//
+// FIFO bit queue
+//
+
+struct BitBuf
 {
 	ulong buf;
 	ulong cur;	// bit to be appended (toggled by add())
@@ -41,6 +45,10 @@ struct BIT_BUF
 	}
 };
 
+
+//
+// ring buffer - static array, accessible modulo n
+//
 
 template<class T, size_t n> struct RingBuf
 {
@@ -253,6 +261,15 @@ private:
 		return &*l;
 	}
 };
+
+
+//
+// expansible hash table (linear probing)
+//
+
+
+
+
 
 
 // from VFS, not currently needed
