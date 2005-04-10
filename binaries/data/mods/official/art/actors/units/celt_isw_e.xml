@@ -24,7 +24,15 @@
         <prop actor="props/weapon/weap_csword.xml" attachpoint="r_hand"/>
         <prop actor="props/temp/l_sheath.xml" attachpoint="l_hip"/>
       </props>
-      <texture>skeletal/celt_isw_e.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="10" name="1">
+      <texture>skeletal/celt_isw_e_01.dds</texture>
+    </variant>
+    <variant frequency="10" name="2">
+      <texture>skeletal/celt_isw_e_02.dds</texture>
     </variant>
   </group>
 
