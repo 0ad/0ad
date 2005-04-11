@@ -45,23 +45,25 @@ function startLoadingScreen()
         getGUIObjectByName("loading_screen_background_concept").sprite = sprite;
         console.write(getGUIObjectByName("loading_screen_background_concept").sprite);
 
+        // janwas: main loop now sets progress / description, but that won't
+        // happen until the first timeslice completes, so set initial values.
         getGUIObjectByName("loading_screen_titlebar_text").caption = "Loading Scenario ...";
-        getGUIObjectByName("loading_screen_progress_bar_text").caption = "... Reticulating splines ...";
-        getGUIObjectByName("loading_screen_progress_bar").caption = 80;
+        getGUIObjectByName("loading_screen_progress_bar_text").caption = "";
+        getGUIObjectByName("loading_screen_progress_bar").caption = 0;
         getGUIObjectByName("loading_screen_text").caption = "LOADING " + g_GameAttributes.mapFile + " ...\nPlease wait ...";
         getGUIObjectByName("loading_screen_tip").caption = "Wise man once say ...\nHe who thinks slow, he act in haste, be rash and quick and foolish. But he that thinks too much, acts too slowly. The stupid always win, Commandersan. Remember that. You are tiny grasshopper.";
 
         // Begin game session.
         if (! startGame())
-	{
-		// Failed to start the game; go back to the main menu.
-		GUIObjectHide("loading_screen");
-		GUIObjectUnhide("PREGAME_GUI");
-		// Show an error message
-		btCaptions = new Array("OK");
-		btCode = new Array("");
-		messageBox(400, 200, "The game could not be started with the given parameters. You probably have entered an invalid map name.", "Error", 0, btCaptions, btCode);
-        }            
+        {
+                // Failed to start the game; go back to the main menu.
+                GUIObjectHide("loading_screen");
+                GUIObjectUnhide("PREGAME_GUI");
+                // Show an error message
+                btCaptions = new Array("OK");
+                btCode = new Array("");
+                messageBox(400, 200, "The game could not be started with the given parameters. You probably have entered an invalid map name.", "Error", 0, btCaptions, btCode);
+        }
 }
 
 // ====================================================================
@@ -93,7 +95,7 @@ function setupSession()
         // For example, create the resource types.
         // Initialise Resource Pools by attaching them to the Player object.
         // (CPlayer code takes care of giving a copy to each player.)
-	CreateResources();
+        CreateResources();
 
         // Start refreshing the session controls.
         setInterval( getObjectInfo, 1, 1000 );
