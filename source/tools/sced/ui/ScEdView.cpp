@@ -22,6 +22,8 @@
 
 #include "res/vfs.h"
 
+#undef CRect // because it was redefined to PS_Rect in Overlay.h
+
 int g_ClickMode=0;
 
 static unsigned int GetModifierKeyFlags()

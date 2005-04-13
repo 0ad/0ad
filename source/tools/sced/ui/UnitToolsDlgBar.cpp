@@ -10,6 +10,8 @@
 
 #include "BaseEntityCollection.h"
 
+#undef CRect // because it was redefined to PS_Rect in Overlay.h
+
 BEGIN_MESSAGE_MAP(CUnitToolsDlgBar, CDialogBar)
 	//{{AFX_MSG_MAP(CUnitToolsDlgBar)
 		// NOTE - the ClassWizard will add and remove mapping macros here.

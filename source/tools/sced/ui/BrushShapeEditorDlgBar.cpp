@@ -7,6 +7,8 @@
 #include "BrushShapeEditorDlgBar.h"
 #undef _IGNORE_WGL_H_
 
+#undef CRect // because it was redefined to PS_Rect in Overlay.h
+
 BEGIN_MESSAGE_MAP(CBrushShapeEditorDlgBar, CDialogBar)
 	//{{AFX_MSG_MAP(CBrushShapeEditorDlgBar)
 		// NOTE - the ClassWizard will add and remove mapping macros here.
