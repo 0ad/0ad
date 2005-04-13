@@ -393,6 +393,12 @@ static inline bool is_marked_as_deleted(Node* p)
 	return (u & BIT(0)) != 0;
 }
 
+static inline Node* with_mark(Node* p)
+{
+	assert2(!is_marked_as_deleted(p));	// paranoia
+	return p+1;
+}
+
 static inline Node* without_mark(Node* p)
 {
 	assert2(is_marked_as_deleted(p));	// paranoia
@@ -425,6 +431,7 @@ static void lfl_free(void** phead)
 
 
 // "Find"
+// look for a given key in the list; return true with <pos>
 static bool list_lookup(void** phead, Key key, ListPos* pos)
 {
 	TLS* tls = tls_get();
@@ -489,6 +496,8 @@ try_again:
 }
 
 
+// return pointer to "user data" attached to <key>,
+// or 0 if not found in the list.
 void* lfl_find(void** phead, Key key)
 {
 	ListPos* pos = (ListPos*)alloca(sizeof(ListPos));
@@ -498,49 +507,84 @@ void* lfl_find(void** phead, Key key)
 }
 
 
+// insert into list in order of increasing key. ensures items are unique
+// by first checking if already in the list. returns 0 if out of memory,
+// otherwise a pointer to "user data" attached to <key>. the optional
+// <was_inserted> return variable indicates whether <key> was newly added.
 void* lfl_insert(void** phead, Key key, size_t additional_bytes, int* was_inserted)
 {
+	TLS* tls = tls_get();
+	ListPos* pos = (ListPos*)alloca(sizeof(ListPos));
+
 	Node* node = 0;
 	if(was_inserted)
 		*was_inserted = 0;
 
-	TLS* tls = tls_get();
-	ListPos* pos = (ListPos*)alloca(sizeof(ListPos));
-
-	for(;;)
+try_again:
+	// already in list - return it and leave <was_inserted> 'false'
+	if(list_lookup(phead, key, pos))
 	{
-		if(list_lookup(phead, key, pos))
-			return 0;
+		// free in case we allocated below, but CAS failed;
+		// no-op if node == 0, i.e. it wasn't allocated.
+		node_free(node);
 
-		// rationale for allocating here: see struct Node.
+		node = pos->cur;
+		goto have_node;
+	}
+	// else: not yet in list, so allocate a new Node if we haven't already.
+	// doing that after list_lookup avoids needless alloc/free.
+	if(!node)
+	{
 		Node* node = node_alloc(additional_bytes);
+		// .. out of memory
 		if(!node)
 			return 0;
-		node->key  = key;
-		node->next = pos->cur;
-		if(CAS(pos->pprev, pos->cur, node))
-			return node_user_data(node);
 	}
+	node->key  = key;
+	node->next = pos->cur;
+
+	// atomic insert immediately before pos->cur. failure implies
+	// at least of the following happened after list_lookup; we try again.
+	// - *pprev was removed (i.e. it's 'marked')
+	// - cur was retired (i.e. no longer reachable from *phead)
+	// - a new node was inserted immediately before cur
+	if(!CAS(pos->pprev, pos->cur, node))
+		goto try_again;
+	// else: successfully inserted; linearization point
+	if(was_inserted)
+		*was_inserted = 1;
+
+have_node:
+	return node_user_data(node);
 }
 
 
-bool lfl_erase(void** phead, Key key)
+// remove from list; return -1 if not found, or 0 on success.
+int lfl_erase(void** phead, Key key)
 {
 	TLS* tls = tls_get();
 	ListPos* pos = (ListPos*)alloca(sizeof(ListPos));
 
-	for(;;)
-	{
-		if(!list_lookup(phead, key, pos))
-			return false;
-		if(!CAS(&pos->cur->next, pos->next, pos->next+1))
-			continue;
-		if(CAS(pos->pprev, pos->cur, pos->next))
-			retire_node(pos->cur);
-		else
-			list_lookup(phead, key, pos);
-		return true;
-	}
+try_again:
+	// not found in list - abort.
+	if(!list_lookup(phead, key, pos))
+		return -1;
+	// mark as removed (avoids subsequent linking to it). failure implies
+	// at least of the following happened after list_lookup; we try again.
+	// - next was removed
+	// - cur was retired (i.e. no longer reachable from *phead)
+	// - a new node was inserted immediately after cur
+	if(!CAS(&pos->cur->next, pos->next, with_mark(pos->next)))
+		goto try_again;
+	// remove from list; if successful, this is the
+	// linearization point and *pprev isn't marked.
+	if(CAS(pos->pprev, pos->cur, pos->next))
+		retire_node(pos->cur);
+	// failed: another thread removed cur after it was marked above.
+	// call list_lookup to ensure # non-released nodes < # threads.
+	else
+		list_lookup(phead, key, pos);
+	return 0;
 }
 
 
@@ -564,18 +608,24 @@ void* lfh_find(Key key)
 	return lfl_find(phead, key);
 }
 
-void* lfh_insert(Key key, size_t additional_bytes)
+void* lfh_insert(Key key, size_t additional_bytes, int* was_inserted)
 {
 	void** phead = (void**)&T[h(key)];
-	return lfl_insert(phead, key, additional_bytes);
+	return lfl_insert(phead, key, additional_bytes, was_inserted);
 }
 
-bool lfh_erase(Key key)
+int lfh_erase(Key key)
 {
 	void** phead = (void**)&T[h(key)];
 	return lfl_erase(phead, key);
 }
 
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// built-in self test
+//
+//////////////////////////////////////////////////////////////////////////////
 
 static int test()
 {
@@ -588,7 +638,7 @@ static int test()
 	int sig = 10;
 	for(uint i = 0; i < ENTRIES; i++)
 	{
-		void* user_data = lfl_insert(&head, (u8*)key+i, sizeof(int));
+		void* user_data = lfl_insert(&head, (u8*)key+i, sizeof(int), 0);
 		assert2(user_data != 0);
 
 		*(int*)user_data = sig+i;
