@@ -656,4 +656,4 @@ static int test()
 }
 
 
-static int dummy = test();
+//static int dummy = test();
