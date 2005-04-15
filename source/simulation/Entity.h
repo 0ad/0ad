@@ -43,7 +43,7 @@
 #include "EntityMessage.h"
 #include "EventHandlers.h"
 #include "ScriptObject.h"
-
+#include "ObjectEntry.h"
 #include "EntitySupport.h"
 
 class CBaseEntity;
@@ -124,8 +124,15 @@ private:
 	CEntity( CBaseEntity* base, CVector3D position, float orientation );
 
 	/*EGotoSituation*/ uint processGotoHelper( CEntityOrder* current, size_t timestep_milli, HEntity& collide );
+
+	bool processContactAction( CEntityOrder* current, size_t timestep_millis, int transition, float range );
+	bool processContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, CSkeletonAnim* animation, CScriptEvent* contactEvent, float range, float minRange );
+
 	bool processAttackMelee( CEntityOrder* current, size_t timestep_milli );
 	bool processAttackMeleeNoPathing( CEntityOrder* current, size_t timestep_milli );
+	bool processGather( CEntityOrder* current, size_t timestep_milli );
+	bool processGatherNoPathing( CEntityOrder* current, size_t timestep_milli );
+	
 	bool processGotoNoPathing( CEntityOrder* current, size_t timestep_milli );
 	bool processGoto( CEntityOrder* current, size_t timestep_milli );
 	bool processPatrol( CEntityOrder* current, size_t timestep_milli );
@@ -204,6 +211,7 @@ public:
 	}
 	bool Damage( JSContext* cx, uintN argc, jsval* argv );
 	bool Kill( JSContext* cx, uintN argc, jsval* argv );
+	jsval GetSpawnPoint( JSContext* cx, uintN argc, jsval* argv );
 	bool IsIdle( JSContext* cx, uintN argc, jsval* argv )
 	{
 		return( m_orderQueue.empty() );

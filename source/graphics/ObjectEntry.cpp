@@ -28,6 +28,7 @@ CObjectEntry::CObjectEntry(int type, CObjectBase* base)
 	m_DeathAnim=0;
 	m_CorpseAnim=0;
 	m_MeleeAnim=0;
+	m_GatherAnim=0;
 	m_RangedAnim=0;
 }
 
@@ -155,6 +156,9 @@ bool CObjectEntry::BuildRandomVariant(CObjectBase::variation_key& vars, CObjectB
 			else
 			if (AnimNameLC == "attack")
 				m_MeleeAnim = m_Animations[t].m_AnimData;
+			else
+			if (AnimNameLC == "chop")
+				m_GatherAnim = m_Animations[t].m_AnimData;
 			else
 			if (AnimNameLC == "death")
 				m_DeathAnim = m_Animations[t].m_AnimData;

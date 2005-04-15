@@ -135,6 +135,9 @@ void CSelectedEntities::renderOverlays()
 	case CEntityOrder::ORDER_ATTACK_MELEE:
 		glwprintf( L"Attack" );
 		break;
+	case CEntityOrder::ORDER_GATHER:
+		glwprintf( L"Gather" );
+		break;
 	}
 
 	glDisable( GL_TEXTURE_2D );
@@ -392,18 +395,6 @@ void CSelectedEntities::update()
 		m_selectionChanged = false;
 		g_Mouseover.m_targetChanged = false;
 	}
-	/*
-	if( !isContextValid( m_contextOrder ) )
-	{
-		// This order isn't valid for the current selection and/or target.
-		for( int t = 0; t < CEntityOrder::ORDER_LAST; t++ )
-			if( isContextValid( t ) )
-			{
-				m_contextOrder = t; return;
-			}
-		m_contextOrder = -1;
-	}
-	*/
 
 	if( ( m_group_highlight != -1 ) && getGroupCount( m_group_highlight ) )
 		g_Game->GetView()->SetCameraTarget( getGroupPosition( m_group_highlight ) );
@@ -493,6 +484,18 @@ void CSelectedEntities::contextOrder( bool pushQueue )
 */
 	}
 	case CEntityOrder::ORDER_ATTACK_MELEE:
+	{
+		context.m_data[0].entity = g_Mouseover.m_target;
+		for( it = m_selected.begin(); it < m_selected.end(); it++ )
+			if( (*it)->acceptsOrder( m_contextOrder, g_Mouseover.m_target ) )
+			{
+				if( !pushQueue )
+					(*it)->clearOrders();
+				(*it)->pushOrder( context );
+			}
+		return;
+	}
+	case CEntityOrder::ORDER_GATHER:
 	{
 		context.m_data[0].entity = g_Mouseover.m_target;
 		for( it = m_selected.begin(); it < m_selected.end(); it++ )

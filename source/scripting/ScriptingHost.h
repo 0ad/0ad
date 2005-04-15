@@ -98,6 +98,7 @@ public:
 	// TODO: Remove one of these
 	inline JSContext *getContext() { return m_Context; }
 	inline JSContext *GetContext() { return m_Context; }
+	inline JSObject* GetGlobalObject() { return m_GlobalObject; }
 
 	void LoadScriptFromDisk(const std::string & fileName);
 

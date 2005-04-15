@@ -192,6 +192,10 @@ CProfileManager::CProfileManager()
 
 CProfileManager::~CProfileManager()
 {
+	std::map<CStr8, const char*>::iterator it;
+	for( it = m_internedStrings.begin(); it != m_internedStrings.end(); it++ )
+		delete[]( it->second );
+
 	delete( root );
 }
 
@@ -207,6 +211,20 @@ void CProfileManager::StartScript( const char* name )
 	if( name != current->GetName() )
 		current = current->GetScriptChild( name );
 	current->Call();
+}
+
+const char* CProfileManager::InternString( CStr8 intern )
+{
+	std::map<CStr8, const char*>::iterator it = m_internedStrings.find( intern );
+	if( it != m_internedStrings.end() )
+		return( it->second );
+	
+	size_t length = intern.length();
+	char* data = new char[length + 1];
+	strcpy( data, intern.c_str() );
+	data[length] = 0;
+	m_internedStrings.insert( std::pair<CStr8, const char*>( intern, data ) );	
+	return( data );
 }
 
 void CProfileManager::Stop()

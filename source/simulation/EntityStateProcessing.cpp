@@ -268,7 +268,8 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 	}
 }
 
-bool CEntity::processAttackMelee( CEntityOrder* current, size_t timestep_millis )
+// Handles processing common to (at the moment) gather and melee attack actions
+bool CEntity::processContactAction( CEntityOrder* current, size_t timestep_millis, int transition, float range )
 {
 	m_orderQueue.pop_front();
 
@@ -279,7 +280,7 @@ bool CEntity::processAttackMelee( CEntityOrder* current, size_t timestep_millis 
 
 	if( ( current->m_data[0].location - m_position ).length() < m_meleeRange ) 
 	{
-		current->m_type = CEntityOrder::ORDER_ATTACK_MELEE_NOPATHING;
+		(int&)current->m_type = transition;
 		return( true );
 	}
 
@@ -292,14 +293,13 @@ bool CEntity::processAttackMelee( CEntityOrder* current, size_t timestep_millis 
 
 	// The pathfinder will push its result back into this unit's queue.
 
-	g_Pathfinder.requestMeleeAttackPath( me, current->m_data[0].entity );
+	g_Pathfinder.requestContactPath( me, current->m_data[0].entity, transition );
 
 	return( true );
 }
-
-bool CEntity::processAttackMeleeNoPathing( CEntityOrder* current, size_t timestep_millis )
+bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, CSkeletonAnim* animation, CScriptEvent* contactEvent, float range, float minRange = 0.0f )
 {
-	// Target's dead? Then our work here is done.
+	// Target's dead (or exhausted)? Then our work here is done.
 	if( !current->m_data[0].entity || !current->m_data[0].entity->m_extant )
 	{
 		m_orderQueue.pop_front();
@@ -309,7 +309,7 @@ bool CEntity::processAttackMeleeNoPathing( CEntityOrder* current, size_t timeste
 	if( m_actor )
 	{
 		// Still playing attack animation? Suspend processing.
-		if( m_actor->GetModel()->GetAnimation() == m_actor->GetObject()->m_MeleeAnim )
+		if( m_actor->GetModel()->GetAnimation() == animation )
 			return( false );
 
 		// Just transitioned? No animation? (=> melee just finished) Play walk.
@@ -319,13 +319,16 @@ bool CEntity::processAttackMeleeNoPathing( CEntityOrder* current, size_t timeste
 
 	CVector2D delta = current->m_data[0].entity->m_position - m_position;
 
-	float adjRange = m_meleeRange + m_bounds->m_radius + current->m_data[0].entity->m_bounds->m_radius;
-	float adjMinRange = m_meleeRangeMin + m_bounds->m_radius + current->m_data[0].entity->m_bounds->m_radius;
+	float adjRange = range + m_bounds->m_radius + current->m_data[0].entity->m_bounds->m_radius;
 
-	if( delta.within( adjMinRange ) )
+	if( minRange > 0.0f )
 	{
-		// Too close... do nothing.
-		return( false );
+		float adjMinRange = m_meleeRangeMin + m_bounds->m_radius + current->m_data[0].entity->m_bounds->m_radius;
+		if( delta.within( adjMinRange ) )
+		{
+			// Too close... do nothing.
+			return( false );
+		}
 	}
 
 	if( !delta.within( adjRange ) )
@@ -393,15 +396,30 @@ bool CEntity::processAttackMeleeNoPathing( CEntityOrder* current, size_t timeste
 		m_ahead = delta.normalize();
 	}
 
-	// Now we've got this far:
-	// Pointy end goes into the other man...
-
-	CEventAttack AttackEvent( current->m_data[0].entity );
-
-	if( DispatchEvent( &AttackEvent ) && m_actor )
-		m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_MeleeAnim, true );
+	if( DispatchEvent( contactEvent ) && m_actor )
+		m_actor->GetModel()->SetAnimation( animation, true );
 
 	return( false );
+}
+
+bool CEntity::processAttackMelee( CEntityOrder* current, size_t timestep_millis )
+{
+	return( processContactAction( current, timestep_millis, CEntityOrder::ORDER_ATTACK_MELEE_NOPATHING, 0.5 ) );
+}
+bool CEntity::processAttackMeleeNoPathing( CEntityOrder* current, size_t timestep_milli )
+{
+	CEventAttack evt( current->m_data[0].entity );
+	return( processContactActionNoPathing( current, timestep_milli, m_actor ? m_actor->GetObject()->m_MeleeAnim : NULL, &evt, m_meleeRange, m_meleeRangeMin ) );
+}
+bool CEntity::processGather( CEntityOrder* current, size_t timestep_millis )
+{
+	return( processContactAction( current, timestep_millis, CEntityOrder::ORDER_GATHER_NOPATHING, 0.5 ) );
+}
+
+bool CEntity::processGatherNoPathing( CEntityOrder* current, size_t timestep_millis )
+{
+	CEventGather evt( current->m_data[0].entity );
+	return( processContactActionNoPathing( current, timestep_millis, m_actor ? m_actor->GetObject()->m_GatherAnim : NULL, &evt, 5.0, 0.0 ) );
 }
 
 bool CEntity::processGoto( CEntityOrder* current, size_t timestep_millis )

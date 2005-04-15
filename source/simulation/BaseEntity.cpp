@@ -85,6 +85,7 @@ bool CBaseEntity::loadXML( CStr filename )
 	AT(height);
 	AT(on);
 	AT(file);
+	AT(function);
 	#undef AT
 	#undef EL
 
@@ -161,14 +162,28 @@ bool CBaseEntity::loadXML( CStr filename )
 			CStrW EventName = L"on" + (CStrW)Child.getAttributes().getNamedItem( at_on );
 
 			CStrW Code (Child.getText());
-			
+			CStrW ExternalFunction = (CStrW)Child.getAttributes().getNamedItem( at_function );
+
 			// Does a property with this name already exist?
 
 			for( uint eventID = 0; eventID < EVENT_LAST; eventID++ )
 			{
 				if( CStrW( EventNames[eventID] ) == EventName )
 				{
-					m_EventHandlers[eventID].Compile( CStrW( filename ) + L"::" + EventName + L" (" + CStrW( Child.getLineNumber() ) + L")", Code );
+					if( ExternalFunction != CStrW() )
+					{
+						jsval fnval;
+						assert( JS_TRUE == JS_GetUCProperty( g_ScriptingHost.GetContext(), g_ScriptingHost.GetGlobalObject(), ExternalFunction.c_str(), ExternalFunction.Length(), &fnval ) );
+						JSFunction* fn = JS_ValueToFunction( g_ScriptingHost.GetContext(), fnval );
+						if( !fn )
+						{
+							LOG( ERROR, LOG_CATEGORY, "CBaseEntity::LoadXML: Function does not exist for event %hs in file %s. Load failed.", EventName.c_str(), filename.c_str() );
+							break;
+						}
+						m_EventHandlers[eventID].SetFunction( fn );
+					}
+					else
+						m_EventHandlers[eventID].Compile( CStrW( filename ) + L"::" + EventName + L" (" + CStrW( Child.getLineNumber() ) + L")", Code );
 					HasProperty( EventName )->m_Inherited = false;
 					break;
 				}

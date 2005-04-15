@@ -49,26 +49,21 @@ function AddResource(resourceName, resourceQty)
 {
 	// Creates a resource type.
 
+	// MT: Rewritten to use JavaScript's nice associative-array-alikes. Requires the valueOf() hack - I'm looking into this.
+
 	if (!localPlayer.resource)
 	{
 		// Define the base resource group if it does not exist.
 		localPlayer.resource = new Array();
-
-		// Define resource total.
-		localPlayer.resource.last = new Object();
-		localPlayer.resource.last = 0;
 	}
 	
 	// Set resource name to upper-case to ensure it matches resource control name.
 	resourceName = resourceName.toUpperCase();
 
 	// Store resource's name and starting value.
-	localPlayer.resource[localPlayer.resource.last] = new Object();
-	localPlayer.resource[localPlayer.resource.last].name = resourceName;
-	localPlayer.resource[localPlayer.resource.last].qty  = resourceQty;
-	localPlayer.resource.last++;
+	localPlayer.resource.valueOf()[resourceName] = resourceQty;
 	
-	console.write("Added " + resourceName + " (" + localPlayer.resource.last + ")");
+	console.write("Added " + resourceName );
 }
 
 // ====================================================================
@@ -91,20 +86,17 @@ function GiveResources(resourceName, resourceQty)
 {
 	// Generic function to add resources to the player's Pool.
 
-	// Find the resource in the list.
-	resourceSeek = 0;
-	while (resourceName != localPlayer.resource[resourceSeek].name && resourceSeek < localPlayer.resource.last)
-		resourceSeek++;
+	// MT: Rewritten to use JavaScript's nice associative-array-alikes. Requires the valueOf() hack - I'm looking into this.
+	
+	if( localPlayer.resource.valueOf()[resourceName] )
+	{
+	    localPlayer.resource.valueOf()[resourceName] += resourceQty;
+	    console.write("Earned " + resourceQty + " resources.");
+	    return( true );
+	}
 
 	// If the resource wasn't in the list, report an error.
 	return false;
-
-	// Add the quantity to the resource.
-	localPlayer.resource[resourceSeek].qty += resourceQty;
-	
-	console.write("Earned " + resourceQty + " resources.");
-
-	return true;
 }
 
 // ====================================================================
@@ -113,20 +105,23 @@ function UpdateResourcePool()
 {
 	// Populate the resource pool with current quantities.
 
-	for (resourceSeek = 0; resourceSeek < localPlayer.resource.last; resourceSeek++)
+	// MT: Rewritten to use JavaScript's nice associative-array-alikes. Requires the valueOf() hack - I'm looking into this.
+
+	pool = localPlayer.resource.valueOf();
+	for( resource in pool )
 	{
-		switch (localPlayer.resource[resourceSeek].name.toString())
+		switch( resource )
 		{
 			case "POPULATION":
 				// If it's population, combine population and housing in one string.
-				getGUIObjectByName("SN_RESOURCE_COUNTER_POPULATION").caption = localPlayer.resource[resourceSeek].qty + "/" + localPlayer.resource[resourceSeek].qty;
+				getGUIObjectByName("SN_RESOURCE_COUNTER_POPULATION").caption = pool.POPULATION + "/" + pool.HOUSING;
 			break;
 			case "HOUSING":
 				// Skip housing, as it's handled as a component of population.
 			break;
 			default:
 				// Set the value of a normal resource caption.
-				getGUIObjectByName("SN_RESOURCE_COUNTER_" + localPlayer.resource[resourceSeek].name).caption = localPlayer.resource[resourceSeek].qty.toString();
+				getGUIObjectByName("SN_RESOURCE_COUNTER_" + resource ).caption = pool[resource].toString();
 			break;
 		}
 	}

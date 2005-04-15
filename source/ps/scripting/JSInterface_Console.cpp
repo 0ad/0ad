@@ -90,7 +90,7 @@ JSBool JSI_Console::writeConsole( JSContext* UNUSEDPARAM(context), JSObject* UNU
 	{
 		try
 		{
-			CStrW arg = g_ScriptingHost.ValueToUCString( argv[0] );
+			CStrW arg = g_ScriptingHost.ValueToUCString( argv[i] );
 			output += arg;
 		}
 		catch( PSERROR_Scripting_ConversionFailed )

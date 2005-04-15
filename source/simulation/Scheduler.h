@@ -13,7 +13,9 @@
 #include "EntityHandles.h"
 #include "Singleton.h"
 #include "CStr.h"
-#include "scripting/ScriptingHost.h"
+#include "scripting/ScriptableObject.h"
+
+class CJSProgressTimer;
 
 // Message, destination and delivery time information.
 struct SDispatchObject
@@ -29,19 +31,6 @@ struct SDispatchObject
 		return( deliveryTime > compare.deliveryTime );
 	}
 };
-
-/*
-struct SDispatchObjectMessage : public SDispatchObject
-{
-	HEntity destination;
-	const CMessage* message;
-	inline SDispatchObjectMessage( const HEntity& _destination, size_t _deliveryTime, const CMessage* _message )
-		: SDispatchObject( _deliveryTime ), destination( _destination ), message( _message ) {}
-	inline SDispatchObjectMessage( const HEntity& _destination, size_t _deliveryTime, const CMessage* _message, const size_t recurrence )
-		: SDispatchObject( _deliveryTime, recurrence ), destination( _destination ), message( _message ) {}
-	
-};
-*/
 
 struct SDispatchObjectScript : public SDispatchObject
 {
@@ -65,16 +54,10 @@ struct SDispatchObjectFunction : public SDispatchObject
 
 struct CScheduler : public Singleton<CScheduler>
 {
-	// std::priority_queue<SDispatchObjectMessage> timeMessage, frameMessage;
 	std::priority_queue<SDispatchObjectScript> timeScript, frameScript;
 	std::priority_queue<SDispatchObjectFunction> timeFunction, frameFunction;
-
+	std::list<CJSProgressTimer*> progressTimers;
 	bool m_abortInterval;
-
-	/*
-	void pushTime( size_t delay, const HEntity& destination, const CMessage* message );
-	void pushFrame( size_t delay, const HEntity& destination, const CMessage* message );
-	*/
 
 	void pushTime( size_t delay, const CStrW& fragment, JSObject* operateOn = NULL );
 	void pushFrame( size_t delay, const CStrW& fragment, JSObject* operateOn = NULL );
@@ -82,10 +65,23 @@ struct CScheduler : public Singleton<CScheduler>
 	void pushTime( size_t delay, JSFunction* function, JSObject* operateOn = NULL );
 	void pushFrame( size_t delay, JSFunction* function, JSObject* operateOn = NULL );
 	void pushInterval( size_t first, size_t interval, JSFunction* function, JSObject* operateOn = NULL );
+	void pushProgressTimer( CJSProgressTimer* progressTimer );
 	void update(size_t elapsedSimulationTime);
 };
 
 #define g_Scheduler CScheduler::GetSingleton()
+
+class CJSProgressTimer : public CJSObject<CJSProgressTimer>
+{
+	friend CScheduler;
+	double m_Max, m_Current, m_Increment;
+	JSFunction* m_Callback;
+	JSObject* m_OperateOn;
+	CJSProgressTimer( double Max, double Increment, JSFunction* Callback, JSObject* OperateOn );
+	static JSBool Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval );
+public:
+	static void ScriptingInit();
+};
 
 extern const int ORDER_DELAY;
 

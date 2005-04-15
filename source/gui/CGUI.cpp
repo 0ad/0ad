@@ -330,7 +330,7 @@ void CGUI::Initialize()
 	AddObjectType("progressbar",	&CProgressBar::ConstructObject);
     AddObjectType("minimap",        &CMiniMap::ConstructObject);
 	AddObjectType("input",			&CInput::ConstructObject);
-	AddObjectType("list",			&CList::ConstructObject);
+	// AddObjectType("list",			&CList::ConstructObject);
 }
 
 void CGUI::Process()

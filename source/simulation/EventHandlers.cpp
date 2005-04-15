@@ -8,6 +8,12 @@ CEventAttack::CEventAttack( CEntity* target ) : CScriptEvent( L"attack", true, E
 	AddProperty( L"target", &m_target );
 }
 
+CEventGather::CEventGather( CEntity* target ) : CScriptEvent( L"gather", true, EVENT_GATHER )
+{
+	m_target = target;
+	AddProperty( L"target", &m_target );
+}
+
 CEventDamage::CEventDamage( CEntity* inflictor, CDamageType* damage ) : CScriptEvent( L"takesDamage", true, EVENT_DAMAGE )
 {
 	m_inflictor = inflictor;

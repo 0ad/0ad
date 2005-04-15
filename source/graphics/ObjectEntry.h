@@ -35,6 +35,7 @@ public:
 	CSkeletonAnim* m_WalkAnim;
 	CSkeletonAnim* m_DeathAnim;
 	CSkeletonAnim* m_MeleeAnim;
+	CSkeletonAnim* m_GatherAnim;
 	CSkeletonAnim* m_RangedAnim;
 	CSkeletonAnim* m_CorpseAnim;
 

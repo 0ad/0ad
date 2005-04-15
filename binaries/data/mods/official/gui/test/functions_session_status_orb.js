@@ -227,7 +227,9 @@ function initStatusOrb()
 	{
 		for (SN_STATUS_PANE_COMMAND.list.curr = 1; SN_STATUS_PANE_COMMAND.list.curr <= SN_STATUS_PANE_COMMAND.list.max; SN_STATUS_PANE_COMMAND.list.curr++)
 		{
-			SN_STATUS_PANE_COMMAND[SN_STATUS_PANE_COMMAND.list.curr][SN_STATUS_PANE_COMMAND.tab.curr] = addArrayElement(Crd, Crd.last); 
+			// MT: What's going on here?
+			
+			SN_STATUS_PANE_COMMAND[SN_STATUS_PANE_COMMAND.list.curr][SN_STATUS_PANE_COMMAND.tab.curr] = new Number( addArrayElement(Crd, Crd.last) ); 
 			Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
 			Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
 			Crd[Crd.last-1].width	= crd_portrait_sml_width; 
@@ -375,10 +377,10 @@ function UpdateList(listIcon, listCol)
 
 					setPortrait("SN_STATUS_PANE_COMMAND_" + listCol + "_" + parseInt(createLoop+2), getEntityTemplate(UpdateListEntityName).traits.id.icon, selection[0].traits.id.civ_code, getEntityTemplate(UpdateListEntityName).traits.id.icon_cell);
 					GUIObjectUnhide("SN_STATUS_PANE_COMMAND_" + listCol + "_" + parseInt(createLoop+2));
-
+					
 					// Store content info in tab button for future reference.
 					SN_STATUS_PANE_COMMAND[parseInt(createLoop+2)][listCol].name = listArray[createLoop];
-					SN_STATUS_PANE_COMMAND[parseInt(createLoop+2)][listCol].last++;
+					SN_STATUS_PANE_COMMAND[parseInt(createLoop+2)][listCol].last++;		
 				}
 				else
 					GUIObjectHide("SN_STATUS_PANE_COMMAND_" + listCol + "_" + parseInt(createLoop+2));
@@ -415,7 +417,7 @@ function UpdateCommand(listIcon, listCol)
 		SN_STATUS_PANE_COMMAND[1][listCol].type = "command";
 		SN_STATUS_PANE_COMMAND[1][listCol].last = 0;
 		SN_STATUS_PANE_COMMAND[1][listCol].name = listIcon;
-
+		
 		return (listCol-1);
 	}
 	else
@@ -444,7 +446,9 @@ function PressCommandButton(list, tab)
 		break;
 		default:
 			tempListObject.caption = list-1;
-//console.write("Clicked [" + list + "," + tab + "]: list of type " + SN_STATUS_PANE_COMMAND[list][tab].type + "; " + SN_STATUS_PANE_COMMAND[list][tab].last + "; " + SN_STATUS_PANE_COMMAND[list][tab].name);
+			console.write("Clicked [" + list + "," + tab + "]: list of type " + SN_STATUS_PANE_COMMAND[list][tab].type + "; " + SN_STATUS_PANE_COMMAND[list][tab].name);
+			
+			attempt_add_to_build_queue( selection[0], selection[0].traits.id.civ_code + "_" + SN_STATUS_PANE_COMMAND[list][tab].name );
 		break;
 	}
 }	

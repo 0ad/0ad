@@ -99,6 +99,7 @@ class CProfileManager : public Singleton<CProfileManager>
 	CProfileNode* current;
 	double start;
 	double frame_start;
+	std::map<CStr8, const char*> m_internedStrings;
 
 public:
 	CProfileManager();
@@ -118,6 +119,8 @@ public:
 	// Resets absolutely everything
 	void StructuralReset();
 
+	const char* InternString( CStr8 intern );
+
 	inline const CProfileNode* GetCurrent() { return( current ); }
 	inline const CProfileNode* GetRoot() { return( root ); }
 	double GetTime();
@@ -128,6 +131,7 @@ public:
 
 class CProfileSample
 {
+	static std::map<CStrW, char*> evMap;
 public:
 	CProfileSample( const char* name )
 	{

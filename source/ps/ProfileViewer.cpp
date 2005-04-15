@@ -5,7 +5,7 @@
 #include "res/unifont.h"
 #include "Hotkey.h"
 
-bool profileVisible = true;
+bool profileVisible = false;
 extern int g_xres, g_yres;
 
 const CProfileNode* currentNode = NULL;

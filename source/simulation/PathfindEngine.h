@@ -28,7 +28,7 @@ class CPathfindEngine : public Singleton<CPathfindEngine>
 public:
 	CPathfindEngine();
 	void requestPath( HEntity entity, const CVector2D& destination );
-	void requestMeleeAttackPath( HEntity entity, HEntity target );
+	void requestContactPath( HEntity entity, HEntity target, int transition );
 };
 
 #endif

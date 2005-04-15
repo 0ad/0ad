@@ -58,10 +58,10 @@
 			food.fruit="1"
 			food.grain="1"
 			food.fish="1"
-			wood="1"
 			stone="1"
-			ore="1"
-		/>
+			ore="1" >
+			<Wood speed="1" />
+		</Gather>
 		<Repair
 			rate="1"
 		/>

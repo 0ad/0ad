@@ -15,6 +15,7 @@ enum EEventType
 	EVENT_INITIALIZE,
 	EVENT_TICK,
 	EVENT_ATTACK,
+	EVENT_GATHER,
 	EVENT_DAMAGE,
 	EVENT_TARGET_CHANGED,
 	EVENT_PREPARE_ORDER,
@@ -27,6 +28,7 @@ static const wchar_t* EventNames[] =
 	/* EVENT_INITIALIZE */ L"onInitialize",
 	/* EVENT_TICK */ L"onTick",
 	/* EVENT_ATTACK */ L"onAttack", /* This unit is the one doing the attacking... */
+	/* EVENT_GATHER */ L"onGather", /* This unit is the one doing the gathering... */
 	/* EVENT_DAMAGE */ L"onTakesDamage",
 	/* EVENT_TARGET_CHANGED */ L"onTargetChanged", /* If this unit is selected and the mouseover object changes */
 	/* EVENT_PREPARE_ORDER */ L"onPrepareOrder", /* To check if a unit can execute a given order */
@@ -50,6 +52,13 @@ class CEventAttack : public CScriptEvent
 	CEntity* m_target;
 public:
 	CEventAttack( CEntity* target );
+};
+
+class CEventGather : public CScriptEvent
+{
+	CEntity* m_target;
+public:
+	CEventGather( CEntity* target );
 };
 
 class CEventDamage : public CScriptEvent

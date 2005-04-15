@@ -16,7 +16,7 @@ void CPathfindEngine::requestPath( HEntity entity, const CVector2D& destination 
 	pathSparse( entity, destination );
 }
 
-void CPathfindEngine::requestMeleeAttackPath( HEntity entity, HEntity target )
+void CPathfindEngine::requestContactPath( HEntity entity, HEntity target, int transition )
 {
 	pathSparse( entity, target->m_position );
 	// For attack orders, do some additional postprocessing (replace goto/nopathing 
@@ -28,7 +28,7 @@ void CPathfindEngine::requestMeleeAttackPath( HEntity entity, HEntity target )
 			break;
 		if( it->m_type == CEntityOrder::ORDER_GOTO_NOPATHING )
 		{
-			it->m_type = CEntityOrder::ORDER_ATTACK_MELEE_NOPATHING;
+			(int&)it->m_type = transition;
 			it->m_data[0].entity = target;
 		}
 	}

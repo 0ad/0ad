@@ -109,8 +109,8 @@ public:
 	// Check for a property
 	virtual IJSProperty* HasProperty( CStrW PropertyName ) = 0;
 
-	// Retrieve the value of a property
-	virtual void GetProperty( JSContext* cx, CStrW PropertyName, jsval* vp ) = 0;
+	// Retrieve the value of a property (returning false if that property is not defined)
+	virtual bool GetProperty( JSContext* cx, CStrW PropertyName, jsval* vp ) = 0;
 	
 	// Add a property (with immediate value)
 	virtual void AddProperty( CStrW PropertyName, jsval Value ) = 0;
@@ -435,9 +435,12 @@ template<typename T, bool ReadOnly> class CJSObject : public IJSObject
 	typedef STL_HASH_MAP<CStrW, CJSReflector*, CStrW_hash_compare> ReflectorTable;
 
 	JSObject* m_JS;
+
 	ReflectorTable m_Reflectors;
 
 public:
+	static JSClass JSI_class;
+
 	// Whether native code is responsible for managing this object.
 	// Script constructors should clear this *BEFORE* creating a JS
 	// mirror (otherwise it'll be rooted).
@@ -445,7 +448,7 @@ public:
 	bool m_EngineOwned;
 
 	// JS Property access
-	void GetProperty( JSContext* cx, CStrW PropertyName, jsval* vp );
+	bool GetProperty( JSContext* cx, CStrW PropertyName, jsval* vp );
 	void SetProperty( JSContext* cx, CStrW PropertyName, jsval* vp )
 	{
 		if( !ReadOnly )
@@ -499,7 +502,8 @@ public:
 
 		CStrW PropName = g_ScriptingHost.ValueToUCString( id );
 
-		Instance->GetProperty( cx, PropName, vp );
+		if( !Instance->GetProperty( cx, PropName, vp ) )
+			return( JS_TRUE );
 		
 		return( JS_TRUE );
 	}
@@ -528,11 +532,13 @@ public:
 		g_ScriptingHost.DefineCustomObjectType( &JSI_class, Constructor, ConstructorMinArgs, JSI_props, JSI_methods, NULL, NULL );
 
 		delete[]( JSI_methods );
+
+		atexit( ScriptingShutdown );
 	}
 	static void ScriptingShutdown()
 	{
 		PropertyTable::iterator it;
-		for( it = m_SharedProperties.begin(); it != m_SharedProperties.end(); it++ )
+		for( it = m_IntrinsicProperties.begin(); it != m_IntrinsicProperties.end(); it++ )
 			delete( it->second );
 	}
 	static void DefaultFinalize( JSContext *cx, JSObject *obj )
@@ -546,7 +552,7 @@ public:
 	}
 
 public:
-	static JSClass JSI_class;
+
 	JSObject* GetScript() 
 	{
 		if( !m_JS )
@@ -777,7 +783,7 @@ template<typename T, bool ReadOnly> JSPropertySpec CJSObject<T, ReadOnly>::JSI_p
 template<typename T, bool ReadOnly> std::vector<JSFunctionSpec> CJSObject<T, ReadOnly>::m_Methods;
 template<typename T, bool ReadOnly> typename CJSObject<typename T, ReadOnly>::PropertyTable CJSObject<T, ReadOnly>::m_IntrinsicProperties;
 
-template<typename T, bool ReadOnly> void CJSObject<T, ReadOnly>::GetProperty( JSContext* cx, CStrW PropertyName, jsval* vp )
+template<typename T, bool ReadOnly> bool CJSObject<T, ReadOnly>::GetProperty( JSContext* cx, CStrW PropertyName, jsval* vp )
 {
 	IJSProperty* Property = HasProperty( PropertyName );
 	if( Property && Property->m_Intrinsic )
@@ -811,7 +817,7 @@ template<typename T, bool ReadOnly> void CJSObject<T, ReadOnly>::GetProperty( JS
 			}
 
 			if( !check )
-				return;
+				return( false );
 
 			// FIXME: Fiddle a way so this /doesn't/ require multiple kilobytes
 			// of memory. Can't think of any better way to do it yet. Problem is
@@ -839,6 +845,7 @@ template<typename T, bool ReadOnly> void CJSObject<T, ReadOnly>::GetProperty( JS
 				*vp = OBJECT_TO_JSVAL( it->second->m_JSAccessor );
 		}
 	}
+	return( true );
 }
 
 #endif

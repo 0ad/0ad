@@ -220,6 +220,12 @@ void CEntity::update( size_t timestep )
 		case CEntityOrder::ORDER_ATTACK_MELEE_NOPATHING:
 			if( processAttackMeleeNoPathing( current, timestep ) ) break;
 			return;
+		case CEntityOrder::ORDER_GATHER:
+			if( processGather( current, timestep ) ) break;
+			return;
+		case CEntityOrder::ORDER_GATHER_NOPATHING:
+			if( processGatherNoPathing( current, timestep ) ) break;
+			return;
 		case CEntityOrder::ORDER_GOTO:
 			if( processGoto( current, timestep ) ) break;
 			return;
@@ -322,24 +328,7 @@ void CEntity::dispatch( const CMessage* msg )
 
 bool CEntity::DispatchEvent( CScriptEvent* evt )
 {
-	// MT: HACK. And it leaks.
-	static std::map<CStrW, char*> evMap;
-	char* data;
-	std::map<CStrW, char*>::iterator it = evMap.find( evt->m_Type );
-	if( it != evMap.end() )
-	{
-		data = it->second;
-	}
-	else
-	{
-		CStr8 short_string( evt->m_Type );
-		size_t length = short_string.length();
-		data = new char[length + 9];
-		strcpy( data, "script: " );
-		strcpy( data + 8, short_string.c_str() );
-		data[length + 8] = 0;
-		evMap.insert( std::pair<CStrW, char*>( evt->m_Type, data ) );
-	}
+	const char* data = g_Profiler.InternString( "script: " + (CStr8)evt->m_Type );
 
 	g_Profiler.StartScript( data );
 	bool rval = m_EventHandlers[evt->m_TypeCode].DispatchEvent( GetScript(), evt );
@@ -368,19 +357,6 @@ bool CEntity::acceptsOrder( int orderType, CEntity* orderTarget )
 {
 	CEventPrepareOrder evt( orderTarget, orderType );
 	return( DispatchEvent( &evt ) );
-
-	/*
-	// Hardcoding...
-	switch( orderType )
-	{
-	case CEntityOrder::ORDER_GOTO:
-	case CEntityOrder::ORDER_PATROL:
-		return( m_speed > 0.0f );
-	case CEntityOrder::ORDER_ATTACK_MELEE:
-		return( orderTarget && ( m_meleeRange > 0.0f ) );
-	}
-	return( false );
-	*/
 }
 
 void CEntity::repath()
@@ -644,7 +620,7 @@ void CEntity::ScriptingInit()
 	AddMethod<bool, &CEntity::Kill>( "kill", 0 );
 	AddMethod<bool, &CEntity::Damage>( "damage", 1 );
 	AddMethod<bool, &CEntity::IsIdle>( "isIdle", 0 );
-	
+	AddMethod<jsval, &CEntity::GetSpawnPoint>( "getSpawnPoint", 1 );
 	
 	AddClassProperty( L"template", (CBaseEntity* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
 
@@ -659,7 +635,7 @@ JSBool CEntity::Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsva
 
 	CBaseEntity* baseEntity = NULL;
 	CVector3D position;
-	float orientation = 0.0f;
+	float orientation = (float)( PI * ( (double)( rand() & 0x7fff ) / (double)0x4000 ) );
 
 	JSObject* jsBaseEntity = JSVAL_TO_OBJECT( argv[0] );
 	CStrW templateName;
@@ -765,6 +741,7 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 		}
 		break;
 	case CEntityOrder::ORDER_ATTACK_MELEE:
+	case CEntityOrder::ORDER_GATHER:
 		if( argc < 1 )
 		{
 			JS_ReportError( cx, "Too few parameters" );
@@ -779,6 +756,7 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 		}
 		newOrder.m_data[0].entity = target->me;
 		break;
+
 	default:
 		JS_ReportError( cx, "Invalid order type" );
 		return( false );
@@ -859,4 +837,135 @@ bool CEntity::Kill( JSContext* cx, uintN argc, jsval* argv )
 		m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_DeathAnim, true );
 
 	return( true );
+}
+
+jsval CEntity::GetSpawnPoint( JSContext* cx, uintN argc, jsval* argv )
+{
+	float spawn_clearance = 2.0f;
+	if( argc >= 1 )
+	{
+		CBaseEntity* be = ToNative<CBaseEntity>( argv[0] );
+		if( be )
+		{
+			switch( be->m_bound_type )
+			{
+			case CBoundingObject::BOUND_CIRCLE: spawn_clearance = be->m_bound_circle->m_radius; break;
+			case CBoundingObject::BOUND_OABB: spawn_clearance = be->m_bound_box->m_radius; break;
+			default: assert( 0 && "No bounding information for spawned object!" );
+			}
+		}
+		else
+			spawn_clearance = ToPrimitive<float>( argv[0] );
+	}
+	else
+		assert( 0 && "No arguments to Entity::GetSpawnPoint()" );
+	
+	// TODO: Make netsafe.
+	CBoundingCircle spawn( 0.0f, 0.0f, spawn_clearance );
+
+	if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
+	{
+		CBoundingBox* oabb = (CBoundingBox*)m_bounds;
+
+		// Pick a start point
+
+		int edge = rand() & 3; int point;
+		
+		double max_w = oabb->m_w + spawn_clearance + 1.0;
+		double max_h = oabb->m_h + spawn_clearance + 1.0;
+		int w_count = (int)( max_w * 2 );
+		int h_count = (int)( max_h * 2 );
+	
+		CVector2D w_step = oabb->m_v * (float)( max_w / w_count );
+		CVector2D h_step = oabb->m_u * (float)( max_h / h_count );
+		CVector2D pos( m_position );
+		if( edge & 1 ) 
+		{
+			point = rand() % ( 2 * h_count ) - h_count;
+			pos += ( oabb->m_v * (float)max_w + h_step * (float)point ) * ( ( edge & 2 ) ? -1.0f : 1.0f );
+		}
+		else
+		{
+			point = rand() % ( 2 * w_count ) - w_count;
+			pos += ( oabb->m_u * (float)max_h + w_step * (float)point ) * ( ( edge & 2 ) ? -1.0f : 1.0f );	
+		}
+
+		int start_edge = edge; int start_point = point;
+
+		spawn.m_pos = pos;
+
+		// Then step around the edge (clockwise) until a free space is found, or
+		// we've gone all the way around.
+		while( getCollisionObject( &spawn ) )
+		{
+			switch( edge )
+			{
+			case 0:
+				point++; pos += w_step;
+				if( point >= w_count )
+				{
+					edge = 1;
+					point = -h_count;
+				}
+				break;
+			case 1:
+				point++; pos -= h_step;
+				if( point >= h_count )
+				{
+					edge = 2;
+					point = w_count;
+				}
+				break;
+			case 2:
+				point--; pos -= w_step;
+				if( point <= -w_count )
+				{
+					edge = 3;
+					point = h_count;
+				}
+				break;
+			case 3:
+				point--; pos += h_step;
+				if( point <= -h_count )
+				{
+					edge = 0;
+					point = -w_count;
+				}
+				break;
+			}
+			if( ( point == start_point ) && ( edge == start_edge ) )
+				return( JSVAL_NULL );
+			spawn.m_pos = pos;
+		}
+		CVector3D rval( pos.x, g_Game->GetWorld()->GetTerrain()->getExactGroundLevel( pos.x, pos.y ), pos.y );
+		return( ToJSVal( rval ) );
+	}
+	else if( m_bounds->m_type == CBoundingObject::BOUND_CIRCLE )
+	{
+		float ang;
+		ang = (float)( rand() & 0x7fff ) / (float)0x4000; /* 0...2 */
+		ang *= PI;
+		float radius = m_bounds->m_radius + 1.0f + spawn_clearance;
+		float d_ang = spawn_clearance / ( 2.0f * radius );
+		float ang_end = ang + 2.0f * PI;
+		float x, y;
+		for( ; ang < ang_end; ang += d_ang )
+		{
+			x = m_position.X + radius * cos( ang );
+			y = m_position.Z + radius * sin( ang );
+			spawn.setPosition( x, y );
+			if( !getCollisionObject( &spawn ) )
+				break;
+		}
+		if( ang < ang_end )
+		{
+			// Found a satisfactory position...
+			CVector3D pos( x, 0, y );
+			pos.Y = g_Game->GetWorld()->GetTerrain()->getExactGroundLevel( x, y );
+			return( ToJSVal( pos ) );
+		}
+		else
+			return( JSVAL_NULL );
+	}
+	return( JSVAL_NULL );
 }
