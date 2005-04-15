@@ -173,7 +173,8 @@ bool CBaseEntity::loadXML( CStr filename )
 					if( ExternalFunction != CStrW() )
 					{
 						jsval fnval;
-						assert( JS_TRUE == JS_GetUCProperty( g_ScriptingHost.GetContext(), g_ScriptingHost.GetGlobalObject(), ExternalFunction.c_str(), ExternalFunction.Length(), &fnval ) );
+						JSBool ret = JS_GetUCProperty( g_ScriptingHost.GetContext(), g_ScriptingHost.GetGlobalObject(), ExternalFunction.c_str(), ExternalFunction.Length(), &fnval );
+						assert( ret );
 						JSFunction* fn = JS_ValueToFunction( g_ScriptingHost.GetContext(), fnval );
 						if( !fn )
 						{

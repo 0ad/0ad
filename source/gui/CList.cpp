@@ -86,7 +86,7 @@ void CList::SetupText()
 	// Generate texts
 	float buffered_y = 0.f;
 
-	for (int i=0; i<m_Items.size(); ++i)
+	for (size_t i=0; i<m_Items.size(); ++i)
 	{
 		// Create a new SGUIText. Later on, input it using AddText()
 		SGUIText *text = new SGUIText();
@@ -167,7 +167,7 @@ void CList::HandleMessage(const SGUIMessage &Message)
 		CPos mouse = GetMousePos();
 		mouse.y += scroll;
 		int set=-1;
-		for (int i=0; i<m_Items.size(); ++i)
+		for (int i=0; i<(int)m_Items.size(); ++i)
 		{
 			if (mouse.y >= m_CachedActualSize.top + m_ItemsYPositions[i] &&
 				mouse.y < m_CachedActualSize.top + m_ItemsYPositions[i+1] &&
@@ -328,7 +328,7 @@ void CList::Draw()
 		CColor color;
 		GUI<CColor>::GetSetting(this, "textcolor", color);
 
-		for (int i=0; i<m_Items.size(); ++i)
+		for (int i=0; i<(int)m_Items.size(); ++i)
 		{
 			if (m_ItemsYPositions[i+1] - scroll < 0 ||
 				m_ItemsYPositions[i] - scroll > m_CachedActualSize.GetHeight())
@@ -404,7 +404,7 @@ void CList::SelectLastElement()
 
 	if (selected != m_Items.size()-1)
 	{
-		GUI<int>::SetSetting(this, "selected", m_Items.size()-1);
+		GUI<int>::SetSetting(this, "selected", (int)m_Items.size()-1);
 	}
 }
 
