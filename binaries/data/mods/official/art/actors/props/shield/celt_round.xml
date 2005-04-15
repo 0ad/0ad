@@ -2,102 +2,55 @@
 <actor version="1">
 
   <group>
-    <variant frequency="10" name="a">
+    <variant name="base">
       <mesh>props/shield/round_s_f.pmd</mesh>
       <props>
         <prop actor="props/shield/round_back.xml" attachpoint="back"/>
       </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
       <texture>props/shield/celt_round_a.dds</texture>
     </variant>
-    <variant frequency="10" name="b">
-      <mesh>props/shield/round_s_f.pmd</mesh>
-      <props>
-        <prop actor="props/shield/round_back.xml" attachpoint="back"/>
-      </props>
+    <variant>
       <texture>props/shield/celt_round_b.dds</texture>
     </variant>
-    <variant frequency="10" name="c">
-      <mesh>props/shield/round_s_f.pmd</mesh>
-      <props>
-        <prop actor="props/shield/round_back.xml" attachpoint="back"/>
-      </props>
+    <variant>
       <texture>props/shield/celt_round_c.dds</texture>
     </variant>
-    <variant frequency="10" name="d">
-      <mesh>props/shield/round_s_f.pmd</mesh>
-      <props>
-        <prop actor="props/shield/round_back.xml" attachpoint="back"/>
-      </props>
+    <variant>
       <texture>props/shield/celt_round_d.dds</texture>
     </variant>
-    <variant frequency="10" name="e">
-      <mesh>props/shield/round_s_f.pmd</mesh>
-      <props>
-        <prop actor="props/shield/round_back.xml" attachpoint="back"/>
-      </props>
+    <variant>
       <texture>props/shield/celt_round_e.dds</texture>
     </variant>
-    <variant frequency="10" name="f">
-      <mesh>props/shield/round_s_f.pmd</mesh>
-      <props>
-        <prop actor="props/shield/round_back.xml" attachpoint="back"/>
-      </props>
+    <variant>
       <texture>props/shield/celt_round_f.dds</texture>
     </variant>
-    <variant frequency="10" name="g">
-      <mesh>props/shield/round_s_f.pmd</mesh>
-      <props>
-        <prop actor="props/shield/round_back.xml" attachpoint="back"/>
-      </props>
+    <variant>
       <texture>props/shield/celt_round_g.dds</texture>
     </variant>
-    <variant frequency="10" name="h">
-      <mesh>props/shield/round_s_f.pmd</mesh>
-      <props>
-        <prop actor="props/shield/round_back.xml" attachpoint="back"/>
-      </props>
+    <variant>
       <texture>props/shield/celt_round_h.dds</texture>
     </variant>
-    <variant frequency="10" name="i">
-      <mesh>props/shield/round_s_f.pmd</mesh>
-      <props>
-        <prop actor="props/shield/round_back.xml" attachpoint="back"/>
-      </props>
+    <variant>
       <texture>props/shield/celt_round_i.dds</texture>
     </variant>
-    <variant frequency="10" name="j">
-      <mesh>props/shield/round_s_f.pmd</mesh>
-      <props>
-        <prop actor="props/shield/round_back.xml" attachpoint="back"/>
-      </props>
+    <variant>
       <texture>props/shield/celt_round_j.dds</texture>
     </variant>
-    <variant frequency="10" name="k">
-      <mesh>props/shield/round_s_f.pmd</mesh>
-      <props>
-        <prop actor="props/shield/round_back.xml" attachpoint="back"/>
-      </props>
+    <variant>
       <texture>props/shield/celt_round_k.dds</texture>
     </variant>
-    <variant frequency="10" name="l">
-      <mesh>props/shield/round_s_f.pmd</mesh>
-      <props>
-        <prop actor="props/shield/round_back.xml" attachpoint="back"/>
-      </props>
+    <variant>
       <texture>props/shield/celt_round_l.dds</texture>
     </variant>
-    <variant frequency="10" name="m">
-      <mesh>props/shield/round_s_f.pmd</mesh>
-      <props>
-        <prop actor="props/shield/round_back.xml" attachpoint="back"/>
-      </props>
+    <variant>
       <texture>props/shield/celt_round_m.dds</texture>
     </variant>
-    <variant frequency="10" name="n">
-      <mesh>props/shield/round_s_f.pmd</mesh>
-      <props>
-        <prop actor="props/shield/round_back.xml" attachpoint="back"/>
-      </props>
+    <variant>
       <texture>props/shield/celt_round_n.dds</texture>
     </variant>
   </group>

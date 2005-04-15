@@ -4,23 +4,23 @@
   <castshadow/>
 
   <group>
-    <variant name="Base">
+    <variant frequency="10" name="Base">
       <texture>props/prop_weap.dds</texture>
     </variant>
   </group>
 
   <group>
     <variant>
-      <mesh>props/weap_spear_a.pmd</mesh>
+      <mesh>props/weap_akin_a.pmd</mesh>
     </variant>
     <variant>
-      <mesh>props/weap_spear_b.pmd</mesh>
+      <mesh>props/weap_akin_b.pmd</mesh>
     </variant>
     <variant>
-      <mesh>props/weap_spear_d.pmd</mesh>
+      <mesh>props/weap_akin_c.pmd</mesh>
     </variant>
     <variant>
-      <mesh>props/weap_spear_e.pmd</mesh>
+      <mesh>props/weap_akin_d.pmd</mesh>
     </variant>
   </group>
 
