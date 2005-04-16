@@ -426,12 +426,12 @@ function UpdateCommand(listIcon, listCol)
 
 // ====================================================================
 
-function PressCommandButton(list, tab)
+function PressCommandButton(GUIObject, list, tab)
 {
 	switch (list)
 	{
 		case 1:
-			tempListObject.caption = "";
+			GUIObject.caption = "";
 //			if (SN_STATUS_PANE_COMMAND[list][tab].type == "list")
 //			{
 //console.write("Clicked [" + list + "," + tab + "]: tab of type " + SN_STATUS_PANE_COMMAND[list][tab].type + "; " + SN_STATUS_PANE_COMMAND[list][tab].last + "; " + SN_STATUS_PANE_COMMAND[list][tab].name);
@@ -445,7 +445,7 @@ function PressCommandButton(list, tab)
 //			}
 		break;
 		default:
-			tempListObject.caption = list-1;
+			GUIObject.caption = list-1;
 			console.write("Clicked [" + list + "," + tab + "]: list of type " + SN_STATUS_PANE_COMMAND[list][tab].type + "; " + SN_STATUS_PANE_COMMAND[list][tab].name);
 			
 			attempt_add_to_build_queue( selection[0], selection[0].traits.id.civ_code + "_" + SN_STATUS_PANE_COMMAND[list][tab].name );

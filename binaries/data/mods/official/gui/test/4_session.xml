@@ -409,7 +409,7 @@
 
 							// Press button.
 							tempListObject.onPress =
-								function (m, n) { return function() { PressCommandButton(m, n); } } (listLoop, tabLoop);
+								function (m, n, o) { return function() { PressCommandButton(m, n, o); } } (tempListObject, listLoop, tabLoop);
 						}
 					}
 				]]></action>
