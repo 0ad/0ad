@@ -135,7 +135,7 @@ function entity_event_targetchanged( evt )
 		  ( evt.target.traits.id.civ_code.toString() != this.traits.id.civ_code.toString() ) )
 		    evt.defaultAction = ORDER_ATTACK;
 	    if( this.actions.gather && evt.target.traits.supply &&
-		    this.actions.gather.valueOf()[evt.target.traits.supply.type] &&
+		this.actions.gather[evt.target.traits.supply.type] &&
 		  ( ( evt.target.traits.supply.curr > 0 ) || ( evt.target.traits.supply.max == 0 ) ) )
 		    evt.defaultAction = ORDER_GATHER;
 	}	
@@ -166,9 +166,10 @@ function entity_event_prepareorder( evt )
 		break;
 	case ORDER_GATHER:
 		if( !this.actions.gather ||
-		    !this.actions.gather.valueOf()[evt.target.traits.supply.type] ||
+		    !( this.actions.gather[evt.target.traits.supply.type] ) ||
 		    ( ( evt.target.traits.supply.curr == 0 ) && ( evt.target.traits.supply.max > 0 ) ) )
 			evt.preventDefault();
+		break;
 	default:
 		evt.preventDefault();
 	}
