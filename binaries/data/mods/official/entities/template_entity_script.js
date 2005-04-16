@@ -21,7 +21,7 @@ function entity_event_gather( evt )
 		gather_amt = evt.target.traits.supply.curr;
 		evt.target.kill();
 	    }
-	    console.write( evt.target.traits.supply.type );
+	    console.write( evt.target.traits.supply.type + " " + evt.target.traits.supply.type + " " + this.actions.gather[evt.target.traits.supply.type].speed + " " + " " + gather_amt + " " + evt.target.traits.supply.curr + " " + evt.target.traits.supply.max);
 	    console.write( evt.target.traits.supply.type.toString().toUpperCase() );
 	    evt.target.traits.supply.curr -= gather_amt;
 	    this.player.resource.valueOf()[evt.target.traits.supply.type.toString().toUpperCase()] += gather_amt;

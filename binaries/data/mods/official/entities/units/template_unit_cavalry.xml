@@ -48,10 +48,11 @@
 			hack="0.5"
 			pierce="0.5"
 		/>
-		<Gather
-			food="true"
-			food.meat="2"
-		/>
+		<Gather>
+			<Food>
+				<Meat speed="2" />
+			</Food>
+		</Gather>
 		<Move
 			speed="10.0"
 			turningRadius="1.0"

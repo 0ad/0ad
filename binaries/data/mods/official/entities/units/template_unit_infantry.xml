@@ -52,15 +52,16 @@
 			list.structciv="cc;fc;ho;rc;tc;hc"
 			list.structmil="mc;pc;ff;tf;wc;wg;wt"
 		/>
-		<Gather
-			food="true"
-			food.meat="1"
-			food.fruit="1"
-			food.grain="1"
-			food.fish="1"
-			stone="1"
-			ore="1" >
+		<Gather>
+			<Food>
+				<Meat speed="1" />
+				<Fruit speed="1" />
+				<Grain speed="1" />
+				<Fish speed="1" />
+			</Food>
 			<Wood speed="1" />
+			<Stone speed="1" />
+			<Ore speed="1" />
 		</Gather>
 		<Repair
 			rate="1"

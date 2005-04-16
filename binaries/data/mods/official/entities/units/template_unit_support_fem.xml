@@ -15,13 +15,14 @@
 			list=""
 			list.structciv="cc;fc;ho;rc;tc;hc"
 		/>
-		<Gather
-			food="true"
-			food.meat="2"
-			food.fruit="2"
-			food.grain="2"
-			food.fish="2"
-		/>
+		<Gather>
+			<Food>
+				<Meat speed="2" />
+				<Fruit speed="2" />
+				<Grain speed="2" />
+				<Fish speed="2" />
+			</Food>
+		</Gather>
 		<Repair
 			rate="0.5"
 		/>
