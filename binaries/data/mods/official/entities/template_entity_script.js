@@ -13,7 +13,11 @@ function entity_event_attack( evt )
 
 function entity_event_gather( evt )
 {
-	gather_amt = parseInt( this.actions.gather[evt.target.traits.supply.type].speed );
+	if (this.actions.gather[evt.target.traits.supply.type][evt.target.traits.supply.subtype])
+		gather_amt = parseInt( this.actions.gather[evt.target.traits.supply.type][evt.target.traits.supply.subtype].speed );
+	else
+		gather_amt = parseInt( this.actions.gather[evt.target.traits.supply.type].speed );
+
 	if( evt.target.traits.supply.max > 0 )
 	{
 	    if( evt.target.traits.supply.curr <= gather_amt )
@@ -21,7 +25,7 @@ function entity_event_gather( evt )
 		gather_amt = evt.target.traits.supply.curr;
 		evt.target.kill();
 	    }
-	    console.write( evt.target.traits.supply.type + " " + evt.target.traits.supply.type + " " + this.actions.gather[evt.target.traits.supply.type].speed + " " + " " + gather_amt + " " + evt.target.traits.supply.curr + " " + evt.target.traits.supply.max);
+	    console.write( evt.target.traits.supply.type);
 	    console.write( evt.target.traits.supply.type.toString().toUpperCase() );
 	    evt.target.traits.supply.curr -= gather_amt;
 	    this.player.resource.valueOf()[evt.target.traits.supply.type.toString().toUpperCase()] += gather_amt;
