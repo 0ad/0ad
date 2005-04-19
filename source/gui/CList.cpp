@@ -294,7 +294,7 @@ void CList::Draw()
 
 		if (selected != -1)
 		{
-			assert(selected >= 0 && selected+1 < m_ItemsYPositions.size());
+			assert(selected >= 0 && selected+1 < (int)m_ItemsYPositions.size());
 
 			// Get rectangle of selection:
 			CRect rect(m_CachedActualSize.left, m_CachedActualSize.top + m_ItemsYPositions[selected] - scroll,
