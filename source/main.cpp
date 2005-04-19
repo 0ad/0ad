@@ -218,10 +218,10 @@ debug_out("SYS DETECT TIME %g\n\n", t2-t1);
 		return;
 
 	// .. OS
-	fprintf(f, "%s %s (%s)\n", un.sysname, un.release, un.version);
+	fprintf(f, "OS            : %s %s (%s)\n", un.sysname, un.release, un.version);
 
 	// .. CPU
-	fprintf(f, "%s, %s", un.machine, cpu_type);
+	fprintf(f, "CPU           : %s, %s", un.machine, cpu_type);
 	if(cpus > 1)
 		fprintf(f, " (x%d)", cpus);
 	if(cpu_freq != 0.0f)
@@ -235,39 +235,58 @@ debug_out("SYS DETECT TIME %g\n\n", t2-t1);
 		fprintf(f, "\n");
 
 	// .. memory
-	fprintf(f, "%lu MB RAM; %lu MB free\n", tot_mem/MiB, avl_mem/MiB);
+	fprintf(f, "Memory        : %lu MiB; %lu MiB free\n", tot_mem/MiB, avl_mem/MiB);
 
-	// .. graphics card
-	fprintf(f, "%s\n", gfx_card);
-	fprintf(f, "%s\n", gfx_drv_ver);
-	fprintf(f, "%dx%d:%d@%d\n", g_xres, g_yres, g_bpp, g_freq);
-	fprintf(f, "OpenGL: %s\n", glGetString(GL_VERSION));
+	// .. graphics
+	fprintf(f, "Graphics Card : %s (%s)\n", gfx_card, gfx_drv_ver);
+	fprintf(f, "OpenGL Version: %s\n", glGetString(GL_VERSION));
+	fprintf(f, "Video Mode    : %dx%d:%d@%d\n", g_xres, g_yres, g_bpp, g_freq);
 
-	// .. sound card
-	fprintf(f, "%s\n", snd_card);
-	fprintf(f, "%s\n", snd_drv_ver);
+	// .. sound
+	fprintf(f, "Sound Card    : %s\n", snd_card);
+	fprintf(f, "Sound Drivers : %s\n", snd_drv_ver);
 
+
+	//
 	// .. network name / ips
-	//    note: can't use un.nodename because it is for an
-	//    "implementation-defined communications network".
-	char hostname[128];
-	if (gethostname(hostname, sizeof(hostname)) == 0) // make sure it succeeded
+	//
+
+	// note: can't use un.nodename because it is for an
+	// "implementation-defined communications network".
+	char hostname[128] = "(unknown)";
+	(void)gethostname(hostname, sizeof(hostname)-1);
+		// -1 makes sure it's 0-terminated. if the function fails,
+		// we display "(unknown)" and will skip IP output below.
+	fprintf(f, "Network Name  : %s", hostname);
+
 	{
-		fprintf(f, "%s\n", hostname);
-		hostent* host = gethostbyname(hostname);
-		if(host)
-		{
-			struct in_addr** ips = (struct in_addr**)host->h_addr_list;
-			for(int i = 0; ips && ips[i]; i++)
-				fprintf(f, "%s ", inet_ntoa(*ips[i]));
-			fprintf(f, "\n");
-		}
+	hostent* host = gethostbyname(hostname);
+	if(!host)
+		goto no_ip;
+	struct in_addr** ips = (struct in_addr**)host->h_addr_list;
+	if(!ips)
+		goto no_ip;
+
+	// output all IPs (> 1 if using VMware or dual ethernet)
+	fprintf(f, " (");
+	for(uint i = 0; i < 256 && ips[i]; i++)	// safety
+	{
+		// separate entries but avoid trailing comma
+		if(i != 0)
+			fprintf(f, ", ");
+		fprintf(f, "%s", inet_ntoa(*ips[i]));
+	}
+	fprintf(f, ")");
 	}
 
-	// Write extensions last, because there are lots of them
+no_ip:
+	fprintf(f, "\n");
+
+
+	// .. OpenGL extensions (write them last, since it's a lot of text)
 	const char* exts = oglExtList();
 	if (!exts) exts = "{unknown}";
-	fprintf(f, "\nSupported extensions: \n%s\n", SplitExts(exts).c_str());
+	fprintf(f, "\nOpenGL Extensions: \n%s\n", SplitExts(exts).c_str());
 
 	fclose(f);
 	f = 0;
