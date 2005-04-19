@@ -110,7 +110,7 @@ void get_gfx_info()
 // CPU
 //
 
-char cpu_type[49] = "";	// processor brand string is <= 48 chars
+char cpu_type[CPU_TYPE_LEN] = "";	// processor brand string is <= 48 chars
 double cpu_freq = 0.f;
 
 // -1 if detect not yet called, or cannot be determined

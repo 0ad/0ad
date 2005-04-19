@@ -303,7 +303,7 @@ static char* snd_drv_ver_pos = snd_drv_ver;
 static void list_add_dll(const char* dll_path)
 {
 	// read file version.
-	char dll_ver[32];
+	char dll_ver[128];
 	if(get_ver(dll_path, dll_ver, sizeof(dll_ver)) < 0)
 		strcpy_s(dll_ver, sizeof(dll_ver), "unknown version");
 
