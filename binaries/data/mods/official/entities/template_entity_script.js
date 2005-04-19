@@ -179,13 +179,20 @@ function entity_event_prepareorder( evt )
 	}
 }
 
-function entity_add_create_queue( template )
+function entity_add_create_queue( template, list, tab )
 {
 	// Make sure we have a queue to put things in...
 	if( !this.actions.create.queue )
-		this.actions.create.queue = new Array();
+		this.actions.create.queue      = new Array();
+
+	// Construct template object.
+	comboTemplate = template;
+	comboTemplate.list = list;
+	comboTemplate.tab = tab;
+
 	// Append to the end of this queue
-	this.actions.create.queue.valueOf().push( template );
+	this.actions.create.queue.valueOf().push( comboTemplate );
+
 	// If we're not already building something...
 	if( !this.actions.create.progress || !this.actions.create.progress.valueOf() )
 	{
@@ -255,8 +262,8 @@ function entity_create_complete()
 	}
 }
 
-function attempt_add_to_build_queue( entity, create_tag )
+function attempt_add_to_build_queue( entity, create_tag, list, tab )
 {
 	console.write( "Adding ", create_tag, " to build queue..." );
-	entity.add_create_queue( getEntityTemplate( create_tag ) );
+	entity.add_create_queue( getEntityTemplate( create_tag ), list, tab );
 }

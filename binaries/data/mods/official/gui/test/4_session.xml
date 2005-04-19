@@ -415,6 +415,8 @@
 				]]></action>
 			</object>
 
+			<object type="progressbar" name="SN_STATUS_PANE_COMMAND_PROGRESS" style="portrait_progress" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_COMMAND_PROGRESS]); ]]></action></object>
+
 		<!-- / GROUP: STATUS ORB -->
 		</object>
 

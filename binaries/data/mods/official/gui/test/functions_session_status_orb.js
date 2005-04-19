@@ -227,8 +227,6 @@ function initStatusOrb()
 	{
 		for (SN_STATUS_PANE_COMMAND.list.curr = 1; SN_STATUS_PANE_COMMAND.list.curr <= SN_STATUS_PANE_COMMAND.list.max; SN_STATUS_PANE_COMMAND.list.curr++)
 		{
-			// MT: What's going on here?
-			
 			SN_STATUS_PANE_COMMAND[SN_STATUS_PANE_COMMAND.list.curr][SN_STATUS_PANE_COMMAND.tab.curr] = new Number( addArrayElement(Crd, Crd.last) ); 
 			Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
 			Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
@@ -316,6 +314,14 @@ function initStatusOrb()
 			}
 		}
 	}
+
+	SN_STATUS_PANE_COMMAND_PROGRESS = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= left_screen;	Crd[Crd.last-1].rtop	= bottom_screen; 
+	Crd[Crd.last-1].rright	= left_screen;	Crd[Crd.last-1].rbottom	= bottom_screen; 
+	Crd[Crd.last-1].width	= crd_portrait_sml_width; 
+	Crd[Crd.last-1].height	= crd_portrait_sml_height;
+	Crd[Crd.last-1].x	= Crd[SN_STATUS_PANE_BG].x+Crd[SN_STATUS_PANE_BG].width; 
+	Crd[Crd.last-1].y	= Crd[SN_STATUS_PANE_BG].y;
 }
 
 // ====================================================================
@@ -376,6 +382,7 @@ function UpdateList(listIcon, listCol)
 					UpdateListEntityName = selection[0].traits.id.civ_code + "_" + listArray[createLoop];
 
 					setPortrait("SN_STATUS_PANE_COMMAND_" + listCol + "_" + parseInt(createLoop+2), getEntityTemplate(UpdateListEntityName).traits.id.icon, selection[0].traits.id.civ_code, getEntityTemplate(UpdateListEntityName).traits.id.icon_cell);
+					getGUIObjectByName("SN_STATUS_PANE_COMMAND_" + listCol + "_" + parseInt(createLoop+2)).caption = "";
 					GUIObjectUnhide("SN_STATUS_PANE_COMMAND_" + listCol + "_" + parseInt(createLoop+2));
 					
 					// Store content info in tab button for future reference.
@@ -445,10 +452,9 @@ function PressCommandButton(GUIObject, list, tab)
 //			}
 		break;
 		default:
-			GUIObject.caption = list-1;
 			console.write("Clicked [" + list + "," + tab + "]: list of type " + SN_STATUS_PANE_COMMAND[list][tab].type + "; " + SN_STATUS_PANE_COMMAND[list][tab].name);
 			
-			attempt_add_to_build_queue( selection[0], selection[0].traits.id.civ_code + "_" + SN_STATUS_PANE_COMMAND[list][tab].name );
+			attempt_add_to_build_queue( selection[0], selection[0].traits.id.civ_code + "_" + SN_STATUS_PANE_COMMAND[list][tab].name, list, tab);
 		break;
 	}
 }	
@@ -482,6 +488,34 @@ function UpdateCommandButtons()
 		GUIObjectHide("SN_STATUS_PANE_COMMAND_" + commandClearLoop + "_1");
 		// If this slot could possibly contain a list, hide that too.
 		GUIObjectHide("SN_STATUS_PANE_COMMAND_" + commandClearLoop + "_GROUP");
+	}
+
+	// Update production queue.
+	GUIObject = getGUIObjectByName("SN_STATUS_PANE_COMMAND_PROGRESS");
+	// If the entity has a production item underway,
+	if (selection[0].actions.create && selection[0].actions.create.progress && selection[0].actions.create.progress.valueOf() && selection[0].actions.create.progress.valueOf().current && selection[0].actions.create.queue.valueOf() && selection[0].actions.create.queue.valueOf()[0].traits.creation.time)
+	{
+		// Set the value of the production progress bar.
+		GUIObject.caption = ((Math.round(Math.round(selection[0].actions.create.progress.valueOf().current)) * 100 ) / Math.round(selection[0].actions.create.queue.valueOf()[0].traits.creation.time));
+		// Set position of progress bar.
+		GUIObject.size = getGUIObjectByName("SN_STATUS_PANE_COMMAND_" + selection[0].actions.create.queue.valueOf()[0].tab + "_" + selection[0].actions.create.queue.valueOf()[0].list).size;
+		// Set progress bar tooltip.
+		GUIObject.tooltip = "Training " + selection[0].actions.create.queue.valueOf()[0].traits.id.generic + " ... " + (Math.round(selection[0].actions.create.queue.valueOf()[0].traits.creation.time-Math.round(selection[0].actions.create.progress.valueOf().current)) + " seconds remaining.");
+		// Reveal progressbar.
+		GUIObject.hidden  = false;
+		
+		// Seek through queue.
+		for( queueEntry = 0; queueEntry < selection[0].actions.create.queue.valueOf().length; queueEntry++)
+		{
+			// Update list buttons so that they match the number of entries of that type in the queue.
+			getGUIObjectByName("SN_STATUS_PANE_COMMAND_" + selection[0].actions.create.queue.valueOf()[queueEntry].tab + "_" + selection[0].actions.create.queue.valueOf()[queueEntry].list).caption++;
+		}
+	}
+	else
+	{
+		// Hide the progress bar.
+		GUIObject.hidden  = true;
+		GUIObject.tooltip = "";
 	}
 }
 
