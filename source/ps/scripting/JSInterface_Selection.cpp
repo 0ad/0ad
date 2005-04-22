@@ -38,7 +38,7 @@ JSBool JSI_Selection::setSelection( JSContext* context, JSObject* globalObject, 
 
 	for( it = Info->m_Data->begin(); it < Info->m_Data->end(); it++ )
 		g_Selection.addSelection( *it );
-	
+
 	return( JS_TRUE );
 }
 

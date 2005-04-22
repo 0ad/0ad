@@ -32,7 +32,7 @@
 #define ENTITY_INCLUDED
 
 #include <deque>
-#include "scripting/ScriptableObject.h"
+#include "scripting/ScriptableComplex.h"
 #include "Player.h"
 
 #include "Vector2D.h"
@@ -52,7 +52,7 @@ class CUnit;
 
 // TODO MT: Put this is /some/ sort of order...
 
-class CEntity : public CJSObject<CEntity>
+class CEntity : public  CJSComplex<CEntity>, public IEventTarget
 {
 	friend class CEntityManager;
 private:
@@ -96,21 +96,14 @@ public:
 
 	//-- Scripts
 
+	// Get script execution contexts - always run in the context of the entity that fired it.
+	JSObject* GetScriptExecContext( IEventTarget* target ) { return( ((CEntity*)target)->GetScript() ); }
+
 	// EventListener adaptation? 
 	//typedef std::vector<CScriptObject> ExtendedHandlerList;
 	//typedef STL_HASH_MAP<CStrW, HandlerList, CStrW_hash_compare> ExtendedHandlerTable;
 
 	CScriptObject m_EventHandlers[EVENT_LAST];
-
-	// EventListener adaptation?
-	/*
-	void AddListener( const CStrW& EventType, CScriptObject* Handler )
-	{
-		m_EventHandlers[EventType].push_back( Handler );
-	}
-	*/
-
-	bool DispatchEvent( CScriptEvent* evt );
 
 	CUnit* m_actor;
 
@@ -185,8 +178,6 @@ public:
 	void checkGroup(); // Groups
 	void checkExtant(); // Existence
 
-	// Returns the default action of the entity upon the target (or -1 if none apply)
-	int CEntity::defaultOrder( CEntity* orderTarget );
 	// Returns whether the entity is capable of performing the given orderType on the target.
 	bool acceptsOrder( int orderType, CEntity* orderTarget );
 

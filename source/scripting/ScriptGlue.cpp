@@ -12,6 +12,7 @@
 #include "timer.h"
 #include "LightEnv.h"
 #include "MapWriter.h"
+#include "GameEvents.h"
 
 #include "Game.h"
 #include "Network/Server.h"
@@ -59,6 +60,8 @@ JSFunctionSpec ScriptFunctionTable[] =
 	{"getGlobal", getGlobal, 0, 0, 0 },
 	{"getGUIGlobal", getGUIGlobal, 0, 0, 0 },
 	{"setCursor", setCursor, 1, 0, 0 },
+	{"addGlobalHandler", AddGlobalHandler, 2, 0, 0 },
+	{"removeGlobalHandler", RemoveGlobalHandler, 2, 0, 0 },
 	{"setCameraTarget", setCameraTarget, 1, 0, 0 },
 	{"startGame", startGame, 0, 0, 0 },
 	{"endGame", endGame, 0, 0, 0 },
@@ -224,6 +227,18 @@ JSBool SetLocalPlayer( JSContext* context, JSObject* obj, jsval id, jsval* vp )
 	}
 
 	g_Game->SetLocalPlayer( newLocalPlayer );
+	return( JS_TRUE );
+}
+
+JSBool AddGlobalHandler( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
+{
+	*rval = BOOLEAN_TO_JSVAL( g_JSGameEvents.AddHandlerJS( cx, argc, argv ) );
+	return( JS_TRUE );
+}
+
+JSBool RemoveGlobalHandler( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
+{
+	*rval = BOOLEAN_TO_JSVAL( g_JSGameEvents.RemoveHandlerJS( cx, argc, argv ) );
 	return( JS_TRUE );
 }
 

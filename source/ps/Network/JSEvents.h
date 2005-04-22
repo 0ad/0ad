@@ -18,7 +18,7 @@ class CStartGameEvent: public CScriptEvent
 {
 public:
 	CStartGameEvent():
-		CScriptEvent(L"startGame", false, NET_JS_EVENT_START_GAME)
+		CScriptEvent(L"startGame", NET_JS_EVENT_START_GAME, false)
 	{}
 };
 
@@ -29,12 +29,12 @@ class CChatEvent: public CScriptEvent
 	
 public:
 	CChatEvent(CStrW sender, CStrW message):
-		CScriptEvent(L"chat", false, NET_JS_EVENT_CHAT),
+		CScriptEvent(L"chat", NET_JS_EVENT_CHAT, false ),
 		m_Sender(sender),
 		m_Message(message)
 	{
-		AddReadOnlyProperty(L"sender", &m_Sender);
-		AddReadOnlyProperty(L"message", &m_Message);
+		AddLocalProperty(L"sender", &m_Sender, true);
+		AddLocalProperty(L"message", &m_Message, true);
 	}
 };
 
@@ -45,12 +45,12 @@ class CConnectCompleteEvent: public CScriptEvent
 	
 public:
 	CConnectCompleteEvent(CStrW message, bool success):
-		CScriptEvent(L"connectComplete", false, NET_JS_EVENT_CONNECT_COMPLETE),
+		CScriptEvent(L"connectComplete", NET_JS_EVENT_CONNECT_COMPLETE, false),
 		m_Message(message),
 		m_Success(success)
 	{
-		AddReadOnlyProperty(L"message", &m_Message);
-		AddReadOnlyProperty(L"success", &m_Success);
+		AddLocalProperty(L"message", &m_Message, true);
+		AddLocalProperty(L"success", &m_Success, true);
 	}
 };
 
@@ -60,10 +60,10 @@ class CDisconnectEvent: public CScriptEvent
 	
 public:
 	CDisconnectEvent(CStrW message):
-		CScriptEvent(L"disconnect", false, NET_JS_EVENT_DISCONNECT),
+		CScriptEvent(L"disconnect", NET_JS_EVENT_DISCONNECT, false),
 		m_Message(message)
 	{
-		AddReadOnlyProperty(L"message", &m_Message);
+		AddLocalProperty(L"message", &m_Message, true);
 	}
 };
 
@@ -76,15 +76,15 @@ class CClientConnectDisconnectCommon: public CScriptEvent
 public:
 	CClientConnectDisconnectCommon(const wchar_t* eventName, int eventType,
 			int sessionID, const CStrW &name, CNetServerSession *pSession):
-		CScriptEvent(L"clientConnect", false, NET_JS_EVENT_CLIENT_CONNECT),
+		CScriptEvent(L"clientConnect", NET_JS_EVENT_CLIENT_CONNECT, false),
 		m_SessionID(sessionID),
 		m_Name(name),
 		m_pSession(pSession)
 	{
-		AddReadOnlyProperty(L"id", &m_SessionID);
-		AddReadOnlyProperty(L"name", &m_Name);
+		AddLocalProperty(L"id", &m_SessionID, true);
+		AddLocalProperty(L"name", &m_Name, true);
 		if (m_pSession)
-			AddReadOnlyProperty(L"session", &m_pSession);
+			AddLocalProperty(L"session", &m_pSession, true);
 	}
 };
 

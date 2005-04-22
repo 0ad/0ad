@@ -60,18 +60,6 @@ CNetServer::CNetServer(CGame *pGame, CGameAttributes *pGameAttribs):
 		ScriptingInit();
 	);
 
-	AddProperty(L"sessions", &m_JSI_Sessions);
-
-	AddProperty(L"serverPlayerName", &m_ServerPlayerName);
-	AddProperty(L"serverName", &m_ServerName);
-	AddProperty(L"welcomeMessage", &m_WelcomeMessage);
-	
-	AddProperty(L"port", &m_Port);
-	
-	AddProperty(L"onChat", &m_OnChat);
-	AddProperty(L"onClientConnect", &m_OnClientConnect);
-	AddProperty(L"onClientDisconnect", &m_OnClientDisconnect);
-
 	m_pGameAttributes->SetUpdateCallback(AttributeUpdate, this);
 	m_pGameAttributes->SetPlayerUpdateCallback(PlayerAttributeUpdate, this);
 	m_pGameAttributes->SetPlayerSlotAssignmentCallback(PlayerSlotAssignmentCallback, this);
@@ -101,6 +89,18 @@ void CNetServer::ScriptingInit()
 	CJSMap<SessionMap>::ScriptingInit("NetServer_SessionMap");
 
 	AddMethod<bool, &CNetServer::JSI_Open>("open", 0);
+
+	AddProperty(L"sessions", &CNetServer::m_JSI_Sessions);
+
+	AddProperty(L"serverPlayerName", &CNetServer::m_ServerPlayerName);
+	AddProperty(L"serverName", &CNetServer::m_ServerName);
+	AddProperty(L"welcomeMessage", &CNetServer::m_WelcomeMessage);
+	
+	AddProperty(L"port", &CNetServer::m_Port);
+	
+	AddProperty(L"onChat", &CNetServer::m_OnChat);
+	AddProperty(L"onClientConnect", &CNetServer::m_OnClientConnect);
+	AddProperty(L"onClientDisconnect", &CNetServer::m_OnClientDisconnect);
 
 	CJSObject<CNetServer>::ScriptingInit("NetServer");
 }

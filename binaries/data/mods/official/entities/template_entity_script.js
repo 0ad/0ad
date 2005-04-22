@@ -22,13 +22,13 @@ function entity_event_gather( evt )
 	{
 	    if( evt.target.traits.supply.curr <= gather_amt )
 	    {
-		gather_amt = evt.target.traits.supply.curr;
-		evt.target.kill();
+			gather_amt = evt.target.traits.supply.curr;
+			evt.target.kill();
 	    }
 	    console.write( evt.target.traits.supply.type);
 	    console.write( evt.target.traits.supply.type.toString().toUpperCase() );
 	    evt.target.traits.supply.curr -= gather_amt;
-	    this.player.resource.valueOf()[evt.target.traits.supply.type.toString().toUpperCase()] += gather_amt;
+	    this.player.resource[evt.target.traits.supply.type.toString().toUpperCase()] += gather_amt;
 	}
 }
 
@@ -130,19 +130,31 @@ function entity_event_targetchanged( evt )
 	// hidden from you) and comparing an object to any other object in JavaScript (1.5, at least)
 	// yields false. ToString converts them to their actual values (i.e. the four character
 	// string) first.
-
+	
 	evt.defaultAction = ORDER_GOTO;
+	evt.defaultCursor = "arrow-default";
 	if( evt.target )
 	{
 	    if( this.actions.attack && 
-		  ( evt.target.traits.id.civ_code != "gaia" ) &&
-		  ( evt.target.traits.id.civ_code.toString() != this.traits.id.civ_code.toString() ) )
-		    evt.defaultAction = ORDER_ATTACK;
+			( evt.target.player != gaiaPlayer ) &&
+			( evt.target.player != this.player ) )
+		{
+			evt.defaultAction = ORDER_ATTACK;
+			evt.defaultCursor = "action-attack";
+		}
 	    if( this.actions.gather && evt.target.traits.supply &&
-		this.actions.gather[evt.target.traits.supply.type] &&
-		  ( ( evt.target.traits.supply.curr > 0 ) || ( evt.target.traits.supply.max == 0 ) ) )
+			this.actions.gather[evt.target.traits.supply.type] &&
+			( ( evt.target.traits.supply.curr > 0 ) || ( evt.target.traits.supply.max == 0 ) ) )
+		{
 		    evt.defaultAction = ORDER_GATHER;
-	}	
+		    if( evt.target.traits.supply.type == "wood" )
+		    {
+				evt.defaultCursor = "action-chop";
+			}
+			else
+				evt.defaultCursor = "action-mine";	
+		}
+	}
 }
 
 function entity_event_prepareorder( evt )
@@ -161,11 +173,8 @@ function entity_event_prepareorder( evt )
 			evt.preventDefault();
 		break;	
 	case ORDER_ATTACK:
-		// If we can't attack, we're not targeting a unit, or that unit is the same civ as us.
-		// (Should of course be same /player/ as us - not ready yet.)
 		if( !this.actions.attack || 
-		    !evt.target || 
-		    ( evt.target.traits.id.civ_code.toString() == this.traits.id.civ_code.toString() ) )
+		    !evt.target )
 			evt.preventDefault();
 		break;
 	case ORDER_GATHER:
@@ -191,10 +200,11 @@ function entity_add_create_queue( template, list, tab )
 	comboTemplate.tab = tab;
 
 	// Append to the end of this queue
-	this.actions.create.queue.valueOf().push( comboTemplate );
+
+	this.actions.create.queue.push( template );
 
 	// If we're not already building something...
-	if( !this.actions.create.progress || !this.actions.create.progress.valueOf() )
+	if( !this.actions.create.progress )
 	{
 		console.write( "Starting work on (unqueued) ", template.tag );
 		 // Start the progress timer.
@@ -218,7 +228,7 @@ function entity_create_complete()
 	//  at http://www.mozilla.org/js/language/E262-3.pdf. Bit technical but
 	//  the sections on 'Native ECMAScript Objects' are quite useful)
 	
-	var template = this.actions.create.queue.valueOf().shift();
+	var template = this.actions.create.queue.shift();
 
 	// Code to find a free space around an object is tedious and slow, so 
 	// I wrote it in C. Takes the template object so it can determine how
@@ -232,26 +242,26 @@ function entity_create_complete()
 		// Oh well. The player's just lost all the resources and time they put into
 		// construction - serves them right for not paying attention to the land
 		// around their barracks, doesn't it?
-		return;
 	}
+	else
+	{
+		created = new Entity( template, position );
 	
-	created = new Entity( template, position );
+		// Above shouldn't ever fail, but just in case...
+		if( created )
+		{
+			console.write( "Created: ", template.tag );
 	
-	// Above shouldn't ever fail, but just in case...
-	if( !created )
-		return;
-	
-	console.write( "Created: ", template.tag );
-	
-	// Entities start under Gaia control - make the controller
-	// the same as our controller
-	created.player = this.player;
-	
+			// Entities start under Gaia control - make the controller
+			// the same as our controller
+			created.player = this.player;
+		}
+	}		
 	// If there's something else in the build queue...
-	if( this.actions.create.queue.valueOf().length > 0 )
+	if( this.actions.create.queue.length > 0 )
 	{
 		// Start on the next item.
-		template = this.actions.create.queue.valueOf()[0];
+		template = this.actions.create.queue[0];
 		console.write( "Starting work on (queued) ", template.tag );
 		this.actions.create.progress = new ProgressTimer( template.traits.creation.time, this.actions.create.construct / 1000, entity_create_complete, this )
 	}

@@ -41,7 +41,10 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	AddProperty( L"player", &m_player );
 
 	for( int t = 0; t < EVENT_LAST; t++ )
-		AddProperty( EventNames[t], &m_EventHandlers[t] );
+	{
+		AddProperty( EventNames[t], &m_EventHandlers[t], false );
+		AddHandler( t, &m_EventHandlers[t] );
+	}
 	
 	// Set our parent unit and build us an actor.
 	m_actor = NULL;
@@ -102,6 +105,7 @@ void CEntity::loadBase()
 	// Set up our instance data
 
 	SetBase( m_base );
+	SetNextObject( m_base );
 
 	if( m_base->m_bound_type == CBoundingObject::BOUND_CIRCLE )
 	{
@@ -326,16 +330,6 @@ void CEntity::dispatch( const CMessage* msg )
 }
 */
 
-bool CEntity::DispatchEvent( CScriptEvent* evt )
-{
-	const char* data = g_Profiler.InternString( "script: " + (CStr8)evt->m_Type );
-
-	g_Profiler.StartScript( data );
-	bool rval = m_EventHandlers[evt->m_TypeCode].DispatchEvent( GetScript(), evt );
-	g_Profiler.Stop();
-	return( rval );
-}
-
 void CEntity::clearOrders()
 {
 	m_orderQueue.clear();
@@ -344,13 +338,6 @@ void CEntity::clearOrders()
 void CEntity::pushOrder( CEntityOrder& order )
 {
 	m_orderQueue.push_back( order );
-}
-
-int CEntity::defaultOrder( CEntity* orderTarget )
-{
-	CEventTargetChanged evt( orderTarget );
-	DispatchEvent( &evt );
-	return( evt.m_defaultAction );
 }
 
 bool CEntity::acceptsOrder( int orderType, CEntity* orderTarget )
@@ -624,7 +611,7 @@ void CEntity::ScriptingInit()
 	
 	AddClassProperty( L"template", (CBaseEntity* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
 
-	CJSObject<CEntity>::ScriptingInit( "Entity", Construct, 2 );
+	CJSComplex<CEntity>::ScriptingInit( "Entity", Construct, 2 );
 }
 
 // Script constructor

@@ -11,6 +11,7 @@
 #include "BoundingObjects.h"
 #include "Unit.h"
 #include "Model.h"
+#include "scripting/GameEvents.h"
 
 extern CConsole* g_Console;
 extern int g_mouse_x, g_mouse_y;
@@ -120,10 +121,12 @@ void CSelectedEntities::renderOverlays()
 		glDisable( GL_BLEND );
 	}
 
+	/*
 	glLoadIdentity();
 	glTranslatef( (float)( g_mouse_x + 16 ), (float)( g_Renderer.GetHeight() - g_mouse_y - 8 ), 0.0f );
 	glScalef( 1.0f, -1.0f, 1.0f );
 	glColor4f( 1.0f, 1.0f, 1.0f, 0.5f );
+
 	switch( m_contextOrder )
 	{
 	case CEntityOrder::ORDER_GOTO:
@@ -139,6 +142,7 @@ void CSelectedEntities::renderOverlays()
 		glwprintf( L"Gather" );
 		break;
 	}
+	*/
 
 	glDisable( GL_TEXTURE_2D );
 	glPopMatrix();
@@ -350,6 +354,14 @@ CVector3D CSelectedEntities::getGroupPosition( i8 groupid )
 
 void CSelectedEntities::update()
 {
+	static std::vector<HEntity> lastSelection;
+
+	if( !( m_selected == lastSelection ) )
+	{
+		g_JSGameEvents.FireSelectionChanged( m_selectionChanged );
+		lastSelection = m_selected; 
+	}
+
 	if( m_selectionChanged || g_Mouseover.m_targetChanged )
 	{
 		// Can't order anything off the map
@@ -362,6 +374,8 @@ void CSelectedEntities::update()
 		// Quick count to see which is the modal default order.
 
 		int defaultPoll[CEntityOrder::ORDER_LAST];
+		std::map<CStrW, int, CStrW_hash_compare> defaultCursor[CEntityOrder::ORDER_LAST];
+
 		int t, vote;
 		for( t = 0; t < CEntityOrder::ORDER_LAST; t++ )
 			defaultPoll[t] = 0;
@@ -369,9 +383,15 @@ void CSelectedEntities::update()
 		std::vector<HEntity>::iterator it;
 		for( it = m_selected.begin(); it < m_selected.end(); it++ )
 		{
-			vote = (*it)->defaultOrder( g_Mouseover.m_target );
+			CEventTargetChanged evt( g_Mouseover.m_target );
+			(*it)->DispatchEvent( &evt );
+			vote = evt.m_defaultAction;
+			
 			if( ( vote >= 0 ) && ( vote < CEntityOrder::ORDER_LAST ) )
+			{
 				defaultPoll[vote]++;
+				defaultCursor[vote][evt.m_defaultCursor]++;
+			}
 		}
 
 		vote = -1;
@@ -381,16 +401,17 @@ void CSelectedEntities::update()
 				vote = t;
 		}
 
+		std::map<CStrW, int, CStrW_hash_compare>::iterator itv;
 		m_contextOrder = vote;
-		switch( m_contextOrder )
-		{
-		case CEntityOrder::ORDER_ATTACK_MELEE:
-			g_CursorName = "action-attack";
-			break;
-		default:
-			g_CursorName = "arrow-default";
-			break;
-		}
+
+		// Now find the most appropriate cursor
+		t = 0;
+		for( itv = defaultCursor[vote].begin(); itv != defaultCursor[vote].end(); itv++ )
+			if( itv->second > t )
+			{
+				t = itv->second;
+				g_CursorName = itv->first;
+			}
 
 		m_selectionChanged = false;
 		g_Mouseover.m_targetChanged = false;

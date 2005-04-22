@@ -21,13 +21,13 @@
 #include "CStr.h"
 #include "ObjectEntry.h"
 
-#include "scripting/ScriptableObject.h"
+#include "scripting/ScriptableComplex.h"
 #include "BoundingObjects.h"
 #include "EventHandlers.h"
 #include "ScriptObject.h"
 #include "Xeromyces.h"
 
-class CBaseEntity : public CJSObject<CBaseEntity>
+class CBaseEntity : public CJSComplex<CBaseEntity>, public IEventTarget
 {
 public:
 	CBaseEntity();
@@ -64,6 +64,9 @@ public:
 	void loadBase();
 
 	// Script-bound functions
+
+	// Get script execution contexts - always run in the context of the entity that fired it.
+	JSObject* GetScriptExecContext( IEventTarget* target );
 
 	jsval ToString( JSContext* cx, uintN argc, jsval* argv );
 

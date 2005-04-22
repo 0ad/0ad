@@ -62,13 +62,6 @@ template<typename T> bool ToPrimitive( JSContext* cx, jsval v, T*& Storage )
 	return( true );
 }
 
-/*
-template<typename T> JSObject* ToScript( T** Native )
-{
-	return( ToScript( *Native ) );
-}
-*/
-
 template<typename T> inline T ToPrimitive( JSContext* cx, jsval v ) { T Temp; ToPrimitive( cx, v, Temp ); return( Temp ); }
 template<typename T> inline T ToPrimitive( jsval v ) { return( ToPrimitive<T>( g_ScriptingHost.GetContext(), v ) ); }
 

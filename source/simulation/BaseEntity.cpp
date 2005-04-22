@@ -24,7 +24,10 @@ CBaseEntity::CBaseEntity()
 	AddProperty( L"traits.corpse", &m_corpse );	
 
 	for( int t = 0; t < EVENT_LAST; t++ )
-		AddProperty( EventNames[t], &m_EventHandlers[t] );
+	{
+		AddProperty( EventNames[t], &m_EventHandlers[t], false );
+		AddHandler( t, &m_EventHandlers[t] );
+	}
 
 	// Initialize, make life a little easier on the scriptors
 	m_speed = m_turningRadius = m_meleeRange = m_meleeRangeMin = 0.0f;
@@ -62,6 +65,7 @@ void CBaseEntity::loadBase()
 	}
 
 	SetBase( m_base );
+	SetNextObject( m_base );
 }
 
 bool CBaseEntity::loadXML( CStr filename )
@@ -204,7 +208,7 @@ void CBaseEntity::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement&
 	// Add a property, put the node text into it.
 	CStrW PropertyName = BasePropertyName + CStr8( XeroFile.getElementString( Source.getNodeName() ) );
 
-	IJSProperty* Existing = HasProperty( PropertyName );
+	IJSComplexProperty* Existing = HasProperty( PropertyName );
 	if( Existing )
 	{	
 		if( !Existing->m_Intrinsic )
@@ -264,10 +268,15 @@ void CBaseEntity::ScriptingInit()
 {
 	AddMethod<jsval, &CBaseEntity::ToString>( "toString", 0 );
 
-	CJSObject<CBaseEntity>::ScriptingInit( "EntityTemplate" );
+	CJSComplex<CBaseEntity>::ScriptingInit( "EntityTemplate" );
 }
 
 // Script-bound functions
+
+JSObject* CBaseEntity::GetScriptExecContext( IEventTarget* target )
+{ 
+	return( target->GetScriptExecContext( target ) );
+}
 
 jsval CBaseEntity::ToString( JSContext* cx, uintN argc, jsval* argv )
 {

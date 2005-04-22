@@ -76,15 +76,15 @@ JSObject* CScriptObject::GetFunctionObject()
 // Executes a script attached to a JS object.
 // Returns false if the script isn't defined, if the script can't be executed,
 // otherwise true. Script return value is in rval.
-bool CScriptObject::Run( JSObject* Context, jsval* rval )
+bool CScriptObject::Run( JSObject* Context, jsval* rval, uintN argc, jsval* argv )
 {
 	if( !Function )
 		return( false );
-	return( JS_TRUE == JS_CallFunction( g_ScriptingHost.GetContext(), Context, Function, 0, NULL, rval ) );
+	return( JS_TRUE == JS_CallFunction( g_ScriptingHost.GetContext(), Context, Function, argc, argv, rval ) );
 }
 
 // This variant casts script return value to a boolean, and passes it back.
-bool CScriptObject::Run( JSObject* Context )
+bool CScriptObject::Run( JSObject* Context, uintN argc, jsval* argv )
 {
 	jsval Temp;
 	if( !Run( Context, &Temp ) )
@@ -95,11 +95,13 @@ bool CScriptObject::Run( JSObject* Context )
 // Treat this as an event handler and dispatch an event to it. Return !evt->m_cancelled, as a convenience.
 bool CScriptObject::DispatchEvent( JSObject* Context, CScriptEvent* evt )
 {
-	jsval Temp;
-	jsval EventObject = OBJECT_TO_JSVAL( evt->GetScript() );
 	if( Function )
+	{
+		jsval Temp;
+		jsval EventObject = OBJECT_TO_JSVAL( evt->GetScript() );
 		JS_CallFunction( g_ScriptingHost.GetContext(), Context, Function, 1, &EventObject, &Temp );
-	return( !evt->m_Cancelled );
+	}
+	return( evt->m_Blocked );
 }
 
 void CScriptObject::Compile( CStrW FileNameTag, CStrW FunctionBody )

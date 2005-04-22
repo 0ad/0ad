@@ -20,7 +20,11 @@ JSBool GetPlayerSet( JSContext* context, JSObject* globalObject, jsval id, jsval
 JSBool GetLocalPlayer( JSContext* context, JSObject* globalObject, jsval id, jsval* vp );
 JSBool SetLocalPlayer( JSContext* context, JSObject* globalObject, jsval id, jsval* vp );
 JSBool GetGaiaPlayer( JSContext* context, JSObject* globalObject, jsval id, jsval* vp );
-JSBool GetLocalPlayer( JSContext* context, JSObject* globalObject, jsval argv, jsval* vp );
+// JSBool SetGaiaPlayer( JSContext* context, JSObject* globalObject, jsval argv, jsval* vp );
+
+// Events system
+JSFunc AddGlobalHandler;
+JSFunc RemoveGlobalHandler;
 
 // Camera
 JSFunc setCameraTarget;

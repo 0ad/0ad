@@ -299,6 +299,8 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t timestep_milli
 }
 bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, CSkeletonAnim* animation, CScriptEvent* contactEvent, float range, float minRange = 0.0f )
 {
+	static size_t cyclepos = 0;
+
 	// Target's dead (or exhausted)? Then our work here is done.
 	if( !current->m_data[0].entity || !current->m_data[0].entity->m_extant )
 	{
@@ -308,9 +310,27 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 
 	if( m_actor )
 	{
-		// Still playing attack animation? Suspend processing.
-		if( m_actor->GetModel()->GetAnimation() == animation )
+		if( animation && ( m_actor->GetModel()->GetAnimation() == animation ) )
+		{
+			size_t cyclenext = cyclepos + timestep_millis;
+			if( ( cyclepos <= animation->m_ActionPos ) &&
+				( cyclenext > animation->m_ActionPos ) )
+			{
+				// Actually execute the action script in the sim frame
+				// that contains the animation's 'action point' (as 
+				// specified by the artist that created it)
+				if( !DispatchEvent( contactEvent ) )
+				{
+					// The script is cancelling the attack/gather action.
+
+					// Cancel the animation (will probably cause a graphical
+					// glitch, but can't be helped)
+					m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_WalkAnim );
+				}
+			}
+			cyclepos = cyclenext;
 			return( false );
+		}
 
 		// Just transitioned? No animation? (=> melee just finished) Play walk.
 		if( m_transition || !m_actor->GetModel()->GetAnimation() )
@@ -396,8 +416,12 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		m_ahead = delta.normalize();
 	}
 
-	if( DispatchEvent( contactEvent ) && m_actor )
-		m_actor->GetModel()->SetAnimation( animation, true );
+	// Start the animation. Actual damage/gather will be done in a 
+	// few hundred msec, at the 'action point' of the animation we're
+	// now setting.
+
+	m_actor->GetModel()->SetAnimation( animation, true );
+	cyclepos = 0;
 
 	return( false );
 }

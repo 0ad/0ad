@@ -114,8 +114,6 @@ struct CSynchedJSObjectBase
 			m_Owner(owner),
 			m_Update(update)
 		{
-			m_AllowsInheritance = false;
-			m_Intrinsic = true;
 		}
 	};
 	
@@ -140,7 +138,7 @@ protected:
 	template <typename T> void AddSynchedProperty(CStrW name, T *native, UpdateFn update=NULL)
 	{
 		ISynchedJSProperty *prop=new CSynchedJSProperty<T>(name, native, this, update);
-		m_Properties[name]=prop;
+		m_NonsharedProperties[name]=prop;
 		m_SynchedProperties[name]=prop;
 	}
 };

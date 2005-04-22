@@ -58,6 +58,7 @@
 #include "StringConvert.h"
 
 #include "scripting/ScriptingHost.h"
+#include "scripting/GameEvents.h"
 #include "scripting/JSInterface_Entity.h"
 #include "scripting/JSInterface_BaseEntity.h"
 #include "scripting/JSInterface_Vector3D.h"
@@ -789,7 +790,7 @@ TIMER(InitScripting)
 	
 	PlayerCollection::Init( "PlayerCollection" );
 	CDamageType::ScriptingInit();
-	CJSPropertyAccessor<CEntity>::ScriptingInit(); // <-- Doesn't really matter which we use, but we know CJSPropertyAccessor<T> is already being compiled for T = CEntity.
+	CJSComplexPropertyAccessor<CEntity>::ScriptingInit(); // <-- Doesn't really matter which we use, but we know CJSPropertyAccessor<T> is already being compiled for T = CEntity.
 	CScriptEvent::ScriptingInit();
 	CJSProgressTimer::ScriptingInit();
 
@@ -801,6 +802,8 @@ TIMER(InitScripting)
 
 	JSI_Camera::init();
 	JSI_Console::init();
+
+	new CGameEvents;
 }
 
 
@@ -1069,6 +1072,7 @@ static void Shutdown()
 	// delete &g_EntityManager;
 
 	delete &g_GameAttributes;
+	delete &g_JSGameEvents;
 
 	delete &g_EntityTemplateCollection;
 

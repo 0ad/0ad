@@ -199,7 +199,7 @@ void CModel::CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BuildAnimation: load raw animation frame animation from given file, and build a 
 // animation specific to this model
-CSkeletonAnim* CModel::BuildAnimation(const char* filename,float speed)
+CSkeletonAnim* CModel::BuildAnimation(const char* filename,float speed,size_t actionpos)
 {
 	CSkeletonAnimDef* def=g_SkelAnimMan.GetAnimation(filename);
 	if (!def) return 0;
@@ -207,6 +207,9 @@ CSkeletonAnim* CModel::BuildAnimation(const char* filename,float speed)
 	CSkeletonAnim* anim=new CSkeletonAnim;
 	anim->m_AnimDef=def;
 	anim->m_Speed=speed;
+	anim->m_ActionPos=actionpos;
+	if( actionpos > anim->m_AnimDef->GetDuration() )
+		anim->m_ActionPos = anim->m_AnimDef->GetDuration();
 	anim->m_ObjectBounds.SetEmpty();
 	InvalidateBounds();
 

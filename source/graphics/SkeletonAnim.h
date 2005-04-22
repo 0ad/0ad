@@ -23,6 +23,8 @@ public:
 	CSkeletonAnimDef* m_AnimDef;
 	// speed at which this animation runs
 	float m_Speed;
+	// time during the animation at which the interesting bit happens (msec)
+	size_t m_ActionPos;
 	// object space bounds of the model when this animation is applied to it
 	CBound m_ObjectBounds;
 };

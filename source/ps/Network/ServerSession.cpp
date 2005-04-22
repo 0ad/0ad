@@ -19,9 +19,6 @@ CNetServerSession::CNetServerSession(CNetServer *pServer, CSocketInternal *pInt,
 	ONCE(
 		ScriptingInit();
 	);
-
-	AddProperty(L"id", &m_ID);
-	AddProperty(L"name", &m_Name);
 }
 
 CNetServerSession::~CNetServerSession()
@@ -209,6 +206,9 @@ void CNetServerSession::ScriptingInit()
 	AddMethod<bool, &CNetServerSession::JSI_Close>("close", 0);
 
 	CJSObject<CNetServerSession>::ScriptingInit("NetSession");
+	// Hope this doesn't break anything...
+	AddProperty( L"id", &CNetServerSession::m_ID );
+	AddProperty( L"name", (CStrW CNetServerSession::*)&CNetServerSession::m_Name );
 }
 
 bool CNetServerSession::JSI_Close(JSContext *cx, uintN argc, jsval *argv)

@@ -35,12 +35,12 @@ void CPlayer::ScriptingInit()
 	AddMethod<jsval, &CPlayer::JSI_ToString>( "toString", 0 );
 	AddMethod<jsval, &CPlayer::JSI_SetColour>( "setColour", 1);
 	
-	AddReadOnlyClassProperty( L"id", &CPlayer::m_PlayerID );
+	AddProperty( L"id", &CPlayer::m_PlayerID, true );
 	// MT: Work out how this fits with the Synched stuff...
 
 	// AddClassProperty( L"name", &CPlayer::m_Name );
 	// AddClassProperty( L"colour", &CPlayer::m_Colour );
-	AddClassProperty( L"controlled", (IJSObject::GetFn)JSI_GetControlledEntities );
+	AddProperty( L"controlled", (IJSObject::GetFn)JSI_GetControlledEntities );
 
 	CJSObject<CPlayer>::ScriptingInit( "Player" );
 }

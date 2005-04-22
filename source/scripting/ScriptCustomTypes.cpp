@@ -48,10 +48,10 @@ void SColour::SColourInit( float _r, float _g, float _b, float _a )
 void SColour::ScriptingInit()
 {
 	AddMethod<jsval, &SColour::ToString>( "toString", 0 );
-	AddClassProperty<float>( L"r", (float IJSObject::*)&SColour::r );
-	AddClassProperty<float>( L"g", (float IJSObject::*)&SColour::g );
-	AddClassProperty<float>( L"b", (float IJSObject::*)&SColour::b );
-	AddClassProperty<float>( L"a", (float IJSObject::*)&SColour::a );
+	AddProperty<float>( L"r", (float IJSObject::*)&SColour::r );
+	AddProperty<float>( L"g", (float IJSObject::*)&SColour::g );
+	AddProperty<float>( L"b", (float IJSObject::*)&SColour::b );
+	AddProperty<float>( L"a", (float IJSObject::*)&SColour::a );
 
 	CJSObject<SColour>::ScriptingInit( "Colour", SColour::Construct, 3 );
 }

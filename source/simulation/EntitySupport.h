@@ -35,10 +35,10 @@ public:
 	}
 	static void ScriptingInit()
 	{
-		AddClassProperty<float>( L"crush", &CDamageType::m_Crush );
-		AddClassProperty<float>( L"hack", &CDamageType::m_Hack );
-		AddClassProperty<float>( L"pierce", &CDamageType::m_Pierce );
-		AddClassProperty<float>( L"typeless", &CDamageType::m_Typeless );
+		AddProperty<float>( L"crush", &CDamageType::m_Crush );
+		AddProperty<float>( L"hack", &CDamageType::m_Hack );
+		AddProperty<float>( L"pierce", &CDamageType::m_Pierce );
+		AddProperty<float>( L"typeless", &CDamageType::m_Typeless );
 		CJSObject<CDamageType>::ScriptingInit( "DamageType", Construct, 3 );
 	}
 	static JSBool Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )

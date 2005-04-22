@@ -21,8 +21,8 @@ CPlayerSlot::CPlayerSlot(int slotID, CPlayer *pPlayer):
 	);
 	
 	//AddProperty(L"session", (GetFn)&CPlayerSlot::JSI_GetSession);
-	AddReadOnlyProperty(L"session", &m_pSession);	
-	AddReadOnlyProperty(L"player", &m_pPlayer);
+	AddLocalProperty(L"session", &m_pSession, true );	
+	AddLocalProperty(L"player", &m_pPlayer, true );
 }
 
 CPlayerSlot::~CPlayerSlot()
@@ -34,7 +34,7 @@ void CPlayerSlot::ScriptingInit()
 	AddMethod<bool, &CPlayerSlot::JSI_AssignToSession>("assignToSession", 1);
 	AddMethod<bool, &CPlayerSlot::JSI_AssignLocal>("assignLocal", 0);
 	AddMethod<bool, &CPlayerSlot::JSI_AssignOpen>("assignOpen", 0);
-	AddClassProperty(L"assignment", (GetFn)&CPlayerSlot::JSI_GetAssignment);
+	AddProperty(L"assignment", (GetFn)&CPlayerSlot::JSI_GetAssignment);
 //	AddMethod<bool, &CPlayerSlot::JSI_AssignAI>("assignAI", <num_args>);
 
 	CJSObject<CPlayerSlot>::ScriptingInit("PlayerSlot");
@@ -258,7 +258,7 @@ void CGameAttributes::ScriptingInit()
 		PlayerSlotArray_JS::Construct, 0, NULL, NULL, NULL, NULL);
 	
 	AddMethod<jsval, &CGameAttributes::JSI_GetOpenSlot>("getOpenSlot", 0);
-	AddClassProperty(L"slots", (GetFn)&CGameAttributes::JSI_GetPlayerSlots);
+	AddProperty(L"slots", (GetFn)&CGameAttributes::JSI_GetPlayerSlots);
 
 	CJSObject<CGameAttributes>::ScriptingInit("GameAttributes");
 }

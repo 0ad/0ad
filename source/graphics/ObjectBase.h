@@ -13,7 +13,7 @@ public:
 
 	struct Anim {
 		// constructor
-		Anim() : m_Speed(1), m_AnimData(0) {}
+		Anim() : m_Speed(1), m_ActionPos( 0 ), m_AnimData(0) {}
 
 		// name of the animation - "Idle", "Run", etc
 		CStr m_AnimName;
@@ -21,6 +21,8 @@ public:
 		CStr m_FileName;
 		// animation speed, as specified in XML actor file
 		float m_Speed;
+		// time during the animation at which the interesting bit happens (msec)
+		size_t m_ActionPos;
 		// the animation data, specific to the this model
 		CSkeletonAnim* m_AnimData;
 	};

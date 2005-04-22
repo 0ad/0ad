@@ -121,9 +121,9 @@ CJSProgressTimer::CJSProgressTimer( double Max, double Increment, JSFunction* Ca
 
 void CJSProgressTimer::ScriptingInit()
 {
-	AddClassProperty( L"max", &CJSProgressTimer::m_Max );
-	AddClassProperty( L"current", &CJSProgressTimer::m_Current );
-	AddClassProperty( L"increment", &CJSProgressTimer::m_Increment );
+	AddProperty( L"max", &CJSProgressTimer::m_Max );
+	AddProperty( L"current", &CJSProgressTimer::m_Current );
+	AddProperty( L"increment", &CJSProgressTimer::m_Increment );
 
 	CJSObject<CJSProgressTimer>::ScriptingInit( "ProgressTimer", Construct, 2 );
 }

@@ -9,6 +9,56 @@
 
 #include "ScriptableObject.h"
 
+#include "EventTypes.h"
+
+class CScriptObject;
+class CScriptEvent;
+
+typedef CScriptObject* DOMEventHandler;
+
+class IEventTarget
+{
+	// Return 'true' if we should stop propagating.
+	bool _DispatchEvent( CScriptEvent* evt, IEventTarget* target );
+
+	// Events dispatched to this object are sent here before being processed.
+	IEventTarget* before;
+	// Events dispatched to this object are sent here after being processed.
+	IEventTarget* after;
+
+	typedef std::vector<DOMEventHandler> HandlerList;
+	HandlerList m_Handlers_id[EVENT_LAST];
+	typedef STL_HASH_MULTIMAP<CStrW, DOMEventHandler, CStrW_hash_compare> HandlerMap;
+	HandlerMap m_Handlers_name;
+	typedef std::pair<HandlerMap::iterator, HandlerMap::iterator> HandlerRange;
+public:
+	IEventTarget()
+	{
+		before = NULL;
+		after = NULL;
+	}
+	~IEventTarget();
+	inline void SetPriorObject( IEventTarget* obj ) { before = obj; }
+	inline void SetNextObject( IEventTarget* obj ) { after = obj; }
+
+	// Returns false if the handler was already present
+	bool AddHandler( int TypeCode, DOMEventHandler handler );
+	bool AddHandler( CStrW TypeString, DOMEventHandler handler );
+	// Returns false if the handler was not present
+	bool RemoveHandler( int TypeCode, DOMEventHandler handler );
+	bool RemoveHandler( CStrW TypeString, DOMEventHandler handler );
+	
+	bool AddHandlerJS( JSContext* cx, uintN argc, jsval* argv );
+	bool RemoveHandlerJS( JSContext* cx, uintN argc, jsval* argv );
+
+	// Return the JSObject* we'd like to be the 'this' object
+	// when executing the handler. The argument is the object
+	// to which the event is targeted.
+	virtual JSObject* GetScriptExecContext( IEventTarget* target ) = 0;
+
+	bool DispatchEvent( CScriptEvent* evt );
+};
+
 class CScriptEvent : public CJSObject<CScriptEvent>
 {
 public:
@@ -20,10 +70,10 @@ public:
 	};
 
 	// Target (currently unused)
-	// EventTarget* m_Target;
+	IEventTarget* m_Target;
 
 	// Listening object currently being processed (currently unused)
-	// EventTarget* m_CurrentTarget;
+	IEventTarget* m_CurrentTarget;
 
 	// Phase type (currently unused)
 	// EPhaseType m_EventPhase;
@@ -33,6 +83,9 @@ public:
 
 	// Can be cancelled (default actions prevented)
 	bool m_Cancelable;
+
+	// Can be blocked (prevented from propogating along the handler chain)
+	bool m_Blockable;
 
 	// Timestamp (milliseconds since epoch (start of game?))
 	i32 m_Timestamp;
@@ -46,13 +99,17 @@ public:
 	// Has been cancelled?
 	bool m_Cancelled;
 
+	// Has it been blocked (won't be sent to any more handlers)
+	bool m_Blocked;
+
 // -- 
 
 	jsval ToString( JSContext* cx, uintN argc, jsval* argv );
 	jsval PreventDefault( JSContext* cx, uintN argc, jsval* argv );
+	jsval StopPropagation( JSContext* cx, uintN argc, jsval* argv );
 
 public:
-	CScriptEvent( const CStrW& Type, bool Cancelable, unsigned int TypeCode = (unsigned int)-1 );
+	CScriptEvent( const CStrW& Type, unsigned int TypeCode = (unsigned int)-1, bool Cancelable = true, bool Blockable = true );
 	static void ScriptingInit();
 };
 

@@ -98,7 +98,7 @@ function setupSession()
         CreateResources();
 
         // Start refreshing the session controls.
-        setInterval( getObjectInfo, 1, 1000 );
+        setInterval( getObjectInfo, 1, 100 );
 }
 
 // ====================================================================

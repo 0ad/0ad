@@ -463,31 +463,41 @@ function PressCommandButton(GUIObject, list, tab)
 
 function UpdateCommandButtons()
 {
-	// Update train/research/build lists.
-	listCounter		= 1; 
-	unitArray 		= UpdateList(action_tab_train, listCounter); 		if (unitArray != 0)		 listCounter++;
-	structcivArray 	= UpdateList(action_tab_buildciv, listCounter);		if (structcivArray != 0) listCounter++;
-	structmilArray 	= UpdateList(action_tab_buildmil, listCounter);		if (structmilArray != 0) listCounter++;
-	techArray 		= UpdateList(action_tab_research, listCounter);		if (techArray != 0)		 listCounter++;
-	formationArray 	= UpdateList(action_tab_formation, listCounter);	if (formationArray != 0) listCounter++;
-	stanceArray 	= UpdateList(action_tab_stance, listCounter);		if (stanceArray != 0)	 listCounter++;
-
-	// Update commands.
-	commandCounter = SN_STATUS_PANE_COMMAND.tab.max;
-	commandCounter = UpdateCommand(action_attack, commandCounter);
-	commandCounter = UpdateCommand(action_patrol, commandCounter);
-	commandCounter = UpdateCommand(action_repair, commandCounter);
-	commandCounter = UpdateCommand(action_gather_food, commandCounter);
-	commandCounter = UpdateCommand(action_gather_wood, commandCounter);
-	commandCounter = UpdateCommand(action_gather_stone, commandCounter);
-	commandCounter = UpdateCommand(action_gather_ore, commandCounter);
-
-	// Clear remaining buttons between them.
-	for (commandClearLoop = listCounter; commandClearLoop <= commandCounter; commandClearLoop++)
+	if( shouldUpdateStat( "actions.create.list" ) )
 	{
-		GUIObjectHide("SN_STATUS_PANE_COMMAND_" + commandClearLoop + "_1");
-		// If this slot could possibly contain a list, hide that too.
-		GUIObjectHide("SN_STATUS_PANE_COMMAND_" + commandClearLoop + "_GROUP");
+		// Everything in this block is tied to properties in
+		// actions.create.list, the above check should limit the
+		// number of times this update is needlessly made.
+		
+		// Update train/research/build lists.
+		listCounter		= 1; 
+		unitArray 		= UpdateList(action_tab_train, listCounter); 		if (unitArray != 0)		 listCounter++;
+		structcivArray 	= UpdateList(action_tab_buildciv, listCounter);		if (structcivArray != 0) listCounter++;
+		structmilArray 	= UpdateList(action_tab_buildmil, listCounter);		if (structmilArray != 0) listCounter++;
+		techArray 		= UpdateList(action_tab_research, listCounter);		if (techArray != 0)		 listCounter++;
+		formationArray 	= UpdateList(action_tab_formation, listCounter);	if (formationArray != 0) listCounter++;
+		stanceArray 	= UpdateList(action_tab_stance, listCounter);		if (stanceArray != 0)	 listCounter++;
+	}
+	
+	if( shouldUpdateStat( "actions" ) )
+	{
+		// Update commands.
+		commandCounter = SN_STATUS_PANE_COMMAND.tab.max;
+		commandCounter = UpdateCommand(action_attack, commandCounter);
+		commandCounter = UpdateCommand(action_patrol, commandCounter);
+		commandCounter = UpdateCommand(action_repair, commandCounter);
+		commandCounter = UpdateCommand(action_gather_food, commandCounter);
+		commandCounter = UpdateCommand(action_gather_wood, commandCounter);
+		commandCounter = UpdateCommand(action_gather_stone, commandCounter);
+		commandCounter = UpdateCommand(action_gather_ore, commandCounter);
+
+		// Clear remaining buttons between them.
+		for (commandClearLoop = listCounter; commandClearLoop <= commandCounter; commandClearLoop++)
+		{
+			GUIObjectHide("SN_STATUS_PANE_COMMAND_" + commandClearLoop + "_1");
+			// If this slot could possibly contain a list, hide that too.
+			GUIObjectHide("SN_STATUS_PANE_COMMAND_" + commandClearLoop + "_GROUP");
+		}
 	}
 
 	// Update production queue.
@@ -521,107 +531,224 @@ function UpdateCommandButtons()
 
 // ====================================================================
 
+// Update-on-alteration trickery...
+
+// We don't really want to update every single time we get a
+// selection-changed or property-changed event; that could happen
+// a lot. Instead, use this bunch of globals to cache any changes
+// that happened between GUI updates.
+
+// This boolean determines whether the selection has been changed.
+var selectionChanged = false;
+
+// This boolean determines what the template of the selected object
+// was when last we looked
+var selectionTemplate = null;
+
+// This array holds the name of all properties that need to be updated
+var selectionPropertiesChanged = new Array();
+
+// This array holds a list of all the objects we hold property-change 
+// watches on
+var propertyWatches = new Array();
+ 
+// This function resets all the update variables, above
+function resetUpdateVars()
+{
+	if( selectionChanged )
+	{
+		for( watchedObject in propertyWatches )
+			propertyWatches[watchedObject].unwatchAll( selectionWatchHandler ); // Remove the handler
+		
+		propertyWatches = new Array();
+		if( selection[0] )
+		{
+			// Watch the object itself
+			selection[0].watchAll( selectionWatchHandler );
+			propertyWatches.push( selection[0] );
+			// And every parent back up the tree (changes there will affect
+			// displayed properties via inheritance)
+			var parent = selection[0].template
+			while( parent )
+			{
+				parent.watchAll( selectionWatchHandler );
+				propertyWatches.push( selection[0] );
+				parent = parent.parent;
+			}
+		}
+	}
+	selectionChanged = false;
+	if( selection[0] ) 
+	{
+		selectionTemplate = selection[0].template;
+	}
+	else
+		selectionTemplate = null;
+		
+	selectionPropertiesChanged = new Array();
+}
+
+// This function returns whether we should update a particular statistic
+// in the GUI (e.g. "actions.attack") - this should happen if: the selection
+// changed, the selection had its template altered (changing lots of stuff)
+// or an assignment has been made to that stat or any property within that
+// stat. 
+function shouldUpdateStat( statname )
+{
+	if( selectionChanged || ( selectionTemplate != selection[0].template ) )
+		return( true );
+	for( var property in selectionPropertiesChanged )
+	{
+		// If property starts with statname
+		if( selectionPropertiesChanged[property].substring( 0, statname.length ) == statname )
+			return( true );
+	}
+	return( false );	
+}
+
+// This function is a handler for the 'selectionChanged' event,
+// it updates the selectionChanged flag
+function selectionChangedHandler()
+{
+	selectionChanged = true;
+}
+
+// Register it.
+addGlobalHandler( "selectionChanged", selectionChangedHandler );
+
+// This function is a handler for a watch event; it updates the
+// selectionPropertiesChanged array
+function selectionWatchHandler( propname, oldvalue, newvalue )
+{
+	selectionPropertiesChanged.push( propname );
+	// This bit's important (watches allow the handler to change the value
+	// before it gets written; we don't want to affect things, so make sure
+	// the value we send back is the one that was going to be written)
+	return( newvalue ); 
+}
+
 function UpdateStatusOrb()
 {
 	// Update heading.
-	GUIObject = getGUIObjectByName("SN_STATUS_PANE_HEADING");
-	GUIObject.caption = selection[0].player.name; // Player name (placeholder; replace with proper callsign).
-	if (selection[0].traits.id.civ)
-		GUIObject.caption += " [icon=bullet_icon] " + selection[0].traits.id.civ;
-
+	if( shouldUpdateStat( "player" ) || shouldUpdateStat( "traits.id.civ" ) )
+	{
+		GUIObject = getGUIObjectByName("SN_STATUS_PANE_HEADING");
+		GUIObject.caption = selection[0].player.name; // Player name (placeholder; replace with proper callsign).
+		if (selection[0].traits.id.civ)
+			GUIObject.caption += " [icon=bullet_icon] " + selection[0].traits.id.civ;
+	}
+	
 	// Update name text.
-	GUIObject = getGUIObjectByName("SN_STATUS_PANE_NAME1");
-	GUIObject.caption = "";
-	// Personal name.
-	if (selection[0].traits.id.personal && selection[0].traits.id.personal != "")
-	{
-		GUIObject.caption += selection[0].traits.id.personal + "\n";
-	}
-	// Generic name.
-	if (selection[0].traits.id.generic)
-	{
-		GUIObject.caption += selection[0].traits.id.generic + "\n";
-	}
-	// Specific/ranked name.
-	if (selection[0].traits.id.ranked)
+	if( shouldUpdateStat( "traits.id" ) )
 	{
 		GUIObject = getGUIObjectByName("SN_STATUS_PANE_NAME1");
-		GUIObject.caption += selection[0].traits.id.ranked + "\n";
-	}
-	else{
-		if (selection[0].traits.id.specific)
+		GUIObject.caption = "";
+		
+		// Personal name.
+		if (selection[0].traits.id.personal && selection[0].traits.id.personal != "")
+			GUIObject.caption += selection[0].traits.id.personal + "\n";
+		// Generic name.
+		if (selection[0].traits.id.generic)
+			GUIObject.caption += selection[0].traits.id.generic + "\n";
+		// Specific/ranked name.
+		if (selection[0].traits.id.ranked)
 		{
-			GUIObject.caption += selection[0].traits.id.specific + "\n";
+			GUIObject = getGUIObjectByName("SN_STATUS_PANE_NAME1");
+			GUIObject.caption += selection[0].traits.id.ranked + "\n";
+		}
+		else{
+			if (selection[0].traits.id.specific)
+			{
+				GUIObject.caption += selection[0].traits.id.specific + "\n";
+			}
 		}
 	}
-
-	// Update portrait
-	if (selection[0].traits.id.icon)
-		setPortrait("SN_STATUS_PANE_PORTRAIT", selection[0].traits.id.icon, selection[0].traits.id.civ_code, selection[0].traits.id.icon_cell);
-
-	// Update rank.
-	GUIObject = getGUIObjectByName("SN_STATUS_PANE_ICON_RANK");
-	if (selection[0].traits.up.rank > 1)
+	if( shouldUpdateStat( "traits.id.icon" ) )
 	{
-		GUIObject.sprite = "ui_icon_sheet_statistic";
-		GUIObject.cell_id = stat_rank1 + (selection[0].traits.up.rank-2);
+		// Update portrait
+		if (selection[0].traits.id.icon)
+			setPortrait("SN_STATUS_PANE_PORTRAIT", selection[0].traits.id.icon, selection[0].traits.id.civ_code, selection[0].traits.id.icon_cell);
 	}
-	else
-		GUIObject.sprite = "";
-
-	// Update hitpoints
-	if (selection[0].traits.health.curr && selection[0].traits.health.max)
+	if( shouldUpdateStat( "traits.up.rank" ) )
 	{
-		getGUIObjectByName("SN_STATUS_PANE_ICON_HP_TEXT").caption = Math.round(selection[0].traits.health.curr) + "/" + Math.round(selection[0].traits.health.max);
-		getGUIObjectByName("SN_STATUS_PANE_ICON_HP_TEXT").hidden = false;
-		getGUIObjectByName("SN_STATUS_PANE_ICON_HP_BAR").caption = ((Math.round(selection[0].traits.health.curr) * 100 ) / Math.round(selection[0].traits.health.max));
-		getGUIObjectByName("SN_STATUS_PANE_ICON_HP_BAR").hidden = false;
-	}
-	else
-	{
-		getGUIObjectByName("SN_STATUS_PANE_ICON_HP_TEXT").hidden = true;
-		getGUIObjectByName("SN_STATUS_PANE_ICON_HP_BAR").hidden = true;
-	}
-
-	// Update upgrade points
-	if (selection[0].traits.up && selection[0].traits.up.curr && selection[0].traits.up.req)
-	{
-		getGUIObjectByName("SN_STATUS_PANE_ICON_XP_TEXT").caption = Math.round(selection[0].traits.up.curr) + "/" + Math.round(selection[0].traits.up.req);
-		getGUIObjectByName("SN_STATUS_PANE_ICON_XP_TEXT").hidden = false;
-		getGUIObjectByName("SN_STATUS_PANE_ICON_XP_BAR").caption = ((Math.round(selection[0].traits.up.curr) * 100 ) / Math.round(selection[0].traits.up.req));
-		getGUIObjectByName("SN_STATUS_PANE_ICON_XP_BAR").hidden = false;
-	}
-	else
-	{
-		getGUIObjectByName("SN_STATUS_PANE_ICON_XP_TEXT").hidden = true;
-		getGUIObjectByName("SN_STATUS_PANE_ICON_XP_BAR").hidden = true;
-	}
-
-	// Update Supply/Garrison
-	GUIObject = getGUIObjectByName("SN_STATUS_PANE_2STAT");
-	GUIObject.caption = '';
-
-	if (selection[0].traits.garrison)
-	{
-		if (selection[0].traits.garrison.curr && selection[0].traits.garrison.max)
+		// Update rank.
+		GUIObject = getGUIObjectByName("SN_STATUS_PANE_ICON_RANK");
+		if (selection[0].traits.up.rank > 1)
 		{
-			GUIObject.caption += '[icon="icon_statistic_garrison"] [color="100 100 255"]' + selection[0].traits.garrison.curr + '/' + selection[0].traits.garrison.max + '[/color] ';
+			GUIObject.sprite = "ui_icon_sheet_statistic";
+			GUIObject.cell_id = stat_rank1 + (selection[0].traits.up.rank-2);
+		}
+		else
+			GUIObject.sprite = "";
+	}
+	if( shouldUpdateStat( "traits.health" ) )
+	{
+		// Update hitpoints
+		if (selection[0].traits.health.curr && selection[0].traits.health.max)
+		{
+			getGUIObjectByName("SN_STATUS_PANE_ICON_HP_TEXT").caption = Math.round(selection[0].traits.health.curr) + "/" + Math.round(selection[0].traits.health.max);
+			getGUIObjectByName("SN_STATUS_PANE_ICON_HP_TEXT").hidden = false;
+			getGUIObjectByName("SN_STATUS_PANE_ICON_HP_BAR").caption = ((Math.round(selection[0].traits.health.curr) * 100 ) / Math.round(selection[0].traits.health.max));
+			getGUIObjectByName("SN_STATUS_PANE_ICON_HP_BAR").hidden = false;
+		}
+		else
+		{
+			getGUIObjectByName("SN_STATUS_PANE_ICON_HP_TEXT").hidden = true;
+			getGUIObjectByName("SN_STATUS_PANE_ICON_HP_BAR").hidden = true;
 		}
 	}
-
-	if (selection[0].traits.supply)
+	
+	if( shouldUpdateStat( "traits.up" ) )
 	{
-		if (selection[0].traits.supply.curr && selection[0].traits.supply.max && selection[0].traits.supply.type)
+		// Update upgrade points
+		if (selection[0].traits.up && selection[0].traits.up.curr && selection[0].traits.up.req)
 		{
-			// Special case for infinity.
-			if (selection[0].traits.supply.curr == "0" && selection[0].traits.supply.max == "0")
-				GUIObject.caption += '[icon="icon_resource_' + selection[0].traits.supply.type + '"] [color="100 100 255"] [icon="infinity_icon"] [/color] ';
-			else
-				GUIObject.caption += '[icon="icon_resource_' + selection[0].traits.supply.type + '"] [color="100 100 255"]' + selection[0].traits.supply.curr + '/' + selection[0].traits.supply.max + '[/color] ';
+			getGUIObjectByName("SN_STATUS_PANE_ICON_XP_TEXT").caption = Math.round(selection[0].traits.up.curr) + "/" + Math.round(selection[0].traits.up.req);
+			getGUIObjectByName("SN_STATUS_PANE_ICON_XP_TEXT").hidden = false;
+			getGUIObjectByName("SN_STATUS_PANE_ICON_XP_BAR").caption = ((Math.round(selection[0].traits.up.curr) * 100 ) / Math.round(selection[0].traits.up.req));
+			getGUIObjectByName("SN_STATUS_PANE_ICON_XP_BAR").hidden = false;
+		}
+		else
+		{
+			getGUIObjectByName("SN_STATUS_PANE_ICON_XP_TEXT").hidden = true;
+			getGUIObjectByName("SN_STATUS_PANE_ICON_XP_BAR").hidden = true;
 		}
 	}
+	if( shouldUpdateStat( "traits.garrison" ) )
+	{
+		// Update Supply/Garrison
+		GUIObject = getGUIObjectByName("SN_STATUS_PANE_2STAT");
+		GUIObject.caption = '';
 
+		if (selection[0].traits.garrison)
+		{
+			if (selection[0].traits.garrison.curr && selection[0].traits.garrison.max)
+			{
+				GUIObject.caption += '[icon="icon_statistic_garrison"] [color="100 100 255"]' + selection[0].traits.garrison.curr + '/' + selection[0].traits.garrison.max + '[/color] ';
+			}
+		}
+	}
+	if( shouldUpdateStat( "traits.supply" ) )
+	{
+		GUIObject = getGUIObjectByName("SN_STATUS_PANE_2STAT");
+		GUIObject.caption = '';
+
+		if (selection[0].traits.supply)
+		{
+			if (selection[0].traits.supply.curr && selection[0].traits.supply.max && selection[0].traits.supply.type)
+			{
+				// Special case for infinity.
+				if (selection[0].traits.supply.curr == "0" && selection[0].traits.supply.max == "0")
+					GUIObject.caption += '[icon="icon_resource_' + selection[0].traits.supply.type + '"] [color="100 100 255"] [icon="infinity_icon"] [/color] ';
+				else
+					GUIObject.caption += '[icon="icon_resource_' + selection[0].traits.supply.type + '"] [color="100 100 255"]' + selection[0].traits.supply.curr + '/' + selection[0].traits.supply.max + '[/color] ';
+			}
+		}
+	}
+	
 	// Update Attack stats
+	if( shouldUpdateStat( "actions.attack" ) )
+	{
 		if (selection[0].actions.attack && selection[0].actions.attack.damage && selection[0].actions.attack.damage > 0)
 			getGUIObjectByName("SN_STATUS_PANE_STAT1").caption = '[icon="icon_statistic_attack"]' + selection[0].actions.attack.damage;
 		else
@@ -651,8 +778,10 @@ function UpdateStatusOrb()
 			getGUIObjectByName("SN_STATUS_PANE_STAT6").caption = '[icon="icon_statistic_accuracy"]' + Math.round(selection[0].actions.attack.accuracy*100) + '%';
 		else
 			getGUIObjectByName("SN_STATUS_PANE_STAT6").caption = "";
-
+	}
 	// Update Armour & Other stats
+	if( shouldUpdateStat( "traits.armour" ) )
+	{
 		if (selection[0].traits.armour && selection[0].traits.armour.value && selection[0].traits.armour.value > 0)
 			getGUIObjectByName("SN_STATUS_PANE_STAT7").caption = '[icon="icon_statistic_armour"]' + selection[0].traits.armour.value;
 		else getGUIObjectByName("SN_STATUS_PANE_STAT7").caption = "";
@@ -665,18 +794,26 @@ function UpdateStatusOrb()
 		if (selection[0].traits.armour && selection[0].traits.armour.crush && selection[0].traits.armour.crush > 0)
 			getGUIObjectByName("SN_STATUS_PANE_STAT10").caption = '[icon="icon_statistic_crush"]' + Math.round(selection[0].traits.armour.crush*100) + '%';
 		else getGUIObjectByName("SN_STATUS_PANE_STAT10").caption = "";
-
-	if (selection[0].actions.move && selection[0].actions.move.speed)
-		getGUIObjectByName("SN_STATUS_PANE_STAT11").caption = '[icon="icon_statistic_speed"]' + selection[0].actions.move.speed;
-		else getGUIObjectByName("SN_STATUS_PANE_STAT11").caption = "";
-	if (selection[0].traits.vision && selection[0].traits.vision.los)
-		getGUIObjectByName("SN_STATUS_PANE_STAT12").caption = '[icon="icon_statistic_los"]' + selection[0].traits.vision.los;
-		else getGUIObjectByName("SN_STATUS_PANE_STAT12").caption = "";
-
+	}
+	if( shouldUpdateStat( "actions.move" ) )
+	{
+		if (selection[0].actions.move && selection[0].actions.move.speed)
+			getGUIObjectByName("SN_STATUS_PANE_STAT11").caption = '[icon="icon_statistic_speed"]' + selection[0].actions.move.speed;
+			else getGUIObjectByName("SN_STATUS_PANE_STAT11").caption = "";
+	}
+	if( shouldUpdateStat( "traits.vision" ) )
+	{
+		if (selection[0].traits.vision && selection[0].traits.vision.los)
+			getGUIObjectByName("SN_STATUS_PANE_STAT12").caption = '[icon="icon_statistic_los"]' + selection[0].traits.vision.los;
+			else getGUIObjectByName("SN_STATUS_PANE_STAT12").caption = "";
+	}
+	
 	// Reveal Status Orb
 	getGUIObjectByName("session_status_orb").hidden = false;
 
 	// Update Command Buttons.
 	UpdateCommandButtons();
+	
+	resetUpdateVars();
 }
 
