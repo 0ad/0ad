@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
 
+  <castshadow/>
+
   <group>
-    <variant>
-      <mesh>props/head_longhair.pmd</mesh>
+    <variant frequency="10" name="1">
+      <mesh>props/head_lime.pmd</mesh>
     </variant>
   </group>
 
   <group>
-    <variant name="a">
-      <texture>props/head/celt_a.dds</texture>
+    <variant>
+      <texture>props/head/celt_e.dds</texture>
     </variant>
-    <variant name="b">
-      <texture>props/head/celt_b.dds</texture>
+    <variant>
+      <texture>props/head/celt_f.dds</texture>
     </variant>
-    <variant name="c">
-      <texture>props/head/celt_c.dds</texture>
+    <variant>
+      <texture>props/head/celt_g.dds</texture>
     </variant>
-    <variant name="d">
-      <texture>props/head/celt_d.dds</texture>
+    <variant>
+      <texture>props/head/celt_h.dds</texture>
     </variant>
   </group>
 
@@ -36,7 +38,7 @@
       <color rgb="186 154 92"/>
     </variant>
     <variant name="blonde">
-      <color rgb="255 194 78"/>
+      <color rgb="255 233 173"/>
     </variant>
   </group>
 

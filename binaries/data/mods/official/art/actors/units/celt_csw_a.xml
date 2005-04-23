@@ -13,8 +13,54 @@
       <props>
         <prop actor="units/celt_csw_a_r.xml" attachpoint="rider"/>
       </props>
-      <texture>skeletal/horse_chestnut_a.dds</texture>
     </variant>
   </group>
+
+  <group>
+    <variant frequency="7" name="feet">
+      <texture>skeletal/horse_celt_feet_a.dds</texture>
+    </variant>
+    <variant frequency="5" name="blaze">
+      <texture>skeletal/horse_celt_blaze_a.dds</texture>
+    </variant>
+    <variant frequency="5" name="face">
+      <texture>skeletal/horse_celt_face_a.dds</texture>
+    </variant>
+    <variant frequency="7" name="star">
+      <texture>skeletal/horse_celt_star_a.dds</texture>
+    </variant>
+    <variant frequency="3" name="dapple">
+      <texture>skeletal/horse_celt_dapple_a.dds</texture>
+    </variant>
+    <variant frequency="2" name="snip">
+      <texture>skeletal/horse_celt_snip_a.dds</texture>
+    </variant>
+    <variant frequency="5" name="stripe">
+      <texture>skeletal/horse_celt_stripe_a.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="2" name="black">
+      <color rgb="81 81 85"/>
+    </variant>
+    <variant frequency="2" name="chocolate">
+      <color rgb="98 68 58"/>
+    </variant>
+    <variant frequency="2" name="chestnut">
+      <color rgb="248 132 86"/>
+    </variant>
+    <variant frequency="2" name="roan">
+      <color rgb="242 219 164"/>
+    </variant>
+    <variant frequency="2" name="liver">
+      <color rgb="172 95 68"/>
+    </variant>
+    <variant frequency="2" name="brown">
+      <color rgb="255 148 89"/>
+    </variant>
+  </group>
+
+  <material>objectcolor.xml</material>
 
 </actor>
