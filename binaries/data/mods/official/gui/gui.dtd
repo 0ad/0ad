@@ -28,7 +28,10 @@
 
 <!ENTITY % ex_settings
  "buffer_zone				CDATA #IMPLIED
+  button_width				CDATA #IMPLIED
   checked				%bool; #IMPLIED
+  dropdown_size				CDATA #IMPLIED
+  dropdown_buffer			CDATA #IMPLIED
   font					CDATA #IMPLIED
   fov_wedge_color			CDATA #IMPLIED
   hotkey				CDATA #IMPLIED
@@ -44,6 +47,7 @@
   sprite_bar				CDATA #IMPLIED
   sprite_background			CDATA #IMPLIED
   sprite_disabled			CDATA #IMPLIED
+  sprite_list				CDATA #IMPLIED
   sprite2_disabled			CDATA #IMPLIED
   sprite_over				CDATA #IMPLIED
   sprite2_over				CDATA #IMPLIED
