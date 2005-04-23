@@ -60,28 +60,32 @@ void IGUIButtonBehavior::HandleMessage(const SGUIMessage &Message)
 
 CColor IGUIButtonBehavior::ChooseColor()
 {
-	CColor color, color_over, color_pressed, color_disabled;
+	CColor color, color2;
 
 	// Yes, the object must possess these settings. They are standard
 	GUI<CColor>::GetSetting(this, "textcolor", color);
-	GUI<CColor>::GetSetting(this, "textcolor_over", color_over);
-	GUI<CColor>::GetSetting(this, "textcolor_pressed", color_pressed);
-	GUI<CColor>::GetSetting(this, "textcolor_disabled", color_disabled);
 
 	bool enabled;
 	GUI<bool>::GetSetting(this, "enabled", enabled);
 
 	if (!enabled)
 	{
-		return GUI<>::FallBackColor(color_disabled, color);
+		GUI<CColor>::GetSetting(this, "textcolor_disabled", color2);
+		return GUI<>::FallBackColor(color2, color);
 	}
 	else
 	if (m_MouseHovering)
 	{
 		if (m_Pressed)
-			return GUI<>::FallBackColor(color_pressed, color);
+		{
+			GUI<CColor>::GetSetting(this, "textcolor_pressed", color2);
+			return GUI<>::FallBackColor(color2, color);
+		}
 		else
-			return GUI<>::FallBackColor(color_over, color);
+		{
+			GUI<CColor>::GetSetting(this, "textcolor_over", color2);
+			return GUI<>::FallBackColor(color2, color);
+		}
 	}
 	else return color;
 }

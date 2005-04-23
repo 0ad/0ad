@@ -38,6 +38,7 @@ gee@pyro.nu
 //  Declarations
 //--------------------------------------------------------
 
+
 /**
  * @author Gustav Larsson
  *
@@ -60,6 +61,11 @@ public:
 	virtual ~CList();
 
 	virtual void ResetStates() { IGUIScrollBarOwner::ResetStates(); }
+
+	/**
+	 * Adds an item last to the list.
+	 */
+	virtual void AddItem(const CStr& str);
 
 protected:
 	/**
@@ -86,11 +92,6 @@ protected:
 	virtual void Draw();
 
 	/**
-	 * Adds an item last to the list.
-	 */
-	virtual void AddItem(const CStr& str);
-
-	/**
 	 * Easy select elements functions
 	 */
 	virtual void SelectNextElement();
@@ -106,11 +107,17 @@ protected:
 	// Called every time the auto-scrolling should be checked.
 	void UpdateAutoScroll();
 
-	/**
-	 * List of items (as text), the post-processed result is stored in
-	 *  the IGUITextOwner structure of this class.
-	 */
-	std::vector<CGUIString> m_Items;
+	// Extended drawing interface, this is so that classes built on the this one
+	//  can use other sprite names.
+	void DrawList(const int &selected, const CStr &_sprite, 
+				  const CStr &_sprite_selected, const CStr &_textcolor);
+
+	// Get the area of the list. This is so that i can easily be changed, like in CDropDown
+	//  where the area is not equal to m_CachedActualSize.
+	virtual CRect GetListRect() const { return m_CachedActualSize; }
+
+	// List of items.
+	//CGUIList m_List;
 
 	/**
 	 * List of each element's relative y position. Will be

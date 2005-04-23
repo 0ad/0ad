@@ -33,6 +33,7 @@ gee@pyro.nu
 #include "GUIbase.h"
 #include "GUIutil.h"
 #include "GUItext.h"
+#include "CGUIList.h"
 #include "IGUIObject.h"
 #include "IGUIButtonBehavior.h"
 #include "IGUIScrollBarOwner.h"

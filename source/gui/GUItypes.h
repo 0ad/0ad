@@ -34,6 +34,7 @@ my @types = qw(
 			EAlign 
 			EVAlign
 			CPos
+			CGUIList
 
 
 );
@@ -99,7 +100,10 @@ TYPE(EVAlign)
 #ifndef GUITYPE_IGNORE_CPos
 TYPE(CPos)
 #endif
+#ifndef GUITYPE_IGNORE_CGUIList
+TYPE(CGUIList)
+#endif
 #ifdef PLEASE_DO_NOT_DEFINE_THIS
 // See IGUIObject.h for 'enum EGUISettingType'
-enum {GUIST_bool,GUIST_int,GUIST_float,GUIST_CColor,GUIST_CClientArea,GUIST_CGUIString,GUIST_CGUISpriteInstance,GUIST_CStr,GUIST_CStrW,GUIST_EAlign,GUIST_EVAlign,GUIST_CPos};
+enum {GUIST_bool,GUIST_int,GUIST_float,GUIST_CColor,GUIST_CClientArea,GUIST_CGUIString,GUIST_CGUISpriteInstance,GUIST_CStr,GUIST_CStrW,GUIST_EAlign,GUIST_EVAlign,GUIST_CPos,GUIST_CGUIList};
 #endif

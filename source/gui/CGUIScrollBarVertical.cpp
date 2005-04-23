@@ -96,10 +96,6 @@ void CGUIScrollBarVertical::Draw()
 								);
 		}
 
-		LOG(ERROR, LOG_CATEGORY, "GetBarRect(%f,%f,%f,%f)", GetBarRect().left, GetBarRect().top, GetBarRect().right, GetBarRect().bottom);
-		LOG(ERROR, LOG_CATEGORY, "m_SpriteBarVertical = %s", GetStyle()->m_SpriteBarVertical.GetName().c_str());
-		LOG(ERROR, LOG_CATEGORY, "m_SpriteBackVertical = %s", GetStyle()->m_SpriteBackVertical.GetName().c_str());
-
 		// Draw bar
 		/*if (m_BarPressed)
 			GetGUI()->DrawSprite(GUI<>::FallBackSprite(GetStyle()->m_SpriteBarVerticalPressed, GetStyle()->m_SpriteBarVertical),

@@ -41,8 +41,6 @@ void IGUITextOwner::HandleMessage(const SGUIMessage &Message)
 		//  these. Although that is not certain, but one will have to manually
 		//  change it and disregard this function.
 		// TODO Gee: (2004-09-07) Make sure this is all options that can affect the text.
-		// Also TODO: If several things are changing (e.g. when loading the file),
-		// only call SetupText once (probably just before it's drawn)
 		if (Message.value == "size" || Message.value == "z" ||
 			Message.value == "absolute" || Message.value == "caption" ||
 			Message.value == "font" || Message.value == "textcolor" ||

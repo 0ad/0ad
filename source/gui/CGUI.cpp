@@ -22,6 +22,7 @@ gee@pyro.nu
 #include "CRadioButton.h"
 #include "CInput.h"
 #include "CList.h"
+#include "CDropDown.h"
 #include "CProgressBar.h"
 #include "CTooltip.h"
 #include "MiniMap.h"
@@ -155,6 +156,12 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 					LOG(ERROR, LOG_CATEGORY, "Left click blocked");
 
 					ret = EV_HANDLED;
+				}
+				else if (m_FocusedObject)
+				{
+					m_FocusedObject->HandleMessage(SGUIMessage(GUIM_LOST_FOCUS));
+					//if (m_FocusedObject-> TODO SelfishFocus?
+					m_FocusedObject = 0;
 				}
 				break;
 
@@ -331,6 +338,7 @@ void CGUI::Initialize()
     AddObjectType("minimap",        &CMiniMap::ConstructObject);
 	AddObjectType("input",			&CInput::ConstructObject);
 	// AddObjectType("list",			&CList::ConstructObject);
+	AddObjectType("dropdown",		&CDropDown::ConstructObject);
 }
 
 void CGUI::Process()
