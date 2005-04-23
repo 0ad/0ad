@@ -7,6 +7,9 @@
 
 #include "gui/IGUIObject.h"
 #include "gui/CGUI.h"
+#include "gui/CList.h"
+
+#include "ps/CLogger.h"
 
 #include "ps/StringConvert.h"
 
@@ -239,6 +242,24 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				break;
 			}
 
+		case GUIST_CGUIList:
+			{
+				CGUIList value;
+				GUI<CGUIList>::GetSetting(e, propName, value);
+
+				jsval *vector = new jsval[value.m_Items.size()];
+				for (int i=0; i<value.m_Items.size(); ++i)
+				{
+					JSString* s = StringConvert::wchars_to_jsstring(cx, value.m_Items[i].GetRawString().c_str());
+					vector[i] = STRING_TO_JSVAL(s);
+				}
+
+				JSObject *obj = JS_NewArrayObject(cx, value.m_Items.size(), vector);
+
+				*vp = OBJECT_TO_JSVAL(obj);
+				break;
+			}
+
 		default:
 			JS_ReportError(cx, "Setting '%s' uses an unimplemented type", propName.c_str());
 			debug_warn("This shouldn't happen");
@@ -453,6 +474,38 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 			else
 			{
 				JS_ReportError(cx, "Color only accepts strings or GUIColor objects");
+				return JS_FALSE;
+			}
+			break;
+		}
+
+	case GUIST_CGUIList:
+		{
+			JSObject* obj = JSVAL_TO_OBJECT(*vp);
+			jsuint length;
+			if (JSVAL_IS_OBJECT(*vp) && JS_GetArrayLength(cx, obj, &length) == JS_TRUE)
+			{
+				CGUIList list;
+
+				for (int i=0; i<(int)length; ++i)
+				{
+					jsval element;
+					JS_GetElement(cx, obj, i, &element);
+
+					std::wstring value;
+					StringConvert::jsstring_to_wstring(JS_ValueToString(cx, element), value);
+
+					CGUIString str;
+					str.SetValue(value);
+					
+					list.m_Items.push_back(str);
+				}
+
+				GUI<CGUIList>::SetSetting(e, propName, list);
+			}
+			else
+			{
+				JS_ReportError(cx, "List only accepts a GUIList object");
 				return JS_FALSE;
 			}
 			break;
