@@ -124,7 +124,7 @@
                               <!-- HOST / JOIN CONTROLS -->
 
                               <object type="text" name="pregame_mp_modesel_txt" size="0 100 400 120" absolute="false">
-                                    Please select wheter you want to join a game or host your own game.
+                                    Please select whether you want to join a game or host your own game.
                               </object>
                               
                               <object type="text" name="pregame_mp_modesel_hostjoin_txt" size="0 140 200 170" text_valign="center" font="tahoma16" absolute="false" textcolor="0 0 0">
@@ -135,7 +135,16 @@
                                     Join Game
                                     <action on="Press"><![CDATA[
                                           GUIObjectHide("pregame_mp_modesel");
-                                          GUIObjectUnhide("pregame_mp_join");
+                                          GUIObjectHide("pregame_subwindow_bkg");
+                                          //GUIObjectUnhide("pregame_mp_join");
+                                          var client = createClient();
+                                          client.playerName=getGUIObjectByName("pregame_mp_modesel_playername").caption;
+                                          var success = client.beginConnect("127.0.0.1");
+                                          if(!success) {
+                                          	console.write("failed to connect!");
+                                          } else {
+                                          	console.write("connected");
+                                          }
                                     ]]></action>
                               </object>
 
@@ -208,10 +217,32 @@
                               <!-- END WELCOME MESSAGE controls -->
 
                               <object type="button" name="pregame_mp_host_setup_button" size="50%-125 200 50%-25 230" sprite="message_box_button_normal" sprite_over="message_box_button_over" absolute="false" text_align="center" text_valign="center">
-                                    Continue
-                                    <action on="Press"><![CDATA[
-                                          GUIObjectHide("pregame_mp_host");
-                                          GUIObjectUnhide("pregame_mp_setup_host");
+                              	Continue
+                              	<action on="Press"><![CDATA[
+                              		var gameName = getGUIObjectByName("pregame_mp_host_gamename").caption;
+                              		GUIObjectHide("pregame_mp_host");
+                              		GUIObjectUnhide("pregame_mp_setup_host");
+                                          
+                              		// Set up the server
+                              		var server = createServer();
+                              		// Welcome message
+                              		server.welcomeMessage = getGUIObjectByName("pregame_mp_host_welcomemsg").caption;
+                              		// Server Name
+                              		server.serverName = getGUIObjectByName("pregame_mp_host_gamename").caption;
+                              	
+                              		// start listening
+                              		var res =  server.open();
+                              		if (!res) {
+                              			messageBox(400, 200, "Error creating server.", "Error", 0, new array(), new array());
+                              		}
+                                          
+                              		server.onClientConnect =  function (event) {
+                              			console.write("new client connected! ID: " + event.id + ", Name: " + event.name + ", Session: " + event.session);
+                              			//var playerSlot = g_GameAttributes.getOpenSlot();
+                              			// assign a slot
+                              			//playerSlot.assignToSession(event.session);
+                              			//console.write("slot: " + playerSlot.player);
+                              		}
                                     ]]></action>
                               </object>
 
@@ -233,6 +264,116 @@
                 ===============================================
                 -->
 
+                        <object type="image" size="50%-400 50%-300 50%+400 50%+300" name="pregame_mp_setup_host" sprite="0ad_window" z="106" hidden="true">
+                              <action on="Load"><![CDATA[
+                                                            	
+                              
+                              ]]></action>
+
+                              <object type="button" name="pregame_mp_setup_host_titlebar" size="50%-250 0%-25 50%+250 0%-9" absolute="false" sprite="0ad_window_title" font="prospero18" z="165" text_align="center" text_valign="center">
+                                      <action on="Load"><![CDATA[
+                                      	getGUIObjectByName("pregame_mp_setup_host_titlebar").caption = "Hosting: " + getGUIObjectByName("pregame_mp_host_gamename").caption;
+                                      ]]></action>
+                              </object>
+
+                              <object type="button" name="pregame_mp_setup_host_exit_button" size="100%+9 0%-25 100%+25 0%-9" sprite="exit_sprite" sprite_over="exit_sprite_over" absolute="false">
+                              	<action on="Press"><![CDATA[
+                              		getGUIObjectByName("pregame_subwindow_bkg").hidden = true;
+                              		getGUIObjectByName("pregame_mp_setup_host").hidden = true;
+                              	]]></action>
+                              </object>
+                              
+                              <!-- PLAYER SLOTS -->
+                              <object type="text" name="pregame_mp_setup_host_playerhead" size="30 10 320 40" absolute="false" font="giovanni22bold" text_align="center" textcolor="0 0 0">
+                              	Player Slots
+                              </object>
+
+                              <object type="text" name="pregame_mp_setup_host_p1_txt" size="30 50 320 80" absolute="false" font="tahoma16" text_align="left" textcolor="0 0 0">
+                              	Player1
+                              	<action on="Load"><![CDATA[
+                              		getGUIObjectByName("pregame_mp_setup_host_p1_txt").caption = "P1: " + getGUIObjectByName("pregame_mp_modesel_playername").caption + " (Host)";
+                              	]]></action>
+                              </object>
+                              
+                              <object type="text" name="pregame_mp_setup_host_p2_txt" size="30 90 320 120" absolute="false" font="tahoma16" text_align="left" textcolor="0 0 0">
+                              	Player2
+                              	<action on="Load"><![CDATA[
+                              		getGUIObjectByName("pregame_mp_setup_host_p2_txt").caption = "P2: Open";
+                              	]]></action>
+                              </object>
+
+                              <object type="text" name="pregame_mp_setup_host_p3_txt" size="30 130 320 160" absolute="false" font="tahoma16" text_align="left" textcolor="0 0 0">
+                              	Player3
+                              	<action on="Load"><![CDATA[
+                              		getGUIObjectByName("pregame_mp_setup_host_p3_txt").caption = "P3: Open";
+                              	]]></action>
+                              </object>
+
+                              <object type="text" name="pregame_mp_setup_host_p4_txt" size="30 170 320 200" absolute="false" font="tahoma16" text_align="left" textcolor="0 0 0">
+                              	Player4
+                              	<action on="Load"><![CDATA[
+                              		getGUIObjectByName("pregame_mp_setup_host_p4_txt").caption = "P4: Open";
+                              	]]></action>
+                              </object>
+
+                              <object type="text" name="pregame_mp_setup_host_p5_txt" size="30 210 320 240" absolute="false" font="tahoma16" text_align="left" textcolor="0 0 0">
+                              	Player5
+                              	<action on="Load"><![CDATA[
+                              		getGUIObjectByName("pregame_mp_setup_host_p5_txt").caption = "P5: Open";
+                              	]]></action>
+                              </object>
+
+                              <object type="text" name="pregame_mp_setup_host_p6_txt" size="30 250 320 280" absolute="false" font="tahoma16" text_align="left" textcolor="0 0 0">
+                              	Player6
+                              	<action on="Load"><![CDATA[
+                              		getGUIObjectByName("pregame_mp_setup_host_p6_txt").caption = "P6: Open";
+                              	]]></action>
+                              </object>
+                              <!-- END PLAYER SLOTS -->
+                              
+                              <!-- MAP NAME CONTROLS - TEMPORARY -->
+                              <object type="text" name="pregame_mp_setup_host_mapname_txt" size="400 32 590 52" absolute="false" font="tahoma16" text_align="right" textcolor="0 0 0">
+                              	Map name:
+                              </object>
+                              <object type="input" name="pregame_mp_setup_host_mapname" size="600 32 750 52" sprite="only_black_border" absolute="false">
+                              	gathertest
+                              </object>
+                              <!-- END MAP NAME CONTROLS -->                           
+                              
+                              
+                              
+                              <!-- BUTTONS -->
+                              <object type="button" name="pregame_mp_setup_start_button" size="50%-125 540 50%-25 570" sprite="message_box_button_normal" sprite_over="message_box_button_over" absolute="false" text_align="center" text_valign="center">
+                                    Start!
+                                    <action on="Press"><![CDATA[
+                                        	// Check wheter we have a correct file extension, to avoid crashes
+                                        	var mapName = getGUIObjectByName("pregame_mp_setup_host_mapname").caption;
+                                        	var extension = mapName.substring(mapName.length, mapName.length-4);
+                                        
+                                        	if(extension != ".pmp") {
+                                                // Add .pmp to the file name - shouldn't help if the name is mistyped, but may be useful in some cases
+                                                mapName =  mapName + ".pmp";
+                                        	}
+
+                                        	// Set up game
+                                          GUIObjectHide("pregame_subwindow_bkg");
+                                          GUIObjectHide("pregame_mp_setup_host");
+                                        	g_GameAttributes.mapFile = mapName;
+
+                                          startLoadingScreen();
+                                    ]]></action>
+                              </object>
+
+                              <object type="button" name="pregame_mp_setup_host_cancel_button" size="50%+25 540 50%+125 570" sprite="message_box_button_normal" sprite_over="message_box_button_over" absolute="false" text_align="center" text_valign="center">
+                                    Cancel
+                                    <action on="Press"><![CDATA[
+                                          GUIObjectHide("pregame_mp_setup_host");
+                                          GUIObjectUnhide("pregame_mp_modesel");
+                                    ]]></action>
+                              </object>
+
+
+                        </object>
 
                   <!-- Insert rewritten SESSION SETUP SCREEN here (in two variants: HOST and JOIN -->
 
