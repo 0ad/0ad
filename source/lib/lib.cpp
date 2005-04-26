@@ -261,6 +261,15 @@ u16 fp_to_u16(double in)
 
 
 
+// return random integer in [0, limit).
+// does not use poorly distributed lower bits of rand().
+int rand_up_to(int limit)
+{
+	// (i64 avoids overflowing in multiply)
+	const i64 ret = ((i64)limit * rand()) / (RAND_MAX+1);
+	assert2(0 <= ret && ret < limit);
+	return (int)ret;
+}
 
 
 // big endian!
