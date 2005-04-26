@@ -248,13 +248,13 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				GUI<CGUIList>::GetSetting(e, propName, value);
 
 				jsval *vector = new jsval[value.m_Items.size()];
-				for (int i=0; i<value.m_Items.size(); ++i)
+				for (size_t i=0; i<value.m_Items.size(); ++i)
 				{
 					JSString* s = StringConvert::wchars_to_jsstring(cx, value.m_Items[i].GetRawString().c_str());
 					vector[i] = STRING_TO_JSVAL(s);
 				}
 
-				JSObject *obj = JS_NewArrayObject(cx, value.m_Items.size(), vector);
+				JSObject *obj = JS_NewArrayObject(cx, (jsint)value.m_Items.size(), vector);
 
 				*vp = OBJECT_TO_JSVAL(obj);
 				break;

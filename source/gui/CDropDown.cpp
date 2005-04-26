@@ -103,7 +103,7 @@ void CDropDown::HandleMessage(const SGUIMessage &Message)
 				CRect rect = GetListRect();
 				mouse.y += scroll;
 				int set=-1;
-				for (int i=0; i<pList->m_Items.size(); ++i)
+				for (int i=0; i<(int)pList->m_Items.size(); ++i)
 				{
 					if (mouse.y >= rect.top + m_ItemsYPositions[i] &&
 						mouse.y < rect.top + m_ItemsYPositions[i+1] &&
