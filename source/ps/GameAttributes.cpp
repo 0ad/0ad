@@ -222,7 +222,7 @@ CGameAttributes::CGameAttributes():
 	m_Players[7]->SetName(L"Code Monkey");
 	m_Players[7]->SetColour(SPlayerColour(1.0f, 0.5f, 1.0f));
 
-	m_Players[8]->SetName(L"Ykkrosh");
+	m_Players[8]->SetName(L"Clausewitz");
 	m_Players[8]->SetColour(SPlayerColour(1.0f, 0.8f, 0.5f));
 	
 	std::vector<CPlayer *>::iterator it=m_Players.begin();
