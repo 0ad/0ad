@@ -128,7 +128,7 @@ static intptr_t active_data_structures;
 struct Node
 {
 	Node* next;
-	void* key;
+	uintptr_t key;
 
 	// <additional_bytes> are allocated here at the caller's discretion.
 };
@@ -526,7 +526,7 @@ void lfl_free(LFList* list)
 // "Find"
 // look for a given key in the list; return true iff found.
 // pos points to the last inspected node and its successor and predecessor.
-static bool list_lookup(LFList* list, void* key, ListPos* pos)
+static bool list_lookup(LFList* list, uintptr_t key, ListPos* pos)
 {
 	TLS* tls = tls_get();
 	assert2(tls != (void*)-1);
@@ -575,7 +575,7 @@ try_again:
 
 			// the nodes are sorted in ascending key order, so we've either
 			// found <key>, or it's not in the list.
-			const void* cur_key = pos->cur->key;
+			const uintptr_t cur_key = pos->cur->key;
 			if(cur_key >= key)
 				return (cur_key == key);
 
@@ -597,7 +597,7 @@ try_again:
 
 // return pointer to "user data" attached to <key>,
 // or 0 if not found in the list.
-void* lfl_find(LFList* list, void* key)
+void* lfl_find(LFList* list, uintptr_t key)
 {
 	ListPos* pos = (ListPos*)alloca(sizeof(ListPos));
 	if(!list_lookup(list, key, pos))
@@ -610,7 +610,7 @@ void* lfl_find(LFList* list, void* key)
 // by first checking if already in the list. returns 0 if out of memory,
 // otherwise a pointer to "user data" attached to <key>. the optional
 // <was_inserted> return variable indicates whether <key> was added.
-void* lfl_insert(LFList* list, void* key, size_t additional_bytes, int* was_inserted)
+void* lfl_insert(LFList* list, uintptr_t key, size_t additional_bytes, int* was_inserted)
 {
 	TLS* tls = tls_get();
 	assert2(tls != (void*)-1);
@@ -663,7 +663,7 @@ have_node:
 
 
 // remove from list; return -1 if not found, or 0 on success.
-int lfl_erase(LFList* list, void* key)
+int lfl_erase(LFList* list, uintptr_t key)
 {
 	TLS* tls = tls_get();
 	assert2(tls != (void*)-1);
@@ -701,30 +701,94 @@ try_again:
 //
 //////////////////////////////////////////////////////////////////////////////
 
-static const size_t SZ = 32;
-static LFList T[SZ];
-static size_t h(void* key)
+// note: implemented via lfl, so we don't need to track
+// active_data_structures or call smr_try_shutdown here.
+
+static void validate(LFHash* hash)
 {
-	return ((uintptr_t)key) % SZ;
+	assert2(hash->tbl);
+	assert2(is_pow2(hash->mask+1));
+}
+
+// return hash "chain" (i.e. linked list) that is assigned to <key>.
+static LFList* chain(LFHash* hash, uintptr_t key)
+{
+	validate(hash);
+	return &hash->tbl[key & hash->mask];
 }
 
 
-void* lfh_find(void* key)
+// make ready a previously unused(!) hash object. table size will be
+// <num_entries>; this cannot currently be expanded. if a negative error
+// code (currently only ERR_NO_MEM) is returned, the hash can't be used.
+int lfh_init(LFHash* hash, size_t num_entries)
 {
-	LFList* list = &T[h(key)];
-	return lfl_find(list, key);
+	hash->tbl  = 0;
+	hash->mask = ~0;
+
+	if(!is_pow2((long)num_entries))
+	{
+		debug_warn("lfh_init: size must be power of 2");
+		return ERR_INVALID_PARAM;
+	}
+
+	hash->tbl = (LFList*)malloc(sizeof(LFList) * num_entries);
+	if(!hash->tbl)
+		return ERR_NO_MEM;
+	hash->mask = (uint)num_entries-1;
+
+	for(int i = 0; i < (int)num_entries; i++)
+	{
+		int err = lfl_init(&hash->tbl[i]);
+		if(err < 0)
+		{
+			// failed - free all and bail
+			for(int j = 0; j < i; j++)
+				lfl_free(&hash->tbl[j]);
+			return ERR_NO_MEM;
+		}
+	}
+
+	return 0;
 }
 
-void* lfh_insert(void* key, size_t additional_bytes, int* was_inserted)
+
+// call when hash is no longer needed; should no longer hold any references.
+void lfh_free(LFHash* hash)
 {
-	LFList* list = &T[h(key)];
-	return lfl_insert(list, key, additional_bytes, was_inserted);
+	validate(hash);
+
+	// free all chains
+	for(size_t i = 0; i < hash->mask+1; i++)
+		lfl_free(&hash->tbl[i]);
+
+	free(hash->tbl);
+	hash->tbl  = 0;
+	hash->mask = 0;
 }
 
-int lfh_erase(void* key)
+
+// return pointer to "user data" attached to <key>,
+// or 0 if not found in the hash.
+void* lfh_find(LFHash* hash, uintptr_t key)
 {
-	LFList* list = &T[h(key)];
-	return lfl_erase(list, key);
+	return lfl_find(chain(hash,key), key);
+}
+
+
+// insert into hash if not already present. returns 0 if out of memory,
+// otherwise a pointer to "user data" attached to <key>. the optional
+// <was_inserted> return variable indicates whether <key> was added.
+void* lfh_insert(LFHash* hash, uintptr_t key, size_t additional_bytes, int* was_inserted)
+{
+	return lfl_insert(chain(hash,key), key, additional_bytes, was_inserted);
+}
+
+
+// remove from hash; return -1 if not found, or 0 on success.
+int lfh_erase(LFHash* hash, uintptr_t key)
+{
+	return lfl_erase(chain(hash,key), key);
 }
 
 
@@ -738,37 +802,54 @@ namespace test {
 
 #if PERFORM_SELF_TEST
 
-
-// make sure lock-free list works at all; doesn't test thread-safety.
+// make sure the data structures work at all; doesn't test thread-safety.
 static void basic_single_threaded_test()
 {
-	LFList list;
-	lfl_init(&list);
+	int err;
+	void* user_data;
 
-	const uint ENTRIES = 20;
-		// should be more than max # retired nodes to test release..() code
-	void* key = (void*)0x1000;
+	const uint ENTRIES = 50;
+	// should be more than max # retired nodes to test release..() code
+	uintptr_t key = 0x1000;
 	int sig = 10;
+
+	LFList list;
+	err = lfl_init(&list);
+	assert2(err == 0);
+
+	LFHash hash;
+	err = lfh_init(&hash, 8);
+	assert2(err == 0);
 
 	// add some entries; store "signatures" (ascending int values)
 	for(uint i = 0; i < ENTRIES; i++)
 	{
 		int was_inserted;
-		void* user_data = lfl_insert(&list, (u8*)key+i, sizeof(int), &was_inserted);
-		assert2(user_data != 0 && was_inserted);
 
+		user_data = lfl_insert(&list, key+i, sizeof(int), &was_inserted);
+		assert2(user_data != 0 && was_inserted);
+		*(int*)user_data = sig+i;
+
+		user_data = lfh_insert(&hash, key+i, sizeof(int), &was_inserted);
+		assert2(user_data != 0 && was_inserted);
 		*(int*)user_data = sig+i;
 	}
 
 	// make sure all "signatures" are present in list
 	for(uint i = 0; i < ENTRIES; i++)
 	{
-		void* user_data = lfl_find(&list, (u8*)key+i);
+		user_data = lfl_find(&list, key+i);
 		assert2(user_data != 0);
 		assert2(*(int*)user_data == sig+i);
+
+		user_data = lfh_find(&hash, key+i);
+		assert2(user_data != 0);
+		assert2(*(int*)user_data == sig+i);
+
 	}
 
 	lfl_free(&list);
+	lfh_free(&hash);
 }
 
 
@@ -781,6 +862,7 @@ static bool is_complete;
 static intptr_t num_active_threads;
 
 static LFList list;
+static LFHash hash;
 
 typedef std::set<uintptr_t> KeySet; 
 typedef KeySet::const_iterator KeySetIt;
@@ -809,10 +891,11 @@ static void* thread_func(void* arg)
 
 	while(!is_complete)
 	{
-		const uintptr_t key         = rand_up_to(100);
-		const int action            = rand_up_to(4);
-		const int sleep_duration_ms = rand_up_to(100);
+		void* user_data;
 
+		const int action            = rand_up_to(4);
+		const uintptr_t key         = rand_up_to(100);
+		const int sleep_duration_ms = rand_up_to(100);
 		debug_out("thread %d: %s\n", thread_number, action_strings[action]);
 
 		//
@@ -828,7 +911,12 @@ static void* thread_func(void* arg)
 		{
 		case TA_FIND:
 			{
-			void* user_data = lfl_find(&list, (void*)key);
+			user_data = lfl_find(&list, key);
+			assert2(was_in_set == (user_data != 0));
+			if(user_data)
+				assert2(*(uintptr_t*)user_data == ~key);
+
+			user_data = lfh_find(&hash, key);
 			assert2(was_in_set == (user_data != 0));
 			if(user_data)
 				assert2(*(uintptr_t*)user_data == ~key);
@@ -838,7 +926,13 @@ static void* thread_func(void* arg)
 		case TA_INSERT:
 			{
 			int was_inserted;
-			void* user_data = lfl_insert(&list, (void*)key, sizeof(uintptr_t), &was_inserted);
+
+			user_data = lfl_insert(&list, key, sizeof(uintptr_t), &was_inserted);
+			assert2(user_data != 0);	// only triggers if out of memory
+			*(uintptr_t*)user_data = ~key;	// checked above
+			assert2(was_in_set == !was_inserted);
+
+			user_data = lfh_insert(&hash, key, sizeof(uintptr_t), &was_inserted);
 			assert2(user_data != 0);	// only triggers if out of memory
 			*(uintptr_t*)user_data = ~key;	// checked above
 			assert2(was_in_set == !was_inserted);
@@ -847,7 +941,12 @@ static void* thread_func(void* arg)
 
 		case TA_ERASE:
 			{
-			int err = lfl_erase(&list, (void*)key);
+			int err;
+
+			err = lfl_erase(&list, key);
+			assert2(was_in_set == (err == 0));
+
+			err = lfh_erase(&hash, key);
 			assert2(was_in_set == (err == 0));
 			}
 			break;
@@ -873,14 +972,17 @@ static void multithreaded_torture_test()
 {
 	int err;
 
-	// rand() determines TestActions; we need deterministic results.
+	// this test is randomized; we need deterministic results.
 	srand(1);
 
 	static const double TEST_LENGTH = 30.;	// [seconds]
 	const double end_time = get_time() + TEST_LENGTH;
 	is_complete = false;
 
-	lfl_init(&list);
+	err = lfl_init(&list);
+	assert2(err == 0);
+	err = lfh_init(&hash, 128);
+	assert2(err == 0);
 	err = pthread_mutex_init(&mutex, 0);
 	assert2(err == 0);
 
@@ -900,6 +1002,7 @@ static void multithreaded_torture_test()
 		usleep(5*1000);
 
 	lfl_free(&list);
+	lfh_free(&hash);
 	err = pthread_mutex_destroy(&mutex);
 	assert2(err == 0);
 }

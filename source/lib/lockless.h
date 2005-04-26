@@ -36,3 +36,34 @@ extern void* lfl_insert(LFList* list, void* key, size_t additional_bytes, int* w
 
 // remove from list; return -1 if not found, or 0 on success.
 extern int lfl_erase(LFList* list, void* key);
+
+
+//
+// lock-free hash table (chained, fixed size)
+//
+
+struct LFHash
+{
+	LFList* tbl;
+	uint mask;
+};
+
+// make ready a previously unused(!) hash object. table size will be
+// <num_entries>; this cannot currently be expanded. if a negative error
+// code (currently only ERR_NO_MEM) is returned, the hash can't be used.
+extern int lfh_init(LFHash* hash, size_t num_entries);
+
+// call when hash is no longer needed; should no longer hold any references.
+extern void lfh_free(LFHash* hash);
+
+// return pointer to "user data" attached to <key>,
+// or 0 if not found in the hash.
+extern void* lfh_find(LFHash* hash, uintptr_t key);
+
+// insert into hash if not already present. returns 0 if out of memory,
+// otherwise a pointer to "user data" attached to <key>. the optional
+// <was_inserted> return variable indicates whether <key> was added.
+extern void* lfh_insert(LFHash* hash, uintptr_t key, size_t additional_bytes, int* was_inserted);
+
+// remove from hash; return -1 if not found, or 0 on success.
+extern int lfh_erase(LFHash* hash, uintptr_t key);
