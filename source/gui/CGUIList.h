@@ -2,6 +2,8 @@
 #ifndef CGUIList_H
 #define CGUIList_H
 
+#include "GUIText.h"
+
 class CGUIList
 {
 public: // struct:ish (but for consistency I call it _C_GUIList, and
