@@ -1,4 +1,4 @@
-//
+// lock-free primitives and algorithms
 //
 // Copyright (c) 2005 Jan Wassenberg
 //
@@ -24,6 +24,11 @@
 #include "posix.h"
 #include "sysdep/cpu.h"
 #include "lockless.h"
+#include "timer.h"
+
+#ifndef PERFORM_SELF_TEST
+#define PERFORM_SELF_TEST 0
+#endif
 
 
 // note: a 486 or later processor is required since we use CMPXCHG.
@@ -34,6 +39,10 @@
 
 __declspec(naked) bool __cdecl CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value)
 {
+	// try to see if caller isn't passing in an address
+	// (CAS's arguments are silently casted)
+	assert2(location >= (uintptr_t*)0x10000);
+
 __asm
 {
 	cmp		byte ptr [cpus], 1
@@ -81,25 +90,34 @@ lacking from pseudocode:
 
 
 questions:
-- does hp0 (private, static) need to be in TLS? or is per-"find()" ok?
+- does hp0 ("private, static") need to be in TLS? or is per-"find()" ok?
 - memory barriers where?
+
+
+todo:
+make sure retired node array doesn't overflow. add padding (i.e.  "Scan" if half-full?)
+see why SMR had algo extension of HelpScan
 */
 
+// total number of hazard pointers needed by each thread.
+// determined by the algorithms using SMR; the LF list requires 2.
+static const uint NUM_HPS = 2;
+
+// number of slots for the per-thread node freelist.
+// this is a reasonable size and pads struct TLS to 64 bytes.
+static const size_t MAX_RETIRED = 11;
 
 
-
-#define K 2
-#define R 10
-
-typedef void* Key;
-
-// for stack-allocated retired_nodes array
-static const uint MAX_THREADS = 32;
-
+// used to allocate a flat array of all hazard pointers.
+// changed via atomic_add by TLS when a thread first calls us / exits.
 static intptr_t active_threads;
 
+// basically module refcount; we can't shut down before it's 0.
+// changed via atomic_add by each data structure's init/free.
+static intptr_t active_data_structures;
 
-// Nodes are internal to this module. having callers add those directly would
+
+// Nodes are internal to this module. having callers pass them in would
 // be more convenient but risky, since they might change <next> and <key>,
 // or not allocate via malloc (necessary since Nodes are garbage-collected
 // and allowing user-specified destructors would be more work).
@@ -107,42 +125,28 @@ static intptr_t active_threads;
 // to still allow storing arbitrary user data without requiring an
 // additional memory alloc per node, we append <user_size> bytes to the
 // end of the Node structure; this is what is returned by find.
-
-
-		// this is exposed to users of the lock-free data structures.
-		//
-		//
-		// rationale: to avoid unnecessary mem allocs and increase locality,
-		// we want to store user data in the Node itself. an alternative would
-		// be to pass user_data_size in bytes to insert(), and have find() return a
-		// pointer to this user data. however, that interface is less obvious, and
-		// users will often want to set the data immediately after insertion
-		// (which would require either a find(), or returning a pointer during
-		// insertion - ugly).
-
 struct Node
 {
 	Node* next;
-	Key key;
+	void* key;
 
-	// <user_size> bytes are allocated here at the caller's discretion.
+	// <additional_bytes> are allocated here at the caller's discretion.
 };
 
-static Node* node_alloc(size_t additional_bytes)
+static inline Node* node_alloc(size_t additional_bytes)
 {
 	return (Node*)calloc(1, sizeof(Node) + additional_bytes);
 }
 
-static void node_free(Node* n)
+static inline void node_free(Node* n)
 {
 	free(n);
 }
 
-static void* node_user_data(Node* n)
+static inline void* node_user_data(Node* n)
 {
 	return (u8*)n + sizeof(Node);
 }
-
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -158,32 +162,37 @@ struct TLS
 {
 	TLS* next;
 
-	void* hp[K];
+	void* hp[NUM_HPS];
 	uintptr_t active;	// used as bool, but set by CAS
 
-	Node* retired_nodes[R];
+	Node* retired_nodes[MAX_RETIRED];
 	size_t num_retired_nodes;
 };
 
 static TLS* tls_list = 0;
 
 
-// (called from pthread dtor; registered in tls_init)
+// mark a participating thread's slot as unused; clear its hazard pointers.
+// called during smr_try_shutdown and when a thread exits
+// (by pthread dtor, which is registered in tls_init).
 static void tls_retire(void* tls_)
 {
 	TLS* tls = (TLS*)tls_;
 
 	// our hazard pointers are no longer in use
-	for(size_t i = 0; i < K; i++)
+	for(size_t i = 0; i < NUM_HPS; i++)
 		tls->hp[i] = 0;
 
-	tls->active = 0;
-
-	atomic_add(&active_threads, -1);
-	assert2(active_threads >= 0);
+	// successfully marked as unused (must only decrement once)
+	if(CAS(&tls->active, 1, 0))
+	{
+		atomic_add(&active_threads, -1);
+		assert2(active_threads >= 0);
+	}
 }
 
 
+// (called via pthread_once from tls_get)
 static void tls_init()
 {
 	int ret = pthread_key_create(&tls_key, tls_retire);
@@ -191,23 +200,55 @@ static void tls_init()
 }
 
 
+// free all TLS info. called by smr_try_shutdown.
+static void tls_shutdown()
+{
+	int ret = pthread_key_delete(tls_key);
+	assert2(ret == 0);
+	tls_key = 0;
+
+	while(tls_list)
+	{
+		TLS* tls = tls_list;
+		tls_list = tls->next;
+		free(tls);
+	}
+}
+
+
+// return a new TLS struct ready for use; either a previously
+// retired slot, or if none are available, a newly allocated one.
+// if out of memory, return (TLS*)-1; see fail path.
+// called from tls_get after tls_init.
 static TLS* tls_alloc()
 {
-	atomic_add(&active_threads, 1);
+	// make sure we weren't shut down in the meantime - re-init isn't
+	// possible since pthread_once (which can't be reset) calls tls_init.
+	assert2(tls_key != 0);
 
 	TLS* tls;
 
 	// try to reuse a retired TLS slot
 	for(tls = tls_list; tls; tls = tls->next)
-		// succeeded in reactivating one
+		// .. succeeded in reactivating one.
 		if(CAS(&tls->active, 0, 1))
 			goto have_tls;
 
 	// no unused slots available - allocate another
 	{
 	tls = (TLS*)calloc(1, sizeof(TLS));
+	// .. not enough memory. poison the thread's TLS value to
+	//    prevent a later tls_get from succeeding, because that
+	//    would potentially break the user's LF data structure.
+	if(!tls)
+	{
+		tls = (TLS*)-1;
+		int ret = pthread_setspecific(tls_key, tls);
+		assert2(ret == 0);
+		return tls;
+	}
 	tls->active = 1;
-	// .. and insert at front of list (wait free since # threads is finite)
+	// insert at front of list (wait free since # threads is finite).
 	TLS* old_tls_list;
 	do
 	{
@@ -217,40 +258,30 @@ static TLS* tls_alloc()
 	while(!CAS(&tls_list, old_tls_list, tls));
 	}
 
+
 have_tls:
+	atomic_add(&active_threads, 1);
+
 	int ret = pthread_setspecific(tls_key, tls);
 	assert2(ret == 0);
 	return tls;
 }
 
 
+// return this thread's struct TLS, or (TLS*)-1 if tls_alloc failed.
+// called from each lfl_* function, so don't waste any time.
 static TLS* tls_get()
 {
 	int ret = pthread_once(&tls_once, tls_init);
 	assert2(ret == 0);
 
-	// already allocated - return it
+	// already allocated or tls_alloc failed.
 	TLS* tls = (TLS*)pthread_getspecific(tls_key);
 	if(tls)
 		return tls;
 
+	// first call: return a newly allocated slot.
 	return tls_alloc();
-}
-
-
-// call via reference count - when last data structure is no longer in use,
-// we can free all TLS info.
-static void tls_shutdown()
-{
-	int ret = pthread_key_delete(tls_key);
-	assert2(ret == 0);
-
-	while(tls_list)
-	{
-		TLS* tls = tls_list;
-		tls_list = tls_list->next;
-		free(tls);
-	}
 }
 
 
@@ -260,6 +291,7 @@ static void tls_shutdown()
 //
 //////////////////////////////////////////////////////////////////////////////
 
+// is one of the hazard pointers in <hps> pointing at <node>?
 static bool is_node_referenced(Node* node, void** hps, size_t num_hps)
 {
 	for(size_t i = 0; i < num_hps; i++)
@@ -271,8 +303,15 @@ static bool is_node_referenced(Node* node, void** hps, size_t num_hps)
 
 
 // "Scan"
-static void release_unreferenced_nodes(TLS* tls)
+// run through all retired nodes in this thread's freelist; any of them
+// not currently referenced are released (their memory freed).
+static void smr_release_unreferenced_nodes(TLS* tls)
 {
+	// nothing to do, and taking address of array[-1] isn't portable.
+	// we're called from smr_try_shutdown,
+	if(tls->num_retired_nodes == 0)
+		return;
+
 	// required for head/tail below; guaranteed by callers.
 	assert2(tls->num_retired_nodes != 0);
 
@@ -281,21 +320,21 @@ static void release_unreferenced_nodes(TLS* tls)
 	// than walking through tls_list on every is_node_referenced call)
 	//
 try_again:
-	const size_t max_hps = (active_threads+3) * K;
+	const size_t max_hps = (active_threads+3) * NUM_HPS;
 		// allow for creating a few additional threads during the loop
 	void** hps = (void**)alloca(max_hps * sizeof(void*));
 	size_t num_hps = 0;
 	// for each participating thread:
 	for(TLS* t = tls_list; t; t = t->next)
 		// for each of its non-NULL hazard pointers:
-		for(int i = 0; i < K-1; i++)
+		for(int i = 0; i < NUM_HPS-1; i++)
 		{
 			void* hp = t->hp[i];
 			if(!hp)
 				continue;
 
 			// many threads were created after choosing max_hps =>
-			// start over. not expected to happen.
+			// start over. this won't realistically happen, though.
 			if(num_hps >= max_hps)
 			{
 				debug_warn("max_hps overrun - why?");
@@ -315,12 +354,15 @@ try_again:
 	while(head <= tail)
 	{
 		Node* node = *head;
+		// still in use - just skip to the next
 		if(is_node_referenced(node, hps, num_hps))
 			head++;
 		else
 		{
 			node_free(node);
 
+			// to avoid holes in the freelist, replace with last entry.
+			// this is easier than building a new list.
 			*head = *tail;	// if last element, no-op
 			tail--;
 			tls->num_retired_nodes--;
@@ -329,44 +371,75 @@ try_again:
 }
 
 
-// "HelpScan"
-// if a TLS slot with retired Nodes happens not to be reused,
-// we can still release that memory.
-static void clear_old_retired_lists(TLS* tls)
-{
-	for(TLS* t = tls_list; t; t = t->next)
-	{
-		// succeeded in reactivating one
-		if(!CAS(&t->active, 0, 1))
-			continue;
-
-		// no locking needed because no one is using <t>
-		// (it was retired and can't be reactivated until active = 0)
-
-		while(t->num_retired_nodes > 0)
-		{
-			Node* node = t->retired_nodes[--t->num_retired_nodes];
-			tls->retired_nodes[tls->num_retired_nodes++] = node;
-			if(tls->num_retired_nodes >= R)
-				release_unreferenced_nodes(tls);
-		}
-
-		tls->active = 0;
-	}
-}
-
-
-static void retire_node(Node* node)
+// note: we don't implement "HelpScan" - it is sufficient for the
+// freelists in retired but never-reused TLS slots to be emptied at exit,
+// since huge spikes of active threads are unrealistic.
+static void smr_retire_node(Node* node)
 {
 	TLS* tls = tls_get();
+	assert2(tls != (void*)-1);
+		// if this triggers, tls_alloc called from lfl_init failed due to
+		// lack of memory and the caller didn't check its return value.
 
 	tls->retired_nodes[tls->num_retired_nodes++] = node;
-	if(tls->num_retired_nodes >= R)
+	if(tls->num_retired_nodes >= MAX_RETIRED)
+		smr_release_unreferenced_nodes(tls);
+}
+
+
+//
+// shutdown
+//
+
+// although not strictly necessary (the OS will free resources at exit),
+// we want to free all nodes and TLS to avoid spamming leak detectors.
+// that can only happen after our users indicate all data structures are
+// no longer in use (i.e. active_data_structures == 0).
+//
+// problem: if the first user of a data structure is finished before
+// program termination, we'd shut down and not be able to reinitialize
+// (see tls_alloc). therefore, we don't shut down before
+// static destructors are called, i.e. end of program is at hand.
+
+static bool is_static_dtor_time = false;
+
+// call when a data structure is freed (i.e. no longer in use);
+// we shut down if it is time to do so.
+static void smr_try_shutdown()
+{
+	// shouldn't or can't shut down yet.
+	if(!is_static_dtor_time || active_data_structures != 0)
+		return;
+
+	for(TLS* t = tls_list; t; t = t->next)
 	{
-		release_unreferenced_nodes(tls);
-		clear_old_retired_lists(tls);
+		tls_retire(t);
+			// wipe out hazard pointers so that everything can be freed.
+		smr_release_unreferenced_nodes(t);
+	}
+
+	tls_shutdown();
+}
+
+// non-local static object - its destructor being called indicates
+// program end is at hand. could use atexit for this, but registering
+// that would be a bit more work.
+static struct NLSO
+{
+	NLSO()
+	{
+	}
+
+	~NLSO()
+	{
+		is_static_dtor_time = true;
+
+		// trigger shutdown in case all data structures have
+		// already been freed.
+		smr_try_shutdown();
 	}
 }
+nlso;
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -407,43 +480,69 @@ static inline Node* without_mark(Node* p)
 
 
 
-
-static void lfl_init(void** phead)
+// make ready a previously unused(!) list object. if a negative error
+// code (currently only ERR_NO_MEM) is returned, the list can't be used.
+int lfl_init(LFList* list)
 {
-	*phead = 0;
-	// TODO: refcount for module shutdown
+	// make sure a TLS slot has been allocated for this thread.
+	// if not (out of memory), the list object must not be used -
+	// other calls don't have a "tls=0" failure path.
+	// (it doesn't make sense to allow some calls to fail until more
+	// memory is available, since that might leave the list in an
+	// invalid state or leak memory)
+	TLS* tls = tls_get();
+	if(!tls)
+	{
+		list->head = (void*)-1;	// 'poison' prevents further use
+		return ERR_NO_MEM;
+	}
+
+	list->head = 0;
+	atomic_add(&active_data_structures, 1);
+	return 0;
 }
 
 
-// call when list is no longer needed; may still hold references
-static void lfl_free(void** phead)
+// call when list is no longer needed; should no longer hold any references.
+void lfl_free(LFList* list)
 {
-	// TODO: refcount for module shutdown
-
-	// TODO: is this safe?
-	Node* cur = *((Node**)phead);
+	// TODO: is this iteration safe?
+	Node* cur = (Node*)list->head;
 	while(cur)
 	{
-		retire_node(cur);
-		cur = cur->next;
+		Node* next = cur->next;
+			// must latch before smr_retire_node, since that may
+			// actually free the memory.
+		smr_retire_node(cur);
+		cur = next;
 	}
+
+	atomic_add(&active_data_structures, -1);
+	assert2(active_data_structures >= 0);
+	smr_try_shutdown();
 }
 
 
 // "Find"
-// look for a given key in the list; return true with <pos>
-static bool list_lookup(void** phead, Key key, ListPos* pos)
+// look for a given key in the list; return true iff found.
+// pos points to the last inspected node and its successor and predecessor.
+static bool list_lookup(LFList* list, void* key, ListPos* pos)
 {
 	TLS* tls = tls_get();
+	assert2(tls != (void*)-1);
+		// if this triggers, tls_alloc called from lfl_init failed due to
+		// lack of memory and the caller didn't check its return value.
+
 	void** hp0 = &tls->hp[0];	// protects cur
 	void** hp1 = &tls->hp[1];	// protects *pprev
 
 try_again:
-	pos->pprev = (Node**)phead;
+	pos->pprev = (Node**)&list->head;
 		// linearization point of erase and find if list is empty.
 		// already protected by virtue of being the root node.
 	pos->cur = *pos->pprev;
 
+	// until end of list:
 	while(pos->cur)
 	{
 		*hp0 = pos->cur;
@@ -465,18 +564,18 @@ try_again:
 			if(!CAS(pos->pprev, pos->cur, next))
 				goto try_again;
 
-			retire_node(pos->cur);
+			smr_retire_node(pos->cur);
 			pos->cur = next;
 		}
 		else
 		{
-			// (see above)
+			// (see above goto)
 			if(*pos->pprev != pos->cur)
 				goto try_again;
 
 			// the nodes are sorted in ascending key order, so we've either
 			// found <key>, or it's not in the list.
-			const Key cur_key = pos->cur->key;
+			const void* cur_key = pos->cur->key;
 			if(cur_key >= key)
 				return (cur_key == key);
 
@@ -498,10 +597,10 @@ try_again:
 
 // return pointer to "user data" attached to <key>,
 // or 0 if not found in the list.
-void* lfl_find(void** phead, Key key)
+void* lfl_find(LFList* list, void* key)
 {
 	ListPos* pos = (ListPos*)alloca(sizeof(ListPos));
-	if(!list_lookup(phead, key, pos))
+	if(!list_lookup(list, key, pos))
 		return 0;
 	return node_user_data(pos->cur);
 }
@@ -510,10 +609,14 @@ void* lfl_find(void** phead, Key key)
 // insert into list in order of increasing key. ensures items are unique
 // by first checking if already in the list. returns 0 if out of memory,
 // otherwise a pointer to "user data" attached to <key>. the optional
-// <was_inserted> return variable indicates whether <key> was newly added.
-void* lfl_insert(void** phead, Key key, size_t additional_bytes, int* was_inserted)
+// <was_inserted> return variable indicates whether <key> was added.
+void* lfl_insert(LFList* list, void* key, size_t additional_bytes, int* was_inserted)
 {
 	TLS* tls = tls_get();
+	assert2(tls != (void*)-1);
+		// if this triggers, tls_alloc called from lfl_init failed due to
+		// lack of memory and the caller didn't check its return value.
+
 	ListPos* pos = (ListPos*)alloca(sizeof(ListPos));
 
 	Node* node = 0;
@@ -522,7 +625,7 @@ void* lfl_insert(void** phead, Key key, size_t additional_bytes, int* was_insert
 
 try_again:
 	// already in list - return it and leave <was_inserted> 'false'
-	if(list_lookup(phead, key, pos))
+	if(list_lookup(list, key, pos))
 	{
 		// free in case we allocated below, but CAS failed;
 		// no-op if node == 0, i.e. it wasn't allocated.
@@ -535,7 +638,7 @@ try_again:
 	// doing that after list_lookup avoids needless alloc/free.
 	if(!node)
 	{
-		Node* node = node_alloc(additional_bytes);
+		node = node_alloc(additional_bytes);
 		// .. out of memory
 		if(!node)
 			return 0;
@@ -560,14 +663,18 @@ have_node:
 
 
 // remove from list; return -1 if not found, or 0 on success.
-int lfl_erase(void** phead, Key key)
+int lfl_erase(LFList* list, void* key)
 {
 	TLS* tls = tls_get();
+	assert2(tls != (void*)-1);
+		// if this triggers, tls_alloc called from lfl_init failed due to
+		// lack of memory and the caller didn't check its return value.
+
 	ListPos* pos = (ListPos*)alloca(sizeof(ListPos));
 
 try_again:
 	// not found in list - abort.
-	if(!list_lookup(phead, key, pos))
+	if(!list_lookup(list, key, pos))
 		return -1;
 	// mark as removed (avoids subsequent linking to it). failure implies
 	// at least of the following happened after list_lookup; we try again.
@@ -579,11 +686,11 @@ try_again:
 	// remove from list; if successful, this is the
 	// linearization point and *pprev isn't marked.
 	if(CAS(pos->pprev, pos->cur, pos->next))
-		retire_node(pos->cur);
+		smr_retire_node(pos->cur);
 	// failed: another thread removed cur after it was marked above.
 	// call list_lookup to ensure # non-released nodes < # threads.
 	else
-		list_lookup(phead, key, pos);
+		list_lookup(list, key, pos);
 	return 0;
 }
 
@@ -595,29 +702,29 @@ try_again:
 //////////////////////////////////////////////////////////////////////////////
 
 static const size_t SZ = 32;
-static Node* T[SZ];
-static size_t h(Key key)
+static LFList T[SZ];
+static size_t h(void* key)
 {
 	return ((uintptr_t)key) % SZ;
 }
 
 
-void* lfh_find(Key key)
+void* lfh_find(void* key)
 {
-	void** phead = (void**)&T[h(key)];
-	return lfl_find(phead, key);
+	LFList* list = &T[h(key)];
+	return lfl_find(list, key);
 }
 
-void* lfh_insert(Key key, size_t additional_bytes, int* was_inserted)
+void* lfh_insert(void* key, size_t additional_bytes, int* was_inserted)
 {
-	void** phead = (void**)&T[h(key)];
-	return lfl_insert(phead, key, additional_bytes, was_inserted);
+	LFList* list = &T[h(key)];
+	return lfl_insert(list, key, additional_bytes, was_inserted);
 }
 
-int lfh_erase(Key key)
+int lfh_erase(void* key)
 {
-	void** phead = (void**)&T[h(key)];
-	return lfl_erase(phead, key);
+	LFList* list = &T[h(key)];
+	return lfl_erase(list, key);
 }
 
 
@@ -627,33 +734,186 @@ int lfh_erase(Key key)
 //
 //////////////////////////////////////////////////////////////////////////////
 
-static int test()
+namespace test {
+
+#if PERFORM_SELF_TEST
+
+
+// make sure lock-free list works at all; doesn't test thread-safety.
+static void basic_single_threaded_test()
 {
-	void* head = 0;
-	lfl_init(&head);
+	LFList list;
+	lfl_init(&list);
 
-	const uint ENTRIES = 10;
-
-	Key key = (Key)0x1000;
+	const uint ENTRIES = 20;
+		// should be more than max # retired nodes to test release..() code
+	void* key = (void*)0x1000;
 	int sig = 10;
+
+	// add some entries; store "signatures" (ascending int values)
 	for(uint i = 0; i < ENTRIES; i++)
 	{
-		void* user_data = lfl_insert(&head, (u8*)key+i, sizeof(int), 0);
-		assert2(user_data != 0);
+		int was_inserted;
+		void* user_data = lfl_insert(&list, (u8*)key+i, sizeof(int), &was_inserted);
+		assert2(user_data != 0 && was_inserted);
 
 		*(int*)user_data = sig+i;
 	}
 
+	// make sure all "signatures" are present in list
 	for(uint i = 0; i < ENTRIES; i++)
 	{
-		debug_out("looking for key: %p sig: %d", (u8*)key+i, sig+i);
-		void* user_data = lfl_find(&head, (u8*)key+i);
+		void* user_data = lfl_find(&list, (u8*)key+i);
 		assert2(user_data != 0);
 		assert2(*(int*)user_data == sig+i);
 	}
+
+	lfl_free(&list);
+}
+
+
+//
+// multithreaded torture test
+//
+
+// poor man's synchronization "barrier"
+static bool is_complete;
+static intptr_t num_active_threads;
+
+static LFList list;
+
+typedef std::set<uintptr_t> KeySet; 
+typedef KeySet::const_iterator KeySetIt;
+static KeySet keys;
+static pthread_mutex_t mutex;	// protects <keys>
+
+
+static void* thread_func(void* arg)
+{
+	const uintptr_t thread_number = (uintptr_t)arg;
+
+	atomic_add(&num_active_threads, 1);
+
+	// chosen randomly every iteration (int_value % 4)
+	enum TestAction
+	{
+		TA_FIND   = 0,
+		TA_INSERT = 1,
+		TA_ERASE  = 2,
+		TA_SLEEP  = 3
+	};
+	static const char* const action_strings[] =
+	{
+		"find", "insert", "erase", "sleep"
+	};
+
+	while(!is_complete)
+	{
+		const uintptr_t key         = rand_up_to(100);
+		const int action            = rand_up_to(4);
+		const int sleep_duration_ms = rand_up_to(100);
+
+		debug_out("thread %d: %s\n", thread_number, action_strings[action]);
+
+		//
+		pthread_mutex_lock(&mutex);
+		const bool was_in_set = keys.find(key) != keys.end();
+		if(action == TA_INSERT)
+			keys.insert(key);
+		else if(action == TA_ERASE)
+			keys.erase(key);
+		pthread_mutex_unlock(&mutex);
+
+		switch(action)
+		{
+		case TA_FIND:
+			{
+			void* user_data = lfl_find(&list, (void*)key);
+			assert2(was_in_set == (user_data != 0));
+			if(user_data)
+				assert2(*(uintptr_t*)user_data == ~key);
+			}
+			break;
+
+		case TA_INSERT:
+			{
+			int was_inserted;
+			void* user_data = lfl_insert(&list, (void*)key, sizeof(uintptr_t), &was_inserted);
+			assert2(user_data != 0);	// only triggers if out of memory
+			*(uintptr_t*)user_data = ~key;	// checked above
+			assert2(was_in_set == !was_inserted);
+			}
+			break;
+
+		case TA_ERASE:
+			{
+			int err = lfl_erase(&list, (void*)key);
+			assert2(was_in_set == (err == 0));
+			}
+			break;
+
+		case TA_SLEEP:
+			usleep(sleep_duration_ms*1000);
+			break;
+
+		default:
+			debug_warn("invalid TA_* action");
+			break;
+		}	// switch
+	}	// while !is_complete
+
+	atomic_add(&num_active_threads, -1);
+	assert2(num_active_threads >= 0);
 
 	return 0;
 }
 
 
-//static int dummy = test();
+static void multithreaded_torture_test()
+{
+	int err;
+
+	// rand() determines TestActions; we need deterministic results.
+	srand(1);
+
+	static const double TEST_LENGTH = 30.;	// [seconds]
+	const double end_time = get_time() + TEST_LENGTH;
+	is_complete = false;
+
+	lfl_init(&list);
+	err = pthread_mutex_init(&mutex, 0);
+	assert2(err == 0);
+
+	// spin off test threads (many, to force preemption)
+	const uint NUM_THREADS = 16;
+	for(uintptr_t i = 0; i < NUM_THREADS; i++)
+		pthread_create(0, 0, thread_func, (void*)i);
+
+	// wait until time interval elapsed (if we get that far, all is well).
+	while(get_time() < end_time)
+		usleep(10*1000);
+
+	// signal and wait for all threads to complete (poor man's barrier -
+	// those aren't currently implemented in wpthread).
+	is_complete = true;
+	while(num_active_threads > 0)
+		usleep(5*1000);
+
+	lfl_free(&list);
+	err = pthread_mutex_destroy(&mutex);
+	assert2(err == 0);
+}
+
+
+static int run_tests()
+{
+	basic_single_threaded_test();
+	multithreaded_torture_test();
+	return 0;
+}
+
+static int dummy = run_tests();
+
+#endif	// #if PERFORM_SELF_TEST
+
+}	// namespace test
