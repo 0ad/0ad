@@ -102,9 +102,9 @@ int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param
 //
 //////////////////////////////////////////////////////////////////////////////
 
-// greatest amount of TLS slots any Windows version provides;
+// minimum amount of TLS slots every Windows version provides;
 // used to validate indices.
-static const uint TLS_LIMIT = 1088;
+static const uint TLS_LIMIT = 64;
 
 // rationale: don't use an array of dtors for every possible TLS slot.
 // other DLLs may allocate any number of them in their DllMain, so the
@@ -137,9 +137,9 @@ int pthread_key_create(pthread_key_t* key, void (*dtor)(void*))
 			return 0;
 		}
 
-		// not enough slots; we have a valid key, but its dtor won't be called.
-		debug_warn("increase pthread MAX_DTORS");
-		return 0;
+	// not enough slots; we have a valid key, but its dtor won't be called.
+	debug_warn("increase pthread MAX_DTORS");
+	return -1;
 }
 
 
@@ -160,7 +160,7 @@ void* pthread_getspecific(pthread_key_t key)
 	assert2(idx < TLS_LIMIT);
 
 	// TlsGetValue sets last error to 0 on success (boo).
-	// don't want this to hide previous error, so restore.
+	// we don't want this to hide previous errors, so it's restored below.
 	DWORD last_err = GetLastError();
 
 	void* data = TlsGetValue(idx);
@@ -193,33 +193,34 @@ int pthread_setspecific(pthread_key_t key, const void* value)
 
 static void call_tls_dtors()
 {
+again:
 	bool had_valid_tls = false;
-	// until all TLS slots have been reset:
-	do
+
+	// for each registered dtor: (call order unspecified by SUSv3)
+	for(uint i = 0; i < MAX_DTORS; i++)
 	{
-		// for each registered dtor: (call order unspecified by SUSv3)
-		for(uint i = 0; i < MAX_DTORS; i++)
+		// is slot #i in use?
+		void(*dtor)(void*) = dtors[i].dtor;
+		if(!dtor)
+			continue;
+
+		// clear slot and call dtor with its previous value.
+		const pthread_key_t key = dtors[i].key;
+		void* tls = pthread_getspecific(key);
+		if(tls)
 		{
-			void(*dtor)(void*) = dtors[i].dtor;
-			if(!dtor)
-				continue;
+			int ret = pthread_setspecific(key, 0);
+			assert2(ret == 0);
 
-			const pthread_key_t key = dtors[i].key;
-			void* tls = pthread_getspecific(key);
-			if(tls)
-			{
-				int ret = pthread_setspecific(key, 0);
-				assert2(ret == 0);
-
-				dtor(tls);
-				had_valid_tls = true;
-			}
+			dtor(tls);
+			had_valid_tls = true;
 		}
 	}
-	while(had_valid_tls);
 
 	// rationale: SUSv3 says we're allowed to loop infinitely. we do so to
 	// expose any dtor bugs - this shouldn't normally happen.
+	if(had_valid_tls)
+		goto again;
 }
 
 
@@ -229,23 +230,22 @@ static void call_tls_dtors()
 //
 //////////////////////////////////////////////////////////////////////////////
 
-struct ThreadParam
+// POD (allocated via malloc - see below)
+struct ThreadFunc
 {
 	void*(*func)(void*);
 	void* user_arg;
-	ThreadParam(void*(*_func)(void*), void* _user_arg)
-		: func(_func), user_arg(_user_arg) {}
 };
 
 
 // trampoline to switch calling convention.
-// param points to a heap-allocated ThreadParam (see pthread_create).
+// param points to a heap-allocated ThreadFunc (see pthread_create).
 static unsigned __stdcall thread_start(void* param)
 {
-	ThreadParam* f = (ThreadParam*)param;
+	ThreadFunc* f = (ThreadFunc*)param;
 	void*(*func)(void*) = f->func;
 	void* user_arg      = f->user_arg;
-	delete f;
+	free(f);
 
 	// workaround for stupid "void* -> unsigned cast" warning
 	union { void* p; unsigned u; } v;
@@ -257,19 +257,34 @@ static unsigned __stdcall thread_start(void* param)
 }
 
 
-int pthread_create(pthread_t* thread, const void* attr, void*(*func)(void*), void* user_arg)
+int pthread_create(pthread_t* thread_id, const void* attr, void*(*func)(void*), void* user_arg)
 {
 	UNUSED(attr);
 
-	// notes:
-	// - don't stack-allocate param: thread_start might not be called
-	//   in the new thread before we exit this stack frame.
-	// - _beginthreadex has more overhead and no value added vs. CreateThread,
-	//   but the following problem is documented: when using the
-	//   statically-linked CRT, ExitThread leaks memory when CreateThread is
-	//   used instead of _beginthread(..ex also?).
-	ThreadParam* param = new ThreadParam(func, user_arg);
-	*thread = (pthread_t)_beginthreadex(0, 0, thread_start, (void*)param, 0, 0);
+	// tell the trampoline above what to call.
+	// note: don't stack-allocate this, since the new thread might
+	// not be executed before we tear down our stack frame.
+	ThreadFunc* const f = (ThreadFunc*)malloc(sizeof(ThreadFunc));
+	if(!f)
+		return -EAGAIN;	// SUSv3
+	f->func     = func;
+	f->user_arg = user_arg;
+
+	// _beginthreadex has more overhead and no value added vs.
+	// CreateThread, but it avoids small memory leaks in
+	// ExitThread when using the statically-linked CRT (-> MSDN).
+	const uintptr_t id = _beginthreadex(0, 0, thread_start, f, 0, 0);
+	if(!id)
+	{
+		free(f);
+		debug_warn("_beginthreadex failed");
+		return -1;
+	}
+
+	// SUSv3 doesn't specify whether this is optional - go the safe route.
+	if(thread_id)
+		*thread_id = (pthread_t)id;
+
 	return 0;
 }
 

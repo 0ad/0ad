@@ -3,7 +3,7 @@
 // <inttypes.h>
 //
 
-typedef char int8_t;
+typedef signed char int8_t;
 typedef short int16_t;
 
 // already defined by MinGW
