@@ -23,6 +23,10 @@
 
 #include <string.h>
 
+#ifndef PERFORM_SELF_TEST
+#define PERFORM_SELF_TEST 0
+#endif
+
 
 // written against http://std.dkuug.dk/jtc1/sc22/wg14/www/docs/n1031.pdf .
 // optimized for size - e.g. strcpy calls strncpy with n = SIZE_MAX.
@@ -196,6 +200,8 @@ int tcat_s(tchar* dst, size_t max_dst_chars, const tchar* src)
 	return tncat_s(dst, max_dst_chars, src, SIZE_MAX);
 }
 
+#endif	// #if _MSC_VER < 1400
+
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -203,37 +209,83 @@ int tcat_s(tchar* dst, size_t max_dst_chars, const tchar* src)
 //
 //////////////////////////////////////////////////////////////////////////////
 
-#ifndef NDEBUG
+namespace test {
 
-static int test()
-{
-	// note: avoid 4-byte strings - they would trigger WARN_IF_PTR_LEN.
+#if PERFORM_SELF_TEST
 
-	const tchar* s0 = T("");
-	const tchar* s1 = T("a");
-	const tchar* s5 = T("abcde");
-	const tchar* s10 = T("abcdefghij");
+// note: avoid 4-byte strings - they would trigger WARN_IF_PTR_LEN.
 
-	tchar d1[1];
-	tchar d2[2];
-	tchar d3[3];
-	tchar d5[5];
-	tchar d6[6];
-	tchar d10[10];
-	tchar d11[11];
+static const tchar* s0 = T("");
+static const tchar* s1 = T("a");
+static const tchar* s5 = T("abcde");
+static const tchar* s10 = T("abcdefghij");
 
-	tchar no_null[] = { 'n','o','_','n','u','l','l'};
+static tchar d1[1];
+static tchar d2[2];
+static tchar d3[3];
+static tchar d5[5];
+static tchar d6[6];
+static tchar d10[10];
+static tchar d11[11];
+
+static tchar no_null[] = { 'n','o','_','n','u','l','l'};
 
 
-	//
-	// len
-	//
 
-#define TEST_LEN(string, limit, expected)\
-STMT(\
-	assert2(tlen_s((string), (limit)) == (expected));\
+#define TEST_LEN(string, limit, expected)                                 \
+STMT(                                                                     \
+	assert2(tlen_s((string), (limit)) == (expected));                     \
 )
 
+#define TEST_CPY(dst, dst_max, src, expected_ret, expected_dst)           \
+STMT(                                                                     \
+	int ret = tcpy_s((dst), dst_max, (src));                              \
+	assert2(ret == expected_ret);                                         \
+	if(dst != 0)                                                          \
+		assert2(!tcmp(dst, T(expected_dst)));                             \
+)
+#define TEST_CPY2(dst, src, expected_ret, expected_dst)                   \
+STMT(                                                                     \
+	int ret = tcpy_s((dst), ARRAY_SIZE(dst), (src));                      \
+	assert2(ret == expected_ret);                                         \
+	if(dst != 0)                                                          \
+		assert2(!tcmp(dst, T(expected_dst)));                             \
+)
+#define TEST_NCPY(dst, src, max_src_chars, expected_ret, expected_dst)    \
+STMT(                                                                     \
+	int ret = tncpy_s((dst), ARRAY_SIZE(dst), (src), (max_src_chars));    \
+	assert2(ret == expected_ret);                                         \
+	if(dst != 0)                                                          \
+		assert2(!tcmp(dst, T(expected_dst)));                             \
+)
+
+#define TEST_CAT(dst, dst_max, src, expected_ret, expected_dst)           \
+STMT(                                                                     \
+	int ret = tcat_s((dst), dst_max, (src));                              \
+	assert2(ret == expected_ret);                                         \
+	if(dst != 0)                                                          \
+		assert2(!tcmp(dst, T(expected_dst)));                             \
+)
+#define TEST_CAT2(dst, dst_val, src, expected_ret, expected_dst)          \
+STMT(                                                                     \
+	tcpy(dst, T(dst_val));                                                \
+	int ret = tcat_s((dst), ARRAY_SIZE(dst), (src));                      \
+	assert2(ret == expected_ret);                                         \
+	if(dst != 0)                                                          \
+		assert2(!tcmp(dst, T(expected_dst)));                             \
+)
+#define TEST_NCAT(dst, dst_val, src, max_src_chars, expected_ret, expected_dst)\
+STMT(                                                                     \
+	tcpy(dst, T(dst_val));                                                \
+	int ret = tncat_s((dst), ARRAY_SIZE(dst), (src), (max_src_chars));    \
+	assert2(ret == expected_ret);                                         \
+	if(dst != 0)                                                          \
+		assert2(!tcmp(dst, T(expected_dst)));                             \
+)
+
+
+static void test_length()
+{
 	TEST_LEN(s0, 0 , 0 );
 	TEST_LEN(s0, 1 , 0 );
 	TEST_LEN(s0, 50, 0 );
@@ -246,35 +298,11 @@ STMT(\
 	TEST_LEN(s10,9 , 9 );
 	TEST_LEN(s10,10, 10);
 	TEST_LEN(s10,11, 10);
+}
 
 
-	//
-	// cpy
-	//
-
-#define TEST_CPY(dst, dst_max, src, expected_ret, expected_dst)              \
-STMT(                                                                        \
-	int ret = tcpy_s((dst), dst_max, (src));                                 \
-	assert2(ret == expected_ret);                                            \
-	if(dst != 0)                                                             \
-		assert2(!tcmp(dst, T(expected_dst)));                                \
-)
-#define TEST_CPY2(dst, src, expected_ret, expected_dst)                      \
-STMT(                                                                        \
-	int ret = tcpy_s((dst), ARRAY_SIZE(dst), (src));                         \
-	assert2(ret == expected_ret);                                            \
-	if(dst != 0)                                                             \
-		assert2(!tcmp(dst, T(expected_dst)));                                \
-)
-#define TEST_NCPY(dst, src, max_src_chars, expected_ret, expected_dst)       \
-STMT(                                                                        \
-	int ret = tncpy_s((dst), ARRAY_SIZE(dst), (src), (max_src_chars));       \
-	assert2(ret == expected_ret);                                            \
-	if(dst != 0)                                                             \
-		assert2(!tcmp(dst, T(expected_dst)));                                \
-)
-
-
+static void test_copy()
+{
 	TEST_CPY(0 ,0,0 , EINVAL,"");	// all invalid
 	TEST_CPY(0 ,0,s1, EINVAL,"");	// dst = 0, max = 0
 	TEST_CPY(0 ,1,s1, EINVAL,"");	// dst = 0, max > 0
@@ -301,36 +329,11 @@ STMT(                                                                        \
 	TEST_NCPY(d5,s5,4 , 0,"abcd");
 	TEST_NCPY(d6,s5,5 , 0,"abcde");
 	TEST_NCPY(d6,s5,10, 0,"abcde");
+}
 
 
-	//
-	// cat
-	//
-
-#define TEST_CAT(dst, dst_max, src, expected_ret, expected_dst)              \
-STMT(                                                                        \
-	int ret = tcat_s((dst), dst_max, (src));                                 \
-	assert2(ret == expected_ret);                                            \
-	if(dst != 0)                                                             \
-		assert2(!tcmp(dst, T(expected_dst)));                                \
-)
-#define TEST_CAT2(dst, dst_val, src, expected_ret, expected_dst)             \
-STMT(                                                                        \
-	tcpy(dst, T(dst_val));                                                   \
-	int ret = tcat_s((dst), ARRAY_SIZE(dst), (src));                         \
-	assert2(ret == expected_ret);                                            \
-	if(dst != 0)                                                             \
-		assert2(!tcmp(dst, T(expected_dst)));                                \
-)
-#define TEST_NCAT(dst, dst_val, src, max_src_chars, expected_ret, expected_dst)\
-STMT(                                                                        \
-	tcpy(dst, T(dst_val));                                                   \
-	int ret = tncat_s((dst), ARRAY_SIZE(dst), (src), (max_src_chars));       \
-	assert2(ret == expected_ret);                                            \
-	if(dst != 0)                                                             \
-		assert2(!tcmp(dst, T(expected_dst)));                                \
-)
-
+static void test_concatenate()
+{
 	TEST_CAT(0 ,0,0 , EINVAL,"");	// all invalid
 	TEST_CAT(0 ,0,s1, EINVAL,"");	// dst = 0, max = 0
 	TEST_CAT(0 ,1,s1, EINVAL,"");	// dst = 0, max > 0
@@ -365,12 +368,19 @@ STMT(                                                                        \
 	TEST_NCAT(d5,"",s5,4 , 0,"abcd");
 	TEST_NCAT(d5,"12",s5,2 , 0,"12ab");
 	TEST_NCAT(d6,"",s5,10, 0,"abcde");
+}
 
+
+static int run_tests()
+{
+	test_length();
+	test_copy();
+	test_concatenate();
 	return 0;
 }
 
-//static int dummy = test();
+static int dummy = run_tests();
 
-#endif	// #ifndef NDEBUG
+#endif	// #if PERFORM_SELF_TEST
 
-#endif	// #if _MSC_VER < 1400
+}	// namespace test
