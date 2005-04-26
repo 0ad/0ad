@@ -6,7 +6,7 @@
   <group>
     <variant frequency="100" name="House A">
       <mesh>structural/rome_ho_1.pmd</mesh>
-      <props>
+      <!-- <props>
         <prop actor="props/romans/rome_window_mc.xml" attachpoint="windowright1"/>
         <prop actor="props/romans/rome_window_mc.xml" attachpoint="windowright02"/>
         <prop actor="props/romans/rome_window_mc.xml" attachpoint="windowright03"/>
@@ -20,7 +20,7 @@
         <prop actor="props/romans/rome_window_mc.xml" attachpoint="windowleft1"/>
         <prop actor="props/eyecandy/wood_sm_pile_a.xml" attachpoint="wood_lumber_small"/>
         <prop actor="props/weapon/weap_spear_a.xml" attachpoint="spear"/>
-      </props>
+      </props> -->
       <texture>structural/rome_struct_1.dds</texture>
     </variant>
     <variant frequency="100" name="House B">
@@ -29,7 +29,7 @@
     </variant>
     <variant frequency="100" name="House C">
       <mesh>structural/rome_ho_3.pmd</mesh>
-      <props>
+      <!-- <props>
         <prop actor="props/gaia/cypress_row_a.xml" attachpoint="cypress_row"/>
         <prop actor="props/romans/rome_door_1.xml" attachpoint="door_right"/>
         <prop actor="props/gaia/cypress_potted_a.xml" attachpoint="cypress_potted1"/>
@@ -44,7 +44,7 @@
         <prop actor="props/shield/shld_rome_sm_8.xml" attachpoint="shield2"/>
         <prop actor="props/eyecandy/rome_basket_e.xml" attachpoint="pot1"/>
         <prop actor="props/eyecandy/rome_basket_c.xml" attachpoint="pot02"/>
-      </props>
+      </props> -->
       <texture>structural/rome_struct_1.dds</texture>
     </variant>
   </group>

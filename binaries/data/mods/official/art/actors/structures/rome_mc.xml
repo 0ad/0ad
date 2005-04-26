@@ -6,7 +6,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>structural/rome_mc.pmd</mesh>
-      <props>
+      <!-- <props>
         <prop actor="props/eyecandy/wheel_laying.xml" attachpoint="wheel1"/>
         <prop actor="props/eyecandy/anvil.xml" attachpoint="anvil"/>
         <prop actor="props/eyecandy/bench_1.xml" attachpoint="bench"/>
@@ -41,7 +41,7 @@
         <prop actor="props/romans/rome_window_mc.xml" attachpoint="win_left2"/>
         <prop actor="props/shield/shld_rome_sm_5.xml" attachpoint="shield_sm_3"/>
         <prop actor="props/shield/shld_rome_sm_10.xml" attachpoint="shld_sm_5"/>
-      </props>
+      </props> -->
       <texture>structural/rome_struct_1.dds</texture>
     </variant>
   </group>
