@@ -25,7 +25,7 @@
 #include "lib.h"
 #include "posix.h"
 #include "win_internal.h"
-#include "lockless.h"
+#include "lockfree.h"
 
 
 static HANDLE pthread_t_to_HANDLE(pthread_t p)

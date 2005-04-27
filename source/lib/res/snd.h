@@ -16,6 +16,9 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
+#ifndef SND_H__
+#define SND_H__
+
 #include "handle.h"
 
 /*
@@ -215,3 +218,5 @@ extern int snd_update(const float* pos, const float* dir, const float* up);
 // free all resources and shut down the sound system.
 // call before h_mgr_shutdown.
 extern void snd_shutdown();
+
+#endif	// #ifndef SND_H__
