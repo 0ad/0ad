@@ -16,6 +16,9 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
+#ifndef LOCKFREE_H__
+#define LOCKFREE_H__
+
 #include "posix_types.h"	// uintptr_t
 
 /*
@@ -72,7 +75,7 @@ usage notes
 useful "payload" in the data structures is allocated when inserting each
 item: additional_bytes are appended. rationale: see struct Node definition.
 
-since lockless algorithms are subtle and easy to get wrong, an extensive
+since lock-free algorithms are subtle and easy to get wrong, an extensive
 self-test is included; #define PERFORM_SELF_TEST 1 to activate.
 
 
@@ -85,12 +88,12 @@ terminology
   problems resulting from lack of thread synchronization.
 "deadlock" is a state where several threads are waiting on
   one another and no progress is possible.
-"thread-safety" is understood to mean the preceding
-  two problems do not occur.
+"thread-safety" is understood to mean the
+  preceding two problems do not occur.
 "scalability" is a measure of how efficient synchronization is;
   overhead should not increase significantly with more processors.
 "linearization point" denotes the time at which an external
-  observer believes a lockless operation to have taken effect.
+  observer believes a lock-free operation to have taken effect.
 
 */
 
@@ -162,3 +165,6 @@ extern void* lfh_insert(LFHash* hash, uintptr_t key, size_t additional_bytes, in
 
 // remove from hash; return -1 if not found, or 0 on success.
 extern int lfh_erase(LFHash* hash, uintptr_t key);
+
+
+#endif	// #ifndef LOCKFREE_H__

@@ -23,7 +23,7 @@
 #include "lib.h"
 #include "posix.h"
 #include "sysdep/cpu.h"
-#include "lockless.h"
+#include "lockfree.h"
 #include "timer.h"
 
 #ifndef PERFORM_SELF_TEST
