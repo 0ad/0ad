@@ -4,7 +4,7 @@
   <castshadow/>
 
   <group>
-    <variant frequency="100" name="Base">
+    <variant name="Base">
       <animations>
         <animation file="biped/cavalryidle.psa" name="Idle" speed="0"/>
         <animation file="biped/cavalryidle.psa" name="Walk" speed="0"/>
@@ -15,15 +15,30 @@
         <animation file="biped/dudeattack.psa" name="Attack" speed="300"/>
         <animation file="biped/dudeattack1.psa" name="Attack1" speed="300"/>
       </animations>
-      <mesh>skeletal/m_tunic_b.pmd</mesh>
+      <mesh>skeletal/m_pants_c.pmd</mesh>
       <props>
-        <prop actor="props/temp/celt_sign_csw_b.xml" attachpoint="head_extra"/>
-        <prop actor="props/head/plac_head_celt.xml" attachpoint="head"/>
-        <prop actor="props/shield/celt_round.xml" attachpoint="shield"/>
+        <prop actor="props/head/head_celt.xml" attachpoint="head"/>
+        <prop actor="props/shield/celt_round_b.xml" attachpoint="shield"/>
         <prop actor="props/weapon/weap_csword.xml" attachpoint="r_hand"/>
       </props>
-      <texture>skeletal/plac_celt_b.dds</texture>
     </variant>
   </group>
+
+  <group>
+    <variant>
+      <texture>skeletal/celt_isw_b_01.dds</texture>
+    </variant>
+    <variant>
+      <texture>skeletal/celt_isw_b_02.dds</texture>
+    </variant>
+    <variant>
+      <texture>skeletal/celt_isw_b_03.dds</texture>
+    </variant>
+    <variant>
+      <texture>skeletal/celt_isw_b_04.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
 
 </actor>

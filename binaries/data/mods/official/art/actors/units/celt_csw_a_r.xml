@@ -6,8 +6,8 @@
   <group>
     <variant frequency="100" name="Base">
       <animations>
-        <animation file="biped/cavalryidle.psa" name="Idle" speed="1"/>
-        <animation file="biped/cavalryidle.psa" name="Walk" speed="1"/>
+        <animation file="biped/cavalryidle.psa" name="Idle" speed="0"/>
+        <animation file="biped/cavalryidle.psa" name="Walk" speed="0"/>
         <animation file="biped/dudebuild.psa" name="Build" speed="150"/>
         <animation file="biped/dudechop.psa" name="Chop" speed="150"/>
         <animation file="biped/dudedeath_sword.psa" name="Death" speed="200"/>
@@ -15,16 +15,51 @@
         <animation file="biped/dudeattack.psa" name="Attack" speed="300"/>
         <animation file="biped/dudeattack1.psa" name="Attack1" speed="300"/>
       </animations>
-      <mesh>skeletal/m_tunic_b.pmd</mesh>
+      <mesh>skeletal/m_pants_c.pmd</mesh>
       <props>
-        <prop actor="props/temp/celt_sign_csw_a.xml" attachpoint="head_extra"/>
-        <prop actor="props/temp/plac_helmet_a.xml" attachpoint="helmet"/>
-        <prop actor="props/head/plac_head_celt.xml" attachpoint="head"/>
-        <prop actor="props/shield/celt_round.xml" attachpoint="shield"/>
+        <prop actor="props/head/head_lime.xml" attachpoint="head"/>
+        <prop actor="props/shield/celt_round_a.xml" attachpoint="shield"/>
         <prop actor="props/weapon/weap_csword.xml" attachpoint="r_hand"/>
       </props>
-      <texture>skeletal/plac_celt_a.dds</texture>
     </variant>
   </group>
+
+  <group>
+    <variant>
+      <texture>skeletal/celt_isw_a_02.dds</texture>
+    </variant>
+    <variant>
+      <texture>skeletal/celt_isw_a_03.dds</texture>
+    </variant>
+    <variant>
+      <texture>skeletal/celt_isw_a_04.dds</texture>
+    </variant>
+    <variant>
+      <texture>skeletal/celt_isw_a_05.dds</texture>
+    </variant>
+    <variant>
+      <texture>skeletal/celt_isw_a_06.dds</texture>
+    </variant>
+    <variant>
+      <texture>skeletal/celt_isw_a_07.dds</texture>
+    </variant>
+    <variant>
+      <texture>skeletal/celt_isw_a_08.dds</texture>
+    </variant>
+    <variant>
+      <texture>skeletal/celt_isw_a_09.dds</texture>
+    </variant>
+    <variant>
+      <texture>skeletal/celt_isw_a_10.dds</texture>
+    </variant>
+    <variant>
+      <texture>skeletal/celt_isw_a_11.dds</texture>
+    </variant>
+    <variant>
+      <texture>skeletal/celt_isw_a_01.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
 
 </actor>

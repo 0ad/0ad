@@ -6,23 +6,61 @@
   <group>
     <variant frequency="100" name="Base">
       <animations>
-        <animation file="biped/dudeidle.psa" name="Idle" speed="200"/>
-        <animation file="biped/dudewalk_swordshield.psa" name="Walk" speed="700"/>
-        <animation file="biped/dudebuild.psa" name="Build" speed="150"/>
-        <animation file="biped/dudechop.psa" name="Chop" speed="150"/>
-        <animation file="biped/dudedeath_sword.psa" name="Death" speed="200"/>
-        <animation file="biped/dudedecay_sword.psa" name="Decay" speed="100"/>
-        <animation file="biped/dudeattack.psa" name="Attack" speed="300"/>
-        <animation file="biped/dudeattack1.psa" name="Attack1" speed="300"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/horse_gallop.psa" name="Walk" speed="700"/>
       </animations>
-      <mesh>skeletal/m_tunic_b.pmd</mesh>
+      <mesh>skeletal/horse.pmd</mesh>
       <props>
-        <prop actor="props/temp/celt_sign_su2.xml" attachpoint="head_extra"/>
-        <prop actor="props/temp/plac_helmet_e.xml" attachpoint="helmet"/>
-        <prop actor="props/head/plac_head_celt.xml" attachpoint="head"/>
+        <prop actor="units/celt_su_2_r.xml" attachpoint="rider"/>
       </props>
-      <texture>skeletal/plac_celt_e.dds</texture>
     </variant>
   </group>
+
+  <group>
+    <variant frequency="7" name="feet">
+      <texture>skeletal/horse_celt_feet_a.dds</texture>
+    </variant>
+    <variant frequency="5" name="blaze">
+      <texture>skeletal/horse_celt_blaze_a.dds</texture>
+    </variant>
+    <variant frequency="5" name="face">
+      <texture>skeletal/horse_celt_face_a.dds</texture>
+    </variant>
+    <variant frequency="7" name="star">
+      <texture>skeletal/horse_celt_star_a.dds</texture>
+    </variant>
+    <variant frequency="3" name="dapple">
+      <texture>skeletal/horse_celt_dapple_a.dds</texture>
+    </variant>
+    <variant frequency="2" name="snip">
+      <texture>skeletal/horse_celt_snip_a.dds</texture>
+    </variant>
+    <variant frequency="5" name="stripe">
+      <texture>skeletal/horse_celt_stripe_a.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="2" name="black">
+      <color rgb="81 81 85"/>
+    </variant>
+    <variant frequency="2" name="chocolate">
+      <color rgb="98 68 58"/>
+    </variant>
+    <variant frequency="2" name="chestnut">
+      <color rgb="248 132 86"/>
+    </variant>
+    <variant frequency="2" name="roan">
+      <color rgb="242 219 164"/>
+    </variant>
+    <variant frequency="2" name="liver">
+      <color rgb="172 95 68"/>
+    </variant>
+    <variant frequency="2" name="brown">
+      <color rgb="255 148 89"/>
+    </variant>
+  </group>
+
+  <material>objectcolor.xml</material>
 
 </actor>
