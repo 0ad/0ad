@@ -21,24 +21,29 @@ our $data = {
 
 sub extract {
 	my ($xmldata) = @_;
-	my ($root, %elements) = ($xmldata->[0], %{$xmldata->[1]});
+	return unless $xmldata;
+	
+	my ($root, $filename, %elements) = (@{$xmldata}[0, 1], %{$xmldata->[2]});
 
 	my @strings;
 
 	# Entities
 	if ($root eq 'entity') {
 
-		push @strings, map [ "noun:".$_->{content}, "Entity name" ], @{$elements{name}};
+		push @strings, map [ "noun:".$_->{content}, "Entity name ($filename)" ], @{$elements{name}};
 
 	# Actors
 	} elsif ($root eq 'object') {
 
-		push @strings, map [ "noun:".$_->{content}, "Actor name" ], @{$elements{name}};
+		push @strings, map [ "noun:".$_->{content}, "Actor name ($filename)" ], @{$elements{name}};
+
+	# Materials
+	} elsif ($root eq 'material') {
 
 	# GUI objects
 	} elsif ($root eq 'objects') {
 
-		recursive_extract_guiobject(\@strings, [\%elements]);
+		recursive_extract_guiobject($filename, \@strings, [\%elements]);
 
 	# GUI setup
 	} elsif ($root eq 'setup') {
@@ -60,10 +65,10 @@ sub extract {
 }
 
 sub recursive_extract_guiobject {
-	my ($strings, $elements) = @_;
+	my ($filename, $strings, $elements) = @_;
 	for my $element (@$elements) {
-		push @$strings, [ "phrase:".$element->{tooltip}, "GUI tooltip" ] if defined $element->{tooltip};
-		push @$strings, [ "phrase:".$element->{content}, "GUI text"    ] if defined $element->{content};
+		push @$strings, [ "phrase:".$element->{tooltip}, "GUI tooltip ($filename)" ] if defined $element->{tooltip};
+		push @$strings, [ "phrase:".$element->{content}, "GUI text ($filename)"    ] if defined $element->{content};
 
 		if ($element->{script}) {
 			push @$strings, StringExtract::JSCode::extract($_->{content}) for @{$element->{script}};
@@ -72,7 +77,7 @@ sub recursive_extract_guiobject {
 			push @$strings, StringExtract::JSCode::extract($_->{content}) for @{$element->{action}};
 		}
 
-		recursive_extract_guiobject($strings, $element->{object}) if $element->{object};
+		recursive_extract_guiobject($filename, $strings, $element->{object}) if $element->{object};
 	}
 }
 

@@ -19,14 +19,15 @@ use StringExtract::JSCode;
 use StringExtract::CCode;
 
 use DataFiles;
+use Strings;
 
 my %all_strings;
 
 # Repeat for each data type that needs to be parsed
 for my $type (
-#	$StringExtract::XML::data,
+	$StringExtract::XML::data,
 #	$StringExtract::JSCode::data,
-	$StringExtract::CCode::data,
+#	$StringExtract::CCode::data,
 ) {
 
 	# Get the list of files that the module wants to handle
@@ -38,8 +39,10 @@ for my $type (
 	my @dirs = map $prefix.$_, @{$type->{file_roots}};
 	find({
 		preprocess => sub {
+			# Trim the ../../../ prefix
 			my $path = substr($File::Find::dir, length $prefix);
-			grep !contains($type->{file_roots_ignore}, $path.'/'.$_), @_;
+			# Ignore all directories that are called '.svn', or whose paths are any of file_roots_ignore
+			grep not ($_ eq '.svn' or contains($type->{file_roots_ignore}, $path.'/'.$_)), @_;
 		},
 		wanted => sub {
 			# Include files that match the file_types regexp
@@ -64,52 +67,18 @@ for my $type (
 	}
 }
 
+# Transform into %all_strings = (stringid => { context => '...' })
+for (keys %all_strings) {
+	$all_strings{$_} = { context => join "\n", uniq(sort @{$all_strings{$_}}) };
+}
+
 # Merge the string data with any existing information
-merge_strings($config{strings_filename}, %all_strings);
-
-sub merge_strings {
-	my ($filename, %new_strings) = @_;
-	
-	# Read the earlier string data
-	my $strings = DataFiles::read_file($filename, ignoremissing=>1);
-	
-	for my $old (@$strings) {
-		my $stringid = $old->[STR_ID];
-		
-		if ($new_strings{$stringid}) {
-			# String already exists; just update the context
-			$old->[STR_CONTEXT] = join "\n", @{ $new_strings{$stringid} };
-
-			# Make sure it's not obsolete now
-			flag_set(\$old->[STR_FLAGS], 'obsolete', 0);
-
-			# Remove it from this list, so the unprocessed ones can be found later
-			delete $new_strings{$stringid};
-
-		} else {
-			# String has been removed; set obsolete flag
-			flag_set(\$old->[STR_FLAGS], 'obsolete', 1);
-		}
-	}
-	
-	for (keys %new_strings) {
-		# Newly added strings
-		push @$strings, [ $_, join("\n", @{ $new_strings{$_} }), "?", "" ];
-	}
-	
-	DataFiles::write_file($filename, $strings);
-}
-
-
-sub flag_set {
-	my ($str, $flagname, $value) = @_;
-	my @flags = split / /, $$str;
-	if ($value) {
-		push @flags, $flagname unless grep $_ eq $flagname, @flags;	
-	} else {
-		@flags = grep $_ ne $flagname, @flags;	
-	}
-	$$str = join ' ', @flags;
-}
+Strings::merge($config{strings_filename}, %all_strings);
 
 sub contains { $_[1] eq $_ && return 1 for @{$_[0]}; 0 }
+
+sub uniq { # Uniquify sorted lists
+	my @r;
+	for (@_) { push @r, $_ unless @r and $r[-1] eq $_ };
+	@r;
+}

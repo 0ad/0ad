@@ -4,6 +4,7 @@ use warnings;
 package StringExtract::Utils;
 
 use XML::Simple();
+use Carp;
 
 use Regexp::Common qw(comment);
 
@@ -18,14 +19,24 @@ sub read_xml {
 				);
 
 	my $filedata = do { open my $f, '<', $filename or die $!; local $/; <$f> };
-	my ($dir) = ($filename =~ /(.*)[\\\/]/);
+	
+	# Fix DTD paths
+	my ($dir) = ($filename =~ m~(.*)[\\/]~);
 	$filedata =~ s {SYSTEM "(?!/)} {SYSTEM "$dir/};
 	$filedata =~ s {SYSTEM "/} {SYSTEM "../../../binaries/data/mods/official/};
-	my $data = $xml->XMLin($filedata);
+	
+	my $data = eval { $xml->XMLin($filedata) };
+	
+	if ($@) {
+		warn "Error reading $filename: $@";
+		return;	
+	}
 	recursive_process($data);
 	
+	my ($filename_short) = ($filename =~ m~([^\\/]+)$~);
+	
 	my $root = (keys %$data)[0];
-	return [ $root, @{$data->{$root}} ];
+	return [ $root, $filename_short, @{$data->{$root}} ];
 }
 
 sub recursive_process {
@@ -53,7 +64,7 @@ sub recursive_process {
 sub read_text {
 	my ($filename) = $_;
 
-	open my $file, '<', $filename or die "Error opening $filename: $!";
+	open my $file, '<', $filename or carp "Error opening $filename: $!";
 	my $data = do { local $/; <$file> };
 
 	return ({ filename => $filename }, $data);

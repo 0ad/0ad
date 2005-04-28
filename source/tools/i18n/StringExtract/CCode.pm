@@ -14,7 +14,6 @@ our $data = {
 	],
 
 	file_roots_ignore => [
-		'source/workspaces',
 		'source/i18n/tests',
 		'source/tools',
 	],

@@ -63,7 +63,7 @@ sub unescape {
 }
 sub escape {
 	my $t = $_[0];
-	return "\\" unless length $t;
+	return "\\" unless defined $t and length $t;
 	$t =~ s/\\/\\\\/g;
 	$t =~ s/\n/\\n/g;
 	$t;
