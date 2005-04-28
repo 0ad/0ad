@@ -9,6 +9,8 @@ ActorEditorListCtrl::ActorEditorListCtrl(wxWindow* parent)
 	: DraggableListCtrl(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize,
 		wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_SINGLE_SEL)
 {
+	// Set colours for row backgrounds (which vary depending on what columns
+	// have some data)
 	#define COLOUR(name, c0, c1) \
 	m_ListItemAttr_##name[0].SetBackgroundColour(wxColour c0); \
 	m_ListItemAttr_##name[1].SetBackgroundColour(wxColour c1)
@@ -18,15 +20,17 @@ ActorEditorListCtrl::ActorEditorListCtrl(wxWindow* parent)
 	COLOUR(Texture, (f,e,e), (f,c,c));
 	COLOUR(Anim,    (e,f,e), (c,f,c));
 	COLOUR(Prop,    (e,e,f), (c,c,f));
+	COLOUR(Colour,  (f,e,f), (f,c,f));
 
 	#undef COLOUR
 
-	AddColumnType(_("Variant"),		100, "@name",		new FieldEditCtrl_Text());
+	AddColumnType(_("Variant"),		90,  "@name",		new FieldEditCtrl_Text());
 	AddColumnType(_("Freq"),		50,  "@frequency",	new FieldEditCtrl_Text());
-	AddColumnType(_("Model"),		160, "mesh",		new FieldEditCtrl_File(_T("art/meshes/"), _("Mesh files (*.pmd)|*.pmd|All files (*.*)|*.*")));
-	AddColumnType(_("Texture"),		160, "texture",		new FieldEditCtrl_File(_T("art/textures/skins/"), _("All files (*.*)|*.*"))); // could be dds, or tga, or png, or bmp, etc, so just allow *
+	AddColumnType(_("Model"),		140, "mesh",		new FieldEditCtrl_File(_T("art/meshes/"), _("Mesh files (*.pmd)|*.pmd|All files (*.*)|*.*")));
+	AddColumnType(_("Texture"),		140, "texture",		new FieldEditCtrl_File(_T("art/textures/skins/"), _("All files (*.*)|*.*"))); // could be dds, or tga, or png, or bmp, etc, so just allow *
 	AddColumnType(_("Animations"),	250, "animations",	new FieldEditCtrl_Dialog(_T("AnimListEditor")));
-	AddColumnType(_("Props"),		250, "props",		new FieldEditCtrl_Dialog(_T("PropListEditor")));
+	AddColumnType(_("Props"),		220, "props",		new FieldEditCtrl_Dialog(_T("PropListEditor")));
+	AddColumnType(_("Colour"),		80,  "colour",		new FieldEditCtrl_Colour());
 }
 
 void ActorEditorListCtrl::DoImport(AtObj& in)
@@ -89,6 +93,8 @@ wxListItemAttr* ActorEditorListCtrl::OnGetItemAttr(long item) const
 			return const_cast<wxListItemAttr*>(&m_ListItemAttr_Anim[item%2]);
 		else if (row["props"].hasContent())
 			return const_cast<wxListItemAttr*>(&m_ListItemAttr_Prop[item%2]);
+		else if (row["colour"].hasContent())
+			return const_cast<wxListItemAttr*>(&m_ListItemAttr_Colour[item%2]);
 	}
 
 	return DraggableListCtrl::OnGetItemAttr(item);

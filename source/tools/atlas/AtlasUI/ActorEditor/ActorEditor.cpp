@@ -140,16 +140,20 @@ void ActorEditor::ImportData(AtObj& in)
 	{
 		AtObj actor;
 
+		// Handle the global actor properties
 		if (wxString(in["Object"]["Properties"]["@autoflatten"]) == _T("1"))
 			actor.add("autoflatten", L"");
 
 		if (wxString(in["Object"]["Properties"]["@castshadows"]) == _T("1"))
 			actor.add("castshadow", L"");
 
+		// Create a single variant to contain all this data
 		AtObj var;
 		var.add("@name", L"Base");
-		var.add("@frequency", L"100");
+		var.add("@frequency", L"100"); // 100 == default frequency
 
+		// Things to strip leading strings (for converting filenames, since the
+		// new format doesn't store the entire path)
 		#define THING1(out,outname, in,inname, prefix) \
 			assert( wxString(in["Object"][inname]).StartsWith(_T(prefix)) ); \
 			out.add(outname, wxString(in["Object"][inname]).Mid(wxString(_T(prefix)).Length()))
@@ -246,8 +250,11 @@ void ActorEditor::ImportData(AtObj& in)
 	}
 	else
 	{
-		// ??? unknown format
+		// ??? unknown format - this should have been noticed earlier
+		wxFAIL_MSG(_T("Invalid actor format"));
 	}
+
+	// Copy the data into the appropriate UI controls:
 
 	AtObj actor (in["actor"]);
 	m_ActorEditorListCtrl->ImportData(actor);

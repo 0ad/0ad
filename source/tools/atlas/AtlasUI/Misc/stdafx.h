@@ -18,6 +18,8 @@
 #include "wx/filename.h"
 #include "wx/artprov.h"
 #include "wx/file.h"
+#include "wx/colordlg.h"
+#include "wx/regex.h"
 
 #include <vector>
 #include <string>

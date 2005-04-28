@@ -155,7 +155,7 @@ bool CObjectBase::Load(const char* filename)
 		EL(prop);
 		EL(mesh);
 		EL(texture);
-		EL(color);
+		EL(colour);
 		AT(file);
 		AT(name);
 		AT(speed);
@@ -163,7 +163,6 @@ bool CObjectBase::Load(const char* filename)
 		AT(attachpoint);
 		AT(actor);
 		AT(frequency);
-		AT(rgb);
 		#undef AT
 		#undef EL
 
@@ -201,8 +200,8 @@ bool CObjectBase::Load(const char* filename)
 						else if (option_name == el_texture)
 							m_Variants.back().back().m_TextureFilename = "art/textures/skins/" + CStr(option.getText());
 
-						else if (option_name == el_color)
-							m_Variants.back().back().m_Color = CStr(option.getAttributes().getNamedItem(at_rgb));
+						else if (option_name == el_colour)
+							m_Variants.back().back().m_Color = option.getText();
 
 						else if (option_name == el_animations)
 						{

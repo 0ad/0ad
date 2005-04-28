@@ -21,6 +21,14 @@ protected:
 
 //////////////////////////////////////////////////////////////////////////
 
+class FieldEditCtrl_Colour : public FieldEditCtrl
+{
+protected:
+	void StartEdit(wxWindow* parent, wxRect rect, long row, int col);
+};
+
+//////////////////////////////////////////////////////////////////////////
+
 class FieldEditCtrl_List : public FieldEditCtrl
 {
 public:
