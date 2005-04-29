@@ -19,7 +19,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;..;.\General;.\CustomControls\EditableListCtrl;.\CustomControls\DraggableListCtrl;.\CustomControls\Windows;.\Misc;E:\wx\wxWidgets\include;E:\wx\wxWidgets\include\msvc"
+				AdditionalIncludeDirectories=".;..;.\General;.\CustomControls\EditableListCtrl;.\CustomControls\DraggableListCtrl;.\CustomControls\Windows;.\Misc;E:\wx\wxWidgets\include;E:\wx\wxWidgets\include\msvc;..\..\..\..\libraries\devil\src\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -35,7 +35,7 @@
 				AdditionalDependencies="comctl32.lib rpcrt4.lib"
 				OutputFile="$(OutDir)/actored_d.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="E:\wx\wxWidgets\lib\vc_lib;E:\0ad\svnc\trunk\libraries\xerces\lib"
+				AdditionalLibraryDirectories="E:\wx\wxWidgets\lib\vc_lib;..\..\..\..\libraries\xerces\lib;..\..\..\..\libraries\devil\src\lib"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(OutDir)/actored.pdb"
 				SubSystem="2"
@@ -70,7 +70,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="1"
-				AdditionalIncludeDirectories=".;..;.\General;.\CustomControls\EditableListCtrl;.\CustomControls\DraggableListCtrl;.\CustomControls\Windows;.\Misc;E:\wx\wxWidgets\include;E:\wx\wxWidgets\include\msvc"
+				AdditionalIncludeDirectories=".;..;.\General;.\CustomControls\EditableListCtrl;.\CustomControls\DraggableListCtrl;.\CustomControls\Windows;.\Misc;E:\wx\wxWidgets\include;E:\wx\wxWidgets\include\msvc;..\..\..\..\libraries\devil\src\include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
@@ -85,7 +85,7 @@
 				AdditionalDependencies="comctl32.lib rpcrt4.lib"
 				OutputFile="$(OutDir)/actored.exe"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="E:\wx\wxWidgets\lib\vc_lib;E:\0ad\svnc\trunk\libraries\xerces\lib"
+				AdditionalLibraryDirectories="E:\wx\wxWidgets\lib\vc_lib;..\..\..\..\libraries\xerces\lib;..\..\..\..\libraries\devil\src\lib"
 				GenerateDebugInformation="FALSE"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -233,6 +233,16 @@
 						RelativePath=".\CustomControls\Windows\AtlasWindow.h">
 					</File>
 				</Filter>
+				<Filter
+					Name="VirtualDirTreeCtrl"
+					Filter="">
+					<File
+						RelativePath=".\CustomControls\VirtualDirTreeCtrl\virtualdirtreectrl.cpp">
+					</File>
+					<File
+						RelativePath=".\CustomControls\VirtualDirTreeCtrl\virtualdirtreectrl.h">
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="ActorEditor"
@@ -267,9 +277,15 @@
 				Filter="">
 				<File
 					RelativePath=".\Misc\actored.cpp">
+					<FileConfiguration
+						Name="Debug|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\Misc\actored.h">
+					RelativePath=".\Misc\colourtest.cpp">
 				</File>
 				<File
 					RelativePath=".\Misc\stdafx.cpp">
@@ -288,6 +304,34 @@
 				</File>
 				<File
 					RelativePath=".\Misc\stdafx.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="ColourTester"
+				Filter="">
+				<File
+					RelativePath=".\ColourTester\ColourTester.cpp">
+				</File>
+				<File
+					RelativePath=".\ColourTester\ColourTester.h">
+				</File>
+				<File
+					RelativePath=".\ColourTester\ColourTesterColourCtrl.cpp">
+				</File>
+				<File
+					RelativePath=".\ColourTester\ColourTesterColourCtrl.h">
+				</File>
+				<File
+					RelativePath=".\ColourTester\ColourTesterFileCtrl.cpp">
+				</File>
+				<File
+					RelativePath=".\ColourTester\ColourTesterFileCtrl.h">
+				</File>
+				<File
+					RelativePath=".\ColourTester\ColourTesterImageCtrl.cpp">
+				</File>
+				<File
+					RelativePath=".\ColourTester\ColourTesterImageCtrl.h">
 				</File>
 			</Filter>
 		</Filter>

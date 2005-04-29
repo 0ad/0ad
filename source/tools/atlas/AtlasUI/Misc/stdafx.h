@@ -20,6 +20,7 @@
 #include "wx/file.h"
 #include "wx/colordlg.h"
 #include "wx/regex.h"
+#include "wx/image.h"
 
 #include <vector>
 #include <string>

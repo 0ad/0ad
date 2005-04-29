@@ -15,7 +15,7 @@
 			OutputDirectory="Debug"
 			IntermediateDirectory="Debug"
 			ConfigurationType="1"
-			CharacterSet="2">
+			CharacterSet="1">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
@@ -23,7 +23,7 @@
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="0"
-				RuntimeLibrary="5"
+				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
@@ -32,7 +32,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcd.lib DevIL_DBG.lib DevILU_DBG.lib"
+				AdditionalDependencies="DevIL_DBG.lib DevILU_DBG.lib"
 				OutputFile="$(OutDir)/textureconv.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="&quot;..\..\..\libraries\devil\src\lib&quot;"
@@ -67,12 +67,12 @@
 			OutputDirectory="Release"
 			IntermediateDirectory="Release"
 			ConfigurationType="1"
-			CharacterSet="2">
+			CharacterSet="1">
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalIncludeDirectories="..\..\..\libraries\devil\src\include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
-				RuntimeLibrary="4"
+				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -82,7 +82,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libc.lib DevIL.lib DevILU.lib"
+				AdditionalDependencies="DevIL.lib DevILU.lib"
 				OutputFile="$(OutDir)/textureconv.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;..\..\..\libraries\devil\src\lib&quot;;&quot;e:\icc81\compiler80\ia32\lib&quot;"
