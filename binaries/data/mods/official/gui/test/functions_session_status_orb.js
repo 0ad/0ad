@@ -452,8 +452,9 @@ function PressCommandButton(GUIObject, list, tab)
 //			}
 		break;
 		default:
+			// Left-clicked list button.
 			console.write("Clicked [" + list + "," + tab + "]: list of type " + SN_STATUS_PANE_COMMAND[list][tab].type + "; " + SN_STATUS_PANE_COMMAND[list][tab].name);
-			
+			// Attempt to add the entry to the queue.
 			attempt_add_to_build_queue( selection[0], selection[0].traits.id.civ_code + "_" + SN_STATUS_PANE_COMMAND[list][tab].name, list, tab);
 		break;
 	}

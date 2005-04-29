@@ -11,6 +11,8 @@ function entity_event_attack( evt )
 	evt.target.damage( dmg, this );
 }
 
+// ====================================================================
+
 function entity_event_gather( evt )
 {
 	if (this.actions.gather[evt.target.traits.supply.type][evt.target.traits.supply.subtype])
@@ -25,12 +27,12 @@ function entity_event_gather( evt )
 			gather_amt = evt.target.traits.supply.curr;
 			evt.target.kill();
 	    }
-	    console.write( evt.target.traits.supply.type);
-	    console.write( evt.target.traits.supply.type.toString().toUpperCase() );
 	    evt.target.traits.supply.curr -= gather_amt;
 	    this.player.resource[evt.target.traits.supply.type.toString().toUpperCase()] += gather_amt;
 	}
 }
+
+// ====================================================================
 
 function entity_event_takesdamage( evt )
 {
@@ -157,6 +159,8 @@ function entity_event_targetchanged( evt )
 	}
 }
 
+// ====================================================================
+
 function entity_event_prepareorder( evt )
 {
 	// This event gives us a chance to veto any order we're given before we execute it.
@@ -188,6 +192,8 @@ function entity_event_prepareorder( evt )
 	}
 }
 
+// ====================================================================
+
 function entity_add_create_queue( template, list, tab )
 {
 	// Make sure we have a queue to put things in...
@@ -216,9 +222,13 @@ function entity_add_create_queue( template, list, tab )
 	}
 }
 
+// ====================================================================
+
 // This is the syntax to add a function (or a property) to absolutely every entity.
 
 Entity.prototype.add_create_queue = entity_add_create_queue;
+
+// ====================================================================
 
 function entity_create_complete()
 {
@@ -272,8 +282,86 @@ function entity_create_complete()
 	}
 }
 
+// ====================================================================
+
 function attempt_add_to_build_queue( entity, create_tag, list, tab )
 {
-	console.write( "Adding ", create_tag, " to build queue..." );
-	entity.add_create_queue( getEntityTemplate( create_tag ), list, tab );
+	result = entity_CheckQueueReq (entity);
+
+	if (result == "true") // If the entry meets requirements to be added to the queue (eg sufficient resources) 
+	{
+		// Cycle through all costs of this entry.
+		pool = entity.traits.creation.resource;
+		for( resource in pool )
+		{
+			switch( resource.toString().toUpperCase() )
+			{
+				case "POPULATION" || "HOUSING":
+				break;
+				default:
+					// Deduct the given quantity of resources.
+					localPlayer.resource[resource.toString().toUpperCase()] -= pool[resource].cost;
+
+					console.write("Spent " + pool[resource].cost + " " + resource + ".");
+				break;
+			}
+		}
+
+		// Add entity to queue.
+		console.write( "Adding ", create_tag, " to build queue..." );
+		entity.add_create_queue( getEntityTemplate( create_tag ), list, tab );
+	}
+	else		// If not, output the error message.
+		console.write(result);
 }
+
+// ====================================================================
+
+function entity_CheckQueueReq (entry) 
+{ 
+	// Determines if the given entity meets requirements for production by the player, and returns an appropriate 
+	// error string.
+	// A return value of 0 equals success -- entry meets requirements for production. 
+	
+	// Cycle through all resources that this item costs, and check the player can afford the cost.
+	resources = entry.traits.creation.resource;
+	for( resource in resources )
+	{
+		resourceU = resource.toString().toUpperCase();
+		
+		switch( resourceU )
+		{
+			case "POPULATION":
+				// If the item costs more of this resource type than we have,
+				if (resources[resource].cost > (localPlayer.resource["HOUSING"]-localPlayer.resource[resourceU]))
+				{
+					// Return an error.
+					return ("Insufficient Housing; " + (resources[resource].cost-localPlayer.resource["HOUSING"]-localPlayer.resource.valueOf()[resourceU].toString()) + " required."); 
+				}
+			break;
+			case "HOUSING": // Ignore housing. It's handled in combination with population.
+			break
+			default:
+				// If the item costs more of this resource type than we have,
+				if (resources[resource].cost > localPlayer.resource[resourceU])
+				{
+					// Return an error.
+					return ("Insufficient " + resource + "; " + (localPlayer.resource[resourceU]-resources[resource].cost)*-1 + " required."); 
+				}
+				else
+					console.write("Player has at least " + resources[resource].cost + " " + resource + ".");
+			break;
+		}
+	}
+
+	// Check if another entity must first exist. 
+
+	// Check if another tech must first be researched. 
+
+	// Check if the limit for this type of entity has been reached. 
+
+	// If we passed all checks, return success. Entity can be queued.
+	return "true"; 
+}
+
+// ====================================================================

@@ -86,12 +86,27 @@ function GiveResources(resourceName, resourceQty)
 {
 	// Generic function to add resources to the player's Pool.
 
-	// MT: Rewritten to use JavaScript's nice associative-array-alikes. Requires the valueOf() hack - I'm looking into this.
-	
 	if( localPlayer.resource.valueOf()[resourceName] )
 	{
 	    localPlayer.resource.valueOf()[resourceName] += resourceQty;
 	    console.write("Earned " + resourceQty + " resources.");
+	    return( true );
+	}
+
+	// If the resource wasn't in the list, report an error.
+	return false;
+}
+
+// ====================================================================
+
+function DeductResources(resourceName, resourceQty)
+{
+	// Generic function to remove resources from the player's Pool.
+
+	if( localPlayer.resource.valueOf()[resourceName] )
+	{
+	    localPlayer.resource.valueOf()[resourceName] -= resourceQty;
+	    console.write("Deducted " + resourceQty + " resources.");
 	    return( true );
 	}
 

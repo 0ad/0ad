@@ -16,9 +16,14 @@
 		<Up
 			rank="0"
 		/>
-		<Creation
-			time="20"
-		/>
+		<Creation>
+			<Time>20</Time>
+			<Resource>
+				<Food cost="4" />
+				<Wood cost="3" />
+				<Stone cost="2" />
+			</Resource>
+		</Creation>
 	</Traits>
 	<Script File="entities/template_entity_script.js" />
 
