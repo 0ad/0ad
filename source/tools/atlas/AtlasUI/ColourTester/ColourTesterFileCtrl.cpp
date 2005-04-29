@@ -26,3 +26,13 @@ void ColourTesterFileCtrl::OnSelChanged(wxTreeEvent& event)
 		m_ImageCtrl->SetImageFile(GetFullPath(event.GetItem()));
 	}
 }
+
+bool ColourTesterFileCtrl::OnAddDirectory(VdtcTreeItemBase &item, const wxFileName &WXUNUSED(name))
+{
+	// Ignore .svn directories
+	if (item.GetName() == _T(".svn"))
+		return false;
+
+	// Accept everything else
+	return true;
+}

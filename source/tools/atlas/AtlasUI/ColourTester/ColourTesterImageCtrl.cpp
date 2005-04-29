@@ -96,12 +96,12 @@ void ColourTesterImageCtrl::CalculateImage()
 		 p0 < data+info.Width*info.Height*4;
 		 p0 += 4, p1 += 3)
 	{
-		// Interpolate between texture and colour, so
-		// new = old*alpha + colour*(1-alpha)
+		// Interpolate between texture and texture*colour, so
+		// new = old*alpha + old*colour*(1-alpha)
 		float alpha = p0[3]/255.f;
-		p1[0] = p0[0] * alpha + m_Colour[0]*(1.f-alpha);
-		p1[1] = p0[1] * alpha + m_Colour[1]*(1.f-alpha);
-		p1[2] = p0[2] * alpha + m_Colour[2]*(1.f-alpha);
+		p1[0] = p0[0]*alpha + p0[0]*m_Colour[0]*(1.f-alpha)/255.f;
+		p1[1] = p0[1]*alpha + p0[1]*m_Colour[1]*(1.f-alpha)/255.f;
+		p1[2] = p0[2]*alpha + p0[2]*m_Colour[2]*(1.f-alpha)/255.f;
 	}
 
 	m_FinalImage.SetData(newData, info.Width, info.Height);

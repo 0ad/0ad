@@ -11,6 +11,8 @@ class ColourTesterFileCtrl : public wxVirtualDirTreeCtrl
 public:
 	ColourTesterFileCtrl(wxWindow* parent, const wxSize& size, ColourTesterImageCtrl* imgctrl);
 
+	virtual bool OnAddDirectory(VdtcTreeItemBase &item, const wxFileName &name);
+
 private:
 	void OnSelChanged(wxTreeEvent& event);
 
