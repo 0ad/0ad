@@ -3,6 +3,9 @@
 #include "ColourTesterColourCtrl.h"
 
 #include "ColourTesterImageCtrl.h"
+#include "Datafile.h"
+
+#include <sstream>
 
 //////////////////////////////////////////////////////////////////////////
 // A couple of buttons:
@@ -10,12 +13,13 @@
 class ColouredButton : public wxButton
 {
 public:
-	ColouredButton(wxWindow* parent, int colour[], const wxString& caption, ColourTesterImageCtrl* imgctrl)
+	ColouredButton(wxWindow* parent, const wxColour& colour, const wxColour& textColor,
+					const wxString& caption, ColourTesterImageCtrl* imgctrl)
 		: wxButton(parent, wxID_ANY, caption),
-		m_ImageCtrl(imgctrl), m_Colour(colour[0], colour[1], colour[2])
+		m_ImageCtrl(imgctrl), m_Colour(colour)
 	{
 		SetBackgroundColour(m_Colour);
-		// TODO: More readable text colours
+		SetForegroundColour(textColor);
 	}
 	void OnButton(wxCommandEvent& WXUNUSED(event))
 	{
@@ -69,25 +73,30 @@ ColourTesterColourCtrl::ColourTesterColourCtrl(wxWindow* parent, ColourTesterIma
 	wxGridSizer* presetColourSizer = new wxGridSizer(2);
 	mainSizer->Add(presetColourSizer);
 
-	// TODO: make configurable
-	int presetColours[][3] = {
-		{255,255,255}, // Gaia
-		{255,0,0}, // Player 1
-		{0,255,0}, // etc
-		{0,0,255},
-		{255,255,0},
-		{255,0,255},
-		{0,255,255},
-		{255,127,255},
-		{255,204,127}
-	};
-
-	for (int i = 0; i < sizeof(presetColours)/sizeof(presetColours[0]); ++i)
+	AtObj colours (Datafile::ReadList("playercolours"));
+	for (AtIter c = colours["colour"]; c.defined(); ++c)
 	{
-		wxButton* button = new ColouredButton(this, presetColours[i],
-			i ? wxString::Format(_("Player %d"), i) : _("Gaia"), imgctrl);
-		presetColourSizer->Add(button);
+		wxColour back;
+		{
+			int r,g,b;
+			std::wstringstream s;
+			s << (std::wstring)c["@rgb"];
+			s >> r >> g >> b;
+			back = wxColour(r,g,b);
+		}
+
+		wxColour text (0, 0, 0);
+		if (c["@buttontext"].defined())
+		{
+			int r,g,b;
+			std::wstringstream s;
+			s << (std::wstring)c["@buttontext"];
+			s >> r >> g >> b;
+			text = wxColour(r,g,b);
+		}
+		presetColourSizer->Add(new ColouredButton(this, back, text, c["@name"], imgctrl));
 	}
+
 	presetColourSizer->Add(new CustomColourButton(this, _("Custom"), imgctrl));
 
 	SetSizer(mainSizer);
