@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <texture>props/prop_weap.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="cobalt">
+      <mesh>props/weap_falcata_a.pmd</mesh>
+    </variant>
+    <variant name="bronze">
+      <mesh>props/weap_falcata_b.pmd</mesh>
+    </variant>
+    <variant name="cooper">
+      <mesh>props/weap_falcata_c.pmd</mesh>
+    </variant>
+    <variant name="steel">
+      <mesh>props/weap_falcata_d.pmd</mesh>
+    </variant>
+    <variant name="brass">
+      <mesh>props/weap_falcata_e.pmd</mesh>
+    </variant>
+  </group>
+
+</actor>
