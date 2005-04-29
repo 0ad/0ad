@@ -112,147 +112,147 @@ IL_HINTS ilHints;
 
 
 #ifndef IL_NO_BMP
-	#define IL_BMP_EXT "bmp dib "
+	#define IL_BMP_EXT IL_TEXT("bmp dib ")
 #else
-	#define IL_BMP_EXT ""
+	#define IL_BMP_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_CHEAD
-	#define IL_CHEAD_EXT "h "
+	#define IL_CHEAD_EXT IL_TEXT("h ")
 #else
-	#define IL_CHEAD_EXT ""
+	#define IL_CHEAD_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_CUT
-	#define IL_CUT_EXT "cut "
+	#define IL_CUT_EXT IL_TEXT("cut ")
 #else
-	#define IL_CUT_EXT ""
+	#define IL_CUT_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_DCX
-	#define IL_DCX_EXT "dcx "
+	#define IL_DCX_EXT IL_TEXT("dcx ")
 #else
-	#define IL_DCX_EXT ""
+	#define IL_DCX_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_DDS
-	#define IL_DDS_EXT "dds "
+	#define IL_DDS_EXT IL_TEXT("dds ")
 #else
-	#define IL_DDS_EXT ""
+	#define IL_DDS_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_GIF
-	#define IL_GIF_EXT "gif "
+	#define IL_GIF_EXT IL_TEXT("gif ")
 #else
-	#define IL_GIF_EXT ""
+	#define IL_GIF_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_ICO
-	#define IL_ICO_EXT "ico cur "
+	#define IL_ICO_EXT IL_TEXT("ico cur ")
 #else
-	#define IL_ICO_EXT ""
+	#define IL_ICO_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_JPG
-	#define IL_JPG_EXT "jpg jpe jpeg "
+	#define IL_JPG_EXT IL_TEXT("jpg jpe jpeg ")
 #else
-	#define IL_JPG_EXT ""
+	#define IL_JPG_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_LIF
-	#define IL_LIF_EXT "lif "
+	#define IL_LIF_EXT IL_TEXT("lif ")
 #else
-	#define IL_LIF_EXT ""
+	#define IL_LIF_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_MDL
-	#define IL_MDL_EXT "mdl "
+	#define IL_MDL_EXT IL_TEXT("mdl ")
 #else
-	#define IL_MDL_EXT ""
+	#define IL_MDL_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_MNG
-	#define IL_MNG_EXT "mng jng "
+	#define IL_MNG_EXT IL_TEXT("mng jng ")
 #else
-	#define IL_MNG_EXT ""
+	#define IL_MNG_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_PCX
-	#define IL_PCX_EXT "pcx "
+	#define IL_PCX_EXT IL_TEXT("pcx ")
 #else
-	#define IL_PCX_EXT ""
+	#define IL_PCX_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_PIC
-	#define IL_PIC_EXT "pic "
+	#define IL_PIC_EXT IL_TEXT("pic ")
 #else
-	#define IL_PIC_EXT ""
+	#define IL_PIC_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_PIX
-	#define IL_PIX_EXT "pix "
+	#define IL_PIX_EXT IL_TEXT("pix ")
 #else
-	#define IL_PIX_EXT ""
+	#define IL_PIX_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_PNG
-	#define IL_PNG_EXT "png "
+	#define IL_PNG_EXT IL_TEXT("png ")
 #else
-	#define IL_PNG_EXT ""
+	#define IL_PNG_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_PNM
-	#define IL_PNM_EXT "pbm pgm pnm ppm "
+	#define IL_PNM_EXT IL_TEXT("pbm pgm pnm ppm ")
 #else
-	#define IL_PNM_EXT ""
+	#define IL_PNM_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_PSD
-	#define IL_PSD_EXT "psd pdd "
+	#define IL_PSD_EXT IL_TEXT("psd pdd ")
 #else
-	#define IL_PSD_EXT ""
+	#define IL_PSD_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_PSP
-	#define IL_PSP_EXT "psp "
+	#define IL_PSP_EXT IL_TEXT("psp ")
 #else
-	#define IL_PSP_EXT ""
+	#define IL_PSP_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_PXR
-	#define IL_PXR_EXT "pxr "
+	#define IL_PXR_EXT IL_TEXT("pxr ")
 #else
-	#define IL_PXR_EXT ""
+	#define IL_PXR_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_SGI
-	#define IL_SGI_EXT "sgi bw rgb rgba "
+	#define IL_SGI_EXT IL_TEXT("sgi bw rgb rgba ")
 #else
-	#define IL_SGI_EXT ""
+	#define IL_SGI_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_TGA
-	#define IL_TGA_EXT "tga vda icb vst "
+	#define IL_TGA_EXT IL_TEXT("tga vda icb vst ")
 #else
-	#define IL_TGA_EXT ""
+	#define IL_TGA_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_TIF
-	#define IL_TIF_EXT "tif tiff "
+	#define IL_TIF_EXT IL_TEXT("tif tiff ")
 #else
-	#define IL_TIF_EXT ""
+	#define IL_TIF_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_WAL
-	#define IL_WAL_EXT "wal "
+	#define IL_WAL_EXT IL_TEXT("wal ")
 #else
-	#define IL_WAL_EXT ""
+	#define IL_WAL_EXT IL_TEXT("")
 #endif
 
 #ifndef IL_NO_XPM
-	#define IL_XPM_EXT "xpm "
+	#define IL_XPM_EXT IL_TEXT("xpm ")
 #else
-	#define IL_XPM_EXT ""
+	#define IL_XPM_EXT IL_TEXT("")
 #endif
 
 

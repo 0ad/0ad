@@ -3,6 +3,7 @@
 	ProjectType="Visual C++"
 	Version="7.10"
 	Name="IL"
+	ProjectGUID=""
 	RootNamespace="IL"
 	SccProjectName="IL"
 	SccLocalPath="..\..">
@@ -18,13 +19,13 @@
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+			CharacterSet="1">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="../include;../../extlibs/libjpeg;../../include;../../extlibs/libpng;../../extlibs/libtiff/libtiff;../../extlibs/littlecms/include;../../extlibs/libmng;../../extlibs/zlib"
 				PreprocessorDefinitions="IL_EXPORTS;IL_DEBUG"
-				RuntimeLibrary="5"
+				RuntimeLibrary="3"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderFile=".\../src/obj/debug/IL.pch"
 				AssemblerListingLocation=".\../src/obj/debug/"
@@ -72,7 +73,7 @@
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2"
+			CharacterSet="1"
 			WholeProgramOptimization="FALSE">
 			<Tool
 				Name="VCCLCompilerTool"
@@ -83,7 +84,7 @@
 				AdditionalIncludeDirectories="../include;../../extlibs/libjpeg;../../include;../../extlibs/libpng;../../extlibs/libtiff/libtiff;../../extlibs/littlecms/include;../../extlibs/libmng;../../extlibs/zlib"
 				PreprocessorDefinitions="NDEBUG;IL_EXPORTS"
 				StringPooling="TRUE"
-				RuntimeLibrary="4"
+				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderFile=".\../src/obj/IL.pch"

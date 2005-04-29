@@ -40,11 +40,11 @@ ILboolean ILAPIENTRY ilLoadPal(const ILstring FileName)
 		return ilLoadPltPal(FileName);
 	}
 
-#ifndef _WIN32_WCE
+#ifndef _UNICODE
 	f = fopen(FileName, "rt");
 #else
 	f = _wfopen(FileName, L"rt");
-#endif//_WIN32_WCE
+#endif//_UNICODE
 	if (f == NULL) {
 		ilSetError(IL_COULD_NOT_OPEN_FILE);
 		return IL_FALSE;
@@ -83,11 +83,11 @@ ILboolean ilLoadJascPal(const ILstring FileName)
 		return IL_FALSE;
 	}
 
-#ifndef _WIN32_WCE
+#ifndef _UNICODE
 	PalFile = fopen(FileName, "rt");
 #else
 	PalFile = _wfopen(FileName, L"rt");
-#endif//_WIN32_WCE
+#endif//_UNICODE
 	if (PalFile == NULL) {
 		ilSetError(IL_COULD_NOT_OPEN_FILE);
 		return IL_FALSE;
@@ -258,11 +258,11 @@ ILboolean ilSaveJascPal(const ILstring FileName)
 		return IL_FALSE;
 	}
 
-#ifndef _WIN32_WCE
+#ifndef _UNICODE
 	PalFile = fopen(FileName, "wt");
 #else
 	PalFile = _wfopen(FileName, L"wt");
-#endif//_WIN32_WCE
+#endif//_UNICODE
 	if (!PalFile) {
 		ilSetError(IL_COULD_NOT_OPEN_FILE);
 		return IL_FALSE;

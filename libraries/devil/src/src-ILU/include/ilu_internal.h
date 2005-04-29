@@ -53,10 +53,21 @@
 	#define IL_TEXT(s) ((char*)TEXT(s))
 #elif _WIN32
 	#include <windows.h>
-	#define IL_TEXT(s) (s)
+	#ifdef _UNICODE
+		#define IL_TEXT__(s) L##s
+		#define IL_TEXT(s) IL_TEXT__(s)
+	#else
+		#define IL_TEXT(s) (s)
+	#endif
 #else
-	#define IL_TEXT(s) (s)
-	#define TEXT(s) (s)
+	#ifdef _UNICODE
+		#define IL_TEXT__(s) L##s
+		#define IL_TEXT(s) IL_TEXT__(s)
+		#define TEXT(s) IL_TEXT(s)
+	#else
+		#define IL_TEXT(s) (s)
+		#define TEXT(s) (s)
+	#endif
 #endif
 
 
