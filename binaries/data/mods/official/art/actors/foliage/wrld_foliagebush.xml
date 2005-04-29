@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <group>
+    <variant name="Base">
+      <mesh>gaia/wrld_foragebush_a.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="red">
+      <texture>gaia/wrld_dankleberrybush_red.dds</texture>
+    </variant>
+    <variant name="blue">
+      <texture>gaia/wrld_dankleberrybush_blue.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>

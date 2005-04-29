@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <group>
+    <variant name="Base">
+      <mesh>gaia/wrld_flower_bright.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="a">
+      <texture>gaia/wrld_flower_bright1.dds</texture>
+    </variant>
+    <variant name="b">
+      <texture>gaia/wrld_flower_bright2.dds</texture>
+    </variant>
+    <variant name="c">
+      <texture>gaia/wrld_flower_bright3.dds</texture>
+    </variant>
+    <variant name="d">
+      <texture>gaia/wrld_flower_bright4.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>
