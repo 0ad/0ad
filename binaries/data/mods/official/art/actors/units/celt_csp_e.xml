@@ -10,8 +10,25 @@
         <animation file="quadraped/mastiff_run.psa" name="Walk" speed="500"/>
       </animations>
       <mesh>skeletal/mastiff.pmd</mesh>
-      <texture>skeletal/mastiff.dds</texture>
+      <props>
+        <prop actor="props/head/celt_mastiff_a.xml" attachpoint="collar"/>
+      </props>
+      <texture>skeletal/mastiff_e.dds</texture>
     </variant>
   </group>
+
+  <group>
+    <variant frequency="1" name="brown">
+      <color rgb="255 149 79"/>
+    </variant>
+    <variant frequency="1" name="taupe">
+      <color rgb="255 224 151"/>
+    </variant>
+    <variant frequency="2" name="tawny">
+      <color rgb="255 179 59"/>
+    </variant>
+  </group>
+
+  <material>objectcolor.xml</material>
 
 </actor>

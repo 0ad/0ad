@@ -6,8 +6,8 @@
   <group>
     <variant frequency="100" name="Base">
       <animations>
-        <animation file="biped/cavalryidle.psa" name="Idle" speed="0"/>
-        <animation file="biped/cavalryidle.psa" name="Walk" speed="0"/>
+        <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
+        <animation file="biped/rider_gallop.psa" name="Walk" speed="700"/>
         <animation file="biped/dudebuild.psa" name="Build" speed="150"/>
         <animation file="biped/dudechop.psa" name="Chop" speed="150"/>
         <animation file="biped/dudedeath_sword.psa" name="Death" speed="200"/>
