@@ -196,7 +196,7 @@ XMBElement XMBElementList::item(const int id)
 			Pos += *(int*)Pos;
 	}
 	// Cache information about this node
-    m_LastItemID = id;
+	m_LastItemID = id;
 	m_LastPointer = Pos;
 
 	return XMBElement(Pos);
