@@ -19,5 +19,25 @@
       <texture>props/head/celt_d.dds</texture>
     </variant>
   </group>
+  
+  <group>
+    <variant frequency="2" name="dark brown">
+      <color rgb="75 61 38"/>
+    </variant>
+    <variant frequency="3" name="brown">
+      <color rgb="99 82 53"/>
+    </variant>
+    <variant frequency="5" name="medium brown">
+      <color rgb="138 110 61"/>
+    </variant>
+    <variant frequency="8" name="dark blonde">
+      <color rgb="186 154 92"/>
+    </variant>
+    <variant frequency="5" name="blonde">
+      <color rgb="255 233 173"/>
+    </variant>
+  </group>
+
+  <material>objectcolor.xml</material>
 
 </actor>
