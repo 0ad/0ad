@@ -51,7 +51,13 @@ enum VfsMountFlags
 
 	// when mounting a directory, all directories beneath it are
 	// added recursively as well.
-	VFS_MOUNT_RECURSIVE = 2
+	VFS_MOUNT_RECURSIVE = 2,
+
+	// all real directories mounted during this operation will be watched
+	// for changes (using hotload.h). this flag is provided to avoid
+	// watches in output-only directories, e.g. screenshots/
+	// (only causes unnecessary overhead).
+	VFS_MOUNT_WATCH = 4
 };
 
 // mount <p_real_dir> into the VFS at <vfs_mount_point>,

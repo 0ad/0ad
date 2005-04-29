@@ -388,15 +388,23 @@ static int dirent_cb(const char* name, const struct stat* s, uintptr_t user)
 
 
 // add the contents of directory <p_path> to this TDir,
-// marking the files' locations as <mount_point>.
-// if desired, we recursively add the contents of subdirectories as well.
-// if <archives> != 0, all archives found in this directory only
-//   (not its subdirs! see below) are opened in alphabetical order,
-//   their files added, and a TMountPoint appended to <*archives>.
-static int populate_dir(TDir* dir_, const char* p_path_, const TMountPoint* mount_point, bool recursive, TMountPoints* archives)
+// marking the files' locations as <mount_point>. flags: see VfsMountFlags.
+//
+// note: we are only able to add archives found in the root directory,
+// due to dirent_cb implementation. that's ok - we don't want to check
+// every single file to see if it's an archive (slow!).
+static int populate_dir(TDir* dir_, const char* p_path_, const TMountPoint* mount_point, int flags, TMountPoints* parchives_)
 {
 	DirQueue dir_queue;
+
+	const bool recursive = (flags & VFS_MOUNT_RECURSIVE) != 0;
+	const bool archives  = (flags & VFS_MOUNT_ARCHIVES ) != 0;
+	const bool watch     = (flags & VFS_MOUNT_WATCH    ) != 0;
+
+	// instead of propagating flags down to dirent_cb, prevent recursing
+	// and adding archives by setting the destination pointers to 0 (easier).
 	DirQueue* const pdir_queue = recursive? &dir_queue : 0;
+	TMountPoints* parchives = archives? parchives_ : 0;
 
 	// kickoff (less efficient than goto, but c_str reference requires
 	// pop to come at end of loop => this is easiest)
@@ -407,16 +415,16 @@ static int populate_dir(TDir* dir_, const char* p_path_, const TMountPoint* moun
 		TDir* const dir    = dir_queue.front().dir;
 		const char* p_path = dir_queue.front().path.c_str();
 		
-		tree_mount(dir, p_path, mount_point);
+		tree_mount(dir, p_path, mount_point, watch);
 
 		// add files and subdirs to this dir;
 		// also adds the contents of archives if archives != 0.
-		const DirentCBParams params(dir, mount_point, p_path, pdir_queue, archives);
+		const DirentCBParams params(dir, mount_point, p_path, pdir_queue, parchives);
 		file_enum(p_path, dirent_cb, (uintptr_t)&params);
 
 		// xxx load all archive_loc archives here instead
 
-		archives = 0;
+		parchives = 0;
 			// prevent searching for archives in subdirectories (slow!). this
 			// is currently required by the dirent_cb implementation anyway.
 
@@ -512,12 +520,9 @@ static int remount(Mount& m)
 	TDir* dir;
 	CHECK_ERR(tree_lookup_dir(v_mount_point, &dir, LF_CREATE_MISSING));
 
-	const bool recursive = !!(flags & VFS_MOUNT_RECURSIVE);
-	TMountPoints* parchive_locs = (flags & VFS_MOUNT_ARCHIVES)? &archives : 0;
-
 	// add all loose files and subdirectories (recursive).
 	// also mounts all archives in p_real_path and adds to archives.
-	return populate_dir(dir, p_real_path, mount_point, recursive, parchive_locs);
+	return populate_dir(dir, p_real_path, mount_point, flags, &archives);
 }
 
 

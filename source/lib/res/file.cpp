@@ -555,7 +555,10 @@ int file_open(const char* p_fn, const uint flags, File* f)
 	}
 
 #ifdef _WIN32
-	oflag |= O_BINARY;
+	if(flags & FILE_TEXT)
+		oflag |= O_TEXT_NP;
+	else
+		oflag |= O_BINARY_NP;
 
 	// if AIO is disabled (at user's behest or because the file is small),
 	// so inform wposix.

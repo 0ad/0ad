@@ -203,7 +203,7 @@ static void WriteSysInfo()
 {
 double t1 = get_time();
 	get_gfx_info();
-	get_cpu_info();
+	// get_cpu_info already called during init - see call site
 	get_snd_info();
 	get_mem_status();
 double t2 = get_time();
@@ -805,7 +805,7 @@ TIMER(InitVfs)
 	{
 	TIMER(VFS_INIT);
 	vfs_init();
-	vfs_mount("", "mods/official", VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES);
+	vfs_mount("", "mods/official", VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_WATCH);
 	vfs_mount("screenshots/", "screenshots");
 	vfs_mount("profiles/", "profiles");
 	}
@@ -1099,10 +1099,21 @@ static void Init(int argc, char* argv[], bool setup_gfx = true)
 u64 TSC=rdtsc();
 debug_out(
 "----------------------------------------\n"\
-"MAIN\n"\
+"INITIALIZING\n"\
 "----------------------------------------\n");
 PREVTSC=TSC;
 #endif
+
+
+	// set 24 bit (float) FPU precision for faster divides / sqrts
+#ifdef _M_IX86
+	_control87(_PC_24, _MCW_PC);
+#endif
+
+	// detects CPU clock frequency and capabilities, which are prerequisites
+	// for using the TSC as a timer (desirable due to its high resolution).
+	// do this before lengthy init so we can time those accurately.
+	get_cpu_info();
 
 	// Call LoadLanguage(NULL) to initialise the I18n system, but
 	// without loading an actual language file - translate() will
@@ -1112,11 +1123,6 @@ PREVTSC=TSC;
 	// been initialised.
 	MICROLOG(L"init i18n");
 	I18n::LoadLanguage(NULL);
-
-	// set 24 bit (float) FPU precision for faster divides / sqrts
-#ifdef _M_IX86
-	_control87(_PC_24, _MCW_PC);
-#endif
 
 	// Do this as soon as possible, because it chdirs
 	// and will mess up the error reporting if anything
@@ -1187,10 +1193,12 @@ sle(11340106);
 		vfs_display();
 	}
 	else
+	{
 		// speed up startup by disabling all sound
 		// (OpenAL init will be skipped).
 		// must be called before first snd_open.
 		snd_disable(true);
+	}
 
 	if(!oglHaveExtension("GL_ARB_multitexture") || !oglHaveExtension("GL_ARB_texture_env_combine") ||
 		!glActiveTexture)	// prevent crashing later if multitexture support is falsely

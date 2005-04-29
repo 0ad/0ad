@@ -49,6 +49,13 @@ enum
 	// write-only access; otherwise, read only
 	FILE_WRITE        = 0x01,
 
+	// translate newlines: convert from/to native representation when
+	// reading/writing. this is useful if files we create need to be
+	// edited externally - e.g. Notepad requires \r\n.
+	// caveats:
+	// - FILE_NO_AIO must be set; translation is done by OS read()/write().
+	// - not supported by POSIX, so this currently only has meaning on Win32.
+	FILE_TEXT         = 0x02,
 	
 	// the file's contents aren't cached at a higher level; do so here.
 	// we keep the file open (until the cache is "full enough"). if it

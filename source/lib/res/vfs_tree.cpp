@@ -330,7 +330,7 @@ bool TChildren::expand_tbl()
 TNode* TChildren::add(const char* fn)
 {
 	// expand before determining slot; this will invalidate previous pnodes.
-	if(num_entries*2 >= max_entries)
+	if(num_entries*4 >= max_entries*3)
 	{
 		if(!expand_tbl())
 			return 0;

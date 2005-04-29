@@ -223,14 +223,20 @@ extern int munmap(void* start, size_t len);
 #define O_CREAT        0x0100  // create and open file
 #define O_TRUNC        0x0200  // open and truncate
 #define O_EXCL         0x0400  // open only if file doesn't already exist
-#define O_BINARY       0x8000  // file mode is binary (untranslated)
 
+// .. Win32-only (not specified by POSIX)
+#define O_TEXT_NP      0x4000  // file mode is text (translated)
+#define O_BINARY_NP    0x8000  // file mode is binary (untranslated)
+
+// .. wposix.cpp only (bit values not used by MS _open)
 #define O_NO_AIO_NP    0x20000
 	// wposix-specific: do not open a separate AIO-capable handle.
 	// this is used for small files where AIO overhead isn't worth it,
 	// thus speeding up loading and reducing resource usage.
 
+// .. not supported by Win32 (bit values not used by MS _open)
 #define O_NONBLOCK     0x1000000
+
 
 // redefinition error here => io.h is getting included somewhere.
 // we implement this function, so the io.h definition conflicts if
