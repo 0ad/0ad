@@ -635,16 +635,16 @@
                 </sprite>
 
                 <!-- Deciduous Tree portrait. -->
-                <sprite name="ui_portrait_flora_deciduotree">
-                        <image texture="session/portraits/ui_portrait_flora_deciduotree.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
+                <sprite name="ui_portrait_flora_deciduotree_gaia">
+                        <image texture="session/portraits/ui_portrait_flora_deciduotree_gaia.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
-                <sprite name="ui_portrait_flora_deciduotree_lit">
+                <sprite name="ui_portrait_flora_deciduotree_gaia_lit">
                         <effect add_color="42 42 42 0"/>
-                        <image texture="session/portraits/ui_portrait_flora_deciduotree.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
+                        <image texture="session/portraits/ui_portrait_flora_deciduotree_gaia.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
-                <sprite name="ui_portrait_flora_deciduotree_grey">
+                <sprite name="ui_portrait_flora_deciduotree_gaia_grey">
                         <effect grayscale=""/>
-                        <image texture="session/portraits/ui_portrait_flora_deciduotree.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
+                        <image texture="session/portraits/ui_portrait_flora_deciduotree_gaia.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
                 </sprite>
 
                 <!--
