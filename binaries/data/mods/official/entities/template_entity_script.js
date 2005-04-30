@@ -149,12 +149,8 @@ function entity_event_targetchanged( evt )
 			( ( evt.target.traits.supply.curr > 0 ) || ( evt.target.traits.supply.max == 0 ) ) )
 		{
 		    evt.defaultAction = ORDER_GATHER;
-		    if( evt.target.traits.supply.type == "wood" )
-		    {
-				evt.defaultCursor = "action-chop";
-			}
-			else
-				evt.defaultCursor = "action-mine";	
+		    // Set cursor (eg "action-gather-fruit").
+		    evt.defaultCursor = "action-gather-" + evt.target.traits.supply.subtype;
 		}
 	}
 }
