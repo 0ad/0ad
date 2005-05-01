@@ -199,31 +199,31 @@ CGameAttributes::CGameAttributes():
 		m_Players[i]=new CPlayer(i);
 		
 	m_Players[0]->SetName(L"Gaia");
-	m_Players[0]->SetColour(SPlayerColour(1.0f, 1.0f, 1.0f));
+	m_Players[0]->SetColour(SPlayerColour(1.0f, 1.0f, 1.0f)); //White
 
-	m_Players[1]->SetName(L"Sally Jessie Rapheal");
-	m_Players[1]->SetColour(SPlayerColour(1.0f, 0.0f, 0.0f));
+	m_Players[1]->SetName(L"Player 1");
+	m_Players[1]->SetColour(SPlayerColour(0.075f, 0.192f, 0.631f)); // Blue
 
 	m_Players[2]->SetName(L"Acumen");
-	m_Players[2]->SetColour(SPlayerColour(0.0f, 1.0f, 0.0f));
+	m_Players[2]->SetColour(SPlayerColour(0.627f, 0.082f, 0.0f)); //Red
 
 	m_Players[3]->SetName(L"Boco the Insignificant");
-	m_Players[3]->SetColour(SPlayerColour(0.0f, 0.0f, 1.0f));
+	m_Players[3]->SetColour(SPlayerColour(0.0f, 0.341f, 0.0f)); //Green
 
 	m_Players[4]->SetName(L"NoMonkey the Magnificent");
-	m_Players[4]->SetColour(SPlayerColour(1.0f, 1.0f, 0.0f));
+	m_Players[4]->SetColour(SPlayerColour(1.0f, 1.0f, 0.0f)); //Yellow
 
 	m_Players[5]->SetName(L"Wijit");
-	m_Players[5]->SetColour(SPlayerColour(1.0f, 0.0f, 1.0f));
+	m_Players[5]->SetColour(SPlayerColour(1.0f, 0.58f, 0.129f)); //Orange
 
 	m_Players[6]->SetName(L"Ykkrosh");
-	m_Players[6]->SetColour(SPlayerColour(0.0f, 1.0f, 1.0f));
+	m_Players[6]->SetColour(SPlayerColour(0.0f, 0.47f, 0.47f)); //Turquoise
 
 	m_Players[7]->SetName(L"Code Monkey");
-	m_Players[7]->SetColour(SPlayerColour(1.0f, 0.5f, 1.0f));
+	m_Players[7]->SetColour(SPlayerColour(0.5f, 0.0f, 0.5f)); //Purple
 
 	m_Players[8]->SetName(L"Clausewitz");
-	m_Players[8]->SetColour(SPlayerColour(1.0f, 0.8f, 0.5f));
+	m_Players[8]->SetColour(SPlayerColour(0.25f, 0.25f, 0.25f)); //Black
 	
 	std::vector<CPlayer *>::iterator it=m_Players.begin();
 	++it; // Skip Gaia - gaia doesn't account for a slot
