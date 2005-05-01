@@ -27,12 +27,21 @@ function SelectGroup(groupNumber)
 	// Set the current selection to the specified group (team) number, 1-9.
 	// If the group is already selected, centre on the group.
 
+	console.write( groupNumber );
+	
 	if (groups[groupNumber].length > 0)
 	{
 		// If group already selected,
-		if (selection == groups[groupNumber])
+		if (selection.equals( groups[groupNumber] ) )
 		{
-			setCameraTarget(selection[0].position); // Centre on it.
+			// Find the average position of the group
+			position_avg = new Vector3D();
+			for( t = 0; t < selection.length; t++ )
+				position_avg = position_avg.add( selection[t].position );
+			
+			position_avg = position_avg.divide( selection.length );
+			
+			setCameraTarget( position_avg ); // Centre on it.
 		}
 		else
 			selection = groups[groupNumber];	// If not, select it.

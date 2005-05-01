@@ -269,7 +269,7 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 }
 
 // Handles processing common to (at the moment) gather and melee attack actions
-bool CEntity::processContactAction( CEntityOrder* current, size_t timestep_millis, int transition, float range )
+bool CEntity::processContactAction( CEntityOrder* current, size_t timestep_millis, int transition, SEntityAction* action )
 {
 	m_orderQueue.pop_front();
 
@@ -278,7 +278,7 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t timestep_milli
 	
 	current->m_data[0].location = current->m_data[0].entity->m_position;
 
-	if( ( current->m_data[0].location - m_position ).length() < m_meleeRange ) 
+	if( ( current->m_data[0].location - m_position ).length() < action->m_MaxRange ) 
 	{
 		(int&)current->m_type = transition;
 		return( true );
@@ -297,9 +297,45 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t timestep_milli
 
 	return( true );
 }
-bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, CSkeletonAnim* animation, CScriptEvent* contactEvent, float range, float minRange = 0.0f )
+bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, CSkeletonAnim* animation, CScriptEvent* contactEvent, SEntityAction* action )
 {
-	static size_t cyclepos = 0;
+	if( m_fsm_cyclepos != NOT_IN_CYCLE )
+	{
+		size_t nextpos = m_fsm_cyclepos + timestep_millis * 2;
+		if( ( m_fsm_cyclepos <= m_fsm_anipos ) &&
+			( nextpos > m_fsm_anipos ) )
+		{
+			// Start playing.
+			// Start the animation. Actual damage/gather will be done in a 
+			// few hundred ms, at the 'action point' of the animation we're
+			// now setting.
+
+			m_actor->GetModel()->SetAnimation( m_fsm_animation, true );
+		}
+		
+		if( ( m_fsm_cyclepos <= action->m_Speed ) && ( nextpos > action->m_Speed ) )
+		{
+			DispatchEvent( contactEvent );
+			// Note that, at the moment, we don't care if the action succeeds or fails - 
+			// we could check for failure, then abort the animation.
+			// It depends what we think is worse: stopping an animation halfway through,
+			// or playing the animation without getting a game effect.
+
+			// Could also check again here if the entity still exists, is in range, etc..
+			// and cancel if not, but we'll see how it looks without that, first.
+		}
+		
+		if( nextpos >= ( action->m_Speed * 2 ) )
+		{
+			// End of cycle.
+			m_fsm_cyclepos = NOT_IN_CYCLE;
+			return( false );
+		}
+
+		// Otherwise, increment position.
+		m_fsm_cyclepos = nextpos;
+		return( false );
+	}
 
 	// Target's dead (or exhausted)? Then our work here is done.
 	if( !current->m_data[0].entity || !current->m_data[0].entity->m_extant )
@@ -308,42 +344,13 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		return( false );
 	}
 
-	if( m_actor )
-	{
-		if( animation && ( m_actor->GetModel()->GetAnimation() == animation ) )
-		{
-			size_t cyclenext = cyclepos + timestep_millis;
-			if( ( cyclepos <= animation->m_ActionPos ) &&
-				( cyclenext > animation->m_ActionPos ) )
-			{
-				// Actually execute the action script in the sim frame
-				// that contains the animation's 'action point' (as 
-				// specified by the artist that created it)
-				if( !DispatchEvent( contactEvent ) )
-				{
-					// The script is cancelling the attack/gather action.
-
-					// Cancel the animation (will probably cause a graphical
-					// glitch, but can't be helped)
-					m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_WalkAnim );
-				}
-			}
-			cyclepos = cyclenext;
-			return( false );
-		}
-
-		// Just transitioned? No animation? (=> melee just finished) Play walk.
-		if( m_transition || !m_actor->GetModel()->GetAnimation() )
-			m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_WalkAnim );
-	}
-
 	CVector2D delta = current->m_data[0].entity->m_position - m_position;
 
-	float adjRange = range + m_bounds->m_radius + current->m_data[0].entity->m_bounds->m_radius;
+	float adjRange = action->m_MaxRange + m_bounds->m_radius + current->m_data[0].entity->m_bounds->m_radius;
 
-	if( minRange > 0.0f )
+	if( action->m_MinRange > 0.0f )
 	{
-		float adjMinRange = m_meleeRangeMin + m_bounds->m_radius + current->m_data[0].entity->m_bounds->m_radius;
+		float adjMinRange = action->m_MinRange + m_bounds->m_radius + current->m_data[0].entity->m_bounds->m_radius;
 		if( delta.within( adjMinRange ) )
 		{
 			// Too close... do nothing.
@@ -356,6 +363,14 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		// Too far away at the moment, chase after the target...
 		// We're aiming to end up at a location just inside our maximum range
 		// (is this good enough?)
+
+		// Play walk for a bit.
+		if( m_actor && ( m_actor->GetModel()->GetAnimation() != m_actor->GetObject()->m_WalkAnim ) )
+		{
+			m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_WalkAnim );
+			// Animation desync
+			m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
+		}
 
 		delta = delta.normalize() * ( adjRange - m_bounds->m_radius );
 
@@ -411,39 +426,52 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 	}
 	else
 	{
-		// Close enough, but turn to face them.
+		// Close enough, but turn to face them.  
 		m_orientation = atan2( delta.x, delta.y );
 		m_ahead = delta.normalize();
 	}
 
-	// Start the animation. Actual damage/gather will be done in a 
-	// few hundred msec, at the 'action point' of the animation we're
-	// now setting.
+	// Pick our animation, calculate the time to play it, and start the timer.
+	m_fsm_animation = animation; // <- Replace with a call that gets one randomly, probably pass in a CSkeletonAnim* (void) fn for this purpose
+	
+	// Here's the idea - we want to be at that animation's event point
+	// when the timer reaches action->m_Speed. The timer increments by 2 every millisecond.
+	// animation->m_actionpos is the time offset into that animation that event
+	// should happen. So...
+	m_fsm_anipos = action->m_Speed - ( m_fsm_animation->m_ActionPos * 2 );
+	// But...
+	if( action->m_Speed < ( m_fsm_animation->m_ActionPos * 2 ) )
+	{
+		// We ought to have started it in the past. Oh well.
+		// Here's what we'll do: play it now, and advance it to
+		// the point it should be by now.
+		m_actor->GetModel()->SetAnimation( m_fsm_animation, true );
+		m_actor->GetModel()->Update( m_fsm_animation->m_ActionPos / 1000.0f - action->m_Speed / 2000.0f );
+	}
 
-	m_actor->GetModel()->SetAnimation( animation, true );
-	cyclepos = 0;
+	m_fsm_cyclepos = 0;
 
 	return( false );
 }
 
 bool CEntity::processAttackMelee( CEntityOrder* current, size_t timestep_millis )
 {
-	return( processContactAction( current, timestep_millis, CEntityOrder::ORDER_ATTACK_MELEE_NOPATHING, 0.5 ) );
+	return( processContactAction( current, timestep_millis, CEntityOrder::ORDER_ATTACK_MELEE_NOPATHING, &m_melee ) );
 }
 bool CEntity::processAttackMeleeNoPathing( CEntityOrder* current, size_t timestep_milli )
 {
 	CEventAttack evt( current->m_data[0].entity );
-	return( processContactActionNoPathing( current, timestep_milli, m_actor ? m_actor->GetObject()->m_MeleeAnim : NULL, &evt, m_meleeRange, m_meleeRangeMin ) );
+	return( processContactActionNoPathing( current, timestep_milli, m_actor ? m_actor->GetObject()->m_MeleeAnim : NULL, &evt, &m_melee ) );
 }
 bool CEntity::processGather( CEntityOrder* current, size_t timestep_millis )
 {
-	return( processContactAction( current, timestep_millis, CEntityOrder::ORDER_GATHER_NOPATHING, 0.5 ) );
+	return( processContactAction( current, timestep_millis, CEntityOrder::ORDER_GATHER_NOPATHING, &m_gather ) );
 }
 
 bool CEntity::processGatherNoPathing( CEntityOrder* current, size_t timestep_millis )
 {
 	CEventGather evt( current->m_data[0].entity );
-	return( processContactActionNoPathing( current, timestep_millis, m_actor ? m_actor->GetObject()->m_GatherAnim : NULL, &evt, 5.0, 0.0 ) );
+	return( processContactActionNoPathing( current, timestep_millis, m_actor ? m_actor->GetObject()->m_GatherAnim : NULL, &evt, &m_gather ) );
 }
 
 bool CEntity::processGoto( CEntityOrder* current, size_t timestep_millis )

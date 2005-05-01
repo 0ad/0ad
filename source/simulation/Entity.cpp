@@ -34,8 +34,12 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	AddProperty( L"traits.extant", &m_extant );
 	AddProperty( L"traits.corpse", &m_corpse );
 	AddProperty( L"actions.move.turningradius", &m_turningRadius );
-	AddProperty( L"actions.attack.range", &m_meleeRange );
-	AddProperty( L"actions.attack.rangemin", &m_meleeRangeMin );
+	AddProperty( L"actions.attack.range", &( m_melee.m_MaxRange ) );
+	AddProperty( L"actions.attack.rangemin", &( m_melee.m_MinRange ) );
+	AddProperty( L"actions.attack.speed", &( m_melee.m_Speed ) );
+	AddProperty( L"actions.gather.range", &( m_gather.m_MaxRange ) );
+	AddProperty( L"actions.gather.rangemin", &( m_gather.m_MinRange ) );
+	AddProperty( L"actions.gather.speed", &( m_gather.m_Speed ) );
 	AddProperty( L"position", &m_graphics_position, false, (NotifyFn)&CEntity::teleport );
 	AddProperty( L"orientation", &m_graphics_orientation, false, (NotifyFn)&CEntity::reorient );
 	AddProperty( L"player", &m_player );
@@ -52,6 +56,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 
 	m_lastState = -1;
 	m_transition = true;
+	m_fsm_cyclepos = NOT_IN_CYCLE;
 
 	m_base = base;
 	
@@ -105,6 +110,7 @@ void CEntity::loadBase()
 	// Set up our instance data
 
 	SetBase( m_base );
+	m_classes.SetParent( &( m_base->m_classes ) );
 	SetNextObject( m_base );
 
 	if( m_base->m_bound_type == CBoundingObject::BOUND_CIRCLE )
@@ -168,6 +174,76 @@ void CEntity::snapToGround()
 	m_graphics_position.Y = pTerrain->getExactGroundLevel( m_graphics_position.X, m_graphics_position.Z );
 }
 
+jsval CEntity::getClassSet()
+{
+	STL_HASH_SET<CStrW, CStrW_hash_compare>::iterator it;
+	it = m_classes.m_Set.begin();
+	CStrW result = L"";
+	if( it != m_classes.m_Set.end() )
+	{
+		result = *( it++ );
+		for( ; it != m_classes.m_Set.end(); it++ )
+			result += L" " + *it;
+	}
+	return( ToJSVal( result ) );
+}
+
+void CEntity::setClassSet( jsval value )
+{
+	// Get the set that was passed in.
+	CStr temp = ToPrimitive<CStrW>( value );
+	CStr entry;
+	
+	m_classes.m_Added.clear();
+	m_classes.m_Removed.clear();
+
+	while( true )
+	{
+		long brk_sp = temp.Find( ' ' );
+		long brk_cm = temp.Find( ',' );
+		long brk = ( brk_sp == -1 ) ? brk_cm : ( brk_cm == -1 ) ? brk_sp : ( brk_sp < brk_cm ) ? brk_sp : brk_cm; 
+
+		if( brk == -1 )
+		{
+			entry = temp;
+		}
+		else
+		{
+			entry = temp.GetSubstring( 0, brk );
+			temp = temp.GetSubstring( brk + 1, temp.Length() );
+		}
+
+		if( brk != 0 )
+		{
+			
+			if( entry[0] == '-' )
+			{
+				entry = entry.GetSubstring( 1, entry.Length() );
+				if( entry.Length() )
+					m_classes.m_Removed.push_back( entry );
+			}
+			else
+			{	
+				if( entry[0] == '+' )
+					entry = entry.GetSubstring( 1, entry.Length() );
+				if( entry.Length() )
+					m_classes.m_Added.push_back( entry );
+			}
+		}		
+		if( brk == -1 ) break;
+	}
+
+	rebuildClassSet();
+}
+
+void CEntity::rebuildClassSet()
+{
+	m_classes.Rebuild();
+	InheritorsList::iterator it;
+	for( it = m_Inheritors.begin(); it != m_Inheritors.end(); it++ )
+		(*it)->rebuildClassSet();
+}
+
 void CEntity::update( size_t timestep )
 {
 	m_position_previous = m_position;
@@ -183,10 +259,11 @@ void CEntity::update( size_t timestep )
 	{
 		CEntityOrder* current = &m_orderQueue.front();
 
-		m_transition = ( current->m_type != m_lastState );
-
-		if( m_transition ) 
+		if( current->m_type != m_lastState )
 		{
+			m_transition = true;
+			m_fsm_cyclepos = NOT_IN_CYCLE;
+
 			PROFILE( "state transition / order" );
 
 			CEntity* target = NULL;
@@ -210,6 +287,8 @@ void CEntity::update( size_t timestep )
 
 			m_lastState = current->m_type;
 		}
+		else
+			m_transition = false;
 
 		switch( current->m_type )
 		{
@@ -287,48 +366,6 @@ void CEntity::Damage( CDamageType& damage, CEntity* inflictor )
 	CEventDamage evt( inflictor, &damage );
 	DispatchEvent( &evt );
 }
-
-/*
-void CEntity::dispatch( const CMessage* msg )
-{
-	
-	switch( msg->type )
-	{
-	case CMessage::EMSG_TICK:
-	{
-		CEventTick Tick;
-		DispatchEvent( &Tick );
-		break;
-	}
-	case CMessage::EMSG_INIT:
-	{
-		CEventInitialize Init;
-		if( !DispatchEvent( &Init ) )
-			break;
-
-		if( m_base->m_Tag == CStrW( L"Prometheus Dude" ) )
-		{
-			if( getCollisionObject( this ) )
-			{
-				// Prometheus telefragging. (Appeared inside another object)
-				kill();
-				return;
-			}
-		}
-		break;
-	}
-	case CMessage::EMSG_ORDER:
-		CMessageOrder* m;
-		m = (CMessageOrder*)msg;
-		if( !m->queue )
-			clearOrders();
-		pushOrder( m->order );
-		break;
-	case CMessage::EMSG_DAMAGE:
-		CEntityOrder* o;
-	}
-}
-*/
 
 void CEntity::clearOrders()
 {
@@ -607,9 +644,11 @@ void CEntity::ScriptingInit()
 	AddMethod<bool, &CEntity::Kill>( "kill", 0 );
 	AddMethod<bool, &CEntity::Damage>( "damage", 1 );
 	AddMethod<bool, &CEntity::IsIdle>( "isIdle", 0 );
+	AddMethod<bool, &CEntity::HasClass>( "hasClass", 1 );
 	AddMethod<jsval, &CEntity::GetSpawnPoint>( "getSpawnPoint", 1 );
 	
 	AddClassProperty( L"template", (CBaseEntity* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
+	AddClassProperty( L"traits.id.classes", (GetFn)getClassSet, (SetFn)setClassSet );
 
 	CJSComplex<CEntity>::ScriptingInit( "Entity", Construct, 2 );
 }

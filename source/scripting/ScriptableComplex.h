@@ -78,6 +78,9 @@ public:
 	// Rebuild any intrinsic (mapped-to-C++-variable) properties
 	virtual void Rebuild() = 0;
 
+	// HACK: Doesn't belong here.
+	virtual void rebuildClassSet() = 0;
+	
 	// Check for a property
 	virtual IJSComplexProperty* HasProperty( CStrW PropertyName ) = 0;
 

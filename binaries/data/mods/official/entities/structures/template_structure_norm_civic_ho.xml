@@ -9,8 +9,7 @@
 
 			rollover="A civic building that increases the player's population."
 			
-			type.structure.group.housing="true"
-			type.structure.phase.vp="true"
+			classes="structure_housing, structure_village"
 		/>
 		<Health
 			curr="250"

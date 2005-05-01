@@ -10,13 +10,7 @@
 			personal1="male_names_1st.csv"
 			personal2="male_names_2nd.csv"
 
-			type.unit.group.military="true"
-			type.unit.mounted="true"
-			type.unit.weapon="true"
-			type.unit.material.organic="true"
-
-			type.unit.group.citizensoldier="true"
-			type.unit.group.worker="true"
+			classes="unit_cavalry, unit_military, unit_mounted, unit_organic, unit_citizensoldier, unit_worker"
 		/>
 		<!-- Should stop 3 hack, 1 pierce damage... -->
 		<Armour

@@ -66,10 +66,13 @@ public:
 	// The entity to switch to when this dies.
 	CStrW m_corpse;
 
+	// The class types this entity has
+	SClassSet m_classes;
+
 	float m_speed;
 	float m_turningRadius;
-	float m_meleeRange;
-	float m_meleeRangeMin;
+	SEntityAction m_melee;
+	SEntityAction m_gather;
 	bool m_selected;
 	i32 m_grouped;
 
@@ -99,10 +102,6 @@ public:
 	// Get script execution contexts - always run in the context of the entity that fired it.
 	JSObject* GetScriptExecContext( IEventTarget* target ) { return( ((CEntity*)target)->GetScript() ); }
 
-	// EventListener adaptation? 
-	//typedef std::vector<CScriptObject> ExtendedHandlerList;
-	//typedef STL_HASH_MAP<CStrW, HandlerList, CStrW_hash_compare> ExtendedHandlerTable;
-
 	CScriptObject m_EventHandlers[EVENT_LAST];
 
 	CUnit* m_actor;
@@ -110,16 +109,23 @@ public:
 	// State transition in the FSM (animations should be reset)
 	bool m_transition;
 	int m_lastState;
+	
+	// Position in the current state's cycle
+	static const size_t NOT_IN_CYCLE = -1;
+	size_t m_fsm_cyclepos; // -cycle_length....cycle_length
+	CSkeletonAnim* m_fsm_animation; // the animation we're about to play this cycle,
+	size_t m_fsm_anipos; // the time at which we should start playing it.
+	size_t m_fsm_anipos2; // for when there are two animation-related events we need to take care of.
 
 	std::deque<CEntityOrder> m_orderQueue;
 
 private:
 	CEntity( CBaseEntity* base, CVector3D position, float orientation );
 
-	/*EGotoSituation*/ uint processGotoHelper( CEntityOrder* current, size_t timestep_milli, HEntity& collide );
+	uint processGotoHelper( CEntityOrder* current, size_t timestep_milli, HEntity& collide );
 
-	bool processContactAction( CEntityOrder* current, size_t timestep_millis, int transition, float range );
-	bool processContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, CSkeletonAnim* animation, CScriptEvent* contactEvent, float range, float minRange );
+	bool processContactAction( CEntityOrder* current, size_t timestep_millis, int transition, SEntityAction* action );
+	bool processContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, CSkeletonAnim* animation, CScriptEvent* contactEvent, SEntityAction* action );
 
 	bool processAttackMelee( CEntityOrder* current, size_t timestep_milli );
 	bool processAttackMeleeNoPathing( CEntityOrder* current, size_t timestep_milli );
@@ -161,6 +167,11 @@ public:
 
 	void snapToGround();
 	void updateActorTransforms();
+
+	// Getter and setter for the class sets
+	jsval getClassSet();
+	void setClassSet( jsval value );
+	void rebuildClassSet();
 
 	// Things like selection circles and debug info - possibly move to gui if/when it becomes responsible for (and capable of) it.
 	void render();
@@ -206,6 +217,11 @@ public:
 	bool IsIdle( JSContext* cx, uintN argc, jsval* argv )
 	{
 		return( m_orderQueue.empty() );
+	}
+	bool HasClass( JSContext* cx, uintN argc, jsval* argv )
+	{
+		assert( argc >= 1 );
+		return( m_classes.IsMember( ToPrimitive<CStrW>( cx, argv[0] ) ) );
 	}
 	static void ScriptingInit();
 };

@@ -17,8 +17,12 @@ CBaseEntity::CBaseEntity()
 	AddProperty( L"parent", &m_base, false );
 	AddProperty( L"actions.move.speed", &m_speed );
 	AddProperty( L"actions.move.turningradius", &m_turningRadius );
-	AddProperty( L"actions.attack.range", &m_meleeRange );
-	AddProperty( L"actions.attack.rangemin", &m_meleeRangeMin );
+	AddProperty( L"actions.attack.range", &( m_melee.m_MaxRange ) );
+	AddProperty( L"actions.attack.rangemin", &( m_melee.m_MinRange ) );
+	AddProperty( L"actions.attack.speed", &( m_melee.m_Speed ) );
+	AddProperty( L"actions.gather.range", &( m_gather.m_MaxRange ) );
+	AddProperty( L"actions.gather.rangemin", &( m_gather.m_MinRange ) );
+	AddProperty( L"actions.gather.speed", &( m_gather.m_Speed ) );
 	AddProperty( L"actor", &m_actorName );
 	AddProperty( L"traits.extant", &m_extant );
 	AddProperty( L"traits.corpse", &m_corpse );	
@@ -30,7 +34,7 @@ CBaseEntity::CBaseEntity()
 	}
 
 	// Initialize, make life a little easier on the scriptors
-	m_speed = m_turningRadius = m_meleeRange = m_meleeRangeMin = 0.0f;
+	m_speed = m_turningRadius = 0.0f;
 	m_extant = true; m_corpse = CStrW();
 
 	m_bound_type = CBoundingObject::BOUND_NONE;
@@ -65,7 +69,74 @@ void CBaseEntity::loadBase()
 	}
 
 	SetBase( m_base );
+	m_classes.SetParent( &( m_base->m_classes ) );
 	SetNextObject( m_base );
+}
+
+jsval CBaseEntity::getClassSet()
+{
+	STL_HASH_SET<CStrW, CStrW_hash_compare>::iterator it;
+	it = m_classes.m_Set.begin();
+	CStrW result = *( it++ );
+	for( ; it != m_classes.m_Set.end(); it++ )
+		result += L" " + *it;
+	return( ToJSVal( result ) );
+}
+
+void CBaseEntity::setClassSet( jsval value )
+{
+	// Get the set that was passed in.
+	CStr temp = ToPrimitive<CStrW>( value );
+	CStr entry;
+	
+	m_classes.m_Added.clear();
+	m_classes.m_Removed.clear();
+
+	while( true )
+	{
+		long brk_sp = temp.Find( ' ' );
+		long brk_cm = temp.Find( ',' );
+		long brk = ( brk_sp == -1 ) ? brk_cm : ( brk_cm == -1 ) ? brk_sp : ( brk_sp < brk_cm ) ? brk_sp : brk_cm; 
+
+		if( brk == -1 )
+		{
+			entry = temp;
+		}
+		else
+		{
+			entry = temp.GetSubstring( 0, brk );
+			temp = temp.GetSubstring( brk + 1, temp.Length() );
+		}
+
+		if( brk != 0 )
+		{
+			
+			if( entry[0] == '-' )
+			{
+				entry = entry.GetSubstring( 1, entry.Length() );
+				if( entry.Length() )
+					m_classes.m_Removed.push_back( entry );
+			}
+			else
+			{	
+				if( entry[0] == '+' )
+					entry = entry.GetSubstring( 1, entry.Length() );
+				if( entry.Length() )
+					m_classes.m_Added.push_back( entry );
+			}
+		}		
+		if( brk == -1 ) break;
+	}
+
+	rebuildClassSet();
+}
+
+void CBaseEntity::rebuildClassSet()
+{
+	m_classes.Rebuild();
+	InheritorsList::iterator it;
+	for( it = m_Inheritors.begin(); it != m_Inheritors.end(); it++ )
+		(*it)->rebuildClassSet();
 }
 
 bool CBaseEntity::loadXML( CStr filename )
@@ -267,6 +338,7 @@ void CBaseEntity::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement&
 void CBaseEntity::ScriptingInit()
 {
 	AddMethod<jsval, &CBaseEntity::ToString>( "toString", 0 );
+	AddClassProperty( L"traits.id.classes", (GetFn)getClassSet, (SetFn)setClassSet );
 
 	CJSComplex<CBaseEntity>::ScriptingInit( "EntityTemplate" );
 }

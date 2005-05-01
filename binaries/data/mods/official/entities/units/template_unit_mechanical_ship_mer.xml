@@ -2,13 +2,14 @@
 
 <Entity Parent="template_unit_mechanical_ship">
 	<Traits>
+		<!-- Note syntax for removing a class -->
 		<Id
 			generic="Merchant Ship"
 
 			icon_cell="38"
 
-			type.unit.group.military="false"
-			type.unit.group.trade="true"
+			
+			classes="-unit_military, unit_trade"
 		/>
 	</Traits>
 </Entity>

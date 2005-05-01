@@ -9,8 +9,7 @@
 
 			rollover="The heart of the player's empire. Trains economic units, and can only be built on settlements."
 			
-			type.structure.group.housing="true"
-			type.structure.phase.vp="true"
+			classes="structure_housing, structure_village"
 		/>
 		<Garrison
 			curr="0"

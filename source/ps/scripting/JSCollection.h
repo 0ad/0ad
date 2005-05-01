@@ -37,7 +37,8 @@ private:
 	static JSBool Remove( JSContext* cx, JSObject* obj, uintN argc, jsval* agv, jsval* rval );
 	static JSBool GetLength( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
 	static JSBool IsEmpty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
-	static JSBool Clear( JSContext* cx, JSObject* obj, uintN argc, jsval* agv, jsval* rval );
+	static JSBool Clear( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
+	static JSBool Equals( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
 	static JSBool AddProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
 	static JSBool RemoveProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
 	static JSBool GetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
@@ -77,12 +78,13 @@ template<typename T, JSClass* ScriptType> JSFunctionSpec CJSCollection<T, Script
 	{ "pop", Pop, 0, 0, 0 },
 	{ "remove", Remove, 1, 0, 0 },
 	{ "clear", Clear, 0, 0, 0 },
+	{ "equals", Equals, 1, 0, 0 },
 	{ 0 },
 };
 
 template<typename T, JSClass* ScriptType> std::vector<T>* CJSCollection<T, ScriptType>::RetrieveSet( JSContext* cx, JSObject* obj )
 {
-	CJSCollectionData* Info = (CJSCollectionData*)JS_GetPrivate( cx, obj );
+	CJSCollectionData* Info = (CJSCollectionData*)JS_GetInstancePrivate( cx, obj, &JSI_class, NULL );
 	if( !Info ) return( NULL );
 	return( Info->m_Data );
 }
@@ -269,6 +271,43 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::I
 		return( JS_FALSE ); // That's odd; we've lost the pointer.
 
 	*vp = BOOLEAN_TO_JSVAL( set->empty() );
+	return( JS_TRUE );
+}
+
+template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::Equals( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+{
+	std::vector<T>* a = RetrieveSet( cx, obj );
+	if( !a )
+		return( JS_FALSE );
+	if( ( argc == 0 ) || ( !JSVAL_IS_OBJECT( argv[0] ) ) ) return( JS_FALSE );
+	std::vector<T>* b = RetrieveSet( cx, JSVAL_TO_OBJECT( argv[0] ) );
+	if( !b )
+		return( JS_FALSE );
+	std::vector<T>::iterator ita, itb;
+	
+	size_t seek = a->size();
+	for( ita = a->begin(); ita != a->end(); ita++ )
+		for( itb = b->begin(); itb != b->end(); itb++ )
+			if( *ita == *itb ) { seek--; break; }
+		
+	if( seek )
+	{
+		*rval = JSVAL_FALSE;
+		return( JS_TRUE );
+	}
+
+	seek = b->size();
+	for( itb = b->begin(); itb != b->end(); itb++ )
+		for( ita = a->begin(); ita != a->end(); ita++ )
+			if( *ita == *itb ) { seek--; break; }
+		
+	if( seek )
+	{
+		*rval = JSVAL_FALSE;
+		return( JS_TRUE );
+	}
+
+	*rval = JSVAL_TRUE;
 	return( JS_TRUE );
 }
 

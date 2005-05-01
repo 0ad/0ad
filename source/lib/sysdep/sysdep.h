@@ -62,12 +62,15 @@ extern float fmaxf(float a, float b);
 
 // C++ linkage
 
-// STL_HASH_MAP, STL_HASH_MULTIMAP
+// STL_HASH_MAP, STL_HASH_MULTIMAP, STL_HASH_SET
 #ifdef __GNUC__
 // GCC
 # include <ext/hash_map>
+# include <ext/hash_set> // Probably?
+
 # define STL_HASH_MAP __gnu_cxx::hash_map
 # define STL_HASH_MULTIMAP __gnu_cxx::hash_multimap
+# define STL_HASH_SET __gnu_cxx::hash_set
 
 // Hack: GCC Doesn't have a hash instance for std::string included (and it looks
 // like they won't add it - marked resolved/wontfix in the gcc bugzilla)
@@ -84,14 +87,17 @@ namespace __gnu_cxx
 
 #else	// !__GNUC__
 # include <hash_map>
+# include <hash_set>
 # if defined(_MSC_VER) && (_MSC_VER >= 1300)
 // VC7 or above
 #  define STL_HASH_MAP stdext::hash_map
 #  define STL_HASH_MULTIMAP stdext::hash_multimap
+#  define STL_HASH_SET stdext::hash_set
 # else
 // VC6 and anything else (most likely name)
 #  define STL_HASH_MAP std::hash_map
 #  define STL_HASH_MULTIMAP std::hash_multimap
+#  define STL_HASH_SET std::hash_set
 # endif	// defined(_MSC_VER) && (_MSC_VER >= 1300)
 #endif	// !__GNUC__
 

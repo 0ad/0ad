@@ -181,6 +181,11 @@ void CModel::CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result)
 	transform.SetIdentity();
 	SetTransform(transform);
 
+	// Following seems to stomp over the current animation time - which, unsurprisingly,
+	// introduces artefacts in the currently playing animation. Save it here and restore it
+	// at the end.
+	float AnimTime = m_AnimTime;
+
 	// iterate through every frame of the animation
 	for (uint j=0;j<anim->GetNumFrames();j++) {		
 		// extend bounds by vertex positions at the frame
@@ -194,12 +199,13 @@ void CModel::CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result)
 	}
 
 	SetTransform(oldtransform);
+	m_AnimTime = AnimTime;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BuildAnimation: load raw animation frame animation from given file, and build a 
 // animation specific to this model
-CSkeletonAnim* CModel::BuildAnimation(const char* filename,float speed,size_t actionpos)
+CSkeletonAnim* CModel::BuildAnimation(const char* filename,float speed,double actionpos)
 {
 	CSkeletonAnimDef* def=g_SkelAnimMan.GetAnimation(filename);
 	if (!def) return 0;
@@ -207,9 +213,7 @@ CSkeletonAnim* CModel::BuildAnimation(const char* filename,float speed,size_t ac
 	CSkeletonAnim* anim=new CSkeletonAnim;
 	anim->m_AnimDef=def;
 	anim->m_Speed=speed;
-	anim->m_ActionPos=actionpos;
-	if( actionpos > anim->m_AnimDef->GetDuration() )
-		anim->m_ActionPos = anim->m_AnimDef->GetDuration();
+	anim->m_ActionPos=(size_t)( actionpos * anim->m_AnimDef->GetDuration() );
 	anim->m_ObjectBounds.SetEmpty();
 	InvalidateBounds();
 
