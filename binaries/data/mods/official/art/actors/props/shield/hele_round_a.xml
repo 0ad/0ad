@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <group>
+    <variant name="base">
+      <mesh>props/shield/round_b_f.pmd</mesh>
+      <props>
+        <prop actor="props/shield/round_back.xml" attachpoint="back"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="D">
+      <texture>props/shield/hele_round_d.dds</texture>
+    </variant>
+    <variant name="I">
+      <texture>props/shield/hele_round_i.dds</texture>
+    </variant>
+    <variant name="L">
+      <texture>props/shield/hele_round_l.dds</texture>
+    </variant>
+    <variant name="P">
+      <texture>props/shield/hele_round_p.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>
