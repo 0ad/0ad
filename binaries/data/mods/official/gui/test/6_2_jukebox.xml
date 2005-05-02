@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no" ?>
+
+<!DOCTYPE objects SYSTEM "../gui.dtd">
+
+<!--
+==========================================
+- JUKEBOX DEFINITION -
+==========================================
+-->
+
+<objects>
+
+	<object type="empty" name="JUKEBOX_GUI" size="0 0 100% 100%" z="1" hotkey="onlinehelp" hidden="true">
+		<action on="Press"><![CDATA[
+			// Toggle jukebox.
+			GUIObjectToggle("JUKEBOX_GUI");
+			GUIObjectToggle("SESSION_GUI");
+		]]></action>
+
+        	<object type="text" name="JUKEBOX_BKG" sprite="0ad_window" font="prospero16" textcolor="0 0 0" z="100" hidden="false" ghost="true"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[JUKEBOX_BKG]); ]]></action>
+			<action on="Tick"><![CDATA[
+				if !( getGUIObjectByName( "MANUAL_GUI" ).hidden )
+					jukeboxDisplay();
+			]]></action>
+		</object>
+
+		<object type="button" name="JUKEBOX_EXIT_BUTTON" sprite="exit_sprite" sprite_over="exit_sprite_over" ghost="false" z="100" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[JUKEBOX_EXIT_BUTTON]); ]]></action>
+			<action on="Press"><![CDATA[
+				// Close jukebox.
+				GUIObjectHide("JUKEBOX_GUI");
+				GUIObjectUnhide("SESSION_GUI");
+			]]></action>
+		</object>
+	</object>
+
+</objects>

@@ -70,9 +70,6 @@
         <script file="gui/test/functions_atlas.js"><![CDATA[
         ]]></script>
 
-        <script file="gui/test/functions_manual.js"><![CDATA[
-        ]]></script>
-
         <script file="gui/test/functions_session_group_pane.js"><![CDATA[
         ]]></script>
 
@@ -91,12 +88,17 @@
         <script file="gui/test/functions_session_subwindows.js"><![CDATA[
         ]]></script>
 
+        <script file="gui/test/functions_session_subwindows_manual.js"><![CDATA[
+        ]]></script>
+
+        <script file="gui/test/functions_session_subwindows_jukebox.js"><![CDATA[
+        ]]></script>
+
         <script file="gui/test/functions_session.js"><![CDATA[
 		initCoord();
 		initGlobal();
                 initPreGame();
                 initSession();
-		initManual();
 		initAtlas();
         ]]></script>
 

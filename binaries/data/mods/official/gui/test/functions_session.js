@@ -29,6 +29,8 @@ function initSession()
         initMapOrb();
         initTeamTray();
         initSubWindows();
+		initManual();
+		initJukebox();
 }
 
 // ====================================================================

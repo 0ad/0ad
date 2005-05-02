@@ -901,10 +901,12 @@ static void InitPs()
 		g_GUI.LoadXMLFile("gui/test/3_loading.xml");}
 		{TIMER(ps_gui_4)
 		g_GUI.LoadXMLFile("gui/test/4_session.xml");}
-		{TIMER(ps_gui_5)
-		g_GUI.LoadXMLFile("gui/test/5_manual.xml");}
 		{TIMER(ps_gui_6)
 		g_GUI.LoadXMLFile("gui/test/6_subwindows.xml");}
+		{TIMER(ps_gui_6_1)
+		g_GUI.LoadXMLFile("gui/test/6_1_manual.xml");}
+		{TIMER(ps_gui_6_2)
+		g_GUI.LoadXMLFile("gui/test/6_2_jukebox.xml");}
 		{TIMER(ps_gui_7)
 		g_GUI.LoadXMLFile("gui/test/7_atlas.xml");}
 		{TIMER(ps_gui_9)
