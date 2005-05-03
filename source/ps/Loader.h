@@ -33,12 +33,13 @@ extern int LDR_BeginRegistering();
 // it receives a param (see below) and the exact time remaining [s].
 //
 // return semantics:
-// - if the work can be split into smaller subtasks, process those until
-//   <time_left> is reached or exceeded and then return ERR_TIMED_OUT.
 // - if the entire task was successfully completed, return 0:
 //   the load request will then be de-queued.
-// - any other return value indicates failure and causes
-//   LDR_ProgressiveLoad to immediately abort and return that.
+// - if the work can be split into smaller subtasks, process those until
+//   <time_left> is reached or exceeded and then return an estimate
+//   of progress in percent (> 0 or it's treated as "finished").
+// - on failure, return a negative error code; LDR_ProgressiveLoad
+//   will abort immediately and return that.
 typedef int (*LoadFunc)(void* param, double time_left);
 
 // register a load request (later processed in FIFO order).

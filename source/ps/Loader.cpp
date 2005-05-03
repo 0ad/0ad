@@ -12,19 +12,21 @@
 #include "lib.h"	// error codes
 #include "timer.h"
 #include "CStr.h"
-#include "loader.h"
+#include "Loader.h"
 
 
-// need a persistent counter so we can reset after each load,
-// and incrementally add "estimated/total".
-static int progress_percent = 0;
-
-// set by LDR_EndRegistering; used for progress % calculation. may be 0.
+// set by LDR_EndRegistering; may be 0 during development when
+// estimated task durations haven't yet been set.
 static double total_estimated_duration;
 
-// used by LDR_ProgressiveLoad to add up the duration of requests that
-// time out by themselves (and therefore may be split across multiple calls)
-static double request_duration;
+// total time spent loading so far, set by LDR_ProgressiveLoad.
+// we need a persistent counter so it can be reset after each load.
+// this also accumulates less errors than:
+// progress += task_estimated / total_estimated.
+static double estimated_duration_tally;
+
+// needed for report of how long each individual task took.
+static double task_elapsed_time;
 
 // main purpose is to indicate whether a load is in progress, so that
 // LDR_ProgressiveLoad can return 0 iff loading just completed.
@@ -129,9 +131,9 @@ int LDR_EndRegistering()
 		debug_warn("LDR_EndRegistering: no LoadRequests queued");
 
 	state = FIRST_LOAD;
-	progress_percent = 0;
+	estimated_duration_tally = 0.0;
+	task_elapsed_time = 0.0;
 	total_estimated_duration = std::accumulate(load_requests.begin(), load_requests.end(), 0.0, DurationAdder());
-	request_duration = 0.0;
 	return 0;
 }
 
@@ -160,6 +162,11 @@ static bool HaveTimeForNextTask(double time_left, double time_budget, int estima
 	// have already exceeded our time budget
 	if(time_left <= 0.0)
 		return false;
+
+	// we haven't started a request yet this timeslice. start it even if
+	// it's longer than time_budget to make sure there is progress.
+	if(time_left == time_budget)
+		return true;
 
 	// check next task length. we want a lengthy task to happen in its own
 	// timeslice so that its description is displayed beforehand.
@@ -190,13 +197,14 @@ static bool HaveTimeForNextTask(double time_left, double time_budget, int estima
 // persistent, we can't just store a pointer. returning a pointer to
 // our copy of the description doesn't work either, since it's freed when
 // the request is de-queued. that leaves writing into caller's buffer.
-int LDR_ProgressiveLoad(double time_budget, wchar_t* description_,
-	size_t max_chars, int* progress_percent_)
+int LDR_ProgressiveLoad(double time_budget, wchar_t* description,
+	size_t max_chars, int* progress_percent)
 {
 	int ret;	// single exit; this is returned
+	double progress = 0.0;	// used to set progress_percent
 	double time_left = time_budget;
 
-	// don't do any work the first call so that a graphics update
+	// don't do any work the first time around so that a graphics update
 	// happens before the first (probably lengthy) timeslice.
 	if(state == FIRST_LOAD)
 	{
@@ -212,46 +220,54 @@ int LDR_ProgressiveLoad(double time_budget, wchar_t* description_,
 
 	while(!load_requests.empty())
 	{
-		// do actual work of loading
+		// get next task; abort if there's not enough time left for it.
 		const LoadRequest& lr = load_requests.front();
-		const double t0 = get_time();
-		ret = lr.func(lr.param, time_left);
-		const double elapsed_time = get_time() - t0;
-
-		// time accounting
-		time_left -= elapsed_time;
-		request_duration += elapsed_time;
-		wcscpy_s(description_, max_chars, lr.description);	// HACK, used below
-
-		// .. either finished entirely, or failed => remove from queue
-		if(ret != ERR_TIMED_OUT)
-			load_requests.pop_front();
-		// .. failed or timed out => abort immediately; loading will
-		// continue when we're called in the next iteration of the main loop.
-		// rationale: bail immediately instead of remembering the first error
-		// that came up, so that we report can all errors that happen.
-		if(ret != 0)
-			goto done;
-		// .. completed normally => update progress
-		//    note: during development, estimates won't yet be set,
-		//    so allow this to be 0 and don't fail in LDR_EndRegistering
-		if(total_estimated_duration != 0.0)	// prevent division by zero
-		{
-			const double fraction = lr.estimated_duration_ms*1e-3 / total_estimated_duration;
-			progress_percent += (int)(fraction * 100.0);
-			assert(0 <= progress_percent && progress_percent <= 100);
-		}
-		debug_out("LOADER: completed %ls in %f ms\n", description_, elapsed_time*1e3);
-		request_duration = 0.0;
-
-		// check if we're out of time; take into account next task length.
-		// note: do this at the end of the loop to make sure there's
-		// progress even if the timer is low-resolution (=> time_left = 0).
+		const double estimated_duration = lr.estimated_duration_ms*1e-3;
 		if(!HaveTimeForNextTask(time_left, time_budget, lr.estimated_duration_ms))
 		{
 			ret = ERR_TIMED_OUT;
 			goto done;
 		}
+
+		// call this task's function and bill elapsed time.
+		const double t0 = get_time();
+		ret = lr.func(lr.param, time_left);
+		const double elapsed_time = get_time() - t0;
+		time_left -= elapsed_time;
+		task_elapsed_time += elapsed_time;
+
+		// either finished entirely, or failed => remove from queue.
+		if(ret == 0 || ret < 0)
+		{
+			debug_out("LOADER: completed %ls in %g ms; estimate was %g ms\n", lr.description.c_str(), task_elapsed_time*1e3, estimated_duration*1e3);
+			task_elapsed_time = 0.0;
+			estimated_duration_tally += estimated_duration;
+			load_requests.pop_front();
+		}
+
+		// calculate progress (only possible if estimates have been given)
+		if(total_estimated_duration != 0.0)
+		{
+			double current_estimate = estimated_duration_tally;
+
+			// function interrupted itself; add its estimated progress.
+			// note: monoticity is guaranteed since we never add more than
+			//   its estimated_duration_ms.
+			if(ret > 0)
+			{
+				ret = MIN(ret, 100);	// clamp in case estimate is too high
+				current_estimate += estimated_duration * ret/100.0;
+			}
+
+			progress = current_estimate / total_estimated_duration;
+		}
+
+		// failed or timed out => abort immediately; loading will
+		// continue when we're called in the next iteration of the main loop.
+		// rationale: bail immediately instead of remembering the first error
+		// that came up, so that we report can all errors that happen.
+		if(ret != 0)
+			goto done;
 	}
 
 	// queue is empty, we just finished.
@@ -261,38 +277,47 @@ int LDR_ProgressiveLoad(double time_budget, wchar_t* description_,
 
 	// set output params (there are several return points above)
 done:
-	*progress_percent_ = progress_percent;
+	*progress_percent = (int)(progress * 100.0);
+	assert2(0 <= *progress_percent && *progress_percent <= 100);
+
 	// we want the next task, instead of what just completed:
 	// it will be displayed during the next load phase.
-	const wchar_t* description = L"";	// assume finished
+	const wchar_t* new_description = L"";	// assume finished
 	if(!load_requests.empty())
-		description = load_requests.front().description.c_str();
-	wcscpy_s(description_, max_chars, description);
+		new_description = load_requests.front().description.c_str();
+	wcscpy_s(description, max_chars, new_description);
 
-	debug_out("LDR_ProgressiveLoad RETURNING; desc=%ls progress=%d\n", description_, progress_percent);
+	debug_out("LDR_ProgressiveLoad RETURNING; desc=%ls progress=%d\n", description, *progress_percent);
 
 	return ret;
 }
 
 
 // immediately process all queued load requests.
-// returns 0 on success, something else on failure.
+// returns 0 on success or a negative error code.
 int LDR_NonprogressiveLoad()
 {
-	int progress_percent;
+	const double time_budget = 100.0;
+		// large enough so that individual functions won't time out
+		// (that'd waste time).
 	wchar_t description[100];
-	int ret;
-	
-	while(1)
+	int progress_percent;
+
+	for(;;)
 	{
-		ret = LDR_ProgressiveLoad(100.f, description, ARRAY_SIZE(description), &progress_percent);
+		int ret = LDR_ProgressiveLoad(time_budget, description, ARRAY_SIZE(description), &progress_percent);
 
 		switch(ret)
 		{
-		case 1: debug_warn("NonprogressiveLoad: No load in progress"); return 0;
-		case 0: return 0; // success
-		case ERR_TIMED_OUT: break; // try again
-		default: CHECK_ERR(ret);
+		case 1:
+			debug_warn("LDR_NonprogressiveLoad: No load in progress");
+			return 0;
+		case 0:
+			return 0;		// success
+		case ERR_TIMED_OUT:
+			break;			// continue loading
+		default:
+			CHECK_ERR(ret);	// failed; complain
 		}
 	}
 }
