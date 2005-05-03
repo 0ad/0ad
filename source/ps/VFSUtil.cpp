@@ -41,8 +41,8 @@ bool VFSUtil::FindFiles (const CStr& dirname, const char* filter, FileList& file
 }
 
 
-// call <cb> for each entry matching <filter> (see vfs_next_dirent) in the
-// <start_path> directory; if <recursive>, entries in subdirectories are
+// call <cb> for each entry matching <user_filter> (see vfs_next_dirent) in
+// directory <start_path>; if <recursive>, entries in subdirectories are
 // also returned.
 //
 // note: EnumDirEntsCB path and ent are only valid during the callback.

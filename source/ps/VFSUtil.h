@@ -14,8 +14,9 @@ typedef std::vector<CStr> FileList;
 extern bool FindFiles(const CStr& dirname, const char* filter, FileList& files);
 
 
-// called by EnumFiles for each file in a directory (optionally
-// its subdirectories as well), passing user-specified context.
+// called by EnumDirEnts for each entry in a directory (optionally those in
+// its subdirectories as well), passing their complete path+name, the info
+// that would be returned by vfs_next_dirent, and user-specified context.
 // note: path and ent parameters are only valid during the callback.
 typedef void (*EnumDirEntsCB)(const char* path, const vfsDirEnt* ent,
 	void* context);
