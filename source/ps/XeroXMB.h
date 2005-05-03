@@ -150,6 +150,10 @@ private:
 class XMBElement
 {
 public:
+	// janwas: default ctor needed for ReadXML
+	XMBElement()
+		: m_Pointer(0) {}
+
 	XMBElement(char* offset)
 		: m_Pointer(offset)	{}
 
@@ -167,6 +171,10 @@ private:
 class XMBElementList
 {
 public:
+	// janwas: default ctor needed for ReadXML
+	XMBElementList()
+		: Count(0), m_Pointer(0), m_LastItemID(-2) {}
+
 	XMBElementList(char* offset, int count)
 		: Count(count),
 		  m_Pointer(offset),
