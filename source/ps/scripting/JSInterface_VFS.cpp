@@ -8,6 +8,24 @@
 #include "scripting/JSInterface_VFS.h"
 
 
+// shared error handling code
+#define JS_CHECK_FILE_ERR(err)\
+	/* this is liable to happen often, so don't complain */\
+	if(err == ERR_FILE_NOT_FOUND)\
+	{\
+		*rval = JSVAL_NULL;\
+		return( JS_TRUE );\
+	}\
+	/* unknown failure. we return an error (akin to an exception in JS) that
+	   stops the script to make sure this error is noticed. */\
+	else if(err < 0)\
+		return( JS_FALSE );\
+	/* else: success */
+
+
+
+
+// state held across multiple BuildFileListCB calls; init by BuildFileList.
 struct BuildFileListState
 {
 	JSContext* cx;
@@ -22,6 +40,7 @@ struct BuildFileListState
 	}
 };
 
+// called for each matching directory entry; add its full pathname to array.
 static void BuildFileListCB(const char* path, const vfsDirEnt* ent, void* context)
 {
 	BuildFileListState* s = (BuildFileListState*)context;
@@ -34,7 +53,16 @@ static void BuildFileListCB(const char* path, const vfsDirEnt* ent, void* contex
 }
 
 
-// array_of_filenames = buildFileList(start_path [, pattern [, recursive ] ]);
+// Return an array of pathname strings, one for each matching entry in the
+// specified directory.
+//
+// array_of_filenames = buildFileList(start_path [, filter_string [, recursive ] ]);
+//   directory: VFS path
+//   filter_string: default "" matches everything; otherwise, see vfs_next_dirent.
+//   recurse: should subdirectories be included in the search? default false.
+//
+// note: full pathnames of each file/subdirectory are returned,
+// ready for use as a "filename" for the other functions.
 JSBool JSI_VFS::BuildFileList( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
 	//
@@ -75,7 +103,10 @@ JSBool JSI_VFS::BuildFileList( JSContext* cx, JSObject* obj, uintN argc, jsval* 
 }
 
 
+// Return timestamp of the last modification to the specified file.
+//
 // seconds_since_1970 = getFileMTime(filename);
+//   filename: VFS filename (may include path)
 JSBool JSI_VFS::GetFileMTime( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
 	assert( argc >= 1 );
@@ -85,23 +116,17 @@ JSBool JSI_VFS::GetFileMTime( JSContext* cx, JSObject* obj, uintN argc, jsval* a
 
 	struct stat s;
 	int err = vfs_stat(filename.c_str(), &s);
-	// this may happen; don't complain
-	if(err == ERR_FILE_NOT_FOUND)
-	{
-		*rval = JSVAL_NULL;
-		return( JS_TRUE );
-	}
-	// unknown failure - this will stop JS execution so the error is noticed.
-	else if(err < 0)
-		return( JS_FALSE );
-	// else: success
+	JS_CHECK_FILE_ERR(err);
 
 	*rval = ToJSVal( (double)s.st_mtime );
 	return( JS_TRUE );
 }
 
 
+// Return current size of file.
+//
 // size = getFileSize(filename);
+//   filename: VFS filename (may include path)
 JSBool JSI_VFS::GetFileSize( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
 	assert( argc >= 1 );
@@ -111,23 +136,17 @@ JSBool JSI_VFS::GetFileSize( JSContext* cx, JSObject* obj, uintN argc, jsval* ar
 
 	struct stat s;
 	int err = vfs_stat(filename.c_str(), &s);
-	// this may happen; don't complain
-	if(err == ERR_FILE_NOT_FOUND)
-	{
-		*rval = JSVAL_NULL;
-		return( JS_TRUE );
-	}
-	// unknown failure - this will stop JS execution so the error is noticed.
-	else if(err < 0)
-		return( JS_FALSE );
-	// else: success
+	JS_CHECK_FILE_ERR(err);
 
 	*rval = ToJSVal( (uint)s.st_size );
 	return( JS_TRUE );
 }
 
 
+// Return file contents in a string.
+//
 // contents_string = readFile(filename);
+//   filename: VFS filename (may include path)
 JSBool JSI_VFS::ReadFile( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
 	assert( argc >= 1 );
@@ -138,16 +157,7 @@ JSBool JSI_VFS::ReadFile( JSContext* cx, JSObject* obj, uintN argc, jsval* argv,
 	void* p;
 	size_t size;
 	Handle hm = vfs_load(filename.c_str(), p, size);
-	// this may happen; don't complain
-	if(hm == ERR_FILE_NOT_FOUND)
-	{
-		*rval = JSVAL_NULL;
-		return( JS_TRUE );
-	}
-	// unknown failure - this will stop JS execution so the error is noticed.
-	else if(hm <= 0)
-		return( JS_FALSE );
-	// else: success
+	JS_CHECK_FILE_ERR(hm);
 
 	CStr contents((const char*)p, size);
 	mem_free_h(hm);
@@ -157,7 +167,10 @@ JSBool JSI_VFS::ReadFile( JSContext* cx, JSObject* obj, uintN argc, jsval* argv,
 }
 
 
+// Return file contents as an array of lines.
+//
 // array_of_strings = readFileLines(filename);
+//   filename: VFS filename (may include path)
 JSBool JSI_VFS::ReadFileLines( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
 	assert( argc >= 1 );
@@ -172,16 +185,7 @@ JSBool JSI_VFS::ReadFileLines( JSContext* cx, JSObject* obj, uintN argc, jsval* 
 	void* p;
 	size_t size;
 	Handle hm = vfs_load(filename.c_str(), p, size);
-	// this may happen; don't complain
-	if(hm == ERR_FILE_NOT_FOUND)
-	{
-		*rval = JSVAL_NULL;
-		return( JS_TRUE );
-	}
-	// unknown failure - this will stop JS execution so the error is noticed.
-	else if(hm <= 0)
-		return( JS_FALSE );
-	// else: success
+	JS_CHECK_FILE_ERR(hm);
 
 	CStr contents((const char*)p, size);
 	mem_free_h(hm);
