@@ -1,7 +1,7 @@
 #include "precompiled.h"
 
-#include "lib/types.h"
 #include "MapReader.h"
+#include "lib/types.h"
 #include "UnitManager.h"
 #include "Unit.h"
 #include "Game.h"
@@ -21,8 +21,8 @@
 
 #define LOG_CATEGORY "graphics"
 
-// CMapReader constructor: nothing to do at the minute
 CMapReader::CMapReader()
+	: xml_reader(0)
 {
 }
 
@@ -44,23 +44,23 @@ void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_, CUnitManager
 	}
 
 	// unpack the data
-	RegMemFun(this, &CMapReader::UnpackMap, L"CMapReader::UnpackMap", 691);
+	RegMemFun(this, &CMapReader::UnpackMap, L"CMapReader::UnpackMap", 1900);
 
 	// apply data to the world
-	RegMemFun(this, &CMapReader::ApplyData, L"CMapReader::ApplyData", 415);
+	RegMemFun(this, &CMapReader::ApplyData, L"CMapReader::ApplyData", 20);
 
 	if (unpacker.GetVersion()>=3) {
 		// read the corresponding XML file
 		filename_xml = filename;
 		filename_xml = filename_xml.Left(filename_xml.Length()-4) + ".xml";
-		RegMemFun(this, &CMapReader::ReadXML, L"CMapReader::ReadXML", 1320);
+		RegMemFun(this, &CMapReader::ReadXML, L"CMapReader::ReadXML", 1300);
 	}
 
-	RegMemFun(this, &CMapReader::DelayLoadFinished, L"CMapReader::DelayLoadFinished", 3);
+	RegMemFun(this, &CMapReader::DelayLoadFinished, L"CMapReader::DelayLoadFinished", 5);
 }
 
 // UnpackMap: unpack the given data from the raw data stream into local variables
-void CMapReader::UnpackMap()
+int CMapReader::UnpackMap()
 {
 	// now unpack everything into local data
 	UnpackTerrain();
@@ -68,6 +68,8 @@ void CMapReader::UnpackMap()
 	if (unpacker.GetVersion()>=2) {
 		UnpackLightEnv();
 	}
+
+	return 0;
 }
 
 // UnpackLightEnv: unpack lighting parameters from input stream
@@ -138,7 +140,7 @@ void CMapReader::UnpackTerrain()
 }
 
 // ApplyData: take all the input data, and rebuild the scene from it
-void CMapReader::ApplyData()
+int CMapReader::ApplyData()
 {
 	// initialise the terrain 
 	pTerrain->Initialize(m_MapSize,&m_Heightmap[0]);	
@@ -211,27 +213,74 @@ void CMapReader::ApplyData()
 		// copy over the lighting parameters
 		*pLightEnv=m_LightEnv;
 	}
+
+	return 0;
 }
 
 
-void CMapReader::ReadXML()
+
+
+class CXMLReader
 {
+public:
+	CXMLReader(const CStr& xml_filename)
+	{
+		Init(xml_filename);
+	}
+
+	// return semantics: see Loader.cpp!LoadFunc.
+	int ProgressiveRead();
+
+private:
+	CXeromyces xmb_file;
+
+	int el_scenario, el_entities, el_entity;
+	int el_template, el_player;
+	int el_position, el_orientation;
+	int el_nonentities, el_nonentity;
+	int el_actor;
+	int at_x, at_y, at_z;
+	int at_angle;
+
+	XMBElement root;
+	XMBElementList nodes;	// children of root
+	XMBElement node;				// a child of nodes
+	XMBElementList entities, nonentities;	// children of node
+
+	// loop counters
+	int node_idx;
+	int entity_idx, nonentity_idx;
+
+	// # entities+nonentities processed and total (for progress calc)
+	int completed_jobs, total_jobs;
+
+
+	void Init(const CStr& xml_filename);
+	int ReadEntities(XMBElement& parent, double end_time);
+	int ReadNonEntities(XMBElement& parent, double end_time);
+};
+
+
+void CXMLReader::Init(const CStr& xml_filename)
+{
+	// must only assign once, so do it here
+	node_idx = entity_idx = nonentity_idx = 0;
+
 #ifdef SCED
 	// HACK: ScEd uses absolute filenames, not VFS paths. I can't be bothered
 	// to make Xeromyces work with non-VFS, so just cheat:
-	CStr filename_vfs (filename_xml);
-	filename_vfs = filename_vfs.substr(filename_vfs.ReverseFind("\\mods\\official\\") + 15);
-	filename_vfs.Replace("\\", "/");
-	filename_xml = filename_vfs;
+	CStr vfs_filename(xml_filename);
+	vfs_filename = vfs_filename.substr(vfs_filename.ReverseFind("\\mods\\official\\") + 15);
+	vfs_filename.Replace("\\", "/");
+	xml_filename = vfs_filename;
 #endif
 
-	CXeromyces XeroFile;
-	if (XeroFile.Load(filename_xml) != PSRETURN_OK)
+	if (xmb_file.Load(xml_filename) != PSRETURN_OK)
 		throw CFileUnpacker::CFileReadError();
 
-	// Define all the elements and attributes used in the XML file
-#define EL(x) int el_##x = XeroFile.getElementID(#x)
-#define AT(x) int at_##x = XeroFile.getAttributeID(#x)
+	// define all the elements and attributes used in the XML file.
+#define EL(x) el_##x = xmb_file.getElementID(#x)
+#define AT(x) at_##x = xmb_file.getAttributeID(#x)
 	EL(scenario);
 	EL(entities);
 	EL(entity);
@@ -249,136 +298,220 @@ void CMapReader::ReadXML()
 #undef AT
 #undef EL
 
-	XMBElement root = XeroFile.getRoot();
+	root = xmb_file.getRoot();
 	assert(root.getNodeName() == el_scenario);
+	nodes = root.getChildNodes();
 
-	// <scenario>
-
-	XMBElementList children = root.getChildNodes();
-	for (int i = 0; i < children.Count; ++i)
+	// find out total number of entities+nonentities
+	// (used when calculating progress)
+	completed_jobs = 0;
+	total_jobs = 0;
+	for (int i = 0; i < nodes.Count; i++)
 	{
-		XMBElement child = children.item(i);
-		if (child.getNodeName() == el_entities)
-		{
-			// <entities>
-
-			XMBElementList children = child.getChildNodes();
-			for (int i = 0; i < children.Count; ++i)
-			{
-				XMBElement child = children.item(i);
-				assert(child.getNodeName() == el_entity);
-
-				// <entity>
-
-				CStrW TemplateName;
-				int PlayerID;
-				CVector3D Position;
-				float Orientation;
-
-				XMBElementList children = child.getChildNodes();
-				for (int i = 0; i < children.Count; ++i)
-				{
-					XMBElement child = children.item(i);
-					int element_name = child.getNodeName();
-
-					if (element_name == el_template)
-					{	// <template>
-						TemplateName = child.getText();
-					}
-					else if (element_name == el_player)
-					{	// <player>
-						PlayerID = CStr(child.getText()).ToInt();
-					}
-					else if (element_name == el_position)
-					{	// <position>
-						XMBAttributeList attrs = child.getAttributes();
-						Position = CVector3D(CStr(attrs.getNamedItem(at_x)).ToFloat(),
-						                     CStr(attrs.getNamedItem(at_y)).ToFloat(),
-						                     CStr(attrs.getNamedItem(at_z)).ToFloat());
-					}
-					else if (element_name == el_orientation)
-					{	// <orientation>
-						XMBAttributeList attrs = child.getAttributes();
-						Orientation = CStr(attrs.getNamedItem(at_angle)).ToFloat();
-					}
-					else
-						debug_warn("Invalid XML data - DTD shouldn't allow this");
-				}
-
-				HEntity ent = g_EntityManager.create(g_EntityTemplateCollection.getTemplate(TemplateName), Position, Orientation);
-				if (! ent)
-					LOG(ERROR, LOG_CATEGORY, "Failed to create entity '%ls'", TemplateName.c_str());
-				else
-					ent->SetPlayer(g_Game->GetPlayer(PlayerID));
-			}
-		}
-		else if (child.getNodeName() == el_nonentities)
-		{
-			// <nonentities>
-
-			XMBElementList children = child.getChildNodes();
-			for (int i = 0; i < children.Count; ++i)
-			{
-				XMBElement child = children.item(i);
-				assert(child.getNodeName() == el_nonentity);
-
-				// <nonentity>
-
-				CStr ActorName;
-				CVector3D Position;
-				float Orientation;
-
-				XMBElementList children = child.getChildNodes();
-				for (int i = 0; i < children.Count; ++i)
-				{
-					XMBElement child = children.item(i);
-					int element_name = child.getNodeName();
-
-					if (element_name == el_actor)
-					{	// <actor>
-						ActorName = child.getText();
-					}
-					else if (element_name == el_position)
-					{	// <position>
-						XMBAttributeList attrs = child.getAttributes();
-						Position = CVector3D(CStr(attrs.getNamedItem(at_x)).ToFloat(),
-						                     CStr(attrs.getNamedItem(at_y)).ToFloat(),
-						                     CStr(attrs.getNamedItem(at_z)).ToFloat());
-					}
-					else if (element_name == el_orientation)
-					{	// <orientation>
-						XMBAttributeList attrs = child.getAttributes();
-						Orientation = CStr(attrs.getNamedItem(at_angle)).ToFloat();
-					}
-					else
-						debug_warn("Invalid XML data - DTD shouldn't allow this");
-				}
-
-				CUnit* unit = g_UnitMan.CreateUnit(ActorName, NULL);
-				if (unit && unit->GetModel())
-				{
-					// Copied from CEntity::updateActorTransforms():
-					float s = sin( Orientation );
-					float c = cos( Orientation );
-					CMatrix3D m;
-					m._11 = -c;		m._12 = 0.0f;	m._13 = -s;		m._14 = Position.X;
-					m._21 = 0.0f;	m._22 = 1.0f;	m._23 = 0.0f;	m._24 = Position.Y;
-					m._31 = s;		m._32 = 0.0f;	m._33 = -c;		m._34 = Position.Z;
-					m._41 = 0.0f;	m._42 = 0.0f;	m._43 = 0.0f;	m._44 = 1.0f;
-					unit->GetModel()->SetTransform(m);
-				}
-			}
-		}
-		else
-		{
-			debug_warn("Invalid XML data - DTD shouldn't allow this");
-		}
+		node = nodes.item(i);
+		entities = node.getChildNodes();
+		total_jobs += entities.Count;
 	}
 }
 
 
-void CMapReader::DelayLoadFinished()
+// code shared by Read*Entities
+#define CHECK_TIMEOUT()\
+	completed_jobs++;\
+	if(get_time() > end_time)\
+	{\
+		int progress_percent = (completed_jobs*100 / total_jobs);\
+		/* 0 means "finished", so don't return that! */\
+		if(progress_percent == 0)\
+			progress_percent = 1;\
+		assert2(0 < progress_percent && progress_percent <= 100);\
+		return progress_percent;\
+	}
+
+
+int CXMLReader::ReadEntities(XMBElement& parent, double end_time)
+{
+	entities = parent.getChildNodes();	// ok to set more than once
+	while(entity_idx < entities.Count)
+	{
+		// all new state at this scope and below doesn't need to be
+		// wrapped, since we only yield after a complete iteration.
+
+		XMBElement entity = entities.item(entity_idx++);
+		assert(entity.getNodeName() == el_entity);
+
+		CStrW TemplateName;
+		int PlayerID;
+		CVector3D Position;
+		float Orientation;
+
+		XMBElementList children3 = entity.getChildNodes();
+		for (int k = 0; k < children3.Count; k++)
+		{
+			XMBElement child3 = children3.item(k);
+			int element_name = child3.getNodeName();
+
+			// <template>
+			if (element_name == el_template)
+			{
+				TemplateName = child3.getText();
+			}
+			// <player>
+			else if (element_name == el_player)
+			{
+				PlayerID = CStr(child3.getText()).ToInt();
+			}
+			// <position>
+			else if (element_name == el_position)
+			{
+				XMBAttributeList attrs = child3.getAttributes();
+				Position = CVector3D(CStr(attrs.getNamedItem(at_x)).ToFloat(),
+						                CStr(attrs.getNamedItem(at_y)).ToFloat(),
+						                CStr(attrs.getNamedItem(at_z)).ToFloat());
+			}
+			// <orientation>
+			else if (element_name == el_orientation)
+			{
+				XMBAttributeList attrs = child3.getAttributes();
+				Orientation = CStr(attrs.getNamedItem(at_angle)).ToFloat();
+			}
+			else
+				debug_warn("Invalid XML data - DTD shouldn't allow this");
+		}
+
+		HEntity ent = g_EntityManager.create(g_EntityTemplateCollection.getTemplate(TemplateName), Position, Orientation);
+		if (! ent)
+			LOG(ERROR, LOG_CATEGORY, "Failed to create entity '%ls'", TemplateName.c_str());
+		else
+			ent->SetPlayer(g_Game->GetPlayer(PlayerID));
+
+		CHECK_TIMEOUT();
+	}
+
+	return 0;
+}
+
+
+int CXMLReader::ReadNonEntities(XMBElement& parent, double end_time)
+{
+	nonentities = parent.getChildNodes();	// ok to set more than once
+	while(nonentity_idx < nonentities.Count)
+	{
+		// all new state at this scope and below doesn't need to be
+		// wrapped, since we only yield after a complete iteration.
+
+		XMBElement nonentity = nonentities.item(nonentity_idx++);
+		assert(nonentity.getNodeName() == el_nonentity);
+
+		CStr ActorName;
+		CVector3D Position;
+		float Orientation;
+
+		XMBElementList children3 = nonentity.getChildNodes();
+		for (int k = 0; k < children3.Count; k++)
+		{
+			XMBElement child3 = children3.item(k);
+			int element_name = child3.getNodeName();
+
+			// <actor>
+			if (element_name == el_actor)
+			{
+				ActorName = child3.getText();
+			}
+			// <position>
+			else if (element_name == el_position)
+			{
+				XMBAttributeList attrs = child3.getAttributes();
+				Position = CVector3D(CStr(attrs.getNamedItem(at_x)).ToFloat(),
+					CStr(attrs.getNamedItem(at_y)).ToFloat(),
+					CStr(attrs.getNamedItem(at_z)).ToFloat());
+			}
+			// <orientation>
+			else if (element_name == el_orientation)
+			{
+				XMBAttributeList attrs = child3.getAttributes();
+				Orientation = CStr(attrs.getNamedItem(at_angle)).ToFloat();
+			}
+			else
+				debug_warn("Invalid XML data - DTD shouldn't allow this");
+		}
+
+		CUnit* unit = g_UnitMan.CreateUnit(ActorName, NULL);
+		if (unit && unit->GetModel())
+		{
+			// Copied from CEntity::updateActorTransforms():
+			float s = sin( Orientation );
+			float c = cos( Orientation );
+			CMatrix3D m;
+			m._11 = -c;		m._12 = 0.0f;	m._13 = -s;		m._14 = Position.X;
+			m._21 = 0.0f;	m._22 = 1.0f;	m._23 = 0.0f;	m._24 = Position.Y;
+			m._31 = s;		m._32 = 0.0f;	m._33 = -c;		m._34 = Position.Z;
+			m._41 = 0.0f;	m._42 = 0.0f;	m._43 = 0.0f;	m._44 = 1.0f;
+			unit->GetModel()->SetTransform(m);
+		}
+
+		CHECK_TIMEOUT();
+	}
+
+	return 0;
+}
+
+
+int CXMLReader::ProgressiveRead()
+{
+	// yield after this time is reached. balances increased progress bar
+	// smoothness vs. slowing down loading.
+	const double end_time = get_time() + 50e-3;
+
+	int ret;
+
+	while(node_idx < nodes.Count)
+	{
+		node = nodes.item(node_idx);
+		if (node.getNodeName() == el_entities)
+		{
+			ret = ReadEntities(node, end_time);
+			if(ret != 0)	// error or timed out
+				return ret;
+		}
+		else if (node.getNodeName() == el_nonentities)
+		{
+			ret = ReadNonEntities(node, end_time);
+			if(ret != 0)	// error or timed out
+				return ret;
+		}
+		else
+			debug_warn("Invalid XML data - DTD shouldn't allow this");
+
+		node_idx++;
+	}
+
+	return 0;
+}
+
+
+// progressive
+int CMapReader::ReadXML()
+{
+	if(!xml_reader)
+		xml_reader = new CXMLReader(filename_xml);
+
+	int ret = xml_reader->ProgressiveRead();
+	// finished
+	if(ret == 0)
+	{
+		delete xml_reader;
+		xml_reader = 0;
+	}
+
+	return ret;
+}
+
+
+int CMapReader::DelayLoadFinished()
 {
 	// we were dynamically allocated by CWorld::Initialize
 	delete this;
+
+	return 0;
 }

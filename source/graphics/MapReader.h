@@ -12,6 +12,8 @@ class CTerrain;
 class CUnitManager;
 class CLightEnv;
 
+class CXMLReader;
+
 class CMapReader : public CMapIO
 {
 public:
@@ -21,8 +23,6 @@ public:
 	void LoadMap(const char* filename, CTerrain *pTerrain, CUnitManager *pUnitMan, CLightEnv *pLightEnv);
 
 private:
-	// UnpackMap: unpack the given data from the raw data stream into local variables
-	void UnpackMap();
 	// UnpackTerrain: unpack the terrain from the input stream
 	void UnpackTerrain();
 	// UnpackObjects: unpack world objects from the input stream
@@ -30,14 +30,17 @@ private:
 	// UnpackObjects: unpack lighting parameters from the input stream
 	void UnpackLightEnv();
 
+	// UnpackMap: unpack the given data from the raw data stream into local variables
+	int UnpackMap();
+
 	// ApplyData: take all the input data, and rebuild the scene from it
-	void ApplyData();
+	int ApplyData();
 
 	// ReadXML: read some other data (entities, etc) in XML format
-	void ReadXML();
+	int ReadXML();
 
 	// clean up everything used during delayed load
-	void DelayLoadFinished();
+	int DelayLoadFinished();
 
 	// size of map 
 	u32 m_MapSize;
@@ -56,10 +59,12 @@ private:
 
 	// state latched by LoadMap and held until DelayedLoadFinished
 	CFileUnpacker unpacker;
-	CTerrain *pTerrain;
-	CUnitManager *pUnitMan;
-	CLightEnv *pLightEnv;
+	CTerrain* pTerrain;
+	CUnitManager* pUnitMan;
+	CLightEnv* pLightEnv;
 	CStr filename_xml;
+
+	CXMLReader* xml_reader;
 };
 
 #endif
