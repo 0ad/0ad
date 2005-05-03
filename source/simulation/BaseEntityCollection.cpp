@@ -27,10 +27,11 @@ static void LoadFileThunk( const char* path, const vfsDirEnt* ent, void* context
 	this_->LoadFile(path);
 }
 
-void CBaseEntityCollection::loadTemplates()
+int CBaseEntityCollection::loadTemplates()
 {
 	// Load all files in entities/ and its subdirectories.
 	THROW_ERR( VFSUtil::EnumDirEnts( "entities/", "*.xml", true, LoadFileThunk, this ) );
+	return 0;
 }
 
 CBaseEntity* CBaseEntityCollection::getTemplate( CStrW name )

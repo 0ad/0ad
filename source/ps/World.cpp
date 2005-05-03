@@ -22,7 +22,7 @@ CLightEnv g_LightEnv;
 void CWorld::Initialize(CGameAttributes *pAttribs)
 {
 	// TODO: Find a better way of handling these global things
-	ONCE(RegMemFun(CBaseEntityCollection::GetSingletonPtr(), &CBaseEntityCollection::loadTemplates, L"LoadTemplates", 960));
+	ONCE(RegMemFun(CBaseEntityCollection::GetSingletonPtr(), &CBaseEntityCollection::loadTemplates, L"LoadTemplates", 30));
 
 	// Load the map, if one was specified
 	if (pAttribs->m_MapFile.Length())

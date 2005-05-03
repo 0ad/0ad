@@ -33,11 +33,12 @@ CSimulation::~CSimulation()
 	g_SinglePlayerTurnManager=NULL;
 }
 
-void CSimulation::Initialize(CGameAttributes *pAttribs)
+int CSimulation::Initialize(CGameAttributes *pAttribs)
 {
 	m_pTurnManager->Initialize(m_pGame->GetNumPlayers());
 
 	g_EntityManager.InitializeAll();
+	return 0;
 }
 
 

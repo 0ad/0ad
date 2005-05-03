@@ -97,7 +97,7 @@ void CTextureManager::DeleteTexture(CTextureEntry* entry)
 	delete entry;
 }
 
-void CTextureManager::LoadTerrainTextures(int terraintype,const char* fileext_filter)
+void CTextureManager::LoadTerrainTexturesImpl(int terraintype,const char* fileext_filter)
 {
 	CStr pathname("art/textures/terrain/types/");
 	pathname+=m_TerrainTextures[terraintype].m_Name;
@@ -135,7 +135,7 @@ void CTextureManager::BuildTerrainTypes()
 
 }
 
-void CTextureManager::LoadTerrainTextures()
+int CTextureManager::LoadTerrainTextures()
 {
 	// find all the terrain types by directory name
 	BuildTerrainTypes();
@@ -143,7 +143,9 @@ void CTextureManager::LoadTerrainTextures()
 	// now iterate through terrain types loading all textures of that type
 	for (uint i=0;i<m_TerrainTextures.size();i++) {
 		for (uint j=0;j<ARRAY_SIZE(SupportedTextureFormats);j++) {
-			LoadTerrainTextures(i,SupportedTextureFormats[j]);
+			LoadTerrainTexturesImpl(i,SupportedTextureFormats[j]);
 		}
 	}
+
+	return 0;
 }

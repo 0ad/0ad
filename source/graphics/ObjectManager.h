@@ -57,7 +57,7 @@ public:
 	CObjectManager();
 	~CObjectManager();
 
-	void LoadObjects();
+	int LoadObjects();
 
 	void AddObjectType(const char* name);
 

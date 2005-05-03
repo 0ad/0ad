@@ -29,7 +29,7 @@ public:
 	CTextureManager();
 	~CTextureManager();
 	
-	void LoadTerrainTextures();
+	int LoadTerrainTextures();
 
 
 	void AddTextureType(const char* name);
@@ -42,7 +42,7 @@ public:
 	std::vector<STextureType> m_TerrainTextures;
 
 private:
-	void LoadTerrainTextures(int terraintype,const char* fileext);
+	void LoadTerrainTexturesImpl(int terraintype,const char* fileext);
 	void BuildTerrainTypes();
 
 };

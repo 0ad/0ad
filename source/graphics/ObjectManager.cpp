@@ -169,9 +169,10 @@ void CObjectManager::DeleteObject(CObjectEntry* entry)
 }
 
 
-void CObjectManager::LoadObjects()
+int CObjectManager::LoadObjects()
 {
 	AddObjectType("");
+	return 0;
 }
 
 

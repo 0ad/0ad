@@ -74,7 +74,7 @@ CGameView::~CGameView()
 }
 
 
-void CGameView::Initialize(CGameAttributes *pAttribs)
+int CGameView::Initialize(CGameAttributes *pAttribs)
 {
 	CConfigValue* cfg;
 	
@@ -92,11 +92,12 @@ void CGameView::Initialize(CGameAttributes *pAttribs)
 	getViewParameter( "view.zoom.wheel.speed", m_ViewZoomSensitivityWheel );
 	getViewParameter( "view.zoom.smoothness", m_ViewZoomSmoothness );
 	getViewParameter( "view.snap.smoothness", m_ViewSnapSmoothness );
-	
+#undef getViewParameter
+
 	if( ( m_ViewZoomSmoothness < 0.0f ) || ( m_ViewZoomSmoothness > 1.0f ) ) m_ViewZoomSmoothness = 0.02f;
 	if( ( m_ViewSnapSmoothness < 0.0f ) || ( m_ViewSnapSmoothness > 1.0f ) ) m_ViewSnapSmoothness = 0.02f;
 
-#undef getViewParameter
+	return 0;
 }
 
 
@@ -112,9 +113,9 @@ void CGameView::RegisterInit(CGameAttributes *pAttribs)
 	RegMemFun1(this, &CGameView::Initialize, pAttribs, L"CGameView init", 1);
 
 	// previously done by CGameView::InitResources
-	RegMemFun(g_TexMan.GetSingletonPtr(), &CTextureManager::LoadTerrainTextures, L"LoadTerrainTextures", 17);
-	RegMemFun(g_ObjMan.GetSingletonPtr(), &CObjectManager::LoadObjects, L"LoadObjects", 1063);
-	RegMemFun(g_Renderer.GetSingletonPtr(), &CRenderer::LoadAlphaMaps, L"LoadAlphaMaps", 36);
+	RegMemFun(g_TexMan.GetSingletonPtr(), &CTextureManager::LoadTerrainTextures, L"LoadTerrainTextures", 80);
+	RegMemFun(g_ObjMan.GetSingletonPtr(), &CObjectManager::LoadObjects, L"LoadObjects", 1);
+	RegMemFun(g_Renderer.GetSingletonPtr(), &CRenderer::LoadAlphaMaps, L"LoadAlphaMaps", 40);
 }
 
 

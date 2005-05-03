@@ -35,7 +35,7 @@ class CBaseEntityCollection : public Singleton<CBaseEntityCollection>
 public:
 	~CBaseEntityCollection();
 	CBaseEntity* getTemplate( CStrW entityType );
-	void loadTemplates();
+	int loadTemplates();
 	void LoadFile( const char* path );
 
 	// Create a list of the names of all base entities, excluding template_*,

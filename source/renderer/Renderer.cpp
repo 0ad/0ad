@@ -1153,7 +1153,7 @@ inline void CopyTriple(unsigned char* dst,const unsigned char* src)
 // LoadAlphaMaps: load the 14 default alpha maps, pack them into one composite texture and
 // calculate the coordinate of each alphamap within this packed texture .. need to add
 // validation that all maps are the same size
-void CRenderer::LoadAlphaMaps()
+int CRenderer::LoadAlphaMaps()
 {
 	Handle textures[NumAlphaMaps];
 
@@ -1251,6 +1251,8 @@ void CRenderer::LoadAlphaMaps()
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
 
 	delete[] data;
+
+	return 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
