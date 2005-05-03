@@ -26,7 +26,7 @@ static void BuildFileListCB(const char* path, const vfsDirEnt* ent, void* contex
 {
 	BuildFileListState* s = (BuildFileListState*)context;
 
-	jsval val = ToJSVal( CStr ( result ) );
+	jsval val = ToJSVal( CStr ( path ) );
 		// note: <path> is already directory + name!
 
 	JS_SetElement(s->cx, s->filename_array, s->cur_idx, &val);
