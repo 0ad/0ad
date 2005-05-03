@@ -58,8 +58,8 @@ function initManual()
 	Crd[Crd.last-1].rright	= right_screen;	Crd[Crd.last-1].rbottom	= top_screen; 
 	Crd[Crd.last-1].width	= 16;
 	Crd[Crd.last-1].height	= 16;
-	Crd[Crd.last-1].x	= 26;
-	Crd[Crd.last-1].y	= 25;
+	Crd[Crd.last-1].x	= Crd[Crd.last-1].width+MANUAL.span*2-1;
+	Crd[Crd.last-1].y	= Crd[Crd.last-1].height+MANUAL.span*2-1;
 }
 
 // ====================================================================
