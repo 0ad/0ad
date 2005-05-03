@@ -56,7 +56,7 @@ static void BuildFileListCB(const char* path, const vfsDirEnt* ent, void* contex
 // Return an array of pathname strings, one for each matching entry in the
 // specified directory.
 //
-// array_of_filenames = buildFileList(start_path [, filter_string [, recursive ] ]);
+// pathnames = buildFileList(start_path [, filter_string [, recursive ] ]);
 //   directory: VFS path
 //   filter_string: default "" matches everything; otherwise, see vfs_next_dirent.
 //   recurse: should subdirectories be included in the search? default false.
@@ -103,9 +103,9 @@ JSBool JSI_VFS::BuildFileList( JSContext* cx, JSObject* obj, uintN argc, jsval* 
 }
 
 
-// Return timestamp of the last modification to the specified file.
+// Return time [seconds since 1970] of the last modification to the specified file.
 //
-// seconds_since_1970 = getFileMTime(filename);
+// mtime = getFileMTime(filename);
 //   filename: VFS filename (may include path)
 JSBool JSI_VFS::GetFileMTime( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
@@ -145,7 +145,7 @@ JSBool JSI_VFS::GetFileSize( JSContext* cx, JSObject* obj, uintN argc, jsval* ar
 
 // Return file contents in a string.
 //
-// contents_string = readFile(filename);
+// contents = readFile(filename);
 //   filename: VFS filename (may include path)
 JSBool JSI_VFS::ReadFile( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
@@ -169,7 +169,7 @@ JSBool JSI_VFS::ReadFile( JSContext* cx, JSObject* obj, uintN argc, jsval* argv,
 
 // Return file contents as an array of lines.
 //
-// array_of_strings = readFileLines(filename);
+// lines = readFileLines(filename);
 //   filename: VFS filename (may include path)
 JSBool JSI_VFS::ReadFileLines( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
