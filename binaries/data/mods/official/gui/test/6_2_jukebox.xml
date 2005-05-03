@@ -10,20 +10,20 @@
 
 <objects>
 
-	<object type="empty" name="JUKEBOX_GUI" size="0 0 100% 100%" z="1" hotkey="onlinehelp" hidden="true">
-		<action on="Press"><![CDATA[
-			// Toggle jukebox.
-			GUIObjectToggle("JUKEBOX_GUI");
-			GUIObjectToggle("SESSION_GUI");
-		]]></action>
+	<object type="empty" name="JUKEBOX_GUI" size="0 0 100% 100%" z="1" hidden="true">
 
         	<object type="text" name="JUKEBOX_BKG" sprite="0ad_window" font="prospero16" textcolor="0 0 0" z="100" hidden="false" ghost="true"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[JUKEBOX_BKG]); ]]></action>
 			<action on="Tick"><![CDATA[
-				if !( getGUIObjectByName( "MANUAL_GUI" ).hidden )
+				if (!getGUIObjectByName("JUKEBOX_GUI").hidden)
 					jukeboxDisplay();
 			]]></action>
 		</object>
 
+		<object type="button" name="JUKEBOX_TITLEBAR" sprite="message_box_titlebar_middle" font="prospero18" text_align="center" text_valign="center" ><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[JUKEBOX_TITLEBAR]); GUIObjectSetCaption(this.name, "Jukebox"); ]]></action></object>
+<!--
+		<object type="combobox" name="JUKEBOX_CATEGORY" sprite="0ad_window" text_align="left" ><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[JUKEBOX_CATEGORY]); GUIObjectSetCaption(this.name, "All"); ]]></action></object>
+		<object type="list" name="JUKEBOX_LIST_FILE" sprite="0ad_indent" text_align="left" ><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[JUKEBOX_LIST_FILE]); GUIObjectSetCaption(this.name, ""); ]]></action></object>
+-->
 		<object type="button" name="JUKEBOX_EXIT_BUTTON" sprite="exit_sprite" sprite_over="exit_sprite_over" ghost="false" z="100" hidden="false"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[JUKEBOX_EXIT_BUTTON]); ]]></action>
 			<action on="Press"><![CDATA[
 				// Close jukebox.

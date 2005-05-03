@@ -510,6 +510,13 @@
 						messageBox(600, 200, "Do you want to leave the current game? There might be more dudes to slaughter.", "Confirmation", 0, btCaptions, btCode);
 					]]></action>
 				</object>
+				<object type="button" name="SN_INGAME_MENU_BTN_JUKEBOX" style="session_button_object" hotkey="jukebox" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_INGAME_MENU_BTN_JUKEBOX]); GUIObjectSetCaption(this.name, "Playlist Editor"); ]]></action>
+					<action on="Press"><![CDATA[
+						// Toggle jukebox.
+						GUIObjectToggle("JUKEBOX_GUI");
+						GUIObjectToggle("SESSION_GUI");
+					]]></action>
+				</object>
 			</object>
 		</object>
 

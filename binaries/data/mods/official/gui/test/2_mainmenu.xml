@@ -238,10 +238,10 @@
                                           
                               		server.onClientConnect =  function (event) {
                               			console.write("new client connected! ID: " + event.id + ", Name: " + event.name + ", Session: " + event.session);
-                              			//var playerSlot = g_GameAttributes.getOpenSlot();
+                              			var playerSlot = g_GameAttributes.getOpenSlot();
                               			// assign a slot
-                              			//playerSlot.assignToSession(event.session);
-                              			//console.write("slot: " + playerSlot.player);
+                              			playerSlot.assignToSession(event.session);
+                              			console.write("slot: " + playerSlot.player);
                               		}
                                     ]]></action>
                               </object>

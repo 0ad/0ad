@@ -34,6 +34,14 @@ function initSubWindows()
 	Crd[Crd.last-1].height	= Crd[SN_INGAME_MENU_BTN_RETURN].height; 
 	Crd[Crd.last-1].x	= Crd[SN_INGAME_MENU_BTN_RETURN].x; 
 	Crd[Crd.last-1].y	= Crd[SN_INGAME_MENU_BTN_EXIT].y-Crd[SN_INGAME_MENU_BTN_EXIT].height-SN_INGAME_MENU_BTN.span; 
+
+	SN_INGAME_MENU_BTN_JUKEBOX = addArrayElement(Crd, Crd.last); 
+	Crd[Crd.last-1].rleft	= mid_screen;	Crd[Crd.last-1].rtop	= mid_screen; 
+	Crd[Crd.last-1].rright	= mid_screen;	Crd[Crd.last-1].rbottom	= mid_screen; 
+	Crd[Crd.last-1].width	= Crd[SN_INGAME_MENU_BTN_RETURN].width; 
+	Crd[Crd.last-1].height	= Crd[SN_INGAME_MENU_BTN_RETURN].height; 
+	Crd[Crd.last-1].x	= Crd[SN_INGAME_MENU_BTN_RETURN].x; 
+	Crd[Crd.last-1].y	= Crd[SN_INGAME_MENU_BTN_RESIGN].y-Crd[SN_INGAME_MENU_BTN_RESIGN].height-SN_INGAME_MENU_BTN.span; 
 }
 
 // ====================================================================
