@@ -549,4 +549,71 @@ void ia32_get_cpu_info()
 #endif
 }
 
+
+
+
+
+
+
+
+
+// note: a 486 or later processor is required since we use CMPXCHG.
+// there's no feature flag we can check, and the ia32 code doesn't
+// bother detecting anything < Pentium, so this'll crash and burn if
+// run on 386. we could replace cmpxchg with a simple mov (since 386
+// CPUs aren't MP-capable), but it's not worth the trouble.
+
+__declspec(naked) bool __cdecl CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value)
+{
+	// try to see if caller isn't passing in an address
+	// (CAS's arguments are silently casted)
+	assert2(location >= (uintptr_t*)0x10000);
+
+__asm
+{
+	cmp		byte ptr [cpus], 1
+	mov		eax, [esp+8]	// expected
+	mov		edx, [esp+4]	// location
+	mov		ecx, [esp+12]	// new_value
+	je		$no_lock
+_emit 0xf0	// LOCK prefix
+$no_lock:
+	cmpxchg	[edx], ecx
+	mov		eax, 0
+	sete	al
+	ret
+}
+}
+
+
+__declspec(naked) void __cdecl atomic_add(intptr_t* location, intptr_t increment)
+{
+__asm
+{
+	cmp		byte ptr [cpus], 1
+	mov		edx, [esp+4]	// location
+	mov		eax, [esp+8]	// increment
+	je		$no_lock
+_emit 0xf0	// LOCK prefix
+$no_lock:
+	add		[edx], eax
+	ret
+}
+}
+
+
+// enforce strong memory ordering.
+void mfence()
+{
+	// Pentium IV
+	if(ia32_cap(SSE2))
+		__asm mfence
+}
+
+
+void serialize()
+{
+	__asm cpuid
+}
+
 #endif	// #ifndef _M_IX86

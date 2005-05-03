@@ -307,6 +307,7 @@ extern int ilog2(const int n);
 extern uint log2(uint x);
 
 
+// multiple must be a power of two.
 extern uintptr_t round_up(uintptr_t val, uintptr_t multiple);
 
 extern u16 fp_to_u16(double in);

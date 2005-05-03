@@ -199,16 +199,11 @@ int ilog2(const float x)
 }
 
 
+// multiple must be a power of two.
 uintptr_t round_up(const uintptr_t n, const uintptr_t multiple)
 {
-	if(multiple == 0)	// paranoid divide-by-zero
-	{
-		assert(0);
-		return n;
-	}
-	const uintptr_t padded = n + multiple-1;
-	const uintptr_t remainder = padded % multiple;
-	const uintptr_t result = padded - remainder;
+	assert(is_pow2((long)multiple));	// also catches divide-by-zero
+	const uintptr_t result = (n + multiple-1) & ~(multiple-1);
 	assert(n <= result && result < n+multiple);
 	return result;
 }
