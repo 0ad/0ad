@@ -191,8 +191,8 @@ bool CObjectEntry::BuildRandomVariant(CObjectBase::variation_key& vars, CObjectB
 			{
 				CModel* propmodel = oe->m_Model->Clone();
 				m_Model->AddProp(proppoint, propmodel);
-				if (oe->m_WalkAnim)
-					propmodel->SetAnimation(oe->m_WalkAnim);
+				if (oe->m_IdleAnim)
+					propmodel->SetAnimation(oe->m_IdleAnim);
 			}
 			else
 			{
