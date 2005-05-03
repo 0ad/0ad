@@ -27,7 +27,7 @@
 #include "timer.h"
 
 #ifndef PERFORM_SELF_TEST
-#define PERFORM_SELF_TEST 1
+#define PERFORM_SELF_TEST 0
 #endif
 
 
