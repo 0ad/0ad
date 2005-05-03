@@ -20,10 +20,6 @@
 #include "scripting/ScriptableObject.h"
 #include "lib/res/handle.h"
 
-// ....
-#undef free
-// ....
-
 class JSI_Sound : public CJSObject<JSI_Sound>
 {
 public:
