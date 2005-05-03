@@ -29,6 +29,7 @@
 #include "scripting/JSInterface_Selection.h"
 #include "scripting/JSInterface_Camera.h"
 #include "scripting/JSInterface_Console.h"
+#include "scripting/JSInterface_VFS.h"
 #include "scripting/JSConversions.h"
 
 #ifndef NO_GUI
@@ -71,6 +72,13 @@ JSFunctionSpec ScriptFunctionTable[] =
 	{"getLanguageID", getLanguageID, 0, 0, 0 },
 	{"getFPS", getFPS, 0, 0, 0 },
 	{"buildTime", buildTime, 0, 0, 0 },
+
+	// VFS:
+	{"buildFileList", JSI_VFS::BuildFileList, 1, 0, 0 },
+	{"getFileMTime", JSI_VFS::GetFileMTime, 1, 0, 0 },
+	{"getFileSize", JSI_VFS::GetFileSize, 1, 0, 0 },
+	{"readFile", JSI_VFS::ReadFile, 1, 0, 0 },
+	{"readFileLines", JSI_VFS::ReadFileLines, 1, 0, 0 },
 
 	{"v3dist", v3dist, 2, 0, 0 },
 

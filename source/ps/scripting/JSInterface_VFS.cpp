@@ -5,6 +5,7 @@
 #include "lib/res/res.h"
 #include "scripting/ScriptingHost.h"
 #include "scripting/JSConversions.h"
+#include "scripting/JSInterface_VFS.h"
 
 /*
 array = buildFileList(start_directory, bool recursive, string pattern)
@@ -13,9 +14,6 @@ size = getFileSize(filename)
 string = readFile(filename)
 array (of string) = readFileLines(filename)
 */
-
-#if 0
-
 
 struct BuildFileListState
 {
@@ -35,11 +33,16 @@ static void BuildFileListCB(const char* path, const vfsDirEnt* ent, void* contex
 {
 	BuildFileListState* s = (BuildFileListState*)context;
 
-	jsval val = ToJSVal(ent->name);
+	CStr result = path;
+	/* result += CStr( ent->name ); */
+
+	jsval val = ToJSVal( result );
+
 	JS_SetElement(s->cx, s->filename_array, s->cur_idx, &val);
+	s->cur_idx++;
 }
 
-bool BuildFileList( JSContext* cx, uintN argc, jsval* argv, jsval* rval )
+JSBool JSI_VFS::BuildFileList( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
 	//
 	// get arguments
@@ -74,12 +77,11 @@ bool BuildFileList( JSContext* cx, uintN argc, jsval* argv, jsval* rval )
 	BuildFileListState state(cx);
 	VFSUtil::EnumDirEnts(path, filter, recursive, BuildFileListCB, &state);
 
-	*rval = ToJSVal( state.filename_array );
+	*rval = OBJECT_TO_JSVAL( state.filename_array );
 	return( JS_TRUE );
 }
 
-
-bool GetFileMTime( JSContext* cx, uintN argc, jsval* argv, jsval* rval )
+JSBool JSI_VFS::GetFileMTime( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
 	assert( argc >= 1 );
 	CStr filename;
@@ -87,15 +89,19 @@ bool GetFileMTime( JSContext* cx, uintN argc, jsval* argv, jsval* rval )
 		return( JS_FALSE );
 
 	struct stat s;
+	if( !vfs_exists( filename.c_str() ) )
+	{
+		*rval = JSVAL_NULL;
+		return( JS_TRUE );
+	}
 	if(vfs_stat(filename.c_str(), &s) < 0)
 		return( JS_FALSE );
 
-	*rval = ToJSVal( s.st_mtime );
+	*rval = ToJSVal( (double)s.st_mtime );
 	return( JS_TRUE );
 }
 
-
-bool GetFileSize( JSContext* cx, uintN argc, jsval* argv, jsval* rval )
+JSBool JSI_VFS::GetFileSize( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
 	assert( argc >= 1 );
 	CStr filename;
@@ -103,15 +109,20 @@ bool GetFileSize( JSContext* cx, uintN argc, jsval* argv, jsval* rval )
 		return( JS_FALSE );
 
 	struct stat s;
+	if( !vfs_exists( filename.c_str() ) )
+	{
+		*rval = JSVAL_NULL;
+		return( JS_TRUE );
+	}
 	if(vfs_stat(filename.c_str(), &s) < 0)
 		return( JS_FALSE );
 
-	*rval = ToJSVal( s.st_size );
+	*rval = ToJSVal( (uint)s.st_size );
 	return( JS_TRUE );
 }
 
 
-bool ReadFile( JSContext* cx, uintN argc, jsval* argv, jsval* rval )
+JSBool JSI_VFS::ReadFile( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
 	assert( argc >= 1 );
 	CStr filename;
@@ -120,18 +131,22 @@ bool ReadFile( JSContext* cx, uintN argc, jsval* argv, jsval* rval )
 
 	void* p;
 	size_t size;
+	if( !vfs_exists( filename.c_str() ) )
+	{
+		*rval = JSVAL_NULL;
+		return( JS_TRUE );
+	}
 	Handle hm = vfs_load(filename.c_str(), p, size);
 	if(hm <= 0)
 		return( JS_FALSE );
 	CStr contents((const char*)p, size);
 	mem_free_h(hm);
 
-	*rval = ToJSVal( contents );
+	*rval = ToJSVal( CStr( contents ) );
 	return( JS_TRUE );
 }
 
-
-bool ReadFileLines( JSContext* cx, uintN argc, jsval* argv, jsval* rval )
+JSBool JSI_VFS::ReadFileLines( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
 	assert( argc >= 1 );
 	CStr filename;
@@ -141,6 +156,11 @@ bool ReadFileLines( JSContext* cx, uintN argc, jsval* argv, jsval* rval )
 	// read file
 	void* p;
 	size_t size;
+	if( !vfs_exists( filename.c_str() ) )
+	{
+		*rval = JSVAL_NULL;
+		return( JS_TRUE );
+	}
 	Handle hm = vfs_load(filename.c_str(), p, size);
 	if(hm <= 0)
 		return( JS_FALSE );
@@ -153,12 +173,10 @@ bool ReadFileLines( JSContext* cx, uintN argc, jsval* argv, jsval* rval )
 	std::string line;
 	while(std::getline(ss, line))
 	{
-		jsval val = ToJSVal(line);
+		jsval val = ToJSVal( CStr( line ) );
 		JS_SetElement(cx, line_array, 0, &val);
 	}
 
-	*rval = ToJSVal(line_array);
+	*rval = OBJECT_TO_JSVAL( line_array);
 	return( JS_TRUE );
 }
-
-#endif

@@ -144,7 +144,7 @@ bool CObjectEntry::BuildRandomVariant(CObjectBase::variation_key& vars, CObjectB
 		if (m_Animations[t].m_FileName.Length() > 0)
 		{
 			const char* animfilename = m_Animations[t].m_FileName;
-			m_Animations[t].m_AnimData = m_Model->BuildAnimation(animfilename, m_Animations[t].m_Speed, m_Animations[t].m_ActionPos);
+			m_Animations[t].m_AnimData = m_Model->BuildAnimation(animfilename, m_Animations[t].m_Speed, m_Animations[t].m_ActionPos, m_Animations[t].m_ActionPos2);
 
 			CStr AnimNameLC = m_Animations[t].m_AnimName.LowerCase();
 

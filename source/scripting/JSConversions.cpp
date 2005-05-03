@@ -237,6 +237,31 @@ template<> jsval ToJSVal<CStrW>( CStrW& Native )
 	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( g_ScriptingHost.GetContext(), Native.utf16().c_str() ) ) );
 }
 
+// CStr/CStr8
+
+template<> bool ToPrimitive<CStr8>( JSContext* cx, jsval v, CStr8& Storage )
+{
+	try
+	{
+		Storage = g_ScriptingHost.ValueToString( v );
+	}
+	catch( PSERROR_Scripting_ConversionFailed )
+	{
+		return( false );
+	}
+	return( true );
+}
+
+template<> jsval ToJSVal<CStr8>( const CStr8& Native )
+{
+	return( STRING_TO_JSVAL( JS_NewStringCopyZ( g_ScriptingHost.GetContext(), Native.c_str() ) ) );
+}
+
+template<> jsval ToJSVal<CStr8>( CStr8& Native )
+{
+	return( STRING_TO_JSVAL( JS_NewStringCopyZ( g_ScriptingHost.GetContext(), Native.c_str() ) ) );
+}
+
 // jsval
 
 template<> jsval ToJSVal<jsval>( const jsval& Native )

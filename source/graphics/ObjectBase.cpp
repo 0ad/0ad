@@ -160,6 +160,7 @@ bool CObjectBase::Load(const char* filename)
 		AT(name);
 		AT(speed);
 		AT(event);
+		AT(load);
 		AT(attachpoint);
 		AT(actor);
 		AT(frequency);
@@ -226,6 +227,13 @@ bool CObjectBase::Load(const char* filename)
 										if (anim.m_ActionPos < 0.0) anim.m_ActionPos = 0.0;
 										else if (anim.m_ActionPos > 100.0) anim.m_ActionPos = 1.0;
 										else if (anim.m_ActionPos > 1.0) anim.m_ActionPos /= 100.0;
+									}
+									else if (ae.Name == at_load)
+									{
+										anim.m_ActionPos2 = CStr(ae.Value).ToDouble();
+										if (anim.m_ActionPos2 < 0.0) anim.m_ActionPos2 = 0.0;
+										else if (anim.m_ActionPos2 > 100.0) anim.m_ActionPos2 = 1.0;
+										else if (anim.m_ActionPos2 > 1.0) anim.m_ActionPos2 /= 100.0;
 									}
 									else
 										; // unrecognised element
