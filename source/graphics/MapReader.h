@@ -24,7 +24,7 @@ public:
 
 private:
 	// UnpackTerrain: unpack the terrain from the input stream
-	void UnpackTerrain();
+	int UnpackTerrain();
 	// UnpackObjects: unpack world objects from the input stream
 	void UnpackObjects();
 	// UnpackObjects: unpack lighting parameters from the input stream
@@ -63,6 +63,10 @@ private:
 	CUnitManager* pUnitMan;
 	CLightEnv* pLightEnv;
 	CStr filename_xml;
+
+	// UnpackTerrain generator state
+	int cur_terrain_tex;
+	int num_terrain_tex;
 
 	CXMLReader* xml_reader;
 };

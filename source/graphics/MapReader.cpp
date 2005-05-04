@@ -24,6 +24,7 @@
 CMapReader::CMapReader()
 	: xml_reader(0)
 {
+	cur_terrain_tex = 0;	// important - resets generator state
 }
 
 
@@ -63,7 +64,10 @@ void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_, CUnitManager
 int CMapReader::UnpackMap()
 {
 	// now unpack everything into local data
-	UnpackTerrain();
+	int ret = UnpackTerrain();
+	if(ret != 0)	// failed or timed out
+		return ret;
+
 	UnpackObjects();
 	if (unpacker.GetVersion()>=2) {
 		UnpackLightEnv();
@@ -103,40 +107,56 @@ void CMapReader::UnpackObjects()
 
 // UnpackTerrain: unpack the terrain from the end of the input data stream
 //		- data: map size, heightmap, list of textures used by map, texture tile assignments
-void CMapReader::UnpackTerrain()
+int CMapReader::UnpackTerrain()
 {
-	// unpack map size
-	unpacker.UnpackRaw(&m_MapSize,sizeof(m_MapSize));	
-	
-	// unpack heightmap
-	u32 verticesPerSide=m_MapSize*PATCH_SIZE+1;
-	m_Heightmap.resize(SQR(verticesPerSide));
-	unpacker.UnpackRaw(&m_Heightmap[0],SQR(verticesPerSide)*sizeof(u16));	
-	
-	// unpack texture names; find handle for each texture
-	u32 numTextures;
-	unpacker.UnpackRaw(&numTextures,sizeof(numTextures));	
+	const double end_time = get_time() + 50e-3;
 
-	m_TerrainTextures.reserve(numTextures);
-	for (uint i=0;i<numTextures;i++) {
+	// first call to generator (this is skipped after first call,
+	// i.e. when the loop below was interrupted)
+	if(cur_terrain_tex == 0)
+	{
+		// unpack map size
+		unpacker.UnpackRaw(&m_MapSize,sizeof(m_MapSize));
+
+		// unpack heightmap [600µs]
+		u32 verticesPerSide=m_MapSize*PATCH_SIZE+1;
+		m_Heightmap.resize(SQR(verticesPerSide));
+		unpacker.UnpackRaw(&m_Heightmap[0],SQR(verticesPerSide)*sizeof(u16));
+
+		// unpack # textures
+		unpacker.UnpackRaw(&num_terrain_tex, sizeof(num_terrain_tex));
+		m_TerrainTextures.reserve(num_terrain_tex);
+	}
+
+	// unpack texture names; find handle for each texture.
+	// interruptible.
+	while(cur_terrain_tex < num_terrain_tex)
+	{
 		CStr texturename;
 		unpacker.UnpackString(texturename);
 
 		Handle handle;
-		CTextureEntry* texentry=g_TexMan.FindTexture(texturename);
-		if (!texentry) {
-			// ack; mismatch between texture datasets?
-			handle=0;
-		} else {
-			handle=texentry->GetHandle();
-		}
+		CTextureEntry* texentry = g_TexMan.FindTexture(texturename);
+		// mismatch between texture datasets?
+		if (!texentry)
+			handle = 0;
+		else
+			handle = texentry->GetHandle();
 		m_TerrainTextures.push_back(handle);
+
+		cur_terrain_tex++;
+		LDR_CHECK_TIMEOUT(cur_terrain_tex, num_terrain_tex);
 	}
-	
-	// unpack tile data
-	u32 tilesPerSide=m_MapSize*PATCH_SIZE;
+
+	// unpack tile data [3ms]
+	u32 tilesPerSide = m_MapSize*PATCH_SIZE;
 	m_Tiles.resize(SQR(tilesPerSide));
-	unpacker.UnpackRaw(&m_Tiles[0],(u32)(sizeof(STileDesc)*m_Tiles.size()));	
+	unpacker.UnpackRaw(&m_Tiles[0],(u32)(sizeof(STileDesc)*m_Tiles.size()));
+
+	// reset generator state.
+	cur_terrain_tex = 0;
+
+	return 0;
 }
 
 // ApplyData: take all the input data, and rebuild the scene from it
@@ -315,18 +335,7 @@ void CXMLReader::Init(const CStr& xml_filename)
 }
 
 
-// code shared by Read*Entities
-#define CHECK_TIMEOUT()\
-	completed_jobs++;\
-	if(get_time() > end_time)\
-	{\
-		int progress_percent = (completed_jobs*100 / total_jobs);\
-		/* 0 means "finished", so don't return that! */\
-		if(progress_percent == 0)\
-			progress_percent = 1;\
-		assert2(0 < progress_percent && progress_percent <= 100);\
-		return progress_percent;\
-	}
+
 
 
 int CXMLReader::ReadEntities(XMBElement& parent, double end_time)
@@ -385,7 +394,8 @@ int CXMLReader::ReadEntities(XMBElement& parent, double end_time)
 		else
 			ent->SetPlayer(g_Game->GetPlayer(PlayerID));
 
-		CHECK_TIMEOUT();
+		completed_jobs++;
+		LDR_CHECK_TIMEOUT(completed_jobs, total_jobs);
 	}
 
 	return 0;
@@ -450,7 +460,8 @@ int CXMLReader::ReadNonEntities(XMBElement& parent, double end_time)
 			unit->GetModel()->SetTransform(m);
 		}
 
-		CHECK_TIMEOUT();
+		completed_jobs++;
+		LDR_CHECK_TIMEOUT(completed_jobs, total_jobs);
 	}
 
 	return 0;
@@ -497,8 +508,8 @@ int CMapReader::ReadXML()
 		xml_reader = new CXMLReader(filename_xml);
 
 	int ret = xml_reader->ProgressiveRead();
-	// finished
-	if(ret == 0)
+	// finished or failed
+	if(ret <= 0)
 	{
 		delete xml_reader;
 		xml_reader = 0;
