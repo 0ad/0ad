@@ -64,7 +64,13 @@ bool CObjectEntry::BuildRandomVariant(CObjectBase::variation_key& vars, CObjectB
 		}
 
 		// Get the correct variant
-		CObjectBase::Variant& var (grp->at(*(vars_it++)));
+		u8 var_id = *vars_it++;
+		if (var_id < 0 || var_id >= grp->size())
+		{
+			LOG(ERROR, LOG_CATEGORY, "Internal error (BuildRandomVariant: %d not in 0..%d", var_id, grp->size()-1);
+			continue;
+		}
+		CObjectBase::Variant& var ((*grp)[var_id]);
 
 		// Apply its data:
 

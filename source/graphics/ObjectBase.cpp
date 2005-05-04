@@ -167,7 +167,31 @@ bool CObjectBase::Load(const char* filename)
 		#undef AT
 		#undef EL
 
-		// (This code is rather worryingly verbose...)
+		// Set up the vector<vector<T>> m_Variants to contain the right number
+		// of elements, to avoid wasteful copying/reallocation later.
+		{
+			// Count the variants in each group
+			std::vector<int> variantSizes;
+			XERO_ITER_EL(root, child)
+			{
+				if (child.getNodeName() == el_group)
+				{
+					variantSizes.push_back(0);
+					XERO_ITER_EL(child, variant)
+						++variantSizes.back();
+				}
+			}
+
+			m_Variants.resize(variantSizes.size());
+			// Set each vector to match the number of variants
+			for (size_t i = 0; i < variantSizes.size(); ++i)
+				m_Variants[i].resize(variantSizes[i]);
+		}
+
+
+		// (This XML-reading code is rather worryingly verbose...)
+
+		std::vector<std::vector<Variant> >::iterator currentGroup = m_Variants.begin();
 
 		XERO_ITER_EL(root, child)
 		{
@@ -175,19 +199,16 @@ bool CObjectBase::Load(const char* filename)
 
 			if (child_name == el_group)
 			{
-				m_Variants.resize(m_Variants.size()+1);
-
+				std::vector<Variant>::iterator currentVariant = currentGroup->begin();
 				XERO_ITER_EL(child, variant)
 				{
-					m_Variants.back().resize(m_Variants.back().size()+1);
-
 					XERO_ITER_ATTR(variant, attr)
 					{
 						if (attr.Name == at_name)
-							m_Variants.back().back().m_VariantName = attr.Value;
+							currentVariant->m_VariantName = attr.Value;
 
 						else if (attr.Name == at_frequency)
-							m_Variants.back().back().m_Frequency = CStr(attr.Value).ToInt();
+							currentVariant->m_Frequency = CStr(attr.Value).ToInt();
 					}
 
 
@@ -196,13 +217,13 @@ bool CObjectBase::Load(const char* filename)
 						int option_name = option.getNodeName();
 
 						if (option_name == el_mesh)
-							m_Variants.back().back().m_ModelFilename = "art/meshes/" + CStr(option.getText());
+							currentVariant->m_ModelFilename = "art/meshes/" + CStr(option.getText());
 
 						else if (option_name == el_texture)
-							m_Variants.back().back().m_TextureFilename = "art/textures/skins/" + CStr(option.getText());
+							currentVariant->m_TextureFilename = "art/textures/skins/" + CStr(option.getText());
 
 						else if (option_name == el_colour)
-							m_Variants.back().back().m_Color = option.getText();
+							currentVariant->m_Color = option.getText();
 
 						else if (option_name == el_animations)
 						{
@@ -238,7 +259,7 @@ bool CObjectBase::Load(const char* filename)
 									else
 										; // unrecognised element
 								}
-								m_Variants.back().back().m_Anims.push_back(anim);
+								currentVariant->m_Anims.push_back(anim);
 							}
 
 						}
@@ -257,19 +278,22 @@ bool CObjectBase::Load(const char* filename)
 									else
 										; // unrecognised element
 								}
-								m_Variants.back().back().m_Props.push_back(prop);
+								currentVariant->m_Props.push_back(prop);
 							}
 						}
 						else
 							; // unrecognised element
 					}
+
+					++currentVariant;
 				}
 
-				if (m_Variants.back().size() == 0)
+				if (currentGroup->size() == 0)
 				{
 					LOG(ERROR, LOG_CATEGORY, "Actor group has zero variants ('%s')", filename);
-					m_Variants.pop_back();
 				}
+
+				++currentGroup;
 			}
 			else if (child_name == el_material)
 			{
@@ -307,7 +331,10 @@ void CObjectBase::CalculateVariation(std::set<CStr>& strings, variation_key& cho
 		grp != m_Variants.end();
 		++grp)
 	{
-		assert(grp->size() > 0);
+		// Ignore groups with nothing inside. (A warning will have been
+		// emitted by the loading code.)
+		if (grp->size() == 0)
+			continue;
 
 		// If there's only a single variant, choose that one
 		if (grp->size() == 1)
