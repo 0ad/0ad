@@ -385,21 +385,22 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 		// magnify can only be linear or nearest
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, mag_filter);
 
+	// activate automatic mipmap generation if called for and possible.
 	if(need_mipmaps)
 	{
+		// it's supported; activate. this works for S3TC as well.
 		if(auto_mipmap_gen != GL_FALSE)
 			glTexParameteri(GL_TEXTURE_2D, auto_mipmap_gen, GL_TRUE);
-		// note: also works on S3TC-compressed textures
-	}
-
-	if(fmt_is_s3tc(fmt))
-	{
 		// auto generation not supported and gluBuild2DMipmaps doesn't
 		// work for precompressed textures => no easy way to generate
 		// mipmaps. revert to a filter that doesn't require them.
-		if(auto_mipmap_gen == GL_FALSE)
+		else if(fmt_is_s3tc(fmt))
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	}
 
+	// pre-compressed (S3TC) texture
+	if(fmt_is_s3tc(fmt))
+	{
 		const GLsizei tex_size = w * h * bpp / 8;
 		glCompressedTexImage2DARB(GL_TEXTURE_2D, 0, fmt, w, h, 0, tex_size, tex_data);
 	}
@@ -409,7 +410,7 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 		// manual mipmap gen via GLU (box filter)
 		if(need_mipmaps && !auto_mipmap_gen)
 			gluBuild2DMipmaps(GL_TEXTURE_2D, int_fmt, w, h, fmt, GL_UNSIGNED_BYTE, tex_data);
-		// auto mipmap gen, or no mipmap
+		// auto mipmap gen, or don't need mipmaps
 		else
 			glTexImage2D(GL_TEXTURE_2D, 0, int_fmt, w, h, 0, fmt, GL_UNSIGNED_BYTE, tex_data);
 	}
