@@ -48,8 +48,7 @@ static void BuildFileListCB(const char* path, const vfsDirEnt* ent, void* contex
 	jsval val = ToJSVal( CStr ( path ) );
 		// note: <path> is already directory + name!
 
-	JS_SetElement(s->cx, s->filename_array, s->cur_idx, &val);
-	s->cur_idx++;
+	JS_SetElement(s->cx, s->filename_array, s->cur_idx++, &val);
 }
 
 
@@ -96,7 +95,7 @@ JSBool JSI_VFS::BuildFileList( JSContext* cx, JSObject* obj, uintN argc, jsval* 
 
 	// build array in the callback function
 	BuildFileListState state(cx);
-	VFSUtil::EnumDirEnts(path, filter, recursive, BuildFileListCB, &state);
+	VFSUtil::EnumDirEnts( path, filter, recursive, BuildFileListCB, &state );
 
 	*rval = OBJECT_TO_JSVAL( state.filename_array );
 	return( JS_TRUE );
@@ -115,8 +114,8 @@ JSBool JSI_VFS::GetFileMTime( JSContext* cx, JSObject* obj, uintN argc, jsval* a
 		return( JS_FALSE );
 
 	struct stat s;
-	int err = vfs_stat(filename.c_str(), &s);
-	JS_CHECK_FILE_ERR(err);
+	int err = vfs_stat( filename.c_str(), &s );
+	JS_CHECK_FILE_ERR( err );
 
 	*rval = ToJSVal( (double)s.st_mtime );
 	return( JS_TRUE );
@@ -135,7 +134,7 @@ JSBool JSI_VFS::GetFileSize( JSContext* cx, JSObject* obj, uintN argc, jsval* ar
 		return( JS_FALSE );
 
 	struct stat s;
-	int err = vfs_stat(filename.c_str(), &s);
+	int err = vfs_stat( filename.c_str(), &s );
 	JS_CHECK_FILE_ERR(err);
 
 	*rval = ToJSVal( (uint)s.st_size );
@@ -156,11 +155,11 @@ JSBool JSI_VFS::ReadFile( JSContext* cx, JSObject* obj, uintN argc, jsval* argv,
 
 	void* p;
 	size_t size;
-	Handle hm = vfs_load(filename.c_str(), p, size);
-	JS_CHECK_FILE_ERR(hm);
+	Handle hm = vfs_load( filename.c_str(), p, size );
+	JS_CHECK_FILE_ERR( hm );
 
-	CStr contents((const char*)p, size);
-	mem_free_h(hm);
+	CStr contents( (const char*)p, size );
+	mem_free_h( hm );
 
 	*rval = ToJSVal( CStr( contents ) );
 	return( JS_TRUE );
@@ -184,26 +183,27 @@ JSBool JSI_VFS::ReadFileLines( JSContext* cx, JSObject* obj, uintN argc, jsval* 
 
 	void* p;
 	size_t size;
-	Handle hm = vfs_load(filename.c_str(), p, size);
-	JS_CHECK_FILE_ERR(hm);
+	Handle hm = vfs_load( filename.c_str( ), p, size );
+	JS_CHECK_FILE_ERR( hm );
 
-	CStr contents((const char*)p, size);
-	mem_free_h(hm);
+	CStr contents( (const char*)p, size );
+	mem_free_h( hm );
 
 
 	//
 	// split into array of strings (one per line)
 	//
 
-	std::stringstream ss(contents);
-	JSObject* line_array = JS_NewArrayObject(cx, 0, NULL);
+	std::stringstream ss( contents );
+	JSObject* line_array = JS_NewArrayObject( cx, 0, NULL );
 	std::string line;
-	while(std::getline(ss, line))
+	int cur_line = 0;
+	while( std::getline( ss, line ) )
 	{
 		jsval val = ToJSVal( CStr( line ) );
-		JS_SetElement(cx, line_array, 0, &val);
+		JS_SetElement( cx, line_array, cur_line++, &val );
 	}
 
-	*rval = OBJECT_TO_JSVAL( line_array);
+	*rval = OBJECT_TO_JSVAL( line_array );
 	return( JS_TRUE );
 }
