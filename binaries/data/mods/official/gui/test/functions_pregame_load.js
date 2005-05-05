@@ -51,7 +51,11 @@ function startLoadingScreen()
         getGUIObjectByName("loading_screen_progress_bar_text").caption = "";
         getGUIObjectByName("loading_screen_progress_bar").caption = 0;
         getGUIObjectByName("loading_screen_text").caption = "LOADING " + g_GameAttributes.mapFile + " ...\nPlease wait ...";
-        getGUIObjectByName("loading_screen_tip").caption = "Wise man once say ...\nHe who thinks slow, he act in haste, be rash and quick and foolish. But he that thinks too much, acts too slowly. The stupid always win, Commandersan. Remember that. You are tiny grasshopper.";
+
+	// Pick a random tip of the day (each line is a separate tip).
+	tipArray  = readFileLines("gui/text/tips.txt");
+	// Set tip string.
+        getGUIObjectByName("loading_screen_tip").caption = tipArray[getRandom(0, tipArray.length-1)];
 
         // Begin game session.
         if (! startGame())

@@ -13,7 +13,7 @@
         <object type="empty" name="PREGAME_GUI" size="0 0 100% 100%" z="1" hidden="false">
                 <action on="Load"><![CDATA[
                         // Play main 0 A.D. theme when the main menu starts.
-                        curr_music = newRandomSound("music", "theme");
+                        curr_music = newRandomSound("music", "menu");
                         curr_music.loop();
                 ]]></action>
 
