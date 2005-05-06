@@ -366,7 +366,7 @@ static inline void pre_libc_init()
 		if(pHeapSetInformation)
 		{
 			ULONG flags = 2;	// enable LFH
-			HeapSetInformation(GetProcessHeap(), HeapCompatibilityInformation, &flags, sizeof(flags));
+			pHeapSetInformation(GetProcessHeap(), HeapCompatibilityInformation, &flags, sizeof(flags));
 		}
 
 		FreeLibrary(hKernel32Dll);
