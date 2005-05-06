@@ -95,11 +95,11 @@ int LDR_BeginRegistering()
 }
 
 
-// register a load request (later processed in FIFO order).
+// register a task (later processed in FIFO order).
 // <func>: function that will perform the actual work; see LoadFunc.
 // <param>: (optional) parameter/persistent state; must be freed by func.
 // <description>: user-visible description of the current task, e.g.
-//   "Loading map".
+//   "Loading Textures".
 // <estimated_duration_ms>: used to calculate progress, and when checking
 //   whether there is enough of the time budget left to process this task
 //   (reduces timeslice overruns, making the main loop more responsive).
@@ -120,7 +120,7 @@ int LDR_Register(LoadFunc func, void* param, const wchar_t* description,
 }
 
 
-// call when finished registering load requests; subsequent calls to
+// call when finished registering tasks; subsequent calls to
 // LDR_ProgressiveLoad will then work off the queued entries.
 int LDR_EndRegistering()
 {
@@ -138,8 +138,9 @@ int LDR_EndRegistering()
 }
 
 
-// immediately cancel the load. note: no special notification will be
-// returned by LDR_ProgressiveLoad.
+// immediately cancel this load; no further tasks will be processed.
+// used to abort loading upon user request or failure.
+// note: no special notification will be returned by LDR_ProgressiveLoad.
 int LDR_Cancel()
 {
 	// note: calling during registering doesn't make sense - that
@@ -178,18 +179,16 @@ static bool HaveTimeForNextTask(double time_left, double time_budget, int estima
 }
 
 
-// process as many of the queued load requests as possible within
-// <time_budget> [s]. if a request is lengthy, the budget may be exceeded.
-// call from the main loop.
+// process as many of the queued tasks as possible within <time_budget> [s].
+// if a task is lengthy, the budget may be exceeded. call from the main loop.
 //
 // passes back a description of the next task that will be undertaken
-// ("" if finished) and the progress value established by the
-// last request to complete.
+// ("" if finished) and the current progress value.
 //
 // return semantics:
 // - if loading just completed, return 0.
 // - if loading is in progress but didn't finish, return ERR_TIMED_OUT.
-// - if not currently loading (no-op), return 1.
+// - if not currently loading (no-op), return > 0.
 // - any other value indicates a failure; the request has been de-queued.
 //
 // string interface rationale: for better interoperability, we avoid C++
