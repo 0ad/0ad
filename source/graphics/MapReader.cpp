@@ -292,11 +292,12 @@ void CXMLReader::Init(const CStr& xml_filename)
 	CStr vfs_filename(xml_filename);
 	vfs_filename = vfs_filename.substr(vfs_filename.ReverseFind("\\mods\\official\\") + 15);
 	vfs_filename.Replace("\\", "/");
-	xml_filename = vfs_filename;
-#endif
-
+	if (xmb_file.Load(vfs_filename) != PSRETURN_OK)
+		throw CFileUnpacker::CFileReadError();
+#else
 	if (xmb_file.Load(xml_filename) != PSRETURN_OK)
 		throw CFileUnpacker::CFileReadError();
+#endif
 
 	// define all the elements and attributes used in the XML file.
 #define EL(x) el_##x = xmb_file.getElementID(#x)
