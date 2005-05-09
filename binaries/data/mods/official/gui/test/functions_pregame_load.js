@@ -120,8 +120,10 @@ function endSession(closeType)
                         endGame();
                         
                         // Fade out current music and return to playing menu theme.
-                        curr_music = newRandomSound('music', 'theme');
-                        CrossFade(curr_session_playlist_1, curr_music, 0.0001);
+                        curr_music = newRandomSound('music', 'menu');
+                        CrossFade(curr_session_playlist_1, curr_music, 0.1);
+                                // janwas: greatly accelerate this timesink;
+                                // will be replaced soon by native version that doesn't block.
 
                         // Swap GUIs to display main menu.
                         GUIObjectHide('SESSION_GUI');
