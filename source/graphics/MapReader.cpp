@@ -182,9 +182,8 @@ int CMapReader::ApplyData()
 		}
 	}
 
-	// remove all existing entities (by recreating the entity manager)
-	delete &g_EntityManager;
-	new CEntityManager();
+	// delete all existing entities
+	g_EntityManager.deleteAll();
 	// delete all remaining non-entity units
 	pUnitMan->DeleteAll();
 	

@@ -54,6 +54,8 @@ public:
 	void TickAll();
 	void renderAll();
 
+	void deleteAll();
+
 	// Predicate functions
 	typedef bool (*EntityPredicate)( CEntity* target, void* userdata );
 

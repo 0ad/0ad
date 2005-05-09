@@ -28,6 +28,19 @@ CEntityManager::~CEntityManager()
 			delete( m_entities[i].m_entity );
 }
 
+void CEntityManager::deleteAll()
+{
+	m_extant = false;
+	for( int i = 0; i < MAX_HANDLES; i++ )
+		if( m_entities[i].m_refcount )
+		{
+			delete( m_entities[i].m_entity );
+			m_entities[i].m_refcount = 0;
+		}
+	m_nextalloc = 0;
+	m_extant = true;
+}
+
 HEntity CEntityManager::create( CBaseEntity* base, CVector3D position, float orientation )
 {
 	assert( base );
