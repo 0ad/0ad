@@ -10,6 +10,12 @@ JSI_Sound::JSI_Sound( const CStr& Filename )
 {
 	const char* fn = Filename.c_str();
 	m_Handle = snd_open( fn );
+	// open failed. raising an exception is the only way to report errors,
+	// since we're in the ctor and don't want to move the open call elsewhere
+	// (by requiring an explicit open() call).
+	// will be caught by JSI_Sound::Construct.
+	if(m_Handle <= 0)
+		throw (int)m_Handle;
 
 	snd_set_pos( m_Handle, 0,0,0, true);
 }
@@ -116,9 +122,18 @@ JSBool JSI_Sound::Construct( JSContext* cx, JSObject* obj, unsigned int argc, js
 	if( !ToPrimitive<CStrW>( cx, argv[0], filename ) )
 		return( JS_FALSE );
 
-	JSI_Sound* newObject = new JSI_Sound( filename );
-	newObject->m_EngineOwned = false;
-	*rval = OBJECT_TO_JSVAL( newObject->GetScript() );
+	try
+	{
+		JSI_Sound* newObject = new JSI_Sound( filename );
+		newObject->m_EngineOwned = false;
+		*rval = OBJECT_TO_JSVAL( newObject->GetScript() );
+	}
+	catch(int)
+	{
+		// failed, but this can happen easily enough that we don't want to
+		// return JS_FALSE (since that stops the script).
+		*rval = JSVAL_NULL;
+	}
 
 	return( JS_TRUE );
 }
