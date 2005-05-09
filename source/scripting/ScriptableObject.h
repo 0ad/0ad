@@ -18,6 +18,7 @@ class IJSObject;
 class IJSProperty
 {
 public:
+	virtual ~IJSProperty() {};
 	virtual jsval Get( JSContext* cx, IJSObject* obj ) = 0;
 	virtual void Set( JSContext* cx, IJSObject* obj, jsval value ) = 0;
 };
@@ -302,7 +303,9 @@ public:
 			prop = new CJSProperty<PropType, true>( (PropType IJSObject::*)Native );
 		}
 		else
+		{
 			prop = new CJSProperty<PropType, ReadOnly>( (PropType IJSObject::*)Native );
+		}
 		m_NativeProperties[PropertyName] = prop;
 	}
 #ifdef ALLOW_NONSHARED_NATIVES
