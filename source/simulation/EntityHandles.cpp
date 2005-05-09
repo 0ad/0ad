@@ -67,7 +67,7 @@ void HEntity::addRef()
 {
 	if( m_handle != INVALID_HANDLE )
 	{
-		assert( m_handle < 4096 );
+		assert( m_handle < MAX_HANDLES );
 		g_EntityManager.m_entities[m_handle].m_refcount++;
 	}
 }
@@ -118,7 +118,7 @@ const u8 *HEntity::Deserialize(const u8 *buffer, const u8 *end)
 {
 	Deserialize_int_2(buffer, m_handle);
 	// We can't let addRef assert just because someone sent us bogus data
-	if (m_handle < 4096 && m_handle != INVALID_HANDLE)
+	if (m_handle < MAX_HANDLES && m_handle != INVALID_HANDLE)
 		addRef();
 	return buffer;
 }

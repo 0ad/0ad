@@ -60,8 +60,9 @@ but yields significant advantages:
 * input is important, since we want to be able to abort long loads or
 even exit the game immediately.
 
-Examples of tasks that take so long, and typical 'coroutine' (more correcly
-'generator') implementations may be seen in MapReader.cpp.
+We therefore go with the 'coroutine' (more correctly 'generator') approach.
+Examples of tasks that take so long and typical implementations may
+be seen in MapReader.cpp.
 
 
 Intended Use
