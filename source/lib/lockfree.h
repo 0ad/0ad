@@ -1,4 +1,4 @@
-// lock-free primitives and algorithms
+// lock-free data structures
 //
 // Copyright (c) 2005 Jan Wassenberg
 //

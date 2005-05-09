@@ -104,7 +104,7 @@ static const size_t padding_size  = 256 * sizeof(ulong);
 // normal settings
 #else
 static uint options = 0;
-static bool random_fill = false;
+static bool random_fill = true;
 static const size_t padding_size = 1 * sizeof(ulong);
 #endif
 
@@ -377,10 +377,10 @@ static void allocs_foreach(void(*cb)(const Alloc*, void*), void* arg)
 // padding: make sure the user hasn't over/underrun their buffer.
 //////////////////////////////////////////////////////////////////////////////
 
-static const ulong prefixPattern   = 0xbaadf00d;
-static const ulong postfixPattern  = 0xdeadc0de;
-static const ulong unusedPattern   = 0xfeedface;	// newly allocated
-static const ulong releasedPattern = 0xdeadbeef;
+static const ulong pattern_before = 0xbaadf00d;
+static const ulong pattern_after  = 0xdeadc0de;
+static const ulong pattern_unused = 0xfeedface;
+static const ulong pattern_freed  = 0xdeadbeef;
 
 static void pattern_set(const Alloc* a, ulong pattern)
 {
@@ -434,8 +434,8 @@ static void pattern_set(const Alloc* a, ulong pattern)
 	ulong* post = (ulong*)( (char*)a->p + a->size - padding_size );
 	for(uint i = 0; i < padding_size / sizeof(ulong); i++)
 	{
-		*pre++  = prefixPattern;
-		*post++ = postfixPattern;
+		*pre++  = pattern_before;
+		*post++ = pattern_after;
 		// note: doesn't need to be split into 2 loops; cache is A2
 	}
 }
@@ -447,7 +447,7 @@ static bool padding_is_intact(const Alloc* a)
 	ulong* post = (ulong*)( (char*)a->p + a->size - padding_size );
 
 	for(uint i = 0; i < padding_size / sizeof(ulong); i++)
-		if(*pre++ != prefixPattern || *post++ != postfixPattern)
+		if(*pre++ != pattern_before || *post++ != pattern_after)
 			return false;
 
 	return true;
@@ -479,7 +479,7 @@ static size_t calc_unused(const Alloc* a)
 	size_t total = 0;
 	const ulong* p = (const ulong*)a->user_p();
 	for(uint i = 0; i < a->user_size(); i += sizeof(ulong))
-		if(*p++ == unusedPattern)
+		if(*p++ == pattern_unused)
 			total += sizeof(long);
 
 	return total;
@@ -1045,7 +1045,7 @@ void* alloc_dbg(size_t user_size, AllocType type, const char* file, int line, co
 		allocs_add(a);
 		stats_add(a);
 
-		pattern_set(a, unusedPattern);
+		pattern_set(a, pattern_unused);
 
 		// calloc() must zero the memory
 		if(type == AT_CALLOC)
@@ -1117,7 +1117,7 @@ void free_dbg(const void* user_p, AllocType type, const char* file, int line, co
 		// "poison" the allocation's memory, to catch use-after-free bugs.
 		// the VC7 debug heap does this also (in free), so we're wasting time
 		// in that case. oh well, better to be safe/consistent.
-		pattern_set(a, releasedPattern);
+		pattern_set(a, pattern_freed);
 
 		free(a->p);
 

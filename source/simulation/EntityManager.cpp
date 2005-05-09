@@ -9,9 +9,12 @@ int SELECTION_BOX_POINTS;
 int SELECTION_SMOOTHNESS_UNIFIED = 9;
 
 CEntityManager::CEntityManager()
+: m_entities()	// janwas: default-initialize entire array;
+				// CHandle ctor sets m_entity and m_refcount to 0
 {
 	m_nextalloc = 0;
 	m_extant = true;
+
 	// Also load a couple of global entity settings
 	CConfigValue* cfg = g_ConfigDB.GetValue( CFG_USER, "selection.outline.quality" );
 	if( cfg ) cfg->GetInt( SELECTION_SMOOTHNESS_UNIFIED );
@@ -23,9 +26,14 @@ CEntityManager::CEntityManager()
 CEntityManager::~CEntityManager()
 {	
 	m_extant = false;
+	
 	for( int i = 0; i < MAX_HANDLES; i++ )
 		if( m_entities[i].m_refcount )
+		{
 			delete( m_entities[i].m_entity );
+			m_entities[i].m_entity = 0;
+			m_entities[i].m_refcount = 0;
+		}
 }
 
 void CEntityManager::deleteAll()
@@ -48,7 +56,10 @@ HEntity CEntityManager::create( CBaseEntity* base, CVector3D position, float ori
 		return( HEntity() );
 
 	while( m_entities[m_nextalloc].m_refcount )
+	{
 		m_nextalloc++;
+		assert(m_nextalloc < MAX_HANDLES);
+	}
 	m_entities[m_nextalloc].m_entity = new CEntity( base, position, orientation );
 	m_entities[m_nextalloc].m_entity->me = HEntity( m_nextalloc );
 	return( HEntity( m_nextalloc++ ) );
