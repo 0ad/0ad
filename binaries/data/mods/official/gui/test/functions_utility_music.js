@@ -38,6 +38,11 @@ function newRandomSound(soundType, soundSubType, soundPrePath)
 	// or
 	// Get names of "peace", "menu" (theme) and "battle" tracks.
 	soundArray = buildFileList(randomSoundPath, "*" + soundSubType + "*", false);
+	if (soundArray.length == 0)
+	{
+		console.write("Failed to find sounds matching '*"+soundSubType+"*'");
+		return;
+	}
 	// Get a random number within the sound's range.
 	randomSound = getRandom(0, soundArray.length-1);
 	// Set name of track.
@@ -86,10 +91,17 @@ function CrossFade (outHandle, inHandle, Rate)
 	// Accepts two sound handles. Fades out the first and fades in the second at the specified rate.
 	// Note that it plays the in and frees the out while it's at it.
 
-	FadeOut(outHandle, Rate);
-	inHandle.play();
-	FadeIn(inHandle, 1, Rate);
-	outHandle.free();
+	if (outHandle)
+		FadeOut(outHandle, Rate);
+
+	if (inHandle)
+	{
+		inHandle.play();
+		FadeIn(inHandle, 1, Rate);
+	}
+
+	if (outHandle)
+		outHandle.free();
 
 	return true;
 }
