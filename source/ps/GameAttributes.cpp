@@ -189,6 +189,7 @@ CGameAttributes::CGameAttributes():
 	);
 
 	m_PlayerSlotArrayJS=g_ScriptingHost.CreateCustomObject("PlayerSlotArray");
+	JS_AddRoot(g_ScriptingHost.GetContext(), &m_PlayerSlotArrayJS);
 	JS_SetPrivate(g_ScriptingHost.GetContext(), m_PlayerSlotArrayJS, this);
 
 	AddSynchedProperty(L"mapFile", &m_MapFile);
@@ -250,6 +251,8 @@ CGameAttributes::~CGameAttributes()
 	// this feels rather unpleasantly inconsistent with the above code, so maybe
 	// there's a better way to avoid the memory leak.
 	delete m_Players[0];
+
+	JS_RemoveRoot(g_ScriptingHost.GetContext(), &m_PlayerSlotArrayJS);
 }
 
 void CGameAttributes::ScriptingInit()
