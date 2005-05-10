@@ -14,11 +14,25 @@
 CStrW::CStrW(const CStr8 &asciStr) : std::wstring(asciStr.begin(), asciStr.end()) {}
 CStr8::CStr8(const CStrW &wideStr) : std:: string(wideStr.begin(), wideStr.end()) {}
 
-static const unsigned char firstByteMark[7] = { 0x00, 0x00, 0xC0, 0xE0, 0xF0, 0xF8, 0xFC };
-CStr8 CStrW::utf8() const
-{
-	// Adapted from http://www.unicode.org/Public/PROGRAMS/CVTUTF/ConvertUTF.c
 
+// UTF conversion code adapted from http://www.unicode.org/Public/PROGRAMS/CVTUTF/ConvertUTF.c
+
+static const unsigned char firstByteMark[7] = { 0x00, 0x00, 0xC0, 0xE0, 0xF0, 0xF8, 0xFC };
+static const char trailingBytesForUTF8[256] = {
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+	2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 3,3,3,3,3,3,3,3,4,4,4,4,5,5,5,5 };
+static const u32 offsetsFromUTF8[6] = {
+	0x00000000UL, 0x00003080UL, 0x000E2080UL,
+	0x03C82080UL, 0xFA082080UL, 0x82082080UL };
+
+CStr8 CStrW::ToUTF8() const
+{
 	CStr8 result;
 
 	const wchar_t* source = &*begin();
@@ -37,12 +51,74 @@ CStr8 CStrW::utf8() const
 		char* target = &buf[bytesToWrite];
 		switch (bytesToWrite)
 		{
-			case 4: *--target = ((ch | 0x80) & 0xBF); ch >>= 6;
-			case 3: *--target = ((ch | 0x80) & 0xBF); ch >>= 6;
-			case 2: *--target = ((ch | 0x80) & 0xBF); ch >>= 6;
-			case 1: *--target = (ch | firstByteMark[bytesToWrite]);
+		case 4: *--target = ((ch | 0x80) & 0xBF); ch >>= 6;
+		case 3: *--target = ((ch | 0x80) & 0xBF); ch >>= 6;
+		case 2: *--target = ((ch | 0x80) & 0xBF); ch >>= 6;
+		case 1: *--target = (ch | firstByteMark[bytesToWrite]);
 		}
 		result += CStr(buf, bytesToWrite);
+	}
+	return result;
+}
+
+static bool isLegalUTF8(const unsigned char *source, int length) {
+	unsigned char a;
+	const unsigned char *srcptr = source+length;
+
+	switch (length) {
+	default: return false;
+	case 4: if ((a = (*--srcptr)) < 0x80 || a > 0xBF) return false;
+	case 3: if ((a = (*--srcptr)) < 0x80 || a > 0xBF) return false;
+	case 2: if ((a = (*--srcptr)) > 0xBF) return false;
+
+	switch (*source) {
+		case 0xE0: if (a < 0xA0) return false; break;
+		case 0xED: if (a > 0x9F) return false; break;
+		case 0xF0: if (a < 0x90) return false; break;
+		case 0xF4: if (a > 0x8F) return false; break;
+		default:   if (a < 0x80) return false;
+	}
+	case 1: if (*source >= 0x80 && *source < 0xC2) return false;
+	}
+
+	if (*source > 0xF4) return false;
+	return true;
+}
+
+
+CStrW CStr8::FromUTF8() const
+{
+	CStrW result;
+
+	const unsigned char* source = (const unsigned char*)&*begin();
+	const unsigned char* sourceEnd = (const unsigned char*)&*end();
+	while (source < sourceEnd)
+	{
+		wchar_t ch = 0;
+		unsigned short extraBytesToRead = trailingBytesForUTF8[*source];
+		if (source + extraBytesToRead >= sourceEnd)
+		{
+			debug_warn("Invalid UTF-8 (fell off end)");
+			return L"";
+		}
+
+		if (! isLegalUTF8(source, extraBytesToRead+1)) {
+			debug_warn("Invalid UTF-8 (illegal data)");
+			return L"";
+		}
+
+		switch (extraBytesToRead)
+		{
+		case 5: ch += *source++; ch <<= 6;
+		case 4: ch += *source++; ch <<= 6;
+		case 3: ch += *source++; ch <<= 6;
+		case 2: ch += *source++; ch <<= 6;
+		case 1: ch += *source++; ch <<= 6;
+		case 0: ch += *source++;
+		}
+		ch -= offsetsFromUTF8[extraBytesToRead];
+
+		result += ch;
 	}
 	return result;
 }

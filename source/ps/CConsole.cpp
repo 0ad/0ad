@@ -561,8 +561,8 @@ void CConsole::LoadHistory()
 	Handle h = vfs_load( m_sHistoryFile, buffer, buflen );
 	if( h > 0 )
 	{
-		std::string utf8( (char*)buffer, buflen );
-		CStrW str( utf8 );
+		CStr bytes( (char*)buffer, buflen );
+		CStrW str( bytes.FromUTF8() );
 		size_t pos = 0;
 		while( pos != -1 )
 		{
@@ -588,7 +588,7 @@ void CConsole::SaveHistory()
 	for( it = m_deqBufHistory.begin(); it != m_deqBufHistory.end(); ++it )
 	{
 		if( count++ >= m_iHistorySize ) break;
-		buffer = CStr( *it ) + "\n" + buffer;
+		buffer = CStrW( *it ).ToUTF8() + "\n" + buffer;
 	}
 	vfs_store( m_sHistoryFile, (void*)buffer.c_str(), buffer.Length(), FILE_NO_AIO ); 
 }

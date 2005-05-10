@@ -169,5 +169,5 @@ TYPE2(const char *, char const* const&)
 // Unicode strings in an iso-8859-1 file, so please don't do that)
 template <> void XMLWriter_File::ElementAttribute<CStrW>(const char* name, const CStrW& value, bool newelement)
 {
-	ElementAttribute(name, value.utf8(), newelement);
+	ElementAttribute(name, value.ToUTF8(), newelement);
 }

@@ -127,6 +127,16 @@ public:
 		CStrW(const CStr8 &asciiStr);
 	#endif
 
+	// Conversion to/from UTF-8, encoded in a CStr8. Non-ASCII characters are
+	// handled correctly.
+	// May fail, if converting from invalid UTF-8 data; the empty string will
+	// be returned.
+	#ifdef _UNICODE
+		CStr8 ToUTF8() const;
+	#else
+		CStrW FromUTF8() const;
+	#endif
+
 	CStr(int Number);			// Creates CStr from a int
 	CStr(unsigned int Number);	// Creates CStr from a uint
 	CStr(long Number);			// Creates CStr from a long 
@@ -231,11 +241,6 @@ public:
 	inline utf16string utf16() const
 	{	return utf16string(begin(), end()); }
 
-	// Conversion to UTF-8, encoded in a CStr8
-#ifdef _UNICODE
-	CStr8 utf8() const;
-#endif
-	
 	// Calculates a hash of the string's contents
 	size_t GetHashCode() const;
 
