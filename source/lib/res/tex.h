@@ -35,7 +35,11 @@ enum TexInfoFlags
 	// to indicate the image orientation, or to tex_set_global_orientation.
 	TEX_BOTTOM_UP = 0x40,
 	TEX_TOP_DOWN  = 0x80,
-	TEX_ORIENTATION = TEX_BOTTOM_UP|TEX_TOP_DOWN	// mask
+	TEX_ORIENTATION = TEX_BOTTOM_UP|TEX_TOP_DOWN,	// mask
+
+	// mipmaps - if this flag is set, the image contains data for all
+	// mipmap levels down to 1x1, stored contiguously.
+	TEX_MIPMAPS = 0x100
 };
 
 // minimize size - stored in ogl tex resource control block

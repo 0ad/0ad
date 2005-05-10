@@ -363,7 +363,7 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 	// convenient local copies. note: have been validated by CHECK_TEX.
 	GLsizei w      = (GLsizei)t->ti.w;
 	GLsizei h      = (GLsizei)t->ti.h;
-	u32 bpp        = t->ti.bpp;	// used for S3TC size calc
+	u32 bpp        = t->ti.bpp;	// used for S3TC/mipmap size calc
 	GLenum fmt     = t->fmt;
 	GLint filter   = t->filter;
 	GLenum int_fmt = t->int_fmt;
@@ -385,39 +385,126 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 		// magnify can only be linear or nearest
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, mag_filter);
 
-	// activate automatic mipmap generation if called for and possible.
-	if(need_mipmaps)
+	/*
+		There are various combinations of desires/abilities, relating to how
+		(and whether) mipmaps should be generated. Currently there are only
+		4^2 such combinations:
+
+		    /mipmaps available in texture
+		    #######
+		/mipmaps needed
+		#######
+		.---+---+---+---.
+		| Au| Mu| Nu| Nu|#-auto mipmap generation available
+		|---+---+---+---|#
+		| Ac| Mc| Nc| Nc|# #-texture is compressed
+		|---+---+---+---|# #
+		| X | Mc| Nc| Nc|  #
+		|---+---+---+---|  #
+		| G | Mu| Nu| Nu|
+		`---+---+---+---'
+
+		Au = auto_mipmap_gen, then 'Nu'
+		Ac = auto_mipmap_gen, then 'Nc'
+		X = failure; just fall back to GL_LINEAR and 'Nc'
+		G = gluBuild2DMipmaps
+		Mu = glTexImage2D, mipmap levels
+		Mc = glCompressedTexImage2DARB, mipmap levels
+		Nu = glTexImage2D
+		Nc = glCompressedTexImage2DARB
+
+		if (Au || Ac)
+			enable automatic mipmap generation
+			switch to 'N*'
+		if (X)
+			set GL_LINEAR
+			switch to 'Nc'
+		if (G)
+			gluBuild2DMipmaps
+		if (Nu)
+			glTexImage2D
+		if (Nc)
+			glCompressedTexImage2DARB
+		if (Mu)
+			for each mipmap level
+				glTexImage2D
+		if (Mc)
+			for each mipmap level
+				glCompressedTexImage2DARB
+	*/
+
+	bool is_compressed = fmt_is_s3tc(fmt);
+	bool has_mipmaps = (t->ti.flags & TEX_MIPMAPS ? true : false);
+
+	enum { Au, Ac, Mu, Mc, Nu, Nc, X, G };
+	int states[4][4] = {
+		{ Au, Mu, Nu, Nu },
+		{ Ac, Mc, Nc, Nc },
+		{ X,  Mc, Nc, Nc },
+		{ G,  Mu, Nu, Nu }
+	};
+	int state = states[auto_mipmap_gen ? (is_compressed ? 1 : 0) : (is_compressed ? 2 : 3)]  // row
+	                  [need_mipmaps    ? (has_mipmaps   ? 1 : 0) : (has_mipmaps   ? 2 : 3)]; // column
+	                  
+	if(state == Au || state == Ac)
 	{
-		// it's supported; activate. this works for S3TC as well.
-		if(auto_mipmap_gen != GL_FALSE)
-			glTexParameteri(GL_TEXTURE_2D, auto_mipmap_gen, GL_TRUE);
-		// auto generation not supported and gluBuild2DMipmaps doesn't
-		// work for precompressed textures => no easy way to generate
-		// mipmaps. revert to a filter that doesn't require them.
-		else if(fmt_is_s3tc(fmt))
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, auto_mipmap_gen, GL_TRUE);
+		state = (state == Au ? Nu : Nc);
 	}
 
-	// pre-compressed (S3TC) texture
-	if(fmt_is_s3tc(fmt))
+	if(state == X)
+	{
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		state = Nc;
+	}
+
+	if(state == G)
+		gluBuild2DMipmaps(GL_TEXTURE_2D, int_fmt, w, h, fmt, GL_UNSIGNED_BYTE, tex_data);
+	else
+	if(state == Nu)
+		glTexImage2D(GL_TEXTURE_2D, 0, int_fmt, w, h, 0, fmt, GL_UNSIGNED_BYTE, tex_data);
+	else
+	if(state == Nc)
 	{
 		const GLsizei tex_size = w * h * bpp / 8;
 		glCompressedTexImage2DARB(GL_TEXTURE_2D, 0, fmt, w, h, 0, tex_size, tex_data);
 	}
-	// uncompressed texture
 	else
+	if(state == Mu || state == Mc)
 	{
-		// manual mipmap gen via GLU (box filter)
-		if(need_mipmaps && !auto_mipmap_gen)
-			gluBuild2DMipmaps(GL_TEXTURE_2D, int_fmt, w, h, fmt, GL_UNSIGNED_BYTE, tex_data);
-		// auto mipmap gen, or don't need mipmaps
-		else
-			glTexImage2D(GL_TEXTURE_2D, 0, int_fmt, w, h, 0, fmt, GL_UNSIGNED_BYTE, tex_data);
+		int level = 0;
+		GLsizei level_w = w;
+		GLsizei level_h = h;
+		char* mipmap_data = (char*)tex_data;
+		while (level_w && level_h)
+		{
+			GLsizei tex_size;
+			if (state == Mu)
+			{
+				tex_size = w * h * bpp;
+				glTexImage2D(GL_TEXTURE_2D, level, int_fmt, level_w?level_w:1, level_h?level_h:1, 0, fmt, GL_UNSIGNED_BYTE, mipmap_data);
+			}
+			else
+			{
+				// Round up to an integer number of 4x4 blocks
+				tex_size = std::max(1, level_w/4) * std::max(1, level_h/4) * 16 * bpp/8;
+				glCompressedTexImage2DARB(GL_TEXTURE_2D, level, fmt, level_w?level_w:1, level_h?level_h:1, 0, tex_size, mipmap_data);
+			}
+
+			mipmap_data += tex_size;
+			level++;
+			level_w /= 2;
+			level_h /= 2;
+		}
 	}
+	else
+		debug_warn("Invalid state in tex_upload");
 
 	mem_free_h(t->ti.hm);
 
 	t->has_been_uploaded = true;
+
+	oglCheck();
 
 	return 0;
 }
