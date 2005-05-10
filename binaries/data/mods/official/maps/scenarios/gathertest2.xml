@@ -22,18 +22,6 @@
 			<Orientation angle="2.13893" />
 		</Entity>
 		<Entity>
-			<Template>celt_cc</Template>
-			<Player>1</Player>
-			<Position x="30.7511" y="57.7583" z="50.5786" />
-			<Orientation angle="-3.14159" />
-		</Entity>
-		<Entity>
-			<Template>hele_cc</Template>
-			<Player>2</Player>
-			<Position x="72.9099" y="64.0614" z="17.2728" />
-			<Orientation angle="-2.90881" />
-		</Entity>
-		<Entity>
 			<Template>hele_isp_b</Template>
 			<Player>2</Player>
 			<Position x="64.9301" y="63.1704" z="41.7311" />
@@ -268,22 +256,166 @@
 			<Orientation angle="-2.86647" />
 		</Entity>
 		<Entity>
-			<Template>celt_ijv_a</Template>
+			<Template>celt_cc</Template>
 			<Player>1</Player>
-			<Position x="87.3216" y="67.57" z="4.45771" />
-			<Orientation angle="-1.02963" />
+			<Position x="10.4647" y="54.4342" z="57.4006" />
+			<Orientation angle="-2.99394" />
 		</Entity>
 		<Entity>
-			<Template>celt_ijv_b</Template>
+			<Template>hele_cc</Template>
 			<Player>1</Player>
-			<Position x="89.544" y="68.1338" z="7.87202" />
-			<Orientation angle="-0.0801314" />
+			<Position x="79.7763" y="63.7998" z="14.1304" />
+			<Orientation angle="-3.04106" />
 		</Entity>
 		<Entity>
 			<Template>celt_ijv_e</Template>
 			<Player>1</Player>
-			<Position x="91.7081" y="68.6668" z="11.678" />
-			<Orientation angle="-0.0785779" />
+			<Position x="99.965" y="67.859" z="11.97" />
+			<Orientation angle="-3.14159" />
+		</Entity>
+		<Entity>
+			<Template>celt_ijv_b</Template>
+			<Player>1</Player>
+			<Position x="98.5025" y="67.4791" z="8.23869" />
+			<Orientation angle="-2.94681" />
+		</Entity>
+		<Entity>
+			<Template>celt_ijv_a</Template>
+			<Player>1</Player>
+			<Position x="94.6879" y="66.2072" z="6.38351" />
+			<Orientation angle="-3.14159" />
+		</Entity>
+		<Entity>
+			<Template>hele_iar_a</Template>
+			<Player>1</Player>
+			<Position x="38.305" y="61.2212" z="48.8122" />
+			<Orientation angle="-3.09133" />
+		</Entity>
+		<Entity>
+			<Template>hele_iar_b</Template>
+			<Player>1</Player>
+			<Position x="39.3182" y="61.3873" z="51.6087" />
+			<Orientation angle="-2.99394" />
+		</Entity>
+		<Entity>
+			<Template>hele_iar_e</Template>
+			<Player>1</Player>
+			<Position x="39.4323" y="61.3977" z="54.7539" />
+			<Orientation angle="-2.94681" />
+		</Entity>
+		<Entity>
+			<Template>hele_isp_a</Template>
+			<Player>2</Player>
+			<Position x="114.934" y="69.1801" z="55.806" />
+			<Orientation angle="-3.14159" />
+		</Entity>
+		<Entity>
+			<Template>hele_isp_a</Template>
+			<Player>2</Player>
+			<Position x="118.663" y="67.0818" z="58.5399" />
+			<Orientation angle="-2.99394" />
+		</Entity>
+		<Entity>
+			<Template>hele_isp_a</Template>
+			<Player>2</Player>
+			<Position x="121.713" y="70.9121" z="46.1932" />
+			<Orientation angle="-2.79602" />
+		</Entity>
+		<Entity>
+			<Template>hele_isp_a</Template>
+			<Player>2</Player>
+			<Position x="123.565" y="68.6294" z="52.0197" />
+			<Orientation angle="-3.09133" />
+		</Entity>
+		<Entity>
+			<Template>hele_isp_a</Template>
+			<Player>2</Player>
+			<Position x="120.75" y="68.6849" z="52.4558" />
+			<Orientation angle="-3.09133" />
+		</Entity>
+		<Entity>
+			<Template>hele_isp_a</Template>
+			<Player>2</Player>
+			<Position x="112.077" y="67.2285" z="64.8609" />
+			<Orientation angle="-3.0442" />
+		</Entity>
+		<Entity>
+			<Template>hele_isp_a</Template>
+			<Player>2</Player>
+			<Position x="115.533" y="65.2226" z="69.2732" />
+			<Orientation angle="-2.94681" />
+		</Entity>
+		<Entity>
+			<Template>hele_isp_a</Template>
+			<Player>2</Player>
+			<Position x="121.03" y="64.7825" z="63.1349" />
+			<Orientation angle="-2.84628" />
+		</Entity>
+		<Entity>
+			<Template>hele_isp_a</Template>
+			<Player>2</Player>
+			<Position x="126.552" y="66.2005" z="57.2372" />
+			<Orientation angle="-2.99423" />
+		</Entity>
+		<Entity>
+			<Template>hele_isp_e</Template>
+			<Player>2</Player>
+			<Position x="126.948" y="71.2903" z="45.7226" />
+			<Orientation angle="-3.14159" />
+		</Entity>
+		<Entity>
+			<Template>hele_isp_e</Template>
+			<Player>2</Player>
+			<Position x="129.532" y="69.309" z="50.271" />
+			<Orientation angle="-3.0444" />
+		</Entity>
+		<Entity>
+			<Template>hele_isp_e</Template>
+			<Player>2</Player>
+			<Position x="122.997" y="66.8487" z="56.505" />
+			<Orientation angle="-3.14159" />
+		</Entity>
+		<Entity>
+			<Template>hele_isp_e</Template>
+			<Player>2</Player>
+			<Position x="117.908" y="69.7053" z="51.1703" />
+			<Orientation angle="-2.99423" />
+		</Entity>
+		<Entity>
+			<Template>hele_isp_e</Template>
+			<Player>2</Player>
+			<Position x="115.505" y="68.2859" z="57.706" />
+			<Orientation angle="-2.89704" />
+		</Entity>
+		<Entity>
+			<Template>hele_isp_e</Template>
+			<Player>2</Player>
+			<Position x="115.616" y="65.7647" z="65.1621" />
+			<Orientation angle="-2.89704" />
+		</Entity>
+		<Entity>
+			<Template>hele_isp_e</Template>
+			<Player>2</Player>
+			<Position x="117.923" y="65.3555" z="63.8277" />
+			<Orientation angle="-3.14159" />
+		</Entity>
+		<Entity>
+			<Template>hele_isp_e</Template>
+			<Player>2</Player>
+			<Position x="118.244" y="68.4218" z="55.0057" />
+			<Orientation angle="-2.89704" />
+		</Entity>
+		<Entity>
+			<Template>hele_isp_e</Template>
+			<Player>2</Player>
+			<Position x="126.508" y="68.6994" z="51.2404" />
+			<Orientation angle="-2.94367" />
+		</Entity>
+		<Entity>
+			<Template>hele_isp_e</Template>
+			<Player>2</Player>
+			<Position x="123.865" y="64.0842" z="63.1758" />
+			<Orientation angle="-2.99394" />
 		</Entity>
 	</Entities>
 	<Nonentities />
