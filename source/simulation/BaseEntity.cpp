@@ -59,11 +59,13 @@ void CBaseEntity::loadBase()
 		{
  			m_bound_circle = new CBoundingCircle();
 			m_bound_circle->setRadius( m_base->m_bound_circle->m_radius );
+			m_bound_circle->setHeight( m_base->m_bound_circle->m_height );
 		}
 		else if( m_base->m_bound_type == CBoundingObject::BOUND_OABB )
 		{
 			m_bound_box = new CBoundingBox();
-			m_bound_box->setDimensions( m_base->m_bound_box->getWidth(), m_base->m_bound_box->getHeight() );
+			m_bound_box->setDimensions( m_base->m_bound_box->getWidth(), m_base->m_bound_box->getDepth() );
+			m_bound_box->setHeight( m_base->m_bound_box->m_height );
 		}
 		m_bound_type = m_base->m_bound_type;
 	}
@@ -157,6 +159,7 @@ bool CBaseEntity::loadXML( CStr filename )
 	AT(parent);
 	AT(radius);
 	AT(width);
+	AT(depth);
 	AT(height);
 	AT(on);
 	AT(file);
@@ -217,17 +220,22 @@ bool CBaseEntity::loadXML( CStr filename )
 				if( !m_bound_circle )
 					m_bound_circle = new CBoundingCircle();
 				CStrW radius (Child.getAttributes().getNamedItem(at_radius));
+				CStrW height (Child.getAttributes().getNamedItem(at_height));
+				
 				m_bound_circle->setRadius( radius.ToFloat() );
+				m_bound_circle->setHeight( height.ToFloat() );
 				m_bound_type = CBoundingObject::BOUND_CIRCLE;
 			}
 			else
 			{
 				if( !m_bound_box )
-				m_bound_box = new CBoundingBox();
+					m_bound_box = new CBoundingBox();
 				CStrW width (Child.getAttributes().getNamedItem(at_width));
+				CStrW depth (Child.getAttributes().getNamedItem(at_depth));
 				CStrW height (Child.getAttributes().getNamedItem(at_height));
 
-				m_bound_box->setDimensions( width.ToFloat(), height.ToFloat() );
+				m_bound_box->setDimensions( width.ToFloat(), depth.ToFloat() );
+				m_bound_box->setHeight( height.ToFloat() );
 				m_bound_type = CBoundingObject::BOUND_OABB;
 			}
 		}

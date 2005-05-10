@@ -213,8 +213,8 @@ CSkeletonAnim* CModel::BuildAnimation(const char* filename,float speed,double ac
 	CSkeletonAnim* anim=new CSkeletonAnim;
 	anim->m_AnimDef=def;
 	anim->m_Speed=speed;
-	anim->m_ActionPos=(size_t)( actionpos * anim->m_AnimDef->GetDuration() );
-	anim->m_ActionPos2=(size_t)( actionpos2 * anim->m_AnimDef->GetDuration() );
+	anim->m_ActionPos=(size_t)( actionpos * anim->m_AnimDef->GetDuration() / speed );
+	anim->m_ActionPos2=(size_t)( actionpos2 * anim->m_AnimDef->GetDuration() / speed );
 	anim->m_ObjectBounds.SetEmpty();
 	InvalidateBounds();
 
@@ -361,6 +361,7 @@ void CModel::RemoveProp(SPropPoint* point)
 	for (Iter iter=m_Props.begin();iter!=m_Props.end();++iter) {
 		const Prop& prop=*iter;
 		if (prop.m_Point==point) {
+			delete prop.m_Model;
 			m_Props.erase(iter);
 			return;
 		}

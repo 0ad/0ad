@@ -7,8 +7,7 @@
 // Usage: Do not attempt to instantiate this class directly. (See EntityManager.h)
 //		  Most of the members are trivially obvious; some highlights are:
 //
-//			HEntity me: is a reference to this entity. Use instead of the address-of operator for
-//						non-temporary references. See EntityHandles.h
+//			HEntity me: is a reference to this entity. See EntityHandles.h
 //
 //			Destroying entities: An entity is destroyed when all references to it expire.
 //								 It is somewhat unfunny if this happens while a method from this
@@ -18,14 +17,10 @@
 //								 prior to its next update cycle.
 //
 //			CUnit* m_actor: is the visible representation of this entity.
-//			std::hash_map m_properties: isn't yet used, is capable of storing properties defined by script.
 //			
 //			snapToGround(): Called every frame, this will ensure the entity never takes flight.
 //			updateActorTransforms(): Must be called every time the position of this entity changes.
 //			Also remember to update the collision object if you alter the position directly.
-//
-//			Some notes: update() and dispatch() /can/ be called directly without ill effects,
-//						but it's preferable to go through the Entity manager and the Scheduler, respectively.
 //
 
 #ifndef ENTITY_INCLUDED

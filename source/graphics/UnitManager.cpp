@@ -65,11 +65,13 @@ void CUnitManager::DeleteUnit(CUnit* unit)
 // DeleteAll: remove and delete all units
 void CUnitManager::DeleteAll()
 {
-	for (uint i=0;i<m_Units.size();i++) {
+	uint i;
+	for (i=0;i<m_Units.size();i++) {
 		delete m_Units[i];
 	}
 	m_Units.clear();
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // PickUnit: iterate through units testing given ray against bounds of each 

@@ -13,6 +13,8 @@ IEventTarget::~IEventTarget()
 
 bool IEventTarget::_DispatchEvent( CScriptEvent* evt, IEventTarget* target )
 {	
+	// TODO: Deal correctly with multiple handlers
+
 	if( before && before->_DispatchEvent( evt, target ) )
 		return( true ); // Stop propagation.
 

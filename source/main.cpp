@@ -55,6 +55,7 @@
 #include "EntityManager.h"
 #include "PathfindEngine.h"
 #include "Scheduler.h"
+#include "Projectile.h"
 #include "StringConvert.h"
 
 #include "scripting/ScriptingHost.h"
@@ -635,9 +636,14 @@ static void Render()
 
 static void LoadProfile( CStr profile )
 {
-	CStr filename = CStr( "profiles/" ) + profile + CStr( ".cfg" );
-	g_ConfigDB.SetConfigFile( CFG_USER, true, filename );
+	CStr base = CStr( "profiles/" ) + profile;
+	g_ConfigDB.SetConfigFile( CFG_USER, true, base +  "/settings/user.cfg" );
 	g_ConfigDB.Reload( CFG_USER );
+	int history_size = 50;
+	CConfigValue* config_value = g_ConfigDB.GetValue( CFG_USER, "console.history.size" );
+	if( config_value )
+		config_value->GetInt( history_size );
+	g_Console->UseHistoryFile( base + "/settings/history", ( history_size >= 0 ) ? history_size : 50 );
 }
 
 // Fill in the globals from the config files.
@@ -793,6 +799,7 @@ TIMER(InitScripting)
 	CJSComplexPropertyAccessor<CEntity>::ScriptingInit(); // <-- Doesn't really matter which we use, but we know CJSPropertyAccessor<T> is already being compiled for T = CEntity.
 	CScriptEvent::ScriptingInit();
 	CJSProgressTimer::ScriptingInit();
+	CProjectile::ScriptingInit();
 
 	g_ScriptingHost.DefineConstant( "ORDER_NONE", -1 );
 	g_ScriptingHost.DefineConstant( "ORDER_GOTO", CEntityOrder::ORDER_GOTO );
@@ -831,7 +838,7 @@ TIMER(InitVfs)
 	vfs_init();
 	vfs_mount("", "mods/official", VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_WATCH);
 	vfs_mount("screenshots/", "screenshots");
-	vfs_mount("profiles/", "profiles");
+	vfs_mount("profiles/", "profiles", VFS_MOUNT_RECURSIVE);
 	}
 /*
 	double t0 = get_time();

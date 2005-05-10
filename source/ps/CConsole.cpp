@@ -13,6 +13,8 @@
 #include "Network/Client.h"
 #include "Network/Server.h"
 
+#include "lib/res/vfs.h"
+
 #include "Interact.h"
 
 extern bool keys[SDLK_LAST];
@@ -460,6 +462,12 @@ void CConsole::SetBuffer(const wchar_t* szMessage, ...)
 	m_iBufferLength = m_iBufferPos = (int)wcslen(m_szBuffer);
 }
 
+void CConsole::UseHistoryFile( CStr filename, unsigned int historysize )
+{
+	m_sHistoryFile = filename;
+	m_iHistorySize = historysize;
+	LoadHistory();
+}
 
 void CConsole::ProcessBuffer(const wchar_t* szLine){
 	if (szLine == NULL) return;
@@ -468,6 +476,8 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 	assert(wcslen(szLine) < CONSOLE_BUFFER_SIZE);
 
 	m_deqBufHistory.push_front(szLine);
+	SaveHistory(); // Do this each line for the moment; if a script causes
+	               // a crash it's a useful record.
 
 	wchar_t szCommand[CONSOLE_BUFFER_SIZE];
 	memset(szCommand, '\0', sizeof(wchar_t) * CONSOLE_BUFFER_SIZE);
@@ -543,6 +553,44 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 	}
 	else
 		SendChatMessage(szLine);
+}
+
+void CConsole::LoadHistory()
+{
+	void* buffer; unsigned int buflen;
+	Handle h = vfs_load( m_sHistoryFile, buffer, buflen );
+	if( h > 0 )
+	{
+		std::string utf8( (char*)buffer, buflen );
+		CStrW str( utf8 );
+		size_t pos = 0;
+		while( pos != -1 )
+		{
+			pos = str.find( '\n' );
+			if( pos != -1 )
+			{
+				if( pos > 0 )
+					m_deqBufHistory.push_front( str.Left( str[pos-1] == '\r' ? pos - 1 : pos ) );
+				str = str.GetSubstring( pos + 1, str.npos );
+			}
+			else if( str.Length() > 0 )
+				m_deqBufHistory.push_front( str );
+		}
+	}
+	// Don't care about failure; just don't load anything.
+}
+
+void CConsole::SaveHistory()
+{
+	CStr buffer;
+	std::deque<std::wstring>::iterator it;
+	unsigned int count = 0;
+	for( it = m_deqBufHistory.begin(); it != m_deqBufHistory.end(); ++it )
+	{
+		if( count++ >= m_iHistorySize ) break;
+		buffer = CStr( *it ) + "\n" + buffer;
+	}
+	vfs_store( m_sHistoryFile, (void*)buffer.c_str(), buffer.Length(), FILE_NO_AIO ); 
 }
 
 void CConsole::SendChatMessage(const wchar_t *szMessage)

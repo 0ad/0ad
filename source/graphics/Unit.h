@@ -31,6 +31,10 @@ public:
 	// get actor's entity
 	CEntity* GetEntity() { return m_Entity; }
 
+	// Put here as it conveniently references both the model and the ObjectEntry
+	void ShowAmmunition();
+	void HideAmmunition();
+
 private:
 	// object from which unit was created
 	CObjectEntry* m_Object;

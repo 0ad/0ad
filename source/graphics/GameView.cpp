@@ -20,10 +20,10 @@
 #include "Profile.h"
 #include "LoaderThunks.h"
 
-
 #include "Quaternion.h"
 #include "Unit.h"
 #include "Model.h"
+#include "Projectile.h"
 
 #include "sdl.h"
 #include "input.h"
@@ -129,7 +129,7 @@ void CGameView::Render()
 	PROFILE_END( "render terrain" );
 	MICROLOG(L"render models");
 	PROFILE_START( "render models" );
-	RenderModels(m_pWorld->GetUnitManager());
+	RenderModels(m_pWorld->GetUnitManager(), m_pWorld->GetProjectileManager());
 	PROFILE_END( "render models" );
 }
 
@@ -147,7 +147,7 @@ void CGameView::RenderTerrain(CTerrain *pTerrain)
 	}
 }
 
-void CGameView::RenderModels(CUnitManager *pUnitMan)
+void CGameView::RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjectileMan)
 {
 	CFrustum frustum=m_Camera.GetFrustum();
 
@@ -155,6 +155,13 @@ void CGameView::RenderModels(CUnitManager *pUnitMan)
 	for (uint i=0;i<units.size();++i) {
 		if (frustum.IsBoxVisible(CVector3D(0,0,0),units[i]->GetModel()->GetBounds())) {
 			SubmitModelRecursive(units[i]->GetModel());
+		}
+	}
+
+	const std::vector<CProjectile*>& projectiles=pProjectileMan->GetProjectiles();
+	for (uint i=0;i<projectiles.size();++i) {
+		if (frustum.IsBoxVisible(CVector3D(0,0,0),projectiles[i]->GetModel()->GetBounds())) {
+			SubmitModelRecursive(projectiles[i]->GetModel());
 		}
 	}
 }

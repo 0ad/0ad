@@ -1,3 +1,4 @@
+
 #include "precompiled.h"
 
 #include "EntityManager.h"
@@ -95,6 +96,14 @@ std::vector<HEntity>* CEntityManager::getExtant()
 		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed )
 			activelist->push_back( HEntity( i ) );
 	return( activelist );
+}
+
+void CEntityManager::GetExtant( std::vector<CEntity*>& results )
+{
+	results.clear();
+	for( int i = 0; i < MAX_HANDLES; i++ )
+		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed )
+			results.push_back( m_entities[i].m_entity );
 }
 
 /*

@@ -574,7 +574,7 @@ void CEntity::renderSelectionOutline( float alpha )
 		CVector2D p, q;
 		CVector2D u, v;
 		q.x = pos.X; q.y = pos.Z;
-		float h = ((CBoundingBox*)m_bounds)->m_h;
+		float d = ((CBoundingBox*)m_bounds)->m_d;
 		float w = ((CBoundingBox*)m_bounds)->m_w;
 
 		u.x = sin( m_graphics_orientation );
@@ -585,25 +585,25 @@ void CEntity::renderSelectionOutline( float alpha )
 #ifdef SELECTION_TERRAIN_CONFORMANCE
 		for( int i = SELECTION_BOX_POINTS; i > -SELECTION_BOX_POINTS; i-- )
 		{
-			p = q + u * h + v * ( w * (float)i / (float)SELECTION_BOX_POINTS );
+			p = q + u * d + v * ( w * (float)i / (float)SELECTION_BOX_POINTS );
 			glVertex3f( p.x, pTerrain->getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
 		}
 
 		for( int i = SELECTION_BOX_POINTS; i > -SELECTION_BOX_POINTS; i-- )
 		{
-			p = q + u * ( h * (float)i / (float)SELECTION_BOX_POINTS ) - v * w;
+			p = q + u * ( d * (float)i / (float)SELECTION_BOX_POINTS ) - v * w;
 			glVertex3f( p.x, pTerrain->getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
 		}
 
 		for( int i = -SELECTION_BOX_POINTS; i < SELECTION_BOX_POINTS; i++ )
 		{
-			p = q - u * h + v * ( w * (float)i / (float)SELECTION_BOX_POINTS );
+			p = q - u * d + v * ( w * (float)i / (float)SELECTION_BOX_POINTS );
 			glVertex3f( p.x, pTerrain->getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
 		}
 
 		for( int i = -SELECTION_BOX_POINTS; i < SELECTION_BOX_POINTS; i++ )
 		{
-			p = q + u * ( h * (float)i / (float)SELECTION_BOX_POINTS ) + v * w;
+			p = q + u * ( d * (float)i / (float)SELECTION_BOX_POINTS ) + v * w;
 			glVertex3f( p.x, pTerrain->getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
 		}
 #else
@@ -887,7 +887,7 @@ jsval CEntity::GetSpawnPoint( JSContext* cx, uintN argc, jsval* argv )
 		assert( 0 && "No arguments to Entity::GetSpawnPoint()" );
 	
 	// TODO: Make netsafe.
-	CBoundingCircle spawn( 0.0f, 0.0f, spawn_clearance );
+	CBoundingCircle spawn( 0.0f, 0.0f, spawn_clearance, 0.0f );
 
 	if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
 	{
@@ -898,22 +898,22 @@ jsval CEntity::GetSpawnPoint( JSContext* cx, uintN argc, jsval* argv )
 		int edge = rand() & 3; int point;
 		
 		double max_w = oabb->m_w + spawn_clearance + 1.0;
-		double max_h = oabb->m_h + spawn_clearance + 1.0;
+		double max_d = oabb->m_d + spawn_clearance + 1.0;
 		int w_count = (int)( max_w * 2 );
-		int h_count = (int)( max_h * 2 );
+		int d_count = (int)( max_d * 2 );
 	
 		CVector2D w_step = oabb->m_v * (float)( max_w / w_count );
-		CVector2D h_step = oabb->m_u * (float)( max_h / h_count );
+		CVector2D d_step = oabb->m_u * (float)( max_d / d_count );
 		CVector2D pos( m_position );
 		if( edge & 1 ) 
 		{
-			point = rand() % ( 2 * h_count ) - h_count;
-			pos += ( oabb->m_v * (float)max_w + h_step * (float)point ) * ( ( edge & 2 ) ? -1.0f : 1.0f );
+			point = rand() % ( 2 * d_count ) - d_count;
+			pos += ( oabb->m_v * (float)max_w + d_step * (float)point ) * ( ( edge & 2 ) ? -1.0f : 1.0f );
 		}
 		else
 		{
 			point = rand() % ( 2 * w_count ) - w_count;
-			pos += ( oabb->m_u * (float)max_h + w_step * (float)point ) * ( ( edge & 2 ) ? -1.0f : 1.0f );	
+			pos += ( oabb->m_u * (float)max_d + w_step * (float)point ) * ( ( edge & 2 ) ? -1.0f : 1.0f );	
 		}
 
 		int start_edge = edge; int start_point = point;
@@ -931,12 +931,12 @@ jsval CEntity::GetSpawnPoint( JSContext* cx, uintN argc, jsval* argv )
 				if( point >= w_count )
 				{
 					edge = 1;
-					point = -h_count;
+					point = -d_count;
 				}
 				break;
 			case 1:
-				point++; pos -= h_step;
-				if( point >= h_count )
+				point++; pos -= d_step;
+				if( point >= d_count )
 				{
 					edge = 2;
 					point = w_count;
@@ -947,12 +947,12 @@ jsval CEntity::GetSpawnPoint( JSContext* cx, uintN argc, jsval* argv )
 				if( point <= -w_count )
 				{
 					edge = 3;
-					point = h_count;
+					point = d_count;
 				}
 				break;
 			case 3:
-				point--; pos += h_step;
-				if( point <= -h_count )
+				point--; pos += d_step;
+				if( point <= -d_count )
 				{
 					edge = 0;
 					point = -w_count;

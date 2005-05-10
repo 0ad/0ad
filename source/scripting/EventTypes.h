@@ -13,6 +13,9 @@ enum EEventType
 	EVENT_PREPARE_ORDER,
 	EVENT_ORDER_TRANSITION,
 	EVENT_LAST,
+	// Projectile events
+	EVENT_IMPACT = 0,
+	EVENT_MISS,
 	// General events
 	EVENT_GAME_START = 0,
 	EVENT_GAME_TICK,

@@ -11,7 +11,7 @@
 template<> HEntity* ToNative<HEntity>( JSContext* cx, JSObject* obj )
 {
 	CEntity* e = ToNative<CEntity>( cx, obj );
-	return( &( e->me ) );
+	return( e ? &( e->me ) : NULL );
 }
 
 template<> JSObject* ToScript<HEntity>( HEntity* Native )
@@ -22,7 +22,7 @@ template<> JSObject* ToScript<HEntity>( HEntity* Native )
 // CPlayer*
 template<> bool ToPrimitive<CPlayer*>( JSContext* cx, jsval v, CPlayer*& Storage )
 {
-	if( !JSVAL_IS_OBJECT( v ) ) return( false );
+	if( !JSVAL_IS_OBJECT( v ) || ( v == JSVAL_NULL ) ) return( false );
 	CPlayer* Data = (CPlayer*)JS_GetInstancePrivate( cx, JSVAL_TO_OBJECT( v ), &CPlayer::JSI_class, NULL );
 	if( !Data ) return( false );
 	Storage = Data;
@@ -38,7 +38,7 @@ template<> JSObject* ToScript<CPlayer*>( CPlayer** Native )
 
 template<> bool ToPrimitive<CBaseEntity*>( JSContext* cx, jsval v, CBaseEntity*& Storage )
 {
-	if( !JSVAL_IS_OBJECT( v ) ) return( false );
+	if( !JSVAL_IS_OBJECT( v ) || ( v == JSVAL_NULL ) ) return( false );
 	CBaseEntity* Data = (CBaseEntity*)JS_GetInstancePrivate( cx, JSVAL_TO_OBJECT( v ), &CBaseEntity::JSI_class, NULL );
 	if( !Data ) return( false );
 	Storage = Data;
@@ -54,8 +54,8 @@ template<> JSObject* ToScript<CBaseEntity*>( CBaseEntity** Native )
 
 template<> CVector3D* ToNative<CVector3D>( JSContext* cx, JSObject* obj )
 {
-	JSI_Vector3D::Vector3D_Info* v = (JSI_Vector3D::Vector3D_Info*)JS_GetPrivate( cx, obj );
-	return( v->vector );
+	JSI_Vector3D::Vector3D_Info* v = (JSI_Vector3D::Vector3D_Info*)JS_GetInstancePrivate( cx, obj, &JSI_Vector3D::JSI_class, NULL );
+	return( v ? v->vector : NULL );
 }
 
 template<> JSObject* ToScript<CVector3D>( CVector3D* Native )

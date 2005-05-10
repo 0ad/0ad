@@ -19,7 +19,7 @@
 #include "ogl.h"
 #include "lib.h"
 #include "sdl.h"
-
+#include "CStr.h"
 
 #ifndef CCONSOLE_H
 #define CCONSOLE_H
@@ -53,6 +53,9 @@ private:
 	int	m_iBufferPos;
 	int	m_iBufferLength;
 
+	CStr m_sHistoryFile;
+	unsigned int m_iHistorySize;
+
     bool m_bFocus;
 	bool m_bVisible;	// console is to be drawn
 	bool m_bToggle;		// show/hide animation is currently active
@@ -72,6 +75,9 @@ private:
 
 	void InsertBuffer(void){InsertMessage(L"%ls", m_szBuffer);};
     void ProcessBuffer(const wchar_t* szLine);
+
+	void LoadHistory();
+	void SaveHistory();
 
 public:
     CConsole();
@@ -93,6 +99,8 @@ public:
 	void ReceivedChatMessage(const wchar_t *pSender, const wchar_t *szMessage);
 
 	void SetBuffer(const wchar_t* szMessage, ...);
+
+	void UseHistoryFile( CStr filename, unsigned int historysize );
 
 	// Only returns a pointer to the buffer; copy out of here if you want to keep it.
 	const wchar_t* GetBuffer();

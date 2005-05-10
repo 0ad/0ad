@@ -13,6 +13,8 @@
 
 #define ALLOW_NONSHARED_NATIVES
 
+static int pcount = 0;
+
 class IJSObject;
 
 class IJSProperty
@@ -137,7 +139,7 @@ public:
 	void Root()
 	{
 		if( JSVAL_IS_GCTHING( m_Data ) )
-			JS_AddRoot( g_ScriptingHost.GetContext(), (void*)&m_Data );
+			JS_AddNamedRoot( g_ScriptingHost.GetContext(), (void*)&m_Data, "ScriptableObjectProperty" );
 	}
 	void Uproot()
 	{
@@ -337,7 +339,7 @@ public:
 		{
 			m_JS = JS_NewObject( g_ScriptingHost.GetContext(), &JSI_class, NULL, NULL );
 			if( m_EngineOwned )
-				JS_AddRoot( g_ScriptingHost.GetContext(), (void*)&m_JS );
+				JS_AddNamedRoot( g_ScriptingHost.GetContext(), (void*)&m_JS, JSI_class.name );
 	
 			JS_SetPrivate( g_ScriptingHost.GetContext(), m_JS, (T*)this );
 		}

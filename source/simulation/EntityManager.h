@@ -68,6 +68,7 @@ public:
 
 	std::vector<HEntity>* matches( EntityPredicate predicate, void* userdata = NULL );
 	std::vector<HEntity>* getExtant();
+	void GetExtant( std::vector<CEntity*>& results ); // TODO: Switch most/all uses of getExtant() to this.
 	static inline bool extant()	// True if the singleton is actively maintaining handles. When false, system is shutting down, handles are quietly dumped.
 	{
 		return( m_extant );

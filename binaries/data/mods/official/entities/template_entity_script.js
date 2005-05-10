@@ -13,6 +13,79 @@ function entity_event_attack( evt )
 
 // ====================================================================
 
+function entity_event_attack_ranged( evt )
+{
+	// Create a projectile from us, to the target, that will do some damage when it hits them.
+	dmg = new DamageType();
+	dmg.crush = parseInt(this.actions.attack.damage * this.actions.attack.crush);
+	dmg.hack = parseInt(this.actions.attack.damage * this.actions.attack.hack);
+	dmg.pierce = parseInt(this.actions.attack.damage * this.actions.attack.pierce);
+	
+	// The parameters for Projectile are:
+	// 1 - The actor to use as the projectile. There are two ways of specifying this:
+	//     the first is by giving an entity. The projectile's actor is found by looking
+	//     in the actor of that entity. This way is usual, and preferred - visual
+	//     information, like the projectile model, should be stored in the actor files.
+	//     The second way is to give a actor/file name string (e.g. "props/weapon/weap_
+	//     arrow_front.xml"). This is only meant to be used for 'Acts of Gaia' where
+	//     there is no originating entity. Right now, this entity is the one doing the
+	//     firing, so pass this.
+	// 2 - Where the projectile is coming from. This can be an entity or a Vector3D.
+	//     For now, that's also us.
+	// 3 - Where the projectile is going to. Again, either a vector (attack ground?) 
+	//     or an entity. Let's shoot at our target, lest we get people terribly confused.
+	// 4 - How fast the projectile should go. To keep things clear, we'll set it to 
+	//     just a bit faster than the average cavalry.
+	// 5 - Who fired it? Erm... yep, us again.
+	// 6 - The function you'd like to call when it hits an entity.
+	// There's also a seventh parameter, for a function to call when it misses (more
+	//  accurately, when it hits the floor). At the moment, however, the default
+	//  action (do nothing) is what we want.
+	// Parameters 5, 6, and 7 are all optional.
+	
+	projectile = new Projectile( this, this, evt.target, 12.0, this, projectile_event_impact )
+	
+	// We'll attach the damage information to the projectile, just to show you can
+	// do that like you can with most other objects. Could also do this by making
+	// the function we pass a closure.
+	
+	projectile.damage = dmg;
+	
+	// Finally, tell the engine not to send this event to anywhere else - 
+	// in particular, this shouldn't get to the melee event handler, above.
+	
+	evt.stopPropagation();
+	
+	console.write( "Fire!" );
+}
+
+// ====================================================================
+
+function projectile_event_impact( evt )
+{
+	console.write( "Hit!" );
+	evt.impacted.damage( this.damage, evt.originator );
+	
+	// Just so you know - there's no guarantee that evt.impacted is the thing you were
+	// aiming at. This function gets called when the projectile hits *anything*.
+	// For example:
+	
+	if( evt.impacted.player == evt.originator.player )
+		console.write( "Friendly fire!" );
+		
+	// The three properties of the ProjectileImpact event are:
+	// - impacted, the thing it hit
+	// - originator, the thing that fired it (the fifth parameter of Projectile's
+	//   constructor) - may be null
+	// - position, the position the arrow was in the world when it hit.
+	
+	// The properties of the ProjectileMiss event (the one that gets sent to the
+	// handler that was the seventh parameter of the constructor) are similar,
+	// but it doesn't have 'impacted' - for obvious reasons.
+}
+
+// ====================================================================
+
 function entity_event_gather( evt )
 {
 	if (this.actions.gather[evt.target.traits.supply.type][evt.target.traits.supply.subtype])

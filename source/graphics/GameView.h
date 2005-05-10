@@ -9,6 +9,7 @@ class CGameAttributes;
 class CWorld;
 class CTerrain;
 class CUnitManager;
+class CProjectileManager;
 class CModel;
 
 class CGameView
@@ -43,7 +44,7 @@ class CGameView
 	
 	// RenderModels: iterate through model list and submit all models in viewing
 	// frustum to the Renderer
-	void RenderModels(CUnitManager *pUnitMan);
+	void RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjectileManager);
 	
 	// SubmitModelRecursive: recurse down given model, submitting it and all its
 	// descendents to the renderer

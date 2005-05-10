@@ -10,4 +10,12 @@
 			classes="unit_ranged"
 		/>
 	</Traits>
+	<!-- Let's... well... give it some range. -->
+	<Actions>
+		<Attack
+			range="16.0"
+		/>
+	</Actions>
+	<!-- Override this so it uses the ranged attack script, rather than the parent's melee script -->
+	<Event On="Attack" Function="entity_event_attack_ranged" />
 </Entity>

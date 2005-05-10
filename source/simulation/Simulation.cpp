@@ -7,6 +7,7 @@
 #include "TurnManager.h"
 #include "Game.h"
 #include "EntityManager.h"
+#include "Projectile.h"
 #include "Scheduler.h"
 #include "Network/NetMessage.h"
 #include "CLogger.h"
@@ -66,6 +67,21 @@ void CSimulation::Update(double frameTime)
 			// frames as fast as possible.
 			m_DeltaTime = 0.0;
 		}
+
+		/*
+		// TODO Remove
+		// Fountain of arrows
+		CObjectEntry* arrow = g_ObjMan.FindObject( "props/weapon/weap_arrow_front.xml" );
+		assert( arrow );
+	
+		float mapsize = (float)( m_pWorld->GetTerrain()->GetVerticesPerSide() * 4 );
+
+		CVector3D here( mapsize / 2, m_pWorld->GetTerrain()->getExactGroundLevel( mapsize / 2, mapsize / 2 ), mapsize / 2 );
+		float x = ( rand() % 1000 ) * mapsize / 1000.0f;
+		float y = ( rand() % 1000 ) * mapsize / 1000.0f;
+		CVector3D there( x, m_pWorld->GetTerrain()->getExactGroundLevel( x, y ), y );
+		g_ProjectileManager.AddProjectile( arrow->m_Model, here, there, 0.006f, NULL );
+		*/
 	}
 
 	PROFILE_START( "simulation interpolation" );
@@ -79,7 +95,8 @@ void CSimulation::Interpolate(double frameTime, double offset)
 	for (uint i=0;i<units.size();++i)
 		units[i]->GetModel()->Update((float)frameTime);
 
-	g_EntityManager.interpolateAll((float)offset);
+	g_EntityManager.interpolateAll( (float)offset );
+	g_ProjectileManager.InterpolateAll( (float)offset );
 }
 
 void CSimulation::Simulate()
@@ -91,6 +108,10 @@ void CSimulation::Simulate()
 	PROFILE_START( "entity updates" );
 	g_EntityManager.updateAll( m_pTurnManager->GetTurnLength() );
 	PROFILE_END( "entity updates" );
+
+	PROFILE_START( "projectile updates" );
+	g_ProjectileManager.UpdateAll( m_pTurnManager->GetTurnLength() );
+	PROFILE_END( "projectile updates" );
 
 	PROFILE_START( "turn manager update" );
 	m_pTurnManager->NewTurn();

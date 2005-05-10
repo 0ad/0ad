@@ -60,4 +60,5 @@ CWorld::~CWorld()
 	// The reason for not keeping the instance around is that we require a
 	// clean slate for each game start.
 	delete &m_EntityManager;
+	delete &m_ProjectileManager;
 }

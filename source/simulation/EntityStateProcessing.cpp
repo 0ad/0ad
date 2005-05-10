@@ -3,6 +3,7 @@
 #include "precompiled.h"
 
 #include "Entity.h"
+#include "BaseEntity.h"
 #include "Model.h"
 #include "ObjectEntry.h"
 #include "Unit.h"
@@ -146,7 +147,7 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 
 			if( ( m_orderQueue.size() == 1 ) && ( len <= 10.0f ) )
 			{
-				CBoundingCircle destinationObs( current->m_data[0].location.x, current->m_data[0].location.y, m_bounds->m_radius );
+				CBoundingCircle destinationObs( current->m_data[0].location.x, current->m_data[0].location.y, m_bounds->m_radius, 0.0f );
 				if( getCollisionObject( &destinationObs ) )
 				{
 					// Yes. (Chances are a bunch of units were tasked to the same destination)
@@ -206,7 +207,7 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 	{
 		// Here's a wierd idea: (I hope it works)
 		// Spiral round the destination until a free point is found.
-		CBoundingCircle destinationObs( current->m_data[0].location.x, current->m_data[0].location.y, m_bounds->m_radius );
+		CBoundingCircle destinationObs( current->m_data[0].location.x, current->m_data[0].location.y, m_bounds->m_radius, 0.0f );
 
 		float interval = destinationObs.m_radius;
 		float r = interval, theta = 0.0f, delta;
@@ -312,9 +313,16 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 
 			m_actor->GetModel()->SetAnimation( m_fsm_animation, true );
 		}
-		
+		if( ( m_fsm_cyclepos <= m_fsm_anipos2 ) &&
+			( nextpos > m_fsm_anipos2 ) )
+		{
+			// Load the ammunition.
+			m_actor->ShowAmmunition();
+		}
 		if( ( m_fsm_cyclepos <= action->m_Speed ) && ( nextpos > action->m_Speed ) )
 		{
+			// Fire!
+			m_actor->HideAmmunition();
 			DispatchEvent( contactEvent );
 			// Note that, at the moment, we don't care if the action succeeds or fails - 
 			// we could check for failure, then abort the animation.
@@ -448,6 +456,22 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		m_actor->GetModel()->SetAnimation( m_fsm_animation, true );
 		m_actor->GetModel()->Update( m_fsm_animation->m_ActionPos / 1000.0f - action->m_Speed / 2000.0f );
 	}
+	else
+	{
+		// If we've just transitioned, play idle. Otherwise, let the previous animation complete, if it
+		// hasn't already.
+		if( m_transition )
+			m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_IdleAnim );
+	}
+
+	// Load time needs to be animation->m_ActionPos2 ms after the start of the animation.
+
+	m_fsm_anipos2 = m_fsm_anipos + ( m_fsm_animation->m_ActionPos2 * 2 );
+	if( action->m_Speed < ( ( m_fsm_animation->m_ActionPos + m_fsm_animation->m_ActionPos2 ) * 2 ) )
+	{
+		// Load now.
+		m_actor->ShowAmmunition();
+	}
 
 	m_fsm_cyclepos = 0;
 
@@ -461,7 +485,15 @@ bool CEntity::processAttackMelee( CEntityOrder* current, size_t timestep_millis 
 bool CEntity::processAttackMeleeNoPathing( CEntityOrder* current, size_t timestep_milli )
 {
 	CEventAttack evt( current->m_data[0].entity );
-	return( processContactActionNoPathing( current, timestep_milli, m_actor ? m_actor->GetObject()->m_MeleeAnim : NULL, &evt, &m_melee ) );
+	if( !m_actor ) return( false );
+	CSkeletonAnim* animation = m_actor->GetObject()->m_MeleeAnim;
+	if( !animation ) animation = m_actor->GetObject()->m_IdleAnim;
+	if( !animation ) return( false ); // Should probably tell people why this is failing
+									  // (didn't specify an actor or animation) but that
+									  // would probably involve including CLogger.h, which
+									  // conflicts.
+	
+	return( processContactActionNoPathing( current, timestep_milli, animation, &evt, &m_melee ) );
 }
 bool CEntity::processGather( CEntityOrder* current, size_t timestep_millis )
 {
@@ -471,7 +503,14 @@ bool CEntity::processGather( CEntityOrder* current, size_t timestep_millis )
 bool CEntity::processGatherNoPathing( CEntityOrder* current, size_t timestep_millis )
 {
 	CEventGather evt( current->m_data[0].entity );
-	return( processContactActionNoPathing( current, timestep_millis, m_actor ? m_actor->GetObject()->m_GatherAnim : NULL, &evt, &m_gather ) );
+	if( !m_actor ) return( false );
+	CSkeletonAnim* animation = m_actor->GetObject()->m_GatherAnim;
+	if( !animation ) animation = m_actor->GetObject()->m_IdleAnim;
+	if( !animation ) return( false ); // Should probably tell people why this is failing
+									  // (didn't specify an actor or animation) but that
+									  // would probably involve including CLogger.h, which
+									  // conflicts.
+	return( processContactActionNoPathing( current, timestep_millis, animation, &evt, &m_gather ) );
 }
 
 bool CEntity::processGoto( CEntityOrder* current, size_t timestep_millis )

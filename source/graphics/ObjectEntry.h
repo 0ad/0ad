@@ -3,6 +3,7 @@
 
 class CModel;
 class CSkeletonAnim;
+struct SPropPoint;
 
 #include <vector>
 #include "CStr.h"
@@ -38,6 +39,10 @@ public:
 	CSkeletonAnim* m_GatherAnim;
 	CSkeletonAnim* m_RangedAnim;
 	CSkeletonAnim* m_CorpseAnim;
+
+	CModel* m_ProjectileModel;
+	CModel* m_AmmunitionModel;
+	SPropPoint* m_AmmunitionPoint;
 
 	CSkeletonAnim* GetNamedAnimation( CStr animationName );
 	// list of props attached to object

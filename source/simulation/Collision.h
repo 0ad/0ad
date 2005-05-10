@@ -20,17 +20,24 @@
 
 struct rayIntersectionResults
 {
-	HEntity hEntity;
+	CEntity* Entity;
 	CBoundingObject* boundingObject;
 	CVector2D position;
 	float closestApproach;
 	float distance;
 };
 
+typedef std::vector<CEntity*> RayIntersects;
+
 HEntity getCollisionObject( CEntity* entity );
 HEntity getCollisionObject( CEntity* entity, float x, float y );
 CBoundingObject* getCollisionObject( CBoundingObject* bounds );
 CBoundingObject* getContainingObject( const CVector2D& point );
+CEntity* GetCollisionObject( float x, float y ); // Point collision
 bool getRayIntersection( const CVector2D& source, const CVector2D& forward, const CVector2D& right, float length, float maxDistance, CBoundingObject* destinationCollisionObject, rayIntersectionResults* results );
+// Assumes zero width, also includes moving units (other one doesn't).
+void GetProjectileIntersection( const CVector2D& position, const CVector2D& axis, float length, RayIntersects& results );
+// Stores results in shared area
+RayIntersects& GetProjectileIntersection( const CVector2D& position, const CVector2D& axis, float length );
 
 #endif

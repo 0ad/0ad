@@ -31,6 +31,7 @@ void CScriptObject::Uproot()
 
 CScriptObject::CScriptObject( JSFunction* _Function )
 {
+	Function = NULL;
 	SetFunction( _Function );
 }
 
@@ -38,6 +39,12 @@ CScriptObject::CScriptObject( jsval v )
 {
 	Function = NULL;
 	SetJSVal( v );
+}
+
+CScriptObject::CScriptObject( const CScriptObject& copy )
+{
+	Function = NULL;
+	SetFunction( copy.Function );
 }
 
 void CScriptObject::SetFunction( JSFunction* _Function )

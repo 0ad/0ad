@@ -23,25 +23,20 @@ class CPlayer;
 
 template<typename T> T* ToNative( JSContext* cx, JSObject* obj )
 {
-#ifndef NDEBUG
-	if( OBJECT_TO_JSVAL( obj ) == JSVAL_NULL )
-		return( NULL );
-	assert( JS_GetClass( obj ) == &T::JSI_class );
-	return( (T*)JS_GetPrivate( cx, obj ) );
-#endif
 	return( (T*)JS_GetInstancePrivate( cx, obj, &T::JSI_class, NULL ) );
 }
 
 template<typename T> JSObject* ToScript( T* Native )
 {
 	if( !Native )
-		return( (JSObject*)JSVAL_NULL );
+		return( (JSObject*)NULL );
 	return( Native->GetScript() );
 }
 
 template<typename T> T* ToNative( jsval v )
 {
 	if( !JSVAL_IS_OBJECT( v ) ) return( NULL );
+	if( v == JSVAL_NULL ) return( NULL );
 	return( ToNative<T>( g_ScriptingHost.GetContext(), JSVAL_TO_OBJECT( v ) ) );
 }
 

@@ -30,11 +30,23 @@ bool CBoundingObject::contains( const CVector2D& point )
 
 	return( _contains( point, delta ) );
 }
-CBoundingCircle::CBoundingCircle( float x, float y, float radius )
+
+void CBoundingObject::setPosition( float x, float y )
+{
+	m_pos.x = x; m_pos.y = y;
+}
+
+void CBoundingObject::setHeight( float height )
+{
+	m_height = height;
+}
+
+CBoundingCircle::CBoundingCircle( float x, float y, float radius, float height )
 {
 	m_type = BOUND_CIRCLE;
 	setPosition( x, y );
 	setRadius( radius );
+	setHeight( height );
 }
 
 CBoundingCircle::CBoundingCircle( float x, float y, CBoundingCircle* copy )
@@ -42,11 +54,7 @@ CBoundingCircle::CBoundingCircle( float x, float y, CBoundingCircle* copy )
 	m_type = BOUND_CIRCLE;
  	setPosition( x, y );
 	setRadius( copy->m_radius );
-}
-
-void CBoundingObject::setPosition( float x, float y )
-{
-	m_pos.x = x; m_pos.y = y;
+	setHeight( copy->m_height );
 }
 
 void CBoundingCircle::setRadius( float radius )
@@ -82,11 +90,12 @@ void CBoundingCircle::render( float height )
 	glEnd();
 }
 
-CBoundingBox::CBoundingBox( float x, float y, const CVector2D& u, float width, float height )
+CBoundingBox::CBoundingBox( float x, float y, const CVector2D& u, float width, float depth, float height )
 {
 	m_type = BOUND_OABB;
 	setPosition( x, y );
-	setDimensions( width, height );
+	setDimensions( width, depth );
+	setHeight( height );
 	setOrientation( u );
 }
 
@@ -94,15 +103,17 @@ CBoundingBox::CBoundingBox( float x, float y, const CVector2D& u, CBoundingBox* 
 {
 	m_type = BOUND_OABB;
 	setPosition( x, y );
-	setDimensions( copy->getWidth(), copy->getHeight() );
+	setDimensions( copy->getWidth(), copy->getDepth() );
+	setHeight( copy->m_height );
 	setOrientation( u ); 
 }
 
-CBoundingBox::CBoundingBox( float x, float y, float orientation, float width, float height )
+CBoundingBox::CBoundingBox( float x, float y, float orientation, float width, float depth, float height )
 {
 	m_type = BOUND_OABB;
 	setPosition( x, y );
-	setDimensions( width, height );
+	setDimensions( width, depth );
+	setHeight( height );
 	setOrientation( orientation );
 }
 
@@ -110,15 +121,16 @@ CBoundingBox::CBoundingBox( float x, float y, float orientation, CBoundingBox* c
 {
 	m_type = BOUND_OABB;
 	setPosition( x, y );
-	setDimensions( copy->getWidth(), copy->getHeight() );
+	setDimensions( copy->getWidth(), copy->getDepth() );
+	setHeight( copy->m_height );
 	setOrientation( orientation ); 
 }
 
-void CBoundingBox::setDimensions( float width, float height )
+void CBoundingBox::setDimensions( float width, float depth )
 {
 	m_w = width / 2.0f;
-	m_h = height / 2.0f;
-	m_radius = sqrt( ( m_w * m_w ) + ( m_h * m_h ) );
+	m_d = depth / 2.0f;
+	m_radius = sqrt( ( m_w * m_w ) + ( m_d * m_d ) );
 }
 
 void CBoundingBox::setOrientation( float orientation )
@@ -143,8 +155,8 @@ bool CBoundingBox::_intersects( CBoundingObject* obj, const CVector2D& delta )
 		// Imperfect but quick...
 
 		CBoundingCircle* c = (CBoundingCircle*)obj;
-		float deltah = fabs( delta.dot( m_u ) );
-		if( deltah > ( m_h + c->m_radius ) ) return( false );
+		float deltad = fabs( delta.dot( m_u ) );
+		if( deltad > ( m_d + c->m_radius ) ) return( false );
 		float deltaw = fabs( delta.dot( m_v ) );
 		if( deltaw > ( m_w + c->m_radius ) ) return( false );
 		return( true );
@@ -180,8 +192,8 @@ bool CBoundingBox::_intersects( CBoundingObject* obj, const CVector2D& delta )
 
 		// Project box 2 onto v-axis of box 1
 
-		prj1 = fabs( vu * b->m_h + vv * b->m_w );
-		prj2 = fabs( vu * b->m_h - vv * b->m_h );
+		prj1 = fabs( vu * b->m_d + vv * b->m_w );
+		prj2 = fabs( vu * b->m_d - vv * b->m_w );
 		dm = delta.dot( m_v );
 
 		if( prj1 > prj2 )
@@ -193,21 +205,21 @@ bool CBoundingBox::_intersects( CBoundingObject* obj, const CVector2D& delta )
 		
 		// Project box 2 onto u-axis of box 1
 
-		prj1 = fabs( uu * b->m_h + uv * b->m_w );
-		prj2 = fabs( uu * b->m_h - uv * b->m_w );
+		prj1 = fabs( uu * b->m_d + uv * b->m_w );
+		prj2 = fabs( uu * b->m_d - uv * b->m_w );
 		dm = delta.dot( m_u );
 
 		if( prj1 > prj2 ) 
 		{
-			if( ( dm - prj1 ) > m_h ) return( false );
+			if( ( dm - prj1 ) > m_d ) return( false );
 		}
 		else
-			if( ( dm - prj2 ) > m_h ) return( false );
+			if( ( dm - prj2 ) > m_d ) return( false );
 
 		// Project box 1 onto v-axis of box 2
 
-		prj1 = fabs( uv * m_h + vv * m_w );
-		prj2 = fabs( uv * m_h - vv * m_w );
+		prj1 = fabs( uv * m_d + vv * m_w );
+		prj2 = fabs( uv * m_d - vv * m_w );
 		dm = delta.dot( b->m_v );
 
 		if( prj1 > prj2 )
@@ -219,16 +231,16 @@ bool CBoundingBox::_intersects( CBoundingObject* obj, const CVector2D& delta )
 
 		// Project box 1 onto u-axis of box 2
 
-		prj1 = fabs( uu * m_h + vu * m_w );
-		prj2 = fabs( uu * m_h - vu * m_w );
+		prj1 = fabs( uu * m_d + vu * m_w );
+		prj2 = fabs( uu * m_d - vu * m_w );
 		dm = delta.dot( b->m_u );
 
 		if( prj1 > prj2 )
 		{
-			if( ( dm - prj1 ) > b->m_h ) return( false );
+			if( ( dm - prj1 ) > b->m_d ) return( false );
 		}
 		else
-			if( ( dm - prj2 ) > b->m_h ) return( false );
+			if( ( dm - prj2 ) > b->m_d ) return( false );
 
 		return( true );
 
@@ -237,8 +249,8 @@ bool CBoundingBox::_intersects( CBoundingObject* obj, const CVector2D& delta )
 
 bool CBoundingBox::_contains( const CVector2D& point, const CVector2D& delta )
 {
-	float deltah = fabs( delta.dot( m_u ) );
-	if( deltah > m_h ) return( false );
+	float deltad = fabs( delta.dot( m_u ) );
+	if( deltad > m_d ) return( false );
 	float deltaw = fabs( delta.dot( m_v ) );
 	if( deltaw > m_w ) return( false );
 	return( true );
@@ -250,16 +262,16 @@ void CBoundingBox::render( float height )
 
 	CVector2D p;
 
-	p = m_pos + m_u * m_h + m_v * m_w;
+	p = m_pos + m_u * m_d + m_v * m_w;
 	glVertex3f( p.x, height, p.y );
 
-	p = m_pos + m_u * m_h - m_v * m_w;
+	p = m_pos + m_u * m_d - m_v * m_w;
 	glVertex3f( p.x, height, p.y );
 
-	p = m_pos - m_u * m_h - m_v * m_w;
+	p = m_pos - m_u * m_d - m_v * m_w;
 	glVertex3f( p.x, height, p.y );
 
-	p = m_pos - m_u * m_h + m_v * m_w;
+	p = m_pos - m_u * m_d + m_v * m_w;
 	glVertex3f( p.x, height, p.y );
 
 	glEnd();

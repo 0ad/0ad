@@ -30,6 +30,9 @@ CObjectEntry::CObjectEntry(int type, CObjectBase* base)
 	m_MeleeAnim=0;
 	m_GatherAnim=0;
 	m_RangedAnim=0;
+	m_ProjectileModel=0;
+	m_AmmunitionPoint=0;
+	m_AmmunitionModel=0;
 }
 
 CObjectEntry::~CObjectEntry()
@@ -189,11 +192,32 @@ bool CObjectEntry::BuildRandomVariant(CObjectBase::variation_key& vars, CObjectB
 	for (size_t p = 0; p < m_Props.size(); p++)
 	{
 		const CObjectBase::Prop& prop = m_Props[p];
-		SPropPoint* proppoint = modeldef->FindPropPoint((const char*) prop.m_PropPointName);
-		if (proppoint)
+	
+		CObjectEntry* oe = g_ObjMan.FindObjectVariation(prop.m_ModelName, vars, vars_it);
+		if (!oe)
 		{
-			CObjectEntry* oe = g_ObjMan.FindObjectVariation(prop.m_ModelName, vars, vars_it);
-			if (oe)
+			LOG(ERROR, LOG_CATEGORY, "Failed to build prop model \"%s\" on actor \"%s\"", (const char*)prop.m_ModelName, (const char*)m_Base->m_ShortName);
+			continue;
+		}
+
+		// Pluck out the special attachpoint 'projectile'
+		if( prop.m_PropPointName == "projectile" )
+		{
+			m_ProjectileModel = oe->m_Model;
+		}
+		// Also the other special attachpoint 'loaded-<proppoint>'
+		else if( ( prop.m_PropPointName.Length() > 7 ) && ( prop.m_PropPointName.Left( 7 ) == "loaded-" ) )
+		{
+			CStr ppn = prop.m_PropPointName.GetSubstring( 7, prop.m_PropPointName.Length() - 7 );
+			m_AmmunitionModel = oe->m_Model;
+			m_AmmunitionPoint = modeldef->FindPropPoint((const char*)ppn );
+			if( !m_AmmunitionPoint )
+				LOG(ERROR, LOG_CATEGORY, "Failed to find matching prop point called \"%s\" in model \"%s\" on actor \"%s\"", (const char*)ppn, modelfilename, (const char*)prop.m_ModelName);
+		}
+		else
+		{
+			SPropPoint* proppoint = modeldef->FindPropPoint((const char*) prop.m_PropPointName);
+			if (proppoint)
 			{
 				CModel* propmodel = oe->m_Model->Clone();
 				m_Model->AddProp(proppoint, propmodel);
@@ -201,13 +225,7 @@ bool CObjectEntry::BuildRandomVariant(CObjectBase::variation_key& vars, CObjectB
 					propmodel->SetAnimation(oe->m_IdleAnim);
 			}
 			else
-			{
-				LOG(ERROR, LOG_CATEGORY, "Failed to build prop model \"%s\" on actor \"%s\"", (const char*)prop.m_ModelName, (const char*)m_Base->m_ShortName);
-			}
-		}
-		else
-		{
-			LOG(ERROR, LOG_CATEGORY, "Failed to find matching prop point called \"%s\" in model \"%s\" on actor \"%s\"", (const char*)prop.m_PropPointName, modelfilename, (const char*)prop.m_ModelName);
+				LOG(ERROR, LOG_CATEGORY, "Failed to find matching prop point called \"%s\" in model \"%s\" on actor \"%s\"", (const char*)prop.m_PropPointName, modelfilename, (const char*)prop.m_ModelName);
 		}
 	}
 
