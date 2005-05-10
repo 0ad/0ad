@@ -11,7 +11,7 @@
 #include "ObjectManager.h"
 #include "CLogger.h"
 
-const double GRAVITY = 0.0000002;
+const double GRAVITY = 0.00001;
 const double GRAVITY_2 = GRAVITY * 0.5;
 
 CProjectile::CProjectile( const CModel* Actor, const CVector3D& Position, const CVector3D& Target, float Speed, CEntity* Originator, const CScriptObject& ImpactScript, const CScriptObject& MissScript )
