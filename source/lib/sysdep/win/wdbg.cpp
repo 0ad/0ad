@@ -104,6 +104,20 @@ static int wdbg_shutdown(void)
 }
 
 
+// protects dbghelp (which isn't thread-safe) and
+// parameter passing to the breakpoint helper thread.
+static void lock()
+{
+	win_lock(WDBG_CS);
+}
+
+static void unlock()
+{
+	win_unlock(WDBG_CS);
+}
+
+
+
 //////////////////////////////////////////////////////////////////////////////
 
 
@@ -151,21 +165,215 @@ void wdebug_out(const wchar_t* fmt, ...)
 
 //////////////////////////////////////////////////////////////////////////////
 //
-// dbghelp support routines for walking the stack
+// code and data breakpoints
 //
 //////////////////////////////////////////////////////////////////////////////
 
-// dbghelp isn't thread-safe. lock is taken by walk_stack,
-// debug_resolve_symbol, and while dumping a stack frame (dump_frame_cb).
-static void lock()
+#if 0
+
+// rationale: don't reuse similar code from the profiler in wcpu.cpp:
+// it is designed to interrupt the main thread periodically,
+// whereas what we need here is to interrupt any thread on-demand.
+
+static struct BreakInfo
 {
-	win_lock(DBGHELP_CS);
+	// real (not pseudo) handle of thread whose context we will change
+	HANDLE hThread;
+
+	uintptr_t addr;
+	DbgBreakType type;
+}
+break_info;
+
+// Local Enable bits of all registers we enabled (used to restore all).
+static DWORD break_local_enables;
+static bool break_want_all_disabled;
+
+int debug_set_break(void* p, DbgBreakType type)
+{
+lock();
+
+	BreakInfo* bi = &break_info;
+	bi->addr = (uintptr_t)p;
+	bi->type = type;
+	helper();
+
+unlock();
 }
 
-static void unlock()
+static void debug_remove_all_breaks()
 {
-	win_unlock(DBGHELP_CS);
+lock();
+
+	break_want_all_disabled = true;
+
+unlock()
 }
+
+
+static void* break_disable_all(BreakInfo* bi, CONTEXT* context)
+{
+	context->Dr7 &= ~break_local_enables;
+	return (void*)1;	// success
+}
+
+
+static void* break_enable(BreakInfo* bi, CONTEXT* context)
+{
+	int reg;	// index (0..3) of first free reg
+	uint LE;	// local enable bit for <reg>
+
+	// find free debug register
+	for(reg = 0; reg < 4; reg++)
+	{
+		LE = 1u << (reg * 2);
+		if((context->Dr7 & LE) == 0)	// currently not in use
+			goto have_reg;
+	}
+	debug_warn("break_enable: no break register available");
+	return 0;
+have_reg:
+
+	// mark as enabled (and in use) ASAP
+	break_local_enables |= LE;
+	context->Dr7 |= LE;
+
+	// write address
+	switch(reg)
+	{
+	case 0: context.Dr0 = bi->addr; break;
+	case 1: context.Dr1 = bi->addr; break;
+	case 2: context.Dr2 = bi->addr; break;
+	case 3: context.Dr3 = bi->addr; break;
+	}
+
+	// build Debug Control Register
+	// IA32 requires code breakpoints have len=1
+	uint len = 1;
+	if(bi->type != DBG_BREAK_CODE)
+		len = (bi->addr-1) & 3;
+	uint rw;
+	switch(bi->type)
+	{
+	case DBG_BREAK_CODE:
+		rw = 0; break;
+	case DBG_BREAK_DATA:
+		rw = 1; break;
+	case DBG_BREAK_DATA_WRITE:
+		rw = 3; break;
+	default:
+		debug_warn("break_enable: invalid type");
+		return 0;
+	}
+	const uint shift = (16 + reg*4);
+	const uint field = (len << 2) | rw;
+
+	// clear previous contents of this reg's field
+	// (in case the previous user didn't do so on disabling).
+	const uint mask = 0xFu << shift;
+	context->Dr7 &= ~mask;
+
+	context->Dr7 |= field << shift;
+	return (void*)1;	// success
+}
+
+
+
+
+static void* break_thread_func(void* arg)
+{
+	DWORD err;
+	BreakInfo* bi = (BreakInfo*)arg;
+
+	err = SuspendThread(bi->hThread);
+	// abort, since GetThreadContext only works if the target is suspended.
+	if(err == (DWORD)-1)
+	{
+		debug_warn("break_thread_func: SuspendThread failed");
+		return -1;
+	}
+	// target is now guaranteed to be suspended,
+	// since the Windows counter never goes negative.
+
+	//////////////////////////////////////////////////////////////////////////
+
+	// to avoid deadlock, be VERY CAREFUL to avoid anything that may block,
+	// including locks taken by the OS (e.g. malloc, GetProcAddress).
+
+	CONTEXT context;
+	context.ContextFlags = CONTEXT_DEBUG_REGISTERS;
+	if(!GetThreadContext(bi->hThread, &context))
+	{
+		debug_warn("break_thread_func: GetThreadContext failed");
+		return 0;
+	}
+
+	void* ret;
+#if defined(_M_IX86)
+	if(break_want_all_disabled)
+		ret = break_do_disable_all(bi, &context)
+	else
+		ret = break_do_enable(bi, &context);
+
+	if(!SetThreadContext(bi->hThread, &context))
+	{
+		debug_warn("break_thread_func: GetThreadContext failed");
+		return 0;
+	}
+#else
+#error "port"
+#endif
+
+	//////////////////////////////////////////////////////////////////////////
+
+	err = ResumeThread(hThread);
+	assert(err != 0);
+
+	return ret;
+}
+
+
+static void helper()
+{
+	int err;
+	BreakInfo* bi = &break_info;
+
+	// we need a real HANDLE to the target thread for use with
+	// Suspend|ResumeThread and GetThreadContext.
+	// alternative: DuplicateHandle on the current thread pseudo-HANDLE.
+	// this way is a bit more obvious/simple.
+	const DWORD access = THREAD_GET_CONTEXT|THREAD_SUSPEND_RESUME;
+	bi->hThread = OpenThread(access, FALSE, GetCurrentThreadId());
+	if(bi->hThread == INVALID_HANDLE_VALUE)
+	{
+		debug_warn("debug_set_break: OpenThread failed");
+		return -1;
+	}
+
+	err = pthread_create(&thread, 0, break_thread_func, bi);
+	assert2(err == 0);
+
+	void* ret;
+	err = pthread_join(thread, &ret);
+	assert2(err == 0 && ret == 0);
+}
+
+
+
+
+	// We can only safely alter the thread context of a suspended thread,
+	// so we create a worker thread which suspends us, alters our context, and
+	// restarts us.  It update m_bp_num.
+
+
+#endif
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// dbghelp support routines for walking the stack
+//
+//////////////////////////////////////////////////////////////////////////////
 
 // iterate over a call stack.
 // if <thread_context> != 0, we start there; otherwise, at the current
@@ -798,7 +1006,7 @@ static int dump_udt(DWORD type_idx, const u8* p, size_t size, uint level)
 
 //////////////////////////////////////////////////////////////////////////////
 //
-//
+// stack trace
 //
 //////////////////////////////////////////////////////////////////////////////
 
@@ -1037,7 +1245,7 @@ static void dump_stack(uint skip, CONTEXT* thread_context = NULL)
 
 //////////////////////////////////////////////////////////////////////////////
 //
-// "program error" dialog with stack trace (triggered by assert and exception)
+// "program error" dialog (triggered by assert and exception)
 //
 //////////////////////////////////////////////////////////////////////////////
 
@@ -1054,7 +1262,7 @@ enum DialogType
 //
 
 static POINTS dlg_client_origin;
-static POINTS prev_dlg_client_size;
+static POINTS dlg_prev_client_size;
 
 const int ANCHOR_LEFT   = 0x01;
 const int ANCHOR_RIGHT  = 0x02;
@@ -1062,7 +1270,7 @@ const int ANCHOR_TOP    = 0x04;
 const int ANCHOR_BOTTOM = 0x08;
 const int ANCHOR_ALL    = 0x0f;
 
-static void resize_control(HWND hDlg, int dlg_item, int dx,int dy, int anchors)
+static void dlg_resize_control(HWND hDlg, int dlg_item, int dx,int dy, int anchors)
 {
 	HWND hControl = GetDlgItem(hDlg, dlg_item);
 	RECT r;
@@ -1095,7 +1303,7 @@ static void resize_control(HWND hDlg, int dlg_item, int dx,int dy, int anchors)
 }
 
 
-static void onSize(HWND hDlg, WPARAM wParam, LPARAM lParam)
+static void dlg_resize(HWND hDlg, WPARAM wParam, LPARAM lParam)
 {
 	// 'minimize' was clicked. we need to ignore this, otherwise
 	// dx/dy would reduce some control positions to less than 0.
@@ -1106,23 +1314,23 @@ static void onSize(HWND hDlg, WPARAM wParam, LPARAM lParam)
 
 	// first call for this dialog instance. WM_MOVE hasn't been sent yet,
 	// so dlg_client_origin are invalid => must not call resize_control().
-	// we need to set prev_dlg_client_size for the next call before exiting.
-	bool first_call = (prev_dlg_client_size.y == 0);
+	// we need to set dlg_prev_client_size for the next call before exiting.
+	bool first_call = (dlg_prev_client_size.y == 0);
 
 	POINTS dlg_client_size = MAKEPOINTS(lParam);
-	int dx = dlg_client_size.x - prev_dlg_client_size.x;
-	int dy = dlg_client_size.y - prev_dlg_client_size.y;
-	prev_dlg_client_size = dlg_client_size;
+	int dx = dlg_client_size.x - dlg_prev_client_size.x;
+	int dy = dlg_client_size.y - dlg_prev_client_size.y;
+	dlg_prev_client_size = dlg_client_size;
 
 	if(first_call)
 		return;
 
-	resize_control(hDlg, IDC_CONTINUE, dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
-	resize_control(hDlg, IDC_SUPPRESS, dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
-	resize_control(hDlg, IDC_BREAK   , dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
-	resize_control(hDlg, IDC_EXIT    , dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
-	resize_control(hDlg, IDC_COPY    , dx,dy, ANCHOR_RIGHT|ANCHOR_BOTTOM);
-	resize_control(hDlg, IDC_EDIT1   , dx,dy, ANCHOR_ALL);
+	dlg_resize_control(hDlg, IDC_CONTINUE, dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
+	dlg_resize_control(hDlg, IDC_SUPPRESS, dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
+	dlg_resize_control(hDlg, IDC_BREAK   , dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
+	dlg_resize_control(hDlg, IDC_EXIT    , dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
+	dlg_resize_control(hDlg, IDC_COPY    , dx,dy, ANCHOR_RIGHT|ANCHOR_BOTTOM);
+	dlg_resize_control(hDlg, IDC_EDIT1   , dx,dy, ANCHOR_ALL);
 }
 
 
@@ -1134,7 +1342,7 @@ static int CALLBACK dlgproc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM l
 		{
 		// need to reset for new instance of dialog
 		dlg_client_origin.x = dlg_client_origin.y = 0;
-		prev_dlg_client_size.x = prev_dlg_client_size.y = 0;
+		dlg_prev_client_size.x = dlg_prev_client_size.y = 0;
 			
 		// disable inappropriate buttons
 		DialogType type = (DialogType)lParam;
@@ -1202,7 +1410,7 @@ static int CALLBACK dlgproc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM l
 		}
 
 	case WM_SIZE:
-		onSize(hDlg, wParam, lParam);
+		dlg_resize(hDlg, wParam, lParam);
 		break;
 
 	default:
