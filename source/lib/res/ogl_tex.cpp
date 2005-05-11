@@ -388,7 +388,7 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 	/*
 		There are various combinations of desires/abilities, relating to how
 		(and whether) mipmaps should be generated. Currently there are only
-		4^2 such combinations:
+		2^4 such combinations:
 
 		    /mipmaps available in texture
 		    #######
@@ -479,19 +479,26 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 		GLsizei level_w = w;
 		GLsizei level_h = h;
 		char* mipmap_data = (char*)tex_data;
-		while (level_w && level_h)
+
+		while(level_w || level_h) // loop until the 1x1 mipmap level has just been processed
 		{
+			// If the texture is non-square, one of the dimensions will become
+			// 0 before the other. To satisfy OpenGL's expectations, change it
+			// back to 1.
+			if(level_w == 0) level_w = 1;
+			if(level_h == 0) level_h = 1;
+
 			GLsizei tex_size;
-			if (state == mipped_uncomp)
+			if(state == mipped_uncomp)
 			{
-				tex_size = w * h * bpp;
-				glTexImage2D(GL_TEXTURE_2D, level, int_fmt, level_w?level_w:1, level_h?level_h:1, 0, fmt, GL_UNSIGNED_BYTE, mipmap_data);
+				tex_size = level_w * level_h * bpp/8;
+				glTexImage2D(GL_TEXTURE_2D, level, int_fmt, level_w, level_h, 0, fmt, GL_UNSIGNED_BYTE, mipmap_data);
 			}
-			else
+			else // state == mipped_comp
 			{
 				// Round up to an integer number of 4x4 blocks
-				tex_size = std::max(1, level_w/4) * std::max(1, level_h/4) * 16 * bpp/8;
-				glCompressedTexImage2DARB(GL_TEXTURE_2D, level, fmt, level_w?level_w:1, level_h?level_h:1, 0, tex_size, mipmap_data);
+				tex_size = (GLsizei)(round_up(level_w, 4) * round_up(level_h, 4) * bpp/8);
+				glCompressedTexImage2DARB(GL_TEXTURE_2D, level, fmt, level_w, level_h, 0, tex_size, mipmap_data);
 			}
 
 			mipmap_data += tex_size;
