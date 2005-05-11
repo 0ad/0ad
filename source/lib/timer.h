@@ -21,7 +21,7 @@
 
 #include <string>
 
-#include "sysdep/debug.h"	// debug_out
+#include "sysdep/debug.h"	// debug_printf
 
 #ifdef __cplusplus
 extern "C" {
@@ -71,7 +71,7 @@ public:
 		else if(dt > 1e-3)
 			scale = 1e3, unit = 'm';
 
-		debug_out("TIMER %s: %g %cs\n", name.c_str(), dt*scale, unit);
+		debug_printf("TIMER %s: %g %cs\n", name.c_str(), dt*scale, unit);
 	}
 
 	// no copy ctor, since some members are const

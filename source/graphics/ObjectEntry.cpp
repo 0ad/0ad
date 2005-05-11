@@ -175,7 +175,7 @@ bool CObjectEntry::BuildRandomVariant(CObjectBase::variation_key& vars, CObjectB
 			if (AnimNameLC == "decay")
 				m_CorpseAnim = m_Animations[t].m_AnimData;
 			//else
-			//	debug_out("Invalid animation name '%s'\n", (const char*)AnimNameLC);
+			//	debug_printf("Invalid animation name '%s'\n", (const char*)AnimNameLC);
 		}
 		else
 		{

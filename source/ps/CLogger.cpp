@@ -112,7 +112,7 @@ void CLogger::WriteMessage(const char *message, int interestedness)
 void CLogger::WriteError(const char *message, int interestedness)
 {
 	m_NumberOfErrors++;
-	debug_out("ERROR: %s\n", message);
+	debug_printf("ERROR: %s\n", message);
 	if (interestedness >= 1)
 	{
 		if (g_Console) g_Console->InsertMessage(L"ERROR: %hs", message);

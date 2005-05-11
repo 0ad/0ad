@@ -518,7 +518,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 				int                         nBlockUse;
 				long                        lRequest;
 			};
-			debug_out("%d %s\n", s.pBlockHeader->lRequest, SpriteName.c_str());
+			debug_printf("%d %s\n", s.pBlockHeader->lRequest, SpriteName.c_str());
 */
 		}
 

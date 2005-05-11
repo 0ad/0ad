@@ -251,7 +251,7 @@ fail:
 	debug_warn("file_rel_chdir failed");
 	if(msg)
 	{
-		debug_out("file_rel_chdir: %s\n", msg);
+		debug_printf("file_rel_chdir: %s\n", msg);
 		return -1;
 	}
 
@@ -496,7 +496,7 @@ static int file_validate(const uint line, File* f)
 
 	// failed somewhere - err is the error code,
 	// or -1 if not set specifically above.
-	debug_out("file_validate at line %d failed: %s\n", line, msg);
+	debug_printf("file_validate at line %d failed: %s\n", line, msg);
 	debug_warn("file_validate failed");
 	return err;
 }
@@ -656,7 +656,7 @@ int file_start_io(File* f, off_t ofs, size_t size, void* p, FileIO* io)
 	memset(io, 0, sizeof(FileIO));
 
 #ifdef PARANOIA
-	debug_out("file_start_io: ofs=%d size=%d\n", ofs, size);
+	debug_printf("file_start_io: ofs=%d size=%d\n", ofs, size);
 #endif
 
 
@@ -706,13 +706,13 @@ int file_start_io(File* f, off_t ofs, size_t size, void* p, FileIO* io)
 	cb->aio_offset     = ofs;
 	cb->aio_nbytes     = size;
 #ifdef PARANOIA
-	debug_out("file_start_io: io=%p nbytes=%d\n", io, cb->aio_nbytes);
+	debug_printf("file_start_io: io=%p nbytes=%d\n", io, cb->aio_nbytes);
 #endif
 	int err = lio_listio(LIO_NOWAIT, &cb, 1, (struct sigevent*)0);
 	if(err < 0)
 	{
 #ifdef PARANOIA
-		debug_out("file_start_io: lio_listio: %d, %d[%s]\n", err, errno, strerror(errno));
+		debug_printf("file_start_io: lio_listio: %d, %d[%s]\n", err, errno, strerror(errno));
 #endif
 		file_discard_io(io);
 		return err;
@@ -741,7 +741,7 @@ int file_io_complete(FileIO* io)
 int file_wait_io(FileIO* io, void*& p, size_t& size)
 {
 #ifdef PARANOIA
-debug_out("file_wait_io: hio=%p\n", io);
+debug_printf("file_wait_io: hio=%p\n", io);
 #endif
 
 	// zero output params in case something (e.g. H_DEREF) fails.
@@ -758,7 +758,7 @@ debug_out("file_wait_io: hio=%p\n", io);
 	// query number of bytes transferred (-1 if the transfer failed)
 	const ssize_t bytes_transferred = aio_return(cb);
 #ifdef PARANOIA
-	debug_out("file_wait_io: bytes_transferred=%d aio_nbytes=%d\n",
+	debug_printf("file_wait_io: bytes_transferred=%d aio_nbytes=%d\n",
 		bytes_transferred, cb->aio_nbytes);
 #endif
 	// (size was clipped to EOF in file_io => this is an actual IO error)
@@ -909,7 +909,7 @@ static ssize_t block_issue(File* f, IOSlot* slot, const off_t issue_ofs, void* b
 	if(slot->cached_block)
 		goto skip_issue;
 
-//debug_out("%x miss\n", issue_ofs);
+//debug_printf("%x miss\n", issue_ofs);
 
 	// allocate temp buffer
 	if(!buf)
@@ -977,7 +977,7 @@ ssize_t file_io(File* f, off_t data_ofs, size_t data_size, void* data_buf,
 	FileIOCB cb, uintptr_t ctx) // optional
 {
 #ifdef PARANOIA
-debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
+debug_printf("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 #endif
 
 	CHECK_FILE(f);
@@ -1084,7 +1084,7 @@ debug_out("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 			void* buf = (temp)? 0 : (char*)actual_buf + issue_cnt;
 			ssize_t issued = block_issue(f, slot, issue_ofs, buf);
 #ifdef PARANOIA
-			debug_out("file_io: block_issue: %d\n", issued);
+			debug_printf("file_io: block_issue: %d\n", issued);
 #endif
 			if(issued < 0)
 				err = issued;
@@ -1176,7 +1176,7 @@ if(from_cache && !temp)
 	}
 
 #ifdef PARANOIA
-	debug_out("file_io: err=%d, actual_transferred_cnt=%d\n", err, actual_transferred_cnt);
+	debug_printf("file_io: err=%d, actual_transferred_cnt=%d\n", err, actual_transferred_cnt);
 #endif
 
 	// failed (0 means callback reports it's finished)

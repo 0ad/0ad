@@ -783,7 +783,7 @@ static double total_inf_time;
 
 static void dump()
 {
-	debug_out("TOTAL INFLATE TIME: %g\n", total_inf_time);
+	debug_printf("TOTAL INFLATE TIME: %g\n", total_inf_time);
 }
 
 
@@ -928,7 +928,7 @@ static int zfile_validate(uint line, ZFile* zf)
 
 	// failed somewhere - err is the error code,
 	// or -1 if not set specifically above.
-	debug_out("zfile_validate at line %d failed: %s\n", line, msg);
+	debug_printf("zfile_validate at line %d failed: %s\n", line, msg);
 	debug_warn("zfile_validate failed");
 	return err;
 }
@@ -1224,7 +1224,7 @@ ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void* p, FileIOCB cb, uintpt
 	double t1 = get_time();
 	file_io(&za->f,0, xsize, 0, io_cb, (uintptr_t)&xparams);
 	double t2 = get_time();
-	debug_out("\n\ntime to load whole archive %f\nthroughput %f MiB/s\n", t2-t1, xsize / (t2-t1) / 1e6);
+	debug_printf("\n\ntime to load whole archive %f\nthroughput %f MiB/s\n", t2-t1, xsize / (t2-t1) / 1e6);
 	mem_free(xbuf);
 	}
 	*/

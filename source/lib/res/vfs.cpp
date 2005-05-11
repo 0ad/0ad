@@ -992,7 +992,7 @@ static int VFile_reload(VFile* vf, const char* v_path, Handle)
 	if(err < 0)
 	{
 		// don't CHECK_ERR - this happens often and the dialog is annoying
-		debug_out("lookup failed for %s\n", v_path);
+		debug_printf("lookup failed for %s\n", v_path);
 		return err;
 	}
 
@@ -1046,7 +1046,7 @@ Handle vfs_open(const char* v_fn, uint file_flags)
 		// pass file flags to init
 
 #ifdef PARANOIA
-debug_out("vfs_open fn=%s %llx\n", v_fn, h);
+debug_printf("vfs_open fn=%s %llx\n", v_fn, h);
 #endif
 
 	return h;
@@ -1057,7 +1057,7 @@ debug_out("vfs_open fn=%s %llx\n", v_fn, h);
 int vfs_close(Handle& h)
 {
 #ifdef PARANOIA
-debug_out("vfs_close %llx\n", h);
+debug_printf("vfs_close %llx\n", h);
 #endif
 
 	return h_free(h, H_VFile);
@@ -1087,7 +1087,7 @@ debug_out("vfs_close %llx\n", h);
 ssize_t vfs_io(const Handle hf, const size_t size, void** p, FileIOCB cb, uintptr_t ctx)
 {
 #ifdef PARANOIA
-debug_out("vfs_io size=%d\n", size);
+debug_printf("vfs_io size=%d\n", size);
 #endif
 
 	H_DEREF(hf, VFile, vf);
@@ -1125,7 +1125,7 @@ static double dt;
 static double totaldata;
 void dump()
 {
-	debug_out("TOTAL TIME IN VFS_IO: %f\nthroughput: %f MiB/s\n\n", dt, totaldata/dt/1e6);
+	debug_printf("TOTAL TIME IN VFS_IO: %f\nthroughput: %f MiB/s\n\n", dt, totaldata/dt/1e6);
 }
 
 static ssize_t vfs_timed_io(const Handle hf, const size_t size, void** p, FileIOCB cb = 0, uintptr_t ctx = 0)
@@ -1155,7 +1155,7 @@ static ssize_t vfs_timed_io(const Handle hf, const size_t size, void** p, FileIO
 Handle vfs_load(const char* v_fn, void*& p, size_t& size, uint flags /* default 0 */)
 {
 #ifdef PARANOIA
-debug_out("vfs_load v_fn=%s\n", v_fn);
+debug_printf("vfs_load v_fn=%s\n", v_fn);
 #endif
 
 	p = 0; size = 0;	// zeroed in case vfs_open or H_DEREF fails
@@ -1222,7 +1222,7 @@ ret:
 		p = 0, size = 0;
 
 	if (hm == 0)
-		debug_out("hm == 0!!\n");
+		debug_printf("hm == 0!!\n");
 
 	return hm;
 }

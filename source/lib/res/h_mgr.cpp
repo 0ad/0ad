@@ -380,7 +380,7 @@ static void remove_key(uintptr_t key, H_Type type)
 // currently cannot fail.
 static int h_free_idx(i32 idx, HDATA* hd)
 {
-	// debug_out("free %s %s\n", type->name, hd->fn);
+	// debug_printf("free %s %s\n", type->name, hd->fn);
 
 	// only decrement if refcount not already 0.
 	if(hd->refs > 0)
@@ -448,7 +448,7 @@ void h_mgr_shutdown()
 			continue;
 
 //		if(hd->refs != 0)
-//			debug_out("leaked %s from %s\n", hd->type->name, hd->fn);
+//			debug_printf("leaked %s from %s\n", hd->type->name, hd->fn);
 
 		// disable caching; we need to release the resource now.
 		hd->keep_open = 0;
@@ -519,7 +519,7 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 			key = fnv_hash(fn);
 	}
 
-//debug_out("alloc %s %s\n", type->name, fn);
+//debug_printf("alloc %s %s\n", type->name, fn);
 	
 	// no key => can never be found. disallow caching
 	if(!key)

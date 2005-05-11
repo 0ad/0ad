@@ -43,7 +43,7 @@ void CPlayList::list()
 {
 	for(unsigned int i = 0; i < tracks.size(); i++)
 	{
-		debug_out("%s\n", tracks.at(i).c_str());
+		debug_printf("%s\n", tracks.at(i).c_str());
 	}
 }
 

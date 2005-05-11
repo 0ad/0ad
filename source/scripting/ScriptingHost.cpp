@@ -355,7 +355,7 @@ void ScriptingHost::ErrorReporter(JSContext * context, const char * message, JSE
 {
 	UNUSED(context);
 
-	debug_out("%s(%d) : %s\n", report->filename, report->lineno, message);
+	debug_printf("%s(%d) : %s\n", report->filename, report->lineno, message);
 
 	if (g_Console)
 	{

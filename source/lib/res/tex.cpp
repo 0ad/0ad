@@ -410,7 +410,7 @@ static int dds_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 	{
 		err = "header not completely read";
 fail:
-		debug_out("dds_decode: %s: %s\n", fn, err);
+		debug_printf("dds_decode: %s: %s\n", fn, err);
 		return ERR_CORRUPTED;
 	}
 
@@ -585,7 +585,7 @@ static int tga_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 	{
 		err = "header not completely read";
 fail:
-		debug_out("tga_decode: %s: %s\n", fn, err);
+		debug_printf("tga_decode: %s: %s\n", fn, err);
 		return ERR_CORRUPTED;
 	}
 
@@ -738,7 +738,7 @@ static int bmp_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 	{
 		err = "header not completely read";
 fail:
-		debug_out("bmp_decode: %s: %s\n", fn, err);
+		debug_printf("bmp_decode: %s: %s\n", fn, err);
 		return ERR_CORRUPTED;
 	}
 
@@ -873,7 +873,7 @@ static int raw_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 		return 0;
 	}
 
-	debug_out("raw_decode: %s: %s\n", fn, "no matching format found");
+	debug_printf("raw_decode: %s: %s\n", fn, "no matching format found");
 	return -1;
 }
 
@@ -975,7 +975,7 @@ static int png_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 fail:
 		mem_free(img);
 
-		debug_out("png_decode: %s: %s\n", fn, msg? msg : "unknown");
+		debug_printf("png_decode: %s: %s\n", fn, msg? msg : "unknown");
 		goto ret;
 	}
 
@@ -1090,7 +1090,7 @@ static int png_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 	if(setjmp(png_jmpbuf(png_ptr)))
 	{
 fail:
-		debug_out("png_encode: %s: %s\n", fn, msg? msg : "unknown");
+		debug_printf("png_encode: %s: %s\n", fn, msg? msg : "unknown");
 		goto ret;
 	}
 
@@ -1204,7 +1204,7 @@ static int jp2_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 		err = "channel precision != 8";
 
 fail:
-		debug_out("jp2_decode: %s: %s\n", fn, err);
+		debug_printf("jp2_decode: %s: %s\n", fn, err);
 // TODO: destroy image
 		return -1;
 	}
@@ -1311,7 +1311,7 @@ METHODDEF(void) jpg_error_exit(j_common_ptr cinfo)
 	JpgErrMgr* err_mgr = (JpgErrMgr*)cinfo->err;
 
 	// "output" error message (i.e. store in JpgErrMgr;
-	// call_site is responsible for displaying it via debug_out)
+	// call_site is responsible for displaying it via debug_printf)
 	(*cinfo->err->output_message)(cinfo);
 
 	// jump back to call site, i.e. jpg_(de|en)code
@@ -1373,7 +1373,7 @@ static int jpg_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 fail:
 		// either JPEG has raised an error, or code below failed.
 		// warn user, and skip to cleanup code.
-		debug_out("jpg_decode: %s: %s\n", fn, msg? msg : "unknown");
+		debug_printf("jpg_decode: %s: %s\n", fn, msg? msg : "unknown");
 		goto ret;
 	}
 
@@ -1469,7 +1469,7 @@ fail:
 		// is not possible with the mem data source.
 
 	if(jerr.pub.num_warnings != 0)
-		debug_out("jpg_decode: corrupt-data warning(s) occurred\n");
+		debug_printf("jpg_decode: corrupt-data warning(s) occurred\n");
 
 	// store image info
 	mem_free_h(t->hm);
@@ -1531,7 +1531,7 @@ static int jpg_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 fail:
 		// either JPEG has raised an error, or code below failed.
 		// warn user, and skip to cleanup code.
-		debug_out("jpg_encode: %s: %s\n", fn, msg? msg : "unknown");
+		debug_printf("jpg_encode: %s: %s\n", fn, msg? msg : "unknown");
 		goto ret;
 	}
 
@@ -1600,7 +1600,7 @@ fail:
 	jpeg_finish_compress(&cinfo);
 
 	if(jerr.pub.num_warnings != 0)
-		debug_out("jpg_encode: corrupt-data warning(s) occurred\n");
+		debug_printf("jpg_encode: corrupt-data warning(s) occurred\n");
 
 	err = 0;
 

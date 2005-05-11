@@ -19,4 +19,7 @@ DECLARE_ERROR(PS_OK);
 DECLARE_ERROR(PS_FAIL);
 
 
+
+#define MICROLOG debug_wprintf_mem
+
 #endif

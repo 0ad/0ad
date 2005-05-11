@@ -227,7 +227,7 @@ void glvwprintf(const wchar_t* fmt, va_list args)
 	wchar_t buf[buf_size];
 
 	if(vswprintf(buf, buf_size-1, fmt, args) < 0)
-		debug_out("glwprintf failed (buffer size exceeded?)\n");
+		debug_printf("glwprintf failed (buffer size exceeded?)\n");
 
 	// Make sure there's always null termination
 	buf[buf_size-1] = 0;

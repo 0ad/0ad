@@ -86,9 +86,9 @@ void oglCheck()
 	unsigned int err = glGetError();
 	if (err != GL_NO_ERROR)
 	{
-		debug_out("GL errors!\n");
+		debug_printf("GL errors!\n");
 
-		#define E(e) case e: debug_out("%s\n", #e); break;
+		#define E(e) case e: debug_printf("%s\n", #e); break;
 		switch (err)
 		{
 			E(GL_INVALID_ENUM)
@@ -107,7 +107,7 @@ void oglCheck()
 
 void oglPrintErrors()
 {
-#define E(e) case e: debug_out("%s\n", #e); break;
+#define E(e) case e: debug_printf("%s\n", #e); break;
 
 	for(;;)
 		switch(glGetError())

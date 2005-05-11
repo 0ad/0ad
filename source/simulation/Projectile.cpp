@@ -224,14 +224,14 @@ CEventProjectileMiss::CEventProjectileMiss( CEntity* Originator, const CVector3D
 CProjectileManager::CProjectileManager()
 {
 	m_LastTurnLength = 0;
-	debug_out( "CProjectileManager CREATED\n" );
+	debug_printf( "CProjectileManager CREATED\n" );
 }
 
 CProjectileManager::~CProjectileManager()
 {
 	while( m_Projectiles.size() )
 		delete( m_Projectiles[0] );
-	debug_out( "CProjectileManager DESTROYED\n" );
+	debug_printf( "CProjectileManager DESTROYED\n" );
 }
 	
 CProjectile* CProjectileManager::AddProjectile( const CModel* Actor, const CVector3D& Position, const CVector3D& Target, float Speed, CEntity* Originator, const CScriptObject& ImpactScript, const CScriptObject& MissScript )

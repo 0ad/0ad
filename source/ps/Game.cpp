@@ -200,7 +200,7 @@ CGame::CGame():
 	m_pLocalPlayer(NULL),
 	m_GameStarted(false)
 {
-	debug_out("CGame::CGame(): Game object CREATED; initializing..\n");
+	debug_printf("CGame::CGame(): Game object CREATED; initializing..\n");
 }
 
 #ifdef _MSC_VER
@@ -211,7 +211,7 @@ CGame::~CGame()
 {
 	// Again, the in-game call tree is going to be different to the main menu one.
 	g_Profiler.StructuralReset();
-	debug_out("CGame::~CGame(): Game object DESTROYED\n");
+	debug_printf("CGame::~CGame(): Game object DESTROYED\n");
 }
 
 
@@ -244,7 +244,7 @@ PSRETURN CGame::ReallyStartGame()
 	assert(ok);
 #endif
 
-	debug_out("GAME STARTED, ALL INIT COMPLETE\n");
+	debug_printf("GAME STARTED, ALL INIT COMPLETE\n");
 	m_GameStarted=true;
 
 	// The call tree we've built for pregame probably isn't useful in-game.

@@ -1020,7 +1020,7 @@ void CGUI::Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile)
 	XMBElementList children = Element.getChildNodes();
 	for (int i=0; i<children.Count; ++i)
 	{
-		//debug_out("Object %d\n", i);
+		//debug_printf("Object %d\n", i);
 		XMBElement child = children.item(i);
 
 		if (child.getNodeName() == el_script)

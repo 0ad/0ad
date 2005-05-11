@@ -850,7 +850,7 @@ static void* thread_func(void* arg)
 		const int action            = rand_up_to(4);
 		const uintptr_t key         = rand_up_to(100);
 		const int sleep_duration_ms = rand_up_to(100);
-		debug_out("thread %d: %s\n", thread_number, action_strings[action]);
+		debug_printf("thread %d: %s\n", thread_number, action_strings[action]);
 
 		//
 		pthread_mutex_lock(&mutex);

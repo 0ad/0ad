@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <set>
 #include <algorithm>
+#include "Pyrogenesis.h"
 #include "res/ogl_tex.h"
 #include "Renderer.h"
 #include "PatchRData.h"

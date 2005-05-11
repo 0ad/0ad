@@ -110,7 +110,7 @@ static void al_check(const char* caller = "(unknown)")
 		return;
 
 	const char* str = (const char*)alGetString(err);
-	debug_out("openal error: %s; called from %s\n", str, caller);
+	debug_printf("openal error: %s; called from %s\n", str, caller);
 	debug_warn("OpenAL error");
 }
 
@@ -219,7 +219,7 @@ static int alc_init()
 	ALCenum err = alcGetError(alc_dev);
 	if(err != ALC_NO_ERROR || !alc_dev || !alc_ctx)
 	{
-		debug_out("alc_init failed. alc_dev=%p alc_ctx=%p alc_dev_name=%s err=%d\n", alc_dev, alc_ctx, alc_dev_name, err);
+		debug_printf("alc_init failed. alc_dev=%p alc_ctx=%p alc_dev_name=%s err=%d\n", alc_dev, alc_ctx, alc_dev_name, err);
 		ret = -1;
 	}
 

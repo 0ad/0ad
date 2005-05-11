@@ -209,7 +209,7 @@ double t1 = get_time();
 	get_snd_info();
 	get_mem_status();
 double t2 = get_time();
-debug_out("SYS DETECT TIME %g\n\n", t2-t1);
+debug_printf("SYS DETECT TIME %g\n\n", t2-t1);
 
 
 	struct utsname un;
@@ -847,7 +847,7 @@ TIMER(InitVfs)
 		TIMER(rebuild);
 		vfs_rebuild();
 	}
-	debug_out("%f\n\n\n", get_time()-t0);
+	debug_printf("%f\n\n\n", get_time()-t0);
 	exit(1134);
 /**/
 	// don't try vfs_display yet: SDL_Init hasn't yet redirected stdout
@@ -1131,7 +1131,7 @@ static void Init(int argc, char* argv[], bool setup_gfx = true)
 
 #ifdef _MSC_VER
 u64 TSC=rdtsc();
-debug_out(
+debug_printf(
 "----------------------------------------\n"\
 "INITIALIZING\n"\
 "----------------------------------------\n");
@@ -1335,7 +1335,7 @@ TIMER(init_after_InitRenderer);
 
 	g_Console->RegisterFunc(Testing, L"Testing");
 
-debug_out(
+debug_printf(
 "----------------------------------------\n"\
 "READY (elapsed = %f ms)\n"\
 "----------------------------------------\n"
@@ -1411,7 +1411,7 @@ static void Frame()
 		float* dir = &orientation._data[8];
 		float* up  = &orientation._data[4];
 		if(snd_update(pos, dir, up) < 0)
-			debug_out("snd_update failed\n");
+			debug_printf("snd_update failed\n");
 		PROFILE_END( "sound update" );
 	}
 	else
@@ -1420,7 +1420,7 @@ static void Frame()
 		// a game. This is basically just to keep script timers running.
 		g_Scheduler.update((uint)(TimeSinceLastFrame*1000));
 		if(snd_update(0, 0, 0) < 0)
-			debug_out("snd_update (pos=0 version) failed\n");
+			debug_printf("snd_update (pos=0 version) failed\n");
 	}
 
 	PROFILE_END( "game logic" );
