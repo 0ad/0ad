@@ -40,7 +40,7 @@ void CMapWriter::SaveMap(const char* filename, CTerrain *pTerrain, CLightEnv *pL
 
 	CStr filename_xml (filename);
 	filename_xml = filename_xml.Left(filename_xml.Length()-4) + ".xml";
-	WriteXML(filename_xml, pUnitMan);
+	WriteXML(filename_xml, pUnitMan, pLightEnv);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -113,30 +113,6 @@ void CMapWriter::PackMap(CFilePacker& packer, CTerrain *pTerrain, CLightEnv *pLi
 {
 	// now pack everything up
 	PackTerrain(packer, pTerrain);
-	PackObjects(packer, pUnitMan);
-	PackLightEnv(packer, pLightEnv);
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// PackLightEnv: pack lighting parameters onto the end of the output data stream
-void CMapWriter::PackLightEnv(CFilePacker& packer, CLightEnv *pLightEnv)
-{
-	packer.PackRaw(&pLightEnv->m_SunColor,sizeof(pLightEnv->m_SunColor));
-	packer.PackRaw(&pLightEnv->m_Elevation,sizeof(pLightEnv->m_Elevation));
-	packer.PackRaw(&pLightEnv->m_Rotation,sizeof(pLightEnv->m_Rotation));
-	packer.PackRaw(&pLightEnv->m_TerrainAmbientColor,sizeof(pLightEnv->m_TerrainAmbientColor));
-	packer.PackRaw(&pLightEnv->m_UnitsAmbientColor,sizeof(pLightEnv->m_UnitsAmbientColor));
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// PackObjects: pack world objects onto the end of the output data stream
-//		- data: list of objects types used by map, list of object descriptions
-void CMapWriter::PackObjects(CFilePacker& packer, CUnitManager *pUnitMan)
-{
-	// (These are now handled by XML, so this function is fairly uninteresting)
-	u32 zero = 0;
-	packer.PackRaw(&zero,sizeof(zero));	// numObjTypes
-	packer.PackRaw(&zero,sizeof(zero));	// numObjects
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -172,7 +148,7 @@ void CMapWriter::PackTerrain(CFilePacker& packer, CTerrain *pTerrain)
 
 
 
-void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan)
+void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan, CLightEnv *pLightEnv)
 {
 	// HACK: ScEd uses non-VFS filenames, so just use fopen instead of vfs_open
 #ifdef SCED
@@ -192,15 +168,55 @@ void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan)
 #endif
 
 	XML_Start("utf-8");
-	XML_Doctype("Scenario", "/maps/scenario.dtd");
+	// DTDs are rather annoying. They ought to be strict in what they accept,
+	// else they serve no purpose (given that the only purpose is complaining
+	// nicely when someone provides invalid input). But then it can't be
+	// backwards-compatible, because the old data files don't follow the new
+	// format, and there's no way we're going to rebuild all the old data
+	// files. So, just create an entirely new DTD for each revision of the
+	// format:
+	XML_Doctype("Scenario", "/maps/scenario_v4.dtd");
 
 	{
 		XML_Element("Scenario");
+
+		{
+			XML_Element("Environment");
+
+			{
+				XML_Element("SunColour");
+				XML_Attribute("r", pLightEnv->m_SunColor.X); // yes, it's X/Y/Z...
+				XML_Attribute("g", pLightEnv->m_SunColor.Y);
+				XML_Attribute("b", pLightEnv->m_SunColor.Z);
+			}
+			{
+				XML_Element("SunElevation");
+				XML_Attribute("angle", pLightEnv->m_Elevation);
+			}
+			{
+				XML_Element("SunRotation");
+				XML_Attribute("angle", pLightEnv->m_Rotation);
+			}
+			{
+				XML_Element("TerrainAmbientColour");
+				XML_Attribute("r", pLightEnv->m_TerrainAmbientColor.X);
+				XML_Attribute("g", pLightEnv->m_TerrainAmbientColor.Y);
+				XML_Attribute("b", pLightEnv->m_TerrainAmbientColor.Z);
+			}
+			{
+				XML_Element("UnitsAmbientColour");
+				XML_Attribute("r", pLightEnv->m_UnitsAmbientColor.X);
+				XML_Attribute("g", pLightEnv->m_UnitsAmbientColor.Y);
+				XML_Attribute("b", pLightEnv->m_UnitsAmbientColor.Z);
+			}
+		}
+
 		{
 			XML_Element("Entities");
 
 			const std::vector<CUnit*>& units = pUnitMan->GetUnits();
-			for (std::vector<CUnit*>::const_iterator unit = units.begin(); unit != units.end(); ++unit) {
+			for (std::vector<CUnit*>::const_iterator unit = units.begin(); unit != units.end(); ++unit)
+			{
 
 				CEntity* entity = (*unit)->GetEntity();
 

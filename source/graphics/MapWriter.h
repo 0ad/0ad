@@ -27,10 +27,6 @@ private:
 	void PackMap(CFilePacker& packer, CTerrain *pTerr, CLightEnv *pLightEnv, CUnitManager *pUnitMan);
 	// PackTerrain: pack the terrain onto the end of the data stream
 	void PackTerrain(CFilePacker& packer, CTerrain *pTerrain);
-	// PackObjects: pack world objects onto the end of the output data stream
-	void PackObjects(CFilePacker& packer, CUnitManager *pUnitMan);
-	// PackLightEnv: pack lighting parameters onto the end of the output data stream
-	void PackLightEnv(CFilePacker& packer, CLightEnv *pLightEnv);
 
 	// EnumTerrainTextures: build lists of textures used by map, and indices into this list 
 	// for each tile on the terrain
@@ -38,7 +34,7 @@ private:
 		std::vector<STileDesc>& tileIndices);
 
 	// WriteXML: output some other data (entities, etc) in XML format
-	void WriteXML(const char* filename, CUnitManager* pUnitMan);
+	void WriteXML(const char* filename, CUnitManager* pUnitMan, CLightEnv *pLightEnv);
 };
 
 #endif

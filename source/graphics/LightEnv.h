@@ -31,6 +31,7 @@ class CLightEnv
 {
 friend class CMapWriter;
 friend class CMapReader;
+friend class CXMLReader;
 friend class CEditorData;
 friend class CMainFrame;
 friend class CLightSettingsDlg;
@@ -43,7 +44,7 @@ private:
 public:
 	RGBColor m_TerrainAmbientColor;
 	RGBColor m_UnitsAmbientColor;
-    CVector3D m_SunDir;
+	CVector3D m_SunDir;
 
 	// get sun direction from a rotation and elevation; defined such that:
 	//	0 rotation    = (0,0,1)
@@ -51,29 +52,29 @@ public:
 	//	0 elevation	  = (0,0,0)
 	// PI/2 elevation = (0,-1,0)
 
-    float GetElevation() { return m_Elevation; }
-    float GetRotation() { return m_Rotation; }
+	float GetElevation() { return m_Elevation; }
+	float GetRotation() { return m_Rotation; }
 
-    void SetElevation(float f)
-    {
-        m_Elevation = f;
-        CalculateSunDirection();
-    }
+	void SetElevation(float f)
+	{
+		m_Elevation = f;
+		CalculateSunDirection();
+	}
 
-    void SetRotation(float f)
-    {
-        m_Rotation = f;
-        CalculateSunDirection();
-    }
+	void SetRotation(float f)
+	{
+		m_Rotation = f;
+		CalculateSunDirection();
+	}
 
-    void CalculateSunDirection()
-    {
-        m_SunDir.Y=-float(sin(m_Elevation));
-        float scale=1+m_SunDir.Y;
-        m_SunDir.X=scale*float(sin(m_Rotation));
-        m_SunDir.Z=scale*float(cos(m_Rotation));
-        m_SunDir.Normalize();
-    }
+	void CalculateSunDirection()
+	{
+		m_SunDir.Y=-float(sin(m_Elevation));
+		float scale=1+m_SunDir.Y;
+		m_SunDir.X=scale*float(sin(m_Rotation));
+		m_SunDir.Z=scale*float(cos(m_Rotation));
+		m_SunDir.Normalize();
+	}
 };
 
 #endif

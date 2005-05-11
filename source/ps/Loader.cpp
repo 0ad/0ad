@@ -250,7 +250,7 @@ int LDR_ProgressiveLoad(double time_budget, wchar_t* description,
 			double current_estimate = estimated_duration_tally;
 
 			// function interrupted itself; add its estimated progress.
-			// note: monoticity is guaranteed since we never add more than
+			// note: monotonicity is guaranteed since we never add more than
 			//   its estimated_duration_ms.
 			if(ret > 0)
 			{
@@ -260,6 +260,10 @@ int LDR_ProgressiveLoad(double time_budget, wchar_t* description,
 
 			progress = current_estimate / total_estimated_duration;
 		}
+
+		// function interrupted itself; need to return ERR_TIMED_OUT
+		if(ret > 0)
+			ret = ERR_TIMED_OUT;
 
 		// failed or timed out => abort immediately; loading will
 		// continue when we're called in the next iteration of the main loop.

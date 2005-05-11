@@ -16,6 +16,8 @@ class CXMLReader;
 
 class CMapReader : public CMapIO
 {
+	friend class CXMLReader;
+
 public:
 	// constructor
 	CMapReader();
@@ -65,8 +67,8 @@ private:
 	CStr filename_xml;
 
 	// UnpackTerrain generator state
-	int cur_terrain_tex;
-	int num_terrain_tex;
+	u32 cur_terrain_tex;
+	u32 num_terrain_tex;
 
 	CXMLReader* xml_reader;
 };

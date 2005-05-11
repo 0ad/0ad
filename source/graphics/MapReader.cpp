@@ -40,22 +40,27 @@ void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_, CUnitManager
 	unpacker.Read(filename,"PSMP");
 
 	// check version 
-	if (unpacker.GetVersion()<FILE_READ_VERSION) {
+	if (unpacker.GetVersion() < FILE_READ_VERSION) {
 		throw CFileUnpacker::CFileVersionError();
 	}
+
+	// delete all existing entities
+	g_EntityManager.deleteAll();
+	// delete all remaining non-entity units
+	pUnitMan->DeleteAll();
 
 	// unpack the data
 	RegMemFun(this, &CMapReader::UnpackMap, L"CMapReader::UnpackMap", 1900);
 
-	// apply data to the world
-	RegMemFun(this, &CMapReader::ApplyData, L"CMapReader::ApplyData", 20);
-
-	if (unpacker.GetVersion()>=3) {
+	if (unpacker.GetVersion() >= 3) {
 		// read the corresponding XML file
 		filename_xml = filename;
 		filename_xml = filename_xml.Left(filename_xml.Length()-4) + ".xml";
 		RegMemFun(this, &CMapReader::ReadXML, L"CMapReader::ReadXML", 1300);
 	}
+
+	// apply data to the world
+	RegMemFun(this, &CMapReader::ApplyData, L"CMapReader::ApplyData", 20);
 
 	RegMemFun(this, &CMapReader::DelayLoadFinished, L"CMapReader::DelayLoadFinished", 5);
 }
@@ -68,10 +73,11 @@ int CMapReader::UnpackMap()
 	if(ret != 0)	// failed or timed out
 		return ret;
 
-	UnpackObjects();
-	if (unpacker.GetVersion()>=2) {
+	if (unpacker.GetVersion() < 4)
+		UnpackObjects();
+
+	if (unpacker.GetVersion() >= 2 && unpacker.GetVersion() < 4)
 		UnpackLightEnv();
-	}
 
 	return 0;
 }
@@ -79,12 +85,12 @@ int CMapReader::UnpackMap()
 // UnpackLightEnv: unpack lighting parameters from input stream
 void CMapReader::UnpackLightEnv()
 {
-	unpacker.UnpackRaw(&m_LightEnv.m_SunColor,sizeof(m_LightEnv.m_SunColor));
-	unpacker.UnpackRaw(&m_LightEnv.m_Elevation,sizeof(m_LightEnv.m_Elevation));
-	unpacker.UnpackRaw(&m_LightEnv.m_Rotation,sizeof(m_LightEnv.m_Rotation));
-	unpacker.UnpackRaw(&m_LightEnv.m_TerrainAmbientColor,sizeof(m_LightEnv.m_TerrainAmbientColor));
-	unpacker.UnpackRaw(&m_LightEnv.m_UnitsAmbientColor,sizeof(m_LightEnv.m_UnitsAmbientColor));
-    m_LightEnv.CalculateSunDirection();
+	unpacker.UnpackRaw(&m_LightEnv.m_SunColor, sizeof(m_LightEnv.m_SunColor));
+	unpacker.UnpackRaw(&m_LightEnv.m_Elevation, sizeof(m_LightEnv.m_Elevation));
+	unpacker.UnpackRaw(&m_LightEnv.m_Rotation, sizeof(m_LightEnv.m_Rotation));
+	unpacker.UnpackRaw(&m_LightEnv.m_TerrainAmbientColor, sizeof(m_LightEnv.m_TerrainAmbientColor));
+	unpacker.UnpackRaw(&m_LightEnv.m_UnitsAmbientColor, sizeof(m_LightEnv.m_UnitsAmbientColor));
+	m_LightEnv.CalculateSunDirection();
 }
 
 // UnpackObjects: unpack world objects from input stream
@@ -92,17 +98,17 @@ void CMapReader::UnpackObjects()
 {
 	// unpack object types
 	u32 numObjTypes;
-	unpacker.UnpackRaw(&numObjTypes,sizeof(numObjTypes));	
+	unpacker.UnpackRaw(&numObjTypes, sizeof(numObjTypes));
 	m_ObjectTypes.resize(numObjTypes);
-	for (uint i=0;i<numObjTypes;i++) {
+	for (u32 i=0; i<numObjTypes; i++) {
 		unpacker.UnpackString(m_ObjectTypes[i]);
 	}
 	
 	// unpack object data
 	u32 numObjects;
-	unpacker.UnpackRaw(&numObjects,sizeof(numObjects));	
+	unpacker.UnpackRaw(&numObjects, sizeof(numObjects));
 	m_Objects.resize(numObjects);
-	unpacker.UnpackRaw(&m_Objects[0],sizeof(SObjectDesc)*numObjects);	
+	unpacker.UnpackRaw(&m_Objects[0], sizeof(SObjectDesc)*numObjects);
 }
 
 // UnpackTerrain: unpack the terrain from the end of the input data stream
@@ -113,15 +119,15 @@ int CMapReader::UnpackTerrain()
 
 	// first call to generator (this is skipped after first call,
 	// i.e. when the loop below was interrupted)
-	if(cur_terrain_tex == 0)
+	if (cur_terrain_tex == 0)
 	{
 		// unpack map size
-		unpacker.UnpackRaw(&m_MapSize,sizeof(m_MapSize));
+		unpacker.UnpackRaw(&m_MapSize, sizeof(m_MapSize));
 
 		// unpack heightmap [600µs]
-		u32 verticesPerSide=m_MapSize*PATCH_SIZE+1;
+		u32 verticesPerSide = m_MapSize*PATCH_SIZE+1;
 		m_Heightmap.resize(SQR(verticesPerSide));
-		unpacker.UnpackRaw(&m_Heightmap[0],SQR(verticesPerSide)*sizeof(u16));
+		unpacker.UnpackRaw(&m_Heightmap[0], SQR(verticesPerSide)*sizeof(u16));
 
 		// unpack # textures
 		unpacker.UnpackRaw(&num_terrain_tex, sizeof(num_terrain_tex));
@@ -130,7 +136,7 @@ int CMapReader::UnpackTerrain()
 
 	// unpack texture names; find handle for each texture.
 	// interruptible.
-	while(cur_terrain_tex < num_terrain_tex)
+	while (cur_terrain_tex < num_terrain_tex)
 	{
 		CStr texturename;
 		unpacker.UnpackString(texturename);
@@ -151,7 +157,7 @@ int CMapReader::UnpackTerrain()
 	// unpack tile data [3ms]
 	u32 tilesPerSide = m_MapSize*PATCH_SIZE;
 	m_Tiles.resize(SQR(tilesPerSide));
-	unpacker.UnpackRaw(&m_Tiles[0],(u32)(sizeof(STileDesc)*m_Tiles.size()));
+	unpacker.UnpackRaw(&m_Tiles[0], (u32)(sizeof(STileDesc)*m_Tiles.size()));
 
 	// reset generator state.
 	cur_terrain_tex = 0;
@@ -163,18 +169,18 @@ int CMapReader::UnpackTerrain()
 int CMapReader::ApplyData()
 {
 	// initialise the terrain 
-	pTerrain->Initialize(m_MapSize,&m_Heightmap[0]);	
+	pTerrain->Initialize(m_MapSize, &m_Heightmap[0]);	
 
 	// setup the textures on the minipatches
-	STileDesc* tileptr=&m_Tiles[0];
-	for (u32 j=0;j<m_MapSize;j++) {
-		for (u32 i=0;i<m_MapSize;i++) {
-			for (u32 m=0;m<PATCH_SIZE;m++) {
-				for (u32 k=0;k<PATCH_SIZE;k++) {
-					CMiniPatch& mp=pTerrain->GetPatch(i,j)->m_MiniPatches[m][k];
+	STileDesc* tileptr = &m_Tiles[0];
+	for (u32 j=0; j<m_MapSize; j++) {
+		for (u32 i=0; i<m_MapSize; i++) {
+			for (u32 m=0; m<PATCH_SIZE; m++) {
+				for (u32 k=0; k<PATCH_SIZE; k++) {
+					CMiniPatch& mp = pTerrain->GetPatch(i,j)->m_MiniPatches[m][k];
 					
-					mp.Tex1=m_TerrainTextures[tileptr->m_Tex1Index];
-					mp.Tex1Priority=tileptr->m_Priority;
+					mp.Tex1 = m_TerrainTextures[tileptr->m_Tex1Index];
+					mp.Tex1Priority = tileptr->m_Priority;
 
 					tileptr++;
 				}
@@ -182,40 +188,15 @@ int CMapReader::ApplyData()
 		}
 	}
 
-	// delete all existing entities
-	g_EntityManager.deleteAll();
-	// delete all remaining non-entity units
-	pUnitMan->DeleteAll();
-	
 	// add new objects
-	for (u32 i=0;i<m_Objects.size();i++) {
+	for (size_t i = 0; i < m_Objects.size(); ++i)
+	{
 
-		if (unpacker.GetVersion() < 3) {
-
+		if (unpacker.GetVersion() < 3)
+		{
 			debug_warn("Old unsupported map version - objects will be missing");
 			// (getTemplateByActor doesn't work, since entity templates are now
 			// loaded on demand)
-
-//			// Hijack the standard actor instantiation for actors that correspond to entities.
-//			// Not an ideal solution; we'll have to figure out a map format that can define entities separately or somesuch.
-//
-//			CBaseEntity* templateObject = g_EntityTemplateCollection.getTemplateByActor(m_ObjectTypes.at(m_Objects[i].m_ObjectIndex));
-//		
-//			if (templateObject)
-//			{
-//				CVector3D orient = ((CMatrix3D*)m_Objects[i].m_Transform)->GetIn();
-//				CVector3D position = ((CMatrix3D*)m_Objects[i].m_Transform)->GetTranslation();
-//
-//				g_EntityManager.create(templateObject, position, atan2(-orient.X, -orient.Z));
-//
-//				continue;
-//			}
-		}
-
-		// MT: Testing:
-		if( i == 170 )
-		{
-			CStrW tom( "dick, harry" );
 		}
 
 		CUnit* unit = g_UnitMan.CreateUnit(m_ObjectTypes.at(m_Objects[i].m_ObjectIndex), NULL);
@@ -223,14 +204,15 @@ int CMapReader::ApplyData()
 		if (unit)
 		{
 			CMatrix3D transform;
-			memcpy(&transform._11,m_Objects[i].m_Transform,sizeof(float)*16);
+			memcpy(&transform._11, m_Objects[i].m_Transform, sizeof(float)*16);
 			unit->GetModel()->SetTransform(transform);
 		}
 	}
 
-	if (unpacker.GetVersion()>=2) {
+	if (unpacker.GetVersion() >= 2)
+	{
 		// copy over the lighting parameters
-		*pLightEnv=m_LightEnv;
+		*pLightEnv = m_LightEnv;
 	}
 
 	return 0;
@@ -238,11 +220,13 @@ int CMapReader::ApplyData()
 
 
 
-
+// Holds various state data while reading maps, so that loading can be
+// interrupted (e.g. to update the progress display) then later resumed.
 class CXMLReader
 {
 public:
-	CXMLReader(const CStr& xml_filename)
+	CXMLReader(const CStr& xml_filename, CMapReader& mapReader)
+		: m_MapReader(mapReader)
 	{
 		Init(xml_filename);
 	}
@@ -253,18 +237,20 @@ public:
 private:
 	CXeromyces xmb_file;
 
+	CMapReader& m_MapReader;
+
 	int el_scenario, el_entities, el_entity;
 	int el_template, el_player;
 	int el_position, el_orientation;
 	int el_nonentities, el_nonentity;
 	int el_actor;
+	int el_environment, el_suncolour, el_sunelevation, el_sunrotation;
+	int el_terrainambientcolour, el_unitsambientcolour;
 	int at_x, at_y, at_z;
+	int at_r, at_g, at_b;
 	int at_angle;
 
-	XMBElement root;
-	XMBElementList nodes;	// children of root
-	XMBElement node;				// a child of nodes
-	XMBElementList entities, nonentities;	// children of node
+	XMBElementList nodes; // children of root
 
 	// loop counters
 	int node_idx;
@@ -275,8 +261,10 @@ private:
 
 
 	void Init(const CStr& xml_filename);
-	int ReadEntities(XMBElement& parent, double end_time);
-	int ReadNonEntities(XMBElement& parent, double end_time);
+
+	void ReadEnvironment(XMBElement parent);
+	int ReadEntities(XMBElement parent, double end_time);
+	int ReadNonEntities(XMBElement parent, double end_time);
 };
 
 
@@ -299,6 +287,7 @@ void CXMLReader::Init(const CStr& xml_filename)
 #endif
 
 	// define all the elements and attributes used in the XML file.
+	// (Needs to be synchronised with the list in CXMLReader - ugh)
 #define EL(x) el_##x = xmb_file.getElementID(#x)
 #define AT(x) at_##x = xmb_file.getAttributeID(#x)
 	EL(scenario);
@@ -311,14 +300,19 @@ void CXMLReader::Init(const CStr& xml_filename)
 	EL(nonentities);
 	EL(nonentity);
 	EL(actor);
-	AT(x);
-	AT(y);
-	AT(z);
+	EL(environment);
+	EL(suncolour);
+	EL(sunelevation);
+	EL(sunrotation);
+	EL(terrainambientcolour);
+	EL(unitsambientcolour);
+	AT(x); AT(y); AT(z);
+	AT(r); AT(g); AT(b);
 	AT(angle);
 #undef AT
 #undef EL
 
-	root = xmb_file.getRoot();
+	XMBElement root = xmb_file.getRoot();
 	assert(root.getNodeName() == el_scenario);
 	nodes = root.getChildNodes();
 
@@ -327,21 +321,58 @@ void CXMLReader::Init(const CStr& xml_filename)
 	completed_jobs = 0;
 	total_jobs = 0;
 	for (int i = 0; i < nodes.Count; i++)
-	{
-		node = nodes.item(i);
-		entities = node.getChildNodes();
-		total_jobs += entities.Count;
-	}
+		total_jobs += nodes.item(i).getChildNodes().Count;
 }
 
 
-
-
-
-int CXMLReader::ReadEntities(XMBElement& parent, double end_time)
+void CXMLReader::ReadEnvironment(XMBElement parent)
 {
-	entities = parent.getChildNodes();	// ok to set more than once
-	while(entity_idx < entities.Count)
+	XERO_ITER_EL(parent, element)
+	{
+		int element_name = element.getNodeName();
+		
+		XMBAttributeList attrs = element.getAttributes();
+		if (element_name == el_suncolour)
+		{
+			m_MapReader.m_LightEnv.m_SunColor = RGBColor(
+				CStr(attrs.getNamedItem(at_r)).ToFloat(),
+				CStr(attrs.getNamedItem(at_g)).ToFloat(),
+				CStr(attrs.getNamedItem(at_b)).ToFloat());
+		}
+		else if (element_name == el_sunelevation)
+		{
+			m_MapReader.m_LightEnv.m_Elevation = CStr(attrs.getNamedItem(at_angle)).ToFloat();
+		}
+		else if (element_name == el_sunrotation)
+		{
+			m_MapReader.m_LightEnv.m_Rotation = CStr(attrs.getNamedItem(at_angle)).ToFloat();
+		}
+		else if (element_name == el_terrainambientcolour)
+		{
+			m_MapReader.m_LightEnv.m_TerrainAmbientColor = RGBColor(
+				CStr(attrs.getNamedItem(at_r)).ToFloat(),
+				CStr(attrs.getNamedItem(at_g)).ToFloat(),
+				CStr(attrs.getNamedItem(at_b)).ToFloat());
+		}
+		else if (element_name == el_unitsambientcolour)
+		{
+			m_MapReader.m_LightEnv.m_UnitsAmbientColor = RGBColor(
+				CStr(attrs.getNamedItem(at_r)).ToFloat(),
+				CStr(attrs.getNamedItem(at_g)).ToFloat(),
+				CStr(attrs.getNamedItem(at_b)).ToFloat());
+		}
+		else
+			debug_warn("Invalid XML data - DTD shouldn't allow this");
+	}
+
+	m_MapReader.m_LightEnv.CalculateSunDirection();
+}
+
+
+int CXMLReader::ReadEntities(XMBElement parent, double end_time)
+{
+	XMBElementList entities = parent.getChildNodes();
+	while (entity_idx < entities.Count)
 	{
 		// all new state at this scope and below doesn't need to be
 		// wrapped, since we only yield after a complete iteration.
@@ -354,34 +385,33 @@ int CXMLReader::ReadEntities(XMBElement& parent, double end_time)
 		CVector3D Position;
 		float Orientation;
 
-		XMBElementList children3 = entity.getChildNodes();
-		for (int k = 0; k < children3.Count; k++)
+		XERO_ITER_EL(entity, setting)
 		{
-			XMBElement child3 = children3.item(k);
-			int element_name = child3.getNodeName();
+			int element_name = setting.getNodeName();
 
 			// <template>
 			if (element_name == el_template)
 			{
-				TemplateName = child3.getText();
+				TemplateName = setting.getText();
 			}
 			// <player>
 			else if (element_name == el_player)
 			{
-				PlayerID = CStr(child3.getText()).ToInt();
+				PlayerID = CStr(setting.getText()).ToInt();
 			}
 			// <position>
 			else if (element_name == el_position)
 			{
-				XMBAttributeList attrs = child3.getAttributes();
-				Position = CVector3D(CStr(attrs.getNamedItem(at_x)).ToFloat(),
-						                CStr(attrs.getNamedItem(at_y)).ToFloat(),
-						                CStr(attrs.getNamedItem(at_z)).ToFloat());
+				XMBAttributeList attrs = setting.getAttributes();
+				Position = CVector3D(
+					CStr(attrs.getNamedItem(at_x)).ToFloat(),
+					CStr(attrs.getNamedItem(at_y)).ToFloat(),
+					CStr(attrs.getNamedItem(at_z)).ToFloat());
 			}
 			// <orientation>
 			else if (element_name == el_orientation)
 			{
-				XMBAttributeList attrs = child3.getAttributes();
+				XMBAttributeList attrs = setting.getAttributes();
 				Orientation = CStr(attrs.getNamedItem(at_angle)).ToFloat();
 			}
 			else
@@ -389,6 +419,7 @@ int CXMLReader::ReadEntities(XMBElement& parent, double end_time)
 		}
 
 		HEntity ent = g_EntityManager.create(g_EntityTemplateCollection.getTemplate(TemplateName), Position, Orientation);
+
 		if (! ent)
 			LOG(ERROR, LOG_CATEGORY, "Failed to create entity '%ls'", TemplateName.c_str());
 		else
@@ -402,10 +433,10 @@ int CXMLReader::ReadEntities(XMBElement& parent, double end_time)
 }
 
 
-int CXMLReader::ReadNonEntities(XMBElement& parent, double end_time)
+int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 {
-	nonentities = parent.getChildNodes();	// ok to set more than once
-	while(nonentity_idx < nonentities.Count)
+	XMBElementList nonentities = parent.getChildNodes();
+	while (nonentity_idx < nonentities.Count)
 	{
 		// all new state at this scope and below doesn't need to be
 		// wrapped, since we only yield after a complete iteration.
@@ -417,21 +448,19 @@ int CXMLReader::ReadNonEntities(XMBElement& parent, double end_time)
 		CVector3D Position;
 		float Orientation;
 
-		XMBElementList children3 = nonentity.getChildNodes();
-		for (int k = 0; k < children3.Count; k++)
+		XERO_ITER_EL(nonentity, setting)
 		{
-			XMBElement child3 = children3.item(k);
-			int element_name = child3.getNodeName();
+			int element_name = setting.getNodeName();
 
 			// <actor>
 			if (element_name == el_actor)
 			{
-				ActorName = child3.getText();
+				ActorName = setting.getText();
 			}
 			// <position>
 			else if (element_name == el_position)
 			{
-				XMBAttributeList attrs = child3.getAttributes();
+				XMBAttributeList attrs = setting.getAttributes();
 				Position = CVector3D(CStr(attrs.getNamedItem(at_x)).ToFloat(),
 					CStr(attrs.getNamedItem(at_y)).ToFloat(),
 					CStr(attrs.getNamedItem(at_z)).ToFloat());
@@ -439,7 +468,7 @@ int CXMLReader::ReadNonEntities(XMBElement& parent, double end_time)
 			// <orientation>
 			else if (element_name == el_orientation)
 			{
-				XMBAttributeList attrs = child3.getAttributes();
+				XMBAttributeList attrs = setting.getAttributes();
 				Orientation = CStr(attrs.getNamedItem(at_angle)).ToFloat();
 			}
 			else
@@ -447,16 +476,17 @@ int CXMLReader::ReadNonEntities(XMBElement& parent, double end_time)
 		}
 
 		CUnit* unit = g_UnitMan.CreateUnit(ActorName, NULL);
+
 		if (unit && unit->GetModel())
 		{
 			// Copied from CEntity::updateActorTransforms():
-			float s = sin( Orientation );
-			float c = cos( Orientation );
+			float s = sin(Orientation);
+			float c = cos(Orientation);
 			CMatrix3D m;
-			m._11 = -c;		m._12 = 0.0f;	m._13 = -s;		m._14 = Position.X;
-			m._21 = 0.0f;	m._22 = 1.0f;	m._23 = 0.0f;	m._24 = Position.Y;
-			m._31 = s;		m._32 = 0.0f;	m._33 = -c;		m._34 = Position.Z;
-			m._41 = 0.0f;	m._42 = 0.0f;	m._43 = 0.0f;	m._44 = 1.0f;
+			m._11 = -c;     m._12 = 0.0f;   m._13 = -s;     m._14 = Position.X;
+			m._21 = 0.0f;   m._22 = 1.0f;   m._23 = 0.0f;   m._24 = Position.Y;
+			m._31 = s;      m._32 = 0.0f;   m._33 = -c;     m._34 = Position.Z;
+			m._41 = 0.0f;   m._42 = 0.0f;   m._43 = 0.0f;   m._44 = 1.0f;
 			unit->GetModel()->SetTransform(m);
 		}
 
@@ -476,19 +506,23 @@ int CXMLReader::ProgressiveRead()
 
 	int ret;
 
-	while(node_idx < nodes.Count)
+	while (node_idx < nodes.Count)
 	{
-		node = nodes.item(node_idx);
-		if (node.getNodeName() == el_entities)
+		XMBElement node = nodes.item(node_idx);
+		if (node.getNodeName() == el_environment)
+		{
+			ReadEnvironment(node);
+		}
+		else if (node.getNodeName() == el_entities)
 		{
 			ret = ReadEntities(node, end_time);
-			if(ret != 0)	// error or timed out
+			if (ret != 0)	// error or timed out
 				return ret;
 		}
 		else if (node.getNodeName() == el_nonentities)
 		{
 			ret = ReadNonEntities(node, end_time);
-			if(ret != 0)	// error or timed out
+			if (ret != 0)	// error or timed out
 				return ret;
 		}
 		else
@@ -504,12 +538,12 @@ int CXMLReader::ProgressiveRead()
 // progressive
 int CMapReader::ReadXML()
 {
-	if(!xml_reader)
-		xml_reader = new CXMLReader(filename_xml);
+	if (!xml_reader)
+		xml_reader = new CXMLReader(filename_xml, *this);
 
 	int ret = xml_reader->ProgressiveRead();
 	// finished or failed
-	if(ret <= 0)
+	if (ret <= 0)
 	{
 		delete xml_reader;
 		xml_reader = 0;
