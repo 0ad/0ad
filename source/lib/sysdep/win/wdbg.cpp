@@ -26,6 +26,7 @@
 #define _NO_CVCONST_H	// request SymTagEnum be defined
 #include "dbghelp.h"
 #include <OAIdl.h>	// VARIANT
+#include "posix.h"
 
 #include "wdbg.h"
 #include "assert_dlg.h"
@@ -118,6 +119,13 @@ static void unlock()
 
 
 
+void debug_check_heap()
+{
+	_heapchk();
+}
+
+
+
 //////////////////////////////////////////////////////////////////////////////
 
 
@@ -131,11 +139,10 @@ static void unlock()
 //   allocate+expand_until_it_fits. these calls are for quick debug output,
 //   not loads of data, anyway.
 
-// max output size of 1 call of (w)debug_out (including \0)
+// max # characters (including \0) output by debug_(w)printf in one call.
 static const int MAX_CNT = 512;
 
-
-void debug_out(const char* fmt, ...)
+void debug_printf(const char* fmt, ...)
 {
 	char buf[MAX_CNT];
 	buf[MAX_CNT-1] = '\0';
@@ -149,7 +156,7 @@ void debug_out(const char* fmt, ...)
 }
 
 
-void wdebug_out(const wchar_t* fmt, ...)
+void debug_wprintf(const wchar_t* fmt, ...)
 {
 	wchar_t buf[MAX_CNT];
 	buf[MAX_CNT-1] = L'\0';
@@ -165,13 +172,19 @@ void wdebug_out(const wchar_t* fmt, ...)
 
 //////////////////////////////////////////////////////////////////////////////
 //
-// code and data breakpoints
+// hardware breakpoints
 //
 //////////////////////////////////////////////////////////////////////////////
 
-#if 0
-
-// rationale: don't reuse similar code from the profiler in wcpu.cpp:
+// breakpoints are set by storing the address of interest in a
+// debug register and marking it 'enabled'.
+//
+// the first problem is, these are privileged; we get around this by
+// updating their values via SetThreadContext. that in turn requires
+// we suspend the current thread, spawn a helper to change the registers,
+// and resume.
+//
+// we don't reuse similar code from the profiler in wcpu.cpp:
 // it is designed to interrupt the main thread periodically,
 // whereas what we need here is to interrupt any thread on-demand.
 
@@ -183,42 +196,21 @@ static struct BreakInfo
 	uintptr_t addr;
 	DbgBreakType type;
 }
-break_info;
+brk_info;
 
 // Local Enable bits of all registers we enabled (used to restore all).
-static DWORD break_local_enables;
-static bool break_want_all_disabled;
+static DWORD brk_all_local_enables;
+static bool brk_want_all_disabled;
 
-int debug_set_break(void* p, DbgBreakType type)
+
+static void* brk_disable_all(BreakInfo* bi, CONTEXT* context)
 {
-lock();
-
-	BreakInfo* bi = &break_info;
-	bi->addr = (uintptr_t)p;
-	bi->type = type;
-	helper();
-
-unlock();
-}
-
-static void debug_remove_all_breaks()
-{
-lock();
-
-	break_want_all_disabled = true;
-
-unlock()
-}
-
-
-static void* break_disable_all(BreakInfo* bi, CONTEXT* context)
-{
-	context->Dr7 &= ~break_local_enables;
+	context->Dr7 &= ~brk_all_local_enables;
 	return (void*)1;	// success
 }
 
 
-static void* break_enable(BreakInfo* bi, CONTEXT* context)
+static void* brk_enable(BreakInfo* bi, CONTEXT* context)
 {
 	int reg;	// index (0..3) of first free reg
 	uint LE;	// local enable bit for <reg>
@@ -234,24 +226,16 @@ static void* break_enable(BreakInfo* bi, CONTEXT* context)
 	return 0;
 have_reg:
 
-	// mark as enabled (and in use) ASAP
-	break_local_enables |= LE;
+	// set and mark as enabled/in use ASAP
+	(&context->Dr0)[reg] = (DWORD)bi->addr;
+	brk_all_local_enables |= LE;
 	context->Dr7 |= LE;
-
-	// write address
-	switch(reg)
-	{
-	case 0: context.Dr0 = bi->addr; break;
-	case 1: context.Dr1 = bi->addr; break;
-	case 2: context.Dr2 = bi->addr; break;
-	case 3: context.Dr3 = bi->addr; break;
-	}
 
 	// build Debug Control Register
 	// IA32 requires code breakpoints have len=1
 	uint len = 1;
 	if(bi->type != DBG_BREAK_CODE)
-		len = (bi->addr-1) & 3;
+		len = (uint)((bi->addr-1) & 3);
 	uint rw;
 	switch(bi->type)
 	{
@@ -278,9 +262,8 @@ have_reg:
 }
 
 
-
-
-static void* break_thread_func(void* arg)
+// return 1 to indicate success.
+static void* brk_thread_func(void* arg)
 {
 	DWORD err;
 	BreakInfo* bi = (BreakInfo*)arg;
@@ -289,8 +272,8 @@ static void* break_thread_func(void* arg)
 	// abort, since GetThreadContext only works if the target is suspended.
 	if(err == (DWORD)-1)
 	{
-		debug_warn("break_thread_func: SuspendThread failed");
-		return -1;
+		debug_warn("brk_thread_func: SuspendThread failed");
+		return 0;
 	}
 	// target is now guaranteed to be suspended,
 	// since the Windows counter never goes negative.
@@ -304,20 +287,20 @@ static void* break_thread_func(void* arg)
 	context.ContextFlags = CONTEXT_DEBUG_REGISTERS;
 	if(!GetThreadContext(bi->hThread, &context))
 	{
-		debug_warn("break_thread_func: GetThreadContext failed");
+		debug_warn("brk_thread_func: GetThreadContext failed");
 		return 0;
 	}
 
 	void* ret;
 #if defined(_M_IX86)
-	if(break_want_all_disabled)
-		ret = break_do_disable_all(bi, &context)
+	if(brk_want_all_disabled)
+		ret = brk_disable_all(bi, &context);
 	else
-		ret = break_do_enable(bi, &context);
+		ret = brk_enable(bi, &context);
 
 	if(!SetThreadContext(bi->hThread, &context))
 	{
-		debug_warn("break_thread_func: GetThreadContext failed");
+		debug_warn("brk_thread_func: GetThreadContext failed");
 		return 0;
 	}
 #else
@@ -326,17 +309,17 @@ static void* break_thread_func(void* arg)
 
 	//////////////////////////////////////////////////////////////////////////
 
-	err = ResumeThread(hThread);
+	err = ResumeThread(bi->hThread);
 	assert(err != 0);
 
 	return ret;
 }
 
 
-static void helper()
+static int brk_run_thread()
 {
 	int err;
-	BreakInfo* bi = &break_info;
+	BreakInfo* bi = &brk_info;
 
 	// we need a real HANDLE to the target thread for use with
 	// Suspend|ResumeThread and GetThreadContext.
@@ -350,23 +333,46 @@ static void helper()
 		return -1;
 	}
 
-	err = pthread_create(&thread, 0, break_thread_func, bi);
+	pthread_t thread;
+	err = pthread_create(&thread, 0, brk_thread_func, bi);
 	assert2(err == 0);
 
 	void* ret;
 	err = pthread_join(thread, &ret);
-	assert2(err == 0 && ret == 0);
+	assert2(err == 0 && ret == (void*)1);
+
+	return (ret == (void*)1)? 0 : -1;
 }
 
 
+// arrange for a debug exception to be raised when <addr> is accessed
+// according to <type>.
+// for simplicity, the length (range of bytes to be checked) is derived
+// from addr's alignment, and is typically 1 machine word.
+int debug_set_break(void* p, DbgBreakType type)
+{
+	lock();
+
+	BreakInfo* bi = &brk_info;
+	bi->addr = (uintptr_t)p;
+	bi->type = type;
+	int ret = brk_run_thread();
+
+	unlock();
+	return ret;
+}
 
 
-	// We can only safely alter the thread context of a suspended thread,
-	// so we create a worker thread which suspends us, alters our context, and
-	// restarts us.  It update m_bp_num.
+int debug_remove_all_breaks()
+{
+	lock();
 
+	brk_want_all_disabled = true;
+	int ret = brk_run_thread();
 
-#endif
+	unlock();
+	return ret;
+}
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -630,7 +636,7 @@ static bool is_string_ptr(u64 addr, size_t stride = 1)
 	}
 	__except(1)
 	{
-		debug_out("^ raised by is_string_ptr; ignore\n");
+		debug_printf("^ raised by is_string_ptr; ignore\n");
 		return false;
 	}
 }
@@ -1061,7 +1067,7 @@ static int dump_type_sym(DWORD type_idx, const u8* p, uint level)
 		return dump_type_sym(type_idx, p, level);
 
 	default:
-		debug_out("Unknown tag: %d\n", type_tag);
+		debug_printf("Unknown tag: %d\n", type_tag);
 		return -1;
 	}
 }
@@ -1379,12 +1385,15 @@ static int CALLBACK dlgproc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM l
 			clipboard_set(buf);
 			return 0;
 
-		case IDC_CONTINUE:	// 2000
-		case IDC_SUPPRESS:
-		case IDC_BREAK:		// 2002
-			EndDialog(hDlg, wParam-2000);
+		case IDC_CONTINUE:
+			EndDialog(hDlg, ASSERT_CONTINUE);
 			return 0;
-
+		case IDC_SUPPRESS:
+			EndDialog(hDlg, ASSERT_SUPPRESS);
+			return 0;
+		case IDC_BREAK:
+			EndDialog(hDlg, ASSERT_BREAK);
+			return 0;
 		case IDC_EXIT:
 			exit(0);
 			return 0;
@@ -1422,14 +1431,8 @@ static int CALLBACK dlgproc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM l
 }
 
 
-// show error dialog, with stack trace (must be stored in buf[])
+// show error dialog with stack trace (must be stored in buf[])
 // exits directly if 'exit' is clicked.
-//
-// return values:
-//   0 - continue
-//   1 - suppress
-//   2 - break
-
 static int dialog(DialogType type)
 {
 	// we don't know if the enclosing app even has a Window.
@@ -1438,6 +1441,9 @@ static int dialog(DialogType type)
 }
 
 
+// notify the user that an assertion failed; displays a
+// stack trace with local variables.
+// returns one of FailedAssertUserChoice or exits the program.
 int debug_assert_failed(const char* file, int line, const char* expr)
 {
 	pos = buf;
@@ -1618,9 +1624,9 @@ static void cat_atow(FILE* in, FILE* out)
 	}
 }
 
-// Imported from sysdep.cpp
-extern wchar_t MicroBuffer[];
-extern size_t MicroBuffer_off;
+extern wchar_t debug_log[];
+extern wchar_t* debug_log_pos;
+
 
 static int write_crashlog(const char* file, const wchar_t* header, CONTEXT* context)
 {
@@ -1670,7 +1676,7 @@ static int write_crashlog(const char* file, const wchar_t* header, CONTEXT* cont
 	fwrite(divider, wcslen(divider), sizeof(wchar_t), f);
 
 	fwprintf(f, L"Last known activity:\r\n\r\n");
-	fwrite(MicroBuffer, MicroBuffer_off, sizeof(wchar_t), f);
+	fwrite(debug_log, debug_log_pos-debug_log, sizeof(wchar_t), f);
 	fclose(f);
 
 	return 0;
@@ -1683,7 +1689,9 @@ static int write_crashlog(const char* file, const wchar_t* header, CONTEXT* cont
 
 /*
 TODO
-If the process is not being debugged, the function displays an Application Error message box, depending on the current error mode. The default behavior is to display the dialog box, but this can be disabled by specifying SEM_NOGPFAULTERRORBOX in a call to the SetErrorMode function.
+If the process is not being debugged, the function displays an Application Error message box,
+depending on the current error mode. The default behavior is to display the dialog box, 
+but this can be disabled by specifying SEM_NOGPFAULTERRORBOX in a call to the SetErrorMode function.
 */
 
 

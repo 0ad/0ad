@@ -74,7 +74,7 @@ void unix_debug_break()
 /*
 Start the debugger and tell it to attach to the current process/thread
 */
-static int launch_debugger()
+static void launch_debugger()
 {
 	pid_t orgpid=getpid();
 	pid_t ret=fork();
@@ -90,30 +90,21 @@ static int launch_debugger()
 		{
 			perror("Debugger launch failed");
 		}
-		return 2;
 	}
 	else if (ret > 0)
 	{
 		// Parent (original) fork:
 		sleep(DEBUGGER_WAIT);
-#if DEBUGGER_BREAK_AFTER_WAIT
-		unix_debug_break();
-#endif
 	}
 	else // fork error, ret == -1
 	{
 		perror("Debugger launch: fork failed");
-		return 2;
 	}
-	return 0;
 }
 
-/*
- * return values:
- *   0 - continue
- *   1 - suppress
- *   2 - break
- */
+
+// notify the user that an assertion failed.
+// returns one of FailedAssertUserChoice or exits the program.
 int debug_assert_failed(const char *file, int line, const char *expr)
 {
 	printf("%s:%d: Assertion `%s' failed.\n", file, line, expr);
@@ -129,18 +120,20 @@ int debug_assert_failed(const char *file, int line, const char *expr)
 		c=tolower(c);
 		switch (c)
 		{
-			case 'b':
-				return 2;
-			case 'd':
-				return launch_debugger();
-			case 'c':
-				return 0;
-			case 's':
-				return 1;
-			case 'a':
-				abort();
-			default:
-				continue;
+		case 'd':
+			launch_debugger();
+			// fall through
+
+		case 'b':
+			return ASSERT_BREAK;
+		case 'c':
+			return ASSERT_CONTINUE;
+		case 's':
+			return ASSERT_SUPPRESS;
+		case 'a':
+			abort();
+		default:
+			continue;
 		}
 	} while (false);
 }
@@ -376,4 +369,22 @@ int debug_write_crashlog(const char* file, wchar_t* header, void* context)
 	// know that this function is required in order to compile...)
 
 	abort();
+}
+
+
+void debug_check_heap()
+{
+	// TODO: Do this properly. (I don't know what I'm doing; I just
+	// know that this function is required in order to compile...)
+}
+
+
+
+void debug_printf(const char* fmt, ...)
+{
+	va_list args;
+	va_start(args, fmt);
+	vprintf(fmt, args);
+	va_end(args);
+	fflush(stdout);
 }
