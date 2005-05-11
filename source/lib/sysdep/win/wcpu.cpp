@@ -216,7 +216,7 @@ static uintptr_t get_target_pc()
 	ret = SuspendThread(hThread);
 	if(ret == (DWORD)-1)
 	{
-		debug_warn("SuspendThread failed");
+		debug_warn("get_target_pc: SuspendThread failed");
 		return -1;
 	}
 	// note: we don't need to call more than once: this increments a DWORD
@@ -227,13 +227,14 @@ static uintptr_t get_target_pc()
 
 	// be VERY CAREFUL to avoid anything that may acquire a lock until
 	// after ResumeThread! this includes locks taken by the OS,
-	// e.g. malloc -> heap or GetProcAddres -> loader.
+	// e.g. malloc -> heap or GetProcAddress -> loader.
 	// reason is, if the target thread was holding a lock we try to
 	// acquire here, a classic deadlock results.
 
 	uintptr_t pc = 0;	// => will return 0 if GetThreadContext fails
 
 	CONTEXT context;
+	context.ContextFlags = CONTEXT_CONTROL;
 	if(GetThreadContext(hThread, &context))
 	{
 #if defined(_M_AMD64)

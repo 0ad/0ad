@@ -361,10 +361,10 @@ extern int main(int, char*[]);
 enum
 {
 	ONCE_CS,
-	HRT_CS,
+	WTIME_CS,
 	WAIO_CS,
 	WIN_CS,
-	DBGHELP_CS,
+	WDBG_CS,
 
 	NUM_CS
 };
