@@ -75,7 +75,7 @@ int open(const char* fn, int oflag, ...)
 	WIN_RESTORE_LAST_ERROR;
 
 #ifdef PARANOIA
-debug_out("open %s = %d\n", fn, fd);
+debug_printf("open %s = %d\n", fn, fd);
 #endif
 
 	// cases when we don't want to open a second AIO-capable handle:
@@ -110,7 +110,7 @@ no_aio:
 int close(int fd)
 {
 #ifdef PARANOIA
-debug_out("close %d\n", fd);
+debug_printf("close %d\n", fd);
 #endif
 
 	assert(3 <= fd && fd < 256);

@@ -326,7 +326,7 @@ static int tex_validate(const uint line, const Tex* t)
 
 	if(msg)
 	{
-		debug_out("tex_validate at line %d failed: %s (error code %d)\n", line, msg, err);
+		debug_printf("tex_validate at line %d failed: %s (error code %d)\n", line, msg, err);
 		debug_warn("tex_validate failed");
 		return err;
 	}
@@ -439,8 +439,15 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 	bool is_compressed = fmt_is_s3tc(fmt);
 	bool has_mipmaps = (t->ti.flags & TEX_MIPMAPS ? true : false);
 
-	enum { auto_uncomp, auto_comp, mipped_uncomp, mipped_comp, normal_uncomp, normal_comp, broken_comp, glubuild };
-	int states[4][4] = {
+	enum UploadState
+	{
+		auto_uncomp, auto_comp,
+		mipped_uncomp, mipped_comp,
+		normal_uncomp, normal_comp,
+		broken_comp,
+		glubuild
+	};
+	static const int states[4][4] = {
 		{ auto_uncomp, mipped_uncomp, normal_uncomp, normal_uncomp },
 		{ auto_comp,   mipped_comp,   normal_comp,   normal_comp   },
 		{ broken_comp, mipped_comp,   normal_comp,   normal_comp   },
@@ -452,7 +459,7 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 	if(state == auto_uncomp || state == auto_comp)
 	{
 		glTexParameteri(GL_TEXTURE_2D, auto_mipmap_gen, GL_TRUE);
-		state = (state == auto_uncomp ? normal_uncomp : normal_comp);
+		state = (state == auto_uncomp)? normal_uncomp : normal_comp;
 	}
 
 	if(state == broken_comp)
@@ -463,17 +470,14 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 
 	if(state == glubuild)
 		gluBuild2DMipmaps(GL_TEXTURE_2D, int_fmt, w, h, fmt, GL_UNSIGNED_BYTE, tex_data);
-	else
-	if(state == normal_uncomp)
+	else if(state == normal_uncomp)
 		glTexImage2D(GL_TEXTURE_2D, 0, int_fmt, w, h, 0, fmt, GL_UNSIGNED_BYTE, tex_data);
-	else
-	if(state == normal_comp)
+	else if(state == normal_comp)
 	{
 		const GLsizei tex_size = w * h * bpp / 8;
 		glCompressedTexImage2DARB(GL_TEXTURE_2D, 0, fmt, w, h, 0, tex_size, tex_data);
 	}
-	else
-	if(state == mipped_uncomp || state == mipped_comp)
+	else if(state == mipped_uncomp || state == mipped_comp)
 	{
 		int level = 0;
 		GLsizei level_w = w;

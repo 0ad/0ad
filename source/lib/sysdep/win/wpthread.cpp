@@ -293,7 +293,7 @@ int pthread_cancel(pthread_t thread)
 {
 	HANDLE hThread = pthread_t_to_HANDLE(thread);
 	TerminateThread(hThread, 0);
-	debug_out("WARNING: pthread_cancel is unsafe\n");
+	debug_printf("WARNING: pthread_cancel is unsafe\n");
 	return 0;
 }
 

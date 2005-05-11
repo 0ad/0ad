@@ -111,7 +111,7 @@ STMT(\
 	int err__ = (int)((func) & UINT_MAX);\
 	if(err__ < 0)\
 	{\
-		debug_out("%s:%d: FYI: CHECK_ERR reports that a function failed."\
+		debug_printf("%s:%d: FYI: CHECK_ERR reports that a function failed."\
 		            "feel free to ignore or suppress this warning.\n", __FILE__, __LINE__);\
 		return err__;\
 	}\

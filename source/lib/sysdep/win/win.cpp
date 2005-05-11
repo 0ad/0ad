@@ -68,10 +68,14 @@ char win_exe_dir[MAX_PATH+1];
 // (they're more convenient)
 //
 
-
-inline void debug_check_heap()
+void display_msg(const char* caption, const char* msg)
 {
-	_heapchk();
+	MessageBoxA(0, msg, caption, MB_ICONEXCLAMATION);
+}
+
+void wdisplay_msg(const wchar_t* caption, const wchar_t* msg)
+{
+	MessageBoxW(0, msg, caption, MB_ICONEXCLAMATION);
 }
 
 
@@ -122,24 +126,11 @@ int pick_directory(char* path, size_t buf_size)
 }
 
 
-void display_msg(const char* caption, const char* msg)
-{
-	MessageBoxA(0, msg, caption, MB_ICONEXCLAMATION);
-}
-
-void wdisplay_msg(const wchar_t* caption, const wchar_t* msg)
-{
-	MessageBoxW(0, msg, caption, MB_ICONEXCLAMATION);
-}
-
-
-
-
-
-
-
-
-
+///////////////////////////////////////////////////////////////////////////////
+//
+// clipboard
+//
+///////////////////////////////////////////////////////////////////////////////
 
 int clipboard_set(const wchar_t* text)
 {
@@ -221,7 +212,7 @@ int clipboard_free(wchar_t* copy)
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// init and shutdown mechanism
+// module init and shutdown mechanism
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -291,13 +282,13 @@ static void call_func_tbl(_PIFV* begin, _PIFV* end)
 
 
 ///////////////////////////////////////////////////////////////////////////////
-
-
+//
 // locking for win-specific code
+//
+///////////////////////////////////////////////////////////////////////////////
+
 // several init functions are before _cinit.
 // can't guarantee POSIX static mutex init has been done by then.
-
-
 
 static CRITICAL_SECTION cs[NUM_CS];
 static bool cs_valid;
@@ -335,7 +326,10 @@ static void cs_shutdown()
 
 
 ///////////////////////////////////////////////////////////////////////////////
-
+//
+// startup
+//
+///////////////////////////////////////////////////////////////////////////////
 
 // entry -> pre_libc -> WinMainCRTStartup -> WinMain -> pre_main -> main
 // at_exit is called as the last of the atexit handlers
@@ -423,6 +417,7 @@ void memory_debug_extreme_turbo_plus()
 	_CrtSetDbgFlag( _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) | _CRTDBG_CHECK_ALWAYS_DF | _CRTDBG_DELAY_FREE_MEM_DF );
 }
 #endif
+
 
 int entry()
 {
