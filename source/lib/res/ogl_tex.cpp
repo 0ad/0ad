@@ -404,14 +404,14 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 		| G | Mu| Nu| Nu|
 		`---+---+---+---'
 
-		Au = auto_mipmap_gen, then 'Nu'
-		Ac = auto_mipmap_gen, then 'Nc'
-		X = failure; just fall back to GL_LINEAR and 'Nc'
-		G = gluBuild2DMipmaps
-		Mu = glTexImage2D, mipmap levels
-		Mc = glCompressedTexImage2DARB, mipmap levels
-		Nu = glTexImage2D
-		Nc = glCompressedTexImage2DARB
+		Au (auto_uncomp)   = auto_mipmap_gen, then 'Nu'
+		Ac (auto_comp)     = auto_mipmap_gen, then 'Nc'
+		X  (broken_comp)   = failure; just fall back to GL_LINEAR and 'Nc'
+		G  (glubuild)      = gluBuild2DMipmaps
+		Mu (mipped_uncomp) = glTexImage2D, mipmap levels
+		Mc (mipped_comp)   = glCompressedTexImage2DARB, mipmap levels
+		Nu (normal_uncomp) = glTexImage2D
+		Nc (normal_comp)   = glCompressedTexImage2DARB
 
 		if (Au || Ac)
 			enable automatic mipmap generation
@@ -431,46 +431,49 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 		if (Mc)
 			for each mipmap level
 				glCompressedTexImage2DARB
+
+		[This documentation feels like more than is really necessary, but
+		hopefully it'll prevent the logic getting horribly tangled...]
 	*/
 
 	bool is_compressed = fmt_is_s3tc(fmt);
 	bool has_mipmaps = (t->ti.flags & TEX_MIPMAPS ? true : false);
 
-	enum { Au, Ac, Mu, Mc, Nu, Nc, X, G };
+	enum { auto_uncomp, auto_comp, mipped_uncomp, mipped_comp, normal_uncomp, normal_comp, broken_comp, glubuild };
 	int states[4][4] = {
-		{ Au, Mu, Nu, Nu },
-		{ Ac, Mc, Nc, Nc },
-		{ X,  Mc, Nc, Nc },
-		{ G,  Mu, Nu, Nu }
+		{ auto_uncomp, mipped_uncomp, normal_uncomp, normal_uncomp },
+		{ auto_comp,   mipped_comp,   normal_comp,   normal_comp   },
+		{ broken_comp, mipped_comp,   normal_comp,   normal_comp   },
+		{ glubuild,    mipped_uncomp, normal_uncomp, normal_uncomp }
 	};
 	int state = states[auto_mipmap_gen ? (is_compressed ? 1 : 0) : (is_compressed ? 2 : 3)]  // row
 	                  [need_mipmaps    ? (has_mipmaps   ? 1 : 0) : (has_mipmaps   ? 2 : 3)]; // column
-	                  
-	if(state == Au || state == Ac)
+
+	if(state == auto_uncomp || state == auto_comp)
 	{
 		glTexParameteri(GL_TEXTURE_2D, auto_mipmap_gen, GL_TRUE);
-		state = (state == Au ? Nu : Nc);
+		state = (state == auto_uncomp ? normal_uncomp : normal_comp);
 	}
 
-	if(state == X)
+	if(state == broken_comp)
 	{
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		state = Nc;
+		state = normal_comp;
 	}
 
-	if(state == G)
+	if(state == glubuild)
 		gluBuild2DMipmaps(GL_TEXTURE_2D, int_fmt, w, h, fmt, GL_UNSIGNED_BYTE, tex_data);
 	else
-	if(state == Nu)
+	if(state == normal_uncomp)
 		glTexImage2D(GL_TEXTURE_2D, 0, int_fmt, w, h, 0, fmt, GL_UNSIGNED_BYTE, tex_data);
 	else
-	if(state == Nc)
+	if(state == normal_comp)
 	{
 		const GLsizei tex_size = w * h * bpp / 8;
 		glCompressedTexImage2DARB(GL_TEXTURE_2D, 0, fmt, w, h, 0, tex_size, tex_data);
 	}
 	else
-	if(state == Mu || state == Mc)
+	if(state == mipped_uncomp || state == mipped_comp)
 	{
 		int level = 0;
 		GLsizei level_w = w;
@@ -479,7 +482,7 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 		while (level_w && level_h)
 		{
 			GLsizei tex_size;
-			if (state == Mu)
+			if (state == mipped_uncomp)
 			{
 				tex_size = w * h * bpp;
 				glTexImage2D(GL_TEXTURE_2D, level, int_fmt, level_w?level_w:1, level_h?level_h:1, 0, fmt, GL_UNSIGNED_BYTE, mipmap_data);
