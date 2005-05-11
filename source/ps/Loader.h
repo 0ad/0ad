@@ -126,6 +126,8 @@ extern int LDR_EndRegistering();
 extern int LDR_Cancel();
 
 
+const int LDR_ALL_FINISHED = 1;
+
 // process as many of the queued tasks as possible within <time_budget> [s].
 // if a task is lengthy, the budget may be exceeded. call from the main loop.
 //
@@ -133,9 +135,9 @@ extern int LDR_Cancel();
 // ("" if finished) and the current progress value.
 //
 // return semantics:
-// - if loading just completed, return 0.
+// - if the final load task just completed, return LDR_ALL_FINISHED.
 // - if loading is in progress but didn't finish, return ERR_TIMED_OUT.
-// - if not currently loading (no-op), return > 0.
+// - if not currently loading (no-op), return 0.
 // - any other value indicates a failure; the request has been de-queued.
 //
 // string interface rationale: for better interoperability, we avoid C++

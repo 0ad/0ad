@@ -1026,14 +1026,14 @@ static int ProgressiveLoad()
 	switch(ret)
 	{
 	// no load active => no-op (skip code below)
-	case 1:
-		return 1;
+	case 0:
+		return 0;
 	// current task didn't complete. we only care about this insofar as the
 	// load process is therefore not yet finished.
 	case ERR_TIMED_OUT:
 		break;
 	// just finished loading
-	case 0:
+	case LDR_ALL_FINISHED:
 		g_Game->ReallyStartGame();
 		wcscpy_s(description, ARRAY_SIZE(description), L"Game is starting..");
 			// LDR_ProgressiveLoad returns L""; set to valid text to

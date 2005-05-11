@@ -186,9 +186,9 @@ static bool HaveTimeForNextTask(double time_left, double time_budget, int estima
 // ("" if finished) and the current progress value.
 //
 // return semantics:
-// - if loading just completed, return 0.
+// - if the final load task just completed, return LDR_ALL_FINISHED.
 // - if loading is in progress but didn't finish, return ERR_TIMED_OUT.
-// - if not currently loading (no-op), return > 0.
+// - if not currently loading (no-op), return 0.
 // - any other value indicates a failure; the request has been de-queued.
 //
 // string interface rationale: for better interoperability, we avoid C++
@@ -208,14 +208,16 @@ int LDR_ProgressiveLoad(double time_budget, wchar_t* description,
 	if(state == FIRST_LOAD)
 	{
 		state = LOADING;
+
 		ret = ERR_TIMED_OUT;	// make caller think we did something
+		// progress already set to 0.0; that'll be passed back.
 		goto done;
 	}
 
 	// we're called unconditionally from the main loop, so this isn't
 	// an error; there is just nothing to do.
 	if(state != LOADING)
-		return 1;
+		return 0;
 
 	while(!load_requests.empty())
 	{
@@ -261,7 +263,8 @@ int LDR_ProgressiveLoad(double time_budget, wchar_t* description,
 			progress = current_estimate / total_estimated_duration;
 		}
 
-		// function interrupted itself; need to return ERR_TIMED_OUT
+		// translate return value
+		// (function interrupted itself; need to return ERR_TIMED_OUT)
 		if(ret > 0)
 			ret = ERR_TIMED_OUT;
 
@@ -271,11 +274,12 @@ int LDR_ProgressiveLoad(double time_budget, wchar_t* description,
 		// that came up, so that we report can all errors that happen.
 		if(ret != 0)
 			goto done;
+		// else: continue and process next queued task.
 	}
 
 	// queue is empty, we just finished.
 	state = IDLE;
-	ret = 0;
+	ret = LDR_ALL_FINISHED;
 
 
 	// set output params (there are several return points above)
@@ -312,10 +316,10 @@ int LDR_NonprogressiveLoad()
 
 		switch(ret)
 		{
-		case 1:
-			debug_warn("LDR_NonprogressiveLoad: No load in progress");
-			return 0;
 		case 0:
+			debug_warn("LDR_NonprogressiveLoad: No load in progress");
+			return 0;		// success
+		case LDR_ALL_FINISHED:
 			return 0;		// success
 		case ERR_TIMED_OUT:
 			break;			// continue loading
