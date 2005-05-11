@@ -26,6 +26,43 @@
 	// so that our allocations don't cause infinite recursion.
 
 
+// needed when writing crashlog
+static const size_t LOG_CHARS = 16384;
+wchar_t debug_log[LOG_CHARS];
+wchar_t* debug_log_pos = debug_log;
+
+// write to memory buffer (fast)
+void debug_wprintf_mem(const wchar_t* fmt, ...)
+{
+	const ssize_t chars_left = (ssize_t)LOG_CHARS - (debug_log_pos-debug_log);
+	assert2(chars_left >= 0);
+
+	// potentially not enough room for the new string; throw away the
+	// older half of the log. we still protect against overflow below.
+	if(chars_left < 512)
+	{
+		const size_t copy_size = sizeof(wchar_t) * LOG_CHARS/2;
+		wchar_t* const middle = &debug_log[LOG_CHARS/2];
+		memcpy(debug_log, middle, copy_size);
+		memset(middle, 0, copy_size);
+		debug_log_pos -= LOG_CHARS/2;	// don't assign middle (may leave gap)
+	}
+
+	// write into buffer (in-place)
+	va_list args;
+	va_start(args, fmt);
+	int len = vswprintf(debug_log_pos, chars_left-2, fmt, args);
+	va_end(args);
+	if(len < 0)
+	{
+		debug_warn("debug_wprintf_mem: vswprintf failed");
+		return;
+	}
+	debug_log_pos += len+2;
+	wcscpy(debug_log_pos-2, L"\r\n");	// safe
+}
+
+
 //////////////////////////////////////////////////////////////////////////////
 // storage for and construction of strings describing a symbol
 //////////////////////////////////////////////////////////////////////////////

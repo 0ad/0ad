@@ -1,10 +1,23 @@
+// platform-independent debug interface
+// Copyright (c) 2002-2005 Jan Wassenberg
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License as
+// published by the Free Software Foundation; either version 2 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// General Public License for more details.
+//
+// Contact info:
+//   Jan.Wassenberg@stud.uni-karlsruhe.de
+//   http://www.stud.uni-karlsruhe.de/~urkt/
+
 #ifndef DEBUG_H_INCLUDED
 #define DEBUG_H_INCLUDED
 
-// we need to include the platform-specific version here, so it can
-// define debug_break. if it can be implemented as a macro (e.g. on ia32),
-// the debugger will break directly at the target, instead of one function
-// below it as with a conventional implementation.
 #ifdef _WIN32
 # include "win/wdbg.h"
 #else
@@ -16,10 +29,27 @@
 // assert
 //
 
-// notify the user that an assertion failed.
-// displays a stack trace with local variables on Windows.
-// return values: 0 = continue; 1 = suppress; 2 = break
-// .. or exits the program if the user so chooses.
+enum FailedAssertUserChoice
+{
+	// ignore, continue as if nothing happened.
+	ASSERT_CONTINUE,
+
+	// ignore and do not report again for this assert.
+	ASSERT_SUPPRESS,
+		// note: non-persistent; only applicable during this program run.
+
+	// trigger breakpoint, i.e. enter debugger.
+	ASSERT_BREAK,
+
+	// exit the program immediately.
+	ASSERT_EXIT
+		// note: carried out by debug_assert_failed;
+		// testing for it in assert2 would bloat code.
+};
+
+// notify the user that an assertion failed; displays a
+// stack trace with local variables.
+// returns one of FailedAssertUserChoice or exits the program.
 extern int debug_assert_failed(const char* source_file, int line, const char* assert_expr);
 
 // recommended use: assert2(expr && "descriptive string")
@@ -29,10 +59,10 @@ STMT(\
 	if(!suppress__ && !(expr))\
 		switch(debug_assert_failed(__FILE__, __LINE__, #expr))\
 		{\
-		case 1:\
+		case ASSERT_SUPPRESS:\
 			suppress__ = 1;\
 			break;\
-		case 2:\
+		case ASSERT_BREAK:\
 			debug_break();\
 			break;\
 		}\
@@ -43,13 +73,13 @@ STMT(\
 // output
 //
 
-// output to the debugger (may take ~1 ms!)
-extern void debug_out(const char* fmt, ...);
+// write to the debugger output window (may take ~1 ms!)
+extern void debug_printf(const char* fmt, ...);
 
-// log to memory buffer (fast)
-#define MICROLOG debug_microlog
-extern void debug_microlog(const wchar_t* fmt, ...);
+// write to memory buffer (fast)
+extern void debug_wprintf_mem(const wchar_t* fmt, ...);
 
+// warn of unexpected state. less error-prone than assert(!"text");
 #define debug_warn(str) assert2(0 && (str))
 
 
@@ -57,7 +87,10 @@ extern void debug_microlog(const wchar_t* fmt, ...);
 // breakpoints
 //
 
-// 
+// trigger a breakpoint when reached/"called".
+// defined as a macro by the platform-specific header above; this allows
+// breaking directly into the target function, instead of one frame
+// below it as with a conventional call-based implementation.
 //#define debug_break()
 
 
@@ -66,18 +99,23 @@ extern void debug_microlog(const wchar_t* fmt, ...);
 // memory corruption bugs. another tool is to trigger a debug exception
 // when the later to be corrupted variable is accessed; the problem should
 // then become apparent.
-// the VC++ IDE provides such 'breakpoints', but 
-
+// the VC++ IDE provides such 'breakpoints', but can only detect write access.
+// additionally, it can't resolve symbols in Release mode (where this would
+// be most useful), so we provide direct access to hardware breakpoints.
 
 // values chosen to match IA-32 bit defs, so compiler can optimize.
 // this isn't required, it'll work regardless.
 enum DbgBreakType
 {
-	DBG_BREAK_CODE       = 0,
-	DBG_BREAK_DATA_WRITE = 1,
-	DBG_BREAK_DATA       = DBG_BREAK_DATA_WRITE|2
+	DBG_BREAK_CODE       = 0,	// execute
+	DBG_BREAK_DATA_WRITE = 1,	// write
+	DBG_BREAK_DATA       = 3	// read or write
 };
 
+// arrange for a debug exception to be raised when <addr> is accessed
+// according to <type>.
+// for simplicity, the length (range of bytes to be checked) is derived
+// from addr's alignment, and is typically 1 machine word.
 extern int debug_set_break(void* addr, DbgBreakType type);
 
 
@@ -85,8 +123,8 @@ extern int debug_set_break(void* addr, DbgBreakType type);
 // memory
 //
 
-// independent of mmgr, endeavor to 
-
+// check heap integrity (independently of mmgr).
+// errors are reported by the CRT, e.g. via assert.
 extern void debug_check_heap(void);
 
 
