@@ -5,8 +5,6 @@
 
 using namespace std;
 
-const char* OUTPUT_PATH = "../../../binaries/data/mods/official/maps/scenarios/";
-
 typedef unsigned short u16;
 typedef unsigned int u32;
 
@@ -121,9 +119,7 @@ struct PMP {
 }
 
 void OutputMap(Map* m, string outputName) {
-	string pmpName = OUTPUT_PATH + outputName + ".pmp";
-	string xmlName = OUTPUT_PATH + outputName + ".xml";
-
+	string xmlName = outputName + ".xml";
 	FILE* xmlFile = fopen(xmlName.c_str(), "w");
 	if(!xmlFile) {
 		cerr << "Cannot open " << xmlName << endl;
@@ -132,6 +128,7 @@ void OutputMap(Map* m, string outputName) {
 	OutputXml(m, xmlFile);
 	fclose(xmlFile);
 
+	string pmpName = outputName + ".pmp";
 	FILE* pmpFile = fopen(pmpName.c_str(), "wb");
 	if(!pmpFile) {
 		cerr << "Cannot open " << xmlName << endl;
@@ -140,5 +137,5 @@ void OutputMap(Map* m, string outputName) {
 	OutputPmp(m, pmpFile);
 	fclose(pmpFile);
 
-	cout << "Map outputted to " << OUTPUT_PATH << outputName << ".*" << endl;
+	cout << "Map outputted to " << outputName << ".*" << endl;
 }
