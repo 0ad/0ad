@@ -25,7 +25,7 @@
 #include "lib.h"
 #include "posix.h"
 #include "win_internal.h"
-#include "lockfree.h"
+#include "../cpu.h"	// CAS
 
 
 static HANDLE pthread_t_to_HANDLE(pthread_t p)
