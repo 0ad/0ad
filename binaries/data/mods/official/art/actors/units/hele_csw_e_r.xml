@@ -17,14 +17,14 @@
       </animations>
       <mesh>skeletal/m_tunic_b.pmd</mesh>
       <props>
-        <prop actor="props/temp/hele_sign_csw_e.xml" attachpoint="head_extra"/>
-        <prop actor="props/temp/plac_helmet_e.xml" attachpoint="helmet"/>
-        <prop actor="props/head/plac_head_hele.xml" attachpoint="head"/>
-        <prop actor="props/shield/test_towershield.xml" attachpoint="shield"/>
+        <prop actor="props/head/hele_cav_e.xml" attachpoint="helmet"/>
+        <prop actor="props/head/head_hele_e.xml" attachpoint="head"/>
         <prop actor="props/weapon/weap_xiphos.xml" attachpoint="r_hand"/>
       </props>
-      <texture>skeletal/plac_hele_e.dds</texture>
+      <texture>skeletal/hele_csw_e.dds</texture>
     </variant>
   </group>
+
+  <material>player_trans.xml</material>
 
 </actor>

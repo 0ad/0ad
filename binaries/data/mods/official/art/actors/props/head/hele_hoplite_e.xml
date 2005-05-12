@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant name="k">
+      <mesh>props/helmet/hele_helmet_k.pmd</mesh>
+      <texture>props/helmet/hele_b1.dds</texture>
+    </variant>
+    <variant name="l">
+      <mesh>props/helmet/hele_helmet_l.pmd</mesh>
+      <texture>props/helmet/hele_c1.dds</texture>
+    </variant>
+    <variant name="m">
+      <mesh>props/helmet/hele_helmet_m.pmd</mesh>
+      <texture>props/helmet/hele_d1.dds</texture>
+    </variant>
+    <variant name="n">
+      <mesh>props/helmet/hele_helmet_n.pmd</mesh>
+      <texture>props/helmet/hele_d1.dds</texture>
+    </variant>
+    <variant name="o">
+      <mesh>props/helmet/hele_helmet_o.pmd</mesh>
+      <texture>props/helmet/hele_d1.dds</texture>
+    </variant>
+    <variant name="r">
+      <mesh>props/helmet/hele_helmet_r.pmd</mesh>
+      <texture>props/helmet/hele_g1.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

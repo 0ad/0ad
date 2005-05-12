@@ -18,12 +18,13 @@
       <mesh>skeletal/m_tunic_b.pmd</mesh>
       <props>
         <prop actor="props/temp/hele_sign_csw_b.xml" attachpoint="head_extra"/>
-        <prop actor="props/head/plac_head_hele.xml" attachpoint="head"/>
-        <prop actor="props/shield/test_towershield.xml" attachpoint="shield"/>
+        <prop actor="props/head/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/weapon/weap_xiphos.xml" attachpoint="r_hand"/>
       </props>
-      <texture>skeletal/plac_hele_b.dds</texture>
+      <texture>skeletal/hele_iar_b.dds</texture>
     </variant>
   </group>
+
+  <material>player_trans.xml</material>
 
 </actor>
