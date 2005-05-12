@@ -3,7 +3,8 @@
 // are changed infrequently
 //
 
-#pragma once
+#ifndef __STDAFX_H__
+#define __STDAFX_H__
 
 
 #include <algorithm>
@@ -28,3 +29,5 @@
 #include "jsapi.h"
 
 // TODO: reference additional headers your program requires here
+
+#endif

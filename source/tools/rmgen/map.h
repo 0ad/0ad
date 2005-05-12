@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __MAP_H__
+#define __MAP_H__
 
 typedef int TerrainId;
 
@@ -14,3 +15,5 @@ public:
 
 	TerrainId getId(std::string terrain);
 };
+
+#endif

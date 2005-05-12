@@ -139,4 +139,6 @@ void OutputMap(Map* m, string outputName) {
 	}
 	OutputPmp(m, pmpFile);
 	fclose(pmpFile);
+
+	cout << "Map outputted to " << OUTPUT_PATH << outputName << ".*" << endl;
 }
