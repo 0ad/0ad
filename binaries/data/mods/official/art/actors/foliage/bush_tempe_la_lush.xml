@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Bush Tempe Large Lush">
+      <mesh>gaia/bush_la_1.pmd</mesh>
+      <texture>gaia/bush_tempe_a.dds</texture>
+    </variant>
+    <variant frequency="100" name="B">
+      <mesh>gaia/bush_la_2.pmd</mesh>
+      <texture>gaia/bush_tempe_a.dds</texture>
+    </variant>
+    <variant frequency="100" name="C">
+      <mesh>gaia/bush_la_3.pmd</mesh>
+      <texture>gaia/bush_tempe_a.dds</texture>
+    </variant>
+    <variant frequency="100" name="D">
+      <mesh>gaia/bush_la_4.pmd</mesh>
+      <texture>gaia/bush_tempe_a.dds</texture>
+    </variant>
+    <variant frequency="100" name="E">
+      <mesh>gaia/bush_la_5.pmd</mesh>
+      <texture>gaia/bush_tempe_a.dds</texture>
+    </variant>
+    <variant frequency="100" name="F">
+      <mesh>gaia/bush_la_6.pmd</mesh>
+      <texture>gaia/bush_tempe_a.dds</texture>
+    </variant>
+    <variant frequency="100" name="G">
+      <mesh>gaia/bush_la_7.pmd</mesh>
+      <texture>gaia/bush_tempe_a.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>
