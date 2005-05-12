@@ -25,6 +25,12 @@
 #endif
 
 
+// check heap integrity (independently of mmgr).
+// errors are reported by the CRT, e.g. via assert.
+extern void debug_check_heap(void);
+
+
+//////////////////////////////////////////////////////////////////////////////
 //
 // assert
 //
@@ -69,6 +75,7 @@ STMT(\
 )
 
 
+//////////////////////////////////////////////////////////////////////////////
 //
 // output
 //
@@ -77,12 +84,17 @@ STMT(\
 extern void debug_printf(const char* fmt, ...);
 
 // write to memory buffer (fast)
+// used for "last activity" reporting in the crashlog.
 extern void debug_wprintf_mem(const wchar_t* fmt, ...);
 
 // warn of unexpected state. less error-prone than assert(!"text");
 #define debug_warn(str) assert2(0 && (str))
 
+// TODO
+extern int debug_write_crashlog(const char* file, const wchar_t* header, void* context);
 
+
+//////////////////////////////////////////////////////////////////////////////
 //
 // breakpoints
 //
@@ -101,7 +113,7 @@ extern void debug_wprintf_mem(const wchar_t* fmt, ...);
 // then become apparent.
 // the VC++ IDE provides such 'breakpoints', but can only detect write access.
 // additionally, it can't resolve symbols in Release mode (where this would
-// be most useful), so we provide direct access to hardware breakpoints.
+// be most useful), so we provide a breakpoint API.
 
 // values chosen to match IA-32 bit defs, so compiler can optimize.
 // this isn't required, it'll work regardless.
@@ -116,21 +128,21 @@ enum DbgBreakType
 // according to <type>.
 // for simplicity, the length (range of bytes to be checked) is derived
 // from addr's alignment, and is typically 1 machine word.
+// breakpoints are a limited resource (4 on IA-32); abort and
+// return ERR_LIMIT if none are available.
 extern int debug_set_break(void* addr, DbgBreakType type);
 
-
-//
-// memory
-//
-
-// check heap integrity (independently of mmgr).
-// errors are reported by the CRT, e.g. via assert.
-extern void debug_check_heap(void);
+// remove all breakpoints that were set by debug_set_break.
+// important, since these are a limited resource.
+extern int debug_remove_all_breaks();
 
 
+//////////////////////////////////////////////////////////////////////////////
 //
 // symbol access
 //
+
+// TODO: rationale+comments
 
 const size_t DBG_SYMBOL_LEN = 1000;
 const size_t DBG_FILE_LEN = 100;
@@ -138,13 +150,6 @@ const size_t DBG_FILE_LEN = 100;
 extern void* debug_get_nth_caller(uint n);
 
 extern int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line);
-
-
-//
-// crash notification
-//
-
-extern int debug_write_crashlog(const char* file, const wchar_t* header, void* context);
 
 
 #endif	// #ifndef DEBUG_H_INCLUDED

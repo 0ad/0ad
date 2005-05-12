@@ -114,7 +114,7 @@ static void simplify_stl_name(char* name)
 			// end of a loop would require a goto, instead of continue
 			// (there are several paths through the loop, for speed).
 			// therefore, preincrement. when skipping strings, subtract
-			// 1 from the offset (since src is advanced directlry after).
+			// 1 from the offset (since src is advanced directly after).
 
 		// end of string reached - we're done.
 		if(c == '\0')

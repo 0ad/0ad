@@ -31,6 +31,10 @@
 #include "wdbg.h"
 #include "assert_dlg.h"
 
+#ifndef PERFORM_SELF_TEST
+#define PERFORM_SELF_TEST 0
+#endif
+
 
 #ifdef _MSC_VER
 #pragma comment(lib, "dbghelp.lib")
@@ -172,22 +176,24 @@ void debug_wprintf(const wchar_t* fmt, ...)
 
 //////////////////////////////////////////////////////////////////////////////
 //
-// hardware breakpoints
+// breakpoints
 //
 //////////////////////////////////////////////////////////////////////////////
 
 // breakpoints are set by storing the address of interest in a
 // debug register and marking it 'enabled'.
 //
-// the first problem is, these are privileged; we get around this by
-// updating their values via SetThreadContext. that in turn requires
-// we suspend the current thread, spawn a helper to change the registers,
-// and resume.
+// the first problem is, they are only accessible from Ring0;
+// we get around this by updating their values via SetThreadContext.
+// that in turn requires we suspend the current thread,
+// spawn a helper to change the registers, and resume.
 //
 // we don't reuse similar code from the profiler in wcpu.cpp:
 // it is designed to interrupt the main thread periodically,
 // whereas what we need here is to interrupt any thread on-demand.
 
+// parameter passing to helper thread. currently static storage,
+// but the struct simplifies switching to a queue later.
 static struct BreakInfo
 {
 	// real (not pseudo) handle of thread whose context we will change
@@ -195,21 +201,25 @@ static struct BreakInfo
 
 	uintptr_t addr;
 	DbgBreakType type;
+
+	bool want_all_disabled;
 }
 brk_info;
 
-// Local Enable bits of all registers we enabled (used to restore all).
+// Local Enable bits of all registers we enabled (used when restoring all).
 static DWORD brk_all_local_enables;
-static bool brk_want_all_disabled;
 
 
+// called from brk_thread_func; return error code as void*.
 static void* brk_disable_all(BreakInfo* bi, CONTEXT* context)
 {
 	context->Dr7 &= ~brk_all_local_enables;
-	return (void*)1;	// success
+	return 0;	// success
 }
 
 
+// find a free register, set type according to <bi> and enable it.
+// called from brk_thread_func; return error code as void*.
 static void* brk_enable(BreakInfo* bi, CONTEXT* context)
 {
 	int reg;	// index (0..3) of first free reg
@@ -218,25 +228,31 @@ static void* brk_enable(BreakInfo* bi, CONTEXT* context)
 	// find free debug register
 	for(reg = 0; reg < 4; reg++)
 	{
-		LE = 1u << (reg * 2);
-		if((context->Dr7 & LE) == 0)	// currently not in use
+		LE = BIT(reg*2);
+		// .. currently not in use.
+		if((context->Dr7 & LE) == 0)
 			goto have_reg;
 	}
-	debug_warn("break_enable: no break register available");
-	return 0;
+	debug_warn("brk_enable: no register available");
+	return (void*)(intptr_t)ERR_LIMIT;
 have_reg:
 
-	// set and mark as enabled/in use ASAP
-	(&context->Dr0)[reg] = (DWORD)bi->addr;
-	brk_all_local_enables |= LE;
+	// set and mark as enabled/in use ASAP.
 	context->Dr7 |= LE;
+	brk_all_local_enables |= LE;
+	switch(reg)	// for safety; could use (&context->Dr0)[reg]
+	{
+	case 0: context->Dr0 = (DWORD)bi->addr; break;
+	case 1: context->Dr1 = (DWORD)bi->addr; break;
+	case 2: context->Dr2 = (DWORD)bi->addr; break;
+	case 3: context->Dr3 = (DWORD)bi->addr; break;
+	default:
+		debug_warn("brk_enable: invalid reg");
+	}
 
-	// build Debug Control Register
-	// IA32 requires code breakpoints have len=1
-	uint len = 1;
-	if(bi->type != DBG_BREAK_CODE)
-		len = (uint)((bi->addr-1) & 3);
-	uint rw;
+	// build Debug Control Register value.
+	// .. type
+	uint rw = 0;
 	switch(bi->type)
 	{
 	case DBG_BREAK_CODE:
@@ -246,8 +262,21 @@ have_reg:
 	case DBG_BREAK_DATA_WRITE:
 		rw = 3; break;
 	default:
-		debug_warn("break_enable: invalid type");
-		return 0;
+		debug_warn("brk_enable: invalid type");
+	}
+	// .. length (determined from addr's alignment).
+	//    note: IA-32 requires len=0 for code breakpoints.
+	uint len = 0;
+	if(bi->type != DBG_BREAK_CODE)
+	{
+		const uint alignment = (uint)(bi->addr % 4);
+		// assume 2 byte range
+		if(alignment == 2)
+			len = 1;
+		// assume 4 byte range
+		else if(alignment == 0)
+			len = 3;
+		// else: 1 byte range; len already set to 0
 	}
 	const uint shift = (16 + reg*4);
 	const uint field = (len << 2) | rw;
@@ -258,14 +287,16 @@ have_reg:
 	context->Dr7 &= ~mask;
 
 	context->Dr7 |= field << shift;
-	return (void*)1;	// success
+	return 0;	// success
 }
 
 
-// return 1 to indicate success.
+// carry out the request stored in the BreakInfo* parameter.
+// return error code as void*.
 static void* brk_thread_func(void* arg)
 {
 	DWORD err;
+	void* ret;
 	BreakInfo* bi = (BreakInfo*)arg;
 
 	err = SuspendThread(bi->hThread);
@@ -273,7 +304,7 @@ static void* brk_thread_func(void* arg)
 	if(err == (DWORD)-1)
 	{
 		debug_warn("brk_thread_func: SuspendThread failed");
-		return 0;
+		goto fail;
 	}
 	// target is now guaranteed to be suspended,
 	// since the Windows counter never goes negative.
@@ -282,30 +313,32 @@ static void* brk_thread_func(void* arg)
 
 	// to avoid deadlock, be VERY CAREFUL to avoid anything that may block,
 	// including locks taken by the OS (e.g. malloc, GetProcAddress).
+	{
 
 	CONTEXT context;
 	context.ContextFlags = CONTEXT_DEBUG_REGISTERS;
 	if(!GetThreadContext(bi->hThread, &context))
 	{
 		debug_warn("brk_thread_func: GetThreadContext failed");
-		return 0;
+		goto fail;
 	}
 
-	void* ret;
 #if defined(_M_IX86)
-	if(brk_want_all_disabled)
+	if(bi->want_all_disabled)
 		ret = brk_disable_all(bi, &context);
 	else
 		ret = brk_enable(bi, &context);
 
 	if(!SetThreadContext(bi->hThread, &context))
 	{
-		debug_warn("brk_thread_func: GetThreadContext failed");
-		return 0;
+		debug_warn("brk_thread_func: SetThreadContext failed");
+		goto fail;
 	}
 #else
 #error "port"
 #endif
+
+	}
 
 	//////////////////////////////////////////////////////////////////////////
 
@@ -313,9 +346,13 @@ static void* brk_thread_func(void* arg)
 	assert(err != 0);
 
 	return ret;
+
+fail:
+	return (void*)(intptr_t)-1;
 }
 
 
+// latch current thread and carry out the request stored in brk_info.
 static int brk_run_thread()
 {
 	int err;
@@ -325,7 +362,7 @@ static int brk_run_thread()
 	// Suspend|ResumeThread and GetThreadContext.
 	// alternative: DuplicateHandle on the current thread pseudo-HANDLE.
 	// this way is a bit more obvious/simple.
-	const DWORD access = THREAD_GET_CONTEXT|THREAD_SUSPEND_RESUME;
+	const DWORD access = THREAD_GET_CONTEXT|THREAD_SET_CONTEXT|THREAD_SUSPEND_RESUME;
 	bi->hThread = OpenThread(access, FALSE, GetCurrentThreadId());
 	if(bi->hThread == INVALID_HANDLE_VALUE)
 	{
@@ -339,23 +376,24 @@ static int brk_run_thread()
 
 	void* ret;
 	err = pthread_join(thread, &ret);
-	assert2(err == 0 && ret == (void*)1);
+	assert2(err == 0 && ret == 0);
 
-	return (ret == (void*)1)? 0 : -1;
+	return (int)(intptr_t)ret;
 }
 
 
 // arrange for a debug exception to be raised when <addr> is accessed
 // according to <type>.
-// for simplicity, the length (range of bytes to be checked) is derived
-// from addr's alignment, and is typically 1 machine word.
+// for simplicity, the length (range of bytes to be checked) is
+// derived from addr's alignment, and is typically 1 machine word.
+// breakpoints are a limited resource (4 on IA-32); abort and
+// return ERR_LIMIT if none are available.
 int debug_set_break(void* p, DbgBreakType type)
 {
 	lock();
 
-	BreakInfo* bi = &brk_info;
-	bi->addr = (uintptr_t)p;
-	bi->type = type;
+	brk_info.addr = (uintptr_t)p;
+	brk_info.type = type;
 	int ret = brk_run_thread();
 
 	unlock();
@@ -363,16 +401,56 @@ int debug_set_break(void* p, DbgBreakType type)
 }
 
 
+// remove all breakpoints that were set by debug_set_break.
+// important, since these are a limited resource.
 int debug_remove_all_breaks()
 {
 	lock();
 
-	brk_want_all_disabled = true;
+	brk_info.want_all_disabled = true;
 	int ret = brk_run_thread();
 
 	unlock();
 	return ret;
 }
+
+
+#if PERFORM_SELF_TEST
+
+template<class T> static void verify_natural_alignment(T* t)
+{
+	uintptr_t addr = (uintptr_t)t;
+	assert2(addr % sizeof(T) == 0);
+}
+
+#pragma optimize("", off)
+
+static void brk_self_test()
+{
+	volatile char  c = 0x01;
+	volatile short s = 0x0202;
+	volatile int   i = 0x03030303;
+	volatile char c4[4] = { 0x04, 0x05, 0x06, 0x07 };
+	verify_natural_alignment(&c);
+	verify_natural_alignment(&s);
+	verify_natural_alignment(&i);
+	verify_natural_alignment(&c4[0]);
+
+	debug_printf("brk_self_test: should trigger");
+	debug_set_break((void*)&c, DBG_BREAK_DATA_WRITE);
+	c = 0x0a;
+	debug_remove_all_breaks();
+	debug_set_break((void*)&c, DBG_BREAK_DATA);
+	c = 0x0b;
+	debug_remove_all_breaks();
+
+	debug_printf("brk_self_test: should not trigger");
+	debug_set_break((void*)&c, DBG_BREAK_DATA_WRITE);
+}
+
+#pragma optimize("", on)
+
+#endif	// #if PERFORM_SELF_TEST
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -598,7 +676,7 @@ static void out(const wchar_t* fmt, ...)
 // algorithm: scan the "string" and count # text chars vs. garbage.
 static bool is_string_ptr(u64 addr, size_t stride = 1)
 {
-	// completely bogus on IA32; save ourselves the segfault (slow).
+	// completely bogus on IA-32; save ourselves the segfault (slow).
 #ifdef _M_IX86
 	if(addr < 0x10000 || addr > 0xc0000000)
 		return false;
@@ -1851,3 +1929,25 @@ LONG WINAPI debug_main_exception_filter(PEXCEPTION_POINTERS ep)
 
 #endif	// #ifdef EXCEPTION_HACK_0AD
 
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// built-in self test
+//
+//////////////////////////////////////////////////////////////////////////////
+
+namespace test {
+
+#if PERFORM_SELF_TEST
+
+static int run_tests()
+{
+	brk_self_test();
+	return 0;
+}
+
+static int dummy = run_tests();
+
+#endif	// #if PERFORM_SELF_TEST
+
+}	// namespace test
