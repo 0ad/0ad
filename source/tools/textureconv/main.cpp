@@ -21,7 +21,7 @@
 #define tstring wstring
 #define tstrcmp wcscmp
 #define tstrrchr wcsrchr
-#define tsprintf wsprintf
+#define tsprintf swprintf
 #define tmain wmain
 #else
 #define tstring string
@@ -324,8 +324,15 @@ void convert(std::tstring filename, OutputFormat fmt, trool alphablock)
 
 	if (fmt == DXTn || fmt == DXT1 || fmt == DXT3 || fmt == DXT5)
 	{
-		// TODO: Do the mipmaps work better with a different scale filter?
 		iluBuildMipmaps();
+		int num = ilGetInteger(IL_NUM_MIPMAPS);
+		for (int n = 1; n < num; ++n)
+		{
+			ilActiveMipmap(n);
+			iluSharpen(2.0, 1); // TODO: alter these, to make things look as nice as possible
+			ilActiveMipmap(0);
+		}
+		check();
 	}
 
 	ilEnable(IL_FILE_OVERWRITE);

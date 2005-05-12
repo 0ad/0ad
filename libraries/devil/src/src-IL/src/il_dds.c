@@ -669,14 +669,16 @@ ILboolean DecompressDXT1()
 				bitmask = ((ILuint*)Temp)[1];
 				Temp += 8;
 
-				colours[0].r = (color_0->nRed * 255) / 31;
-				colours[0].g = (color_0->nGreen * 255) / 63;
-				colours[0].b = (color_0->nBlue * 255) / 31;
+				// "To convert 5 or 6 bits to eight, the upper bits are copied to the lower bits."
+				// (in NVIDIA hardware, apparently - see http://sourceforge.net/mailarchive/forum.php?thread_id=6550301&forum_id=6188)
+				colours[0].b = (color_0->nBlue  << 3) | (color_0->nBlue  >> 2);
+				colours[0].g = (color_0->nGreen << 2) | (color_0->nGreen >> 4);
+				colours[0].r = (color_0->nRed   << 3) | (color_0->nRed   >> 2);
 				colours[0].a = 0xFF;
 
-				colours[1].r = (color_1->nRed * 255) / 31;
-				colours[1].g = (color_1->nGreen * 255) / 63;
-				colours[1].b = (color_1->nBlue * 255) / 31;
+				colours[1].b = (color_1->nBlue  << 3) | (color_1->nBlue  >> 2);
+				colours[1].g = (color_1->nGreen << 2) | (color_1->nGreen >> 4);
+				colours[1].r = (color_1->nRed   << 3) | (color_1->nRed   >> 2);
 				colours[1].a = 0xFF;
 
 
@@ -706,9 +708,9 @@ ILboolean DecompressDXT1()
 					colours[2].r = (colours[0].r + colours[1].r) / 2;
 					colours[2].a = 0xFF;
 
-					colours[3].b = (colours[0].b + 2 * colours[1].b + 1) / 3;
-					colours[3].g = (colours[0].g + 2 * colours[1].g + 1) / 3;
-					colours[3].r = (colours[0].r + 2 * colours[1].r + 1) / 3;
+					colours[3].b = 0x00;
+					colours[3].g = 0x00;
+					colours[3].r = 0x00;
 					colours[3].a = 0x00;
 				}
 
@@ -769,14 +771,16 @@ ILboolean DecompressDXT3()
 				bitmask = ((ILuint*)Temp)[1];
 				Temp += 8;
 
-				colours[0].r = (color_0->nRed * 255) / 31;
-				colours[0].g = (color_0->nGreen * 255) / 63;
-				colours[0].b = (color_0->nBlue * 255) / 31;
+				// "To convert 5 or 6 bits to eight, the upper bits are copied to the lower bits."
+				// (in NVIDIA hardware, apparently - see http://sourceforge.net/mailarchive/forum.php?thread_id=6550301&forum_id=6188)
+				colours[0].b = (color_0->nBlue  << 3) | (color_0->nBlue  >> 2);
+				colours[0].g = (color_0->nGreen << 2) | (color_0->nGreen >> 4);
+				colours[0].r = (color_0->nRed   << 3) | (color_0->nRed   >> 2);
 				colours[0].a = 0xFF;
 
-				colours[1].r = (color_1->nRed * 255) / 31;
-				colours[1].g = (color_1->nGreen * 255) / 63;
-				colours[1].b = (color_1->nBlue * 255) / 31;
+				colours[1].b = (color_1->nBlue  << 3) | (color_1->nBlue  >> 2);
+				colours[1].g = (color_1->nGreen << 2) | (color_1->nGreen >> 4);
+				colours[1].r = (color_1->nRed   << 3) | (color_1->nRed   >> 2);
 				colours[1].a = 0xFF;
 
 				// Four-color block: derive the other two colors.    
@@ -866,14 +870,16 @@ ILboolean DecompressDXT5()
 				bitmask = ((ILuint*)Temp)[1];
 				Temp += 8;
 
-				colours[0].r = (color_0->nRed * 255) / 31;
-				colours[0].g = (color_0->nGreen * 255) / 63;
-				colours[0].b = (color_0->nBlue * 255) / 31;
+				// "To convert 5 or 6 bits to eight, the upper bits are copied to the lower bits."
+				// (in NVIDIA hardware, apparently - see http://sourceforge.net/mailarchive/forum.php?thread_id=6550301&forum_id=6188)
+				colours[0].b = (color_0->nBlue  << 3) | (color_0->nBlue  >> 2);
+				colours[0].g = (color_0->nGreen << 2) | (color_0->nGreen >> 4);
+				colours[0].r = (color_0->nRed   << 3) | (color_0->nRed   >> 2);
 				colours[0].a = 0xFF;
 
-				colours[1].r = (color_1->nRed * 255) / 31;
-				colours[1].g = (color_1->nGreen * 255) / 63;
-				colours[1].b = (color_1->nBlue * 255) / 31;
+				colours[1].b = (color_1->nBlue  << 3) | (color_1->nBlue  >> 2);
+				colours[1].g = (color_1->nGreen << 2) | (color_1->nGreen >> 4);
+				colours[1].r = (color_1->nRed   << 3) | (color_1->nRed   >> 2);
 				colours[1].a = 0xFF;
 
 				// Four-color block: derive the other two colors.    
