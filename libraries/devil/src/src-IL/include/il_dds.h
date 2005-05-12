@@ -194,7 +194,7 @@ ILuint		ApplyBitMask(Color888 ex0, Color888 ex1, ILuint NumCols, ILubyte *In, IL
 ILvoid		GenAlphaBitMask(ILubyte a0, ILubyte a1, ILuint Num, ILubyte *In, ILubyte *Mask, ILubyte *Out);
 ILuint		RMSAlpha(ILubyte *Orig, ILubyte *Test);
 ILuint		Distance(Color888 *c1, Color888 *c2);
-ILvoid		ChooseEndpoints(ILushort *ex0, ILushort *ex1, ILuint NumCols, ILubyte *Block, ILubyte *Alpha);
+ILuint		ChooseEndpoints(ILushort *ex0, ILushort *ex1, ILuint NumCols, ILubyte *Block, ILubyte *Alpha, ILuint ClosestDist);
 ILvoid		ChooseAlphaEndpoints(ILubyte *Block, ILubyte *a0, ILubyte *a1);
 ILvoid		CorrectEndDXT1(ILushort *ex0, ILushort *ex1, ILboolean HasAlpha);
 ILvoid		PreMult(ILushort *Data, ILubyte *Alpha);

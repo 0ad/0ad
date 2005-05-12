@@ -261,11 +261,11 @@ ILboolean iBuild2DMipmaps_(ILuint Width, ILuint Height)
 			return IL_TRUE;
 		}
 
-		if (/*CurMipMap->*/Height == 1) {
+		if (CurMipMap->Height == 1) {
 			return iBuild1DMipmaps_(Width);
 		}
 
-		if (/*CurMipMap->*/Width == 1) {
+		if (CurMipMap->Width == 1) {
 			return iBuild1DMipmapsVertical_(Height);
 		}
 	}
