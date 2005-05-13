@@ -1,13 +1,3 @@
-?new Projectile( "props/weapon/weap_arrow_front.xml", Vector3D( this.position.x, this.position.y + 10.5, this.position.z ), target, 12 );
-?new Projectile( "props/weapon/weap_arrow_front.xml", Vector3D( this.position.x, this.position.y + 10.5, this.position.z ), target, 12 );
-?new Projectile( "props/weapon/weap_arrow_front.xml", Vector3D( this.position.x, this.position.y + 10.5, this.position.z ), target, 12 );
-?new Projectile( "props/weapon/weap_arrow_front.xml", Vector3D( this.position.x, this.position.y + 10.5, this.position.z ), target, 12 );
-?new Projectile( "props/weapon/weap_arrow_front.xml", Vector3D( this.position.x, this.position.y + 10.5, this.position.z ), target, 12 );
-?new Projectile( "props/weapon/weap_arrow_front.xml", Vector3D( this.position.x, this.position.y + 10.5, this.position.z ), target, 12 );
-?new Projectile( "props/weapon/weap_arrow_front.xml", Vector3D( this.position.x, this.position.y + 10.5, this.position.z ), target, 12 );
-?new Projectile( "props/weapon/weap_arrow_front.xml", Vector3D( this.position.x, this.position.y + 10.5, this.position.z ), target, 12 );
-?new Projectile( "props/weapon/weap_arrow_front.xml", Vector3D( this.position.x, this.position.y + 10.5, this.position.z ), target, 12, this );
-?new Projectile( "props/weapon/weap_arrow_front.xml", Vector3D( this.position.x, this.position.y + 10, this.position.z ), target, 12, this );
 ?new Projectile( "props/weapon/weap_arrow_front.xml", Vector3D( this.position.x, this.position.y + 5, this.position.z ), target, 12, this );
 ?new Projectile( "props/weapon/weap_arrow_front.xml", Vector3D( this.position.x, this.position.y + 2.5, this.position.z ), target, 12, this );
 ?new Projectile( "props/weapon/weap_arrow_front.xml", Vector3D( this.position.x, this.position.y + 2.5, this.position.z ), target, 12, this );
@@ -48,3 +38,13 @@
 ?entities.subset( function() { return( this.traits.health.cur < this.traits.health.max ); } );
 ?entities.subset( function() { return( this.traits.health.curr < this.traits.health.max ); } );
 ?selection = entities.subset( function() { return( this.traits.health.curr < this.traits.health.max ); } );
+?1+1
+?new Entity("wrld_flora_oak", new Vector3D(1, 1, 1))
+?new Entity("wrld_flora_oak", new Vector3D(1, 3, 1))
+?new Entity("wrld_flora_oak", new Vector3D(1, 30, 1))
+?new Entity("wrld_flora_oak", new Vector3D(3, 0, 1))
+?new Entity("wrld_flora_oak", new Vector3D(8, 0, 1))
+?new Entity("wrld_flora_oak", new Vector3D(8, 0, 8))
+quit
+quit()
+exit

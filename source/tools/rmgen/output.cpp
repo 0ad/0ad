@@ -64,17 +64,7 @@ struct PMP {
 	u32 version = 4;
 	fwrite(&version, sizeof(u32), 1, f);
 
-	// data size
-	/*int numTextureChars = 0;
-	for(int i=0; i<numTerrains; i++) {
-		numTextureChars += (m->idToName[i]+".dds").length();
-	}
-	u32 dataSize = sizeof(u32)					// size in patches
-		+ (size+1)*(size+1)*sizeof(u16)			// heightmap
-		+ sizeof(u32)							// num textures
-		+ m->idToName.size()*sizeof(u32)		// texture string lengths
-		+ numTextureChars*sizeof(char)			// texture string chars
-		+ size*size*sizeof(Tile);				// tiles*/
+	// data size (write 0 for now, calculate it at the end)
 	int temp = 0;
 	fwrite(&temp, sizeof(u32), 1, f);
 
@@ -84,7 +74,18 @@ struct PMP {
 
 	// heightmap
 	u16* heightmap = new u16[(size+1)*(size+1)];
-	memset(heightmap, 0, (size+1)*(size+1)*sizeof(u16));
+	for(int x=0; x<size+1; x++) {
+		for(int y=0; y<size+1; y++) {
+			int intHeight = (int) (m->height[x][y] * 256.0f / 0.35f);
+			if(intHeight > 0xFFFF) {
+				intHeight = 0xFFFF;
+			}
+			else if(intHeight < 0) {
+				intHeight = 0;
+			}
+			heightmap[y*(size+1)+x] = intHeight;
+		}
+	}
 	fwrite(heightmap, sizeof(u16), (size+1)*(size+1), f);
 
 	// num terrain textures
@@ -98,19 +99,21 @@ struct PMP {
 		fwrite(fname.c_str(), sizeof(char), fname.length(), f);
 	}
 
-	// terrains
+	// terrain; note that this is an array of 16x16 patches for some reason
 	Tile* tiles = new Tile[size*size];
-	for(int i=0; i<size; i++) {
-		for(int j=0; j<size; j++) {
-			Tile& t = tiles[i*size+j];
-			t.texture1 = m->terrain[i][j];
+	for(int x=0; x<size; x++) {
+		for(int y=0; y<size; y++) {
+			int patchX = x/16, patchY = y/16;
+			int offX = x%16, offY = y%16;
+			Tile& t = tiles[ (patchY*size/16 + patchX)*16*16 + (offY*16 + offX) ];
+			t.texture1 = m->terrain[x][y];
 			t.texture2 = 0xFFFF;
 			t.priority = 0;
 		}
 	}
 	fwrite(tiles, sizeof(Tile), size*size, f);
 
-	// data size
+	// data size (file size - 12)
 	fseek(f, 0, SEEK_END);
 	int fsize = ftell(f);
 	u32 dataSize = fsize-12;
@@ -118,7 +121,7 @@ struct PMP {
 	fwrite(&dataSize, sizeof(u32), 1, f);
 }
 
-void OutputMap(Map* m, string outputName) {
+void OutputMap(Map* m, const string& outputName) {
 	string xmlName = outputName + ".xml";
 	FILE* xmlFile = fopen(xmlName.c_str(), "w");
 	if(!xmlFile) {

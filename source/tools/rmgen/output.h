@@ -3,6 +3,6 @@
 
 #include "map.h"
 
-void OutputMap(Map* map, std::string path);
+void OutputMap(Map* map, const std::string& path);
 
 #endif
