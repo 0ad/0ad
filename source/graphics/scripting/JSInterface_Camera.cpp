@@ -40,12 +40,7 @@ void JSI_Camera::init()
 
 JSI_Camera::Camera_Info::Camera_Info()
 {
-	CMatrix3D Orient;
-	Orient.SetXRotation( DEGTORAD( 30 ) );
-	Orient.RotateY( DEGTORAD( -45 ) );
-	Orient.Translate( 100, 150, -100 );
-
-	Camera_Info( (const CMatrix3D&)Orient );
+	Initialise();
 }
 
 JSI_Camera::Camera_Info::Camera_Info( const CVector3D& Position )
@@ -55,27 +50,24 @@ JSI_Camera::Camera_Info::Camera_Info( const CVector3D& Position )
 	Orient.RotateY( DEGTORAD( -45 ) );
 	Orient.Translate( Position );
 
-	Camera_Info( (const CMatrix3D&)Orient );
+	Initialise( (const CMatrix3D&)Orient );
 }
 
 JSI_Camera::Camera_Info::Camera_Info( const CVector3D& Position, const CVector3D& Orientation )
 {
-	Camera_Info();
+	Initialise();
 	m_Data->LookAlong( Position, Orientation, CVector3D( 0.0f, 1.0f, 0.0f ) );
 }
 
 JSI_Camera::Camera_Info::Camera_Info( const CVector3D& Position, const CVector3D& Orientation, const CVector3D& Up )
 {
-	Camera_Info();
+	Initialise();
 	m_Data->LookAlong( Position, Orientation, Up );
 }
 
 JSI_Camera::Camera_Info::Camera_Info( const CMatrix3D& Orientation )
 {
-	m_Data = new CCamera();
-	m_EngineOwned = false;
-
-	m_Data->LookAlong( Orientation.GetTranslation(), Orientation.GetIn(), Orientation.GetUp() );
+	Initialise( Orientation );
 }
 
 JSI_Camera::Camera_Info::Camera_Info( CCamera* Reference )
@@ -88,6 +80,24 @@ JSI_Camera::Camera_Info::~Camera_Info()
 {
 	if( !m_EngineOwned )
 		delete( m_Data );
+}
+
+void JSI_Camera::Camera_Info::Initialise()
+{
+	CMatrix3D Orient;
+	Orient.SetXRotation( DEGTORAD( 30 ) );
+	Orient.RotateY( DEGTORAD( -45 ) );
+	Orient.Translate( 100, 150, -100 );
+
+	Initialise( (const CMatrix3D&)Orient );
+}
+
+void JSI_Camera::Camera_Info::Initialise( const CMatrix3D& Orientation )
+{
+	m_Data = new CCamera();
+	m_EngineOwned = false;
+
+	m_Data->LookAlong( Orientation.GetTranslation(), Orientation.GetIn(), Orientation.GetUp() );
 }
 
 void JSI_Camera::Camera_Info::Freshen()

@@ -46,6 +46,9 @@ namespace JSI_Camera
 		Camera_Info( const CMatrix3D& Orientation );
 		Camera_Info( CCamera* copy );
 
+		void Initialise();
+		void Initialise( const CMatrix3D& Orientation );
+
 		void Freshen();
 		void Update();
 		void FreshenTarget();
