@@ -21,6 +21,7 @@
 
 
 #define DXTC_DEBUG
+#define FAST_COMPRESS
 
 #ifdef DXTC_DEBUG
 void debug_out(const wchar_t* fmt, ...)
@@ -365,7 +366,7 @@ ILuint Compress(ILimage *Image, ILenum DXTCFormat)
 						if (ScoreA < ScoreB) {
 							// Use the three-colour version
 							CorrectEndDXT1(&ex0, &ex1, IL_TRUE);
-							BitMask = GenBitMask(ex0, ex1, 3, Block, AlphaBlock, NULL);
+							BitMask = GenBitMask(ex0, ex1, 3, Block, NULL, NULL);
 							FinalScore += ScoreA;
 						} else {
 							// Use the four-colour version
@@ -373,6 +374,30 @@ ILuint Compress(ILimage *Image, ILenum DXTCFormat)
 							BitMask = GenBitMask(ex0, ex1, 4, Block, NULL, NULL);
 							FinalScore += ScoreB;
 						}
+
+/*
+#ifdef DXTC_DEBUG
+						if (ScoreA&&ScoreB) {
+							ILuint x,y;
+							Color888 ClosestC0, ClosestC1;
+							ShortToColor888(ex0, &ClosestC0);
+							ShortToColor888(ex1, &ClosestC1);
+							debug_out(L"END (%d,%d): dist=%d, %02x%02x%02x %02x%02x%02x\n", g_x, g_y,
+								min(ScoreA, ScoreB), 
+								ClosestC0.r, ClosestC0.g, ClosestC0.b,
+								ClosestC1.r, ClosestC1.g, ClosestC1.b);
+							for (y=0; y<4; ++y) {
+								for (x=0; x<4; ++x) {
+									Color888 c;
+									BytesToColor888(&Block[(x+y*4)*3], &c);
+									debug_out(L" %02x%02x%02x", c.r, c.g, c.b);
+								}
+								debug_out(L"\n");
+							}
+						}
+#endif
+//*/
+
 					}
 					SaveLittleUShort(ex0);
 					SaveLittleUShort(ex1);
@@ -464,7 +489,7 @@ ILuint Compress(ILimage *Image, ILenum DXTCFormat)
 	ifree(Data);
 
 #ifdef DXTC_DEBUG
-	debug_out(L"FINAL SCORE: %d\n", FinalScore);
+	debug_out(L"FINAL SCORE: %d  (%dx%d)\n", FinalScore, Image->Width, Image->Height);
 #endif
 
 	return Count;
@@ -476,8 +501,7 @@ ILboolean GetBlock(ILubyte *Block, ILubyte *Data, ILimage *Image, ILuint XPos, I
 {
 	ILuint x, y, i = 0, Offset;
 
-	if (Image->Height < 4 || Image->Width < 4)
-	{
+	if (Image->Height < 4 || Image->Width < 4) {
 		// Slower version, which handles small images correctly (where
 		// 'correctly' is assumed to mean wrapping/tiling)
 		for (y = 0; y < 4; y++) {
@@ -488,9 +512,7 @@ ILboolean GetBlock(ILubyte *Block, ILubyte *Data, ILimage *Image, ILuint XPos, I
 				Block[i++] = Data[Offset++];
 			}
 		}
-	}
-	else
-	{
+	} else {
 		for (y = 0; y < 4; y++) {
 			Offset = ((YPos + y) * Image->Width + XPos) * 3;
 			for (x = 0; x < 4*3; x++)
@@ -575,16 +597,15 @@ ILuint GenBitMask(ILushort ex0, ILushort ex1, ILuint NumCols, ILubyte *In, ILuby
 
 ILuint ApplyBitMask(Color888 Colour0, Color888 Colour1, ILuint NumCols, ILubyte *In, ILubyte *Alpha, Color888 *OutCol, ILuint *DistLimit)
 {
-	Color888	Colour2, Colour3;
+	ILubyte		Mask[16];
 	ILuint		i, TotalDist = 0, ClosestIndex, BitMask = 0;
 	ILint		in_r, in_g, in_b;
+	Color888	Colour2, Colour3;
 	ILuint		ClosestDist, Dist;
-	ILubyte		Mask[16];
 
 	// Calculate intermediate colour(s). This assumes calculations are done
 	// in full 888 precision, which isn't true on old hardware (e.g. NV20
-	// (GeForce 3) does it in 555 for DXT1), but apparently is on most other
-	// devices.
+	// (GeForce 3) uses 555 for DXT1), but apparently is on most other devices.
 	if (NumCols == 3) {
 		Colour2.r = (Colour0.r + Colour1.r) / 2;
 		Colour2.g = (Colour0.g + Colour1.g) / 2;
@@ -623,18 +644,18 @@ ILuint ApplyBitMask(Color888 Colour0, Color888 Colour1, ILuint NumCols, ILubyte 
 		if (DistLimit) {
 
 			#define TEST(n) \
-				Dist = (in_r-Colour##n.r) * (in_r-Colour##n.r) \
-				     + (in_g-Colour##n.g) * (in_g-Colour##n.g) \
-				     + (in_b-Colour##n.b) * (in_b-Colour##n.b)
+				(in_r-Colour##n.r) * (in_r-Colour##n.r) \
+			  + (in_g-Colour##n.g) * (in_g-Colour##n.g) \
+			  + (in_b-Colour##n.b) * (in_b-Colour##n.b)
 			if (NumCols == 4) {
 				ClosestDist = TEST(0);
-				Dist = TEST(1); ClosestDist = min(ClosestDist, Dist);
-				Dist = TEST(2); ClosestDist = min(ClosestDist, Dist);
-				Dist = TEST(3); ClosestDist = min(ClosestDist, Dist);
+				Dist = TEST(1); if (Dist < ClosestDist) ClosestDist = Dist;
+				Dist = TEST(2); if (Dist < ClosestDist) ClosestDist = Dist;
+				Dist = TEST(3); if (Dist < ClosestDist) ClosestDist = Dist;
 			} else {
 				ClosestDist = TEST(0);
-				Dist = TEST(1); ClosestDist = min(ClosestDist, Dist);
-				Dist = TEST(2); ClosestDist = min(ClosestDist, Dist);
+				Dist = TEST(1); if (Dist < ClosestDist) ClosestDist = Dist;
+				Dist = TEST(2); if (Dist < ClosestDist) ClosestDist = Dist;
 			}
 			#undef TEST
 
@@ -666,12 +687,11 @@ ILuint ApplyBitMask(Color888 Colour0, Color888 Colour1, ILuint NumCols, ILubyte 
 
 			Mask[i] = ClosestIndex;
 			if (OutCol) {
-				switch (ClosestIndex)
-				{
-				case 0: OutCol[i] = Colour0; break;
-				case 1: OutCol[i] = Colour1; break;
-				case 2: OutCol[i] = Colour2; break;
-				case 3: OutCol[i] = Colour3; break;
+				switch (ClosestIndex) {
+					case 0: OutCol[i] = Colour0; break;
+					case 1: OutCol[i] = Colour1; break;
+					case 2: OutCol[i] = Colour2; break;
+					case 3: OutCol[i] = Colour3; break;
 				}
 			}
 		}
@@ -785,6 +805,9 @@ ILuint ChooseEndpoints(ILushort *ex0, ILushort *ex1, ILuint NumCols, ILubyte *Bl
 	ILuint		dist;
 	Color888	Col_i, Col_j;
 
+	// Initialise ClosestC with the inputted closest values. (If there was
+	// no previously known closest, these colours will be garbage, but that
+	// doesn't matter because they'll get replaced soon.)
 	ShortToColor888(*ex0, &ClosestC0);
 	ShortToColor888(*ex1, &ClosestC1);
 
@@ -860,7 +883,9 @@ ILuint ChooseEndpoints(ILushort *ex0, ILushort *ex1, ILuint NumCols, ILubyte *Bl
 		if (NumUniqueColours < NumCols) {
 			Color888 c[4];
 			ILuint ir,jr, ig,jg, ib,jb;
-			ILint UniqueColourMatches[4];
+			ILint UniqueColourMatches_r[4];
+			ILint UniqueColourMatches_g[4];
+			ILint UniqueColourMatches_b[4];
 
 			// If there's a perfect match, there's also a perfect match
 			// for each component of the colour. So, consider each component
@@ -879,21 +904,55 @@ ILuint ChooseEndpoints(ILushort *ex0, ILushort *ex1, ILuint NumCols, ILubyte *Bl
 			// First, pick values of r; we then know which of {c0..c3} are
 			// used by each unique colour. Then, for b/g components, we only need
 			// to test those specific ones.
-#define TEST1(nplus1, n, comp) case nplus1: \
-	if (UniqueColours[n].comp == c[0].comp) UniqueColourMatches[n] = 0; \
-	else if (UniqueColours[n].comp == c[1].comp) UniqueColourMatches[n] = 1; \
-	else if (UniqueColours[n].comp == c[2].comp) UniqueColourMatches[n] = 2; \
-	else if (NumCols == 4 && UniqueColours[n].comp == c[3].comp) UniqueColourMatches[n] = 3; \
-	else break;
-#define TEST2(nplus1, n, comp) case nplus1: \
-	if (UniqueColours[n].comp != c[UniqueColourMatches[n]].comp) break;
+			// TEST1 creates a bitmask indicating which palette entries could
+			// possibly be used for each colour. (If e.g. c0.r==c1.r, any are
+			// allowed.)
+#define GENBIT(n, comp) \
+	 (((UniqueColours[n].comp == c[0].comp) ? 1 : 0) \
+	| ((UniqueColours[n].comp == c[1].comp) ? 2 : 0) \
+	| ((UniqueColours[n].comp == c[2].comp) ? 4 : 0) \
+	| ((NumCols == 4 && UniqueColours[n].comp == c[3].comp) ? 8 : 0))
+
+#define TEST1(nplus1, n, comp) \
+	case nplus1: \
+		UniqueColourMatches_##comp[n] = GENBIT(n, comp); \
+		if (UniqueColourMatches_##comp[n] == 0) break;
+
+#define TEST2(nplus1, n, comp, compprev) \
+	case nplus1: \
+		UniqueColourMatches_##comp[n] = UniqueColourMatches_##compprev[n] & GENBIT(n, comp); \
+		if (UniqueColourMatches_##comp[n] == 0) break;
+
+			// Maybe we've only got one unique value for the R component,
+			// and it's also a valid 5-bit number, in which case it's safe
+			// to assume that c[0] and c[1] will always have this value.
+			// That means we can save a few hundred iterations, rather than
+			// checking all possible values of c[1], since we know c[0] is always
+			// going to be valid.
+			ILboolean unique_r = IL_FALSE;
+			switch (NumUniqueColours) {
+				case 4: if (UniqueColours[3].r != UniqueColours[2].r) break;
+				case 3: if (UniqueColours[2].r != UniqueColours[1].r) break;
+				case 2: if (UniqueColours[1].r != UniqueColours[0].r) break;
+				default: // All are the same. See if it's 5 bits.
+					if ((UniqueColours[0].r & 7) == (UniqueColours[0].r >> 5))
+						unique_r = IL_TRUE;
+			}
 
 			for (ir = 0; ir < 32; ++ir) {
+				if (unique_r && ir == 0) c[0].r = UniqueColours[0].r; // first iteration: use the known unique value
+				else if (unique_r) break; // subsequent iterations: abort
+				else
 				// Try every possible c0.r
 				c[0].r = (ir << 3) | (ir >> 2);
+
 				for (jr = 0; jr < 32; ++jr) {
+					if (unique_r && jr == 0) c[1].r = UniqueColours[0].r; // first iteration: use the known unique value
+					else if (unique_r) break; // subsequent iterations: abort
+					else
 					// Try every possible c1.r
 					c[1].r = (jr << 3) | (jr >> 2);
+
 					// Calculate the other colours
 					if (NumCols == 3) {
 						c[2].r = (c[0].r + c[1].r)/2;
@@ -918,7 +977,7 @@ ILuint ChooseEndpoints(ILushort *ex0, ILushort *ex1, ILuint NumCols, ILubyte *Bl
 									c[3].b = (2*c[1].b + c[0].b + 1)/3;
 								}
 								switch (NumUniqueColours) {
-									TEST2(4, 3, b); TEST2(3, 2, b); TEST2(2, 1, b); TEST2(1, 0, b);
+									TEST2(4, 3, b,r); TEST2(3, 2, b,r); TEST2(2, 1, b,r); TEST2(1, 0, b,r);
 									default: /* all succeeded, at least for this component */
 
 									for (ig = 0; ig < 64; ++ig) {
@@ -932,7 +991,7 @@ ILuint ChooseEndpoints(ILushort *ex0, ILushort *ex1, ILuint NumCols, ILubyte *Bl
 												c[3].g = (2*c[1].g + c[0].g + 1)/3;
 											}
 											switch (NumUniqueColours) {
-												TEST2(4, 3, g); TEST2(3, 2, g); TEST2(2, 1, g); TEST2(1, 0, g);
+												TEST2(4, 3, g,b); TEST2(3, 2, g,b); TEST2(2, 1, g,b); TEST2(1, 0, g,b);
 												default:
 												/* all components succeeded, hurrah! */
 												NewC0 = c[0];
@@ -949,7 +1008,7 @@ ILuint ChooseEndpoints(ILushort *ex0, ILushort *ex1, ILuint NumCols, ILubyte *Bl
 													*ex1 = Color888ToShort(&ClosestC1);
 													return ClosestDist;
 												} else {
-													//debug_out(L"Argh!");
+													debug_out(L"Argh!");
 												}
 											}
 										}
@@ -969,6 +1028,7 @@ ILuint ChooseEndpoints(ILushort *ex0, ILushort *ex1, ILuint NumCols, ILubyte *Bl
 	// stop here if it was lazy. But it can be improved, so try some brute-force
 	// (and fairly slow) methods of improving the match:
 
+#ifndef FAST_COMPRESS
 
 	// Do a similar blind-searching-over-lots-of-values thing to the code further
 	// down, but adjusting each component individually - this allows each to be tested
@@ -1179,6 +1239,7 @@ ILuint ChooseEndpoints(ILushort *ex0, ILushort *ex1, ILuint NumCols, ILubyte *Bl
 		}
 	}
 
+#endif // FAST_COMPRESS
 
 /*
 #ifdef DXTC_DEBUG
@@ -1198,7 +1259,7 @@ ILuint ChooseEndpoints(ILushort *ex0, ILushort *ex1, ILuint NumCols, ILubyte *Bl
 		}
 	}
 #endif
-*/
+//*/
 
 	*ex0 = Color888ToShort(&ClosestC0);
 	*ex1 = Color888ToShort(&ClosestC1);

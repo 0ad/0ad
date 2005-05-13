@@ -189,6 +189,7 @@ ILvoid		ShortToColor565(ILushort Pixel, Color565 *Colour);
 ILvoid		ShortToColor888(ILushort Pixel, Color888 *Colour);
 ILushort	Color565ToShort(Color565 *Colour);
 ILushort	Color888ToShort(Color888 *Colour);
+ILvoid		BytesToColor888(ILubyte *Data, Color888 *Colour);
 ILuint		GenBitMask(ILushort ex0, ILushort ex1, ILuint NumCols, ILubyte *In, ILubyte *Alpha, Color888 *OutCol);
 ILuint		ApplyBitMask(Color888 ex0, Color888 ex1, ILuint NumCols, ILubyte *In, ILubyte *Alpha, Color888 *OutCol, ILuint *DistLimit);
 ILvoid		GenAlphaBitMask(ILubyte a0, ILubyte a1, ILuint Num, ILubyte *In, ILubyte *Mask, ILubyte *Out);
