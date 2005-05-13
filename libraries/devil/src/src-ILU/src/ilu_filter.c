@@ -362,14 +362,14 @@ ILubyte *Filter(ILimage *Image, ILushort Filt)
 			}
 			for (c = 0; c < Image->Bpp; c++) {
 				Num =   Image->Data[y - Image->Bps + c] * Filters[Filt] +
-						Image->Data[y - Image->Bps + Image->Bpp + c] * Filters[Filt+1]+
-						Image->Data[y - Image->Bps + 2 * Image->Bpp + c] * Filters[Filt+2]+
+						Image->Data[y - Image->Bps + c] * Filters[Filt+1]+
+						Image->Data[y - Image->Bps + Image->Bpp + c] * Filters[Filt+2]+
 						Image->Data[y + c] * Filters[Filt+3]+
-						Image->Data[y + Image->Bpp + c] * Filters[Filt+4]+
-						Image->Data[y + 2 * Image->Bpp + c] * Filters[Filt+5]+
+						Image->Data[y + c] * Filters[Filt+4]+
+						Image->Data[y + Image->Bpp + c] * Filters[Filt+5]+
 						Image->Data[y + Image->Bps + c] * Filters[Filt+6]+
-						Image->Data[y + Image->Bps + Image->Bpp + c] * Filters[Filt+7]+
-						Image->Data[y + Image->Bps + 2 * Image->Bpp + c] * Filters[Filt+8];
+						Image->Data[y + Image->Bps + c] * Filters[Filt+7]+
+						Image->Data[y + Image->Bps + Image->Bpp + c] * Filters[Filt+8];
 
 					Temp = (ILuint)fabs((Num / (ILdouble)Filters[Filt+9]) + Filters[Filt+10]);
 					if (Temp > 255)
@@ -390,15 +390,15 @@ ILubyte *Filter(ILimage *Image, ILushort Filt)
 				}
 			}
 			for (c = 0; c < Image->Bpp; c++) {
-				Num =   Image->Data[y - Image->Bps + c] * Filters[Filt] +
-						Image->Data[y - Image->Bps + Image->Bpp + c] * Filters[Filt+1]+
-						Image->Data[y - Image->Bps + 2 * Image->Bpp + c] * Filters[Filt+2]+
-						Image->Data[y + c] * Filters[Filt+3]+
-						Image->Data[y + Image->Bpp + c] * Filters[Filt+4]+
-						Image->Data[y + 2 * Image->Bpp + c] * Filters[Filt+5]+
-						Image->Data[y + Image->Bps + c] * Filters[Filt+6]+
-						Image->Data[y + Image->Bps + Image->Bpp + c] * Filters[Filt+7]+
-						Image->Data[y + Image->Bps + 2 * Image->Bpp + c] * Filters[Filt+8];
+				Num =   Image->Data[y - Image->Bps - Image->Bpp + c] * Filters[Filt] +
+						Image->Data[y - Image->Bps + c] * Filters[Filt+1]+
+						Image->Data[y - Image->Bps + c] * Filters[Filt+2]+
+						Image->Data[y - Image->Bpp + c] * Filters[Filt+3]+
+						Image->Data[y + c] * Filters[Filt+4]+
+						Image->Data[y + c] * Filters[Filt+5]+
+						Image->Data[y + Image->Bps - Image->Bpp + c] * Filters[Filt+6]+
+						Image->Data[y + Image->Bps + c] * Filters[Filt+7]+
+						Image->Data[y + Image->Bps + c] * Filters[Filt+8];
 
 					Temp = (ILuint)fabs((Num / (ILdouble)Filters[Filt+9]) + Filters[Filt+10]);
 					if (Temp > 255)
