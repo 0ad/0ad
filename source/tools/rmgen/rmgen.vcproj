@@ -19,7 +19,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../libraries/spidermonkey/include"
+				AdditionalIncludeDirectories="&quot;C:\Boost\include\boost-1_32&quot;;../../../libraries/spidermonkey/include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -114,10 +114,16 @@
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
 			<File
+				RelativePath=".\api.cpp">
+			</File>
+			<File
 				RelativePath=".\map.cpp">
 			</File>
 			<File
 				RelativePath=".\output.cpp">
+			</File>
+			<File
+				RelativePath=".\random.cpp">
 			</File>
 			<File
 				RelativePath=".\rmgen.cpp">
@@ -143,10 +149,16 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
 			<File
+				RelativePath=".\api.h">
+			</File>
+			<File
 				RelativePath=".\map.h">
 			</File>
 			<File
 				RelativePath=".\output.h">
+			</File>
+			<File
+				RelativePath=".\random.h">
 			</File>
 			<File
 				RelativePath=".\rmgen.h">
@@ -164,7 +176,13 @@
 			RelativePath="..\..\..\libraries\spidermonkey\lib\js32d.lib">
 		</File>
 		<File
+			RelativePath=".\library.js">
+		</File>
+		<File
 			RelativePath=".\ReadMe.txt">
+		</File>
+		<File
+			RelativePath=".\test.js">
 		</File>
 	</Files>
 	<Globals>

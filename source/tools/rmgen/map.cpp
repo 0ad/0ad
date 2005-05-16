@@ -67,20 +67,20 @@ bool Map::validH(int x, int y) {
 
 string Map::getTerrain(int x, int y) {
     if(!validT(x,y)) JS_ReportError(cx, "getTerrain: invalid tile position");
-    else return idToName[terrain[x][y]];
+    return idToName[terrain[x][y]];
 }
 
 void Map::setTerrain(int x, int y, const string& t) {
     if(!validT(x,y)) JS_ReportError(cx, "setTerrain: invalid tile position");
-    else terrain[x][y] = getId(t);
+    terrain[x][y] = getId(t);
 }
 
 float Map::getHeight(int x, int y) {
     if(!validH(x,y)) JS_ReportError(cx, "getHeight: invalid point position");
-    else return height[x][y];
+    return height[x][y];
 }
 
 void Map::setHeight(int x, int y, float h) {
     if(!validH(x,y)) JS_ReportError(cx, "setHeight: invalid point position");
-    else height[x][y] = h;
+    height[x][y] = h;
 }

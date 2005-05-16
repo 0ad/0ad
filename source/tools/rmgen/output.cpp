@@ -8,7 +8,6 @@ using namespace std;
 typedef unsigned short u16;
 typedef unsigned int u32;
 
-
 void OutputXml(Map* m, FILE* f) {
     const char* xml = "\
 <?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>\n\
@@ -24,6 +23,16 @@ void OutputXml(Map* m, FILE* f) {
     <Entities />\n\
     <Nonentities />\n\
 </Scenario>\n";
+
+    /*
+    	<Entity>
+			<Template>hele_hc</Template>
+			<Player>0</Player>
+			<Position x="182.122" y="30.0133" z="426.143" />
+			<Orientation angle="-3.0442" />
+		</Entity>
+    */
+
     fprintf(f, "%s", xml);
 }
 

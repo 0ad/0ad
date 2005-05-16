@@ -2,8 +2,12 @@
 #include "rmgen.h"
 #include "map.h"
 #include "output.h"
+#include "api.h"
+#include "random.h"
 
 using namespace std;
+
+const char* LIBRARY_FILE = "library.js";
 
 JSRuntime *rt = 0;
 JSContext *cx = 0;
@@ -18,17 +22,6 @@ void ErrorReporter(JSContext *cx, const char *message, JSErrorReport *report) {
         << message << endl;
     Shutdown(1);
 }
-
-JSFunctionSpec globalFunctions[] = {
-//  {name, native, args}
-    {"init", init, 3},
-    {"print", print, 1},
-    {"getTerrain", getTerrain, 2},
-    {"setTerrain", setTerrain, 3},
-    {"getHeight", getHeight, 2},
-    {"setHeight", setHeight, 3},
-    {0}
-};
 
 void InitJS() {
     rt = JS_NewRuntime(8L * 1024L * 1024L);
@@ -65,164 +58,58 @@ jsval NewJSString(const string& str) {
     return STRING_TO_JSVAL(JS_NewString(cx, buf, str.length()));
 }
 
-// JS API implementation
-
-JSBool print(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
-{
-    if(argc != 1) {
-        JS_ReportError(cx, "print: expected 1 argument but got %d", argc);
+void ExecuteFile(const char* fileName) {
+    FILE* f = fopen(fileName, "r");
+    if(!f) {
+        cerr << "Cannot open " << fileName << endl;
+        Shutdown(1);
     }
     
-    cout << JS_GetStringBytes(JS_ValueToString(cx, argv[0]));
-    return JS_TRUE;
+    string code;
+    char buf[1025];
+    while(fgets(buf, 1024, f)) {
+        code += buf;
+    }
+
+    jsval rval;
+    JSBool ok = JS_EvaluateScript(cx, global, code.c_str(), code.length(), fileName, 1, &rval);
+    if(!ok) Shutdown(1);
 }
 
-JSBool init(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
-{
-    if(argc != 3) {
-        JS_ReportError(cx, "init: expected 3 arguments but got %d", argc);
-    }
-    if(!JSVAL_IS_INT(argv[0])) {
-        JS_ReportError(cx, "init: first argument must be an integer");
-    }
-    if(!JSVAL_IS_STRING(argv[1])) {
-        JS_ReportError(cx, "init: second argument must be a string");
-    }
-    if(!JSVAL_IS_NUMBER(argv[2])) {
-        JS_ReportError(cx, "init: third argument must be a number");
-    }
-    if(theMap != 0) {
-        JS_ReportError(cx, "init: cannot be called twice");
-    }
-
-    int size = JSVAL_TO_INT(argv[0]);
-    char* baseTerrain = JS_GetStringBytes(JSVAL_TO_STRING(argv[1]));
-    jsdouble baseHeight;
-    JS_ValueToNumber(cx, argv[2], &baseHeight);
-
-    theMap = new Map(size, baseTerrain, (float) baseHeight);
-    return JS_TRUE;
-}
-
-JSBool getTerrain(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
-{
-    if(argc != 2) {
-        JS_ReportError(cx, "getTerrain: expected 2 arguments but got %d", argc);
-    }
-    if(theMap == 0) {
-        JS_ReportError(cx, "getTerrain: cannot be called before init()");
-    }
-    if(!JSVAL_IS_INT(argv[0])) {
-        JS_ReportError(cx, "getTerrain: first argument must be an integer");
-    }
-    if(!JSVAL_IS_INT(argv[1])) {
-        JS_ReportError(cx, "getTerrain: second argument must be an integer");
-    }
-    
-    int x = JSVAL_TO_INT(argv[0]);
-    int y = JSVAL_TO_INT(argv[1]);
-    string terrain = theMap->getTerrain(x, y);
-    *rval = NewJSString(terrain);
-    return JS_TRUE;
-}
-
-JSBool setTerrain(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
-{
-    if(argc != 3) {
-        JS_ReportError(cx, "setTerrain: expected 3 arguments but got %d", argc);
-    }
-    if(theMap == 0) {
-        JS_ReportError(cx, "setTerrain: cannot be called before init()");
-    }
-    if(!JSVAL_IS_INT(argv[0])) {
-        JS_ReportError(cx, "setTerrain: first argument must be an integer");
-    }
-    if(!JSVAL_IS_INT(argv[1])) {
-        JS_ReportError(cx, "setTerrain: second argument must be an integer");
-    }
-    if(!JSVAL_IS_STRING(argv[2])) {
-        JS_ReportError(cx, "setTerrain: third argument must be a string");
-    }
-    
-    int x = JSVAL_TO_INT(argv[0]);
-    int y = JSVAL_TO_INT(argv[1]);
-    char* terrain = JS_GetStringBytes(JSVAL_TO_STRING(argv[2]));
-    theMap->setTerrain(x, y, terrain);
-    return JS_TRUE;
-}
-
-JSBool getHeight(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
-{
-    if(argc != 2) {
-        JS_ReportError(cx, "getHeight: expected 2 arguments but got %d", argc);
-    }
-    if(theMap == 0) {
-        JS_ReportError(cx, "getHeight: cannot be called before init()");
-    }
-    if(!JSVAL_IS_INT(argv[0])) {
-        JS_ReportError(cx, "getHeight: first argument must be an integer");
-    }
-    if(!JSVAL_IS_INT(argv[1])) {
-        JS_ReportError(cx, "getHeight: second argument must be an integer");
-    }
-    
-    int x = JSVAL_TO_INT(argv[0]);
-    int y = JSVAL_TO_INT(argv[1]);
-    jsdouble height = theMap->getHeight(x, y);
-    JS_NewDoubleValue(cx, height, rval);
-    return JS_TRUE;
-}
-
-JSBool setHeight(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
-{
-    if(argc != 3) {
-        JS_ReportError(cx, "setHeight: expected 3 arguments but got %d", argc);
-    }
-    if(theMap == 0) {
-        JS_ReportError(cx, "setHeight: cannot be called before init()");
-    }
-    if(!JSVAL_IS_INT(argv[0])) {
-        JS_ReportError(cx, "setHeight: first argument must be an integer");
-    }
-    if(!JSVAL_IS_INT(argv[1])) {
-        JS_ReportError(cx, "setHeight: second argument must be an integer");
-    }
-    if(!JSVAL_IS_NUMBER(argv[2])) {
-        JS_ReportError(cx, "setHeight: third argument must be a number");
-    }
-    
-    int x = JSVAL_TO_INT(argv[0]);
-    int y = JSVAL_TO_INT(argv[1]);
-    jsdouble height;
-    JS_ValueToNumber(cx, argv[2], &height);
-    theMap->setHeight(x, y, (float) height);
-    return JS_TRUE;
-}
 // Program entry point
 
 int main(int argc, char* argv[])
 {
     InitJS();
 
-    if(argc!=3) {
-        cerr << "Usage: rmgen <script> <output name without extension>" << endl;
+    if(argc!=3 && argc!=4) {
+        cerr << "Usage: rmgen <script> <output name without extension> [<seed>]" << endl;
         Shutdown(1);
     }
 
-    FILE* scriptFile = fopen(argv[1], "r");
-    if(!scriptFile) {
-        cerr << "Cannot open " << scriptFile << endl;
-        Shutdown(1);
+    unsigned long seed;
+    if(argc==4) {
+        sscanf(argv[3], "%u", &seed);
     }
-    string script;
-    char buf[1025];
-    while(fgets(buf, 1024, scriptFile)) {
-        script += buf;
+    else {
+        seed = time(0);
     }
+    SeedRand(seed);
 
+    // Load map settings (things like game type and player info)
+    ostringstream out;
+    out << "const SEED=" << seed << ";\n";
+    string setts = out.str();
     jsval rval;
-    JSBool ok = JS_EvaluateScript(cx, global, script.c_str(), script.length(), argv[1], 1, &rval);
+    JSBool ok = JS_EvaluateScript(cx, global, setts.c_str(), setts.length(), 
+        "settings declaration", 1, &rval);
     if(!ok) Shutdown(1);
+
+    // Load library
+    ExecuteFile(LIBRARY_FILE);
+
+    // Run the script
+    ExecuteFile(argv[1]);
 
     if(!theMap) {
         cerr << "Error:\n\tScript never called init!" << endl;

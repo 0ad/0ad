@@ -15,11 +15,14 @@
 #include <ctime>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <map>
 #include <queue>
 #include <set>
 #include <string>
 #include <vector>
+
+#include <boost/random.hpp>
 
 #ifdef WIN32
 #define XP_WIN
