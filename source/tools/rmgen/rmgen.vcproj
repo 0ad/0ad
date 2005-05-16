@@ -19,7 +19,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;C:\Boost\include\boost-1_32&quot;;../../../libraries/spidermonkey/include"
+				AdditionalIncludeDirectories="../../../libraries/boost/include;../../../libraries/spidermonkey/include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
