@@ -137,7 +137,7 @@ uint CEntityList::GetSerializedLength() const
 
 u8 *CEntityList::Serialize(u8 *buffer) const
 {
-	for (size_t i=0;i<size();i++)
+	for (size_t i=0;i<(size()-1);i++)
 		Serialize_int_2(buffer, at(i).m_handle);
 	Serialize_int_2(buffer, back().m_handle | HANDLE_SENTINEL_BIT);
 	return buffer;
