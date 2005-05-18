@@ -437,25 +437,43 @@ function PressCommandButton(GUIObject, list, tab)
 {
 	switch (list)
 	{
-		case 1:
-			GUIObject.caption = "";
-//			if (SN_STATUS_PANE_COMMAND[list][tab].type == "list")
-//			{
+	case 1:
+		GUIObject.caption = "";
+		if (SN_STATUS_PANE_COMMAND[list][tab].type == "list")
+		{
 //console.write("Clicked [" + list + "," + tab + "]: tab of type " + SN_STATUS_PANE_COMMAND[list][tab].type + "; " + SN_STATUS_PANE_COMMAND[list][tab].last + "; " + SN_STATUS_PANE_COMMAND[list][tab].name);
-//				// Click the tab button to toggle visibility of its list (if it's of a list type).
-				GUIObjectToggle("SN_STATUS_PANE_COMMAND_" + tab + "_GROUP");
-//			}
-//			else
-//			{
-//				// Perform appropriate actions for different command buttons.
-//console.write("Clicked [" + list + "," + tab + "]: command of type " + SN_STATUS_PANE_COMMAND[list][tab].type + "; " + SN_STATUS_PANE_COMMAND[list][tab].last + "; " + SN_STATUS_PANE_COMMAND[list][tab].name);
-//			}
+			// Click the tab button to toggle visibility of its list (if it's of a list type).
+			GUIObjectToggle("SN_STATUS_PANE_COMMAND_" + tab + "_GROUP");
+		}
+		else
+		{
+			// Perform appropriate actions for different command buttons.
+console.write("Clicked [" + list + "," + tab + "]: command of type " + SN_STATUS_PANE_COMMAND[list][tab].type + "; " + SN_STATUS_PANE_COMMAND[list][tab].last + "; " + SN_STATUS_PANE_COMMAND[list][tab].name);
+
+			switch (SN_STATUS_PANE_COMMAND[list][tab].name)
+			{
+			case action_patrol:
+				// setCursor(...)
+				selectLocation(
+					function (x, y) {
+						issueCommand(selection, NMT_Patrol, x, y);
+					});
+				break;
+			case action_attack:
+				// setCursor(...)
+				selectEntity(
+					function (target) {
+						issueCommand(selection, NMT_AttackMelee, target);
+					});
+				break;
+			}
+		}
 		break;
-		default:
-			// Left-clicked list button.
-			console.write("Clicked [" + list + "," + tab + "]: list of type " + SN_STATUS_PANE_COMMAND[list][tab].type + "; " + SN_STATUS_PANE_COMMAND[list][tab].name);
-			// Attempt to add the entry to the queue.
-			attempt_add_to_build_queue( selection[0], selection[0].traits.id.civ_code + "_" + SN_STATUS_PANE_COMMAND[list][tab].name, list, tab);
+	default:
+		// Left-clicked list button.
+		console.write("Clicked [" + list + "," + tab + "]: list of type " + SN_STATUS_PANE_COMMAND[list][tab].type + "; " + SN_STATUS_PANE_COMMAND[list][tab].name);
+		// Attempt to add the entry to the queue.
+		attempt_add_to_build_queue( selection[0], selection[0].traits.id.civ_code + "_" + SN_STATUS_PANE_COMMAND[list][tab].name, list, tab);
 		break;
 	}
 }	

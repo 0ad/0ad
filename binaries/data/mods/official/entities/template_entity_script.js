@@ -206,7 +206,7 @@ function entity_event_targetchanged( evt )
 	// yields false. ToString converts them to their actual values (i.e. the four character
 	// string) first.
 	
-	evt.defaultAction = ORDER_GOTO;
+	evt.defaultAction = NMT_Goto;
 	evt.defaultCursor = "arrow-default";
 	if( evt.target )
 	{
@@ -214,14 +214,14 @@ function entity_event_targetchanged( evt )
 			( evt.target.player != gaiaPlayer ) &&
 			( evt.target.player != this.player ) )
 		{
-			evt.defaultAction = ORDER_ATTACK;
+			evt.defaultAction = NMT_AttackMelee;
 			evt.defaultCursor = "action-attack";
 		}
 	    if( this.actions.gather && evt.target.traits.supply &&
 			this.actions.gather[evt.target.traits.supply.type] &&
 			( ( evt.target.traits.supply.curr > 0 ) || ( evt.target.traits.supply.max == 0 ) ) )
 		{
-		    evt.defaultAction = ORDER_GATHER;
+		    evt.defaultAction = NMT_Gather;
 		    // Set cursor (eg "action-gather-fruit").
 		    evt.defaultCursor = "action-gather-" + evt.target.traits.supply.subtype;
 		}
