@@ -12,7 +12,7 @@
 #undef ALLNETMSGS_DONT_CREATE_NMTS
 
 class CCommand;
-class CEntityList;
+struct CEntityList;
 
 /**
  * The base class for network messages

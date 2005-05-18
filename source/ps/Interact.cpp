@@ -789,7 +789,7 @@ int interactInputHandler( const SDL_Event* ev )
 	static u8 clicks[5] = {0, 0, 0, 0, 0};
 
 	static u16 button_down_x, button_down_y;
-	static float button_down_time;
+	static double button_down_time;
 	static bool button_down = false;
 	
 	if (customSelectionMode && ev->type != SDL_MOUSEBUTTONUP)

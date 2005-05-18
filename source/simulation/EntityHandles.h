@@ -33,7 +33,7 @@
 
 class CEntity;
 class CEntityManager;
-class CEntityList;
+struct CEntityList;
 class CStr8;
 
 class CHandle
@@ -47,7 +47,7 @@ public:
 class HEntity
 {
 	friend class CEntityManager;
-	friend class CEntityList;
+	friend struct CEntityList;
 	u16 m_handle;
 private:
 	void addRef();

@@ -132,12 +132,12 @@ HEntity::operator CStr() const
 
 uint CEntityList::GetSerializedLength() const
 {
-	return 2*size();
+	return (uint)(2*size());
 }
 
 u8 *CEntityList::Serialize(u8 *buffer) const
 {
-	for (int i=0;i<size();i++)
+	for (size_t i=0;i<size();i++)
 		Serialize_int_2(buffer, at(i).m_handle);
 	Serialize_int_2(buffer, back().m_handle | HANDLE_SENTINEL_BIT);
 	return buffer;
