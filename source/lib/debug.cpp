@@ -17,6 +17,7 @@
 
 #include "precompiled.h"
 
+#include <stdarg.h>
 #include <string.h>
 
 #include "lib.h"

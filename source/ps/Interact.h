@@ -29,14 +29,14 @@ struct CSelectedEntities : public Singleton<CSelectedEntities>
 		clearSelection();
 		m_group = -1;
 		m_group_highlight = -1;
-		m_contextOrder = -1;
+		m_defaultCommand = -1;
 		m_selectionChanged = true;
 	}
 	std::vector<HEntity> m_selected;
 	std::vector<HEntity> m_groups[MAX_GROUPS];
 	i8 m_group, m_group_highlight;
 	bool m_selectionChanged;
-	int m_contextOrder;
+	int m_defaultCommand;
 
 	void addSelection( HEntity entity );
 	void removeSelection( HEntity entity );
@@ -57,11 +57,6 @@ struct CSelectedEntities : public Singleton<CSelectedEntities>
 	CVector3D getGroupPosition( i8 groupid );
 
 	void update();
-	bool isContextValid( int contextOrder );
-	void contextOrder( bool pushQueue = false );
-	void setContext( int contextOrder );
-	bool nextContext();
-	bool previousContext();
 
 	void renderSelectionOutlines();
 	void renderOverlays();
@@ -120,6 +115,9 @@ struct CMouseoverEntities : public Singleton<CMouseoverEntities>
 
 bool isMouseoverType( CEntity* ev, void* userdata );
 bool isOnScreen( CEntity* ev, void* userdata );
+
+void StartCustomSelection();
+void ResetInteraction();
 
 int interactInputHandler( const SDL_Event* ev );
 

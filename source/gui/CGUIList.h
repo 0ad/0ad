@@ -2,7 +2,7 @@
 #ifndef CGUIList_H
 #define CGUIList_H
 
-#include "GUIText.h"
+#include "GUItext.h"
 
 class CGUIList
 {

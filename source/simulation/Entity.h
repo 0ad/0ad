@@ -106,7 +106,7 @@ public:
 	int m_lastState;
 	
 	// Position in the current state's cycle
-	static const size_t NOT_IN_CYCLE = -1;
+	static const size_t NOT_IN_CYCLE = (size_t)-1;
 	size_t m_fsm_cyclepos; // -cycle_length....cycle_length
 	CSkeletonAnim* m_fsm_animation; // the animation we're about to play this cycle,
 	size_t m_fsm_anipos; // the time at which we should start playing it.
@@ -197,6 +197,7 @@ public:
 	// Script-bound functions
 
 	jsval ToString( JSContext* cx, uintN argc, jsval* argv );
+	
 	bool Order( JSContext* cx, uintN argc, jsval* argv, bool Queued );
 	inline bool OrderSingle( JSContext* cx, uintN argc, jsval* argv )
 	{

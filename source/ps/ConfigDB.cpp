@@ -134,9 +134,9 @@ namespace ConfigNamespace_JS
 	}
 
 	JSFunctionSpec Funcs[] = {
-		{ "WriteFile", WriteFile, 2, 0, 0},
-		{ "Reload", Reload, 0, 0, 0},
-		{ "SetFile", SetFile, 1, 0, 0},
+		{ "writeFile", WriteFile, 2, 0, 0},
+		{ "reload", Reload, 0, 0, 0},
+		{ "setFile", SetFile, 1, 0, 0},
 		{0}
 	};
 };

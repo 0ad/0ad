@@ -1,4 +1,7 @@
 #include "precompiled.h"
+
+#include "CLogger.h"
+
 #include "Interact.h"
 #include "Renderer.h"
 #include "input.h"
@@ -21,6 +24,8 @@ extern CStr g_CursorName;
 
 static const float SELECT_DBLCLICK_RATE = 0.5f;
 const int ORDER_DELAY = 5;
+
+bool customSelectionMode=false;
 
 void CSelectedEntities::addSelection( HEntity entity )
 {
@@ -355,6 +360,10 @@ CVector3D CSelectedEntities::getGroupPosition( i8 groupid )
 void CSelectedEntities::update()
 {
 	static std::vector<HEntity> lastSelection;
+	
+	// Drop out immediately if we're in some special interaction mode
+	if (customSelectionMode)
+		return;
 
 	if( !( m_selected == lastSelection ) )
 	{
@@ -367,17 +376,18 @@ void CSelectedEntities::update()
 		// Can't order anything off the map
 		if( !g_Game->GetWorld()->GetTerrain()->isOnMap( g_Mouseover.m_worldposition ) )
 		{
-			m_contextOrder = -1;
+			m_defaultCommand = -1;
 			return;
 		}
-
+		
 		// Quick count to see which is the modal default order.
 
-		int defaultPoll[CEntityOrder::ORDER_LAST];
-		std::map<CStrW, int, CStrW_hash_compare> defaultCursor[CEntityOrder::ORDER_LAST];
+		const int numCommands=NMT_COMMAND_LAST - NMT_COMMAND_FIRST;
+		int defaultPoll[numCommands];
+		std::map<CStrW, int, CStrW_hash_compare> defaultCursor[numCommands];
 
 		int t, vote;
-		for( t = 0; t < CEntityOrder::ORDER_LAST; t++ )
+		for( t = 0; t < numCommands; t++ )
 			defaultPoll[t] = 0;
 
 		std::vector<HEntity>::iterator it;
@@ -385,9 +395,9 @@ void CSelectedEntities::update()
 		{
 			CEventTargetChanged evt( g_Mouseover.m_target );
 			(*it)->DispatchEvent( &evt );
-			vote = evt.m_defaultAction;
+			vote = evt.m_defaultAction - NMT_COMMAND_FIRST;
 			
-			if( ( vote >= 0 ) && ( vote < CEntityOrder::ORDER_LAST ) )
+			if( ( vote >= 0 ) && ( vote < numCommands ) )
 			{
 				defaultPoll[vote]++;
 				defaultCursor[vote][evt.m_defaultCursor]++;
@@ -395,14 +405,14 @@ void CSelectedEntities::update()
 		}
 
 		vote = -1;
-		for( t = 0; t < CEntityOrder::ORDER_LAST; t++ )
+		for( t = 0; t < numCommands; t++ )
 		{
 			if( ( vote == -1 ) || ( defaultPoll[t] > defaultPoll[vote] ) )
 				vote = t;
 		}
 
 		std::map<CStrW, int, CStrW_hash_compare>::iterator itv;
-		m_contextOrder = vote;
+		m_defaultCommand = vote + NMT_COMMAND_FIRST;
 
 		// Now find the most appropriate cursor
 		t = 0;
@@ -419,176 +429,6 @@ void CSelectedEntities::update()
 
 	if( ( m_group_highlight != -1 ) && getGroupCount( m_group_highlight ) )
 		g_Game->GetView()->SetCameraTarget( getGroupPosition( m_group_highlight ) );
-
-}
-
-void CSelectedEntities::setContext( int contextOrder )
-{
-	assert( isContextValid( contextOrder ) );
-	m_contextOrder = contextOrder;
-}
-
-bool CSelectedEntities::nextContext()
-{
-	// No valid orders? 
-	if( m_contextOrder == -1 ) return( false );
-	int t = m_contextOrder + 1;
-	while( t != m_contextOrder )
-	{
-		if( t == CEntityOrder::ORDER_LAST ) t = 0;
-		if( isContextValid( t ) ) break;
-		t++;
-	}
-	if( m_contextOrder == t )
-		return( false );
-	m_contextOrder = t;
-	return( true );
-}
-
-bool CSelectedEntities::previousContext()
-{
-	// No valid orders?
-		if( m_contextOrder == -1 ) return( false );
-	int t = m_contextOrder - 1;
-	while( t != m_contextOrder )
-	{
-		if( isContextValid( t ) ) break;
-		if( t == 0 ) t = CEntityOrder::ORDER_LAST;
-		t--;
-	}
-	if( m_contextOrder == t )
-		return( false );
-	m_contextOrder = t;
-	return( true );
-}
-
-bool CSelectedEntities::isContextValid( int contextOrder )
-{
-	if( contextOrder == -1 ) return( false );
-
-	// Can't order anything off the map
-	if( !g_Game->GetWorld()->GetTerrain()->isOnMap( g_Mouseover.m_worldposition ) )
-		return( false );
-
-	// Check to see if any member of the selection supports this order type.
-	std::vector<HEntity>::iterator it;
-	for( it = m_selected.begin(); it < m_selected.end(); it++ )
-		if( (*it)->acceptsOrder( contextOrder, g_Mouseover.m_target ) )
-			return( true );
-	return( false );
-}
-
-void CSelectedEntities::contextOrder( bool pushQueue )
-{
-	CCamera *pCamera=g_Game->GetView()->GetCamera();
-	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
-
-	std::vector<HEntity>::iterator it;
-	CEntityOrder context, contextRandomized;
-	(int&)context.m_type = m_contextOrder;
-
-	switch( m_contextOrder )
-	{
-// PATROL order: temporatily disabled until we define the network command for it
-	case CEntityOrder::ORDER_PATROL:
-	case CEntityOrder::ORDER_GOTO:
-	{
-		context.m_data[0].location = g_Mouseover.m_worldposition;
-		break;
-/*
-		CGotoCommand *msg=new CGotoCommand();
-		msg->m_Entity=m_selected[0]->me;
-		msg->m_TargetX=(u32)g_Mouseover.m_worldposition.x;
-		msg->m_TargetY=(u32)g_Mouseover.m_worldposition.y;
-		g_Game->GetSimulation()->QueueLocalCommand(msg);
-		break;
-*/
-	}
-	case CEntityOrder::ORDER_ATTACK_MELEE:
-	{
-		context.m_data[0].entity = g_Mouseover.m_target;
-		for( it = m_selected.begin(); it < m_selected.end(); it++ )
-			if( (*it)->acceptsOrder( m_contextOrder, g_Mouseover.m_target ) )
-			{
-				if( !pushQueue )
-					(*it)->clearOrders();
-				(*it)->pushOrder( context );
-			}
-		return;
-	}
-	case CEntityOrder::ORDER_GATHER:
-	{
-		context.m_data[0].entity = g_Mouseover.m_target;
-		for( it = m_selected.begin(); it < m_selected.end(); it++ )
-			if( (*it)->acceptsOrder( m_contextOrder, g_Mouseover.m_target ) )
-			{
-				if( !pushQueue )
-					(*it)->clearOrders();
-				(*it)->pushOrder( context );
-			}
-		return;
-	}
-	default:
-		break;
-	}
-
-	// Location randomizer, for group orders...
-	// Having the group turn up at the destination with /some/ sort of cohesion is good
-	// but tasking them all to the exact same point will leave them brawling for it
-	// at the other end (it shouldn't, but the PASAP pathfinder is too simplistic)
-	
-	// Task them all to a point within a radius of the target, radius depends upon
-	// the number of units in the group.
-
-	/* (Simon)
-	Hmm. Disabled in the makeshift transition to Command Message Queueing...
-
-	Ideally, we'd create a Group with the selected entities, then queue a
-	command with the Group ID as performing entity, with the center as the
-	target, then let the location randomization be done in the
-	net command=>ent. order translator (for now, CSimulation::TranslateMessage)
-
-	Unless this is a problem that'll only be around until we make the real
-	pathfinder?
-	*/
-
-	float radius = 2.0f * sqrt( (float)m_selected.size() - 1 ); 
-
-	float _x, _y;
-
-
-	for( it = m_selected.begin(); it < m_selected.end(); it++ )
-		if( ( (*it)->GetPlayer() == g_Game->GetLocalPlayer() ) && 
-			( (*it)->acceptsOrder( m_contextOrder, g_Mouseover.m_target ) ) )
-		{
-			contextRandomized = context;
-			do
-			{
-				_x = (float)( rand() % 20000 ) / 10000.0f - 1.0f;
-				_y = (float)( rand() % 20000 ) / 10000.0f - 1.0f;
-			}
-			while( ( _x * _x ) + ( _y * _y ) > 1.0f );
-
-			contextRandomized.m_data[0].location.x += _x * radius;
-			contextRandomized.m_data[0].location.y += _y * radius;
-
-			// Clamp it to within the map, just in case.
-			float mapsize = (float)g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide() * CELL_SIZE;
-
-			if( contextRandomized.m_data[0].location.x < 0.0f )
-				contextRandomized.m_data[0].location.x = 0.0f;
-			if( contextRandomized.m_data[0].location.x >= mapsize )
-				contextRandomized.m_data[0].location.x = mapsize;
-			if( contextRandomized.m_data[0].location.y < 0.0f )
-				contextRandomized.m_data[0].location.y = 0.0f;
-			if( contextRandomized.m_data[0].location.y >= mapsize )
-				contextRandomized.m_data[0].location.y = mapsize;
-			
-			if( !pushQueue )
-				(*it)->clearOrders();
-			
-			(*it)->pushOrder( contextRandomized );
-		}
 
 }
 
@@ -881,6 +721,58 @@ void CMouseoverEntities::stopBandbox()
 	m_bandbox = false;
 }
 
+void FireWorldClickEvent(uint button, int clicks)
+{
+	debug_printf("FireWorldClickEvent: button %d, clicks %d\n", button, clicks);
+	g_JSGameEvents.FireWorldClick(
+		button,
+		clicks,
+		g_Selection.m_defaultCommand,
+		-1, // FIXME Secondary command, depends entity scripts etc
+		g_Mouseover.m_target,
+		(uint)g_Mouseover.m_worldposition.x,
+		(uint)g_Mouseover.m_worldposition.y);
+}
+
+void MouseButtonUpHandler(const SDL_Event *ev, int clicks)
+{
+	FireWorldClickEvent(ev->button.button, clicks);
+	
+	switch( ev->button.button )
+	{
+	case SDL_BUTTON_LEFT:
+		if (customSelectionMode)
+			break;
+	
+		if( g_Mouseover.m_viewall )
+			break;
+
+		if( clicks == 2 )
+		{
+			// Double click
+			g_Mouseover.expandAcrossScreen();
+		}
+		else if( clicks == 3 )
+		{
+			// Triple click
+			g_Mouseover.expandAcrossWorld();
+		}
+
+		g_Mouseover.stopBandbox();
+		if( hotkeys[HOTKEY_SELECTION_ADD] )
+		{
+			g_Mouseover.addSelection();
+		}
+		else if( hotkeys[HOTKEY_SELECTION_REMOVE] )
+		{
+			g_Mouseover.removeSelection();
+		}
+		else
+			g_Mouseover.setSelection();
+		break;
+	}
+}
+
 int interactInputHandler( const SDL_Event* ev )
 {
 	if (!g_active || !g_Game)
@@ -890,13 +782,19 @@ int interactInputHandler( const SDL_Event* ev )
 	CCamera *pCamera=pView->GetCamera();
 	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
 
-	static float lastclicktime = 0.0f;
-	static HEntity lastclickobject;
-	static u8 clicks = 0;
+	// One entry for each of five mouse buttons (SDL mouse buttons 1-5, mouse
+	// buttons over 5 if existant, will be ignored)
+	static float lastclicktime[5] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
+	static HEntity lastclickobject[5];
+	static u8 clicks[5] = {0, 0, 0, 0, 0};
 
 	static u16 button_down_x, button_down_y;
+	static float button_down_time;
 	static bool button_down = false;
-
+	
+	if (customSelectionMode && ev->type != SDL_MOUSEBUTTONUP)
+		return EV_PASS;
+	
 	switch( ev->type )
 	{	
 	case SDL_HOTKEYDOWN:
@@ -908,12 +806,6 @@ int interactInputHandler( const SDL_Event* ev )
 		case HOTKEY_SELECTION_SNAP:
 			if( g_Selection.m_selected.size() )
 				pView->SetCameraTarget( g_Selection.getSelectionPosition() );
-			break;
-		case HOTKEY_CONTEXTORDER_NEXT:
-			g_Selection.nextContext();
-			break;
-		case HOTKEY_CONTEXTORDER_PREVIOUS:
-			g_Selection.previousContext();
 			break;
 		default:
 			if( ( ev->user.code >= HOTKEY_SELECTION_GROUP_0 ) && ( ev->user.code <= HOTKEY_SELECTION_GROUP_19 ) )
@@ -964,53 +856,34 @@ int interactInputHandler( const SDL_Event* ev )
 		}
 		return( EV_HANDLED );
 	case SDL_MOUSEBUTTONUP:
-		switch( ev->button.button )
+	{
+		// Assumes SDL button enums in range [1, 5]
+		int button = ev->button.button - 1;
+		// Only process buttons within the range for which we have button state
+		// arrays above.
+		if (button >= 0 && button < 5)
 		{
-		case SDL_BUTTON_LEFT:
-			if( g_Mouseover.m_viewall )
-				break;
 			float time;
 			time = (float)get_time();
 			// Reset clicks counter if too slow or if the cursor's
 			// hovering over something else now.
 			
-			if( time - lastclicktime >= SELECT_DBLCLICK_RATE )
-				clicks = 0;
-			if( g_Mouseover.m_target != lastclickobject )
-				clicks = 0;
-			clicks++;
+			if( time - lastclicktime[button] >= SELECT_DBLCLICK_RATE )
+				clicks[button] = 0;
+			if( g_Mouseover.m_target != lastclickobject[button] )
+				clicks[button] = 0;
+			clicks[button]++;
 
-			if( clicks == 2 )
-			{
-				// Double click
-				g_Mouseover.expandAcrossScreen();
-			}
-			else if( clicks == 3 )
-			{
-				// Triple click
-				g_Mouseover.expandAcrossWorld();
-			}
-			lastclicktime = time;
-			lastclickobject = g_Mouseover.m_target;
+			lastclicktime[button] = time;
+			lastclickobject[button] = g_Mouseover.m_target;
 
-			button_down = false;
-			g_Mouseover.stopBandbox();
-			if( hotkeys[HOTKEY_SELECTION_ADD] )
-			{
-				g_Mouseover.addSelection();
-			}
-			else if( hotkeys[HOTKEY_SELECTION_REMOVE] )
-			{
-				g_Mouseover.removeSelection();
-			}
-			else
-				g_Mouseover.setSelection();
-			break;
-		case SDL_BUTTON_RIGHT:
-			g_Selection.contextOrder( hotkeys[HOTKEY_ORDER_QUEUE] );
-			break;
+			if (ev->button.button == SDL_BUTTON_LEFT)
+				button_down = false;
+
+			MouseButtonUpHandler(ev, clicks[button]);
 		}
 		break;
+	}
 	case SDL_MOUSEBUTTONDOWN:
 		switch( ev->button.button )
 		{
@@ -1018,6 +891,7 @@ int interactInputHandler( const SDL_Event* ev )
 			button_down = true;
 			button_down_x = ev->button.x;
 			button_down_y = ev->button.y;
+			button_down_time = get_time();
 			break;
 		}
 		break;
@@ -1056,4 +930,14 @@ bool isMouseoverType( CEntity* ev, void* userdata )
 			return( true );
 	}
 	return( false );
+}
+
+void StartCustomSelection()
+{
+	customSelectionMode = true;
+}
+
+void ResetInteraction()
+{
+	customSelectionMode = false;
 }

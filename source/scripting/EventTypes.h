@@ -20,6 +20,7 @@ enum EEventType
 	EVENT_GAME_START = 0,
 	EVENT_GAME_TICK,
 	EVENT_SELECTION_CHANGED,
+	EVENT_WORLD_CLICK,
 };
 
 // Only used for entity events...

@@ -192,10 +192,12 @@ JSBool CProjectile::Construct( JSContext* cx, JSObject* obj, unsigned int argc, 
 	if( argc >= 7 ) 
 		Miss = argv[6]; // Script to run on impact with the floor.
 
-	CProjectile* p = g_ProjectileManager.AddProjectile( Model, Here, There, Speed / 1000.0f, Originator, Impact, Miss );
+	{
+		CProjectile* p = g_ProjectileManager.AddProjectile( Model, Here, There, Speed / 1000.0f, Originator, Impact, Miss );
 
-	*rval = ToJSVal<CProjectile>( *p );
-	return( JS_TRUE );
+		*rval = ToJSVal<CProjectile>( *p );
+		return( JS_TRUE );
+	}
 
 fail:
 	*rval = JSVAL_NULL;

@@ -7,7 +7,7 @@
 #include "precompiled.h"
 
 #include <deque>
-#include <functional>
+#include <numeric>
 
 #include "lib.h"	// error codes
 #include "timer.h"
@@ -66,7 +66,7 @@ struct LoadRequest
 	}
 };
 
-typedef std::deque<const LoadRequest> LoadRequests;
+typedef std::deque<LoadRequest> LoadRequests;
 static LoadRequests load_requests;
 
 // std::accumulate binary op; used by LDR_EndRegistering to sum up all

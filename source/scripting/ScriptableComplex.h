@@ -8,6 +8,8 @@
 
 #include <jsatom.h>
 
+#include <set>
+
 #ifndef SCRIPTABLE_COMPLEX_INCLUDED
 #define SCRIPTABLE_COMPLEX_INCLUDED
 
@@ -958,7 +960,7 @@ template<typename T, bool ReadOnly> JSPropertySpec CJSComplex<T, ReadOnly>::JSI_
 };
 
 template<typename T, bool ReadOnly> std::vector<JSFunctionSpec> CJSComplex<T, ReadOnly>::m_Methods;
-template<typename T, bool ReadOnly> typename CJSComplex<typename T, ReadOnly>::PropertyTable CJSComplex<T, ReadOnly>::m_IntrinsicProperties;
+template<typename T, bool ReadOnly> typename CJSComplex<T, ReadOnly>::PropertyTable CJSComplex<T, ReadOnly>::m_IntrinsicProperties;
 
 template<typename T, bool ReadOnly> bool CJSComplex<T, ReadOnly>::GetProperty( JSContext* cx, CStrW PropertyName, jsval* vp )
 {

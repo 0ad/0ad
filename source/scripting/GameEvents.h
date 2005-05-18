@@ -18,9 +18,43 @@ class CGameEvents : public IEventTarget, public Singleton<CGameEvents>
 	{
 		bool m_CausedByPlayer;
 	public:
-		CEventSelectionChanged( bool CausedByPlayer ) : CScriptEvent( L"selectionChanged", EVENT_SELECTION_CHANGED, false )
+		CEventSelectionChanged(bool CausedByPlayer):
+			CScriptEvent( L"selectionChanged", EVENT_SELECTION_CHANGED, false ),
+			m_CausedByPlayer(CausedByPlayer)
 		{
 			AddLocalProperty( L"byPlayer", &m_CausedByPlayer, true );
+		}
+	};
+	
+	class CEventWorldClick: public CScriptEvent
+	{
+		int m_Button;
+		int m_Clicks;
+		int m_Command;
+		int m_SecondaryCommand;
+		CEntity *m_Entity;
+		uint m_X, m_Y;
+	public:
+		CEventWorldClick(int button, int clicks, int command, int secCommand, CEntity *ent, uint x, uint y):
+			CScriptEvent(L"worldClick", EVENT_WORLD_CLICK, false),
+			m_Button(button),
+			m_Clicks(clicks),
+			m_Command(command),
+			m_SecondaryCommand(secCommand),
+			m_Entity(ent),
+			m_X(x),
+			m_Y(y)
+		{
+			AddLocalProperty(L"button", &m_Button);
+			AddLocalProperty(L"clicks", &m_Clicks);
+			AddLocalProperty(L"command", &m_Command);
+			AddLocalProperty(L"secondaryCommand", &m_SecondaryCommand);
+			if (ent)
+				AddLocalProperty(L"entity", &m_Entity);
+			else
+				AddProperty(L"entity", JSVAL_NULL);
+			AddLocalProperty(L"x", &m_X);
+			AddLocalProperty(L"y", &m_Y);
 		}
 	};
 
@@ -29,6 +63,12 @@ public:
 	{
 		CEventSelectionChanged evt( CausedByPlayer );
 		DispatchEvent( &evt );
+	}
+	
+	void FireWorldClick(int button, int clicks, int command, int secCommand, CEntity *ent, uint x, uint y)
+	{
+		CEventWorldClick evt(button, clicks, command, secCommand, ent, x, y);
+		DispatchEvent(&evt);
 	}
 };
 

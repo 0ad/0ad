@@ -13,6 +13,7 @@
 #include "LightEnv.h"
 #include "MapWriter.h"
 #include "GameEvents.h"
+#include "Interact.h"
 
 #include "Game.h"
 #include "Network/Server.h"
@@ -82,6 +83,8 @@ JSFunctionSpec ScriptFunctionTable[] =
 
 	{"v3dist", v3dist, 2, 0, 0 },
 
+	{"issueCommand", issueCommand, 2, 0, 0 },
+	
 	{"exit", exitProgram, 0, 0, 0 },
 	{"crash", crash, 0, 0, 0 },
 	{"forceGC", forceGC, 0, 0, 0 },
@@ -108,6 +111,7 @@ JSPropertySpec ScriptGlobalTable[] =
 	{ "players", 0, JSPROP_PERMANENT | JSPROP_READONLY, GetPlayerSet, NULL },
 	{ "localPlayer", 0, JSPROP_PERMANENT, GetLocalPlayer, SetLocalPlayer },
 	{ "gaiaPlayer", 0, JSPROP_PERMANENT | JSPROP_READONLY, GetGaiaPlayer, NULL },
+	{ "gameView", 0, JSPROP_PERMANENT | JSPROP_READONLY, GetGameView, NULL },
 	{ 0, 0, 0, 0, 0 },
 };
 
@@ -235,6 +239,15 @@ JSBool SetLocalPlayer( JSContext* context, JSObject* obj, jsval id, jsval* vp )
 	}
 
 	g_Game->SetLocalPlayer( newLocalPlayer );
+	return( JS_TRUE );
+}
+
+JSBool GetGameView( JSContext* cx, JSObject* globalObject, jsval id, jsval* vp )
+{
+	if (g_Game)
+		*vp = OBJECT_TO_JSVAL( g_Game->GetView()->GetScript() );
+	else
+		*vp = JSVAL_NULL;
 	return( JS_TRUE );
 }
 
@@ -551,5 +564,32 @@ JSBool _rewriteMaps(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globa
 {
 	extern CLightEnv g_LightEnv;
 	CMapWriter::RewriteAllMaps(g_Game->GetWorld()->GetTerrain(), g_Game->GetWorld()->GetUnitManager(), &g_LightEnv);
+	return JS_TRUE;
+}
+
+JSBool issueCommand(JSContext* context, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* rval)
+{
+	assert(argc >= 2);
+	assert(JSVAL_IS_OBJECT(argv[0]));
+	
+	CEntityList entities;
+
+	if (JS_GetClass(JSVAL_TO_OBJECT(argv[0])) == &CEntity::JSI_class)
+		entities.push_back( (ToNative<CEntity>(argv[0])) ->me);
+	else	
+		entities = *EntityCollection::RetrieveSet(context, JSVAL_TO_OBJECT(argv[0]));
+
+	CNetMessage *msg=CNetMessage::CommandFromJSArgs(entities, context, argc-1, argv+1);
+	if (msg)
+	{
+		g_Console->InsertMessage(L"issueCommand: %hs", msg->GetString().c_str());
+		*rval = g_ScriptingHost.UCStringToValue(msg->GetString());
+		
+		g_Game->GetSimulation()->QueueLocalCommand(msg);
+	}
+	else
+	{
+		*rval = JSVAL_FALSE;
+	}
 	return JS_TRUE;
 }

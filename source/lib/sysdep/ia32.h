@@ -18,8 +18,8 @@
 #ifndef IA32_H
 #define IA32_H
 
-#ifndef _M_IX86
-#error "including ia32.h without _M_IX86 defined"
+#if !(defined(__GNUC__) && defined(i386)) && !defined(_M_IX86)
+#error "including ia32.h without _M_IX86 (or both __GNUC__ and i386) defined"
 #endif
 
 #include "lib/types.h"

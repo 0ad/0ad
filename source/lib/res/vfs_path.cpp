@@ -119,7 +119,7 @@ bool path_component_valid(const char* name)
 
 
 // convenience function
-inline void path_copy(char* dst, const char* src)
+void path_copy(char* dst, const char* src)
 {
 	strcpy_s(dst, VFS_MAX_PATH, src);
 }

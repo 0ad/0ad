@@ -1,3 +1,6 @@
+#ifndef SYSDEP_CPU_H
+#define SYSDEP_CPU_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -39,4 +42,6 @@ extern void serialize();
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

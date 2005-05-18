@@ -9,6 +9,8 @@
 #define SCHEDULER_INCLUDED
 
 #include <queue>
+#include <list>
+
 #include "EntityMessage.h"
 #include "EntityHandles.h"
 #include "Singleton.h"
@@ -73,7 +75,7 @@ struct CScheduler : public Singleton<CScheduler>
 
 class CJSProgressTimer : public CJSObject<CJSProgressTimer>
 {
-	friend CScheduler;
+	friend struct CScheduler;
 	double m_Max, m_Current, m_Increment;
 	JSFunction* m_Callback;
 	JSObject* m_OperateOn;

@@ -31,7 +31,7 @@ class CObjectManager : public Singleton<CObjectManager>
 public:
 	struct ObjectKey
 	{
-		ObjectKey(CStr& name, CObjectBase::variation_key& var)
+		ObjectKey(const CStr& name, const CObjectBase::variation_key& var)
 			: ActorName(name), ActorVariation(var) {}
 
 		CStr ActorName;

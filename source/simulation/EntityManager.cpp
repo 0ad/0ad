@@ -54,7 +54,7 @@ HEntity CEntityManager::create( CBaseEntity* base, CVector3D position, float ori
 {
 	assert( base );
 	if( !base )
-		return( HEntity() );
+		return HEntity();
 
 	while( m_entities[m_nextalloc].m_refcount )
 	{

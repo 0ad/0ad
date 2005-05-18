@@ -17,8 +17,9 @@
 
 #include "lib/res/vfs.h"
 
-#define LOG_CATEGORY "graphics"
+#include <sstream>
 
+#define LOG_CATEGORY "graphics"
 
 CObjectEntry::CObjectEntry(int type, CObjectBase* base)
 : m_Model(0), m_Type(type), m_Base(base), m_Color(1.0f, 1.0f, 1.0f, 1.0f)

@@ -25,6 +25,7 @@
 #include "detect.h"
 #include "adts.h"
 #include "sysdep/sysdep.h"
+#include "byte_order.h"
 
 #include <vector>
 #include <algorithm>

@@ -143,7 +143,7 @@ public:
 	}
 	void Uproot()
 	{
-		if( JSVAL_IS_GCTHING( m_Data ) )
+		if( JSVAL_IS_GCTHING( m_Data ))
 			JS_RemoveRoot( g_ScriptingHost.GetContext(), (void*)&m_Data );
 	}
 	jsval Get( JSContext* cx, IJSObject* object )
@@ -439,7 +439,7 @@ template<typename T, bool ReadOnly> JSPropertySpec CJSObject<T, ReadOnly>::JSI_p
 
 template<typename T, bool ReadOnly> std::vector<JSFunctionSpec> CJSObject<T, ReadOnly>::m_Methods;
 
-template<typename T, bool ReadOnly> typename CJSObject<typename T, ReadOnly>::PropertyTable CJSObject<T, ReadOnly>::m_NativeProperties;
+template<typename T, bool ReadOnly> typename CJSObject<T, ReadOnly>::PropertyTable CJSObject<T, ReadOnly>::m_NativeProperties;
 
 #endif
 

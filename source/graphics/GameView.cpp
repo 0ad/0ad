@@ -5,6 +5,7 @@
 #include "GameView.h"
 #include "Game.h"
 #include "Camera.h"
+#include "Interact.h"
 
 #include "Matrix3D.h"
 #include "Renderer.h"
@@ -66,6 +67,8 @@ CGameView::CGameView(CGame *pGame):
 	m_Camera.m_Orientation.RotateY(DEGTORAD(-45));
 	m_Camera.m_Orientation.Translate (100, 150, -100);
 	g_Renderer.SetCamera(m_Camera);
+	
+	ONCE( ScriptingInit(); );
 }
 
 CGameView::~CGameView()
@@ -73,6 +76,13 @@ CGameView::~CGameView()
 	UnloadResources();
 }
 
+void CGameView::ScriptingInit()
+{
+	AddMethod<bool, &CGameView::JSI_StartCustomSelection>("startCustomSelection", 0);
+	AddMethod<bool, &CGameView::JSI_EndCustomSelection>("endCustomSelection", 0);
+
+	CJSObject<CGameView>::ScriptingInit("GameView");
+}
 
 int CGameView::Initialize(CGameAttributes *pAttribs)
 {
@@ -690,4 +700,16 @@ int game_view_handler(const SDL_Event* ev)
 	}
 
 	return EV_PASS;
+}
+
+bool CGameView::JSI_StartCustomSelection(JSContext* context, unsigned int argc, jsval* argv)
+{
+	StartCustomSelection();	
+	return true;
+}
+
+bool CGameView::JSI_EndCustomSelection(JSContext* context, unsigned int argc, jsval* argv)
+{
+	ResetInteraction();
+	return true;
 }

@@ -101,7 +101,8 @@ CObjectEntry* CObjectManager::FindObject(const char* objname)
 	CObjectBase::variation_key var;
 	base->CalculateVariation(choices, var);
 
-	return FindObjectVariation(base, var, var.begin());
+	CObjectBase::variation_key::iterator vars_it=var.begin();
+	return FindObjectVariation(base, var, vars_it);
 }
 
 CObjectEntry* CObjectManager::FindObjectVariation(const char* objname, CObjectBase::variation_key vars, CObjectBase::variation_key::iterator& vars_it)

@@ -18,59 +18,6 @@ ERROR_GROUP(Game);
 // This may be overriden by system.cfg ("max_players")
 #define PS_MAX_PLAYERS 6
 
-/*
-<<<<<<< .mine
-namespace PlayerArray_JS
-{
-	JSBool GetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );	
-};
-
-#define g_GameAttributes CGameAttributes::GetSingleton()
-class CGameAttributes:
-	public CSynchedJSObject<CGameAttributes>,
-	public Singleton<CGameAttributes>
-{
-public:
-	typedef void (UpdateCallback)(CStrW name, CStrW newValue, void *data);
-
-private:
-	friend JSBool PlayerArray_JS::GetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
-
-	virtual void Update(CStrW name, ISynchedJSProperty *attrib);
-	
-	UpdateCallback *m_UpdateCB;
-	void *m_UpdateCBData;
-	
-	CPlayer::UpdateCallback *m_PlayerUpdateCB;
-	void *m_PlayerUpdateCBData;
-	
-	jsval JSGetPlayers();
-
-public:
-	CStrW m_MapFile;
-	uint m_NumPlayers;
-	
-	CGameAttributes();
-	virtual ~CGameAttributes();
-	
-	void SetValue(CStrW name, CStrW value);
-	
-	inline void SetUpdateCallback(UpdateCallback *cb, void *userdata)
-	{
-		m_UpdateCB=cb;
-		m_UpdateCBData=userdata;
-	}
-	
-	void SetPlayerUpdateCallback(CPlayer::UpdateCallback *cb, void *userdata);
-	
-	std::vector <CPlayer *> m_Players;
-	JSObject *m_PlayerArrayJS;
-
-	static void ScriptingInit();
-};
-=======
->>>>>>> .r2037
-*/
 class CGame
 {
 	CWorld m_World;

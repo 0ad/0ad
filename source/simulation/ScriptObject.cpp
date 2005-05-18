@@ -94,7 +94,7 @@ bool CScriptObject::Run( JSObject* Context, jsval* rval, uintN argc, jsval* argv
 bool CScriptObject::Run( JSObject* Context, uintN argc, jsval* argv )
 {
 	jsval Temp;
-	if( !Run( Context, &Temp ) )
+	if( !Run( Context, &Temp, argc, argv ) )
 		return( false );
 	return( g_ScriptingHost.ValueToBool( Temp ) );
 }

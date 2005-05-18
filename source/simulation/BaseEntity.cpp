@@ -245,7 +245,7 @@ bool CBaseEntity::loadXML( CStr filename )
 			CStrW EventName = L"on" + (CStrW)Child.getAttributes().getNamedItem( at_on );
 
 			CStrW Code (Child.getText());
-			CStrW ExternalFunction = (CStrW)Child.getAttributes().getNamedItem( at_function );
+			utf16string ExternalFunction = Child.getAttributes().getNamedItem( at_function );
 
 			// Does a property with this name already exist?
 
@@ -253,10 +253,10 @@ bool CBaseEntity::loadXML( CStr filename )
 			{
 				if( CStrW( EventNames[eventID] ) == EventName )
 				{
-					if( ExternalFunction != CStrW() )
+					if( ExternalFunction != utf16string() )
 					{
 						jsval fnval;
-						JSBool ret = JS_GetUCProperty( g_ScriptingHost.GetContext(), g_ScriptingHost.GetGlobalObject(), ExternalFunction.c_str(), ExternalFunction.Length(), &fnval );
+						JSBool ret = JS_GetUCProperty( g_ScriptingHost.GetContext(), g_ScriptingHost.GetGlobalObject(), ExternalFunction.c_str(), ExternalFunction.size(), &fnval );
 						assert( ret );
 						JSFunction* fn = JS_ValueToFunction( g_ScriptingHost.GetContext(), fnval );
 						if( !fn )
@@ -346,7 +346,7 @@ void CBaseEntity::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement&
 void CBaseEntity::ScriptingInit()
 {
 	AddMethod<jsval, &CBaseEntity::ToString>( "toString", 0 );
-	AddClassProperty( L"traits.id.classes", (GetFn)getClassSet, (SetFn)setClassSet );
+	AddClassProperty( L"traits.id.classes", (GetFn)&CBaseEntity::getClassSet, (SetFn)&CBaseEntity::setClassSet );
 
 	CJSComplex<CBaseEntity>::ScriptingInit( "EntityTemplate" );
 }

@@ -4,6 +4,7 @@
 #include "timer.h"
 #include "sysdep/sysdep.h"
 
+#include <stdarg.h>
 #include <sys/types.h>
 #include <signal.h>
 #include <unistd.h>

@@ -324,7 +324,7 @@ bool CNetClient::InGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 	CHAIN(BaseHandler);
 	CHAIN(ChatHandler);
 
-	if (msgType >= NMT_COMMAND_FIRST && msgType <= NMT_COMMAND_LAST)
+	if (msgType >= NMT_COMMAND_FIRST && msgType < NMT_COMMAND_LAST)
 	{
 		pClient->QueueMessage(1, pMsg);
 		TAKEN(pMsg);

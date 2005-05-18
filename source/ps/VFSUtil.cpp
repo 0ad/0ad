@@ -7,6 +7,8 @@
 #include "CLogger.h"
 #define LOG_CATEGORY "vfs"
 
+#include <deque>
+
 using namespace VFSUtil;
 
 // Because I'm lazy, and it saves a few lines of code in other places:
@@ -73,7 +75,7 @@ int VFSUtil::EnumDirEnts(const CStr start_path, const char* user_filter,
 	// (less stack usage; avoids seeks by reading all entries in a
 	// directory consecutively)
 
-	std::deque<const CStr> dir_queue;
+	std::deque<CStr> dir_queue;
 	dir_queue.push_back(start_path);
 
 	// for each directory:

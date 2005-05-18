@@ -32,10 +32,10 @@
 
 #include <map>
 #include <list>
+#include <deque>  
 #include <vector>
 #include <string>
 #include <algorithm>
-
 
 // currently not thread safe. will have to change that if
 // a prefetch thread is to be used.
@@ -294,7 +294,7 @@ struct DirAndPath
 		: dir(d), path(p) {}
 };
 
-typedef std::deque<const DirAndPath> DirQueue;
+typedef std::deque<DirAndPath> DirQueue;
 
 
 // passed through TDir::addR's file_enum to dirent_cb

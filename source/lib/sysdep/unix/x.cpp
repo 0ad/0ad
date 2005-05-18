@@ -24,6 +24,7 @@
 #include <Xatom.h>
 
 #include "lib.h"
+#include "sysdep/debug.h"
 #include "detect.h"
 
 #include <algorithm>
@@ -152,7 +153,7 @@ wchar_t *clipboard_get()
 			&len, &bytes_left,
 			&data);
 		if (result != Success)
-			debug_out("clipboard_get: result: %d type:%d len:%d format:%d bytes_left:%d\n", 
+			debug_printf("clipboard_get: result: %d type:%d len:%d format:%d bytes_left:%d\n", 
 				result, (int)type, len, format, bytes_left);
 		if (result == Success && bytes_left > 0)
 		{
@@ -163,8 +164,8 @@ wchar_t *clipboard_get()
 			
 			if (result == Success)
 			{
-				debug_out("clipboard_get: XGetWindowProperty succeeded, returning data\n");
-				debug_out("clipboard_get: data was: \"%s\", type was %d, XA_STRING atom is %d\n", data, type, XA_STRING);
+				debug_printf("clipboard_get: XGetWindowProperty succeeded, returning data\n");
+				debug_printf("clipboard_get: data was: \"%s\", type was %d, XA_STRING atom is %d\n", data, type, XA_STRING);
 				
 				if (type == XA_STRING) //Latin-1: Just copy into low byte of wchar_t
 				{
@@ -177,7 +178,7 @@ wchar_t *clipboard_get()
 			}
 			else
 			{
-				debug_out("clipboard_get: XGetWindowProperty failed!\n");
+				debug_printf("clipboard_get: XGetWindowProperty failed!\n");
 				return NULL;
 			}
 		}

@@ -18,6 +18,7 @@
 
 #include "precompiled.h"
 
+#include <set>
 #include <algorithm>
 
 #include "lib.h"
@@ -29,7 +30,6 @@
 #ifndef PERFORM_SELF_TEST
 #define PERFORM_SELF_TEST 0
 #endif
-
 
 /*
 liberties taken:

@@ -56,9 +56,12 @@ enum ENetMessageType
 	NMT_StartGame,
 	/* In-Game Stage */
 	NMT_EndCommandBatch,
-	NMT_COMMAND_FIRST,
-	NMT_GotoCommand=NMT_COMMAND_FIRST,
-	NMT_COMMAND_LAST=NMT_GotoCommand,
+	NMT_Goto, NMT_COMMAND_FIRST=NMT_Goto,
+	NMT_Patrol,
+	NMT_AddWaypoint,
+	NMT_AttackMelee,
+	NMT_Gather,
+	NMT_COMMAND_LAST,
 	/* Post-Game Stage */
 
 	/**
@@ -120,6 +123,7 @@ enum
 
 #define ALLNETMSGS_DONT_CREATE_NMTS
 #define START_NMT_CLASS_(_nm) START_NMT_CLASS(C ## _nm, NMT_ ## _nm)
+#define DERIVE_NMT_CLASS_(_base, _nm) START_NMT_CLASS_DERIVED(C ## _base, C ## _nm, NMT_ ## _nm)
 
 START_NMTS()
 
@@ -198,24 +202,32 @@ START_NMT_CLASS_(EndCommandBatch)
 	NMT_FIELD_INT(m_TurnLength, u32, 2)
 END_NMT_CLASS()
 
-START_NMT_CLASS_(GotoCommand)
-	NMT_FIELD(HEntity, m_Entity)
+START_NMT_CLASS(CCommand, NMT_NONE)
+	NMT_FIELD(CEntityList, m_Entities)
+END_NMT_CLASS()
+
+DERIVE_NMT_CLASS_(Command, Goto)
 	NMT_FIELD_INT(m_TargetX, u32, 2)
 	NMT_FIELD_INT(m_TargetY, u32, 2)
 END_NMT_CLASS()
 
-/*
-#define NMT_FIELD_MAPPOS(_nm) NMT_FIELD_INT(_nm##X, u32, 2)	NMT_FIELD_INT(_nm##Y, u32, 2)
-	
-START_NMT_CLASS_(SetWaypoint)
-	NMT_FIELD(HEntity, m_Entity)
-	NMT_FIELD_MAPPOS(m_Target)
+DERIVE_NMT_CLASS_(Command, Patrol)
+	NMT_FIELD_INT(m_TargetX, u32, 2)
+	NMT_FIELD_INT(m_TargetY, u32, 2)
 END_NMT_CLASS()
 
-START_NMT_CLASS_(AddWaypoint)
-	NMT_FIELD(HEntity, m_Entity)
-	NMT_FIELD_MAPPOS(m_Target)
-END_NMY_CLASS()*/
+DERIVE_NMT_CLASS_(Command, AddWaypoint)
+	NMT_FIELD_INT(m_TargetX, u32, 2)
+	NMT_FIELD_INT(m_TargetY, u32, 2)
+END_NMT_CLASS()
+
+DERIVE_NMT_CLASS_(Command, AttackMelee)
+	NMT_FIELD(HEntity, m_Target)
+END_NMT_CLASS()
+
+DERIVE_NMT_CLASS_(Command, Gather)
+	NMT_FIELD(HEntity, m_Target)
+END_NMT_CLASS()
 
 END_NMTS()
 

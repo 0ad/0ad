@@ -215,7 +215,7 @@ public:
 	{
 	public:
 		typedef std::forward_iterator_tag iterator_category;
-		typedef T T;
+		typedef ::T T;
 		typedef T value_type;
 		typedef ptrdiff_t difference_type;
 		typedef const T* pointer;
@@ -623,14 +623,14 @@ void tree_init()
 	tree_root_dir->init();
 }
 
-inline void tree_clear()
+void tree_clear()
 {
 	tree_root_dir->clearR();
 }
 
 
 // write a representation of the VFS tree to stdout.
-inline void tree_display()
+void tree_display()
 {
 	tree_root_dir->displayR(0);
 }

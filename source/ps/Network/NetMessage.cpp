@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <map>
 
+#include "Entity.h"
+
 #define ALLNETMSGS_IMPLEMENT
 
 #include "NetMessage.h"
@@ -69,3 +71,98 @@ CNetMessage *CNetMessage::DeserializeMessage(ENetMessageType type, u8 *buffer, u
 	return (pDes)(buffer, length);
 }
 
+void CNetMessage::ScriptingInit()
+{
+#define def(_msg) g_ScriptingHost.DefineConstant(#_msg, _msg)
+	
+	def(NMT_Goto);
+	def(NMT_Patrol);
+	def(NMT_AddWaypoint);
+	def(NMT_AttackMelee);
+	def(NMT_Gather);
+}
+
+CCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSContext *cx, uintN argc, jsval *argv)
+{
+	assert(argc >= 1);
+
+	int msgType;
+
+	try
+	{
+		msgType = g_ScriptingHost.ValueToInt( argv[0] );
+	}
+	catch(PSERROR_Scripting_ConversionFailed)
+	{
+		JS_ReportError(cx, "Invalid order type");
+		return NULL;
+	}
+	
+	#define ArgumentCountError() STMT(\
+			JS_ReportError(cx, "Too few parameters!"); \
+			return NULL; )
+	#define ArgumentTypeError() STMT(\
+			JS_ReportError(cx, "Parameter type error!"); \
+			return NULL; )
+	#define ReadPosition(_msg, _field) \
+		try { \
+			if (argIndex+2 > argc) \
+				ArgumentCountError();\
+			if (!JSVAL_IS_INT(argv[argIndex]) || !JSVAL_IS_INT(argv[argIndex+1])) \
+				ArgumentTypeError(); \
+			_msg->_field ## X = g_ScriptingHost.ValueToInt(argv[argIndex++]); \
+			_msg->_field ## Y = g_ScriptingHost.ValueToInt(argv[argIndex++]); \
+		} catch (PSERROR_Scripting_ConversionFailed) { \
+			JS_ReportError(cx, "Invalid location"); \
+			return NULL; \
+		}
+	#define ReadEntity(_msg, _field) \
+		STMT(\
+			if (argIndex+1 > argc) \
+				ArgumentCountError(); \
+			if (!JSVAL_IS_OBJECT(argv[argIndex])) \
+				ArgumentTypeError(); \
+			CEntity *ent=ToNative<CEntity>(argv[argIndex++]); \
+			if (!ent) \
+			{ \
+				JS_ReportError(cx, "Invalid entity parameter"); \
+				return NULL; \
+			} \
+			_msg->_field=ent->me; \
+		)
+	
+	#define PositionMessage(_msg) \
+		case NMT_ ## _msg: \
+		{ \
+			C##_msg *msg = new C##_msg(); \
+			msg->m_Entities = entities; \
+			ReadPosition(msg, m_Target); \
+			return msg; \
+		}
+	
+	#define EntityMessage(_msg) \
+		case NMT_ ## _msg: \
+		{ \
+			C##_msg *msg = new C##_msg(); \
+			msg->m_Entities = entities; \
+			ReadEntity(msg, m_Target); \
+			return msg; \
+		}
+	
+	// argIndex, incremented by reading macros. We have already "eaten" the
+	// first argument (message type)
+	uint argIndex = 1;
+	switch (msgType)
+	{
+		// NMT_Goto, targetX, targetY
+		PositionMessage(Goto)
+		PositionMessage(Patrol)
+		PositionMessage(AddWaypoint)
+		
+		EntityMessage(AttackMelee)
+		EntityMessage(Gather)
+		default:
+			JS_ReportError(cx, "Invalid order type");
+			return NULL;
+	}
+}

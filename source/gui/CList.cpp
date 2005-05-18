@@ -93,7 +93,7 @@ void CList::SetupText()
 
 	// Generate texts
 	float buffered_y = 0.f;
-
+	
 	for (int i=0; i<(int)pList->m_Items.size(); ++i)
 	{
 		// Create a new SGUIText. Later on, input it using AddText()
@@ -107,7 +107,7 @@ void CList::SetupText()
 		AddText(text);
 	}
 
-	m_ItemsYPositions[i] = buffered_y;
+	m_ItemsYPositions[pList->m_Items.size()] = buffered_y;
 	
 	//if (! scrollbar)
 	//	CalculateTextPosition(m_CachedActualSize, m_TextPos, *m_GeneratedTexts[0]);

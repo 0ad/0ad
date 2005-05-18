@@ -9,6 +9,7 @@
 #undef START_NMTS
 #undef END_NMTS
 #undef START_NMT_CLASS
+#undef START_NMT_CLASS_DERIVED
 #undef NMT_FIELD_INT
 #undef NMT_FIELD
 #undef NMT_START_ARRAY
@@ -32,18 +33,29 @@
 #define START_NMTS()
 #define END_NMTS()
 
+#define START_NMT_CLASS(_nm, _tp) \
+	START_NMT_CLASS_DERIVED(CNetMessage, _nm, _tp)
+
 /**
  * Start the definition of a network message type.
  *
+ * @param _base The name of the base class of the message
  * @param _nm The name of the class
  * @param _tp The NetMessageType associated with the class. It is *not* safe to
  * have several classes with the same value of _tp in the same executable
  */
-#define START_NMT_CLASS(_nm, _tp) \
+#define START_NMT_CLASS_DERIVED(_base, _nm, _tp) \
 CNetMessage *Deserialize##_nm(const u8 *, uint); \
-struct _nm: public CNetMessage \
+class _nm: public _base \
 { \
-	_nm(): CNetMessage(_tp) {} \
+protected: \
+	_nm(ENetMessageType type): _base(type) {}\
+	\
+	/* This one is for subclasses that want to use the base class' string */ \
+	/* converters to get SubMessage { <parent fields>, ... } */ \
+	CStr GetStringRaw() const;\
+public: \
+	_nm(): _base(_tp) {} \
 	virtual uint GetSerializedLength() const; \
 	virtual u8 *Serialize(u8 *buffer) const; \
 	virtual const u8 *Deserialize(const u8 *pos, const u8 *end); \
@@ -103,9 +115,11 @@ struct _nm: public CNetMessage \
 #define END_NMTS()
 
 #define START_NMT_CLASS(_nm, _tp) \
+	START_NMT_CLASS_DERIVED(CNetMessage, _nm, _tp)
+#define START_NMT_CLASS_DERIVED(_base, _nm, _tp) \
 uint _nm::GetSerializedLength() const \
 { \
-	uint ret=0; \
+	uint ret=_base::GetSerializedLength(); \
 	const _nm *thiz=this;
 
 #define NMT_START_ARRAY(_nm) \
@@ -140,10 +154,12 @@ uint _nm::GetSerializedLength() const \
 #define END_NMTS()
 
 #define START_NMT_CLASS(_nm, _tp) \
+	START_NMT_CLASS_DERIVED(CNetMessage, _nm, _tp)
+#define START_NMT_CLASS_DERIVED(_base, _nm, _tp) \
 u8 *_nm::Serialize(u8 *buffer) const \
 { \
 	/*printf("In " #_nm "::Serialize()\n");*/ \
-	u8 *pos=buffer; \
+	u8 *pos=_base::Serialize(buffer); \
 	const _nm *thiz=this;
 
 #define NMT_START_ARRAY(_nm) \
@@ -181,6 +197,8 @@ u8 *_nm::Serialize(u8 *buffer) const \
 #define BAIL_DESERIALIZER return NULL
 
 #define START_NMT_CLASS(_nm, _tp) \
+	START_NMT_CLASS_DERIVED(CNetMessage, _nm, _tp)
+#define START_NMT_CLASS_DERIVED(_base, _nm, _tp) \
 CNetMessage *Deserialize##_nm(const u8 *buffer, uint length) \
 { \
 	_nm *ret=new _nm(); \
@@ -191,6 +209,7 @@ CNetMessage *Deserialize##_nm(const u8 *buffer, uint length) \
 } \
 const u8 *_nm::Deserialize(const u8 *pos, const u8 *end) \
 { \
+	pos=_base::Deserialize(pos, end); \
 	_nm *thiz=this; \
 	/*printf("In Deserialize" #_nm "\n"); */
 
@@ -229,6 +248,8 @@ const u8 *_nm::Deserialize(const u8 *pos, const u8 *end) \
 #define END_NMTS() { NMT_NONE, NULL } };
 
 #define START_NMT_CLASS(_nm, _tp) \
+	START_NMT_CLASS_DERIVED(CNetMessage, _nm, _tp)
+#define START_NMT_CLASS_DERIVED(_base, _nm, _tp) \
 	{ _tp, Deserialize##_nm },
 
 #define NMT_START_ARRAY(_nm)
@@ -254,6 +275,22 @@ const u8 *_nm::Deserialize(const u8 *pos, const u8 *end) \
 CStr _nm::GetString() const \
 { \
 	CStr ret=#_nm _T(" { "); \
+	return ret + GetStringRaw() + _T(" }"); \
+} \
+CStr _nm::GetStringRaw() const \
+{ \
+	CStr ret; \
+	const _nm *thiz=this;
+
+#define START_NMT_CLASS_DERIVED(_base, _nm, _tp) \
+CStr _nm::GetString() const \
+{ \
+	CStr ret=#_nm _T(" { "); \
+	return ret + GetStringRaw() + _T(" }"); \
+} \
+CStr _nm::GetStringRaw() const \
+{ \
+	CStr ret=_base::GetStringRaw() + _T(", "); \
 	const _nm *thiz=this;
 
 #define NMT_START_ARRAY(_nm) \
@@ -281,7 +318,7 @@ CStr _nm::GetString() const \
 	ret += _T(", ");
 
 #define END_NMT_CLASS() \
-	return ret.GetSubstring(0, ret.Length()-2)+_T(" }"); \
+	return ret.GetSubstring(0, ret.Length()-2); \
 }
 
 #include "NMTCreator.h"

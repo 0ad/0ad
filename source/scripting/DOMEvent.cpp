@@ -148,7 +148,7 @@ void CScriptEvent::ScriptingInit()
 	AddMethod<jsval, &CScriptEvent::ToString>( "toString", 0 );
 	AddMethod<jsval, &CScriptEvent::PreventDefault>( "preventDefault", 0 );
 	AddMethod<jsval, &CScriptEvent::PreventDefault>( "cancel", 0 );
-	AddMethod<jsval, StopPropagation>( "stopPropagation", 0 );
+	AddMethod<jsval, &CScriptEvent::StopPropagation>( "stopPropagation", 0 );
 
 	AddProperty( L"type", &CScriptEvent::m_Type, true );
 	AddProperty( L"cancelable", &CScriptEvent::m_Cancelable, true );

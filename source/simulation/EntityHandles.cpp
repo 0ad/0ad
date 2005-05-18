@@ -129,3 +129,57 @@ HEntity::operator CStr() const
 	sprintf(buf, "Entity#%04x", m_handle);
 	return CStr(buf);
 }
+
+uint CEntityList::GetSerializedLength() const
+{
+	return 2*size();
+}
+
+u8 *CEntityList::Serialize(u8 *buffer) const
+{
+	for (int i=0;i<size();i++)
+		Serialize_int_2(buffer, at(i).m_handle);
+	Serialize_int_2(buffer, back().m_handle | HANDLE_SENTINEL_BIT);
+	return buffer;
+}
+
+const u8 *CEntityList::Deserialize(const u8 *buffer, const u8 *end)
+{
+	u16 n=0, handle;
+	while (!(n & HANDLE_SENTINEL_BIT))
+	{
+		Deserialize_int_2(buffer, n);
+		handle = n & ~HANDLE_SENTINEL_BIT;
+		// We have to validate the data, or the HEntity constructor will assert
+		// on us.
+		// FIXME 4096 shouldn't be hard-coded
+		// FIXME We should also check that the entity actually exists
+		if (handle < 4096 && handle != INVALID_HANDLE)
+			push_back(HEntity(handle));
+	}
+	return buffer;
+}
+
+CEntityList::operator CStr() const
+{
+	if (size() == 0)
+	{
+		return CStr("Entities {}");
+	}
+	else if (size() == 1)
+	{
+		return front().operator CStr();
+	}
+	else
+	{
+		CStr buf="{ ";
+		buf += front().operator CStr();
+		for (const_iterator it=begin();it != end();++it)
+		{
+			buf += ", ";
+			buf += it->operator CStr();
+		}
+		buf += " }";
+		return buf;
+	}
+}

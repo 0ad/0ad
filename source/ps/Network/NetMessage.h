@@ -11,6 +11,9 @@
 #include "AllNetMessages.h"
 #undef ALLNETMSGS_DONT_CREATE_NMTS
 
+class CCommand;
+class CEntityList;
+
 /**
  * The base class for network messages
  */
@@ -63,6 +66,14 @@ public:
 	 * there was an error in data format.
 	 */
 	static CNetMessage *DeserializeMessage(ENetMessageType type, u8 *buffer, uint length);
+	
+	/**
+	 * Register a selection of message types as JS constants.
+	 * The constant's names will be the same as those of the enums
+	 */
+	static void ScriptingInit();
+	
+	static CCommand *CommandFromJSArgs(const CEntityList &entities, JSContext* cx, uintN argc, jsval* argv);
 };
 
 typedef CNetMessage * (*NetMessageDeserializer) (const u8 *buffer, uint length);

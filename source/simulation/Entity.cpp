@@ -648,7 +648,7 @@ void CEntity::ScriptingInit()
 	AddMethod<jsval, &CEntity::GetSpawnPoint>( "getSpawnPoint", 1 );
 	
 	AddClassProperty( L"template", (CBaseEntity* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
-	AddClassProperty( L"traits.id.classes", (GetFn)getClassSet, (SetFn)setClassSet );
+	AddClassProperty( L"traits.id.classes", (GetFn)&CEntity::getClassSet, (SetFn)&CEntity::setClassSet );
 
 	CJSComplex<CEntity>::ScriptingInit( "Entity", Construct, 2 );
 }

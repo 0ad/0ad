@@ -40,7 +40,7 @@ void CPlayer::ScriptingInit()
 
 	// AddClassProperty( L"name", &CPlayer::m_Name );
 	// AddClassProperty( L"colour", &CPlayer::m_Colour );
-	AddProperty( L"controlled", (IJSObject::GetFn)JSI_GetControlledEntities );
+	AddProperty( L"controlled", (IJSObject::GetFn)&CPlayer::JSI_GetControlledEntities );
 
 	CJSObject<CPlayer>::ScriptingInit( "Player" );
 }

@@ -10,7 +10,7 @@
 #include "Vector3D.h"
 #include "Vector2D.h"
 #include "Singleton.h"
-#include "Scripting/ScriptableObject.h"
+#include "scripting/ScriptableObject.h"
 #include "scripting/DOMEvent.h"
 #include "ScriptObject.h"
 

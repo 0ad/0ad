@@ -1,5 +1,7 @@
 #include "precompiled.h"
 
+#include <vector>
+
 #include <timer.h>
 #include "Profile.h"
 
@@ -18,6 +20,8 @@
 #include "LoaderThunks.h"
 
 #include "gui/CGUI.h"
+
+using namespace std;
 
 extern CConsole *g_Console;
 
@@ -119,21 +123,135 @@ void CSimulation::Simulate()
 	PROFILE_END( "turn manager update" );
 }
 
+// Location randomizer, for group orders...
+// Having the group turn up at the destination with /some/ sort of cohesion is
+// good but tasking them all to the exact same point will leave them brawling
+// for it at the other end (it shouldn't, but the PASAP pathfinder is too
+// simplistic)
+
+// Task them all to a point within a radius of the target, radius depends upon
+// the number of units in the group.
+
+void RandomizeLocations(CEntityOrder order, const vector <HEntity> &entities, bool clearQueue)
+{
+	vector<HEntity>::const_iterator it;
+	float radius = 2.0f * sqrt( (float)entities.size() - 1 ); 
+
+	for (it = entities.begin(); it < entities.end(); it++)
+	{
+		float _x, _y;
+		CEntityOrder randomizedOrder = order;
+		
+		do
+		{
+			_x = (float)( rand() % 20000 ) / 10000.0f - 1.0f;
+			_y = (float)( rand() % 20000 ) / 10000.0f - 1.0f;
+		}
+		while( ( _x * _x ) + ( _y * _y ) > 1.0f );
+
+		randomizedOrder.m_data[0].location.x += _x * radius;
+		randomizedOrder.m_data[0].location.y += _y * radius;
+
+		// Clamp it to within the map, just in case.
+		float mapsize = (float)g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide() * CELL_SIZE;
+
+		if( randomizedOrder.m_data[0].location.x < 0.0f )
+			randomizedOrder.m_data[0].location.x = 0.0f;
+		if( randomizedOrder.m_data[0].location.x >= mapsize )
+			randomizedOrder.m_data[0].location.x = mapsize;
+		if( randomizedOrder.m_data[0].location.y < 0.0f )
+			randomizedOrder.m_data[0].location.y = 0.0f;
+		if( randomizedOrder.m_data[0].location.y >= mapsize )
+			randomizedOrder.m_data[0].location.y = mapsize;
+
+		if( clearQueue )
+			(*it)->clearOrders();
+
+		(*it)->pushOrder( randomizedOrder );
+	}
+}
+
+void QueueOrder(CEntityOrder order, const vector <HEntity> &entities, bool clearQueue)
+{
+	vector<HEntity>::const_iterator it;
+
+	for (it = entities.begin(); it < entities.end(); it++)
+	{
+		if( clearQueue )
+			(*it)->clearOrders();
+
+		(*it)->pushOrder( order );
+	}
+}
+
 uint CSimulation::TranslateMessage(CNetMessage *pMsg, uint clientMask, void *userdata)
 {
-	CSimulation *pSimulation=(CSimulation *)userdata;
-
-	CEntityOrder entOrder;
+	CEntityOrder order;
+	bool clearQueue = true;
+	
+#define ENTITY_POSITION(_msg, _order) do\
+	{ \
+		_msg *msg=(_msg *)pMsg; \
+		order.m_type=CEntityOrder::_order; \
+		order.m_data[0].location.x=(float)msg->m_TargetX; \
+		order.m_data[0].location.y=(float)msg->m_TargetY; \
+		RandomizeLocations(order, msg->m_Entities, clearQueue); \
+	} while(0)
+#define ENTITY_ENTITY(_msg, _order) do\
+	{ \
+		_msg *msg=(_msg *)pMsg; \
+		order.m_type=CEntityOrder::_order; \
+		order.m_data[0].entity=msg->m_Target; \
+		QueueOrder(order, msg->m_Entities, clearQueue); \
+	} while(0)
+	
 	switch (pMsg->GetType())
 	{
-	case NMT_GotoCommand:
-		CGotoCommand *msg=(CGotoCommand *)pMsg;
-		entOrder.m_type=CEntityOrder::ORDER_GOTO;
-		entOrder.m_data[0].location.x=(float)msg->m_TargetX;
-		entOrder.m_data[0].location.y=(float)msg->m_TargetY;
-		CEntity *ent=msg->m_Entity;
-		ent->pushOrder( entOrder );
-		break;
+		case NMT_AddWaypoint:
+		{
+			CAddWaypoint *msg=(CAddWaypoint *)pMsg;
+			order.m_type=CEntityOrder::ORDER_LAST;
+			order.m_data[0].location.x=(float)msg->m_TargetX;
+			order.m_data[0].location.y=(float)msg->m_TargetY;
+			vector<HEntity>::iterator it = msg->m_Entities.begin(); 
+			for (;it != msg->m_Entities.end(); ++it)
+			{
+				deque<CEntityOrder>::const_iterator ord_it;
+				ord_it=(*it)->m_orderQueue.end() - 1;
+				for (;ord_it >= (*it)->m_orderQueue.begin();--ord_it)
+				{
+					if (ord_it->m_type == CEntityOrder::ORDER_PATH_END_MARKER)
+					{
+						order.m_type = CEntityOrder::ORDER_GOTO;
+						(*it)->pushOrder(order);
+						break;
+					}
+					if (ord_it->m_type == CEntityOrder::ORDER_PATROL)
+					{
+						order.m_type = ord_it->m_type;
+						(*it)->pushOrder(order);
+						break;
+					}
+				}
+				if (order.m_type == CEntityOrder::ORDER_LAST)
+				{
+					LOG(ERROR, "simulation", "Got an AddWaypoint message for an entity that isn't moving.");
+				}
+			}
+			break;
+		}
+		case NMT_Goto:
+			ENTITY_POSITION(CGoto, ORDER_GOTO);
+			break;
+		case NMT_Patrol:
+			ENTITY_POSITION(CPatrol, ORDER_PATROL);
+			break;
+		case NMT_AttackMelee:
+			ENTITY_ENTITY(CAttackMelee, ORDER_ATTACK_MELEE);
+			break;
+		case NMT_Gather:
+			ENTITY_ENTITY(CGather, ORDER_GATHER);
+			break;
 	}
 
 	return clientMask;

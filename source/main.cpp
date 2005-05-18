@@ -806,6 +806,8 @@ TIMER(InitScripting)
 	g_ScriptingHost.DefineConstant( "ORDER_PATROL", CEntityOrder::ORDER_PATROL );
 	g_ScriptingHost.DefineConstant( "ORDER_ATTACK", CEntityOrder::ORDER_ATTACK_MELEE );
 	g_ScriptingHost.DefineConstant( "ORDER_GATHER", CEntityOrder::ORDER_GATHER );
+	
+	CNetMessage::ScriptingInit();
 
 	JSI_Camera::init();
 	JSI_Console::init();

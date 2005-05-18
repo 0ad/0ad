@@ -17,8 +17,6 @@
 
 #include "precompiled.h"
 
-#ifdef _M_IX86
-
 #include "lib.h"
 #include "posix.h"
 #include "ia32.h"
@@ -37,6 +35,7 @@
 #include <vector>
 #include <algorithm>
 
+#ifndef __GNUC__
 
 // replace pathetic MS libc implementation
 #ifdef _WIN32
@@ -616,4 +615,49 @@ void serialize()
 	__asm cpuid
 }
 
-#endif	// #ifndef _M_IX86
+#else // #ifndef __GNUC__
+
+bool CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value)
+{
+	uintptr_t prev;
+	
+	assert2(location >= (uintptr_t *)0x10000);
+	
+	__asm__ __volatile__("lock; cmpxchgl %1,%2"
+				 : "=a"(prev) // %0: Result in eax should be stored in prev
+				 : "q"(new_value), // %1: new_value -> e[abcd]x
+				   "m"(*location), // %2: Memory operand
+				   "0"(expected) // Stored in same place as %0
+				 : "memory"); // We make changes in memory
+	return prev==expected;
+}
+
+void atomic_add(intptr_t *location, intptr_t increment)
+{
+	__asm__ __volatile__ (
+			"cmpb $1, %1;"
+			"je 1f;"
+			"lock;"
+			"1: addl %3, %0"
+		: "=m" (*location) /* %0: Output into *location */
+		: "m" (cpus), /* %1: Input for cpu check */
+		  "m" (*location), /* %2: *location is also an input */
+		  "r" (increment) /* %3: Increment (store in register) */
+		: "memory"); /* clobbers memory (*location) */
+}
+
+void mfence()
+{
+	// no cpu caps stored in gcc compiles, so we can't check for SSE2 support
+	/*
+	if (ia32_cap(SSE2))
+		__asm__ __volatile__ ("mfence");
+	*/
+}
+
+void serialize()
+{
+	__asm__ __volatile__ ("cpuid");
+}
+
+#endif	// #ifdef __GNUC__

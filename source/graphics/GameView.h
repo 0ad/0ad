@@ -4,6 +4,8 @@
 #include "Camera.h"
 #include "Vector3D.h"
 
+#include "scripting/ScriptableObject.h"
+
 class CGame;
 class CGameAttributes;
 class CWorld;
@@ -12,7 +14,7 @@ class CUnitManager;
 class CProjectileManager;
 class CModel;
 
-class CGameView
+class CGameView: public CJSObject<CGameView>
 {
 	CGame *m_pGame;
 	CWorld *m_pWorld;
@@ -56,6 +58,12 @@ class CGameView
 
 	// UnloadResources(): Unload all graphics resources loaded by InitResources
 	void UnloadResources();
+	
+	// JS Interface
+	bool JSI_StartCustomSelection(JSContext *cx, uintN argc, jsval *argv);
+	bool JSI_EndCustomSelection(JSContext *cx, uintN argc, jsval *argv);
+
+	static void ScriptingInit();
 
 public:
 	CGameView(CGame *pGame);

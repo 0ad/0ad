@@ -283,7 +283,7 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::E
 	std::vector<T>* b = RetrieveSet( cx, JSVAL_TO_OBJECT( argv[0] ) );
 	if( !b )
 		return( JS_FALSE );
-	std::vector<T>::iterator ita, itb;
+	typename std::vector<T>::iterator ita, itb;
 	
 	size_t seek = a->size();
 	for( ita = a->begin(); ita != a->end(); ita++ )

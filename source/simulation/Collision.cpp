@@ -3,6 +3,8 @@
 #include "Collision.h"
 #include "EntityManager.h"
 
+#include <float.h>
+
 CBoundingObject* getContainingObject( const CVector2D& point )
 {
 	std::vector<HEntity>* entities = g_EntityManager.getExtant();

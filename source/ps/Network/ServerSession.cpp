@@ -182,7 +182,7 @@ bool CNetServerSession::InGameHandler(CNetMessage *pMsg, CNetSession *pNetSessio
 	if (ChatHandler(pMsg, pNetSession))
 		return true;
 		
-	if (pMsg->GetType() >= NMT_COMMAND_FIRST && pMsg->GetType() <= NMT_COMMAND_LAST)
+	if (pMsg->GetType() >= NMT_COMMAND_FIRST && pMsg->GetType() < NMT_COMMAND_LAST)
 	{
 		// All Command Messages (i.e. simulation turn synchronized messages)
 		//pSession->m_pPlayer->ValidateCommand(pMsg);

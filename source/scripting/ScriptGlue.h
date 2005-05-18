@@ -45,6 +45,7 @@ JSFunc getGlobal;
 
 JSFunc setCursor;
 
+JSBool GetGameView( JSContext* context, JSObject* globalObject, jsval id, jsval* vp );
 JSFunc GetGameObject;
 JSFunc createServer;
 JSFunc createClient;
@@ -60,6 +61,8 @@ JSFunc getLanguageID;
 JSFunc getFPS;
 JSFunc getCursorPosition;
 JSFunc v3dist;
+
+JSFunc issueCommand;
 
 // Returns a string that says when ScriptGlue.cpp was last recompiled
 JSFunc buildTime;

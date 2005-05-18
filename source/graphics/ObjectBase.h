@@ -5,6 +5,7 @@ class CModel;
 class CSkeletonAnim;
 
 #include <vector>
+#include <set>
 #include "CStr.h"
 
 class CObjectBase

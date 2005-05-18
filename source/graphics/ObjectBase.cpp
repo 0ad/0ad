@@ -308,7 +308,7 @@ bool CObjectBase::Load(const char* filename)
 	}
 	else
 	{
-		LOG(ERROR, LOG_CATEGORY, "Invalid actor format (unrecognised root element '%s')", XeroFile.getElementString(root.getNodeName()));
+		LOG(ERROR, LOG_CATEGORY, "Invalid actor format (unrecognised root element '%s')", XeroFile.getElementString(root.getNodeName()).c_str());
 		return false;
 	}
 

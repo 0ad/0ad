@@ -10,5 +10,10 @@
 #ifdef _WIN32
 # include "sysdep/win/wposix_types.h"
 #else
+// unix/linux/glibc/gcc says that this macro has to be defined when including
+// stdint.h from C++ for stdint.h to define SIZE_MAX and friends
+# ifndef __STDC_LIMIT_MACROS
+#  define __STDC_LIMIT_MACROS
+# endif
 # include <stdint.h>
 #endif	// #ifdef _WIN32

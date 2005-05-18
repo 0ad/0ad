@@ -1,12 +1,13 @@
 #include "precompiled.h"
 
+#include <sstream>
+
 #include "ps/CStr.h"
 #include "ps/VFSUtil.h"
 #include "lib/res/res.h"
 #include "scripting/ScriptingHost.h"
 #include "scripting/JSConversions.h"
 #include "scripting/JSInterface_VFS.h"
-
 
 // shared error handling code
 #define JS_CHECK_FILE_ERR(err)\

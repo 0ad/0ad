@@ -13,13 +13,18 @@ static bool initialized=false;
 
 static std::map<intptr_t, std::string> dirs;
 
+void fam_deinit()
+{
+	FAMClose(&fc);
+}
+
 int dir_add_watch(const char* const n_full_path, intptr_t* const watch)
 {
 	if(!initialized)
 	{
 		CHECK_ERR(FAMOpen2(&fc, "lib_res"));
-		atexit2((void*)FAMClose, (uintptr_t)&fc);
 		initialized = true;
+		atexit(fam_deinit);
 	}
 
 	FAMRequest req;
