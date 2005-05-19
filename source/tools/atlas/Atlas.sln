@@ -8,6 +8,16 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AtlasObject", "AtlasObject\
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ActorEditor", "AtlasFrontends\ActorEditor.vcproj", "{E859DDC0-224A-41F6-B09F-E320EC8DDA35}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E99BA969-D540-4F23-822E-37C499E8F704} = {E99BA969-D540-4F23-822E-37C499E8F704}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ColourTester", "AtlasFrontends\ColourTester.vcproj", "{C018BE85-EBFE-428E-8626-3CCB77052715}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E99BA969-D540-4F23-822E-37C499E8F704} = {E99BA969-D540-4F23-822E-37C499E8F704}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -22,6 +32,14 @@ Global
 		{228B468D-3C2E-45BF-9833-C626E1A35B04}.Debug.Build.0 = Debug|Win32
 		{228B468D-3C2E-45BF-9833-C626E1A35B04}.Release.ActiveCfg = Release|Win32
 		{228B468D-3C2E-45BF-9833-C626E1A35B04}.Release.Build.0 = Release|Win32
+		{E859DDC0-224A-41F6-B09F-E320EC8DDA35}.Debug.ActiveCfg = Debug|Win32
+		{E859DDC0-224A-41F6-B09F-E320EC8DDA35}.Debug.Build.0 = Debug|Win32
+		{E859DDC0-224A-41F6-B09F-E320EC8DDA35}.Release.ActiveCfg = Release|Win32
+		{E859DDC0-224A-41F6-B09F-E320EC8DDA35}.Release.Build.0 = Release|Win32
+		{C018BE85-EBFE-428E-8626-3CCB77052715}.Debug.ActiveCfg = Debug|Win32
+		{C018BE85-EBFE-428E-8626-3CCB77052715}.Debug.Build.0 = Debug|Win32
+		{C018BE85-EBFE-428E-8626-3CCB77052715}.Release.ActiveCfg = Release|Win32
+		{C018BE85-EBFE-428E-8626-3CCB77052715}.Release.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

@@ -37,3 +37,6 @@
 // If no PCH, just include a load of common headers anyway
 # include "wx/wx.h"
 #endif
+
+
+#define ATLASDLLIMPEXP __declspec(dllexport)

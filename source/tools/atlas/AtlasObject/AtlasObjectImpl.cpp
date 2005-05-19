@@ -1,11 +1,7 @@
 #include "AtlasObject.h"
 #include "AtlasObjectImpl.h"
 
-#include <sstream>
-
-#include <stdlib.h>
 #include <assert.h>
-
 
 #define ATSMARTPTR_IMPL(T) \
 	template<> void AtSmartPtr<T>::inc_ref()	\

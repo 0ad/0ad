@@ -22,4 +22,5 @@ private:
 	wxListItemAttr m_ListItemAttr_Anim[2];
 	wxListItemAttr m_ListItemAttr_Prop[2];
 	wxListItemAttr m_ListItemAttr_Colour[2];
+	wxListItemAttr m_ListItemAttr_None[2];
 };

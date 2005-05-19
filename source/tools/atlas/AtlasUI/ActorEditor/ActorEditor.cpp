@@ -65,7 +65,12 @@ ActorEditor::ActorEditor(wxWindow* parent)
 
 	materialsPanel->SetSizer(materialsSizer);
 
-	m_Material = new wxTextCtrl(materialsPanel, wxID_ANY, _T(""));
+//	m_Material = new wxTextCtrl(materialsPanel, wxID_ANY, _T(""));
+	wxArrayString materials;
+	AtObj list (Datafile::ReadList("materials"));
+	for (AtIter it = list["material"]; it.defined(); ++it)
+		materials.Add(it);
+	m_Material = new wxComboBox(materialsPanel, wxID_ANY, _T(""), wxDefaultPosition, wxDefaultSize, materials);
 	materialsSizer->Add(m_Material, wxSizerFlags().Border(wxALL, 2));
 
 	//////////////////////////////////////////////////////////////////////////

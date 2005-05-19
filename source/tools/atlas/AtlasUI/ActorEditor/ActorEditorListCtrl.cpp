@@ -21,6 +21,7 @@ ActorEditorListCtrl::ActorEditorListCtrl(wxWindow* parent)
 	COLOUR(Anim,    (e,f,e), (c,f,c));
 	COLOUR(Prop,    (e,e,f), (c,c,f));
 	COLOUR(Colour,  (f,e,f), (f,c,f));
+	COLOUR(None,    (f,f,f), (f,f,f));
 
 	#undef COLOUR
 
@@ -97,5 +98,5 @@ wxListItemAttr* ActorEditorListCtrl::OnGetItemAttr(long item) const
 			return const_cast<wxListItemAttr*>(&m_ListItemAttr_Colour[item%2]);
 	}
 
-	return DraggableListCtrl::OnGetItemAttr(item);
+	return const_cast<wxListItemAttr*>(&m_ListItemAttr_None[item%2]);
 }

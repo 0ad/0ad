@@ -6,14 +6,28 @@
 #include "ColourTesterColourCtrl.h"
 #include "ColourTesterFileCtrl.h"
 
-//#include "AtlasObject/AtlasObject.h"
-//#include "Datafile.h"
-
-//#include "wx/file.h"
+#include "wx/dnd.h"
 
 BEGIN_EVENT_TABLE(ColourTester, wxFrame)
 //EVT_MENU(ID_Custom1, OnCreateEntity)
 END_EVENT_TABLE()
+
+class DropTarget : public wxFileDropTarget
+{
+public:
+	DropTarget(ColourTesterImageCtrl* imgctrl)
+		: m_ImageCtrl(imgctrl)
+	{}
+
+	bool OnDropFiles(wxCoord WXUNUSED(x), wxCoord WXUNUSED(y), const wxArrayString& filenames)
+	{
+		if (filenames.GetCount() >= 1)
+			m_ImageCtrl->SetImageFile(filenames[0]);
+		return true;
+	}
+private:
+	ColourTesterImageCtrl* m_ImageCtrl;
+};
 
 ColourTester::ColourTester(wxWindow* parent)
 	: wxFrame(parent, wxID_ANY, _("Colour Tester"), wxDefaultPosition, wxSize(800, 700))
@@ -47,4 +61,8 @@ ColourTester::ColourTester(wxWindow* parent)
 
 	bottomSizer->Add((wxPanel*)new ColourTesterColourCtrl(mainPanel, m_ImageCtrl),
 		wxSizerFlags().Border(wxALL, 10));
+
+	//////////////////////////////////////////////////////////////////////////
+	
+	SetDropTarget(new DropTarget(m_ImageCtrl));
 }

@@ -21,7 +21,7 @@ private:
 	ActorEditorListCtrl* m_ActorEditorListCtrl;
 
 	wxCheckBox* m_CastShadows;
-	wxTextCtrl* m_Material;
+	wxComboBox* m_Material;
 
 	DECLARE_EVENT_TABLE();
 };

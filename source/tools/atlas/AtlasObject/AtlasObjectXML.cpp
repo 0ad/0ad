@@ -19,7 +19,6 @@
 
 #include <xercesc/parsers/XercesDOMParser.hpp>
 #include <xercesc/dom/DOM.hpp>
-#include <xercesc/util/PlatformUtils.hpp>
 #include <xercesc/util/XMLString.hpp>
 #include <xercesc/framework/LocalFileFormatTarget.hpp>
 #include <xercesc/sax/SAXParseException.hpp>
@@ -46,6 +45,7 @@ private:
 		char* systemId = XMLString::transcode(err.getSystemId());
 		char* message = XMLString::transcode(err.getMessage());
 		// TODO: do something
+		(void)severity;
 		XMLString::release(&systemId);
 		XMLString::release(&message);
 	}

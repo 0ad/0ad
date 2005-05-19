@@ -1,7 +1,17 @@
 #include "AtlasObject.h"
 
 #include <string>
-#include <map>
+
+#ifdef _MSC_VER
+ // Avoid complaints about unreachable code; the optimiser is realising
+ // that some code is incapable of throwing, then warning about the catch
+ // block that will never be executed.
+ #pragma warning(disable: 4702)
+ #include <map>
+ #pragma warning(default: 4702)
+#else
+ #include <map>
+#endif
 
 // AtNode is an immutable tree node, with a string and and multimap of children.
 class AtNode
