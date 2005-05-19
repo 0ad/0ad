@@ -17,6 +17,8 @@ protected:
 	AtObj ExportData();
 	void ImportData(AtObj& in);
 
+	virtual wxString GetDefaultOpenDirectory();
+
 private:
 	ActorEditorListCtrl* m_ActorEditorListCtrl;
 

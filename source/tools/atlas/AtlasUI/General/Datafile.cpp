@@ -3,13 +3,17 @@
 #include "Datafile.h"
 
 #include "wx/filename.h"
+#include "wx/dir.h"
+
+static wxString systemDir;
+static wxString dataDir;
 
 AtObj Datafile::ReadList(const char* section)
 {
-	const wxString relativePath (_T("../data/tools/atlas/lists.xml"));
+	const wxString relativePath (_T("tools/atlas/lists.xml"));
 
 	wxFileName filename (relativePath, wxPATH_UNIX);
-	filename.MakeAbsolute(systemDir);
+	filename.MakeAbsolute(dataDir);
 
 	if (! filename.FileExists())
 	{
@@ -24,7 +28,25 @@ AtObj Datafile::ReadList(const char* section)
 
 void Datafile::SetSystemDirectory(const wxString& dir)
 {
-	systemDir = wxFileName(dir).GetPath();
+	wxFileName sys (dir);
+	systemDir = sys.GetPath();
+
+	wxFileName data (_T("../data/"), wxPATH_UNIX);
+	data.MakeAbsolute(systemDir);
+	dataDir = data.GetPath();
 }
 
-wxString Datafile::systemDir;
+wxString Datafile::GetDataDirectory()
+{
+	return dataDir;
+}
+
+wxArrayString Datafile::EnumerateDataFiles(const wxString& dir, const wxString& filter)
+{
+	wxFileName d (dir);
+	d.MakeAbsolute(dataDir);
+
+	wxArrayString files;
+	wxDir::GetAllFiles(d.GetPath(), &files, filter, wxDIR_FILES);
+	return files;
+}

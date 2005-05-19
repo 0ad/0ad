@@ -193,7 +193,18 @@ void AtlasWindow::OnNew(wxCommandEvent& WXUNUSED(event))
 
 void AtlasWindow::OnOpen(wxCommandEvent& WXUNUSED(event))
 {
-	wxFileDialog dlg (this, _("Select XML file to open"), _T(""), _T(""), _("XML files (*.xml)|*.xml|All files (*.*)|*.*"), wxOPEN);
+	wxString path, name;
+	if (GetCurrentFilename().IsOk())
+	{
+		path = GetCurrentFilename().GetPath();
+		name = GetCurrentFilename().GetFullName();
+	}
+	else
+	{
+		path = GetDefaultOpenDirectory();
+	}
+
+	wxFileDialog dlg (this, _("Select XML file to open"), path, name, _("XML files (*.xml)|*.xml|All files (*.*)|*.*"), wxOPEN);
 
 	if (dlg.ShowModal() != wxID_OK)
 		return;
@@ -217,7 +228,6 @@ void AtlasWindow::OnMRUFile(wxCommandEvent& event)
 	if (file.Length())
 		OpenFile(file);
 }
-
 
 
 void AtlasWindow::SetCurrentFilename(wxFileName filename)

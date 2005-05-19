@@ -63,6 +63,8 @@ protected:
 	void SetCurrentFilename(wxFileName filename = wxString());
 	wxFileName GetCurrentFilename() { return m_CurrentFilename; }
 
+	virtual wxString GetDefaultOpenDirectory() = 0;
+
 	bool SaveChanges(bool forceSaveAs);
 public:
 	bool OpenFile(wxString filename);

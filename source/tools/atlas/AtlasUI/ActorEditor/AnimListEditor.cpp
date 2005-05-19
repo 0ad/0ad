@@ -10,7 +10,7 @@
 IMPLEMENT_DYNAMIC_CLASS(AnimListEditor, AtlasDialog);
 
 AnimListEditor::AnimListEditor()
-	: AtlasDialog(NULL, _("Animation editor"))
+	: AtlasDialog(NULL, _("Animation editor"), wxSize(480, 280))
 {
 	m_MainListBox = new AnimListEditorListCtrl(m_MainPanel);
 
@@ -50,8 +50,8 @@ AnimListEditorListCtrl::AnimListEditorListCtrl(wxWindow* parent)
 	AddColumnType(_("Anim name"), 100, "@name",  new FieldEditCtrl_List("animations"));
 	AddColumnType(_("File"),	  200, "@file",  new FieldEditCtrl_File(_T("art/animation/"), _("Animation files (*.psa)|*.psa|All files (*.*)|*.*")));
 	AddColumnType(_("Speed"),	  50,  "@speed", new FieldEditCtrl_Text());
-	AddColumnType(_("Load"),	  30,  "@load",  new FieldEditCtrl_Text());
-	AddColumnType(_("Event"),	  30,  "@event", new FieldEditCtrl_Text());
+	AddColumnType(_("Load"),	  40,  "@load",  new FieldEditCtrl_Text());
+	AddColumnType(_("Event"),	  40,  "@event", new FieldEditCtrl_Text());
 }
 
 void AnimListEditorListCtrl::DoImport(AtObj& in)

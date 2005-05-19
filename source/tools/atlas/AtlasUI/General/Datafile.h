@@ -1,18 +1,19 @@
 #include "AtlasObject/AtlasObject.h"
 
-class Datafile
+namespace Datafile
 {
-public:
-
 	// Read configuration data from data/tools/atlas/lists.xml
-	static AtObj ReadList(const char* section);
+	AtObj ReadList(const char* section);
 
 	// Specify the location of .../binaries/system, as an absolute path, or
 	// relative to the current working directory.
-	static void SetSystemDirectory(const wxString& dir);
+	void SetSystemDirectory(const wxString& dir);
 
-	static wxString GetSystemDirectory() { return systemDir; }
+	// Returns the location of .../binaries/data. (TODO (eventually): replace
+	// this with a proper VFS-aware system.)
+	wxString GetDataDirectory();
 
-private:
-	static wxString systemDir;
+	// Returns a list of files matching the given wildcard (* and ?) filter
+	// inside .../binaries/data/<dir>, not recursively.
+	wxArrayString EnumerateDataFiles(const wxString& dir, const wxString& filter);
 };

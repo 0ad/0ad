@@ -65,11 +65,12 @@ ActorEditor::ActorEditor(wxWindow* parent)
 
 	materialsPanel->SetSizer(materialsSizer);
 
-//	m_Material = new wxTextCtrl(materialsPanel, wxID_ANY, _T(""));
-	wxArrayString materials;
-	AtObj list (Datafile::ReadList("materials"));
-	for (AtIter it = list["material"]; it.defined(); ++it)
-		materials.Add(it);
+	// Get the list of XML materials
+	wxArrayString materials = Datafile::EnumerateDataFiles(_T("mods/official/art/materials/"), _T("*.xml"));
+	// Extract the filenames and discard the path
+	for (size_t i = 0; i < materials.Count(); ++i)
+		materials[i] = wxFileName(materials[i]).GetFullName();
+
 	m_Material = new wxComboBox(materialsPanel, wxID_ANY, _T(""), wxDefaultPosition, wxDefaultSize, materials);
 	materialsSizer->Add(m_Material, wxSizerFlags().Border(wxALL, 2));
 
@@ -317,8 +318,8 @@ void ActorEditor::OnCreateEntity(wxCommandEvent& WXUNUSED(event))
 	wxString entityName = currentFilename.GetName();
 
 	// Work out where the entities are stored
-	wxFileName entityPath (_T("../data/mods/official/entities/"));
-	entityPath.MakeAbsolute(Datafile::GetSystemDirectory());
+	wxFileName entityPath (_T("mods/official/entities/"));
+	entityPath.MakeAbsolute(Datafile::GetDataDirectory());
 
 	// Make sure the user knows what's going on
 	static bool instructed = false; // only tell them once per session
@@ -348,8 +349,8 @@ void ActorEditor::OnCreateEntity(wxCommandEvent& WXUNUSED(event))
 		return; // cancelled by user
 
 	// Get this actor's filename, relative to actors/
-	wxFileName actorPath (_T("../data/mods/official/art/actors/"));
-	actorPath.MakeAbsolute(Datafile::GetSystemDirectory());
+	wxFileName actorPath (_T("mods/official/art/actors/"));
+	actorPath.MakeAbsolute(Datafile::GetDataDirectory());
 	wxFileName actorFilename (currentFilename);
 	actorFilename.MakeRelativeTo(actorPath.GetFullPath());
 
@@ -374,4 +375,11 @@ void ActorEditor::OnCreateEntity(wxCommandEvent& WXUNUSED(event))
 		wxLogError(_("Failed to write XML data to file"));
 		return;
 	}
+}
+
+wxString ActorEditor::GetDefaultOpenDirectory()
+{
+	wxFileName dir (_T("mods/official/art/actors/"), wxPATH_UNIX);
+	dir.MakeAbsolute(Datafile::GetDataDirectory());
+	return dir.GetPath();
 }

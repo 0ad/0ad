@@ -13,7 +13,7 @@ class AtlasDialog : public wxDialog, public IAtlasSerialiser
 	DECLARE_CLASS(AtlasDialog);
 
 public:
-	AtlasDialog(wxWindow* parent, const wxString& title);
+	AtlasDialog(wxWindow* parent, const wxString& title, const wxSize& size);
 	virtual ~AtlasDialog() {}
 
 private:

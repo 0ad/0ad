@@ -12,8 +12,8 @@ BEGIN_EVENT_TABLE(AtlasDialog, wxDialog)
 END_EVENT_TABLE()
 
 
-AtlasDialog::AtlasDialog(wxWindow* parent, const wxString& title)
-	: wxDialog(parent, -1, title, wxDefaultPosition, wxDefaultSize,
+AtlasDialog::AtlasDialog(wxWindow* parent, const wxString& title, const wxSize& size)
+	: wxDialog(parent, -1, title, wxDefaultPosition, size,
 			   wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX)
 {
 	// Create generic dialog box, with OK/Cancel buttons, some horizontal
