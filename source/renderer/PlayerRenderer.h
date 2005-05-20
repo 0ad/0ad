@@ -19,14 +19,6 @@ class CModel;
 class CPlayerRenderer
 {
 public:
-	struct SObject {
-		// the transparent model
-		CModel* m_Model;
-		// sqrd distance from camera to centre of nearest triangle
-		float m_Dist;
-	};
-
-public:
 	// add object to render in deferred transparency pass
 	void Add(CModel* model);
 	// render all deferred objects 
@@ -41,8 +33,8 @@ private:
 	void RenderObjectsStreams(u32 streamflags, bool iscolorpass=false, u32 mflags=0);
 	// setup the second pass for the player color
 	void SetupColorRenderStates();
-	// list of transparent objects to render
-	std::vector<SObject> m_Objects;
+	// list of objects to render
+	std::vector<CModel*> m_Objects;
 };
 
 extern CPlayerRenderer g_PlayerRenderer;

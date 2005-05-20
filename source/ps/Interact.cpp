@@ -857,8 +857,8 @@ int interactInputHandler( const SDL_Event* ev )
 		return( EV_HANDLED );
 	case SDL_MOUSEBUTTONUP:
 	{
-		// Assumes SDL button enums in range [1, 5]
-		int button = ev->button.button - 1;
+		// Assumes SDL button enums are contiguous
+		int button = ev->button.button - SDL_BUTTON_LEFT;
 		// Only process buttons within the range for which we have button state
 		// arrays above.
 		if (button >= 0 && button < 5)

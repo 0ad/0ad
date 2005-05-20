@@ -28,6 +28,7 @@
 #include "LightEnv.h"
 #include "CLogger.h"
 #include "ps/Game.h"
+#include "Profile.h"
 
 #include "Model.h"
 #include "ModelDef.h"
@@ -589,6 +590,8 @@ void CRenderer::CreateShadowMap()
 
 void CRenderer::RenderShadowMap()
 {
+	PROFILE( "render shadow map" );
+
 	// create shadow map if we haven't already got one
 	if (!m_ShadowMap) CreateShadowMap();
 
@@ -712,6 +715,8 @@ void CRenderer::RenderShadowMap()
 
 void CRenderer::ApplyShadowMap()
 {
+	PROFILE( "applying shadows" );
+
 	CMatrix3D tmp2;
 	CMatrix3D texturematrix;
 
@@ -737,6 +742,8 @@ void CRenderer::ApplyShadowMap()
 
 void CRenderer::RenderPatches()
 {
+	PROFILE(" render patches ");
+
 	// switch on wireframe if we need it
 	if (m_TerrainRenderMode==WIREFRAME) {
 		MICROLOG(L"wireframe on");
@@ -828,6 +835,8 @@ void CRenderer::RenderModelSubmissions()
 
 void CRenderer::RenderModels()
 {
+	PROFILE( "render models ");
+
 	// switch on wireframe if we need it
 	if (m_ModelRenderMode==WIREFRAME) {
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
@@ -893,7 +902,6 @@ void CRenderer::FlushFrame()
 	oglCheck();
 
 	// sort all the transparent stuff
-	MICROLOG(L"sorting");
 	g_TransparencyRenderer.Sort();
 
 	if (!m_ShadowRendered) {
@@ -902,7 +910,6 @@ void CRenderer::FlushFrame()
 			RenderShadowMap();
 		}
 		// clear buffers
-		MICROLOG(L"clear buffer");
 		glClearColor(m_ClearColor[0],m_ClearColor[1],m_ClearColor[2],m_ClearColor[3]);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	}
@@ -993,6 +1000,7 @@ void CRenderer::Submit(CPatch* patch)
 void CRenderer::Submit(CModel* model)
 {
 	if (model->GetFlags() & MODELFLAG_CASTSHADOWS) {
+		PROFILE( "updating shadow bounds" );
 		m_ShadowBound+=model->GetBounds();
 	}
 

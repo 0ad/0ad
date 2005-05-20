@@ -12,7 +12,7 @@
 #include "Renderer.h"
 #include "TransparencyRenderer.h"
 #include "Model.h"
-
+#include "Profile.h"
 
 CTransparencyRenderer g_TransparencyRenderer;
 
@@ -31,6 +31,7 @@ struct SortObjectsByDist {
 // Sort: coarsely sort submitted objects in back to front manner
 void CTransparencyRenderer::Sort()
 {
+	PROFILE( "sorting transparent" );
 	std::sort(m_Objects.begin(),m_Objects.end(),SortObjectsByDist());
 }
 
@@ -39,6 +40,8 @@ void CTransparencyRenderer::Sort()
 // are drawn in correct order
 void CTransparencyRenderer::Render()
 {
+	PROFILE( "render transparent models" );
+
 	if (m_Objects.size()==0) return;
 
 	// switch on wireframe if we need it

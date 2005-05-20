@@ -61,17 +61,22 @@ void CSHCoeffs::Evaluate(const CVector3D& normal,RGBColor& color) const
 	float c7=(3*SQR(normal.Z)-1.0f);
 	float c8=(SQR(normal.X)-SQR(normal.Y));
 
-	for (int i=0;i<3;i++) {
-		color[i]=_data[0][i];
-		color[i]+=_data[1][i]*normal.X;
-		color[i]+=_data[2][i]*normal.Y;
-		color[i]+=_data[3][i]*normal.Z;
-		color[i]+=_data[4][i]*c4;
-		color[i]+=_data[5][i]*c5;
-		color[i]+=_data[6][i]*c6;
-		color[i]+=_data[7][i]*c7;
-		color[i]+=_data[8][i]*c8;
-	}
+#define DO(C) \
+		color.C = \
+		  _data[0].C \
+		+ _data[1].C*normal.X \
+		+ _data[2].C*normal.Y \
+		+ _data[3].C*normal.Z \
+		+ _data[4].C*c4 \
+		+ _data[5].C*c5 \
+		+ _data[6].C*c6 \
+		+ _data[7].C*c7 \
+		+ _data[8].C*c8
+	DO(X);
+	DO(Y);
+	DO(Z);
+#undef DO
+
 #else
 	// debug aid: output quantised normal 
 	color=RGBColor((normal.X+1)*0.5,(normal.Y+1)*0.5,(normal.Z+1)*0.5);

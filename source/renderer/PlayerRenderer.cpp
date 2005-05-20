@@ -16,6 +16,7 @@
 #include "PlayerRenderer.h"
 #include "Model.h"
 #include "Game.h"
+#include "Profile.h"
 
 CPlayerRenderer g_PlayerRenderer;
 
@@ -57,6 +58,8 @@ void CPlayerRenderer::SetupColorRenderStates()
 // are drawn in correct order
 void CPlayerRenderer::Render()
 {
+	PROFILE( "render player models" );
+
 	if (m_Objects.size()==0) return;
 
 	// switch on wireframe if we need it
@@ -167,21 +170,7 @@ void CPlayerRenderer::Clear()
 
 void CPlayerRenderer::Add(CModel* model)
 {	
-	// resize array, get last object in list
-	m_Objects.resize(m_Objects.size()+1);
-	
-	SObject& obj=m_Objects.back();
-	obj.m_Model=model;
-
-	// build transform from object to camera space 
-	CMatrix3D objToCam,invcam;
-	g_Renderer.m_Camera.m_Orientation.GetInverse(objToCam);
-	objToCam*=model->GetTransform();
-
-	// resort model indices from back to front, according to camera position - and store
-	// the returned sqrd distance to the centre of the nearest triangle
-	CModelRData* modeldata=(CModelRData*) model->GetRenderData();
-	obj.m_Dist=modeldata->BackToFrontIndexSort(objToCam);
+	m_Objects.push_back(model);
 }
 
 //TODO: Correctly implement shadows for the players
@@ -197,8 +186,8 @@ void CPlayerRenderer::RenderShadows()
 void CPlayerRenderer::RenderObjectsStreams(u32 streamflags, bool iscolorpass, u32 mflags)
 {
 	for (uint i=0;i<m_Objects.size();++i) {
-		if (!mflags || (m_Objects[i].m_Model->GetFlags() & mflags)) {
-			CModelRData* modeldata=(CModelRData*) m_Objects[i].m_Model->GetRenderData();
+		if (!mflags || (m_Objects[i]->GetFlags() & mflags)) {
+			CModelRData* modeldata=(CModelRData*) m_Objects[i]->GetRenderData();
 
 			// Setup the render states to apply the second texture ( i.e. player color )
 			if (iscolorpass)
@@ -208,7 +197,7 @@ void CPlayerRenderer::RenderObjectsStreams(u32 streamflags, bool iscolorpass, u3
 				// SetupColorRenderStates() below this if statement.
 
 				// Get the player color
-				SMaterialColor colour = m_Objects[i].m_Model->GetMaterial().GetPlayerColor();
+				SMaterialColor colour = m_Objects[i]->GetMaterial().GetPlayerColor();
 				float* color = &colour.r; // because it's stored RGBA
 
 				// Just like it says, Sets up the player color render states

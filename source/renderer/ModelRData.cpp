@@ -10,6 +10,7 @@
 #include "Model.h"
 #include "ModelDef.h"
 #include "MaterialManager.h"
+#include "Profile.h"
 
 ///////////////////////////////////////////////////////////////////
 // shared list of all submitted models this frame
@@ -153,6 +154,7 @@ void CModelRData::BuildVertices()
 	const CMatrix3D* bonematrices=m_Model->GetBoneMatrices();
 	if (bonematrices) {
 		// boned model - calculate skinned vertex positions/normals
+		PROFILE( "skinning bones" );
 		const CMatrix3D* invbonematrices=m_Model->GetInvBoneMatrices();
 		for (uint j=0; j<numVertices; j++) {
 			SkinPoint(vertices[j],bonematrices,m_Vertices[j].m_Position);
@@ -168,12 +170,14 @@ void CModelRData::BuildVertices()
 		}
 	}
 	
+	PROFILE_START( "lighting vertices" );
 	// now fill in UV and vertex colour data
 	for (uint j=0; j<numVertices; j++) {
 		m_Vertices[j].m_UVs[0]=vertices[j].m_U;
 		m_Vertices[j].m_UVs[1]=1-vertices[j].m_V;
 		g_Renderer.m_SHCoeffsUnits.Evaluate(m_Normals[j],m_Vertices[j].m_Color);
 	}
+	PROFILE_END( "lighting vertices" );
 
 	// upload everything to vertex buffer - create one if necessary
 	if (!m_VB) {
@@ -367,9 +371,11 @@ void CModelRData::Submit(CModel* model)
 	CModelRData* data=(CModelRData*) model->GetRenderData();
 	if (data==0) {
 		// no renderdata for model, create it now
+		PROFILE( "create render data" );
 		data=new CModelRData(model);
 		model->SetRenderData(data);
 	} else {
+		PROFILE( "update render data" );
 		data->Update();
 	}
 

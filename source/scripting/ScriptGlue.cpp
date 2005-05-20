@@ -90,6 +90,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	{"forceGC", forceGC, 0, 0, 0 },
 	{"vmem", vmem, 0, 0, 0 },
 	{"_rewriteMaps", _rewriteMaps, 0, 0, 0 },
+	{"_lodbias", _lodbias, 0, 0, 0 },
 	{0, 0, 0, 0, 0}
 };
 
@@ -532,20 +533,20 @@ JSBool buildTime(JSContext* context, JSObject* UNUSEDPARAM(globalObject), unsign
 
 extern void kill_mainloop(); // from main.cpp
 
-JSBool exitProgram(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject), unsigned int UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* UNUSEDPARAM(rval))
+JSBool exitProgram(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* UNUSEDPARAM(argv), jsval* UNUSEDPARAM(rval))
 {
 	kill_mainloop();
 	return JS_TRUE;
 }
 
-JSBool crash(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject), unsigned int UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* UNUSEDPARAM(rval))
+JSBool crash(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval)
 {
 	MICROLOG(L"Crashing at user's request.");
 	uintptr_t ptr = 0xDEADC0DE; // oh dear, might this be an invalid pointer?
 	return *(JSBool*) ptr;
 }
 
-JSBool vmem(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject), unsigned int UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* UNUSEDPARAM(rval))
+JSBool vmem(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval)
 {
 #ifdef _WIN32
 	int left, total;
@@ -560,10 +561,17 @@ JSBool vmem(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject)
 	return JS_TRUE;
 }
 
-JSBool _rewriteMaps(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject), unsigned int UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* UNUSEDPARAM(rval))
+JSBool _rewriteMaps(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval)
 {
 	extern CLightEnv g_LightEnv;
 	CMapWriter::RewriteAllMaps(g_Game->GetWorld()->GetTerrain(), g_Game->GetWorld()->GetUnitManager(), &g_LightEnv);
+	return JS_TRUE;
+}
+
+#include "Renderer.h"
+JSBool _lodbias(JSContext* context, JSObject* globalObject, unsigned int argc, jsval* argv, jsval* rval)
+{
+	g_Renderer.SetOptionFloat(CRenderer::OPT_LODBIAS, (float)g_ScriptingHost.ValueToDouble(argv[0]));
 	return JS_TRUE;
 }
 

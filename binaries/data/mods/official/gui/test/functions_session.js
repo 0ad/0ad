@@ -315,13 +315,22 @@ function FlipGUI(NewGUIType)
 
 }
 
+// ====================================================================
+
+// Unpleasant system-dependent hack. The input system should be fixed...
+var SDL_BUTTON_LEFT = 0;
+var SDL_BUTTON_RIGHT = 1;
+var SDL_BUTTON_MIDDLE = 2;
+var SDL_BUTTON_WHEELUP = 3;
+var SDL_BUTTON_WHEELDOWN = 4;
+
 function selectEntity(handler)
 {
 	endSelection();
 	startSelection(function (event) {
 			// Selection is performed when single-clicking the right mouse
 			// button.
-			if (event.button == 3 && event.clicks == 1)
+			if (event.button == SDL_BUTTON_RIGHT && event.clicks == 1)
 			{
 				handler(event.entity);
 			}
@@ -336,7 +345,7 @@ function selectLocation(handler)
 	startSelection(function (event) {
 			// Selection is performed when single-clicking the right mouse
 			// button.
-			if (event.button == 3 && event.clicks == 1)
+			if (event.button == SDL_BUTTON_RIGHT && event.clicks == 1)
 			{
 				handler(event.x, event.y);
 			}
@@ -381,7 +390,7 @@ function worldClickHandler(event)
 
 
 	// Right button single- or double-clicks
-	if (event.button == 3 && event.clicks <= 2)
+	if (event.button == SDL_BUTTON_RIGHT && event.clicks <= 2)
 	{
 		if (event.clicks == 1)
 			cmd = event.command;

@@ -164,6 +164,7 @@ void CGameView::RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjec
 	const std::vector<CUnit*>& units=pUnitMan->GetUnits();
 	for (uint i=0;i<units.size();++i) {
 		if (frustum.IsBoxVisible(CVector3D(0,0,0),units[i]->GetModel()->GetBounds())) {
+			PROFILE( "submit models" );
 			SubmitModelRecursive(units[i]->GetModel());
 		}
 	}
@@ -171,6 +172,7 @@ void CGameView::RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjec
 	const std::vector<CProjectile*>& projectiles=pProjectileMan->GetProjectiles();
 	for (uint i=0;i<projectiles.size();++i) {
 		if (frustum.IsBoxVisible(CVector3D(0,0,0),projectiles[i]->GetModel()->GetBounds())) {
+			PROFILE( "submit projectiles" );
 			SubmitModelRecursive(projectiles[i]->GetModel());
 		}
 	}

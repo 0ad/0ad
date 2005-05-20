@@ -76,8 +76,10 @@ JSFunc crash;
 // Tries to print the amount of remaining video memory.
 JSFunc vmem;
 
-// You don't want to use this
+// You probably don't want to use these. (If you do, give them better names
+// and document them.)
 JSFunc _rewriteMaps;
+JSFunc _lodbias;
 
 extern JSFunctionSpec ScriptFunctionTable[];
 extern JSPropertySpec ScriptGlobalTable[];

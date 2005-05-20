@@ -18,6 +18,7 @@
 #include "MeshManager.h"
 #include "lib/res/ogl_tex.h"
 #include "lib/res/h_mgr.h"
+#include "Profile.h"
 
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "graphics"
@@ -260,6 +261,8 @@ void CModel::Update(float time)
 void CModel::GenerateBoneMatrices()
 {
 	if (!m_Anim || !m_BoneMatrices) return;
+
+	PROFILE( "generating bone matrices" );
 
 	assert(m_pModelDef->GetNumBones() == m_Anim->m_AnimDef->GetNumKeys());
 
