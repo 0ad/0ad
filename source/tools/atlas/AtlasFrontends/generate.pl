@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-my @files = qw( .cpp .vcproj );
+my @files = qw( .cpp .vcproj .rc );
 
 my @progs = (
 	{

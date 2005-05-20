@@ -20,6 +20,8 @@ static AtlasWindow::CustomMenu menu = { _("&Actor"), menuItems };
 ActorEditor::ActorEditor(wxWindow* parent)
 	: AtlasWindow(parent, _("Actor Editor"), wxSize(1024, 450), &menu)
 {
+	SetIcon(wxIcon(_T("ICON_ActorEditor")));
+
 	wxPanel* mainPanel = new wxPanel(this);
 
 	m_ActorEditorListCtrl = new ActorEditorListCtrl(mainPanel);

@@ -32,6 +32,8 @@ private:
 ColourTester::ColourTester(wxWindow* parent)
 	: wxFrame(parent, wxID_ANY, _("Colour Tester"), wxDefaultPosition, wxSize(800, 700))
 {
+	SetIcon(wxIcon(_T("ICON_ColourTester")));
+
 	wxPanel* mainPanel = new wxPanel(this);
 
 	//////////////////////////////////////////////////////////////////////////
