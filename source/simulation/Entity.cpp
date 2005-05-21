@@ -331,10 +331,11 @@ void CEntity::update( size_t timestep )
 		if( m_extant )
 		{
 			if( ( m_lastState != -1 ) || !m_actor->GetModel()->GetAnimation() )
-				m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_IdleAnim );
+				m_actor->SetRandomAnimation( "idle" );
+
 		}
 		else if( !m_actor->GetModel()->GetAnimation() )
-			m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_CorpseAnim );
+			m_actor->SetRandomAnimation( "corpse" );
 	}
 
 	if( m_lastState != -1 )
@@ -860,7 +861,7 @@ bool CEntity::Kill( JSContext* cx, uintN argc, jsval* argv )
 	clearOrders();
 
 	if( m_actor )
-		m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_DeathAnim, true );
+		m_actor->SetRandomAnimation( "death", true );
 
 	return( true );
 }

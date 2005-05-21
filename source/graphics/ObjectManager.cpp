@@ -33,7 +33,7 @@ CObjectManager::CObjectManager() : m_SelectedThing(NULL)
 	m_ObjectTypes.reserve(32);
 }
 
-template<typename T, typename S> void delete_pair_2nd(std::pair<T,S> v) { delete v.second; }
+template<typename T, typename S> static void delete_pair_2nd(std::pair<T,S> v) { delete v.second; }
 
 CObjectManager::~CObjectManager()
 {

@@ -22,25 +22,16 @@
 #define LOG_CATEGORY "graphics"
 
 CObjectEntry::CObjectEntry(int type, CObjectBase* base)
-: m_Model(0), m_Type(type), m_Base(base), m_Color(1.0f, 1.0f, 1.0f, 1.0f)
+: m_Model(NULL), m_Type(type), m_Base(base), m_Color(1.0f, 1.0f, 1.0f, 1.0f),
+  m_ProjectileModel(NULL), m_AmmunitionPoint(NULL), m_AmmunitionModel(NULL)
 {
-	m_IdleAnim=0;
-	m_WalkAnim=0;
-	m_DeathAnim=0;
-	m_CorpseAnim=0;
-	m_MeleeAnim=0;
-	m_GatherAnim=0;
-	m_RangedAnim=0;
-	m_ProjectileModel=0;
-	m_AmmunitionPoint=0;
-	m_AmmunitionModel=0;
 }
+
+template<typename T, typename S> static void delete_pair_2nd(std::pair<T,S> v) { delete v.second; }
 
 CObjectEntry::~CObjectEntry()
 {
-	for (size_t i=0;i<m_Animations.size();i++) {
-		delete m_Animations[i].m_AnimData;
-	}
+	std::for_each(m_Animations.begin(), m_Animations.end(), delete_pair_2nd<CStr, CSkeletonAnim*>);
 
 	delete m_Model;
 }
@@ -51,7 +42,7 @@ bool CObjectEntry::BuildRandomVariant(CObjectBase::variation_key& vars, CObjectB
 	CStr chosenModel;
 	CStr chosenColor;
 	std::map<CStr, CObjectBase::Prop> chosenProps;
-	std::map<CStr, CObjectBase::Anim> chosenAnims;
+	std::multimap<CStr, CObjectBase::Anim> chosenAnims;
 
 	// For each group in m_Base->m_Variants, take whichever variant is specified
 	// by 'vars', and then store its data into the 'chosen' variables. If data
@@ -90,8 +81,16 @@ bool CObjectEntry::BuildRandomVariant(CObjectBase::variation_key& vars, CObjectB
 		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 			chosenProps[it->m_PropPointName] = *it;
 
+		// If one variant defines one animation called e.g. "attack", and this
+		// variant defines two different animations with the same name, the one
+		// original should be erased, and replaced by the two new ones.
+		//
+		// So, erase all existing animations which are overridden by this variant:
 		for (std::vector<CObjectBase::Anim>::iterator it = var.m_Anims.begin(); it != var.m_Anims.end(); ++it)
-			chosenAnims[it->m_AnimName] = *it;
+			chosenAnims.erase(chosenAnims.lower_bound(it->m_AnimName), chosenAnims.upper_bound(it->m_AnimName));
+		// and this insert the new ones:
+		for (std::vector<CObjectBase::Anim>::iterator it = var.m_Anims.begin(); it != var.m_Anims.end(); ++it)
+			chosenAnims.insert(make_pair(it->m_AnimName, *it));
 	}
 
 	// Copy the chosen data onto this model:
@@ -110,12 +109,10 @@ bool CObjectEntry::BuildRandomVariant(CObjectBase::variation_key& vars, CObjectB
 			m_Color = CColor(r/255.0f, g/255.0f, b/255.0f, 1.0f);
 	}
 
+	std::vector<CObjectBase::Prop> props;
+
 	for (std::map<CStr, CObjectBase::Prop>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
-		m_Props.push_back(it->second);
-
-	for (std::map<CStr, CObjectBase::Anim>::iterator it = chosenAnims.begin(); it != chosenAnims.end(); ++it)
-		m_Animations.push_back(it->second);
-
+		props.push_back(it->second);
 
 
 	// Build the model:
@@ -148,51 +145,31 @@ bool CObjectEntry::BuildRandomVariant(CObjectBase::variation_key& vars, CObjectB
 	// calculate initial object space bounds, based on vertex positions
 	m_Model->CalcObjectBounds();
 
-	// load animations
-	for (size_t t = 0; t < m_Animations.size(); t++)
+	// load the animations
+	for (std::multimap<CStr, CObjectBase::Anim>::iterator it = chosenAnims.begin(); it != chosenAnims.end(); ++it)
 	{
-		if (m_Animations[t].m_FileName.Length() > 0)
-		{
-			const char* animfilename = m_Animations[t].m_FileName;
-			m_Animations[t].m_AnimData = m_Model->BuildAnimation(animfilename, m_Animations[t].m_Speed, m_Animations[t].m_ActionPos, m_Animations[t].m_ActionPos2);
+		CStr name = it->first.LowerCase();
 
-			CStr AnimNameLC = m_Animations[t].m_AnimName.LowerCase();
+		// TODO: Use consistent names everywhere, then remove this translation section.
+		// (It's just mapping the names used in actors onto the names used by code.)
+		if (name == "attack") name = "melee";
+		else if (name == "chop") name = "gather";
+		else if (name == "decay") name = "corpse";
 
-			if (AnimNameLC == "idle")
-				m_IdleAnim = m_Animations[t].m_AnimData;
-			else
-			if (AnimNameLC == "walk")
-				m_WalkAnim = m_Animations[t].m_AnimData;
-			else
-			if (AnimNameLC == "attack")
-				m_MeleeAnim = m_Animations[t].m_AnimData;
-			else
-			if (AnimNameLC == "chop")
-				m_GatherAnim = m_Animations[t].m_AnimData;
-			else
-			if (AnimNameLC == "death")
-				m_DeathAnim = m_Animations[t].m_AnimData;
-			else
-			if (AnimNameLC == "decay")
-				m_CorpseAnim = m_Animations[t].m_AnimData;
-			//else
-			//	debug_printf("Invalid animation name '%s'\n", (const char*)AnimNameLC);
-		}
-		else
-		{
-			// FIXME, RC - don't store invalid animations (possible?)
-			m_Animations[t].m_AnimData = NULL;
-		}
+		CSkeletonAnim* anim = m_Model->BuildAnimation(it->second.m_FileName, name, it->second.m_Speed, it->second.m_ActionPos, it->second.m_ActionPos2);
+		if (anim)
+			m_Animations.insert(std::make_pair(name, anim));
 	}
+
 	// start up idling
-	if (! m_Model->SetAnimation(m_IdleAnim))
+	if (! m_Model->SetAnimation(GetRandomAnimation("idle")))
 		LOG(ERROR, LOG_CATEGORY, "Failed to set idle animation in model \"%s\"", modelfilename);
 
 	// build props - TODO, RC - need to fix up bounds here
 	// TODO: Make sure random variations get handled correctly when a prop fails
-	for (size_t p = 0; p < m_Props.size(); p++)
+	for (size_t p = 0; p < props.size(); p++)
 	{
-		const CObjectBase::Prop& prop = m_Props[p];
+		const CObjectBase::Prop& prop = props[p];
 	
 		CObjectEntry* oe = g_ObjMan.FindObjectVariation(prop.m_ModelName, vars, vars_it);
 		if (!oe)
@@ -222,8 +199,7 @@ bool CObjectEntry::BuildRandomVariant(CObjectBase::variation_key& vars, CObjectB
 			{
 				CModel* propmodel = oe->m_Model->Clone();
 				m_Model->AddProp(proppoint, propmodel);
-				if (oe->m_IdleAnim)
-					propmodel->SetAnimation(oe->m_IdleAnim);
+				propmodel->SetAnimation(oe->GetRandomAnimation("idle"));
 			}
 			else
 				LOG(ERROR, LOG_CATEGORY, "Failed to find matching prop point called \"%s\" in model \"%s\" on actor \"%s\"", (const char*)prop.m_PropPointName, modelfilename, (const char*)prop.m_ModelName);
@@ -275,21 +251,21 @@ bool CObjectEntry::BuildRandomVariant(CObjectBase::variation_key& vars, CObjectB
 }
 
 
-CSkeletonAnim* CObjectEntry::GetNamedAnimation(CStr animationName)
+CSkeletonAnim* CObjectEntry::GetRandomAnimation(const CStr& animationName)
 {
-	for (size_t t = 0; t < m_Animations.size(); t++)
-		if (m_Animations[t].m_AnimName == animationName)
-			return m_Animations[t].m_AnimData;
-
-	return NULL;
-}
-
-
-CObjectBase::Prop* CObjectEntry::FindProp(const char* proppointname)
-{
-	for (size_t i = 0; i < m_Props.size(); i++)
-		if (strcmp(proppointname, m_Props[i].m_PropPointName) == 0)
-			return &m_Props[i];
-
-	return NULL;
+	SkeletonAnimMap::iterator lower = m_Animations.lower_bound(animationName);
+	SkeletonAnimMap::iterator upper = m_Animations.upper_bound(animationName);
+	size_t count = std::distance(lower, upper);
+	if (count == 0)
+	{
+//		LOG(WARNING, LOG_CATEGORY, "Failed to find animation '%s' for actor '%s'", animationName.c_str(), m_ModelName.c_str());
+		return NULL;
+	}
+	else
+	{
+		// TODO: Do we care about network synchronisation of random animations?
+		int id = rand() % (int)count;
+		std::advance(lower, id);
+		return lower->second;
+	}
 }

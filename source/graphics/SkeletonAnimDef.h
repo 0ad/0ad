@@ -50,8 +50,8 @@ public:
 	u32 GetNumKeys() const { return m_NumKeys; }
 
 	// accessors: get a key for given bone at given time
-	Key& GetKey(u32 frame,u32 bone) { return m_Keys[frame*m_NumKeys+bone]; }
-	const Key& GetKey(u32 frame,u32 bone) const { return m_Keys[frame*m_NumKeys+bone]; }	
+	Key& GetKey(u32 frame, u32 bone) { return m_Keys[frame*m_NumKeys+bone]; }
+	const Key& GetKey(u32 frame, u32 bone) const { return m_Keys[frame*m_NumKeys+bone]; }	
 
 	// get duration of this anim, in ms
 	float GetDuration() const { return m_NumFrames*m_FrameTime; }
@@ -62,15 +62,15 @@ public:
 	u32 GetNumFrames() const { return m_NumFrames; }
 
 	// build matrices for all bones at the given time (in MS) in this animation
-	void BuildBoneMatrices(float time,CMatrix3D* matrices) const;
+	void BuildBoneMatrices(float time, CMatrix3D* matrices) const;
 
 	// anim I/O functions
 	static CSkeletonAnimDef* Load(const char* filename);
-	static void Save(const char* filename,const CSkeletonAnimDef* anim);
+	static void Save(const char* filename, const CSkeletonAnimDef* anim);
 
 public:
 	// name of the animation
-	CStr m_Name;
+	CStr m_Name; // TODO: this doesn't seem to be used, so it's just a waste of memory...
 	// frame time - time between successive frames, in ms
 	float m_FrameTime;
 	// number of keys in each frame - should match number of bones in the skeleton

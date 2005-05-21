@@ -287,7 +287,7 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t timestep_milli
 
 	if( m_transition && m_actor )
 	{
-		m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_WalkAnim );
+		m_actor->SetRandomAnimation( "walk" );
 		// Animation desync
 		m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
 	}
@@ -298,7 +298,7 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t timestep_milli
 
 	return( true );
 }
-bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, CSkeletonAnim* animation, CScriptEvent* contactEvent, SEntityAction* action )
+bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, const CStr& animation, CScriptEvent* contactEvent, SEntityAction* action )
 {
 	if( m_fsm_cyclepos != NOT_IN_CYCLE )
 	{
@@ -373,9 +373,9 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		// (is this good enough?)
 
 		// Play walk for a bit.
-		if( m_actor && ( m_actor->GetModel()->GetAnimation() != m_actor->GetObject()->m_WalkAnim ) )
+		if( m_actor && ! m_actor->IsPlayingAnimation( "walk" ) )
 		{
-			m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_WalkAnim );
+			m_actor->SetRandomAnimation( "walk" );
 			// Animation desync
 			m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
 		}
@@ -440,8 +440,8 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 	}
 
 	// Pick our animation, calculate the time to play it, and start the timer.
-	m_fsm_animation = animation; // <- Replace with a call that gets one randomly, probably pass in a CSkeletonAnim* (void) fn for this purpose
-	
+	m_fsm_animation = m_actor->GetRandomAnimation( animation );
+
 	// Here's the idea - we want to be at that animation's event point
 	// when the timer reaches action->m_Speed. The timer increments by 2 every millisecond.
 	// animation->m_actionpos is the time offset into that animation that event
@@ -461,7 +461,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		// If we've just transitioned, play idle. Otherwise, let the previous animation complete, if it
 		// hasn't already.
 		if( m_transition )
-			m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_IdleAnim );
+			m_actor->SetRandomAnimation( "idle" );
 	}
 
 	// Load time needs to be animation->m_ActionPos2 ms after the start of the animation.
@@ -486,14 +486,7 @@ bool CEntity::processAttackMeleeNoPathing( CEntityOrder* current, size_t timeste
 {
 	CEventAttack evt( current->m_data[0].entity );
 	if( !m_actor ) return( false );
-	CSkeletonAnim* animation = m_actor->GetObject()->m_MeleeAnim;
-	if( !animation ) animation = m_actor->GetObject()->m_IdleAnim;
-	if( !animation ) return( false ); // Should probably tell people why this is failing
-									  // (didn't specify an actor or animation) but that
-									  // would probably involve including CLogger.h, which
-									  // conflicts.
-	
-	return( processContactActionNoPathing( current, timestep_milli, animation, &evt, &m_melee ) );
+	return( processContactActionNoPathing( current, timestep_milli, "melee", &evt, &m_melee ) );
 }
 bool CEntity::processGather( CEntityOrder* current, size_t timestep_millis )
 {
@@ -504,13 +497,7 @@ bool CEntity::processGatherNoPathing( CEntityOrder* current, size_t timestep_mil
 {
 	CEventGather evt( current->m_data[0].entity );
 	if( !m_actor ) return( false );
-	CSkeletonAnim* animation = m_actor->GetObject()->m_GatherAnim;
-	if( !animation ) animation = m_actor->GetObject()->m_IdleAnim;
-	if( !animation ) return( false ); // Should probably tell people why this is failing
-									  // (didn't specify an actor or animation) but that
-									  // would probably involve including CLogger.h, which
-									  // conflicts.
-	return( processContactActionNoPathing( current, timestep_millis, animation, &evt, &m_gather ) );
+	return( processContactActionNoPathing( current, timestep_millis, "gather", &evt, &m_gather ) );
 }
 
 bool CEntity::processGoto( CEntityOrder* current, size_t timestep_millis )
@@ -527,7 +514,7 @@ bool CEntity::processGoto( CEntityOrder* current, size_t timestep_millis )
 
 	if( m_transition && m_actor )
 	{
-		m_actor->GetModel()->SetAnimation( m_actor->GetObject()->m_WalkAnim );
+		m_actor->SetRandomAnimation( "walk" );
 		// Animation desync
 		m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
 	}

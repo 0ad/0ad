@@ -120,7 +120,7 @@ private:
 	uint processGotoHelper( CEntityOrder* current, size_t timestep_milli, HEntity& collide );
 
 	bool processContactAction( CEntityOrder* current, size_t timestep_millis, int transition, SEntityAction* action );
-	bool processContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, CSkeletonAnim* animation, CScriptEvent* contactEvent, SEntityAction* action );
+	bool processContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, const CStr& animation, CScriptEvent* contactEvent, SEntityAction* action );
 
 	bool processAttackMelee( CEntityOrder* current, size_t timestep_milli );
 	bool processAttackMeleeNoPathing( CEntityOrder* current, size_t timestep_milli );

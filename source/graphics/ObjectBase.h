@@ -14,7 +14,7 @@ public:
 
 	struct Anim {
 		// constructor
-		Anim() : m_Speed(1), m_ActionPos( 0.0 ), m_ActionPos2( 0.0 ), m_AnimData(0) {}
+		Anim() : m_Speed(1), m_ActionPos(0.0), m_ActionPos2(0.0) {}
 
 		// name of the animation - "Idle", "Run", etc
 		CStr m_AnimName;
@@ -27,8 +27,6 @@ public:
 		// data is loaded)
 		double m_ActionPos;
 		double m_ActionPos2;
-		// the animation data, specific to the this model
-		CSkeletonAnim* m_AnimData;
 	};
 
 	struct Prop {

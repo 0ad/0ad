@@ -19,6 +19,8 @@ class CSkeletonAnimDef;
 class CSkeletonAnim
 {
 public:
+	// the name of the action which uses this animation (e.g. "idle")
+	CStr m_Name;
 	// the raw animation frame data
 	CSkeletonAnimDef* m_AnimDef;
 	// speed at which this animation runs

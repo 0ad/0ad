@@ -22,35 +22,33 @@ public:
 	// different variations of the actor.
 	CObjectBase* m_Base;
 
-	CObjectBase::Prop* FindProp(const char* proppointname);
-
 	// texture name
 	CStr m_TextureName;
 	// model name
 	CStr m_ModelName;
 	// colour (used when doing alpha-channel colouring, but not doing player-colour)
 	CColor m_Color;
-	// list of valid animations for this object
-	std::vector<CObjectBase::Anim> m_Animations;
-	CSkeletonAnim* m_IdleAnim;
-	CSkeletonAnim* m_WalkAnim;
-	CSkeletonAnim* m_DeathAnim;
-	CSkeletonAnim* m_MeleeAnim;
-	CSkeletonAnim* m_GatherAnim;
-	CSkeletonAnim* m_RangedAnim;
-	CSkeletonAnim* m_CorpseAnim;
+		// (probable TODO: make colour a per-model thing, rather than per-objectEntry,
+		// so we can have lots of colour variations without wasting memory on
+		// lots of objectEntries)
 
 	CModel* m_ProjectileModel;
 	CModel* m_AmmunitionModel;
 	SPropPoint* m_AmmunitionPoint;
 
-	CSkeletonAnim* GetNamedAnimation( CStr animationName );
-	// list of props attached to object
-	std::vector<CObjectBase::Prop> m_Props;
+	// Returns a randomly-chosen animation matching the given name.
+	// If none is found, returns NULL.
+	CSkeletonAnim* GetRandomAnimation(const CStr& animationName);
+
 	// corresponding model
 	CModel* m_Model;
 	// type of object; index into object managers types array
 	int m_Type;
+
+private:
+	typedef std::multimap<CStr, CSkeletonAnim*> SkeletonAnimMap;
+	SkeletonAnimMap m_Animations;
+		// TODO: something more memory-efficient than storing loads of similar strings for each unit?
 };
 
 

@@ -206,16 +206,17 @@ void CModel::CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BuildAnimation: load raw animation frame animation from given file, and build a 
 // animation specific to this model
-CSkeletonAnim* CModel::BuildAnimation(const char* filename,float speed,double actionpos,double actionpos2)
+CSkeletonAnim* CModel::BuildAnimation(const char* filename, const char* name, float speed, double actionpos, double actionpos2)
 {
 	CSkeletonAnimDef* def=g_SkelAnimMan.GetAnimation(filename);
-	if (!def) return 0;
+	if (!def) return NULL;
 
-	CSkeletonAnim* anim=new CSkeletonAnim;
-	anim->m_AnimDef=def;
-	anim->m_Speed=speed;
-	anim->m_ActionPos=(size_t)( actionpos * anim->m_AnimDef->GetDuration() / speed );
-	anim->m_ActionPos2=(size_t)( actionpos2 * anim->m_AnimDef->GetDuration() / speed );
+	CSkeletonAnim* anim = new CSkeletonAnim;
+	anim->m_Name = name;
+	anim->m_AnimDef = def;
+	anim->m_Speed = speed;
+	anim->m_ActionPos = (size_t)(actionpos * anim->m_AnimDef->GetDuration() / speed);
+	anim->m_ActionPos2 = (size_t)(actionpos2 * anim->m_AnimDef->GetDuration() / speed);
 	anim->m_ObjectBounds.SetEmpty();
 	InvalidateBounds();
 
@@ -228,30 +229,30 @@ void CModel::Update(float time)
 {
 	if (m_Anim && m_BoneMatrices) {
 		// convert to ms and adjust for animation speed
-		float animtime=time*1000*m_Anim->m_Speed;
+		float animtime = time*1000*m_Anim->m_Speed;
 
 		// update animation time, but don't calculate bone matrices - do that (lazily) when
 		// something requests them; that saves some calculation work for offscreen models,
 		// and also assures the world space, inverted bone matrices (required for normal
 		// skinning) are up to date with respect to m_Transform 
-		m_AnimTime+=animtime;
+		m_AnimTime += animtime;
 		
-		float duration=m_Anim->m_AnimDef->GetDuration();
-		if (m_AnimTime>duration) {
-			if( m_Flags & MODELFLAG_NOLOOPANIMATION )
-				SetAnimation( NULL );
-			m_AnimTime=(float) fmod(m_AnimTime,duration);
+		float duration = m_Anim->m_AnimDef->GetDuration();
+		if (m_AnimTime > duration) {
+			if (m_Flags & MODELFLAG_NOLOOPANIMATION)
+				SetAnimation(NULL);
+			m_AnimTime = fmod(m_AnimTime, duration);
 		}
 		
 		// mark vertices as dirty
 		SetDirty(RENDERDATA_UPDATE_VERTICES);
 		
 		// mark matrices as dirty
-		m_BoneMatricesValid=false;
+		m_BoneMatricesValid = false;
 	}
 
 	// update props
-	for (uint i=0;i<m_Props.size();i++) {
+	for (uint i=0; i<m_Props.size(); i++) {
 		m_Props[i].m_Model->Update(time);
 	}
 }
@@ -303,7 +304,7 @@ bool CModel::SetAnimation(CSkeletonAnim* anim, bool once)
 
 	if (anim) {
 		m_Flags &= ~MODELFLAG_NOLOOPANIMATION;
-		if( once )
+		if (once)
 			m_Flags |= MODELFLAG_NOLOOPANIMATION;
 
 		if (!m_BoneMatrices) {
@@ -311,7 +312,7 @@ bool CModel::SetAnimation(CSkeletonAnim* anim, bool once)
 			return false;
 		}
 
-		if (anim->m_AnimDef->GetNumKeys()!=m_pModelDef->GetNumBones()) {
+		if (anim->m_AnimDef->GetNumKeys() != m_pModelDef->GetNumBones()) {
 			// mismatch between model's skeleton and animation's skeleton
 			LOG(ERROR, LOG_CATEGORY, "Mismatch between model's skeleton and animation's skeleton (%d model bones != %d animation keys)",
 										m_pModelDef->GetNumBones(), anim->m_AnimDef->GetNumKeys());
@@ -333,7 +334,7 @@ bool CModel::SetAnimation(CSkeletonAnim* anim, bool once)
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // AddProp: add a prop to the model on the given point
-void CModel::AddProp(SPropPoint* point,CModel* model)
+void CModel::AddProp(SPropPoint* point, CModel* model)
 {
 	// position model according to prop point position
 	model->SetTransform(point->m_Transform);
@@ -375,11 +376,12 @@ void CModel::RemoveProp(SPropPoint* point)
 // Clone: return a clone of this model
 CModel* CModel::Clone() const
 {
-	CModel* clone=new CModel;
-	clone->m_ObjectBounds=m_ObjectBounds;
+	CModel* clone = new CModel;
+	clone->m_ObjectBounds = m_ObjectBounds;
 	clone->InitModel(m_pModelDef);
 	clone->SetTexture(m_Texture);
-	if (m_Texture.GetHandle()) h_add_ref(m_Texture.GetHandle());
+	if (m_Texture.GetHandle())
+		h_add_ref(m_Texture.GetHandle());
 	clone->SetMaterial(m_Material);
 	clone->SetAnimation(m_Anim);
 	clone->SetFlags(m_Flags);
