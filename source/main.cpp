@@ -1050,7 +1050,7 @@ static int ProgressiveLoad()
 
 #ifndef NO_GUI
 	// display progress / description in loading screen
-	CStrW i18n_description = translate(description);
+	CStrW i18n_description = I18n::translate(description);
 	JSString* js_desc = StringConvert::wstring_to_jsstring(g_ScriptingHost.getContext(), i18n_description);
 	g_ScriptingHost.SetGlobal("g_Progress", INT_TO_JSVAL(progress_percent)); 
 	g_ScriptingHost.SetGlobal("g_LoadDescription", STRING_TO_JSVAL(js_desc));
