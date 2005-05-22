@@ -670,7 +670,7 @@ fail_unmap_close:
 fail_close:
 	file_close(&za->f);
 
-	// don't complain here either; this happens when vfs_mount
+	// don't complain here either; this happens when vfs_mount's
 	// zip_archive_opens an invalid file that's in a mount point dir.
 	return err;
 }

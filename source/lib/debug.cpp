@@ -64,8 +64,75 @@ void debug_wprintf_mem(const wchar_t* fmt, ...)
 }
 
 
+
+
+// convert contents of file <in_filename> from char to wchar_t and
+// append to <out> file. used by debug_write_crashlog.
+static void cat_atow(FILE* out, const char* in_filename)
+{
+	FILE* in = fopen(in_filename, "rb");
+	if(!in)
+	{
+		fwprintf(in, L"%s", L"(unavailable)");
+		return;
+	}
+
+	const size_t buf_size = 1024;
+	char buf[buf_size+1]; // include space for trailing '\0'
+
+	while(!feof(in))
+	{
+		size_t bytes_read = fread(buf, 1,buf_size, in);
+		if(!bytes_read)
+			break;
+		buf[bytes_read] = 0;	// 0-terminate
+		fwprintf(out, L"%hs", buf);
+	}
+
+	fclose(in);
+}
+
+
+int debug_write_crashlog(const wchar_t* description, const wchar_t* locus, const wchar_t* stack_trace)
+{
+	const wchar_t divider[] = L"\n\n====================================\n\n";
+#define WRITE_DIVIDER() fwrite(divider, sizeof(wchar_t),ARRAY_SIZE(divider), f)
+
+	FILE* f = fopen("crashlog.txt", "w");
+	if(!f)
+		return -1;
+
+	const u16 BOM = 0xFEFF;
+	fwrite(&BOM, 2,1, f);
+
+	fwprintf(f, L"Unhandled exception: %s.\n", description);
+	fwprintf(f, L"Location: %s\n", locus);
+	fwprintf(f, L"Stack trace: %s\n", stack_trace);
+	WRITE_DIVIDER();
+
+
+	// for user convenience, bundle all logs into this file:
+
+	fwprintf(f, L"System info:\n\n");
+	cat_atow(f, "../logs/system_info.txt");
+	WRITE_DIVIDER();
+
+	fwprintf(f, L"Main log:\n\n");
+	cat_atow(f, "../logs/mainlog.html");
+	WRITE_DIVIDER();
+
+	fwprintf(f, L"Last known activity:\n\n %s\n", debug_log);
+
+	fclose(f);
+	return 0;
+}
+
+
+
 //////////////////////////////////////////////////////////////////////////////
+//
 // storage for and construction of strings describing a symbol
+//
 //////////////////////////////////////////////////////////////////////////////
 
 // tightly pack strings within one large buffer. we never need to free them,
@@ -265,7 +332,9 @@ static const char* symbol_string_build(void* symbol, const char* name, const cha
 
 
 //////////////////////////////////////////////////////////////////////////////
+//
 // cache, mapping symbol address to its description string.
+//
 //////////////////////////////////////////////////////////////////////////////
 
 // note: we don't want to allocate a new string for every symbol -

@@ -91,7 +91,7 @@ extern void debug_wprintf_mem(const wchar_t* fmt, ...);
 #define debug_warn(str) assert2(0 && (str))
 
 // TODO
-extern int debug_write_crashlog(const char* file, const wchar_t* header, void* context);
+extern int debug_write_crashlog(const wchar_t* description, const wchar_t* locus, const wchar_t* stack_trace);
 
 
 //////////////////////////////////////////////////////////////////////////////

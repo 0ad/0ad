@@ -871,6 +871,7 @@ static void* thread_func(void* arg)
 				assert2(*(uintptr_t*)user_data == ~key);
 
 			user_data = lfh_find(&hash, key);
+			// typical failure site if lockfree data structure has bugs.
 			assert2(was_in_set == (user_data != 0));
 			if(user_data)
 				assert2(*(uintptr_t*)user_data == ~key);

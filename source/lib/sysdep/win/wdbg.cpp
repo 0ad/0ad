@@ -28,12 +28,12 @@
 #include <OAIdl.h>	// VARIANT
 #include "posix.h"
 
+#ifdef I18N
+#include "PS/i18n.h"
+#endif
+
 #include "wdbg.h"
 #include "assert_dlg.h"
-
-#ifndef PERFORM_SELF_TEST
-#define PERFORM_SELF_TEST 0
-#endif
 
 
 #ifdef _MSC_VER
@@ -125,7 +125,13 @@ static void unlock()
 
 void debug_check_heap()
 {
-	_heapchk();
+	__try
+	{
+		_heapchk();
+	}
+	__except(EXCEPTION_EXECUTE_HANDLER)
+	{
+	}
 }
 
 
@@ -196,12 +202,14 @@ void debug_wprintf(const wchar_t* fmt, ...)
 // but the struct simplifies switching to a queue later.
 static struct BreakInfo
 {
-	// real (not pseudo) handle of thread whose context we will change
+	// real (not pseudo) handle of thread whose context we will change.
 	HANDLE hThread;
 
 	uintptr_t addr;
 	DbgBreakType type;
 
+	// determines what brk_thread_func will do.
+	// set/reset by debug_remove_all_breaks.
 	bool want_all_disabled;
 }
 brk_info;
@@ -209,46 +217,44 @@ brk_info;
 // Local Enable bits of all registers we enabled (used when restoring all).
 static DWORD brk_all_local_enables;
 
+static const uint MAX_BREAKPOINTS = 4;
+	// IA-32 limit; if this changes, make sure brk_enable still works!
+	// (we assume CONTEXT has contiguous Dr0..Dr3 register fields)
 
+
+// remove all breakpoints enabled by debug_set_break from <context>.
 // called from brk_thread_func; return error code as void*.
-static void* brk_disable_all(BreakInfo* bi, CONTEXT* context)
+static void* brk_disable_all_in_ctx(BreakInfo* bi, CONTEXT* context)
 {
 	context->Dr7 &= ~brk_all_local_enables;
 	return 0;	// success
 }
 
 
-// find a free register, set type according to <bi> and enable it.
+// find a free register, set type according to <bi> and
+// mark it as enabled in <context>.
 // called from brk_thread_func; return error code as void*.
-static void* brk_enable(BreakInfo* bi, CONTEXT* context)
+static void* brk_enable_in_ctx(BreakInfo* bi, CONTEXT* context)
 {
 	int reg;	// index (0..3) of first free reg
 	uint LE;	// local enable bit for <reg>
 
-	// find free debug register
-	for(reg = 0; reg < 4; reg++)
+	// find free debug register.
+	for(reg = 0; reg < MAX_BREAKPOINTS; reg++)
 	{
 		LE = BIT(reg*2);
-		// .. currently not in use.
+		// .. this one is currently not in use.
 		if((context->Dr7 & LE) == 0)
 			goto have_reg;
 	}
-	debug_warn("brk_enable: no register available");
+	debug_warn("brk_enable_in_ctx: no register available");
 	return (void*)(intptr_t)ERR_LIMIT;
 have_reg:
 
-	// set and mark as enabled/in use ASAP.
+	// set value and mark as enabled.
+	(&context->Dr0)[reg] = (DWORD)bi->addr;	// see MAX_BREAKPOINTS
 	context->Dr7 |= LE;
 	brk_all_local_enables |= LE;
-	switch(reg)	// for safety; could use (&context->Dr0)[reg]
-	{
-	case 0: context->Dr0 = (DWORD)bi->addr; break;
-	case 1: context->Dr1 = (DWORD)bi->addr; break;
-	case 2: context->Dr2 = (DWORD)bi->addr; break;
-	case 3: context->Dr3 = (DWORD)bi->addr; break;
-	default:
-		debug_warn("brk_enable: invalid reg");
-	}
 
 	// build Debug Control Register value.
 	// .. type
@@ -262,7 +268,7 @@ have_reg:
 	case DBG_BREAK_DATA_WRITE:
 		rw = 3; break;
 	default:
-		debug_warn("brk_enable: invalid type");
+		debug_warn("brk_enable_in_ctx: invalid type");
 	}
 	// .. length (determined from addr's alignment).
 	//    note: IA-32 requires len=0 for code breakpoints.
@@ -325,9 +331,9 @@ static void* brk_thread_func(void* arg)
 
 #if defined(_M_IX86)
 	if(bi->want_all_disabled)
-		ret = brk_disable_all(bi, &context);
+		ret = brk_disable_all_in_ctx(bi, &context);
 	else
-		ret = brk_enable(bi, &context);
+		ret = brk_enable_in_ctx     (bi, &context);
 
 	if(!SetThreadContext(bi->hThread, &context))
 	{
@@ -409,48 +415,11 @@ int debug_remove_all_breaks()
 
 	brk_info.want_all_disabled = true;
 	int ret = brk_run_thread();
+	brk_info.want_all_disabled = false;
 
 	unlock();
 	return ret;
 }
-
-
-#if PERFORM_SELF_TEST
-
-template<class T> static void verify_natural_alignment(T* t)
-{
-	uintptr_t addr = (uintptr_t)t;
-	assert2(addr % sizeof(T) == 0);
-}
-
-#pragma optimize("", off)
-
-static void brk_self_test()
-{
-	volatile char  c = 0x01;
-	volatile short s = 0x0202;
-	volatile int   i = 0x03030303;
-	volatile char c4[4] = { 0x04, 0x05, 0x06, 0x07 };
-	verify_natural_alignment(&c);
-	verify_natural_alignment(&s);
-	verify_natural_alignment(&i);
-	verify_natural_alignment(&c4[0]);
-
-	debug_printf("brk_self_test: should trigger");
-	debug_set_break((void*)&c, DBG_BREAK_DATA_WRITE);
-	c = 0x0a;
-	debug_remove_all_breaks();
-	debug_set_break((void*)&c, DBG_BREAK_DATA);
-	c = 0x0b;
-	debug_remove_all_breaks();
-
-	debug_printf("brk_self_test: should not trigger");
-	debug_set_break((void*)&c, DBG_BREAK_DATA_WRITE);
-}
-
-#pragma optimize("", on)
-
-#endif	// #if PERFORM_SELF_TEST
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -1317,13 +1286,16 @@ static int dump_frame_cb(STACKFRAME64* frame, void* ctx)
 
 // most recent <skip> stack frames will be skipped
 // (we don't want to show e.g. GetThreadContext / this call)
-static void dump_stack(uint skip, CONTEXT* thread_context = NULL)
+static const wchar_t* dump_stack(uint skip, CONTEXT* thread_context = NULL)
 {
-	out(L"\r\nCall stack:\r\n\r\n");
-
 	DumpFrameParams params = { (int)skip+2 };
 		// skip dump_stack and walk_stack
-	walk_stack(dump_frame_cb, &params, thread_context);
+	int err = walk_stack(dump_frame_cb, &params, thread_context);
+	if(err != 0)
+	{
+
+	}
+	return buf;
 }
 
 
@@ -1526,7 +1498,8 @@ int debug_assert_failed(const char* file, int line, const char* expr)
 {
 	pos = buf;
 	out(L"Assertion failed in %hs, line %d: \"%hs\"\r\n", file, line, expr);
-	dump_stack(1);	// skip this function's frame
+	out(L"\r\nCall stack:\r\n\r\n");
+	dump_stack(+1);	// skip this function's frame
 
 #if defined(SCED) && !(defined(NDEBUG)||defined(TESTING))
 	// ScEd keeps running while the dialog is showing, and tends to crash before
@@ -1545,225 +1518,66 @@ int debug_assert_failed(const char* file, int line, const char* expr)
 //////////////////////////////////////////////////////////////////////////////
 
 
-static PTOP_LEVEL_EXCEPTION_FILTER prev_except_filter;
-
-static long CALLBACK except_filter(EXCEPTION_POINTERS* except)
+static const wchar_t* translate(const wchar_t* text)
 {
-	PEXCEPTION_RECORD except_record = except->ExceptionRecord;
-	uintptr_t addr = (uintptr_t)except_record->ExceptionAddress;
-
-	DWORD code = except_record->ExceptionCode;
-	const char* except_str;
-#define X(e) case EXCEPTION_##e: except_str = #e; break;
-	switch(code)
+#ifdef I18N
+	// make sure i18n system is (already|still) initialized.
+	if(g_CurrentLocale)
 	{
-		X(ACCESS_VIOLATION)
-		X(DATATYPE_MISALIGNMENT)
-		X(BREAKPOINT)
-		X(SINGLE_STEP)
-		X(ARRAY_BOUNDS_EXCEEDED)
-		X(FLT_DENORMAL_OPERAND)
-		X(FLT_DIVIDE_BY_ZERO)
-		X(FLT_INEXACT_RESULT)
-		X(FLT_INVALID_OPERATION)
-		X(FLT_OVERFLOW)
-		X(FLT_STACK_CHECK)
-		X(FLT_UNDERFLOW)
-		X(INT_DIVIDE_BY_ZERO)
-		X(INT_OVERFLOW)
-		X(PRIV_INSTRUCTION)
-		X(IN_PAGE_ERROR)
-		X(ILLEGAL_INSTRUCTION)
-		X(NONCONTINUABLE_EXCEPTION)
-		X(STACK_OVERFLOW)
-		X(INVALID_DISPOSITION)
-		X(GUARD_PAGE)
-		X(INVALID_HANDLE)
-	default:
-		except_str = "(unknown)";
-	}
-#undef X
-
-	MEMORY_BASIC_INFORMATION mbi;
-	char module_buf[100];
-	const char* module = "???";
-	uintptr_t base = 0;
-
-	if(VirtualQuery((void*)addr, &mbi, sizeof(mbi)))
-	{
-		base = (uintptr_t)mbi.AllocationBase;
-		if(GetModuleFileName((HMODULE)base, module_buf, sizeof(module_buf)))
-			module = strrchr(module_buf, '\\')+1;
-			// GetModuleFileName returns fully qualified path =>
-			// trailing '\\' exists
-	}
-
-
-	pos = buf;
-	out(L"Exception %hs at %hs!%08lX\r\n", except_str, module, addr-base);
-	dump_stack(0, except->ContextRecord);
-
-	dialog(EXCEPTION);
-
-	if(prev_except_filter)
-		return prev_except_filter(except);
-
-	return EXCEPTION_CONTINUE_EXECUTION;
-}
-
-
-#ifndef EXCEPTION_HACK_0AD
-
-static void set_exception_handler()
-{
-	prev_except_filter = SetUnhandledExceptionFilter(except_filter);
-}
-
-#else
-
-LONG WINAPI debug_main_exception_filter(PEXCEPTION_POINTERS ep);
-
-static void set_exception_handler()
-{
-	prev_except_filter = SetUnhandledExceptionFilter(debug_main_exception_filter);
-}
-
-
-
-
-
-#ifdef LOCALISED_TEXT
-
-// Split this into a separate function because destructors and __try don't mix
-void i18n_display_fatal_msg(const wchar_t* errortext) {
-	CStrW title = translate(L"Pyrogenesis Failure");
-	CStrW message = translate(L"A fatal error has occurred: $msg. Please report this to http://bugs.wildfiregames.com/ and attach the crashlog.txt and crashlog.dmp files from your 'data' folder.") << I18n::Raw(errortext);
-	wdisplay_msg(title.c_str(), message.c_str());
-}
-
-#endif // LOCALISED_TEXT
-
-
-
-
-
-
-// from http://www.codeproject.com/debug/XCrashReportPt3.asp
-static void DumpMiniDump(HANDLE hFile, PEXCEPTION_POINTERS excpInfo)
-{
-/*
-	if (excpInfo == NULL) 
-	{
-		// Generate exception to get proper context in dump
-		__try 
+		// be prepared for this to fail, because translation potentially
+		// involves script code and the JS context might be corrupted.
+		__try
 		{
-			OutputDebugString("RaiseException for MinidumpWriteDump\n");
-			RaiseException(EXCEPTION_BREAKPOINT, 0, 0, NULL);
-		} 
-		__except(DumpMiniDump(hFile, GetExceptionInformation()), EXCEPTION_CONTINUE_EXECUTION) 
+			text = translate_raw(text);
+		}
+		__except(EXCEPTION_EXECUTE_HANDLER)
 		{
 		}
 	}
-	else
-	{*/
-		MINIDUMP_EXCEPTION_INFORMATION eInfo;
-		eInfo.ThreadId = GetCurrentThreadId();
-		eInfo.ExceptionPointers = excpInfo;
-		eInfo.ClientPointers = FALSE;
+#endif
 
-		// TODO: Store the crashlog.txt inside the UserStreamParam
-		// so that people only have to send us one file?
-
-		// note:  MiniDumpWithIndirectlyReferencedMemory does not work on Win98
-		if (!MiniDumpWriteDump(
-			GetCurrentProcess(),
-			GetCurrentProcessId(),
-			hFile,
-			MiniDumpNormal,
-			excpInfo ? &eInfo : NULL,
-			NULL,
-			NULL))
-		{
-			throw; // fail noisily
-		}
-//	}
+	return text;
 }
 
-static void cat_atow(FILE* in, FILE* out)
+
+// convenience wrapper on top of translate
+static void translate_and_display_msg(const wchar_t* caption, const wchar_t* text)
 {
-	const int bufsize = 1024;
-	char buffer[bufsize+1]; // bufsize+1 so there's space for a \0 at the end
-	while (!feof(in))
-	{
-		int r = (int)fread(buffer, 1, bufsize, in);
-		if (!r) break;
-		buffer[r] = 0; // ensure proper NULLness
-		fwprintf(out, L"%hs", buffer);
-	}
+	wdisplay_msg(translate(caption), translate(text));
 }
 
-extern wchar_t debug_log[];
-extern wchar_t* debug_log_pos;
 
 
-static int write_crashlog(const char* file, const wchar_t* header, CONTEXT* context)
+
+// modified from http://www.codeproject.com/debug/XCrashReportPt3.asp
+static void write_minidump(EXCEPTION_POINTERS* exception_pointers)
 {
-	pos = buf;
-	out(L"Unhandled exception.\r\n");
+	HANDLE hFile = CreateFile("crashlog.dmp", GENERIC_WRITE, FILE_SHARE_WRITE, 0, CREATE_ALWAYS, 0, 0);
+	if(hFile == INVALID_HANDLE_VALUE)
+		goto fail;
 
-	dump_stack(0, context);
+	MINIDUMP_EXCEPTION_INFORMATION mei;
+	mei.ThreadId = GetCurrentThreadId();
+	mei.ExceptionPointers = exception_pointers;
+	mei.ClientPointers = FALSE;
+		// exception_pointers is not in our address space.
 
-	FILE* f = fopen(file, "wb");
-	u16 BOM = 0xFEFF;
-	fwrite(&BOM, 2, 1, f);
-	if (header)
+	// note: we don't store other crashlog info within the dump file
+	// (UserStreamParam), since we will need to generate a plain text file on
+	// non-Windows platforms. users will just have to send us both files.
+
+	HANDLE hProcess = GetCurrentProcess(); DWORD pid = GetCurrentProcessId();
+	if(!MiniDumpWriteDump(hProcess, pid, hFile, MiniDumpNormal, &mei, 0, 0))
 	{
-		fwrite(header, wcslen(header), sizeof(wchar_t), f);
-		fwrite(L"\r\n\r\n", 4, sizeof(wchar_t), f);
-	}
-	fwrite(buf, pos-buf, 2, f);
-
-	const wchar_t* divider = L"\r\n\r\n====================================\r\n\r\n";
-
-	fwrite(divider, wcslen(divider), sizeof(wchar_t), f);
-
-	// HACK: Insert the contents from a couple of other log files
-	// and one memory log. These really ought to be integrated better.
-
-	// Copy the contents of ../logs/systeminfo.txt
-	FILE* in;
-	in = fopen("../logs/system_info.txt", "rb");
-	if (in)
-	{
-		fwprintf(f, L"System info:\r\n\r\n");
-		cat_atow(in, f);
-		fclose(in);
+fail:
+		translate_and_display_msg(L"Error", L"Unable to generate minidump.");
 	}
 
-	fwrite(divider, wcslen(divider), sizeof(wchar_t), f);
-
-	// Copy the contents of ../logs/mainlog.html
-	in = fopen("../logs/mainlog.html", "rb");
-	if (in)
-	{
-		fwprintf(f, L"Main log:\r\n\r\n");
-		cat_atow(in, f);
-		fclose(in);
-	}
-
-	fwrite(divider, wcslen(divider), sizeof(wchar_t), f);
-
-	fwprintf(f, L"Last known activity:\r\n\r\n");
-	fwrite(debug_log, debug_log_pos-debug_log, sizeof(wchar_t), f);
-	fclose(f);
-
-	return 0;
+	CloseHandle(hFile);
 }
 
 
-// PT: Alternate version of the exception handler, which makes
-// the crash log more useful, and takes the responsibility of
-// suiciding away from main.cpp.
+
 
 /*
 TODO
@@ -1774,39 +1588,84 @@ but this can be disabled by specifying SEM_NOGPFAULTERRORBOX in a call to the Se
 
 
 
-LONG WINAPI debug_main_exception_filter(PEXCEPTION_POINTERS ep)
+
+static const wchar_t* exception_locus(const EXCEPTION_RECORD* er)
 {
-	// If something crashes after we've already crashed (i.e. when shutting
-	// down everything), don't bother logging it, because the first crash
-	// is the most important one to fix.
-	static bool already_crashed = false;
-	if (already_crashed)
+	static wchar_t locus[100];
+	swprintf(locus, 18, L"0x%p", er->ExceptionAddress);
+	MEMORY_BASIC_INFORMATION mbi;
+	if(VirtualQuery(er->ExceptionAddress, &mbi, sizeof(mbi)))
 	{
-		return EXCEPTION_EXECUTE_HANDLER;
+		wchar_t path[MAX_PATH];
+		HMODULE hMod = (HMODULE)mbi.AllocationBase;
+		if(GetModuleFileNameW(hMod, path, ARRAY_SIZE(path)))
+		{
+			wchar_t* filename = wcsrchr(path, '\\')+1;
+			// GetModuleFileName returns full path => a '\\' exists
+			swprintf(locus, ARRAY_SIZE(locus)-18, L" (%s)", filename);
+		}
 	}
-	already_crashed = true;
 
-/*
-	// The timer thread sometimes dies from EXCEPTION_PRIV_INSTRUCTION
-	// when debugging this exception handler code (which gets quite
-	// annoying), so kill it before it gets a chance.
-	__try
-	{
-		abort_timer();
-	}
-	__except (EXCEPTION_EXECUTE_HANDLER)
-	{
-	}
-*/
+	return locus;
+}
 
-	const wchar_t* error = NULL;
+
+static const wchar_t* SEH_code_to_string(DWORD code)
+{
+	switch(code)
+	{
+	case EXCEPTION_ACCESS_VIOLATION:         return L"Access violation";
+	case EXCEPTION_DATATYPE_MISALIGNMENT:    return L"Datatype misalignment";
+	case EXCEPTION_BREAKPOINT:               return L"Breakpoint";
+	case EXCEPTION_SINGLE_STEP:              return L"Single step";
+	case EXCEPTION_ARRAY_BOUNDS_EXCEEDED:    return L"Array bounds exceeded";
+	case EXCEPTION_FLT_DENORMAL_OPERAND:     return L"FPU denormal operand";
+	case EXCEPTION_FLT_DIVIDE_BY_ZERO:       return L"FPU divide by zero";
+	case EXCEPTION_FLT_INEXACT_RESULT:       return L"FPU inexact result";
+	case EXCEPTION_FLT_INVALID_OPERATION:    return L"FPU invalid operation";
+	case EXCEPTION_FLT_OVERFLOW:             return L"FPU overflow";
+	case EXCEPTION_FLT_STACK_CHECK:          return L"FPU stack check";
+	case EXCEPTION_FLT_UNDERFLOW:            return L"FPU underflow";
+	case EXCEPTION_INT_DIVIDE_BY_ZERO:       return L"Integer divide by zero";
+	case EXCEPTION_INT_OVERFLOW:             return L"Integer overflow";
+	case EXCEPTION_PRIV_INSTRUCTION:         return L"Privileged instruction";
+	case EXCEPTION_IN_PAGE_ERROR:            return L"In page error";
+	case EXCEPTION_ILLEGAL_INSTRUCTION:      return L"Illegal instruction";
+	case EXCEPTION_NONCONTINUABLE_EXCEPTION: return L"Noncontinuable exception";
+	case EXCEPTION_STACK_OVERFLOW:           return L"Stack overflow";
+	case EXCEPTION_INVALID_DISPOSITION:      return L"Invalid disposition";
+	case EXCEPTION_GUARD_PAGE:               return L"Guard page";
+	case EXCEPTION_INVALID_HANDLE:           return L"Invalid handle";
+	default:                                 return 0;
+	}
+}
+
+
+static const wchar_t* exception_description(const EXCEPTION_RECORD* er)
+{
+	const ULONG_PTR* const ei = er->ExceptionInformation;
+	const wchar_t* description;
+
+	// special case for SEH access violations: display type and address.
+	if(er->ExceptionCode == EXCEPTION_ACCESS_VIOLATION)
+	{
+		const wchar_t* op = (ei[0] != 0)? L"writing" : L"reading";
+		static wchar_t buf[50];
+		swprintf(buf, ARRAY_SIZE(buf), L"Access violation %s 0x%08X", op, ei[1]);
+		return buf;
+	}
+
+	// SEH exception.
+	description = SEH_code_to_string(er->ExceptionCode);
+	if(description)
+		return description;
 
 	// C++ exceptions put a pointer to the exception object
 	// into ExceptionInformation[1] -- so see if it looks like
 	// a PSERROR*, and use the relevant message if it is.
 	__try
 	{
-		if (ep->ExceptionRecord->NumberParameters == 3)
+		if (er->NumberParameters == 3)
 		{
 			/*/*
 			PSERROR* err = (PSERROR*) ep->ExceptionRecord->ExceptionInformation[1];
@@ -1822,132 +1681,55 @@ LONG WINAPI debug_main_exception_filter(PEXCEPTION_POINTERS ep)
 	{
 		// Presumably it wasn't a PSERROR and resulted in
 		// accessing invalid memory locations.
-		error = NULL;
 	}
 
-	// Try getting nice names for other types of error:
-	if (! error)
-	{
-		switch (ep->ExceptionRecord->ExceptionCode)
-		{
-		case EXCEPTION_ACCESS_VIOLATION:		error = L"Access violation"; break;
-		case EXCEPTION_DATATYPE_MISALIGNMENT:	error = L"Datatype misalignment"; break;
-		case EXCEPTION_BREAKPOINT:				error = L"Breakpoint"; break;
-		case EXCEPTION_SINGLE_STEP:				error = L"Single step"; break;
-		case EXCEPTION_ARRAY_BOUNDS_EXCEEDED:	error = L"Array bounds exceeded"; break;
-		case EXCEPTION_FLT_DENORMAL_OPERAND:	error = L"Float denormal operand"; break;
-		case EXCEPTION_FLT_DIVIDE_BY_ZERO:		error = L"Float divide by zero"; break;
-		case EXCEPTION_FLT_INEXACT_RESULT:		error = L"Float inexact result"; break;
-		case EXCEPTION_FLT_INVALID_OPERATION:	error = L"Float invalid operation"; break;
-		case EXCEPTION_FLT_OVERFLOW:			error = L"Float overflow"; break;
-		case EXCEPTION_FLT_STACK_CHECK:			error = L"Float stack check"; break;
-		case EXCEPTION_FLT_UNDERFLOW:			error = L"Float underflow"; break;
-		case EXCEPTION_INT_DIVIDE_BY_ZERO:		error = L"Integer divide by zero"; break;
-		case EXCEPTION_INT_OVERFLOW:			error = L"Integer overflow"; break;
-		case EXCEPTION_PRIV_INSTRUCTION:		error = L"Privileged instruction"; break;
-		case EXCEPTION_IN_PAGE_ERROR:			error = L"In page error"; break;
-		case EXCEPTION_ILLEGAL_INSTRUCTION:		error = L"Illegal instruction"; break;
-		case EXCEPTION_NONCONTINUABLE_EXCEPTION:error = L"Noncontinuable exception"; break;
-		case EXCEPTION_STACK_OVERFLOW:			error = L"Stack overflow"; break;
-		case EXCEPTION_INVALID_DISPOSITION:		error = L"Invalid disposition"; break;
-		case EXCEPTION_GUARD_PAGE:				error = L"Guard page"; break;
-		case EXCEPTION_INVALID_HANDLE:			error = L"Invalid handle"; break;
-		default: error = L"[unknown exception]";
-		}
-	}
-
-	wchar_t* errortext = (wchar_t*) error;
-
-	// Handle access violations specially, because we can see
-	// whether and where they were reading/writing.
-	if (ep->ExceptionRecord->ExceptionCode == EXCEPTION_ACCESS_VIOLATION)
-	{
-		errortext = new wchar_t[256];
-		if (ep->ExceptionRecord->ExceptionInformation[0])
-			swprintf(errortext, 256, L"Access violation writing 0x%08X", ep->ExceptionRecord->ExceptionInformation[1]);
-		else
-			swprintf(errortext, 256, L"Access violation reading 0x%08X", ep->ExceptionRecord->ExceptionInformation[1]);
-	}
-
-	bool localised_successfully = false;
-#ifdef LOCALISED_TEXT
-
-	// In case this is called before/after the i18n system is
-	// alive, make sure it's actually a valid pointer
-	if (g_CurrentLocale)
-	{
-		__try
-		{
-			i18n_display_fatal_msg(errortext);
-			localised_successfully = true;
-		}
-		__except (EXCEPTION_EXECUTE_HANDLER)
-		{
-		}
-	}
-#endif // LOCALISED_TEXT
-	if (!localised_successfully)
-	{
-		wchar_t message[1024];
-		swprintf(message, 1024, L"A fatal error has occurred: %ls.\nPlease report this to http://bugs.wildfiregames.com/ and attach the crashlog.txt and crashlog.dmp files from your 'data' folder.", errortext);
-		message[1023] = 0;
-
-		wdisplay_msg(L"Pyrogenesis failure", message);
-	}
+	return L"unknown exception";
+}
 
 
-	__try
-	{
-		write_crashlog("crashlog.txt", errortext, ep->ContextRecord);
-	}
-	__except (EXCEPTION_EXECUTE_HANDLER)
-	{
-		wdisplay_msg(L"Pyrogenesis failure", L"Error generating crash log.");
-	}
+static LONG WINAPI unhandled_exception_filter(EXCEPTION_POINTERS* ep)
+{
+	const EXCEPTION_RECORD* const er = ep->ExceptionRecord;
 
-	__try
-	{
-		HANDLE hFile = CreateFile("crashlog.dmp", GENERIC_WRITE, FILE_SHARE_WRITE, 0, CREATE_ALWAYS, 0, 0);
-		if (hFile == INVALID_HANDLE_VALUE) throw;
-		DumpMiniDump(hFile, ep);
-		CloseHandle(hFile);
-	}
-	__except (EXCEPTION_EXECUTE_HANDLER)
-	{
-		wdisplay_msg(L"Pyrogenesis failure", L"Error generating crash dump.");
-	}
+	// If something crashes after we've already crashed (i.e. when shutting
+	// down everything), don't bother logging it, because the first crash
+	// is the most important one to fix.
+	static bool already_crashed = false;
+	if (already_crashed)
+		return EXCEPTION_EXECUTE_HANDLER;
+	already_crashed = true;
 
-	// Disable memory-leak reporting, because it's going to
-	// leak like a bucket with a missing bottom when it crashes.
+	const wchar_t* description = exception_description(er);
+	const wchar_t* locus       = exception_locus      (er);
+
+	// build and display error message
+	const wchar_t fmt[] = L"We are sorry, the program has encountered an error and cannot continue.\r\n"
+	                      L"Please report this to http://bugs.wildfiregames.com/ and attach the crashlog.txt and crashlog.dmp files from your 'data' folder.\r\n"
+						  L"Details: %s at %s.";
+	wchar_t text[1000];
+	swprintf(text, ARRAY_SIZE(text), translate(fmt), description, locus);
+	wdisplay_msg(translate(L"Problem"), text);
+
+	pos = buf;
+	const wchar_t* stack_trace = dump_stack(+0, ep->ContextRecord);
+	write_minidump(ep);
+	debug_write_crashlog(description, locus, stack_trace);
+
+
+	// disable memory-leak reporting to avoid a flood of warnings
+	// (lots of stuff will leak since we exit abnormally).
 #ifdef HAVE_DEBUGALLOC
 	uint flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
 	_CrtSetDbgFlag(flags & ~_CRTDBG_LEAK_CHECK_DF);
 #endif
 
-	exit(EXIT_FAILURE);
+	// MSDN: "This usually results in process termination".
+	return EXCEPTION_EXECUTE_HANDLER;
 }
 
-#endif	// #ifdef EXCEPTION_HACK_0AD
 
-
-//////////////////////////////////////////////////////////////////////////////
-//
-// built-in self test
-//
-//////////////////////////////////////////////////////////////////////////////
-
-namespace test {
-
-#if PERFORM_SELF_TEST
-
-static int run_tests()
+// called from wdbg_init
+static void set_exception_handler()
 {
-	brk_self_test();
-	return 0;
+	SetUnhandledExceptionFilter(unhandled_exception_filter);
 }
-
-static int dummy = run_tests();
-
-#endif	// #if PERFORM_SELF_TEST
-
-}	// namespace test
