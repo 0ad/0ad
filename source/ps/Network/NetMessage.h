@@ -11,7 +11,7 @@
 #include "AllNetMessages.h"
 #undef ALLNETMSGS_DONT_CREATE_NMTS
 
-class CCommand;
+class CNetCommand;
 struct CEntityList;
 
 /**
@@ -73,7 +73,7 @@ public:
 	 */
 	static void ScriptingInit();
 	
-	static CCommand *CommandFromJSArgs(const CEntityList &entities, JSContext* cx, uintN argc, jsval* argv);
+	static CNetCommand *CommandFromJSArgs(const CEntityList &entities, JSContext* cx, uintN argc, jsval* argv);
 };
 
 typedef CNetMessage * (*NetMessageDeserializer) (const u8 *buffer, uint length);

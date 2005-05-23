@@ -202,30 +202,30 @@ START_NMT_CLASS_(EndCommandBatch)
 	NMT_FIELD_INT(m_TurnLength, u32, 2)
 END_NMT_CLASS()
 
-START_NMT_CLASS(CCommand, NMT_NONE)
+START_NMT_CLASS(CNetCommand, NMT_NONE)
 	NMT_FIELD(CEntityList, m_Entities)
 END_NMT_CLASS()
 
-DERIVE_NMT_CLASS_(Command, Goto)
+DERIVE_NMT_CLASS_(NetCommand, Goto)
 	NMT_FIELD_INT(m_TargetX, u32, 2)
 	NMT_FIELD_INT(m_TargetY, u32, 2)
 END_NMT_CLASS()
 
-DERIVE_NMT_CLASS_(Command, Patrol)
+DERIVE_NMT_CLASS_(NetCommand, Patrol)
 	NMT_FIELD_INT(m_TargetX, u32, 2)
 	NMT_FIELD_INT(m_TargetY, u32, 2)
 END_NMT_CLASS()
 
-DERIVE_NMT_CLASS_(Command, AddWaypoint)
+DERIVE_NMT_CLASS_(NetCommand, AddWaypoint)
 	NMT_FIELD_INT(m_TargetX, u32, 2)
 	NMT_FIELD_INT(m_TargetY, u32, 2)
 END_NMT_CLASS()
 
-DERIVE_NMT_CLASS_(Command, AttackMelee)
+DERIVE_NMT_CLASS_(NetCommand, AttackMelee)
 	NMT_FIELD(HEntity, m_Target)
 END_NMT_CLASS()
 
-DERIVE_NMT_CLASS_(Command, Gather)
+DERIVE_NMT_CLASS_(NetCommand, Gather)
 	NMT_FIELD(HEntity, m_Target)
 END_NMT_CLASS()
 

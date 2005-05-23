@@ -82,7 +82,7 @@ void CNetMessage::ScriptingInit()
 	def(NMT_Gather);
 }
 
-CCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSContext *cx, uintN argc, jsval *argv)
+CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSContext *cx, uintN argc, jsval *argv)
 {
 	assert(argc >= 1);
 
