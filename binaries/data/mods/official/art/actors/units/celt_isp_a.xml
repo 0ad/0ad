@@ -12,8 +12,8 @@
         <animation file="biped/dudechop.psa" name="Chop" speed="150" event="0.35"/>
         <animation file="biped/dudedeath_sword.psa" name="Death" speed="200"/>
         <animation file="biped/dudedecay_sword.psa" name="Decay" speed="100"/>
-        <animation file="biped/inf_spear_shield_atk_a.psa" name="Attack" speed="400" event="0.10"/>
-        <animation file="biped/inf_spear_shield_atk_b.psa" name="Attack" speed="400"/>
+        <animation file="biped/inf_spear_shield_atk_a.psa" name="Attack" speed="400" event="0.5"/>
+        <animation speed="400" file="biped/inf_spear_shield_atk_b.psa" name="Attack" event="0.5"/>
       </animations>
       <mesh>skeletal/m_pants_c.pmd</mesh>
       <props>
