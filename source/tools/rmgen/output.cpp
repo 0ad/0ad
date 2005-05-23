@@ -2,6 +2,7 @@
 #include "rmgen.h"
 #include "output.h"
 #include "map.h"
+#include "entity.h"
 
 using namespace std;
 
@@ -9,31 +10,37 @@ typedef unsigned short u16;
 typedef unsigned int u32;
 
 void OutputXml(Map* m, FILE* f) {
-    const char* xml = "\
+    ostringstream xml;
+    xml << "\
 <?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>\n\
 <!DOCTYPE Scenario SYSTEM \"/maps/scenario_v4.dtd\">\n\
 <Scenario>\n\
     <Environment>\n\
-            <SunColour r=\"1\" g=\"1\" b=\"1\" />\n\
-            <SunElevation angle=\"0.785398\" />\n\
-            <SunRotation angle=\"4.712389\" />\n\
-            <TerrainAmbientColour r=\"0\" g=\"0\" b=\"0\" />\n\
-            <UnitsAmbientColour r=\"0.4\" g=\"0.4\" b=\"0.4\" />\n\
+        <SunColour r=\"1\" g=\"1\" b=\"1\" />\n\
+        <SunElevation angle=\"0.785398\" />\n\
+        <SunRotation angle=\"4.712389\" />\n\
+        <TerrainAmbientColour r=\"0\" g=\"0\" b=\"0\" />\n\
+        <UnitsAmbientColour r=\"0.4\" g=\"0.4\" b=\"0.4\" />\n\
     </Environment>\n\
-    <Entities />\n\
+    <Entities>\n";
+
+    for(int i=0; i<m->entities.size(); i++) {
+        Entity* e = m->entities[i];
+        xml << "\
+        <Entity>\n\
+        <Template>" << e->type << "</Template>\n\
+			<Player>" << e->player << "</Player>\n\
+			<Position x=\"" << 4*e->x << "\" y=\"" << 4*e->y << "\" z=\"" << 4*e->z << "\" />\n\
+			<Orientation angle=\"" << e->orientation << "\" />\n\
+		</Entity>\n";
+    }
+
+    xml << "\
+    </Entities>\
     <Nonentities />\n\
 </Scenario>\n";
 
-    /*
-    	<Entity>
-			<Template>hele_hc</Template>
-			<Player>0</Player>
-			<Position x="182.122" y="30.0133" z="426.143" />
-			<Orientation angle="-3.0442" />
-		</Entity>
-    */
-
-    fprintf(f, "%s", xml);
+    fprintf(f, "%s", xml.str().c_str());
 }
 
 struct Tile {

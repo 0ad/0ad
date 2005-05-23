@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "rmgen.h"
 #include "map.h"
+#include "entity.h"
 
 using namespace std;
 
@@ -23,7 +24,15 @@ Map::Map(int size, const string& baseTerrain, float baseHeight) {
             terrain[i][j] = baseId;
         }
     }
-    
+
+    area = new Area**[size];
+    for(int i=0; i<size; i++) {
+        area[i] = new Area*[size];
+        for(int j=0; j<size; j++) {
+            area[i][j] = 0;
+        }
+    }
+
     height = new float*[size+1];
     for(int i=0; i<size+1; i++) {
         height[i] = new float[size+1];
@@ -39,10 +48,19 @@ Map::~Map() {
     }
     delete[] terrain;
 
+    for(int i=0; i<size; i++) {
+        delete[] area[i];
+    }
+    delete[] area;
+
     for(int i=0; i<size+1; i++) {
         delete[] height[i];
     }
     delete[] height;
+
+    for(int i=0; i<entities.size(); i++) {
+        delete entities[i];
+    }
 }
 
 int Map::getId(string terrain) {
@@ -83,4 +101,21 @@ float Map::getHeight(int x, int y) {
 void Map::setHeight(int x, int y, float h) {
     if(!validH(x,y)) JS_ReportError(cx, "setHeight: invalid point position");
     height[x][y] = h;
+}
+
+void Map::addEntity(Entity* ent) {
+    entities.push_back(ent);
+}
+
+Area* Map::createArea(AreaPlacer* placer, AreaPainter* painter, Constraint* constr) {
+    vector<Point> points;
+    if(!placer->place(this, constr, points)) {
+        return 0;
+    }
+    Area* a = new Area(points);
+    for(int i=0; i<points.size(); i++) {
+        area[points[i].x][points[i].y] = a;
+    }
+    painter->paint(this, a);
+    return a;
 }

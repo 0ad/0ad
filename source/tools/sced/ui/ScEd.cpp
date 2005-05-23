@@ -187,10 +187,13 @@ int CScEdApp::Run()
 		// do idle time processing
 		CMainFrame* mainfrm=(CMainFrame*) AfxGetMainWnd();
 		if (mainfrm) {
-			CScEdView* view=(CScEdView*) mainfrm->GetActiveView();
-			if (view) {				
-				view->IdleTimeProcess();
-			}
+            if (!mainfrm->IsIconic()) {
+                CScEdView* view=(CScEdView*) mainfrm->GetActiveView();
+                if (view) {				
+                    view->IdleTimeProcess();
+                }
+            }
+            Sleep(50);
 		}
 	}
 

@@ -1,8 +1,10 @@
 #include "stdafx.h"
 #include "api.h"
 #include "rmgen.h"
-#include "map.h"
 #include "random.h"
+#include "map.h"
+#include "entity.h"
+#include "objparse.h"
 
 using namespace std;
 
@@ -19,16 +21,60 @@ JSFunctionSpec globalFunctions[] = {
     {"setHeight", setHeight, 3},
     {"randInt", randInt, 1},
     {"randFloat", randFloat, 0},
+    {"addEntity", addEntity, 5},
+    {"createArea", createArea, 3},
     {0}
 };
+
+// Helper function to validate argument types; the types string can contain the following:
+// i (integers), s (strings), n (numbers), . (anything); for example ValidateArgs("iin",...)
+// would check that arguments 1 and 2 are integers while the third is a number.
+void ValidateArgs(const char* types, JSContext* cx, uintN argc, jsval* argv, const char* function) {
+    int num = strlen(types);
+    if(argc != num) {
+        JS_ReportError(cx, "%s: expected %d arguments but got %d", function, num, argc);
+    }
+    JSObject* obj;
+    for(int i=0; i<num; i++) {
+        switch(types[i]) {
+            case 'i':
+                if(!JSVAL_IS_INT(argv[i])) {
+                    JS_ReportError(cx, "%s: argument %d must be an integer", function, i+1);
+                }
+                break;
+            case 's':
+                if(!JSVAL_IS_STRING(argv[i])) {
+                    JS_ReportError(cx, "%s: argument %d must be an integer", function, i+1);
+                }
+                break;
+            case 'n':
+                if(!JSVAL_IS_NUMBER(argv[i])) {
+                    JS_ReportError(cx, "%s: argument %d must be an integer", function, i+1);
+                }
+                break;
+            case 'a':
+                if(!JSVAL_IS_OBJECT(argv[i])) {
+                    JS_ReportError(cx, "%s: argument %d must be an array", function, i+1);
+                }
+                obj = JSVAL_TO_OBJECT(argv[i]);
+                if(!JS_IsArrayObject(cx, obj)) {
+                    JS_ReportError(cx, "%s: argument %d must be an array", function, i+1);
+                }
+                break;
+            case '*':
+                break;
+            default:
+                cerr << "Internal Error: Invalid type passed to ValidateArgs: " << types[i] << "." << endl;
+                Shutdown(1);
+        }
+    }
+}
 
 // JS API implementation
 
 JSBool print(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-    if(argc != 1) {
-        JS_ReportError(cx, "print: expected 1 argument but got %d", argc);
-    }
+    ValidateArgs("*", cx, argc, argv, __FUNCTION__);
     
     cout << JS_GetStringBytes(JS_ValueToString(cx, argv[0]));
     return JS_TRUE;
@@ -36,10 +82,7 @@ JSBool print(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 
 JSBool error(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-    if(argc != 1) {
-        // wow, you made an error calling the error() function!
-        JS_ReportError(cx, "error: expected 1 argument but got %d", argc);
-    }
+    ValidateArgs("*", cx, argc, argv, __FUNCTION__);
     
     JS_ReportError(cx, JS_GetStringBytes(JS_ValueToString(cx, argv[0])));
     return JS_TRUE;
@@ -47,18 +90,7 @@ JSBool error(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 
 JSBool init(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-    if(argc != 3) {
-        JS_ReportError(cx, "init: expected 3 arguments but got %d", argc);
-    }
-    if(!JSVAL_IS_INT(argv[0])) {
-        JS_ReportError(cx, "init: first argument must be an integer");
-    }
-    if(!JSVAL_IS_STRING(argv[1])) {
-        JS_ReportError(cx, "init: second argument must be a string");
-    }
-    if(!JSVAL_IS_NUMBER(argv[2])) {
-        JS_ReportError(cx, "init: third argument must be a number");
-    }
+    ValidateArgs("isn", cx, argc, argv, __FUNCTION__);
     if(theMap != 0) {
         JS_ReportError(cx, "init: cannot be called twice");
     }
@@ -74,17 +106,9 @@ JSBool init(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 
 JSBool getTerrain(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-    if(argc != 2) {
-        JS_ReportError(cx, "getTerrain: expected 2 arguments but got %d", argc);
-    }
+    ValidateArgs("ii", cx, argc, argv, __FUNCTION__);
     if(theMap == 0) {
         JS_ReportError(cx, "getTerrain: cannot be called before init()");
-    }
-    if(!JSVAL_IS_INT(argv[0])) {
-        JS_ReportError(cx, "getTerrain: first argument must be an integer");
-    }
-    if(!JSVAL_IS_INT(argv[1])) {
-        JS_ReportError(cx, "getTerrain: second argument must be an integer");
     }
     
     int x = JSVAL_TO_INT(argv[0]);
@@ -96,20 +120,9 @@ JSBool getTerrain(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *
 
 JSBool setTerrain(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-    if(argc != 3) {
-        JS_ReportError(cx, "setTerrain: expected 3 arguments but got %d", argc);
-    }
+    ValidateArgs("iis", cx, argc, argv, __FUNCTION__);
     if(theMap == 0) {
         JS_ReportError(cx, "setTerrain: cannot be called before init()");
-    }
-    if(!JSVAL_IS_INT(argv[0])) {
-        JS_ReportError(cx, "setTerrain: first argument must be an integer");
-    }
-    if(!JSVAL_IS_INT(argv[1])) {
-        JS_ReportError(cx, "setTerrain: second argument must be an integer");
-    }
-    if(!JSVAL_IS_STRING(argv[2])) {
-        JS_ReportError(cx, "setTerrain: third argument must be a string");
     }
     
     int x = JSVAL_TO_INT(argv[0]);
@@ -121,17 +134,9 @@ JSBool setTerrain(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *
 
 JSBool getHeight(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-    if(argc != 2) {
-        JS_ReportError(cx, "getHeight: expected 2 arguments but got %d", argc);
-    }
+    ValidateArgs("ii", cx, argc, argv, __FUNCTION__);
     if(theMap == 0) {
         JS_ReportError(cx, "getHeight: cannot be called before init()");
-    }
-    if(!JSVAL_IS_INT(argv[0])) {
-        JS_ReportError(cx, "getHeight: first argument must be an integer");
-    }
-    if(!JSVAL_IS_INT(argv[1])) {
-        JS_ReportError(cx, "getHeight: second argument must be an integer");
     }
     
     int x = JSVAL_TO_INT(argv[0]);
@@ -143,20 +148,9 @@ JSBool getHeight(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *r
 
 JSBool setHeight(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-    if(argc != 3) {
-        JS_ReportError(cx, "setHeight: expected 3 arguments but got %d", argc);
-    }
+    ValidateArgs("iin", cx, argc, argv, __FUNCTION__);
     if(theMap == 0) {
         JS_ReportError(cx, "setHeight: cannot be called before init()");
-    }
-    if(!JSVAL_IS_INT(argv[0])) {
-        JS_ReportError(cx, "setHeight: first argument must be an integer");
-    }
-    if(!JSVAL_IS_INT(argv[1])) {
-        JS_ReportError(cx, "setHeight: second argument must be an integer");
-    }
-    if(!JSVAL_IS_NUMBER(argv[2])) {
-        JS_ReportError(cx, "setHeight: third argument must be a number");
     }
     
     int x = JSVAL_TO_INT(argv[0]);
@@ -169,12 +163,7 @@ JSBool setHeight(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *r
 
 JSBool randInt(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-    if(argc != 1) {
-        JS_ReportError(cx, "randInt: expected 1 argument but got %d", argc);
-    }
-    if(!JSVAL_IS_INT(argv[0])) {
-        JS_ReportError(cx, "randInt: first argument must be an integer");
-    }
+    ValidateArgs("i", cx, argc, argv, __FUNCTION__);
     
     int x = JSVAL_TO_INT(argv[0]);
     if(x<=0) {
@@ -187,11 +176,54 @@ JSBool randInt(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rva
 
 JSBool randFloat(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-    if(argc != 0) {
-        JS_ReportError(cx, "randFloat: expected 0 arguments but got %d", argc);
-    }
+    ValidateArgs("", cx, argc, argv, __FUNCTION__);
     
     jsdouble r = RandFloat();
     JS_NewDoubleValue(cx, r, rval);
+    return JS_TRUE;
+}
+
+JSBool addEntity(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
+{
+    ValidateArgs("sinnn", cx, argc, argv, __FUNCTION__);
+    if(theMap == 0) {
+        JS_ReportError(cx, "addEntity: cannot be called before init()");
+    }
+
+    string type = JS_GetStringBytes(JS_ValueToString(cx, argv[0]));
+    int player = JSVAL_TO_INT(argv[1]);
+    jsdouble x, y, orientation;
+    JS_ValueToNumber(cx, argv[2], &x);
+    JS_ValueToNumber(cx, argv[3], &y);
+    JS_ValueToNumber(cx, argv[5], &orientation);
+
+    theMap->addEntity(new Entity(type, player, x,0,y, orientation));
+    
+    return JS_TRUE;
+}
+
+JSBool createArea(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval) 
+{
+    ValidateArgs("***", cx, argc, argv, __FUNCTION__);
+    if(theMap == 0) {
+        JS_ReportError(cx, "createArea: cannot be called before init()");
+    }
+
+    AreaPlacer* placer;
+    AreaPainter* painter;
+    Constraint* constr;
+
+    if(!(placer = ParsePlacer(cx, argv[0]))) {
+        JS_ReportError(cx, "createArea: argument 1 must be an area placer definition");
+    }
+    if(!(painter = ParsePainter(cx, argv[1]))) {
+        JS_ReportError(cx, "createArea: argument 1 must be an area painter definition");
+    }
+    if(!(constr = ParseConstraint(cx, argv[2]))) {
+        JS_ReportError(cx, "createArea: argument 1 must be a constraint definition");
+    }
+
+    Area* r = theMap->createArea(placer, painter, constr);
+
     return JS_TRUE;
 }
