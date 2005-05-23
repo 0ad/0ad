@@ -628,8 +628,6 @@ void CEditorData::StopTestMode()
 	// make all units idle again
 	const std::vector<CUnit*>& units=g_UnitMan.GetUnits();
 	for (uint i=0;i<units.size();++i) {
-		if (units[i]->GetObject()->m_IdleAnim) {
-			units[i]->GetModel()->SetAnimation(units[i]->GetObject()->m_IdleAnim);
-		}
+		units[i]->SetRandomAnimation("idle");
 	}
 }
