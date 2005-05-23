@@ -7,10 +7,10 @@
 class AreaPlacer
 {
 public:
-    virtual bool place(class Map* m, Constraint* constr, std::vector<Point>& ret) = 0;
+	virtual bool place(class Map* m, Constraint* constr, std::vector<Point>& ret) = 0;
 
-    AreaPlacer(void);
-    virtual ~AreaPlacer(void);
+	AreaPlacer(void);
+	virtual ~AreaPlacer(void);
 };
 
 #endif

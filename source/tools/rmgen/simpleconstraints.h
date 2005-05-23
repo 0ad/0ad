@@ -6,7 +6,7 @@
 
 class NullConstraint : public Constraint {
 public:
-    virtual bool allows(Map* m, int x, int y);
+	virtual bool allows(Map* m, int x, int y);
 };
 
 #endif

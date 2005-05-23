@@ -4,10 +4,10 @@
 class AreaPainter
 {
 public:
-    virtual void paint(class Map* m, class Area* a) = 0;
+	virtual void paint(class Map* m, class Area* a) = 0;
 
-    AreaPainter(void);
-    virtual ~AreaPainter(void);
+	AreaPainter(void);
+	virtual ~AreaPainter(void);
 };
 
 #endif

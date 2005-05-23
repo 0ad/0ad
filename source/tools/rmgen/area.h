@@ -5,9 +5,9 @@
 class Area
 {
 public:
-    std::vector<Point> points;
+	std::vector<Point> points;
 
-    Area(void);
-    Area(const std::vector<Point>& points);
-    ~Area(void);
+	Area(void);
+	Area(const std::vector<Point>& points);
+	~Area(void);
 };

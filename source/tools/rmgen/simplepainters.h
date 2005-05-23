@@ -7,10 +7,10 @@
 
 class TerrainPainter : public AreaPainter {
 public:
-    std::string terrain;
+	std::string terrain;
 
-    TerrainPainter(const std::string& terrain);
-    void paint(Map* m, Area* a);
+	TerrainPainter(const std::string& terrain);
+	void paint(Map* m, Area* a);
 };
 
 #endif

@@ -5,15 +5,15 @@
 #include "map.h"
 
 class RectPlacer :
-    public AreaPlacer
+	public AreaPlacer
 {
 public:
-    int x1, y1, x2, y2;
+	int x1, y1, x2, y2;
 
-    bool place(Map* m, Constraint* constr, std::vector<Point>& ret);
+	bool place(Map* m, Constraint* constr, std::vector<Point>& ret);
 
-    RectPlacer(int x1, int y1, int x2, int y2);
-    ~RectPlacer(void);
+	RectPlacer(int x1, int y1, int x2, int y2);
+	~RectPlacer(void);
 };
 
 #endif

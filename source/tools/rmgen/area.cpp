@@ -6,7 +6,7 @@ Area::Area(void)
 }
 
 Area::Area(const std::vector<Point>& points) {
-    this->points = points;
+	this->points = points;
 }
 
 Area::~Area(void)
