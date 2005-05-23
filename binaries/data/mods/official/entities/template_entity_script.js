@@ -151,6 +151,9 @@ function entity_event_takesdamage( evt )
 				// Reset his upgrade points.
 				evt.inflictor.traits.up.curr = 0; 
 
+				// Upgrade his portrait to the next level.
+				evt.inflictor.traits.id.icon_cell++; 
+
 				// Transmogrify him into his next rank.
 				evt.inflictor.template = getEntityTemplate(evt.inflictor.traits.up.newentity);
 			}
@@ -172,7 +175,7 @@ function entity_event_takesdamage( evt )
 
 		// Notify player.
 		if( evt.inflictor )
-			console.write( this.traits.id.generic + " got the point of " + evt.inflictor.traits.id.generic + "'s Gladius." );
+			console.write( this.traits.id.generic + " got the point of " + evt.inflictor.traits.id.generic + "'s weapon." );
 		else
 			console.write( this.traits.id.generic + " died in mysterious circumstances." );
 
