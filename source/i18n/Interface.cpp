@@ -70,7 +70,7 @@ CLocale_interface* I18n::NewLocale(JSContext* cx, JSObject* scope)
 	}
 	catch (PSERROR_I18n& e)
 	{
-		LOG(ERROR, LOG_CATEGORY, "Error creating locale object ('%ls')", GetErrorString(e.code));
+		LOG(ERROR, LOG_CATEGORY, "Error creating locale object ('%s')", GetErrorString(e));
 		return NULL;
 	}
 }

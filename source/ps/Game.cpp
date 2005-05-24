@@ -103,9 +103,9 @@ PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 
 		RegisterInit(pAttribs);
 	}
-	catch (PSERROR_Game e)
+	catch (PSERROR_Game& e)
 	{
-		return e.code;
+		return e.getCode();
 	}
 	return 0;
 }

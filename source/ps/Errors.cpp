@@ -2,7 +2,7 @@
 
 #include "precompiled.h"
 
-#include "ps/Errors.h"
+#include "Errors.h"
 
 class PSERROR_CVFSFile : public PSERROR {};
 class PSERROR_Error : public PSERROR {};
@@ -19,34 +19,34 @@ class PSERROR_I18n_Script : public PSERROR_I18n {};
 class PSERROR_Scripting_DefineType : public PSERROR_Scripting {};
 class PSERROR_Scripting_LoadFile : public PSERROR_Scripting {};
 
-class PSERROR_CVFSFile_AlreadyLoaded : public PSERROR_CVFSFile { public: PSERROR_CVFSFile_AlreadyLoaded(); };
-class PSERROR_CVFSFile_InvalidBufferAccess : public PSERROR_CVFSFile { public: PSERROR_CVFSFile_InvalidBufferAccess(); };
-class PSERROR_CVFSFile_LoadFailed : public PSERROR_CVFSFile { public: PSERROR_CVFSFile_LoadFailed(); };
-class PSERROR_Error_InvalidError : public PSERROR_Error { public: PSERROR_Error_InvalidError(); };
-class PSERROR_GUI_JSOpenFailed : public PSERROR_GUI { public: PSERROR_GUI_JSOpenFailed(); };
-class PSERROR_Game_World_MapLoadFailed : public PSERROR_Game_World { public: PSERROR_Game_World_MapLoadFailed(); };
-class PSERROR_I18n_Script_SetupFailed : public PSERROR_I18n_Script { public: PSERROR_I18n_Script_SetupFailed(); };
-class PSERROR_Renderer_VBOFailed : public PSERROR_Renderer { public: PSERROR_Renderer_VBOFailed(); };
-class PSERROR_Scripting_CallFunctionFailed : public PSERROR_Scripting { public: PSERROR_Scripting_CallFunctionFailed(); };
-class PSERROR_Scripting_ContextCreationFailed : public PSERROR_Scripting { public: PSERROR_Scripting_ContextCreationFailed(); };
-class PSERROR_Scripting_ConversionFailed : public PSERROR_Scripting { public: PSERROR_Scripting_ConversionFailed(); };
-class PSERROR_Scripting_CreateObjectFailed : public PSERROR_Scripting { public: PSERROR_Scripting_CreateObjectFailed(); };
-class PSERROR_Scripting_DefineConstantFailed : public PSERROR_Scripting { public: PSERROR_Scripting_DefineConstantFailed(); };
-class PSERROR_Scripting_DefineType_AlreadyExists : public PSERROR_Scripting_DefineType { public: PSERROR_Scripting_DefineType_AlreadyExists(); };
-class PSERROR_Scripting_DefineType_CreationFailed : public PSERROR_Scripting_DefineType { public: PSERROR_Scripting_DefineType_CreationFailed(); };
-class PSERROR_Scripting_GlobalObjectCreationFailed : public PSERROR_Scripting { public: PSERROR_Scripting_GlobalObjectCreationFailed(); };
-class PSERROR_Scripting_LoadFile_EvalErrors : public PSERROR_Scripting_LoadFile { public: PSERROR_Scripting_LoadFile_EvalErrors(); };
-class PSERROR_Scripting_LoadFile_OpenFailed : public PSERROR_Scripting_LoadFile { public: PSERROR_Scripting_LoadFile_OpenFailed(); };
-class PSERROR_Scripting_NativeFunctionSetupFailed : public PSERROR_Scripting { public: PSERROR_Scripting_NativeFunctionSetupFailed(); };
-class PSERROR_Scripting_RegisterFunctionFailed : public PSERROR_Scripting { public: PSERROR_Scripting_RegisterFunctionFailed(); };
-class PSERROR_Scripting_RuntimeCreationFailed : public PSERROR_Scripting { public: PSERROR_Scripting_RuntimeCreationFailed(); };
-class PSERROR_Scripting_StandardClassSetupFailed : public PSERROR_Scripting { public: PSERROR_Scripting_StandardClassSetupFailed(); };
-class PSERROR_Scripting_TypeDoesNotExist : public PSERROR_Scripting { public: PSERROR_Scripting_TypeDoesNotExist(); };
-class PSERROR_System_RequiredExtensionsMissing : public PSERROR_System { public: PSERROR_System_RequiredExtensionsMissing(); };
-class PSERROR_System_SDLInitFailed : public PSERROR_System { public: PSERROR_System_SDLInitFailed(); };
-class PSERROR_System_VmodeFailed : public PSERROR_System { public: PSERROR_System_VmodeFailed(); };
-class PSERROR_Xeromyces_XMLOpenFailed : public PSERROR_Xeromyces { public: PSERROR_Xeromyces_XMLOpenFailed(); };
-class PSERROR_Xeromyces_XMLParseError : public PSERROR_Xeromyces { public: PSERROR_Xeromyces_XMLParseError(); };
+class PSERROR_CVFSFile_AlreadyLoaded : public PSERROR_CVFSFile { public: PSRETURN getCode() const; };
+class PSERROR_CVFSFile_InvalidBufferAccess : public PSERROR_CVFSFile { public: PSRETURN getCode() const; };
+class PSERROR_CVFSFile_LoadFailed : public PSERROR_CVFSFile { public: PSRETURN getCode() const; };
+class PSERROR_Error_InvalidError : public PSERROR_Error { public: PSRETURN getCode() const; };
+class PSERROR_GUI_JSOpenFailed : public PSERROR_GUI { public: PSRETURN getCode() const; };
+class PSERROR_Game_World_MapLoadFailed : public PSERROR_Game_World { public: PSRETURN getCode() const; };
+class PSERROR_I18n_Script_SetupFailed : public PSERROR_I18n_Script { public: PSRETURN getCode() const; };
+class PSERROR_Renderer_VBOFailed : public PSERROR_Renderer { public: PSRETURN getCode() const; };
+class PSERROR_Scripting_CallFunctionFailed : public PSERROR_Scripting { public: PSRETURN getCode() const; };
+class PSERROR_Scripting_ContextCreationFailed : public PSERROR_Scripting { public: PSRETURN getCode() const; };
+class PSERROR_Scripting_ConversionFailed : public PSERROR_Scripting { public: PSRETURN getCode() const; };
+class PSERROR_Scripting_CreateObjectFailed : public PSERROR_Scripting { public: PSRETURN getCode() const; };
+class PSERROR_Scripting_DefineConstantFailed : public PSERROR_Scripting { public: PSRETURN getCode() const; };
+class PSERROR_Scripting_DefineType_AlreadyExists : public PSERROR_Scripting_DefineType { public: PSRETURN getCode() const; };
+class PSERROR_Scripting_DefineType_CreationFailed : public PSERROR_Scripting_DefineType { public: PSRETURN getCode() const; };
+class PSERROR_Scripting_GlobalObjectCreationFailed : public PSERROR_Scripting { public: PSRETURN getCode() const; };
+class PSERROR_Scripting_LoadFile_EvalErrors : public PSERROR_Scripting_LoadFile { public: PSRETURN getCode() const; };
+class PSERROR_Scripting_LoadFile_OpenFailed : public PSERROR_Scripting_LoadFile { public: PSRETURN getCode() const; };
+class PSERROR_Scripting_NativeFunctionSetupFailed : public PSERROR_Scripting { public: PSRETURN getCode() const; };
+class PSERROR_Scripting_RegisterFunctionFailed : public PSERROR_Scripting { public: PSRETURN getCode() const; };
+class PSERROR_Scripting_RuntimeCreationFailed : public PSERROR_Scripting { public: PSRETURN getCode() const; };
+class PSERROR_Scripting_StandardClassSetupFailed : public PSERROR_Scripting { public: PSRETURN getCode() const; };
+class PSERROR_Scripting_TypeDoesNotExist : public PSERROR_Scripting { public: PSRETURN getCode() const; };
+class PSERROR_System_RequiredExtensionsMissing : public PSERROR_System { public: PSRETURN getCode() const; };
+class PSERROR_System_SDLInitFailed : public PSERROR_System { public: PSRETURN getCode() const; };
+class PSERROR_System_VmodeFailed : public PSERROR_System { public: PSRETURN getCode() const; };
+class PSERROR_Xeromyces_XMLOpenFailed : public PSERROR_Xeromyces { public: PSRETURN getCode() const; };
+class PSERROR_Xeromyces_XMLParseError : public PSERROR_Xeromyces { public: PSRETURN getCode() const; };
 
 extern const PSRETURN PSRETURN_CVFSFile_AlreadyLoaded = 0x01000001;
 extern const PSRETURN PSRETURN_CVFSFile_InvalidBufferAccess = 0x01000002;
@@ -161,69 +161,79 @@ extern const PSRETURN CODE__PSRETURN_Xeromyces_XMLOpenFailed = 0x09000001;
 extern const PSRETURN MASK__PSRETURN_Xeromyces_XMLParseError = 0xffffffff;
 extern const PSRETURN CODE__PSRETURN_Xeromyces_XMLParseError = 0x09000002;
 
-PSERROR_CVFSFile_AlreadyLoaded::PSERROR_CVFSFile_AlreadyLoaded() { magic=0x45725221; code=0x01000001; }
-PSERROR_CVFSFile_InvalidBufferAccess::PSERROR_CVFSFile_InvalidBufferAccess() { magic=0x45725221; code=0x01000002; }
-PSERROR_CVFSFile_LoadFailed::PSERROR_CVFSFile_LoadFailed() { magic=0x45725221; code=0x01000003; }
-PSERROR_Error_InvalidError::PSERROR_Error_InvalidError() { magic=0x45725221; code=0x02000001; }
-PSERROR_GUI_JSOpenFailed::PSERROR_GUI_JSOpenFailed() { magic=0x45725221; code=0x03000001; }
-PSERROR_Game_World_MapLoadFailed::PSERROR_Game_World_MapLoadFailed() { magic=0x45725221; code=0x04040001; }
-PSERROR_I18n_Script_SetupFailed::PSERROR_I18n_Script_SetupFailed() { magic=0x45725221; code=0x05030001; }
-PSERROR_Renderer_VBOFailed::PSERROR_Renderer_VBOFailed() { magic=0x45725221; code=0x06000001; }
-PSERROR_Scripting_DefineType_AlreadyExists::PSERROR_Scripting_DefineType_AlreadyExists() { magic=0x45725221; code=0x07010001; }
-PSERROR_Scripting_DefineType_CreationFailed::PSERROR_Scripting_DefineType_CreationFailed() { magic=0x45725221; code=0x07010002; }
-PSERROR_Scripting_LoadFile_EvalErrors::PSERROR_Scripting_LoadFile_EvalErrors() { magic=0x45725221; code=0x07020001; }
-PSERROR_Scripting_LoadFile_OpenFailed::PSERROR_Scripting_LoadFile_OpenFailed() { magic=0x45725221; code=0x07020002; }
-PSERROR_Scripting_CallFunctionFailed::PSERROR_Scripting_CallFunctionFailed() { magic=0x45725221; code=0x07000001; }
-PSERROR_Scripting_ContextCreationFailed::PSERROR_Scripting_ContextCreationFailed() { magic=0x45725221; code=0x07000002; }
-PSERROR_Scripting_ConversionFailed::PSERROR_Scripting_ConversionFailed() { magic=0x45725221; code=0x07000003; }
-PSERROR_Scripting_CreateObjectFailed::PSERROR_Scripting_CreateObjectFailed() { magic=0x45725221; code=0x07000004; }
-PSERROR_Scripting_DefineConstantFailed::PSERROR_Scripting_DefineConstantFailed() { magic=0x45725221; code=0x07000005; }
-PSERROR_Scripting_GlobalObjectCreationFailed::PSERROR_Scripting_GlobalObjectCreationFailed() { magic=0x45725221; code=0x07000006; }
-PSERROR_Scripting_NativeFunctionSetupFailed::PSERROR_Scripting_NativeFunctionSetupFailed() { magic=0x45725221; code=0x07000007; }
-PSERROR_Scripting_RegisterFunctionFailed::PSERROR_Scripting_RegisterFunctionFailed() { magic=0x45725221; code=0x07000008; }
-PSERROR_Scripting_RuntimeCreationFailed::PSERROR_Scripting_RuntimeCreationFailed() { magic=0x45725221; code=0x07000009; }
-PSERROR_Scripting_StandardClassSetupFailed::PSERROR_Scripting_StandardClassSetupFailed() { magic=0x45725221; code=0x0700000a; }
-PSERROR_Scripting_TypeDoesNotExist::PSERROR_Scripting_TypeDoesNotExist() { magic=0x45725221; code=0x0700000b; }
-PSERROR_System_RequiredExtensionsMissing::PSERROR_System_RequiredExtensionsMissing() { magic=0x45725221; code=0x08000001; }
-PSERROR_System_SDLInitFailed::PSERROR_System_SDLInitFailed() { magic=0x45725221; code=0x08000002; }
-PSERROR_System_VmodeFailed::PSERROR_System_VmodeFailed() { magic=0x45725221; code=0x08000003; }
-PSERROR_Xeromyces_XMLOpenFailed::PSERROR_Xeromyces_XMLOpenFailed() { magic=0x45725221; code=0x09000001; }
-PSERROR_Xeromyces_XMLParseError::PSERROR_Xeromyces_XMLParseError() { magic=0x45725221; code=0x09000002; }
+PSRETURN PSERROR_CVFSFile_AlreadyLoaded::getCode() const { return 0x01000001; }
+PSRETURN PSERROR_CVFSFile_InvalidBufferAccess::getCode() const { return 0x01000002; }
+PSRETURN PSERROR_CVFSFile_LoadFailed::getCode() const { return 0x01000003; }
+PSRETURN PSERROR_Error_InvalidError::getCode() const { return 0x02000001; }
+PSRETURN PSERROR_GUI_JSOpenFailed::getCode() const { return 0x03000001; }
+PSRETURN PSERROR_Game_World_MapLoadFailed::getCode() const { return 0x04040001; }
+PSRETURN PSERROR_I18n_Script_SetupFailed::getCode() const { return 0x05030001; }
+PSRETURN PSERROR_Renderer_VBOFailed::getCode() const { return 0x06000001; }
+PSRETURN PSERROR_Scripting_DefineType_AlreadyExists::getCode() const { return 0x07010001; }
+PSRETURN PSERROR_Scripting_DefineType_CreationFailed::getCode() const { return 0x07010002; }
+PSRETURN PSERROR_Scripting_LoadFile_EvalErrors::getCode() const { return 0x07020001; }
+PSRETURN PSERROR_Scripting_LoadFile_OpenFailed::getCode() const { return 0x07020002; }
+PSRETURN PSERROR_Scripting_CallFunctionFailed::getCode() const { return 0x07000001; }
+PSRETURN PSERROR_Scripting_ContextCreationFailed::getCode() const { return 0x07000002; }
+PSRETURN PSERROR_Scripting_ConversionFailed::getCode() const { return 0x07000003; }
+PSRETURN PSERROR_Scripting_CreateObjectFailed::getCode() const { return 0x07000004; }
+PSRETURN PSERROR_Scripting_DefineConstantFailed::getCode() const { return 0x07000005; }
+PSRETURN PSERROR_Scripting_GlobalObjectCreationFailed::getCode() const { return 0x07000006; }
+PSRETURN PSERROR_Scripting_NativeFunctionSetupFailed::getCode() const { return 0x07000007; }
+PSRETURN PSERROR_Scripting_RegisterFunctionFailed::getCode() const { return 0x07000008; }
+PSRETURN PSERROR_Scripting_RuntimeCreationFailed::getCode() const { return 0x07000009; }
+PSRETURN PSERROR_Scripting_StandardClassSetupFailed::getCode() const { return 0x0700000a; }
+PSRETURN PSERROR_Scripting_TypeDoesNotExist::getCode() const { return 0x0700000b; }
+PSRETURN PSERROR_System_RequiredExtensionsMissing::getCode() const { return 0x08000001; }
+PSRETURN PSERROR_System_SDLInitFailed::getCode() const { return 0x08000002; }
+PSRETURN PSERROR_System_VmodeFailed::getCode() const { return 0x08000003; }
+PSRETURN PSERROR_Xeromyces_XMLOpenFailed::getCode() const { return 0x09000001; }
+PSRETURN PSERROR_Xeromyces_XMLParseError::getCode() const { return 0x09000002; }
 
-const wchar_t* GetErrorString(PSRETURN code)
+const char* PSERROR::what() const
+{
+	return GetErrorString(getCode());
+}
+
+const char* GetErrorString(const PSERROR& err)
+{
+	return GetErrorString(err.getCode());
+}
+
+const char* GetErrorString(PSRETURN code)
 {
 	switch (code)
 	{
-	case 0x01000001: return L"CVFSFile_AlreadyLoaded";
-	case 0x01000002: return L"CVFSFile_InvalidBufferAccess";
-	case 0x01000003: return L"CVFSFile_LoadFailed";
-	case 0x02000001: return L"Error_InvalidError";
-	case 0x03000001: return L"GUI_JSOpenFailed";
-	case 0x04040001: return L"Game_World_MapLoadFailed";
-	case 0x05030001: return L"I18n_Script_SetupFailed";
-	case 0x06000001: return L"Renderer_VBOFailed";
-	case 0x07010001: return L"Scripting_DefineType_AlreadyExists";
-	case 0x07010002: return L"Scripting_DefineType_CreationFailed";
-	case 0x07020001: return L"Scripting_LoadFile_EvalErrors";
-	case 0x07020002: return L"Scripting_LoadFile_OpenFailed";
-	case 0x07000001: return L"Scripting_CallFunctionFailed";
-	case 0x07000002: return L"Scripting_ContextCreationFailed";
-	case 0x07000003: return L"Scripting_ConversionFailed";
-	case 0x07000004: return L"Scripting_CreateObjectFailed";
-	case 0x07000005: return L"Scripting_DefineConstantFailed";
-	case 0x07000006: return L"Scripting_GlobalObjectCreationFailed";
-	case 0x07000007: return L"Scripting_NativeFunctionSetupFailed";
-	case 0x07000008: return L"Scripting_RegisterFunctionFailed";
-	case 0x07000009: return L"Scripting_RuntimeCreationFailed";
-	case 0x0700000a: return L"Scripting_StandardClassSetupFailed";
-	case 0x0700000b: return L"Scripting_TypeDoesNotExist";
-	case 0x08000001: return L"System_RequiredExtensionsMissing";
-	case 0x08000002: return L"System_SDLInitFailed";
-	case 0x08000003: return L"System_VmodeFailed";
-	case 0x09000001: return L"Xeromyces_XMLOpenFailed";
-	case 0x09000002: return L"Xeromyces_XMLParseError";
+	case 0x01000001: return "CVFSFile_AlreadyLoaded";
+	case 0x01000002: return "CVFSFile_InvalidBufferAccess";
+	case 0x01000003: return "CVFSFile_LoadFailed";
+	case 0x02000001: return "Error_InvalidError";
+	case 0x03000001: return "GUI_JSOpenFailed";
+	case 0x04040001: return "Game_World_MapLoadFailed";
+	case 0x05030001: return "I18n_Script_SetupFailed";
+	case 0x06000001: return "Renderer_VBOFailed";
+	case 0x07010001: return "Scripting_DefineType_AlreadyExists";
+	case 0x07010002: return "Scripting_DefineType_CreationFailed";
+	case 0x07020001: return "Scripting_LoadFile_EvalErrors";
+	case 0x07020002: return "Scripting_LoadFile_OpenFailed";
+	case 0x07000001: return "Scripting_CallFunctionFailed";
+	case 0x07000002: return "Scripting_ContextCreationFailed";
+	case 0x07000003: return "Scripting_ConversionFailed";
+	case 0x07000004: return "Scripting_CreateObjectFailed";
+	case 0x07000005: return "Scripting_DefineConstantFailed";
+	case 0x07000006: return "Scripting_GlobalObjectCreationFailed";
+	case 0x07000007: return "Scripting_NativeFunctionSetupFailed";
+	case 0x07000008: return "Scripting_RegisterFunctionFailed";
+	case 0x07000009: return "Scripting_RuntimeCreationFailed";
+	case 0x0700000a: return "Scripting_StandardClassSetupFailed";
+	case 0x0700000b: return "Scripting_TypeDoesNotExist";
+	case 0x08000001: return "System_RequiredExtensionsMissing";
+	case 0x08000002: return "System_SDLInitFailed";
+	case 0x08000003: return "System_VmodeFailed";
+	case 0x09000001: return "Xeromyces_XMLOpenFailed";
+	case 0x09000002: return "Xeromyces_XMLParseError";
 
-	default: return L"Unrecognised error";
+	default: return "Unrecognised error";
 	}
 }
 

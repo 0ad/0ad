@@ -993,9 +993,9 @@ void CGUI::LoadXMLFile(const string &Filename)
 			// TODO Gee: Output in log
 		}
 	}
-	catch (PSERROR_GUI)
+	catch (PSERROR_GUI& e)
 	{
-		LOG(ERROR, LOG_CATEGORY, "Errors loading GUI file %s", Filename.c_str());
+		LOG(ERROR, LOG_CATEGORY, "Errors loading GUI file %s (%s)", Filename.c_str(), e.getCode());
 		return;
 	}
 
