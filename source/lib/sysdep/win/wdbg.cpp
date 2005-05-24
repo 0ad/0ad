@@ -29,7 +29,7 @@
 #include "posix.h"
 
 #ifdef I18N
-#include "PS/i18n.h"
+#include "ps/i18n.h"
 #endif
 
 #include "wdbg.h"
@@ -81,13 +81,6 @@ static WORD machine;
 
 static int wdbg_init()
 {
-	// we don't want wrap the contents of main() in a __try block
-	// (platform-specific), and regular C++ exceptions don't catch
-	// everything. therefore, install an unhandled exception filter here.
-	// it won't be called if the program is being debugged, so to test it,
-	// wrap the call to main() in win.cpp!WinMain in a __try block.
-	set_exception_handler();
-
 	hProcess = GetCurrentProcess();
 	hInstance = GetModuleHandle(0);
 
@@ -97,6 +90,10 @@ static int wdbg_init()
 	mod_base = SymGetModuleBase64(hProcess, (u64)&wdbg_init);
 	IMAGE_NT_HEADERS* header = ImageNtHeader((void*)mod_base);
 	machine = header->FileHeader.Machine;
+
+	// rationale: see definition. note: unhandled_exception_filter uses
+	// wdbg globals and dbghelp, so those must be initialized first.
+	set_exception_handler();
 
 	return 0;
 }
@@ -134,6 +131,25 @@ void debug_check_heap()
 	}
 }
 
+
+// return filename of the module which contains address <addr>,
+// or L"" on failure. path holds the string and must be >= MAX_PATH chars.
+static wchar_t* get_module_filename(void* addr, wchar_t* path)
+{
+	path[0] = '\0';	// in case either API call below fails
+	wchar_t* module_filename = path;
+
+	MEMORY_BASIC_INFORMATION mbi;
+	if(VirtualQuery(addr, &mbi, sizeof(mbi)))
+	{
+		HMODULE hModule = (HMODULE)mbi.AllocationBase;
+		if(GetModuleFileNameW(hModule, path, MAX_PATH))
+			module_filename = wcsrchr(path, '\\')+1;
+		// note: GetModuleFileName returns full path => a '\\' exists
+	}
+
+	return module_filename;
+}
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -681,7 +697,7 @@ static bool is_string_ptr(u64 addr, size_t stride = 1)
 
 		return (score > 0);
 	}
-	__except(1)
+	__except(EXCEPTION_EXECUTE_HANDLER)
 	{
 		debug_printf("^ raised by is_string_ptr; ignore\n");
 		return false;
@@ -1151,19 +1167,10 @@ static int dump_data_sym(DWORD data_idx, const u8* p, uint level)
 
 	out(L"%s = ", sym->Name);
 
-	int ret;
-	__try
-	{
-		ret = dump_type_sym(sym->TypeIndex, p, level);
-		// couldn't produce any reasonable output; value = "?"
-		if(ret < 0)
-			out(L"?");
-	}
-	__except(1)
-	{
-		ret = -1;
-		out(L"(internal error)");
-	}
+	int ret = dump_type_sym(sym->TypeIndex, p, level);
+	// couldn't produce any reasonable output; value = "?"
+	if(ret < 0)
+		out(L"?");
 
 	out(L"\r\n");
 	return ret;
@@ -1249,9 +1256,17 @@ static int dump_frame_cb(STACKFRAME64* frame, void* ctx)
 		return 1;	// keep calling
 	}
 
+	void* func = (void*)frame->AddrPC.Offset;
+	// don't trace back into kernel32: we need a defined stop point,
+	// or walk_stack will end up returning -1; stopping here also
+	// reduces the risk of confusing the stack dump code below.
+	wchar_t path[MAX_PATH];
+	wchar_t* module_filename = get_module_filename(func, path);
+	if(!wcscmp(module_filename, L"kernel32.dll"))
+		return 0;	// done
+
 	lock();
 
-	void* func = (void*)frame->AddrPC.Offset;
 	char func_name[1000]; char file[100]; int line;
 	if(debug_resolve_symbol(func, func_name, file, &line) == 0)
 		out(L"%hs (%hs:%lu)", func_name, file, line);
@@ -1292,9 +1307,7 @@ static const wchar_t* dump_stack(uint skip, CONTEXT* thread_context = NULL)
 		// skip dump_stack and walk_stack
 	int err = walk_stack(dump_frame_cb, &params, thread_context);
 	if(err != 0)
-	{
-
-	}
+		out(L"(error while building stack trace: %d)", err);
 	return buf;
 }
 
@@ -1517,10 +1530,13 @@ int debug_assert_failed(const char* file, int line, const char* expr)
 //
 //////////////////////////////////////////////////////////////////////////////
 
-
+// return localized version of <text>, if i18n functionality is available.
+// this is used to translate the "unhandled exception" dialog strings.
+// WARNING: leaks memory returned by wcsdup, but that's ok since the
+// program will terminate soon after. fixing this is hard and senseless.
 static const wchar_t* translate(const wchar_t* text)
 {
-#ifdef I18N
+#ifdef HAVE_I18N
 	// make sure i18n system is (already|still) initialized.
 	if(g_CurrentLocale)
 	{
@@ -1528,7 +1544,10 @@ static const wchar_t* translate(const wchar_t* text)
 		// involves script code and the JS context might be corrupted.
 		__try
 		{
-			text = translate_raw(text);
+			const wchar_t* text2 = wcsdup(I18n::translate(text).c_str());
+			// only overwrite if wcsdup succeeded, i.e. not out of memory.
+			if(text2)
+				text = text2;
 		}
 		__except(EXCEPTION_EXECUTE_HANDLER)
 		{
@@ -1540,16 +1559,16 @@ static const wchar_t* translate(const wchar_t* text)
 }
 
 
-// convenience wrapper on top of translate
+// convenience wrapper using translate.
 static void translate_and_display_msg(const wchar_t* caption, const wchar_t* text)
 {
 	wdisplay_msg(translate(caption), translate(text));
 }
 
 
-
-
-// modified from http://www.codeproject.com/debug/XCrashReportPt3.asp
+// write out a "minidump" containing register and stack state; this enables
+// examining the crash in a debugger. called by unhandled_exception_filter.
+// heavily modified from http://www.codeproject.com/debug/XCrashReportPt3.asp
 static void write_minidump(EXCEPTION_POINTERS* exception_pointers)
 {
 	HANDLE hFile = CreateFile("crashlog.dmp", GENERIC_WRITE, FILE_SHARE_WRITE, 0, CREATE_ALWAYS, 0, 0);
@@ -1577,44 +1596,122 @@ fail:
 }
 
 
+//
+// analyze exceptions; determine their type and locus
+//
 
+// storage for strings built by get_SEH_exception_description and get_cpp_exception_description.
+static wchar_t description[128];
 
-/*
-TODO
-If the process is not being debugged, the function displays an Application Error message box,
-depending on the current error mode. The default behavior is to display the dialog box, 
-but this can be disabled by specifying SEM_NOGPFAULTERRORBOX in a call to the SetErrorMode function.
-*/
-
-
-
-
-static const wchar_t* exception_locus(const EXCEPTION_RECORD* er)
+// VC++ exception handling internals.
+// see http://www.codeproject.com/cpp/exceptionhandler.asp
+struct XTypeInfo
 {
-	static wchar_t locus[100];
-	swprintf(locus, 18, L"0x%p", er->ExceptionAddress);
-	MEMORY_BASIC_INFORMATION mbi;
-	if(VirtualQuery(er->ExceptionAddress, &mbi, sizeof(mbi)))
+	DWORD _;
+	const std::type_info* ti;
+	// ..
+};
+
+struct XTypeInfoArray
+{
+	DWORD count; 
+	const XTypeInfo* types[1];
+};
+
+struct XInfo
+{
+	DWORD _[3];
+	const XTypeInfoArray* array;
+};
+
+
+// if <er> is not a C++ exception, return 0. otherwise, return a description
+// of the exception type and cause (in English). uses static storage.
+static const wchar_t* get_cpp_exception_description(const EXCEPTION_RECORD* er)
+{
+	const ULONG_PTR* const ei = er->ExceptionInformation;
+
+	// bail if not a C++ exception (magic numbers defined in VC exsup.inc)
+	if(er->ExceptionCode != 0xe06d7363 ||
+	   er->NumberParameters != 3 ||
+	   ei[0] != 0x19930520)
+		return 0;
+
+	// VC's C++ exception implementation stores the following:
+	// ei[0] - magic number
+	// ei[1] -> object that was thrown
+	// ei[2] -> XInfo
+	//
+	// note: we can't share a __try below - the failure of
+	// one attempt must not abort the others.
+
+	// get std::type_info
+	char type_buf[100] = {'\0'};
+	const char* type_name = type_buf;
+	__try
 	{
-		wchar_t path[MAX_PATH];
-		HMODULE hMod = (HMODULE)mbi.AllocationBase;
-		if(GetModuleFileNameW(hMod, path, ARRAY_SIZE(path)))
-		{
-			wchar_t* filename = wcsrchr(path, '\\')+1;
-			// GetModuleFileName returns full path => a '\\' exists
-			swprintf(locus, ARRAY_SIZE(locus)-18, L" (%s)", filename);
-		}
+		const XInfo* xi           = (XInfo*)ei[2];
+		const XTypeInfoArray* xta = xi->array;
+		const XTypeInfo* xti      = xta->types[0];
+		const std::type_info* ti  = xti->ti;
+
+		// strip "class " from start of string (clutter)
+		strcpy_s(type_buf, ARRAY_SIZE(type_buf), ti->name());
+		if(!strncmp(type_buf, "class ", 6))
+			type_name += 6;
+	}
+	__except(EXCEPTION_EXECUTE_HANDLER)
+	{
 	}
 
-	return locus;
+	// std::exception.what()
+	char what[100] = {'\0'};
+	__try
+	{
+		std::exception* e = (std::exception*)ei[1];
+		strcpy_s(what, ARRAY_SIZE(what), e->what());
+	}
+	__except(EXCEPTION_EXECUTE_HANDLER)
+	{
+	}
+
+
+	// we got meaningful data; format and return it.
+	if(type_name[0] != '\0' || what[0] != '\0')
+	{
+		swprintf(description, ARRAY_SIZE(description), L"%hs(\"%hs\")", type_name, what);
+		return description;
+	}
+
+	// not a C++ exception; we can't say anything about it.
+	return 0;
 }
 
 
-static const wchar_t* SEH_code_to_string(DWORD code)
+// return a description of the exception type (in English).
+// uses static storage.
+static const wchar_t* get_SEH_exception_description(const EXCEPTION_RECORD* er)
 {
+	const DWORD code = er->ExceptionCode;
+	const ULONG_PTR* ei = er->ExceptionInformation;
+
+	// special case for access violations: display type and address.
+	if(code == EXCEPTION_ACCESS_VIOLATION)
+	{
+		const wchar_t* op = (ei[0])? L"writing" : L"reading";
+		const wchar_t* fmt = L"Access violation %s 0x%08X";
+		swprintf(description, ARRAY_SIZE(description), translate(fmt), translate(op), ei[1]);
+		return description;
+	}
+
+	// rationale: we don't use FormatMessage because it is unclear whether
+	// NTDLL's symbol table will always include English-language strings
+	// (we don't want crashlogs in foreign gobbledygook).
+	// it also adds unwanted formatting (e.g. {EXCEPTION} and trailing .).
+
 	switch(code)
 	{
-	case EXCEPTION_ACCESS_VIOLATION:         return L"Access violation";
+//	case EXCEPTION_ACCESS_VIOLATION:         return L"Access violation";
 	case EXCEPTION_DATATYPE_MISALIGNMENT:    return L"Datatype misalignment";
 	case EXCEPTION_BREAKPOINT:               return L"Breakpoint";
 	case EXCEPTION_SINGLE_STEP:              return L"Single step";
@@ -1636,85 +1733,75 @@ static const wchar_t* SEH_code_to_string(DWORD code)
 	case EXCEPTION_INVALID_DISPOSITION:      return L"Invalid disposition";
 	case EXCEPTION_GUARD_PAGE:               return L"Guard page";
 	case EXCEPTION_INVALID_HANDLE:           return L"Invalid handle";
-	default:                                 return 0;
 	}
+
+	// anything else => unknown; display its exception code.
+	// we don't punt to get_exception_description because anything
+	// we get called for will actually be a SEH exception.
+	swprintf(description, ARRAY_SIZE(description), L"Unknown exception(0x%08X)", code);
+	return description;
 }
 
 
-static const wchar_t* exception_description(const EXCEPTION_RECORD* er)
+// return a description of the exception <er> (in English).
+// it is only valid until the next call, since static storage is used.
+static const wchar_t* get_exception_description(const EXCEPTION_RECORD* er)
 {
-	const ULONG_PTR* const ei = er->ExceptionInformation;
-	const wchar_t* description;
+	// note: more specific than SEH, so try it first.
+	const wchar_t* d = get_cpp_exception_description(er);
+	if(d)
+		return d;
 
-	// special case for SEH access violations: display type and address.
-	if(er->ExceptionCode == EXCEPTION_ACCESS_VIOLATION)
-	{
-		const wchar_t* op = (ei[0] != 0)? L"writing" : L"reading";
-		static wchar_t buf[50];
-		swprintf(buf, ARRAY_SIZE(buf), L"Access violation %s 0x%08X", op, ei[1]);
-		return buf;
-	}
-
-	// SEH exception.
-	description = SEH_code_to_string(er->ExceptionCode);
-	if(description)
-		return description;
-
-	// C++ exceptions put a pointer to the exception object
-	// into ExceptionInformation[1] -- so see if it looks like
-	// a PSERROR*, and use the relevant message if it is.
-	__try
-	{
-		if (er->NumberParameters == 3)
-		{
-			/*/*
-			PSERROR* err = (PSERROR*) ep->ExceptionRecord->ExceptionInformation[1];
-			if (err->magic == 0x45725221)
-			{
-			int code = err->code;
-			error = GetErrorString(code);
-			}
-			*/
-		}
-	}
-	__except (EXCEPTION_EXECUTE_HANDLER)
-	{
-		// Presumably it wasn't a PSERROR and resulted in
-		// accessing invalid memory locations.
-	}
-
-	return L"unknown exception";
+	return get_SEH_exception_description(er);
 }
 
 
+// return an indication of where the exception <er> occurred (lang. neutral).
+// it is only valid until the next call, since static storage is used.
+static const wchar_t* get_exception_locus(const EXCEPTION_RECORD* er)
+{
+	wchar_t path[MAX_PATH];
+	wchar_t* module_filename = get_module_filename(er->ExceptionAddress, path);
+
+	static wchar_t locus[100];
+	swprintf(locus, ARRAY_SIZE(locus), L"%p(%s)", er->ExceptionAddress, module_filename);
+	return locus;
+}
+
+
+// called when an SEH exception was not caught by the app;
+// provides detailed debugging information and exits.
+// this overrides the normal OS "program error" dialog; see rationale below.
 static LONG WINAPI unhandled_exception_filter(EXCEPTION_POINTERS* ep)
 {
 	const EXCEPTION_RECORD* const er = ep->ExceptionRecord;
 
-	// If something crashes after we've already crashed (i.e. when shutting
-	// down everything), don't bother logging it, because the first crash
-	// is the most important one to fix.
+	// note: we risk infinite recursion if someone raises an SEH exception
+	// from within this function. therefore, abort immediately if we've
+	// already been called; the first error is the most important, anyway.
 	static bool already_crashed = false;
-	if (already_crashed)
+	if(already_crashed)
 		return EXCEPTION_EXECUTE_HANDLER;
 	already_crashed = true;
 
-	const wchar_t* description = exception_description(er);
-	const wchar_t* locus       = exception_locus      (er);
-
 	// build and display error message
-	const wchar_t fmt[] = L"We are sorry, the program has encountered an error and cannot continue.\r\n"
-	                      L"Please report this to http://bugs.wildfiregames.com/ and attach the crashlog.txt and crashlog.dmp files from your 'data' folder.\r\n"
-						  L"Details: %s at %s.";
+	const wchar_t* locus       = get_exception_locus      (er);
+	const wchar_t* description = get_exception_description(er);
+	static const wchar_t fmt[] =
+		L"Much to our regret we must report the program has encountered an error and cannot continue.\r\n"
+	    L"\n"
+	    L"Please let us know at http://bugs.wildfiregames.com/ and attach the crashlog.txt and crashlog.dmp files.\r\n"
+	    L"\n"
+		L"Details: %s at %s.";
 	wchar_t text[1000];
 	swprintf(text, ARRAY_SIZE(text), translate(fmt), description, locus);
 	wdisplay_msg(translate(L"Problem"), text);
 
+	// write out crash log and dump.
 	pos = buf;
 	const wchar_t* stack_trace = dump_stack(+0, ep->ContextRecord);
 	write_minidump(ep);
 	debug_write_crashlog(description, locus, stack_trace);
-
 
 	// disable memory-leak reporting to avoid a flood of warnings
 	// (lots of stuff will leak since we exit abnormally).
@@ -1723,13 +1810,39 @@ static LONG WINAPI unhandled_exception_filter(EXCEPTION_POINTERS* ep)
 	_CrtSetDbgFlag(flags & ~_CRTDBG_LEAK_CHECK_DF);
 #endif
 
-	// MSDN: "This usually results in process termination".
+	// terminate the program.
+	// note: MSDN only says "This usually results in process termination".
 	return EXCEPTION_EXECUTE_HANDLER;
 }
 
 
-// called from wdbg_init
+// called from wdbg_init.
+// rationale: we want to replace the OS "program error" dialog box because
+// it is not all too helpful in debugging. to that end, there are
+// 4 ways to make sure unhandled exceptions are caught:
+// - via WaitForDebugEvent; the app is run from a separate debugger process.
+//   this complicates analysis, since the exception is in another
+//   address space. also, we are basically implementing a full-featured
+//   debugger - overkill.
+// - wrapping all threads in __try (necessary since the handler chain
+//   is in TLS) is very difficult to guarantee; it would also pollute main().
+// - vectored exception handlers work across threads, but
+//   are only available on WinXP (unacceptable).
+// - setting the per-process unhandled exception filter works well.
+//
+// note: this also catches regular C++ exceptions!
 static void set_exception_handler()
 {
-	SetUnhandledExceptionFilter(unhandled_exception_filter);
+	void* prev_filter = SetUnhandledExceptionFilter(unhandled_exception_filter);
+	if(prev_filter)
+		assert2("conflict with SetUnhandledExceptionFilter. must implement chaining to previous handler");
+
+
+	// tests
+	/*
+	assert2(0);									// not exception (works when run from debugger)
+	__asm xor edx,edx __asm div edx				// named SEH
+	RaiseException(0x87654321, 0, 0, 0);		// unknown SEH
+	throw std::bad_exception("what() is ok");	// C++
+	*/
 }

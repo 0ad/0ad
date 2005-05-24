@@ -73,7 +73,7 @@ static void cat_atow(FILE* out, const char* in_filename)
 	FILE* in = fopen(in_filename, "rb");
 	if(!in)
 	{
-		fwprintf(in, L"%s", L"(unavailable)");
+		fwprintf(in, L"(unavailable)");
 		return;
 	}
 
@@ -96,30 +96,29 @@ static void cat_atow(FILE* out, const char* in_filename)
 int debug_write_crashlog(const wchar_t* description, const wchar_t* locus, const wchar_t* stack_trace)
 {
 	const wchar_t divider[] = L"\n\n====================================\n\n";
-#define WRITE_DIVIDER() fwrite(divider, sizeof(wchar_t),ARRAY_SIZE(divider), f)
+#define WRITE_DIVIDER fwprintf(f, divider);
 
 	FILE* f = fopen("crashlog.txt", "w");
 	if(!f)
 		return -1;
 
-	const u16 BOM = 0xFEFF;
-	fwrite(&BOM, 2,1, f);
+	fputwc(0xfeff, f);	// BOM
 
 	fwprintf(f, L"Unhandled exception: %s.\n", description);
 	fwprintf(f, L"Location: %s\n", locus);
 	fwprintf(f, L"Stack trace: %s\n", stack_trace);
-	WRITE_DIVIDER();
+	WRITE_DIVIDER
 
 
 	// for user convenience, bundle all logs into this file:
 
 	fwprintf(f, L"System info:\n\n");
 	cat_atow(f, "../logs/system_info.txt");
-	WRITE_DIVIDER();
+	WRITE_DIVIDER
 
 	fwprintf(f, L"Main log:\n\n");
 	cat_atow(f, "../logs/mainlog.html");
-	WRITE_DIVIDER();
+	WRITE_DIVIDER
 
 	fwprintf(f, L"Last known activity:\n\n %s\n", debug_log);
 
