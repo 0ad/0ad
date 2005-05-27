@@ -13,13 +13,13 @@
 	></Properties>
 	<Animations>
 		<Animation name="Idle" file="art/animation/biped/dudeidle.psa" speed="200"> </Animation>
-		<Animation name="Walk" file="art/animation/biped/dudewalk_swordshield.psa" speed="28"> </Animation>
+		<Animation name="Walk" file="art/animation/biped/dudewalk_swordshield.psa" speed="20"> </Animation>
 		<Animation name="Build" file="art/animation/biped/dudebuild.psa" speed="150"> </Animation>
 		<Animation name="Chop" file="art/animation/biped/dudechop.psa" speed="150"> </Animation>
 		<Animation name="Death" file="art/animation/biped/dudedeath_sword.psa" speed="200"> </Animation>
 		<Animation name="Decay" file="art/animation/biped/dudedecay_sword.psa" speed="100"> </Animation>
-		<Animation speed="300" file="art/animation/biped/dudeattack.psa" name="Attack" event="0.5"> </Animation>
-		<Animation speed="300" file="art/animation/biped/dudeattack1.psa" name="Attack" event="0.5"> </Animation>
+		<Animation speed="100" file="art/animation/biped/dudeattack.psa" name="Attack" event="0.5"> </Animation>
+		<Animation speed="100" file="art/animation/biped/dudeattack1.psa" name="Attack" event="0.5"> </Animation>
 	</Animations>
 	<Props>
 		<Prop attachpoint="head_extra" model="props/temp/kart_sign_su2.xml"> </Prop>
