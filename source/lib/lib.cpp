@@ -222,6 +222,50 @@ u16 subusw(u16 x, u16 y)
 	return (u16)(MAX(t-y, 0));
 }
 
+// zero-extend <size> (truncated to 8) bytes of little-endian data to u64,
+// starting at address <p> (need not be aligned).
+u64 movzx_64le(const u8* p, size_t size)
+{
+	if(size > 8)
+		size = 8;
+
+	u64 data = 0;
+	for(u64 i = 0; i < MIN(size,8); i++)
+		data |= ((u64)p[i]) << (i*8);
+
+	return data;
+}
+
+
+// sign-extend <size> (truncated to 8) bytes of little-endian data to i64,
+// starting at address <p> (need not be aligned).
+i64 movsx_64le(const u8* p, size_t size)
+{
+	if(size > 8)
+		size = 8;
+
+	u64 data = movzx_64le(p, size);
+
+	// no point in sign-extending if >= 8 bytes were requested
+	if(size < 8)
+	{
+		u64 sign_bit = 1;
+		sign_bit <<= (size*8)-1;
+		// be sure that we don't shift more than variable's bit width
+
+		// number would be negative in the smaller type,
+		// so sign-extend, i.e. set all more significant bits.
+		if(data & sign_bit)
+		{
+			const u64 size_mask = (sign_bit+sign_bit)-1;
+			data |= ~size_mask;
+		}
+	}
+
+	return (i64)data;
+}
+
+
 
 // input in [0, 1); convert to u8 range
 u8 fp_to_u8(double in)

@@ -295,6 +295,13 @@ typedef u32 FnHash;
 extern u16 addusw(u16 x, u16 y);
 extern u16 subusw(u16 x, u16 y);
 
+// zero-extend <size> (truncated to 8) bytes of little-endian data to u64,
+// starting at address <p> (need not be aligned).
+extern u64 movzx_64le(const u8* p, size_t size);
+
+// sign-extend <size> (truncated to 8) bytes of little-endian data to i64,
+// starting at address <p> (need not be aligned).
+extern i64 movsx_64le(const u8* p, size_t size);
 
 
 extern bool is_pow2(long n);
