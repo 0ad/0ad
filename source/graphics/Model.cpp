@@ -211,12 +211,14 @@ CSkeletonAnim* CModel::BuildAnimation(const char* filename, const char* name, fl
 	CSkeletonAnimDef* def=g_SkelAnimMan.GetAnimation(filename);
 	if (!def) return NULL;
 
-	CSkeletonAnim* anim = new CSkeletonAnim;
+
+	CSkeletonAnim* anim=new CSkeletonAnim;
 	anim->m_Name = name;
-	anim->m_AnimDef = def;
-	anim->m_Speed = speed;
-	anim->m_ActionPos = (size_t)(actionpos * anim->m_AnimDef->GetDuration() / speed);
-	anim->m_ActionPos2 = (size_t)(actionpos2 * anim->m_AnimDef->GetDuration() / speed);
+	anim->m_AnimDef=def;
+	anim->m_Speed=speed;
+	anim->m_ActionPos=(float)( actionpos /* * anim->m_AnimDef->GetDuration() */ / speed );
+	anim->m_ActionPos2=(float)( actionpos2 /* * anim->m_AnimDef->GetDuration() */ / speed );
+
 	anim->m_ObjectBounds.SetEmpty();
 	InvalidateBounds();
 
@@ -228,8 +230,8 @@ CSkeletonAnim* CModel::BuildAnimation(const char* filename, const char* name, fl
 void CModel::Update(float time)
 {
 	if (m_Anim && m_BoneMatrices) {
-		// convert to ms and adjust for animation speed
-		float animtime = time*1000*m_Anim->m_Speed;
+		// adjust for animation speed
+		float animtime=time*m_AnimSpeed;
 
 		// update animation time, but don't calculate bone matrices - do that (lazily) when
 		// something requests them; that saves some calculation work for offscreen models,
@@ -237,11 +239,16 @@ void CModel::Update(float time)
 		// skinning) are up to date with respect to m_Transform 
 		m_AnimTime += animtime;
 		
-		float duration = m_Anim->m_AnimDef->GetDuration();
+
+		float duration=m_Anim->m_AnimDef->GetDuration();
 		if (m_AnimTime > duration) {
-			if (m_Flags & MODELFLAG_NOLOOPANIMATION)
-				SetAnimation(NULL);
-			m_AnimTime = fmod(m_AnimTime, duration);
+			if( m_Flags & MODELFLAG_NOLOOPANIMATION )
+			{
+				SetAnimation( m_NextAnim );
+			}
+			else
+				m_AnimTime=(float) fmod(m_AnimTime,duration);
+
 		}
 		
 		// mark vertices as dirty
@@ -298,14 +305,17 @@ void CModel::GenerateBoneMatrices()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // SetAnimation: set the given animation as the current animation on this model;
 // return false on error, else true
-bool CModel::SetAnimation(CSkeletonAnim* anim, bool once)
+bool CModel::SetAnimation(CSkeletonAnim* anim, bool once, float speed, CSkeletonAnim* next)
 {
 	m_Anim=NULL; // in case something fails
 
 	if (anim) {
 		m_Flags &= ~MODELFLAG_NOLOOPANIMATION;
 		if (once)
+		{
 			m_Flags |= MODELFLAG_NOLOOPANIMATION;
+			m_NextAnim = next;
+		}
 
 		if (!m_BoneMatrices) {
 			// not boned, can't animate
@@ -324,7 +334,10 @@ bool CModel::SetAnimation(CSkeletonAnim* anim, bool once)
 		InvalidateBounds();
 
 		// start anim from beginning 
-		m_AnimTime=0; 
+		m_AnimTime=0;
+
+		// Adjust speed by animation base rate.
+		m_AnimSpeed = speed * anim->m_Speed;
 	} 
 
 	m_Anim=anim;

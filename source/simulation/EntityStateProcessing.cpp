@@ -6,6 +6,7 @@
 #include "BaseEntity.h"
 #include "Model.h"
 #include "ObjectEntry.h"
+#include "SkeletonAnimDef.h" // Animation duration
 #include "Unit.h"
 
 #include "Collision.h"
@@ -287,7 +288,8 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t timestep_milli
 
 	if( m_transition && m_actor )
 	{
-		m_actor->SetRandomAnimation( "walk" );
+		CSkeletonAnim* walk = m_actor->GetRandomAnimation( "walk" );
+		m_actor->GetModel()->SetAnimation( walk, false, m_speed * walk->m_AnimDef->GetDuration() );
 		// Animation desync
 		m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
 	}
@@ -311,7 +313,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 			// few hundred ms, at the 'action point' of the animation we're
 			// now setting.
 
-			m_actor->GetModel()->SetAnimation( m_fsm_animation, true );
+			m_actor->GetModel()->SetAnimation( m_fsm_animation, true, 1000.0f * m_fsm_animation->m_AnimDef->GetDuration() / (float)action->m_Speed, m_actor->GetRandomAnimation( "idle" ) );
 		}
 		if( ( m_fsm_cyclepos <= m_fsm_anipos2 ) &&
 			( nextpos > m_fsm_anipos2 ) )
@@ -375,7 +377,8 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		// Play walk for a bit.
 		if( m_actor && ! m_actor->IsPlayingAnimation( "walk" ) )
 		{
-			m_actor->SetRandomAnimation( "walk" );
+			CSkeletonAnim* walk = m_actor->GetRandomAnimation( "walk" );
+			m_actor->GetModel()->SetAnimation( walk, false, m_speed * walk->m_AnimDef->GetDuration() );
 			// Animation desync
 			m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
 		}
@@ -446,15 +449,16 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 	// when the timer reaches action->m_Speed. The timer increments by 2 every millisecond.
 	// animation->m_actionpos is the time offset into that animation that event
 	// should happen. So...
-	m_fsm_anipos = action->m_Speed - ( m_fsm_animation->m_ActionPos * 2 );
+	m_fsm_anipos = (size_t)( action->m_Speed * ( 1.0f - 2 * m_fsm_animation->m_ActionPos ) );
 	// But...
-	if( action->m_Speed < ( m_fsm_animation->m_ActionPos * 2 ) )
+	if( m_fsm_anipos < 0 )
 	{
 		// We ought to have started it in the past. Oh well.
 		// Here's what we'll do: play it now, and advance it to
 		// the point it should be by now.
-		m_actor->GetModel()->SetAnimation( m_fsm_animation, true );
-		m_actor->GetModel()->Update( m_fsm_animation->m_ActionPos / 1000.0f - action->m_Speed / 2000.0f );
+		
+		m_actor->GetModel()->SetAnimation( m_fsm_animation, true, 1000.0f * m_fsm_animation->m_AnimDef->GetDuration() / (float)action->m_Speed, m_actor->GetRandomAnimation( "idle" ) );
+		m_actor->GetModel()->Update( action->m_Speed * ( m_fsm_animation->m_ActionPos / 1000.0f - 0.0005f ) );
 	}
 	else
 	{
@@ -466,8 +470,8 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 
 	// Load time needs to be animation->m_ActionPos2 ms after the start of the animation.
 
-	m_fsm_anipos2 = m_fsm_anipos + ( m_fsm_animation->m_ActionPos2 * 2 );
-	if( action->m_Speed < ( ( m_fsm_animation->m_ActionPos + m_fsm_animation->m_ActionPos2 ) * 2 ) )
+	m_fsm_anipos2 = m_fsm_anipos + ( action->m_Speed * m_fsm_animation->m_ActionPos2 * 2 );
+	if( m_fsm_anipos2 < 0 )
 	{
 		// Load now.
 		m_actor->ShowAmmunition();
@@ -488,6 +492,7 @@ bool CEntity::processAttackMeleeNoPathing( CEntityOrder* current, size_t timeste
 	if( !m_actor ) return( false );
 	return( processContactActionNoPathing( current, timestep_milli, "melee", &evt, &m_melee ) );
 }
+
 bool CEntity::processGather( CEntityOrder* current, size_t timestep_millis )
 {
 	return( processContactAction( current, timestep_millis, CEntityOrder::ORDER_GATHER_NOPATHING, &m_gather ) );
@@ -514,7 +519,9 @@ bool CEntity::processGoto( CEntityOrder* current, size_t timestep_millis )
 
 	if( m_transition && m_actor )
 	{
-		m_actor->SetRandomAnimation( "walk" );
+
+		CSkeletonAnim* walk = m_actor->GetRandomAnimation( "walk" );
+		m_actor->GetModel()->SetAnimation( walk, false, m_speed * walk->m_AnimDef->GetDuration() );
 		// Animation desync
 		m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
 	}

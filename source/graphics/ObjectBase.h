@@ -23,8 +23,7 @@ public:
 		// animation speed, as specified in XML actor file
 		float m_Speed;
 		// fraction of the way through the animation that the interesting bit(s)
-		// happens (this is converted to an absolute time when the animation
-		// data is loaded)
+		// happens 
 		double m_ActionPos;
 		double m_ActionPos2;
 	};

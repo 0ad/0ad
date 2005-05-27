@@ -350,6 +350,123 @@ void CEntity::update( size_t timestep )
 	}
 }
 
+#if AURA_TEST
+void CEntity::UpdateAuras( size_t timestep_millis )
+{
+	std::vector<SAura>::iterator it_a;
+	for( it_a = m_Auras.begin(); it_a != m_Auras.end(); it_a++ )
+	{
+		SAuraData& d = it_a->m_Data;
+		std::set<CEntity*>& inRange = GetEntitiesWithinRange( m_position, d.m_Radius );
+
+		std::vector<CEntity*>::iterator it1 = inRange.begin();
+		std::vector<SAuraInstance>::iterator it2 = it_a->m_Influenced.begin();
+		
+		while( WORLD_IS_ROUND )
+		{
+			if( it1 == inRange.end() )
+			{
+				// No more in range => anything else in the influenced set must have gone
+				// out of range.
+				for( ; it2 != it_a->m_Influenced.end(); it2++ )
+					UpdateAuras_LeaveRange( *it_a, it2->GetEntity() );
+
+				break;
+			}
+			if( it2 == it_a->m_Influenced.end() )
+			{
+				// Everything else in the in-range set has only just come into range
+				for( ; it1 != inRange.end(); it1++ )
+					UpdateAuras_EnterRange( *it_a, *it );
+				break;
+			}
+			CEntity* e1 = *it1, e2 = it2->GetEntity();
+			if( e1 < e2 )
+			{
+				// A new entity e1 has just come into range.
+				// Check to see if it can be affected by the aura.
+				UpdateAuras_EnterRange( *it_a, e1 );
+				++it1;
+			}
+			else if( e1 == e2 )
+			{
+				// The entity e1/e2 was previously in range, and still is.
+				UpdateAuras_Normal( *it_a, e1 );
+				++it1; ++it2;
+			}
+			else
+			{
+				// The entity e2 was previously in range, but is no longer.
+				UpdateAuras_LeaveRange( *it_a, e2 );
+				++it2;
+			}
+		}
+	}
+}
+
+void UpdateAuras_EnterRange( SAura& aura, CEntity* e )
+{
+	if( aura.m_Recharge )
+		return( false );
+	// Check to see if the entity is eligable
+	if( !UpdateAuras_IsEligable( aura.m_Data, e ) )
+		return; // Do nothing.
+	
+	SAuraInstance ai;
+	ai.m_Influenced = e;
+	ai.m_EnteredRange = ai.m_LastInRange = 0;
+	ai.m_Applied = -1;
+
+	// If there's no timer, apply the effect now.
+	if( aura.m_Data.m_Time == 0 )
+	{
+		e->ApplyAuraEffect( aura.m_Data );
+		ai.m_Applied = 0;
+		aura.m_Recharge = aura.m_Data.m_Cooldown;
+	}
+
+	aura.m_Influenced.push_back( ai );	
+}
+
+void UpdateAuras_Normal( SAura& aura, CEntity* e )
+{
+	// Is the entity no longer eligable?
+	if( !UpdateAuras_IsEligable( aura.m_Data, e ) )
+	{
+		// 
+	}
+}
+
+bool UpdateAuras_IsEligable( SAuraData& aura, CEntity* e )
+{
+	if( e == this )
+	{
+		if( !( aura.m_Allegiance & SAuraData::SELF ) )
+			return( false );
+	}
+	else if( e->m_player == GetGaiaPlayer() )
+	{
+		if( !( aura.m_Allegiance & SAuraData::GAIA ) )
+			return( false );
+	}
+	else if( e->m_player == m_player )
+	{
+		if( !( aura.m_Allegiance & SAuraData::PLAYER ) )
+			return( false );
+	}
+	// TODO: Allied players
+	else
+	{
+		if( !( aura.m_Allegiance & SAuraData::ENEMY ) )
+			return( false );
+	}
+	if( e->m_hp > e->m_hp_max * aura.m_Hitpoints )
+		return( false );
+	return( true );
+}
+
+#endif 
+
 void CEntity::Initialize()
 {
 	CEventInitialize evt;

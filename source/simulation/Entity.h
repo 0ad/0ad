@@ -142,6 +142,9 @@ public:
 	// Updates graphical information for a point between the last and current simulation frame; 0 < relativeoffset < 1.
 	void interpolate( float relativeoffset );
 
+	// Updates auras
+	void UpdateAuras( size_t timestep_millis );
+
 	// Removes entity from the gameworld and deallocates it, but not necessarily immediately.
 	void kill();
 

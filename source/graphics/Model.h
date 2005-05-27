@@ -64,7 +64,8 @@ public:
 	CMaterial &GetMaterial() { return m_Material; }
 
 	// set the given animation as the current animation on this model
-	bool SetAnimation(CSkeletonAnim* anim, bool once = false); 
+	bool SetAnimation(CSkeletonAnim* anim, bool once = false, float speed = 1000.0f, CSkeletonAnim* next = NULL );
+
 	// get the currently playing animation, if any
 	CSkeletonAnim* GetAnimation() { return m_Anim; }
 
@@ -135,6 +136,10 @@ private:
 	CBound m_ObjectBounds;
 	// animation currently playing on this model, if any
 	CSkeletonAnim* m_Anim;
+	// animation to switch back to when the current one finishes
+	CSkeletonAnim* m_NextAnim;
+	// rate at which the animation should play
+	float m_AnimSpeed;
 	// time (in MS) into the current animation
 	float m_AnimTime;
 	// flag stating whether bone matrices are currently valid

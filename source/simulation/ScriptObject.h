@@ -19,9 +19,6 @@ class CScriptObject
 	void Root();
 	void Uproot();
 
-	// TODO: Remove, debugging
-	static int count;
-
 public:
 
 	CScriptObject();
