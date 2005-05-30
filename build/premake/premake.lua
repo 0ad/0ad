@@ -172,8 +172,6 @@ function setuppackage (projectname)
 			tinsert(package.files, {sourceroot.."lib/sysdep/win/icon.rc"})
 		end
 	
-		tinsert(package.defines, "EXCEPTION_HACK_0AD")
-
 		package.linkoptions = { "/ENTRY:entry",
 			"/DELAYLOAD:opengl32.dll",
 			"/DELAYLOAD:advapi32.dll",
