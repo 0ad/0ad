@@ -1,4 +1,4 @@
-// Windows-specific code and program entry point
+h// Windows-specific code and program entry point
 // Copyright (c) 2003 Jan Wassenberg
 //
 // This program is free software; you can redistribute it and/or
@@ -84,6 +84,27 @@ inline int get_executable_name(char* n_path, size_t buf_size)
 	DWORD nbytes = GetModuleFileName(0, n_path, (DWORD)buf_size);
 	return nbytes? 0 : -1;
 }
+
+
+// return filename of the module which contains address <addr>,
+// or L"" on failure. path holds the string and must be >= MAX_PATH chars.
+wchar_t* get_module_filename(void* addr, wchar_t* path)
+{
+	path[0] = '\0';	// in case either API call below fails
+	wchar_t* module_filename = path;
+
+	MEMORY_BASIC_INFORMATION mbi;
+	if(VirtualQuery(addr, &mbi, sizeof(mbi)))
+	{
+		HMODULE hModule = (HMODULE)mbi.AllocationBase;
+		if(GetModuleFileNameW(hModule, path, MAX_PATH))
+			module_filename = wcsrchr(path, '\\')+1;
+		// note: GetModuleFileName returns full path => a '\\' exists
+	}
+
+	return module_filename;
+}
+
 
 
 static int CALLBACK browse_cb(HWND hWnd, unsigned int msg, LPARAM lParam, LPARAM ldata)

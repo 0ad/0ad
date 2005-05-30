@@ -73,7 +73,7 @@ static void cat_atow(FILE* out, const char* in_filename)
 	FILE* in = fopen(in_filename, "rb");
 	if(!in)
 	{
-		fwprintf(in, L"(unavailable)");
+		fwprintf(out, L"(unavailable)");
 		return;
 	}
 

@@ -9,11 +9,6 @@
 
 #define _DELAY_IMP_VER  2
 
-#if defined(__cplusplus)
-#define ExternC extern "C"
-#else
-#define ExternC extern
-#endif
 
 typedef IMAGE_THUNK_DATA *          PImgThunkData;
 typedef const IMAGE_THUNK_DATA *    PCImgThunkData;
@@ -86,14 +81,14 @@ typedef FARPROC (WINAPI *PfnDliHook)(unsigned dliNotify, PDelayLoadInfo  pdli);
 
 // routine definition; takes a pointer to a name to unload
 //
-ExternC
+EXTERN_C
 BOOL WINAPI
 __FUnloadDelayLoadedDLL2(LPCSTR szDll);
 
 //
 // Snap load support
 //
-ExternC
+EXTERN_C
 HRESULT WINAPI
 __HrLoadAllImportsForDll(LPCSTR szDll);
 
@@ -119,11 +114,11 @@ __HrLoadAllImportsForDll(LPCSTR szDll);
 //  dliNoteEndProcessing}
 //  on this call.
 //
-ExternC
+EXTERN_C
 PfnDliHook   __pfnDliNotifyHook2;
 
 // This is the failure hook, dliNotify = {dliFailLoadLib|dliFailGetProc}
-ExternC
+EXTERN_C
 PfnDliHook   __pfnDliFailureHook2;
 
 
@@ -612,7 +607,7 @@ static FARPROC WINAPI notify_hook(unsigned dliNotify, PDelayLoadInfo pdli)
 	return 0;
 }
 
-ExternC PfnDliHook __pfnDliNotifyHook2 = notify_hook;
-ExternC PfnDliHook __pfnDliFailureHook2 = 0;
+EXTERN_C PfnDliHook __pfnDliNotifyHook2 = notify_hook;
+EXTERN_C PfnDliHook __pfnDliFailureHook2 = 0;
 
 

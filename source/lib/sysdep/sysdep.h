@@ -37,6 +37,11 @@ extern int clipboard_free(wchar_t* copy);
 
 extern int get_executable_name(char* n_path, size_t buf_size);
 
+// return filename of the module which contains address <addr>,
+// or L"" on failure. path holds the string and must be >= MAX_PATH chars.
+wchar_t* get_module_filename(void* addr, wchar_t* path);
+
+
 extern int pick_directory(char* n_path, size_t buf_size);
 
 

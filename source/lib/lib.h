@@ -61,6 +61,13 @@ scope
 #include "sysdep/sysdep.h"
 
 
+#if defined(__cplusplus)
+#define EXTERN_C extern "C"
+#else
+#define EXTERN_C extern
+#endif
+
+
 // tell STL not to generate exceptions, if compiling without exceptions
 // (usually done for performance reasons).
 #ifdef CONFIG_DISABLE_EXCEPTIONS
