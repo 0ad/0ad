@@ -58,55 +58,6 @@ WIN_REGISTER_FUNC(wdbg_shutdown);
 #define debug_warn(str) assert(0 && (str))
 
 
-static void set_exception_handler();
-
-
-//
-// globals, set by wdbg_init
-//
-
-// our instance (= load address = 0x400000 on Win32). used by
-// CreateDialogParam to locate the "program error" dialog resource.
-static HINSTANCE hInstance;
-
-// passed to all dbghelp symbol query functions. we're not interested in
-// resolving symbols in other processes; the purpose here is only to
-// generate a stack trace. if that changes, we need to init a local copy
-// of these in dump_sym_cb and pass them to all subsequent dump_*.
-static HANDLE hProcess;
-static ULONG64 mod_base;
-
-// for StackWalk64; taken from PE header by wdbg_init
-static WORD machine;
-
-
-static int wdbg_init()
-{
-	hProcess = GetCurrentProcess();
-	hInstance = GetModuleHandle(0);
-
-	SymSetOptions(SYMOPT_DEFERRED_LOADS);
-	SymInitialize(hProcess, 0, TRUE);
-
-	mod_base = SymGetModuleBase64(hProcess, (u64)&wdbg_init);
-	IMAGE_NT_HEADERS* header = ImageNtHeader((void*)mod_base);
-	machine = header->FileHeader.Machine;
-
-	// rationale: see definition. note: unhandled_exception_filter uses
-	// wdbg globals and dbghelp, so those must be initialized first.
-	set_exception_handler();
-
-	return 0;
-}
-
-
-static int wdbg_shutdown(void)
-{
-	SymCleanup(hProcess);
-	return 0;
-}
-
-
 // protects dbghelp (which isn't thread-safe) and
 // parameter passing to the breakpoint helper thread.
 static void lock()
@@ -117,39 +68,6 @@ static void lock()
 static void unlock()
 {
 	win_unlock(WDBG_CS);
-}
-
-
-
-void debug_check_heap()
-{
-	__try
-	{
-		_heapchk();
-	}
-	__except(EXCEPTION_EXECUTE_HANDLER)
-	{
-	}
-}
-
-
-// return filename of the module which contains address <addr>,
-// or L"" on failure. path holds the string and must be >= MAX_PATH chars.
-static wchar_t* get_module_filename(void* addr, wchar_t* path)
-{
-	path[0] = '\0';	// in case either API call below fails
-	wchar_t* module_filename = path;
-
-	MEMORY_BASIC_INFORMATION mbi;
-	if(VirtualQuery(addr, &mbi, sizeof(mbi)))
-	{
-		HMODULE hModule = (HMODULE)mbi.AllocationBase;
-		if(GetModuleFileNameW(hModule, path, MAX_PATH))
-			module_filename = wcsrchr(path, '\\')+1;
-		// note: GetModuleFileName returns full path => a '\\' exists
-	}
-
-	return module_filename;
 }
 
 
@@ -197,352 +115,55 @@ void debug_wprintf(const wchar_t* fmt, ...)
 }
 
 
-//////////////////////////////////////////////////////////////////////////////
-//
-// breakpoints
-//
-//////////////////////////////////////////////////////////////////////////////
-
-// breakpoints are set by storing the address of interest in a
-// debug register and marking it 'enabled'.
-//
-// the first problem is, they are only accessible from Ring0;
-// we get around this by updating their values via SetThreadContext.
-// that in turn requires we suspend the current thread,
-// spawn a helper to change the registers, and resume.
-//
-// we don't reuse similar code from the profiler in wcpu.cpp:
-// it is designed to interrupt the main thread periodically,
-// whereas what we need here is to interrupt any thread on-demand.
-
-// parameter passing to helper thread. currently static storage,
-// but the struct simplifies switching to a queue later.
-static struct BreakInfo
+void debug_check_heap()
 {
-	// real (not pseudo) handle of thread whose context we will change.
-	HANDLE hThread;
-
-	uintptr_t addr;
-	DbgBreakType type;
-
-	// determines what brk_thread_func will do.
-	// set/reset by debug_remove_all_breaks.
-	bool want_all_disabled;
-}
-brk_info;
-
-// Local Enable bits of all registers we enabled (used when restoring all).
-static DWORD brk_all_local_enables;
-
-static const uint MAX_BREAKPOINTS = 4;
-	// IA-32 limit; if this changes, make sure brk_enable still works!
-	// (we assume CONTEXT has contiguous Dr0..Dr3 register fields)
-
-
-// remove all breakpoints enabled by debug_set_break from <context>.
-// called from brk_thread_func; return error code as void*.
-static void* brk_disable_all_in_ctx(BreakInfo* bi, CONTEXT* context)
-{
-	context->Dr7 &= ~brk_all_local_enables;
-	return 0;	// success
-}
-
-
-// find a free register, set type according to <bi> and
-// mark it as enabled in <context>.
-// called from brk_thread_func; return error code as void*.
-static void* brk_enable_in_ctx(BreakInfo* bi, CONTEXT* context)
-{
-	int reg;	// index (0..3) of first free reg
-	uint LE;	// local enable bit for <reg>
-
-	// find free debug register.
-	for(reg = 0; reg < MAX_BREAKPOINTS; reg++)
+	__try
 	{
-		LE = BIT(reg*2);
-		// .. this one is currently not in use.
-		if((context->Dr7 & LE) == 0)
-			goto have_reg;
+		_heapchk();
 	}
-	debug_warn("brk_enable_in_ctx: no register available");
-	return (void*)(intptr_t)ERR_LIMIT;
-have_reg:
-
-	// set value and mark as enabled.
-	(&context->Dr0)[reg] = (DWORD)bi->addr;	// see MAX_BREAKPOINTS
-	context->Dr7 |= LE;
-	brk_all_local_enables |= LE;
-
-	// build Debug Control Register value.
-	// .. type
-	uint rw = 0;
-	switch(bi->type)
+	__except(EXCEPTION_EXECUTE_HANDLER)
 	{
-	case DBG_BREAK_CODE:
-		rw = 0; break;
-	case DBG_BREAK_DATA:
-		rw = 1; break;
-	case DBG_BREAK_DATA_WRITE:
-		rw = 3; break;
-	default:
-		debug_warn("brk_enable_in_ctx: invalid type");
 	}
-	// .. length (determined from addr's alignment).
-	//    note: IA-32 requires len=0 for code breakpoints.
-	uint len = 0;
-	if(bi->type != DBG_BREAK_CODE)
-	{
-		const uint alignment = (uint)(bi->addr % 4);
-		// assume 2 byte range
-		if(alignment == 2)
-			len = 1;
-		// assume 4 byte range
-		else if(alignment == 0)
-			len = 3;
-		// else: 1 byte range; len already set to 0
-	}
-	const uint shift = (16 + reg*4);
-	const uint field = (len << 2) | rw;
-
-	// clear previous contents of this reg's field
-	// (in case the previous user didn't do so on disabling).
-	const uint mask = 0xFu << shift;
-	context->Dr7 &= ~mask;
-
-	context->Dr7 |= field << shift;
-	return 0;	// success
-}
-
-
-// carry out the request stored in the BreakInfo* parameter.
-// return error code as void*.
-static void* brk_thread_func(void* arg)
-{
-	DWORD err;
-	void* ret;
-	BreakInfo* bi = (BreakInfo*)arg;
-
-	err = SuspendThread(bi->hThread);
-	// abort, since GetThreadContext only works if the target is suspended.
-	if(err == (DWORD)-1)
-	{
-		debug_warn("brk_thread_func: SuspendThread failed");
-		goto fail;
-	}
-	// target is now guaranteed to be suspended,
-	// since the Windows counter never goes negative.
-
-	//////////////////////////////////////////////////////////////////////////
-
-	// to avoid deadlock, be VERY CAREFUL to avoid anything that may block,
-	// including locks taken by the OS (e.g. malloc, GetProcAddress).
-	{
-
-	CONTEXT context;
-	context.ContextFlags = CONTEXT_DEBUG_REGISTERS;
-	if(!GetThreadContext(bi->hThread, &context))
-	{
-		debug_warn("brk_thread_func: GetThreadContext failed");
-		goto fail;
-	}
-
-#if defined(_M_IX86)
-	if(bi->want_all_disabled)
-		ret = brk_disable_all_in_ctx(bi, &context);
-	else
-		ret = brk_enable_in_ctx     (bi, &context);
-
-	if(!SetThreadContext(bi->hThread, &context))
-	{
-		debug_warn("brk_thread_func: SetThreadContext failed");
-		goto fail;
-	}
-#else
-#error "port"
-#endif
-
-	}
-
-	//////////////////////////////////////////////////////////////////////////
-
-	err = ResumeThread(bi->hThread);
-	assert(err != 0);
-
-	return ret;
-
-fail:
-	return (void*)(intptr_t)-1;
-}
-
-
-// latch current thread and carry out the request stored in brk_info.
-static int brk_run_thread()
-{
-	int err;
-	BreakInfo* bi = &brk_info;
-
-	// we need a real HANDLE to the target thread for use with
-	// Suspend|ResumeThread and GetThreadContext.
-	// alternative: DuplicateHandle on the current thread pseudo-HANDLE.
-	// this way is a bit more obvious/simple.
-	const DWORD access = THREAD_GET_CONTEXT|THREAD_SET_CONTEXT|THREAD_SUSPEND_RESUME;
-	bi->hThread = OpenThread(access, FALSE, GetCurrentThreadId());
-	if(bi->hThread == INVALID_HANDLE_VALUE)
-	{
-		debug_warn("debug_set_break: OpenThread failed");
-		return -1;
-	}
-
-	pthread_t thread;
-	err = pthread_create(&thread, 0, brk_thread_func, bi);
-	assert2(err == 0);
-
-	void* ret;
-	err = pthread_join(thread, &ret);
-	assert2(err == 0 && ret == 0);
-
-	return (int)(intptr_t)ret;
-}
-
-
-// arrange for a debug exception to be raised when <addr> is accessed
-// according to <type>.
-// for simplicity, the length (range of bytes to be checked) is
-// derived from addr's alignment, and is typically 1 machine word.
-// breakpoints are a limited resource (4 on IA-32); abort and
-// return ERR_LIMIT if none are available.
-int debug_set_break(void* p, DbgBreakType type)
-{
-	lock();
-
-	brk_info.addr = (uintptr_t)p;
-	brk_info.type = type;
-	int ret = brk_run_thread();
-
-	unlock();
-	return ret;
-}
-
-
-// remove all breakpoints that were set by debug_set_break.
-// important, since these are a limited resource.
-int debug_remove_all_breaks()
-{
-	lock();
-
-	brk_info.want_all_disabled = true;
-	int ret = brk_run_thread();
-	brk_info.want_all_disabled = false;
-
-	unlock();
-	return ret;
 }
 
 
 //////////////////////////////////////////////////////////////////////////////
 //
-// dbghelp support routines for walking the stack
+// dbghelp symbol engine
 //
 //////////////////////////////////////////////////////////////////////////////
 
-// iterate over a call stack.
-// if <thread_context> != 0, we start there; otherwise, at the current
-// stack frame. call <cb> for each stack frame found, also passing the
-// user-specified <ctx>. if it returns <= 0, we stop immediately and
-// pass on that value; otherwise, the eventual return value is -1
-// ("callback never succeeded").
-//
-// note: can't just pass function's address to the callback -
-// dump_frame_cb needs the frame pointer for reg-relative variables.
-static int walk_stack(int (*cb)(STACKFRAME64*, void*), void* ctx, CONTEXT* thread_context = 0)
+// passed to all dbghelp symbol query functions. we're not interested in
+// resolving symbols in other processes; the purpose here is only to
+// generate a stack trace. if that changes, we need to init a local copy
+// of these in dump_sym_cb and pass them to all subsequent dump_*.
+static HANDLE hProcess;
+static ULONG64 mod_base;
+
+// for StackWalk64; taken from PE header by wdbg_init
+static WORD machine;
+
+static int sym_init()
 {
-	HANDLE hThread = GetCurrentThread();
+	hProcess = GetCurrentProcess();
 
-	// we need to set STACKFRAME64.AddrPC and AddrFrame for the initial
-	// StackWalk call in our loop. if the caller passed in a thread context
-	// (e.g. if calling from an exception handler), we use that; otherwise,
-	// determine the current PC / frame pointer ourselves.
-	// GetThreadContext is documented not to work if the current thread
-	// is running, but that seems to be widespread practice. regardless, we
-	// avoid using it, since simple asm code is safer. deliberately raising
-	// an exception to retrieve the CONTEXT is too slow (due to jump to
-	// ring0), since this is called from mmgr for each allocation.
-	STACKFRAME64 frame;
-	memset(&frame, 0, sizeof(frame));
+	SymSetOptions(SYMOPT_DEFERRED_LOADS);
+	BOOL ok = SymInitialize(hProcess, 0, TRUE);
+	if(!ok)
+		display_msg("wdbg_init", "SymInitialize failed");
 
-#if defined(_M_AMD64)
+	mod_base = SymGetModuleBase64(hProcess, (u64)&wdbg_init);
+	IMAGE_NT_HEADERS* header = ImageNtHeader((void*)mod_base);
+	machine = header->FileHeader.Machine;
 
-	DWORD64 rip_, rbp_;
-	if(thread_context)
-	{
-		rip_ = thread_context->Rip;
-		rbp_ = thread_context->Rbp;
-	}
-	else
-	{
-		__asm
-		{
-		cur_rip:
-			mov		rax, offset cur_rip
-			mov		[rip_], rax
-			mov		[rbp_], rbp
-		}
-	}
+	return 0;
+}
 
-	frame.AddrPC.Offset    = rip_;
-	frame.AddrPC.Mode      = AddrModeFlat;
-	frame.AddrFrame.Offset = rbp_;
-	frame.AddrFrame.Mode   = AddrModeFlat;
 
-#elif defined(_M_IX86)
-
-	DWORD eip_, ebp_;
-	if(thread_context)
-	{
-		eip_ = thread_context->Eip;
-		ebp_ = thread_context->Ebp;
-	}
-	else
-	{
-		__asm
-		{
-		cur_eip:
-			mov		eax, offset cur_eip
-			mov		[eip_], eax
-			mov		[ebp_], ebp
-		}
-	}
-
-	frame.AddrPC.Offset    = eip_;
-	frame.AddrPC.Mode      = AddrModeFlat;
-	frame.AddrFrame.Offset = ebp_;
-	frame.AddrFrame.Mode   = AddrModeFlat;
-
-#else
-
-#error "TODO: set STACKFRAME64.AddrPC, AddrFrame for this platform"
-
-#endif
-
-	// for each stack frame found:
-	for(;;)
-	{
-		lock();
-		BOOL ok = StackWalk64(machine, hProcess, hThread, &frame, thread_context, 0, SymFunctionTableAccess64, SymGetModuleBase64, 0);
-		unlock();
-
-		// no more frames found, and callback never succeeded; abort.
-		if(!ok)
-			return -1;
-
-		void* func = (void*)frame.AddrPC.Offset;
-
-		int ret = cb(&frame, ctx);
-		// callback reports it's done; stop calling it and return that value.
-		// (can be 0 for success, or a negative error code)
-		if(ret <= 0)
-			return ret;
-	}
+static int sym_shutdown()
+{
+	SymCleanup(hProcess);
+	return 0;
 }
 
 
@@ -589,31 +210,511 @@ int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int*
 
 
 //////////////////////////////////////////////////////////////////////////////
+
+
+// to avoid deadlock, be VERY CAREFUL to avoid anything that may block,
+// including locks taken by the OS (e.g. malloc, GetProcAddress).
+typedef int(*WhileSuspendedFunc)(HANDLE hThread, void* user_arg);
+
+struct WhileSuspendedParam
+{
+	HANDLE hThread;
+	WhileSuspendedFunc func;
+	void* user_arg;
+};
+
+
+static void* while_suspended_thread_func(void* user_arg)
+{
+	DWORD err;
+	WhileSuspendedParam* param = (WhileSuspendedParam*)user_arg;
+
+	err = SuspendThread(param->hThread);
+	// abort, since GetThreadContext only works if the target is suspended.
+	if(err == (DWORD)-1)
+	{
+		debug_warn("while_suspended_thread_func: SuspendThread failed");
+		goto fail;
+	}
+	// target is now guaranteed to be suspended,
+	// since the Windows counter never goes negative.
+
+	int ret = param->func(param->hThread, param->user_arg);
+
+	err = ResumeThread(param->hThread);
+	assert(err != 0);
+
+	return (void*)(intptr_t)ret;
+
+fail:
+	return (void*)(intptr_t)-1;
+}
+
+
+static int call_while_suspended(WhileSuspendedFunc func, void* user_arg)
+{
+	int err;
+
+	// we need a real HANDLE to the target thread for use with
+	// Suspend|ResumeThread and GetThreadContext.
+	// alternative: DuplicateHandle on the current thread pseudo-HANDLE.
+	// this way is a bit more obvious/simple.
+	const DWORD access = THREAD_GET_CONTEXT|THREAD_SET_CONTEXT|THREAD_SUSPEND_RESUME;
+	HANDLE hThread = OpenThread(access, FALSE, GetCurrentThreadId());
+	if(hThread == INVALID_HANDLE_VALUE)
+	{
+		debug_warn("OpenThread failed");
+		return -1;
+	}
+
+	WhileSuspendedParam param = { hThread, func, user_arg };
+
+	pthread_t thread;
+	err = pthread_create(&thread, 0, while_suspended_thread_func, &param);
+	assert2(err == 0);
+
+	void* ret;
+	err = pthread_join(thread, &ret);
+	assert2(err == 0 && ret == 0);
+
+	return (int)(intptr_t)ret;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
 //
-// get address of Nth function above us on the call stack (uses walk_stack)
+// breakpoints
 //
 //////////////////////////////////////////////////////////////////////////////
 
-struct NthCallerParams
-{
-	int left_to_skip;
-	void* func;
-};
+// breakpoints are set by storing the address of interest in a
+// debug register and marking it 'enabled'.
+//
+// the first problem is, they are only accessible from Ring0;
+// we get around this by updating their values via SetThreadContext.
+// that in turn requires we suspend the current thread,
+// spawn a helper to change the registers, and resume.
 
-// called by walk_stack for each stack frame
-static int nth_caller_cb(STACKFRAME64* frame, void* ctx)
+// parameter passing to helper thread. currently static storage,
+// but the struct simplifies switching to a queue later.
+static struct BreakInfo
 {
-	NthCallerParams* p = (NthCallerParams*)ctx;
+	uintptr_t addr;
+	DbgBreakType type;
 
-	// not the one we want yet
-	if(p->left_to_skip > 0)
+	// determines what brk_thread_func will do.
+	// set/reset by debug_remove_all_breaks.
+	bool want_all_disabled;
+}
+brk_info;
+
+// Local Enable bits of all registers we enabled (used when restoring all).
+static DWORD brk_all_local_enables;
+
+static const uint MAX_BREAKPOINTS = 4;
+	// IA-32 limit; if this changes, make sure brk_enable still works!
+	// (we assume CONTEXT has contiguous Dr0..Dr3 register fields)
+
+
+// remove all breakpoints enabled by debug_set_break from <context>.
+// called while target is suspended.
+static int brk_disable_all_in_ctx(BreakInfo* bi, CONTEXT* context)
+{
+	context->Dr7 &= ~brk_all_local_enables;
+	return 0;
+}
+
+
+// find a free register, set type according to <bi> and
+// mark it as enabled in <context>.
+// called while target is suspended.
+static int brk_enable_in_ctx(BreakInfo* bi, CONTEXT* context)
+{
+	int reg;	// index (0..3) of first free reg
+	uint LE;	// local enable bit for <reg>
+
+	// find free debug register.
+	for(reg = 0; reg < MAX_BREAKPOINTS; reg++)
 	{
-		p->left_to_skip--;
-		return 1;	// keep calling
+		LE = BIT(reg*2);
+		// .. this one is currently not in use.
+		if((context->Dr7 & LE) == 0)
+			goto have_reg;
+	}
+	debug_warn("brk_enable_in_ctx: no register available");
+	return ERR_LIMIT;
+have_reg:
+
+	// set value and mark as enabled.
+	(&context->Dr0)[reg] = (DWORD)bi->addr;	// see MAX_BREAKPOINTS
+	context->Dr7 |= LE;
+	brk_all_local_enables |= LE;
+
+	// build Debug Control Register value.
+	// .. type
+	uint rw = 0;
+	switch(bi->type)
+	{
+	case DBG_BREAK_CODE:
+		rw = 0; break;
+	case DBG_BREAK_DATA:
+		rw = 1; break;
+	case DBG_BREAK_DATA_WRITE:
+		rw = 3; break;
+	default:
+		debug_warn("brk_enable_in_ctx: invalid type");
+	}
+	// .. length (determined from addr's alignment).
+	//    note: IA-32 requires len=0 for code breakpoints.
+	uint len = 0;
+	if(bi->type != DBG_BREAK_CODE)
+	{
+		const uint alignment = (uint)(bi->addr % 4);
+		// assume 2 byte range
+		if(alignment == 2)
+			len = 1;
+		// assume 4 byte range
+		else if(alignment == 0)
+			len = 3;
+		// else: 1 byte range; len already set to 0
+	}
+	const uint shift = (16 + reg*4);
+	const uint field = (len << 2) | rw;
+
+	// clear previous contents of this reg's field
+	// (in case the previous user didn't do so on disabling).
+	const uint mask = 0xFu << shift;
+	context->Dr7 &= ~mask;
+
+	context->Dr7 |= field << shift;
+	return 0;
+}
+
+
+// carry out the request stored in the BreakInfo* parameter.
+// called while target is suspended.
+static int brk_do_request(HANDLE hThread, void* arg)
+{
+	int ret;
+	BreakInfo* bi = (BreakInfo*)arg;
+
+	CONTEXT context;
+	context.ContextFlags = CONTEXT_DEBUG_REGISTERS;
+	if(!GetThreadContext(hThread, &context))
+	{
+		debug_warn("brk_do_request: GetThreadContext failed");
+		goto fail;
 	}
 
+#if defined(_M_IX86)
+	if(bi->want_all_disabled)
+		ret = brk_disable_all_in_ctx(bi, &context);
+	else
+		ret = brk_enable_in_ctx     (bi, &context);
+
+	if(!SetThreadContext(hThread, &context))
+	{
+		debug_warn("brk_do_request: SetThreadContext failed");
+		goto fail;
+	}
+#else
+#error "port"
+#endif
+
+	return 0;
+fail:
+	return -1;
+}
+
+
+// arrange for a debug exception to be raised when <addr> is accessed
+// according to <type>.
+// for simplicity, the length (range of bytes to be checked) is
+// derived from addr's alignment, and is typically 1 machine word.
+// breakpoints are a limited resource (4 on IA-32); abort and
+// return ERR_LIMIT if none are available.
+int debug_set_break(void* p, DbgBreakType type)
+{
+	lock();
+
+	brk_info.addr = (uintptr_t)p;
+	brk_info.type = type;
+	int ret = call_while_suspended(brk_do_request, &brk_info);
+
+	unlock();
+	return ret;
+}
+
+
+// remove all breakpoints that were set by debug_set_break.
+// important, since these are a limited resource.
+int debug_remove_all_breaks()
+{
+	lock();
+
+	brk_info.want_all_disabled = true;
+	int ret = call_while_suspended(brk_do_request, &brk_info);
+	brk_info.want_all_disabled = false;
+
+	unlock();
+	return ret;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// stack walk via dbghelp
+//
+//////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+/*
+
+call win32 context retrieval mechanisms return context deeper than what we want
+tracing up to their caller (i.e. walk_stack) is a circular problem.
+besides, CONTEXT is nonportable - we'd still have to copy out its fields
+
+
+// called from an SEH filter expression
+static LONG WINAPI latch_context(EXCEPTION_POINTERS* ep, CONTEXT* dest_context)
+{
+memcpy(dest_context, ep->ContextRecord, sizeof(CONTEXT));
+return EXCEPTION_CONTINUE_EXECUTION;
+}
+
+static int store_current_context(HANDLE hThread, void* user_arg)
+{
+CONTEXT* pcontext = (CONTEXT*)user_arg;
+memset(pcontext, 0, sizeof(CONTEXT));
+pcontext->ContextFlags = CONTEXT_ALL;
+BOOL ok = GetThreadContext(hThread, pcontext);
+assert(ok);
+return 0;
+}
+
+
+if(!pcontext)
+{
+#if 0
+call_while_suspended(store_current_context, &context);
+#elif 0
+EXCEPTION_POINTERS* ep;
+__try
+{
+RaiseException(0x10000, 0, 0,0);
+}
+__except(memcpy(&context, GetExceptionInformation()->ContextRecord, sizeof(CONTEXT)), EXCEPTION_CONTINUE_EXECUTION)
+{
+assert(0);	// never reached
+}
+#elif 0
+context.ContextFlags = CONTEXT_CONTROL;
+GetThreadContext(hThread, &context);
+#endif
+pcontext = &context;
+}
+/**/
+
+/*
+
+the intrinsics only give us EIP reliably. AoRA - 4 is a hack
+
+#ifdef __cplusplus
+#define EXTERNC extern "C"
+#else
+#define EXTERNC
+#endif
+
+// _ReturnAddress and _AddressOfReturnAddress should be prototyped before use 
+EXTERNC void * _AddressOfReturnAddress(void);
+EXTERNC void * _ReturnAddress(void);
+
+#pragma intrinsic(_AddressOfReturnAddress)
+#pragma intrinsic(_ReturnAddress)
+
+pc = (DWORD64)_ReturnAddress();
+fp = (DWORD64)_AddressOfReturnAddress()-sizeof(void*);
+
+*/
+
+
+
+
+
+
+// _ReturnAddress and _AddressOfReturnAddress should be prototyped before use 
+EXTERN_C void* _ReturnAddress(void);
+#pragma intrinsic(_ReturnAddress)
+
+// rationale: we don't want this to clutter up walk_stack, but it must not
+// be a regular function call (because that would add a stack frame.
+// could work around this by incrementing <skip>, but that increases
+// coupling and breaks if the function is inlined); __forceinline
+// isn't inlined in debug builds (go figure), macros require ugly multiline breaks, so go with __forceinline.
+
+// macros don't accept multiline asm
+
+#if defined(_M_AMD64)
+# define PC_ Rip
+# define FP_ Rbp
+# define SP_ Rsp
+# define GET_FP __asm mov [fp], rbp
+# define GET_SP __asm mov [sp], rsp
+#elif defined(_M_IX86)
+# define PC_ Eip
+# define FP_ Ebp
+# define SP_ Esp
+# define GET_FP\
+	__asm mov dword ptr [fp], ebp\
+	__asm xor eax, eax\
+	__asm mov dword ptr [fp+4], eax
+# define GET_SP\
+	__asm mov dword ptr [sp], esp\
+	__asm xor eax, eax\
+	__asm mov dword ptr [sp+4], eax
+#else
+# error "port"
+#endif
+
+
+// we need to set STACKFRAME64.AddrPC and AddrFrame for the initial
+// StackWalk call in our loop. if the caller passed in a thread context
+// (e.g. if calling from an exception handler), we use that; otherwise,
+// determine the current PC / frame pointer ourselves.
+// GetThreadContext is documented not to work if the current thread
+// is running, but that seems to be widespread practice. regardless, we
+// avoid using it, since simple asm code is safer. deliberately raising
+// an exception to retrieve the CONTEXT is too slow (due to jump to
+// ring0), since this is called from mmgr for each allocation.
+
+__declspec(noinline) static void init_STACKFRAME64(STACKFRAME64* sf, const CONTEXT* pcontext, DWORD64 fp, DWORD64 sp)
+{
+	memset(sf, 0, sizeof(STACKFRAME64));
+
+	DWORD64 pc;
+
+	if(!pcontext)
+	{
+		pc = (DWORD64)_ReturnAddress();
+		// note: fp and sp already given as parameter
+	}
+	else
+	{
+		pc = pcontext->PC_;
+		fp = pcontext->FP_;
+		sp = pcontext->SP_;
+	}
+
+/*
+char buf[100];
+sprintf(buf, "pc=%I64p, fp=%I64p, sp=%I64p", pc, fp, sp);
+display_msg("init stackframe", buf);
+*/
+
+	sf->AddrPC.Offset    = pc;
+	sf->AddrPC.Mode      = AddrModeFlat;
+	sf->AddrFrame.Offset = fp;
+	sf->AddrFrame.Mode   = AddrModeFlat;
+	sf->AddrStack.Offset = sp;
+	sf->AddrStack.Mode   = AddrModeFlat;
+}
+
+
+
+// called for each stack frame found by walk_stack, passing information
+// about the frame and <user_arg>.
+// return <= 0 to stop immediately and have walk_stack return that;
+// otherwise, > 0 to continue.
+//
+// rationale: we can't just pass function's address to the callback -
+// dump_frame_cb needs the frame pointer for reg-relative variables.
+typedef int (*StackFrameCallback)(const STACKFRAME64*, void*);
+
+// iterate over a call stack, calling back for each frame encountered.
+// if <pcontext> != 0, we start there; otherwise, at the current context.
+// return -1 if callback never succeeded (returned 0).
+static int walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip = 0, const CONTEXT* pcontext = 0)
+{
+	const HANDLE hThread = GetCurrentThread();
+
+	// rationale: see above.
+	STACKFRAME64 sf;
+	DWORD64 fp, sp; GET_FP; GET_SP;
+	init_STACKFRAME64(&sf, pcontext, fp, sp);
+
+
+
+	// if we don't get a CONTEXT, we retrieve PC and FP for this frame;
+	// prevent it from being displayed.
+	if(!pcontext)
+		skip++;
+
+/*
+CONTEXT context;
+EXCEPTION_POINTERS* ep;
+__try
+{
+	RaiseException(0x10000, 0, 0,0);
+}
+__except(ep = GetExceptionInformation(), memcpy(&context, ep->ContextRecord, sizeof(CONTEXT)), EXCEPTION_CONTINUE_EXECUTION)
+{
+	assert(0);	// never reached
+}
+pcontext = &context;
+*/
+
+	// StackWalk64 may write to pcontext, but there's no mention of
+	// EXCEPTION_POINTERS.ContextRecord being read-only, so don't copy it.
+
+	// for each stack frame found:
+	for(;;)
+	{
+		lock();
+		BOOL ok = StackWalk64(machine, hProcess, hThread, &sf, (void*)pcontext, 0, SymFunctionTableAccess64, SymGetModuleBase64, 0);
+		unlock();
+
+/*
+char buf[100];
+sprintf(buf, "pc=%I64p, ret=%I64p, fp=%I64p, sp=%I64p", sf.AddrPC.Offset, sf.AddrReturn.Offset, sf.AddrFrame.Offset, sf.AddrStack.Offset);
+display_msg("after StackWalk", buf);
+*/
+
+		// callback never indicated success and no (more) frames found: abort.
+		// note: also test FP because StackWalk64 sometimes erroneously
+		// reports success. unfortunately it doesn't SetLastError either,
+		// so we can't indicate the cause of fialure *sigh*.
+		if(!ok || !sf.AddrFrame.Offset)
+			return -911;	// distinctive error value
+
+		if(skip)
+		{
+			skip--;
+			continue;
+		}
+
+		int ret = cb(&sf, user_arg);
+		// callback reports it's done; stop calling it and return that value.
+		// (can be 0 for success, or a negative error code)
+		if(ret <= 0)
+			return ret;
+	}
+}
+
+
+//
+// get address of Nth function above us on the call stack (uses walk_stack)
+//
+
+// called by walk_stack for each stack frame
+static int nth_caller_cb(const STACKFRAME64* sf, void* user_arg)
+{
+	void** pfunc = (void**)user_arg;
+
 	// return its address
-	p->func = (void*)frame->AddrPC.Offset;
+	*pfunc = (void*)sf->AddrPC.Offset;
 	return 0;
 }
 
@@ -621,10 +722,11 @@ static int nth_caller_cb(STACKFRAME64* frame, void* ctx)
 // n starts at 1
 void* debug_get_nth_caller(uint n)
 {
-	NthCallerParams params = { (int)n-1 + 3, 0 };
-		// skip walk_stack, debug_get_nth_caller and its caller
-	if(walk_stack(nth_caller_cb, &params) == 0)
-		return params.func;
+	void* func;	// set by callback
+	const uint skip = n-1 + 3;
+		// make 0-based; skip walk_stack, debug_get_nth_caller and its caller.
+	if(walk_stack(nth_caller_cb, &func, skip) == 0)
+		return func;
 	return 0;
 }
 
@@ -1298,7 +1400,7 @@ static int dump_data_sym(DWORD data_idx, const u8* p, DumpState state)
 
 struct DumpSymParams
 {
-	STACKFRAME64* frame;
+	const STACKFRAME64* sf;
 	bool locals_active;
 };
 
@@ -1319,7 +1421,7 @@ static BOOL CALLBACK dump_sym_cb(SYMBOL_INFO* sym, ULONG sym_size, void* ctx)
 	// .. relative to a register; we assume it's the frame pointer,
 	//    since sym->Register is undocumented.
 	if(sym->Flags & SYMF_REGREL || sym->Flags & SYMF_FRAMEREL)
-		addr += p->frame->AddrFrame.Offset;
+		addr += p->sf->AddrFrame.Offset;
 	// .. in register; we can't reliably retrieve it (since undocumented)
 	else if(sym->Flags & SYMF_REGISTER)
 		return 1;
@@ -1359,24 +1461,12 @@ static BOOL CALLBACK dump_sym_cb(SYMBOL_INFO* sym, ULONG sym_size, void* ctx)
 //////////////////////////////////////////////////////////////////////////////
 
 
-struct DumpFrameParams
-{
-	int left_to_skip;
-};
-
 // called by walk_stack for each stack frame
-static int dump_frame_cb(STACKFRAME64* frame, void* ctx)
+static int dump_frame_cb(const STACKFRAME64* sf, void* user_arg)
 {
-	DumpFrameParams* p = (DumpFrameParams*)ctx;
+	UNUSED(user_arg);
 
-	// not the one we want yet
-	if(p->left_to_skip > 0)
-	{
-		p->left_to_skip--;
-		return 1;	// keep calling
-	}
-
-	void* func = (void*)frame->AddrPC.Offset;
+	void* func = (void*)sf->AddrPC.Offset;
 	// don't trace back into kernel32: we need a defined stop point,
 	// or walk_stack will end up returning -1; stopping here also
 	// reduces the risk of confusing the stack dump code below.
@@ -1404,7 +1494,7 @@ static int dump_frame_cb(STACKFRAME64* frame, void* ctx)
 	imghlp_frame.InstructionOffset = (DWORD64)func;
 	SymSetContext(hProcess, &imghlp_frame, 0);	// last param is ignored
 
-	DumpSymParams params = { frame, true };
+	DumpSymParams params = { sf, true };
 	SymEnumSymbols(hProcess, 0, 0, dump_sym_cb, &params);
 		// 2nd and 3rd params indicate scope set by SymSetContext
 		// should be used.
@@ -1421,11 +1511,15 @@ static int dump_frame_cb(STACKFRAME64* frame, void* ctx)
 
 // most recent <skip> stack frames will be skipped
 // (we don't want to show e.g. GetThreadContext / this call)
-static const wchar_t* dump_stack(uint skip, CONTEXT* thread_context = NULL)
+static const wchar_t* dump_stack(uint skip, const CONTEXT* pcontext = 0)
 {
-	DumpFrameParams params = { (int)skip+2 };
-		// skip dump_stack and walk_stack
-	int err = walk_stack(dump_frame_cb, &params, thread_context);
+	// if we don't get a CONTEXT, our function frame will be in the trace;
+	// prevent it from being displayed. note: don't do this only in
+	// walk_stack, because it may be called from different depths.
+	if(!pcontext)
+		skip++;
+
+	int err = walk_stack(dump_frame_cb, 0, skip, pcontext);
 	if(err != 0)
 		out(L"(error while building stack trace: %d)", err);
 	return dump_buf;
@@ -1618,11 +1712,14 @@ static int CALLBACK dlgproc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM l
 // exits directly if 'exit' is clicked.
 static int dialog(DialogType type)
 {
-	// we don't know if the enclosing app even has a Window.
+	const HINSTANCE hInstance = GetModuleHandle(0);
 	const HWND hParent = GetDesktopWindow();
+		// we don't know if the enclosing app has a hwnd, so use the desktop.
 	return (int)DialogBoxParam(hInstance, MAKEINTRESOURCE(IDD_DIALOG1), hParent, dlgproc, (LPARAM)type);
 }
 
+
+static LONG WINAPI unhandled_exception_filter(EXCEPTION_POINTERS* ep);
 
 // notify the user that an assertion failed; displays a
 // stack trace with local variables.
@@ -1632,7 +1729,7 @@ int debug_assert_failed(const char* file, int line, const char* expr)
 	out_reset();
 	out(L"Assertion failed in %hs, line %d: \"%hs\"\r\n", file, line, expr);
 	out(L"\r\nCall stack:\r\n\r\n");
-	dump_stack(+1);	// skip this function's frame
+	dump_stack(+1);	// skip the current frame (debug_assert_failed)
 
 #if defined(SCED) && !(defined(NDEBUG)||defined(TESTING))
 	// ScEd keeps running while the dialog is showing, and tends to crash before
@@ -1641,6 +1738,17 @@ int debug_assert_failed(const char* file, int line, const char* expr)
 #endif
 
 	return dialog(ASSERT);
+
+/*
+__try
+{
+	RaiseException(0x10000, 0, 0,0);
+}
+__except(unhandled_exception_filter(GetExceptionInformation()))
+{
+}
+return ASSERT_CONTINUE;
+*/
 }
 
 
@@ -1880,11 +1988,16 @@ static const wchar_t* get_exception_description(const EXCEPTION_RECORD* er)
 // it is only valid until the next call, since static storage is used.
 static const wchar_t* get_exception_locus(const EXCEPTION_RECORD* er)
 {
+	void* addr = er->ExceptionAddress;
+
 	wchar_t path[MAX_PATH];
 	wchar_t* module_filename = get_module_filename(er->ExceptionAddress, path);
 
+	char func_name[DBG_SYMBOL_LEN];
+	debug_resolve_symbol(addr, func_name, 0, 0);
+
 	static wchar_t locus[100];
-	swprintf(locus, ARRAY_SIZE(locus), L"%p(%s)", er->ExceptionAddress, module_filename);
+	swprintf(locus, ARRAY_SIZE(locus), L"%s!%p(%hs)", module_filename, addr, func_name);
 	return locus;
 }
 
@@ -1960,9 +2073,56 @@ static void set_exception_handler()
 	if(prev_filter)
 		assert2("conflict with SetUnhandledExceptionFilter. must implement chaining to previous handler");
 
+struct Small
+{
+	int i1;
+	int i2;
+};
+
+struct Large
+{
+	double d1;
+	double d2;
+	double d3;
+	double d4;
+};
+
+Large large_array_of_large_structs[8] = { { 0.0,0.0,0.0,0.0 } };
+Large small_array_of_large_structs[2] = { { 0.0,0.0,0.0,0.0 } };
+Small large_array_of_small_structs[8] = { { 1,2 } };
+Small small_array_of_small_structs[2] = { { 1,2 } };
+
+	int ar1[] = { 1,2,3,4,5	};
+	char ar2[] = { 't','e','s','t', 0 };
+
 	// tests
+//	__try
+	{
 	//assert2(0 && "test assert2");				// not exception (works when run from debugger)
 	//__asm xor edx,edx __asm div edx 			// named SEH
 	//RaiseException(0x87654321, 0, 0, 0);		// unknown SEH
 	//throw std::bad_exception("what() is ok");	// C++
+	}
+//	__except(unhandled_exception_filter(GetExceptionInformation()))
+	{
+	}
+}
+
+
+
+
+static int wdbg_init()
+{
+	RETURN_ERR(sym_init());
+
+	// rationale: see definition. note: unhandled_exception_filter uses the
+	// dbghelp symbol engine, so it must be initialized first.
+	set_exception_handler();
+	return 0;
+}
+
+
+static int wdbg_shutdown(void)
+{
+	return sym_shutdown();
 }
