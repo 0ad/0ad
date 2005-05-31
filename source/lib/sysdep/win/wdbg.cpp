@@ -133,6 +133,8 @@ void debug_check_heap()
 //
 //////////////////////////////////////////////////////////////////////////////
 
+
+
 // passed to all dbghelp symbol query functions. we're not interested in
 // resolving symbols in other processes; the purpose here is only to
 // generate a stack trace. if that changes, we need to init a local copy
@@ -147,7 +149,8 @@ static int sym_init()
 {
 	hProcess = GetCurrentProcess();
 
-	SymSetOptions(SYMOPT_DEFERRED_LOADS);
+	SymSetOptions(SYMOPT_DEFERRED_LOADS|SYMOPT_DEBUG);
+	// loads symbols for all active modules.
 	BOOL ok = SymInitialize(hProcess, 0, TRUE);
 	if(!ok)
 		display_msg("wdbg_init", "SymInitialize failed");
@@ -568,13 +571,13 @@ EXTERN_C void* _ReturnAddress(void);
 # define FP_ Ebp
 # define SP_ Esp
 # define GET_FP\
-	__asm mov dword ptr [fp], ebp\
+	__asm mov dword ptr [fp_], ebp\
 	__asm xor eax, eax\
-	__asm mov dword ptr [fp+4], eax
+	__asm mov dword ptr [fp_+4], eax
 # define GET_SP\
-	__asm mov dword ptr [sp], esp\
+	__asm mov dword ptr [sp_], esp\
 	__asm xor eax, eax\
-	__asm mov dword ptr [sp+4], eax
+	__asm mov dword ptr [sp_+4], eax
 #else
 # error "port"
 #endif
@@ -642,8 +645,10 @@ static int walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip = 0, 
 
 	// rationale: see above.
 	STACKFRAME64 sf;
-	DWORD64 fp, sp; GET_FP; GET_SP;
-	init_STACKFRAME64(&sf, pcontext, fp, sp);
+	static DWORD64 fp_, sp_;
+	GET_FP;
+	GET_SP;
+	init_STACKFRAME64(&sf, pcontext, fp_, sp_);
 
 
 
@@ -794,33 +799,32 @@ static void out_reset()
 
 // does it look like an ASCII string is located at <addr>?
 // set <stride> to 2 to search for WCS-2 strings (of western characters!).
-// called by dump_array for its string special-case.
+// called by dump_sequence for its string special-case.
 //
 // algorithm: scan the "string" and count # text chars vs. garbage.
-static bool is_string_array(const u8* p, size_t num_elements, size_t stride)
+static bool is_string(const u8* p, size_t stride)
 {
+	// note: access violations are caught by dump_data_sym; output is "?".
 	int score = 0;
-
-	for(size_t i = 0; i < num_elements; i++)
+	for(;;)
 	{
 		// current character is:
 		const int c = *p & 0xff;	// prevent sign extension
+		p += stride;
 		// .. text
 		if(isalnum(c))
-			score += 2;
+			score += 5;
 		// .. end of string
 		else if(!c)
 			break;
 		// .. garbage
 		else if(!isprint(c))
-			score -= 5;
+			score -= 4;
 
-		// too much garbage found, probably not a string => abort.
-		// we don't want to unnecessarily scan huge binary arrays (slow).
-		if(score <= -10)
+		// got enough information either way => done.
+		// (we don't want to unnecessarily scan huge binary arrays)
+		if(abs(score) >= 10)
 			break;
-
-		p += stride;
 	}
 
 	return (score > 0);
@@ -830,9 +834,9 @@ static bool is_string_array(const u8* p, size_t num_elements, size_t stride)
 static bool is_bogus_pointer(const void* p)
 {
 #ifdef _M_IX86
-	if(p < (void*)0x1000)
+	if(p < (void*)0x10000)
 		return true;
-	if(p > (void*)(uintptr_t)0xc0000000)
+	if(p >= (void*)(uintptr_t)0xc0000000)
 		return true;
 #endif
 
@@ -857,9 +861,71 @@ static int dump_type_sym(DWORD type_idx, const u8* p, DumpState state);
 // output; dump_data_sym will display value as "?"
 
 
-// <type_id> is a SymTagPointerType; output its value.
+
+static int dump_sequence(const u8* p, uint num_elements, DWORD el_type_idx, size_t el_size, DumpState state)
+{
+	// special case for character arrays: display as string
+	if(el_size == sizeof(char) || el_size == sizeof(wchar_t))
+		if(is_string(p, el_size))
+		{
+			// make sure it's 0-terminated
+			wchar_t buf[512];
+			if(el_size == sizeof(wchar_t))
+				wcscpy_s(buf, ARRAY_SIZE(buf), (const wchar_t*)p);
+			else
+			{
+				size_t i;
+				for(i = 0; i < ARRAY_SIZE(buf)-1; i++)
+				{
+					buf[i] = (wchar_t)p[i];
+					if(buf[i] == '\0')
+						break;
+				}
+				buf[i] = '\0';
+			}
+	
+			out(L"\"%s\"", buf);
+			return 0;
+		}
+
+	// regular array:
+	const uint num_elements_to_show = MIN(20, num_elements);
+
+	const bool fits_on_one_line =
+		(el_size == sizeof(char) && num_elements <= 16) ||
+		(el_size <= sizeof(int ) && num_elements <=  8);
+
+	out(fits_on_one_line? L"{ " : L"\r\n");
+	state.level++;
+
+	int err = 0;
+	for(uint i = 0; i < num_elements_to_show; i++)
+	{
+		if(!fits_on_one_line)
+			 INDENT;
+
+		int ret = dump_type_sym(el_type_idx, p + i*el_size, state);
+		if(err == 0)	// remember first error
+			err = ret;
+
+		// add separator unless this is the last element
+		if(i != num_elements_to_show-1)
+			out(fits_on_one_line? L", " : L",\r\n");
+	}
+	// we truncated some
+	if(num_elements != num_elements_to_show)
+		out(L" ...");
+
+	if(fits_on_one_line)
+		out(L" }");
+	return err;
+}
+
+
+
+// <type_idx> is a SymTagPointerType; output its value.
 // called by dump_type_sym; lock is held.
-static int dump_pointer(DWORD type_idx, const u8* p, size_t size, DumpState state)
+static int dump_pointer_sym(DWORD type_idx, const u8* p, size_t size, DumpState state)
 {
 	// read+output pointer's value.
 	p = (const u8*)movzx_64le(p, size);
@@ -884,9 +950,9 @@ static int dump_pointer(DWORD type_idx, const u8* p, size_t size, DumpState stat
 //////////////////////////////////////////////////////////////////////////////
 
 
-// <type_id> is a SymTagBaseType; output its value.
+// <type_idx> is a SymTagBaseType; output its value.
 // called by dump_type_sym; lock is held.
-static int dump_base_type(DWORD type_idx, const u8* p, size_t size, DumpState state)
+static int dump_base_type_sym(DWORD type_idx, const u8* p, size_t size, DumpState state)
 {
 	DWORD base_type;
 	if(!SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_BASETYPE, &base_type))
@@ -900,41 +966,50 @@ static int dump_base_type(DWORD type_idx, const u8* p, size_t size, DumpState st
 
 	switch(base_type)
 	{
+		// boolean
 		case btBool:
 			assert(size == sizeof(bool));
 			fmt = L"%hs";
 			data = (u64)(data? "true " : "false");
 			break;
 
+		// floating-point
+		// note: we special-case 0xCC..CC ("uninitialized mem");
+		// interpreting that as float|double results in garbage.
 		case btFloat:
 			if(size == sizeof(float))
-				fmt = L"%f";
+				fmt = (data != 0xCCCCCCCC)? L"%g" : L"0x%08X";
 			else if(size == sizeof(double))
-				fmt = L"%lf";
+				fmt = (data != 0xCCCCCCCCCCCCCCCC)? L"%lg" : L"0x%016I64X";
 			else
-				debug_warn("dump_base_type: invalid float size");
+				debug_warn("dump_base_type_sym: invalid float size");
 			break;
 
-		// signed integers
+		// signed integers (displayed as decimal)
 		case btInt:
 		case btLong:
-			data = movsx_64le(p, size);
-			if(size == 1 || size == 2 || size == 4)
-				fmt = L"%d";
-			else if(size == 8)
+			if(size == 1 || size == 2 || size == 4 || size == 8)
 				fmt = L"%I64d";
 			else
-				debug_warn("dump_base_type: invalid int size");
+				debug_warn("dump_base_type_sym: invalid int size");
 			break;
 
 		// unsigned integers (displayed as hex)
+		// note: 0x00000000 can get annoying (0 would be nicer),
+		// but it indicates the variable size and makes for consistently
+		// formatted structs/arrays. (0x1234 0 0x5678 is ugly)
 		case btUInt:
 		case btULong:
-			// note: 0x00000000 can get annoying (0 would be nicer),
-			// but it indicates the variable size and makes for consistently
-			// formatted structs/arrays. (0x1234 0 0x5678 is ugly)
 			if(size == 1)
+			{
+				// _TUCHAR
+				if(state.indirection)
+				{
+					state.indirection = 0;
+					return dump_sequence(p, 8, type_idx, size, state);
+				}
 				fmt = L"0x%02X";
+			}
 			else if(size == 2)
 				fmt = L"0x%04X";
 			else if(size == 4)
@@ -942,22 +1017,22 @@ static int dump_base_type(DWORD type_idx, const u8* p, size_t size, DumpState st
 			else if(size == 8)
 				fmt = L"0x%016I64X";
 			else
-				debug_warn("dump_base_type: invalid uint size");
+				debug_warn("dump_base_type_sym: invalid uint size");
 			break;
 
+		// character
 		case btChar:
 		case btWChar:
 			assert(size == sizeof(char) || size == sizeof(wchar_t));
 			// char*, wchar_t*
 			if(state.indirection)
 			{
-				fmt = (base_type == btChar)? L"%hs" : L"%s";
-				data = (u64)p;
+				state.indirection = 0;
+				return dump_sequence(p, 8, type_idx, size, state);
 			}
 			// either integer or character;
 			// if printable, the character will be appended below.
-			else
-				fmt = L"%d";
+			fmt = L"%d";
 			break;
 
 		// note: void* is sometimes indicated as (pointer, btNoType).
@@ -970,11 +1045,11 @@ static int dump_base_type(DWORD type_idx, const u8* p, size_t size, DumpState st
 				fmt = L"";
 			}
 			else
-				debug_warn("dump_base_type: non-pointer btVoid or btNoType");
+				debug_warn("dump_base_type_sym: non-pointer btVoid or btNoType");
 			break;
 
 		default:
-			debug_warn("dump_base_type: unknown type");
+			debug_warn("dump_base_type_sym: unknown type");
 			//-fallthrough
 
 		// unsupported complex types
@@ -1007,9 +1082,9 @@ static int dump_base_type(DWORD type_idx, const u8* p, size_t size, DumpState st
 //////////////////////////////////////////////////////////////////////////////
 
 
-// <type_id> is a SymTagEnum; output its value.
+// <type_idx> is a SymTagEnum; output its value.
 // called by dump_type_sym; lock is held.
-static int dump_enum(DWORD type_idx, const u8* p, size_t size, DumpState state)
+static int dump_enum_sym(DWORD type_idx, const u8* p, size_t size, DumpState state)
 {
 	const i64 current_value = movsx_64le(p, size);
 
@@ -1063,9 +1138,9 @@ name_unavailable:
 //////////////////////////////////////////////////////////////////////////////
 
 
-// <type_id> is a SymTagArrayType; output its value.
+// <type_idx> is a SymTagArrayType; output its value.
 // called by dump_type_sym; lock is held.
-static int dump_array(DWORD type_idx, const u8* p, size_t size, DumpState state)
+static int dump_array_sym(DWORD type_idx, const u8* p, size_t size, DumpState state)
 {
 	// get element count and size
 	DWORD el_type_idx = 0;
@@ -1084,52 +1159,16 @@ static int dump_array(DWORD type_idx, const u8* p, size_t size, DumpState state)
 	out_erase(3);	// " = "
 	out(L"[%d] = ", num_elements);
 
-	const bool fits_on_one_line = (num_elements <= 8) && (el_size <= sizeof(int));
-
-	// special case for character arrays: display as string
-	if(el_size == sizeof(char) || el_size == sizeof(wchar_t))
-		if(is_string_array(p, num_elements, el_size))
-		{
-			out(el_size == sizeof(char)? L"\"%hs\"" : L"\"%s\"", p);
-			return 0;
-		}
-
-
-	// regular array:
-	out(fits_on_one_line? L"{ " : L"\r\n");
-	state.level++;
-
-	int err = 0;
-	const uint num_elements_to_show = MIN(20, num_elements);
-	for(uint i = 0; i < num_elements_to_show; i++)
-	{
-		if(!fits_on_one_line)
-			 INDENT;
-
-		int ret = dump_type_sym(el_type_idx, p + i*el_size, state);
-		if(err == 0)	// remember first error
-			err = ret;
-
-		// add separator unless this is the last element
-		if(i != num_elements_to_show-1)
-			out(fits_on_one_line? L", " : L",\r\n");
-	}
-	// we truncated some
-	if(num_elements != num_elements_to_show)
-		out(L" ...");
-
-	if(fits_on_one_line)
-		out(L" }");
-	return err;
+	return dump_sequence(p, num_elements, el_type_idx, el_size, state);
 }
 
 
 //////////////////////////////////////////////////////////////////////////////
 
 
-// <type_id> is a SymTagTypedef; output its value.
+// <type_idx> is a SymTagTypedef; output its value.
 // called by dump_type_sym; lock is held.
-static int dump_typedef(DWORD type_idx, const u8* p, size_t size, DumpState state)
+static int dump_typedef_sym(DWORD type_idx, const u8* p, size_t size, DumpState state)
 {
 	if(!SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_TYPEID, &type_idx))
 		return -1;
@@ -1140,9 +1179,9 @@ static int dump_typedef(DWORD type_idx, const u8* p, size_t size, DumpState stat
 //////////////////////////////////////////////////////////////////////////////
 
 
-// <type_id> is a SymTagFunction; output its value.
+// <type_idx> is a SymTagFunction; output its value.
 // called by dump_type_sym; lock is held.
-static int dump_function_type(DWORD type_idx, const u8* p, size_t size, DumpState state)
+static int dump_function_type_sym(DWORD type_idx, const u8* p, size_t size, DumpState state)
 {
 	// this symbol gives class parent, return type, and parameter count.
 	// unfortunately the one thing we care about, its name,
@@ -1162,9 +1201,9 @@ static int dump_function_type(DWORD type_idx, const u8* p, size_t size, DumpStat
 //////////////////////////////////////////////////////////////////////////////
 
 
-// <type_id> is a SymTagUDT; output its value.
+// <type_idx> is a SymTagUDT; output its value.
 // called by dump_type_sym; lock is held.
-static int dump_UDT(DWORD type_idx, const u8* p, size_t size, DumpState state)
+static int dump_udt_sym(DWORD type_idx, const u8* p, size_t size, DumpState state)
 {
 	// get array of child symbols (one for each member, plus base class).
 	DWORD num_children;
@@ -1179,6 +1218,8 @@ static int dump_UDT(DWORD type_idx, const u8* p, size_t size, DumpState state)
 		return -1;
 
 	const size_t avg_size = size / num_children;
+		// note: no need to check if avg_size == 0. if num_children is huge
+		// (e.g. due to base class info), fits_on_one_line is false anyway.
 	const bool fits_on_one_line = (num_children <= 3) && (avg_size <= sizeof(int));
 
 	if(!fits_on_one_line)
@@ -1198,10 +1239,10 @@ static int dump_UDT(DWORD type_idx, const u8* p, size_t size, DumpState state)
 			continue;
 		if(type_tag != SymTagData)
 			continue;
-
 		DWORD ofs;
 		if(!SymGetTypeInfo(hProcess, mod_base, child_data_idx, TI_GET_OFFSET, &ofs))
-			return -1;
+			continue;
+		assert(ofs < size);
 
 		if(!fits_on_one_line)
 			INDENT;
@@ -1223,13 +1264,13 @@ static int dump_UDT(DWORD type_idx, const u8* p, size_t size, DumpState state)
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int dump_unknown(DWORD type_idx, const u8* p, size_t size, DumpState state)
+static int dump_unknown_sym(DWORD type_idx, const u8* p, size_t size, DumpState state)
 {
 	// redundant (already done in dump_type_sym), but this is rare.
 	DWORD type_tag;
 	if(!SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_SYMTAG, &type_tag))
 	{
-		debug_warn("dump_unknown: tag query failed");
+		debug_warn("dump_unknown_sym: tag query failed");
 		return -1;
 	}
 
@@ -1244,7 +1285,59 @@ static int dump_unknown(DWORD type_idx, const u8* p, size_t size, DumpState stat
 //
 //////////////////////////////////////////////////////////////////////////////
 
-static bool suppress_UDT(WCHAR* type_name)
+struct string
+{
+	union _Bxty
+	{	// storage for small buffer or pointer to larger one
+		u8 _Buf[16];
+		void* _Ptr;
+	} _Bx;
+
+	size_t _Mysize;	// current length of string
+	size_t _Myres;	// current storage reserved for string
+};
+
+static bool special_case_udt(WCHAR* type_name, const u8* p, size_t size)
+{
+	if(!wcsncmp(type_name, L"std::basic_string", 17))
+	{
+		assert(size == sizeof(std::string));
+
+		// determine type
+		size_t el_size = sizeof(char);
+		const wchar_t* fmt = L"\"%hs\"";
+		if(!wcsncmp(type_name+18, L"char", 4))
+			;	// already set above
+		else if(!wcsncmp(type_name+18, L"wchar_t", 7))
+		{
+			el_size = sizeof(wchar_t);
+			fmt = L"\"%s\"";
+		}
+		// .. unknown, shouldn't handle it
+		else
+			return false;
+
+		// try to see if it's initialized and valid
+		string* s = (string*)p;
+		const bool uses_buf = s->_Myres < 16/el_size;
+		void* string_data = uses_buf? s->_Bx._Buf : s->_Bx._Ptr;
+		if(s->_Myres < s->_Mysize ||
+		   is_bogus_pointer(string_data) ||
+		   !is_string((const u8*)string_data, el_size))
+		{
+			out(L"uninitialized/invalid std::basic_string");
+			return true;
+		}
+
+		out(fmt, string_data);
+		return true;
+	}
+
+	return false;
+}
+
+
+static bool suppress_udt(WCHAR* type_name)
 {
 	// specialized HANDLEs are defined as pointers to structs by
 	// DECLARE_HANDLE. we only want the numerical value (pointer address),
@@ -1305,6 +1398,11 @@ static int dump_type_sym(DWORD type_idx, const u8* p, DumpState state)
 	if(!SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_SYMTAG, &type_tag))
 		return -1;
 
+	ULONG64 size_ = 0;
+	SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_LENGTH, &size_);
+		// note: fails when type_tag == SymTagFunction, so don't abort
+	const size_t size = (size_t)size_;
+
 	// get "type name" (only available for SymTagUDT, SymTagEnum, and
 	// SymTagTypedef types).
 	// note: can't use SymFromIndex to get tag as well as name, because it
@@ -1312,8 +1410,12 @@ static int dump_type_sym(DWORD type_idx, const u8* p, DumpState state)
 	WCHAR* type_name;
 	if(SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_SYMNAME, &type_name))
 	{
-		bool suppress = suppress_UDT(type_name);
+		const bool suppress = suppress_udt(type_name);
+		const bool handled = special_case_udt(type_name, p, size);
 		LocalFree(type_name);
+
+		if(handled)
+			return 0;
 
 		if(suppress)
 		{
@@ -1324,29 +1426,24 @@ static int dump_type_sym(DWORD type_idx, const u8* p, DumpState state)
 		}
 	}
 
-	ULONG64 size_ = 0;
-	SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_LENGTH, &size_);
-		// note: fails when type_tag == SymTagFunction
-	const size_t size = (size_t)size_;
-
 	switch(type_tag)
 	{
 	case SymTagUDT:
-		return dump_UDT           (type_idx, p, size, state);
+		return dump_udt_sym           (type_idx, p, size, state);
 	case SymTagEnum:
-		return dump_enum          (type_idx, p, size, state);
+		return dump_enum_sym          (type_idx, p, size, state);
 	case SymTagFunctionType:
-		return dump_function_type (type_idx, p, size, state);
+		return dump_function_type_sym (type_idx, p, size, state);
 	case SymTagPointerType:
-		return dump_pointer       (type_idx, p, size, state);
+		return dump_pointer_sym       (type_idx, p, size, state);
 	case SymTagArrayType:
-		return dump_array         (type_idx, p, size, state);
+		return dump_array_sym         (type_idx, p, size, state);
 	case SymTagBaseType:
-		return dump_base_type     (type_idx, p, size, state);
+		return dump_base_type_sym     (type_idx, p, size, state);
 	case SymTagTypedef:
-		return dump_typedef       (type_idx, p, size, state);
+		return dump_typedef_sym       (type_idx, p, size, state);
 	default:
-		return dump_unknown       (type_idx, p, size, state);
+		return dump_unknown_sym       (type_idx, p, size, state);
 	}
 }
 
@@ -1822,6 +1919,289 @@ fail:
 
 	CloseHandle(hFile);
 }
+
+/*
+
+CSmartHandle hImpersonationToken = NULL;
+if(!GetImpersonationToken(&hImpersonationToken.m_h))
+{
+	return FALSE;
+}
+
+// We need the SeDebugPrivilege to be able to run MiniDumpWriteDump
+TOKEN_PRIVILEGES tp;
+BOOL bPrivilegeEnabled = EnablePriv(SE_DEBUG_NAME, hImpersonationToken, &tp);
+
+// DBGHELP.DLL is not thread safe
+EnterCriticalSection(pCS);
+bRet = pDumpFunction(GetCurrentProcess(), GetCurrentProcessId(), hDumpFile, MiniDumpWithDataSegs, &stInfo, NULL, NULL);
+LeaveCriticalSection(pCS);
+
+if(bPrivilegeEnabled)
+{
+	// Restore the privilege
+	RestorePriv(hImpersonationToken, &tp);
+}
+static BOOL GetImpersonationToken(HANDLE* phToken)
+{
+	*phToken = NULL;
+
+	if(!OpenThreadToken(GetCurrentThread(), TOKEN_QUERY | TOKEN_ADJUST_PRIVILEGES, TRUE, phToken))
+	{
+		if(GetLastError() == ERROR_NO_TOKEN)
+		{
+			// No impersonation token for the curren thread available - go for the process token
+			if(!OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY | TOKEN_ADJUST_PRIVILEGES, phToken))
+			{
+				return FALSE;
+			}
+		}
+		else
+		{
+			return FALSE;
+		}
+	}
+
+	return TRUE;
+}
+
+static BOOL EnablePriv(LPCTSTR pszPriv, HANDLE hToken, TOKEN_PRIVILEGES* ptpOld)
+{
+	BOOL bOk = FALSE;
+
+	TOKEN_PRIVILEGES tp;
+	tp.PrivilegeCount = 1;
+	tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+	bOk = LookupPrivilegeValue( 0, pszPriv, &tp.Privileges[0].Luid);
+	if(bOk)
+	{
+		DWORD cbOld = sizeof(*ptpOld);
+		bOk = AdjustTokenPrivileges(hToken, FALSE, &tp, cbOld, ptpOld, &cbOld);
+	}
+
+	return (bOk && (ERROR_NOT_ALL_ASSIGNED != GetLastError()));
+}
+
+static BOOL RestorePriv(HANDLE hToken, TOKEN_PRIVILEGES* ptpOld)
+{
+	BOOL bOk = AdjustTokenPrivileges(hToken, FALSE, ptpOld, 0, 0, 0);	
+	return (bOk && (ERROR_NOT_ALL_ASSIGNED != GetLastError()));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BOOL SetPrivilege(
+HANDLE hToken,          // token handle
+LPCTSTR Privilege,      // Privilege to enable/disable
+BOOL bEnablePrivilege   // TRUE to enable.  FALSE to disable
+)
+{
+TOKEN_PRIVILEGES tp;
+LUID luid;
+TOKEN_PRIVILEGES tpPrevious;
+DWORD cbPrevious=sizeof(TOKEN_PRIVILEGES);
+
+if(!LookupPrivilegeValue( NULL, Privilege, &luid )) return FALSE;
+
+//
+// first pass.  get current privilege setting
+//
+tp.PrivilegeCount           = 1;
+tp.Privileges[0].Luid       = luid;
+tp.Privileges[0].Attributes = 0;
+
+AdjustTokenPrivileges(
+hToken,
+FALSE,
+&tp,
+sizeof(TOKEN_PRIVILEGES),
+&tpPrevious,
+&cbPrevious
+);
+
+if (GetLastError() != ERROR_SUCCESS) return FALSE;
+
+//
+// second pass.  set privilege based on previous setting
+//
+tpPrevious.PrivilegeCount       = 1;
+tpPrevious.Privileges[0].Luid   = luid;
+
+if(bEnablePrivilege) {
+tpPrevious.Privileges[0].Attributes |= (SE_PRIVILEGE_ENABLED);
+}
+else {
+tpPrevious.Privileges[0].Attributes ^= (SE_PRIVILEGE_ENABLED &
+tpPrevious.Privileges[0].Attributes);
+}
+
+AdjustTokenPrivileges(
+hToken,
+FALSE,
+&tpPrevious,
+cbPrevious,
+NULL,
+NULL
+);
+
+if (GetLastError() != ERROR_SUCCESS) return FALSE;
+
+return TRUE;
+}
+BOOL SetPrivilege2(
+HANDLE hToken,  // token handle
+LPCTSTR Privilege,  // Privilege to enable/disable
+BOOL bEnablePrivilege  // TRUE to enable. FALSE to disable
+)
+{
+TOKEN_PRIVILEGES tp = { 0 };
+// Initialize everything to zero
+LUID luid;
+DWORD cb=sizeof(TOKEN_PRIVILEGES);
+if(!LookupPrivilegeValue( NULL, Privilege, &luid ))
+return FALSE;
+tp.PrivilegeCount = 1;
+tp.Privileges[0].Luid = luid;
+if(bEnablePrivilege) {
+tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+} else {
+tp.Privileges[0].Attributes = 0;
+}
+AdjustTokenPrivileges( hToken, FALSE, &tp, cb, NULL, NULL );
+if (GetLastError() != ERROR_SUCCESS)
+return FALSE;
+
+return TRUE;
+}
+
+extern WINBASEAPI LANGID WINAPI GetSystemDefaultLangID (void);
+
+void DisplayError(
+LPTSTR szAPI    // pointer to failed API name
+)
+{
+LPTSTR MessageBuffer;
+DWORD dwBufferLength;
+
+fprintf(stderr,"%s() error!\n", szAPI);
+/*
+if(dwBufferLength=FormatMessage(
+FORMAT_MESSAGE_ALLOCATE_BUFFER |
+FORMAT_MESSAGE_FROM_SYSTEM,
+NULL,
+GetLastError(),
+GetSystemDefaultLangID(),
+(LPTSTR) &MessageBuffer,
+0,
+NULL
+))
+{
+DWORD dwBytesWritten;
+
+//
+// Output message string on stderr
+//
+WriteFile(
+GetStdHandle(STD_ERROR_HANDLE),
+MessageBuffer,
+dwBufferLength,
+&dwBytesWritten,
+NULL
+);
+
+//
+// free the buffer allocated by the system
+//
+LocalFree(MessageBuffer);
+}
+}
+
+
+static int screwaround()
+{
+	HANDLE hProcess;
+	HANDLE hToken;
+	int dwRetVal=RTN_OK; // assume success from main()
+
+	if(!OpenThreadToken(GetCurrentThread(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, FALSE, &hToken))
+	{
+		if (GetLastError() == ERROR_NO_TOKEN)
+		{
+			if (!ImpersonateSelf(SecurityImpersonation))
+				return RTN_ERROR;
+
+			if(!OpenThreadToken(GetCurrentThread(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, FALSE, &hToken)){
+				DisplayError("OpenThreadToken");
+				return RTN_ERROR;
+			}
+		}
+		else
+			return RTN_ERROR;
+	}
+
+	// enable SeDebugPrivilege
+	if(!SetPrivilege(hToken, SE_DEBUG_NAME, TRUE))
+	{
+		DisplayError("SetPrivilege");
+
+		// close token handle
+		CloseHandle(hToken);
+
+		// indicate failure
+		return RTN_ERROR;
+	}
+
+	// disable SeDebugPrivilege
+	SetPrivilege(hToken, SE_DEBUG_NAME, FALSE);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+
+
+
 
 
 //

@@ -1,4 +1,4 @@
-h// Windows-specific code and program entry point
+// Windows-specific code and program entry point
 // Copyright (c) 2003 Jan Wassenberg
 //
 // This program is free software; you can redistribute it and/or
@@ -26,6 +26,7 @@ h// Windows-specific code and program entry point
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>	// __argc
+
 #include <malloc.h>
 #include <shlobj.h>	// pick_dir
 
