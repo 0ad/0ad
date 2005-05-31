@@ -120,14 +120,17 @@ function setuppackage (projectname)
 	else
 		package.buildflags = { }
 	end
-	
+
+	-- PremakeWiki says with-symbols and optimize are automatically set for
+	-- Debug and Release builds, respectively. doesn't happen though, so do it manually.
+
+	package.config["Debug"].buildflags = { "with-symbols", "no-edit-and-continue" }
+
 	package.config["Testing"].buildflags = { "with-symbols", "no-runtime-checks", "no-edit-and-continue" }
 	package.config["Testing"].defines = { "TESTING" }
 	
+	package.config["Release"].buildflags = { "with-symbols", "no-runtime-checks", "no-edit-and-continue", "optimize" }
 	package.config["Release"].defines = { "NDEBUG" }
-	
-	-- Docs says that premake does this automatically - it doesn't (at least not for GCC/Linux)
-	package.config["Debug"].buildflags = { "with-symbols", "no-edit-and-continue" }
 	
 	
 	if (projectname == "sced") then
@@ -174,6 +177,7 @@ function setuppackage (projectname)
 	
 		package.linkoptions = { "/ENTRY:entry",
 			"/DELAYLOAD:opengl32.dll",
+			"/DELAYLOAD:oleaut32.dll",
 			"/DELAYLOAD:advapi32.dll",
 			"/DELAYLOAD:gdi32.dll",
 			"/DELAYLOAD:user32.dll",
@@ -192,6 +196,7 @@ function setuppackage (projectname)
 			"/DELAYLOAD:zlib1d.dll",
 			"/DELAYLOAD:libpng13d.dll",
 			"/DELAYLOAD:jpeg-6bd.dll",
+			"/DELAYLOAD:vorbisfile_d.dll",
 		}
 		
 		-- 'Testing' uses 'Debug' DLL's
@@ -202,8 +207,10 @@ function setuppackage (projectname)
 			"/DELAYLOAD:zlib1.dll",
 			"/DELAYLOAD:libpng13.dll",
 			"/DELAYLOAD:jpeg-6b.dll",
+			"/DELAYLOAD:vorbisfile.dll",
 		}
-		
+
+		-- required to use WinMain() on Windows, otherwise will default to main()
 		tinsert(package.buildflags, { "no-main" })
 		
 		package.pchHeader = "precompiled.h"
