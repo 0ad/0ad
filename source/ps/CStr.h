@@ -28,6 +28,10 @@ Example:
 More Info:
 	http://wildfiregames.com/0ad/codepit/TDD/CStr.html
 
+
+[[ This documentation is out of date; CStr is always 8 bits, and CStrW is always
+sizeof(wchar_t) (16 or 32). Don't use _T; CStrW constants are just L"string". ]]
+
 */
 
 // history:
@@ -47,49 +51,20 @@ enum PS_TRIM_MODE { PS_TRIM_LEFT, PS_TRIM_RIGHT, PS_TRIM_BOTH };
 
 #endif
 
-#if !defined(CSTR_H) || defined(IN_UNIDOUBLER)
-#define CSTR_H
+// Include this section when in unidoubler mode, and when this unicode/ascii
+// version has not already been included.
+#if defined(IN_UNIDOUBLER) && ( (defined(_UNICODE) && !defined(CSTR_H_U)) || (!defined(_UNICODE) && !defined(CSTR_H_A)) )
 
-#include "Pyrogenesis.h"
-#include <string>				// Used for basic string functionality
-#include <iostream>
+#ifdef _UNICODE
+#define CSTR_H_U
+#else
+#define CSTR_H_A
+#endif
+
+#include <string>
 #include "ps/utf16string.h"
 
 #include "Network/Serialization.h"
-
-#include <cstdlib>
-
-#ifdef  _UNICODE
-
- #define tstring wstring
- #define tstringstream wstringstream
- #define _tcout	wcout
- #define _tstod	wcstod
- #define TCHAR wchar_t
- #define _ttoi(a) wcstol(a, NULL, 0)
- #define _ttol(a) wcstol(a, NULL, 0)
- #define _T(t) L ## t
- #define _istspace iswspace
- #define _tsnprintf swprintf
- #define _totlower towlower
- #define _totupper towupper
-
-#else
-
- #define tstringstream stringstream
- #define tstring string
- #define _tcout	cout
- #define _tstod	strtod
- #define _ttoi atoi
- #define _ttol atol
- #define TCHAR char
- #define _T(t) t
- #define _istspace isspace
- #define _tsnprintf snprintf
- #define _totlower tolower
- #define _totupper toupper
- 
-#endif
 
 class CStr8;
 class CStrW;
@@ -97,24 +72,27 @@ class CStrW;
 // CStr class, the mother of all strings
 class CStr: public std::tstring, public ISerializable
 {
+	// The two variations must be friends with each other
 #ifdef _UNICODE
 	friend class CStr8;
 #else
 	friend class CStrW;
 #endif
+
 public:
 
 	// CONSTRUCTORS
 
 	CStr() {}
 	CStr(const CStr& String)	: std::tstring(String) {}
-	CStr(const TCHAR* String)	: std::tstring(String) {}
-	CStr(const TCHAR* String, size_t Length)
+	CStr(const tchar* String)	: std::tstring(String) {}
+	CStr(const tchar* String, size_t Length)
 								: std::tstring(String, Length) {}
-	CStr(const TCHAR Char)		: std::tstring(1, Char) {} // std::string's constructor is (repeats, chr)
+	CStr(const tchar Char)		: std::tstring(1, Char) {} // std::string's constructor is (repeats, chr)
 	CStr(std::tstring String)	: std::tstring(String) {}
 	
-	// CStrW construction from utf16strings
+	// CStr(8|W) construction from utf16strings, except on MSVC CStrW where
+	// CStrW === utf16string
 	#if !(defined(_MSC_VER) && defined(_UNICODE))
 		CStr(utf16string String) : std::tstring(String.begin(), String.end()) {}
 	#endif
@@ -154,7 +132,7 @@ public:
 	float			ToFloat() const;
 	double			ToDouble() const;
 
-	//  Returns the length of the string in characters
+	// Returns the length of the string in characters
 	size_t Length() const { return length(); }
 
 	// Retrieves the substring within the string 
@@ -163,13 +141,13 @@ public:
 	// Search the string for another string. Returns the offset of the first
 	// match, or -1 if no matches are found.
 	long Find(const CStr& Str) const;
-	long Find(const TCHAR &tchar) const;
-	long Find(const int &start, const TCHAR &tchar) const;
+	long Find(const tchar &chr) const;
+	long Find(const int &start, const tchar &chr) const;
 
 	// Case-insensitive versions of Find
 	long FindInsensitive(const CStr& Str) const;
-	long FindInsensitive(const TCHAR &tchar) const;
-	long FindInsensitive(const int &start, const TCHAR &tchar) const;
+	long FindInsensitive(const tchar &chr) const;
+	long FindInsensitive(const int &start, const tchar &chr) const;
 
 	// You can also do a "ReverseFind" - i.e. search starting from the end 
 	long ReverseFind(const CStr& Str) const;
@@ -224,18 +202,18 @@ public:
 	CStr& operator=(double Number);
 
 	CStr  operator+(const CStr& Str);
-	CStr  operator+(const TCHAR* Str);
+	CStr  operator+(const tchar* Str);
 #ifndef _UNICODE
 	CStr8 operator+(const CStrW& Str);
 #else
 	CStrW operator+(const CStr8& Str);
 #endif
 
-	operator const TCHAR*() const;
+	operator const tchar*() const;
 
 	// Do some range checking in debug builds
-	TCHAR &operator[](size_t n)	{ assert(n < length()); return this->std::tstring::operator[](n); }
-	TCHAR &operator[](int n)	{ assert(n >= 0 && (size_t)n < length()); return this->std::tstring::operator[](n); }
+	tchar &operator[](size_t n)	{ assert(n < length()); return this->std::tstring::operator[](n); }
+	tchar &operator[](int n)	{ assert(n >= 0 && (size_t)n < length()); return this->std::tstring::operator[](n); }
 	
 	// Conversion to utf16string
 	inline utf16string utf16() const

@@ -90,7 +90,7 @@ void RenderProfile()
 	  glPushMatrix();
 	  glwprintf( L"%%/parent" );
 	  glPopMatrix();
-    glPopMatrix();
+	glPopMatrix();
 
 
 	CProfileNode::const_profile_iterator it;

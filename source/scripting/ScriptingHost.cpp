@@ -5,6 +5,7 @@
 #include "CConsole.h"
 #include "Profile.h"
 #include <sstream>
+#include <iostream>
 
 #include "res/res.h"
 

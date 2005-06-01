@@ -470,7 +470,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 
 	// Load time needs to be animation->m_ActionPos2 ms after the start of the animation.
 
-	m_fsm_anipos2 = m_fsm_anipos + ( action->m_Speed * m_fsm_animation->m_ActionPos2 * 2 );
+	m_fsm_anipos2 = m_fsm_anipos + (size_t)( action->m_Speed * m_fsm_animation->m_ActionPos2 * 2 );
 	if( m_fsm_anipos2 < 0 )
 	{
 		// Load now.

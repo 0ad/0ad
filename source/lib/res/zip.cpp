@@ -44,6 +44,7 @@
 #include <map>
 
 #include <assert.h>
+#include <time.h>
 
 // provision for removing all ZLib code (all inflate calls will fail).
 // used for checking DLL dependency; might also simulate corrupt Zip files.

@@ -14,9 +14,11 @@
 
 #define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
 
+// Fix nasty conflicts between various header files.
 #define _SIZE_T_DEFINED
 #include "posix.h"
-//#include "CStr.h"
+#include "CStr.h"
+#undef UNUSED
 
 #undef _WINDOWS_
 
@@ -31,12 +33,6 @@
 #endif // _AFX_NO_AFXCMN_SUPPORT
 
 #undef UNUSED
-#undef _T
-#undef _istspace
-#undef _totlower
-#undef _totupper
-#undef _ttoi
-#undef _ttol
 
 #include "resource.h"
 

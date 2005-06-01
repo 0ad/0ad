@@ -19,6 +19,8 @@
 // make string_s (secure CRT string functions) available everywhere
 #include "lib/string_s.h"
 
+// make MICROLOG and the old error system available everywhere
+#include "Pyrogenesis.h"
 
 //
 // memory headers
@@ -85,6 +87,23 @@
 #include <string>
 #include <vector>
 
+#ifdef __GNUC__
+# include <ext/hash_map>
+# include <ext/hash_set>
+#else
+# include <hash_map>
+# include <hash_set>
+#endif
+
+// CStr is included very frequently, so a reasonable amount of time is saved
+// by including it here. (~10% in a full rebuild, as of r2365)
+#include "ps/CStr.h"
+
+// Some other external libraries that are used in several places:
+#include "jsapi.h"
+#include "boost/shared_ptr.hpp"
+#include "boost/weak_ptr.hpp"
+
 // (further headers to be precompiled go here)
 
 #endif // #ifdef HAVE_PCH
@@ -101,7 +120,7 @@
 
 // use VC debug heap (superceded by mmgr; it remains for completeness)
 #ifdef HAVE_DEBUGALLOC
-  // can't define _CRTDBG_MAP_ALLOC because it has a broken 'new',
+  // can't define _CRTDBG_MAP_ALLOC because crtdbg.h has a broken 'new',
   // so manually redefine the appropriate functions.
 # define new           new(_NORMAL_BLOCK, __FILE__, __LINE__)
 # define malloc(s)     _malloc_dbg(s, _NORMAL_BLOCK, __FILE__, __LINE__)

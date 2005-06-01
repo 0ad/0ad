@@ -27,6 +27,7 @@
 
 #include <math.h>
 #include <process.h>	// _beginthreadex
+#include <time.h>
 
 #include <algorithm>
 #include <numeric>

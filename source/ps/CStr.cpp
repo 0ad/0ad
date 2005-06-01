@@ -7,8 +7,11 @@
 #include "Network/Serialization.h"
 #include <cassert>
 
+#include <sstream>
+
 #define UNIDOUBLER_HEADER "CStr.cpp"
 #include "UniDoubler.h"
+
 
 // Only include these function definitions in the first instance of CStr.cpp:
 CStrW::CStrW(const CStr8 &asciStr) : std::wstring(asciStr.begin(), asciStr.end()) {}
@@ -131,6 +134,24 @@ using namespace std;
 
 #include <sstream>
 
+#ifdef  _UNICODE
+ #define tstringstream wstringstream
+ #define _tstod wcstod
+ #define _ttoi(a) wcstol(a, NULL, 0)
+ #define _ttol(a) wcstol(a, NULL, 0)
+ #define _istspace iswspace
+ #define _totlower towlower
+ #define _totupper towupper
+#else
+ #define tstringstream stringstream
+ #define _tstod strtod
+ #define _ttoi atoi
+ #define _ttol atol
+ #define _istspace isspace
+ #define _totlower tolower
+ #define _totupper toupper
+#endif
+
 // Construction and assignment from numbers:
 
 #define NUM_TYPE(T) \
@@ -209,9 +230,9 @@ long CStr::Find(const CStr& Str) const
 }
 
 // Search the string for another string 
-long CStr::Find(const TCHAR &tchar) const
+long CStr::Find(const tchar &chr) const
 {
-	size_t Pos = find(tchar, 0);
+	size_t Pos = find(chr, 0);
 
 	if (Pos != npos)
 		return (long)Pos;
@@ -220,9 +241,9 @@ long CStr::Find(const TCHAR &tchar) const
 }
 
 // Search the string for another string 
-long CStr::Find(const int &start, const TCHAR &tchar) const
+long CStr::Find(const int &start, const tchar &chr) const
 {
-	size_t Pos = find(tchar, start);
+	size_t Pos = find(chr, start);
 
 	if (Pos != npos)
 		return (long)Pos;
@@ -230,8 +251,8 @@ long CStr::Find(const int &start, const TCHAR &tchar) const
 	return -1;
 }
 
-long CStr::FindInsensitive(const int &start, const TCHAR &tchar) const { return LCase().Find(start, _totlower(tchar)); }
-long CStr::FindInsensitive(const TCHAR &tchar) const { return LCase().Find(_totlower(tchar)); }
+long CStr::FindInsensitive(const int &start, const tchar &chr) const { return LCase().Find(start, _totlower(chr)); }
+long CStr::FindInsensitive(const tchar &chr) const { return LCase().Find(_totlower(chr)); }
 long CStr::FindInsensitive(const CStr& Str) const { return LCase().Find(Str.LCase()); }
 
 
@@ -251,7 +272,7 @@ CStr CStr::LowerCase() const
 {
 	tstring NewString = *this;
 	for (size_t i = 0; i < length(); i++)
-		NewString[i] = (TCHAR)_totlower((*this)[i]);
+		NewString[i] = (tchar)_totlower((*this)[i]);
 
 	return NewString;
 }
@@ -260,7 +281,7 @@ CStr CStr::UpperCase() const
 {
 	tstring NewString = *this;
 	for (size_t i = 0; i < length(); i++)
-		NewString[i] = (TCHAR)_totupper((*this)[i]);
+		NewString[i] = (tchar)_totupper((*this)[i]);
 
 	return NewString;
 }
@@ -271,7 +292,7 @@ CStr CStr::LCase() const
 {
 	tstring NewString = *this;
 	for (size_t i = 0; i < length(); i++)
-		NewString[i] = (TCHAR)_totlower((*this)[i]);
+		NewString[i] = (tchar)_totlower((*this)[i]);
 
 	return NewString;
 }
@@ -280,7 +301,7 @@ CStr CStr::UCase() const
 {
 	tstring NewString = *this;
 	for (size_t i = 0; i < length(); i++)
-		NewString[i] = (TCHAR)_totupper((*this)[i]);
+		NewString[i] = (tchar)_totupper((*this)[i]);
 
 	return NewString;
 }
@@ -380,19 +401,19 @@ CStr CStr::UnescapeBackslashes()
 	bool escaping = false;
 	for (size_t i = 0; i < length(); i++)
 	{
-		TCHAR ch = (*this)[i];
+		tchar ch = (*this)[i];
 		if (escaping)
 		{
 			switch (ch)
 			{
-			case _T('n'): NewString += _T('\n'); break;
+			case 'n': NewString += '\n'; break;
 			default: NewString += ch; break;
 			}
 			escaping = false;
 		}
 		else
 		{
-			if (ch == _T('\\'))
+			if (ch == '\\')
 				escaping = true;
 			else
 				NewString += ch;
@@ -450,7 +471,7 @@ CStr CStr::operator+(const CStr& Str)
 	return std::operator+(*this, std::tstring(Str));
 }
 
-CStr CStr::operator+(const TCHAR* Str)
+CStr CStr::operator+(const tchar* Str)
 {
 	return std::operator+(*this, std::tstring(Str));
 }
@@ -469,7 +490,7 @@ CStrW CStr::operator+(const CStr8& Str)
 #endif
 
 
-CStr::operator const TCHAR*() const
+CStr::operator const tchar*() const
 {
 	return c_str();
 }
@@ -509,7 +530,7 @@ const u8 *CStrW::Deserialize(const u8 *buffer, const u8 *bufferend)
 
 	std::wstring::iterator str = begin();
 	while (ptr < strend)
-		*(str++) = (TCHAR)ntohs(*(ptr++)); // convert from network order (big-endian)
+		*(str++) = (tchar)ntohs(*(ptr++)); // convert from network order (big-endian)
 
 	return (const u8 *)(strend+1);
 }
@@ -552,5 +573,14 @@ uint CStr::GetSerializedLength() const
 }
 
 #endif // _UNICODE
+
+// Clean up, to keep the second pass through unidoubler happy
+#undef tstringstream
+#undef _tstod
+#undef _ttoi
+#undef _ttol
+#undef _istspace
+#undef _totlower
+#undef _totupper
 
 #endif // CStr_CPP_FIRST

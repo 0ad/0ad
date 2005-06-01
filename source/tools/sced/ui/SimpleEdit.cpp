@@ -6,9 +6,6 @@
 #include "ScEd.h"
 #include "SimpleEdit.h"
 
-// Slight hack, since this gets undef'd earlier to avoid conflicts with CStr
-#define _T(x) x
-
 /////////////////////////////////////////////////////////////////////////////
 // CSimpleEdit dialog
 

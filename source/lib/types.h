@@ -30,6 +30,5 @@ typedef unsigned int PS_uint;
 #if defined(SIZE_MAX) && SIZE_MAX < 32
 # error "check size_t and SIZE_MAX - too small?"
 #endif
-	
 
 #endif // #ifndef __TYPES_H__

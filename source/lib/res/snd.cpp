@@ -25,6 +25,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <math.h>
 
 #ifdef __APPLE__
 # include <OpenAL/alut.h>

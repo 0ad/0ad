@@ -29,6 +29,8 @@
 #include "vfs_tree.h"
 
 #include <string.h>
+#include <time.h>
+#include <math.h>
 
 #include <map>
 #include <list>

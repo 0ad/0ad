@@ -268,6 +268,12 @@ const u8 *_nm::Deserialize(const u8 *pos, const u8 *end) \
 
 /*************************************************************************/
 // Pass 6, String Representation
+
+#define _T(s) s
+// PT: I'm not sure whether this is correct - it appears that this code
+// relied on CStr.h leaving _T defined in ASCII mode, so I'm not sure
+// why the macro is actually used at all...
+
 #define START_NMTS()
 #define END_NMTS()
 

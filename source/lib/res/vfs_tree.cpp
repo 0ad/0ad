@@ -1,9 +1,11 @@
 #include "precompiled.h"
 
 #include <string.h>
+#include <time.h>
 
 #include <string>
 #include <vector>
+#include <algorithm>
 
 #include "lib.h"
 #include "res.h"

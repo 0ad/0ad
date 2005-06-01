@@ -6,6 +6,7 @@ class CSkeletonAnim;
 struct SPropPoint;
 
 #include <vector>
+#include <map>
 #include "CStr.h"
 #include "ObjectBase.h"
 #include "Overlay.h"

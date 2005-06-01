@@ -18,8 +18,8 @@ gee@pyro.nu
 
 using namespace std;
 
-static const TCHAR TagStart =	'[';
-static const TCHAR TagEnd =		']';
+static const wchar_t TagStart = '[';
+static const wchar_t TagEnd   = ']';
 
 void CGUIString::SFeedback::Reset()
 {

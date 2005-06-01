@@ -4,6 +4,7 @@
 #include "ThreadUtil.h"
 #include <stdio.h>
 #include <stdarg.h>
+#include <time.h>
 #include "lib/timer.h"
 
 CNetLog g_NetLog;

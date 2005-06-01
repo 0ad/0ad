@@ -13,7 +13,11 @@
 #include "ogghack.h"
 
 #ifdef _MSC_VER
-#pragma comment(lib, "vorbisfile.lib")
+# ifdef NDEBUG
+#  pragma comment(lib, "vorbisfile.lib")
+# else
+#  pragma comment(lib, "vorbisfile_d.lib")
+# endif
 #endif
 
 

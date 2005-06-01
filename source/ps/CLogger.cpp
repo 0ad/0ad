@@ -4,6 +4,8 @@
 #include "ConfigDB.h"
 #include "lib.h"
 
+#include <time.h>
+
 #include "CConsole.h"
 extern CConsole* g_Console;
 
