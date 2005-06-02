@@ -156,9 +156,12 @@ bool CObjectEntry::BuildRandomVariant(CObjectBase::variation_key& vars, CObjectB
 		else if (name == "chop") name = "gather";
 		else if (name == "decay") name = "corpse";
 
-		CSkeletonAnim* anim = m_Model->BuildAnimation(it->second.m_FileName, name, it->second.m_Speed, it->second.m_ActionPos, it->second.m_ActionPos2);
-		if (anim)
-			m_Animations.insert(std::make_pair(name, anim));
+		if (it->second.m_FileName.Length())
+		{
+			CSkeletonAnim* anim = m_Model->BuildAnimation(it->second.m_FileName, name, it->second.m_Speed, it->second.m_ActionPos, it->second.m_ActionPos2);
+			if (anim)
+				m_Animations.insert(std::make_pair(name, anim));
+		}
 	}
 
 	// start up idling

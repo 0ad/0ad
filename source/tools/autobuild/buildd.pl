@@ -60,6 +60,12 @@ POE::Component::Server::TCP->new(
 			$response->push_header('Content-type', 'text/plain');
 			$response->content("Build initiated.");
 		}
+		elsif ($url eq '/commit_latest.html')
+		{
+			$commit_required = time();
+			$response->push_header('Content-type', 'text/plain');
+			$response->content("Commit initiated.");
+		}
 		elsif ($url eq '/abort_build.html')
 		{
 			abort_build();

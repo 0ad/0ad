@@ -19,6 +19,8 @@ my $sevenz = '"C:\Program Files\7-Zip\7z.exe"';
 # except I need to call vcvars32.bat then "vcbuild.exe /useenv", since the VS registry settings don't always exist
 my $vcbuild = '"C:\0ad\autobuild\vcbuild_env.bat"';
 
+my $time_start = time();
+
 eval { # catch deaths
 
 # Capture all output
@@ -34,6 +36,7 @@ do 'login_details.pl' or die "Cannot find login details: $! / $@";
 # (but with a valid password, which I'm not going to tell you)
 
 
+add_to_buildlog("Starting build at ".(gmtime($time_start))." GMT.\n");
 
 chdir $svn_trunk or die $!;
 
@@ -49,12 +52,14 @@ if (grep { $_ eq '--commitlatest' } @ARGV)
 	
 	add_to_buildlog("Committing ps.exe for revision $rev");
 
-	### Copy ps.exe over the SVN copy ###	
+	### Copy ps.exe and ps.pdb over the SVN copy ###	
 	`copy $output_dir\\$rev\\ps.exe $svn_trunk\\binaries\\system\\`;
 	die $? if $?;
+	`copy $output_dir\\$rev\\ps.pdb $svn_trunk\\binaries\\data\\`;
+	die $? if $?;
 	
-	### Commit ps.exe ###
-	my $svn_output = `svn commit binaries\\system\\ps.exe --username $username --password $password --message "Automated build." 2>&1`;
+	### Commit ps.exe and ps.pdb ###
+	my $svn_output = `svn commit binaries\\system\\ps.exe binaries\\data\\ps.pdb --username $username --password $password --message "Automated build." 2>&1`;
 	add_to_buildlog($svn_output);
 	die $? if $?;
 	
@@ -175,6 +180,8 @@ die $? if ($? and $? != 32768);
 
 `copy $temp_trunk\\binaries\\system\\ps.exe $output_dir\\temp\\`;
 die $? if $?;
+`copy $temp_trunk\\binaries\\data\\ps.pdb $output_dir\\temp\\`;
+die $? if $?;
 
 ### Store the output permanently ###
 
@@ -204,6 +211,10 @@ else
 # Exit, after copying the current log files over the previous ones
 sub quit
 {
+	my $time_end = time();
+	my $time_taken = $time_end - $time_start;
+	add_to_buildlog("\nBuild completed at ".(gmtime($time_end))." GMT - took $time_taken seconds.");
+	
 	close BUILDLOG;
 	rename "$log_dir\\buildlog_temp.txt", "$log_dir\\buildlog.txt" or die $!;
 	close STDOUT;
