@@ -129,7 +129,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 					SGUIText::SSpriteCall SpriteCall;
 
 					// Get Icon from icon database in g_GUI
-                    SGUIIcon icon = g_GUI.GetIcon(itTextChunk->m_Tags[0].m_TagValue);
+					SGUIIcon icon = g_GUI.GetIcon(itTextChunk->m_Tags[0].m_TagValue);
 
 					CSize size = icon.m_Size;
 

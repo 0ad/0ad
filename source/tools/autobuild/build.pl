@@ -9,7 +9,8 @@ use constant EXIT_FAILED => 2;
 use constant EXIT_ABORTED => 3;
 
 my $svn_trunk = 'c:\0ad\trunk';
-my $temp_trunk = 'r:\trunk';
+#my $temp_trunk = 'r:\trunk';
+my $temp_trunk = 'c:\0ad\buildtrunk';
 my $output_dir = 'c:\0ad\builds';
 my $log_dir = 'c:\0ad\autobuild';
 
