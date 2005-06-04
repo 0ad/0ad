@@ -260,7 +260,7 @@ typedef struct _PROCESSOR_POWER_INFORMATION
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// fixes for dbghelp.h 6.3
+// fixes for dbghelp.h 6.4
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -290,7 +290,10 @@ typedef struct _PROCESSOR_POWER_INFORMATION
 #endif
 
 
+//
 // not defined by dbghelp; these values are taken from DIA cvconst.h
+//
+
 enum BasicType
 {
 	btNoType    = 0,
@@ -312,6 +315,21 @@ enum BasicType
 	btBSTR      = 30,
 	btHresult   = 31
 };
+
+enum DataKind
+{
+	DataIsUnknown,
+	DataIsLocal,
+	DataIsStaticLocal,
+	DataIsParam,
+	DataIsObjectPtr,
+	DataIsFileStatic,
+	DataIsGlobal,
+	DataIsMember,
+	DataIsStaticMember,
+	DataIsConstant
+};
+
 
 ///////////////////////////////////////////////////////////////////////////////
 
