@@ -476,153 +476,123 @@ int debug_remove_all_breaks()
 //
 //////////////////////////////////////////////////////////////////////////////
 
+// rationale: to function properly, StackWalk64 requires a CONTEXT on
+// non-x86 systems (documented) or when in release mode (observed).
+// exception handlers can call walk_stack with their context record;
+// otherwise (e.g. dump_stack from assert2), we need to query it.
+// there are 2 platform-independent ways to do so:
+// - intentionally raise an SEH exception, then proceed as above;
+// - GetThreadContext while suspended (*).
+// the latter is more complicated and slower, so we go with the former
+// despite it outputting "first chance exception" on each call.
+//
+// on IA-32, we use ia32_get_win_context instead of the above because
+// it is 100% accurate (noticeable in StackWalk64 results) and simplest.
+//
+// * it used to be common practice not to query the current thread's context,
+// but WinXP SP2 and above require it be suspended.
 
-
-
-
-/*
-
-call win32 context retrieval mechanisms return context deeper than what we want
-tracing up to their caller (i.e. walk_stack) is a circular problem.
-besides, CONTEXT is nonportable - we'd still have to copy out its fields
-
-
-// called from an SEH filter expression
-static LONG WINAPI latch_context(EXCEPTION_POINTERS* ep, CONTEXT* dest_context)
-{
-memcpy(dest_context, ep->ContextRecord, sizeof(CONTEXT));
-return EXCEPTION_CONTINUE_EXECUTION;
-}
-
-static int store_current_context(HANDLE hThread, void* user_arg)
-{
-CONTEXT* pcontext = (CONTEXT*)user_arg;
-memset(pcontext, 0, sizeof(CONTEXT));
-pcontext->ContextFlags = CONTEXT_ALL;
-BOOL ok = GetThreadContext(hThread, pcontext);
-assert(ok);
-return 0;
-}
-
-
-if(!pcontext)
-{
-#if 0
-call_while_suspended(store_current_context, &context);
-#elif 0
-EXCEPTION_POINTERS* ep;
-__try
-{
-RaiseException(0x10000, 0, 0,0);
-}
-__except(memcpy(&context, GetExceptionInformation()->ContextRecord, sizeof(CONTEXT)), EXCEPTION_CONTINUE_EXECUTION)
-{
-assert(0);	// never reached
-}
-#elif 0
-context.ContextFlags = CONTEXT_CONTROL;
-GetThreadContext(hThread, &context);
-#endif
-pcontext = &context;
-}
-/**/
-
-/*
-
-the intrinsics only give us EIP reliably. AoRA - 4 is a hack
-
-// _ReturnAddress and _AddressOfReturnAddress should be prototyped before use 
-EXTERNC void * _AddressOfReturnAddress(void);
-EXTERNC void * _ReturnAddress(void);
-
-#pragma intrinsic(_AddressOfReturnAddress)
-#pragma intrinsic(_ReturnAddress)
-
-pc = (DWORD64)_ReturnAddress();
-fp = (DWORD64)_AddressOfReturnAddress()-sizeof(void*);
-
-*/
-
-
-
-
-
-
-// _ReturnAddress must be prototyped before use 
-EXTERN_C void* _ReturnAddress(void);
-#pragma intrinsic(_ReturnAddress)
-
-// rationale: we don't want this to clutter up walk_stack, but it must not
-// be a regular function call (because that would add a stack frame.
-// could work around this by incrementing <skip>, but that increases
-// coupling and breaks if the function is inlined); __forceinline
-// isn't inlined in debug builds (go figure), macros require ugly multiline breaks, so go with __forceinline.
-
-// macros don't accept multiline asm
-
+// copy from CONTEXT to STACKFRAME64
 #if defined(_M_AMD64)
 # define PC_ Rip
 # define FP_ Rbp
 # define SP_ Rsp
-# define GET_FP_SP\
-	__asm mov [fp], rbp\
-	__asm mov [sp], rsp
 #elif defined(_M_IX86)
 # define PC_ Eip
 # define FP_ Ebp
 # define SP_ Esp
-# define GET_FP_SP\
-	__asm xor eax, eax\
-	__asm mov dword ptr [fp_], ebp\
-	__asm mov dword ptr [fp_+4], eax\
-	__asm mov dword ptr [sp_], esp\
-	__asm mov dword ptr [sp_+4], eax
-#else
-# error "port"
 #endif
 
+#ifdef _M_IX86
 
-// we need to set STACKFRAME64.AddrPC and AddrFrame for the initial
-// StackWalk call in our loop. if the caller passed in a thread context
-// (e.g. if calling from an exception handler), we use that; otherwise,
-// determine the current PC / frame pointer ourselves.
-// GetThreadContext is documented not to work if the current thread
-// is running, but that seems to be widespread practice. regardless, we
-// avoid using it, since simple asm code is safer. deliberately raising
-// an exception to retrieve the CONTEXT is too slow (due to jump to
-// ring0), since this is called from mmgr for each allocation.
-
-__declspec(noinline) static void init_STACKFRAME64(STACKFRAME64* sf, const CONTEXT* pcontext, DWORD64 fp, DWORD64 sp)
+// optimized for size.
+static __declspec(naked) void __cdecl fill_context(void* pcontext)
 {
-	memset(sf, 0, sizeof(STACKFRAME64));
+__asm
+{
+	pushad
+	pushfd
+	mov		edi, [esp+4+32+4]	;// pcontext
 
-	DWORD64 pc;
+	;// ContextFlags
+	mov		eax, 0x10007		;// segs, int, control
+	stosd
 
-	if(!pcontext)
-	{
-		pc = (DWORD64)_ReturnAddress();
-		// note: fp and sp already given as parameter
-	}
-	else
-	{
-		pc = pcontext->PC_;
-		fp = pcontext->FP_;
-		sp = pcontext->SP_;
-	}
+	;// DRx and FloatSave
+	;// rationale: we can't access the debug registers from Ring3, and
+	;// the FPU save area is irrelevant, so zero them.
+	xor		eax, eax
+	push	6+8+20
+	pop		ecx
+rep	stosd
 
-/*
-char buf[100];
-sprintf(buf, "pc=%I64p, fp=%I64p, sp=%I64p", pc, fp, sp);
-display_msg("init stackframe", buf);
-*/
+	;// CONTEXT_SEGMENTS
+	mov		ax, gs
+	stosd
+	mov		ax, fs
+	stosd
+	mov		ax, es
+	stosd
+	mov		ax, ds
+	stosd
 
-	sf->AddrPC.Offset    = pc;
-	sf->AddrPC.Mode      = AddrModeFlat;
-	sf->AddrFrame.Offset = fp;
-	sf->AddrFrame.Mode   = AddrModeFlat;
-	sf->AddrStack.Offset = sp;
-	sf->AddrStack.Mode   = AddrModeFlat;
+	;// CONTEXT_INTEGER
+	mov		eax, [esp+4+32-32]	;// edi
+	stosd
+	xchg	eax, esi
+	stosd
+	xchg	eax, ebx
+	stosd
+	xchg	eax, edx
+	stosd
+	mov		eax, [esp+4+32-8]	;// ecx
+	stosd
+	mov		eax, [esp+4+32-4]	;// eax
+	stosd
+
+	;// CONTEXT_CONTROL		
+	xchg	eax, ebp
+	stosd
+	mov		eax, [esp+4+32]		;// eip
+	sub		eax, 5				;// back up to call site from ret addr
+	stosd
+	xor		eax, eax
+	mov		ax, cs
+	stosd
+	pop		eax					;// eflags
+	stosd
+	lea		eax, [esp+32+4+4]	;// esp
+	stosd
+	xor		eax, eax
+	mov		ax, ss
+	stosd
+
+	;// ExtendedRegisters
+	push	512/4
+	pop		ecx
+rep	stosd
+
+	popad
+	ret
 }
+}
+
+#else	// #ifdef _M_IX86
+
+static void fill_context(CONTEXT* pcontext)
+{
+	__try
+	{
+		RaiseException(0xF00L, 0, 0, 0);
+	}
+	__except(*pcontext = (GetExceptionInformation())->ContextRecord, EXCEPTION_CONTINUE_EXECUTION)
+	{
+		assert(0);	// never reached
+	}
+}
+
+#endif
+
 
 
 
@@ -642,31 +612,23 @@ static int walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip = 0, 
 {
 	const HANDLE hThread = GetCurrentThread();
 
-	// rationale: see above.
-	STACKFRAME64 sf;
-	static DWORD64 fp_, sp_; GET_FP_SP;
-	init_STACKFRAME64(&sf, pcontext, fp_, sp_);
-
-
-
-	// if we don't get a CONTEXT, we retrieve PC and FP for this frame;
-	// prevent it from being displayed.
+	CONTEXT context;
 	if(!pcontext)
-		skip++;
+	{
+		fill_context(&context);
+		pcontext = &context;
 
+		skip++;	// skip walk_stack's frame
+	}
 
-CONTEXT context;
-EXCEPTION_POINTERS* ep;
-__try
-{
-	RaiseException(0, 0, 0, 0);
-}
-__except(ep = GetExceptionInformation(), memcpy(&context, ep->ContextRecord, sizeof(CONTEXT)), EXCEPTION_CONTINUE_EXECUTION)
-{
-	assert(0);	// never reached
-}
-pcontext = &context;
-
+	STACKFRAME64 sf;
+	memset(&sf, 0, sizeof(sf));
+	sf.AddrPC.Offset    = pcontext->PC_;
+	sf.AddrPC.Mode      = AddrModeFlat;
+	sf.AddrFrame.Offset = pcontext->FP_;
+	sf.AddrFrame.Mode   = AddrModeFlat;
+	sf.AddrStack.Offset = pcontext->SP_;
+	sf.AddrStack.Mode   = AddrModeFlat;
 
 	// StackWalk64 may write to pcontext, but there's no mention of
 	// EXCEPTION_POINTERS.ContextRecord being read-only, so don't copy it.
@@ -678,12 +640,6 @@ pcontext = &context;
 		BOOL ok = StackWalk64(machine, hProcess, hThread, &sf, (void*)pcontext,
 			0, SymFunctionTableAccess64, SymGetModuleBase64, 0);
 		unlock();
-
-/*
-char buf[100];
-sprintf(buf, "pc=%I64p, ret=%I64p, fp=%I64p, sp=%I64p", sf.AddrPC.Offset, sf.AddrReturn.Offset, sf.AddrFrame.Offset, sf.AddrStack.Offset);
-display_msg("after StackWalk", buf);
-*/
 
 		// callback never indicated success and no (more) frames found: abort.
 		// note: also test FP because StackWalk64 sometimes erroneously
@@ -836,7 +792,7 @@ static bool is_bogus_pointer(const void* p)
 #ifdef _M_IX86
 	if(p < (void*)0x10000)
 		return true;
-	if(p >= (void*)(uintptr_t)0xc0000000)
+	if(p >= (void*)(uintptr_t)0x80000000)
 		return true;
 #endif
 
@@ -925,6 +881,10 @@ static int dump_string(WCHAR* type_name, const u8* p, size_t size, DumpState sta
 
 static bool should_suppress_udt(WCHAR* type_name)
 {
+	// STL
+	if(!wcsncmp(type_name, L"std::", 5))
+		return true;
+
 	// specialized HANDLEs are defined as pointers to structs by
 	// DECLARE_HANDLE. we only want the numerical value (pointer address),
 	// so prevent these structs from being displayed.
@@ -1047,24 +1007,27 @@ SGTI_FAILED:
 
 	DWORD ofs = 0;
 	ULONG64 addr = 0;
+
+/*
+SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_ADDRESSOFFSET, &ofs);
+SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_ADDRESS, &addr);
+debug_printf("det_sym_addr: dk=%d addr=%I64p ofs=%d\n", data_kind, addr, ofs);
+*/
+
 	switch(data_kind)
 	{
-		// plain variables: p is already correct
+	// plain variables: p is already correct
 	case DataIsLocal:
 	case DataIsParam:
-		break;
 
 	case DataIsGlobal:
 	case DataIsStaticLocal:
 	case DataIsFileStatic:
-		if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_ADDRESS, &addr))
-			goto SGTI_FAILED;
-		if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_ADDRESSOFFSET, &ofs))
-			goto SGTI_FAILED;
-		*pp = (const u8*)addr + ofs;
+
+	case DataIsObjectPtr:
 		break;
 
-		// UDT member: get offset
+	// UDT member: get offset
 	case DataIsMember:
 		if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_OFFSET, &ofs))
 			goto SGTI_FAILED;
@@ -1072,9 +1035,9 @@ SGTI_FAILED:
 		*pp += ofs;
 		break;
 
-		// note: sometimes erroneously reported, but there's nothing we can do
-		// because TI_GET_ADDRESS returns mod_base, TI_GET_ADDRESSOFFSET 0,
-		// and TI_GET_OFFSET fails (it's only for members).
+	// note: sometimes erroneously reported, but there's nothing we can do
+	// because TI_GET_ADDRESS returns mod_base, TI_GET_ADDRESSOFFSET 0,
+	// and TI_GET_OFFSET fails (it's only for members).
 	case DataIsStaticMember:
 		return WDBG_UNRETRIEVABLE_STATIC;
 
@@ -1112,6 +1075,7 @@ static int dump_sym_array(DWORD idx, const u8* p, size_t size, DumpState state)
 	if(!SymGetTypeInfo(hProcess, mod_base, el_idx, TI_GET_LENGTH, &el_size_))
 		return -1;
 	const size_t el_size = (size_t)el_size_;
+	assert(el_size != 0);
 	const uint num_elements = (uint)(size / el_size);
 	assert2(num_elements != 0);
 
@@ -1306,6 +1270,7 @@ SGTI_FAILED:
 	}
 	__except(EXCEPTION_EXECUTE_HANDLER)
 	{
+		out(L"(internal error)\r\n");
 		err = -1;
 	}
 	// .. dbghelp flaw; see above.
@@ -1451,27 +1416,35 @@ static int dump_sym_typedef(DWORD idx, const u8* p, size_t size, DumpState state
 
 static int dump_sym_udt(DWORD idx, const u8* p, size_t size, DumpState state)
 {
+	if(state.level >= 30)
+	{
+		out(L"level > 100 - aborting");
+		return 0;
+	}
+
 	// handle special cases (e.g. HANDLE, std::string).
 	WCHAR* type_name;
 	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_SYMNAME, &type_name))
 		debug_warn("dump_sym_udt: TI_GET_SYMNAME failed");
 	else
 	{
-		int dump_err = -1;
-		BOOL suppressed = should_suppress_udt(type_name);
-		if(suppressed)
+		bool handled = false;
+		if(dump_string(type_name, p, size, state) == 0)
+			handled = true;
+		else if(should_suppress_udt(type_name))
 		{
 			// the data symbol is pointer-to-UDT. since we won't display its
 			// contents, leave only the pointer's value.
 			if(state.indirection)
 				out_erase(4);	// " -> "
+			handled = true;
 		}
-		else
-			dump_err = dump_string(type_name, p, size, state);
 
+//if(!handled)
+//debug_wprintf(L"UDT %s: ", type_name);
 		LocalFree(type_name);
 
-		if(suppressed || dump_err == 0)
+		if(handled)
 			return 0;	// done
 	}
 
@@ -1479,7 +1452,17 @@ static int dump_sym_udt(DWORD idx, const u8* p, size_t size, DumpState state)
 	DWORD num_children;
 	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_CHILDRENCOUNT, &num_children))
 		return -1;
-	const size_t MAX_CHILDREN = 1000;
+
+//debug_printf("children=%d\n", num_children);
+
+if(!num_children)
+{
+out(L"{empty}");
+return 0;
+}
+
+
+	const size_t MAX_CHILDREN = 500;
 	char child_buf[sizeof(TI_FINDCHILDREN_PARAMS)+MAX_CHILDREN*sizeof(DWORD)];
 	TI_FINDCHILDREN_PARAMS* fcp = (TI_FINDCHILDREN_PARAMS*)child_buf;
 	fcp->Start = 0;
@@ -1487,10 +1470,10 @@ static int dump_sym_udt(DWORD idx, const u8* p, size_t size, DumpState state)
 	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_FINDCHILDREN, fcp))
 		return -1;
 
-	const size_t avg_size = size / num_children;
+	const size_t avg_size = size / MAX(fcp->Count, 1);	// prevent / 0
 		// if num_children ends up large (e.g. due to member functions),
 		// avg_size is 0. fits_on_one_line will then be false anyway.
-	const bool fits_on_one_line = (num_children <= 3) && (avg_size <= sizeof(int));
+	const bool fits_on_one_line = (fcp->Count <= 3) && (avg_size <= sizeof(int));
 
 	out(fits_on_one_line? L"{ " : L"\r\n");
 
@@ -1529,9 +1512,10 @@ static int dump_sym_unknown(DWORD idx, const u8* p, size_t size, DumpState state
 		debug_warn("dump_sym_unknown: tag query failed");
 		return -1;
 	}
-
 	debug_printf("Unknown tag: %d\n", type_tag);
-	return -1;
+
+	out(L"(unknown symbol type)");
+	return 0;
 }
 
 
