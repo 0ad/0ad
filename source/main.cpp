@@ -203,14 +203,12 @@ static std::string SplitExts(const char *exts)
 
 static void WriteSysInfo()
 {
-double t1 = get_time();
+TIMER(write_sys_info);
+
 	get_gfx_info();
 	// get_cpu_info already called during init - see call site
 	get_snd_info();
 	get_mem_status();
-double t2 = get_time();
-debug_printf("SYS DETECT TIME %g\n\n", t2-t1);
-
 
 	struct utsname un;
 	uname(&un);
@@ -832,9 +830,6 @@ TIMER(InitVfs)
 	if(err < 0)
 		throw err;
 
-//		display_startup_error(L"error setting current directory.\n"\
-//			L"argv[0] is probably incorrect. please start the game via command-line.");
-
 	{
 	TIMER(VFS_INIT);
 	vfs_init();
@@ -842,16 +837,6 @@ TIMER(InitVfs)
 	vfs_mount("screenshots/", "screenshots");
 	vfs_mount("profiles/", "profiles", VFS_MOUNT_RECURSIVE);
 	}
-/*
-	double t0 = get_time();
-	for(int i = 0; i < 30*4*5; i++)
-	{
-		TIMER(rebuild);
-		vfs_rebuild();
-	}
-	debug_printf("%f\n\n\n", get_time()-t0);
-	exit(1134);
-/**/
 	// don't try vfs_display yet: SDL_Init hasn't yet redirected stdout
 }
 
@@ -1122,23 +1107,10 @@ static void Shutdown()
 
 static void Init(int argc, char* argv[], bool setup_gfx = true)
 {
-#ifdef _WIN32
-	sle(11340106);
-#endif
-
 	MICROLOG(L"In init");
 
 	// If you ever want to catch a particular allocation:
 	//_CrtSetBreakAlloc(187);
-
-#ifdef _MSC_VER
-u64 TSC=rdtsc();
-debug_printf(
-"----------------------------------------\n"\
-"INITIALIZING\n"\
-"----------------------------------------\n");
-PREVTSC=TSC;
-#endif
 
 
 	// set 24 bit (float) FPU precision for faster divides / sqrts
@@ -1336,16 +1308,6 @@ TIMER(init_after_InitRenderer);
 	}
 
 	g_Console->RegisterFunc(Testing, L"Testing");
-
-debug_printf(
-"----------------------------------------\n"\
-"READY (elapsed = %f ms)\n"\
-"----------------------------------------\n"
-);
-
-
-
-
 }
 
 static void Frame()
