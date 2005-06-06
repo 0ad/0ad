@@ -7,8 +7,6 @@
 
 using namespace std;
 
-const char* LIBRARY_FILE = "library.js";
-
 JSRuntime *rt = 0;
 JSContext *cx = 0;
 JSObject *global = 0;
@@ -58,8 +56,8 @@ jsval NewJSString(const string& str) {
 	return STRING_TO_JSVAL(JS_NewString(cx, buf, str.length()));
 }
 
-void ExecuteFile(const char* fileName) {
-	FILE* f = fopen(fileName, "r");
+void ExecuteFile(const string& fileName) {
+	FILE* f = fopen(fileName.c_str(), "r");
 	if(!f) {
 		cerr << "Cannot open " << fileName << endl;
 		Shutdown(1);
@@ -72,7 +70,7 @@ void ExecuteFile(const char* fileName) {
 	}
 
 	jsval rval;
-	JSBool ok = JS_EvaluateScript(cx, global, code.c_str(), code.length(), fileName, 1, &rval);
+	JSBool ok = JS_EvaluateScript(cx, global, code.c_str(), code.length(), fileName.c_str(), 1, &rval);
 	if(!ok) Shutdown(1);
 }
 
@@ -80,10 +78,16 @@ void ExecuteFile(const char* fileName) {
 
 int main(int argc, char* argv[])
 {
+	const string LIBRARY_FILE = "../data/mods/official/maps/rmlibrary.js";
+	const string RMS_PATH = "../data/mods/official/maps/random/";
+	const string SCENARIO_PATH = "../data/mods/official/maps/scenarios/";
+
+	clock_t start = clock();
+
 	InitJS();
 
 	if(argc!=3 && argc!=4) {
-		cerr << "Usage: rmgen <script> <output name without extension> [<seed>]" << endl;
+		cerr << "Usage: rmgen <script> <output map> [<seed>] (no file extensions)" << endl;
 		Shutdown(1);
 	}
 
@@ -102,22 +106,26 @@ int main(int argc, char* argv[])
 	string setts = out.str();
 	jsval rval;
 	JSBool ok = JS_EvaluateScript(cx, global, setts.c_str(), setts.length(), 
-		"settings declaration", 1, &rval);
+		"map settings script", 1, &rval);
 	if(!ok) Shutdown(1);
 
 	// Load library
 	ExecuteFile(LIBRARY_FILE);
 
 	// Run the script
-	ExecuteFile(argv[1]);
+	ExecuteFile(RMS_PATH + argv[1] + ".js");
 
 	if(!theMap) {
 		cerr << "Error:\n\tScript never called init!" << endl;
 		Shutdown(1);
 	}
 
-	string outputName = argv[2];
+	string outputName = SCENARIO_PATH + argv[2];
 	OutputMap(theMap, outputName);
+
+	clock_t end = clock();
+
+	printf("Took %0.3f seconds.\n", float(end-start) / CLOCKS_PER_SEC);
 
 	Shutdown(0);
 }

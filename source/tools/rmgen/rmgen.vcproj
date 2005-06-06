@@ -61,14 +61,15 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="Release"
+			OutputDirectory="../../../binaries/system"
 			IntermediateDirectory="Release"
 			ConfigurationType="1"
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="../../../libraries/boost/include;../../../libraries/spidermonkey/include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
-				RuntimeLibrary="4"
+				RuntimeLibrary="3"
 				UsePrecompiledHeader="3"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
@@ -129,10 +130,16 @@
 				RelativePath=".\centeredplacer.cpp">
 			</File>
 			<File
+				RelativePath=".\clumpplacer.cpp">
+			</File>
+			<File
 				RelativePath=".\constraint.cpp">
 			</File>
 			<File
 				RelativePath=".\entity.cpp">
+			</File>
+			<File
+				RelativePath=".\layeredpainter.cpp">
 			</File>
 			<File
 				RelativePath=".\map.cpp">
@@ -162,6 +169,9 @@
 				RelativePath=".\simplepainters.cpp">
 			</File>
 			<File
+				RelativePath=".\simpleplacers.cpp">
+			</File>
+			<File
 				RelativePath=".\stdafx.cpp">
 				<FileConfiguration
 					Name="Debug|Win32">
@@ -175,6 +185,9 @@
 						Name="VCCLCompilerTool"
 						UsePrecompiledHeader="1"/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\terrain.cpp">
 			</File>
 		</Filter>
 		<Filter
@@ -197,10 +210,16 @@
 				RelativePath=".\centeredplacer.h">
 			</File>
 			<File
+				RelativePath=".\clumpplacer.h">
+			</File>
+			<File
 				RelativePath=".\constraint.h">
 			</File>
 			<File
 				RelativePath=".\entity.h">
+			</File>
+			<File
+				RelativePath=".\layeredpainter.h">
 			</File>
 			<File
 				RelativePath=".\map.h">
@@ -230,7 +249,13 @@
 				RelativePath=".\simplepainters.h">
 			</File>
 			<File
+				RelativePath=".\simpleplacers.h">
+			</File>
+			<File
 				RelativePath=".\stdafx.h">
+			</File>
+			<File
+				RelativePath=".\terrain.h">
 			</File>
 		</Filter>
 		<Filter
@@ -242,13 +267,13 @@
 			RelativePath="..\..\..\libraries\spidermonkey\lib\js32d.lib">
 		</File>
 		<File
-			RelativePath=".\library.js">
-		</File>
-		<File
 			RelativePath=".\ReadMe.txt">
 		</File>
 		<File
-			RelativePath=".\test.js">
+			RelativePath="..\..\..\binaries\data\mods\official\maps\rmlibrary.js">
+		</File>
+		<File
+			RelativePath="..\..\..\binaries\data\mods\official\maps\random\test.js">
 		</File>
 	</Files>
 	<Globals>

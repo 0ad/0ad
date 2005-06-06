@@ -32,6 +32,6 @@
 #endif
 #include "jsapi.h"
 
-// TODO: reference additional headers your program requires here
+const float PI = acos(-1.0f);
 
 #endif

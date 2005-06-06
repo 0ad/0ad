@@ -9,6 +9,16 @@ using namespace std;
 typedef unsigned short u16;
 typedef unsigned int u32;
 
+void OutputEntity(Entity* e, ostringstream& xml) {
+	xml << "\
+		<Entity>\n\
+			<Template>" << e->type << "</Template>\n\
+			<Player>" << e->player << "</Player>\n\
+			<Position x=\"" << 4*e->x << "\" y=\"" << 4*e->y << "\" z=\"" << 4*e->z << "\" />\n\
+			<Orientation angle=\"" << e->orientation << "\" />\n\
+		</Entity>\n";
+}
+
 void OutputXml(Map* m, FILE* f) {
 	ostringstream xml;
 	xml << "\
@@ -25,18 +35,20 @@ void OutputXml(Map* m, FILE* f) {
 	<Entities>\n";
 
 	for(int i=0; i<m->entities.size(); i++) {
-		Entity* e = m->entities[i];
-		xml << "\
-		<Entity>\n\
-		<Template>" << e->type << "</Template>\n\
-			<Player>" << e->player << "</Player>\n\
-			<Position x=\"" << 4*e->x << "\" y=\"" << 4*e->y << "\" z=\"" << 4*e->z << "\" />\n\
-			<Orientation angle=\"" << e->orientation << "\" />\n\
-		</Entity>\n";
+		OutputEntity(m->entities[i], xml);
+	}
+
+	for(int x=0; x<m->size; x++) {
+		for(int y=0; y<m->size; y++) {
+			vector<Entity*>& vec = m->terrainEntities[x][y];
+			for(int i=0; i<vec.size(); i++) {
+				OutputEntity(vec[i], xml);
+			}
+		}
 	}
 
 	xml << "\
-	</Entities>\
+	</Entities>\n\
 	<Nonentities />\n\
 </Scenario>\n";
 
@@ -44,7 +56,7 @@ void OutputXml(Map* m, FILE* f) {
 }
 
 struct Tile {
-	u16 texture1; // index into terrain_textures[]
+	u16 texture1; // index into texture_textures[]
 	u16 texture2; // index, or 0xFFFF for 'none'
 	u32 priority; // ???
 };
@@ -65,13 +77,13 @@ struct PMP {
 
 	u16 heightmap[(mapsize*16 + 1)^2]; // (squared, not xor) - vertex heights
 
-	u32 num_terrain_textures;
-	String terrain_textures[num_terrain_textures]; // filenames (no path), e.g. "cliff1.dds"
+	u32 num_texture_textures;
+	String texture_textures[num_texture_textures]; // filenames (no path), e.g. "cliff1.dds"
 
 	Tile tiles[(mapsize*16)^2];
 };*/
 	int size = m->size;
-	int numTerrains = m->idToName.size();
+	int numTextures = m->idToName.size();
 
 	// header
 	fwrite("PSMP", sizeof(char), 4, f);
@@ -104,25 +116,25 @@ struct PMP {
 	}
 	fwrite(heightmap, sizeof(u16), (size+1)*(size+1), f);
 
-	// num terrain textures
-	fwrite(&numTerrains, sizeof(u32), 1, f);
+	// num texture textures
+	fwrite(&numTextures, sizeof(u32), 1, f);
 
-	// terrain names
-	for(int i=0; i<numTerrains; i++) {
+	// texture names
+	for(int i=0; i<numTextures; i++) {
 		string fname = m->idToName[i] + ".dds";
 		int len = fname.length();
 		fwrite(&len, sizeof(u32), 1, f);
 		fwrite(fname.c_str(), sizeof(char), fname.length(), f);
 	}
 
-	// terrain; note that this is an array of 16x16 patches for some reason
+	// texture; note that this is an array of 16x16 patches for some reason
 	Tile* tiles = new Tile[size*size];
 	for(int x=0; x<size; x++) {
 		for(int y=0; y<size; y++) {
 			int patchX = x/16, patchY = y/16;
 			int offX = x%16, offY = y%16;
 			Tile& t = tiles[ (patchY*size/16 + patchX)*16*16 + (offY*16 + offX) ];
-			t.texture1 = m->terrain[x][y];
+			t.texture1 = m->texture[x][y];
 			t.texture2 = 0xFFFF;
 			t.priority = 0;
 		}

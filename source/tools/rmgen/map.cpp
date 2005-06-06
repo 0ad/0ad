@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Map::Map(int size, const string& baseTerrain, float baseHeight) {
+Map::Map(int size, Terrain* baseTerrain, float baseHeight) {
 	if(size<0 || size>1024) {
 		JS_ReportError(cx, "init: map size out of range");
 	}
@@ -15,14 +15,14 @@ Map::Map(int size, const string& baseTerrain, float baseHeight) {
 
 	this->size = size;
 
-	int baseId = getId(baseTerrain);
-
-	terrain = new int*[size];
+	texture = new int*[size];
 	for(int i=0; i<size; i++) {
-		terrain[i] = new int[size];
-		for(int j=0; j<size; j++) {
-			terrain[i][j] = baseId;
-		}
+		texture[i] = new int[size];
+	}
+
+	terrainEntities = new vector<Entity*>*[size];
+	for(int i=0; i<size; i++) {
+		terrainEntities[i] = new vector<Entity*>[size];
 	}
 
 	area = new Area**[size];
@@ -40,37 +40,48 @@ Map::Map(int size, const string& baseTerrain, float baseHeight) {
 			height[i][j] = baseHeight;
 		}
 	}
+
+	for(int i=0; i<size; i++) {
+		for(int j=0; j<size; j++) {
+			baseTerrain->place(this, i, j);
+		}
+	}
 }
 
 Map::~Map() {
 	for(int i=0; i<size; i++) {
-		delete[] terrain[i];
+		delete[] texture[i];
 	}
-	delete[] terrain;
+	delete[] texture;
 
 	for(int i=0; i<size; i++) {
-		delete[] area[i];
+		delete[] terrainEntities[i];
 	}
-	delete[] area;
+	delete[] terrainEntities;
 
 	for(int i=0; i<size+1; i++) {
 		delete[] height[i];
 	}
 	delete[] height;
 
+	for(int i=0; i<size; i++) {
+		delete[] area[i];
+	}
+	delete[] area;
+
 	for(int i=0; i<entities.size(); i++) {
 		delete entities[i];
 	}
 }
 
-int Map::getId(string terrain) {
-	if(nameToId.find(terrain) != nameToId.end()) {
-		return nameToId[terrain];
+int Map::getId(string texture) {
+	if(nameToId.find(texture) != nameToId.end()) {
+		return nameToId[texture];
 	}
 	else {
 		int newId = nameToId.size();
-		nameToId[terrain] = newId;
-		idToName[newId] = terrain;
+		nameToId[texture] = newId;
+		idToName[newId] = texture;
 		return newId;
 	}
 }
@@ -83,14 +94,14 @@ bool Map::validH(int x, int y) {
 	return x>=0 && y>=0 && x<size+1 && y<size+1;
 }
 
-string Map::getTerrain(int x, int y) {
-	if(!validT(x,y)) JS_ReportError(cx, "getTerrain: invalid tile position");
-	return idToName[terrain[x][y]];
+string Map::getTexture(int x, int y) {
+	if(!validT(x,y)) JS_ReportError(cx, "getTexture: invalid tile position");
+	return idToName[texture[x][y]];
 }
 
-void Map::setTerrain(int x, int y, const string& t) {
-	if(!validT(x,y)) JS_ReportError(cx, "setTerrain: invalid tile position");
-	terrain[x][y] = getId(t);
+void Map::setTexture(int x, int y, const string& t) {
+	if(!validT(x,y)) JS_ReportError(cx, "setTexture: invalid tile position");
+	texture[x][y] = getId(t);
 }
 
 float Map::getHeight(int x, int y) {
@@ -101,6 +112,10 @@ float Map::getHeight(int x, int y) {
 void Map::setHeight(int x, int y, float h) {
 	if(!validH(x,y)) JS_ReportError(cx, "setHeight: invalid point position");
 	height[x][y] = h;
+}
+
+void Map::placeTerrain(int x, int y, Terrain* t) {
+	t->place(this, x, y);
 }
 
 void Map::addEntity(Entity* ent) {
@@ -117,5 +132,6 @@ Area* Map::createArea(AreaPlacer* placer, AreaPainter* painter, Constraint* cons
 		area[points[i].x][points[i].y] = a;
 	}
 	painter->paint(this, a);
+	areas.push_back(a);
 	return a;
 }

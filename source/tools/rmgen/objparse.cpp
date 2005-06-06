@@ -1,11 +1,17 @@
 #include "stdafx.h"
 #include "objparse.h"
 #include "rmgen.h"
+#include "simpleconstraints.h"
+#include "simplepainters.h"
+#include "simpleplacers.h"
+#include "rectplacer.h"
+#include "layeredpainter.h"
+#include "clumpplacer.h"
 
 using namespace std;
 
 bool GetRaw(JSContext* cx, jsval val, JSObject** retObj, int* retType) {
-	if(!JSVAL_IS_OBJECT(val)) return 0;
+	if(!JSVAL_IS_OBJECT(val)) return false;
 	JSObject* obj = JSVAL_TO_OBJECT(val);
 	jsval ret;
 	if(!JS_CallFunctionName(cx, obj, "raw", 0, 0, &ret)) {
@@ -61,7 +67,7 @@ bool ParseFields(JSContext* cx, JSObject* array, const char* format, ...) {
 		}
 		else 
 		{
-			cerr << "Internal Error: unsupported type '" << format[i] << "' for ParseArgs!\n";
+			cerr << "Internal Error: unsupported type '" << format[i] << "' for ParseFields!\n";
 			Shutdown(1);
 			return false;
 		}
@@ -70,31 +76,99 @@ bool ParseFields(JSContext* cx, JSObject* array, const char* format, ...) {
 	return true;
 }
 
-AreaPlacer* ParsePlacer(JSContext* cx, jsval val) {
-	JSObject* obj; int type;
-	if(!GetRaw(cx, val, &obj, &type)) return 0;
-
-	int x1, y1, x2, y2;
-
-	switch(type) {
-		case TYPE_RECTPLACER:
-			ParseFields(cx, obj, "iiii", &x1, &y1, &x2, &y2);
-			return new RectPlacer(x1, y1, x2, y2);
-		default:
-			return 0;
+bool ParseArray(JSContext* cx, jsval val, vector<jsval>& ret) {
+	ret.clear();
+	if(!JSVAL_IS_OBJECT(val)) return false;
+	JSObject* obj = JSVAL_TO_OBJECT(val);
+	if(!JS_IsArrayObject(cx, obj)) return false;
+	jsuint len;
+	JS_GetArrayLength(cx, obj, &len);
+	for(int i=0; i<len; i++) {
+		jsval rval;
+		JS_GetElement(cx, obj, i, &rval);
+		ret.push_back(rval);
 	}
+	return true;
 }
 
 AreaPainter* ParsePainter(JSContext* cx, jsval val) {
 	JSObject* obj; int type;
 	if(!GetRaw(cx, val, &obj, &type)) return 0;
 
-	string terrain;
+	jsval jsv, jsv2;
+	Terrain* terrain = 0;
+	vector<jsval> array;
+	vector<Terrain*> terrains;
+	vector<int> widths;
 
 	switch(type) {
 		case TYPE_TERRAINPAINTER:
-			ParseFields(cx, obj, "s", &terrain);
+			if(!ParseFields(cx, obj, "*", &jsv)) return 0;
+			terrain = ParseTerrain(cx, jsv);
+			if(terrain==0) return 0;
 			return new TerrainPainter(terrain);
+
+		case TYPE_LAYEREDPAINTER:
+			if(!ParseFields(cx, obj, "**", &jsv, &jsv2)) return 0;
+			if(!ParseArray(cx, jsv, array)) return 0;
+			for(int i=0; i<array.size(); i++) {
+				if(!JSVAL_IS_INT(array[i])) return 0;
+				widths.push_back(JSVAL_TO_INT(array[i]));
+			}
+			if(!ParseArray(cx, jsv2, array)) return 0;
+			for(int i=0; i<array.size(); i++) {
+				terrain = ParseTerrain(cx, array[i]);
+				if(terrain==0) return 0;
+				terrains.push_back(terrain);
+			}
+			if(terrains.size() != 1+widths.size()) return 0;
+			return new LayeredPainter(terrains, widths);
+
+		default:
+			return 0;
+	}
+}
+
+AreaPlacer* ParsePlacer(JSContext* cx, jsval val) {
+	JSObject* obj; int type;
+	if(!GetRaw(cx, val, &obj, &type)) return 0;
+
+	jsval jsv;
+	int x, y, x1, y1, x2, y2, num, maxFail;
+	CenteredPlacer* cp;
+
+	switch(type) {
+		case TYPE_RECTPLACER:
+			if(!ParseFields(cx, obj, "iiii", &x1, &y1, &x2, &y2)) return 0;
+			return new RectPlacer(x1, y1, x2, y2);
+
+		case TYPE_EXACTPLACER:
+			if(!ParseFields(cx, obj, "*ii", &jsv, &x, &y)) return 0;
+			if(!(cp = ParseCenteredPlacer(cx, jsv))) return 0;
+			return new ExactPlacer(cp, x, y);
+
+		case TYPE_MULTIPLACER:
+			if(!ParseFields(cx, obj, "*ii", &jsv, &num, &maxFail)) return 0;
+			if(!(cp = ParseCenteredPlacer(cx, jsv))) return 0;
+			return new MultiPlacer(cp, num, maxFail);
+
+		default:
+			return 0;
+	}
+}
+
+CenteredPlacer* ParseCenteredPlacer(JSContext* cx, jsval val) {
+	JSObject* obj; int type;
+	if(!GetRaw(cx, val, &obj, &type)) return 0;
+
+	int areaId;
+	float size, coherence, smoothness;
+
+	switch(type) {
+		case TYPE_CLUMPPLACER:
+			if(!ParseFields(cx, obj, "nnn", &size, &coherence, &smoothness)) return 0;
+			return new ClumpPlacer(size, coherence, smoothness);
+
 		default:
 			return 0;
 	}
@@ -106,11 +180,66 @@ Constraint* ParseConstraint(JSContext* cx, jsval val) {
 	JSObject* obj; int type;
 	if(!GetRaw(cx, val, &obj, &type)) return 0;
 
+	int areaId;
+	string texture;
+	jsval jsv, jsv2;
+	Constraint* c1, *c2;
+
 	switch(type) {
 		case TYPE_NULLCONSTRAINT:
-			ParseFields(cx, obj, "");
+			if(!ParseFields(cx, obj, "")) return 0;
 			return new NullConstraint();
+
+		case TYPE_AVOIDAREACONSTRAINT:
+			if(!ParseFields(cx, obj, "i", &areaId)) return 0;
+			if(areaId <= 0 || areaId > theMap->areas.size()) return 0;
+			return new AvoidAreaConstraint(theMap->areas[areaId-1]);
+
+		case TYPE_AVOIDTERRAINCONSTRAINT:
+			if(!ParseFields(cx, obj, "s", &texture)) return 0;
+			return new AvoidTerrainConstraint(theMap->getId(texture));
+
+		case TYPE_ANDCONSTRAINT:
+			if(!ParseFields(cx, obj, "**", &jsv, &jsv2)) return 0;
+			if(!(c1 = ParseConstraint(cx, jsv))) return 0;
+			if(!(c2 = ParseConstraint(cx, jsv2))) return 0;
+			return new AndConstraint(c1, c2);
+
 		default:
 			return 0;
+	}
+}
+
+Terrain* ParseTerrain(JSContext* cx, jsval val) {
+	if(JSVAL_IS_STRING(val)) {
+		// simple terrains are just encoded as strings
+		string str = JS_GetStringBytes(JS_ValueToString(cx, val));
+		return SimpleTerrain::parse(str);
+	}
+	else {
+		// complex terrain type
+		JSObject* obj; int type;
+		if(!GetRaw(cx, val, &obj, &type)) return 0;
+
+		jsval jsv;
+		Terrain* terrain = 0;
+		vector<jsval> array;
+		vector<Terrain*> terrains;
+
+		switch(type) {
+			case TYPE_RANDOMTERRAIN:
+				if(!ParseFields(cx, obj, "*", &jsv)) return 0;
+				if(!ParseArray(cx, jsv, array)) return 0;
+				for(int i=0; i<array.size(); i++) {
+					terrain = ParseTerrain(cx, array[i]);
+					if(terrain==0) return 0;
+					terrains.push_back(terrain);
+				}
+				return new RandomTerrain(terrains);
+
+			default:
+				return 0;
+		}
+		return 0;
 	}
 }

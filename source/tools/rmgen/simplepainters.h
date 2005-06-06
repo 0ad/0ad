@@ -4,12 +4,13 @@
 #include "areapainter.h"
 #include "map.h"
 #include "area.h"
+#include "terrain.h"
 
 class TerrainPainter : public AreaPainter {
 public:
-	std::string terrain;
+	Terrain* terrain;
 
-	TerrainPainter(const std::string& terrain);
+	TerrainPainter(Terrain* terrain);
 	void paint(Map* m, Area* a);
 };
 

@@ -5,6 +5,8 @@
 #include "map.h"
 #include "entity.h"
 #include "objparse.h"
+#include "terrain.h"
+#include "simpleconstraints.h"
 
 using namespace std;
 
@@ -15,8 +17,8 @@ JSFunctionSpec globalFunctions[] = {
 	{"init", init, 3},
 	{"print", print, 1},
 	{"error", error, 1},
-	{"getTerrain", getTerrain, 2},
-	{"setTerrain", setTerrain, 3},
+	{"getTexture", getTexture, 2},
+	{"setTexture", setTexture, 3},
 	{"getHeight", getHeight, 2},
 	{"setHeight", setHeight, 3},
 	{"randInt", randInt, 1},
@@ -49,7 +51,7 @@ void ValidateArgs(const char* types, JSContext* cx, uintN argc, jsval* argv, con
 				break;
 			case 's':
 				if(!JSVAL_IS_STRING(argv[i])) {
-					JS_ReportError(cx, "%s: argument %d must be an integer", function, i+1);
+					JS_ReportError(cx, "%s: argument %d must be a string", function, i+1);
 				}
 				break;
 			case 'n':
@@ -95,13 +97,16 @@ JSBool error(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 
 JSBool init(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-	ValidateArgs("isn", cx, argc, argv, __FUNCTION__);
+	ValidateArgs("i*n", cx, argc, argv, __FUNCTION__);
 	if(theMap != 0) {
 		JS_ReportError(cx, "init: cannot be called twice");
 	}
 
 	int size = JSVAL_TO_INT(argv[0]);
-	char* baseTerrain = JS_GetStringBytes(JSVAL_TO_STRING(argv[1]));
+	Terrain* baseTerrain = ParseTerrain(cx, argv[1]);
+	if(!baseTerrain) {
+		JS_ReportError(cx, "init: argument 2 must be a terrain");
+	}
 	jsdouble baseHeight;
 	JS_ValueToNumber(cx, argv[2], &baseHeight);
 
@@ -109,31 +114,31 @@ JSBool init(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 	return JS_TRUE;
 }
 
-JSBool getTerrain(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
+JSBool getTexture(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
 	ValidateArgs("ii", cx, argc, argv, __FUNCTION__);
 	if(theMap == 0) {
-		JS_ReportError(cx, "getTerrain: cannot be called before init()");
+		JS_ReportError(cx, "getTexture: cannot be called before init()");
 	}
 	
 	int x = JSVAL_TO_INT(argv[0]);
 	int y = JSVAL_TO_INT(argv[1]);
-	string terrain = theMap->getTerrain(x, y);
-	*rval = NewJSString(terrain);
+	string texture = theMap->getTexture(x, y);
+	*rval = NewJSString(texture);
 	return JS_TRUE;
 }
 
-JSBool setTerrain(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
+JSBool setTexture(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
 	ValidateArgs("iis", cx, argc, argv, __FUNCTION__);
 	if(theMap == 0) {
-		JS_ReportError(cx, "setTerrain: cannot be called before init()");
+		JS_ReportError(cx, "setTexture: cannot be called before init()");
 	}
 	
 	int x = JSVAL_TO_INT(argv[0]);
 	int y = JSVAL_TO_INT(argv[1]);
-	char* terrain = JS_GetStringBytes(JSVAL_TO_STRING(argv[2]));
-	theMap->setTerrain(x, y, terrain);
+	char* texture = JS_GetStringBytes(JSVAL_TO_STRING(argv[2]));
+	theMap->setTexture(x, y, texture);
 	return JS_TRUE;
 }
 
@@ -207,6 +212,23 @@ JSBool addEntity(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *r
 	return JS_TRUE;
 }
 
+JSBool placeTerrain(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
+{
+	ValidateArgs("ii*", cx, argc, argv, __FUNCTION__);
+	if(theMap == 0) {
+		JS_ReportError(cx, "placeTerrain: cannot be called before init()");
+	}
+
+	int x = JSVAL_TO_INT(argv[0]);
+	int y = JSVAL_TO_INT(argv[1]);
+	Terrain* terrain = ParseTerrain(cx, argv[2]);
+	if(!terrain) {
+		JS_ReportError(cx, "placeTerrain: invalid terrain argument");
+	}
+	theMap->placeTerrain(x, y, terrain);
+	return JS_TRUE;
+}
+
 JSBool createArea(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval) 
 {
 	if(argc != 2 && argc != 3) {
@@ -221,14 +243,14 @@ JSBool createArea(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *
 	Constraint* constr;
 
 	if(!(placer = ParsePlacer(cx, argv[0]))) {
-		JS_ReportError(cx, "createArea: argument 1 must be an area placer");
+		JS_ReportError(cx, "createArea: argument 1 must be a valid area placer");
 	}
 	if(!(painter = ParsePainter(cx, argv[1]))) {
-		JS_ReportError(cx, "createArea: argument 2 must be an area paint");
+		JS_ReportError(cx, "createArea: argument 2 must be a valid area painter");
 	}
 	if(argc == 3) {
 		if(!(constr = ParseConstraint(cx, argv[2]))) {
-			JS_ReportError(cx, "createArea: argument 3 must be a constraint");
+			JS_ReportError(cx, "createArea: argument 3 must be a valid constraint");
 		}
 	}
 	else {
