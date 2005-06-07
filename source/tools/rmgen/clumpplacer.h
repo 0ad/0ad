@@ -1,19 +1,20 @@
 #ifndef __CLUMPPLACER_H__
 #define __CLUMPPLACER_H__
 
-#include "centeredplacer.h"
+#include "areaplacer.h"
 #include "map.h"
 
-class ClumpPlacer : public CenteredPlacer
+class ClumpPlacer : public AreaPlacer
 {
 private:
 	float size;
 	float coherence;
 	float smoothness;
+	int x, y;
 public:
-	virtual bool place(Map* m, Constraint* constr, std::vector<Point>& ret, int x, int y);
+	virtual bool place(Map* m, Constraint* constr, std::vector<Point>& ret);
 
-	ClumpPlacer(float size, float coherence, float smoothness);
+	ClumpPlacer(float size, float coherence, float smoothness, int x, int y);
 	virtual ~ClumpPlacer();
 };
 

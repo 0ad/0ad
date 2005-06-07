@@ -4,18 +4,24 @@
 
 using namespace std;
 
-ClumpPlacer::ClumpPlacer(float size, float coherence, float smoothness)
+ClumpPlacer::ClumpPlacer(float size, float coherence, float smoothness, int x, int y)
 {
 	this->size = size;
 	this->coherence = coherence;
 	this->smoothness = smoothness;
+	this->x = x;
+	this->y = y;
 }
 
 ClumpPlacer::~ClumpPlacer()
 {
 }
 
-bool ClumpPlacer::place(class Map* m, Constraint* constr, std::vector<Point>& ret, int x, int y) {
+bool ClumpPlacer::place(class Map* m, Constraint* constr, std::vector<Point>& ret) {
+	if(!m->validT(x, y) || !constr->allows(m, x, y)) {
+		return false;
+	}
+
 	float radius = sqrt(size / PI);
 	float perim = 3 * radius * 2 * PI;
 	int intPerim = (int)(ceil(perim));

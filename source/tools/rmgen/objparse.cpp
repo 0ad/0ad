@@ -3,7 +3,6 @@
 #include "rmgen.h"
 #include "simpleconstraints.h"
 #include "simplepainters.h"
-#include "simpleplacers.h"
 #include "rectplacer.h"
 #include "layeredpainter.h"
 #include "clumpplacer.h"
@@ -135,39 +134,16 @@ AreaPlacer* ParsePlacer(JSContext* cx, jsval val) {
 
 	jsval jsv;
 	int x, y, x1, y1, x2, y2, num, maxFail;
-	CenteredPlacer* cp;
+	float size, coherence, smoothness;
 
 	switch(type) {
 		case TYPE_RECTPLACER:
 			if(!ParseFields(cx, obj, "iiii", &x1, &y1, &x2, &y2)) return 0;
 			return new RectPlacer(x1, y1, x2, y2);
 
-		case TYPE_EXACTPLACER:
-			if(!ParseFields(cx, obj, "*ii", &jsv, &x, &y)) return 0;
-			if(!(cp = ParseCenteredPlacer(cx, jsv))) return 0;
-			return new ExactPlacer(cp, x, y);
-
-		case TYPE_MULTIPLACER:
-			if(!ParseFields(cx, obj, "*ii", &jsv, &num, &maxFail)) return 0;
-			if(!(cp = ParseCenteredPlacer(cx, jsv))) return 0;
-			return new MultiPlacer(cp, num, maxFail);
-
-		default:
-			return 0;
-	}
-}
-
-CenteredPlacer* ParseCenteredPlacer(JSContext* cx, jsval val) {
-	JSObject* obj; int type;
-	if(!GetRaw(cx, val, &obj, &type)) return 0;
-
-	int areaId;
-	float size, coherence, smoothness;
-
-	switch(type) {
 		case TYPE_CLUMPPLACER:
-			if(!ParseFields(cx, obj, "nnn", &size, &coherence, &smoothness)) return 0;
-			return new ClumpPlacer(size, coherence, smoothness);
+			if(!ParseFields(cx, obj, "nnnii", &size, &coherence, &smoothness, &x, &y)) return 0;
+			return new ClumpPlacer(size, coherence, smoothness, x, y);
 
 		default:
 			return 0;

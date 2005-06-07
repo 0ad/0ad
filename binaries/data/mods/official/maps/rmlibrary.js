@@ -1,6 +1,6 @@
 // Object type constants
 
-const  
+const 
 TYPE_RECTPLACER = 1,
 TYPE_TERRAINPAINTER = 2,
 TYPE_NULLCONSTRAINT = 3,
@@ -8,10 +8,8 @@ TYPE_RANDOMTERRAIN = 4,
 TYPE_LAYEREDPAINTER = 5,
 TYPE_AVOIDAREACONSTRAINT = 6,
 TYPE_CLUMPPLACER = 7,
-TYPE_EXACTPLACER = 8,
-TYPE_AVOIDTERRAINCONSTRAINT = 9,
-TYPE_ANDCONSTRAINT = 10,
-TYPE_MULTIPLACER = 11;
+TYPE_AVOIDTERRAINCONSTRAINT = 8,
+TYPE_ANDCONSTRAINT = 9;
 
 // Utility functions
 
@@ -88,21 +86,14 @@ function AvoidAreaConstraint(area) {
 	}
 }
 
-function ClumpPlacer(size, coherence, smoothness) {
+function ClumpPlacer(size, coherence, smoothness, x, y) {
 	this.size = size;
 	this.coherence = coherence;
 	this.smoothness = smoothness;
+	this.x = x ? x : -1;
+	this.y = y ? y : -1;
 	this.raw = function() {
-		return [TYPE_CLUMPPLACER, this.size, this.coherence, this.smoothness];
-	}
-}
-
-function ExactPlacer(cp, x, y) {
-	this.cp = cp;
-	this.x = x;
-	this.y = y;
-	this.raw = function() {
-		return [TYPE_EXACTPLACER, this.cp, this.x, this.y];
+		return [TYPE_CLUMPPLACER, this.size, this.coherence, this.smoothness, this.x, this.y];
 	}
 }
 
@@ -121,11 +112,21 @@ function AndConstraint(a, b) {
 	}
 }
 
-function MultiPlacer(cp, num, maxFail) {	
-	this.cp = cp;
-	this.num = num;
-	this.maxFail = maxFail;
-	this.raw = function() {
-		return [TYPE_MULTIPLACER, this.cp, this.num, this.maxFail];
+function createMulti(centeredPlacer, painter, constraint, num, maxFail) {
+	var good = 0;
+	var bad = 0;
+	var ret = new Array();
+	while(good < num && bad <= maxFail) {
+		centeredPlacer.x = randInt(SIZE);
+		centeredPlacer.y = randInt(SIZE);
+		var r = createArea(centeredPlacer, painter, constraint);
+		if(r) {
+			good++;
+			ret[ret.length] = r;
+		}
+		else {
+			bad++;
+		}
 	}
+	return (good==num) ? ret : null;
 }
