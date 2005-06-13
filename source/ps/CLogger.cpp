@@ -24,16 +24,8 @@ const char* html_footer = "</BODY>\n</HTML>\n";
 
 #define MEMORY_BUFFER_SIZE	240
 
-CLogger * CLogger::GetInstance()
-{
-	static CLogger m_Instance;
-
-	return &m_Instance;
-}
-
 CLogger::CLogger()
 {
-
 	m_NumberOfMessages = 0;
 	m_NumberOfErrors = 0;
 	m_NumberOfWarnings = 0;
@@ -58,7 +50,7 @@ CLogger::CLogger()
 
 CLogger::~CLogger ()
 {
-	char buffer[60];
+	char buffer[128];
 	sprintf(buffer," with %d message(s), %d error(s) and %d warning(s).", \
 						m_NumberOfMessages,m_NumberOfErrors,m_NumberOfWarnings);
 
@@ -255,9 +247,9 @@ int CLogger::Interestedness(const char* category)
 		return 1;
 
 	int level;
-	// Something failed, so the default value might be a good alternative
+	// Try to retrieve the value as an integer
 	if (! v->GetInt(level))
-		return 1;
+		return 1; // something failed, so the default value might be a good alternative
 
 	return level;
 }

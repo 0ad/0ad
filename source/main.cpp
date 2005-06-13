@@ -1103,6 +1103,8 @@ static void Shutdown()
 
 	h_mgr_shutdown();
 	mem_shutdown();
+
+	delete &g_Logger;
 }
 
 static void Init(int argc, char* argv[], bool setup_gfx = true)
@@ -1112,6 +1114,7 @@ static void Init(int argc, char* argv[], bool setup_gfx = true)
 	// If you ever want to catch a particular allocation:
 	//_CrtSetBreakAlloc(187);
 
+	new CLogger;
 
 	// set 24 bit (float) FPU precision for faster divides / sqrts
 #ifdef _M_IX86
@@ -1181,6 +1184,7 @@ static void Init(int argc, char* argv[], bool setup_gfx = true)
 
 #ifdef _WIN32
 sle(11340106);
+	// ???
 #endif
 
 	if (setup_gfx)

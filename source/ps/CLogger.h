@@ -2,14 +2,14 @@
 #define _ps_CLogger_H
 
 #include <fstream>
-#include <stdio.h>
-#include <stdarg.h>
 #include <string>
-#include <vector>
 #include <set>
 
-#define LOG (CLogger::GetInstance()->Log)
-#define LOG_ONCE (CLogger::GetInstance()->LogOnce)
+#include "Singleton.h"
+
+#define g_Logger CLogger::GetSingleton()
+#define LOG (CLogger::GetSingleton().Log)
+#define LOG_ONCE (CLogger::GetSingleton().LogOnce)
 
 enum ELogMethod
 {
@@ -19,13 +19,12 @@ enum ELogMethod
 	WARNING
 };
 
-class CLogger
+class CLogger : public Singleton<CLogger>
 {
 public:
 	
-	//Function used to get instance of CLogger
-	static CLogger *GetInstance();
-	virtual ~CLogger();
+	CLogger();
+	~CLogger();
 
 	//Functions to write different message types
 	void WriteMessage(const char *message, int interestedness);
@@ -39,13 +38,9 @@ public:
 	
 	//Function to log stuff to memory buffer
 	void QuickLog(const char *fmt, ...);
-			
+
 private:
 	
-	CLogger();
-	CLogger(const CLogger& init);
-	CLogger& operator=(const CLogger& rhs);
-
 	void LogUsingMethod(ELogMethod method, const char* category, const char* message);
 
 	//the three filestreams
