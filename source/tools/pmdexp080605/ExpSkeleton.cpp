@@ -128,7 +128,7 @@ void ExpSkeleton::Build(INode* node,ExpBone* parent)
 CSkeletonAnimDef* ExpSkeleton::BuildAnimation(TimeValue start,TimeValue end,float rate)
 {
 	CSkeletonAnimDef* anim=new CSkeletonAnimDef;
-	anim->m_Name="God Knows";
+	strcpy(anim->m_Name,"God Knows");
 	anim->m_NumFrames=1+(end-start)/rate;
 	anim->m_NumKeys=m_Bones.size();
 	anim->m_FrameTime=rate;

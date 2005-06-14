@@ -3,10 +3,10 @@
 
 #include <vector>
 #include "MaxInc.h"
-#include "res/res.h"
 #include "Matrix3D.h"
 #include "Vector3D.h"
 #include "Quaternion.h"
+#include "lib/types.h"
 
 class CSkeleton;
 class CSkeletonAnimDef;

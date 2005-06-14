@@ -4,7 +4,7 @@
 
 #undef PI
 #include "ModelDef.h"
-#include "SkeletonAnim.h"
+//#include "SkeletonAnim.h"
 
 //////////////////////////////////////////////////////////////////////
 // PSAExp constructor

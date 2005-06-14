@@ -3,18 +3,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PMDExp6", "PMDExp6.vcproj",
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ScEd", "..\..\sced\ScEd.vcproj", "{93D2D5DD-9A89-4823-8637-B19B6183278B}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
 Global
-	GlobalSection(SourceCodeControl) = preSolution
-		SccNumberOfProjects = 1
-		SccProjectUniqueName0 = PMDExp6.vcproj
-		SccProjectName0 = \u0022$/dev/dylan/plugins/PMDExp\u0022,\u0020YVAAAAAA
-		SccLocalPath0 = .
-		SccProvider0 = MSSCCI:Microsoft\u0020Visual\u0020SourceSafe
-	EndGlobalSection
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
 		Release = Release
@@ -27,12 +16,6 @@ Global
 		{DC12B42A-5BD3-4767-9947-059DF94BA502}.Release.Build.0 = Release|Win32
 		{DC12B42A-5BD3-4767-9947-059DF94BA502}.Testing.ActiveCfg = Release|Win32
 		{DC12B42A-5BD3-4767-9947-059DF94BA502}.Testing.Build.0 = Release|Win32
-		{93D2D5DD-9A89-4823-8637-B19B6183278B}.Debug.ActiveCfg = Debug|Win32
-		{93D2D5DD-9A89-4823-8637-B19B6183278B}.Debug.Build.0 = Debug|Win32
-		{93D2D5DD-9A89-4823-8637-B19B6183278B}.Release.ActiveCfg = Release|Win32
-		{93D2D5DD-9A89-4823-8637-B19B6183278B}.Release.Build.0 = Release|Win32
-		{93D2D5DD-9A89-4823-8637-B19B6183278B}.Testing.ActiveCfg = Testing|Win32
-		{93D2D5DD-9A89-4823-8637-B19B6183278B}.Testing.Build.0 = Testing|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

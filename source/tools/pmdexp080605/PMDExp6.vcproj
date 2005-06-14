@@ -23,7 +23,7 @@
 				AdditionalOptions="/LD "
 				Optimization="0"
 				OptimizeForProcessor="2"
-				AdditionalIncludeDirectories="d:\3dsmax6\maxsdk\include,..\,..\lib,..\ps,..\simulation,..\terrain"
+				AdditionalIncludeDirectories="d:\3dsmax6\maxsdk\include,d:\3dsmax6\maxsdk\cssdk\include,..\..,..\..\lib,..\..\ps,..\..\simulation,..\..\terrain"
 				PreprocessorDefinitions="_DEBUG;_USRDLL;_3DSMAX_;_WINDOWS;WIN32;_NO_WINMAIN_"
 				RuntimeLibrary="1"
 				PrecompiledHeaderFile=".\DebugR6/PMDExp6.pch"
@@ -91,7 +91,7 @@
 				AdditionalOptions="/LD "
 				Optimization="4"
 				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="d:\3dsmax6\maxsdk\include,..\,..\lib,..\ps,..\simulation,..\terrain"
+				AdditionalIncludeDirectories="d:\3dsmax6\maxsdk\include,d:\3dsmax6\maxsdk\cssdk\include,..\..,..\..\lib,..\..\ps,..\..\simulation,..\..\terrain"
 				PreprocessorDefinitions="NDEBUG;_USRDLL;_3DSMAX_;_WINDOWS;WIN32;_NO_WINMAIN_"
 				RuntimeLibrary="0"
 				PrecompiledHeaderFile=".\ReleaseR6/PMDExp6.pch"
@@ -378,6 +378,9 @@
 			</File>
 			<File
 				RelativePath=".\pmdexp_types.h">
+			</File>
+			<File
+				RelativePath=".\PSAExp.h">
 			</File>
 			<File
 				RelativePath="resource.h">

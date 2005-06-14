@@ -1,7 +1,7 @@
 #ifndef _EXPPROP_H
 #define _EXPPROP_H
 
-#include "CStr.h"
+#include <string>
 #include "Vector3D.h"
 #include "Quaternion.h"
 
@@ -11,7 +11,7 @@ class ExpProp
 {
 public:
 	// name of prop
-	CStr m_Name;
+	std::string m_Name;
 	// position relative to parent
 	CVector3D m_Position;
 	// rotation relative to parent

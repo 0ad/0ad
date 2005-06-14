@@ -263,7 +263,7 @@ CModelDef* PMDExp::BuildModel(std::vector<ExpMesh*>& meshes,std::vector<ExpProp*
 	mdl->m_NumPropPoints=props.size();	
 	mdl->m_PropPoints=new SPropPoint[mdl->m_NumPropPoints];
 	for (i=0;i<mdl->m_NumPropPoints;i++) {
-		mdl->m_PropPoints[i].m_Name=props[i]->m_Name;
+		strcpy(mdl->m_PropPoints[i].m_Name,props[i]->m_Name.c_str());
 		mdl->m_PropPoints[i].m_Position=props[i]->m_Position;
 		mdl->m_PropPoints[i].m_Rotation=props[i]->m_Rotation;
 		mdl->m_PropPoints[i].m_BoneIndex=skeleton ? skeleton->FindBoneByNode(props[i]->m_Parent) : 0xff;
