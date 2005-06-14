@@ -201,7 +201,7 @@ static int get_ogl_drv_name(char* ogl_drv_name, const size_t max_name_len)
 
 	// we just use the first entry. it might be wrong on dual-graphics card
 	// systems, but I don't see a better way to do it. there's no other
-	// occurence of the OpenGL driver name in the registry on my system.
+	// occurrence of the OpenGL driver name in the registry on my system.
 	char key_name[32];
 	DWORD key_name_len = sizeof(key_name);
 	if(RegEnumKeyEx(hkOglDrivers, 0, key_name, &key_name_len, 0, 0, 0, 0) == 0)

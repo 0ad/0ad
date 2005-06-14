@@ -654,7 +654,7 @@ void CRenderer::RenderShadowMap()
 	glEnable(GL_SCISSOR_TEST);
 	glScissor(1,1,m_Width-2,m_Height-2);
 
-	glActiveTexture(GL_TEXTURE0);
+	glActiveTextureARB(GL_TEXTURE0);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PRIMARY_COLOR_ARB);
@@ -799,7 +799,7 @@ void CRenderer::RenderPatches()
 void CRenderer::RenderModelSubmissions()
 {
 	// set up texture environment for base pass - modulate texture and primary color
-	glActiveTexture(GL_TEXTURE0);
+	glActiveTextureARB(GL_TEXTURE0);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
@@ -1090,7 +1090,7 @@ bool CRenderer::LoadTexture(CTexture* texture,u32 wrapflags)
 void CRenderer::BindTexture(int unit,GLuint tex)
 {
 #if 0
-	glActiveTexture(GL_TEXTURE0+unit);
+	glActiveTextureARB(GL_TEXTURE0+unit);
 	if (tex==m_ActiveTextures[unit]) return;
 
 	if (tex) {
@@ -1104,7 +1104,7 @@ void CRenderer::BindTexture(int unit,GLuint tex)
 	m_ActiveTextures[unit]=tex;
 #endif
 
-	glActiveTexture(GL_TEXTURE0+unit);
+	glActiveTextureARB(GL_TEXTURE0+unit);
 
 	glBindTexture(GL_TEXTURE_2D,tex);
 	if (tex) {

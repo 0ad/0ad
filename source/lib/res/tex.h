@@ -49,7 +49,7 @@ struct TexInfo
 	size_t ofs;			// offset to image data in file
 	uint w : 16;
 	uint h : 16;
-	uint bpp : 16;
+	uint bpp : 16;		// average bits per pixel
 	uint flags : 16;
 };
 

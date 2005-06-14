@@ -69,7 +69,9 @@ extern "C" {
 #endif
 
 #define FUNC(ret, name, params) extern ret (CALL_CONV *name) params;
+#define FUNC2(ret, nameARB, nameCore, version, params) extern ret (CALL_CONV *nameARB) params;
 #include "glext_funcs.h"
+#undef FUNC2
 #undef FUNC
 
 // leave CALL_CONV defined for ogl.cpp

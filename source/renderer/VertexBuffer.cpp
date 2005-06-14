@@ -177,11 +177,8 @@ void CVertexBuffer::AppendBatch(VBChunk* UNUSEDPARAM(chunk),Handle texture,size_
 		batch->m_Texture=texture;
 	}
 
-	// resize the chunk's batch to fit it's indices
-	size_t cursize=batch->m_IndexData.size();
-	batch->m_IndexData.resize(cursize+1);
-	// store batch
-	batch->m_IndexData[cursize]=std::pair<size_t,u16*>(numIndices,indices);
+	// resize the chunk's batch to fit its indices
+	batch->m_IndexData.push_back(std::pair<size_t,u16*>(numIndices,indices));
 //	memcpy(&batch->m_Indices[0]+cursize,indices,sizeof(u16)*numIndices);
 }
 

@@ -1212,9 +1212,12 @@ sle(11340106);
 		snd_disable(true);
 	}
 
-	if(!oglHaveExtension("GL_ARB_multitexture") || !oglHaveExtension("GL_ARB_texture_env_combine") ||
-		!glActiveTexture)	// prevent crashing later if multitexture support is falsely
-							// advertised (janwas 2004-08-25, for bug #18)
+	if(!tex_compression_avail)
+	{
+		LOG(WARNING, LOG_CATEGORY, "S3TC compressed textures not supported; will use software version instead");
+	}
+
+	if(!oglHaveExtension("GL_ARB_multitexture") || !oglHaveExtension("GL_ARB_texture_env_combine"))
 	{
 		LOG(ERROR, LOG_CATEGORY, "Required ARB_multitexture or ARB_texture_env_combine extension not available");
 		throw PSERROR_System_RequiredExtensionsMissing();

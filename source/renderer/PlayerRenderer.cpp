@@ -28,13 +28,13 @@ void CPlayerRenderer::SetupColorRenderStates()
 	// but passes alpha through inverted; the second texture unit modulates
 	// with the player colour.
 
-	glActiveTexture(GL_TEXTURE0);
+	glActiveTextureARB(GL_TEXTURE0);
 
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_ONE_MINUS_SRC_ALPHA);
 
-	glActiveTexture(GL_TEXTURE1);
+	glActiveTextureARB(GL_TEXTURE1);
 
 	glEnable(GL_TEXTURE_2D);
 
@@ -69,7 +69,7 @@ void CPlayerRenderer::Render()
 
 
 	// set up texture environment for base pass - modulate texture and primary color
-	glActiveTexture(GL_TEXTURE0);
+	glActiveTextureARB(GL_TEXTURE0);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
@@ -115,12 +115,12 @@ void CPlayerRenderer::Render()
 
 
 	// Restore states
-	glActiveTexture(GL_TEXTURE1);
+	glActiveTextureARB(GL_TEXTURE1);
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_ALPHA_TEST);
 	glDisable(GL_BLEND);
 
-	glActiveTexture(GL_TEXTURE0);
+	glActiveTextureARB(GL_TEXTURE0);
 
 	// switch off client states
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);

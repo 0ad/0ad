@@ -283,7 +283,7 @@ public:
 
 		// Texture unit 1:
 
-		glActiveTexture(GL_TEXTURE1);
+		glActiveTextureARB(GL_TEXTURE1);
 		glEnable(GL_TEXTURE_2D);
 		tex_bind(tex);
 
@@ -305,7 +305,7 @@ public:
 	void Unset()
 	{
 		glDisable(GL_TEXTURE_2D);
-		glActiveTexture(GL_TEXTURE0);
+		glActiveTextureARB(GL_TEXTURE0);
 	}
 };
 
