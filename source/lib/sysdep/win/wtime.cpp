@@ -90,8 +90,8 @@ static double hrt_cal_time = 0.0;
 
 
 // possible high resolution timers, in order of preference.
-// see source for timer properties + problems.
-// used as index into hrt_overrides.
+// see below for timer properties + problems.
+// used as index into overrides[].
 enum HRTImpl
 {
 	// CPU timestamp counter

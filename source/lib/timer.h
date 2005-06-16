@@ -79,6 +79,6 @@ private:
 	ScopedTimer& operator=(const ScopedTimer&);
 };
 
-#define TIMER(name) ScopedTimer st##name##instance(#name);
+#define TIMER(name) ScopedTimer st##name##instance(#name)
 
 #endif	// #ifndef TIMER_H

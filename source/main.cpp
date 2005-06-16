@@ -11,19 +11,16 @@
 #include <cmath>
 #include <stdarg.h>
 
-
-#include "sdl.h"
-#include "ogl.h"
-#include "detect.h"
-#include "timer.h"
-#include "input.h"
+#include "lib/sdl.h"
+#include "lib/ogl.h"
+#include "lib/detect.h"
+#include "lib/timer.h"
+#include "lib/input.h"
 #include "lib.h"
 #include "lib/res/res.h"
 #include "lib/res/tex.h"
+#include "lib/res/snd.h"
 #include "lib/res/hotload.h"
-#ifdef _M_IX86
-# include "sysdep/ia32.h"	// _control87
-#endif
 #include "lib/res/cursor.h"
 
 #include "ps/Profile.h"
@@ -31,32 +28,34 @@
 #include "ps/Loader.h"
 #include "ps/Font.h"
 #include "ps/CConsole.h"
-
 #include "ps/Game.h"
+#include "ps/Interact.h"
+#include "ps/Hotkey.h"
+#include "ps/ConfigDB.h"
+#include "ps/CLogger.h"
+#include "ps/i18n.h"
+#include "ps/Overlay.h"
+#include "ps/StringConvert.h"
 
-#include "MapReader.h"
-#include "Terrain.h"
-#include "TextureManager.h"
-#include "ObjectManager.h"
-#include "SkeletonAnimManager.h"
-#include "Renderer.h"
-#include "LightEnv.h"
-#include "Model.h"
-#include "UnitManager.h"
-#include "MaterialManager.h"
-#include "MeshManager.h"
-#include "Overlay.h"
+#include "graphics/MapReader.h"
+#include "graphics/Terrain.h"
+#include "graphics/TextureManager.h"
+#include "graphics/ObjectManager.h"
+#include "graphics/SkeletonAnimManager.h"
+#include "graphics/LightEnv.h"
+#include "graphics/Model.h"
+#include "graphics/UnitManager.h"
+#include "graphics/MaterialManager.h"
+#include "graphics/MeshManager.h"
+#include "renderer/Renderer.h"
 
-#include "Interact.h"
-#include "Hotkey.h"
-#include "BaseEntityCollection.h"
-#include "Entity.h"
-#include "EntityHandles.h"
-#include "EntityManager.h"
-#include "PathfindEngine.h"
-#include "Scheduler.h"
-#include "Projectile.h"
-#include "StringConvert.h"
+#include "simulation/BaseEntityCollection.h"
+#include "simulation/Entity.h"
+#include "simulation/EntityHandles.h"
+#include "simulation/EntityManager.h"
+#include "simulation/PathfindEngine.h"
+#include "simulation/Scheduler.h"
+#include "simulation/Projectile.h"
 
 #include "scripting/ScriptingHost.h"
 #include "scripting/GameEvents.h"
@@ -71,26 +70,20 @@
 #ifndef NO_GUI
 # include "gui/scripting/JSInterface_IGUIObject.h"
 # include "gui/scripting/JSInterface_GUITypes.h"
-#endif
-
-#include "ConfigDB.h"
-#include "CLogger.h"
-
-#include "ps/i18n.h"
-
-#define LOG_CATEGORY "main"
-
-#ifndef NO_GUI
 # include "gui/GUI.h"
 #endif
 
 #include "sound/CMusicPlayer.h"
 #include "sound/JSI_Sound.h"
-#include "lib/res/snd.h"
 
 #include "Network/SessionManager.h"
 #include "Network/Server.h"
 #include "Network/Client.h"
+
+
+
+
+#define LOG_CATEGORY "main"
 
 CConsole* g_Console = 0;
 extern int conInputHandler(const SDL_Event* ev);
@@ -133,13 +126,11 @@ static CMusicPlayer MusicPlayer;
 CStr g_CursorName = "test";
 CStr g_ActiveProfile = "default";
 
-extern int allow_reload();
-extern int dir_add_watch(const char* dir, bool watch_subdirs);
-
-extern void sle(int);
-
 extern size_t frameCount;
 static bool quit = false;	// break out of main loop
+
+
+
 
 const wchar_t* HardcodedErrorString(int err)
 {
@@ -179,6 +170,9 @@ void Testing (void)
 	g_Console->InsertMessage(L"Testing Function Registration");
 }
 
+
+
+
 static std::string SplitExts(const char *exts)
 {
 	std::string str = exts;
@@ -201,7 +195,8 @@ static std::string SplitExts(const char *exts)
 	return ret;
 }
 
-static void WriteSysInfo()
+
+static void WriteSystemInfo()
 {
 TIMER(write_sys_info);
 
@@ -218,10 +213,10 @@ TIMER(write_sys_info);
 		return;
 
 	// .. OS
-	fprintf(f, "OS            : %s %s (%s)\n", un.sysname, un.release, un.version);
+	fprintf(f, "OS             : %s %s (%s)\n", un.sysname, un.release, un.version);
 
 	// .. CPU
-	fprintf(f, "CPU           : %s, %s", un.machine, cpu_type);
+	fprintf(f, "CPU            : %s, %s", un.machine, cpu_type);
 	if(cpus > 1)
 		fprintf(f, " (x%d)", cpus);
 	if(cpu_freq != 0.0f)
@@ -235,16 +230,16 @@ TIMER(write_sys_info);
 		fprintf(f, "\n");
 
 	// .. memory
-	fprintf(f, "Memory        : %lu MiB; %lu MiB free\n", tot_mem/MiB, avl_mem/MiB);
+	fprintf(f, "Memory         : %lu MiB; %lu MiB free\n", tot_mem/MiB, avl_mem/MiB);
 
 	// .. graphics
-	fprintf(f, "Graphics Card : %s (%s)\n", gfx_card, gfx_drv_ver);
-	fprintf(f, "OpenGL Version: %s\n", glGetString(GL_VERSION));
-	fprintf(f, "Video Mode    : %dx%d:%d@%d\n", g_xres, g_yres, g_bpp, g_freq);
+	fprintf(f, "Graphics Card  : %s\n", gfx_card);
+	fprintf(f, "OpenGL Drivers : %s; %s\n", glGetString(GL_VERSION), gfx_drv_ver);
+	fprintf(f, "Video Mode     : %dx%d:%d@%d\n", g_xres, g_yres, g_bpp, g_freq);
 
 	// .. sound
-	fprintf(f, "Sound Card    : %s\n", snd_card);
-	fprintf(f, "Sound Drivers : %s\n", snd_drv_ver);
+	fprintf(f, "Sound Card     : %s\n", snd_card);
+	fprintf(f, "Sound Drivers  : %s\n", snd_drv_ver);
 
 
 	//
@@ -293,14 +288,15 @@ no_ip:
 }
 
 
-
-
-static int set_vmode(int w, int h, int bpp, bool fullscreen)
+static int SetVideoMode(int w, int h, int bpp, bool fullscreen)
 {
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
-	if(!SDL_SetVideoMode(w, h, bpp, SDL_OPENGL|(fullscreen?SDL_FULLSCREEN:0)))
+	ulong flags = SDL_OPENGL;
+	if(fullscreen)
+		flags |= SDL_FULLSCREEN;
+	if(!SDL_SetVideoMode(w, h, bpp, flags))
 		return -1;
 
 	glViewport(0, 0, w, h);
@@ -448,6 +444,7 @@ static int handler(const SDL_Event* ev)
 
 	return EV_PASS;
 }
+
 
 void EndGame()
 {
@@ -632,6 +629,11 @@ static void Render()
 	oglCheck();
 }
 
+
+//----------------------------------------------------------------------------
+// config and profile
+//----------------------------------------------------------------------------
+
 static void LoadProfile( CStr profile )
 {
 	CStr base = CStr( "profiles/" ) + profile;
@@ -643,6 +645,7 @@ static void LoadProfile( CStr profile )
 		config_value->GetInt( history_size );
 	g_Console->UseHistoryFile( base + "/settings/history", ( history_size >= 0 ) ? history_size : 50 );
 }
+
 
 // Fill in the globals from the config files.
 static void LoadGlobals()
@@ -682,6 +685,7 @@ static void LoadGlobals()
 	LOG(NORMAL, LOG_CATEGORY, "g_x/yres is %dx%d", g_xres, g_yres);
 	LOG(NORMAL, LOG_CATEGORY, "Active profile is %s", g_ActiveProfile.c_str());
 }
+
 
 static void ParseArgs(int argc, char* argv[])
 {
@@ -763,14 +767,36 @@ static void ParseArgs(int argc, char* argv[])
 			break;
 		}	// switch
 	}
-
-	
 }
+
+
+static void InitConfig(int argc, char* argv[])
+{
+	debug_printf("INITCONFIG &argc=%p &argv=%p\n", &argc, &argv);
+
+	TIMER(InitConfig);
+	MICROLOG(L"init config");
+
+	new CConfigDB;
+
+	g_ConfigDB.SetConfigFile(CFG_SYSTEM, false, "config/system.cfg");
+	g_ConfigDB.Reload(CFG_SYSTEM);
+
+	g_ConfigDB.SetConfigFile(CFG_MOD, true, "config/mod.cfg");
+	// No point in reloading mod.cfg here - we haven't mounted mods yet
+
+	ParseArgs(argc, argv);
+
+	LoadGlobals(); // Collects information from system.cfg, the profile file, and any command-line overrides
+	// to fill in the globals.
+}
+
+//----------------------------------------------------------------------------
 
 
 static void InitScripting()
 {
-TIMER(InitScripting)
+TIMER(InitScripting);
 	// Create the scripting host.  This needs to be done before the GUI is created.
 	new ScriptingHost;
 
@@ -816,7 +842,7 @@ TIMER(InitScripting)
 
 static void InitVfs(const char* argv0)
 {
-TIMER(InitVfs)
+TIMER(InitVfs);
 	// set current directory to "$game_dir/data".
 	// this is necessary because it is otherwise unknown,
 	// especially if run from a shortcut / symlink.
@@ -840,11 +866,12 @@ TIMER(InitVfs)
 	// don't try vfs_display yet: SDL_Init hasn't yet redirected stdout
 }
 
+
 static void InitPs()
 {
 	// console
 	{
-	TIMER(ps_console)
+	TIMER(ps_console);
 
 		float ConsoleHeight = g_yres * 0.6f;
 		g_Console->SetSize(0, g_yres-ConsoleHeight, (float)g_xres, ConsoleHeight);
@@ -858,7 +885,7 @@ static void InitPs()
 
 	// language and hotkeys
 	{
-	TIMER(ps_lang_hotkeys)
+	TIMER(ps_lang_hotkeys);
 
 		CConfigValue* val = g_ConfigDB.GetValue(CFG_SYSTEM, "language");
 		std::string lang = "english";
@@ -872,14 +899,14 @@ static void InitPs()
 #ifndef NO_GUI
 	{
 		// GUI uses VFS, so this must come after VFS init.
-		{TIMER(ps_gui_init)
+		{TIMER(ps_gui_init);
 		g_GUI.Initialize();}
 
-		{TIMER(ps_gui_setup_xml)
+		{TIMER(ps_gui_setup_xml);
 		g_GUI.LoadXMLFile("gui/test/setup.xml");}
-		{TIMER(ps_gui_styles_xml)
+		{TIMER(ps_gui_styles_xml);
 		g_GUI.LoadXMLFile("gui/test/styles.xml");}
-		{TIMER(ps_gui_sprite1_xml)
+		{TIMER(ps_gui_sprite1_xml);
 		g_GUI.LoadXMLFile("gui/test/sprite1.xml");}
 	}
 
@@ -887,28 +914,28 @@ static void InitPs()
 	{
 //	TIMER(ps_gui_hack)
 
-		{TIMER(ps_gui_1)
+		{TIMER(ps_gui_1);
 		g_GUI.LoadXMLFile("gui/test/1_init.xml");}
-		{TIMER(ps_gui_2)
+		{TIMER(ps_gui_2);
 		g_GUI.LoadXMLFile("gui/test/2_mainmenu.xml");}
-		{TIMER(ps_gui_3)
+		{TIMER(ps_gui_3);
 		g_GUI.LoadXMLFile("gui/test/3_loading.xml");}
-		{TIMER(ps_gui_4)
+		{TIMER(ps_gui_4);
 		g_GUI.LoadXMLFile("gui/test/4_session.xml");}
-		{TIMER(ps_gui_6)
+		{TIMER(ps_gui_6);
 		g_GUI.LoadXMLFile("gui/test/6_subwindows.xml");}
-		{TIMER(ps_gui_6_1)
+		{TIMER(ps_gui_6_1);
 		g_GUI.LoadXMLFile("gui/test/6_1_manual.xml");}
-		{TIMER(ps_gui_6_2)
+		{TIMER(ps_gui_6_2);
 		g_GUI.LoadXMLFile("gui/test/6_2_jukebox.xml");}
-		{TIMER(ps_gui_7)
+		{TIMER(ps_gui_7);
 		g_GUI.LoadXMLFile("gui/test/7_atlas.xml");}
-		{TIMER(ps_gui_9)
+		{TIMER(ps_gui_9);
 		g_GUI.LoadXMLFile("gui/test/9_global.xml");}
 	}
 
 //	{
-//	TIMER(ps_gui_hello_xml)
+//	TIMER(ps_gui_hello_xml);
 //		g_GUI.LoadXMLFile("gui/test/hello.xml");
 //	}
 #endif
@@ -937,29 +964,9 @@ static void psShutdown()
 }
 
 
-static void InitConfig(int argc, char* argv[])
-{
-TIMER(InitConfig)
-	MICROLOG(L"init config");
-
-	new CConfigDB;
-
-	g_ConfigDB.SetConfigFile(CFG_SYSTEM, false, "config/system.cfg");
-	g_ConfigDB.Reload(CFG_SYSTEM);
-
-	g_ConfigDB.SetConfigFile(CFG_MOD, true, "config/mod.cfg");
-	// No point in reloading mod.cfg here - we haven't mounted mods yet
-	
-	ParseArgs(argc, argv);
-
-	LoadGlobals(); // Collects information from system.cfg, the profile file, and any command-line overrides
-				   // to fill in the globals.
-}
-
-
 static void InitRenderer()
 {
-TIMER(InitRenderer)
+TIMER(InitRenderer);
 	// create renderer
 	new CRenderer;
 
@@ -1002,6 +1009,18 @@ TIMER(InitRenderer)
 	vp.m_Width=g_xres;
 	vp.m_Height=g_yres;
 	g_Renderer.SetViewport(vp);
+}
+
+static void InitSDL()
+{
+	MICROLOG(L"init sdl");
+	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
+	{
+		LOG(ERROR, LOG_CATEGORY, "SDL library initialization failed: %s", SDL_GetError());
+		throw PSERROR_System_SDLInitFailed();
+	}
+	atexit(SDL_Quit);
+	SDL_EnableUNICODE(1);
 }
 
 
@@ -1107,8 +1126,16 @@ static void Shutdown()
 	delete &g_Logger;
 }
 
+
+// workaround for VC7 EBP-trashing bug, which confuses the stack trace code.
+#ifdef _MSC_VER
+#pragma optimize("", off)
+#endif
+
 static void Init(int argc, char* argv[], bool setup_gfx = true)
 {
+debug_printf("INIT &argc=%p &argv=%p\n", &argc, &argv);
+
 	MICROLOG(L"In init");
 
 	// If you ever want to catch a particular allocation:
@@ -1116,10 +1143,12 @@ static void Init(int argc, char* argv[], bool setup_gfx = true)
 
 	new CLogger;
 
-	// set 24 bit (float) FPU precision for faster divides / sqrts
-#ifdef _M_IX86
-	_control87(_PC_24, _MCW_PC);
-#endif
+	// no longer set 24 bit (float) precision by default: for
+	// very long game uptimes (> 1 day; e.g. dedicated server),
+	// we need full precision when calculating the time.
+	// if there's a spot where we want to speed up divides|sqrts,
+	// we can temporarily change precision there.
+//	_control87(_PC_24, _MCW_PC);
 
 	// detects CPU clock frequency and capabilities, which are prerequisites
 	// for using the TSC as a timer (desirable due to its high resolution).
@@ -1150,22 +1179,14 @@ static void Init(int argc, char* argv[], bool setup_gfx = true)
 	// and fonts are set later in InitPs())
 	g_Console = new CConsole();
 
-	if (setup_gfx)
-	{
-		MICROLOG(L"init sdl");
-		// init SDL
-		if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
-		{
-			LOG(ERROR, LOG_CATEGORY, "SDL library initialization failed: %s", SDL_GetError());
-			throw PSERROR_System_SDLInitFailed();
-		}
-		atexit(SDL_Quit);
-		SDL_EnableUNICODE(1);
-	}
+	if(setup_gfx)
+		InitSDL();
 
 	// preferred video mode = current desktop settings
 	// (command line params may override these)
 	get_cur_vmode(&g_xres, &g_yres, &g_bpp, &g_freq);
+
+	new CProfileManager;	// before any script code
 
 	MICROLOG(L"init scripting");
 	InitScripting();	// before GUI
@@ -1173,7 +1194,7 @@ static void Init(int argc, char* argv[], bool setup_gfx = true)
 	// g_ConfigDB, command line args, globals
 	InitConfig(argc, argv);
 
-	// GUI is notified in set_vmode, so this must come before that.
+	// GUI is notified in SetVideoMode, so this must come before that.
 #ifndef NO_GUI
 	new CGUI;
 #endif
@@ -1182,16 +1203,11 @@ static void Init(int argc, char* argv[], bool setup_gfx = true)
 	bool windowed=false;
 	if (val) val->GetBool(windowed);
 
-#ifdef _WIN32
-sle(11340106);
-	// ???
-#endif
-
 	if (setup_gfx)
 	{
 		MICROLOG(L"set vmode");
 
-		if(set_vmode(g_xres, g_yres, 32, !windowed) < 0)
+		if(SetVideoMode(g_xres, g_yres, 32, !windowed) < 0)
 		{
 			LOG(ERROR, LOG_CATEGORY, "Could not set %dx%d graphics mode: %s", g_xres, g_yres, SDL_GetError());
 			throw PSERROR_System_VmodeFailed();
@@ -1201,7 +1217,7 @@ sle(11340106);
 
 	if(!g_Quickstart)
 	{
-		WriteSysInfo();
+		WriteSystemInfo();
 		vfs_display();
 	}
 	else
@@ -1212,15 +1228,15 @@ sle(11340106);
 		snd_disable(true);
 	}
 
-	if(!tex_compression_avail)
+	// (must come after SetVideoMode, since it calls oglInit)
+	const char* missing = oglHaveExtensions(0, "GL_ARB_multitexture", "GL_ARB_texture_env_combine", "GL_ARB_texture_env_dot3", 0);
+	if(missing)
 	{
-		LOG(WARNING, LOG_CATEGORY, "S3TC compressed textures not supported; will use software version instead");
-	}
-
-	if(!oglHaveExtension("GL_ARB_multitexture") || !oglHaveExtension("GL_ARB_texture_env_combine"))
-	{
-		LOG(ERROR, LOG_CATEGORY, "Required ARB_multitexture or ARB_texture_env_combine extension not available");
-		throw PSERROR_System_RequiredExtensionsMissing();
+		wchar_t buf[100];
+		swprintf(buf, ARRAY_SIZE(buf), L"Required extension not supported (%hs)", missing);
+		wdisplay_msg(L"Problem", buf);
+		// TODO: i18n
+		exit(EXIT_FAILURE);
 	}
 
 	// enable/disable VSync
@@ -1316,6 +1332,12 @@ TIMER(init_after_InitRenderer);
 
 	g_Console->RegisterFunc(Testing, L"Testing");
 }
+
+#ifdef _MSC_VER
+#pragma optimize("", off)
+#endif
+
+
 
 static void Frame()
 {
@@ -1444,11 +1466,11 @@ static void Frame()
 
 int main(int argc, char* argv[])
 {
-	new CProfileManager;
+debug_printf("MAIN &argc=%p &argv=%p\n", &argc, &argv);
 
-	MICROLOG(L"In main");
+//	MICROLOG(L"In main");
 
-	MICROLOG(L"Init");
+//	MICROLOG(L"Init");
 	Init(argc, argv, true);
 
 	// Optionally, do some simple tests to ensure things aren't broken
