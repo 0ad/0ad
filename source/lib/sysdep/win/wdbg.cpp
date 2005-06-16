@@ -33,9 +33,10 @@
 #include "ps/i18n.h"
 #endif
 
+#include "sysdep/cpu.h"
 #include "wdbg.h"
-#include "assert_dlg.h"
-
+#include "error_dialog.h"
+#include "byte_order.h"		// FOURCC
 
 #ifdef _MSC_VER
 #pragma comment(lib, "dbghelp.lib")
@@ -73,8 +74,57 @@ static void unlock()
 
 enum WdbgError
 {
-	WDBG_UNRETRIEVABLE_STATIC = -100000
+	// the value is stored in an external module and therefore cannot be
+	// displayed.
+	WDBG_UNRETRIEVABLE_STATIC  = -100000,
+
+	// the value is stored in a register and therefore cannot be displayed
+	// (see CV_HREG_e).
+	WDBG_UNRETRIEVABLE_REG     = -100001,
+
+	// an essential call to SymGetTypeInfo or SymFromIndex failed.
+	WDBG_TYPE_INFO_UNAVAILABLE = -100002,
+
+	// exception raised while processing the symbol.
+	WDBG_INTERNAL_ERROR        = -100003,
 };
+
+
+// return localized version of <text>, if i18n functionality is available.
+// this is used to translate the "unhandled exception" dialog strings.
+// WARNING: leaks memory returned by wcsdup, but that's ok since the
+// program will terminate soon after. fixing this is hard and senseless.
+static const wchar_t* translate(const wchar_t* text)
+{
+#ifdef HAVE_I18N
+	// make sure i18n system is (already|still) initialized.
+	if(g_CurrentLocale)
+	{
+		// be prepared for this to fail, because translation potentially
+		// involves script code and the JS context might be corrupted.
+		__try
+		{
+			const wchar_t* text2 = wcsdup(I18n::translate(text).c_str());
+			// only overwrite if wcsdup succeeded, i.e. not out of memory.
+			if(text2)
+				text = text2;
+		}
+		__except(EXCEPTION_EXECUTE_HANDLER)
+		{
+		}
+	}
+#endif
+
+	return text;
+}
+
+
+// convenience wrapper using translate.
+static void translate_and_display_msg(const wchar_t* caption, const wchar_t* text)
+{
+	wdisplay_msg(translate(caption), translate(text));
+}
+
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -130,91 +180,6 @@ void debug_check_heap()
 	__except(EXCEPTION_EXECUTE_HANDLER)
 	{
 	}
-}
-
-
-//////////////////////////////////////////////////////////////////////////////
-//
-// dbghelp symbol engine
-//
-//////////////////////////////////////////////////////////////////////////////
-
-
-
-// passed to all dbghelp symbol query functions. we're not interested in
-// resolving symbols in other processes; the purpose here is only to
-// generate a stack trace. if that changes, we need to init a local copy
-// of these in dump_sym_cb and pass them to all subsequent dump_*.
-static HANDLE hProcess;
-static ULONG64 mod_base;
-
-// for StackWalk64; taken from PE header by wdbg_init
-static WORD machine;
-
-static int sym_init()
-{
-	hProcess = GetCurrentProcess();
-
-	SymSetOptions(SYMOPT_DEFERRED_LOADS|SYMOPT_DEBUG);
-	// loads symbols for all active modules.
-	BOOL ok = SymInitialize(hProcess, 0, TRUE);
-	if(!ok)
-		display_msg("wdbg_init", "SymInitialize failed");
-
-	mod_base = SymGetModuleBase64(hProcess, (u64)&wdbg_init);
-	IMAGE_NT_HEADERS* header = ImageNtHeader((void*)mod_base);
-	machine = header->FileHeader.Machine;
-
-	return 0;
-}
-
-
-static int sym_shutdown()
-{
-	SymCleanup(hProcess);
-	return 0;
-}
-
-
-// ~500µs
-int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
-{
-	const DWORD64 addr = (DWORD64)ptr_of_interest;
-	int successes = 0;
-
-	lock();
-
-	// get symbol name
-	if(sym_name)
-	{
-		sym_name[0] = '\0';
-		SYMBOL_INFO_PACKAGE sp;
-		SYMBOL_INFO* sym = &sp.si;
-		sym->SizeOfStruct = sizeof(sp.si);
-		sym->MaxNameLen = MAX_SYM_NAME;
-		if(SymFromAddr(hProcess, addr, 0, sym))
-		{
-			snprintf(sym_name, DBG_SYMBOL_LEN, "%s", sym->Name);
-			successes++;
-		}
-	}
-
-	// get source file + line number
-	if(file || line)
-	{
-		IMAGEHLP_LINE64 line_info = { sizeof(IMAGEHLP_LINE64) };
-		DWORD displacement; // unused but required by SymGetLineFromAddr64!
-		if(SymGetLineFromAddr64(hProcess, addr, &displacement, &line_info))
-			successes++;
-		// note: were left zeroed if SymGetLineFromAddr64 failed
-		if(file)
-			snprintf(file, DBG_FILE_LEN, "%s", line_info.FileName);
-		if(line)
-			*line = line_info.LineNumber;
-	}
-
-	unlock();
-	return (successes == 0)? -1 : 0;
 }
 
 
@@ -472,6 +437,98 @@ int debug_remove_all_breaks()
 
 //////////////////////////////////////////////////////////////////////////////
 //
+// dbghelp
+//
+//////////////////////////////////////////////////////////////////////////////
+
+// passed to all dbghelp symbol query functions. we're not interested in
+// resolving symbols in other processes; the purpose here is only to
+// generate a stack trace. if that changes, we need to init a local copy
+// of these in dump_sym_cb and pass them to all subsequent dump_*.
+static HANDLE hProcess;
+static ULONG64 mod_base;
+
+// for StackWalk64; taken from PE header by wdbg_init
+static WORD machine;
+
+static const STACKFRAME64* current_stackframe64;
+
+static int sym_init()
+{
+	hProcess = GetCurrentProcess();
+
+	SymSetOptions(SYMOPT_DEFERRED_LOADS/*/*|SYMOPT_DEBUG*/);
+	// loads symbols for all active modules.
+	BOOL ok = SymInitialize(hProcess, 0, TRUE);
+	if(!ok)
+		display_msg("wdbg_init", "SymInitialize failed");
+
+	mod_base = SymGetModuleBase64(hProcess, (u64)&wdbg_init);
+	IMAGE_NT_HEADERS* header = ImageNtHeader((void*)mod_base);
+	machine = header->FileHeader.Machine;
+
+	return 0;
+}
+
+
+static int sym_shutdown()
+{
+	SymCleanup(hProcess);
+	return 0;
+}
+
+
+struct SYMBOL_INFO_PACKAGE2 : public SYMBOL_INFO_PACKAGE
+{
+	SYMBOL_INFO_PACKAGE2()
+	{
+		si.SizeOfStruct = sizeof(si);
+		si.MaxNameLen = MAX_SYM_NAME;
+	}
+};
+
+// ~500µs
+int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
+{
+	const DWORD64 addr = (DWORD64)ptr_of_interest;
+	int successes = 0;
+
+	lock();
+
+	// get symbol name
+	if(sym_name)
+	{
+		sym_name[0] = '\0';
+		SYMBOL_INFO_PACKAGE2 sp;
+		SYMBOL_INFO* sym = &sp.si;
+		if(SymFromAddr(hProcess, addr, 0, sym))
+		{
+			snprintf(sym_name, DBG_SYMBOL_LEN, "%s", sym->Name);
+			successes++;
+		}
+	}
+
+	// get source file + line number
+	if(file || line)
+	{
+		IMAGEHLP_LINE64 line_info = { sizeof(IMAGEHLP_LINE64) };
+		DWORD displacement; // unused but required by SymGetLineFromAddr64!
+		if(SymGetLineFromAddr64(hProcess, addr, &displacement, &line_info))
+			successes++;
+		// note: were left zeroed if SymGetLineFromAddr64 failed
+		if(file)
+			snprintf(file, DBG_FILE_LEN, "%s", line_info.FileName);
+		if(line)
+			*line = line_info.LineNumber;
+	}
+
+	unlock();
+	return (successes == 0)? -1 : 0;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
 // stack walk via dbghelp
 //
 //////////////////////////////////////////////////////////////////////////////
@@ -506,7 +563,7 @@ int debug_remove_all_breaks()
 #ifdef _M_IX86
 
 // optimized for size.
-static __declspec(naked) void __cdecl fill_context(void* pcontext)
+static __declspec(naked) void __cdecl get_current_context(void* pcontext)
 {
 __asm
 {
@@ -579,7 +636,7 @@ rep	stosd
 
 #else	// #ifdef _M_IX86
 
-static void fill_context(CONTEXT* pcontext)
+static void get_current_context(CONTEXT* pcontext)
 {
 	__try
 	{
@@ -607,19 +664,24 @@ typedef int (*StackFrameCallback)(const STACKFRAME64*, void*);
 
 // iterate over a call stack, calling back for each frame encountered.
 // if <pcontext> != 0, we start there; otherwise, at the current context.
-// return -1 if callback never succeeded (returned 0).
+// return -1 if callback never succeeded (returned 0). lock must be held.
 static int walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip = 0, const CONTEXT* pcontext = 0)
 {
 	const HANDLE hThread = GetCurrentThread();
 
+	// get CONTEXT (see above)
 	CONTEXT context;
-	if(!pcontext)
+	// .. caller knows the context (most likely from an exception);
+	//    since StackWalk64 may modify it, copy to a local variable.
+	if(pcontext)
+		context = *pcontext;
+	// .. need to determine context ourselves.
+	else
 	{
-		fill_context(&context);
-		pcontext = &context;
-
+		get_current_context(&context);
 		skip++;	// skip walk_stack's frame
 	}
+	pcontext = &context;
 
 	STACKFRAME64 sf;
 	memset(&sf, 0, sizeof(sf));
@@ -630,16 +692,11 @@ static int walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip = 0, 
 	sf.AddrStack.Offset = pcontext->SP_;
 	sf.AddrStack.Mode   = AddrModeFlat;
 
-	// StackWalk64 may write to pcontext, but there's no mention of
-	// EXCEPTION_POINTERS.ContextRecord being read-only, so don't copy it.
-
 	// for each stack frame found:
 	for(;;)
 	{
-		lock();
 		BOOL ok = StackWalk64(machine, hProcess, hThread, &sf, (void*)pcontext,
 			0, SymFunctionTableAccess64, SymGetModuleBase64, 0);
-		unlock();
 
 		// callback never indicated success and no (more) frames found: abort.
 		// note: also test FP because StackWalk64 sometimes erroneously
@@ -705,13 +762,11 @@ struct DumpState
 	// keep in sync with MAX_* above
 	uint level : 8;
 	uint indirection : 8;
-	uint fits_on_one_line : 1;
 
 	DumpState()
 	{
 		level = 0;
 		indirection = 0;
-		fits_on_one_line = 0;
 	}
 };
 
@@ -932,6 +987,29 @@ not_handle:
 }
 
 
+static int dump_special_udt(WCHAR* type_name, const u8* p, size_t size, DumpState state)
+{
+	int ret;
+
+	ret = dump_string(type_name, p, size, state);
+	if(ret <= 0)
+		return ret;
+
+	if(should_suppress_udt(type_name))
+	{
+		// the data symbol is pointer-to-UDT. since we won't display its
+		// contents, leave only the pointer's value.
+		if(state.indirection)
+			out_erase(4);	// " -> "
+
+		return 0;
+	}
+
+	return 1;	// not handled
+}
+
+
+
 // forward decl; called by dump_sequence and some of dump_sym_*.
 static int dump_sym(DWORD idx, const u8* p, DumpState state);
 
@@ -969,21 +1047,22 @@ static int dump_sequence(const u8* p, uint num_elements, DWORD el_idx, size_t el
 		(el_size <= sizeof(int ) && num_elements <=  8);
 
 	state.level++;
-	state.fits_on_one_line = fits_on_one_line;
-
 	out(fits_on_one_line? L"{ " : L"\r\n");
 
 	int err = 0;
 	for(uint i = 0; i < num_elements_to_show; i++)
 	{
+		if(!fits_on_one_line)
+			INDENT;
+
 		int ret = dump_sym(el_idx, p + i*el_size, state);
 		if(err == 0)	// remember first error
 			err = ret;
 
 		// add separator unless this is the last element
 		// (can't just erase below due to additional "...")
-		if(i != num_elements_to_show-1 && fits_on_one_line)
-			out(L", ");
+		if(i != num_elements_to_show-1)
+			out(fits_on_one_line? L", " : L"\r\n");
 	}
 	// we truncated some
 	if(num_elements != num_elements_to_show)
@@ -994,25 +1073,137 @@ static int dump_sequence(const u8* p, uint num_elements, DWORD el_idx, size_t el
 	return err;
 }
 
-
-static int determine_symbol_address(DWORD idx, const u8** pp, size_t size)
+// from cvconst.h
+//
+// rationale: we don't provide a get_register routine, since only the
+// value of FP is known to dump_frame_cb (via STACKFRAME64).
+// displaying variables stored in registers is out of the question;
+// all we can do is display FP-relative variables.
+enum CV_HREG_e
 {
+	CV_REG_EAX = 17,
+	CV_REG_ECX = 18,
+	CV_REG_EDX = 19,
+	CV_REG_EBX = 20,
+	CV_REG_ESP = 21,
+	CV_REG_EBP = 22,
+	CV_REG_ESI = 23,
+	CV_REG_EDI = 24
+};
+
+
+static const wchar_t* string_for_register(CV_HREG_e reg)
+{
+	switch(reg)
+	{
+	case CV_REG_EAX:
+		return L"eax";
+	case CV_REG_ECX:
+		return L"ecx";
+	case CV_REG_EDX:
+		return L"edx";
+	case CV_REG_EBX:
+		return L"ebx";
+	case CV_REG_ESP:
+		return L"esp";
+	case CV_REG_EBP:
+		return L"ebp";
+	case CV_REG_ESI:
+		return L"esi";
+	case CV_REG_EDI:
+		return L"edi";
+	default:
+		{
+		static wchar_t buf[19];
+		swprintf(buf, ARRAY_SIZE(buf), L"0x%x", reg);
+		return buf;
+		}
+	}
+}
+
+
+static int determine_symbol_address(DWORD idx, DWORD type_idx, const u8** pp)
+{
+	const STACKFRAME64* sf = current_stackframe64;
+
+	ULONG64 size_ = 0;
+	if(!SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_LENGTH, &size_))
+		return WDBG_TYPE_INFO_UNAVAILABLE;
+	const size_t size = (size_t)size_;
+
 	DWORD data_kind;
 	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_DATAKIND, &data_kind))
+		return WDBG_TYPE_INFO_UNAVAILABLE;
+	switch(data_kind)
 	{
-SGTI_FAILED:
-		debug_warn("determine_symbol_address: SymGetTypeInfo failed");
-		return -1;
+	// SymFromIndex will fail
+	case DataIsMember:
+		{
+		DWORD ofs = 0;
+		if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_OFFSET, &ofs))
+			return WDBG_TYPE_INFO_UNAVAILABLE;
+		//assert(ofs < size);
+		*pp += ofs;
+		return 0;
+		}
+
+	// note: sometimes erroneously reported, but there's nothing we can do
+	// because TI_GET_ADDRESS returns mod_base, TI_GET_ADDRESSOFFSET 0,
+	// and TI_GET_OFFSET fails (it's only for members).
+	case DataIsStaticMember:
+		return WDBG_UNRETRIEVABLE_STATIC;
+
 	}
 
-	DWORD ofs = 0;
-	ULONG64 addr = 0;
+	SYMBOL_INFO_PACKAGE2 sp;
+	SYMBOL_INFO* sym = &sp.si;
+	if(!SymFromIndex(hProcess, mod_base, idx, sym))
+		return WDBG_TYPE_INFO_UNAVAILABLE;
 
-/*
-SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_ADDRESSOFFSET, &ofs);
-SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_ADDRESS, &addr);
-debug_printf("det_sym_addr: dk=%d addr=%I64p ofs=%d\n", data_kind, addr, ofs);
-*/
+DWORD addrofs = 0;
+ULONG64 addr2 = 0;
+DWORD ofs2 = 0;
+SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_ADDRESSOFFSET, &addrofs);
+SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_ADDRESS, &addr2);
+SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_OFFSET, &ofs2);
+
+
+
+	// get address
+	ULONG64 addr = sym->Address;
+	// .. relative to a register
+	if(sym->Flags & SYMFLAG_REGREL)
+	{
+		if(sym->Register == CV_REG_EBP)
+			addr += sf->AddrFrame.Offset;
+		else
+			goto in_register;
+	}
+	// .. relative to FP (appears to be obsolete)
+	else if(sym->Flags & SYMFLAG_FRAMEREL)
+		addr += sf->AddrFrame.Offset;
+	// .. in register (this happens when optimization is enabled,
+	//    but we can't do anything; see SymbolInfoRegister)
+	else if(sym->Flags & SYMFLAG_REGISTER)
+		goto in_register;
+	
+	*pp = (const u8*)addr;
+
+#ifdef NDEBUG
+	if(!(sym->Flags & SYMFLAG_PARAMETER))
+		*pp += 4;
+#endif
+
+debug_printf("DET_SYM_ADDR %s at %p  flags=%X dk=%d sym->addr=%I64X addrofs=%X addr2=%I64X ofs2=%X\n", sym->Name, *pp, sym->Flags, data_kind, sym->Address, addrofs, addr2, ofs2);
+
+	return 0;
+
+in_register:
+	*pp = (const u8*)(uintptr_t)sym->Register;
+	return WDBG_UNRETRIEVABLE_REG;
+	
+	
+	/*
 
 	switch(data_kind)
 	{
@@ -1029,17 +1220,9 @@ debug_printf("det_sym_addr: dk=%d addr=%I64p ofs=%d\n", data_kind, addr, ofs);
 
 	// UDT member: get offset
 	case DataIsMember:
-		if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_OFFSET, &ofs))
-			goto SGTI_FAILED;
-		assert(!size || ofs < size);
 		*pp += ofs;
 		break;
 
-	// note: sometimes erroneously reported, but there's nothing we can do
-	// because TI_GET_ADDRESS returns mod_base, TI_GET_ADDRESSOFFSET 0,
-	// and TI_GET_OFFSET fails (it's only for members).
-	case DataIsStaticMember:
-		return WDBG_UNRETRIEVABLE_STATIC;
 
 	default:
 		debug_warn("dump_sym_data: invalid data kind");
@@ -1048,8 +1231,25 @@ debug_printf("det_sym_addr: dk=%d addr=%I64p ofs=%d\n", data_kind, addr, ofs);
 
 	// success
 	return 0;
+
+*/
 }
 
+
+// note: we can't derive from TI_FINDCHILDREN_PARAMS because its members
+// aren't guaranteed to precede ours (although they do in practice).
+struct TI_FINDCHILDREN_PARAMS2
+{
+	TI_FINDCHILDREN_PARAMS2(DWORD num_children)
+	{
+		p.Start = 0;
+		p.Count = MIN(num_children, MAX_CHILDREN);
+	}
+
+	static const size_t MAX_CHILDREN = 400;
+	TI_FINDCHILDREN_PARAMS p;
+	DWORD additional_children[MAX_CHILDREN-1];
+};
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -1063,17 +1263,22 @@ debug_printf("det_sym_addr: dk=%d addr=%I64p ofs=%d\n", data_kind, addr, ofs);
 // called by dump_sym; lock is held.
 
 
-static int dump_sym_array(DWORD idx, const u8* p, size_t size, DumpState state)
+static int dump_sym_array(DWORD idx, const u8* p, DumpState state)
 {
+	ULONG64 size_ = 0;
+	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_LENGTH, &size_))
+		return WDBG_TYPE_INFO_UNAVAILABLE;
+	const size_t size = (size_t)size_;
+
 	// get element count and size
 	DWORD el_idx = 0;
 	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_TYPEID, &el_idx))
-		return -1;
+		return WDBG_TYPE_INFO_UNAVAILABLE;
 	// .. workaround: TI_GET_COUNT returns total struct size for
 	//    arrays-of-struct. therefore, calculate as size / el_size.
 	ULONG64 el_size_;
 	if(!SymGetTypeInfo(hProcess, mod_base, el_idx, TI_GET_LENGTH, &el_size_))
-		return -1;
+		return WDBG_TYPE_INFO_UNAVAILABLE;
 	const size_t el_size = (size_t)el_size_;
 	assert(el_size != 0);
 	const uint num_elements = (uint)(size / el_size);
@@ -1090,11 +1295,15 @@ static int dump_sym_array(DWORD idx, const u8* p, size_t size, DumpState state)
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int dump_sym_base_type(DWORD idx, const u8* p, size_t size, DumpState state)
+static int dump_sym_base_type(DWORD idx, const u8* p, DumpState state)
 {
 	DWORD base_type;
 	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_BASETYPE, &base_type))
-		return -1;
+		return WDBG_TYPE_INFO_UNAVAILABLE;
+	ULONG64 size_ = 0;
+	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_LENGTH, &size_))
+		return WDBG_TYPE_INFO_UNAVAILABLE;
+	const size_t size = (size_t)size_;
 
 	u64 data = movzx_64le(p, size);
 	// if value is 0xCC..CC (uninitialized mem), we display as hex. 
@@ -1229,7 +1438,7 @@ uninitialized:
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int dump_sym_base_class(DWORD idx, const u8* p, size_t size, DumpState state)
+static int dump_sym_base_class(DWORD idx, const u8* p, DumpState state)
 {
 	// unsupported: virtual base classes would require reading the VTbl,
 	// which is difficult given lack of documentation and not worth it.
@@ -1240,47 +1449,54 @@ static int dump_sym_base_class(DWORD idx, const u8* p, size_t size, DumpState st
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int dump_sym_data(DWORD idx, const u8* p, size_t size, DumpState state)
+static int dump_sym_data(DWORD idx, const u8* p, DumpState state)
 {
-	// SymFromIndexW will fail if dataKind happens to be DataIsMember, so
+	// SymFromIndex will fail if dataKind happens to be DataIsMember, so
 	// we use SymGetTypeInfo (slower and less convenient, but no choice).
 	DWORD type_idx;
 	WCHAR* name;
 	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_TYPEID, &type_idx))
-	{
-SGTI_FAILED:
-		debug_warn("dump_sym_data: SymGetTypeInfo failed");
-		return -1;
-	}
+		return WDBG_TYPE_INFO_UNAVAILABLE;
 	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_SYMNAME, &name))
-		goto SGTI_FAILED;
+		return WDBG_TYPE_INFO_UNAVAILABLE;
 
 
-	if(!state.fits_on_one_line)
-		INDENT;
 	out(L"%s = ", name);
 	LocalFree(name);
 
 	int err;
 	__try
 	{
-		err = determine_symbol_address(idx, &p, size);
+		err = determine_symbol_address(idx, type_idx, &p);
 		if(err == 0)
 			err = dump_sym(type_idx, p, state);
 	}
 	__except(EXCEPTION_EXECUTE_HANDLER)
 	{
-		out(L"(internal error)\r\n");
-		err = -1;
+		err = WDBG_INTERNAL_ERROR;
 	}
-	// .. dbghelp flaw; see above.
-	if(err == WDBG_UNRETRIEVABLE_STATIC)
-		out(L"(unavailable - located in another module)");
-	// .. failed to produce any reasonable output for whatever reason.
-	else if(err < 0)
-		out(L"?");
 
-	out(state.fits_on_one_line? L", " : L"\r\n");
+	if(err < 0)
+		switch(err)
+		{
+		case WDBG_UNRETRIEVABLE_STATIC:
+			out(L"(unavailable - located in another module)");
+			break;
+		case WDBG_UNRETRIEVABLE_REG:
+			out(L"(unavailable - stored in register %s)", string_for_register((CV_HREG_e)(uintptr_t)p));
+			break;
+		case WDBG_TYPE_INFO_UNAVAILABLE:
+			out(L"(unavailable - type info request failed; GLE=%d)", GetLastError());
+			break;
+		case WDBG_INTERNAL_ERROR:
+			out(L"(internal error)\r\n");
+			break;
+		// .. failed to produce any reasonable output for whatever reason.
+		default:
+			out(L"(?)");
+			break;
+		}
+
 	return 0;
 	// by aborting *for this symbol* and displaying value as "?",
 	// any errors are considered handled. we don't want one faulty
@@ -1292,34 +1508,34 @@ SGTI_FAILED:
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int dump_sym_enum(DWORD idx, const u8* p, size_t size, DumpState state)
+static int dump_sym_enum(DWORD idx, const u8* p, DumpState state)
 {
+	ULONG64 size_ = 0;
+	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_LENGTH, &size_))
+		return WDBG_TYPE_INFO_UNAVAILABLE;
+	const size_t size = (size_t)size_;
+
 	const i64 current_value = movsx_64le(p, size);
 
+	// get children
 	DWORD num_children;
 	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_CHILDRENCOUNT, &num_children))
-		goto name_unavailable;
+		return WDBG_TYPE_INFO_UNAVAILABLE;
+	TI_FINDCHILDREN_PARAMS2 fcp(num_children);
+	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_FINDCHILDREN, &fcp))
+		return WDBG_TYPE_INFO_UNAVAILABLE;
 
-	// alloc an array to hold child IDs
-	const size_t MAX_CHILDREN = 1000;
-	char child_buf[sizeof(TI_FINDCHILDREN_PARAMS)+MAX_CHILDREN*sizeof(DWORD)];
-	TI_FINDCHILDREN_PARAMS* fcp = (TI_FINDCHILDREN_PARAMS*)child_buf;
-	fcp->Start = 0;
-	fcp->Count = MIN(num_children, MAX_CHILDREN);
-
-	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_FINDCHILDREN, fcp))
-		goto name_unavailable;
-
-	for(uint i = 0; i < fcp->Count; i++)
+	for(uint i = 0; i < fcp.p.Count; i++)
 	{
-		DWORD child_data_idx = fcp->ChildId[i];
+		DWORD child_data_idx = fcp.p.ChildId[i];
 
 		// get enum value. don't make any assumptions about the
 		// variant's type (i.e. size)  - no restriction is documented.
 		// also don't do this manually - it's tedious and we might not
-		// cover everything. OLE DLL is already pulled in anyway.
+		// cover everything. the OLE DLL is already pulled in anyway.
 		VARIANT v;
-		SymGetTypeInfo(hProcess, mod_base, child_data_idx, TI_GET_VALUE, &v);
+		if(!SymGetTypeInfo(hProcess, mod_base, child_data_idx, TI_GET_VALUE, &v))
+			return WDBG_TYPE_INFO_UNAVAILABLE;
 		if(VariantChangeType(&v, &v, 0, VT_I8) != S_OK)
 			continue;
 
@@ -1327,7 +1543,7 @@ static int dump_sym_enum(DWORD idx, const u8* p, size_t size, DumpState state)
 		{
 			WCHAR* name;
 			if(!SymGetTypeInfo(hProcess, mod_base, child_data_idx, TI_GET_SYMNAME, &name))
-				goto name_unavailable;
+				return WDBG_TYPE_INFO_UNAVAILABLE;
 
 			out(L"%s", name);
 			LocalFree(name);
@@ -1335,9 +1551,10 @@ static int dump_sym_enum(DWORD idx, const u8* p, size_t size, DumpState state)
 		}
 	}
 
-name_unavailable:
-	// we can produce reasonable output (the numeric value),
-	// but weren't able to retrieve the matching enum name.
+	// we weren't able to retrieve a matching enum value, but can still
+	// produce reasonable output (the numeric value).
+	// note: could goto here after a SGTI fails, but we fail instead
+	// to make sure those errors are noticed.
 	out(L"%I64d", current_value);
 	return 1;
 }
@@ -1346,7 +1563,7 @@ name_unavailable:
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int dump_sym_function(DWORD idx, const u8* p, size_t size, DumpState state)
+static int dump_sym_function(DWORD idx, const u8* p, DumpState state)
 {
 	return 0;
 }
@@ -1355,7 +1572,7 @@ static int dump_sym_function(DWORD idx, const u8* p, size_t size, DumpState stat
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int dump_sym_function_type(DWORD idx, const u8* p, size_t size, DumpState state)
+static int dump_sym_function_type(DWORD idx, const u8* p, DumpState state)
 {
 	// this symbol gives class parent, return type, and parameter count.
 	// unfortunately the one thing we care about, its name,
@@ -1378,8 +1595,13 @@ static int dump_sym_function_type(DWORD idx, const u8* p, size_t size, DumpState
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int dump_sym_pointer(DWORD idx, const u8* p, size_t size, DumpState state)
+static int dump_sym_pointer(DWORD idx, const u8* p, DumpState state)
 {
+	ULONG64 size_ = 0;
+	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_LENGTH, &size_))
+		return WDBG_TYPE_INFO_UNAVAILABLE;
+	const size_t size = (size_t)size_;
+
 	// read+output pointer's value.
 	p = (const u8*)movzx_64le(p, size);
 	out(L"0x%p", p);
@@ -1394,7 +1616,7 @@ static int dump_sym_pointer(DWORD idx, const u8* p, size_t size, DumpState state
 	// returns -1; dump_sym_data will print "?"
 	out(L" -> "); // we out_erase this if it's a void* pointer
 	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_TYPEID, &idx))
-		return -1;
+		return WDBG_TYPE_INFO_UNAVAILABLE;
 	state.indirection++;
 	return dump_sym(idx, p, state);
 }
@@ -1403,10 +1625,10 @@ static int dump_sym_pointer(DWORD idx, const u8* p, size_t size, DumpState state
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int dump_sym_typedef(DWORD idx, const u8* p, size_t size, DumpState state)
+static int dump_sym_typedef(DWORD idx, const u8* p, DumpState state)
 {
 	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_TYPEID, &idx))
-		return -1;
+		return WDBG_TYPE_INFO_UNAVAILABLE;
 	return dump_sym(idx, p, state);
 }
 
@@ -1414,78 +1636,59 @@ static int dump_sym_typedef(DWORD idx, const u8* p, size_t size, DumpState state
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int dump_sym_udt(DWORD idx, const u8* p, size_t size, DumpState state)
+static int dump_sym_udt(DWORD idx, const u8* p, DumpState state)
 {
-	if(state.level >= 30)
-	{
-		out(L"level > 100 - aborting");
-		return 0;
-	}
+	ULONG64 size_ = 0;
+	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_LENGTH, &size_))
+		return WDBG_TYPE_INFO_UNAVAILABLE;
+	const size_t size = (size_t)size_;
 
 	// handle special cases (e.g. HANDLE, std::string).
 	WCHAR* type_name;
 	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_SYMNAME, &type_name))
-		debug_warn("dump_sym_udt: TI_GET_SYMNAME failed");
-	else
-	{
-		bool handled = false;
-		if(dump_string(type_name, p, size, state) == 0)
-			handled = true;
-		else if(should_suppress_udt(type_name))
-		{
-			// the data symbol is pointer-to-UDT. since we won't display its
-			// contents, leave only the pointer's value.
-			if(state.indirection)
-				out_erase(4);	// " -> "
-			handled = true;
-		}
-
-//if(!handled)
-//debug_wprintf(L"UDT %s: ", type_name);
-		LocalFree(type_name);
-
-		if(handled)
-			return 0;	// done
-	}
+		return WDBG_TYPE_INFO_UNAVAILABLE;
+	int ret = dump_special_udt(type_name, p, size, state);
+	LocalFree(type_name);
+	if(ret <= 0)	// it "handled" this (with or without failure)
+		return ret;
 
 	// get array of child symbols (members/functions/base classes).
 	DWORD num_children;
 	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_CHILDRENCOUNT, &num_children))
-		return -1;
+		return WDBG_TYPE_INFO_UNAVAILABLE;
+	TI_FINDCHILDREN_PARAMS2 fcp(num_children);
+	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_FINDCHILDREN, &fcp))
+		return WDBG_TYPE_INFO_UNAVAILABLE;
 
-//debug_printf("children=%d\n", num_children);
-
-if(!num_children)
-{
-out(L"{empty}");
-return 0;
-}
-
-
-	const size_t MAX_CHILDREN = 500;
-	char child_buf[sizeof(TI_FINDCHILDREN_PARAMS)+MAX_CHILDREN*sizeof(DWORD)];
-	TI_FINDCHILDREN_PARAMS* fcp = (TI_FINDCHILDREN_PARAMS*)child_buf;
-	fcp->Start = 0;
-	fcp->Count = MIN(num_children, MAX_CHILDREN);
-	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_FINDCHILDREN, fcp))
-		return -1;
-
-	const size_t avg_size = size / MAX(fcp->Count, 1);	// prevent / 0
+	const size_t avg_size = size / MAX(fcp.p.Count, 1);	// prevent / 0
 		// if num_children ends up large (e.g. due to member functions),
 		// avg_size is 0. fits_on_one_line will then be false anyway.
-	const bool fits_on_one_line = (fcp->Count <= 3) && (avg_size <= sizeof(int));
+	const bool fits_on_one_line = size <= sizeof(int) ||	// empty
+		(fcp.p.Count <= 2 && avg_size <= sizeof(int));	// few and small
 
+	state.level++;
 	out(fits_on_one_line? L"{ " : L"\r\n");
 
-	// recursively display each child
-	state.level++;
-	state.fits_on_one_line = fits_on_one_line;
 	int err = 0;
-	for(uint i = 0; i < fcp->Count; i++)
+	for(uint i = 0; i < fcp.p.Count; i++)
 	{
-		int ret = dump_sym(fcp->ChildId[i], p, state);
+		const DWORD child_idx = fcp.p.ChildId[i];
+
+		DWORD type_tag = 0;
+		// for reasons unknown this fails sometimes
+		if(!SymGetTypeInfo(hProcess, mod_base, child_idx, TI_GET_SYMTAG, &type_tag))
+			continue;
+		if(type_tag != SymTagData)
+			continue;
+
+		if(!fits_on_one_line)
+			INDENT;
+
+		int ret = dump_sym(child_idx, p, state);
 		if(err == 0)
 			err = ret;
+
+		out(fits_on_one_line? L", " : L"\r\n");
 	}
 
 	if(fits_on_one_line)
@@ -1503,17 +1706,24 @@ return 0;
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int dump_sym_unknown(DWORD idx, const u8* p, size_t size, DumpState state)
+static int dump_sym_vtable(DWORD idx, const u8* p, DumpState state)
+{
+	// unsupported (vtable internals are undocumented; too much work).
+	return 0;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+static int dump_sym_unknown(DWORD idx, const u8* p, DumpState state)
 {
 	// redundant (already done in dump_sym), but this is rare.
 	DWORD type_tag;
 	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_SYMTAG, &type_tag))
-	{
-		debug_warn("dump_sym_unknown: tag query failed");
-		return -1;
-	}
-	debug_printf("Unknown tag: %d\n", type_tag);
+		return WDBG_TYPE_INFO_UNAVAILABLE;
 
+	debug_printf("Unknown tag: %d\n", type_tag);
 	out(L"(unknown symbol type)");
 	return 0;
 }
@@ -1528,39 +1738,33 @@ static int dump_sym(DWORD idx, const u8* p, DumpState state)
 {
 	DWORD type_tag;
 	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_SYMTAG, &type_tag))
-		return -1;
-
-	// get symbol size. half of dump_sym_* need this, so we query it
-	// here and relay to all of them. this property isn't defined for
-	// all symbol types (e.g. function), so ignore failures.
-	ULONG64 size_ = 0;
-	SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_LENGTH, &size_);
-	const size_t size = (size_t)size_;
-
+		return WDBG_TYPE_INFO_UNAVAILABLE;
 	switch(type_tag)
 	{
 	case SymTagArrayType:
-		return dump_sym_array         (idx, p, size, state);
+		return dump_sym_array         (idx, p, state);
 	case SymTagBaseType:
-		return dump_sym_base_type     (idx, p, size, state);
+		return dump_sym_base_type     (idx, p, state);
 	case SymTagBaseClass:
-		return dump_sym_base_class    (idx, p, size, state);
+		return dump_sym_base_class    (idx, p, state);
 	case SymTagData:
-		return dump_sym_data          (idx, p, size, state);
+		return dump_sym_data          (idx, p, state);
 	case SymTagEnum:
-		return dump_sym_enum          (idx, p, size, state);
+		return dump_sym_enum          (idx, p, state);
 	case SymTagFunction:
-		return dump_sym_function      (idx, p, size, state);
+		return dump_sym_function      (idx, p, state);
 	case SymTagFunctionType:
-		return dump_sym_function_type (idx, p, size, state);
+		return dump_sym_function_type (idx, p, state);
 	case SymTagPointerType:
-		return dump_sym_pointer       (idx, p, size, state);
+		return dump_sym_pointer       (idx, p, state);
 	case SymTagTypedef:
-		return dump_sym_typedef       (idx, p, size, state);
+		return dump_sym_typedef       (idx, p, state);
 	case SymTagUDT:
-		return dump_sym_udt           (idx, p, size, state);
+		return dump_sym_udt           (idx, p, state);
+	case SymTagVTable:
+		return dump_sym_vtable        (idx, p, state);
 	default:
-		return dump_sym_unknown       (idx, p, size, state);
+		return dump_sym_unknown       (idx, p, state);
 	}
 }
 
@@ -1571,59 +1775,20 @@ static int dump_sym(DWORD idx, const u8* p, DumpState state)
 //
 //////////////////////////////////////////////////////////////////////////////
 
-struct DumpSymParams
-{
-	const STACKFRAME64* sf;
-	bool locals_active;
-};
 
-// get actual address of what the symbol represents (may be relative
+// xxx get actual address of what the symbol represents (may be relative
 // to frame pointer); demarcate local/param sections; output name+value via
 // dump_sym_data.
 // 
 // called from dump_frame_cb for each local symbol; lock is held.
-static BOOL CALLBACK dump_sym_cb(SYMBOL_INFO* sym, ULONG sym_size, void* ctx)
+static BOOL CALLBACK dump_sym_cb(SYMBOL_INFO* sym, ULONG size, void* ctx)
 {
-	UNUSED(sym_size);
-	DumpSymParams* p = (DumpSymParams*)ctx;
-
-	assert(mod_base == sym->ModBase);
-
-	// get address
-	ULONG64 addr = sym->Address;
-	// .. relative to a register; we assume it's the frame pointer,
-	//    since sym->Register is undocumented.
-	if(sym->Flags & SYMF_REGREL || sym->Flags & SYMF_FRAMEREL)
-		addr += p->sf->AddrFrame.Offset;
-	// .. in register; we can't reliably retrieve it (since undocumented)
-	else if(sym->Flags & SYMF_REGISTER)
-		return 1;
-	// .. global variable (address already set)
-
-	// demarcate local / parameter report sections - this is nicer than
-	// printing e.g. "local" in front of each variable. we assume that
-	// symbols are sorted by group (local/param); if not, we waste space
-	// with redundant "locals:"/"params:" tags.
-	// note that both flags can be set, so we can't combine the if pairs.
-	if(sym->Flags & SYMF_PARAMETER)
-	{
-		if(p->locals_active)
-		{
-			out(L"    params:\r\n");
-			p->locals_active = false;
-		}
-	}
-	else if(sym->Flags & SYMF_LOCAL)
-	{
-		if(!p->locals_active)
-		{
-			out(L"    locals:\r\n ");
-			p->locals_active = true;
-		}
-	}
-
+	mod_base = sym->ModBase;
 	DumpState state;
-	dump_sym(sym->Index, (const u8*)addr, state);
+
+	INDENT;
+	dump_sym(sym->Index, (const u8*)sym->Address, state);
+	out(L"\r\n");
 
 	return TRUE;	// continue
 }
@@ -1632,47 +1797,69 @@ static BOOL CALLBACK dump_sym_cb(SYMBOL_INFO* sym, ULONG sym_size, void* ctx)
 //////////////////////////////////////////////////////////////////////////////
 
 
+struct IMAGEHLP_STACK_FRAME2 : public IMAGEHLP_STACK_FRAME
+{
+	IMAGEHLP_STACK_FRAME2(const STACKFRAME64* sf)
+	{
+		// apparently only PC, FP and SP are necessary, but
+		// we go whole-hog to be safe.
+		memset(this, 0, sizeof(IMAGEHLP_STACK_FRAME2));
+		InstructionOffset  = sf->AddrPC.Offset;
+		ReturnOffset       = sf->AddrReturn.Offset;
+		FrameOffset        = sf->AddrFrame.Offset;
+		StackOffset        = sf->AddrStack.Offset;
+		BackingStoreOffset = sf->AddrBStore.Offset;
+		FuncTableEntry     = (ULONG64)sf->FuncTableEntry;
+		Virtual            = sf->Virtual;
+		// (note: array of different types, can't copy directly)
+		for(int i = 0; i < 4; i++)
+			Params[i] = sf->Params[i];
+	}
+};
+
 // called by walk_stack for each stack frame
 static int dump_frame_cb(const STACKFRAME64* sf, void* user_arg)
 {
+	// note: keep frame formatting in sync with get_exception_locus.
+
 	UNUSED(user_arg);
+
+	current_stackframe64 = sf;
 
 	void* func = (void*)sf->AddrPC.Offset;
 	// don't trace back into kernel32: we need a defined stop point,
 	// or walk_stack will end up returning -1; stopping here also
 	// reduces the risk of confusing the stack dump code below.
-	wchar_t path[MAX_PATH];
-	wchar_t* module_filename = get_module_filename(func, path);
+	wchar_t module_path[MAX_PATH];
+	wchar_t* module_filename = get_module_filename(func, module_path);
 	if(!wcscmp(module_filename, L"kernel32.dll"))
 		return 0;	// done
 
-	lock();
-
-	char func_name[1000]; char file[100]; int line;
-	if(debug_resolve_symbol(func, func_name, file, &line) == 0)
-		out(L"%hs (%hs:%lu)", func_name, file, line);
+	char func_name[DBG_SYMBOL_LEN]; char path[DBG_FILE_LEN]; int line;
+	if(debug_resolve_symbol(func, func_name, path, &line) == 0)
+	{
+		const char* slash = strrchr(path, DIR_SEP);
+		const char* file = slash? slash+1 : path;
+		out(L"%hs %hs (%lu)\r\n", func_name, file, line);
+	}
 	else
-		out(L"%p", func);
+		out(L"%p\r\n", func);
 
-	out(L"\r\n");
+//debug_printf("FRAME %s: stored regs: fp=0x%x sp=0x%x\n", func_name, sf->AddrFrame.Offset, sf->AddrFrame.Offset);
 
 	// only enumerate symbols for this stack frame
 	// (i.e. its locals and parameters)
 	// problem: debug info is scope-aware, so we won't see any variables
 	// declared in sub-blocks. we'd have to pass an address in that block,
 	// which isn't worth the trouble. since 
-	IMAGEHLP_STACK_FRAME imghlp_frame;
-	imghlp_frame.InstructionOffset = (DWORD64)func;
+	IMAGEHLP_STACK_FRAME2 imghlp_frame(sf);
 	SymSetContext(hProcess, &imghlp_frame, 0);	// last param is ignored
 
-	DumpSymParams params = { sf, true };
-	SymEnumSymbols(hProcess, 0, 0, dump_sym_cb, &params);
+	SymEnumSymbols(hProcess, 0, 0, dump_sym_cb, 0);
 		// 2nd and 3rd params indicate scope set by SymSetContext
 		// should be used.
 
 	out(L"\r\n");
-
-	unlock();
 	return 1;	// keep calling
 }
 
@@ -1681,15 +1868,15 @@ static int dump_frame_cb(const STACKFRAME64* sf, void* user_arg)
 // (we don't want to show e.g. GetThreadContext / this call)
 static const wchar_t* dump_stack(uint skip, const CONTEXT* pcontext = 0)
 {
-	// if we don't get a CONTEXT, our function frame will be in the trace;
-	// prevent it from being displayed. note: don't do this only in
-	// walk_stack, because it may be called from different depths.
-	if(!pcontext)
-		skip++;
+	// need to skip one frame. if !pcontext, it's dump_stack;
+	// otherwise, RaiseException (must be skipped because dump_frame_cb
+	// will stop if it sees a kernel32 function).
+	skip++;
 
 	int err = walk_stack(dump_frame_cb, 0, skip, pcontext);
 	if(err != 0)
 		out(L"(error while building stack trace: %d)", err);
+
 	return dump_buf;
 }
 
@@ -1699,13 +1886,6 @@ static const wchar_t* dump_stack(uint skip, const CONTEXT* pcontext = 0)
 // "program error" dialog (triggered by assert and exception)
 //
 //////////////////////////////////////////////////////////////////////////////
-
-enum DialogType
-{
-	ASSERT,
-	EXCEPTION
-};
-
 
 //
 // support for resizing the dialog / its controls
@@ -1785,30 +1965,38 @@ static void dlg_resize(HWND hDlg, WPARAM wParam, LPARAM lParam)
 }
 
 
-static int CALLBACK dlgproc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM lParam)
+enum DialogType
+{
+	ASSERT,
+	EXCEPTION
+};
+
+struct DialogParams
+{
+	DialogType type;
+	const wchar_t* body_text;
+};
+
+
+static int CALLBACK error_dialog_proc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM lParam)
 {
 	switch(msg)
 	{
 	case WM_INITDIALOG:
 		{
+		const DialogParams* params = (const DialogParams*)lParam;
+
 		// need to reset for new instance of dialog
 		dlg_client_origin.x = dlg_client_origin.y = 0;
 		dlg_prev_client_size.x = dlg_prev_client_size.y = 0;
-			
-		// disable inappropriate buttons
-		DialogType type = (DialogType)lParam;
-		if(type != ASSERT)
+
+		if(params->type != ASSERT)
 		{
-			HWND h;
-			h = GetDlgItem(hDlg, IDC_CONTINUE);
-			EnableWindow(h, FALSE);
-			h = GetDlgItem(hDlg, IDC_SUPPRESS);
-			EnableWindow(h, FALSE);
-			h = GetDlgItem(hDlg, IDC_BREAK);
+			HWND h = GetDlgItem(hDlg, IDC_SUPPRESS);
 			EnableWindow(h, FALSE);
 		}
 
-		SetDlgItemTextW(hDlg, IDC_EDIT1, dump_buf);
+		SetDlgItemTextW(hDlg, IDC_EDIT1, params->body_text);
 		return TRUE;	// set default keyboard focus
 		}
 
@@ -1827,17 +2015,25 @@ static int CALLBACK dlgproc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM l
 		switch(wParam)
 		{
 		case IDC_COPY:
-			clipboard_set(dump_buf);
+			{
+			const size_t max_chars = 100000;
+			wchar_t* buf = (wchar_t*)malloc(max_chars*sizeof(wchar_t));
+			if(buf)
+			{
+				GetDlgItemTextW(hDlg, IDC_EDIT1, buf, max_chars);
+				clipboard_set(buf);
+			}
 			return 0;
+			}
 
 		case IDC_CONTINUE:
-			EndDialog(hDlg, ASSERT_CONTINUE);
+			EndDialog(hDlg, ER_CONTINUE);
 			return 0;
 		case IDC_SUPPRESS:
-			EndDialog(hDlg, ASSERT_SUPPRESS);
+			EndDialog(hDlg, ER_SUPPRESS);
 			return 0;
 		case IDC_BREAK:
-			EndDialog(hDlg, ASSERT_BREAK);
+			EndDialog(hDlg, ER_BREAK);
 			return 0;
 		case IDC_EXIT:
 			exit(0);
@@ -1878,26 +2074,44 @@ static int CALLBACK dlgproc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM l
 
 // show error dialog with stack trace (must be stored in dump_buf[])
 // exits directly if 'exit' is clicked.
-static int dialog(DialogType type)
+static ErrorReaction error_dialog(DialogType type, const wchar_t* body_text)
 {
+	const DialogParams params = { type, body_text };
+
 	const HINSTANCE hInstance = GetModuleHandle(0);
-	const HWND hParent = GetDesktopWindow();
+	LPCSTR lpTemplateName = MAKEINTRESOURCE(IDD_DIALOG1);
+	const HWND hWndParent = GetDesktopWindow();
 		// we don't know if the enclosing app has a hwnd, so use the desktop.
-	return (int)DialogBoxParam(hInstance, MAKEINTRESOURCE(IDD_DIALOG1), hParent, dlgproc, (LPARAM)type);
+
+	INT_PTR ret = DialogBoxParam(hInstance, lpTemplateName, hWndParent, error_dialog_proc, (LPARAM)&params);
+	// failed; warn user and make sure we return an ErrorReaction.
+	if(ret == 0 || ret == -1)
+	{
+		translate_and_display_msg(L"Error", L"Unable to display detailed error dialog.");
+		return ER_CONTINUE;
+	}
+	return (ErrorReaction)ret;
 }
 
 
-static LONG WINAPI unhandled_exception_filter(EXCEPTION_POINTERS* ep);
-
-// notify the user that an assertion failed; displays a
-// stack trace with local variables.
-// returns one of FailedAssertUserChoice or exits the program.
-int debug_assert_failed(const char* file, int line, const char* expr)
+// notify the user that an assertion failed; displays a stack trace with
+// local variables.
+ErrorReaction debug_assert_failed(const char* file, int line, const char* expr)
 {
+	// display in output window; double-click will navigate to error location.
+	char* slash = strrchr(file, DIR_SEP);
+	const char* filename = slash? slash+1 : file;
+	debug_printf("%s(%d): assertion failed: \"%s\"\n", filename, line, expr);
+
+	lock();
+
 	out_reset();
 	out(L"Assertion failed in %hs, line %d: \"%hs\"\r\n", file, line, expr);
 	out(L"\r\nCall stack:\r\n\r\n");
 	dump_stack(+1);	// skip the current frame (debug_assert_failed)
+	wchar_t* dump_buf_copy = wcsdup(dump_buf);
+
+	unlock();
 
 #if defined(SCED) && !(defined(NDEBUG)||defined(TESTING))
 	// ScEd keeps running while the dialog is showing, and tends to crash before
@@ -1905,18 +2119,9 @@ int debug_assert_failed(const char* file, int line, const char* expr)
 	debug_break();
 #endif
 
-	return dialog(ASSERT);
-
-/*
-__try
-{
-	RaiseException(0x10000, 0, 0,0);
-}
-__except(unhandled_exception_filter(GetExceptionInformation()))
-{
-}
-return ASSERT_CONTINUE;
-*/
+	ErrorReaction er = error_dialog(ASSERT, dump_buf_copy);
+	free(dump_buf_copy);
+	return er;
 }
 
 
@@ -1926,45 +2131,10 @@ return ASSERT_CONTINUE;
 //
 //////////////////////////////////////////////////////////////////////////////
 
-// return localized version of <text>, if i18n functionality is available.
-// this is used to translate the "unhandled exception" dialog strings.
-// WARNING: leaks memory returned by wcsdup, but that's ok since the
-// program will terminate soon after. fixing this is hard and senseless.
-static const wchar_t* translate(const wchar_t* text)
-{
-#ifdef HAVE_I18N
-	// make sure i18n system is (already|still) initialized.
-	if(g_CurrentLocale)
-	{
-		// be prepared for this to fail, because translation potentially
-		// involves script code and the JS context might be corrupted.
-		__try
-		{
-			const wchar_t* text2 = wcsdup(I18n::translate(text).c_str());
-			// only overwrite if wcsdup succeeded, i.e. not out of memory.
-			if(text2)
-				text = text2;
-		}
-		__except(EXCEPTION_EXECUTE_HANDLER)
-		{
-		}
-	}
-#endif
-
-	return text;
-}
-
-
-// convenience wrapper using translate.
-static void translate_and_display_msg(const wchar_t* caption, const wchar_t* text)
-{
-	wdisplay_msg(translate(caption), translate(text));
-}
-
-
 // write out a "minidump" containing register and stack state; this enables
 // examining the crash in a debugger. called by unhandled_exception_filter.
 // heavily modified from http://www.codeproject.com/debug/XCrashReportPt3.asp
+// lock must be held.
 static void write_minidump(EXCEPTION_POINTERS* exception_pointers)
 {
 	HANDLE hFile = CreateFile("crashlog.dmp", GENERIC_WRITE, FILE_SHARE_WRITE, 0, CREATE_ALWAYS, 0, 0);
@@ -2302,23 +2472,40 @@ struct XInfo
 };
 
 
+// does the given SEH exception look like a C++ exception?
+// (compiler-specific).
+static bool isCppException(const EXCEPTION_RECORD* er)
+{
+#ifdef _MSC_VER
+	// note: representation of 'msc' isn't specified, so use FOURCC
+	if(er->ExceptionCode != FOURCC(0xe0, 'm','s','c'))
+		return false;
+
+	// exception info = (magic, &thrown_Cpp_object, &XInfo)
+	if(er->NumberParameters != 3)
+		return false;
+
+	// MAGIC_NUMBER1 from exsup.inc
+	if(er->ExceptionInformation[0] != 0x19930520)
+		return false;
+
+	return true;
+#else
+# error "port"
+#endif
+}
+
+
 // if <er> is not a C++ exception, return 0. otherwise, return a description
 // of the exception type and cause (in English). uses static storage.
 static const wchar_t* get_cpp_exception_description(const EXCEPTION_RECORD* er)
 {
-	const ULONG_PTR* const ei = er->ExceptionInformation;
-
-	// bail if not a C++ exception (magic numbers defined in VC exsup.inc)
-	if(er->ExceptionCode != 0xe06d7363 ||
-	   er->NumberParameters != 3 ||
-	   ei[0] != 0x19930520)
+	if(!isCppException(er))
 		return 0;
 
-	// VC's C++ exception implementation stores the following:
-	// ei[0] - magic number
-	// ei[1] -> object that was thrown
-	// ei[2] -> XInfo
-	//
+	// see above for interpretation
+	const ULONG_PTR* const ei = er->ExceptionInformation;
+
 	// note: we can't share a __try below - the failure of
 	// one attempt must not abort the others.
 
@@ -2415,15 +2602,17 @@ static const wchar_t* get_SEH_exception_description(const EXCEPTION_RECORD* er)
 	// anything else => unknown; display its exception code.
 	// we don't punt to get_exception_description because anything
 	// we get called for will actually be a SEH exception.
-	swprintf(description, ARRAY_SIZE(description), L"Unknown exception(0x%08X)", code);
+	swprintf(description, ARRAY_SIZE(description), L"Unknown (0x%08X)", code);
 	return description;
 }
 
 
 // return a description of the exception <er> (in English).
 // it is only valid until the next call, since static storage is used.
-static const wchar_t* get_exception_description(const EXCEPTION_RECORD* er)
+static const wchar_t* get_exception_description(const EXCEPTION_POINTERS* ep)
 {
+	const EXCEPTION_RECORD* const er = ep->ExceptionRecord;
+
 	// note: more specific than SEH, so try it first.
 	const wchar_t* d = get_cpp_exception_description(er);
 	if(d)
@@ -2435,18 +2624,21 @@ static const wchar_t* get_exception_description(const EXCEPTION_RECORD* er)
 
 // return an indication of where the exception <er> occurred (lang. neutral).
 // it is only valid until the next call, since static storage is used.
-static const wchar_t* get_exception_locus(const EXCEPTION_RECORD* er)
+static const wchar_t* get_exception_locus(const EXCEPTION_POINTERS* ep)
 {
-	void* addr = er->ExceptionAddress;
+	// HACK: <ep> provides no useful information - ExceptionAddress always
+	// points to kernel32!RaiseException. we use dump_stack to determine the
+	// real location.
 
-	wchar_t path[MAX_PATH];
-	wchar_t* module_filename = get_module_filename(er->ExceptionAddress, path);
+	out_reset();
+	const wchar_t* stack_trace = dump_stack(+0, ep->ContextRecord);
 
-	char func_name[DBG_SYMBOL_LEN];
-	debug_resolve_symbol(addr, func_name, 0, 0);
-
-	static wchar_t locus[100];
-	swprintf(locus, ARRAY_SIZE(locus), L"%s!%p(%hs)", module_filename, addr, func_name);
+	const size_t max_chars = 256;
+	static wchar_t locus[max_chars];
+	wcsncpy_s(locus, max_chars, dump_buf, max_chars-1);
+	wchar_t* end = wcschr(locus, '\r');
+	if(end)
+		*end = '\0';
 	return locus;
 }
 
@@ -2456,19 +2648,40 @@ static const wchar_t* get_exception_locus(const EXCEPTION_RECORD* er)
 // this overrides the normal OS "program error" dialog; see rationale below.
 static LONG WINAPI unhandled_exception_filter(EXCEPTION_POINTERS* ep)
 {
-	const EXCEPTION_RECORD* const er = ep->ExceptionRecord;
-
 	// note: we risk infinite recursion if someone raises an SEH exception
 	// from within this function. therefore, abort immediately if we've
 	// already been called; the first error is the most important, anyway.
-	static bool already_crashed = false;
-	if(already_crashed)
+	static uintptr_t already_crashed = 0;
+	if(!CAS(&already_crashed, 0, 1))
 		return EXCEPTION_EXECUTE_HANDLER;
-	already_crashed = true;
 
-	// build and display error message
-	const wchar_t* locus       = get_exception_locus      (er);
-	const wchar_t* description = get_exception_description(er);
+	lock();
+
+	// extract details from ExceptionRecord.
+	const wchar_t* description = get_exception_description(ep);
+	const wchar_t* locus       = get_exception_locus      (ep);
+
+	// display in output window; double-click will navigate to error location.
+	{
+	wchar_t func_name[DBG_SYMBOL_LEN]; wchar_t file[DBG_FILE_LEN]; int line; wchar_t fmt[50];
+	swprintf(fmt, ARRAY_SIZE(fmt), L"%%%ds %%%ds (%%d)", DBG_SYMBOL_LEN, DBG_FILE_LEN);
+	if(swscanf(locus, fmt, func_name, file, &line) == 3)
+		debug_wprintf(L"%s(%d): unhandled exception: \"%s\"\n", file, line, description);
+	}
+
+	// get call stack.
+	out_reset();
+	out(L"Unhandled Exception: %s at %s\r\n", description, locus);
+	out(L"\r\nCall stack:\r\n\r\n");
+	const wchar_t* stack_trace = dump_stack(+0, ep->ContextRecord);
+
+	// write out crash log and minidump.
+	write_minidump(ep);
+	debug_write_crashlog(description, locus, stack_trace);
+
+#ifdef NDEBUG
+	// dumbed-down end-user version: show message box.
+	// (call stack is stored in the crashlog)
 	static const wchar_t fmt[] =
 		L"Much to our regret we must report the program has encountered an error and cannot continue.\r\n"
 	    L"\n"
@@ -2478,12 +2691,18 @@ static LONG WINAPI unhandled_exception_filter(EXCEPTION_POINTERS* ep)
 	wchar_t text[1000];
 	swprintf(text, ARRAY_SIZE(text), translate(fmt), description, locus);
 	wdisplay_msg(translate(L"Problem"), text);
+#else
+	// developer version: show stack trace immediately.
+	switch(error_dialog(EXCEPTION, dump_buf))
+	{
+	case ER_EXIT:
+		ExitProcess(ep->ExceptionRecord->ExceptionCode);
+	case ER_BREAK:
+		debug_break();
+	}
+#endif
 
-	// write out crash log and minidump.
-	write_minidump(ep);
-	out_reset();
-	const wchar_t* stack_trace = dump_stack(+0, ep->ContextRecord);
-	debug_write_crashlog(description, locus, stack_trace);
+	unlock();
 
 	// disable memory-leak reporting to avoid a flood of warnings
 	// (lots of stuff will leak since we exit abnormally).
@@ -2557,14 +2776,14 @@ Small small_array_of_small_structs[2] = { { 1,2 } };
 	char ar2[] = { 't','e','s','t', 0 };
 
 	// tests
-//	__try
+	//__try
 	{
 	//assert2(0 && "test assert2");				// not exception (works when run from debugger)
 	//__asm xor edx,edx __asm div edx 			// named SEH
 	//RaiseException(0x87654321, 0, 0, 0);		// unknown SEH
 	//throw std::bad_exception("what() is ok");	// C++
 	}
-//	__except(unhandled_exception_filter(GetExceptionInformation()))
+	//__except(unhandled_exception_filter(GetExceptionInformation()))
 	{
 	}
 }
