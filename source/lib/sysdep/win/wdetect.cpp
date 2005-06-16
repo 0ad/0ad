@@ -68,50 +68,6 @@
 #endif
 
 
-
-static int get_ver(const char* module, char* out_ver, size_t out_ver_len)
-{
-	WIN_SAVE_LAST_ERROR;	// GetFileVersion*, Ver*
-
-	// allocate as much mem as required
-	DWORD unused;
-	const DWORD ver_size = GetFileVersionInfoSize(module, &unused);
-	if(!ver_size)
-		return -1;
-	void* buf = malloc(ver_size);
-	if(!buf)
-		return ERR_NO_MEM;
-
-	// from here on, we set and later return this variable -
-	// can't return directly, since we've allocated memory.
-	int ret = -1;
-
-	if(GetFileVersionInfo(module, 0, ver_size, buf))
-	{
-		u16* lang;	// -> 16 bit language ID, 16 bit codepage
-		uint lang_len;
-		const BOOL ok = VerQueryValue(buf, "\\VarFileInfo\\Translation", (void**)&lang, &lang_len);
-		if(ok && lang && lang_len == 4)
-		{
-			char subblock[64];
-			sprintf(subblock, "\\StringFileInfo\\%04X%04X\\FileVersion", lang[0], lang[1]);
-			const char* in_ver;
-			uint in_ver_len;
-			if(VerQueryValue(buf, subblock, (void**)&in_ver, &in_ver_len))
-			{
-				strcpy_s(out_ver, out_ver_len, in_ver);
-				ret = 0;	// success
-			}
-		}
-	}
-	free(buf);
-
-	WIN_RESTORE_LAST_ERROR;
-
-	return ret;
-}
-
-
 // EnumDisplayDevices is not available on Win95 or NT.
 // try to import it manually here; return -1 if not available.
 static BOOL (WINAPI *pEnumDisplayDevicesA)(void*, DWORD, void*, DWORD);
@@ -121,10 +77,10 @@ static int import_EnumDisplayDevices()
 	{
 		static HMODULE hUser32Dll = LoadLibrary("user32.dll");
 		*(void**)&pEnumDisplayDevicesA = GetProcAddress(hUser32Dll, "EnumDisplayDevicesA");
-//		FreeLibrary(hUser32Dll);
-			// make sure the reference is released so BoundsChecker
-			// doesn't complain. it won't actually be unloaded anyway -
-			// there is at least one other reference.
+		//		FreeLibrary(hUser32Dll);
+		// make sure the reference is released so BoundsChecker
+		// doesn't complain. it won't actually be unloaded anyway -
+		// there is at least one other reference.
 	}
 
 	return pEnumDisplayDevicesA? 0 : -1;
@@ -166,11 +122,117 @@ int get_monitor_size(int& width_mm, int& height_mm)
 {
 	HDC dc = GetDC(0);	// dc for entire screen
 
-	 width_mm = GetDeviceCaps(dc, HORZSIZE);
+	width_mm = GetDeviceCaps(dc, HORZSIZE);
 	height_mm = GetDeviceCaps(dc, VERTSIZE);
 
 	ReleaseDC(0, dc);
 	return 0;
+}
+
+
+//----------------------------------------------------------------------------
+// support routines for getting DLL version
+//----------------------------------------------------------------------------
+
+static int get_ver(const char* module_path, char* out_ver, size_t out_ver_len)
+{
+	WIN_SAVE_LAST_ERROR;	// GetFileVersion*, Ver*
+
+	// determine size of and allocate memory for version information.
+	DWORD unused;
+	const DWORD ver_size = GetFileVersionInfoSize(module_path, &unused);
+	if(!ver_size)
+		return -1;
+	void* buf = malloc(ver_size);
+	if(!buf)
+		return ERR_NO_MEM;
+
+	int ret = -1;	// single point of exit (for free())
+
+	if(GetFileVersionInfo(module_path, 0, ver_size, buf))
+	{
+		u16* lang;	// -> 16 bit language ID, 16 bit codepage
+		uint lang_len;
+		const BOOL ok = VerQueryValue(buf, "\\VarFileInfo\\Translation", (void**)&lang, &lang_len);
+		if(ok && lang && lang_len == 4)
+		{
+			char subblock[64];
+			sprintf(subblock, "\\StringFileInfo\\%04X%04X\\FileVersion", lang[0], lang[1]);
+			const char* in_ver;
+			uint in_ver_len;
+			if(VerQueryValue(buf, subblock, (void**)&in_ver, &in_ver_len))
+			{
+				strcpy_s(out_ver, out_ver_len, in_ver);
+				ret = 0;	// success
+			}
+		}
+	}
+	free(buf);
+
+	WIN_RESTORE_LAST_ERROR;
+
+	return ret;
+}
+
+
+//
+// build a string containing DLL filename(s) and their version info.
+//
+
+static char* dll_list_buf;
+static size_t dll_list_chars;
+static char* dll_list_pos;
+
+static void dll_list_init(char* buf, size_t chars)
+{
+	dll_list_pos = dll_list_buf = buf;
+	dll_list_chars = chars;
+}
+
+
+// read DLL file version and append that and its name to the list.
+// return 0 on success or a negative error code.
+//
+// dll_path should preferably be the complete path to DLL, to make sure
+// we don't inadvertently load another one on the library search path.
+static int dll_list_add(const char* dll_path)
+{
+	// make sure we're allowed to be called.
+	if(!dll_list_pos)
+	{
+		debug_warn("dll_list_add: called before dll_list_init or after failure");
+		return -1;
+	}
+
+	// read file version.
+	char dll_ver[128] = "(unknown)";
+	(void)get_ver(dll_path, dll_ver, sizeof(dll_ver));
+		// if this fails, default is already set and we don't want to abort.
+
+	const ssize_t max_chars_to_write = (ssize_t)dll_list_chars - (dll_list_pos-dll_list_buf) - 10;
+		// reserves enough room for subsequent comma and "..." strings.
+
+	// not first time: prepend comma to string (room was reserved above).
+	if(dll_list_pos != dll_list_buf)
+		dll_list_pos += sprintf(dll_list_pos, ", ");
+
+	// extract filename.
+	const char* slash = strrchr(dll_path, '\\');
+	const char* dll_fn = slash? slash+1 : dll_path;
+
+	int len = snprintf(dll_list_pos, max_chars_to_write, "%s (%s)", dll_fn, dll_ver);
+	// success
+	if(len > 0)
+	{
+		dll_list_pos += len;
+		return 0;
+	}
+
+	// didn't fit; complain
+	sprintf(dll_list_pos, "...");	// (room was reserved above)
+	debug_warn("dll_list_add: not enough room");
+	dll_list_pos = 0;	// poison pill, prevent further calls
+	return ERR_BUF_SIZE;
 }
 
 
@@ -179,55 +241,6 @@ int get_monitor_size(int& width_mm, int& height_mm)
 // graphics card / driver version
 //
 //////////////////////////////////////////////////////////////////////////////
-
-
-// get the name of the OpenGL driver DLL (used to determine driver version).
-// see: http://www.opengl.org/discussion_boards/ubb/Forum3/HTML/009679.html
-// implementation doesn't currently require OpenGL to be ready for use.
-//
-// an alternative would be to enumerate all DLLs loaded into the process,
-// and check for a glBegin export. this requires OpenGL to be initialized,
-// though - the DLLs aren't loaded at startup. it'd also be a bit of work
-// to sort out MCD, ICD, and opengl32.dll.
-static int get_ogl_drv_name(char* ogl_drv_name, const size_t max_name_len)
-{
-	// need single point of exit so that we can close all keys; return this.
-	int ret = -1;
-
-	HKEY hkOglDrivers;
-	const char* key = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\OpenGLDrivers";
-	if(RegOpenKeyEx(HKEY_LOCAL_MACHINE, key, 0, KEY_ENUMERATE_SUB_KEYS, &hkOglDrivers) != 0)
-		return -1;
-
-	// we just use the first entry. it might be wrong on dual-graphics card
-	// systems, but I don't see a better way to do it. there's no other
-	// occurrence of the OpenGL driver name in the registry on my system.
-	char key_name[32];
-	DWORD key_name_len = sizeof(key_name);
-	if(RegEnumKeyEx(hkOglDrivers, 0, key_name, &key_name_len, 0, 0, 0, 0) == 0)
-	{
-		HKEY hkClass;
-		if(RegOpenKeyEx(hkOglDrivers, key_name, 0, KEY_QUERY_VALUE, &hkClass) == 0)
-		{
-			DWORD size = (DWORD)max_name_len-5;	// -5 for ".dll"
-			if(RegQueryValueEx(hkClass, "Dll", 0, 0, (LPBYTE)ogl_drv_name, &size) == 0)
-			{
-				// add .dll to filename, if not already there
-				char* ext = strrchr(ogl_drv_name, '.');
-				if(!ext || stricmp(ext, ".dll") != 0)
-					strcat_s(ogl_drv_name, max_name_len, ".dll");
-
-				ret = 0;	// success
-			}
-
-			RegCloseKey(hkClass);
-		}
-	}
-
-	RegCloseKey(hkOglDrivers);
-
-	return ret;
-}
 
 
 static int win_get_gfx_card()
@@ -250,25 +263,85 @@ static int win_get_gfx_card()
 }
 
 
+// note: this implementation doesn't require OpenGL to be initialized.
 static int win_get_gfx_drv_ver()
 {
 	if(gfx_drv_ver[0] != '\0')
 		return -1;
 
-	// note: getting the 2d driver name can be done with EnumDisplaySettings,
-	// but we want the actual OpenGL driver. see discussion linked above;
-	// the summary is, 2d driver version may differ from the OpenGL driver.
-	char ogl_drv_name[MAX_PATH];
-	CHECK_ERR(get_ogl_drv_name(ogl_drv_name, sizeof(ogl_drv_name)));
-	CHECK_ERR(get_ver(ogl_drv_name, gfx_drv_ver, GFX_DRV_VER_LEN));
-	return 0;
+	// rationale:
+	// - we could easily determine the 2d driver via EnumDisplaySettings,
+	//   but we want to query the actual OpenGL driver. see
+	//   http://www.opengl.org/discussion_boards/ubb/Forum3/HTML/009679.html ;
+	//   in short, we need the exact OpenGL driver version because some
+	//   driver packs (e.g. Omega) mix and match DLLs.
+	// - an alternative implementation would be to enumerate all
+	//   DLLs loaded into the process, and check for a glBegin export.
+	//   that requires toolhelp/PSAPI (a bit complicated) and telling
+	//   ICD/opengl32.dll apart (not future-proof).
+	// - therefore, we stick with the OpenGLDrivers approach. since there is
+	//   no good way to determine which of the subkeys (e.g. nvoglnt) is
+	//   active (several may exist due to previously removed drivers),
+	//   we just display all of them. it is obvious from looking at
+	//   gfx_card which one is correct; we thus avoid driver-specific
+	//   name checks and reporting incorrectly.
+
+	dll_list_init(gfx_drv_ver, GFX_DRV_VER_LEN);
+
+	int ret = -1;	// single point of exit (for RegCloseKey)
+
+	HKEY hkOglDrivers;
+	const char* key = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\OpenGLDrivers";
+	if(RegOpenKeyEx(HKEY_LOCAL_MACHINE, key, 0, KEY_ENUMERATE_SUB_KEYS, &hkOglDrivers) != 0)
+		return -1;
+
+	// for each subkey (i.e. set of installed OpenGL drivers):
+	for(DWORD idx = 0; ; idx++)
+	{
+		char set_name[32];
+		DWORD set_name_len = ARRAY_SIZE(set_name);
+		LONG err = RegEnumKeyEx(hkOglDrivers, idx, set_name, &set_name_len, 0, 0,0, 0);
+		if(err != 0)	// error or no more items - bail
+			break;
+
+		HKEY hkSet;
+		if(RegOpenKeyEx(hkOglDrivers, set_name, 0, KEY_QUERY_VALUE, &hkSet) == 0)
+		{
+			char drv_path[MAX_PATH+1];
+			DWORD drv_path_len = ARRAY_SIZE(drv_path)-5;	// for ".dll"
+			if(RegQueryValueEx(hkSet, "Dll", 0, 0, (LPBYTE)drv_path, &drv_path_len) == 0)
+			{
+				// we don't know if .dll extension is present; make sure.
+				char* ext = strrchr(drv_path, '.');
+				if(!ext || stricmp(ext, ".dll") != 0)
+					strcat_s(drv_path, ARRAY_SIZE(drv_path), ".dll");
+
+				// note: drv_path isn't fully-qualified on some systems,
+				// so we may be fooled by other DLLs on the PATH. nothing
+				// we can do about it, though.
+
+				ret = dll_list_add(drv_path);
+				if(ret < 0)	// abort if it failed (see dll_list_add)
+					break;
+			}
+
+			RegCloseKey(hkSet);
+		}
+	}	// for each subkey
+
+	RegCloseKey(hkOglDrivers);
+	return ret;
 }
 
 
 int win_get_gfx_info()
 {
-	win_get_gfx_card(); 
-	win_get_gfx_drv_ver();
+	int err1 = win_get_gfx_card();
+	int err2 = win_get_gfx_drv_ver();
+
+	// don't exit before trying both
+	CHECK_ERR(err1);
+	CHECK_ERR(err2);
 	return 0;
 }
 
@@ -283,84 +356,57 @@ int win_get_gfx_info()
 // and renderer (e.g. "Software").
 
 
-//
-// write list of sound driver DLLs and their versions into snd_drv_ver.
-//
-// be careful to respect library search order: DLLs in the executable's
-// starting directory hide those of the same name in the system directory.
-//
+// file_enum only passes add_if_oal_dll the filename, so we need to append
+// that to the directory. this is done is a buffer allocated by
+// add_oal_dlls_in_dir for efficiency.
 
-static std::set<std::string> dlls_already_added;
+typedef std::set<std::string> DllSet;
 
-static char* snd_drv_ver_pos = snd_drv_ver;
-	// driver strings will be appended here.
-
-// if we haven't seen this DLL yet, read its file version and
-// append that and its name to the list.
-//
-// dll_path: complete path to DLL (ensures we don't inadvertently
-// load another one that's on the library search path). no trailing '\\'.
-static void list_add_dll(const char* dll_path)
-{
-	// read file version.
-	char dll_ver[128];
-	if(get_ver(dll_path, dll_ver, sizeof(dll_ver)) < 0)
-		strcpy_s(dll_ver, sizeof(dll_ver), "unknown version");
-
-	// extract filename component for "already added" check.
-	const char* slash = strrchr(dll_path, '\\');
-	if(!slash)	// dll_path was a filename
-	{
-		debug_warn("list_add_dll: full path not given");
-		return;
-	}
-	const char* dll_fn = slash+1;
-
-	// make sure it hasn't been added yet.
-	if(dlls_already_added.find(dll_fn) != dlls_already_added.end())
-		return;
-	dlls_already_added.insert(dll_fn);
-
-	// not first time: prepend comma to string.
-	if(snd_drv_ver_pos != snd_drv_ver)
-		snd_drv_ver_pos += sprintf(snd_drv_ver_pos, ", ");
-	snd_drv_ver_pos += sprintf(snd_drv_ver_pos, "%s (%s)", dll_fn, dll_ver);
-}
-
-
-// check_if_oal_dll needs to prepend directory to the filename it gets
-// (for list_add_dll). it appends filename to directory in a buffer allocated
-// list_check_dir (more efficient, less memory use than copying).
 struct PathInfo
 {
 	const char* path;	// PATH_MAX
 	char* end;
 	size_t remaining;
+	DllSet* dlls;
 };
 
 // if this file is an OpenAL DLL, add it to our list.
-// (match "*oal.dll" and "*OpenAL*", as with OpenAL router's search).
-static int check_if_oal_dll(const char* fn, const struct stat* s, const uintptr_t user)
+// (matches "*oal.dll" and "*OpenAL*", as with OpenAL router's search)
+// called via file_enum.
+static int add_if_oal_dll(const char* fn, const struct stat* s, uintptr_t user)
 {
-	UNUSED(s);
+	// skip non-files.
+	if(!S_ISREG(s->st_mode))
+		goto skip;
 
+	{
 	PathInfo* pi = (PathInfo*)user;
 	strncpy(pi->end, fn, pi->remaining);	// safe
+
+	// make sure this DLL hasn't been added yet.
+	if(pi->dlls->find(fn) != pi->dlls->end())
+		goto skip;
+	pi->dlls->insert(fn);
 
 	const size_t len = strlen(fn);
 	const bool oal = len >= 7 && !stricmp(fn+len-7, "oal.dll");
 	const bool openal = strstr(fn, "OpenAL") != 0;
 	if(oal || openal)
-		list_add_dll(pi->path);
+		dll_list_add(pi->path);
+	}
+
+skip:
 	return 0;	// continue calling
 }
 
 
-// find all OpenAL DLLs in a dir (via file_enum and check_if_oal_dll).
-// call in library search order (exe dir, then win sys dir).
+// find all OpenAL DLLs in a dir (via file_enum and add_if_oal_dll).
+// call in library search order (exe dir, then win sys dir); otherwise,
+// DLLs in the executable's starting directory hide those of the
+// same name in the system directory.
 //
 // dir: no trailing '\\'.
-static void list_check_dir(const char* dir)
+static void add_oal_dlls_in_dir(const char* dir, DllSet* dlls)
 {
 	char path[MAX_PATH+1]; path[MAX_PATH] = '\0';
 	const int len = snprintf(path, MAX_PATH, "%s\\", dir);
@@ -369,24 +415,14 @@ static void list_check_dir(const char* dir)
 		assert(0);
 		return;
 	}
-	const PathInfo pi = { path, path+len, MAX_PATH-len };
-	file_enum(path, check_if_oal_dll, (uintptr_t)&pi);
+	PathInfo pi = { path, path+len, MAX_PATH-len, dlls };
+	file_enum(path, add_if_oal_dll, (uintptr_t)&pi);
 }
 
 
-// free memory used while building the list;
-// required before again building a new list.
-static void list_free_mem()
-{
-	dlls_already_added.clear();
-	snd_drv_ver_pos = snd_drv_ver;
-}
-
-
-
-
-// path to DS3D driver; filled by callback, used when checking version.
-static char ds_drv_name[MAX_PATH+1];
+// path to DS3D driver; filled by ds_enum, used by win_get_snd_info.
+// side effect: remains zeroed if there's no sound card installed.
+static char ds_drv_path[MAX_PATH+1];
 
 // store sound card name and path to DirectSound driver.
 // called for each DirectSound driver, but aborts after first valid driver.
@@ -399,39 +435,36 @@ static BOOL CALLBACK ds_enum(void* guid, const char* description, const char* mo
 	if(module[0] == '\0')
 		return TRUE;	// continue calling
 
-	// stick with the first "driver name" (sound card) we get;
-	// in case there are several, we assume this is the one we want.
-
 	strcpy_s(snd_card, sizeof(snd_card), description);
+	snprintf(ds_drv_path, MAX_PATH, "%s\\drivers\\%s", win_sys_dir, module);
 
-	// store DirectSound driver name for version check later
-	// (it's in "win_sys_dir\drivers\").
-	snprintf(ds_drv_name, MAX_PATH, "%s\\drivers\\%s", win_sys_dir, module);
-
-	return FALSE;	// stop calling
+	// we assume the first "driver name" (sound card) is the one we want;
+	// stick with that and stop calling.
+	return FALSE;
 }
 
 
 int win_get_snd_info()
 {
-	// make sure this is set to something sensible when
-	// DSEnumerate doesn't find anything
-	ds_drv_name[0] = '\0';
-
-	// get sound card name
+	// get sound card name and DS driver path.
 	if(DirectSoundEnumerateA((LPDSENUMCALLBACKA)ds_enum, (void*)0) != DS_OK)
 		debug_warn("DirectSoundEnumerate failed");
 
-	// check for the case where there's no sound card
-	if (strlen(ds_drv_name) == 0)
+	// there are apparently no sound card/drivers installed; so indicate.
+	// (the code below would fail and not produce reasonable output)
+	if(ds_drv_path[0] == '\0')
+	{
+		strcpy_s(snd_card, SND_CARD_LEN, "(none)");
+		strcpy_s(snd_drv_ver, SND_DRV_VER_LEN, "(none)");
 		return 0;
+	}
 
 	// find all DLLs related to OpenAL, retrieve their versions,
 	// and store in snd_drv_ver string.
-	list_add_dll(ds_drv_name);
-	list_check_dir(win_exe_dir);
-	list_check_dir(win_sys_dir);
-	list_free_mem();
-
+	dll_list_init(snd_drv_ver, SND_DRV_VER_LEN);
+	dll_list_add(ds_drv_path);
+	std::set<std::string> dlls;	// ensures uniqueness
+	add_oal_dlls_in_dir(win_exe_dir, &dlls);
+	add_oal_dlls_in_dir(win_sys_dir, &dlls);
 	return 0;
 }
