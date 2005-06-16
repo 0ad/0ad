@@ -296,7 +296,7 @@ static int tex_validate(const uint line, const Tex* t)
 		msg = "width or height is 0 - texture probably not loaded successfully";
 	// greater than max supported tex dimension?
 	// no-op if oglInit not yet called
-	if(w > (GLsizei)max_tex_size || h > (GLsizei)max_tex_size)
+	if(w > (GLsizei)ogl_max_tex_size || h > (GLsizei)ogl_max_tex_size)
 		msg = "texture dimensions exceed OpenGL implementation limit";
 	// both NV_texture_rectangle and subtexture require work for the client
 	// (changing tex coords) => we'll just disallow non-power of 2 textures.

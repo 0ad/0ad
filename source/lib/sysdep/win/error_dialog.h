@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by assert_dlg.rc
+// Used by error_dialog.rc
 //
 #define IDD_DIALOG1                     101
 #define IDC_EDIT1                       1001

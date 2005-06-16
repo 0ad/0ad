@@ -30,45 +30,48 @@
 extern void debug_check_heap(void);
 
 
+// user choices in the assert/unhandled exception dialog.
+enum ErrorReaction
+{
+	// ignore, continue as if nothing happened.
+	ER_CONTINUE = 1,
+		// note: don't start at 0 because that is interpreted as a
+		// DialogBoxParam failure.
+
+	// ignore and do not report again. only works with assert2.
+	ER_SUPPRESS,
+		// note: non-persistent; only applicable during this program run.
+
+	// trigger breakpoint, i.e. enter debugger.
+	ER_BREAK,
+
+	// exit the program immediately.
+	ER_EXIT,
+		// note: never returned; carried out immediately to disburden callers.
+};
+
+
 //////////////////////////////////////////////////////////////////////////////
 //
 // assert
 //
 
-enum FailedAssertUserChoice
-{
-	// ignore, continue as if nothing happened.
-	ASSERT_CONTINUE,
-
-	// ignore and do not report again for this assert.
-	ASSERT_SUPPRESS,
-		// note: non-persistent; only applicable during this program run.
-
-	// trigger breakpoint, i.e. enter debugger.
-	ASSERT_BREAK,
-
-	// exit the program immediately.
-	ASSERT_EXIT
-		// note: carried out by debug_assert_failed;
-		// testing for it in assert2 would bloat code.
-};
-
 // notify the user that an assertion failed; displays a
 // stack trace with local variables.
-// returns one of FailedAssertUserChoice or exits the program.
-extern int debug_assert_failed(const char* source_file, int line, const char* assert_expr);
+// returns one of UserErrorReaction.
+extern ErrorReaction debug_assert_failed(const char* source_file, int line, const char* assert_expr);
 
 // recommended use: assert2(expr && "descriptive string")
 #define assert2(expr)\
 STMT(\
-	static int suppress__ = 0;\
-	if(!suppress__ && !(expr))\
+	static unsigned char suppress__ = 0x55;\
+	if(suppress__ == 0x55 && !(expr))\
 		switch(debug_assert_failed(__FILE__, __LINE__, #expr))\
 		{\
-		case ASSERT_SUPPRESS:\
-			suppress__ = 1;\
+		case ER_SUPPRESS:\
+			suppress__ = 0xaa;\
 			break;\
-		case ASSERT_BREAK:\
+		case ER_BREAK:\
 			debug_break();\
 			break;\
 		}\

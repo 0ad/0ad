@@ -105,8 +105,7 @@ static void launch_debugger()
 
 
 // notify the user that an assertion failed.
-// returns one of FailedAssertUserChoice or exits the program.
-int debug_assert_failed(const char *file, int line, const char *expr)
+ErrorReaction debug_assert_failed(const char* file, int line, const char* expr)
 {
 	printf("%s:%d: Assertion `%s' failed.\n", file, line, expr);
 	do
@@ -126,11 +125,11 @@ int debug_assert_failed(const char *file, int line, const char *expr)
 			// fall through
 
 		case 'b':
-			return ASSERT_BREAK;
+			return ER_BREAK;
 		case 'c':
-			return ASSERT_CONTINUE;
+			return ER_CONTINUE;
 		case 's':
-			return ASSERT_SUPPRESS;
+			return ER_SUPPRESS;
 		case 'a':
 			abort();
 		default:
