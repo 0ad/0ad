@@ -31,7 +31,7 @@ class Singleton
    public:
       Singleton()
       {
-         assert2( !ms_singleton );
+         assert( !ms_singleton );
 
          //use a cunning trick to get the singleton pointing to the start of
          //the whole, rather than the start of the Singleton part of the object

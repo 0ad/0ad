@@ -16,6 +16,8 @@ extern char gfx_card[GFX_CARD_LEN];		// default: ""
 const size_t GFX_DRV_VER_LEN = 64;
 extern char gfx_drv_ver[GFX_DRV_VER_LEN];	// default: ""
 
+extern int gfx_mem;	// [MiB]; approximate
+
 // attempt to detect graphics card without OpenGL (in case ogl init fails,
 // or we want more detailed info). gfx_card[] is unchanged on failure.
 extern void get_gfx_info(void);

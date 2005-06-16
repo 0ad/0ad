@@ -147,6 +147,7 @@ STMT(\
 
 
 
+
 // useful because VC6 may return 0 on failure, instead of throwing.
 // this wraps the exception handling, and creates a NULL pointer on failure.
 #define SAFE_NEW(type, ptr)\
@@ -164,51 +165,44 @@ STMT(\
 
 enum LibError
 {
-	//
-	// lib + res
-	//
-
+	// function arguments
 	ERR_INVALID_PARAM   = -1000,
 	ERR_INVALID_HANDLE  = -1001,
-	ERR_NO_MEM          = -1002,
+	ERR_BUF_SIZE        = -1002,
 
-	// try again later
-	ERR_AGAIN           = -1003,
-
-	// fixed limit exceeded
-	ERR_LIMIT           = -1004,
-
-	// system doesn't support required API(s)
-	ERR_NO_SYS          = -1005,
-
-	// feature not currently implemented (will probably change)
-	ERR_NOT_IMPLEMENTED = -1006,
-
-	// feature won't be supported
-	ERR_NOT_SUPPORTED   = -1007,
+	// system limitations
+	// .. out of memory
+	ERR_NO_MEM          = -1020,
+	// .. try again later
+	ERR_AGAIN           = -1021,
+	// .. fixed limit exceeded
+	ERR_LIMIT           = -1022,
+	// .. the OS doesn't provide an API we need
+	ERR_NO_SYS          = -1023,
+	// .. feature not currently implemented (will probably change)
+	ERR_NOT_IMPLEMENTED = -1024,
+	// .. feature won't be supported
+	ERR_NOT_SUPPORTED   = -1025,
 
 	// file contents are damaged
-	ERR_CORRUPTED       = -1008,
+	ERR_CORRUPTED       = -1040,
 
-	ERR_UNKNOWN_FORMAT  = -1009,
+	ERR_UNKNOWN_FORMAT  = -1050,
 
-	ERR_TIMED_OUT       = -1010,
+	ERR_TIMED_OUT       = -1060,
 
-	//
 	// file + vfs
-	//
-
-	ERR_FILE_NOT_FOUND  = -1100,
-	ERR_PATH_NOT_FOUND  = -1101,
-	ERR_DIR_END         = -1102,
-	ERR_EOF             = -1103,
-	ERR_PATH_LENGTH     = -1104,
-	ERR_NOT_FILE        = -1105,
-	ERR_FILE_ACCESS     = -1106,
-	ERR_IO              = -1107,
+	ERR_FILE_NOT_FOUND  = -1200,
+	ERR_PATH_NOT_FOUND  = -1201,
+	ERR_DIR_END         = -1202,
+	ERR_EOF             = -1203,
+	ERR_PATH_LENGTH     = -1204,
+	ERR_NOT_FILE        = -1205,
+	ERR_FILE_ACCESS     = -1206,
+	ERR_IO              = -1207,
 
 
-	ERR_TEX_FMT_INVALID = -1200,
+	ERR_TEX_FMT_INVALID = -1300,
 
 
 	ERR_LAST

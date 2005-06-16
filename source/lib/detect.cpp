@@ -26,6 +26,7 @@
 #include "posix.h"
 #include "detect.h"
 #include "timer.h"
+#include "sdl.h"
 
 #ifdef _M_IX86
 extern void ia32_get_cpu_info();
@@ -82,12 +83,18 @@ void get_mem_status()
 char gfx_card[GFX_CARD_LEN] = "";
 char gfx_drv_ver[GFX_DRV_VER_LEN] = "";
 
+int gfx_mem = -1;	// [MiB]; approximate
+
 
 // attempt to detect graphics card without OpenGL (in case ogl init fails,
 // or we want more detailed info). gfx_card[] is unchanged on failure.
 void get_gfx_info()
 {
 	int ret = -1;
+
+	gfx_mem = (SDL_GetVideoInfo()->video_mem) / 1048576;	// [MiB]
+		// TODO: add sizeof(FB)?
+
 
 	// try platform-specific versions first: they return more
 	// detailed information, and don't require OpenGL to be ready.
