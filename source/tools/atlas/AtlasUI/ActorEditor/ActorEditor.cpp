@@ -9,19 +9,21 @@
 #include "wx/file.h"
 
 BEGIN_EVENT_TABLE(ActorEditor, AtlasWindow)
-	EVT_MENU(ID_Custom1, OnCreateEntity)
+	EVT_MENU(ID_CreateEntity, OnCreateEntity)
 END_EVENT_TABLE()
 
 
-static AtlasWindow::CustomMenu::CustomMenuItem menuItem1 = { _("Create &entity...") };
-static AtlasWindow::CustomMenu::CustomMenuItem* menuItems[] = {	&menuItem1, NULL };
-static AtlasWindow::CustomMenu menu = { _("&Actor"), menuItems };
-
 ActorEditor::ActorEditor(wxWindow* parent)
-	: AtlasWindow(parent, _("Actor Editor"), wxSize(1024, 450), &menu)
+	: AtlasWindow(parent, _("Actor Editor"), wxSize(1024, 450))
 {
 	SetIcon(wxIcon(_T("ICON_ActorEditor")));
 
+	wxMenu* menu = new wxMenu;
+	menu->Append(ID_CreateEntity, _("Create &entity..."));
+	AddCustomMenu(menu, _("&Actor"));
+
+	//////////////////////////////////////////////////////////////////////////
+	
 	wxPanel* mainPanel = new wxPanel(this);
 
 	m_ActorEditorListCtrl = new ActorEditorListCtrl(mainPanel);
@@ -79,7 +81,6 @@ ActorEditor::ActorEditor(wxWindow* parent)
 	//////////////////////////////////////////////////////////////////////////
 
 }
-
 
 void ActorEditor::ThawData(AtObj& in)
 {

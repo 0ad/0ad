@@ -25,23 +25,14 @@ public:
 		ID_Save,
 		ID_SaveAs,
 
-		// IDs for custom window-specific menu items
-		ID_Custom1,
-		ID_Custom2,
-		ID_Custom3
+		// First available ID for custom window-specific menu items
+		ID_Custom
 	};
 
-	// See ActorEditor.cpp for example usage
-	struct CustomMenu {
-		const wxChar* title;
-		struct CustomMenuItem {
-			const wxChar* name;
-		}** items;
-	};
-
-	AtlasWindow(wxWindow* parent, const wxString& title, const wxSize& size, CustomMenu* menu = NULL);
+	AtlasWindow(wxWindow* parent, const wxString& title, const wxSize& size);
 
 private:
+
 	void OnNew(wxCommandEvent& event);
 //	void OnImport(wxCommandEvent& event);
 //	void OnExport(wxCommandEvent& event);
@@ -63,6 +54,8 @@ protected:
 	void SetCurrentFilename(wxFileName filename = wxString());
 	wxFileName GetCurrentFilename() { return m_CurrentFilename; }
 
+	void AddCustomMenu(wxMenu* menu, const wxString& title);
+
 	virtual wxString GetDefaultOpenDirectory() = 0;
 
 	bool SaveChanges(bool forceSaveAs);
@@ -73,6 +66,7 @@ private:
 	AtlasWindowCommandProc m_CommandProc;
 
 	wxMenuItem* m_menuItem_Save;
+	wxMenuBar* m_MenuBar;
 
 	wxFileName m_CurrentFilename;
 	wxString m_WindowTitle;

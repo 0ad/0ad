@@ -70,16 +70,16 @@ BEGIN_EVENT_TABLE(AtlasWindow, wxFrame)
 	EVT_CLOSE(AtlasWindow::OnClose)
 END_EVENT_TABLE()
 
-AtlasWindow::AtlasWindow(wxWindow* parent, const wxString& title, const wxSize& size, CustomMenu* menu)
+AtlasWindow::AtlasWindow(wxWindow* parent, const wxString& title, const wxSize& size)
 	: wxFrame(parent, wxID_ANY, _T(""), wxDefaultPosition, size),
 	m_WindowTitle(title), m_FileHistory(9)
 {
 
-	wxMenuBar *menuBar = new wxMenuBar;
-	SetMenuBar(menuBar);
+	m_MenuBar = new wxMenuBar;
+	SetMenuBar(m_MenuBar);
 
 	wxMenu *menuFile = new wxMenu;
-	menuBar->Append(menuFile, _("&File"));
+	m_MenuBar->Append(menuFile, _("&File"));
 	{
 		menuFile->Append(ID_New, _("&New"));
 //		menuFile->Append(ID_Import, _("&Import..."));
@@ -93,11 +93,11 @@ AtlasWindow::AtlasWindow(wxWindow* parent, const wxString& title, const wxSize& 
 		m_FileHistory.AddFilesToMenu();
 	}
 
-	m_menuItem_Save = menuFile->FindItem(ID_Save); // to let it be greyed out
+	m_menuItem_Save = menuFile->FindItem(ID_Save); // remember this item, to let it be greyed out
 	wxASSERT(m_menuItem_Save);
 
 	wxMenu *menuEdit = new wxMenu;
-	menuBar->Append(menuEdit, _("&Edit"));
+	m_MenuBar->Append(menuEdit, _("&Edit"));
 	{
 		menuEdit->Append(wxID_UNDO, _("&Undo"));
 		menuEdit->Append(wxID_REDO, _("&Redo"));
@@ -106,24 +106,17 @@ AtlasWindow::AtlasWindow(wxWindow* parent, const wxString& title, const wxSize& 
 	m_CommandProc.SetEditMenu(menuEdit);
 	m_CommandProc.Initialize();
 
-
-	if (menu)
-	{
-		wxMenu* menuCustom = new wxMenu;
-		menuBar->Append(menuCustom, menu->title);
-
-		int id = ID_Custom1;
-		for (CustomMenu::CustomMenuItem** item = menu->items; *item; ++item)
-			menuCustom->Append(id++, (*item)->name);
-	}
-
-
 	m_FileHistory.Load(*wxConfigBase::Get());
 
 	CreateStatusBar();
 	//SetStatusText(_("Welcome to wxWidgets!"));
 
 	SetCurrentFilename();
+}
+
+void AtlasWindow::AddCustomMenu(wxMenu* menu, const wxString& title)
+{
+	m_MenuBar->Append(menu, title);
 }
 
 void AtlasWindow::OnQuit(wxCommandEvent& WXUNUSED(event))

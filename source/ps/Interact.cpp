@@ -22,7 +22,7 @@ extern bool keys[SDLK_LAST];
 extern bool g_active;
 extern CStr g_CursorName;
 
-static const float SELECT_DBLCLICK_RATE = 0.5f;
+static const double SELECT_DBLCLICK_RATE = 0.5;
 const int ORDER_DELAY = 5;
 
 bool customSelectionMode=false;
@@ -784,7 +784,7 @@ int interactInputHandler( const SDL_Event* ev )
 
 	// One entry for each of five mouse buttons (SDL mouse buttons 1-5, mouse
 	// buttons over 5 if existant, will be ignored)
-	static float lastclicktime[5] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
+	static double lastclicktime[5] = {0.0, 0.0, 0.0, 0.0, 0.0};
 	static HEntity lastclickobject[5];
 	static u8 clicks[5] = {0, 0, 0, 0, 0};
 
@@ -863,8 +863,7 @@ int interactInputHandler( const SDL_Event* ev )
 		// arrays above.
 		if (button >= 0 && button < 5)
 		{
-			float time;
-			time = (float)get_time();
+			double time = get_time();
 			// Reset clicks counter if too slow or if the cursor's
 			// hovering over something else now.
 			

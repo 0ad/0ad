@@ -260,6 +260,10 @@ public:
 		// the number of times the following code is called - it looks like
 		// a rather worrying amount of work for rendering a single button...
 
+		// Also TODO: DOT3_RGB requires GL_(EXT|ARB)_texture_env_dot3. What should
+		// we do if that's not supported? (Probable answer: blindly ignore the problem,
+		// since it's only relevant for TNT2 / RAGE 128 / etc.)
+
 		// Texture unit 0:
 
 		glEnable(GL_TEXTURE_2D);

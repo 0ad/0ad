@@ -4,6 +4,11 @@ class ActorEditorListCtrl;
 
 class ActorEditor : public AtlasWindow
 {
+	enum
+	{
+		ID_CreateEntity = ID_Custom
+	};
+
 public:
 	ActorEditor(wxWindow* parent);
 
