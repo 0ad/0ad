@@ -165,7 +165,7 @@ function setuppackage (projectname)
 		-- Libraries
 		package.links = { "opengl32" }
 		tinsert(package.files, sourcesfromdirs(sourceroot, {"lib/sysdep/win"}))
-		tinsert(package.files, {sourceroot.."lib/sysdep/win/assert_dlg.rc"})
+		tinsert(package.files, {sourceroot.."lib/sysdep/win/error_dialog.rc"})
 		
 		if (projectname == "sced") then
 			tinsert(package.files, {sourceroot.."tools/sced/ui/ScEd.rc"})

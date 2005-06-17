@@ -154,7 +154,7 @@ for (sort keys %types) {
 
 print $out <<".";
 
-const char* PSERROR::what() const
+const char* PSERROR::what() const throw ()
 {
 	return GetErrorString(getCode());
 }
