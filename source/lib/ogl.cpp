@@ -239,6 +239,8 @@ static void importExtensionFunctions()
 
 //----------------------------------------------------------------------------
 
+#ifndef oglCheck
+	// don't include this function if it has been defined (in ogl.h) as a no-op
 void oglCheck()
 {
 	GLenum err = glGetError();
@@ -261,6 +263,7 @@ void oglCheck()
 		debug_break();
 	}
 }
+#endif
 
 
 //----------------------------------------------------------------------------

@@ -451,7 +451,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 	// should happen. So...
 	m_fsm_anipos = (size_t)( action->m_Speed * ( 1.0f - 2 * m_fsm_animation->m_ActionPos ) );
 	// But...
-	if( m_fsm_anipos < 0 )
+	if( m_fsm_anipos < 0 ) // (FIXME: m_fsm_anipos is unsigned, so this will never be true...)
 	{
 		// We ought to have started it in the past. Oh well.
 		// Here's what we'll do: play it now, and advance it to
@@ -471,7 +471,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 	// Load time needs to be animation->m_ActionPos2 ms after the start of the animation.
 
 	m_fsm_anipos2 = m_fsm_anipos + (size_t)( action->m_Speed * m_fsm_animation->m_ActionPos2 * 2 );
-	if( m_fsm_anipos2 < 0 )
+	if( m_fsm_anipos2 < 0 ) // (FIXME: m_fsm_anipos2 is unsigned, so this will never be true...)
 	{
 		// Load now.
 		m_actor->ShowAmmunition();

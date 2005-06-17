@@ -190,7 +190,7 @@ PSRETURN PSERROR_System_VmodeFailed::getCode() const { return 0x08000003; }
 PSRETURN PSERROR_Xeromyces_XMLOpenFailed::getCode() const { return 0x09000001; }
 PSRETURN PSERROR_Xeromyces_XMLParseError::getCode() const { return 0x09000002; }
 
-const char* PSERROR::what() const
+const char* PSERROR::what() const throw ()
 {
 	return GetErrorString(getCode());
 }
