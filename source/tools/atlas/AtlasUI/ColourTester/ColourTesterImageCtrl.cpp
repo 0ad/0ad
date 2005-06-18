@@ -2,6 +2,8 @@
 
 #include "ColourTesterImageCtrl.h"
 
+#include "ColourTester.h"
+
 #ifdef _MSC_VER
 # ifndef NDEBUG
 #  pragma comment(lib, "DevIL_DBG.lib")
@@ -28,6 +30,7 @@ ColourTesterImageCtrl::ColourTesterImageCtrl(wxWindow* parent)
 	m_Colour[2] = 0;
 	ilInit();
 	ilGenImages(1, (ILuint*)&m_OriginalImage);
+	ilSetInteger(IL_KEEP_DXTC_DATA, IL_TRUE);
 }
 
 void ColourTesterImageCtrl::SetImageFile(const wxFileName& fn)
@@ -44,6 +47,8 @@ void ColourTesterImageCtrl::SetImageFile(const wxFileName& fn)
 	}
 	m_Valid = true;
 
+	m_DxtcFormat = ilGetInteger(IL_DXTC_DATA_FORMAT);
+
 	ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
 
 	// TODO: Check for IL errors
@@ -59,6 +64,26 @@ void ColourTesterImageCtrl::SetImageFile(const wxFileName& fn)
 	}
 
 	CalculateImage();
+
+	// Send an event to indicate that the image has changed, so that
+	// the status-bar text can be updated
+	wxCommandEvent evt(wxEVT_MY_IMAGE_CHANGED);
+	evt.SetEventObject(this);
+	evt.SetString(fn.GetFullPath());
+	GetEventHandler()->ProcessEvent(evt);
+}
+
+wxString ColourTesterImageCtrl::GetImageFiletype()
+{
+	wxString fmt = _("Not DXTC");
+	switch (ilGetInteger(IL_DXTC_DATA_FORMAT)) {
+		case IL_DXT1: fmt = _T("DXT1"); break;
+		case IL_DXT2: fmt = _T("DXT2"); break;
+		case IL_DXT3: fmt = _T("DXT3"); break;
+		case IL_DXT4: fmt = _T("DXT4"); break;
+		case IL_DXT5: fmt = _T("DXT5"); break;
+	}
+	return wxString::Format(_T("%s - %dx%d"), fmt, ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT));
 }
 
 void ColourTesterImageCtrl::SetColour(const wxColour& colour)

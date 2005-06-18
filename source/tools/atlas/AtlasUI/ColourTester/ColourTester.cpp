@@ -8,10 +8,14 @@
 
 #include "wx/dnd.h"
 
+DEFINE_EVENT_TYPE(wxEVT_MY_IMAGE_CHANGED)
+
 BEGIN_EVENT_TABLE(ColourTester, wxFrame)
-//EVT_MENU(ID_Custom1, OnCreateEntity)
+	EVT_COMMAND(wxID_ANY, wxEVT_MY_IMAGE_CHANGED, ColourTester::OnImageChanged)
 END_EVENT_TABLE()
 
+
+// Allow drag-and-drop of files onto the window, as a convenient way of opening them
 class DropTarget : public wxFileDropTarget
 {
 public:
@@ -28,6 +32,7 @@ public:
 private:
 	ColourTesterImageCtrl* m_ImageCtrl;
 };
+
 
 ColourTester::ColourTester(wxWindow* parent)
 	: wxFrame(parent, wxID_ANY, _("Colour Tester"), wxDefaultPosition, wxSize(800, 700))
@@ -64,7 +69,23 @@ ColourTester::ColourTester(wxWindow* parent)
 	bottomSizer->Add((wxPanel*)new ColourTesterColourCtrl(mainPanel, m_ImageCtrl),
 		wxSizerFlags().Border(wxALL, 10));
 
+	m_StatusBar = new wxStatusBar(mainPanel, wxID_ANY);
+	m_StatusBar->SetFieldsCount(2);
+	int statusWidths[] = { -2, -1 };
+	m_StatusBar->SetStatusWidths(2, statusWidths);
+	vertSizer->Add(m_StatusBar,
+		wxSizerFlags().Expand());
+
 	//////////////////////////////////////////////////////////////////////////
 	
 	SetDropTarget(new DropTarget(m_ImageCtrl));
+
+}
+
+void ColourTester::OnImageChanged(wxCommandEvent& event)
+{
+	ColourTesterImageCtrl* imgCtrl = wxDynamicCast(event.GetEventObject(), ColourTesterImageCtrl);
+	wxCHECK(imgCtrl, );
+	m_StatusBar->SetStatusText(event.GetString(), 0);
+	m_StatusBar->SetStatusText(imgCtrl->GetImageFiletype(), 1);
 }
