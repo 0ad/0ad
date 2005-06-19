@@ -205,7 +205,7 @@ JSBool addEntity(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *r
 	jsdouble x, y, orientation;
 	JS_ValueToNumber(cx, argv[2], &x);
 	JS_ValueToNumber(cx, argv[3], &y);
-	JS_ValueToNumber(cx, argv[5], &orientation);
+	JS_ValueToNumber(cx, argv[4], &orientation);
 
 	theMap->addEntity(new Entity(type, player, x,0,y, orientation));
 	

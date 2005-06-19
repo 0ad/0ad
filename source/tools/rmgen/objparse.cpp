@@ -9,70 +9,58 @@
 
 using namespace std;
 
-bool GetRaw(JSContext* cx, jsval val, JSObject** retObj, int* retType) {
-	if(!JSVAL_IS_OBJECT(val)) return false;
-	JSObject* obj = JSVAL_TO_OBJECT(val);
-	jsval ret;
-	if(!JS_CallFunctionName(cx, obj, "raw", 0, 0, &ret)) {
-		return false;
-	}
-	if(!JSVAL_IS_OBJECT(ret)) return false;
-	*retObj = JSVAL_TO_OBJECT(ret);
-	if(!JS_IsArrayObject(cx, *retObj)) return false;
-	jsuint len;
-	JS_GetArrayLength(cx, *retObj, &len);
-	if(len==0) return false;
-	jsval rval;
-	JS_GetElement(cx, *retObj, 0, &rval);
-	if(!JSVAL_IS_INT(rval)) return 0;
-	*retType = JSVAL_TO_INT(rval);
+int GetType(JSContext* cx, jsval val) {
+	int ret;
+	if(!GetIntField(cx, val, "TYPE", ret)) return 0;
+	return ret;
+}
+
+bool GetIntField(JSContext* cx, jsval obj, const char* name, int& ret) {
+	jsval val;
+	if(!GetJsvalField(cx, obj, name, val)) return false;
+	if(!JSVAL_IS_INT(val)) return false;
+	ret = JSVAL_TO_INT(val);
 	return true;
 }
 
-bool ParseFields(JSContext* cx, JSObject* array, const char* format, ...) {
-	int len = strlen(format);
-	jsuint arLen;
-	JS_GetArrayLength(cx, array, &arLen);
-	if(arLen != len+1) return false;
-
-	va_list ap;
-	va_start(ap, format);   // start at next arg after format
-
-	for(int i=0; i<len; i++)
-	{
-		jsval val;
-		JS_GetElement(cx, array, i+1, &val);
-
-		if(format[i] == 'i') {
-			int* r = va_arg(ap, int*);
-			if(!JSVAL_IS_INT(val)) return false;
-			*r = JSVAL_TO_INT(val);
-		}
-		else if(format[i] == 'n') {
-			float* r = va_arg(ap, float*);
-			if(!JSVAL_IS_NUMBER(val)) return false;
-			jsdouble jsd;
-			JS_ValueToNumber(cx, val, &jsd);
-			*r = jsd;
-		}
-		else if(format[i] == 's') {
-			string* r = va_arg(ap, string*);
-			if(!JSVAL_IS_STRING(val)) return false;
-			*r = JS_GetStringBytes(JS_ValueToString(cx, val));
-		}
-		else if(format[i] == '*') {
-			jsval* r = va_arg(ap, jsval*);
-			*r = val;
-		}
-		else 
-		{
-			cerr << "Internal Error: unsupported type '" << format[i] << "' for ParseFields!\n";
-			Shutdown(1);
-			return false;
-		}
-	}
-	va_end(ap);
+bool GetBoolField(JSContext* cx, jsval obj, const char* name, int& ret) {
+	jsval val;
+	if(!GetJsvalField(cx, obj, name, val)) return false;
+	if(!JSVAL_IS_BOOLEAN(val)) return false;
+	ret = JSVAL_TO_BOOLEAN(val);
 	return true;
+}
+
+bool GetFloatField(JSContext* cx, jsval obj, const char* name, float& ret) {
+	jsval val;
+	if(!GetJsvalField(cx, obj, name, val)) return false;
+	if(!JSVAL_IS_NUMBER(val)) return false;
+	jsdouble jsdbl;
+	JS_ValueToNumber(cx, val, &jsdbl);
+	ret = jsdbl;
+	return true;
+}
+
+bool GetStringField(JSContext* cx, jsval obj, const char* name, std::string& ret) {
+	jsval val;
+	if(!GetJsvalField(cx, obj, name, val)) return false;
+	if(!JSVAL_IS_STRING(val)) return false;
+	ret = JS_GetStringBytes(JSVAL_TO_STRING(val));
+	return true;
+}
+
+bool GetArrayField(JSContext* cx, jsval obj, const char* name, std::vector<jsval>& ret) {
+	ret.clear();
+	jsval val;
+	if(!GetJsvalField(cx, obj, name, val)) return false;
+	if(!ParseArray(cx, val, ret)) return false;
+	return true;
+}
+
+bool GetJsvalField(JSContext* cx, jsval obj, const char* name, jsval& ret) {
+	if(!JSVAL_IS_OBJECT(obj)) return false;
+	JSObject* fieldObj = JSVAL_TO_OBJECT(obj);
+	return JS_GetProperty(cx, fieldObj, name, &ret);
 }
 
 bool ParseArray(JSContext* cx, jsval val, vector<jsval>& ret) {
@@ -91,24 +79,22 @@ bool ParseArray(JSContext* cx, jsval val, vector<jsval>& ret) {
 }
 
 AreaPainter* ParsePainter(JSContext* cx, jsval val) {
-	JSObject* obj; int type;
-	if(!GetRaw(cx, val, &obj, &type)) return 0;
-
 	jsval jsv, jsv2;
 	Terrain* terrain = 0;
 	vector<jsval> array;
 	vector<Terrain*> terrains;
 	vector<int> widths;
 
-	switch(type) {
+	switch(GetType(cx, val)) {
 		case TYPE_TERRAINPAINTER:
-			if(!ParseFields(cx, obj, "*", &jsv)) return 0;
+			if(!GetJsvalField(cx, val, "terrain", jsv)) return 0;
 			terrain = ParseTerrain(cx, jsv);
 			if(terrain==0) return 0;
 			return new TerrainPainter(terrain);
 
 		case TYPE_LAYEREDPAINTER:
-			if(!ParseFields(cx, obj, "**", &jsv, &jsv2)) return 0;
+			if(!GetJsvalField(cx, val, "widths", jsv)) return 0;
+			if(!GetJsvalField(cx, val, "terrains", jsv2)) return 0;
 			if(!ParseArray(cx, jsv, array)) return 0;
 			for(int i=0; i<array.size(); i++) {
 				if(!JSVAL_IS_INT(array[i])) return 0;
@@ -129,20 +115,24 @@ AreaPainter* ParsePainter(JSContext* cx, jsval val) {
 }
 
 AreaPlacer* ParsePlacer(JSContext* cx, jsval val) {
-	JSObject* obj; int type;
-	if(!GetRaw(cx, val, &obj, &type)) return 0;
-
 	jsval jsv;
 	int x, y, x1, y1, x2, y2, num, maxFail;
 	float size, coherence, smoothness;
 
-	switch(type) {
+	switch(GetType(cx, val)) {
 		case TYPE_RECTPLACER:
-			if(!ParseFields(cx, obj, "iiii", &x1, &y1, &x2, &y2)) return 0;
+			if(!GetIntField(cx, val, "x1", x1)) return 0;
+			if(!GetIntField(cx, val, "y1", y1)) return 0;
+			if(!GetIntField(cx, val, "x2", x2)) return 0;
+			if(!GetIntField(cx, val, "y2", y2)) return 0;
 			return new RectPlacer(x1, y1, x2, y2);
 
 		case TYPE_CLUMPPLACER:
-			if(!ParseFields(cx, obj, "nnnii", &size, &coherence, &smoothness, &x, &y)) return 0;
+			if(!GetFloatField(cx, val, "size", size)) return 0;
+			if(!GetFloatField(cx, val, "coherence", coherence)) return 0;
+			if(!GetFloatField(cx, val, "smoothness", smoothness)) return 0;
+			if(!GetIntField(cx, val, "x", x)) return 0;
+			if(!GetIntField(cx, val, "y", y)) return 0;
 			return new ClumpPlacer(size, coherence, smoothness, x, y);
 
 		default:
@@ -153,30 +143,27 @@ AreaPlacer* ParsePlacer(JSContext* cx, jsval val) {
 Constraint* ParseConstraint(JSContext* cx, jsval val) {
 	if(JSVAL_IS_NULL(val)) return new NullConstraint();
 
-	JSObject* obj; int type;
-	if(!GetRaw(cx, val, &obj, &type)) return 0;
-
 	int areaId;
 	string texture;
 	jsval jsv, jsv2;
 	Constraint* c1, *c2;
 
-	switch(type) {
+	switch(GetType(cx, val)) {
 		case TYPE_NULLCONSTRAINT:
-			if(!ParseFields(cx, obj, "")) return 0;
 			return new NullConstraint();
 
 		case TYPE_AVOIDAREACONSTRAINT:
-			if(!ParseFields(cx, obj, "i", &areaId)) return 0;
+			if(!GetIntField(cx, val, "area", areaId)) return 0;
 			if(areaId <= 0 || areaId > theMap->areas.size()) return 0;
 			return new AvoidAreaConstraint(theMap->areas[areaId-1]);
 
-		case TYPE_AVOIDTERRAINCONSTRAINT:
-			if(!ParseFields(cx, obj, "s", &texture)) return 0;
-			return new AvoidTerrainConstraint(theMap->getId(texture));
+		case TYPE_AVOIDTEXTURECONSTRAINT:
+			if(!GetStringField(cx, val, "texture", texture)) return 0;
+			return new AvoidTextureConstraint(theMap->getId(texture));
 
 		case TYPE_ANDCONSTRAINT:
-			if(!ParseFields(cx, obj, "**", &jsv, &jsv2)) return 0;
+			if(!GetJsvalField(cx, val, "a", jsv)) return 0;
+			if(!GetJsvalField(cx, val, "b", jsv2)) return 0;
 			if(!(c1 = ParseConstraint(cx, jsv))) return 0;
 			if(!(c2 = ParseConstraint(cx, jsv2))) return 0;
 			return new AndConstraint(c1, c2);
@@ -194,18 +181,13 @@ Terrain* ParseTerrain(JSContext* cx, jsval val) {
 	}
 	else {
 		// complex terrain type
-		JSObject* obj; int type;
-		if(!GetRaw(cx, val, &obj, &type)) return 0;
-
-		jsval jsv;
 		Terrain* terrain = 0;
 		vector<jsval> array;
 		vector<Terrain*> terrains;
 
-		switch(type) {
+		switch(GetType(cx, val)) {
 			case TYPE_RANDOMTERRAIN:
-				if(!ParseFields(cx, obj, "*", &jsv)) return 0;
-				if(!ParseArray(cx, jsv, array)) return 0;
+				if(!GetArrayField(cx, val, "terrains", array)) return 0;
 				for(int i=0; i<array.size(); i++) {
 					terrain = ParseTerrain(cx, array[i]);
 					if(terrain==0) return 0;

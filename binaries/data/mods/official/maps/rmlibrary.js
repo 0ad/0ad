@@ -8,7 +8,7 @@ TYPE_RANDOMTERRAIN = 4,
 TYPE_LAYEREDPAINTER = 5,
 TYPE_AVOIDAREACONSTRAINT = 6,
 TYPE_CLUMPPLACER = 7,
-TYPE_AVOIDTERRAINCONSTRAINT = 8,
+TYPE_AVOIDTEXTURECONSTRAINT = 8,
 TYPE_ANDCONSTRAINT = 9;
 
 // Utility functions
@@ -42,74 +42,56 @@ function chooseRand() {
 // Area placers
 
 function RectPlacer(x1, y1, x2, y2) {
+	this.TYPE = TYPE_RECTPLACER;
 	this.x1 = x1;
 	this.y1 = y1;
 	this.x2 = x2;
 	this.y2 = y2;
-	this.raw = function() {
-		return [TYPE_RECTPLACER, this.x1, this.y1, this.x2, this.y2];
-	}
 }
 
 function TerrainPainter(terrain) {
+	this.TYPE = TYPE_TERRAINPAINTER;
 	this.terrain = terrain;
-	this.raw = function() {
-		return [TYPE_TERRAINPAINTER, this.terrain];
-	}
 }
 
 function NullConstraint() {
-	this.raw = function() {
-		return [TYPE_NULLCONSTRAINT];
-	}
+	this.TYPE = TYPE_NULLCONSTRAINT;
 }
 
 function RandomTerrain() {
+	this.TYPE = TYPE_RANDOMTERRAIN;
 	this.terrains = argsToArray(arguments);
-	this.raw = function() {
-		return [TYPE_RANDOMTERRAIN, this.terrains];
-	}
 }
 
 function LayeredPainter(widths, terrains) {
+	this.TYPE = TYPE_LAYEREDPAINTER;
 	this.widths = widths;
 	this.terrains = terrains;
-	this.raw = function() {
-		return [TYPE_LAYEREDPAINTER, this.widths, this.terrains];
-	}
 }
 
 function AvoidAreaConstraint(area) {
+	this.TYPE = TYPE_AVOIDAREACONSTRAINT;
 	this.area = area;
-	this.raw = function() {
-		return [TYPE_AVOIDAREACONSTRAINT, this.area];
-	}
 }
 
 function ClumpPlacer(size, coherence, smoothness, x, y) {
+	this.TYPE = TYPE_CLUMPPLACER;
 	this.size = size;
 	this.coherence = coherence;
 	this.smoothness = smoothness;
 	this.x = x ? x : -1;
 	this.y = y ? y : -1;
-	this.raw = function() {
-		return [TYPE_CLUMPPLACER, this.size, this.coherence, this.smoothness, this.x, this.y];
-	}
 }
 
-function AvoidTerrainConstraint(texture) {
+function AvoidTextureConstraint(texture) {
+	this.TYPE = TYPE_AVOIDTEXTURECONSTRAINT;
 	this.texture = texture;
-	this.raw = function() {
-		return [TYPE_AVOIDTERRAINCONSTRAINT, this.texture];
-	}
 }
 
 function AndConstraint(a, b) {
+	this.TYPE = TYPE_ANDCONSTRAINT;
 	this.a = a;
 	this.b = b;
-	this.raw = function() {
-		return [TYPE_ANDCONSTRAINT, this.a, this.b];
-	}
 }
 
 function createMulti(centeredPlacer, painter, constraint, num, maxFail) {
@@ -128,5 +110,5 @@ function createMulti(centeredPlacer, painter, constraint, num, maxFail) {
 			bad++;
 		}
 	}
-	return (good==num) ? ret : null;
+	return ret;
 }

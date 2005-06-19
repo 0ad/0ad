@@ -21,13 +21,13 @@ bool AvoidAreaConstraint::allows(Map* m, int x, int y)
 	return m->area[x][y] != area;
 }
 
-// AvoidTerrainConstraint
+// AvoidTextureConstraint
 
-AvoidTerrainConstraint::AvoidTerrainConstraint(int textureId) {
+AvoidTextureConstraint::AvoidTextureConstraint(int textureId) {
 	this->textureId = textureId;
 }
 
-bool AvoidTerrainConstraint::allows(Map* m, int x, int y)
+bool AvoidTextureConstraint::allows(Map* m, int x, int y)
 {
 	return m->texture[x][y] != textureId;
 }

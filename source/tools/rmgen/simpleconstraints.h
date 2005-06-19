@@ -18,11 +18,11 @@ public:
 	virtual bool allows(Map* m, int x, int y);
 };
 
-class AvoidTerrainConstraint : public Constraint {
+class AvoidTextureConstraint : public Constraint {
 private:
 	int textureId;
 public:
-	AvoidTerrainConstraint(int textureId);
+	AvoidTextureConstraint(int textureId);
 	virtual bool allows(Map* m, int x, int y);
 };
 

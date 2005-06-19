@@ -18,14 +18,19 @@ TYPE_RANDOMTERRAIN = 4,
 TYPE_LAYEREDPAINTER = 5,
 TYPE_AVOIDAREACONSTRAINT = 6,
 TYPE_CLUMPPLACER = 7,
-TYPE_AVOIDTERRAINCONSTRAINT = 8,
+TYPE_AVOIDTEXTURECONSTRAINT = 8,
 TYPE_ANDCONSTRAINT = 9;
 
-// Helper functions to parse objects from array versions
+// Helper functions to parse objects from JS versions
 
-JSObject* GetRaw(JSContext* cx, jsval val);
+int GetType(JSContext* cx, jsval val);
+bool GetIntField(JSContext* cx, jsval obj, const char* name, int& ret);
+bool GetBoolField(JSContext* cx, jsval obj, const char* name, int& ret);
+bool GetFloatField(JSContext* cx, jsval obj, const char* name, float& ret);
+bool GetStringField(JSContext* cx, jsval obj, const char* name, std::string& ret);
+bool GetArrayField(JSContext* cx, jsval obj, const char* name, std::vector<jsval>& ret);
+bool GetJsvalField(JSContext* cx, jsval obj, const char* name, jsval& ret);
 
-bool ParseFields(JSContext* cx, JSObject* array, const char* format, ...);
 bool ParseArray(JSContext* cx, jsval val, std::vector<jsval>& ret);
 
 AreaPainter* ParsePainter(JSContext* cx, jsval val);
