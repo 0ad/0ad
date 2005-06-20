@@ -317,13 +317,6 @@ function FlipGUI(NewGUIType)
 
 // ====================================================================
 
-// Unpleasant system-dependent hack. The input system should be fixed...
-var SDL_BUTTON_LEFT = 0;
-var SDL_BUTTON_RIGHT = 1;
-var SDL_BUTTON_MIDDLE = 2;
-var SDL_BUTTON_WHEELUP = 3;
-var SDL_BUTTON_WHEELDOWN = 4;
-
 function selectEntity(handler)
 {
 	endSelection();
