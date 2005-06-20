@@ -48,7 +48,7 @@ static void RenderTileOutline(int gx,int gz)
 
 	glBegin (GL_QUADS);
 		
-		for(i = 0; i < 4; i++)
+		for(int i = 0; i < 4; i++)
 			glVertex3fv(&V[i].X);
 
 	glEnd ();

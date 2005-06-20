@@ -17,7 +17,7 @@ public:
 protected:
 	CImageList m_ImageList;
 
-	int GetCurrentTerrainType();
+	CTerrainTypeGroup *GetCurrentTerrainType();
 
 	void Select(CTextureEntry* entry);
 	BOOL BuildImageListIcon(CTextureEntry* texentry);

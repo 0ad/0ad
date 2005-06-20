@@ -1505,8 +1505,6 @@ debug_printf("MAIN &argc=%p &argv=%p\n", &argc, &argv);
 
 void ScEd_Init()
 {
-	new CProfileManager;
-
 	g_Quickstart = true;
 
 	Init(0, NULL, false);

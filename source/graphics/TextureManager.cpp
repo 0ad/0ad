@@ -19,9 +19,9 @@
 
 using namespace std;
 
-CTextureManager::CTextureManager()
-{
-}
+CTextureManager::CTextureManager():
+	m_LastGroupIndex(0)
+{}
 
 CTextureManager::~CTextureManager()
 {
@@ -192,7 +192,19 @@ CTerrainTypeGroup *CTextureManager::FindGroup(CStr name)
 	if (it != m_TerrainTypeGroups.end())
 		return it->second;
 	else
-		return m_TerrainTypeGroups[name] = new CTerrainTypeGroup(name);
+		return m_TerrainTypeGroups[name] = new CTerrainTypeGroup(name, ++m_LastGroupIndex);
+}
+
+/* There was a GetRandomTexture in MainFrm.cpp (sced) previously that gave compile errors...
+So I thought "better fix it up and put it in CTextureManager instead".. well, it is never used
+except for one *comment* in MainFrm.cpp - d'oh */
+CTextureEntry* CTextureManager::GetRandomTexture()
+{
+	if (!m_TextureEntries.size())
+		return NULL;
+
+	u32 type=rand()%(u32)m_TextureEntries.size();
+	return m_TextureEntries[type];
 }
 
 void CTerrainTypeGroup::AddTerrain(CTextureEntry *pTerrain)

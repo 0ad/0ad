@@ -61,7 +61,7 @@ void CPaintTextureCommand::Execute()
 	int px1=clamp(1+(x1/PATCH_SIZE),0,patchesPerSide);
 	int pz0=clamp(-1+(z0/PATCH_SIZE),0,patchesPerSide);
 	int pz1=clamp(1+(z1/PATCH_SIZE),0,patchesPerSide);
-	for (j=pz0;j<pz1;j++) {
+	for (int j=pz0;j<pz1;j++) {
 		for (int i=px0;i<px1;i++) {
 			CPatch* patch=terrain->GetPatch(i,j);
 			patch->SetDirty(RENDERDATA_UPDATE_INDICES);

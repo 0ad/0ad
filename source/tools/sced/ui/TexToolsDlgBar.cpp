@@ -95,10 +95,14 @@ static void ConvertColor(const Color8888* src,Color888* dst)
 	dst->b=src->b;
 }
 
-int CTexToolsDlgBar::GetCurrentTerrainType()
+CTerrainTypeGroup *CTexToolsDlgBar::GetCurrentTerrainType()
 {
 	CComboBox* terraintypes=(CComboBox*) GetDlgItem(IDC_COMBO_TERRAINTYPES);
-	return terraintypes->GetCurSel();
+	int nIndex=terraintypes->GetCurSel();
+	if (nIndex != CB_ERR)
+		return (CTerrainTypeGroup *)terraintypes->GetItemDataPtr(nIndex);
+	else
+		return NULL;
 }
 
 BOOL CTexToolsDlgBar::BuildImageListIcon(CTextureEntry* texentry)
@@ -196,9 +200,12 @@ BOOL CTexToolsDlgBar::OnInitDialog()
 	// build combo box for terrain types
 	CComboBox* terraintypes=(CComboBox*) GetDlgItem(IDC_COMBO_TERRAINTYPES);
 	
-	const std::vector<CTextureManager::STextureType>& ttypes=g_TexMan.m_TerrainTextures;
-	for (uint i=0;i<ttypes.size();i++) {
-		terraintypes->AddString((const char*) ttypes[i].m_Name);
+	const CTextureManager::TerrainTypeGroupMap &ttypes=g_TexMan.GetGroups();
+	CTextureManager::TerrainTypeGroupMap::const_iterator it;
+	for (it=ttypes.begin();it!=ttypes.end();++it) {
+		int nIndex=terraintypes->AddString(it->second->GetName().c_str());
+		if (nIndex != CB_ERR)
+			terraintypes->SetItemDataPtr(nIndex, it->second);
 	}
 	if (ttypes.size()>0) {
 		// select first type
@@ -211,14 +218,14 @@ BOOL CTexToolsDlgBar::OnInitDialog()
 
 	// build icons for existing textures
 	if (ttypes.size()) {
-		const std::vector<CTextureEntry*>& textures=ttypes[0].m_Textures;
+		const std::vector<CTextureEntry*>& textures=ttypes.begin()->second->GetTerrains();
 		for (uint i=0;i<textures.size();i++) {
 			// add image icon for this
 			AddImageListIcon(textures[i]);
 		
 			// add to list ctrl
 			int index=listctrl->GetItemCount();
-			listctrl->InsertItem(index,(const char*) textures[i]->GetName(),index);
+			listctrl->InsertItem(index,(const char*) textures[i]->GetTag(),index);
 		}
 
 		// select first entry if we've got any entries
@@ -253,7 +260,7 @@ void CTexToolsDlgBar::OnClickListTextureBrowser(NMHDR* pNMHDR, LRESULT* pResult)
 	if (!pos) return;
 
 	int index=listctrl->GetNextSelectedItem(pos);
-	Select(g_TexMan.m_TerrainTextures[GetCurrentTerrainType()].m_Textures[index]);
+	Select(GetCurrentTerrainType()->GetTerrains()[index]);
 	
 	*pResult = 0;
 }
@@ -280,15 +287,15 @@ void CTexToolsDlgBar::OnSelChangeTerrainTypes()
 	listctrl->DeleteAllItems();
 	
 	// add icons to image list from new selected terrain types
-	if (GetCurrentTerrainType()!=CB_ERR)
+	if (GetCurrentTerrainType()!=NULL)
 	{
-		std::vector<CTextureEntry*>& textures=g_TexMan.m_TerrainTextures[GetCurrentTerrainType()].m_Textures;
+		const std::vector<CTextureEntry*>& textures=GetCurrentTerrainType()->GetTerrains();
 		for (uint j=0;j<textures.size();j++) {
 			// add image icon for this
 			AddImageListIcon(textures[j]);
 			
 			// add to list ctrl
-			listctrl->InsertItem(j,(const char*) textures[j]->GetName(),j);
+			listctrl->InsertItem(j,(const char*) textures[j]->GetTag(),j);
 		}
 	}
 }

@@ -2,6 +2,7 @@
 #include "MiniMap.h"
 #include "ui/UIGlobals.h"
 #include "TextureManager.h"
+#include "TextureEntry.h"
 #include "Game.h"
 #include "Renderer.h"
 #include "ogl.h"

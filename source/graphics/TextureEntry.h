@@ -41,6 +41,8 @@ public:
 		return m_BaseColor;
 	}
 	
+	int GetType() const
+	{ return m_Groups[0]->GetIndex(); }
 	const GroupVector &GetGroups() const
 	{ return m_Groups; }
 	

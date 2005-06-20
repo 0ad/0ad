@@ -6,6 +6,7 @@
 #include "ObjectManager.h"
 #include "UnitManager.h"
 #include "TextureManager.h"
+#include "TextureEntry.h"
 #include "Model.h"
 #include "SkeletonAnimManager.h"
 #include "Unit.h"
@@ -60,13 +61,7 @@ bool CEditorData::InitScene()
 	if (!LoadTerrain("temp/terrain.png")) return false;
 	
 	// get default texture to apply to terrain
-	CTextureEntry* texture=0;
-	for (uint i=0;i<g_TexMan.m_TerrainTextures.size();i++) {
-		if (g_TexMan.m_TerrainTextures[i].m_Textures.size()) {
-			texture=g_TexMan.m_TerrainTextures[i].m_Textures[0];
-			break;
-		}
-	}
+	CTextureEntry* texture=g_TexMan.FindTexture("aaa.dds");
 
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 
@@ -271,7 +266,7 @@ void CEditorData::OnCameraChanged()
 	CVector3D rayDir=g_NaviCam.GetCamera().m_Orientation.GetIn();
 
 	CVector3D hitPt[4];
-	for (i=0;i<4;i++) {
+	for (int i=0;i<4;i++) {
 		CVector3D rayDir=wPts[i]-rayOrigin;
 		rayDir.Normalize();
 
@@ -281,7 +276,7 @@ void CEditorData::OnCameraChanged()
 
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 
-	for (i=0;i<4;i++) {
+	for (int i=0;i<4;i++) {
 		// convert to minimap space
 		float px=hitPt[i].X;
 		float pz=hitPt[i].Z;

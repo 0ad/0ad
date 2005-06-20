@@ -810,22 +810,6 @@ static CObjectEntry* GetRandomActorTemplate()
 //	return found;
 }
 
-static CTextureEntry* GetRandomTexture()
-{
-	if (g_TexMan.m_TerrainTextures.size()==0) return 0;
-
-	CTextureEntry* found=0;
-	do {
-		u32 type=rand()%(u32)g_TexMan.m_TerrainTextures.size();
-		u32 texturesoftype=(u32)g_TexMan.m_TerrainTextures[type].m_Textures.size();
-		if (texturesoftype>0) {
-			found=g_TexMan.m_TerrainTextures[type].m_Textures[rand()%texturesoftype];
-		}
-	} while (!found);
-	
-	return found;
-}
-
 void CMainFrame::OnRandomMap() 
 {
 	const u32 count=5000;	
@@ -861,7 +845,7 @@ void CMainFrame::OnRandomMap()
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 	for (i=0;i<vsize;i++) {
 		for (j=0;j<vsize;j++) {
-			CTextureEntry* tex=GetRandomTexture();
+			CTextureEntry* tex=g_TexMan.GetRandomTexture();
 			CMiniPatch* mp=terrain->GetTile(i,j);
 			mp->Tex1=tex->GetHandle();
 			mp->Tex1Priority=tex->GetType();
