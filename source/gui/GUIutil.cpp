@@ -80,42 +80,14 @@ bool __ParseString<CClientArea>(const CStr& Value, CClientArea &Output)
 template <>
 bool GUI<int>::ParseColor(const CStr& Value, CColor &Output, float DefaultAlpha)
 {
-	// Use the parser to parse the values
-	CParser& parser (CParserCache::Get("_[-$arg(_minus)]$value_[-$arg(_minus)]$value_[-$arg(_minus)]$value_[[-$arg(_minus)]$value_]"));
-
-	string str = Value;
-
-	CParserLine line;
-	line.ParseString(parser, str);
-	if (!line.m_ParseOK)
-	{
-		// TODO Gee: Parsing failed
-		return false;
-	}
-	float values[4];
-	values[3] = DefaultAlpha;
-	for (int i=0; i<(int)line.GetArgCount(); ++i)
-	{
-		if (!line.GetArgFloat(i, values[i]))
-		{
-			// Parsing failed
-			return false;
-		}
-	}
-
-	Output.r = values[0]/255.f;
-	Output.g = values[1]/255.f;
-	Output.b = values[2]/255.f;
-	Output.a = values[3]/255.f;
-
-	return true;
+	return Output.ParseString(Value, DefaultAlpha);
 }
 
 
 template <>
 bool __ParseString<CColor>(const CStr& Value, CColor &Output)
 {
-	return GUI<int>::ParseColor(Value, Output, 255.f);
+	return Output.ParseString(Value, 255.f);
 }
 
 template <>

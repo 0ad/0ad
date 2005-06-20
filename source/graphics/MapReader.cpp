@@ -14,6 +14,7 @@
 #include "Model.h"
 #include "Terrain.h"
 #include "TextureManager.h"
+#include "TextureEntry.h"
 
 #include "timer.h"
 #include "Loader.h"

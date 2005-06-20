@@ -5,13 +5,16 @@
 #include <Network/Session.h>
 
 #include "TurnManager.h"
-#include "Game.h"
+#include "simulation/ScriptObject.h"
 #include "scripting/ScriptableObject.h"
 #include "scripting/JSMap.h"
 
 #include <map>
 
+class CPlayerSlot;
 class CPlayer;
+class CGame;
+class CGameAttributes;
 
 class CNetClient: public CNetSession, protected CTurnManager, public CJSObject<CNetClient>
 {

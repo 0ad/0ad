@@ -831,6 +831,14 @@ TIMER(InitScripting);
 	g_ScriptingHost.DefineConstant( "ORDER_ATTACK", CEntityOrder::ORDER_ATTACK_MELEE );
 	g_ScriptingHost.DefineConstant( "ORDER_GATHER", CEntityOrder::ORDER_GATHER );
 	
+#define REG_JS_CONSTANT(_name) g_ScriptingHost.DefineConstant(#_name, _name)
+	REG_JS_CONSTANT(SDL_BUTTON_LEFT);
+	REG_JS_CONSTANT(SDL_BUTTON_MIDDLE);
+	REG_JS_CONSTANT(SDL_BUTTON_RIGHT);
+	REG_JS_CONSTANT(SDL_BUTTON_WHEELUP);
+	REG_JS_CONSTANT(SDL_BUTTON_WHEELDOWN);
+#undef REG_JS_CONSTANT
+	
 	CNetMessage::ScriptingInit();
 
 	JSI_Camera::init();
@@ -1241,8 +1249,10 @@ debug_printf("INIT &argc=%p &argv=%p\n", &argc, &argv);
 
 	// enable/disable VSync
 	// note: "GL_EXT_SWAP_CONTROL" is "historical" according to dox.
+#ifdef OS_WIN
 	if(oglHaveExtension("WGL_EXT_swap_control"))
 		wglSwapIntervalEXT(g_VSync? 1 : 0);
+#endif
 
 	MICROLOG(L"init ps");
 	InitPs();

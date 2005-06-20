@@ -193,13 +193,15 @@ SDL_MouseMotionEvent;
 // SDL_MouseButtonEvent.button
 enum
 {
-	// do not change order
-	SDL_BUTTON_LEFT,
-	SDL_BUTTON_RIGHT,
-	SDL_BUTTON_MIDDLE,
+	// do not change order or values
+	// ... but if you do, update lib/sdl.h so that SDL_BUTTON_TO_INDEX still
+	// yields contiguous values
+	SDL_BUTTON_LEFT=0,
+	SDL_BUTTON_RIGHT=1,
+	SDL_BUTTON_MIDDLE=2,
 
-	SDL_BUTTON_WHEELUP,
-	SDL_BUTTON_WHEELDOWN
+	SDL_BUTTON_WHEELUP=3,
+	SDL_BUTTON_WHEELDOWN=4
 };
 
 typedef struct

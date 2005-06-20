@@ -723,7 +723,8 @@ void CMouseoverEntities::stopBandbox()
 
 void FireWorldClickEvent(uint button, int clicks)
 {
-	debug_printf("FireWorldClickEvent: button %d, clicks %d\n", button, clicks);
+	//debug_printf("FireWorldClickEvent: button %d, clicks %d\n", button, clicks);
+	
 	g_JSGameEvents.FireWorldClick(
 		button,
 		clicks,
@@ -782,12 +783,19 @@ int interactInputHandler( const SDL_Event* ev )
 	CCamera *pCamera=pView->GetCamera();
 	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
 
-	// One entry for each of five mouse buttons (SDL mouse buttons 1-5, mouse
-	// buttons over 5 if existant, will be ignored)
-	static double lastclicktime[5] = {0.0, 0.0, 0.0, 0.0, 0.0};
-	static HEntity lastclickobject[5];
-	static u8 clicks[5] = {0, 0, 0, 0, 0};
+	// One entry for each mouse button
+	static double lastclicktime[SDL_BUTTON_INDEX_COUNT];
+	static HEntity lastclickobject[SDL_BUTTON_INDEX_COUNT];
+	static u8 clicks[SDL_BUTTON_INDEX_COUNT];
 
+	ONCE(
+		for (int i=0;i<SDL_BUTTON_INDEX_COUNT;i++)
+		{
+			lastclicktime[i] = 0.0f;
+			clicks[i] = 0;
+		});
+	
+	// These refer to the left mouse button
 	static u16 button_down_x, button_down_y;
 	static double button_down_time;
 	static bool button_down = false;
@@ -857,11 +865,10 @@ int interactInputHandler( const SDL_Event* ev )
 		return( EV_HANDLED );
 	case SDL_MOUSEBUTTONUP:
 	{
-		// Assumes SDL button enums are contiguous
-		int button = ev->button.button - SDL_BUTTON_LEFT;
+		int button = SDL_BUTTON_TO_INDEX(ev->button.button);
 		// Only process buttons within the range for which we have button state
 		// arrays above.
-		if (button >= 0 && button < 5)
+		if (button >= 0 && button < SDL_BUTTON_INDEX_COUNT)
 		{
 			double time = get_time();
 			// Reset clicks counter if too slow or if the cursor's

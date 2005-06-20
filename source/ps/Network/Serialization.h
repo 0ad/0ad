@@ -5,26 +5,26 @@
 #include "lib.h"
 
 #define Serialize_int_1(_pos, _val) \
-	STMT( *((_pos)++) = (u8)(_val&0xff); )
+	STMT( *((_pos)++) = (u8)((_val)&0xff); )
 
 #define Serialize_int_2(_pos, _val) STMT(\
-	Serialize_int_1(_pos, _val>>8); \
-	Serialize_int_1(_pos, _val); \
+	Serialize_int_1(_pos, (_val)>>8); \
+	Serialize_int_1(_pos, (_val)); \
 )
 
 #define Serialize_int_3(_pos, _val) STMT(\
-	Serialize_int_1(_pos, _val>>16); \
-	Serialize_int_2(_pos, _val); \
+	Serialize_int_1(_pos, (_val)>>16); \
+	Serialize_int_2(_pos, (_val)); \
 )
 
 #define Serialize_int_4(_pos, _val) STMT(\
-	Serialize_int_1(_pos, _val>>24); \
-	Serialize_int_3(_pos, _val); \
+	Serialize_int_1(_pos, (_val)>>24); \
+	Serialize_int_3(_pos, (_val)); \
 )
 
 #define Serialize_int_8(_pos, _val) STMT(\
-	Serialize_int_4(_pos, _val>>32); \
-	Serialize_int_4(_pos, _val); \
+	Serialize_int_4(_pos, (_val)>>32); \
+	Serialize_int_4(_pos, (_val)); \
 )
 
 #define __shift_de(_pos, _val) STMT( \

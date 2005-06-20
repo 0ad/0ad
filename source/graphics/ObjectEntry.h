@@ -5,6 +5,7 @@ class CModel;
 class CSkeletonAnim;
 struct SPropPoint;
 
+#include <map>
 #include <vector>
 #include <map>
 #include "CStr.h"

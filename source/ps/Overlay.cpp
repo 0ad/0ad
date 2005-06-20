@@ -6,7 +6,45 @@ rich@0ad.wildfiregames.com
 
 #include "precompiled.h"
 
+#include <string>
+
 #include "Overlay.h"
+#include "Parser.h"
+
+using namespace std;
+
+bool CColor::ParseString(const CStr& Value, float DefaultAlpha)
+{
+	// Use the parser to parse the values
+	CParser& parser (CParserCache::Get("_[-$arg(_minus)]$value_[-$arg(_minus)]$value_[-$arg(_minus)]$value_[[-$arg(_minus)]$value_]"));
+
+	string str = Value;
+
+	CParserLine line;
+	line.ParseString(parser, str);
+	if (!line.m_ParseOK)
+	{
+		// TODO Gee: Parsing failed
+		return false;
+	}
+	float values[4];
+	values[3] = DefaultAlpha;
+	for (int i=0; i<(int)line.GetArgCount(); ++i)
+	{
+		if (!line.GetArgFloat(i, values[i]))
+		{
+			// Parsing failed
+			return false;
+		}
+	}
+
+	r = values[0]/255.f;
+	g = values[1]/255.f;
+	b = values[2]/255.f;
+	a = values[3]/255.f;
+
+	return true;
+}
 
 COverlay::COverlay()
 	: m_Rect(CRect(0.f,0.f,0.f,0.f)), m_Z(0), m_Color(CColor(0,0,0,0)), m_Texture(""), m_HasBorder(false), m_BorderColor(CColor(0,0,0,0))

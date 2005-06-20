@@ -266,7 +266,7 @@ void CNetServer::PlayerSlotAssignmentCallback(void *userdata, CPlayerSlot *pSlot
 	if (pSlot->GetAssignment() == SLOT_SESSION)
 		pSlot->GetSession()->SetPlayerSlot(pSlot);
 	CNetMessage *pMsg=CreatePlayerSlotAssignmentMessage(pSlot);
-	g_Console->InsertMessage(L"Player Slot Assignment: %ls\n", pMsg->GetString().c_str());
+	g_Console->InsertMessage(L"Player Slot Assignment: %hs\n", pMsg->GetString().c_str());
 	pInstance->Broadcast(pMsg);
 }
 
@@ -303,7 +303,10 @@ void CNetServer::RemoveSession(CNetServerSession *pSession)
 		}
 		else if (m_ServerState == NSS_InGame)
 		{
-			LOG(ERROR, LOG_CAT_NET, "CNetServer::RemoveSession(): In-Game Player Disconnection not implemented!");
+			// TODO Reassign entities to Gaia control
+			// TODO Set everything up for re-connect and resume
+			SetClientPipe(pSession->GetPlayerSlot()->GetSlotID(), NULL);
+			pSession->GetPlayerSlot()->AssignClosed();
 		}
 	}
 		

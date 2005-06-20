@@ -116,7 +116,7 @@ ErrorReaction debug_assert_failed(const char* file, int line, const char* expr)
 		// from an xterm and in full-screen mode)
 		int c=getchar();
 		if (c == EOF) // I/O Error
-			return 2;
+			return ER_EXIT;
 		c=tolower(c);
 		switch (c)
 		{

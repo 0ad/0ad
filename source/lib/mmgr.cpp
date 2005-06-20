@@ -1155,6 +1155,7 @@ fail:
 void* realloc_dbg(const void* user_p, size_t user_size, AllocType type, const char* file, int line, const char* func, uint stack_frames)
 {
 	void* ret = 0;
+	uint old_size = 0;
 
 	assert2(type == AT_REALLOC);
 
@@ -1174,7 +1175,7 @@ void* realloc_dbg(const void* user_p, size_t user_size, AllocType type, const ch
 		if(!a)
 		{
 			// you called realloc for a pointer mmgr didn't allocate
-			assert2(0);
+			assert2(0 && "realloc was called for a pointer mmgr didn't allocate");
 			log("[!] realloc: wasn't previously allocated\n");
 			goto fail;
 		}
@@ -1186,6 +1187,8 @@ void* realloc_dbg(const void* user_p, size_t user_size, AllocType type, const ch
 		// .. you requested a breakpoint when reallocating this allocation
 		// (it will continue to be triggered unless you clear a->break_on_realloc)
 		assert2(!a->break_on_realloc);
+		
+		old_size = a->size;
 	}
 	// else: skip security checks; realloc(0, size) is equivalent to malloc
 
@@ -1194,8 +1197,13 @@ void* realloc_dbg(const void* user_p, size_t user_size, AllocType type, const ch
 	if(user_size)
 		ret = alloc_dbg(user_size, type, file,line,func, stack_frames+1);
 
+	// old_size should only be non-zero if the Alloc security checks all passed
+	// If the old buffer was actually zero bytes large, do nothing :P
+	if (old_size)
+		memcpy(ret, user_p, old_size);
+
 	if(user_p)
-		free_dbg(user_p, type, file,line,func, stack_frames+1);
+		free_dbg(user_p, AT_FREE, file,line,func, stack_frames+1);
 
 	lock();
 

@@ -1,6 +1,8 @@
 #include "precompiled.h"
 
 #include "lib/types.h"
+#include "lib/res/vfs.h"
+
 #include "MapWriter.h"
 #include "MapReader.h"
 #include "UnitManager.h"
@@ -11,11 +13,11 @@
 #include "Terrain.h"
 #include "LightEnv.h"
 #include "TextureManager.h"
+#include "TextureEntry.h"
 #include "VFSUtil.h"
 #include "Loader.h"
 
 #include "ps/XMLWriter.h"
-#include "lib/res/vfs.h"
 #include "simulation/Entity.h"
 #include "simulation/BaseEntity.h"
 #include "simulation/BaseEntityCollection.h"
@@ -101,7 +103,7 @@ void CMapWriter::EnumTerrainTextures(CTerrain *pTerrain,
 			// uh-oh, this shouldn't happen; set texturename to empty string
 			texturename="";
 		} else {
-			texturename=texentry->GetName();
+			texturename=texentry->GetTag();
 		}
 		textures.push_back(texturename);
 	}

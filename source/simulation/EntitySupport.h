@@ -126,8 +126,8 @@ struct SAuraData
 		ALLY = 8,
 		ENEMY = 16,
 	};	
-	static const size_t DURATION_RADIUS = -1;
-	static const size_t DURATION_PERMANENT = -2;
+	static const ssize_t DURATION_RADIUS = -1;
+	static const ssize_t DURATION_PERMANENT = -2;
 	SClassSet::ClassSet m_Affects;
 	Allegiance m_Allegiance;
 	float m_Radius;

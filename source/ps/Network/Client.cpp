@@ -10,6 +10,7 @@
 #include <CStr.h>
 #include <CLogger.h>
 #include <CConsole.h>
+#include <Game.h>
 
 #define LOG_CAT_NET "net"
 
@@ -49,13 +50,17 @@ CNetClient::CNetClient(CGame *pGame, CGameAttributes *pGameAttribs):
 CNetClient::~CNetClient()
 {
 	g_ScriptingHost.SetGlobal("g_NetClient", JSVAL_NULL);
+	
+	SessionMap::iterator it=m_ServerSessions.begin();
+	while (it != m_ServerSessions.end())
+	{
+		delete it->second;
+	}
 }
 
 void CNetClient::ScriptingInit()
 {
 	AddMethod<bool, &CNetClient::JSI_BeginConnect>("beginConnect", 1);
-
-	
 
 	AddProperty(L"onStartGame", &CNetClient::m_OnStartGame);
 	AddProperty(L"onChat", &CNetClient::m_OnChat);
@@ -63,10 +68,10 @@ void CNetClient::ScriptingInit()
 	AddProperty(L"onDisconnect", &CNetClient::m_OnDisconnect);
 	AddProperty(L"onClientConnect", &CNetClient::m_OnClientConnect);
 	AddProperty(L"onClientDisconnect", &CNetClient::m_OnClientDisconnect);
-	
 
 	AddProperty(L"password", &CNetClient::m_Password);
 	AddProperty<CStrW>(L"playerName", &CNetClient::m_Name);
+	AddProperty(L"sessionId", &CNetClient::m_SessionID);
 	
 	AddProperty(L"sessions", &CNetClient::m_JSI_ServerSessions);
 	CJSMap<SessionMap>::ScriptingInit("NetClient_SessionMap");
