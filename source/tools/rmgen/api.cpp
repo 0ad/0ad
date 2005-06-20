@@ -15,6 +15,7 @@ using namespace std;
 JSFunctionSpec globalFunctions[] = {
 //  {name, native, args}
 	{"init", init, 3},
+	{"initFromScenario", initFromScenario, 1},
 	{"print", print, 1},
 	{"error", error, 1},
 	{"getTexture", getTexture, 2},
@@ -29,7 +30,6 @@ JSFunctionSpec globalFunctions[] = {
 };
 
 // Some global variables used for the API
-
 map<Area*, int> areaToId;
 vector<Area*> areas;
 
@@ -77,6 +77,20 @@ void ValidateArgs(const char* types, JSContext* cx, uintN argc, jsval* argv, con
 	}
 }
 
+// Helper function to check whether map was initialized
+void CheckInit(bool shouldBeInitialized, JSContext* cx, const char* function) {
+	if(shouldBeInitialized) {
+		if(theMap == 0) {
+			JS_ReportError(cx, "%s: cannot be called before map is initialized", function);
+		}
+	}
+	else {
+		if(theMap != 0) {
+			JS_ReportError(cx, "%s: map was already initialized by an earlier call", function);
+		}
+	}
+}
+
 // JS API implementation
 
 JSBool print(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
@@ -98,9 +112,7 @@ JSBool error(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 JSBool init(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
 	ValidateArgs("i*n", cx, argc, argv, __FUNCTION__);
-	if(theMap != 0) {
-		JS_ReportError(cx, "init: cannot be called twice");
-	}
+	CheckInit(false, cx, __FUNCTION__);
 
 	int size = JSVAL_TO_INT(argv[0]);
 	Terrain* baseTerrain = ParseTerrain(cx, argv[1]);
@@ -114,12 +126,23 @@ JSBool init(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 	return JS_TRUE;
 }
 
+JSBool initFromScenario(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
+{
+	ValidateArgs("s", cx, argc, argv, __FUNCTION__);
+	CheckInit(false, cx, __FUNCTION__);
+
+	string fileName = JS_GetStringBytes(JSVAL_TO_STRING(argv[0]));
+
+	// TODO: load scenario here
+	theMap = new Map(128, new SimpleTerrain("sand_dunes", ""), 1.0f);
+
+	return JS_TRUE;
+}
+
 JSBool getTexture(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
 	ValidateArgs("ii", cx, argc, argv, __FUNCTION__);
-	if(theMap == 0) {
-		JS_ReportError(cx, "getTexture: cannot be called before init()");
-	}
+	CheckInit(true, cx, __FUNCTION__);
 	
 	int x = JSVAL_TO_INT(argv[0]);
 	int y = JSVAL_TO_INT(argv[1]);
@@ -131,9 +154,7 @@ JSBool getTexture(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *
 JSBool setTexture(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
 	ValidateArgs("iis", cx, argc, argv, __FUNCTION__);
-	if(theMap == 0) {
-		JS_ReportError(cx, "setTexture: cannot be called before init()");
-	}
+	CheckInit(true, cx, __FUNCTION__);
 	
 	int x = JSVAL_TO_INT(argv[0]);
 	int y = JSVAL_TO_INT(argv[1]);
@@ -145,9 +166,7 @@ JSBool setTexture(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *
 JSBool getHeight(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
 	ValidateArgs("ii", cx, argc, argv, __FUNCTION__);
-	if(theMap == 0) {
-		JS_ReportError(cx, "getHeight: cannot be called before init()");
-	}
+	CheckInit(true, cx, __FUNCTION__);
 	
 	int x = JSVAL_TO_INT(argv[0]);
 	int y = JSVAL_TO_INT(argv[1]);
@@ -159,9 +178,7 @@ JSBool getHeight(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *r
 JSBool setHeight(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
 	ValidateArgs("iin", cx, argc, argv, __FUNCTION__);
-	if(theMap == 0) {
-		JS_ReportError(cx, "setHeight: cannot be called before init()");
-	}
+	CheckInit(true, cx, __FUNCTION__);
 	
 	int x = JSVAL_TO_INT(argv[0]);
 	int y = JSVAL_TO_INT(argv[1]);
@@ -196,9 +213,7 @@ JSBool randFloat(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *r
 JSBool addEntity(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
 	ValidateArgs("sinnn", cx, argc, argv, __FUNCTION__);
-	if(theMap == 0) {
-		JS_ReportError(cx, "addEntity: cannot be called before init()");
-	}
+	CheckInit(true, cx, __FUNCTION__);
 
 	string type = JS_GetStringBytes(JS_ValueToString(cx, argv[0]));
 	int player = JSVAL_TO_INT(argv[1]);
@@ -215,9 +230,7 @@ JSBool addEntity(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *r
 JSBool placeTerrain(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
 	ValidateArgs("ii*", cx, argc, argv, __FUNCTION__);
-	if(theMap == 0) {
-		JS_ReportError(cx, "placeTerrain: cannot be called before init()");
-	}
+	CheckInit(true, cx, __FUNCTION__);
 
 	int x = JSVAL_TO_INT(argv[0]);
 	int y = JSVAL_TO_INT(argv[1]);
@@ -234,9 +247,7 @@ JSBool createArea(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *
 	if(argc != 2 && argc != 3) {
 		JS_ReportError(cx, "createArea: expected 2 or 3 arguments but got %d", argc);
 	}
-	if(theMap == 0) {
-		JS_ReportError(cx, "createArea: cannot be called before init()");
-	}
+	CheckInit(true, cx, __FUNCTION__);
 
 	AreaPlacer* placer;
 	AreaPainter* painter;

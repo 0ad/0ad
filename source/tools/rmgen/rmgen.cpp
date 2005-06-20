@@ -16,7 +16,16 @@ Map* theMap = 0;
 // JS support functions
 
 void ErrorReporter(JSContext *cx, const char *message, JSErrorReport *report) {
-	cerr << "Error at " << report->filename << ":" << report->lineno << ":\n\t"
+	string path = string(report->filename);
+	int lastSlash = -1;
+	for(int i = ((int) path.size()) - 1; i >= 0; i--) {
+		if(path[i]=='/' || path[i]=='\\') {
+			lastSlash = i;
+			break;
+		}
+	}
+	string filename = path.substr(lastSlash+1);
+	cerr << "Error at " << filename << ":" << report->lineno << ":\n\t"
 		<< message << endl;
 	Shutdown(1);
 }
