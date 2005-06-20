@@ -186,17 +186,17 @@ public:
 
 	// Methods for getting arguments
 	//  it returns success
-	bool GetArgString			(const int& arg, std::string &ret);
-	bool GetArgBool				(const int& arg, bool &ret);
-	bool GetArgChar				(const int& arg, char &ret);
-	bool GetArgShort			(const int& arg, short &ret);
-	bool GetArgInt				(const int& arg, int &ret);
-	bool GetArgLong				(const int& arg, long &ret);
-	bool GetArgUnsignedShort	(const int& arg, unsigned short &ret);
-	bool GetArgUnsignedInt		(const int& arg, unsigned int &ret);
-	bool GetArgUnsignedLong		(const int& arg, unsigned long &ret);
-	bool GetArgFloat			(const int& arg, float &ret);
-	bool GetArgDouble			(const int& arg, double &ret);
+	bool GetArgString			(size_t arg, std::string &ret);
+	bool GetArgBool				(size_t arg, bool &ret);
+	bool GetArgChar				(size_t arg, char &ret);
+	bool GetArgShort			(size_t arg, short &ret);
+	bool GetArgInt				(size_t arg, int &ret);
+	bool GetArgLong				(size_t arg, long &ret);
+	bool GetArgUnsignedShort	(size_t arg, unsigned short &ret);
+	bool GetArgUnsignedInt		(size_t arg, unsigned int &ret);
+	bool GetArgUnsignedLong		(size_t arg, unsigned long &ret);
+	bool GetArgFloat			(size_t arg, float &ret);
+	bool GetArgDouble			(size_t arg, double &ret);
 
 	// Get Argument count
 	size_t GetArgCount() const { return m_Arguments.size(); }

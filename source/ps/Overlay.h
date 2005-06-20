@@ -13,7 +13,8 @@ by Rich Cross, rich@0ad.wildfiregames.com
 #define COVERLAY_H
 
 #include "types.h"
-#include <CStr.h>
+
+class CStr;
 
 struct CColor
 {

@@ -56,6 +56,7 @@ CNetClient::~CNetClient()
 	{
 		delete it->second;
 	}
+	// (Isn't this an infinite loop?)
 }
 
 void CNetClient::ScriptingInit()

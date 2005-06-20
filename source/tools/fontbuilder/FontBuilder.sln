@@ -1,27 +1,18 @@
 Microsoft Visual Studio Solution File, Format Version 8.00
-Project("{EAF909A5-FA59-4C3D-9431-0FCC20D5BCF9}") = "FontBuilder", "FontBuilder.icproj", "{CFCF18FF-C3A4-4E76-BFA1-C5DB476E4687}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FontBuilder", "FontBuilder.vcproj", "{D566B684-803B-4D6F-A617-829F050BE928}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
-		OldRelease = OldRelease
 		Release = Release
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
-		{CFCF18FF-C3A4-4E76-BFA1-C5DB476E4687}.Debug.ActiveCfg = Debug|Win32
-		{CFCF18FF-C3A4-4E76-BFA1-C5DB476E4687}.Debug.Build.0 = Debug|Win32
-		{CFCF18FF-C3A4-4E76-BFA1-C5DB476E4687}.OldRelease.ActiveCfg = Release|Win32
-		{CFCF18FF-C3A4-4E76-BFA1-C5DB476E4687}.OldRelease.Build.0 = Release|Win32
-		{CFCF18FF-C3A4-4E76-BFA1-C5DB476E4687}.Release.ActiveCfg = Release|Win32
-		{CFCF18FF-C3A4-4E76-BFA1-C5DB476E4687}.Release.Build.0 = Release|Win32
-		{277A0C35-0B44-48FC-81FD-119AD97194EA}.Release.Build.0 = Release|Win32
-		{277A0C35-0B44-48FC-81FD-119AD97194EA}.Release.ActiveCfg = Release|Win32
-		{277A0C35-0B44-48FC-81FD-119AD97194EA}.OldRelease.Build.0 = Release|Win32
-		{277A0C35-0B44-48FC-81FD-119AD97194EA}.OldRelease.ActiveCfg = Release|Win32
-		{277A0C35-0B44-48FC-81FD-119AD97194EA}.Debug.Build.0 = Debug|Win32
-		{277A0C35-0B44-48FC-81FD-119AD97194EA}.Debug.ActiveCfg = Debug|Win32
+		{D566B684-803B-4D6F-A617-829F050BE928}.Debug.ActiveCfg = Debug|Win32
+		{D566B684-803B-4D6F-A617-829F050BE928}.Debug.Build.0 = Debug|Win32
+		{D566B684-803B-4D6F-A617-829F050BE928}.Release.ActiveCfg = Release|Win32
+		{D566B684-803B-4D6F-A617-829F050BE928}.Release.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

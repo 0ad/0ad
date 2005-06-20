@@ -89,6 +89,8 @@ void CTextureManager::LoadTerrainsFromXML(const char *filename)
 	#define ELMT(x) int el_##x = XeroFile.getElementID(#x)
 	#define ATTR(x) int at_##x = XeroFile.getAttributeID(#x)
 	ELMT(terrain);
+	#undef ELMT
+	#undef ATTR
 	
 	// Load terrains
 
@@ -115,9 +117,6 @@ void CTextureManager::LoadTerrainsFromXML(const char *filename)
 			// Keep reading - typos shouldn't be showstoppers
 		}
 	}
-	
-	#undef EL
-	#undef AT
 }
 
 /*CTextureEntry* CTextureManager::AddTexture(const char* filename,int type)

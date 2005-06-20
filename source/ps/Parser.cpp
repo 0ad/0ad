@@ -34,9 +34,9 @@ bool CParserValue::func_name(type &ret)					\
 //  Get%type% from the CParserValue
 // func_name must belong to CParserFile
 #define FUNC_IMPL_GETARG(func_name, get_name, type)		\
-bool CParserLine::func_name(const int & arg, type &ret)	\
+bool CParserLine::func_name(size_t arg, type &ret)		\
 {														\
-	if (GetArgCount() <= (unsigned int)arg)							\
+	if (GetArgCount() <= arg)							\
 		return false;									\
 	return m_Arguments[arg].get_name(ret);				\
 }
