@@ -87,7 +87,7 @@ function ElevationPainter(elevation) {
 	this.elevation = elevation;
 }
 
-function createMulti(centeredPlacer, painter, constraint, num, maxFail) {
+function createAreas(centeredPlacer, painter, constraint, num, maxFail) {
 	var good = 0;
 	var bad = 0;
 	var ret = new Array();
