@@ -7,11 +7,24 @@
 #include "terrain.h"
 
 class TerrainPainter : public AreaPainter {
-public:
 	Terrain* terrain;
-
+public:
 	TerrainPainter(Terrain* terrain);
-	void paint(Map* m, Area* a);
+	virtual void paint(Map* m, Area* a);
+};
+
+class ElevationPainter : public AreaPainter {
+	float elevation;
+public:
+	ElevationPainter(float elevation);
+	virtual void paint(Map* m, Area* a);
+};
+
+class MultiPainter : public AreaPainter {
+	std::vector<AreaPainter*> painters;
+public:
+	MultiPainter(const std::vector<AreaPainter*>& painters);
+	virtual void paint(Map* m, Area* a);
 };
 
 #endif

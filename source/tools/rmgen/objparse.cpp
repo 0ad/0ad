@@ -79,11 +79,22 @@ bool ParseArray(JSContext* cx, jsval val, vector<jsval>& ret) {
 }
 
 AreaPainter* ParsePainter(JSContext* cx, jsval val) {
+	vector<jsval> array;
 	jsval jsv, jsv2;
 	Terrain* terrain = 0;
-	vector<jsval> array;
+	float elevation;
 	vector<Terrain*> terrains;
 	vector<int> widths;
+
+	if(ParseArray(cx, val, array)) {
+		// MultiPainter is encoded as an array of painters
+		vector<AreaPainter*> painters(array.size());
+		for(int i=0; i<array.size(); i++) {
+			painters[i] = ParsePainter(cx, array[i]);
+			if(painters[i]==0) return 0;
+		}
+		return new MultiPainter(painters);
+	}
 
 	switch(GetType(cx, val)) {
 		case TYPE_TERRAINPAINTER:
@@ -91,6 +102,10 @@ AreaPainter* ParsePainter(JSContext* cx, jsval val) {
 			terrain = ParseTerrain(cx, jsv);
 			if(terrain==0) return 0;
 			return new TerrainPainter(terrain);
+
+		case TYPE_ELEVATIONPAINTER:
+			if(!GetFloatField(cx, val, "elevation", elevation)) return 0;
+			return new ElevationPainter(elevation);
 
 		case TYPE_LAYEREDPAINTER:
 			if(!GetJsvalField(cx, val, "widths", jsv)) return 0;
@@ -141,12 +156,25 @@ AreaPlacer* ParsePlacer(JSContext* cx, jsval val) {
 }
 
 Constraint* ParseConstraint(JSContext* cx, jsval val) {
-	if(JSVAL_IS_NULL(val)) return new NullConstraint();
-
+	vector<jsval> array;
 	int areaId;
 	string texture;
 	jsval jsv, jsv2;
-	Constraint* c1, *c2;
+
+	if(JSVAL_IS_NULL(val)) {
+		// convenience way of specifying a NullConstraint
+		return new NullConstraint();
+	}
+
+	if(ParseArray(cx, val, array)) {
+		// AndConstraint is encoded as an array of constraints
+		vector<Constraint*> constraints(array.size());
+		for(int i=0; i<array.size(); i++) {
+			constraints[i] = ParseConstraint(cx, array[i]);
+			if(constraints[i]==0) return 0;
+		}
+		return new AndConstraint(constraints);
+	}
 
 	switch(GetType(cx, val)) {
 		case TYPE_NULLCONSTRAINT:
@@ -161,43 +189,30 @@ Constraint* ParseConstraint(JSContext* cx, jsval val) {
 			if(!GetStringField(cx, val, "texture", texture)) return 0;
 			return new AvoidTextureConstraint(theMap->getId(texture));
 
-		case TYPE_ANDCONSTRAINT:
-			if(!GetJsvalField(cx, val, "a", jsv)) return 0;
-			if(!GetJsvalField(cx, val, "b", jsv2)) return 0;
-			if(!(c1 = ParseConstraint(cx, jsv))) return 0;
-			if(!(c2 = ParseConstraint(cx, jsv2))) return 0;
-			return new AndConstraint(c1, c2);
-
 		default:
 			return 0;
 	}
 }
 
 Terrain* ParseTerrain(JSContext* cx, jsval val) {
+	vector<jsval> array;
+
 	if(JSVAL_IS_STRING(val)) {
 		// simple terrains are just encoded as strings
 		string str = JS_GetStringBytes(JS_ValueToString(cx, val));
 		return SimpleTerrain::parse(str);
 	}
-	else {
-		// complex terrain type
-		Terrain* terrain = 0;
-		vector<jsval> array;
-		vector<Terrain*> terrains;
 
-		switch(GetType(cx, val)) {
-			case TYPE_RANDOMTERRAIN:
-				if(!GetArrayField(cx, val, "terrains", array)) return 0;
-				for(int i=0; i<array.size(); i++) {
-					terrain = ParseTerrain(cx, array[i]);
-					if(terrain==0) return 0;
-					terrains.push_back(terrain);
-				}
-				return new RandomTerrain(terrains);
-
-			default:
-				return 0;
+	if(ParseArray(cx, val, array)) {
+		// RandomTerrain is encoded as an array of terrains
+		vector<Terrain*> terrains(array.size());
+		for(int i=0; i<array.size(); i++) {
+			terrains[i] = ParseTerrain(cx, array[i]);
+			if(terrains[i]==0) return 0;
 		}
-		return 0;
+		return new RandomTerrain(terrains);
 	}
+
+	// so far these are the only ways of specifying a terrain
+	return 0;
 }

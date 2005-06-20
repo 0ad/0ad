@@ -28,10 +28,10 @@ public:
 
 class AndConstraint : public Constraint {
 private:
-	Constraint* a;
-	Constraint* b;
+	std::vector<Constraint*> constraints;
 public:
-	AndConstraint(Constraint* a, Constraint* b);
+	AndConstraint(const std::vector<Constraint*>& constraints);
+	~AndConstraint();
 	virtual bool allows(Map* m, int x, int y);
 };
 

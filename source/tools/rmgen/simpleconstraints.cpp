@@ -34,12 +34,22 @@ bool AvoidTextureConstraint::allows(Map* m, int x, int y)
 
 // AndConstraint
 
-AndConstraint::AndConstraint(Constraint* a, Constraint*b) {
-	this->a = a;
-	this->b = b;
+AndConstraint::AndConstraint(const vector<Constraint*>& constraints) {
+	this->constraints = constraints;
+}
+
+AndConstraint::~AndConstraint() {
+	for(int i=0; i<constraints.size(); i++) {
+		delete constraints[i];
+	}
 }
 
 bool AndConstraint::allows(Map* m, int x, int y)
 {
-	return a->allows(m,x,y) && b->allows(m,x,y);
+	for(int i=0; i<constraints.size(); i++) {
+		if(!constraints[i]->allows(m, x, y)) {
+			return false;
+		}
+	}
+	return true;
 }

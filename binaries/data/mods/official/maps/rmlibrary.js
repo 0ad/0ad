@@ -4,12 +4,11 @@ const
 TYPE_RECTPLACER = 1,
 TYPE_TERRAINPAINTER = 2,
 TYPE_NULLCONSTRAINT = 3,
-TYPE_RANDOMTERRAIN = 4,
-TYPE_LAYEREDPAINTER = 5,
-TYPE_AVOIDAREACONSTRAINT = 6,
-TYPE_CLUMPPLACER = 7,
-TYPE_AVOIDTEXTURECONSTRAINT = 8,
-TYPE_ANDCONSTRAINT = 9;
+TYPE_LAYEREDPAINTER = 4,
+TYPE_AVOIDAREACONSTRAINT = 5,
+TYPE_CLUMPPLACER = 6,
+TYPE_AVOIDTEXTURECONSTRAINT = 7,
+TYPE_ELEVATIONPAINTER = 8;
 
 // Utility functions
 
@@ -58,11 +57,6 @@ function NullConstraint() {
 	this.TYPE = TYPE_NULLCONSTRAINT;
 }
 
-function RandomTerrain() {
-	this.TYPE = TYPE_RANDOMTERRAIN;
-	this.terrains = argsToArray(arguments);
-}
-
 function LayeredPainter(widths, terrains) {
 	this.TYPE = TYPE_LAYEREDPAINTER;
 	this.widths = widths;
@@ -88,10 +82,9 @@ function AvoidTextureConstraint(texture) {
 	this.texture = texture;
 }
 
-function AndConstraint(a, b) {
-	this.TYPE = TYPE_ANDCONSTRAINT;
-	this.a = a;
-	this.b = b;
+function ElevationPainter(elevation) {
+	this.TYPE = TYPE_ELEVATIONPAINTER;
+	this.elevation = elevation;
 }
 
 function createMulti(centeredPlacer, painter, constraint, num, maxFail) {
