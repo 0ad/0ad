@@ -74,8 +74,9 @@ void unix_debug_break()
 
 /*
 Start the debugger and tell it to attach to the current process/thread
+(called by display_error)
 */
-static void launch_debugger()
+void udbg_launch_debugger()
 {
 	pid_t orgpid=getpid();
 	pid_t ret=fork();
@@ -107,35 +108,9 @@ static void launch_debugger()
 // notify the user that an assertion failed.
 ErrorReaction debug_assert_failed(const char* file, int line, const char* expr)
 {
-	printf("%s:%d: Assertion `%s' failed.\n", file, line, expr);
-	do
-	{
-		printf("(B)reak, Launch (D)ebugger, (C)ontinue, (S)uppress or (A)bort? ");
-		// TODO Should have some kind of timeout here.. in case you're unable to
-		// access the controlling terminal (As might be the case if launched
-		// from an xterm and in full-screen mode)
-		int c=getchar();
-		if (c == EOF) // I/O Error
-			return ER_EXIT;
-		c=tolower(c);
-		switch (c)
-		{
-		case 'd':
-			launch_debugger();
-			// fall through
-
-		case 'b':
-			return ER_BREAK;
-		case 'c':
-			return ER_CONTINUE;
-		case 's':
-			return ER_SUPPRESS;
-		case 'a':
-			abort();
-		default:
-			continue;
-		}
-	} while (false);
+	char buf[200];
+	snprintf(buf, ARRAY_SIZE(buf), "%s:%d: Assertion `%s' failed.\n", file, line, expr);
+	display_error(buf);
 }
 
 void* debug_get_nth_caller(uint n)
@@ -387,4 +362,10 @@ void debug_printf(const char* fmt, ...)
 	vprintf(fmt, args);
 	va_end(args);
 	fflush(stdout);
+}
+
+
+void debug_disable_leak_reporting()
+{
+
 }
