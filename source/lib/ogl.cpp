@@ -331,7 +331,7 @@ static void detectFeatures()
 		// If there's no hardware support for compressed textures, do the
 		// decompression in software (but first let the user know it's probably not
 		// going to be very fast).
-		wdisplay_msg(L"Performance warning", L"Your graphics card does not support compressed textures. The game will try to continue anyway, but may be slower than expected. Please try updating your graphics drivers; if that doesn't help, please try upgrading your hardware.");
+		DISPLAY_ERROR(L"Performance warning: your graphics card does not support compressed textures. The game will try to continue anyway, but may be slower than expected. Please try updating your graphics drivers; if that doesn't help, please try upgrading your hardware.");
 		// TODO: i18n
 		glCompressedTexImage2DARB = emulate_glCompressedTexImage2D;
 

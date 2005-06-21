@@ -169,7 +169,7 @@ int type_size(TCHAR type, int length)
 	return 0;
 }
 
-int vsnprintf2(TCHAR* buffer, size_t count, const TCHAR* format, va_list argptr)
+extern "C" int vsnprintf2(TCHAR* buffer, size_t count, const TCHAR* format, va_list argptr)
 {
 	/*
 	

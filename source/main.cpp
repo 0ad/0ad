@@ -11,12 +11,12 @@
 #include <cmath>
 #include <stdarg.h>
 
+#include "lib.h"
 #include "lib/sdl.h"
 #include "lib/ogl.h"
 #include "lib/detect.h"
 #include "lib/timer.h"
 #include "lib/input.h"
-#include "lib.h"
 #include "lib/res/res.h"
 #include "lib/res/tex.h"
 #include "lib/res/snd.h"
@@ -252,7 +252,7 @@ TIMER(write_sys_info);
 	(void)gethostname(hostname, sizeof(hostname)-1);
 		// -1 makes sure it's 0-terminated. if the function fails,
 		// we display "(unknown)" and will skip IP output below.
-	fprintf(f, "Network Name  : %s", hostname);
+	fprintf(f, "Network Name   : %s", hostname);
 
 	{
 	hostent* host = gethostbyname(hostname);
@@ -1240,11 +1240,14 @@ debug_printf("INIT &argc=%p &argv=%p\n", &argc, &argv);
 	const char* missing = oglHaveExtensions(0, "GL_ARB_multitexture", "GL_ARB_texture_env_combine", "GL_ARB_texture_env_dot3", 0);
 	if(missing)
 	{
-		wchar_t buf[100];
-		swprintf(buf, ARRAY_SIZE(buf), L"Required extension not supported (%hs)", missing);
-		wdisplay_msg(L"Problem", buf);
+		wchar_t buf[500];
+		const wchar_t* fmt =
+			L"The %hs extension doesn't appear to be available on your computer. "
+			L"The game may still work, though - you are welcome to try at your own risk. "
+			L"If not or it doesn't look right, upgrade your graphics card.";
+		swprintf(buf, ARRAY_SIZE(buf), fmt, missing);
+		DISPLAY_ERROR(buf);
 		// TODO: i18n
-		exit(EXIT_FAILURE);
 	}
 
 	// enable/disable VSync
