@@ -885,12 +885,12 @@ static const wchar_t* get_exception_locus(const EXCEPTION_POINTERS* ep)
 	// points to kernel32!RaiseException. we use debug_dump_stack to determine the
 	// real location.
 
-	wchar_t buf[8000];
+	wchar_t buf[32000];
 	const wchar_t* stack_trace = debug_dump_stack(buf, ARRAY_SIZE(buf), +0, ep->ContextRecord);
 
-	const size_t max_chars = 256;
-	static wchar_t locus[max_chars];
-	wcsncpy_s(locus, max_chars, stack_trace, max_chars-1);
+	const size_t MAX_LOCUS_CHARS = 256;
+	static wchar_t locus[MAX_LOCUS_CHARS];
+	wcsncpy_s(locus, MAX_LOCUS_CHARS, stack_trace, MAX_LOCUS_CHARS-1);
 	wchar_t* end = wcschr(locus, '\r');
 	if(end)
 		*end = '\0';
@@ -996,14 +996,12 @@ LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep)
 
 static int wdbg_init(void)
 {
-assert2(0);
-
 	// add vectored exception handler (if supported by the OS).
 	// see rationale above.
 #if _WIN32_WINNT >= 0x0500	// this is how winbase.h tests for it
 	const HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");
 	PVOID (WINAPI *pAddVectoredExceptionHandler)(IN ULONG FirstHandler, IN PVECTORED_EXCEPTION_HANDLER VectoredHandler);
-	*(void**)&AddVectoredExceptionHandler = GetProcAddress(hKernel32Dll, "AddVectoredExceptionHandler"); 
+	*(void**)&pAddVectoredExceptionHandler = GetProcAddress(hKernel32Dll, "AddVectoredExceptionHandler"); 
 	FreeLibrary(hKernel32Dll);
 		// make sure the reference is released so BoundsChecker
 		// doesn't complain. it won't actually be unloaded anyway -

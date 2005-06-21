@@ -534,10 +534,14 @@ struct AnyString : public std::string
 {
 	const void* safe_c_str(size_t el_size) const
 	{
+#ifdef _MSC_VER
 		// bogus
 		if(_Myres < _Mysize)
 			return 0;
 		return (_Myres < 16/el_size)? _Bx._Buf : _Bx._Ptr;
+#else
+		return 0;
+#endif
 	}
 };
 
@@ -606,6 +610,28 @@ static int dump_string(WCHAR* type_name, const u8* p, size_t size, DumpState sta
 }
 
 
+// provide access to any type of std::vector
+// (since dump_vector doesn't know type at compile-time).
+// also performs a basic sanity check to see if the object is initialized.
+struct AnyVector: public std::vector<int>
+{
+};
+
+
+static int dump_vector(WCHAR* type_name, const u8* p, size_t size, DumpState state)
+{
+	if(!wcsncmp(type_name, L"std::vector", 11))
+	{
+		assert(size == sizeof(std::vector<int>));
+		AnyVector* v = (AnyVector*)p;
+		//dump_sequence(p, num_elem, el_idx, el_size, state)
+
+		return 0;
+	}
+
+	return 1;
+}
+
 static bool should_suppress_udt(WCHAR* type_name)
 {
 	// STL
@@ -668,6 +694,11 @@ static int dump_special_udt(WCHAR* type_name, const u8* p, size_t size, DumpStat
 	ret = dump_string(type_name, p, size, state);
 	if(ret <= 0)
 		return ret;
+
+	ret = dump_vector(type_name, p, size, state);
+	if(ret <= 0)
+		return ret;
+
 
 	if(should_suppress_udt(type_name))
 	{
@@ -1637,6 +1668,36 @@ fail:
 
 /*
 tests
+
+
+struct L1
+{
+int l1_i;
+struct L2
+{
+struct L3
+{
+int l3_i;
+struct L4
+{
+int l4_i;
+}
+l3_s;
+}
+l2_s;
+int l2_i;
+}
+l1_s;
+};
+#pragma pack(push,1)
+volatile L1 test;
+#pragma pack(pop)
+test.l1_i = rand();
+test.l1_s.l2_i = rand();
+test.l1_s.l2_s.l3_i = rand();
+test.l1_s.l2_s.l3_s.l4_i = rand();
+debug_printf("\n&test=0x%p %d %d %d %d\n", &test, test.l1_i, test.l1_s.l2_i, test.l1_s.l2_s.l3_i, test.l1_s.l2_s.l3_s.l4_i);
+
 
 struct Small
 {
