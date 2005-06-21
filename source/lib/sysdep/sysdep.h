@@ -1,5 +1,5 @@
-#ifndef SYSDEP_H__
-#define SYSDEP_H__
+#ifndef SYSDEP_H_INCLUDED
+#define SYSDEP_H_INCLUDED
 
 #include "config.h"
 
@@ -12,6 +12,10 @@
 #include "unix/unix.h"
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 
 // vsnprintf2: handles positional parameters and %lld.
 // already available on *nix, emulated on Win32.
@@ -21,10 +25,46 @@ extern int vsnprintf2(char* buffer, size_t count, const char* format, va_list ar
 #define vsnprintf2 vsnprintf
 #endif
 
-#ifdef __cplusplus
-extern "C" {
-#endif
 
+
+
+enum DisplayErrorFlags
+{
+	DE_ALLOW_SUPPRESS = 1,
+	DE_NO_CONTINUE = 2,
+	DE_MANUAL_BREAK = 4
+};
+
+// user choices in the assert/unhandled exception dialog.
+enum ErrorReaction
+{
+	// ignore, continue as if nothing happened.
+	ER_CONTINUE = 1,
+		// note: don't start at 0 because that is interpreted as a
+		// DialogBoxParam failure.
+
+	// ignore and do not report again.
+	// only returned if DE_ALLOW_SUPPRESS was passed.
+	ER_SUPPRESS,
+		// note: non-persistent; only applicable during this program run.
+
+	// trigger breakpoint, i.e. enter debugger.
+	// only returned if DE_MANUAL_BREAK was passed; otherwise,
+	// display_error will trigger a breakpoint itself.
+	ER_BREAK,
+
+	// exit the program immediately.
+	// never returned; display_error exits immediately.
+	ER_EXIT
+};
+
+
+extern ErrorReaction display_error_impl(const wchar_t* text, int flags);
+
+#define DISPLAY_ERROR(text) display_error(text, 0, 0, 0, __FILE__, __LINE__)
+
+extern ErrorReaction display_error(const wchar_t* text, int flags,
+	uint skip, void* context, const char* file, int line);
 
 extern void display_msg(const char* caption, const char* msg);
 extern void wdisplay_msg(const wchar_t* caption, const wchar_t* msg);
@@ -107,4 +147,4 @@ namespace __gnu_cxx
 #endif	// !__GNUC__
 
 
-#endif	// #ifndef SYSDEP_H__
+#endif	// #ifndef SYSDEP_H_INCLUDED

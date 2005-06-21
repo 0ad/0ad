@@ -17,28 +17,80 @@
 
 #include "precompiled.h"
 
-#include "lib.h"
-#include "posix.h"
-#include "win_internal.h"
-
-#include <crtdbg.h>	// malloc debug
-
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>	// __argc
 
+#include "win_internal.h"	// includes windows.h; must come before these
+#include <crtdbg.h>	// malloc debug
 #include <malloc.h>
 #include <shlobj.h>	// pick_dir
+
+#include "lib.h"
+#include "posix.h"
+#include "error_dialog.h"
 
 #ifdef _MSC_VER
 #pragma comment(lib, "shell32.lib")	// for pick_directory SH* calls
 #endif
 
-
 void sle(int x)
 {
 	SetLastError((DWORD)x);
 }
+
+
+#ifdef HAVE_DEBUGALLOC
+// Enable heap corruption checking after every allocation. Has the same
+// effect as PARANOIA in pre_main_init, but lets you switch it on anywhere
+// so that you can skip checking the whole of the initialisation code.
+// The debugger will break in the allocation just after the one that
+// corrupted the heap, so check its ID and then _CrtSetBreakAlloc(...)
+// on the previous one and try again.
+// Warning: This makes things rather slow.
+void memory_debug_extreme_turbo_plus()
+{
+	_CrtSetDbgFlag( _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) | _CRTDBG_CHECK_ALWAYS_DF | _CRTDBG_DELAY_FREE_MEM_DF );
+}
+#endif
+
+
+// we need to know the app's main window for the error dialog, so that
+// it is modal and actually stops the app. if it keeps running while
+// we're reporting an error, it'll probably crash and take down the
+// error window before it is seen (since we're in the same process).
+
+static BOOL CALLBACK is_this_our_window(HWND hWnd, LPARAM lParam)
+{
+	DWORD pid;
+	DWORD tid = GetWindowThreadProcessId(hWnd, &pid);
+	UNUSED(tid);	// the function can't fail
+
+DWORD our_pid = GetProcessId(GetCurrentProcess());
+	if(pid == GetProcessId(GetCurrentProcess()))
+	{
+		*(HWND*)lParam = hWnd;
+		return FALSE;	// done
+	}
+
+	return TRUE;	// keep calling
+}
+
+
+// try to determine the app's main window by enumerating all
+// top-level windows and comparing their PIDs.
+// returns 0 if not found, e.g. if the app doesn't have one yet.
+HWND win_get_app_main_window()
+{
+	HWND our_window = 0;
+	DWORD ret = EnumWindows(is_this_our_window, (LPARAM)&our_window);
+	UNUSED(ret);
+		// the callback returns FALSE when it has found the window
+		// (so as not to waste time); EnumWindows then returns 0.
+		// therefore, we can't check this; just return our_window.
+	return our_window;
+}
+
 
 
 //
@@ -71,12 +123,12 @@ char win_exe_dir[MAX_PATH+1];
 
 void display_msg(const char* caption, const char* msg)
 {
-	MessageBoxA(0, msg, caption, MB_ICONEXCLAMATION);
+	MessageBoxA(0, msg, caption, MB_ICONEXCLAMATION|MB_TASKMODAL|MB_SETFOREGROUND);
 }
 
 void wdisplay_msg(const wchar_t* caption, const wchar_t* msg)
 {
-	MessageBoxW(0, msg, caption, MB_ICONEXCLAMATION);
+	MessageBoxW(0, msg, caption, MB_ICONEXCLAMATION|MB_TASKMODAL|MB_SETFOREGROUND);
 }
 
 
@@ -145,6 +197,217 @@ int pick_directory(char* path, size_t buf_size)
 	p_malloc->Release();
 
 	return ok? 0 : -1;
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// "program error" dialog (triggered by assert and exception)
+//
+//////////////////////////////////////////////////////////////////////////////
+
+//
+// support for resizing the dialog / its controls
+// (have to do this manually - grr)
+//
+
+static POINTS dlg_client_origin;
+static POINTS dlg_prev_client_size;
+
+const int ANCHOR_LEFT   = 0x01;
+const int ANCHOR_RIGHT  = 0x02;
+const int ANCHOR_TOP    = 0x04;
+const int ANCHOR_BOTTOM = 0x08;
+const int ANCHOR_ALL    = 0x0f;
+
+static void dlg_resize_control(HWND hDlg, int dlg_item, int dx,int dy, int anchors)
+{
+	HWND hControl = GetDlgItem(hDlg, dlg_item);
+	RECT r;
+	GetWindowRect(hControl, &r);
+
+	int w = r.right - r.left, h = r.bottom - r.top;
+	int x = r.left - dlg_client_origin.x, y = r.top - dlg_client_origin.y;
+
+	if(anchors & ANCHOR_RIGHT)
+	{
+		// right only
+		if(!(anchors & ANCHOR_LEFT))
+			x += dx;
+		// horizontal (stretch width)
+		else
+			w += dx;
+	}
+
+	if(anchors & ANCHOR_BOTTOM)
+	{
+		// bottom only
+		if(!(anchors & ANCHOR_TOP))
+			y += dy;
+		// vertical (stretch height)
+		else
+			h += dy;
+	}
+
+	SetWindowPos(hControl, 0, x,y, w,h, SWP_NOZORDER);
+}
+
+
+static void dlg_resize(HWND hDlg, WPARAM wParam, LPARAM lParam)
+{
+	// 'minimize' was clicked. we need to ignore this, otherwise
+	// dx/dy would reduce some control positions to less than 0.
+	// since Windows clips them, we wouldn't later be able to
+	// reconstruct the previous values when 'restoring'.
+	if(wParam == SIZE_MINIMIZED)
+		return;
+
+	// first call for this dialog instance. WM_MOVE hasn't been sent yet,
+	// so dlg_client_origin are invalid => must not call resize_control().
+	// we need to set dlg_prev_client_size for the next call before exiting.
+	bool first_call = (dlg_prev_client_size.y == 0);
+
+	POINTS dlg_client_size = MAKEPOINTS(lParam);
+	int dx = dlg_client_size.x - dlg_prev_client_size.x;
+	int dy = dlg_client_size.y - dlg_prev_client_size.y;
+	dlg_prev_client_size = dlg_client_size;
+
+	if(first_call)
+		return;
+
+	dlg_resize_control(hDlg, IDC_CONTINUE, dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
+	dlg_resize_control(hDlg, IDC_SUPPRESS, dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
+	dlg_resize_control(hDlg, IDC_BREAK   , dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
+	dlg_resize_control(hDlg, IDC_EXIT    , dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
+	dlg_resize_control(hDlg, IDC_COPY    , dx,dy, ANCHOR_RIGHT|ANCHOR_BOTTOM);
+	dlg_resize_control(hDlg, IDC_EDIT1   , dx,dy, ANCHOR_ALL);
+}
+
+
+
+struct DialogParams
+{
+	const wchar_t* text;
+	int flags;
+};
+
+
+static int CALLBACK error_dialog_proc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM lParam)
+{
+	switch(msg)
+	{
+	case WM_INITDIALOG:
+		{
+			const DialogParams* params = (const DialogParams*)lParam;
+
+			// need to reset for new instance of dialog
+			dlg_client_origin.x = dlg_client_origin.y = 0;
+			dlg_prev_client_size.x = dlg_prev_client_size.y = 0;
+
+			if(!(params->flags & DE_ALLOW_SUPPRESS))
+			{
+				HWND h = GetDlgItem(hDlg, IDC_SUPPRESS);
+				EnableWindow(h, FALSE);
+			}
+
+			SetDlgItemTextW(hDlg, IDC_EDIT1, params->text);
+			return TRUE;	// set default keyboard focus
+		}
+
+	case WM_SYSCOMMAND:
+		// close dialog if [X] is clicked (doesn't happen automatically)
+		// note: lower 4 bits are reserved
+		if((wParam & 0xFFF0) == SC_CLOSE)
+		{
+			EndDialog(hDlg, 0);
+			return 0;	// processed
+		}
+		break;
+
+		// return 0 if processed, otherwise break
+	case WM_COMMAND:
+		switch(wParam)
+		{
+		case IDC_COPY:
+			{
+				const size_t max_chars = 100000;
+				wchar_t* buf = (wchar_t*)malloc(max_chars*sizeof(wchar_t));
+				if(buf)
+				{
+					GetDlgItemTextW(hDlg, IDC_EDIT1, buf, max_chars);
+					clipboard_set(buf);
+				}
+				return 0;
+			}
+
+		case IDC_CONTINUE:
+			EndDialog(hDlg, ER_CONTINUE);
+			return 0;
+		case IDC_SUPPRESS:
+			EndDialog(hDlg, ER_SUPPRESS);
+			return 0;
+		case IDC_BREAK:
+			EndDialog(hDlg, ER_BREAK);
+			return 0;
+		case IDC_EXIT:
+			EndDialog(hDlg, ER_EXIT);
+			return 0;
+
+		default:
+			break;
+		}
+		break;
+
+	case WM_MOVE:
+		dlg_client_origin = MAKEPOINTS(lParam);
+		break;
+
+	case WM_GETMINMAXINFO:
+		{
+			// we must make sure resize_control will never set negative coords -
+			// Windows would clip them, and its real position would be lost.
+			// restrict to a reasonable and good looking minimum size [pixels].
+			MINMAXINFO* mmi = (MINMAXINFO*)lParam;
+			mmi->ptMinTrackSize.x = 407;
+			mmi->ptMinTrackSize.y = 159;	// determined experimentally
+			return 0;
+		}
+
+	case WM_SIZE:
+		dlg_resize(hDlg, wParam, lParam);
+		break;
+
+	default:
+		break;
+	}
+
+	// we didn't process the message; caller will perform default action.
+	return FALSE;
+}
+
+
+// show error dialog with the given text and return user's reaction.
+// exits directly if 'exit' is clicked.
+ErrorReaction display_error_impl(const wchar_t* text, int flags)
+{
+	const DialogParams params = { text, flags };
+
+	const HINSTANCE hInstance = GetModuleHandle(0);
+	LPCSTR lpTemplateName = MAKEINTRESOURCE(IDD_DIALOG1);
+	const HWND hWndParent = win_get_app_main_window();
+	// can't just pass 0 or desktop because this dialog must be
+	// modal (the app must not crash/continue to run before this is seen).
+
+	INT_PTR ret = DialogBoxParam(hInstance, lpTemplateName, hWndParent, error_dialog_proc, (LPARAM)&params);
+	// failed; warn user and make sure we return an ErrorReaction.
+	if(ret == 0 || ret == -1)
+	{
+		wdisplay_msg(L"Error", L"Unable to display detailed error dialog.");
+			// TODO: i18n
+		return ER_CONTINUE;
+	}
+	return (ErrorReaction)ret;
 }
 
 
@@ -276,17 +539,17 @@ typedef int(*_PIFV)(void);
 // pointers to start and end of function tables.
 // note: COFF throws out empty segments, so we have to put in one value
 // (zero, because call_func_tbl has to ignore NULL entries anyway).
-#pragma data_seg(".LIB$WCA")
+#pragma data_seg(WIN_CALLBACK_PRE_LIBC(a))
 _PIFV pre_libc_begin[] = { 0 };
-#pragma data_seg(".LIB$WCZ")
+#pragma data_seg(WIN_CALLBACK_PRE_LIBC(z))
 _PIFV pre_libc_end[] = { 0 };
-#pragma data_seg(".LIB$WIA")
+#pragma data_seg(WIN_CALLBACK_PRE_MAIN(a))
 _PIFV pre_main_begin[] = { 0 };
-#pragma data_seg(".LIB$WIZ")
+#pragma data_seg(WIN_CALLBACK_PRE_MAIN(a))
 _PIFV pre_main_end[] = { 0 };
-#pragma data_seg(".LIB$WTA")
+#pragma data_seg(WIN_CALLBACK_POST_ATEXIT(a))
 _PIFV shutdown_begin[] = { 0 };
-#pragma data_seg(".LIB$WTZ")
+#pragma data_seg(WIN_CALLBACK_POST_ATEXIT(z))
 _PIFV shutdown_end[] = { 0 };
 #pragma data_seg()
 
@@ -309,8 +572,9 @@ static void call_func_tbl(_PIFV* begin, _PIFV* end)
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-// several init functions are before _cinit.
-// can't guarantee POSIX static mutex init has been done by then.
+// several init functions are before called before _cinit.
+// POSIX static mutex init may not have been done by then,
+// so we need our own lightweight functions.
 
 static CRITICAL_SECTION cs[NUM_CS];
 static bool cs_valid;
@@ -328,6 +592,18 @@ void win_unlock(uint idx)
 	if(cs_valid)
 		LeaveCriticalSection(&cs[idx]);
 }
+
+int win_is_locked(uint idx)
+{
+	assert(idx < NUM_CS && "win_is_locked: invalid critical section index");
+	if(!cs_valid)
+		return -1;
+	BOOL got_it = TryEnterCriticalSection(&cs[idx]);
+	if(got_it)
+		LeaveCriticalSection(&cs[idx]);
+	return !got_it;
+}
+
 
 static void cs_init()
 {
@@ -357,6 +633,8 @@ static void cs_shutdown()
 // at_exit is called as the last of the atexit handlers
 // (assuming, as documented in lib.cpp, constructors don't use atexit!)
 //
+// rationale: we need to gain control after _cinit and before main() to
+// complete initialization.
 // note: this way of getting control before main adds overhead
 // (setting up the WinMain parameters), but is simpler and safer than
 // SDL-style #define main SDL_main.
@@ -369,11 +647,52 @@ static void at_exit(void)
 }
 
 
+#ifndef NO_MAIN_REDIRECT
+static
+#endif
+void win_pre_main_init()
+{
+#ifdef HAVE_DEBUGALLOC
+	uint flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
+	// Always enable leak detection in debug builds
+	flags |= _CRTDBG_LEAK_CHECK_DF;
+#ifdef PARANOIA
+	// force malloc et al. to check the heap every call.
+	// slower, but reports errors closer to where they occur.
+	flags |= _CRTDBG_CHECK_ALWAYS_DF | _CRTDBG_DELAY_FREE_MEM_DF;
+#endif // PARANOIA
+	_CrtSetDbgFlag(flags);
+#endif // HAVE_DEBUGALLOC
+
+	call_func_tbl(pre_main_begin, pre_main_end);
+
+	atexit(at_exit);
+
+	// no point redirecting stdout yet - the current directory
+	// may be incorrect (file_set_root not yet called).
+	// (w)sdl will take care of it anyway.
+}
+
+
+#ifndef SCED
+
+#undef main
+extern int app_main(int argc, char* argv[]);
+int main(int argc, char* argv[])
+{
+	win_pre_main_init();
+	return app_main(argc, argv);
+}
+#endif
+
+
+// perform all initialization that needs to run before _cinit
+// (which calls C++ ctors).
 // be very careful to avoid non-stateless libc functions!
 static inline void pre_libc_init()
 {
-#if WINVER >= 0x0501
 	// enable low-fragmentation heap
+#if WINVER >= 0x0501
 	HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");
 	if(hKernel32Dll)
 	{
@@ -403,48 +722,19 @@ static inline void pre_libc_init()
 	call_func_tbl(pre_libc_begin, pre_libc_end);
 }
 
-static inline void pre_main_init()
-{
-#ifdef HAVE_DEBUGALLOC
-	uint flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
-	// Always enable leak detection in debug builds
-	flags |= _CRTDBG_LEAK_CHECK_DF;
-#ifdef PARANOIA
-	// force malloc et al. to check the heap every call.
-	// slower, but reports errors closer to where they occur.
-	flags |= _CRTDBG_CHECK_ALWAYS_DF | _CRTDBG_DELAY_FREE_MEM_DF;
-#endif // PARANOIA
-	_CrtSetDbgFlag(flags);
-#endif // HAVE_DEBUGALLOC
-
-	call_func_tbl(pre_main_begin, pre_main_end);
-
-	atexit(at_exit);
-
-	// no point redirecting stdout yet - the current directory
-	// may be incorrect (file_set_root not yet called).
-	// (w)sdl will take care of it anyway.
-}
-
-#ifdef HAVE_DEBUGALLOC
-// Enable heap corruption checking after every allocation. Has the same
-// effect as PARANOIA in pre_main_init, but lets you switch it on anywhere
-// so that you can skip checking the whole of the initialisation code.
-// The debugger will break in the allocation just after the one that
-// corrupted the heap, so check its ID and then _CrtSetBreakAlloc(...)
-// on the previous one and try again.
-// Warning: This makes things rather slow.
-void memory_debug_extreme_turbo_plus()
-{
-	_CrtSetDbgFlag( _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) | _CRTDBG_CHECK_ALWAYS_DF | _CRTDBG_DELAY_FREE_MEM_DF );
-}
-#endif
-
 
 int entry()
 {
-	pre_libc_init();
-	return WinMainCRTStartup();	// calls _cinit, and then WinMain
+	int ret = -1;
+	__try
+	{
+		pre_libc_init();
+		ret = mainCRTStartup();	// calls _cinit and then our main
+	}
+	__except(wdbg_exception_filter(GetExceptionInformation()))
+	{
+	}
+	return ret;
 }
 
 
@@ -452,13 +742,5 @@ int entry()
 void sced_init()
 {
 	pre_main_init();
-}
-#endif
-
-#ifndef SCED
-int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
-{
-	pre_main_init();
-	return main(__argc, __argv);
 }
 #endif

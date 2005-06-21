@@ -93,7 +93,7 @@ static void cat_atow(FILE* out, const char* in_filename)
 }
 
 
-int debug_write_crashlog(const wchar_t* description, const wchar_t* locus, const wchar_t* stack_trace)
+int debug_write_crashlog(const wchar_t* text)
 {
 	const wchar_t divider[] = L"\n\n====================================\n\n";
 #define WRITE_DIVIDER fwprintf(f, divider);
@@ -104,9 +104,7 @@ int debug_write_crashlog(const wchar_t* description, const wchar_t* locus, const
 
 	fputwc(0xfeff, f);	// BOM
 
-	fwprintf(f, L"Unhandled exception: %s.\n", description);
-	fwprintf(f, L"Location: %s\n", locus);
-	fwprintf(f, L"Stack trace: %s\n", stack_trace);
+	fwprintf(f, L"%s\n", text);
 	WRITE_DIVIDER
 
 
@@ -449,4 +447,84 @@ const char* debug_get_symbol_string(void* symbol, const char* name, const char* 
 	symbol_string_add_to_cache(string, symbol);
 
 	return string;
+}
+
+
+
+
+
+
+
+
+ErrorReaction display_error(const wchar_t* description, int flags,
+	uint skip, void* context, const char* file, int line)
+{
+	if(!file || file[0] == '\0')
+		file = "unknown";
+	if(line <= 0)
+		line = 0;
+
+	// display in output window; double-click will navigate to error location.
+	char* slash = strrchr(file, DIR_SEP);
+	const char* filename = slash? slash+1 : file;
+	debug_wprintf(L"%hs(%d): %s\n", filename, line, description);
+
+	wchar_t* text;
+	const size_t MAX_CHARS = 64*1024;
+	void* mem = malloc(MAX_CHARS*sizeof(wchar_t));
+	if(mem)
+	{
+		text = (wchar_t*)mem;
+		static const wchar_t fmt[] = L"%s\r\n\r\nCall stack:\r\n\r\n";
+		int len = swprintf(text, MAX_CHARS, fmt, description);
+
+		debug_dump_stack(text+len, MAX_CHARS-len, skip+1, context);
+			// in-place
+	}
+	else
+		text = L"(insufficient memory to display error message)";
+
+	debug_write_crashlog(text);
+	ErrorReaction er = display_error_impl(text, flags);
+
+	// note: debug_break-ing here to make sure the app doesn't continue
+	// running is no longer necessary. display_error now determines our
+	// window handle and is modal.
+
+	// handle "break" request unless the caller wants to (doing so here
+	// instead of within the dlgproc helps makes debugging easier)
+	if(er == ER_BREAK && !(flags & DE_MANUAL_BREAK))
+	{
+		debug_break();
+		er = ER_CONTINUE;
+	}
+
+	free(mem);
+		// after debug_break to ease debugging, but before exit to avoid leak.
+
+	// exit requested. do so here to disburden callers.
+	if(er == ER_EXIT)
+	{
+		// disable memory-leak reporting to avoid a flood of warnings
+		// (lots of stuff will leak since we exit abnormally).
+		debug_disable_leak_reporting();
+#ifdef HAVE_MMGR
+		mmgr_set_options(0);
+#endif
+
+		exit(EXIT_FAILURE);
+	}
+
+	return er;
+}
+
+
+// notify the user that an assertion failed; displays a stack trace with
+// local variables.
+ErrorReaction debug_assert_failed(const char* file, int line, const char* expr)
+{
+	uint skip = 1; void* context = 0;
+	wchar_t buf[200];
+	swprintf(buf, ARRAY_SIZE(buf), L"Assertion failed in %hs, line %d: \"%hs\"", file, line, expr);
+	return display_error(buf, DE_ALLOW_SUPPRESS|DE_MANUAL_BREAK, skip, context, file, line);
 }

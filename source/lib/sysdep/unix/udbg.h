@@ -7,4 +7,6 @@
 
 extern void unix_debug_break(void);
 
+extern void udbg_launch_debugger();
+
 #endif	// #ifndef UDBG_H__

@@ -18,6 +18,7 @@
 #ifndef DEBUG_H_INCLUDED
 #define DEBUG_H_INCLUDED
 
+#include "sysdep.h"		// ErrorReaction
 #ifdef _WIN32
 # include "win/wdbg.h"
 #else
@@ -29,26 +30,7 @@
 // errors are reported by the CRT, e.g. via assert.
 extern void debug_check_heap(void);
 
-
-// user choices in the assert/unhandled exception dialog.
-enum ErrorReaction
-{
-	// ignore, continue as if nothing happened.
-	ER_CONTINUE = 1,
-		// note: don't start at 0 because that is interpreted as a
-		// DialogBoxParam failure.
-
-	// ignore and do not report again. only works with assert2.
-	ER_SUPPRESS,
-		// note: non-persistent; only applicable during this program run.
-
-	// trigger breakpoint, i.e. enter debugger.
-	ER_BREAK,
-
-	// exit the program immediately.
-	ER_EXIT,
-		// note: never returned; carried out immediately to disburden callers.
-};
+extern void debug_disable_leak_reporting();
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -59,7 +41,7 @@ enum ErrorReaction
 // notify the user that an assertion failed; displays a
 // stack trace with local variables.
 // returns one of UserErrorReaction.
-extern ErrorReaction debug_assert_failed(const char* source_file, int line, const char* assert_expr);
+extern enum ErrorReaction debug_assert_failed(const char* source_file, int line, const char* assert_expr);
 
 // recommended use: assert2(expr && "descriptive string")
 #define assert2(expr)\
@@ -85,6 +67,7 @@ STMT(\
 
 // write to the debugger output window (may take ~1 ms!)
 extern void debug_printf(const char* fmt, ...);
+extern void debug_wprintf(const wchar_t* fmt, ...);
 
 // write to memory buffer (fast)
 // used for "last activity" reporting in the crashlog.
@@ -94,7 +77,7 @@ extern void debug_wprintf_mem(const wchar_t* fmt, ...);
 #define debug_warn(str) assert2(0 && (str))
 
 // TODO
-extern int debug_write_crashlog(const wchar_t* description, const wchar_t* locus, const wchar_t* stack_trace);
+extern int debug_write_crashlog(const wchar_t* text);
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -154,5 +137,6 @@ extern void* debug_get_nth_caller(uint n);
 
 extern int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line);
 
+extern const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* context);
 
 #endif	// #ifndef DEBUG_H_INCLUDED
