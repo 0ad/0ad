@@ -193,9 +193,10 @@ static void dll_list_init(char* buf, size_t chars)
 // read DLL file version and append that and its name to the list.
 // return 0 on success or a negative error code.
 //
-// dll_path should preferably be the complete path to DLL, to make sure
+// name should preferably be the complete path to DLL, to make sure
 // we don't inadvertently load another one on the library search path.
-static int dll_list_add(const char* dll_path)
+// we add the .dll extension if necessary.
+static int dll_list_add(const char* name)
 {
 	// make sure we're allowed to be called.
 	if(!dll_list_pos)
@@ -204,9 +205,20 @@ static int dll_list_add(const char* dll_path)
 		return -1;
 	}
 
+	// some driver names are stored in the registry without .dll extension.
+	// if necessary, copy to new buffer and add it there.
+	char buf[MAX_PATH];
+	const char* dll_name = name;
+	char* ext = strrchr(name, '.');
+	if(!ext || stricmp(ext, ".dll") != 0)
+	{
+		snprintf(buf, ARRAY_SIZE(buf), "%s.dll", name);
+		dll_name = buf;
+	}
+
 	// read file version.
-	char dll_ver[128] = "(unknown)";
-	(void)get_ver(dll_path, dll_ver, sizeof(dll_ver));
+	char dll_ver[128] = "unknown";	// enclosed in () below
+	(void)get_ver(dll_name, dll_ver, sizeof(dll_ver));
 		// if this fails, default is already set and we don't want to abort.
 
 	const ssize_t max_chars_to_write = (ssize_t)dll_list_chars - (dll_list_pos-dll_list_buf) - 10;
@@ -217,8 +229,8 @@ static int dll_list_add(const char* dll_path)
 		dll_list_pos += sprintf(dll_list_pos, ", ");
 
 	// extract filename.
-	const char* slash = strrchr(dll_path, '\\');
-	const char* dll_fn = slash? slash+1 : dll_path;
+	const char* slash = strrchr(dll_name, '\\');
+	const char* dll_fn = slash? slash+1 : dll_name;
 
 	int len = snprintf(dll_list_pos, max_chars_to_write, "%s (%s)", dll_fn, dll_ver);
 	// success
@@ -286,48 +298,53 @@ static int win_get_gfx_drv_ver()
 	//   gfx_card which one is correct; we thus avoid driver-specific
 	//   name checks and reporting incorrectly.
 
-	dll_list_init(gfx_drv_ver, GFX_DRV_VER_LEN);
-
 	int ret = -1;	// single point of exit (for RegCloseKey)
+	DWORD i;
+	char drv_name[MAX_PATH+1];
+
+	dll_list_init(gfx_drv_ver, GFX_DRV_VER_LEN);
 
 	HKEY hkOglDrivers;
 	const char* key = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\OpenGLDrivers";
-	if(RegOpenKeyEx(HKEY_LOCAL_MACHINE, key, 0, KEY_ENUMERATE_SUB_KEYS, &hkOglDrivers) != 0)
+	if(RegOpenKeyEx(HKEY_LOCAL_MACHINE, key, 0, KEY_READ, &hkOglDrivers) != 0)
 		return -1;
 
 	// for each subkey (i.e. set of installed OpenGL drivers):
-	for(DWORD idx = 0; ; idx++)
+	for(i = 0; ; i++)
 	{
 		char set_name[32];
 		DWORD set_name_len = ARRAY_SIZE(set_name);
-		LONG err = RegEnumKeyEx(hkOglDrivers, idx, set_name, &set_name_len, 0, 0,0, 0);
-		if(err != 0)	// error or no more items - bail
+		LONG err = RegEnumKeyEx(hkOglDrivers, i, set_name, &set_name_len, 0, 0,0, 0);
+		if(err != ERROR_SUCCESS)	// error or no more items - bail
 			break;
 
 		HKEY hkSet;
 		if(RegOpenKeyEx(hkOglDrivers, set_name, 0, KEY_QUERY_VALUE, &hkSet) == 0)
 		{
-			char drv_path[MAX_PATH+1];
-			DWORD drv_path_len = ARRAY_SIZE(drv_path)-5;	// for ".dll"
-			if(RegQueryValueEx(hkSet, "Dll", 0, 0, (LPBYTE)drv_path, &drv_path_len) == 0)
-			{
-				// we don't know if .dll extension is present; make sure.
-				char* ext = strrchr(drv_path, '.');
-				if(!ext || stricmp(ext, ".dll") != 0)
-					strcat_s(drv_path, ARRAY_SIZE(drv_path), ".dll");
-
-				// note: drv_path isn't fully-qualified on some systems,
-				// so we may be fooled by other DLLs on the PATH. nothing
-				// we can do about it, though.
-
-				ret = dll_list_add(drv_path);
-				if(ret < 0)	// abort if it failed (see dll_list_add)
-					break;
-			}
+			DWORD drv_name_len = ARRAY_SIZE(drv_name)-5;	// for ".dll"
+			if(RegQueryValueEx(hkSet, "Dll", 0, 0, (LPBYTE)drv_name, &drv_name_len) == 0)
+				ret = dll_list_add(drv_name);
 
 			RegCloseKey(hkSet);
 		}
 	}	// for each subkey
+
+	// for each value:
+	// (some old drivers, e.g. S3 Super Savage, store their ICD name in a
+	// single REG_SZ value. we therefore include those as well.)
+	for(i = 0; ; i++)
+	{
+		char value_name[100];	// we don't need this, but RegEnumValue fails otherwise.
+		DWORD value_name_len = ARRAY_SIZE(value_name);
+		DWORD type;
+		DWORD drv_name_len = ARRAY_SIZE(drv_name)-5;	// for ".dll"
+		DWORD err = RegEnumValue(hkOglDrivers, i, value_name,&value_name_len,
+			0, &type, (LPBYTE)drv_name,&drv_name_len);
+		if(err != ERROR_SUCCESS)	// error or no more items - bail
+			break;
+		if(type == REG_SZ)
+			ret = dll_list_add(drv_name);
+	}	// for each value
 
 	RegCloseKey(hkOglDrivers);
 	return ret;
@@ -420,9 +437,9 @@ static void add_oal_dlls_in_dir(const char* dir, DllSet* dlls)
 }
 
 
-// path to DS3D driver; filled by ds_enum, used by win_get_snd_info.
+// DS3D driver name; filled by ds_enum, used by win_get_snd_info.
 // side effect: remains zeroed if there's no sound card installed.
-static char ds_drv_path[MAX_PATH+1];
+static char ds_drv_name[MAX_PATH+1];
 
 // store sound card name and path to DirectSound driver.
 // called for each DirectSound driver, but aborts after first valid driver.
@@ -435,8 +452,8 @@ static BOOL CALLBACK ds_enum(void* guid, const char* description, const char* mo
 	if(module[0] == '\0')
 		return TRUE;	// continue calling
 
-	strcpy_s(snd_card, sizeof(snd_card), description);
-	snprintf(ds_drv_path, MAX_PATH, "%s\\drivers\\%s", win_sys_dir, module);
+	strcpy_s(snd_card, SND_CARD_LEN, description);
+	strcpy_s(ds_drv_name, ARRAY_SIZE(ds_drv_name), module);
 
 	// we assume the first "driver name" (sound card) is the one we want;
 	// stick with that and stop calling.
@@ -452,7 +469,7 @@ int win_get_snd_info()
 
 	// there are apparently no sound card/drivers installed; so indicate.
 	// (the code below would fail and not produce reasonable output)
-	if(ds_drv_path[0] == '\0')
+	if(ds_drv_name[0] == '\0')
 	{
 		strcpy_s(snd_card, SND_CARD_LEN, "(none)");
 		strcpy_s(snd_drv_ver, SND_DRV_VER_LEN, "(none)");
@@ -462,7 +479,7 @@ int win_get_snd_info()
 	// find all DLLs related to OpenAL, retrieve their versions,
 	// and store in snd_drv_ver string.
 	dll_list_init(snd_drv_ver, SND_DRV_VER_LEN);
-	dll_list_add(ds_drv_path);
+	dll_list_add(ds_drv_name);
 	std::set<std::string> dlls;	// ensures uniqueness
 	add_oal_dlls_in_dir(win_exe_dir, &dlls);
 	add_oal_dlls_in_dir(win_sys_dir, &dlls);

@@ -31,9 +31,9 @@
 #define unlock() win_unlock(WAIO_CS)
 
 
-#pragma data_seg(".LIB$WCC")
+#pragma data_seg(WIN_CALLBACK_PRE_LIBC(c))
 WIN_REGISTER_FUNC(waio_init);
-#pragma data_seg(".LIB$WTX")
+#pragma data_seg(WIN_CALLBACK_POST_ATEXIT(x))
 WIN_REGISTER_FUNC(waio_shutdown);
 #pragma data_seg()
 

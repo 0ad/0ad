@@ -29,7 +29,7 @@
 #endif
 
 
-#pragma data_seg(".LIB$WTB")
+#pragma data_seg(WIN_CALLBACK_POST_ATEXIT(b))
 WIN_REGISTER_FUNC(wsock_shutdown);
 #pragma data_seg()
 

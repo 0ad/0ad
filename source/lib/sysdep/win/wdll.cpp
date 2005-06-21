@@ -133,8 +133,8 @@ PfnDliHook   __pfnDliFailureHook2;
 
 
 
-
-#pragma data_seg(".LIB$WTY")	// must be last, since DLLs are unloaded here
+// note: must be last, since DLLs are unloaded here
+#pragma data_seg(WIN_CALLBACK_POST_ATEXIT(y))
 WIN_REGISTER_FUNC(wdll_shutdown);
 #pragma data_seg()
 

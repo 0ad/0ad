@@ -28,7 +28,7 @@
 #include <list>
 
 
-#pragma data_seg(".LIB$WTX")
+#pragma data_seg(WIN_CALLBACK_POST_ATEXIT(x))
 WIN_REGISTER_FUNC(wdir_watch_shutdown);
 #pragma data_seg()
 

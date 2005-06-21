@@ -45,4 +45,33 @@
 #define WINAPI __stdcall
 #define WINAPIV __cdecl
 
+
+//
+// main() hook
+//
+
+// our Windows-specific init code needs to run before the regular main() code.
+// ideally this would happen automagically, but there are two problems:
+// - the C standard expressly forbids calling main() directly;
+//   VC apparently makes use of this and changes its calling convention.
+//   if we call it, everything appears to work but stack traces in
+//   release mode are incorrect (symbol address is off by 4).
+// - other libraries may also want to hook main(); in that case,
+//   "one must fall". we need to provide for disabling our hook.
+//   this is not enough reason to forego a hook entirely -
+//   integration into new projects is easier when there is less
+//   stuff to remember (here, calling our init function directly).
+//
+// what we'll do is: redefine the app's main function to app_main, have the
+// OS call our main, and call app_main from there. in case another library
+// (e.g. SDL) has the same idea, #define NO_MAIN_REDIRECT prevents the
+// above; you then need to call win_pre_main_init at the beginning of main().
+//#define NO_MAIN_REDIRECT
+
+#ifdef NO_MAIN_REDIRECT
+extern void win_pre_main_init();
+#else
+#define main app_main
+#endif
+
 #endif	// #ifndef WIN_H__

@@ -357,8 +357,7 @@ extern __declspec(dllimport) int __stdcall WSAAsyncSelect(int s, HANDLE hWnd, un
 extern __declspec(dllimport) int __stdcall WSAGetLastError(void);
 #endif	// #ifndef NO_WINSOCK
 
-extern int WinMainCRTStartup(void);
-extern int main(int, char*[]);
+extern int mainCRTStartup(void);
 }
 
 #define BIT(n) (1ul << (n))
@@ -391,6 +390,8 @@ enum
 extern void win_lock(uint idx);
 extern void win_unlock(uint idx);
 
+// used in a desperate attempt to avoid deadlock in wdbg_exception_handler.
+extern int win_is_locked(uint idx);
 
 
 extern void* win_alloc(size_t size);
@@ -429,6 +430,9 @@ extern void win_free(void* p);
 
 #define WIN_REGISTER_FUNC(func) static int func(void); static int(*p##func)(void) = func
 
+#define WIN_CALLBACK_PRE_LIBC(group) ".LIB$WC" #group
+#define WIN_CALLBACK_PRE_MAIN(group) ".LIB$WI" #group
+#define WIN_CALLBACK_POST_ATEXIT(group) ".LIB$WT" #group
 
 
 
@@ -439,5 +443,9 @@ extern void win_free(void* p);
 extern char win_sys_dir[MAX_PATH+1];
 extern char win_exe_dir[MAX_PATH+1];
 
+
+// this isn't nice (ideally we would avoid coupling win.cpp and wdbg.cpp), but
+// necessary; see rationale at function definition.
+extern LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep);
 
 #endif	// #ifndef WIN_INTERNAL_H

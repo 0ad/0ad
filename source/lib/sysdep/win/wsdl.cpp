@@ -62,9 +62,9 @@
 #endif
 
 
-#pragma data_seg(".LIB$WIB")
+#pragma data_seg(WIN_CALLBACK_PRE_MAIN(b))
 WIN_REGISTER_FUNC(wsdl_init);
-#pragma data_seg(".LIB$WTD")
+#pragma data_seg(WIN_CALLBACK_POST_ATEXIT(d))
 WIN_REGISTER_FUNC(wsdl_shutdown);
 #pragma data_seg()
 

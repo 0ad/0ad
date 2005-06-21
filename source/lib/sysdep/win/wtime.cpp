@@ -41,9 +41,9 @@ static const int CALIBRATION_FREQ = 1;
 
 
 // automatic module init (before main) and shutdown (before termination)
-#pragma data_seg(".LIB$WCB")
+#pragma data_seg(WIN_CALLBACK_PRE_LIBC(b))
 WIN_REGISTER_FUNC(wtime_init);
-#pragma data_seg(".LIB$WTB")
+#pragma data_seg(WIN_CALLBACK_POST_ATEXIT(b))
 WIN_REGISTER_FUNC(wtime_shutdown);
 #pragma data_seg()
 
