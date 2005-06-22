@@ -6,7 +6,7 @@
 #include "scripting/ScriptingHost.h"
 #include "JSConversions.h"
 
-#include <jsatom.h>
+#include "scripting/SpiderMonkey.h"
 
 #include <set>
 

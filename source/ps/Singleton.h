@@ -19,10 +19,6 @@
 #ifndef _TEMPLATE_SINGLETON
 #define _TEMPLATE_SINGLETON
 
-#include <assert.h>
-#include "lib.h"
-
-
 template<typename T>
 class Singleton
 {
@@ -31,7 +27,7 @@ class Singleton
    public:
       Singleton()
       {
-         assert( !ms_singleton );
+         assert2( !ms_singleton );
 
          //use a cunning trick to get the singleton pointing to the start of
          //the whole, rather than the start of the Singleton part of the object
