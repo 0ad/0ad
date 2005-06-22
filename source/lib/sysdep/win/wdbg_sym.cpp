@@ -70,19 +70,21 @@ static void unlock()
 
 enum WdbgError
 {
+	WDBG_NO_STACK_FRAMES_FOUND = -100000,
+
 	// the value is stored in an external module and therefore cannot be
 	// displayed.
-	WDBG_UNRETRIEVABLE_STATIC  = -100000,
+	WDBG_UNRETRIEVABLE_STATIC  = -100100,
 
 	// the value is stored in a register and therefore cannot be displayed
 	// (see CV_HREG_e).
-	WDBG_UNRETRIEVABLE_REG     = -100001,
+	WDBG_UNRETRIEVABLE_REG     = -100101,
 
 	// an essential call to SymGetTypeInfo or SymFromIndex failed.
-	WDBG_TYPE_INFO_UNAVAILABLE = -100002,
+	WDBG_TYPE_INFO_UNAVAILABLE = -100102,
 
 	// exception raised while processing the symbol.
-	WDBG_INTERNAL_ERROR        = -100003,
+	WDBG_INTERNAL_ERROR        = -100200,
 };
 
 
@@ -134,14 +136,30 @@ static int sym_shutdown()
 }
 
 
-struct SYMBOL_INFO_PACKAGE2 : public SYMBOL_INFO_PACKAGE
+struct SYMBOL_INFO_PACKAGEW2 : public SYMBOL_INFO_PACKAGEW
 {
-	SYMBOL_INFO_PACKAGE2()
+	SYMBOL_INFO_PACKAGEW2()
 	{
 		si.SizeOfStruct = sizeof(si);
 		si.MaxNameLen = MAX_SYM_NAME;
 	}
 };
+
+// note: we can't derive from TI_FINDCHILDREN_PARAMS because its members
+// aren't guaranteed to precede ours (although they do in practice).
+struct TI_FINDCHILDREN_PARAMS2
+{
+	TI_FINDCHILDREN_PARAMS2(DWORD num_children)
+	{
+		p.Start = 0;
+		p.Count = MIN(num_children, MAX_CHILDREN);
+	}
+
+	static const size_t MAX_CHILDREN = 400;
+	TI_FINDCHILDREN_PARAMS p;
+	DWORD additional_children[MAX_CHILDREN-1];
+};
+
 
 // ~500µs
 int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
@@ -157,11 +175,11 @@ int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int*
 	if(sym_name)
 	{
 		sym_name[0] = '\0';
-		SYMBOL_INFO_PACKAGE2 sp;
-		SYMBOL_INFO* sym = &sp.si;
-		if(SymFromAddr(hProcess, addr, 0, sym))
+		SYMBOL_INFO_PACKAGEW2 sp;
+		SYMBOL_INFOW* sym = &sp.si;
+		if(SymFromAddrW(hProcess, addr, 0, sym))
 		{
-			snprintf(sym_name, DBG_SYMBOL_LEN, "%s", sym->Name);
+			snprintf(sym_name, DBG_SYMBOL_LEN, "%ws", sym->Name);
 			successes++;
 		}
 	}
@@ -319,7 +337,8 @@ typedef int (*StackFrameCallback)(const STACKFRAME64*, void*);
 
 // iterate over a call stack, calling back for each frame encountered.
 // if <pcontext> != 0, we start there; otherwise, at the current context.
-// return -1 if callback never succeeded (returned 0). lock must be held.
+// return an error if callback never succeeded (returned 0).
+// lock must be held.
 static int walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip = 0, const CONTEXT* pcontext = 0)
 {
 	sym_init();
@@ -336,7 +355,7 @@ static int walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip = 0, 
 	else
 	{
 		get_current_context(&context);
-		skip++;	// skip walk_stack's frame
+		skip++;	// skip this frame
 	}
 	pcontext = &context;
 
@@ -350,17 +369,18 @@ static int walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip = 0, 
 	sf.AddrStack.Mode   = AddrModeFlat;
 
 	// for each stack frame found:
+	int ret = WDBG_NO_STACK_FRAMES_FOUND;
 	for(;;)
 	{
 		BOOL ok = StackWalk64(machine, hProcess, hThread, &sf, (void*)pcontext,
 			0, SymFunctionTableAccess64, SymGetModuleBase64, 0);
 
-		// callback never indicated success and no (more) frames found: abort.
+		// no more frames found - abort.
 		// note: also test FP because StackWalk64 sometimes erroneously
 		// reports success. unfortunately it doesn't SetLastError either,
 		// so we can't indicate the cause of failure. *sigh*
 		if(!ok || !sf.AddrFrame.Offset)
-			return -911;	// distinctive error value
+			return ret;
 
 		if(skip)
 		{
@@ -368,7 +388,7 @@ static int walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip = 0, 
 			continue;
 		}
 
-		int ret = cb(&sf, user_arg);
+		ret = cb(&sf, user_arg);
 		// callback reports it's done; stop calling it and return that value.
 		// (can be 0 for success, or a negative error code)
 		if(ret <= 0)
@@ -527,203 +547,14 @@ static bool is_bogus_pointer(const void* p)
 }
 
 
-// provide c_str() access for any specialization of std::basic_string
-// (since dump_string doesn't know type at compile-time).
-// also performs a basic sanity check to see if the object is initialized.
-struct AnyString : public std::string
-{
-	const void* safe_c_str(size_t el_size) const
-	{
-#ifdef _MSC_VER
-		// bogus
-		if(_Myres < _Mysize)
-			return 0;
-		return (_Myres < 16/el_size)? _Bx._Buf : _Bx._Ptr;
-#else
-		return 0;
-#endif
-	}
-};
-
-static int dump_string(WCHAR* type_name, const u8* p, size_t size, DumpState state)
-{
-	size_t el_size;
-	const WCHAR* pretty_name = type_name;
-	const void* string_data = 0;
-
-	// Pyrogenesis CStr
-	if(!wcsncmp(type_name, L"CStr", 4))
-	{
-		assert(size == 32/*sizeof(CStr)*/);
-
-		// determine type
-		if(type_name[4] == '8')
-			el_size = sizeof(char);
-		else if(type_name[4] == 'W')
-			el_size = sizeof(wchar_t);
-		// .. unknown, shouldn't handle it
-		else
-			return 1;
-
-		p += 4;	// skip vptr (mixed in by ISerializable)
-		string_data = ((AnyString*)p)->safe_c_str(el_size);
-	}
-	// std::basic_string and its specializations
-	else if(!wcsncmp(type_name, L"std::basic_string", 17))
-	{
-		assert(size == sizeof(std::string) || size == 16);
-			// dbghelp bug: std::wstring size is given as 16
-
-		// determine type
-		if(!wcsncmp(type_name+18, L"char", 4))
-		{
-			el_size = sizeof(char);
-			pretty_name = L"std::string";
-		}
-		else if(!wcsncmp(type_name+18, L"unsigned short", 14))
-		{
-			el_size = sizeof(wchar_t);
-			pretty_name = L"std::wstring";
-		}
-		// .. unknown, shouldn't handle it
-		else
-			return 1;
-
-		string_data = ((AnyString*)p)->safe_c_str(el_size);
-	}
-	// type_name isn't a known string object; we can't handle it.
-	else
-		return 1;
-
-	// type_name is known but its contents are bogus; so indicate.
-	if(is_bogus_pointer(string_data) ||	!is_string((const u8*)string_data, el_size))
-		out(L"(uninitialized/invalid %s)", pretty_name);
-	// valid; display it.
-	else
-	{
-		const wchar_t* fmt = (el_size == sizeof(wchar_t))? L"\"%s\"" : L"\"%hs\"";
-		out(fmt, string_data);
-	}
-
-	// it was a string object (valid or not) -> we handled it.
-	return 0;
-}
-
-
-// provide access to any type of std::vector
-// (since dump_vector doesn't know type at compile-time).
-// also performs a basic sanity check to see if the object is initialized.
-struct AnyVector: public std::vector<int>
-{
-};
-
-
-static int dump_vector(WCHAR* type_name, const u8* p, size_t size, DumpState state)
-{
-	if(!wcsncmp(type_name, L"std::vector", 11))
-	{
-		assert(size == sizeof(std::vector<int>));
-		AnyVector* v = (AnyVector*)p;
-		//dump_sequence(p, num_elem, el_idx, el_size, state)
-
-		return 0;
-	}
-
-	return 1;
-}
-
-static bool should_suppress_udt(WCHAR* type_name)
-{
-	// STL
-#define SUPPRESS_STL(name) if(!wcscmp(type_name, L"std::" L#name)) return true;
-	SUPPRESS_STL(allocator);
-	SUPPRESS_STL(char_traits);
-#undef SUPPRESS_STL
-
-	// specialized HANDLEs are defined as pointers to structs by
-	// DECLARE_HANDLE. we only want the numerical value (pointer address),
-	// so prevent these structs from being displayed.
-	// note: no need to check for indirection; these are only found in
-	// HANDLEs (which are pointers).
-	// removed obsolete defs: HEVENT, HFILE, HUMPD
-	if(type_name[0] != 'H')
-		goto not_handle;
-#define SUPPRESS_HANDLE(name) if(!wcscmp(type_name, L#name L"__")) return true;
-	SUPPRESS_HANDLE(HACCEL);
-	SUPPRESS_HANDLE(HBITMAP);
-	SUPPRESS_HANDLE(HBRUSH);
-	SUPPRESS_HANDLE(HCOLORSPACE);
-	SUPPRESS_HANDLE(HCURSOR);
-	SUPPRESS_HANDLE(HDC);
-	SUPPRESS_HANDLE(HENHMETAFILE);
-	SUPPRESS_HANDLE(HFONT);
-	SUPPRESS_HANDLE(HGDIOBJ);
-	SUPPRESS_HANDLE(HGLOBAL);
-	SUPPRESS_HANDLE(HGLRC);
-	SUPPRESS_HANDLE(HHOOK);
-	SUPPRESS_HANDLE(HICON);
-	SUPPRESS_HANDLE(HIMAGELIST);
-	SUPPRESS_HANDLE(HIMC);
-	SUPPRESS_HANDLE(HINSTANCE);
-	SUPPRESS_HANDLE(HKEY);
-	SUPPRESS_HANDLE(HKL);
-	SUPPRESS_HANDLE(HKLOCAL);
-	SUPPRESS_HANDLE(HMENU);
-	SUPPRESS_HANDLE(HMETAFILE);
-	SUPPRESS_HANDLE(HMODULE);
-	SUPPRESS_HANDLE(HMONITOR);
-	SUPPRESS_HANDLE(HPALETTE);
-	SUPPRESS_HANDLE(HPEN);
-	SUPPRESS_HANDLE(HRGN);
-	SUPPRESS_HANDLE(HRSRC);
-	SUPPRESS_HANDLE(HSTR);
-	SUPPRESS_HANDLE(HTASK);
-	SUPPRESS_HANDLE(HWINEVENTHOOK);
-	SUPPRESS_HANDLE(HWINSTA);
-	SUPPRESS_HANDLE(HWND);
-not_handle:
-
-	return false;
-}
-
-
-static int dump_special_udt(WCHAR* type_name, const u8* p, size_t size, DumpState state)
-{
-	int ret;
-
-	ret = dump_string(type_name, p, size, state);
-	if(ret <= 0)
-		return ret;
-
-	ret = dump_vector(type_name, p, size, state);
-	if(ret <= 0)
-		return ret;
-
-
-	if(should_suppress_udt(type_name))
-	{
-		// the data symbol is pointer-to-UDT. since we won't display its
-		// contents, leave only the pointer's value.
-		if(state.indirection)
-			out_erase(4);	// " -> "
-
-		// indicate something was deliberately left out
-		// (otherwise, lack of output may be taken for an error)
-		out(L" (..)");
-
-		return 0;
-	}
-
-	return 1;	// not handled
-}
 
 
 
 // forward decl; called by dump_sequence and some of dump_sym_*.
-static int dump_sym(DWORD idx, const u8* p, DumpState state);
+static int dump_sym(DWORD id, const u8* p, DumpState state);
 
 
-static int dump_sequence(const u8* p, uint num_elements, DWORD el_idx, size_t el_size, DumpState state)
+static int dump_sequence(const u8* p, size_t num_elements, DWORD el_id, size_t el_size, DumpState state)
 {
 	// special case for character arrays: display as string
 	if(el_size == sizeof(char) || el_size == sizeof(wchar_t))
@@ -744,13 +575,14 @@ static int dump_sequence(const u8* p, uint num_elements, DWORD el_idx, size_t el
 				}
 				buf[i] = '\0';
 			}
-	
+
 			out(L"\"%s\"", buf);
 			return 0;
 		}
 
 	// regular array:
-	const uint num_elements_to_show = MIN(20, num_elements);
+	out(L"[%d] ", num_elements);
+	const size_t num_elements_to_show = MIN(20, num_elements);
 	const bool fits_on_one_line =
 		(el_size == sizeof(char) && num_elements <= 16) ||
 		(el_size <= sizeof(int ) && num_elements <=  8);
@@ -759,12 +591,12 @@ static int dump_sequence(const u8* p, uint num_elements, DWORD el_idx, size_t el
 	out(fits_on_one_line? L"{ " : L"\r\n");
 
 	int err = 0;
-	for(uint i = 0; i < num_elements_to_show; i++)
+	for(size_t i = 0; i < num_elements_to_show; i++)
 	{
 		if(!fits_on_one_line)
 			INDENT;
 
-		int ret = dump_sym(el_idx, p + i*el_size, state);
+		int ret = dump_sym(el_id, p + i*el_size, state);
 		if(err == 0)	// remember first error
 			err = ret;
 
@@ -781,6 +613,8 @@ static int dump_sequence(const u8* p, uint num_elements, DWORD el_idx, size_t el
 		out(L" }");
 	return err;
 }
+
+
 
 // from cvconst.h
 //
@@ -831,17 +665,17 @@ static const wchar_t* string_for_register(CV_HREG_e reg)
 }
 
 
-static int determine_symbol_address(DWORD idx, DWORD type_idx, const u8** pp)
+static int determine_symbol_address(DWORD id, DWORD type_id, const u8** pp)
 {
 	const STACKFRAME64* sf = current_stackframe64;
 
 	ULONG64 size_ = 0;
-	if(!SymGetTypeInfo(hProcess, mod_base, type_idx, TI_GET_LENGTH, &size_))
+	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_LENGTH, &size_))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
 	const size_t size = (size_t)size_;
 
 	DWORD data_kind;
-	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_DATAKIND, &data_kind))
+	if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_DATAKIND, &data_kind))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
 	switch(data_kind)
 	{
@@ -849,7 +683,7 @@ static int determine_symbol_address(DWORD idx, DWORD type_idx, const u8** pp)
 	case DataIsMember:
 		{
 		DWORD ofs = 0;
-		if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_OFFSET, &ofs))
+		if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_OFFSET, &ofs))
 			return WDBG_TYPE_INFO_UNAVAILABLE;
 		//assert(ofs < size);
 		*pp += ofs;
@@ -864,17 +698,17 @@ static int determine_symbol_address(DWORD idx, DWORD type_idx, const u8** pp)
 
 	}
 
-	SYMBOL_INFO_PACKAGE2 sp;
-	SYMBOL_INFO* sym = &sp.si;
-	if(!SymFromIndex(hProcess, mod_base, idx, sym))
+	SYMBOL_INFO_PACKAGEW2 sp;
+	SYMBOL_INFOW* sym = &sp.si;
+	if(!SymFromIndexW(hProcess, mod_base, id, sym))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
 
 DWORD addrofs = 0;
 ULONG64 addr2 = 0;
 DWORD ofs2 = 0;
-SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_ADDRESSOFFSET, &addrofs);
-SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_ADDRESS, &addr2);
-SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_OFFSET, &ofs2);
+SymGetTypeInfo(hProcess, mod_base, id, TI_GET_ADDRESSOFFSET, &addrofs);
+SymGetTypeInfo(hProcess, mod_base, id, TI_GET_ADDRESS, &addr2);
+SymGetTypeInfo(hProcess, mod_base, id, TI_GET_OFFSET, &ofs2);
 
 
 
@@ -945,22 +779,6 @@ in_register:
 }
 
 
-// note: we can't derive from TI_FINDCHILDREN_PARAMS because its members
-// aren't guaranteed to precede ours (although they do in practice).
-struct TI_FINDCHILDREN_PARAMS2
-{
-	TI_FINDCHILDREN_PARAMS2(DWORD num_children)
-	{
-		p.Start = 0;
-		p.Count = MIN(num_children, MAX_CHILDREN);
-	}
-
-	static const size_t MAX_CHILDREN = 400;
-	TI_FINDCHILDREN_PARAMS p;
-	DWORD additional_children[MAX_CHILDREN-1];
-};
-
-
 //////////////////////////////////////////////////////////////////////////////
 //
 // dump routines for each dbghelp symbol type
@@ -972,45 +790,41 @@ struct TI_FINDCHILDREN_PARAMS2
 // called by dump_sym; lock is held.
 
 
-static int dump_sym_array(DWORD idx, const u8* p, DumpState state)
+static int dump_sym_array(DWORD id, const u8* p, DumpState state)
 {
 	ULONG64 size_ = 0;
-	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_LENGTH, &size_))
+	if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_LENGTH, &size_))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
 	const size_t size = (size_t)size_;
 
 	// get element count and size
-	DWORD el_idx = 0;
-	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_TYPEID, &el_idx))
+	DWORD el_id = 0;
+	if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_TYPEID, &el_id))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
 	// .. workaround: TI_GET_COUNT returns total struct size for
 	//    arrays-of-struct. therefore, calculate as size / el_size.
 	ULONG64 el_size_;
-	if(!SymGetTypeInfo(hProcess, mod_base, el_idx, TI_GET_LENGTH, &el_size_))
+	if(!SymGetTypeInfo(hProcess, mod_base, el_id, TI_GET_LENGTH, &el_size_))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
 	const size_t el_size = (size_t)el_size_;
 	assert(el_size != 0);
-	const uint num_elements = (uint)(size / el_size);
+	const size_t num_elements = size/el_size;
 	assert2(num_elements != 0);
 
-	// display element count
-	out_erase(3);	// " = "
-	out(L"[%d] = ", num_elements);
-
-	return dump_sequence(p, num_elements, el_idx, el_size, state);
+	return dump_sequence(p, num_elements, el_id, el_size, state);
 }
 
 
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int dump_sym_base_type(DWORD idx, const u8* p, DumpState state)
+static int dump_sym_base_type(DWORD id, const u8* p, DumpState state)
 {
 	DWORD base_type;
-	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_BASETYPE, &base_type))
+	if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_BASETYPE, &base_type))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
 	ULONG64 size_ = 0;
-	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_LENGTH, &size_))
+	if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_LENGTH, &size_))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
 	const size_t size = (size_t)size_;
 
@@ -1023,7 +837,7 @@ static int dump_sym_base_type(DWORD idx, const u8* p, DumpState state)
 		if(p[i] != 0xCC)
 			break;
 		if(i == size-1)
-			goto uninitialized;
+			goto display_as_hex;
 	}
 
 	// single out() call. note: we pass a single u64 for all sizes,
@@ -1066,14 +880,14 @@ static int dump_sym_base_type(DWORD idx, const u8* p, DumpState state)
 		// formatted structs/arrays. (0x1234 0 0x5678 is ugly)
 		case btUInt:
 		case btULong:
-uninitialized:
+display_as_hex:
 			if(size == 1)
 			{
 				// _TUCHAR
 				if(state.indirection)
 				{
 					state.indirection = 0;
-					return dump_sequence(p, 8, idx, size, state);
+					return dump_sequence(p, 8, id, size, state);
 				}
 				fmt = L"0x%02X";
 			}
@@ -1095,7 +909,7 @@ uninitialized:
 			if(state.indirection)
 			{
 				state.indirection = 0;
-				return dump_sequence(p, 8, idx, size, state);
+				return dump_sequence(p, 8, id, size, state);
 			}
 			// either integer or character;
 			// if printable, the character will be appended below.
@@ -1149,7 +963,7 @@ uninitialized:
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int dump_sym_base_class(DWORD idx, const u8* p, DumpState state)
+static int dump_sym_base_class(DWORD id, const u8* p, DumpState state)
 {
 	// unsupported: virtual base classes would require reading the VTbl,
 	// which is difficult given lack of documentation and not worth it.
@@ -1160,15 +974,15 @@ static int dump_sym_base_class(DWORD idx, const u8* p, DumpState state)
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int dump_sym_data(DWORD idx, const u8* p, DumpState state)
+static int dump_sym_data(DWORD id, const u8* p, DumpState state)
 {
 	// SymFromIndex will fail if dataKind happens to be DataIsMember, so
 	// we use SymGetTypeInfo (slower and less convenient, but no choice).
-	DWORD type_idx;
+	DWORD type_id;
 	WCHAR* name;
-	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_TYPEID, &type_idx))
+	if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_TYPEID, &type_id))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
-	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_SYMNAME, &name))
+	if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_SYMNAME, &name))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
 
 
@@ -1178,9 +992,9 @@ static int dump_sym_data(DWORD idx, const u8* p, DumpState state)
 	int err;
 	__try
 	{
-		err = determine_symbol_address(idx, type_idx, &p);
+		err = determine_symbol_address(id, type_id, &p);
 		if(err == 0)
-			err = dump_sym(type_idx, p, state);
+			err = dump_sym(type_id, p, state);
 	}
 	__except(EXCEPTION_EXECUTE_HANDLER)
 	{
@@ -1219,10 +1033,10 @@ static int dump_sym_data(DWORD idx, const u8* p, DumpState state)
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int dump_sym_enum(DWORD idx, const u8* p, DumpState state)
+static int dump_sym_enum(DWORD id, const u8* p, DumpState state)
 {
 	ULONG64 size_ = 0;
-	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_LENGTH, &size_))
+	if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_LENGTH, &size_))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
 	const size_t size = (size_t)size_;
 
@@ -1230,22 +1044,22 @@ static int dump_sym_enum(DWORD idx, const u8* p, DumpState state)
 
 	// get children
 	DWORD num_children;
-	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_CHILDRENCOUNT, &num_children))
+	if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_CHILDRENCOUNT, &num_children))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
 	TI_FINDCHILDREN_PARAMS2 fcp(num_children);
-	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_FINDCHILDREN, &fcp))
+	if(!SymGetTypeInfo(hProcess, mod_base, id, TI_FINDCHILDREN, &fcp))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
 
 	for(uint i = 0; i < fcp.p.Count; i++)
 	{
-		DWORD child_data_idx = fcp.p.ChildId[i];
+		DWORD child_data_id = fcp.p.ChildId[i];
 
 		// get enum value. don't make any assumptions about the
 		// variant's type (i.e. size)  - no restriction is documented.
 		// also don't do this manually - it's tedious and we might not
 		// cover everything. the OLE DLL is already pulled in anyway.
 		VARIANT v;
-		if(!SymGetTypeInfo(hProcess, mod_base, child_data_idx, TI_GET_VALUE, &v))
+		if(!SymGetTypeInfo(hProcess, mod_base, child_data_id, TI_GET_VALUE, &v))
 			return WDBG_TYPE_INFO_UNAVAILABLE;
 		if(VariantChangeType(&v, &v, 0, VT_I8) != S_OK)
 			continue;
@@ -1253,7 +1067,7 @@ static int dump_sym_enum(DWORD idx, const u8* p, DumpState state)
 		if(current_value == v.llVal)
 		{
 			WCHAR* name;
-			if(!SymGetTypeInfo(hProcess, mod_base, child_data_idx, TI_GET_SYMNAME, &name))
+			if(!SymGetTypeInfo(hProcess, mod_base, child_data_id, TI_GET_SYMNAME, &name))
 				return WDBG_TYPE_INFO_UNAVAILABLE;
 
 			out(L"%s", name);
@@ -1274,7 +1088,7 @@ static int dump_sym_enum(DWORD idx, const u8* p, DumpState state)
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int dump_sym_function(DWORD idx, const u8* p, DumpState state)
+static int dump_sym_function(DWORD id, const u8* p, DumpState state)
 {
 	return 0;
 }
@@ -1283,7 +1097,7 @@ static int dump_sym_function(DWORD idx, const u8* p, DumpState state)
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int dump_sym_function_type(DWORD idx, const u8* p, DumpState state)
+static int dump_sym_function_type(DWORD id, const u8* p, DumpState state)
 {
 	// this symbol gives class parent, return type, and parameter count.
 	// unfortunately the one thing we care about, its name,
@@ -1306,10 +1120,10 @@ static int dump_sym_function_type(DWORD idx, const u8* p, DumpState state)
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int dump_sym_pointer(DWORD idx, const u8* p, DumpState state)
+static int dump_sym_pointer(DWORD id, const u8* p, DumpState state)
 {
 	ULONG64 size_ = 0;
-	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_LENGTH, &size_))
+	if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_LENGTH, &size_))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
 	const size_t size = (size_t)size_;
 
@@ -1326,29 +1140,269 @@ static int dump_sym_pointer(DWORD idx, const u8* p, DumpState state)
 	// (despite "bogus" check above), dump_sym recovers via SEH and
 	// returns -1; dump_sym_data will print "?"
 	out(L" -> "); // we out_erase this if it's a void* pointer
-	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_TYPEID, &idx))
+	if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_TYPEID, &id))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
 	state.indirection++;
-	return dump_sym(idx, p, state);
+	return dump_sym(id, p, state);
 }
 
 
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int dump_sym_typedef(DWORD idx, const u8* p, DumpState state)
+static int dump_sym_typedef(DWORD id, const u8* p, DumpState state)
 {
-	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_TYPEID, &idx))
+	if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_TYPEID, &id))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
-	return dump_sym(idx, p, state);
+	return dump_sym(id, p, state);
 }
 
 
 //////////////////////////////////////////////////////////////////////////////
+
+// provide c_str() access for any specialization of std::basic_string
+// (since dump_udt_string doesn't know type at compile-time).
+// also performs a basic sanity check to see if the object is initialized.
+struct AnyString : public std::string
+{
+	const void* safe_c_str(size_t el_size) const
+	{
+#ifdef _MSC_VER
+		// bogus
+		if(_Myres < _Mysize)
+			return 0;
+		return (_Myres < 16/el_size)? _Bx._Buf : _Bx._Ptr;
+#else
+		return 0;
+#endif
+	}
+};
+
+static int dump_udt_string(WCHAR* type_name, const u8* p, size_t size, DumpState state)
+{
+	size_t el_size;
+	const WCHAR* pretty_name = type_name;
+	const void* string_data = 0;
+
+	// Pyrogenesis CStr
+	if(!wcsncmp(type_name, L"CStr", 4))
+	{
+		assert(size == 32/*sizeof(CStr)*/);
+
+		// determine type
+		if(type_name[4] == '8')
+			el_size = sizeof(char);
+		else if(type_name[4] == 'W')
+			el_size = sizeof(wchar_t);
+		// .. unknown, shouldn't handle it
+		else
+			return 1;
+
+		p += 4;	// skip vptr (mixed in by ISerializable)
+		string_data = ((AnyString*)p)->safe_c_str(el_size);
+	}
+	// std::basic_string and its specializations
+	else if(!wcsncmp(type_name, L"std::basic_string", 17))
+	{
+		assert(size == sizeof(std::string) || size == 16);
+		// dbghelp bug: std::wstring size is given as 16
+
+		// determine type
+		if(!wcsncmp(type_name+18, L"char", 4))
+		{
+			el_size = sizeof(char);
+			pretty_name = L"std::string";
+		}
+		else if(!wcsncmp(type_name+18, L"unsigned short", 14))
+		{
+			el_size = sizeof(wchar_t);
+			pretty_name = L"std::wstring";
+		}
+		// .. unknown, shouldn't handle it
+		else
+			return 1;
+
+		string_data = ((AnyString*)p)->safe_c_str(el_size);
+	}
+	// type_name isn't a known string object; we can't handle it.
+	else
+		return 1;
+
+	// type_name is known but its contents are bogus; so indicate.
+	if(is_bogus_pointer(string_data) ||	!is_string((const u8*)string_data, el_size))
+		out(L"(uninitialized/invalid %s)", pretty_name);
+	// valid; display it.
+	else
+	{
+		const wchar_t* fmt = (el_size == sizeof(wchar_t))? L"\"%s\"" : L"\"%hs\"";
+		out(fmt, string_data);
+	}
+
+	// it was a string object (valid or not) -> we handled it.
+	return 0;
+}
+
+
+// given the child symbols of a UDT that is known to be an STL container,
+// determine the type and element size of its contents.
+static int udt_determine_stl_container_type(ULONG num_children, const DWORD* children,
+	DWORD* el_type_id, size_t* el_size)
+{
+	*el_type_id = 0;
+	*el_size = 0;
+
+	for(ULONG i = 0; i < num_children; i++)
+	{
+		DWORD child_id = children[i];
+
+		// look for a member named "value_type" (a typedef identifying the
+		// container contents).
+		WCHAR* child_type_name;
+		if(!SymGetTypeInfo(hProcess, mod_base, child_id, TI_GET_SYMNAME, &child_type_name))
+			continue;
+		const bool is_value_type = !wcscmp(child_type_name, L"value_type");
+		LocalFree(child_type_name);
+		if(!is_value_type)
+			continue;
+
+		// .. its type information is what we want.
+		DWORD type_id;
+		if(!SymGetTypeInfo(hProcess, mod_base, child_id, TI_GET_TYPEID, &type_id))
+			return WDBG_TYPE_INFO_UNAVAILABLE;
+
+		ULONG64 size;
+		if(!SymGetTypeInfo(hProcess, mod_base, child_id, TI_GET_LENGTH, &size))
+			return WDBG_TYPE_INFO_UNAVAILABLE;
+
+		*el_type_id = type_id;
+		*el_size = (size_t)size;
+		return 0;
+	}
+
+	return -1;
+}
+
+
+// provide access to any type of std::vector
+// (since dump_udt_vector doesn't know type at compile-time).
+// also performs a basic sanity check to see if the object is initialized.
+struct AnyVector: public std::vector<int>
+{
+	const u8* array() const
+	{
+		return (const u8*)&front();
+	}
+
+	bool is_valid() const
+	{
+		if(_Myfirst <= _Mylast && _Mylast <= _Myend)
+			return true;
+		return false;
+	}
+};
+
+
+static int dump_udt_vector(WCHAR* type_name, const u8* p, size_t size, DumpState state,
+						   ULONG num_children, const DWORD* children)
+{
+	if(wcsncmp(type_name, L"std::vector", 11) != 0)
+		return 1;
+
+	assert(size == sizeof(std::vector<int>));
+	AnyVector* v = (AnyVector*)p;
+	if(!v->is_valid())
+	{
+		out(L"(uninitialized/invalid std::vector)");
+		return 0;
+	}
+	else
+	{
+		const u8* el_array = v->array();
+		const size_t el_count = v->size();
+		DWORD el_type_id;
+		size_t el_size;
+		CHECK_ERR(udt_determine_stl_container_type(num_children, children, &el_type_id, &el_size));
+		return dump_sequence(el_array, el_count, el_type_id, el_size, state);
+	}
+}
+
+
+static bool should_suppress_udt(WCHAR* type_name)
+{
+	// specialized HANDLEs are defined as pointers to structs by
+	// DECLARE_HANDLE. we only want the numerical value (pointer address),
+	// so prevent these structs from being displayed.
+	// note: no need to check for indirection; these are only found in
+	// HANDLEs (which are pointers).
+	// removed obsolete defs: HEVENT, HFILE, HUMPD
+	if(type_name[0] != 'H')
+		goto not_handle;
+#define SUPPRESS_HANDLE(name) if(!wcscmp(type_name, L#name L"__")) return true;
+	SUPPRESS_HANDLE(HACCEL);
+	SUPPRESS_HANDLE(HBITMAP);
+	SUPPRESS_HANDLE(HBRUSH);
+	SUPPRESS_HANDLE(HCOLORSPACE);
+	SUPPRESS_HANDLE(HCURSOR);
+	SUPPRESS_HANDLE(HDC);
+	SUPPRESS_HANDLE(HENHMETAFILE);
+	SUPPRESS_HANDLE(HFONT);
+	SUPPRESS_HANDLE(HGDIOBJ);
+	SUPPRESS_HANDLE(HGLOBAL);
+	SUPPRESS_HANDLE(HGLRC);
+	SUPPRESS_HANDLE(HHOOK);
+	SUPPRESS_HANDLE(HICON);
+	SUPPRESS_HANDLE(HIMAGELIST);
+	SUPPRESS_HANDLE(HIMC);
+	SUPPRESS_HANDLE(HINSTANCE);
+	SUPPRESS_HANDLE(HKEY);
+	SUPPRESS_HANDLE(HKL);
+	SUPPRESS_HANDLE(HKLOCAL);
+	SUPPRESS_HANDLE(HMENU);
+	SUPPRESS_HANDLE(HMETAFILE);
+	SUPPRESS_HANDLE(HMODULE);
+	SUPPRESS_HANDLE(HMONITOR);
+	SUPPRESS_HANDLE(HPALETTE);
+	SUPPRESS_HANDLE(HPEN);
+	SUPPRESS_HANDLE(HRGN);
+	SUPPRESS_HANDLE(HRSRC);
+	SUPPRESS_HANDLE(HSTR);
+	SUPPRESS_HANDLE(HTASK);
+	SUPPRESS_HANDLE(HWINEVENTHOOK);
+	SUPPRESS_HANDLE(HWINSTA);
+	SUPPRESS_HANDLE(HWND);
+not_handle:
+
+	return false;
+}
+
+
+static int dump_udt_suppressed(WCHAR* type_name, DumpState state)
+{
+	// STL
+	if(!wcsncmp(type_name, L"std::", 5))
+	{
+		out(L"(%s)", type_name);
+		return 0;
+	}
+
+	if(!should_suppress_udt(type_name))
+		return 1;
+
+	// the data symbol is pointer-to-UDT. since we won't display its
+	// contents, leave only the pointer's value.
+	if(state.indirection)
+		out_erase(4);	// " -> "
+
+	// indicate something was deliberately left out
+	// (otherwise, lack of output may be taken for an error)
+	out(L" (..)");
+
+	return 0;
+}
 
 
 // (by now) non-trivial heuristic to determine if a UDT should be
-// displayed on one line or several. split out of dump_sym_udt.
+// displayed on one line or several. split out of dump_udt_normal.
 static bool udt_fits_on_one_line(uint child_count, size_t total_size)
 {
 	// prevent division by 0.
@@ -1371,46 +1425,26 @@ static bool udt_fits_on_one_line(uint child_count, size_t total_size)
 }
 
 
-static int dump_sym_udt(DWORD idx, const u8* p, DumpState state)
+static int dump_udt_normal(const u8* p, size_t size, DumpState state,
+						   ULONG num_children, const DWORD* children)
 {
-	ULONG64 size_ = 0;
-	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_LENGTH, &size_))
-		return WDBG_TYPE_INFO_UNAVAILABLE;
-	const size_t size = (size_t)size_;
+	int ret = 0;
 
-	// handle special cases (e.g. HANDLE, std::string).
-	WCHAR* type_name;
-	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_SYMNAME, &type_name))
-		return WDBG_TYPE_INFO_UNAVAILABLE;
-	int ret = dump_special_udt(type_name, p, size, state);
-	LocalFree(type_name);
-	if(ret <= 0)	// it "handled" this (with or without failure)
-		return ret;
-
-	// get array of child symbols (members/functions/base classes).
-	DWORD num_children;
-	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_CHILDRENCOUNT, &num_children))
-		return WDBG_TYPE_INFO_UNAVAILABLE;
-	TI_FINDCHILDREN_PARAMS2 fcp(num_children);
-	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_FINDCHILDREN, &fcp))
-		return WDBG_TYPE_INFO_UNAVAILABLE;
-
-	const bool fits_on_one_line = udt_fits_on_one_line(fcp.p.Count, size);
+	const bool fits_on_one_line = udt_fits_on_one_line(num_children, size);
 
 	state.level++;
 	out(fits_on_one_line? L"{ " : L"\r\n");
 
 	bool had_data_member = false;
-	int err = 0;
-	for(uint i = 0; i < fcp.p.Count; i++)
+	for(ULONG i = 0; i < num_children; i++)
 	{
-		const DWORD child_idx = fcp.p.ChildId[i];
+		const DWORD child_id = children[i];
 
 		// make sure this is a data symbol
 		// (avoids outputting newline for invisible base class symbols)
 		DWORD type_tag = 0;
 		// for reasons unknown this fails sometimes
-		if(!SymGetTypeInfo(hProcess, mod_base, child_idx, TI_GET_SYMTAG, &type_tag))
+		if(!SymGetTypeInfo(hProcess, mod_base, child_id, TI_GET_SYMTAG, &type_tag))
 			continue;
 		if(type_tag != SymTagData)
 			continue;
@@ -1419,9 +1453,9 @@ static int dump_sym_udt(DWORD idx, const u8* p, DumpState state)
 		if(!fits_on_one_line)
 			INDENT;
 
-		int ret = dump_sym(child_idx, p, state);
-		if(err == 0)
-			err = ret;
+		int err = dump_sym(child_id, p, state);
+		if(ret == 0)
+			ret = err;
 
 		out(fits_on_one_line? L", " : L"\r\n");
 	}
@@ -1435,20 +1469,65 @@ static int dump_sym_udt(DWORD idx, const u8* p, DumpState state)
 
 	if(fits_on_one_line)
 	{
-		// note: can't avoid writing this by checking if i == fcp->Count-1:
+		// note: can't avoid writing this by checking if i == num_children-1:
 		// each child might be the last valid data member.
-		out_erase(2);	// ", "
+		out_erase(2);	// ", " or "\r\n"
 		out(L" }");
 	}
 
-	return err;
+	return ret;
+}
+
+
+static int dump_sym_udt(DWORD id, const u8* p, DumpState state)
+{
+	ULONG64 size_ = 0;
+	if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_LENGTH, &size_))
+		return WDBG_TYPE_INFO_UNAVAILABLE;
+	const size_t size = (size_t)size_;
+
+	// get array of child symbols (members/functions/base classes).
+	DWORD num_children;
+	if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_CHILDRENCOUNT, &num_children))
+		return WDBG_TYPE_INFO_UNAVAILABLE;
+	TI_FINDCHILDREN_PARAMS2 fcp(num_children);
+	if(!SymGetTypeInfo(hProcess, mod_base, id, TI_FINDCHILDREN, &fcp))
+		return WDBG_TYPE_INFO_UNAVAILABLE;
+	num_children = fcp.p.Count;	// was truncated to MAX_CHILDREN
+	const DWORD* children = fcp.p.ChildId;
+
+	WCHAR* type_name;
+	if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_SYMNAME, &type_name))
+		return WDBG_TYPE_INFO_UNAVAILABLE;
+
+	int ret;
+
+	ret = dump_udt_string(type_name, p, size, state);
+	if(ret <= 0)
+		goto done;
+
+	ret = dump_udt_vector(type_name, p, size, state, num_children, children);
+	if(ret <= 0)
+		goto done;
+
+	ret = dump_udt_suppressed(type_name, state);
+	if(ret <= 0)
+		goto done;
+
+	ret = dump_udt_normal(p, size, state, num_children, children);
+	if(ret <= 0)
+		goto done;
+
+done:
+	LocalFree(type_name);
+	return ret;
 }
 
 
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int dump_sym_vtable(DWORD idx, const u8* p, DumpState state)
+static int dump_sym_vtable(DWORD id, const u8* p, DumpState state)
 {
 	// unsupported (vtable internals are undocumented; too much work).
 	return 0;
@@ -1458,11 +1537,11 @@ static int dump_sym_vtable(DWORD idx, const u8* p, DumpState state)
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int dump_sym_unknown(DWORD idx, const u8* p, DumpState state)
+static int dump_sym_unknown(DWORD id, const u8* p, DumpState state)
 {
 	// redundant (already done in dump_sym), but this is rare.
 	DWORD type_tag;
-	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_SYMTAG, &type_tag))
+	if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_SYMTAG, &type_tag))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
 
 	debug_printf("Unknown tag: %d\n", type_tag);
@@ -1474,39 +1553,39 @@ static int dump_sym_unknown(DWORD idx, const u8* p, DumpState state)
 //////////////////////////////////////////////////////////////////////////////
 
 
-// write name and value of the symbol <idx> to the output buffer.
+// write name and value of the symbol <id> to the output buffer.
 // delegates to dump_sym_* depending on the symbol's tag.
-static int dump_sym(DWORD idx, const u8* p, DumpState state)
+static int dump_sym(DWORD id, const u8* p, DumpState state)
 {
 	DWORD type_tag;
-	if(!SymGetTypeInfo(hProcess, mod_base, idx, TI_GET_SYMTAG, &type_tag))
+	if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_SYMTAG, &type_tag))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
 	switch(type_tag)
 	{
 	case SymTagArrayType:
-		return dump_sym_array         (idx, p, state);
+		return dump_sym_array         (id, p, state);
 	case SymTagBaseType:
-		return dump_sym_base_type     (idx, p, state);
+		return dump_sym_base_type     (id, p, state);
 	case SymTagBaseClass:
-		return dump_sym_base_class    (idx, p, state);
+		return dump_sym_base_class    (id, p, state);
 	case SymTagData:
-		return dump_sym_data          (idx, p, state);
+		return dump_sym_data          (id, p, state);
 	case SymTagEnum:
-		return dump_sym_enum          (idx, p, state);
+		return dump_sym_enum          (id, p, state);
 	case SymTagFunction:
-		return dump_sym_function      (idx, p, state);
+		return dump_sym_function      (id, p, state);
 	case SymTagFunctionType:
-		return dump_sym_function_type (idx, p, state);
+		return dump_sym_function_type (id, p, state);
 	case SymTagPointerType:
-		return dump_sym_pointer       (idx, p, state);
+		return dump_sym_pointer       (id, p, state);
 	case SymTagTypedef:
-		return dump_sym_typedef       (idx, p, state);
+		return dump_sym_typedef       (id, p, state);
 	case SymTagUDT:
-		return dump_sym_udt           (idx, p, state);
+		return dump_sym_udt           (id, p, state);
 	case SymTagVTable:
-		return dump_sym_vtable        (idx, p, state);
+		return dump_sym_vtable        (id, p, state);
 	default:
-		return dump_sym_unknown       (idx, p, state);
+		return dump_sym_unknown       (id, p, state);
 	}
 }
 
@@ -1565,29 +1644,26 @@ static int dump_frame_cb(const STACKFRAME64* sf, void* user_arg)
 	// note: keep frame formatting in sync with get_exception_locus.
 
 	UNUSED(user_arg);
-
 	current_stackframe64 = sf;
-
 	void* func = (void*)sf->AddrPC.Offset;
-	// don't trace back into kernel32: we need a defined stop point,
-	// or walk_stack will end up returning -1; stopping here also
-	// reduces the risk of confusing the stack dump code below.
-	wchar_t module_path[MAX_PATH];
-	wchar_t* module_filename = get_module_filename(func, module_path);
-	if(!wcscmp(module_filename, L"kernel32.dll"))
-		return 0;	// done
 
 	char func_name[DBG_SYMBOL_LEN]; char path[DBG_FILE_LEN]; int line;
 	if(debug_resolve_symbol(func, func_name, path, &line) == 0)
 	{
+		// don't trace back further than the app's entry point
+		// (noone wants to see this frame). checking for the
+		// function name isn't future-proof, but not stopping is no big deal.
+		// an alternative would be to check if module=kernel32, but
+		// that would cut off callbacks as well.
+		if(!strcmp(func_name, "_BaseProcessStart@4"))
+			return 0;
+
 		const char* slash = strrchr(path, DIR_SEP);
 		const char* file = slash? slash+1 : path;
 		out(L"%hs %hs (%lu)\r\n", func_name, file, line);
 	}
 	else
 		out(L"%p\r\n", func);
-
-//debug_printf("FRAME %s: stored regs: fp=0x%x sp=0x%x\n", func_name, sf->AddrFrame.Offset, sf->AddrFrame.Offset);
 
 	// only enumerate symbols for this stack frame
 	// (i.e. its locals and parameters)
@@ -1602,7 +1678,7 @@ static int dump_frame_cb(const STACKFRAME64* sf, void* user_arg)
 		// should be used.
 
 	out(L"\r\n");
-	return 1;	// keep calling
+	return TRUE;	// keep calling
 }
 
 
@@ -1610,10 +1686,8 @@ static int dump_frame_cb(const STACKFRAME64* sf, void* user_arg)
 // (we don't want to show e.g. GetThreadContext / this call)
 const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* pcontext)
 {
-	// need to skip one frame. if !pcontext, this function's;
-	// otherwise, RaiseException (must be skipped because dump_frame_cb
-	// will stop if it sees a kernel32 function).
-	skip++;
+	if(!pcontext)
+		skip++;	// skip this frame
 
 	lock();
 	out_init(buf, max_chars);
