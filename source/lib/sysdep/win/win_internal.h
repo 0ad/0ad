@@ -346,6 +346,8 @@ extern "C" {
 extern _CRTIMP intptr_t _get_osfhandle(int);
 extern _CRTIMP int _open_osfhandle(intptr_t, int);
 extern _CRTIMP int _open(const char* fn, int mode, ...);
+extern _CRTIMP int _read (int fd, void* buf, size_t nbytes);
+extern _CRTIMP int _write(int fd, void* buf, size_t nbytes);
 extern _CRTIMP int _close(int);
 
 extern _CRTIMP char* _getcwd(char*, size_t);

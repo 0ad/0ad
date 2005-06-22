@@ -138,7 +138,11 @@ void debug_wprintf(const wchar_t* fmt, ...)
 }
 
 
-void debug_check_heap()
+//-----------------------------------------------------------------------------
+// debug memory allocator
+//-----------------------------------------------------------------------------
+
+void debug_heap_check()
 {
 	__try
 	{
@@ -149,16 +153,33 @@ void debug_check_heap()
 	}
 }
 
-void debug_disable_leak_reporting()
+
+void debug_heap_enable(DebugHeapChecks what)
 {
-#ifdef HAVE_DEBUGALLOC
+#ifdef HAVE_VC_DEBUG_ALLOC
 	uint flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
-	_CrtSetDbgFlag(flags & ~_CRTDBG_LEAK_CHECK_DF);
-#endif
+	switch(what)
+	{
+	case DEBUG_HEAP_NONE:
+		flags = 0;
+		break;
+	case DEBUG_HEAP_NORMAL:
+		flags |= _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF;
+		break;
+	case DEBUG_HEAP_ALL:
+		flags |= _CRTDBG_CHECK_ALWAYS_DF | _CRTDBG_DELAY_FREE_MEM_DF |
+		         _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF;
+		break;
+	default:
+		assert2("debug_heap_enable: invalid what");
+	}
+	_CrtSetDbgFlag(flags);
+#endif // HAVE_DEBUGALLOC
 }
 
 
-//////////////////////////////////////////////////////////////////////////////
+
+//-----------------------------------------------------------------------------
 
 
 // to avoid deadlock, be VERY CAREFUL to avoid anything that may block,

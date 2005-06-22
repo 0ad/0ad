@@ -1,98 +1,136 @@
+#ifndef CONFIG_H_INCLUDED
+#define CONFIG_H_INCLUDED
 
-//
+
+//-----------------------------------------------------------------------------
+// user-specified configuration choices
+//-----------------------------------------------------------------------------
+
+#undef CONFIG_DISABLE_EXCEPTIONS
+
+#undef CONFIG_USE_MMGR
+
+
+//-----------------------------------------------------------------------------
+// auto-detect OS and platform via predefined macros
+//-----------------------------------------------------------------------------
+
+// get compiler versions with consistent names + format:
+// (major*100 + minor), or 0 if not present. note that more than
+// one *_VERSION may be non-zero due to interoperability (e.g. ICC with MSC).
+// .. ICC
+#if defined(__INTEL_COMPILER)
+# define ICC_VERSION __INTEL_COMPILER
+#else
+# define ICC_VERSION 0
+#endif
+// .. VC
+#ifdef _MSC_VER
+# define MSC_VERSION _MSC_VER
+#else
+# define MSC_VERSION 0
+#endif
+// .. GCC
+#ifdef __GNUC__
+# define GCC_VERSION (__GNUC__*100 + __GNUC_MINOR__)
+#else
+# define GCC_VERSION 0
+#endif
+
 // OS
-//
-
-// Windows
+// .. Windows
 #if defined(_WIN32) || defined(WIN32)
 # define OS_WIN
-# define XP_WIN
-// Linux
+// .. Linux
 #elif defined(linux) || defined(__linux) || defined(__linux__)
 # define OS_LINUX
 # define OS_UNIX
-# ifndef XP_UNIX
-#  define XP_UNIX
-# endif
-// Mac OS X
+// .. Mac OS X
 #elif defined(MAC_OS_X
 # define OS_MACOSX
 # define OS_UNIX
-# define XP_UNIX
-// Mac OS 9 or below
-#elif defined(macintosh) || defined(__APPLE__) || defined(__APPLE_CC__)
-# define OS_MACOS
-# define XP_MAC
-// BSD
+// .. BSD
 #elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
 # define OS_BSD
-// Solaris
+# define OS_UNIX
+// .. Solaris
 #elif defined(SOLARIS)
 # define OS_SOLARIS
-// BeOS
+# define OS_UNIX
+// .. BeOS
 #elif defined(__BEOS__)
 # define OS_BEOS
-# define XP_BEOS
-// Amiga
+// .. Mac OS 9 or below
+#elif defined(macintosh) || defined(__APPLE__) || defined(__APPLE_CC__)
+# define OS_MAC
+// .. Amiga
 #elif defined(__amigaos__)
 # define OS_AMIGA
-// Unix-based
+// .. Unix-based
 #elif defined(unix) || defined(__unix) || defined(_XOPEN_SOURCE) || defined(_POSIX_SOURCE)
 # define OS_UNIX
-# define XP_UNIX
+// .. unknown
 #else
 # error "unknown OS - add define here"
 #endif
 
 
-#undef HAVE_C99		// compiler advertises support for C99
+//-----------------------------------------------------------------------------
+// auto-detect platform features, given the above information
+//-----------------------------------------------------------------------------
 
-#undef HAVE_ASM
-
-#undef HAVE_GETTIMEOFDAY
-#undef HAVE_X
-
-#undef HAVE_PCH
-
-#undef HAVE_DEBUGALLOC
-
-#undef CONFIG_DISABLE_EXCEPTIONS
-
-
+// compiler support for C99
+// (this is more convenient than testing __STDC_VERSION__ directly)
+#undef HAVE_C99
 #ifdef __STDC_VERSION__		// nested #if to avoid ICC warning if not defined
 # if __STDC_VERSION__ >= 199901L
 #  define HAVE_C99
 # endif
 #endif
 
-#ifdef _MSC_VER
-# define HAVE_ASM
-# define HAVE_PCH
-#endif
-
-#if defined(_MSC_VER) && defined(HAVE_PCH) && !( defined(NDEBUG) || defined(TESTING) )
-# ifdef SCED
-#  define HAVE_DEBUGALLOC
-# else
-#  ifndef USE_MMGR
-#   define HAVE_DEBUGALLOC
-#  endif
-# endif
-#endif
-
+// gettimeofday()
+#undef HAVE_GETTIMEOFDAY
 #ifdef OS_UNIX
 # define HAVE_GETTIMEOFDAY
 #endif
 
+// X server
+#undef HAVE_X
 #ifdef OS_LINUX
 # define HAVE_X
 #endif
 
-
-
-// HACK: (please remove when this is no longer necessary)
-// The ICC 9.0.006 beta seems to generate buggy code when we redefine new,
-// so don't redefine new:
-#if defined(__INTEL_COMPILER) && __INTEL_COMPILER == 900
-# undef HAVE_DEBUGALLOC
+// __asm{} blocks (Intel syntax)
+#undef HAVE_ASM
+#if (MSC_VERSION != 0)
+# define HAVE_ASM
 #endif
+
+// precompiled headers (affects what precompiled.h pulls in; see there)
+#undef HAVE_PCH
+#if (MSC_VERSION != 0) || (GCC_VERSION > 304)
+# define HAVE_PCH
+#endif
+
+// VC debug memory allocator / leak detector
+#undef HAVE_VC_DEBUG_ALLOC
+#if (MSC_VERSION != 0)
+# define HAVE_VC_DEBUG_ALLOC
+#endif
+// .. only in full-debug mode;
+#if	defined(NDEBUG) || defined(TESTING)
+# undef HAVE_VC_DEBUG_ALLOC
+#endif
+// .. require PCH, because it makes sure system headers are included before
+//    redefining new (otherwise, tons of errors result);
+#if !defined(HAVE_PCH)
+# undef HAVE_VC_DEBUG_ALLOC
+#endif
+// .. disable on ICC9, because the ICC 9.0.006 beta appears to generate
+//    incorrect code when we redefine new.
+//    TODO: remove when no longer necessary
+#if ICC_VERSION == 900
+# undef HAVE_VC_DEBUG_ALLOC
+#endif
+
+#endif	// #ifndef CONFIG_H_INCLUDED

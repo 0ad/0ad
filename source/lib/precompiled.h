@@ -8,19 +8,18 @@
 //
 // this policy yields the best compile performance with or without PCH.
 
-#include "config.h"
-#include "lib/types.h"
-
 #ifdef _MSC_VER
 #pragma warning(disable:4996)	// function is deprecated
 #pragma warning(disable:4786)	// identifier truncated to 255 chars
 #endif
 
-// make string_s (secure CRT string functions) available everywhere
-#include "lib/string_s.h"
+// make these available everywhere for convenience:
+#include "lib/config.h"
+#include "lib/types.h"
+#include "lib/string_s.h"	// CRT secure string
+#include "lib/debug.h"
+#include "ps/Pyrogenesis.h"	// MICROLOG and old error system
 
-// make MICROLOG and the old error system available everywhere
-#include "Pyrogenesis.h"
 
 //
 // memory headers
@@ -100,7 +99,7 @@
 #include "ps/CStr.h"
 
 // Some other external libraries that are used in several places:
-#include "jsapi.h"
+#include "scripting/SpiderMonkey.h"
 #include "boost/shared_ptr.hpp"
 #include "boost/weak_ptr.hpp"
 
@@ -118,8 +117,11 @@
 // manually #including from every file, but requires that all system
 // headers containing "new", "malloc" etc. come before this (see above).
 
+// use custom memory tracker (lib/mmgr.cpp)
+#if defined(CONFIG_USE_MMGR)
+# include "mmgr.h"
 // use VC debug heap (superceded by mmgr; it remains for completeness)
-#ifdef HAVE_DEBUGALLOC
+#elif defined(HAVE_VC_DEBUG_ALLOC)
   // can't define _CRTDBG_MAP_ALLOC because crtdbg.h has a broken 'new',
   // so manually redefine the appropriate functions.
 # define new           new(_NORMAL_BLOCK, __FILE__, __LINE__)
@@ -127,9 +129,4 @@
 # define calloc(c, s)  _calloc_dbg(c, s, _NORMAL_BLOCK, __FILE__, __LINE__)
 # define realloc(p, s) _realloc_dbg(p, s, _NORMAL_BLOCK, __FILE__, __LINE__)
 # define free(p)       _free_dbg(p, _NORMAL_BLOCK)
-#endif	// #ifdef HAVE_DEBUGALLOC
-
-// use custom memory tracker (lib/mmgr.cpp)
-#ifdef USE_MMGR
-# include "mmgr.h"
 #endif

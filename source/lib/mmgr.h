@@ -25,7 +25,7 @@
 //
 // note: checking here messes up include guard detection, but we need to
 // cover both the guarded part (constants+externs) and the macros.
-#ifdef USE_MMGR
+#ifdef CONFIG_USE_MMGR
 
 #ifndef	MMGR_H__
 #define	MMGR_H__
@@ -154,7 +154,7 @@ extern void operator delete[](void* p, const char* file, int line, const char* f
 #define wcsdup(p)         mmgr_wcsdup_dbg(p,        __FILE__,__LINE__,__FUNCTION__)
 #define getcwd(p,size)    mmgr_getcwd_dbg(p, size,  __FILE__,__LINE__,__FUNCTION__)
 
-#endif	// #ifdef USE_MMGR
+#endif	// #ifdef CONFIG_USE_MMGR
 
 
 // purpose and history

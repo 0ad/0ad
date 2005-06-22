@@ -125,6 +125,22 @@ debug_printf("close %d\n", fd);
 }
 
 
+// we don't want to #define read to _read, since that's a fairly common
+// identifier. therefore, translate from MS CRT names via thunk functions.
+// efficiency is less important, and the overhead could be optimized away.
+
+int read(int fd, void* buf, size_t nbytes)
+{
+	return _read(fd, buf, nbytes);
+}
+
+int write(int fd, void* buf, size_t nbytes)
+{
+	return _write(fd, buf, nbytes);
+}
+
+
+
 int ioctl(int fd, int op, int* data)
 {
 	const HANDLE h = cast_to_HANDLE(_get_osfhandle(fd));

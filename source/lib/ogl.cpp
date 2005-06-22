@@ -18,15 +18,16 @@
 
 #include "precompiled.h"
 
-#include "lib.h"
-#include "sdl.h"
-#include "ogl.h"
-#include "detect.h"
-
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
+
+#include "lib.h"
+#include "sdl.h"
+#include "ogl.h"
+#include "detect.h"
+#include "debug.h"
 
 #ifdef _MSC_VER
 #pragma comment(lib, "opengl32.lib")

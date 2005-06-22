@@ -16,12 +16,12 @@
 
 #include "precompiled.h"
 
-#include "lib/types.h"
-#include "lib.h"
-
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include "lib/types.h"
+#include "lib.h"
 
 #include "sysdep/sysdep.h"
 

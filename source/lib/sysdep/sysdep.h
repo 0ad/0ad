@@ -3,13 +3,10 @@
 
 #include "config.h"
 
-#include "sysdep/debug.h"
-
-#ifdef _WIN32
-#include "win/win.h"
-#include "win/wdbg.h"
+#if defined(OS_WIN)
+# include "win/win.h"
 #elif defined(OS_UNIX)
-#include "unix/unix.h"
+# include "unix/unix.h"
 #endif
 
 #ifdef __cplusplus
@@ -24,8 +21,6 @@ extern int vsnprintf2(char* buffer, size_t count, const char* format, va_list ar
 #else
 #define vsnprintf2 vsnprintf
 #endif
-
-
 
 
 enum DisplayErrorFlags
@@ -58,13 +53,15 @@ enum ErrorReaction
 	ER_EXIT
 };
 
-
 extern ErrorReaction display_error_impl(const wchar_t* text, int flags);
-
-#define DISPLAY_ERROR(text) display_error(text, 0, 0, 0, __FILE__, __LINE__)
 
 extern ErrorReaction display_error(const wchar_t* text, int flags,
 	uint skip, void* context, const char* file, int line);
+
+// convenience version, in case the advanced parameters aren't needed.
+// done this way instead of with default values so that it also works in C.
+#define DISPLAY_ERROR(text) display_error(text, 0, 0, 0, __FILE__, __LINE__)
+
 
 extern void display_msg(const char* caption, const char* msg);
 extern void wdisplay_msg(const wchar_t* caption, const wchar_t* msg);

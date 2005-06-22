@@ -21,7 +21,7 @@
 #include <string.h>
 
 #include "lib.h"
-#include "sysdep/debug.h"
+#include "debug.h"
 #include "nommgr.h"
 	// some functions here are called from within mmgr; disable its hooks
 	// so that our allocations don't cause infinite recursion.
@@ -507,8 +507,8 @@ ErrorReaction display_error(const wchar_t* description, int flags,
 	{
 		// disable memory-leak reporting to avoid a flood of warnings
 		// (lots of stuff will leak since we exit abnormally).
-		debug_disable_leak_reporting();
-#ifdef HAVE_MMGR
+		debug_heap_enable(DEBUG_HEAP_NONE);
+#ifdef CONFIG_USE_MMGR
 		mmgr_set_options(0);
 #endif
 

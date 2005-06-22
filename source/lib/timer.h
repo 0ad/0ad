@@ -21,7 +21,7 @@
 
 #include <string>
 
-#include "sysdep/debug.h"	// debug_printf
+#include "debug.h"	// debug_printf
 
 #ifdef __cplusplus
 extern "C" {

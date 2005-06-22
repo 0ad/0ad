@@ -18,10 +18,10 @@
 
 #include "precompiled.h"
 
+#include <string.h>
+
 #include "lib.h"
 #include "posix.h"	// SIZE_MAX
-
-#include <string.h>
 
 #ifndef PERFORM_SELF_TEST
 #define PERFORM_SELF_TEST 0

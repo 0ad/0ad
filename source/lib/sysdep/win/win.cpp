@@ -34,25 +34,10 @@
 #pragma comment(lib, "shell32.lib")	// for pick_directory SH* calls
 #endif
 
-void sle(int x)
-{
-	SetLastError((DWORD)x);
-}
 
+char win_sys_dir[MAX_PATH+1];
+char win_exe_dir[MAX_PATH+1];
 
-#ifdef HAVE_DEBUGALLOC
-// Enable heap corruption checking after every allocation. Has the same
-// effect as PARANOIA in pre_main_init, but lets you switch it on anywhere
-// so that you can skip checking the whole of the initialisation code.
-// The debugger will break in the allocation just after the one that
-// corrupted the heap, so check its ID and then _CrtSetBreakAlloc(...)
-// on the previous one and try again.
-// Warning: This makes things rather slow.
-void memory_debug_extreme_turbo_plus()
-{
-	_CrtSetDbgFlag( _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) | _CRTDBG_CHECK_ALWAYS_DF | _CRTDBG_DELAY_FREE_MEM_DF );
-}
-#endif
 
 
 // we need to know the app's main window for the error dialog, so that
@@ -92,6 +77,7 @@ HWND win_get_app_main_window()
 }
 
 
+//-----------------------------------------------------------------------------
 
 //
 // safe allocator that may be used independently of libc malloc
@@ -112,9 +98,7 @@ void win_free(void* p)
 }
 
 
-char win_sys_dir[MAX_PATH+1];
-char win_exe_dir[MAX_PATH+1];
-
+//-----------------------------------------------------------------------------
 
 //
 // these override the portable versions in sysdep.cpp
@@ -201,16 +185,12 @@ int pick_directory(char* path, size_t buf_size)
 
 
 
-//////////////////////////////////////////////////////////////////////////////
-//
+//-----------------------------------------------------------------------------
 // "program error" dialog (triggered by assert and exception)
-//
-//////////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------------------------
 
-//
 // support for resizing the dialog / its controls
 // (have to do this manually - grr)
-//
 
 static POINTS dlg_client_origin;
 static POINTS dlg_prev_client_size;
@@ -411,11 +391,9 @@ ErrorReaction display_error_impl(const wchar_t* text, int flags)
 }
 
 
-///////////////////////////////////////////////////////////////////////////////
-//
+//-----------------------------------------------------------------------------
 // clipboard
-//
-///////////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------------------------
 
 int clipboard_set(const wchar_t* text)
 {
@@ -566,11 +544,9 @@ static void call_func_tbl(_PIFV* begin, _PIFV* end)
 }
 
 
-///////////////////////////////////////////////////////////////////////////////
-//
+//-----------------------------------------------------------------------------
 // locking for win-specific code
-//
-///////////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------------------------
 
 // several init functions are before called before _cinit.
 // POSIX static mutex init may not have been done by then,
@@ -623,11 +599,9 @@ static void cs_shutdown()
 }
 
 
-///////////////////////////////////////////////////////////////////////////////
-//
+//-----------------------------------------------------------------------------
 // startup
-//
-///////////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------------------------
 
 // entry -> pre_libc -> WinMainCRTStartup -> WinMain -> pre_main -> main
 // at_exit is called as the last of the atexit handlers
@@ -652,17 +626,13 @@ static
 #endif
 void win_pre_main_init()
 {
-#ifdef HAVE_DEBUGALLOC
-	uint flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
-	// Always enable leak detection in debug builds
-	flags |= _CRTDBG_LEAK_CHECK_DF;
+	// enable memory tracking and leak detection;
+	// no effect if !defined(HAVE_VC_DEBUG_ALLOC).
 #ifdef PARANOIA
-	// force malloc et al. to check the heap every call.
-	// slower, but reports errors closer to where they occur.
-	flags |= _CRTDBG_CHECK_ALWAYS_DF | _CRTDBG_DELAY_FREE_MEM_DF;
-#endif // PARANOIA
-	_CrtSetDbgFlag(flags);
-#endif // HAVE_DEBUGALLOC
+	debug_heap_enable(DEBUG_HEAP_ALL);
+#else
+	debug_heap_enable(DEBUG_HEAP_NORMAL);
+#endif
 
 	call_func_tbl(pre_main_begin, pre_main_end);
 

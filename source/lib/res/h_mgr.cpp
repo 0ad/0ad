@@ -179,7 +179,7 @@ static HDATA* h_data_from_idx(const i32 idx)
 {
 	// makes things *crawl*!
 #ifdef PARANOIA
-	debug_check_heap();
+	debug_heap_check();
 #endif
 
 	// don't compare against last_in_use - this is called before allocating

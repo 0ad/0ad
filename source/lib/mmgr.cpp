@@ -21,7 +21,7 @@
 // for easy removal in release builds, so that we don't cause any overhead.
 // note that any application calls to our functions must be removed also,
 // but this is preferable to stubbing them out here ("least surprise").
-#ifdef USE_MMGR
+#ifdef CONFIG_USE_MMGR
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -880,7 +880,7 @@ bool mmgr_are_all_valid()
 	// do our check first, because it fails more cleanly
 	// (=> better chance to see where it happened in the debugger)
 	bool all_valid = validate_all();
-	debug_check_heap();
+	debug_heap_check();
 	unlock();
 	return all_valid;
 }
@@ -1408,4 +1408,4 @@ void operator delete[](void* p, const char* file, int line, const char* func) th
 	free_dbg(p, AT_DELETE_ARRAY, file,line,func, 1);
 }
 
-#endif	// #ifdef USE_MMGR
+#endif	// #ifdef CONFIG_USE_MMGR

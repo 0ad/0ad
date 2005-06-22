@@ -338,23 +338,6 @@ int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int*
 }
 #include "mmgr.h"
 
-int debug_write_crashlog(const char* file, wchar_t* header, void* context)
-{
-	// TODO: Do this properly. (I don't know what I'm doing; I just
-	// know that this function is required in order to compile...)
-
-	abort();
-}
-
-
-void debug_check_heap()
-{
-	// TODO: Do this properly. (I don't know what I'm doing; I just
-	// know that this function is required in order to compile...)
-}
-
-
-
 void debug_printf(const char* fmt, ...)
 {
 	va_list args;
@@ -364,8 +347,34 @@ void debug_printf(const char* fmt, ...)
 	fflush(stdout);
 }
 
+// TODO: Do these properly. (I don't know what I'm doing; I just
+// know that these functions are required in order to compile...)
 
-void debug_disable_leak_reporting()
+int debug_write_crashlog(const char* file, wchar_t* header, void* context)
 {
+	abort();
+}
 
+
+
+
+void debug_heap_check()
+{
+}
+
+
+// if <full_monty> is true or PARANOIA #defined, all possible checks are
+// performed as often as possible. this is really slow (we are talking x100),
+// but reports errors closer to where they occurred.
+void debug_heap_enable(bool full_monty)
+{
+#ifdef PARANOIA
+	full_monty = true;
+#endif
+}
+
+
+// disable all automatic checks until the next debug_heap_enable.
+void debug_heap_disable()
+{
 }

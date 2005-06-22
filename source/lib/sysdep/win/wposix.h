@@ -257,11 +257,9 @@ extern int open(const char* fn, int mode, ...);
 	// MS implementation doesn't support this distinction.
 	// hence, the file is reported executable if it exists.
 
-#define read _read
-#define write _write
-_CRTIMP int read(int, void*, size_t);
-_CRTIMP int write(int, void*, size_t);
-_CRTIMP off_t lseek(int fd, off_t ofs, int whence);
+extern int read (int fd, void* buf, size_t nbytes);	// thunk
+extern int write(int fd, void* buf, size_t nbytes);	// thunk
+extern _CRTIMP off_t lseek(int fd, off_t ofs, int whence);
 
 
 // redefinition error here => io.h is getting included somewhere.
@@ -269,7 +267,7 @@ _CRTIMP off_t lseek(int fd, off_t ofs, int whence);
 // compiling against the DLL CRT. either rename the io.h def
 // (as with vc_stat), or don't include io.h.
 extern int close(int);
-_CRTIMP int access(const char*, int);
+extern _CRTIMP int access(const char*, int);
 
 extern int chdir(const char*);
 #undef getcwd
