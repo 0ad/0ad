@@ -432,8 +432,8 @@ extern void win_free(void* p);
 
 #define WIN_REGISTER_FUNC(func) static int func(void); static int(*p##func)(void) = func
 
-#define WIN_CALLBACK_PRE_LIBC(group) ".LIB$WC" #group
-#define WIN_CALLBACK_PRE_MAIN(group) ".LIB$WI" #group
+#define WIN_CALLBACK_PRE_LIBC(group)    ".LIB$WC" #group
+#define WIN_CALLBACK_PRE_MAIN(group)    ".LIB$WI" #group
 #define WIN_CALLBACK_POST_ATEXIT(group) ".LIB$WT" #group
 
 

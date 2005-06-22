@@ -907,7 +907,7 @@ static const wchar_t* get_exception_locus(const EXCEPTION_POINTERS* ep)
 	// real location.
 
 	wchar_t buf[32000];
-	const wchar_t* stack_trace = debug_dump_stack(buf, ARRAY_SIZE(buf), +0, ep->ContextRecord);
+	const wchar_t* stack_trace = debug_dump_stack(buf, ARRAY_SIZE(buf), 1, ep->ContextRecord);
 
 	const size_t MAX_LOCUS_CHARS = 256;
 	static wchar_t locus[MAX_LOCUS_CHARS];
@@ -990,12 +990,13 @@ LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep)
 
 	wchar_t func_name[DBG_SYMBOL_LEN]; char file[DBG_FILE_LEN] = {0}; int line = 0; wchar_t fmt[50];
 	swprintf(fmt, ARRAY_SIZE(fmt), L"%%%ds %%%dhs (%%d)", DBG_SYMBOL_LEN, DBG_FILE_LEN);
+		// bake in the string limits (future-proof)
 	if(swscanf(locus, fmt, func_name, file, &line) != 3)
 		debug_warn("error extracting file/line from exception locus");
 
 	wchar_t buf[500];
 	const wchar_t* msg_fmt =
-		L"Much to our regret we must report the program has encountered an error and cannot continue.\r\n"
+		L"Much to our regret we must report the program has encountered an error.\r\n"
 		L"\r\n"
 		L"Please let us know at http://bugs.wildfiregames.com/ and attach the crashlog.txt and crashlog.dmp files.\r\n"
 		L"\r\n"
@@ -1004,7 +1005,7 @@ LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep)
 	int flags = 0;
 	if(ep->ExceptionRecord->ExceptionFlags & EXCEPTION_NONCONTINUABLE)
 		flags = DE_NO_CONTINUE;
-	ErrorReaction er = display_error(buf, flags, 0, ep->ContextRecord, file, line);
+	ErrorReaction er = display_error(buf, flags, 1, ep->ContextRecord, file, line);
 	assert(er > 0);
 
 	wdbg_write_minidump(ep);

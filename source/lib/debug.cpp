@@ -478,7 +478,9 @@ ErrorReaction display_error(const wchar_t* description, int flags,
 		static const wchar_t fmt[] = L"%s\r\n\r\nCall stack:\r\n\r\n";
 		int len = swprintf(text, MAX_CHARS, fmt, description);
 
-		debug_dump_stack(text+len, MAX_CHARS-len, skip+1, context);
+		if(!context)
+			skip++;	// skip this frame
+		debug_dump_stack(text+len, MAX_CHARS-len, skip, context);
 			// in-place
 	}
 	else

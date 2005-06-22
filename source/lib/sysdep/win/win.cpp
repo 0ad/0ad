@@ -523,7 +523,7 @@ _PIFV pre_libc_begin[] = { 0 };
 _PIFV pre_libc_end[] = { 0 };
 #pragma data_seg(WIN_CALLBACK_PRE_MAIN(a))
 _PIFV pre_main_begin[] = { 0 };
-#pragma data_seg(WIN_CALLBACK_PRE_MAIN(a))
+#pragma data_seg(WIN_CALLBACK_PRE_MAIN(z))
 _PIFV pre_main_end[] = { 0 };
 #pragma data_seg(WIN_CALLBACK_POST_ATEXIT(a))
 _PIFV shutdown_begin[] = { 0 };
