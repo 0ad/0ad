@@ -23,7 +23,7 @@
 #define _XercesVFS_H
 
 // Temporarily undefine new, because the Xerces headers don't like it
-#ifdef HAVE_DEBUGALLOC
+#ifdef HAVE_VC_DEBUG_ALLOC
 # undef new
 #endif
 
@@ -37,7 +37,7 @@
 #include <xercesc/sax/SAXParseException.hpp>
 #include <xercesc/sax/ErrorHandler.hpp>
 
-#ifdef HAVE_DEBUGALLOC
+#ifdef HAVE_VC_DEBUG_ALLOC
 # define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
 #endif
 

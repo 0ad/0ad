@@ -19,16 +19,10 @@
 
 #define LOG_CATEGORY "xml"
 
-// Because I (and Xerces) don't like these being redefined by wposix.h:
-#ifdef HAVE_PCH
-# undef read
-# undef write
-#endif
-
 #include "XML.h"
 
 // For Xerces headers:
-#ifdef HAVE_DEBUGALLOC
+#ifdef HAVE_VC_DEBUG_ALLOC
 # undef new
 #endif
 
@@ -38,7 +32,7 @@
 #include <xercesc/sax2/DefaultHandler.hpp>
 
 // Reenable better memory-leak messages
-#ifdef HAVE_DEBUGALLOC
+#ifdef HAVE_VC_DEBUG_ALLOC
 # define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
 #endif
 
