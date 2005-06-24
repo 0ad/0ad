@@ -3,7 +3,11 @@
 #include "map.h"
 #include "entity.h"
 
+
 using namespace std;
+
+typedef unsigned short u16;
+typedef unsigned int u32;
 
 Map::Map(int size, Terrain* baseTerrain, float baseHeight) {
 	if(size<0 || size>1024) {
@@ -46,6 +50,140 @@ Map::Map(int size, Terrain* baseTerrain, float baseHeight) {
 			baseTerrain->place(this, i, j);
 		}
 	}
+}
+
+Map::Map(string fileName, int loadLevel)
+{
+	const LOAD_NOTHING = 0;
+	const LOAD_TERRAIN = 1<<0;
+	const LOAD_INTERACTIVES = 1 << 1;
+	const LOAD_NONINTERACTIVES = 1 << 2;
+	//const SOMETHINGELSE = 1 << 3;
+
+
+	// HACK, this should probably be in a struct and be shared with the code in output.cpp
+	char header[4];
+    u32 version;
+    u32 data_size; 
+	u32 map_size;
+
+	//HACK, also in rmgen.cpp
+	const string SCENARIO_PATH = "../data/mods/official/maps/scenarios/";
+
+
+	std::string pmpFile = SCENARIO_PATH + fileName + ".pmp";
+	std::string xmlFile = SCENARIO_PATH + fileName + ".xml";
+
+	if (loadLevel & LOAD_TERRAIN)
+	{
+
+		FILE* f = fopen(pmpFile.c_str(), "rb");
+
+		fread(header, sizeof(char), 4, f);
+		fread(&version, sizeof(int), 1, f);
+		fread(&data_size, sizeof(int), 1, f);
+		fread(&map_size, sizeof(int), 1, f);
+
+		size = map_size * 16;
+
+		// Load height data
+		u16* heightmap = new u16[(size+1) * (size+1)];
+		fread(heightmap, 2, ((size+1)*(size+1)), f);
+
+		height = new float*[(size+1)];
+		for(int i=0; i<(size+1); i++) 
+		{
+			height[i] = new float[(size+1)];
+			for(int j=0; j<(size+1); j++) 
+			{
+				height[i][j] = (float) (heightmap[(j*(size+1)) + i] / 256.0f) * 0.35f;
+			}
+		}
+
+
+		// Load the list of used textures
+
+		int numTextures;
+		int strLength;
+
+		fread(&numTextures, sizeof(int), 1, f);
+
+		for (int i=0; i<numTextures; i++)
+		{
+			fread(&strLength, sizeof(int), 1, f);
+			std::string name;
+
+			vector<char> buf(strLength+1);
+			fread(&buf[0], 1, strLength, f);
+			name = &buf[0];
+
+			// This will add the texture to the NameToId and idToName vectors if it 
+			// doesn't already exist. And in this case it shouldn't. 
+			getId( name.substr(0, name.length()-4));
+		}
+
+		texture = new int*[size];
+		for(int i=0; i<size; i++) {
+			texture[i] = new int[size];
+		}
+
+		// Hack, share with output.cpp?
+		struct Tile {
+			u16 texture1; // index into texture_textures[]
+			u16 texture2; // index, or 0xFFFF for 'none'
+			u32	priority; // ???
+		};
+
+		Tile* tiles = new Tile[size*size];
+		fread(tiles, sizeof(Tile), size*size, f);
+
+		for(int x=0; x<size; x++) 
+		{
+			for(int y=0; y<size; y++) 
+			{
+				int patchX = x/16, patchY = y/16;
+				int offX = x%16, offY = y%16;
+				Tile& t = tiles[ (patchY*size/16 + patchX)*16*16 + (offY*16 + offX) ];
+				this->texture[x][y] = t.texture1;
+			}
+		}
+		
+		terrainEntities = new vector<Entity*>*[size];
+		for(int i=0; i<size; i++) {
+			terrainEntities[i] = new vector<Entity*>[size];
+		}
+
+		area = new Area**[size];
+		for(int i=0; i<size; i++) {
+			area[i] = new Area*[size];
+			for(int j=0; j<size; j++) {
+				area[i][j] = 0;
+			}
+		}
+
+		fclose(f);
+	}
+
+
+	if ((loadLevel & (LOAD_INTERACTIVES | LOAD_NONINTERACTIVES)) != LOAD_NOTHING)
+	{
+
+		//TODO: Load xml here
+
+		if (loadLevel & LOAD_INTERACTIVES)
+		{
+			//printf("Loading interactives..\n");
+		}
+
+
+		if (loadLevel & LOAD_NONINTERACTIVES)
+		{
+			//printf("Loading non-interactives..\n");
+		}
+
+	}
+
+
 }
 
 Map::~Map() {

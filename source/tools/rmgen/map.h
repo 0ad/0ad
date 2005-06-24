@@ -21,6 +21,7 @@ public:
 	std::vector<Area*> areas;
 
 	Map(int size, Terrain* baseTerrain, float baseHeight);
+	Map(std::string fileName, int loadLevel);
 	~Map();
 
 	int getId(std::string texture);

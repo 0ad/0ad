@@ -15,7 +15,7 @@ using namespace std;
 JSFunctionSpec globalFunctions[] = {
 //  {name, native, args}
 	{"init", init, 3},
-	{"initFromScenario", initFromScenario, 1},
+	{"initFromScenario", initFromScenario, 2},
 	{"print", print, 1},
 	{"error", error, 1},
 	{"getTexture", getTexture, 2},
@@ -128,13 +128,13 @@ JSBool init(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 
 JSBool initFromScenario(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-	ValidateArgs("s", cx, argc, argv, __FUNCTION__);
+	ValidateArgs("si", cx, argc, argv, __FUNCTION__);
 	CheckInit(false, cx, __FUNCTION__);
 
 	string fileName = JS_GetStringBytes(JSVAL_TO_STRING(argv[0]));
+	int loadObjectLevel = JSVAL_TO_INT(argv[1]);
 
-	// TODO: load scenario here
-	theMap = new Map(128, new SimpleTerrain("sand_dunes", ""), 1.0f);
+	theMap = new Map(fileName, loadObjectLevel);
 
 	return JS_TRUE;
 }

@@ -127,6 +127,7 @@ struct PMP {
 		fwrite(fname.c_str(), sizeof(char), fname.length(), f);
 	}
 
+	
 	// texture; note that this is an array of 16x16 patches for some reason
 	Tile* tiles = new Tile[size*size];
 	for(int x=0; x<size; x++) {
@@ -140,6 +141,8 @@ struct PMP {
 		}
 	}
 	fwrite(tiles, sizeof(Tile), size*size, f);
+
+
 
 	// data size (file size - 12)
 	fseek(f, 0, SEEK_END);
@@ -162,7 +165,7 @@ void OutputMap(Map* m, const string& outputName) {
 	string pmpName = outputName + ".pmp";
 	FILE* pmpFile = fopen(pmpName.c_str(), "wb");
 	if(!pmpFile) {
-		cerr << "Cannot open " << xmlName << endl;
+		cerr << "Cannot open " << pmpName << endl;
 		Shutdown(1);
 	}
 	OutputPmp(m, pmpFile);
