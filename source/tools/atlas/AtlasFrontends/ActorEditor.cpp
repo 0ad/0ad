@@ -6,6 +6,6 @@
 #include "AtlasUI/Misc/DLLInterface.h"
 
 int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPTSTR, int) {
-	StartWindow(L"ActorEditor");
+	Atlas_StartWindow(L"ActorEditor");
 	return 0;
 }

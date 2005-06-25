@@ -6,6 +6,6 @@
 #include "AtlasUI/Misc/DLLInterface.h"
 
 int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPTSTR, int) {
-	StartWindow(L"ColourTester");
+	Atlas_StartWindow(L"ColourTester");
 	return 0;
 }

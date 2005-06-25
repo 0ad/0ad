@@ -6,6 +6,6 @@
 #include "AtlasUI/Misc/DLLInterface.h"
 
 int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPTSTR, int) {
-	StartWindow(L"$$WINDOW_NAME$$");
+	Atlas_StartWindow(L"$$WINDOW_NAME$$");
 	return 0;
 }

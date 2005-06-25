@@ -1,6 +1,6 @@
 class ColourTesterImageCtrl;
 
-DECLARE_EVENT_TYPE(wxEVT_MY_IMAGE_CHANGED, -1)
+DECLARE_EVENT_TYPE(wxEVT_MY_IMAGE_CHANGED, -1);
 
 class ColourTester : public wxFrame
 {

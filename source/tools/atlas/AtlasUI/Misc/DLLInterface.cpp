@@ -5,6 +5,9 @@
 #include "Datafile.h"
 #include "ActorEditor/ActorEditor.h"
 #include "ColourTester/ColourTester.h"
+#include "ScenarioEditor/ScenarioEditor.h"
+
+#include "GameInterface/MessageHandler.h"
 
 #include "wx/config.h"
 
@@ -34,8 +37,14 @@ BOOL APIENTRY DllMain(HINSTANCE hModule, DWORD fdwReason, LPVOID WXUNUSED(lpRese
 	return TRUE;
 }
 
+AtlasMessage::MessageHandler* AtlasMessage::g_MessageHandler = NULL;
 
-ATLASDLLIMPEXP void StartWindow(wchar_t* type)
+ATLASDLLIMPEXP void Atlas_SetMessageHandler(AtlasMessage::MessageHandler* handler)
+{
+	AtlasMessage::g_MessageHandler = handler;
+}
+
+ATLASDLLIMPEXP void Atlas_StartWindow(wchar_t* type)
 {
 	g_InitialWindowType = type;
 	wxEntry(g_Module);
@@ -61,6 +70,8 @@ public:
 			frame = new ActorEditor(NULL);
 		else if (g_InitialWindowType == _T("ColourTester"))
 			frame = new ColourTester(NULL);
+		else if (g_InitialWindowType == _T("ScenarioEditor"))
+			frame = new ScenarioEditor();
 		else
 		{
 			wxFAIL_MSG(_("Internal error: invalid window type"));
@@ -70,18 +81,22 @@ public:
 		frame->Show();
 		SetTopWindow(frame);
 
-		// One argument => argv[1] is a filename to open
+		// One argument => argv[1] is probably a filename to open
 		if (argc > 1)
 		{
 			wxChar* filename = argv[1];
-			if (wxFile::Exists(filename))
+
+			if (filename[0] != _T('-')) // ignore -options
 			{
-				AtlasWindow* win = wxDynamicCast(frame, AtlasWindow);
-				if (win)
-					win->OpenFile(filename);
+				if (wxFile::Exists(filename))
+				{
+					AtlasWindow* win = wxDynamicCast(frame, AtlasWindow);
+					if (win)
+						win->OpenFile(filename);
+				}
+				else
+					wxLogError(_("Cannot find file '%s'"), filename);
 			}
-			else
-				wxLogError(_("Cannot find file '%s'"), filename);
 		}
 
 		return true;

@@ -1,5 +1,7 @@
 #include "precompiled.h"
 
+//#define ATLAS
+
 #ifdef SCED
 # include "ui/StdAfx.h"
 # undef ERROR
@@ -129,7 +131,9 @@ CStr g_ActiveProfile = "default";
 extern size_t frameCount;
 static bool quit = false;	// break out of main loop
 
-
+#ifdef ATLAS
+static bool g_Atlas = true; // allows startup in Atlas vs non-Atlas (game) modes
+#endif
 
 
 const wchar_t* HardcodedErrorString(int err)
@@ -1356,7 +1360,7 @@ static void Frame()
 {
 	MICROLOG(L"In frame");
 
-	
+
 	PROFILE_START( "update music" );
 	MusicPlayer.update();
 	PROFILE_END( "update music" );
@@ -1479,30 +1483,58 @@ static void Frame()
 
 int main(int argc, char* argv[])
 {
-debug_printf("MAIN &argc=%p &argv=%p\n", &argc, &argv);
+	debug_printf("MAIN &argc=%p &argv=%p\n", &argc, &argv);
 
-//	MICROLOG(L"In main");
-
-//	MICROLOG(L"Init");
-	Init(argc, argv, true);
-
-	// Optionally, do some simple tests to ensure things aren't broken
-//	extern void PerformTests();
-//	PerformTests();
-
-	while(!quit)
+#ifdef ATLAS
+	if (g_Atlas)
 	{
-		MICROLOG(L"(Simulation) Frame");
-		Frame();
+		extern void BeginAtlas(int, char**);
+		BeginAtlas(argc, argv);
 	}
+	else
+#endif
+	{
+		//	MICROLOG(L"In main");
 
-	MICROLOG(L"Shutdown");
-	Shutdown();
+
+		//	MICROLOG(L"Init");
+		Init(argc, argv, true);
+
+		// Optionally, do some simple tests to ensure things aren't broken
+		//	extern void PerformTests();
+		//	PerformTests();
+
+		while(!quit)
+		{
+			MICROLOG(L"(Simulation) Frame");
+			Frame();
+		}
+
+		MICROLOG(L"Shutdown");
+		Shutdown();
+	}
 
 	delete &g_Profiler;
 
 	exit(0);
 }
+
+// Public functions for Atlas to use:
+// TODO: Make this far less hacky
+void Init_(int argc, char** argv, bool setup_gfx)
+{
+	g_Quickstart = true;
+	Init(argc, argv, setup_gfx);
+}
+void Shutdown_()
+{
+	Shutdown();
+}
+void Render_()
+{
+	Render();
+}
+
 
 #else // SCED:
 

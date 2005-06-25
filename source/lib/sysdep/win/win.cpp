@@ -51,8 +51,8 @@ static BOOL CALLBACK is_this_our_window(HWND hWnd, LPARAM lParam)
 	DWORD tid = GetWindowThreadProcessId(hWnd, &pid);
 	UNUSED(tid);	// the function can't fail
 
-DWORD our_pid = GetProcessId(GetCurrentProcess());
-	if(pid == GetProcessId(GetCurrentProcess()))
+DWORD our_pid = GetCurrentProcessId();
+	if(pid == GetCurrentProcessId())
 	{
 		*(HWND*)lParam = hWnd;
 		return FALSE;	// done
