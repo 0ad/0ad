@@ -74,6 +74,18 @@
 # error "unknown OS - add define here"
 #endif
 
+// byte order
+#if defined(__i386__) || defined(__i386) || defined(_M_IX86) || \
+    defined(__ia64__) || defined(__ia64) || defined(_M_IA64) || \
+	defined(__alpha__) || defined(__alpha) || defined(_M_ALPHA) || \
+	defined(__arm__) || \
+	defined(__MIPSEL__) || \
+	defined(__LITTLE_ENDIAN__)
+# define LITTLE_ENDIAN
+#else
+# define BIG_ENDIAN
+#endif
+
 
 //-----------------------------------------------------------------------------
 // auto-detect platform features, given the above information
@@ -132,5 +144,7 @@
 #if ICC_VERSION == 900
 # undef HAVE_VC_DEBUG_ALLOC
 #endif
+
+// _CPPLIB_VER
 
 #endif	// #ifndef CONFIG_H_INCLUDED

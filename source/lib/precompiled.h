@@ -56,36 +56,65 @@
 
 #ifdef HAVE_PCH
 
+// all new-form C library headers
 #include <cassert>
 #include <cctype>
-#include <climits>
-#include <cmath>
+#include <cerrno>
 #include <cfloat>
+//#include <ciso646>
+	// defines e.g. "and" to "&". unnecessary and causes trouble with asm.
+#include <climits>
+#include <clocale>
+#include <cmath>
 #include <csetjmp>
+#include <csignal>
 #include <cstdarg>
 #include <cstddef>
 #include <cstdio>
 #include <cstdlib>
+#include <cstring>
 #include <ctime>
 #include <cwchar>
+#include <cwctype>
 
+// all C++98 STL headers
 #include <algorithm>
 #include <deque>
+#include <functional>
+#include <iterator>
+#include <list>
+#include <map>
+#include <memory>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <stack>
+#include <utility>
+#include <vector>
+
+// all other C++98 headers
+#include <bitset>
+#include <complex>
 #include <exception>
 #include <fstream>
-#include <functional>
+#include <iomanip>
 #include <ios>
 #include <iosfwd>
 #include <iostream>
-#include <list>
-#include <map>
-#include <numeric>
-#include <set>
+#include <istream>
+#include <limits>
+#include <locale>
+#include <new>
+#include <ostream>
 #include <sstream>
-#include <stack>
+#include <stdexcept>
+#include <streambuf>
 #include <string>
-#include <vector>
+#include <strstream>
+#include <typeinfo>
+#include <valarray>
 
+// STL extensions
 #ifdef __GNUC__
 # include <ext/hash_map>
 # include <ext/hash_set>
@@ -93,6 +122,7 @@
 # include <hash_map>
 # include <hash_set>
 #endif
+
 
 // CStr is included very frequently, so a reasonable amount of time is saved
 // by including it here. (~10% in a full rebuild, as of r2365)

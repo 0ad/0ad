@@ -1,6 +1,7 @@
 #include "precompiled.h"
 
 #include "byte_order.h"
+#include "sdl.h"
 
 
 u16 read_le16(const void* p)

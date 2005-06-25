@@ -1,4 +1,4 @@
-#include "sdl.h"
+#include "config.h"
 
 // converts 4 character string to u32 for easy comparison
 // can't pass code as string, and use s[0]..s[3], because
@@ -9,7 +9,7 @@
 // the additional u8 cast ensures each character is treated as unsigned
 // (otherwise, they'd be promoted to signed int before the u32 cast,
 // which would break things).
-#if SDL_BYTE_ORDER == SDL_BIG_ENDIAN
+#ifdef BIG_ENDIAN
 #define FOURCC(a,b,c,d) ( ((u32)(u8)a) << 24 | ((u32)(u8)b) << 16 | \
 	((u32)(u8)c) << 8  | ((u32)(u8)d) << 0  )
 #else
