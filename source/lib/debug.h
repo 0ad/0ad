@@ -152,4 +152,13 @@ extern int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* fil
 
 extern const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* context);
 
+
+//-----------------------------------------------------------------------------
+// helper functions (used by implementation)
+//-----------------------------------------------------------------------------
+
+typedef const u8* (*DebugIterator)(void* internal, size_t el_size);
+
+extern bool debug_is_bogus_pointer(const void* p);
+
 #endif	// #ifndef DEBUG_H_INCLUDED

@@ -22,6 +22,7 @@
 
 #include "lib.h"
 #include "debug.h"
+#include "debug_stl.h"
 #include "nommgr.h"
 	// some functions here are called from within mmgr; disable its hooks
 	// so that our allocations don't cause infinite recursion.
@@ -138,125 +139,6 @@ static const size_t STRING_BUF_SIZE = 64*KiB;
 static char* string_buf;
 static char* string_buf_pos;
 
-
-// used in simplify_stl_name.
-// TODO: check strcpy safety
-#define REPLACE(what, with)\
-	else if(!strncmp(src, (what), sizeof(what)-1))\
-	{\
-		src += sizeof(what)-1-1;/* see preincrement rationale*/\
-		strcpy(dst, (with));\
-		dst += sizeof(with)-1;\
-	}
-#define STRIP(what)\
-	else if(!strncmp(src, (what), sizeof(what)-1))\
-	{\
-		src += sizeof(what)-1-1;/* see preincrement rationale*/\
-	}
-
-// reduce complicated STL names to human-readable form (in place).
-// e.g. "std::basic_string<char, char_traits<char>, std::allocator<char> >" =>
-//  "string". algorithm: strip undesired strings in one pass (fast).
-// called from symbol_string_build.
-//
-// see http://www.bdsoft.com/tools/stlfilt.html and
-// http://www.moderncppdesign.com/publications/better_template_error_messages.html
-static void simplify_stl_name(char* name)
-{
-	// used when stripping everything inside a < > to continue until
-	// the final bracket is matched (at the original nesting level).
-	int nesting = 0;
-
-	const char* src = name-1;	// preincremented; see below.
-	char* dst = name;
-
-	// for each character: (except those skipped as parts of strings)
-	for(;;)
-	{
-		int c = *(++src);
-			// preincrement rationale: src++ with no further changes would
-			// require all comparisons to subtract 1. incrementing at the
-			// end of a loop would require a goto, instead of continue
-			// (there are several paths through the loop, for speed).
-			// therefore, preincrement. when skipping strings, subtract
-			// 1 from the offset (since src is advanced directly after).
-
-		// end of string reached - we're done.
-		if(c == '\0')
-		{
-			*dst = '\0';
-			break;
-		}
-
-		// we're stripping everything inside a < >; eat characters
-		// until final bracket is matched (at the original nesting level).
-		if(nesting)
-		{
-			if(c == '<')
-				nesting++;
-			else if(c == '>')
-			{
-				nesting--;
-				assert(nesting >= 0);
-			}
-			continue;
-		}
-
-		// start if chain (REPLACE and STRIP use else if)
-		if(0) {}
-		else if(!strncmp(src, "::_Node", 7))
-		{
-			// add a space if not already preceded by one
-			// (prevents replacing ">::_Node>" with ">>")
-			if(src != name && src[-1] != ' ')
-				*dst++ = ' ';
-			src += 7;
-		}
-		REPLACE("unsigned short", "u16")
-		REPLACE("unsigned int", "uint")
-		REPLACE("unsigned __int64", "u64")
-		STRIP(",0> ")
-		// early out: all tests after this start with s, so skip them
-		else if(c != 's')
-		{
-			*dst++ = c;
-			continue;
-		}
-		REPLACE("std::_List_nod", "list")
-		REPLACE("std::_Tree_nod", "map")
-		REPLACE("std::basic_string<char,", "string<")
-		REPLACE("std::basic_string<unsigned short,", "wstring<")
-		STRIP("std::char_traits<char>,")
-		STRIP("std::char_traits<unsigned short>,")
-		STRIP("std::_Tmap_traits")
-		STRIP("std::_Tset_traits")
-		else if(!strncmp(src, "std::allocator<", 15))
-		{
-			// remove preceding comma (if present)
-			if(src != name && src[-1] == ',')
-				dst--;
-			src += 15;
-			// strip everything until trailing > is matched
-			assert(nesting == 0);
-			nesting = 1;
-		}
-		else if(!strncmp(src, "std::less<", 10))
-		{
-			// remove preceding comma (if present)
-			if(src != name && src[-1] == ',')
-				dst--;
-			src += 10;
-			// strip everything until trailing > is matched
-			assert(nesting == 0);
-			nesting = 1;
-		}
-		STRIP("std::")
-		else
-			*dst++ = c;
-	}
-}
-
-
 static const char* symbol_string_build(void* symbol, const char* name, const char* file, int line)
 {
 	// maximum bytes allowed per string (arbitrary).
@@ -321,7 +203,7 @@ static const char* symbol_string_build(void* symbol, const char* name, const cha
 	if(name)
 	{
 		snprintf(string+len, STRING_MAX-1-len, "%s", name);
-		simplify_stl_name(string+len);
+		stl_simplify_name(string+len);
 	}
 
 	return string;

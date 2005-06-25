@@ -51,7 +51,6 @@ static BOOL CALLBACK is_this_our_window(HWND hWnd, LPARAM lParam)
 	DWORD tid = GetWindowThreadProcessId(hWnd, &pid);
 	UNUSED(tid);	// the function can't fail
 
-DWORD our_pid = GetCurrentProcessId();
 	if(pid == GetCurrentProcessId())
 	{
 		*(HWND*)lParam = hWnd;
@@ -620,6 +619,33 @@ static void at_exit(void)
 	cs_shutdown();
 }
 
+
+/*
+static void test2(uint param2a, uint param2b, uint param2c, std::vector<uint>* param2)
+{
+const uint const2 = 0x2020;
+static const uint staticconst2 = 0x20202020;
+static u8 static2 = 0x99;
+uint local2 = 0x1234;
+debug_printf("&static2 = %p\n", &static2);
+debug_printf("param2 = %p\n&local2 = %p\n", param2, &local2);
+debug_printf("&param2a = %p\nparam2b = %p\nparam2c = %p\n", &param2a, &param2b, &param2c);
+assert2(0 == 1);
+}
+
+static void test1(uint param1a, uint param1b, uint param1c, std::vector<uint>* param1)
+{
+const uint const1 = 0x1010;
+static const uint staticconst1 = 0x10101010;
+static u8 static1 = 0x88;
+uint local1 = 0x5678;
+debug_printf("&static1 = %p\n", &static1);
+debug_printf("param1 = %p\n&local1 = %p\n", param1, &local1);
+debug_printf("&param1a = %p\nparam1b = %p\nparam1c = %p\n", &param1a, &param1b, &param1c);
+
+test2(param1a, param1b, param1c, param1);
+}
+*/
 
 #ifndef NO_MAIN_REDIRECT
 static
