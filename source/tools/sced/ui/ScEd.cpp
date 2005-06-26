@@ -17,6 +17,8 @@
 #endif
 #include "detect.h"
 
+#include "sysdep/win/win.h"
+
 /////////////////////////////////////////////////////////////////////////////
 // CScEdApp
 
@@ -48,8 +50,7 @@ CScEdApp theApp;
 
 BOOL CScEdApp::InitInstance()
 {
-	extern void sced_init();
-	sced_init();
+	win_pre_main_init();
 
 	AfxEnableControlContainer();
 

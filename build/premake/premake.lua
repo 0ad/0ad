@@ -136,7 +136,11 @@ function setuppackage (projectname)
 	if (projectname == "sced") then
 		tinsert(package.defines, "SCED")
 		tinsert(package.defines, "_AFXDLL")
+		-- Disable the whole GUI system, since it conflicts with the MFC headers
 		tinsert(package.defines, "NO_GUI")
+		-- Some definitions to make the lib code initialisation work
+		tinsert(package.defines, "USE_WINMAIN")
+		tinsert(package.defines, "NO_MAIN_REDIRECT")
 	end
 	
 	-- Platform Specifics

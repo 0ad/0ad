@@ -359,7 +359,11 @@ extern __declspec(dllimport) int __stdcall WSAAsyncSelect(int s, HANDLE hWnd, un
 extern __declspec(dllimport) int __stdcall WSAGetLastError(void);
 #endif	// #ifndef NO_WINSOCK
 
+#ifdef USE_WINMAIN
+extern int WinMainCRTStartup(void);
+#else
 extern int mainCRTStartup(void);
+#endif
 }
 
 #define BIT(n) (1ul << (n))

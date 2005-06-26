@@ -670,7 +670,7 @@ void win_pre_main_init()
 }
 
 
-#ifndef SCED
+#ifndef NO_MAIN_REDIRECT
 
 #undef main
 extern int app_main(int argc, char* argv[]);
@@ -725,18 +725,14 @@ int entry()
 	__try
 	{
 		pre_libc_init();
+#ifdef USE_WINMAIN
+		ret = WinMainCRTStartup();	// calls _cinit and then our main
+#else
 		ret = mainCRTStartup();	// calls _cinit and then our main
+#endif
 	}
 	__except(wdbg_exception_filter(GetExceptionInformation()))
 	{
 	}
 	return ret;
 }
-
-
-#ifdef SCED
-void sced_init()
-{
-	pre_main_init();
-}
-#endif
