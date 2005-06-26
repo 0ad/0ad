@@ -6,6 +6,7 @@
 #include "rectplacer.h"
 #include "layeredpainter.h"
 #include "clumpplacer.h"
+#include "smoothelevationpainter.h"
 
 using namespace std;
 
@@ -83,6 +84,8 @@ AreaPainter* ParsePainter(JSContext* cx, jsval val) {
 	jsval jsv, jsv2;
 	Terrain* terrain = 0;
 	float elevation;
+	int type;
+	int blendRadius;
 	vector<Terrain*> terrains;
 	vector<int> widths;
 
@@ -97,17 +100,23 @@ AreaPainter* ParsePainter(JSContext* cx, jsval val) {
 	}
 
 	switch(GetType(cx, val)) {
-		case TYPE_TERRAINPAINTER:
+		case TYPE_TERRAIN_PAINTER:
 			if(!GetJsvalField(cx, val, "terrain", jsv)) return 0;
 			terrain = ParseTerrain(cx, jsv);
 			if(terrain==0) return 0;
 			return new TerrainPainter(terrain);
 
-		case TYPE_ELEVATIONPAINTER:
+		case TYPE_ELEVATION_PAINTER:
 			if(!GetFloatField(cx, val, "elevation", elevation)) return 0;
 			return new ElevationPainter(elevation);
 
-		case TYPE_LAYEREDPAINTER:
+		case TYPE_SMOOTH_ELEVATION_PAINTER:
+			if(!GetIntField(cx, val, "type", type)) return 0;
+			if(!GetFloatField(cx, val, "elevation", elevation)) return 0;
+			if(!GetIntField(cx, val, "blendRadius", blendRadius)) return 0;
+			return new SmoothElevationPainter(type, elevation, blendRadius);
+
+		case TYPE_LAYERED_PAINTER:
 			if(!GetJsvalField(cx, val, "widths", jsv)) return 0;
 			if(!GetJsvalField(cx, val, "terrains", jsv2)) return 0;
 			if(!ParseArray(cx, jsv, array)) return 0;
@@ -135,14 +144,14 @@ AreaPlacer* ParsePlacer(JSContext* cx, jsval val) {
 	float size, coherence, smoothness;
 
 	switch(GetType(cx, val)) {
-		case TYPE_RECTPLACER:
+		case TYPE_RECT_PLACER:
 			if(!GetIntField(cx, val, "x1", x1)) return 0;
 			if(!GetIntField(cx, val, "y1", y1)) return 0;
 			if(!GetIntField(cx, val, "x2", x2)) return 0;
 			if(!GetIntField(cx, val, "y2", y2)) return 0;
 			return new RectPlacer(x1, y1, x2, y2);
 
-		case TYPE_CLUMPPLACER:
+		case TYPE_CLUMP_PLACER:
 			if(!GetFloatField(cx, val, "size", size)) return 0;
 			if(!GetFloatField(cx, val, "coherence", coherence)) return 0;
 			if(!GetFloatField(cx, val, "smoothness", smoothness)) return 0;
@@ -177,15 +186,15 @@ Constraint* ParseConstraint(JSContext* cx, jsval val) {
 	}
 
 	switch(GetType(cx, val)) {
-		case TYPE_NULLCONSTRAINT:
+		case TYPE_NULL_CONSTRAINT:
 			return new NullConstraint();
 
-		case TYPE_AVOIDAREACONSTRAINT:
+		case TYPE_AVOID_AREA_CONSTRAINT:
 			if(!GetIntField(cx, val, "area", areaId)) return 0;
 			if(areaId <= 0 || areaId > theMap->areas.size()) return 0;
 			return new AvoidAreaConstraint(theMap->areas[areaId-1]);
 
-		case TYPE_AVOIDTEXTURECONSTRAINT:
+		case TYPE_AVOID_TEXTURE_CONSTRAINT:
 			if(!GetStringField(cx, val, "texture", texture)) return 0;
 			return new AvoidTextureConstraint(theMap->getId(texture));
 
