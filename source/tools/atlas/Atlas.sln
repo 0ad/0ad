@@ -18,28 +18,47 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ColourTester", "AtlasFronte
 		{E99BA969-D540-4F23-822E-37C499E8F704} = {E99BA969-D540-4F23-822E-37C499E8F704}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pyrogenesis", "..\..\..\build\workspaces\vc2003\pyrogenesis.vcproj", "{CDA14ADB-57CA-DB49-A474-E7605D7922BD}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
 		Release = Release
+		Testing = Testing
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
 		{E99BA969-D540-4F23-822E-37C499E8F704}.Debug.ActiveCfg = Debug|Win32
 		{E99BA969-D540-4F23-822E-37C499E8F704}.Debug.Build.0 = Debug|Win32
 		{E99BA969-D540-4F23-822E-37C499E8F704}.Release.ActiveCfg = Release|Win32
 		{E99BA969-D540-4F23-822E-37C499E8F704}.Release.Build.0 = Release|Win32
+		{E99BA969-D540-4F23-822E-37C499E8F704}.Testing.ActiveCfg = Release|Win32
+		{E99BA969-D540-4F23-822E-37C499E8F704}.Testing.Build.0 = Release|Win32
 		{228B468D-3C2E-45BF-9833-C626E1A35B04}.Debug.ActiveCfg = Debug|Win32
 		{228B468D-3C2E-45BF-9833-C626E1A35B04}.Debug.Build.0 = Debug|Win32
 		{228B468D-3C2E-45BF-9833-C626E1A35B04}.Release.ActiveCfg = Release|Win32
 		{228B468D-3C2E-45BF-9833-C626E1A35B04}.Release.Build.0 = Release|Win32
+		{228B468D-3C2E-45BF-9833-C626E1A35B04}.Testing.ActiveCfg = Release|Win32
+		{228B468D-3C2E-45BF-9833-C626E1A35B04}.Testing.Build.0 = Release|Win32
 		{E859DDC0-224A-41F6-B09F-E320EC8DDA35}.Debug.ActiveCfg = Debug|Win32
 		{E859DDC0-224A-41F6-B09F-E320EC8DDA35}.Debug.Build.0 = Debug|Win32
 		{E859DDC0-224A-41F6-B09F-E320EC8DDA35}.Release.ActiveCfg = Release|Win32
 		{E859DDC0-224A-41F6-B09F-E320EC8DDA35}.Release.Build.0 = Release|Win32
+		{E859DDC0-224A-41F6-B09F-E320EC8DDA35}.Testing.ActiveCfg = Debug|Win32
+		{E859DDC0-224A-41F6-B09F-E320EC8DDA35}.Testing.Build.0 = Debug|Win32
 		{C018BE85-EBFE-428E-8626-3CCB77052715}.Debug.ActiveCfg = Debug|Win32
 		{C018BE85-EBFE-428E-8626-3CCB77052715}.Debug.Build.0 = Debug|Win32
 		{C018BE85-EBFE-428E-8626-3CCB77052715}.Release.ActiveCfg = Release|Win32
 		{C018BE85-EBFE-428E-8626-3CCB77052715}.Release.Build.0 = Release|Win32
+		{C018BE85-EBFE-428E-8626-3CCB77052715}.Testing.ActiveCfg = Debug|Win32
+		{C018BE85-EBFE-428E-8626-3CCB77052715}.Testing.Build.0 = Debug|Win32
+		{CDA14ADB-57CA-DB49-A474-E7605D7922BD}.Debug.ActiveCfg = Debug|Win32
+		{CDA14ADB-57CA-DB49-A474-E7605D7922BD}.Debug.Build.0 = Debug|Win32
+		{CDA14ADB-57CA-DB49-A474-E7605D7922BD}.Release.ActiveCfg = Release|Win32
+		{CDA14ADB-57CA-DB49-A474-E7605D7922BD}.Release.Build.0 = Release|Win32
+		{CDA14ADB-57CA-DB49-A474-E7605D7922BD}.Testing.ActiveCfg = Testing|Win32
+		{CDA14ADB-57CA-DB49-A474-E7605D7922BD}.Testing.Build.0 = Testing|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

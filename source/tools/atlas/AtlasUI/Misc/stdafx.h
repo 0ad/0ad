@@ -22,6 +22,7 @@
 #include "wx/colordlg.h"
 #include "wx/regex.h"
 #include "wx/image.h"
+#include "wx/splitter.h"
 
 #include <vector>
 #include <string>

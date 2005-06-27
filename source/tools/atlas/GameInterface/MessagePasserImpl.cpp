@@ -1,10 +1,10 @@
 #include "precompiled.h"
 
-#include "MessageHandlerImpl.h"
+#include "MessagePasserImpl.h"
 
 using namespace AtlasMessage;
 
-void MessageHandlerImpl::Add(IMessage* msg)
+void MessagePasserImpl::Add(IMessage* msg)
 {
 	m_Mutex.Lock();
 
@@ -13,7 +13,7 @@ void MessageHandlerImpl::Add(IMessage* msg)
 	m_Mutex.Unlock();
 }
 
-IMessage* MessageHandlerImpl::Retrieve()
+IMessage* MessagePasserImpl::Retrieve()
 {
 	m_Mutex.Lock();
 
@@ -29,12 +29,12 @@ IMessage* MessageHandlerImpl::Retrieve()
 	return msg;
 }
 
-void MessageHandlerImpl::Query(IMessage&)
+void MessagePasserImpl::Query(IMessage&)
 {
 }
 
-void MessageHandlerImpl::QueryDone()
+void MessagePasserImpl::QueryDone()
 {
 }
 
-MessageHandler* g_MessageHandler = NULL;
+MessagePasser* g_MessagePasser = NULL;

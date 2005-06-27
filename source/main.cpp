@@ -1,7 +1,5 @@
 #include "precompiled.h"
 
-//#define ATLAS
-
 #ifdef SCED
 # include "ui/StdAfx.h"
 # undef ERROR
@@ -132,7 +130,7 @@ extern size_t frameCount;
 static bool quit = false;	// break out of main loop
 
 #ifdef ATLAS
-static bool g_Atlas = true; // allows startup in Atlas vs non-Atlas (game) modes
+static bool g_Atlas = true; // allows optional startup in Atlas vs non-Atlas (game) modes
 #endif
 
 
@@ -923,6 +921,9 @@ static void InitPs()
 	}
 
 	// Temporary hack until revised GUI structure is completed.
+#ifdef ATLAS
+	if (! g_Atlas)
+#endif
 	{
 //	TIMER(ps_gui_hack)
 
@@ -1136,6 +1137,8 @@ static void Shutdown()
 	mem_shutdown();
 
 	delete &g_Logger;
+
+	delete &g_Profiler;
 }
 
 
@@ -1513,8 +1516,6 @@ int main(int argc, char* argv[])
 		MICROLOG(L"Shutdown");
 		Shutdown();
 	}
-
-	delete &g_Profiler;
 
 	exit(0);
 }

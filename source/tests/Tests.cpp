@@ -3,6 +3,7 @@
 #include "ps/CLogger.h"
 #include "ps/Parser.h"
 #include "ps/XMLWriter.h"
+#include "maths/Matrix3D.h"
 
 #define ensure(x) if (!(x)) { ++err_count; LOG(ERROR, "", "%s:%d - test failed! (%s)", __FILE__, __LINE__, #x); }
 
@@ -156,5 +157,22 @@ void PerformTests()
 		ensure(str_utf8.length() == sizeof(chr_utf8));
 		ensure(memcmp(str_utf8.data(), chr_utf8, sizeof(chr_utf8)) == 0);
 		ensure(str_utf8.FromUTF8() == str_utf16);
+	}
+
+	{
+		CMatrix3D m;
+		srand(0);
+		for (int i = 0; i < 4; ++i)
+		{
+			for (int j = 0; j < 16; ++j)
+				m._data[j] = -1.0f + 2.0f*(rand()/(float)RAND_MAX);
+			CMatrix3D n;
+			m.GetInverse(n);
+			m *= n;
+			for (int x = 0; x < 4; ++x)
+				for (int y = 0; y < 4; ++y)
+					ensure(abs(m(x,y) - (x==y ? 1.0f : 0.0f)) < 0.0001f);
+		}
+
 	}
 }

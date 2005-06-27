@@ -7,7 +7,7 @@
 #include "ColourTester/ColourTester.h"
 #include "ScenarioEditor/ScenarioEditor.h"
 
-#include "GameInterface/MessageHandler.h"
+#include "GameInterface/MessagePasser.h"
 
 #include "wx/config.h"
 
@@ -37,11 +37,11 @@ BOOL APIENTRY DllMain(HINSTANCE hModule, DWORD fdwReason, LPVOID WXUNUSED(lpRese
 	return TRUE;
 }
 
-AtlasMessage::MessageHandler* AtlasMessage::g_MessageHandler = NULL;
+AtlasMessage::MessagePasser* AtlasMessage::g_MessagePasser = NULL;
 
-ATLASDLLIMPEXP void Atlas_SetMessageHandler(AtlasMessage::MessageHandler* handler)
+ATLASDLLIMPEXP void Atlas_SetMessagePasser(AtlasMessage::MessagePasser* handler)
 {
-	AtlasMessage::g_MessageHandler = handler;
+	AtlasMessage::g_MessagePasser = handler;
 }
 
 ATLASDLLIMPEXP void Atlas_StartWindow(wchar_t* type)

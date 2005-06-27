@@ -1,38 +1,50 @@
+#ifndef MESSAGES_H__
+#define MESSAGES_H__
+
+#include "MessagePasser.h"
+
 namespace AtlasMessage
 {
 
 struct IMessage
 {
-	virtual int GetType() = 0;
+	virtual const char* GetType() const = 0;
 	virtual ~IMessage() {}
 };
 
-enum {
-	CommandString,
-	SetContext,
-	ResizeScreen,
+#define DEFINE(t) struct m##t : public IMessage { const char* GetType() const { return #t; }
+
+//////////////////////////////////////////////////////////////////////////
+
+DEFINE(CommandString)
+mCommandString(const std::string& name_) : name(name_) {}
+const std::string name;
 };
 
-struct mCommandString : public IMessage
-{
-	mCommandString(const std::string& n) : name(n) {};
-	const std::string name;
-	virtual int GetType() { return CommandString; }
+//////////////////////////////////////////////////////////////////////////
+
+DEFINE(SetContext)
+mSetContext(void* /* HDC */ hdc_, void* /* HGLRC */ hglrc_) : hdc(hdc_), hglrc(hglrc_) {};
+void* hdc;
+void* hglrc;
 };
 
-struct mSetContext : public IMessage
-{
-	mSetContext(void* /* HDC */ dc, void* /* HGLRC */ cx) : hdc(dc), hglrc(cx) {};
-	void* hdc;
-	void* hglrc;
-	virtual int GetType() { return SetContext; }
+DEFINE(ResizeScreen)
+mResizeScreen(int width_, int height_) : width(width_), height(height_) {}
+int width, height;
 };
 
-struct mResizeScreen : public IMessage
-{
-	mResizeScreen(int w, int h) : width(w), height(h) {}
-	int width, height;
-	virtual int GetType() { return ResizeScreen; }
+//////////////////////////////////////////////////////////////////////////
+
+DEFINE(GenerateMap)
+mGenerateMap(int size_) : size(size_) {}
+int size; // size in number of patches
 };
+
+//////////////////////////////////////////////////////////////////////////
+
+#undef DEFINE
 
 }
+
+#endif // MESSAGES_H__

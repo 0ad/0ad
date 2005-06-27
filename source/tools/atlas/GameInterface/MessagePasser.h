@@ -1,8 +1,11 @@
+#ifndef MESSAGEPASSER_H__
+#define MESSAGEPASSER_H__
+
 namespace AtlasMessage
 {
 struct IMessage;
 	
-class MessageHandler
+class MessagePasser
 {
 public:
 	virtual void Add(IMessage*)=0;
@@ -12,7 +15,9 @@ public:
 	virtual void QueryDone()=0;
 };
 
-extern MessageHandler* g_MessageHandler;
+extern MessagePasser* g_MessagePasser;
+
+#define ADD_MESSAGE(type) AtlasMessage::g_MessagePasser->Add(new AtlasMessage::m##type)
 
 }
 
@@ -24,3 +29,5 @@ atlas->game->atlas query ("what is at position (x,y)?")
 game->atlas notification ("game ended")  ??
 
 */
+
+#endif // MESSAGEPASSER_H__

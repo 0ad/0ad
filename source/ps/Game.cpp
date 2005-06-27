@@ -65,12 +65,16 @@ PSRETURN CGame::RegisterInit(CGameAttributes* pAttribs)
 PSRETURN CGame::ReallyStartGame()
 {
 #ifndef NO_GUI
-	jsval rval;
 
-	JSBool ok = JS_CallFunctionName(g_ScriptingHost.getContext(),
-		g_GUI.GetScriptObject(), "reallyStartGame", 0, NULL, &rval);
-
+	// Call the reallyStartGame function, but only if it exists
+	jsval fval, rval;
+	JSBool ok = JS_GetProperty(g_ScriptingHost.getContext(), g_GUI.GetScriptObject(), "reallyStartGame", &fval);
 	assert(ok);
+	if (ok && !JSVAL_IS_VOID(fval))
+	{
+		ok = JS_CallFunctionValue(g_ScriptingHost.getContext(), g_GUI.GetScriptObject(), fval, 0, NULL, &rval);
+		assert(ok);
+	}
 #endif
 
 	debug_printf("GAME STARTED, ALL INIT COMPLETE\n");

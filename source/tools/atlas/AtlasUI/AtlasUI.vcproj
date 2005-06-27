@@ -19,7 +19,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;..;.\General;.\CustomControls\EditableListCtrl;.\CustomControls\DraggableListCtrl;.\CustomControls\Windows;.\Misc;E:\wx\wxWidgets\include;E:\wx\wxWidgets\include\msvc;..\..\..\..\libraries\devil\src\include"
+				AdditionalIncludeDirectories=".;..;.\General;.\CustomControls\Buttons;.\CustomControls\DraggableListCtrl;.\CustomControls\EditableListCtrl;.\CustomControls\Windows;.\Misc;E:\wx\wxWidgets\include;E:\wx\wxWidgets\include\msvc;..\..\..\..\libraries\devil\src\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -71,7 +71,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="1"
-				AdditionalIncludeDirectories=".;..;.\General;.\CustomControls\EditableListCtrl;.\CustomControls\DraggableListCtrl;.\CustomControls\Windows;.\Misc;E:\wx\wxWidgets\include;E:\wx\wxWidgets\include\msvc;..\..\..\..\libraries\devil\src\include"
+				AdditionalIncludeDirectories=".;..;.\General;.\CustomControls\Buttons;.\CustomControls\DraggableListCtrl;.\CustomControls\EditableListCtrl;.\CustomControls\Windows;.\Misc;E:\wx\wxWidgets\include;E:\wx\wxWidgets\include\msvc;..\..\..\..\libraries\devil\src\include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
@@ -245,6 +245,26 @@
 						RelativePath=".\CustomControls\VirtualDirTreeCtrl\virtualdirtreectrl.h">
 					</File>
 				</Filter>
+				<Filter
+					Name="SnapSplitterWindow"
+					Filter="">
+					<File
+						RelativePath=".\CustomControls\SnapSplitterWindow\SnapSplitterWindow.cpp">
+					</File>
+					<File
+						RelativePath=".\CustomControls\SnapSplitterWindow\SnapSplitterWindow.h">
+					</File>
+				</Filter>
+				<Filter
+					Name="Buttons"
+					Filter="">
+					<File
+						RelativePath=".\CustomControls\Buttons\ActionButton.cpp">
+					</File>
+					<File
+						RelativePath=".\CustomControls\Buttons\ActionButton.h">
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="ActorEditor"
@@ -342,6 +362,30 @@
 				<File
 					RelativePath=".\ScenarioEditor\ScenarioEditor.h">
 				</File>
+				<Filter
+					Name="Sections"
+					Filter="">
+					<Filter
+						Name="Map"
+						Filter="">
+						<File
+							RelativePath=".\ScenarioEditor\Sections\Map\Map.cpp">
+						</File>
+						<File
+							RelativePath=".\ScenarioEditor\Sections\Map\Map.h">
+						</File>
+					</Filter>
+					<Filter
+						Name="Common"
+						Filter="">
+						<File
+							RelativePath=".\ScenarioEditor\Sections\Common\Sidebar.cpp">
+						</File>
+						<File
+							RelativePath=".\ScenarioEditor\Sections\Common\Sidebar.h">
+						</File>
+					</Filter>
+				</Filter>
 			</Filter>
 		</Filter>
 		<File

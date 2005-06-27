@@ -1,9 +1,9 @@
-#include "MessageHandler.h"
+#include "MessagePasser.h"
 
 #include "ps/ThreadUtil.h"
 #include <queue>
 
-class MessageHandlerImpl : public AtlasMessage::MessageHandler
+class MessagePasserImpl : public AtlasMessage::MessagePasser
 {
 public:
 	virtual void Add(AtlasMessage::IMessage* msg);
