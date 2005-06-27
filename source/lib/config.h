@@ -37,6 +37,13 @@
 # define GCC_VERSION 0
 #endif
 
+// STL
+#if defined(_CPPLIB_VER)
+# define STL_DINKUMWARE _CPPLIB_VER
+#else
+# define STL_DINKUMWARE 0
+#endif
+
 // OS
 // .. Windows
 #if defined(_WIN32) || defined(WIN32)

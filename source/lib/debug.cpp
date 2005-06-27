@@ -376,7 +376,7 @@ ErrorReaction display_error(const wchar_t* description, int flags,
 	// window handle and is modal.
 
 	// handle "break" request unless the caller wants to (doing so here
-	// instead of within the dlgproc helps makes debugging easier)
+	// instead of within the dlgproc yields a correct call stack)
 	if(er == ER_BREAK && !(flags & DE_MANUAL_BREAK))
 	{
 		debug_break();
