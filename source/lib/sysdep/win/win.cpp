@@ -279,6 +279,7 @@ static int CALLBACK error_dialog_proc(HWND hDlg, unsigned int msg, WPARAM wParam
 	case WM_INITDIALOG:
 		{
 			const DialogParams* params = (const DialogParams*)lParam;
+			HWND hWnd;
 
 			// need to reset for new instance of dialog
 			dlg_client_origin.x = dlg_client_origin.y = 0;
@@ -286,9 +287,15 @@ static int CALLBACK error_dialog_proc(HWND hDlg, unsigned int msg, WPARAM wParam
 
 			if(!(params->flags & DE_ALLOW_SUPPRESS))
 			{
-				HWND h = GetDlgItem(hDlg, IDC_SUPPRESS);
-				EnableWindow(h, FALSE);
+				hWnd = GetDlgItem(hDlg, IDC_SUPPRESS);
+				EnableWindow(hWnd, FALSE);
 			}
+
+			// set fixed font for readability
+			hWnd = GetDlgItem(hDlg, IDC_EDIT1);
+			HGDIOBJ hObj = (HGDIOBJ)GetStockObject(SYSTEM_FIXED_FONT);
+			LPARAM redraw = FALSE;
+			SendMessage(hWnd, WM_SETFONT, (WPARAM)hObj, redraw);
 
 			SetDlgItemTextW(hDlg, IDC_EDIT1, params->text);
 			return TRUE;	// set default keyboard focus
