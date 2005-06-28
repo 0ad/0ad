@@ -37,6 +37,10 @@
 WIN_REGISTER_FUNC(wdbg_init);
 #pragma data_seg()
 
+// used to prevent the vectored exception handler from taking charge when
+// an exception is raised from the main thread (allows __try blocks to
+// get control). latched in wdbg_init.
+static DWORD main_thread_id;
 
 
 // protects the breakpoint helper thread.
@@ -171,7 +175,7 @@ void debug_heap_enable(DebugHeapChecks what)
 		         _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF;
 		break;
 	default:
-		assert2("debug_heap_enable: invalid what");
+		debug_assert("debug_heap_enable: invalid what");
 	}
 	_CrtSetDbgFlag(flags);
 #endif // HAVE_DEBUGALLOC
@@ -212,7 +216,7 @@ static void* while_suspended_thread_func(void* user_arg)
 	int ret = param->func(param->hThread, param->user_arg);
 
 	err = ResumeThread(param->hThread);
-	assert(err != 0);
+	debug_assert(err != 0);
 
 	return (void*)(intptr_t)ret;
 
@@ -241,11 +245,11 @@ static int call_while_suspended(WhileSuspendedFunc func, void* user_arg)
 
 	pthread_t thread;
 	err = pthread_create(&thread, 0, while_suspended_thread_func, &param);
-	assert2(err == 0);
+	debug_assert(err == 0);
 
 	void* ret;
 	err = pthread_join(thread, &ret);
-	assert2(err == 0 && ret == 0);
+	debug_assert(err == 0 && ret == 0);
 
 	return (int)(intptr_t)ret;
 }
@@ -921,10 +925,10 @@ static const wchar_t* get_exception_locus(const EXCEPTION_POINTERS* ep)
 
 // called* when an SEH exception was not caught by the app;
 // provides detailed debugging information and exits.
-// (via win.cpp!entry's __except or as a vectored handler; see below) 
+// (via win.cpp!entry's __except or vectored_exception_handler; see below) 
 //
-// note: keep memory allocs and lock usage to an absolute minimum, because we may
-// deadlock the process
+// note: keep memory allocs and locking to an absolute minimum, because
+// they may deadlock the process!
 //
 // rationale:
 // we want to replace the OS "program error" dialog box because
@@ -1006,7 +1010,7 @@ LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep)
 	if(ep->ExceptionRecord->ExceptionFlags & EXCEPTION_NONCONTINUABLE)
 		flags = DE_NO_CONTINUE;
 	ErrorReaction er = display_error(buf, flags, 1, ep->ContextRecord, file, line);
-	assert(er > 0);
+	debug_assert(er > 0);
 
 	wdbg_write_minidump(ep);
 
@@ -1016,8 +1020,23 @@ LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep)
 }
 
 
+static LONG WINAPI vectored_exception_handler(EXCEPTION_POINTERS* ep)
+{
+	// since we're called from the vectored handler chain,
+	// ignore exceptions from the main thread. this allows
+	// __try blocks to take charge; entry() catches all exceptions with a
+	// standard filter and relays them to wdbg_exception_filter.
+	if(main_thread_id == GetCurrentThreadId())
+		return EXCEPTION_CONTINUE_SEARCH;
+	return wdbg_exception_filter(ep);
+}
+
+
 static int wdbg_init(void)
 {
+	// see decl
+	main_thread_id = GetCurrentThreadId();
+
 	// add vectored exception handler (if supported by the OS).
 	// see rationale above.
 #if _WIN32_WINNT >= 0x0500	// this is how winbase.h tests for it
@@ -1029,7 +1048,7 @@ static int wdbg_init(void)
 		// doesn't complain. it won't actually be unloaded anyway -
 		// there is at least one other reference.
 	if(pAddVectoredExceptionHandler)
-		pAddVectoredExceptionHandler(TRUE, wdbg_exception_filter);
+		pAddVectoredExceptionHandler(TRUE, vectored_exception_handler);
 #endif
 
 	return 0;

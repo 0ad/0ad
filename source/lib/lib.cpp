@@ -16,7 +16,7 @@
 
 #include "precompiled.h"
 
-#include <assert.h>
+
 #include <stdlib.h>
 #include <string.h>
 
@@ -202,9 +202,9 @@ int ilog2(const float x)
 // multiple must be a power of two.
 uintptr_t round_up(const uintptr_t n, const uintptr_t multiple)
 {
-	assert(is_pow2((long)multiple));	// also catches divide-by-zero
+	debug_assert(is_pow2((long)multiple));	// also catches divide-by-zero
 	const uintptr_t result = (n + multiple-1) & ~(multiple-1);
-	assert(n <= result && result < n+multiple);
+	debug_assert(n <= result && result < n+multiple);
 	return result;
 }
 
@@ -277,7 +277,7 @@ u8 fp_to_u8(double in)
 	}
 
 	int l = (int)(in * 255.0);
-	assert((unsigned int)l <= 255u);
+	debug_assert((unsigned int)l <= 255u);
 	return (u8)l;
 }
 
@@ -292,7 +292,7 @@ u16 fp_to_u16(double in)
 	}
 
 	long l = (long)(in * 65535.0);
-	assert((unsigned long)l <= 65535u);
+	debug_assert((unsigned long)l <= 65535u);
 	return (u16)l;
 }
 
@@ -306,7 +306,7 @@ int rand_up_to(int limit)
 {
 	// (i64 avoids overflowing in multiply)
 	const i64 ret = ((i64)limit * rand()) / (RAND_MAX+1);
-	assert2(0 <= ret && ret < limit);
+	debug_assert(0 <= ret && ret < limit);
 	return (int)ret;
 }
 
@@ -368,6 +368,55 @@ int match_wildcard(const char* s, const char* w)
 		}
 		// match one character
 		else if(toupper(wc) == toupper(*s) || wc == '?')
+		{
+			w++;
+			s++;
+		}
+		// mismatched character
+		else
+		{
+			// no '*' found yet => mismatch.
+			if(!s2)
+				return 0;
+
+			// resume at previous position+1
+			w = w2;
+			s = s2++;
+		}
+	}
+
+	// strip trailing * in wildcard string
+	while(*w == '*')
+		w++;
+
+	return (*w == '\0');
+}
+
+int match_wildcardw(const wchar_t* s, const wchar_t* w)
+{
+	if(!w)
+		return 1;
+
+	// saved position in both strings, used to expand '*':
+	// s2 is advanced until match.
+	// initially 0 - we abort on mismatch before the first '*'.
+	const wchar_t* s2 = 0;
+	const wchar_t* w2 = 0;
+
+	while(*s)
+	{
+		const wchar_t wc = *w;
+		if(wc == '*')
+		{
+			// wildcard string ended with * => match.
+			if(*++w == '\0')
+				return 1;
+
+			w2 = w;
+			s2 = s+1;
+		}
+		// match one character
+		else if(towupper(wc) == towupper(*s) || wc == '?')
 		{
 			w++;
 			s++;

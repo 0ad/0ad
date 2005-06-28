@@ -1,6 +1,7 @@
 #include "precompiled.h"
 
 #include "debug_stl.h"
+#include "lib.h"	// match_wildcardw
 
 // portable debugging helper functions specific to the STL.
 
@@ -62,7 +63,7 @@ void stl_simplify_name(char* name)
 			else if(c == '>')
 			{
 				nesting--;
-				assert(nesting >= 0);
+				debug_assert(nesting >= 0);
 			}
 			continue;
 		}
@@ -102,7 +103,7 @@ void stl_simplify_name(char* name)
 				dst--;
 			src += 15;
 			// strip everything until trailing > is matched
-			assert(nesting == 0);
+			debug_assert(nesting == 0);
 			nesting = 1;
 		}
 		else if(!strncmp(src, "std::less<", 10))
@@ -112,7 +113,7 @@ void stl_simplify_name(char* name)
 				dst--;
 			src += 10;
 			// strip everything until trailing > is matched
-			assert(nesting == 0);
+			debug_assert(nesting == 0);
 			nesting = 1;
 		}
 		STRIP("std::")
@@ -309,7 +310,7 @@ class Any_string : public std::string
 public:
 	bool valid(size_t el_size) const
 	{
-		assert(el_size == sizeof(char));
+		debug_assert(el_size == sizeof(char));
 		if(!container_valid(c_str(), size()))
 			return false;
 #if STL_DINKUMWARE != 0
@@ -329,7 +330,7 @@ class Any_wstring : public std::wstring
 public:
 	bool valid(size_t el_size) const
 	{
-		assert(el_size == sizeof(wchar_t));
+		debug_assert(el_size == sizeof(wchar_t));
 		if(!container_valid(c_str(), size()))
 			return false;
 #if STL_DINKUMWARE != 0
@@ -353,8 +354,9 @@ public:
 template<class T> bool get_container_info(T* t, size_t size, size_t el_size,
 	size_t* el_count, DebugIterator* el_iterator, void* it_mem)
 {
-	assert(sizeof(T) == size);
-	assert(sizeof(T::iterator) < DEBUG_STL_MAX_ITERATOR_SIZE);
+	if(sizeof(T) != size)
+		debug_assert(sizeof(T) == size);
+	debug_assert(sizeof(T::iterator) < DEBUG_STL_MAX_ITERATOR_SIZE);
 
 	*el_count = t->size();
 	*el_iterator = stl_iterator<T>;
@@ -375,7 +377,7 @@ int stl_get_container_info(const wchar_t* type_name, const u8* p, size_t size,
 	bool valid;
 
 #define CONTAINER(name)\
-	else if(!wcsncmp(type_name, L"std::" L###name, wcslen(L###name)+5))\
+	else if(match_wildcardw(type_name, L"std::" L###name L"<*>"))\
 		valid = get_container_info<Any_##name>((Any_##name*)p, size, el_size, el_count, el_iterator, it_mem);
 
 	if(0) {}	// kickoff
@@ -386,9 +388,9 @@ int stl_get_container_info(const wchar_t* type_name, const u8* p, size_t size,
 	CONTAINER(set)
 	CONTAINER(stack)
 	CONTAINER(vector)
-	else if(!wcsncmp(type_name, L"std::basic_string<char", 22))
+	else if(match_wildcardw(type_name, L"std::basic_string<char*>"))
 		valid = get_container_info<Any_string>((Any_string*)p, size, el_size, el_count, el_iterator, it_mem);
-	else if(!wcsncmp(type_name, L"std::basic_string<unsigned short", 32))
+	else if(match_wildcardw(type_name, L"std::basic_string<unsigned short*>"))
 		valid = get_container_info<Any_wstring>((Any_wstring*)p, size, el_size, el_count, el_iterator, it_mem);
 	// unknown type, can't handle it
 	else

@@ -53,7 +53,7 @@ scope
 #define LIB_H__
 
 #include <stddef.h>
-#include <assert.h>
+
 
 #include "config.h"
 #include "lib/types.h"
@@ -107,7 +107,7 @@ STMT(\
 	int err__ = (int)((func) & UINT_MAX);\
 	if(err__ < 0)\
 	{\
-		assert2(0 && "FYI: CHECK_ERR reports that a function failed."\
+		debug_assert(0 && "FYI: CHECK_ERR reports that a function failed."\
 		            "feel free to ignore or suppress this warning.");\
 		return err__;\
 	}\
@@ -139,7 +139,7 @@ STMT(\
 	int err__ = (int)((func) & UINT_MAX);\
 	if(err__ < 0)\
 	{\
-		assert(0 && "FYI: CHECK_ERR reports that a function failed."\
+		debug_assert(0 && "FYI: CHECK_ERR reports that a function failed."\
 		            "feel free to ignore or suppress this warning.");\
 		throw err__;\
 	}\
@@ -231,7 +231,7 @@ enum LibError
 
 
 //
-// compile-time assert, especially useful for testing sizeof().
+// compile-time debug_assert, especially useful for testing sizeof().
 // no runtime overhead; may be used anywhere, including file scope.
 //
 
@@ -332,6 +332,6 @@ extern void base32(const int len, const u8* in, u8* out);
 // which may contain '?' or '*' wildcards. if so, return 1, otherwise 0.
 // note: NULL wildcard pattern matches everything!
 extern int match_wildcard(const char* s, const char* w);
-
+extern int match_wildcardw(const wchar_t* s, const wchar_t* w);
 
 #endif	// #ifndef LIB_H__

@@ -31,7 +31,7 @@
 //-----------------------------------------------------------------------------
 
 // check heap integrity (independently of mmgr).
-// errors are reported by the CRT, e.g. via assert.
+// errors are reported by the CRT, e.g. via debug_assert.
 extern void debug_heap_check(void);
 
 enum DebugHeapChecks
@@ -51,7 +51,7 @@ extern void debug_heap_enable(DebugHeapChecks what);
 
 
 //-----------------------------------------------------------------------------
-// assert
+// debug_assert
 //-----------------------------------------------------------------------------
 
 // notify the user that an assertion failed; displays a
@@ -59,8 +59,9 @@ extern void debug_heap_enable(DebugHeapChecks what);
 // returns one of UserErrorReaction.
 extern enum ErrorReaction debug_assert_failed(const char* source_file, int line, const char* assert_expr);
 
-// recommended use: assert2(expr && "descriptive string")
-#define assert2(expr)\
+// recommended use: debug_assert(expr && "descriptive string")
+#undef debug_assert
+#define debug_assert(expr)\
 STMT(\
 	static unsigned char suppress__ = 0x55;\
 	if(suppress__ == 0x55 && !(expr))\
@@ -88,8 +89,8 @@ extern void debug_wprintf(const wchar_t* fmt, ...);
 // used for "last activity" reporting in the crashlog.
 extern void debug_wprintf_mem(const wchar_t* fmt, ...);
 
-// warn of unexpected state. less error-prone than assert(!"text");
-#define debug_warn(str) assert2(0 && (str))
+// warn of unexpected state. less error-prone than debug_assert(!"text");
+#define debug_warn(str) debug_assert(0 && (str))
 
 // TODO
 extern int debug_write_crashlog(const wchar_t* text);

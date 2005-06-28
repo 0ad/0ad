@@ -1,4 +1,4 @@
-// stack trace, improved assert and exception handler for Win32
+// stack trace, improved debug_assert and exception handler for Win32
 // Copyright (c) 2002-2005 Jan Wassenberg
 //
 // This program is free software; you can redistribute it and/or
@@ -48,11 +48,9 @@ WIN_REGISTER_FUNC(wdbg_sym_shutdown);
 #pragma data_seg()
 
 
-// debug_warn usually uses assert2, but we don't want to call that from
-// inside an assert2 (from inside another assert2 (from inside another assert2
-// (... etc))), so just use the normal assert
-//#undef debug_warn
-//#define debug_warn(str) assert(0 && (str))
+// note: it is safe to use debug_assert/debug_warn/CHECK_ERR even during a
+// stack trace (which is triggered by debug_assert et al. in app code) because
+// nested stack traces are ignored and only the error is displayed.
 
 
 // protects dbghelp (which isn't thread-safe) and
@@ -83,6 +81,10 @@ enum WdbgError
 
 	// an essential call to SymGetTypeInfo or SymFromIndex failed.
 	WDBG_TYPE_INFO_UNAVAILABLE = -100102,
+
+	// a generous limit on nesting depth has been reached.
+	// we abort to make sure we don't recurse infinitely.
+	WDBG_NESTING_LIMIT         = -100103,
 
 	// exception raised while processing the symbol.
 	WDBG_INTERNAL_ERROR        = -100200,
@@ -130,7 +132,7 @@ static int sym_init()
 	SymSetOptions(SYMOPT_DEFERRED_LOADS/*/*|SYMOPT_DEBUG*/);
 	// loads symbols for all active modules.
 	BOOL ok = SymInitialize(hProcess, 0, TRUE);
-	assert2(ok);
+	debug_assert(ok);
 
 	mod_base = SymGetModuleBase64(hProcess, (u64)&sym_init);
 	IMAGE_NT_HEADERS* header = ImageNtHeader((void*)mod_base);
@@ -222,7 +224,7 @@ int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int*
 // rationale: to function properly, StackWalk64 requires a CONTEXT on
 // non-x86 systems (documented) or when in release mode (observed).
 // exception handlers can call walk_stack with their context record;
-// otherwise (e.g. dump_stack from assert2), we need to query it.
+// otherwise (e.g. dump_stack from debug_assert), we need to query it.
 // there are 2 platform-independent ways to do so:
 // - intentionally raise an SEH exception, then proceed as above;
 // - GetThreadContext while suspended (*).
@@ -442,9 +444,10 @@ void* debug_get_nth_caller(uint n)
 //
 //////////////////////////////////////////////////////////////////////////////
 
-// overflow is impossible in practice. keep in sync with DumpState.
-static const uint MAX_INDIRECTION = 256;
-static const uint MAX_LEVEL = 256;
+// overflow is impossible in practice, but check for robustness.
+// keep in sync with DumpState.
+static const uint MAX_INDIRECTION = 255;
+static const uint MAX_LEVEL = 255;
 
 struct DumpState
 {
@@ -693,10 +696,25 @@ static int dump_sequence(DebugIterator el_iterator, void* internal,
 		return ret;
 
 	out(L"[%d] ", el_count);
-	const size_t num_elements_to_show = MIN(20, el_count);
-	const bool fits_on_one_line =
-		(el_size == sizeof(char) && el_count <= 16) ||
-		(el_size <= sizeof(int ) && el_count <=  8);
+
+	// choose formatting based on element size
+	bool fits_on_one_line;
+	size_t num_elements_to_show;
+	if(el_size == sizeof(char))
+	{
+		fits_on_one_line = el_count <= 16;
+		num_elements_to_show = MIN(16, el_count);
+	}
+	else if(el_size <= sizeof(int))
+	{
+		fits_on_one_line = el_count <= 8;
+		num_elements_to_show = MIN(12, el_count);
+	}
+	else
+	{
+		fits_on_one_line = false;
+		num_elements_to_show = MIN(8, el_count);
+	}
 
 	state.level++;
 	out(fits_on_one_line? L"{ " : L"\r\n");
@@ -872,9 +890,9 @@ static int dump_sym_array(DWORD type_id, const u8* p, DumpState state)
 	if(!SymGetTypeInfo(hProcess, mod_base, el_type_id, TI_GET_LENGTH, &el_size_))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
 	const size_t el_size = (size_t)el_size_;
-	assert(el_size != 0);
+	debug_assert(el_size != 0);
 	const size_t num_elements = size/el_size;
-	assert2(num_elements != 0);
+	debug_assert(num_elements != 0);
  
 	return dump_array(p, num_elements, el_type_id, el_size, state);
 }
@@ -912,7 +930,7 @@ static int dump_sym_base_type(DWORD type_id, const u8* p, DumpState state)
 	{
 		// boolean
 		case btBool:
-			assert(size == sizeof(bool));
+			debug_assert(size == sizeof(bool));
 			fmt = L"%hs";
 			data = (u64)(data? "true " : "false");
 			break;
@@ -968,7 +986,7 @@ display_as_hex:
 		// character
 		case btChar:
 		case btWChar:
-			assert(size == sizeof(char) || size == sizeof(wchar_t));
+			debug_assert(size == sizeof(char) || size == sizeof(wchar_t));
 			// char*, wchar_t*
 			if(state.indirection)
 			{
@@ -1006,7 +1024,7 @@ display_as_hex:
 		case btBit:
 		case btBSTR:
 		case btHresult:
-			return -1;
+			return WDBG_UNSUPPORTED;
 	}
 
 	out(fmt, data);
@@ -1221,6 +1239,10 @@ static int dump_sym_pointer(DWORD type_id, const u8* p, DumpState state)
 	out(L" -> ");
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_TYPEID, &type_id))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
+
+	// prevent infinite recursion just to be safe (shouldn't happen)
+	if(state.indirection >= MAX_INDIRECTION)
+		return WDBG_NESTING_LIMIT;
 	state.indirection++;
 	return dump_sym(type_id, p, state);
 }
@@ -1431,9 +1453,10 @@ static int udt_dump_normal(const wchar_t* type_name, const u8* p, size_t size,
 {
 	const bool fits_on_one_line = udt_fits_on_one_line(type_name, num_children, size);
 
+	// prevent infinite recursion just to be safe (shouldn't happen)
+	if(state.level >= MAX_LEVEL)
+		return WDBG_NESTING_LIMIT;
 	state.level++;
-	if(state.level > 20)
-		return -1;
 
 	out(fits_on_one_line? L"{ " : L"\r\n");
 
@@ -1447,7 +1470,7 @@ static int udt_dump_normal(const wchar_t* type_name, const u8* p, size_t size,
 		DWORD ofs = 0;
 		if(!SymGetTypeInfo(hProcess, mod_base, child_id, TI_GET_OFFSET, &ofs))
 			continue;
-		assert(ofs < size);
+		debug_assert(ofs < size);
 
 		if(!fits_on_one_line)
 			INDENT;
@@ -1698,8 +1721,8 @@ const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void*
 	if(!CAS(&already_in_progress, 0, 1))
 	{
 		wcscpy_s(buf, max_chars,
-			L"(cannot start a nested stack trace; what probably happened is that"
-			L"an assert/debug_warn/CHECK_ERR fired during the current trace.)"
+			L"(cannot start a nested stack trace; what probably happened is that "
+			L"an debug_assert/debug_warn/CHECK_ERR fired during the current trace.)"
 		);
 		return buf;
 	}
@@ -1823,7 +1846,7 @@ Small small_array_of_small_structs[2] = { { 1,2 } };
 int ar1[] = { 1,2,3,4,5	};
 char ar2[] = { 't','e','s','t', 0 };
 
-//assert2(0 && "test assert2");				// not exception (works when run from debugger)
+//debug_assert(0 && "test debug_assert");				// not exception (works when run from debugger)
 //__asm xor edx,edx __asm div edx 			// named SEH
 //RaiseException(0x87654321, 0, 0, 0);		// unknown SEH
 //throw std::bad_exception("what() is ok");	// C++

@@ -17,7 +17,7 @@
 
 #include "precompiled.h"
 
-#include <assert.h>
+
 #include <stdio.h>
 #include <stdlib.h>	// __argc
 
@@ -158,7 +158,7 @@ static int CALLBACK browse_cb(HWND hWnd, unsigned int msg, LPARAM lParam, LPARAM
 
 int pick_directory(char* path, size_t buf_size)
 {
-	assert(buf_size >= PATH_MAX);
+	debug_assert(buf_size >= PATH_MAX);
 	IMalloc* p_malloc;
 	SHGetMalloc(&p_malloc);
 
@@ -185,7 +185,7 @@ int pick_directory(char* path, size_t buf_size)
 
 
 //-----------------------------------------------------------------------------
-// "program error" dialog (triggered by assert and exception)
+// "program error" dialog (triggered by debug_assert and exception)
 //-----------------------------------------------------------------------------
 
 // support for resizing the dialog / its controls
@@ -563,21 +563,21 @@ static bool cs_valid;
 
 void win_lock(uint idx)
 {
-	assert(idx < NUM_CS && "win_lock: invalid critical section index");
+	debug_assert(idx < NUM_CS && "win_lock: invalid critical section index");
 	if(cs_valid)
 		EnterCriticalSection(&cs[idx]);
 }
 
 void win_unlock(uint idx)
 {
-	assert(idx < NUM_CS && "win_unlock: invalid critical section index");
+	debug_assert(idx < NUM_CS && "win_unlock: invalid critical section index");
 	if(cs_valid)
 		LeaveCriticalSection(&cs[idx]);
 }
 
 int win_is_locked(uint idx)
 {
-	assert(idx < NUM_CS && "win_is_locked: invalid critical section index");
+	debug_assert(idx < NUM_CS && "win_is_locked: invalid critical section index");
 	if(!cs_valid)
 		return -1;
 	BOOL got_it = TryEnterCriticalSection(&cs[idx]);
@@ -637,7 +637,7 @@ uint local2 = 0x1234;
 debug_printf("&static2 = %p\n", &static2);
 debug_printf("param2 = %p\n&local2 = %p\n", param2, &local2);
 debug_printf("&param2a = %p\nparam2b = %p\nparam2c = %p\n", &param2a, &param2b, &param2c);
-assert2(0 == 1);
+debug_assert(0 == 1);
 }
 
 static void test1(uint param1a, uint param1b, uint param1c, std::vector<uint>* param1)

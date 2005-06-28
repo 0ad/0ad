@@ -37,7 +37,7 @@ wchar_t* debug_log_pos = debug_log;
 void debug_wprintf_mem(const wchar_t* fmt, ...)
 {
 	const ssize_t chars_left = (ssize_t)LOG_CHARS - (debug_log_pos-debug_log);
-	assert2(chars_left >= 0);
+	debug_assert(chars_left >= 0);
 
 	// potentially not enough room for the new string; throw away the
 	// older half of the log. we still protect against overflow below.
@@ -352,7 +352,7 @@ ErrorReaction display_error(const wchar_t* description, int flags,
 	debug_wprintf(L"%hs(%d): %s\n", filename, line, description);
 
 	wchar_t* text;
-	const size_t MAX_CHARS = 64*1024;
+	const size_t MAX_CHARS = 512*1024;
 	void* mem = malloc(MAX_CHARS*sizeof(wchar_t));
 	if(mem)
 	{
