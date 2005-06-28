@@ -146,7 +146,7 @@ JSBool WriteLog(JSContext* context, JSObject* UNUSEDPARAM(globalObject), unsigne
 
 JSBool getEntityByHandle( JSContext* context, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* rval )
 {
-	assert( argc >= 1 );
+	debug_assert( argc >= 1 );
 	i32 handle;
 	try
 	{
@@ -173,7 +173,7 @@ JSBool getEntityByHandle( JSContext* context, JSObject* UNUSEDPARAM(globalObject
 
 JSBool getEntityTemplate( JSContext* context, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* rval )
 {
-	assert( argc >= 1 );
+	debug_assert( argc >= 1 );
 	CStrW templateName;
 	try
 	{
@@ -280,7 +280,7 @@ JSBool setCameraTarget( JSContext* context, JSObject* obj, unsigned int argc, js
 
 JSBool setTimeout( JSContext* context, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* UNUSEDPARAM(rval) )
 {
-	assert( argc >= 2 );
+	debug_assert( argc >= 2 );
 	size_t delay;
 	try
 	{
@@ -314,7 +314,7 @@ JSBool setTimeout( JSContext* context, JSObject* UNUSEDPARAM(globalObject), unsi
 
 JSBool setInterval( JSContext* context, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* UNUSEDPARAM(rval) )
 {
-	assert( argc >= 2 );
+	debug_assert( argc >= 2 );
 	size_t first, interval;
 	try
 	{
@@ -364,7 +364,7 @@ JSBool cancelInterval( JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(gl
 
 JSBool v3dist( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
 {
-	assert( argc >= 2 );
+	debug_assert( argc >= 2 );
 	CVector3D* a = ToNative<CVector3D>( argv[0] );
 	CVector3D* b = ToNative<CVector3D>( argv[1] );
 	float dist = ( *a - *b ).GetLength();
@@ -400,7 +400,7 @@ JSBool setCursor(JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalOb
 {
 	if (argc != 1)
 	{
-		assert(! "Invalid parameter count to setCursor");
+		debug_assert(! "Invalid parameter count to setCursor");
 		return JS_FALSE;
 	}
 	g_CursorName = g_ScriptingHost.ValueToString(argv[0]);
@@ -577,8 +577,8 @@ JSBool _lodbias(JSContext* context, JSObject* globalObject, unsigned int argc, j
 
 JSBool issueCommand(JSContext* context, JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* rval)
 {
-	assert(argc >= 2);
-	assert(JSVAL_IS_OBJECT(argv[0]));
+	debug_assert(argc >= 2);
+	debug_assert(JSVAL_IS_OBJECT(argv[0]));
 	
 	CEntityList entities;
 

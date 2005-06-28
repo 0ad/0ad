@@ -4,7 +4,7 @@
 #include "TSComponent.h"
 #include "StringConvert.h"
 
-#include <assert.h>
+
 #include <algorithm>
 
 #include "ps/CLogger.h"
@@ -328,7 +328,7 @@ bool CLocale::ReadCached(StringBuffer* sb, Str& str)
 		return false;
 
 	// Check every variable to see whether they're identical
-	assert(sb->Variables.size() == (*it).second.vars.size()); // this should always be true
+	debug_assert(sb->Variables.size() == (*it).second.vars.size()); // this should always be true
 	size_t count = sb->Variables.size();
 	for (size_t i = 0; i < count; ++i)
 		if (! ( *sb->Variables[i] == *(*it).second.vars[i] ) )

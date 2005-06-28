@@ -7,7 +7,7 @@
 // Vaguely useful utility function for deleting stuff
 template<typename T> void delete_fn(T* v) { delete v; }
 
-#include <assert.h>
+
 #include <iostream>
 
 #include "ps/CLogger.h"

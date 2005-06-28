@@ -22,7 +22,7 @@
 #include "wsock.h"
 #include "wdll.h"
 
-#include <assert.h>
+
 
 #ifdef _MSC_VER
 #pragma comment(lib, "ws2_32.lib")

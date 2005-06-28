@@ -69,7 +69,7 @@ JSBool JSI_VFS::BuildFileList( JSContext* cx, JSObject* obj, uintN argc, jsval* 
 	// get arguments
 	//
 
-	assert( argc >= 1 );
+	debug_assert( argc >= 1 );
 	CStr path;
 	if( !ToPrimitive<CStr>( cx, argv[0], path ) )
 		return( JS_FALSE );
@@ -109,7 +109,7 @@ JSBool JSI_VFS::BuildFileList( JSContext* cx, JSObject* obj, uintN argc, jsval* 
 //   filename: VFS filename (may include path)
 JSBool JSI_VFS::GetFileMTime( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
-	assert( argc >= 1 );
+	debug_assert( argc >= 1 );
 	CStr filename;
 	if( !ToPrimitive<CStr>( cx, argv[0], filename ) )
 		return( JS_FALSE );
@@ -129,7 +129,7 @@ JSBool JSI_VFS::GetFileMTime( JSContext* cx, JSObject* obj, uintN argc, jsval* a
 //   filename: VFS filename (may include path)
 JSBool JSI_VFS::GetFileSize( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
-	assert( argc >= 1 );
+	debug_assert( argc >= 1 );
 	CStr filename;
 	if( !ToPrimitive<CStr>( cx, argv[0], filename ) )
 		return( JS_FALSE );
@@ -149,7 +149,7 @@ JSBool JSI_VFS::GetFileSize( JSContext* cx, JSObject* obj, uintN argc, jsval* ar
 //   filename: VFS filename (may include path)
 JSBool JSI_VFS::ReadFile( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
-	assert( argc >= 1 );
+	debug_assert( argc >= 1 );
 	CStr filename;
 	if( !ToPrimitive<CStr>( cx, argv[0], filename ) )
 		return( JS_FALSE );
@@ -173,7 +173,7 @@ JSBool JSI_VFS::ReadFile( JSContext* cx, JSObject* obj, uintN argc, jsval* argv,
 //   filename: VFS filename (may include path)
 JSBool JSI_VFS::ReadFileLines( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
-	assert( argc >= 1 );
+	debug_assert( argc >= 1 );
 	CStr filename;
 	if( !ToPrimitive<CStr>( cx, argv[0], filename ) )
 		return( JS_FALSE );

@@ -222,7 +222,7 @@ extern void operator delete[](void* p, const char* file, int line, const char* f
 // fixing your bugs
 // ----------------
 //
-// if this code crashes or fails an assert, it is most likely due to a bug
+// if this code crashes or fails an debug_assert, it is most likely due to a bug
 // in your application. consult the current Alloc for information;
 // search the log for its address to determine what operation failed,
 // and what piece of code owns the allocation.

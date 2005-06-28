@@ -70,7 +70,7 @@ CBoundingObject* getCollisionObject( CBoundingObject* bounds )
 HEntity getCollisionObject( CEntity* entity )
 {
 #ifndef NDEBUG
-	assert( entity->m_bounds ); 
+	debug_assert( entity->m_bounds ); 
 #else
 	if( !entity->m_bounds ) return( HEntity() );
 #endif

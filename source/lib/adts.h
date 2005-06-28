@@ -208,7 +208,7 @@ public:
 			l->refs++;
 		else
 		{
-			assert(l->refs > 0);
+			debug_assert(l->refs > 0);
 			l->refs--;
 		}
 		return 0;

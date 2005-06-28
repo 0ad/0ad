@@ -285,7 +285,7 @@ int LDR_ProgressiveLoad(double time_budget, wchar_t* description,
 	// set output params (there are several return points above)
 done:
 	*progress_percent = (int)(progress * 100.0);
-	assert2(0 <= *progress_percent && *progress_percent <= 100);
+	debug_assert(0 <= *progress_percent && *progress_percent <= 100);
 
 	// we want the next task, instead of what just completed:
 	// it will be displayed during the next load phase.

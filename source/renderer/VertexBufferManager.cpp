@@ -6,7 +6,7 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 #include "precompiled.h"
-#include <assert.h>
+
 #include "ogl.h"
 #include "VertexBufferManager.h"
 #include "ps/CLogger.h"
@@ -51,12 +51,12 @@ CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize,size_t 
 	m_Buffers.push_front(buffer);
 	result=buffer->Allocate(vertexSize,numVertices,dynamic);
 	
-	// TODO, RC - assert not really suitable?  probably need to handle "failed to create 
+	// TODO, RC - debug_assert not really suitable?  probably need to handle "failed to create 
 	// VBO case" better
 	if (!result)
 	{
 		LOG(ERROR, LOG_CATEGORY, "Failed to create VBOs");
-		assert2(!"Failed to create VBOs");
+		debug_assert(!"Failed to create VBOs");
 	}
 
 	return result;
@@ -66,7 +66,7 @@ CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize,size_t 
 // Release: return given chunk to it's owner
 void CVertexBufferManager::Release(CVertexBuffer::VBChunk* chunk)
 {
-	assert(chunk);
+	debug_assert(chunk);
 	chunk->m_Owner->Release(chunk);
 }
 

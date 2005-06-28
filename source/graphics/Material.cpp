@@ -119,7 +119,7 @@ SMaterialColor CMaterial::GetEmissive()
 
 SMaterialColor CMaterial::GetPlayerColor()
 {
-	assert(m_PlayerID != PLAYER_NONE);
+	debug_assert(m_PlayerID != PLAYER_NONE);
 		// because this should never be called unless IsPlayer returned true
 
 	if (m_PlayerID == PLAYER_OTHER /* TODO: or if player-colour is globally disabled */ )

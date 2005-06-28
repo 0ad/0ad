@@ -58,7 +58,7 @@ CInput::~CInput()
 
 int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 {
-	assert(m_iBufferPos != -1);
+	debug_assert(m_iBufferPos != -1);
 
 	// Since the GUI framework doesn't handle to set settings
 	//  in Unicode (CStrW), we'll simply retrieve the actual
@@ -1017,7 +1017,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 	}
 	else
 	{
-		assert(to_before != -1);
+		debug_assert(to_before != -1);
 
 		list<SRow>::iterator destroy_row_from, destroy_row_to;
 		// Used to check if the above has been set to anything, 

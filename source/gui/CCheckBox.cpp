@@ -62,7 +62,7 @@ void CCheckBox::SetupText()
 	if (!GetGUI())
 		return;
 
-	assert(m_GeneratedTexts.size()>=1);
+	debug_assert(m_GeneratedTexts.size()>=1);
 
 	CStr font;
 	CGUIString caption;

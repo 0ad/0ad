@@ -9,7 +9,7 @@
 #ifndef _RENDERABLEOBJECT_H
 #define _RENDERABLEOBJECT_H
 
-#include <assert.h>
+
 #include "Bound.h"
 #include "Matrix3D.h"
 
@@ -87,9 +87,9 @@ public:
 	// set the object renderdata 
 	// TODO,RC 10/04/04 - need to delete existing renderdata here, or can we
 	// assume the renderer won't set renderdata when an object already has it?
-	// - just assert we've no renderdata at the minute
+	// - just debug_assert we've no renderdata at the minute
 	void SetRenderData(CRenderData* renderdata) { 
-		assert(m_RenderData==0);
+		debug_assert(m_RenderData==0);
 		m_RenderData=renderdata; 
 	}
 

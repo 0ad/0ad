@@ -21,7 +21,7 @@
 #include "win_internal.h"
 #include "lib/res/file.h"	// file_is_subpath
 
-#include <assert.h>
+
 
 #include <string>
 #include <map>
@@ -240,7 +240,7 @@ int dir_add_watch(const char* dir, intptr_t* _reqnum)
 	try
 	{
 		Watch* w = new Watch(reqnum, dir_s, hDir);
-		assert(w != 0);		// happened once; heap corruption?
+		debug_assert(w != 0);		// happened once; heap corruption?
 
 		// add trailing \ if not already there
 		if(dir_s[dir_s.length()-1] != '\\')
@@ -285,7 +285,7 @@ int dir_cancel_watch(const intptr_t reqnum)
 	}
 
 	// we're freeing a reference - done.
-	assert(w->refs >= 1);
+	debug_assert(w->refs >= 1);
 	if(--w->refs != 0)
 		return 0;
 
@@ -304,7 +304,7 @@ int dir_cancel_watch(const intptr_t reqnum)
 
 static int extract_events(Watch* w)
 {
-	assert(w);
+	debug_assert(w);
 
 	// points to current FILE_NOTIFY_INFORMATION;
 	// char* simplifies advancing to the next (variable length) FNI.

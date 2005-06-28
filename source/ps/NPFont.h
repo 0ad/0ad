@@ -26,7 +26,7 @@ public:
 	const char* name() const { return (const char*) _name; }
 	
 	// accessors for font metrics 
-	int width(int c) const { assert(c>=0 && c<128); return _chars[c]._width; }
+	int width(int c) const { debug_assert(c>=0 && c<128); return _chars[c]._width; }
 	int height() const { return _metrics._height; }
 	int descent() const { return _metrics._descent; }
 	int maxcharwidth() const { return _metrics._maxcharwidth; }
@@ -43,7 +43,7 @@ public:
 
 	// accessor for character data
 	const CharData& chardata(char c) const { 
-		assert( !(c&0x80) ); // only allow 7-bit ASCII
+		debug_assert( !(c&0x80) ); // only allow 7-bit ASCII
 		return _chars[c]; 
 	}
 

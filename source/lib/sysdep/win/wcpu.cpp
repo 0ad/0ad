@@ -249,7 +249,7 @@ static uintptr_t get_target_pc()
 	/////////////////////////////////////////////
 
 	ret = ResumeThread(hThread);
-	assert(ret != 0);
+	debug_assert(ret != 0);
 		// don't fail (we have a valid PC), but warn
 
 	return pc;

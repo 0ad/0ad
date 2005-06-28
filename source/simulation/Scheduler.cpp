@@ -130,7 +130,7 @@ void CJSProgressTimer::ScriptingInit()
 
 JSBool CJSProgressTimer::Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
 {
-	assert( argc >= 2 );
+	debug_assert( argc >= 2 );
 	double max = ToPrimitive<double>( argv[0] );
 	double increment = ToPrimitive<double>( argv[1] );
 	JSFunction* callback_fn = NULL;

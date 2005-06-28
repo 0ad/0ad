@@ -188,13 +188,13 @@ void CVertexBuffer::AppendBatch(VBChunk* UNUSEDPARAM(chunk),Handle texture,size_
 void CVertexBuffer::UpdateChunkVertices(VBChunk* chunk,void* data)
 {
 	if (g_Renderer.m_Caps.m_VBO) {
-		assert(m_Handle);
+		debug_assert(m_Handle);
 		glGetError(); // clear the error state
 		glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_Handle);
 		glBufferSubDataARB(GL_ARRAY_BUFFER_ARB,chunk->m_Index*m_VertexSize,chunk->m_Count*m_VertexSize,data);
 		if (glGetError() != GL_NO_ERROR) throw PSERROR_Renderer_VBOFailed();
 	} else {
-		assert(m_SysMem);
+		debug_assert(m_SysMem);
 		memcpy(m_SysMem+chunk->m_Index*m_VertexSize,data,chunk->m_Count*m_VertexSize);
 	}
 }

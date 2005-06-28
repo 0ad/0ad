@@ -170,7 +170,7 @@ bool sparsePathTree::slice()
 
 void sparsePathTree::pushResults( std::vector<CVector2D>& nodelist )
 {
-	assert( type & SPF_SOLVED );
+	debug_assert( type & SPF_SOLVED );
 
 	if( type == SPF_CLOSED_DIRECT )
 	{
@@ -188,7 +188,7 @@ void sparsePathTree::pushResults( std::vector<CVector2D>& nodelist )
 		}
 		else
 		{
-			assert( !rightImpossible );
+			debug_assert( !rightImpossible );
 			rightPost->pushResults( nodelist );
 			rightPre->pushResults( nodelist );
 		}
@@ -242,7 +242,7 @@ void pathSparse( HEntity entity, CVector2D destination )
 	sparsePathTree sparseEngine( source, destination, entity, getContainingObject( destination ), SPF_RECURSION_DEPTH );
 	while( sparseEngine.type & sparsePathTree::SPF_OPEN ) sparseEngine.slice();
 
-	// assert( sparseEngine.type & sparsePathTree::SPF_SOLVED ); // Shouldn't be any impossible cases yet.
+	// debug_assert( sparseEngine.type & sparsePathTree::SPF_SOLVED ); // Shouldn't be any impossible cases yet.
 
 	if( sparseEngine.type & sparsePathTree::SPF_SOLVED )
 	{

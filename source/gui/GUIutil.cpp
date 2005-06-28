@@ -316,7 +316,7 @@ bool CClientArea::SetClientArea(const CStr& Value)
 			{
 				if (valuenr!=3)
 				{
-					assert(valuenr <= 2);
+					debug_assert(valuenr <= 2);
 					arg_start[valuenr+1] = i+1;
 					arg_count[valuenr] = arg_start[valuenr+1] - arg_start[valuenr] - 1;
 				}

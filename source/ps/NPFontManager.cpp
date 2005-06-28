@@ -80,7 +80,7 @@ bool NPFontManager::remove(const char* name)
 	} else {
 		typedef std::vector<NPFont*>::iterator Iter;
 		Iter iter=std::find(_fonts.begin(),_fonts.end(),font);
-		assert(iter != _fonts.end());
+		debug_assert(iter != _fonts.end());
 		_fonts.erase(iter);
 	}
 

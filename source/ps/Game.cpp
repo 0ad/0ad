@@ -69,7 +69,7 @@ PSRETURN CGame::ReallyStartGame()
 	// Call the reallyStartGame function, but only if it exists
 	jsval fval, rval;
 	JSBool ok = JS_GetProperty(g_ScriptingHost.getContext(), g_GUI.GetScriptObject(), "reallyStartGame", &fval);
-	assert(ok);
+	debug_assert(ok);
 	if (ok && !JSVAL_IS_VOID(fval))
 	{
 		ok = JS_CallFunctionValue(g_ScriptingHost.getContext(), g_GUI.GetScriptObject(), fval, 0, NULL, &rval);
@@ -139,7 +139,7 @@ CPlayer *CGame::GetPlayer(uint idx)
 		if (m_Players.size() == 0)
 		{
 			// Hmm. This is a bit of a problem.
-			assert2(! "### ### ### ### ERROR: Tried to access the players list when there aren't any players. That really isn't going to work, so I'll give up. ### ###");
+			debug_assert(! "### ### ### ### ERROR: Tried to access the players list when there aren't any players. That really isn't going to work, so I'll give up. ### ###");
 			abort();
 			return NULL; // else VC2005 warns about not returning a value
 		}

@@ -314,7 +314,7 @@ void CXMLReader::Init(const CStr& xml_filename)
 #undef EL
 
 	XMBElement root = xmb_file.getRoot();
-	assert(root.getNodeName() == el_scenario);
+	debug_assert(root.getNodeName() == el_scenario);
 	nodes = root.getChildNodes();
 
 	// find out total number of entities+nonentities
@@ -379,7 +379,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 		// wrapped, since we only yield after a complete iteration.
 
 		XMBElement entity = entities.item(entity_idx++);
-		assert(entity.getNodeName() == el_entity);
+		debug_assert(entity.getNodeName() == el_entity);
 
 		CStrW TemplateName;
 		int PlayerID;
@@ -443,7 +443,7 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 		// wrapped, since we only yield after a complete iteration.
 
 		XMBElement nonentity = nonentities.item(nonentity_idx++);
-		assert(nonentity.getNodeName() == el_nonentity);
+		debug_assert(nonentity.getNodeName() == el_nonentity);
 
 		CStr ActorName;
 		CVector3D Position;

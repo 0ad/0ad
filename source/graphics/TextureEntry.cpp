@@ -153,7 +153,7 @@ void CTextureEntry::LoadTexture()
 {
 	if (m_TexturePath.size() == 0)
 	{
-		assert(m_pParent);
+		debug_assert(m_pParent);
 		m_pParent->LoadTexture();
 		m_Handle = m_pParent->m_Handle;
 		return;
@@ -184,7 +184,7 @@ void CTextureEntry::BuildBaseColor()
 	// cases c&d: We don't have our own texture, use parent base color instead
 	if (m_TexturePath.size() == 0)
 	{
-		assert(m_pParent);
+		debug_assert(m_pParent);
 		m_BaseColor=m_pParent->GetBaseColor();
 		m_BaseColorValid=true;
 		return;

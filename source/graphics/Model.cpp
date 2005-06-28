@@ -111,7 +111,7 @@ static CVector3D SkinPoint(const CVector3D& pos,const SVertexBlend& blend,
 	CVector3D result,tmp;
 
 	// must have at least one valid bone if we're using SkinPoint
-	assert(blend.m_Bone[0]!=0xff);
+	debug_assert(blend.m_Bone[0]!=0xff);
 
 	const CMatrix3D& m=bonestates[blend.m_Bone[0]];
 	m.Transform(pos,result);
@@ -137,7 +137,7 @@ void CModel::CalcBounds()
 	{
 		if (m_Anim->m_ObjectBounds.IsEmpty())
 			CalcAnimatedObjectBound(m_Anim->m_AnimDef, m_Anim->m_ObjectBounds);
-		assert(! m_Anim->m_ObjectBounds.IsEmpty()); // (if this happens, it'll be recalculating the bounds every time)
+		debug_assert(! m_Anim->m_ObjectBounds.IsEmpty()); // (if this happens, it'll be recalculating the bounds every time)
 		m_ObjectBounds = m_Anim->m_ObjectBounds;
 	}
 
@@ -272,7 +272,7 @@ void CModel::GenerateBoneMatrices()
 
 	PROFILE( "generating bone matrices" );
 
-	assert(m_pModelDef->GetNumBones() == m_Anim->m_AnimDef->GetNumKeys());
+	debug_assert(m_pModelDef->GetNumBones() == m_Anim->m_AnimDef->GetNumKeys());
 
 	m_Anim->m_AnimDef->BuildBoneMatrices(m_AnimTime,m_BoneMatrices);
 

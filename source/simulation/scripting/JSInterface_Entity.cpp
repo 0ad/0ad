@@ -82,7 +82,7 @@ JSBool JSI_Entity::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* v
 
 JSBool JSI_Entity::construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
 {
-	assert( argc >= 2 );
+	debug_assert( argc >= 2 );
 	CBaseEntity* baseEntity = NULL;
 	CVector3D position;
 	float orientation = 0.0f;
@@ -175,7 +175,7 @@ JSBool JSI_Entity::order( JSContext* cx, JSObject* obj, uintN argc, jsval* argv,
 	HEntity* e = (HEntity*)JS_GetPrivate( cx, obj );
 
 	// This needs to be sorted (uses Scheduler rather than network messaging)
-	assert( argc >= 1 );
+	debug_assert( argc >= 1 );
 
 	int orderCode;
 

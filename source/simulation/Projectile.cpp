@@ -126,7 +126,7 @@ void CProjectile::ScriptingInit()
 
 JSBool CProjectile::Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
 {
-	assert( argc >= 4 );
+	debug_assert( argc >= 4 );
 	CStr ModelString;
 	CVector3D Here, There;
 	float Speed;

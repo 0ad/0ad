@@ -105,7 +105,7 @@ void ScriptingHost::LoadScriptFromDisk(const std::string & fileName)
 	JSBool ok = JS_EvaluateScript(m_Context, m_GlobalObject, (const char*)script, (unsigned int)script_len, fn, 0, &rval); 
 
 	int err = mem_free(script);
-	assert(err == 0);
+	debug_assert(err == 0);
 
 	if (ok == JS_FALSE)
 		throw PSERROR_Scripting_LoadFile_EvalErrors();
@@ -130,7 +130,7 @@ jsval ScriptingHost::ExecuteScript(const CStrW& script, const CStrW& calledFrom,
 	/* Unicode->ASCII conversion (mostly) for calledFrom */
 
 	size_t len = wcstombs( NULL, calledFrom, 0 );
-	assert( len != (size_t)-1 );
+	debug_assert( len != (size_t)-1 );
 	char* asciiName = new char[len + 1];
 	wcstombs( asciiName, calledFrom, len + 1 );
 

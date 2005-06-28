@@ -47,7 +47,7 @@ void CButton::SetupText()
 	if (!GetGUI())
 		return;
 
-	assert(m_GeneratedTexts.size()>=1);
+	debug_assert(m_GeneratedTexts.size()>=1);
 
 	CStr font;
 	if (GUI<CStr>::GetSetting(this, "font", font) != PS_OK || font.Length()==0)

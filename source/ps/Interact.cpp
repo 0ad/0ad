@@ -30,7 +30,7 @@ bool customSelectionMode=false;
 void CSelectedEntities::addSelection( HEntity entity )
 {
 	m_group = -1;
-	assert( !isSelected( entity ) );
+	debug_assert( !isSelected( entity ) );
 	m_selected.push_back( entity );
 	entity->m_selected = true;
 	m_selectionChanged = true;
@@ -39,7 +39,7 @@ void CSelectedEntities::addSelection( HEntity entity )
 void CSelectedEntities::removeSelection( HEntity entity )
 {
 	m_group = -1;
-	assert( isSelected( entity ) );
+	debug_assert( isSelected( entity ) );
 	entity->m_selected = false;
 	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )

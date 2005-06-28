@@ -12,7 +12,7 @@ providing hashes and strings on request.
 
 #include "StrImmutable.h"
 
-#include <assert.h>
+
 
 namespace I18n
 {

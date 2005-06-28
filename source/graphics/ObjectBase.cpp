@@ -348,7 +348,7 @@ void CObjectBase::CalculateVariation(std::set<CStr>& strings, variation_key& cho
 		std::vector<u8> matches;
 		typedef std::vector<u8>::const_iterator Iter;
 
-		assert(grp->size() < 256); // else they won't fit in the vector
+		debug_assert(grp->size() < 256); // else they won't fit in the vector
 
 		for (uint i = 0; i < grp->size(); ++i)
 			if (strings.count((*grp)[i].m_VariantName))
@@ -387,7 +387,7 @@ void CObjectBase::CalculateVariation(std::set<CStr>& strings, variation_key& cho
 		// since actors are meant to have purely visual manifestations.)
 		int randNum = (int)( ((float)rand() / RAND_MAX) * totalFreq );
 
-		assert(randNum < totalFreq);
+		debug_assert(randNum < totalFreq);
 
 		// and use that to choose one of the variants
 		for (Iter it = matches.begin(); it != matches.end(); ++it)
@@ -400,12 +400,12 @@ void CObjectBase::CalculateVariation(std::set<CStr>& strings, variation_key& cho
 			}
 		}
 
-		assert(randNum < 0);
+		debug_assert(randNum < 0);
 			// This should always happen; otherwise it
 			// wouldn't have chosen any of the variants.
 	}
 
-	assert(choices.size() == m_Variants.size());
+	debug_assert(choices.size() == m_Variants.size());
 
 
 	// Also, make choices for all props:

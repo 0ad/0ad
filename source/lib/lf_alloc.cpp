@@ -91,7 +91,7 @@ struct Active
 	Active& operator=(Descriptor* desc)
 	{
 		*(Descriptor**)this = desc;
-		assert(credits == 0);	// make sure ptr is aligned
+		debug_assert(credits == 0);	// make sure ptr is aligned
 		return *this;
 	}
 
@@ -502,7 +502,7 @@ return pool;
 
 // need to set up a new pool
 // .. but there are too many
-assert2(0 <= num_pools && num_pools <= MAX_POOLS);
+debug_assert(0 <= num_pools && num_pools <= MAX_POOLS);
 if(num_pools >= MAX_POOLS)
 {
 debug_warn("increase MAX_POOLS");

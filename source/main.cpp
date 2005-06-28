@@ -681,7 +681,7 @@ static void LoadGlobals()
 		float gain;
 		val->GetFloat(gain);
 		int ret = snd_set_master_gain(gain);
-		assert2(ret == 0);
+		debug_assert(ret == 0);
 	}
 
 	LOG(NORMAL, LOG_CATEGORY, "g_x/yres is %dx%d", g_xres, g_yres);
@@ -1374,7 +1374,7 @@ static void Frame()
 	last_time = time;
 	ONCE(return);
 			// first call: set last_time and return
-	assert(TimeSinceLastFrame >= 0.0f);
+	debug_assert(TimeSinceLastFrame >= 0.0f);
 
 	PROFILE_START( "reload changed files" );
 	MICROLOG(L"reload files");

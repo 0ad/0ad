@@ -18,12 +18,12 @@ namespace JSI_LookedupWord {
 	static JSBool GetProperty(JSContext *cx, JSObject *obj, jsval id, jsval *vp)
 	{
 		CLocale::LookupType* lookedup = (CLocale::LookupType*)JS_GetPrivate(cx, obj);
-		assert(lookedup);
+		debug_assert(lookedup);
 
 		JSObject* parent = JS_GetParent(cx, obj);
-		assert(parent);
+		debug_assert(parent);
 		CLocale* locale = (CLocale*)JS_GetPrivate(cx, parent);
-		assert(locale);
+		debug_assert(locale);
 
 		JSString* prop = JS_ValueToString(cx, id);
 		JS_ASSERT(prop, "lookup() property failed to convert to string");
@@ -50,7 +50,7 @@ namespace JSI_LookedupWord {
 		// Free the LookupType that was allocated when building this object
 
 		CLocale::LookupType* lookedup = (CLocale::LookupType*)JS_GetPrivate(cx, obj);
-		assert(lookedup);
+		debug_assert(lookedup);
 		delete lookedup;
 	}
 

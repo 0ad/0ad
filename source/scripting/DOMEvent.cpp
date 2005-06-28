@@ -102,7 +102,7 @@ bool IEventTarget::RemoveHandler( CStrW TypeString, DOMEventHandler handler )
 
 bool IEventTarget::AddHandlerJS( JSContext* cx, uintN argc, jsval* argv )
 {
-	assert( argc >= 2 );
+	debug_assert( argc >= 2 );
 	DOMEventHandler handler = new CScriptObject( argv[1] );
 	if( !handler->Defined() )
 	{
@@ -119,7 +119,7 @@ bool IEventTarget::AddHandlerJS( JSContext* cx, uintN argc, jsval* argv )
 
 bool IEventTarget::RemoveHandlerJS( JSContext* cx, uintN argc, jsval* argv )
 {
-	assert( argc >= 2 );
+	debug_assert( argc >= 2 );
 	DOMEventHandler handler = new CScriptObject( argv[1] );
 	if( !handler->Defined() )
 	{

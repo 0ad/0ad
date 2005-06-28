@@ -170,9 +170,9 @@ namespace ConfigDB_JS
 		int flags=JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT;
 #define cfg_ns(_propname, _enum) STMT (\
 	JSObject *nsobj=g_ScriptingHost.CreateCustomObject("ConfigNamespace"); \
-	assert(nsobj); \
+	debug_assert(nsobj); \
 	ConfigNamespace_JS::SetNamespace(cx, nsobj, _enum); \
-	assert(JS_DefineProperty(cx, newObj, _propname, OBJECT_TO_JSVAL(nsobj), NULL, NULL, flags)); )
+	debug_assert(JS_DefineProperty(cx, newObj, _propname, OBJECT_TO_JSVAL(nsobj), NULL, NULL, flags)); )
 
 		cfg_ns("system", CFG_SYSTEM);
 		cfg_ns("user", CFG_USER);
@@ -202,7 +202,7 @@ CConfigValue *CConfigDB::GetValue(EConfigNamespace ns, CStr name)
 
 CConfigValueSet *CConfigDB::GetValues(EConfigNamespace ns, CStr name )
 {
-	assert(ns < CFG_LAST && ns >= 0);
+	debug_assert(ns < CFG_LAST && ns >= 0);
 
 	TConfigMap::iterator it = m_Map[CFG_COMMAND].find( name );
 	if( it != m_Map[CFG_COMMAND].end() )
@@ -220,7 +220,7 @@ CConfigValueSet *CConfigDB::GetValues(EConfigNamespace ns, CStr name )
 
 CConfigValue *CConfigDB::CreateValue(EConfigNamespace ns, CStr name)
 {
-	assert(ns < CFG_LAST && ns >= 0);
+	debug_assert(ns < CFG_LAST && ns >= 0);
 	
 	CConfigValue *ret=GetValue(ns, name);
 	if (ret) return ret;
@@ -231,7 +231,7 @@ CConfigValue *CConfigDB::CreateValue(EConfigNamespace ns, CStr name)
 
 void CConfigDB::SetConfigFile(EConfigNamespace ns, bool useVFS, CStr path)
 {
-	assert(ns < CFG_LAST && ns >= 0);
+	debug_assert(ns < CFG_LAST && ns >= 0);
 	
 	m_ConfigFile[ns]=path;
 	m_UseVFS[ns]=useVFS;
@@ -336,7 +336,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 
 bool CConfigDB::WriteFile(EConfigNamespace ns, bool useVFS, CStr path)
 {
-	assert(ns >= 0 && ns < CFG_LAST);
+	debug_assert(ns >= 0 && ns < CFG_LAST);
 
 	char realpath[VFS_MAX_PATH];
 	char nativepath[VFS_MAX_PATH];

@@ -1,7 +1,7 @@
 #ifndef _UNIT_H
 #define _UNIT_H
 
-#include <assert.h>
+
 
 class CModel;
 class CObjectEntry;
@@ -16,10 +16,10 @@ class CUnit
 public:
 	// constructor - unit invalid without a model and object
 	CUnit(CObjectEntry* object, CModel* model) : m_Object(object), m_Model(model), m_Entity(NULL) {
-		assert(object && model);
+		debug_assert(object && model);
 	}
 	CUnit(CObjectEntry* object, CModel* model, CEntity* entity) : m_Object(object), m_Model(model), m_Entity(entity) {
-		assert(object && model);
+		debug_assert(object && model);
 	}
 
 	// destructor

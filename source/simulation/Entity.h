@@ -219,7 +219,7 @@ public:
 	}
 	bool HasClass( JSContext* cx, uintN argc, jsval* argv )
 	{
-		assert( argc >= 1 );
+		debug_assert( argc >= 1 );
 		return( m_classes.IsMember( ToPrimitive<CStrW>( cx, argv[0] ) ) );
 	}
 	static void ScriptingInit();

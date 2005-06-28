@@ -3,7 +3,7 @@
 #include "StringConvert.h"
 #include "lib/types.h"
 
-#include <assert.h>
+
 
 #include "scripting/SpiderMonkey.h"
 
@@ -50,7 +50,7 @@ void StringConvert::jsstring_to_wstring(JSString* str, std::wstring& result)
 
 void StringConvert::jschars_to_wstring(const jschar* chars, size_t len, std::wstring& result)
 {
-	assert(result.empty());
+	debug_assert(result.empty());
 	result.resize(len);
 
 	for (size_t i = 0; i < len; ++i)
@@ -60,7 +60,7 @@ void StringConvert::jschars_to_wstring(const jschar* chars, size_t len, std::wst
 
 void StringConvert::ucs2le_to_wstring(const char* start, const char* end, std::wstring& result)
 {
-	assert(result.empty());
+	debug_assert(result.empty());
 	result.resize((end-start)/2);
 
 	size_t i = 0;

@@ -70,7 +70,7 @@ jsval SColour::ToString( JSContext* cx, uintN argc, jsval* argv )
 
 JSBool SColour::Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
 {
-	assert( argc >= 3 );
+	debug_assert( argc >= 3 );
 	float alpha = 1.0;
 	if( argc >= 4 ) alpha = ToPrimitive<float>( argv[3] );
 

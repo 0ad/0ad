@@ -150,7 +150,7 @@ static int Cursor_reload(Cursor* c, const char* name, Handle)
 		else
 		{
 			// TODO: Handle errors
-			assert(! "Cursor texture not 32-bit RGBA/BGRA");
+			debug_assert(! "Cursor texture not 32-bit RGBA/BGRA");
 
 			tex_free(tex);
 
@@ -180,7 +180,7 @@ static int Cursor_reload(Cursor* c, const char* name, Handle)
 		if (! iconbitmap)
 		{
 			// TODO: Handle errors
-			assert(! "Error creating icon DIB");
+			debug_assert(! "Error creating icon DIB");
 
 			if (imgdata_bgra != imgdata) delete[] imgdata_bgra;
 			tex_free(tex);
@@ -195,7 +195,7 @@ static int Cursor_reload(Cursor* c, const char* name, Handle)
 		if (! cursor)
 		{
 			// TODO: Handle errors
-			assert(! "Error creating cursor");
+			debug_assert(! "Error creating cursor");
 
 			if (imgdata_bgra != imgdata) delete[] imgdata_bgra;
 			tex_free(tex);

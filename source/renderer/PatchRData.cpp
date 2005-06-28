@@ -1,6 +1,6 @@
 #include "precompiled.h"
 
-#include <assert.h>
+
 #include <set>
 #include <algorithm>
 #include "Pyrogenesis.h"
@@ -47,7 +47,7 @@ static SColor4ub ConvertColor(const RGBColor& src)
 // CPatchRData constructor
 CPatchRData::CPatchRData(CPatch* patch) : m_Patch(patch), m_Vertices(0), m_VBBase(0), m_VBBlends(0) 
 {
-	assert(patch);
+	debug_assert(patch);
 	Build();
 }
 
@@ -270,7 +270,7 @@ void CPatchRData::BuildBlends()
 		m_BlendSplats.resize(splatTextures.size());
 		int splatCount=0;
 	
-		assert(m_VBBlends->m_Index < 65536);
+		debug_assert(m_VBBlends->m_Index < 65536);
 		unsigned short base = (unsigned short)m_VBBlends->m_Index;
 		std::set<Handle>::iterator iter=splatTextures.begin();
 		for (;iter!=splatTextures.end();++iter) {
@@ -297,7 +297,7 @@ void CPatchRData::BuildBlends()
 void CPatchRData::BuildIndices()
 {
 	// must have allocated some vertices before trying to build corresponding indices
-	assert(m_VBBase);
+	debug_assert(m_VBBase);
 
 	// number of vertices in each direction in each patch
 	int vsize=PATCH_SIZE+1;
@@ -422,7 +422,7 @@ void CPatchRData::Update()
 
 void CPatchRData::RenderBase()
 {
-	assert(m_UpdateFlags==0);
+	debug_assert(m_UpdateFlags==0);
 
 	u8* base=m_VBBase->m_Owner->Bind();
 
@@ -445,7 +445,7 @@ void CPatchRData::RenderBase()
 
 void CPatchRData::RenderStreams(u32 streamflags)
 {
-	assert(m_UpdateFlags==0);
+	debug_assert(m_UpdateFlags==0);
 
 	u8* base=m_VBBase->m_Owner->Bind();
 
@@ -468,7 +468,7 @@ void CPatchRData::RenderStreams(u32 streamflags)
 
 void CPatchRData::RenderBlends()
 {
-	assert(m_UpdateFlags==0);
+	debug_assert(m_UpdateFlags==0);
 
 	if (m_BlendVertices.size()==0) return;
 
@@ -549,7 +549,7 @@ void CPatchRData::RenderOutline()
 // SubmitBaseBatches: submit base batches for this patch to the vertex buffer
 void CPatchRData::SubmitBaseBatches()
 {
-	assert(m_VBBase);
+	debug_assert(m_VBBase);
 
 	for (uint i=0;i<m_Splats.size();i++) {
 		const SSplat& splat=m_Splats[i];

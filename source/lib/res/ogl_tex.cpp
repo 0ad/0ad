@@ -109,13 +109,13 @@ static int get_gl_fmt(int bpp, int flags, GLenum* fmt, GLenum* int_fmt)
 		*int_fmt = high_quality? GL_LUMINANCE8_ALPHA8 : GL_LUMINANCE4_ALPHA4;
 		return 0;
 	case 24:
-		assert(!alpha);
+		debug_assert(!alpha);
 		*fmt = bgr? GL_BGR : GL_RGB;
 		*int_fmt = high_quality? GL_RGB8 : GL_RGB4;
 			// note: BGR can't be used as internal format
 		return 0;
 	case 32:
-		assert(alpha);
+		debug_assert(alpha);
 		*fmt = bgr? GL_BGRA : GL_RGBA;
 		*int_fmt = high_quality? GL_RGBA8 : GL_RGBA4;
 			// note: BGR can't be used as internal format
@@ -126,7 +126,7 @@ static int get_gl_fmt(int bpp, int flags, GLenum* fmt, GLenum* int_fmt)
 	}
 
 	// unreachable
-	assert(0);
+	debug_assert(0);
 }
 
 

@@ -458,7 +458,7 @@ int TDir::lookup(const char* path, uint flags, TNode** pnode, char* exact_path)
 	}
 
 	CHECK_PATH(path);
-	assert( (flags & ~(LF_CREATE_MISSING|LF_START_DIR)) == 0 );
+	debug_assert( (flags & ~(LF_CREATE_MISSING|LF_START_DIR)) == 0 );
 		// no undefined bits set
 
 	const bool create_missing = !!(flags & LF_CREATE_MISSING);
@@ -716,7 +716,7 @@ struct NodeLatch
 
 	const TNode* get_next()
 	{
-		assert(!empty());
+		debug_assert(!empty());
 		return v[i++];
 	}
 };

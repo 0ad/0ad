@@ -647,7 +647,7 @@ int vfs_make_vfs_path(const char* path, char* vfs_path)
 // used by vfs_realpath and VFile_reopen.
 static int make_file_path(char* path, const char* vfs_path, const TMountPoint* mount_point)
 {
-	assert(mount_point->archive == 0);
+	debug_assert(mount_point->archive == 0);
 
 	const char* remove = mount_point->v_mount_point.c_str();
 	const char* replace = mount_point->p_real_path.c_str();
@@ -925,14 +925,14 @@ H_TYPE_DEFINE(VFile);
 
 static off_t& vf_size(VFile* vf)
 {
-	assert(offsetof(struct File, size) == offsetof(struct ZFile, ucsize));
+	debug_assert(offsetof(struct File, size) == offsetof(struct ZFile, ucsize));
 	return vf->f.size;
 }
 
 
 static uint& vf_flags(VFile* vf)
 {
-	assert(offsetof(struct File, flags) == offsetof(struct ZFile, flags));
+	debug_assert(offsetof(struct File, flags) == offsetof(struct ZFile, flags));
 	return vf->f.flags;
 }
 
@@ -1179,7 +1179,7 @@ debug_printf("vfs_load v_fn=%s\n", v_fn);
 		p = mem_get_ptr(vf->hm, &size);
 		if(p)
 		{
-			assert(vf_size(vf) == (off_t)size && "vfs_load: mismatch between File and Mem size");
+			debug_assert(vf_size(vf) == (off_t)size && "vfs_load: mismatch between File and Mem size");
 			hm = vf->hm;
 			goto ret;
 		}

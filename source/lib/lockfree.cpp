@@ -141,7 +141,7 @@ static void tls_retire(void* tls_)
 	if(CAS(&tls->active, 1, 0))
 	{
 		atomic_add(&active_threads, -1);
-		assert2(active_threads >= 0);
+		debug_assert(active_threads >= 0);
 	}
 }
 
@@ -150,7 +150,7 @@ static void tls_retire(void* tls_)
 static void tls_init()
 {
 	int ret = pthread_key_create(&tls_key, tls_retire);
-	assert2(ret == 0);
+	debug_assert(ret == 0);
 }
 
 
@@ -158,7 +158,7 @@ static void tls_init()
 static void tls_shutdown()
 {
 	int ret = pthread_key_delete(tls_key);
-	assert2(ret == 0);
+	debug_assert(ret == 0);
 	tls_key = 0;
 
 	while(tls_list)
@@ -178,7 +178,7 @@ static TLS* tls_alloc()
 {
 	// make sure we weren't shut down in the meantime - re-init isn't
 	// possible since pthread_once (which can't be reset) calls tls_init.
-	assert2(tls_key != 0);
+	debug_assert(tls_key != 0);
 
 	TLS* tls;
 
@@ -198,7 +198,7 @@ static TLS* tls_alloc()
 	{
 		tls = (TLS*)-1;
 		int ret = pthread_setspecific(tls_key, tls);
-		assert2(ret == 0);
+		debug_assert(ret == 0);
 		return tls;
 	}
 	tls->active = 1;
@@ -217,7 +217,7 @@ have_tls:
 	atomic_add(&active_threads, 1);
 
 	int ret = pthread_setspecific(tls_key, tls);
-	assert2(ret == 0);
+	debug_assert(ret == 0);
 	return tls;
 }
 
@@ -227,7 +227,7 @@ have_tls:
 static TLS* tls_get()
 {
 	int ret = pthread_once(&tls_once, tls_init);
-	assert2(ret == 0);
+	debug_assert(ret == 0);
 
 	// already allocated or tls_alloc failed.
 	TLS* tls = (TLS*)pthread_getspecific(tls_key);
@@ -267,7 +267,7 @@ static void smr_release_unreferenced_nodes(TLS* tls)
 		return;
 
 	// required for head/tail below; guaranteed by callers.
-	assert2(tls->num_retired_nodes != 0);
+	debug_assert(tls->num_retired_nodes != 0);
 
 	//
 	// build array of all active (non-NULL) hazard pointers (more efficient
@@ -331,7 +331,7 @@ retry:
 static void smr_retire_node(Node* node)
 {
 	TLS* tls = tls_get();
-	assert2(tls != (void*)-1);
+	debug_assert(tls != (void*)-1);
 		// if this triggers, tls_alloc called from lfl_init failed due to
 		// lack of memory and the caller didn't check its return value.
 
@@ -422,13 +422,13 @@ static inline bool is_marked_as_deleted(Node* p)
 
 static inline Node* with_mark(Node* p)
 {
-	assert2(!is_marked_as_deleted(p));	// paranoia
+	debug_assert(!is_marked_as_deleted(p));	// paranoia
 	return p+1;
 }
 
 static inline Node* without_mark(Node* p)
 {
-	assert2(is_marked_as_deleted(p));	// paranoia
+	debug_assert(is_marked_as_deleted(p));	// paranoia
 	return p-1;
 }
 
@@ -472,7 +472,7 @@ void lfl_free(LFList* list)
 	}
 
 	atomic_add(&active_data_structures, -1);
-	assert2(active_data_structures >= 0);
+	debug_assert(active_data_structures >= 0);
 	smr_try_shutdown();
 }
 
@@ -483,7 +483,7 @@ void lfl_free(LFList* list)
 static bool list_lookup(LFList* list, uintptr_t key, ListPos* pos)
 {
 	TLS* tls = tls_get();
-	assert2(tls != (void*)-1);
+	debug_assert(tls != (void*)-1);
 		// if this triggers, tls_alloc called from lfl_init failed due to
 		// lack of memory and the caller didn't check its return value.
 
@@ -567,7 +567,7 @@ void* lfl_find(LFList* list, uintptr_t key)
 void* lfl_insert(LFList* list, uintptr_t key, size_t additional_bytes, int* was_inserted)
 {
 	TLS* tls = tls_get();
-	assert2(tls != (void*)-1);
+	debug_assert(tls != (void*)-1);
 		// if this triggers, tls_alloc called from lfl_init failed due to
 		// lack of memory and the caller didn't check its return value.
 
@@ -620,7 +620,7 @@ have_node:
 int lfl_erase(LFList* list, uintptr_t key)
 {
 	TLS* tls = tls_get();
-	assert2(tls != (void*)-1);
+	debug_assert(tls != (void*)-1);
 		// if this triggers, tls_alloc called from lfl_init failed due to
 		// lack of memory and the caller didn't check its return value.
 
@@ -660,8 +660,8 @@ retry:
 
 static void validate(LFHash* hash)
 {
-	assert2(hash->tbl);
-	assert2(is_pow2(hash->mask+1));
+	debug_assert(hash->tbl);
+	debug_assert(is_pow2(hash->mask+1));
 }
 
 // return hash "chain" (i.e. linked list) that is assigned to <key>.
@@ -769,11 +769,11 @@ static void basic_single_threaded_test()
 
 	LFList list;
 	err = lfl_init(&list);
-	assert2(err == 0);
+	debug_assert(err == 0);
 
 	LFHash hash;
 	err = lfh_init(&hash, 8);
-	assert2(err == 0);
+	debug_assert(err == 0);
 
 	// add some entries; store "signatures" (ascending int values)
 	for(uint i = 0; i < ENTRIES; i++)
@@ -781,11 +781,11 @@ static void basic_single_threaded_test()
 		int was_inserted;
 
 		user_data = lfl_insert(&list, key+i, sizeof(int), &was_inserted);
-		assert2(user_data != 0 && was_inserted);
+		debug_assert(user_data != 0 && was_inserted);
 		*(int*)user_data = sig+i;
 
 		user_data = lfh_insert(&hash, key+i, sizeof(int), &was_inserted);
-		assert2(user_data != 0 && was_inserted);
+		debug_assert(user_data != 0 && was_inserted);
 		*(int*)user_data = sig+i;
 	}
 
@@ -793,12 +793,12 @@ static void basic_single_threaded_test()
 	for(uint i = 0; i < ENTRIES; i++)
 	{
 		user_data = lfl_find(&list, key+i);
-		assert2(user_data != 0);
-		assert2(*(int*)user_data == sig+i);
+		debug_assert(user_data != 0);
+		debug_assert(*(int*)user_data == sig+i);
 
 		user_data = lfh_find(&hash, key+i);
-		assert2(user_data != 0);
-		assert2(*(int*)user_data == sig+i);
+		debug_assert(user_data != 0);
+		debug_assert(*(int*)user_data == sig+i);
 
 	}
 
@@ -866,15 +866,15 @@ static void* thread_func(void* arg)
 		case TA_FIND:
 			{
 			user_data = lfl_find(&list, key);
-			assert2(was_in_set == (user_data != 0));
+			debug_assert(was_in_set == (user_data != 0));
 			if(user_data)
-				assert2(*(uintptr_t*)user_data == ~key);
+				debug_assert(*(uintptr_t*)user_data == ~key);
 
 			user_data = lfh_find(&hash, key);
 			// typical failure site if lockfree data structure has bugs.
-			assert2(was_in_set == (user_data != 0));
+			debug_assert(was_in_set == (user_data != 0));
 			if(user_data)
-				assert2(*(uintptr_t*)user_data == ~key);
+				debug_assert(*(uintptr_t*)user_data == ~key);
 			}
 			break;
 
@@ -883,14 +883,14 @@ static void* thread_func(void* arg)
 			int was_inserted;
 
 			user_data = lfl_insert(&list, key, sizeof(uintptr_t), &was_inserted);
-			assert2(user_data != 0);	// only triggers if out of memory
+			debug_assert(user_data != 0);	// only triggers if out of memory
 			*(uintptr_t*)user_data = ~key;	// checked above
-			assert2(was_in_set == !was_inserted);
+			debug_assert(was_in_set == !was_inserted);
 
 			user_data = lfh_insert(&hash, key, sizeof(uintptr_t), &was_inserted);
-			assert2(user_data != 0);	// only triggers if out of memory
+			debug_assert(user_data != 0);	// only triggers if out of memory
 			*(uintptr_t*)user_data = ~key;	// checked above
-			assert2(was_in_set == !was_inserted);
+			debug_assert(was_in_set == !was_inserted);
 			}
 			break;
 
@@ -899,10 +899,10 @@ static void* thread_func(void* arg)
 			int err;
 
 			err = lfl_erase(&list, key);
-			assert2(was_in_set == (err == 0));
+			debug_assert(was_in_set == (err == 0));
 
 			err = lfh_erase(&hash, key);
-			assert2(was_in_set == (err == 0));
+			debug_assert(was_in_set == (err == 0));
 			}
 			break;
 
@@ -917,7 +917,7 @@ static void* thread_func(void* arg)
 	}	// while !is_complete
 
 	atomic_add(&num_active_threads, -1);
-	assert2(num_active_threads >= 0);
+	debug_assert(num_active_threads >= 0);
 
 	return 0;
 }
@@ -935,11 +935,11 @@ static void multithreaded_torture_test()
 	is_complete = false;
 
 	err = lfl_init(&list);
-	assert2(err == 0);
+	debug_assert(err == 0);
 	err = lfh_init(&hash, 128);
-	assert2(err == 0);
+	debug_assert(err == 0);
 	err = pthread_mutex_init(&mutex, 0);
-	assert2(err == 0);
+	debug_assert(err == 0);
 
 	// spin off test threads (many, to force preemption)
 	const uint NUM_THREADS = 16;
@@ -959,7 +959,7 @@ static void multithreaded_torture_test()
 	lfl_free(&list);
 	lfh_free(&hash);
 	err = pthread_mutex_destroy(&mutex);
-	assert2(err == 0);
+	debug_assert(err == 0);
 }
 
 

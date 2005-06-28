@@ -159,7 +159,7 @@ public:
 	 */
 	inline IMessagePipeEnd &GetEnd(int idx)
 	{
-		assert(idx==1 || idx==0);
+		debug_assert(idx==1 || idx==0);
 		return m_Ends[idx];
 	}
 };

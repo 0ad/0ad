@@ -28,7 +28,7 @@
 #include "win/wtime.h"
 #endif
 
-#include <assert.h>
+
 #include <string.h>
 #include <stdio.h>
 
@@ -454,7 +454,7 @@ int get_cur_processor_id()
 // called on each CPU by on_each_cpu.
 static void check_smp()
 {
-	assert(cpus > 0 && "must know # CPUs (call OS-specific detect first)");
+	debug_assert(cpus > 0 && "must know # CPUs (call OS-specific detect first)");
 
 	// we don't check if it's Intel and P4 or above - HT may be supported
 	// on other CPUs in future. haven't come across a processor that
@@ -566,7 +566,7 @@ __declspec(naked) bool __cdecl CAS_(uintptr_t* location, uintptr_t expected, uin
 {
 	// try to see if caller isn't passing in an address
 	// (CAS's arguments are silently casted)
-	assert2(location >= (uintptr_t*)0x10000);
+	debug_assert(location >= (uintptr_t*)0x10000);
 
 __asm
 {
@@ -621,7 +621,7 @@ bool CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value)
 {
 	uintptr_t prev;
 	
-	assert2(location >= (uintptr_t *)0x10000);
+	debug_assert(location >= (uintptr_t *)0x10000);
 	
 	__asm__ __volatile__("lock; cmpxchgl %1,%2"
 				 : "=a"(prev) // %0: Result in eax should be stored in prev

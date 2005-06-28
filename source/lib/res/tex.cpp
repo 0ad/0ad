@@ -20,7 +20,7 @@
 
 #include <math.h>
 #include <stdlib.h>
-#include <assert.h>
+
 
 #include <algorithm>
 
@@ -1025,7 +1025,7 @@ fail:
 		png_read_image(png_ptr, (png_bytepp)rows);
 		png_read_end(png_ptr, info_ptr);
 
-		assert(f.p == file && f.size == file_size && f.pos == f.size);
+		debug_assert(f.p == file && f.size == file_size && f.pos == f.size);
 
 		// store image info
 		mem_free_h(t->hm);

@@ -9,7 +9,7 @@ gee@pyro.nu
 
 ///// janwas: again, including etiquette?
 #include "Parser.h"
-#include <assert.h>
+
 /////
 
 #include "gui/scripting/JSInterface_IGUIObject.h"
@@ -87,7 +87,7 @@ IGUIObject::~IGUIObject()
 void IGUIObject::AddChild(IGUIObject *pChild)
 {
 	// 
-//	assert(pChild);
+//	debug_assert(pChild);
 
 	pChild->SetParent(this);
 
@@ -425,7 +425,7 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 	sprintf(buf, "__eventhandler%d", x++);
 
 	JSFunction* func = JS_CompileFunction(g_ScriptingHost.getContext(), pGUI->m_ScriptObject, buf, paramCount, paramNames, (const char*)Code, Code.Length(), CodeName, 0);
-	assert(func); // TODO: Handle errors
+	debug_assert(func); // TODO: Handle errors
 	if (func)
 		SetScriptHandler(Action, JS_GetFunctionObject(func));
 }
@@ -452,14 +452,14 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 
 	// PRIVATE_TO_JSVAL assumes two-byte alignment,
 	// so make sure that's always true
-	assert(! ((jsval)this & JSVAL_INT));
+	debug_assert(! ((jsval)this & JSVAL_INT));
 
 	// The IGUIObject needs to be stored inside the script's object
 	jsval guiObject = PRIVATE_TO_JSVAL(this);
 
 	// Make a 'this', allowing access to the IGUIObject
 	JSObject* jsGuiObject = JS_ConstructObjectWithArguments(g_ScriptingHost.getContext(), &JSI_IGUIObject::JSI_class, NULL, m_pGUI->m_ScriptObject, 1, &guiObject);
-	assert(jsGuiObject); // TODO: Handle errors
+	debug_assert(jsGuiObject); // TODO: Handle errors
 	
 	// Prevent it from being garbage-collected before it's passed into the function
 	JS_AddRoot(g_ScriptingHost.getContext(), &jsGuiObject);
@@ -470,7 +470,7 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	mouseParams[1] = INT_TO_JSVAL(m_pGUI->m_MousePos.y);
 	mouseParams[2] = INT_TO_JSVAL(m_pGUI->m_MouseButtons);
 	JSObject* mouseObj = JS_ConstructObjectWithArguments(g_ScriptingHost.getContext(), &JSI_GUIMouse::JSI_class, NULL, m_pGUI->m_ScriptObject, 3, mouseParams);
-	assert(mouseObj); // TODO: Handle errors
+	debug_assert(mouseObj); // TODO: Handle errors
 
 	// Don't garbage collect the mouse
 	JS_AddRoot(g_ScriptingHost.getContext(), &mouseObj);

@@ -57,7 +57,7 @@ void CList::SetupText()
 
 	//LOG(ERROR, LOG_CATEGORY, "SetupText() %s", GetPresentableName().c_str());
 
-	//assert(m_GeneratedTexts.size()>=1);
+	//debug_assert(m_GeneratedTexts.size()>=1);
 
 	m_ItemsYPositions.resize( pList->m_Items.size()+1 );
 
@@ -327,7 +327,7 @@ void CList::DrawList(const int &selected,
 
 		if (selected != -1)
 		{
-			assert(selected >= 0 && selected+1 < (int)m_ItemsYPositions.size());
+			debug_assert(selected >= 0 && selected+1 < (int)m_ItemsYPositions.size());
 
 			// Get rectangle of selection:
 			CRect rect(rect.left, rect.top + m_ItemsYPositions[selected] - scroll,

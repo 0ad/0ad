@@ -19,7 +19,7 @@ Unicode OpenGL texture font
 #include <map>
 
 #include <stdio.h>
-#include <assert.h>
+
 
 /*/*#include <ps/CLogger.h>
 #define LOG_CATEGORY "graphics"*/
@@ -154,7 +154,7 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSEDPARAM(h))
 		(*f->glyphs_size)[(wchar_t)Codepoint] = Advance;
 	}
 
-	assert(f->Height); // Ensure the height has been found (which should always happen if the font includes an 'I')
+	debug_assert(f->Height); // Ensure the height has been found (which should always happen if the font includes an 'I')
 
 	// Load glyph texture
 	std::string FilenameTex = FilenameBase+".tga";  
@@ -232,7 +232,7 @@ void glvwprintf(const wchar_t* fmt, va_list args)
 	// Make sure there's always null termination
 	buf[buf_size-1] = 0;
 
-	assert(BoundGlyphs != NULL); // You always need to bind something first
+	debug_assert(BoundGlyphs != NULL); // You always need to bind something first
 
 	// Count the number of characters
 	size_t len = wcslen(buf);

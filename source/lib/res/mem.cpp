@@ -6,7 +6,7 @@
 #include "res.h"
 
 #include <stdlib.h>
-#include <assert.h>
+
 
 #include <map>
 
@@ -105,7 +105,7 @@ static void remove_alloc(void* raw_p)
 {
 	size_t num_removed = ptr_to_h.erase(raw_p);
 	if(num_removed != 1)
-		assert(num_removed == 1 && "remove_alloc: not in map");
+		debug_assert(num_removed == 1 && "remove_alloc: not in map");
 }
 
 
@@ -388,7 +388,7 @@ void* mem_get_ptr(Handle hm, size_t* user_size /* = 0 */)
 		return 0;
 	}
 
-	assert((!m->p || m->size) && "mem_get_ptr: mem corrupted (p valid =/=> size > 0)");
+	debug_assert((!m->p || m->size) && "mem_get_ptr: mem corrupted (p valid =/=> size > 0)");
 
 	if(user_size)
 		*user_size = m->size;

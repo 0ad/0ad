@@ -202,7 +202,7 @@ JSBool JSI_Camera::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* v
 
 JSBool JSI_Camera::lookAt( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
 {
-	assert( argc >= 2 );
+	debug_assert( argc >= 2 );
 
 	JSI_Vector3D::Vector3D_Info* v = NULL;
 	Camera_Info* cameraInfo = (Camera_Info*)JS_GetPrivate( cx, obj );

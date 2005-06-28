@@ -52,14 +52,14 @@ void CEntityManager::deleteAll()
 
 HEntity CEntityManager::create( CBaseEntity* base, CVector3D position, float orientation )
 {
-	assert( base );
+	debug_assert( base );
 	if( !base )
 		return HEntity();
 
 	while( m_entities[m_nextalloc].m_refcount )
 	{
 		m_nextalloc++;
-		assert(m_nextalloc < MAX_HANDLES);
+		debug_assert(m_nextalloc < MAX_HANDLES);
 	}
 	m_entities[m_nextalloc].m_entity = new CEntity( base, position, orientation );
 	m_entities[m_nextalloc].m_entity->me = HEntity( m_nextalloc );

@@ -164,7 +164,7 @@ extern int LDR_NonprogressiveLoad();
 		/* 0 means "finished", so don't return that! */\
 		if(progress_percent == 0)\
 			progress_percent = 1;\
-		assert2(0 < progress_percent && progress_percent <= 100);\
+		debug_assert(0 < progress_percent && progress_percent <= 100);\
 		return progress_percent;\
 	}
 

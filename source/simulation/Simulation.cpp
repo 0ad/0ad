@@ -76,7 +76,7 @@ void CSimulation::Update(double frameTime)
 		// TODO Remove
 		// Fountain of arrows
 		CObjectEntry* arrow = g_ObjMan.FindObject( "props/weapon/weap_arrow_front.xml" );
-		assert( arrow );
+		debug_assert( arrow );
 	
 		float mapsize = (float)( m_pWorld->GetTerrain()->GetVerticesPerSide() * 4 );
 

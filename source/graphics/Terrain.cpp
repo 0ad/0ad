@@ -177,7 +177,7 @@ float CTerrain::getExactGroundLevel( float x, float y ) const
 		yi = m_MapSize - 1; yf = 1.0f;
 	}
 	/*
-	assert( isOnMap( x, y ) );
+	debug_assert( isOnMap( x, y ) );
 
 	if( !isOnMap( x, y ) )
 		return 0.0f;

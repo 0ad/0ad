@@ -306,7 +306,7 @@ static i64 ticks_lk()
 		{
 		LARGE_INTEGER i;
 		BOOL ok = QueryPerformanceCounter(&i);
-		assert(ok);	// shouldn't fail if it was chosen above
+		debug_assert(ok);	// shouldn't fail if it was chosen above
 		return i.QuadPart;
 		}
 #endif
@@ -336,8 +336,8 @@ static i64 ticks_lk()
 // (not a problem, but avoids a BoundsChecker warning)
 static double time_lk()
 {
-	assert(hrt_cur_freq > 0.0);
-	assert(hrt_cal_ticks > 0);
+	debug_assert(hrt_cur_freq > 0.0);
+	debug_assert(hrt_cal_ticks > 0);
 
 	// elapsed ticks and time since last calibration
 	const i64 delta_ticks = ticks_lk() - hrt_cal_ticks;
@@ -381,7 +381,7 @@ static int reset_impl_lk()
 		old_time = time_lk();		
 
 	CHECK_ERR(choose_impl());
-	assert(hrt_impl != HRT_NONE && hrt_nominal_freq > 0.0);
+	debug_assert(hrt_impl != HRT_NONE && hrt_nominal_freq > 0.0);
 
 	// impl has changed; reset timer state.
 	if(old_impl != hrt_impl)
@@ -427,7 +427,7 @@ lock();
 	double freq = hrt_cur_freq;
 unlock();
 
-	assert(freq != -1.0 && "hrt_delta_s: hrt_cur_freq not set");
+	debug_assert(freq != -1.0 && "hrt_delta_s: hrt_cur_freq not set");
 	return (end - start) / freq;
 }
 
@@ -447,7 +447,7 @@ lock();
 
 unlock();
 
-	assert(nominal_freq > 0.0 && "hrt_query_impl: invalid hrt_nominal_freq");
+	debug_assert(nominal_freq > 0.0 && "hrt_query_impl: invalid hrt_nominal_freq");
 }
 
 
@@ -502,7 +502,7 @@ static long safe_time()
 // lock must be held.
 static void calibrate_lk()
 {
-	assert(hrt_cal_ticks > 0);
+	debug_assert(hrt_cal_ticks > 0);
 
 	// we're called from a WinMM event or after thread wakeup,
 	// so the timer has just been updated.
@@ -547,7 +547,7 @@ static void calibrate_lk()
 		hrt_cur_freq = hrt_nominal_freq;
 	}
 
-	assert(hrt_cur_freq > 0.0);
+	debug_assert(hrt_cur_freq > 0.0);
 }
 
 
@@ -775,7 +775,7 @@ static void sleep_ns(i64 ns)
 
 int clock_gettime(clockid_t clock, struct timespec* t)
 {
-	assert(clock == CLOCK_REALTIME);
+	debug_assert(clock == CLOCK_REALTIME);
 
 	const i64 ns = time_ns();
 	t->tv_sec  = (time_t)((ns / _1e9) & 0xffffffff);
@@ -786,7 +786,7 @@ int clock_gettime(clockid_t clock, struct timespec* t)
 
 int clock_getres(clockid_t clock, struct timespec* ts)
 {
-	assert(clock == CLOCK_REALTIME);
+	debug_assert(clock == CLOCK_REALTIME);
 
 	HRTImpl impl;
 	double nominal_freq, res;

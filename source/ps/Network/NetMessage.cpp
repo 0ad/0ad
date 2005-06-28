@@ -84,7 +84,7 @@ void CNetMessage::ScriptingInit()
 
 CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSContext *cx, uintN argc, jsval *argv)
 {
-	assert(argc >= 1);
+	debug_assert(argc >= 1);
 
 	int msgType;
 

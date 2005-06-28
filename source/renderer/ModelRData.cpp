@@ -1,6 +1,6 @@
 #include "precompiled.h"
 
-#include <assert.h>
+
 #include <algorithm>
 #include "res/ogl_tex.h"
 #include "Renderer.h"
@@ -21,7 +21,7 @@ std::vector<CModel*> CModelRData::m_Models;
 CModelRData::CModelRData(CModel* model) 
 	: m_Model(model), m_Vertices(0), m_Normals(0), m_Indices(0), m_VB(0), m_Flags(0)
 {
-	assert(model);
+	debug_assert(model);
 	// build all data now
 	Build();
 }
@@ -64,10 +64,10 @@ void CModelRData::Build()
 void CModelRData::BuildIndices()
 {	
 	CModelDefPtr mdef=m_Model->GetModelDef();
-	assert(mdef);
+	debug_assert(mdef);
 	
 	// must have a valid vertex buffer by this point so we know where indices are supposed to start
-	assert(m_VB);
+	debug_assert(m_VB);
 	
 	// allocate indices if we haven't got any already
 	if (!m_Indices) {
@@ -104,7 +104,7 @@ static void SkinPoint(const SModelVertex& vertex,const CMatrix3D* matrices,CVect
 	const SVertexBlend& blend=vertex.m_Blend;
 
 	// must have at least one valid bone if we're using SkinPoint
-	assert(blend.m_Bone[0]!=0xff);
+	debug_assert(blend.m_Bone[0]!=0xff);
 
 	const CMatrix3D& m=matrices[blend.m_Bone[0]];
 	m.Transform(vertex.m_Coords,result);
@@ -125,7 +125,7 @@ static void SkinNormal(const SModelVertex& vertex,const CMatrix3D* invmatrices,C
 	const SVertexBlend& blend=vertex.m_Blend;
 
 	// must have at least one valid bone if we're using SkinNormal
-	assert(blend.m_Bone[0]!=0xff);
+	debug_assert(blend.m_Bone[0]!=0xff);
 
 	const CMatrix3D& m=invmatrices[blend.m_Bone[0]];
 	m.RotateTransposed(vertex.m_Norm,result);
@@ -299,7 +299,7 @@ float CModelRData::BackToFrontIndexSort(CMatrix3D& objToCam)
 // SubmitBatches: submit batches for this model to the vertex buffer
 void CModelRData::SubmitBatches()
 {
-	assert(m_VB);
+	debug_assert(m_VB);
 	m_VB->m_Owner->AppendBatch(m_VB,m_Model->GetTexture()->GetHandle(),m_Model->GetModelDef()->GetNumFaces()*3,m_Indices);
 }
 

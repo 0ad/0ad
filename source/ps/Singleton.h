@@ -27,7 +27,7 @@ class Singleton
    public:
       Singleton()
       {
-         assert2( !ms_singleton );
+         debug_assert( !ms_singleton );
 
          //use a cunning trick to get the singleton pointing to the start of
          //the whole, rather than the start of the Singleton part of the object
@@ -37,19 +37,19 @@ class Singleton
 
       ~Singleton()
       {
-         assert2( ms_singleton );
+         debug_assert( ms_singleton );
          ms_singleton=0;
       }
 
       static T& GetSingleton()
       {
-         assert2( ms_singleton );
+         debug_assert( ms_singleton );
          return *ms_singleton;
       }
 
       static T* GetSingletonPtr()
       {
-         assert2( ms_singleton );
+         debug_assert( ms_singleton );
          return ms_singleton;
       }
 

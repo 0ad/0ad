@@ -9,7 +9,7 @@
 #include "precompiled.h"
 
 // necessary includes
-#include <assert.h>
+
 #include <float.h>
 #include "Bound.h"
 
@@ -147,7 +147,7 @@ bool CBound::IsEmpty()
 // (can't remember which one it was, though)
 void CBound::Transform(const CMatrix3D& m,CBound& result) const
 {
-	assert(this!=&result);
+	debug_assert(this!=&result);
 
 	for (int i=0;i<3;++i) {
 		// handle translation 

@@ -319,7 +319,7 @@ void CEntity::update( size_t timestep )
 			m_orderQueue.pop_front();
 			break;
 		default:
-			assert( 0 && "Invalid entity order" );
+			debug_assert( 0 && "Invalid entity order" );
 		}
 	}
 
@@ -775,7 +775,7 @@ void CEntity::ScriptingInit()
 
 JSBool CEntity::Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
 {
-	assert( argc >= 2 );
+	debug_assert( argc >= 2 );
 
 	CBaseEntity* baseEntity = NULL;
 	CVector3D position;
@@ -846,7 +846,7 @@ jsval CEntity::ToString( JSContext* cx, uintN argc, jsval* argv )
 bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 {
 	// This needs to be sorted (uses Scheduler rather than network messaging)
-	assert( argc >= 1 );
+	debug_assert( argc >= 1 );
 
 	int orderCode;
 
@@ -995,14 +995,14 @@ jsval CEntity::GetSpawnPoint( JSContext* cx, uintN argc, jsval* argv )
 			{
 			case CBoundingObject::BOUND_CIRCLE: spawn_clearance = be->m_bound_circle->m_radius; break;
 			case CBoundingObject::BOUND_OABB: spawn_clearance = be->m_bound_box->m_radius; break;
-			default: assert( 0 && "No bounding information for spawned object!" );
+			default: debug_assert( 0 && "No bounding information for spawned object!" );
 			}
 		}
 		else
 			spawn_clearance = ToPrimitive<float>( argv[0] );
 	}
 	else
-		assert( 0 && "No arguments to Entity::GetSpawnPoint()" );
+		debug_assert( 0 && "No arguments to Entity::GetSpawnPoint()" );
 	
 	// TODO: Make netsafe.
 	CBoundingCircle spawn( 0.0f, 0.0f, spawn_clearance, 0.0f );

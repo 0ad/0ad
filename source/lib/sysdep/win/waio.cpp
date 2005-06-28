@@ -22,7 +22,7 @@
 #include "posix.h"
 #include "win_internal.h"
 
-#include <assert.h>
+
 #include <stdlib.h>
 #include <malloc.h>		// _aligned_malloc
 
@@ -304,7 +304,7 @@ static void req_cleanup(void)
 	for(int i = 0; i < MAX_REQS; i++, r++)
 	{
 		HANDLE& h = r->ovl.hEvent;
-		assert(h != INVALID_HANDLE_VALUE);
+		debug_assert(h != INVALID_HANDLE_VALUE);
 		CloseHandle(h);
 		h = INVALID_HANDLE_VALUE;
 
@@ -339,7 +339,7 @@ static Req* req_find(const aiocb* cb)
 
 static Req* req_alloc(aiocb* cb)
 {
-	assert(cb);
+	debug_assert(cb);
 
 	// first free Req, or 0
 	Req* r = req_find(0);
@@ -353,7 +353,7 @@ static Req* req_alloc(aiocb* cb)
 
 static int req_free(Req* r)
 {
-	assert(r->cb != 0 && "req_free: not currently in use");
+	debug_assert(r->cb != 0 && "req_free: not currently in use");
 	r->cb = 0;
 	return 0;
 }
@@ -390,7 +390,7 @@ static int aio_rw(struct aiocb* cb)
 	const size_t size   = cb->aio_nbytes;
 	const off_t ofs     = cb->aio_offset;
 	void* buf     = (void*)cb->aio_buf; // from volatile void*
-	assert(buf);
+	debug_assert(buf);
 
 	// allocate IO request
 	r = req_alloc(cb);
@@ -566,7 +566,7 @@ ssize_t aio_return(struct aiocb* cb)
 		return -1;
 	}
 
-	assert(r->ovl.Internal == 0 && "aio_return with transfer in progress");
+	debug_assert(r->ovl.Internal == 0 && "aio_return with transfer in progress");
 
 	const BOOL wait = FALSE;	// should already be done!
 	DWORD bytes_transferred;
@@ -738,7 +738,7 @@ static int waio_init()
 
 	SetErrorMode(old_err_mode);
 
-	assert(is_pow2((long)sector_size));
+	debug_assert(is_pow2((long)sector_size));
 
 	return 0;
 }

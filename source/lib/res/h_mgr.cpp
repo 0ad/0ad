@@ -21,7 +21,7 @@
 #include "lib.h"
 #include "res.h"
 
-#include <assert.h>
+
 #include <limits.h>	// CHAR_BIT
 #include <string.h>
 #include <stdlib.h>
@@ -91,13 +91,13 @@ static inline u32 h_tag(const Handle h)
 static inline Handle handle(const u32 _idx, const u32 tag)
 {
 	const u32 idx = _idx+1;
-	assert(idx <= IDX_MASK && tag <= TAG_MASK && "handle: idx or tag too big");
+	debug_assert(idx <= IDX_MASK && tag <= TAG_MASK && "handle: idx or tag too big");
 	// somewhat clunky, but be careful with the shift:
 	// *_SHIFT may be larger than its field's type.
 	Handle h_idx = idx & IDX_MASK; h_idx <<= IDX_SHIFT;
 	Handle h_tag = tag & TAG_MASK; h_tag <<= TAG_SHIFT;
 	Handle h = h_idx | h_tag;
-	assert(h > 0);
+	debug_assert(h > 0);
 	return h;
 }
 
@@ -273,7 +273,7 @@ static int alloc_idx(i32& idx, HDATA*& hd)
 		for(idx = 0; idx <= last_in_use; idx++)
 		{
 			hd = h_data_from_idx(idx);
-			assert(hd);	// can't fail - idx is valid
+			debug_assert(hd);	// can't fail - idx is valid
 
 			// found one - done
 			if(!hd->tag)
@@ -283,7 +283,7 @@ static int alloc_idx(i32& idx, HDATA*& hd)
 		// add another
 		if(last_in_use >= hdata_cap)
 		{
-			assert(!"alloc_idx: too many open handles (increase IDX_BITS)");
+			debug_assert(!"alloc_idx: too many open handles (increase IDX_BITS)");
 			return ERR_LIMIT;
 		}
 		idx = last_in_use+1;	// just incrementing idx would start it at 1
@@ -293,7 +293,7 @@ static int alloc_idx(i32& idx, HDATA*& hd)
 			// can't fail for any other reason - idx is checked above.
 		{	// VC6 goto fix
 		bool is_unused = !hd->tag;
-		assert(is_unused && "alloc_idx: invalid last_in_use");
+		debug_assert(is_unused && "alloc_idx: invalid last_in_use");
 		}
 
 have_idx:;
@@ -373,7 +373,7 @@ static void add_key(uintptr_t key, Handle h)
 static void remove_key(uintptr_t key, H_Type type)
 {
 	Handle ret = find_key(key, type, true);
-	assert(ret > 0);
+	debug_assert(ret > 0);
 }
 
 

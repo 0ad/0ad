@@ -28,7 +28,7 @@ JSI_Sound::~JSI_Sound()
 
 bool JSI_Sound::SetGain( JSContext* cx, uintN argc, jsval* argv )
 {
-	assert( argc >= 1 );
+	debug_assert( argc >= 1 );
 	float gain;
 	if( !ToPrimitive<float>( cx, argv[0], gain) )
 		return false;
@@ -39,7 +39,7 @@ bool JSI_Sound::SetGain( JSContext* cx, uintN argc, jsval* argv )
 
 bool JSI_Sound::SetPitch( JSContext* cx, uintN argc, jsval* argv )
 {
-	assert( argc >= 1 );
+	debug_assert( argc >= 1 );
 	float pitch;
 	if( !ToPrimitive<float>( cx, argv[0], pitch) )
 		return false;
@@ -50,7 +50,7 @@ bool JSI_Sound::SetPitch( JSContext* cx, uintN argc, jsval* argv )
 
 bool JSI_Sound::SetPosition( JSContext* cx, uintN argc, jsval* argv )
 {
-	assert( argc >= 1 );
+	debug_assert( argc >= 1 );
 	CVector3D pos;
 	// absolute world coords
 	if( ToPrimitive<CVector3D>( cx, argv[0], pos ) )
@@ -117,7 +117,7 @@ jsval JSI_Sound::ToString( JSContext* cx, uintN argc, jsval* argv )
 
 JSBool JSI_Sound::Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
 {
-	assert( argc >= 1 );
+	debug_assert( argc >= 1 );
 	CStrW filename;
 	if( !ToPrimitive<CStrW>( cx, argv[0], filename ) )
 		return( JS_FALSE );

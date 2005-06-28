@@ -413,7 +413,7 @@ public:
 	}
 	void ImmediateCopy( IJSComplex* CopyTo, IJSComplex* CopyFrom, IJSComplexProperty* CopyProperty )
 	{
-		assert( 0 && "ImmediateCopy called on a CJSValComplexProperty (something's gone wrong with the inheritance on this object)" );
+		debug_assert( 0 && "ImmediateCopy called on a CJSValComplexProperty (something's gone wrong with the inheritance on this object)" );
 	}
 };
 
@@ -433,7 +433,7 @@ public:
 		m_Getter = Getter;
 		m_Setter = Setter;
 		// Must at least be able to read 
-		assert( m_Getter );
+		debug_assert( m_Getter );
 	}
 	jsval Get( JSContext* cx, IJSComplex* owner )
 	{
@@ -446,7 +446,7 @@ public:
 	}
 	void ImmediateCopy( IJSComplex* CopyTo, IJSComplex* CopyFrom, IJSComplexProperty* CopyProperty )
 	{
-		assert( 0 && "ImmediateCopy called on a property wrapping getter/setter functions (something's gone wrong with the inheritance for this object)" );
+		debug_assert( 0 && "ImmediateCopy called on a property wrapping getter/setter functions (something's gone wrong with the inheritance for this object)" );
 	}
 };
 
@@ -633,7 +633,7 @@ public:
 		if( !Native )
 			return( JS_TRUE );
 
-		assert( argc >= 1 );
+		debug_assert( argc >= 1 );
 
 		CScriptObject watch( argv[0] );
 		std::vector<CScriptObject>::iterator it;
@@ -777,7 +777,7 @@ public:
 				if( extProp->m_JSAccessor )
 				{
 					CJSComplexPropertyAccessor< CJSComplex<T, ReadOnly> >* accessor = (CJSComplexPropertyAccessor< CJSComplex<T, ReadOnly> >*)JS_GetPrivate( g_ScriptingHost.GetContext(), extProp->m_JSAccessor );
-					assert( accessor );
+					debug_assert( accessor );
 					delete( accessor );
 					JS_SetPrivate( g_ScriptingHost.GetContext(), extProp->m_JSAccessor, NULL );
 					JS_RemoveRoot( g_ScriptingHost.GetContext(), &( extProp->m_JSAccessor ) );
@@ -791,7 +791,7 @@ public:
 		for( it_a = m_Reflectors.begin(); it_a != m_Reflectors.end(); it_a++ )
 		{
 			CJSComplexPropertyAccessor< CJSComplex<T, ReadOnly> >* accessor = (CJSComplexPropertyAccessor< CJSComplex<T, ReadOnly> >*)JS_GetPrivate( g_ScriptingHost.GetContext(), it_a->second->m_JSAccessor );
-			assert( accessor );
+			debug_assert( accessor );
 			delete( accessor );
 			JS_SetPrivate( g_ScriptingHost.GetContext(), it_a->second->m_JSAccessor, NULL );
 			JS_RemoveRoot( g_ScriptingHost.GetContext(), &( it_a->second->m_JSAccessor ) );
@@ -839,7 +839,7 @@ public:
 			// If it can be inherited, inherit it.
 			if( cp && cp->m_AllowsInheritance )
 			{
-				assert( cp->m_Intrinsic );
+				debug_assert( cp->m_Intrinsic );
 				it->second->ImmediateCopy( this, m_Parent, cp );
 			}
 		}
@@ -853,7 +853,7 @@ public:
 
 			if( cp && cp->m_AllowsInheritance )
 			{
-				assert( cp->m_Intrinsic );
+				debug_assert( cp->m_Intrinsic );
 				it->second->ImmediateCopy( this, m_Parent, cp );
 			}
 		}
@@ -897,7 +897,7 @@ public:
 	}
 	void AddProperty( CStrW PropertyName, jsval Value )
 	{
-		assert( !HasProperty( PropertyName ) );
+		debug_assert( !HasProperty( PropertyName ) );
 		CJSDynamicComplexProperty* newProp = new CJSValComplexProperty( Value, false ); 
 		m_Properties[PropertyName] = newProp;
 

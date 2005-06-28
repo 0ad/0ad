@@ -87,7 +87,7 @@ void XMLWriter_File::ElementEnd(const char* name, int type)
 		m_Data += "\n" + Indent() + "</" + name += ">";
 		break;
 	default:
-		assert(0);
+		debug_assert(0);
 	}
 }
 
@@ -135,7 +135,7 @@ template <> void XMLWriter_File::ElementAttribute<CStr>(const char* name, const 
 	}
 	else
 	{
-		assert(m_LastElement && m_LastElement->m_Type == EL_ATTR);
+		debug_assert(m_LastElement && m_LastElement->m_Type == EL_ATTR);
 		m_Data += " ";
 		m_Data += name;
 		m_Data += "=\"" + value + "\"";

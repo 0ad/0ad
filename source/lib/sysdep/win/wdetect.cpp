@@ -24,7 +24,7 @@
 
 #include "win_internal.h"
 
-#include <assert.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -429,7 +429,7 @@ static void add_oal_dlls_in_dir(const char* dir, DllSet* dlls)
 	const int len = snprintf(path, MAX_PATH, "%s\\", dir);
 	if(len < 0)
 	{
-		assert(0);
+		debug_assert(0);
 		return;
 	}
 	PathInfo pi = { path, path+len, MAX_PATH-len, dlls };

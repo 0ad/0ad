@@ -288,7 +288,7 @@ void CSocketBase::Destroy()
 
 	// Remove any data associated with the file descriptor
 	GLOBAL_LOCK();
-	assert2(g_SocketSetInternal.m_NumSockets > 0);
+	debug_assert(g_SocketSetInternal.m_NumSockets > 0);
 
 	g_SocketSetInternal.m_NumSockets--;
 	g_SocketSetInternal.m_HandleMap.erase(m_pInternal->m_fd);

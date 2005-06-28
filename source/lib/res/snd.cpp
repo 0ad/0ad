@@ -45,6 +45,7 @@
 # include "sysdep/win/win_internal.h"
 #endif
 
+
 #define OGG_HACK
 #include "ogghack.h"
 
@@ -104,7 +105,7 @@ static void hsd_list_free_all();
 // 1 error at a time, so this is called after every OpenAL request.
 static void al_check(const char* caller = "(unknown)")
 {
-	assert(al_initialized);
+	debug_assert(al_initialized);
 
 	ALenum err = alGetError();
 	if(err == AL_NO_ERROR)
@@ -204,6 +205,21 @@ static int alc_init()
 	dlls[0] = LoadLibrary("wrap_oal.dll");
 	dlls[1] = LoadLibrary("setupapi.dll");
 	dlls[2] = LoadLibrary("wdmaud.drv");
+#endif
+
+	// for reasons unknown, the NV native OpenAL implementation
+	// causes an invalid exception internally when loaded (it's not
+	// caused by the DLL load hack above). we need to catch it to
+	// prevent the unhandled exception filter from reporting it.
+#ifdef _WIN32
+	__try
+	{
+		alc_dev = alcOpenDevice((ALubyte*)alc_dev_name);
+	}
+	__except(1)	// EXCEPTION_E XECUTE_HANDLER
+	{
+		debug_assert(!"hit me");
+	}
 #endif
 
 	alc_dev = alcOpenDevice((ALubyte*)alc_dev_name);
@@ -337,7 +353,7 @@ static void al_buf_free(ALuint al_buf)
 	if(!al_buf)
 		return;
 
-	assert(alIsBuffer(al_buf));
+	debug_assert(alIsBuffer(al_buf));
 	alDeleteBuffers(1, &al_buf);
 	al_check("al_buf_free");
 
@@ -386,7 +402,7 @@ static void al_src_init()
 		// we've reached the limit, no more are available.
 		if(alGetError() != AL_NO_ERROR)
 			break;
-		assert(alIsSource(al_srcs[i]));
+		debug_assert(alIsSource(al_srcs[i]));
 		al_src_allocated++;
 	}
 
@@ -396,7 +412,7 @@ static void al_src_init()
 		al_src_cap = al_src_allocated;
 
 	// make sure we got the minimum guaranteed by OpenAL.
-	assert(al_src_allocated >= 16);
+	debug_assert(al_src_allocated >= 16);
 }
 
 
@@ -405,7 +421,7 @@ static void al_src_init()
 // called from al_shutdown.
 static void al_src_shutdown()
 {
-	assert(al_src_used == 0);
+	debug_assert(al_src_used == 0);
 	alDeleteSources(al_src_allocated, al_srcs);
 	al_src_allocated = 0;
 	al_check("al_src_shutdown");
@@ -424,9 +440,9 @@ static ALuint al_src_alloc()
 
 static void al_src_free(ALuint al_src)
 {
-	assert(alIsSource(al_src));
+	debug_assert(alIsSource(al_src));
 	al_srcs[--al_src_used] = al_src;
-	assert(al_src_used < al_src_allocated);
+	debug_assert(al_src_used < al_src_allocated);
 		// don't compare against cap - it might have been
 		// decreased to less than were in use.
 }
@@ -598,7 +614,7 @@ static void* io_buf_freelist;
 
 static void io_buf_free(void* p)
 {
-	assert(io_bufs <= p && p <= (char*)io_bufs+TOTAL_BUF_SIZE);
+	debug_assert(io_bufs <= p && p <= (char*)io_bufs+TOTAL_BUF_SIZE);
 	*(void**)p = io_buf_freelist;
 	io_buf_freelist = p;
 }

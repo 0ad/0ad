@@ -27,7 +27,7 @@
 #include <tchar.h>
 #include <string>
 #include <vector>
-#include <assert.h>
+
 #include <stdio.h>
 #include <sstream>
 #include <stdarg.h>
@@ -271,7 +271,7 @@ extern "C" int vsnprintf2(TCHAR* buffer, size_t count, const TCHAR* format, va_l
 
 					if (chr == _T('I'))
 					{
-						assert(! "MSVC-style \"%I64\" is not allowed!");
+						debug_assert(! "MSVC-style \"%I64\" is not allowed!");
 					}
 
 					if (is_lengthmod(chr))
@@ -420,7 +420,7 @@ finished_reading:
 		{
 			if (varsizes[i] <= 0)
 			{
-				assert(! "Invalid variable type somewhere - make sure all variable things are positional and defined");
+				debug_assert(! "Invalid variable type somewhere - make sure all variable things are positional and defined");
 				return -1;
 			}
 
@@ -442,7 +442,7 @@ finished_reading:
 				FormatVariable* s = static_cast<FormatVariable*>(*it);
 				if (s->position <= 0)
 				{
-					assert(! "Invalid use of positional elements - make sure all variable things are positional and defined");
+					debug_assert(! "Invalid use of positional elements - make sure all variable things are positional and defined");
 					return -1;
 				}
 				newstack += std::string( stackitems[s->position-1].first, stackitems[s->position-1].second );

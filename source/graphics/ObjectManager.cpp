@@ -152,7 +152,7 @@ void CObjectManager::AddObjectType(const char* name)
 
 void CObjectManager::AddObject(ObjectKey& key, CObjectEntry* entry, int type)
 {
-	assert((uint)type<m_ObjectTypes.size());
+	debug_assert((uint)type<m_ObjectTypes.size());
 	m_ObjectTypes[type].m_Objects.insert(std::make_pair(key, entry));
 }
 

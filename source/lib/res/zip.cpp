@@ -43,7 +43,7 @@
 
 #include <map>
 
-#include <assert.h>
+
 #include <time.h>
 
 // provision for removing all ZLib code (all inflate calls will fail).
@@ -209,7 +209,7 @@ static time_t convert_dos_date(u16 fatdate, u16 fattime)
 	t.tm_year  = bits(fatdate, 9,15) + 80;	// since 1900
 	t.tm_isdst = -1;	// unknown - let libc determine
 
-	assert(t.tm_year < 138);
+	debug_assert(t.tm_year < 138);
 		// otherwise: totally bogus, and at the limit of 32-bit time_t
 
 	time_t ret = mktime(&t);
@@ -462,7 +462,7 @@ static int lookup_add_file_cb(uintptr_t user, i32 idx,
 
 	// adding a regular file.
 
-	assert(idx < li->num_entries);
+	debug_assert(idx < li->num_entries);
 	FnHash fn_hash = fnv_lc_hash(fn, fn_len);
 
 	// fill ZEnt
@@ -553,7 +553,7 @@ static int lookup_get_file_info(LookupInfo* li, const char* fn, ZLoc* loc)
 		return ERR_FILE_NOT_FOUND;
 
 	i = it->second;
-	assert(0 <= i && i < li->num_files);
+	debug_assert(0 <= i && i < li->num_files);
 	}
 
 have_idx:
@@ -842,7 +842,7 @@ total_inf_time += t1-t0;
 	// which doesn't abort the read.
 	size_t avail_out = zs->avail_out;
 
-	assert(avail_out <= prev_avail_out);
+	debug_assert(avail_out <= prev_avail_out);
 		// make sure output buffer size didn't magically increase
 	ssize_t nread = (ssize_t)(prev_avail_out - avail_out);
 	if(!nread)

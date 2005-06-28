@@ -62,7 +62,7 @@
 #define ENFORCE(condition, retval) STMT(\
 	if(!(condition))                    \
 	{                                   \
-		assert2(condition);             \
+		debug_assert(condition);             \
 		return retval;                  \
 	}                                   \
 )
@@ -88,7 +88,7 @@
 size_t tlen_s(const tchar* str, size_t max_len)
 {
 	// note: we can't bail - what would the return value be?
-	assert2(str != 0);
+	debug_assert(str != 0);
 
 	WARN_IF_PTR_LEN(max_len);
 
@@ -234,53 +234,53 @@ static tchar no_null[] = { 'n','o','_','n','u','l','l'};
 
 #define TEST_LEN(string, limit, expected)                                 \
 STMT(                                                                     \
-	assert2(tlen_s((string), (limit)) == (expected));                     \
+	debug_assert(tlen_s((string), (limit)) == (expected));                     \
 )
 
 #define TEST_CPY(dst, dst_max, src, expected_ret, expected_dst)           \
 STMT(                                                                     \
 	int ret = tcpy_s((dst), dst_max, (src));                              \
-	assert2(ret == expected_ret);                                         \
+	debug_assert(ret == expected_ret);                                         \
 	if(dst != 0)                                                          \
-		assert2(!tcmp(dst, T(expected_dst)));                             \
+		debug_assert(!tcmp(dst, T(expected_dst)));                             \
 )
 #define TEST_CPY2(dst, src, expected_ret, expected_dst)                   \
 STMT(                                                                     \
 	int ret = tcpy_s((dst), ARRAY_SIZE(dst), (src));                      \
-	assert2(ret == expected_ret);                                         \
+	debug_assert(ret == expected_ret);                                         \
 	if(dst != 0)                                                          \
-		assert2(!tcmp(dst, T(expected_dst)));                             \
+		debug_assert(!tcmp(dst, T(expected_dst)));                             \
 )
 #define TEST_NCPY(dst, src, max_src_chars, expected_ret, expected_dst)    \
 STMT(                                                                     \
 	int ret = tncpy_s((dst), ARRAY_SIZE(dst), (src), (max_src_chars));    \
-	assert2(ret == expected_ret);                                         \
+	debug_assert(ret == expected_ret);                                         \
 	if(dst != 0)                                                          \
-		assert2(!tcmp(dst, T(expected_dst)));                             \
+		debug_assert(!tcmp(dst, T(expected_dst)));                             \
 )
 
 #define TEST_CAT(dst, dst_max, src, expected_ret, expected_dst)           \
 STMT(                                                                     \
 	int ret = tcat_s((dst), dst_max, (src));                              \
-	assert2(ret == expected_ret);                                         \
+	debug_assert(ret == expected_ret);                                         \
 	if(dst != 0)                                                          \
-		assert2(!tcmp(dst, T(expected_dst)));                             \
+		debug_assert(!tcmp(dst, T(expected_dst)));                             \
 )
 #define TEST_CAT2(dst, dst_val, src, expected_ret, expected_dst)          \
 STMT(                                                                     \
 	tcpy(dst, T(dst_val));                                                \
 	int ret = tcat_s((dst), ARRAY_SIZE(dst), (src));                      \
-	assert2(ret == expected_ret);                                         \
+	debug_assert(ret == expected_ret);                                         \
 	if(dst != 0)                                                          \
-		assert2(!tcmp(dst, T(expected_dst)));                             \
+		debug_assert(!tcmp(dst, T(expected_dst)));                             \
 )
 #define TEST_NCAT(dst, dst_val, src, max_src_chars, expected_ret, expected_dst)\
 STMT(                                                                     \
 	tcpy(dst, T(dst_val));                                                \
 	int ret = tncat_s((dst), ARRAY_SIZE(dst), (src), (max_src_chars));    \
-	assert2(ret == expected_ret);                                         \
+	debug_assert(ret == expected_ret);                                         \
 	if(dst != 0)                                                          \
-		assert2(!tcmp(dst, T(expected_dst)));                             \
+		debug_assert(!tcmp(dst, T(expected_dst)));                             \
 )
 
 

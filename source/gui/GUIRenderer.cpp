@@ -353,7 +353,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 			Sprites[SpriteName] = Sprite;
 			
 			it = Sprites.find(SpriteName);
-			assert(it != Sprites.end()); // The insertion above shouldn't fail
+			debug_assert(it != Sprites.end()); // The insertion above shouldn't fail
 		}
 		else
 		{

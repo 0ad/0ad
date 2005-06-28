@@ -29,7 +29,7 @@
 #include "Particle.h"
 #include "timer.h"
 #include "ogl.h"
-#include <assert.h>
+
 
 CParticle::CParticle() :
 	m_duration(0.0f),
@@ -64,7 +64,7 @@ void CParticle::Frame()
 
 void CParticle::Render() 
 {
-	assert(m_sprite);
+	debug_assert(m_sprite);
 
 	m_sprite->SetColour(m_colour);
 	m_sprite->SetTranslation(m_position);

@@ -30,7 +30,7 @@ enum DisplayErrorFlags
 	DE_MANUAL_BREAK = 4
 };
 
-// user choices in the assert/unhandled exception dialog.
+// user choices in the debug_assert/unhandled exception dialog.
 enum ErrorReaction
 {
 	// ignore, continue as if nothing happened.

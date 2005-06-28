@@ -24,7 +24,7 @@
 #include "posix.h"
 #include "win_internal.h"
 
-#include <assert.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -113,7 +113,7 @@ int close(int fd)
 debug_printf("close %d\n", fd);
 #endif
 
-	assert(3 <= fd && fd < 256);
+	debug_assert(3 <= fd && fd < 256);
 
 	// note: there's no good way to notify us that <fd> wasn't opened for
 	// AIO, so we could skip aio_close. storing a bit in the fd is evil and
@@ -214,13 +214,13 @@ static void detect_filesystem()
 {
 	char root_path[MAX_PATH] = "c:\\";	// default in case GCD fails
 	DWORD gcd_ret = GetCurrentDirectory(sizeof(root_path), root_path);
-	assert2(gcd_ret != 0);
+	debug_assert(gcd_ret != 0);
 		// if this fails, no problem - we have the default from above.
 	root_path[3] = '\0';	// cut off after "c:\"
 
 	char fs_name[32];
 	BOOL ret = GetVolumeInformation(root_path, 0,0,0,0,0, fs_name, sizeof(fs_name));
-	assert2(ret != 0);
+	debug_assert(ret != 0);
 		// if this fails, no problem - we really only care if fs is FAT,
 		// and will assume that's not the case (since fs_name != "FAT").
 
@@ -525,7 +525,7 @@ void* mmap(void* user_start, size_t len, int prot, int flags, int fd, off_t offs
 	if(flags & MAP_FIXED)
 	{
 		start = user_start;
-		if(start == 0)	// assert below would fire
+		if(start == 0)	// debug_assert below would fire
 			goto fail;
 	}
 
@@ -584,7 +584,7 @@ void* mmap(void* user_start, size_t len, int prot, int flags, int fd, off_t offs
 		// but after freeing the mapping object.
 		goto fail;
 
-	assert(!(flags & MAP_FIXED) || (ptr == start));
+	debug_assert(!(flags & MAP_FIXED) || (ptr == start));
 		// fixed => ptr = start
 
 	WIN_RESTORE_LAST_ERROR;

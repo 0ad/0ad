@@ -47,7 +47,7 @@ public:
 	membuffer()
 	{
 		buffer = (char*)malloc(bufferinc);
-		assert(buffer);
+		debug_assert(buffer);
 		allocated = bufferinc;
 		length = 0;
 	}
@@ -66,7 +66,7 @@ public:
 
 	void write(const void* data, int size, int offset)
 	{
-		assert(offset >= 0 && offset+size <= length);
+		debug_assert(offset >= 0 && offset+size <= length);
 		memcpy(&buffer[offset], data, size);
 	}
 
@@ -91,7 +91,7 @@ private:
 	{
 		allocated += bufferinc;
 		buffer = (char*)realloc(buffer, allocated);
-		assert(buffer);
+		debug_assert(buffer);
 	}
 };
 
@@ -325,8 +325,8 @@ bool CXeromyces::ReadXMBFile(const char* filename)
 
 	const void* buffer = file->GetBuffer();
 
-	assert(file->GetBufferSize() >= 42 && "Invalid XMB file"); // 42 bytes is the smallest possible XMB. (Well, maybe not quite, but it's a nice number.)
-	assert(*(int*)buffer == HeaderMagic && "Invalid XMB file header");
+	debug_assert(file->GetBufferSize() >= 42 && "Invalid XMB file"); // 42 bytes is the smallest possible XMB. (Well, maybe not quite, but it's a nice number.)
+	debug_assert(*(int*)buffer == HeaderMagic && "Invalid XMB file header");
 
 	// Store the Handle so it can be closed later
 	XMBFileHandle = file;
@@ -433,7 +433,7 @@ void XeroHandler::CreateXMB()
 	}
 
 	// All the XML contents must be surrounded by a single element
-	assert(Root->childs.size() == 1);
+	debug_assert(Root->childs.size() == 1);
 
 	OutputElement(Root->childs[0]);
 

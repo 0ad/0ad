@@ -6,7 +6,7 @@
 
 #include "ps/utf16string.h"
 
-#include <assert.h>
+
 
 const int HeaderMagic = 0x30424D58; // = "XMB0" (little-endian)
 const char* HeaderMagicStr = "XMB0";
@@ -17,7 +17,7 @@ void XMBFile::Initialise(char* FileData)
 {
 	m_Pointer = FileData;
 	int Header = *(int*)m_Pointer; m_Pointer += 4;
-	assert(Header == HeaderMagic && "Invalid XMB header!");
+	debug_assert(Header == HeaderMagic && "Invalid XMB header!");
 
 	int i;
 
@@ -178,7 +178,7 @@ int XMBElement::getLineNumber() const
 
 XMBElement XMBElementList::item(const int id)
 {
-	assert(id >= 0 && id < Count && "Element ID out of range");
+	debug_assert(id >= 0 && id < Count && "Element ID out of range");
 	char* Pos;
 
 	// If access is sequential, don't bother scanning
@@ -221,7 +221,7 @@ utf16string XMBAttributeList::getNamedItem(const int AttributeName) const
 
 XMBAttribute XMBAttributeList::item(const int id)
 {
-	assert(id >= 0 && id < Count && "Attribute ID out of range");
+	debug_assert(id >= 0 && id < Count && "Attribute ID out of range");
 	char* Pos;
 
 	// If access is sequential, don't bother scanning through

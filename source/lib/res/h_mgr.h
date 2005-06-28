@@ -359,7 +359,7 @@ guide to defining and using resources
    }
 
    again no provision for reporting errors - there's no one to act on it
-   if called at exit. you can assert or log the error, though.
+   if called at exit. you can debug_assert or log the error, though.
 
 5) provide your layer on top of the handle manager:
    Handle res1_load(const char* filename, int my_flags)

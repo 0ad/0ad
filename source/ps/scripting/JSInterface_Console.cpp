@@ -84,7 +84,7 @@ JSBool JSI_Console::getConsole( JSContext* cx, JSObject* obj, jsval id, jsval* v
 
 JSBool JSI_Console::writeConsole( JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* UNUSEDPARAM(rval) )
 {
-	assert( argc >= 1 );
+	debug_assert( argc >= 1 );
 	CStrW output;
 	for( unsigned int i = 0; i < argc; i++ )
 	{

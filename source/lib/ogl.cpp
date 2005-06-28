@@ -18,7 +18,7 @@
 
 #include "precompiled.h"
 
-#include <assert.h>
+
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
@@ -61,7 +61,7 @@ static bool have_14, have_13, have_12;
 // (useful for crash logs).
 const char* oglExtList()
 {
-	assert(exts && "call oglInit before using this function");
+	debug_assert(exts && "call oglInit before using this function");
 	return exts;
 }
 
@@ -128,7 +128,7 @@ static bool isImplementedInCore(const char* ext)
 // takes subsequently added core support for some extensions into account.
 bool oglHaveExtension(const char* ext)
 {
-	assert(exts && "call oglInit before using this function");
+	debug_assert(exts && "call oglInit before using this function");
 
 	if(isImplementedInCore(ext))
 		return true;
@@ -388,9 +388,9 @@ static void CALL_CONV emulate_glCompressedTexImage2D(
 	bool dxt1 = (internalformat == GL_COMPRESSED_RGB_S3TC_DXT1_EXT || internalformat == GL_COMPRESSED_RGBA_S3TC_DXT1_EXT);
 	bool dxt3 = (internalformat == GL_COMPRESSED_RGBA_S3TC_DXT3_EXT);
 	bool dxt5 = (internalformat == GL_COMPRESSED_RGBA_S3TC_DXT5_EXT);
-	assert(dxt1 || dxt3 || dxt5);
+	debug_assert(dxt1 || dxt3 || dxt5);
 
-	assert(imageSize == blocks * (dxt1? 8 : 16));
+	debug_assert(imageSize == blocks * (dxt1? 8 : 16));
 
 	// This code is inefficient, but I don't care:
 

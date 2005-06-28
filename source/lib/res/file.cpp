@@ -835,7 +835,7 @@ static u64 block_make_id(const u32 fn_hash, const off_t ofs)
 
 	// make sure block_num fits in 32 bits
 	const size_t block_num = ofs / BLOCK_SIZE;
-	assert(block_num <= 0xffffffff);
+	debug_assert(block_num <= 0xffffffff);
 
 	u64 id = fn_hash;	// careful, don't shift a u32 32 bits left
 	id <<= 32;
@@ -1184,7 +1184,7 @@ if(from_cache && !temp)
 	if(err < 0)
 		return err;
 
-	assert(issue_cnt >= raw_transferred_cnt && raw_transferred_cnt >= data_size); 
+	debug_assert(issue_cnt >= raw_transferred_cnt && raw_transferred_cnt >= data_size); 
 
 	return (ssize_t)actual_transferred_cnt;
 }

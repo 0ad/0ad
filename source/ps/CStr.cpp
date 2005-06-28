@@ -309,14 +309,14 @@ CStr CStr::UCase() const
 // Retrieve the substring of the first n characters 
 CStr CStr::Left(size_t len) const
 {
-	assert(len <= length());
+	debug_assert(len <= length());
 	return substr(0, len);
 }
 
 // Retrieve the substring of the last n characters
 CStr CStr::Right(size_t len) const
 {
-	assert(len <= length());
+	debug_assert(len <= length());
 	return substr(length()-len, len);
 }
 

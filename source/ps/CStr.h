@@ -212,8 +212,8 @@ public:
 	operator const tchar*() const;
 
 	// Do some range checking in debug builds
-	tchar &operator[](size_t n)	{ assert(n < length()); return this->std::tstring::operator[](n); }
-	tchar &operator[](int n)	{ assert(n >= 0 && (size_t)n < length()); return this->std::tstring::operator[](n); }
+	tchar &operator[](size_t n)	{ debug_assert(n < length()); return this->std::tstring::operator[](n); }
+	tchar &operator[](int n)	{ debug_assert(n >= 0 && (size_t)n < length()); return this->std::tstring::operator[](n); }
 	
 	// Conversion to utf16string
 	inline utf16string utf16() const

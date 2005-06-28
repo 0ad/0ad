@@ -50,7 +50,7 @@ HEntity::operator bool() const
 	if( m_handle == INVALID_HANDLE )
 		return( false );
 	
-	assert( g_EntityManager.m_entities[m_handle].m_refcount );
+	debug_assert( g_EntityManager.m_entities[m_handle].m_refcount );
 	return( !g_EntityManager.m_entities[m_handle].m_entity->m_destroyed );
 }
 
@@ -59,7 +59,7 @@ bool HEntity::operator!() const
 	if( m_handle == INVALID_HANDLE )
 		return( true );
 	
-	assert( g_EntityManager.m_entities[m_handle].m_refcount );
+	debug_assert( g_EntityManager.m_entities[m_handle].m_refcount );
 	return( g_EntityManager.m_entities[m_handle].m_entity->m_destroyed );
 }
 
@@ -67,7 +67,7 @@ void HEntity::addRef()
 {
 	if( m_handle != INVALID_HANDLE )
 	{
-		assert( m_handle < MAX_HANDLES );
+		debug_assert( m_handle < MAX_HANDLES );
 		g_EntityManager.m_entities[m_handle].m_refcount++;
 	}
 }
@@ -83,8 +83,8 @@ void HEntity::decRef()
 
 CEntity* HEntity::operator->() const
 {
-	assert( m_handle != INVALID_HANDLE );
-	assert( g_EntityManager.m_entities[m_handle].m_refcount );
+	debug_assert( m_handle != INVALID_HANDLE );
+	debug_assert( g_EntityManager.m_entities[m_handle].m_refcount );
 	return( g_EntityManager.m_entities[m_handle].m_entity );
 }
 
@@ -93,13 +93,13 @@ HEntity::operator CEntity*() const
 	if( m_handle == INVALID_HANDLE )
 		return( NULL );
 
-	assert( g_EntityManager.m_entities[m_handle].m_refcount );
+	debug_assert( g_EntityManager.m_entities[m_handle].m_refcount );
 	return( g_EntityManager.m_entities[m_handle].m_entity );
 }
 CEntity& HEntity::operator*() const
 {
-	assert( m_handle != INVALID_HANDLE );
-	assert( g_EntityManager.m_entities[m_handle].m_refcount );
+	debug_assert( m_handle != INVALID_HANDLE );
+	debug_assert( g_EntityManager.m_entities[m_handle].m_refcount );
 	return( *g_EntityManager.m_entities[m_handle].m_entity );
 }
 
@@ -117,7 +117,7 @@ u8 *HEntity::Serialize(u8 *buffer) const
 const u8 *HEntity::Deserialize(const u8 *buffer, const u8 *end)
 {
 	Deserialize_int_2(buffer, m_handle);
-	// We can't let addRef assert just because someone sent us bogus data
+	// We can't let addRef debug_assert just because someone sent us bogus data
 	if (m_handle < MAX_HANDLES && m_handle != INVALID_HANDLE)
 		addRef();
 	return buffer;
@@ -150,7 +150,7 @@ const u8 *CEntityList::Deserialize(const u8 *buffer, const u8 *end)
 	{
 		Deserialize_int_2(buffer, n);
 		handle = n & ~HANDLE_SENTINEL_BIT;
-		// We have to validate the data, or the HEntity constructor will assert
+		// We have to validate the data, or the HEntity constructor will debug_assert
 		// on us.
 		// FIXME 4096 shouldn't be hard-coded
 		// FIXME We should also check that the entity actually exists

@@ -313,7 +313,7 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::E
 
 template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::Subset( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
-	assert( argc > 0 );
+	debug_assert( argc > 0 );
 
 	std::vector<T>* Set = RetrieveSet( cx, obj );
 	if( !Set )
@@ -355,7 +355,7 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::C
 
 template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::Push( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
-	assert( argc > 0 );
+	debug_assert( argc > 0 );
 
 	std::vector<T>* Set = RetrieveSet( cx, obj );
 	if( !Set )
@@ -392,7 +392,7 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::P
 
 template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::Remove( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
-	assert( argc > 0 );
+	debug_assert( argc > 0 );
 
 	
 	std::vector<T>* Set = RetrieveSet( cx, obj );

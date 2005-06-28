@@ -121,7 +121,7 @@ void CTextureManager::LoadTerrainsFromXML(const char *filename)
 
 /*CTextureEntry* CTextureManager::AddTexture(const char* filename,int type)
 {
-	assert((uint)type<m_TerrainTextures.size());
+	debug_assert((uint)type<m_TerrainTextures.size());
 
 	// create new texture entry
 	CTextureEntry* texentry=new CTextureEntry(filename,type);

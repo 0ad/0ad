@@ -42,7 +42,7 @@
 
 #include <ddraw.h>
 #include <process.h>	// _beginthreadex
-#include <assert.h>
+
 #include <stdio.h>
 #include <math.h>
 
@@ -271,7 +271,7 @@ inline SDLKey vkmap(int vk)
 
 	ONCE( init_vkmap(VK_SDLKMap); );
 
-	assert(vk >= 0 && vk < 256);
+	debug_assert(vk >= 0 && vk < 256);
 
 	return VK_SDLKMap[vk];
 }
@@ -279,7 +279,7 @@ inline SDLKey vkmap(int vk)
 
 int SDL_WaitEvent(SDL_Event* ev)
 {
-	assert(ev == 0 && "can't store event, since wsdl doesn't have a real queue");
+	debug_assert(ev == 0 && "can't store event, since wsdl doesn't have a real queue");
 	WaitMessage();
 	return 0;
 }
@@ -299,7 +299,7 @@ int SDL_PollEvent(SDL_Event* ev)
 
 	// input is waiting in buffer
 return_char:
-	assert(num_chars <= CHAR_BUF_SIZE);
+	debug_assert(num_chars <= CHAR_BUF_SIZE);
 	if(num_chars > 0)
 	{
 		num_chars--;
@@ -387,7 +387,7 @@ return_char:
 		default:
 			if( ( msg.message >= WM_APP ) && ( msg.message < 0xC000 ) ) // 0xC000 = maximum application message
 			{
-				assert( SDL_USEREVENT+(msg.message-WM_APP) <= 0xff && "Message too far above WM_APP");
+				debug_assert( SDL_USEREVENT+(msg.message-WM_APP) <= 0xff && "Message too far above WM_APP");
 				ev->type = (u8)(SDL_USEREVENT+(msg.message-WM_APP));
 				ev->user.code = (int)msg.wParam;
 				return 1;
@@ -506,13 +506,13 @@ static void enable_kbd_hook(bool enable)
 /*
 	if(enable)
 	{
-		assert(hKeyboard_LL_Hook == 0);
+		debug_assert(hKeyboard_LL_Hook == 0);
 		hKeyboard_LL_Hook = SetWindowsHookEx(WH_KEYBOARD_LL, keyboard_ll_hook, hInst, 0);
-		assert(hKeyboard_LL_Hook != 0);
+		debug_assert(hKeyboard_LL_Hook != 0);
 	}
 	else
 	{
-		assert(hKeyboard_LL_Hook != 0);
+		debug_assert(hKeyboard_LL_Hook != 0);
 		UnhookWindowsHookEx(hKeyboard_LL_Hook);
 		hKeyboard_LL_Hook = 0;
 	}

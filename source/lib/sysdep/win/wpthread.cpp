@@ -125,7 +125,7 @@ int pthread_key_create(pthread_key_t* key, void (*dtor)(void*))
 	if(idx == TLS_OUT_OF_INDEXES)
 		return -ENOMEM;
 
-	assert2(idx < TLS_LIMIT);
+	debug_assert(idx < TLS_LIMIT);
 	*key = (pthread_key_t)idx;
 
 	// store dtor
@@ -146,10 +146,10 @@ int pthread_key_create(pthread_key_t* key, void (*dtor)(void*))
 int pthread_key_delete(pthread_key_t key)
 {
 	DWORD idx = (DWORD)key;
-	assert2(idx < TLS_LIMIT);
+	debug_assert(idx < TLS_LIMIT);
 
 	BOOL ret = TlsFree(idx);
-	assert2(ret != 0);
+	debug_assert(ret != 0);
 	return 0;
 }
 
@@ -157,7 +157,7 @@ int pthread_key_delete(pthread_key_t key)
 void* pthread_getspecific(pthread_key_t key)
 {
 	DWORD idx = (DWORD)key;
-	assert2(idx < TLS_LIMIT);
+	debug_assert(idx < TLS_LIMIT);
 
 	// TlsGetValue sets last error to 0 on success (boo).
 	// we don't want this to hide previous errors, so it's restored below.
@@ -183,10 +183,10 @@ void* pthread_getspecific(pthread_key_t key)
 int pthread_setspecific(pthread_key_t key, const void* value)
 {
 	DWORD idx = (DWORD)key;
-	assert2(idx < TLS_LIMIT);
+	debug_assert(idx < TLS_LIMIT);
 
 	BOOL ret = TlsSetValue(idx, (void*)value);
-	assert2(ret != 0);
+	debug_assert(ret != 0);
 	return 0;
 }
 
@@ -210,7 +210,7 @@ again:
 		if(tls)
 		{
 			int ret = pthread_setspecific(key, 0);
-			assert2(ret == 0);
+			debug_assert(ret == 0);
 
 			dtor(tls);
 			had_valid_tls = true;

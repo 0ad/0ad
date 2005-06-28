@@ -530,7 +530,7 @@ JSBool JSI_IGUIObject::construct(JSContext* cx, JSObject* obj, unsigned int argc
 		return JS_FALSE;
 	}
 
-	assert(argc == 1);
+	debug_assert(argc == 1);
 
 	// Store the IGUIObject in the JS object's 'private' area
 	IGUIObject* guiObject = (IGUIObject*)JSVAL_TO_PRIVATE(argv[0]);
@@ -542,7 +542,7 @@ JSBool JSI_IGUIObject::construct(JSContext* cx, JSObject* obj, unsigned int argc
 
 JSBool JSI_IGUIObject::getByName(JSContext* cx, JSObject* UNUSEDPARAM(obj), unsigned int argc, jsval* argv, jsval* rval)
 {
-	assert(argc == 1);
+	debug_assert(argc == 1);
 
 	CStr objectName = JS_GetStringBytes(JS_ValueToString(cx, argv[0]));
 

@@ -91,7 +91,7 @@ static bool GetTooltip(IGUIObject* obj, CStr &style)
 
 void ShowTooltip(IGUIObject* obj, CPos pos, CStr& style, CGUI* gui)
 {
-	assert(obj);
+	debug_assert(obj);
 
 	// Get the object referenced by 'tooltip_style'
 	IGUIObject* tooltipobj = gui->FindObjectByName("__tooltip_"+style);

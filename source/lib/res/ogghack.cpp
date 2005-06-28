@@ -128,7 +128,7 @@ void ogg_open(void* _o, ALenum& fmt, ALsizei& freq)
 	void* datasource = &o->incoming_bufs;
 	if(ov_open_callbacks(datasource, &o->oggStream, NULL, 0, cbs) < 0)
 	{
-		assert(!"ov_open failed");
+		debug_assert(!"ov_open failed");
 	}
 
 	o->vorbisInfo = ov_info(&o->oggStream, -1);
@@ -166,7 +166,7 @@ size_t ogg_read(void* _o, void* buf, size_t max_size)
 		if(result > 0)
 			bytes_written += result;
 		else if(result < 0)
-			assert(!"ogg read error");
+			debug_assert(!"ogg read error");
 		// clean break - end of data
 		else
 			break;

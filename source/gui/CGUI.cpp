@@ -7,7 +7,7 @@ gee@pyro.nu
 #include "precompiled.h"
 
 #include <string>
-#include <assert.h>
+
 #include <stdarg.h>
 
 #include "lib/res/unifont.h"
@@ -292,7 +292,7 @@ CGUI::CGUI() : m_InternalNameNumber(0), m_MouseButtons(0), m_FocusedObject(NULL)
 
 	// Construct the parent object for all GUI JavaScript things
 	m_ScriptObject = JS_NewObject(g_ScriptingHost.getContext(), &GUIClass, NULL, NULL);
-	assert(m_ScriptObject != NULL); // How should it handle errors?
+	debug_assert(m_ScriptObject != NULL); // How should it handle errors?
 	JS_AddRoot(g_ScriptingHost.getContext(), &m_ScriptObject);
 
 	// This will make this invisible, not add
@@ -346,7 +346,7 @@ void CGUI::Process()
 /*
 
 	// TODO Gee: check if m_pInput is valid, otherwise return
-///	assert(m_pInput);
+///	debug_assert(m_pInput);
 
 	// Pre-process all objects
 	try
@@ -1096,7 +1096,7 @@ void CGUI::Xeromyces_ReadRootSetup(XMBElement Element, CXeromyces* pFile)
 
 void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent)
 {
-	assert(pParent);
+	debug_assert(pParent);
 	int i;
 
 	// Our object we are going to create
@@ -1399,7 +1399,7 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 		}
 		else if (ElementName == "effect")
 		{
-			assert(! effects); // DTD should only allow one effect per sprite
+			debug_assert(! effects); // DTD should only allow one effect per sprite
 			effects = new SGUIImageEffects;
 			Xeromyces_ReadEffects(child, pFile, *effects);
 		}
@@ -1534,7 +1534,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		CStr ElementName (pFile->getElementString(child.getNodeName()));
 		if (ElementName == "effect")
 		{
-			assert(! image.m_Effects); // DTD should only allow one effect per sprite
+			debug_assert(! image.m_Effects); // DTD should only allow one effect per sprite
 			image.m_Effects = new SGUIImageEffects;
 			Xeromyces_ReadEffects(child, pFile, *image.m_Effects);
 		}

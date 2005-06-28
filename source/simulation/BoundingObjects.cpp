@@ -4,7 +4,6 @@
 #include "ogl.h"
 #include "MathUtil.h"
 #include "stdio.h"
-#include "assert.h"
 
 bool CBoundingObject::intersects( CBoundingObject* obj )
 {
@@ -64,7 +63,7 @@ void CBoundingCircle::setRadius( float radius )
 
 bool CBoundingCircle::_intersects( CBoundingObject* obj, const CVector2D& delta )
 {
-	assert( obj->m_type == BOUND_CIRCLE );
+	debug_assert( obj->m_type == BOUND_CIRCLE );
 	// Easy enough. The only time this gets called is a circle-circle collision,
 	// but we know the circles collide (they passed the trivial rejection step)
 	return( true );

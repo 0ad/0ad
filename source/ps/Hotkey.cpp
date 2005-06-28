@@ -416,7 +416,7 @@ int hotkeyInputHandler( const SDL_Event* ev )
 			int keyCode = *itKey & ~HOTKEY_NEGATION_FLAG; // Clear the negation-modifier bit
 			bool rqdState = !( *itKey & HOTKEY_NEGATION_FLAG );
 
-			// assert( !rqdState );
+			// debug_assert( !rqdState );
 
 			if( keyCode < SDLK_LAST )
 			{
