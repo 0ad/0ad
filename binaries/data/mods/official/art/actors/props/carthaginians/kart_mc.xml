@@ -5,11 +5,8 @@
 
   <group>
     <variant frequency="100" name="Base">
-      <mesh>structural/kart_hc.pmd</mesh>
-      <props>
-        <prop actor="props/carthaginians/kart_hc.xml" attachpoint="props_main"/>
-      </props>
-      <texture>structural/kart_struct_1.dds</texture>
+      <mesh>props/kart_mc.pmd</mesh>
+      <texture>props/kart_prop_a.dds</texture>
     </variant>
   </group>
 
