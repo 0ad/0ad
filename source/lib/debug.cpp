@@ -347,7 +347,7 @@ ErrorReaction display_error(const wchar_t* description, int flags,
 		line = 0;
 
 	// display in output window; double-click will navigate to error location.
-	char* slash = strrchr(file, DIR_SEP);
+	const char* slash = strrchr(file, DIR_SEP);
 	const char* filename = slash? slash+1 : file;
 	debug_wprintf(L"%hs(%d): %s\n", filename, line, description);
 

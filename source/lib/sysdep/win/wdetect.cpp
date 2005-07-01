@@ -209,7 +209,7 @@ static int dll_list_add(const char* name)
 	// if necessary, copy to new buffer and add it there.
 	char buf[MAX_PATH];
 	const char* dll_name = name;
-	char* ext = strrchr(name, '.');
+	const char* ext = strrchr(name, '.');
 	if(!ext || stricmp(ext, ".dll") != 0)
 	{
 		snprintf(buf, ARRAY_SIZE(buf), "%s.dll", name);
