@@ -220,9 +220,10 @@ static int alc_init()
 	{
 		debug_assert(!"hit me");
 	}
+#else
+	alc_dev = alcOpenDevice((ALubyte*)alc_dev_name);
 #endif
 
-	alc_dev = alcOpenDevice((ALubyte*)alc_dev_name);
 	if(alc_dev)
 	{
 		alc_ctx = alcCreateContext(alc_dev, 0);	// no attrlist needed
