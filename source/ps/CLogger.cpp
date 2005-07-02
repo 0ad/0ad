@@ -215,13 +215,11 @@ void CLogger::QuickLog(const char *fmt, ...)
 
 	while(buffer[count] != '\0')
 	{
-		*m_CurrentPosition = buffer[count];
-		*m_CurrentPosition++;
+		*m_CurrentPosition++ = buffer[count];
 		count++;
 	}
 	
-	*m_CurrentPosition = '\n';
-	*m_CurrentPosition++;
+	*m_CurrentPosition++ = '\n';
 	
 	free(buffer);
 }

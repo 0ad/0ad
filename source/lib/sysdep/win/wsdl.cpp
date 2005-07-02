@@ -1024,7 +1024,7 @@ SDL_Thread* SDL_CreateThread(int(*func)(void*), void* param)
 	pthread_sdl u;
 	if(pthread_create(&u.p, 0, (void*(*)(void*))func, param) < 0)
 		return 0;
-	return u.s;
+	return u.s; // TODO: uninitialised value?
 }
 
 int SDL_KillThread(SDL_Thread* thread)

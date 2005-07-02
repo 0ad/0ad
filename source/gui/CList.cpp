@@ -334,7 +334,7 @@ void CList::DrawList(const int &selected,
 					   rect.right, rect.top + m_ItemsYPositions[selected+1] - scroll);
 
 			if (rect.top <= rect.bottom &&
-				rect.bottom >= rect.top)
+				rect.bottom >= rect.top) // TODO: "warning C6287: redundant code: the left and right sub-expressions are identical"
 			{
 				if (rect.bottom > rect.bottom)
 					rect.bottom = rect.bottom;

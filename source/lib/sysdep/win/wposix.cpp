@@ -465,7 +465,7 @@ void _hide_console()
 
 int tcgetattr(int fd, struct termios* termios_p)
 {
-	if(fd > 2)
+	if(fd >= 2)
 		return -1;
 	HANDLE h = std_h[fd];
 
@@ -479,7 +479,7 @@ int tcgetattr(int fd, struct termios* termios_p)
 
 int tcsetattr(int fd, int /* optional_actions */, const struct termios* termios_p)
 {
-	if(fd > 2)
+	if(fd >= 2)
 		return -1;
 	HANDLE h = std_h[fd];
 	SetConsoleMode(h, (DWORD)termios_p->c_lflag);

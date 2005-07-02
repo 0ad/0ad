@@ -269,6 +269,12 @@ void CSelectedEntities::loadGroup( i8 groupid )
 	if( m_group == groupid )
 		return;
 
+	if( groupid >= MAX_GROUPS )
+	{
+		debug_warn( "Invalid group id" );
+		return;
+	}
+
 	clearSelection();
 	m_selected = m_groups[groupid];
 

@@ -284,10 +284,13 @@ typedef struct _PROCESSOR_POWER_INFORMATION
 # define __deref_opt_out
 # define __deref_out
 
+#endif
+
+// (VC2005 defines __specstrings, but doesn't define (or use) __out_xcount,
+// so this is not inside the above #ifndef section)
+//
 // missing from dbghelp's list
 # define __out_xcount(s)
-
-#endif
 
 
 //

@@ -110,7 +110,7 @@ static void SkinPoint(const SModelVertex& vertex,const CMatrix3D* matrices,CVect
 	m.Transform(vertex.m_Coords,result);
 	result*=blend.m_Weight[0];
 
-	for (u32 i=1;blend.m_Bone[i]!=0xff && i<SVertexBlend::SIZE;i++) {
+	for (u32 i=1; i<SVertexBlend::SIZE && blend.m_Bone[i]!=0xff; i++) {
 		const CMatrix3D& m=matrices[blend.m_Bone[i]];
 		m.Transform(vertex.m_Coords,tmp);
 		result+=tmp*blend.m_Weight[i];
@@ -131,7 +131,7 @@ static void SkinNormal(const SModelVertex& vertex,const CMatrix3D* invmatrices,C
 	m.RotateTransposed(vertex.m_Norm,result);
 	result*=blend.m_Weight[0];
 
-	for (u32 i=1;vertex.m_Blend.m_Bone[i]!=0xff && i<SVertexBlend::SIZE;i++) {
+	for (u32 i=1; i<SVertexBlend::SIZE && vertex.m_Blend.m_Bone[i]!=0xff; i++) {
 		const CMatrix3D& m=invmatrices[blend.m_Bone[i]];
 		m.RotateTransposed(vertex.m_Norm,tmp);
 		result+=tmp*blend.m_Weight[i];

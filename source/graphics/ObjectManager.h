@@ -67,8 +67,8 @@ public:
 	
 	CObjectBase* FindObjectBase(const char* objname);
 
-	CObjectEntry* FindObjectVariation(const char* objname, CObjectBase::variation_key vars, CObjectBase::variation_key::iterator& vars_it);
-	CObjectEntry* FindObjectVariation(CObjectBase* base, CObjectBase::variation_key vars, CObjectBase::variation_key::iterator& vars_it);
+	CObjectEntry* FindObjectVariation(const char* objname, const CObjectBase::variation_key& vars, CObjectBase::variation_key::const_iterator vars_it);
+	CObjectEntry* FindObjectVariation(CObjectBase* base, const CObjectBase::variation_key& vars, CObjectBase::variation_key::const_iterator vars_it);
 
 	// Get all names, quite slowly. (Intended only for ScEd.)
 	void GetAllObjectNames(std::vector<CStr>& names);

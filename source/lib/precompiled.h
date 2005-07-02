@@ -11,6 +11,9 @@
 #ifdef _MSC_VER
 #pragma warning(disable:4996)	// function is deprecated
 #pragma warning(disable:4786)	// identifier truncated to 255 chars
+// VS2005 code analysis warnings - disable the very frequent ones:
+#pragma warning(disable:6011)	// dereferencing NULL pointer
+#pragma warning(disable:6246)	// local declaration hides declaration of the same name in outer scope
 #endif
 
 // make these available everywhere for convenience:

@@ -480,7 +480,9 @@ int TDir::lookup(const char* path, uint flags, TNode** pnode, char* exact_path)
 		char* slash = (char*)strchr(cur_component, '/');
 		if(!slash)
 		{
-			// string ended in slash => return the current dir node
+			// string ended in slash => return the current dir node.
+			// TODO: is it at all possible that this will happen on the
+			// first iteration, when 'node' is still undefined?
 			if(*cur_component == '\0')
 				break;
 			// it's a filename

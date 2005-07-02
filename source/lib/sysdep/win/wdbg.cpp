@@ -910,7 +910,7 @@ static const wchar_t* get_exception_locus(const EXCEPTION_POINTERS* ep)
 	// points to kernel32!RaiseException. we use debug_dump_stack to determine the
 	// real location.
 
-	wchar_t buf[32000];
+	wchar_t buf[32000]; // Maybe TODO: "warning C6262: Function uses '64016' bytes of stack: exceeds /analysis:stacksize'16384'. Consider moving some data to heap"
 	const wchar_t* stack_trace = debug_dump_stack(buf, ARRAY_SIZE(buf), 1, ep->ContextRecord);
 
 	const size_t MAX_LOCUS_CHARS = 256;

@@ -36,7 +36,7 @@ CObjectEntry::~CObjectEntry()
 	delete m_Model;
 }
 
-bool CObjectEntry::BuildRandomVariant(CObjectBase::variation_key& vars, CObjectBase::variation_key::iterator& vars_it)
+bool CObjectEntry::BuildRandomVariant(const CObjectBase::variation_key& vars, CObjectBase::variation_key::const_iterator vars_it)
 {
 	CStr chosenTexture;
 	CStr chosenModel;

@@ -4,8 +4,13 @@
 #include "posix_types.h"	// size_t
 
 // these are already shipped with VC2005
-#if _MSC_VER < 1400
+#if _MSC_VER >= 1400
 
+// ...except VC2005 Beta 2 uses strnlen instead of strlen_s
+// (see http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1059.htm)
+#define strlen_s(str, max) strnlen(str, max)
+
+#else
 
 // return length [in characters] of a string, not including the trailing
 // null character. to protect against access violations, only the

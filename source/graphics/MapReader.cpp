@@ -109,7 +109,8 @@ void CMapReader::UnpackObjects()
 	u32 numObjects;
 	unpacker.UnpackRaw(&numObjects, sizeof(numObjects));
 	m_Objects.resize(numObjects);
-	unpacker.UnpackRaw(&m_Objects[0], sizeof(SObjectDesc)*numObjects);
+	if (numObjects)
+		unpacker.UnpackRaw(&m_Objects[0], sizeof(SObjectDesc)*numObjects);
 }
 
 // UnpackTerrain: unpack the terrain from the end of the input data stream
@@ -382,9 +383,9 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 		debug_assert(entity.getNodeName() == el_entity);
 
 		CStrW TemplateName;
-		int PlayerID;
+		int PlayerID = 0;
 		CVector3D Position;
-		float Orientation;
+		float Orientation = 0.f;
 
 		XERO_ITER_EL(entity, setting)
 		{
@@ -447,7 +448,7 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 
 		CStr ActorName;
 		CVector3D Position;
-		float Orientation;
+		float Orientation = 0.f;
 
 		XERO_ITER_EL(nonentity, setting)
 		{

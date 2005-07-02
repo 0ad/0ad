@@ -59,7 +59,11 @@ HEntity CEntityManager::create( CBaseEntity* base, CVector3D position, float ori
 	while( m_entities[m_nextalloc].m_refcount )
 	{
 		m_nextalloc++;
-		debug_assert(m_nextalloc < MAX_HANDLES);
+		if( m_nextalloc >= MAX_HANDLES )
+		{
+			debug_warn("Ran out of entity handles!");
+			return HEntity();
+		}
 	}
 	m_entities[m_nextalloc].m_entity = new CEntity( base, position, orientation );
 	m_entities[m_nextalloc].m_entity->me = HEntity( m_nextalloc );

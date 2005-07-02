@@ -924,7 +924,7 @@ static int dump_sym_base_type(DWORD type_id, const u8* p, DumpState state)
 
 	// single out() call. note: we pass a single u64 for all sizes,
 	// which will only work on little-endian systems.
-	const wchar_t* fmt;
+	const wchar_t* fmt = L"";
 
 	switch(base_type)
 	{

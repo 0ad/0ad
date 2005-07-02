@@ -90,8 +90,11 @@ private:
 	void grow()
 	{
 		allocated += bufferinc;
-		buffer = (char*)realloc(buffer, allocated);
-		debug_assert(buffer);
+		char* newbuffer = (char*)realloc(buffer, allocated);
+		if (newbuffer)
+			buffer = newbuffer;
+		else
+			debug_warn("Xeromyces: realloc failed");
 	}
 };
 

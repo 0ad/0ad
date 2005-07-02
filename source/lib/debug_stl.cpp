@@ -374,6 +374,13 @@ template<class T> bool get_container_info(T* t, size_t size, size_t el_size,
 int stl_get_container_info(const wchar_t* type_name, const u8* p, size_t size,
 	size_t el_size, size_t* el_count, DebugIterator* el_iterator, void* it_mem)
 {
+	// HACK: The debug_stl code breaks VS2005's STL badly, causing crashes in
+	// later pieces of code that try to manipulate the STL containers. Presumably
+	// it needs to be altered/rewritten to work happily with the new STL debug iterators.
+#if defined(_MSC_VER) && _MSC_VER >= 1400
+	return -1;
+#endif
+
 	bool valid;
 
 #define CONTAINER(name)\

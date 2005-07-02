@@ -232,7 +232,7 @@ public:
 		// TODO: Optimization: Store the hashed value over the lookups
 		IJSComplex* Target = Instance->m_Owner;
 		IJSComplexProperty* Property;
-		JSString* str;
+		JSString* str = NULL;
 
 		while( Target )
 		{
