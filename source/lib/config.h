@@ -38,6 +38,10 @@
 #endif
 
 // STL
+// .. pull in the Dinkumware header that defines _CPPLIB_VER
+#if MSC_VERSION != 0
+# include <yvals.h>
+#endif
 #if defined(_CPPLIB_VER)
 # define STL_DINKUMWARE _CPPLIB_VER
 #else
@@ -101,10 +105,8 @@
 // compiler support for C99
 // (this is more convenient than testing __STDC_VERSION__ directly)
 #undef HAVE_C99
-#ifdef __STDC_VERSION__		// nested #if to avoid ICC warning if not defined
-# if __STDC_VERSION__ >= 199901L
-#  define HAVE_C99
-# endif
+#if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L)
+# define HAVE_C99
 #endif
 
 // gettimeofday()
@@ -121,7 +123,7 @@
 
 // __asm{} blocks (Intel syntax)
 #undef HAVE_ASM
-#if (MSC_VERSION != 0)
+#if MSC_VERSION != 0
 # define HAVE_ASM
 #endif
 
@@ -133,7 +135,7 @@
 
 // VC debug memory allocator / leak detector
 #undef HAVE_VC_DEBUG_ALLOC
-#if (MSC_VERSION != 0)
+#if MSC_VERSION != 0
 # define HAVE_VC_DEBUG_ALLOC
 #endif
 // .. only in full-debug mode;
@@ -152,6 +154,11 @@
 # undef HAVE_VC_DEBUG_ALLOC
 #endif
 
-// _CPPLIB_VER
+// nonstandard STL containers
+#undef HAVE_STL_HASH
+#undef HAVE_STL_SLIST
+#if STL_DINKUMWARE != 0
+# define HAVE_STL_HASH
+#endif
 
 #endif	// #ifndef CONFIG_H_INCLUDED

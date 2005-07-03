@@ -158,6 +158,8 @@ void debug_heap_check()
 }
 
 
+// call at any time; from then on, the specified checks will be performed.
+// if not called, the default is DEBUG_HEAP_NONE, i.e. do nothing.
 void debug_heap_enable(DebugHeapChecks what)
 {
 #ifdef HAVE_VC_DEBUG_ALLOC
@@ -181,6 +183,22 @@ void debug_heap_enable(DebugHeapChecks what)
 #endif // HAVE_DEBUGALLOC
 }
 
+
+// return 1 if the pointer appears to be totally bogus, otherwise 0.
+// this check is not authoritative in that the pointer may in truth
+// be invalid regardless of the return value here, but can be used
+// to filter out obviously wrong values in a portable manner.
+int debug_is_bogus_pointer(const void* p)
+{
+#ifdef _M_IX86
+	if(p < (void*)0x10000)
+		return true;
+	if(p >= (void*)(uintptr_t)0x80000000)
+		return true;
+#endif
+
+	return IsBadReadPtr(p, 1) != 0;
+}
 
 
 //-----------------------------------------------------------------------------

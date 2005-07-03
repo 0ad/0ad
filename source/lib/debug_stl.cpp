@@ -1,17 +1,33 @@
+// portable debugging helper functions specific to the STL.
+// Copyright (c) 2004-2005 Jan Wassenberg
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License as
+// published by the Free Software Foundation; either version 2 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// General Public License for more details.
+//
+// Contact info:
+//   Jan.Wassenberg@stud.uni-karlsruhe.de
+//   http://www.stud.uni-karlsruhe.de/~urkt/
+
 #include "precompiled.h"
 
 #include "debug_stl.h"
-#include "lib.h"	// match_wildcardw
-
-// portable debugging helper functions specific to the STL.
+#include "lib.h"	// match_wildcard
 
 // used in stl_simplify_name.
-// TODO: check strcpy safety
+// note: strcpy is safe because replacement happens in-place and
+// src is longer than dst (otherwise, we wouldn't be replacing).
 #define REPLACE(what, with)\
 	else if(!strncmp(src, (what), sizeof(what)-1))\
 	{\
-	src += sizeof(what)-1-1;/* see preincrement rationale*/\
-	strcpy(dst, (with));\
+	src += sizeof(what)-1-1; /* see preincrement rationale*/\
+	strcpy(dst, (with)); /* safe - see above */\
 	dst += sizeof(with)-1;\
 	}
 #define STRIP(what)\
@@ -79,23 +95,23 @@ void stl_simplify_name(char* name)
 			src += 7;
 		}
 		REPLACE("unsigned short", "u16")
-			REPLACE("unsigned int", "uint")
-			REPLACE("unsigned __int64", "u64")
-			STRIP(",0> ")
-			// early out: all tests after this start with s, so skip them
+		REPLACE("unsigned int", "uint")
+		REPLACE("unsigned __int64", "u64")
+		STRIP(",0> ")
+		// early out: all tests after this start with s, so skip them
 		else if(c != 's')
 		{
 			*dst++ = c;
 			continue;
 		}
 		REPLACE("std::_List_nod", "list")
-			REPLACE("std::_Tree_nod", "map")
-			REPLACE("std::basic_string<char,", "string<")
-			REPLACE("std::basic_string<unsigned short,", "wstring<")
-			STRIP("std::char_traits<char>,")
-			STRIP("std::char_traits<unsigned short>,")
-			STRIP("std::_Tmap_traits")
-			STRIP("std::_Tset_traits")
+		REPLACE("std::_Tree_nod", "map")
+		REPLACE("std::basic_string<char,", "string<")
+		REPLACE("std::basic_string<unsigned short,", "wstring<")
+		STRIP("std::char_traits<char>,")
+		STRIP("std::char_traits<unsigned short>,")
+		STRIP("std::_Tmap_traits")
+		STRIP("std::_Tset_traits")
 		else if(!strncmp(src, "std::allocator<", 15))
 		{
 			// remove preceding comma (if present)
@@ -131,30 +147,12 @@ void stl_simplify_name(char* name)
 // used to display their contents in stack traces. their type and
 // contents aren't known until runtime, so this is somewhat tricky.
 //
-// we assume STL containers aren't specialized on their content
-// type and use container<int>'s memory layout. vector<bool> will therefore
+// we assume STL containers aren't specialized on their content type and
+// use their int instantiations's memory layout. vector<bool> will therefore
 // not be displayed correctly, but it is frowned upon anyway (since
 // address of its elements can't be taken).
 // to be 100% correct, we'd have to write an Any_container_type__element_type
 // class for each combination, but that is clearly infeasible.
-
-
-// generic iterator - returns next element. dereferences and increments the
-// specific container iterator in it_mem.
-template<class T> const u8* stl_iterator(void* it_mem, size_t el_size)
-{
-	UNUSED(el_size);
-	T::iterator* const it = (T::iterator*)it_mem;
-	T::reference el = *(*it);
-	const u8* p = (const u8*)&el;
-	++(*it);
-	return p;
-}
-
-
-//-----------------------------------------------------------------------------
-
-// validator classes for all STL containers
 //
 // containers might still be uninitialized when we call get_container_info on
 // them. we need to check if they are valid and only then use their contents.
@@ -187,34 +185,65 @@ static bool container_valid(const void* front, size_t el_count)
 	return true;
 }
 
-// shared by deque, queue and stack. this is specific to
-// the Dinkumware implementation but portable.
-static bool deque_valid(size_t el_count, size_t el_size,
-	size_t num_skipped, size_t num_buckets)
-{
-	const size_t el_per_bucket = 16 / el_size;	// see _DEQUESIZ
-	// initial element is beyond end of first bucket
-	if(num_skipped >= el_per_bucket)
-		return false;
-	// more elements reported than fit in all buckets
-	if(el_count > num_buckets * el_per_bucket)
-		return false;
-	return true;
-}
+//----------------------------------------------------------------------------
+
+//
+// standard containers
+//
 
 class Any_deque : public std::deque<int>
 {
+	// being declared as friend isn't enough;
+	// our iterator still doesn't get access to std::deque.
+	const u8* get_item(size_t i, size_t el_size) const
+	{
+		const u8** map = (const u8**)_Map;
+		const size_t el_per_bucket = MAX(16 / el_size, 1);
+		const size_t bucket_idx = i / el_per_bucket;
+		const size_t idx_in_bucket = i - bucket_idx * el_per_bucket;
+		const u8* bucket = map[bucket_idx];
+		const u8* p = bucket + idx_in_bucket*el_size;
+		return p;
+	}
+
 public:
 	bool valid(size_t el_size) const
 	{
-		if(!container_valid(&front(), size()))
+		// note: front() fails on empty deques, so don't use that if
+		// the container is empty (which must not be reported as invalid)
+		const size_t el_count_ = el_count(el_size);
+		if(el_count_ && !container_valid(&front(), el_count_))
 			return false;
+
 #if STL_DINKUMWARE != 0
-		if(!deque_valid(_Mysize, el_size, _Myoff, _Mapsize))
+		const size_t el_per_bucket = MAX(16 / el_size, 1);	// see _DEQUESIZ
+		// initial element is beyond end of first bucket
+		if(_Myoff >= el_per_bucket)
+			return false;
+		// more elements reported than fit in all buckets
+		if(_Mysize > _Mapsize * el_per_bucket)
 			return false;
 #endif
 		return true;
 	}
+
+	size_t el_count(size_t el_size) const
+	{
+		UNUSED(el_size);
+		return size();
+	}
+
+	class iter;
+	friend class iter;
+	class iter : public const_iterator
+	{
+	public:
+		const u8* deref(size_t el_size)
+		{
+			Any_deque* d = (Any_deque*)_Mycont;
+			return d->get_item(_Myoff, el_size);
+		}
+	};
 };
 
 class Any_list: public std::list<int>
@@ -222,40 +251,83 @@ class Any_list: public std::list<int>
 public:
 	bool valid(size_t el_size) const
 	{
-		UNUSED(el_size);
-		if(!container_valid(&front(), size()))
+		if(!container_valid(&front(), el_count(el_size)))
 			return false;
 		return true;
+	}
+
+	size_t el_count(size_t el_size) const
+	{
+		UNUSED(el_size);
+		return size();
 	}
 };
 
 class Any_map : public std::map<int,int>
 {
+	// return reference to the given node's nil flag.
+	// reimplemented because this member is stored after _Myval, so it's
+	// dependent on el_size.
+	static _Charref _Isnil(_Nodeptr _Pnode, size_t el_size)
+	{
+		const u8* p = (const u8*)&_Pnode->_Isnil;	// ok for int specialization
+		p += el_size - sizeof(value_type);
+			// account for el_size difference
+		assert(*p <= 1);	// bool value
+		return (_Charref)*p;
+	}
+
 public:
 	bool valid(size_t el_size) const
+	{
+		const_iterator it = begin();
+		if(!container_valid(&*it, el_count(el_size)))
+			return false;
+		return true;
+	}
+
+	size_t el_count(size_t el_size) const
 	{
 		UNUSED(el_size);
-		const_iterator it = begin();
-		if(!container_valid(&*it, size()))
-			return false;
-		return true;
+		return size();
 	}
+
+	class iter;
+	friend class iter;
+	class iter : public const_iterator
+	{
+	public:
+
+		// move to next node (i.e. larger value)
+		void advance(size_t el_size)
+		{
+			// end() shouldn't be incremented, don't move
+			if(_Isnil(_Ptr, el_size))
+				return;
+
+			// return smallest (leftmost) node of right subtree
+			_Nodeptr _Pnode = _Right(_Ptr);
+			if(!_Isnil(_Pnode, el_size))
+			{
+				while(!_Isnil(_Left(_Pnode), el_size))
+					_Pnode = _Left(_Pnode);
+			}
+			// climb looking for right subtree
+			else
+			{
+				while (!_Isnil(_Pnode = _Parent(_Ptr), el_size)
+					&& _Ptr == _Right(_Pnode))
+					_Ptr = _Pnode;	// ==> parent while right subtree
+			}
+			_Ptr = _Pnode;
+		}
+
+	};
 };
 
-// we assume this adapter was instantiated with container=deque!
-class Any_queue : public std::deque<int>
+
+class Any_multimap : public Any_map
 {
-public:
-	bool valid(size_t el_size) const
-	{
-		if(!container_valid(&front(), size()))
-			return false;
-#if STL_DINKUMWARE != 0
-		if(!deque_valid(_Mysize, el_size, _Myoff, _Mapsize))
-			return false;
-#endif
-		return true;
-	}
 };
 
 class Any_set: public std::set<int>
@@ -263,28 +335,21 @@ class Any_set: public std::set<int>
 public:
 	bool valid(size_t el_size) const
 	{
-		UNUSED(el_size);
 		const_iterator it = begin();
-		if(!container_valid(&*it, size()))
+		if(!container_valid(&*it, el_count(el_size)))
 			return false;
 		return true;
+	}
+
+	size_t el_count(size_t el_size) const
+	{
+		UNUSED(el_size);
+		return size();
 	}
 };
 
-// we assume this adapter was instantiated with container=deque!
-class Any_stack : public std::deque<int>
+class Any_multiset: public Any_set
 {
-public:
-	bool valid(size_t el_size) const
-	{
-		if(!container_valid(&front(), size()))
-			return false;
-#if STL_DINKUMWARE != 0
-		if(!deque_valid(_Mysize, el_size, _Myoff, _Mapsize))
-			return false;
-#endif
-		return true;
-	}
 };
 
 class Any_vector: public std::vector<int>
@@ -292,8 +357,10 @@ class Any_vector: public std::vector<int>
 public:
 	bool valid(size_t el_size) const
 	{
-		UNUSED(el_size);
-		if(!container_valid(&front(), size()))
+		const size_t el_count_ = el_count(el_size);
+		// note: front() will be 0 if container is empty, but
+		// that must not be reported as invalid.
+		if(el_count_ && !container_valid(&front(), el_count_))
 			return false;
 		// more elements reported than reserved
 		if(size() > capacity())
@@ -303,19 +370,40 @@ public:
 			return false;
 		return true;
 	}
+
+	size_t el_count(size_t el_size) const
+	{
+		// vectors store front and back pointers and calculate
+		// element count as the difference between them. since we are
+		// derived from the int specialization, the pointer arithmetic is
+		// off. we fix it by taking el_size into account.
+		return size() * 4 / el_size;
+	}
+
+	class iter;
+	friend class iter;
+	class iter : public const_iterator
+	{
+	public:
+
+		// move to next item
+		void advance(size_t el_size)
+		{
+			_Myptr = (_Tptr)((u8*)_Myptr + el_size);
+		}
+	};
 };
 
-class Any_string : public std::string
+class Any_basic_string : public std::string
 {
 public:
 	bool valid(size_t el_size) const
 	{
-		debug_assert(el_size == sizeof(char));
-		if(!container_valid(c_str(), size()))
+		if(!container_valid(c_str(), el_count(el_size)))
 			return false;
 #if STL_DINKUMWARE != 0
 		// less than the small buffer reserved - impossible
-		if(_Myres < 15)
+		if(_Myres < (16/el_size)-1)
 			return false;
 		// more elements reported than reserved
 		if(_Mysize > _Myres)
@@ -323,27 +411,147 @@ public:
 #endif
 		return true;
 	}
+
+	size_t el_count(size_t el_size) const
+	{
+		UNUSED(el_size);
+		return size();
+	}
 };
 
-class Any_wstring : public std::wstring
+
+//
+// standard container adapters
+//
+
+// we assume this adapter was instantiated with container=deque!
+class Any_queue : public Any_deque
+{
+};
+
+// we assume this adapter was instantiated with container=deque!
+class Any_stack : public Any_deque
+{
+};
+
+//
+// nonstandard containers (will probably be part of C++0x)
+//
+
+#ifdef HAVE_STL_HASH
+
+class Any_hash_map: public STL_HASH_MAP<int,int>
 {
 public:
 	bool valid(size_t el_size) const
 	{
-		debug_assert(el_size == sizeof(wchar_t));
-		if(!container_valid(c_str(), size()))
+		const_iterator it = begin();
+		if(!container_valid(&*it, el_count(el_size)))
 			return false;
-#if STL_DINKUMWARE != 0
-		// less than the small buffer reserved - impossible
-		if(_Myres < 15)
-			return false;
-		// more elements reported than reserved
-		if(_Mysize > _Myres)
-			return false;
-#endif
 		return true;
 	}
+
+	size_t el_count(size_t el_size) const
+	{
+		UNUSED(el_size);
+		return size();
+	}
 };
+
+class Any_hash_multimap : public Any_hash_map
+{
+};
+
+class Any_hash_set: public STL_HASH_SET<int>
+{
+public:
+	bool valid(size_t el_size) const
+	{
+		const_iterator it = begin();
+		if(!container_valid(&*it, el_count(el_size)))
+			return false;
+		return true;
+	}
+
+	size_t el_count(size_t el_size) const
+	{
+		UNUSED(el_size);
+		return size();
+	}
+};
+
+class Any_hash_multiset : public Any_hash_set
+{
+};
+
+#endif	// HAVE_STL_HASH
+
+#ifdef HAVE_STL_SLIST
+
+class Any_slist: public STL_SLIST<int>
+{
+public:
+	bool valid(size_t el_size) const
+	{
+		if(!container_valid(&front(), el_count(el_size)))
+			return false;
+		return true;
+	}
+
+	size_t el_count(size_t el_size) const
+	{
+		UNUSED(el_size);
+		return size();
+	}
+};
+
+#endif	// HAVE_STL_SLIST
+
+//-----------------------------------------------------------------------------
+
+// generic iterator - returns next element. dereferences and increments the
+// specific container iterator stored in it_mem.
+template<class T> const u8* stl_iterator(void* it_mem, size_t el_size)
+{
+	UNUSED(el_size);
+	T::const_iterator* const p_cit = (T::const_iterator*)it_mem;
+	T::const_reference el = p_cit->operator*();
+	const u8* p = (const u8*)&el;
+	p_cit->operator++();
+	return p;
+}
+
+// vector iterators advance by sizeof(value_type) bytes; since we assume the
+// int specialization, we have to do this ourselves.
+template<> const u8* stl_iterator<Any_vector>(void* it_mem, size_t el_size)
+{
+	Any_vector::iter* pi = (Any_vector::iter*)it_mem;
+	const u8* p = (const u8*)&*(*pi);
+	pi->advance(el_size);
+	return p;
+}
+
+// deque iterator operator* depends on el_size
+#if STL_DINKUMWARE != 0
+template<> const u8* stl_iterator<Any_deque>(void* it_mem, size_t el_size)
+{
+	Any_deque::iter* pi = (Any_deque::iter*)it_mem;
+	const u8* p = pi->deref(el_size);
+	++(*pi);
+	return p;
+}
+#endif
+
+// map iterator operator++ depends on el_size
+#if STL_DINKUMWARE != 0
+template<> const u8* stl_iterator<Any_map>(void* it_mem, size_t el_size)
+{
+	Any_map::iter* pi = (Any_map::iter*)it_mem;
+	const u8* p = (const u8*)&*(*pi);
+	pi->advance(el_size);
+	return p;
+}
+#endif
 
 //-----------------------------------------------------------------------------
 
@@ -354,24 +562,22 @@ public:
 template<class T> bool get_container_info(T* t, size_t size, size_t el_size,
 	size_t* el_count, DebugIterator* el_iterator, void* it_mem)
 {
-	if(sizeof(T) != size)
-		debug_assert(sizeof(T) == size);
+	debug_assert(sizeof(T) == size);
 	debug_assert(sizeof(T::iterator) < DEBUG_STL_MAX_ITERATOR_SIZE);
 
-	*el_count = t->size();
+	*el_count = t->el_count(el_size);
 	*el_iterator = stl_iterator<T>;
-	*(T::iterator*)it_mem = t->begin();
+	*(T::const_iterator*)it_mem = t->begin();
 	return t->valid(el_size);
 }
 
 
-// if <type_name> indicates the object <p, size> to be an STL container,
+// if <wtype_name> indicates the object <p, size> to be an STL container,
 // and given the size of its value_type (retrieved via debug information),
 // return number of elements and an iterator (any data it needs is stored in
 // it_mem, which must hold DEBUG_STL_MAX_ITERATOR_SIZE bytes).
-// returns 0 on success, 1 if type_name is unknown, or -1 if the contents
-// are invalid (most likely due to being uninitialized).
-int stl_get_container_info(const wchar_t* type_name, const u8* p, size_t size,
+// returns 0 on success or an StlContainerError.
+int stl_get_container_info(const wchar_t* wtype_name, const u8* p, size_t size,
 	size_t el_size, size_t* el_count, DebugIterator* el_iterator, void* it_mem)
 {
 	// HACK: The debug_stl code breaks VS2005's STL badly, causing crashes in
@@ -381,31 +587,51 @@ int stl_get_container_info(const wchar_t* type_name, const u8* p, size_t size,
 	return -1;
 #endif
 
-	bool valid;
+	bool handled = false, valid = false;
+#define CONTAINER(name, type_name_pattern)\
+	else if(match_wildcard(type_name, type_name_pattern))\
+	{\
+		handled = true;\
+		valid = get_container_info<Any_##name>((Any_##name*)p, size, el_size, el_count, el_iterator, it_mem);\
+	}
+#define STD_CONTAINER(name) CONTAINER(name, "std::" #name "<*>")
 
-#define CONTAINER(name)\
-	else if(match_wildcardw(type_name, L"std::" L###name L"<*>"))\
-		valid = get_container_info<Any_##name>((Any_##name*)p, size, el_size, el_count, el_iterator, it_mem);
+	// workaround for preprocessor limitation: what we're trying to do is
+	// stringize the defined value of a macro. prepending and pasting L
+	// apparently isn't possible because macro args aren't expanded before
+	// being pasted; we therefore convert to char[] and compare against that.
+	char type_name[DBG_SYMBOL_LEN];
+	snprintf(type_name, ARRAY_SIZE(type_name), "%ws", wtype_name);
+#define STRINGIZE2(id) # id
+#define STRINGIZE(id) STRINGIZE2(id)
 
 	if(0) {}	// kickoff
-	CONTAINER(deque)
-	CONTAINER(list)
-	CONTAINER(map)
-	CONTAINER(queue)
-	CONTAINER(set)
-	CONTAINER(stack)
-	CONTAINER(vector)
-	else if(match_wildcardw(type_name, L"std::basic_string<char*>"))
-		valid = get_container_info<Any_string>((Any_string*)p, size, el_size, el_count, el_iterator, it_mem);
-	else if(match_wildcardw(type_name, L"std::basic_string<unsigned short*>"))
-		valid = get_container_info<Any_wstring>((Any_wstring*)p, size, el_size, el_count, el_iterator, it_mem);
-	// unknown type, can't handle it
-	else
-		return 1;
+	// standard containers
+	STD_CONTAINER(deque)	// deref provided
+	STD_CONTAINER(list)		// ok
+	STD_CONTAINER(map)		// advance provided
+	STD_CONTAINER(multimap)	// advance provided
+	STD_CONTAINER(set)		// TODO use map impl?
+	STD_CONTAINER(multiset)	// TODO use map impl?
+	STD_CONTAINER(vector)	// special-cased
+	STD_CONTAINER(basic_string)	// ok
+	// standard container adapter
+	STD_CONTAINER(queue)	// not ok (deque)
+	STD_CONTAINER(stack)	// not ok (deque)
+	// nonstandard containers (will probably be part of C++0x)
+#ifdef HAVE_STL_HASH
+	CONTAINER(hash_map, STRINGIZE(STL_HASH_MAP) "<*>")
+	CONTAINER(hash_multimap, STRINGIZE(STL_HASH_MULTIMAP) "<*>")
+	CONTAINER(hash_set, STRINGIZE(STL_HASH_SET) "<*>")
+	CONTAINER(hash_multiset, STRINGIZE(STL_HASH_MULTISET) "<*>")
+#endif
+#ifdef HAVE_STL_SLIST
+	CONTAINER(slist, STRINGIZE(STL_SLIST) "<*>")
+#endif
 
+	if(!handled)
+		return STL_CNT_UNKNOWN;
 	if(!valid)
-		return -1;
-
+		return STL_CNT_INVALID;
 	return 0;
 }
-

@@ -30,7 +30,7 @@ enum DisplayErrorFlags
 	DE_MANUAL_BREAK = 4
 };
 
-// user choices in the debug_assert/unhandled exception dialog.
+// choices offered by the shared error dialog
 enum ErrorReaction
 {
 	// ignore, continue as if nothing happened.
@@ -113,6 +113,8 @@ extern float fmaxf(float a, float b);
 # define STL_HASH_MAP __gnu_cxx::hash_map
 # define STL_HASH_MULTIMAP __gnu_cxx::hash_multimap
 # define STL_HASH_SET __gnu_cxx::hash_set
+# define STL_HASH_MULTISET __gnu_cxx::hash_multiset
+# define STL_SLIST __gnu_cxx::slist
 
 // Hack: GCC Doesn't have a hash instance for std::string included (and it looks
 // like they won't add it - marked resolved/wontfix in the gcc bugzilla)
@@ -135,11 +137,13 @@ namespace __gnu_cxx
 #  define STL_HASH_MAP stdext::hash_map
 #  define STL_HASH_MULTIMAP stdext::hash_multimap
 #  define STL_HASH_SET stdext::hash_set
+#  define STL_HASH_MULTISET stdext::hash_multiset
 # else
 // VC6 and anything else (most likely name)
 #  define STL_HASH_MAP std::hash_map
 #  define STL_HASH_MULTIMAP std::hash_multimap
 #  define STL_HASH_SET std::hash_set
+#  define STL_HASH_MULTISET std::hash_multiset
 # endif	// defined(_MSC_VER) && (_MSC_VER >= 1300)
 #endif	// !__GNUC__
 
