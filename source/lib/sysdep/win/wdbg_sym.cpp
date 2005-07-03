@@ -1,4 +1,4 @@
-// stack trace, improved debug_assert and exception handler for Win32
+// Win32 stack trace and symbol engine
 // Copyright (c) 2002-2005 Jan Wassenberg
 //
 // This program is free software; you can redistribute it and/or
@@ -34,6 +34,10 @@
 // optional: enables translation of the "unhandled exception" dialog.
 #ifdef I18N
 #include "ps/i18n.h"
+#endif
+
+#ifndef PERFORM_SELF_TEST
+#define PERFORM_SELF_TEST 0
 #endif
 
 #ifdef _MSC_VER
@@ -175,7 +179,12 @@ struct TI_FINDCHILDREN_PARAMS2
 };
 
 
-// ~500µs
+// read and return symbol information for the given address. all of the
+// output parameters are optional; we pass back as much information as is
+// available and desired. return 0 iff any information was successfully
+// retrieved and stored.
+// sym_name and file must hold at least the number of chars above.
+// the PDB implementation is rather slow (~500µs).
 int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
 {
 	sym_init();
@@ -426,9 +435,15 @@ static int nth_caller_cb(const STACKFRAME64* sf, void* user_arg)
 }
 
 
-// n starts at 1
+// examine call stack and return the address of the Nth parent/caller of
+// the function from which this is called. n starts at one, which denotes
+// the immediate caller.
+// used by mmgr to determine what function requested each allocation;
+// this is fast enough to allow that.
 void* debug_get_nth_caller(uint n)
 {
+	debug_assert(n >= 1);
+
 	void* func;	// set by callback
 	const uint skip = n-1 + 3;
 		// make 0-based; skip walk_stack, debug_get_nth_caller and its caller.
@@ -557,20 +572,6 @@ static bool is_string(const u8* p, size_t stride)
 }
 
 
-bool debug_is_bogus_pointer(const void* p)
-{
-#ifdef _M_IX86
-	if(p < (void*)0x10000)
-		return true;
-	if(p >= (void*)(uintptr_t)0x80000000)
-		return true;
-#endif
-
-	return IsBadReadPtr(p, 1) != 0;
-}
-
-
-
 
 
 // forward decl; called by dump_sequence and some of dump_sym_*.
@@ -639,16 +640,16 @@ static void dump_error(int err, const u8* p)
 		out(L"(unavailable - stored in register %s)", string_for_register((CV_HREG_e)(uintptr_t)p));
 		break;
 	case WDBG_TYPE_INFO_UNAVAILABLE:
-		out(L"%p (unavailable - type info request failed (GLE=%d))", p, GetLastError());
+		out(L"(unavailable - type info request failed (GLE=%d))", GetLastError());
 		break;
 	case WDBG_INTERNAL_ERROR:
-		out(L"%p (unavailable - internal error)\r\n", p);
+		out(L"(unavailable - internal error)\r\n");
 		break;
 	case WDBG_SUPPRESS_OUTPUT:
 		// not an error; do not output anything. handled by caller.
 		break;
 	default:
-		out(L"%p (unavailable - unspecified error (%d))", p, err);
+		out(L"(unavailable - unspecified error 0x%X (%d))", err, err);
 		break;
 	}
 }
@@ -688,16 +689,24 @@ static int dump_string(const u8* p, size_t el_size)
 static int dump_sequence(DebugIterator el_iterator, void* internal,
 	size_t el_count, DWORD el_type_id, size_t el_size, DumpState state)
 {
-	const u8* el_p = el_iterator(internal, el_size);
+	const u8* el_p;
 
 	// special case: display as a string if the sequence looks to be text.
-	int ret = dump_string(el_p, el_size);
-	if(ret == 0)
-		return ret;
+	// do this only if container isn't empty because the otherwise the
+	// iterator may crash.
+	if(el_count)
+	{
+		el_p = el_iterator(internal, el_size);
+
+		int ret = dump_string(el_p, el_size);
+		if(ret == 0)
+			return ret;
+	}
 
 	out(L"[%d] ", el_count);
 
-	// choose formatting based on element size
+	// choose formatting based on element size and count
+//	const bool fits_on_one_line = seq_fits_on_one_line(el_count, el_size, &num_elements_to_show);
 	bool fits_on_one_line;
 	size_t num_elements_to_show;
 	if(el_size == sizeof(char))
@@ -715,6 +724,8 @@ static int dump_sequence(DebugIterator el_iterator, void* internal,
 		fits_on_one_line = false;
 		num_elements_to_show = MIN(8, el_count);
 	}
+	if(!el_count)
+		fits_on_one_line = true;
 
 	state.level++;
 	out(fits_on_one_line? L"{ " : L"\r\n");
@@ -937,12 +948,14 @@ static int dump_sym_base_type(DWORD type_id, const u8* p, DumpState state)
 
 		// floating-point
 		case btFloat:
+			// C calling convention casts float params to doubles, so printf
+			// expects one when we indicate %g. there are no width flags,
+			// so we have to manually convert the float data to double.
 			if(size == sizeof(float))
-				fmt = L"%g";
-			else if(size == sizeof(double))
-				fmt = L"%lg";
-			else
+				*(double*)&data = (double)*(float*)&data;
+			else if(size != sizeof(double))
 				debug_warn("dump_sym_base_type: invalid float size");
+			fmt = L"%g";
 			break;
 
 		// signed integers (displayed as decimal)
@@ -1318,22 +1331,19 @@ static int udt_dump_stl(const wchar_t* type_name, const u8* p, size_t size, Dump
 	DebugIterator el_iterator;
 	u8 it_mem[DEBUG_STL_MAX_ITERATOR_SIZE];
 	err = stl_get_container_info(type_name, p, size, el_size, &el_count, &el_iterator, it_mem);
-	// it's an STL container, but we haven't written special-case code for it.
-	// at least display its name; this is more helpful than the generic
-	// "not supported" message that would result from returning an error.
-	if(err > 0)
-	{
-		out(L"(%s)", type_name);
-		return 0;
-	}
-	// known container, but it's contents are invalid.
-	if(err < 0)
+
+	// type_name is unknown; can't handle it.
+	if(err == STL_CNT_UNKNOWN)
+		return 1;
+	// contents are invalid (uninitialized or corrupted)
+	else if(err == STL_CNT_INVALID)
 	{
 		out(L"(uninitialized/invalid %s)", type_name);
 		return 0;
 	}
 	// supported and valid: output each element.
-	return dump_sequence(el_iterator, it_mem, el_count, el_type_id, el_size, state);
+	else
+		return dump_sequence(el_iterator, it_mem, el_count, el_type_id, el_size, state);
 }
 
 
@@ -1535,6 +1545,8 @@ static int dump_sym_udt(DWORD type_id, const u8* p, DumpState state)
 		return WDBG_TYPE_INFO_UNAVAILABLE;
 
 	int ret;
+	// note: order is important (e.g. STL special-case must come before
+	// suppressing UDTs, which tosses out most other C++ stdlib classes)
 
 	ret = udt_dump_stl       (type_name, p, size, state, num_children, children);
 	if(ret <= 0)
@@ -1713,8 +1725,14 @@ static int dump_frame_cb(const STACKFRAME64* sf, void* user_arg)
 }
 
 
-// most recent <skip> stack frames will be skipped
-// (we don't want to show e.g. GetThreadContext / this call)
+// write a complete stack trace (including values of local variables) into
+// the specified buffer. if <context> is nonzero, it is assumed to be a
+// platform-specific representation of execution state (e.g. Win32 CONTEXT)
+// and tracing starts there; this is useful for exceptions.
+// otherwise, tracing starts at the current stack position, and the given
+// number of stack frames (i.e. functions) are skipped. this prevents
+// functions like debug_assert_failed from cluttering up the trace.
+// returns the buffer for convenience.
 const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* pcontext)
 {
 	static uintptr_t already_in_progress;
@@ -1791,64 +1809,162 @@ static int wdbg_sym_shutdown()
 	return sym_shutdown();
 }
 
+
+//----------------------------------------------------------------------------
+// built-in self test
+//----------------------------------------------------------------------------
+
+#if PERFORM_SELF_TEST
+namespace test {
+#pragma optimize("", off)
+
+
+
+static void test_array()
+{
 /*
-tests
+	struct Small
+	{
+		int i1;
+		int i2;
+	};
 
+	struct Large
+	{
+		double d1;
+		double d2;
+		double d3;
+		double d4;
+	};
 
-struct L1
-{
-int l1_i;
-struct L2
-{
-struct L3
-{
-int l3_i;
-struct L4
-{
-int l4_i;
-}
-l3_s;
-}
-l2_s;
-int l2_i;
-}
-l1_s;
-};
-#pragma pack(push,1)
-volatile L1 test;
-#pragma pack(pop)
-test.l1_i = rand();
-test.l1_s.l2_i = rand();
-test.l1_s.l2_s.l3_i = rand();
-test.l1_s.l2_s.l3_s.l4_i = rand();
-debug_printf("\n&test=0x%p %d %d %d %d\n", &test, test.l1_i, test.l1_s.l2_i, test.l1_s.l2_s.l3_i, test.l1_s.l2_s.l3_s.l4_i);
+	Large large_array_of_large_structs[8] = { { 0.0,0.0,0.0,0.0 } };
+	Large small_array_of_large_structs[2] = { { 0.0,0.0,0.0,0.0 } };
+	Small large_array_of_small_structs[8] = { { 1,2 } };
+	Small small_array_of_small_structs[2] = { { 1,2 } };
 
-
-struct Small
-{
-int i1;
-int i2;
-};
-
-struct Large
-{
-double d1;
-double d2;
-double d3;
-double d4;
-};
-
-Large large_array_of_large_structs[8] = { { 0.0,0.0,0.0,0.0 } };
-Large small_array_of_large_structs[2] = { { 0.0,0.0,0.0,0.0 } };
-Small large_array_of_small_structs[8] = { { 1,2 } };
-Small small_array_of_small_structs[2] = { { 1,2 } };
-
-int ar1[] = { 1,2,3,4,5	};
-char ar2[] = { 't','e','s','t', 0 };
-
-//debug_assert(0 && "test debug_assert");				// not exception (works when run from debugger)
-//__asm xor edx,edx __asm div edx 			// named SEH
-//RaiseException(0x87654321, 0, 0, 0);		// unknown SEH
-//throw std::bad_exception("what() is ok");	// C++
-}
+	int ints[] = { 1,2,3,4,5	};
+	wchar_t chars[] = { 'w','c','h','a','r','s',0 };
 */
+	DISPLAY_ERROR(L"wdbg_sym self test: check if stack trace below is ok.");
+}
+
+// also used by test_stl as an element type
+struct Nested
+{
+	int nested_member;
+	struct Nested* self_ptr;
+};
+
+static void test_udt()
+{
+	test_array();
+}
+
+// STL containers and their contents
+static void test_stl()
+{
+	std::vector<std::wstring> v_wstring;
+	v_wstring.push_back(L"ws1"); v_wstring.push_back(L"ws2");
+
+	std::deque<int> d_int;
+	d_int.push_back(1); d_int.push_back(2); d_int.push_back(3);
+	std::deque<std::string> d_string;
+	d_string.push_back("a"); d_string.push_back("b"); d_string.push_back("c");
+
+	std::list<float> l_float;
+	l_float.push_back(0.1f); l_float.push_back(0.2f); l_float.push_back(0.3f); l_float.push_back(0.4f); 
+
+	std::map<std::string, int> m_string_int;
+	m_string_int.insert(std::make_pair<std::string,int>("s5", 5));
+	m_string_int.insert(std::make_pair<std::string,int>("s6", 6));
+	m_string_int.insert(std::make_pair<std::string,int>("s7", 7));
+	std::map<int, std::string> m_int_string;
+	m_int_string.insert(std::make_pair<int,std::string>(1, "s1"));
+	m_int_string.insert(std::make_pair<int,std::string>(2, "s2"));
+	m_int_string.insert(std::make_pair<int,std::string>(3, "s3"));
+	std::map<int, int> m_int_int;
+	m_int_int.insert(std::make_pair<int,int>(1, 1));
+	m_int_int.insert(std::make_pair<int,int>(2, 2));
+	m_int_int.insert(std::make_pair<int,int>(3, 3));
+
+	STL_HASH_MAP<std::string, int> hm_string_int;
+	hm_string_int.insert(std::make_pair<std::string,int>("s5", 5));
+	hm_string_int.insert(std::make_pair<std::string,int>("s6", 6));
+	hm_string_int.insert(std::make_pair<std::string,int>("s7", 7));
+	STL_HASH_MAP<int, std::string> hm_int_string;
+	hm_int_string.insert(std::make_pair<int,std::string>(1, "s1"));
+	hm_int_string.insert(std::make_pair<int,std::string>(2, "s2"));
+	hm_int_string.insert(std::make_pair<int,std::string>(3, "s3"));
+	STL_HASH_MAP<int, int> hm_int_int;
+	hm_int_int.insert(std::make_pair<int,int>(1, 1));
+	hm_int_int.insert(std::make_pair<int,int>(2, 2));
+	hm_int_int.insert(std::make_pair<int,int>(3, 3));
+
+
+	std::set<uintptr_t> s_uintptr;
+	s_uintptr.insert(0x123); s_uintptr.insert(0x456);
+
+	test_udt();
+
+	// uninitialized
+	std::deque<u8> d_u8_uninit;
+	std::list<Nested> l_nested_uninit;
+	std::map<double,double> m_double_uninit;
+	std::multimap<int,u8> mm_int_uninit;
+	std::set<uint> s_uint_uninit;
+	std::multiset<char> ms_char_uninit;
+	std::vector<double> v_double_uninit;
+	std::queue<double> q_double_uninit;
+	std::stack<double> st_double_uninit;
+#ifdef HAVE_STL_HASH
+	STL_HASH_MAP<double,double> hm_double_uninit;
+	STL_HASH_MULTIMAP<double,std::wstring> hmm_double_uninit;
+	STL_HASH_SET<double> hs_double_uninit;
+	STL_HASH_MULTISET<double> hms_double_uninit;
+#endif
+#ifdef HAVE_STL_SLIST
+	STL_SLIST<double> sl_double_uninit;
+#endif
+	std::string str_uninit;
+	std::wstring wstr_uninit;
+}
+
+
+// also exercises all basic types because we need to display some values
+// anyway (to see at a glance whether symbol engine addrs are correct)
+static void test_addrs(int p_int, double p_double, char* p_pchar, uintptr_t p_uintptr)
+{
+	debug_printf("\nTEST_ADDRS\n");
+
+	uint l_uint = 0x1234;
+	wchar_t l_wchars[] = L"wchar string";
+	enum TestEnum { VAL1=1, VAL2=2 } l_enum = VAL1;
+	u8 l_u8s[] = { 1,2,3,4 };
+	void(*l_funcptr)(void) = test_stl;
+
+	debug_printf("p_int     addr=%p val=%d\n", &p_int, p_int);
+	debug_printf("p_double  addr=%p val=%g\n", &p_double, p_double);
+	debug_printf("p_pchar   addr=%p val=%s\n", &p_pchar, p_pchar);
+	debug_printf("p_uintptr addr=%p val=%lu\n", &p_uintptr, p_uintptr);
+
+	debug_printf("l_uint    addr=%p val=%u\n", &l_uint, l_uint);
+	debug_printf("l_wchars  addr=%p val=%ws\n", &l_wchars, l_wchars);
+	debug_printf("l_enum    addr=%p val=%d\n", &l_enum, l_enum);
+	debug_printf("l_u8s     addr=%p val=%d\n", &l_u8s, l_u8s);
+	debug_printf("l_funcptr addr=%p val=%p\n", &l_funcptr, l_funcptr);
+
+	test_stl();
+}
+
+
+static int run_tests()
+{
+	test_addrs(123, 3.1415926535897932384626, "pchar string", 0xf00d);
+	return 0;
+}
+
+static int dummy = run_tests();
+
+#pragma optimize("", on)
+}	// namespace test
+#endif	// #if PERFORM_SELF_TEST

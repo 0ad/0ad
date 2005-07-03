@@ -1495,10 +1495,7 @@ int main(int argc, char* argv[])
 	else
 #endif
 	{
-		//	MICROLOG(L"In main");
-
-
-		//	MICROLOG(L"Init");
+		MICROLOG(L"Init");
 		Init(argc, argv, true);
 
 		// Optionally, do some simple tests to ensure things aren't broken
