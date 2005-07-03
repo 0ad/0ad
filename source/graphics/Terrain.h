@@ -65,6 +65,12 @@ public:
 	// the average height of the flattened area
 	float FlattenArea(float x0,float x1,float z0,float z1);
 
+	// raise a given vertex, clamped to min/max height; ignored if out of bounds
+	void RaiseVertex(int x, int y, int amount);
+
+	// mark a specific square of tiles as dirty - use this after modifying the heightmap
+	void MakeDirty(int x0, int z0, int x1, int z1);
+
 private:
 	// delete any data allocated by this terrain
 	void ReleaseData();

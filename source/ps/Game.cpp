@@ -1,6 +1,7 @@
 #include "precompiled.h"
 
 #include "Game.h"
+#include "GameAttributes.h"
 #include "CLogger.h"
 #ifndef NO_GUI
 #include "gui/CGUI.h"

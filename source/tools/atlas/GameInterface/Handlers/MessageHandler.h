@@ -3,6 +3,9 @@
 namespace AtlasMessage
 {
 
+// (Random note: Be careful not to give handler .cpp files the same name
+// as any other file in the project, because it makes everything very confused)
+
 typedef void (*handler)(IMessage*);
 typedef std::map<std::string, handler> handlers;
 extern handlers& GetHandlers();

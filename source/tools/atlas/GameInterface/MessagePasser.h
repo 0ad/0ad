@@ -3,21 +3,24 @@
 
 namespace AtlasMessage
 {
-struct IMessage;
 	
-class MessagePasser
+template <typename T> class MessagePasser
 {
 public:
-	virtual void Add(IMessage*)=0;
-	virtual IMessage* Retrieve()=0;
+	virtual void Add(T*)=0;
+	virtual T* Retrieve()=0;
 	
-	virtual void Query(IMessage&)=0;
+	virtual void Query(T&)=0;
 	virtual void QueryDone()=0;
 };
 
-extern MessagePasser* g_MessagePasser;
+struct mCommand;
+struct mInput;
+extern MessagePasser<mCommand>* g_MessagePasser_Command;
+extern MessagePasser<mInput>*   g_MessagePasser_Input;
 
-#define ADD_MESSAGE(type) AtlasMessage::g_MessagePasser->Add(new AtlasMessage::m##type)
+#define ADD_COMMAND(type) AtlasMessage::g_MessagePasser_Command->Add(new AtlasMessage::m##type)
+#define ADD_INPUT(type)   AtlasMessage::g_MessagePasser_Input -> Add(new AtlasMessage::m##type)
 
 }
 

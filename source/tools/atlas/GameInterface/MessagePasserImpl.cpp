@@ -4,7 +4,7 @@
 
 using namespace AtlasMessage;
 
-void MessagePasserImpl::Add(IMessage* msg)
+template<typename T> void MessagePasserImpl<T>::Add(T* msg)
 {
 	m_Mutex.Lock();
 
@@ -13,11 +13,15 @@ void MessagePasserImpl::Add(IMessage* msg)
 	m_Mutex.Unlock();
 }
 
-IMessage* MessagePasserImpl::Retrieve()
+template <typename T> T* MessagePasserImpl<T>::Retrieve()
 {
+	// (It should be fairly easy to use a more efficient thread-safe queue,
+	// since there's only one thread adding items and one thread consuming;
+	// but it's not worthwhile yet.)
+
 	m_Mutex.Lock();
 
-	IMessage* msg = NULL;
+	T* msg = NULL;
 	if (! m_Queue.empty())
 	{
 		msg = m_Queue.front();
@@ -29,12 +33,17 @@ IMessage* MessagePasserImpl::Retrieve()
 	return msg;
 }
 
-void MessagePasserImpl::Query(IMessage&)
+template <typename T> void MessagePasserImpl<T>::Query(T&)
 {
 }
 
-void MessagePasserImpl::QueryDone()
+template <typename T> void MessagePasserImpl<T>::QueryDone()
 {
 }
 
-MessagePasser* g_MessagePasser = NULL;
+MessagePasser<mCommand>* g_MessagePasser_Command = NULL;
+MessagePasser<mInput>*   g_MessagePasser_Input = NULL;
+
+// Explicit instantiation:
+template MessagePasserImpl<mCommand>;
+template MessagePasserImpl<mInput>;

@@ -364,3 +364,29 @@ float CTerrain::FlattenArea(float x0,float x1,float z0,float z1)
 	return y*HEIGHT_SCALE;
 }
 
+///////////////////////////////////////////////////////////////////////////////
+
+void CTerrain::RaiseVertex(int x, int z, int amount)
+{
+	// Ignore out-of-bounds vertices
+	if (x < 0 || z < 0 || x >= (int)m_MapSize || z >= (int)m_MapSize)
+		return;
+
+	m_Heightmap[x + z*m_MapSize] = clamp(m_Heightmap[x + z*m_MapSize] + amount, 0, 65535);
+}
+
+void CTerrain::MakeDirty(int x0, int z0, int x1, int z1)
+{
+	// flag vertex data as dirty for affected patches, and rebuild bounds of these patches
+	int px0 = clamp((x0/PATCH_SIZE)-1, 0, (int)m_MapSizePatches);
+	int px1 = clamp((x1/PATCH_SIZE)+1, 0, (int)m_MapSizePatches);
+	int pz0 = clamp((z0/PATCH_SIZE)-1, 0, (int)m_MapSizePatches);
+	int pz1 = clamp((z1/PATCH_SIZE)+1, 0, (int)m_MapSizePatches);
+	for (int j = pz0; j < pz1; j++) {
+		for (int i = px0; i < px1; i++) {
+			CPatch* patch = GetPatch(i,j);
+			patch->CalcBounds();
+			patch->SetDirty(RENDERDATA_UPDATE_VERTICES);
+		}
+	}
+}

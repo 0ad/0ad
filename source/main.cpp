@@ -85,7 +85,6 @@
 
 #define LOG_CATEGORY "main"
 
-CConsole* g_Console = 0;
 extern int conInputHandler(const SDL_Event* ev);
 
 // Globals
@@ -883,8 +882,7 @@ static void InitPs()
 	{
 	TIMER(ps_console);
 
-		float ConsoleHeight = g_yres * 0.6f;
-		g_Console->SetSize(0, g_yres-ConsoleHeight, (float)g_xres, ConsoleHeight);
+		g_Console->UpdateScreenSize(g_xres, g_yres);
 
 		// Calculate and store the line spacing
 		CFont font("console");

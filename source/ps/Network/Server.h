@@ -3,6 +3,7 @@
 
 #include "Network/Session.h"
 #include "Game.h"
+#include "GameAttributes.h"
 #include "TurnManager.h"
 #include "scripting/JSMap.h"
 

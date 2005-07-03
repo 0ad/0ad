@@ -10,15 +10,18 @@
 
 #include "Sections/Map/Map.h"
 
+#include "tools/Common/Tools.h"
+
 //#define UI_ONLY
 
 //////////////////////////////////////////////////////////////////////////
 
+// TODO: move into another file
 class Canvas : public wxGLCanvas
 {
 public:
 	Canvas(wxWindow* parent, int* attribList)
-		: wxGLCanvas(parent, -1, wxDefaultPosition, wxDefaultSize, 0, _T("GLCanvas"), attribList),
+		: wxGLCanvas(parent, -1, wxDefaultPosition, wxDefaultSize, wxWANTS_CHARS, _T("GLCanvas"), attribList),
 		m_SuppressResize(true)
 	{
 	}
@@ -28,7 +31,8 @@ public:
 		// Be careful not to send 'resize' messages to the game before we've
 		// told it that this canvas exists
 		if (! m_SuppressResize)
-			AtlasMessage::g_MessagePasser->Add(new AtlasMessage::mResizeScreen(GetSize().GetWidth(), GetSize().GetHeight()));
+			ADD_COMMAND(ResizeScreen(GetClientSize().GetWidth(), GetClientSize().GetHeight()));
+			// TODO: fix flashing
 	}
 
 	void InitSize()
@@ -37,18 +41,79 @@ public:
 		SetSize(320, 240);
 	}
 
+	bool KeyScroll(wxKeyEvent& evt, bool enable)
+	{
+		int dir;
+		switch (evt.GetKeyCode())
+		{
+		case WXK_LEFT:  dir = AtlasMessage::mScrollConstant::LEFT; break;
+		case WXK_RIGHT: dir = AtlasMessage::mScrollConstant::RIGHT; break;
+		case WXK_UP:    dir = AtlasMessage::mScrollConstant::FORWARDS; break;
+		case WXK_DOWN:  dir = AtlasMessage::mScrollConstant::BACKWARDS; break;
+		case WXK_SHIFT: dir = -1; break;
+		default: return false;
+		}
+
+		float speed = wxGetKeyState(WXK_SHIFT) ? 240.0f : 120.0f;
+
+		if (dir == -1) // changed modifier keys - update all currently-scrolling directions
+		{
+			if (wxGetKeyState(WXK_LEFT))  ADD_INPUT(ScrollConstant(AtlasMessage::mScrollConstant::LEFT, speed));
+			if (wxGetKeyState(WXK_RIGHT)) ADD_INPUT(ScrollConstant(AtlasMessage::mScrollConstant::RIGHT, speed));
+			if (wxGetKeyState(WXK_UP))    ADD_INPUT(ScrollConstant(AtlasMessage::mScrollConstant::FORWARDS, speed));
+			if (wxGetKeyState(WXK_DOWN))  ADD_INPUT(ScrollConstant(AtlasMessage::mScrollConstant::BACKWARDS, speed));
+		}
+		else
+		{
+			ADD_INPUT(ScrollConstant(dir, enable ? speed : 0.0f));
+		}
+		return true;
+	}
+
+	void OnKeyDown(wxKeyEvent& evt)
+	{
+		if (KeyScroll(evt, true))
+			return;
+
+		g_CurrentTool->OnKey(evt, ITool::KEY_DOWN);
+
+		evt.Skip();
+	}
+
+	void OnKeyUp(wxKeyEvent& evt)
+	{
+		if (KeyScroll(evt, false))
+			return;
+
+		g_CurrentTool->OnKey(evt, ITool::KEY_UP);
+
+		evt.Skip();
+	}
+
+	void OnMouse(wxMouseEvent& evt)
+	{
+		g_CurrentTool->OnMouse(evt);
+	}
+
 private:
 	bool m_SuppressResize;
 	DECLARE_EVENT_TABLE();
 };
 BEGIN_EVENT_TABLE(Canvas, wxGLCanvas)
 	EVT_SIZE(Canvas::OnResize)
+	EVT_KEY_DOWN(Canvas::OnKeyDown)
+	EVT_KEY_UP(Canvas::OnKeyUp)
+	
+	EVT_LEFT_DOWN(Canvas::OnMouse)
+	EVT_LEFT_UP  (Canvas::OnMouse)
+	EVT_MOTION   (Canvas::OnMouse)
 END_EVENT_TABLE()
 
 //////////////////////////////////////////////////////////////////////////
 
 BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 	EVT_CLOSE(ScenarioEditor::OnClose)
+	EVT_TIMER(wxID_ANY, ScenarioEditor::OnTimer)
 END_EVENT_TABLE()
 
 
@@ -82,23 +147,52 @@ ScenarioEditor::ScenarioEditor()
 	// Send setup messages to game engine:
 
 #ifndef UI_ONLY
-	ADD_MESSAGE(SetContext(canvas->GetHDC(), canvas->GetContext()->GetGLRC()));
+	ADD_COMMAND(SetContext(canvas->GetHDC(), canvas->GetContext()->GetGLRC()));
 
-	ADD_MESSAGE(CommandString("init"));
+	ADD_COMMAND(CommandString("init"));
 
 	canvas->InitSize();
 
-	ADD_MESSAGE(CommandString("render_enable"));
+	ADD_COMMAND(CommandString("render_enable"));
 #endif
+
+	// XXX
+	USE_TOOL(AlterElevation);
+
+	m_Timer.SetOwner(this);
+	m_Timer.Start(50);
 }
+
 
 void ScenarioEditor::OnClose(wxCloseEvent&)
 {
 #ifndef UI_ONLY
-	ADD_MESSAGE(CommandString("shutdown"));
+	ADD_COMMAND(CommandString("shutdown"));
 #endif
-	ADD_MESSAGE(CommandString("exit"));
-	
+	ADD_COMMAND(CommandString("exit"));
+
+	SetCurrentTool(NULL);
+
 	// TODO: What if it's still rendering while we're destroying the canvas?
 	Destroy();
+}
+
+
+void ScenarioEditor::OnTimer(wxTimerEvent&)
+{
+	// TODO: Improve timer stuff - smoother, etc
+	static wxLongLong last = wxGetLocalTimeMillis();
+	wxLongLong time = wxGetLocalTimeMillis();
+	g_CurrentTool->OnTick((time-last).ToLong());
+	last = time;
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+AtlasMessage::Position::Position(const wxPoint& pt)
+{
+	// TODO: convert to world space (via the engine)
+	x = pt.x/32.f;
+	y = 0.f;
+	z = pt.y/32.f;
 }

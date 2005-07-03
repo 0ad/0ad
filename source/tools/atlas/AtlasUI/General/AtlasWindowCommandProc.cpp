@@ -24,7 +24,7 @@ AtlasWindowCommandProc* AtlasWindowCommandProc::GetFromParentFrame(wxWindow* obj
 
 		win = win->GetParent();
 	}
-	wxASSERT_MSG(0, _T("Couldn't find command processor"));
+	wxFAIL_MSG(_T("Couldn't find command processor"));
 	return NULL;
 }
 

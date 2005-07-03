@@ -19,6 +19,8 @@
 
 extern bool keys[SDLK_LAST];
 
+CConsole* g_Console = 0;
+
 CConsole::CConsole()
 {
 
@@ -52,6 +54,12 @@ void CConsole::SetSize(float X, float Y, float W, float H)
 	m_fY = Y;
 	m_fWidth = W;
 	m_fHeight = H;
+}
+
+void CConsole::UpdateScreenSize(int w, int h)
+{
+	float height = h * 0.6f;
+	SetSize(0, h-height, (float)w, height);
 }
 
 

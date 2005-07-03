@@ -7,6 +7,7 @@
 #include "World.h"
 #include "MapReader.h"
 #include "Game.h"
+#include "GameAttributes.h"
 #include "Terrain.h"
 #include "LightEnv.h"
 #include "BaseEntityCollection.h"

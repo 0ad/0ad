@@ -84,6 +84,7 @@ public:
 	~CConsole();
 
 	void SetSize(float X = 300, float Y = 0, float W = 800, float H = 600);
+	void UpdateScreenSize(int w, int h);
 
 	void ToggleVisible();
 	void SetVisible( bool visible );
@@ -114,5 +115,6 @@ public:
 	int m_iFontOffset; // distance to move up before drawing
 };
 
-#endif
+extern CConsole* g_Console;
 
+#endif

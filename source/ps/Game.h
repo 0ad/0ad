@@ -8,11 +8,12 @@ ERROR_GROUP(Game);
 
 #include "World.h"
 #include "Simulation.h"
-#include "Player.h"
 #include "GameView.h"
-#include "GameAttributes.h"
 
 #include <vector>
+
+class CPlayer;
+class CGameAttributes;
 
 // Default player limit (not counting the Gaia player)
 // This may be overriden by system.cfg ("max_players")

@@ -11,6 +11,7 @@
 #include <CLogger.h>
 #include <CConsole.h>
 #include <Game.h>
+#include <GameAttributes.h>
 
 #define LOG_CAT_NET "net"
 
