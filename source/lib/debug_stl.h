@@ -21,8 +21,8 @@
 // reduce complicated STL names to human-readable form (in place).
 // e.g. "std::basic_string<char, char_traits<char>, std::allocator<char> >" =>
 //  "string". algorithm: strip undesired strings in one pass (fast).
-// called from symbol_string_build.
-extern void stl_simplify_name(char* name);
+// returns <name> for convenience.
+extern char* stl_simplify_name(char* name);
 
 
 // no STL iterator is larger than this; see below.
@@ -43,7 +43,7 @@ enum StlContainerError
 // return number of elements and an iterator (any data it needs is stored in
 // it_mem, which must hold DEBUG_STL_MAX_ITERATOR_SIZE bytes).
 // returns 0 on success or an StlContainerError.
-extern int stl_get_container_info(const wchar_t* type_name, const u8* p, size_t size,
+extern int stl_get_container_info(const char* type_name, const u8* p, size_t size,
 	size_t el_size, size_t* el_count, DebugIterator* el_iterator, void* it_mem);
 
 #endif	// #ifndef DEBUG_STL_H_INCLUDED

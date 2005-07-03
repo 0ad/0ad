@@ -686,6 +686,33 @@ static int dump_string(const u8* p, size_t el_size)
 }
 
 
+// split out of dump_sequence.
+static void seq_determine_formatting(size_t el_size, size_t el_count,
+	bool* fits_on_one_line, size_t* num_elements_to_show)
+{
+	// make sure empty containers are displayed with [0] {}, otherwise
+	// the lack of output looks like an error.
+	if(!el_count)
+		*fits_on_one_line = true;
+
+	if(el_size == sizeof(char))
+	{
+		*fits_on_one_line = el_count <= 16;
+		*num_elements_to_show = MIN(16, el_count);
+	}
+	else if(el_size <= sizeof(int))
+	{
+		*fits_on_one_line = el_count <= 8;
+		*num_elements_to_show = MIN(12, el_count);
+	}
+	else
+	{
+		*fits_on_one_line = false;
+		*num_elements_to_show = MIN(8, el_count);
+	}
+}
+
+
 static int dump_sequence(DebugIterator el_iterator, void* internal,
 	size_t el_count, DWORD el_type_id, size_t el_size, DumpState state)
 {
@@ -703,30 +730,12 @@ static int dump_sequence(DebugIterator el_iterator, void* internal,
 			return ret;
 	}
 
-	out(L"[%d] ", el_count);
-
 	// choose formatting based on element size and count
-//	const bool fits_on_one_line = seq_fits_on_one_line(el_count, el_size, &num_elements_to_show);
 	bool fits_on_one_line;
 	size_t num_elements_to_show;
-	if(el_size == sizeof(char))
-	{
-		fits_on_one_line = el_count <= 16;
-		num_elements_to_show = MIN(16, el_count);
-	}
-	else if(el_size <= sizeof(int))
-	{
-		fits_on_one_line = el_count <= 8;
-		num_elements_to_show = MIN(12, el_count);
-	}
-	else
-	{
-		fits_on_one_line = false;
-		num_elements_to_show = MIN(8, el_count);
-	}
-	if(!el_count)
-		fits_on_one_line = true;
+	seq_determine_formatting(el_size, el_count, &fits_on_one_line, &num_elements_to_show);
 
+	out(L"[%d] ", el_count);
 	state.level++;
 	out(fits_on_one_line? L"{ " : L"\r\n");
 
@@ -1316,7 +1325,7 @@ static int udt_get_child_type(const wchar_t* child_name,
 }
 
 
-static int udt_dump_stl(const wchar_t* type_name, const u8* p, size_t size, DumpState state,
+static int udt_dump_stl(const wchar_t* wtype_name, const u8* p, size_t size, DumpState state,
 	ULONG num_children, const DWORD* children)
 {
 	int err;
@@ -1327,10 +1336,14 @@ static int udt_dump_stl(const wchar_t* type_name, const u8* p, size_t size, Dump
 	if(err != 0)
 		return err;
 
+	// debug_stl doesn't support wchar_t.
+	char ctype_name[DBG_SYMBOL_LEN];
+	snprintf(ctype_name, ARRAY_SIZE(ctype_name), "%ws", wtype_name);
+
 	size_t el_count;
 	DebugIterator el_iterator;
 	u8 it_mem[DEBUG_STL_MAX_ITERATOR_SIZE];
-	err = stl_get_container_info(type_name, p, size, el_size, &el_count, &el_iterator, it_mem);
+	err = stl_get_container_info(ctype_name, p, size, el_size, &el_count, &el_iterator, it_mem);
 
 	// type_name is unknown; can't handle it.
 	if(err == STL_CNT_UNKNOWN)
@@ -1338,7 +1351,7 @@ static int udt_dump_stl(const wchar_t* type_name, const u8* p, size_t size, Dump
 	// contents are invalid (uninitialized or corrupted)
 	else if(err == STL_CNT_INVALID)
 	{
-		out(L"(uninitialized/invalid %s)", type_name);
+		out(L"(uninitialized/invalid %hs)", stl_simplify_name(ctype_name));
 		return 0;
 	}
 	// supported and valid: output each element.
@@ -1863,6 +1876,7 @@ static void test_udt()
 // STL containers and their contents
 static void test_stl()
 {
+/*
 	std::vector<std::wstring> v_wstring;
 	v_wstring.push_back(L"ws1"); v_wstring.push_back(L"ws2");
 
@@ -1903,7 +1917,7 @@ static void test_stl()
 
 	std::set<uintptr_t> s_uintptr;
 	s_uintptr.insert(0x123); s_uintptr.insert(0x456);
-
+*/
 	test_udt();
 
 	// uninitialized
