@@ -36,8 +36,12 @@ CObjectEntry::~CObjectEntry()
 	delete m_Model;
 }
 
-bool CObjectEntry::BuildRandomVariant(const CObjectBase::variation_key& vars, CObjectBase::variation_key::const_iterator vars_it)
+bool CObjectEntry::BuildRandomVariant(const CObjectBase::variation_key& vars, CObjectBase::variation_key::const_iterator& vars_it)
 {
+	// vars_it is passed by reference so that the caller's iterator
+	// can be incremented by the appropriate amount, to point to the
+	// next object's set of variant choices (for propped models).
+
 	CStr chosenTexture;
 	CStr chosenModel;
 	CStr chosenColor;
@@ -62,7 +66,7 @@ bool CObjectEntry::BuildRandomVariant(const CObjectBase::variation_key& vars, CO
 		u8 var_id = *vars_it++;
 		if (var_id < 0 || var_id >= grp->size())
 		{
-			LOG(ERROR, LOG_CATEGORY, "Internal error (BuildRandomVariant: %d not in 0..%d", var_id, grp->size()-1);
+			LOG(ERROR, LOG_CATEGORY, "Internal error (BuildRandomVariant: %d not in 0..%d)", var_id, grp->size()-1);
 			continue;
 		}
 		CObjectBase::Variant& var ((*grp)[var_id]);

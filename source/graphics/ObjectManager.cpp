@@ -105,7 +105,7 @@ CObjectEntry* CObjectManager::FindObject(const char* objname)
 	return FindObjectVariation(base, var, vars_it);
 }
 
-CObjectEntry* CObjectManager::FindObjectVariation(const char* objname, const CObjectBase::variation_key& vars, CObjectBase::variation_key::const_iterator vars_it)
+CObjectEntry* CObjectManager::FindObjectVariation(const char* objname, const CObjectBase::variation_key& vars, CObjectBase::variation_key::const_iterator& vars_it)
 {
 	CObjectBase* base = FindObjectBase(objname);
 
@@ -115,7 +115,7 @@ CObjectEntry* CObjectManager::FindObjectVariation(const char* objname, const COb
 	return FindObjectVariation(base, vars, vars_it);
 }
 
-CObjectEntry* CObjectManager::FindObjectVariation(CObjectBase* base, const CObjectBase::variation_key& vars, CObjectBase::variation_key::const_iterator vars_it)
+CObjectEntry* CObjectManager::FindObjectVariation(CObjectBase* base, const CObjectBase::variation_key& vars, CObjectBase::variation_key::const_iterator& vars_it)
 {
 	// Look to see whether this particular variation has already been loaded
 
