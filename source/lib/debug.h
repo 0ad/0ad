@@ -46,6 +46,13 @@ diagnosing and reporting program errors.
   crashlogs with "last-known activity" reporting.
 
 
+usage
+-----
+
+please see the detailed comments below on how to use the individual features.
+much of this is only helpful if you explicity ask for it!
+
+
 rationale
 ---------
 
@@ -65,7 +72,7 @@ even if debug information is present and assert dialogs are useless.
 //-----------------------------------------------------------------------------
 
 // check heap integrity (independently of mmgr).
-// errors are reported by the CRT.
+// errors are reported by the CRT or via display_error.
 extern void debug_heap_check(void);
 
 enum DebugHeapChecks
@@ -90,17 +97,14 @@ extern void debug_heap_enable(DebugHeapChecks what);
 // debug_assert
 //-----------------------------------------------------------------------------
 
-// rationale: we call our assert "debug_assert" for the following reasons:
-// - consistency (everything here is prefixed with debug_) and
-// - to avoid inadvertent use of the much less helpful built-in CRT assert.
-//   if we were to override assert, it would be difficult to tell whether
-//   user source has included <assert.h> (possibly indirectly via other
-//   headers) and thereby stomped on our definition.
-
-// called when an assertion has failed; notifies the user via display_error.
-extern enum ErrorReaction debug_assert_failed(const char* source_file, int line, const char* assert_expr);
-
-// recommended use: debug_assert(expression && "descriptive string")
+// make sure the expression <expr> evaluates to non-zero. used to validate
+// invariants in the program during development and thus gives a
+// very helpful warning if something isn't going as expected.
+// sprinkle these liberally throughout your code!
+//
+// recommended use is debug_assert(expression && "descriptive string") -
+// the string can pass more information about the problem on to whomever
+// is seeing the error.
 //
 // rationale: 0x55 and 0xaa have distinctive bit patterns and thus
 // help debug the symbol engine.
@@ -118,6 +122,16 @@ STMT(\
 			break;\
 		}\
 )
+
+// rationale: we call our assert "debug_assert" for the following reasons:
+// - consistency (everything here is prefixed with debug_) and
+// - to avoid inadvertent use of the much less helpful built-in CRT assert.
+//   if we were to override assert, it would be difficult to tell whether
+//   user source has included <assert.h> (possibly indirectly via other
+//   headers) and thereby stomped on our definition.
+
+// called when an assertion has failed; notifies the user via display_error.
+extern enum ErrorReaction debug_assert_failed(const char* source_file, int line, const char* assert_expr);
 
 
 //-----------------------------------------------------------------------------

@@ -4,20 +4,14 @@
 #include "posix_types.h"	// size_t
 
 // these are already shipped with VC2005
-#if _MSC_VER >= 1400
-
-// ...except VC2005 Beta 2 uses strnlen instead of strlen_s
-// (see http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1059.htm)
-#define strlen_s(str, max) strnlen(str, max)
-
-#else
+#if _MSC_VER < 1400
 
 // return length [in characters] of a string, not including the trailing
 // null character. to protect against access violations, only the
 // first <max_len> characters are examined; if the null character is
 // not encountered by then, <max_len> is returned.
-extern size_t strlen_s(const char* str, size_t max_len);
-extern size_t wcslen_s(const wchar_t* str, size_t max_len);
+extern size_t strnlen(const char* str, size_t max_len);
+extern size_t wcsnlen(const wchar_t* str, size_t max_len);
 
 // copy at most <max_src_chars> (not including trailing null) from
 // <src> into <dst>, which must not overlap.

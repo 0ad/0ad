@@ -1009,7 +1009,7 @@ if(file_type == FT_OGG)
  size_t bytes_read;
  do
  {
-  const size_t bufsize = 32*KiB; // TODO (or not to do, if it's not a problem worth caring about): "warning C6262: Function uses '32840' bytes of stack: exceeds /analysis:stacksize'16384'. Consider moving some data to heap"
+  const size_t bufsize = 32*KiB;
   char buf[bufsize];
   bytes_read = ogg_read(sd->o, buf, bufsize);
   data.insert(data.end(), &buf[0], &buf[bytes_read]);

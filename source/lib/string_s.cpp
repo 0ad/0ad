@@ -37,7 +37,7 @@
 #ifdef WSTRING_S
 # define tchar wchar_t
 # define T(string_literal) L ## string_literal
-# define tlen_s wcslen_s
+# define tnlen wcsnlen
 # define tncpy_s wcsncpy_s
 # define tcpy_s wcscpy_s
 # define tncat_s wcsncat_s
@@ -47,7 +47,7 @@
 #else
 # define tchar char
 # define T(string_literal) string_literal
-# define tlen_s strlen_s
+# define tnlen strnlen
 # define tncpy_s strncpy_s
 # define tcpy_s strcpy_s
 # define tncat_s strncat_s
@@ -85,7 +85,7 @@
 // null character. to protect against access violations, only the
 // first <max_len> characters are examined; if the null character is
 // not encountered by then, <max_len> is returned.
-size_t tlen_s(const tchar* str, size_t max_len)
+size_t tnlen(const tchar* str, size_t max_len)
 {
 	// note: we can't bail - what would the return value be?
 	debug_assert(str != 0);
@@ -168,9 +168,9 @@ int tncat_s(tchar* dst, size_t max_dst_chars, const tchar* src, size_t max_src_c
 	// src is checked in tncpy_s
 
 	// WARN_IF_PTR_LEN not necessary: both max_dst_chars and max_src_chars
-	// are checked by tlen_s / tncpy_s (respectively).
+	// are checked by tnlen / tncpy_s (respectively).
 
-	const size_t dst_len = tlen_s(dst, max_dst_chars);
+	const size_t dst_len = tnlen(dst, max_dst_chars);
 	if(dst_len == max_dst_chars)
 	{
 		*dst = '\0';
@@ -234,7 +234,7 @@ static tchar no_null[] = { 'n','o','_','n','u','l','l'};
 
 #define TEST_LEN(string, limit, expected)                                 \
 STMT(                                                                     \
-	debug_assert(tlen_s((string), (limit)) == (expected));                     \
+	debug_assert(tnlen((string), (limit)) == (expected));                     \
 )
 
 #define TEST_CPY(dst, dst_max, src, expected_ret, expected_dst)           \

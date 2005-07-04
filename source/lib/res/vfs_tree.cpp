@@ -400,7 +400,7 @@ TNode* TDir::add(const char* name, TNodeType new_type)
 	if(node)
 		return node;
 
-	const size_t size = sizeof(TNode)+strlen_s(name, VFS_MAX_PATH)+1;
+	const size_t size = sizeof(TNode)+strnlen(name, VFS_MAX_PATH)+1;
 	node = node_alloc(size);
 	if(!node)
 		return 0;
@@ -473,18 +473,23 @@ int TDir::lookup(const char* path, uint flags, TNode** pnode, char* exact_path)
 	TNodeType type = N_DIR;
 
 	// successively navigate to the next component in <path>.
-	TNode* node;
+	TNode* node = 0;
 	for(;;)
 	{
 		// "extract" cur_component string (0-terminate by replacing '/')
 		char* slash = (char*)strchr(cur_component, '/');
 		if(!slash)
 		{
+			// all other node assignments are checked, so this must have
+			// been the first iteration and there's no slash =>
+			// pathname is incorrect.
+			if(!node)
+				return ERR_INVALID_PARAM;
+
 			// string ended in slash => return the current dir node.
-			// TODO: is it at all possible that this will happen on the
-			// first iteration, when 'node' is still undefined?
 			if(*cur_component == '\0')
 				break;
+
 			// it's a filename
 			type = N_FILE;
 		}

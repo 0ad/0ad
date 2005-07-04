@@ -553,8 +553,16 @@ void ia32_get_cpu_info()
 
 
 
-
-
+// CAS does a sanity check on the location parameter to see if the caller
+// actually is passing an address (instead of a value, e.g. 1). this is
+// important because the call is via a macro that coerces parameters.
+//
+// reporting is done with the regular CRT assert instead of debug_assert
+// because the wdbg code relies on CAS internally (e.g. to avoid
+// nested stack traces). a bug such as VC's incorrect handling of params
+// in __declspec(naked) functions would then cause infinite recursion,
+// which is difficult to debug (since wdbg is hosed) and quite fatal.
+#define ASSERT(x) assert(x)
 
 // note: a 486 or later processor is required since we use CMPXCHG.
 // there's no feature flag we can check, and the ia32 code doesn't
@@ -568,7 +576,7 @@ bool __cdecl CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value)
 {
 	// try to see if caller isn't passing in an address
 	// (CAS's arguments are silently casted)
-	debug_assert(location >= (uintptr_t*)0x10000);
+	ASSERT(location >= (uintptr_t*)0x10000);
 
 	bool was_updated;
 __asm
@@ -624,7 +632,7 @@ bool CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value)
 {
 	uintptr_t prev;
 
-	debug_assert(location >= (uintptr_t*)0x10000);
+	ASSERT(location >= (uintptr_t*)0x10000);
 
 	__asm__ __volatile__("lock; cmpxchgl %1,%2"
 				 : "=a"(prev) // %0: Result in eax should be stored in prev
