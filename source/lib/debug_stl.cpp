@@ -174,11 +174,17 @@ char* stl_simplify_name(char* name)
 // basic sanity checks shared by all containers.
 static bool container_valid(const void* front, size_t el_count)
 {
+	// empty, must not be reported as invalid
+	if(!el_count)
+		return true;
+
 	// # elements is unbelievably high; assume it's invalid.
 	if(el_count > 0x1000000)
 		return false;
+
 	if(debug_is_bogus_pointer(front))
 		return false;
+
 	return true;
 }
 
@@ -312,7 +318,7 @@ public:
 };
 
 
-class Any_map : public std::map<int,int>
+template<class _Traits> class Any_tree : public std::_Tree<_Traits>
 {
 	// return reference to the given node's nil flag.
 	// reimplemented because this member is stored after _Myval, so it's
@@ -321,7 +327,7 @@ class Any_map : public std::map<int,int>
 	{
 		const u8* p = (const u8*)&_Pnode->_Isnil;	// ok for int specialization
 		p += el_size - sizeof(value_type);
-			// account for el_size difference
+		// account for el_size difference
 		assert(*p <= 1);	// bool value
 		return (_Charref)*p;
 	}
@@ -345,7 +351,6 @@ public:
 	class iter : public const_iterator
 	{
 	public:
-
 		const u8* deref_and_advance(size_t el_size)
 		{
 			const u8* p = (const u8*)&operator*();
@@ -372,8 +377,12 @@ public:
 
 			return p;
 		}
-
 	};
+};
+
+
+class Any_map : public Any_tree<std::_Tmap_traits<int, int, std::less<int>, std::allocator<std::pair<const int, int> >, false> >
+{
 };
 
 
@@ -382,32 +391,8 @@ class Any_multimap : public Any_map
 };
 
 
-class Any_set: public std::set<int>
+class Any_set: public Any_tree<std::_Tset_traits<int, std::less<int>, std::allocator<int>, false> >
 {
-public:
-	bool valid(size_t el_size) const
-	{
-		if(!container_valid(_Myhead, _Mysize))
-			return false;
-		return true;
-	}
-
-	size_t el_count(size_t el_size) const
-	{
-		UNUSED(el_size);
-		return size();
-	}
-
-	class iter : public const_iterator
-	{
-	public:
-		const u8* deref_and_advance(size_t el_size)
-		{
-			const u8* p = (const u8*)&operator*();
-			++(*this);
-			return p;
-		}
-	};
 };
 
 
@@ -500,13 +485,15 @@ public:
 // standard container adapters
 //
 
-// we assume this adapter was instantiated with container=deque!
+// stl_get_container_info makes sure this was actually instantiated with
+// container = deque as we assume.
 class Any_queue : public Any_deque
 {
 };
 
 
-// we assumethis adapter was instantiated with container=deque!
+// stl_get_container_info makes sure this was actually instantiated with
+// container = deque as we assume.
 class Any_stack : public Any_deque
 {
 };
