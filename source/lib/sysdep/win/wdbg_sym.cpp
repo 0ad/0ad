@@ -690,11 +690,6 @@ static int dump_string(const u8* p, size_t el_size)
 static void seq_determine_formatting(size_t el_size, size_t el_count,
 	bool* fits_on_one_line, size_t* num_elements_to_show)
 {
-	// make sure empty containers are displayed with [0] {}, otherwise
-	// the lack of output looks like an error.
-	if(!el_count)
-		*fits_on_one_line = true;
-
 	if(el_size == sizeof(char))
 	{
 		*fits_on_one_line = el_count <= 16;
@@ -710,6 +705,11 @@ static void seq_determine_formatting(size_t el_size, size_t el_count,
 		*fits_on_one_line = false;
 		*num_elements_to_show = MIN(8, el_count);
 	}
+
+	// make sure empty containers are displayed with [0] {}, otherwise
+	// the lack of output looks like an error.
+	if(!el_count)
+		*fits_on_one_line = true;
 }
 
 
@@ -970,12 +970,11 @@ static int dump_sym_base_type(DWORD type_id, const u8* p, DumpState state)
 		// signed integers (displayed as decimal)
 		case btInt:
 		case btLong:
+			if(size != 1 && size != 2 && size != 4 && size != 8)
+				debug_warn("dump_sym_base_type: invalid int size");
 			// need to re-load and sign-extend, because we output 64 bits.
 			data = movsx_64le(p, size);
-			if(size == 1 || size == 2 || size == 4 || size == 8)
-				fmt = L"%I64d";
-			else
-				debug_warn("dump_sym_base_type: invalid int size");
+			fmt = L"%I64d";
 			break;
 
 		// unsigned integers (displayed as hex)
@@ -1835,7 +1834,6 @@ namespace test {
 
 static void test_array()
 {
-/*
 	struct Small
 	{
 		int i1;
@@ -1857,7 +1855,7 @@ static void test_array()
 
 	int ints[] = { 1,2,3,4,5	};
 	wchar_t chars[] = { 'w','c','h','a','r','s',0 };
-*/
+
 	DISPLAY_ERROR(L"wdbg_sym self test: check if stack trace below is ok.");
 }
 
@@ -1870,13 +1868,53 @@ struct Nested
 
 static void test_udt()
 {
+	Nested nested = { 123 }; nested.self_ptr = &nested;
+
+	typedef struct
+	{
+		u8 s1;
+		u8 s2;
+		char s3;
+	}
+	Small;
+	Small small__ = { 0x55, 0xaa, -1 };
+
+	struct Large
+	{
+		u8 large_member_u8;
+		std::string large_member_string;
+		double large_member_double;
+	}
+	large = { 0xff, "large struct string", 123456.0 };
+
+
+	class Base
+	{
+		int base_int;
+		std::wstring base_wstring;
+	public:
+		Base()
+			: base_int(123), base_wstring(L"base wstring")
+		{
+		}
+	};
+	class Derived : private Base
+	{
+		double derived_double;
+	public:
+		Derived()
+			: derived_double(-1.0)
+		{
+		}
+	}
+	derived;
+
 	test_array();
 }
 
 // STL containers and their contents
 static void test_stl()
 {
-/*
 	std::vector<std::wstring> v_wstring;
 	v_wstring.push_back(L"ws1"); v_wstring.push_back(L"ws2");
 
@@ -1917,7 +1955,29 @@ static void test_stl()
 
 	std::set<uintptr_t> s_uintptr;
 	s_uintptr.insert(0x123); s_uintptr.insert(0x456);
-*/
+
+	// empty
+	std::deque<u8> d_u8_empty;
+	std::list<Nested> l_nested_empty;
+	std::map<double,double> m_double_empty;
+	std::multimap<int,u8> mm_int_empty;
+	std::set<uint> s_uint_empty;
+	std::multiset<char> ms_char_empty;
+	std::vector<double> v_double_empty;
+	std::queue<double> q_double_empty;
+	std::stack<double> st_double_empty;
+#ifdef HAVE_STL_HASH
+	STL_HASH_MAP<double,double> hm_double_empty;
+	STL_HASH_MULTIMAP<double,std::wstring> hmm_double_empty;
+	STL_HASH_SET<double> hs_double_empty;
+	STL_HASH_MULTISET<double> hms_double_empty;
+#endif
+#ifdef HAVE_STL_SLIST
+	STL_SLIST<double> sl_double_empty;
+#endif
+	std::string str_empty;
+	std::wstring wstr_empty;
+
 	test_udt();
 
 	// uninitialized
@@ -1951,10 +2011,17 @@ static void test_addrs(int p_int, double p_double, char* p_pchar, uintptr_t p_ui
 	debug_printf("\nTEST_ADDRS\n");
 
 	uint l_uint = 0x1234;
+	bool l_bool = true;
 	wchar_t l_wchars[] = L"wchar string";
 	enum TestEnum { VAL1=1, VAL2=2 } l_enum = VAL1;
 	u8 l_u8s[] = { 1,2,3,4 };
-	void(*l_funcptr)(void) = test_stl;
+	void (*l_funcptr)(void) = test_stl;
+
+	static double s_double = -2.718;
+	static char s_chars[] = {'c','h','a','r','s',0};
+	static void (*s_funcptr)(int, double, char*, uintptr_t) = test_addrs;
+	static void* s_ptr = (void*)(uintptr_t)0x87654321;
+	static HDC s_hdc = (HDC)0xff0;
 
 	debug_printf("p_int     addr=%p val=%d\n", &p_int, p_int);
 	debug_printf("p_double  addr=%p val=%g\n", &p_double, p_double);
@@ -1968,6 +2035,12 @@ static void test_addrs(int p_int, double p_double, char* p_pchar, uintptr_t p_ui
 	debug_printf("l_funcptr addr=%p val=%p\n", &l_funcptr, l_funcptr);
 
 	test_stl();
+
+	int uninit_int; UNUSED(uninit_int);
+	float uninit_float; UNUSED(uninit_float);
+	double uninit_double; UNUSED(uninit_double);
+	bool uninit_bool; UNUSED(uninit_bool);
+	HWND uninit_hwnd; UNUSED(uninit_hwnd);
 }
 
 
