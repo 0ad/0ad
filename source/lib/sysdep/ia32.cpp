@@ -562,26 +562,29 @@ void ia32_get_cpu_info()
 // run on 386. we could replace cmpxchg with a simple mov (since 386
 // CPUs aren't MP-capable), but it's not worth the trouble.
 
-__declspec(naked) bool __cdecl CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value)
+// note: don't use __declspec(naked) because we need to access one parameter
+// from C code and VC can't handle that correctly.
+bool __cdecl CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value)
 {
 	// try to see if caller isn't passing in an address
 	// (CAS's arguments are silently casted)
 	debug_assert(location >= (uintptr_t*)0x10000);
 
+	bool was_updated;
 __asm
 {
 	cmp		byte ptr [cpus], 1
-	mov		eax, [esp+8]	// expected
-	mov		edx, [esp+4]	// location
-	mov		ecx, [esp+12]	// new_value
+	mov		eax, [expected]
+	mov		edx, [location]
+	mov		ecx, [new_value]
 	je		$no_lock
 _emit 0xf0	// LOCK prefix
 $no_lock:
 	cmpxchg	[edx], ecx
-	mov		eax, 0
 	sete	al
-	ret
+	mov		[was_updated], al
 }
+	return was_updated;
 }
 
 
@@ -620,19 +623,19 @@ void serialize()
 bool CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value)
 {
 	uintptr_t prev;
-	
-	debug_assert(location >= (uintptr_t *)0x10000);
-	
+
+	debug_assert(location >= (uintptr_t*)0x10000);
+
 	__asm__ __volatile__("lock; cmpxchgl %1,%2"
 				 : "=a"(prev) // %0: Result in eax should be stored in prev
 				 : "q"(new_value), // %1: new_value -> e[abcd]x
 				   "m"(*location), // %2: Memory operand
 				   "0"(expected) // Stored in same place as %0
 				 : "memory"); // We make changes in memory
-	return prev==expected;
+	return prev == expected;
 }
 
-void atomic_add(intptr_t *location, intptr_t increment)
+void atomic_add(intptr_t* location, intptr_t increment)
 {
 	__asm__ __volatile__ (
 			"cmpb $1, %1;"
