@@ -146,15 +146,22 @@ void debug_wprintf(const wchar_t* fmt, ...)
 // debug memory allocator
 //-----------------------------------------------------------------------------
 
+// check heap integrity (independently of mmgr).
+// errors are reported by the CRT or via display_error.
 void debug_heap_check()
 {
+	int ret;
 	__try
 	{
-		_heapchk();
+		ret = _heapchk();
 	}
 	__except(EXCEPTION_EXECUTE_HANDLER)
 	{
+		ret = _HEAPBADNODE;
 	}
+
+	if(ret != _HEAPOK)
+		DISPLAY_ERROR(L"debug_heap_check: heap is corrupt");
 }
 
 
@@ -746,7 +753,7 @@ static int screwaround()
 //
 
 // storage for strings built by get_SEH_exception_description and get_cpp_exception_description.
-static wchar_t description[128];
+static wchar_t description_buf[128];
 
 // VC++ exception handling internals.
 // see http://www.codeproject.com/cpp/exceptionhandler.asp
@@ -841,8 +848,8 @@ static const wchar_t* get_cpp_exception_description(const EXCEPTION_RECORD* er)
 	// we got meaningful data; format and return it.
 	if(type_name[0] != '\0' || what[0] != '\0')
 	{
-		swprintf(description, ARRAY_SIZE(description), L"%hs(\"%hs\")", type_name, what);
-		return description;
+		swprintf(description_buf, ARRAY_SIZE(description_buf), L"%hs(\"%hs\")", type_name, what);
+		return description_buf;
 	}
 
 	// not a C++ exception; we can't say anything about it.
@@ -862,8 +869,8 @@ static const wchar_t* get_SEH_exception_description(const EXCEPTION_RECORD* er)
 	{
 		const wchar_t* op = (ei[0])? L"writing" : L"reading";
 		const wchar_t* fmt = L"Access violation %s 0x%08X";
-		swprintf(description, ARRAY_SIZE(description), translate(fmt), translate(op), ei[1]);
-		return description;
+		swprintf(description_buf, ARRAY_SIZE(description_buf), translate(fmt), translate(op), ei[1]);
+		return description_buf;
 	}
 
 	// rationale: we don't use FormatMessage because it is unclear whether
@@ -900,8 +907,8 @@ static const wchar_t* get_SEH_exception_description(const EXCEPTION_RECORD* er)
 	// anything else => unknown; display its exception code.
 	// we don't punt to get_exception_description because anything
 	// we get called for will actually be a SEH exception.
-	swprintf(description, ARRAY_SIZE(description), L"Unknown (0x%08X)", code);
-	return description;
+	swprintf(description_buf, ARRAY_SIZE(description_buf), L"Unknown (0x%08X)", code);
+	return description_buf;
 }
 
 
@@ -928,7 +935,8 @@ static const wchar_t* get_exception_locus(const EXCEPTION_POINTERS* ep)
 	// points to kernel32!RaiseException. we use debug_dump_stack to determine the
 	// real location.
 
-	wchar_t buf[32000]; // Maybe TODO: "warning C6262: Function uses '64016' bytes of stack: exceeds /analysis:stacksize'16384'. Consider moving some data to heap"
+	wchar_t buf[1000];
+		// we only want the beginning and this is guarded against overflow.
 	const wchar_t* stack_trace = debug_dump_stack(buf, ARRAY_SIZE(buf), 1, ep->ContextRecord);
 
 	const size_t MAX_LOCUS_CHARS = 256;

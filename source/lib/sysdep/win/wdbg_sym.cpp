@@ -90,6 +90,11 @@ enum WdbgError
 	// we abort to make sure we don't recurse infinitely.
 	WDBG_NESTING_LIMIT         = -100103,
 
+	// too much output has been produced by this top-level symbol;
+	// we must terminate recursion lest it hog all buffer space.
+	// dump will continue with the next top-level symbol.
+	WDBG_SINGLE_SYMBOL_LIMIT   = -100104,
+
 	// exception raised while processing the symbol.
 	WDBG_INTERNAL_ERROR        = -100200,
 
@@ -479,9 +484,26 @@ struct DumpState
 
 
 static ssize_t out_chars_left;
-static wchar_t* out_pos;
 static bool out_have_warned_of_overflow;
 	// only do so once until next out_init to avoid flood of messages.
+static wchar_t* out_pos;
+
+// some top-level (*) symbols cause tons of output - so much that they may
+// single-handedly overflow the buffer (e.g. pointer to a tree of huge UDTs).
+// we can't have that, so there is a limit in place as to how much a
+// single top-level symbol can output. after that is reached, dumping is
+// aborted for that symbol but continues for the subsequent top-level symbols.
+//
+// this is implemented as follows: dump_sym_cb latches the current output
+// position; each dump_sym (through which all symbols go) checks if the
+// new position exceeds the limit and aborts if so.
+// slight wrinkle: since we don't want each level of UDTs to successively
+// realize the limit has been hit and display the error message, we
+// return WDBG_SINGLE_SYMBOL_LIMIT once and thereafter WDBG_SUPPRESS_OUTPUT.
+//
+// * example: local variables, as opposed to child symbols in a UDT.
+static wchar_t* out_latched_pos;
+static bool out_have_warned_of_limit;
 
 static void out_init(wchar_t* buf, size_t max_chars)
 {
@@ -531,6 +553,30 @@ static void out_erase(size_t num_chars)
 	out_pos -= num_chars;
 	*out_pos = '\0';
 		// make sure it's 0-terminated in case there is no further output.
+}
+
+
+// (see above)
+static void out_latch_pos()
+{
+	out_have_warned_of_limit = false;
+	out_latched_pos = out_pos;
+}
+
+
+// (see above)
+static int out_check_limit()
+{
+	if(out_have_warned_of_limit)
+		return WDBG_SUPPRESS_OUTPUT;
+	if(out_pos - out_latched_pos > 3000)	// ~30 lines
+	{
+		out_have_warned_of_limit = true;
+		return WDBG_SINGLE_SYMBOL_LIMIT;
+	}
+
+	// no limit hit, proceed normally
+	return 0;
 }
 
 
@@ -632,6 +678,9 @@ static void dump_error(int err, const u8* p)
 	{
 	case 0:
 		// no error => no output
+		break;
+	case WDBG_SINGLE_SYMBOL_LIMIT:
+		out(L"(too much output; skipping to next top-level symbol)");
 		break;
 	case WDBG_UNRETRIEVABLE_STATIC:
 		out(L"(unavailable - located in another module)");
@@ -745,26 +794,32 @@ static int dump_sequence(DebugIterator el_iterator, void* internal,
 			INDENT;
 
 		int err = dump_sym(el_type_id, el_p, state);
-		dump_error(err, el_p);
 		el_p = el_iterator(internal, el_size);
 
+		// there was no output for this child; undo its indentation (if any),
+		// skip everything below and proceed with the next child.
 		if(err == WDBG_SUPPRESS_OUTPUT)
 		{
 			if(!fits_on_one_line)
 				UNINDENT;
+			continue;
 		}
-		else
-		{
-			// add separator unless this is the last element (can't just
-			// erase below due to additional "...").
-			if(i != num_elements_to_show-1)
-				out(fits_on_one_line? L", " : L"\r\n");
-		}
-	}
-	// we truncated some
+
+		dump_error(err, el_p);	// nop if err == 0
+		// add separator unless this is the last element (can't just
+		// erase below due to additional "...").
+		if(i != num_elements_to_show-1)
+			out(fits_on_one_line? L", " : L"\r\n");
+
+		if(err == WDBG_SINGLE_SYMBOL_LIMIT)
+			break;
+	}	// for each child
+
+	// indicate some elements were skipped
 	if(el_count != num_elements_to_show)
 		out(L" ...");
 
+	state.level--;
 	if(fits_on_one_line)
 		out(L" }");
 	return 0;
@@ -1499,19 +1554,23 @@ static int udt_dump_normal(const wchar_t* type_name, const u8* p, size_t size,
 
 		const u8* el_p = p+ofs;
 		int err = dump_sym(child_id, el_p, state);
-		dump_error(err, el_p);
 
+		// there was no output for this child; undo its indentation (if any),
+		// skip everything below and proceed with the next child.
 		if(err == WDBG_SUPPRESS_OUTPUT)
 		{
 			if(!fits_on_one_line)
 				UNINDENT;
+			continue;
 		}
-		else
-		{
-			out(fits_on_one_line? L", " : L"\r\n");
-			displayed_anything = true;
-		}
-	}
+
+		displayed_anything = true;
+		dump_error(err, el_p);	// nop if err == 0
+		out(fits_on_one_line? L", " : L"\r\n");
+
+		if(err == WDBG_SINGLE_SYMBOL_LIMIT)
+			break;
+	}	// for each child
 
 	state.level--;
 
@@ -1611,6 +1670,10 @@ static int dump_sym_unknown(DWORD type_id, const u8* p, DumpState state)
 // delegates to dump_sym_* depending on the symbol's tag.
 static int dump_sym(DWORD type_id, const u8* p, DumpState state)
 {
+	int ret = out_check_limit();
+	if(ret != 0)
+		return ret;
+
 	DWORD type_tag;
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_SYMTAG, &type_tag))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
@@ -1654,6 +1717,7 @@ static int dump_sym(DWORD type_id, const u8* p, DumpState state)
 // called from dump_frame_cb for each local symbol; lock is held.
 static BOOL CALLBACK dump_sym_cb(SYMBOL_INFO* sym, ULONG size, void* ctx)
 {
+	out_latch_pos();	// see decl
 	mod_base = sym->ModBase;
 	const u8* p = (const u8*)sym->Address;
 	DumpState state;

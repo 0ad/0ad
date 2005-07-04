@@ -218,8 +218,9 @@ static void detect_filesystem()
 		// if this fails, no problem - we have the default from above.
 	root_path[3] = '\0';	// cut off after "c:\"
 
-	char fs_name[32];
+	char fs_name[32] = {0};
 	BOOL ret = GetVolumeInformation(root_path, 0,0,0,0,0, fs_name, sizeof(fs_name));
+	fs_name[ARRAY_SIZE(fs_name)-1] = '\0';
 	debug_assert(ret != 0);
 		// if this fails, no problem - we really only care if fs is FAT,
 		// and will assume that's not the case (since fs_name != "FAT").

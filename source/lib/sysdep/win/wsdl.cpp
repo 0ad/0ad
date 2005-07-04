@@ -268,11 +268,13 @@ static void init_vkmap(SDLKey (&VK_keymap)[256])
 inline SDLKey vkmap(int vk)
 {
 	static SDLKey VK_SDLKMap[256]; // VK_SDLKMap[vk] == SDLK
-
 	ONCE( init_vkmap(VK_SDLKMap); );
 
-	debug_assert(vk >= 0 && vk < 256);
-
+	if(!(0 <= vk && vk < 256))
+	{
+		debug_warn("vkmap: invalid vk");
+		return SDLK_UNKNOWN;
+	}
 	return VK_SDLKMap[vk];
 }
 
@@ -1010,28 +1012,25 @@ int SDL_SemWait(SDL_sem* sem)
 // threads
 //
 
-
 // users don't need to allocate SDL_Thread variables, so type = void
 // API returns SDL_Thread*, which is the HANDLE value itself.
-union pthread_sdl
-{
-	pthread_t p;
-	SDL_Thread* s;
-};
+//
+// we go through hoops to avoid type cast warnings;
+// a simple union { pthread_t; SDL_Thread* } yields "uninitialized"
+// warnings in VC2005, so we coerce values directly.
+cassert(sizeof(pthread_t) == sizeof(SDL_Thread*));
 
 SDL_Thread* SDL_CreateThread(int(*func)(void*), void* param)
 {
-	pthread_sdl u;
-	if(pthread_create(&u.p, 0, (void*(*)(void*))func, param) < 0)
+	pthread_t thread = 0;
+	if(pthread_create(&thread, 0, (void*(*)(void*))func, param) < 0)
 		return 0;
-	return u.s; // TODO: uninitialised value?
+	return *(SDL_Thread**)&thread;
 }
 
 int SDL_KillThread(SDL_Thread* thread)
 {
-	pthread_sdl u;
-	u.s = thread;
-	pthread_cancel(u.p);
+	pthread_cancel(*(pthread_t*)&thread);
 	return 0;
 }
 
