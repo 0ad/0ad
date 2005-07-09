@@ -17,13 +17,10 @@
 
 #include "precompiled.h"
 
-
 #include <stdio.h>
 #include <stdlib.h>	// __argc
 
-#include "win_internal.h"	// includes windows.h; must come before these
-#include <crtdbg.h>	// malloc debug
-#include <malloc.h>
+#include "win_internal.h"	// includes windows.h; must come before shlobj
 #include <shlobj.h>	// pick_dir
 
 #include "lib.h"
@@ -182,6 +179,28 @@ int pick_directory(char* path, size_t buf_size)
 	return ok? 0 : -1;
 }
 
+
+// workaround: apparently PCH contents may be included after the headers.
+// malloc.h is defining alloca to _alloca and then VC complains about us
+// redefining an intrinsic. so, stomp on the macro here.
+#undef alloca
+
+void* alloca(size_t size)
+{
+	void* ret;
+	__try
+	{
+		ret = _alloca(size);
+	}
+	// if stack overflow, handle it; otherwise, continue handler search.
+	__except(GetExceptionCode() == STATUS_STACK_OVERFLOW)
+	{
+		// restore guard page - necessary on XP, works everywhere.
+		_resetstkoflw();
+		ret = 0;
+	}
+	return ret;
+}
 
 
 //-----------------------------------------------------------------------------

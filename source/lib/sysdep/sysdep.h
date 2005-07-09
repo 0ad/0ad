@@ -22,6 +22,13 @@ extern int vsnprintf2(char* buffer, size_t count, const char* format, va_list ar
 #define vsnprintf2 vsnprintf
 #endif
 
+// alloca: allocate on stack, automatically free, return 0 if out of mem.
+// already available on *nix, emulated on Win32.
+#ifdef _WIN32
+#undef alloca	// from malloc.h
+extern void* alloca(size_t size);
+#endif
+
 
 enum DisplayErrorFlags
 {

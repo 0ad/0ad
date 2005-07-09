@@ -216,9 +216,10 @@ static int alc_init()
 	{
 		alc_dev = alcOpenDevice((ALubyte*)alc_dev_name);
 	}
-	__except(1)	// EXCEPTION_E XECUTE_HANDLER
+	// if invalid handle, handle it; otherwise, continue handler search.
+	__except(GetExceptionCode() == EXCEPTION_INVALID_HANDLE)
 	{
-		debug_assert(!"hit me");
+		// ignore
 	}
 #else
 	alc_dev = alcOpenDevice((ALubyte*)alc_dev_name);
@@ -1317,6 +1318,9 @@ static int vsrc_deque_finished_bufs(VSrc* vs)
 
 static int vsrc_update(VSrc* vs)
 {
+	if(!vs->al_src)
+		return 0;
+
 	int num_queued;
 	alGetSourcei(vs->al_src, AL_BUFFERS_QUEUED, &num_queued);
 	al_check("vsrc_update alGetSourcei");

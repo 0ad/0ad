@@ -816,21 +816,29 @@ bool mmgr_is_valid_ptr(const void* p)
 
 static bool alloc_is_valid(const Alloc* a)
 {
+	// catch(...) is really evil in that it stops serious and unexpected
+	// exceptions (e.g. "hardware is on fire") from getting through, but
+	// there's really no alternative, since padding_is_intact is very
+	// likely to crash if the Alloc is corrupted.
+	bool intact;
 	try
 	{
-		if(padding_is_intact(a))
-			return true;
+		intact = padding_is_intact(a);
 	}
 	catch(...)
 	{
+		intact = false;
 	}
 
-	// this allocation has been over/underrun, i.e. modified outside the
-	// allocation's memory range.
-	debug_assert(0 && "Memory over/underrun detected by mmgr");
-	log("[!] Memory over/underrun:\n");
-	log_this_alloc(a);
-	return false;
+	// this allocation has been over/underrun (i.e. modified outside the
+	// allocation's memory range) or is otherwise corrupt.
+	if(!intact)
+	{
+		debug_assert(0 && "Memory over/underrun detected by mmgr");
+		log("[!] Memory over/underrun:\n");
+		log_this_alloc(a);
+	}
+	return intact;
 }
 
 struct ValidateAllParams
@@ -996,7 +1004,7 @@ void* alloc_dbg(size_t user_size, AllocType type, const char* file, int line, co
 	if(options & MMGR_TRACE)
 		log("[D] ENTER: alloc_dbg\n");
 
-	void* caller = debug_get_nth_caller(1+stack_frames);
+	void* caller = debug_get_nth_caller(1+stack_frames, 0);
 	const char* caller_string = debug_get_symbol_string(caller, func, file, line);
 
 	if(options & MMGR_LOG_ALL)
@@ -1075,7 +1083,7 @@ void free_dbg(const void* user_p, AllocType type, const char* file, int line, co
 	if(options & MMGR_TRACE)
 		log("[D] ENTER: free_dbg\n");
 
-	void* caller = debug_get_nth_caller(1+stack_frames);
+	void* caller = debug_get_nth_caller(1+stack_frames, 0);
 	const char* caller_string = debug_get_symbol_string(caller, func, file, line);
 
 	if(options & MMGR_LOG_ALL)

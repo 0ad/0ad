@@ -752,9 +752,8 @@ int lfh_erase(LFHash* hash, uintptr_t key)
 //
 //////////////////////////////////////////////////////////////////////////////
 
-namespace test {
-
 #if PERFORM_SELF_TEST
+namespace test {
 
 // make sure the data structures work at all; doesn't test thread-safety.
 static void basic_single_threaded_test()
@@ -972,6 +971,5 @@ static int run_tests()
 
 static int dummy = run_tests();
 
-#endif	// #if PERFORM_SELF_TEST
-
 }	// namespace test
+#endif	// #if PERFORM_SELF_TEST
