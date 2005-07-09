@@ -932,19 +932,23 @@ static const wchar_t* get_exception_description(const EXCEPTION_POINTERS* ep)
 static const wchar_t* get_exception_locus(const EXCEPTION_POINTERS* ep)
 {
 	// HACK: <ep> provides no useful information - ExceptionAddress always
-	// points to kernel32!RaiseException. we use debug_dump_stack to determine the
-	// real location.
+	// points to kernel32!RaiseException. we use debug_get_nth_caller to
+	// determine the real location.
 
-	wchar_t buf[1000];
-		// we only want the beginning and this is guarded against overflow.
-	const wchar_t* stack_trace = debug_dump_stack(buf, ARRAY_SIZE(buf), 1, ep->ContextRecord);
+	void* func = debug_get_nth_caller(1, ep->ContextRecord);
+		// skip RaiseException
 
-	const size_t MAX_LOCUS_CHARS = 256;
-	static wchar_t locus[MAX_LOCUS_CHARS];
-	wcsncpy_s(locus, MAX_LOCUS_CHARS, stack_trace, MAX_LOCUS_CHARS-1);
-	wchar_t* end = wcschr(locus, '\r');
-	if(end)
-		*end = '\0';
+	char func_name[DBG_SYMBOL_LEN];
+	char file[DBG_FILE_LEN] = {0};
+	int line = 0;
+	(void)debug_resolve_symbol(func, func_name, file, &line);
+		// note: file is the base path only (no drive letter), so there are
+		// no problems with wdbg_exception_filter's "%[^:]" format string.
+
+	// note: keep formatting in sync with wdbg_exception_filter, which
+	// extracts file/line for use with display_error.
+	static wchar_t locus[256];
+	swprintf(locus, ARRAY_SIZE(locus), L"%hs (%hs:%d)", func_name, file, line);
 	return locus;
 }
 
@@ -1019,7 +1023,7 @@ LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep)
 	const wchar_t* locus       = get_exception_locus      (ep);
 
 	wchar_t func_name[DBG_SYMBOL_LEN]; char file[DBG_FILE_LEN] = {0}; int line = 0; wchar_t fmt[50];
-	swprintf(fmt, ARRAY_SIZE(fmt), L"%%%ds %%%dhs (%%d)", DBG_SYMBOL_LEN, DBG_FILE_LEN);
+	swprintf(fmt, ARRAY_SIZE(fmt), L"%%%ds (%%%dh[^:]:%%d)", DBG_SYMBOL_LEN, DBG_FILE_LEN);
 		// bake in the string limits (future-proof)
 	if(swscanf(locus, fmt, func_name, file, &line) != 3)
 		debug_warn("error extracting file/line from exception locus");

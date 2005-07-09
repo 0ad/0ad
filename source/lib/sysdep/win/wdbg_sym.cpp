@@ -188,7 +188,8 @@ struct TI_FINDCHILDREN_PARAMS2
 // output parameters are optional; we pass back as much information as is
 // available and desired. return 0 iff any information was successfully
 // retrieved and stored.
-// sym_name and file must hold at least the number of chars above.
+// sym_name and file must hold at least the number of chars above;
+// file is the base name only, not path (see rationale in wdbg_sym).
 // the PDB implementation is rather slow (~500µs).
 int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
 {
@@ -199,7 +200,7 @@ int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int*
 
 	lock();
 
-	// get symbol name
+	// get symbol name (if requested)
 	if(sym_name)
 	{
 		sym_name[0] = '\0';
@@ -212,18 +213,34 @@ int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int*
 		}
 	}
 
-	// get source file + line number
+	// get source file and/or line number (if requested)
 	if(file || line)
 	{
 		IMAGEHLP_LINE64 line_info = { sizeof(IMAGEHLP_LINE64) };
 		DWORD displacement; // unused but required by SymGetLineFromAddr64!
 		if(SymGetLineFromAddr64(hProcess, addr, &displacement, &line_info))
-			successes++;
-		// note: were left zeroed if SymGetLineFromAddr64 failed
-		if(file)
-			snprintf(file, DBG_FILE_LEN, "%s", line_info.FileName);
-		if(line)
-			*line = line_info.LineNumber;
+		{
+			if(file)
+			{
+				// strip full path down to base name only.
+				// this loses information, but that isn't expected to be a
+				// problem and is balanced by not having to do this from every
+				// call site (full path is too long to display nicely).
+				const char* base_name = line_info.FileName;
+				const char* slash = strrchr(base_name, DIR_SEP);
+				if(slash)
+					base_name = slash+1;
+
+				snprintf(file, DBG_FILE_LEN, "%s", base_name);
+				successes++;
+			}
+
+			if(line)
+			{
+				*line = line_info.LineNumber;
+				successes++;
+			}
+		}
 	}
 
 	unlock();
@@ -440,22 +457,28 @@ static int nth_caller_cb(const STACKFRAME64* sf, void* user_arg)
 }
 
 
-// examine call stack and return the address of the Nth parent/caller of
-// the function from which this is called. n starts at one, which denotes
-// the immediate caller.
+// return address of the Nth function on the call stack.
+// if <context> is nonzero, it is assumed to be a platform-specific
+// representation of execution state (e.g. Win32 CONTEXT) and tracing
+// starts there; this is useful for exceptions.
+// otherwise, tracing starts at the current stack position, and the given
+// number of stack frames (i.e. functions) above the caller are skipped.
 // used by mmgr to determine what function requested each allocation;
 // this is fast enough to allow that.
-void* debug_get_nth_caller(uint n)
+void* debug_get_nth_caller(uint skip, void* pcontext)
 {
-	debug_assert(n >= 1);
+	if(!pcontext)
+		skip++;	// skip this frame
 
-	void* func;	// set by callback
-	const uint skip = n-1 + 3;
-		// make 0-based; skip walk_stack, debug_get_nth_caller and its caller.
-	if(walk_stack(nth_caller_cb, &func, skip) == 0)
-		return func;
-	return 0;
+	lock();
+
+	void* func;
+	int err = walk_stack(nth_caller_cb, &func, skip, (const CONTEXT*)pcontext);
+
+	unlock();
+	return (err == 0)? func : 0;
 }
+
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -482,8 +505,9 @@ struct DumpState
 	}
 };
 
+//----------------------------------------------------------------------------
 
-static ssize_t out_chars_left;
+static size_t out_chars_left;
 static bool out_have_warned_of_overflow;
 	// only do so once until next out_init to avoid flood of messages.
 static wchar_t* out_pos;
@@ -508,47 +532,63 @@ static bool out_have_warned_of_limit;
 static void out_init(wchar_t* buf, size_t max_chars)
 {
 	out_pos = buf;
-	out_chars_left = (ssize_t)max_chars;
+	out_chars_left = max_chars;
 	out_have_warned_of_overflow = false;
+	out_have_warned_of_limit = false;
 }
 
 
 static void out(const wchar_t* fmt, ...)
 {
-	const size_t MAX_OUT_CHARS = 1000;
-
-	// we assume each out() call will produce less than MAX_OUT_CHARS.
-	// if there's not that much left, overflow would be possible, so we bail.
-	// false alarms are possible but we never actually overflow.
-	if(out_chars_left < MAX_OUT_CHARS)
-	{
-		if(!out_have_warned_of_overflow)
-		{
-			debug_printf("out: out of room; disabled until next out_init\n");
-			out_have_warned_of_overflow = true;
-		}
-		return;
-	};
-
 	va_list args;
 	va_start(args, fmt);
-	int len = vswprintf(out_pos, MAX_OUT_CHARS, fmt, args);
+	int len = _vsnwprintf(out_pos, out_chars_left, fmt, args);
 	va_end(args);
 
-	// limit exceeded; shouldn't happen, but we're careful.
-	if(len < 0)
+	// success
+	if(len >= 0)
 	{
-		debug_warn("out: arbitrary limit of 1000 exceeded; why?");
-		len = MAX_OUT_CHARS;
+		out_pos += len;
+		// make sure out_chars_left remains nonnegative
+		if((size_t)len > out_chars_left)
+		{
+			debug_warn("out: apparently wrote more than out_chars_left");
+			len = (int)out_chars_left;
+		}
+		out_chars_left -= len;
 	}
+	// no more room left
+	else
+	{
+		// the buffer really is full yet out_chars_left may not be 0
+		// (since it isn't updated if _vsnwprintf returns -1).
+		// must be set so subsequent calls don't try to squeeze stuff in.
+		out_chars_left = 0;
 
-	out_pos += len;
-	out_chars_left -= len;
+		// write a warning into the output buffer (once) so it isn't
+		// abruptly cut off (which looks like an error)
+		if(!out_have_warned_of_overflow)
+		{
+			out_have_warned_of_overflow = true;
+
+			// with the current out_pos / out_chars_left variables, there's
+			// no way of knowing where the buffer actually ends. no matter;
+			// we'll just put the warning before out_pos and eat into the
+			// second newest text.
+			const wchar_t text[] = L"(no more room in buffer)";
+			wcscpy(out_pos-ARRAY_SIZE(text), text);	// safe
+		}
+	}
 }
 
 
 static void out_erase(size_t num_chars)
 {
+	// don't do anything if end of buffer was hit (prevents repeatedly
+	// scribbling over the last few bytes).
+	if(out_have_warned_of_overflow)
+		return;
+
 	out_chars_left += (ssize_t)num_chars;
 	out_pos -= num_chars;
 	*out_pos = '\0';
@@ -579,6 +619,7 @@ static int out_check_limit()
 	return 0;
 }
 
+//----------------------------------------------------------------------------
 
 #define INDENT STMT(for(uint i = 0; i <= state.level; i++) out(L"    ");)
 #define UNINDENT STMT(out_erase((state.level+1)*4);)
@@ -1760,14 +1801,12 @@ struct IMAGEHLP_STACK_FRAME2 : public IMAGEHLP_STACK_FRAME
 // called by walk_stack for each stack frame
 static int dump_frame_cb(const STACKFRAME64* sf, void* user_arg)
 {
-	// note: keep frame formatting in sync with get_exception_locus.
-
 	UNUSED(user_arg);
 	current_stackframe64 = sf;
 	void* func = (void*)sf->AddrPC.Offset;
 
-	char func_name[DBG_SYMBOL_LEN]; char path[DBG_FILE_LEN]; int line;
-	if(debug_resolve_symbol(func, func_name, path, &line) == 0)
+	char func_name[DBG_SYMBOL_LEN]; char file[DBG_FILE_LEN]; int line;
+	if(debug_resolve_symbol(func, func_name, file, &line) == 0)
 	{
 		// don't trace back further than the app's entry point
 		// (noone wants to see this frame). checking for the
@@ -1777,9 +1816,7 @@ static int dump_frame_cb(const STACKFRAME64* sf, void* user_arg)
 		if(!strcmp(func_name, "_BaseProcessStart@4"))
 			return 0;
 
-		const char* slash = strrchr(path, DIR_SEP);
-		const char* file = slash? slash+1 : path;
-		out(L"%hs %hs (%lu)\r\n", func_name, file, line);
+		out(L"%hs (%hs:%d)\r\n", func_name, file, line);
 	}
 	else
 		out(L"%p\r\n", func);
@@ -1806,9 +1843,9 @@ static int dump_frame_cb(const STACKFRAME64* sf, void* user_arg)
 // platform-specific representation of execution state (e.g. Win32 CONTEXT)
 // and tracing starts there; this is useful for exceptions.
 // otherwise, tracing starts at the current stack position, and the given
-// number of stack frames (i.e. functions) are skipped. this prevents
-// functions like debug_assert_failed from cluttering up the trace.
-// returns the buffer for convenience.
+// number of stack frames (i.e. functions) above the caller are skipped.
+// this prevents functions like debug_assert_failed from
+// cluttering up the trace. returns the buffer for convenience.
 const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* pcontext)
 {
 	static uintptr_t already_in_progress;
@@ -1920,7 +1957,8 @@ static void test_array()
 	int ints[] = { 1,2,3,4,5	};
 	wchar_t chars[] = { 'w','c','h','a','r','s',0 };
 
-	DISPLAY_ERROR(L"wdbg_sym self test: check if stack trace below is ok.");
+	//DISPLAY_ERROR(L"wdbg_sym self test: check if stack trace below is ok.");
+	RaiseException(0xf001,0,0,0);
 }
 
 // also used by test_stl as an element type

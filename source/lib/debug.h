@@ -210,7 +210,8 @@ const size_t DBG_FILE_LEN = 100;
 // output parameters are optional; we pass back as much information as is
 // available and desired. return 0 iff any information was successfully
 // retrieved and stored.
-// sym_name and file must hold at least the number of chars above.
+// sym_name and file must hold at least the number of chars above;
+// file is the base name only, not path (see rationale in wdbg_sym).
 // the PDB implementation is rather slow (~500µs).
 extern int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line);
 
@@ -219,9 +220,9 @@ extern int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* fil
 // platform-specific representation of execution state (e.g. Win32 CONTEXT)
 // and tracing starts there; this is useful for exceptions.
 // otherwise, tracing starts at the current stack position, and the given
-// number of stack frames (i.e. functions) are skipped. this prevents
-// functions like debug_assert_failed from cluttering up the trace.
-// returns the buffer for convenience.
+// number of stack frames (i.e. functions) above the caller are skipped.
+// this prevents functions like debug_assert_failed from
+// cluttering up the trace. returns the buffer for convenience.
 extern const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* context);
 
 
@@ -232,12 +233,15 @@ extern const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip
 // abstraction of all STL iterators used by debug_stl.
 typedef const u8* (*DebugIterator)(void* internal, size_t el_size);
 
-// examine call stack and return the address of the Nth parent/caller of
-// the function from which this is called. n starts at one, which denotes
-// the immediate caller.
+// return address of the Nth function on the call stack.
+// if <context> is nonzero, it is assumed to be a platform-specific
+// representation of execution state (e.g. Win32 CONTEXT) and tracing
+// starts there; this is useful for exceptions.
+// otherwise, tracing starts at the current stack position, and the given
+// number of stack frames (i.e. functions) above the caller are skipped.
 // used by mmgr to determine what function requested each allocation;
 // this is fast enough to allow that.
-extern void* debug_get_nth_caller(uint n);
+extern void* debug_get_nth_caller(uint skip, void* context);
 
 // return 1 if the pointer appears to be totally bogus, otherwise 0.
 // this check is not authoritative in that the pointer may in truth

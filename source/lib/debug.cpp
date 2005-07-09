@@ -351,19 +351,35 @@ ErrorReaction display_error(const wchar_t* description, int flags,
 	const char* filename = slash? slash+1 : file;
 	debug_wprintf(L"%hs(%d): %s\n", filename, line, description);
 
-	wchar_t* text;
-	const size_t MAX_CHARS = 512*1024;
-	void* mem = malloc(MAX_CHARS*sizeof(wchar_t));
-	if(mem)
+	// allocate memory for the stack trace. this needs to be quite large,
+	// so preallocating is undesirable. it must work even if the heap is
+	// corrupted (since that's an error we might want to display), so
+	// we cannot rely on the heap alloc alone. what we do is try malloc,
+	// fall back to alloca if it failed, and give up after that.
+	wchar_t* text = 0;
+	size_t max_chars = 256*KiB;
+	// .. try allocating from heap
+	void* heap_mem = malloc(max_chars*sizeof(wchar_t));
+	text = (wchar_t*)heap_mem;
+	// .. heap alloc failed; try allocating from stack
+	if(!text)
 	{
-		text = (wchar_t*)mem;
-		static const wchar_t fmt[] = L"%s\r\n\r\nCall stack:\r\n\r\n";
-		int len = swprintf(text, MAX_CHARS, fmt, description);
+		max_chars = 128*KiB;	// (stack limit is usually 1 MiB)
+		text = (wchar_t*)alloca(max_chars*sizeof(wchar_t));
+	}
 
-		if(!context)
-			skip++;	// skip this frame
-		debug_dump_stack(text+len, MAX_CHARS-len, skip, context);
-			// in-place
+	// alloc succeeded; proceed
+	if(text)
+	{
+		static const wchar_t fmt[] = L"%s\r\n\r\nCall stack:\r\n\r\n";
+		int len = swprintf(text, max_chars, fmt, description);
+		// paranoia - only dump stack if this string output succeeded.
+		if(len >= 0)
+		{
+			if(!context)
+				skip++;	// skip this frame
+			debug_dump_stack(text+len, max_chars-len, skip, context);
+		}
 	}
 	else
 		text = L"(insufficient memory to display error message)";
@@ -383,7 +399,7 @@ ErrorReaction display_error(const wchar_t* description, int flags,
 		er = ER_CONTINUE;
 	}
 
-	free(mem);
+	free(heap_mem);	// no-op if not allocated from heap
 		// after debug_break to ease debugging, but before exit to avoid leak.
 
 	// exit requested. do so here to disburden callers.
@@ -407,8 +423,13 @@ ErrorReaction display_error(const wchar_t* description, int flags,
 // local variables.
 ErrorReaction debug_assert_failed(const char* file, int line, const char* expr)
 {
+	// __FILE__ evaluates to the full path (albeit without drive letter)
+	// which is rather long. we only display the base name for clarity.
+	const char* slash = strrchr(file, DIR_SEP);
+	const char* base_name = slash? slash+1 : file;
+
 	uint skip = 1; void* context = 0;
 	wchar_t buf[200];
-	swprintf(buf, ARRAY_SIZE(buf), L"Assertion failed in %hs, line %d: \"%hs\"", file, line, expr);
-	return display_error(buf, DE_ALLOW_SUPPRESS|DE_MANUAL_BREAK, skip, context, file, line);
+	swprintf(buf, ARRAY_SIZE(buf), L"Assertion failed in %hs, line %d: \"%hs\"", base_name, line, expr);
+	return display_error(buf, DE_ALLOW_SUPPRESS|DE_MANUAL_BREAK, skip, context, base_name, line);
 }
