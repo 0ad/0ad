@@ -134,19 +134,15 @@
                               <object type="button" name="pregame_mp_modesel_join_button" size="130 140 230 170" sprite="message_box_button_normal" sprite_over="message_box_button_over" absolute="false" text_align="center" text_valign="center">
                                     Join Game
                                     <action on="Press"><![CDATA[
+                                    			// rudimentary client connection code; finally working now :)
                                           GUIObjectHide("pregame_mp_modesel");
-                                          GUIObjectHide("pregame_subwindow_bkg");
-                                          //GUIObjectUnhide("pregame_mp_join");
-                                          var client = createClient();
-                                          client.playerName=getGUIObjectByName("pregame_mp_modesel_playername").caption;
-                                          var success = client.beginConnect("127.0.0.1");
-                                          if(!success) {
-                                          	console.write("failed to connect!");
-                                          } else {
-                                          	console.write("connected");
-                                          }
+                                          //GUIObjectHide("pregame_subwindow_bkg");
+                                          GUIObjectUnhide("pregame_mp_join");
+                                          
                                     ]]></action>
                               </object>
+                              
+                              <!-- need code for the game start procedure here -->
 
                               <object type="button" name="pregame_mp_modesel_host_button" size="250 140 350 170" sprite="message_box_button_normal" sprite_over="message_box_button_over" absolute="false" text_align="center" text_valign="center">
                                     Host Game
@@ -237,11 +233,12 @@
                               		}
                                           
                               		server.onClientConnect =  function (event) {
-                              			console.write("new client connected! ID: " + event.id + ", Name: " + event.name + ", Session: " + event.session);
+                              			console.write("A new client has successfully connected! ID: " + event.id + ", Name: " + event.name + ", Session: " + event.session);
                               			var playerSlot = g_GameAttributes.getOpenSlot();
                               			// assign a slot
                               			playerSlot.assignToSession(event.session);
                               			console.write("slot: " + playerSlot.player);
+                              			// need to refresh the dialog control data here
                               		}
                                     ]]></action>
                               </object>
@@ -254,7 +251,83 @@
                                     ]]></action>
                               </object>
 
-                              <!-- END HOST / JOIN CONTROLS -->
+                              <!-- END HOST GAME SCREEN -->
+
+                        </object>
+
+                <!--
+                ===============================================
+                - MULTIPLAYER JOIN GAME SCREEN -
+                ===============================================
+                -->
+
+                        <object type="image" size="50%-190 50%-120 50%+190 50%+120" name="pregame_mp_join" sprite="0ad_window" z="106" hidden="true">
+                              <!--<action on="Load"><![CDATA[
+                                    setSizeCoord("pregame_mp_modesel", -200, -200, 200, 200, mid_screen, mid_screen, mid_screen, mid_screen);
+                              ]]></action>-->
+
+                              <object type="button" name="pregame_mp_join_titlebar" size="50%-150 0%-25 50%+150 0%-9" absolute="false" sprite="0ad_window_title" font="prospero18" z="165" text_align="center" text_valign="center">
+                                      <action on="Load"><![CDATA[
+                                              getGUIObjectByName("pregame_mp_join_titlebar").caption = "Join a game";
+                                              /*setSizeCoord("pregame_mp_modesel_titlebar", crd_pregame_iphost_titlebar_x, crd_pregame_iphost_titlebar_y,
+                                              crd_pregame_iphost_titlebar_x+crd_pregame_iphost_titlebar_width, crd_pregame_iphost_titlebar_y+crd_pregame_iphost_titlebar_height,
+                                              mid_screen, mid_screen, mid_screen, mid_screen);*/
+                                      ]]></action>
+                              </object>
+
+                              <object type="button" name="pregame_mp_join_exit_button" size="100%+9 0%-25 100%+25 0%-9" sprite="exit_sprite" sprite_over="exit_sprite_over" absolute="false">
+                                      <action on="Press"><![CDATA[
+                                              getGUIObjectByName("pregame_subwindow_bkg").hidden = true;
+                                              getGUIObjectByName("pregame_mp_join").hidden = true;
+                                      ]]></action>
+                              </object>
+
+                              <!-- SERVER NAME/IP controls -->
+                              <object type="text" name="pregame_mp_join_txt1" size="0 0 400 30" absolute="false">
+                                    Joining an existing game.
+                              </object>
+
+                              <object type="text" name="pregame_mp_join_serverip_txt" font="tahoma16" absolute="false" size="0 40 200 60" textcolor="0 0 0">
+                                    Server Hostname or IP:
+                              </object>
+
+                              <object type="input" name="pregame_mp_join_serverip" sprite="only_black_border" absolute="false" size="220 40 370 60" textcolor="0 0 0">
+                                    127.0.0.1
+                              </object>
+                              <!-- END SERVER NAME/IP controls -->
+
+                              <object type="button" name="pregame_mp_join_setup_button" size="50%-125 200 50%-25 230" sprite="message_box_button_normal" sprite_over="message_box_button_over" absolute="false" text_align="center" text_valign="center">
+                              	Continue
+                              	<action on="Press"><![CDATA[
+
+																	// insert code for joining game using the given parameters here
+                                  
+                                  // creating the client instance
+                                  var client = createClient();
+                                  client.playerName=getGUIObjectByName("pregame_mp_modesel_playername").caption;
+                                  // we've got a fixed IP (bound to localhost) here for testing purposes
+                                  //var success = client.beginConnect("127.0.0.1");
+                                  var success = client.beginConnect(ipAdress);
+                                  if(!success) {
+                                  	// need proper message box code here later
+                                  	console.write("Failed to connect to server. Please check the network connection.");
+                                  } else {
+                                  	// see above
+                                    console.write("Client successfully connected.");
+                                  }
+																
+                                    ]]></action>
+                              </object>
+
+                              <object type="button" name="pregame_mp_join_back_button" size="50%+25 200 50%+125 230" sprite="message_box_button_normal" sprite_over="message_box_button_over" absolute="false" text_align="center" text_valign="center">
+                                    Back
+                                    <action on="Press"><![CDATA[
+                                          GUIObjectHide("pregame_mp_join");
+                                          GUIObjectUnhide("pregame_mp_modesel");
+                                    ]]></action>
+                              </object>
+
+                              <!-- END HOST GAME SCREEN -->
 
                         </object>
 
