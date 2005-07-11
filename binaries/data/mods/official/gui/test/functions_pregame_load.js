@@ -9,23 +9,36 @@ function StartMap (MapName, OpenWindow, GameMode)
 	//		1: MP
 
 	// Check whether we have a correct file extension, to avoid crashes
+	MapName = getGUIObjectByName("pregame_sp_mapname").caption;
 	Extension = MapName.substring(MapName.length, MapName.length-4);
                                         
 	if (Extension != ".pmp")
 	{
 		// Add .pmp to the file name - shouldn't help if the name is mistyped, but may be useful in some cases.
 		MapName =  MapName + ".pmp";
+		console.write("Trying to fix the map name (probably missing extension).");
 	}
+	else {console.write("Map Name Inputed Correctly");}
 
 	// Close setup window
 	CloseMainMenuSubWindow (OpenWindow);
+	console.write("Closed Setup Window");
+	
 	// Set up game
+	
 	g_GameAttributes.mapFile = MapName;
+
+	console.write("Setting Up Players");
+	
 	if (GameMode == "0")
 	{
 		// Set up a bunch of players so we can see them pretty colours. :P
 		setupSPPlayers();
 	}
+	else {console.write("Players Failed Setup");}
+
+	console.write("Players are now Set Up");
+	
 	startLoadingScreen();
 }
 
@@ -49,8 +62,10 @@ function setupSPPlayers()
 function startLoadingScreen()
 {
         // Switch screens from main menu to loading screen.
-        GUIObjectHide("PREGAME_GUI");
+        GUIObjectHide("pregame_gui");
+		console.write("Pre Game User Interface is now Hidden");
         GUIObjectUnhide("loading_screen");
+		console.write("Loading Screen is now Loaded");
         console.write("Loading " + g_GameAttributes.mapFile + " (" + g_GameAttributes.numPlayers + " players) ...");
 
         // Generate random number for random concept art (should be depending on the selected civ later)
