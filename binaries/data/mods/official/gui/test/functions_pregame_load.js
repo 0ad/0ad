@@ -1,3 +1,36 @@
+// ====================================================================
+
+function StartMap (MapName, OpenWindow, GameMode)
+{
+	// Starts the map, closing the current window.
+	// MapName: 	.pmp to load.
+	// OpenWindow: 	Window group (usually parent string) of control that called the function. It'll be hidden.
+	// GameMode: 	0: SP
+	//		1: MP
+
+	// Check whether we have a correct file extension, to avoid crashes
+	Extension = MapName.substring(MapName.length, MapName.length-4);
+                                        
+	if (Extension != ".pmp")
+	{
+		// Add .pmp to the file name - shouldn't help if the name is mistyped, but may be useful in some cases.
+		MapName =  MapName + ".pmp";
+	}
+
+	// Close setup window
+	CloseMainMenuSubWindow (OpenWindow);
+	// Set up game
+	g_GameAttributes.mapFile = MapName;
+	if (GameMode == "0")
+	{
+		// Set up a bunch of players so we can see them pretty colours. :P
+		setupSPPlayers();
+	}
+	startLoadingScreen();
+}
+
+// ====================================================================
+
 // HACK: This replaces the old numPlayers hack to set up a bunch of sample
 // players in SP games to show off some player colours and fights
 function setupSPPlayers()
@@ -10,6 +43,8 @@ function setupSPPlayers()
 		console.write("Slot "+(i+1)+" is assigned: "+g_GameAttributes.slots[i+1].assignment);
 	}
 }
+
+// ====================================================================
 
 function startLoadingScreen()
 {

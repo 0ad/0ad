@@ -10,7 +10,7 @@
 
 <objects>
 
-	<object type="empty" name="ATLAS_GUI" size="0 0 100% 100%" z="1" hidden="true">
+	<object type="empty" name="atlas_gui" size="0 0 100% 100%" z="1" hidden="true">
 
 		<!-- Simply black out the lowest level of the GUI, until such time as we're capable of starting an editor session of a scenario. -->
 		<object type="text" name="ATLAS_GUI_BKG" sprite="black" size="0 0 100% 100%" z="1" ghost="true" />
@@ -524,8 +524,8 @@
 		<object type="button" name="ATLAS_MAINBORDER_LT_CORNER" sprite="atlas_mainborder_lt_corner" tooltip_style="atlas_tooltip" tooltip="[font=tahoma10b]0 A.D. Logo[font=tahoma10]\nMmm, nothing like the smell of blatant self-promotion in the morning ... Oh, you can click this to return to the Main Menu too." ><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[ATLAS_MAINBORDER_LT_CORNER]); ]]></action>
 			<action on="Press"><![CDATA[
 				// Jason asked for an exit button to be put here, until we're able to exit via the drop-down File menu.
-				GUIObjectUnhide("PREGAME_GUI");
-				GUIObjectHide("ATLAS_GUI");
+				GUIObjectUnhide("pregame_gui");
+				GUIObjectHide("atlas_gui");
 			]]></action>
 		</object>
 

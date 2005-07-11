@@ -30,6 +30,110 @@
 		sprite2_disabled="sprite2_disabled"
 	/>
 
+	<style 	name="empty"
+		size="0 0 100% 100%"
+	/>
+
+	<style 	name="backdrop"
+		size="0 0 100% 100%"
+		ghost="true"
+	/>
+
+	<style 	name="text_prospero16_gold"
+		ghost="true"
+		font="prospero16"
+		textcolor="237 227 167"
+	/>
+
+	<style 	name="text_prospero16_white"
+		ghost="true"
+		font="prospero16"
+		textcolor="255 255 255"
+	/>
+
+	<style 	name="text_tahoma16_black"
+		ghost="true"
+		font="tahoma16"
+		textcolor="0 0 0"
+	/>
+
+	<style 	name="text_tahoma16_black_right"
+		ghost="true"
+		font="tahoma16"
+		text_align="right"
+		textcolor="0 0 0"
+	/>
+
+	<style 	name="text_giovanni22bold_black"
+		ghost="true"
+		font="giovanni22bold"
+		text_align="center"
+		textcolor="0 0 0"
+	/>
+
+	<style	name="border_box_black"
+		sprite="only_black_border"
+		sprite_selectarea="GeeTemp_selected"
+		textcolor="0 0 0"
+		textcolor_selected="255 255 255"
+	/>
+
+	<style	name="border_box_black_verdana9"
+		font="verdana9"
+		sprite="only_black_border"
+		sprite_selectarea="GeeTemp_selected"
+		textcolor="0 0 0"
+		textcolor_selected="255 255 255"
+	/>
+
+	<style	name="divider_black"
+		sprite="only_black_border"
+		sprite_selectarea="GeeTemp_selected"
+		textcolor="0 0 0"
+		textcolor_selected="255 255 255"
+	/>
+
+	<style 	name="pregame_mainmenu_button"
+		tooltip_style="pregame_mainmenu_tooltip"
+	/>
+
+	<style 	name="pregame_mainmenu_checkbox"
+		sprite="exit_sprite"
+		sprite_over="exit_sprite_over"
+		tooltip="Close this window and return to the previous screen."
+		tooltip_style="pregame_mainmenu_tooltip"
+	/>
+
+	<style 	name="0ad_window"
+		sprite="0ad_window"
+	/>
+
+	<style 	name="0ad_window_titlebar"
+		absolute="false"
+		size="50%-150 0%-25 50%+150 0%-9"
+		font="prospero18"
+		sprite="0ad_window_title"
+		text_align="center"
+		text_valign="center"
+	/>
+
+	<style 	name="0ad_window_button"
+		absolute="false"
+		sprite="message_box_button_normal"
+		sprite_over="message_box_button_over"
+		text_align="center"
+		text_valign="center"
+	/>
+
+	<style 	name="0ad_window_checkbox"
+		absolute="false"
+		size="100%+9 0%-25 100%+25 0%-9"
+		sprite="exit_sprite"
+		sprite_over="exit_sprite_over"
+		tooltip="Close this window and return to the previous screen."
+		tooltip_style="pregame_mainmenu_tooltip"
+	/>
+
 	<style name="resource_counter"
 		text_valign="bottom"
 		text_align="right"
