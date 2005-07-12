@@ -9,7 +9,6 @@ function StartMap (MapName, OpenWindow, GameMode)
 	//		1: MP
 
 	// Check whether we have a correct file extension, to avoid crashes
-	MapName = getGUIObjectByName("pregame_sp_mapname").caption;
 	Extension = MapName.substring(MapName.length, MapName.length-4);
                                         
 	if (Extension != ".pmp")
@@ -18,26 +17,22 @@ function StartMap (MapName, OpenWindow, GameMode)
 		MapName =  MapName + ".pmp";
 		console.write("Trying to fix the map name (probably missing extension).");
 	}
-	else {console.write("Map Name Inputed Correctly");}
+	else
+		console.write ("Map Name Input Correctly");
 
 	// Close setup window
 	CloseMainMenuSubWindow (OpenWindow);
-	console.write("Closed Setup Window");
+	console.write ("Closed Setup Window");
 	
 	// Set up game
-	
 	g_GameAttributes.mapFile = MapName;
 
-	console.write("Setting Up Players");
-	
 	if (GameMode == "0")
 	{
 		// Set up a bunch of players so we can see them pretty colours. :P
+		console.write ("Setting Up Temporary Single Players");
 		setupSPPlayers();
 	}
-	else {console.write("Players Failed Setup");}
-
-	console.write("Players are now Set Up");
 	
 	startLoadingScreen();
 }

@@ -777,7 +777,8 @@
 				size="50%-100 100%-50 50%-10 100%-20" 
 			>Start Game
 				<action on="Press"><![CDATA[
-					StartMap ("MapName","pregame_sp_mapsel", 0);
+					StartMap (getGUIObjectByName("pregame_sp_mapname").caption,
+						"pregame_sp_mapsel", 0);
 				]]></action>
 			</object>
 
