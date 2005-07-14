@@ -1709,7 +1709,7 @@ int tex_load(const char* fn, TexInfo* t)
 	// load file
 	void* p; size_t size;	// unused
 	Handle hm = vfs_load(fn, p, size);
-	CHECK_ERR(hm);	// (need handle below; can't test return value directly)
+	RETURN_ERR(hm);	// (need handle below; can't test return value directly)
 	int ret = tex_load_mem(hm, fn, t);
 	mem_free_h(hm);
 	if(ret < 0)

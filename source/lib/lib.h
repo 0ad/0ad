@@ -96,52 +96,56 @@ STMT(\
 )
 
 
-// note: UINT_MAX is necessary when testing a Handle value and
-// also returning Handle. the negative value (error return)
-// is guaranteed to fit into an int, but we need to "mask"
-// it to avoid VC cast-to-smaller-type warnings.
+// be careful here. the given expression (e.g. variable or
+// function return value) may be a Handle (=i64), so it needs to be
+// stored and compared as such. (very large but legitimate Handle values
+// casted to int can end up negative)
+// all functions using this return int (instead of i64) for efficiency and
+// simplicity. if the input was negative, it is an error code and is
+// therefore known to fit; we still mask with UINT_MAX to avoid
+// VC cast-to-smaller-type warnings.
 
 #ifdef _WIN32
-#define CHECK_ERR(func)\
+#define CHECK_ERR(expression)\
 STMT(\
-	int err__ = (int)((func) & UINT_MAX);\
+	i64 err__ = (i64)(expression);\
 	if(err__ < 0)\
 	{\
-		debug_assert(0 && "FYI: CHECK_ERR reports that a function failed."\
-		            "feel free to ignore or suppress this warning.");\
-		return err__;\
+		debug_warn("FYI: CHECK_ERR reports that a function failed."\
+		           "feel free to ignore or suppress this warning.");\
+		return (int)(err__ & UINT_MAX);\
 	}\
 )
 #else
-#define CHECK_ERR(func)\
+#define CHECK_ERR(expression)\
 STMT(\
-	int err__ = (int)((func) & UINT_MAX);\
+	i64 err__ = (i64)(expression);\
 	if(err__ < 0)\
 	{\
 		debug_printf("%s:%d: FYI: CHECK_ERR reports that a function failed."\
 		            "feel free to ignore or suppress this warning.\n", __FILE__, __LINE__);\
-		return err__;\
+		return (int)(err__ & UINT_MAX);\
 	}\
 )
 #endif
 
 // just pass on errors without any kind of annoying warning
 // (useful for functions that can legitimately fail, e.g. vfs_exists).
-#define RETURN_ERR(func)\
+#define RETURN_ERR(expression)\
 STMT(\
-	int err__ = (int)((func) & UINT_MAX);\
+	i64 err__ = (i64)(expression);\
 	if(err__ < 0)\
-		return err__;\
+		return (int)(err__ & UINT_MAX);\
 )
 
-#define THROW_ERR(func)\
+#define THROW_ERR(expression)\
 STMT(\
-	int err__ = (int)((func) & UINT_MAX);\
+	i64 err__ = (i64)(expression);\
 	if(err__ < 0)\
 	{\
-		debug_assert(0 && "FYI: CHECK_ERR reports that a function failed."\
-		            "feel free to ignore or suppress this warning.");\
-		throw err__;\
+		debug_warn("FYI: CHECK_ERR reports that a function failed."\
+		           "feel free to ignore or suppress this warning.");\
+		throw (int)(err__ & UINT_MAX);\
 	}\
 )
 

@@ -107,7 +107,7 @@ static int Cursor_reload(Cursor* c, const char* name, Handle)
 		void* p;
 		size_t size;
 		Handle hm = vfs_load(filename, p, size);
-		CHECK_ERR(hm);
+		RETURN_ERR(hm);
 
 		std::stringstream s(std::string((const char*)p, size));
 		s >> hotspotx >> hotspoty;

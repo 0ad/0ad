@@ -1036,6 +1036,8 @@ ssize_t vfs_size(Handle hf)
 // open the file for synchronous or asynchronous IO. write access is
 // requested via FILE_WRITE flag, and is not possible for files in archives.
 // file_flags: default 0
+//
+// on failure, a debug_warn is generated and a negative error code returned.
 Handle vfs_open(const char* v_fn, uint file_flags)
 {
 	// keeping files open doesn't make sense in most cases (because the
@@ -1044,25 +1046,26 @@ Handle vfs_open(const char* v_fn, uint file_flags)
 	if(file_flags & FILE_CACHE)
 		res_flags = 0;
 
-	Handle h = h_alloc(H_VFile, v_fn, res_flags, file_flags);
+	Handle hf = h_alloc(H_VFile, v_fn, res_flags, file_flags);
 		// pass file flags to init
 
 #ifdef PARANOIA
-debug_printf("vfs_open fn=%s %llx\n", v_fn, h);
+debug_printf("vfs_open fn=%s %llx\n", v_fn, hf);
 #endif
 
-	return h;
+	CHECK_ERR(hf);
+	return hf;
 }
 
 
 // close the handle to a file.
-int vfs_close(Handle& h)
+int vfs_close(Handle& hf)
 {
 #ifdef PARANOIA
-debug_printf("vfs_close %llx\n", h);
+debug_printf("vfs_close %llx\n", hf);
 #endif
 
-	return h_free(h, H_VFile);
+	return h_free(hf, H_VFile);
 }
 
 
@@ -1152,6 +1155,8 @@ static ssize_t vfs_timed_io(const Handle hf, const size_t size, void** p, FileIO
 // in addition to the regular file cache, the entire buffer is kept in memory
 // if flags & FILE_CACHE.
 //
+// on failure, a debug_warn is generated and a negative error code returned.
+//
 // note: we need the Handle return value for Tex.hm - the data pointer
 // must be protected against being accidentally free-d in that case.
 Handle vfs_load(const char* v_fn, void*& p, size_t& size, uint flags /* default 0 */)
@@ -1163,9 +1168,10 @@ debug_printf("vfs_load v_fn=%s\n", v_fn);
 	p = 0; size = 0;	// zeroed in case vfs_open or H_DEREF fails
 
 	Handle hf = vfs_open(v_fn, flags);
-	CHECK_ERR(hf);
-		// note: if we skip this and have H_DEREF report the error,
-		// we get "invalid handle" instead of vfs_open's error code.
+	RETURN_ERR(hf);
+		// necessary because if we skip this and have H_DEREF report the
+		// error, we get "invalid handle" instead of vfs_open's error code.
+		// don't CHECK_ERR because vfs_open already did.
 
 	H_DEREF(hf, VFile, vf);
 
@@ -1223,9 +1229,7 @@ ret:
 	if(hm <= 0)
 		p = 0, size = 0;
 
-	if (hm == 0)
-		debug_printf("hm == 0!!\n");
-
+	CHECK_ERR(hm);
 	return hm;
 }
 
@@ -1236,8 +1240,10 @@ ret:
 int vfs_store(const char* v_fn, void* p, const size_t size, uint flags /* default 0 */)
 {
 	Handle hf = vfs_open(v_fn, flags|FILE_WRITE);
-	if(hf <= 0)
-		return (int)hf;	// error code
+	RETURN_ERR(hf);
+		// necessary because if we skip this and have H_DEREF report the
+		// error, we get "invalid handle" instead of vfs_open's error code.
+		// don't CHECK_ERR because vfs_open already did.
 	H_DEREF(hf, VFile, vf);
 	const int ret = vfs_io(hf, size, &p);
 	vfs_close(hf);

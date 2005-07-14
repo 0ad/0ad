@@ -135,7 +135,10 @@ typedef H_VTbl* H_Type;
 	/* don't use STMT - var decl must be visible to "caller" */\
 	type* const var = H_USER_DATA(h, type);\
 	if(!var)\
-		return ERR_INVALID_HANDLE;
+	{\
+		debug_warn("H_DEREF failed");\
+		return ERR_INVALID_HANDLE;\
+	}
 
 
 // all functions check the passed tag (part of the handle) and type against

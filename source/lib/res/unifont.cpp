@@ -80,7 +80,7 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSEDPARAM(h))
 // //		return ERR_FILE_NOT_FOUND;
 
 	Handle hm = vfs_load(fnt_fn, RawFNT, FNTSize);
-	CHECK_ERR(hm);
+	RETURN_ERR(hm);
 
 	// Get the data in a nicer object
 	std::istringstream FNTStream (std::string((const char*)RawFNT, (int)FNTSize));

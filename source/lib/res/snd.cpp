@@ -986,7 +986,7 @@ static int SndData_reload(SndData* sd, const char* fn, Handle hsd)
 
 	void* file;
 	size_t file_size;
-	CHECK_ERR(vfs_load(fn, file, file_size));
+	RETURN_ERR(vfs_load(fn, file, file_size));
 
 	ALvoid* al_data = file;
 	ALsizei al_size = (ALsizei)file_size;
@@ -1473,7 +1473,7 @@ static int VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
 	{
 		void* def_file;
 		size_t def_size;
-		CHECK_ERR(vfs_load(fn, def_file, def_size));
+		RETURN_ERR(vfs_load(fn, def_file, def_size));
 		std::istringstream def(std::string((char*)def_file, (int)def_size));
 		mem_free(def_file);
 
