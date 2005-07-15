@@ -56,6 +56,9 @@ public:
 	static JSBool Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval );
 
 	static void ScriptingInit();
+
+private:
+	bool m_SoundDisabled;	// see constructor and JSI_Sound::Construct
 };
 
 #endif	// #ifndef JSSOUND_INCLUDED

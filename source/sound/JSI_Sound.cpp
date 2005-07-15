@@ -10,6 +10,17 @@ JSI_Sound::JSI_Sound( const CStr& Filename )
 {
 	const char* fn = Filename.c_str();
 	m_Handle = snd_open( fn );
+
+	// special-case to avoid throwing exceptions if quickstart has
+	// disabled sound: set a flag queried by Construct; the object will
+	// then immediately be freed.
+	if(m_Handle == ERR_AGAIN)
+	{
+		m_SoundDisabled = true;
+		return;
+	}
+	m_SoundDisabled = false;
+
 	// open failed. raising an exception is the only way to report errors,
 	// since we're in the ctor and don't want to move the open call elsewhere
 	// (by requiring an explicit open() call).
@@ -125,6 +136,16 @@ JSBool JSI_Sound::Construct( JSContext* cx, JSObject* obj, unsigned int argc, js
 	try
 	{
 		JSI_Sound* newObject = new JSI_Sound( filename );
+
+		// somewhat of a hack to avoid throwing exceptions if
+		// sound was disabled due to quickstart. see JSI_Sound().
+		if( newObject->m_SoundDisabled )
+		{
+			delete newObject;
+			*rval = JSVAL_NULL;
+			return( JS_TRUE );
+		}
+
 		newObject->m_EngineOwned = false;
 		*rval = OBJECT_TO_JSVAL( newObject->GetScript() );
 	}

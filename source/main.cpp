@@ -1352,7 +1352,7 @@ TIMER(init_after_InitRenderer);
 }
 
 #ifdef _MSC_VER
-#pragma optimize("", off)
+#pragma optimize("", on)	// restore; see above.
 #endif
 
 
