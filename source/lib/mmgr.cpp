@@ -99,12 +99,10 @@ static void unlock() throw()
 // enable all checks (slow!)
 #ifdef PARANOIA
 static uint options = MMGR_ALL;
-static bool random_fill = true;
 static const size_t padding_size  = 256 * sizeof(ulong);
 // normal settings
 #else
 static uint options = 0;
-static bool random_fill = true;
 static const size_t padding_size = 1 * sizeof(ulong);
 #endif
 
@@ -384,32 +382,6 @@ static const ulong pattern_freed  = 0xdeadbeef;
 
 static void pattern_set(const Alloc* a, ulong pattern)
 {
-	// For a serious test run, we use wipes of random a random value.
-	// However, if this causes a crash, we don't want it to crash in a
-	// different place each time, so we specifically DO NOT call srand.
-	// If, by chance your program calls srand(), you may wish to disable
-	// that when running with a random wipe test. This will make any
-	// crashes more consistent so they can be tracked down.
-
-	if(random_fill)
-	{
-		// note: rand typically returns 16 bits,
-		// so one call isn't enough.
-		pattern = 0;
-		for(size_t shift = 0; shift < sizeof(ulong)*8; shift += 8)
-			pattern |= (rand() & 0xff) << shift;
-	}
-
-	// We should wipe with zero if we're not in debug mode, so we can
-	// help hide bugs if possible when we release the product.
-	//
-	// Note that options & MMGR_FILL should be turned on for this to have
-	// any effect, otherwise it won't do much good. But we'll leave it
-	// this way (as an option) because this does slow things down.
-#ifndef NDEBUG
-	pattern = 0;
-#endif
-
 	// fill user's data (optional)
 	// note: don't use memset, because we want multi-byte patterns
 	if(options & MMGR_FILL && a->user_size() > 0)

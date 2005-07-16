@@ -166,7 +166,7 @@ __asm
 
 
 // (optimized for size)
-static void __declspec(naked) cpuid()
+static void cpuid()
 {
 __asm
 {
@@ -253,7 +253,6 @@ no_ext_funcs:
 no_cpuid:
 
 	popad
-	ret
 }	// __asm
 }	// cpuid()
 
@@ -266,7 +265,7 @@ bool ia32_cap(CpuCap cap)
 		debug_warn("cap invalid");
 		return false;
 	}
-	u32 bit = 1ul << (cap & 0x1f);
+	u32 bit = BIT(cap & 0x1f);
 
 	return (caps[idx] & bit) != 0;
 }
@@ -596,18 +595,17 @@ $no_lock:
 }
 
 
-__declspec(naked) void __cdecl atomic_add(intptr_t* location, intptr_t increment)
+void atomic_add(intptr_t* location, intptr_t increment)
 {
 __asm
 {
 	cmp		byte ptr [cpus], 1
-	mov		edx, [esp+4]	// location
-	mov		eax, [esp+8]	// increment
+	mov		edx, [location]
+	mov		eax, [increment]
 	je		$no_lock
 _emit 0xf0	// LOCK prefix
 $no_lock:
 	add		[edx], eax
-	ret
 }
 }
 

@@ -882,6 +882,9 @@ SDL_VideoInfo* SDL_GetVideoInfo()
 
 // For very [very] basic memory-usage information.
 // Should be replaced by a decent memory profiler.
+//
+// copied from SDL_GetVideoInfo but cannot be implemented in terms of it:
+// SDL_VideoInfo doesn't provide for returning "remaining video memory".
 int GetVRAMInfo(int& remaining, int& total)
 {
 	int ok = 0;

@@ -200,6 +200,7 @@ static int alc_init()
 	// we hold a reference to prevent the actual unload,
 	// thus speeding up startup by 100..400 ms. everything works ATM;
 	// hopefully, OpenAL doesn't rely on them actually being unloaded.
+
 #ifdef _WIN32
 	HMODULE dlls[3];
 	dlls[0] = LoadLibrary("wrap_oal.dll");
@@ -208,9 +209,10 @@ static int alc_init()
 #endif
 
 	// for reasons unknown, the NV native OpenAL implementation
-	// causes an invalid exception internally when loaded (it's not
-	// caused by the DLL load hack above). we need to catch it to
-	// prevent the unhandled exception filter from reporting it.
+	// causes an "invalid handle" exception internally when loaded
+	// (it's not caused by the DLL load hack above). everything works and
+	// we can continue normally; we just need to catch it to prevent the
+	// unhandled exception filter from reporting it.
 #ifdef _WIN32
 	__try
 	{
@@ -1725,6 +1727,14 @@ static int vm_update()
 // (allow any and all of them to be 0 in case world isn't initialized yet).
 int snd_update(const float* pos, const float* dir, const float* up)
 {
+	// there's no sense in updating anything if we weren't initialized
+	// yet (most notably, if sound is disabled). we check for this to
+	// avoid confusing the code below. the caller should complain if
+	// this fails, so report success here (everything will work once
+	// sound is re-enabled).
+	if(!al_initialized)
+		return 0;
+
 	if(pos || dir || up)
 		al_listener_set_pos(pos, dir, up);
 

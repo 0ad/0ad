@@ -282,13 +282,24 @@ int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int*
 #ifdef _M_IX86
 
 // optimized for size.
-static __declspec(naked) void __cdecl get_current_context(void* pcontext)
+static void get_current_context(void* pcontext)
 {
+	// for safety and future-proofing, we do not use __declspec(naked) and
+	// access the parameter ourselves. therefore, we need to grab it into
+	// a register before PUSHAD, which means we'd lose the register's
+	// previous contents. save it here to prevent that.
+	static u32 saved_eax;
 __asm
 {
+	;// don't write into edi directly so that the compiler (if clever)
+	;// doesn't need to generate register-save code.
+	mov		[saved_eax], eax
+	mov		eax, [pcontext]
+
 	pushad
 	pushfd
-	mov		edi, [esp+4+32+4]	;// pcontext
+
+	xchg	eax, edi			;// edi = (CONTEXT*)pcontext
 
 	;// ContextFlags
 	mov		eax, 0x10007		;// segs, int, control
@@ -323,14 +334,16 @@ rep	stosd
 	stosd
 	mov		eax, [esp+4+32-8]	;// ecx
 	stosd
-	mov		eax, [esp+4+32-4]	;// eax
+	mov		eax, [saved_eax]
 	stosd
 
 	;// CONTEXT_CONTROL		
-	xchg	eax, ebp
+	mov		eax, ebp			;// despite being smaller, don't use XCHG -
+								;// avoids silly "modifying ebp" warning
+								;// (we restore via POPAD, but VC is stupid)
 	stosd
-	mov		eax, [esp+4+32]		;// eip
-	sub		eax, 5				;// back up to call site from ret addr
+	mov		eax, [esp+4+32]		;// return address
+	sub		eax, 5				;// skip CALL instruction -> call site.
 	stosd
 	xor		eax, eax
 	mov		ax, cs
@@ -1420,38 +1433,57 @@ static int udt_get_child_type(const wchar_t* child_name,
 }
 
 
-static int udt_dump_stl(const wchar_t* wtype_name, const u8* p, size_t size, DumpState state,
+static int udt_dump_std(const wchar_t* wtype_name, const u8* p, size_t size, DumpState state,
 	ULONG num_children, const DWORD* children)
 {
 	int err;
 
+	// not a C++ standard library object; can't handle it.
+	if(wcsncmp(wtype_name, L"std::", 5) != 0)
+		return 1;
+
+	// check for C++ objects that should be displayed via udt_dump_normal.
+	// STL containers are special-cased and the rest (apart from those here)
+	// are ignored, because for the most part they are spew.
+	if(!wcsncmp(wtype_name, L"std::pair", 9))
+		return 1;
+
+	// convert to char since debug_stl doesn't support wchar_t.
+	char ctype_name[DBG_SYMBOL_LEN];
+	snprintf(ctype_name, ARRAY_SIZE(ctype_name), "%ws", wtype_name);
+
+	// display contents of STL containers
+	// .. get element type
 	DWORD el_type_id;
 	size_t el_size;
  	err = udt_get_child_type(L"value_type", num_children, children, &el_type_id, &el_size);
 	if(err != 0)
-		return err;
-
-	// debug_stl doesn't support wchar_t.
-	char ctype_name[DBG_SYMBOL_LEN];
-	snprintf(ctype_name, ARRAY_SIZE(ctype_name), "%ws", wtype_name);
-
+		goto not_valid_container;
+	// .. get iterator and # elements
 	size_t el_count;
 	DebugIterator el_iterator;
 	u8 it_mem[DEBUG_STL_MAX_ITERATOR_SIZE];
 	err = stl_get_container_info(ctype_name, p, size, el_size, &el_count, &el_iterator, it_mem);
+	if(err != 0)
+		goto not_valid_container;
+	return dump_sequence(el_iterator, it_mem, el_count, el_type_id, el_size, state);
+not_valid_container:
 
-	// type_name is unknown; can't handle it.
-	if(err == STL_CNT_UNKNOWN)
-		return 1;
-	// contents are invalid (uninitialized or corrupted)
-	else if(err == STL_CNT_INVALID)
-	{
-		out(L"(uninitialized/invalid %hs)", stl_simplify_name(ctype_name));
-		return 0;
-	}
-	// supported and valid: output each element.
+	// build and display detailed "error" message.
+	char buf[100];
+	const char* text = buf;
+	// .. C++ stdlib object that we didn't want to display
+	//    (just output its simplified type)
+	if(err == STL_CNT_UNKNOWN || err == 1)
+		text = "";
+	// .. container of a known type but contents are invalid
+	if(err == STL_CNT_INVALID)
+		text = "uninitialized/invalid ";
+	// .. some other error encountered
 	else
-		return dump_sequence(el_iterator, it_mem, el_count, el_type_id, el_size, state);
+		snprintf(buf, ARRAY_SIZE(buf), "error %d while analyzing ", err);
+	out(L"(%hs%hs)", text, stl_simplify_name(ctype_name));
+	return 0;
 }
 
 
@@ -1507,15 +1539,6 @@ not_handle:
 static int udt_dump_suppressed(const wchar_t* type_name, const u8* p, size_t size,
 	DumpState state, ULONG num_children, const DWORD* children)
 {
-	// avoid C++ library objects, since they result in serious spew.
-	if(!wcsncmp(type_name, L"std::pair", 9))	// allow
-		return 1;
-	if(!wcsncmp(type_name, L"std::", 5))
-	{
-		out(L"(%s)", type_name);
-		return 0;
-	}
-
 	if(!udt_should_suppress(type_name))
 		return 1;
 
@@ -1660,7 +1683,7 @@ static int dump_sym_udt(DWORD type_id, const u8* p, DumpState state)
 	// note: order is important (e.g. STL special-case must come before
 	// suppressing UDTs, which tosses out most other C++ stdlib classes)
 
-	ret = udt_dump_stl       (type_name, p, size, state, num_children, children);
+	ret = udt_dump_std       (type_name, p, size, state, num_children, children);
 	if(ret <= 0)
 		goto done;
 
