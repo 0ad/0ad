@@ -92,6 +92,263 @@ static void Cursor_dtor(Cursor* c)
 	}
 }
 
+static void* ptr_from_HICON(HICON hIcon)
+{
+	return (void*)(uintptr_t)hIcon;
+}
+
+static HICON HICON_from_ptr(void* p)
+{
+	return (HICON)(uintptr_t)p;
+}
+
+static int cursor_load(Handle ht, int hotspotx, int hotspoty, void** sysdep_cursor)
+{
+	int ret = -1;
+	*sysdep_cursor = 0;
+
+	void* bgra_mem = 0;
+
+	{
+	// get format
+	int w, h, fmt, bpp;
+	const u8* imgdata;
+	CHECK_ERR(tex_info(ht, &w, &h, &fmt, &bpp, (void**)&imgdata));
+	if(bpp != 32 || (fmt != GL_BGRA && fmt != GL_RGBA))
+	{
+		debug_warn("Cursor texture not 32-bit RGBA/BGRA");
+		ret = ERR_TEX_FMT_INVALID;
+		goto fail;
+	}
+
+	// convert to BGRA if not already in that format (required by BMP)
+	if(fmt != GL_BGRA)
+	{
+		// don't convert in-place so we don't spoil someone else's
+		// use of the texture (however unlikely that may be).
+		bgra_mem = malloc(w*h*4);
+		if(!bgra_mem)
+		{
+			ret = ERR_NO_MEM;
+			goto fail;
+		}
+		const u8* src = imgdata;
+		u8* dst = (u8*)bgra_mem;
+		for(int i = 0; i < w*h; i++)
+		{
+			const u8 r = src[0], g = src[1], b = src[2], a = src[3];
+			dst[0] = b; dst[1] = g; dst[2] = r; dst[3] = a;
+			dst += 4;
+			src += 4;
+		}
+		imgdata = (const u8*)bgra_mem;
+	}
+/*
+	const size_t size = round_up(w*h, 8)/8;
+	u8* mask = (u8*)malloc(size);
+	if(!mask)
+	{
+		ret = ERR_NO_MEM;
+		goto fail;
+	}
+*/
+/*
+	uint bit = 0;
+	for(int i = 0; i < w*h; i++)
+	{
+		++bit;
+		bit &= 7;
+		if(imgdata[i*4+3])
+			mask[i/8] |= bit;
+	}
+*/
+//memset(mask, 0, size);
+
+/*
+	BITMAPINFO bi =
+	{
+		{
+			sizeof(BITMAPINFOHEADER), // biSize
+				w,	// biWidth
+				-h,	// biHeight; negative to indicate top-down (required)
+				1,	// biPlanes
+				32,	// biBitCount
+				BI_RGB,	// biCompression
+				0,	// biSizeImage (not needed for BI_RGB)
+				0,	// biXPelsPerMeter (don't care)
+				0,	// biYPelsPerMeter    "
+				0,	// biClrUser (not needed for BI_RGB)
+				0	// biClrImportant   "
+		},	// bmiHeader
+		0 // bmiColors[]
+	};
+	const HDC hDC = wglGetCurrentDC();
+	HBITMAP hBitmap = CreateDIBitmap(hDC, &bi.bmiHeader, CBM_INIT, imgdata, &bi, DIB_RGB_COLORS);
+	if(!hBitmap)	// not INVALID_HANDLE_VALUE
+	{
+		debug_warn("cursor CreateDIBitmap failed");
+		goto fail;
+	}
+
+//HANDLE hCursor = LoadImage(GetModuleHandle(0), "D:\\projects\\0ad\\svn\\binaries\\data\\mods\\official\\art\\textures\\cursors\\test.png", IMAGE_BITMAP, 32, 32, LR_LOADFROMFILE);
+
+*/
+/*
+	ICONINFO info = { FALSE, hotspotx, hotspoty, hBitmap, hBitmap };
+	HICON hIcon = CreateIconIndirect(&info);
+	DeleteObject(hBitmap);
+*/
+/*
+HICON hIcon = CreateIcon(GetModuleHandle(0), w,h,1,32,mask,imgdata);
+ICONINFO info;
+GetIconInfo(hIcon, &info);
+info.fIcon = FALSE;	// cursor
+info.xHotspot = hotspotx;
+info.yHotspot = hotspoty;
+HICON hIcon2 = CreateIconIndirect(&info);
+
+*/
+/*
+	BITMAPV5HEADER bi;
+	ZeroMemory(&bi,sizeof(BITMAPV5HEADER));
+	bi.bV5Size           = sizeof(BITMAPV5HEADER);
+	bi.bV5Width           = w;
+	bi.bV5Height          = h;
+	bi.bV5Planes = 1;
+	bi.bV5BitCount = 32;
+	bi.bV5Compression = BI_BITFIELDS;
+	// The following mask specification specifies a supported 32 BPP
+	// alpha format for Windows XP.
+	bi.bV5RedMask   =  0x00FF0000;
+	bi.bV5GreenMask =  0x0000FF00;
+	bi.bV5BlueMask  =  0x000000FF;
+	bi.bV5AlphaMask =  0xFF000000;
+*/
+//	HDC hDC = GetDC(NULL);
+	HBITMAP hBitmap = CreateBitmap(w, h, 1, 32, imgdata);
+		//(BITMAPINFO*)&bi, DIB_RGB_COLORS, &dst, 0,0);
+//	ReleaseDC(0, hDC);
+
+	// Create an empty mask bitmap.
+	HBITMAP hMonoBitmap = CreateBitmap(w, h, 1, 1, 0);
+
+	ICONINFO ii;
+	ii.fIcon = FALSE;  // cursor
+	ii.xHotspot = hotspotx;
+	ii.yHotspot = hotspoty;
+	ii.hbmMask = hMonoBitmap;
+	ii.hbmColor = hBitmap;
+
+	// Create the alpha cursor with the alpha DIB section.
+	HICON hIcon2 = CreateIconIndirect(&ii);
+
+	DeleteObject(hBitmap);
+	DeleteObject(hMonoBitmap);
+
+	if(!hIcon2)	// not INVALID_HANDLE_VALUE
+	{
+		debug_warn("cursor CreateIconIndirect failed");
+		goto fail;
+	}
+
+	*sysdep_cursor = ptr_from_HICON(hIcon2);
+	ret = 0;
+	}
+
+fail:
+	free(bgra_mem);
+
+	CHECK_ERR(ret);
+	return 0;
+}
+
+
+
+
+
+
+void CreateAlphaCursor(void)
+{
+	HDC hMemDC;
+	DWORD dwWidth, dwHeight;
+	BITMAPV5HEADER bi;
+	HBITMAP hBitmap, hOldBitmap;
+	void *lpBits;
+	DWORD x,y;
+	HCURSOR hAlphaCursor = NULL;
+
+	dwWidth  = 32;  // width of cursor
+	dwHeight = 32;  // height of cursor
+
+	ZeroMemory(&bi,sizeof(BITMAPV5HEADER));
+	bi.bV5Size           = sizeof(BITMAPV5HEADER);
+	bi.bV5Width           = dwWidth;
+	bi.bV5Height          = dwHeight;
+	bi.bV5Planes = 1;
+	bi.bV5BitCount = 32;
+	bi.bV5Compression = BI_BITFIELDS;
+	// The following mask specification specifies a supported 32 BPP
+	// alpha format for Windows XP.
+	bi.bV5RedMask   =  0x00FF0000;
+	bi.bV5GreenMask =  0x0000FF00;
+	bi.bV5BlueMask  =  0x000000FF;
+	bi.bV5AlphaMask =  0xFF000000;
+
+	HDC hdc;
+	hdc = GetDC(NULL);
+
+	// Create the DIB section with an alpha channel.
+	hBitmap = CreateDIBSection(hdc, (BITMAPINFO *)&bi, DIB_RGB_COLORS,
+		(void **)&lpBits, NULL, (DWORD)0);
+
+	hMemDC = CreateCompatibleDC(hdc);
+	ReleaseDC(NULL,hdc);
+
+	// Draw something on the DIB section.
+	hOldBitmap = (HBITMAP)SelectObject(hMemDC, hBitmap);
+	PatBlt(hMemDC,0,0,dwWidth,dwHeight,WHITENESS);
+	SetTextColor(hMemDC,RGB(0,0,0));
+	SetBkMode(hMemDC,TRANSPARENT);
+	TextOut(hMemDC,0,9,"rgba",4);
+	SelectObject(hMemDC, hOldBitmap);
+	DeleteDC(hMemDC);
+
+	// Create an empty mask bitmap.
+	HBITMAP hMonoBitmap = CreateBitmap(dwWidth,dwHeight,1,1,NULL);
+
+	// Set the alpha values for each pixel in the cursor so that
+	// the complete cursor is semi-transparent.
+	DWORD *lpdwPixel;
+	lpdwPixel = (DWORD *)lpBits;
+	for (x=0;x<dwWidth;x++)
+		for (y=0;y<dwHeight;y++)
+		{
+			// Clear the alpha bits
+			*lpdwPixel &= 0x00FFFFFF;
+			// Set the alpha bits to 0x9F (semi-transparent)
+			*lpdwPixel |= 0x9F000000;
+			lpdwPixel++;
+		}
+
+		ICONINFO ii;
+		ii.fIcon = FALSE;  // Change fIcon to TRUE to create an alpha icon
+		ii.xHotspot = 0;
+		ii.yHotspot = 0;
+		ii.hbmMask = hMonoBitmap;
+		ii.hbmColor = hBitmap;
+
+		// Create the alpha cursor with the alpha DIB section.
+		hAlphaCursor = CreateIconIndirect(&ii);
+
+		DeleteObject(hBitmap);
+		DeleteObject(hMonoBitmap);
+
+		SetCursor(hAlphaCursor);
+//		return hAlphaCursor;
+}
+
+
+
 static int Cursor_reload(Cursor* c, const char* name, Handle)
 {
 	char filename[VFS_MAX_PATH];
@@ -99,10 +356,8 @@ static int Cursor_reload(Cursor* c, const char* name, Handle)
 	// Load the .txt file containing the pixel offset of
 	// the cursor's hotspot (the bit of it that's
 	// drawn at (g_mouse_x,g_mouse_y) )
-	sprintf(filename, "art/textures/cursors/%s.txt", name);
-
+	snprintf(filename, ARRAY_SIZE(filename), "art/textures/cursors/%s.txt", name);
 	int hotspotx, hotspoty;
-
 	{
 		void* p;
 		size_t size;
@@ -115,109 +370,30 @@ static int Cursor_reload(Cursor* c, const char* name, Handle)
 		mem_free_h(hm);
 	}
 
-	sprintf(filename, "art/textures/cursors/%s.png", name);
+	snprintf(filename, ARRAY_SIZE(filename), "art/textures/cursors/%s.png", name);
 
-	Handle tex = tex_load(filename);
-	CHECK_ERR(tex);
+	Handle ht = tex_load(filename);
+	CHECK_ERR(ht);
 
 #ifdef _WIN32
 	if (c->type == 1)
 	{
-		// Convert the image data into a DIB
-
-		int w, h, fmt, bpp;
-		u32* imgdata;
-		tex_info(tex, &w, &h, &fmt, &bpp, (void**)&imgdata);
-		u32* imgdata_bgra;
-		if (fmt == GL_BGRA)
+		int err = cursor_load(ht, hotspotx, hotspoty, (void**)&c->wincursor);
+		if(err < 0)
 		{
-			// No conversion needed
-			imgdata_bgra = imgdata;
+			tex_free(ht);
+			return err;
 		}
-		else if (fmt == GL_RGBA)
-		{
-			// Convert ABGR -> ARGB (little-endian)
-			imgdata_bgra = new u32[w*h];
-			for (int i=0; i<w*h; ++i)
-			{
-				imgdata_bgra[i] = (
-					(imgdata[i] & 0xff00ff00) // G and A
-					| ( (imgdata[i] << 16) & 0x00ff0000) // R
-					| ( (imgdata[i] >> 16) & 0x000000ff) // B
-					);
-			}
-		}
-		else
-		{
-			// TODO: Handle errors
-			debug_assert(! "Cursor texture not 32-bit RGBA/BGRA");
-
-			tex_free(tex);
-
-			return -1;
-		}
-
-		BITMAPINFOHEADER dibheader = {
-			sizeof(BITMAPINFOHEADER), // biSize
-				w,	// biWidth
-				-h,	// biHeight (positive means bottom-up)
-				1,	// biPlanes
-				32,	// biBitCount
-				BI_RGB,	// biCompression
-				0,	// biSizeImage (not needed for BI_RGB)
-				0,	// biXPelsPerMeter (I really don't care how many pixels are in a meter)
-				0,	// biYPelsPerMeter
-				0,	// biClrUser (0 == maximum for this biBitCount. I hope we're not going to run in paletted display modes.)
-				0	// biClrImportant
-		};
-		BITMAPINFO dibinfo = {
-			dibheader,	// bmiHeader
-			NULL		// bmiColors[]
-		};
-
-		HDC hDC = wglGetCurrentDC();
-		HBITMAP iconbitmap = CreateDIBitmap(hDC, &dibheader, CBM_INIT, imgdata_bgra, &dibinfo, 0);
-		if (! iconbitmap)
-		{
-			// TODO: Handle errors
-			debug_assert(! "Error creating icon DIB");
-
-			if (imgdata_bgra != imgdata) delete[] imgdata_bgra;
-			tex_free(tex);
-
-			return -1;
-		}
-
-		ICONINFO info = { FALSE, hotspotx, hotspoty, iconbitmap, iconbitmap };
-		HICON cursor = CreateIconIndirect(&info);
-		DeleteObject(iconbitmap);
-
-		if (! cursor)
-		{
-			// TODO: Handle errors
-			debug_assert(! "Error creating cursor");
-
-			if (imgdata_bgra != imgdata) delete[] imgdata_bgra;
-			tex_free(tex);
-
-			return -1;
-		}
-
-		if (imgdata_bgra != imgdata) delete[] imgdata_bgra;
-		tex_free(tex);
-
-		c->wincursor = cursor;
 	}
 	else
 #endif // _WIN32
 	{
-
-		int err = tex_upload(tex, GL_NEAREST);
+		int err = tex_upload(ht, GL_NEAREST);
 		CHECK_ERR(err);
 
 		c->cursor = new ogl_cursor;
 
-		c->cursor->tex = tex;
+		c->cursor->tex = ht;
 		c->cursor->hotspotx = hotspotx;
 		c->cursor->hotspoty = hotspoty;
 		// Get the width/height

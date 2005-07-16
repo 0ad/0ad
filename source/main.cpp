@@ -1287,11 +1287,7 @@ TIMER(init_after_InitRenderer);
 	// Check for heap corruption after every allocation. Very, very slowly.
 	// (And it highlights the allocation just after the one you care about,
 	// so you need to run it again and tell it to break on the one before.)
-/*
-	extern void memory_debug_extreme_turbo_plus();
-	memory_debug_extreme_turbo_plus();
-	_CrtSetBreakAlloc(36367);
-//*/
+//	debug_heap_enable(DEBUG_HEAP_ALL);
 
 	// register input handlers
 	{

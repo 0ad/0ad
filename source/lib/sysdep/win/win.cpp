@@ -638,40 +638,20 @@ static void cs_shutdown()
 // (setting up the WinMain parameters), but is simpler and safer than
 // SDL-style #define main SDL_main.
 
+// explained where used.
+static HMODULE hUser32Dll;
+
 static void at_exit(void)
 {
 	call_func_tbl(shutdown_begin, shutdown_end);
 
 	cs_shutdown();
+
+	// free the reference taken in win_pre_libc_init;
+	// this avoids Boundschecker warnings at exit.
+	FreeLibrary(hUser32Dll);
 }
 
-
-/*
-static void test2(uint param2a, uint param2b, uint param2c, std::vector<uint>* param2)
-{
-const uint const2 = 0x2020;
-static const uint staticconst2 = 0x20202020;
-static u8 static2 = 0x99;
-uint local2 = 0x1234;
-debug_printf("&static2 = %p\n", &static2);
-debug_printf("param2 = %p\n&local2 = %p\n", param2, &local2);
-debug_printf("&param2a = %p\nparam2b = %p\nparam2c = %p\n", &param2a, &param2b, &param2c);
-debug_assert(0 == 1);
-}
-
-static void test1(uint param1a, uint param1b, uint param1c, std::vector<uint>* param1)
-{
-const uint const1 = 0x1010;
-static const uint staticconst1 = 0x10101010;
-static u8 static1 = 0x88;
-uint local1 = 0x5678;
-debug_printf("&static1 = %p\n", &static1);
-debug_printf("param1 = %p\n&local1 = %p\n", param1, &local1);
-debug_printf("&param1a = %p\nparam1b = %p\nparam1c = %p\n", &param1a, &param1b, &param1c);
-
-test2(param1a, param1b, param1c, param1);
-}
-*/
 
 #ifndef NO_MAIN_REDIRECT
 static
@@ -682,7 +662,7 @@ void win_pre_main_init()
 	// no effect if !defined(HAVE_VC_DEBUG_ALLOC).
 #ifdef PARANOIA
 	debug_heap_enable(DEBUG_HEAP_ALL);
-#else
+#elif !defined(NDEBUG)
 	debug_heap_enable(DEBUG_HEAP_NORMAL);
 #endif
 
@@ -740,6 +720,21 @@ static inline void pre_libc_init()
 		if(slash)
 			*slash = '\0';
 	}
+
+	// HACK: make sure a reference to user32 is held, even if someone
+	// decides to delay-load it. this fixes bug #66, which was the
+	// Win32 mouse cursor (set via user32!SetCursor) appearing as a
+	// black 32x32(?) rectangle. underlying cause was as follows:
+	// powrprof.dll was the first client of user32, causing it to be
+	// loaded. after we were finished with powrprof, we freed it, in turn
+	// causing user32 to unload. later code would then reload user32,
+	// which apparently terminally confused the cursor implementation.
+	//
+	// since we hold a reference here, user32 will never unload.
+	// of course, the benefits of delay-loading are lost for this DLL,
+	// but that is unavoidable. it is safer to force loading it, rather
+	// than documenting the problem and asking it not be delay-loaded.
+	hUser32Dll = LoadLibrary("user32.dll");
 
 	call_func_tbl(pre_libc_begin, pre_libc_end);
 }
