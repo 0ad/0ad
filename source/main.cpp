@@ -1425,7 +1425,8 @@ static void Frame()
 	{
 		// CSimulation would do this with the proper turn length if we were in
 		// a game. This is basically just to keep script timers running.
-		g_Scheduler.update((uint)(TimeSinceLastFrame*1000));
+		uint ms_elapsed = (uint)(TimeSinceLastFrame*1000);
+		g_Scheduler.update(ms_elapsed);
 		if(snd_update(0, 0, 0) < 0)
 			debug_printf("snd_update (pos=0 version) failed\n");
 	}
