@@ -500,10 +500,11 @@
 					client.playerName=getGUIObjectByName("pregame_mp_modesel_playername").caption;
 					// we've got a fixed IP (bound to localhost) here for testing purposes
 					// success = client.beginConnect("127.0.0.1");
+					ipAddress = getGUIObjectByName("pregame_mp_join_serverip").caption;
 					success = client.beginConnect(ipAddress);
 					if (!success) {
 					// need proper message box code here later
-					console.write ("Failed to connect to server. Please check the network connection.");
+						console.write ("Failed to connect to server. Please check the network connection.");
 					}
 					else
 					{
