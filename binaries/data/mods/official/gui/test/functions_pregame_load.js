@@ -97,9 +97,9 @@ function startLoadingScreen()
         getGUIObjectByName("loading_screen_progress_bar").caption = 0;
         getGUIObjectByName("loading_screen_text").caption = "LOADING " + g_GameAttributes.mapFile + " ...\nPlease wait ...";
 
-	// Pick a random tip of the day (each line is a separate tip).
-	tipArray  = readFileLines("gui/text/tips.txt");
-	// Set tip string.
+        // Pick a random tip of the day (each line is a separate tip).
+        tipArray  = readFileLines("gui/text/tips.txt");
+        // Set tip string.
         getGUIObjectByName("loading_screen_tip").caption = tipArray[getRandom(0, tipArray.length-1)];
 
         // Begin game session.
