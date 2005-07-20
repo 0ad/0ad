@@ -477,6 +477,11 @@ private:
 	 */
 	void UpdateMouseOver(IGUIObject * const &pMouseOver);
 
+	// Is the object a Root object, in philosophy, this means it
+	//  has got no parent, and technically, it's got the m_BaseObject
+	//  as parent.
+	bool IsRootObject() const;
+
 	// Variables
 
 protected:

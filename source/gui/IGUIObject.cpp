@@ -321,7 +321,7 @@ void IGUIObject::UpdateCachedSize()
 	// If absolute="false" and the object has got a parent,
 	//  use its cached size instead of the screen. Notice
 	//  it must have just been cached for it to work.
-	if (absolute == false && m_pParent)
+	if (absolute == false && m_pParent && !IsRootObject())
 		m_CachedActualSize = ca.GetClientArea(m_pParent->m_CachedActualSize);
 	else
 		m_CachedActualSize = ca.GetClientArea(CRect(0.f, 0.f, (float)g_xres, (float)g_yres));
@@ -514,4 +514,9 @@ void IGUIObject::SetFocus()
 bool IGUIObject::IsFocused() const
 {
 	return GetGUI()->m_FocusedObject == this; 
+}
+
+bool IGUIObject::IsRootObject() const
+{
+	return (GetGUI() != 0 && m_pParent == GetGUI()->m_BaseObject);
 }
