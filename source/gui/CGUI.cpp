@@ -153,8 +153,6 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 					pNearest->ScriptEvent("mouseleftpress");
 
 					// Block event, so things on the map (behind the GUI) won't be pressed
-					LOG(ERROR, LOG_CATEGORY, "Left click blocked");
-
 					ret = EV_HANDLED;
 				}
 				else if (m_FocusedObject)
@@ -337,7 +335,14 @@ void CGUI::Initialize()
 	AddObjectType("progressbar",	&CProgressBar::ConstructObject);
     AddObjectType("minimap",        &CMiniMap::ConstructObject);
 	AddObjectType("input",			&CInput::ConstructObject);
-	// AddObjectType("list",			&CList::ConstructObject);
+
+	// The following line was commented out, I don't know if that's me or not, or
+	//  for what reason, but I'm gonna uncomment, if anything breaks, just let me
+	//  know, or if it wasn't I that commented it out, do let me know why.
+	//  -- Gee 20-07-2005
+	AddObjectType("list",			&CList::ConstructObject);
+	//
+
 	AddObjectType("dropdown",		&CDropDown::ConstructObject);
 }
 
