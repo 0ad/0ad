@@ -1022,11 +1022,11 @@ LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep)
 	const wchar_t* description = get_exception_description(ep);
 	const wchar_t* locus       = get_exception_locus      (ep);
 
-	wchar_t func_name[DBG_SYMBOL_LEN]; char file[DBG_FILE_LEN] = {0}; int line = 0; wchar_t fmt[50];
+	wchar_t fmt[50]; wchar_t func_name[DBG_SYMBOL_LEN] = L"?"; char file[DBG_FILE_LEN] = "?"; int line = 0;
 	swprintf(fmt, ARRAY_SIZE(fmt), L"%%%ds (%%%dh[^:]:%%d)", DBG_SYMBOL_LEN, DBG_FILE_LEN);
 		// bake in the string limits (future-proof)
-	if(swscanf(locus, fmt, func_name, file, &line) != 3)
-		debug_warn("error extracting file/line from exception locus");
+	(void)swscanf(locus, fmt, func_name, file, &line);
+		// don't care if all 3 fields were filled (they default to "?")
 
 	wchar_t buf[500];
 	const wchar_t* msg_fmt =

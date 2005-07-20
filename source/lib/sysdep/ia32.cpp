@@ -170,19 +170,19 @@ static void cpuid()
 {
 __asm
 {
-	pushad										; save ebx, esi, edi, ebp
-		; ICC7: pusha is the 16-bit form!
+	pushad										;// save ebx, esi, edi, ebp
+		;// ICC7: pusha is the 16-bit form!
 
-; make sure CPUID is supported
+;// make sure CPUID is supported
 	pushfd
 	or			byte ptr [esp+2], 32
 	popfd
 	pushfd
 	pop			eax
-	shr			eax, 22							; bit 21 toggled?
+	shr			eax, 22							;// bit 21 toggled?
 	jnc			no_cpuid
 
-; get vendor string
+;// get vendor string
 	xor			eax, eax
 	cpuid
 	mov			edi, offset vendor_str
@@ -192,9 +192,9 @@ __asm
 	stosd
 	xchg		eax, ecx
 	stosd
-	; (already 0 terminated)
+	;// (already 0 terminated)
 
-; get CPU signature and std feature bits
+;// get CPU signature and std feature bits
 	push		1
 	pop			eax
 	cpuid
@@ -202,30 +202,30 @@ __asm
 	mov			[caps+4], edx
 	movzx		edx, al
 	shr			edx, 4
-	mov			[model], edx					; eax[7:4]
+	mov			[model], edx					;// eax[7:4]
 	movzx		edx, ah
 	and			edx, 0x0f
-	mov			[family], edx					; eax[11:8]
+	mov			[family], edx					;// eax[11:8]
 	shr			eax, 20
 	and			eax, 0x0f
-	mov			[ext_family], eax				; eax[23:20]
+	mov			[ext_family], eax				;// eax[23:20]
 
-; make sure CPUID ext functions are supported
+;// make sure CPUID ext functions are supported
 	mov			esi, 0x80000000
 	mov			eax, esi
 	cpuid
 	mov			[max_ext_func], eax
-	cmp			eax, esi						; max ext <= 0x80000000?
-	jbe			no_ext_funcs					; yes - no ext funcs at all
-	lea			esi, [esi+4]					; esi = 0x80000004
-	cmp			eax, esi						; max ext < 0x80000004?
-	jb			no_brand_str					; yes - brand string not available, skip
+	cmp			eax, esi						;// max ext <= 0x80000000?
+	jbe			no_ext_funcs					;// yes - no ext funcs at all
+	lea			esi, [esi+4]					;// esi = 0x80000004
+	cmp			eax, esi						;// max ext < 0x80000004?
+	jb			no_brand_str					;// yes - brand string not available, skip
 
-; get CPU brand string (>= Athlon XP, P4)
+;// get CPU brand string (>= Athlon XP, P4)
 	mov			edi, offset cpu_type
 	push		-2
-	pop			ebp								; loop counter: [-2, 0]
-$1:	lea			eax, [ebp+esi]					; 0x80000002 .. 4
+	pop			esi								;// loop counter: [-2, 0]
+$1:	lea			eax, [0x80000004+esi]			;// 0x80000002 .. 4
 	cpuid
 	stosd
 	xchg		eax, ebx
@@ -234,16 +234,16 @@ $1:	lea			eax, [ebp+esi]					; 0x80000002 .. 4
 	stosd
 	xchg		eax, edx
 	stosd
-	inc			ebp
+	inc			esi
 	jle			$1
-	; (already 0 terminated)
+	;// (already 0 terminated)
 
-	mov			[have_brand_string], ebp		; ebp = 1 = true
+	mov			[have_brand_string], esi		;// esi = 1 = true
 
 no_brand_str:
 
-; get extended feature flags
-	lea			eax, [esi-3]					; 0x80000001
+;// get extended feature flags
+	mov			eax, [0x80000001]
 	cpuid
 	mov			[caps+8], ecx
 	mov			[caps+12], edx

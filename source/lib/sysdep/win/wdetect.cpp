@@ -207,10 +207,12 @@ static int dll_list_add(const char* name)
 
 	// some driver names are stored in the registry without .dll extension.
 	// if necessary, copy to new buffer and add it there.
+	// note: do not change extension if present; some drivers have a
+	// ".sys" extension, so always appending ".dll" is incorrect.
 	char buf[MAX_PATH];
 	const char* dll_name = name;
 	const char* ext = strrchr(name, '.');
-	if(!ext || stricmp(ext, ".dll") != 0)
+	if(!ext)
 	{
 		snprintf(buf, ARRAY_SIZE(buf), "%s.dll", name);
 		dll_name = buf;
@@ -437,9 +439,9 @@ static void add_oal_dlls_in_dir(const char* dir, DllSet* dlls)
 }
 
 
-// DS3D driver name; filled by ds_enum, used by win_get_snd_info.
+// DS3D driver path; filled by ds_enum, used by win_get_snd_info.
 // side effect: remains zeroed if there's no sound card installed.
-static char ds_drv_name[MAX_PATH+1];
+static char ds_drv_path[MAX_PATH+1];
 
 // store sound card name and path to DirectSound driver.
 // called for each DirectSound driver, but aborts after first valid driver.
@@ -453,7 +455,9 @@ static BOOL CALLBACK ds_enum(void* guid, const char* description, const char* mo
 		return TRUE;	// continue calling
 
 	strcpy_s(snd_card, SND_CARD_LEN, description);
-	strcpy_s(ds_drv_name, ARRAY_SIZE(ds_drv_name), module);
+	snprintf(ds_drv_path, ARRAY_SIZE(ds_drv_path), "%s\\drivers\\%s", win_sys_dir, module);
+		// note: this directory is not in LoadLibrary's search list,
+		// so we have to give the full pathname.
 
 	// we assume the first "driver name" (sound card) is the one we want;
 	// stick with that and stop calling.
@@ -469,7 +473,7 @@ int win_get_snd_info()
 
 	// there are apparently no sound card/drivers installed; so indicate.
 	// (the code below would fail and not produce reasonable output)
-	if(ds_drv_name[0] == '\0')
+	if(ds_drv_path[0] == '\0')
 	{
 		strcpy_s(snd_card, SND_CARD_LEN, "(none)");
 		strcpy_s(snd_drv_ver, SND_DRV_VER_LEN, "(none)");
@@ -479,7 +483,7 @@ int win_get_snd_info()
 	// find all DLLs related to OpenAL, retrieve their versions,
 	// and store in snd_drv_ver string.
 	dll_list_init(snd_drv_ver, SND_DRV_VER_LEN);
-	dll_list_add(ds_drv_name);
+	dll_list_add(ds_drv_path);
 	std::set<std::string> dlls;	// ensures uniqueness
 	add_oal_dlls_in_dir(win_exe_dir, &dlls);
 	add_oal_dlls_in_dir(win_sys_dir, &dlls);

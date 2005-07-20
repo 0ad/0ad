@@ -1760,12 +1760,17 @@ static inline int snd_init()
 }
 
 
-// call before first snd_open if all sound is to be disabled.
-// this is a quick'n dirty way of speeding up startup during development -
-// the caller's sound code need not be touched.
+// (temporarily) disable all sound output. because it causes future snd_open
+// calls to immediately abort before they demand-initialize OpenAL,
+// startup is sped up considerably (500..1000ms). therefore, this must be
+// called before the first snd_open to have any effect; otherwise, the
+// cat will already be out of the bag and we debug_warn of it.
 //
-// can call later to reactivate sound; all settings ever set will be applied,
-// and subsequent sound load / play requests will work.
+// rationale: this is a quick'n dirty way of speeding up startup during
+// development without having to change the game's sound code.
+//
+// can later be called to reactivate sound; all settings ever changed
+// will be applied and subsequent sound load / play requests will work.
 int snd_disable(bool disabled)
 {
 	snd_disabled = disabled;
