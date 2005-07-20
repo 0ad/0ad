@@ -2,9 +2,6 @@
 
 #include "StringConvert.h"
 #include "lib/types.h"
-
-
-
 #include "scripting/SpiderMonkey.h"
 
 #if SDL_BYTE_ORDER == SDL_BIG_ENDIAN

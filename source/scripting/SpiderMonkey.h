@@ -1,10 +1,14 @@
-// master header for the SpiderMonkey Javascript library.
-
-// include this instead of accessing any <js*.h> headers directly.
-// rationale: these headers require an OS macro to be set (XP_*).
-// since this is specific to SpiderMonkey, we don't want to hide the fact in
-// some obscure header that's pulled in via PCH (would make reuse harder).
-// we take care of it below.
+// Master header for the SpiderMonkey Javascript library.
+//
+// Include this instead of accessing any <js*.h> headers directly.
+// Rationale: they require an OS macro to be set (XP_*).
+// Since this is specific to SpiderMonkey, we don't want to saddle
+// another obscure header with it (would make reuse harder).
+// Instead, do it here where the purpose is clear.
+//
+// This doesn't go in ScriptingHost.h because some other files
+// (notably precompiled.h and i18n/ScriptInterface.cpp) want only these
+// definitions without pulling in the whole of ScriptingHost.
 
 // jstypes.h (included via jsapi.h) requires we define
 // "one of XP_BEOS, XP_MAC, XP_OS2, XP_WIN or XP_UNIX".

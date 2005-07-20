@@ -125,7 +125,7 @@ JSBool WriteLog(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSEDP
 // Entity
 //-----------------------------------------------------------------------------
 
-// Look up an Entity by entity handle.
+// Retrieve the entity currently occupying the specified handle.
 // params: handle [int]
 // returns: entity
 JSBool getEntityByHandle( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
@@ -183,6 +183,35 @@ JSBool getEntityTemplate( JSContext* cx, JSObject*, uint argc, jsval* argv, jsva
 	
 	*rval = OBJECT_TO_JSVAL( v->GetScript() );
 	return( JS_TRUE );
+}
+
+
+// Issue a command (network message) to an entity or collection.
+// params: either an entity- or entity collection object, message ID [int],
+//   any further params needed by CNetMessage::CommandFromJSArgs
+// returns: command in serialized form [string]
+JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
+{
+	REQUIRE_MIN_PARAMS(2, issueCommand);
+	debug_assert(JSVAL_IS_OBJECT(argv[0]));
+	*rval = JSVAL_NULL;
+
+	CEntityList entities;
+
+	if (JS_GetClass(JSVAL_TO_OBJECT(argv[0])) == &CEntity::JSI_class)
+		entities.push_back( (ToNative<CEntity>(argv[0])) ->me);
+	else	
+		entities = *EntityCollection::RetrieveSet(cx, JSVAL_TO_OBJECT(argv[0]));
+
+	CNetMessage *msg = CNetMessage::CommandFromJSArgs(entities, cx, argc-1, argv+1);
+	if (msg)
+	{
+		g_Console->InsertMessage(L"issueCommand: %hs", msg->GetString().c_str());
+		g_Game->GetSimulation()->QueueLocalCommand(msg);
+		*rval = g_ScriptingHost.UCStringToValue(msg->GetString());
+	}
+
+	return JS_TRUE;
 }
 
 
@@ -436,6 +465,11 @@ JSBool endGame(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSEDPA
 // Internationalization
 //-----------------------------------------------------------------------------
 
+// these remain here instead of in the i18n tree because they are
+// really related to the engine's use of them, as opposed to i18n itself.
+// contrariwise, translate() cannot be moved here because that would
+// make i18n dependent on this code and therefore harder to reuse.
+
 // Replaces the current language (locale) with a new one.
 // params: language id [string] as in I18n::LoadLanguage
 // returns:
@@ -509,7 +543,7 @@ JSBool forceGC( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rva
 
 
 //-----------------------------------------------------------------------------
-// Misc. Script System
+// GUI
 //-----------------------------------------------------------------------------
 
 // Returns the sort-of-global object associated with the current GUI.
@@ -522,20 +556,6 @@ JSBool getGUIGlobal( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 	REQUIRE_NO_PARAMS(getGUIGlobal);
 
 	*rval = OBJECT_TO_JSVAL( g_GUI.GetScriptObject() );
-	return( JS_TRUE );
-}
-
-
-// Returns the global object.
-// params:
-// returns: global object
-// notes:
-// - Useful for accessing an object from another scope.
-JSBool getGlobal( JSContext* cx, JSObject* globalObject, uint argc, jsval* argv, jsval* rval )
-{
-	REQUIRE_NO_PARAMS(getGlobal);
-
-	*rval = OBJECT_TO_JSVAL( globalObject );
 	return( JS_TRUE );
 }
 
@@ -641,7 +661,7 @@ JSBool _lodbias( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED
 }
 
 
-// Set the lookat target of the game camera.
+// Focus the game camera on a given position.
 // params: target position vector [CVector3D]
 // returns: success [bool]
 JSBool setCameraTarget( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval )
@@ -693,35 +713,6 @@ JSBool buildTime( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval 
 }
 
 
-// Issue a command (network message) to an entity or collection.
-// params: either an entity- or entity collection object, message ID [int],
-//   any further params needed by CNetMessage::CommandFromJSArgs
-// returns: command in serialized form [string]
-JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
-{
-	REQUIRE_MIN_PARAMS(2, issueCommand);
-	debug_assert(JSVAL_IS_OBJECT(argv[0]));
-	*rval = JSVAL_NULL;
-	
-	CEntityList entities;
-
-	if (JS_GetClass(JSVAL_TO_OBJECT(argv[0])) == &CEntity::JSI_class)
-		entities.push_back( (ToNative<CEntity>(argv[0])) ->me);
-	else	
-		entities = *EntityCollection::RetrieveSet(cx, JSVAL_TO_OBJECT(argv[0]));
-
-	CNetMessage *msg = CNetMessage::CommandFromJSArgs(entities, cx, argc-1, argv+1);
-	if (msg)
-	{
-		g_Console->InsertMessage(L"issueCommand: %hs", msg->GetString().c_str());
-		g_Game->GetSimulation()->QueueLocalCommand(msg);
-		*rval = g_ScriptingHost.UCStringToValue(msg->GetString());
-	}
-
-	return JS_TRUE;
-}
-
-
 // Return distance between 2 points.
 // params: 2 position vectors [CVector3D]
 // returns: Euclidean distance [float]
@@ -733,6 +724,20 @@ JSBool v3dist( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval
 	CVector3D* b = ToNative<CVector3D>( argv[1] );
 	float dist = ( *a - *b ).GetLength();
 	*rval = ToJSVal( dist );
+	return( JS_TRUE );
+}
+
+
+// Returns the global object.
+// params:
+// returns: global object
+// notes:
+// - Useful for accessing an object from another scope.
+JSBool getGlobal( JSContext* cx, JSObject* globalObject, uint argc, jsval* argv, jsval* rval )
+{
+	REQUIRE_NO_PARAMS(getGlobal);
+
+	*rval = OBJECT_TO_JSVAL( globalObject );
 	return( JS_TRUE );
 }
 
@@ -753,13 +758,22 @@ JSBool v3dist( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval
 
 JSFunctionSpec ScriptFunctionTable[] = 
 {
-	// Output
-	JS_FUNC(writeLog, WriteLog, 1)
+	// Console
 	JS_FUNC(writeConsole, JSI_Console::writeConsole, 1)	// external
 
 	// Entity
 	JS_FUNC(getEntityByHandle, getEntityByHandle, 1)
 	JS_FUNC(getEntityTemplate, getEntityTemplate, 1)
+	JS_FUNC(issueCommand, issueCommand, 2)
+
+	// Camera
+	JS_FUNC(setCameraTarget, setCameraTarget, 1)
+
+	// GUI	
+#ifndef NO_GUI
+	JS_FUNC(getGUIObjectByName, JSI_IGUIObject::getByName, 1)	// external
+	JS_FUNC(getGUIGlobal, getGUIGlobal, 0)
+#endif
 
 	// Events
 	JS_FUNC(addGlobalHandler, AddGlobalHandler, 2)
@@ -786,31 +800,26 @@ JSFunctionSpec ScriptFunctionTable[] =
 	// Internationalization
 	JS_FUNC(loadLanguage, loadLanguage, 1)
 	JS_FUNC(getLanguageID, getLanguageID, 0)
+	// note: i18n/ScriptInterface.cpp registers translate() itself.
+	// rationale: see implementation section above.
 
 	// Debug
 	JS_FUNC(crash, crash, 0)
 	JS_FUNC(forceGC, forceGC, 0)
 
-	// Misc. Script System
-	JS_FUNC(getGlobal, getGlobal, 0)
-	JS_FUNC(getGUIGlobal, getGUIGlobal, 0)
-#ifndef NO_GUI
-	JS_FUNC(getGUIObjectByName, JSI_IGUIObject::getByName, 1)	// external
-#endif
-
 	// Misc. Engine Interface
+	JS_FUNC(writeLog, WriteLog, 1)
 	JS_FUNC(exit, exitProgram, 0)
 	JS_FUNC(vmem, vmem, 0)
 	JS_FUNC(_rewriteMaps, _rewriteMaps, 0)
 	JS_FUNC(_lodbias, _lodbias, 0)
 	JS_FUNC(setCursor, setCursor, 1)
-	JS_FUNC(setCameraTarget, setCameraTarget, 1)
 	JS_FUNC(getFPS, getFPS, 0)
 
 	// Miscellany
 	JS_FUNC(v3dist, v3dist, 2)
-	JS_FUNC(issueCommand, issueCommand, 2)
 	JS_FUNC(buildTime, buildTime, 0)
+	JS_FUNC(getGlobal, getGlobal, 0)
 
 	// end of table marker
 	{0, 0, 0, 0, 0}

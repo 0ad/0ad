@@ -6,8 +6,6 @@
 #include "scripting/ScriptingHost.h"
 #include "JSConversions.h"
 
-#include "scripting/SpiderMonkey.h"
-
 #include <set>
 
 #ifndef SCRIPTABLE_COMPLEX_INCLUDED

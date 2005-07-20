@@ -384,11 +384,6 @@ void ScriptingHost::ErrorReporter(JSContext * context, const char * message, JSE
 	}
 }
 
-void ScriptingHost::_CollectGarbage()
-{
-	JS_GC(m_Context);
-}
-
 #ifndef NDEBUG
 
 void* ScriptingHost::jshook_script( JSContext* cx, JSStackFrame* fp, JSBool before, JSBool* ok, void* closure )

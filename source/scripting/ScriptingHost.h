@@ -71,7 +71,6 @@ private:
 
 	std::map < std::string, CustomType >		m_CustomObjectTypes;
 
-	void _CollectGarbage();
 #ifndef NDEBUG
 	// A hook to capture script calls
 	static void* jshook_script( JSContext* cx, JSStackFrame* fp, JSBool before, JSBool* ok, void* closure );
