@@ -10,7 +10,7 @@
         ==========================================
         -->
 
-        <object type="empty" name="always_on" hotkey="alwayson.toggle" size="0 0 100% 100%" z="1" hidden="false">
+        <object absolute="true" type="empty" name="always_on" hotkey="alwayson.toggle" size="0 0 100% 100%" z="1" hidden="false">
                 <action on="Press"><![CDATA[
                         GUIObjectToggle("always_on");
                 ]]></action>

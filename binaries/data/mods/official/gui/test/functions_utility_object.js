@@ -71,3 +71,15 @@ function GUIObjectSetCaption(objectName, objectCaption)
 
 	GUIObject.caption = objectCaption;
 }
+
+// ====================================================================
+
+function SwitchWindow(CloseWindowName, OpenWindowName)
+{
+	// Helper function that closes a given window (usually the current parent) and opens another one.
+
+	GUIObjectHide	(CloseWindowName);
+	GUIObjectUnhide	(OpenWindowName);
+}
+
+// ====================================================================

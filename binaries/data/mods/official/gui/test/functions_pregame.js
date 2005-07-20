@@ -23,16 +23,6 @@ function CloseMainMenuSubWindow(WindowName)
 
 // ====================================================================
 
-function SwitchMainMenuSubWindow(CloseWindowName, OpenWindowName)
-{
-	// Helper function that closes a given window (usually the current parent) and opens another one.
-
-	GUIObjectHide	(CloseWindowName);
-	GUIObjectUnhide	(OpenWindowName);
-}
-
-// ====================================================================
-
 function initPreGame()
 {
 }

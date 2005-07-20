@@ -10,7 +10,7 @@
 
 <objects>
 
-	<object type="empty" name="atlas_gui" size="0 0 100% 100%" z="1" hidden="true">
+	<object absolute="true" type="empty" name="atlas_gui" size="0 0 100% 100%" z="1" hidden="true">
 
 		<!-- Simply black out the lowest level of the GUI, until such time as we're capable of starting an editor session of a scenario. -->
 		<object type="text" name="ATLAS_GUI_BKG" sprite="black" size="0 0 100% 100%" z="1" ghost="true" />

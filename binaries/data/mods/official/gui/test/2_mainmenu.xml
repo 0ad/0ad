@@ -6,32 +6,21 @@
 
 	<!--
 	==========================================
-	- MAIN MENU - SHELL
+	- MAIN MENU - "COMMANDER'S TENT" BACKDROP
 	==========================================
 	-->
 
-	<object
-		name="pregame_gui"
-		style="empty"
-		type="empty"
+	<object	name="pregame_gui"
+		style="default"
+		type="image"
+		absolute="true"
+		sprite="pregame_mainmenu_background"
 	>
 		<action on="Load"><![CDATA[
 			// Play main 0 A.D. theme when the main menu starts.
 			curr_music = newRandomSound("music", "menu");
 			curr_music.loop();
 		]]></action>
-
-		<!--
-		==========================================
-		- MAIN MENU - "COMMANDER'S TENT" BACKDROP
-		==========================================
-		-->
-
-                <object name="pregame_mainmenu_bkg"
-			style="backdrop"
-			type="image"
-			sprite="pregame_mainmenu_background"
-		/>
 
 		<!--
 		==========================================
@@ -146,8 +135,7 @@
 		==========================================
 		-->
 
-		<object
-			name="exit_button"
+		<object	name="exit_button"
 			style="pregame_mainmenu_checkbox"
 			type="button"
 			size="100%-18 2 100%-2 18"
@@ -161,25 +149,19 @@
 		</object>
 	</object>
 
-	<object name="pregame_subwindows"
-		style="empty"
-		type="empty"
-		>
+	<!--
+	==========================================
+	- MAIN MENU - BACKGROUND MASK
+	==========================================
+	-->
 
-		<!--
-		==========================================
-		- MAIN MENU - BACKGROUND MASK
-		==========================================
-		-->
-
-		<object	name="pregame_subwindow_bkg"
-			style="backdrop"
-			type="image"
-			ghost="false"
-			hidden="true"
-			sprite="translucent_background" 
-		/>
-
+	<object	name="pregame_subwindow_bkg"
+		type="image"
+		z="90"
+		absolute="true"
+		hidden="true"
+		sprite="translucent_background" 
+	>
                 <!--
                 ===============================================
                 - MULTIPLAYER MODE SELECTION SCREEN -
@@ -215,14 +197,12 @@
 
 			<object	name="pregame_mp_modesel_txt1"
 				type="text"
-				absolute="false"
 				size="0 0 400 30"
 			>Please enter the Player name you would like to use during the game.
 			</object>
 
 			<object name="pregame_mp_modesel_playername_txt"
 				type="text"
-				absolute="false"
 				size="0 40 200 60"
 			>Player Name (temporary):
 			</object>
@@ -230,7 +210,6 @@
 			<object name="pregame_mp_modesel_playername"
 				style="border_box_black"
 				type="input"
-				absolute="false"
 				size="220 40 350 60"
 			>Player
 			</object>
@@ -238,7 +217,6 @@
 			<object name="pregame_mp_modesel_divider1"
 				style="border_box_black"
 				type="image"
-				absolute="false"  
 				size="10 80 100%-10 80"
 			/>
 
@@ -250,7 +228,6 @@
 
 			<object name="pregame_mp_modesel_txt"
 				type="text"
-				absolute="false"
 				size="0 100 400 120" 
 			>Please select whether you want to join a game or host your own game.
 			</object>
@@ -258,7 +235,6 @@
 			<object name="pregame_mp_modesel_hostjoin_txt"
 				style="text_tahoma16_black"
 				type="text"
-				absolute="false"
 				size="0 140 200 170"
 				text_valign="center"
 			>Game Mode
@@ -271,7 +247,7 @@
 			>Join Game
 				<action on="Press"><![CDATA[
 					// rudimentary client connection code; finally working now :)
-					SwitchMainMenuSubWindow ("pregame_mp_modesel", "pregame_mp_join");
+					SwitchWindow ("pregame_mp_modesel", "pregame_mp_join");
 				]]></action>
 			</object>
                               
@@ -283,7 +259,7 @@
 				size="250 140 350 170" 
 			>Host Game
 				<action on="Press"><![CDATA[
-					SwitchMainMenuSubWindow ("pregame_mp_modesel", "pregame_mp_host");
+					SwitchWindow ("pregame_mp_modesel", "pregame_mp_host");
 				]]></action>
 			</object>
 
@@ -324,7 +300,6 @@
 
 			<object	name="pregame_mp_host_txt1"
 				type="text"
-				absolute="false"
 				size="0 0 400 30"
 			>Setting up your server.
 			</object>
@@ -332,7 +307,6 @@
 			<object name="pregame_mp_host_gamename_txt"
 				style="text_tahoma16_black"
 				type="text"
-				absolute="false"
 				size="0 40 200 60"
 			>Game (Server) Name:
 			</object>
@@ -340,7 +314,6 @@
 			<object name="pregame_mp_host_gamename"
 				style="border_box_black"
 				type="input"
-				absolute="false"
 				size="220 40 370 60"
 			>My Game
 			</object>
@@ -354,14 +327,12 @@
 			<object name="pregame_mp_host_welcomemsg_txt" 
 				style="text_tahoma16_black"
 				type="text"
-				absolute="false"
 				size="0 70 200 90"
 			>Welcome Message:
 			</object>
 
 			<object name="pregame_mp_host_txt2"
 				type="text"
-				absolute="false"
 				size="0 100 200 180"
 			>You can enter some message which is displayed to new players upon joining here.
 			</object>
@@ -369,7 +340,6 @@
 			<object name="pregame_mp_host_welcomemsg" 
 				style="border_box_black_verdana9"
 				type="input"
-				absolute="false"
 				size="220 70 370 180"
 			>Uhm, welcome to my game. Have fun!
 			</object>
@@ -387,7 +357,7 @@
 			>Continue
 				<action on="Press"><![CDATA[
 					gameName = getGUIObjectByName("pregame_mp_host_gamename").caption;
-					SwitchMainMenuSubWindow ("pregame_mp_host", "pregame_mp_setup_host");
+					SwitchWindow ("pregame_mp_host", "pregame_mp_setup_host");
 					GUIObjectHide("pregame_mainmenu_versionnumber");
  
 					// Set up the server
@@ -422,7 +392,7 @@
 				size="50%+25 200 50%+125 230"
 			>Back
 				<action on="Press"><![CDATA[
-					SwitchMainMenuSubWindow ("pregame_mp_host", "pregame_mp_modesel");
+					SwitchWindow ("pregame_mp_host", "pregame_mp_modesel");
 				]]></action>
 			</object>
 		</object>
@@ -462,7 +432,6 @@
 
 			<object name="pregame_mp_join_txt1"
 				type="text"
-				absolute="false"
 				size="0 0 400 30"
 			>Joining an existing game.
 			</object>
@@ -470,7 +439,6 @@
 			<object name="pregame_mp_join_serverip_txt" 
 				style="text_tahoma16_black"
 				type="text"
-				absolute="false"
 				size="0 40 200 60"
 			>Server Hostname or IP:
 			</object>
@@ -478,7 +446,6 @@
 			<object name="pregame_mp_join_serverip" 
 				style="border_box_black"
 				type="input"
-				absolute="false"
 				size="220 40 370 60"
 			>127.0.0.1
 			</object>
@@ -520,7 +487,7 @@
 				size="50%+25 200 50%+125 230"
 			>Back
 				<action on="Press"><![CDATA[
-					SwitchMainMenuSubWindow ("pregame_mp_join", "pregame_mp_modesel");
+					SwitchWindow ("pregame_mp_join", "pregame_mp_modesel");
 				]]></action>
 			</object>
 		</object>
@@ -566,7 +533,6 @@
 			<object name="pregame_mp_setup_host_playerhead"
 				style="text_giovanni22bold_black"
 				type="text"
-				absolute="false"
 				size="30 10 320 40"
 			>Player Slots
 			</object>
@@ -574,7 +540,6 @@
 			<object name="pregame_mp_setup_host_p1_txt"
 				style="text_tahoma16_black"
 				type="text"
-				absolute="false"
 				size="30 50 320 80"
 			>
 				<action on="Load"><![CDATA[
@@ -585,7 +550,6 @@
 			<object name="pregame_mp_setup_host_p2_txt"
 				style="text_tahoma16_black"
 				type="text"
-				absolute="false"
 				size="30 90 320 120"
 			>
 				<action on="Load"><![CDATA[
@@ -596,7 +560,6 @@
 			<object name="pregame_mp_setup_host_p3_txt"
 				style="text_tahoma16_black"
 				type="text"
-				absolute="false"
 				size="30 130 320 160"
 			>
 				<action on="Load"><![CDATA[
@@ -607,7 +570,6 @@
 			<object name="pregame_mp_setup_host_p4_txt"
 				style="text_tahoma16_black"
 				type="text"
-				absolute="false"
 				size="30 170 320 200"
 			>
 				<action on="Load"><![CDATA[
@@ -618,7 +580,6 @@
 			<object name="pregame_mp_setup_host_p5_txt"
 				style="text_tahoma16_black"
 				type="text"
-				absolute="false"
 				size="30 210 320 240"
 			>
 				<action on="Load"><![CDATA[
@@ -629,7 +590,6 @@
 			<object name="pregame_mp_setup_host_p6_txt"
 				style="text_tahoma16_black"
 				type="text"
-				absolute="false"
 				size="30 250 320 280"
 			>
 				<action on="Load"><![CDATA[
@@ -640,7 +600,6 @@
 			<object name="pregame_mp_setup_host_p7_txt"
 				style="text_tahoma16_black"
 				type="text"
-				absolute="false"
 				size="30 290 320 320"
 			>
 				<action on="Load"><![CDATA[
@@ -651,7 +610,6 @@
 			<object name="pregame_mp_setup_host_p8_txt"
 				style="text_tahoma16_black"
 				type="text"
-				absolute="false"
 				size="30 330 320 360"
 			>
 				<action on="Load"><![CDATA[
@@ -667,7 +625,6 @@
 
 			<object name="pregame_mp_setup_host_mapname_txt" 
 				type="text"
-				absolute="false"
 				size="400 32 590 52"
 			>Map name:
 			</object>
@@ -675,7 +632,6 @@
 			<object name="pregame_mp_setup_host_mapname" 
 				style="border_box_black"
 				type="input"
-				absolute="false"
 				size="600 32 750 52"
 			>gathertest
 			</object>
@@ -703,7 +659,7 @@
 				size="50%+25 540 50%+125 570"
 			>Cancel
 				<action on="Press"><![CDATA[
-					SwitchMainMenuSubWindow ("pregame_mp_setup_host", "pregame_mp_modesel");
+					SwitchWindow ("pregame_mp_setup_host", "pregame_mp_modesel");
 				]]></action>
 			</object>
 		</object>
@@ -746,14 +702,12 @@
 
                         <object name="pregame_sp_infotext"
 				type="text"
-				absolute="false"
 				size="10 10 290 60"
 			>Type the name of the map you want to start into the box. The name is relative to /data/mods/official/maps/scenarios/.
                         </object>
 
                         <object name="pregame_sp_mapname_txt"
 				type="text"
-				absolute="false"
 				size="10 90 120 110"
 			>Map Name:
                         </object>
@@ -761,7 +715,6 @@
                         <object name="pregame_sp_mapname"
 				style="border_box_black"
 				type="input"
-				absolute="false"
 				size="130 90 290 110"
 			>gathertest2
 			</object>
@@ -793,7 +746,6 @@
 				]]></action>
 			</object>
                 </object>
-
         </object>
 
 </objects>

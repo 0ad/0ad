@@ -239,7 +239,7 @@ function FlipGUI(NewGUIType)
 
 	if (GUIType != "none")
 	{
-		GUIObjectUnhide("SESSION_GUI");
+		GUIObjectUnhide("session_gui");
 		GUIObjectUnhide("always_on");
 
 		// Seek through all sizes created.
@@ -307,7 +307,7 @@ function FlipGUI(NewGUIType)
 	}
 	else
 	{
-		GUIObjectHide("SESSION_GUI");
+		GUIObjectHide("session_gui");
 		GUIObjectHide("always_on");
 	}
 

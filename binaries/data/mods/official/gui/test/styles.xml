@@ -3,41 +3,70 @@
 <!DOCTYPE styles SYSTEM "..\gui.dtd">
 
 <styles>
-	<!-- 
-		The default values
-		The style with the name 'default' is special, it will
-		be called by every object before any other style is 
-		loaded.
-	 -->
-	<style name="default"
-		hidden="false"
+	<!--
+	==========================================
+	- DEFAULT STYLE: The style with the name 'default' is special, it will
+	- be called by every object before any other style is loaded.
+	==========================================
+	-->
+
+	<style 	name="default"
+		absolute="false"
 		enabled="true"
+		ghost="false"
+		hidden="false"
+		size="0 0 100% 100%"
 		z="0"
-		absolute="true"
-		scrollbar_style="sb2"
+
+		font="verdana12"
 		buffer_zone="5"
 		multiline="false"
-		font="verdana12"
 	/>
 
-	<style name="button"
-		sprite="sprite1"
-		sprite_pressed="sprite1_pressed"
-		sprite_disabled="sprite1_disabled"
-		sprite_over="sprite1_over"
-		sprite2="sprite1_ch"
-		sprite2_pressed="sprite2_pressed"
-		sprite2_disabled="sprite2_disabled"
+	<!--
+	==========================================
+	- STYLE - GLOBAL - BEIGE MENU SKIN - PANES
+	==========================================
+	-->
+
+	<style 	name="0ad_window"
+		sprite="0ad_window"
 	/>
 
-	<style 	name="empty"
-		size="0 0 100% 100%"
+	<style 	name="0ad_window_titlebar"
+		size="50%-150 0%-25 50%+150 0%-9"
+		font="prospero18"
+		sprite="0ad_window_title"
+		text_align="center"
+		text_valign="center"
 	/>
 
-	<style 	name="backdrop"
-		size="0 0 100% 100%"
-		ghost="true"
+	<!--
+	==========================================
+	- STYLE - GLOBAL - BEIGE MENU SKIN - CONTROLS
+	==========================================
+	-->
+
+	<style 	name="0ad_window_button"
+		sprite="message_box_button_normal"
+		sprite_over="message_box_button_over"
+		text_align="center"
+		text_valign="center"
 	/>
+
+	<style 	name="0ad_window_checkbox"
+		size="100%+9 0%-25 100%+25 0%-9"
+		sprite="exit_sprite"
+		sprite_over="exit_sprite_over"
+		tooltip="Close this window and return to the previous screen."
+		tooltip_style="pregame_mainmenu_tooltip"
+	/>
+
+	<!--
+	==========================================
+	- STYLE - GLOBAL - BEIGE MENU SKIN - TEXT
+	==========================================
+	-->
 
 	<style 	name="text_prospero16_gold"
 		ghost="true"
@@ -71,6 +100,12 @@
 		textcolor="0 0 0"
 	/>
 
+	<!--
+	==========================================
+	- STYLE - GLOBAL - BEIGE MENU SKIN - BORDERS
+	==========================================
+	-->
+
 	<style	name="border_box_black"
 		sprite="only_black_border"
 		sprite_selectarea="GeeTemp_selected"
@@ -93,6 +128,12 @@
 		textcolor_selected="255 255 255"
 	/>
 
+	<!--
+	==========================================
+	- STYLE - PREGAME - MAIN MENU
+	==========================================
+	-->
+
 	<style 	name="pregame_mainmenu_button"
 		tooltip_style="pregame_mainmenu_tooltip"
 	/>
@@ -104,35 +145,11 @@
 		tooltip_style="pregame_mainmenu_tooltip"
 	/>
 
-	<style 	name="0ad_window"
-		sprite="0ad_window"
-	/>
-
-	<style 	name="0ad_window_titlebar"
-		absolute="false"
-		size="50%-150 0%-25 50%+150 0%-9"
-		font="prospero18"
-		sprite="0ad_window_title"
-		text_align="center"
-		text_valign="center"
-	/>
-
-	<style 	name="0ad_window_button"
-		absolute="false"
-		sprite="message_box_button_normal"
-		sprite_over="message_box_button_over"
-		text_align="center"
-		text_valign="center"
-	/>
-
-	<style 	name="0ad_window_checkbox"
-		absolute="false"
-		size="100%+9 0%-25 100%+25 0%-9"
-		sprite="exit_sprite"
-		sprite_over="exit_sprite_over"
-		tooltip="Close this window and return to the previous screen."
-		tooltip_style="pregame_mainmenu_tooltip"
-	/>
+	<!--
+	==========================================
+	- STYLE - PREGAME - SESSION
+	==========================================
+	-->
 
 	<style name="resource_counter"
 		text_valign="bottom"
@@ -145,7 +162,6 @@
 
 	<style name="control_group"
 		size="0 0 100% 100%"
-		z="1" 
 	/>
 
 	<style name="session_object"
@@ -272,7 +288,7 @@
 	/>
 
 	<!-- Empty entity portrait. -->
-	<style name="portrait"
+	<style 	name="portrait"
 		sprite="ui_portrait_default_square"
 		sprite_over="ui_portrait_default_square_lit"
 		sprite_disabled="ui_portrait_default_square_grey"
@@ -345,8 +361,26 @@
 		tooltip="(TBA)"
 	/>
 
+	<!--
+	==========================================
+	- STYLE - BACKUP
+	- These are not in use, and are kept mainly
+	- for reference.
+	==========================================
+	-->
+
+	<style 	name="button"
+		sprite="sprite1"
+		sprite_pressed="sprite1_pressed"
+		sprite_disabled="sprite1_disabled"
+		sprite_over="sprite1_over"
+		sprite2="sprite1_ch"
+		sprite2_pressed="sprite2_pressed"
+		sprite2_disabled="sprite2_disabled"
+	/>
+
 	<!-- Atlas Editor -->
-	<style name="atlas_object"
+	<style 	name="atlas_object"
 		tooltip_style="atlas_tooltip"
 		tooltip=""
 		textcolor="0 0 0"
@@ -463,4 +497,5 @@
 		text_align="center"
 		text_valign="center"
 	/>
+
 </styles>

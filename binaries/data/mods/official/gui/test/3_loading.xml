@@ -4,56 +4,113 @@
 
 <!--
 ==========================================
-- LOADING SCREEN DEFINITION -
+- LOADING SCREEN -
 ==========================================
 -->
 
 <objects>
 
-	<object type="empty" name="loading_screen" size="0 0 100% 100%" z="1" ghost="true" hidden="true">
-    <!-- background -->
-		<object type="image" name="loading_screen_background_black" sprite="black_bkg" size="0 0 100% 10" z="99" hidden="false" />
-		<object type="image" name="loading_screen_background_image" sprite="message_box_gen_background" size="0 10 100% 100%" z="100" hidden="false" />
+	<object name="loading_screen" 
+		absolute="true"
+		hidden="true"
+	>
 
-    <!-- top -->
-		<object type="image" name="loading_screen_border_corner_lt" size="0 10 15 25" sprite="message_box_corner" absolute="false" z="161"  hidden="false"/>
-		<object type="image" name="loading_screen_border_top" size="15 10 100%-15 42" sprite="message_box_border_top" absolute="false" z="161"  hidden="false"/>
-		<object type="image" name="loading_screen_border_corner_rt" size="100%-15 10 100% 25" sprite="message_box_corner" absolute="false" z="161"  hidden="false"/>
+		<!--
+		==========================================
+		- BLACK BACKGROUND AT LOWEST Z LEVEL
+		==========================================
+		-->
 
-		<!-- left/right -->
-		<object type="image" name="loading_screen_border_left" size="0 25 20 100%-15" sprite="message_box_border_left" absolute="false" z="162"  hidden="false"/>
-		<object type="image" name="loading_screen_border_right" size="100%-32 25 100% 100%-15" sprite="message_box_border_right" absolute="false" z="161"  hidden="false"/>
-                        
-		<!-- bottom -->
-		<object type="image" name="loading_screen_border_corner_lb" size="0 100%-15 15 100%" sprite="message_box_corner" absolute="false" z="161" hidden="false"/>
-		<object type="image" name="loading_screen_border_bottom" size="15 100%-32 100%-15 100%" sprite="message_box_border_bottom" absolute="false" z="162" hidden="false"/>
-		<object type="image" name="loading_screen_border_corner_rb" size="100%-15 100%-15 100% 100%" sprite="message_box_corner" absolute="false" z="161" hidden="false"/>
-                        
-		<!-- titlebar -->
-		<object type="image" name="loading_screen_titlebar_left" size="15% 0 15%+64 32" sprite="message_box_titlebar_left" absolute="false" z="164" hidden="false"/>
-		<object type="image" name="loading_screen_titlebar_middle" size="15%+64 0 85%-64 32" sprite="message_box_titlebar_middle" absolute="false" z="164" hidden="false"/>
-		<object type="image" name="loading_screen_titlebar_right" size="85%-64 0 85% 32" sprite="message_box_titlebar_right" absolute="false" z="164" hidden="false"/>
-		<object type="button" name="loading_screen_titlebar_text" size="15%+54 4 85%-54 32" absolute="false" font="prospero18" z="165" text_align="center" text_valign="center" hidden="false"/>
+		<object name="backdrop_mask"
+			absolute="true"
+			type="image"
+			sprite="black"
+		/>
 
-		<!-- progress bar -->
-		<object type="button" name="loading_screen_progress_bar_text" size="0%+32 100%-205 100%-32 100%-185" font="tahoma14" textcolor="0 0 0" text_align="center" text_valign="center" z="165" hidden="false">
-			<action on="Progress">
-				this.caption = g_LoadDescription;
-			</action>
+		<!--
+		==========================================
+		- LOADING SCREEN - WINDOW
+		==========================================
+		-->
+
+		<object name="loading_screen_window"
+			style="0ad_window"
+			type="image"
+			size="30 35 100%-30 100%-30"
+		>
+			<object	name="loading_screen_titlebar"
+				style="0ad_window_titlebar"
+				type="button"
+			/>
+
+			<!--
+			==========================================
+			- LOADING SCREEN - TEXT
+			==========================================
+			-->
+
+			<object name="loading_screen_text"
+				type="text"
+				size="23.571428% 40 100%-32 100%-100"
+				font="prospero18"
+			/>
+
+			<!--
+			==========================================
+			- LOADING SCREEN - CONCEPT ART
+			==========================================
+			-->
+
+			<object name="loading_screen_background_concept" 
+				type="image"
+				size="32 32 33.3008%+32 88.9323%+32"
+				sprite="black_bkg" 
+			/>
+
+			<!--
+			==========================================
+			- LOADING SCREEN - PROGRESSBAR
+			==========================================
+			-->
+
+			<object name="loading_screen_progress_bar_text"
+				type="text"
+				size="0%+32 100%-205 100%-32 100%-185"
+				font="tahoma14"
+				textcolor="0 0 0"
+				text_align="center"
+				text_valign="center"
+			>
+				<action on="Progress"><![CDATA[
+					this.caption = g_LoadDescription;
+				]]></action>
+			</object>
+
+			<object name="loading_screen_progress_bar"
+				style="blue_bar_outlined"
+				type="progressbar"
+				size="0%+32 100%-185 100%-32 100%-160"
+			>
+				<action on="Progress"><![CDATA[
+					this.caption = g_Progress;  
+				]]></action>  
+			</object>   
+                       
+			<!--
+			==========================================
+			- LOADING SCREEN - TIP
+			==========================================
+			-->
+			<object name="loading_screen_tip"
+				type="text"
+				size="32 100%-150 100%-32 100%-32"
+				textcolor="0 0 0"
+				font="trebuchet16"
+				text_align="left"
+				text_valign="center"
+				sprite="0ad_indent_lite"
+			/>
 		</object>
-		<object type="progressbar" name="loading_screen_progress_bar" style="blue_bar_outlined" size="0%+32 100%-185 100%-32 100%-160" z="165" hidden="false">  
-			<action on="Progress">  
-				this.caption = g_Progress;  
-			</action>  
-		</object>   
-                        
-		<!-- concept image -->
-		<object type="image" name="loading_screen_background_concept" sprite="black_bkg" size="32 32 33.3008%+32 88.9323%+32" z="110" hidden="false" />
-
-		<!-- text -->
-		<object type="text" name="loading_screen_text" size="23.571428% 40 100%-32 100%-100" absolute="false" font="prospero18" z="165" hidden="false"/>
-
-		<object type="text" name="loading_screen_tip" sprite="0ad_indent_lite" size="32 100%-150 100%-32 100%-32" font="trebuchet16" text_align="left" text_valign="center" textcolor="0 0 0" z="165" hidden="false"/>
 	</object>
 
 </objects>
