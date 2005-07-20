@@ -375,8 +375,9 @@ float IGUIObject::GetBufferedZ() const
 			return GetParent()->GetBufferedZ() + Z;
 		else
 		{
-			debug_warn("IGUIObject::LoadStyle failed");
-			// TODO Gee: Error, no object should be relative without a parent!
+			// In philosophy, a parentless object shouldn't be able to have a relative sizing,
+			//  but we'll accept it so that absolute can be used as default without a complaint. 
+			//  Also, you could consider those objects children to the screen resolution.
 			return Z;
 		}
 	}
