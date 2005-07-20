@@ -1154,8 +1154,6 @@ debug_printf("INIT &argc=%p &argv=%p\n", &argc, &argv);
 	// If you ever want to catch a particular allocation:
 	//_CrtSetBreakAlloc(187);
 
-	new CLogger;
-
 	// no longer set 24 bit (float) precision by default: for
 	// very long game uptimes (> 1 day; e.g. dedicated server),
 	// we need full precision when calculating the time.
@@ -1168,15 +1166,6 @@ debug_printf("INIT &argc=%p &argv=%p\n", &argc, &argv);
 	// do this before lengthy init so we can time those accurately.
 	get_cpu_info();
 
-	// Call LoadLanguage(NULL) to initialise the I18n system, but
-	// without loading an actual language file - translate() will
-	// just show the English key text, which is better than crashing
-	// from a null pointer when attempting to translate e.g. error messages.
-	// Real languages can only be loaded when the scripting system has
-	// been initialised.
-	MICROLOG(L"init i18n");
-	I18n::LoadLanguage(NULL);
-
 	// Do this as soon as possible, because it chdirs
 	// and will mess up the error reporting if anything
 	// crashes before the working directory is set.
@@ -1186,6 +1175,22 @@ debug_printf("INIT &argc=%p &argv=%p\n", &argc, &argv);
 		// case, just pass NULL to InitVfs, which will work out the current
 		// directory for itself.
 	InitVfs(argv0);
+
+	// This must come after VFS init, which sets the current directory
+	// (required for finding our output log files).
+	new CLogger;
+
+	// Call LoadLanguage(NULL) to initialise the I18n system, but
+	// without loading an actual language file - translate() will
+	// just show the English key text, which is better than crashing
+	// from a null pointer when attempting to translate e.g. error messages.
+	// Real languages can only be loaded when the scripting system has
+	// been initialised.
+	//
+	// this uses LOG and must therefore come after CLogger init.
+	MICROLOG(L"init i18n");
+	I18n::LoadLanguage(NULL);
+
 
 	// Set up the console early, so that debugging
 	// messages can be logged to it. (The console's size
