@@ -10,7 +10,7 @@
 
 <objects>
 
-	<object absolute="true" type="empty" name="JUKEBOX_GUI" size="0 0 100% 100%" z="1" hidden="true">
+	<object type="empty" name="JUKEBOX_GUI" size="0 0 100% 100%" z="1" hidden="true">
 
         	<object type="text" name="JUKEBOX_BKG" sprite="0ad_window" font="prospero16" textcolor="0 0 0" hidden="false" ghost="true"><action on="Load"><![CDATA[ setSizeArray(this.name, Crd[JUKEBOX_BKG]); ]]></action>
 			<action on="Tick"><![CDATA[

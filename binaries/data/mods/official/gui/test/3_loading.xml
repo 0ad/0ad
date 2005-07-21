@@ -11,7 +11,6 @@
 <objects>
 
 	<object name="loading_screen" 
-		absolute="true"
 		hidden="true"
 	>
 
@@ -22,7 +21,6 @@
 		-->
 
 		<object name="backdrop_mask"
-			absolute="true"
 			type="image"
 			sprite="black"
 		/>
@@ -36,7 +34,7 @@
 		<object name="loading_screen_window"
 			style="0ad_window"
 			type="image"
-			size="30 35 100%-30 100%-30"
+			size="25 35 100%-25 100%-25"
 		>
 			<object	name="loading_screen_titlebar"
 				style="0ad_window_titlebar"
@@ -51,7 +49,7 @@
 
 			<object name="loading_screen_text"
 				type="text"
-				size="23.571428% 40 100%-32 100%-100"
+				size="23.571428% 20 100%-25 100%-100"
 				font="prospero18"
 			/>
 
@@ -63,7 +61,7 @@
 
 			<object name="loading_screen_background_concept" 
 				type="image"
-				size="32 32 33.3008%+32 88.9323%+32"
+				size="30 20 33.3008%+30 88.9323%+20"
 				sprite="black_bkg" 
 			/>
 
@@ -75,7 +73,7 @@
 
 			<object name="loading_screen_progress_bar_text"
 				type="text"
-				size="0%+32 100%-205 100%-32 100%-185"
+				size="25 100%-190 100%-25 100%-180"
 				font="tahoma14"
 				textcolor="0 0 0"
 				text_align="center"
@@ -89,7 +87,7 @@
 			<object name="loading_screen_progress_bar"
 				style="blue_bar_outlined"
 				type="progressbar"
-				size="0%+32 100%-185 100%-32 100%-160"
+				size="25 100%-160 100%-25 100%-145"
 			>
 				<action on="Progress"><![CDATA[
 					this.caption = g_Progress;  
@@ -103,7 +101,7 @@
 			-->
 			<object name="loading_screen_tip"
 				type="text"
-				size="32 100%-150 100%-32 100%-32"
+				size="25 100%-135 100%-25 100%-25"
 				textcolor="0 0 0"
 				font="trebuchet16"
 				text_align="left"
