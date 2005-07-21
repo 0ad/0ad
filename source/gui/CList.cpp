@@ -34,7 +34,8 @@ CList::CList()
 
 	GUI<bool>::SetSetting(this, "scrollbar", false);
 
-	GUI<int>::SetSetting(this, "selected", 1);
+	// Nothing is selected as default.
+	GUI<int>::SetSetting(this, "selected", -1);
 
 	// Add scroll-bar
 	CGUIScrollBarVertical * bar = new CGUIScrollBarVertical();
@@ -374,8 +375,6 @@ void CList::DrawList(const int &selected,
 
 void CList::AddItem(const CStr& str) 
 {
-	LOG(ERROR, "gui", "Hej: %s", str.c_str());
-
 	CGUIList *pList;
 	GUI<CGUIList>::GetSettingPointer(this, "list", pList);
 
