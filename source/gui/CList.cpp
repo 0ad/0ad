@@ -27,6 +27,7 @@ CList::CList()
 	AddSetting(GUIST_int,					"cell_id");
 	AddSetting(GUIST_EAlign,				"text_align");
 	AddSetting(GUIST_CColor,				"textcolor");
+	AddSetting(GUIST_CColor,				"textcolor_selected");
 	AddSetting(GUIST_int,					"selected");	// Index selected. -1 is none.
 	//AddSetting(GUIST_CStr,					"tooltip");
 	//AddSetting(GUIST_CStr,					"tooltip_style");
@@ -149,6 +150,13 @@ void CList::HandleMessage(const SGUIMessage &Message)
 		if (Message.value == "list")
 		{
 			SetupText();
+		}
+
+		// If selected is changed, call "SelectionChange"
+		if (Message.value == "selected")
+		{
+			// TODO only works if lower-case, shouldn't it be made case sensitive instead?
+			ScriptEvent("selectionchange"); 
 		}
 
 		if (Message.value == CStr("scrollbar"))
