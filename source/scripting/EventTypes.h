@@ -1,5 +1,11 @@
+#ifndef EVENTTYPES_H__
+#define EVENTTYPES_H__
+
 // EventTypes.h
-// Script event declarations
+// Fairly game-specific event declarations for use with DOMEvent.
+// Creates unique (for the current target) names for each event.
+// DOMEvent currently uses a preallocated array of EVENT_LAST elements,
+// so these must be consecutive integers starting with 0.
 
 enum EEventType
 {
@@ -13,9 +19,11 @@ enum EEventType
 	EVENT_PREPARE_ORDER,
 	EVENT_ORDER_TRANSITION,
 	EVENT_LAST,
+
 	// Projectile events
 	EVENT_IMPACT = 0,
 	EVENT_MISS,
+
 	// General events
 	EVENT_GAME_START = 0,
 	EVENT_GAME_TICK,
@@ -23,8 +31,8 @@ enum EEventType
 	EVENT_WORLD_CLICK,
 };
 
-// Only used for entity events...
-static const wchar_t* EventNames[] =
+// Only used for entity events... (adds them as a property)
+static const wchar_t* EventNames[EVENT_LAST] =
 {
 	/* EVENT_INITIALIZE */ L"onInitialize",
 	/* EVENT_TICK */ L"onTick",
@@ -35,3 +43,5 @@ static const wchar_t* EventNames[] =
 	/* EVENT_PREPARE_ORDER */ L"onPrepareOrder", /* To check if a unit can execute a given order */
 	/* EVENT_ORDER_TRANSITION */ L"onOrderTransition" /* When we change orders (sometimes...) */
 };
+
+#endif	// #ifndef EVENTTYPES_H__

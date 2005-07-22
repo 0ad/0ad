@@ -43,6 +43,8 @@ bool IEventTarget::_DispatchEvent( CScriptEvent* evt, IEventTarget* target )
 	return( false );
 }
 
+// Dispatch an event to its handler.
+// returns: whether the event arrived (i.e. wasn't cancelled) [bool]
 bool IEventTarget::DispatchEvent( CScriptEvent* evt )
 {
 	const char* data = g_Profiler.InternString( "script: " + (CStr8)evt->m_Type );

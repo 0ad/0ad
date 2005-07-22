@@ -122,6 +122,8 @@ struct CSynchedJSObjectBase
 	SynchedPropertyTable m_SynchedProperties;
 
 protected:
+	// Called every time a property changes.
+	// This is where the individual callbacks are dispatched from.
 	virtual void Update(CStrW name, ISynchedJSProperty *prop)=0;
 
 public:
@@ -135,6 +137,8 @@ template <typename Class>
 class CSynchedJSObject: public CJSObject<Class>, public CSynchedJSObjectBase
 {
 protected:
+	// Add a property to the object; if desired, a callback is called every time it changes.
+	// Replaces CJSObject's AddProperty.
 	template <typename T> void AddSynchedProperty(CStrW name, T *native, UpdateFn update=NULL)
 	{
 		ISynchedJSProperty *prop=new CSynchedJSProperty<T>(name, native, this, update);

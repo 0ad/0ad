@@ -1,12 +1,15 @@
 // GameEvents.h
-
-// A class that exists to let scripts know when important things happen
-// in the game.
+// Defines a singleton class, g_JSGameEvents that fires certain events on
+// request (Fire*). This serves to notify scripts of important game events.
+// The CScriptEvent-derived events are declared here as well,
+// with their type set to one of EventTypes.h's EEventType.
 
 #ifndef GAME_EVENTS_INCLUDED
 #define GAME_EVENTS_INCLUDED
 
 #include "DOMEvent.h"
+#include "EventTypes.h"
+#include "ps/Singleton.h"
 
 class CGameEvents : public IEventTarget, public Singleton<CGameEvents>
 {

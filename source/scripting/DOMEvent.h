@@ -2,14 +2,17 @@
 //
 // Mark Thompson (mot20@cam.ac.uk / mark@wildfiregames.com)
 
-// Note: Cancellable? Cancelable? DOM says one l, OED says 2. JS interface uses 1.
+// Note: Cancellable [UK]? Cancelable [US]? DOM says one l, OED says 2.
+//       JS interface uses 1.
+
+// Entity and e.g. projectile classes derive from this and use it for
+// sending/receiving events.
 
 #ifndef DOMEVENT_INCLUDED
 #define DOMEVENT_INCLUDED
 
 #include "ScriptableObject.h"
-
-#include "EventTypes.h"
+#include "EventTypes.h"	// for EVENT_LAST
 
 class CScriptObject;
 class CScriptEvent;
@@ -38,24 +41,40 @@ public:
 		after = NULL;
 	}
 	~IEventTarget();
-	inline void SetPriorObject( IEventTarget* obj ) { before = obj; }
-	inline void SetNextObject( IEventTarget* obj ) { after = obj; }
+	// Set target that will receive each event after it is processed.
+	// unused
+	inline void SetPriorObject( IEventTarget* obj )
+	{
+		before = obj;
+	}
+	// Set target that will receive each event after it is processed.
+	// used by Entity and BaseEntity.
+	inline void SetNextObject( IEventTarget* obj )
+	{
+		after = obj;
+	}
 
+	// Register a handler for the given event type.
 	// Returns false if the handler was already present
 	bool AddHandler( int TypeCode, DOMEventHandler handler );
 	bool AddHandler( CStrW TypeString, DOMEventHandler handler );
+	// Remove a previously registered handler for the specified event.
 	// Returns false if the handler was not present
 	bool RemoveHandler( int TypeCode, DOMEventHandler handler );
 	bool RemoveHandler( CStrW TypeString, DOMEventHandler handler );
-	
+
+	// called by ScriptGlue.cpp for add|RemoveGlobalHandler
 	bool AddHandlerJS( JSContext* cx, uintN argc, jsval* argv );
 	bool RemoveHandlerJS( JSContext* cx, uintN argc, jsval* argv );
 
 	// Return the JSObject* we'd like to be the 'this' object
 	// when executing the handler. The argument is the object
 	// to which the event is targeted.
+	// It is passed to CScriptObject::DispatchEvent.
 	virtual JSObject* GetScriptExecContext( IEventTarget* target ) = 0;
 
+	// Dispatch an event to its handler.
+	// returns: whether the event arrived (i.e. wasn't cancelled) [bool]
 	bool DispatchEvent( CScriptEvent* evt );
 };
 
