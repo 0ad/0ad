@@ -282,24 +282,17 @@ int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int*
 #ifdef _M_IX86
 
 // optimized for size.
-static void get_current_context(void* pcontext)
+// this is the (so far) only case where __declspec(naked) is absolutely
+// critical. compiler-generated prolog code trashes EBP and ESP,
+// which is especially bad here because the stack trace code relies
+// on us returning their correct values.
+static __declspec(naked) void get_current_context(void* pcontext)
 {
-	// for safety and future-proofing, we do not use __declspec(naked) and
-	// access the parameter ourselves. therefore, we need to grab it into
-	// a register before PUSHAD, which means we'd lose the register's
-	// previous contents. save it here to prevent that.
-	static u32 saved_eax;
 __asm
 {
-	;// don't write into edi directly so that the compiler (if clever)
-	;// doesn't need to generate register-save code.
-	mov		[saved_eax], eax
-	mov		eax, [pcontext]
-
 	pushad
 	pushfd
-
-	xchg	eax, edi			;// edi = (CONTEXT*)pcontext
+	mov		edi, [esp+4+32+4]	;// pcontext
 
 	;// ContextFlags
 	mov		eax, 0x10007		;// segs, int, control
@@ -334,13 +327,11 @@ rep	stosd
 	stosd
 	mov		eax, [esp+4+32-8]	;// ecx
 	stosd
-	mov		eax, [saved_eax]
+	mov		eax, [esp+4+32-4]	;// eax
 	stosd
 
-	;// CONTEXT_CONTROL		
-	mov		eax, ebp			;// despite being smaller, don't use XCHG -
-								;// avoids silly "modifying ebp" warning
-								;// (we restore via POPAD, but VC is stupid)
+	;// CONTEXT_CONTROL
+	xchg	eax, ebp			;// ebp restored by POPAD
 	stosd
 	mov		eax, [esp+4+32]		;// return address
 	sub		eax, 5				;// skip CALL instruction -> call site.

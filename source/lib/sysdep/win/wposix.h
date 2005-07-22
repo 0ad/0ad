@@ -198,9 +198,10 @@ extern int readdir_stat_np(DIR*, struct stat*);
 //
 
 // mmap prot flags
-#define PROT_NONE   0x00	// no access (not supported on Win32)
+#define PROT_NONE   0x00
 #define PROT_READ	0x01
 #define PROT_WRITE	0x02
+#define PROT_EXEC   0x04
 
 // mmap flags
 #define MAP_SHARED	0x01	// share changes across processes
@@ -212,6 +213,7 @@ extern int readdir_stat_np(DIR*, struct stat*);
 extern void* mmap(void* start, size_t len, int prot, int flags, int fd, off_t offset);
 extern int munmap(void* start, size_t len);
 
+extern int mprotect(void* addr, size_t len, int prot); 
 
 //
 // <fcntl.h>

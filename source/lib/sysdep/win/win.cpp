@@ -296,29 +296,29 @@ static int CALLBACK error_dialog_proc(HWND hDlg, unsigned int msg, WPARAM wParam
 	switch(msg)
 	{
 	case WM_INITDIALOG:
+	{
+		const DialogParams* params = (const DialogParams*)lParam;
+		HWND hWnd;
+
+		// need to reset for new instance of dialog
+		dlg_client_origin.x = dlg_client_origin.y = 0;
+		dlg_prev_client_size.x = dlg_prev_client_size.y = 0;
+
+		if(!(params->flags & DE_ALLOW_SUPPRESS))
 		{
-			const DialogParams* params = (const DialogParams*)lParam;
-			HWND hWnd;
-
-			// need to reset for new instance of dialog
-			dlg_client_origin.x = dlg_client_origin.y = 0;
-			dlg_prev_client_size.x = dlg_prev_client_size.y = 0;
-
-			if(!(params->flags & DE_ALLOW_SUPPRESS))
-			{
-				hWnd = GetDlgItem(hDlg, IDC_SUPPRESS);
-				EnableWindow(hWnd, FALSE);
-			}
-
-			// set fixed font for readability
-			hWnd = GetDlgItem(hDlg, IDC_EDIT1);
-			HGDIOBJ hObj = (HGDIOBJ)GetStockObject(SYSTEM_FIXED_FONT);
-			LPARAM redraw = FALSE;
-			SendMessage(hWnd, WM_SETFONT, (WPARAM)hObj, redraw);
-
-			SetDlgItemTextW(hDlg, IDC_EDIT1, params->text);
-			return TRUE;	// set default keyboard focus
+			hWnd = GetDlgItem(hDlg, IDC_SUPPRESS);
+			EnableWindow(hWnd, FALSE);
 		}
+
+		// set fixed font for readability
+		hWnd = GetDlgItem(hDlg, IDC_EDIT1);
+		HGDIOBJ hObj = (HGDIOBJ)GetStockObject(SYSTEM_FIXED_FONT);
+		LPARAM redraw = FALSE;
+		SendMessage(hWnd, WM_SETFONT, (WPARAM)hObj, redraw);
+
+		SetDlgItemTextW(hDlg, IDC_EDIT1, params->text);
+		return TRUE;	// set default keyboard focus
+	}
 
 	case WM_SYSCOMMAND:
 		// close dialog if [X] is clicked (doesn't happen automatically)
@@ -330,21 +330,22 @@ static int CALLBACK error_dialog_proc(HWND hDlg, unsigned int msg, WPARAM wParam
 		}
 		break;
 
-		// return 0 if processed, otherwise break
+	// return 0 if processed, otherwise break
 	case WM_COMMAND:
 		switch(wParam)
 		{
 		case IDC_COPY:
+		{
+			const size_t max_chars = 128*KiB;
+			wchar_t* buf = (wchar_t*)malloc(max_chars*sizeof(wchar_t));
+			if(buf)
 			{
-				const size_t max_chars = 100000;
-				wchar_t* buf = (wchar_t*)malloc(max_chars*sizeof(wchar_t));
-				if(buf)
-				{
-					GetDlgItemTextW(hDlg, IDC_EDIT1, buf, max_chars);
-					clipboard_set(buf);
-				}
-				return 0;
+				GetDlgItemTextW(hDlg, IDC_EDIT1, buf, max_chars);
+				clipboard_set(buf);
+				free(buf);
 			}
+			return 0;
+		}
 
 		case IDC_CONTINUE:
 			EndDialog(hDlg, ER_CONTINUE);
@@ -369,15 +370,15 @@ static int CALLBACK error_dialog_proc(HWND hDlg, unsigned int msg, WPARAM wParam
 		break;
 
 	case WM_GETMINMAXINFO:
-		{
-			// we must make sure resize_control will never set negative coords -
-			// Windows would clip them, and its real position would be lost.
-			// restrict to a reasonable and good looking minimum size [pixels].
-			MINMAXINFO* mmi = (MINMAXINFO*)lParam;
-			mmi->ptMinTrackSize.x = 407;
-			mmi->ptMinTrackSize.y = 159;	// determined experimentally
-			return 0;
-		}
+	{
+		// we must make sure resize_control will never set negative coords -
+		// Windows would clip them, and its real position would be lost.
+		// restrict to a reasonable and good looking minimum size [pixels].
+		MINMAXINFO* mmi = (MINMAXINFO*)lParam;
+		mmi->ptMinTrackSize.x = 407;
+		mmi->ptMinTrackSize.y = 159;	// determined experimentally
+		return 0;
+	}
 
 	case WM_SIZE:
 		dlg_resize(hDlg, wParam, lParam);

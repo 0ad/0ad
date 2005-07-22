@@ -503,10 +503,95 @@ int poll(struct pollfd /* fds */[], int /* nfds */, int /* timeout */)
 //////////////////////////////////////////////////////////////////////////////
 
 
+
+// convert POSIX PROT_* flags to Win32 PAGE_* enumeration.
+// used by mprotect.
+static DWORD win32_prot(int prot)
+{
+	// this covers all possible combinations of read|write|exec
+	// (note that "none" means all flags are 0).
+	switch(prot)
+	{
+	case PROT_NONE:
+		return PAGE_NOACCESS;
+	case PROT_READ:
+		return PAGE_READONLY;
+	case PROT_WRITE:
+		// not supported by Win32; POSIX allows us to also grant read access.
+		return PAGE_READWRITE;
+	case PROT_EXEC:
+		return PAGE_EXECUTE;
+	case PROT_READ|PROT_WRITE:
+		return PAGE_READWRITE;
+	case PROT_READ|PROT_EXEC:
+		return PAGE_EXECUTE_READ;
+	case PROT_WRITE|PROT_EXEC:
+		// not supported by Win32; POSIX allows us to also grant read access.
+		return PAGE_EXECUTE_READWRITE;
+	case PROT_READ|PROT_WRITE|PROT_EXEC:
+		return PAGE_EXECUTE_READWRITE;
+	default:
+		return 0;
+	}
+}
+
+
+int mprotect(void* addr, size_t len, int prot)
+{
+	const DWORD flNewProtect = win32_prot(prot);
+	DWORD flOldProtect;	// required by VirtualProtect
+	BOOL ok = VirtualProtect(addr, len, flNewProtect, &flOldProtect);
+	return ok? 0 : -1;
+}
+
+
+static int mmap_access(int prot, int flags, DWORD& flProtect, DWORD& dwAccess, SECURITY_ATTRIBUTES*& psec)
+{
+	SECURITY_ATTRIBUTES* saved_psec = psec;
+
+	// assume read-only with default security; other cases handled below.
+	flProtect = PAGE_READONLY;
+	dwAccess  = FILE_MAP_READ;
+	psec = 0;
+
+	if(flags & PROT_WRITE)
+	{
+		flProtect = PAGE_READWRITE;
+		dwAccess  = FILE_MAP_WRITE;	// read and write
+
+		// determine write behavior: (whether they change the underlying file)
+		switch(flags & (MAP_SHARED|MAP_PRIVATE))
+		{
+		// .. POSIX says asking for both isn't allowed.
+		case MAP_SHARED|MAP_PRIVATE:
+			return ERR_INVALID_PARAM;
+		// .. changes are written to file and shared between processes.
+		case MAP_SHARED:
+			psec = saved_psec;
+			psec->nLength = sizeof(SECURITY_ATTRIBUTES);
+			psec->lpSecurityDescriptor = 0;
+			psec->bInheritHandle = TRUE;
+			break;
+		// .. copy-on-write mapping; writes do not affect the file or
+		//    other processes.
+		case MAP_PRIVATE:
+			flProtect = PAGE_WRITECOPY;
+			dwAccess  = FILE_MAP_COPY;
+			break;
+		// .. changes are written to file but the handle isn't shareable.
+		default:
+			break;
+		}
+	}
+
+	return 0;
+}
+
 void* mmap(void* user_start, size_t len, int prot, int flags, int fd, off_t offset)
 {
 	{
 	WIN_SAVE_LAST_ERROR;
+	int err;
 
 	// assume fd = -1 (requesting mapping backed by page file),
 	// so that we notice invalid file handles below.
@@ -521,7 +606,8 @@ void* mmap(void* user_start, size_t len, int prot, int flags, int fd, off_t offs
 		}
 	}
 
-	// MapView.. will choose start address unless MAP_FIXED was specified.
+	// if MAP_FIXED, user_start is the start address; otherwise,
+	// MapViewOfFileEx will choose an address.
 	void* start = 0;
 	if(flags & MAP_FIXED)
 	{
@@ -530,39 +616,12 @@ void* mmap(void* user_start, size_t len, int prot, int flags, int fd, off_t offs
 			goto fail;
 	}
 
-	// figure out access rights.
-	// note: reads are always allowed (Win32 limitation).
-
-	SECURITY_ATTRIBUTES sec = { sizeof(SECURITY_ATTRIBUTES), (void*)0, FALSE };
-	DWORD flProtect = PAGE_READONLY;
-	DWORD dwAccess = FILE_MAP_READ;
-
-	// .. no access: not possible on Win32.
-	if(prot == PROT_NONE)
+	// figure out protection and access rights.
+	DWORD flProtect; DWORD dwAccess;
+	SECURITY_ATTRIBUTES sec; SECURITY_ATTRIBUTES* psec = &sec;
+	err = mmap_access(prot, flags, flProtect, dwAccess, psec);
+	if(err < 0)
 		goto fail;
-	// .. write or read/write (Win32 doesn't support write-only)
-	if(prot & PROT_WRITE)
-	{
-		flProtect = PAGE_READWRITE;
-
-		const bool shared = (flags & MAP_SHARED ) != 0;
-		const bool priv   = (flags & MAP_PRIVATE) != 0;
-		// .. both aren't allowed
-		if(shared && priv)
-			goto fail;
-		// .. changes are shared & written to file
-		else if(shared)
-		{
-			sec.bInheritHandle = TRUE;
-			dwAccess = FILE_MAP_ALL_ACCESS;
-		}
-		// .. private copy-on-write mapping
-		else if(priv)
-		{
-			flProtect = PAGE_WRITECOPY;
-			dwAccess = FILE_MAP_COPY;
-		}
-	}
 
 	// now actually map.
 	const DWORD len_hi = (DWORD)((u64)len >> 32);
@@ -572,7 +631,7 @@ void* mmap(void* user_start, size_t len, int prot, int flags, int fd, off_t offs
 	if(hMap == INVALID_HANDLE_VALUE)
 		// bail now so that MapView.. doesn't overwrite the last error value.
 		goto fail;
-	void* ptr = MapViewOfFileEx(hMap, dwAccess, len_hi, offset, len_lo, start);
+	void* addr = MapViewOfFileEx(hMap, dwAccess, len_hi, offset, len_lo, start);
 
 	// free the mapping object now, so that we don't have to hold on to its
 	// handle until munmap(). it's not actually released yet due to the
@@ -580,18 +639,21 @@ void* mmap(void* user_start, size_t len, int prot, int flags, int fd, off_t offs
 	if(hMap != INVALID_HANDLE_VALUE)	// avoid "invalid handle" error
 		CloseHandle(hMap);
 
-	if(!ptr)
+	if(!addr)
 		// bail now, before the last error value is restored,
 		// but after freeing the mapping object.
 		goto fail;
 
-	debug_assert(!(flags & MAP_FIXED) || (ptr == start));
-		// fixed => ptr = start
+	// make sure we got the requested address if MAP_FIXED was passed.
+	debug_assert(!(flags & MAP_FIXED) || (addr == start));
+
+	err = mprotect(addr, len, prot);
+	debug_assert(err == 0);
 
 	WIN_RESTORE_LAST_ERROR;
-
-	return ptr;
+	return addr;
 	}
+
 fail:
 	return MAP_FAILED;
 }
