@@ -1,11 +1,12 @@
 #include "precompiled.h"
 
+#include <sstream>
+
 #include "ScriptingHost.h"
 #include "ScriptGlue.h"
 #include "CConsole.h"
 #include "Profile.h"
-#include <sstream>
-#include <iostream>
+#include "ps/CLogger.h"
 
 #include "res/res.h"
 
@@ -21,6 +22,8 @@
 #else
 # pragma comment (lib, "js32d.lib")
 #endif
+
+#define LOG_CATEGORY "scriptinghost"
 
 extern CConsole* g_Console;
 
@@ -39,21 +42,22 @@ namespace
 	};
 }
 
-ScriptingHost::ScriptingHost() : m_RunTime(NULL), m_Context(NULL), m_GlobalObject(NULL)
+ScriptingHost::ScriptingHost()
+	: m_RunTime(NULL), m_Context(NULL), m_GlobalObject(NULL)
 {
     m_RunTime = JS_NewRuntime(RUNTIME_MEMORY_ALLOWANCE);
-
-	if (m_RunTime == NULL)
-		throw PSERROR_Scripting_RuntimeCreationFailed();
+	if(!m_RunTime)
+		throw PSERROR_Scripting_SetupFailed();
 
     m_Context = JS_NewContext(m_RunTime, STACK_CHUNK_SIZE);
-
-	if (m_Context == NULL)
-		throw PSERROR_Scripting_ContextCreationFailed();
+	if(!m_Context)
+		throw PSERROR_Scripting_SetupFailed();
 
 	JS_SetErrorReporter(m_Context, ScriptingHost::ErrorReporter);
 
 	m_GlobalObject = JS_NewObject(m_Context, &GlobalClass, NULL, NULL);
+	if(!m_GlobalObject)
+		throw PSERROR_Scripting_SetupFailed();
 
 #ifndef NDEBUG
 	// Register our script and function handlers - note: docs say they don't like
@@ -62,17 +66,14 @@ ScriptingHost::ScriptingHost() : m_RunTime(NULL), m_Context(NULL), m_GlobalObjec
 	JS_SetCallHook( m_RunTime, jshook_function, this );
 #endif
 
-	if (m_GlobalObject == NULL)
-		throw PSERROR_Scripting_GlobalObjectCreationFailed();
-
 	if (JS_InitStandardClasses(m_Context, m_GlobalObject) == JSVAL_FALSE)
-		throw PSERROR_Scripting_StandardClassSetupFailed();
+		throw PSERROR_Scripting_SetupFailed();
 
 	if (JS_DefineFunctions(m_Context, m_GlobalObject, ScriptFunctionTable) == JS_FALSE)
-		throw PSERROR_Scripting_NativeFunctionSetupFailed();
+		throw PSERROR_Scripting_SetupFailed();
 
 	if( JS_DefineProperties( m_Context, m_GlobalObject, ScriptGlobalTable ) == JS_FALSE )
-		throw( std::string( "ScriptingHost: Failed to setup native objects" ) );
+		throw PSERROR_Scripting_SetupFailed();
 }
 
 ScriptingHost::~ScriptingHost()
@@ -92,6 +93,8 @@ ScriptingHost::~ScriptingHost()
 	JS_ShutDown();
 }
 
+// unused
+// TODO: this is valid; replace inlined versions in other code with this.
 void ScriptingHost::LoadScriptFromDisk(const std::string & fileName)
 {
 	const char* fn = fileName.c_str();
@@ -143,6 +146,7 @@ jsval ScriptingHost::ExecuteScript(const CStrW& script, const CStrW& calledFrom,
 	return rval;
 }
 
+// unused
 void ScriptingHost::RegisterFunction(const std::string & functionName, JSNative function, int numArgs)
 {
 	JSFunction * func = JS_DefineFunction(m_Context, m_GlobalObject, functionName.c_str(), function, numArgs, 0);
@@ -273,12 +277,25 @@ void ScriptingHost::SetGlobal(const std::string &globalName, jsval value)
 	JS_SetProperty(m_Context, m_GlobalObject, globalName.c_str(), &value);
 }
 
+// unused
 jsval ScriptingHost::GetGlobal(const std::string &globalName)
 {
 	jsval vp;
 	JS_GetProperty(m_Context, m_GlobalObject, globalName.c_str(), &vp);
 	return vp;
 }
+
+
+
+
+
+
+
+
+
+//----------------------------------------------------------------------------
+// conversions
+//----------------------------------------------------------------------------
 
 int ScriptingHost::ValueToInt(const jsval value)
 {
@@ -352,36 +369,41 @@ double ScriptingHost::ValueToDouble(const jsval value)
 	return d;
 }
 
-void ScriptingHost::ErrorReporter(JSContext * context, const char * message, JSErrorReport * report)
+//----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+// called by SpiderMonkey whenever someone does JS_ReportError.
+// prints that message as well as locus to log, debug output and console.
+void ScriptingHost::ErrorReporter(JSContext* context, const char* message, JSErrorReport* report)
 {
 	UNUSED(context);
 
-	debug_printf("%s(%d) : %s\n", report->filename, report->lineno, message);
+	const char* file = report->filename;
+	const int line   = report->lineno;
+	// apparently there is no further information in this struct we can use
+	// because linebuf/tokenptr require a buffer to have been allocated.
+	// that doesn't look possible since we are a callback and there is
+	// no mention in the dox about where this would happen (typical).
+
+	if(!file)
+		file = "(current document)";
+	if(!message)
+		message = "No error message available";
+
+	debug_printf("%s(%d): %s\n", file, line, message);
 
 	if (g_Console)
-	{
-		if (message)
-		{
-			g_Console->InsertMessage( L"JavaScript Error (%hs, line %d): %hs", report->filename, report->lineno, message );
-		}
-		else
-			g_Console->InsertMessage( L"JavaScript Error (%hs, line %d): No error message available", report->filename, report->lineno );
-	
-	}
+		g_Console->InsertMessage(L"JavaScript Error (%hs, line %d): %hs", file, line, message);
 
-	if (report->filename != NULL)
-	{
-		std::cout << report->filename << " (" << report->lineno << ") ";
-	}
-
-	if (message != NULL)
-	{
-		std::cout << message << std::endl;
-	}
-	else
-	{
-		std::cout << "No error message available" << std::endl;
-	}
+	LOG(ERROR, LOG_CATEGORY, "JavaScript Error (%s, line %d): %s", file, line, message);
 }
 
 #ifndef NDEBUG

@@ -5,11 +5,7 @@
 #include "ps/Errors.h"
 
 ERROR_GROUP(Scripting);
-ERROR_TYPE(Scripting, RuntimeCreationFailed);
-ERROR_TYPE(Scripting, ContextCreationFailed);
-ERROR_TYPE(Scripting, GlobalObjectCreationFailed);
-ERROR_TYPE(Scripting, StandardClassSetupFailed);
-ERROR_TYPE(Scripting, NativeFunctionSetupFailed);
+ERROR_TYPE(Scripting, SetupFailed);
 
 ERROR_SUBGROUP(Scripting, LoadFile);
 ERROR_TYPE(Scripting_LoadFile, OpenFailed);
