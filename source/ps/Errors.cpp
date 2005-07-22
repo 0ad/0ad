@@ -28,19 +28,15 @@ class PSERROR_Game_World_MapLoadFailed : public PSERROR_Game_World { public: PSR
 class PSERROR_I18n_Script_SetupFailed : public PSERROR_I18n_Script { public: PSRETURN getCode() const; };
 class PSERROR_Renderer_VBOFailed : public PSERROR_Renderer { public: PSRETURN getCode() const; };
 class PSERROR_Scripting_CallFunctionFailed : public PSERROR_Scripting { public: PSRETURN getCode() const; };
-class PSERROR_Scripting_ContextCreationFailed : public PSERROR_Scripting { public: PSRETURN getCode() const; };
 class PSERROR_Scripting_ConversionFailed : public PSERROR_Scripting { public: PSRETURN getCode() const; };
 class PSERROR_Scripting_CreateObjectFailed : public PSERROR_Scripting { public: PSRETURN getCode() const; };
 class PSERROR_Scripting_DefineConstantFailed : public PSERROR_Scripting { public: PSRETURN getCode() const; };
 class PSERROR_Scripting_DefineType_AlreadyExists : public PSERROR_Scripting_DefineType { public: PSRETURN getCode() const; };
 class PSERROR_Scripting_DefineType_CreationFailed : public PSERROR_Scripting_DefineType { public: PSRETURN getCode() const; };
-class PSERROR_Scripting_GlobalObjectCreationFailed : public PSERROR_Scripting { public: PSRETURN getCode() const; };
 class PSERROR_Scripting_LoadFile_EvalErrors : public PSERROR_Scripting_LoadFile { public: PSRETURN getCode() const; };
 class PSERROR_Scripting_LoadFile_OpenFailed : public PSERROR_Scripting_LoadFile { public: PSRETURN getCode() const; };
-class PSERROR_Scripting_NativeFunctionSetupFailed : public PSERROR_Scripting { public: PSRETURN getCode() const; };
 class PSERROR_Scripting_RegisterFunctionFailed : public PSERROR_Scripting { public: PSRETURN getCode() const; };
-class PSERROR_Scripting_RuntimeCreationFailed : public PSERROR_Scripting { public: PSRETURN getCode() const; };
-class PSERROR_Scripting_StandardClassSetupFailed : public PSERROR_Scripting { public: PSRETURN getCode() const; };
+class PSERROR_Scripting_SetupFailed : public PSERROR_Scripting { public: PSRETURN getCode() const; };
 class PSERROR_Scripting_TypeDoesNotExist : public PSERROR_Scripting { public: PSRETURN getCode() const; };
 class PSERROR_System_RequiredExtensionsMissing : public PSERROR_System { public: PSRETURN getCode() const; };
 class PSERROR_System_SDLInitFailed : public PSERROR_System { public: PSRETURN getCode() const; };
@@ -61,16 +57,12 @@ extern const PSRETURN PSRETURN_Scripting_DefineType_CreationFailed = 0x07010002;
 extern const PSRETURN PSRETURN_Scripting_LoadFile_EvalErrors = 0x07020001;
 extern const PSRETURN PSRETURN_Scripting_LoadFile_OpenFailed = 0x07020002;
 extern const PSRETURN PSRETURN_Scripting_CallFunctionFailed = 0x07000001;
-extern const PSRETURN PSRETURN_Scripting_ContextCreationFailed = 0x07000002;
-extern const PSRETURN PSRETURN_Scripting_ConversionFailed = 0x07000003;
-extern const PSRETURN PSRETURN_Scripting_CreateObjectFailed = 0x07000004;
-extern const PSRETURN PSRETURN_Scripting_DefineConstantFailed = 0x07000005;
-extern const PSRETURN PSRETURN_Scripting_GlobalObjectCreationFailed = 0x07000006;
-extern const PSRETURN PSRETURN_Scripting_NativeFunctionSetupFailed = 0x07000007;
-extern const PSRETURN PSRETURN_Scripting_RegisterFunctionFailed = 0x07000008;
-extern const PSRETURN PSRETURN_Scripting_RuntimeCreationFailed = 0x07000009;
-extern const PSRETURN PSRETURN_Scripting_StandardClassSetupFailed = 0x0700000a;
-extern const PSRETURN PSRETURN_Scripting_TypeDoesNotExist = 0x0700000b;
+extern const PSRETURN PSRETURN_Scripting_ConversionFailed = 0x07000002;
+extern const PSRETURN PSRETURN_Scripting_CreateObjectFailed = 0x07000003;
+extern const PSRETURN PSRETURN_Scripting_DefineConstantFailed = 0x07000004;
+extern const PSRETURN PSRETURN_Scripting_RegisterFunctionFailed = 0x07000005;
+extern const PSRETURN PSRETURN_Scripting_SetupFailed = 0x07000006;
+extern const PSRETURN PSRETURN_Scripting_TypeDoesNotExist = 0x07000007;
 extern const PSRETURN PSRETURN_System_RequiredExtensionsMissing = 0x08000001;
 extern const PSRETURN PSRETURN_System_SDLInitFailed = 0x08000002;
 extern const PSRETURN PSRETURN_System_VmodeFailed = 0x08000003;
@@ -130,26 +122,18 @@ extern const PSRETURN MASK__PSRETURN_Scripting_LoadFile_OpenFailed = 0xffffffff;
 extern const PSRETURN CODE__PSRETURN_Scripting_LoadFile_OpenFailed = 0x07020002;
 extern const PSRETURN MASK__PSRETURN_Scripting_CallFunctionFailed = 0xffffffff;
 extern const PSRETURN CODE__PSRETURN_Scripting_CallFunctionFailed = 0x07000001;
-extern const PSRETURN MASK__PSRETURN_Scripting_ContextCreationFailed = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Scripting_ContextCreationFailed = 0x07000002;
 extern const PSRETURN MASK__PSRETURN_Scripting_ConversionFailed = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Scripting_ConversionFailed = 0x07000003;
+extern const PSRETURN CODE__PSRETURN_Scripting_ConversionFailed = 0x07000002;
 extern const PSRETURN MASK__PSRETURN_Scripting_CreateObjectFailed = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Scripting_CreateObjectFailed = 0x07000004;
+extern const PSRETURN CODE__PSRETURN_Scripting_CreateObjectFailed = 0x07000003;
 extern const PSRETURN MASK__PSRETURN_Scripting_DefineConstantFailed = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Scripting_DefineConstantFailed = 0x07000005;
-extern const PSRETURN MASK__PSRETURN_Scripting_GlobalObjectCreationFailed = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Scripting_GlobalObjectCreationFailed = 0x07000006;
-extern const PSRETURN MASK__PSRETURN_Scripting_NativeFunctionSetupFailed = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Scripting_NativeFunctionSetupFailed = 0x07000007;
+extern const PSRETURN CODE__PSRETURN_Scripting_DefineConstantFailed = 0x07000004;
 extern const PSRETURN MASK__PSRETURN_Scripting_RegisterFunctionFailed = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Scripting_RegisterFunctionFailed = 0x07000008;
-extern const PSRETURN MASK__PSRETURN_Scripting_RuntimeCreationFailed = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Scripting_RuntimeCreationFailed = 0x07000009;
-extern const PSRETURN MASK__PSRETURN_Scripting_StandardClassSetupFailed = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Scripting_StandardClassSetupFailed = 0x0700000a;
+extern const PSRETURN CODE__PSRETURN_Scripting_RegisterFunctionFailed = 0x07000005;
+extern const PSRETURN MASK__PSRETURN_Scripting_SetupFailed = 0xffffffff;
+extern const PSRETURN CODE__PSRETURN_Scripting_SetupFailed = 0x07000006;
 extern const PSRETURN MASK__PSRETURN_Scripting_TypeDoesNotExist = 0xffffffff;
-extern const PSRETURN CODE__PSRETURN_Scripting_TypeDoesNotExist = 0x0700000b;
+extern const PSRETURN CODE__PSRETURN_Scripting_TypeDoesNotExist = 0x07000007;
 extern const PSRETURN MASK__PSRETURN_System_RequiredExtensionsMissing = 0xffffffff;
 extern const PSRETURN CODE__PSRETURN_System_RequiredExtensionsMissing = 0x08000001;
 extern const PSRETURN MASK__PSRETURN_System_SDLInitFailed = 0xffffffff;
@@ -174,23 +158,19 @@ PSRETURN PSERROR_Scripting_DefineType_CreationFailed::getCode() const { return 0
 PSRETURN PSERROR_Scripting_LoadFile_EvalErrors::getCode() const { return 0x07020001; }
 PSRETURN PSERROR_Scripting_LoadFile_OpenFailed::getCode() const { return 0x07020002; }
 PSRETURN PSERROR_Scripting_CallFunctionFailed::getCode() const { return 0x07000001; }
-PSRETURN PSERROR_Scripting_ContextCreationFailed::getCode() const { return 0x07000002; }
-PSRETURN PSERROR_Scripting_ConversionFailed::getCode() const { return 0x07000003; }
-PSRETURN PSERROR_Scripting_CreateObjectFailed::getCode() const { return 0x07000004; }
-PSRETURN PSERROR_Scripting_DefineConstantFailed::getCode() const { return 0x07000005; }
-PSRETURN PSERROR_Scripting_GlobalObjectCreationFailed::getCode() const { return 0x07000006; }
-PSRETURN PSERROR_Scripting_NativeFunctionSetupFailed::getCode() const { return 0x07000007; }
-PSRETURN PSERROR_Scripting_RegisterFunctionFailed::getCode() const { return 0x07000008; }
-PSRETURN PSERROR_Scripting_RuntimeCreationFailed::getCode() const { return 0x07000009; }
-PSRETURN PSERROR_Scripting_StandardClassSetupFailed::getCode() const { return 0x0700000a; }
-PSRETURN PSERROR_Scripting_TypeDoesNotExist::getCode() const { return 0x0700000b; }
+PSRETURN PSERROR_Scripting_ConversionFailed::getCode() const { return 0x07000002; }
+PSRETURN PSERROR_Scripting_CreateObjectFailed::getCode() const { return 0x07000003; }
+PSRETURN PSERROR_Scripting_DefineConstantFailed::getCode() const { return 0x07000004; }
+PSRETURN PSERROR_Scripting_RegisterFunctionFailed::getCode() const { return 0x07000005; }
+PSRETURN PSERROR_Scripting_SetupFailed::getCode() const { return 0x07000006; }
+PSRETURN PSERROR_Scripting_TypeDoesNotExist::getCode() const { return 0x07000007; }
 PSRETURN PSERROR_System_RequiredExtensionsMissing::getCode() const { return 0x08000001; }
 PSRETURN PSERROR_System_SDLInitFailed::getCode() const { return 0x08000002; }
 PSRETURN PSERROR_System_VmodeFailed::getCode() const { return 0x08000003; }
 PSRETURN PSERROR_Xeromyces_XMLOpenFailed::getCode() const { return 0x09000001; }
 PSRETURN PSERROR_Xeromyces_XMLParseError::getCode() const { return 0x09000002; }
 
-const char* PSERROR::what() const throw ()
+const char* PSERROR::what() const
 {
 	return GetErrorString(getCode());
 }
@@ -217,16 +197,12 @@ const char* GetErrorString(PSRETURN code)
 	case 0x07020001: return "Scripting_LoadFile_EvalErrors";
 	case 0x07020002: return "Scripting_LoadFile_OpenFailed";
 	case 0x07000001: return "Scripting_CallFunctionFailed";
-	case 0x07000002: return "Scripting_ContextCreationFailed";
-	case 0x07000003: return "Scripting_ConversionFailed";
-	case 0x07000004: return "Scripting_CreateObjectFailed";
-	case 0x07000005: return "Scripting_DefineConstantFailed";
-	case 0x07000006: return "Scripting_GlobalObjectCreationFailed";
-	case 0x07000007: return "Scripting_NativeFunctionSetupFailed";
-	case 0x07000008: return "Scripting_RegisterFunctionFailed";
-	case 0x07000009: return "Scripting_RuntimeCreationFailed";
-	case 0x0700000a: return "Scripting_StandardClassSetupFailed";
-	case 0x0700000b: return "Scripting_TypeDoesNotExist";
+	case 0x07000002: return "Scripting_ConversionFailed";
+	case 0x07000003: return "Scripting_CreateObjectFailed";
+	case 0x07000004: return "Scripting_DefineConstantFailed";
+	case 0x07000005: return "Scripting_RegisterFunctionFailed";
+	case 0x07000006: return "Scripting_SetupFailed";
+	case 0x07000007: return "Scripting_TypeDoesNotExist";
 	case 0x08000001: return "System_RequiredExtensionsMissing";
 	case 0x08000002: return "System_SDLInitFailed";
 	case 0x08000003: return "System_VmodeFailed";
@@ -254,16 +230,12 @@ void ThrowError(PSRETURN code)
 	case 0x07020001: throw PSERROR_Scripting_LoadFile_EvalErrors(); break;
 	case 0x07020002: throw PSERROR_Scripting_LoadFile_OpenFailed(); break;
 	case 0x07000001: throw PSERROR_Scripting_CallFunctionFailed(); break;
-	case 0x07000002: throw PSERROR_Scripting_ContextCreationFailed(); break;
-	case 0x07000003: throw PSERROR_Scripting_ConversionFailed(); break;
-	case 0x07000004: throw PSERROR_Scripting_CreateObjectFailed(); break;
-	case 0x07000005: throw PSERROR_Scripting_DefineConstantFailed(); break;
-	case 0x07000006: throw PSERROR_Scripting_GlobalObjectCreationFailed(); break;
-	case 0x07000007: throw PSERROR_Scripting_NativeFunctionSetupFailed(); break;
-	case 0x07000008: throw PSERROR_Scripting_RegisterFunctionFailed(); break;
-	case 0x07000009: throw PSERROR_Scripting_RuntimeCreationFailed(); break;
-	case 0x0700000a: throw PSERROR_Scripting_StandardClassSetupFailed(); break;
-	case 0x0700000b: throw PSERROR_Scripting_TypeDoesNotExist(); break;
+	case 0x07000002: throw PSERROR_Scripting_ConversionFailed(); break;
+	case 0x07000003: throw PSERROR_Scripting_CreateObjectFailed(); break;
+	case 0x07000004: throw PSERROR_Scripting_DefineConstantFailed(); break;
+	case 0x07000005: throw PSERROR_Scripting_RegisterFunctionFailed(); break;
+	case 0x07000006: throw PSERROR_Scripting_SetupFailed(); break;
+	case 0x07000007: throw PSERROR_Scripting_TypeDoesNotExist(); break;
 	case 0x08000001: throw PSERROR_System_RequiredExtensionsMissing(); break;
 	case 0x08000002: throw PSERROR_System_SDLInitFailed(); break;
 	case 0x08000003: throw PSERROR_System_VmodeFailed(); break;
