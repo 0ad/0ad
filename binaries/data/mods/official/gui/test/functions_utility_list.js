@@ -10,10 +10,9 @@
  ***************************************
 */
 
+// Remove the item at the given index (pos) from the given list object (objectName).
 function removeItem (objectName, pos)
 {
-	// Remove the item at the given index (pos) from the given list object (objectName).
-
 	var list = getGUIObjectByName (objectName).list;
 	var selected = getGUIObjectByName (objectName).selected;
 
@@ -38,10 +37,9 @@ function removeItem (objectName, pos)
 
 // ====================================================================
 
+// Add the item at the given index (pos) to the given list object (objectName) with the given value (value).
 function addItem (objectName, pos, value)
 {
-	// Add the item at the given index (pos) to the given list object (objectName) with the given value (value).
-
 	var list = getGUIObjectByName (objectName).list;
 	var selected = getGUIObjectByName (objectName).selected;
 
@@ -62,20 +60,20 @@ function addItem (objectName, pos, value)
 // ====================================================================
 
 // Adds an element to the end of the list
-function pushItem(objectName, value)
+function pushItem (objectName, value)
 {
-	var list = getGUIObjectByName(objectName).list;
-	list.push(value);
-	getGUIObjectByName(objectName).list = list;
+	var list = getGUIObjectByName (objectName).list;
+	list.push (value);
+	getGUIObjectByName (objectName).list = list;
 	// No need to update selection
 }
 
 // ====================================================================
 
 // Removes the last element
-function popItem(objectName)
+function popItem (objectName)
 {
-	var selected = getGUIObjectByName(objectName).selected;
+	var selected = getGUIObjectByName (objectName).selected;
 	removeItem(objectName, getNumItems(objectName)-1);
 
 	If (selected == getNumItems(objectName)-1)
@@ -87,7 +85,7 @@ function popItem(objectName)
 // ====================================================================
 
 // Retrieves the number of elements in the list
-function getNumItems(objectName)
+function getNumItems (objectName)
 {
 	var list = getGUIObjectByName(objectName).list;
 	return list.length;
@@ -96,7 +94,7 @@ function getNumItems(objectName)
 // ====================================================================
 
 // Retrieves the value of the item at 'pos'
-function getItemValue(objectName, pos)
+function getItemValue (objectName, pos)
 {
 	var list = getGUIObjectByName(objectName).list;
 	return list[pos];
@@ -105,7 +103,7 @@ function getItemValue(objectName, pos)
 // ====================================================================
 
 // Retrieves the value of the currently selected item
-function getCurItemValue(objectName)
+function getCurrItemValue (objectName)
 {
 	if (getGUIObjectByName(objectName).selected == -1)
 		return "";

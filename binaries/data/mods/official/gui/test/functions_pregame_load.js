@@ -115,7 +115,7 @@ function SetupSession (GameMode)
         // Initialise Resource Pools by attaching them to the Player object.
         // (CPlayer code takes care of giving a copy to each player.)
         CreateResources();
-/*
+
 	if (GameMode == "0")
 	{
 		// Set up a bunch of players so we can see them pretty colours. :P
@@ -128,7 +128,7 @@ function SetupSession (GameMode)
 			console.write ("Slot "+(i+1)+" is assigned: " + g_GameAttributes.slots[i+1].assignment);
 		}
 	}
-*/
+
 	// Set starting UI layout.
         FlipGUI(GUIType);
 

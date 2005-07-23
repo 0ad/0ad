@@ -728,8 +728,8 @@
 						// (Is there an equivalent "basename" function for that in JS?)
 						mapArray[mapIndex] = mapArray[mapIndex].substring (mapPath.length, mapArray[mapIndex].length-4)
 
-						// Add map name to the object's list.
-						addItem (this.name, mapIndex, mapArray[mapIndex]);
+						// Add map name to the end of the object's list.
+						pushItem (this.name, mapArray[mapIndex]);
 					}
 
 					// Set default value (pick whatever's at the top of the list).
@@ -749,8 +749,7 @@
 				size="50%-100 100%-50 50%-10 100%-20" 
 			>Start Game
 				<action on="Press"><![CDATA[
-					StartMap (getGUIObjectByName("pregame_sp_mapname").list[getGUIObjectByName("pregame_sp_mapname").selected],
-						"pregame_sp_mapsel", 0);
+					StartMap ( getCurrItemValue ("pregame_sp_mapname"), "pregame_sp_mapsel", 0);
 				]]></action>
 			</object>
 
