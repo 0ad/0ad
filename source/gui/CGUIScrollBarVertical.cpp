@@ -41,7 +41,7 @@ void CGUIScrollBarVertical::Draw()
 		CRect outline = GetOuterRect();
 
 		// Draw background
-		/*GetGUI()->DrawSprite(GetStyle()->m_SpriteBackVertical,
+		GetGUI()->DrawSprite(GetStyle()->m_SpriteBackVertical,
 							 0,
 							 m_Z+0.1f, 
 							 CRect(outline.left,
@@ -49,7 +49,7 @@ void CGUIScrollBarVertical::Draw()
 								   outline.right,
 								   outline.bottom-(m_UseEdgeButtons?GetStyle()->m_Width:0))
 							 );
-*/
+
 		if (m_UseEdgeButtons)
 		{
 			// Get Appropriate sprites

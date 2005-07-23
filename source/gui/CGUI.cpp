@@ -122,8 +122,9 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 										&IGUIObject::ChooseMouseOverAndClosest, 
 										pNearest);
 
-		if (ev->type == SDL_MOUSEMOTION && pNearest)
-			pNearest->ScriptEvent("mousemove");
+		// Is placed in the UpdateMouseOver function
+		//if (ev->type == SDL_MOUSEMOTION && pNearest)
+		//	pNearest->ScriptEvent("mousemove");
 
 		// Now we'll call UpdateMouseOver on *all* objects,
 		//  we'll input the one hovered, and they will each
@@ -163,6 +164,8 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 				}
 				break;
 
+			// TODO Gee (!!!): This is weird, I've tested this, and mousewheelup is
+			//  what I would call mousewheeldown!
 			case SDL_BUTTON_WHEELDOWN: // wheel down
 				if (pNearest)
 				{
@@ -177,7 +180,7 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 				if (pNearest)
 				{
 					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_WHEEL_UP));
-					pNearest->ScriptEvent("mousewheelup");
+					pNearest->ScriptEvent("mousewheelup"); 
 
 					ret = EV_HANDLED;
 				}

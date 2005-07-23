@@ -17,6 +17,8 @@ using namespace std;
 //-------------------------------------------------------------------
 CList::CList()
 {
+	// Add sprite_disabled! TODO
+
 	AddSetting(GUIST_float,					"buffer_zone");
 	//AddSetting(GUIST_CGUIString,			"caption"); will it break removing this? If I know my system, then no, but test just in case TODO (Gee).
 	AddSetting(GUIST_CStr,					"font");
@@ -155,6 +157,8 @@ void CList::HandleMessage(const SGUIMessage &Message)
 		// If selected is changed, call "SelectionChange"
 		if (Message.value == "selected")
 		{
+			// TODO: Check range
+
 			// TODO only works if lower-case, shouldn't it be made case sensitive instead?
 			ScriptEvent("selectionchange"); 
 		}

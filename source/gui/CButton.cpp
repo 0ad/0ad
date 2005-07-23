@@ -19,12 +19,12 @@ CButton::CButton()
 {
 	AddSetting(GUIST_float,					"buffer_zone");
 	AddSetting(GUIST_CGUIString,			"caption");
+	AddSetting(GUIST_int,					"cell_id");
 	AddSetting(GUIST_CStr,					"font");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_over");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_pressed");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_disabled");
-	AddSetting(GUIST_int,					"cell_id");
 	AddSetting(GUIST_EAlign,				"text_align");
 	AddSetting(GUIST_EVAlign,				"text_valign");
 	AddSetting(GUIST_CColor,				"textcolor");

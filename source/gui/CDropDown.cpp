@@ -17,20 +17,22 @@ using namespace std;
 //-------------------------------------------------------------------
 CDropDown::CDropDown() : m_Open(false), m_HideScrollBar(false), m_ElementHighlight(-1)
 {
+	AddSetting(GUIST_float,					"button_width");
 	AddSetting(GUIST_float,					"dropdown_size");
 	AddSetting(GUIST_float,					"dropdown_buffer");
-	AddSetting(GUIST_CStr,					"font");
-	AddSetting(GUIST_CGUISpriteInstance,	"sprite");				// Background that sits around the size
+//	AddSetting(GUIST_CStr,					"font");
+//	AddSetting(GUIST_CGUISpriteInstance,	"sprite");				// Background that sits around the size
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_list");			// Background of the drop down list
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite2");				// Button that sits to the right
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite2_over");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite2_pressed");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite2_disabled");
-	AddSetting(GUIST_float,					"button_width");
 	AddSetting(GUIST_EVAlign,				"text_valign");
-	AddSetting(GUIST_CColor,				"textcolor_over");
-	AddSetting(GUIST_CColor,				"textcolor_pressed");
-	AddSetting(GUIST_CColor,				"textcolor_disabled");
+	
+	// Add these in CList! And implement TODO
+	//AddSetting(GUIST_CColor,				"textcolor_over");
+	//AddSetting(GUIST_CColor,				"textcolor_pressed");
+	//AddSetting(GUIST_CColor,				"textcolor_disabled");
 
 	// Scrollbar is forced to be true.
 	GUI<bool>::SetSetting(this, "scrollbar", true);
@@ -315,8 +317,11 @@ void CDropDown::Draw()
 			GetGUI()->DrawSprite(*sprite2, cell_id, bz+0.05f, rect);
 	}
 
-	CPos pos(m_CachedActualSize.left, m_CachedActualSize.top);
-	IGUITextOwner::Draw(selected, color, pos, bz+0.1f);
+	if (selected != -1) // TODO: Maybe check validity completely?
+	{
+		CPos pos(m_CachedActualSize.left, m_CachedActualSize.top);
+		IGUITextOwner::Draw(selected, color, pos, bz+0.1f);
+	}
 
 
 	bool *scrollbar=NULL, old;

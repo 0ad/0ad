@@ -206,7 +206,7 @@ void IGUIObject::UpdateMouseOver(IGUIObject * const &pMouseOver)
 
 		// call mouse over
 		HandleMessage(GUIM_MOUSE_OVER);
-		ScriptEvent("mouseover");
+		ScriptEvent("mousemove");
 	}
 	else // Some other object (or none) is hovered
 	{

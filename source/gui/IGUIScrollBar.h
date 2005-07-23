@@ -263,13 +263,13 @@ public:
 	 * Set content length
 	 * @param range Maximum scrollable range
 	 */
-	void SetScrollRange(const float &range) { m_ScrollRange = MAX(range, 1.f); SetupBarSize(); }
+	void SetScrollRange(const float &range) { m_ScrollRange = MAX(range, 1.f); SetupBarSize(); UpdatePosBoundaries(); }
 
 	/**
 	 * Set space that is visible in the scrollable control.
 	 * @param space Visible area in the scrollable control.
 	 */
-	void SetScrollSpace(const float &space) { m_ScrollSpace = space; SetupBarSize(); }
+	void SetScrollSpace(const float &space) { m_ScrollSpace = space; SetupBarSize(); UpdatePosBoundaries(); }
 
 	/**
 	 * Set bar pressed
