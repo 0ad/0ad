@@ -372,6 +372,12 @@
 						messageBox(400, 200, "Error creating server.", "Error", 0, new array(), new array());
 					}
 
+					// Set the title for the setup screen
+					getGUIObjectByName("pregame_mp_setup_host_titlebar").caption = "Hosting: " + getGUIObjectByName("pregame_mp_host_gamename").caption;
+
+					// Set the host player's name on the setup screen
+					getGUIObjectByName("pregame_mp_setup_host_p1_txt").caption = "P1: " + getGUIObjectByName("pregame_mp_modesel_playername").caption + " (Host)";
+
 					server.onClientConnect =  function (event) 
 						{
 							console.write("A new client has successfully connected! ID: " + event.id + ", Name: " + event.name + ", Session: " + event.session);
@@ -506,9 +512,6 @@
 				style="0ad_window_titlebar"
 				type="button"
 			>
-	                        <action on="Load"><![CDATA[
-	                                this.caption = "Hosting: " + getGUIObjectByName("pregame_mp_host_gamename").caption;
-	                        ]]></action>
 			</object>
 
 			<object name="pregame_mp_setup_host_exit_button"
@@ -540,9 +543,6 @@
 				type="text"
 				size="30 50 320 80"
 			>
-				<action on="Load"><![CDATA[
-					this.caption = "P1: " + getGUIObjectByName("pregame_mp_modesel_playername").caption + " (Host)";
-				]]></action>
 			</object>
 
 			<object name="pregame_mp_setup_host_p2_txt"
@@ -657,6 +657,8 @@
 				size="50%+25 540 50%+125 570"
 			>Cancel
 				<action on="Press"><![CDATA[
+					// terminate the multiplayer server session
+					endGame();
 					guiSwitch ("pregame_mp_setup_host", "pregame_mp_modesel");
 				]]></action>
 			</object>
