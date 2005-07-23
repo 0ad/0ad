@@ -343,31 +343,31 @@ void CList::DrawList(const int &selected,
 			debug_assert(selected >= 0 && selected+1 < (int)m_ItemsYPositions.size());
 
 			// Get rectangle of selection:
-			CRect rect(rect.left, rect.top + m_ItemsYPositions[selected] - scroll,
-					   rect.right, rect.top + m_ItemsYPositions[selected+1] - scroll);
+			CRect rect_sel(rect.left, rect.top + m_ItemsYPositions[selected] - scroll,
+					       rect.right, rect.top + m_ItemsYPositions[selected+1] - scroll);
 
-			if (rect.top <= rect.bottom &&
-				rect.bottom >= rect.top) // TODO: "warning C6287: redundant code: the left and right sub-expressions are identical"
+			if (rect_sel.top <= rect.bottom &&
+				rect_sel.bottom >= rect.top)
 			{
-				if (rect.bottom > rect.bottom)
-					rect.bottom = rect.bottom;
-				if (rect.top < rect.top)
-					rect.top = rect.top;
+				if (rect_sel.bottom > rect.bottom)
+					rect_sel.bottom = rect.bottom;
+				if (rect_sel.top < rect.top)
+					rect_sel.top = rect.top;
 
 				if (scrollbar)
 				{
 					// Remove any overlapping area of the scrollbar.
 
-					if (rect.right > GetScrollBar(0).GetOuterRect().left &&
-						rect.right <= GetScrollBar(0).GetOuterRect().right)
-						rect.right = GetScrollBar(0).GetOuterRect().left;
+					if (rect_sel.right > GetScrollBar(0).GetOuterRect().left &&
+						rect_sel.right <= GetScrollBar(0).GetOuterRect().right)
+						rect_sel.right = GetScrollBar(0).GetOuterRect().left;
 
-					if (rect.left >= GetScrollBar(0).GetOuterRect().left &&
-						rect.left < GetScrollBar(0).GetOuterRect().right)
-						rect.left = GetScrollBar(0).GetOuterRect().right;
+					if (rect_sel.left >= GetScrollBar(0).GetOuterRect().left &&
+						rect_sel.left < GetScrollBar(0).GetOuterRect().right)
+						rect_sel.left = GetScrollBar(0).GetOuterRect().right;
 				}
 
-				GetGUI()->DrawSprite(*sprite_selectarea, cell_id, bz+0.05f, rect);
+				GetGUI()->DrawSprite(*sprite_selectarea, cell_id, bz+0.05f, rect_sel);
 			}
 		}
 
