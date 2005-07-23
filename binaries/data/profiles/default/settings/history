@@ -1,5 +1,3 @@
-?new Projectile( "props/weapon/weap_arrow_front.xml", Vector3D( this.position.x, this.position.y + 5, this.position.z ), target, 12, this );
-?new Projectile( "props/weapon/weap_arrow_front.xml", Vector3D( this.position.x, this.position.y + 2.5, this.position.z ), target, 12, this );
 ?new Projectile( "props/weapon/weap_arrow_front.xml", Vector3D( this.position.x, this.position.y + 2.5, this.position.z ), target, 12, this );
 ?new Projectile( "props/weapon/weap_arrow_front.xml", Vector3D( this.position.x, this.position.y + 2.5, this.position.z ), target, 12, this );
 ?new Projectile( "props/weapon/weap_arrow_front.xml", Vector3D( this.position.x, this.position.y + 2.5, this.position.z ), target, 12, this );
@@ -48,3 +46,5 @@
 quit
 quit()
 exit
+exit
+1+1
