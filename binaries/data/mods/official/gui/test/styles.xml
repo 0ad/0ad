@@ -25,7 +25,7 @@
 
 	<!--
 	==========================================
-	- STYLE - GLOBAL - BEIGE MENU SKIN - PANES
+	- STYLE - GLOBAL - WHEAT SKIN - PANES
 	==========================================
 	-->
 
@@ -43,7 +43,7 @@
 
 	<!--
 	==========================================
-	- STYLE - GLOBAL - BEIGE MENU SKIN - CONTROLS
+	- STYLE - GLOBAL - WHEAT SKIN - CONTROLS
 	==========================================
 	-->
 
@@ -97,45 +97,168 @@
 
 	<!--
 	==========================================
-	- STYLE - GLOBAL - BEIGE MENU SKIN - TEXT
+	- STYLE - GLOBAL - WHEAT SKIN - TEXT
 	==========================================
 	-->
+		<!--
+		=============================================================
+		- STYLE - GLOBAL - WHEAT SKIN - TEXT - LARGE HEADING
+		- Standard text. Largest heading. (eg "Player Slots" in host screen.)
+		=============================================================
+		-->
 
-	<style 	name="text_prospero16_gold"
-		ghost="true"
-		font="prospero16"
-		textcolor="237 227 167"
-	/>
+		<style 	name="wheatTextHeadMaxBlack"
+			ghost="true"
+			font="giovanni22bold"
+			text_align="center"
+			textcolor="0 0 0"
+		/>
 
-	<style 	name="text_prospero16_white"
-		ghost="true"
-		font="prospero16"
-		textcolor="255 255 255"
-	/>
+		<!--
+		=============================================================
+		- STYLE - GLOBAL - WHEAT SKIN - TEXT - HEADING
+		- Standard text. Heading. (eg "Player Name").
+		=============================================================
+		-->
 
-	<style 	name="text_tahoma16_black"
-		ghost="true"
-		font="tahoma16"
-		textcolor="0 0 0"
-	/>
+		<style 	name="wheatTextHeadBlack"
+			ghost="true"
+			font="tahoma16"
+			textcolor="0 0 0"
+		/>
 
-	<style 	name="text_tahoma16_black_right"
-		ghost="true"
-		font="tahoma16"
-		text_align="right"
-		textcolor="0 0 0"
-	/>
+		<style 	name="wheatTextHeadWhite"
+			ghost="true"
+			font="tahoma16"
+			textcolor="255 255 255"
+		/>
 
-	<style 	name="text_giovanni22bold_black"
-		ghost="true"
-		font="giovanni22bold"
-		text_align="center"
-		textcolor="0 0 0"
-	/>
+		<style 	name="wheatTextHeadBlackRt"
+			ghost="true"
+			font="tahoma16"
+			text_align="right"
+			textcolor="0 0 0"
+		/>
+
+		<!--
+		=============================================================
+		- STYLE - GLOBAL - WHEAT SKIN - TEXT - SUBHEADING
+		- Standard text. Subheading.
+		=============================================================
+		-->
+
+		<style 	name="wheatTextHeadSubBlack"
+			ghost="true"
+			font="tahoma14"
+			textcolor="0 0 0"
+		/>
+
+		<!--
+		=============================================================
+		- STYLE - GLOBAL - WHEAT SKIN - TEXT - LABEL
+		- Standard text. Plain medium text (eg window text). Default.
+		=============================================================
+		-->
+
+		<style 	name="wheatTextLabelBlack"
+			ghost="true"
+			font="verdana12"
+			textcolor="0 0 0"
+		/>
+
+		<!--
+		=============================================================
+		- STYLE - GLOBAL - WHEAT SKIN - TEXT - SUB LABEL
+		- Standard text. Plain smaller label.
+		=============================================================
+		-->
+
+		<style 	name="wheatTextSubLabelBlack"
+			ghost="true"
+			font="verdana11"
+			textcolor="0 0 0"
+		/>
+
+		<!--
+		=============================================================
+		- STYLE - GLOBAL - WHEAT SKIN - TEXT - FOOTNOTE MAX
+		- Standard text. Large footnote.
+		=============================================================
+		-->
+
+		<style 	name="wheatTextFootMaxBlack"
+			ghost="true"
+			font="verdana10"
+			textcolor="0 0 0"
+		/>
+
+		<!--
+		=============================================================
+		- STYLE - GLOBAL - WHEAT SKIN - TEXT - FOOTNOTE
+		- Standard text. Normal footnote.
+		=============================================================
+		-->
+
+		<style 	name="wheatTextFootBlack"
+			ghost="true"
+			font="verdana9"
+			textcolor="0 0 0"
+		/>
+
+		<!--
+		=============================================================
+		- STYLE - GLOBAL - WHEAT SKIN - TEXT - SUBFOOTNOTE
+		- Standard text. Small subfootnote.
+		=============================================================
+		-->
+
+		<style 	name="wheatTextFootSubBlack"
+			ghost="true"
+			font="verdana8"
+			textcolor="0 0 0"
+		/>
+
+		<!--
+		=============================================================
+		- STYLE - GLOBAL - WHEAT SKIN - TEXT - FANCY - TITLEBAR
+		- Large and ornate. eg Window titlebar.
+		=============================================================
+		-->
+
+		<style 	name="fancyTextTitleGold"
+			ghost="true"
+			font="prospero18"
+			textcolor="237 227 167"
+		/>
+
+		<style 	name="fancyTextTitleWhite"
+			ghost="true"
+			font="prospero18"
+			textcolor="255 255 255"
+		/>
+
+		<!--
+		=============================================================
+		- STYLE - GLOBAL - WHEAT SKIN - TEXT - FANCY - HEADING
+		- Medium and ornate. eg Version number.
+		=============================================================
+		-->
+
+		<style 	name="fancyTextHeadGold"
+			ghost="true"
+			font="prospero16"
+			textcolor="237 227 167"
+		/>
+
+		<style 	name="fancyTextHeadWhite"
+			ghost="true"
+			font="prospero16"
+			textcolor="255 255 255"
+		/>
 
 	<!--
 	==========================================
-	- STYLE - GLOBAL - BEIGE MENU SKIN - BORDERS
+	- STYLE - GLOBAL - WHEAT SKIN - BORDERS
 	==========================================
 	-->
 

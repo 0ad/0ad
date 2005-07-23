@@ -82,7 +82,7 @@
 		/>
 
                 <object name="pregame_mainmenu_versionnumber"
-			style="text_prospero16_gold"
+			style="fancyTextHeadGold"
 			type="text"
 			ghost="true"
 			size="43% 24% 43%+282 24%+25"
@@ -120,7 +120,7 @@
 		-->
 
                 <object	name="pregame_mainmenu_tooltip"
-			style="text_prospero16_white"
+			style="fancyTextHeadWhite"
 			type="text"
 			hidden="true"
 			sprite="pregame_mainmenu_tooltip_background"
@@ -231,7 +231,7 @@
 			</object>
                               
 			<object name="pregame_mp_modesel_hostjoin_txt"
-				style="text_tahoma16_black"
+				style="wheatTextHeadBlack"
 				type="text"
 				size="0 140 200 170"
 				text_valign="center"
@@ -303,7 +303,7 @@
 			</object>
 
 			<object name="pregame_mp_host_gamename_txt"
-				style="text_tahoma16_black"
+				style="wheatTextHeadBlack"
 				type="text"
 				size="0 40 200 60"
 			>Game (Server) Name:
@@ -323,7 +323,7 @@
 			-->
 
 			<object name="pregame_mp_host_welcomemsg_txt" 
-				style="text_tahoma16_black"
+				style="wheatTextHeadBlack"
 				type="text"
 				size="0 70 200 90"
 			>Welcome Message:
@@ -435,7 +435,7 @@
 			</object>
 
 			<object name="pregame_mp_join_serverip_txt" 
-				style="text_tahoma16_black"
+				style="wheatTextHeadBlack"
 				type="text"
 				size="0 40 200 60"
 			>Server Hostname or IP:
@@ -529,14 +529,14 @@
 			-->
 
 			<object name="pregame_mp_setup_host_playerhead"
-				style="text_giovanni22bold_black"
+				style="wheatTextHeadMaxBlack"
 				type="text"
 				size="30 10 320 40"
 			>Player Slots
 			</object>
 
 			<object name="pregame_mp_setup_host_p1_txt"
-				style="text_tahoma16_black"
+				style="wheatTextHeadBlack"
 				type="text"
 				size="30 50 320 80"
 			>
@@ -546,7 +546,7 @@
 			</object>
 
 			<object name="pregame_mp_setup_host_p2_txt"
-				style="text_tahoma16_black"
+				style="wheatTextHeadBlack"
 				type="text"
 				size="30 90 320 120"
 			>
@@ -556,7 +556,7 @@
 			</object>
 
 			<object name="pregame_mp_setup_host_p3_txt"
-				style="text_tahoma16_black"
+				style="wheatTextHeadBlack"
 				type="text"
 				size="30 130 320 160"
 			>
@@ -566,7 +566,7 @@
 			</object>
 
 			<object name="pregame_mp_setup_host_p4_txt"
-				style="text_tahoma16_black"
+				style="wheatTextHeadBlack"
 				type="text"
 				size="30 170 320 200"
 			>
@@ -576,7 +576,7 @@
 			</object>
 
 			<object name="pregame_mp_setup_host_p5_txt"
-				style="text_tahoma16_black"
+				style="wheatTextHeadBlack"
 				type="text"
 				size="30 210 320 240"
 			>
@@ -586,7 +586,7 @@
 			</object>
 
 			<object name="pregame_mp_setup_host_p6_txt"
-				style="text_tahoma16_black"
+				style="wheatTextHeadBlack"
 				type="text"
 				size="30 250 320 280"
 			>
@@ -596,7 +596,7 @@
 			</object>
 
 			<object name="pregame_mp_setup_host_p7_txt"
-				style="text_tahoma16_black"
+				style="wheatTextHeadBlack"
 				type="text"
 				size="30 290 320 320"
 			>
@@ -606,7 +606,7 @@
 			</object>
 
 			<object name="pregame_mp_setup_host_p8_txt"
-				style="text_tahoma16_black"
+				style="wheatTextHeadBlack"
 				type="text"
 				size="30 330 320 360"
 			>

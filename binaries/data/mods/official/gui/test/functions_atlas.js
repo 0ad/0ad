@@ -381,9 +381,9 @@ function atlasOpenSectionMenu(atlasMenuName)
 			guiUnHide("ATLAS_LEFT_PANE");
 			guiHide("ATLAS_BOTTOM_PANE");
 			// Reveal headings.
-			GUIObjectRenameandReveal("ATLAS_LEFT_PANE_SECTION_HEADING_1", "Map Creator");
-			GUIObjectRenameandReveal("ATLAS_LEFT_PANE_SECTION_HEADING_2", "Map Type");
-			GUIObjectRenameandReveal("ATLAS_LEFT_PANE_SECTION_HEADING_3", "Map Settings");
+			guiRenameAndReveal("ATLAS_LEFT_PANE_SECTION_HEADING_1", "Map Creator");
+			guiRenameAndReveal("ATLAS_LEFT_PANE_SECTION_HEADING_2", "Map Type");
+			guiRenameAndReveal("ATLAS_LEFT_PANE_SECTION_HEADING_3", "Map Settings");
 		break;
 		case "ATLAS_LEFT_PANE_SECTION_TERRAIN":
 			// Toggle backgrounds.
@@ -391,8 +391,8 @@ function atlasOpenSectionMenu(atlasMenuName)
 			guiUnHide("ATLAS_BOTTOM_PANE");
 			guiUnHide("ATLAS_BOTTOM_PANE_SECTION_TERRAIN");
 			// Reveal headings.
-			GUIObjectRenameandReveal("ATLAS_LEFT_PANE_SECTION_HEADING_1", "Terrain Editor");
-			GUIObjectRenameandReveal("ATLAS_LEFT_PANE_SECTION_HEADING_2", "Edit Elevation");
+			guiRenameAndReveal("ATLAS_LEFT_PANE_SECTION_HEADING_1", "Terrain Editor");
+			guiRenameAndReveal("ATLAS_LEFT_PANE_SECTION_HEADING_2", "Edit Elevation");
 			guiHide("ATLAS_LEFT_PANE_SECTION_HEADING_3");
 		break;
 		case "ATLAS_LEFT_PANE_SECTION_OBJECT":
@@ -401,8 +401,8 @@ function atlasOpenSectionMenu(atlasMenuName)
 			guiUnHide("ATLAS_BOTTOM_PANE");
 			guiUnHide("ATLAS_BOTTOM_PANE_SECTION_OBJECT");
 			// Reveal headings.
-			GUIObjectRenameandReveal("ATLAS_LEFT_PANE_SECTION_HEADING_1", "Object Editor");
-			GUIObjectRenameandReveal("ATLAS_LEFT_PANE_SECTION_HEADING_2", "Object List");
+			guiRenameAndReveal("ATLAS_LEFT_PANE_SECTION_HEADING_1", "Object Editor");
+			guiRenameAndReveal("ATLAS_LEFT_PANE_SECTION_HEADING_2", "Object List");
 			guiHide("ATLAS_LEFT_PANE_SECTION_HEADING_3");
 		break;
 	}
