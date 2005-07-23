@@ -294,10 +294,10 @@ function atlasFullyMinimiseToolbar()
 {
 	// Hide toolbar.
 
-	GUIObjectHide("ATLAS_MAINBORDER_TOOLBAR");
-	GUIObjectUnhide("ATLAS_MAINBORDER_TOOLBAR_MAXIMISE_ARROW");
-	GUIObjectHide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_1");
-	GUIObjectHide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_2");
+	guiHide("ATLAS_MAINBORDER_TOOLBAR");
+	guiUnHide("ATLAS_MAINBORDER_TOOLBAR_MAXIMISE_ARROW");
+	guiHide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_1");
+	guiHide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_2");
 
 	// Set toolbar height.
 	Crd[ATLAS_LEFT_PANE_BKG].y = Crd[ATLAS_MAINBORDER_MENU_BKG].y+Crd[ATLAS_MAINBORDER_MENU_BKG].height;
@@ -310,10 +310,10 @@ function atlasMinimiseToolbar()
 {
 	// Reduce toolbar to one row.
 
-	GUIObjectHide("ATLAS_MAINBORDER_TOOLBAR_MAX");
-	GUIObjectUnhide("ATLAS_MAINBORDER_TOOLBAR");
-	GUIObjectUnhide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_1");
-	GUIObjectHide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_2");
+	guiHide("ATLAS_MAINBORDER_TOOLBAR_MAX");
+	guiUnHide("ATLAS_MAINBORDER_TOOLBAR");
+	guiUnHide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_1");
+	guiHide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_2");
 
 	// Set toolbar height.
 	Crd[ATLAS_LEFT_PANE_BKG].y = Crd[ATLAS_MAINBORDER_TOOLBAR_BKG].y+Crd[ATLAS_MAINBORDER_TOOLBAR_BKG].height;
@@ -326,10 +326,10 @@ function atlasFullyMaximiseToolbar()
 {
 	// Extend toolbar to two rows.
 
-	GUIObjectHide("ATLAS_MAINBORDER_TOOLBAR");
-	GUIObjectUnhide("ATLAS_MAINBORDER_TOOLBAR_MAX");
-	GUIObjectUnhide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_1");
-	GUIObjectUnhide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_2");
+	guiHide("ATLAS_MAINBORDER_TOOLBAR");
+	guiUnHide("ATLAS_MAINBORDER_TOOLBAR_MAX");
+	guiUnHide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_1");
+	guiUnHide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_2");
 
 	// Set toolbar height.
 	Crd[ATLAS_LEFT_PANE_BKG].y = Crd[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].y+Crd[ATLAS_MAINBORDER_TOOLBAR_BKG_MAX].height;
@@ -342,10 +342,10 @@ function atlasMaximiseToolbar()
 {
 	// Extend toolbar to one row.
 
-	GUIObjectUnhide("ATLAS_MAINBORDER_TOOLBAR");
-	GUIObjectHide("ATLAS_MAINBORDER_TOOLBAR_MAXIMISE_ARROW");
-	GUIObjectUnhide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_1");
-	GUIObjectHide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_2");
+	guiUnHide("ATLAS_MAINBORDER_TOOLBAR");
+	guiHide("ATLAS_MAINBORDER_TOOLBAR_MAXIMISE_ARROW");
+	guiUnHide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_1");
+	guiHide("ATLAS_MAINBORDER_TOOLBAR_BUTTON_ROW_2");
 
 	// Set toolbar height.
 	Crd[ATLAS_LEFT_PANE_BKG].y = Crd[ATLAS_MAINBORDER_TOOLBAR_BKG].y+Crd[ATLAS_MAINBORDER_TOOLBAR_BKG].height;
@@ -359,27 +359,27 @@ function atlasOpenSectionMenu(atlasMenuName)
 	// Open the specified Section Menu; only one is open at a time.
 
 	// Clear all section menus to begin.
-	GUIObjectHide("ATLAS_LEFT_PANE_SECTION_MAP");
-	GUIObjectHide("ATLAS_LEFT_PANE_SECTION_TERRAIN");
-	GUIObjectHide("ATLAS_BOTTOM_PANE_SECTION_TERRAIN");
-	GUIObjectHide("ATLAS_LEFT_PANE_SECTION_OBJECT");
-	GUIObjectHide("ATLAS_BOTTOM_PANE_SECTION_OBJECT");
+	guiHide("ATLAS_LEFT_PANE_SECTION_MAP");
+	guiHide("ATLAS_LEFT_PANE_SECTION_TERRAIN");
+	guiHide("ATLAS_BOTTOM_PANE_SECTION_TERRAIN");
+	guiHide("ATLAS_LEFT_PANE_SECTION_OBJECT");
+	guiHide("ATLAS_BOTTOM_PANE_SECTION_OBJECT");
 
 	switch (atlasMenuName)
 	{
 		case "none":
 			// Hide backgrounds.
-			GUIObjectHide("ATLAS_LEFT_PANE");
-			GUIObjectHide("ATLAS_BOTTOM_PANE");
+			guiHide("ATLAS_LEFT_PANE");
+			guiHide("ATLAS_BOTTOM_PANE");
 			// Hide headings.
-			GUIObjectHide("ATLAS_LEFT_PANE_SECTION_HEADING_1");
-			GUIObjectHide("ATLAS_LEFT_PANE_SECTION_HEADING_2");
-			GUIObjectHide("ATLAS_LEFT_PANE_SECTION_HEADING_3");
+			guiHide("ATLAS_LEFT_PANE_SECTION_HEADING_1");
+			guiHide("ATLAS_LEFT_PANE_SECTION_HEADING_2");
+			guiHide("ATLAS_LEFT_PANE_SECTION_HEADING_3");
 		break;
 		case "ATLAS_LEFT_PANE_SECTION_MAP":
 			// Toggle backgrounds.
-			GUIObjectUnhide("ATLAS_LEFT_PANE");
-			GUIObjectHide("ATLAS_BOTTOM_PANE");
+			guiUnHide("ATLAS_LEFT_PANE");
+			guiHide("ATLAS_BOTTOM_PANE");
 			// Reveal headings.
 			GUIObjectRenameandReveal("ATLAS_LEFT_PANE_SECTION_HEADING_1", "Map Creator");
 			GUIObjectRenameandReveal("ATLAS_LEFT_PANE_SECTION_HEADING_2", "Map Type");
@@ -387,29 +387,29 @@ function atlasOpenSectionMenu(atlasMenuName)
 		break;
 		case "ATLAS_LEFT_PANE_SECTION_TERRAIN":
 			// Toggle backgrounds.
-			GUIObjectUnhide("ATLAS_LEFT_PANE");
-			GUIObjectUnhide("ATLAS_BOTTOM_PANE");
-			GUIObjectUnhide("ATLAS_BOTTOM_PANE_SECTION_TERRAIN");
+			guiUnHide("ATLAS_LEFT_PANE");
+			guiUnHide("ATLAS_BOTTOM_PANE");
+			guiUnHide("ATLAS_BOTTOM_PANE_SECTION_TERRAIN");
 			// Reveal headings.
 			GUIObjectRenameandReveal("ATLAS_LEFT_PANE_SECTION_HEADING_1", "Terrain Editor");
 			GUIObjectRenameandReveal("ATLAS_LEFT_PANE_SECTION_HEADING_2", "Edit Elevation");
-			GUIObjectHide("ATLAS_LEFT_PANE_SECTION_HEADING_3");
+			guiHide("ATLAS_LEFT_PANE_SECTION_HEADING_3");
 		break;
 		case "ATLAS_LEFT_PANE_SECTION_OBJECT":
 			// Toggle backgrounds.
-			GUIObjectUnhide("ATLAS_LEFT_PANE");
-			GUIObjectUnhide("ATLAS_BOTTOM_PANE");
-			GUIObjectUnhide("ATLAS_BOTTOM_PANE_SECTION_OBJECT");
+			guiUnHide("ATLAS_LEFT_PANE");
+			guiUnHide("ATLAS_BOTTOM_PANE");
+			guiUnHide("ATLAS_BOTTOM_PANE_SECTION_OBJECT");
 			// Reveal headings.
 			GUIObjectRenameandReveal("ATLAS_LEFT_PANE_SECTION_HEADING_1", "Object Editor");
 			GUIObjectRenameandReveal("ATLAS_LEFT_PANE_SECTION_HEADING_2", "Object List");
-			GUIObjectHide("ATLAS_LEFT_PANE_SECTION_HEADING_3");
+			guiHide("ATLAS_LEFT_PANE_SECTION_HEADING_3");
 		break;
 	}
 
 	// Reveal Section Menu content.
 	if (atlasMenuName != "none")
-		GUIObjectUnhide(atlasMenuName);
+		guiUnHide(atlasMenuName);
 }
 
 // ====================================================================

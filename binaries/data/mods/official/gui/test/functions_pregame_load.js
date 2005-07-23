@@ -22,7 +22,7 @@ function StartMap (MapName, OpenWindow, GameMode)
 	g_GameAttributes.mapFile = MapName;
 
 	// Close setup window
-	CloseMainMenuSubWindow (OpenWindow);
+	closeMainMenuSubWindow (OpenWindow);
 
 	// Display loading screen.	
 	StartLoadingScreen();
@@ -31,8 +31,8 @@ function StartMap (MapName, OpenWindow, GameMode)
         if (! startGame())
         {
                 // Failed to start the game; go back to the main menu.
-                GUIObjectHide ("loading_screen");
-                GUIObjectUnhide ("pregame_gui");
+                guiHide ("loading_screen");
+                guiUnHide ("pregame_gui");
                 // Show an error message
                 btCaptions = new Array("OK");
                 btCode = new Array("");
@@ -45,8 +45,7 @@ function StartMap (MapName, OpenWindow, GameMode)
 function StartLoadingScreen()
 {
         // Switch screens from main menu to loading screen.
-        GUIObjectHide ("pregame_gui");
-        GUIObjectUnhide ("loading_screen");
+        guiSwitch ("pregame_gui", "loading_screen");
         console.write ("Loading " + g_GameAttributes.mapFile + " (" + g_GameAttributes.numPlayers + " players) ...");
 
         // Generate random number for random concept art (should be depending on the selected civ later)
@@ -100,7 +99,7 @@ function reallyStartGame()
 	SetupSession();  
 
 	// Switch GUI from loading screen to game session.
-	SwitchWindow ("loading_screen", "session_gui");
+	guiSwitch ("loading_screen", "session_gui");
 }
 
 // ====================================================================
@@ -165,8 +164,7 @@ function EndSession (CloseType)
                                 // will be replaced soon by native version that doesn't block.
 
                         // Swap GUIs to display main menu.
-                        GUIObjectHide ("session_gui");
-                        GUIObjectUnhide ("pregame_gui");
+                        guiSwitch ("session_gui", "pregame_gui");
                 break;
                 case ("exit"):
                         // If the player has chosen to shutdown and immediately return to operating system,

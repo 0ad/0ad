@@ -2,50 +2,61 @@
  ***************************************
  functions_global.js
 
- Functions for the objects having the
- 'list' property. These functions also
- updates the selection correctly.
+ Functions to manipulate objects with
+ a 'list' property. It is important to
+ do this and not manually to ensure that
+ the selection is updated properly.
 
  ***************************************
 */
 
-function removeItem(objectName, pos)
+function removeItem (objectName, pos)
 {
-	var list = getGUIObjectByName(objectName).list;
-	var selected = getGUIObjectByName(objectName).selected;
+	// Remove the item at the given index (pos) from the given list object (objectName).
+
+	var list = getGUIObjectByName (objectName).list;
+	var selected = getGUIObjectByName (objectName).selected;
 
 	list.splice(pos, 1);
 
-	getGUIObjectByName(objectName).list = list;
+	getGUIObjectByName (objectName).list = list;
 
 	// It's important that we update the selection *after*
 	//  we've committed the changes to the list.
 
+	// Update the selected so the same element remains selected.
 	if (selected == pos)
 	{
-		getGUIObjectByName(objectName).selected = -1;
+		getGUIObjectByName (objectName).selected = -1;
 	}
 	else
 	if (selected > pos)
 	{
-		getGUIObjectByName(objectName).selected = selected - 1;
+		getGUIObjectByName (objectName).selected = selected - 1;
 	}
 }
 
-function addItem(objectName, pos, value)
+// ====================================================================
+
+function addItem (objectName, pos, value)
 {
-	var list = getGUIObjectByName(objectName).list;
-	var selected = getGUIObjectByName(objectName).selected;
+	// Add the item at the given index (pos) to the given list object (objectName) with the given value (value).
 
-	list.splice(pos, 0, value);
+	var list = getGUIObjectByName (objectName).list;
+	var selected = getGUIObjectByName (objectName).selected;
 
-	getGUIObjectByName(objectName).list = list;
+	list.splice (pos, 0, value);
+
+	getGUIObjectByName (objectName).list = list;
 
 	// It's important that we update the selection *after*
 	//  we've committed the changes to the list.
 
+	// Update the selected so the same element remains selected.
 	if (selected >= pos)
 	{
-		getGUIObjectByName(objectName).selected = selected + 1;
+		getGUIObjectByName (objectName).selected = selected + 1;
 	}
 }
+
+// ====================================================================

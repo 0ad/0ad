@@ -3,22 +3,22 @@
 
 // ====================================================================
 
-function OpenMainMenuSubWindow(WindowName)
+function openMainMenuSubWindow (windowName)
 {
 	// Helper function that enables the dark background mask, then reveals a given subwindow object.
 
-	GUIObjectUnhide	("pregame_subwindow_bkg");
-	GUIObjectUnhide	(WindowName);
+	guiUnHide	("pregame_subwindow_bkg");
+	guiUnHide	(windowName);
 }
 
 // ====================================================================
 
-function CloseMainMenuSubWindow(WindowName)
+function closeMainMenuSubWindow (windowName)
 {
 	// Helper function that disables the dark background mask, then hides a given subwindow object.
 
-	GUIObjectHide	("pregame_subwindow_bkg");
-	GUIObjectHide	(WindowName);
+	guiHide		("pregame_subwindow_bkg");
+	guiHide		(windowName);
 }
 
 // ====================================================================

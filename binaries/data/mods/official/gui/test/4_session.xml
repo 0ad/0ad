@@ -184,7 +184,7 @@
 			<object type="progressbar" name="SN_STATUS_PANE_ICON_XP_BAR" style="up_bar" sprite_background="back_bar" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_ICON_XP_BAR], Crd[SN_STATUS_PANE_ICON_XP_BAR_FLP]); ]]></action></object>
 			<object type="text" name="SN_STATUS_PANE_ICON_XP_TEXT" style="session_ghost_text_left_centre_object" textcolor="255 255 0" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_ICON_XP_TEXT], Crd[SN_STATUS_PANE_ICON_XP_TEXT_FLP]); ]]></action></object>
 			<object type="text" name="SN_STATUS_PANE_NAME1" style="session_ghost_heading_left_object" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_NAME1], Crd[SN_STATUS_PANE_NAME1_FLP]); ]]></action></object>
-			<object type="text" name="SN_STATUS_PANE_2STAT" style="session_ghost_midheading_center_bottom_object" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_2STAT], Crd[SN_STATUS_PANE_2STAT_FLP]); GUIObjectSetCaption("SN_STATUS_PANE_2STAT", "[icon=icon_statistic_garrison] 23/30 [icon=icon_resource_wood] 1575"); ]]></action></object>
+			<object type="text" name="SN_STATUS_PANE_2STAT" style="session_ghost_midheading_center_bottom_object" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_STATUS_PANE_2STAT], Crd[SN_STATUS_PANE_2STAT_FLP]); guiSetCaption("SN_STATUS_PANE_2STAT", "[icon=icon_statistic_garrison] 23/30 [icon=icon_resource_wood] 1575"); ]]></action></object>
 			<object type="text" name="SN_STATUS_PANE_STAT1" style="session_ghost_subheading_object" />
 			<object type="text" name="SN_STATUS_PANE_STAT2" style="session_ghost_miniheading_object" />
 			<object type="text" name="SN_STATUS_PANE_STAT3" style="session_ghost_miniheading_object" />
@@ -462,7 +462,7 @@
 					for (SN_TEAM_TRAY.curr = 1; SN_TEAM_TRAY.curr < SN_TEAM_TRAY.last; SN_TEAM_TRAY.curr++)
 					{
 						addSizeCoordArray("SN_TEAM_TRAY_" + SN_TEAM_TRAY.curr, Crd[SN_TEAM_TRAY[SN_TEAM_TRAY.curr]]);
-						GUIObjectSetCaption("SN_TEAM_TRAY_" + SN_TEAM_TRAY.curr, SN_TEAM_TRAY.curr);
+						guiSetCaption("SN_TEAM_TRAY_" + SN_TEAM_TRAY.curr, SN_TEAM_TRAY.curr);
 						getGUIObjectByName("SN_TEAM_TRAY_" + SN_TEAM_TRAY.curr).onPress = function() { SelectGroup(this.name.substring(this.name.length-1, this.name.length)); }
 					}
 				]]></action>
@@ -491,26 +491,26 @@
 			-->
 			<object type="empty" name="session_gui_subwindow_ingame_menu" size="0 0 100% 100%" z="1" hidden="true">
 				<object type="image" name="SN_INGAME_MENU_BG" style="session_ghost_object" sprite="0ad_window" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_INGAME_MENU_BG]); ]]></action></object>
-				<object type="button" name="SN_INGAME_MENU_BTN_RETURN" style="session_button_object" hotkey="menu.toggle" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_INGAME_MENU_BTN_RETURN]); GUIObjectSetCaption(this.name, "Return to Game"); ]]></action>
+				<object type="button" name="SN_INGAME_MENU_BTN_RETURN" style="session_button_object" hotkey="menu.toggle" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_INGAME_MENU_BTN_RETURN]); guiSetCaption(this.name, "Return to Game"); ]]></action>
 					<action on="Press"><![CDATA[
 						GUIObjectToggle("session_gui_subwindow_ingame_menu");
 					]]></action>
 				</object>
-				<object type="button" name="SN_INGAME_MENU_BTN_EXIT" style="session_button_object" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_INGAME_MENU_BTN_EXIT]); GUIObjectSetCaption(this.name, "Exit Game"); ]]></action>
+				<object type="button" name="SN_INGAME_MENU_BTN_EXIT" style="session_button_object" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_INGAME_MENU_BTN_EXIT]); guiSetCaption(this.name, "Exit Game"); ]]></action>
 					<action on="Press"><![CDATA[
 						btCaptions = new Array("Yes, let me out!", "Nooooo!");
 						btCode = new Array("endSession('exit');", "");
 						messageBox(400, 200, "Do you really want to quit [icon=0ad_icon] A.D.? This will cause a sudden return to reality.", "Confirmation", 0, btCaptions, btCode);
 					]]></action>
 				</object>
-				<object type="button" name="SN_INGAME_MENU_BTN_RESIGN" style="session_button_object" hotkey="menu.resign" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_INGAME_MENU_BTN_RESIGN]); GUIObjectSetCaption(this.name, "Resign Game"); ]]></action>
+				<object type="button" name="SN_INGAME_MENU_BTN_RESIGN" style="session_button_object" hotkey="menu.resign" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_INGAME_MENU_BTN_RESIGN]); guiSetCaption(this.name, "Resign Game"); ]]></action>
 					<action on="Press"><![CDATA[
 						btCaptions = new Array("Yep, work's done!", "No, more slaughter!");
 						btCode = new Array("endSession('return');", "");
 						messageBox(600, 200, "Do you want to leave the current game? There might be more dudes to slaughter.", "Confirmation", 0, btCaptions, btCode);
 					]]></action>
 				</object>
-				<object type="button" name="SN_INGAME_MENU_BTN_JUKEBOX" style="session_button_object" hotkey="jukebox" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_INGAME_MENU_BTN_JUKEBOX]); GUIObjectSetCaption(this.name, "Playlist Editor"); ]]></action>
+				<object type="button" name="SN_INGAME_MENU_BTN_JUKEBOX" style="session_button_object" hotkey="jukebox" ><action on="Load"><![CDATA[ addSizeCoordArray(this.name, Crd[SN_INGAME_MENU_BTN_JUKEBOX]); guiSetCaption(this.name, "Playlist Editor"); ]]></action>
 					<action on="Press"><![CDATA[
 						// Toggle jukebox.
 						GUIObjectToggle("JUKEBOX_GUI");

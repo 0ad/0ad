@@ -362,7 +362,7 @@ function UpdateList(listIcon, listCol)
 		{
 			// Enable tab portrait.
 			setPortrait("SN_STATUS_PANE_COMMAND_" + listCol + "_1", "sheet_action", "", listIcon);
-			GUIObjectUnhide("SN_STATUS_PANE_COMMAND_" + listCol + "_1");
+			guiUnHide("SN_STATUS_PANE_COMMAND_" + listCol + "_1");
 
 			// Store content info in tab button for future reference.
 			SN_STATUS_PANE_COMMAND[1][listCol].type = "list";
@@ -383,14 +383,14 @@ function UpdateList(listIcon, listCol)
 
 					setPortrait("SN_STATUS_PANE_COMMAND_" + listCol + "_" + parseInt(createLoop+2), getEntityTemplate(UpdateListEntityName).traits.id.icon, selection[0].traits.id.civ_code, getEntityTemplate(UpdateListEntityName).traits.id.icon_cell);
 					getGUIObjectByName("SN_STATUS_PANE_COMMAND_" + listCol + "_" + parseInt(createLoop+2)).caption = "";
-					GUIObjectUnhide("SN_STATUS_PANE_COMMAND_" + listCol + "_" + parseInt(createLoop+2));
+					guiUnHide("SN_STATUS_PANE_COMMAND_" + listCol + "_" + parseInt(createLoop+2));
 					
 					// Store content info in tab button for future reference.
 					SN_STATUS_PANE_COMMAND[parseInt(createLoop+2)][listCol].name = listArray[createLoop];
 					SN_STATUS_PANE_COMMAND[parseInt(createLoop+2)][listCol].last++;		
 				}
 				else
-					GUIObjectHide("SN_STATUS_PANE_COMMAND_" + listCol + "_" + parseInt(createLoop+2));
+					guiHide("SN_STATUS_PANE_COMMAND_" + listCol + "_" + parseInt(createLoop+2));
 			}
 
 			return listArray;
@@ -418,7 +418,7 @@ function UpdateCommand(listIcon, listCol)
            )
 	{	
 		setPortrait("SN_STATUS_PANE_COMMAND_" + listCol + "_1", "sheet_action", "", listIcon);
-		GUIObjectUnhide("SN_STATUS_PANE_COMMAND_" + listCol + "_1");
+		guiUnHide("SN_STATUS_PANE_COMMAND_" + listCol + "_1");
 
 		// Store content info in tab button for future reference.
 		SN_STATUS_PANE_COMMAND[1][listCol].type = "command";
@@ -513,9 +513,9 @@ function UpdateCommandButtons()
 		// Clear remaining buttons between them.
 		for (commandClearLoop = listCounter; commandClearLoop <= commandCounter; commandClearLoop++)
 		{
-			GUIObjectHide("SN_STATUS_PANE_COMMAND_" + commandClearLoop + "_1");
+			guiHide("SN_STATUS_PANE_COMMAND_" + commandClearLoop + "_1");
 			// If this slot could possibly contain a list, hide that too.
-			GUIObjectHide("SN_STATUS_PANE_COMMAND_" + commandClearLoop + "_GROUP");
+			guiHide("SN_STATUS_PANE_COMMAND_" + commandClearLoop + "_GROUP");
 		}
 	}
 

@@ -1,49 +1,49 @@
-function GUIObjectHide(objectName) 
+function guiHide (objectName) 
 {
         // Hide our GUI object
-        var GUIObject = getGUIObjectByName(objectName);
-        GUIObject.hidden = true;
+        var guiObject = getGUIObjectByName (objectName);
+        guiObject.hidden = true;
 
 }
 
 // ====================================================================
 
-function GUIObjectUnhide(objectName)
+function guiUnHide (objectName)
 {
         // Unhide our GUI object
-        var GUIObject = getGUIObjectByName(objectName);
-        GUIObject.hidden = false;
+        var guiObject = getGUIObjectByName (objectName);
+        guiObject.hidden = false;
 
 }
 
 // ====================================================================
 
-function GUIObjectToggle(objectName)
+function guiToggle (objectName)
 {
         // Get our GUI object
-        var GUIObject = getGUIObjectByName(objectName);
+        var guiObject = getGUIObjectByName (objectName);
 
         // Toggle it
-        GUIObject.hidden = !GUIObject.hidden;
+        guiObject.hidden = !guiObject.hidden;
 }
 
 // ====================================================================
 
-function GUIObjectRenameandReveal(objectName, objectCaption)
+function guiRenameAndReveal (objectName, objectCaption)
 {
         // Get our GUI object
-        var GUIObject = getGUIObjectByName(objectName);
+        var guiObject = getGUIObjectByName (objectName);
 
 	// Rename it
-	GUIObject.caption = objectCaption;
+	guiObject.caption = objectCaption;
 
         // Toggle it
-        GUIObject.hidden = false;
+        guiObject.hidden = false;
 }
 
 // ====================================================================
 
-function GUIObjectModifyCaption(objectName, objectModifier, objectPlaces)
+function guiModifyCaption (objectName, objectModifier, objectPlaces)
 {
 	// Adds a modifier to a GUI object's caption (eg increase a number by 1).
 	// Obviously don't use this unless you're sure the caption contains a number.
@@ -51,35 +51,36 @@ function GUIObjectModifyCaption(objectName, objectModifier, objectPlaces)
 	// If not specified, it defaults to zero (whole number).
 
         // Get our GUI object
-        var GUIObject = getGUIObjectByName(objectName);
+        var guiObject = getGUIObjectByName (objectName);
 
 	if (!objectPlaces)
 		objectPlaces = 0;
-	objectPlaces = Math.pow(10, objectPlaces);
+	objectPlaces = Math.pow (10, objectPlaces);
 
-	GUIObject.caption = (Math.round(objectPlaces * GUIObject.caption) + Math.round(objectPlaces * objectModifier)) / objectPlaces;
+	guiObject.caption = 	(Math.round (objectPlaces * guiObject.caption)
+				+ Math.round (objectPlaces * objectModifier) ) / objectPlaces;
 }
 
 // ====================================================================
 
-function GUIObjectSetCaption(objectName, objectCaption)
+function guiSetCaption (objectName, objectCaption)
 {
 	// Sets an object's caption to the specified value.
 
         // Get our GUI object
-        var GUIObject = getGUIObjectByName(objectName);
+        var guiObject = getGUIObjectByName (objectName);
 
-	GUIObject.caption = objectCaption;
+	guiObject.caption = objectCaption;
 }
 
 // ====================================================================
 
-function SwitchWindow(CloseWindowName, OpenWindowName)
+function guiSwitch (closeWindowName, openWindowName)
 {
 	// Helper function that closes a given window (usually the current parent) and opens another one.
 
-	GUIObjectHide	(CloseWindowName);
-	GUIObjectUnhide	(OpenWindowName);
+	guiHide		(closeWindowName);
+	guiUnHide	(openWindowName);
 }
 
 // ====================================================================

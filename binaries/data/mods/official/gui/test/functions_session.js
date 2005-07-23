@@ -239,8 +239,8 @@ function FlipGUI(NewGUIType)
 
 	if (GUIType != "none")
 	{
-		GUIObjectUnhide("session_gui");
-		GUIObjectUnhide("always_on");
+		guiUnHide("session_gui");
+		guiUnHide("always_on");
 
 		// Seek through all sizes created.
 		for (FlipGUILoop = 0; FlipGUILoop <= SizeCoord.last-1; FlipGUILoop++)
@@ -307,8 +307,8 @@ function FlipGUI(NewGUIType)
 	}
 	else
 	{
-		GUIObjectHide("session_gui");
-		GUIObjectHide("always_on");
+		guiHide("session_gui");
+		guiHide("always_on");
 	}
 
 	writeConsole("GUI flipped to " + GUIType + ".");

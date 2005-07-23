@@ -39,6 +39,22 @@
 			sprite_button_top_pressed="scroll"
 	/>
 
+	<scrollbar	name="0ad_scrollbar"
+			width="12"
+			minimum_bar_size="4"
+			alwaysshown="false"
+			sprite_button_top="sprite2"
+			sprite_button_top_over="scroll"
+			sprite_button_bottom="sprite2"
+			sprite_button_bottom_over="scroll"
+			sprite_back_vertical="grey"
+			sprite_bar_vertical="sprite2"
+			sprite_bar_vertical_over="scroll"
+			sprite_bar_vertical_pressed="sprite2_pressed"
+			sprite_button_bottom_pressed="sprite2_pressed"
+			sprite_button_top_pressed="sprite2_pressed"
+	/>
+
 	<scrollbar	name="manual_scrollbar"
 			width="12"
 			minimum_bar_size="4"

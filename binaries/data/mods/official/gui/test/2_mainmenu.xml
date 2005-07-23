@@ -36,7 +36,7 @@
 		>
 			<action on="Press"><![CDATA[
 				// Open Skirmish Map Selection Window.
-				OpenMainMenuSubWindow ("pregame_sp_mapsel");
+				openMainMenuSubWindow ("pregame_sp_mapsel");
 			]]></action>
 		</object>
 
@@ -49,7 +49,7 @@
 		>
 			<action on="Press"><![CDATA[
 				// Open Multiplayer connection window.
-				OpenMainMenuSubWindow ("pregame_mp_modesel");
+				openMainMenuSubWindow ("pregame_mp_modesel");
 			]]></action>
 		</object>
 
@@ -63,8 +63,8 @@
                         <action on="Press"><![CDATA[
 				// Open Atlas Editor.
 				// *** Defunct; use this button to toggle the wxWidgets Atlas UI.
-                                GUIObjectHide ("pregame_gui");
-                                GUIObjectUnhide ("atlas_gui");
+                                guiHide ("pregame_gui");
+                                guiUnHide ("atlas_gui");
                         ]]></action>
                 </object>
 
@@ -106,7 +106,7 @@
 			tooltip="These are the guys who made this game. Visit them at http://www.wildfiregames.com/0ad/"
 		>
 			<action on="Press"><![CDATA[
-				btCode = new Array("GUIObjectHide('mb_main');");
+				btCode = new Array("guiHide('mb_main');");
 				messageBox(420, 420, "[icon=0ad_icon] A.D. - History Is Yours For The Taking\nby Wildfire Games, 2002-2005\n\nVersion 0.1.2 (PASAP II)\n\n" +
 				"This is a confidental pre-release version of the game!\n\nVisit http://www.wildfiregames.com/0ad/ " +
 				"to learn more about [icon=0ad_icon] A.D., participate in the community and meet the developers.\n\n", "About [icon=0ad_icon] A.D.", 2, new Array(), btCode);
@@ -183,7 +183,7 @@
 				type="button"
 			>
 				<action on="Press"><![CDATA[
-					CloseMainMenuSubWindow ("pregame_mp_modesel");
+					closeMainMenuSubWindow ("pregame_mp_modesel");
 				]]></action>
 			</object>
 
@@ -245,7 +245,7 @@
 			>Join Game
 				<action on="Press"><![CDATA[
 					// rudimentary client connection code; finally working now :)
-					SwitchWindow ("pregame_mp_modesel", "pregame_mp_join");
+					guiSwitch ("pregame_mp_modesel", "pregame_mp_join");
 				]]></action>
 			</object>
                               
@@ -257,7 +257,7 @@
 				size="250 140 350 170" 
 			>Host Game
 				<action on="Press"><![CDATA[
-					SwitchWindow ("pregame_mp_modesel", "pregame_mp_host");
+					guiSwitch ("pregame_mp_modesel", "pregame_mp_host");
 				]]></action>
 			</object>
 
@@ -286,7 +286,7 @@
 				type="button"
 			>
 				<action on="Press"><![CDATA[
-					CloseMainMenuSubWindow ("pregame_mp_host");
+					closeMainMenuSubWindow ("pregame_mp_host");
 				]]></action>
 			</object>
 
@@ -355,8 +355,8 @@
 			>Continue
 				<action on="Press"><![CDATA[
 					gameName = getGUIObjectByName("pregame_mp_host_gamename").caption;
-					SwitchWindow ("pregame_mp_host", "pregame_mp_setup_host");
-					GUIObjectHide("pregame_mainmenu_versionnumber");
+					guiSwitch ("pregame_mp_host", "pregame_mp_setup_host");
+					guiHide("pregame_mainmenu_versionnumber");
  
 					// Set up the server
 					server = createServer();
@@ -390,7 +390,7 @@
 				size="50%+25 200 50%+125 230"
 			>Back
 				<action on="Press"><![CDATA[
-					SwitchWindow ("pregame_mp_host", "pregame_mp_modesel");
+					guiSwitch ("pregame_mp_host", "pregame_mp_modesel");
 				]]></action>
 			</object>
 		</object>
@@ -418,7 +418,7 @@
 				type="button"
 			>
 				<action on="Press"><![CDATA[
-					CloseMainMenuSubWindow ("pregame_mp_join");
+					closeMainMenuSubWindow ("pregame_mp_join");
 				]]></action>
 			</object>
 
@@ -485,7 +485,7 @@
 				size="50%+25 200 50%+125 230"
 			>Back
 				<action on="Press"><![CDATA[
-					SwitchWindow ("pregame_mp_join", "pregame_mp_modesel");
+					guiSwitch ("pregame_mp_join", "pregame_mp_modesel");
 				]]></action>
 			</object>
 		</object>
@@ -517,8 +517,8 @@
 				tooltip_style="session_tooltip"
 			>
 				<action on="Press"><![CDATA[
-					CloseMainMenuSubWindow ("pregame_mp_setup_host");
-					GUIObjectUnhide("pregame_mainmenu_versionnumber");
+					closeMainMenuSubWindow ("pregame_mp_setup_host");
+					guiUnHide ("pregame_mainmenu_versionnumber");
 				]]></action>
 			</object>
 
@@ -657,7 +657,7 @@
 				size="50%+25 540 50%+125 570"
 			>Cancel
 				<action on="Press"><![CDATA[
-					SwitchWindow ("pregame_mp_setup_host", "pregame_mp_modesel");
+					guiSwitch ("pregame_mp_setup_host", "pregame_mp_modesel");
 				]]></action>
 			</object>
 		</object>
@@ -674,7 +674,7 @@
 			style="0ad_window"
 			type="image"
 			hidden="true"
-			size="50%-150 50%-90 50%+150 50%+90"
+			size="50%-150 50%-120 50%+150 50%+120"
 		>
                         <!-- The placement of this titlebar object is VERY hackish (see y-placement), but it doesn't work any other way so far, and this dialog will be temporary anyway -->
 			<object name="pregame_sp_mapsel_titlebar"
@@ -688,7 +688,7 @@
 				type="button"
 			>
 				<action on="Press"><![CDATA[
-					CloseMainMenuSubWindow ("pregame_sp_mapsel");
+					closeMainMenuSubWindow ("pregame_sp_mapsel");
 				]]></action>
 			</object>
 
@@ -711,10 +711,30 @@
                         </object>
 
                         <object name="pregame_sp_mapname"
-				style="border_box_black"
-				type="input"
-				size="130 90 290 110"
-			>gathertest2
+				style="0ad_window_list"
+				type="list"
+				size="0%+100 0%+80 100%-10 100%-60"
+			>
+				<action on="Load"><![CDATA[
+					// Note: We should set this in a .cfg or initialisation area, as it's used again later.
+					mapPath = "maps/scenarios/"
+
+					// Get a list of map names.
+					mapArray = buildFileList (mapPath, "*.pmp", false);
+					
+					for (mapIndex = 0; mapIndex < mapArray.length; mapIndex++)
+					{
+						// Remove the path and extension from each name, since we just want the filename.
+						// (Is there an equivalent "basename" function for that in JS?)
+						mapArray[mapIndex] = mapArray[mapIndex].substring (mapPath.length, mapArray[mapIndex].length-4)
+
+						// Add map name to the object's list.
+						addItem (this.name, mapIndex, mapArray[mapIndex]);
+					}
+
+					// Set default value (pick whatever's at the top of the list).
+					getGUIObjectByName(this.name).selected = 0;
+				]]></action>
 			</object>
 
 			<!--
@@ -729,7 +749,7 @@
 				size="50%-100 100%-50 50%-10 100%-20" 
 			>Start Game
 				<action on="Press"><![CDATA[
-					StartMap (getGUIObjectByName("pregame_sp_mapname").caption,
+					StartMap (getGUIObjectByName("pregame_sp_mapname").list[getGUIObjectByName("pregame_sp_mapname").selected],
 						"pregame_sp_mapsel", 0);
 				]]></action>
 			</object>
@@ -740,7 +760,7 @@
 				size="50%+10 100%-50 50%+90 100%-20"
 			>Abort
 				<action on="Press"><![CDATA[
-					CloseMainMenuSubWindow ("pregame_sp_mapsel");
+					closeMainMenuSubWindow ("pregame_sp_mapsel");
 				]]></action>
 			</object>
                 </object>

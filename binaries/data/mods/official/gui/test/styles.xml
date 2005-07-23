@@ -62,6 +62,39 @@
 		tooltip_style="pregame_mainmenu_tooltip"
 	/>
 
+	<style 	name="0ad_window_list"
+		buffer_zone="1"
+		font="verdana12"
+		scrollbar="true"
+		scrollbar_style="0ad_scrollbar"
+		sprite="atlas_indent"
+		sprite_selectarea="grey"
+		sprite_over="atlas_emboss"
+		textcolor="0 0 0"
+		textcolor_selected="255 255 255"
+		text_align="left"
+		text_valign="center"
+	/>
+
+	<style 	name="0ad_window_dropdown"
+		buffer_zone="5"
+		dropdown_buffer="6"
+		dropdown_size="130"
+		font="verdana12"
+		scrollbar="true"
+		scrollbar_style="0ad_scrollbar"
+		sprite="message_box_button_normal"
+		sprite_list="message_box_button_normal"
+		sprite_over="message_box_button_over"
+		sprite_selectarea="grey"
+		sprite2="message_box_button_normal"
+		sprite2_pressed="message_box_button_over"
+		textcolor="0 0 0"
+		textcolor_selected="255 255 255"
+		text_align="left"
+		text_valign="center"
+	/>
+
 	<!--
 	==========================================
 	- STYLE - GLOBAL - BEIGE MENU SKIN - TEXT
@@ -108,7 +141,7 @@
 
 	<style	name="border_box_black"
 		sprite="only_black_border"
-		sprite_selectarea="GeeTemp_selected"
+		sprite_selectarea="grey"
 		textcolor="0 0 0"
 		textcolor_selected="255 255 255"
 	/>
@@ -116,14 +149,14 @@
 	<style	name="border_box_black_verdana9"
 		font="verdana9"
 		sprite="only_black_border"
-		sprite_selectarea="GeeTemp_selected"
+		sprite_selectarea="grey"
 		textcolor="0 0 0"
 		textcolor_selected="255 255 255"
 	/>
 
 	<style	name="divider_black"
 		sprite="only_black_border"
-		sprite_selectarea="GeeTemp_selected"
+		sprite_selectarea="grey"
 		textcolor="0 0 0"
 		textcolor_selected="255 255 255"
 	/>
@@ -435,7 +468,7 @@
 		font="tahoma10"
 		buffer_zone="3"
 		sprite="atlas_input_box"
-		sprite_selectarea="GeeTemp_selected"
+		sprite_selectarea="grey"
 	/>
 
 	<style name="atlas_button"
