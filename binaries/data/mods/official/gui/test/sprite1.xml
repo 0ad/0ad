@@ -303,57 +303,98 @@
                 <image texture="global/ui_gen_button_wood.png" size="0 0 100% 100%" real_texture_placement="0 32 160 64" />
         </sprite>
 
-        <!--
-        ==========================================
-        PREGAME GUI - BACKCOLOR SPRITES
-        ==========================================
-        -->
+	<!--
+	==========================================
+	PREGAME GUI - BACKCOLOR SPRITES
+	==========================================
+	-->
 
-        <sprite name="pregame_mainmenu_tooltip_background">
-                <image backcolor="0 0 0 85" size="0 0 100% 100%"/>
+	<sprite name="pregame_mainmenu_tooltip_background">
+		<image 	backcolor="0 0 0 85"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+        
+	<!--
+	==========================================
+	PREGAME GUI - TEXTURE SPRITES - BACKDROPS
+	==========================================
+	-->
+
+	<sprite name="pregame_mainmenu_background">
+		<image 	texture="pregame/shell/parchment/background.dds"
+			real_texture_placement="0 0 1024 768"
+			size="0 0 100% 100%" 
+		/>
+	</sprite>
+
+	<!--
+	==========================================
+	PREGAME GUI - TEXTURE SPRITES - LOGOS
+	==========================================
+	-->
+        
+	<sprite name="pregame_mainmenu_0ad_logo">
+		<image 	texture="pregame/ui_pregame_mainmenu_0ad_logo.png"
+			real_texture_placement="0 0 480 218"
+			size="0 0 100% 100%" 
+		/>
         </sprite>
         
-        <!--
-        ==========================================
-        PREGAME GUI - TEXTURE SPRITES
-        ==========================================
-        -->
+	<sprite name="pregame_mainmenu_wfg_logo">
+		<image 	texture="pregame/ui_pregame_mainmenu_wfg_logo.png"
+			real_texture_placement="0 0 256 64"
+			size="0 0 100% 100%" 
+		/>
+	</sprite>
 
-        <sprite name="pregame_mainmenu_background">
-                <image texture="pregame/shell/parchment/Background.dds" real_texture_placement="0 0 1024 768" size="0 0 100% 100%" />
-        </sprite>
-        
-        <sprite name="pregame_mainmenu_0ad_logo_480x218">
-                <image texture="pregame/ui_pregame_mainmenu_0ad_logo.png" real_texture_placement="0 0 480 218" size="0 0 100% 100%" />
-        </sprite>
-        
-        <sprite name="pregame_mainmenu_wfg_logo_256x64">
-                <image texture="pregame/ui_pregame_mainmenu_wfg_logo.png" real_texture_placement="0 0 256 64" size="0 0 100% 100%" />
-        </sprite>
+	<!--
+	==========================================
+	PREGAME GUI - TEXTURE SPRITES - BUTTONS
+	==========================================
+	-->
 
-        <sprite name="pregame_mainmenu_singleplayer">
-                <image texture="pregame/shell/parchment/OverSinglePlayer.dds" real_texture_placement="0 0 256 256" size="0 0 100% 100%" />
-        </sprite>
+	<sprite name="pregame_mainmenu_singleplayer">
+		<image 	texture="pregame/shell/parchment/singleplayer_over.dds"
+			real_texture_placement="0 0 256 256"
+			size="0 0 100% 100%" 
+		/>
+	</sprite>
 
-        <sprite name="pregame_mainmenu_multiplayer">
-                <image texture="pregame/shell/parchment/OverMultiPlayer.dds" real_texture_placement="0 0 256 256" size="0 0 100% 100%" />
-        </sprite>
+	<sprite name="pregame_mainmenu_multiplayer">
+		<image 	texture="pregame/shell/parchment/multiplayer_over.dds"
+			real_texture_placement="0 0 256 256"
+			size="0 0 100% 100%" 
+		/>
+	</sprite>
 
-        <sprite name="pregame_mainmenu_editor">
-                <image texture="pregame/shell/parchment/OverScenerioEditor.dds" real_texture_placement="0 0 256 256" size="0 0 100% 100%" />
-        </sprite>
+	<sprite name="pregame_mainmenu_editor">
+		<image 	texture="pregame/shell/parchment/scenarioeditor_over.dds"
+			real_texture_placement="0 0 256 256"
+			size="0 0 100% 100%" 
+		/>
+	</sprite>
 
-        <sprite name="pregame_mainmenu_campaigns">
-                <image texture="pregame/shell/parchment/OverCampaigns.dds" real_texture_placement="0 0 256 256" size="0 0 100% 100%" />
-        </sprite>
+	<sprite name="pregame_mainmenu_campaigns">
+		<image 	texture="pregame/shell/parchment/campaigns_over.dds"
+			real_texture_placement="0 0 256 256"
+			size="0 0 100% 100%" 
+		/>
+	</sprite>
 
-        <sprite name="pregame_mainmenu_options">
-                <image texture="pregame/shell/parchment/OverOptions.dds" real_texture_placement="0 0 256 256" size="0 0 100% 100%" />
-        </sprite>
+	<sprite name="pregame_mainmenu_options">
+		<image 	texture="pregame/shell/parchment/options_over.dds"
+			real_texture_placement="0 0 256 256"
+			size="0 0 100% 100%" 
+		/>
+	</sprite>
 
-        <sprite name="pregame_mainmenu_history">
-                <image texture="pregame/shell/parchment/OverHistory.dds" real_texture_placement="0 0 256 256" size="0 0 100% 100%" />
-        </sprite>
+	<sprite name="pregame_mainmenu_history">
+		<image 	texture="pregame/shell/parchment/history_over.dds"
+			real_texture_placement="0 0 256 256"
+			size="0 0 100% 100%" 
+		/>
+	</sprite>
 
         <!--
         ==========================================

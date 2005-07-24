@@ -19,6 +19,12 @@
 			// Play main 0 A.D. theme when the main menu starts.
 			curr_music = newRandomSound("music", "menu");
 			curr_music.loop();
+
+			// Display a .cfg file variable to prove we can access it.
+			console.write ("Language Version: " + (new ConfigDB()).system.language + ".")
+			// Unfortunately, although Philip's workaround certainly works,
+			// a] The value cannot be modified.
+			// b] Variables a step up in the hierarchy are not recognised (eg system.sound.mastergain).
 		]]></action>
 
 		<!--
@@ -105,7 +111,7 @@
 			type="image"
 			ghost="true"
 			size="21.1914062% 3.125% 68.0664062% 31.5104166%"
-			sprite="pregame_mainmenu_0ad_logo_480x218"
+			sprite="pregame_mainmenu_0ad_logo"
 		/>
 
                 <object name="pregame_mainmenu_versionnumber"
@@ -129,7 +135,7 @@
 			style="pregame_mainmenu_button"
 			type="button"
 			size="10 91.666666%-30 25.9765% 100%-30"
-			sprite="pregame_mainmenu_wfg_logo_256x64"
+			sprite="pregame_mainmenu_wfg_logo"
 			tooltip="These are the guys who made this game. Visit them at http://www.wildfiregames.com/0ad/"
 		>
 			<action on="Press"><![CDATA[
