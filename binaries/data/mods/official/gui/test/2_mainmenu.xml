@@ -30,8 +30,8 @@
 		<object name="pregame_mainmenu_sp_button"
 			style="pregame_mainmenu_button"
 			type="button"
-			size="52.9296875% 23.95833333% 67.578125% 42.317708333%"
-			sprite_over="pregame_mainmenu_spbt"
+			size="51.2695312% 10.9275% 76.2695312% 44.270833%"
+			sprite_over="pregame_mainmenu_singleplayer"
 			tooltip="Want to move some Dudes around or test something? Click here to start a new game on the default map."
 		>
 			<action on="Press"><![CDATA[
@@ -43,8 +43,8 @@
 		<object	name="pregame_mainmenu_mp_button"
 			style="pregame_mainmenu_button"
 			type="button"
-			size="61.03515625% 48.6979166% 74.12109375% 66.40625%"
-			sprite_over="pregame_mainmenu_mpbt"
+			size="57.5195312% 38.28125% 82.5195312% 71.6145833%"
+			sprite_over="pregame_mainmenu_multiplayer"
 			tooltip="Tired of playing with yourself? Fight against one or more human players in a multiplayer game."
 		>
 			<action on="Press"><![CDATA[
@@ -56,8 +56,8 @@
 		<object name="pregame_mainmenu_ed_button"
 			style="pregame_mainmenu_button"
 			type="button"
-			size="43.75% 61.84895833% 63.4765625% 82.682291667%"
-			sprite_over="pregame_mainmenu_edbt"
+			size="40.234375% 60.15625% 65.234375% 93.4895833%"
+			sprite_over="pregame_mainmenu_editor"
                         tooltip="Come forth and witness a totally non-functioning Editor, a mere shadow of its potential self!"
 		>
                         <action on="Press"><![CDATA[
@@ -66,6 +66,33 @@
                                 guiHide ("pregame_gui");
                                 guiUnHide ("atlas_gui");
                         ]]></action>
+                </object>
+
+		<object name="pregame_mainmenu_op_button"
+			style="pregame_mainmenu_button"
+			type="button"
+			size="74.7070312% 42.0572916% 99.7070312% 75.390625%"
+			sprite_over="pregame_mainmenu_options"
+                        tooltip="This will take you to the options menu.  It does not work now, but someday it might."
+		>
+                </object>
+
+		<object name="pregame_mainmenu_cp_button"
+			style="pregame_mainmenu_button"
+			type="button"
+			size="24.609375% 28.90625% 49.609375% 62.2395833%"
+			sprite_over="pregame_mainmenu_campaigns"
+                        tooltip="Want to play a campaign? Tough luck buddy!  That's right, go cry on your mammas shoulder."
+		>
+                </object>
+				
+		<object name="pregame_mainmenu_hs_button"
+			style="pregame_mainmenu_button"
+			type="button"
+			size="72.265625% 66.5364583% 97.265625% 99.8697916%"
+			sprite_over="pregame_mainmenu_history"
+                        tooltip="One day you will click this button and learn more about ancient history than any history teach ever taught you."
+		>
                 </object>
 
 		<!--
