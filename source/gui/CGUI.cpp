@@ -941,8 +941,11 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 
 	// TODO To whom it may concern: Thing were not reset, so
 	//  I added this line, modify if incorrect --
-	for (int i=0; i<4; ++i)
-		glDisable(GL_CLIP_PLANE0+i);
+	if (clipping != CRect())
+	{
+		for (int i=0; i<4; ++i)
+			glDisable(GL_CLIP_PLANE0+i);
+	}	
 	glDisable(GL_TEXTURE_2D);
 	// -- GL
 }

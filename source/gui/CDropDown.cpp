@@ -319,10 +319,13 @@ void CDropDown::Draw()
 
 	if (selected != -1) // TODO: Maybe check validity completely?
 	{
-		CPos pos(m_CachedActualSize.left, m_CachedActualSize.top);
-		IGUITextOwner::Draw(selected, color, pos, bz+0.1f);
-	}
+		// figure out clipping rectangle
+		CRect cliparea(m_CachedActualSize.left, m_CachedActualSize.top,
+					   m_CachedActualSize.right-button_width, m_CachedActualSize.bottom);
 
+		CPos pos(m_CachedActualSize.left, m_CachedActualSize.top);
+		IGUITextOwner::Draw(selected, color, pos, bz+0.1f, cliparea);
+	}
 
 	bool *scrollbar=NULL, old;
 	GUI<bool>::GetSettingPointer(this, "scrollbar", scrollbar);

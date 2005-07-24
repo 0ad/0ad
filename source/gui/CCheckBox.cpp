@@ -8,6 +8,9 @@ gee@pyro.nu
 #include "GUI.h"
 #include "CCheckBox.h"
 
+#include "ps/Font.h"
+#include "ps/CLogger.h"
+
 using namespace std;
 
 //-------------------------------------------------------------------
@@ -15,28 +18,11 @@ using namespace std;
 //-------------------------------------------------------------------
 CCheckBox::CCheckBox()
 {
-/*	bool				m_Checked;
-	CStr				m_Font;
-	CGUISpriteInstance	m_Sprite;
-	CGUISpriteInstance	m_SpriteDisabled;
-	CGUISpriteInstance	m_SpriteOver;
-	CGUISpriteInstance	m_SpritePressed;
-	CGUISpriteInstance	m_Sprite2;
-	CGUISpriteInstance	m_Sprite2Disabled;
-	CGUISpriteInstance	m_Sprite2Over;
-	CGUISpriteInstance	m_Sprite2Pressed;
-	int					m_SquareSide;
-	EAlign				m_TextAlign;
-	CColor				m_TextColor;
-	CColor				m_TextColorDisabled;
-	CColor				m_TextColorOver;
-	CColor				m_TextColorPressed;
-	EVAlign				m_TextValign;
-	CStr				m_ToolTip;
-	CStr				m_ToolTipStyle;
-*/
+	AddSetting(GUIST_float,					"buffer_zone");
 	AddSetting(GUIST_CGUIString,			"caption");
+	AddSetting(GUIST_int,					"cell_id");
 	AddSetting(GUIST_bool,					"checked");
+	AddSetting(GUIST_CStr,					"font");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_over");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_pressed");
@@ -45,7 +31,11 @@ CCheckBox::CCheckBox()
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite2_over");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite2_pressed");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite2_disabled");
-	AddSetting(GUIST_int,					"square_side");
+	AddSetting(GUIST_float,					"square_side");
+	AddSetting(GUIST_CColor,				"textcolor");
+	AddSetting(GUIST_CColor,				"textcolor_over");
+	AddSetting(GUIST_CColor,				"textcolor_pressed");
+	AddSetting(GUIST_CColor,				"textcolor_disabled");
 	AddSetting(GUIST_CStr,					"tooltip");
 	AddSetting(GUIST_CStr,					"tooltip_style");
 
@@ -65,25 +55,27 @@ void CCheckBox::SetupText()
 	debug_assert(m_GeneratedTexts.size()>=1);
 
 	CStr font;
+	if (GUI<CStr>::GetSetting(this, "font", font) != PS_OK || font.Length()==0)
+		// Use the default if none is specified
+		// TODO Gee: (2004-08-14) Default should not be hard-coded, but be in styles!
+		font = "default";
+
+	float square_side;
+	GUI<float>::GetSetting(this, "square_side", square_side);
+
 	CGUIString caption;
-	//int square_side;
 	GUI<CGUIString>::GetSetting(this, "caption", caption);
-	//GUI<CGUIString>::GetSetting(this, "square_side", square_side);
 
-	// TODO Gee: Establish buffer zones
-	// TODO Gee: research if even "default" should be hardcoded.
-	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, CStr("default"), m_CachedActualSize.GetWidth()-20, 0);
-
-	// Set position of text
-	// TODO Gee: Big TODO
-//	m_TextPos.x = m_CachedActualSize.left + 20;
-//	m_TextPos.y = m_CachedActualSize.top;
+	float buffer_zone=0.f;
+	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
+	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, m_CachedActualSize.GetWidth()-square_side, 0.f, this);
 }
 
 void CCheckBox::HandleMessage(const SGUIMessage &Message)
 {
 	// Important
 	IGUIButtonBehavior::HandleMessage(Message);
+	IGUITextOwner::HandleMessage(Message);
 
 	switch (Message.type)
 	{
@@ -108,22 +100,34 @@ void CCheckBox::Draw()
 	glDisable(GL_TEXTURE_2D);
 	//////////
 
-	int square_side;
-	GUI<int>::GetSetting(this, "square_side", square_side);
+	float square_side, buffer_zone;
+	CStr font_name;
+	bool checked;
+	int cell_id;
+	GUI<float>::GetSetting(this, "square_side", square_side);
+	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
+	GUI<CStr>::GetSetting(this, "font", font_name);
+	GUI<bool>::GetSetting(this, "checked", checked);
+	GUI<int>::GetSetting(this, "cell_id", cell_id);
+
+	// Get line height
+	CFont font (font_name);
+	float line_height = (float)font.GetHeight();
 
 	float bz = GetBufferedZ();
 
 	// Get square
-	// TODO Gee: edit below when CRect has got "height()"
-	float middle = (m_CachedActualSize.bottom - m_CachedActualSize.top)/2;
 	CRect rect;
-	rect.left =		m_CachedActualSize.left + middle - square_side/2;
-	rect.right =	rect.left + square_side;
-	rect.top =		m_CachedActualSize.top + middle - square_side/2;
-	rect.bottom =	rect.top + square_side;
 
-	bool checked;
-	GUI<bool>::GetSetting(this, "checked", checked);
+	rect.left =		m_CachedActualSize.left;
+	rect.right =	rect.left + square_side;
+
+	if (square_side >= line_height)
+		rect.top =	m_CachedActualSize.top;
+	else
+		rect.top =	m_CachedActualSize.top + line_height/2.f - square_side/2.f;
+
+	rect.bottom =	rect.top + square_side;
 
 	CGUISpriteInstance *sprite, *sprite_over, *sprite_pressed, *sprite_disabled;
 
@@ -148,9 +152,14 @@ void CCheckBox::Draw()
 			   *sprite_over,
 			   *sprite_pressed,
 			   *sprite_disabled,
-			   0);
+			   cell_id);
 
 	CColor color = ChooseColor();
 
-//	IGUITextOwner::Draw(0, color, m_TextPos, bz+0.1f);
+	CPos text_pos(m_CachedActualSize.left + square_side + buffer_zone, m_CachedActualSize.top);
+
+	if (square_side > line_height)
+		text_pos.y += square_side/2.f - line_height/2.f;
+
+	IGUITextOwner::Draw(0, color, text_pos, bz+0.1f, m_CachedActualSize);
 }

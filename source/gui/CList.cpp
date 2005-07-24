@@ -357,7 +357,6 @@ void CList::DrawList(const int &selected,
 				if (scrollbar)
 				{
 					// Remove any overlapping area of the scrollbar.
-
 					if (rect_sel.right > GetScrollBar(0).GetOuterRect().left &&
 						rect_sel.right <= GetScrollBar(0).GetOuterRect().right)
 						rect_sel.right = GetScrollBar(0).GetOuterRect().left;
@@ -380,8 +379,22 @@ void CList::DrawList(const int &selected,
 				m_ItemsYPositions[i] - scroll > rect.GetHeight())
 				continue;
 
-			IGUITextOwner::Draw(i, color, rect.TopLeft() - CPos(0.f, scroll - m_ItemsYPositions[i]), bz+0.1f,
-								GetListRect());
+			// Clipping area (we'll have to substract the scrollbar)
+			CRect cliparea = GetListRect();
+
+			if (scrollbar)
+			{
+				if (cliparea.right > GetScrollBar(0).GetOuterRect().left &&
+					cliparea.right <= GetScrollBar(0).GetOuterRect().right)
+					cliparea.right = GetScrollBar(0).GetOuterRect().left;
+
+				if (cliparea.left >= GetScrollBar(0).GetOuterRect().left &&
+					cliparea.left < GetScrollBar(0).GetOuterRect().right)
+					cliparea.left = GetScrollBar(0).GetOuterRect().right;
+			}
+
+			IGUITextOwner::Draw(i, color, rect.TopLeft() - CPos(0.f, scroll - m_ItemsYPositions[i]), 
+								bz+0.1f, cliparea);
 		}
 	}
 }
