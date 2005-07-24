@@ -864,7 +864,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 }
 
 void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor, 
-					const CPos &pos, const float &z)
+					const CPos &pos, const float &z, const CRect &clipping)
 {
 	// TODO Gee: All these really necessary? Some
 	//  are defaults and if you changed them
@@ -878,6 +878,23 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 	glDisable(GL_ALPHA_TEST);
 
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
+	if (clipping != CRect())
+	{
+		double eq[4][4] = 
+		{ 
+			{  0.0,  1.0, 0.0, -clipping.top },
+			{  1.0,  0.0, 0.0, -clipping.left },
+			{  0.0, -1.0, 0.0, clipping.bottom },
+			{ -1.0,  0.0, 0.0, clipping.right }
+		};
+
+		for (int i=0; i<4; ++i)
+		{
+			glClipPlane(GL_CLIP_PLANE0+i, eq[i]);
+			glEnable(GL_CLIP_PLANE0+i);
+		}
+	}
 
 	CFont* font = NULL;
 	CStr LastFontName;
@@ -924,6 +941,8 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 
 	// TODO To whom it may concern: Thing were not reset, so
 	//  I added this line, modify if incorrect --
+	for (int i=0; i<4; ++i)
+		glDisable(GL_CLIP_PLANE0+i);
 	glDisable(GL_TEXTURE_2D);
 	// -- GL
 }

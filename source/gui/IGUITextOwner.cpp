@@ -60,7 +60,7 @@ void IGUITextOwner::HandleMessage(const SGUIMessage &Message)
 }
 
 void IGUITextOwner::Draw(const int &index, const CColor &color, const CPos &pos, 
-						 const float &z, const CRect &UNUSEDPARAM(clipping))
+						 const float &z, const CRect &clipping)
 {
 	if (index < 0 || index >= (int)m_GeneratedTexts.size())
 	{
@@ -70,7 +70,7 @@ void IGUITextOwner::Draw(const int &index, const CColor &color, const CPos &pos,
 
 	if (GetGUI())
 	{
-		GetGUI()->DrawText(*m_GeneratedTexts[index], color, pos, z);
+		GetGUI()->DrawText(*m_GeneratedTexts[index], color, pos, z, clipping);
 	}
 }
 

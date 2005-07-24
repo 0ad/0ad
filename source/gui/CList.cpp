@@ -380,7 +380,8 @@ void CList::DrawList(const int &selected,
 				m_ItemsYPositions[i] - scroll > rect.GetHeight())
 				continue;
 
-			IGUITextOwner::Draw(i, color, rect.TopLeft() - CPos(0.f, scroll - m_ItemsYPositions[i]), bz+0.1f);
+			IGUITextOwner::Draw(i, color, rect.TopLeft() - CPos(0.f, scroll - m_ItemsYPositions[i]), bz+0.1f,
+								GetListRect());
 		}
 	}
 }

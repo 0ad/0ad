@@ -133,7 +133,7 @@ public:
 	 * @param z z value.
 	 */
 	void DrawText(SGUIText &Text, const CColor &DefaultColor, 
-				  const CPos &pos, const float &z);
+				  const CPos &pos, const float &z, const CRect &clipping);
 
 	/**
 	 * Clean up, call this to clean up all memory allocated
