@@ -354,39 +354,8 @@
 				size="50%-125 200 50%-25 230"
 			>Continue
 				<action on="Press"><![CDATA[
-					gameName = getGUIObjectByName("pregame_mp_host_gamename").caption;
-					guiSwitch ("pregame_mp_host", "pregame_mp_setup_host");
-					guiHide("pregame_mainmenu_versionnumber");
- 
-					// Set up the server
-					server = createServer();
-					// Welcome message
-					server.welcomeMessage = getGUIObjectByName("pregame_mp_host_welcomemsg").caption;
-					// Server Name
-					server.serverName = getGUIObjectByName("pregame_mp_host_gamename").caption;
-                              	
-					// start listening
-					res =  server.open();
-					if (!res)
-					{
-						messageBox(400, 200, "Error creating server.", "Error", 0, new array(), new array());
-					}
-
-					// Set the title for the setup screen
-					getGUIObjectByName("pregame_mp_setup_host_titlebar").caption = "Hosting: " + getGUIObjectByName("pregame_mp_host_gamename").caption;
-
-					// Set the host player's name on the setup screen
-					getGUIObjectByName("pregame_mp_setup_host_p1_txt").caption = "P1: " + getGUIObjectByName("pregame_mp_modesel_playername").caption + " (Host)";
-
-					server.onClientConnect =  function (event) 
-						{
-							console.write("A new client has successfully connected! ID: " + event.id + ", Name: " + event.name + ", Session: " + event.session);
-							var playerSlot = g_GameAttributes.getOpenSlot();
-							// assign a slot
-							playerSlot.assignToSession(event.session);
-							console.write("slot: " + playerSlot.player);
-							// need to refresh the dialog control data here
-						}
+					//initMPSessionHost();
+					console.write("initMPSessionHost() was supposed to be called here.");
 				]]></action>
 			</object>
 
@@ -480,8 +449,12 @@
 					else
 					{
 						// see above
-						console.write ("Client successfully connected.");
+						console.write ("Client successfully started to connect.");
 					}
+					
+					client.onConnectComplete=function (event) {
+						messageBox(400, 200, "Result message: "+event.message, "Connect complete", 2, new Array(), new Array());
+					};
 				]]></action>
 			</object>
 
@@ -631,7 +604,7 @@
 				style="border_box_black"
 				type="input"
 				size="600 32 750 52"
-			>gathertest
+			>gathertest2
 			</object>
 
 			<!--

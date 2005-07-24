@@ -89,21 +89,21 @@
                                 mbButton1Caption
                                 <action on="Press"><![CDATA[
                                         eval(getGUIGlobal().mbButton1Code);
-                                        GUIObjectHide('mb_main');
+                                        guiHide('mb_main');
                                 ]]></action>
                         </object>
                         <object type="button" name="mb_button2" size="33%+30 100%-80 66%-40 100%-50" absolute="false" sprite="message_box_button_normal" sprite_over="message_box_button_over" font="prospero18" z="165" text_align="center" text_valign="center">
                                 mbButton2Caption
                                 <action on="Press"><![CDATA[
                                         eval(getGUIGlobal().mbButton2Code);
-                                        GUIObjectHide('mb_main');
+                                        guiHide('mb_main');
                                 ]]></action>
                         </object>
                         <object type="button" name="mb_button3" size="66%+30 100%-80 100%-40 100%-50" absolute="false" sprite="message_box_button_normal" sprite_over="message_box_button_over" font="prospero18" z="165" text_align="center" text_valign="center">
                                 mbButton3Caption
                                 <action on="Press"><![CDATA[
                                         eval(getGUIGlobal().mbButton2Code);
-                                        GUIObjectHide('mb_main');
+                                        guiHide('mb_main');
                                 ]]></action>
                         </object>
 
