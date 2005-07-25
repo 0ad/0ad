@@ -1464,6 +1464,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 	// TODO Gee: (2004-08-30) This is not how to set defaults.
 	CStr DefaultTextureSize ("0 0 100% 100%");
 	image.m_TextureSize = CClientArea(DefaultTextureSize);
+	image.m_Size = CClientArea(DefaultTextureSize);
 	
 	// TODO Gee: Setup defaults here (or maybe they are in the SGUIImage ctor)
 
