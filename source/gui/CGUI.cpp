@@ -666,7 +666,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 					SGUIIcon icon = GetIcon(*it);
 
 					CSize size = icon.m_Size;
-					Image.SetupSpriteCall((j==CGUIString::SFeedback::Left), SpriteCall, Width, _y, size, icon.m_TextureName, BufferZone, icon.m_CellID);
+					Image.SetupSpriteCall((j==CGUIString::SFeedback::Left), SpriteCall, Width, _y, size, icon.m_SpriteName, BufferZone, icon.m_CellID);
 
 					// Check if image is the lowest thing.
 					Text.m_Size.cy = MAX(Text.m_Size.cy, Image.m_YTo);
@@ -1758,8 +1758,8 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 		if (attr_name == "name")
 			name = attr_value;
 		else
-		if (attr_name == "texture")
-			icon.m_TextureName = attr_value;
+		if (attr_name == "sprite")
+			icon.m_SpriteName = attr_value;
 		else
 		if (attr_name == "size")
 		{

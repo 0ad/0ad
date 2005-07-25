@@ -47,8 +47,8 @@ struct SGUIIcon
 {
 	SGUIIcon() : m_CellID(0) {}
 
-	// Texture name of icon
-	CStr m_TextureName;
+	// Sprite name of icon
+	CStr m_SpriteName;
 
 	// Size
 	CSize m_Size;

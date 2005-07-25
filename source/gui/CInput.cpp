@@ -677,6 +677,41 @@ void CInput::Draw()
 
 		glPushMatrix();
 
+		// We'll have to setup clipping manually, since we're doing the rendering manually.
+		CRect cliparea(m_CachedActualSize);
+
+		// First we'll figure out the clipping area, which is the cached actual size
+		//  substracted by an optional scrollbar
+		if (scrollbar)
+		{
+			scroll = GetScrollBar(0).GetPos();
+
+			// substract scrollbar from cliparea
+			if (cliparea.right > GetScrollBar(0).GetOuterRect().left &&
+				cliparea.right <= GetScrollBar(0).GetOuterRect().right)
+				cliparea.right = GetScrollBar(0).GetOuterRect().left;
+
+			if (cliparea.left >= GetScrollBar(0).GetOuterRect().left &&
+				cliparea.left < GetScrollBar(0).GetOuterRect().right)
+				cliparea.left = GetScrollBar(0).GetOuterRect().right;
+		}
+
+		if (cliparea != CRect())
+		{
+			double eq[4][4] = 
+			{ 
+				{  0.0,  1.0, 0.0, -cliparea.top },
+				{  1.0,  0.0, 0.0, -cliparea.left },
+				{  0.0, -1.0, 0.0, cliparea.bottom },
+				{ -1.0,  0.0, 0.0, cliparea.right }
+			};
+
+			for (int i=0; i<4; ++i)
+			{
+				glClipPlane(GL_CLIP_PLANE0+i, eq[i]);
+				glEnable(GL_CLIP_PLANE0+i);
+			}
+		}
 
 		// These are useful later.
 		int VirtualFrom, VirtualTo;
@@ -790,7 +825,6 @@ void CInput::Draw()
 								// and actually add a white space! yes, this is done in any common input
 								x_pointer += (float)font.GetCharacterWidth(L' ');
 							}
-							// TODO: Make sure x_pointer isn't sticking out of the edge!
 						}
 						else
 						{
@@ -832,13 +866,14 @@ void CInput::Draw()
 
 						glPushMatrix();
 						guiLoadIdentity();
-
-						glEnable(GL_ALPHA_TEST);
+						glEnable(GL_BLEND);
 						glDisable(GL_TEXTURE_2D);
 
 						if (sprite_selectarea)
 							GetGUI()->DrawSprite(*sprite_selectarea, cell_id, bz+0.05f, rect);
 
+						// Blend can have been reset
+						glEnable(GL_BLEND);
 						glEnable(GL_TEXTURE_2D);
 						glDisable(GL_ALPHA_TEST);
 
@@ -963,6 +998,9 @@ void CInput::Draw()
 
 		glPopMatrix();
 
+		// Disable clipping
+		for (int i=0; i<4; ++i)
+			glDisable(GL_CLIP_PLANE0+i);
 		glDisable(GL_TEXTURE_2D);
 	}
 }
