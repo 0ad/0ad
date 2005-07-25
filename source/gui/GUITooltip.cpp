@@ -222,8 +222,13 @@ void GUITooltip::Update(IGUIObject* Nearest, CPos MousePos, CGUI* GUI)
 		{
 			// Check for movement onto a zero-delayed tooltip
 			if (GetTooltip(Nearest, style) && GetTooltipDelay(style, GUI)==0)
+			{
+				// Reset any previous tooltips completely
+				//m_Time = now + (double)GetTooltipDelay(style, GUI) / 1000.;
+				HideTooltip(m_PreviousTooltipName, GUI);
 
 				nextstate = ST_SHOWING;
+			}
 		}
 		break;
 
@@ -253,9 +258,31 @@ void GUITooltip::Update(IGUIObject* Nearest, CPos MousePos, CGUI* GUI)
 		if (Nearest != m_PreviousObject)
 		{
 			if (GetTooltip(Nearest, style))
-				nextstate = ST_SHOWING;
+			{	
+				CStr style_old;
+
+				// If we're displaying a tooltip with no delay, then we want to 
+				//  reset so that other object that should have delay can't
+				//  "ride this tail", it have to wait.
+				// Notice that this doesn't apply to when you go from one delay=0
+				//  to another delay=0
+				if (GetTooltip(m_PreviousObject, style_old) && GetTooltipDelay(style_old, GUI)==0 &&
+					GetTooltipDelay(style, GUI)!=0)
+				{
+					HideTooltip(m_PreviousTooltipName, GUI);
+					nextstate = ST_IN_MOTION;
+				}
+				else
+				{
+					// Hide old scrollbar
+					HideTooltip(m_PreviousTooltipName, GUI);
+					nextstate = ST_SHOWING;
+				}
+			}
 			else
+			{	
 				nextstate = ST_COOLING;
+			}
 		}
 		break;
 

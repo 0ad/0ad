@@ -16,7 +16,7 @@ CTooltip::CTooltip()
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
 	AddSetting(GUIST_int,					"delay");
 	AddSetting(GUIST_CColor,				"textcolor");
-	AddSetting(GUIST_int,					"maxwidth");
+	AddSetting(GUIST_float,					"maxwidth");
 	AddSetting(GUIST_CPos,					"offset");
 	AddSetting(GUIST_EVAlign,				"anchor");
 
@@ -57,10 +57,10 @@ void CTooltip::SetupText()
 	CGUIString caption;
 	GUI<CGUIString>::GetSetting(this, "caption", caption);
 
-	int max_width = 0;
-	GUI<int>::GetSetting(this, "maxwidth", max_width);
+	float max_width = 0.f;
+	GUI<float>::GetSetting(this, "maxwidth", max_width);
 
-	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, (float)max_width, buffer_zone, this);
+	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, max_width, buffer_zone, this);
 
 
 	// Position the tooltip relative to the mouse:
