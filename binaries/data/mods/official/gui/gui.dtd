@@ -141,8 +141,8 @@
 -->
 <!ATTLIST icon
   name					CDATA #REQUIRED
-  texture				CDATA #REQUIRED
   size					CDATA #REQUIRED
+  sprite				CDATA #REQUIRED
   cell_id				CDATA #IMPLIED
 >
 
