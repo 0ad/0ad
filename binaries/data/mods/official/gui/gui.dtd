@@ -107,10 +107,11 @@
 <!--
 	<setup>
 -->
-<!ELEMENT setup (icon|scrollbar|tooltip)*>
+<!ELEMENT setup (icon|scrollbar|tooltip|color)*>
 <!ELEMENT scrollbar EMPTY>
 <!ELEMENT icon EMPTY>
 <!ELEMENT tooltip EMPTY>
+<!ELEMENT color (#PCDATA)>
 
 <!--
 	<scrollbar>
@@ -161,6 +162,13 @@
   delay					CDATA #IMPLIED
   use_object				CDATA #IMPLIED
   hide_object				CDATA #IMPLIED
+>
+
+<!--
+	<color>
+-->
+<!ATTLIST color
+  name					CDATA #REQUIRED
 >
 
 
