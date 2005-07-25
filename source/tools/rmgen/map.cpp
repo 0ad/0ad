@@ -243,13 +243,23 @@ void Map::setTexture(int x, int y, const string& t) {
 }
 
 float Map::getHeight(int x, int y) {
-	if(!validH(x,y)) JS_ReportError(cx, "getHeight: invalid point position");
+	if(!validH(x,y)) JS_ReportError(cx, "getHeight: invalid vertex position");
 	return height[x][y];
 }
 
 void Map::setHeight(int x, int y, float h) {
-	if(!validH(x,y)) JS_ReportError(cx, "setHeight: invalid point position");
+	if(!validH(x,y)) JS_ReportError(cx, "setHeight: invalid vertex position");
 	height[x][y] = h;
+}
+
+vector<Entity*> Map::getTerrainEntities(int x, int y) {
+	if(!validT(x,y)) JS_ReportError(cx, "getTerrainEntities: invalid tile position");
+	return terrainEntities[x][y];
+}
+
+void Map::setTerrainEntities(int x, int y, vector<Entity*> &entities) {
+	if(!validT(x,y)) JS_ReportError(cx, "setTerrainEntities: invalid tile position");
+	terrainEntities[x][y] = entities;
 }
 
 void Map::placeTerrain(int x, int y, Terrain* t) {
@@ -272,4 +282,15 @@ Area* Map::createArea(AreaPlacer* placer, AreaPainter* painter, Constraint* cons
 	painter->paint(this, a);
 	areas.push_back(a);
 	return a;
+}
+
+vector<Entity*>* Map::createObjectGroup(ObjectGroupPlacer* placer, Constraint* constr) {
+	vector<Entity*>* entities = new vector<Entity*>;
+	if(!placer->place(this, constr, *entities)) {
+		return 0;
+	}
+	for(int i=0; i<entities->size(); i++) {
+		addEntity((*entities)[i]);
+	}
+	return entities;
 }

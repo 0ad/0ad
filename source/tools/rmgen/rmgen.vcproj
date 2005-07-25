@@ -133,6 +133,9 @@
 				RelativePath=".\constraint.cpp">
 			</File>
 			<File
+				RelativePath=".\convert.cpp">
+			</File>
+			<File
 				RelativePath=".\entity.cpp">
 			</File>
 			<File
@@ -142,7 +145,7 @@
 				RelativePath=".\map.cpp">
 			</File>
 			<File
-				RelativePath=".\objparse.cpp">
+				RelativePath=".\objectgroupplacer.cpp">
 			</File>
 			<File
 				RelativePath=".\output.cpp">
@@ -161,6 +164,9 @@
 			</File>
 			<File
 				RelativePath=".\simpleconstraints.cpp">
+			</File>
+			<File
+				RelativePath=".\simplegroup.cpp">
 			</File>
 			<File
 				RelativePath=".\simplepainters.cpp">
@@ -210,6 +216,9 @@
 				RelativePath=".\constraint.h">
 			</File>
 			<File
+				RelativePath=".\convert.h">
+			</File>
+			<File
 				RelativePath=".\entity.h">
 			</File>
 			<File
@@ -219,7 +228,7 @@
 				RelativePath=".\map.h">
 			</File>
 			<File
-				RelativePath=".\objparse.h">
+				RelativePath=".\objectgroupplacer.h">
 			</File>
 			<File
 				RelativePath=".\output.h">
@@ -238,6 +247,9 @@
 			</File>
 			<File
 				RelativePath=".\simpleconstraints.h">
+			</File>
+			<File
+				RelativePath=".\simplegroup.h">
 			</File>
 			<File
 				RelativePath=".\simplepainters.h">

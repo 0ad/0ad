@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "objparse.h"
+#include "convert.h"
 #include "rmgen.h"
 #include "simpleconstraints.h"
 #include "simplepainters.h"
@@ -7,6 +7,7 @@
 #include "layeredpainter.h"
 #include "clumpplacer.h"
 #include "smoothelevationpainter.h"
+#include "simplegroup.h"
 
 using namespace std;
 
@@ -79,7 +80,7 @@ bool ParseArray(JSContext* cx, jsval val, vector<jsval>& ret) {
 	return true;
 }
 
-AreaPainter* ParsePainter(JSContext* cx, jsval val) {
+AreaPainter* ParseAreaPainter(JSContext* cx, jsval val) {
 	vector<jsval> array;
 	jsval jsv, jsv2;
 	Terrain* terrain = 0;
@@ -93,7 +94,7 @@ AreaPainter* ParsePainter(JSContext* cx, jsval val) {
 		// MultiPainter is encoded as an array of painters
 		vector<AreaPainter*> painters(array.size());
 		for(int i=0; i<array.size(); i++) {
-			painters[i] = ParsePainter(cx, array[i]);
+			painters[i] = ParseAreaPainter(cx, array[i]);
 			if(painters[i]==0) return 0;
 		}
 		return new MultiPainter(painters);
@@ -138,8 +139,7 @@ AreaPainter* ParsePainter(JSContext* cx, jsval val) {
 	}
 }
 
-AreaPlacer* ParsePlacer(JSContext* cx, jsval val) {
-	jsval jsv;
+AreaPlacer* ParseAreaPlacer(JSContext* cx, jsval val) {
 	int x, y, x1, y1, x2, y2, num, maxFail;
 	float size, coherence, smoothness;
 
@@ -158,6 +158,37 @@ AreaPlacer* ParsePlacer(JSContext* cx, jsval val) {
 			if(!GetIntField(cx, val, "x", x)) return 0;
 			if(!GetIntField(cx, val, "y", y)) return 0;
 			return new ClumpPlacer(size, coherence, smoothness, x, y);
+
+		default:
+			return 0;
+	}
+}
+
+ObjectGroupPlacer* ParseObjectGroupPlacer(JSContext* cx, jsval val) {
+	jsval jsv;
+	vector<jsval> array;
+	int x, y;
+	vector<SimpleGroup::Element*> elements;
+
+	switch(GetType(cx, val)) {
+		case TYPE_SIMPLE_GROUP:
+			// convert x and y
+			if(!GetIntField(cx, val, "x", x)) return 0;
+			if(!GetIntField(cx, val, "y", y)) return 0;
+			// convert the elements (which will be JS SimpleElement objects)
+			if(!GetJsvalField(cx, val, "elements", jsv)) return 0;
+			if(!ParseArray(cx, jsv, array)) return 0;
+			elements.resize(array.size());
+			for(int i=0; i<array.size(); i++) {
+				string type;
+				int count;
+				float distance;
+				if(!GetStringField(cx, array[i], "type", type)) return 0;
+				if(!GetIntField(cx, array[i], "count", count)) return 0;
+				if(!GetFloatField(cx, array[i], "distance", distance)) return 0;
+				elements[i] = new SimpleGroup::Element(type, count, distance);
+			}
+			return new SimpleGroup(elements, x, y);
 
 		default:
 			return 0;

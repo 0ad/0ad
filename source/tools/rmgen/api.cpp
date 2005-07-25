@@ -4,7 +4,7 @@
 #include "random.h"
 #include "map.h"
 #include "entity.h"
-#include "objparse.h"
+#include "convert.h"
 #include "terrain.h"
 #include "simpleconstraints.h"
 
@@ -24,9 +24,10 @@ JSFunctionSpec globalFunctions[] = {
 	{"setHeight", setHeight, 3},
 	{"randInt", randInt, 1},
 	{"randFloat", randFloat, 0},
-	{"addEntity", addEntity, 5},
+	{"placeObject", placeObject, 5},
 	{"createArea", createArea, 3},
-	{0}
+	{"createObjectGroup", createObjectGroup, 2},
+	{0, 0, 0}
 };
 
 // Some global variables used for the API
@@ -111,8 +112,8 @@ JSBool error(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 
 JSBool init(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-	ValidateArgs("i*n", cx, argc, argv, __FUNCTION__);
 	CheckInit(false, cx, __FUNCTION__);
+	ValidateArgs("i*n", cx, argc, argv, __FUNCTION__);
 
 	int size = JSVAL_TO_INT(argv[0]);
 	Terrain* baseTerrain = ParseTerrain(cx, argv[1]);
@@ -128,8 +129,8 @@ JSBool init(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 
 JSBool initFromScenario(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-	ValidateArgs("si", cx, argc, argv, __FUNCTION__);
 	CheckInit(false, cx, __FUNCTION__);
+	ValidateArgs("si", cx, argc, argv, __FUNCTION__);
 
 	string fileName = JS_GetStringBytes(JSVAL_TO_STRING(argv[0]));
 	int loadObjectLevel = JSVAL_TO_INT(argv[1]);
@@ -141,8 +142,8 @@ JSBool initFromScenario(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, j
 
 JSBool getTexture(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-	ValidateArgs("ii", cx, argc, argv, __FUNCTION__);
 	CheckInit(true, cx, __FUNCTION__);
+	ValidateArgs("ii", cx, argc, argv, __FUNCTION__);
 	
 	int x = JSVAL_TO_INT(argv[0]);
 	int y = JSVAL_TO_INT(argv[1]);
@@ -153,8 +154,8 @@ JSBool getTexture(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *
 
 JSBool setTexture(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-	ValidateArgs("iis", cx, argc, argv, __FUNCTION__);
 	CheckInit(true, cx, __FUNCTION__);
+	ValidateArgs("iis", cx, argc, argv, __FUNCTION__);
 	
 	int x = JSVAL_TO_INT(argv[0]);
 	int y = JSVAL_TO_INT(argv[1]);
@@ -165,8 +166,8 @@ JSBool setTexture(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *
 
 JSBool getHeight(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-	ValidateArgs("ii", cx, argc, argv, __FUNCTION__);
 	CheckInit(true, cx, __FUNCTION__);
+	ValidateArgs("ii", cx, argc, argv, __FUNCTION__);
 	
 	int x = JSVAL_TO_INT(argv[0]);
 	int y = JSVAL_TO_INT(argv[1]);
@@ -177,8 +178,8 @@ JSBool getHeight(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *r
 
 JSBool setHeight(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-	ValidateArgs("iin", cx, argc, argv, __FUNCTION__);
 	CheckInit(true, cx, __FUNCTION__);
+	ValidateArgs("iin", cx, argc, argv, __FUNCTION__);
 	
 	int x = JSVAL_TO_INT(argv[0]);
 	int y = JSVAL_TO_INT(argv[1]);
@@ -210,10 +211,10 @@ JSBool randFloat(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *r
 	return JS_TRUE;
 }
 
-JSBool addEntity(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
+JSBool placeObject(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-	ValidateArgs("sinnn", cx, argc, argv, __FUNCTION__);
 	CheckInit(true, cx, __FUNCTION__);
+	ValidateArgs("sinnn", cx, argc, argv, __FUNCTION__);
 
 	string type = JS_GetStringBytes(JS_ValueToString(cx, argv[0]));
 	int player = JSVAL_TO_INT(argv[1]);
@@ -229,8 +230,8 @@ JSBool addEntity(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *r
 
 JSBool placeTerrain(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-	ValidateArgs("ii*", cx, argc, argv, __FUNCTION__);
 	CheckInit(true, cx, __FUNCTION__);
+	ValidateArgs("ii*", cx, argc, argv, __FUNCTION__);
 
 	int x = JSVAL_TO_INT(argv[0]);
 	int y = JSVAL_TO_INT(argv[1]);
@@ -244,19 +245,19 @@ JSBool placeTerrain(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval
 
 JSBool createArea(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval) 
 {
+	CheckInit(true, cx, __FUNCTION__);
 	if(argc != 2 && argc != 3) {
 		JS_ReportError(cx, "createArea: expected 2 or 3 arguments but got %d", argc);
 	}
-	CheckInit(true, cx, __FUNCTION__);
 
 	AreaPlacer* placer;
 	AreaPainter* painter;
 	Constraint* constr;
 
-	if(!(placer = ParsePlacer(cx, argv[0]))) {
+	if(!(placer = ParseAreaPlacer(cx, argv[0]))) {
 		JS_ReportError(cx, "createArea: argument 1 must be a valid area placer");
 	}
-	if(!(painter = ParsePainter(cx, argv[1]))) {
+	if(!(painter = ParseAreaPainter(cx, argv[1]))) {
 		JS_ReportError(cx, "createArea: argument 2 must be a valid area painter");
 	}
 	if(argc == 3) {
@@ -282,6 +283,42 @@ JSBool createArea(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *
 		int id = areas.size();
 		areaToId[area] = id;
 		*rval = INT_TO_JSVAL(id);
+	}
+	return JS_TRUE;
+}
+
+JSBool createObjectGroup(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval) 
+{
+	CheckInit(true, cx, __FUNCTION__);
+	if(argc != 1 && argc != 2) {
+		JS_ReportError(cx, "createObjectGroup: expected 1 or 2 arguments but got %d", argc);
+	}
+
+	ObjectGroupPlacer* placer;
+	Constraint* constr;
+
+	if(!(placer = ParseObjectGroupPlacer(cx, argv[0]))) {
+		JS_ReportError(cx, "createObjectGroup: argument 1 must be a valid object group placer");
+	}
+	if(argc == 2) {
+		if(!(constr = ParseConstraint(cx, argv[1]))) {
+			JS_ReportError(cx, "createObjectGroup: argument 2 must be a valid constraint");
+		}
+	}
+	else {
+		constr = new NullConstraint();
+	}
+
+	vector<Entity*>* ret = theMap->createObjectGroup(placer, constr);
+
+	delete placer;
+	delete constr;
+
+	if(!ret) {
+		*rval = INT_TO_JSVAL(0);
+	}
+	else {
+		*rval = INT_TO_JSVAL(1);
 	}
 	return JS_TRUE;
 }

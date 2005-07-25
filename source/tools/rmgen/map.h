@@ -7,6 +7,7 @@
 #include "constraint.h"
 #include "entity.h"
 #include "terrain.h"
+#include "objectgroupplacer.h"
 
 class Map {
 public:
@@ -35,11 +36,15 @@ public:
 	float getHeight(int x, int y);
 	void setHeight(int x, int y, float height);
 
+	std::vector<Entity*> getTerrainEntities(int x, int y);
+	void setTerrainEntities(int x, int y, std::vector<Entity*> &entities);
+
 	void placeTerrain(int x, int y, Terrain* t);
 
 	void addEntity(class Entity* ent);
 
 	Area* createArea(AreaPlacer* placer, AreaPainter* painter, Constraint* constr);
+	std::vector<Entity*>* createObjectGroup(ObjectGroupPlacer* placer, Constraint* constr);
 };
 
 #endif
