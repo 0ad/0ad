@@ -950,6 +950,19 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 	// -- GL
 }
 
+bool CGUI::GetPreDefinedColor(const CStr &name, CColor &Output)
+{
+	if (m_PreDefinedColors.count(name) == 0)
+	{
+		return false;
+	}
+	else
+	{
+		Output = m_PreDefinedColors[name];
+		return true;
+	}
+}
+
 void CGUI::ReportParseError(const char *str, ...)
 {
 	va_list argp;
@@ -1116,6 +1129,11 @@ void CGUI::Xeromyces_ReadRootSetup(XMBElement Element, CXeromyces* pFile)
 		if (name == "tooltip")
 		{
 			Xeromyces_ReadTooltip(child, pFile);
+		}
+		else
+		if (name == "color")
+		{
+			Xeromyces_ReadColor(child, pFile);
 		}
 		else
 		{
@@ -1461,10 +1479,9 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 	// Image object we're adding
 	SGUIImage image;
 	
-	// TODO Gee: (2004-08-30) This is not how to set defaults.
-	CStr DefaultTextureSize ("0 0 100% 100%");
-	image.m_TextureSize = CClientArea(DefaultTextureSize);
-	image.m_Size = CClientArea(DefaultTextureSize);
+	// Set defaults (or maybe do that in DTD?)
+	image.m_TextureSize = CClientArea("0 0 100% 100%");
+	image.m_Size = CClientArea("0 0 100% 100%");
 	
 	// TODO Gee: Setup defaults here (or maybe they are in the SGUIImage ctor)
 
@@ -1810,4 +1827,32 @@ void CGUI::Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile)
 	}
 
 	AddObject(object);
+}
+
+// Reads Custom Color
+void CGUI::Xeromyces_ReadColor(XMBElement Element, CXeromyces* pFile)
+{
+	// Read the color and stor in m_PreDefinedColors
+
+	XMBAttributeList attributes = Element.getAttributes();
+
+	//IGUIObject* object = new CTooltip;
+	CColor color;
+	CStr name = attributes.getNamedItem(pFile->getAttributeID("name"));
+
+	// Try parsing value 
+	CStr value (Element.getText());
+	if (value.Length())
+	{
+		// Try setting color to value
+		if (!color.ParseString(value, 255.f))
+		{
+			ReportParseError("Unable to create custom color '%s'. Invalid color syntax.", name.c_str());
+		}
+		else
+		{
+			// input color
+			m_PreDefinedColors[name] = color;
+		}
+	}
 }

@@ -243,6 +243,12 @@ public:
 	 */
 	SGUIIcon GetIcon(const CStr &str) const { return m_Icons.find(str)->second; }
 
+	/**
+	 * Get pre-defined color (if it exists)
+	 * Returns false if it fails.
+	 */
+	bool GetPreDefinedColor(const CStr &name, CColor &Output);
+
 private:
 	/**
 	 * Updates the object pointers, needs to be called each
@@ -334,6 +340,8 @@ private:
 		 +-<scrollbar> (ReadScrollBar)
 		 |
 		 +-<icon> (ReadIcon)
+		 |
+		 +-<color> (ReadColor)
 	*/
 	//@{
 
@@ -482,8 +490,30 @@ private:
 	 * @see LoadXMLFile()
 	 */
 	void Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile);
-
+	
+	/**
+	 * Reads in the element <tooltip> (the XMBElement) and stores the
+	 * result as an object with the name __tooltip_#.
+	 *
+	 * @param Element	The Xeromyces object that represents
+	 *					the scrollbar-tag.
+	 * @param pFile		The Xeromyces object for the file being read
+	 *
+	 * @see LoadXMLFile()
+	 */
 	void Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile);
+
+	/**
+	 * Reads in the element <color> (the XMBElement) and stores the
+	 * result in m_PreDefinedColors
+	 *
+	 * @param Element	The Xeromyces object that represents
+	 *					the scrollbar-tag.
+	 * @param pFile		The Xeromyces object for the file being read
+	 *
+	 * @see LoadXMLFile()
+	 */
+	void Xeromyces_ReadColor(XMBElement Element, CXeromyces* pFile);
 
 	//@}
 
@@ -520,7 +550,16 @@ private:
 	// TODO Gee: Used?
 	int16_t m_Errors;
 
+	// Tooltip
 	GUITooltip m_Tooltip;
+
+	/**
+	 * This is a bank of custom colors, it is simply a look up table that
+	 * will return a color object when someone inputs the name of that
+	 * color. Of course the colors have to be declared in XML, there are
+	 * no hard-coded values.
+	 */
+	std::map<CStr, CColor>	m_PreDefinedColors;
 
 	//@}
 	//--------------------------------------------------------
