@@ -24,12 +24,14 @@
 
 #define SDL_BYTE_ORDER SDL_LIL_ENDIAN
 
+#include <cassert>
 #define cassert(x) extern char cassert__##__LINE__ [x]
 #define debug_warn(x) assert(0&&x)
+#define debug_assert assert
 
 #define XP_WIN
 
-#include "Errors.h"
+#include "ps/Errors.h"
 
-#include <stdio.h>
+#include <cstdio>
 #define swprintf _snwprintf

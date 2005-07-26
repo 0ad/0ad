@@ -6,7 +6,7 @@
 
 #include "Interface.h"
 
-#include "jsapi.h"
+#include "scripting/SpiderMonkey.h"
 
 I18n::CLocale_interface* g_CurrentLocale;
 #define translate(x) g_CurrentLocale->Translate(x)
@@ -62,8 +62,8 @@ int main()
 		return 1;
 
 
-	extern void test();
-	test();
+	extern void test(JSContext*, JSObject*);
+	test(cx, glob);
 
 #if 0
 	std::string lang = readfile("e:\\0ad\\cvs\\binaries\\data\\mods\\official\\language\\test\\phrases.lng");

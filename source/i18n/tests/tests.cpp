@@ -1,8 +1,9 @@
 #include "precompiled.h"
 
 #include "Interface.h"
+#include "scripting/SpiderMonkey.h"
 
-#define FILE_PATH "..\\..\\..\\binaries\\data\\mods\\official\\language\\test\\"
+#define FILE_PATH "..\\data\\mods\\official\\language\\test\\"
 
 extern I18n::CLocale_interface* g_CurrentLocale;
 #define translate(x) g_CurrentLocale->Translate(x)
@@ -31,12 +32,13 @@ void test_assert(bool test, const char* file, int line, const char* fmt, ...)
 {
 	if (! test)
 	{
-		char msg[256];
+		char msg[512];
 		va_list v;
 		va_start(v, fmt);
-		vsprintf(msg, fmt, v);
-		char err[256];
-		sprintf(err, "%s(%d) : TEST FAILED : %s\n", file, line, msg);
+		_vsnprintf(msg, sizeof(msg), fmt, v);
+		char err[512];
+		_snprintf(err, sizeof(err), "%s(%d) : TEST FAILED : %s\n", file, line, msg);
+		err[sizeof(err)-1] = 0;
 		OutputDebugStringA(err);
 		printf("%s", err);
 	}
@@ -61,7 +63,19 @@ namespace I18n { extern bool g_UsedCache; }
 	test_assert(I18n::g_UsedCache, __FILE__, __LINE__, "Failed to use cache"); \
 }
 
-void test()
+#define TEST_EQ_SCRIPT(answer, str) \
+{ \
+	jsval rval; \
+	if (JS_EvaluateScript(cx, glob, str, (int)strlen(str), "test", 1, &rval) != JS_TRUE) \
+		test_assert(false, __FILE__, __LINE__, "Script eval failed"); \
+	else { \
+		JSString*	 r = JS_ValueToString(cx, rval); \
+		I18n::Str s (JS_GetStringChars(r), JS_GetStringLength(r)); \
+		test_assert(s == L##answer, __FILE__, __LINE__, "Unexpected output:\n '%ls'\nExpected:\n '%ls'", s.c_str(), L##answer); \
+	} \
+}
+
+void test(JSContext* cx, JSObject* glob)
 {
 	// Untranslated strings. Simple strings.
 	TEST_EQ_NOCACHE(
@@ -223,7 +237,45 @@ void test()
 		"Testing things $num of $object", << -3.5 << I18n::Raw("orangutan")
 		);
 
-	// TODO: Tests for the JS interface.
+	// Repeated tests, using JS interface.
 
+	TEST_EQ_SCRIPT(
+		"Hello world banana",
+		"translate('Hello world $n', i18n.Name('banana'))"
+		);
 
+	TEST_EQ_SCRIPT(
+		"Hello world banana",
+		"translate('Hello world $n', i18n.Raw('banana'))"
+		);
+
+	TEST_EQ_SCRIPT(
+		"Hello world BANANA",
+		"translate('Hello world $n', i18n.Noun('banana'))"
+		);
+
+	TEST_EQ_SCRIPT(
+		"1.2345+67890=67891.2345. An armadillo buys a platypus for 14.99 (platypus! 14.990000!)",
+		"translate('Test $obj ($$$amnt)', i18n.Noun('platypus'), 14.99)"
+		);
+
+	TEST_EQ_SCRIPT(
+		"There are (1 BANANA) here",
+		"translate('Testing things $num of $object', 1, i18n.Noun('banana'))"
+		);
+
+	TEST_EQ_SCRIPT(
+		"There are (2 bananas) here",
+		"translate('Testing things $num of $object', 2, i18n.Noun('banana'))"
+		);
+
+	TEST_EQ_SCRIPT(
+		"There are (2.5 bananas) here",
+		"translate('Testing things $num of $object', 2.5, i18n.Raw('banana'))"
+		);
+
+	TEST_EQ_SCRIPT(
+		"There are (-3.5 orangutan) here",
+		"translate('Testing things $num of $object', -3.5, i18n.Raw('orangutan'))"
+		);
 }

@@ -22,7 +22,7 @@ namespace I18n
 		vartype_int,
 		vartype_double,
 		vartype_string,
-		vartype_rawstring, // won't be translated automatically
+		vartype_rawstring // won't be translated automatically
 	};
 
 	class BufferVariable

@@ -20,12 +20,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="E:\0ad\libs\include;E:\0ad\cvs\source\i18n;E:\0ad\cvs\source\i18n\tests"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
+				AdditionalIncludeDirectories=".;..;..\..\..\libraries\spidermonkey\include"
+				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;I18NDEBUG"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="5"
-				UsePrecompiledHeader="0"
+				UsePrecompiledHeader="3"
+				PrecompiledHeaderThrough="precompiled.h"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
 				DebugInformationFormat="4"/>
@@ -70,10 +71,11 @@
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="E:\0ad\libs\include;E:\0ad\cvs\source\i18n;E:\0ad\cvs\source\i18n\tests"
+				AdditionalIncludeDirectories=".;..;..\..\..\libraries\spidermonkey\include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="4"
-				UsePrecompiledHeader="0"
+				UsePrecompiledHeader="3"
+				PrecompiledHeaderThrough="precompiled.h"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
 				DebugInformationFormat="3"/>
@@ -113,19 +115,20 @@
 		</Configuration>
 		<Configuration
 			Name="Coverage|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="Coverage"
+			IntermediateDirectory="Coverage"
 			ConfigurationType="1"
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="E:\0ad\libs\include;E:\0ad\cvs\source\i18n;E:\0ad\cvs\source\i18n\tests"
+				AdditionalIncludeDirectories=".;..;..\..\..\libraries\spidermonkey\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;I18NDEBUG"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="5"
-				UsePrecompiledHeader="0"
+				UsePrecompiledHeader="3"
+				PrecompiledHeaderThrough="precompiled.h"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
 				DebugInformationFormat="3"/>
@@ -172,16 +175,28 @@
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
 			<File
-				RelativePath=".\CStr.cpp">
-			</File>
-			<File
 				RelativePath=".\CStr.h">
 			</File>
 			<File
-				RelativePath=".\Errors.cpp">
-			</File>
-			<File
-				RelativePath=".\Errors.h">
+				RelativePath=".\precompiled.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Coverage|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\precompiled.h">
@@ -197,9 +212,6 @@
 			</File>
 			<File
 				RelativePath=".\tests.cpp">
-			</File>
-			<File
-				RelativePath=".\types.h">
 			</File>
 			<File
 				RelativePath=".\UniDoubler.h">
@@ -265,6 +277,9 @@
 			<Filter
 				Name="lib"
 				Filter="">
+				<File
+					RelativePath=".\lib\types.h">
+				</File>
 				<Filter
 					Name="sysdep"
 					Filter="">
@@ -278,6 +293,37 @@
 				Filter="">
 				<File
 					RelativePath=".\ps\CLogger.h">
+				</File>
+				<File
+					RelativePath=".\ps\Errors.cpp">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Coverage|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\ps\Errors.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="scripting"
+				Filter="">
+				<File
+					RelativePath=".\scripting\SpiderMonkey.h">
 				</File>
 			</Filter>
 		</Filter>
