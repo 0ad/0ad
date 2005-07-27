@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no" ?>
+
+<!DOCTYPE objects SYSTEM "../gui.dtd">
+
+<!--
+==========================================
+- ONLINE MANUAL DEFINITION -
+==========================================
+-->
+
+<objects>
+
+	<object type="empty" name="MANUAL_GUI" size="0 0 100% 100%" z="1" hotkey="onlinehelp" hidden="true">
+		<action on="Press"><![CDATA[
+			// Toggle manual if something selected.
+			if (selection.length)
+			{
+				GUIObjectToggle("MANUAL_GUI");
+				GUIObjectToggle("SESSION_GUI");
+			}
+		]]></action>
+
+	</object>
+
+</objects>

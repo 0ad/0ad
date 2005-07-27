@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no" ?>
+
+<!DOCTYPE objects SYSTEM "../gui.dtd">
+
+<!--
+==========================================
+- SESSION GUI -
+==========================================
+-->
+
+<objects>
+
+	<object name="sn"
+		hidden="true"
+		hotkey="flipgui.toggle"
+	>
+		<action on="Press"><![CDATA[
+			flipGUI();
+		]]></action>
+
+		<object name="snMiniMap"
+			style="session_minimap"
+			type="minimap"
+			size="100%-180 100%-180 100% 100%"
+		/>
+
+	</object>
+
+</objects>
+
+
+
+

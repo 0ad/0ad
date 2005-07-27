@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no" ?>
+
+<!DOCTYPE objects SYSTEM "../gui.dtd">
+
+<objects>
+
+	<!--
+	==========================================
+	 - GLOBAL OBJECTS -
+	==========================================
+	-->
+
+	<object>
+		<!--
+		==========================================
+		- AUDIO TOGGLER
+		==========================================
+		-->
+
+		<object name="audioToggle"
+			type="button"
+			hotkey="audio.toggle"
+			hidden="true"
+		>
+			<action on="Press"><![CDATA[
+				if (snd_disabled == true)
+					snd_disable (false);
+				else
+					snd_disable (true);
+			]]></action>		
+		</object>
+
+		<!--
+		==========================================
+		- FPS COUNTER
+		==========================================
+		-->
+
+		<object name="fpsCounter"
+			type="text"
+			ghost="true"
+			hidden="true"
+			hotkey="fps.toggle"
+			font="verdana16"
+			textcolor="100 100 0"
+			size="18 0 200 35"
+		>
+			<action on="Press"><![CDATA[
+				guiToggle (this.name);
+			]]></action>
+			<action on="Tick"><![CDATA[
+				if (this.hidden == "false"){
+					g_mouse_x = mouse.x;
+					g_mouse_y = mouse.y;
+					getGUIObjectByName(this.name).caption = "FPS: " + getFPS() + " " + g_mouse_x + " " + g_mouse_y;
+				}
+			]]></action>
+		</object>
+
+		<!--
+		==========================================
+		 - MESSAGE BOX -
+		==========================================
+		-->
+        
+		<object name="mbMain"
+			style="wheatWindow"
+			type="image"
+			hidden="true"
+			size="50%-400 50%-200 50%+400 50%+200" 
+		>
+			<!-- control for blocking access to other controls in background -->
+                        <object	name="mbBlocker"
+				type="image"
+				hidden="false" 
+			/>
+
+			<object name="mbTitleBar"
+				style="wheatWindowTitleBar"
+				type="button"
+			>mbTitle
+			</object>
+
+                        <!-- text -->
+                        <object name="mbText"
+				style="fancyTextTitleBlack"
+				type="text"
+				size="30 30 100%-30 100%-100"
+			>mbMessage
+                        </object>
+                        
+			<!-- buttons -->
+			<object name="mbButton1"
+				style="wheatButtonFancy"
+				type="button"
+				size="40 100%-50 33%-30 100%-20" 
+			>mbButton1Caption
+				<action on="Press"><![CDATA[
+                                        eval (getGUIGlobal().mbButton1Code);
+                                        guiHide ("mbMain");
+                                ]]></action>
+			</object>
+			<object name="mbButton2"
+				style="wheatButtonFancy"
+				type="button"
+				size="33%+30 100%-50 66%-40 100%-20" 
+			>mbButton2Caption
+				<action on="Press"><![CDATA[
+					eval (getGUIGlobal().mbButton2Code);
+					guiHide ("mbMain");
+				]]></action>
+			</object>
+			<object name="mbButton3"
+				style="wheatButtonFancy"
+				type="button"
+				size="66%+30 100%-50 100%-40 100%-20"
+			>mbButton3Caption
+				<action on="Press"><![CDATA[
+					eval (getGUIGlobal().mbButton2Code);
+					guiHide ("mbMain");
+				]]></action>
+			</object>
+		</object>
+	</object>
+
+	<!--
+	==========================================
+	- WATERMARK - USED WHEN TAKING OFFICIAL SCREENSHOTS
+	==========================================
+	-->
+
+	<object	name="glbWaterMark"
+		hidden="true"
+		hotkey="screenshot.watermark"
+	>
+		<action on="Press"><![CDATA[
+			guiToggle ("glbWaterMark");
+		]]></action>
+
+		<object	name="glbWaterMarkProductLogo"
+			type="image"
+			size="0 100%-98 200 100%"
+			sprite="watermarkProduct"
+		/>
+
+		<object	name="glbWaterMarkCompanyLogo"
+			type="image"
+			size="100%-207 100%-28 100% 100%"
+			sprite="watermarkCompany"
+		/>
+	</object>
+
+</objects>

@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<!DOCTYPE styles SYSTEM "..\gui.dtd">
+
+<styles>
+	<!--
+	==========================================
+	- DEFAULT STYLE: The style with the name 'default' is special, it will
+	- be called by every object before any other style is loaded.
+	==========================================
+	-->
+
+	<style 	name="default"
+		absolute="false"
+		enabled="true"
+		ghost="false"
+		hidden="false"
+		size="0 0 100% 100%"
+		z="0"
+
+		font="verdana12"
+		buffer_zone="5"
+		multiline="false"
+	/>
+
+	<!--
+	==========================================
+	- STYLE - GLOBAL - WHEAT SKIN - PANES
+	==========================================
+	-->
+
+	<style 	name="wheatWindow"
+		sprite="wheatWindowSand"
+	/>
+
+	<style 	name="wheatWindowGranite"
+		sprite="wheatWindowGranite"
+	/>
+
+	<style 	name="wheatWindowTitleBar"
+		size="50%-150 0%-25 50%+150 0%-9"
+		font="prospero18"
+		sprite="wheatWindowTitle"
+		text_align="center"
+		text_valign="center"
+	/>
+
+	<!--
+	==========================================
+	- STYLE - GLOBAL - WHEAT SKIN - CONTROLS
+	==========================================
+	-->
+
+	<style 	name="wheatButton"
+		sprite="wheatButton"
+		sprite_over="wheatButtonOver"
+		text_align="center"
+		text_valign="center"
+	/>
+
+	<style 	name="wheatButtonFancy"
+		sprite="wheatButton"
+		sprite_over="wheatButtonOver"
+		font="prospero18"
+		text_align="center"
+		text_valign="center"
+	/>
+
+	<style 	name="wheatExit"
+		size="100%+9 0%-25 100%+25 0%-9"
+		sprite="wheatCheckBoxCross"
+		sprite_over="wheatCheckBoxCrossOver"
+		tooltip="Close this window and return to the previous screen."
+		tooltip_style="pgToolTip"
+	/>
+
+	<style 	name="wheatCheckBox"
+		size="100%+9 0%-25 100%+25 0%-9"
+		sprite="wheatCheckBoxOpen"
+		sprite_over="wheatCheckBoxCross"
+	/>
+
+	<style 	name="wheatList"
+		buffer_zone="5"
+		font="verdana12"
+		scrollbar="true"
+		scrollbar_style="wheatScrollBar"
+		sprite="wheatIndentFillLight"
+		sprite_selectarea="bkWhiteBorderBlack"
+		sprite_over="wheatIndentBorder"
+		textcolor="black"
+		textcolor_selected="white"
+		text_align="left"
+		text_valign="center"
+	/>
+
+	<style 	name="wheatDropDown"
+		buffer_zone="5"
+		dropdown_buffer="6"
+		dropdown_size="130"
+		font="verdana12"
+		scrollbar="true"
+		scrollbar_style="wheatScrollBar"
+		sprite="wheatButton"
+		sprite_list="wheatButton"
+		sprite_over="wheatButtonOver"
+		sprite_selectarea="bkFillGray"
+		sprite2="wheatButtonOver"
+		sprite2_pressed="wheatButtonOver"
+		textcolor="black"
+		textcolor_selected="white"
+		text_align="left"
+		text_valign="center"
+	/>
+
+	<!--
+	==========================================
+	- STYLE - GLOBAL - WHEAT SKIN - TEXT
+	==========================================
+	-->
+		<!--
+		=============================================================
+		- STYLE - GLOBAL - WHEAT SKIN - TEXT - LARGE HEADING
+		- Standard text. Largest heading. (eg "Player Slots" in host screen.)
+		=============================================================
+		-->
+
+		<style 	name="wheatTextHeadMaxBlack"
+			ghost="true"
+			font="giovanni22bold"
+			text_align="center"
+			textcolor="black"
+		/>
+
+		<!--
+		=============================================================
+		- STYLE - GLOBAL - WHEAT SKIN - TEXT - HEADING
+		- Standard text. Heading. (eg "Player Name").
+		=============================================================
+		-->
+
+		<style 	name="wheatTextHeadBlack"
+			ghost="true"
+			font="tahoma16"
+			textcolor="black"
+		/>
+
+		<style 	name="wheatTextHeadWhite"
+			ghost="true"
+			font="tahoma16"
+			textcolor="white"
+		/>
+
+		<style 	name="wheatTextHeadBlackRt"
+			ghost="true"
+			font="tahoma16"
+			text_align="right"
+			textcolor="black"
+		/>
+
+		<!--
+		=============================================================
+		- STYLE - GLOBAL - WHEAT SKIN - TEXT - SUBHEADING
+		- Standard text. Subheading.
+		=============================================================
+		-->
+
+		<style 	name="wheatTextHeadSubBlack"
+			ghost="true"
+			font="tahoma14"
+			textcolor="black"
+		/>
+
+		<!--
+		=============================================================
+		- STYLE - GLOBAL - WHEAT SKIN - TEXT - LABEL
+		- Standard text. Plain medium text (eg window text). Default.
+		=============================================================
+		-->
+
+		<style 	name="wheatTextLabelBlack"
+			ghost="true"
+			font="verdana12"
+			textcolor="black"
+		/>
+
+		<!--
+		=============================================================
+		- STYLE - GLOBAL - WHEAT SKIN - TEXT - SUB LABEL
+		- Standard text. Plain smaller label.
+		=============================================================
+		-->
+
+		<style 	name="wheatTextSubLabelBlack"
+			ghost="true"
+			font="verdana11"
+			textcolor="black"
+		/>
+
+		<!--
+		=============================================================
+		- STYLE - GLOBAL - WHEAT SKIN - TEXT - FOOTNOTE MAX
+		- Standard text. Large footnote.
+		=============================================================
+		-->
+
+		<style 	name="wheatTextFootMaxBlack"
+			ghost="true"
+			font="verdana10"
+			textcolor="black"
+		/>
+
+		<!--
+		=============================================================
+		- STYLE - GLOBAL - WHEAT SKIN - TEXT - FOOTNOTE
+		- Standard text. Normal footnote.
+		=============================================================
+		-->
+
+		<style 	name="wheatTextFootBlack"
+			ghost="true"
+			font="verdana9"
+			textcolor="black"
+		/>
+
+		<!--
+		=============================================================
+		- STYLE - GLOBAL - WHEAT SKIN - TEXT - SUBFOOTNOTE
+		- Standard text. Small subfootnote.
+		=============================================================
+		-->
+
+		<style 	name="wheatTextFootSubBlack"
+			ghost="true"
+			font="verdana8"
+			textcolor="black"
+		/>
+
+		<!--
+		=============================================================
+		- STYLE - GLOBAL - WHEAT SKIN - TEXT - FANCY - TITLEBAR
+		- Large and ornate. eg Window titlebar.
+		=============================================================
+		-->
+
+		<style 	name="fancyTextTitleGold"
+			ghost="true"
+			font="prospero18"
+			textcolor="gold"
+		/>
+
+		<style 	name="fancyTextTitleWhite"
+			ghost="true"
+			font="prospero18"
+			textcolor="white"
+		/>
+
+		<style 	name="fancyTextTitleBlack"
+			ghost="true"
+			font="prospero18"
+			textcolor="black"
+		/>
+
+		<!--
+		=============================================================
+		- STYLE - GLOBAL - WHEAT SKIN - TEXT - FANCY - HEADING
+		- Medium and ornate. eg Version number.
+		=============================================================
+		-->
+
+		<style 	name="fancyTextHeadGold"
+			ghost="true"
+			font="prospero16"
+			textcolor="gold"
+		/>
+
+		<style 	name="fancyTextHeadWhite"
+			ghost="true"
+			font="prospero16"
+			textcolor="white"
+		/>
+
+	<!--
+	==========================================
+	- STYLE - GLOBAL - WHEAT SKIN - BORDERS
+	==========================================
+	-->
+
+	<style	name="wheatBorderBlack"
+		sprite="bkBorderBlack"
+		sprite_selectarea="bkFillGray"
+		textcolor="black"
+		textcolor_selected="white"
+	/>
+
+	<style	name="wheatBorderBlackNote"
+		font="verdana9"
+		sprite="bkBorderBlack"
+		sprite_selectarea="bkFillGray"
+		textcolor="black"
+		textcolor_selected="white"
+	/>
+
+	<style	name="wheatDividerBlack"
+		sprite="bkBorderBlack"
+		sprite_selectarea="bkFillGray"
+		textcolor="black"
+		textcolor_selected="white"
+	/>
+
+	<!--
+	==========================================
+	- STYLE - GLOBAL - WHEAT SKIN - PROGRESS BARS
+	==========================================
+	-->
+
+	<style name="wheatProgressBarBlue"
+		sprite_background="bkBorderBlack"
+		sprite_bar="bkBlueBorderBlack"
+		ghost="true"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+	/>
+
+	<!--
+	==========================================
+	- STYLE - UNIQUE
+	==========================================
+	-->
+
+		<!--
+		==========================================
+		- STYLE - UNIQUE - PREGAME
+		==========================================
+		-->
+
+		<style 	name="pgButton"
+			tooltip_style="pgToolTip"
+		/>
+
+
+        <!--
+NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED 
+NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED 
+	-->
+
+	<!--
+	==========================================
+	- STYLE - UNIQUE - SESSION
+	==========================================
+	-->
+
+	<style name="resource_counter"
+		text_valign="bottom"
+		text_align="right"
+		font="prospero16"
+		textcolor="white"
+		tooltip_style="session_tooltip"
+		ghost="false"
+	/>
+
+	<style name="control_group"
+		size="0 0 100% 100%"
+	/>
+
+	<style name="session_object"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+	/>
+
+	<style name="session_button_object"
+		text_align="center"
+		text_valign="center"
+		sprite="wheatButton"
+		sprite_over="wheatButtonOver"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+	/>
+
+	<style name="session_ghost_object"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_ghost_miniheading_object"
+		font="verdana8"
+		textcolor="200 200 200"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_ghost_subheading_object"
+		font="verdana10"
+		textcolor="200 200 200"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_ghost_subheading_center_object"
+		font="verdana10"
+		textcolor="200 200 200"
+		text_align="center"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_ghost_subheading_left_object"
+		font="verdana10"
+		textcolor="200 200 200"
+		text_align="left"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_ghost_midheading_object"
+		font="verdana11"
+		textcolor="255 255 255"
+		text_align="center"
+		text_valign="bottom"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_ghost_midheading_center_bottom_object"
+		font="verdana11"
+		textcolor="255 255 255"
+		text_align="center"
+		text_valign="bottom"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_ghost_heading_object"
+		font="verdana12"
+		textcolor="200 200 200"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_ghost_heading_left_object"
+		font="verdana12"
+		textcolor="200 200 200"
+		text_align="left"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_ghost_text_object"
+		font="verdana10"
+		textcolor="255 255 255"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_ghost_text_left_object"
+		font="verdana10"
+		textcolor="255 255 255"
+		text_align="left"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_ghost_text_left_centre_object"
+		font="verdana10"
+		textcolor="255 255 255"
+		text_align="left"
+		text_valign="center"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+		ghost="true"
+	/>
+
+	<style name="session_minimap"
+		tooltip_style="session_tooltip"
+		tooltip=""
+	/>
+
+	<!-- Empty entity portrait. -->
+	<style 	name="portrait"
+		sprite="ui_portrait_default_square"
+		sprite_over="ui_portrait_default_square_lit"
+		sprite_disabled="ui_portrait_default_square_grey"
+		text_align="right"
+		textcolor="255 255 255"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+	/>
+
+	<style name="portrait_progress"
+		sprite_background=""
+		sprite_bar="translucent_background"
+		text_align="center"
+		text_valign="center"
+		textcolor="255 255 255"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+	/>
+
+	<style name="action"
+		sprite="ui_portrait_default_circle"
+		sprite_over="ui_portrait_default_circle_lit"
+		sprite_disabled="ui_portrait_default_circle_grey"
+		text_align="right"
+		textcolor="255 255 255"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+	/>
+
+	<style name="action_left"
+		sprite="ui_portrait_default_circle"
+		sprite_over="ui_portrait_default_circle_lit"
+		sprite_disabled="ui_portrait_default_circle_grey"
+		text_align="left"
+		textcolor="255 255 255"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+	/>
+
+	<!-- Entity progress bar. -->
+	<style name="group_portrait_bar"
+		sprite_background=""
+		sprite_bar="green_bar"
+		ghost="true"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+	/>
+
+	<style name="up_bar"
+		sprite_background=""
+		sprite_bar="yellow_bar"
+		ghost="true"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+	/>
+
+	<style name="blue_bar"
+		sprite_background=""
+		sprite_bar="blue_bar"
+		ghost="true"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+	/>
+
+	<style name="blue_bar_outlined"
+		sprite_background="bkBorderBlack"
+		sprite_bar="blue_bar_outlined"
+		ghost="true"
+		tooltip_style="session_tooltip"
+		tooltip="(TBA)"
+	/>
+
+</styles>
