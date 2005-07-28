@@ -47,7 +47,19 @@
 		==========================================
 		-->
 
-		<object name="pgSinglePlayer"
+		<object name="pgCampaignsBt"
+			style="pgButton"
+			type="button"
+			size="24.609375% 28.90625% 49.609375% 62.2395833%"
+			sprite_over="pgCampaignsOver"
+                        tooltip="Want to play a campaign? Tough luck, buddy!  That's right, go cry on your mamma's shoulder."
+		>
+			<action on="Press"><![CDATA[
+				openMainMenuSubWindow ("pgCampaigns");
+			]]></action>
+                </object>
+
+		<object name="pgSinglePlayerBt"
 			style="pgButton"
 			type="button"
 			size="51.2695312% 10.9275% 76.2695312% 44.270833%"
@@ -60,7 +72,7 @@
 			]]></action>
 		</object>
 
-		<object	name="pgMultiPlayer"
+		<object	name="pgMultiPlayerBt"
 			style="pgButton"
 			type="button"
 			size="57.5195312% 38.28125% 82.5195312% 71.6145833%"
@@ -73,7 +85,7 @@
 			]]></action>
 		</object>
 
-		<object name="pgEditor"
+		<object name="pgEditorBt"
 			style="pgButton"
 			type="button"
 			size="40.234375% 60.15625% 65.234375% 93.4895833%"
@@ -88,31 +100,29 @@
                         ]]></action>
                 </object>
 
-		<object name="pgOptions"
+		<object name="pgOptionsBt"
 			style="pgButton"
 			type="button"
 			size="74.7070312% 42.0572916% 99.7070312% 75.390625%"
 			sprite_over="pgOptionsOver"
                         tooltip="This will take you to the options menu.  It does not work now, but someday it might."
 		>
+			<action on="Press"><![CDATA[
+				// Open Options window.
+				openMainMenuSubWindow ("pgOptions");
+			]]></action>
                 </object>
 
-		<object name="pgCampaigns"
-			style="pgButton"
-			type="button"
-			size="24.609375% 28.90625% 49.609375% 62.2395833%"
-			sprite_over="pgCampaignsOver"
-                        tooltip="Want to play a campaign? Tough luck, buddy!  That's right, go cry on your mamma's shoulder."
-		>
-                </object>
-				
-		<object name="pgHistory"
+		<object name="pgHistoryBt"
 			style="pgButton"
 			type="button"
 			size="72.265625% 66.5364583% 97.265625% 99.8697916%"
 			sprite_over="pgHistoryOver"
                         tooltip="One day you will click this button and learn more about ancient history than any history teach ever taught you."
 		>
+			<action on="Press"><![CDATA[
+				openMainMenuSubWindow ("pgHistory");
+			]]></action>
                 </object>
 
 		<!--
@@ -217,6 +227,35 @@
 		hidden="true"
 		sprite="bkTranslucent" 
 	>
+
+		<!--
+		===============================================
+		- CAMPAIGNS SCREEN -
+		===============================================
+		-->
+
+		<object name="pgCampaigns"
+			style="wheatWindow"
+			type="image"
+			hidden="true"
+			size="50%-150 50%-120 50%+150 50%+120"
+		>
+			<object name="pgCampaignsTitleBar"
+				style="wheatWindowTitleBar"
+				type="button"
+			>Campaigns
+			</object>
+
+			<object name="pgCampaignsExitButton"
+				style="wheatExit"
+				type="button"
+			>
+				<action on="Press"><![CDATA[
+					closeMainMenuSubWindow ("pgCampaigns");
+				]]></action>
+			</object>
+		</object>
+
                 <!--
                 ===============================================
                 - MULTIPLAYER MODE SELECTION SCREEN -
@@ -798,11 +837,190 @@
 			</object>
                 </object>
 
-                <!--
-                ===============================================
-                - CREDITS SCREEN
-                ===============================================
-                -->
+		<!--
+		===============================================
+		- OPTIONS SCREEN -
+		===============================================
+		-->
+
+		<object name="pgOptions"
+			style="wheatWindow"
+			type="image"
+			hidden="true"
+			size="50%-400 50%-300 50%+400 50%+300"
+		>
+			<object name="pgOptionsTitleBar"
+				style="wheatWindowTitleBar"
+				type="button"
+			>Options
+			</object>
+
+			<object name="pgOptionsExitButton"
+				style="wheatExit"
+				type="button"
+			>
+				<action on="Press"><![CDATA[
+					// Close Options Screen, abandoning all changes.
+					closeMainMenuSubWindow ("pgOptions");
+				]]></action>
+			</object>
+
+			<!--
+			===============================================
+			- OPTIONS SCREEN - AUDIO
+			===============================================
+			-->
+
+			<object name="pgOptionsAudioWindow"
+				style="wheatBorderBlack"
+				type="image"
+				size="1% 4% 99% 90%"
+			>
+				<object name="pgOptionsAudioSoundCheckBox"
+					style="wheatCrossBox"
+					type="checkbox"
+					hotkey="audio.toggle"
+					size="50%-100 20% 50%-100 30%"
+				>Play Sound
+					<action on="Load"><![CDATA[
+						// (Would like to set checkbox state to value of snd_disabled, but looks like that variable isn't exposed until after the GUI is loaded.
+//						this.checked = !snd_disabled;
+					]]></action>
+					<action on="Press"><![CDATA[
+						// Clicking the checkbox turns sound on and off.
+						// (Or at least it should, but it doesn't. Checkbox text doesn't appear either. Maybe this control isn't finished yet?)
+						if (snd_disabled == true)
+							snd_disable (false);
+						else
+							snd_disable (true);
+
+						this.checked = !snd_disabled;
+					]]></action>		
+				</object>
+			</object>
+
+			<!--
+			===============================================
+			- OPTIONS SCREEN - VIDEO
+			===============================================
+			-->
+
+			<object name="pgOptionsVideoWindow"
+				style="wheatBorderBlack"
+				type="image"
+				hidden="true"
+				size="1% 4% 99% 90%"
+			/>
+
+			<!--
+			===============================================
+			- OPTIONS SCREEN - GAME
+			===============================================
+			-->
+
+			<object name="pgOptionsGameWindow"
+				style="wheatBorderBlack"
+				type="image"
+				hidden="true"
+				size="1% 4% 99% 90%"
+			/>
+
+			<!--
+			===============================================
+			- OPTIONS SCREEN - TAB BUTTONS
+			===============================================
+			-->
+
+			<object name="pgOptionsAudioButton"
+				style="wheatButton"
+				type="button"
+				enabled="false"
+				size="1% 1% 30% 7%"
+			>Audio
+				<action on="Press"><![CDATA[
+					// Open Audio tab.
+					openOptionsTab ("pgOptionsAudio");
+				]]></action>
+			</object>
+
+			<object name="pgOptionsVideoButton"
+				style="wheatButton"
+				type="button"
+				size="35% 1% 65% 7%"
+			>Video
+				<action on="Press"><![CDATA[
+					// Open Video tab.
+
+					openOptionsTab ("pgOptionsVideo");
+				]]></action>
+			</object>
+
+			<object name="pgOptionsGameButton"
+				style="wheatButton"
+				type="button"
+				size="70% 1% 99% 7%"
+			>Game
+				<action on="Press"><![CDATA[
+					// Open Game tab.
+
+					openOptionsTab ("pgOptionsGame");
+				]]></action>
+			</object>
+
+			<!--
+			===============================================
+			- OPTIONS SCREEN - ACCEPT BUTTON
+			===============================================
+			-->
+
+			<object name="pgOptionsAcceptButton"
+				style="wheatButton"
+				type="button"
+				size="40% 92% 60% 100%"
+			>Accept
+				<action on="Press"><![CDATA[
+					// Save changes.
+					// TODO:
+
+					// Close options screen.
+					closeMainMenuSubWindow ("pgOptions");
+				]]></action>
+			</object>
+		</object>
+
+		<!--
+		===============================================
+		- HISTORY SCREEN -
+		===============================================
+		-->
+
+		<object name="pgHistory"
+			style="wheatWindow"
+			type="image"
+			hidden="true"
+			size="50%-150 50%-120 50%+150 50%+120"
+		>
+			<object name="pgHistoryTitleBar"
+				style="wheatWindowTitleBar"
+				type="button"
+			>History
+			</object>
+
+			<object name="pgHistoryExitButton"
+				style="wheatExit"
+				type="button"
+			>
+				<action on="Press"><![CDATA[
+					closeMainMenuSubWindow ("pgHistory");
+				]]></action>
+			</object>
+		</object>
+
+		<!--
+		===============================================
+		- CREDITS SCREEN
+		===============================================
+		-->
 
 		<object name="pgCredits"
 			style="fancyTextHeadWhite"

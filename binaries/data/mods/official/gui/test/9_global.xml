@@ -13,25 +13,6 @@
 	<object>
 		<!--
 		==========================================
-		- AUDIO TOGGLER
-		==========================================
-		-->
-
-		<object name="audioToggle"
-			type="button"
-			hotkey="audio.toggle"
-			hidden="true"
-		>
-			<action on="Press"><![CDATA[
-				if (snd_disabled == true)
-					snd_disable (false);
-				else
-					snd_disable (true);
-			]]></action>		
-		</object>
-
-		<!--
-		==========================================
 		- FPS COUNTER
 		==========================================
 		-->

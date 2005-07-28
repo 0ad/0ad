@@ -53,14 +53,18 @@
 
 	<style 	name="wheatButton"
 		sprite="wheatButton"
+		sprite_disabled="wheatButtonDisabled"
 		sprite_over="wheatButtonOver"
+		sprite_pressed="wheatButtonOver"
 		text_align="center"
 		text_valign="center"
 	/>
 
 	<style 	name="wheatButtonFancy"
 		sprite="wheatButton"
+		sprite_disabled="wheatButtonDisabled"
 		sprite_over="wheatButtonOver"
+		sprite_pressed="wheatButtonOver"
 		font="prospero18"
 		text_align="center"
 		text_valign="center"
@@ -74,10 +78,12 @@
 		tooltip_style="pgToolTip"
 	/>
 
-	<style 	name="wheatCheckBox"
-		size="100%+9 0%-25 100%+25 0%-9"
+	<style 	name="wheatCrossBox"
+		font="verdana12"
 		sprite="wheatCheckBoxOpen"
-		sprite_over="wheatCheckBoxCross"
+		sprite2="wheatCheckBoxCross"
+		square_side="16"
+		textcolor="black"
 	/>
 
 	<style 	name="wheatList"

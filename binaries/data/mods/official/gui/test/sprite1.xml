@@ -13,12 +13,15 @@
 	-->
 
 	<!-- Notes:
-		* backcolor doesn't seem to currently support the new color presets, so it's still using the RGB method. 
 		* Can we make size = 0 0 100% 100% by default? It's seems to be the most common value ("stretched sprite").
 		While we're here:
-		* Ask Gee about the assertion failure on startup, and how all the colour values are black (probably related);
 		* Ask him to remove the "error drawing sprite of 1x0 size" error, since this can happen legitimately sometimes
 		  (divider of 1 pixel width, progressbar at value 0)
+		* Also ask about clear() function for lists.
+		* Ask about interpretation of special characters (weird question mark).
+		* Text formatting for lists (eg centering).
+		* DDS transparency (ie main menu buttons).
+		* Ask him about the checkbox and whether it's available for use (show first example in Options).
 	-->
 
 	<sprite name="bkTranslucent">
@@ -28,50 +31,50 @@
 	</sprite>
 
         <sprite name="bkWhiteBorderBlack">
-                <image 	backcolor="255 255 255"
+                <image 	backcolor="white"
 			size="0 0 100% 100%"
 			border="true"
-			bordercolor="0 0 0"
+			bordercolor="black"
 		/>
         </sprite>
 
         <sprite name="bkBlueBorderBlack">
-                <image 	backcolor="0 0 255"
+                <image 	backcolor="blue"
 			size="0 0 100% 100%"
 			border="true"
-			bordercolor="0 0 0"
+			bordercolor="black"
 		/>
         </sprite>
 
 	<sprite name="bkBorderBlack">
-		<image 	backcolor="0 0 0"
+		<image 	backcolor="black"
 			size="-1 -1 100%+1 0" 
 		/>
-		<image 	backcolor="0 0 0"
+		<image 	backcolor="black"
 			size="-1 100% 100%+1 100%+1" 
 		/>
-		<image 	backcolor="0 0 0"
+		<image 	backcolor="black"
 			size="-1 0 0 100%" 
 		/>
-		<image 	backcolor="0 0 0"
+		<image 	backcolor="black"
 			size="100% 0 100%+1 100%" 
 		/>
         </sprite>
 
 	<sprite name="bkFillBlack">
-		<image 	backcolor="0 0 0"
+		<image 	backcolor="black"
 			size="0 0 100% 100%" 
 		/>
 	</sprite>
 
 	<sprite name="bkFillWhite">
-		<image 	backcolor="255 255 255"
+		<image 	backcolor="white"
 			size="0 0 100% 100%" 
 		/>
 	</sprite>
 
 	<sprite name="bkFillGray">
-		<image 	backcolor="243 242 240"
+		<image 	backcolor="gray"
 			size="0 0 100% 100%" 
 		/>
 	</sprite>
@@ -286,6 +289,14 @@
 	<sprite name="wheatButtonOver">
 		<image 	texture="global/button/button_wood.png"
 			real_texture_placement="0 32 160 64" 
+			size="0 0 100% 100%" 
+		/>
+        </sprite>
+
+	<sprite name="wheatButtonDisabled">
+		<effect grayscale=""/>
+		<image 	texture="global/button/button_wood.png"
+			real_texture_placement="0 0 160 31" 
 			size="0 0 100% 100%" 
 		/>
         </sprite>
