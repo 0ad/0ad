@@ -627,11 +627,12 @@ void* mmap(void* user_start, size_t len, int prot, int flags, int fd, off_t offs
 	const DWORD len_hi = (DWORD)((u64)len >> 32);
 		// careful! language doesn't allow shifting 32-bit types by 32 bits.
 	const DWORD len_lo = (DWORD)len & 0xffffffff;
-	const HANDLE hMap = CreateFileMapping(hFile, &sec, flProtect, len_hi, len_lo, (LPCSTR)0);
+	const HANDLE hMap = CreateFileMapping(hFile, psec, flProtect, len_hi, len_lo, (LPCSTR)0);
 	if(hMap == INVALID_HANDLE_VALUE)
 		// bail now so that MapView.. doesn't overwrite the last error value.
 		goto fail;
 	void* addr = MapViewOfFileEx(hMap, dwAccess, len_hi, offset, len_lo, start);
+	// TODO: MapViewOfFileEx wants offset_hi rather than len_hi
 
 	// free the mapping object now, so that we don't have to hold on to its
 	// handle until munmap(). it's not actually released yet due to the

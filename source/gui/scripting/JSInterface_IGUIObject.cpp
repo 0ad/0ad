@@ -252,9 +252,11 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				{
 					JSString* s = StringConvert::wchars_to_jsstring(cx, value.m_Items[i].GetRawString().c_str());
 					vector[i] = STRING_TO_JSVAL(s);
+					// TODO: Make sure these strings never get garbage-collected
 				}
 
 				JSObject *obj = JS_NewArrayObject(cx, (jsint)value.m_Items.size(), vector);
+				delete[] vector;
 
 				*vp = OBJECT_TO_JSVAL(obj);
 				break;
