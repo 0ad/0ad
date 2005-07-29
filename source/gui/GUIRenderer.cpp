@@ -404,9 +404,21 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 			tex_info(h, &t_w, &t_h, &TexFormat, NULL, NULL);
 			float TexWidth = (float)t_w, TexHeight = (float)t_h;
 			
-			// TODO: Detect the presence of an alpha channel in a nicer way
-			Call.m_EnableBlending = (TexFormat == GL_RGBA || TexFormat == GL_BGRA);
-
+			// TODO: Detect the presence of an alpha channel in a more precise way
+			// (particularly for no-alpha DXT1 textures)
+			switch (TexFormat)
+			{
+			case GL_RGBA:
+			case GL_BGRA:
+			case GL_COMPRESSED_RGBA_S3TC_DXT1_EXT:
+			case GL_COMPRESSED_RGBA_S3TC_DXT3_EXT:
+			case GL_COMPRESSED_RGBA_S3TC_DXT5_EXT:
+				Call.m_EnableBlending = true;
+				break;
+			default:
+				Call.m_EnableBlending = false;
+				break;
+			}
 
 			// Textures are positioned by defining a rectangular block of the
 			// texture (usually the whole texture), and a rectangular block on
@@ -508,22 +520,6 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 		else
 		{
 			Call.m_Effects = NULL;
-
-/* TODO: Delete	this code
-			_CrtMemState s;
-			_CrtMemCheckpoint(&s);
-			struct ::_CrtMemBlockHeader
-			{
-				struct _CrtMemBlockHeader * pBlockHeaderNext;
-				struct _CrtMemBlockHeader * pBlockHeaderPrev;
-				char *                      szFileName;
-				int                         nLine;
-				size_t                      nDataSize;
-				int                         nBlockUse;
-				long                        lRequest;
-			};
-			debug_printf("%d %s\n", s.pBlockHeader->lRequest, SpriteName.c_str());
-*/
 		}
 
 		Calls.push_back(Call);
