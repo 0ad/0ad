@@ -21,9 +21,14 @@
 		<object name="snMiniMap"
 			style="session_minimap"
 			type="minimap"
-			size="100%-180 100%-180 100% 100%"
-		/>
-
+		>
+			<action on="Load"><![CDATA[
+				addCrd (this.name, rb, 100, 100, 0, 0, 180, 180);
+				addCrd (this.name, lb, 0, 100);	
+				addCrd (this.name, lt, 0, 0);
+				addCrd (this.name, rt, 100, 0);
+			]]></action>
+		</object>
 	</object>
 
 </objects>

@@ -132,6 +132,7 @@ function setupSession (GameMode)
 	}
 
 	// Set starting UI layout.
+	GUIType=rb;
         flipGUI (GUIType);
 
         // Select session peace track.

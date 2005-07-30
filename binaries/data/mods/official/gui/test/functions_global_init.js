@@ -9,7 +9,6 @@ function init ()
 {
 	// Root point for anything that needs to be globally initialised at startup.
 
-// (Both of these need to be rewritten, so might be removed.)
 	initCoord();
 	initSession();
 }

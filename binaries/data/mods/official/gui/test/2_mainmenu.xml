@@ -134,8 +134,16 @@
 		<object	name="pgProductLogo"
 			style="pgButton"
 			type="button"
+			ghost="true"
 			size="21.1914062% 3.125% 68.0664062% 31.5104166%"
 			sprite="pgProductLogo"
+		>
+		</object>
+
+		<object	name="pgProductClick"
+			style="pgButton"
+			type="button"
+			size="21.1914062% 3.125% 48.0664062% 31.5104166%"
 			tooltip="Click this logo to roll credits."
 		>
 			<action on="Press"><![CDATA[
@@ -167,6 +175,7 @@
                 <object name="pgVersionNumber"
 			style="fancyTextHeadGold"
 			type="text"
+			ghost="true"
 			size="43% 24% 43%+282 24%+25"
 		>
                         <action on="Load"><![CDATA[

@@ -9,8 +9,6 @@ function initSession()
 {
 	// ============================================= CONSTANTS =================================================
 
-	GUIType="bottom";
-
 	// Standard portrait widths.
 	crd_portrait_lrg_width = 64;
 	crd_portrait_lrg_height = crd_portrait_lrg_width;
@@ -21,19 +19,10 @@ function initSession()
 	crd_mini_icon_width = 20;
 	crd_mini_icon_height = crd_mini_icon_width;
 
-	// Define cell reference constants for icon sheets.
-	initCellReference();
-
 	// ============================================= GLOBALS =================================================
 
-//        initGroupPane();
-  //      initResourcePool();
-    //    initStatusOrb();
-//        initMapOrb();
-  //      initTeamTray();
-    //    initSubWindows();
-//		initManual();
-//		initJukebox();
+	// Define cell reference constants for icon sheets.
+	initCellReference();
 }
 
 // ====================================================================
@@ -194,308 +183,42 @@ function getObjectInfo()
 
 // ====================================================================
 
-function MakeUnit(x, y, z, MakeUnitName)
-{
-        // Spawn an entity at the given coordinates.
-
-        DudeSpawnPoint = new Vector3D(x, y, z);
-        new Entity(getEntityTemplate(MakeUnitName), DudeSpawnPoint, 1.0);
-        // writeConsole(MakeUnitName + " created at " + DudeSpawnPoint);
-}
-
-// ====================================================================
-
-function selected()
-{
-        // Returns how many units selected.
-
-        if( selection.length > 0 )
-                return( selection[0] );
-        return( null );
-}
-
-// ====================================================================
-
 function flipGUI (NewGUIType)
 {
-	// Sets the GUI coordinates and graphics so that the panel is either at the top or bottom of the screen.
+	// Changes GUI to a different layout.
 
 	switch (NewGUIType)
 	{
 		// Set which GUI to use.
-		case "top":
-		case "bottom":
-		case "none":
-			GUIType=NewGUIType;
+		case rb:
+		case lb:
+		case lt:
+		case rt:
+			GUIType = NewGUIType;
 		break;
 		default:
 			// If no type specified, toggle.
-			if (GUIType == "top")
-				GUIType = "bottom";
+			if (GUIType == rb)
+				GUIType = lb;
 			else
-			if (GUIType == "bottom")
-				GUIType = "none";
+			if (GUIType == lb)
+				GUIType = lt;
 			else
-				GUIType = "top";
+			if (GUIType == lt)
+				GUIType = rt;
+			else
+				GUIType = rb;
 		break;
 	}
-
-	if (GUIType != "none")
+	// Seek through all sizes created.
+	for (i = 0; i <= Crd.last; i++)
 	{
-		guiUnHide("sn");
-
-		// Seek through all sizes created.
-		for (FlipGUILoop = 0; FlipGUILoop <= SizeCoord.last-1; FlipGUILoop++)
-		{
-			// Set each object to the other size.
-			switch (GUIType)
-			{
-				case "bottom":
-					setSize(SizeCoord[FlipGUILoop].name, SizeCoord[FlipGUILoop].size1);
-					switch (SizeCoord[FlipGUILoop].name){
-						case "SN_MAP_ORB_SEGBOTTOM1":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop1";
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segtop1" + "_lit";
-						break;
-						case "SN_MAP_ORB_SEGBOTTOM2":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop2";
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segtop2" + "_lit";
-						break;
-						case "SN_MAP_ORB_SEGBOTTOM3":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop3";
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segtop3" + "_lit";
-						break;
-						case "SN_MAP_ORB_SEGBOTTOM4":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segtop4";
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segtop4" + "_lit";
-						break;
-						case "SN_STATUS_PANE_BG":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_status_bg_top";
-						break;
-						default:
-						break;
-					}
-				break;
-				case "top":
-					setSize(SizeCoord[FlipGUILoop].name, SizeCoord[FlipGUILoop].size2);
-					switch (SizeCoord[FlipGUILoop].name){
-						case "SN_MAP_ORB_SEGBOTTOM1":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segbottom1";
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segbottom1_lit";
-						break;
-						case "SN_MAP_ORB_SEGBOTTOM2":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segbottom2";
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segbottom2_lit";
-						break;
-						case "SN_MAP_ORB_SEGBOTTOM3":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segbottom3";
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segbottom3_lit";
-						break;
-						case "SN_MAP_ORB_SEGBOTTOM4":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_minimap_segbottom4";
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite_over = "session_panel_minimap_segbottom4_lit";
-						break;
-						case "SN_STATUS_PANE_BG":
-							getGUIObjectByName(SizeCoord[FlipGUILoop].name).sprite = "session_panel_status_bg_bottom";
-						break;
-						default:
-						break;
-					}
-				break;
-			}			
-		}
-
-//		UpdateGroupPane();
-	}
-	else
-	{
-		guiHide("sn");
+		// Set their sizes to the stored value.
+		getGUIObjectByName (Crd[i].name).size = Crd[i].size[GUIType];
 	}
 
-	writeConsole("GUI flipped to " + GUIType + ".");
-
+	writeConsole("GUI flipped to size " + GUIType + ".");
 }
 
 // ====================================================================
 
-function selectEntity(handler)
-{
-	endSelection();
-	startSelection(function (event) {
-			// Selection is performed when single-clicking the right mouse
-			// button.
-			if (event.button == SDL_BUTTON_RIGHT && event.clicks == 1)
-			{
-				handler(event.entity);
-			}
-			// End selection on first mouse-click
-			endSelection();
-		});
-}
-
-function selectLocation(handler)
-{
-	endSelection();
-	startSelection(function (event) {
-			// Selection is performed when single-clicking the right mouse
-			// button.
-			if (event.button == SDL_BUTTON_RIGHT && event.clicks == 1)
-			{
-				handler(event.x, event.y);
-			}
-			// End selection on first mouse-click
-			endSelection();
-		});
-}
-
-function startSelection(handler)
-{
-	gameView.startCustomSelection();
-	getGlobal().selectionWorldClickHandler=handler;
-	console.write("isSelecting(): "+isSelecting());
-}
-
-function endSelection()
-{
-	if (!isSelecting())
-		return;
-	
-	gameView.endCustomSelection();
-	getGlobal().selectionWorldClickHandler = null;
-}
-
-function isSelecting()
-{
-	return getGlobal().selectionWorldClickHandler != null;
-}
-
-// The world-click handler - called whenever the user clicks the terrain
-function worldClickHandler(event)
-{
-	args=new Array(null, null);
-
-	console.write("worldClickHandler: button "+event.button+", clicks "+event.clicks);
-
-	if (isSelecting())
-	{
-		getGlobal().selectionWorldClickHandler(event);
-		return;
-	}
-
-
-	// Right button single- or double-clicks
-	if (event.button == SDL_BUTTON_RIGHT && event.clicks <= 2)
-	{
-		if (event.clicks == 1)
-			cmd = event.command;
-		else if (event.clicks == 2)
-		{
-			console.write("Issuing secondary command");
-			cmd = event.secondaryCommand;
-		}
-	}
-	else
-		return;
-
-	switch (cmd)
-	{
-		// location target commands
-		case NMT_Goto:
-		case NMT_Patrol:
-			if (event.queued)
-			{
-				cmd = NMT_AddWaypoint;
-			}
-		case NMT_AddWaypoint:
-			args[0]=event.x;
-			args[1]=event.y;
-			break;
-		// entity target commands
-		case NMT_AttackMelee:
-		case NMT_Gather:
-			args[0]=event.entity;
-			args[1]=null;
-			break;
-		default:
-			console.write("worldClickHandler: Unknown command: "+cmd);
-			return;
-	}
-
-	issueCommand(selection, cmd, args[0], args[1]);
-}
-
-addGlobalHandler("worldClick", worldClickHandler);
-
-
-// ====================================================================
-
-function createResources()
-{
-	// Defines all resource types for future use.
-
-	addResource ("Food", 0);
-	addResource ("Wood", 0);
-	addResource ("Stone", 0);
-	addResource ("Ore", 0);
-	addResource ("Population", 0);
-	addResource ("Housing", 0);
-}
-
-// ====================================================================
-
-function addResource (resourceName, resourceQty)
-{
-	// Creates a resource type.
-
-	// MT: Rewritten to use JavaScript's nice associative-array-alikes. Requires the valueOf() hack - I'm looking into this.
-
-	if (!localPlayer.resource)
-	{
-		// Define the base resource group if it does not exist.
-		localPlayer.resource = new Array();
-	}
-	
-	// Set resource name to upper-case to ensure it matches resource control name.
-	resourceName = resourceName.toUpperCase();
-
-	// Store resource's name and starting value.
-	localPlayer.resource.valueOf()[resourceName] = resourceQty;
-	
-	console.write("Added " + resourceName );
-}
-
-// ====================================================================
-
-function giveResources (resourceName, resourceQty)
-{
-	// Generic function to add resources to the player's Pool.
-
-	if ( localPlayer.resource.valueOf()[resourceName] )
-	{
-	    localPlayer.resource.valueOf()[resourceName] += resourceQty;
-	    console.write ("Earned " + resourceQty + " resources.");
-	    return ( true );
-	}
-
-	// If the resource wasn't in the list, report an error.
-	return false;
-}
-
-// ====================================================================
-
-function deductResources (resourceName, resourceQty)
-{
-	// Generic function to remove resources from the player's Pool.
-
-	if( localPlayer.resource.valueOf()[resourceName] )
-	{
-	    localPlayer.resource.valueOf()[resourceName] -= resourceQty;
-	    console.write("Deducted " + resourceQty + " resources.");
-	    return( true );
-	}
-
-	// If the resource wasn't in the list, report an error.
-	return false;
-}
-
-// ====================================================================
