@@ -3,11 +3,9 @@
 #include "output.h"
 #include "map.h"
 #include "object.h"
+#include "pmp_file.h"
 
 using namespace std;
-
-typedef unsigned short u16;
-typedef unsigned int u32;
 
 void OutputObject(Object* e, ostringstream& xml) {
 	if(e->isEntity()) {
@@ -73,11 +71,6 @@ void OutputXml(Map* m, FILE* f) {
 	fprintf(f, "%s", xml.str().c_str());
 }
 
-struct Tile {
-	u16 texture1; // index into texture_textures[]
-	u16 texture2; // index, or 0xFFFF for 'none'
-	u32 priority; // ???
-};
 
 void OutputPmp(Map* m, FILE* f) {
 /*

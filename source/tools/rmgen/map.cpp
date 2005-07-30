@@ -2,12 +2,10 @@
 #include "rmgen.h"
 #include "map.h"
 #include "object.h"
+#include "pmp_file.h"
 
 
 using namespace std;
-
-typedef unsigned short u16;
-typedef unsigned int u32;
 
 Map::Map(int size, Terrain* baseTerrain, float baseHeight) {
 	if(size<0 || size>1024) {
@@ -62,14 +60,11 @@ Map::Map(string fileName, int loadLevel)
 
 
 	// HACK, this should probably be in a struct and be shared with the code in output.cpp
-	char header[4];
-    u32 version;
-    u32 data_size; 
+	pmp_header hdr;
 	u32 map_size;
 
 	//HACK, also in rmgen.cpp
 	const string SCENARIO_PATH = "../data/mods/official/maps/scenarios/";
-
 
 	std::string pmpFile = SCENARIO_PATH + fileName + ".pmp";
 	std::string xmlFile = SCENARIO_PATH + fileName + ".xml";
@@ -79,9 +74,17 @@ Map::Map(string fileName, int loadLevel)
 
 		FILE* f = fopen(pmpFile.c_str(), "rb");
 
-		fread(header, sizeof(char), 4, f);
-		fread(&version, sizeof(int), 1, f);
-		fread(&data_size, sizeof(int), 1, f);
+		fread(&hdr, sizeof(pmp_header), 1, f);
+
+		/*TODO
+
+		if (hdr.marker !== "PSMP")
+			JS_ReportError(cx, "");
+
+		if (hdr.version !== 4)
+			JS_ReportError(cx, ""); */
+		
+
 		fread(&map_size, sizeof(int), 1, f);
 
 		size = map_size * 16;
@@ -126,13 +129,6 @@ Map::Map(string fileName, int loadLevel)
 		for(int i=0; i<size; i++) {
 			texture[i] = new int[size];
 		}
-
-		// Hack, share with output.cpp?
-		struct Tile {
-			u16 texture1; // index into texture_textures[]
-			u16 texture2; // index, or 0xFFFF for 'none'
-			u32	priority; // ???
-		};
 
 		Tile* tiles = new Tile[size*size];
 		fread(tiles, sizeof(Tile), size*size, f);
