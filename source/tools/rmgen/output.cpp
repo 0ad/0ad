@@ -2,21 +2,50 @@
 #include "rmgen.h"
 #include "output.h"
 #include "map.h"
-#include "entity.h"
+#include "object.h"
 
 using namespace std;
 
 typedef unsigned short u16;
 typedef unsigned int u32;
 
-void OutputEntity(Entity* e, ostringstream& xml) {
-	xml << "\
+void OutputObject(Object* e, ostringstream& xml) {
+	if(e->isEntity()) {
+		xml << "\
 		<Entity>\n\
-			<Template>" << e->type << "</Template>\n\
+			<Template>" << e->name << "</Template>\n\
 			<Player>" << e->player << "</Player>\n\
 			<Position x=\"" << 4*e->x << "\" y=\"" << 4*e->y << "\" z=\"" << 4*e->z << "\" />\n\
 			<Orientation angle=\"" << e->orientation << "\" />\n\
 		</Entity>\n";
+	}
+	else {
+		xml << "\
+		<Nonentity>\n\
+			<Actor>" << e->name << "</Actor>\n\
+			<Position x=\"" << 4*e->x << "\" y=\"" << 4*e->y << "\" z=\"" << 4*e->z << "\" />\n\
+			<Orientation angle=\"" << e->orientation << "\" />\n\
+		</Nonentity>\n";
+	}
+}
+
+void OutputObjects(ostringstream& xml, Map* m, bool entities) {
+	for(int i=0; i<m->objects.size(); i++) {
+		if(m->objects[i]->isEntity() == entities) {
+			OutputObject(m->objects[i], xml);
+		}
+	}
+
+	for(int x=0; x<m->size; x++) {
+		for(int y=0; y<m->size; y++) {
+			vector<Object*>& vec = m->terrainObjects[x][y];
+			for(int i=0; i<vec.size(); i++) {
+				if(vec[i]->isEntity() == entities) {
+					OutputObject(vec[i], xml);
+				}
+			}
+		}
+	}
 }
 
 void OutputXml(Map* m, FILE* f) {
@@ -33,23 +62,12 @@ void OutputXml(Map* m, FILE* f) {
 		<UnitsAmbientColour r=\"0.4\" g=\"0.4\" b=\"0.4\" />\n\
 	</Environment>\n\
 	<Entities>\n";
-
-	for(int i=0; i<m->entities.size(); i++) {
-		OutputEntity(m->entities[i], xml);
-	}
-
-	for(int x=0; x<m->size; x++) {
-		for(int y=0; y<m->size; y++) {
-			vector<Entity*>& vec = m->terrainEntities[x][y];
-			for(int i=0; i<vec.size(); i++) {
-				OutputEntity(vec[i], xml);
-			}
-		}
-	}
-
+	OutputObjects(xml, m, true);		// print entities
 	xml << "\
 	</Entities>\n\
-	<Nonentities />\n\
+	<Nonentities>\n";
+	OutputObjects(xml, m, false);		// print nonentities
+	xml << "</Nonentities>\n\
 </Scenario>\n";
 
 	fprintf(f, "%s", xml.str().c_str());

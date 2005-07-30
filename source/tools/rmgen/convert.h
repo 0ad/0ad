@@ -2,7 +2,7 @@
 #define __CONVERT_H__
 
 #include "map.h"
-#include "entity.h"
+#include "object.h"
 #include "constraint.h"
 #include "areapainter.h"
 #include "areaplacer.h"

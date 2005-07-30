@@ -3,7 +3,7 @@
 #include "rmgen.h"
 #include "random.h"
 #include "map.h"
-#include "entity.h"
+#include "object.h"
 #include "convert.h"
 #include "terrain.h"
 #include "simpleconstraints.h"
@@ -223,7 +223,7 @@ JSBool placeObject(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval 
 	JS_ValueToNumber(cx, argv[3], &y);
 	JS_ValueToNumber(cx, argv[4], &orientation);
 
-	theMap->addEntity(new Entity(type, player, x,0,y, orientation));
+	theMap->addObject(new Object(type, player, x,0,y, orientation));
 	
 	return JS_TRUE;
 }
@@ -309,7 +309,7 @@ JSBool createObjectGroup(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, 
 		constr = new NullConstraint();
 	}
 
-	vector<Entity*>* ret = theMap->createObjectGroup(placer, constr);
+	vector<Object*>* ret = theMap->createObjectGroup(placer, constr);
 
 	delete placer;
 	delete constr;

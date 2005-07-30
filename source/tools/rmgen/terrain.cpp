@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "terrain.h"
 #include "map.h"
-#include "entity.h"
+#include "object.h"
 #include "random.h"
 #include "rmgen.h"
 
@@ -14,7 +14,7 @@ Terrain::Terrain() {}
 Terrain::~Terrain() {}
 
 void Terrain::place(Map* m, int x, int y) {
-	vector<Entity*>& vec = m->terrainEntities[x][y];
+	vector<Object*>& vec = m->terrainObjects[x][y];
 	for(int i=0; i<vec.size(); i++) {
 		delete vec[i];
 	}
@@ -37,9 +37,9 @@ SimpleTerrain::SimpleTerrain(const std::string& texture, const std::string& tree
 }
 
 void SimpleTerrain::placeNew(Map* m, int x, int y) {
-	vector<Entity*>& vec = m->terrainEntities[x][y];
+	vector<Object*>& vec = m->terrainObjects[x][y];
 	if(treeType != "") {
-		vec.push_back(new Entity(treeType, 0, x+0.5f, 0, y+0.5f, RandFloat()*PI));
+		vec.push_back(new Object(treeType, 0, x+0.5f, 0, y+0.5f, RandFloat()*PI));
 	}
 	m->texture[x][y] = m->getId(texture);
 }

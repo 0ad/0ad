@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "rmgen.h"
 #include "map.h"
-#include "entity.h"
+#include "object.h"
 
 
 using namespace std;
@@ -24,9 +24,9 @@ Map::Map(int size, Terrain* baseTerrain, float baseHeight) {
 		texture[i] = new int[size];
 	}
 
-	terrainEntities = new vector<Entity*>*[size];
+	terrainObjects = new vector<Object*>*[size];
 	for(int i=0; i<size; i++) {
-		terrainEntities[i] = new vector<Entity*>[size];
+		terrainObjects[i] = new vector<Object*>[size];
 	}
 
 	area = new Area**[size];
@@ -148,9 +148,9 @@ Map::Map(string fileName, int loadLevel)
 			}
 		}
 		
-		terrainEntities = new vector<Entity*>*[size];
+		terrainObjects = new vector<Object*>*[size];
 		for(int i=0; i<size; i++) {
-			terrainEntities[i] = new vector<Entity*>[size];
+			terrainObjects[i] = new vector<Object*>[size];
 		}
 
 		area = new Area**[size];
@@ -193,9 +193,9 @@ Map::~Map() {
 	delete[] texture;
 
 	for(int i=0; i<size; i++) {
-		delete[] terrainEntities[i];
+		delete[] terrainObjects[i];
 	}
-	delete[] terrainEntities;
+	delete[] terrainObjects;
 
 	for(int i=0; i<size+1; i++) {
 		delete[] height[i];
@@ -207,8 +207,8 @@ Map::~Map() {
 	}
 	delete[] area;
 
-	for(int i=0; i<entities.size(); i++) {
-		delete entities[i];
+	for(int i=0; i<objects.size(); i++) {
+		delete objects[i];
 	}
 }
 
@@ -252,22 +252,22 @@ void Map::setHeight(int x, int y, float h) {
 	height[x][y] = h;
 }
 
-vector<Entity*> Map::getTerrainEntities(int x, int y) {
-	if(!validT(x,y)) JS_ReportError(cx, "getTerrainEntities: invalid tile position");
-	return terrainEntities[x][y];
+vector<Object*> Map::getTerrainObjects(int x, int y) {
+	if(!validT(x,y)) JS_ReportError(cx, "getTerrainObjects: invalid tile position");
+	return terrainObjects[x][y];
 }
 
-void Map::setTerrainEntities(int x, int y, vector<Entity*> &entities) {
-	if(!validT(x,y)) JS_ReportError(cx, "setTerrainEntities: invalid tile position");
-	terrainEntities[x][y] = entities;
+void Map::setTerrainObjects(int x, int y, vector<Object*> &objects) {
+	if(!validT(x,y)) JS_ReportError(cx, "setTerrainObjects: invalid tile position");
+	terrainObjects[x][y] = objects;
 }
 
 void Map::placeTerrain(int x, int y, Terrain* t) {
 	t->place(this, x, y);
 }
 
-void Map::addEntity(Entity* ent) {
-	entities.push_back(ent);
+void Map::addObject(Object* ent) {
+	objects.push_back(ent);
 }
 
 Area* Map::createArea(AreaPlacer* placer, AreaPainter* painter, Constraint* constr) {
@@ -284,13 +284,13 @@ Area* Map::createArea(AreaPlacer* placer, AreaPainter* painter, Constraint* cons
 	return a;
 }
 
-vector<Entity*>* Map::createObjectGroup(ObjectGroupPlacer* placer, Constraint* constr) {
-	vector<Entity*>* entities = new vector<Entity*>;
-	if(!placer->place(this, constr, *entities)) {
+vector<Object*>* Map::createObjectGroup(ObjectGroupPlacer* placer, Constraint* constr) {
+	vector<Object*>* objects = new vector<Object*>;
+	if(!placer->place(this, constr, *objects)) {
 		return 0;
 	}
-	for(int i=0; i<entities->size(); i++) {
-		addEntity((*entities)[i]);
+	for(int i=0; i<objects->size(); i++) {
+		addObject((*objects)[i]);
 	}
-	return entities;
+	return objects;
 }

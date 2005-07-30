@@ -5,7 +5,7 @@
 #include "areapainter.h"
 #include "areaplacer.h"
 #include "constraint.h"
-#include "entity.h"
+#include "object.h"
 #include "terrain.h"
 #include "objectgroupplacer.h"
 
@@ -13,12 +13,12 @@ class Map {
 public:
 	int size;
 	int** texture;
-	std::vector<Entity*>** terrainEntities;
+	std::vector<Object*>** terrainObjects;
 	float** height;
 	Area*** area;
 	std::map<std::string, int> nameToId;
 	std::map<int, std::string> idToName;
-	std::vector<Entity*> entities;
+	std::vector<Object*> objects;
 	std::vector<Area*> areas;
 
 	Map(int size, Terrain* baseTerrain, float baseHeight);
@@ -36,15 +36,15 @@ public:
 	float getHeight(int x, int y);
 	void setHeight(int x, int y, float height);
 
-	std::vector<Entity*> getTerrainEntities(int x, int y);
-	void setTerrainEntities(int x, int y, std::vector<Entity*> &entities);
+	std::vector<Object*> getTerrainObjects(int x, int y);
+	void setTerrainObjects(int x, int y, std::vector<Object*> &objects);
 
 	void placeTerrain(int x, int y, Terrain* t);
 
-	void addEntity(class Entity* ent);
+	void addObject(class Object* ent);
 
 	Area* createArea(AreaPlacer* placer, AreaPainter* painter, Constraint* constr);
-	std::vector<Entity*>* createObjectGroup(ObjectGroupPlacer* placer, Constraint* constr);
+	std::vector<Object*>* createObjectGroup(ObjectGroupPlacer* placer, Constraint* constr);
 };
 
 #endif

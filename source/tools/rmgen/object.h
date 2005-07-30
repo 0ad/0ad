@@ -1,15 +1,16 @@
-#ifndef __ENTITY_H__
-#define __ENTITY_H__
+#ifndef __OBJECT_H__
+#define __OBJECT_H__
 
-class Entity {
+class Object {
 public:
-	std::string type;   // called "template" in XML?
-	int player;
+	std::string name;	// "template" field for objects, "actor" field for nonobjects
+	int player;			// -1 for nonobjects
 	float x, y, z;
 	float orientation;
 
-	Entity();
-	Entity(const std::string& type, int player, float x, float y, float z, float orientation);
+	Object();
+	Object(const std::string& name, int player, float x, float y, float z, float orientation);
+	bool isEntity();
 };
 
 #endif
