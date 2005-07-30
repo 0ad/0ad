@@ -104,7 +104,7 @@ void CMapReader::UnpackObjects()
 	for (u32 i=0; i<numObjTypes; i++) {
 		unpacker.UnpackString(m_ObjectTypes[i]);
 	}
-	
+
 	// unpack object data
 	u32 numObjects;
 	unpacker.UnpackRaw(&numObjects, sizeof(numObjects));
@@ -180,7 +180,7 @@ int CMapReader::ApplyData()
 			for (u32 m=0; m<PATCH_SIZE; m++) {
 				for (u32 k=0; k<PATCH_SIZE; k++) {
 					CMiniPatch& mp = pTerrain->GetPatch(i,j)->m_MiniPatches[m][k];
-					
+
 					mp.Tex1 = m_TerrainTextures[tileptr->m_Tex1Index];
 					mp.Tex1Priority = tileptr->m_Priority;
 
@@ -332,7 +332,7 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 	XERO_ITER_EL(parent, element)
 	{
 		int element_name = element.getNodeName();
-		
+
 		XMBAttributeList attrs = element.getAttributes();
 		if (element_name == el_suncolour)
 		{
@@ -420,12 +420,18 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 				debug_warn("Invalid XML data - DTD shouldn't allow this");
 		}
 
-		HEntity ent = g_EntityManager.create(g_EntityTemplateCollection.getTemplate(TemplateName), Position, Orientation);
-
-		if (! ent)
-			LOG(ERROR, LOG_CATEGORY, "Failed to create entity '%ls'", TemplateName.c_str());
+		CBaseEntity* base = g_EntityTemplateCollection.getTemplate(TemplateName);
+		if (! base)
+			LOG(ERROR, LOG_CATEGORY, "Failed to load entity template '%ls'", TemplateName.c_str());
 		else
-			ent->SetPlayer(g_Game->GetPlayer(PlayerID));
+		{
+			HEntity ent = g_EntityManager.create(base, Position, Orientation);
+
+			if (! ent)
+				LOG(ERROR, LOG_CATEGORY, "Failed to create entity of type '%ls'", TemplateName.c_str());
+			else
+				ent->SetPlayer(g_Game->GetPlayer(PlayerID));
+		}
 
 		completed_jobs++;
 		LDR_CHECK_TIMEOUT(completed_jobs, total_jobs);

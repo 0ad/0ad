@@ -68,13 +68,13 @@ public:
 	// set this matrix to a rotation described by given quaternion
 	void SetRotation(const CQuaternion& quat);
 
-	// concatentate a rotation about the X axis onto this matrix
+	// concatenate a rotation about the X axis onto this matrix
 	void RotateX(float angle);
-	// concatentate a rotation about the Y axis onto this matrix
+	// concatenate a rotation about the Y axis onto this matrix
 	void RotateY(float angle);
-	// concatentate a rotation about the Z axis onto this matrix
+	// concatenate a rotation about the Z axis onto this matrix
 	void RotateZ(float angle);
-	// concatentate a rotation described by given quaternion
+	// concatenate a rotation described by given quaternion
 	void Rotate(const CQuaternion& quat);
 
 	// set this matrix to given translation 
@@ -88,7 +88,7 @@ public:
 	// set this matrix to the given scaling matrix
 	void SetScaling(float x_scale, float y_scale, float z_scale);
 
-	// concatentate given scaling matrix onto this matrix
+	// concatenate given scaling matrix onto this matrix
 	void Scale(float x_scale, float y_scale, float z_scale);
 
 	// calculate the inverse of this matrix, store in dst

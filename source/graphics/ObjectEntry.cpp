@@ -67,7 +67,14 @@ bool CObjectEntry::BuildRandomVariant(const CObjectBase::variation_key& vars, CO
 		if (var_id < 0 || var_id >= grp->size())
 		{
 			LOG(ERROR, LOG_CATEGORY, "Internal error (BuildRandomVariant: %d not in 0..%d)", var_id, grp->size()-1);
-			continue;
+			// Carry on as best we can, by using some arbitrary variant (rather
+			// than choosing none, else we might end up with no model or texture)
+			if (grp->size())
+				var_id = 0;
+			else
+				// ... unless there aren't any variants in this group, in which
+				// case just give up and try the next group
+				continue;
 		}
 		CObjectBase::Variant& var ((*grp)[var_id]);
 
@@ -92,7 +99,7 @@ bool CObjectEntry::BuildRandomVariant(const CObjectBase::variation_key& vars, CO
 		// So, erase all existing animations which are overridden by this variant:
 		for (std::vector<CObjectBase::Anim>::iterator it = var.m_Anims.begin(); it != var.m_Anims.end(); ++it)
 			chosenAnims.erase(chosenAnims.lower_bound(it->m_AnimName), chosenAnims.upper_bound(it->m_AnimName));
-		// and this insert the new ones:
+		// and then insert the new ones:
 		for (std::vector<CObjectBase::Anim>::iterator it = var.m_Anims.begin(); it != var.m_Anims.end(); ++it)
 			chosenAnims.insert(make_pair(it->m_AnimName, *it));
 	}
@@ -117,6 +124,7 @@ bool CObjectEntry::BuildRandomVariant(const CObjectBase::variation_key& vars, CO
 
 	for (std::map<CStr, CObjectBase::Prop>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
 		props.push_back(it->second);
+	// TODO: This is all wrong, since it breaks the order (which vars_it relies on)
 
 
 	// Build the model:
