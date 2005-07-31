@@ -3,6 +3,7 @@
 #include "gui/MiniMap.h"
 #include "ps/Game.h"
 
+#include <math.h>
 #include "ogl.h"
 #include "renderer/Renderer.h"
 #include "graphics/TextureEntry.h"
@@ -12,6 +13,12 @@
 #include "Bound.h"
 #include "Model.h"
 
+#define VR_XMOVE (24)
+#define VR_YMOVE (24.5)
+
+extern bool mouseButtons[5];
+extern int g_mouse_x, g_mouse_y;
+bool HasClicked=false;
 
 static unsigned int ScaleColor(unsigned int color,float x)
 {
@@ -107,52 +114,76 @@ void CMiniMap::Draw()
 
 		glEnd();
 
+		
+		
+		
+//================================================================	
+              //INTERACTIVE MINIMAP STARTS
+		
+
+		//Get Camera handle
+		CCamera &g_Camera=*g_Game->GetView()->GetCamera();
+		
+		//Check for a click
+		if(mouseButtons[0]==true)
+		{  
+			HasClicked=true; 
+		}
+		
+		//Check to see if left button is false (meaning it's been lifted) 
+		if (mouseButtons[0]==false && HasClicked==true)
+
+		{
+
+			//Is cursor inside Minimap boundaries? 
+			if(g_mouse_x > m_CachedActualSize.left && g_mouse_x < m_CachedActualSize.right
+				&& g_mouse_y > m_CachedActualSize.top && g_mouse_y < m_CachedActualSize.bottom)
+				{
+					
+					CVector3D mm_CurrentPos=g_Camera.m_Orientation.GetTranslation();
+					
+					//X and Z according to proportion of mouse position and minimap
+						CVector3D mm_Destination;
+					mm_Destination.X=(CELL_SIZE*m_MapSize)*
+						((g_mouse_x-m_CachedActualSize.left)/m_CachedActualSize.GetWidth());
+					mm_Destination.Y=mm_CurrentPos.Y;
+					mm_Destination.Z=(CELL_SIZE*m_MapSize)*
+					((m_CachedActualSize.bottom-g_mouse_y)/m_CachedActualSize.GetHeight());
+
+				//Extra constants for compensating for inaccurate conversion
+				//Decimal multiplied for ratio of constant/zoom so it works on all zooms
+					mm_Destination.X+=.7*mm_Destination.Y;
+					mm_Destination.Z-=.7*mm_Destination.Y;
+					
+					//Move lower left side of frustum to mouse
+					g_Camera.m_Orientation._14=mm_Destination.X;
+					g_Camera.m_Orientation._34=mm_Destination.Z;
+									
+					g_Camera.UpdateFrustum();
+					
+				}
+			HasClicked=false;
+		}
+							//END OF INTERACTIVE MINIMAP
+	//====================================================================
+		
+		
 		// render view rect : John M. Mena
 		// This sets up and draws the rectangle on the mini-map
 		// which represents the view of the camera in the world.
 		
 		// Get a handle to the camera
-		CCamera &g_Camera=*g_Game->GetView()->GetCamera();
+		
 
-		CVector3D pos3D[4];
-		CVector2D pos2D[4];
-
-		// Get the far plane corner coordinates
-		g_Camera.GetCameraPlanePoints(g_Camera.GetFarPlane(), pos3D);
-
-		// transform to the plane coords to world space
-		CVector3D wPts[4];
-		for (int i=0;i<4;i++) wPts[i]=g_Camera.m_Orientation.Transform(pos3D[i]);
-
-
-		// TODO: Move this into the constructor
-		float h=128*HEIGHT_SCALE;
-		CPlane TerrainPlane;
-		TerrainPlane.Set(	CVector3D( 0.0f, h, 0.0f ),
-							CVector3D( float(CELL_SIZE*m_MapSize), h, 0.0f ),
-							CVector3D( 0.0f, h, float(CELL_SIZE*m_MapSize) ) );
-		TerrainPlane.Normalize();
-		// END TODO
-
-		// now intersect a ray from the camera through each point 
-		CVector3D rayOrigin=g_Camera.m_Orientation.GetTranslation();
-		CVector3D rayDir=g_Camera.m_Orientation.GetIn();
-
+		//Get correct world coordinates based off corner of screen start 
+		//at Bottom Left and going CW
 		CVector3D hitPt[4];
-		for (int i=0;i<4;i++) {
-			CVector3D rayDir=wPts[i]-rayOrigin;
-			rayDir.Normalize();
+		hitPt[0]=g_Camera.GetWorldCoordinates(0,g_Renderer.GetHeight());
+		hitPt[1]=g_Camera.GetWorldCoordinates(g_Renderer.GetWidth(),g_Renderer.GetHeight());
+		hitPt[2]=g_Camera.GetWorldCoordinates(g_Renderer.GetWidth(),0);
+		hitPt[3]=g_Camera.GetWorldCoordinates(0,0);
+		
 
-			// get intersection point
-			TerrainPlane.FindRayIntersection( rayOrigin, rayDir, &hitPt[i] );
-		}
-
-		// This is the way the ScEd converts to mini-map space.
-		// When attempting to use the supplied one for this class, the lines
-		// would stretch to unknown locations on the screen causing the 
-		// rectangle to distort.
-		// TODO: Calculate this correctly.
-		// Currently the rectangle isn't drawing to the proper scale.
 		float ViewRect[4][2];
 		for (int i=0;i<4;i++) {
 			// convert to minimap space
@@ -162,20 +193,19 @@ void CMiniMap::Draw()
 			ViewRect[i][1]=(m_CachedActualSize.GetHeight()*pz/float(CELL_SIZE*m_MapSize));
 		}
 
-		// This is the alternate way that converts to mini-map space.
-		//for (int i = 0; i < 4; i++)
-		//	pos2D[i] = GetMapSpaceCoords(hitPt[i]);
-		// END TODO
+	
 
 		// Enable Scissoring as to restrict the rectangle
 		// to only the mini-map below by retrieving the mini-maps
 		// screen coords.
+		
 		glScissor((int)m_CachedActualSize.left, 0, (int)m_CachedActualSize.right, (int)m_CachedActualSize.GetHeight());
 		glEnable(GL_SCISSOR_TEST);
-
+		glEnable(GL_LINE_SMOOTH);
 		glLineWidth(2);
 		glColor3f(1.0f,0.3f,0.3f);
-
+		
+		
 		// Draw the viewing rectangle with the ScEd's conversion algorithm
 		glBegin(GL_LINE_LOOP);
 		glVertex2f(x+ViewRect[0][0], y-ViewRect[0][1]);
@@ -184,10 +214,13 @@ void CMiniMap::Draw()
 		glVertex2f(x+ViewRect[3][0], y-ViewRect[3][1]);
 		glEnd();
 
+
+		
 		glDisable(GL_SCISSOR_TEST);
 
 		// Reset everything back to normal
 		glPointSize(1.0f);
+		glDisable(GL_LINE_SMOOTH);
 		glLineWidth(1.0f);
 		glEnable(GL_TEXTURE_2D);
 		glDisable(GL_POINT_SMOOTH);
