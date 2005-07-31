@@ -294,7 +294,15 @@
         </sprite>
 
 	<sprite name="wheatButtonDisabled">
-		<effect grayscale=""/>
+		<effect grayscale="" />
+		<image 	texture="global/button/button_wood.png"
+			real_texture_placement="0 0 160 31" 
+			size="0 0 100% 100%" 
+		/>
+        </sprite>
+
+	<sprite name="wheatButtonTabbed">
+		<effect	add_color="60 42 42 0" />
 		<image 	texture="global/button/button_wood.png"
 			real_texture_placement="0 0 160 31" 
 			size="0 0 100% 100%" 

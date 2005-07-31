@@ -70,6 +70,15 @@
 		text_valign="center"
 	/>
 
+	<style 	name="wheatTabButton"
+		sprite="wheatButton"
+		sprite_disabled="wheatButtonTabbed"
+		sprite_over="wheatButtonOver"
+		sprite_pressed="wheatButtonTabbed"
+		text_align="center"
+		text_valign="center"
+	/>
+
 	<style 	name="wheatExit"
 		size="100%+9 0%-25 100%+25 0%-9"
 		sprite="wheatCheckBoxCross"
@@ -83,6 +92,30 @@
 		sprite="wheatCheckBoxOpen"
 		sprite2="wheatCheckBoxCross"
 		square_side="16"
+		textcolor="black"
+	/>
+
+	<style 	name="wheatArrowLeft"
+		font="verdana12"
+		sprite="wheatCheckBoxOpen"
+		textcolor="black"
+	/>
+
+	<style 	name="wheatArrowRight"
+		font="verdana12"
+		sprite="wheatCheckBoxOpen"
+		textcolor="black"
+	/>
+
+	<style 	name="wheatArrowUp"
+		font="verdana12"
+		sprite="wheatCheckBoxOpen"
+		textcolor="black"
+	/>
+
+	<style 	name="wheatArrowDn"
+		font="verdana12"
+		sprite="wheatCheckBoxOpen"
 		textcolor="black"
 	/>
 

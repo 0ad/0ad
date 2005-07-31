@@ -20,7 +20,7 @@
 			curr_music.loop();
 
 			// Display a .cfg file variable to prove we can access it.
-			console.write ("Language Version: " + (new ConfigDB()).system.language + ".")
+			console.write ("Volume: " + g_ConfigDB.system["sound.mastergain"] + ".")
 			// Unfortunately, although Philip's workaround certainly works,
 			// a] The value cannot be modified.
 			// b] Variables a step up in the hierarchy are not recognised (eg system.sound.mastergain).
@@ -889,23 +889,67 @@
 					style="wheatCrossBox"
 					type="checkbox"
 					hotkey="audio.toggle"
-					size="50%-100 20% 50%-100 30%"
+					size="50%-50 20% 50%+50 25%"
 				>Play Sound
 					<action on="Load"><![CDATA[
-						// (Would like to set checkbox state to value of snd_disabled, but looks like that variable isn't exposed until after the GUI is loaded.
+						// (Would like to set checkbox state to value of snd_disabled, but looks
+						// like that variable isn't exposed until after the GUI is loaded.
 //						this.checked = !snd_disabled;
 					]]></action>
 					<action on="Press"><![CDATA[
 						// Clicking the checkbox turns sound on and off.
-						// (Or at least it should, but it doesn't. Checkbox text doesn't appear either. Maybe this control isn't finished yet?)
-						if (snd_disabled == true)
-							snd_disable (false);
-						else
-							snd_disable (true);
+						// (Or at least it should, but it doesn't. Checkbox text doesn't appear
+						// either. Maybe this control isn't finished yet?)
+//						if (snd_disabled == true)
+//							snd_disable (false);
+//						else
+//							snd_disable (true);
 
-						this.checked = !snd_disabled;
+//						this.checked = !snd_disabled;
 					]]></action>		
 				</object>
+
+				<object name="pgOptionsAudioMusicGain"
+					style="wheatBorderBlack"
+					type="text"
+					size="50%-20 30% 50%+20 35%"
+					text_align="center"
+					text_valign="center"
+				>
+					<action on="Load"><![CDATA[
+						this.caption = g_ConfigDB.system["sound.mastergain"];
+					]]></action>
+				</object>
+
+				<object name="pgOptionsAudioMusicGainDec"
+					style="wheatArrowLeft"
+					type="button"
+					size="50%-40 30% 50%-25 35%"
+				>
+					<action on="Press"><![CDATA[
+						if (getGUIObjectByName ("pgOptionsAudioMusicGain").caption > 0.0)
+							guiModifyCaption ("pgOptionsAudioMusicGain", -.1, 1);
+
+						curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
+						g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
+					]]></action>
+				</object>
+
+				<object name="pgOptionsAudioMusicGainInc"
+					style="wheatArrowRight"
+					type="button"
+					size="50%+25 30% 50%+40 35%"
+				>
+					<action on="Press"><![CDATA[
+						if (getGUIObjectByName ("pgOptionsAudioMusicGain").caption < 1.0)
+							guiModifyCaption ("pgOptionsAudioMusicGain", .1, 1);
+
+						curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
+						g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
+					]]></action>
+				</object>
+
+
 			</object>
 
 			<!--
@@ -990,7 +1034,7 @@
 				<action on="Press"><![CDATA[
 					// Save changes.
 					// TODO:
-
+			console.write ("Volume: " + g_ConfigDB.system["sound.mastergain"] + ".")
 					// Close options screen.
 					closeMainMenuSubWindow ("pgOptions");
 				]]></action>

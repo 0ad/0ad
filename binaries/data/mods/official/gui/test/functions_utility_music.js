@@ -20,7 +20,7 @@
 // s.free();
 
 // Adjust the gain (volume) of a sound (floating point range between 0 (silent) and 1 (max volume)).
-// s.SetGain(value);
+// s.setGain(value);
 
 // ====================================================================
 
