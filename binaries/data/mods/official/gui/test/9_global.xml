@@ -113,6 +113,7 @@
 	<object	name="glbWaterMark"
 		hidden="true"
 		hotkey="screenshot.watermark"
+		z="200"
 	>
 		<action on="Press"><![CDATA[
 			guiToggle ("glbWaterMark");

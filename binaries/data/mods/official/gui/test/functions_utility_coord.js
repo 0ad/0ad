@@ -31,20 +31,28 @@ function addCrd (name, group, rx, ry, x, y, width, height)
 		Crd[Crd.last]				= new Object();
 		Crd[Crd.last].name			= new Object(name);
 		Crd[Crd.last].size			= new Object();
-// console.write ("Created " + Crd.last + Crd[Crd.last].name);
+		Crd[Crd.last].coord			= new Object();
 	}
 	
-	// Create new size.
-	Crd[Crd.last].size[group]		= new Array();
-/*
 	// Get coordinates from first element if not defined.
-	if (!x) 		x 	= Crd[Crd.last].size[rb].size.x1;
-	if (!y) 		y 	= Crd[Crd.last].size[rb].size.y1;
-	if (!width) 		width 	= Crd[Crd.last].size[rb].size.x2-Crd[Crd.last].size[rb].size.x1;
-	if (!height)	 	height 	= Crd[Crd.last].size[rb].size.y2-Crd[Crd.last].size[rb].size.y1;
-*/
-	Crd[Crd.last].size[group] 	= calcCrdArray (rx, ry, x, y, width, height);
-// console.write (Crd[Crd.last].size[group]);
+	if (x == undefined) 	
+		x 	= Crd[Crd.last].coord[rb].x;
+	if (y == undefined) 		
+		y 	= Crd[Crd.last].coord[rb].y;
+	if (width == undefined)		
+		width 	= Crd[Crd.last].coord[rb].width;
+	if (height == undefined) 	
+		height 	= Crd[Crd.last].coord[rb].height;
+
+	// Generate and save coordinates.
+	Crd[Crd.last].size[group]		= calcCrdArray (rx, ry, x, y, width, height);
+	Crd[Crd.last].coord[group]		= new Array();
+	Crd[Crd.last].coord[group].rx		= rx;
+	Crd[Crd.last].coord[group].ry		= ry;
+	Crd[Crd.last].coord[group].x		= x;
+	Crd[Crd.last].coord[group].y		= y;
+	Crd[Crd.last].coord[group].width	= width;
+	Crd[Crd.last].coord[group].height	= height;
 }
 
 // ====================================================================
@@ -64,59 +72,46 @@ function calcCrdArray (rx, ry, x, y, width, height)
 	switch (setSizeContainer.rleft)
 	{
 		case 0:
+		case 50:
 			setSizeContainer.x1 = x;
 		break;
 		case 100:
 			setSizeContainer.x1 = -x-width;
 		break;
-		case 50:
-			setSizeContainer.x1 = x;
-		break;
 	}
 	switch (setSizeContainer.rtop)
 	{
 		case 0:
+		case 50:
 			setSizeContainer.y1 = y;
 		break;
 		case 100:
 			setSizeContainer.y1 = -y-height;
 		break;
-		case 50:
-			setSizeContainer.y1 = y;
-		break;
 	}
 	switch (setSizeContainer.rright)
 	{
 		case 0:
+		case 50:
 			setSizeContainer.x2 = x+width;
 		break;
 		case 100:
-			if (setSizeContainer.rleft == 100)
-				setSizeContainer.x2 = -x;
-			else
-				setSizeContainer.x2 = -width;				
-		break;
-		case 50:
-			setSizeContainer.x2 = x+width;
+			setSizeContainer.x2 = -x;
 		break;
 	}
 	switch (setSizeContainer.rbottom)
 	{
 		case 0:
+		case 50:
 			setSizeContainer.y2 = y+height;
 		break;
 		case 100:
-			if (setSizeContainer.rtop == 100)
-				setSizeContainer.y2 = -y;
-			else
-				setSizeContainer.y2 = -height;
-		break;
-		case 50:
-			setSizeContainer.y2 = objectArrayElement.y+objectArrayElement.height;
+			setSizeContainer.y2 = -y;
 		break;
 	}
 
-	return new GUISize(setSizeContainer.x1, setSizeContainer.y1, setSizeContainer.x2, setSizeContainer.y2, setSizeContainer.rleft, setSizeContainer.rtop, setSizeContainer.rright, setSizeContainer.rbottom);
+	return	new GUISize (setSizeContainer.x1, setSizeContainer.y1, setSizeContainer.x2, setSizeContainer.y2,
+			setSizeContainer.rleft, setSizeContainer.rtop, setSizeContainer.rright, setSizeContainer.rbottom);
 }
 
 // ====================================================================
